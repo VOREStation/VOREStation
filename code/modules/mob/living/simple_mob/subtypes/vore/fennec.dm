@@ -8,8 +8,8 @@
 	colonist as a means of companionship and as a ecosystem balance for desert worlds such as Virgo 4. \
 	Their presence on Virgo 4 is largely due to convergent evolution. While their genetics are closely \
 	related to their Sol counterparts, they are in fact a totally different species of fennec that have followed. \
-	a seperate evolutional path. Virgo Fennec are upwards of five times larger than their Sol cousins and consequently \
-	have a larger appetite. Thier diet mainly consists of whatever small creatures that they manage to scrounge from \
+	a separate evolutional path. Virgo Fennec are upwards of five times larger than their Sol cousins and consequently \
+	have a larger appetite. Their diet mainly consists of whatever small creatures that they manage to scrounge from \
 	the sands of Virgo 4, however they have been known to hunt larger prey in desperate times.\
 	<br>\
 	Fennec foxes reach sexual maturity at around nine months and mate between January and April \
