@@ -1,6 +1,24 @@
+/datum/category_item/catalogue/fauna/snake
+	name = "Wildlife - Snake"
+	desc = "Classification: Reptilia Serpentes\
+	<br><br>\
+	Snakes are elongated, limbless, carnivorous reptiles of the suborder Serpentes \
+	Like all other squamates, snakes are ectothermic, amniote vertebrates covered in overlapping scales. \
+	Many species of snakes have skulls with several more joints than their lizard ancestors, \
+	enabling them to swallow prey much larger than their heads with their highly mobile jaws. \
+	<br>\
+	This species of snake is nonvenomous and use their large bodies to primarily subdue their prey. \
+	Nonvenomous snakes either swallow prey alive or kill them by constriction - this is dependant on the prey. \
+	<br>\
+	This specific snake is nonvenomous and is mostly passive - however they will attack if threatened - it is \
+	recommended that persons keep their distance as to not provoke these animals."
+	value = CATALOGUER_REWARD_TRIVIAL
+
 /mob/living/simple_mob/animal/passive/snake
 	name = "snake"
 	desc = "A big thick snake."
+	tt_desc = "Reptilia Serpentes"
+	catalogue_data = list(/datum/category_item/catalogue/fauna/snake)
 
 	icon_state = "snake"
 	icon_living = "snake"
