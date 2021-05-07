@@ -3,6 +3,7 @@
 */
 /datum/stored_item
 	var/item_name = "name"	//Name of the item(s) displayed
+	var/item_desc
 	var/item_path = null
 	var/amount = 0
 	var/list/instances		//What items are actually stored
