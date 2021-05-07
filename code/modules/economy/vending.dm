@@ -360,6 +360,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 		listed_products.Add(list(list(
 			"key" = key,
 			"name" = I.item_name,
+			"desc" = I.item_desc,
 			"price" = I.price,
 			"color" = I.display_color,
 			"isatom" = ispath(I.item_path, /atom),
