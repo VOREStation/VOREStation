@@ -85,7 +85,6 @@
 	name = "welding mask"
 	path =/obj/item/clothing/head/welding
 
-//TFF 24/12/19 - Let people print more spray bottles if needed.
 /datum/category_item/autolathe/general/spraybottle
 	name = "spray bottle"
 	path = /obj/item/weapon/reagent_containers/spray

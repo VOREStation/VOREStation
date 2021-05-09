@@ -56,7 +56,7 @@
 	var/deathtimeseconds = round((deathtime - deathtimeminutes * 1 MINUTE) / 10,1)
 	if (deathtime < platform_respawn_time)
 		to_chat(usr, "You have been dead for[pluralcheck] [deathtimeseconds] seconds.")
-		to_chat(usr, "You must wait [platform_respawn_time/600] minute\s to respawn as a drone!")
+		to_chat(usr, "You must wait [platform_respawn_time/600] minute\s to take control of \the [src]!")
 		return
 	// End boilerplate.
 

@@ -167,7 +167,7 @@
 		if("modify")
 			if(computer && computer.card_slot)
 				if(id_card)
-					data_core.manifest_modify(id_card.registered_name, id_card.assignment)
+					data_core.manifest_modify(id_card.registered_name, id_card.assignment, id_card.rank)
 				computer.proc_eject_id(usr)
 			. = TRUE
 		if("terminate")

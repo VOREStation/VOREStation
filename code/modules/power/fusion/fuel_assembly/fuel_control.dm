@@ -13,6 +13,7 @@
 /obj/machinery/computer/fusion_fuel_control/New()
 	..()
 	monitor = new(src)
+	monitor.fuel_tag = id_tag
 
 /obj/machinery/computer/fusion_fuel_control/Destroy()
 	QDEL_NULL(monitor)

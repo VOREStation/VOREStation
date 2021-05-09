@@ -1,5 +1,3 @@
-//TFF 28/8/19 - cleanup of areas placement - removes all but rogueminer_vr stuff.
-
 /area/shuttle/belter
 	name = "Belter Shuttle"
 	icon_state = "shuttle2"
@@ -39,3 +37,9 @@
 /area/engineering/engine_gas
 	name = "\improper Engine Gas Storage"
 	icon_state = "engine_waste"
+
+//holodeck 3/29/21
+/area/holodeck/source_smoleworld
+	name = "\improper Holodeck - Smolworld"
+	
+	

@@ -201,7 +201,7 @@
 		if(refactory.get_stored_material(MAT_GOLD) >= METAL_PER_TICK)
 			H.add_modifier(/datum/modifier/protean/gold, origin = refactory)
 
-		//Silver adds darksight
+		//Silver adds accuracy and evasion
 		if(refactory.get_stored_material(MAT_SILVER) >= METAL_PER_TICK)
 			H.add_modifier(/datum/modifier/protean/silver, origin = refactory)
 
@@ -313,8 +313,8 @@
 	material_name = MAT_STEEL
 
 /datum/modifier/protean/steel/tick()
-	holder.adjustBruteLoss(-2,include_robo = TRUE) //Looks high, but these ARE modified by species resistances, so this is really 20% of this
-	holder.adjustFireLoss(-1,include_robo = TRUE) //And this is really double this
+	holder.adjustBruteLoss(-1,include_robo = TRUE) //Modified by species resistances
+	holder.adjustFireLoss(-0.5,include_robo = TRUE) //Modified by species resistances
 	var/mob/living/carbon/human/H = holder
 	for(var/organ in H.internal_organs)
 		var/obj/item/organ/O = organ

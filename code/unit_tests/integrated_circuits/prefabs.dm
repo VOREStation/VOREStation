@@ -3,8 +3,9 @@
 
 /datum/unit_test/integrated_circuit_prefabs_shall_respect_complexity_and_size_contraints/start_test()
 	var/list/failed_prefabs = list()
-	for(var/prefab_type in subtypesof(/decl/prefab/ic_assembly))
-		var/decl/prefab/ic_assembly/prefab = decls_repository.get_decl(prefab_type)
+	var/list/prefab_types = decls_repository.get_decls_of_subtype(/decl/prefab/ic_assembly)
+	for(var/prefab_type in prefab_types)
+		var/decl/prefab/ic_assembly/prefab = prefab_types[prefab_type]
 		var/obj/item/device/electronic_assembly/assembly = prefab.assembly_type
 
 		var/available_size = initial(assembly.max_components)
@@ -33,9 +34,9 @@
 
 /datum/unit_test/integrated_circuit_prefabs_shall_not_fail_to_create/start_test()
 	var/list/failed_prefabs = list()
-	for(var/prefab_type in subtypesof(/decl/prefab/ic_assembly))
-		var/decl/prefab/ic_assembly/prefab = decls_repository.get_decl(prefab_type)
-
+	var/list/prefab_types = decls_repository.get_decls_of_subtype(/decl/prefab/ic_assembly)
+	for(var/prefab_type in prefab_types)
+		var/decl/prefab/ic_assembly/prefab = prefab_types[prefab_type]
 		try
 			var/built_item = prefab.create(get_standard_turf())
 			if(built_item)

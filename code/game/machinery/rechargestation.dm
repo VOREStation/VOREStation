@@ -246,7 +246,7 @@
 		if(!R.cell)
 			return
 
-		if(R.mob_size >= MOB_LARGE)
+		if(istype(R, /mob/living/silicon/robot/platform))
 			to_chat(R, SPAN_WARNING("You are too large to fit into \the [src]."))
 			return
 

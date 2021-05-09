@@ -104,7 +104,7 @@
 
 /obj/structure/noticeboard/examine(mob/user)
 	tgui_interact(user)
-	return list()
+	return ..()
 
 /obj/structure/noticeboard/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)

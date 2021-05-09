@@ -77,7 +77,7 @@
 
 /obj/item/weapon/storage/backpack
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/mob/species/seromi/back.dmi',
+		SPECIES_TESHARI = 'icons/mob/species/teshari/back.dmi',
 		SPECIES_WEREBEAST = 'icons/mob/species/werebeast/back.dmi')
 
 /obj/item/weapon/storage/backpack/ert

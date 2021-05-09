@@ -11,7 +11,7 @@ export const Uplink = (props, context) => {
   const { data } = useBackend(context);
 
   const [screen, setScreen] = useLocalState(context, 'screen', 0);
-  
+
   const { telecrystals } = data;
   return (
     <Window
@@ -137,7 +137,7 @@ const ExploitableInformation = (props, context) => {
             <LabeledList.Divider />
             <LabeledList.Item>Acquired Information</LabeledList.Item>
             <LabeledList.Item label="Notes">
-              {exploit.nanoui_exploit_record}
+              {exploit.nanoui_exploit_record.split("<br>").map(m => <Box key={m}>{m}</Box>)}
             </LabeledList.Item>
           </LabeledList>
         </Box>

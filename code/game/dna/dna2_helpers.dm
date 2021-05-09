@@ -222,7 +222,7 @@
 		// Playerscale
 		var/size = dna.GetUIValueRange(DNA_UI_PLAYERSCALE, player_sizes_list.len)
 		if((0 < size) && (size <= player_sizes_list.len))
-			H.resize(player_sizes_list[player_sizes_list[size]], FALSE)
+			H.resize(player_sizes_list[player_sizes_list[size]], TRUE, ignore_prefs = TRUE)
 
 		// Tail/Taur Color
 		H.r_tail   = dna.GetUIValueRange(DNA_UI_TAIL_R,    255)
@@ -243,7 +243,7 @@
 		H.custom_exclaim = dna.custom_exclaim
 		H.species.blood_color = dna.blood_color
 		var/datum/species/S = H.species
-		S.produceCopy(dna.base_species,dna.species_traits,src)
+		S.produceCopy(dna.species_traits, H, dna.base_species)
 		// VOREStation Edit End
 
 		H.force_update_organs() //VOREStation Add - Gotta do this too

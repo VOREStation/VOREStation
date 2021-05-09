@@ -106,7 +106,7 @@
 	icon_state = "vacant_site"
 
 /area/centcom/simulated
-	dynamic_lighting = 1
+	dynamic_lighting = 0
 
 /area/centcom/simulated/terminal
 	name = "\improper Docking Terminal"
@@ -250,7 +250,6 @@
 	name = "\improper Vacant Prep Area"
 /area/vacant/vacant_site/gateway/lower
 	name = "\improper Lower Vacant Prep Area"
-//TFF 5/4/20 - Mining Ops move	TODO Change all Vacant areas to construction_site per vermin event location announcement.
 /area/construction/vacant_mining_ops
 	name = "\improper Vacant Mining Operations"
 
@@ -267,7 +266,6 @@
 /area/tether/surfacebase/emergency_storage/atrium
 	name = "\improper Atrium Emergency Storage"
 
-//TFF 7/4/20 - New areas for Surface Cargo bits as well as the Mining Outpost. Some former ones deleted. Others renamed.
 // Surface Cargo/Mining EVA/Warehouse/Mining Outpost adadditions
 /area/tether/surfacebase/cargo
 	name = "Surface Cargo Foyer"
@@ -650,7 +648,6 @@
 	name = "Atmospherics Gas Storage"
 	icon_state = "atmos"
 
-//TFF 11/12/19 - Minor refactor, makes mice spawn only in Atmos.
 /area/engineering/atmos_intake
 	name = "\improper Atmospherics Intake"
 	icon_state = "atmos"
@@ -776,7 +773,6 @@
 /area/rnd/robotics/resleeving
     name = "\improper Robotics Resleeving"
 
-//TFF 28/8/19 - cleanup of areas placement
 /area/rnd/research/testingrange
 	name = "\improper Weapons Testing Range"
 	icon_state = "firingrange"
@@ -787,7 +783,6 @@
 
 
 //Outpost areas
-//TFF 28/8/19 - cleanup of areas placement
 /area/rnd/outpost
 	name = "\improper Research Outpost Hallway"
 	icon_state = "research"
@@ -939,7 +934,6 @@
 	name = "Public Meeting Room"
 	icon_state = "blue"
 	sound_env = SMALL_SOFTFLOOR
-//TFF 28/8/19 - cleanup of areas placement
 /area/chapel/observation
 	name = "\improper Chapel Observation"
 	icon_state = "chapel"
@@ -984,137 +978,180 @@
 	icon_state = "Sleep"
 	flags = RAD_SHIELDED
 	soundproofed = TRUE
+	limit_mob_size = FALSE
+	block_suit_sensors = TRUE
 
 /area/crew_quarters/sleep/maintDorm2
 	name = "\improper Construction Dorm 2"
 	icon_state = "Sleep"
 	flags = RAD_SHIELDED
 	soundproofed = TRUE
+	limit_mob_size = FALSE
+	block_suit_sensors = TRUE
 
 /area/crew_quarters/sleep/maintDorm3
 	name = "\improper Construction Dorm 3"
 	icon_state = "Sleep"
 	flags = RAD_SHIELDED
 	soundproofed = TRUE
+	limit_mob_size = FALSE
+	block_suit_sensors = TRUE
 
 /area/crew_quarters/sleep/maintDorm4
 	name = "\improper Construction Dorm 4"
 	icon_state = "Sleep"
 	flags = RAD_SHIELDED
 	soundproofed = TRUE
+	limit_mob_size = FALSE
+	block_suit_sensors = TRUE
 
-//TFF 28/8/19 - cleanup of areas placement
 /area/crew_quarters/sleep/vistor_room_1
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 	soundproofed = TRUE
+	limit_mob_size = FALSE
+	block_suit_sensors = TRUE
 
 /area/crew_quarters/sleep/vistor_room_2
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 	soundproofed = TRUE
+	limit_mob_size = FALSE
+	block_suit_sensors = TRUE
 
 /area/crew_quarters/sleep/vistor_room_3
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 	soundproofed = TRUE
+	limit_mob_size = FALSE
+	block_suit_sensors = TRUE
 
 /area/crew_quarters/sleep/vistor_room_4
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 	soundproofed = TRUE
+	limit_mob_size = FALSE
+	block_suit_sensors = TRUE
 
 /area/crew_quarters/sleep/vistor_room_5
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 	soundproofed = TRUE
+	limit_mob_size = FALSE
+	block_suit_sensors = TRUE
 
 /area/crew_quarters/sleep/vistor_room_6
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 	soundproofed = TRUE
+	limit_mob_size = FALSE
+	block_suit_sensors = TRUE
 
 /area/crew_quarters/sleep/vistor_room_7
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 	soundproofed = TRUE
+	limit_mob_size = FALSE
+	block_suit_sensors = TRUE
 
 /area/crew_quarters/sleep/vistor_room_8
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 	soundproofed = TRUE
+	limit_mob_size = FALSE
+	block_suit_sensors = TRUE
 
 /area/crew_quarters/sleep/vistor_room_9
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 	soundproofed = TRUE
+	limit_mob_size = FALSE
+	block_suit_sensors = TRUE
 
 /area/crew_quarters/sleep/vistor_room_10
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 	soundproofed = TRUE
+	limit_mob_size = FALSE
+	block_suit_sensors = TRUE
 
 /area/crew_quarters/sleep/vistor_room_11
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 	soundproofed = TRUE
+	limit_mob_size = FALSE
+	block_suit_sensors = TRUE
 
 /area/crew_quarters/sleep/vistor_room_12
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 	soundproofed = TRUE
+	limit_mob_size = FALSE
+	block_suit_sensors = TRUE
 
 /area/crew_quarters/sleep/Dorm_1
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 	soundproofed = TRUE
+	limit_mob_size = FALSE
+	block_suit_sensors = TRUE
 
 /area/crew_quarters/sleep/Dorm_2
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 	soundproofed = TRUE
+	limit_mob_size = FALSE
+	block_suit_sensors = TRUE
 
 /area/crew_quarters/sleep/Dorm_3
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 	soundproofed = TRUE
+	limit_mob_size = FALSE
+	block_suit_sensors = TRUE
 
 /area/crew_quarters/sleep/Dorm_4
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 	soundproofed = TRUE
+	limit_mob_size = FALSE
+	block_suit_sensors = TRUE
 
 /area/crew_quarters/sleep/Dorm_5
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 	soundproofed = TRUE
+	limit_mob_size = FALSE
+	block_suit_sensors = TRUE
 
 /area/crew_quarters/sleep/Dorm_6
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 	soundproofed = TRUE
+	limit_mob_size = FALSE
+	block_suit_sensors = TRUE
 
 /area/crew_quarters/sleep/Dorm_7
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 	soundproofed = TRUE
+	limit_mob_size = FALSE
+	block_suit_sensors = TRUE
 
 /area/crew_quarters/sleep/Dorm_8
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 	soundproofed = TRUE
+	limit_mob_size = FALSE
+	block_suit_sensors = TRUE
 
 /area/crew_quarters/sleep/Dorm_9
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 	soundproofed = TRUE
+	limit_mob_size = FALSE
+	block_suit_sensors = TRUE
 
 /area/crew_quarters/sleep/Dorm_10
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 	soundproofed = TRUE
+	limit_mob_size = FALSE
+	block_suit_sensors = TRUE
 
 /area/crew_quarters/sleep/Dorm_1/holo
 	name = "\improper Dorm 1 Holodeck"
 	icon_state = "dk_yellow"
-	flags = RAD_SHIELDED | BLUE_SHIELDED
-	soundproofed = TRUE
 
 /area/crew_quarters/sleep/Dorm_3/holo
 	name = "\improper Dorm 3 Holodeck"
 	icon_state = "dk_yellow"
-	flags = RAD_SHIELDED | BLUE_SHIELDED
-	soundproofed = TRUE
 
 /area/crew_quarters/sleep/Dorm_5/holo
 	name = "\improper Dorm 5 Holodeck"
 	icon_state = "dk_yellow"
-	flags = RAD_SHIELDED | BLUE_SHIELDED
-	soundproofed = TRUE
 
 /area/crew_quarters/sleep/Dorm_7/holo
 	name = "\improper Dorm 7 Holodeck"
 	icon_state = "dk_yellow"
-	flags = RAD_SHIELDED | BLUE_SHIELDED
-	soundproofed = TRUE
 
 /area/crew_quarters/sleep/spacedorm1
 	name = "\improper Visitor Lodging 1"
@@ -1122,61 +1159,98 @@
 	lightswitch = 0
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 	soundproofed = TRUE
+	limit_mob_size = FALSE
+	block_suit_sensors = TRUE
+
 /area/crew_quarters/sleep/spacedorm2
 	name = "\improper Visitor Lodging 2"
 	icon_state = "dk_yellow"
 	lightswitch = 0
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 	soundproofed = TRUE
+	limit_mob_size = FALSE
+	block_suit_sensors = TRUE
+
 /area/crew_quarters/sleep/spacedorm3
 	name = "\improper Visitor Lodging 3"
 	icon_state = "dk_yellow"
 	lightswitch = 0
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 	soundproofed = TRUE
+	limit_mob_size = FALSE
+	block_suit_sensors = TRUE
+
 /area/crew_quarters/sleep/spacedorm4
 	name = "\improper Visitor Lodging 4"
 	icon_state = "dk_yellow"
 	lightswitch = 0
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 	soundproofed = TRUE
+	limit_mob_size = FALSE
+	block_suit_sensors = TRUE
 
 /area/holodeck/holodorm/source_basic
 	name = "\improper Holodeck Source"
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 	soundproofed = TRUE
+	limit_mob_size = FALSE
+	block_suit_sensors = TRUE
+
 /area/holodeck/holodorm/source_desert
 	name = "\improper Holodeck Source"
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 	soundproofed = TRUE
+	limit_mob_size = FALSE
+	block_suit_sensors = TRUE
+
 /area/holodeck/holodorm/source_seating
 	name = "\improper Holodeck Source"
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 	soundproofed = TRUE
+	limit_mob_size = FALSE
+	block_suit_sensors = TRUE
+
 /area/holodeck/holodorm/source_beach
 	name = "\improper Holodeck Source"
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 	soundproofed = TRUE
+	limit_mob_size = FALSE
+	block_suit_sensors = TRUE
+
 /area/holodeck/holodorm/source_garden
 	name = "\improper Holodeck Source"
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 	soundproofed = TRUE
+	limit_mob_size = FALSE
+	block_suit_sensors = TRUE
+
 /area/holodeck/holodorm/source_boxing
 	name = "\improper Holodeck Source"
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 	soundproofed = TRUE
+	limit_mob_size = FALSE
+	block_suit_sensors = TRUE
+
 /area/holodeck/holodorm/source_snow
 	name = "\improper Holodeck Source"
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 	soundproofed = TRUE
+	limit_mob_size = FALSE
+	block_suit_sensors = TRUE
+
 /area/holodeck/holodorm/source_space
 	name = "\improper Holodeck Source"
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 	soundproofed = TRUE
+	limit_mob_size = FALSE
+	block_suit_sensors = TRUE
+
 /area/holodeck/holodorm/source_off
 	name = "\improper Holodeck Source"
 	flags = RAD_SHIELDED | BLUE_SHIELDED
 	soundproofed = TRUE
+	limit_mob_size = FALSE
+	block_suit_sensors = TRUE
 
 /area/ai_core_foyer
 	name = "\improper AI Core Access"
@@ -1386,9 +1460,6 @@
 /area/shuttle/tourbus/cockpit
 	name = "\improper Tour Bus Cockpit"
 
-/area/shuttle/tourbus/engines
-	name = "\improper Tour Bus Engines"
-
 /area/shuttle/medivac
 	requires_power = 1
 	icon_state = "shuttle2"
@@ -1415,7 +1486,6 @@
 /area/shuttle/securiship/engines
 	name = "\improper Securiship Engines"
 
-//TFF 5/4/20 - Mining Ops move
 // Asteroid Mining belter and Mining Outpost shuttles and refinery/gear areas
 /area/quartermaster/belterdock
 	name = "\improper Cargo Belter Access"
@@ -1466,7 +1536,6 @@ area/shuttle/mining_outpost/shuttle
 	name = "\improper Ninjacraft"
 	icon_state = "shuttle2"
 
-//TFF 28/8/19 - cleanup of areas placement
 /area/teleporter/departing
 	name = "\improper Long-Range Teleporter"
 	icon_state = "teleporter"
@@ -1540,6 +1609,7 @@ area/shuttle/mining_outpost/shuttle
 	requires_power = 0
 	flags = RAD_SHIELDED
 	icon_state = "red2"
+	limit_mob_size = FALSE
 
 /area/unknown/dorm1
 	name = "Unknown Dorm 1"
@@ -1552,6 +1622,12 @@ area/shuttle/mining_outpost/shuttle
 
 /area/unknown/dorm4
 	name = "Unknown Dorm 4"
+
+/area/unknown/dorm5
+	name = "Unknown Dorm 5"
+
+/area/unknown/dorm6
+	name = "Unknown Dorm 6"
 
 // ERT/Deathsquad Shuttle
 /area/shuttle/specialops/centcom

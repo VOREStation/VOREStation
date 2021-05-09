@@ -63,6 +63,7 @@
 	"Meetinghall" 		= new/datum/holodeck_program(/area/holodeck/source_meetinghall),
 	"Courtroom" 		= new/datum/holodeck_program(/area/holodeck/source_courtroom, list('sound/music/traitor.ogg')),
 	"Chessboard"		= new/datum/holodeck_program(/area/holodeck/source_chess),
+	"Micro Building Area"		= new/datum/holodeck_program(/area/holodeck/source_smoleworld), //VOREStation add
 	"Turn Off" 			= new/datum/holodeck_program(/area/holodeck/source_plating, list())
 	)
 

@@ -1175,7 +1175,7 @@
 					/obj/item/clothing/suit/varsity/blue = 5,
 					/obj/item/clothing/suit/varsity/brown = 5,
 					/obj/item/clothing/suit/storage/hooded/wintercoat = 5,
-					/obj/item/clothing/suit/storage/seromi/cloak/standard/white_grey = 5)
+					/obj/item/clothing/suit/storage/teshari/cloak/standard/white_grey = 5)
 	prices = list(/obj/item/clothing/suit/storage/apron = 100,
 					/obj/item/clothing/suit/storage/flannel/aqua = 100,
 					/obj/item/clothing/suit/storage/toggle/bomber = 100,
@@ -1262,7 +1262,7 @@
 					/obj/item/clothing/suit/varsity/blue = 100,
 					/obj/item/clothing/suit/varsity/brown = 100,
 					/obj/item/clothing/suit/storage/hooded/wintercoat = 100,
-					/obj/item/clothing/suit/storage/seromi/cloak/standard/white_grey = 100)
+					/obj/item/clothing/suit/storage/teshari/cloak/standard/white_grey = 100)
 	premium = list(/obj/item/clothing/suit/imperium_monk = 3)
 	contraband = list(/obj/item/toy/katana = 1)
 
@@ -1410,7 +1410,6 @@
 	contraband = list(/obj/item/clothing/head/syndicatefake = 1,
 					/obj/item/clothing/suit/syndicatefake = 1)
 
-//TFF 19/12/19 - Brig version of a seed storage vendor
 /obj/machinery/seed_storage/brig
 	name = "Prisoners' food seed storage"
 	starting_seeds = list(
@@ -2536,7 +2535,7 @@
 					/obj/item/clothing/suit/varsity/blue = 5,
 					/obj/item/clothing/suit/varsity/brown = 5,
 					/obj/item/clothing/suit/storage/hooded/wintercoat = 5,
-					/obj/item/clothing/suit/storage/seromi/cloak/standard/white_grey = 5)
+					/obj/item/clothing/suit/storage/teshari/cloak/standard/white_grey = 5)
 	prices = list(/obj/item/clothing/suit/storage/apron = 100,
 					/obj/item/clothing/suit/storage/flannel/aqua = 100,
 					/obj/item/clothing/suit/storage/toggle/bomber = 100,
@@ -2623,7 +2622,7 @@
 					/obj/item/clothing/suit/varsity/blue = 100,
 					/obj/item/clothing/suit/varsity/brown = 100,
 					/obj/item/clothing/suit/storage/hooded/wintercoat = 100,
-					/obj/item/clothing/suit/storage/seromi/cloak/standard/white_grey = 100)
+					/obj/item/clothing/suit/storage/teshari/cloak/standard/white_grey = 100)
 	premium = list(/obj/item/clothing/suit/imperium_monk = 3)
 	contraband = list(/obj/item/toy/katana = 1)
 
@@ -3520,7 +3519,7 @@
 					/obj/item/clothing/suit/varsity/blue = 5,
 					/obj/item/clothing/suit/varsity/brown = 5,
 					/obj/item/clothing/suit/storage/hooded/wintercoat = 5,
-					/obj/item/clothing/suit/storage/seromi/cloak/standard/white_grey = 5,
+					/obj/item/clothing/suit/storage/teshari/cloak/standard/white_grey = 5,
 					/obj/item/clothing/suit/imperium_monk = 3,
 					/obj/item/clothing/head/helmet/space/void/engineering = 5,
 					/obj/item/clothing/suit/space/void/engineering = 5,
@@ -4540,7 +4539,6 @@
 					/obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat = 10)
 	vend_delay = 15
 
-//TFF 19/12/19 - Brig version of a seed storage vendor
 /obj/machinery/seed_storage/brig
 	name = "Prisoners' food seed storage"
 	starting_seeds = list(
@@ -4616,3 +4614,36 @@
 /obj/machinery/vending/cola/soft
 	icon = 'icons/obj/vending_vr.dmi'
 	icon_state = "Cola_Machine"
+
+//////////////////////Bepis Drinks (04/29/2021)//////////////////////
+
+/obj/machinery/vending/bepis
+	name = "Bepis Softdrinks"
+	desc = "A strange softdrink vendor that isn't owned by NanoTrasen... Why (and how) is it here?"
+	icon = 'icons/obj/vending_vr.dmi'
+	icon_state = "bepis"
+	product_slogans = "Refreshing!;Have a sip, you won't believe the taste!;Puts the 'B' in Best Soda!"
+	product_ads = "Refreshing!;Hope you're thirsty!;Please, have a drink!;Drink up!"
+	products = list(/obj/item/weapon/reagent_containers/food/drinks/cans/bepis = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/astrodew = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/buzz = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/shambler = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/cranberry = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/icecoffee = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/iced_tea = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/grape_juice = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/gingerale = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/root_beer = 10)
+
+	prices = list(/obj/item/weapon/reagent_containers/food/drinks/cans/bepis = 1,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/astrodew = 1,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/buzz = 1,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/shambler = 1,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/cranberry = 1,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/icecoffee = 1,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/iced_tea = 1,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/grape_juice = 1,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/gingerale = 1,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/root_beer = 1)
+	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
+	vending_sound = "machines/vending/vending_cans.ogg"

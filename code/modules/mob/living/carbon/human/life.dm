@@ -62,8 +62,6 @@
 
 	//No need to update all of these procs if the guy is dead.
 	fall() //VORESTATION EDIT. Prevents people from floating
-	if(unnaturally_resized)	//VORESTATION EDIT.
-		handle_unnatural_size()
 	if(stat != DEAD && !stasis)
 		//Updates the number of stored chemicals for powers
 		handle_changeling()
@@ -1268,7 +1266,7 @@
 		//VOREStation Add - Vampire hunger alert
 		else if(get_species() == SPECIES_CUSTOM)
 			var/datum/species/custom/C = species
-			if(/datum/trait/bloodsucker in C.traits)
+			if(/datum/trait/neutral/bloodsucker in C.traits)
 				fat_alert = /obj/screen/alert/fat/vampire
 				hungry_alert = /obj/screen/alert/hungry/vampire
 				starving_alert = /obj/screen/alert/starving/vampire
@@ -1558,7 +1556,7 @@
 
 	if(shock_stage >= 30)
 		if(shock_stage == 30 && !isbelly(loc)) //VOREStation Edit
-			emote("me",1,"is having trouble keeping their eyes open.")
+			custom_emote(VISIBLE_MESSAGE, "is having trouble keeping their eyes open.")
 		eye_blurry = max(2, eye_blurry)
 		stuttering = max(stuttering, 5)
 
@@ -1567,7 +1565,7 @@
 
 	if (shock_stage >= 60)
 		if(shock_stage == 60 && !isbelly(loc)) //VOREStation Edit
-			emote("me",1,"'s body becomes limp.")
+			custom_emote(VISIBLE_MESSAGE, "'s body becomes limp.")
 		if (prob(2))
 			to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please&#44; just end the pain", "Your whole body is going numb")]!</span>")
 			Weaken(20)
@@ -1584,7 +1582,7 @@
 
 	if(shock_stage == 150)
 		if(!isbelly(loc)) //VOREStation Edit
-			emote("me",1,"can no longer stand, collapsing!")
+			custom_emote(VISIBLE_MESSAGE, "can no longer stand, collapsing!")
 		Weaken(20)
 
 	if(shock_stage >= 150)

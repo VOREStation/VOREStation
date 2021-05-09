@@ -19,7 +19,7 @@
 	var/cuff_sound = 'sound/weapons/handcuffs.ogg'
 	var/cuff_type = "handcuffs"
 	var/use_time = 30
-	sprite_sheets = list(SPECIES_TESHARI = 'icons/mob/species/seromi/handcuffs.dmi')
+	sprite_sheets = list(SPECIES_TESHARI = 'icons/mob/species/teshari/handcuffs.dmi')
 
 /obj/item/weapon/handcuffs/get_worn_icon_state(var/slot_name)
 	if(slot_name == slot_handcuffed_str)
@@ -176,17 +176,6 @@ var/last_chew = 0
 /obj/item/weapon/handcuffs/cable/white
 	color = "#FFFFFF"
 
-/obj/item/weapon/handcuffs/cable/attackby(var/obj/item/I, mob/user as mob)
-	..()
-	if(istype(I, /obj/item/stack/rods))
-		var/obj/item/stack/rods/R = I
-		if (R.use(1))
-			var/obj/item/weapon/material/wirerod/W = new(get_turf(user))
-			user.put_in_hands(W)
-			to_chat(user, "<span class='notice'>You wrap the cable restraint around the top of the rod.</span>")
-			qdel(src)
-			update_icon(user)
-
 /obj/item/weapon/handcuffs/cyborg
 	dispenser = 1
 
@@ -214,7 +203,7 @@ var/last_chew = 0
 	origin_tech = list(TECH_MATERIAL = 1)
 	breakouttime = 300	//Deciseconds = 30s = 0.5 minute
 	cuff_type = "legcuffs"
-	sprite_sheets = list("Teshari" = 'icons/mob/species/seromi/handcuffs.dmi')
+	sprite_sheets = list(SPECIES_TESHARI = 'icons/mob/species/teshari/handcuffs.dmi')
 	elastic = 0
 	cuff_sound = 'sound/weapons/handcuffs.ogg' //This shold work for now.
 

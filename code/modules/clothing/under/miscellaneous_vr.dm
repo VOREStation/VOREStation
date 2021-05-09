@@ -79,6 +79,8 @@
 		return
 
 	var/new_size = input("Put the desired size (25-200%), or (1-600%) in dormitory areas.", "Set Size", 200) as num|null
+	if(!new_size)
+		return //cancelled
 
 	//Check AGAIN because we accepted user input which is blocking.
 	if (src != H.w_uniform)
@@ -88,9 +90,9 @@
 	if (H.stat || H.restrained())
 		return
 
-	if (isnull(H.size_multiplier))
+	if (isnull(H.size_multiplier)) // Why would this ever be the case?
 		to_chat(H,"<span class='warning'>The uniform panics and corrects your apparently microscopic size.</span>")
-		H.resize(RESIZE_NORMAL)
+		H.resize(RESIZE_NORMAL, ignore_prefs = TRUE)
 		H.update_icons() //Just want the matrix transform
 		return
 
@@ -102,7 +104,7 @@
 		if(new_size != H.size_multiplier)
 			if(!original_size)
 				original_size = H.size_multiplier
-			H.resize(new_size/100)
+			H.resize(new_size/100, ignore_prefs = TRUE) // Ignores prefs because you can only resize yourself
 			H.visible_message("<span class='warning'>The space around [H] distorts as they change size!</span>","<span class='notice'>The space around you distorts as you change size!</span>")
 		else //They chose their current size.
 			return
@@ -111,7 +113,7 @@
 	. = ..()
 	if(. && ishuman(M) && original_size)
 		var/mob/living/carbon/human/H = M
-		H.resize(original_size)
+		H.resize(original_size, ignore_prefs = TRUE)
 		original_size = null
 		H.visible_message("<span class='warning'>The space around [H] distorts as they return to their original size!</span>","<span class='notice'>The space around you distorts as you return to your original size!</span>")
 

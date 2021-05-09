@@ -146,7 +146,6 @@
 	suit_sprites = 'icons/mob/taursuits_wolf.dmi'
 	icon_sprite_tag = "wolf"
 
-//TFF 22/11/19 - CHOMPStation port of fat taur sprites
 /datum/sprite_accessory/tail/taur/fatwolf
 	name = "Fat Wolf (Taur)"
 	icon_state = "fatwolf_s"
@@ -158,7 +157,6 @@
 	extra_overlay = "wolf_markings"
 	//icon_sprite_tag = "wolf2c"
 
-//TFF 22/11/19 - CHOMPStation port of fat taur sprites
 /datum/sprite_accessory/tail/taur/wolf/fatwolf_2c
 	name = "Fat Wolf dual-color (Taur)"
 	icon_state = "fatwolf_s"
@@ -245,7 +243,6 @@
 	suit_sprites = 'icons/mob/taursuits_feline.dmi'
 	icon_sprite_tag = "feline"
 
-//TFF 22/11/19 - CHOMPStation port of fat taur sprites
 /datum/sprite_accessory/tail/taur/fatfeline
 	name = "Fat Feline (Taur)"
 	icon_state = "fatfeline_s"
@@ -262,7 +259,6 @@
 	extra_overlay = "feline_markings"
 	//icon_sprite_tag = "feline2c"
 
-//TFF 22/11/19 - CHOMPStation port of fat taur sprites
 /datum/sprite_accessory/tail/taur/feline/fatfeline_2c
 	name = "Fat Feline dual-color (Taur)"
 	icon_state = "fatfeline_s"
@@ -337,7 +333,6 @@
 	hide_body_parts = null
 	clip_mask_icon = null
 	clip_mask_state = null
-	//apply_restrictions = TRUE
 	//species_allowed = list(SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW)
 
 /datum/sprite_accessory/tail/taur/shadekin_tail/shadekin_tail_2c

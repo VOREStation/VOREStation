@@ -71,8 +71,6 @@
 	icon_state = "debrisexplored"
 	forced_ambience = list('sound/ambience/tension/tension.ogg', 'sound/ambience/tension/horror.ogg')
 
-//TFF 26/12/19 - Sub-areas for the APCs.
-
 /area/submap/debrisfield/derelict/ai_access_port
 	name = "POI - Abandoned Derelict AI Acess Port"
 

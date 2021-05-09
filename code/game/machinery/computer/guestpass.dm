@@ -41,7 +41,7 @@
 
 /obj/item/weapon/card/id/guest/attack_self(mob/living/user as mob)
 	if(user.a_intent == I_HURT)
-		if(icon_state == "guest_invalid")
+		if(icon_state == "guest-invalid")
 			to_chat(user, "<span class='warning'>This guest pass is already deactivated!</span>")
 			return
 
@@ -49,7 +49,8 @@
 		if(confirm == "Yes")
 			//rip guest pass </3
 			user.visible_message("<span class='notice'>\The [user] deactivates \the [src].</span>")
-			icon_state = "guest_invalid"
+			icon_state = "guest-invalid"
+			update_icon()
 			expiration_time = world.time
 			expired = 1
 	return ..()
@@ -66,7 +67,8 @@
 /obj/item/weapon/card/id/guest/process()
 	if(expired == 0 && world.time >= expiration_time)
 		visible_message("<span class='warning'>\The [src] flashes a few times before turning red.</span>")
-		icon_state = "guest_invalid"
+		icon_state = "guest-invalid"
+		update_icon()
 		expired = 1
 		world.time = expiration_time
 		return

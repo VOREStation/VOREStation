@@ -97,6 +97,7 @@
 			var/their_slowdown = max(H.calculate_item_encumbrance(), 1)
 			item_tally = max(item_tally, their_slowdown) // If our slowdown is less than theirs, then we become as slow as them (before species modifires).
 
+	item_tally /= 2 //VOREStation Add
 	item_tally *= species.item_slowdown_mod
 
 	. += item_tally
@@ -189,7 +190,7 @@
 		if(istype(back, /obj/item/weapon/tank/jetpack))
 			return back
 		else if(istype(rig))
-			for(var/obj/item/rig_module/maneuvering_jets.module in rig.installed_modules)
+			for(var/obj/item/rig_module/maneuvering_jets/module in rig.installed_modules)
 				return module.jets
 
 /mob/living/carbon/human/Process_Spacemove(var/check_drift = 0)

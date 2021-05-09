@@ -31,10 +31,14 @@ var/list/turf_edge_cache = list()
 	return ..()
 
 /turf/simulated/proc/make_outdoors()
+	if(outdoors)
+		return
 	outdoors = TRUE
 	SSplanets.addTurf(src)
 
 /turf/simulated/proc/make_indoors()
+	if(!outdoors)
+		return
 	outdoors = FALSE
 	SSplanets.removeTurf(src)
 
