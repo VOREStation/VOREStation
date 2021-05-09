@@ -128,31 +128,15 @@
 	can_take = ORGANICS
 
 /datum/trait/negative/breathes
-	var/tank = /obj/item/weapon/tank/air
-
-/datum/trait/negative/breathes/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath(H), slot_wear_mask)
-	if(H.backbag == 1)
-		H.equip_to_slot_or_del(new tank(H), slot_back)
-		H.internal = H.back
-	else
-		H.equip_to_slot_or_del(new tank(H), slot_r_hand)
-		H.internal = H.r_hand
-	H.internal = locate(/obj/item/weapon/tank) in H.contents
-	if(istype(H.internal,/obj/item/weapon/tank) && H.internals)
-		H.internals.icon_state = "internal1"
+	cost = -2
+	can_take = ORGANICS
 
 /datum/trait/negative/breathes/phoron
 	name = "Phoron Breather"
 	desc = "You breathe phoron instead of oxygen (which is poisonous to you), much like a Vox."
-	cost = -2
 	var_changes = list("breath_type" = "phoron", "poison_type" = "oxygen")
-	tank = /obj/item/weapon/tank/vox
 
 /datum/trait/negative/breathes/nitrogen
 	name = "Nitrogen Breather"
 	desc = "You breathe nitrogen instead of oxygen (which is poisonous to you). Incidentally, phoron isn't poisonous to breathe to you."
-	cost = -2
 	var_changes = list("breath_type" = "nitrogen", "poison_type" = "oxygen")
-	tank = /obj/item/weapon/tank/nitrogen

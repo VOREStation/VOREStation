@@ -159,5 +159,5 @@
 
 /datum/trait/positive/water_breather
 	name = "Water Breather"
-	desc = "You can breathe underwater."
+	desc = "You can breathe under water."
 	cost = 1
