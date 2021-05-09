@@ -540,6 +540,110 @@ also be sure that it's locked down before you take off, the automatic switch is 
 	spawn_nothing_percentage = 50
 	icon_state = "crate"
 
+/obj/random/multiple/ore_pile/talon
+	name = "random ore pile (talon)"
+	desc = "A pile of random ores. High chance of a larger pile of common ores, lower chances of small piles of rarer ores. No verdantium, reduced item counts vs normal ore craes."
+	icon = 'icons/obj/mining.dmi'
+	icon_state = "ore_clown"
+
+
+/obj/random/multiple/ore_pile/talon/item_to_spawn()
+	return pick(
+			prob(10);list(
+				/obj/item/weapon/ore/coal,
+				/obj/item/weapon/ore/coal,
+				/obj/item/weapon/ore/coal,
+				/obj/item/weapon/ore/coal,
+				/obj/item/weapon/ore/coal,
+				/obj/item/weapon/ore/coal,
+				/obj/item/weapon/ore/coal,
+				/obj/item/weapon/ore/coal,
+				/obj/item/weapon/ore/coal,
+				/obj/item/weapon/ore/coal
+			),
+			prob(3);list(
+				/obj/item/weapon/ore/diamond,
+				/obj/item/weapon/ore/diamond
+			),
+			prob(15);list(
+				/obj/item/weapon/ore/glass,
+				/obj/item/weapon/ore/glass,
+				/obj/item/weapon/ore/glass,
+				/obj/item/weapon/ore/glass,
+				/obj/item/weapon/ore/glass,
+				/obj/item/weapon/ore/glass,
+				/obj/item/weapon/ore/glass,
+				/obj/item/weapon/ore/glass,
+				/obj/item/weapon/ore/glass,
+				/obj/item/weapon/ore/glass,
+				/obj/item/weapon/ore/glass,
+				/obj/item/weapon/ore/glass,
+				/obj/item/weapon/ore/glass,
+				/obj/item/weapon/ore/glass,
+				/obj/item/weapon/ore/glass
+			),
+			prob(5);list(
+				/obj/item/weapon/ore/gold,
+				/obj/item/weapon/ore/gold,
+				/obj/item/weapon/ore/gold,
+				/obj/item/weapon/ore/gold,
+				/obj/item/weapon/ore/gold
+			),
+			prob(2);list(
+				/obj/item/weapon/ore/hydrogen
+			),
+			prob(10);list(
+				/obj/item/weapon/ore/iron,
+				/obj/item/weapon/ore/iron,
+				/obj/item/weapon/ore/iron,
+				/obj/item/weapon/ore/iron,
+				/obj/item/weapon/ore/iron,
+				/obj/item/weapon/ore/iron,
+				/obj/item/weapon/ore/iron,
+				/obj/item/weapon/ore/iron,
+				/obj/item/weapon/ore/iron,
+				/obj/item/weapon/ore/iron
+			),
+			prob(10);list(
+				/obj/item/weapon/ore/lead,
+				/obj/item/weapon/ore/lead,
+				/obj/item/weapon/ore/lead,
+				/obj/item/weapon/ore/lead,
+				/obj/item/weapon/ore/lead,
+				/obj/item/weapon/ore/lead,
+				/obj/item/weapon/ore/lead,
+				/obj/item/weapon/ore/lead,
+				/obj/item/weapon/ore/lead,
+				/obj/item/weapon/ore/lead
+			),
+			prob(5);list(
+				/obj/item/weapon/ore/marble,
+				/obj/item/weapon/ore/marble,
+				/obj/item/weapon/ore/marble,
+				/obj/item/weapon/ore/marble
+			),
+			prob(3);list(
+				/obj/item/weapon/ore/osmium,
+				/obj/item/weapon/ore/osmium
+			),
+			prob(5);list(
+				/obj/item/weapon/ore/phoron,
+				/obj/item/weapon/ore/phoron,
+				/obj/item/weapon/ore/phoron,
+				/obj/item/weapon/ore/phoron
+			),
+			prob(5);list(
+				/obj/item/weapon/ore/silver,
+				/obj/item/weapon/ore/silver,
+				/obj/item/weapon/ore/silver,
+				/obj/item/weapon/ore/silver
+			),
+			prob(3);list(
+				/obj/item/weapon/ore/uranium,
+				/obj/item/weapon/ore/uranium
+			),
+		)
+
 /obj/random/multiple/corp_crate/talon_cargo/item_to_spawn()
 	return pick(
 			prob(10);list(
@@ -622,24 +726,22 @@ also be sure that it's locked down before you take off, the automatic switch is 
 				/obj/structure/closet/crate/grayson //GRAYSON TECH
 			),
 			prob(15);list(
-				/obj/random/multiple/ore_pile,
-				/obj/random/multiple/ore_pile,
-				/obj/random/multiple/ore_pile,
-				/obj/random/multiple/ore_pile,
-				/obj/structure/closet/crate/grayson //GRAYSON ORES
+				/obj/random/multiple/ore_pile/talon,
+				/obj/random/multiple/ore_pile/talon,
+				/obj/random/multiple/ore_pile/talon,
+				/obj/structure/closet/crate/grayson //GRAYSON ORES (TALON-ADJUSTED)
 			),
 			prob(10);list(
-				/obj/random/material/refined,
-				/obj/random/material/refined,
-				/obj/random/material/refined,
-				/obj/random/material/refined,
-				/obj/structure/closet/crate/grayson //GRAYSON MATS
+				/obj/random/material,
+				/obj/random/material,
+				/obj/random/material,
+				/obj/structure/closet/crate/grayson //GRAYSON MATS (TALON-ADJUSTED)
 			),
 			prob(5);list(
 				/obj/random/multiple/voidsuit/security,
 				/obj/random/tank,
 				/obj/item/clothing/mask/breath,
-				/obj/structure/closet/crate/secure/nanotrasen //NTSEC SUIT
+				/obj/structure/closet/crate/secure/heph //HEPH SUIT (so people don't get huffy at talon trying to sell "NT property" to NT...)
 			),
 			prob(5);list(
 				/obj/random/multiple/voidsuit/medical,

@@ -164,6 +164,7 @@
 	var/active = FALSE
 
 	var/points = 0
+	var/points_mult = 1 //VOREStation Add - multiplier for points generated when ore hits the processors
 	var/static/list/ore_values = list(
 		"sand" = 1,
 		"hematite" = 1,
@@ -202,6 +203,13 @@
 			ore_data[OD.name] = OD
 			ores_processing[OD.name] = 0
 			ores_stored[OD.name] = 0
+	//VOREStation Edit Start -Killian: allows secondary/tertiary/etc. refineries to work! ugly but it works
+	else
+		for(var/oretype in typesof(/ore)-/ore)
+			var/ore/OD = new oretype()
+			ores_processing[OD.name] = 0
+			ores_stored[OD.name] = 0
+	//VOREStation Edit End
 
 /obj/machinery/mineral/processing_unit/Initialize()
 	. = ..()
@@ -249,7 +257,7 @@
 	for(var/obj/item/weapon/ore/O in input.loc)
 		if(!isnull(ores_stored[O.material]))
 			ores_stored[O.material]++
-			points += ore_values[O.material] // Give Points!
+			points += (ore_values[O.material]*points_mult) // Give Points! VOREStation Edit - or give lots of points! or less points! or no points!
 		qdel(O)
 
 	if(!active)
