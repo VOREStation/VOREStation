@@ -50,3 +50,9 @@
 	pixel_y = -16
 	old_x = -16
 	old_y = -16
+
+/mob/living/simple_mob/animal/giant_spider/nurse/eggless/lay_eggs(turf/T)
+	return FALSE
+
+/mob/living/simple_mob/animal/giant_spider/nurse/queen/eggless/lay_eggs(turf/T)
+	return FALSE
