@@ -13,11 +13,6 @@ var/global/list/active_radio_jammers = list()
 			if(dist <= J.jam_range)
 				return list("jammer" = J, "distance" = dist)
 
-	//VOREStation Addition Start
-	if(is_vore_jammed(radio))
-		return TRUE
-	//VOREStation Addition End
-
 /obj/item/device/radio_jammer
 	name = "subspace jammer"
 	desc = "Primarily for blocking subspace communications, preventing the use of headsets, PDAs, and communicators. Also masks suit sensors."	// Added suit sensor jamming

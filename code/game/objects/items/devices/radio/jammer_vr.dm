@@ -8,7 +8,7 @@
 	while(current.loc)
 		if(isbelly(current.loc))
 			var/obj/belly/B = current.loc
-			if((istype(current, /obj/item/clothing/under)) && (B.mode_flags & DM_FLAG_JAMSENSORS))
+			if(B.mode_flags & DM_FLAG_JAMSENSORS)
 				return TRUE
 		current = current.loc
 
