@@ -253,7 +253,7 @@
 /datum/map_template/junglebase_lateload/away_debrisfield/on_map_loaded(z)
 	. = ..()
 	//Commented out until we actually get POIs
-	seed_submaps(list(Z_LEVEL_DEBRISFIELD), 200, /area/tether_away/debrisfield/unexplored, /datum/map_template/debrisfield)
+	seed_submaps(list(Z_LEVEL_DEBRISFIELD), 400, /area/space, /datum/map_template/debrisfield)
 
 /datum/map_z_level/junglebase_lateload/away_debrisfield
 	name = "Away Mission - Debris Field"
