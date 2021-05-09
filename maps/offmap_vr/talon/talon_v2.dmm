@@ -14,7 +14,16 @@
 /obj/machinery/mineral/processing_unit_console{
 	req_one_access = list(301)
 	},
-/turf/simulated/wall/shull,
+/obj/structure/girder,
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/obj/structure/railing/grey,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced,
+/turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/refining)
 "ad" = (
 /obj/structure/extinguisher_cabinet{
@@ -460,7 +469,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/bridge)
 "bC" = (
-/obj/machinery/pointdefense{
+/obj/machinery/power/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/structure/cable/green,
@@ -1144,7 +1153,7 @@
 /turf/simulated/floor/plating,
 /area/talon_v2/maintenance/aft_starboard)
 "dK" = (
-/obj/machinery/pointdefense{
+/obj/machinery/power/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/structure/cable/green{
@@ -1792,9 +1801,6 @@
 	dir = 4;
 	pixel_x = -22
 	},
-/obj/structure/bed/chair/bay/chair{
-	dir = 4
-	},
 /turf/simulated/floor/wood,
 /area/talon_v2/crew_quarters/bar)
 "fF" = (
@@ -2359,7 +2365,7 @@
 /turf/simulated/floor/carpet,
 /area/talon_v2/crew_quarters/med_room)
 "hP" = (
-/obj/machinery/pointdefense{
+/obj/machinery/power/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/structure/cable/green{
@@ -2793,6 +2799,16 @@
 /obj/item/weapon/pickaxe/drill,
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/refining)
+"kc" = (
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "talonrefinery"
+	},
+/obj/structure/sign/warning/moving_parts{
+	pixel_x = 32
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/talon_v2/refining)
 "kd" = (
 /obj/effect/shuttle_landmark/premade/talon_v2_wing_star,
 /turf/space,
@@ -2983,16 +2999,17 @@
 "kI" = (
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/aux,
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/fuel,
-/obj/effect/catwalk_plated/dark,
-/obj/structure/cable/green,
 /obj/structure/cable/green{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/obj/structure/cable/green{
+	d1 = 1;
 	d2 = 4;
-	icon_state = "0-4"
+	icon_state = "1-4"
 	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/effect/catwalk_plated/dark,
 /turf/simulated/floor/plating,
 /area/shuttle/talonboat)
 "kJ" = (
@@ -3118,7 +3135,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/techmaint,
+/turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/refining)
 "lc" = (
 /obj/machinery/firealarm{
@@ -3395,9 +3412,6 @@
 	},
 /obj/effect/floor_decal/industrial/loading{
 	dir = 8
-	},
-/obj/structure/sign/warning/moving_parts{
-	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/talon_v2/refining)
@@ -4427,10 +4441,13 @@
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/atmospherics)
 "pR" = (
-/obj/structure/table/steel,
 /obj/structure/extinguisher_cabinet{
 	dir = 1;
 	pixel_y = -32
+	},
+/obj/structure/table/steel,
+/obj/item/device/radio/off{
+	channels = list("Talon" = 1)
 	},
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/atmospherics)
@@ -4684,6 +4701,12 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/talon_v2/refining)
+"qI" = (
+/obj/structure/bed/chair/bay/chair{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/talon_v2/crew_quarters/bar)
 "qJ" = (
 /obj/machinery/light{
 	dir = 1
@@ -5404,11 +5427,9 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/central_hallway/fore)
 "tm" = (
-/obj/structure/bed/chair/bay/chair{
-	dir = 1
-	},
-/turf/simulated/floor/wood,
-/area/talon_v2/crew_quarters/bar)
+/obj/structure/lattice,
+/turf/space,
+/area/space)
 "to" = (
 /obj/structure/cable/green{
 	dir = 1;
@@ -5720,7 +5741,7 @@
 /turf/simulated/floor/plating,
 /area/talon_v2/bridge)
 "up" = (
-/obj/machinery/pointdefense{
+/obj/machinery/power/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/structure/cable/green{
@@ -6407,6 +6428,10 @@
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/talon_v2/maintenance/fore_port)
+"wS" = (
+/obj/structure/table/woodentable,
+/turf/simulated/floor/wood,
+/area/talon_v2/crew_quarters/bar)
 "wU" = (
 /obj/machinery/door/firedoor/glass/talon,
 /obj/machinery/door/airlock/maintenance/sec{
@@ -6750,10 +6775,7 @@
 /area/talon_v2/engineering/star_store)
 "yc" = (
 /obj/machinery/light/small,
-/obj/structure/table/steel,
-/obj/item/device/radio/off{
-	channels = list("Talon" = 1)
-	},
+/obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/atmospherics)
 "yd" = (
@@ -8286,7 +8308,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor,
-/area/talon_v2/maintenance/fore_port)
+/area/talon_v2/central_hallway/fore)
 "DI" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -8704,16 +8726,19 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
 	},
-/obj/structure/disposalpipe/trunk{
+/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/disposal/wall{
-	dir = 4
+/obj/structure/closet/walllocker/medical/north,
+/obj/item/weapon/storage/firstaid/regular,
+/obj/item/weapon/storage/firstaid/o2,
+/obj/item/device/radio/off{
+	channels = list("Talon" = 1)
 	},
 /turf/simulated/floor/wood,
 /area/talon_v2/crew_quarters/cap_room)
 "Fk" = (
-/obj/machinery/pointdefense{
+/obj/machinery/power/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/structure/cable/green{
@@ -9052,6 +9077,9 @@
 /obj/machinery/conveyor{
 	dir = 8;
 	id = "talonrefinery"
+	},
+/obj/structure/sign/warning/moving_parts{
+	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/talon_v2/refining)
@@ -9469,9 +9497,23 @@
 /area/talon_v2/crew_quarters/restrooms)
 "HG" = (
 /obj/machinery/mineral/stacking_unit_console{
+	pixel_y = -6;
 	req_one_access = list(301)
 	},
-/turf/simulated/wall/shull,
+/obj/structure/girder,
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/obj/structure/railing/grey{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/refining)
 "HH" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
@@ -10594,6 +10636,10 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/talon_v2/refining)
+"Lz" = (
+/obj/effect/floor_decal/emblem/talon,
+/turf/simulated/floor/reinforced/airless,
+/area/space)
 "LA" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -11386,7 +11432,7 @@
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/generators)
 "OH" = (
-/obj/machinery/pointdefense{
+/obj/machinery/power/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/structure/cable/green{
@@ -12144,7 +12190,7 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/talon_v2/engineering/star_store)
 "Ri" = (
-/obj/machinery/pointdefense{
+/obj/machinery/power/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/structure/cable/green,
@@ -12174,6 +12220,15 @@
 	},
 /turf/simulated/floor/wood,
 /area/talon_v2/crew_quarters/meditation)
+"Rs" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/machinery/disposal/wall{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/talon_v2/crew_quarters/cap_room)
 "Rt" = (
 /obj/machinery/drone_fabricator/talon,
 /turf/simulated/floor/plating,
@@ -12253,7 +12308,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/central_hallway/fore)
 "RD" = (
-/obj/machinery/pointdefense{
+/obj/machinery/power/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/structure/cable/green{
@@ -13141,7 +13196,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/talon_v2/central_hallway)
 "UI" = (
-/obj/machinery/pointdefense{
+/obj/machinery/power/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/structure/cable/green{
@@ -13184,7 +13239,7 @@
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/starboard)
 "UW" = (
-/obj/machinery/pointdefense{
+/obj/machinery/power/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/structure/cable/green{
@@ -13655,7 +13710,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/techfloor,
-/area/talon_v2/maintenance/fore_starboard)
+/area/talon_v2/central_hallway/fore)
 "WS" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
@@ -13906,15 +13961,17 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/table/woodentable,
 /obj/machinery/holoposter{
 	dir = 1;
 	pixel_y = 32
 	},
+/obj/structure/bed/chair/bay/chair{
+	dir = 4
+	},
 /turf/simulated/floor/wood,
 /area/talon_v2/crew_quarters/bar)
 "XW" = (
-/obj/machinery/pointdefense{
+/obj/machinery/power/pointdefense{
 	id_tag = "talon_pd"
 	},
 /obj/structure/cable/green{
@@ -18750,9 +18807,9 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
+tm
+tm
+tm
 XP
 XP
 Mu
@@ -19037,14 +19094,14 @@ aa
 aa
 aa
 aa
-aa
-aa
+tm
+tm
 mo
 Fg
 QI
 XP
 XP
-XP
+Lz
 FZ
 Br
 Dp
@@ -19326,7 +19383,7 @@ aa
 aa
 aa
 aa
-aa
+XP
 XP
 TR
 bh
@@ -20194,8 +20251,8 @@ CY
 om
 gJ
 Kl
-aa
-aa
+XP
+XP
 mo
 Fg
 QI
@@ -22203,20 +22260,20 @@ XP
 XP
 XP
 XP
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+tm
+tm
+tm
+tm
+tm
+tm
+tm
+tm
+tm
+tm
+tm
+tm
+tm
+tm
 aa
 aa
 aa
@@ -22501,8 +22558,8 @@ rW
 ez
 hW
 bC
-aa
-aa
+tm
+tm
 aa
 aa
 aa
@@ -23070,7 +23127,7 @@ tC
 tC
 tC
 tC
-XP
+Lz
 XP
 XP
 XP
@@ -23210,9 +23267,9 @@ XP
 XP
 XP
 XP
-aa
-aa
-aa
+tm
+tm
+tm
 aa
 aa
 aa
@@ -23264,15 +23321,15 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+tm
+tm
+tm
+tm
+tm
+tm
+XP
+XP
+XP
 XP
 NV
 oC
@@ -23557,7 +23614,7 @@ XP
 sz
 Bf
 NV
-NV
+Rs
 fz
 Pe
 Pe
@@ -23695,7 +23752,7 @@ XP
 XP
 dK
 JO
-dz
+JO
 JO
 NV
 NV
@@ -23967,10 +24024,10 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
+tm
+tm
+tm
+tm
 XP
 JO
 dz
@@ -24330,7 +24387,7 @@ Ji
 Zk
 Zk
 Zk
-aa
+tm
 aa
 aa
 aa
@@ -24472,7 +24529,7 @@ HI
 eI
 eP
 Mr
-aa
+XP
 aa
 aa
 aa
@@ -24614,7 +24671,7 @@ LI
 zm
 zm
 zm
-aa
+tm
 aa
 aa
 aa
@@ -24964,8 +25021,8 @@ aa
 aa
 aa
 aa
-aa
-aa
+tm
+tm
 XP
 XP
 XP
@@ -24975,8 +25032,8 @@ VI
 JO
 cx
 JO
-XU
-tm
+By
+By
 Zf
 Ip
 VF
@@ -25115,10 +25172,10 @@ XP
 XP
 hP
 JO
-dz
 JO
-iw
-iw
+JO
+XU
+By
 oh
 so
 Pk
@@ -25258,9 +25315,9 @@ aa
 aa
 XP
 XP
-XP
-XP
-XP
+JO
+wS
+qI
 oh
 DU
 Hl
@@ -25396,13 +25453,13 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
+tm
+tm
+tm
 XP
-XP
-XP
-XP
+JO
+iw
+iw
 oh
 oh
 MQ
@@ -25542,9 +25599,9 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
+XP
+XP
+XP
 XP
 oh
 iw
@@ -25766,9 +25823,9 @@ XP
 XP
 XP
 XP
-aa
-aa
-aa
+tm
+tm
+tm
 aa
 aa
 aa
@@ -25910,7 +25967,7 @@ Dq
 Dq
 Dq
 Dq
-XP
+Lz
 XP
 XP
 XP
@@ -26155,7 +26212,7 @@ VS
 XR
 gR
 Yc
-VS
+XR
 mQ
 ab
 WJ
@@ -26439,7 +26496,7 @@ VS
 mQ
 ZR
 Ly
-Ly
+kc
 Ly
 ZA
 fW
@@ -26477,8 +26534,8 @@ rL
 dj
 hK
 Ri
-aa
-aa
+tm
+tm
 aa
 aa
 aa
@@ -26719,7 +26776,7 @@ bX
 fW
 PI
 Ly
-Ly
+kc
 Ly
 Ig
 fW
@@ -26747,20 +26804,20 @@ XP
 XP
 XP
 XP
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
-aa
+tm
+tm
+tm
+tm
+tm
+tm
+tm
+tm
+tm
+tm
+tm
+tm
+tm
+tm
 aa
 aa
 aa
@@ -28714,8 +28771,8 @@ yC
 Nm
 xX
 Kl
-aa
-aa
+XP
+XP
 Mu
 uK
 bA
@@ -29550,7 +29607,7 @@ aa
 aa
 aa
 aa
-aa
+XP
 XP
 Up
 NT
@@ -29829,14 +29886,14 @@ aa
 aa
 aa
 aa
-aa
-aa
+tm
+tm
 Mu
 uK
 bA
 XP
 XP
-XP
+Lz
 zF
 iF
 ke
@@ -30110,9 +30167,9 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
+tm
+tm
+tm
 XP
 XP
 mo
