@@ -21,6 +21,7 @@
 	var/nutrition_percent = 100				// Nutritional percentage per tick in digestion mode
 	var/digest_brute = 0.5					// Brute damage per tick in digestion mode
 	var/digest_burn = 0.5					// Burn damage per tick in digestion mode
+	var/digest_oxy = 0						// Oxy damage per tick in digestion mode
 	var/immutable = FALSE					// Prevents this belly from being deleted
 	var/escapable = FALSE					// Belly can be resisted out of at any time
 	var/escapetime = 20 SECONDS				// Deciseconds, how long to escape this belly
@@ -132,6 +133,7 @@
 		"nutrition_percent",
 		"digest_brute",
 		"digest_burn",
+		"digest_oxy",
 		"immutable",
 		"can_taste",
 		"escapable",
@@ -760,6 +762,7 @@
 	dupe.nutrition_percent = nutrition_percent
 	dupe.digest_brute = digest_brute
 	dupe.digest_burn = digest_burn
+	dupe.digest_oxy = digest_oxy
 	dupe.immutable = immutable
 	dupe.can_taste = can_taste
 	dupe.escapable = escapable

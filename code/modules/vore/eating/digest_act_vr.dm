@@ -26,7 +26,7 @@
 
 	if(isbelly(item_storage))
 		var/obj/belly/B = item_storage
-		g_damage = 0.25 * (B.digest_brute + B.digest_burn)
+		g_damage = 0.25 * (B.digest_brute + B.digest_burn + (B.digest_oxy)/2)
 
 	if(digest_stage > 0)
 		if(g_damage > digest_stage)
@@ -111,7 +111,7 @@
 	if((. = ..()))
 		if(isbelly(item_storage))
 			var/obj/belly/B = item_storage
-			. += 2 * (B.digest_brute + B.digest_burn)
+			. += 2 * (B.digest_brute + B.digest_burn + (B.digest_oxy)/2)
 		else
 			. += 30 //Organs give a little more
 
