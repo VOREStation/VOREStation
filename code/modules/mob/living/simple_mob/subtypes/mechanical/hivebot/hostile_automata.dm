@@ -16,6 +16,15 @@
 	large numbers can overwhelm even the most prepared people."
 	value = CATALOGUER_REWARD_MEDIUM
 
+//////////////////////Robot Ranged Weapons//////////////////////
+
+/obj/item/projectile/beam/automaton/basic
+	damage = 10
+
+/obj/item/projectile/beam/automaton/advanced
+	damage = 20
+	armor_penetration = 5
+
 //////////////////////Automatons//////////////////////
 
 /mob/living/simple_mob/mechanical/automaton
@@ -61,6 +70,17 @@
 	firing_lanes = TRUE
 	can_flee = FALSE // Fearless dumb machines.
 
+/mob/living/simple_mob/mechanical/automaton/ranged
+	name = "Laser Robot"
+	desc = "A mass produced robotic unit with a photonic weapon integrated into its system."
+	projectiletype = /obj/item/projectile/beam/automaton/basic
+	projectile_dispersion = 6
+	projectile_accuracy = -10
+
+	icon_state = "ranged_bot"
+	icon_living = "ranged_bot"
+
+
 //////////////////////Commie Bots//////////////////////
 
 /mob/living/simple_mob/mechanical/automaton/commie
@@ -72,19 +92,25 @@
 
 /mob/living/simple_mob/mechanical/automaton/comofficer
 	name = "Communist Officer Robot"
-	desc = "A mass produced robotic unit dressed in communist garb. This one appears to be more armored."
-	projectiletype = /obj/item/projectile/beam/commiebot/officer
+	desc = "A mass produced robotic unit dressed in communist garb. This one appears to be more armored and has an advanced intergrated laser."
+	projectiletype = /obj/item/projectile/beam/automaton/advanced
 	projectile_dispersion = 6
 	projectile_accuracy = -10
 
 	icon_state = "officer_commie_bot"
 	icon_living = "officer_commie_bot"
 
-//////////////////////Robot Ranged Weapons//////////////////////
+	maxHealth = 50
+	health = 50
 
-/obj/item/projectile/beam/commiebot/basic
-	damage = 10
+//////////////////////Misc Bots//////////////////////
 
-/obj/item/projectile/beam/commiebot/officer
-	damage = 25
-	armor_penetration = 10
+/mob/living/simple_mob/mechanical/automaton/drone
+	name = "Drone"
+	desc = "A general use drone unit that seems to have malfunctioned."
+
+	icon_state = "lost_drone_1"
+	icon_living = "lost_drone_1"
+
+	maxHealth = 15
+	health = 15
