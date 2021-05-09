@@ -55,6 +55,11 @@
 
 //////////////////////////////////////////////////////////////////////////////
 //Antag/Event/ERT Areas
+
+#include "../../submaps/admin_use_vr/ert.dm"
+#include "../../submaps/admin_use_vr/mercship.dm"
+#include "../../submaps/admin_use_vr/guttersite.dm"
+
 /datum/map_template/admin_use/ert
 	name = "Special Area - ERT"
 	desc = "It's the ERT ship! Lorge."
@@ -66,9 +71,9 @@
 	mappath = 'maps/submaps/admin_use_vr/tradeship.dmm'
 
 /datum/map_template/admin_use/mercenary
-	name = "Special Area - Merc Base"
-	desc = "So much red!"
-	mappath = 'maps/submaps/admin_use_vr/mercbase.dmm'
+	name = "Special Area - Merc Ship"
+	desc = "Prepare tae be boarded, arr!"
+	mappath = 'maps/submaps/admin_use_vr/kk_mercship.dmm'
 
 /datum/map_template/admin_use/skipjack
 	name = "Special Area - Skipjack Base"
@@ -89,6 +94,11 @@
 	name = "Special Area - Ninja Dojo"
 	desc = "Sneaky"
 	mappath = 'maps/submaps/admin_use_vr/dojo.dmm'
+	
+/datum/map_template/admin_use/guttersite
+	name = "Special Area - Guttersite"
+	desc = "A space for bad guys to hang out"
+	mappath = 'maps/submaps/admin_use_vr/guttersite.dmm'
 
 //////////////////////////////////////////////////////////////////////////////
 //Rogue Mines Stuff
@@ -151,7 +161,6 @@
 #include "../../expedition_vr/aerostat/surface.dmm"
 #include "../../expedition_vr/space/debrisfield.dmm"
 #include "../../expedition_vr/space/fueldepot.dmm"
-#include "../../expedition_vr/space/guttersite.dmm"
 #endif
 
 #include "../../expedition_vr/beach/_beach.dm"
@@ -235,7 +244,6 @@
 #include "../../expedition_vr/space/_fueldepot.dm"
 #include "../../submaps/pois_vr/debris_field/_templates.dm"
 #include "../../submaps/pois_vr/debris_field/debrisfield_things.dm"
-#include "../../expedition_vr/space/_guttersite.dm"
 /datum/map_template/junglebase_lateload/away_debrisfield
 	name = "Debris Field - Z1 Space"
 	desc = "The Virgo 3 Debris Field away mission."
@@ -260,17 +268,6 @@
 /datum/map_z_level/junglebase_lateload/away_fueldepot
 	name = "Away Mission - Fuel Depot"
 	z = Z_LEVEL_FUELDEPOT
-
-/datum/map_template/junglebase_lateload/away_guttersite
-	name = "Gutter Site - Z1 Space"
-	desc = "The Virgo Erigone Space Away Site."
-	mappath = 'maps/expedition_vr/space/guttersite.dmm'
-	associated_map_datum = /datum/map_z_level/junglebase_lateload/away_guttersite
-
-/datum/map_z_level/junglebase_lateload/away_guttersite
-	name = "Away Mission - Gutter Site"
-	z = Z_LEVEL_GUTTERSITE
-
 
 //////////////////////////////////////////////////////////////////////////////////////
 // Gateway submaps go here
