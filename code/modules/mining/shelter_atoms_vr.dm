@@ -331,6 +331,9 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	light_power = 1
 	light_color = "#FFFFFF"
 
+/obj/structure/fans/hardlight/ex_act()
+	return
+
 /obj/structure/fans/hardlight/colorable
 	name = "hardlight shield"
 	icon_state = "hardlight_colorable"

@@ -266,7 +266,6 @@
 				prob(4);/obj/item/weapon/material/butterfly,
 				prob(6);/obj/item/weapon/material/butterflyblade,
 				prob(6);/obj/item/weapon/material/butterflyhandle,
-				prob(6);/obj/item/weapon/material/wirerod,
 				prob(2);/obj/item/weapon/material/butterfly/switchblade,
 				prob(2);/obj/item/clothing/gloves/knuckledusters,
 				prob(1);/obj/item/weapon/material/knife/tacknife,

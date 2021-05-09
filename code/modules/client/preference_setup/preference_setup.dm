@@ -129,6 +129,7 @@
 	for(var/datum/category_item/player_setup_item/PI in items)
 		PI.load_character(S)
 
+
 /datum/category_group/player_setup_category/proc/save_character(var/savefile/S)
 	// Sanitize all data, then save it
 	for(var/datum/category_item/player_setup_item/PI in items)

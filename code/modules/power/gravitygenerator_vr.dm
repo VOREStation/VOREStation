@@ -210,7 +210,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 				update_icon()
 				return
 		if(GRAV_NEEDS_WELDING)
-			if(I.is_welder())
+			if(I.has_tool_quality(TOOL_WELDER))
 				var/obj/item/weapon/weldingtool/W = I
 				if(W.remove_fuel(0,user))
 					to_chat(user, "<span class='notice'>You mend the damaged framework.</span>")

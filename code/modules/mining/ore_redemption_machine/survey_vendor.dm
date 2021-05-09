@@ -52,6 +52,7 @@
 		EQUIPMENT("Defense Equipment - Plasteel Machete",		/obj/item/weapon/material/knife/machete,							50),
 		EQUIPMENT("Defense Equipment - Razor Drone Deployer",	/obj/item/weapon/grenade/spawnergrenade/manhacks/station/locked,	100),
 		EQUIPMENT("Defense Equipment - Sentry Drone Deployer",	/obj/item/weapon/grenade/spawnergrenade/ward,						150),
+		EQUIPMENT("Defense Equipment - Frontier Carbine",		/obj/item/weapon/gun/energy/locked/frontier/carbine,				750),
 		EQUIPMENT("Fishing Net",								/obj/item/weapon/material/fishing_net,								50),
 		EQUIPMENT("Titanium Fishing Rod",						/obj/item/weapon/material/fishing_rod/modern,						100),
 		EQUIPMENT("Durasteel Fishing Rod",						/obj/item/weapon/material/fishing_rod/modern/strong,				750),
@@ -81,6 +82,7 @@
 	prize_list["Digging Tools"] = list(
 		EQUIPMENT("Survey Tools - Shovel",			/obj/item/weapon/shovel,	40),
 		EQUIPMENT("Survey Tools - Mechanical Trap",	/obj/item/weapon/beartrap,	50),
+		EQUIPMENT("Survey Tools - Binoculars",		/obj/item/device/binoculars,40),
 	)
 	prize_list["Miscellaneous"] = list(
 		EQUIPMENT("Absinthe",					/obj/item/weapon/reagent_containers/food/drinks/bottle/absinthe,	10),

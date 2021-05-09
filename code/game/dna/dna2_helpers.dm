@@ -243,7 +243,7 @@
 		H.custom_exclaim = dna.custom_exclaim
 		H.species.blood_color = dna.blood_color
 		var/datum/species/S = H.species
-		S.produceCopy(dna.species_traits,src)
+		S.produceCopy(dna.species_traits, H, dna.base_species)
 		// VOREStation Edit End
 
 		H.force_update_organs() //VOREStation Add - Gotta do this too

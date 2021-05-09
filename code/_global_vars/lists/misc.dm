@@ -9,3 +9,4 @@ GLOBAL_LIST_EMPTY(tagger_locations)
 
 GLOBAL_LIST_INIT(char_directory_tags, list("Pred", "Prey", "Switch", "Non-Vore", "Unset"))
 GLOBAL_LIST_INIT(char_directory_erptags, list("Top", "Bottom", "Switch", "No ERP", "Unset"))
+GLOBAL_LIST_EMPTY(crafting_recipes) //list of all table craft recipes

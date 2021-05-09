@@ -154,6 +154,7 @@
 			"nutrition_percent" = selected.nutrition_percent,
 			"digest_brute" = selected.digest_brute,
 			"digest_burn" = selected.digest_burn,
+			"digest_oxy" = selected.digest_oxy,
 			"bulge_size" = selected.bulge_size,
 			"shrink_grow_size" = selected.shrink_grow_size,
 			"emote_time" = selected.emote_time,
@@ -843,6 +844,12 @@
 			var/new_new_damage = CLAMP(new_damage, 0, 6)
 			host.vore_selected.digest_brute = new_new_damage
 			. = TRUE
+		if("b_oxy_dmg")
+			var/new_damage = input(user, "Choose the amount of suffocation damage prey will take per tick. Ranges from 0 to 12.", "Set Belly Suffocation Damage.", host.vore_selected.digest_oxy) as num|null
+			if(new_damage == null)
+				return FALSE
+			var/new_new_damage = CLAMP(new_damage, 0, 12)
+			host.vore_selected.digest_oxy = new_new_damage
 		if("b_emoteactive")
 			host.vore_selected.emote_active = !host.vore_selected.emote_active
 			. = TRUE

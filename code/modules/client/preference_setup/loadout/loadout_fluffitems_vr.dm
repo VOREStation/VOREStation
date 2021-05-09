@@ -60,6 +60,12 @@
 	ckeywhitelist = list("aegisoa")
 	character_name = list("Xander Bevin")
 
+/datum/gear/fluff/charlotte_cigarettes
+	path = /obj/item/weapon/storage/fancy/fluff/charlotte
+	display_name = "Charlotte's cigarette case"
+	ckeywhitelist = list("alfalah")
+	character_name = list("Charlotte Graves")
+
 /datum/gear/fluff/lynn_penlight
 	path = /obj/item/device/flashlight/pen/fluff/lynn
 	display_name = "Lynn's Penlight"
@@ -89,11 +95,23 @@
 	character_name = list("Aronai Sieyes")
 
 /datum/gear/fluff/astra_ritualknife
-    path = /obj/item/weapon/material/knife/ritual/fluff/astra
-    display_name = "Polished Ritual Knife"
-    description = "A well kept strange ritual knife, There is a small tag with the name 'Astra Ether' on it. They are probably looking for this."
-    ckeywhitelist = list("astraether")
-    character_name = list("Astra Ether")
+	path = /obj/item/weapon/material/knife/ritual/fluff/astra
+	display_name = "Polished Ritual Knife"
+	description = "A well kept strange ritual knife, There is a small tag with the name 'Astra Ether' on it. They are probably looking for this."
+	ckeywhitelist = list("astraether")
+	character_name = list("Astra Ether")
+
+/datum/gear/fluff/astra_medal
+	path = /obj/item/clothing/accessory/medal/conduct
+	display_name = "Astra's Conduct Medal"
+	ckeywhitelist = list("astraether")
+	character_name = list("Astra Ether")
+
+/datum/gear/fluff/astra_medal_2
+	path = /obj/item/clothing/accessory/medal/silver/unity
+	display_name = "Astra's Unity Medal"
+	ckeywhitelist = list("astraether")
+	character_name = list("Astra Ether")
 
 /datum/gear/fluff/collar/azura
 	path = /obj/item/clothing/accessory/collar/azura
@@ -149,6 +167,12 @@
 	ckeywhitelist = list("blakeryan")
 	character_name = list("Nolan Conaway")
 
+/datum/gear/fluff/amber_medal
+	path = /obj/item/clothing/accessory/medal/conduct
+	display_name = "Amber's Conduct Medal"
+	ckeywhitelist = list("bluewolf128")
+	character_name = list("Amber Wresspenn")
+
 /datum/gear/fluff/charles_hat
 	path = /obj/item/clothing/head/that/fluff/gettler
 	display_name = "Charles' Top-Hat"
@@ -188,6 +212,12 @@
 	slot = slot_wear_suit
 	ckeywhitelist = list("bacon12366")
 	character_name = list("Elly Brown")
+
+/datum/gear/fluff/alibig_medal
+	path = /obj/item/clothing/accessory/medal/conduct
+	display_name = "Ali Big's Conduct Medal"
+	ckeywhitelist = list("bigbababooey")
+	character_name = list("Ali Big")
 
 //  C CKEYS
 /datum/gear/fluff/cappy_watch
@@ -259,6 +289,18 @@
 	display_name = "Elliot's Belt"
 	ckeywhitelist = list("dickfreedomjohnson")
 	character_name = list("Elliot Richards")
+
+/datum/gear/fluff/donald_medal
+	path = /obj/item/clothing/accessory/medal/conduct
+	display_name = "Donald's Conduct Medal"
+	ckeywhitelist = list("drainquake")
+	character_name = list("Donald Weinbeck")
+
+/datum/gear/fluff/donald_medal_2
+	path = /obj/item/clothing/accessory/medal/bronze_heart
+	display_name = "Donald's Heart Medal"
+	ckeywhitelist = list("drainquake")
+	character_name = list("Donald Weinbeck")
 
 /datum/gear/fluff/drake_box
 	path = /obj/item/weapon/storage/box/fluff/drake
@@ -570,6 +612,12 @@
 	character_name = list("Ashley Kifer")
 
 //  L CKEYS
+/datum/gear/fluff/kenzie_medal
+	path = /obj/item/clothing/accessory/medal/conduct
+	display_name = "Kenzie's Conduct Medal"
+	ckeywhitelist = list("lm40")
+	character_name = list("Kenzie Houser")
+
 /datum/gear/fluff/kenzie_hypospray
 	path = /obj/item/weapon/reagent_containers/hypospray/vial/kenzie
 	display_name = "Kenzie's Hypospray"
@@ -583,6 +631,12 @@
 	slot = slot_back
 	ckeywhitelist = list("luminescentring")
 	character_name = list("Briana Moore")
+
+/datum/gear/fluff/entchtut_medal
+	path = /obj/item/clothing/accessory/medal/conduct
+	display_name = "Entchtut's Conduct Medal"
+	ckeywhitelist = list("littlebigkid2000")
+	character_name = list("Entchtut Cenein")
 
 //  M CKEYS
 /datum/gear/fluff/phi_box
@@ -736,7 +790,7 @@
 	character_name = list("Scylla Casmus")
 
 /datum/gear/fluff/kiyoshi_cloak
-	path = /obj/item/clothing/accessory/poncho/fluff/cloakglowing
+	path = /obj/item/clothing/accessory/poncho/roles/cloak/fluff/cloakglowing
 	display_name = "glowing cloak"
 	ckeywhitelist = list("pastelprincedan")
 	character_name = list("Kiyoshi Maki", "Masumi Maki")
@@ -758,6 +812,18 @@
 	character_name = list("Clara Mali")
 	cost = 1
 
+/datum/gear/fluff/luna_sci_medal
+	path = /obj/item/clothing/accessory/medal/nobel_science
+	display_name = "LUNA's Nobel Science Award"
+	ckeywhitelist = list("residentcody")
+	character_name = list("LUNA")
+	
+/datum/gear/fluff/luna_conduct_medal
+	path = /obj/item/clothing/accessory/medal/conduct
+	display_name = "LUNA's Distinguished Conduct Medal"
+	ckeywhitelist = list("residentcody")
+	character_name = list("LUNA")
+
 /datum/gear/fluff/nikki_dorky_outfit
 	path = /obj/item/weapon/storage/box/fluff
 	display_name = "Nikki's Witchy Outfit"
@@ -774,6 +840,18 @@
 /datum/gear/fluff/brynhild_medal_2
 	path = /obj/item/clothing/accessory/medal/silver/unity
 	display_name = "Brynhild's Unity Medal"
+	ckeywhitelist = list("sageofaether12")
+	character_name = list("Brynhild Vandradottir")
+
+/datum/gear/fluff/brynhild_medal_3
+	path = /obj/item/clothing/accessory/medal/conduct
+	display_name = "Brynhild's Conduct Medal"
+	ckeywhitelist = list("sageofaether12")
+	character_name = list("Brynhild Vandradottir")
+
+/datum/gear/fluff/brynhild_medal_4
+	path = /obj/item/clothing/accessory/medal/bronze_heart
+	display_name = "Brynhild's Heart Medal"
 	ckeywhitelist = list("sageofaether12")
 	character_name = list("Brynhild Vandradottir")
 
@@ -909,6 +987,12 @@
 /datum/gear/fluff/ascian_medal_2
 	path = /obj/item/clothing/accessory/medal/silver/valor
 	display_name = "Ascian's Valor Medal"
+	ckeywhitelist = list("tabiranth")
+	character_name = list("Ascian")
+
+/datum/gear/fluff/ascian_medal_3
+	path = /obj/item/clothing/accessory/medal/conduct
+	display_name = "Ascian's Conduct Medal"
 	ckeywhitelist = list("tabiranth")
 	character_name = list("Ascian")
 

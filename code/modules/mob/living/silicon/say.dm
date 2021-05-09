@@ -114,7 +114,7 @@
 		return 0
 	return 1
 
-/mob/living/silicon/ai/emote(var/act, var/type, var/message)
+/mob/living/silicon/ai/emote(var/act, var/m_type, var/message)
 	var/obj/machinery/hologram/holopad/T = holo
 	if(T && T.masters[src]) //Is the AI using a holopad?
 		. = holopad_emote(message)

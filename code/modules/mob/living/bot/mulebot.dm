@@ -70,17 +70,16 @@
 		ui.open()
 
 /mob/living/bot/mulebot/tgui_data(mob/user)
-	var/list/data = list(
-		"suffix" = suffix,
-		"power" = on,
-		"issilicon" = issilicon(user),
-		"load" = load,
-		"locked" = locked,
-		"auto_return" = auto_return,
-		"crates_only" = crates_only,
-		"hatch" = open,
-		"safety" = safety,
-	)
+	var/list/data = ..()
+	data["suffix"] = suffix
+	data["power"] = on
+	data["issillicon"] = issilicon(user)
+	data["load"] = load
+	data["locked"] = locked
+	data["auto_return"] = auto_return
+	data["crates_only"] = crates_only
+	data["hatch"] = open
+	data["safety"] = safety
 	return data
 
 /mob/living/bot/mulebot/tgui_act(action, params)

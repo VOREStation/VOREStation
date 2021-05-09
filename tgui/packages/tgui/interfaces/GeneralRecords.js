@@ -202,8 +202,8 @@ const GeneralRecordsViewGeneral = (_properties, context) => {
             </LabeledList.Item>
           ))}
         </LabeledList>
-        <Section title="Employment/skills summary" level={2}>
-          {general.skills.split("\n").map(m => <Box key={m}>{m}</Box>) || "No data found."}
+        <Section title="Employment/skills summary" level={2} prewrap>
+          {general.skills || "No data found."}
         </Section>
         <Section title="Comments/Log" level={2}>
           {general.comments.length === 0 ? (

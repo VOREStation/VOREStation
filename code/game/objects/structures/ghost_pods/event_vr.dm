@@ -10,19 +10,37 @@
 	invisibility = INVISIBILITY_OBSERVER
 	spawn_active = TRUE
 	var/announce_prob = 35
-	var/list/possible_mobs = list("Space Bumblebee" = /mob/living/simple_mob/vore/bee,
-								  "Voracious Lizard" = /mob/living/simple_mob/vore/aggressive/dino,
-								  "Giant Frog" = /mob/living/simple_mob/vore/aggressive/frog,
-								  "Giant Rat" = /mob/living/simple_mob/vore/aggressive/rat,
-								  "Juvenile Solargrub" = /mob/living/simple_mob/vore/solargrub,
+	var/list/possible_mobs = list("Rabbit" = /mob/living/simple_mob/vore/rabbit,
 								  "Red Panda" = /mob/living/simple_mob/vore/redpanda,
 								  "Fennec" = /mob/living/simple_mob/vore/fennec,
 								  "Fennix" = /mob/living/simple_mob/vore/fennix,
+								  "Space Bumblebee" = /mob/living/simple_mob/vore/bee,
+								  "Space Bear" = /mob/living/simple_mob/animal/space/bear,
+								  "Voracious Lizard" = /mob/living/simple_mob/vore/aggressive/dino,
+								  "Giant Frog" = /mob/living/simple_mob/vore/aggressive/frog,
+								  "Giant Rat" = /mob/living/simple_mob/vore/aggressive/rat,
 								  "Jelly Blob" = /mob/living/simple_mob/animal/space/jelly,
 								  "Wolf" = /mob/living/simple_mob/animal/wolf,
+								  "Juvenile Solargrub" = /mob/living/simple_mob/vore/solargrub,
 								  "Sect Queen" = /mob/living/simple_mob/vore/sect_queen,
 								  "Sect Drone" = /mob/living/simple_mob/vore/sect_drone,
 								  "Defanged Xenomorph" = /mob/living/simple_mob/vore/xeno_defanged,
+								  "Panther" = /mob/living/simple_mob/vore/aggressive/panther,
+								  "Giant Snake" = /mob/living/simple_mob/vore/aggressive/giant_snake,
+								  "Deathclaw" = /mob/living/simple_mob/vore/aggressive/deathclaw,
+								  "Otie" = /mob/living/simple_mob/otie,
+								  "Mutated Otie" =/mob/living/simple_mob/otie/feral,
+								  "Red Otie" = /mob/living/simple_mob/otie/red,
+								  "Corrupt Hound" = /mob/living/simple_mob/vore/aggressive/corrupthound,
+								  "Corrupt Corrupt Hound" = /mob/living/simple_mob/vore/aggressive/corrupthound/prettyboi,
+								  "Hunter Giant Spider" = /mob/living/simple_mob/animal/giant_spider/hunter,
+								  "Lurker Giant Spider" = /mob/living/simple_mob/animal/giant_spider/lurker,
+								  "Pepper Giant Spider" = /mob/living/simple_mob/animal/giant_spider/pepper,
+								  "Thermic Giant Spider" = /mob/living/simple_mob/animal/giant_spider/thermic,
+								  "Webslinger Giant Spider" = /mob/living/simple_mob/animal/giant_spider/webslinger,
+								  "Frost Giant Spider" = /mob/living/simple_mob/animal/giant_spider/frost,
+								  "Nurse Giant Spider" = /mob/living/simple_mob/animal/giant_spider/nurse/eggless,
+								  "Giant Spider Queen" = /mob/living/simple_mob/animal/giant_spider/nurse/queen/eggless
 								  )
 
 /obj/structure/ghost_pod/ghost_activated/maintpred/create_occupant(var/mob/M)

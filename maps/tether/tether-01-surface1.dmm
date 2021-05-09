@@ -12223,6 +12223,13 @@
 /obj/structure/stairs/spawner/west,
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/tether/surfacebase/outside/outside1)
+"auJ" = (
+/obj/machinery/door/airlock{
+	name = "Surface Brig Restroom"
+	},
+/obj/machinery/door/firedoor,
+/turf/simulated/floor/tiled/freezer,
+/area/tether/surfacebase/security/brig/bathroom)
 "auK" = (
 /turf/simulated/wall,
 /area/maintenance/lower/solars)
@@ -12340,6 +12347,15 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/rnd/external)
+"auX" = (
+/obj/structure/toilet{
+	dir = 1
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/freezer,
+/area/tether/surfacebase/security/brig/bathroom)
 "auY" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -12424,6 +12440,20 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/solars)
+"ave" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/door/airlock{
+	id_tag = "bathroomlock7";
+	name = "Room 8 Restroom"
+	},
+/turf/simulated/floor/wood,
+/area/crew_quarters/sleep/Dorm_8)
 "avf" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -12975,6 +13005,21 @@
 /obj/structure/railing,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/solars)
+"avN" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/obj/random/soap,
+/obj/structure/table/standard,
+/obj/machinery/button/remote/airlock{
+	id = "bathroomlock7";
+	name = "Room 8 Bathroom Lock";
+	pixel_x = -20;
+	pixel_y = 10;
+	specialfunctions = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/sleep/Dorm_8)
 "avO" = (
 /obj/machinery/door/airlock/maintenance/common,
 /obj/machinery/door/firedoor/glass,
@@ -13173,6 +13218,20 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/tram)
+"awk" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/door/airlock{
+	id_tag = "bathroomlock6";
+	name = "Room 6 Restroom"
+	},
+/turf/simulated/floor/wood,
+/area/crew_quarters/sleep/Dorm_6)
 "awl" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -15232,6 +15291,21 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/virologyisolation)
+"ayY" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/obj/random/soap,
+/obj/structure/table/standard,
+/obj/machinery/button/remote/airlock{
+	id = "bathroomlock6";
+	name = "Room 6 Bathroom Lock";
+	pixel_x = -20;
+	pixel_y = 10;
+	specialfunctions = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/sleep/Dorm_6)
 "ayZ" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 8
@@ -15468,6 +15542,20 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/tram)
+"azr" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/door/airlock{
+	id_tag = "bathroomlock5";
+	name = "Room 4 Restroom"
+	},
+/turf/simulated/floor/wood,
+/area/crew_quarters/sleep/Dorm_4)
 "azs" = (
 /turf/simulated/wall/r_wall,
 /area/maintenance/lower/solars)
@@ -15637,6 +15725,21 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/centralstairwell)
+"azF" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/obj/random/soap,
+/obj/structure/table/standard,
+/obj/machinery/button/remote/airlock{
+	id = "bathroomlock5";
+	name = "Room 4 Bathroom Lock";
+	pixel_x = -20;
+	pixel_y = 10;
+	specialfunctions = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/sleep/Dorm_4)
 "azG" = (
 /obj/structure/sign/securearea{
 	desc = "A warning sign which reads 'CRUSH WARNING'.";
@@ -17987,6 +18090,20 @@
 /obj/effect/floor_decal/steeldecal/steel_decals9,
 /turf/simulated/floor/tiled/monotile,
 /area/rnd/hallway)
+"aDL" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/door/airlock{
+	id_tag = "bathroomlock4";
+	name = "Room 2 Restroom"
+	},
+/turf/simulated/floor/wood,
+/area/crew_quarters/sleep/Dorm_2)
 "aDM" = (
 /obj/structure/ladder/up,
 /obj/effect/floor_decal/industrial/outline/yellow,
@@ -19227,6 +19344,21 @@
 /obj/structure/railing,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/tether/surfacebase/tram)
+"aFV" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/obj/random/soap,
+/obj/structure/table/standard,
+/obj/machinery/button/remote/airlock{
+	id = "bathroomlock4";
+	name = "Room 2 Bathroom Lock";
+	pixel_x = -20;
+	pixel_y = 10;
+	specialfunctions = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/sleep/Dorm_2)
 "aFW" = (
 /obj/structure/bed/chair/wood{
 	dir = 1
@@ -19596,6 +19728,20 @@
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_dining)
+"aGz" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock{
+	id_tag = "bathroomlock1";
+	name = "Dark Bar Restroom"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/vacant/vacant_bar)
 "aGA" = (
 /obj/machinery/firealarm{
 	dir = 1;
@@ -21389,12 +21535,19 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/lowernorthhall)
 "aJD" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock{
+	id_tag = "bathroomlock2";
+	name = "Room 3 Restroom"
 	},
-/obj/machinery/light_construct/small,
-/turf/simulated/floor/plating,
-/area/crew_quarters/sleep/maintDorm1)
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/sleep/maintDorm3)
 "aJE" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/wood,
@@ -21800,6 +21953,20 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/atmos)
+"aKq" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock{
+	id_tag = "bathroomlock3";
+	name = "Room 1 Restroom"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/crew_quarters/sleep/maintDorm1)
 "aKr" = (
 /obj/structure/railing,
 /obj/effect/floor_decal/borderfloor{
@@ -21874,6 +22041,20 @@
 /obj/item/weapon/beach_ball/holoball,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/research)
+"aKA" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/obj/machinery/light/small,
+/obj/machinery/button/remote/airlock{
+	id = "bathroomlock1";
+	name = "Dark Bar Bathroom Lock";
+	pixel_x = -20;
+	pixel_y = 10;
+	specialfunctions = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/vacant/vacant_bar)
 "aKB" = (
 /obj/structure/railing{
 	dir = 8
@@ -23032,18 +23213,20 @@
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/Dorm_8)
 "aMG" = (
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
+/obj/effect/floor_decal/rust,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
+/obj/machinery/light_construct/small,
+/obj/machinery/button/remote/airlock{
+	id = "bathroomlock2";
+	name = "Room 3 Bathroom Lock";
+	pixel_x = -20;
+	pixel_y = 10;
+	specialfunctions = 4
 	},
-/obj/machinery/door/airlock{
-	name = "Restroom"
-	},
-/turf/simulated/floor/wood,
-/area/crew_quarters/sleep/Dorm_8)
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/sleep/maintDorm3)
 "aMH" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -23470,10 +23653,16 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
-/obj/random/soap,
-/obj/structure/table/standard,
-/turf/simulated/floor/tiled/white,
-/area/crew_quarters/sleep/Dorm_8)
+/obj/machinery/light_construct/small,
+/obj/machinery/button/remote/airlock{
+	id = "bathroomlock3";
+	name = "Room 1 Bathroom Lock";
+	pixel_x = -20;
+	pixel_y = 10;
+	specialfunctions = 4
+	},
+/turf/simulated/floor/plating,
+/area/crew_quarters/sleep/maintDorm1)
 "aNu" = (
 /obj/machinery/shower{
 	dir = 1
@@ -24175,18 +24364,12 @@
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/Dorm_6)
 "aOO" = (
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
+/obj/machinery/flasher{
+	id = "SurfaceBrigFlash";
+	pixel_y = -20
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/door/airlock{
-	name = "Restroom"
-	},
-/turf/simulated/floor/wood,
-/area/crew_quarters/sleep/Dorm_6)
+/turf/simulated/floor/tiled/dark,
+/area/tether/surfacebase/security/brig)
 "aOP" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -24494,13 +24677,29 @@
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/Dorm_6)
 "aPj" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/obj/random/soap,
-/obj/structure/table/standard,
-/turf/simulated/floor/tiled/white,
-/area/crew_quarters/sleep/Dorm_6)
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/effect/floor_decal/corner/lightorange{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/obj/machinery/flasher{
+	id = "SurfaceBrigFlash"
+	},
+/obj/effect/floor_decal/industrial/outline/yellow,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/security/brig)
 "aPk" = (
 /obj/machinery/shower{
 	dir = 1
@@ -25360,18 +25559,20 @@
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/Dorm_4)
 "aQO" = (
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/door/airlock{
-	name = "Restroom"
+/obj/machinery/flasher{
+	id = "SurfaceBrigFlash"
 	},
-/turf/simulated/floor/wood,
-/area/crew_quarters/sleep/Dorm_4)
+/obj/effect/floor_decal/industrial/outline/yellow,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/security/brig)
 "aQP" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -25680,13 +25881,19 @@
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/Dorm_4)
 "aRs" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/obj/random/soap,
-/obj/structure/table/standard,
-/turf/simulated/floor/tiled/white,
-/area/crew_quarters/sleep/Dorm_4)
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/flasher{
+	id = "SurfaceBrigFlash"
+	},
+/obj/effect/floor_decal/industrial/outline/yellow,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/security/brig)
 "aRt" = (
 /obj/machinery/shower{
 	dir = 1
@@ -26407,18 +26614,12 @@
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/Dorm_2)
 "aSZ" = (
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
+/obj/machinery/flasher{
+	id = "SurfaceBrigFlash"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/door/airlock{
-	name = "Restroom"
-	},
-/turf/simulated/floor/wood,
-/area/crew_quarters/sleep/Dorm_2)
+/obj/effect/floor_decal/industrial/outline/yellow,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/security/brig)
 "aTa" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -26758,13 +26959,18 @@
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/Dorm_2)
 "aTH" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
+/obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 1
 	},
-/obj/random/soap,
-/obj/structure/table/standard,
-/turf/simulated/floor/tiled/white,
-/area/crew_quarters/sleep/Dorm_2)
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 6
+	},
+/obj/machinery/button/flasher{
+	id = "SurfaceVisitFlash";
+	pixel_y = -20
+	},
+/turf/simulated/floor/tiled/dark,
+/area/tether/surfacebase/security/brig)
 "aTI" = (
 /obj/machinery/shower{
 	dir = 1
@@ -28263,6 +28469,17 @@
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_laundry)
+"aWp" = (
+/obj/effect/floor_decal/steeldecal/steel_decals4,
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 10
+	},
+/obj/machinery/flasher{
+	id = "SurfaceVisitFlash";
+	pixel_y = -20
+	},
+/turf/simulated/floor/tiled/dark,
+/area/tether/surfacebase/security/brig)
 "aWq" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 4
@@ -28711,6 +28928,92 @@
 /obj/random/junk,
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/maintDorm2)
+"aXo" = (
+/obj/machinery/button/remote/airlock{
+	id = "brigouter";
+	name = "Outer Brig Doors";
+	pixel_x = 24;
+	pixel_y = -4;
+	req_access = list(2)
+	},
+/obj/machinery/button/remote/airlock{
+	id = "briginner";
+	name = "Inner Brig Doors";
+	pixel_x = 34;
+	pixel_y = -4;
+	req_access = list(2)
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 6
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/lightorange/bordercorner2{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/lightorange/bordercorner2{
+	dir = 6
+	},
+/obj/machinery/button/flasher{
+	id = "SurfaceBrigFlash";
+	pixel_x = 30;
+	pixel_y = 5
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/security/lowerhall)
+"aXp" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/green{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 9
+	},
+/obj/machinery/flasher{
+	id = "SurfaceBrigFlash"
+	},
+/obj/effect/floor_decal/industrial/outline/yellow,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/security/brig)
+"aXq" = (
+/obj/structure/cable/green{
+	icon_state = "1-8"
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/effect/floor_decal/corner/lightorange{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/machinery/flasher{
+	id = "SurfaceBrigFlash"
+	},
+/obj/effect/floor_decal/industrial/outline/yellow,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/security/brig)
 "aXr" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -29194,19 +29497,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/vacant/vacant_bar)
-"aYM" = (
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock{
-	name = "Restroom"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/turf/simulated/floor/plating,
-/area/vacant/vacant_bar)
 "aYN" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -29226,19 +29516,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/vacant/vacant_bar)
-"aYR" = (
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock{
-	name = "Restroom"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/white,
-/area/crew_quarters/sleep/maintDorm3)
 "aYT" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
@@ -29259,19 +29536,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/sleep/maintDorm2)
-"aZb" = (
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock{
-	name = "Restroom"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/turf/simulated/floor/plating,
-/area/crew_quarters/sleep/maintDorm1)
 "aZc" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -29296,13 +29560,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/lowernorthhall)
-"aZh" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
-	},
-/obj/machinery/light/small,
-/turf/simulated/floor/tiled/white,
-/area/vacant/vacant_bar)
 "aZi" = (
 /obj/machinery/shower{
 	dir = 1
@@ -29330,14 +29587,6 @@
 	icon_state = "0-4"
 	},
 /turf/simulated/floor/plating,
-/area/crew_quarters/sleep/maintDorm3)
-"aZl" = (
-/obj/effect/floor_decal/rust,
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
-	},
-/obj/machinery/light_construct/small,
-/turf/simulated/floor/tiled/white,
 /area/crew_quarters/sleep/maintDorm3)
 "aZm" = (
 /obj/machinery/shower{
@@ -31547,15 +31796,6 @@
 "cGJ" = (
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining_eva)
-"cGU" = (
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 1
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 6
-	},
-/turf/simulated/floor/tiled/dark,
-/area/tether/surfacebase/security/brig)
 "cHW" = (
 /obj/effect/floor_decal/steeldecal/steel_decals6{
 	dir = 10
@@ -32300,13 +32540,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/brig)
-"fvH" = (
-/obj/machinery/door/airlock{
-	name = "Brig Restroom"
-	},
-/obj/machinery/door/firedoor,
-/turf/simulated/floor/tiled/freezer,
-/area/tether/surfacebase/security/brig/bathroom)
 "fvL" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -32940,13 +33173,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/locker/laundry_arrival)
-"hzx" = (
-/obj/effect/floor_decal/steeldecal/steel_decals4,
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 10
-	},
-/turf/simulated/floor/tiled/dark,
-/area/tether/surfacebase/security/brig)
 "hAe" = (
 /turf/simulated/floor/looking_glass{
 	dir = 5
@@ -34940,29 +35166,6 @@
 /obj/structure/closet/crate/bin,
 /turf/simulated/floor/carpet/bcarpet,
 /area/tether/surfacebase/funny/mimeoffice)
-"nmf" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/green{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals6{
-	dir = 9
-	},
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/security/brig)
 "nmA" = (
 /obj/machinery/door/airlock/silver{
 	name = "Mime's Office";
@@ -36168,26 +36371,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/funny/hideyhole)
-"rzZ" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/effect/floor_decal/corner/lightorange{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6
-	},
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/security/brig)
 "rBG" = (
 /obj/structure/closet,
 /obj/item/weapon/material/minihoe,
@@ -37013,15 +37196,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/brig)
-"uAv" = (
-/obj/structure/toilet{
-	dir = 1
-	},
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/freezer,
-/area/tether/surfacebase/security/brig/bathroom)
 "uAA" = (
 /obj/effect/floor_decal/borderfloor/corner,
 /obj/effect/floor_decal/corner/mauve/bordercorner,
@@ -37033,38 +37207,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/hallway)
-"uDQ" = (
-/obj/machinery/button/remote/airlock{
-	id = "brigouter";
-	name = "Outer Brig Doors";
-	pixel_x = 24;
-	pixel_y = -4;
-	req_access = list(2)
-	},
-/obj/machinery/button/remote/airlock{
-	id = "briginner";
-	name = "Inner Brig Doors";
-	pixel_x = 34;
-	pixel_y = -4;
-	req_access = list(2)
-	},
-/obj/effect/floor_decal/borderfloor{
-	dir = 4
-	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 6
-	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 5
-	},
-/obj/effect/floor_decal/corner/lightorange/bordercorner2{
-	dir = 5
-	},
-/obj/effect/floor_decal/corner/lightorange/bordercorner2{
-	dir = 6
-	},
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/security/lowerhall)
 "uEK" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -37553,24 +37695,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_one_hall)
-"wxV" = (
-/obj/structure/cable/green{
-	icon_state = "1-8"
-	},
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/obj/effect/floor_decal/corner/lightorange{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/security/brig)
 "wzA" = (
 /obj/structure/catwalk,
 /obj/machinery/alarm{
@@ -45859,7 +45983,7 @@ vRL
 hFq
 neZ
 diq
-uDQ
+aXo
 mvM
 fLB
 dMu
@@ -46142,9 +46266,9 @@ tiJ
 kmb
 pCj
 kUN
-cGU
+aTH
 qwV
-nmf
+aXp
 hMu
 abT
 bbd
@@ -46420,13 +46544,13 @@ wwm
 jio
 pCj
 dju
-kmb
+aOO
 pCj
 dju
-kmb
+aOO
 pCj
 jzW
-hzx
+aWp
 qwV
 wtD
 wQS
@@ -46846,15 +46970,15 @@ aad
 mYf
 rQe
 ybc
-rzZ
+aPj
 hTw
 hTw
 hTw
-hTw
+aRs
 hTw
 uFs
 ddU
-wxV
+aXq
 nID
 iKy
 anp
@@ -47414,11 +47538,11 @@ aad
 pCj
 wjq
 wjq
-pKE
+aQO
 pmV
 loj
 plW
-tdh
+aSZ
 fqa
 fOy
 eAd
@@ -47706,8 +47830,8 @@ eBd
 fqa
 fOy
 xtS
-fvH
-uAv
+auJ
+auX
 fqa
 anp
 adK
@@ -50058,7 +50182,7 @@ aXm
 aXI
 aYd
 aYd
-aYM
+aGz
 aYd
 aYd
 aLL
@@ -50201,7 +50325,7 @@ aXJ
 aYd
 aYr
 aYN
-aZh
+aKA
 aYd
 aZI
 aWc
@@ -50910,7 +51034,7 @@ aXr
 aXP
 aYe
 aYe
-aYR
+aJD
 aYe
 aYe
 aZL
@@ -51053,7 +51177,7 @@ aXJ
 aYe
 aYv
 aIg
-aZl
+aMG
 aYe
 aUE
 aZz
@@ -52614,7 +52738,7 @@ aXP
 aXP
 aYi
 aYi
-aZb
+aKq
 aYi
 aYi
 aZS
@@ -52757,7 +52881,7 @@ aVn
 aYi
 aHX
 aZc
-aJD
+aNt
 aYi
 aZD
 aZD
@@ -53581,19 +53705,19 @@ aCP
 aDu
 aLj
 aLj
-aMG
+ave
 aLj
 aNS
 aNS
-aOO
+awk
 aNS
 aPK
 aPK
-aQO
+azr
 aPK
 aPK
 aSo
-aSZ
+aDL
 aSo
 aSo
 arD
@@ -53724,19 +53848,19 @@ aDu
 aLj
 aLW
 aMH
-aNt
+avN
 aNS
 aOu
 aOP
-aPj
+ayY
 aPK
 aQm
 aQP
-aRs
+azF
 aPK
 aSu
 aTa
-aTH
+aFV
 aSo
 aTB
 bcm
