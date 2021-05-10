@@ -107,7 +107,8 @@ var/list/admin_verbs_admin = list(
 	/client/proc/fixatmos,
 	/datum/admins/proc/sendFax,
 	/client/proc/despawn_player,
-	/datum/admins/proc/view_feedback
+	/datum/admins/proc/view_feedback,
+	/client/proc/debug_global_variables
 	)
 
 var/list/admin_verbs_ban = list(
@@ -184,7 +185,8 @@ var/list/admin_verbs_server = list(
 	/client/proc/recipe_dump,
 	/client/proc/panicbunker,
 	/client/proc/paranoia_logging,
-	/client/proc/ip_reputation
+	/client/proc/ip_reputation,
+	/client/proc/debug_global_variables
 	)
 
 var/list/admin_verbs_debug = list(
@@ -232,7 +234,8 @@ var/list/admin_verbs_debug = list(
 	/datum/admins/proc/change_time,
 	/client/proc/admin_give_modifier,
 	/client/proc/simple_DPS,
-	/datum/admins/proc/view_feedback
+	/datum/admins/proc/view_feedback,
+	/client/proc/debug_global_variables
 	)
 
 var/list/admin_verbs_paranoid_debug = list(
@@ -326,7 +329,8 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/roll_dices,
 	/proc/possess,
 	/proc/release,
-	/datum/admins/proc/set_tcrystals
+	/datum/admins/proc/set_tcrystals,
+	/client/proc/debug_global_variables
 	)
 var/list/admin_verbs_mod = list(
 	/client/proc/cmd_admin_pm_context,	//right-click adminPM interface,
@@ -488,8 +492,8 @@ var/list/admin_verbs_event_manager = list(
 	/client/proc/cmd_admin_delete,		//delete an instance/object/mob/etc,
 	/client/proc/cmd_debug_del_all,
 	/client/proc/toggle_random_events,
-	/client/proc/modify_server_news
-
+	/client/proc/modify_server_news,
+	/client/proc/debug_global_variables
 )
 
 /client/proc/add_admin_verbs()
