@@ -3503,17 +3503,13 @@
 /turf/simulated/floor/tiled/white,
 /area/security/security_bathroom)
 "agr" = (
-/obj/structure/table/rack{
+/obj/structure/shuttle/engine/propulsion{
 	dir = 8;
-	layer = 2.9
+	icon_state = "propulsion_l"
 	},
-/obj/effect/decal/cleanable/cobweb{
-	icon_state = "cobweb2"
-	},
-/obj/item/clothing/under/pizzaguy,
-/obj/item/clothing/head/pizzaguy,
-/turf/simulated/floor/tiled,
-/area/quartermaster/warehouse)
+/turf/simulated/floor/tiled/asteroid_steel/airless,
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/mining_outpost/shuttle)
 "ags" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -3536,20 +3532,12 @@
 /area/crew_quarters/medical_restroom)
 "agu" = (
 /obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
-	},
-/turf/simulated/floor/tiled/asteroid_steel/airless,
-/turf/simulated/shuttle/plating/airless/carry,
-/area/shuttle/mining_outpost/shuttle)
-"agv" = (
-/obj/structure/shuttle/engine/propulsion{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/asteroid_steel/airless,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/mining_outpost/shuttle)
-"agw" = (
+"agv" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 8;
 	icon_state = "propulsion_r"
@@ -12355,6 +12343,16 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/upper)
+"aCg" = (
+/obj/structure/table/rack{
+	dir = 8;
+	layer = 2.9
+	},
+/obj/effect/decal/cleanable/cobweb{
+	icon_state = "cobweb2"
+	},
+/turf/simulated/floor/tiled,
+/area/quartermaster/warehouse)
 "aCh" = (
 /obj/effect/floor_decal/steeldecal/steel_decals6{
 	dir = 8
@@ -37895,7 +37893,7 @@ aBR
 aCD
 aEs
 azK
-agr
+aCg
 aGJ
 aHy
 aLA
@@ -39617,11 +39615,11 @@ avt
 avt
 adD
 aZS
+agr
+agu
+agu
 agu
 agv
-agv
-agv
-agw
 baB
 adD
 avt
