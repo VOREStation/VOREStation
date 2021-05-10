@@ -69,6 +69,10 @@ var/global/list/endgame_safespawns = list()
 
 var/global/list/syndicate_access = list(access_maint_tunnels, access_syndicate, access_external_airlocks)
 
+// Ores (for mining)
+GLOBAL_LIST_EMPTY(ore_data)
+GLOBAL_LIST_EMPTY(alloy_data)
+
 // Strings which corraspond to bodypart covering flags, useful for outputting what something covers.
 var/global/list/string_part_flags = list(
 	"head" = HEAD,
@@ -212,6 +216,16 @@ GLOBAL_LIST_EMPTY(mannequins)
 	for(var/T in paths)
 		var/datum/poster/P = new T
 		NT_poster_designs += P
+
+	//Ores
+	paths = typesof(/ore)-/ore
+	for(var/oretype in paths)
+		var/ore/OD = new oretype()
+		GLOB.ore_data[OD.name] = OD
+	
+	paths = typesof(/datum/alloy)-/datum/alloy
+	for(var/alloytype in paths)
+		GLOB.alloy_data += new alloytype()
 
 	//Closet appearances
 	paths = typesof(/decl/closet_appearance)
