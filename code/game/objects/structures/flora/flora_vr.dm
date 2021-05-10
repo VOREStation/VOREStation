@@ -37,13 +37,13 @@
 	desc = "A fat, freshly picked pumpkin. This one has a face carved into it! This one has large, round eyes and a squiggly, cat-like smiling mouth. Its pleasantly surprised expression seems to suggest that the pumpkin has noticed something about you."
 	icon_state = "decor-jackolantern-owo"
 
-// Various decorá 
+// Various decorá
 /obj/structure/flora/log1
 	name = "waterlogged trunk"
 	icon = 'icons/obj/flora/amayastuff.dmi'
 	desc = "A part of a felled tree. Moss is growing across it."
 	icon_state = "log1"
-	
+
 /obj/structure/flora/log2
 	name = "driftwood"
 	icon = 'icons/obj/flora/amayastuff.dmi'
@@ -55,13 +55,13 @@
 	icon = 'icons/obj/flora/amayastuff.dmi'
 	desc = "A bunch of lilypads. A beautiful red flower grows in the middle of them."
 	icon_state = "lilypad1"
-	
+
 /obj/structure/flora/lily2
 	name = "yellow flowered lilypads"
 	icon = 'icons/obj/flora/amayastuff.dmi'
 	desc = "A few lilypads. A sunny yellow flower stems from the water and from between the lilypads."
 	icon_state = "lilypad2"
-	
+
 /obj/structure/flora/lily3
 	name = "lilypads"
 	icon = 'icons/obj/flora/amayastuff.dmi'
@@ -73,29 +73,115 @@
 	icon = 'icons/obj/flora/amayastuff.dmi'
 	desc = "A small boulder, with its top smothered with moss."
 	icon_state = "smallerboulder"
-	
+
 /obj/structure/flora/bboulder1
 	name = "large boulder"
 	icon = 'icons/obj/flora/amayastuff.dmi'
 	desc = "Small stones sit beside this large boulder. Moss grows on the top of each of them."
 	icon_state = "bigboulder1"
 	density = 1
-	
+
 /obj/structure/flora/bboulder2
 	name = "jagged large boulder"
 	icon = 'icons/obj/flora/amayastuff.dmi'
 	desc = "This boulder has had plates broken off it. Moss grows in the cracks and across the top."
 	icon_state = "bigboulder2"
 	density = 1
-	
+
 /obj/structure/flora/rocks1
 	name = "rocks"
 	icon = 'icons/obj/flora/amayastuff.dmi'
 	desc = "A bunch of mossy rocks."
 	icon_state = "rocks1"
-	
+
 /obj/structure/flora/rocks2
 	name = "rocks"
 	icon = 'icons/obj/flora/amayastuff.dmi'
 	desc = "A bunch of mossy rocks."
 	icon_state = "rocks2"
+
+///////////////////////Torris Flora///////////////////////
+
+/turf/unsimulated/denseflora //Jungle Walls
+	name = "impassable growth"
+	desc = "A thick bunch of trees, shrubs, and other flora that is too dense to cut through."
+	icon = 'icons/turf/walls_torris.dmi'
+	icon_state = "denseflora"
+	density = 1
+
+/obj/structure/flora/torris
+	icon = 'icons/obj/flora/torrisflora.dmi'
+
+/obj/structure/flora/torris/stones
+	name = "rocks"
+	desc = "A bunch of dusty rocks."
+	icon_state = "junglestones"
+
+/obj/structure/flora/torris/stones/Initialize()
+	icon_state = "[initial(icon_state)][rand(1,3)]"
+	. = ..()
+
+/obj/structure/flora/torris/tallgrass
+	name = "tall grass"
+	desc = "A patch of taller grass."
+	icon_state = "tallgrass"
+
+/obj/structure/flora/torris/tallgrass/Initialize()
+	icon_state = "[initial(icon_state)][rand(1,10)]"
+	. = ..()
+
+/datum/category_item/catalogue/flora/nyrian
+	name = "Torris Flora - Nyrian Bloom"
+	desc = "*error* _datanotfound: please try again." //WIP
+	value = CATALOGUER_REWARD_EASY
+
+/obj/structure/flora/torris/nyrian
+	name = "pink flower"
+	desc = "An odd looking flower bloom that has a slight haze of pollen surrounding it. It smells very strange ."
+	icon_state = "Nyrian_Bloom"
+	catalogue_data = list(/datum/category_item/catalogue/flora/nyrian)
+
+/obj/structure/flora/torris/nyrian/Initialize()
+	icon_state = "[initial(icon_state)][rand(1,2)]"
+	. = ..()
+
+/datum/category_item/catalogue/flora/rafflesia
+	name = "Torris Flora - Rafflesia"
+	desc = "*error* _datanotfound: please try again." //WIP
+	value = CATALOGUER_REWARD_EASY
+
+/obj/structure/flora/torris/rafflesia
+	name = "strange flower"
+	desc = "A huge bright red flower that has an absolutly horrid smell when you draw near."
+	icon_state = "Rafflesia"
+	catalogue_data = list(/datum/category_item/catalogue/flora/rafflesia)
+
+/datum/category_item/catalogue/flora/twilight
+	name = "Torris Flora - Twilight Cress"
+	desc = "*error* _datanotfound: please try again." //WIP
+	value = CATALOGUER_REWARD_EASY
+
+/obj/structure/flora/torris/twilight
+	name = "fluorescent stalks"
+	desc = "Some short, fluorescent stalks that seem to sparkle gently in the light - as if they're reflective."
+	icon_state = "Twilight_Cress"
+	catalogue_data = list(/datum/category_item/catalogue/flora/twilight)
+
+/obj/structure/flora/torris/twilight/Initialize()
+	icon_state = "[initial(icon_state)][rand(1,3)]"
+	. = ..()
+
+/datum/category_item/catalogue/flora/deadnettle
+	name = "Torris Flora - Sour Deadnettle"
+	desc = "*error* _datanotfound: please try again." //WIP
+	value = CATALOGUER_REWARD_EASY
+
+/obj/structure/flora/torris/deadnettle
+	name = "mishaped stalks"
+	desc = "Some tall stalks that seem to attract a lot of bees and other bugs."
+	icon_state = "Sour_Deadnettle"
+	catalogue_data = list(/datum/category_item/catalogue/flora/deadnettle)
+
+/obj/structure/flora/torris/deadnettle/Initialize()
+	icon_state = "[initial(icon_state)][rand(1,2)]"
+	. = ..()
