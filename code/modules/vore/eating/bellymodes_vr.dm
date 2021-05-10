@@ -76,6 +76,8 @@
 	if(!digestion_noise_chance)
 		digestion_noise_chance = DM.noise_chance
 
+
+///////////////////// Time to actually process mobs /////////////////////
 	for(var/target in touchable_mobs)
 		var/mob/living/L = target
 		if(!istype(L))

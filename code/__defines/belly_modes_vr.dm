@@ -20,6 +20,7 @@
 #define DM_FLAG_LEAVEREMAINS	0x4
 #define DM_FLAG_THICKBELLY		0x8
 #define DM_FLAG_AFFECTWORN		0x10
+#define DM_FLAG_JAMSENSORS		0x20
 
 //Item related modes
 #define IM_HOLD									"Hold"

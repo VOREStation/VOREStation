@@ -246,6 +246,7 @@
 	add_overlay(selecting_appearance)
 
 /obj/screen/Click(location, control, params)
+	..() // why the FUCK was this not called before
 	if(!usr)	return 1
 	switch(name)
 		if("toggle")

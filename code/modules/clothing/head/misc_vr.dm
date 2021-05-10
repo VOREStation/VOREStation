@@ -87,3 +87,10 @@
 	desc = "A particularly vibrant tiger pelt, for those who want to be the most fabulous at parties."
 	icon_state = "tigerpelt_pink"
 	item_state = "tigerpelt_pink"
+
+/obj/item/clothing/head/pizzaguy
+	name = "pizza delivery visor"
+	desc = "A fancy visor showing alignment to pizza delivery service. Extremely risky career choice."
+	icon_state = "pizzadelivery"
+	icon = 'icons/obj/clothing/hats_vr.dmi'
+	icon_override = 'icons/mob/head_vr.dmi'
