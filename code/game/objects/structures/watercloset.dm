@@ -222,7 +222,7 @@
 			M.touching.remove_any(remove_amount)
 
 		M.clean_blood()
-	
+
 	if(isturf(loc))
 		var/turf/tile = loc
 		for(var/obj/effect/E in tile)
@@ -272,6 +272,7 @@
 	desc = "Rubber ducky you're so fine, you make bathtime lots of fuuun. Rubber ducky I'm awfully fooooond of yooooouuuu~"	//thanks doohl
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "rubberducky"
+	honk_sound = 'sound/voice/quack.ogg' //VOREStation edit
 
 /obj/structure/sink
 	name = "sink"

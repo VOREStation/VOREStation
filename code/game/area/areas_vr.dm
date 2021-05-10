@@ -1,6 +1,8 @@
 /area
 	var/enter_message
 	var/exit_message
+	var/limit_mob_size = TRUE //If mob size is limited in the area.
+	var/block_suit_sensors = FALSE //If mob size is limited in the area.
 
 /area/Entered(var/atom/movable/AM, oldLoc)
 	. = ..()

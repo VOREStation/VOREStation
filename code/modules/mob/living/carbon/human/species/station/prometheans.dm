@@ -119,6 +119,15 @@ var/datum/species/shapeshifter/promethean/prometheans
 
 	var/heal_rate = 0.5 // Temp. Regen per tick.
 
+	default_emotes = list(
+		/decl/emote/audible/squish,
+		/decl/emote/audible/chirp,
+		/decl/emote/visible/bounce,
+		/decl/emote/visible/jiggle,
+		/decl/emote/visible/lightup,
+		/decl/emote/visible/vibrate
+	)
+
 /datum/species/shapeshifter/promethean/New()
 	..()
 	prometheans = src

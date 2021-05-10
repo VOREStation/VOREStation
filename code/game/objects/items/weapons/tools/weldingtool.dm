@@ -21,6 +21,8 @@
 
 	//R&D tech level
 	origin_tech = list(TECH_ENGINEERING = 1)
+	
+	tool_qualities = list(TOOL_WELDER)
 
 	//Welding tool specific stuff
 	var/welding = 0 	//Whether or not the welding tool is off(0), on(1) or currently welding(2)
