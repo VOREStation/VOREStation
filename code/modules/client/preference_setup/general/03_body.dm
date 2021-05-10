@@ -70,7 +70,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			continue
 		if(instance.ckeys_allowed && (!client || !(client.ckey in instance.ckeys_allowed)))
 			continue
-		if(instance.species_allowed && (!species || !(species in instance.species_allowed)) && (!client || !check_rights(R_ADMIN | R_EVENT | R_FUN, 0, client)))
+		if(instance.species_allowed && (!species || !(species in instance.species_allowed)) && (!client || !check_rights(R_ADMIN | R_EVENT | R_FUN, 0, client)) && (!custom_base || !(custom_base in instance.species_allowed))) //VOREStation Edit: Custom Species
 			continue
 		.[instance.name] = instance
 
