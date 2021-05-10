@@ -78,8 +78,7 @@
 
 	var/list/names = list()
 	if (!islist)
-		for (var/V in D.vars)
-			names += V
+		names = D.get_variables()
 	sleep(1)//For some reason, without this sleep, VVing will cause client to disconnect on certain objects.
 
 	var/list/variable_html = list()
