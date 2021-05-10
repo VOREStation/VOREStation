@@ -29,7 +29,7 @@
 	var/gender = NEUTER
 
 	// Restrict some styles to specific species. Set to null to perform no checking.
-	var/list/species_allowed = list(SPECIES_HUMAN,SPECIES_PROMETHEAN,SPECIES_HUMAN_VATBORN)
+	var/list/species_allowed = null //VOREStation Edit: see above.
 
 	// Whether or not the accessory can be affected by colouration
 	var/do_colouration = 1
