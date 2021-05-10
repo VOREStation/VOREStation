@@ -29981,10 +29981,24 @@
 /turf/simulated/floor/tiled/white,
 /area/rnd/outpost/xenobiology/outpost_first_aid)
 "aZg" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tether)
+/obj/structure/closet/crate{
+	icon_state = "crate";
+	name = "Grenade Crate"
+	},
+/obj/item/weapon/grenade/chem_grenade,
+/obj/item/weapon/grenade/chem_grenade,
+/obj/item/weapon/grenade/chem_grenade,
+/obj/item/device/assembly/timer,
+/obj/item/device/assembly/timer,
+/obj/item/device/assembly/timer,
+/obj/item/device/assembly/igniter,
+/obj/item/device/assembly/igniter,
+/obj/item/device/assembly/igniter,
+/obj/item/weapon/tool/screwdriver,
+/obj/effect/floor_decal/borderfloorwhite,
+/obj/effect/floor_decal/corner/paleblue/border,
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/storage)
 "aZh" = (
 /obj/machinery/door/airlock/glass_command{
 	name = "Bridge";
@@ -30954,12 +30968,21 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
 "baI" = (
-/obj/machinery/atmospherics/unary/engine{
+/obj/structure/table/standard,
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tourbus/general)
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 6
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 6
+	},
+/obj/machinery/recharger,
+/obj/item/weapon/storage/box/syringegun,
+/obj/item/weapon/gun/launcher/syringe,
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/storage)
 "baJ" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -31088,6 +31111,11 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
+"baR" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tether)
 "baS" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/window/reinforced/full,
@@ -31527,6 +31555,13 @@
 	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/hydroponics)
+"bbJ" = (
+/obj/machinery/atmospherics/unary/engine{
+	dir = 1
+	},
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tourbus/general)
 "bbK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/wood,
@@ -36542,42 +36577,6 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/storage)
-"bmk" = (
-/obj/structure/closet/crate{
-	icon_state = "crate";
-	name = "Grenade Crate"
-	},
-/obj/item/weapon/grenade/chem_grenade,
-/obj/item/weapon/grenade/chem_grenade,
-/obj/item/weapon/grenade/chem_grenade,
-/obj/item/device/assembly/timer,
-/obj/item/device/assembly/timer,
-/obj/item/device/assembly/timer,
-/obj/item/device/assembly/igniter,
-/obj/item/device/assembly/igniter,
-/obj/item/device/assembly/igniter,
-/obj/item/weapon/tool/screwdriver,
-/obj/effect/floor_decal/borderfloorwhite,
-/obj/effect/floor_decal/corner/paleblue/border,
-/obj/item/weapon/gun/launcher/syringe,
-/obj/item/weapon/storage/box/syringegun,
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/storage)
-"bml" = (
-/obj/structure/table/standard,
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 1
-	},
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 6
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 6
-	},
-/obj/machinery/recharger,
-/obj/item/weapon/storage/box/syringegun,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/storage)
 "bmm" = (
@@ -54417,7 +54416,7 @@ jML
 jHw
 jpB
 aVJ
-baI
+bbJ
 aKU
 aOI
 aPb
@@ -55269,7 +55268,7 @@ caw
 jHw
 gHh
 aVJ
-baI
+bbJ
 aKU
 aOI
 aKj
@@ -57254,7 +57253,7 @@ aNk
 uSA
 aNJ
 aNP
-aZg
+baR
 aKU
 abg
 aOk
@@ -57396,7 +57395,7 @@ aNl
 aNl
 aNK
 aNP
-aZg
+baR
 aKU
 abg
 aOk
@@ -57538,7 +57537,7 @@ aNm
 aNl
 aNK
 aNP
-aZg
+baR
 aKU
 abg
 aOk
@@ -58606,7 +58605,7 @@ aVc
 aWd
 aUv
 aUv
-bmk
+aZg
 fLx
 aSV
 bng
@@ -58748,7 +58747,7 @@ abu
 aaT
 blu
 blP
-bml
+baI
 fLx
 aTj
 bjy
