@@ -33,7 +33,7 @@
 /area/space)
 "dN" = (
 /turf/simulated/wall/r_wall,
-/area/medical/virology)
+/area/medical/virologyaccess)
 "dQ" = (
 /turf/simulated/wall/r_wall,
 /area/junglebase/hallway/research_platform_hall)
@@ -384,6 +384,9 @@
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor/plating,
 /area/space)
+"oD" = (
+/turf/space,
+/area/medical/virologyaccess)
 "oQ" = (
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor/wood,
@@ -897,6 +900,9 @@
 	},
 /turf/simulated/floor/tiled,
 /area/space)
+"GW" = (
+/turf/space,
+/area/medical/virologyisolation)
 "He" = (
 /obj/structure/table/reinforced,
 /obj/machinery/recharger/wallcharger{
@@ -1161,7 +1167,7 @@
 /area/space)
 "Pq" = (
 /turf/simulated/floor/tiled/white,
-/area/medical/virology)
+/area/medical/virologyaccess)
 "PK" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 4
@@ -1195,6 +1201,9 @@
 "QX" = (
 /turf/simulated/wall,
 /area/junglebase/hallway/research_platform_hall)
+"Rd" = (
+/turf/simulated/wall,
+/area/medical/virologyisolation)
 "Sm" = (
 /obj/structure/closet/crate,
 /obj/item/target,
@@ -1216,6 +1225,9 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/space)
+"Sy" = (
+/turf/simulated/wall,
+/area/medical/virologyaccess)
 "SO" = (
 /turf/simulated/floor/tiled/dark,
 /area/junglebase/hallway/research_platform_hall)
@@ -3145,11 +3157,11 @@ Vj
 Vj
 Vj
 Vj
-rB
-rB
-rB
-rB
-rB
+Rd
+Rd
+Rd
+Rd
+Rd
 ng
 ng
 ng
@@ -3287,11 +3299,11 @@ Vj
 Vj
 Vj
 Vj
-rB
-ng
-ng
-ng
-rB
+Rd
+GW
+GW
+GW
+Rd
 ng
 ng
 ng
@@ -3429,15 +3441,15 @@ Vj
 Vj
 Vj
 Vj
-rB
-ng
-ng
-ng
-rB
-rB
+Rd
+GW
+GW
+GW
+Rd
+Sy
 Pq
-rB
-rB
+Sy
+Sy
 Vj
 Vj
 Vj
@@ -3571,15 +3583,15 @@ Vj
 Vj
 Vj
 Vj
-rB
-ng
-ng
-ng
-rB
-ng
-ng
-ng
-rB
+Rd
+GW
+GW
+GW
+Rd
+oD
+oD
+oD
+Sy
 Vj
 Vj
 Vj
@@ -3713,15 +3725,15 @@ Vj
 Vj
 Vj
 Vj
-rB
-ng
-ng
-ng
-rB
-ng
-ng
-ng
-rB
+Rd
+GW
+GW
+GW
+Rd
+oD
+oD
+oD
+Sy
 Vj
 Vj
 Vj
@@ -3855,15 +3867,15 @@ Vj
 Vj
 Vj
 Vj
-rB
-rB
-rB
-rB
-rB
-rB
+Rd
+Rd
+Rd
+Rd
+Rd
+Sy
 Pq
-rB
-rB
+Sy
+Sy
 Vj
 Vj
 Vj
