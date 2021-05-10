@@ -163,6 +163,7 @@
 	var/active = FALSE
 
 	var/points = 0
+	var/points_mult = 1 //VOREStation Add - multiplier for points generated when ore hits the processors
 	var/static/list/ore_values = list(
 		"sand" = 1,
 		"hematite" = 1,
@@ -237,7 +238,7 @@
 	for(var/obj/item/weapon/ore/O in input.loc)
 		if(!isnull(ores_stored[O.material]))
 			ores_stored[O.material]++
-			points += ore_values[O.material] // Give Points!
+			points += (ore_values[O.material]*points_mult) // Give Points! VOREStation Edit - or give lots of points! or less points! or no points!
 		qdel(O)
 
 	if(!active)

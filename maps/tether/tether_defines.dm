@@ -12,16 +12,16 @@
 #define Z_LEVEL_UNDERDARK					11
 #define Z_LEVEL_PLAINS						12
 #define Z_LEVEL_OFFMAP1						13
-#define Z_LEVEL_OFFMAP2						14
-#define Z_LEVEL_ROGUEMINE_1					15
-#define Z_LEVEL_ROGUEMINE_2					16
-#define Z_LEVEL_BEACH						17
-#define Z_LEVEL_BEACH_CAVE					18
-#define Z_LEVEL_AEROSTAT					19
-#define Z_LEVEL_AEROSTAT_SURFACE			20
-#define Z_LEVEL_DEBRISFIELD					21
-#define Z_LEVEL_FUELDEPOT					22
-#define Z_LEVEL_GATEWAY						23
+//#define Z_LEVEL_OFFMAP2						14
+#define Z_LEVEL_ROGUEMINE_1					14
+#define Z_LEVEL_ROGUEMINE_2					15
+#define Z_LEVEL_BEACH						16
+#define Z_LEVEL_BEACH_CAVE					17
+#define Z_LEVEL_AEROSTAT					18
+#define Z_LEVEL_AEROSTAT_SURFACE				19
+#define Z_LEVEL_DEBRISFIELD					20
+#define Z_LEVEL_FUELDEPOT					21
+#define Z_LEVEL_GATEWAY						22
 
 //Camera networks
 #define NETWORK_TETHER "Tether"
@@ -155,7 +155,7 @@
 
 	lateload_z_levels = list(
 		list("Tether - Misc","Tether - Underdark","Tether - Plains"), //Stock Tether lateload maps
-		list("Offmap Ship - Talon Z1","Offmap Ship - Talon Z2"),
+		list("Offmap Ship - Talon V2"),
 		list("Asteroid Belt 1","Asteroid Belt 2"),
 		list("Desert Planet - Z1 Beach","Desert Planet - Z2 Cave"),
 		list("Remmi Aerostat - Z1 Aerostat","Remmi Aerostat - Z2 Surface"),
