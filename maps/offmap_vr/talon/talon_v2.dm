@@ -155,7 +155,7 @@ so stay sharp eh?<br>\
 	info = {"to whoever's stuck at the helm of this farce of an operation,<br>\
 good news! you may have noticed the entire ship was replaced pretty much overnight.<br>\
 that or it changed shape or something? whatever, not important.<br>\
-it is essential that I tell you that there is most definitely not a new smuggling compartment hidden under your end table<br>\
+it is essential that I tell you that there is most definitely not a new smuggling compartment hidden under the carpet at the foot of your bed<br>\
 unfortunately I couldn't possibly tell you the fictional combination for a hypothetical compartment that doesn't exist<br>\
 have fun!<br>\
 <br>\
@@ -170,6 +170,9 @@ that or it changed shape or something? whatever, not important.<br>\
 what is important is that the shuttle has been replaced. it is now capable of fully independent flight away from the ship!<br>\
 but the rear airlock is a bit fussy. be sure to use the manual switches on each side of the airlock if you're matching another airlock and one side is exposed to vacuum or a hostile atmosphere!<br>\
 also be sure that it's locked down before you take off, the automatic switch is a bit stupid sometimes!<br>\
+<br>\
+finally, make sure you check the shuttle's APC power level before you head out! it can be fussy about (re)charging off the main ship grid sometimes. despite having someone in to look at the cables, we couldn't figure out why.<br>\
+I recommend packing a spare battery (there should be a few in engineering you can borrow and charge up) to be safe. don't wanna get stranded!<br>\
 <br>\
 <i>Harry Townes</i>"}
 
@@ -545,7 +548,6 @@ also be sure that it's locked down before you take off, the automatic switch is 
 	desc = "A pile of random ores. High chance of a larger pile of common ores, lower chances of small piles of rarer ores. No verdantium, reduced item counts vs normal ore craes."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "ore_clown"
-
 
 /obj/random/multiple/ore_pile/talon/item_to_spawn()
 	return pick(
