@@ -441,5 +441,5 @@
 	return 0
 
 
-/mob/living/bot/isSynthetic(var/skip_emote_update) //Robots are synthetic, no?
+/mob/living/bot/isSynthetic() //Robots are synthetic, no?
 	return 1

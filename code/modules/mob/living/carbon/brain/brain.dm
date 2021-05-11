@@ -42,7 +42,7 @@
 		canmove = 0
 	return canmove
 
-/mob/living/carbon/brain/isSynthetic(var/skip_emote_update)
+/mob/living/carbon/brain/isSynthetic()
 	return istype(loc, /obj/item/device/mmi)
 
 /mob/living/carbon/brain/set_typing_indicator(var/state)

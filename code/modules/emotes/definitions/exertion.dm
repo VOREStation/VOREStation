@@ -5,7 +5,7 @@
 	emote_message_3p = "is sweating heavily."
 
 /decl/emote/exertion/biological/check_user(mob/living/user)
-	if(istype(user) && !user.isSynthetic(skip_emote_update = TRUE))
+	if(istype(user) && !user.isSynthetic())
 		return ..()
 	return FALSE
 
@@ -30,7 +30,7 @@
 	emote_message_3p = "USER's actuators whine with strain."
 
 /decl/emote/exertion/synthetic/check_user(mob/living/user)
-	if(istype(user) && user.isSynthetic(skip_emote_update = TRUE))
+	if(istype(user) && user.isSynthetic())
 		return ..()
 	return FALSE
 

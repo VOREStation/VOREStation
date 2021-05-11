@@ -97,7 +97,7 @@
 
 // This is the 'mechanical' check for synthetic-ness, not appearance
 // Returns the company that made the synthetic
-/mob/living/carbon/human/isSynthetic(var/skip_emote_update)
+/mob/living/carbon/human/isSynthetic()
 	if(synthetic) 
 		return synthetic //Your synthetic-ness is not going away
 	var/obj/item/organ/external/T = organs_by_name[BP_TORSO]
@@ -107,8 +107,7 @@
 		src.verbs += /mob/living/carbon/human/proc/setmonitor_state
 		var/datum/robolimb/R = all_robolimbs[T.model]
 		synthetic = R
-		if(!skip_emote_update)
-			update_emotes()
+		update_emotes()
 		return synthetic
 	return FALSE
 
