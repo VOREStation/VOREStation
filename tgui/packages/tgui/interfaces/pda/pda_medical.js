@@ -84,7 +84,11 @@ export const pda_medical = (props, context) => {
               <LabeledList.Item label="Details">
                 {medical.cdi_d}
               </LabeledList.Item>
+<<<<<<< HEAD
               <LabeledList.Item label="Important Notes" prewrap>
+=======
+              <LabeledList.Item label="Important Notes" preserveWhiteSpace>
+>>>>>>> 192d3a3... Add prewrap prop to Box (white-space: pre-wrap) (#8066)
                 {medical.notes}
               </LabeledList.Item>
             </LabeledList>

@@ -110,7 +110,11 @@ const styleMapperByPropName = {
   bold: mapBooleanPropTo('font-weight', 'bold'),
   italic: mapBooleanPropTo('font-style', 'italic'),
   nowrap: mapBooleanPropTo('white-space', 'nowrap'),
+<<<<<<< HEAD
   prewrap: mapBooleanPropTo('white-space', 'pre-wrap'),
+=======
+  preserveWhiteSpace: mapBooleanPropTo('white-space', 'pre-wrap'),
+>>>>>>> 192d3a3... Add prewrap prop to Box (white-space: pre-wrap) (#8066)
   // Margins
   m: mapDirectionalUnitPropTo('margin', halfUnit, [
     'top', 'bottom', 'left', 'right',

@@ -179,7 +179,11 @@ const SecurityRecordsViewGeneral = (_properties, context) => {
         <LabeledList>
           {general.fields.map((field, i) => (
             <LabeledList.Item key={i} label={field.field}>
+<<<<<<< HEAD
               <Box height="20px" display="inline-block" prewrap>
+=======
+              <Box height="20px" inline preserveWhiteSpace>
+>>>>>>> 192d3a3... Add prewrap prop to Box (white-space: pre-wrap) (#8066)
                 {field.value}
               </Box>
               {!!field.edit && (
@@ -251,7 +255,11 @@ const SecurityRecordsViewSecurity = (_properties, context) => {
           <LabeledList.Item
             key={i}
             label={field.field}
+<<<<<<< HEAD
             prewrap>
+=======
+            preserveWhiteSpace>
+>>>>>>> 192d3a3... Add prewrap prop to Box (white-space: pre-wrap) (#8066)
             {field.value}
             <Button
               icon="pen"
@@ -318,4 +326,3 @@ const SecurityRecordsNavigation = (_properties, context) => {
     </Tabs>
   );
 };
-

@@ -230,7 +230,11 @@ const MedicalRecordsViewGeneral = (_properties, context) => {
         <LabeledList>
           {general.fields.map((field, i) => (
             <LabeledList.Item key={i} label={field.field}>
+<<<<<<< HEAD
               <Box height="20px" display="inline-block" prewrap>
+=======
+              <Box height="20px" inline preserveWhiteSpace>
+>>>>>>> 192d3a3... Add prewrap prop to Box (white-space: pre-wrap) (#8066)
                 {field.value}
               </Box>
               {!!field.edit && (
@@ -293,7 +297,11 @@ const MedicalRecordsViewMedical = (_properties, context) => {
         {medical.fields.map((field, i) => (
           <LabeledList.Item
             key={i}
+<<<<<<< HEAD
             label={field.field} prewrap>
+=======
+            label={field.field} preserveWhiteSpace>
+>>>>>>> 192d3a3... Add prewrap prop to Box (white-space: pre-wrap) (#8066)
             {field.value}
             <Button
               icon="pen"

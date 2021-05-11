@@ -72,7 +72,11 @@ export const pda_security = (props, context) => {
               <LabeledList.Item label="Details">
                 {security.ma_crim_d}
               </LabeledList.Item>
+<<<<<<< HEAD
               <LabeledList.Item label="Important Notes:" prewrap>
+=======
+              <LabeledList.Item label="Important Notes:" preserveWhiteSpace>
+>>>>>>> 192d3a3... Add prewrap prop to Box (white-space: pre-wrap) (#8066)
                 {security.notes || "No data found."}
               </LabeledList.Item>
             </LabeledList>

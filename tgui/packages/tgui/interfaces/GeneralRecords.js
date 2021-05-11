@@ -202,7 +202,11 @@ const GeneralRecordsViewGeneral = (_properties, context) => {
             </LabeledList.Item>
           ))}
         </LabeledList>
+<<<<<<< HEAD
         <Section title="Employment/skills summary" level={2} prewrap>
+=======
+        <Section title="Employment/skills summary" level={2} preserveWhiteSpace>
+>>>>>>> 192d3a3... Add prewrap prop to Box (white-space: pre-wrap) (#8066)
           {general.skills || "No data found."}
         </Section>
         <Section title="Comments/Log" level={2}>
