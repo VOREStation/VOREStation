@@ -45,12 +45,13 @@
 /datum/nifsoft/soulcatcher/install()
 	if((. = ..()))
 		nif.set_flag(NIF_O_SCOTHERS,NIF_FLAGS_OTHER)	//Required on install, because other_flags aren't sufficient for our complicated settings.
-		nif.human.verbs |= /mob/living/carbon/human/nsay
-		nif.human.verbs |= /mob/living/carbon/human/nme
+		if(nif?.human)
+			nif.human.verbs |= /mob/living/carbon/human/nsay
+			nif.human.verbs |= /mob/living/carbon/human/nme
 
 /datum/nifsoft/soulcatcher/uninstall()
 	QDEL_LIST_NULL(brainmobs)
-	if((. = ..()) && nif && nif.human) //Sometimes NIFs are deleted outside of a human
+	if((. = ..()) && nif?.human) //Sometimes NIFs are deleted outside of a human
 		nif.human.verbs -= /mob/living/carbon/human/nsay
 		nif.human.verbs -= /mob/living/carbon/human/nme
 
