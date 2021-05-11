@@ -1663,3 +1663,21 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 /proc/CallAsync(datum/source, proctype, list/arguments)
 	set waitfor = FALSE
 	return call(source, proctype)(arglist(arguments))
+
+/proc/whatIsThis(var/datum/D)
+	if(istype(D))
+		return "It is a datum of type [D.type] - [D]"
+	else if(isnull(D))
+		return "It is a NULL"
+	else if(istext(D))
+		return "It is TEXT: [D]"
+	else if(isnum(D))
+		return "It is NUM: [D]"
+	else if(ispath(D))
+		return "It is PATH: [D]"
+	else if(islist(D))
+		return "It is a LIST: [D]"
+	else if(isclient(D))
+		return "It is a CLIENT: [D]"
+	else
+		return "Unknown data type: [D]"
