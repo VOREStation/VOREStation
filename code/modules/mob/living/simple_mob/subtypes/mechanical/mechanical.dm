@@ -18,7 +18,7 @@
 	poison_resist = 1.0
 	shock_resist = -0.5
 
-/mob/living/simple_mob/mechanical/isSynthetic()
+/mob/living/simple_mob/mechanical/isSynthetic(var/skip_emote_update)
 	return TRUE
 
 /mob/living/simple_mob/mechanical/speech_bubble_appearance()
