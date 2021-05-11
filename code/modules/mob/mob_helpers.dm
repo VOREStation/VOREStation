@@ -33,7 +33,7 @@
 		return L.mob_size <= MOB_MINISCULE
 	return 0
 
-/mob/living/silicon/isSynthetic()
+/mob/living/silicon/isSynthetic(var/skip_emote_update)
 	return 1
 
 /mob/proc/isMonkey()
