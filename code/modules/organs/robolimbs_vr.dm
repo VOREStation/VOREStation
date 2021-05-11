@@ -17,6 +17,13 @@ var/const/cyberbeast_monitor_styles = "blank=cyber_blank;\
 	idle=cyber_idle;\
 	nwn=cyber_nwn"
 
+// Placeholder for protean limbs during character spawning, before they have a properly set model
+/datum/robolimb/protean
+	company = "protean"
+	desc = "Nano-y!"
+	lifelike = 1
+	unavailable_to_build = 1
+
 //////////////// For-specific-character fluff ones /////////////////
 // arokha : Aronai Sieyes
 /datum/robolimb/kitsuhana
