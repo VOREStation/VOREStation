@@ -263,7 +263,10 @@ proc/admin_notice(var/message, var/rights)
 		if(number_pages != round(number_pages))
 			number_pages = round(number_pages) + 1
 		var/page_index = page - 1
+<<<<<<< HEAD
 
+=======
+>>>>>>> b49fc74... Merge pull request #8067 from Novacat/nova-alerts
 		if(page_index < 0 || page_index >= number_pages)
 			dat += "<tr><td>No keys found.</td></tr>"
 		else
