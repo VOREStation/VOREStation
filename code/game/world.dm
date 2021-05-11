@@ -58,7 +58,7 @@
 	populate_robolimb_list()
 
 	master_controller = new /datum/controller/game_controller()
-	Master.Initialize(10, FALSE)
+	Master.Initialize(10, FALSE, TRUE) // VOREStation Edit
 
 	spawn(1)
 		master_controller.setup()
