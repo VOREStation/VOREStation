@@ -215,3 +215,18 @@
 // Wakes a suspended subsystem.
 /datum/controller/subsystem/proc/wake()
 	can_fire = TRUE
+
+// This subsystem has destabilized the game and is being put on warning. At this point there may be
+// an opportunity to clean up the subsystem or check it for errors in ways that would otherwise be too slow.
+// You should log the errors/cleanup results, so you can fix the problem rather than using this as a crutch.
+/datum/controller/subsystem/proc/fail()
+	var/msg = "[name] subsystem being blamed for MC failure"
+	log_world(msg)
+	log_game(msg)
+
+// DO NOT ATTEMPT RECOVERY. Only log debugging info. You should leave the subsystem as it is.
+// Attempting recovery here could make things worse, create hard recursions with the MC disabling it every run, etc.
+/datum/controller/subsystem/proc/critfail()
+	var/msg = "[name] subsystem received final blame for MC failure"
+	log_world(msg)
+	log_game(msg)
