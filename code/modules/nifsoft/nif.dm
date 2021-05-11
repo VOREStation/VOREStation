@@ -88,9 +88,8 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 				qdel(src)
 			return FALSE
 		else
-			//Free commlink and soulcatcher for return customers
+			//Free commlink for return customers
 			new /datum/nifsoft/commlink(src)
-			new /datum/nifsoft/soulcatcher(src)
 
 	//Free civilian AR included
 	new /datum/nifsoft/ar_civ(src)
