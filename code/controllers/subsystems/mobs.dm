@@ -56,18 +56,18 @@ SUBSYSTEM_DEF(mobs)
 	var/msg = "Debug output from the [name] subsystem:\n"
 	msg += "- This subsystem is processed tail-first -\n"
 	if(!currentrun || !mob_list)
-		msg += "ERROR: A critical list [currentrun ? 'mob_list' : 'currentrun'] is gone!"
+		msg += "ERROR: A critical list [currentrun ? "mob_list" : "currentrun"] is gone!"
 		log_game(msg)
-		log_server(msg)
+		log_world(msg)
 		return
-	msg += "Lists: current_run: [currentrun.len], mob_list: [mob_list.len]\n"
+	msg += "Lists: currentrun: [currentrun.len], mob_list: [mob_list.len]\n"
 	
 	if(!currentrun.len)
 		msg += "!!The subsystem just finished the mob_list list, and currentrun is empty (or has never run).\n"
 		msg += "!!The info below is the tail of mob_list instead of currentrun.\n"
 	
 	var/datum/D = currentrun.len ? currentrun[currentrun.len] : mob_list[mob_list.len]
-	msg += "Tail entry: [whatIsThis(D)] (this is likely the item AFTER the problem item)\n"
+	msg += "Tail entry: [describeThis(D)] (this is likely the item AFTER the problem item)\n"
 	
 	var/position = mob_list.Find(D)
 	if(!position)
@@ -81,16 +81,16 @@ SUBSYSTEM_DEF(mobs)
 		var/end = clamp(position+2,1,mob_list.len)
 		msg += "2 previous elements, then tail, then 2 next elements of mob_list list for context:\n"
 		msg += "---\n"
-		for(var/i in start to finish)
-			msg += "[whatIsThis([mob_list[i])]\n"
+		for(var/i in start to end)
+			msg += "[describeThis(mob_list[i])][i == position ? " << TAIL" : ""]\n"
 		msg += "---\n"
 	log_game(msg)
-	log_server(msg)
+	log_world(msg)
 
-/datum/controller/subsystem/processing/fail()
+/datum/controller/subsystem/mobs/fail()
 	..()
 	log_recent()
 
-/datum/controller/subsystem/processing/critfail()
+/datum/controller/subsystem/mobs/critfail()
 	..()
 	log_recent()

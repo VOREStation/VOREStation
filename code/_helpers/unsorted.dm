@@ -1664,20 +1664,35 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	set waitfor = FALSE
 	return call(source, proctype)(arglist(arguments))
 
-/proc/whatIsThis(var/datum/D)
+/proc/describeThis(var/datum/D)
 	if(istype(D))
-		return "It is a datum of type [D.type] - [D]"
+		var/msg = "[D.type] - [D]"
+		if(isatom(D))
+			var/atom/A = D
+			if(!A.z)
+				msg += " - Coords unavailable (in contents?)"
+				if(ismovable(A))
+					var/turf/T = get_turf(A)
+					if(T)
+						msg += " - Parent turf: [T.x],[T.y],[T.z]"
+					else
+						msg += " - In nullspace"
+				else
+					msg += " - In nullspace"
+			else
+				msg += "- [A.x],[A.y],[A.z]"
+		return msg
 	else if(isnull(D))
-		return "It is a NULL"
+		return "NULL"
 	else if(istext(D))
-		return "It is TEXT: [D]"
+		return "TEXT: [D]"
 	else if(isnum(D))
-		return "It is NUM: [D]"
+		return "NUM: [D]"
 	else if(ispath(D))
-		return "It is PATH: [D]"
+		return "PATH: [D]"
 	else if(islist(D))
-		return "It is a LIST: [D]"
+		return "LIST: [D]"
 	else if(isclient(D))
-		return "It is a CLIENT: [D]"
+		return "CLIENT: [D]"
 	else
 		return "Unknown data type: [D]"

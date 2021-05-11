@@ -220,13 +220,13 @@
 // an opportunity to clean up the subsystem or check it for errors in ways that would otherwise be too slow.
 // You should log the errors/cleanup results, so you can fix the problem rather than using this as a crutch.
 /datum/controller/subsystem/proc/fail()
-	var/msg = "[name] subsystem being blamed for MC failure, continuing operation."
+	var/msg = "[name] subsystem being blamed for MC failure"
 	log_world(msg)
 	log_game(msg)
 
 // DO NOT ATTEMPT RECOVERY. Only log debugging info. You should leave the subsystem as it is.
 // Attempting recovery here could make things worse, create hard recursions with the MC disabling it every run, etc.
 /datum/controller/subsystem/proc/critfail()
-	var/msg = "[name] subsystem received final blame for MC failure, considered beyond recovery, and no longer firing."
+	var/msg = "[name] subsystem received final blame for MC failure"
 	log_world(msg)
 	log_game(msg)

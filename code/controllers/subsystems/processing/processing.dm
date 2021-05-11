@@ -64,9 +64,9 @@ SUBSYSTEM_DEF(processing)
 	var/msg = "Debug output from the [name] subsystem:\n"
 	msg += "- Process subsystems are processed tail-first -\n"
 	if(!currentrun || !processing)
-		msg += "ERROR: A critical list [currentrun ? 'processing' : 'currentrun'] is gone!"
+		msg += "ERROR: A critical list [currentrun ? "processing" : "currentrun"] is gone!"
 		log_game(msg)
-		log_server(msg)
+		log_world(msg)
 		return
 	msg += "Lists: current_run: [currentrun.len], processing: [processing.len]\n"
 	
@@ -75,7 +75,7 @@ SUBSYSTEM_DEF(processing)
 		msg += "!!The info below is the tail of processing instead of currentrun.\n"
 	
 	var/datum/D = currentrun.len ? currentrun[currentrun.len] : processing[processing.len]
-	msg += "Tail entry: [whatIsThis(D)] (this is likely the item AFTER the problem item)\n"
+	msg += "Tail entry: [describeThis(D)] (this is likely the item AFTER the problem item)\n"
 	
 	var/position = processing.Find(D)
 	if(!position)
@@ -89,11 +89,11 @@ SUBSYSTEM_DEF(processing)
 		var/end = clamp(position+2,1,processing.len)
 		msg += "2 previous elements, then tail, then 2 next elements of processing list for context:\n"
 		msg += "---\n"
-		for(var/i in start to finish)
-			msg += "[whatIsThis([processing[i])]\n"
+		for(var/i in start to end)
+			msg += "[describeThis(processing[i])][i == position ? " << TAIL" : ""]\n"
 		msg += "---\n"
 	log_game(msg)
-	log_server(msg)
+	log_world(msg)
 
 /datum/controller/subsystem/processing/fail()
 	..()
