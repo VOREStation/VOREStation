@@ -1,5 +1,5 @@
 
-//////////////////////Surplus Robots//////////////////////
+//////////////////////Catalogue Entries//////////////////////
 
 /datum/category_item/catalogue/technology/drone/automaton
 	name = "Drone - Surplus Robot"
@@ -14,7 +14,17 @@
 	These robots were made cheap and from cheap material and thus aren't too much of a threat in small numbers - \
 	however, travellers are cautioned against engaging larger groups as even the most simple of units in \
 	large numbers can overwhelm even the most prepared people."
+	value = CATALOGUER_REWARD_TRIVIAL
+
+/datum/category_item/catalogue/technology/drone/automaton/syndi
+	name = "Drone - Syndicate Securibot"
+	desc = "*error* _datanotfound - Please Try Again..." //Still a WIP
 	value = CATALOGUER_REWARD_MEDIUM
+
+/datum/category_item/catalogue/technology/drone/automaton/syndi/tank
+	name = "Drone - Syndicate Securitank"
+	desc = "*error* _datanotfound - Please Try Again..." //Still a WIP
+	value = CATALOGUER_REWARD_HARD
 
 //////////////////////Robot Ranged Weapons//////////////////////
 
@@ -24,6 +34,19 @@
 /obj/item/projectile/beam/automaton/advanced
 	damage = 20
 	armor_penetration = 5
+
+/obj/item/projectile/beam/automaton/tank
+	damage = 50
+	armor_penetration = 15
+	icon_state = "heavylaser"
+	fire_sound = 'sound/weapons/lasercannonfire.ogg'
+	light_range = 3
+	light_power = 1
+	light_color = "#FF0D00"
+
+	muzzle_type = /obj/effect/projectile/muzzle/laser_heavy
+	tracer_type = /obj/effect/projectile/tracer/laser_heavy
+	impact_type = /obj/effect/projectile/impact/laser_heavy
 
 //////////////////////Automatons//////////////////////
 
@@ -112,5 +135,41 @@
 	icon_state = "lost_drone_1"
 	icon_living = "lost_drone_1"
 
+	hovering = TRUE
 	maxHealth = 15
 	health = 15
+
+//////////////////////Syndi Bots//////////////////////
+
+/mob/living/simple_mob/mechanical/automaton/syndi
+	name = "Syndicate Securibot"
+	desc = "A mass produced robotic unit that's been programmed to protect a given area. It has an intergrated photonic weapon system."
+	catalogue_data = list(/datum/category_item/catalogue/technology/drone/automaton/syndi)
+
+	projectiletype = /obj/item/projectile/beam/automaton/advanced
+	projectile_dispersion = 6
+	projectile_accuracy = -10
+
+	icon_state = "syndicate_def"
+	icon_living = "syndicate_def"
+
+	maxHealth = 100
+	health = 100
+
+/mob/living/simple_mob/mechanical/automaton/syndi/tank
+	name = "Syndicate Securitank"
+	desc = "A cyborg shell with no higher level AI installed, instead it's been programmed to protect a given area. It has a heavy photonic weapon system built in to the body."
+	catalogue_data = list(/datum/category_item/catalogue/technology/drone/automaton/syndi/tank)
+	base_attack_cooldown = 30 // Two attacks a second or so.
+	projectiletype = /obj/item/projectile/beam/automaton/tank
+	projectile_dispersion = 8
+	projectile_accuracy = -15
+
+	icon_state = "syndicate_tank"
+	icon_living = "syndicate_tank"
+	icon_scale_x = 1.5
+	icon_scale_y = 1.5
+
+	maxHealth = 150
+	health = 150
+	movement_cooldown = 10
