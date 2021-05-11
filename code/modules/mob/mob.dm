@@ -1072,7 +1072,7 @@ mob/verb/shifteast()
 	if(src.throw_icon)
 		src.throw_icon.icon_state = "act_throw_on"
 
-/mob/proc/isSynthetic(var/skip_emote_update)
+/mob/proc/isSynthetic()
 	return 0
 
 /mob/proc/is_muzzled()
