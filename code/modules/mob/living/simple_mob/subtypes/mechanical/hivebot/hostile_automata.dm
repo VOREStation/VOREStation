@@ -210,7 +210,7 @@
 
 /mob/living/simple_mob/mechanical/automaton/syndi/tank
 	name = "Syndicate Securibot Tank"
-	desc = "A cyborg shell with no higher level AI installed, instead it's been programmed to protect a given area. It has a heavy photonic weapon system built in to the body."
+	desc = "A cyborg shell with no higher level AI installed, instead it's been programmed to protect a given area. It has a heavy photonic weapon system built into the body."
 	catalogue_data = list(/datum/category_item/catalogue/technology/drone/automaton/syndi)
 	base_attack_cooldown = 30
 	projectiletype = /obj/item/projectile/beam/automaton/tank
