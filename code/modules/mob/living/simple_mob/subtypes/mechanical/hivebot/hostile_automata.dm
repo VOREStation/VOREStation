@@ -121,7 +121,7 @@
 
 /mob/living/simple_mob/mechanical/automaton/comofficer
 	name = "Communist Officer Robot"
-	desc = "A mass produced robotic unit dressed in communist garb. This one appears to be more armored and has an advanced intergrated laser."
+	desc = "A mass produced robotic unit dressed in communist garb. This one appears to be more armored and has an advanced integrated laser."
 	projectiletype = /obj/item/projectile/beam/automaton/advanced
 	projectile_dispersion = 6
 	projectile_accuracy = -10
