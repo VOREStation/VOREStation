@@ -8802,7 +8802,7 @@
 /obj/structure/closet/walllocker/medical/north,
 /obj/item/weapon/storage/firstaid/regular,
 /obj/item/weapon/storage/firstaid/o2,
-/obj/item/device/radio/off/talon,
+/obj/item/device/radio/off,
 /turf/simulated/floor/wood,
 /area/talon_v2/crew_quarters/cap_room)
 "Fk" = (
@@ -11190,7 +11190,10 @@
 	pixel_y = 24
 	},
 /obj/structure/table/rack/shelf/steel,
-/obj/item/device/radio/off/talon,
+/obj/item/device/radio/off{
+	channels = list("Talon" = 1);
+	pixel_y = 6
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/armory)
 "Nw" = (
