@@ -3157,7 +3157,6 @@
 #include "code\modules\news\newspaper_layout.dm"
 #include "code\modules\nifsoft\nif.dm"
 #include "code\modules\nifsoft\nif_softshop.dm"
-#include "code\modules\nifsoft\nif_statpanel.dm"
 #include "code\modules\nifsoft\nif_tgui.dm"
 #include "code\modules\nifsoft\nifsoft.dm"
 #include "code\modules\nifsoft\software\01_vision.dm"
