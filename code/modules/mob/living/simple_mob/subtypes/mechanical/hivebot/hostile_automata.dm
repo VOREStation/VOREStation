@@ -160,7 +160,7 @@
 	name = "Syndicate Securitank"
 	desc = "A cyborg shell with no higher level AI installed, instead it's been programmed to protect a given area. It has a heavy photonic weapon system built in to the body."
 	catalogue_data = list(/datum/category_item/catalogue/technology/drone/automaton/syndi/tank)
-	base_attack_cooldown = 30 // Two attacks a second or so.
+	base_attack_cooldown = 30
 	projectiletype = /obj/item/projectile/beam/automaton/tank
 	projectile_dispersion = 8
 	projectile_accuracy = -15
