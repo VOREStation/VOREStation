@@ -1044,7 +1044,7 @@
 					if(client || sleeping > 3)
 						AdjustSleeping(-1)
 						throw_alert("asleep", /obj/screen/alert/asleep)
-				if( prob(2) && health && !hal_crit )
+				if( prob(2) && health && !hal_crit && client ) // VOREStation edit - no snoring if SSD
 					spawn(0)
 						emote("snore")
 		//CONSCIOUS
