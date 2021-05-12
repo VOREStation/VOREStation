@@ -8802,7 +8802,9 @@
 /obj/structure/closet/walllocker/medical/north,
 /obj/item/weapon/storage/firstaid/regular,
 /obj/item/weapon/storage/firstaid/o2,
-/obj/item/device/radio/off,
+/obj/item/device/radio/off{
+	channels = list("Talon" = 1)
+	},
 /turf/simulated/floor/wood,
 /area/talon_v2/crew_quarters/cap_room)
 "Fk" = (
