@@ -124,13 +124,13 @@ var/list/_human_default_emotes = list(
 	/decl/emote/audible/croak,
 	/decl/emote/audible/gao,
 	/decl/emote/audible/cackle,
+	/decl/emote/audible/squish,
 	
 	/decl/emote/visible/mlem,
 	/decl/emote/visible/blep,
 	
 	/decl/emote/helper/vwag,
-	/decl/emote/helper/vflap,
-	/decl/emote/audible/squish
+	/decl/emote/helper/vflap
 	//VOREStation Add End
 )
 
