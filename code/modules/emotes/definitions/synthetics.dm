@@ -4,7 +4,7 @@
 	emote_sound = 'sound/machines/twobeep.ogg'
 
 /decl/emote/audible/synth/check_user(var/mob/living/user)
-	if(istype(user) && user.isSynthetic(skip_emote_update = TRUE))
+	if(istype(user) && user.isSynthetic())
 		return ..()
 	return FALSE
 

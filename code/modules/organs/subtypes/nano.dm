@@ -89,6 +89,10 @@
 	organ_tag = O_ORCH
 	parent_organ = BP_TORSO
 	vital = TRUE
+	organ_verbs = list(
+		/mob/living/carbon/human/proc/self_diagnostics,
+		/mob/living/carbon/human/proc/reagent_purge
+	)
 
 /obj/item/organ/internal/nano/refactory
 	name = "refactory module"
