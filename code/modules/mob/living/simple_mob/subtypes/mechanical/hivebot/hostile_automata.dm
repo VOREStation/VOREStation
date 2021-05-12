@@ -27,8 +27,8 @@
 	<br><br>\
 	This is an old, unused line of security automatons whose designs were stolen from NanoTrasen in the early 2280s. \
 	The design was meant to replace living security with a cheap and effective unit that could serve to protect \
-	establisments and stations around known space. The Syndicate stole the designs and adapted the Gamma Level framework \
-	to meet their need for automated security in thier own bases as well as frontline soldiers that could be \
+	establishments and stations around known space. The Syndicate stole the designs and adapted the Gamma Level framework \
+	to meet their need for automated security in their own bases as well as frontline soldiers that could be \
 	deployed against corporate security.\
 	<br>\
 	These have various models ranging from tanky super drones to cheap infantry and guard units. Each model is a threat \
