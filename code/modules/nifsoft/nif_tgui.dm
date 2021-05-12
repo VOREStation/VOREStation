@@ -25,21 +25,29 @@
 	var/obj/screen/nif/screen_icon
 
 /datum/component/nif_menu/Initialize()
+	if(!ismob(parent))
+		return COMPONENT_INCOMPATIBLE
 	. = ..()
-	if(ismob(parent))
-		RegisterSignal(parent, COMSIG_MOB_CLIENT_LOGIN, .proc/create_mob_button)
-		var/mob/owner = parent
-		if(owner.client)
-			create_mob_button(parent)
 
-/datum/component/nif_menu/Destroy()
-	if(ishuman(parent))
-		var/mob/living/carbon/human/H = parent
-		H.verbs -= /mob/living/carbon/human/proc/nif_menu
+/datum/component/nif_menu/RegisterWithParent()
+	. = ..()
+	RegisterSignal(parent, COMSIG_MOB_CLIENT_LOGIN, .proc/create_mob_button)
+	var/mob/owner = parent
+	if(owner.client)
+		create_mob_button(parent)
+
+/datum/component/nif_menu/UnregisterFromParent()
+	. = ..()
+	UnregisterSignal(parent, COMSIG_MOB_CLIENT_LOGIN)
+	if(ismob(parent))
+		var/mob/owner = parent
 		if(screen_icon)
-			H.client?.screen -= screen_icon
-	qdel_null(screen_icon)
-	return ..()
+			owner?.client?.screen -= screen_icon
+			UnregisterSignal(screen_icon, COMSIG_CLICK)
+			qdel_null(screen_icon)
+		if(ishuman(parent))
+			owner.verbs -= /mob/living/carbon/human/proc/nif_menu
+		
 
 /datum/component/nif_menu/proc/create_mob_button(mob/user)
 	var/datum/hud/HUD = user.hud_used
