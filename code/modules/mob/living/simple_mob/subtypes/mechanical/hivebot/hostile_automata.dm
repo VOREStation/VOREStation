@@ -19,11 +19,6 @@
 /datum/category_item/catalogue/technology/drone/automaton/syndi
 	name = "Drone - Syndicate Securibot"
 	desc = "*error* _datanotfound - Please Try Again..." //Still a WIP
-	value = CATALOGUER_REWARD_MEDIUM
-
-/datum/category_item/catalogue/technology/drone/automaton/syndi/tank
-	name = "Drone - Syndicate Securitank"
-	desc = "*error* _datanotfound - Please Try Again..." //Still a WIP
 	value = CATALOGUER_REWARD_HARD
 
 //////////////////////Robot Ranged Weapons//////////////////////
@@ -67,6 +62,8 @@
 	water_resist = 0.5
 	movement_sound = 'sound/effects/servostep.ogg'
 
+	melee_damage_lower = 8
+	melee_damage_upper = 8
 	attacktext = list("bashed", "smacked", "hit")
 	projectilesound = 'sound/weapons/Laser.ogg'
 
@@ -86,12 +83,6 @@
 	s.set_up(3, 1, src)
 	s.start()
 	qdel(src)
-
-/datum/ai_holder/simple_mob/automaton
-	pointblank = TRUE
-	conserve_ammo = TRUE
-	firing_lanes = TRUE
-	can_flee = FALSE // Fearless dumb machines.
 
 /mob/living/simple_mob/mechanical/automaton/ranged
 	name = "Laser Robot"
@@ -139,10 +130,51 @@
 	maxHealth = 15
 	health = 15
 
-//////////////////////Syndi Bots//////////////////////
+//////////////////////Bot AI Types//////////////////////
+
+/datum/ai_holder/simple_mob/automaton
+	pointblank = TRUE
+	conserve_ammo = TRUE
+	firing_lanes = TRUE
+	can_flee = FALSE // Fearless dumb machines.
+
+/datum/ai_holder/simple_mob/mechanical/automaton/syndi
+	threaten = TRUE
+	returns_home = TRUE		// Stay close to the base...
+	wander = FALSE			// ...And don't go wandering off.
+	intelligence_level = AI_SMART // Also knows not to walk while confused if it risks death.
+	threaten_delay = 30 SECONDS // Will give you 30 seconds to leave or get shot.
+
+/datum/ai_holder/simple_mob/mechanical/automaton/syndi/sentry
+	threaten = TRUE
+	returns_home = TRUE		// Stay close to the base...
+	wander = TRUE			// ... but "patrol" a little.
+	intelligence_level = AI_SMART // Also knows not to walk while confused if it risks death.
+	threaten_delay = 30 SECONDS // Will give you 30 seconds to leave or get shot.
+
+//////////////////////Syndicate Bots//////////////////////
 
 /mob/living/simple_mob/mechanical/automaton/syndi
-	name = "Syndicate Securibot"
+	name = "Syndicate Securibot Sentry"
+	desc = "A mass produced robotic unit that's been programmed to protect a given area."
+	catalogue_data = list(/datum/category_item/catalogue/technology/drone/automaton/syndi)
+
+	icon_state = "syndicate_sentry"
+	icon_living = "syndicate_sentry"
+	icon_dead = "dead_syndicate"
+
+	faction = "syndicate"
+	ai_holder_type = /datum/ai_holder/simple_mob/mechanical/automaton/syndi/sentry
+
+	maxHealth = 100
+	health = 100
+	movement_cooldown = 5
+	melee_damage_lower = 10
+	melee_damage_upper = 10
+	attacktext = list("bashed", "whacked", "hit", "beaten")
+
+/mob/living/simple_mob/mechanical/automaton/syndi/ranged
+	name = "Syndicate Securibot Guard"
 	desc = "A mass produced robotic unit that's been programmed to protect a given area. It has an intergrated photonic weapon system."
 	catalogue_data = list(/datum/category_item/catalogue/technology/drone/automaton/syndi)
 
@@ -150,16 +182,21 @@
 	projectile_dispersion = 6
 	projectile_accuracy = -10
 
-	icon_state = "syndicate_def"
-	icon_living = "syndicate_def"
+	icon_state = "syndicate_guard"
+	icon_living = "syndicate_guard"
+	icon_dead = "dead_syndicate"
+
+	faction = "syndicate"
+	ai_holder_type = /datum/ai_holder/simple_mob/mechanical/automaton/syndi
 
 	maxHealth = 100
 	health = 100
+	movement_cooldown = 8
 
 /mob/living/simple_mob/mechanical/automaton/syndi/tank
-	name = "Syndicate Securitank"
+	name = "Syndicate Securibot Tank"
 	desc = "A cyborg shell with no higher level AI installed, instead it's been programmed to protect a given area. It has a heavy photonic weapon system built in to the body."
-	catalogue_data = list(/datum/category_item/catalogue/technology/drone/automaton/syndi/tank)
+	catalogue_data = list(/datum/category_item/catalogue/technology/drone/automaton/syndi)
 	base_attack_cooldown = 30
 	projectiletype = /obj/item/projectile/beam/automaton/tank
 	projectile_dispersion = 8
@@ -167,9 +204,13 @@
 
 	icon_state = "syndicate_tank"
 	icon_living = "syndicate_tank"
+	icon_dead = "dead_synditank"
 	icon_scale_x = 1.5
 	icon_scale_y = 1.5
 
+	faction = "syndicate"
+	ai_holder_type = /datum/ai_holder/simple_mob/mechanical/automaton/syndi
+
 	maxHealth = 150
 	health = 150
-	movement_cooldown = 10
+	movement_cooldown = 12
