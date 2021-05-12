@@ -3,7 +3,7 @@
 
 /datum/category_item/catalogue/technology/drone/automaton
 	name = "Drone - Surplus Robot"
-	desc = "Classification: MX-11 Automaton\
+	desc = "Classification: MX11 Automaton\
 	<br><br>\
 	This ancient model of robot was used widely at the very beginning of the Interstellar Expansion era. \
 	These surplus robot was widely used by stations, colonies, and bases for dumb-labor such as janitorial, \
@@ -13,12 +13,27 @@
 	<br>\
 	These robots were made cheap and from cheap material and thus aren't too much of a threat in small numbers - \
 	however, travellers are cautioned against engaging larger groups as even the most simple of units in \
-	large numbers can overwhelm even the most prepared people."
+	large numbers can overwhelm even the most prepared people. \
+	<br>\
+	Depending on what sort of work or tasks the automaton may be assigned these botsm their Intelligence level can \
+	vary between Epsilon to Gamma - however there is rare instances of Beta and Alpha level Intelligence appearing \
+	in various older models - however due to the age of the technology these drones usually fry their internal data \
+	structures within a short period and 'die off' as a result."
 	value = CATALOGUER_REWARD_TRIVIAL
 
 /datum/category_item/catalogue/technology/drone/automaton/syndi
 	name = "Drone - Syndicate Securibot"
-	desc = "*error* _datanotfound - Please Try Again..." //Still a WIP
+	desc = "Classification: R04 V9 Securibot\
+	<br><br>\
+	This is an old, unused line of security automatons whose designs were stolen from NanoTrasen in the early 2280s. \
+	The design was meant to replace living security with a cheap and effective unit that could serve to protect \
+	establisments and stations around known space. The Syndicate stole the designs and adapted the Gamma Level framework \
+	to meet their need for automated security in thier own bases as well as frontline soldiers that could be \
+	deployed against corporate security.\
+	<br>\
+	These have various models ranging from tanky super drones to cheap infantry and guard units. Each model is a threat \
+	in its own right and together as a team they are a formidable force to face. Travellers are asked that if they spot \
+	any Securibots that they avoid them at all costs."
 	value = CATALOGUER_REWARD_HARD
 
 //////////////////////Robot Ranged Weapons//////////////////////
