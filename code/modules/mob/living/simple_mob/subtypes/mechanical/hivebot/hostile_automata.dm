@@ -190,7 +190,7 @@
 
 /mob/living/simple_mob/mechanical/automaton/syndi/ranged
 	name = "Syndicate Securibot Guard"
-	desc = "A mass produced robotic unit that's been programmed to protect a given area. It has an intergrated photonic weapon system."
+	desc = "A mass produced robotic unit that's been programmed to protect a given area. It has an integrated photonic weapon system."
 	catalogue_data = list(/datum/category_item/catalogue/technology/drone/automaton/syndi)
 
 	projectiletype = /obj/item/projectile/beam/automaton/advanced
