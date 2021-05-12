@@ -15,7 +15,7 @@
 	however, travellers are cautioned against engaging larger groups as even the most simple of units in \
 	large numbers can overwhelm even the most prepared people. \
 	<br>\
-	Depending on what sort of work or tasks the automaton may be assigned these botsm their Intelligence level can \
+	Depending on what sort of work or tasks the automaton may be assigned these bots, their Intelligence level can \
 	vary between Epsilon to Gamma - however there is rare instances of Beta and Alpha level Intelligence appearing \
 	in various older models - however due to the age of the technology these drones usually fry their internal data \
 	structures within a short period and 'die off' as a result."
