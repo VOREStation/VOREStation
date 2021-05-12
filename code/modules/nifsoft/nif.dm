@@ -47,6 +47,12 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 
 	var/obj/item/device/communicator/commlink/comm		// The commlink requires this
 
+	var/list/starting_software = list(
+		/datum/nifsoft/commlink,
+		/datum/nifsoft/soulcatcher,
+		/datum/nifsoft/ar_civ
+	)
+
 	var/global/icon/big_icon
 	var/global/click_sound = 'sound/items/nif_click.ogg'
 	var/global/bad_sound = 'sound/items/nif_tone_bad.ogg'
@@ -87,13 +93,6 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 			spawn(0)
 				qdel(src)
 			return FALSE
-		else
-			//Free commlink and soulcatcher for return customers
-			new /datum/nifsoft/commlink(src)
-			new /datum/nifsoft/soulcatcher(src)
-
-	//Free civilian AR included
-	new /datum/nifsoft/ar_civ(src)
 
 	//If given wear (like when spawned) then done
 	if(wear)
@@ -128,6 +127,10 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 		human.nif = src
 		stat = NIF_INSTALLING
 		H.verbs |= /mob/living/carbon/human/proc/set_nif_examine
+		if(starting_software)
+			for(var/path in starting_software)
+				new path(src)
+			starting_software = null
 		return TRUE
 
 	return FALSE
@@ -591,6 +594,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	name = "bootleg NIF"
 	desc = "A copy of a copy of a copy of a copy of... this can't be any good, right? Surely?"
 	durability = 10
+	starting_software = null
 
 /obj/item/device/nif/authentic
 	name = "\improper Kitsuhana NIF"
