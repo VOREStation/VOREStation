@@ -37,8 +37,10 @@ var/list/z_levels = list()// Each bit re... haha just kidding this is a list of 
 	return HasBelow(turf.z) ? get_step(turf, DOWN) : null
 
 /proc/GetConnectedZlevels(z)
+	/* VOREStation Removal - No infinite recursion please
 	if(z in using_map.map_levels)
 		return using_map.get_map_levels(z, FALSE) // Connected z levels aren't necessarily attached by multi-z, using_map shound know the details
+	*/ //VOREStation Removal End
 	. = list(z)
 	for(var/level = z, HasBelow(level), level--)
 		. |= level-1
