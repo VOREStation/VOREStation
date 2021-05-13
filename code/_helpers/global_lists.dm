@@ -222,7 +222,11 @@ GLOBAL_LIST_EMPTY(mannequins)
 	for(var/oretype in paths)
 		var/ore/OD = new oretype()
 		GLOB.ore_data[OD.name] = OD
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> 70170f0... Allow more than one ore processor (#8072)
 	paths = typesof(/datum/alloy)-/datum/alloy
 	for(var/alloytype in paths)
 		GLOB.alloy_data += new alloytype()

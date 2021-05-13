@@ -83,9 +83,65 @@
 			"processing" = machine.ores_processing[ore] ? machine.ores_processing[ore] : 0,
 		)))
 
+<<<<<<< HEAD
 	data["showAllOres"] = show_all_ores
 	data["power"] = machine.active
 	data["speed"] = machine.speed_process
+=======
+		if(!machine.ores_stored[ore] && !show_all_ores) continue
+		var/ore/O = GLOB.ore_data[ore]
+		if(!O) continue
+		dat += "<tr><td width = 40><b>[capitalize(O.display_name)]</b></td><td width = 30>[machine.ores_stored[ore]]</td><td width = 100>"
+		if(machine.ores_processing[ore])
+			switch(machine.ores_processing[ore])
+				if(PROCESS_NONE)
+					dat += "<font color='red'>not processing</font>"
+				if(PROCESS_SMELT)
+					dat += "<font color='orange'>smelting</font>"
+				if(PROCESS_COMPRESS)
+					dat += "<font color='blue'>compressing</font>"
+				if(PROCESS_ALLOY)
+					dat += "<font color='gray'>alloying</font>"
+		else
+			dat += "<font color='red'>not processing</font>"
+		dat += ".</td><td width = 30><a href='?src=\ref[src];toggle_smelting=[ore]'>\[change\]</a></td></tr>"
+
+	dat += "</table><hr>"
+	dat += "Currently displaying [show_all_ores ? "all ore types" : "only available ore types"]. <A href='?src=\ref[src];toggle_ores=1'>\[[show_all_ores ? "show less" : "show more"]\]</a></br>"
+	dat += "The ore processor is currently <A href='?src=\ref[src];toggle_power=1'>[(machine.active ? "<font color='green'>processing</font>" : "<font color='red'>disabled</font>")]</a>."
+	user << browse(dat, "window=processor_console;size=400x500")
+	onclose(user, "processor_console")
+	return
+
+/obj/machinery/mineral/processing_unit_console/Topic(href, href_list)
+	if(..())
+		return 1
+	usr.set_machine(src)
+	src.add_fingerprint(usr)
+
+	if(href_list["toggle_smelting"])
+
+		var/choice = input("What setting do you wish to use for processing [href_list["toggle_smelting"]]?") as null|anything in list("Smelting","Compressing","Alloying","Nothing")
+		if(!choice) return
+
+		switch(choice)
+			if("Nothing") choice = PROCESS_NONE
+			if("Smelting") choice = PROCESS_SMELT
+			if("Compressing") choice = PROCESS_COMPRESS
+			if("Alloying") choice = PROCESS_ALLOY
+
+		machine.ores_processing[href_list["toggle_smelting"]] = choice
+
+	if(href_list["toggle_power"])
+
+		machine.active = !machine.active
+
+	if(href_list["toggle_ores"])
+
+		show_all_ores = !show_all_ores
+
+	if(href_list["toggle_speed"])
+>>>>>>> 70170f0... Allow more than one ore processor (#8072)
 
 	return data
 
@@ -184,8 +240,12 @@
 		"platinum" = 40,
 		"lead" = 40,
 		"mhydrogen" = 40,
+<<<<<<< HEAD
 		"verdantium" = 60,
 		"rutile" = 40) //VOREStation Add
+=======
+		"verdantium" = 60)
+>>>>>>> 70170f0... Allow more than one ore processor (#8072)
 
 /obj/machinery/mineral/processing_unit/Initialize()
 	. = ..()
@@ -193,7 +253,11 @@
 		var/ore/OD = GLOB.ore_data[ore]
 		ores_processing[OD.name] = 0
 		ores_stored[OD.name] = 0
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> 70170f0... Allow more than one ore processor (#8072)
 	// TODO - Eschew input/output machinery and just use dirs ~Leshana
 	//Locate our output and input machinery.
 	for (var/dir in cardinal)
