@@ -2087,6 +2087,7 @@
 #include "code\modules\emotes\definitions\audible_cough.dm"
 #include "code\modules\emotes\definitions\audible_furry_vr.dm"
 #include "code\modules\emotes\definitions\audible_scream.dm"
+#include "code\modules\emotes\definitions\audible_scream_vr.dm"
 #include "code\modules\emotes\definitions\audible_slap.dm"
 #include "code\modules\emotes\definitions\audible_snap.dm"
 #include "code\modules\emotes\definitions\audible_sneeze.dm"
