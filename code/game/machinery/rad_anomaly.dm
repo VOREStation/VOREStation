@@ -7,7 +7,7 @@
 	anchored = 0
 	var/on = 0
 	var/rads = 1000
-	var/power_level = 4
+	var/power_level = 3
 
 /obj/machinery/power/anomaly/New()
 	..()
