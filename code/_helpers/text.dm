@@ -507,8 +507,6 @@ proc/TextPreview(var/string,var/len=40)
 	var/charcount = count - length_char(text)
 	var/list/chars_to_add[max(charcount + 1, 0)]
 	return text + jointext(chars_to_add, char)
-<<<<<<< HEAD
-=======
 
 //Readds quotes and apostrophes to HTML-encoded strings
 /proc/readd_quotes(var/t)
@@ -529,4 +527,3 @@ proc/TextPreview(var/string,var/len=40)
 	paper_text = replacetext(paper_text, "<br>", "\n")
 	paper_text = strip_html_properly(paper_text) // Get rid of everything else entirely.
 	return paper_text
->>>>>>> 4deffc7... Ports Nebula's Discord Webhook Integration (#8071)
