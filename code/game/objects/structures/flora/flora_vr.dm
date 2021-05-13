@@ -102,7 +102,7 @@
 
 ///////////////////////Torris Flora///////////////////////
 
-/turf/unsimulated/denseflora //Jungle Walls
+/turf/unsimulated/denseflora //Jungle Walls WIP
 	name = "impassable growth"
 	desc = "A thick bunch of trees, shrubs, and other flora that is too dense to cut through."
 	icon = 'icons/turf/walls_torris.dmi'
@@ -130,7 +130,7 @@
 	icon_state = "[initial(icon_state)][rand(1,10)]"
 	. = ..()
 
-/datum/category_item/catalogue/flora/nyrian
+/datum/category_item/catalogue/flora/torris/nyrian
 	name = "Torris Flora - Nyrian Bloom"
 	desc = "*error* _datanotfound: please try again." //WIP
 	value = CATALOGUER_REWARD_EASY
@@ -145,7 +145,7 @@
 	icon_state = "[initial(icon_state)][rand(1,2)]"
 	. = ..()
 
-/datum/category_item/catalogue/flora/rafflesia
+/datum/category_item/catalogue/flora/torris/rafflesia
 	name = "Torris Flora - Rafflesia"
 	desc = "*error* _datanotfound: please try again." //WIP
 	value = CATALOGUER_REWARD_EASY
@@ -156,7 +156,7 @@
 	icon_state = "Rafflesia"
 	catalogue_data = list(/datum/category_item/catalogue/flora/rafflesia)
 
-/datum/category_item/catalogue/flora/twilight
+/datum/category_item/catalogue/flora/torris/twilight
 	name = "Torris Flora - Twilight Cress"
 	desc = "*error* _datanotfound: please try again." //WIP
 	value = CATALOGUER_REWARD_EASY
@@ -171,7 +171,7 @@
 	icon_state = "[initial(icon_state)][rand(1,3)]"
 	. = ..()
 
-/datum/category_item/catalogue/flora/deadnettle
+/datum/category_item/catalogue/flora/torris/deadnettle
 	name = "Torris Flora - Sour Deadnettle"
 	desc = "*error* _datanotfound: please try again." //WIP
 	value = CATALOGUER_REWARD_EASY
