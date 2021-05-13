@@ -1,12 +1,18 @@
 /datum/persistent/storage
 	entries_expire_at = 1
+	
+	// Don't use these for storage persistence. If someone takes some sheets out and puts them back in mixed in with
+	// new sheets, how do you know the age of the stack? If you want sheets to 'decay', see go_missing_chance
 	entries_decay_at = 0
 	entry_decay_weight = 0
+	// // // //
+
 	tokens_per_line = PERSISTENCE_VARIABLE_TOKEN_LENGTH
-	
 	var/max_storage = 0
 	var/store_per_type = FALSE // If true, will store up to max_storage for each type stored
 	var/target_type = null // Path of the thing that this expects to put stuff into
+
+	var/go_missing_chance = 0 // Chance an item will fail to be spawned in from persistence and need to be restocked
 
 /datum/persistent/storage/SetFilename()
 	if(name)
@@ -26,7 +32,7 @@
 		return null
 	
 	subtok[1] = text2path(subtok[1])
-	subtok[2] = text2num( subtok[2])
+	subtok[2] = text2num(subtok[2])
 
 	// Ensure we've found a token describing the quantity of a path
 	if(subtok.len != 2 || \
@@ -73,6 +79,8 @@
 	. = list()
 	for(var/path in L)
 		for(var/i in 1 to L[path])
+			if(prob(go_missing_chance))
+				continue
 			var/atom/A = create_item(path)
 			if(!QDELETED(A))
 				. += A
