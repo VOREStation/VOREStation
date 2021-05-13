@@ -222,6 +222,21 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	sleep(50)
 	visible_message("[src] beeps, \"Message transmitted successfully.\"")
 
+// Turns objects into just text.
+/obj/machinery/photocopier/faxmachine/proc/make_summary(obj/item/sent)
+	if(istype(sent, /obj/item/weapon/paper))
+		var/obj/item/weapon/paper/P = sent
+		return P.info
+	if(istype(sent, /obj/item/weapon/paper_bundle))
+		. = ""
+		var/obj/item/weapon/paper_bundle/B = sent
+		for(var/i in 1 to B.pages.len)
+			var/obj/item/weapon/paper/P = B.pages[i]
+			if(istype(P)) // Photos can show up here too.
+				if(.) // Space out different pages.
+					. += "<br>"
+				. += "PAGE [i] - [P.name]<br>"
+				. += P.info
 
 /obj/machinery/photocopier/faxmachine/proc/message_admins(var/mob/sender, var/faxname, var/obj/item/sent, var/reply_type, font_colour="#006100")
 	var/msg = "<span class='notice'><b><font color='[font_colour]'>[faxname]: </font>[get_options_bar(sender, 2,1,1)]"
@@ -232,8 +247,31 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 		if(check_rights((R_ADMIN|R_MOD|R_EVENT),0,C))
 			to_chat(C,msg)
 			C << 'sound/machines/printer.ogg'
+<<<<<<< HEAD
 
 	// VoreStation Edit Start
 	var/faxid = export_fax(sent)
 	message_chat_admins(sender, faxname, sent, faxid, font_colour)
 	// VoreStation Edit End
+=======
+	
+	// Webhooks don't parse the HTML on the paper, so we gotta strip them out so it's still readable.
+	var/summary = make_summary(sent)
+	summary = paper_html_to_plaintext(summary)
+
+	log_game("Fax to [lowertext(faxname)] was sent by [key_name(sender)].")
+	log_game(summary)
+
+	var/webhook_length_limit = 1900 // The actual limit is a little higher.
+	if(length(summary) > webhook_length_limit)
+		summary = copytext(summary, 1, webhook_length_limit + 1)
+		summary += "\n\[Truncated\]"
+
+	SSwebhooks.send(
+		WEBHOOK_FAX_SENT,
+		list(
+			"name" = "[faxname] '[sent.name]' sent from [key_name(sender)]",
+			"body" = summary
+		)
+	)
+>>>>>>> 4deffc7... Ports Nebula's Discord Webhook Integration (#8071)
