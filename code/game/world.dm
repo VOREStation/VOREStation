@@ -111,8 +111,10 @@ var/world_topic_spam_protect_time = world.timeofday
 		s["players"] = 0
 		s["stationtime"] = stationtime2text()
 		s["roundduration"] = roundduration2text()
+		s["map"] = strip_improper(using_map.full_name) //Done to remove the non-UTF-8 text macros 
 
-		if(input["status"] == "2")
+		if(input["status"] == "2") // Shiny new hip status.
+			var/active = 0
 			var/list/players = list()
 			var/list/admins = list()
 
@@ -122,15 +124,18 @@ var/world_topic_spam_protect_time = world.timeofday
 						continue
 					admins[C.key] = C.holder.rank
 				players += C.key
+				if(istype(C.mob, /mob/living))
+					active++
 
 			s["players"] = players.len
 			s["playerlist"] = list2params(players)
+			s["active_players"] = active
 			var/list/adm = get_admin_counts()
 			var/list/presentmins = adm["present"]
 			var/list/afkmins = adm["afk"]
 			s["admins"] = presentmins.len + afkmins.len //equivalent to the info gotten from adminwho
 			s["adminlist"] = list2params(admins)
-		else
+		else // Legacy.
 			var/n = 0
 			var/admins = 0
 
