@@ -217,7 +217,11 @@
 
 		if(isSynthetic())
 			output += "Current Battery Charge: [nutrition]\n"
+<<<<<<< HEAD
 			
+=======
+
+>>>>>>> d0e8fba... Refactors IsSynthetic (#8078)
 			var/toxDam = getToxLoss()
 			if(toxDam)
 				output += "System Instability: <span class='warning'>[toxDam > 25 ? "Severe" : "Moderate"]</span>. Seek charging station for cleanup.\n"

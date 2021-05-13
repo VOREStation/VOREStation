@@ -42,6 +42,13 @@
 	return FALSE
 
 
+		var/datum/robolimb/R = all_robolimbs[model] // company should be set in parent by now
+		if(!R)
+			log_error("A torso was robotize() but has no model that can be found: [model]. May affect FBPs.")
+		owner.synthetic = R
+		owner.update_emotes()
+	return FALSE
+
 /obj/item/organ/external/chest/handle_germ_effects()
 	. = ..() //Should return an infection level
 	if(!. || (status & ORGAN_DEAD)) return //If it's already above 2, it's become necrotic and we can just not worry about it.

@@ -397,6 +397,8 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	
 	character.update_emotes()
 
+	character.update_emotes()
+
 	return
 
 /datum/category_item/player_setup_item/general/body/content(var/mob/user)
