@@ -226,7 +226,7 @@
 
 /obj/structure/bed/chair/sofa/update_icon()
 	if(applies_material_colour && sofa_material)
-		var/material/color_material = get_material_by_name(sofa_material)
+		var/datum/material/color_material = get_material_by_name(sofa_material)
 		color = color_material.icon_colour
 
 		if(sofa_material == "carpet")

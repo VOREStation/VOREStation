@@ -16,9 +16,7 @@
 	outfit_type = /decl/hierarchy/outfit/job/assistant/worker
 	job_description = "Off-duty crew has no responsibilities or authority and is just there to spend their well-deserved time off."
 	pto_type = PTO_CIVILIAN
-
-/datum/alt_title/offduty_civ
-	title = "Off-duty Worker"
+	economic_modifier = 2
 
 /datum/job/offduty_cargo
 	title = "Off-duty Cargo"
@@ -34,9 +32,7 @@
 	outfit_type = /decl/hierarchy/outfit/job/assistant/cargo
 	job_description = "Off-duty crew has no responsibilities or authority and is just there to spend their well-deserved time off."
 	pto_type = PTO_CARGO
-
-/datum/alt_title/offduty_crg
-	title = "Off-duty Cargo"
+	economic_modifier = 2
 
 /datum/job/offduty_engineering
 	title = "Off-duty Engineer"
@@ -52,9 +48,7 @@
 	outfit_type = /decl/hierarchy/outfit/job/assistant/engineer
 	job_description = "Off-duty crew has no responsibilities or authority and is just there to spend their well-deserved time off."
 	pto_type = PTO_ENGINEERING
-
-/datum/alt_title/offduty_eng
-	title = "Off-duty Engineer"
+	economic_modifier = 5
 
 /datum/job/offduty_medical
 	title = "Off-duty Medic"
@@ -70,9 +64,7 @@
 	outfit_type = /decl/hierarchy/outfit/job/assistant/medic
 	job_description = "Off-duty crew has no responsibilities or authority and is just there to spend their well-deserved time off."
 	pto_type = PTO_MEDICAL
-
-/datum/alt_title/offduty_med
-	title = "Off-duty Medic"
+	economic_modifier = 5
 
 /datum/job/offduty_science
 	title = "Off-duty Scientist"
@@ -88,9 +80,7 @@
 	outfit_type = /decl/hierarchy/outfit/job/assistant/scientist
 	job_description = "Off-duty crew has no responsibilities or authority and is just there to spend their well-deserved time off."
 	pto_type = PTO_SCIENCE
-
-/datum/alt_title/offduty_sci
-	title = "Off-duty Scientist"
+	economic_modifier = 5 
 
 /datum/job/offduty_security
 	title = "Off-duty Officer"
@@ -106,6 +96,20 @@
 	outfit_type = /decl/hierarchy/outfit/job/assistant/officer
 	job_description = "Off-duty crew has no responsibilities or authority and is just there to spend their well-deserved time off."
 	pto_type = PTO_SECURITY
+	economic_modifier = 4
 
-/datum/alt_title/offduty_sec
-	title = "Off-duty Officer"
+/datum/job/offduty_exploration
+	title = "Off-duty Explorer"
+	latejoin_only = TRUE
+	timeoff_factor = -1
+	total_positions = -1
+	faction = "Station"
+	departments = list(DEPARTMENT_OFFDUTY)
+	supervisors = "nobody! Enjoy your time off"
+	selection_color = "#999440"
+	access = list(access_maint_tunnels, access_external_airlocks)
+	minimal_access = list(access_maint_tunnels, access_external_airlocks)
+	outfit_type = /decl/hierarchy/outfit/job/assistant/explorer
+	job_description = "Off-duty crew has no responsibilities or authority and is just there to spend their well-deserved time off."
+	pto_type = PTO_EXPLORATION
+	economic_modifier = 5

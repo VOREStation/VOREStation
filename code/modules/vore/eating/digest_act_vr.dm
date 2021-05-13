@@ -5,6 +5,10 @@
 // Ye default implementation.
 /obj/item/proc/digest_act(atom/movable/item_storage = null)
 	if(istype(item_storage, /obj/item/device/dogborg/sleeper))
+		if(istype(src, /obj/item/device/pda))
+			var/obj/item/device/pda/P = src
+			if(P.id)
+				P.id = null
 		for(var/obj/item/O in contents)
 			if(istype(O, /obj/item/weapon/storage/internal)) //Dump contents from dummy pockets.
 				for(var/obj/item/SO in O)
@@ -22,13 +26,17 @@
 
 	if(isbelly(item_storage))
 		var/obj/belly/B = item_storage
-		g_damage = 0.25 * (B.digest_brute + B.digest_burn)
+		g_damage = 0.25 * (B.digest_brute + B.digest_burn + (B.digest_oxy)/2)
 
 	if(digest_stage > 0)
 		if(g_damage > digest_stage)
 			g_damage = digest_stage
 		digest_stage -= g_damage
-	else
+	if(digest_stage <= 0)
+		if(istype(src, /obj/item/device/pda))
+			var/obj/item/device/pda/P = src
+			if(P.id)
+				P.id = null
 		for(var/obj/item/O in contents)
 			if(istype(O,/obj/item/weapon/storage/internal)) //Dump contents from dummy pockets.
 				for(var/obj/item/SO in O)
@@ -38,14 +46,14 @@
 			else if(item_storage)
 				O.forceMove(item_storage)
 		qdel(src)
+	if(g_damage > w_class)
+		return w_class
 	return g_damage
 
 /////////////
 // Some indigestible stuff
 /////////////
 /obj/item/weapon/hand_tele/digest_act(var/atom/movable/item_storage = null)
-	return FALSE
-/obj/item/weapon/card/id/gold/captain/spare/digest_act(var/atom/movable/item_storage = null)
 	return FALSE
 /obj/item/device/aicard/digest_act(var/atom/movable/item_storage = null)
 	return FALSE
@@ -67,23 +75,15 @@
 /////////////
 // Some special treatment
 /////////////
-//PDAs need to lose their ID to not take it with them, so we can get a digested ID
-/obj/item/device/pda/digest_act(atom/movable/item_storage = null)
-	if(id)
-		if(istype(item_storage, /obj/item/device/dogborg/sleeper) || (!isnull(digest_stage) && digest_stage <= 0))
-			id = null
-	. = ..()
-
-/obj/item/weapon/card/id
-	var/lost_access = list()
 
 /obj/item/weapon/card/id/digest_act(atom/movable/item_storage = null)
-	desc = "A partially digested card that has seen better days. The damage appears to be only cosmetic, but the access codes need to be reprogrammed at the HoP office."
-	icon = 'icons/obj/card_vr.dmi'
-	icon_state = "[initial(icon_state)]_digested"
-	if(!(LAZYLEN(lost_access)) && LAZYLEN(access))
-		lost_access = access	//Do not forget what access we lose
-	access = list()			// Then lose it
+	desc = "A partially digested card that has seen better days. The damage appears to be only cosmetic."
+	if(!sprite_stack || !istype(sprite_stack) || !(sprite_stack.len))
+		icon = 'icons/obj/card_vr.dmi'
+		icon_state = "[initial(icon_state)]_digested"
+	else
+		sprite_stack += "digested"
+	update_icon()
 	return FALSE
 
 /obj/item/weapon/reagent_containers/food/digest_act(atom/movable/item_storage = null)
@@ -111,7 +111,7 @@
 	if((. = ..()))
 		if(isbelly(item_storage))
 			var/obj/belly/B = item_storage
-			. += 2 * (B.digest_brute + B.digest_burn)
+			. += 2 * (B.digest_brute + B.digest_burn + (B.digest_oxy)/2)
 		else
 			. += 30 //Organs give a little more
 

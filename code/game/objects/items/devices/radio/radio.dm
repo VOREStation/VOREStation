@@ -61,7 +61,7 @@ var/global/list/default_medbay_channels = list(
 	var/bs_tx_preload_id
 	var/bs_rx_preload_id
 
-	matter = list("glass" = 25,DEFAULT_WALL_MATERIAL = 75)
+	matter = list("glass" = 25, DEFAULT_WALL_MATERIAL = 75, MAT_COPPER = 15)
 	var/const/FREQ_LISTENING = 1
 	var/list/internal_channels
 
@@ -151,18 +151,10 @@ var/global/list/default_medbay_channels = list(
 
 	return tgui_interact(user)
 
-/obj/item/device/radio/ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open, datum/nano_ui/master_ui, datum/topic_state/state)
-	log_runtime(EXCEPTION("Warning: [user] attempted to call ui_interact on radio [src] [type]. This is deprecated. Please update the caller to tgui_interact."))
-
-/obj/item/device/radio/Topic(href, href_list)
-	if(href_list["track"])
-		log_runtime(EXCEPTION("Warning: Topic() was improperly called on radio [src] [type], with the track href and \[[href] [json_encode(href_list)]]. Please update the caller to use tgui_act."))
-	. = ..()
-
-/obj/item/device/radio/tgui_interact(mob/user, datum/tgui/ui)
+/obj/item/device/radio/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "Radio", name)
+		ui = new(user, src, "Radio", name, parent_ui)
 		ui.open()
 
 /obj/item/device/radio/tgui_data(mob/user)
@@ -305,7 +297,8 @@ var/global/list/default_medbay_channels = list(
 		playsound(src, "button", 10)
 
 GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
-/obj/item/device/radio/proc/autosay(var/message, var/from, var/channel, var/list/zlevels) //BS12 EDIT
+
+/obj/item/device/radio/proc/autosay(var/message, var/from, var/channel, var/list/zlevels)
 	if(!GLOB.autospeaker)
 		return
 	var/datum/radio_frequency/connection = null
@@ -316,7 +309,7 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 	else
 		connection = radio_connection
 		channel = null
-	if (!istype(connection))
+	if(!istype(connection))
 		return
 
 	if(!LAZYLEN(zlevels))
@@ -515,7 +508,7 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 		else if(adhoc_fallback) //Less huzzah, we have to fallback
 			to_chat(loc, "<span class='warning'>\The [src] pings as it falls back to local radio transmission.</span>")
 			subspace_transmission = FALSE
-		
+
 		else //Oh well
 			return FALSE
 
@@ -602,7 +595,7 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 
 /obj/item/device/radio/examine(mob/user)
 	. = ..()
-	
+
 	if((in_range(src, user) || loc == user))
 		if(b_stat)
 			. += "<span class='notice'>\The [src] can be attached and modified!</span>"

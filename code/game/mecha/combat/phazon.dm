@@ -25,6 +25,8 @@
 	max_universal_equip = 3
 	max_special_equip = 4
 
+	encumbrance_gap = 2
+
 	starting_components = list(
 		/obj/item/mecha_parts/component/hull/durable,
 		/obj/item/mecha_parts/component/actuator,
@@ -38,7 +40,7 @@
 	switch_dmg_type_possible = TRUE
 
 /obj/mecha/combat/phazon/equipped/Initialize()
-	..()
+	. = ..()
 	starting_equipment = list(
 		/obj/item/mecha_parts/mecha_equipment/tool/rcd,
 		/obj/item/mecha_parts/mecha_equipment/gravcatapult

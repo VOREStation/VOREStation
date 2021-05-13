@@ -6,6 +6,7 @@
 	desc = "It turns lights on and off. What are you, simple?"
 	icon = 'icons/obj/power_vr.dmi' // VOREStation Edit
 	icon_state = "light1"
+	layer = ABOVE_WINDOW_LAYER
 	anchored = 1.0
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
@@ -67,6 +68,7 @@
 		L.updateicon()
 
 	area.power_change()
+	GLOB.lights_switched_on_roundstat++
 
 /obj/machinery/light_switch/power_change()
 

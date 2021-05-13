@@ -215,6 +215,7 @@
 					current = null
 			else
 				QDEL_LIST_NULL(positive_locations)
+				positive_locations = list()
 				QDEL_NULL(current)
 			return TRUE
 

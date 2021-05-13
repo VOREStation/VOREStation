@@ -7,13 +7,13 @@
 
 //Captain
 /obj/item/clothing/head/caphat
-	name = "colony director's hat"
+	name = "site manager's hat"
 	icon_state = "captain"
 	desc = "It's good being the king."
 	body_parts_covered = 0
 
 /obj/item/clothing/head/caphat/cap
-	name = "colony director's cap"
+	name = "site manager's cap"
 	desc = "You fear to wear it for the negligence it brings."
 	icon_state = "capcap"
 
@@ -174,6 +174,7 @@
 	desc = "A black beret with a gold emblem."
 	icon_state = "beret_corporate_hos"
 	item_state_slots = list(slot_r_hand_str = "beret_black", slot_l_hand_str = "beret_black")
+
 
 //Medical
 /obj/item/clothing/head/surgery

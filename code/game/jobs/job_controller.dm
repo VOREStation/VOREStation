@@ -387,14 +387,14 @@ var/global/datum/controller/occupations/job_master
 		if(job)
 
 			//Equip custom gear loadout.
-			var/list/custom_equip_slots = list() //If more than one item takes the same slot, all after the first one spawn in storage.
+			var/list/custom_equip_slots = list()
 			var/list/custom_equip_leftovers = list()
 			if(H.client.prefs.gear && H.client.prefs.gear.len && !(job.mob_type & JOB_SILICON))
 				for(var/thing in H.client.prefs.gear)
 					var/datum/gear/G = gear_datums[thing]
 					if(!G) //Not a real gear datum (maybe removed, as this is loaded from their savefile)
 						continue
-					
+
 					var/permitted
 					// Check if it is restricted to certain roles
 					if(G.allowed_roles)
@@ -415,19 +415,20 @@ var/global/datum/controller/occupations/job_master
 
 					// Implants get special treatment
 					if(G.slot == "implant")
-						var/obj/item/weapon/implant/I = G.spawn_item(H)
+						var/obj/item/weapon/implant/I = G.spawn_item(H, H.client.prefs.gear[G.display_name])
 						I.invisibility = 100
 						I.implant_loadout(H)
 						continue
 
-					// Try desperately (and sorta poorly) to equip the item
+					// Try desperately (and sorta poorly) to equip the item. Now with increased desperation!
 					if(G.slot && !(G.slot in custom_equip_slots))
 						var/metadata = H.client.prefs.gear[G.display_name]
 						if(G.slot == slot_wear_mask || G.slot == slot_wear_suit || G.slot == slot_head)
 							custom_equip_leftovers += thing
 						else if(H.equip_to_slot_or_del(G.spawn_item(H, metadata), G.slot))
 							to_chat(H, "<span class='notice'>Equipping you with \the [thing]!</span>")
-							custom_equip_slots.Add(G.slot)
+							if(G.slot != slot_tie)
+								custom_equip_slots.Add(G.slot)
 						else
 							custom_equip_leftovers.Add(thing)
 					else
@@ -435,13 +436,13 @@ var/global/datum/controller/occupations/job_master
 
 			// Set up their account
 			job.setup_account(H)
-			
+
 			// Equip job items.
 			job.equip(H, H.mind ? H.mind.role_alt_title : "")
-			
+
 			// Stick their fingerprints on literally everything
 			job.apply_fingerprints(H)
-			
+
 			// Only non-silicons get post-job-equip equipment
 			if(!(job.mob_type & JOB_SILICON))
 				H.equip_post_job()
@@ -487,11 +488,11 @@ var/global/datum/controller/occupations/job_master
 				return H.Robotize()
 			if(job.mob_type & JOB_SILICON_AI)
 				return H
-			
+
 			// TWEET PEEP
-			if(rank == "Colony Director")
+			if(rank == "Site Manager")
 				var/sound/announce_sound = (ticker.current_state <= GAME_STATE_SETTING_UP) ? null : sound('sound/misc/boatswain.ogg', volume=20)
-				captain_announcement.Announce("All hands, [alt_title ? alt_title : "Colony Director"] [H.real_name] on deck!", new_sound = announce_sound, zlevel = H.z)
+				captain_announcement.Announce("All hands, [alt_title ? alt_title : "Site Manager"] [H.real_name] on deck!", new_sound = announce_sound, zlevel = H.z)
 
 			//Deferred item spawning.
 			if(spawn_in_storage && spawn_in_storage.len)
@@ -513,11 +514,12 @@ var/global/datum/controller/occupations/job_master
 			var/obj/item/organ/external/l_foot = H.get_organ("l_foot")
 			var/obj/item/organ/external/r_foot = H.get_organ("r_foot")
 			var/obj/item/weapon/storage/S = locate() in H.contents
-			var/obj/item/wheelchair/R = null
+			var/obj/item/wheelchair/R
 			if(S)
 				R = locate() in S.contents
 			if(!l_foot || !r_foot || R)
-				var/obj/structure/bed/chair/wheelchair/W = new /obj/structure/bed/chair/wheelchair(H.loc)
+				var/wheelchair_type = R?.unfolded_type || /obj/structure/bed/chair/wheelchair
+				var/obj/structure/bed/chair/wheelchair/W = new wheelchair_type(H.loc)
 				W.buckle_mob(H)
 				H.update_canmove()
 				W.set_dir(H.dir)
@@ -540,6 +542,8 @@ var/global/datum/controller/occupations/job_master
 		// EMAIL GENERATION
 		// Email addresses will be created under this domain name. Mostly for the looks.
 		var/domain = "freemail.nt"
+		if(using_map && LAZYLEN(using_map.usable_email_tlds))
+			domain = using_map.usable_email_tlds[1]
 		var/sanitized_name = sanitize(replacetext(replacetext(lowertext(H.real_name), " ", "."), "'", ""))
 		var/complete_login = "[sanitized_name]@[domain]"
 
@@ -676,7 +680,7 @@ var/global/datum/controller/occupations/job_master
 			to_chat(C, "Your chosen spawnpoint ([spawnpos.display_name]) is unavailable for your chosen job. Spawning you at the Arrivals shuttle instead.")
 			var/spawning = pick(latejoin)
 			.["turf"] = get_turf(spawning)
-			.["msg"] = "will arrive at the station shortly"  //VOREStation Edit - Grammar but mostly 'shuttle' reference removal, and this also applies to notified spawn-character verb use
+			.["msg"] = "will arrive at the station shortly"
 	else if(!fail_deadly)
 		var/spawning = pick(latejoin)
 		.["turf"] = get_turf(spawning)

@@ -25,6 +25,8 @@
 	var/last_use = 0 // A tracker for use in self-charging
 	var/charge_delay = 0 // How long it takes for the cell to start recharging after last use
 	matter = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 50)
+	drop_sound = 'sound/items/drop/component.ogg'
+	pickup_sound = 'sound/items/pickup/component.ogg'
 
 	// Overlay stuff.
 	var/overlay_half_state = "cell-o1" // Overlay used when not fully charged but not empty.

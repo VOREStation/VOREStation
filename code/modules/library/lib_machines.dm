@@ -139,7 +139,7 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 	var/static/list/base_genre_books
 
 /obj/machinery/librarycomp/Initialize()
-	..()
+	. = ..()
 
 	if(!base_genre_books || !base_genre_books.len)
 		base_genre_books = list(
@@ -173,14 +173,14 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 	var/dat = "<HEAD><TITLE>Book Inventory Management</TITLE></HEAD><BODY>\n" // <META HTTP-EQUIV='Refresh' CONTENT='10'>
 	switch(screenstate)
 		if(0)
-			// Main Menu
+			// Main Menu //VOREStation Edit start
 			dat += {"<A href='?src=\ref[src];switchscreen=1'>1. View General Inventory</A><BR>
 			<A href='?src=\ref[src];switchscreen=2'>2. View Checked Out Inventory</A><BR>
 			<A href='?src=\ref[src];switchscreen=3'>3. Check out a Book</A><BR>
-			<A href='?src=\ref[src];switchscreen=4'>4. Connect to Internal Archive</A><BR> //VOREStation Edit
+			<A href='?src=\ref[src];switchscreen=4'>4. Connect to Internal Archive</A><BR>
 			<A href='?src=\ref[src];switchscreen=5'>5. Upload New Title to Archive</A><BR>
 			<A href='?src=\ref[src];switchscreen=6'>6. Print a Bible</A><BR>
-			<A href='?src=\ref[src];switchscreen=8'>8. Access External Archive</A><BR>"} //VOREStation Edit
+			<A href='?src=\ref[src];switchscreen=8'>8. Access External Archive</A><BR>"} //VOREStation Edit end
 			if(src.emagged)
 				dat += "<A href='?src=\ref[src];switchscreen=7'>7. Access the Forbidden Lore Vault</A><BR>"
 			if(src.arcanecheckout)
@@ -286,12 +286,17 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 				var/DBQuery/query = dbcon_old.NewQuery("SELECT id, author, title, category FROM library ORDER BY [sortby]")
 				query.Execute()
 
+				var/show_admin_options = check_rights(R_ADMIN, show_msg = FALSE)
+
 				while(query.NextRow())
 					var/id = query.item[1]
 					var/author = query.item[2]
 					var/title = query.item[3]
 					var/category = query.item[4]
-					dat += "<tr><td>[author]</td><td>[title]</td><td>[category]</td><td><A href='?src=\ref[src];targetid=[id]'>\[Order\]</A></td></tr>"
+					dat += "<tr><td>[author]</td><td>[title]</td><td>[category]</td><td><A href='?src=\ref[src];targetid=[id]'>\[Order\]</A>"
+					if(show_admin_options) // This isn't the only check, since you can just href-spoof press this button. Just to tidy things up.
+						dat += "<A href='?src=\ref[src];delid=[id]'>\[Del\]</A>"
+					dat += "</td></tr>"
 				dat += "</table>"
 			dat += "<BR><A href='?src=\ref[src];switchscreen=0'>(Return to main menu)</A><BR>"
 
@@ -338,11 +343,11 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 				if(!bibledelay)
 
 					var/obj/item/weapon/storage/bible/B = new /obj/item/weapon/storage/bible(src.loc)
-					if(ticker && ( ticker.Bible_icon_state && ticker.Bible_item_state) )
-						B.icon_state = ticker.Bible_icon_state
-						B.item_state = ticker.Bible_item_state
-						B.name = ticker.Bible_name
-						B.deity_name = ticker.Bible_deity_name
+					if(GLOB.religion)
+						B.icon_state = GLOB.bible_icon_state
+						B.item_state = GLOB.bible_item_state
+						B.name = GLOB.bible_name
+						B.deity_name = GLOB.deity
 
 					bibledelay = 1
 					spawn(60)
@@ -451,6 +456,18 @@ datum/borrowbook // Datum used to keep track of who has borrowed what when and f
 				B.item_state = B.icon_state
 				src.visible_message("[src]'s printer hums as it produces a completely bound book. How did it do that?")
 				break
+
+	if(href_list["delid"])
+		if(!check_rights(R_ADMIN))
+			return
+		var/sqlid = sanitizeSQL(href_list["delid"])
+		establish_old_db_connection()
+		if(!dbcon_old.IsConnected())
+			alert("Connection to Archive has been severed. Aborting.")
+		else
+			var/DBQuery/query = dbcon_old.NewQuery("DELETE FROM library WHERE id=[sqlid]")
+			query.Execute()
+
 	if(href_list["orderbyid"])
 		var/orderid = input("Enter your order:") as num|null
 		if(orderid)

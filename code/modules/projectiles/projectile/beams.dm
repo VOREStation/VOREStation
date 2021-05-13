@@ -17,6 +17,8 @@
 	hitsound = 'sound/weapons/sear.ogg'
 	hitsound_wall = 'sound/weapons/effects/searwall.ogg'
 
+	excavation_amount = 50
+
 	muzzle_type = /obj/effect/projectile/muzzle/laser
 	tracer_type = /obj/effect/projectile/tracer/laser
 	impact_type = /obj/effect/projectile/impact/laser
@@ -25,6 +27,7 @@
 	name = "laser"
 	icon_state = "laser"
 	damage = 0
+	excavation_amount = 0
 	damage_type = BURN
 	check_armour = "laser"
 	eyeblur = 2
@@ -41,10 +44,22 @@
 	damage = 30
 	armor_penetration = 10
 
-
+	
 /obj/item/projectile/beam/midlaser
 	damage = 40
 	armor_penetration = 10
+
+/obj/item/projectile/beam/mininglaser
+	name = "pulsating laser"
+	damage = 10
+	armor_penetration = 20
+	fire_sound = 'sound/weapons/eluger.ogg'
+
+	excavation_amount = 100
+
+	muzzle_type = /obj/effect/projectile/muzzle/emitter
+	tracer_type = /obj/effect/projectile/tracer/emitter
+	impact_type = /obj/effect/projectile/impact/emitter
 
 /obj/item/projectile/beam/heavylaser
 	name = "heavy laser"
@@ -145,6 +160,7 @@
 	name = "lasertag beam"
 	damage = 0
 	eyeblur = 0
+	excavation_amount = 0
 	no_attack_log = 1
 	damage_type = BURN
 	check_armour = "laser"
@@ -261,3 +277,26 @@
 	agony = 15
 	eyeblur = 2
 	hitsound = 'sound/weapons/zapbang.ogg'
+
+/obj/item/projectile/beam/shock/weak
+	damage = 5
+	agony = 10
+
+
+//
+// Projectile Beam Definitions
+//
+
+/obj/item/projectile/beam/pointdefense
+	name = "point defense salvo"
+	icon_state = "laser"
+	damage = 15
+	damage_type = ELECTROCUTE //You should be safe inside a voidsuit
+	sharp = FALSE //"Wide" spectrum beam
+	light_color = COLOR_GOLD
+
+	excavation_amount = 200 // Good at shooting rocks
+
+	muzzle_type = /obj/effect/projectile/muzzle/pointdefense
+	tracer_type = /obj/effect/projectile/tracer/pointdefense
+	impact_type = /obj/effect/projectile/impact/pointdefense

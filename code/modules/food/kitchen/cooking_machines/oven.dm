@@ -38,12 +38,12 @@
 		"Cookie" = /obj/item/weapon/reagent_containers/food/snacks/variable/cookie,
 		"Donut" = /obj/item/weapon/reagent_containers/food/snacks/variable/donut,
 		)
-		
+
 /obj/machinery/appliance/cooker/oven/Initialize()
 	. = ..()
-	
+
 	oven_loop = new(list(src), FALSE)
-	
+
 /obj/machinery/appliance/cooker/oven/Destroy()
 	QDEL_NULL(oven_loop)
 	return ..()
@@ -104,9 +104,9 @@
 		cooking = FALSE
 
 	playsound(src, 'sound/machines/hatch_open.ogg', 20, 1)
-	to_chat(user, "<span class='notice'>You [open? "close":"open"] the oven door</span>")
+	to_chat(user, "<span class='notice'>You [open? "open":"close"] the oven door</span>")
 	update_icon()
-	
+
 /obj/machinery/appliance/cooker/oven/proc/manip(var/obj/item/I)
 	// check if someone's trying to manipulate the machine
 
@@ -133,9 +133,10 @@
 		if(temperature > T.temperature)
 			equalize_temperature()
 
-/obj/machinery/appliance/cooker/oven/can_remove_items(var/mob/user)
+/obj/machinery/appliance/cooker/oven/can_remove_items(var/mob/user, show_warning = TRUE)
 	if(!open)
-		to_chat(user, "<span class='warning'>You can't take anything out while the door is closed!</span>")
+		if(show_warning)
+			to_chat(user, "<span class='warning'>You can't take anything out while the door is closed!</span>")
 		return 0
 
 	else

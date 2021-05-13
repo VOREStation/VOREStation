@@ -5,6 +5,7 @@
 	description_info = "Some blob types will have core effects when the chunk is used in-hand, toggled with an alt click, or constantly active."
 	icon = 'icons/mob/blob.dmi'
 	icon_state = "blobcore"
+	flags = OPENCONTAINER
 	var/datum/blob_type/blob_type	// The blob type this dropped from.
 
 	var/active_ability_cooldown = 20 SECONDS
@@ -15,11 +16,17 @@
 	var/passive_ability_cooldown = 5 SECONDS
 	var/last_passive_use = 0
 
+	var/can_genesis = TRUE	// Can the core chunk be used to grow a new blob?
+
 	drop_sound = 'sound/effects/slime_squish.ogg'
+
+/obj/item/weapon/blobcore_chunk/is_open_container()
+	return 1
 
 /obj/item/weapon/blobcore_chunk/New(var/atom/newloc, var/datum/blob_type/parentblob = null)
 	..(newloc)
 
+	create_reagents(120)
 	setup_blobtype(parentblob)
 
 /obj/item/weapon/blobcore_chunk/Destroy()
@@ -91,10 +98,57 @@
 		blob_type.on_chunk_tick(src)
 
 /obj/item/weapon/blobcore_chunk/AltClick(mob/living/carbon/user)
-	if(blob_type &&blob_type.chunk_active_type == BLOB_CHUNK_TOGGLE)
+	if(blob_type && blob_type.chunk_active_type == BLOB_CHUNK_TOGGLE)
 		should_tick = !should_tick
 
 		if(should_tick)
 			to_chat(user, "<span class='alien'>\The [src] shudders with life.</span>")
 		else
 			to_chat(user, "<span class='alien'>\The [src] stills, returning to a death-like state.</span>")
+
+/obj/item/weapon/blobcore_chunk/proc/regen(var/newfaction = null)
+	if(istype(blob_type))
+		if(newfaction)
+			blob_type.faction = newfaction
+
+		var/obj/structure/blob/core/NC = new (get_turf(src))
+		NC.overmind.blob_type = blob_type
+		NC.overmind.blob_core.update_icon()
+		return TRUE
+
+	return FALSE
+
+/decl/chemical_reaction/instant/blob_reconstitution
+	name = "Hostile Blob Revival"
+	id = "blob_revival"
+	result = null
+	required_reagents = list("phoron" = 60)
+	result_amount = 1
+
+/decl/chemical_reaction/instant/blob_reconstitution/can_happen(var/datum/reagents/holder)
+	if(holder.my_atom && istype(holder.my_atom, /obj/item/weapon/blobcore_chunk))
+		return ..()
+	return FALSE
+
+/decl/chemical_reaction/instant/blob_reconstitution/on_reaction(var/datum/reagents/holder)
+	var/obj/item/weapon/blobcore_chunk/chunk = holder.my_atom
+	if(chunk.can_genesis && chunk.regen())
+		chunk.visible_message("<span class='notice'>[chunk] bubbles, surrounding itself with a rapidly expanding mass of [chunk.blob_type.name]!</span>")
+		chunk.can_genesis = FALSE
+	else
+		chunk.visible_message("<span class='warning'>[chunk] shifts strangely, but falls still.</span>")
+
+/decl/chemical_reaction/instant/blob_reconstitution/domination
+	name = "Allied Blob Revival"
+	id = "blob_friend"
+	result = null
+	required_reagents = list("hydrophoron" = 40, "peridaxon" = 20, "mutagen" = 20)
+	result_amount = 1
+
+/decl/chemical_reaction/instant/blob_reconstitution/domination/on_reaction(var/datum/reagents/holder)
+	var/obj/item/weapon/blobcore_chunk/chunk = holder.my_atom
+	if(chunk.can_genesis && chunk.regen("neutral"))
+		chunk.visible_message("<span class='notice'>[chunk] bubbles, surrounding itself with a rapidly expanding mass of [chunk.blob_type.name]!</span>")
+		chunk.can_genesis = FALSE
+	else
+		chunk.visible_message("<span class='warning'>[chunk] shifts strangely, but falls still.</span>")

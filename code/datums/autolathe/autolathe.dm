@@ -1,6 +1,13 @@
 /datum/category_item/autolathe/New()
 	..()
-	var/obj/item/I = new path()
+	var/obj/item/I
+	if(path)
+		I = new path()
+
+	if(!I)	// Something has gone horribly wrong, or right.
+		log_debug("[name] created an Autolathe design without an assigned path.")
+		return
+
 	if(I.matter && !resources)
 		resources = list()
 		for(var/material in I.matter)
@@ -56,6 +63,32 @@
 /datum/category_group/autolathe/tools
 	name = "Tools"
 	category_item_type = /datum/category_item/autolathe/tools
+
+/datum/category_group/autolathe/materials
+	name = "Materials"
+	category_item_type = /datum/category_item/autolathe/materials
+
+/datum/category_group/autolathe/materials/New()
+	..()
+
+	for(var/Name in name_to_material)
+		var/datum/material/M = name_to_material[Name]
+
+		if(!M.stack_type)	// Shouldn't happen, but might. Never know.
+			continue
+
+		if(istype(M, /datum/material/alienalloy))
+			continue
+
+		var/obj/item/stack/material/S = M.stack_type
+		if(initial(S.name) in items_by_name)
+			continue
+
+		var/datum/category_item/autolathe/materials/WorkDat = new(src, M)
+
+
+		items |= WorkDat
+		items_by_name[WorkDat.name] = WorkDat
 
 /*******************
 * Category entries *

@@ -312,7 +312,6 @@
 			declare_treatment = !declare_treatment
 			. = TRUE
 
-
 /mob/living/bot/medbot/emag_act(var/remaining_uses, var/mob/user)
 	. = ..()
 	if(!emagged)

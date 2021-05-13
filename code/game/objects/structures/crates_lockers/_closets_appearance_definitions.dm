@@ -1380,6 +1380,36 @@
 		"glass" = COLOR_WHITE
 	)
 
+// Wall cabinets
+/decl/closet_appearance/wall_double
+	base_icon =  'icons/obj/closets/bases/wall_double.dmi'
+	decal_icon = 'icons/obj/closets/decals/wall_double.dmi'
+	decals = list(
+		"vent"
+	)
+	extra_decals = null
+
+/decl/closet_appearance/wall_double/kitchen
+	decals = null
+	color = COLOR_OFF_WHITE
+
+/decl/closet_appearance/wall_double/medical
+	decals = null
+	color = COLOR_OFF_WHITE
+	extra_decals = list(
+		"stripe_outer" = COLOR_BLUE_GRAY,
+		"stripe_inner" = COLOR_OFF_WHITE,
+		"cross" = COLOR_BLUE_GRAY
+	)
+
+/decl/closet_appearance/wall_double/fire_safety
+	color = COLOR_RED_LIGHT
+	decals = null
+	extra_decals = list(
+		"stripes" = COLOR_OFF_WHITE,
+		"glass" = COLOR_WHITE
+	)
+
 // Carts
 /decl/closet_appearance/cart
 	color = COLOR_GRAY20

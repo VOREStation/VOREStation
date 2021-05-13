@@ -273,6 +273,7 @@
 			var/outgoing_instability = (amount) * ( 1 / (radius**2) )
 
 			L.receive_radiated_instability(outgoing_instability)
+			src.adjust_instability(-outgoing_instability) //This should prevent feedback loops
 
 // This should only be used for EXTERNAL sources of instability, such as from someone or something glowing.
 /mob/living/proc/receive_radiated_instability(amount)

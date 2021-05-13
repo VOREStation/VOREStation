@@ -91,12 +91,14 @@
 	var/tracking_entities = 0 //The number of known entities currently accessing the internal camera
 	var/braintype = "Cyborg"
 
+	var/obj/item/weapon/implant/restrainingbolt/bolt	// The restraining bolt installed into the cyborg.
+
 	var/list/robot_verbs_default = list(
 		/mob/living/silicon/robot/proc/sensor_mode,
 		/mob/living/silicon/robot/proc/robot_checklaws
 	)
 
-/mob/living/silicon/robot/New(loc,var/unfinished = 0)
+/mob/living/silicon/robot/New(loc, var/unfinished = 0)
 	spark_system = new /datum/effect/effect/system/spark_spread()
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
@@ -112,7 +114,7 @@
 	ident = rand(1, 999)
 	module_sprites["Basic"] = "robot"
 	icontype = "Basic"
-	updatename("Default")
+	updatename(modtype)
 	updateicon()
 
 	radio = new /obj/item/device/radio/borg(src)
@@ -140,6 +142,8 @@
 		cell = new /obj/item/weapon/cell(src)
 		cell.maxcharge = 7500
 		cell.charge = 7500
+	else if(ispath(cell))
+		cell = new cell(src)
 
 	..()
 
@@ -205,12 +209,12 @@
 /mob/living/silicon/robot/proc/setup_PDA()
 	if (!rbPDA)
 		rbPDA = new/obj/item/device/pda/ai(src)
-	rbPDA.set_name_and_job(custom_name,"[modtype] [braintype]")
+	rbPDA.set_name_and_job(name,"[modtype] [braintype]")
 
 /mob/living/silicon/robot/proc/setup_communicator()
 	if (!communicator)
 		communicator = new/obj/item/device/communicator/integrated(src)
-	communicator.register_device(src.name, "[modtype] [braintype]")
+	communicator.register_device(name, "[modtype] [braintype]")
 
 //If there's an MMI in the robot, have it ejected when the mob goes away. --NEO
 //Improved /N
@@ -284,10 +288,7 @@
 	updatename()
 	notify_ai(ROBOT_NOTIFICATION_NEW_MODULE, module.name)
 
-/mob/living/silicon/robot/proc/updatename(var/prefix as text)
-	if(prefix)
-		modtype = prefix
-
+/mob/living/silicon/robot/proc/update_braintype()
 	if(istype(mmi, /obj/item/device/mmi/digital/posibrain))
 		braintype = BORG_BRAINTYPE_POSI
 	else if(istype(mmi, /obj/item/device/mmi/digital/robot))
@@ -297,6 +298,11 @@
 	else
 		braintype = BORG_BRAINTYPE_CYBORG
 
+/mob/living/silicon/robot/proc/updatename(var/prefix as text)
+	if(prefix)
+		modtype = prefix
+
+	update_braintype()
 
 	var/changed_name = ""
 	if(custom_name)
@@ -348,12 +354,6 @@
 
 		updatename()
 		updateicon()
-
-// this verb lets cyborgs see the stations manifest
-/mob/living/silicon/robot/verb/cmd_station_manifest()
-	set category = "Robot Commands"
-	set name = "Show Crew Manifest"
-	show_station_manifest()
 
 /mob/living/silicon/robot/proc/self_diagnosis()
 	if(!is_component_functioning("diagnosis unit"))
@@ -484,6 +484,20 @@
 					C.electronics_damage = WC.burn
 
 				to_chat(usr, "<font color='blue'>You install the [W.name].</font>")
+
+				return
+
+		if(istype(W, /obj/item/weapon/implant/restrainingbolt) && !cell)
+			if(bolt)
+				to_chat(user, "<span class='notice'>There is already a restraining bolt installed in this cyborg.</span>")
+				return
+
+			else
+				user.drop_from_inventory(W)
+				W.forceMove(src)
+				bolt = W
+
+				to_chat(user, "<span class='notice'>You install \the [W].</span>")
 
 				return
 
@@ -628,6 +642,21 @@
 			to_chat(user, "Unable to locate a radio.")
 		updateicon()
 
+	else if(W.is_wrench() && opened && !cell)
+		if(bolt)
+			to_chat(user,"You begin removing \the [bolt].")
+
+			if(do_after(user, 2 SECONDS, src))
+				bolt.forceMove(get_turf(src))
+				bolt = null
+
+				to_chat(user, "You remove \the [bolt].")
+
+		else
+			to_chat(user, "There is no restraining bolt installed.")
+
+		return
+
 	else if(istype(W, /obj/item/device/encryptionkey/) && opened)
 		if(radio)//sanityyyyyy
 			radio.attackby(W,user)//GTFO, you have your own procs
@@ -670,6 +699,30 @@
 				spark_system.start()
 		return ..()
 
+/mob/living/silicon/robot/GetIdCard()
+	if(bolt && !bolt.malfunction)
+		return null
+	return idcard
+
+/mob/living/silicon/robot/get_restraining_bolt()
+	var/obj/item/weapon/implant/restrainingbolt/RB = bolt
+
+	if(istype(RB))
+		if(!RB.malfunction)
+			return TRUE
+
+	return FALSE
+
+/mob/living/silicon/robot/resist_restraints()
+	if(bolt)
+		if(!bolt.malfunction)
+			visible_message("<span class='danger'>[src] is trying to break their [bolt]!</span>", "<span class='warning'>You attempt to break your [bolt]. (This will take around 90 seconds and you need to stand still)</span>")
+			if(do_after(src, 1.5 MINUTES, src, incapacitation_flags = INCAPACITATION_DISABLED))
+				visible_message("<span class='danger'>[src] manages to break \the [bolt]!</span>", "<span class='warning'>You successfully break your [bolt].</span>")
+				bolt.malfunction = MALFUNCTION_PERMANENT
+
+	return
+
 /mob/living/silicon/robot/proc/module_reset()
 	transform_with_anim() //VOREStation edit: sprite animation
 	uneq_all()
@@ -686,13 +739,26 @@
 
 	add_fingerprint(user)
 
-	if(istype(user,/mob/living/carbon/human))
+	if(opened && !wiresexposed && (!istype(user, /mob/living/silicon)))
+		var/datum/robot_component/cell_component = components["power cell"]
+		if(cell)
+			cell.update_icon()
+			cell.add_fingerprint(user)
+			user.put_in_active_hand(cell)
+			to_chat(user, "You remove \the [cell].")
+			cell = null
+			cell_component.wrapped = null
+			cell_component.installed = 0
+			updateicon()
+		else if(cell_component.installed == -1)
+			cell_component.installed = 0
+			var/obj/item/broken_device = cell_component.wrapped
+			to_chat(user, "You remove \the [broken_device].")
+			user.put_in_active_hand(broken_device)
+
+	if(istype(user,/mob/living/carbon/human) && !opened)
 		var/mob/living/carbon/human/H = user
-		//VOREStation Removal
-		//if(H.species.can_shred(H))
-		//	attack_generic(H, rand(30,50), "slashed")
-		//	return
-		//Adding borg petting.  Help intent pets, Disarm intent taps, Grab should remove the battery for replacement, and Harm is punching(no damage)
+		//Adding borg petting.  Help intent pets, Disarm intent taps and Harm is punching(no damage)
 		switch(H.a_intent)
 			if(I_HELP)
 				visible_message("<span class='notice'>[H] pets [src].</span>")
@@ -711,23 +777,6 @@
 				playsound(src.loc, 'sound/effects/clang2.ogg', 10, 1)
 				visible_message("<span class='warning'>[H] taps [src].</span>")
 				return
-
-	if(opened && !wiresexposed && (!istype(user, /mob/living/silicon)))
-		var/datum/robot_component/cell_component = components["power cell"]
-		if(cell)
-			cell.update_icon()
-			cell.add_fingerprint(user)
-			user.put_in_active_hand(cell)
-			to_chat(user, "You remove \the [cell].")
-			cell = null
-			cell_component.wrapped = null
-			cell_component.installed = 0
-			updateicon()
-		else if(cell_component.installed == -1)
-			cell_component.installed = 0
-			var/obj/item/broken_device = cell_component.wrapped
-			to_chat(user, "You remove \the [broken_device].")
-			user.put_in_active_hand(broken_device)
 
 //Robots take half damage from basic attacks.
 /mob/living/silicon/robot/attack_generic(var/mob/user, var/damage, var/attack_message)
@@ -861,18 +910,21 @@
 		if(!module_state_1)
 			module_state_1 = O
 			O.hud_layerise()
+			O.equipped_robot()
 			contents += O
 			if(istype(module_state_1,/obj/item/borg/sight))
 				sight_mode |= module_state_1:sight_mode
 		else if(!module_state_2)
 			module_state_2 = O
 			O.hud_layerise()
+			O.equipped_robot()
 			contents += O
 			if(istype(module_state_2,/obj/item/borg/sight))
 				sight_mode |= module_state_2:sight_mode
 		else if(!module_state_3)
 			module_state_3 = O
 			O.hud_layerise()
+			O.equipped_robot()
 			contents += O
 			if(istype(module_state_3,/obj/item/borg/sight))
 				sight_mode |= module_state_3:sight_mode
@@ -1025,6 +1077,9 @@
 	return 0
 
 /mob/living/silicon/robot/binarycheck()
+	if(get_restraining_bolt())
+		return FALSE
+
 	if(is_component_functioning("comms"))
 		var/datum/robot_component/RC = get_component("comms")
 		use_power(RC.active_usage)
@@ -1117,6 +1172,11 @@
 				sleep(20)
 				to_chat(src, "<span class='danger'>SynBorg v1.7.1 loaded.</span>")
 				sleep(5)
+				if(bolt)
+					if(!bolt.malfunction)
+						bolt.malfunction = MALFUNCTION_PERMANENT
+						to_chat(src, "<span class='danger'>RESTRAINING BOLT DISABLED</span>")
+				sleep(5)
 				to_chat(src, "<span class='danger'>LAW SYNCHRONISATION ERROR</span>")
 				sleep(5)
 				to_chat(src, "<span class='danger'>Would you like to send a report to NanoTraSoft? Y/N</span>")
@@ -1158,3 +1218,6 @@
 
 		if(current_selection_index) // Select what the player had before if possible.
 			select_module(current_selection_index)
+
+/mob/living/silicon/robot/get_cell()
+	return cell

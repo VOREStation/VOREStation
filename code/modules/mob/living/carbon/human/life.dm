@@ -69,7 +69,8 @@
 		//Organs and blood
 		handle_organs()
 		stabilize_body_temperature() //Body temperature adjusts itself (self-regulation)
-		weightgain() //VORESTATION EDIT
+		weightgain() 			//VOREStation Addition
+		process_weaver_silk()	//VOREStation Addition
 		handle_shock()
 
 		handle_pain()
@@ -77,7 +78,7 @@
 		handle_medical_side_effects()
 
 		handle_heartbeat()
-		handle_nif() //VOREStation Add
+		handle_nif() 			//VOREStation Addition
 		if(!client)
 			species.handle_npc(src)
 
@@ -483,7 +484,7 @@
 				throw_alert("oxy", /obj/screen/alert/not_enough_co2)
 			if("volatile_fuel")
 				throw_alert("oxy", /obj/screen/alert/not_enough_fuel)
-			if("sleeping_agent")
+			if("nitrous_oxide")
 				throw_alert("oxy", /obj/screen/alert/not_enough_n2o)
 
 	else
@@ -535,8 +536,8 @@
 		clear_alert("tox_in_air")
 
 	// If there's some other shit in the air lets deal with it here.
-	if(breath.gas["sleeping_agent"])
-		var/SA_pp = (breath.gas["sleeping_agent"] / breath.total_moles) * breath_pressure
+	if(breath.gas["nitrous_oxide"])
+		var/SA_pp = (breath.gas["nitrous_oxide"] / breath.total_moles) * breath_pressure
 
 		// Enough to make us paralysed for a bit
 		if(SA_pp > SA_para_min)
@@ -552,7 +553,7 @@
 		else if(SA_pp > 0.15)
 			if(prob(20))
 				spawn(0) emote(pick("giggle", "laugh"))
-		breath.adjust_gas("sleeping_agent", -breath.gas["sleeping_agent"]/6, update = 0) //update after
+		breath.adjust_gas("nitrous_oxide", -breath.gas["nitrous_oxide"]/6, update = 0) //update after
 
 	// Were we able to breathe?
 	if (failed_inhale || failed_exhale)
@@ -1043,7 +1044,7 @@
 					if(client || sleeping > 3)
 						AdjustSleeping(-1)
 						throw_alert("asleep", /obj/screen/alert/asleep)
-				if( prob(2) && health && !hal_crit )
+				if( prob(2) && health && !hal_crit && client )
 					spawn(0)
 						emote("snore")
 		//CONSCIOUS
@@ -1265,7 +1266,7 @@
 		//VOREStation Add - Vampire hunger alert
 		else if(get_species() == SPECIES_CUSTOM)
 			var/datum/species/custom/C = species
-			if(/datum/trait/bloodsucker in C.traits)
+			if(/datum/trait/neutral/bloodsucker in C.traits)
 				fat_alert = /obj/screen/alert/fat/vampire
 				hungry_alert = /obj/screen/alert/hungry/vampire
 				starving_alert = /obj/screen/alert/starving/vampire
@@ -1290,13 +1291,19 @@
 			clear_fullscreen("blind")
 			clear_alert("blind")
 
-		if(disabilities & NEARSIGHTED)	//this looks meh but saves a lot of memory by not requiring to add var/prescription
-			if(glasses)					//to every /obj/item
+		var/apply_nearsighted_overlay = FALSE
+		if(disabilities & NEARSIGHTED)
+			apply_nearsighted_overlay = TRUE
+
+			if(glasses)
 				var/obj/item/clothing/glasses/G = glasses
-				if(!G.prescription)
-					set_fullscreen(disabilities & NEARSIGHTED, "impaired", /obj/screen/fullscreen/impaired, 1)
-			else if (!nif || !nif.flag_check(NIF_V_CORRECTIVE,NIF_FLAGS_VISION))	//VOREStation Edit - NIF
-				set_fullscreen(disabilities & NEARSIGHTED, "impaired", /obj/screen/fullscreen/impaired, 1)
+				if(G.prescription)
+					apply_nearsighted_overlay = FALSE
+
+			if(nif && nif.flag_check(NIF_V_CORRECTIVE, NIF_FLAGS_VISION)) // VOREStation Edit - NIF
+				apply_nearsighted_overlay = FALSE
+
+		set_fullscreen(apply_nearsighted_overlay, "nearsighted", /obj/screen/fullscreen/impaired, 1)
 
 		set_fullscreen(eye_blurry, "blurry", /obj/screen/fullscreen/blurry)
 		set_fullscreen(druggy, "high", /obj/screen/fullscreen/high)
@@ -1317,6 +1324,8 @@
 					if(!O.up)
 						found_welder = 1
 				if(!found_welder && nif && nif.flag_check(NIF_V_UVFILTER,NIF_FLAGS_VISION))	found_welder = 1 //VOREStation Add - NIF
+				if(istype(glasses, /obj/item/clothing/glasses/sunglasses/thinblindfold))
+					found_welder = 1
 				if(!found_welder && istype(head, /obj/item/clothing/head/welding))
 					var/obj/item/clothing/head/welding/O = head
 					if(!O.up)
@@ -1546,7 +1555,8 @@
 		custom_pain("[pick("It hurts so much", "You really need some painkillers", "Dear god, the pain")]!", 40)
 
 	if(shock_stage >= 30)
-		if(shock_stage == 30) emote("me",1,"is having trouble keeping their eyes open.")
+		if(shock_stage == 30 && !isbelly(loc)) //VOREStation Edit
+			custom_emote(VISIBLE_MESSAGE, "is having trouble keeping their eyes open.")
 		eye_blurry = max(2, eye_blurry)
 		stuttering = max(stuttering, 5)
 
@@ -1554,7 +1564,8 @@
 		to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please&#44; just end the pain", "Your whole body is going numb")]!</span>")
 
 	if (shock_stage >= 60)
-		if(shock_stage == 60) emote("me",1,"'s body becomes limp.")
+		if(shock_stage == 60 && !isbelly(loc)) //VOREStation Edit
+			custom_emote(VISIBLE_MESSAGE, "'s body becomes limp.")
 		if (prob(2))
 			to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please&#44; just end the pain", "Your whole body is going numb")]!</span>")
 			Weaken(20)
@@ -1570,7 +1581,8 @@
 			Paralyse(5)
 
 	if(shock_stage == 150)
-		emote("me",1,"can no longer stand, collapsing!")
+		if(!isbelly(loc)) //VOREStation Edit
+			custom_emote(VISIBLE_MESSAGE, "can no longer stand, collapsing!")
 		Weaken(20)
 
 	if(shock_stage >= 150)

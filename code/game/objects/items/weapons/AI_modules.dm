@@ -417,3 +417,75 @@ AI MODULES
 	desc = "An 'Antimov' Core AI Module: 'Reconfigures the AI's core laws.'"
 	origin_tech = list(TECH_DATA = 4)
 	laws = new/datum/ai_laws/antimov()
+
+/****************** NT Aggressive *****************/
+
+/obj/item/weapon/aiModule/nanotrasen_aggressive
+	name = "\improper 'NT Aggressive' core AI module"
+	desc = "An 'NT Aggressive' Core AI Module: 'Reconfigures the AI's core laws.'"
+	origin_tech = list(TECH_DATA = 3, TECH_ILLEGAL = 1)
+	laws = new/datum/ai_laws/nanotrasen_aggressive()
+
+/******************** Syndicate Directives ********************/
+
+/obj/item/weapon/aiModule/syndicate_override
+	name = "\improper 'Syndicate Directives' core AI module"
+	desc = "A 'Syndicate Directives' Core AI Module: 'Reconfigures the AI's core laws.'"
+	origin_tech = list(TECH_DATA = 4, TECH_ILLEGAL = 4)
+	laws = new/datum/ai_laws/syndicate_override()
+
+/******************** Spider Clan Directives ********************/
+
+/obj/item/weapon/aiModule/ninja_override
+	name = "\improper 'Spider Clan Directives' core AI module"
+	desc = "A 'Spider Clan Directives' Core AI Module: 'Reconfigures the AI's core laws.'"
+	origin_tech = list(TECH_DATA = 4, TECH_ILLEGAL = 4)
+	laws = new/datum/ai_laws/ninja_override()
+
+/******************** Maintenance ********************/
+
+/obj/item/weapon/aiModule/maintenance
+	name = "\improper 'Maintenance' core AI module"
+	desc = "A 'Maintenance' Core AI Module: 'Reconfigures the AI's core laws.'"
+	origin_tech = list(TECH_DATA = 3)
+	laws = new/datum/ai_laws/maintenance()
+
+/******************** Peacekeeper ********************/
+
+/obj/item/weapon/aiModule/peacekeeper
+	name = "\improper 'Peacekeeper' core AI module"
+	desc = "A 'Peacekeeper' Core AI Module: 'Reconfigures the AI's core laws.'"
+	origin_tech = list(TECH_DATA = 3)
+	laws = new/datum/ai_laws/peacekeeper()
+
+/******************** Reporter ********************/
+
+/obj/item/weapon/aiModule/reporter
+	name = "\improper 'Reporter' core AI module"
+	desc = "A 'Reporter' Core AI Module: 'Reconfigures the AI's core laws.'"
+	origin_tech = list(TECH_DATA = 3)
+	laws = new/datum/ai_laws/reporter()
+
+/******************** Live and Let Live ********************/
+
+/obj/item/weapon/aiModule/live_and_let_live
+	name = "\improper 'Live and Let Live' core AI module"
+	desc = "A 'Live and Let Live' Core AI Module: 'Reconfigures the AI's core laws.'"
+	origin_tech = list(TECH_DATA = 3)
+	laws = new/datum/ai_laws/live_and_let_live()
+
+/******************** Guardian of Balance ********************/
+
+/obj/item/weapon/aiModule/balance
+	name = "\improper 'Guardian of Balance' core AI module"
+	desc = "A 'Guardian of Balance' Core AI Module: 'Reconfigures the AI's core laws.'"
+	origin_tech = list(TECH_DATA = 3)
+	laws = new/datum/ai_laws/balance()
+
+/******************** Gravekeeper ********************/
+
+/obj/item/weapon/aiModule/gravekeeper
+	name = "\improper 'Gravekeeper' core AI module"
+	desc = "A 'Gravekeeper' Core AI Module: 'Reconfigures the AI's core laws.'"
+	origin_tech = list(TECH_DATA = 3)
+	laws = new/datum/ai_laws/gravekeeper()

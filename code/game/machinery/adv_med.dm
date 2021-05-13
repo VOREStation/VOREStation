@@ -14,7 +14,6 @@
 	active_power_usage = 10000	//10 kW. It's a big all-body scanner.
 	light_color = "#00FF00"
 	var/obj/machinery/body_scanconsole/console
-	var/known_implants = list(/obj/item/weapon/implant/health, /obj/item/weapon/implant/chem, /obj/item/weapon/implant/death_alarm, /obj/item/weapon/implant/loyalty, /obj/item/weapon/implant/tracking, /obj/item/weapon/implant/language, /obj/item/weapon/implant/language/eal, /obj/item/weapon/implant/backup, /obj/item/device/nif) //VOREStation Add - Backup Implant, NIF
 	var/printing_text = null
 
 /obj/machinery/bodyscanner/Initialize()
@@ -255,13 +254,20 @@
 			organData["broken"] = E.min_broken_damage
 
 			var/implantData[0]
-			for(var/obj/I in E.implants)
+			for(var/obj/thing in E.implants)
 				var/implantSubData[0]
-				implantSubData["name"] = I.name
-				if(is_type_in_list(I, known_implants))
-					implantSubData["known"] = 1
-
-				implantData.Add(list(implantSubData))
+				var/obj/item/weapon/implant/I = thing
+			//VOREStation Block Edit Start
+				var/obj/item/device/nif/N = thing
+				if(istype(I))
+					implantSubData["name"] =  I.name
+					implantSubData["known"] = istype(I) && I.known_implant
+					implantData.Add(list(implantSubData))
+				else
+					implantSubData["name"] =  N.name
+					implantSubData["known"] = istype(N) && N.known_implant
+					implantData.Add(list(implantSubData))
+			//VOREStation Block Edit End
 
 			organData["implants"] = implantData
 			organData["implants_len"] = implantData.len
@@ -311,6 +317,10 @@
 			organData["broken"] = I.min_broken_damage
 			organData["robotic"] = (I.robotic >= ORGAN_ROBOT)
 			organData["dead"] = (I.status & ORGAN_DEAD)
+
+			if(istype(I, /obj/item/organ/internal/appendix))
+				var/obj/item/organ/internal/appendix/A = I
+				organData["inflamed"] = A.inflamed
 
 			intOrganData.Add(list(organData))
 
@@ -464,9 +474,13 @@
 					infected = "Gangrene Detected:"
 
 			var/unknown_body = 0
-			for(var/I in e.implants)
-				if(is_type_in_list(I,known_implants))
+			for(var/thing in e.implants)
+				var/obj/item/weapon/implant/I = thing
+				var/obj/item/device/nif/N = thing //VOREStation Add: NIFs
+				if(istype(I) && I.known_implant)
 					imp += "[I] implanted:"
+				if(istype(N) && N.known_implant) //VOREStation Add: NIFs
+					imp += "[N] implanted:"
 				else
 					unknown_body++
 
@@ -487,23 +501,28 @@
 			if(i.robotic >= ORGAN_ROBOT)
 				mech = "Mechanical:"
 			if(i.status & ORGAN_DEAD)
-				i_dead = "Necrotic:"
+				i_dead = "Necrotic"
 			var/infection = "None"
 			switch (i.germ_level)
 				if (INFECTION_LEVEL_ONE to INFECTION_LEVEL_ONE + 200)
-					infection = "Mild Infection:"
+					infection = "Mild Infection"
 				if (INFECTION_LEVEL_ONE + 200 to INFECTION_LEVEL_ONE + 300)
-					infection = "Mild Infection+:"
+					infection = "Mild Infection+"
 				if (INFECTION_LEVEL_ONE + 300 to INFECTION_LEVEL_ONE + 400)
-					infection = "Mild Infection++:"
+					infection = "Mild Infection++"
 				if (INFECTION_LEVEL_TWO to INFECTION_LEVEL_TWO + 200)
-					infection = "Acute Infection:"
+					infection = "Acute Infection"
 				if (INFECTION_LEVEL_TWO + 200 to INFECTION_LEVEL_TWO + 300)
-					infection = "Acute Infection+:"
+					infection = "Acute Infection+"
 				if (INFECTION_LEVEL_TWO + 300 to INFECTION_LEVEL_THREE - 50)
-					infection = "Acute Infection++:"
+					infection = "Acute Infection++"
 				if (INFECTION_LEVEL_THREE -49 to INFINITY)
-					infection = "Necrosis Detected:"
+					infection = "Necrosis Detected"
+
+			if(istype(i, /obj/item/organ/internal/appendix))
+				var/obj/item/organ/internal/appendix/A = i
+				if(A.inflamed)
+					infection = "Inflammation detected!"
 
 			dat += "<tr>"
 			dat += "<td>[i.name]</td><td>N/A</td><td>[i.damage]</td><td>[infection]:[mech][i_dead]</td><td></td>"

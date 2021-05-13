@@ -48,3 +48,23 @@
 	..()
 	for(var/mob/living/carbon/human/I in contents)
 		item_state = lowertext(I.species.name)
+
+//Egg features.
+/obj/item/weapon/holder/attack_hand(mob/living/user as mob)
+	if(istype(src.loc, /obj/item/weapon/storage/vore_egg)) //Don't scoop up the egged mob
+		src.pickup(user)
+		user.drop_from_inventory(src)
+		return
+	..()
+
+/obj/item/weapon/holder/container_resist(mob/living/held)
+	if(!istype(src.loc, /obj/item/weapon/storage/vore_egg))
+		..()
+	else
+		var/obj/item/weapon/storage/vore_egg/E = src.loc
+		if(isbelly(E.loc))
+			var/obj/belly/B = E.loc
+			B.relay_resist(held, E)
+			return
+		E.hatch(held)
+		return

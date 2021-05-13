@@ -49,10 +49,33 @@
 						for(var/obj/item/weapon/ore/ore in range(chassis,1))
 							if(get_dir(chassis,ore)&chassis.dir)
 								ore.forceMove(ore_box)
+			else if(isliving(target))
+				drill_mob(target, chassis.occupant)
+				return 1
 			else if(target.loc == C)
 				log_message("Drilled through [target]")
 				target.ex_act(2)
 	return 1
+
+/obj/item/mecha_parts/mecha_equipment/tool/drill/proc/drill_mob(mob/living/target, mob/user)
+	add_attack_logs(user, target, "attacked", "[name]", "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
+	var/drill_force = force	//Couldn't manage it otherwise.
+	if(ishuman(target))
+		target.apply_damage(drill_force, BRUTE)
+		return
+
+	else if(istype(target, /mob/living/simple_mob))
+		var/mob/living/simple_mob/S = target
+		if(target.stat == DEAD)
+			if(S.meat_amount > 0)
+				S.harvest(user)
+				return
+			else
+				S.gib()
+				return
+		else
+			S.apply_damage(drill_force)
+			return
 
 /obj/item/mecha_parts/mecha_equipment/tool/drill/diamonddrill
 	name = "diamond drill"

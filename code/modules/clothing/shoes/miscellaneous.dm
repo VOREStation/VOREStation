@@ -48,6 +48,11 @@
 
 	wizard_garb = 1
 
+obj/item/clothing/shoes/sandal/clogs
+	name = "plastic clogs"
+	desc = "A pair of plastic clog shoes."
+	icon_state = "clogs"
+
 /obj/item/clothing/shoes/sandal/marisa
 	desc = "A pair of magic, black shoes."
 	name = "magic shoes"
@@ -103,20 +108,25 @@
 	species_restricted = null
 	w_class = ITEMSIZE_SMALL
 	drop_sound = 'sound/items/drop/clothing.ogg'
-	pickup_sound = 'sound/items/pickup/cloth.ogg'
+	pickup_sound = 'sound/items/pickup/clothing.ogg'
 
-/obj/item/clothing/shoes/slippers_worn
+/obj/item/clothing/shoes/slippers/worn
 	name = "worn bunny slippers"
 	desc = "Fluffy..."
 	icon_state = "slippers_worn"
 	item_state_slots = list(slot_r_hand_str = "slippers", slot_l_hand_str = "slippers")
-	force = 0
-	w_class = ITEMSIZE_SMALL
 
 /obj/item/clothing/shoes/laceup
-	name = "laceup shoes"
-	desc = "The height of fashion, and they're pre-polished!"
-	icon_state = "laceups"
+	name = "black oxford  shoes"
+	icon_state = "oxford_black"
+
+/obj/item/clothing/shoes/laceup/grey
+	name = "grey oxford shoes"
+	icon_state = "oxford_grey"
+
+/obj/item/clothing/shoes/laceup/brown
+	name = "brown oxford shoes"
+	icon_state = "oxford_brown"
 
 /obj/item/clothing/shoes/swimmingfins
 	desc = "Help you swim good."
@@ -162,7 +172,7 @@
 	w_class = ITEMSIZE_SMALL
 	species_restricted = null
 	drop_sound = 'sound/items/drop/clothing.ogg'
-	pickup_sound = 'sound/items/pickup/cloth.ogg'
+	pickup_sound = 'sound/items/pickup/clothing.ogg'
 
 /obj/item/clothing/shoes/boots/ranger
 	var/bootcolor = "white"

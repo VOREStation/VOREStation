@@ -129,6 +129,7 @@
 	for(var/datum/category_item/player_setup_item/PI in items)
 		PI.load_character(S)
 
+
 /datum/category_group/player_setup_category/proc/save_character(var/savefile/S)
 	// Sanitize all data, then save it
 	for(var/datum/category_item/player_setup_item/PI in items)
@@ -299,7 +300,3 @@
 		if(PREF_FBP_SOFTWARE)
 			return 150
 	return S.max_age // welp
-
-/datum/category_item/player_setup_item/proc/color_square(red, green, blue, hex)
-	var/color = hex ? hex : "#[num2hex(red, 2)][num2hex(green, 2)][num2hex(blue, 2)]"
-	return "<span style='font-face: fixedsys; font-size: 14px; background-color: [color]; color: [color]'>___</span>"

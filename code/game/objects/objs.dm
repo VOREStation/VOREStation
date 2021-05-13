@@ -19,30 +19,12 @@
 	var/can_speak = 0 //For MMIs and admin trickery. If an object has a brainmob in its contents, set this to 1 to allow it to speak.
 
 	var/show_examine = TRUE	// Does this pop up on a mob when the mob is examined?
-	var/register_as_dangerous_object = FALSE // Should this tell its turf that it is dangerous automatically?
-
-/obj/Initialize()
-	if(register_as_dangerous_object)
-		register_dangerous_to_step()
-	return ..()
 
 /obj/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	if(register_as_dangerous_object)
-		unregister_dangerous_to_step()
 	return ..()
 
-/obj/Moved(atom/oldloc)
-	. = ..()
-	if(register_as_dangerous_object)
-		var/turf/old_turf = get_turf(oldloc)
-		var/turf/new_turf = get_turf(src)
-
-		if(old_turf != new_turf)
-			old_turf.unregister_dangerous_object(src)
-			new_turf.register_dangerous_object(src)
-
-/obj/Topic(href, href_list, var/datum/topic_state/state = default_state)
+/obj/Topic(href, href_list, var/datum/tgui_state/state = GLOB.tgui_default_state)
 	if(usr && ..())
 		return 1
 
@@ -55,7 +37,7 @@
 	CouldNotUseTopic(usr)
 	return 1
 
-/obj/CanUseTopic(var/mob/user, var/datum/topic_state/state = default_state)
+/obj/CanUseTopic(var/mob/user, var/datum/tgui_state/state = GLOB.tgui_default_state)
 	if(user.CanUseObjTopic(src))
 		return ..()
 	to_chat(user, "<span class='danger'>[bicon(src)]Access Denied!</span>")
@@ -69,7 +51,7 @@
 	return 1
 
 /obj/proc/CouldUseTopic(var/mob/user)
-	var/atom/host = nano_host()
+	var/atom/host = tgui_host()
 	host.add_hiddenprint(user)
 
 /obj/proc/CouldNotUseTopic(var/mob/user)
@@ -135,7 +117,6 @@
 			in_use = 0
 
 /obj/attack_ghost(mob/user)
-	ui_interact(user)
 	tgui_interact(user)
 	..()
 
@@ -182,9 +163,6 @@
 	return
 
 /obj/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
-	return
-
-/obj/proc/get_cell()
 	return
 
 // Used to mark a turf as containing objects that are dangerous to step onto.

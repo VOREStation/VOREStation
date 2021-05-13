@@ -23,6 +23,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	icon_state = "nif_0"
 
 	w_class = ITEMSIZE_TINY
+	var/known_implant = TRUE
 
 	var/durability = 100					// Durability remaining
 	var/bioadap = FALSE						// If it'll work in fancy species
@@ -45,6 +46,12 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	var/tmp/should_be_in = BP_HEAD		// Organ we're supposed to be held in
 
 	var/obj/item/device/communicator/commlink/comm		// The commlink requires this
+
+	var/list/starting_software = list(
+		/datum/nifsoft/commlink,
+		/datum/nifsoft/soulcatcher,
+		/datum/nifsoft/ar_civ
+	)
 
 	var/global/icon/big_icon
 	var/global/click_sound = 'sound/items/nif_click.ogg'
@@ -86,12 +93,6 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 			spawn(0)
 				qdel(src)
 			return FALSE
-		else
-			//Free commlink for return customers
-			new /datum/nifsoft/commlink(src)
-
-	//Free civilian AR included
-	new /datum/nifsoft/ar_civ(src)
 
 	//If given wear (like when spawned) then done
 	if(wear)
@@ -123,6 +124,11 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 		human.nif = src
 		stat = NIF_INSTALLING
 		H.verbs |= /mob/living/carbon/human/proc/set_nif_examine
+		menu = H.AddComponent(/datum/component/nif_menu)
+		if(starting_software)
+			for(var/path in starting_software)
+				new path(src)
+			starting_software = null
 		return TRUE
 
 	return FALSE
@@ -161,6 +167,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	stat = NIF_PREINSTALL
 	vis_update()
 	H.verbs -= /mob/living/carbon/human/proc/set_nif_examine
+	qdel_null(menu)
 	H.nif = null
 	human = null
 	install_done = null
@@ -356,6 +363,8 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 /obj/item/device/nif/proc/notify(var/message,var/alert = 0)
 	if(!human || stat == NIF_TEMPFAIL) return
 
+	last_notification = message // TGUI Hook
+
 	to_chat(human,"<b>\[[bicon(src.big_icon)]NIF\]</b> displays, \"<span class='[alert ? "danger" : "notice"]'>[message]</span>\"")
 	if(prob(1)) human.visible_message("<span class='notice'>\The [human] [pick(look_messages)].</span>")
 	if(alert)
@@ -377,6 +386,29 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 
 	//Was enough, reduce and return.
 	human.adjust_nutrition(-use_charge)
+	return TRUE
+
+// This operates on a nifsoft *path*, not an instantiation.
+// It tells the nifsoft shop if it's installation will succeed, to prevent it
+// from charging the user for incompatible software.
+/obj/item/device/nif/proc/can_install(var/datum/nifsoft/path)
+	if(stat == NIF_TEMPFAIL)
+		return FALSE
+
+	if(nifsofts[initial(path.list_pos)])
+		notify("The software \"[initial(path.name)]\" is already installed.", TRUE)
+		return FALSE
+
+	if(human)
+		var/applies_to = initial(path.applies_to)
+		var/synth = human.isSynthetic()
+		if(synth && !(applies_to & NIF_SYNTHETIC))
+			notify("The software \"[initial(path.name)]\" is not supported on your chassis type.",TRUE)
+			return FALSE
+		if(!synth && !(applies_to & NIF_ORGANIC))
+			notify("The software \"[initial(path.name)]\" is not supported in organic life.",TRUE)
+			return FALSE
+
 	return TRUE
 
 //Install a piece of software
@@ -561,6 +593,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	name = "bootleg NIF"
 	desc = "A copy of a copy of a copy of a copy of... this can't be any good, right? Surely?"
 	durability = 10
+	starting_software = null
 
 /obj/item/device/nif/authentic
 	name = "\improper Kitsuhana NIF"

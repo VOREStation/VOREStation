@@ -8,7 +8,7 @@
 	subspace_transmission = 1
 	canhear_range = 0 // can't hear headsets from very far away
 	slot_flags = SLOT_EARS
-	sprite_sheets = list(SPECIES_TESHARI = 'icons/mob/species/seromi/ears.dmi')
+	sprite_sheets = list(SPECIES_TESHARI = 'icons/mob/species/teshari/ears.dmi')
 
 	var/translate_binary = 0
 	var/translate_hive = 0
@@ -176,13 +176,13 @@
 
 
 /obj/item/device/radio/headset/heads/captain
-	name = "colony director's headset"
+	name = "site manager's headset"
 	desc = "The headset of the boss."
 	icon_state = "com_headset"
 	ks2type = /obj/item/device/encryptionkey/heads/captain
 
 /obj/item/device/radio/headset/heads/captain/alt
-	name = "colony director's bowman headset"
+	name = "site manager's bowman headset"
 	desc = "The headset of the boss."
 	icon_state = "com_headset_alt"
 	ks2type = /obj/item/device/encryptionkey/heads/captain
@@ -258,13 +258,13 @@
 
 /obj/item/device/radio/headset/heads/hop
 	name = "head of personnel's headset"
-	desc = "The headset of the guy who will one day be Colony Director."
+	desc = "The headset of the guy who will one day be Site Manager."
 	icon_state = "com_headset"
 	ks2type = /obj/item/device/encryptionkey/heads/hop
 
 /obj/item/device/radio/headset/heads/hop/alt
 	name = "head of personnel's bowman headset"
-	desc = "The headset of the guy who will one day be Colony Director."
+	desc = "The headset of the guy who will one day be Site Manager."
 	icon_state = "com_headset_alt"
 	ks2type = /obj/item/device/encryptionkey/heads/hop
 

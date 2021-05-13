@@ -26,7 +26,7 @@
 #define BORGMESON 0x1
 #define BORGTHERM 0x2
 #define BORGXRAY  0x4
-#define BORGMATERIAL  8
+#define BORGMATERIAL  0x8
 
 #define STANCE_ATTACK    11 // Backwards compatability
 #define STANCE_ATTACKING 12 // Ditto
@@ -160,12 +160,6 @@
 #define FLASH_PROTECTION_MODERATE 1
 #define FLASH_PROTECTION_MAJOR 2
 
-#define ANIMAL_SPAWN_DELAY round(config.respawn_delay / 6)
-#define DRONE_SPAWN_DELAY  round(config.respawn_delay / 3)
-
-#define ANIMAL_SPAWN_DELAY round(config.respawn_delay / 6)
-#define DRONE_SPAWN_DELAY  round(config.respawn_delay / 3)
-
 // Incapacitation flags, used by the mob/proc/incapacitated() proc
 #define INCAPACITATION_RESTRAINED 1
 #define INCAPACITATION_BUCKLED_PARTIALLY 2
@@ -278,6 +272,10 @@
 #define TASTE_DULL 0.5 //anything below 30%
 #define TASTE_NUMB 0.1 //anything below 150%
 
+//Used by emotes
+#define VISIBLE_MESSAGE 1
+#define AUDIBLE_MESSAGE 2
+
 // If they're in an FBP, what braintype.
 #define FBP_NONE	""
 #define FBP_CYBORG	"Cyborg"
@@ -289,6 +287,7 @@
 #define BORG_BRAINTYPE_CYBORG	"Cyborg"
 #define BORG_BRAINTYPE_POSI		"Robot"
 #define BORG_BRAINTYPE_DRONE	"Drone"
+#define BORG_BRAINTYPE_PLATFORM	"Platform"
 #define BORG_BRAINTYPE_AI_SHELL	"AI Shell"
 
 // 'Regular' species.
@@ -438,6 +437,8 @@
 #define EXAMINE_SKIPLEGS			0x0080
 #define EXAMINE_SKIPFEET			0x0100
 
-#define MAX_NUTRITION	5000 //VOREStation Edit
+#define MAX_NUTRITION	6000 //VOREStation Edit
 
 #define FAKE_INVIS_ALPHA_THRESHOLD 127 // If something's alpha var is at or below this number, certain things will pretend it is invisible.
+
+#define DEATHGASP_NO_MESSAGE "no message"

@@ -13,8 +13,8 @@ var/datum/antagonist/cultist/cult
 	bantype = "cultist"
 	restricted_jobs = list("Chaplain")
 	avoid_silicons = TRUE
-	protected_jobs = list("Security Officer", "Warden", "Detective", "Internal Affairs Agent", "Head of Security", "Colony Director")
-	roundstart_restricted = list("Internal Affairs Agent", "Head of Security", "Colony Director")
+	protected_jobs = list("Security Officer", "Warden", "Detective", "Internal Affairs Agent", "Head of Security", "Site Manager")
+	roundstart_restricted = list("Internal Affairs Agent", "Head of Security", "Site Manager")
 	role_type = BE_CULTIST
 	feedback_tag = "cult_objective"
 	antag_indicator = "cult"

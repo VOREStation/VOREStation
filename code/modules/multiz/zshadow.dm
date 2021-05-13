@@ -113,17 +113,9 @@
 	if(shadow)
 		shadow.set_dir(new_dir)
 
-// Transfer messages about what we are doing to upstairs
-/mob/visible_message(var/message, var/self_message, var/blind_message)
-	. = ..()
-	if(shadow)
-		shadow.visible_message(message, self_message, blind_message)
-
 /mob/zshadow/set_typing_indicator(var/state)
 	if(!typing_indicator)
-		typing_indicator = new
-		typing_indicator.icon = 'icons/mob/talk_vr.dmi' // Looks better on the right with job icons. //VOREStation Edit - talk_vr.dmi instead of talk.dmi for right-side icons
-		typing_indicator.icon_state = "typing"
+		init_typing_indicator("typing")
 	if(state && !typing)
 		overlays += typing_indicator
 		typing = 1

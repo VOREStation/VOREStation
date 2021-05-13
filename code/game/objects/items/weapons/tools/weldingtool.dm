@@ -21,6 +21,8 @@
 
 	//R&D tech level
 	origin_tech = list(TECH_ENGINEERING = 1)
+	
+	tool_qualities = list(TOOL_WELDER)
 
 	//Welding tool specific stuff
 	var/welding = 0 	//Whether or not the welding tool is off(0), on(1) or currently welding(2)
@@ -349,9 +351,11 @@
 				to_chat(user, "<span class='danger'>You go blind!</span>")
 				user.Blind(5)
 				user.eye_blurry = 5
-				user.disabilities |= NEARSIGHTED
-				spawn(100)
-					user.disabilities &= ~NEARSIGHTED
+				// Don't cure being nearsighted
+				if(!(H.disabilities & NEARSIGHTED))
+					user.disabilities |= NEARSIGHTED
+					spawn(100)
+						user.disabilities &= ~NEARSIGHTED
 	return
 
 /obj/item/weapon/weldingtool/is_hot()
@@ -669,7 +673,7 @@
 	always_process = TRUE
 
 /obj/item/weapon/weldingtool/electric/mounted/exosuit/Initialize()
-	..()
+	. = ..()
 
 	if(istype(loc, /obj/item/mecha_parts/mecha_equipment))
 		equip_mount = loc

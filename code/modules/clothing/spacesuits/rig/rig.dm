@@ -11,6 +11,7 @@
 	name = "hardsuit control module"
 	icon = 'icons/obj/rig_modules.dmi'
 	desc = "A back-mounted hardsuit deployment and control mechanism."
+	flags = PHORONGUARD
 	slot_flags = SLOT_BACK
 	req_one_access = list()
 	req_access = list()

@@ -8,7 +8,7 @@ var/list/department_radio_keys = list(
 	  ":n" = "Science",		".n" = "Science",
 	  ":m" = "Medical",		".m" = "Medical",
 	  ":e" = "Engineering", ".e" = "Engineering",
-	  ":k" = "Response Team",	".k" = "Response Team",	//TFF 11/3/20 - Add Response Team to channels usable rather than resorting to :H or such.,
+	  ":k" = "Response Team",	".k" = "Response Team",
 	  ":s" = "Security",	".s" = "Security",
 	  ":w" = "whisper",		".w" = "whisper",
 	  ":t" = "Mercenary",	".t" = "Mercenary",
@@ -17,7 +17,7 @@ var/list/department_radio_keys = list(
 	  ":v" = "Service",		".v" = "Service",
 	  ":p" = "AI Private",	".p" = "AI Private",
 	  ":y" = "Explorer",	".y" = "Explorer",
-	  ":t" = "Talon",		".t" = "Talon", //VOREStation Add,
+	  ":a" = "Talon",		".a" = "Talon", //VOREStation Add,
 
 	  ":R" = "right ear",	".R" = "right ear",
 	  ":L" = "left ear",	".L" = "left ear",
@@ -27,7 +27,7 @@ var/list/department_radio_keys = list(
 	  ":N" = "Science",		".N" = "Science",
 	  ":M" = "Medical",		".M" = "Medical",
 	  ":E" = "Engineering",	".E" = "Engineering",
-	  ":k" = "Response Team",	".k" = "Response Team",	//TFF 11/3/20 - Add Response Team to channels usable rather than resorting to :H or such.,
+	  ":k" = "Response Team",	".k" = "Response Team",
 	  ":S" = "Security",	".S" = "Security",
 	  ":W" = "whisper",		".W" = "whisper",
 	  ":T" = "Mercenary",	".T" = "Mercenary",
@@ -36,7 +36,7 @@ var/list/department_radio_keys = list(
 	  ":V" = "Service",		".V" = "Service",
 	  ":P" = "AI Private",	".P" = "AI Private",
 	  ":Y" = "Explorer",	".Y" = "Explorer",
-	  ":T" = "Talon",		".T" = "Talon", //VOREStation Add,
+	  ":A" = "Talon",		".A" = "Talon", //VOREStation Add,
 
 	  //kinda localization -- rastaf0
 	  //same keys as above, but on russian keyboard layout. This file uses cp1251 as encoding.
@@ -320,7 +320,7 @@ proc/get_radio_key_from_channel(var/channel)
 	var/speech_bubble_test = say_test(message)
 	//var/image/speech_bubble = image('icons/mob/talk_vr.dmi',src,"h[speech_bubble_test]") //VOREStation Edit. Commented this out in case we need to reenable.
 	var/speech_type = speech_bubble_appearance()
-	var/image/speech_bubble = image('icons/mob/talk_vr.dmi',src,"[speech_type][speech_bubble_test]") //VOREStation Edit - talk_vr.dmi instead of talk.dmi for right-side icons
+	var/image/speech_bubble = generate_speech_bubble(src, "[speech_type][speech_bubble_test]")
 	var/sb_alpha = 255
 	var/atom/loc_before_turf = src
 	//VOREStation Add
@@ -342,7 +342,7 @@ proc/get_radio_key_from_channel(var/channel)
 		var/turf/ST = get_turf(above)
 		if(ST)
 			var/list/results = get_mobs_and_objs_in_view_fast(ST, world.view)
-			var/image/z_speech_bubble = image('icons/mob/talk_vr.dmi', above, "h[speech_bubble_test]") //VOREStation Edit - talk_vr.dmi instead of talk.dmi for right-side icons
+			var/image/z_speech_bubble = generate_speech_bubble(above, "h[speech_bubble_test]")
 			images_to_clients[z_speech_bubble] = list()
 			for(var/item in results["mobs"])
 				if(item != above && !(item in listening))
@@ -432,39 +432,6 @@ proc/get_radio_key_from_channel(var/channel)
 
 /mob/proc/GetVoice()
 	return name
-
-/mob/living/emote(var/act, var/type, var/message) //emote code is terrible, this is so that anything that isn't
-	if(stat)			                          //already snowflaked to shit can call the parent and handle emoting sanely
-		return FALSE
-
-	if(..(act, type, message))
-		return TRUE
-
-	if(act && type && message)
-		log_emote(message, src)
-
-		for(var/mob/M in dead_mob_list)
-			if(!M.client)
-				continue
-
-			if(isnewplayer(M))
-				continue
-
-			if(isobserver(M) && M.is_preference_enabled(/datum/client_preference/ghost_sight))
-				M.show_message(message)
-
-		switch(type)
-			if(1) // Visible
-				visible_message(message)
-				return TRUE
-			if(2) // Audible
-				audible_message(message)
-				return TRUE
-	else
-		if(act == "help")
-			return // Mobs handle this individually
-		to_chat(src, "<span class='warning'>Unusable emote '[act]'. Say *help for a list.</span>")
-
 
 /mob/proc/speech_bubble_appearance()
 	return "normal"

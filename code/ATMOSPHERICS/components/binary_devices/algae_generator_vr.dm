@@ -232,7 +232,7 @@
 // 0 amount = 0 means ejecting a full stack; -1 means eject everything
 /obj/machinery/atmospherics/binary/algae_farm/proc/eject_materials(var/material_name, var/amount)
 	var/recursive = amount == -1 ? 1 : 0
-	var/material/matdata = get_material_by_name(material_name)
+	var/datum/material/matdata = get_material_by_name(material_name)
 	var/stack_type = matdata.stack_type
 	var/obj/item/stack/material/S = new stack_type(loc)
 	if(amount <= 0)
@@ -266,7 +266,7 @@
 		to_chat(user, "<span class='warning'>\The [src] cannot hold more [S.name].</span>")
 	return 1
 
-/material/algae
+/datum/material/algae
 	name = MAT_ALGAE
 	stack_type = /obj/item/stack/material/algae
 	icon_colour = "#557722"

@@ -44,7 +44,7 @@
 	if(config.show_human_death_message)
 		return ((H && H.isSynthetic()) ? "gives one shrill beep before falling lifeless." : death_message)
 	else
-		return "no message"
+		return DEATHGASP_NO_MESSAGE
 
 /datum/species/proc/get_ssd(var/mob/living/carbon/human/H)
 	if(H)

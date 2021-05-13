@@ -3,8 +3,10 @@
 
 /obj/item/device/cataloguer/compact
 	name = "compact cataloguer"
-	icon = 'icons/vore/custom_items_vr.dmi'
-	icon_state = "tricorder"
+	desc = "A compact hand-held device, used for compiling information about an object by scanning it. \
+	Alt+click to highlight scannable objects around you."
+	icon = 'icons/obj/device_vr.dmi'
+	icon_state = "compact"
 	action_button_name = "Toggle Cataloguer"
 	var/deployed = TRUE
 	scan_range = 1
@@ -30,7 +32,7 @@
 	if(deployed)
 		w_class = ITEMSIZE_NORMAL
 		icon_state = "[initial(icon_state)]"
-		to_chat(usr, span("notice", "You flip open \the [src]."))
+		to_chat(usr, span("notice", "You flick open \the [src]."))
 	else
 		w_class = ITEMSIZE_SMALL
 		icon_state = "[initial(icon_state)]_closed"
@@ -54,6 +56,15 @@
 
 /obj/item/device/cataloguer/compact/pathfinder
 	name = "pathfinder's cataloguer"
-	icon_state = "tricorder_med"
+	desc = "A compact hand-held device, used for compiling information about an object by scanning it. \
+	Alt+click to highlight scannable objects around you."
+	icon = 'icons/obj/device_vr.dmi'
+	icon_state = "pathcat"
 	scan_range = 3
 	toolspeed = 1
+
+/obj/item/device/cataloguer
+	desc = "A hand-held device, used for compiling information about an object by scanning it. \
+	Alt+click to highlight scannable objects around you."
+	icon = 'icons/obj/device_vr.dmi'
+	icon_state = "cataloguer"

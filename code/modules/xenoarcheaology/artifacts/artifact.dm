@@ -45,10 +45,10 @@
 	if(!isnull(predefined_icon_num))
 		icon_num = predefined_icon_num
 	else
-		icon_num = rand(0, 14)
+		icon_num = rand(0, 15)
 
 	icon_state = "ano[icon_num]0"
-	if(icon_num == 7 || icon_num == 8)
+	if(icon_num == 7 || icon_num == 8 || icon_num == 15)
 		name = "large crystal"
 		desc = pick("It shines faintly as it catches the light.",
 		"It appears to have a faint inner glow.",
@@ -57,7 +57,7 @@
 		"It's mesmerizing to behold.")
 		if(prob(50))
 			my_effect.trigger = TRIGGER_ENERGY
-	else if(icon_num == 9)
+	else if(icon_num == 9 || icon_num == 17 || icon_num == 19)
 		name = "alien computer"
 		desc = "It is covered in strange markings."
 		if(prob(75))

@@ -288,7 +288,7 @@
 		oxyloss = 0
 	else
 		..()
-		
+
 /mob/living/carbon/human/adjustHalLoss(var/amount)
 	if(species.flags & NO_PAIN)
 		halloss = 0
@@ -439,13 +439,14 @@ This function restores all organs.
 		return 0
 	return
 
-
+/*
 /mob/living/carbon/human/proc/get_organ(var/zone)
 	if(!zone)
 		zone = BP_TORSO
 	else if (zone in list( O_EYES, O_MOUTH ))
 		zone = BP_HEAD
 	return organs_by_name[zone]
+*/
 
 /mob/living/carbon/human/apply_damage(var/damage = 0, var/damagetype = BRUTE, var/def_zone = null, var/blocked = 0, var/soaked = 0, var/sharp = 0, var/edge = 0, var/obj/used_weapon = null)
 	if(Debug2)
@@ -491,6 +492,7 @@ This function restores all organs.
 	switch(damagetype)
 		if(BRUTE)
 			damageoverlaytemp = 20
+			if(nif && nif.flag_check(NIF_C_BRUTEARMOR,NIF_FLAGS_COMBAT)){damage *= 0.7}
 			damage = damage*species.brute_mod
 
 			for(var/datum/modifier/M in modifiers)
@@ -503,6 +505,7 @@ This function restores all organs.
 				UpdateDamageIcon()
 		if(BURN)
 			damageoverlaytemp = 20
+			if(nif && nif.flag_check(NIF_C_BURNARMOR,NIF_FLAGS_COMBAT)){damage *= 0.7}
 			damage = damage*species.burn_mod
 
 			for(var/datum/modifier/M in modifiers)

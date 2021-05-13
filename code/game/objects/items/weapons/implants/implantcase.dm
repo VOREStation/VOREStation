@@ -279,3 +279,33 @@
 	src.imp = new /obj/item/weapon/implant/organ/pelvic( src )
 	..()
 	return
+
+/obj/item/weapon/implantcase/armblade
+	name = "glass case - 'Armblade'"
+	desc = "A case containing a nanite fabricator implant."
+	icon_state = "implantcase-b"
+
+/obj/item/weapon/implantcase/armblade/New()
+	src.imp = new /obj/item/weapon/implant/organ/limbaugment/upperarm/blade( src )
+	..()
+	return
+
+/obj/item/weapon/implantcase/handblade
+	name = "glass case - 'Handblade'"
+	desc = "A case containing a nanite fabricator implant."
+	icon_state = "implantcase-b"
+
+/obj/item/weapon/implantcase/handblade/New()
+	src.imp = new /obj/item/weapon/implant/organ/limbaugment/wrist/blade( src )
+	..()
+	return
+
+/obj/item/weapon/implantcase/restrainingbolt
+	name = "glass case - 'Restraining Bolt'"
+	desc = "A case containing a restraining bolt."
+	icon_state = "implantcase-b"
+
+/obj/item/weapon/implantcase/restrainingbolt/New()
+	src.imp = new /obj/item/weapon/implant/restrainingbolt( src )
+	..()
+	return

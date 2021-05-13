@@ -55,6 +55,10 @@
 
 	var/rev_cooldown = 0
 	var/tcrystals = 0
+	var/list/purchase_log = new
+	var/used_TC = 0
+
+	var/list/learned_recipes //List of learned recipe TYPES.
 
 	// the world.time since the mob has been brigged, or -1 if not at all
 	var/brigged_since = -1
@@ -73,7 +77,7 @@
 
 /datum/mind/New(var/key)
 	src.key = key
-
+	purchase_log = list()
 	..()
 
 /datum/mind/proc/transfer_to(mob/living/new_character)
@@ -85,7 +89,6 @@
 			current.verbs -= /datum/changeling/proc/EvolutionMenu
 		current.mind = null
 
-		SSnanoui.user_transferred(current, new_character) // transfer active NanoUI instances to new user
 	if(new_character.mind)		//remove any mind currently in our new body's mind variable
 		new_character.mind.current = null
 
@@ -511,8 +514,9 @@
 
 //HUMAN
 /mob/living/carbon/human/mind_initialize()
-	..()
-	if(!mind.assigned_role)	mind.assigned_role = USELESS_JOB	//defualt //VOREStation Edit - Visitor not Assistant
+	. = ..()
+	if(!mind.assigned_role)
+		mind.assigned_role = USELESS_JOB	//defualt //VOREStation Edit - Visitor not Assistant
 
 //slime
 /mob/living/simple_mob/slime/mind_initialize()

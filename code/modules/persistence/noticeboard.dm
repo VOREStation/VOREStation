@@ -3,6 +3,7 @@
 	desc = "A board for pinning important notices upon."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "nboard00"
+	layer = ABOVE_WINDOW_LAYER
 	density = 0
 	anchored = 1
 	var/list/notices
@@ -103,7 +104,7 @@
 
 /obj/structure/noticeboard/examine(mob/user)
 	tgui_interact(user)
-	return list()
+	return ..()
 
 /obj/structure/noticeboard/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)

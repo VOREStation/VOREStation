@@ -40,6 +40,16 @@
 
 /obj/machinery/r_n_d/protolathe/Initialize()
 	. = ..()
+
+// Go through all materials, and add them to the possible storage, but hide them unless we contain them.
+	for(var/Name in name_to_material)
+		if(Name in materials)
+			continue
+
+		hidden_materials |= Name
+
+		materials[Name] = 0
+
 	default_apply_parts()
 
 /obj/machinery/r_n_d/protolathe/process()
@@ -226,7 +236,7 @@
 	var/recursive = amount == -1 ? 1 : 0
 	material = lowertext(material)
 	var/obj/item/stack/material/mattype
-	var/material/MAT = get_material_by_name(material)
+	var/datum/material/MAT = get_material_by_name(material)
 
 	if(!MAT)
 		return

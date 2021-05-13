@@ -77,7 +77,7 @@
 #define DO_AUTOPILOT 5
 
 // Setting this much higher than 1024 could allow spammers to DOS the server easily.
-#define MAX_MESSAGE_LEN       2048 //VOREStation Edit - I'm not sure about "easily". It can be a little longer.
+#define MAX_MESSAGE_LEN       4096 //VOREStation Edit - I'm not sure about "easily". It can be a little longer.
 #define MAX_PAPER_MESSAGE_LEN 6144
 #define MAX_BOOK_MESSAGE_LEN  24576
 #define MAX_RECORD_LENGTH	  24576
@@ -120,53 +120,6 @@
 
 #define WALL_CAN_OPEN 1
 #define WALL_OPENING 2
-
-#define DEFAULT_TABLE_MATERIAL "plastic"
-#define DEFAULT_WALL_MATERIAL "steel"
-
-#define MAT_IRON			"iron"
-#define MAT_MARBLE			"marble"
-#define MAT_STEEL			"steel"
-#define MAT_PLASTIC			"plastic"
-#define MAT_GLASS			"glass"
-#define MAT_SILVER			"silver"
-#define MAT_GOLD			"gold"
-#define MAT_URANIUM			"uranium" //Did it
-#define MAT_TITANIUM		"titanium"
-#define MAT_PHORON			"phoron"
-#define MAT_DIAMOND			"diamond"
-#define MAT_SNOW			"snow"
-#define MAT_WOOD			"wood"
-#define MAT_LOG				"log"
-#define MAT_SIFWOOD			"alien wood"
-#define MAT_SIFLOG			"alien log"
-#define MAT_STEELHULL		"steel hull"
-#define MAT_PLASTEEL		"plasteel"
-#define MAT_PLASTEELHULL	"plasteel hull"
-#define MAT_DURASTEEL		"durasteel"
-#define MAT_DURASTEELHULL	"durasteel hull"
-#define MAT_TITANIUMHULL	"titanium hull"
-#define MAT_VERDANTIUM		"verdantium"
-#define MAT_MORPHIUM		"morphium"
-#define MAT_MORPHIUMHULL	"morphium hull"
-#define MAT_VALHOLLIDE		"valhollide"
-#define MAT_LEAD			"lead"
-#define MAT_SUPERMATTER		"supermatter"
-#define MAT_METALHYDROGEN	"mhydrogen"
-#define MAT_OSMIUM			"osmium"
-#define MAT_GRAPHITE		"graphite"
-
-#define SHARD_SHARD "shard"
-#define SHARD_SHRAPNEL "shrapnel"
-#define SHARD_STONE_PIECE "piece"
-#define SHARD_SPLINTER "splinters"
-#define SHARD_NONE ""
-
-#define MATERIAL_UNMELTABLE 0x1
-#define MATERIAL_BRITTLE    0x2
-#define MATERIAL_PADDING    0x4
-
-#define TABLE_BRITTLE_MATERIAL_MULTIPLIER 4 // Amount table damage is multiplied by if it is made of a brittle material (e.g. glass)
 
 #define BOMBCAP_DVSTN_RADIUS (max_explosion_range/4)
 #define BOMBCAP_HEAVY_RADIUS (max_explosion_range/2)
@@ -463,10 +416,13 @@ var/global/list/##LIST_NAME = list();\
 
 #define FONT_GIANT(X) "<font size='5'>[X]</font>"
 
+// Volume Channel Defines
+
 #define VOLUME_CHANNEL_MASTER "Master"
 #define VOLUME_CHANNEL_AMBIENCE "Ambience"
 #define VOLUME_CHANNEL_ALARMS "Alarms"
 #define VOLUME_CHANNEL_VORE "Vore"
+#define VOLUME_CHANNEL_DOORS "Doors"
 
 // Make sure you update this or clients won't be able to adjust the channel
 GLOBAL_LIST_INIT(all_volume_channels, list(
@@ -474,4 +430,22 @@ GLOBAL_LIST_INIT(all_volume_channels, list(
 	VOLUME_CHANNEL_AMBIENCE,
 	VOLUME_CHANNEL_ALARMS,
 	VOLUME_CHANNEL_VORE,
+	VOLUME_CHANNEL_DOORS,
 ))
+
+#define APPEARANCECHANGER_CHANGED_RACE "Race"
+#define APPEARANCECHANGER_CHANGED_GENDER "Gender"
+#define APPEARANCECHANGER_CHANGED_GENDER_ID "Gender Identity"
+#define APPEARANCECHANGER_CHANGED_SKINTONE "Skin Tone"
+#define APPEARANCECHANGER_CHANGED_SKINCOLOR "Skin Color"
+#define APPEARANCECHANGER_CHANGED_HAIRSTYLE "Hair Style"
+#define APPEARANCECHANGER_CHANGED_HAIRCOLOR "Hair Color"
+#define APPEARANCECHANGER_CHANGED_F_HAIRSTYLE "Facial Hair Style"
+#define APPEARANCECHANGER_CHANGED_F_HAIRCOLOR "Facial Hair Color"
+#define APPEARANCECHANGER_CHANGED_EYES "Eye Color"
+
+#define GET_DECL(D) (ispath(D, /decl) ? (decls_repository.fetched_decls[D] || decls_repository.get_decl(D)) : null)
+
+#define LOADOUT_WHITELIST_OFF    0
+#define LOADOUT_WHITELIST_LAX    1
+#define LOADOUT_WHITELIST_STRICT 2

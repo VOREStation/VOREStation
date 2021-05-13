@@ -36,11 +36,26 @@ const ResearchConsoleViewResearch = (props, context) => {
   );
 };
 
+const PaginationTitle = (props, context) => {
+  const { data } = useBackend(context);
+
+  const {
+    title,
+    target,
+  } = props;
+
+  let page = data[target];
+  if (typeof page === "number") {
+    return title + " - Page " + (page + 1);
+  }
+
+  return title;
+};
+
 const PaginationChevrons = (props, context) => {
   const { act } = useBackend(context);
 
   const {
-    length,
     target,
   } = props;
 
@@ -67,14 +82,14 @@ const ResearchConsoleViewDesigns = (props, context) => {
   } = data;
 
   return (
-    <Section title="Researched Technologies & Designs" buttons={
+    <Section title={<PaginationTitle title="Researched Technologies & Designs" target="design_page" />} buttons={
       <Fragment>
         <Button
           icon="print"
           onClick={() => act("print", { print: 2 })}>
           Print This Page
         </Button>
-        {<PaginationChevrons length={designs && designs.length} target={"design_page"} /> || null}
+        {<PaginationChevrons target={"design_page"} /> || null}
       </Fragment>
     }>
       <Input
@@ -83,13 +98,17 @@ const ResearchConsoleViewDesigns = (props, context) => {
         value={data.search}
         onInput={(e, v) => act("search", { search: v })}
         mb={1} />
-      <LabeledList>
-        {designs.map(design => (
-          <LabeledList.Item label={design.name} key={design.name}>
-            {design.desc}
-          </LabeledList.Item>
-        ))}
-      </LabeledList>
+      {(designs && designs.length && (
+        <LabeledList>
+          {designs.map(design => (
+            <LabeledList.Item label={design.name} key={design.name}>
+              {design.desc}
+            </LabeledList.Item>
+          ))}
+        </LabeledList>
+      )) || (
+        <Box color="warning">No designs found.</Box>
+      )}
     </Section>
   );
 };
@@ -213,15 +232,17 @@ const DataDisk = (props, context) => {
 
   if (saveDialog) {
     return (
-      <Section title="Load Design to Disk" buttons={
-        <Fragment>
-          <Button
-            icon="arrow-left"
-            content="Back"
-            onClick={() => setSaveDialog(false)} />
-          {<PaginationChevrons length={designs && designs.length} target={"design_page"} /> || null}
-        </Fragment>
-      }>
+      <Section
+        title={<PaginationTitle title="Load Design to Disk" target="design_page" />}
+        buttons={
+          <Fragment>
+            <Button
+              icon="arrow-left"
+              content="Back"
+              onClick={() => setSaveDialog(false)} />
+            {<PaginationChevrons target={"design_page"} /> || null}
+          </Fragment>
+        }>
         <Input
           fluid
           placeholder="Search for..."
@@ -411,16 +432,18 @@ const ResearchConsoleBuildMenu = (props, context) => {
   }
 
   return (
-    <Section title="Designs" buttons={
-      <PaginationChevrons length={designs && designs.length} target={"builder_page"} />
-    }>
+    <Section
+      title={<PaginationTitle target="builder_page" title="Designs" />}
+      buttons={
+        <PaginationChevrons target={"builder_page"} />
+      }>
       <Input
         fluid
         placeholder="Search for..."
         value={data.search}
         onInput={(e, v) => act("search", { search: v })}
         mb={1} />
-      {designs.length ? designs.map(design => (
+      {designs && designs.length ? designs.map(design => (
         <Fragment key={design.id}>
           <Flex width="100%" justify="space-between">
             <Flex.Item width="40%" style={{ "word-wrap": "break-all" }}>
@@ -483,7 +506,7 @@ const ResearchConsoleConstructor = (props, context) => {
   if (!linked || !linked.present) {
     return (
       <Section title={name}>
-        No protolathe found.
+        No {name} found.
       </Section>
     );
   }
@@ -500,6 +523,25 @@ const ResearchConsoleConstructor = (props, context) => {
   } = linked;
 
   const [protoTab, setProtoTab] = useSharedState(context, "protoTab", 0);
+
+  let queueColor = "transparent";
+  let queueSpin = false;
+  let queueIcon = "layer-group";
+  if (busy) {
+    queueIcon = "hammer";
+    queueColor = "average";
+    queueSpin = true;
+  } else if (queue && queue.length) {
+    queueIcon = "sync";
+    queueColor = "green";
+    queueSpin = true;
+  }
+
+  // Proto vs Circuit differences
+  let removeQueueAction = (name === "Protolathe") ? "removeP" : "removeI";
+  let ejectSheetAction = (name === "Protolathe") ? "lathe_ejectsheet" : "imprinter_ejectsheet";
+  let ejectChemAction = (name === "Protolathe") ? "disposeP" : "disposeI";
+  let ejectAllChemAction = (name === "Protolathe") ? "disposeallP" : "disposeallI";
 
   return (
     <Section title={name} buttons={busy && (
@@ -531,9 +573,9 @@ const ResearchConsoleConstructor = (props, context) => {
           Build
         </Tabs.Tab>
         <Tabs.Tab
-          icon="layer-group"
-          iconSpin={busy}
-          color={busy ? "average" : "transparent"}
+          icon={queueIcon}
+          iconSpin={queueSpin}
+          color={queueColor}
           selected={protoTab === 1}
           onClick={() => setProtoTab(1)}>
           Queue
@@ -569,7 +611,7 @@ const ResearchConsoleConstructor = (props, context) => {
                       <Button
                         ml={1}
                         icon="trash"
-                        onClick={() => act("removeP", { removeP: item.index })}>
+                        onClick={() => act(removeQueueAction, { [removeQueueAction]: item.index })}>
                         Remove
                       </Button>
                     </Box>
@@ -583,7 +625,7 @@ const ResearchConsoleConstructor = (props, context) => {
               <LabeledList.Item label={item.name} key={item.name}>
                 <Button
                   icon="trash"
-                  onClick={() => act("removeP", { removeP: item.index })}>
+                  onClick={() => act(removeQueueAction, { [removeQueueAction]: item.index })}>
                   Remove
                 </Button>
               </LabeledList.Item>
@@ -612,14 +654,14 @@ const ResearchConsoleConstructor = (props, context) => {
                     disabled={!mat.removable}
                     onClick={() => {
                       setEjectAmt(0);
-                      act("lathe_ejectsheet", { lathe_ejectsheet: mat.name, amount: ejectAmt });
+                      act(ejectSheetAction, { [ejectSheetAction]: mat.name, amount: ejectAmt });
                     }}>
                     Num
                   </Button>
                   <Button
                     icon="eject"
                     disabled={!mat.removable}
-                    onClick={() => act("lathe_ejectsheet", { lathe_ejectsheet: mat.name, amount: 50 })}>
+                    onClick={() => act(ejectSheetAction, { [ejectSheetAction]: mat.name, amount: 50 })}>
                     All
                   </Button>
                 </Fragment>
@@ -638,7 +680,7 @@ const ResearchConsoleConstructor = (props, context) => {
                 <Button
                   ml={1}
                   icon="eject"
-                  onClick={() => act("disposeP", { dispose: chem.id })}>
+                  onClick={() => act(ejectChemAction, { dispose: chem.id })}>
                   Purge
                 </Button>
               </LabeledList.Item>
@@ -651,7 +693,7 @@ const ResearchConsoleConstructor = (props, context) => {
           <Button
             mt={1}
             icon="trash"
-            onClick={() => act("disposeallP")}>
+            onClick={() => act(ejectAllChemAction)}>
             Disposal All Chemicals In Storage
           </Button>
         </Box>
@@ -781,9 +823,11 @@ const ResearchConsoleSettings = (props, context) => {
 
 const menus = [
   { name: "Protolathe", icon: "wrench", template: <ResearchConsoleConstructor name="Protolathe" /> },
-  { name: "Circuit Imprinter",
+  {
+    name: "Circuit Imprinter",
     icon: "digital-tachograph",
-    template: <ResearchConsoleConstructor name="Circuit Imprinter" /> },
+    template: <ResearchConsoleConstructor name="Circuit Imprinter" />,
+  },
   { name: "Destructive Analyzer", icon: "eraser", template: <ResearchConsoleDestructiveAnalyzer /> },
   { name: "Settings", icon: "cog", template: <ResearchConsoleSettings /> },
   { name: "Research List", icon: "flask", template: <ResearchConsoleViewResearch /> },

@@ -202,7 +202,7 @@ const GeneralRecordsViewGeneral = (_properties, context) => {
             </LabeledList.Item>
           ))}
         </LabeledList>
-        <Section title="Employment/skills summary" level={2}>
+        <Section title="Employment/skills summary" level={2} prewrap>
           {general.skills || "No data found."}
         </Section>
         <Section title="Comments/Log" level={2}>

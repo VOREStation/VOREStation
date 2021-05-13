@@ -12,7 +12,7 @@
 		SPECIES_FENNEC 			= 'icons/mob/species/vulpkanin/helmet.dmi',
 		SPECIES_PROMETHEAN		= 'icons/mob/species/skrell/helmet.dmi',
 		SPECIES_VOX 			= 'icons/mob/species/vox/head.dmi',
-		SPECIES_TESHARI 		= 'icons/mob/species/seromi/head.dmi'
+		SPECIES_TESHARI 		= 'icons/mob/species/teshari/head.dmi'
 		)
 
 
@@ -31,7 +31,7 @@
 		SPECIES_FENNEC			= 'icons/mob/species/vulpkanin/suit.dmi',
 		SPECIES_PROMETHEAN		= 'icons/mob/species/skrell/suit.dmi',
 		SPECIES_VOX 			= 'icons/mob/species/vox/suit.dmi',
-		SPECIES_TESHARI 		= 'icons/mob/species/seromi/suit.dmi'
+		SPECIES_TESHARI 		= 'icons/mob/species/teshari/suit.dmi'
 		)
 
 /obj/item/clothing/head/helmet/space/rig

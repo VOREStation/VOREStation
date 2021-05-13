@@ -65,7 +65,7 @@
 	)
 
 /decl/closet_appearance/secure_closet/expedition
-	color = COLOR_LIGHT_VIOLET
+	color = COLOR_BRASS
 	decals = list(
 		"lower_side_vent"
 	)

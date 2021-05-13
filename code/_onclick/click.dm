@@ -18,6 +18,7 @@
 
 /atom/Click(var/location, var/control, var/params) // This is their reaction to being clicked on (standard proc)
 	if(src)
+		SEND_SIGNAL(src, COMSIG_CLICK, location, control, params, usr)
 		usr.ClickOn(src, params)
 
 /atom/DblClick(var/location, var/control, var/params)
@@ -114,11 +115,12 @@
 		trigger_aiming(TARGET_CAN_CLICK)
 		return 1
 
-	// VOREStation Addition Start: inbelly interaction
+	// VOREStation Addition Start: inbelly item interaction
 	if(isbelly(loc) && (loc == A.loc))
 		if(W)
-			to_chat(src, "The firm confines prevent that kind of dexterity!")	//Only hand-based interactions in bellies
-			return
+			var/resolved = W.resolve_attackby(A,src)
+			if(!resolved && A && W)
+				W.afterattack(A, src, 1, params) // 1: clicking something Adjacent
 		else
 			if(ismob(A)) // No instant mob attacking
 				setClickCooldown(get_attack_speed())
@@ -353,19 +355,13 @@
 		facedir(direction)
 
 /obj/screen/click_catcher
+	name = "Darkness"
 	icon = 'icons/mob/screen_gen.dmi'
 	icon_state = "click_catcher"
 	plane = CLICKCATCHER_PLANE
+	layer = LAYER_HUD_UNDER
 	mouse_opacity = 2
-	screen_loc = "CENTER-7,CENTER-7"
-
-/obj/screen/click_catcher/proc/MakeGreed()
-	. = list()
-	for(var/i = 0, i<15, i++)
-		for(var/j = 0, j<15, j++)
-			var/obj/screen/click_catcher/CC = new()
-			CC.screen_loc = "NORTH-[i],EAST-[j]"
-			. += CC
+	screen_loc = "SOUTHWEST to NORTHEAST"
 
 /obj/screen/click_catcher/Click(location, control, params)
 	var/list/modifiers = params2list(params)
@@ -373,7 +369,11 @@
 		var/mob/living/carbon/C = usr
 		C.swap_hand()
 	else
-		var/turf/T = screen_loc2turf(screen_loc, get_turf(usr))
+		var/list/P = params2list(params)
+		var/turf/T = screen_loc2turf(P["screen-loc"], get_turf(usr))
 		if(T)
+			if(modifiers["shift"])
+				usr.face_atom(T)
+				return 1
 			T.Click(location, control, params)
-	. = 1
+	return 1

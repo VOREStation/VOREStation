@@ -57,12 +57,8 @@
 	// Create robolimbs for chargen.
 	populate_robolimb_list()
 
-	//Must be done now, otherwise ZAS zones and lighting overlays need to be recreated.
-	//createRandomZlevel()	//VOREStation Removal: Deprecated
-
 	master_controller = new /datum/controller/game_controller()
-
-	Master.Initialize(10, FALSE, TRUE)
+	Master.Initialize(10, FALSE, TRUE) // VOREStation Edit
 
 	spawn(1)
 		master_controller.setup()
@@ -115,8 +111,10 @@ var/world_topic_spam_protect_time = world.timeofday
 		s["players"] = 0
 		s["stationtime"] = stationtime2text()
 		s["roundduration"] = roundduration2text()
+		s["map"] = strip_improper(using_map.full_name) //Done to remove the non-UTF-8 text macros 
 
-		if(input["status"] == "2")
+		if(input["status"] == "2") // Shiny new hip status.
+			var/active = 0
 			var/list/players = list()
 			var/list/admins = list()
 
@@ -126,15 +124,18 @@ var/world_topic_spam_protect_time = world.timeofday
 						continue
 					admins[C.key] = C.holder.rank
 				players += C.key
+				if(istype(C.mob, /mob/living))
+					active++
 
 			s["players"] = players.len
 			s["playerlist"] = list2params(players)
+			s["active_players"] = active
 			var/list/adm = get_admin_counts()
 			var/list/presentmins = adm["present"]
 			var/list/afkmins = adm["afk"]
 			s["admins"] = presentmins.len + afkmins.len //equivalent to the info gotten from adminwho
 			s["adminlist"] = list2params(admins)
-		else
+		else // Legacy.
 			var/n = 0
 			var/admins = 0
 
@@ -202,7 +203,7 @@ var/world_topic_spam_protect_time = world.timeofday
 			// No combat/syndicate cyborgs, no drones, and no AI shells.
 			if(robot.shell)
 				continue
-			if(robot.module && robot.module.hide_on_manifest)
+			if(robot.module && robot.module.hide_on_manifest())
 				continue
 			if(!positions["bot"])
 				positions["bot"] = list()
@@ -408,7 +409,6 @@ var/world_topic_spam_protect_time = world.timeofday
 			to_world("<span class='boldannounce'>Rebooting world immediately due to host request</span>")
 	else
 		Master.Shutdown()	//run SS shutdowns
-		//processScheduler.stop() //VOREStation Removal
 		for(var/client/C in GLOB.clients)
 			if(config.server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
 				C << link("byond://[config.server]")

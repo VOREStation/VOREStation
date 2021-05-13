@@ -76,5 +76,5 @@
 				I.afterattack(chosen_target, user)
 		else
 			chosen_target.attack_hand(user)
-		log_and_message_admins("has warp striked [chosen_target].")
+		add_attack_logs(user,chosen_target,"Warp striked")
 

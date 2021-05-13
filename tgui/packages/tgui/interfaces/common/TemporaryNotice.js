@@ -1,3 +1,4 @@
+import { decodeHtmlEntities } from 'common/string';
 import { useBackend } from "../../backend";
 import { Box, Button, NoticeBox } from "../../components";
 
@@ -15,6 +16,9 @@ import { Box, Button, NoticeBox } from "../../components";
  * @param {object} context
  */
 export const TemporaryNotice = (_properties, context) => {
+  const {
+    decode,
+  } = _properties;
   const { act, data } = useBackend(context);
   const { temp } = data;
   if (!temp) {
@@ -24,7 +28,7 @@ export const TemporaryNotice = (_properties, context) => {
   return (
     <NoticeBox {...temporaryProperty}>
       <Box display="inline-block" verticalAlign="middle">
-        {temp.text}
+        {decode ? decodeHtmlEntities(temp.text) : temp.text}
       </Box>
       <Button
         icon="times-circle"

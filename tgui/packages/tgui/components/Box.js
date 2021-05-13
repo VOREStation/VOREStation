@@ -104,11 +104,13 @@ const styleMapperByPropName = {
   verticalAlign: mapRawPropTo('vertical-align'),
   textTransform: mapRawPropTo('text-transform'),
   wordWrap: mapRawPropTo('word-wrap'),
+  unselectable: mapRawPropTo('unselectable'),
   // Boolean props
   inline: mapBooleanPropTo('display', 'inline-block'),
   bold: mapBooleanPropTo('font-weight', 'bold'),
   italic: mapBooleanPropTo('font-style', 'italic'),
   nowrap: mapBooleanPropTo('white-space', 'nowrap'),
+  prewrap: mapBooleanPropTo('white-space', 'pre-wrap'),
   // Margins
   m: mapDirectionalUnitPropTo('margin', halfUnit, [
     'top', 'bottom', 'left', 'right',

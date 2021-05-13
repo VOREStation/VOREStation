@@ -229,8 +229,17 @@ proc/admin_notice(var/message, var/rights)
 		return
 	PlayerNotesPage(1)
 
-/datum/admins/proc/PlayerNotesPage(page)
-	var/dat = "<B>Player notes</B><HR>"
+/datum/admins/proc/PlayerNotesFilter()
+	if (!istype(src,/datum/admins))
+		src = usr.client.holder
+	if (!istype(src,/datum/admins))
+		to_chat(usr, "Error: you are not an admin!")
+		return
+	var/filter = input(usr, "Filter string (case-insensitive regex)", "Player notes filter") as text|null
+	PlayerNotesPage(1, filter)
+
+/datum/admins/proc/PlayerNotesPage(page, filter)
+	var/dat = "<B>Player notes</B> - <a href='?src=\ref[src];notes=filter'>Apply Filter</a><HR>"
 	var/savefile/S=new("data/player_notes.sav")
 	var/list/note_keys
 	S >> note_keys
@@ -240,29 +249,38 @@ proc/admin_notice(var/message, var/rights)
 		dat += "<table>"
 		note_keys = sortList(note_keys)
 
+		if(filter)
+			var/list/results = list()
+			var/regex/needle = regex(filter, "i")
+			for(var/haystack in note_keys)
+				if(needle.Find(haystack))
+					results += haystack
+			note_keys = results
+
 		// Display the notes on the current page
 		var/number_pages = note_keys.len / PLAYER_NOTES_ENTRIES_PER_PAGE
 		// Emulate CEILING(why does BYOND not have ceil, 1)
 		if(number_pages != round(number_pages))
 			number_pages = round(number_pages) + 1
 		var/page_index = page - 1
+
 		if(page_index < 0 || page_index >= number_pages)
-			return
+			dat += "<tr><td>No keys found.</td></tr>"
+		else
+			var/lower_bound = page_index * PLAYER_NOTES_ENTRIES_PER_PAGE + 1
+			var/upper_bound = (page_index + 1) * PLAYER_NOTES_ENTRIES_PER_PAGE
+			upper_bound = min(upper_bound, note_keys.len)
+			for(var/index = lower_bound, index <= upper_bound, index++)
+				var/t = note_keys[index]
+				dat += "<tr><td><a href='?src=\ref[src];notes=show;ckey=[t]'>[t]</a></td></tr>"
 
-		var/lower_bound = page_index * PLAYER_NOTES_ENTRIES_PER_PAGE + 1
-		var/upper_bound = (page_index + 1) * PLAYER_NOTES_ENTRIES_PER_PAGE
-		upper_bound = min(upper_bound, note_keys.len)
-		for(var/index = lower_bound, index <= upper_bound, index++)
-			var/t = note_keys[index]
-			dat += "<tr><td><a href='?src=\ref[src];notes=show;ckey=[t]'>[t]</a></td></tr>"
-
-		dat += "</table><br>"
+		dat += "</table><hr>"
 
 		// Display a footer to select different pages
 		for(var/index = 1, index <= number_pages, index++)
 			if(index == page)
 				dat += "<b>"
-			dat += "<a href='?src=\ref[src];notes=list;index=[index]'>[index]</a> "
+			dat += "<a href='?src=\ref[src];notes=list;index=[index];filter=[filter ? url_encode(filter) : 0]'>[index]</a> "
 			if(index == page)
 				dat += "</b>"
 
@@ -407,7 +425,7 @@ proc/admin_notice(var/message, var/rights)
 			dat+="<B><FONT COLOR='maroon'>ERROR: Could not submit Feed story to Network.</B></FONT><HR><BR>"
 			if(src.admincaster_feed_channel.channel_name=="")
 				dat+="<FONT COLOR='maroon'>Invalid receiving channel name.</FONT><BR>"
-			if(src.admincaster_feed_message.body == "" || src.admincaster_feed_message.body == "\[REDACTED\]")
+			if(src.admincaster_feed_message.body == "" || src.admincaster_feed_message.body == "\[REDACTED\]" || admincaster_feed_message.title == "")
 				dat+="<FONT COLOR='maroon'>Invalid message body.</FONT><BR>"
 			dat+="<BR><A href='?src=\ref[src];ac_setScreen=[3]'>Return</A><BR>"
 		if(7)
@@ -436,11 +454,14 @@ proc/admin_notice(var/message, var/rights)
 					var/i = 0
 					for(var/datum/feed_message/MESSAGE in src.admincaster_feed_channel.messages)
 						i++
-						dat+="-[MESSAGE.body] <BR>"
+						//dat+="-[MESSAGE.body] <BR>"
+						var/pic_data
 						if(MESSAGE.img)
 							usr << browse_rsc(MESSAGE.img, "tmp_photo[i].png")
-							dat+="<img src='tmp_photo[i].png' width = '180'><BR><BR>"
-						dat+="<FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[MESSAGE.author]</FONT>\]</FONT><BR>"
+							pic_data+="<img src='tmp_photo[i].png' width = '180'><BR>"
+						dat+= get_newspaper_content(MESSAGE.title, MESSAGE.body, MESSAGE.author,"#d4cec1", pic_data)
+						dat+="<BR>"
+						dat+="<FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[MESSAGE.author] - [MESSAGE.time_stamp]</FONT>\]</FONT><BR>"
 			dat+={"
 				<BR><HR><A href='?src=\ref[src];ac_refresh=1'>Refresh</A>
 				<BR><A href='?src=\ref[src];ac_setScreen=[1]'>Back</A>
@@ -946,7 +967,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	log_admin("[key_name(usr)] toggled persistence to [config.persistence_disabled ? "Off" : "On"].")
 	world.update_status()
 	feedback_add_details("admin_verb","TPD") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	
+
 /datum/admins/proc/togglemaploadpersistence()
 	set category = "Server"
 	set desc="Whether mapload persistent data will be saved from now on."
@@ -1424,6 +1445,11 @@ var/datum/announcement/minor/admin_min_announcer = new
 		return 1
 	if(tomob.client) //No need to ghostize if there is no client
 		tomob.ghostize(0)
+	if(frommob.mind && frommob.mind.current) //Preserve teleop for original body when adminghosting.
+		var/mob/body = frommob.mind.current
+		if(body)
+			if(body.teleop)
+				body.teleop = tomob
 	message_admins("<span class='adminnotice'>[key_name_admin(usr)] has put [frommob.ckey] in control of [tomob.name].</span>")
 	log_admin("[key_name(usr)] stuffed [frommob.ckey] into [tomob.name].")
 	feedback_add_details("admin_verb","CGD")

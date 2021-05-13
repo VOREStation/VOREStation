@@ -241,7 +241,7 @@
 	M.initial_icon = new_icon
 	if(new_icon_file)
 		M.icon = new_icon_file
-	M.reset_icon()
+	M.update_icon()
 	use(1, user)
 
 /obj/mecha/attackby(var/obj/item/weapon/W, var/mob/user)

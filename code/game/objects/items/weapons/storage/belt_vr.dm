@@ -1,6 +1,6 @@
 /obj/item/weapon/storage/belt
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/mob/species/seromi/belt.dmi',
+		SPECIES_TESHARI = 'icons/mob/species/teshari/belt.dmi',
 		SPECIES_WEREBEAST = 'icons/mob/species/werebeast/belt.dmi')
 		
 /obj/item/weapon/storage/belt/explorer

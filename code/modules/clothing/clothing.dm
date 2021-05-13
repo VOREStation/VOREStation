@@ -2,7 +2,7 @@
 	name = "clothing"
 	siemens_coefficient = 0.9
 	drop_sound = 'sound/items/drop/clothing.ogg'
-	pickup_sound = 'sound/items/pickup/cloth.ogg'
+	pickup_sound = 'sound/items/pickup/clothing.ogg'
 	var/list/species_restricted = null //Only these species can wear this kit.
 	var/gunshot_residue //Used by forensics.
 
@@ -30,6 +30,7 @@
 
 	var/update_icon_define = null	// Only needed if you've got multiple files for the same type of clothing
 
+	var/polychromic = FALSE //VOREStation edit
 
 //Updates the icons of the mob wearing the clothing item, if any.
 /obj/item/clothing/proc/update_clothing_icon()
@@ -37,7 +38,7 @@
 
 // Aurora forensics port.
 /obj/item/clothing/clean_blood()
-	..()
+	. = ..()
 	gunshot_residue = null
 
 
@@ -48,6 +49,17 @@
 			var/obj/item/clothing/accessory/tie = new T(src)
 			src.attach_accessory(null, tie)
 	set_clothing_index()
+
+	//VOREStation edit start
+	if(polychromic)
+		verbs |= /obj/item/clothing/proc/change_color
+	//VOREStation edit start
+
+/obj/item/clothing/update_icon()
+	overlays.Cut() //This removes all the overlays on the sprite and then goes down a checklist adding them as required.
+	if(blood_DNA)
+		add_blood()
+	. = ..()
 
 /obj/item/clothing/equipped(var/mob/user,var/slot)
 	..()
@@ -161,6 +173,24 @@
 	else
 		icon = initial(icon)
 
+//VOREStation edit start
+/obj/item/clothing/proc/change_color()
+	set name = "Change Color"
+	set category = "Object"
+	set desc = "Change the color of the clothing."
+	set src in usr
+
+	if(usr.stat || usr.restrained() || usr.incapacitated())
+		return
+
+	var/new_color = input(usr, "Pick a new color", "Color", color) as color|null
+
+	if(new_color && (new_color != color))
+		color = new_color
+	update_icon()
+	update_clothing_icon()
+//VOREStation edit end
+
 /obj/item/clothing/head/helmet/refit_for_species(var/target_species)
 	if(!species_restricted)
 		return //this item doesn't use the species_restricted system
@@ -199,7 +229,7 @@
 	throwforce = 2
 	slot_flags = SLOT_EARS
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/mob/species/seromi/ears.dmi')
+		SPECIES_TESHARI = 'icons/mob/species/teshari/ears.dmi')
 
 /obj/item/clothing/ears/attack_hand(mob/user as mob)
 	if (!user) return
@@ -298,7 +328,7 @@
 	slot_flags = SLOT_GLOVES
 	attack_verb = list("challenged")
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/mob/species/seromi/gloves.dmi',
+		SPECIES_TESHARI = 'icons/mob/species/teshari/gloves.dmi',
 		SPECIES_VOX = 'icons/mob/species/vox/gloves.dmi'
 		)
 	drop_sound = 'sound/items/drop/gloves.ogg'
@@ -341,6 +371,11 @@
 			species_restricted -= SPECIES_TAJ
 		return
 */
+
+/obj/item/clothing/gloves/clean_blood()
+	. = ..()
+	transfer_blood = 0
+	update_icon()
 
 /obj/item/clothing/gloves/mob_can_equip(mob/user, slot, disable_warning = FALSE)
 	var/mob/living/carbon/human/H = user
@@ -411,6 +446,8 @@
 	fingerprint_chance = 100
 	punch_force = 2
 	body_parts_covered = 0
+	drop_sound = 'sound/items/drop/ring.ogg'
+	pickup_sound = 'sound/items/pickup/ring.ogg'
 
 ///////////////////////////////////////////////////////////////////////
 //Head
@@ -433,7 +470,7 @@
 	var/image/helmet_light
 
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/mob/species/seromi/head.dmi',
+		SPECIES_TESHARI = 'icons/mob/species/teshari/head.dmi',
 		SPECIES_VOX = 'icons/mob/species/vox/head.dmi'
 		)
 	drop_sound = 'sound/items/drop/hat.ogg'
@@ -539,7 +576,7 @@
 	body_parts_covered = FACE|EYES
 	blood_sprite_state = "maskblood"
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/mob/species/seromi/masks.dmi',
+		SPECIES_TESHARI = 'icons/mob/species/teshari/masks.dmi',
 		SPECIES_VOX = 'icons/mob/species/vox/masks.dmi',
 		SPECIES_TAJ = 'icons/mob/species/tajaran/mask.dmi',
 		SPECIES_UNATHI = 'icons/mob/species/unathi/mask.dmi'
@@ -548,6 +585,9 @@
 	var/voicechange = 0
 	var/list/say_messages
 	var/list/say_verbs
+
+	drop_sound = "generic_drop"
+	pickup_sound = "generic_pickup"
 
 /obj/item/clothing/mask/update_clothing_icon()
 	if (ismob(src.loc))
@@ -590,7 +630,7 @@
 	var/overshoes = 0
 	species_restricted = list("exclude",SPECIES_TESHARI, SPECIES_VOX)
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/mob/species/seromi/shoes.dmi',
+		SPECIES_TESHARI = 'icons/mob/species/teshari/shoes.dmi',
 		SPECIES_VOX = 'icons/mob/species/vox/shoes.dmi'
 		)
 	drop_sound = 'sound/items/drop/shoes.ogg'
@@ -656,9 +696,7 @@
 	update_icon()
 
 /obj/item/clothing/shoes/update_icon()
-	overlays.Cut() //This removes all the overlays on the sprite and then goes down a checklist adding them as required.
-	if(blood_DNA)
-		add_blood()
+	. = ..()
 	if(holding)
 		overlays += image(icon, "[icon_state]_knife")
 	if(contaminated)
@@ -669,7 +707,6 @@
 	if(ismob(usr))
 		var/mob/M = usr
 		M.update_inv_shoes()
-	return ..()
 
 /obj/item/clothing/shoes/clean_blood()
 	update_icon()
@@ -706,13 +743,17 @@
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	slot_flags = SLOT_OCLOTHING
 	var/blood_overlay_type = "suit"
+	blood_sprite_state = "suitblood" //Defaults to the suit's blood overlay, so that some blood renders instead of no blood.
+
+	var/taurized = FALSE
 	siemens_coefficient = 0.9
 	w_class = ITEMSIZE_NORMAL
 	preserve_item = 1
+	equip_sound = 'sound/items/jumpsuit_equip.ogg'
 
 
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/mob/species/seromi/suit.dmi',
+		SPECIES_TESHARI = 'icons/mob/species/teshari/suit.dmi',
 		SPECIES_VOX = 'icons/mob/species/vox/suit.dmi'
 		)
 
@@ -739,6 +780,43 @@
 		M.update_inv_wear_suit()
 
 	set_clothing_index()
+
+/obj/item/clothing/suit/equipped(var/mob/user, var/slot)
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if((taurized && !isTaurTail(H.tail_style)) || (!taurized && isTaurTail(H.tail_style)))
+			taurize(user)
+
+	return ..()
+
+/obj/item/clothing/suit/proc/taurize(var/mob/living/carbon/human/Taur)
+	if(isTaurTail(Taur.tail_style))
+		var/datum/sprite_accessory/tail/taur/taurtail = Taur.tail_style
+		if(taurtail.suit_sprites && (get_worn_icon_state(slot_wear_suit_str) in cached_icon_states(taurtail.suit_sprites)))
+			icon_override = taurtail.suit_sprites
+			taurized = TRUE
+
+	if(!taurized)
+		icon_override = initial(icon_override)
+		taurized = FALSE
+
+// Taur suits need to be shifted so its centered on their taur half.
+/obj/item/clothing/suit/make_worn_icon(var/body_type,var/slot_name,var/inhands,var/default_icon,var/default_layer = 0,var/icon/clip_mask)
+	var/image/standing = ..()
+	if(taurized) //Special snowflake var on suits
+		standing.pixel_x = -16
+		standing.layer = BODY_LAYER + 15 // 15 is above tail layer, so will not be covered by taurbody.
+	return standing
+
+/obj/item/clothing/suit/apply_accessories(var/image/standing)
+	if(LAZYLEN(accessories) && taurized)
+		for(var/obj/item/clothing/accessory/A in accessories)
+			var/image/I = new(A.get_mob_overlay())
+			I.pixel_x = 16 //Opposite of the pixel_x on the suit (-16) from taurization to cancel it out and puts the accessory in the correct place on the body.
+			standing.add_overlay(I)
+	else
+		return ..()
+
 
 ///////////////////////////////////////////////////////////////////////
 //Under clothing
@@ -769,7 +847,7 @@
 	var/rolled_down = -1 //0 = unrolled, 1 = rolled, -1 = cannot be toggled
 	var/rolled_sleeves = -1 //0 = unrolled, 1 = rolled, -1 = cannot be toggled
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/mob/species/seromi/uniform.dmi',
+		SPECIES_TESHARI = 'icons/mob/species/teshari/uniform.dmi',
 		SPECIES_VOX = 'icons/mob/species/vox/uniform.dmi'
 		)
 
@@ -1013,7 +1091,6 @@
 		item_state_slots[slot_w_uniform_str] = "[worn_state]"
 		to_chat(usr, "<span class='notice'>You roll down your [src]'s sleeves.</span>")
 	update_clothing_icon()
-
 
 /obj/item/clothing/under/rank/New()
 	sensor_mode = pick(0,1,2,3)

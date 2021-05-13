@@ -18,7 +18,7 @@ const canBeMade = (recipe, materials) => {
   for (let mat_id of recipeRequiredMaterials) {
     let material = materials.find(val => val.name === mat_id);
     if (!material) {
-      return false;
+      continue; // yes, if we cannot find the material, we just ignore it :V
     }
     if (material.amount < recipe.requirements[mat_id]) {
       return false;
@@ -56,7 +56,7 @@ export const Autolathe = (props, context) => {
     <Window width={550} height={700}>
       <Window.Content scrollable>
         <Section title="Materials">
-          <Materials displayAllMat disableEject />
+          <Materials disableEject />
         </Section>
         <Section title="Recipes" buttons={
           <Dropdown

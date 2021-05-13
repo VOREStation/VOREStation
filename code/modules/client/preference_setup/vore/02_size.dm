@@ -45,8 +45,7 @@
 	character.weight_gain		= pref.weight_gain
 	character.weight_loss		= pref.weight_loss
 	character.fuzzy				= pref.fuzzy
-	character.appearance_flags	-= pref.fuzzy*PIXEL_SCALE
-	character.resize(pref.size_multiplier, animate = FALSE)
+	character.resize(pref.size_multiplier, animate = FALSE, ignore_prefs = TRUE)
 
 /datum/category_item/player_setup_item/vore/size/content(var/mob/user)
 	. += "<br>"
@@ -70,7 +69,7 @@
 
 	else if(href_list["toggle_fuzzy"])
 		pref.fuzzy = pref.fuzzy ? 0 : 1;
-		return TOPIC_REFRESH
+		return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["weight"])
 		var/new_weight = input(user, "Choose your character's relative body weight.\n\

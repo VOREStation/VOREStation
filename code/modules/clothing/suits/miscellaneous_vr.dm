@@ -1,6 +1,20 @@
 /obj/item/clothing/suit/customs
 	desc = "A standard SolCom Customs formal jacket."
 
+/obj/item/clothing/suit/chiton
+	name = "chiton"
+	desc = "A traditional piece of clothing from Greece."
+	icon = 'icons/obj/clothing/suits_vr.dmi'
+	icon_state = "chiton"
+	icon_override = 'icons/mob/suit_vr.dmi'
+
+/obj/item/clothing/suit/oversize
+	name = "oversized t-shirt"
+	desc = "This ain't your daddy's shirt! Well, it might be..."
+	icon = 'icons/obj/clothing/suits_vr.dmi'
+	icon_state = "oversize"
+	icon_override = 'icons/mob/suit_vr.dmi'
+
 //HERE BE TAUR RELATED CLOTHES
 
 /*

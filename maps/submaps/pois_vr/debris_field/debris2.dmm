@@ -1,14 +1,21 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
-/turf/space,
-/area/tether_away/debrisfield/explored)
+/turf/template_noop,
+/area/space)
 "b" = (
 /obj/structure/lattice,
 /turf/space,
-/area/tether_away/debrisfield/explored)
+/area/space)
 "c" = (
 /turf/simulated/floor/airless,
-/area/tether_away/debrisfield/explored)
+/area/space)
+"d" = (
+/obj/structure/lattice,
+/turf/space,
+/area/tether_away/debrisfield/shuttle_buffer)
+"e" = (
+/turf/simulated/floor/airless,
+/area/tether_away/debrisfield/shuttle_buffer)
 
 (1,1,1) = {"
 a
@@ -17,17 +24,17 @@ c
 "}
 (2,1,1) = {"
 a
-b
+d
 c
 "}
 (3,1,1) = {"
 a
-c
+e
 a
 "}
 (4,1,1) = {"
 b
-c
+e
 a
 "}
 (5,1,1) = {"

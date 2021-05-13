@@ -29,14 +29,13 @@
 	var/pass_color = FALSE // Will the item pass its own color var to the created item? Dyed cloth, wood, etc.
 	var/strict_color_stacking = FALSE // Will the stack merge with other stacks that are different colors? (Dyed cloth, wood, etc)
 
-/obj/item/stack/New(var/loc, var/amount=null)
-	..()
-	if (!stacktype)
+/obj/item/stack/Initialize(var/ml, var/amount)
+	. = ..()
+	if(!stacktype)
 		stacktype = type
-	if (amount)
+	if(amount)
 		src.amount = amount
 	update_icon()
-	return
 
 /obj/item/stack/Destroy()
 	if(uses_charge)
@@ -59,70 +58,88 @@
 
 /obj/item/stack/examine(mob/user)
 	. = ..()
-	
+
 	if(Adjacent(user))
 		if(!uses_charge)
 			. += "There are [src.amount] [src.singular_name]\s in the stack."
 		else
 			. += "There is enough charge for [get_amount()]."
 
-/obj/item/stack/attack_self(mob/user as mob)
-	list_recipes(user)
+/obj/item/stack/attack_self(mob/user)
+	tgui_interact(user)
 
-/obj/item/stack/proc/list_recipes(mob/user as mob, recipes_sublist)
-	if (!recipes)
-		return
-	if (!src || get_amount() <= 0)
-		user << browse(null, "window=stack")
-	user.set_machine(src) //for correct work of onclose
-	var/list/recipe_list = recipes
-	if (recipes_sublist && recipe_list[recipes_sublist] && istype(recipe_list[recipes_sublist], /datum/stack_recipe_list))
-		var/datum/stack_recipe_list/srl = recipe_list[recipes_sublist]
-		recipe_list = srl.recipes
-	var/t1 = text("<HTML><HEAD><title>Constructions from []</title></HEAD><body><TT>Amount Left: []<br>", src, src.get_amount())
-	for(var/i=1;i<=recipe_list.len,i++)
-		var/E = recipe_list[i]
-		if (isnull(E))
-			t1 += "<hr>"
-			continue
+/obj/item/stack/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Stack", name)
+		ui.open()
 
-		if (i>1 && !isnull(recipe_list[i-1]))
-			t1+="<br>"
+/obj/item/stack/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
+	
+	data["amount"] = get_amount()
 
-		if (istype(E, /datum/stack_recipe_list))
-			var/datum/stack_recipe_list/srl = E
-			t1 += "<a href='?src=\ref[src];sublist=[i]'>[srl.title]</a>"
+	return data
 
-		if (istype(E, /datum/stack_recipe))
-			var/datum/stack_recipe/R = E
-			var/max_multiplier = round(src.get_amount() / R.req_amount)
-			var/title as text
-			var/can_build = 1
-			can_build = can_build && (max_multiplier>0)
-			if (R.res_amount>1)
-				title+= "[R.res_amount]x [R.title]\s"
-			else
-				title+= "[R.title]"
-			title+= " ([R.req_amount] [src.singular_name]\s)"
-			if (can_build)
-				t1 += text("<A href='?src=\ref[src];sublist=[recipes_sublist];make=[i];multiplier=1'>[title]</A>  ")
-			else
-				t1 += text("[]", title)
-				continue
-			if (R.max_res_amount>1 && max_multiplier>1)
-				max_multiplier = min(max_multiplier, round(R.max_res_amount/R.res_amount))
-				t1 += " |"
-				var/list/multipliers = list(5,10,25)
-				for (var/n in multipliers)
-					if (max_multiplier>=n)
-						t1 += " <A href='?src=\ref[src];make=[i];multiplier=[n]'>[n*R.res_amount]x</A>"
-				if (!(max_multiplier in multipliers))
-					t1 += " <A href='?src=\ref[src];make=[i];multiplier=[max_multiplier]'>[max_multiplier*R.res_amount]x</A>"
+/obj/item/stack/tgui_static_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
 
-	t1 += "</TT></body></HTML>"
-	user << browse(t1, "window=stack")
-	onclose(user, "stack")
-	return
+	data["recipes"] = recursively_build_recipes(recipes)
+
+	return data
+
+/obj/item/stack/proc/recursively_build_recipes(list/recipe_to_iterate)
+	var/list/L = list()
+	for(var/recipe in recipe_to_iterate)
+		if(istype(recipe, /datum/stack_recipe_list))
+			var/datum/stack_recipe_list/R = recipe
+			L["[R.title]"] = recursively_build_recipes(R.recipes)
+		if(istype(recipe, /datum/stack_recipe))
+			var/datum/stack_recipe/R = recipe
+			L["[R.title]"] = build_recipe(R)
+
+	return L
+
+/obj/item/stack/proc/build_recipe(datum/stack_recipe/R)
+	return list(
+		"res_amount" = R.res_amount,
+		"max_res_amount" = R.max_res_amount,
+		"req_amount" = R.req_amount,
+		"ref" = "\ref[R]",
+	)
+
+/obj/item/stack/tgui_state(mob/user)
+	return GLOB.tgui_hands_state
+
+/obj/item/stack/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	if(..())
+		return TRUE
+
+	switch(action)
+		if("make")
+			if(get_amount() < 1)
+				qdel(src)
+				return
+			
+			var/datum/stack_recipe/R = locate(params["ref"])
+			if(!is_valid_recipe(R, recipes)) //href exploit protection
+				return FALSE
+			var/multiplier = text2num(params["multiplier"])
+			if(!multiplier || (multiplier <= 0)) //href exploit protection
+				return
+			produce_recipe(R, multiplier, usr)
+			return TRUE
+
+/obj/item/stack/proc/is_valid_recipe(datum/stack_recipe/R, list/recipe_list)
+	for(var/S in recipe_list)
+		if(S == R)
+			return TRUE
+		if(istype(S, /datum/stack_recipe_list))
+			var/datum/stack_recipe_list/L = S
+			if(is_valid_recipe(R, L.recipes))
+				return TRUE
+
+	return FALSE
 
 /obj/item/stack/proc/produce_recipe(datum/stack_recipe/recipe, var/quantity, mob/user)
 	var/required = quantity*recipe.req_amount
@@ -145,15 +162,44 @@
 
 	if (recipe.time)
 		to_chat(user, "<span class='notice'>Building [recipe.title] ...</span>")
-		if (!do_after(user, recipe.time, exclusive = TRUE))
+		if (!do_after(user, recipe.time))
 			return
 
 	if (use(required))
 		var/atom/O
 		if(recipe.use_material)
 			O = new recipe.result_type(user.loc, recipe.use_material)
+
+			if(istype(O, /obj))
+				var/obj/Ob = O
+
+				if(LAZYLEN(Ob.matter))	// Law of equivalent exchange.
+					Ob.matter.Cut()
+
+				else
+					Ob.matter = list()
+
+				var/mattermult = istype(Ob, /obj/item) ? min(2000, 400 * Ob.w_class) : 2000
+
+				Ob.matter[recipe.use_material] = mattermult / produced * required
+
 		else
 			O = new recipe.result_type(user.loc)
+
+			if(recipe.matter_material)
+				if(istype(O, /obj))
+					var/obj/Ob = O
+
+					if(LAZYLEN(Ob.matter))	// Law of equivalent exchange.
+						Ob.matter.Cut()
+
+					else
+						Ob.matter = list()
+
+					var/mattermult = istype(Ob, /obj/item) ? min(2000, 400 * Ob.w_class) : 2000
+
+					Ob.matter[recipe.use_material] = mattermult / produced * required
+
 		O.set_dir(user.dir)
 		O.add_fingerprint(user)
 
@@ -169,42 +215,13 @@
 		if ((pass_color || recipe.pass_color))
 			if(!color)
 				if(recipe.use_material)
-					var/material/MAT = get_material_by_name(recipe.use_material)
+					var/datum/material/MAT = get_material_by_name(recipe.use_material)
 					if(MAT.icon_colour)
 						O.color = MAT.icon_colour
 				else
 					return
 			else
 				O.color = color
-
-/obj/item/stack/Topic(href, href_list)
-	..()
-	if ((usr.restrained() || usr.stat || usr.get_active_hand() != src))
-		return
-
-	if (href_list["sublist"] && !href_list["make"])
-		list_recipes(usr, text2num(href_list["sublist"]))
-
-	if (href_list["make"])
-		if (src.get_amount() < 1) qdel(src) //Never should happen
-
-		var/list/recipes_list = recipes
-		if (href_list["sublist"])
-			var/datum/stack_recipe_list/srl = recipes_list[text2num(href_list["sublist"])]
-			recipes_list = srl.recipes
-
-		var/datum/stack_recipe/R = recipes_list[text2num(href_list["make"])]
-		var/multiplier = text2num(href_list["multiplier"])
-		if (!multiplier || (multiplier <= 0)) //href exploit protection
-			return
-
-		src.produce_recipe(R, multiplier, usr)
-
-	if (src && usr.machine==src) //do not reopen closed window
-		spawn( 0 )
-			src.interact(usr)
-			return
-	return
 
 //Return 1 if an immediate subsequent call to use() would succeed.
 //Ensures that code dealing with stacks uses the same logic
@@ -390,18 +407,25 @@
 	var/on_floor = 0
 	var/use_material
 	var/pass_color
+	var/matter_material 	// Material type used for recycling. Default, uses use_material. For non-material-based objects however, matter_material is needed.
 
-	New(title, result_type, req_amount = 1, res_amount = 1, max_res_amount = 1, time = 0, one_per_turf = 0, on_floor = 0, supplied_material = null, pass_stack_color)
-		src.title = title
-		src.result_type = result_type
-		src.req_amount = req_amount
-		src.res_amount = res_amount
-		src.max_res_amount = max_res_amount
-		src.time = time
-		src.one_per_turf = one_per_turf
-		src.on_floor = on_floor
-		src.use_material = supplied_material
-		src.pass_color = pass_stack_color
+/datum/stack_recipe/New(title, result_type, req_amount = 1, res_amount = 1, max_res_amount = 1, time = 0, one_per_turf = 0, on_floor = 0, supplied_material = null, pass_stack_color, recycle_material = null)
+	src.title = title
+	src.result_type = result_type
+	src.req_amount = req_amount
+	src.res_amount = res_amount
+	src.max_res_amount = max_res_amount
+	src.time = time
+	src.one_per_turf = one_per_turf
+	src.on_floor = on_floor
+	src.use_material = supplied_material
+	src.pass_color = pass_stack_color
+
+	if(!recycle_material && src.use_material)
+		src.matter_material = src.use_material
+
+	else if(recycle_material)
+		src.matter_material = recycle_material
 
 /*
  * Recipe list datum

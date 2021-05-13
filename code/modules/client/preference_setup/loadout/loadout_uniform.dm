@@ -65,7 +65,7 @@
 	..()
 	var/list/skirts = list()
 	for(var/skirt in (typesof(/obj/item/clothing/under/skirt)))
-		if(skirt in typesof(/obj/item/clothing/under/skirt/fluff))	//VOREStation addition
+		if((skirt in typesof(/obj/item/clothing/under/skirt/fluff)) || (skirt in typesof(/obj/item/clothing/under/skirt/outfit/fluff)))	//VOREStation addition
 			continue												//VOREStation addition
 		var/obj/item/clothing/under/skirt/skirt_type = skirt
 		skirts[initial(skirt_type.name)] = skirt_type
@@ -295,9 +295,9 @@
 	path = /obj/item/clothing/under/dress/dress_fire
 
 /datum/gear/uniform/uniform_captain
-	display_name = "uniform, colony director's dress"
+	display_name = "uniform, site manager's dress"
 	path = /obj/item/clothing/under/dress/dress_cap
-	allowed_roles = list("Colony Director")
+	allowed_roles = list("Site Manager")
 
 /datum/gear/uniform/corpdetsuit
 	display_name = "uniform, corporate (Detective)"
@@ -351,7 +351,7 @@
 
 /datum/gear/uniform/shortplaindress/New()
 	..()
-	gear_tweaks = list(gear_tweak_free_color_choice)
+	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/uniform/longdress
 	display_name = "long dress"
@@ -359,7 +359,7 @@
 
 /datum/gear/uniform/longdress/New()
 	..()
-	gear_tweaks = list(gear_tweak_free_color_choice)
+	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/uniform/longwidedress
 	display_name = "long wide dress"
@@ -367,7 +367,7 @@
 
 /datum/gear/uniform/longwidedress/New()
 	..()
-	gear_tweaks = list(gear_tweak_free_color_choice)
+	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/uniform/reddress
 	display_name = "red dress with belt"
@@ -456,7 +456,7 @@
 
 /datum/gear/uniform/yogapants/New()
 	..()
-	gear_tweaks = list(gear_tweak_free_color_choice)
+	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/uniform/black_corset
 	display_name = "black corset"
@@ -512,7 +512,7 @@
 
 /datum/gear/uniform/pleated/New()
 	..()
-	gear_tweaks = list(gear_tweak_free_color_choice)
+	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/uniform/lilacdress
 	display_name = "lilac dress"
@@ -589,3 +589,71 @@
 /datum/gear/uniform/cyberpunkharness
 	display_name = "cyberpunk strapped harness"
 	path = /obj/item/clothing/under/cyberpunkharness
+
+/datum/gear/uniform/whitegown
+	display_name = "white gown"
+	path = /obj/item/clothing/under/wedding/whitegown
+
+/datum/gear/uniform/floofdress
+	display_name = "floofy dress"
+	path = /obj/item/clothing/under/wedding/floofdress
+
+/datum/gear/uniform/floofdress/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/uniform/blackngold
+	display_name = "black and gold gown"
+	path = /obj/item/clothing/under/blackngold
+
+/datum/gear/uniform/sheerblue
+	display_name = "sheer blue dress"
+	path = /obj/item/clothing/under/sheerblue
+
+/datum/gear/uniform/disheveled
+	display_name = "disheveled suit"
+	path = /obj/item/clothing/under/disheveled
+
+/datum/gear/uniform/orangedress
+	display_name = "orange dress"
+	path = /obj/item/clothing/under/dress/dress_orange
+
+/datum/gear/uniform/sundress_pink
+	display_name = "pink sundress"
+	path = /obj/item/clothing/under/dress/sundress_pink
+
+/datum/gear/uniform/sundress_white
+	display_name = "white sundress"
+	path = /obj/item/clothing/under/dress/sundress_white
+
+/datum/gear/uniform/sundress_pinkbow
+	display_name = "bowed pink sundress"
+	path = /obj/item/clothing/under/dress/sundress_pinkbow
+
+/datum/gear/uniform/sundress_blue
+	display_name = "long blue sundress"
+	path = /obj/item/clothing/under/dress/sundress_blue
+
+/datum/gear/uniform/sundress_pinkshort
+	display_name = "short pink sundress"
+	path = /obj/item/clothing/under/dress/sundress_pinkshort
+
+/datum/gear/uniform/twopiece
+	display_name = "two-piece dress"
+	path = /obj/item/clothing/under/dress/twopiece
+
+/datum/gear/uniform/gothic2
+	display_name = "lacey gothic dress"
+	path = /obj/item/clothing/under/dress/gothic2
+
+/datum/gear/uniform/flowerskirt
+	display_name = "flower skirt"
+	path = /obj/item/clothing/under/flower_skirt
+
+/datum/gear/uniform/flowerskirt/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/uniform/countess
+	display_name = "countess dress"
+	path = /obj/item/clothing/under/dress/countess

@@ -10,7 +10,7 @@
 	desc = "an ultra rare hat. It commands a certain respect."
 	icon_state = "petehat"
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/mob/species/seromi/head.dmi',
+		SPECIES_TESHARI = 'icons/mob/species/teshari/head.dmi',
 		SPECIES_VOX = 'icons/mob/species/vox/head.dmi'
 		)
 
@@ -47,7 +47,7 @@
 	body_parts_covered = 0
 
 /obj/item/clothing/head/collectable/captain
-	name = "collectable colony director's hat"
+	name = "collectable site manager's hat"
 	desc = "A Collectable Hat that'll make you look just like a real comdom!"
 	icon_state = "captain"
 	body_parts_covered = 0

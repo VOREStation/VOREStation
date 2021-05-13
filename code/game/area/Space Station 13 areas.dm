@@ -349,6 +349,13 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "\improper Thunderdome (Observer.)"
 	icon_state = "purple"
 
+/area/virtual_reality
+	name = "Virtual Reality"
+	icon_state = "Virtual_Reality"
+	dynamic_lighting = 0
+	requires_power = 0
+	flags = AREA_FLAG_IS_NOT_PERSISTENT
+
 //ENEMY
 
 //names are used
@@ -952,7 +959,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	sound_env = MEDIUM_SOFTFLOOR
 
 /area/crew_quarters/captain
-	name = "\improper Command - Colony Director's Office"
+	name = "\improper Command - Site Manager's Office"
 	icon_state = "captain"
 	sound_env = MEDIUM_SOFTFLOOR
 

@@ -65,7 +65,7 @@
 	icon_state = "popcorn"
 
 /obj/item/trash/tuna
-	name = "tuna can"
+	name = "fish flake packet"
 	icon_state = "tuna"
 
 /obj/item/trash/sosjerky
@@ -110,6 +110,10 @@
 	name = "candy wrapper"
 	icon_state = "kokobar"
 
+/obj/item/trash/skrellsnax
+	name = "skrellsnax packet"
+	icon_state = "skrellsnacks"
+
 /obj/item/trash/gumpack
 	name = "gum packet"
 	icon_state = "gum_pack"
@@ -122,11 +126,13 @@
 	name = "empty cup"
 	icon_state = "coffee_vended"
 	drop_sound = 'sound/items/drop/papercup.ogg'
+	pickup_sound = 'sound/items/pickup/papercup.ogg'
 
 /obj/item/trash/ramen
 	name = "cup ramen"
 	icon_state = "ramen"
 	drop_sound = 'sound/items/drop/papercup.ogg'
+	pickup_sound = 'sound/items/pickup/papercup.ogg'
 
 /obj/item/trash/tray
 	name = "tray"
@@ -137,6 +143,8 @@
 	name = "candle"
 	icon = 'icons/obj/candle.dmi'
 	icon_state = "candle4"
+	drop_sound = 'sound/items/drop/gloves.ogg'
+	pickup_sound = 'sound/items/pickup/gloves.ogg'
 
 /obj/item/trash/liquidfood
 	name = "\improper \"LiquidFood\" ration packet"
@@ -158,18 +166,26 @@
 /obj/item/trash/brownies
 	name = "brownie tray"
 	icon_state = "brownies"
+	drop_sound = 'sound/items/drop/soda.ogg'
+	pickup_sound = 'sound/items/pickup/soda.ogg'
 
 /obj/item/trash/snacktray
 	name = "snacktray"
 	icon_state = "snacktray"
+	drop_sound = 'sound/items/drop/soda.ogg'
+	pickup_sound = 'sound/items/pickup/soda.ogg'
 
 /obj/item/trash/dipbowl
 	name = "dip bowl"
 	icon_state = "dipbowl"
+	drop_sound = 'sound/items/drop/food.ogg'
+	pickup_sound = 'sound/items/pickup/food.ogg'
 
 /obj/item/trash/chipbasket
 	name = "empty basket"
 	icon_state = "chipbasket_empty"
+	drop_sound = 'sound/items/drop/food.ogg'
+	pickup_sound = 'sound/items/pickup/food.ogg'
 
 /obj/item/trash/spitgum
 	name = "old gum"
@@ -177,12 +193,15 @@
 	icon = 'icons/obj/clothing/masks.dmi'
 	icon_state = "spit-gum"
 	drop_sound = 'sound/items/drop/flesh.ogg'
+	pickup_sound = 'sound/items/pickup/flesh.ogg'
 
 /obj/item/trash/lollibutt
 	name = "lollipop stick"
 	desc = "A lollipop stick devoid of pop."
 	icon = 'icons/obj/clothing/masks.dmi'
 	icon_state = "pop-stick"
+	drop_sound = 'sound/items/drop/component.ogg'
+	pickup_sound = 'sound/items/pickup/component.ogg'
 
 /obj/item/trash/spitwad
 	name = "spit wad"
@@ -190,6 +209,7 @@
 	icon = 'icons/obj/clothing/masks.dmi'
 	icon_state = "spit-chew"
 	drop_sound = 'sound/items/drop/flesh.ogg'
+	pickup_sound = 'sound/items/pickup/flesh.ogg'
 	slot_flags = SLOT_EARS | SLOT_MASK
 
 /obj/item/trash/attack(mob/M as mob, mob/living/user as mob)

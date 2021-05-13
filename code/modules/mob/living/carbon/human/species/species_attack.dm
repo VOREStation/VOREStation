@@ -1,4 +1,5 @@
 /datum/unarmed_attack/bite/sharp //eye teeth
+	attack_name = "sharp bite"
 	attack_verb = list("bit", "chomped on")
 	attack_sound = 'sound/weapons/bite.ogg'
 	shredding = 0
@@ -6,12 +7,14 @@
 	edge = 1
 
 /datum/unarmed_attack/diona
+	attack_name = "tendrils"
 	attack_verb = list("lashed", "bludgeoned")
 	attack_noun = list("tendril")
 	eye_attack_text = "a tendril"
 	eye_attack_text_victim = "a tendril"
 
 /datum/unarmed_attack/claws
+	attack_name = "claws"
 	attack_verb = list("scratched", "clawed", "slashed")
 	attack_noun = list("claws")
 	eye_attack_text = "claws"
@@ -54,6 +57,7 @@
 				if(5)		user.visible_message("<span class='danger'>[user] tears [T.his] [pick(attack_noun)] [pick("deep into", "into", "across")] [target]'s [affecting.name]!</span>")
 
 /datum/unarmed_attack/claws/strong
+	attack_name = "strong claws"
 	attack_verb = list("slashed")
 	damage = 5
 	shredding = 1
@@ -67,6 +71,7 @@
 	damage = 15
 
 /datum/unarmed_attack/bite/strong
+	attack_name = "strong bite"
 	attack_verb = list("mauled")
 	damage = 8
 	shredding = 1
@@ -75,6 +80,7 @@
 	damage = 10
 
 /datum/unarmed_attack/slime_glomp
+	attack_name = "glomp"
 	attack_verb = list("glomped")
 	attack_noun = list("body")
 	damage = 2
@@ -84,6 +90,7 @@
 	user.apply_stored_shock_to(target)
 
 /datum/unarmed_attack/stomp/weak
+	attack_name = "weak stomp"
 	attack_verb = list("jumped on")
 
 /datum/unarmed_attack/stomp/weak/get_unarmed_damage()

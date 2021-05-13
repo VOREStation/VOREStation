@@ -33,6 +33,27 @@
 
 	var/ability_cost = 100
 
+	var/darkness = 1
+	var/turf/T = get_turf(src)
+	if(!T)
+		to_chat(src,"<span class='warning'>You can't use that here!</span>")
+		return FALSE
+
+	var/brightness = T.get_lumcount() //Brightness in 0.0 to 1.0
+	darkness = 1-brightness //Invert
+
+	var/watcher = 0
+	for(var/mob/living/carbon/human/watchers in oview(7,src ))	// If we can see them...
+		if(watchers in oviewers(7,src))	// And they can see us...
+			if(!(watchers.stat) && !isbelly(watchers.loc) && !istype(watchers.loc, /obj/item/weapon/holder))	// And they are alive and not being held by someone...
+				watcher++	// They are watching us!
+
+	ability_cost = CLAMP(ability_cost/(0.01+darkness*2),50, 80)//This allows for 1 watcher in full light
+	if(watcher>0)
+		ability_cost = ability_cost + ( 15 * watcher )
+	if(!(ability_flags & AB_PHASE_SHIFTED))
+		log_debug("[src] attempted to shift with [watcher] visible Carbons with a  cost of [ability_cost] in a darkness level of [darkness]")
+
 	var/datum/species/shadekin/SK = species
 	if(!istype(SK))
 		to_chat(src, "<span class='warning'>Only a shadekin can use that!</span>")
@@ -48,7 +69,6 @@
 		shadekin_adjust_energy(-ability_cost)
 	playsound(src, 'sound/effects/stealthoff.ogg', 75, 1)
 
-	var/turf/T = get_turf(src)
 	if(!T.CanPass(src,T) || loc != T)
 		to_chat(src,"<span class='warning'>You can't use that here!</span>")
 		return FALSE
@@ -95,7 +115,7 @@
 			var/list/potentials = living_mobs(0)
 			if(potentials.len)
 				var/mob/living/target = pick(potentials)
-				if(istype(target) && vore_selected)
+				if(istype(target) && target.devourable && target.can_be_drop_prey && vore_selected)
 					target.forceMove(vore_selected)
 					to_chat(target,"<span class='warning'>\The [src] phases in around you, [vore_selected.vore_verb]ing you into their [vore_selected.name]!</span>")
 

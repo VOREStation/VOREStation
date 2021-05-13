@@ -98,7 +98,6 @@
 "t" = (
 /obj/effect/step_trigger/teleporter/from_underdark{
 	dir = 4;
-	icon_state = "";
 	pixel_x = -16
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,

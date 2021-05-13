@@ -29,7 +29,7 @@
 
 
 /obj/machinery/computer/med_data/Initialize()
-	..()
+	. = ..()
 	field_edit_questions = list(
 		// General
 		"sex" = "Please select new sex:",
@@ -137,7 +137,7 @@
 					fields[++fields.len] = FIELD("Name", active1.fields["name"], null)
 					fields[++fields.len] = FIELD("ID", active1.fields["id"], null)
 					fields[++fields.len] = FIELD("Sex", active1.fields["sex"], "sex")
-					fields[++fields.len] = FIELD("Age", active1.fields["age"], "age")
+					fields[++fields.len] = FIELD("Age", "[active1.fields["age"]]", "age")
 					fields[++fields.len] = FIELD("Fingerprint", active1.fields["fingerprint"], "fingerprint")
 					fields[++fields.len] = FIELD("Physical Status", active1.fields["p_stat"], "p_stat")
 					fields[++fields.len] = FIELD("Mental Status", active1.fields["m_stat"], "m_stat")
@@ -493,13 +493,14 @@
 	..(severity)
 
 
-/obj/machinery/computer/med_data/laptop
-	name = "Medical Laptop"
-	desc = "A cheap laptop. It seems to have only the medical records program."
-	icon_state = "laptop"
-	icon_keyboard = "laptop_key"
-	icon_screen = "medlaptop"
-	circuit = /obj/item/weapon/circuitboard/med_data/laptop
+/obj/machinery/computer/med_data/laptop //[TO DO] Change name to PCU and update mapdata to include replacement computers
+	name = "\improper Medical Laptop"
+	desc = "A personal computer unit. It seems to have only the medical records program installed."
+	icon_screen = "pcu_generic"
+	icon_state = "pcu"
+	icon_keyboard = "pcu_key"
+	light_color = "#00b000"
+	circuit = /obj/item/weapon/circuitboard/med_data/pcu
 	density = 0
 
 #undef FIELD

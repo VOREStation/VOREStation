@@ -84,17 +84,9 @@
 		var/datum/supply_demand_order/random = pick(required_items)
 		command_announcement.Announce("What happened? Accounting is here right now and they're already asking where that [random.name] is. Damn, I gotta go", my_department)
 		var/message = "The delivery deadline was reached with the following needs outstanding:<hr>"
-		for (var/datum/supply_demand_order/req in required_items)
+		for(var/datum/supply_demand_order/req in required_items)
 			message += req.describe() + "<br>"
-		for (var/obj/machinery/computer/communications/C in machines)
-			if(C.operable())
-				var/obj/item/weapon/paper/P = new /obj/item/weapon/paper( C.loc )
-				P.name = "'[my_department] Mission Summary'"
-				P.info = message
-				P.update_space(P.info)
-				P.update_icon()
-				C.messagetitle.Add("[my_department] Mission Summary")
-				C.messagetext.Add(P.info)
+		post_comm_message("'[my_department] Mission Summary'", message)
 /**
  * Event Handler for responding to the supply shuttle arriving at centcom.
  */
@@ -282,8 +274,7 @@
 /datum/event/supply_demand/proc/choose_chemistry_items(var/differentTypes)
 	// Checking if they show up in health analyzer is good huristic for it being a drug
 	var/list/medicineReagents = list()
-	for(var/path in typesof(/datum/chemical_reaction) - /datum/chemical_reaction)
-		var/datum/chemical_reaction/CR = path // Stupid casting required for reading
+	for(var/decl/chemical_reaction/instant/CR in SSchemistry.chemical_reactions)
 		var/datum/reagent/R = SSchemistry.chemical_reagents[initial(CR.result)]
 		if(R && R.scannable)
 			medicineReagents += R
@@ -296,8 +287,7 @@
 
 /datum/event/supply_demand/proc/choose_bar_items(var/differentTypes)
 	var/list/drinkReagents = list()
-	for(var/path in typesof(/datum/chemical_reaction) - /datum/chemical_reaction)
-		var/datum/chemical_reaction/CR = path // Stupid casting required for reading
+	for(var/decl/chemical_reaction/instant/drinks/CR in SSchemistry.chemical_reactions)
 		var/datum/reagent/R = SSchemistry.chemical_reagents[initial(CR.result)]
 		if(istype(R, /datum/reagent/drink) || istype(R, /datum/reagent/ethanol))
 			drinkReagents += R

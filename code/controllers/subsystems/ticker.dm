@@ -32,12 +32,6 @@ SUBSYSTEM_DEF(ticker)
 
 	var/list/datum/mind/minds = list()	// The people in the game. Used for objective tracking.
 
-	// TODO - I am sure there is a better place these can go.
-	var/Bible_icon_state	// icon_state the chaplain has chosen for his bible
-	var/Bible_item_state	// item_state the chaplain has chosen for his bible
-	var/Bible_name			// name of the bible
-	var/Bible_deity_name
-
 	var/random_players = FALSE	// If set to nonzero, ALL players who latejoin or declare-ready join will have random appearances/genders
 
 	// TODO - Should this go here or in the job subsystem?
@@ -55,10 +49,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 /datum/controller/subsystem/ticker/Initialize()
 	pregame_timeleft = config.pregame_time
 	send2mainirc("Server lobby is loaded and open at byond://[config.serverurl ? config.serverurl : (config.server ? config.server : "[world.address]:[world.port]")]")
-
-	// Set up the global announcer
-	GLOB.autospeaker = new (null, null, null, 1)
-
+	GLOB.autospeaker = new (null, null, null, 1) //Set up Global Announcer
 	return ..()
 
 /datum/controller/subsystem/ticker/fire(resumed = FALSE)
@@ -191,11 +182,6 @@ var/global/datum/controller/subsystem/ticker/ticker
 	var/list/adm = get_admin_counts()
 	if(adm["total"] == 0)
 		send2adminirc("A round has started with no admins online.")
-
-/*	supply_controller.process() 		//Start the supply shuttle regenerating points -- TLE // handled in scheduler
-	master_controller.process()		//Start master_controller.process()
-	lighting_controller.process()	//Start processing DynamicAreaLighting updates
-	*/
 
 	current_state = GAME_STATE_PLAYING
 	Master.SetRunLevel(RUNLEVEL_GAME)
@@ -403,17 +389,17 @@ var/global/datum/controller/subsystem/ticker/ticker
 	for(var/mob/new_player/player in player_list)
 		if(player && player.ready && player.mind?.assigned_role)
 			var/datum/job/J = SSjob.get_job(player.mind.assigned_role)
-			
+
 			// Snowflakey AI treatment
 			if(J?.mob_type & JOB_SILICON_AI)
 				player.close_spawn_windows()
 				player.AIize(move = TRUE)
 				continue
-			
+
 			// Ask their new_player mob to spawn them
 			if(!player.spawn_checks_vr(player.mind.assigned_role)) continue //VOREStation Add
 			var/mob/living/carbon/human/new_char = player.create_character()
-			
+
 			// Created their playable character, delete their /mob/new_player
 			if(new_char)
 				qdel(player)
@@ -435,7 +421,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 	var/captainless=1
 	for(var/mob/living/carbon/human/player in player_list)
 		if(player && player.mind && player.mind.assigned_role)
-			if(player.mind.assigned_role == "Colony Director")
+			if(player.mind.assigned_role == "Site Manager")
 				captainless=0
 			if(!player_is_antag(player.mind, only_offstation_roles = 1))
 				job_master.EquipRank(player, player.mind.assigned_role, 0)
@@ -445,7 +431,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 	if(captainless)
 		for(var/mob/M in player_list)
 			if(!istype(M,/mob/new_player))
-				to_chat(M, "<span class='notice'>Colony Directorship not forced on anyone.</span>")
+				to_chat(M, "<span class='notice'>Site Management is not forced on anyone.</span>")
 
 
 /datum/controller/subsystem/ticker/proc/declare_completion()
@@ -476,20 +462,25 @@ var/global/datum/controller/subsystem/ticker/ticker
 
 	for (var/mob/living/silicon/ai/aiPlayer in mob_list)
 		if (aiPlayer.stat != 2)
-			to_world("<span class='filter_system'><b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws at the end of the round were:</b></span>")
+			to_world("<span class='filter_system'><b>[aiPlayer.name]'s laws at the end of the round were:</b></span>") // VOREStation edit
 		else
-			to_world("<span class='filter_system'><b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws when it was deactivated were:</b></span>")
+			to_world("<span class='filter_system'><b>[aiPlayer.name]'s laws when it was deactivated were:</b></span>") // VOREStation edit
 		aiPlayer.show_laws(1)
 
 		if (aiPlayer.connected_robots.len)
 			var/robolist = "<b>The AI's loyal minions were:</b> "
 			for(var/mob/living/silicon/robot/robo in aiPlayer.connected_robots)
-				robolist += "[robo.name][robo.stat?" (Deactivated) (Played by: [robo.key]), ":" (Played by: [robo.key]), "]"
+				robolist += "[robo.name][robo.stat?" (Deactivated), ":", "]"  // VOREStation edit
 			to_world("<span class='filter_system'>[robolist]</span>")
 
 	var/dronecount = 0
 
 	for (var/mob/living/silicon/robot/robo in mob_list)
+
+		if(istype(robo, /mob/living/silicon/robot/platform))
+			var/mob/living/silicon/robot/platform/tank = robo
+			if(!tank.has_had_player)
+				continue
 
 		if(istype(robo,/mob/living/silicon/robot/drone) && !istype(robo,/mob/living/silicon/robot/drone/swarm))
 			dronecount++
@@ -497,9 +488,9 @@ var/global/datum/controller/subsystem/ticker/ticker
 
 		if (!robo.connected_ai)
 			if (robo.stat != 2)
-				to_world("<span class='filter_system'><b>[robo.name] (Played by: [robo.key]) survived as an AI-less stationbound synthetic! Its laws were:</b></span>")
+				to_world("<span class='filter_system'><b>[robo.name] survived as an AI-less stationbound synthetic! Its laws were:</b></span>") // VOREStation edit
 			else
-				to_world("<span class='filter_system'><b>[robo.name] (Played by: [robo.key]) was unable to survive the rigors of being a stationbound synthetic without an AI. Its laws were:</b></span>")
+				to_world("<span class='filter_system'><b>[robo.name] was unable to survive the rigors of being a stationbound synthetic without an AI. Its laws were:</b></span>") // VOREStation edit
 
 			if(robo) //How the hell do we lose robo between here and the world messages directly above this?
 				robo.laws.show_laws(world)
@@ -567,8 +558,4 @@ var/global/datum/controller/subsystem/ticker/ticker
 
 	minds = SSticker.minds
 
-	Bible_icon_state = SSticker.Bible_icon_state
-	Bible_item_state = SSticker.Bible_item_state
-	Bible_name = SSticker.Bible_name
-	Bible_deity_name = SSticker.Bible_deity_name
 	random_players = SSticker.random_players

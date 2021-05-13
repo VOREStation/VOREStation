@@ -15,7 +15,7 @@
 		SPECIES_SKRELL = 'icons/mob/species/skrell/helmet.dmi',
 		SPECIES_UNATHI = 'icons/mob/species/unathi/helmet.dmi',
 		SPECIES_VOX = 'icons/mob/species/vox/head.dmi',
-		SPECIES_TESHARI = 'icons/mob/species/seromi/head.dmi'
+		SPECIES_TESHARI = 'icons/mob/species/teshari/head.dmi'
 		)
 	species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_TAJ, SPECIES_UNATHI, SPECIES_PROMETHEAN, SPECIES_TESHARI) //vox, diona, and zaddat can't use hardsuits not designed for them
 	max_pressure_protection = null
@@ -23,7 +23,8 @@
 
 /obj/item/clothing/gloves/gauntlets/rig
 	name = "gauntlets"
-	item_flags = THICKMATERIAL|PHORONGUARD
+	flags = PHORONGUARD
+	item_flags = THICKMATERIAL
 	body_parts_covered = HANDS
 	heat_protection =    HANDS
 	cold_protection =    HANDS
@@ -56,7 +57,7 @@
 		SPECIES_TAJ = 'icons/mob/species/tajaran/suit.dmi',
 		SPECIES_UNATHI = 'icons/mob/species/unathi/suit.dmi',
 		SPECIES_VOX = 'icons/mob/species/vox/suit.dmi',
-		SPECIES_TESHARI = 'icons/mob/species/seromi/suit.dmi'
+		SPECIES_TESHARI = 'icons/mob/species/teshari/suit.dmi'
 		)
 	supporting_limbs = list()
 	species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_TAJ, SPECIES_UNATHI, SPECIES_PROMETHEAN, SPECIES_TESHARI) //vox, diona, and zaddat can't use hardsuits not designed for them

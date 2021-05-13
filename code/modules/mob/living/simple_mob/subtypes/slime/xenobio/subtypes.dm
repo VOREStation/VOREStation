@@ -439,6 +439,7 @@
 		/mob/living/simple_mob/slime/xenobio/amber
 	)
 
+/* VOREStation Edit. We've had enough server crashes.
 /mob/living/simple_mob/slime/xenobio/amber/handle_special()
 	if(stat != DEAD)
 		feed_aura()
@@ -456,6 +457,7 @@
 			if(H.isSynthetic())
 				continue
 			H.nutrition = between(0, H.nutrition + rand(15, 25), 800)
+*/
 
 /mob/living/simple_mob/slime/xenobio/cerulean
 	desc = "This slime is generally superior in a wide range of attributes, compared to the common slime.  The jack of all trades, but master of none."

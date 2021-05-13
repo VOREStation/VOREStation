@@ -176,6 +176,9 @@ GLOBAL_LIST_BOILERPLATE(all_seed_packs, /obj/item/seeds)
 /obj/item/seeds/towermycelium
 	seed_type = "towercap"
 
+/obj/item/seeds/redtowermycelium
+	seed_type = "redcap"
+
 /obj/item/seeds/glowshroom
 	seed_type = "glowshroom"
 
@@ -317,8 +320,8 @@ GLOBAL_LIST_BOILERPLATE(all_seed_packs, /obj/item/seeds)
 /obj/item/seeds/eggyplant
 	seed_type = "egg-plant"
 
-/obj/item/seeds/spineapple
-	seed_type = "spineapple"
+/obj/item/seeds/pineapple
+	seed_type = "pineapple"
 
 /obj/item/seeds/durian
 	seed_type = "durian"
@@ -337,3 +340,6 @@ GLOBAL_LIST_BOILERPLATE(all_seed_packs, /obj/item/seeds)
 
 /obj/item/seeds/sifbulb
 	seed_type = "sifbulb"
+
+/obj/item/seeds/wurmwoad
+	seed_type = "wurmwoad"

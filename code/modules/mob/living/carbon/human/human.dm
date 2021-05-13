@@ -52,6 +52,9 @@
 		dna.real_name = real_name
 		sync_organ_dna()
 
+	//verbs |= /mob/living/proc/toggle_selfsurgery //VOREStation Removal
+	AddComponent(/datum/component/personal_crafting)
+
 /mob/living/carbon/human/Destroy()
 	human_mob_list -= src
 	for(var/organ in organs)
@@ -210,7 +213,7 @@
 		return
 
 	spread_fire(AM)
-	
+
 	..() // call parent because we moved behavior to parent
 
 // Get rank from ID, ID inside PDA, PDA, ID in wallet, etc.
@@ -220,7 +223,7 @@
 		if (pda.id)
 			return pda.id.rank ? pda.id.rank : if_no_job
 		else
-			return pda.ownrank
+			return pda.ownrank ? pda.ownrank : if_no_job
 	else
 		var/obj/item/weapon/card/id/id = get_idcard()
 		if(id)
@@ -236,7 +239,7 @@
 		if (pda.id)
 			return pda.id.assignment
 		else
-			return pda.ownjob
+			return pda.ownjob ? pda.ownjob : if_no_job
 	else
 		var/obj/item/weapon/card/id/id = get_idcard()
 		if(id)
@@ -252,7 +255,7 @@
 		if (pda.id)
 			return pda.id.registered_name
 		else
-			return pda.owner
+			return pda.owner ? pda.owner : if_no_id
 	else
 		var/obj/item/weapon/card/id/id = get_idcard()
 		if(id)
@@ -285,7 +288,7 @@
 	. = if_no_id
 	if(istype(wear_id,/obj/item/device/pda))
 		var/obj/item/device/pda/P = wear_id
-		return P.owner
+		return P.owner ? P.owner : if_no_id
 	if(wear_id)
 		var/obj/item/weapon/card/id/I = wear_id.GetID()
 		if(I)
@@ -1076,7 +1079,7 @@
 
 	if(species)
 
-		if(species.name && species.name == new_species)
+		if(species.name && species.name == new_species && species.name != "Custom Species") //VOREStation Edit
 			return
 		if(species.language)
 			remove_language(species.language)
@@ -1097,8 +1100,8 @@
 	if(species.default_language)
 		add_language(species.default_language)
 
-	//if(species.icon_scale_x != 1 || species.icon_scale_y != 1)	//VOREStation Removal
-	//	update_transform()											//VOREStation Removal
+	if(species.icon_scale_x != 1 || species.icon_scale_y != 1)
+		update_transform()
 
 	if(example)						//VOREStation Edit begin
 		if(!(example == src))
@@ -1159,6 +1162,9 @@
 
 	//A slew of bits that may be affected by our species change
 	regenerate_icons()
+
+	// Update our available emote list.
+	update_emotes()
 
 	if(species)
 		//if(mind) //VOREStation Removal
@@ -1648,7 +1654,5 @@
 
 	..()
 
-/mob/living/carbon/human/reduce_cuff_time()
-	if(istype(gloves, /obj/item/clothing/gloves/gauntlets/rig))
-		return 2
-	return ..()
+/mob/living/carbon/human/get_mob_riding_slots()
+	return list(back, head, wear_suit)
