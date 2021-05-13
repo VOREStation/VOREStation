@@ -1679,6 +1679,18 @@
 /obj/structure/closet/walllocker_double/hydrant/west,
 /turf/simulated/floor/tiled/techmaint,
 /area/talon_v2/secure_storage)
+"fk" = (
+/obj/structure/railing/grey{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/smartfridge/sheets/persistent_lossy{
+	layer = 3.3
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/talon_v2/refining)
 "fm" = (
 /obj/machinery/door/airlock/glass_external{
 	req_one_access = list(301)
@@ -26593,7 +26605,7 @@ ca
 rj
 fW
 jS
-tX
+fk
 VS
 mQ
 ZR
