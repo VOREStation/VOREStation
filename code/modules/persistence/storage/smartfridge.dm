@@ -52,14 +52,14 @@
 	if(subtok.len != 2)
 		return null
 	
-	if(!istype(plant_controller)) // No seed controller means the fruit will come out all wonky if at all
+	if(!istype(SSplants)) // No seed controller means the fruit will come out all wonky if at all
 		return null
 
 	subtok[2] = text2num(subtok[2])
 
 	// Ensure we've found a token describing the quantity of a path
 	if(subtok.len != 2 || \
-			!istype(plant_controller.seeds[subtok[1]], /datum/seed) || \
+			!istype(SSplants.seeds[subtok[1]], /datum/seed) || \
 			!isnum(subtok[2]))
 		return null
 	

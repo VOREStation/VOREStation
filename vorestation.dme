@@ -2218,11 +2218,6 @@
 #include "code\modules\food\kitchen\gibber.dm"
 #include "code\modules\food\kitchen\icecream.dm"
 #include "code\modules\food\kitchen\microwave.dm"
-<<<<<<< HEAD:vorestation.dme
-#include "code\modules\food\kitchen\smartfridge.dm"
-#include "code\modules\food\kitchen\smartfridge_vr.dm"
-=======
->>>>>>> b123a47... Adds persistent smartfridges for garden products, material sheets (#8042):polaris.dme
 #include "code\modules\food\kitchen\cooking_machines\_appliance.dm"
 #include "code\modules\food\kitchen\cooking_machines\_cooker.dm"
 #include "code\modules\food\kitchen\cooking_machines\_cooker_output.dm"
@@ -2238,6 +2233,7 @@
 #include "code\modules\food\kitchen\smartfridge\hydroponics.dm"
 #include "code\modules\food\kitchen\smartfridge\medical.dm"
 #include "code\modules\food\kitchen\smartfridge\smartfridge.dm"
+#include "code\modules\food\kitchen\smartfridge\smartfridge_vr.dm"
 #include "code\modules\gamemaster\defines.dm"
 #include "code\modules\gamemaster\event2\event.dm"
 #include "code\modules\gamemaster\event2\meta.dm"
@@ -3290,15 +3286,7 @@
 #include "code\modules\persistence\filth.dm"
 #include "code\modules\persistence\graffiti.dm"
 #include "code\modules\persistence\noticeboard.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\modules\persistence\persistence.dm"
-#include "code\modules\persistence\datum\datum_filth.dm"
-#include "code\modules\persistence\datum\datum_graffiti.dm"
-#include "code\modules\persistence\datum\datum_paper.dm"
-#include "code\modules\persistence\datum\datum_paper_sticky.dm"
-#include "code\modules\persistence\datum\datum_trash.dm"
-=======
->>>>>>> b123a47... Adds persistent smartfridges for garden products, material sheets (#8042):polaris.dme
 #include "code\modules\persistence\datum\persistence_datum.dm"
 #include "code\modules\persistence\effects\filth.dm"
 #include "code\modules\persistence\effects\graffiti.dm"
