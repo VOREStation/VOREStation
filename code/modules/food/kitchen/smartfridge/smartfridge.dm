@@ -32,8 +32,8 @@
 	icon_base = "fridge_sci"
 	icon_contents = "chem"
 
-/obj/machinery/smartfridge/New()
-	..()
+/obj/machinery/smartfridge/Initialize()
+	. = ..()
 	if(persistent)
 		SSpersistence.track_value(src, persistent)
 	if(is_secure)
