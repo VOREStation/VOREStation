@@ -139,7 +139,7 @@
 	name = "pink flower"
 	desc = "An odd looking flower bloom that has a slight haze of pollen surrounding it. It smells very strange ."
 	icon_state = "Nyrian_Bloom"
-	catalogue_data = list(/datum/category_item/catalogue/flora/nyrian)
+	catalogue_data = list(/datum/category_item/catalogue/flora/torris/nyrian)
 
 /obj/structure/flora/torris/nyrian/Initialize()
 	icon_state = "[initial(icon_state)][rand(1,2)]"
@@ -154,7 +154,7 @@
 	name = "strange flower"
 	desc = "A huge bright red flower that has an absolutly horrid smell when you draw near."
 	icon_state = "Rafflesia"
-	catalogue_data = list(/datum/category_item/catalogue/flora/rafflesia)
+	catalogue_data = list(/datum/category_item/catalogue/flora/torris/rafflesia)
 
 /datum/category_item/catalogue/flora/torris/twilight
 	name = "Torris Flora - Twilight Cress"
@@ -165,7 +165,7 @@
 	name = "fluorescent stalks"
 	desc = "Some short, fluorescent stalks that seem to sparkle gently in the light - as if they're reflective."
 	icon_state = "Twilight_Cress"
-	catalogue_data = list(/datum/category_item/catalogue/flora/twilight)
+	catalogue_data = list(/datum/category_item/catalogue/flora/torris/twilight)
 
 /obj/structure/flora/torris/twilight/Initialize()
 	icon_state = "[initial(icon_state)][rand(1,3)]"
@@ -180,7 +180,7 @@
 	name = "mishaped stalks"
 	desc = "Some tall stalks that seem to attract a lot of bees and other bugs."
 	icon_state = "Sour_Deadnettle"
-	catalogue_data = list(/datum/category_item/catalogue/flora/deadnettle)
+	catalogue_data = list(/datum/category_item/catalogue/flora/torris/deadnettle)
 
 /obj/structure/flora/torris/deadnettle/Initialize()
 	icon_state = "[initial(icon_state)][rand(1,2)]"
