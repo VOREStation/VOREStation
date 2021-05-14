@@ -1,0 +1,97 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/simulated/mineral/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"b" = (
+/turf/template_noop,
+/area/mine/explored/underdark)
+"c" = (
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"e" = (
+/obj/structure/closet/crate/mimic/cointoss,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"f" = (
+/obj/structure/closet/crate/mimic/guaranteed,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"g" = (
+/obj/structure/closet/crate/mimic/dangerous,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"h" = (
+/obj/structure/closet/crate/mimic/safe,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"i" = (
+/obj/effect/decal/remains/deer,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"j" = (
+/obj/effect/decal/remains/tajaran,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+b
+c
+e
+h
+g
+h
+f
+a
+"}
+(3,1,1) = {"
+b
+b
+c
+i
+c
+c
+h
+a
+"}
+(4,1,1) = {"
+b
+b
+c
+c
+c
+j
+g
+a
+"}
+(5,1,1) = {"
+b
+c
+e
+f
+e
+f
+h
+a
+"}
+(6,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+"}

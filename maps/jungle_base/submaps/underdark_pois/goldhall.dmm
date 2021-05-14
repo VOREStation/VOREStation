@@ -1,0 +1,209 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/simulated/wall/gold,
+/area/mine/explored/underdark)
+"b" = (
+/turf/template_noop,
+/area/mine/explored/underdark)
+"c" = (
+/obj/structure/window/basic/full,
+/turf/simulated/floor/tiled/kafel_full/yellow/virgo3b,
+/area/mine/explored/underdark)
+"d" = (
+/turf/simulated/floor/tiled/kafel_full/yellow/virgo3b,
+/area/mine/explored/underdark)
+"e" = (
+/obj/item/weapon/reagent_containers/food/condiment/ketchup,
+/turf/simulated/floor/tiled/kafel_full/yellow/virgo3b,
+/area/mine/explored/underdark)
+"f" = (
+/obj/item/clothing/suit/storage/toggle/hoodie/blue,
+/obj/item/clothing/shoes/slippers_worn,
+/turf/simulated/floor/tiled/kafel_full/yellow/virgo3b,
+/area/mine/explored/underdark)
+"g" = (
+/obj/effect/decal/remains,
+/obj/item/weapon/ore/bluespace_crystal,
+/turf/simulated/floor/tiled/kafel_full/yellow/virgo3b,
+/area/mine/explored/underdark)
+
+(1,1,1) = {"
+a
+b
+a
+b
+b
+b
+b
+b
+b
+b
+"}
+(2,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+d
+b
+b
+"}
+(3,1,1) = {"
+b
+b
+b
+b
+b
+b
+d
+d
+d
+b
+"}
+(4,1,1) = {"
+b
+b
+b
+b
+d
+d
+d
+d
+d
+b
+"}
+(5,1,1) = {"
+a
+b
+d
+d
+d
+d
+d
+d
+d
+a
+"}
+(6,1,1) = {"
+a
+b
+a
+d
+d
+d
+d
+a
+d
+a
+"}
+(7,1,1) = {"
+a
+d
+d
+d
+d
+d
+b
+b
+d
+a
+"}
+(8,1,1) = {"
+c
+d
+d
+d
+d
+d
+b
+b
+b
+b
+"}
+(9,1,1) = {"
+c
+d
+d
+d
+d
+f
+d
+b
+b
+b
+"}
+(10,1,1) = {"
+a
+d
+d
+d
+e
+g
+d
+d
+d
+a
+"}
+(11,1,1) = {"
+a
+b
+a
+d
+d
+d
+d
+a
+d
+a
+"}
+(12,1,1) = {"
+a
+b
+d
+d
+d
+d
+d
+d
+d
+a
+"}
+(13,1,1) = {"
+b
+b
+b
+d
+d
+d
+d
+d
+d
+b
+"}
+(14,1,1) = {"
+b
+b
+b
+b
+b
+b
+d
+d
+d
+b
+"}
+(15,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+d
+b
+b
+"}

@@ -1,0 +1,100 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/mine/explored/underdark)
+"b" = (
+/turf/simulated/mineral/floor/ignore_cavegen/virgo3b,
+/area/mine/explored/underdark)
+"c" = (
+/turf/simulated/shuttle/wall/voidcraft,
+/area/mine/explored/underdark)
+"d" = (
+/obj/structure/sign/mining/survival{
+	dir = 8
+	},
+/turf/simulated/shuttle/wall/voidcraft,
+/area/mine/explored/underdark)
+"e" = (
+/turf/simulated/shuttle/floor/voidcraft/virgo3b,
+/area/mine/explored/underdark)
+"f" = (
+/obj/structure/bed/pod,
+/obj/item/weapon/bedsheet/mime,
+/turf/simulated/shuttle/floor/voidcraft/virgo3b,
+/area/mine/explored/underdark)
+"g" = (
+/obj/structure/sign/mining/survival{
+	dir = 4
+	},
+/turf/simulated/shuttle/wall/voidcraft,
+/area/mine/explored/underdark)
+"h" = (
+/obj/structure/table/survival_pod,
+/obj/random/multiple/underdark/miningdrills,
+/turf/simulated/shuttle/floor/voidcraft/virgo3b,
+/area/mine/explored/underdark)
+"i" = (
+/obj/structure/tubes,
+/obj/structure/bed/chair/comfy/black{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/voidcraft/virgo3b,
+/area/mine/explored/underdark)
+"j" = (
+/obj/structure/sign/mining/survival,
+/turf/simulated/shuttle/wall/voidcraft,
+/area/mine/explored/underdark)
+"k" = (
+/obj/machinery/door/airlock/voidcraft/survival_pod,
+/turf/simulated/shuttle/floor/voidcraft/virgo3b,
+/area/mine/explored/underdark)
+"l" = (
+/obj/structure/sign/mining,
+/turf/simulated/shuttle/wall/voidcraft,
+/area/mine/explored/underdark)
+
+(1,1,1) = {"
+a
+a
+b
+b
+d
+c
+c
+"}
+(2,1,1) = {"
+a
+b
+b
+b
+b
+h
+j
+"}
+(3,1,1) = {"
+b
+b
+b
+b
+e
+e
+k
+"}
+(4,1,1) = {"
+b
+b
+c
+b
+f
+i
+l
+"}
+(5,1,1) = {"
+b
+b
+c
+c
+g
+c
+c
+"}
