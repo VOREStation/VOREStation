@@ -867,12 +867,6 @@
 	N.my_atom = src.emag
 	N.add_reagent("beer2", 50)
 	src.emag.name = "Mickey Finn's Special Brew"
-
-
-	R.icon 		 = 'icons/mob/widerobot_sec_vr.dmi'
-	R.wideborg_dept = 'icons/mob/widerobot_sec_vr.dmi'
-	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
-
 	R.icon 		 = 'icons/mob/widerobot_colors_vr.dmi'
 	R.wideborg_dept = 'icons/mob/widerobot_colors_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
