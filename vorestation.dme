@@ -68,7 +68,6 @@
 #include "code\__defines\objects.dm"
 #include "code\__defines\overmap.dm"
 #include "code\__defines\pda.dm"
-#include "code\__defines\persistence.dm"
 #include "code\__defines\planets.dm"
 #include "code\__defines\planets_vr.dm"
 #include "code\__defines\plants.dm"
