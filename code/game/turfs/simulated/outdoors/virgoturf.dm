@@ -26,8 +26,13 @@
 	grass_chance = 5
 
 	grass_types = list(
-		/obj/structure/flora/moon/whispingstalks = 2,
-		/obj/structure/flora/moon/tallgrass = 15
+		/obj/structure/flora/torris/stones = 5,
+		/obj/structure/flora/torris/tallgrass = 20,
+		/obj/structure/flora/torris/nyrian = 4,
+		/obj/structure/flora/torris/rafflesia = 1,
+		/obj/structure/flora/torris/twilight = 6,
+		/obj/structure/flora/torris/deadnettle = 5
+
 		)
 
 	catalogue_data = list(/datum/category_item/catalogue/flora/torris/jungle_grass)
