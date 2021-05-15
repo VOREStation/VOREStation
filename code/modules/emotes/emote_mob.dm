@@ -1,4 +1,9 @@
 /mob/proc/can_emote(var/emote_type)
+	//VOREStation Add
+	if(src.nextemote >= world.time)
+		return FALSE
+	src.nextemote = world.time + 12
+	//VOREStation Add End
 	return (stat == CONSCIOUS)
 
 /mob/living/can_emote(var/emote_type)
