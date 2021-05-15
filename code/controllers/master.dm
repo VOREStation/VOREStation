@@ -134,9 +134,11 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 			if(2)
 				msg = "The [BadBoy.name] subsystem was the last to fire for 2 controller restarts. It will be recovered now and disabled if it happens again."
 				FireHim = TRUE
+				BadBoy.fail()
 			if(3)
 				msg = "The [BadBoy.name] subsystem seems to be destabilizing the MC and will be offlined."
 				BadBoy.flags |= SS_NO_FIRE
+				BadBoy.critfail()
 		if(msg)
 			log_game(msg)
 			message_admins("<span class='boldannounce'>[msg]</span>")

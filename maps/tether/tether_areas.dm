@@ -698,6 +698,7 @@
 	name = "\improper South Maintenance"
 /area/maintenance/lower/trash_pit
 	name = "\improper Trash Pit"
+	flags = RAD_SHIELDED|AREA_FLAG_IS_NOT_PERSISTENT
 /area/maintenance/lower/solars
 	name = "\improper Solars Maintenance"
 /area/maintenance/lower/mining_eva

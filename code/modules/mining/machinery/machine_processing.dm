@@ -73,7 +73,7 @@
 	for(var/ore in machine.ores_processing)
 		if(!machine.ores_stored[ore] && !show_all_ores)
 			continue
-		var/ore/O = ore_data[ore]
+		var/ore/O = GLOB.ore_data[ore]
 		if(!O)
 			continue
 		data["ores"].Add(list(list(
@@ -160,10 +160,10 @@
 	var/sheets_per_tick = 10
 	var/list/ores_processing[0]
 	var/list/ores_stored[0]
-	var/static/list/alloy_data
 	var/active = FALSE
 
 	var/points = 0
+	var/points_mult = 1 //VOREStation Add - multiplier for points generated when ore hits the processors
 	var/static/list/ore_values = list(
 		"sand" = 1,
 		"hematite" = 1,
@@ -187,24 +187,13 @@
 		"verdantium" = 60,
 		"rutile" = 40) //VOREStation Add
 
-/obj/machinery/mineral/processing_unit/New()
-	..()
-	// initialize static alloy_data list
-	if(!alloy_data)
-		alloy_data = list()
-		for(var/alloytype in typesof(/datum/alloy)-/datum/alloy)
-			alloy_data += new alloytype()
-
-	// TODO - Initializing this here is insane. Put it in global lists init or something. ~Leshana
-	if(!ore_data || !ore_data.len)
-		for(var/oretype in typesof(/ore)-/ore)
-			var/ore/OD = new oretype()
-			ore_data[OD.name] = OD
-			ores_processing[OD.name] = 0
-			ores_stored[OD.name] = 0
-
 /obj/machinery/mineral/processing_unit/Initialize()
 	. = ..()
+	for(var/ore in GLOB.ore_data)
+		var/ore/OD = GLOB.ore_data[ore]
+		ores_processing[OD.name] = 0
+		ores_stored[OD.name] = 0
+	
 	// TODO - Eschew input/output machinery and just use dirs ~Leshana
 	//Locate our output and input machinery.
 	for (var/dir in cardinal)
@@ -249,7 +238,7 @@
 	for(var/obj/item/weapon/ore/O in input.loc)
 		if(!isnull(ores_stored[O.material]))
 			ores_stored[O.material]++
-			points += ore_values[O.material] // Give Points!
+			points += (ore_values[O.material]*points_mult) // Give Points! VOREStation Edit - or give lots of points! or less points! or no points!
 		qdel(O)
 
 	if(!active)
@@ -263,13 +252,13 @@
 
 		if(ores_stored[metal] > 0 && ores_processing[metal] != 0)
 
-			var/ore/O = ore_data[metal]
+			var/ore/O = GLOB.ore_data[metal]
 
 			if(!O) continue
 
 			if(ores_processing[metal] == PROCESS_ALLOY && O.alloy) //Alloying.
 
-				for(var/datum/alloy/A in alloy_data)
+				for(var/datum/alloy/A in GLOB.alloy_data)
 
 					if(A.metaltag in tick_alloys)
 						continue
