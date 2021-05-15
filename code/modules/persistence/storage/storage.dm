@@ -1,40 +1,23 @@
 /datum/persistent/storage
+	name = "storage"
 	entries_expire_at = 1
+	has_admin_data = TRUE
+	
+	// Don't use these for storage persistence. If someone takes some sheets out and puts them back in mixed in with
+	// new sheets, how do you know the age of the stack? If you want sheets to 'decay', see go_missing_chance
 	entries_decay_at = 0
 	entry_decay_weight = 0
-	tokens_per_line = PERSISTENCE_VARIABLE_TOKEN_LENGTH
-	
+	// // // //
+
 	var/max_storage = 0
 	var/store_per_type = FALSE // If true, will store up to max_storage for each type stored
 	var/target_type = null // Path of the thing that this expects to put stuff into
 
+	var/go_missing_chance = 0 // Chance an item will fail to be spawned in from persistence and need to be restocked
+
 /datum/persistent/storage/SetFilename()
 	if(name)
-		filename = "data/persistent/storage/[lowertext(using_map.name)]-[lowertext(name)].txt"
-
-/datum/persistent/storage/LabelTokens(var/list/tokens)
-	. = ..()
-	.["items"] = list()
-	for(var/T in tokens)
-		var/list/L = assemble_token(T)
-		if(LAZYLEN(L))
-			.["items"][L[1]] = text2num(L[2])
-
-/datum/persistent/storage/proc/assemble_token(var/T)
-	var/list/subtok = splittext(T, " ")
-	if(subtok.len != 2)
-		return null
-	
-	subtok[1] = text2path(subtok[1])
-	subtok[2] = text2num( subtok[2])
-
-	// Ensure we've found a token describing the quantity of a path
-	if(subtok.len != 2 || \
-			!ispath(subtok[1]) || \
-			!isnum(subtok[2]))
-		return null
-	
-	return subtok
+		filename = "data/persistent/storage/[lowertext(using_map.name)]-[lowertext(name)].json"
 
 /datum/persistent/storage/IsValidEntry(var/atom/entry)
 	return ..() && istype(entry, target_type)
@@ -52,9 +35,8 @@
 		if(!store_per_type)
 			stored = max(stored - item_list[item], 0) 
 	
-	for(var/item in storage_list)
-		. += "[item] [storage_list[item]]"
-
+	LAZYADDASSOC(., "items", storage_list)
+	
 // Usage: returns list with structure:
 //  list(
 //      [type1] = [stored_quantity],
@@ -66,16 +48,27 @@
 /datum/persistent/storage/proc/find_specific_instance(var/turf/T)
 	return locate(target_type) in T
 
-/datum/persistent/storage/CheckTurfContents(var/turf/T, var/list/tokens)
+/datum/persistent/storage/CheckTurfContents(var/turf/T, var/list/token)
 	return istype(find_specific_instance(T), target_type)
 
 /datum/persistent/storage/proc/generate_items(var/list/L)
 	. = list()
 	for(var/path in L)
+		// byond's json implementation is "questionable", and uses types as keys and values without quotes sometimes even though they aren't valid json
+		var/real_path = istext(path) ? text2path(path) : path
 		for(var/i in 1 to L[path])
-			var/atom/A = create_item(path)
+			if(prob(go_missing_chance))
+				continue
+			var/atom/A = create_item(real_path)
 			if(!QDELETED(A))
 				. += A
 
 /datum/persistent/storage/proc/create_item(var/path)
 	return new path()
+
+/datum/persistent/storage/GetAdminDataStringFor(var/thing, var/can_modify, var/mob/user)
+	var/atom/T = thing
+	if(!istype(T))
+		return "<td><Missing entry><td>"
+	else
+		. = "<td colspan = 2>[T.name]</td><td>[T.x],[T.y],[T.z]</td><td>"

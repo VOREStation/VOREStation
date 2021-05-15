@@ -1,32 +1,24 @@
 /datum/persistent/paper
 	name = "paper"
-	tokens_per_line = 7
 	entries_expire_at = 50
 	has_admin_data = TRUE
 	var/paper_type = /obj/item/weapon/paper
 	var/requires_noticeboard = TRUE
 
-/datum/persistent/paper/LabelTokens(var/list/tokens)
-	var/list/labelled_tokens = ..()
-	var/entries = LAZYLEN(labelled_tokens)
-	labelled_tokens["author"] =  tokens[entries+1]
-	labelled_tokens["message"] = tokens[entries+2]
-	labelled_tokens["title"] = tokens[entries+3]
-	return labelled_tokens
-
-/datum/persistent/paper/CheckTurfContents(var/turf/T, var/list/tokens)
+/datum/persistent/paper/CheckTurfContents(var/turf/T, var/list/token)
 	if(requires_noticeboard && !(locate(/obj/structure/noticeboard) in T))
 		new /obj/structure/noticeboard(T)
 	. = ..()
 
-/datum/persistent/paper/CreateEntryInstance(var/turf/creating, var/list/tokens)
+/datum/persistent/paper/CreateEntryInstance(var/turf/creating, var/list/token)
 	var/obj/structure/noticeboard/board = locate() in creating
 	if(requires_noticeboard && LAZYLEN(board.notices) >= board.max_notices)
 		return
 	var/obj/item/weapon/paper/paper = new paper_type(creating)
-	paper.info = tokens["message"]
-	paper.name = tokens["title"]
-	paper.last_modified_ckey = tokens["author"]
+	paper.info = token["message"]
+	paper.name = token["title"]
+	paper.last_modified_ckey = token["author"]
+	paper.age = token["age"]+1
 	if(requires_noticeboard)
 		board.add_paper(paper)
 	if(!paper.was_maploaded) // If we were created/loaded when the map was made, skip us!
@@ -40,9 +32,9 @@
 /datum/persistent/paper/CompileEntry(var/atom/entry, var/write_file)
 	. = ..()
 	var/obj/item/weapon/paper/paper = entry
-	LAZYADD(., "[paper.last_modified_ckey ? paper.last_modified_ckey : "unknown"]")
-	LAZYADD(., "[paper.info]")
-	LAZYADD(., "[paper.name]")
+	LAZYADDASSOC(., "author", "[paper.last_modified_ckey ? paper.last_modified_ckey : "unknown"]")
+	LAZYADDASSOC(., "message", "[paper.info]")
+	LAZYADDASSOC(., "name", "[paper.name]")
 
 /datum/persistent/paper/GetAdminDataStringFor(var/thing, var/can_modify, var/mob/user)
 	var/obj/item/weapon/paper/paper = thing

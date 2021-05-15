@@ -1,22 +1,14 @@
 /datum/persistent/graffiti
 	name = "graffiti"
-	tokens_per_line = 6
 	entries_expire_at = 4 // This previously was at 50 rounds??? Over 10 days.
 	has_admin_data = TRUE
 
-/datum/persistent/graffiti/LabelTokens(var/list/tokens)
-	var/list/labelled_tokens = ..()
-	var/entries = LAZYLEN(labelled_tokens)
-	labelled_tokens["author"] =  tokens[entries+1]
-	labelled_tokens["message"] = tokens[entries+2]
-	return labelled_tokens
-
-/datum/persistent/graffiti/GetValidTurf(var/turf/T, var/list/tokens)
+/datum/persistent/graffiti/GetValidTurf(var/turf/T, var/list/token)
 	var/turf/checking_turf = ..()
 	if(istype(checking_turf) && checking_turf.can_engrave())
 		return checking_turf
 
-/datum/persistent/graffiti/CheckTurfContents(var/turf/T, var/list/tokens)
+/datum/persistent/graffiti/CheckTurfContents(var/turf/T, var/list/token)
 	var/too_much_graffiti = 0
 	for(var/obj/effect/decal/writing/W in .)
 		too_much_graffiti++
@@ -24,8 +16,10 @@
 			return FALSE
 	return TRUE
 
-/datum/persistent/graffiti/CreateEntryInstance(var/turf/creating, var/list/tokens)
-	new /obj/effect/decal/writing(creating, tokens["age"]+1, tokens["message"], tokens["author"])
+/datum/persistent/graffiti/CreateEntryInstance(var/turf/creating, var/list/token)
+	var/obj/effect/decal/writing/inst = new /obj/effect/decal/writing(creating, token["age"]+1, token["message"], token["author"])
+	if(token["icon_state"])
+		inst.icon_state = token["icon_state"]
 
 /datum/persistent/graffiti/IsValidEntry(var/atom/entry)
 	. = ..()
@@ -40,8 +34,9 @@
 /datum/persistent/graffiti/CompileEntry(var/atom/entry, var/write_file)
 	. = ..()
 	var/obj/effect/decal/writing/save_graffiti = entry
-	LAZYADD(., "[save_graffiti.author ? save_graffiti.author : "unknown"]")
-	LAZYADD(., "[save_graffiti.message]")
+	LAZYADDASSOC(., "author", "[save_graffiti.author ? save_graffiti.author : "unknown"]")
+	LAZYADDASSOC(., "message", "[save_graffiti.message]")
+	LAZYADDASSOC(., "icon_state", "[save_graffiti.icon_state]")
 
 /datum/persistent/graffiti/GetAdminDataStringFor(var/thing, var/can_modify, var/mob/user)
 	var/obj/effect/decal/writing/save_graffiti = thing

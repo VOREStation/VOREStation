@@ -1109,7 +1109,7 @@
 /turf/simulated/floor/reinforced/airless,
 /area/submap/debrisfield/tinyshuttle/hangar)
 "bW" = (
-/obj/mecha/combat/fighter/baron/loaded/busted{
+/obj/mecha/combat/fighter/baron/busted{
 	dir = 8;
 	dir_in = 8
 	},
