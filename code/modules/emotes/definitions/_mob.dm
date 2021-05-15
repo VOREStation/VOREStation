@@ -27,6 +27,7 @@ var/list/_default_mob_emotes = list(
 
 /mob
 	var/list/usable_emotes
+	var/nextemote = 1 //VOREStation Add
 
 /mob/proc/update_emotes(var/skip_sort)
 	usable_emotes = list()

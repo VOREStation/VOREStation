@@ -39,15 +39,11 @@
 
 	var/list/incompatible_with = null // List of NIFSofts that are disabled when this one is enabled
 
-	var/obj/effect/nif_stat/stat_line // The stat line in the statpanel for this NIFSoft
-
-
 //Constructor accepts the NIF it's being loaded into
 /datum/nifsoft/New(var/obj/item/device/nif/nif_load)
 	ASSERT(nif_load)
 
 	nif = nif_load
-	stat_line = new(src)
 	if(!install(nif))
 		qdel(src)
 
@@ -56,7 +52,6 @@
 	if(nif)
 		uninstall()
 		nif = null
-	QDEL_NULL(stat_line)
 	return ..()
 
 //Called when the software is installed in the NIF
@@ -138,7 +133,7 @@
 /datum/nifsoft/proc/disk_install(var/mob/living/carbon/human/target,var/mob/living/carbon/human/user)
 	return TRUE
 
-//Stat-line clickable text
+//Status text for menu
 /datum/nifsoft/proc/stat_text()
 	if(activates)
 		return "[active ? "Active" : "Disabled"]"

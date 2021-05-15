@@ -35,7 +35,7 @@
 	tgarscreen = null
 	spawn(20 SECONDS)
 		tgarscreen = disconnect_tgar
-	
+
 	//extra fun for non-sci variants; a small chance flip the state to the dumb 3d glasses when EMP'd
 	if(icon_state == "glasses" || icon_state == "sun")
 		if(prob(10))
@@ -112,6 +112,14 @@
 
 /obj/item/clothing/glasses/omnihud/proc/ar_interact(var/mob/living/carbon/human/user)
 	return 0 //The base models do nothing.
+
+/obj/item/clothing/glasses/omnihud/visor
+	name = "AR visor"
+	desc = "The VZR-AR are a product based upon the classic AR Glasses, just more fashionable."
+	icon_override = 'icons/mob/eyes_vr.dmi'
+	icon = 'icons/mob/eyes_vr.dmi'
+	icon_state = "visor_CIV"
+	item_state = "visor_CIV"
 
 /obj/item/clothing/glasses/omnihud/prescription
 	name = "AR glasses (pr)"

@@ -8,9 +8,11 @@ SUBSYSTEM_DEF(persistence)
 /datum/controller/subsystem/persistence/Initialize()
 	. = ..()
 	for(var/thing in subtypesof(/datum/persistent))
-		var/datum/persistent/P = new thing
-		persistence_datums[thing] = P
-		P.Initialize()
+		var/datum/persistent/P = thing
+		if(initial(P.name))
+			P = new P
+			persistence_datums[thing] = P
+			P.Initialize()
 
 /datum/controller/subsystem/persistence/Shutdown()
 	for(var/thing in persistence_datums)

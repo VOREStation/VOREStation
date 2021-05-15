@@ -3,7 +3,7 @@
 // of persistent data like graffiti and round to round filth.
 
 /datum/persistent
-	var/name
+	var/name = null
 	var/filename
 	var/tokens_per_line
 	var/entries_expire_at						// Set in rounds, this controls when the item is finally removed permanently regardless if cleaned or not.
@@ -24,6 +24,7 @@
 	if(!isnull(entries_decay_at) && !isnull(entries_expire_at))
 		entries_decay_at = round(entries_expire_at * entries_decay_at)
 
+// Reads in list of text tokens taken from file, generates labelled list of actual token values
 /datum/persistent/proc/LabelTokens(var/list/tokens)
 	var/list/labelled_tokens = list()
 	labelled_tokens["x"] = text2num(tokens[1])
@@ -48,6 +49,7 @@
 		tokens["age"] <= entries_expire_at \
 	)
 
+// Restores saved data to world
 /datum/persistent/proc/CreateEntryInstance(var/turf/creating, var/list/tokens)
 	return
 
@@ -96,7 +98,7 @@
 
 /datum/persistent/proc/CompileEntry(var/atom/entry)
 	var/turf/T = get_turf(entry)
-	. = list(
+	return list(
 		T.x,
 		T.y,
 		T.z,
@@ -123,7 +125,8 @@
 	for(var/thing in SSpersistence.tracking_values[type])
 		if(IsValidEntry(thing))
 			var/list/entry = CompileEntry(thing)
-			if(LAZYLEN(entry) == tokens_per_line)
+			if(tokens_per_line == PERSISTENCE_VARIABLE_TOKEN_LENGTH || \
+					LAZYLEN(entry) == tokens_per_line)
 				for(var/i = 1 to LAZYLEN(entry))
 					if(istext(entry[i]))
 						entry[i] = replacetext(entry[i], file_entry_split_character, file_entry_substitute_character)
