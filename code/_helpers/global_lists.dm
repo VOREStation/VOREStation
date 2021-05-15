@@ -111,6 +111,9 @@ GLOBAL_LIST_EMPTY(mannequins)
 		M = GLOB.mannequins[ckey]
 	return M
 
+/proc/del_mannequin(var/ckey = "NULL")
+	GLOB.mannequins-= ckey
+
 //////////////////////////
 /////Initial Building/////
 //////////////////////////
