@@ -115,6 +115,7 @@
 	. = ..()
 
 /mob/living/simple_mob/vore/greatwolf/init_vore()
+	..()
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
 	B.desc = "The moment the wolf gets its jaws around you, it scoops you right up off of the ground, and greedily scarfs you down with a few swift gulps. Your small frame alone is hardly enough to make him look somewhat plump as you slop wetly into that dark, hot chamber, although the dense squish is rather comfortable. The thick, humid air is tinged with the smell of digested meat, and the surrounding flesh wastes no time in clenching and massaging down over its newfound fodder."
