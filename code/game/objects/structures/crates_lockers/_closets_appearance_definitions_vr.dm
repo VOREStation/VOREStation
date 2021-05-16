@@ -96,3 +96,8 @@
 		"stripe_vertical_right_full" = COLOR_PURPLE,
 		"exped" = COLOR_GRAY40
 	)
+
+/decl/closet_appearance/crate/fennec
+	base_icon =  'icons/obj/closets/bases/crate_vr.dmi'
+	decal_icon = 'icons/obj/closets/decals/crate.dmi'
+	color = null
