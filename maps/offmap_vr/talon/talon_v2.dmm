@@ -48,29 +48,6 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/talon_v2/central_hallway/fore)
 "af" = (
-<<<<<<< Updated upstream
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/effect/floor_decal/industrial/warning{
-	dir = 9
-	},
-/obj/structure/railing/grey{
-	dir = 8
-	},
-/obj/structure/table/steel,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/talon_v2/engineering)
-"ag" = (
-/obj/structure/railing/grey{
-	dir = 4
-	},
-/obj/structure/table/steel,
-/obj/effect/floor_decal/industrial/warning{
-	dir = 5
-	},
-/obj/item/weapon/paper/talon_shields,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/talon_v2/engineering)
-=======
 /obj/structure/closet/secure_closet/talon_guard,
 /obj/item/device/radio/off{
 	channels = list("Talon" = 1)
@@ -86,7 +63,6 @@
 /obj/item/weapon/storage/box/nifsofts_medical,
 /turf/simulated/floor/wood,
 /area/talon_v2/crew_quarters/med_room)
->>>>>>> Stashed changes
 "ah" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -138,38 +114,6 @@
 /turf/simulated/floor/reinforced/airless,
 /area/talon_v2/engineering/port)
 "al" = (
-<<<<<<< Updated upstream
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
-	},
-/obj/structure/railing/grey{
-	dir = 8
-	},
-/obj/effect/floor_decal/industrial/warning{
-	dir = 10
-	},
-/obj/structure/railing/grey,
-/obj/structure/table/steel,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/talon_v2/engineering)
-"am" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/structure/railing/grey,
-/obj/item/modular_computer/console/preset/talon{
-	dir = 1
-	},
-/obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/talon_v2/engineering)
-=======
 /obj/machinery/vending/nifsoft_shop,
 /turf/simulated/floor/tiled/techmaint,
 /area/talon_v2/central_hallway)
@@ -191,7 +135,6 @@
 /obj/item/weapon/storage/box/nifsofts_mining,
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/refining)
->>>>>>> Stashed changes
 "an" = (
 /obj/effect/floor_decal/industrial/warning,
 /obj/machinery/light_switch{
@@ -206,66 +149,15 @@
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/port_store)
 "ap" = (
-<<<<<<< Updated upstream
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/computer/ship/engines{
-	dir = 1
-	},
-/obj/structure/railing/grey,
-/obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/talon_v2/engineering)
-"aq" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/structure/railing/grey,
-/obj/structure/railing/grey{
-	dir = 4
-	},
-/obj/effect/floor_decal/industrial/warning{
-	dir = 6
-	},
-/obj/machinery/power/shield_generator/charged,
-/obj/structure/cable/green{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/talon_v2/engineering)
-"ar" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/structure/catwalk,
-/turf/simulated/floor/plating,
-/area/talon_v2/engineering)
-=======
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /obj/structure/table/steel,
-/obj/fiftyspawner/uranium,
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 32
 	},
 /obj/machinery/camera/network/talon{
 	dir = 4
 	},
+/obj/fiftyspawner/uranium,
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/generators)
 "aq" = (
@@ -276,16 +168,15 @@
 "ar" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/structure/table/steel,
+/obj/machinery/recharger,
 /obj/item/device/geiger{
 	pixel_x = -7
 	},
-/obj/machinery/recharger,
 /obj/machinery/alarm/talon{
 	pixel_y = 24
 	},
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/generators)
->>>>>>> Stashed changes
 "as" = (
 /obj/machinery/holoposter{
 	dir = 8;
@@ -304,27 +195,12 @@
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/port)
 "au" = (
-<<<<<<< Updated upstream
-/obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/structure/table/steel,
-/obj/fiftyspawner/uranium,
-/obj/structure/extinguisher_cabinet{
-	pixel_y = 32
+/obj/machinery/light/small{
+	dir = 8
 	},
-/obj/machinery/camera/network/talon{
-	dir = 4
-	},
+/obj/structure/catwalk,
 /turf/simulated/floor/plating,
-/area/talon_v2/engineering/generators)
-=======
-/obj/structure/closet/secure_closet/talon_engineer,
-/obj/item/device/radio/off{
-	channels = list("Talon" = 1)
-	},
-/obj/item/weapon/storage/box/nifsofts_engineering,
-/turf/simulated/floor/wood,
-/area/talon_v2/crew_quarters/eng_room)
->>>>>>> Stashed changes
+/area/talon_v2/engineering)
 "av" = (
 /obj/structure/table/standard,
 /obj/machinery/recharger,
@@ -352,44 +228,13 @@
 /turf/simulated/floor/wood,
 /area/talon_v2/crew_quarters/med_room)
 "ax" = (
-<<<<<<< Updated upstream
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+/obj/structure/closet/secure_closet/talon_engineer,
+/obj/item/device/radio/off{
+	channels = list("Talon" = 1)
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/catwalk,
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
-/turf/simulated/floor/plating,
-/area/talon_v2/engineering)
-=======
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 5
-	},
-/obj/structure/catwalk,
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/machinery/power/apc/talon/hyper{
-	dir = 1;
-	pixel_x = -24
-	},
-/obj/structure/cable/yellow{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/turf/simulated/floor/plating,
-/area/talon_v2/engineering/generators)
->>>>>>> Stashed changes
+/obj/item/weapon/storage/box/nifsofts_engineering,
+/turf/simulated/floor/wood,
+/area/talon_v2/crew_quarters/eng_room)
 "ay" = (
 /obj/machinery/disposal/wall{
 	dir = 4
@@ -400,31 +245,22 @@
 /turf/simulated/floor/wood,
 /area/talon_v2/crew_quarters/meditation)
 "az" = (
-<<<<<<< Updated upstream
-/obj/structure/closet/secure_closet/talon_guard,
-/obj/item/device/radio/off{
-	channels = list("Talon" = 1)
-	},
-/obj/item/weapon/storage/box/nifsofts_security,
-/turf/simulated/floor/wood,
-/area/talon_v2/crew_quarters/sec_room)
-"aA" = (
-/obj/effect/catwalk_plated/dark,
-/obj/machinery/recharge_station,
-=======
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
+	dir = 5
 	},
 /obj/structure/catwalk,
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/structure/cable/yellow{
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4"
+	},
+/obj/structure/cable/yellow{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc/talon/hyper{
+	dir = 1;
+	pixel_x = -24
 	},
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/generators)
@@ -432,21 +268,17 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
-	},
 /obj/structure/catwalk,
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/structure/cable/yellow{
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4"
 	},
->>>>>>> Stashed changes
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/generators)
 "aB" = (
@@ -487,20 +319,11 @@
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/port)
 "aD" = (
-<<<<<<< Updated upstream
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
-	},
-/obj/structure/cable/yellow{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/obj/structure/cable/yellow{
-	d2 = 8;
-	icon_state = "0-8"
 	},
 /obj/structure/catwalk,
 /obj/structure/cable/yellow{
@@ -508,28 +331,33 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/generators)
 "aE" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/structure/table/steel,
-/obj/machinery/alarm/talon{
-	pixel_y = 26
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
-/obj/item/device/geiger{
-	pixel_x = -8
+/obj/machinery/door/firedoor/glass/talon,
+/obj/machinery/door/airlock/hatch{
+	name = "Generator Room";
+	req_one_access = list(301)
 	},
-/obj/machinery/recharger,
-=======
-/obj/structure/cable/yellow,
-/obj/machinery/power/rtg/advanced,
-/turf/simulated/floor/plating,
-/area/talon_v2/engineering/generators)
-"aE" = (
-/obj/machinery/power/port_gen/pacman/super/potato,
-/obj/structure/cable/yellow,
-/obj/machinery/light/small,
->>>>>>> Stashed changes
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/sign/warning/radioactive{
+	pixel_y = 32
+	},
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/generators)
 "aF" = (
@@ -540,35 +368,20 @@
 /turf/simulated/floor/tiled/white,
 /area/talon_v2/medical)
 "aG" = (
-<<<<<<< Updated upstream
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 5
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
 	},
 /obj/structure/catwalk,
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/machinery/power/apc/talon/hyper{
-	dir = 1;
-	pixel_x = -24
-	},
-/obj/structure/cable/yellow{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-=======
-/obj/structure/cable/yellow,
-/obj/machinery/firealarm{
-	dir = 4;
-	layer = 3.3;
-	pixel_x = 26
-	},
-/obj/machinery/power/rtg/advanced,
->>>>>>> Stashed changes
 /turf/simulated/floor/plating,
-/area/talon_v2/engineering/generators)
+/area/talon_v2/engineering)
 "aH" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume/aux{
 	dir = 1
@@ -592,63 +405,16 @@
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/atmospherics)
 "aJ" = (
-<<<<<<< Updated upstream
-/obj/machinery/power/apc/talon/hyper{
-	pixel_y = -24
-	},
-/obj/effect/catwalk_plated/dark,
-/obj/structure/cable/green{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/obj/structure/closet/walllocker_double/hydrant/west,
-=======
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/structure/catwalk,
->>>>>>> Stashed changes
-/turf/simulated/floor/plating,
-/area/talon_v2/engineering)
-"aK" = (
-/obj/structure/cable/yellow{
-<<<<<<< Updated upstream
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/machinery/light/small,
-/obj/structure/railing/grey{
-	dir = 1
-	},
-/obj/machinery/light_switch{
-	dir = 1;
-	pixel_y = -24
-	},
-/turf/simulated/floor/plating,
-/area/talon_v2/engineering)
-=======
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/door/firedoor/glass/talon,
-/obj/machinery/door/airlock/hatch{
-	name = "Generator Room";
-	req_one_access = list(301)
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/structure/sign/warning/radioactive{
-	pixel_y = 32
-	},
+/obj/structure/cable/yellow,
+/obj/machinery/power/rtg/advanced,
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/generators)
->>>>>>> Stashed changes
+"aK" = (
+/obj/structure/cable/yellow,
+/obj/machinery/light/small,
+/obj/machinery/power/port_gen/pacman/super/potato,
+/turf/simulated/floor/plating,
+/area/talon_v2/engineering/generators)
 "aL" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -658,30 +424,15 @@
 /turf/simulated/wall/rshull,
 /area/talon_v2/engineering/star_store)
 "aM" = (
-<<<<<<< Updated upstream
-/obj/structure/closet/secure_closet/talon_doctor,
-/obj/item/device/radio/off{
-	channels = list("Talon" = 1)
+/obj/structure/cable/yellow,
+/obj/machinery/firealarm{
+	dir = 4;
+	layer = 3.3;
+	pixel_x = 26
 	},
-/obj/item/weapon/storage/box/nifsofts_medical,
-/turf/simulated/floor/wood,
-/area/talon_v2/crew_quarters/med_room)
-=======
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/structure/catwalk,
+/obj/machinery/power/rtg/advanced,
 /turf/simulated/floor/plating,
-/area/talon_v2/engineering)
->>>>>>> Stashed changes
+/area/talon_v2/engineering/generators)
 "aN" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -704,43 +455,15 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/talon_v2/bridge)
 "aP" = (
-<<<<<<< Updated upstream
-/obj/machinery/computer/cryopod{
-	pixel_y = 32
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/floor_decal/emblem/talon,
-/turf/simulated/floor/tiled/techmaint,
-/area/talon_v2/central_hallway)
-"aQ" = (
-/obj/machinery/alarm/talon{
-	dir = 4;
-	pixel_x = -22
-	},
-=======
 /obj/machinery/power/apc/talon/hyper{
 	pixel_y = -24
 	},
 /obj/effect/catwalk_plated/dark,
 /obj/structure/closet/walllocker_double/hydrant/west,
->>>>>>> Stashed changes
 /obj/structure/cable/green{
 	d2 = 4;
 	icon_state = "0-4"
 	},
-<<<<<<< Updated upstream
-/obj/machinery/power/apc/talon{
-	dir = 1;
-	name = "north bump";
-	pixel_y = 28
-	},
-/obj/structure/table/steel,
-/obj/item/weapon/storage/box/nifsofts_mining,
-/turf/simulated/floor/tiled/techfloor,
-/area/talon_v2/refining)
-=======
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering)
 "aQ" = (
@@ -760,7 +483,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering)
->>>>>>> Stashed changes
 "aR" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -804,12 +526,6 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/talon_v2/central_hallway/fore)
 "aV" = (
-<<<<<<< Updated upstream
-/obj/structure/cable/yellow,
-/obj/machinery/power/rtg/advanced,
-/turf/simulated/floor/plating,
-/area/talon_v2/engineering/generators)
-=======
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 4;
@@ -821,11 +537,11 @@
 	},
 /obj/machinery/light_switch{
 	dir = 1;
-	pixel_y = -26
+	pixel_x = 2;
+	pixel_y = -28
 	},
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering)
->>>>>>> Stashed changes
 "aW" = (
 /obj/effect/shuttle_landmark/shuttle_initializer/talonboat,
 /obj/machinery/atmospherics/pipe/manifold/hidden/aux{
@@ -850,18 +566,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/talonboat)
-"aX" = (
-/obj/structure/closet/secure_closet/talon_engineer,
-/obj/item/device/radio/off{
-	channels = list("Talon" = 1)
-	},
-/obj/item/weapon/storage/box/nifsofts_engineering,
-/turf/simulated/floor/wood,
-/area/talon_v2/crew_quarters/eng_room)
-"aY" = (
-/obj/machinery/vending/nifsoft_shop,
-/turf/simulated/floor/tiled/techmaint,
-/area/talon_v2/central_hallway)
 "aZ" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -888,20 +592,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/talon_v2/maintenance/wing_port)
-"bb" = (
-/obj/structure/railing/grey{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
-	},
-/obj/structure/table/steel,
-/obj/item/stack/marker_beacon/thirty,
-/turf/simulated/floor/tiled/techfloor,
-/area/talon_v2/refining)
 "bc" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -918,13 +608,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/talon_v2/crew_quarters/bar)
-"be" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/structure/catwalk,
-/turf/simulated/floor/plating,
-/area/talon_v2/engineering)
 "bf" = (
 /obj/structure/railing/grey{
 	dir = 1
@@ -960,45 +643,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/talon_v2/maintenance/wing_port)
-"bi" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/structure/catwalk,
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/turf/simulated/floor/plating,
-/area/talon_v2/engineering/generators)
-"bj" = (
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/door/firedoor/glass/talon,
-/obj/machinery/door/airlock/hatch{
-	name = "Generator Room";
-	req_one_access = list(301)
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/structure/sign/warning/radioactive{
-	pixel_y = 32
-	},
-/turf/simulated/floor/plating,
-/area/talon_v2/engineering/generators)
 "bk" = (
 /obj/structure/table/woodentable,
 /obj/machinery/firealarm{
@@ -1014,25 +658,6 @@
 /obj/item/weapon/paper/talon_captain,
 /turf/simulated/floor/carpet/blucarpet,
 /area/talon_v2/crew_quarters/cap_room)
-"bl" = (
-/obj/structure/cable/yellow,
-/obj/machinery/power/port_gen/pacman/super/potato,
-/obj/machinery/camera/network/talon{
-	dir = 1
-	},
-/obj/machinery/light/small,
-/turf/simulated/floor/plating,
-/area/talon_v2/engineering/generators)
-"bm" = (
-/obj/structure/cable/yellow,
-/obj/machinery/power/rtg/advanced,
-/obj/machinery/firealarm{
-	dir = 4;
-	layer = 3.3;
-	pixel_x = 26
-	},
-/turf/simulated/floor/plating,
-/area/talon_v2/engineering/generators)
 "bo" = (
 /obj/machinery/computer/ship/engines,
 /turf/simulated/floor/tiled/techfloor,
@@ -2290,6 +1915,18 @@
 /obj/structure/closet/walllocker_double/hydrant/west,
 /turf/simulated/floor/tiled/techmaint,
 /area/talon_v2/secure_storage)
+"fk" = (
+/obj/structure/railing/grey{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/smartfridge/sheets/persistent_lossy{
+	layer = 3.3
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/talon_v2/refining)
 "fm" = (
 /obj/machinery/door/airlock/glass_external{
 	req_one_access = list(301)
@@ -3246,6 +2883,27 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/bridge)
+"jc" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/railing/grey,
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 6
+	},
+/obj/machinery/power/shield_generator/charged,
+/obj/structure/cable/green{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/talon_v2/engineering)
 "jg" = (
 /obj/effect/landmark/start{
 	name = "Talon Pilot"
@@ -3461,6 +3119,16 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/talon_v2/maintenance/wing_port)
+"kg" = (
+/obj/machinery/computer/cryopod{
+	pixel_y = 32
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/floor_decal/emblem/talon,
+/turf/simulated/floor/tiled/techmaint,
+/area/talon_v2/central_hallway)
 "ki" = (
 /obj/machinery/atmospherics/unary/engine/bigger{
 	dir = 1
@@ -6629,6 +6297,17 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/talonboat)
+"vz" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 9
+	},
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/obj/structure/table/steel,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/talon_v2/engineering)
 "vA" = (
 /obj/structure/bed/chair/bay/chair{
 	dir = 1
@@ -9848,6 +9527,20 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/port)
+"Hg" = (
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/obj/structure/table/steel,
+/obj/item/stack/marker_beacon/thirty,
+/turf/simulated/floor/tiled/techfloor,
+/area/talon_v2/refining)
 "Hh" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -9877,6 +9570,20 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/port)
+"Ho" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/computer/ship/engines{
+	dir = 1
+	},
+/obj/structure/railing/grey,
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/talon_v2/engineering)
 "Hq" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -10138,6 +9845,23 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/talonboat)
+"Ii" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 10
+	},
+/obj/structure/railing/grey,
+/obj/structure/table/steel,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/talon_v2/engineering)
 "Ij" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
 	dir = 4
@@ -12315,6 +12039,20 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/carpet/blucarpet,
 /area/talon_v2/crew_quarters/cap_room)
+"Qa" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/railing/grey,
+/obj/item/modular_computer/console/preset/talon{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/talon_v2/engineering)
 "Qb" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
@@ -12927,6 +12665,17 @@
 "So" = (
 /turf/simulated/floor/tiled/techmaint,
 /area/talon_v2/armory)
+"Sr" = (
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/obj/structure/table/steel,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 5
+	},
+/obj/item/weapon/paper/talon_shields,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/talon_v2/engineering)
 "Ss" = (
 /obj/machinery/light_switch{
 	dir = 8;
@@ -24012,11 +23761,7 @@ Fz
 VT
 Qo
 NC
-<<<<<<< Updated upstream
-az
-=======
 af
->>>>>>> Stashed changes
 ai
 QN
 nE
@@ -24760,15 +24505,9 @@ Zc
 Zc
 KX
 IK
-<<<<<<< Updated upstream
-au
-aG
-aV
-=======
 ap
-ax
-aD
->>>>>>> Stashed changes
+az
+aJ
 IK
 Zk
 Zk
@@ -24880,7 +24619,7 @@ Jk
 SL
 pN
 lU
-aP
+kg
 Hh
 yV
 sf
@@ -24908,15 +24647,9 @@ Fx
 mM
 Ck
 IK
-<<<<<<< Updated upstream
-aA
-bi
-bl
-=======
 aq
-az
-aE
->>>>>>> Stashed changes
+aA
+aK
 IK
 ei
 eK
@@ -25028,11 +24761,7 @@ Eq
 jg
 TL
 lU
-<<<<<<< Updated upstream
-aY
-=======
 al
->>>>>>> Stashed changes
 Hh
 yV
 sf
@@ -25056,19 +24785,13 @@ Sv
 LY
 Xf
 mM
-af
-al
+vz
+Ii
 AZ
 IK
-<<<<<<< Updated upstream
-aE
-aD
-bm
-=======
 ar
-aA
-aG
->>>>>>> Stashed changes
+aD
+aM
 IK
 ep
 zm
@@ -25205,15 +24928,11 @@ LY
 wH
 mM
 nx
-am
+Qa
 Zo
 IK
 IK
-<<<<<<< Updated upstream
-bj
-=======
-aK
->>>>>>> Stashed changes
+aE
 IK
 IK
 ex
@@ -25351,18 +25070,12 @@ LY
 BK
 wu
 Uw
-ap
+Ho
 Hc
 yo
-<<<<<<< Updated upstream
-be
-ar
-aJ
-=======
-aJ
-aM
+au
+aG
 aP
->>>>>>> Stashed changes
 zm
 eF
 eN
@@ -25498,17 +25211,13 @@ Cx
 LY
 IN
 KA
-ag
-aq
+Sr
+jc
 LN
 Im
 LN
 gj
-<<<<<<< Updated upstream
-ax
-=======
 aQ
->>>>>>> Stashed changes
 Gb
 IM
 RO
@@ -25650,11 +25359,7 @@ pA
 Bb
 pt
 vb
-<<<<<<< Updated upstream
-aK
-=======
 aV
->>>>>>> Stashed changes
 zm
 AL
 AT
@@ -25760,11 +25465,7 @@ dc
 VT
 mb
 qr
-<<<<<<< Updated upstream
-aM
-=======
 ag
->>>>>>> Stashed changes
 EH
 iQ
 AQ
@@ -26212,11 +25913,7 @@ RQ
 ah
 Ml
 fW
-<<<<<<< Updated upstream
-aQ
-=======
 am
->>>>>>> Stashed changes
 Ok
 dh
 HT
@@ -26788,7 +26485,7 @@ Ju
 tX
 VS
 XR
-bb
+Hg
 tJ
 kZ
 mP
@@ -26796,11 +26493,7 @@ AY
 WJ
 JK
 Yp
-<<<<<<< Updated upstream
-aX
-=======
-au
->>>>>>> Stashed changes
+ax
 kn
 WJ
 fb
@@ -26931,7 +26624,7 @@ ca
 rj
 fW
 jS
-tX
+fk
 VS
 mQ
 ZR
