@@ -1,6 +1,6 @@
 
 /mob/living/handle_fall(var/turf/landing)
-	var/mob/drop_mob = locate(/mob, landing)
+	var/mob/drop_mob = locate(/mob/living, landing)
 
 	if(locate(/obj/structure/stairs) in landing)
 		for(var/atom/A in landing)
