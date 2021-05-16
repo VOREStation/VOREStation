@@ -231,13 +231,15 @@
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/port)
 "au" = (
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = -24
-	},
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /obj/structure/table/steel,
 /obj/fiftyspawner/uranium,
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 32
+	},
+/obj/machinery/camera/network/talon{
+	dir = 4
+	},
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/generators)
 "av" = (
@@ -301,25 +303,8 @@
 /turf/simulated/floor/wood,
 /area/talon_v2/crew_quarters/sec_room)
 "aA" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/structure/catwalk,
-/obj/structure/cable/yellow{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
+/obj/effect/catwalk_plated/dark,
+/obj/machinery/recharge_station,
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/generators)
 "aB" = (
@@ -388,7 +373,10 @@
 /obj/machinery/alarm/talon{
 	pixel_y = 26
 	},
-/obj/item/device/geiger,
+/obj/item/device/geiger{
+	pixel_x = -8
+	},
+/obj/machinery/recharger,
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/generators)
 "aF" = (
@@ -399,16 +387,23 @@
 /turf/simulated/floor/tiled/white,
 /area/talon_v2/medical)
 "aG" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/obj/structure/catwalk,
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
 /obj/machinery/power/apc/talon/hyper{
 	dir = 1;
-	pixel_y = 24
+	pixel_x = -24
 	},
 /obj/structure/cable/yellow{
-	d2 = 2;
-	icon_state = "0-2"
+	d2 = 4;
+	icon_state = "0-4"
 	},
-/obj/effect/catwalk_plated/dark,
-/obj/machinery/recharge_station,
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/generators)
 "aH" = (
@@ -708,10 +703,19 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/talon_v2/maintenance/wing_port)
 "bi" = (
-/obj/structure/cable/yellow,
-/obj/machinery/power/port_gen/pacman/super/potato,
-/obj/machinery/camera/network/talon{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/catwalk,
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
 	},
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/generators)
@@ -752,6 +756,25 @@
 /obj/item/weapon/paper/talon_captain,
 /turf/simulated/floor/carpet/blucarpet,
 /area/talon_v2/crew_quarters/cap_room)
+"bl" = (
+/obj/structure/cable/yellow,
+/obj/machinery/power/port_gen/pacman/super/potato,
+/obj/machinery/camera/network/talon{
+	dir = 1
+	},
+/obj/machinery/light/small,
+/turf/simulated/floor/plating,
+/area/talon_v2/engineering/generators)
+"bm" = (
+/obj/structure/cable/yellow,
+/obj/machinery/power/rtg/advanced,
+/obj/machinery/firealarm{
+	dir = 4;
+	layer = 3.3;
+	pixel_x = 26
+	},
+/turf/simulated/floor/plating,
+/area/talon_v2/engineering/generators)
 "bo" = (
 /obj/machinery/computer/ship/engines,
 /turf/simulated/floor/tiled/techfloor,
@@ -8631,25 +8654,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/talon_v2/crew_quarters/bar)
-"DV" = (
-/obj/structure/extinguisher_cabinet{
-	dir = 4;
-	pixel_x = -30
-	},
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 5
-	},
-/obj/structure/catwalk,
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/turf/simulated/floor/plating,
-/area/talon_v2/engineering/generators)
 "DW" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -24495,7 +24499,7 @@ Zc
 KX
 IK
 au
-DV
+aG
 aV
 IK
 Zk
@@ -24636,9 +24640,9 @@ Fx
 mM
 Ck
 IK
-aG
 aA
 bi
+bl
 IK
 ei
 eK
@@ -24780,7 +24784,7 @@ AZ
 IK
 aE
 aD
-aV
+bm
 IK
 ep
 zm
