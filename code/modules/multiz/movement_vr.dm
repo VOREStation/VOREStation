@@ -1,6 +1,6 @@
 
 /mob/living/handle_fall(var/turf/landing)
-	var/mob/drop_mob = locate(/mob, landing)
+	var/mob/drop_mob = locate(/mob/living, landing)
 
 	if(locate(/obj/structure/stairs) in landing)
 		for(var/atom/A in landing)
@@ -17,7 +17,7 @@
 		if(!O.CanFallThru(src, landing))
 			return 1
 
-	if(drop_mob && !(drop_mob == src) && ismob(drop_mob) && isliving(drop_mob)) //Shitload of checks. This is because the game finds various ways to screw me over.
+	if(drop_mob && !(drop_mob == src)) //Shitload of checks. This is because the game finds various ways to screw me over.
 		var/mob/living/drop_living = drop_mob
 		if(drop_living.dropped_onto(src))
 			return
