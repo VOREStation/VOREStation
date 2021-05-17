@@ -60,6 +60,18 @@
 	ckeywhitelist = list("aegisoa")
 	character_name = list("Xander Bevin")
 
+/datum/gear/fluff/charlotte_medal
+    path = /obj/item/clothing/accessory/medal/silver/security
+    display_name = "Charlotte's Robust Security Medal"
+    ckeywhitelist = list("alfalah")
+    character_name = list("Charlotte Graves")
+
+/datum/gear/fluff/charlotte_medal_2
+    path = /obj/item/clothing/accessory/medal/conduct
+    display_name = "Charlotte's Medal of Conduct"
+    ckeywhitelist = list("alfalah")
+    character_name = list("Charlotte Graves")
+
 /datum/gear/fluff/charlotte_cigarettes
 	path = /obj/item/weapon/storage/fancy/fluff/charlotte
 	display_name = "Charlotte's cigarette case"
@@ -632,6 +644,12 @@
 	ckeywhitelist = list("luminescentring")
 	character_name = list("Briana Moore")
 
+/datum/gear/fluff/entchtut_medal
+	path = /obj/item/clothing/accessory/medal/conduct
+	display_name = "Entchtut's Conduct Medal"
+	ckeywhitelist = list("littlebigkid2000")
+	character_name = list("Entchtut Cenein")
+
 //  M CKEYS
 /datum/gear/fluff/phi_box
 	path = /obj/item/weapon/storage/box/fluff/phi
@@ -739,12 +757,11 @@
 	character_name = list("Bogen Kellogg")
 
 //  P CKEYS
-/datum/gear/fluff/zaku_sweatervest
-	path = /obj/item/clothing/suit/varsity/green/sweater_vest
-	display_name = "Zaku's Sweater Vest"
-	slot = slot_wear_suit
-	ckeywhitelist = list("pimientopyro")
-	character_name = list("Zaku Fyodorovna")
+/datum/gear/fluff/evelyn_medal
+    path = /obj/item/clothing/accessory/medal/conduct
+    display_name = "Evelyn's Medal of Conduct"
+    ckeywhitelist = list("pandora029")
+    character_name = list("Evelyn Tareen")
 
 /datum/gear/fluff/lily_medal
 	path = /obj/item/clothing/accessory/medal/silver/unity
@@ -783,6 +800,13 @@
 	ckeywhitelist = list("pimientopyro")
 	character_name = list("Scylla Casmus")
 
+/datum/gear/fluff/zaku_sweatervest
+	path = /obj/item/clothing/suit/varsity/green/sweater_vest
+	display_name = "Zaku's Sweater Vest"
+	slot = slot_wear_suit
+	ckeywhitelist = list("pimientopyro")
+	character_name = list("Zaku Fyodorovna")
+
 /datum/gear/fluff/kiyoshi_cloak
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/fluff/cloakglowing
 	display_name = "glowing cloak"
@@ -805,6 +829,18 @@
 	ckeywhitelist = list("rboys2")
 	character_name = list("Clara Mali")
 	cost = 1
+
+/datum/gear/fluff/luna_sci_medal
+	path = /obj/item/clothing/accessory/medal/nobel_science
+	display_name = "LUNA's Nobel Science Award"
+	ckeywhitelist = list("residentcody")
+	character_name = list("LUNA")
+	
+/datum/gear/fluff/luna_conduct_medal
+	path = /obj/item/clothing/accessory/medal/conduct
+	display_name = "LUNA's Distinguished Conduct Medal"
+	ckeywhitelist = list("residentcody")
+	character_name = list("LUNA")
 
 /datum/gear/fluff/nikki_dorky_outfit
 	path = /obj/item/weapon/storage/box/fluff

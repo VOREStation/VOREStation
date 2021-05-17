@@ -353,6 +353,12 @@ macro "macro"
 		name = "CTRL+Z"
 		command = "Activate-Held-Object"
 	elem 
+		name = "CTRL+U"
+		command = "Rest"
+	elem 
+		name = "CTRL+B"
+		command = "Resist"
+	elem 
 		name = "CTRL+NUMPAD1"
 		command = "body-r-leg"
 	elem 
@@ -603,6 +609,9 @@ macro "hotkeymode"
 	elem
 		name = "U"
 		command = "Rest"
+	elem
+		name = "B"
+		command = "Resist"
 	elem 
 		name = "NUMPAD1"
 		command = "body-r-leg"

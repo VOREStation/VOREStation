@@ -217,8 +217,7 @@
 
 		if(isSynthetic())
 			output += "Current Battery Charge: [nutrition]\n"
-
-		if(isSynthetic())
+			
 			var/toxDam = getToxLoss()
 			if(toxDam)
 				output += "System Instability: <span class='warning'>[toxDam > 25 ? "Severe" : "Moderate"]</span>. Seek charging station for cleanup.\n"

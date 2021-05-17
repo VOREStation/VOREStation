@@ -95,8 +95,8 @@ VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor)
 			"silver" = 3,
 			"phoron" = 25,
 			"lead" = 1))
-	if(mineral_name && (mineral_name in ore_data))
-		mineral = ore_data[mineral_name]
+	if(mineral_name && (mineral_name in GLOB.ore_data))
+		mineral = GLOB.ore_data[mineral_name]
 		UpdateMineral()
 	update_icon()
 
@@ -128,8 +128,8 @@ VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor)
 			"silver" = 7,
 			"lead" = 4,
 			"verdantium" = 1))
-	if(mineral_name && (mineral_name in ore_data))
-		mineral = ore_data[mineral_name]
+	if(mineral_name && (mineral_name in GLOB.ore_data))
+		mineral = GLOB.ore_data[mineral_name]
 		UpdateMineral()
 	update_icon()
 

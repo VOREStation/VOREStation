@@ -4614,3 +4614,36 @@
 /obj/machinery/vending/cola/soft
 	icon = 'icons/obj/vending_vr.dmi'
 	icon_state = "Cola_Machine"
+
+//////////////////////Bepis Drinks (04/29/2021)//////////////////////
+
+/obj/machinery/vending/bepis
+	name = "Bepis Softdrinks"
+	desc = "A strange softdrink vendor that isn't owned by NanoTrasen... Why (and how) is it here?"
+	icon = 'icons/obj/vending_vr.dmi'
+	icon_state = "bepis"
+	product_slogans = "Refreshing!;Have a sip, you won't believe the taste!;Puts the 'B' in Best Soda!"
+	product_ads = "Refreshing!;Hope you're thirsty!;Please, have a drink!;Drink up!"
+	products = list(/obj/item/weapon/reagent_containers/food/drinks/cans/bepis = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/astrodew = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/buzz = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/shambler = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/cranberry = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/icecoffee = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/iced_tea = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/grape_juice = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/gingerale = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/root_beer = 10)
+
+	prices = list(/obj/item/weapon/reagent_containers/food/drinks/cans/bepis = 1,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/astrodew = 1,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/buzz = 1,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/shambler = 1,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/cranberry = 1,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/icecoffee = 1,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/iced_tea = 1,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/grape_juice = 1,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/gingerale = 1,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/root_beer = 1)
+	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
+	vending_sound = "machines/vending/vending_cans.ogg"

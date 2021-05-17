@@ -76,6 +76,7 @@
 	description = "Choose from a number of toys."
 	path = /obj/item/toy/
 
+/* VOREStation removal
 /datum/gear/toy/New()
 	..()
 	var/toytype = list()
@@ -86,7 +87,7 @@
 	toytype["Magic 8 Ball"] = /obj/item/toy/eight_ball
 	toytype["Magic Conch shell"] = /obj/item/toy/eight_ball/conch
 	gear_tweaks += new/datum/gear_tweak/path(toytype)
-
+*/
 
 /datum/gear/flask
 	display_name = "flask"
