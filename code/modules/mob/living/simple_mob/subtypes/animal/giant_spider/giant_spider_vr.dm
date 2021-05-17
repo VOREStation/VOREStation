@@ -47,9 +47,10 @@
 	attack_armor_pen = 25
 
 	pixel_x = -16
-	pixel_y = -16
+	pixel_y = 0
+	default_pixel_x = -16
 	old_x = -16
-	old_y = -16
+	old_y = 0
 
 /mob/living/simple_mob/animal/giant_spider/nurse/eggless/lay_eggs(turf/T)
 	return FALSE
