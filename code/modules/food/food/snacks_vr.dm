@@ -679,7 +679,7 @@
 	name = "fried scorpion"
 	desc = "a scorpion baked nice and crispy"
 	icon = 'icons/obj/food_vr.dmi'
-	icon_state = "scorpion"
+	icon_state = "scorpion_cooked"
 	nutriment_amt = 6
 	nutriment_desc = list("crispy" = 4, "exotic meat" = 1)
 
@@ -750,7 +750,7 @@
 	name = "fried locust"
 	desc = "a fried locust, extremely crunchy"
 	icon = 'icons/obj/food_vr.dmi'
-	icon_state = "locust"
+	icon_state = "locust_cooked"
 	nutriment_amt = 2
 	nutriment_desc = list("crunchy" = 4)
 
