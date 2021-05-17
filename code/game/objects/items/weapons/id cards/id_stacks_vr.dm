@@ -145,7 +145,7 @@
 	initial_sprite_stack = list("base-stamp", "top-generic", "stamp-n", "stripe-red")
 
 /obj/item/weapon/card/id/civilian/pilot
-	initial_sprite_stack = list("base-stamp", "top-generic", "stamp-n", "stripe-darkgreen")
+	initial_sprite_stack = list("base-stamp", "top-generic", "stamp-n", "stripe-olive")
 
 /obj/item/weapon/card/id/civilian/entertainer
  	initial_sprite_stack = list("base-stamp", "top-generic", "stamp-n", "stripe-brown")
