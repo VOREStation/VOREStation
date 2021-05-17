@@ -15328,6 +15328,14 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/excursion/cargo)
+"cxj" = (
+/obj/structure/catwalk,
+/obj/random/junk,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/station/cargo)
 "cyf" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
@@ -15632,7 +15640,6 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/excursion/cargo)
 "cNJ" = (
-/obj/structure/closet/secure_closet/miner,
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
 	},
@@ -16720,6 +16727,22 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/station/dock_two)
+"dNU" = (
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -26
+	},
+/obj/effect/landmark/start{
+	name = "Shaft Miner"
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/brown/border{
+	dir = 10
+	},
+/turf/simulated/floor/tiled,
+/area/quartermaster/belterdock/gear)
 "dOQ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/universal,
 /obj/machinery/light/small{
@@ -18694,6 +18717,19 @@
 /area/tcommsat/entrance{
 	name = "\improper Telecomms Entrance"
 	})
+"gbK" = (
+/obj/structure/closet/secure_closet/miner,
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/brown/border{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/quartermaster/belterdock/gear)
 "gcc" = (
 /obj/machinery/status_display/supply_display{
 	pixel_y = -32
@@ -23849,15 +23885,10 @@
 	name = "\improper Telecomms Lobby"
 	})
 "kJz" = (
-/obj/structure/closet/secure_closet/miner,
-/obj/effect/floor_decal/borderfloor{
-	dir = 9
-	},
-/obj/effect/floor_decal/corner/brown/border{
-	dir = 9
-	},
+/obj/structure/table/standard,
+/obj/machinery/cell_charger,
 /turf/simulated/floor/tiled,
-/area/quartermaster/belterdock/gear)
+/area/quartermaster/storage)
 "kJJ" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -28621,6 +28652,9 @@
 	pixel_x = -26;
 	req_access = list(31)
 	},
+/obj/machinery/camera/network/cargo{
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/storage)
 "pov" = (
@@ -28668,12 +28702,9 @@
 /turf/simulated/floor/tiled/eris/techmaint_panels,
 /area/shuttle/securiship/engines)
 "ptc" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/plating,
-/area/maintenance/station/cargo)
+/obj/machinery/smartfridge/sheets/persistent_lossy,
+/turf/simulated/wall,
+/area/quartermaster/belterdock)
 "pty" = (
 /obj/machinery/conveyor{
 	dir = 8;
@@ -31421,15 +31452,11 @@
 /obj/effect/landmark/start{
 	name = "Shaft Miner"
 	},
-/obj/effect/floor_decal/borderfloor{
+/obj/effect/floor_decal/borderfloor/corner{
 	dir = 8
 	},
-/obj/effect/floor_decal/corner/brown/border{
+/obj/effect/floor_decal/corner/brown/bordercorner{
 	dir = 8
-	},
-/obj/machinery/firealarm{
-	dir = 8;
-	pixel_x = -26
 	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock/gear)
@@ -32128,9 +32155,6 @@
 /obj/effect/floor_decal/corner/brown/border{
 	dir = 8
 	},
-/obj/machinery/light{
-	dir = 8
-	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock/gear)
 "tBs" = (
@@ -32568,6 +32592,7 @@
 /area/shuttle/medivac/engines)
 "uaC" = (
 /obj/effect/floor_decal/rust,
+/obj/random/trash_pile,
 /turf/simulated/floor/plating,
 /area/maintenance/station/cargo)
 "uaW" = (
@@ -34103,14 +34128,15 @@
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
 "vYE" = (
-/obj/structure/table/standard,
-/obj/machinery/camera/network/cargo{
-	dir = 1;
-	name = "security camera"
+/obj/structure/closet/secure_closet/miner,
+/obj/effect/floor_decal/borderfloor{
+	dir = 9
 	},
-/obj/machinery/cell_charger,
+/obj/effect/floor_decal/corner/brown/border{
+	dir = 9
+	},
 /turf/simulated/floor/tiled,
-/area/quartermaster/storage)
+/area/quartermaster/belterdock/gear)
 "vYJ" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/floor_decal/borderfloor{
@@ -45501,7 +45527,7 @@ aAd
 aEC
 aBe
 uaC
-xxm
+cxj
 xHf
 hmd
 xiI
@@ -45642,8 +45668,8 @@ azV
 aEC
 aEC
 aBe
-xxw
-ptc
+bYr
+bYr
 bYr
 gUe
 iBE
@@ -45784,8 +45810,8 @@ azW
 aAf
 aAU
 aBe
-bYr
-bYr
+vYE
+dNU
 bYr
 bYr
 cqk
@@ -45926,7 +45952,7 @@ kmH
 azV
 kIE
 aBe
-kJz
+pPm
 sJh
 tBl
 vWT
@@ -46068,7 +46094,7 @@ aDS
 xsP
 hEc
 aBe
-pPm
+gbK
 wdk
 meW
 qfA
@@ -46350,8 +46376,8 @@ exq
 czS
 aDX
 pnV
-vYE
-bmW
+aDz
+ptc
 cNJ
 wdk
 meW
@@ -46634,7 +46660,7 @@ xyX
 wkd
 oyD
 aDz
-aDz
+kJz
 bmW
 xyO
 xyO
