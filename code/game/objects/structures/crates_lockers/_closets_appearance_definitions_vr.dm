@@ -100,4 +100,4 @@
 /decl/closet_appearance/crate/fennec
 	base_icon =  'icons/obj/closets/bases/fencrate_vr.dmi'
 	decal_icon = 'icons/obj/closets/decals/crate.dmi'
-	color = 000000
+	color = "#ffffff"
