@@ -80,6 +80,3 @@
 			H.internal = H.r_hand
 			if(istype(H.internal,/obj/item/weapon/tank) && H.internals)
 				H.internals.icon_state = "internal1"
-
-	for(var/datum/trait/T in traits)
-		T.equip_survival_gear(H)
