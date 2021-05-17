@@ -81,13 +81,13 @@
 
 /obj/item/device/radio/headset/pilot
 	name = "pilot's headset"
-	desc = "A headset used by pilots, has access to the explorer channel."
+	desc = "A headset used by pilots."
 	icon_state = "pilot_headset"
 	adhoc_fallback = TRUE
 
 /obj/item/device/radio/headset/pilot/alt
 	name = "pilot's bowman headset"
-	desc = "A bowman headset used by pilots, has access to the explorer channel."
+	desc = "A bowman headset used by pilots."
 	icon_state = "pilot_headset_alt"
 
 /obj/item/device/radio/headset/explorer

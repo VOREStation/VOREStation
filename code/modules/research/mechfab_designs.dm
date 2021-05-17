@@ -571,6 +571,7 @@
 	materials = list(DEFAULT_WALL_MATERIAL = 7500, "gold" = 750, "silver" = 1500, MAT_ALUMINIUM = 3750)
 	build_path = /obj/item/mecha_parts/mecha_equipment/repair_droid
 
+/* These are way too OP to be buildable
 /datum/design/item/mecha/combat_shield
 	name = "linear combat shield"
 	desc = "Linear shield projector. Deploys a large, familiar, and rectangular shield in one direction at a time."
@@ -586,6 +587,7 @@
 	req_tech = list(TECH_PHORON = 3, TECH_MAGNET = 6, TECH_ILLEGAL = 4)
 	materials = list(DEFAULT_WALL_MATERIAL = 8000, "gold" = 2000, "silver" = 3000, "phoron" = 5000, "glass" = 3750)
 	build_path = /obj/item/mecha_parts/mecha_equipment/omni_shield
+*/
 
 /datum/design/item/mecha/crisis_drone
 	name = "Crisis Drone"

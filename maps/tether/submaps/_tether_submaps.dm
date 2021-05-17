@@ -527,6 +527,6 @@
 
 /datum/map_z_level/tether_lateload/talon_v2
 	name = "Talon"
-	flags = MAP_LEVEL_PLAYER
+	flags = MAP_LEVEL_PLAYER|MAP_LEVEL_PERSIST
 	base_turf = /turf/space
 	z = Z_LEVEL_OFFMAP1

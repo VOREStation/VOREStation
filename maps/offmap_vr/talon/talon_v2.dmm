@@ -1679,6 +1679,18 @@
 /obj/structure/closet/walllocker_double/hydrant/west,
 /turf/simulated/floor/tiled/techmaint,
 /area/talon_v2/secure_storage)
+"fk" = (
+/obj/structure/railing/grey{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/smartfridge/sheets/persistent_lossy{
+	layer = 3.3
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/talon_v2/refining)
 "fm" = (
 /obj/machinery/door/airlock/glass_external{
 	req_one_access = list(301)
@@ -8802,7 +8814,9 @@
 /obj/structure/closet/walllocker/medical/north,
 /obj/item/weapon/storage/firstaid/regular,
 /obj/item/weapon/storage/firstaid/o2,
-/obj/item/device/radio/off/talon,
+/obj/item/device/radio/off{
+	channels = list("Talon" = 1)
+	},
 /turf/simulated/floor/wood,
 /area/talon_v2/crew_quarters/cap_room)
 "Fk" = (
@@ -11190,7 +11204,10 @@
 	pixel_y = 24
 	},
 /obj/structure/table/rack/shelf/steel,
-/obj/item/device/radio/off/talon,
+/obj/item/device/radio/off{
+	channels = list("Talon" = 1);
+	pixel_y = 6
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/armory)
 "Nw" = (
@@ -26588,7 +26605,7 @@ ca
 rj
 fW
 jS
-tX
+fk
 VS
 mQ
 ZR

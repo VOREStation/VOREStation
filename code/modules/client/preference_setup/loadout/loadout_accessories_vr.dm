@@ -50,7 +50,7 @@
 
 /datum/gear/accessory/holster
 	display_name = "holster selection (Security, SM, HoP, Exploration)"
-	allowed_roles = list("Site Manager", "Head of Personnel", "Security Officer", "Warden", "Head of Security","Detective","Explorer","Pathfinder","Talon Guard")
+	allowed_roles = list("Site Manager", "Head of Personnel", "Security Officer", "Warden", "Head of Security","Detective","Field Medic","Explorer","Pathfinder","Talon Captain","Talon Guard")
 
 /datum/gear/accessory/brown_vest
 	display_name = "webbing, brown (Eng, Sec, Med, Exploration, Miner)"

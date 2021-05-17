@@ -102,9 +102,6 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	//Draw me yo.
 	update_icon()
 
-	if(!our_statclick)
-		our_statclick = new(null, "Open", src)
-
 //Destructor cleans up references
 /obj/item/device/nif/Destroy()
 	human = null
@@ -127,6 +124,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 		human.nif = src
 		stat = NIF_INSTALLING
 		H.verbs |= /mob/living/carbon/human/proc/set_nif_examine
+		menu = H.AddComponent(/datum/component/nif_menu)
 		if(starting_software)
 			for(var/path in starting_software)
 				new path(src)
@@ -169,6 +167,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	stat = NIF_PREINSTALL
 	vis_update()
 	H.verbs -= /mob/living/carbon/human/proc/set_nif_examine
+	qdel_null(menu)
 	H.nif = null
 	human = null
 	install_done = null

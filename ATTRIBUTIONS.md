@@ -37,3 +37,10 @@
 **License:** [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)<br>
 **URL:** [Forum Thread](http://fractalsoftworks.com/forum/index.php?topic=14935.0)<br>
 **Notes:** Permission to use assets also given in writing.<br>
+<br>
+**File:** `icons/mecha/fighters64x64.dmi`<br>
+**Icon-States:** `gunpod`, derivs by VerySoft.<br>
+**Creator:** Tartiflette & FlashFrozen<br>
+**License:** [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)<br>
+**URL:** [Patreon Post](https://www.patreon.com/posts/diable-avionics-44573931)<br>
+**Notes:** Permission to use assets also given in writing.<br>
