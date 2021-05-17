@@ -15,7 +15,7 @@
 	switch(var_name)
 		if ("vars")
 			return debug_variable(var_name, list(), 0, src)
-	return debug_variable(var_name, vars[var_name], 0, src)
+	return debug_variable(var_name, get_variable_value(var_name), 0, src)
 
 //please call . = ..() first and append to the result, that way parent items are always at the top and child items are further down
 //add separaters by doing . += "---"

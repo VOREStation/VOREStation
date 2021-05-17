@@ -60,6 +60,18 @@
 	ckeywhitelist = list("aegisoa")
 	character_name = list("Xander Bevin")
 
+/datum/gear/fluff/charlotte_medal
+    path = /obj/item/clothing/accessory/medal/silver/security
+    display_name = "Charlotte's Robust Security Medal"
+    ckeywhitelist = list("alfalah")
+    character_name = list("Charlotte Graves")
+
+/datum/gear/fluff/charlotte_medal_2
+    path = /obj/item/clothing/accessory/medal/conduct
+    display_name = "Charlotte's Medal of Conduct"
+    ckeywhitelist = list("alfalah")
+    character_name = list("Charlotte Graves")
+
 /datum/gear/fluff/charlotte_cigarettes
 	path = /obj/item/weapon/storage/fancy/fluff/charlotte
 	display_name = "Charlotte's cigarette case"
@@ -745,12 +757,11 @@
 	character_name = list("Bogen Kellogg")
 
 //  P CKEYS
-/datum/gear/fluff/zaku_sweatervest
-	path = /obj/item/clothing/suit/varsity/green/sweater_vest
-	display_name = "Zaku's Sweater Vest"
-	slot = slot_wear_suit
-	ckeywhitelist = list("pimientopyro")
-	character_name = list("Zaku Fyodorovna")
+/datum/gear/fluff/evelyn_medal
+    path = /obj/item/clothing/accessory/medal/conduct
+    display_name = "Evelyn's Medal of Conduct"
+    ckeywhitelist = list("pandora029")
+    character_name = list("Evelyn Tareen")
 
 /datum/gear/fluff/lily_medal
 	path = /obj/item/clothing/accessory/medal/silver/unity
@@ -788,6 +799,13 @@
 	description = "These cherry-red cat-eye shades give you an inclination to eat chalk."
 	ckeywhitelist = list("pimientopyro")
 	character_name = list("Scylla Casmus")
+
+/datum/gear/fluff/zaku_sweatervest
+	path = /obj/item/clothing/suit/varsity/green/sweater_vest
+	display_name = "Zaku's Sweater Vest"
+	slot = slot_wear_suit
+	ckeywhitelist = list("pimientopyro")
+	character_name = list("Zaku Fyodorovna")
 
 /datum/gear/fluff/kiyoshi_cloak
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/fluff/cloakglowing

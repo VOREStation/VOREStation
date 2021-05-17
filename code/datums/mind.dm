@@ -58,6 +58,7 @@
 	var/list/purchase_log = new
 	var/used_TC = 0
 
+	var/list/learned_recipes //List of learned recipe TYPES.
 
 	// the world.time since the mob has been brigged, or -1 if not at all
 	var/brigged_since = -1

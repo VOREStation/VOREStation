@@ -22,6 +22,7 @@
 	sharp = 1
 	edge = 1
 	toolspeed = 1
+	tool_qualities = list(TOOL_WIRECUTTER)
 	var/random_color = TRUE
 
 /obj/item/weapon/tool/wirecutters/New()
@@ -42,10 +43,6 @@
 		return
 	else
 		..()
-
-/obj/item/weapon/tool/wirecutters/is_wirecutter()
-	return TRUE
-
 
 /datum/category_item/catalogue/anomalous/precursor_a/alien_wirecutters
 	name = "Precursor Alpha Object - Wire Seperator"

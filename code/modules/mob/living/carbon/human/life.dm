@@ -1044,7 +1044,7 @@
 					if(client || sleeping > 3)
 						AdjustSleeping(-1)
 						throw_alert("asleep", /obj/screen/alert/asleep)
-				if( prob(2) && health && !hal_crit )
+				if( prob(2) && health && !hal_crit && client )
 					spawn(0)
 						emote("snore")
 		//CONSCIOUS
@@ -1556,7 +1556,7 @@
 
 	if(shock_stage >= 30)
 		if(shock_stage == 30 && !isbelly(loc)) //VOREStation Edit
-			emote("me",1,"is having trouble keeping their eyes open.")
+			custom_emote(VISIBLE_MESSAGE, "is having trouble keeping their eyes open.")
 		eye_blurry = max(2, eye_blurry)
 		stuttering = max(stuttering, 5)
 
@@ -1565,7 +1565,7 @@
 
 	if (shock_stage >= 60)
 		if(shock_stage == 60 && !isbelly(loc)) //VOREStation Edit
-			emote("me",1,"'s body becomes limp.")
+			custom_emote(VISIBLE_MESSAGE, "'s body becomes limp.")
 		if (prob(2))
 			to_chat(src, "<span class='danger'>[pick("The pain is excruciating", "Please&#44; just end the pain", "Your whole body is going numb")]!</span>")
 			Weaken(20)
@@ -1582,7 +1582,7 @@
 
 	if(shock_stage == 150)
 		if(!isbelly(loc)) //VOREStation Edit
-			emote("me",1,"can no longer stand, collapsing!")
+			custom_emote(VISIBLE_MESSAGE, "can no longer stand, collapsing!")
 		Weaken(20)
 
 	if(shock_stage >= 150)

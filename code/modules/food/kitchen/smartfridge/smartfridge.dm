@@ -2,7 +2,7 @@
 */
 /obj/machinery/smartfridge
 	name = "\improper SmartFridge"
-	desc = "For storing all sorts of perishable foods!"
+	desc = "For storing all sorts of things! This one doesn't accept any of them!"
 	icon = 'icons/obj/vending.dmi'
 	icon_state = "fridge_food"
 	var/icon_base = "fridge_food" //Iconstate to base all the broken/deny/etc on
@@ -13,10 +13,10 @@
 	idle_power_usage = 5
 	active_power_usage = 100
 	flags = NOREACT
-	var/max_n_of_items = 999 // Sorry but the BYOND infinite loop detector doesn't look things over 1000. //VOREStation Edit - Non-global
-	//var/global/max_n_of_items = 999 // Sorry but the BYOND infinite loop detector doesn't look things over 1000.
+	var/max_n_of_items = 999 // Sorry but the BYOND infinite loop detector doesn't look things over 1000. //VOREStation Edit - Nonglobal so subtypes can override to lower values
 	var/list/item_records = list()
 	var/datum/stored_item/currently_vending = null	//What we're putting out of the machine.
+	var/stored_datum_type = /datum/stored_item
 	var/seconds_electrified = 0;
 	var/shoot_inventory = 0
 	var/locked = 0
@@ -24,6 +24,7 @@
 	var/is_secure = 0
 	var/wrenchable = 0
 	var/datum/wires/smartfridge/wires = null
+	var/persistent = null // Path of persistence datum used to track contents
 
 /obj/machinery/smartfridge/secure
 	is_secure = 1
@@ -31,8 +32,10 @@
 	icon_base = "fridge_sci"
 	icon_contents = "chem"
 
-/obj/machinery/smartfridge/New()
-	..()
+/obj/machinery/smartfridge/Initialize()
+	. = ..()
+	if(persistent)
+		SSpersistence.track_value(src, persistent)
 	if(is_secure)
 		wires = new/datum/wires/smartfridge/secure(src)
 	else
@@ -43,159 +46,12 @@
 	for(var/A in item_records)	//Get rid of item records.
 		qdel(A)
 	wires = null
+	if(persistent)
+		SSpersistence.forget_value(src, persistent)
 	return ..()
 
 /obj/machinery/smartfridge/proc/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/weapon/reagent_containers/food/snacks/grown/) || istype(O,/obj/item/seeds/))
-		return 1
-	return 0
-
-/obj/machinery/smartfridge/seeds
-	name = "\improper MegaSeed Servitor"
-	desc = "When you need seeds fast!"
-	icon_contents = "chem"
-
-/obj/machinery/smartfridge/seeds/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/seeds/))
-		return 1
-	return 0
-
-/obj/machinery/smartfridge/secure/extract
-	name = "\improper Biological Sample Storage"
-	desc = "A refrigerated storage unit for xenobiological samples."
-	icon_contents = "slime"
-	req_access = list(access_research)
-
-/obj/machinery/smartfridge/secure/extract/accept_check(var/obj/item/O as obj)
-	if(istype(O, /obj/item/slime_extract))
-		return TRUE
-	if(istype(O, /obj/item/slimepotion))
-		return TRUE
 	return FALSE
-
-/obj/machinery/smartfridge/secure/medbay
-	name = "\improper Refrigerated Medicine Storage"
-	desc = "A refrigerated storage unit for storing medicine and chemicals."
-	req_one_access = list(access_medical,access_chemistry)
-
-/obj/machinery/smartfridge/secure/medbay/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/weapon/reagent_containers/glass/))
-		return 1
-	if(istype(O,/obj/item/weapon/storage/pill_bottle/))
-		return 1
-	if(istype(O,/obj/item/weapon/reagent_containers/pill/))
-		return 1
-	return 0
-
-/obj/machinery/smartfridge/secure/virology
-	name = "\improper Refrigerated Virus Storage"
-	desc = "A refrigerated storage unit for storing viral material."
-	icon_contents = "drink"
-	req_access = list(access_virology)
-
-/obj/machinery/smartfridge/secure/virology/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/weapon/reagent_containers/glass/beaker/vial/))
-		return 1
-	if(istype(O,/obj/item/weapon/virusdish/))
-		return 1
-	return 0
-
-/obj/machinery/smartfridge/chemistry //Is this used anywhere? It's not secure.
-	name = "\improper Smart Chemical Storage"
-	desc = "A refrigerated storage unit for medicine and chemical storage."
-	icon_contents = "chem"
-
-/obj/machinery/smartfridge/chemistry/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/weapon/storage/pill_bottle) || istype(O,/obj/item/weapon/reagent_containers))
-		return 1
-	return 0
-
-/obj/machinery/smartfridge/chemistry/virology //Same
-	name = "\improper Smart Virus Storage"
-	desc = "A refrigerated storage unit for volatile sample storage."
-
-/obj/machinery/smartfridge/drinks
-	name = "\improper Drink Showcase"
-	desc = "A refrigerated storage unit for tasty tasty alcohol."
-	icon_state = "fridge_drinks"
-	icon_base = "fridge_drinks"
-	icon_contents = "drink"
-
-/obj/machinery/smartfridge/drinks/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/weapon/reagent_containers/glass) || istype(O,/obj/item/weapon/reagent_containers/food/drinks) || istype(O,/obj/item/weapon/reagent_containers/food/condiment))
-		return 1
-
-/obj/machinery/smartfridge/drying_rack
-	name = "\improper Drying Rack"
-	desc = "A machine for drying plants."
-	wrenchable = 1
-	icon_state = "drying_rack"
-	icon_base = "drying_rack"
-
-/obj/machinery/smartfridge/drying_rack/accept_check(var/obj/item/O as obj)
-	if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/))
-		var/obj/item/weapon/reagent_containers/food/snacks/S = O
-		if (S.dried_type)
-			return 1
-
-	if(istype(O, /obj/item/stack/wetleather))
-		return 1
-
-	return 0
-
-/obj/machinery/smartfridge/drying_rack/process()
-	..()
-	if(stat & (BROKEN|NOPOWER))
-		return
-	if(contents.len)
-		dry()
-		update_icon()
-
-/obj/machinery/smartfridge/drying_rack/update_icon()
-	var/not_working = stat & (BROKEN|NOPOWER)
-	var/hasItems
-	for(var/datum/stored_item/I in item_records)
-		if(I.get_amount())
-			hasItems = 1
-			break
-	if(hasItems)
-		if(not_working)
-			icon_state = "[icon_base]-plant-off"
-		else
-			icon_state = "[icon_base]-plant"
-	else
-		if(not_working)
-			icon_state = "[icon_base]-off"
-		else
-			icon_state = "[icon_base]"
-
-/obj/machinery/smartfridge/drying_rack/proc/dry()
-	for(var/datum/stored_item/I in item_records)
-		for(var/obj/item/weapon/reagent_containers/food/snacks/S in I.instances)
-			if(S.dry) continue
-			if(S.dried_type == S.type)
-				S.dry = 1
-				S.name = "dried [S.name]"
-				S.color = "#AAAAAA"
-				I.instances -= S
-				S.forceMove(get_turf(src))
-			else
-				var/D = S.dried_type
-				new D(get_turf(src))
-				qdel(S)
-			return
-
-		for(var/obj/item/stack/wetleather/WL in I.instances)
-			if(!WL.wetness)
-				if(WL.amount)
-					WL.forceMove(get_turf(src))
-					WL.dry()
-				I.instances -= WL
-				break
-
-			WL.wetness = max(0, WL.wetness - rand(1, 3))
-
-	return
 
 /obj/machinery/smartfridge/process()
 	if(stat & (BROKEN|NOPOWER))
@@ -229,7 +85,7 @@
 		is_off = "-off"
 
 	// Fridge contents
-	if(contents) //VOREStation Edit - Some fridges do not have visible contents
+	if(contents)
 		switch(contents.len)
 			if(0)
 				add_overlay("empty[is_off]")
@@ -311,21 +167,28 @@
 		to_chat(user, "You short out the product lock on [src].")
 		return 1
 
-/obj/machinery/smartfridge/proc/stock(obj/item/O)
-	var/hasRecord = FALSE	//Check to see if this passes or not.
-	for(var/datum/stored_item/I in item_records)
+/obj/machinery/smartfridge/proc/find_record(var/obj/item/O)
+	for(var/datum/stored_item/I as anything in item_records)
 		if((O.type == I.item_path) && (O.name == I.item_name))
-			I.add_product(O)
-			hasRecord = TRUE
-			break
-	if(!hasRecord)
-		var/datum/stored_item/item = new/datum/stored_item(src, O.type, O.name)
-		item.add_product(O)
-		item_records.Add(item)
+			return I
+	return null
+
+/obj/machinery/smartfridge/proc/stock(obj/item/O)
+	var/datum/stored_item/I = find_record(O)
+	if(!istype(I))
+		I = new stored_datum_type(src, O.type, O.name)
+		item_records.Add(I)
+	I.add_product(O)
 	SStgui.update_uis(src)
 
-/obj/machinery/smartfridge/proc/vend(datum/stored_item/I)
-	I.get_product(get_turf(src))
+/obj/machinery/smartfridge/proc/vend(datum/stored_item/I, var/count)
+	var/amount = I.get_amount()
+	// Sanity check, there are probably ways to press the button when it shouldn't be possible.
+	if(amount <= 0)
+		return
+
+	for(var/i = 1 to min(amount, count))
+		I.get_product(get_turf(src))
 	SStgui.update_uis(src)
 
 /obj/machinery/smartfridge/attack_ai(mob/user as mob)
@@ -376,16 +239,10 @@
 				return FALSE
 			
 			var/index = text2num(params["index"])
-			var/datum/stored_item/I = item_records[index]
-			var/count = I.get_amount()
-
-			// Sanity check, there are probably ways to press the button when it shouldn't be possible.
-			if(count > 0)
-				if((count - amount) < 0)
-					amount = count
-				for(var/i = 1 to amount)
-					vend(I)
-
+			if(index < 1 || index > LAZYLEN(item_records))
+				return TRUE
+			
+			vend(item_records[index], amount)
 			return TRUE
 	return FALSE
 
@@ -393,7 +250,7 @@
 	var/obj/throw_item = null
 	var/mob/living/target = locate() in view(7,src)
 	if(!target)
-		return 0
+		return FALSE
 
 	for(var/datum/stored_item/I in item_records)
 		throw_item = I.get_product(get_turf(src))
@@ -402,12 +259,12 @@
 		break
 
 	if(!throw_item)
-		return 0
+		return FALSE
 	spawn(0)
 		throw_item.throw_at(target,16,3,src)
 	src.visible_message("<span class='warning'>[src] launches [throw_item.name] at [target.name]!</span>")
 	SStgui.update_uis(src)
-	return 1
+	return TRUE
 
 /************************
 *   Secure SmartFridges

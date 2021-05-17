@@ -41,6 +41,7 @@
 #include "Cliff1.dmm"
 #include "excavation1.dmm"
 #include "spatial_anomaly.dmm"
+#include "speakeasy_vr.dmm"
 #endif
 
 // The 'mountains' is the mining z-level, and has a lot of caves.
@@ -235,7 +236,7 @@
 	cost = 5
 	allow_duplicates = TRUE
 	template_group = "Underground Cliffs"
-	
+
 /datum/map_template/surface/mountains/normal/deadly_rabbit // VOREStation Edit
 	name = "The Killer Rabbit"
 	desc = "A cave where the Knights of the Round have fallen to a murderous Rabbit."
@@ -363,3 +364,11 @@
 	mappath = 'maps/submaps/surface_submaps/mountains/spatial_anomaly.dmm'
 	cost = 20
 	fixed_orientation = TRUE
+
+/datum/map_template/surface/mountains/normal/Speakeasy //VOREStation add
+	name = "Speakeasy"
+	desc = "A hidden underground bar to serve drinks in secret and in style."
+	mappath = 'maps/submaps/surface_submaps/mountains/speakeasy_vr.dmm'
+	cost = 10
+	allow_duplicates = FALSE
+

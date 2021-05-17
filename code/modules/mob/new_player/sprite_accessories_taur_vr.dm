@@ -83,6 +83,12 @@
 	extra_overlay2 = "synthwolf_glow"
 	//icon_sprite_tag = "synthwolf"
 
+/datum/sprite_accessory/tail/taur/ch/wolf/fatsynthwolf
+	name = "Fat SynthWolf dual-color (Taur)"
+	icon_state = "fatsynthwolf_s"
+	extra_overlay = "fatsynthwolf_markings"
+	extra_overlay2 = "fatsynthwolf_glow"
+
 /datum/sprite_accessory/tail/taur/skunk
 	name = "Skunk (Taur)"
 	icon_state = "skunk_s"
@@ -213,12 +219,27 @@
 	extra_overlay = "lizard_markings"
 	//icon_sprite_tag = "lizard2c"
 
+/datum/sprite_accessory/tail/taur/ch/lizard/fat
+	name = "Fat Lizard (Taur)"
+	icon_state = "fatlizard_s"
+
+/datum/sprite_accessory/tail/taur/ch/lizard/fat_2c
+	name = "Fat Lizard (Taur, dual-color)"
+	icon_state = "fatlizard_s"
+	extra_overlay= "fatlizard_markings"
+
 /datum/sprite_accessory/tail/taur/lizard/synthlizard
 	name = "SynthLizard dual-color (Taur)"
 	icon_state = "synthlizard_s"
 	extra_overlay = "synthlizard_markings"
 	extra_overlay2 = "synthlizard_glow"
 	//icon_sprite_tag = "synthlizard"
+
+/datum/sprite_accessory/tail/taur/ch/lizard/fatsynthlizard
+	name = "Fat SynthLizard dual-color (Taur)"
+	icon_state = "fatsynthlizard_s"
+	extra_overlay = "fatsynthlizard_markings"
+	extra_overlay2 = "fatsynthlizard_glow"
 
 /datum/sprite_accessory/tail/taur/spider
 	name = "Spider (Taur)"
@@ -304,6 +325,12 @@
 	extra_overlay = "synthfeline_markings"
 	extra_overlay2 = "synthfeline_glow"
 	//icon_sprite_tag = "synthfeline"
+
+/datum/sprite_accessory/tail/taur/ch/feline/fatsynthfeline
+	name = "Fat SynthFeline dual-color (Taur)"
+	icon_state = "fatsynthfeline_s"
+	extra_overlay = "fatsynthfeline_markings"
+	extra_overlay2 = "fatsynthfeline_glow"
 
 /datum/sprite_accessory/tail/taur/slug
 	name = "Slug (Taur)"

@@ -1,5 +1,3 @@
-var/global/list/ore_data = list()
-
 /ore
 	var/name
 	var/display_name

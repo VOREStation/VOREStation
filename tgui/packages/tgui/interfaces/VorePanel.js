@@ -165,6 +165,7 @@ const VoreSelectedBelly = (props, context) => {
     nutrition_percent,
     digest_brute,
     digest_burn,
+    digest_oxy,
     bulge_size,
     shrink_grow_size,
     emote_time,
@@ -303,6 +304,11 @@ const VoreSelectedBelly = (props, context) => {
                 <Button
                   onClick={() => act("set_attribute", { attribute: "b_burn_dmg" })}
                   content={digest_burn} />
+              </LabeledList.Item>
+              <LabeledList.Item label="Digest Suffocation Damage">
+                <Button
+                  onClick={() => act("set_attribute", { attribute: "b_oxy_dmg" })}
+                  content={digest_oxy} />
               </LabeledList.Item>
               <LabeledList.Item label="Nutritional Gain">
                 <Button

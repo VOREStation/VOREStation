@@ -58,6 +58,8 @@
 
 	acidtype = "sacid"
 
+	organ_verbs = list(/mob/living/carbon/human/proc/reagent_purge) //VOREStation Add
+
 /obj/item/organ/internal/stomach/machine/handle_organ_proc_special()
 	..()
 	if(owner && owner.stat != DEAD)
