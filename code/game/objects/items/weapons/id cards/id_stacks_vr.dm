@@ -179,13 +179,13 @@
 //Exploration
 
 /obj/item/weapon/card/id/exploration
-	initial_sprite_stack = list("base-stamp", "top-darkgreen", "stamp-n")
+	initial_sprite_stack = list("base-stamp", "top-olive", "stamp-n")
 
 /obj/item/weapon/card/id/exploration/fm
-	initial_sprite_stack = list("base-stamp", "top-darkgreen", "stamp-n", "stripe-medblu")
+	initial_sprite_stack = list("base-stamp", "top-olive", "stamp-n", "stripe-medblu")
 
 /obj/item/weapon/card/id/exploration/head
-	initial_sprite_stack = list("base-stamp-silver", "top-darkgreen", "stamp-n", "pips-white")
+	initial_sprite_stack = list("base-stamp-silver", "top-olive", "stamp-n", "pips-white")
 
 //Talon
 
