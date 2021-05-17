@@ -30106,7 +30106,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
-/obj/random/junk,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "bfj" = (
@@ -30251,8 +30250,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
-/obj/structure/catwalk,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/readingrooms)
 "bfJ" = (
 /obj/machinery/door/blast/regular{
@@ -30484,6 +30482,9 @@
 "bgy" = (
 /obj/structure/catwalk,
 /obj/effect/floor_decal/techfloor/corner,
+/obj/machinery/light/small{
+	dir = 8
+	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "bgz" = (
@@ -31721,6 +31722,12 @@
 	},
 /turf/simulated/floor/wood,
 /area/vacant/vacant_bar_upper)
+"bld" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/ai)
 "blh" = (
 /turf/simulated/wall,
 /area/tether/surfacebase/southhall)
@@ -32682,6 +32689,12 @@
 	},
 /turf/simulated/floor/beach/sand/desert,
 /area/tether/surfacebase/fish_farm)
+"bDr" = (
+/obj/machinery/camera/network/command{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/ai_upload)
 "bIG" = (
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
@@ -32728,6 +32741,9 @@
 /area/maintenance/lower/south)
 "cJh" = (
 /obj/random/trash_pile,
+/obj/structure/railing{
+	dir = 4
+	},
 /turf/simulated/floor/plating,
 /area/maintenance/readingrooms)
 "cJE" = (
@@ -32740,13 +32756,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/catwalk,
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/readingrooms)
 "cRq" = (
 /obj/random/maintenance/engineering,
@@ -32791,11 +32806,10 @@
 	},
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/reading_room)
-"dRp" = (
-/obj/random/junk,
-/turf/simulated/floor/plating,
-/area/maintenance/readingrooms)
 "dRq" = (
+/obj/structure/railing{
+	dir = 4
+	},
 /turf/simulated/floor/plating,
 /area/maintenance/readingrooms)
 "dSO" = (
@@ -32895,6 +32909,10 @@
 "eTp" = (
 /turf/simulated/wall/r_wall,
 /area/ai_upload_foyer)
+"eZG" = (
+/obj/machinery/camera/network/command,
+/turf/simulated/floor/tiled/techfloor,
+/area/ai)
 "flk" = (
 /obj/structure/catwalk,
 /obj/effect/floor_decal/techfloor{
@@ -32962,6 +32980,13 @@
 /obj/random/maintenance/engineering,
 /obj/random/maintenance/engineering,
 /obj/random/maintenance/engineering,
+/obj/machinery/camera/network/command{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/railing,
 /turf/simulated/floor/plating,
 /area/maintenance/readingrooms)
 "gus" = (
@@ -32975,13 +33000,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
 	},
-/obj/structure/catwalk,
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/readingrooms)
 "gwn" = (
 /obj/item/trash/snack_bowl,
@@ -33005,8 +33029,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
-/obj/structure/catwalk,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/readingrooms)
 "gGm" = (
 /obj/structure/catwalk,
@@ -33016,6 +33039,19 @@
 "gOd" = (
 /obj/machinery/computer/aiupload{
 	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/ai_upload)
+"gOC" = (
+/obj/machinery/porta_turret/ai_defense,
+/obj/machinery/camera/network/command{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/ai)
+"gXE" = (
+/obj/machinery/light{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ai_upload)
@@ -33030,8 +33066,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
-/obj/structure/catwalk,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/readingrooms)
 "hki" = (
 /obj/machinery/power/apc{
@@ -33047,6 +33082,9 @@
 /area/ai_upload_foyer)
 "hxk" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ai_upload_foyer)
 "hCO" = (
@@ -33058,6 +33096,9 @@
 	control_area = /area/ai_upload;
 	name = "AI Upload turret control";
 	pixel_y = 30
+	},
+/obj/machinery/camera/network/command{
+	dir = 9
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ai_upload_foyer)
@@ -33080,9 +33121,6 @@
 "ilX" = (
 /obj/structure/table/standard,
 /obj/item/weapon/aiModule/nanotrasen,
-/obj/machinery/light{
-	dir = 4
-	},
 /obj/machinery/camera/network/command,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/bluegrid,
@@ -33090,6 +33128,9 @@
 "iol" = (
 /obj/structure/table/standard,
 /obj/item/weapon/aiModule/freeform,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/simulated/floor/bluegrid,
 /area/ai_upload)
 "jtj" = (
@@ -33127,16 +33168,27 @@
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/reading_room)
 "jWK" = (
-/obj/random/junk,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	pixel_x = 28
+	},
+/obj/structure/cable,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/readingrooms)
 "jZC" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/disposalpipe/segment,
-/obj/structure/catwalk,
-/obj/random/junk,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/readingrooms)
 "kad" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -33316,6 +33368,12 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/outside/outside2)
+"lfv" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/ai)
 "lha" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -33492,10 +33550,13 @@
 /obj/item/weapon/aiModule/purge,
 /obj/item/weapon/aiModule/antimov,
 /obj/item/weapon/aiModule/teleporterOffline,
-/obj/machinery/camera/network/command{
-	dir = 10
-	},
 /turf/simulated/floor/bluegrid,
+/area/ai_upload)
+"nKV" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
 /area/ai_upload)
 "nPO" = (
 /obj/effect/floor_decal/corner/paleblue/diagonal,
@@ -33594,6 +33655,9 @@
 /obj/structure/cable/cyan{
 	d2 = 4;
 	icon_state = "0-4"
+	},
+/obj/machinery/camera/network/command{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ai_cyborg_station)
@@ -33718,6 +33782,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/camera/network/command,
 /turf/simulated/floor/tiled/techfloor,
 /area/ai)
 "rqo" = (
@@ -33730,6 +33795,9 @@
 /obj/machinery/alarm{
 	dir = 4;
 	pixel_x = -28
+	},
+/obj/machinery/light{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ai_cyborg_station)
@@ -33949,6 +34017,12 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ai)
+"tgC" = (
+/obj/machinery/camera/network/command{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/ai_upload)
 "tlw" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -34038,6 +34112,10 @@
 	dir = 4;
 	pixel_x = -28
 	},
+/turf/simulated/floor/tiled/techfloor,
+/area/ai)
+"tZV" = (
+/obj/machinery/light,
 /turf/simulated/floor/tiled/techfloor,
 /area/ai)
 "uay" = (
@@ -34301,6 +34379,7 @@
 	pixel_y = 7;
 	req_access = list(16)
 	},
+/obj/machinery/light,
 /turf/simulated/floor/bluegrid,
 /area/ai)
 "wJB" = (
@@ -34420,6 +34499,13 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ai)
+"xRz" = (
+/obj/structure/catwalk,
+/obj/machinery/camera/network/command{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/south)
 "xSO" = (
 /obj/machinery/light{
 	dir = 4
@@ -46327,10 +46413,10 @@ bcG
 baz
 bdo
 aLX
+bcK
 aLX
 aLX
-aLX
-aLX
+xRz
 aLX
 bgy
 bhj
@@ -47472,11 +47558,11 @@ kPg
 hJu
 nXW
 qwb
-hJu
+gXE
 hIk
 fBS
 hIk
-hJu
+gXE
 nXW
 qwb
 gOd
@@ -47609,7 +47695,7 @@ aLY
 adt
 adt
 fBS
-hJu
+nKV
 kPR
 ndB
 oXH
@@ -47621,7 +47707,7 @@ uNQ
 oXH
 wJB
 gnh
-hJu
+tgC
 fBS
 adt
 adt
@@ -47754,7 +47840,7 @@ fBS
 hIk
 kTB
 hJu
-hJu
+bDr
 qPo
 lMw
 hIk
@@ -48181,7 +48267,7 @@ ilX
 lnG
 nBC
 pBU
-rlN
+eZG
 rYR
 tfK
 tWV
@@ -48323,7 +48409,7 @@ iol
 lMw
 nJO
 pBU
-rlN
+lfv
 skm
 tlw
 rlN
@@ -48331,7 +48417,7 @@ vmf
 rlN
 xKF
 rlN
-rlN
+tZV
 pBU
 adt
 adt
@@ -48899,7 +48985,7 @@ vUD
 wIA
 pBU
 kEC
-qSJ
+gOC
 pBU
 adt
 adt
@@ -49310,7 +49396,7 @@ bdR
 bdy
 aLY
 cJh
-dRp
+dRq
 dRq
 gsU
 jtj
@@ -49452,7 +49538,7 @@ bde
 bdE
 csF
 cMd
-cMd
+jWK
 cMd
 gus
 jxi
@@ -49597,18 +49683,18 @@ bax
 bax
 dXJ
 gzK
-jWK
+jtj
 mkm
 lZx
 pBU
 qSJ
-rlN
+bld
 rlN
 rlN
 qSJ
 rlN
 rlN
-rlN
+bld
 qSJ
 pBU
 adt

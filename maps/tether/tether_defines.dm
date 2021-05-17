@@ -4,44 +4,22 @@
 #define Z_LEVEL_SURFACE_HIGH				3
 #define Z_LEVEL_TRANSIT						4
 #define Z_LEVEL_SPACE_LOW					5
-<<<<<<< HEAD
-
 #define Z_LEVEL_SURFACE_MINE				6
 #define Z_LEVEL_SOLARS						7
 #define Z_LEVEL_MISC						8
 #define Z_LEVEL_UNDERDARK					9
 #define Z_LEVEL_PLAINS						10
 #define Z_LEVEL_OFFMAP1						11
-#define Z_LEVEL_OFFMAP2						12
-#define Z_LEVEL_ROGUEMINE_1					13
-#define Z_LEVEL_ROGUEMINE_2					14
-#define Z_LEVEL_BEACH						15
-#define Z_LEVEL_BEACH_CAVE					16
-#define Z_LEVEL_AEROSTAT					17
-#define Z_LEVEL_AEROSTAT_SURFACE			18
-#define Z_LEVEL_DEBRISFIELD					19
-#define Z_LEVEL_FUELDEPOT					20
-#define Z_LEVEL_GATEWAY						21
-=======
-#define Z_LEVEL_SPACE_MID					6
-#define Z_LEVEL_SPACE_HIGH					7
-#define Z_LEVEL_SURFACE_MINE				8
-#define Z_LEVEL_SOLARS						9
-#define Z_LEVEL_MISC						10
-#define Z_LEVEL_UNDERDARK					11
-#define Z_LEVEL_PLAINS						12
-#define Z_LEVEL_OFFMAP1						13
-//#define Z_LEVEL_OFFMAP2						14
-#define Z_LEVEL_ROGUEMINE_1					14
-#define Z_LEVEL_ROGUEMINE_2					15
-#define Z_LEVEL_BEACH						16
-#define Z_LEVEL_BEACH_CAVE					17
-#define Z_LEVEL_AEROSTAT					18
-#define Z_LEVEL_AEROSTAT_SURFACE				19
-#define Z_LEVEL_DEBRISFIELD					20
-#define Z_LEVEL_FUELDEPOT					21
-#define Z_LEVEL_GATEWAY						22
->>>>>>> origin/master
+//#define Z_LEVEL_OFFMAP2						12
+#define Z_LEVEL_ROGUEMINE_1					12
+#define Z_LEVEL_ROGUEMINE_2					13
+#define Z_LEVEL_BEACH						14
+#define Z_LEVEL_BEACH_CAVE					15
+#define Z_LEVEL_AEROSTAT					16
+#define Z_LEVEL_AEROSTAT_SURFACE			17
+#define Z_LEVEL_DEBRISFIELD					18
+#define Z_LEVEL_FUELDEPOT					19
+#define Z_LEVEL_GATEWAY						20
 
 //Camera networks
 #define NETWORK_TETHER "Tether"
