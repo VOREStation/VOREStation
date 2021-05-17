@@ -99,5 +99,3 @@
 	base_icon =  'icons/obj/closets/bases/fencrate_vr.dmi'
 	decal_icon = 'icons/obj/closets/decals/crate.dmi'
 	color = "#ffffff"
-	)
-
