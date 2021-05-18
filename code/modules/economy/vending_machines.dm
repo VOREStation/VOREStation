@@ -824,7 +824,30 @@
 					/obj/item/toy/plushie/nukeplushie = 50,
 					/obj/item/toy/plushie/otter = 50,
 					/obj/item/toy/plushie/vox = 50,
-					/obj/item/toy/mistletoe = 50)
+					/obj/item/toy/plushie/ipc = 75,
+					/obj/item/toy/plushie/ipc/toaster = 75,
+					/obj/item/toy/plushie/snakeplushie = 50,
+					/obj/item/toy/plushie/generic = 50,
+					/obj/item/toy/plushie/moth = 50,
+					/obj/item/toy/plushie/crab = 50,
+					/obj/item/toy/plushie/possum = 50,
+					/obj/item/toy/plushie/goose = 50,
+					/obj/item/toy/plushie/mouse/white = 20,
+					/obj/item/toy/chewtoy = 20,
+					/obj/item/toy/chewtoy/tall = 30,
+					/obj/item/toy/cat_toy = 20,
+					/obj/item/toy/cat_toy/rod = 20,
+					/obj/item/toy/mistletoe = 50,
+					/obj/item/toy/rock = 20,
+					/obj/item/toy/gnome = 20,
+					/obj/item/toy/AI = 20,
+					/obj/item/reagent_containers/food/drinks/mug = 40,
+					/obj/item/reagent_containers/food/drinks/mug/novelty = 60,
+					/obj/item/reagent_containers/food/drinks/mug/eng = 40,
+					/obj/item/reagent_containers/food/drinks/mug/med = 40,
+					/obj/item/reagent_containers/food/drinks/mug/sci = 40,
+					/obj/item/reagent_containers/food/drinks/mug/sec = 40,
+					/obj/item/reagent_containers/food/drinks/mug/serv = 40)
 					//VOREStation Add End
 
 
