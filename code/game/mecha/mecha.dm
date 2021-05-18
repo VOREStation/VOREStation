@@ -1471,7 +1471,10 @@
 				to_chat(user, "<span class='notice'>You repair some damage to [AC.name].</span>")
 				AC.integrity += min(10, AC.max_integrity-AC.integrity)
 				update_damage_alerts()
+<<<<<<< HEAD
 
+=======
+>>>>>>> 55533c0... Mecha Balance and Fighter Fixes (#8081)
 		else
 			to_chat(user, "The [src.name] is at full integrity")
 		return
