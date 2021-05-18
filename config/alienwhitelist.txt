@@ -39,6 +39,7 @@ ktccd - Diona
 liache - Black-Eyed Shadekin
 lizehrd - Xenochimera
 lordlag - Black-Eyed Shadekin
+losstinspess - Xenochimera
 magpiemayhem - Vox
 marco_barko - Protean
 mewchild - Diona
