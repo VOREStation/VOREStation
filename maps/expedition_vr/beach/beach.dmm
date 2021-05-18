@@ -1973,7 +1973,7 @@
 /turf/simulated/floor/tiled/asteroid_steel,
 /area/tether_away/beach/resort/lockermed)
 "Tg" = (
-/mob/living/simple_mob/animal/passive/fish/solarfish,
+/mob/living/simple_mob/animal/passive/fish/icebass,
 /turf/simulated/floor/water/ocean,
 /area/tether_away/beach/cavebase)
 "Tp" = (

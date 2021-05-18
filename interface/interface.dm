@@ -93,6 +93,8 @@ Hotkey-Mode: (hotkey-mode must be on)
 \t5 = emote
 \tx = swap-hand
 \tz = activate held object (or y)
+\tu = Rest
+\tb = Resist
 \tj = toggle-aiming-mode
 \tf = cycle-intents-left
 \tg = cycle-intents-right
@@ -113,6 +115,8 @@ Any-Mode: (hotkey doesn't need to be on)
 \tCtrl+q = drop
 \tCtrl+e = equip
 \tCtrl+r = throw
+\tCtrl+u = Rest
+\tCtrl+b = Resist
 \tCtrl+x = swap-hand
 \tCtrl+z = activate held object (or Ctrl+y)
 \tCtrl+f = cycle-intents-left

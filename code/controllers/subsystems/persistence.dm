@@ -8,9 +8,11 @@ SUBSYSTEM_DEF(persistence)
 /datum/controller/subsystem/persistence/Initialize()
 	. = ..()
 	for(var/thing in subtypesof(/datum/persistent))
-		var/datum/persistent/P = new thing
-		persistence_datums[thing] = P
-		P.Initialize()
+		var/datum/persistent/P = thing
+		if(initial(P.name))
+			P = new P
+			persistence_datums[thing] = P
+			P.Initialize()
 
 /datum/controller/subsystem/persistence/Shutdown()
 	for(var/thing in persistence_datums)
@@ -30,8 +32,7 @@ SUBSYSTEM_DEF(persistence)
 	if(!A || (A.flags & AREA_FLAG_IS_NOT_PERSISTENT))
 		return
 
-//	if((!T.z in GLOB.using_map.station_levels) || !initialized)
-	if(!(T.z in using_map.station_levels))
+	if(!(T.z in using_map.persist_levels))
 		return
 
 	if(!tracking_values[track_type])

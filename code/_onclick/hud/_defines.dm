@@ -187,3 +187,5 @@
 #define ui_mech_airtoggle "WEST+1:-7, SOUTH+8"
 #define ui_mech_deco1_f "WEST+2:-7, SOUTH+8"
 #define ui_mech_deco2_f "WEST+2:-7, SOUTH+9"
+
+#define ui_smallquad "EAST-4:22,SOUTH:5"
