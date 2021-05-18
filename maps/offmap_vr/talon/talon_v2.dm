@@ -61,7 +61,7 @@ var/global/list/latejoin_talon = list()
 	req_one_access = list(access_talon)
 
 /obj/effect/overmap/visitable/ship/landable/talon_boat
-	name = "Talon's Shuttle"
+	name = "ITV Talon Shuttle"
 	desc = "A small shuttle from the ITV Talon."
 	vessel_mass = 1000
 	vessel_size = SHIP_SIZE_TINY
