@@ -11920,7 +11920,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/item/reagent_containers/food/drinks/mug/serv,
+/obj/item/weapon/reagent_containers/food/drinks/mug/serv,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
 "atg" = (
@@ -12049,7 +12049,7 @@
 	dir = 1;
 	pixel_y = -24
 	},
-/obj/item/reagent_containers/food/drinks/mug/cap{
+/obj/item/weapon/reagent_containers/food/drinks/mug/cap{
 	pixel_x = -4;
 	pixel_y = 9
 	},
@@ -30747,7 +30747,7 @@
 	pixel_y = -32
 	},
 /obj/structure/cable/green,
-/obj/item/reagent_containers/food/drinks/mug/hop{
+/obj/item/weapon/reagent_containers/food/drinks/mug/hop{
 	pixel_x = -9;
 	pixel_y = 4
 	},
@@ -34158,7 +34158,7 @@
 /obj/machinery/camera/network/civilian{
 	dir = 4
 	},
-/obj/item/reagent_containers/food/drinks/mug/serv,
+/obj/item/weapon/reagent_containers/food/drinks/mug/serv,
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/bar_backroom)
 "bgP" = (
@@ -38717,7 +38717,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/item/reagent_containers/food/drinks/mug/hos{
+/obj/item/weapon/reagent_containers/food/drinks/mug/hos{
 	pixel_x = 13;
 	pixel_y = 9
 	},
@@ -40819,7 +40819,7 @@
 "oIJ" = (
 /obj/structure/table/glass,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/item/reagent_containers/food/drinks/mug/sec,
+/obj/item/weapon/reagent_containers/food/drinks/mug/sec,
 /turf/simulated/floor/carpet/blue,
 /area/tether/surfacebase/security/breakroom)
 "oJw" = (
@@ -41256,7 +41256,7 @@
 /area/tether/surfacebase/shuttle_pad)
 "qeS" = (
 /obj/structure/table/woodentable,
-/obj/item/reagent_containers/food/drinks/mug/serv,
+/obj/item/weapon/reagent_containers/food/drinks/mug/serv,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/servicebackroom)
 "qfz" = (

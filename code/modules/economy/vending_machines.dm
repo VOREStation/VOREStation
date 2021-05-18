@@ -776,13 +776,13 @@
 					/obj/item/toy/rock = 2,
 					/obj/item/toy/gnome = 2,
 					/obj/item/toy/AI = 2,
-					/obj/item/reagent_containers/food/drinks/mug = 6,
-					/obj/item/reagent_containers/food/drinks/mug/novelty = 4,
-					/obj/item/reagent_containers/food/drinks/mug/eng = 4,
-					/obj/item/reagent_containers/food/drinks/mug/med = 4,
-					/obj/item/reagent_containers/food/drinks/mug/sci = 4,
-					/obj/item/reagent_containers/food/drinks/mug/sec = 4,
-					/obj/item/reagent_containers/food/drinks/mug/serv = 4)
+					/obj/item/weapon/reagent_containers/food/drinks/mug = 6,
+					/obj/item/weapon/reagent_containers/food/drinks/mug/novelty = 4,
+					/obj/item/weapon/reagent_containers/food/drinks/mug/eng = 4,
+					/obj/item/weapon/reagent_containers/food/drinks/mug/med = 4,
+					/obj/item/weapon/reagent_containers/food/drinks/mug/sci = 4,
+					/obj/item/weapon/reagent_containers/food/drinks/mug/sec = 4,
+					/obj/item/weapon/reagent_containers/food/drinks/mug/serv = 4)
 					//VOREStation Add End
 	premium = list(/obj/item/weapon/reagent_containers/food/drinks/bottle/champagne = 1,
 					/obj/item/weapon/storage/trinketbox = 2)
@@ -841,13 +841,13 @@
 					/obj/item/toy/rock = 20,
 					/obj/item/toy/gnome = 20,
 					/obj/item/toy/AI = 20,
-					/obj/item/reagent_containers/food/drinks/mug = 40,
-					/obj/item/reagent_containers/food/drinks/mug/novelty = 60,
-					/obj/item/reagent_containers/food/drinks/mug/eng = 40,
-					/obj/item/reagent_containers/food/drinks/mug/med = 40,
-					/obj/item/reagent_containers/food/drinks/mug/sci = 40,
-					/obj/item/reagent_containers/food/drinks/mug/sec = 40,
-					/obj/item/reagent_containers/food/drinks/mug/serv = 40)
+					/obj/item/weapon/reagent_containers/food/drinks/mug = 40,
+					/obj/item/weapon/reagent_containers/food/drinks/mug/novelty = 60,
+					/obj/item/weapon/reagent_containers/food/drinks/mug/eng = 40,
+					/obj/item/weapon/reagent_containers/food/drinks/mug/med = 40,
+					/obj/item/weapon/reagent_containers/food/drinks/mug/sci = 40,
+					/obj/item/weapon/reagent_containers/food/drinks/mug/sec = 40,
+					/obj/item/weapon/reagent_containers/food/drinks/mug/serv = 40)
 					//VOREStation Add End
 
 

@@ -1732,7 +1732,7 @@
 	name = "Chief Medical Officer RC";
 	pixel_x = 22
 	},
-/obj/item/reagent_containers/food/drinks/mug/cmo{
+/obj/item/weapon/reagent_containers/food/drinks/mug/cmo{
 	pixel_x = 9;
 	pixel_y = 7
 	},
@@ -20540,7 +20540,7 @@
 /obj/effect/floor_decal/corner/mauve/border{
 	dir = 4
 	},
-/obj/item/reagent_containers/food/drinks/mug/rd{
+/obj/item/weapon/reagent_containers/food/drinks/mug/rd{
 	pixel_x = 3;
 	pixel_y = 12
 	},
@@ -34501,7 +34501,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/item/reagent_containers/food/drinks/mug/eng,
+/obj/item/weapon/reagent_containers/food/drinks/mug/eng,
 /turf/simulated/floor/carpet,
 /area/engineering/lower/breakroom)
 "cJE" = (
@@ -34669,7 +34669,7 @@
 "jHk" = (
 /obj/effect/floor_decal/corner/paleblue/diagonal,
 /obj/structure/table/glass,
-/obj/item/reagent_containers/food/drinks/mug/med,
+/obj/item/weapon/reagent_containers/food/drinks/mug/med,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
 "jNC" = (
@@ -34807,7 +34807,7 @@
 /area/maintenance/lower/north)
 "nJO" = (
 /obj/structure/table/glass,
-/obj/item/reagent_containers/food/drinks/mug/sci,
+/obj/item/weapon/reagent_containers/food/drinks/mug/sci,
 /turf/simulated/floor/wood,
 /area/rnd/breakroom)
 "nPO" = (

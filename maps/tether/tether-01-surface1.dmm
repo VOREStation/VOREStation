@@ -2539,7 +2539,7 @@
 /obj/structure/table/woodentable,
 /obj/item/weapon/clipboard,
 /obj/machinery/light,
-/obj/item/reagent_containers/food/drinks/mug/med,
+/obj/item/weapon/reagent_containers/food/drinks/mug/med,
 /turf/simulated/floor/carpet/blue,
 /area/tether/surfacebase/medical/mentalhealth)
 "aem" = (
@@ -13153,7 +13153,7 @@
 	pixel_y = 7
 	},
 /obj/item/weapon/pen/red,
-/obj/item/reagent_containers/food/drinks/mug/sec,
+/obj/item/weapon/reagent_containers/food/drinks/mug/sec,
 /obj/item/weapon/pen,
 /turf/simulated/floor/tiled,
 /area/security/checkpoint)

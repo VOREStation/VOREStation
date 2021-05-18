@@ -93,17 +93,17 @@
 /datum/gear/mug
 	display_name = "mug selection"
 	description = "Choose from a number of mugs."
-	path = /obj/item/reagent_containers/food/drinks/mug
+	path = /obj/item/weapon/reagent_containers/food/drinks/mug
 
 /datum/gear/mug/New()
 	..()
 	var/mugtype = list()
-	mugtype["Normal"] = /obj/item/reagent_containers/food/drinks/mug
-	mugtype["Engineering"] = /obj/item/reagent_containers/food/drinks/mug/eng
-	mugtype["Medical"] = /obj/item/reagent_containers/food/drinks/mug/med
-	mugtype["Science"] = /obj/item/reagent_containers/food/drinks/mug/sci
-	mugtype["Security"] = /obj/item/reagent_containers/food/drinks/mug/sec
-	mugtype["Service"] = /obj/item/reagent_containers/food/drinks/mug/serv
+	mugtype["Normal"] = /obj/item/weapon/reagent_containers/food/drinks/mug
+	mugtype["Engineering"] = /obj/item/weapon/reagent_containers/food/drinks/mug/eng
+	mugtype["Medical"] = /obj/item/weapon/reagent_containers/food/drinks/mug/med
+	mugtype["Science"] = /obj/item/weapon/reagent_containers/food/drinks/mug/sci
+	mugtype["Security"] = /obj/item/weapon/reagent_containers/food/drinks/mug/sec
+	mugtype["Service"] = /obj/item/weapon/reagent_containers/food/drinks/mug/serv
 
 	gear_tweaks += new/datum/gear_tweak/path(mugtype)
 	gear_tweaks += new/datum/gear_tweak/reagents(lunchables_drink_reagents())
@@ -111,7 +111,7 @@
 /datum/gear/mug_novelty
 	display_name = "novelty mug"
 	description = "A random novelty mug."
-	path = /obj/item/reagent_containers/food/drinks/mug/novelty
+	path = /obj/item/weapon/reagent_containers/food/drinks/mug/novelty
 
 /datum/gear/mug_novelty/New()
 	..()
