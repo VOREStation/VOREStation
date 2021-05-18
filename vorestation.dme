@@ -2192,6 +2192,7 @@
 #include "code\modules\food\drinkingglass\glass_types.dm"
 #include "code\modules\food\drinkingglass\metaglass.dm"
 #include "code\modules\food\drinkingglass\metaglass_vr.dm"
+#include "code\modules\food\drinkingglass\mugs_vr.dm"
 #include "code\modules\food\drinkingglass\serving_glasses.dm"
 #include "code\modules\food\drinkingglass\shaker.dm"
 #include "code\modules\food\drinkingglass\shaker_vr.dm"
