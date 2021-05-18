@@ -410,12 +410,21 @@
 /turf/simulated/floor/tiled/eris/dark,
 /area/tether_away/xenobio_station/hall2)
 "fP" = (
-/obj/item/weapon/material/kitchen/utensil/fork,
+/obj/item/weapon/material/kitchen/utensil/fork{
+	default_material = "plastic"
+	},
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood/drip,
 /turf/simulated/floor/tiled/eris/dark,
 /area/tether_away/xenobio_station/breakroom)
+"gc" = (
+/obj/machinery/door/blast/regular{
+	id = "gateway_xeno_vault";
+	maxhealth = 9999999
+	},
+/turf/simulated/shuttle/floor/alienplating,
+/area/tether_away/xenobio_station/cave/vault)
 "gn" = (
 /obj/structure/cable{
 	d1 = 2;
@@ -432,9 +441,7 @@
 /area/tether_away/xenobio_station/science)
 "gs" = (
 /obj/effect/decal/cleanable/blood,
-/obj/effect/landmark/corpse/scientist{
-	species = "Skeleton"
-	},
+/obj/effect/landmark/corpse/scientist,
 /turf/simulated/floor/tiled/eris/dark,
 /area/tether_away/xenobio_station/breakroom)
 "gv" = (
@@ -908,9 +915,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
-/obj/effect/landmark/corpse/scientist{
-	species = "Skeleton"
-	},
+/obj/effect/landmark/corpse/scientist,
 /turf/simulated/floor/tiled/eris/dark,
 /area/tether_away/xenobio_station/breakroom)
 "nj" = (
@@ -1140,6 +1145,10 @@
 "px" = (
 /turf/simulated/shuttle/wall/voidcraft,
 /area/tether_away/xenobio_station/cages)
+"pD" = (
+/obj/random/projectile/scrapped_ionrifle,
+/turf/simulated/mineral/floor/cave,
+/area/tether_away/xenobio_station/cave)
 "pW" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 4
@@ -1355,8 +1364,13 @@
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/tether_away/xenobio_station/engine/smes)
 "sL" = (
-/obj/random/projectile/scrapped_ionrifle,
-/turf/simulated/mineral/floor/cave,
+/obj/machinery/button{
+	desc = "A remote control switch for something. It doesn't seem to belong here.";
+	id = "gateway_xeno_vault";
+	name = "strange button";
+	pixel_y = 26
+	},
+/turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/cave)
 "sN" = (
 /turf/simulated/wall/solidrock{
@@ -1387,6 +1401,12 @@
 	},
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/maint/xeno)
+"tl" = (
+/obj/structure/sign/warning/lava{
+	pixel_y = 32
+	},
+/turf/simulated/shuttle/plating,
+/area/tether_away/xenobio_station/cave)
 "tr" = (
 /obj/structure/railing/grey{
 	dir = 8
@@ -1614,10 +1634,8 @@
 /turf/simulated/shuttle/wall/voidcraft/hard_corner,
 /area/tether_away/xenobio_station/maint/xeno)
 "vO" = (
-/obj/effect/landmark/corpse/security{
-	species = "Skeleton"
-	},
 /obj/effect/decal/cleanable/blood,
+/obj/effect/landmark/corpse/security,
 /turf/simulated/floor/tiled/eris/dark,
 /area/tether_away/xenobio_station/hall2)
 "vU" = (
@@ -2506,9 +2524,11 @@
 /turf/simulated/mineral/floor/cave,
 /area/tether_away/xenobio_station/cave)
 "Ig" = (
-/obj/item/clothing/head/helmet/space/deathsquad,
-/turf/simulated/mineral/floor/cave,
-/area/tether_away/xenobio_station/cave)
+/obj/structure/closet/firecloset/full{
+	pixel_y = 26
+	},
+/turf/simulated/floor/tiled/eris/dark/violetcorener,
+/area/tether_away/xenobio_station/science)
 "Ij" = (
 /turf/simulated/shuttle/wall/voidcraft,
 /area/tether_away/xenobio_station/science)
@@ -2912,6 +2932,12 @@
 /obj/effect/decal/cleanable/blood/drip,
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/maint)
+"Mh" = (
+/obj/structure/closet/firecloset/full{
+	pixel_y = 26
+	},
+/turf/simulated/floor/tiled/eris/dark/violetcorener,
+/area/tether_away/xenobio_station/cages)
 "Mk" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -3035,6 +3061,9 @@
 	dir = 4;
 	pixel_x = 11
 	},
+/obj/structure/closet/firecloset/full{
+	pixel_y = 26
+	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/tether_away/xenobio_station/breakroom2)
 "NK" = (
@@ -3156,9 +3185,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/effect/landmark/corpse/security{
-	species = "Skeleton"
-	},
+/obj/effect/landmark/corpse/security,
 /obj/effect/decal/cleanable/blood/drip,
 /turf/simulated/floor/tiled/eris/dark,
 /area/tether_away/xenobio_station/science)
@@ -9862,7 +9889,7 @@ ZT
 ZT
 mb
 tc
-ZJ
+gc
 tc
 mb
 ZT
@@ -11853,7 +11880,7 @@ sN
 ZT
 sN
 sN
-Ig
+Ze
 sN
 sN
 sN
@@ -12135,11 +12162,11 @@ bx
 sN
 sN
 sN
-sL
 Ze
 Ze
 Ze
 Ze
+pD
 Ze
 Ze
 Ze
@@ -12264,7 +12291,7 @@ NG
 MP
 vf
 aA
-dc
+MU
 nY
 sN
 bx
@@ -13548,7 +13575,7 @@ Ij
 Ij
 Ij
 Ij
-MU
+dc
 nY
 bx
 bx
@@ -13690,7 +13717,7 @@ Go
 pu
 ua
 Ij
-dc
+MU
 nY
 bx
 bx
@@ -14258,7 +14285,7 @@ eP
 iV
 JC
 Ij
-Ty
+tl
 ZK
 ZK
 ZK
@@ -14400,7 +14427,7 @@ yc
 OM
 Ij
 Ij
-MU
+dc
 nY
 bx
 bx
@@ -15101,7 +15128,7 @@ LR
 Sp
 co
 co
-Ty
+sL
 Ty
 Ty
 xN
@@ -15388,7 +15415,7 @@ co
 Ru
 aB
 Ij
-iV
+Ig
 iV
 GO
 qO
@@ -15980,7 +16007,7 @@ Oo
 Oo
 Ty
 px
-In
+Mh
 sn
 zq
 Wp

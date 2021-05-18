@@ -89,34 +89,34 @@
 	name = "engine instructions"
 	var/fake_name
 	info = {"<large>R-4D EXPERIMENTAL ENGINE<large><hr>\
-<b>Step 1<b>: Don radiation protection and enter primary chamber<br>\
-<b>Step 2<b>: Press blast door control button and enter secondary chamber<br>\
-<b>Step 3<b>: Fill radiation collectors with phoron tanks<br>\
-<b>Step 4<b>: Activate radiation collectors<br>\
-<b>Step 5<b>: Enter anomaly chamber<br>\
-<b>Step 6<b>: NEVER break eye-contact with Subject #41883<br>\
-<b>Step 7<b>: Press blinking button on Subject #41883<br>\
-<b>Step 8<b>: (OPTIONAL) Interface with Subject #41883 using a multitool, set power level<br>\
-<b>Step 9<b>: Exit chamber while maintaining eye-contact with Subject #41883<br>\
-<b>Step 10<b>: Press secondary chamber blast door control button<br>\
-<b>Step 11<b>: Immediately report to Dr. Kenzer for psych. eval."}
+<b>Step 1</b>: Don radiation protection and enter primary chamber<br>\
+<b>Step 2</b>: Press blast door control button and enter secondary chamber<br>\
+<b>Step 3</b>: Fill radiation collectors with phoron tanks<br>\
+<b>Step 4</b>: Activate radiation collectors<br>\
+<b>Step 5</b>: Enter anomaly chamber<br>\
+<b>Step 6</b>: NEVER break eye-contact with Subject #41883<br>\
+<b>Step 7</b>: Press blinking button on Subject #41883<br>\
+<b>Step 8</b>: (OPTIONAL) Interface with Subject #41883 using a multitool, set power level<br>\
+<b>Step 9</b>: Exit chamber while maintaining eye-contact with Subject #41883<br>\
+<b>Step 10</b>: Press secondary chamber blast door control button<br>\
+<b>Step 11</b>: Immediately report to Dr. Kenzer for psych. eval."}
 
 /obj/item/weapon/paper/awaygate/xenobio_station/New()
 	..()
 	fake_name = random_name(pick(list(MALE, FEMALE)))
 	info = {"<large>R-4D EXPERIMENTAL ENGINE<large><hr>\
-<b>Step 1<b>: Don radiation protection and enter primary chamber<br>\
-<b>Step 2<b>: Press blast door control button and enter secondary chamber<br>\
-<b>Step 3<b>: Fill radiation collectors with phoron tanks<br>\
-<b>Step 4<b>: Activate radiation collectors<br>\
-<b>Step 5<b>: Enter anomaly chamber<br>\
-<b>Step 6<b>: NEVER break eye-contact with Subject #41883<br>\
-<b>Step 7<b>: Press blinking button on Subject #41883<br>\
-<b>Step 8<b>: (OPTIONAL) Interface with Subject #41883 using a multitool, set power level<br>\
-<b>Step 9<b>: Exit chamber while maintaining eye-contact with Subject #41883<br>\
-<b>Step 10<b>: Press secondary chamber blast door control button<br>\
-<b>Step 11<b>: Press primary chamber blast door control button to engage full power output<br>\
-<b>Step 12<b>: Immediately report to Dr. [fake_name] for psych. eval."}
+<b>Step 1</b>: Don radiation protection and enter primary chamber<br>\
+<b>Step 2</b>: Press blast door control button and enter secondary chamber<br>\
+<b>Step 3</b>: Fill radiation collectors with phoron tanks<br>\
+<b>Step 4</b>: Activate radiation collectors<br>\
+<b>Step 5</b>: Enter anomaly chamber<br>\
+<b>Step 6</b>: NEVER break eye-contact with Subject #41883<br>\
+<b>Step 7</b>: Press blinking button on Subject #41883<br>\
+<b>Step 8</b>: (OPTIONAL) Interface with Subject #41883 using a multitool, set power level<br>\
+<b>Step 9</b>: Exit chamber while maintaining eye-contact with Subject #41883<br>\
+<b>Step 10</b>: Press secondary chamber blast door control button<br>\
+<b>Step 11</b>: Press primary chamber blast door control button to engage full power output<br>\
+<b>Step 12</b>: Immediately report to Dr. [fake_name] for psych. eval."}
 
 /obj/item/weapon/paper/awaygate/xenobio_station/suicide
 	name = "last words"
