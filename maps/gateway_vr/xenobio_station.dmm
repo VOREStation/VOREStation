@@ -235,6 +235,12 @@
 	},
 /turf/simulated/floor/outdoors/dirt,
 /area/tether_away/xenobio_station/cages)
+"dS" = (
+/obj/structure/closet/firecloset/full{
+	pixel_y = 26
+	},
+/turf/simulated/floor/tiled/eris/dark/violetcorener,
+/area/tether_away/xenobio_station/cages)
 "ec" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
@@ -418,13 +424,6 @@
 /obj/effect/decal/cleanable/blood/drip,
 /turf/simulated/floor/tiled/eris/dark,
 /area/tether_away/xenobio_station/breakroom)
-"gc" = (
-/obj/machinery/door/blast/regular{
-	id = "gateway_xeno_vault";
-	maxhealth = 9999999
-	},
-/turf/simulated/shuttle/floor/alienplating,
-/area/tether_away/xenobio_station/cave/vault)
 "gn" = (
 /obj/structure/cable{
 	d1 = 2;
@@ -529,6 +528,12 @@
 	},
 /turf/simulated/shuttle/wall/voidcraft/hard_corner,
 /area/tether_away/xenobio_station/science)
+"hF" = (
+/obj/structure/sign/warning/lava{
+	pixel_y = 32
+	},
+/turf/simulated/shuttle/plating,
+/area/tether_away/xenobio_station/cave)
 "hJ" = (
 /obj/machinery/light/small,
 /turf/simulated/shuttle/plating,
@@ -668,6 +673,10 @@
 	dir = 1
 	},
 /turf/simulated/floor/lava,
+/area/tether_away/xenobio_station/cave)
+"kx" = (
+/obj/random/projectile/scrapped_ionrifle,
+/turf/simulated/mineral/floor/cave,
 /area/tether_away/xenobio_station/cave)
 "kB" = (
 /obj/effect/floor_decal/industrial/warning/dust{
@@ -1145,10 +1154,6 @@
 "px" = (
 /turf/simulated/shuttle/wall/voidcraft,
 /area/tether_away/xenobio_station/cages)
-"pD" = (
-/obj/random/projectile/scrapped_ionrifle,
-/turf/simulated/mineral/floor/cave,
-/area/tether_away/xenobio_station/cave)
 "pW" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 4
@@ -1323,12 +1328,10 @@
 "sv" = (
 /obj/structure/catwalk,
 /obj/effect/decal/cleanable/blood,
-/obj/effect/landmark/corpse/security{
-	species = "Skeleton"
-	},
 /obj/machinery/light/small/flicker{
 	dir = 1
 	},
+/obj/effect/landmark/corpse/security,
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/maint)
 "sw" = (
@@ -1401,12 +1404,6 @@
 	},
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/maint/xeno)
-"tl" = (
-/obj/structure/sign/warning/lava{
-	pixel_y = 32
-	},
-/turf/simulated/shuttle/plating,
-/area/tether_away/xenobio_station/cave)
 "tr" = (
 /obj/structure/railing/grey{
 	dir = 8
@@ -2932,12 +2929,6 @@
 /obj/effect/decal/cleanable/blood/drip,
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/maint)
-"Mh" = (
-/obj/structure/closet/firecloset/full{
-	pixel_y = 26
-	},
-/turf/simulated/floor/tiled/eris/dark/violetcorener,
-/area/tether_away/xenobio_station/cages)
 "Mk" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -3137,6 +3128,13 @@
 /obj/machinery/door/airlock/hatch,
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/science)
+"OW" = (
+/obj/machinery/door/blast/regular{
+	id = "gateway_xeno_vault";
+	maxhealth = 9999999
+	},
+/turf/simulated/shuttle/floor/alienplating,
+/area/tether_away/xenobio_station/cave/vault)
 "OY" = (
 /obj/machinery/door/airlock/hatch,
 /obj/machinery/door/blast/regular/open{
@@ -9889,7 +9887,7 @@ ZT
 ZT
 mb
 tc
-gc
+OW
 tc
 mb
 ZT
@@ -12166,7 +12164,7 @@ Ze
 Ze
 Ze
 Ze
-pD
+kx
 Ze
 Ze
 Ze
@@ -14285,7 +14283,7 @@ eP
 iV
 JC
 Ij
-tl
+hF
 ZK
 ZK
 ZK
@@ -16007,7 +16005,7 @@ Oo
 Oo
 Ty
 px
-Mh
+dS
 sn
 zq
 Wp
