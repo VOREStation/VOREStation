@@ -498,8 +498,11 @@
 				/obj/item/stack/material/glass/reinforced{amount = 10},
 				/obj/item/stack/material/plastic{amount = 10},
 				/obj/item/stack/material/wood{amount = 10},
+				/obj/item/stack/material/wood/sif{amount = 10},
 				/obj/item/stack/material/cardboard{amount = 10},
 				/obj/item/stack/rods{amount = 10},
+				/obj/item/stack/material/sandstone{amount = 10},
+				/obj/item/stack/material/marble{amount = 10},
 				/obj/item/stack/material/plasteel{amount = 10})
 
 /obj/random/material/refined //Random materials for building stuff
@@ -518,6 +521,8 @@
 				/obj/item/stack/material/durasteel{amount = 5},
 				/obj/item/stack/material/gold{amount = 5},
 				/obj/item/stack/material/iron{amount = 10},
+				/obj/item/stack/material/copper{amount = 10},
+				/obj/item/stack/material/aluminium{amount = 10},
 				/obj/item/stack/material/lead{amount = 10},
 				/obj/item/stack/material/diamond{amount = 3},
 				/obj/item/stack/material/deuterium{amount = 5},
@@ -530,6 +535,19 @@
 				/obj/item/stack/material/titanium{amount = 5},
 				/obj/item/stack/material/tritium{amount = 3},
 				/obj/item/stack/material/verdantium{amount = 2})
+
+/obj/random/material/precious //Precious metals, go figure
+	name = "random precious metal"
+	desc = "This is a small stack of a random precious metal."
+	icon = 'icons/obj/stacks.dmi'
+	icon_state = "sheet-gold_2"
+
+/obj/random/material/precious/item_to_spawn()
+	return pick(/obj/item/stack/material/gold{amount = 5},
+				/obj/item/stack/material/copper{amount = 5},
+				/obj/item/stack/material/silver{amount = 5},
+				/obj/item/stack/material/platinum{amount = 5},
+				/obj/item/stack/material/osmium{amount = 5})
 
 /obj/random/tank
 	name = "random tank"
