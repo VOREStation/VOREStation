@@ -1373,3 +1373,34 @@
 	//brand = "\improper Professional 120"
 	w_class = ITEMSIZE_TINY
 	starts_with = list(/obj/item/clothing/mask/smokable/cigarette = 7)
+
+//Ashling - Antoinette deKaultieste
+/obj/item/weapon/material/knife/machete/hatchet/unathiknife/fluff/antoinette
+	name = "sawtooth ritual knife"
+	desc = "A mostly decorative knife made from thin ceramic and toothed with large black fangs. Printed on the flat is an eight-armed cross, like an asterisk with an extra stroke, ringed by a calligraphy-style crescent."
+	attack_verb = list("mauled", "bit", "sawed", "butchered")
+	dulled = 1
+	default_material = "glass"
+
+
+//Ashling - Antoinette deKaultieste
+/obj/item/clothing/accessory/storage/ritualharness/fluff/antoinette
+	name = "silk knife loops"
+	desc = "A clip-on pair of pouched loops made from surprisingly sturdy silk. Made for holding knives and small vials in a pinch."
+	icon_state = "unathiharness1"
+	slots = 2
+
+/obj/item/weapon/reagent_containers/glass/bottle/poppy
+	name = "poppy flour bottle"
+	desc = "A small bottle of finely ground poppyseed and mixed dried berries."
+	icon = 'icons/obj/chemical.dmi'
+	icon_state = "bottle3"
+	prefill = list("bicaridine" = 30, "nutriment" = 30)
+
+/obj/item/clothing/accessory/storage/ritualharness/fluff/antoinette/Initialize()
+	. = ..()
+	hold.max_storage_space = ITEMSIZE_COST_SMALL * 2
+	hold.can_hold = list(/obj/item/weapon/material/knife, /obj/item/weapon/reagent_containers/glass/bottle)
+
+	new /obj/item/weapon/material/knife/machete/hatchet/unathiknife/fluff/antoinette(hold)
+	new /obj/item/weapon/reagent_containers/glass/bottle/poppy(hold)
