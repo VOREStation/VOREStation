@@ -465,6 +465,18 @@
 /obj/random/multiple/ore_pile/item_to_spawn()
 	return pick(
 			prob(10);list(
+				/obj/item/weapon/ore/bauxite,
+				/obj/item/weapon/ore/bauxite,
+				/obj/item/weapon/ore/bauxite,
+				/obj/item/weapon/ore/bauxite,
+				/obj/item/weapon/ore/bauxite,
+				/obj/item/weapon/ore/bauxite,
+				/obj/item/weapon/ore/bauxite,
+				/obj/item/weapon/ore/bauxite,
+				/obj/item/weapon/ore/bauxite,
+				/obj/item/weapon/ore/bauxite
+			),
+			prob(10);list(
 				/obj/item/weapon/ore/coal,
 				/obj/item/weapon/ore/coal,
 				/obj/item/weapon/ore/coal,
@@ -475,6 +487,18 @@
 				/obj/item/weapon/ore/coal,
 				/obj/item/weapon/ore/coal,
 				/obj/item/weapon/ore/coal
+			),
+			prob(10);list(
+				/obj/item/weapon/ore/copper,
+				/obj/item/weapon/ore/copper,
+				/obj/item/weapon/ore/copper,
+				/obj/item/weapon/ore/copper,
+				/obj/item/weapon/ore/copper,
+				/obj/item/weapon/ore/copper,
+				/obj/item/weapon/ore/copper,
+				/obj/item/weapon/ore/copper,
+				/obj/item/weapon/ore/copper,
+				/obj/item/weapon/ore/copper
 			),
 			prob(3);list(
 				/obj/item/weapon/ore/diamond,
@@ -553,6 +577,13 @@
 				/obj/item/weapon/ore/phoron
 			),
 			prob(5);list(
+				/obj/item/weapon/ore/rutile,
+				/obj/item/weapon/ore/rutile,
+				/obj/item/weapon/ore/rutile,
+				/obj/item/weapon/ore/rutile,
+				/obj/item/weapon/ore/rutile
+			),
+			prob(5);list(
 				/obj/item/weapon/ore/silver,
 				/obj/item/weapon/ore/silver,
 				/obj/item/weapon/ore/silver,
@@ -567,6 +598,10 @@
 			prob(2);list(
 				/obj/item/weapon/ore/verdantium,
 				/obj/item/weapon/ore/verdantium
+			),
+			prob(2);list(
+				/obj/item/weapon/ore/void_opal,
+				/obj/item/weapon/ore/void_opal
 			),
 		)
 
@@ -850,6 +885,13 @@
 				/obj/structure/closet/crate/secure/saare //SAARE GRENADES
 			),
 			prob(1);list(
+				/obj/random/material/precious,
+				/obj/random/material/precious,
+				/obj/random/material/precious,
+				/obj/random/material/precious,
+				/obj/structure/closet/crate/secure/saare //SAARE BULLION CRATE
+			),
+			prob(1);list(
 				/obj/random/cash/big,
 				/obj/random/cash/big,
 				/obj/random/cash/big,
@@ -1092,6 +1134,13 @@
 				/obj/item/weapon/tank/phoron/pressurized,
 				/obj/item/weapon/tank/phoron/pressurized,
 				/obj/structure/closet/crate/secure/phoron //HQ FUEL TANKS
+			),
+			prob(1);list(
+				/obj/random/material/precious,
+				/obj/random/material/precious,
+				/obj/random/material/precious,
+				/obj/random/material/precious,
+				/obj/structure/closet/crate/secure/saare //SAARE BULLION CRATE
 			),
 			prob(1);list(
 				/obj/random/cash/big,
