@@ -17576,6 +17576,7 @@
 	icon_state = "0-8"
 	},
 /obj/structure/table/reinforced,
+/obj/item/reagent_containers/food/drinks/mug/ce,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/chief)
 "aQn" = (

@@ -2539,6 +2539,7 @@
 /obj/structure/table/woodentable,
 /obj/item/weapon/clipboard,
 /obj/machinery/light,
+/obj/item/reagent_containers/food/drinks/mug/med,
 /turf/simulated/floor/carpet/blue,
 /area/tether/surfacebase/medical/mentalhealth)
 "aem" = (
@@ -13152,6 +13153,7 @@
 	pixel_y = 7
 	},
 /obj/item/weapon/pen/red,
+/obj/item/reagent_containers/food/drinks/mug/sec,
 /obj/item/weapon/pen,
 /turf/simulated/floor/tiled,
 /area/security/checkpoint)
@@ -27301,15 +27303,12 @@
 /area/crew_quarters/visitor_laundry)
 "aUo" = (
 /obj/effect/floor_decal/borderfloor{
-	dir = 5
+	dir = 1
 	},
 /obj/effect/floor_decal/corner/grey/border{
-	dir = 5
+	dir = 1
 	},
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/gear_painter,
+/obj/machinery/vending/giftvendor,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_laundry)
 "aUp" = (
@@ -27605,14 +27604,14 @@
 /area/crew_quarters/visitor_laundry)
 "aUQ" = (
 /obj/effect/floor_decal/borderfloor{
+	dir = 5
+	},
+/obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/gear_painter,
 /obj/effect/floor_decal/corner/grey/border{
-	dir = 4
-	},
-/obj/structure/extinguisher_cabinet{
-	dir = 8;
-	pixel_x = 30
+	dir = 5
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_laundry)
@@ -27785,10 +27784,10 @@
 "aVi" = (
 /obj/structure/bed/chair/comfy/black,
 /obj/effect/floor_decal/borderfloor{
-	dir = 5
+	dir = 4
 	},
 /obj/effect/floor_decal/corner/grey/border{
-	dir = 5
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_laundry)
@@ -35730,6 +35729,19 @@
 	dir = 4
 	},
 /area/looking_glass/lg_1)
+"oSv" = (
+/obj/structure/extinguisher_cabinet{
+	dir = 8;
+	pixel_x = 30
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/grey/border{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/crew_quarters/visitor_laundry)
 "oTK" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -54005,8 +54017,8 @@ aTb
 aTI
 aSo
 aUo
-aUQ
-bHR
+aUP
+aUP
 aUP
 aVS
 aga
@@ -54146,8 +54158,8 @@ aSo
 aSo
 aSo
 aSo
-aUm
-aUm
+aUQ
+oSv
 aVi
 aVD
 aVT
@@ -54287,8 +54299,8 @@ aah
 aah
 aah
 aah
-aah
-aah
+aUm
+aUm
 aUm
 aVj
 aVj

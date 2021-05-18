@@ -1732,6 +1732,10 @@
 	name = "Chief Medical Officer RC";
 	pixel_x = 22
 	},
+/obj/item/reagent_containers/food/drinks/mug/cmo{
+	pixel_x = 9;
+	pixel_y = 7
+	},
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/medical/cmo)
 "acE" = (
@@ -20536,6 +20540,10 @@
 /obj/effect/floor_decal/corner/mauve/border{
 	dir = 4
 	},
+/obj/item/reagent_containers/food/drinks/mug/rd{
+	pixel_x = 3;
+	pixel_y = 12
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/rdoffice)
 "aKh" = (
@@ -34488,6 +34496,14 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/fish_farm)
+"czz" = (
+/obj/structure/table/glass,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/item/reagent_containers/food/drinks/mug/eng,
+/turf/simulated/floor/carpet,
+/area/engineering/lower/breakroom)
 "cJE" = (
 /obj/effect/floor_decal/corner/paleblue/diagonal,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -34650,6 +34666,12 @@
 	can_open = 1
 	},
 /area/tether/surfacebase/public_garden_two)
+"jHk" = (
+/obj/effect/floor_decal/corner/paleblue/diagonal,
+/obj/structure/table/glass,
+/obj/item/reagent_containers/food/drinks/mug/med,
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/breakroom)
 "jNC" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 8
@@ -34783,6 +34805,11 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/north)
+"nJO" = (
+/obj/structure/table/glass,
+/obj/item/reagent_containers/food/drinks/mug/sci,
+/turf/simulated/floor/wood,
+/area/rnd/breakroom)
 "nPO" = (
 /obj/effect/floor_decal/corner/paleblue/diagonal,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -44086,7 +44113,7 @@ aNC
 aOs
 aPc
 aPQ
-aQF
+nJO
 aQF
 aQF
 aQF
@@ -47066,7 +47093,7 @@ aMv
 aNk
 aNN
 aOF
-aPq
+czz
 aQh
 aQU
 aRx
@@ -47876,7 +47903,7 @@ ahG
 ajG
 akw
 lsC
-fIS
+jHk
 fIS
 amL
 apY

@@ -11920,6 +11920,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/item/reagent_containers/food/drinks/mug/serv,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
 "atg" = (
@@ -12047,6 +12048,10 @@
 /obj/machinery/firealarm{
 	dir = 1;
 	pixel_y = -24
+	},
+/obj/item/reagent_containers/food/drinks/mug/cap{
+	pixel_x = -4;
+	pixel_y = 9
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/captain)
@@ -29529,9 +29534,7 @@
 /area/bridge)
 "aYk" = (
 /obj/machinery/papershredder,
-/obj/machinery/light{
-	dir = 2
-	},
+/obj/machinery/light,
 /obj/effect/floor_decal/borderfloor{
 	dir = 10
 	},
@@ -30744,6 +30747,10 @@
 	pixel_y = -32
 	},
 /obj/structure/cable/green,
+/obj/item/reagent_containers/food/drinks/mug/hop{
+	pixel_x = -9;
+	pixel_y = 4
+	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/hop)
 "baq" = (
@@ -34151,6 +34158,7 @@
 /obj/machinery/camera/network/civilian{
 	dir = 4
 	},
+/obj/item/reagent_containers/food/drinks/mug/serv,
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/bar_backroom)
 "bgP" = (
@@ -38709,6 +38717,10 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/item/reagent_containers/food/drinks/mug/hos{
+	pixel_x = 13;
+	pixel_y = 9
+	},
 /turf/simulated/floor/carpet,
 /area/tether/surfacebase/security/hos)
 "gtn" = (
@@ -40807,6 +40819,7 @@
 "oIJ" = (
 /obj/structure/table/glass,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/item/reagent_containers/food/drinks/mug/sec,
 /turf/simulated/floor/carpet/blue,
 /area/tether/surfacebase/security/breakroom)
 "oJw" = (
@@ -41241,6 +41254,11 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/shuttle_pad)
+"qeS" = (
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/drinks/mug/serv,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/servicebackroom)
 "qfz" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -60070,7 +60088,7 @@ aTZ
 beq
 bes
 bcB
-aLF
+qeS
 aJt
 awt
 bgM
