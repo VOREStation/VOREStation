@@ -47,7 +47,7 @@ var/global/list/latejoin_talon = list()
 	vessel_mass = 10000
 	vessel_size = SHIP_SIZE_LARGE
 	initial_generic_waypoints = list("talon_v2_near_fore_port", "talon_v2_near_fore_star", "talon_v2_near_aft_port", "talon_v2_near_aft_star", "talon_v2_wing_port", "talon_v2_wing_star")
-	initial_restricted_waypoints = list("Talon's boat" = list("offmap_spawn_talonboat"))
+	initial_restricted_waypoints = list("Talon's Shuttle" = list("offmap_spawn_talonboat"))
 
 	skybox_icon = 'talon.dmi' //Art by Gwyvern, distributed under Creative Commons license
 	skybox_icon_state = "skybox"
@@ -56,20 +56,20 @@ var/global/list/latejoin_talon = list()
 
 // The shuttle's 'shuttle' computer
 /obj/machinery/computer/shuttle_control/explore/talonboat
-	name = "boat control console"
-	shuttle_tag = "Talon's boat"
+	name = "shuttle control console"
+	shuttle_tag = "Talon's Shuttle"
 	req_one_access = list(access_talon)
 
 /obj/effect/overmap/visitable/ship/landable/talon_boat
-	name = "Talon's Boat"
+	name = "ITV Talon Shuttle"
 	desc = "A small shuttle from the ITV Talon."
 	vessel_mass = 1000
 	vessel_size = SHIP_SIZE_TINY
-	shuttle = "Talon's boat"
+	shuttle = "Talon's Shuttle"
 
 // A shuttle lateloader landmark
 /obj/effect/shuttle_landmark/shuttle_initializer/talonboat
-	name = "Talon's boat bay"
+	name = "Talon's shuttle bay"
 	base_area = /area/talon_v2/hangar
 	base_turf = /turf/simulated/floor/reinforced
 	landmark_tag = "offmap_spawn_talonboat"
@@ -78,7 +78,7 @@ var/global/list/latejoin_talon = list()
 
 // The talon's boat
 /datum/shuttle/autodock/overmap/talonboat
-	name = "Talon's boat"
+	name = "Talon's Shuttle"
 	current_location = "offmap_spawn_talonboat"
 	docking_controller_tag = "talonboat_docker"
 	shuttle_area = /area/shuttle/talonboat
@@ -86,7 +86,10 @@ var/global/list/latejoin_talon = list()
 	defer_initialisation = TRUE
 
 /area/shuttle/talonboat
-	name = "Talon's Boat"
+	name = "Talon's Shuttle"
+	requires_power = 1
+	icon = 'icons/turf/areas_vr_talon.dmi'
+	icon_state = "green"
 
 ///////////////////////////
 //// The Various Machines
@@ -113,18 +116,20 @@ good luck<br>\
 	info = {"to whoever's saddled with running this rustbucket this week,<br>\
 good news! you may have noticed the entire ship was replaced pretty much overnight.<br>\
 that or it changed shape or something? whatever, not important.<br>\
-what <b>is</b> important is that it no longer runs off solar arrays. now we have a pair of tritium generators.<br>\
-they're in the shielded compartment just across from the big white SMES bricks.<br>\
-jam the tritium pucks in the hoppers (not too rough and messy though) and fire them up!<br>\
-you shouldn't need to push power generation past 50kW per generator unless it's an emergency, so let it run slow and save the fuel.<br>\
-congrats, power is good to go!<br>\
+what <b>is</b> important is that it no longer runs off solar arrays. now we have a pair of radioisotope thermoelectric generators (or 'RTGs' as the kids call them) and a PTTO (or 'potato'... don't ask) mini reactor.<br>\
+they're all in the shielded compartment just across from the big white SMES bricks.<br>\
+the radioisotope buggers are basically reserves; they'll run themselves pretty much forever and provide just enough juice to run cryosupport plus allow you to kickstart power for the ship in an emergency, whilst the PTTO eats sheet uranium and puts out the big watts that keeps all the major stuff running.<br>\
+you shouldn't need to push power generation past 100kW unless it's an emergency or you've been drifting dark for a while, so let it run slow and save the fuel. initial draw will be a little high but once all the APCs are charged up it should settle down to about two-thirds 'peak'. <b>do not</b> push the PTTO past 200kW, or it'll start to overheat. too much heat and it'll explode. I don't need to tell you why that's bad.<br>\
+congrats, power is good to go! just keep in mind that the PTTO puts out hard rads whilst it's in use, so don't stand in the chamber too long whilst it's running. legal assures me it's fine but as far as I'm concerned any level of ionizing radiation is bad, y'know?<br>\
 <br>\
-just remember to actually go anywhere you'll also need to flip the output of each engine room's pumps up.<br>\
-if you somehow, <i>somehow</i>, start to run low on fuel, there are two reserve tanks and twelve(!) empty tanks.<br>\
-pray you can make it to the fuel depot on what gas you have left and fill up the tanks there.<br>\
+also! remember to actually go anywhere you'll also need to flip the output of each engine room's pumps up.<br>\
+if you somehow, <i>somehow</i>, start to run low on fuel, there are two reserve tanks in port engineering behind the atmos rig and twelve(!) empty tanks in the tail spars.<br>\
+the two reserve tanks are mostly for the shuttle, but if you're low then pray you can make it to the fuel depot on what gas you have left and fill up the tanks there.<br>\
 alternately maybe you can trade some off those nanotrasen corpos down on 3B. atmosphere's full of the stuff, I'm sure they won't miss a little.<br>\
 <br>\
-<i>Harry Townes</i>"}
+<i>Harry Townes</i><br>\
+<br>\
+p.s. speaking of shit that's bad for your health for the love of <i>fuck</i> do not smoke in the main engineering compartments, and <b>definitely</b> don't smoke in the engine rooms! if the ass-end of the ship ends up blown off because you went for a smoke break in a room full of crazy-flammable phoron they'll stick your reconstituted atoms so far in debt-prison you won't see daylight for a century."}
 
 /obj/item/weapon/paper/talon_doctor
 	name = "new medical bay"
@@ -171,8 +176,10 @@ what is important is that the shuttle has been replaced. it is now capable of fu
 but the rear airlock is a bit fussy. be sure to use the manual switches on each side of the airlock if you're matching another airlock and one side is exposed to vacuum or a hostile atmosphere!<br>\
 also be sure that it's locked down before you take off, the automatic switch is a bit stupid sometimes!<br>\
 <br>\
-finally, make sure you check the shuttle's APC power level before you head out! it can be fussy about (re)charging off the main ship grid sometimes. despite having someone in to look at the cables, we couldn't figure out why.<br>\
+finally, make sure you check the shuttle's APC power level before you head out! it used to be fussy, so we had a pro come in to double-check our setup and he yanked some weird gubbin I'd never seen before out of a wall panel, nodded to himself, and then walked off without saying anything else. weird but now it seems to behave.<br>\
 I recommend packing a spare battery (there should be a few in engineering you can borrow and charge up) to be safe. don't wanna get stranded!<br>\
+<br>\
+speaking of, if some dumbass does take it and fly off solo then get themselves killed, you can use the remote console in the little spot north of the hangar to initiate basic remote maneuvers. it can't do long-range flight, but the shuttle has some basic autopilot routines for stable orbit and docking that you can ping. this won't help if the shuttle's grounded <b>and</b> out of battery, but better than nothing, right?<br>\
 <br>\
 <i>Harry Townes</i>"}
 

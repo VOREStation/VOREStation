@@ -80,8 +80,8 @@
 /area/talon_v2/anomaly_storage
 	name = "\improper Talon - Anomaly Storage"
 	icon_state = "gray"
-/area/talon_v2/unused
-	name = "\improper Talon - Unused Room"
+/area/talon_v2/gen_store
+	name = "\improper Talon - General Storage"
 	icon_state = "gray"
 
 /area/talon_v2/armory
@@ -95,19 +95,19 @@
 	icon_state = "blue"
 
 /area/talon_v2/crew_quarters/pilot_room
-	name = "\improper Talon - Pilot Cabin"
+	name = "\improper Talon - Pilot's Cabin"
 	icon_state = "gray"
 /area/talon_v2/crew_quarters/med_room
-	name = "\improper Talon - Doctor Cabin"
+	name = "\improper Talon - Doctor's Cabin"
 	icon_state = "green"
 /area/talon_v2/crew_quarters/eng_room
-	name = "\improper Talon - Engineer Cabin"
+	name = "\improper Talon - Engineer's Cabin"
 	icon_state = "yellow"
 /area/talon_v2/crew_quarters/sec_room
-	name = "\improper Talon - Guard Cabin"
+	name = "\improper Talon - Guard's Cabin"
 	icon_state = "red"
 /area/talon_v2/crew_quarters/cap_room
-	name = "\improper Talon - Captain Cabin"
+	name = "\improper Talon - Captain's Cabin"
 	icon_state = "blue"
 /area/talon_v2/crew_quarters/bar
 	name = "\improper Talon - Bar"
