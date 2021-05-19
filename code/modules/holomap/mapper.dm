@@ -3,6 +3,7 @@
 	desc = "A portable mapping unit, capable of locating other similar units on a map. Also has a short-range sonar mapping system."
 	icon_state = "mapping_unit"
 	item_state = null
+	w_class = ITEMSIZE_SMALL
 
 	//Holomap stuff
 	var/marker_prefix = "basic"
