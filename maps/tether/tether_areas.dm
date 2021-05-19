@@ -46,7 +46,7 @@
 /area/turbolift/t_surface/level2
 	name = "surface (level 2)"
 	lift_floor_label = "Surface 2"
-	lift_floor_name = "Atmos, Chapel, Maintenance"
+	lift_floor_name = "Atmos, Chapel, Maintenance, AI"
 	lift_announce_str = "Arriving at Base Level 2."
 
 /area/turbolift/t_surface/level3
@@ -58,7 +58,7 @@
 /area/turbolift/t_station/level1
 	name = "asteroid station"
 	lift_floor_label = "Asteroid"
-	lift_floor_name = "Eng, Cryo, Docks, Cargo, Exploration, Cafe, AI, EVA, Gateway"
+	lift_floor_name = "Eng, Cryo, Docks, Cargo, Explo, T-comms, EVA, Gateway"
 	lift_announce_str = "Arriving at Asteroid Station Level."
 
 /area/vacant/vacant_restaurant_upper
