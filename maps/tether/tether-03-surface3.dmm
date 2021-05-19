@@ -13865,7 +13865,6 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/lobby)
 "awJ" = (
-/obj/machinery/smartfridge,
 /obj/effect/floor_decal/borderfloor{
 	dir = 10
 	},
@@ -13878,6 +13877,7 @@
 /obj/effect/floor_decal/corner/mauve/bordercorner2{
 	dir = 9
 	},
+/obj/machinery/smartfridge/produce,
 /turf/simulated/floor/tiled,
 /area/rnd/xenobiology/xenoflora)
 "awK" = (
@@ -29981,10 +29981,11 @@
 /turf/simulated/floor/tiled/white,
 /area/rnd/outpost/xenobiology/outpost_first_aid)
 "aZg" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tether)
+/obj/effect/floor_decal/corner/grey/diagonal,
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/smartfridge/produce,
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/kitchen)
 "aZh" = (
 /obj/machinery/door/airlock/glass_command{
 	name = "Bridge";
@@ -30954,12 +30955,10 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
 "baI" = (
-/obj/machinery/atmospherics/unary/engine{
-	dir = 1
-	},
+/obj/structure/shuttle/engine/propulsion,
 /turf/simulated/floor/reinforced,
 /turf/simulated/shuttle/plating/carry,
-/area/shuttle/tourbus/general)
+/area/shuttle/tether)
 "baJ" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -31088,6 +31087,13 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
+"baR" = (
+/obj/machinery/atmospherics/unary/engine{
+	dir = 1
+	},
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tourbus/general)
 "baS" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/window/reinforced/full,
@@ -54417,7 +54423,7 @@ jML
 jHw
 jpB
 aVJ
-baI
+baR
 aKU
 aOI
 aPb
@@ -55269,7 +55275,7 @@ caw
 jHw
 gHh
 aVJ
-baI
+baR
 aKU
 aOI
 aKj
@@ -57254,7 +57260,7 @@ aNk
 uSA
 aNJ
 aNP
-aZg
+baI
 aKU
 abg
 aOk
@@ -57396,7 +57402,7 @@ aNl
 aNl
 aNK
 aNP
-aZg
+baI
 aKU
 abg
 aOk
@@ -57538,7 +57544,7 @@ aNm
 aNl
 aNK
 aNP
-aZg
+baI
 aKU
 abg
 aOk
@@ -58782,7 +58788,7 @@ aWE
 aWE
 beE
 beM
-amY
+aZg
 ani
 anj
 bgx

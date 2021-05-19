@@ -139,6 +139,13 @@
 	ckeywhitelist = list("storesund97")
 	character_name = list("Aurora")
 
+/datum/gear/fluff/ashling
+	path = /obj/item/clothing/accessory/storage/ritualharness/fluff/antoinette
+	display_name = "Ritual Harness"
+	description = "Antoinette's ritual supplies."
+	ckeywhitelist = list("ashling")
+	character_name = list("Antoinette DeKaultieste")
+
 //  B CKEYS
 /datum/gear/fluff/yuuko_kimono
 	path = /obj/item/clothing/under/fluff/sakura_hokkaido_kimono
@@ -835,7 +842,7 @@
 	display_name = "LUNA's Nobel Science Award"
 	ckeywhitelist = list("residentcody")
 	character_name = list("LUNA")
-	
+
 /datum/gear/fluff/luna_conduct_medal
 	path = /obj/item/clothing/accessory/medal/conduct
 	display_name = "LUNA's Distinguished Conduct Medal"
