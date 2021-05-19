@@ -16,6 +16,7 @@ bricker98 - Protean
 camanis - Protean
 cgr - Protean
 chargae - Protean
+chemlight - Xenochimera
 chillyfang - Black-Eyed Shadekin
 crossexonar - Protean
 detectivegoogle - Protean
