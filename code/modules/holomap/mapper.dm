@@ -30,7 +30,7 @@
 
 	var/obj/item/weapon/cell/cell
 	var/cell_type = /obj/item/weapon/cell/device
-	var/power_usage = 1 // Usage per map scan (doubled for ping mode)
+	var/power_usage = 0.5 // Usage per map scan (doubled for ping mode)
 	var/uses_power = 1 // If it uses power at all
 
 	var/list/debug_mappers_list
