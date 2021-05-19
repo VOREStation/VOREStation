@@ -53,13 +53,12 @@
 	var/datum/hud/HUD = user.hud_used
 	if(!screen_icon)
 		screen_icon = new()
+		RegisterSignal(screen_icon, COMSIG_CLICK, .proc/nif_menu_click)
 	screen_icon.icon = HUD.ui_style
 	HUD.other += screen_icon
 	user.client?.screen += screen_icon
 	
 	user.verbs |= /mob/living/carbon/human/proc/nif_menu
-	
-	RegisterSignal(screen_icon, COMSIG_CLICK, .proc/nif_menu_click)
 
 /datum/component/nif_menu/proc/nif_menu_click(atom/movable/screen/nif/image, location, control, params, user)
 	var/mob/living/carbon/human/H = user
