@@ -32795,7 +32795,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
 	},
-/obj/effect/landmark/map_data/admin_upload/three,
 /turf/simulated/floor/tiled/techfloor,
 /area/ai)
 "dAB" = (
@@ -33921,7 +33920,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
 	},
-/obj/effect/landmark/map_data/admin_upload/three,
 /turf/simulated/floor/tiled/techfloor,
 /area/ai)
 "swg" = (

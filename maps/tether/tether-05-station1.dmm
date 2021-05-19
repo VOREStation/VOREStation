@@ -8031,7 +8031,7 @@
 /obj/structure/grille,
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/reinforced/full,
-/turf/space,
+/turf/simulated/floor/plating,
 /area/quartermaster/foyer)
 "avz" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan,
@@ -16808,11 +16808,11 @@
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
 	},
-/obj/machinery/light{
-	dir = 8
-	},
 /obj/effect/floor_decal/corner/green/border{
 	dir = 8
+	},
+/obj/machinery/camera/network/exploration{
+	dir = 5
 	},
 /turf/simulated/floor/tiled,
 /area/tether/exploration/pilot_office)
@@ -18269,6 +18269,9 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 25
 	},
+/obj/machinery/camera/network/cargo{
+	dir = 8
+	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/office)
 "fxR" = (
@@ -18419,6 +18422,10 @@
 /area/tcommsat/entrance{
 	name = "\improper Telecomms Entrance"
 	})
+"fGL" = (
+/obj/machinery/light_construct/small,
+/turf/simulated/floor,
+/area/maintenance/cargo)
 "fGW" = (
 /obj/machinery/computer/ship/engines{
 	dir = 1
@@ -19529,6 +19536,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 6
 	},
+/obj/machinery/camera/network/mining,
 /turf/simulated/floor/plating,
 /area/maintenance/station/cargo)
 "gVQ" = (
@@ -19604,6 +19612,9 @@
 "gZJ" = (
 /obj/machinery/newscaster{
 	pixel_x = 28
+	},
+/obj/machinery/camera/network/cargo{
+	dir = 8
 	},
 /turf/simulated/floor/wood,
 /area/quartermaster/qm)
@@ -20516,7 +20527,7 @@
 	},
 /obj/structure/closet/walllocker/emerglocker/north,
 /obj/structure/bed/chair/shuttle,
-/turf/simulated/shuttle/floor,
+/turf/simulated/floor/tiled/eris/white/gray_perforated,
 /area/shuttle/large_escape_pod1)
 "hHo" = (
 /obj/machinery/vending/wallmed1{
@@ -20526,7 +20537,7 @@
 	},
 /obj/structure/closet/walllocker/emerglocker/north,
 /obj/structure/bed/chair/shuttle,
-/turf/simulated/shuttle/floor,
+/turf/simulated/floor/tiled/eris/white/gray_perforated,
 /area/shuttle/large_escape_pod1)
 "hIK" = (
 /obj/effect/floor_decal/borderfloor{
@@ -20931,7 +20942,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/turf/simulated/shuttle/floor,
+/turf/simulated/floor/tiled/eris/white/gray_perforated,
 /area/shuttle/large_escape_pod1)
 "hXK" = (
 /obj/structure/cable/green{
@@ -21017,8 +21028,19 @@
 /turf/simulated/floor/tiled/dark,
 /area/tether/station/dock_two)
 "hZW" = (
-/obj/structure/shuttle/window,
+/obj/machinery/door/firedoor/glass,
 /obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/door/blast/regular{
+	density = 0;
+	icon_state = "pdoor0";
+	id = "medivac blast";
+	name = "Shuttle Blast Doors";
+	opacity = 0
+	},
 /obj/effect/shuttle_landmark{
 	base_area = /area/hallway/secondary/escape/medical_escape_pod_hallway;
 	base_turf = /turf/simulated/floor/plating;
@@ -21026,7 +21048,7 @@
 	landmark_tag = "escapepod1_station";
 	name = "Tether Station"
 	},
-/turf/simulated/shuttle/plating,
+/turf/simulated/floor/plating/eris/under,
 /area/shuttle/large_escape_pod1)
 "iaf" = (
 /obj/structure/cable/green{
@@ -21898,7 +21920,7 @@
 /obj/structure/bed/chair/shuttle{
 	dir = 1
 	},
-/turf/simulated/shuttle/floor,
+/turf/simulated/floor/tiled/eris/white/gray_perforated,
 /area/shuttle/large_escape_pod1)
 "iOW" = (
 /obj/structure/extinguisher_cabinet{
@@ -22620,6 +22642,7 @@
 /obj/effect/floor_decal/corner/brown/border{
 	dir = 1
 	},
+/obj/machinery/camera/network/mining,
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock)
 "jFv" = (
@@ -22889,7 +22912,7 @@
 "jSR" = (
 /obj/machinery/door/airlock/glass_external,
 /obj/effect/map_helper/airlock/door/simple,
-/turf/simulated/shuttle/floor,
+/turf/simulated/floor/tiled/eris/white/gray_platform,
 /area/shuttle/large_escape_pod1)
 "jTP" = (
 /obj/effect/floor_decal/borderfloor{
@@ -26398,9 +26421,6 @@
 /turf/simulated/floor/tiled,
 /area/tether/exploration/hallway)
 "mLa" = (
-/obj/machinery/camera/network/mining{
-	dir = 8
-	},
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/effect/floor_decal/borderfloor{
 	dir = 6
@@ -29037,9 +29057,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/office)
-"pTG" = (
-/turf/simulated/shuttle/wall,
-/area/shuttle/large_escape_pod1)
 "pXr" = (
 /obj/machinery/light,
 /obj/structure/cable/green{
@@ -29105,7 +29122,7 @@
 	dir = 1
 	},
 /obj/machinery/light,
-/turf/simulated/shuttle/floor,
+/turf/simulated/floor/tiled/eris/white/gray_perforated,
 /area/shuttle/large_escape_pod1)
 "qbk" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
@@ -29115,7 +29132,7 @@
 	pixel_x = -28;
 	pixel_y = -28
 	},
-/turf/simulated/shuttle/floor,
+/turf/simulated/floor/tiled/eris/white/gray_platform,
 /area/shuttle/large_escape_pod1)
 "qbm" = (
 /obj/structure/cable/cyan{
@@ -29144,10 +29161,10 @@
 /area/quartermaster/belterdock/refinery)
 "qcz" = (
 /obj/structure/bed/chair/shuttle,
-/turf/simulated/shuttle/floor,
+/turf/simulated/floor/tiled/eris/white/gray_perforated,
 /area/shuttle/large_escape_pod1)
 "qdq" = (
-/turf/simulated/shuttle/floor,
+/turf/simulated/floor/tiled/eris/white/gray_perforated,
 /area/shuttle/large_escape_pod1)
 "qdy" = (
 /obj/structure/cable/green{
@@ -29401,14 +29418,14 @@
 /area/hallway/station/atrium)
 "qqe" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
-/turf/simulated/shuttle/floor,
+/turf/simulated/floor/tiled/eris/white/gray_platform,
 /area/shuttle/large_escape_pod1)
 "qqq" = (
 /obj/machinery/light,
 /obj/structure/bed/chair/shuttle{
 	dir = 1
 	},
-/turf/simulated/shuttle/floor,
+/turf/simulated/floor/tiled/eris/white/gray_perforated,
 /area/shuttle/large_escape_pod1)
 "qqY" = (
 /turf/simulated/wall/r_wall,
@@ -29531,7 +29548,7 @@
 /obj/structure/bed/chair/shuttle{
 	dir = 1
 	},
-/turf/simulated/shuttle/floor,
+/turf/simulated/floor/tiled/eris/white/gray_perforated,
 /area/shuttle/large_escape_pod1)
 "qve" = (
 /obj/structure/disposalpipe/segment{
@@ -29551,7 +29568,7 @@
 /obj/structure/bed/chair/shuttle{
 	dir = 1
 	},
-/turf/simulated/shuttle/floor,
+/turf/simulated/floor/tiled/eris/white/gray_perforated,
 /area/shuttle/large_escape_pod1)
 "qvC" = (
 /obj/structure/disposalpipe/segment{
@@ -29566,7 +29583,7 @@
 /turf/simulated/floor/tiled,
 /area/hallway/station/docks)
 "qvR" = (
-/turf/simulated/shuttle/wall/hard_corner,
+/turf/simulated/wall/rshull,
 /area/shuttle/large_escape_pod1)
 "qvS" = (
 /obj/machinery/power/terminal{
@@ -29907,6 +29924,9 @@
 	},
 /obj/effect/floor_decal/corner/brown/border{
 	dir = 8
+	},
+/obj/machinery/camera/network/cargo{
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/office)
@@ -30505,9 +30525,6 @@
 "rCQ" = (
 /obj/machinery/vending/wallmed_airlock{
 	pixel_x = -28
-	},
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 4
 	},
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 9
@@ -31575,6 +31592,9 @@
 	},
 /obj/effect/floor_decal/corner/green/bordercorner2{
 	dir = 6
+	},
+/obj/machinery/camera/network/exploration{
+	dir = 9
 	},
 /turf/simulated/floor/tiled,
 /area/tether/exploration/hallway)
@@ -32986,6 +33006,12 @@
 	},
 /turf/simulated/floor/airless,
 /area/ai_monitored/storage/eva)
+"uEv" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/tether/station/dock_two)
 "uEU" = (
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor,
@@ -34473,6 +34499,18 @@
 /obj/structure/catwalk,
 /turf/simulated/floor,
 /area/maintenance/station/eng_lower)
+"wDI" = (
+/obj/structure/table/rack/shelf,
+/obj/item/weapon/tank/oxygen,
+/obj/item/device/suit_cooling_unit,
+/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/suit/space/void/pilot,
+/obj/item/clothing/head/helmet/space/void/pilot,
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/green/border,
+/obj/machinery/light,
+/turf/simulated/floor/tiled,
+/area/tether/exploration/pilot_office)
 "wEF" = (
 /obj/machinery/conveyor{
 	dir = 1;
@@ -45090,7 +45128,7 @@ qmO
 tUh
 wBw
 wBw
-wBw
+fGL
 tUh
 eXD
 axE
@@ -46765,7 +46803,7 @@ xNg
 xNg
 iAk
 xat
-ybD
+wDI
 smz
 cOq
 xuf
@@ -48617,11 +48655,11 @@ aac
 aam
 aaa
 aaa
-pTG
+qvR
 hGr
 hGr
 hGr
-pTG
+qvR
 fLT
 wMe
 rQq
@@ -48759,11 +48797,11 @@ aac
 aaa
 aaa
 aaa
-pTG
+qvR
 hHc
 hWs
 iOG
-pTG
+qvR
 fLT
 cOV
 rQq
@@ -48901,11 +48939,11 @@ aac
 aaa
 aaa
 aaa
-pTG
+qvR
 qcz
 qdq
 qum
-pTG
+qvR
 fLT
 wMe
 rQq
@@ -49043,11 +49081,11 @@ aac
 aaa
 aaa
 aaa
-pTG
+qvR
 qcz
 qdq
 qaY
-pTG
+qvR
 fLT
 qCV
 qOx
@@ -49185,13 +49223,13 @@ aac
 aaa
 aaa
 aaa
-pTG
+qvR
 qdq
 qdq
 qbk
 jSR
 tZN
-odI
+uEv
 kMY
 qWN
 rsp
@@ -49327,13 +49365,13 @@ aac
 aam
 aaa
 aaa
-pTG
+qvR
 qdq
 qdq
 qqe
 jSR
 auX
-odI
+uEv
 rQq
 qYR
 rsL
@@ -49469,11 +49507,11 @@ aac
 aam
 aaa
 aaa
-pTG
+qvR
 qcz
 qdq
 qqq
-pTG
+qvR
 fLT
 klW
 rQq
@@ -49611,11 +49649,11 @@ aam
 aam
 aaa
 aaa
-pTG
+qvR
 qcz
 qdq
 qum
-pTG
+qvR
 qBP
 kiB
 etg
@@ -49753,11 +49791,11 @@ aaa
 aaa
 aaa
 aaa
-pTG
+qvR
 hHo
 qdq
 qvg
-pTG
+qvR
 qBP
 wMe
 rQq
@@ -49895,11 +49933,11 @@ aaa
 aaa
 aaa
 aaa
-pTG
+qvR
 qvR
 qdq
 qvR
-pTG
+qvR
 qBP
 wMe
 rQq
@@ -50038,9 +50076,9 @@ aaa
 aaa
 aaa
 aaa
-pTG
+qvR
 hZW
-pTG
+qvR
 aaa
 fLT
 cOV
