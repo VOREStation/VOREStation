@@ -17,8 +17,7 @@
 	var/list/allowed_types = list(
 			/obj/item/clothing,
 			/obj/item/weapon/storage/backpack,
-			/obj/item/weapon/storage/belt,
-			/obj/item/device/radio/headset
+			/obj/item/weapon/storage/belt
 			)
 
 /obj/machinery/gear_painter/update_icon()
