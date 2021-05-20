@@ -27,13 +27,16 @@
 /datum/job/scientist
 	spawn_positions = 5
 	pto_type = PTO_SCIENCE
-	alt_titles = list("Lab Assistant" = /datum/alt_title/lab_assistant, "Xenoarchaeologist" = /datum/alt_title/xenoarch, "Xenopaleontologist" = /datum/alt_title/xenopaleontologist, \
-						"Anomalist" = /datum/alt_title/anomalist, "Phoron Researcher" = /datum/alt_title/phoron_research, "Gas Physicist" = /datum/alt_title/gas_physicist, \
-						"Circuit Designer" = /datum/alt_title/circuit_designer, "Circuit Programmer" = /datum/alt_title/circuit_programmer)
+	alt_titles = list("Researcher" = /datum/alt_title/researcher, "Lab Assistant" = /datum/alt_title/lab_assistant, "Xenoarchaeologist" = /datum/alt_title/xenoarch,
+						"Xenopaleontologist" = /datum/alt_title/xenopaleontologist, "Anomalist" = /datum/alt_title/anomalist, "Phoron Researcher" = /datum/alt_title/phoron_research,
+						"Gas Physicist" = /datum/alt_title/gas_physicist, "Circuit Designer" = /datum/alt_title/circuit_designer, "Circuit Programmer" = /datum/alt_title/circuit_programmer)
 
 
 	access = list(access_robotics, access_tox, access_tox_storage, access_research, access_xenobiology, access_xenoarch, access_xenobotany)
 	minimal_access = list(access_tox, access_tox_storage, access_research, access_xenoarch)					// Unchanged (for now?), mostly here for reference
+
+/datum/alt_title/researcher
+	title = "Researcher"
 
 /datum/alt_title/lab_assistant
 	title = "Lab Assistant"
@@ -106,7 +109,10 @@
 	outfit_type = /decl/hierarchy/outfit/job/science/xenobiologist
 	job_description = "A Xenobotanist grows and cares for a variety of abnormal, custom made, and frequently dangerous plant life. When the products of these plants \
 					are both safe and beneficial to the station, they may choose to introduce it to the rest of the crew."
-	alt_titles = list("Xenoflorist" = /datum/alt_title/xenoflorist)
+	alt_titles = list("Xenohydroponicist" = /datum/alt_title/xenohydroponicist, "Xenoflorist" = /datum/alt_title/xenoflorist)
 
 /datum/alt_title/xenoflorist
 	title = "Xenoflorist"
+
+/datum/alt_title/xenohydroponicist
+	title = "Xenohydroponicist"
