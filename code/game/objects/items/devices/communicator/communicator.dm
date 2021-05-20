@@ -266,7 +266,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	. = ..()
 	if(exonet)
 		exonet.remove_address()
-		exonet = null
+		qdel_null(exonet)
 	return ..()
 
 // Proc: register_device()

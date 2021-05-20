@@ -105,7 +105,12 @@
 		while(null in owner.organs)
 			owner.organs -= null
 
-	implants.Cut() //VOREStation Add - Remove these too!
+	for(var/imp in implants)
+		var/obj/item/weapon/implant/I = imp
+		if(!istype(I))
+			continue
+		I.imp_in = I.part = null
+	implants.Cut()
 
 	return ..()
 
