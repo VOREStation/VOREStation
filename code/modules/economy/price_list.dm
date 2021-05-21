@@ -531,7 +531,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/no_raisin
 	price_tag = 1
 
-/obj/item/weapon/reagent_containers/food/snacks/spacetwinkie
+/obj/item/weapon/reagent_containers/food/snacks/packaged/spacetwinkie
 	price_tag = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/skrellsnacks
