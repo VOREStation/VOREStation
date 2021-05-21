@@ -439,7 +439,7 @@
 				/obj/item/weapon/reagent_containers/food/snacks/popcorn,
 				/obj/item/weapon/reagent_containers/food/snacks/sosjerky,
 				/obj/item/weapon/reagent_containers/food/snacks/no_raisin,
-				/obj/item/weapon/reagent_containers/food/snacks/spacetwinkie,
+				/obj/item/weapon/reagent_containers/food/snacks/packaged/spacetwinkie,
 				/obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers,
 				/obj/item/weapon/reagent_containers/food/snacks/poppypretzel,
 				/obj/item/weapon/reagent_containers/food/snacks/baguette,
