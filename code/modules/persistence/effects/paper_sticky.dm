@@ -6,12 +6,17 @@
 /datum/persistent/paper/sticky/CreateEntryInstance(var/turf/creating, var/list/token)
 	var/atom/paper = ..()
 	if(paper)
+<<<<<<< HEAD
 		if(prob(90))
 			paper.pixel_x = token["offset_x"]
 			paper.pixel_y = token["offset_y"]
 		else
 			paper.pixel_x = rand(-5,5)
 			paper.pixel_y = rand(-5,5)
+=======
+		paper.pixel_x = token["offset_x"]
+		paper.pixel_y = token["offset_y"]
+>>>>>>> 9cd4a89... SSpersistence tweaks (#8087)
 		paper.color =   token["color"]
 	return paper
 
