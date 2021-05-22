@@ -612,7 +612,7 @@
 
 // Cookies and Candies //
 
-/obj/item/weapon/reagent_containers/food/snacks/cookie
+/obj/item/weapon/reagent_containers/food/snacks/cookiesnack
 	price_tag = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/chocolatebar

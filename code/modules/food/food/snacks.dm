@@ -6120,7 +6120,7 @@
 	reagents.add_reagent("sugar", 5)
 	bitesize = 1
 
-/obj/item/weapon/reagent_containers/food/snacks/cookie/Initialize()
+/obj/item/weapon/reagent_containers/food/snacks/cookiesnack/Initialize()
 	. = ..()
 	bitesize = 1
 
