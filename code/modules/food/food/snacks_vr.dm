@@ -378,7 +378,7 @@
 	nutriment_amt = 2
 	toxin_amount = null
 
-/obj/item/weapon/reagent_containers/food/snacks/sharkmeat/Initialize()
+/obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish/sharkmeat/Initialize()
 	. = ..()
 	bitesize = 3
 	reagents.add_reagent("protein", 2)

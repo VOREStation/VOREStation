@@ -406,7 +406,6 @@
 				/obj/item/weapon/reagent_containers/food/snacks/candy_corn,
 				/obj/item/weapon/reagent_containers/food/snacks/chips,
 				/obj/item/weapon/reagent_containers/food/snacks/chips/bbq,
-				/obj/item/weapon/reagent_containers/food/snacks/cookie,
 				/obj/item/weapon/reagent_containers/food/snacks/cookiesnack,
 				/obj/item/weapon/reagent_containers/food/snacks/fruitbar,
 				/obj/item/weapon/reagent_containers/food/snacks/chocolatebar,
@@ -843,7 +842,7 @@
 				/obj/item/weapon/reagent_containers/food/snacks/donut/normal,
 				/obj/item/weapon/reagent_containers/food/snacks/donut/cherryjelly,
 				/obj/item/weapon/reagent_containers/food/snacks/chocolatebar,
-				/obj/item/weapon/reagent_containers/food/snacks/cookie)
+				/obj/item/weapon/reagent_containers/food/snacks/cookiesnack)
 
 /obj/random/mre/dessert/vegan
 	name = "random vegan MRE dessert"

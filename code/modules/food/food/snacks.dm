@@ -5111,6 +5111,17 @@
 	. = ..()
 	reagents.add_reagent("tofu", 6)
 
+
+/obj/item/weapon/reagent_containers/food/snacks/burrito_spicy
+	name = "spicy burrito"
+	desc = "Spicy meat wrapped in a flour tortilla."
+	icon = 'icons/obj/food_syn.dmi'
+	icon_state = "burrito_spicy"
+	bitesize = 4
+	center_of_mass = list("x"=16, "y"=16)
+	nutriment_desc = list("tortilla" = 6)
+	nutriment_amt = 6
+
 /obj/item/weapon/reagent_containers/food/snacks/burrito_spicy/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 6)
@@ -6120,7 +6131,7 @@
 	reagents.add_reagent("sugar", 5)
 	bitesize = 1
 
-/obj/item/weapon/reagent_containers/food/snacks/cookie/Initialize()
+/obj/item/weapon/reagent_containers/food/snacks/cookiesnack/Initialize()
 	. = ..()
 	bitesize = 1
 
