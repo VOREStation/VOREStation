@@ -1,6 +1,9 @@
 /obj/item/device/mapping_unit
 	name = "mapping unit"
 	desc = "A portable mapping unit, capable of locating other similar units on a map. Also has a short-range sonar mapping system."
+	description_info = "Use the device in your hand to add the mapping HUD to your screen. You can then power it on and change mapping modes.\
+	<br>The device will show other powered-on mapping units on the map, as well as activated mapping beacons, but only of the same 'type' mapping unit.\
+	<br>Normal mapping units can only display other normal beacons and mapping units, ERT mapping units can display other ERT, etc."
 	icon_state = "mapping_unit"
 	item_state = null
 	w_class = ITEMSIZE_SMALL
