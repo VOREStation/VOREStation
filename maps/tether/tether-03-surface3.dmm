@@ -430,6 +430,7 @@
 	},
 /obj/structure/closet/secure_closet/medical3,
 /obj/item/weapon/soap/nanotrasen,
+/obj/item/weapon/storage/belt/medical,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/storage)
 "aaK" = (
@@ -450,6 +451,7 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 4
 	},
+/obj/item/weapon/storage/belt/medical,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/storage)
 "aaL" = (
@@ -578,6 +580,7 @@
 	},
 /obj/structure/closet/secure_closet/medical3,
 /obj/item/weapon/soap/nanotrasen,
+/obj/item/weapon/storage/belt/medical,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/storage)
 "aaU" = (
@@ -948,6 +951,7 @@
 /obj/machinery/camera/network/medbay{
 	dir = 8
 	},
+/obj/item/weapon/storage/belt/medical,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/storage)
 "abv" = (
@@ -3745,7 +3749,7 @@
 /area/tether/surfacebase/security/upperhall)
 "afx" = (
 /obj/machinery/door/airlock/medical{
-	name = "Operating Theatre 2";
+	name = "Operating Theatre 1";
 	req_access = list(45)
 	},
 /obj/machinery/door/firedoor/glass,
@@ -3767,7 +3771,7 @@
 /obj/machinery/door/firedoor/glass,
 /obj/structure/grille,
 /obj/structure/window/reinforced/polarized/full{
-	id = "surfsurgery2"
+	id = "surfsurgery1"
 	},
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/medical/surgery1)
@@ -3790,7 +3794,7 @@
 	pixel_y = -22
 	},
 /obj/machinery/button/windowtint{
-	id = "surfsurgery2";
+	id = "surfsurgery1";
 	pixel_x = -3;
 	pixel_y = -22
 	},
@@ -26613,6 +26617,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /obj/structure/closet/secure_closet/medical3,
 /obj/item/weapon/soap/nanotrasen,
+/obj/item/weapon/storage/belt/medical,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/storage)
 "aTq" = (
@@ -27303,6 +27308,7 @@
 	},
 /obj/structure/closet/secure_closet/medical3,
 /obj/item/weapon/soap/nanotrasen,
+/obj/item/weapon/storage/belt/medical,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/storage)
 "aUB" = (
@@ -30059,6 +30065,9 @@
 /obj/structure/closet/secure_closet/captains,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
+	},
+/obj/item/weapon/disk/nuclear{
+	name = "authentication disk"
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/captain)
