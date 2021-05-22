@@ -1561,12 +1561,13 @@
 /obj/machinery/mech_recharger{
 	icon = 'icons/turf/shuttle_alien_blue.dmi'
 	},
-/obj/mecha/combat/fighter/baron{
+/obj/mecha/combat/fighter/baron/loaded{
 	ground_capable = 1;
-	health = 800;
-	internal_damage_threshold = 100;
-	maxhealth = 800;
-	name = "Panther"
+	health = 600;
+	maxhealth = 600;
+	name = "Duke";
+	desc = "A heavily modified Baron-class fighter from the commonwealth. It has been retrofitted with heavier armor and additional maneuvering thrusters. Can be used in atmospheric operations.";
+	starting_components = list(/obj/item/mecha_parts/component/hull/lightweight,/obj/item/mecha_parts/component/actuator/hispeed,/obj/item/mecha_parts/component/armor/military,/obj/item/mecha_parts/component/gas/reinforced,/obj/item/mecha_parts/component/electrical)
 	},
 /turf/simulated/floor/reinforced,
 /area/shuttle/tabiranth)

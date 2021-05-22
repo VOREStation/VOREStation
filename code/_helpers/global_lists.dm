@@ -33,6 +33,11 @@ GLOBAL_LIST_EMPTY(closet_appearances)
 var/global/list/poster_designs = list()
 var/global/list/NT_poster_designs = list()
 
+// Holomaps
+var/global/list/holomap_markers = list()
+var/global/list/mapping_units = list()
+var/global/list/mapping_beacons = list()
+
 //Preferences stuff
 	//Hairstyles
 var/global/list/hair_styles_list = list()			//stores /datum/sprite_accessory/hair indexed by name
@@ -110,6 +115,9 @@ GLOBAL_LIST_EMPTY(mannequins)
 		GLOB.mannequins[ckey] = new /mob/living/carbon/human/dummy/mannequin(null)
 		M = GLOB.mannequins[ckey]
 	return M
+
+/proc/del_mannequin(var/ckey = "NULL")
+	GLOB.mannequins-= ckey
 
 //////////////////////////
 /////Initial Building/////

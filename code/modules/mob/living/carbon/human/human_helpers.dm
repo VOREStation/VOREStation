@@ -98,18 +98,7 @@
 // This is the 'mechanical' check for synthetic-ness, not appearance
 // Returns the company that made the synthetic
 /mob/living/carbon/human/isSynthetic()
-	if(synthetic) 
-		return synthetic //Your synthetic-ness is not going away
-	var/obj/item/organ/external/T = organs_by_name[BP_TORSO]
-	if(T && T.robotic >= ORGAN_ROBOT)
-		src.verbs += /mob/living/carbon/human/proc/self_diagnostics
-		src.verbs += /mob/living/carbon/human/proc/reagent_purge //VOREStation Add
-		src.verbs += /mob/living/carbon/human/proc/setmonitor_state
-		var/datum/robolimb/R = all_robolimbs[T.model]
-		synthetic = R
-		update_emotes()
-		return synthetic
-	return FALSE
+	return synthetic
 
 // Would an onlooker know this person is synthetic?
 // Based on sort of logical reasoning, 'Look at head, look at torso'

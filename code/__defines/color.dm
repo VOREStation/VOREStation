@@ -91,6 +91,7 @@
 #define COLOR_DARK_TEAL        "#2db5b5"
 #define COLOR_LIGHT_VIOLET     "#e7bfff"
 #define COLOR_SAN_MARINO_BLUE  "#4b75ab"
+#define COLOR_OLIVE            "#52613b"	//VOREStation Addition
 
 #define	PIPE_COLOR_GREY        "#808080"
 #define	PIPE_COLOR_RED         "#ff0000"

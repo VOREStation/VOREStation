@@ -17,7 +17,7 @@
 
 	if(losebreath>0) //Suffocating so do not take a breath
 		AdjustLosebreath(-1)
-		if (prob(10)) //Gasp per 10 ticks? Sounds about right.
+		if (prob(10) && !isbelly(loc)) //Gasp per 10 ticks? Sounds about right. //VOREStation Add
 			spawn emote("gasp")
 	else
 		//Okay, we can breathe, now check if we can get air

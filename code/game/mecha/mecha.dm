@@ -1450,16 +1450,28 @@
 
 	else if(istype(W, /obj/item/weapon/weldingtool) && user.a_intent != I_HURT)
 		var/obj/item/weapon/weldingtool/WT = W
+		var/obj/item/mecha_parts/component/hull/HC = internal_components[MECH_HULL]
+		var/obj/item/mecha_parts/component/armor/AC = internal_components[MECH_ARMOR]
 		if (WT.remove_fuel(0,user))
 			if (hasInternalDamage(MECHA_INT_TANK_BREACH))
 				clearInternalDamage(MECHA_INT_TANK_BREACH)
 				to_chat(user, "<span class='notice'>You repair the damaged gas tank.</span>")
 		else
 			return
-		if(src.health<initial(src.health))
-			to_chat(user, "<span class='notice'>You repair some damage to [src.name].</span>")
-			src.health += min(10, initial(src.health)-src.health)
-			update_damage_alerts()
+		if((src.health<initial(src.health)) || (HC.integrity<HC.max_integrity) || (AC.integrity<AC.max_integrity))
+			if(src.health<initial(src.health))
+				to_chat(user, "<span class='notice'>You repair some damage to [src.name].</span>")
+				src.health += min(10, initial(src.health)-src.health)
+				update_damage_alerts()
+			else	if(HC.integrity<HC.max_integrity)
+				to_chat(user, "<span class='notice'>You repair some damage to [HC.name].</span>")
+				HC.integrity += min(10, HC.max_integrity-HC.integrity)
+				update_damage_alerts()
+			else	if(AC.integrity<AC.max_integrity)
+				to_chat(user, "<span class='notice'>You repair some damage to [AC.name].</span>")
+				AC.integrity += min(10, AC.max_integrity-AC.integrity)
+				update_damage_alerts()
+
 		else
 			to_chat(user, "The [src.name] is at full integrity")
 		return

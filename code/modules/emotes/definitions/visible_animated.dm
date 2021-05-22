@@ -27,7 +27,12 @@
 
 /decl/emote/visible/flip/do_extra(mob/user)
 	. = ..()
-	if(istype(user))
+	// VOREStation Add - Fancy flips
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		H.handle_flip_vr()
+	// VOREStation Add End
+	else if(istype(user))
 		user.SpinAnimation(7,1)
 
 /decl/emote/visible/floorspin

@@ -16,6 +16,7 @@ bricker98 - Protean
 camanis - Protean
 cgr - Protean
 chargae - Protean
+chemlight - Xenochimera
 chillyfang - Black-Eyed Shadekin
 crossexonar - Protean
 detectivegoogle - Protean
@@ -38,6 +39,8 @@ killjaden - Protean
 ktccd - Diona
 liache - Black-Eyed Shadekin
 lizehrd - Xenochimera
+lordlag - Black-Eyed Shadekin
+losstinspess - Xenochimera
 magpiemayhem - Vox
 marco_barko - Protean
 mewchild - Diona
@@ -85,6 +88,7 @@ terrestris - Vox
 terrestris - Common Skrellian
 terrestris - High Skrellian
 timidvi - Diona
+thedavestdave - Protean
 trikonei - Protean
 varonis - Xenochimera
 verkister - Xenochimera
