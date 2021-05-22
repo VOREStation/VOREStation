@@ -57,7 +57,7 @@ var/list/_cat_default_emotes = list(
 	update_icon()
 	return ..()
 
-/mob/living/simple_mob/animal/passive/cat/get_default_emotes()
+/mob/living/simple_mob/animal/passive/cat/get_available_emotes()
 	return global._cat_default_emotes
 
 /mob/living/simple_mob/animal/passive/cat/handle_special()

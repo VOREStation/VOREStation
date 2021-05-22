@@ -1,10 +1,10 @@
 //Special map objects
 /obj/effect/landmark/map_data/virgo3b
-    height = 7
+    height = 5
 
 /obj/turbolift_map_holder/tether
 	name = "Tether Climber"
-	depth = 7
+	depth = 5
 	lift_size_x = 3
 	lift_size_y = 3
 	icon = 'icons/obj/turbolift_preview_3x3.dmi'
@@ -15,9 +15,7 @@
 		/area/turbolift/t_surface/level2,
 		/area/turbolift/t_surface/level3,
 		/area/turbolift/tether/transit,
-		/area/turbolift/t_station/level1,
-		/area/turbolift/t_station/level2,
-		/area/turbolift/t_station/level3
+		/area/turbolift/t_station/level1
 		)
 
 /datum/turbolift

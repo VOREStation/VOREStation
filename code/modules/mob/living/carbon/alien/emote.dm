@@ -27,5 +27,5 @@ var/list/_alien_default_emotes = list(
 	/decl/emote/audible/chirp
 )
 
-/mob/living/carbon/alien/get_default_emotes()
+/mob/living/carbon/alien/get_available_emotes()
 	. = global._alien_default_emotes

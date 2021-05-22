@@ -8,6 +8,45 @@
 #define HOLOMAP_ICON_SIZE 480 // Pixel width & height of the holomap icon.  Used for auto-centering etc.
 #define ui_holomap "CENTER-7, CENTER-7" // Screen location of the holomap "hud"
 
+//Holomap filters
+#define HOLOMAP_FILTER_DEATHSQUAD				1
+#define HOLOMAP_FILTER_ERT						2
+#define HOLOMAP_FILTER_NUKEOPS					4
+#define HOLOMAP_FILTER_ELITESYNDICATE			8
+#define HOLOMAP_FILTER_VOX						16
+#define HOLOMAP_FILTER_STATIONMAP				32
+#define HOLOMAP_FILTER_STATIONMAP_STRATEGIC		64//features markers over the captain's office, the armory, the SMES
+#define HOLOMAP_FILTER_CULT						128//bloodstone locators
+
+#define HOLOMAP_EXTRA_STATIONMAP				"stationmapformatted"
+#define HOLOMAP_EXTRA_STATIONMAP_STRATEGIC		"stationmapstrategic"
+#define HOLOMAP_EXTRA_STATIONMAPAREAS			"stationareas"
+#define HOLOMAP_EXTRA_STATIONMAPSMALL_NORTH		"stationmapsmallnorth"
+#define HOLOMAP_EXTRA_STATIONMAPSMALL_SOUTH		"stationmapsmallsouth"
+#define HOLOMAP_EXTRA_STATIONMAPSMALL_EAST		"stationmapsmalleast"
+#define HOLOMAP_EXTRA_STATIONMAPSMALL_WEST		"stationmapsmallwest"
+#define HOLOMAP_EXTRA_CULTMAP					"cultmap"
+
+#define HOLOMAP_MARKER_SMES				"smes"
+#define HOLOMAP_MARKER_DISK				"diskspawn"
+#define HOLOMAP_MARKER_SKIPJACK			"skipjack"
+#define HOLOMAP_MARKER_SYNDISHUTTLE		"syndishuttle"
+#define HOLOMAP_MARKER_BLOODSTONE		"bloodstone"
+#define HOLOMAP_MARKER_BLOODSTONE_BROKEN	"bloodstone-broken"
+#define HOLOMAP_MARKER_BLOODSTONE_ANCHOR	"bloodstone-narsie"
+#define HOLOMAP_MARKER_CULT_ALTAR		"altar"
+#define HOLOMAP_MARKER_CULT_FORGE		"forge"
+#define HOLOMAP_MARKER_CULT_SPIRE		"spire"
+#define HOLOMAP_MARKER_CULT_ENTRANCE	"path_entrance"
+#define HOLOMAP_MARKER_CULT_EXIT		"path_exit"
+#define HOLOMAP_MARKER_CULT_RUNE		"rune"
+
+#define HOLOMAP_DRAW_NORMAL	0
+#define HOLOMAP_DRAW_FULL	1
+#define HOLOMAP_DRAW_EMPTY	2
+#define HOLOMAP_DRAW_PATH	3
+#define HOLOMAP_DRAW_HALLWAY	4
+
 // Holomap colors
 #define HOLOMAP_OBSTACLE	"#FFFFFFDD"	// Color of walls and barriers
 #define HOLOMAP_PATH		"#66666699"	// Color of floors

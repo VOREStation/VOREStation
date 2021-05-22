@@ -378,7 +378,7 @@
 	nutriment_amt = 2
 	toxin_amount = null
 
-/obj/item/weapon/reagent_containers/food/snacks/sharkmeat/Initialize()
+/obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish/sharkmeat/Initialize()
 	. = ..()
 	bitesize = 3
 	reagents.add_reagent("protein", 2)
@@ -600,4 +600,161 @@
 	. = ..()
 	bitesize = 3
 
+//Fennec foods
+/obj/item/weapon/storage/box/wings/bucket
+	name = "Bucket o' grubs"
+	desc = "A bucket full of writhing grubs."
+	icon_state = "bucket6"
+	icon_base = "bucket"
+	startswith = 6
+	w_class = ITEMSIZE_LARGE
+	max_storage_space = ITEMSIZE_COST_SMALL * 6
+	starts_with = list(
+		/obj/item/weapon/reagent_containers/food/snacks/grub = 6
+	)
+	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/grub)
 
+/obj/item/weapon/reagent_containers/food/snacks/grub
+	name = "grub"
+	desc = "a still writhing grub, soft and squishy."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "grub"
+	nutriment_amt = 3
+	nutriment_desc = list("goo" = 1, "slime" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/grub/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 2)
+	bitesize = 3
+
+/obj/item/weapon/reagent_containers/food/snacks/grub_pink
+	name = "pink candy grub"
+	desc = "a thoroughly candied grub, it smells of raspberry."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "grub_pink"
+	nutriment_amt = 5
+	nutriment_desc = list("raspberry" = 4, "goo" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/grub_pink/Initialize()
+	. = ..()
+	bitesize = 3
+
+/obj/item/weapon/reagent_containers/food/snacks/grub_purple
+	name = "pink candy grub"
+	desc = "a thoroughly candied grub, it smells of grape."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "grub_purple"
+	nutriment_amt = 5
+	nutriment_desc = list("grape" = 4, "goo" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/grub_purple/Initialize()
+	. = ..()
+	bitesize = 3
+
+/obj/item/weapon/reagent_containers/food/snacks/grub_blue
+	name = "pink candy grub"
+	desc = "a thoroughly candied grub, it smells of blueberry."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "grub_blue"
+	nutriment_amt = 5
+	nutriment_desc = list("blueberry" = 4, "goo" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/grub_blue/Initialize()
+	. = ..()
+	bitesize = 3
+
+/obj/item/weapon/reagent_containers/food/snacks/scorpion
+	name = "scorpion"
+	desc = "a scorpion from the sandy deserts, don't get stung!"
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "scorpion"
+	nutriment_amt = 8
+	nutriment_desc = list("crunchy" = 4, "shell bits" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/scorpion/Initialize()
+	. = ..()
+	bitesize = 1
+
+/obj/item/weapon/reagent_containers/food/snacks/scorpion_cooked
+	name = "fried scorpion"
+	desc = "a scorpion baked nice and crispy"
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "scorpion_cooked"
+	nutriment_amt = 6
+	nutriment_desc = list("crispy" = 4, "exotic meat" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/scorpion_cooked/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 2)
+	reagents.add_reagent("protein", 4)
+	bitesize = 4
+
+/obj/item/weapon/reagent_containers/food/snacks/ant
+	name = "giant honey ant"
+	desc = "a sweetly scented honey ant. it has a huge swollen abdomen full of yummy."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "honeyant"
+	nutriment_amt = 2
+	nutriment_desc = list("crunchy" = 1, "goo" = 1)
+	slice_path = /obj/item/weapon/reagent_containers/food/snacks/antball
+	slices_num = 1
+
+/obj/item/weapon/reagent_containers/food/snacks/ant/Initialize()
+	. = ..()
+	reagents.add_reagent("honey", 2)
+	reagents.add_reagent("protein", 3)
+	bitesize = 1
+
+/obj/item/weapon/reagent_containers/food/snacks/antball
+	name = "giant honey ball"
+	desc = "a sweetly scented honey ball, minus the ant. For those who don't like bug bits between their teeth."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "honeyant_clean"
+	nutriment_amt = 4
+	nutriment_desc = list("goo" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/antball/Initialize()
+	. = ..()
+	reagents.add_reagent("honey", 2)
+	bitesize = 1
+
+/obj/item/weapon/reagent_containers/food/snacks/honey_candy
+	name = "honey candy"
+	desc = "a clever mimicery of a honey ant abdomen, but it's just a piece of candy. Does not contain actual honey"
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "candy_honey"
+	nutriment_amt = 4
+	nutriment_desc = list("goo" = 1, "honey" = 1)
+	slice_path = /obj/item/weapon/reagent_containers/food/snacks/antball
+	slices_num = 1
+
+/obj/item/weapon/reagent_containers/food/snacks/honey_candy/Initialize()
+	. = ..()
+	reagents.add_reagent("sugar", 2)
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/locust
+	name = "yellow jacket locust"
+	desc = "a vibrant bug that looks like a wasp, but is in fact a locust. Crunchy"
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "locust"
+	nutriment_amt = 4
+	nutriment_desc = list("crunchy" = 1, "goo" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/locust/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 1)
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/locust_cooked
+	name = "fried locust"
+	desc = "a fried locust, extremely crunchy"
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "locust_cooked"
+	nutriment_amt = 2
+	nutriment_desc = list("crunchy" = 4)
+
+/obj/item/weapon/reagent_containers/food/snacks/locust_cooked/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 3)
+	bitesize = 2

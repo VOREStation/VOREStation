@@ -17,3 +17,20 @@
 		/obj/item/weapon/reagent_containers/food/snacks/meat
 	)
 	result = /obj/item/weapon/storage/box/wings //This is kinda like the donut box.
+
+/datum/recipe/chickenwings
+	appliance = FRYER
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/meat,
+		/obj/item/weapon/reagent_containers/food/snacks/meat,
+		/obj/item/weapon/reagent_containers/food/snacks/meat,
+		/obj/item/weapon/reagent_containers/food/snacks/meat
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/generalschicken
+
+/datum/recipe/locust
+	reagents = list("batter" = 5)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/locust
+	)
+	/obj/item/weapon/reagent_containers/food/snacks/locust_cooked

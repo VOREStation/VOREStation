@@ -153,6 +153,9 @@ What is the naming convention for planes or layers?
 	#define CRIT_LAYER			18.3
 
 //Client UI HUD stuff
+#define PLANE_HOLOMAP_FRAME		92
+#define PLANE_HOLOMAP			93 // Holomap rendered here
+#define PLANE_HOLOMAP_ICONS		94 // Holomap markers and bobbins
 #define PLANE_PLAYER_HUD		95 //The character's UI is on this plane
 	#define LAYER_HUD_UNDER		1 //Under the HUD items
 	#define LAYER_HUD_BASE		2 //The HUD items themselves

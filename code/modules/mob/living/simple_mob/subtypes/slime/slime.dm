@@ -80,7 +80,7 @@ var/list/_slime_default_emotes = list(
 
 	can_enter_vent_with = list(/obj/item/clothing/head)
 
-/mob/living/simple_mob/slime/get_default_emotes()
+/mob/living/simple_mob/slime/get_available_emotes()
 	return global._slime_default_emotes
 
 /datum/say_list/slime

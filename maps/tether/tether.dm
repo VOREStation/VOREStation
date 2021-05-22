@@ -16,8 +16,6 @@
 		#include "tether-03-surface3.dmm"
 		#include "tether-04-transit.dmm"
 		#include "tether-05-station1.dmm"
-		#include "tether-06-station2.dmm"
-		#include "tether-07-station3.dmm"
 		#include "tether-08-mining.dmm"
 		#include "tether-09-solars.dmm"
 	#endif

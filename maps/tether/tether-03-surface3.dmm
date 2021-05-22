@@ -430,6 +430,7 @@
 	},
 /obj/structure/closet/secure_closet/medical3,
 /obj/item/weapon/soap/nanotrasen,
+/obj/item/weapon/storage/belt/medical,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/storage)
 "aaK" = (
@@ -450,6 +451,7 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 4
 	},
+/obj/item/weapon/storage/belt/medical,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/storage)
 "aaL" = (
@@ -578,6 +580,7 @@
 	},
 /obj/structure/closet/secure_closet/medical3,
 /obj/item/weapon/soap/nanotrasen,
+/obj/item/weapon/storage/belt/medical,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/storage)
 "aaU" = (
@@ -948,6 +951,7 @@
 /obj/machinery/camera/network/medbay{
 	dir = 8
 	},
+/obj/item/weapon/storage/belt/medical,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/storage)
 "abv" = (
@@ -3745,7 +3749,7 @@
 /area/tether/surfacebase/security/upperhall)
 "afx" = (
 /obj/machinery/door/airlock/medical{
-	name = "Operating Theatre 2";
+	name = "Operating Theatre 1";
 	req_access = list(45)
 	},
 /obj/machinery/door/firedoor/glass,
@@ -3767,7 +3771,7 @@
 /obj/machinery/door/firedoor/glass,
 /obj/structure/grille,
 /obj/structure/window/reinforced/polarized/full{
-	id = "surfsurgery2"
+	id = "surfsurgery1"
 	},
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/medical/surgery1)
@@ -3790,7 +3794,7 @@
 	pixel_y = -22
 	},
 /obj/machinery/button/windowtint{
-	id = "surfsurgery2";
+	id = "surfsurgery1";
 	pixel_x = -3;
 	pixel_y = -22
 	},
@@ -26613,6 +26617,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /obj/structure/closet/secure_closet/medical3,
 /obj/item/weapon/soap/nanotrasen,
+/obj/item/weapon/storage/belt/medical,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/storage)
 "aTq" = (
@@ -27303,6 +27308,7 @@
 	},
 /obj/structure/closet/secure_closet/medical3,
 /obj/item/weapon/soap/nanotrasen,
+/obj/item/weapon/storage/belt/medical,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/storage)
 "aUB" = (
@@ -30060,6 +30066,9 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
+/obj/item/weapon/disk/nuclear{
+	name = "authentication disk"
+	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/captain)
 "aZn" = (
@@ -30955,10 +30964,24 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
 "baI" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tether)
+/obj/structure/closet/crate{
+	icon_state = "crate";
+	name = "Grenade Crate"
+	},
+/obj/item/weapon/grenade/chem_grenade,
+/obj/item/weapon/grenade/chem_grenade,
+/obj/item/weapon/grenade/chem_grenade,
+/obj/item/device/assembly/timer,
+/obj/item/device/assembly/timer,
+/obj/item/device/assembly/timer,
+/obj/item/device/assembly/igniter,
+/obj/item/device/assembly/igniter,
+/obj/item/device/assembly/igniter,
+/obj/item/weapon/tool/screwdriver,
+/obj/effect/floor_decal/borderfloorwhite,
+/obj/effect/floor_decal/corner/paleblue/border,
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/storage)
 "baJ" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -31088,12 +31111,21 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
 "baR" = (
-/obj/machinery/atmospherics/unary/engine{
+/obj/structure/table/standard,
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tourbus/general)
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 6
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 6
+	},
+/obj/machinery/recharger,
+/obj/item/weapon/storage/box/syringegun,
+/obj/item/weapon/gun/launcher/syringe,
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/storage)
 "baS" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/window/reinforced/full,
@@ -31533,6 +31565,11 @@
 	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/hydroponics)
+"bbJ" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tether)
 "bbK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/wood,
@@ -31674,6 +31711,13 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/barrestroom)
+"bbX" = (
+/obj/machinery/atmospherics/unary/engine{
+	dir = 1
+	},
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tourbus/general)
 "bbY" = (
 /obj/effect/floor_decal/spline/plain,
 /obj/item/weapon/stool/padded,
@@ -36548,42 +36592,6 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/storage)
-"bmk" = (
-/obj/structure/closet/crate{
-	icon_state = "crate";
-	name = "Grenade Crate"
-	},
-/obj/item/weapon/grenade/chem_grenade,
-/obj/item/weapon/grenade/chem_grenade,
-/obj/item/weapon/grenade/chem_grenade,
-/obj/item/device/assembly/timer,
-/obj/item/device/assembly/timer,
-/obj/item/device/assembly/timer,
-/obj/item/device/assembly/igniter,
-/obj/item/device/assembly/igniter,
-/obj/item/device/assembly/igniter,
-/obj/item/weapon/tool/screwdriver,
-/obj/effect/floor_decal/borderfloorwhite,
-/obj/effect/floor_decal/corner/paleblue/border,
-/obj/item/weapon/gun/launcher/syringe,
-/obj/item/weapon/storage/box/syringegun,
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/storage)
-"bml" = (
-/obj/structure/table/standard,
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 1
-	},
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 6
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 6
-	},
-/obj/machinery/recharger,
-/obj/item/weapon/storage/box/syringegun,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/storage)
 "bmm" = (
@@ -54423,7 +54431,7 @@ jML
 jHw
 jpB
 aVJ
-baR
+bbX
 aKU
 aOI
 aPb
@@ -55275,7 +55283,7 @@ caw
 jHw
 gHh
 aVJ
-baR
+bbX
 aKU
 aOI
 aKj
@@ -57260,7 +57268,7 @@ aNk
 uSA
 aNJ
 aNP
-baI
+bbJ
 aKU
 abg
 aOk
@@ -57402,7 +57410,7 @@ aNl
 aNl
 aNK
 aNP
-baI
+bbJ
 aKU
 abg
 aOk
@@ -57544,7 +57552,7 @@ aNm
 aNl
 aNK
 aNP
-baI
+bbJ
 aKU
 abg
 aOk
@@ -58612,7 +58620,7 @@ aVc
 aWd
 aUv
 aUv
-bmk
+baI
 fLx
 aSV
 bng
@@ -58754,7 +58762,7 @@ abu
 aaT
 blu
 blP
-bml
+baR
 fLx
 aTj
 bjy

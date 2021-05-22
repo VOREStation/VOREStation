@@ -9,5 +9,5 @@ var/list/_silicon_default_emotes = list(
 	/decl/emote/audible/synth/security/halt
 )
 
-/mob/living/silicon/get_default_emotes()
+/mob/living/silicon/get_available_emotes()
 	return global._silicon_default_emotes
