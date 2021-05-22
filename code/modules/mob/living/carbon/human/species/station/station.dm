@@ -261,6 +261,11 @@
 		)
 
 	default_emotes = list(
+		//VOREStation Add
+		/decl/emote/audible/gnarl,
+		/decl/emote/audible/purr,
+		/decl/emote/audible/purrlong,
+		//VOREStation Add End
 		/decl/emote/human/swish,
 		/decl/emote/human/wag,
 		/decl/emote/human/sway,
