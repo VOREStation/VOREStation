@@ -237,9 +237,6 @@
 	emote_message_3p = "signals."
 	check_restraints = TRUE
 
-/decl/emote/visible/signal/check_user(atom/user)
-	return ismob(user)
-
 /decl/emote/visible/signal/get_emote_message_3p(var/mob/living/user, var/atom/target, var/extra_params)
 	if(istype(user) && (!user.get_active_hand() || !user.get_inactive_hand()))
 		var/t1 = round(text2num(extra_params))
