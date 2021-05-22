@@ -12569,7 +12569,7 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Surface Civilian";
+	RCon_tag = "Substation - Civilian";
 	output_attempt = 0
 	},
 /obj/machinery/camera/network/engineering{

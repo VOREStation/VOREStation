@@ -33,6 +33,17 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/atmos/backup)
+"aaf" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/dogbed,
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 1
+	},
+/mob/living/simple_mob/animal/sif/fluffy,
+/turf/simulated/floor/outdoors/grass/forest,
+/area/quartermaster/qm)
 "aag" = (
 /obj/structure/sign/securearea{
 	desc = "A warning sign which reads 'RADIOACTIVE AREA'";
@@ -41,6 +52,18 @@
 	},
 /turf/simulated/wall/r_wall,
 /area/space)
+"aah" = (
+/obj/structure/table/rack{
+	dir = 8;
+	layer = 2.9
+	},
+/obj/effect/decal/cleanable/cobweb{
+	icon_state = "cobweb2"
+	},
+/obj/item/clothing/under/pizzaguy,
+/obj/item/clothing/head/pizzaguy,
+/turf/simulated/floor/tiled,
+/area/quartermaster/warehouse)
 "aal" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -7561,17 +7584,6 @@
 /obj/structure/frame,
 /turf/simulated/floor/tiled,
 /area/engineering/workshop)
-"atR" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/dogbed,
-/mob/living/simple_mob/animal/sif/fluffy,
-/obj/effect/floor_decal/spline/fancy/wood{
-	dir = 1
-	},
-/turf/simulated/floor/outdoors/grass/forest,
-/area/quartermaster/qm)
 "atS" = (
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/monotile,
@@ -17579,7 +17591,7 @@
 /area/tether/station/dock_one)
 "eJJ" = (
 /obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Asteroid Station";
+	RCon_tag = "Substation - Asteroid Civilian";
 	cur_coils = 2;
 	output_attempt = 0
 	},
@@ -25469,16 +25481,6 @@
 /obj/effect/floor_decal/sign/dock/one,
 /turf/simulated/floor/tiled,
 /area/hallway/station/docks)
-"lLC" = (
-/obj/structure/table/rack{
-	dir = 8;
-	layer = 2.9
-	},
-/obj/effect/decal/cleanable/cobweb{
-	icon_state = "cobweb2"
-	},
-/turf/simulated/floor/tiled,
-/area/quartermaster/warehouse)
 "lLG" = (
 /obj/structure/cable/green{
 	d1 = 2;
@@ -28965,8 +28967,8 @@
 /area/ai_monitored/storage/eva)
 "pBP" = (
 /obj/machinery/power/sensor{
-	name = "Powernet Sensor - Asteroid Station Subgrid";
-	name_tag = "Asteroid Station Subgrid"
+	name = "Powernet Sensor - Asteroid Civilian Subgrid";
+	name_tag = "Asteroid Civilian Subgrid"
 	},
 /obj/structure/cable/green,
 /obj/structure/cable/green{
@@ -33468,7 +33470,7 @@
 /area/tether/exploration/crew)
 "uTC" = (
 /obj/machinery/power/breakerbox/activated{
-	RCon_tag = "Asteroid Station Substation Bypass"
+	RCon_tag = "Asteroid Civilian Substation Bypass"
 	},
 /turf/simulated/floor,
 /area/maintenance/substation/civilian)
@@ -46281,7 +46283,7 @@ hLW
 sBs
 nob
 azc
-lLC
+aah
 azV
 aBP
 pmX
@@ -47266,7 +47268,7 @@ eQM
 agE
 fsA
 agK
-atR
+aaf
 nZQ
 awe
 awN

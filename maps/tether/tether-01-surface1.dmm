@@ -30271,7 +30271,7 @@
 /area/maintenance/lower/mining_eva)
 "bbx" = (
 /obj/machinery/power/breakerbox/activated{
-	RCon_tag = "SurfMed Substation Bypass"
+	RCon_tag = "Medical Substation Bypass"
 	},
 /turf/simulated/floor,
 /area/maintenance/substation/SurfMedsubstation)
@@ -30407,7 +30407,7 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - SurfMed";
+	RCon_tag = "Substation - Medical";
 	output_attempt = 0
 	},
 /turf/simulated/floor,
@@ -30556,8 +30556,8 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/power/sensor{
-	name = "Powernet Sensor - SurfMed Subgrid";
-	name_tag = "SurfMed Subgrid"
+	name = "Powernet Sensor - Medical Subgrid";
+	name_tag = "Medical Subgrid"
 	},
 /obj/machinery/alarm{
 	dir = 1;
