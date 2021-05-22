@@ -8148,7 +8148,7 @@
 /area/maintenance/lower/north)
 "amE" = (
 /obj/machinery/power/breakerbox/activated{
-	RCon_tag = "Surfsec Substation Bypass"
+	RCon_tag = "Security Substation Bypass"
 	},
 /turf/simulated/floor,
 /area/maintenance/substation/medsec)
@@ -9578,7 +9578,7 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Surfsec";
+	RCon_tag = "Substation - Security";
 	output_attempt = 0
 	},
 /turf/simulated/floor,
@@ -11296,8 +11296,8 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/power/sensor{
-	name = "Powernet Sensor - Surfsec Subgrid";
-	name_tag = "Surfsec Subgrid"
+	name = "Powernet Sensor - Security Subgrid";
+	name_tag = "Security Subgrid"
 	},
 /turf/simulated/floor,
 /area/maintenance/substation/medsec)
