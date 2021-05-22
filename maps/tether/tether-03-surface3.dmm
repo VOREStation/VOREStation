@@ -23853,9 +23853,6 @@
 	desc = "Seems absurd, doesn't it? Yet, here we are. Generally considered dangerous contraband unless the user has permission from Central Command. This one is the Site Manager's, and they are authorized to use it.";
 	name = "manager's translocator"
 	},
-/obj/item/weapon/disk/nuclear{
-	name = "authentication disk"
-	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/captain)
 "aND" = (
@@ -30067,6 +30064,9 @@
 /obj/structure/closet/secure_closet/captains,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
+	},
+/obj/item/weapon/disk/nuclear{
+	name = "authentication disk"
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/captain)
