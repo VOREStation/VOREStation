@@ -684,9 +684,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/wingfangchu
 	price_tag = 5
 
-/obj/item/weapon/reagent_containers/food/snacks/kabob
-	price_tag = 5
-
 /obj/item/weapon/reagent_containers/food/snacks/monkeykabob
 	price_tag = 5
 
