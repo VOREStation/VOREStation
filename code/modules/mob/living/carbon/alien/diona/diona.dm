@@ -46,7 +46,7 @@ var/list/_nymph_default_emotes = list(
 	holder_type = /obj/item/weapon/holder/diona
 	var/obj/item/hat
 
-/mob/living/carbon/alien/diona/get_default_emotes()
+/mob/living/carbon/alien/diona/get_available_emotes()
 	return global._nymph_default_emotes
 
 /mob/living/carbon/alien/diona/Initialize()

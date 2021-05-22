@@ -394,10 +394,6 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 					pref.body_descriptors[entry] = descriptor.default_value // Species datums have initial default value.
 				else
 					pref.body_descriptors[entry] = CLAMP(last_descriptors[entry], 1, LAZYLEN(descriptor.standalone_value_descriptors))
-	
-	character.update_emotes()
-
-	return
 
 /datum/category_item/player_setup_item/general/body/content(var/mob/user)
 	. = list()

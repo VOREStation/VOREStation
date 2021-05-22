@@ -4,6 +4,13 @@
 //   gender-appropriate version of the same.
 // - Impaired messages do not do any substitutions.
 
+var/global/list/emotes_by_key
+
+/proc/get_emote_by_key(var/key)
+	if(!global.emotes_by_key)
+		decls_repository.get_decls_of_type(/decl/emote) // emotes_by_key will be updated in emote Initialize()
+	return global.emotes_by_key[key]
+
 /decl/emote
 	var/key                                             // Command to use emote ie. '*[key]'
 	var/emote_message_1p                                // First person message ('You do a flip!')
@@ -28,12 +35,18 @@
 	var/list/emote_sound_synthetic                      // As above, but used when check_synthetic() is true.
 	var/emote_volume = 50                               // Volume of sound to play.
 	var/emote_volume_synthetic = 50                     // As above, but used when check_synthetic() is true.
+	var/emote_delay = 0                                 // Time in ds that this emote will block further emote use (spam prevention).
 
 	var/message_type = VISIBLE_MESSAGE                  // Audible/visual flag
 	var/check_restraints                                // Can this emote be used while restrained?
 	var/check_range                                     // falsy, or a range outside which the emote will not work
 	var/conscious = TRUE                                // Do we need to be awake to emote this?
 	var/emote_range = 0                                 // If >0, restricts emote visibility to viewers within range.
+
+/decl/emote/Initialize()
+	. = ..()
+	if(key)
+		LAZYSET(global.emotes_by_key, key, src)
 
 /decl/emote/proc/get_emote_message_1p(var/atom/user, var/atom/target, var/extra_params)
 	if(target)
@@ -162,8 +175,8 @@
 	if(sound_to_play)
 		playsound(user.loc, sound_to_play, use_sound["vol"], 0, preference = /datum/client_preference/emote_noises) //VOREStation Add - Preference
 
-/decl/emote/proc/check_user(var/atom/user)
-	return TRUE
+/decl/emote/proc/mob_can_use(var/mob/user)
+	return istype(user) && user.stat != DEAD && (type in user.get_available_emotes())
 
 /decl/emote/proc/can_target()
 	return (emote_message_1p_target || emote_message_3p_target)

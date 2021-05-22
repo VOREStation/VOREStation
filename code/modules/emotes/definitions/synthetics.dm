@@ -3,7 +3,7 @@
 	emote_message_3p = "beeps."
 	emote_sound = 'sound/machines/twobeep.ogg'
 
-/decl/emote/audible/synth/check_user(var/mob/living/user)
+/decl/emote/audible/synth/mob_can_use(var/mob/living/user)
 	if(istype(user) && user.isSynthetic())
 		return ..()
 	return FALSE
@@ -34,8 +34,8 @@
 	emote_message_3p_target = "shows TARGET USER_THEIR legal authorization barcode."
 	emote_sound = 'sound/voice/biamthelaw.ogg'
 
-/decl/emote/audible/synth/security/check_user(var/mob/living/silicon/robot/user)
-	return (istype(user) && (istype(user.module, /obj/item/weapon/robot_module/robot/security) || istype(user.module, /obj/item/weapon/robot_module/robot/knine))) //VOREStation Add - knine module
+/decl/emote/audible/synth/security/mob_can_use(var/mob/living/silicon/robot/user)
+	return ..() && (istype(user) && (istype(user.module, /obj/item/weapon/robot_module/robot/security) || istype(user.module, /obj/item/weapon/robot_module/robot/knine))) //VOREStation Add - knine module
 
 /decl/emote/audible/synth/security/halt
 	key = "halt"

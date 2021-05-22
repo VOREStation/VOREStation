@@ -24,19 +24,3 @@ var/list/_default_mob_emotes = list(
 	/decl/emote/audible/moan,
 	/decl/emote/audible/gnarl,
 )
-
-/mob
-	var/list/usable_emotes
-	var/nextemote = 1 //VOREStation Add
-
-/mob/proc/update_emotes(var/skip_sort)
-	usable_emotes = list()
-	for(var/emote in get_default_emotes())
-		var/decl/emote/emote_datum = decls_repository.get_decl(emote)
-		if(emote_datum.check_user(src))
-			usable_emotes[emote_datum.key] = emote_datum
-	if(!skip_sort)
-		usable_emotes = sortAssoc(usable_emotes)
-
-/mob/proc/get_default_emotes()
-	return global._default_mob_emotes
