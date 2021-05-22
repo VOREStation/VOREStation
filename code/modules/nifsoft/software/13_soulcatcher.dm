@@ -44,7 +44,7 @@
 
 /datum/nifsoft/soulcatcher/install()
 	if((. = ..()))
-		nif.set_flag(NIF_O_SCOTHERS,NIF_FLAGS_OTHER)	//Required on install, because other_flags aren't sufficient for our complicated settings.
+		//nif.set_flag(NIF_O_SCOTHERS,NIF_FLAGS_OTHER)	//Only required on install if the flag is in the default setting_flags list defined few lines above.
 		if(nif?.human)
 			nif.human.verbs |= /mob/living/carbon/human/nsay
 			nif.human.verbs |= /mob/living/carbon/human/nme
