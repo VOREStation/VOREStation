@@ -9,10 +9,7 @@
 	density = 0
 	anchored = 1
 	store_mobs = 0
-<<<<<<< HEAD
-=======
 	wall_mounted = 1
->>>>>>> 041dc2a... Wall Locker Adjustments (#8093)
 
 //spawns 2 sets of breathmask, emergency oxy tank and crowbar
 
