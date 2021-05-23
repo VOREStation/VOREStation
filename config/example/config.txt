@@ -565,7 +565,7 @@ IPQUALITYSCORE_APIKEY some_password_here
 ENABLE_NIGHT_SHIFTS
 
 ## Comment this out to enable playtime restrictions for jobs in their respective departments (mostly for heads)
-USE_PLAYTIME_RESTRICTION_FOR_JOBS
+#USE_PLAYTIME_RESTRICTION_FOR_JOBS
 
 ## OOC/LOOC control ##
 # Uncomment to allow links of the following kinds. #
