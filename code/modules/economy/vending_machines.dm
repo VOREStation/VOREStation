@@ -634,6 +634,7 @@
 					/obj/item/weapon/circuitboard/atm,
 					/obj/item/weapon/circuitboard/guestpass,
 					/obj/item/weapon/circuitboard/keycard_auth,
+					/obj/item/weapon/circuitboard/geiger,
 					/obj/item/weapon/circuitboard/photocopier,
 					/obj/item/weapon/circuitboard/fax,
 					/obj/item/weapon/circuitboard/request,
