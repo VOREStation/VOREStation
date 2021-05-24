@@ -42,8 +42,8 @@
 		new /datum/data/mining_equipment("Defense Equipment - Razor Drone Deployer",/obj/item/weapon/grenade/spawnergrenade/manhacks/station,	50),
 		new /datum/data/mining_equipment("Defense Equipment - Sentry Drone Deployer",/obj/item/weapon/grenade/spawnergrenade/ward,			100),
 		new /datum/data/mining_equipment("Defense Equipment - Steel Machete",	/obj/item/weapon/material/knife/machete,					50),
-		new /datum/data/mining_equipment("Survival Equipment - Insulated Poncho",	/obj/random/thermalponcho,								75)
-		new /datum/data/mining_equipment("Survey Tools-catalouger",				/obj/item/device/cataloguer,								50)
+		new /datum/data/mining_equipment("Survival Equipment - Insulated Poncho",	/obj/random/thermalponcho,								75),
+		new /datum/data/mining_equipment("Survey Tools-catalouger",				/obj/item/device/cataloguer,								50),
 		)
 
 /obj/machinery/mineral/equipment_vendor/survey/Initialize(mapload)

@@ -458,7 +458,7 @@
 	flashlight_colour = "#599DFF"
 	icon_state = "glowstick_blue"
 	item_state = "glowstick_blue"
-	flashlight_power = 0
+	flashlight_power = 0.1
 	brightness_on = 8
 
 /obj/item/device/flashlight/slime
