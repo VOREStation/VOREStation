@@ -1,7 +1,7 @@
 //The perfect adminboos device?
 /obj/item/device/perfect_tele
 	name = "personal translocator"
-	desc = "Seems absurd, doesn't it? Yet, here we are. Generally considered dangerous contraband unless the user has permission from Central Command."
+	desc = "Seems absurd, doesn't it? Yet, here we are. Allows the user to teleport themselves and others to a pre-set beacon."
 	icon = 'icons/obj/device_alt.dmi'
 	icon_state = "hand_tele"
 	w_class = ITEMSIZE_SMALL
@@ -456,7 +456,7 @@ GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/device/perfect_tele_beac
 // A single-beacon variant for use by miners (or whatever)
 /obj/item/device/perfect_tele/one_beacon
 	name = "mini-translocator"
-	desc = "A more limited translocator with a single beacon, useful for some things, like setting the mining department on fire accidentally. Legal for use in the pursuit of NanoTrasen interests, namely mining and exploration."
+	desc = "A more limited translocator with a single beacon, useful for some things, like setting the mining department on fire accidentally."
 	icon_state = "minitrans"
 	beacons_left = 1 //Just one
 	cell_type = /obj/item/weapon/cell/device
