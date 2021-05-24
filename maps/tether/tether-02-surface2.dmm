@@ -7767,7 +7767,6 @@
 "amb" = (
 /obj/structure/table/glass,
 /obj/random/contraband,
-/obj/random/firstaid,
 /obj/random/maintenance/medical,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
@@ -7778,6 +7777,7 @@
 /obj/effect/floor_decal/corner/paleblue{
 	dir = 6
 	},
+/obj/random/tetheraid,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/uppersouthstairwell)
 "amc" = (
