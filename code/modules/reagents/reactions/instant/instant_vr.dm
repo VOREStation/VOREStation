@@ -48,6 +48,57 @@
 	holder.clear_reagents()
 
 ///////////////////////////////////////////////////////////////////////////////////
+/// TF chemicals
+/decl/chemical_reaction/instant/amorphorovir
+	name = "Amorphorovir"
+	id = "amorphorovir"
+	result = "amorphorovir"
+	required_reagents = list("clonexadone" = 30, "biomass" = 30, "sizeoxadone" = 5, "phoron" = 5)
+	result_amount = 1
+
+/decl/chemical_reaction/instant/androrovir
+	name = "Androrovir"
+	id = "androrovir"
+	result = "androrovir"
+	required_reagents = list("amorphorovir" = 1, "bicaridine" = 20, "iron" = 20, "ethanol" = 20)
+	result_amount = 1
+
+/decl/chemical_reaction/instant/gynorovir
+	name = "Gynorovir"
+	id = "gynorovir"
+	result = "gynorovir"
+	required_reagents = list("amorphorovir" = 1, "inaprovaline" = 20, "silicon" = 20, "sugar" = 20)
+	result_amount = 1
+
+/decl/chemical_reaction/instant/androgynorovir
+	name = "Androgynorovir"
+	id = "androgynorovir"
+	result = "androgynorovir"
+	required_reagents = list("amorphorovir" = 1, "anti_toxin" = 20, "fluorine" = 20, "tungsten" = 20)
+	result_amount = 1
+
+/decl/chemical_reaction/instant/androrovir_bootleg
+	name = "Bootleg Androrovir"
+	id = "androrovir_bootleg"
+	result = "androrovir"
+	required_reagents = list("amorphorovir" = 1, "protein" = 10, "capsaicin" = 10)
+	result_amount = 1
+
+/decl/chemical_reaction/instant/gynorovir_bootleg
+	name = "Bootleg Gynorovir"
+	id = "gynorovir_bootleg"
+	result = "gynorovir"
+	required_reagents = list("amorphorovir" = 1, "soymilk" = 10, "sugar" = 10)
+	result_amount = 1
+
+/decl/chemical_reaction/instant/androgynorovir_bootleg
+	name = "Bootleg Androgynorovir"
+	id = "androgynorovir_bootleg"
+	result = "androgynorovir"
+	required_reagents = list("amorphorovir" = 1, "cola" = 10, "berryjuice" = 10)
+	result_amount = 1
+
+///////////////////////////////////////////////////////////////////////////////////
 /// Miscellaneous Reactions
 
 /decl/chemical_reaction/instant/xenolazarus
@@ -85,7 +136,7 @@
     required_reagents = list("water" = 1)
     catalysts = list("fluorine" = 10)
     result_amount = 1
-	
+
 /decl/chemical_reaction/instant/firefightingfoamqol //Please don't abuse this and make us remove it. Seriously.
     name = "Firefighting Foam EZ"
     id = "firefighting foam ez"

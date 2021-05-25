@@ -6,6 +6,8 @@
 	color = "#13BC5E"
 
 /datum/reagent/advmutationtoxin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(!(M.allow_spontaneous_tf))
+		return
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.species.name != "Promethean")
@@ -119,3 +121,16 @@
 			if(nif.stat == NIF_TEMPFAIL)
 				nif.stat = NIF_INSTALLING
 			nif.durability = min(nif.durability + removed*0.1, initial(nif.durability))
+
+//Special toxins for solargrubs
+/datum/reagent/grubshock
+	name = "200 V" //in other words a painful shock
+	id = "shockchem"
+	description = "A liquid that quickly dissapates to deliver a painful shock."
+	reagent_state = LIQUID
+	color = "#E4EC2F"
+	metabolism = 2.50
+	var/power = 9
+
+/datum/reagent/grubshock/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	M.take_organ_damage(0, removed * power * 0.2)
