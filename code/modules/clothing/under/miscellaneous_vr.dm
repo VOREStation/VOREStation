@@ -143,8 +143,8 @@
 	name = "pizza delivery uniform"
 	desc = "A dedicated outfit for pizza delivery people, one of most dangerous occupations around these parts. Can be rolled up for extra show of skin."
 	icon = 'icons/obj/clothing/uniforms_vr.dmi'
-	icon_override = 'icons/mob/uniform_vr.dmi'
+	index = "vr"
 	rolled_down_icon = 'icons/mob/uniform_rolled_down_vr.dmi'
 	icon_state = "pizzadelivery"
 	item_state = "pizzadelivery"
-	rolled_down = 1
+	rolled_down = 0
