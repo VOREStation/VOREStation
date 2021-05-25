@@ -64,6 +64,46 @@
 /obj/item/clothing/head/pizzaguy,
 /turf/simulated/floor/tiled,
 /area/quartermaster/warehouse)
+"aai" = (
+/obj/structure/plasticflaps,
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "shuttle_inbound"
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/excursion/cargo)
+"aaj" = (
+/obj/structure/plasticflaps,
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "shuttle_outbound"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/excursion/cargo)
+"aak" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/obj/machinery/power/apc{
+	alarms_hidden = 1;
+	name = "south bump";
+	pixel_y = -28;
+	req_access = list();
+	req_one_access = list(11,67)
+	},
+/obj/structure/cable/cyan,
+/obj/machinery/button/remote/blast_door{
+	dir = 8;
+	id = "shuttle blast";
+	name = "Shuttle Blast Doors";
+	pixel_x = -25;
+	pixel_y = -25;
+	req_access = list(67)
+	},
+/obj/machinery/light,
+/obj/structure/table/steel_reinforced,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/excursion/cockpit)
 "aal" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -91,6 +131,36 @@
 	},
 /turf/simulated/wall/r_wall,
 /area/engineering/engine_room)
+"aao" = (
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 9
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/structure/closet/emcloset,
+/turf/simulated/floor/tiled/white,
+/area/tether/exploration/hallway)
+"aap" = (
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 1
+	},
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/obj/structure/closet/emcloset,
+/turf/simulated/floor/tiled/white,
+/area/tether/station/dock_two)
 "aar" = (
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -622,29 +692,6 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/substation/engineering)
-"abO" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
-	},
-/obj/machinery/power/apc{
-	alarms_hidden = 1;
-	name = "south bump";
-	pixel_y = -28;
-	req_access = list();
-	req_one_access = list(11,67)
-	},
-/obj/structure/cable/cyan,
-/obj/machinery/button/remote/blast_door{
-	dir = 8;
-	id = "shuttle blast";
-	name = "Shuttle Blast Doors";
-	pixel_x = -25;
-	pixel_y = -25;
-	req_access = list(67)
-	},
-/obj/machinery/light,
-/turf/simulated/floor/tiled/techfloor,
-/area/shuttle/excursion/cockpit)
 "abW" = (
 /obj/structure/sign/securearea{
 	desc = "A warning sign which reads 'HIGH VOLTAGE'";
@@ -5638,14 +5685,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/gravity_gen)
-"aoE" = (
-/obj/machinery/conveyor{
-	dir = 4;
-	id = "shuttle_inbound"
-	},
-/obj/structure/plasticflaps,
-/turf/simulated/floor/plating,
-/area/shuttle/excursion/cargo)
 "aoF" = (
 /obj/machinery/status_display,
 /turf/simulated/wall/r_wall,
@@ -15472,14 +15511,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/quartermaster/delivery)
-"cCX" = (
-/obj/machinery/conveyor{
-	dir = 8;
-	id = "shuttle_outbound"
-	},
-/obj/structure/plasticflaps,
-/turf/simulated/floor/tiled/techmaint,
-/area/shuttle/excursion/cargo)
 "cDk" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -22267,17 +22298,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/ai_monitored/storage/eva)
-"jln" = (
-/obj/machinery/vending/medical,
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 9
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 9
-	},
-/obj/machinery/atmospherics/unary/vent_pump/on,
-/turf/simulated/floor/tiled/white,
-/area/tether/exploration/hallway)
 "jlx" = (
 /obj/machinery/teleport/hub{
 	dir = 2
@@ -30487,25 +30507,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tcommsat/computer)
-"rFE" = (
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 1
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10
-	},
-/obj/machinery/vending/medical,
-/turf/simulated/floor/tiled/white,
-/area/tether/station/dock_two)
 "rFU" = (
 /obj/structure/bed/chair/comfy/beige{
 	dir = 4
@@ -45430,7 +45431,7 @@ sUY
 eWv
 bYt
 pny
-jln
+aao
 jPM
 oer
 oTn
@@ -45707,7 +45708,7 @@ epw
 qaf
 alG
 nYi
-abO
+aak
 ruq
 gGk
 kqX
@@ -46691,7 +46692,7 @@ aSo
 isS
 isS
 bZR
-cCX
+aaj
 isS
 cZZ
 wZB
@@ -47258,7 +47259,7 @@ aCx
 aSo
 sUY
 sUY
-aoE
+aai
 cEi
 isS
 wZB
@@ -47880,7 +47881,7 @@ qKr
 wmg
 lCO
 fLT
-rFE
+aap
 rVK
 lnG
 fLT
