@@ -43,7 +43,7 @@
 		new /datum/data/mining_equipment("Defense Equipment - Sentry Drone Deployer",/obj/item/weapon/grenade/spawnergrenade/ward,			100),
 		new /datum/data/mining_equipment("Defense Equipment - Steel Machete",	/obj/item/weapon/material/knife/machete,					50),
 		new /datum/data/mining_equipment("Survival Equipment - Insulated Poncho",	/obj/random/thermalponcho,								75),
-		new /datum/data/mining_equipment("Survey Tools-catalouger",				/obj/item/device/cataloguer,								50),
+		new /datum/data/mining_equipment("Survey Tools-compact catalouger",				/obj/item/device/cataloguer/compact,				50),
 		)
 
 /obj/machinery/mineral/equipment_vendor/survey/Initialize(mapload)
@@ -56,8 +56,7 @@
 		EQUIPMENT("Defense Equipment - Razor Drone Deployer",	/obj/item/weapon/grenade/spawnergrenade/manhacks/station/locked,	100),
 		EQUIPMENT("Defense Equipment - Sentry Drone Deployer",	/obj/item/weapon/grenade/spawnergrenade/ward,						150),
 		EQUIPMENT("Defense Equipment - Frontier Carbine",		/obj/item/weapon/gun/energy/locked/frontier/carbine,				750),
-		EQUIPMENT("Defense Equipment - Frontier Phaser",		/obj/item/weapon/gun/energy/locked/frontier,						500),
-		EQUIPMENT("Defense Equipment - Frontier Holdout",		/obj/item/weapon/gun/energy/locked/frontier/holdout,				250),
+		EQUIPMENT("Defense Equipment - Frontier Holdout",		/obj/item/weapon/gun/energy/locked/frontier/holdout,				500),
 		EQUIPMENT("Fishing Net",								/obj/item/weapon/material/fishing_net,								50),
 		EQUIPMENT("Titanium Fishing Rod",						/obj/item/weapon/material/fishing_rod/modern,						100),
 		EQUIPMENT("Durasteel Fishing Rod",						/obj/item/weapon/material/fishing_rod/modern/strong,				750),
@@ -67,11 +66,11 @@
 		EQUIPMENT("Jump Boots",									/obj/item/clothing/shoes/bhop,										250),
 		EQUIPMENT("Mini-Translocator",							/obj/item/device/perfect_tele/one_beacon,							120),
 		EQUIPMENT("Survival Equipment - Insulated Poncho",		/obj/random/thermalponcho,											75),
-		EQUIPMENT ("Survival Equipment- Glowstick", 				/obj/item/device/flashlight/glowstick,								10),
-		EQUIPMENT ("Survival Equipment- flare", 					/obj/item/device/flashlight/flare,									20),
+		EQUIPMENT ("Survival Equipment- Glowstick", 			/obj/item/device/flashlight/glowstick,								10),
+		EQUIPMENT ("Survival Equipment- flare", 				/obj/item/device/flashlight/flare,									20),
 		EQUIPMENT ("Survival Equipment- bluespace glowstick", 	/obj/item/device/flashlight/glowstick,								40),
-		EQUIPMENT ("Survival Equipment- explorer headsret", 		/obj/item/device/radio/headset/explorer,							40),
-		EQUIPMENT ("Survival Equipment- explorer suit",			/obj/item/clothing/suit/storage/hooded/explorer,					40),
+		EQUIPMENT ("Survival Equipment- explorer headset", 		/obj/item/device/radio/headset/explorer,							40),
+		EQUIPMENT ("Survival Equipment- explorer suit",			/obj/item/clothing/suit/storage/hooded/explorer,					100),
 	)
 	prize_list["Consumables"] = list(
 		EQUIPMENT("1 Marker Beacon",		/obj/item/stack/marker_beacon,													1),

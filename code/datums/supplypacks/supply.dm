@@ -143,3 +143,18 @@
 	cost = 15
 	containertype = /obj/structure/closet/crate/large/xion
 	containername = "Cargo Train Trolley Crate"
+
+/datum/supply_pack/explorergear
+	name="explorer gear"
+	contains = list(
+					/obj/item/device/cataloguer,
+					/obj/item/weapon/material/knife/machete,
+					/obj/item/device/geiger,
+					/obj/item/device/gps/mining,
+					/obj/item/clothing/suit/storage/hooded/explorer,
+					/obj/item/device/flashlight/glowstick,
+					/obj/item/stack/marker_beacon/thirty,
+					)
+	cost=10
+	containertype = /obj/structure/closet/crate/secure/xion
+	containername = "explorer equipment"
