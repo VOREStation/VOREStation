@@ -17357,9 +17357,6 @@
 "etY" = (
 /turf/simulated/wall,
 /area/maintenance/station/exploration)
-"ewQ" = (
-/turf/simulated/wall/r_wall,
-/area/maintenance/station/cargo)
 "exi" = (
 /obj/item/device/radio/intercom{
 	dir = 8;
@@ -44347,10 +44344,10 @@ tUh
 tUh
 tUh
 tUh
-ewQ
-ewQ
-ewQ
-ewQ
+bYr
+bYr
+bYr
+bYr
 bYr
 bYr
 bYr
