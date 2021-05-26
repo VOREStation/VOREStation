@@ -193,13 +193,8 @@
 	to_chat(user, "## REACHABLE APC SYSTEMS OVERTAKEN. BYPASSING PRIMARY FIREWALL.")
 	sleep(300)
 	// Hack all APCs, including those built during hack sequence.
-<<<<<<< HEAD
 	for(var/obj/machinery/power/apc/A in GLOB.apcs)
-		if((!A.hacker || A.hacker != src) && !A.aidisabled && A.z in using_map.station_levels)
-=======
-	for(var/obj/machinery/power/apc/A in machines)
 		if((!A.hacker || A.hacker != src) && !A.aidisabled && (A.z in using_map.station_levels))
->>>>>>> fdabe51... Linter Introduction + Cleanup (#8085)
 			A.ai_hack(src)
 
 
