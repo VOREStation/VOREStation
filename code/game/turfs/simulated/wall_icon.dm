@@ -113,6 +113,18 @@
 		if(can_join_with(W))
 			dirs += get_dir(src, W)
 
+	if(material.icon_base == "hull") // Could be improved...
+		var/additional_dirs = 0
+		for(var/direction in alldirs)
+			var/turf/T = get_step(src,direction)
+			if(T && (locate(/obj/structure/hull_corner) in T))
+				dirs += direction
+				additional_dirs |= direction
+		if(additional_dirs)
+			for(var/diag_dir in cornerdirs)
+				if ((additional_dirs & diag_dir) == diag_dir)
+					dirs += diag_dir
+
 	wall_connections = dirs_to_corner_states(dirs)
 
 /turf/simulated/wall/proc/can_join_with(var/turf/simulated/wall/W)
