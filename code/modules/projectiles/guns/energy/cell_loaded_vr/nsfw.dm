@@ -46,7 +46,7 @@
 /obj/item/weapon/storage/secure/briefcase/nsfw_pack
 	name = "\improper KHI-102b \'NSFW\' gun kit"
 	desc = "A storage case for a multi-purpose handgun. Variety hour!"
-	w_class = ITEMSIZE_NORMAL
+	w_class = ITEMSIZE_HUGE
 	max_w_class = ITEMSIZE_NORMAL
 
 /obj/item/weapon/storage/secure/briefcase/nsfw_pack/New()
@@ -59,7 +59,7 @@
 /obj/item/weapon/storage/secure/briefcase/nsfw_pack_hos
 	name = "\improper KHI-102b \'NSFW\' gun kit"
 	desc = "A storage case for a multi-purpose handgun. Variety hour!"
-	w_class = ITEMSIZE_NORMAL
+	w_class = ITEMSIZE_HUGE
 	max_w_class = ITEMSIZE_NORMAL
 
 /obj/item/weapon/storage/secure/briefcase/nsfw_pack_hos/New()
