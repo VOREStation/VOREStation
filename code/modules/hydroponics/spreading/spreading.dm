@@ -74,13 +74,8 @@
 /obj/effect/plant/Destroy()
 	neighbors.Cut()
 	if(seed.get_trait(TRAIT_SPREAD)==2)
-<<<<<<< HEAD
-		unsense_proximity(callback = .HasProximity, center = get_turf(src))
-	SSplants.remove_plant(src)
-=======
 		unsense_proximity(callback = /atom/proc/HasProximity, center = get_turf(src))
-	plant_controller.remove_plant(src)
->>>>>>> fdabe51... Linter Introduction + Cleanup (#8085)
+	SSplants.remove_plant(src)
 	for(var/obj/effect/plant/neighbor in range(1,src))
 		SSplants.add_plant(neighbor)
 	return ..()
