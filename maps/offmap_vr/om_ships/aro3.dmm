@@ -284,6 +284,12 @@
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/space)
+"ck" = (
+/obj/structure/hull_corner{
+	dir = 4
+	},
+/turf/space,
+/area/space)
 "cm" = (
 /obj/structure/railing/grey{
 	dir = 1
@@ -394,6 +400,12 @@
 	dir = 10
 	},
 /turf/simulated/floor/reinforced/airless,
+/area/space)
+"dk" = (
+/obj/structure/hull_corner{
+	dir = 1
+	},
+/turf/space,
 /area/space)
 "dn" = (
 /obj/structure/cable/cyan{
@@ -1174,6 +1186,12 @@
 /obj/machinery/computer/ship/sensors,
 /turf/simulated/floor/tiled/eris/dark/violetcorener,
 /area/aro3/cockpit)
+"jC" = (
+/obj/structure/hull_corner/long_vert{
+	dir = 6
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/space)
 "jM" = (
 /obj/structure/railing/grey{
 	dir = 4
@@ -1798,6 +1816,19 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/aro3/repair_bay)
+"oW" = (
+/obj/structure/lattice,
+/obj/structure/hull_corner{
+	dir = 8
+	},
+/turf/space,
+/area/space)
+"pc" = (
+/obj/structure/hull_corner/long_vert{
+	dir = 6
+	},
+/turf/space,
+/area/space)
 "pj" = (
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
@@ -1884,6 +1915,12 @@
 /obj/machinery/recharge_station,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/aro3/hallway_port)
+"qd" = (
+/obj/structure/hull_corner/long_vert{
+	dir = 5
+	},
+/turf/space,
+/area/space)
 "qg" = (
 /obj/machinery/power/pointdefense{
 	id_tag = "aro3_pd"
@@ -2472,6 +2509,11 @@
 	},
 /turf/simulated/floor/outdoors/grass/heavy,
 /area/aro3/park)
+"wc" = (
+/obj/structure/lattice,
+/obj/structure/hull_corner,
+/turf/space,
+/area/space)
 "wd" = (
 /obj/machinery/light{
 	dir = 1
@@ -2586,6 +2628,12 @@
 "wO" = (
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/aro3/power)
+"wP" = (
+/obj/structure/hull_corner{
+	dir = 8
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/space)
 "wS" = (
 /obj/structure/fans/hardlight,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -2932,6 +2980,12 @@
 /obj/fiftyspawner/wood,
 /turf/simulated/floor/tiled/techmaint,
 /area/aro3/workshop)
+"zl" = (
+/obj/structure/hull_corner/long_vert{
+	dir = 9
+	},
+/turf/space,
+/area/space)
 "zm" = (
 /obj/machinery/door/airlock/multi_tile/glass,
 /obj/structure/cable/cyan{
@@ -3035,6 +3089,12 @@
 	},
 /turf/simulated/floor/tiled/eris/steel/bar_flat,
 /area/aro3/bar)
+"zS" = (
+/obj/structure/hull_corner/long_vert{
+	dir = 10
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/space)
 "zT" = (
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
 	dir = 5
@@ -3854,6 +3914,12 @@
 "HE" = (
 /turf/simulated/shuttle/wall/voidcraft/blue,
 /area/shuttle/aroboat3)
+"HG" = (
+/obj/structure/hull_corner{
+	dir = 8
+	},
+/turf/space,
+/area/space)
 "HH" = (
 /obj/structure/bed/chair/sofa/brown{
 	dir = 4
@@ -4283,6 +4349,10 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/aro3/hallway_starboard)
+"LW" = (
+/obj/structure/hull_corner,
+/turf/space,
+/area/space)
 "Ma" = (
 /obj/structure/bed/double/padded,
 /obj/item/weapon/bedsheet/bluedouble,
@@ -4556,6 +4626,12 @@
 	},
 /turf/space,
 /area/aro3/engines)
+"Oi" = (
+/obj/structure/hull_corner/long_horiz{
+	dir = 9
+	},
+/turf/space,
+/area/space)
 "Oq" = (
 /obj/structure/table/steel,
 /obj/item/modular_computer/tablet/preset/custom_loadout/hybrid,
@@ -4932,6 +5008,10 @@
 	},
 /turf/simulated/floor/carpet/turcarpet,
 /area/aro3/suite_port)
+"Sp" = (
+/obj/structure/hull_corner,
+/turf/simulated/floor/reinforced/airless,
+/area/space)
 "SC" = (
 /obj/structure/table/marble,
 /obj/machinery/microwave,
@@ -5511,6 +5591,12 @@
 /obj/item/device/perfect_tele/alien/bluefo,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/aro3/repair_bay)
+"Yw" = (
+/obj/structure/hull_corner/long_horiz{
+	dir = 5
+	},
+/turf/space,
+/area/space)
 "Yz" = (
 /obj/structure/table/woodentable,
 /obj/machinery/light/small{
@@ -5561,6 +5647,12 @@
 "YY" = (
 /turf/simulated/floor/tiled/eris/steel/bar_flat,
 /area/aro3/bar)
+"YZ" = (
+/obj/structure/hull_corner/long_vert{
+	dir = 10
+	},
+/turf/space,
+/area/space)
 "Za" = (
 /obj/machinery/atmospherics/portables_connector/aux,
 /obj/effect/floor_decal/industrial/outline/blue,
@@ -10915,7 +11007,7 @@ Ua
 Ua
 Ua
 Ua
-Ua
+LW
 Fn
 Ag
 Fn
@@ -11056,7 +11148,7 @@ Ua
 Ua
 Ua
 Ua
-Ua
+LW
 Fn
 Ag
 Fn
@@ -11197,12 +11289,12 @@ hD
 hD
 yn
 yn
-yn
+wc
 Fn
 Ag
 Fn
 Fn
-Ua
+dk
 Ua
 Ua
 Ua
@@ -11338,12 +11430,12 @@ hD
 hD
 hD
 yn
-yn
+wc
 Fn
 Ag
 Fn
 Fn
-Ua
+dk
 Ua
 Ua
 Ua
@@ -11484,7 +11576,7 @@ Fn
 Ag
 Fn
 Fn
-Ua
+dk
 Ua
 Ua
 Ua
@@ -11625,7 +11717,7 @@ hD
 wH
 Fn
 Fn
-Ua
+dk
 Ua
 Ua
 Ua
@@ -11761,7 +11853,7 @@ Ua
 Ua
 hD
 hD
-hD
+Sp
 wN
 Ag
 yn
@@ -11902,13 +11994,13 @@ Ua
 Ua
 Ua
 Ua
-hD
+Sp
 Fn
 Fn
 wT
 Fn
 Fn
-Ua
+ck
 Ua
 Ua
 Ua
@@ -12043,7 +12135,7 @@ Ua
 Ua
 Ua
 Ua
-Ua
+LW
 Fn
 Fn
 Fn
@@ -12051,7 +12143,7 @@ ee
 Fn
 Fn
 Fn
-Ua
+ck
 Ua
 Ua
 Ua
@@ -12184,7 +12276,7 @@ Ua
 Ua
 Ua
 Ua
-Ua
+LW
 Fn
 Fn
 WN
@@ -12194,7 +12286,7 @@ WN
 WN
 Fn
 Fn
-Ua
+ck
 Ua
 Ua
 Ua
@@ -12325,7 +12417,7 @@ Ua
 Ua
 Ua
 Ua
-Ua
+LW
 Fn
 Fn
 WN
@@ -12337,7 +12429,7 @@ WN
 Fn
 Fn
 Fn
-Ua
+ck
 Ua
 Ua
 Ua
@@ -12466,7 +12558,7 @@ Ua
 Ua
 Ua
 Ua
-Ua
+LW
 Fn
 Fn
 WN
@@ -12480,7 +12572,7 @@ lO
 lO
 Fn
 Fn
-Ua
+ck
 Ua
 Ua
 Ua
@@ -12607,7 +12699,7 @@ Ua
 Ua
 Ua
 Ua
-Ua
+LW
 Fn
 Fn
 Fn
@@ -12625,7 +12717,7 @@ Fn
 Fn
 Fn
 Fn
-Ua
+ck
 Ua
 Ua
 Ua
@@ -12748,7 +12840,7 @@ Ua
 Ua
 Ua
 Ua
-Ua
+LW
 Fn
 Fn
 Fn
@@ -12768,7 +12860,7 @@ lO
 lO
 Fn
 Fn
-Ua
+ck
 Ua
 Ua
 Ua
@@ -12889,7 +12981,7 @@ Ua
 Ua
 Ua
 Ua
-Ua
+LW
 Fn
 Fn
 HJ
@@ -12911,7 +13003,7 @@ lO
 lO
 Fn
 Fn
-Ua
+ck
 Ua
 Ua
 Ua
@@ -13030,7 +13122,7 @@ Ua
 Ua
 Ua
 Ua
-Ua
+LW
 Fn
 Fn
 HJ
@@ -13054,7 +13146,7 @@ lO
 Fn
 Fn
 Fn
-Ua
+ck
 Ua
 Ua
 Ua
@@ -13065,7 +13157,7 @@ Ua
 Ua
 Ua
 Ua
-Ua
+LW
 Fn
 Fn
 EF
@@ -13171,7 +13263,7 @@ yn
 yn
 yn
 yn
-yn
+wc
 Fn
 Fn
 HJ
@@ -13198,7 +13290,7 @@ lO
 Fn
 Fn
 Ua
-Ua
+qd
 Ua
 CK
 Ua
@@ -13206,7 +13298,7 @@ Ua
 Ua
 Ua
 Ua
-Ua
+LW
 Fn
 Fn
 Fn
@@ -13312,7 +13404,7 @@ te
 te
 KI
 hD
-hD
+jC
 Fn
 Fn
 eN
@@ -13344,10 +13436,10 @@ Fn
 Fn
 ee
 Fn
-Fn
+ck
 Ua
 Ua
-Ua
+LW
 Fn
 Fn
 Fn
@@ -13452,7 +13544,7 @@ hD
 hD
 hD
 hD
-hD
+jC
 Fn
 Fn
 Fn
@@ -13487,13 +13579,13 @@ TF
 NI
 aq
 Fn
+Yw
 Ua
-Ua
 Fn
 Fn
 Fn
 Fn
-Ua
+dk
 Ua
 Ua
 Ua
@@ -13592,7 +13684,7 @@ hD
 yI
 hD
 hD
-hD
+jC
 Fn
 Fn
 Fn
@@ -13634,7 +13726,7 @@ yn
 Fn
 Fn
 Fn
-Ua
+dk
 Ua
 Ua
 Ua
@@ -13732,7 +13824,7 @@ hD
 hD
 hD
 yI
-hD
+jC
 Fn
 Fn
 Fn
@@ -13775,7 +13867,7 @@ Fn
 yn
 yn
 Fn
-Ua
+dk
 Ua
 Ua
 Ua
@@ -13872,7 +13964,7 @@ hD
 hD
 hD
 hD
-hD
+jC
 DB
 CN
 CN
@@ -14012,7 +14104,7 @@ hD
 hD
 hD
 hD
-hD
+jC
 Fn
 Fn
 Fn
@@ -14152,7 +14244,7 @@ yn
 hD
 hD
 hD
-hD
+jC
 Fn
 Fn
 Fn
@@ -14292,7 +14384,7 @@ Ua
 Ua
 yn
 hD
-hD
+jC
 Fn
 Fn
 Fn
@@ -14432,7 +14524,7 @@ Ua
 lb
 Ua
 Ua
-yn
+wc
 Fn
 Fn
 Fn
@@ -14568,7 +14660,7 @@ Ua
 Ua
 Ua
 Ua
-Ua
+pc
 Fn
 Fn
 Fn
@@ -14842,7 +14934,7 @@ Ua
 Ua
 Ua
 Ua
-Ua
+pc
 Fn
 Fn
 Fn
@@ -14979,7 +15071,7 @@ Ua
 Ua
 Ua
 Ua
-Ua
+pc
 Fn
 Fn
 Fn
@@ -15116,7 +15208,7 @@ Ua
 Ua
 Ua
 Ua
-Ua
+pc
 Fn
 Fn
 Fn
@@ -15390,7 +15482,7 @@ Ua
 Ua
 Ua
 Ua
-Ua
+pc
 Fn
 Fn
 Fn
@@ -15816,7 +15908,7 @@ Ua
 Ua
 Ua
 Ua
-Ua
+YZ
 Fn
 Fn
 Fn
@@ -16110,7 +16202,7 @@ Ua
 Ua
 Ua
 Ua
-Ua
+YZ
 Fn
 Fn
 Fn
@@ -16257,7 +16349,7 @@ Ua
 Ua
 Ua
 Ua
-Ua
+YZ
 Fn
 Fn
 Fn
@@ -16404,7 +16496,7 @@ Ua
 Ua
 Ua
 Ua
-Ua
+YZ
 Fn
 Fn
 Fn
@@ -16846,7 +16938,7 @@ Ua
 xO
 Ua
 Ua
-yn
+oW
 Fn
 Fn
 Fn
@@ -16990,7 +17082,7 @@ Ua
 Ua
 yn
 hD
-hD
+zS
 Fn
 Fn
 Fn
@@ -17134,7 +17226,7 @@ yn
 hD
 hD
 hD
-hD
+zS
 Fn
 Fn
 Fn
@@ -17278,7 +17370,7 @@ hD
 hD
 hD
 hD
-hD
+zS
 Fn
 Fn
 Fn
@@ -17422,7 +17514,7 @@ hD
 hD
 hD
 hD
-hD
+zS
 lP
 CN
 CN
@@ -17566,7 +17658,7 @@ hD
 hD
 hD
 yI
-hD
+zS
 Fn
 Fn
 Fn
@@ -17609,7 +17701,7 @@ Fn
 yn
 yn
 Fn
-Ua
+ck
 Ua
 Ua
 Ua
@@ -17710,7 +17802,7 @@ hD
 yI
 hD
 hD
-hD
+zS
 Fn
 Fn
 Fn
@@ -17747,12 +17839,12 @@ mo
 bg
 fB
 Fn
-Ua
+Oi
 yn
 Fn
 Fn
 Fn
-Ua
+ck
 Ua
 Ua
 Ua
@@ -17854,7 +17946,7 @@ hD
 hD
 hD
 hD
-hD
+zS
 Fn
 Fn
 Fn
@@ -17895,7 +17987,7 @@ Fn
 Fn
 Fn
 Fn
-Ua
+ck
 Ua
 Ua
 Ua
@@ -17998,7 +18090,7 @@ te
 te
 KI
 hD
-hD
+zS
 Fn
 Fn
 pS
@@ -18030,10 +18122,10 @@ Fn
 Fn
 ee
 Fn
-Fn
+dk
 Ua
 Ua
-Ua
+HG
 Fn
 Fn
 Fn
@@ -18141,7 +18233,7 @@ yn
 yn
 yn
 yn
-yn
+oW
 Fn
 Fn
 Fn
@@ -18168,7 +18260,7 @@ ly
 Fn
 Fn
 Ua
-Ua
+zl
 Ua
 CK
 Ua
@@ -18176,7 +18268,7 @@ Ua
 Ua
 Ua
 Ua
-Ua
+HG
 Fn
 Fn
 Fn
@@ -18284,7 +18376,7 @@ Ua
 Ua
 Ua
 Ua
-Ua
+HG
 Fn
 Fn
 fL
@@ -18308,7 +18400,7 @@ ly
 ly
 Fn
 Fn
-Ua
+dk
 Ua
 Ua
 Ua
@@ -18319,7 +18411,7 @@ Ua
 Ua
 Ua
 Ua
-Ua
+HG
 Fn
 Fn
 EF
@@ -18427,7 +18519,7 @@ Ua
 Ua
 Ua
 Ua
-Ua
+HG
 Fn
 Fn
 fL
@@ -18449,7 +18541,7 @@ ly
 ly
 Fn
 Fn
-Ua
+dk
 Ua
 Ua
 Ua
@@ -18570,7 +18662,7 @@ Ua
 Ua
 Ua
 Ua
-Ua
+HG
 Fn
 Fn
 fL
@@ -18590,7 +18682,7 @@ ly
 ly
 Fn
 Fn
-Ua
+dk
 Ua
 Ua
 Ua
@@ -18713,7 +18805,7 @@ Ua
 Ua
 Ua
 Ua
-Ua
+HG
 Fn
 Fn
 EV
@@ -18731,7 +18823,7 @@ Fn
 Fn
 Fn
 Fn
-Ua
+dk
 Ua
 Ua
 Ua
@@ -18856,7 +18948,7 @@ Ua
 Ua
 Ua
 Ua
-Ua
+HG
 Fn
 Fn
 EV
@@ -18870,7 +18962,7 @@ ly
 ly
 Fn
 Fn
-Ua
+dk
 Ua
 Ua
 Ua
@@ -18999,7 +19091,7 @@ Ua
 Ua
 Ua
 Ua
-Ua
+HG
 Fn
 Fn
 EV
@@ -19011,7 +19103,7 @@ EV
 Fn
 Fn
 Fn
-Ua
+dk
 Ua
 Ua
 Ua
@@ -19142,7 +19234,7 @@ Ua
 Ua
 Ua
 Ua
-Ua
+HG
 Fn
 Fn
 EV
@@ -19152,7 +19244,7 @@ EV
 EV
 Fn
 Fn
-Ua
+dk
 Ua
 Ua
 Ua
@@ -19285,7 +19377,7 @@ Ua
 Ua
 Ua
 Ua
-Ua
+HG
 Fn
 Fn
 Fn
@@ -19293,7 +19385,7 @@ ee
 Fn
 Fn
 Fn
-Ua
+dk
 Ua
 Ua
 Ua
@@ -19428,13 +19520,13 @@ Ua
 Ua
 Ua
 Ua
-hD
+wP
 Fn
 Fn
 Bx
 Fn
 Fn
-Ua
+dk
 Ua
 Ua
 Ua
@@ -19571,7 +19663,7 @@ Ua
 Ua
 hD
 hD
-hD
+wP
 Ag
 wN
 yn
@@ -19719,7 +19811,7 @@ hD
 TK
 Fn
 Fn
-Ua
+ck
 Ua
 Ua
 Ua
@@ -19862,7 +19954,7 @@ Fn
 wN
 Fn
 Fn
-Ua
+ck
 Ua
 Ua
 Ua
@@ -20000,12 +20092,12 @@ hD
 hD
 hD
 yn
-yn
+oW
 Fn
 wN
 Fn
 Fn
-Ua
+ck
 Ua
 Ua
 Ua
@@ -20143,12 +20235,12 @@ hD
 hD
 yn
 yn
-yn
+oW
 Fn
 wN
 Fn
 Fn
-Ua
+ck
 Ua
 Ua
 Ua
@@ -20286,12 +20378,12 @@ Ua
 Ua
 Ua
 Ua
-Ua
+HG
 Fn
 wN
 Fn
 Fn
-Ua
+ck
 Ua
 Ua
 Ua
@@ -20429,7 +20521,7 @@ Ua
 Ua
 Ua
 Ua
-Ua
+HG
 Fn
 wN
 Fn
@@ -20572,7 +20664,7 @@ Ua
 Ua
 Ua
 Ua
-Ua
+HG
 Fn
 wN
 Fn
