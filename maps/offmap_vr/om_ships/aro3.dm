@@ -93,8 +93,8 @@
 
 	skybox_icon = 'aro3.dmi'
 	skybox_icon_state = "skybox"
-	skybox_pixel_x = 80
-	skybox_pixel_y = 100
+	skybox_pixel_x = 130
+	skybox_pixel_y = 120
 
 
 // The shuttle's 'shuttle' computer
