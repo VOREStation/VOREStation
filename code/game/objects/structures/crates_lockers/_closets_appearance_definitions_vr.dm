@@ -1,4 +1,4 @@
-/decl/closet_appearance/wall/autolok
+/decl/closet_appearance/wall_double/autolok
 	color = COLOR_GRAY20
 	decals = null
 	extra_decals = list(
