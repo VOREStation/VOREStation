@@ -60,34 +60,9 @@
 		"internalTemplateName" = "EscapePodConsole",
 	)
 
-<<<<<<< HEAD
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod/tgui_act(action, params)
 	if(..())
 		return TRUE
-=======
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-
-	if (!ui)
-		ui = new(user, src, ui_key, "escape_pod_console.tmpl", name, 470, 290)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(1)
-
-/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod/Topic(href, href_list)
-	if((. = ..()))
-		return
-
-	if(href_list["manual_arm"])
-		pod.arming_controller.arm()
-		return TOPIC_REFRESH
-	if(href_list["force_launch"])
-		if (pod.can_force())
-			pod.force_launch(src)
-		else if (emergency_shuttle.departed && pod.can_launch())	//allow players to manually launch ahead of time if the shuttle leaves
-			pod.launch(src)
-		return TOPIC_REFRESH
-	return 0
->>>>>>> fdabe51... Linter Introduction + Cleanup (#8085)
 
 	switch(action)
 		if("manual_arm")
