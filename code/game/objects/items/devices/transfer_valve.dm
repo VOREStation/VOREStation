@@ -62,9 +62,9 @@
 /obj/item/device/transfer_valve/Moved(old_loc, direction, forced)
 	. = ..()
 	if(isturf(old_loc))
-		unsense_proximity(callback = .HasProximity, center = old_loc)
+		unsense_proximity(callback = /atom/proc/HasProximity, center = old_loc)
 	if(isturf(loc))
-		sense_proximity(callback = .HasProximity)
+		sense_proximity(callback = /atom/proc/HasProximity)
 
 /obj/item/device/transfer_valve/attack_self(mob/user)
 	tgui_interact(user)

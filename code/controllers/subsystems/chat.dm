@@ -5,7 +5,7 @@ SUBSYSTEM_DEF(chat)
 	priority = FIRE_PRIORITY_CHAT
 	init_order = INIT_ORDER_CHAT
 
-	var/list/msg_queue = list()
+	var/list/list/msg_queue = list() //List of lists
 
 /datum/controller/subsystem/chat/Initialize(timeofday)
 	init_vchat()

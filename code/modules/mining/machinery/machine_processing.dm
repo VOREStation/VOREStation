@@ -158,8 +158,8 @@
 	var/obj/machinery/mineral/output = null
 	var/obj/machinery/mineral/console = null
 	var/sheets_per_tick = 10
-	var/list/ores_processing[0]
-	var/list/ores_stored[0]
+	var/list/ores_processing = list()
+	var/list/ores_stored = list()
 	var/active = FALSE
 
 	var/points = 0
@@ -329,3 +329,4 @@
 #undef PROCESS_SMELT
 #undef PROCESS_COMPRESS
 #undef PROCESS_ALLOY
+

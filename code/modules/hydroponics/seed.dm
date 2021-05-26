@@ -1,6 +1,6 @@
 /datum/plantgene
 	var/genetype    // Label used when applying trait.
-	var/list/values // Values to copy into the target seed datum.
+	var/list/list/values // Values to copy into the target seed datum.
 
 /datum/seed
 	//Tracking.

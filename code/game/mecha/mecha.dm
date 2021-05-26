@@ -1569,7 +1569,7 @@
 	return 0
 
 /obj/mecha/proc/mmi_moved_inside(var/obj/item/device/mmi/mmi_as_oc as obj,mob/user as mob)
-	if(mmi_as_oc && user in range(1))
+	if(mmi_as_oc && (user in range(1)))
 		if(!mmi_as_oc.brainmob || !mmi_as_oc.brainmob.client)
 			to_chat(user, "Consciousness matrix not detected.")
 			return 0
@@ -1886,7 +1886,7 @@
 	return
 
 /obj/mecha/proc/moved_inside(var/mob/living/carbon/human/H as mob)
-	if(H && H.client && H in range(1))
+	if(H && H.client && (H in range(1)))
 		H.reset_view(src)
 		/*
 		H.client.perspective = EYE_PERSPECTIVE
@@ -2514,7 +2514,7 @@
 		var/mob/occupant = P.occupant
 
 		user.visible_message("<span class='notice'>\The [user] begins opening the hatch on \the [P]...</span>", "<span class='notice'>You begin opening the hatch on \the [P]...</span>")
-		if (!do_after(user, 40, needhand=0))
+		if (!do_after(user, 40))
 			return
 
 		user.visible_message("<span class='notice'>\The [user] opens the hatch on \the [P] and removes [occupant]!</span>", "<span class='notice'>You open the hatch on \the [P] and remove [occupant]!</span>")
@@ -2564,7 +2564,7 @@
 				src.log_message("Recalibration of coordination system failed with 1 error.",1)
 	if(href_list["drop_from_cargo"])
 		var/obj/O = locate(href_list["drop_from_cargo"])
-		if(O && O in src.cargo)
+		if(O && (O in src.cargo))
 			src.occupant_message("<span class='notice'>You unload [O].</span>")
 			O.forceMove(get_turf(src))
 			src.cargo -= O
@@ -2632,7 +2632,6 @@
 				AI.icon_state = "ai-crash"
 			src.occupant = cur_occupant
 */
-	return
 
 ///////////////////////
 ///// Power stuff /////

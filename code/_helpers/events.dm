@@ -10,7 +10,7 @@
 			// Otherwise add it and all subtypes that exist on the map to our grand list
 			for(var/areapath in typesof(parentpath))
 				var/area/A = locate(areapath) // Check if it actually exists
-				if(istype(A) && A.z in using_map.player_levels)
+				if(istype(A) && (A.z in using_map.player_levels))
 					grand_list_of_areas += A
 	return grand_list_of_areas
 

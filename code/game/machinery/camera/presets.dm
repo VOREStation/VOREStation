@@ -216,7 +216,7 @@ var/global/list/engineering_networks = list(
 	assembly.upgrades.Add(new /obj/item/device/assembly/prox_sensor(assembly))
 	setPowerUsage()
 	START_MACHINE_PROCESSING(src)
-	sense_proximity(callback = .HasProximity)
+	sense_proximity(callback = /atom/proc/HasProximity)
 	update_coverage()
 
 /obj/machinery/camera/proc/setPowerUsage()

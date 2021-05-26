@@ -74,8 +74,13 @@
 /obj/effect/plant/Destroy()
 	neighbors.Cut()
 	if(seed.get_trait(TRAIT_SPREAD)==2)
+<<<<<<< HEAD
 		unsense_proximity(callback = .HasProximity, center = get_turf(src))
 	SSplants.remove_plant(src)
+=======
+		unsense_proximity(callback = /atom/proc/HasProximity, center = get_turf(src))
+	plant_controller.remove_plant(src)
+>>>>>>> fdabe51... Linter Introduction + Cleanup (#8085)
 	for(var/obj/effect/plant/neighbor in range(1,src))
 		SSplants.add_plant(neighbor)
 	return ..()
@@ -108,7 +113,7 @@
 	name = seed.display_name
 	max_health = round(seed.get_trait(TRAIT_ENDURANCE)/2)
 	if(seed.get_trait(TRAIT_SPREAD)==2)
-		sense_proximity(callback = .HasProximity) // Grabby
+		sense_proximity(callback = /atom/proc/HasProximity) // Grabby
 		max_growth = VINE_GROWTH_STAGES
 		growth_threshold = max_health/VINE_GROWTH_STAGES
 		icon = 'icons/obj/hydroponics_vines.dmi'

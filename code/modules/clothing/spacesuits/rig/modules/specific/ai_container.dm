@@ -35,7 +35,7 @@
 	interface_desc = "A socket that supports a range of artificial intelligence systems."
 
 	var/mob/integrated_ai // Direct reference to the actual mob held in the suit.
-	var/obj/item/ai_card  // Reference to the MMI, posibrain, intellicard or pAI card previously holding the AI.
+	var/obj/item/device/aicard/ai_card  // Reference to the MMI, posibrain, intellicard or pAI card previously holding the AI.
 	var/obj/item/ai_verbs/verb_holder
 
 /obj/item/rig_module/ai_container/process()
@@ -132,11 +132,18 @@
 	var/mob/living/carbon/human/H = holder.wearer
 
 	if(!target)
+<<<<<<< HEAD
 		if(ai_card)
 			if(istype(ai_card,/obj/item/device/aicard))
 				ai_card.tgui_interact(H, custom_state = GLOB.tgui_deep_inventory_state)
 			else
 				eject_ai(H)
+=======
+		if(istype(ai_card))
+			ai_card.tgui_interact(H, custom_state = deep_inventory_state)
+		else
+			eject_ai(H)
+>>>>>>> fdabe51... Linter Introduction + Cleanup (#8085)
 		update_verb_holder()
 		return 1
 

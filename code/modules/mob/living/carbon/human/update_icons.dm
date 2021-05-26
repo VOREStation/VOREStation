@@ -565,7 +565,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 				standing.underlays += underlay
 
 	for(var/mut in mutations)
-		if(LASER)
+		if(mut == LASER)
 			standing.overlays += "lasereyes_s" //TODO
 
 	overlays_standing[MUTATIONS_LAYER]	= standing

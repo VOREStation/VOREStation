@@ -111,7 +111,7 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 // Macro defining the actual code applying our overlays lists to the BYOND overlays list. (I guess a macro for speed)
 // TODO - I don't really like the location of this macro define.  Consider it. ~Leshana
 #define COMPILE_OVERLAYS(A)\
-	if (TRUE) {\
+	do {\
 		var/list/oo = A.our_overlays;\
 		var/list/po = A.priority_overlays;\
 		if(LAZYLEN(po)){\
@@ -129,4 +129,4 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 			A.overlays.Cut();\
 		}\
 		A.flags &= ~OVERLAY_QUEUED;\
-	}
+	} while (FALSE)

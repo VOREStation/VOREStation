@@ -77,8 +77,13 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 	if(id_tag)
 		var/list/connected_z_levels = GetConnectedZlevels(get_z(src))
 		for(var/i = 1 to LAZYLEN(pointdefense_turrets))
+<<<<<<< HEAD
 			var/obj/machinery/power/pointdefense/PD = pointdefense_turrets[i]
 			if(!(PD.id_tag == id_tag && get_z(PD) in connected_z_levels))
+=======
+			var/obj/machinery/pointdefense/PD = pointdefense_turrets[i]
+			if(!(PD.id_tag == id_tag && (get_z(PD) in connected_z_levels)))
+>>>>>>> fdabe51... Linter Introduction + Cleanup (#8085)
 				continue
 			var/list/turret = list()
 			turret["id"] =          "#[i]"
