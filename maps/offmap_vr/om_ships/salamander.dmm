@@ -1246,6 +1246,12 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/salamander)
+"rP" = (
+/obj/structure/hull_corner{
+	dir = 8
+	},
+/turf/template_noop,
+/area/shuttle/salamander_head)
 "sb" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 8
@@ -1255,12 +1261,22 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/salamander_engineering)
+"ts" = (
+/obj/structure/hull_corner,
+/turf/template_noop,
+/area/shuttle/salamander)
 "tA" = (
 /obj/machinery/power/pointdefense{
 	id_tag = "salamander_pd"
 	},
 /turf/simulated/floor/plating,
 /area/shuttle/salamander_engineering)
+"uf" = (
+/obj/structure/hull_corner{
+	dir = 1
+	},
+/turf/template_noop,
+/area/shuttle/salamander_galley)
 "ur" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/grille,
@@ -1292,6 +1308,10 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/salamander_cockpit)
+"wq" = (
+/obj/structure/hull_corner,
+/turf/template_noop,
+/area/shuttle/salamander_engineering)
 "wF" = (
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 6
@@ -1405,6 +1425,12 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/salamander)
+"Bu" = (
+/obj/structure/hull_corner{
+	dir = 4
+	},
+/turf/template_noop,
+/area/shuttle/salamander_engineering)
 "BW" = (
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
@@ -1878,6 +1904,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/universal,
 /turf/simulated/floor/plating,
 /area/shuttle/salamander_engineering)
+"WI" = (
+/obj/structure/hull_corner{
+	dir = 4
+	},
+/turf/template_noop,
+/area/shuttle/salamander)
 "WN" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -2028,7 +2060,7 @@ WP
 WP
 WP
 WP
-WP
+wq
 Wj
 dj
 fn
@@ -2037,7 +2069,7 @@ Wj
 dj
 fn
 Wj
-WP
+Bu
 WP
 WP
 WP
@@ -2152,7 +2184,7 @@ WP
 "}
 (9,1,1) = {"
 WP
-WP
+ts
 VT
 VT
 Wj
@@ -2165,7 +2197,7 @@ lV
 Wj
 VT
 VT
-WP
+WI
 WP
 "}
 (10,1,1) = {"
@@ -2386,7 +2418,7 @@ WP
 "}
 (22,1,1) = {"
 WP
-WP
+rP
 Tg
 br
 cq
@@ -2399,7 +2431,7 @@ mR
 bI
 qu
 mR
-WP
+uf
 WP
 "}
 (23,1,1) = {"
