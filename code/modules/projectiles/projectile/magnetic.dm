@@ -161,6 +161,10 @@
 	irradiate = 20
 	range = 6
 
+/obj/item/projectile/bullet/magnetic/bore/Initialize(loc, range_mod) // i'm gonna be real honest i dunno how this works but it does
+	. = ..()
+	range += range_mod
+
 /obj/item/projectile/bullet/magnetic/bore/get_structure_damage()
 	return damage * 3 //made for boring holes
 

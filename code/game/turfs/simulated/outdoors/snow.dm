@@ -51,6 +51,7 @@
 	name = "ice"
 	icon_state = "ice"
 	desc = "Looks slippery."
+	edge_blending_priority = 0
 
 /turf/simulated/floor/outdoors/ice/Entered(var/mob/living/M)
 	sleep(1 * world.tick_lag)

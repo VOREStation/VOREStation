@@ -29235,6 +29235,13 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/lowerhall)
+"aXL" = (
+/obj/structure/closet/crate,
+/obj/random/unidentified_medicine,
+/obj/random/drinkbottle,
+/obj/random/tetheraid,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/xenoflora)
 "aXM" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -30835,13 +30842,6 @@
 	dir = 1
 	},
 /obj/structure/catwalk,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/xenoflora)
-"bcC" = (
-/obj/structure/closet/crate,
-/obj/random/unidentified_medicine,
-/obj/random/firstaid,
-/obj/random/drinkbottle,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/xenoflora)
 "bcD" = (
@@ -48743,7 +48743,7 @@ asL
 apu
 axS
 apu
-bcC
+aXL
 axS
 apu
 bcd

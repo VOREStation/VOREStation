@@ -22,10 +22,10 @@ SUBSYSTEM_DEF(transcore)
 	var/cost_backups = 0
 	var/cost_implants = 0
 
-	var/datum/transhuman/mind_record/list/backed_up = list()	// All known mind records, indexed by MR.mindname/mind.name
-	var/datum/transhuman/mind_record/list/has_left = list()		// Why do we even have this?
-	var/datum/transhuman/body_record/list/body_scans = list()	// All known body records, indexed by BR.mydna.name
-	var/obj/item/weapon/implant/backup/list/implants = list()	// All OPERATING implants that are being ticked
+	var/list/datum/transhuman/mind_record/backed_up = list()	// All known mind records, indexed by MR.mindname/mind.name
+	var/list/datum/transhuman/mind_record/has_left = list()		// Why do we even have this?
+	var/list/datum/transhuman/body_record/body_scans = list()	// All known body records, indexed by BR.mydna.name
+	var/list/obj/item/weapon/implant/backup/implants = list()	// All OPERATING implants that are being ticked
 
 	var/list/current_run = list()
 
@@ -115,14 +115,14 @@ SUBSYSTEM_DEF(transcore)
 
 /datum/controller/subsystem/transcore/Recover()
 	if (istype(SStranscore.body_scans))
-		for(var/N in SStranscore.body_scans[N])
-			if(N) body_scans[N] = SStranscore.body_scans[N]
+		for(var/N in SStranscore.body_scans)
+			if(N && SStranscore.body_scans[N]) body_scans[N] = SStranscore.body_scans[N]
 	if(SStranscore.core_dumped)
 		core_dumped = TRUE
 		can_fire = FALSE
 	else if (istype(SStranscore.backed_up))
-		for(var/N in SStranscore.backed_up[N])
-			if(N) backed_up[N] = SStranscore.backed_up[N]
+		for(var/N in SStranscore.backed_up)
+			if(N && SStranscore.backed_up[N]) backed_up[N] = SStranscore.backed_up[N]
 
 /datum/controller/subsystem/transcore/proc/m_backup(var/datum/mind/mind, var/obj/item/device/nif/nif, var/one_time = FALSE)
 	ASSERT(mind)

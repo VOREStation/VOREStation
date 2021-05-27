@@ -13,7 +13,7 @@
 	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in machines)
 		if(istype(get_area(temp_vent), /area/crew_quarters/sleep))
 			continue
-		if(!temp_vent.welded && temp_vent.network && temp_vent.loc.z in using_map.station_levels)
+		if(!temp_vent.welded && temp_vent.network && (temp_vent.loc.z in using_map.station_levels))
 			if(temp_vent.network.normal_members.len > 50)
 				vents += temp_vent
 

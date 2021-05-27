@@ -82,7 +82,7 @@
 	if(PM.sub_planes)
 		var/list/subplanes = PM.sub_planes
 		for(var/SP in subplanes)
-			set_vis(which = SP, new_alpha = new_alpha)
+			set_vis(which = SP, state = !!new_alpha)
 
 /datum/plane_holder/proc/set_ao(var/which = null, var/enabled = FALSE)
 	ASSERT(which)

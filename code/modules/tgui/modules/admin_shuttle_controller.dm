@@ -58,11 +58,11 @@
 						target =  V.restricted_waypoints[1]
 					else
 						to_chat(C, "<span class='warning'>Unable to jump to [V].</span>")
-						return FALSE
+						return
 					var/turf/T = get_turf(target)
 					if(!istype(T))
 						to_chat(C, "<span class='warning'>Unable to jump to [V].</span>")
-						return FALSE
+						return
 					C.jumptoturf(T)
 			return TRUE
 		if("classicmove")

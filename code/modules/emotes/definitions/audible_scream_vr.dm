@@ -10,4 +10,3 @@
 			"sound" = H.species.male_scream_sound,
 			"vol" = emote_volume
 		)
-	return ..()

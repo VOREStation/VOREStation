@@ -188,6 +188,7 @@
 	retaliate = 1
 	cooperative = TRUE
 	speak_chance = 1
+	lose_target_timeout = 0 // Easily distracted
 
 /datum/ai_holder/simple_mob/woof/hostile
 	hostile = 1

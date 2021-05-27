@@ -38,7 +38,7 @@ SUBSYSTEM_DEF(events)
 			return
 
 	for(var/i = EVENT_LEVEL_MUNDANE to EVENT_LEVEL_MAJOR)
-		var/list/datum/event_container/EC = event_containers[i]
+		var/datum/event_container/EC = event_containers[i]
 		EC.process()
 
 /datum/controller/subsystem/events/stat_entry()

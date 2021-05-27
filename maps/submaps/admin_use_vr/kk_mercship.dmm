@@ -7,6 +7,33 @@
 /obj/effect/shuttle_landmark/premade/manta_ship_near_port,
 /turf/space,
 /area/space)
+"ac" = (
+/obj/structure/table/steel_reinforced,
+/obj/effect/landmark{
+	name = "Syndicate-Uplink"
+	},
+/obj/item/device/mapping_unit/operative,
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/manta/armoury_st)
+"ad" = (
+/obj/structure/table/rack,
+/obj/item/weapon/storage/box/syndie_kit/chameleon,
+/obj/item/weapon/storage/box/syndie_kit/chameleon,
+/obj/item/weapon/storage/box/syndie_kit/chameleon,
+/obj/item/weapon/storage/box/syndie_kit/chameleon,
+/obj/item/weapon/storage/box/syndie_kit/chameleon,
+/obj/item/weapon/storage/box/syndie_kit/chameleon,
+/obj/machinery/recharger/wallcharger{
+	pixel_x = 5;
+	pixel_y = -32
+	},
+/obj/effect/floor_decal/techfloor,
+/obj/item/device/holomap_beacon/operative,
+/obj/item/device/holomap_beacon/operative,
+/obj/item/device/holomap_beacon/operative,
+/obj/item/device/holomap_beacon/operative,
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/manta/armoury_st)
 "ag" = (
 /turf/simulated/floor/reinforced/airless,
 /area/ship/manta/hangar)
@@ -111,6 +138,12 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/hangar)
+"ay" = (
+/obj/structure/hull_corner{
+	dir = 8
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/ship/manta/med)
 "aB" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 8
@@ -635,8 +668,8 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/armoury_st)
 "bT" = (
-/obj/machinery/power/pointdefense{
-	id_tag = "mercenary_pd"
+/obj/structure/hull_corner/long_horiz{
+	dir = 10
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/ship/manta/hangar)
@@ -920,7 +953,9 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/armoury_st)
 "cS" = (
-/obj/machinery/porta_turret/stationary/syndie/CIWS,
+/obj/structure/hull_corner/long_horiz{
+	dir = 6
+	},
 /turf/simulated/floor/reinforced/airless,
 /area/ship/manta/armoury_st)
 "cW" = (
@@ -1075,7 +1110,9 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/recreation)
 "dI" = (
-/obj/machinery/porta_turret/stationary/syndie/CIWS,
+/obj/structure/hull_corner/long_horiz{
+	dir = 10
+	},
 /turf/simulated/floor/reinforced/airless,
 /area/ship/manta/med)
 "dJ" = (
@@ -1256,6 +1293,10 @@
 /obj/item/weapon/reagent_containers/glass/beaker/large,
 /turf/simulated/floor/tiled/white,
 /area/ship/manta/med)
+"eC" = (
+/obj/machinery/porta_turret/stationary/syndie/CIWS,
+/turf/simulated/floor/reinforced/airless,
+/area/ship/manta/holding)
 "eF" = (
 /obj/machinery/chemical_dispenser/biochemistry/full,
 /obj/structure/table/steel_reinforced,
@@ -1266,9 +1307,6 @@
 /turf/simulated/floor/tiled/white,
 /area/ship/manta/med)
 "eG" = (
-/turf/simulated/floor/reinforced/airless,
-/area/ship/manta/hallways_port)
-"eH" = (
 /obj/machinery/porta_turret/stationary/syndie/CIWS,
 /turf/simulated/floor/reinforced/airless,
 /area/ship/manta/hallways_port)
@@ -1518,9 +1556,11 @@
 /turf/simulated/floor/tiled/white,
 /area/ship/manta/med)
 "fZ" = (
-/obj/machinery/porta_turret/stationary/syndie/CIWS,
-/turf/simulated/floor/reinforced/airless,
-/area/ship/manta/recreation)
+/obj/structure/hull_corner{
+	dir = 4
+	},
+/turf/space,
+/area/space)
 "gb" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -1766,9 +1806,6 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/bridge)
 "hq" = (
-/obj/machinery/power/pointdefense{
-	id_tag = "mercenary_pd"
-	},
 /turf/simulated/floor/reinforced/airless,
 /area/ship/manta/hallways_port)
 "hs" = (
@@ -2268,10 +2305,8 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/hangar)
 "jd" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 1
-	},
-/turf/simulated/floor/reinforced,
+/obj/structure/hull_corner,
+/turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/manta_ship_boat)
 "je" = (
 /turf/simulated/wall/rshull,
@@ -2296,11 +2331,9 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/bridge)
 "jh" = (
-/obj/machinery/power/pointdefense{
-	id_tag = "mercenary_pd"
-	},
+/obj/machinery/porta_turret/stationary/syndie/CIWS,
 /turf/simulated/floor/reinforced/airless,
-/area/ship/manta/recreation)
+/area/ship/manta/armoury_st)
 "jl" = (
 /obj/structure/bed/chair/bay/shuttle{
 	dir = 4
@@ -2611,10 +2644,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/hallways_aft)
-"kO" = (
-/obj/machinery/porta_turret/stationary/syndie/CIWS,
-/turf/simulated/floor/reinforced/airless,
-/area/ship/manta/hallways_star)
 "kP" = (
 /obj/structure/closet/crate{
 	dir = 1
@@ -2627,6 +2656,12 @@
 "kW" = (
 /turf/simulated/floor/reinforced/airless,
 /area/ship/manta/recreation)
+"lc" = (
+/obj/structure/hull_corner{
+	dir = 8
+	},
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/manta_ship_boat)
 "le" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 1
@@ -3590,14 +3625,15 @@
 /turf/space,
 /area/space)
 "pi" = (
-/obj/machinery/power/pointdefense{
-	id_tag = "mercenary_pd"
-	},
+/obj/machinery/porta_turret/stationary/syndie/CIWS,
 /turf/simulated/floor/reinforced/airless,
-/area/ship/manta/dock_star)
+/area/ship/manta/med)
 "pn" = (
-/turf/simulated/floor/reinforced/airless,
-/area/ship/manta/hallways_star)
+/obj/structure/hull_corner{
+	dir = 1
+	},
+/turf/space,
+/area/space)
 "pw" = (
 /obj/machinery/firealarm/alarms_hidden{
 	dir = 4;
@@ -3717,7 +3753,7 @@
 /obj/machinery/atmospherics/unary/engine{
 	dir = 1
 	},
-/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/manta_ship_boat)
 "qn" = (
 /turf/simulated/floor/wood,
@@ -3818,6 +3854,12 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/hallways_aft)
+"qI" = (
+/obj/machinery/power/pointdefense{
+	id_tag = "mercenary_pd"
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/ship/manta/dock_star)
 "qJ" = (
 /obj/machinery/alarm/alarms_hidden{
 	dir = 4;
@@ -4031,8 +4073,8 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/engineering)
 "rR" = (
-/obj/machinery/power/pointdefense{
-	id_tag = "mercenary_pd"
+/obj/structure/hull_corner/long_horiz{
+	dir = 10
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/ship/manta/holding)
@@ -4245,7 +4287,9 @@
 /turf/simulated/floor/tiled/white,
 /area/ship/manta/med)
 "sZ" = (
-/obj/machinery/porta_turret/stationary/syndie/CIWS,
+/obj/structure/hull_corner{
+	dir = 8
+	},
 /turf/simulated/floor/reinforced/airless,
 /area/ship/manta/holding)
 "th" = (
@@ -4303,11 +4347,11 @@
 /turf/simulated/floor/wood,
 /area/ship/manta/barracks)
 "ts" = (
-/obj/machinery/power/pointdefense{
-	id_tag = "mercenary_pd"
+/obj/structure/hull_corner/long_horiz{
+	dir = 9
 	},
-/turf/simulated/floor/reinforced/airless,
-/area/ship/manta/hallways_star)
+/turf/space,
+/area/space)
 "tt" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 1
@@ -4326,6 +4370,10 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/hallways_port)
+"tB" = (
+/obj/machinery/porta_turret/stationary/syndie/CIWS,
+/turf/simulated/floor/reinforced/airless,
+/area/ship/manta/recreation)
 "tE" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 1
@@ -4397,6 +4445,12 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/hangar)
+"tR" = (
+/obj/machinery/power/pointdefense{
+	id_tag = "mercenary_pd"
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/ship/manta/dock_port)
 "tV" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 4
@@ -4523,7 +4577,7 @@
 /area/shuttle/manta_ship_boat)
 "ux" = (
 /obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/manta_ship_boat)
 "uy" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -4748,6 +4802,12 @@
 	},
 /turf/simulated/floor/plating,
 /area/ship/manta/engine)
+"vC" = (
+/obj/structure/hull_corner/long_horiz{
+	dir = 6
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/ship/manta/hallways_port)
 "vD" = (
 /obj/machinery/door/blast/regular/open{
 	dir = 4;
@@ -5868,6 +5928,12 @@
 /obj/item/weapon/gun/energy/plasmastun,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/armoury_st)
+"zw" = (
+/obj/machinery/power/pointdefense{
+	id_tag = "mercenary_pd"
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/ship/manta/recreation)
 "zx" = (
 /obj/structure/table/rack,
 /obj/item/weapon/gun/energy/stunrevolver,
@@ -6094,6 +6160,11 @@
 	},
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 1
+	},
+/obj/machinery/embedded_controller/radio/simple_docking_controller{
+	id_tag = "manta_boarding_shuttle";
+	pixel_x = -11;
+	pixel_y = 8
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/manta_ship_boat)
@@ -6744,6 +6815,10 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/hallways_star)
+"DS" = (
+/obj/structure/hull_corner,
+/turf/simulated/floor/reinforced/airless,
+/area/ship/manta/gunnery)
 "DY" = (
 /turf/simulated/wall/shull,
 /area/ship/manta/teleporter)
@@ -8091,6 +8166,12 @@
 "KJ" = (
 /turf/simulated/wall/rshull,
 /area/ship/manta/teleporter)
+"KK" = (
+/obj/machinery/power/pointdefense{
+	id_tag = "mercenary_pd"
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/ship/manta/holding)
 "KL" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 8
@@ -8132,6 +8213,12 @@
 	},
 /turf/simulated/floor/wood,
 /area/ship/manta/barracks/bed_2)
+"KY" = (
+/obj/structure/hull_corner{
+	dir = 4
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/ship/manta/gunnery)
 "KZ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -8289,6 +8376,17 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/engineering)
+"LQ" = (
+/obj/effect/floor_decal/techfloor{
+	dir = 8
+	},
+/obj/machinery/embedded_controller/radio/simple_docking_controller{
+	dir = 4;
+	id_tag = "manta_boarding_shuttle_dock";
+	pixel_x = -22
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/manta/hangar)
 "LS" = (
 /obj/machinery/atmospherics/pipe/manifold/visible{
 	dir = 4
@@ -8342,6 +8440,12 @@
 "LZ" = (
 /turf/simulated/wall/shull,
 /area/ship/manta/hallways_star)
+"Ma" = (
+/obj/structure/hull_corner/long_vert{
+	dir = 5
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/ship/manta/engine)
 "Mb" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -8626,6 +8730,12 @@
 /obj/structure/railing,
 /turf/simulated/floor/plating,
 /area/ship/manta/engine)
+"Nj" = (
+/obj/structure/hull_corner/long_horiz{
+	dir = 5
+	},
+/turf/space,
+/area/space)
 "No" = (
 /obj/structure/bed/chair/comfy/black{
 	dir = 8
@@ -9924,6 +10034,12 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/hallways_port)
+"Tu" = (
+/obj/structure/hull_corner/long_vert{
+	dir = 9
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/ship/manta/engine)
 "Tv" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -10034,6 +10150,12 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/hallways_port)
+"TO" = (
+/obj/structure/hull_corner{
+	dir = 1
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/ship/manta/holding)
 "TS" = (
 /obj/item/modular_computer/console/preset/mercenary{
 	dir = 4
@@ -10108,21 +10230,6 @@
 /obj/structure/table/steel_reinforced,
 /turf/simulated/floor/tiled/dark,
 /area/ship/manta/holding)
-"Us" = (
-/obj/structure/table/rack,
-/obj/item/weapon/storage/box/syndie_kit/chameleon,
-/obj/item/weapon/storage/box/syndie_kit/chameleon,
-/obj/item/weapon/storage/box/syndie_kit/chameleon,
-/obj/item/weapon/storage/box/syndie_kit/chameleon,
-/obj/item/weapon/storage/box/syndie_kit/chameleon,
-/obj/item/weapon/storage/box/syndie_kit/chameleon,
-/obj/machinery/recharger/wallcharger{
-	pixel_x = 5;
-	pixel_y = -32
-	},
-/obj/effect/floor_decal/techfloor,
-/turf/simulated/floor/tiled/techfloor,
-/area/ship/manta/armoury_st)
 "Uy" = (
 /obj/item/weapon/reagent_containers/syringe/drugs{
 	pixel_x = 3;
@@ -10682,6 +10789,10 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/engineering)
+"Xb" = (
+/obj/structure/hull_corner,
+/turf/simulated/floor/reinforced/airless,
+/area/ship/manta/hallways_port)
 "Xd" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
@@ -10944,6 +11055,12 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/ship/manta/magazine)
+"Yc" = (
+/obj/machinery/power/pointdefense{
+	id_tag = "mercenary_pd"
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/ship/manta/hallways_port)
 "Yd" = (
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/bridge)
@@ -11303,13 +11420,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/recreation)
-"ZH" = (
-/obj/structure/table/steel_reinforced,
-/obj/effect/landmark{
-	name = "Syndicate-Uplink"
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/ship/manta/armoury_st)
 "ZI" = (
 /obj/structure/cable/orange{
 	d1 = 4;
@@ -17254,20 +17364,20 @@ yz
 yz
 yz
 Hr
-Hr
-Hr
 nJ
 Hr
 Hr
+rT
+Hr
 yz
 yz
 yz
 yz
 kW
+tB
 kW
 kW
-jh
-kW
+zw
 kW
 yz
 yz
@@ -17401,10 +17511,10 @@ CF
 CF
 CF
 CF
-rT
-Hr
+KY
 Hr
 nJ
+DS
 lm
 lm
 lm
@@ -17554,7 +17664,7 @@ cW
 Jq
 lm
 lm
-kW
+fZ
 yz
 yz
 yz
@@ -17697,7 +17807,7 @@ gf
 Db
 lm
 lm
-kW
+Nj
 yz
 yz
 yz
@@ -17818,7 +17928,7 @@ yz
 yz
 yz
 yz
-Hr
+rT
 CF
 CF
 CF
@@ -17839,7 +17949,7 @@ Yi
 hD
 CQ
 lm
-jh
+yz
 yz
 yz
 yz
@@ -17982,7 +18092,7 @@ gh
 gd
 lm
 lm
-kW
+Nj
 yz
 yz
 yz
@@ -18102,7 +18212,7 @@ yz
 yz
 yz
 yz
-eH
+Xb
 CF
 CF
 CF
@@ -18124,7 +18234,7 @@ gh
 gf
 ik
 lm
-fZ
+yz
 yz
 yz
 yz
@@ -18243,7 +18353,7 @@ yz
 yz
 yz
 yz
-eG
+Yc
 ht
 ht
 ht
@@ -18267,7 +18377,7 @@ gh
 io
 lm
 lm
-kW
+Nj
 yz
 yz
 yz
@@ -18385,7 +18495,7 @@ yz
 yz
 yz
 yz
-eG
+vC
 ht
 kP
 ht
@@ -18409,7 +18519,7 @@ gk
 MV
 js
 lm
-kW
+yz
 yz
 yz
 yz
@@ -18810,7 +18920,7 @@ yz
 yz
 yz
 yz
-eG
+vC
 ht
 kT
 op
@@ -18952,7 +19062,7 @@ yz
 yz
 yz
 yz
-eH
+hq
 ht
 Cf
 ov
@@ -19093,7 +19203,7 @@ yz
 yz
 yz
 yz
-aE
+bG
 ZT
 ZT
 ZT
@@ -19235,7 +19345,7 @@ yz
 yz
 yz
 yz
-aE
+cS
 ZT
 hU
 lj
@@ -19377,7 +19487,7 @@ yz
 yz
 yz
 yz
-bG
+aE
 ZT
 ic
 bR
@@ -19518,7 +19628,7 @@ yz
 yz
 yz
 yz
-aE
+jh
 ZT
 ZT
 ic
@@ -19537,7 +19647,7 @@ OR
 sy
 nC
 bR
-Us
+ad
 ZT
 tx
 pB
@@ -19660,7 +19770,7 @@ yz
 yz
 yz
 yz
-aE
+cS
 ZT
 ZT
 ih
@@ -19802,7 +19912,7 @@ yz
 yz
 yz
 yz
-cS
+aE
 ZT
 ZT
 ZT
@@ -19818,7 +19928,7 @@ ZT
 ZT
 cP
 bR
-ZH
+ac
 aS
 bR
 RU
@@ -19988,7 +20098,7 @@ Bn
 GA
 vw
 WF
-yo
+tR
 yz
 yz
 yz
@@ -20130,8 +20240,8 @@ Zy
 xd
 RZ
 WF
-FZ
 WA
+Ma
 WA
 WA
 yz
@@ -20369,7 +20479,7 @@ yz
 yz
 yz
 yz
-aE
+cS
 ZT
 ZT
 ZT
@@ -20511,7 +20621,7 @@ yz
 yz
 yz
 yz
-bT
+ag
 Vp
 Vp
 Vp
@@ -20660,7 +20770,7 @@ fw
 au
 fw
 oZ
-au
+LQ
 tQ
 wX
 zI
@@ -20940,8 +21050,8 @@ yz
 ce
 dk
 ec
-da
 jd
+je
 je
 je
 da
@@ -21934,8 +22044,8 @@ yz
 ce
 dk
 ec
-da
-jd
+lc
+je
 je
 je
 da
@@ -22828,8 +22938,8 @@ rJ
 xB
 ZW
 PK
-pi
-WA
+Ly
+Tu
 WA
 WA
 yz
@@ -22970,7 +23080,7 @@ FH
 Ik
 Cn
 PK
-Ly
+qI
 yz
 yz
 yz
@@ -23352,7 +23462,7 @@ yz
 yz
 yz
 yz
-cr
+pi
 dl
 dl
 kl
@@ -23495,7 +23605,7 @@ yz
 yz
 yz
 yz
-cI
+dI
 dl
 ky
 nf
@@ -23779,7 +23889,7 @@ yz
 yz
 yz
 yz
-cr
+cI
 dl
 dl
 ny
@@ -24206,7 +24316,7 @@ yz
 yz
 yz
 yz
-cr
+pi
 dl
 dl
 rM
@@ -24349,7 +24459,7 @@ yz
 yz
 yz
 yz
-cI
+dI
 dl
 rM
 rM
@@ -24515,7 +24625,7 @@ hW
 xv
 LZ
 mT
-pn
+ts
 yz
 yz
 yz
@@ -24633,7 +24743,7 @@ yz
 yz
 yz
 yz
-cr
+cI
 dl
 dl
 rM
@@ -24657,7 +24767,7 @@ Mb
 MM
 mT
 mT
-pn
+yz
 yz
 yz
 yz
@@ -24776,7 +24886,7 @@ yz
 yz
 yz
 yz
-dI
+ay
 dl
 rM
 ch
@@ -24798,7 +24908,7 @@ ch
 hN
 Th
 mT
-kO
+ts
 yz
 yz
 yz
@@ -24940,7 +25050,7 @@ ch
 hS
 mT
 mT
-pn
+yz
 yz
 yz
 yz
@@ -25060,7 +25170,7 @@ yz
 yz
 yz
 yz
-cr
+pi
 dl
 ch
 ch
@@ -25223,7 +25333,7 @@ cM
 ch
 ch
 mT
-pn
+yz
 yz
 yz
 yz
@@ -25495,17 +25605,17 @@ ch
 ch
 ch
 ch
-sZ
+TO
 rS
-rS
-rR
-ch
-ch
-ch
-ch
-ch
-ch
+KK
 sZ
+ch
+ch
+ch
+ch
+ch
+ch
+pn
 yz
 yz
 yz
@@ -25632,20 +25742,20 @@ yz
 yz
 yz
 rS
+KK
 rS
 rS
-rR
-rS
+eC
 rS
 yz
 yz
 yz
 yz
 rS
+eC
 rS
 rS
-rR
-rS
+KK
 rS
 yz
 yz

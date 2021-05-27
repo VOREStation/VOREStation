@@ -115,15 +115,16 @@
 /obj/structure/noticeboard/tgui_data(mob/user)
 	var/list/data = ..()
 	
-	data["notices"] = list()
+	
+	var/list/notices = list()
 	for(var/obj/item/I in notices)
-		data["notices"].Add(list(list(
+		notices.Add(list(list(
 			"ispaper" = istype(I, /obj/item/weapon/paper),
 			"isphoto" = istype(I, /obj/item/weapon/photo),
 			"name" = I.name,
 			"ref" = "\ref[I]",
 		)))
-
+	data["notices"] = notices
 	return data
 
 /obj/structure/noticeboard/tgui_act(action, params)
