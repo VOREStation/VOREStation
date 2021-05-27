@@ -368,6 +368,15 @@ var/global/list/additional_antag_types = list()
 		feedback_set("escaped_on_pod_5",escaped_on_pod_5)
 
 	send2mainirc("A round of [src.name] has ended - [surviving_total] survivors, [ghosts] ghosts.")
+	SSwebhooks.send(
+		WEBHOOK_ROUNDEND, 
+		list(
+			"survivors" = surviving_total, 
+			"escaped" = escaped_total, 
+			"ghosts" = ghosts, 
+			"clients" = clients
+		)
+	)
 
 	return 0
 
