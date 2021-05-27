@@ -1,6 +1,8 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/obj/machinery/mecha_part_fabricator,
+/obj/machinery/mecha_part_fabricator{
+	req_access = list()
+	},
 /turf/simulated/floor/tiled/eris/dark/gray_platform,
 /area/aro3/workshop)
 "af" = (
@@ -102,9 +104,8 @@
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/aro3/bar)
 "aQ" = (
-/obj/machinery/door/airlock,
-/obj/structure/cable/cyan{
-	icon_state = "1-2"
+/obj/machinery/door/airlock{
+	name = "Bunk Room 2"
 	},
 /turf/simulated/floor/tiled/eris/dark/panels,
 /area/aro3/bunkrooms)
@@ -139,7 +140,8 @@
 /area/aro3/workshop)
 "aZ" = (
 /obj/machinery/power/apc/alarms_hidden{
-	dir = 8
+	dir = 8;
+	req_access = list()
 	},
 /obj/structure/cable/cyan{
 	icon_state = "0-4"
@@ -167,7 +169,10 @@
 /turf/simulated/floor/plating/eris/under,
 /area/aro3/atmos)
 "bk" = (
-/obj/machinery/door/airlock,
+/obj/machinery/door/airlock{
+	id_tag = "aro3_private1";
+	name = "Private Room 1"
+	},
 /turf/simulated/floor/tiled/eris/dark/panels,
 /area/aro3/suite_port)
 "bn" = (
@@ -245,9 +250,6 @@
 /area/space)
 "bX" = (
 /obj/structure/cable/cyan{
-	icon_state = "1-2"
-	},
-/obj/structure/cable/cyan{
 	icon_state = "1-4"
 	},
 /obj/structure/cable/cyan{
@@ -290,6 +292,16 @@
 	},
 /turf/space,
 /area/space)
+"cl" = (
+/obj/structure/lattice,
+/obj/structure/cable/cyan{
+	icon_state = "5-10"
+	},
+/obj/structure/hull_corner{
+	dir = 8
+	},
+/turf/space,
+/area/space)
 "cm" = (
 /obj/structure/railing/grey{
 	dir = 1
@@ -312,11 +324,10 @@
 /turf/simulated/floor/tiled/eris/dark/gray_platform,
 /area/aro3/hallway_bunkrooms)
 "cB" = (
-/obj/structure/cable/cyan{
-	icon_state = "2-4"
-	},
-/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
-/area/aro3/hallway_bunkrooms)
+/obj/structure/window/plastitanium/full,
+/obj/structure/grille,
+/turf/simulated/floor/plating/eris/under,
+/area/space)
 "cH" = (
 /turf/simulated/floor/water/indoors/surfluid,
 /area/aro3/surfluid)
@@ -338,7 +349,8 @@
 /area/aro3/repair_bay)
 "cK" = (
 /obj/machinery/power/apc/alarms_hidden{
-	dir = 8
+	dir = 8;
+	req_access = list()
 	},
 /obj/structure/cable/cyan,
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
@@ -480,7 +492,9 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/aro3/bar)
 "dM" = (
-/obj/machinery/mecha_part_fabricator/pros,
+/obj/machinery/mecha_part_fabricator/pros{
+	req_access = list()
+	},
 /turf/simulated/floor/tiled/eris/dark/gray_platform,
 /area/aro3/workshop)
 "dO" = (
@@ -492,7 +506,9 @@
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/aro3/workshop)
 "dP" = (
-/obj/machinery/door/airlock/maintenance/common,
+/obj/machinery/door/airlock/maintenance/common{
+	name = "Bar Storage"
+	},
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
 	},
@@ -560,6 +576,14 @@
 	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/aro3/kitchen)
+"ep" = (
+/obj/structure/lattice,
+/obj/structure/cable/cyan{
+	icon_state = "6-9"
+	},
+/obj/structure/hull_corner,
+/turf/space,
+/area/space)
 "er" = (
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
@@ -636,6 +660,10 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/aro3/hallway_bunkrooms)
+"ff" = (
+/obj/structure/window/plastitanium/full,
+/turf/simulated/floor/plating/eris/under,
+/area/aro3/repair_bay)
 "fo" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 4
@@ -710,7 +738,8 @@
 	pixel_y = 24
 	},
 /obj/machinery/power/apc/alarms_hidden{
-	dir = 4
+	dir = 4;
+	req_access = list()
 	},
 /obj/structure/cable/cyan{
 	d2 = 1;
@@ -791,7 +820,8 @@
 /area/aro3/hallway_starboard)
 "gP" = (
 /obj/machinery/power/apc/alarms_hidden{
-	dir = 1
+	dir = 1;
+	req_access = list()
 	},
 /obj/structure/cable/cyan{
 	icon_state = "0-8"
@@ -800,7 +830,8 @@
 /area/aro3/flight_deck)
 "gQ" = (
 /obj/machinery/power/apc/alarms_hidden{
-	dir = 8
+	dir = 8;
+	req_access = list()
 	},
 /obj/structure/cable/cyan,
 /turf/simulated/floor/tiled/eris/dark,
@@ -904,7 +935,8 @@
 /area/aro3/workshop)
 "hu" = (
 /obj/machinery/power/apc/alarms_hidden{
-	dir = 8
+	dir = 8;
+	req_access = list()
 	},
 /obj/structure/cable/cyan{
 	icon_state = "0-4"
@@ -946,7 +978,9 @@
 /turf/simulated/floor/tiled/eris/steel/bar_light,
 /area/aro3/bar)
 "hC" = (
-/obj/machinery/door/airlock,
+/obj/machinery/door/airlock{
+	name = "Public WC"
+	},
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
 	},
@@ -980,13 +1014,12 @@
 /turf/simulated/floor/tiled/eris/dark/panels,
 /area/aro3/hallway_port)
 "hX" = (
-/obj/structure/cable/cyan{
-	icon_state = "1-8"
-	},
 /turf/simulated/floor/carpet/purcarpet,
 /area/aro3/bunkrooms)
 "ia" = (
-/obj/machinery/door/airlock/multi_tile/glass,
+/obj/machinery/door/airlock/multi_tile/glass{
+	name = "Bar"
+	},
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
 	},
@@ -1002,7 +1035,8 @@
 /area/aro3/repair_bay)
 "is" = (
 /obj/machinery/door/airlock/multi_tile/glass{
-	dir = 2
+	dir = 2;
+	name = "Medical Bay"
 	},
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
@@ -1017,16 +1051,13 @@
 /area/aro3/medical)
 "iw" = (
 /obj/structure/closet/walllocker/emerglocker/north,
-/turf/simulated/floor/plating/eris/under,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/aro3/power)
 "iy" = (
-/obj/machinery/button/remote/blast_door{
-	id = "aroshipshutter_ramp";
-	name = "hangar shutters";
-	pixel_x = 28
-	},
-/turf/simulated/floor/tiled/eris/dark/danger,
-/area/aro3/flight_deck)
+/obj/structure/window/plastitanium/full,
+/obj/structure/grille,
+/turf/simulated/floor/plating/eris/under,
+/area/aro3/cockpit)
 "iB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 8
@@ -1055,21 +1086,24 @@
 /turf/simulated/floor/tiled/eris/white/golden,
 /area/aro3/medical)
 "iF" = (
-/obj/machinery/door/airlock/maintenance/common,
+/obj/machinery/door/airlock/maintenance/common{
+	name = "Personal Storage"
+	},
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/eris/dark/panels,
 /area/aro3/hallway_bunkrooms)
 "iJ" = (
-/obj/structure/bed/chair/sofa/brown{
+/obj/structure/bed/chair/sofa/black{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/dark,
 /area/aro3/function)
 "iL" = (
 /obj/machinery/power/apc/alarms_hidden{
-	dir = 8
+	dir = 8;
+	req_access = list()
 	},
 /obj/structure/cable/cyan{
 	icon_state = "0-2"
@@ -1098,7 +1132,9 @@
 /turf/simulated/floor/carpet/purcarpet,
 /area/aro3/bunkrooms)
 "iS" = (
-/obj/machinery/power/apc/alarms_hidden,
+/obj/machinery/power/apc/alarms_hidden{
+	req_access = list()
+	},
 /obj/structure/cable/cyan,
 /turf/simulated/floor/wood,
 /area/aro3/suite_port)
@@ -1106,7 +1142,9 @@
 /turf/simulated/floor/carpet/oracarpet,
 /area/aro3/bunkrooms)
 "iY" = (
-/obj/machinery/door/airlock/multi_tile/glass,
+/obj/machinery/door/airlock/multi_tile/glass{
+	name = "Atmos Management"
+	},
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
 	},
@@ -1127,7 +1165,8 @@
 /area/aro3/power)
 "jb" = (
 /obj/machinery/power/apc/alarms_hidden{
-	dir = 8
+	dir = 8;
+	req_access = list()
 	},
 /obj/structure/cable/cyan{
 	d2 = 1;
@@ -1150,7 +1189,7 @@
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/aro3/function)
 "jh" = (
-/obj/structure/bed/chair/sofa/brown/corner{
+/obj/structure/bed/chair/sofa/black/corner{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark,
@@ -1179,7 +1218,10 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/aro3/medical)
 "jy" = (
-/obj/machinery/door/airlock,
+/obj/machinery/door/airlock{
+	id_tag = "aro3_private2";
+	name = "Private Room 2"
+	},
 /turf/simulated/floor/tiled/eris/dark/panels,
 /area/aro3/suite_starboard)
 "jz" = (
@@ -1239,10 +1281,10 @@
 /turf/simulated/floor/water/indoors/surfluid,
 /area/aro3/function)
 "kb" = (
-/obj/structure/table/wooden_reinforced,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
+/obj/structure/table/fancyblack,
 /turf/simulated/floor/tiled/eris/dark,
 /area/aro3/function)
 "kc" = (
@@ -1263,7 +1305,8 @@
 /area/aro3/flight_deck)
 "kh" = (
 /obj/machinery/vending/engivend{
-	dir = 8
+	dir = 8;
+	req_access = list()
 	},
 /turf/simulated/floor/tiled/eris/dark,
 /area/aro3/power)
@@ -1297,7 +1340,9 @@
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/aro3/hallway_starboard)
 "km" = (
-/obj/machinery/door/airlock,
+/obj/machinery/door/airlock{
+	name = "Toilet"
+	},
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/aro3/suite_starboard_wc)
 "kn" = (
@@ -1360,7 +1405,9 @@
 /turf/simulated/floor/tiled/eris/dark,
 /area/aro3/workshop)
 "kM" = (
-/obj/machinery/power/apc/alarms_hidden,
+/obj/machinery/power/apc/alarms_hidden{
+	req_access = list()
+	},
 /obj/structure/cable/cyan{
 	icon_state = "0-4"
 	},
@@ -1376,7 +1423,14 @@
 /obj/structure/cable/cyan{
 	icon_state = "2-8"
 	},
-/turf/simulated/floor/plating/eris/under,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/aro3/power)
+"kW" = (
+/obj/machinery/computer/ship/sensors{
+	dir = 8;
+	req_one_access = list(777)
+	},
+/turf/simulated/floor/tiled/eris/dark,
 /area/aro3/power)
 "lb" = (
 /obj/structure/marker_beacon{
@@ -1410,6 +1464,15 @@
 	},
 /turf/simulated/floor/carpet/turcarpet,
 /area/aro3/suite_port)
+"ln" = (
+/obj/machinery/power/pointdefense{
+	id_tag = "aro3_pd"
+	},
+/obj/structure/cable/cyan{
+	icon_state = "0-9"
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/space)
 "lo" = (
 /obj/item/weapon/bedsheet,
 /obj/structure/bed/padded,
@@ -1447,6 +1510,7 @@
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
 	},
+/obj/machinery/door/firedoor/glass/hidden,
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/aro3/repair_bay)
 "ly" = (
@@ -1490,11 +1554,17 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/machinery/button/remote/blast_door{
+	id = "aroshipshutter_ramp";
+	name = "hangar shutters";
+	pixel_x = -28
+	},
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/aro3/flight_deck)
 "mg" = (
 /obj/machinery/door/airlock/multi_tile/glass{
-	dir = 2
+	dir = 2;
+	name = "Workshop"
 	},
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
@@ -1552,7 +1622,8 @@
 /area/aro3/bar)
 "mI" = (
 /obj/machinery/power/apc/alarms_hidden{
-	dir = 4
+	dir = 4;
+	req_access = list()
 	},
 /obj/structure/cable/cyan,
 /turf/simulated/floor/tiled/eris/white/golden,
@@ -1604,7 +1675,8 @@
 /area/aro3/function)
 "nd" = (
 /obj/machinery/power/apc/alarms_hidden{
-	dir = 4
+	dir = 4;
+	req_access = list()
 	},
 /obj/structure/cable/cyan{
 	icon_state = "0-8"
@@ -1639,7 +1711,7 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/aro3/power)
 "nq" = (
-/obj/structure/bed/chair/sofa/brown/right{
+/obj/structure/bed/chair/sofa/black/right{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark,
@@ -1654,7 +1726,8 @@
 /obj/machinery/power/apc/hyper{
 	alarms_hidden = 1;
 	dir = 4;
-	pixel_x = 25
+	pixel_x = 25;
+	req_access = list()
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -1718,7 +1791,9 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/aro3/bar)
 "od" = (
-/obj/machinery/power/apc/alarms_hidden,
+/obj/machinery/power/apc/alarms_hidden{
+	req_access = list()
+	},
 /obj/structure/cable/cyan,
 /turf/simulated/floor/wood,
 /area/aro3/suite_starboard)
@@ -1937,7 +2012,8 @@
 /area/aro3/park)
 "qi" = (
 /obj/machinery/power/apc/alarms_hidden{
-	dir = 4
+	dir = 4;
+	req_access = list()
 	},
 /obj/structure/cable/cyan{
 	icon_state = "0-8"
@@ -2043,7 +2119,16 @@
 "rc" = (
 /obj/machinery/light_switch{
 	dir = 1;
+	pixel_x = 3;
 	pixel_y = -24
+	},
+/obj/machinery/button/remote/airlock{
+	dir = 1;
+	id = "aro3_private2";
+	name = "Door Bolts";
+	pixel_x = -8;
+	pixel_y = -24;
+	specialfunctions = 4
 	},
 /turf/simulated/floor/carpet/turcarpet,
 /area/aro3/suite_starboard)
@@ -2105,7 +2190,7 @@
 	dir = 1;
 	pixel_y = -24
 	},
-/obj/structure/bed/chair/sofa/brown/right{
+/obj/structure/bed/chair/sofa/black/right{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/dark,
@@ -2172,11 +2257,15 @@
 /turf/simulated/floor/tiled/eris/white/cargo,
 /area/aro3/medical)
 "sk" = (
-/obj/machinery/door/airlock,
+/obj/machinery/door/airlock{
+	name = "Bunk Room 1"
+	},
 /turf/simulated/floor/tiled/eris/dark/panels,
 /area/aro3/bunkrooms)
 "so" = (
-/obj/machinery/door/airlock/maintenance/common,
+/obj/machinery/door/airlock/maintenance/common{
+	name = "Medical Storage"
+	},
 /turf/simulated/floor/tiled/eris/dark/panels,
 /area/aro3/medical)
 "sq" = (
@@ -2235,7 +2324,9 @@
 /turf/simulated/floor/tiled/eris/dark,
 /area/aro3/function)
 "sT" = (
-/obj/machinery/door/airlock,
+/obj/machinery/door/airlock{
+	name = "WC"
+	},
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
 	},
@@ -2452,7 +2543,9 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/aro3/bar)
 "vx" = (
-/obj/machinery/door/airlock/multi_tile/glass,
+/obj/machinery/door/airlock/multi_tile/glass{
+	name = "Kitchen/Tech Room"
+	},
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/aro3/surfluid)
 "vH" = (
@@ -2502,8 +2595,17 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/aro3/atmos)
+"vX" = (
+/obj/machinery/computer/ship/engines{
+	dir = 8;
+	req_one_access = list(777)
+	},
+/turf/simulated/floor/tiled/eris/dark,
+/area/aro3/power)
 "vZ" = (
-/obj/machinery/power/apc/alarms_hidden,
+/obj/machinery/power/apc/alarms_hidden{
+	req_access = list()
+	},
 /obj/structure/cable/cyan{
 	icon_state = "0-8"
 	},
@@ -2641,6 +2743,9 @@
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
 	},
+/obj/machinery/door/firedoor/glass/hidden{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/aro3/flight_deck)
 "wT" = (
@@ -2768,6 +2873,10 @@
 	},
 /turf/simulated/floor/reinforced,
 /area/aro3/flight_deck)
+"xI" = (
+/obj/structure/flora/pottedplant/unusual,
+/turf/simulated/floor/tiled/eris/dark,
+/area/aro3/workshop)
 "xN" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5;
@@ -2908,7 +3017,8 @@
 /area/aro3/park)
 "yQ" = (
 /obj/machinery/power/apc/alarms_hidden{
-	dir = 4
+	dir = 4;
+	req_access = list()
 	},
 /obj/structure/cable/cyan{
 	icon_state = "0-8"
@@ -2938,7 +3048,9 @@
 /turf/simulated/floor/tiled/eris/cafe,
 /area/aro3/kitchen)
 "yV" = (
-/obj/machinery/door/airlock/multi_tile/glass,
+/obj/machinery/door/airlock/multi_tile/glass{
+	name = "Power Management"
+	},
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
 	},
@@ -2959,7 +3071,8 @@
 /area/aro3/medical)
 "zi" = (
 /obj/machinery/power/apc/alarms_hidden{
-	dir = 8
+	dir = 8;
+	req_access = list()
 	},
 /obj/structure/cable/cyan{
 	icon_state = "0-4"
@@ -3052,7 +3165,8 @@
 /area/aro3/flight_deck)
 "zG" = (
 /obj/machinery/power/apc/alarms_hidden{
-	dir = 8
+	dir = 8;
+	req_access = list()
 	},
 /obj/structure/cable/cyan{
 	icon_state = "0-4"
@@ -3099,7 +3213,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
 	dir = 5
 	},
-/turf/simulated/floor/plating/eris/under,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/aro3/atmos)
 "zV" = (
 /obj/structure/cable/cyan{
@@ -3188,7 +3302,8 @@
 /area/aro3/hallway_bunkrooms)
 "Aj" = (
 /obj/machinery/door/airlock/multi_tile/glass{
-	dir = 2
+	dir = 2;
+	name = "Kitchen"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 8
@@ -3258,11 +3373,19 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
+/obj/structure/flora/pottedplant/smalltree,
 /turf/simulated/floor/tiled/eris/dark/violetcorener,
 /area/aro3/cockpit)
 "Be" = (
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/aro3/surfluid)
+"Bi" = (
+/obj/machinery/computer/ship/helm{
+	dir = 8;
+	req_one_access = list(777)
+	},
+/turf/simulated/floor/tiled/eris/dark,
+/area/aro3/power)
 "Bn" = (
 /obj/machinery/light,
 /turf/simulated/floor/tiled/eris/steel/bar_flat,
@@ -3350,7 +3473,16 @@
 "Cw" = (
 /obj/machinery/light_switch{
 	dir = 1;
+	pixel_x = -3;
 	pixel_y = -24
+	},
+/obj/machinery/button/remote/airlock{
+	dir = 1;
+	id = "aro3_private1";
+	name = "Door Bolts";
+	pixel_x = 8;
+	pixel_y = -24;
+	specialfunctions = 4
 	},
 /turf/simulated/floor/carpet/turcarpet,
 /area/aro3/suite_port)
@@ -3371,6 +3503,7 @@
 	dir = 8;
 	pixel_x = 26
 	},
+/obj/structure/flora/pottedplant/sticky,
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/aro3/hallway_bunkrooms)
 "CA" = (
@@ -3433,18 +3566,18 @@
 /turf/simulated/wall/rpshull,
 /area/space)
 "CQ" = (
-/obj/structure/cable/cyan{
-	icon_state = "1-8"
-	},
-/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
-/area/aro3/hallway_bunkrooms)
+/obj/structure/window/plastitanium/full,
+/turf/simulated/floor/plating/eris/under,
+/area/aro3/eva_hall)
 "CR" = (
 /obj/machinery/door/window/eastleft,
 /turf/simulated/floor/tiled/white,
 /area/aro3/suite_port_wc)
 "CW" = (
 /obj/structure/table/steel,
-/obj/machinery/power/apc/alarms_hidden,
+/obj/machinery/power/apc/alarms_hidden{
+	req_access = list()
+	},
 /obj/structure/cable/cyan,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/aro3/repair_bay)
@@ -3502,6 +3635,9 @@
 	dir = 8;
 	pixel_x = 25
 	},
+/obj/machinery/door/firedoor/glass/hidden{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/aro3/repair_bay)
 "DB" = (
@@ -3530,7 +3666,7 @@
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/aro3/eva_hall)
 "DQ" = (
-/obj/structure/bed/chair/sofa/brown/left{
+/obj/structure/bed/chair/sofa/black/left{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark,
@@ -3575,7 +3711,7 @@
 /area/aro3/hallway_starboard)
 "Eo" = (
 /obj/structure/closet/walllocker/emerglocker/north,
-/turf/simulated/floor/plating/eris/under,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/aro3/atmos)
 "Er" = (
 /obj/structure/table/steel,
@@ -3636,18 +3772,17 @@
 /turf/simulated/floor/tiled/eris/white/golden,
 /area/aro3/medical)
 "EF" = (
-/obj/machinery/ion_engine{
-	dir = 1;
-	icon_state = "nozzle"
-	},
-/turf/space,
-/area/aro3/engines)
+/obj/structure/flora/pottedplant/subterranean,
+/turf/simulated/floor/tiled/eris/dark,
+/area/aro3/function)
 "EK" = (
 /obj/machinery/transhuman/resleever,
 /turf/simulated/floor/tiled/eris/white/cargo,
 /area/aro3/medical)
 "EM" = (
-/obj/machinery/door/airlock,
+/obj/machinery/door/airlock{
+	name = "Toilet"
+	},
 /turf/simulated/floor/tiled/eris/dark/panels,
 /area/aro3/suite_port_wc)
 "ER" = (
@@ -3722,7 +3857,9 @@
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/aro3/hallway_port)
 "Fu" = (
-/obj/machinery/door/airlock,
+/obj/machinery/door/airlock{
+	name = "WC"
+	},
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
 	},
@@ -3822,8 +3959,20 @@
 /obj/machinery/meter,
 /turf/simulated/floor/plating/eris/under,
 /area/aro3/atmos)
+"Gz" = (
+/obj/machinery/power/pointdefense{
+	id_tag = "aro3_pd"
+	},
+/obj/structure/cable/cyan{
+	icon_state = "0-5"
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/space)
 "GA" = (
-/obj/machinery/door/airlock,
+/obj/machinery/door/airlock{
+	id_tag = "aro3_private1";
+	name = "Private Room 1"
+	},
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
 	},
@@ -3833,7 +3982,8 @@
 /area/aro3/suite_port)
 "GC" = (
 /obj/machinery/vending/engineering{
-	dir = 8
+	dir = 8;
+	req_access = list()
 	},
 /turf/simulated/floor/tiled/eris/dark,
 /area/aro3/power)
@@ -3921,7 +4071,7 @@
 /turf/space,
 /area/space)
 "HH" = (
-/obj/structure/bed/chair/sofa/brown{
+/obj/structure/bed/chair/sofa/black{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark,
@@ -3992,8 +4142,8 @@
 /turf/simulated/floor/tiled/eris/dark/gray_platform,
 /area/aro3/workshop)
 "IF" = (
-/obj/structure/table/wooden_reinforced,
-/turf/simulated/floor/tiled/eris/dark,
+/obj/structure/window/plastitanium/full,
+/turf/simulated/floor/plating/eris/under,
 /area/aro3/function)
 "II" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -4035,11 +4185,15 @@
 	},
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/aro3/function)
+"Jj" = (
+/obj/structure/window/plastitanium/full,
+/turf/simulated/floor/plating/eris/under,
+/area/aro3/flight_deck)
 "Jl" = (
-/obj/structure/table/wooden_reinforced,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
+/obj/structure/table/fancyblack,
 /turf/simulated/floor/tiled/eris/dark,
 /area/aro3/function)
 "Jt" = (
@@ -4063,7 +4217,9 @@
 /turf/simulated/floor/tiled/eris/steel/bar_light,
 /area/aro3/bar)
 "JU" = (
-/obj/machinery/door/airlock,
+/obj/machinery/door/airlock{
+	name = "Public WC"
+	},
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
 	},
@@ -4082,14 +4238,9 @@
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/aro3/flight_deck)
 "Kc" = (
-/obj/machinery/power/pointdefense{
-	id_tag = "aro3_pd"
-	},
-/obj/structure/cable/cyan{
-	icon_state = "0-9"
-	},
+/obj/structure/window/plastitanium/full,
 /turf/simulated/floor/plating/eris/under,
-/area/space)
+/area/aro3/kitchen)
 "Kj" = (
 /obj/machinery/light_switch{
 	dir = 1;
@@ -4186,7 +4337,9 @@
 /turf/simulated/floor/reinforced/airless,
 /area/space)
 "KK" = (
-/obj/machinery/door/airlock/multi_tile/glass,
+/obj/machinery/door/airlock/multi_tile/glass{
+	name = "Repair Bay"
+	},
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/aro3/repair_bay)
 "KP" = (
@@ -4257,7 +4410,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
 	dir = 10
 	},
-/turf/simulated/floor/plating/eris/under,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/aro3/atmos)
 "Lm" = (
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
@@ -4269,7 +4422,9 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/aro3/workshop)
 "Lo" = (
-/obj/machinery/clonepod/transhuman/full,
+/obj/machinery/clonepod/transhuman/full{
+	req_access = list()
+	},
 /turf/simulated/floor/tiled/eris/white/cargo,
 /area/aro3/medical)
 "Lp" = (
@@ -4278,6 +4433,9 @@
 	range = 3.5
 	},
 /obj/effect/floor_decal/industrial/warning/full,
+/obj/machinery/light/small{
+	dir = 8
+	},
 /turf/simulated/floor/plating/eris/under,
 /area/aro3/cockpit)
 "Lq" = (
@@ -4285,7 +4443,7 @@
 /turf/simulated/floor/tiled/eris/white/cargo,
 /area/aro3/medical)
 "Ls" = (
-/obj/structure/bed/chair/sofa/brown/corner{
+/obj/structure/bed/chair/sofa/black/corner{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark,
@@ -4443,7 +4601,8 @@
 /area/aro3/flight_deck)
 "MC" = (
 /obj/structure/sign/warning/docking_area,
-/turf/simulated/wall/rpshull,
+/obj/structure/window/plastitanium/full,
+/turf/simulated/floor/plating/eris/under,
 /area/aro3/flight_deck)
 "MD" = (
 /obj/structure/table/rack/shelf/steel,
@@ -4524,7 +4683,10 @@
 /turf/simulated/floor/tiled/eris/white/golden,
 /area/aro3/medical)
 "Ni" = (
-/obj/machinery/door/airlock,
+/obj/machinery/door/airlock{
+	id_tag = "aro3_private2";
+	name = "Private Room 2"
+	},
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
 	},
@@ -4533,7 +4695,9 @@
 /turf/simulated/floor/tiled/eris/dark/panels,
 /area/aro3/suite_starboard)
 "Nj" = (
-/obj/machinery/door/airlock/maintenance/common,
+/obj/machinery/door/airlock/maintenance/common{
+	name = "Materials Storage"
+	},
 /turf/simulated/floor/tiled/eris/dark/panels,
 /area/aro3/workshop)
 "Nm" = (
@@ -4617,19 +4781,19 @@
 /turf/simulated/floor/tiled/eris/white/cargo,
 /area/aro3/medical)
 "Ob" = (
-/obj/machinery/ion_engine{
-	burn_cost = 15000;
-	dir = 1;
-	generated_thrust = 5;
-	icon = 'icons/turf/shuttle_parts64.dmi';
-	icon_state = "engine_off"
+/obj/structure/cable/cyan{
+	icon_state = "1-8"
 	},
-/turf/space,
-/area/aro3/engines)
+/obj/structure/cable/cyan{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/aro3/hallway_bunkrooms)
 "Oi" = (
 /obj/structure/hull_corner/long_horiz{
 	dir = 9
 	},
+/obj/structure/lattice,
 /turf/space,
 /area/space)
 "Oq" = (
@@ -4641,11 +4805,15 @@
 /turf/simulated/floor/carpet/turcarpet,
 /area/aro3/suite_starboard)
 "Or" = (
-/obj/machinery/computer/transhuman/resleeving,
+/obj/machinery/computer/transhuman/resleeving{
+	req_access = list()
+	},
 /turf/simulated/floor/tiled/eris/white/cargo,
 /area/aro3/medical)
 "Os" = (
-/obj/machinery/power/apc/alarms_hidden,
+/obj/machinery/power/apc/alarms_hidden{
+	req_access = list()
+	},
 /obj/structure/cable/cyan,
 /turf/simulated/floor/tiled/eris/dark,
 /area/aro3/surfluid)
@@ -4708,7 +4876,9 @@
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/aro3/hallway_starboard)
 "OW" = (
-/obj/machinery/door/airlock/multi_tile/glass,
+/obj/machinery/door/airlock/multi_tile/glass{
+	name = "Tech Room"
+	},
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
 	},
@@ -4734,9 +4904,6 @@
 /turf/simulated/floor/carpet/turcarpet,
 /area/aro3/suite_port)
 "Pw" = (
-/obj/structure/cable/cyan{
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
@@ -4769,7 +4936,7 @@
 /turf/simulated/floor/tiled/eris/white/golden,
 /area/aro3/medical)
 "PJ" = (
-/obj/structure/bed/chair/sofa/brown{
+/obj/structure/bed/chair/sofa/black{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark,
@@ -4799,7 +4966,9 @@
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/aro3/hallway_starboard)
 "PP" = (
-/obj/machinery/computer/ship/helm,
+/obj/machinery/computer/ship/helm{
+	req_one_access = list()
+	},
 /turf/simulated/floor/tiled/eris/dark/violetcorener,
 /area/aro3/cockpit)
 "PV" = (
@@ -4855,6 +5024,7 @@
 /area/shuttle/aroboat3)
 "QD" = (
 /obj/structure/fans/hardlight,
+/obj/machinery/door/firedoor/glass/hidden,
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/aro3/flight_deck)
 "QE" = (
@@ -4870,7 +5040,9 @@
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/aro3/hallway_bunkrooms)
 "QO" = (
-/obj/machinery/door/airlock/multi_tile/glass,
+/obj/machinery/door/airlock/multi_tile/glass{
+	name = "Park"
+	},
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
 	},
@@ -4954,14 +5126,9 @@
 /turf/simulated/floor/tiled/eris/cafe,
 /area/aro3/kitchen)
 "Rz" = (
-/obj/machinery/power/pointdefense{
-	id_tag = "aro3_pd"
-	},
-/obj/structure/cable/cyan{
-	icon_state = "0-5"
-	},
+/obj/structure/window/plastitanium/full,
 /turf/simulated/floor/plating/eris/under,
-/area/space)
+/area/aro3/surfluid)
 "RJ" = (
 /turf/simulated/wall/rpshull,
 /area/aro3/surfluid)
@@ -5039,14 +5206,13 @@
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/aro3/hallway_port)
 "SK" = (
-/obj/structure/closet/walllocker/emerglocker/north,
 /obj/machinery/power/apc/alarms_hidden{
-	dir = 8
+	dir = 4;
+	req_access = list()
 	},
-/obj/structure/cable/cyan{
-	icon_state = "0-4"
-	},
-/turf/simulated/floor/carpet/purcarpet,
+/obj/structure/cable/cyan,
+/obj/structure/closet/crate,
+/turf/simulated/floor/tiled/techmaint,
 /area/aro3/bunkrooms)
 "SR" = (
 /obj/structure/table/rack/shelf/steel,
@@ -5112,7 +5278,9 @@
 /turf/simulated/floor/tiled/eris/dark,
 /area/aro3/workshop)
 "Tv" = (
-/obj/machinery/power/apc/alarms_hidden,
+/obj/machinery/power/apc/alarms_hidden{
+	req_access = list()
+	},
 /obj/structure/cable/cyan{
 	icon_state = "0-4"
 	},
@@ -5157,10 +5325,10 @@
 /turf/simulated/wall/rpshull,
 /area/aro3/power)
 "TK" = (
-/obj/structure/lattice,
 /obj/structure/cable/cyan{
 	icon_state = "6-9"
 	},
+/obj/structure/lattice,
 /turf/space,
 /area/space)
 "TM" = (
@@ -5175,7 +5343,9 @@
 /turf/simulated/floor/tiled/eris/cafe,
 /area/aro3/kitchen)
 "TO" = (
-/obj/machinery/door/airlock/multi_tile/glass,
+/obj/machinery/door/airlock/multi_tile/glass{
+	name = "Kitchen"
+	},
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/aro3/function)
 "TT" = (
@@ -5207,6 +5377,7 @@
 /area/space)
 "Ui" = (
 /obj/machinery/door/airlock/multi_tile/glass{
+	name = "Bridge";
 	req_access = list(777);
 	secured_wires = 1
 	},
@@ -5216,7 +5387,9 @@
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/aro3/cockpit)
 "Uj" = (
-/obj/machinery/door/airlock/multi_tile/glass,
+/obj/machinery/door/airlock/multi_tile/glass{
+	name = "Bunking Area"
+	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/eris/steel/panels,
@@ -5234,7 +5407,7 @@
 /turf/simulated/wall/rpshull,
 /area/aro3/flight_deck)
 "Us" = (
-/obj/structure/bed/chair/sofa/brown/left{
+/obj/structure/bed/chair/sofa/black/left{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/dark,
@@ -5313,20 +5486,19 @@
 /obj/machinery/power/apc/hyper{
 	alarms_hidden = 1;
 	dir = 8;
-	pixel_x = -25
+	pixel_x = -25;
+	req_access = list()
 	},
 /obj/structure/cable/cyan,
 /obj/machinery/light,
-/turf/simulated/floor/plating/eris/under,
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/aro3/engines)
 "Vv" = (
-/obj/machinery/button/remote/blast_door{
-	id = "aroshipshutter_ramp";
-	name = "hangar shutters";
-	pixel_x = -28
+/obj/machinery/door/airlock{
+	name = "Bunk Room 3"
 	},
-/turf/simulated/floor/tiled/eris/dark/danger,
-/area/aro3/flight_deck)
+/turf/simulated/floor/tiled/eris/dark/panels,
+/area/aro3/bunkrooms)
 "VA" = (
 /obj/structure/railing/grey{
 	dir = 8
@@ -5453,11 +5625,9 @@
 /turf/simulated/floor/tiled/eris/cafe,
 /area/aro3/kitchen)
 "WU" = (
-/obj/structure/cable/cyan{
-	icon_state = "1-2"
-	},
+/obj/structure/window/plastitanium/full,
 /turf/simulated/floor/plating/eris/under,
-/area/aro3/power)
+/area/aro3/bar)
 "WV" = (
 /obj/structure/table/steel,
 /turf/simulated/floor/tiled/eris/dark,
@@ -5495,6 +5665,9 @@
 /turf/simulated/floor/tiled/eris/dark/techfloor,
 /area/aro3/hallway_port)
 "Xo" = (
+/obj/machinery/ion_engine{
+	dir = 1
+	},
 /turf/space,
 /area/aro3/engines)
 "Xp" = (
@@ -5713,7 +5886,8 @@
 	pixel_y = 24
 	},
 /obj/machinery/power/apc/alarms_hidden{
-	dir = 8
+	dir = 8;
+	req_access = list()
 	},
 /obj/structure/cable/cyan{
 	d2 = 1;
@@ -5721,6 +5895,17 @@
 	},
 /turf/simulated/floor/tiled/eris/white,
 /area/aro3/wc_starboard)
+"Zy" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/button/remote/blast_door{
+	id = "aroshipshutter_ramp";
+	name = "hangar shutters";
+	pixel_x = 28
+	},
+/turf/simulated/floor/tiled/eris/dark/danger,
+/area/aro3/flight_deck)
 "ZB" = (
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
@@ -10725,9 +10910,9 @@ Ua
 Ua
 Ua
 Ua
+lb
 Ua
-Ua
-Ua
+Gz
 Ua
 Ua
 Ua
@@ -10866,10 +11051,10 @@ Ua
 Ua
 Ua
 Ua
-Ua
-xc
-Rz
-Ua
+LW
+Fn
+Ag
+Fn
 Ua
 Ua
 Ua
@@ -11011,7 +11196,7 @@ LW
 Fn
 Ag
 Fn
-Ua
+Fn
 Ua
 Ua
 Ua
@@ -11153,7 +11338,7 @@ Fn
 Ag
 Fn
 Fn
-Ua
+dk
 Ua
 Ua
 Ua
@@ -11430,7 +11615,7 @@ hD
 hD
 hD
 yn
-wc
+yn
 Fn
 Ag
 Fn
@@ -11572,8 +11757,8 @@ Ve
 hD
 hD
 yn
-Fn
-Ag
+yn
+cl
 Fn
 Fn
 dk
@@ -11715,9 +11900,9 @@ Ve
 hD
 hD
 wH
-Fn
-Fn
-dk
+yn
+Ua
+Ua
 Ua
 Ua
 Ua
@@ -12705,8 +12890,8 @@ Fn
 Fn
 WN
 mr
-TU
-dJ
+Ob
+SK
 dJ
 BA
 lO
@@ -12875,9 +13060,9 @@ Ua
 Ua
 Ua
 Ua
+LW
 Ua
-Ua
-Ua
+qd
 Ua
 Ua
 Ua
@@ -13016,10 +13201,10 @@ Ua
 Ua
 Ua
 Ua
-Ua
-Ua
-Ua
-Ua
+LW
+Fn
+Fn
+Xo
 Ua
 Ua
 Ua
@@ -13160,9 +13345,9 @@ Ua
 LW
 Fn
 Fn
-EF
-Ua
-Ua
+Fn
+yn
+xc
 Ua
 Ua
 Ua
@@ -13302,8 +13487,8 @@ LW
 Fn
 Fn
 Fn
-yn
-xc
+Fn
+Xo
 Ua
 Ua
 Ua
@@ -13439,12 +13624,12 @@ Fn
 ck
 Ua
 Ua
-LW
+Ua
 Fn
 Fn
 Fn
 Fn
-EF
+dk
 Ua
 Ua
 Ua
@@ -13559,7 +13744,7 @@ Rk
 eS
 kq
 zo
-SK
+iR
 ZO
 lO
 hw
@@ -13581,7 +13766,7 @@ aq
 Fn
 Yw
 Ua
-Fn
+Ua
 Fn
 Fn
 Fn
@@ -13699,7 +13884,7 @@ hN
 WN
 qH
 eS
-cB
+kq
 aQ
 hX
 vQ
@@ -13721,10 +13906,10 @@ rP
 rP
 aq
 Fn
-Ua
 yn
-Fn
-Fn
+yn
+yn
+oW
 Fn
 dk
 Ua
@@ -13841,7 +14026,7 @@ ef
 WN
 WN
 gU
-mE
+kq
 zo
 iR
 ZO
@@ -13866,8 +14051,8 @@ Fn
 Fn
 yn
 yn
-Fn
-dk
+yn
+yn
 Ua
 Ua
 Ua
@@ -14125,7 +14310,7 @@ TD
 Ul
 gp
 bX
-CQ
+kq
 zo
 ZK
 Go
@@ -14154,7 +14339,7 @@ Fn
 Fn
 Fn
 Xo
-Ob
+Ua
 Ua
 Ua
 Ua
@@ -14268,7 +14453,7 @@ WN
 WN
 Ex
 kq
-sk
+Vv
 Np
 iP
 lO
@@ -14296,7 +14481,7 @@ aq
 aq
 Fn
 Xo
-Xo
+Ua
 Ua
 Ua
 Ua
@@ -14427,13 +14612,13 @@ Vl
 aq
 iw
 kP
-WU
-WU
-WU
-WU
-WU
-WU
-WU
+gb
+gb
+gb
+gb
+gb
+gb
+gb
 Vp
 aq
 Fn
@@ -14520,7 +14705,7 @@ Ua
 Ua
 Ua
 Ua
-Ua
+pc
 lb
 Ua
 Ua
@@ -14572,15 +14757,15 @@ Rw
 kh
 NG
 GC
-Uz
-Uz
-Uz
+vX
+kW
+Bi
 Uz
 wO
 aq
 Fn
 Xo
-Ob
+Ua
 Ua
 Ua
 Ua
@@ -14722,7 +14907,7 @@ wO
 aq
 Fn
 Xo
-Xo
+Ua
 Ua
 Ua
 Ua
@@ -14963,8 +15148,8 @@ qI
 ns
 ns
 ns
-ns
-ns
+IF
+IF
 ns
 Fy
 Fy
@@ -14977,7 +15162,7 @@ Fy
 RJ
 RJ
 RJ
-RJ
+Rz
 RJ
 RJ
 RJ
@@ -14986,8 +15171,8 @@ Fr
 NC
 NC
 NC
-NC
-NC
+ff
+ff
 NC
 NC
 oz
@@ -14999,9 +15184,9 @@ Ur
 Ur
 Ur
 Ur
-Ur
-Ur
-Ur
+Jj
+Jj
+Jj
 Ur
 Ur
 Ur
@@ -15143,7 +15328,7 @@ HE
 HE
 HE
 tz
-Vv
+Ov
 md
 xB
 Vg
@@ -15237,7 +15422,7 @@ XF
 kc
 Nu
 EC
-zu
+EF
 pr
 pr
 pr
@@ -15250,7 +15435,7 @@ HH
 HH
 jh
 cm
-Fy
+Kc
 AD
 iL
 mQ
@@ -15377,7 +15562,7 @@ lu
 Hc
 XF
 XF
-Nu
+CQ
 EC
 zu
 uJ
@@ -15388,8 +15573,8 @@ qX
 Fb
 zu
 zu
-IF
-IF
+uJ
+uJ
 iJ
 cm
 Fy
@@ -15531,7 +15716,7 @@ Fb
 zu
 zu
 kb
-IF
+uJ
 rx
 ns
 Fy
@@ -15619,7 +15804,7 @@ Ua
 Ua
 Ua
 Ua
-Ua
+pc
 Fn
 Fn
 Fn
@@ -15644,8 +15829,8 @@ Hv
 Hv
 Hv
 Hv
-Fn
-Zm
+cB
+iy
 PP
 tL
 QS
@@ -15761,7 +15946,7 @@ Ua
 Ua
 Ua
 Ua
-Ua
+YZ
 Fn
 Fn
 Fn
@@ -15786,8 +15971,8 @@ Hv
 Hv
 Hv
 Hv
-Fn
-Zm
+cB
+iy
 Lt
 dE
 NQ
@@ -15957,7 +16142,7 @@ Fb
 zu
 zu
 Jl
-IF
+uJ
 Us
 ns
 Fy
@@ -16087,7 +16272,7 @@ lu
 DM
 EW
 Mh
-Nu
+CQ
 EC
 zu
 uJ
@@ -16098,8 +16283,8 @@ qX
 Fb
 zu
 zu
-IF
-IF
+uJ
+uJ
 iJ
 cm
 Fy
@@ -16231,7 +16416,7 @@ XF
 kc
 Nu
 EC
-zu
+EF
 rN
 rN
 rN
@@ -16244,7 +16429,7 @@ PJ
 PJ
 Ls
 cm
-Fy
+Kc
 AD
 AD
 AD
@@ -16421,8 +16606,8 @@ Ov
 Ov
 Ov
 Ov
-iy
-kg
+Ov
+Zy
 Es
 Vg
 Bw
@@ -16525,8 +16710,8 @@ Mr
 ns
 ns
 ns
-ns
-ns
+IF
+IF
 ns
 Fy
 Fy
@@ -16539,7 +16724,7 @@ Fy
 RJ
 RJ
 RJ
-RJ
+Rz
 RJ
 RJ
 RJ
@@ -16548,8 +16733,8 @@ CH
 NC
 NC
 NC
-NC
-NC
+ff
+ff
 NC
 NC
 OV
@@ -16561,9 +16746,9 @@ Ur
 Ur
 Ur
 Ur
-Ur
-Ur
-Ur
+Jj
+Jj
+Jj
 Ur
 Ur
 Ur
@@ -16852,7 +17037,7 @@ Lm
 fB
 Fn
 Xo
-Ob
+Ua
 Ua
 Ua
 Ua
@@ -16934,7 +17119,7 @@ Ua
 Ua
 Ua
 Ua
-Ua
+YZ
 xO
 Ua
 Ua
@@ -16966,8 +17151,8 @@ EV
 EV
 EV
 EV
-EV
-EV
+WU
+WU
 EV
 ly
 ly
@@ -16994,7 +17179,7 @@ Lm
 fB
 Fn
 Xo
-Xo
+Ua
 Ua
 Ua
 Ua
@@ -17126,13 +17311,13 @@ fB
 Eo
 Ll
 zT
-Hh
-Hh
-Hh
-Hh
-Hh
-Hh
-Hh
+Lm
+Lm
+Lm
+Lm
+Lm
+Lm
+Lm
 fB
 Fn
 yn
@@ -17278,7 +17463,7 @@ fB
 fB
 Fn
 Xo
-Ob
+Ua
 Ua
 Ua
 Ua
@@ -17420,7 +17605,7 @@ Fn
 Fn
 Fn
 Xo
-Xo
+Ua
 Ua
 Ua
 Ua
@@ -17700,8 +17885,8 @@ Fn
 Fn
 yn
 yn
-Fn
-ck
+yn
+yn
 Ua
 Ua
 Ua
@@ -17841,8 +18026,8 @@ fB
 Fn
 Oi
 yn
-Fn
-Fn
+yn
+wc
 Fn
 ck
 Ua
@@ -17983,7 +18168,7 @@ fB
 Fn
 Ua
 Ua
-Fn
+Ua
 Fn
 Fn
 Fn
@@ -18110,7 +18295,7 @@ Wz
 FE
 tl
 tl
-tl
+xI
 PL
 Aq
 Rp
@@ -18125,12 +18310,12 @@ Fn
 dk
 Ua
 Ua
-HG
+Ua
 Fn
 Fn
 Fn
 Fn
-EF
+ck
 Ua
 Ua
 Ua
@@ -18272,8 +18457,8 @@ HG
 Fn
 Fn
 Fn
-yn
-XE
+Fn
+Xo
 Ua
 Ua
 Ua
@@ -18414,9 +18599,9 @@ Ua
 HG
 Fn
 Fn
-EF
-Ua
-Ua
+Fn
+yn
+XE
 Ua
 Ua
 Ua
@@ -18554,10 +18739,10 @@ Ua
 Ua
 Ua
 Ua
-Ua
-Ua
-Ua
-Ua
+HG
+Fn
+Fn
+Xo
 Ua
 Ua
 Ua
@@ -18697,9 +18882,9 @@ Ua
 Ua
 Ua
 Ua
+HG
 Ua
-Ua
-Ua
+zl
 Ua
 Ua
 Ua
@@ -19809,9 +19994,9 @@ rL
 hD
 hD
 TK
-Fn
-Fn
-ck
+yn
+Ua
+Ua
 Ua
 Ua
 Ua
@@ -19950,8 +20135,8 @@ rL
 hD
 hD
 yn
-Fn
-wN
+yn
+ep
 Fn
 Fn
 ck
@@ -20092,7 +20277,7 @@ hD
 hD
 hD
 yn
-oW
+yn
 Fn
 wN
 Fn
@@ -20526,7 +20711,7 @@ Fn
 wN
 Fn
 Fn
-Ua
+ck
 Ua
 Ua
 Ua
@@ -20668,7 +20853,7 @@ HG
 Fn
 wN
 Fn
-Ua
+Fn
 Ua
 Ua
 Ua
@@ -20807,10 +20992,10 @@ Ua
 Ua
 Ua
 Ua
-Ua
-XE
-Kc
-Ua
+HG
+Fn
+wN
+Fn
 Ua
 Ua
 Ua
@@ -20950,9 +21135,9 @@ Ua
 Ua
 Ua
 Ua
+xO
 Ua
-Ua
-Ua
+ln
 Ua
 Ua
 Ua
