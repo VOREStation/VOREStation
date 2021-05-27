@@ -22,6 +22,12 @@
 	},
 /turf/simulated/floor/plating,
 /area/shuttle/mackerel_hc_skel_cockpit)
+"aO" = (
+/obj/structure/hull_corner{
+	dir = 1
+	},
+/turf/template_noop,
+/area/shuttle/mackerel_hc_skel)
 "bw" = (
 /obj/machinery/shipsensors{
 	dir = 1
@@ -291,12 +297,22 @@
 	},
 /turf/simulated/floor/plating,
 /area/shuttle/mackerel_hc_skel)
+"pR" = (
+/obj/structure/hull_corner{
+	dir = 4
+	},
+/turf/template_noop,
+/area/shuttle/mackerel_hc_skel)
 "pZ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/effect/floor_decal/industrial/warning{
 	dir = 5
 	},
 /turf/simulated/floor/reinforced,
+/area/shuttle/mackerel_hc_skel)
+"qt" = (
+/obj/structure/hull_corner,
+/turf/simulated/floor/airless,
 /area/shuttle/mackerel_hc_skel)
 "rf" = (
 /obj/machinery/atmospherics/portables_connector,
@@ -784,6 +800,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/reinforced,
 /area/shuttle/mackerel_hc_skel)
+"Nm" = (
+/obj/structure/hull_corner{
+	dir = 8
+	},
+/turf/simulated/floor/airless,
+/area/shuttle/mackerel_hc_skel)
 "Nr" = (
 /obj/machinery/airlock_sensor{
 	pixel_x = -25
@@ -912,6 +934,10 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/reinforced,
+/area/shuttle/mackerel_hc_skel)
+"RS" = (
+/obj/structure/hull_corner,
+/turf/template_noop,
 /area/shuttle/mackerel_hc_skel)
 "RT" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -1074,6 +1100,12 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/mackerel_hc_skel_cockpit)
+"ZI" = (
+/obj/structure/hull_corner{
+	dir = 8
+	},
+/turf/template_noop,
+/area/shuttle/mackerel_hc_skel)
 "ZJ" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
 /obj/machinery/computer/ship/engines{
@@ -1134,13 +1166,13 @@ WP
 WP
 WP
 WP
-WP
+RS
 ka
 ka
 ka
 ka
 ka
-WP
+pR
 WP
 "}
 (3,1,1) = {"
@@ -1161,7 +1193,7 @@ WP
 WP
 WP
 WP
-WP
+ka
 ka
 Zb
 bI
@@ -1188,7 +1220,7 @@ WP
 WP
 WP
 WP
-WP
+ka
 ka
 Gn
 nZ
@@ -1215,13 +1247,13 @@ WP
 WP
 WP
 WP
-WP
+ZI
 ka
 ka
 tV
 ka
 ka
-WP
+aO
 WP
 "}
 (6,1,1) = {"
@@ -1256,7 +1288,7 @@ WP
 ka
 az
 az
-az
+qt
 ka
 ka
 ka
@@ -1330,7 +1362,7 @@ tV
 ka
 ka
 ka
-WP
+pR
 "}
 (10,1,1) = {"
 WP
@@ -1438,7 +1470,7 @@ tV
 ka
 ka
 ka
-WP
+aO
 "}
 (14,1,1) = {"
 WP
@@ -1472,7 +1504,7 @@ WP
 ka
 az
 az
-az
+Nm
 ka
 ka
 ka
@@ -1539,13 +1571,13 @@ WP
 WP
 WP
 WP
-WP
+RS
 ka
 ka
 tV
 ka
 ka
-WP
+pR
 WP
 "}
 (18,1,1) = {"
@@ -1566,7 +1598,7 @@ WP
 WP
 WP
 WP
-WP
+ka
 ka
 Gn
 nZ
@@ -1593,7 +1625,7 @@ WP
 WP
 WP
 WP
-WP
+ka
 ka
 lu
 bC
@@ -1620,13 +1652,13 @@ WP
 WP
 WP
 WP
-WP
+ZI
 ka
 ka
 ka
 ka
 ka
-WP
+aO
 WP
 "}
 (21,1,1) = {"
