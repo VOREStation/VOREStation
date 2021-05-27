@@ -69,20 +69,21 @@
 	else
 		data["has_id"] = FALSE
 
-	data["ores"] = list()
+	
+	var/list/ores = list()
 	for(var/ore in machine.ores_processing)
 		if(!machine.ores_stored[ore] && !show_all_ores)
 			continue
 		var/ore/O = GLOB.ore_data[ore]
 		if(!O)
 			continue
-		data["ores"].Add(list(list(
+		ores.Add(list(list(
 			"ore" = ore,
 			"name" = O.display_name,
 			"amount" = machine.ores_stored[ore],
 			"processing" = machine.ores_processing[ore] ? machine.ores_processing[ore] : 0,
 		)))
-
+	data["ores"] = ores
 	data["showAllOres"] = show_all_ores
 	data["power"] = machine.active
 	data["speed"] = machine.speed_process

@@ -1177,7 +1177,7 @@ mob/verb/shifteast()
 		else
 			registered_z = null
 
-GLOBAL_LIST_EMPTY(living_players_by_zlevel)
+GLOBAL_LIST_EMPTY_TYPED(living_players_by_zlevel, /list)
 /mob/living/update_client_z(new_z)
 	var/precall_reg_z = registered_z
 	. = ..() // will update registered_z if necessary

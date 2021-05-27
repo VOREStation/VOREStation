@@ -87,13 +87,13 @@
 	data["unsaved_changes"] = unsaved_changes
 	data["show_pictures"] = show_pictures
 
-	data["inside"] = list()
 	var/atom/hostloc = host.loc
+	var/list/inside = list()
 	if(isbelly(hostloc))
 		var/obj/belly/inside_belly = hostloc
 		var/mob/living/pred = inside_belly.owner
 
-		data["inside"] = list(
+		inside = list(
 			"absorbed" = host.absorbed,
 			"belly_name" = inside_belly.name,
 			"belly_mode" = inside_belly.digest_mode,
@@ -102,7 +102,7 @@
 			"ref" = "\ref[inside_belly]",
 		)
 
-		data["inside"]["contents"] = list()
+		var/list/inside_contents = list()
 		for(var/atom/movable/O in inside_belly)
 			if(O == host)
 				continue
@@ -121,23 +121,26 @@
 				info["stat"] = M.stat
 				if(M.absorbed)
 					info["absorbed"] = TRUE
-			data["inside"]["contents"].Add(list(info))
+			inside_contents.Add(list(info))
+		inside["contents"] = inside_contents
+	data["inside"] = list()
 
-	data["our_bellies"] = list()
+	var/list/our_bellies = list()
 	for(var/belly in host.vore_organs)
 		var/obj/belly/B = belly
-		data["our_bellies"].Add(list(list(
+		our_bellies.Add(list(list(
 			"selected" = (B == host.vore_selected),
 			"name" = B.name,
 			"ref" = "\ref[B]",
 			"digest_mode" = B.digest_mode,
 			"contents" = LAZYLEN(B.contents),
 		)))
+	data["our_bellies"] = our_bellies
 
-	data["selected"] = null
+	var/list/selected_list = null
 	if(host.vore_selected)
 		var/obj/belly/selected = host.vore_selected
-		data["selected"] = list(
+		selected_list = list(
 			"belly_name" = selected.name,
 			"is_wet" = selected.is_wet,
 			"wet_loop" = selected.wet_loop,
@@ -162,33 +165,37 @@
 			"belly_fullscreen" = selected.belly_fullscreen,
 			"possible_fullscreens" = icon_states('icons/mob/screen_full_vore.dmi'),
 		)
+		data["selected"] = selected_list
 
-		data["selected"]["addons"] = list()
+		
+		var/list/addons = list()
 		for(var/flag_name in selected.mode_flag_list)
 			if(selected.mode_flags & selected.mode_flag_list[flag_name])
-				data["selected"]["addons"].Add(flag_name)
+				addons.Add(flag_name)
+		selected["addons"] = addons
 
-		data["selected"]["egg_type"] = selected.egg_type
-		data["selected"]["contaminates"] = selected.contaminates
-		data["selected"]["contaminate_flavor"] = null
-		data["selected"]["contaminate_color"] = null
+		selected["egg_type"] = selected.egg_type
+		selected["contaminates"] = selected.contaminates
+		selected["contaminate_flavor"] = null
+		selected["contaminate_color"] = null
 		if(selected.contaminates)
-			data["selected"]["contaminate_flavor"] = selected.contamination_flavor
-			data["selected"]["contaminate_color"] = selected.contamination_color
+			selected["contaminate_flavor"] = selected.contamination_flavor
+			selected["contaminate_color"] = selected.contamination_color
 
-		data["selected"]["escapable"] = selected.escapable
-		data["selected"]["interacts"] = list()
+		selected["escapable"] = selected.escapable
+		selected["interacts"] = list()
 		if(selected.escapable)
-			data["selected"]["interacts"]["escapechance"] = selected.escapechance
-			data["selected"]["interacts"]["escapetime"] = selected.escapetime
-			data["selected"]["interacts"]["transferchance"] = selected.transferchance
-			data["selected"]["interacts"]["transferlocation"] = selected.transferlocation
-			data["selected"]["interacts"]["absorbchance"] = selected.absorbchance
-			data["selected"]["interacts"]["digestchance"] = selected.digestchance
+			selected["interacts"]["escapechance"] = selected.escapechance
+			selected["interacts"]["escapetime"] = selected.escapetime
+			selected["interacts"]["transferchance"] = selected.transferchance
+			selected["interacts"]["transferlocation"] = selected.transferlocation
+			selected["interacts"]["absorbchance"] = selected.absorbchance
+			selected["interacts"]["digestchance"] = selected.digestchance
 
-		data["selected"]["disable_hud"] = selected.disable_hud
+		selected["disable_hud"] = selected.disable_hud
 
-		data["selected"]["contents"] = list()
+		
+		var/list/selected_contents = list()
 		for(var/O in selected)
 			var/list/info = list(
 				"name" = "[O]",
@@ -204,7 +211,8 @@
 				info["stat"] = M.stat
 				if(M.absorbed)
 					info["absorbed"] = TRUE
-			data["selected"]["contents"].Add(list(info))
+			selected_contents.Add(list(info))
+		selected["contents"] = selected_contents
 
 	data["prefs"] = list(
 		"digestable" = host.digestable,
