@@ -1495,7 +1495,6 @@
 "dT" = (
 /obj/structure/table/standard,
 /obj/fiftyspawner/steel,
-/obj/fiftyspawner/copper,
 /obj/machinery/light/small{
 	dir = 1
 	},

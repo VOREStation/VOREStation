@@ -14402,7 +14402,6 @@
 /obj/effect/floor_decal/corner/mauve/bordercorner2{
 	dir = 9
 	},
-/obj/fiftyspawner/copper,
 /turf/simulated/floor/tiled,
 /area/rnd/research)
 "axD" = (
@@ -15539,7 +15538,6 @@
 /obj/effect/floor_decal/corner/mauve/border{
 	dir = 1
 	},
-/obj/fiftyspawner/copper,
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/robotics)
 "azp" = (
