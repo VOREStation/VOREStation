@@ -34,7 +34,6 @@
 	
 	var/list/turfs = block(locate(1,1,z),locate(world.maxx,world.maxy,z))
 	
-	var/count = 0
 	for(var/turf/simulated/T as anything in turfs)
 		if(!T.lighting_overlay)
 			T.lighting_build_overlay()
@@ -45,6 +44,5 @@
 			if(LC.update_gen != update_gen && LC.active)
 				LC.update_gen = update_gen
 				LC.update_lumcount(lum_r, lum_g, lum_b)
-		count++
 	update_gen--
 	qdel(src)
