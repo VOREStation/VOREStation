@@ -162,14 +162,14 @@
 	else
 		return ..()
 
-/mob/living/simple_mob/protean_blob/adjustBruteLoss(var/amount)
+/mob/living/simple_mob/protean_blob/adjustBruteLoss(var/amount,var/include_robo)
 	amount *= 1.5
 	if(humanform)
 		return humanform.adjustBruteLoss(amount)
 	else
 		return ..()
 
-/mob/living/simple_mob/protean_blob/adjustFireLoss(var/amount)
+/mob/living/simple_mob/protean_blob/adjustFireLoss(var/amount,var/include_robo)
 	amount *= 1.5
 	if(humanform)
 		return humanform.adjustFireLoss(amount)
