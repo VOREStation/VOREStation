@@ -16,6 +16,18 @@
 	item_cost = 2
 	path = /obj/item/device/suit_cooling_unit/emergency
 
+/datum/uplink_item/item/tools/beacon_op
+	name = "Holomap Beacon-M"
+	item_cost = 2
+	path = /obj/item/device/holomap_beacon/operative
+	antag_roles = list("mercenary")
+
+/datum/uplink_item/item/tools/beacon_ert
+	name = "Holomap Beacon-E"
+	item_cost = 2
+	path = /obj/item/device/holomap_beacon/ert
+	antag_roles = list("ert")
+
 /datum/uplink_item/item/tools/basiclaptop
 	name = "Laptop (Basic)"
 	item_cost = 5
@@ -70,6 +82,18 @@
 	name = "Inducer"
 	item_cost = 20
 	path = /obj/item/weapon/inducer/syndicate
+
+/datum/uplink_item/item/tools/mappingunit_op
+	name = "Mapping Unit-M"
+	item_cost = 20
+	path = /obj/item/device/mapping_unit/operative
+	antag_roles = list("mercenary")
+
+/datum/uplink_item/item/tools/mappingunit_ert
+	name = "Mapping Unit-E"
+	item_cost = 20
+	path = /obj/item/device/mapping_unit/ert
+	antag_roles = list("ert")
 
 /datum/uplink_item/item/tools/luxurycapsule
 	name = "Survival Capsule (Luxury)"

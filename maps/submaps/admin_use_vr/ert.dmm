@@ -121,6 +121,35 @@
 /obj/machinery/telecomms/relay/preset/tether,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/atmos)
+"ar" = (
+/obj/structure/table/rack/steel,
+/obj/item/toy/plushie/squid/blue{
+	desc = "A small, cute and loveable squid friend. This one is blue. Despite the name, it seems no more or less deadly than your regular plush squid.";
+	name = "NT 'Deathsquid' Plushie"
+	},
+/obj/effect/floor_decal/industrial/outline/grey,
+/obj/item/device/mapping_unit/deathsquad,
+/obj/item/device/holomap_beacon/deathsquad,
+/obj/item/device/holomap_beacon/deathsquad,
+/obj/item/device/holomap_beacon/deathsquad,
+/obj/item/device/holomap_beacon/deathsquad,
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/ert/barracks)
+"as" = (
+/obj/machinery/light_switch{
+	pixel_y = 23
+	},
+/obj/structure/table/woodentable,
+/obj/item/device/flashlight/lamp,
+/obj/item/device/holomap_beacon/ert,
+/obj/item/device/holomap_beacon/ert,
+/obj/item/device/mapping_unit/ert,
+/turf/simulated/floor/wood,
+/area/ship/ert/commander)
+"at" = (
+/obj/item/device/mapping_unit/ert,
+/turf/simulated/floor/wood,
+/area/ship/ert/commander)
 "av" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled/techfloor,
@@ -510,15 +539,6 @@
 "dq" = (
 /turf/simulated/wall/shull,
 /area/ship/ert/med_surg)
-"dr" = (
-/obj/structure/table/rack/steel,
-/obj/item/toy/plushie/squid/blue{
-	desc = "A small, cute and loveable squid friend. This one is blue. Despite the name, it seems no more or less deadly than your regular plush squid.";
-	name = "NT 'Deathsquid' Plushie"
-	},
-/obj/effect/floor_decal/industrial/outline/grey,
-/turf/simulated/floor/tiled/techfloor,
-/area/ship/ert/barracks)
 "ds" = (
 /obj/structure/table/rack,
 /obj/item/weapon/storage/backpack/ert/commander,
@@ -4962,17 +4982,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/ert_ship_boat)
-"Ez" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 4
-	},
-/obj/structure/cable/yellow{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/wood,
-/area/ship/ert/commander)
 "EA" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/storage/box/trackimp,
@@ -7418,14 +7427,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/teleporter)
-"RV" = (
-/obj/machinery/light_switch{
-	pixel_y = 23
-	},
-/obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp,
-/turf/simulated/floor/wood,
-/area/ship/ert/commander)
 "Sc" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
@@ -16084,7 +16085,7 @@ iB
 cS
 lu
 DS
-RV
+as
 Iv
 zP
 Eh
@@ -16229,7 +16230,7 @@ JB
 Wa
 eL
 zT
-Ez
+at
 IK
 Ks
 Oy
@@ -20197,7 +20198,7 @@ yz
 yz
 Ye
 Dd
-dr
+ar
 fj
 jz
 nc
