@@ -281,31 +281,45 @@
 	. = ..()
 	update_look()
 
+/obj/structure/hull_corner/proc/get_dirs_to_test()
+	return list(dir, turn(dir,90))
+
 /obj/structure/hull_corner/proc/update_look()
 	cut_overlays()
 	
-	var/turf/simulated/wall/T = get_step(src, dir)
-	if(!istype(T))
-		log_error("[src] at [x],[y] not placed facing a hull")
-		return
+	var/turf/simulated/wall/T
+	for(var/direction in get_dirs_to_test())
+		T = get_step(src, direction)
+		if(!istype(T))
+			continue
+		
+		name = T.name
+		desc = T.desc
+		
+		var/datum/material/B = T.material
+		var/datum/material/R = T.reinf_material
+		
+		if(B?.icon_colour)
+			color = B.icon_colour
+		if(R?.icon_colour)
+			var/image/I = image(icon, icon_state+"_reinf", dir=dir)
+			I.color = R.icon_colour
+			add_overlay(I)
+		break
 	
-	name = T.name
-	desc = T.desc
-	
-	var/datum/material/B = T.material
-	var/datum/material/R = T.reinf_material
-	
-	if(B?.icon_colour)
-		color = B.icon_colour
-	if(R?.icon_colour)
-		var/image/I = image(icon, icon_state+"_reinf", dir=dir)
-		I.color = R.icon_colour
-		add_overlay(I)
+	if(!T)
+		warning("Hull corner at [x],[y] not placed adjacent to a hull it can find.")
 
 /obj/structure/hull_corner/long_vert
 	icon = 'icons/turf/wall_masks32x64.dmi'
 	bound_height = 64
 
+/obj/structure/hull_corner/long_vert/get_dirs_to_test()
+	return list(dir, turn(dir,90), turn(dir,-90))
+
 /obj/structure/hull_corner/long_horiz
 	icon = 'icons/turf/wall_masks64x32.dmi'
 	bound_width = 64
+
+/obj/structure/hull_corner/long_horiz/get_dirs_to_test()
+	return list(dir, turn(dir,90), turn(dir,-90))
