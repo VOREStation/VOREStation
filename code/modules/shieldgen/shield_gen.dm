@@ -121,25 +121,6 @@
 				"max_charge" = C.max_charge,
 				"failing" = (C.time_since_fail <= 2),
 			)))
-<<<<<<< HEAD
-
-		data["lockedData"]["active"] = active
-		data["lockedData"]["failing"] = (time_since_fail <= 2)
-		data["lockedData"]["radius"] = field_radius
-		data["lockedData"]["max_radius"] = max_field_radius
-		data["lockedData"]["z_range"] = z_range
-		data["lockedData"]["max_z_range"] = 10
-		data["lockedData"]["average_field_strength"] = average_field_strength
-		data["lockedData"]["target_field_strength"] = target_field_strength
-		data["lockedData"]["max_field_strength"] = max_field_strength
-		data["lockedData"]["shields"] = LAZYLEN(field)
-		data["lockedData"]["upkeep"] = round(field.len * max(average_field_strength * dissipation_rate, min_dissipation) / energy_conversion_rate)
-		data["lockedData"]["strengthen_rate"] = strengthen_rate
-		data["lockedData"]["max_strengthen_rate"] = max_strengthen_rate
-		data["lockedData"]["gen_power"] = round(field.len * min(strengthen_rate, target_field_strength - average_field_strength) / energy_conversion_rate)
-
-	return data
-=======
 		lockedData["capacitors"] = caps
 		
 		lockedData["active"] = active
@@ -158,7 +139,6 @@
 		lockedData["gen_power"] = round(field.len * min(strengthen_rate, target_field_strength - average_field_strength) / energy_conversion_rate)
 
 	return list("locked" = locked, "lockedData" = lockedData)
->>>>>>> fdabe51... Linter Introduction + Cleanup (#8085)
 
 /obj/machinery/shield_gen/process()
 	if (!anchored && active)

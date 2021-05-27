@@ -42,13 +42,8 @@
 		//VOREStation Edit - multiz lol
 		if(D.foreign_droid)
 			continue
-<<<<<<< HEAD
-
-		data["drones"].Add(list(list(
-=======
 				
 		drones.Add(list(list(
->>>>>>> fdabe51... Linter Introduction + Cleanup (#8085)
 			"name" = D.real_name,
 			"active" = D.stat != 2,
 			"charge" = D.cell.charge,

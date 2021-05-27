@@ -359,7 +359,6 @@
 /obj/item/device/destTagger/attack_self(mob/user as mob)
 	tgui_interact(user)
 
-<<<<<<< HEAD
 /obj/item/device/destTagger/tgui_act(action, params)
 	if(..())
 		return TRUE
@@ -371,13 +370,6 @@
 				return FALSE
 			currTag = new_tag
 			. = TRUE
-=======
-	Topic(href, href_list)
-		src.add_fingerprint(usr)
-		if(href_list["nextTag"] && (href_list["nextTag"] in GLOB.tagger_locations))
-			src.currTag = href_list["nextTag"]
-		openwindow(usr)
->>>>>>> fdabe51... Linter Introduction + Cleanup (#8085)
 
 /obj/machinery/disposal/deliveryChute
 	name = "Delivery chute"
