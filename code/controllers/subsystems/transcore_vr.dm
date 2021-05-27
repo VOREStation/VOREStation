@@ -176,7 +176,7 @@ SUBSYSTEM_DEF(transcore)
 // These are now just interfaces to databases
 /datum/controller/subsystem/transcore/proc/m_backup(var/datum/mind/mind, var/obj/item/device/nif/nif, var/one_time = FALSE, var/database_key)
 	var/datum/transcore_db/db = db_by_key(database_key)
-	db.m_backup(mind=mind, nif=nif, one_time=one_time, database_key=database_key)
+	db.m_backup(mind=mind, nif=nif, one_time=one_time)
 
 /datum/controller/subsystem/transcore/proc/add_backup(var/datum/transhuman/mind_record/MR, var/database_key)
 	var/datum/transcore_db/db = db_by_key(database_key)
@@ -208,7 +208,7 @@ SUBSYSTEM_DEF(transcore)
 	var/core_dumped = FALSE
 	var/key // Key for this DB
 
-/datum/transcore_db/proc/m_backup(var/datum/mind/mind, var/obj/item/device/nif/nif, var/one_time = FALSE, var/database_key)
+/datum/transcore_db/proc/m_backup(var/datum/mind/mind, var/obj/item/device/nif/nif, var/one_time = FALSE)
 	ASSERT(mind)
 	if(!mind.name || core_dumped)
 		return 0
@@ -238,7 +238,7 @@ SUBSYSTEM_DEF(transcore)
 			MR.nif_savedata = null
 
 	else
-		MR = new(mind, mind.current, add_to_db = TRUE, one_time = one_time, database_key = database_key)
+		MR = new(mind, mind.current, add_to_db = TRUE, one_time = one_time, database_key = src.key)
 
 	return 1
 
