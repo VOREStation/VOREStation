@@ -676,7 +676,7 @@
 	bitesize = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/scorpion_cooked
-	name = "fried scorpion"
+	name = "cooked scorpion"
 	desc = "a scorpion baked nice and crispy"
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "scorpion_cooked"
