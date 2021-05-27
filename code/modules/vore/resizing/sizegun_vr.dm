@@ -24,10 +24,7 @@
 
 /obj/item/weapon/gun/energy/sizegun/New()
 	..()
-	if(istype(src, /obj/item/weapon/gun/energy/sizegun/admin))
-		verbs += /obj/item/weapon/gun/energy/sizegun/admin/select_size
-	else
-		verbs += /obj/item/weapon/gun/energy/sizegun/proc/select_size
+	verbs += .proc/select_size
 
 /obj/item/weapon/gun/energy/sizegun/attack_self(mob/user)
 	. = ..()
