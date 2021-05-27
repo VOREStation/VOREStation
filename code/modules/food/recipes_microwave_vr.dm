@@ -164,23 +164,23 @@
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/grub
 	)
-	/obj/item/weapon/reagent_containers/food/snacks/grub_pink
+	result = /obj/item/weapon/reagent_containers/food/snacks/grub_pink
 
 /datum/recipe/grub_blue
 	fruit = list("berries" = 1)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/grub
 	)
-	/obj/item/weapon/reagent_containers/food/snacks/grub_blue
+	result = /obj/item/weapon/reagent_containers/food/snacks/grub_blue
 
 /datum/recipe/grub_purple
 	fruit = list("grapes" = 1)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/grub
 	)
-	/obj/item/weapon/reagent_containers/food/snacks/grub_purple
+	result = /obj/item/weapon/reagent_containers/food/snacks/grub_purple
 
 /datum/recipe/honey_candy
 	reagents = list("sugar" = 5, "nutriment" = 5)
 	items = list()
-	/obj/item/weapon/reagent_containers/food/snacks/honey_candy
+	result = /obj/item/weapon/reagent_containers/food/snacks/honey_candy
