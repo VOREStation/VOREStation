@@ -85,7 +85,8 @@ SUBSYSTEM_DEF(transcore)
 		src.current_run.Cut()
 		for(var/key in databases)
 			var/datum/transcore_db/db = databases[key]
-			for(var/datum/transhuman/mind_record/mr as anything in db.backed_up)
+			for(var/name in db.backed_up)
+				var/datum/transhuman/mind_record/mr = db.backed_up[name]
 				src.current_run[mr] = db
 
 	var/list/current_run = src.current_run
