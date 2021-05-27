@@ -247,13 +247,11 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 		if(check_rights((R_ADMIN|R_MOD|R_EVENT),0,C))
 			to_chat(C,msg)
 			C << 'sound/machines/printer.ogg'
-<<<<<<< HEAD
 
 	// VoreStation Edit Start
 	var/faxid = export_fax(sent)
 	message_chat_admins(sender, faxname, sent, faxid, font_colour)
 	// VoreStation Edit End
-=======
 	
 	// Webhooks don't parse the HTML on the paper, so we gotta strip them out so it's still readable.
 	var/summary = make_summary(sent)
@@ -274,4 +272,4 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 			"body" = summary
 		)
 	)
->>>>>>> 4deffc7... Ports Nebula's Discord Webhook Integration (#8071)
+	

@@ -183,11 +183,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		var/admin_number_present = send2irc_adminless_only(initiator_ckey, name)
 		log_admin("Ticket #[id]: [key_name(initiator)]: [name] - heard by [admin_number_present] non-AFK admins who have +BAN.")
 		if(admin_number_present <= 0)
-<<<<<<< HEAD
 			to_chat(C, "<span class='notice'>No active admins are online, your adminhelp was sent to the admin discord.</span>")		//VOREStation Edit
-=======
-			to_chat(C, "<span class='notice'>No active admins are online, your adminhelp was sent to the admin irc.</span>")
-		
+
 		// Also send it to discord since that's the hip cool thing now.
 		SSwebhooks.send(
 			WEBHOOK_AHELP_SENT,
@@ -197,8 +194,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 				"color" = COLOR_WEBHOOK_POOR
 			)
 		)
-
->>>>>>> 4deffc7... Ports Nebula's Discord Webhook Integration (#8071)
+		
 	GLOB.ahelp_tickets.active_tickets += src
 
 /datum/admin_help/Destroy()

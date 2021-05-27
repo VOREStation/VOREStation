@@ -10,4 +10,4 @@
 	))
 
 /decl/webhook/ahelp_sent/get_mentions()
-	. = !length(global.admins) && ..()
+	. = !length(GLOB.admins) && ..() // VOREStation Edit - GLOB admins
