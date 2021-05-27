@@ -11,10 +11,11 @@
 /area/ship/ert/barracks)
 "ac" = (
 /obj/machinery/light/no_nightshift,
+/obj/machinery/porta_turret/stationary/CIWS,
 /turf/simulated/floor/reinforced/airless,
 /area/ship/ert/dock_port)
 "ad" = (
-/obj/machinery/porta_turret/stationary/CIWS,
+/obj/structure/hull_corner,
 /turf/simulated/floor/reinforced/airless,
 /area/ship/ert/dock_port)
 "ae" = (
@@ -176,6 +177,10 @@
 /obj/fiftyspawner/tritium,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/eng_storage)
+"aF" = (
+/obj/machinery/porta_turret/stationary/CIWS,
+/turf/simulated/floor/reinforced/airless,
+/area/ship/ert/atmos)
 "aI" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -345,8 +350,16 @@
 /obj/machinery/light/no_nightshift,
 /turf/simulated/floor/reinforced/airless,
 /area/ship/ert/atmos)
+"bU" = (
+/obj/structure/hull_corner/long_horiz{
+	dir = 5
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/ship/ert/hallways_aft)
 "bW" = (
-/obj/machinery/porta_turret/stationary/CIWS,
+/obj/structure/hull_corner/long_horiz{
+	dir = 6
+	},
 /turf/simulated/floor/reinforced/airless,
 /area/ship/ert/atmos)
 "ch" = (
@@ -372,9 +385,10 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/dock_port)
 "cu" = (
-/obj/machinery/shipsensors,
+/obj/machinery/light/no_nightshift,
+/obj/machinery/porta_turret/stationary/CIWS,
 /turf/simulated/floor/reinforced/airless,
-/area/ship/ert/engineering)
+/area/ship/ert/barracks)
 "cv" = (
 /obj/machinery/shield_gen,
 /obj/effect/floor_decal/industrial/outline/blue,
@@ -677,14 +691,11 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/barracks)
 "dW" = (
-/obj/machinery/light/no_nightshift{
+/obj/structure/hull_corner{
 	dir = 8
 	},
-/obj/machinery/power/pointdefense{
-	id_tag = "vonbraun_pd"
-	},
-/turf/simulated/floor/reinforced/airless,
-/area/ship/ert/gunnery)
+/turf/space,
+/area/space)
 "dX" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -805,7 +816,9 @@
 /turf/simulated/floor/plating,
 /area/ship/ert/engine)
 "eD" = (
-/obj/machinery/porta_turret/stationary/CIWS,
+/obj/structure/hull_corner{
+	dir = 4
+	},
 /turf/simulated/floor/reinforced/airless,
 /area/ship/ert/med)
 "eF" = (
@@ -1298,20 +1311,10 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/hangar)
-"hW" = (
-/obj/effect/floor_decal/industrial/warning/corner{
-	dir = 1
-	},
-/obj/machinery/power/pointdefense{
-	id_tag = "vonbraun_pd"
-	},
-/obj/machinery/light/no_nightshift{
-	dir = 8
-	},
-/turf/simulated/floor/reinforced/airless,
-/area/ship/ert/hangar)
 "hY" = (
-/obj/machinery/porta_turret/stationary/CIWS,
+/obj/structure/hull_corner{
+	dir = 4
+	},
 /turf/simulated/floor/reinforced/airless,
 /area/ship/ert/dock_star)
 "ia" = (
@@ -1341,15 +1344,6 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/barracks)
 "ib" = (
-/obj/effect/floor_decal/industrial/warning/corner{
-	dir = 8
-	},
-/obj/machinery/power/pointdefense{
-	id_tag = "vonbraun_pd"
-	},
-/obj/machinery/light/no_nightshift{
-	dir = 8
-	},
 /turf/simulated/floor/reinforced/airless,
 /area/ship/ert/hangar)
 "ij" = (
@@ -1622,7 +1616,9 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/barracks)
 "kO" = (
-/obj/machinery/porta_turret/stationary/CIWS,
+/obj/structure/hull_corner{
+	dir = 8
+	},
 /turf/simulated/floor/reinforced/airless,
 /area/ship/ert/barracks)
 "kP" = (
@@ -2931,6 +2927,7 @@
 /obj/machinery/light/no_nightshift{
 	dir = 1
 	},
+/obj/machinery/porta_turret/stationary/CIWS,
 /turf/simulated/floor/reinforced/airless,
 /area/ship/ert/eng_storage)
 "qJ" = (
@@ -3174,11 +3171,9 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/bridge)
 "sB" = (
-/obj/machinery/power/pointdefense{
-	id_tag = "vonbraun_pd"
-	},
+/obj/structure/hull_corner,
 /turf/simulated/floor/reinforced/airless,
-/area/ship/ert/hallways_aft)
+/area/ship/ert/barracks)
 "sC" = (
 /obj/structure/cable/yellow{
 	d1 = 4;
@@ -3663,11 +3658,11 @@
 /turf/simulated/floor/tiled/white,
 /area/ship/ert/med_surg)
 "wr" = (
-/obj/machinery/shipsensors{
-	dir = 1
+/obj/machinery/power/pointdefense{
+	id_tag = "vonbraun_pd"
 	},
 /turf/simulated/floor/reinforced/airless,
-/area/ship/ert/atmos)
+/area/ship/ert/hallways_aft)
 "wt" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/weapon/storage/firstaid/bonemed{
@@ -3688,6 +3683,12 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/med)
+"wG" = (
+/obj/structure/hull_corner/long_horiz{
+	dir = 5
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/ship/ert/engine)
 "wO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -4593,7 +4594,13 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/armoury_st)
 "BI" = (
-/obj/machinery/porta_turret/stationary/CIWS,
+/obj/structure/hull_corner/long_horiz{
+	dir = 5
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/ship/ert/engineering)
+"BK" = (
+/obj/machinery/shipsensors,
 /turf/simulated/floor/reinforced/airless,
 /area/ship/ert/engineering)
 "BM" = (
@@ -5160,6 +5167,7 @@
 /obj/machinery/light/no_nightshift{
 	dir = 1
 	},
+/obj/machinery/porta_turret/stationary/CIWS,
 /turf/simulated/floor/reinforced/airless,
 /area/ship/ert/dock_star)
 "FP" = (
@@ -5413,7 +5421,9 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/engine)
 "GJ" = (
-/obj/machinery/porta_turret/stationary/CIWS,
+/obj/structure/hull_corner{
+	dir = 1
+	},
 /turf/simulated/floor/reinforced/airless,
 /area/ship/ert/eng_storage)
 "GK" = (
@@ -6370,6 +6380,12 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/armoury_dl)
+"LX" = (
+/obj/structure/hull_corner/long_horiz{
+	dir = 6
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/ship/ert/hallways_aft)
 "LZ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -6633,6 +6649,12 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/gunnery)
+"Nu" = (
+/obj/structure/hull_corner/long_horiz{
+	dir = 6
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/ship/ert/engine)
 "Nz" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
@@ -6918,6 +6940,7 @@
 /obj/machinery/light/no_nightshift{
 	dir = 8
 	},
+/obj/machinery/porta_turret/stationary/CIWS,
 /turf/simulated/floor/reinforced/airless,
 /area/ship/ert/gunnery)
 "ON" = (
@@ -7119,6 +7142,19 @@
 "Pq" = (
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/med)
+"Pw" = (
+/obj/machinery/shipsensors{
+	dir = 1
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/ship/ert/atmos)
+"Py" = (
+/obj/machinery/light/no_nightshift{
+	dir = 1
+	},
+/obj/machinery/porta_turret/stationary/CIWS,
+/turf/simulated/floor/reinforced/airless,
+/area/ship/ert/med)
 "PA" = (
 /obj/machinery/recharge_station,
 /turf/simulated/floor/tiled/techfloor,
@@ -7168,6 +7204,10 @@
 "PO" = (
 /turf/simulated/floor/reinforced/airless,
 /area/ship/ert/gunnery)
+"PP" = (
+/obj/machinery/porta_turret/stationary/CIWS,
+/turf/simulated/floor/reinforced/airless,
+/area/ship/ert/engineering)
 "PS" = (
 /obj/machinery/shield_capacitor,
 /obj/effect/floor_decal/industrial/outline/blue,
@@ -7719,12 +7759,6 @@
 "Tl" = (
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/hangar)
-"Tr" = (
-/obj/machinery/shipsensors{
-	dir = 4
-	},
-/turf/simulated/floor/reinforced/airless,
-/area/ship/ert/med_surg)
 "Tx" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold/hidden/fuel{
@@ -7845,6 +7879,12 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/armoury_dl)
+"UI" = (
+/obj/structure/hull_corner{
+	dir = 1
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/ship/ert/med)
 "UJ" = (
 /obj/structure/cable/yellow{
 	d1 = 1;
@@ -8332,11 +8372,11 @@
 /turf/simulated/wall/shull,
 /area/ship/ert/engineering)
 "YO" = (
-/obj/machinery/light/no_nightshift{
-	dir = 8
+/obj/structure/hull_corner{
+	dir = 1
 	},
-/turf/simulated/floor/reinforced/airless,
-/area/ship/ert/med_surg)
+/turf/space,
+/area/space)
 "YP" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/fuel{
 	dir = 8
@@ -13543,7 +13583,7 @@ Hf
 yz
 yz
 yz
-kL
+lZ
 ZL
 lZ
 yz
@@ -14093,7 +14133,7 @@ yz
 yz
 yz
 yz
-lZ
+ZL
 Hf
 Hf
 ok
@@ -14113,7 +14153,7 @@ RO
 XH
 Hf
 Hf
-lZ
+ZL
 yz
 yz
 yz
@@ -14235,7 +14275,7 @@ yz
 yz
 yz
 yz
-lZ
+Nu
 Hf
 Hf
 op
@@ -14255,7 +14295,7 @@ SE
 cY
 Hf
 Hf
-lZ
+wG
 yz
 yz
 yz
@@ -14377,7 +14417,7 @@ yz
 yz
 yz
 yz
-ZL
+lZ
 Hf
 Hf
 vd
@@ -14397,7 +14437,7 @@ Hf
 Hf
 Hf
 Hf
-ZL
+lZ
 yz
 yz
 yz
@@ -14660,7 +14700,7 @@ yz
 yz
 yz
 yz
-bO
+Pw
 kJ
 pV
 kP
@@ -14682,7 +14722,7 @@ JG
 VC
 XW
 XW
-YR
+BK
 yz
 yz
 yz
@@ -14944,7 +14984,7 @@ yz
 yz
 yz
 yz
-bO
+aF
 kJ
 pV
 kT
@@ -14966,7 +15006,7 @@ XW
 XW
 XW
 XW
-YR
+PP
 yz
 yz
 yz
@@ -15228,7 +15268,7 @@ yz
 yz
 yz
 yz
-wr
+bO
 kJ
 pV
 ls
@@ -15250,7 +15290,7 @@ XW
 XW
 XW
 XW
-cu
+YR
 yz
 yz
 yz
@@ -15511,7 +15551,7 @@ yz
 yz
 yz
 yz
-Ib
+wr
 DS
 yl
 tK
@@ -15535,7 +15575,7 @@ kh
 Gv
 nY
 DS
-Ib
+wr
 yz
 yz
 yz
@@ -15653,7 +15693,7 @@ yz
 yz
 yz
 yz
-Ib
+LX
 DS
 pA
 HR
@@ -15677,7 +15717,7 @@ Ai
 Xh
 yG
 DS
-Ib
+bU
 yz
 yz
 yz
@@ -15795,7 +15835,7 @@ yz
 yz
 yz
 yz
-sB
+Ib
 DS
 cS
 cS
@@ -15819,7 +15859,7 @@ lu
 cS
 cS
 DS
-sB
+Ib
 yz
 yz
 yz
@@ -17214,7 +17254,7 @@ yz
 yz
 yz
 yz
-Sr
+cu
 Zo
 Bo
 ia
@@ -18492,7 +18532,7 @@ yz
 yz
 yz
 yz
-Sr
+cu
 Zo
 Bo
 sr
@@ -18634,7 +18674,7 @@ yz
 yz
 yz
 yz
-kO
+sB
 Zo
 Bo
 Bo
@@ -19769,7 +19809,7 @@ yz
 yz
 yz
 yz
-Sr
+cu
 Zo
 Zo
 do
@@ -19797,7 +19837,7 @@ xz
 HC
 ZT
 ZT
-Fd
+Py
 yz
 yz
 yz
@@ -19938,7 +19978,7 @@ VJ
 KI
 KI
 ZT
-eD
+UI
 yz
 yz
 yz
@@ -22770,7 +22810,7 @@ za
 za
 za
 za
-hW
+ib
 MZ
 dq
 jv
@@ -22778,7 +22818,7 @@ ij
 dq
 MZ
 MZ
-Jg
+yz
 yz
 yz
 yz
@@ -22895,7 +22935,7 @@ yz
 yz
 yz
 yz
-nr
+dW
 vK
 vK
 wh
@@ -22919,7 +22959,7 @@ GY
 GY
 MZ
 MZ
-Cr
+YO
 yz
 yz
 yz
@@ -23181,7 +23221,7 @@ yz
 yz
 yz
 yz
-PO
+dW
 vK
 vK
 ej
@@ -23201,7 +23241,7 @@ Cr
 MZ
 MZ
 MZ
-aC
+YO
 yz
 yz
 yz
@@ -23324,8 +23364,8 @@ yz
 yz
 yz
 yz
-nr
-pE
+dW
+vK
 pE
 OM
 yz
@@ -23342,7 +23382,7 @@ yz
 CR
 MZ
 MZ
-Cr
+YO
 yz
 yz
 yz
@@ -23467,7 +23507,7 @@ yz
 yz
 yz
 yz
-PO
+dW
 PO
 PO
 yz
@@ -23483,7 +23523,7 @@ yz
 yz
 ci
 MZ
-Tr
+YO
 yz
 yz
 yz
