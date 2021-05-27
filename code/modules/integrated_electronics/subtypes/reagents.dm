@@ -148,7 +148,6 @@
 					else
 						activate_pin(3)
 					return
-					return
 				var/datum/reagent/B
 				if(istype(T, /mob/living/carbon/human))
 					var/mob/living/carbon/human/H = T

@@ -39,7 +39,6 @@
 		shields.update_shield_positions()
 
 /obj/item/mecha_parts/mecha_equipment/omni_shield/proc/toggle_shield()
-	..()
 	if(shields)
 		shields.set_on(!shields.active)
 		if(shields.active)

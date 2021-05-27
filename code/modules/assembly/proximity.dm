@@ -90,9 +90,9 @@
 /obj/item/device/assembly/prox_sensor/Moved(atom/old_loc, direction, forced = FALSE)
 	. = ..()
 	if(isturf(old_loc))
-		unsense_proximity(range = range, callback = .HasProximity, center = old_loc)
+		unsense_proximity(range = range, callback = /atom/proc/HasProximity, center = old_loc)
 	if(isturf(loc))
-		sense_proximity(range = range, callback = .HasProximity)
+		sense_proximity(range = range, callback = /atom/proc/HasProximity)
 	sense()
 
 /obj/item/device/assembly/prox_sensor/tgui_interact(mob/user, datum/tgui/ui)

@@ -96,16 +96,17 @@
 	data["allow_items"] = allow_items
 	data["crew"] = frozen_crew
 	
-	data["items"] = list()
+	var/list/items = list()
 	if(allow_items)
 		for(var/F in frozen_items)
-			data["items"].Add(F) // VOREStation Edit
+			items.Add(F) // VOREStation Edit
 			/* VOREStation Removal
-			data["items"].Add(list(list(
+			items.Add(list(list(
 				"name" = "[F]",
 				"ref" = REF(F),
 			)))
 			VOREStation Removal End */
+	data["items"] = items
 
 	return data
 
@@ -116,7 +117,7 @@
 	add_fingerprint(usr)
 
 	return FALSE // VOREStation Edit - prevent topic exploits
-
+	/* VOREStation Edit - Unreachable due to above
 	switch(action)
 		if("item")
 			if(!allow_items)
@@ -148,7 +149,7 @@
 			for(var/obj/item/I in frozen_items)
 				I.forceMove(get_turf(src))
 				frozen_items -= I
-
+	*/
 
 /obj/item/weapon/circuitboard/cryopodcontrol
 	name = "Circuit board (Cryogenic Oversight Console)"

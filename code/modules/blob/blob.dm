@@ -22,7 +22,7 @@
 	update_icon()
 	return ..(loc)
 
-/obj/effect/blob/CanPass(var/atom/movable/mover, vra/turf/target)
+/obj/effect/blob/CanPass(var/atom/movable/mover, var/turf/target)
 	return FALSE
 
 /obj/effect/blob/ex_act(var/severity)

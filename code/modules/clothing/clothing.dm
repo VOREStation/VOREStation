@@ -936,7 +936,7 @@
 		under_icon = rolled_down_icon
 
 	// The _s is because the icon update procs append it.
-	if((under_icon == rolled_down_icon && "[worn_state]_s" in cached_icon_states(under_icon)) || ("[worn_state]_d_s" in cached_icon_states(under_icon)))
+	if((under_icon == rolled_down_icon && ("[worn_state]_s" in cached_icon_states(under_icon))) || ("[worn_state]_d_s" in cached_icon_states(under_icon)))
 		if(rolled_down != 1)
 			rolled_down = 0
 	else
@@ -961,7 +961,7 @@
 		under_icon = new /icon("[INV_W_UNIFORM_DEF_ICON]_[index].dmi")
 
 	// The _s is because the icon update procs append it.
-	if((under_icon == rolled_down_sleeves_icon && "[worn_state]_s" in cached_icon_states(under_icon)) || ("[worn_state]_r_s" in cached_icon_states(under_icon)))
+	if((under_icon == rolled_down_sleeves_icon && ("[worn_state]_s" in cached_icon_states(under_icon))) || ("[worn_state]_r_s" in cached_icon_states(under_icon)))
 		if(rolled_sleeves != 1)
 			rolled_sleeves = 0
 	else
@@ -1025,7 +1025,6 @@
 	set category = "Object"
 	set src in usr
 	set_sensors(usr)
-	..()
 
 /obj/item/clothing/under/verb/rollsuit()
 	set name = "Roll Down Jumpsuit"

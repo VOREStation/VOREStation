@@ -114,12 +114,12 @@
 		if(!anchored)
 			user.show_message(text("<span class='warning'>[src] can now be moved.</span>"))
 			cut_overlays()
-			unsense_proximity(callback = .HasProximity)
+			unsense_proximity(callback = /atom/proc/HasProximity)
 			
 		else if(anchored)
 			user.show_message(text("<span class='warning'>[src] is now secured.</span>"))
 			add_overlay("[base_state]-s")
-			sense_proximity(callback = .HasProximity)
+			sense_proximity(callback = /atom/proc/HasProximity)
 
 /obj/machinery/button/flasher
 	name = "flasher button"

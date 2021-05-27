@@ -80,6 +80,7 @@
 #include "code\__defines\shields.dm"
 #include "code\__defines\shuttle.dm"
 #include "code\__defines\sound.dm"
+#include "code\__defines\spaceman_dmm.dm"
 #include "code\__defines\species_languages.dm"
 #include "code\__defines\species_languages_vr.dm"
 #include "code\__defines\sqlite_defines.dm"
