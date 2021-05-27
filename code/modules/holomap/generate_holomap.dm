@@ -26,9 +26,15 @@
 /// Generates all the holo minimaps, initializing it all nicely, probably.
 /datum/controller/subsystem/holomaps/proc/generateHoloMinimaps()
 	var/start_time = world.timeofday
+	
+	// Starting over if we're running midround (it runs real fast, so that's possible)
+	holoMiniMaps.Cut()
+	extraMiniMaps.Cut()
+	station_holomaps.Cut()
+
 	// Build the base map for each z level
 	for (var/z = 1 to world.maxz)
-		holoMiniMaps |= z // hack, todo fix
+		holoMiniMaps |= z
 		holoMiniMaps[z] = generateHoloMinimap(z)
 
 	// Generate the area overlays, small maps, etc for the station levels.
@@ -145,28 +151,6 @@
 	for(var/zLevel in zlevels)
 		extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAP]_[zLevel]"] = big_map
 		extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAPSMALL]_[zLevel]"] = actual_small_map
-
-// TODO - Holomap Markers!
-// /proc/generateMinimapMarkers(var/zLevel)
-// 	// Save these values now to avoid a bazillion array lookups
-// 	var/offset_x = HOLOMAP_PIXEL_OFFSET_X(zLevel)
-// 	var/offset_y = HOLOMAP_PIXEL_OFFSET_Y(zLevel)
-
-// 	// TODO - Holomap markers
-// 	for(var/filter in list(HOLOMAP_FILTER_STATIONMAP))
-// 		var/icon/canvas = icon(HOLOMAP_ICON, "blank")
-// 		for(/datum/holomap_marker/holomarker in holomap_markers)
-// 			if(holomarker.z == zLevel && holomarker.filter & filter)
-// 				canvas.Blend(icon(holomarker.icon, holomarker.icon_state), ICON_OVERLAY, holomarker.x + offset_x, holomarker.y + offset_y)
-// 		extraMiniMaps["[HOLOMAP_EXTRA_MARKERS]_[filter]_[zLevel]"] = canvas
-
-// /datum/holomap_marker
-// 	var/x
-// 	var/y
-// 	var/z
-// 	var/filter
-// 	var/icon = 'icons/holomap_markers.dmi'
-// 	var/icon_state
 
 #undef IS_ROCK
 #undef IS_OBSTACLE
