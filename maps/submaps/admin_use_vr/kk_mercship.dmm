@@ -2305,10 +2305,8 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/hangar)
 "jd" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 1
-	},
-/turf/simulated/floor/reinforced,
+/obj/structure/hull_corner,
+/turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/manta_ship_boat)
 "je" = (
 /turf/simulated/wall/rshull,
@@ -2658,6 +2656,12 @@
 "kW" = (
 /turf/simulated/floor/reinforced/airless,
 /area/ship/manta/recreation)
+"lc" = (
+/obj/structure/hull_corner{
+	dir = 8
+	},
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/manta_ship_boat)
 "le" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 1
@@ -3749,7 +3753,7 @@
 /obj/machinery/atmospherics/unary/engine{
 	dir = 1
 	},
-/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/manta_ship_boat)
 "qn" = (
 /turf/simulated/floor/wood,
@@ -4573,7 +4577,7 @@
 /area/shuttle/manta_ship_boat)
 "ux" = (
 /obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/manta_ship_boat)
 "uy" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -6156,6 +6160,11 @@
 	},
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 1
+	},
+/obj/machinery/embedded_controller/radio/simple_docking_controller{
+	id_tag = "manta_boarding_shuttle";
+	pixel_x = -11;
+	pixel_y = 8
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/manta_ship_boat)
@@ -8367,6 +8376,17 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/engineering)
+"LQ" = (
+/obj/effect/floor_decal/techfloor{
+	dir = 8
+	},
+/obj/machinery/embedded_controller/radio/simple_docking_controller{
+	dir = 4;
+	id_tag = "manta_boarding_shuttle_dock";
+	pixel_x = -22
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/manta/hangar)
 "LS" = (
 /obj/machinery/atmospherics/pipe/manifold/visible{
 	dir = 4
@@ -20750,7 +20770,7 @@ fw
 au
 fw
 oZ
-au
+LQ
 tQ
 wX
 zI
@@ -21030,8 +21050,8 @@ yz
 ce
 dk
 ec
-da
 jd
+je
 je
 je
 da
@@ -22024,8 +22044,8 @@ yz
 ce
 dk
 ec
-da
-jd
+lc
+je
 je
 je
 da

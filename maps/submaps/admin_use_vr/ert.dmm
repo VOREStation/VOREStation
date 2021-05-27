@@ -148,7 +148,11 @@
 /turf/simulated/floor/wood,
 /area/ship/ert/commander)
 "at" = (
-/obj/item/device/mapping_unit/ert,
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/wood,
 /area/ship/ert/commander)
 "av" = (
@@ -156,10 +160,10 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/gunnery)
 "ax" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 4
+/obj/structure/hull_corner{
+	dir = 8
 	},
-/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/ert_ship_boat)
 "aC" = (
 /obj/machinery/power/pointdefense{
@@ -7334,6 +7338,12 @@
 "QT" = (
 /turf/simulated/floor/tiled/techmaint,
 /area/ship/ert/med)
+"QV" = (
+/obj/structure/hull_corner{
+	dir = 1
+	},
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/ert_ship_boat)
 "QX" = (
 /obj/structure/window/reinforced,
 /obj/machinery/computer/shuttle_control/explore/ert_ship_boat{
@@ -21950,13 +21960,13 @@ FP
 vK
 xO
 WC
-ax
+HO
 HO
 yg
 HK
 yg
 HO
-ax
+HO
 WC
 Zx
 nl
@@ -22092,13 +22102,13 @@ Vq
 vK
 xO
 WC
-WC
+HO
 HO
 WC
 WC
 WC
 HO
-WC
+HO
 WC
 Mx
 dq
@@ -22234,13 +22244,13 @@ Vq
 vK
 xO
 WC
-WC
+ax
 HO
 WC
 WC
 WC
 HO
-WC
+QV
 WC
 aK
 Sh
