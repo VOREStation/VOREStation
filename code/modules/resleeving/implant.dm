@@ -50,7 +50,7 @@
 	throw_range = 5
 	w_class = ITEMSIZE_SMALL
 	matter = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 2000)
-	var/obj/item/weapon/implant/backup/list/imps = list()
+	var/list/obj/item/weapon/implant/backup/imps = list()
 	var/max_implants = 4 //Iconstates need to exist due to the update proc!
 
 /obj/item/weapon/backup_implanter/New()
