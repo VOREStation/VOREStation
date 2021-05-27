@@ -31,6 +31,10 @@
 <b>Integrity:</b> Generally very survivable. Susceptible to being destroyed by acid."}
 	return dat
 
+/obj/item/weapon/implant/backup/New(newloc, db_key)
+	. = ..()
+	src.db_key = db_key
+
 /obj/item/weapon/implant/backup/Initialize()
 	. = ..()
 	our_db = SStranscore.db_by_key(db_key)
@@ -62,10 +66,12 @@
 	var/list/obj/item/weapon/implant/backup/imps = list()
 	var/max_implants = 4 //Iconstates need to exist due to the update proc!
 
+	var/db_key // To give to the baby implants
+
 /obj/item/weapon/backup_implanter/New()
 	..()
 	for(var/i = 1 to max_implants)
-		var/obj/item/weapon/implant/backup/imp = new(src)
+		var/obj/item/weapon/implant/backup/imp = new(src, db_key)
 		imps |= imp
 		imp.germ_level = 0
 	update()
