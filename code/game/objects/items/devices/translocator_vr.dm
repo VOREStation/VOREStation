@@ -506,7 +506,7 @@ GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/device/perfect_tele_beac
 	var/phase_power = 75
 	var/recharging = 0
 
-/obj/item/device/perfect_tele/frontier/unload_ammo(var/mob/user)
+/obj/item/device/perfect_tele/frontier/unload_ammo(mob/user, var/ignore_inactive_hand_check = 0)
 	if(recharging)
 		return
 	recharging = 1
