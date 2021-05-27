@@ -7,6 +7,33 @@
 /obj/effect/shuttle_landmark/premade/manta_ship_near_port,
 /turf/space,
 /area/space)
+"ac" = (
+/obj/structure/table/steel_reinforced,
+/obj/effect/landmark{
+	name = "Syndicate-Uplink"
+	},
+/obj/item/device/mapping_unit/operative,
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/manta/armoury_st)
+"ad" = (
+/obj/structure/table/rack,
+/obj/item/weapon/storage/box/syndie_kit/chameleon,
+/obj/item/weapon/storage/box/syndie_kit/chameleon,
+/obj/item/weapon/storage/box/syndie_kit/chameleon,
+/obj/item/weapon/storage/box/syndie_kit/chameleon,
+/obj/item/weapon/storage/box/syndie_kit/chameleon,
+/obj/item/weapon/storage/box/syndie_kit/chameleon,
+/obj/machinery/recharger/wallcharger{
+	pixel_x = 5;
+	pixel_y = -32
+	},
+/obj/effect/floor_decal/techfloor,
+/obj/item/device/holomap_beacon/operative,
+/obj/item/device/holomap_beacon/operative,
+/obj/item/device/holomap_beacon/operative,
+/obj/item/device/holomap_beacon/operative,
+/turf/simulated/floor/tiled/techfloor,
+/area/ship/manta/armoury_st)
 "ag" = (
 /turf/simulated/floor/reinforced/airless,
 /area/ship/manta/hangar)
@@ -10108,21 +10135,6 @@
 /obj/structure/table/steel_reinforced,
 /turf/simulated/floor/tiled/dark,
 /area/ship/manta/holding)
-"Us" = (
-/obj/structure/table/rack,
-/obj/item/weapon/storage/box/syndie_kit/chameleon,
-/obj/item/weapon/storage/box/syndie_kit/chameleon,
-/obj/item/weapon/storage/box/syndie_kit/chameleon,
-/obj/item/weapon/storage/box/syndie_kit/chameleon,
-/obj/item/weapon/storage/box/syndie_kit/chameleon,
-/obj/item/weapon/storage/box/syndie_kit/chameleon,
-/obj/machinery/recharger/wallcharger{
-	pixel_x = 5;
-	pixel_y = -32
-	},
-/obj/effect/floor_decal/techfloor,
-/turf/simulated/floor/tiled/techfloor,
-/area/ship/manta/armoury_st)
 "Uy" = (
 /obj/item/weapon/reagent_containers/syringe/drugs{
 	pixel_x = 3;
@@ -11303,13 +11315,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/manta/recreation)
-"ZH" = (
-/obj/structure/table/steel_reinforced,
-/obj/effect/landmark{
-	name = "Syndicate-Uplink"
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/ship/manta/armoury_st)
 "ZI" = (
 /obj/structure/cable/orange{
 	d1 = 4;
@@ -19537,7 +19542,7 @@ OR
 sy
 nC
 bR
-Us
+ad
 ZT
 tx
 pB
@@ -19818,7 +19823,7 @@ ZT
 ZT
 cP
 bR
-ZH
+ac
 aS
 bR
 RU
