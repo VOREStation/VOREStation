@@ -262,3 +262,50 @@
 		var/image/I = image(icon = src.icon, icon_state = "o_[icon_state]")
 		I.color = stripe_color
 		add_overlay(I)
+
+// Fake corners for making hulls look pretty
+/obj/structure/hull_corner
+	name = "hull corner"
+	
+	icon = 'icons/turf/wall_masks.dmi'
+	icon_state = "hull_corner"
+	
+	anchored = TRUE
+	density = TRUE
+	breakable = TRUE
+
+/obj/structure/hull_corner/Initialize()
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/structure/hull_corner/LateInitialize()
+	. = ..()
+	update_look()
+
+/obj/structure/hull_corner/proc/update_look()
+	cut_overlays()
+	
+	var/turf/simulated/wall/T = get_step(src, dir)
+	if(!istype(T))
+		log_error("[src] at [x],[y] not placed facing a hull")
+		return
+	
+	name = T.name
+	desc = T.desc
+	
+	var/datum/material/B = T.material
+	var/datum/material/R = T.reinf_material
+	
+	if(B?.icon_colour)
+		color = B.icon_colour
+	if(R?.icon_colour)
+		var/image/I = image(icon, icon_state+"_reinf", dir=dir)
+		I.color = R.icon_colour
+		add_overlay(I)
+
+/obj/structure/hull_corner/long_vert
+	icon = 'icons/turf/wall_masks32x64.dmi'
+	bound_height = 64
+
+/obj/structure/hull_corner/long_horiz
+	icon = 'icons/turf/wall_masks64x32.dmi'
+	bound_width = 64
