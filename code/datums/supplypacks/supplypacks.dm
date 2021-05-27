@@ -19,6 +19,7 @@ var/list/all_supply_groups = list("Atmospherics",
 								  "Reagents",
 								  "Reagent Cartridges",
 								  "Recreation",
+								  "Replacement Equipment",	//VOREStation Addition
 								  "Robotics",
 								  "Science",
 								  "Security",
