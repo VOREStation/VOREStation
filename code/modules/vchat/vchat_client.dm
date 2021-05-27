@@ -176,7 +176,6 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 /proc/jsEncode(var/list/message) {
 	if(!islist(message))
 		CRASH("Passed a non-list to encode.")
-		return; //Necessary?
 
 	return url_encode(url_encode(json_encode(message)))
 }

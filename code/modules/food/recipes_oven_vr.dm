@@ -4,4 +4,4 @@
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/scorpion
 	)
-	/obj/item/weapon/reagent_containers/food/snacks/scorpion_cooked
+	result = /obj/item/weapon/reagent_containers/food/snacks/scorpion_cooked

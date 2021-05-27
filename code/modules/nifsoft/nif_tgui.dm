@@ -60,7 +60,7 @@
 	
 	user.verbs |= /mob/living/carbon/human/proc/nif_menu
 
-/datum/component/nif_menu/proc/nif_menu_click(atom/movable/screen/nif/image, location, control, params, user)
+/datum/component/nif_menu/proc/nif_menu_click(obj/screen/nif/image, location, control, params, user)
 	var/mob/living/carbon/human/H = user
 	if(istype(H) && H.nif)
 		INVOKE_ASYNC(H.nif, .proc/tgui_interact, user)
@@ -118,13 +118,14 @@
 	data["nif_percent"] = round((durability/initial(durability))*100)
 	data["nif_stat"] = stat
 
-	data["modules"] = list()
+	
+	var/list/modules = list()
 	if(stat == NIF_WORKING)
 		for(var/nifsoft in nifsofts)
 			if(!nifsoft)
 				continue
 			var/datum/nifsoft/NS = nifsoft
-			data["modules"].Add(list(list(
+			modules.Add(list(list(
 				"name" = NS.name,
 				"desc" = NS.desc,
 				"p_drain" = NS.p_drain,
@@ -137,6 +138,7 @@
 				"stat_text" = NS.stat_text(),
 				"ref" = REF(NS),
 			)))
+	data["modules"] = modules
 
 	return data
 

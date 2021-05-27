@@ -35,7 +35,7 @@
 		spawn(0)
 			deactivate()
 
-/datum/nifsoft/soulcatcher/deactivate()
+/datum/nifsoft/soulcatcher/deactivate(var/force = FALSE)
 	if((. = ..()))
 		return TRUE
 
@@ -336,7 +336,7 @@
 		return FALSE
 	..()
 
-/mob/living/carbon/brain/caught_soul/show_message()
+/mob/living/carbon/brain/caught_soul/show_message(msg, type, alt, alt_type)
 	if(ext_blind || !client)
 		return FALSE
 	..()
@@ -363,7 +363,7 @@
 	else
 		return ..(direction)
 
-/mob/living/carbon/brain/caught_soul/say(var/message)
+/mob/living/carbon/brain/caught_soul/say(var/message, var/datum/language/speaking = null, var/whispering = 0)
 	if(silent) return FALSE
 	soulcatcher.say_into(message,src,eyeobj)
 

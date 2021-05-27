@@ -397,3 +397,17 @@
 				return /datum
 
 	return text2path(copytext(string_type, 1, last_slash))
+
+//checks if a file exists and contains text
+//returns text as a string if these conditions are met
+/proc/safe_file2text(filename, error_on_invalid_return = TRUE)
+	try
+		if(fexists(filename))
+			. = file2text(filename)
+			if(!. && error_on_invalid_return)
+				error("File empty ([filename])")
+		else if(error_on_invalid_return)
+			error("File not found ([filename])")
+	catch(var/exception/E)
+		if(error_on_invalid_return)
+			error("Exception when loading file as string: [E]")

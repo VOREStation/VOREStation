@@ -49,6 +49,13 @@ var/global/datum/controller/subsystem/ticker/ticker
 /datum/controller/subsystem/ticker/Initialize()
 	pregame_timeleft = config.pregame_time
 	send2mainirc("Server lobby is loaded and open at byond://[config.serverurl ? config.serverurl : (config.server ? config.server : "[world.address]:[world.port]")]")
+	SSwebhooks.send(
+		WEBHOOK_ROUNDPREP, 
+		list(
+			"map" = station_name(), 
+			"url" = get_world_url()
+		)
+	)
 	GLOB.autospeaker = new (null, null, null, 1) //Set up Global Announcer
 	return ..()
 
@@ -314,7 +321,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 			switch(M.z)
 				if(0)	//inside a crate or something
 					var/turf/T = get_turf(M)
-					if(T && T.z in using_map.station_levels)				//we don't use M.death(0) because it calls a for(/mob) loop and
+					if(T && (T.z in using_map.station_levels))				//we don't use M.death(0) because it calls a for(/mob) loop and
 						M.health = 0
 						M.set_stat(DEAD)
 				if(1)	//on a z-level 1 turf.

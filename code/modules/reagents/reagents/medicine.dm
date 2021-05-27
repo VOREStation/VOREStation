@@ -240,7 +240,8 @@
 /datum/reagent/carthatoline/overdose(var/mob/living/carbon/M, var/alien, var/removed)
 	M.adjustHalLoss(2)
 	var/mob/living/carbon/human/H = M
-	H.internal_organs_by_name[O_STOMACH].take_damage(removed * 2) // Causes stomach contractions, makes sense for an overdose to make it much worse.
+	var/obj/item/organ/internal/stomach/st = H.internal_organs_by_name[O_STOMACH]
+	st?.take_damage(removed * 2) // Causes stomach contractions, makes sense for an overdose to make it much worse.
 
 /datum/reagent/dexalin
 	name = "Dexalin"
@@ -612,7 +613,8 @@
 	..()
 	if(prob(5)) // 1 in 20
 		var/mob/living/carbon/human/H = M
-		H.internal_organs_by_name[O_HEART].take_damage(1)
+		var/obj/item/organ/internal/heart/ht = H.internal_organs_by_name[O_HEART]
+		ht?.take_damage(1)
 		to_chat(M, "<span class='warning'>Huh... Is this what a heart attack feels like?</span>")
 
 /datum/reagent/alkysine

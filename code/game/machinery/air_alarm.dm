@@ -556,7 +556,7 @@
 				"intdefault"= (info["internal"] == 0),
 			))
 
-		data["scrubbers"] = list()
+		var/list/scrubbers = list()
 		for(var/id_tag in alarm_area.air_scrub_names)
 			var/long_name = alarm_area.air_scrub_names[id_tag]
 			var/list/info = alarm_area.air_scrub_info[id_tag]
@@ -570,12 +570,13 @@
 				"panic"		= info["panic"],
 				"filters"	= list()
 			))
-			data["scrubbers"][data["scrubbers"].len]["filters"] += list(list("name" = "Oxygen",			"command" = "o2_scrub",	"val" = info["filter_o2"]))
-			data["scrubbers"][data["scrubbers"].len]["filters"] += list(list("name" = "Nitrogen",		"command" = "n2_scrub",	"val" = info["filter_n2"]))
-			data["scrubbers"][data["scrubbers"].len]["filters"] += list(list("name" = "Carbon Dioxide", "command" = "co2_scrub","val" = info["filter_co2"]))
-			data["scrubbers"][data["scrubbers"].len]["filters"] += list(list("name" = "Toxin"	, 		"command" = "tox_scrub","val" = info["filter_phoron"]))
-			data["scrubbers"][data["scrubbers"].len]["filters"] += list(list("name" = "Nitrous Oxide",	"command" = "n2o_scrub","val" = info["filter_n2o"]))
-			data["scrubbers"][data["scrubbers"].len]["filters"] += list(list("name" = "Fuel",			"command" = "fuel_scrub","val" = info["filter_fuel"]))
+			scrubbers[scrubbers.len]["filters"] += list(list("name" = "Oxygen",			"command" = "o2_scrub",	"val" = info["filter_o2"]))
+			scrubbers[scrubbers.len]["filters"] += list(list("name" = "Nitrogen",		"command" = "n2_scrub",	"val" = info["filter_n2"]))
+			scrubbers[scrubbers.len]["filters"] += list(list("name" = "Carbon Dioxide", "command" = "co2_scrub","val" = info["filter_co2"]))
+			scrubbers[scrubbers.len]["filters"] += list(list("name" = "Toxin"	, 		"command" = "tox_scrub","val" = info["filter_phoron"]))
+			scrubbers[scrubbers.len]["filters"] += list(list("name" = "Nitrous Oxide",	"command" = "n2o_scrub","val" = info["filter_n2o"]))
+			scrubbers[scrubbers.len]["filters"] += list(list("name" = "Fuel",			"command" = "fuel_scrub","val" = info["filter_fuel"]))
+		data["scrubbers"] = scrubbers
 
 		var/list/modes = list()
 		data["mode"] = mode

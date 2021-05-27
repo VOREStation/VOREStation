@@ -33,4 +33,4 @@
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/locust
 	)
-	/obj/item/weapon/reagent_containers/food/snacks/locust_cooked
+	result = /obj/item/weapon/reagent_containers/food/snacks/locust_cooked

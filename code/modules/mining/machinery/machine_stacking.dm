@@ -37,13 +37,15 @@
 /obj/machinery/mineral/stacking_unit_console/tgui_data(mob/user)
 	var/list/data = ..()
 
-	data["stacktypes"] = list()
+	
+	var/list/stacktypes = list()
 	for(var/stacktype in machine.stack_storage)
 		if(machine.stack_storage[stacktype] > 0)
-			data["stacktypes"].Add(list(list(
+			stacktypes.Add(list(list(
 				"type" = stacktype,
 				"amt" = machine.stack_storage[stacktype],
 			)))
+	data["stacktypes"] = stacktypes
 	data["stackingAmt"] = machine.stack_amt
 	return data
 

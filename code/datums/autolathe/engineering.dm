@@ -50,6 +50,10 @@
 	name = "keycard authenticator electronics"
 	path =/obj/item/weapon/circuitboard/keycard_auth
 
+/datum/category_item/autolathe/engineering/geiger_wall
+	name = "wall-mounted geiger counter electronics"
+	path =/obj/item/weapon/circuitboard/geiger
+
 /datum/category_item/autolathe/engineering/photocopier
 	name = "photocopier electronics"
 	path =/obj/item/weapon/circuitboard/photocopier
