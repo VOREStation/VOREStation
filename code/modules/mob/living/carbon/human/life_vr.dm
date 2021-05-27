@@ -42,8 +42,11 @@
 					if(istype(I,/obj/item/weapon/implant/backup))
 						if(!mind)
 							holder.icon_state = "hud_backup_nomind"
+						/* Pretty expensive with the addition of separate databases...
+						// is it really that important?
 						else if(!(mind.name in SStranscore.body_scans))
 							holder.icon_state = "hud_backup_nobody"
+						*/
 						else
 							holder.icon_state = "hud_backup_norm"
 

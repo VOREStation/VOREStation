@@ -13,6 +13,11 @@
 	icon_state = "backup_implant"
 	known_implant = TRUE
 
+	// Resleeving database this machine interacts with. Blank for default database
+	// Needs a matching /datum/transcore_db with key defined in code
+	var/db_key
+	var/datum/transcore_db/our_db // These persist all round and are never destroyed, just keep a hard ref
+
 /obj/item/weapon/implant/backup/get_data()
 	var/dat = {"
 <b>Implant Specifications:</b><BR>
@@ -26,14 +31,18 @@
 <b>Integrity:</b> Generally very survivable. Susceptible to being destroyed by acid."}
 	return dat
 
+/obj/item/weapon/implant/backup/Initialize()
+	. = ..()
+	our_db = SStranscore.db_by_key(db_key)
+
 /obj/item/weapon/implant/backup/Destroy()
-	SStranscore.implants -= src
+	our_db.implants -= src
 	return ..()
 
 /obj/item/weapon/implant/backup/post_implant(var/mob/living/carbon/human/H)
 	if(istype(H))
 		BITSET(H.hud_updateflag, BACKUP_HUD)
-		SStranscore.implants |= src
+		our_db.implants |= src
 
 		return 1
 
