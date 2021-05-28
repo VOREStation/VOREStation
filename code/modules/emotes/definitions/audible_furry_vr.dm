@@ -132,8 +132,6 @@
 /decl/emote/audible/spiderchitter
     key = "spiderchitter"
     emote_message_3p = "chitters."
-    emote_sound = 'sound/voice/spiderchitter.ogg'
 /decl/emote/audible/spiderpurr
     key = "spiderpurr"
     emote_message_3p = "purrs."
-    emote_sound = 'sound/voice/spiderpurr.ogg'
