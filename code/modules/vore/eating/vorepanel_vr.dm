@@ -123,7 +123,7 @@
 					info["absorbed"] = TRUE
 			inside_contents.Add(list(info))
 		inside["contents"] = inside_contents
-	data["inside"] = list()
+	data["inside"] = inside
 
 	var/list/our_bellies = list()
 	for(var/belly in host.vore_organs)
