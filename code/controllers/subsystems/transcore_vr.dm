@@ -10,8 +10,9 @@ SUBSYSTEM_DEF(transcore)
 	name = "Transcore"
 	priority = 20
 	wait = 3 MINUTES
-	flags = SS_BACKGROUND|SS_NO_INIT
+	flags = SS_BACKGROUND
 	runlevels = RUNLEVEL_GAME
+	init_order = INIT_ORDER_TRANSCORE
 
 	// THINGS
 	var/overdue_time = 15 MINUTES
@@ -35,6 +36,7 @@ SUBSYSTEM_DEF(transcore)
 			warning("Instantiated transcore DB without a key: [t]")
 			continue
 		databases[db.key] = db
+	return ..()
 
 /datum/controller/subsystem/transcore/fire(resumed = 0)
 	var/timer = TICK_USAGE
@@ -93,7 +95,7 @@ SUBSYSTEM_DEF(transcore)
 	while(current_run.len)
 		var/datum/transhuman/mind_record/curr_MR = current_run[current_run.len]
 		var/datum/transcore_db/db = current_run[curr_MR]
-		current_run -= name
+		current_run.len--
 
 		//Invalid record
 		if(!curr_MR)
@@ -126,9 +128,12 @@ SUBSYSTEM_DEF(transcore)
 	msg += "} "
 	msg += "#:{"
 	msg += "DB:[databases.len]|"
-	msg += "DFM:[default_db.backed_up]|"
-	msg += "DFB:[default_db.body_scans]|"
-	msg += "DIM:[default_db.implants]"
+	if(!default_db)
+		msg += "DEFAULT DB MISSING"
+	else
+		msg += "DFM:[default_db.backed_up.len]|"
+		msg += "DFB:[default_db.body_scans.len]|"
+		msg += "DFI:[default_db.implants.len]"
 	msg += "} "
 	..(jointext(msg, null))
 
@@ -150,7 +155,8 @@ SUBSYSTEM_DEF(transcore)
 		warning("No mind mob asked to be removed from transcore: [M] [M?.type]")
 		return
 
-	for(var/datum/transcore_db/db as anything in databases)
+	for(var/key in databases)
+		var/datum/transcore_db/db = databases[key]
 		if(M.mind.name in db.backed_up)
 			var/datum/transhuman/mind_record/MR = db.backed_up[M.mind.name]
 			db.stop_backup(MR)

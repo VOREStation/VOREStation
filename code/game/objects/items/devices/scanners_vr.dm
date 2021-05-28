@@ -207,7 +207,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 		usr.visible_message("[usr] begins scanning [target]'s body.","<span class='notice'>You begin scanning [target]'s body.</span>")
 		if(do_after(usr,8 SECONDS,target))
 			var/datum/transhuman/body_record/BR = new()
-			BR.init_from_mob(H, TRUE, TRUE)
+			BR.init_from_mob(H, TRUE, TRUE, database_key = db_key)
 			to_chat(usr,"<span class='notice'>Body scanned!</span>")
 		else
 			to_chat(usr,"<span class='warning'>You must remain close to your target!</span>")
