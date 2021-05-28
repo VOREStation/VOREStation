@@ -34510,6 +34510,9 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/crew_quarters/sleep/cryo)
+"bgW" = (
+/turf/simulated/wall/r_wall,
+/area/tether/surfacebase/shuttle_pad)
 "bgX" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
@@ -34527,6 +34530,9 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/crew_quarters/sleep/cryo)
+"bgZ" = (
+/turf/simulated/wall/r_wall,
+/area/tether/surfacebase/southhall)
 "bha" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -54895,7 +54901,7 @@ aWc
 aWP
 aKU
 aOI
-aPb
+bgW
 bdz
 bdz
 bdz
@@ -55037,7 +55043,7 @@ aWK
 aWP
 aKU
 aOI
-aPb
+bgW
 bdE
 bdE
 bdE
@@ -55179,7 +55185,7 @@ jHw
 jHw
 aKU
 aOK
-aKj
+bgW
 bdL
 bdL
 bdL
@@ -55321,7 +55327,7 @@ aVJ
 bbX
 aKU
 aOI
-aKj
+bgW
 bdN
 bdX
 bdX
@@ -55463,7 +55469,7 @@ aKU
 aKU
 aKU
 aOI
-aKj
+bgW
 bdR
 bdY
 bdY
@@ -55605,7 +55611,7 @@ aKU
 aKU
 aKU
 aOI
-aKj
+bgW
 bdT
 bef
 bef
@@ -55747,7 +55753,7 @@ aKV
 aKV
 aKV
 aOL
-aKj
+bgW
 bdU
 bdU
 bdU
@@ -55889,7 +55895,7 @@ aMU
 aKe
 aKe
 aKe
-aKj
+bgW
 bdW
 bdW
 bdW
@@ -56031,7 +56037,7 @@ aKj
 aKj
 aKf
 aKf
-aPs
+bgZ
 bdz
 bdz
 bdz
