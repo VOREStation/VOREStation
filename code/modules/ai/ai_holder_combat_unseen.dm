@@ -4,7 +4,7 @@
 /datum/ai_holder/proc/engage_unseen_enemy()
 	ai_log("engage_unseen_enemy() : Entering.", AI_LOG_TRACE)
 	// Also handled in strategic updates but handling it here allows for more fine resolution timeouts
-	if((lose_target_time+lose_target_timeout) >= world.time)
+	if((lose_target_time+lose_target_timeout) <= world.time)
 		return remove_target()
 	// Lets do some last things before giving up.
 	if(conserve_ammo || !holder.ICheckRangedAttack(target_last_seen_turf))
