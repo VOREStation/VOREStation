@@ -310,6 +310,10 @@ var/global/list/disallowed_protean_accessories = list(
 	if(client?.statpanel == "Protean")
 		panel_was_up = TRUE
 
+	if(istype(loc, /obj/machinery/recharge_station))
+		to_chat(src, "You cannot unform while connected to recharger!")
+		return
+
 	handle_grasp() //It's possible to blob out before some key parts of the life loop. This results in things getting dropped at null. TODO: Fix the code so this can be done better.
 	remove_micros(src, src) //Living things don't fare well in roblobs.
 	if(buckled)
@@ -402,7 +406,7 @@ var/global/list/disallowed_protean_accessories = list(
 	if(!istype(blob))
 		return
 
-	if(istype(blob.loc, /obj/machinery/atmospherics))
+	if(istype(blob.loc, /obj/machinery/atmospherics) || istype(blob.loc, /obj/machinery/recharge_station))
 		to_chat(src, "You cannot reform in these confines!")
 		return
 
