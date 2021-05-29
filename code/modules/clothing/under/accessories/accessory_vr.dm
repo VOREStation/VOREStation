@@ -124,7 +124,7 @@
 	if(usr.stat) return
 
 	if(!jingled)
-		usr.audible_message("[usr] jingles the [src]'s bell.")
+		usr.audible_message("[usr] jingles the [src]'s bell.", runemessage = "* jingle *")
 		playsound(src, 'sound/items/pickup/ring.ogg', 50, 1)
 		jingled = 1
 		addtimer(CALLBACK(src, .proc/jingledreset), 50)
