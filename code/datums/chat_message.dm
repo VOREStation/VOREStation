@@ -4,9 +4,12 @@
 #define CHAT_MESSAGE_EXP_DECAY		0.8 // Messages decay at pow(factor, idx in stack)
 #define CHAT_MESSAGE_HEIGHT_DECAY	0.7 // Increase message decay based on the height of the message
 #define CHAT_MESSAGE_APPROX_LHEIGHT	11 // Approximate height in pixels of an 'average' line, used for height decay
+
 #define CHAT_MESSAGE_WIDTH			96 // pixels
-#define CHAT_MESSAGE_NORM_LENGTH	68 // characters
-#define CHAT_MESSAGE_EXT_LENGTH		150 // characters
+#define CHAT_MESSAGE_EXT_WIDTH		128
+#define CHAT_MESSAGE_LENGTH			68 // characters
+#define CHAT_MESSAGE_EXT_LENGTH		150
+
 #define CHAT_MESSAGE_MOB			1
 #define CHAT_MESSAGE_OBJ			2
 #define WXH_TO_HEIGHT(x)			text2num(copytext((x), findtextEx((x), "x") + 1)) // thanks lummox
@@ -79,8 +82,11 @@ var/runechat_icon = null
 	owned_by = owner.client
 	RegisterSignal(owned_by, COMSIG_PARENT_QDELETING, .proc/qdel_self)
 
+	var/erp_king = owned_by.is_preference_enabled(/datum/client_preference/runechat_long_messages)
+	var/maxlen = erp_king ? CHAT_MESSAGE_EXT_LENGTH : CHAT_MESSAGE_LENGTH
+	var/msgwidth = erp_king ? CHAT_MESSAGE_EXT_WIDTH : CHAT_MESSAGE_WIDTH
+
 	// Clip message
-	var/maxlen = owned_by.is_preference_enabled(/datum/client_preference/runechat_long_messages) ? CHAT_MESSAGE_EXT_LENGTH : CHAT_MESSAGE_NORM_LENGTH
 	if (length_char(text) > maxlen)
 		text = copytext_char(text, 1, maxlen + 1) + "..." // BYOND index moment
 
@@ -124,7 +130,7 @@ var/runechat_icon = null
 	// Construct text
 	var/static/regex/html_metachars = new(@"&[A-Za-z]{1,7};", "g")
 	var/complete_text = "<span class='center maptext [extra_classes != null ? extra_classes.Join(" ") : ""]' style='color: [tgt_color];'>[text]</span>"
-	var/mheight = WXH_TO_HEIGHT(owned_by.MeasureText(replacetext(complete_text, html_metachars, "m"), null, CHAT_MESSAGE_WIDTH))
+	var/mheight = WXH_TO_HEIGHT(owned_by.MeasureText(replacetext(complete_text, html_metachars, "m"), null, msgwidth))
 	approx_lines = max(1, mheight / CHAT_MESSAGE_APPROX_LHEIGHT)
 
 	// Translate any existing messages upwards, apply exponential decay factors to timers
@@ -149,9 +155,9 @@ var/runechat_icon = null
 	message.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA | KEEP_APART
 	message.alpha = 0
 	message.pixel_y = owner.bound_height * 0.95
-	message.maptext_width = CHAT_MESSAGE_WIDTH
+	message.maptext_width = msgwidth
 	message.maptext_height = mheight
-	message.maptext_x = (CHAT_MESSAGE_WIDTH - owner.bound_width) * -0.5
+	message.maptext_x = (msgwidth - owner.bound_width) * -0.5
 	message.maptext = complete_text
 
 	if (is_holder_of(owner, target)) // Special case, holding an atom speaking (pAI, recorder...)
