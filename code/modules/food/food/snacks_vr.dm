@@ -261,7 +261,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/lobstercooked
 	name = "cooked lobster"
-	desc = "A luxurious plate of cooked lobster, it's taste accentuated by lemon juice. Reinvigorating!"
+	desc = "A luxurious plate of cooked lobster, its taste accentuated by lemon juice. Reinvigorating!"
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "lobster_cooked"
 	trash = /obj/item/trash/plate
