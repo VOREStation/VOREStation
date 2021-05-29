@@ -389,7 +389,7 @@
 
 /obj/item/clothing/accessory/chameleon/emp_act(severity) //Because we don't have psych for all slots right now but still want a downside to EMP.  In this case your cover's blown.
 	name = "black tie"
-	desc = "Looks like a black tie, but his one also has a dial inside."
+	desc = "Looks like a black tie, but this one also has a dial inside."
 	icon_state = "blacktie"
 	update_icon()
 	update_clothing_icon()
