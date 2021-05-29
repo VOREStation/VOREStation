@@ -191,7 +191,7 @@
 			update_use_power(USE_POWER_ACTIVE)
 			regulating_temperature = 1
 			audible_message("\The [src] clicks as it starts [environment.temperature > target_temperature ? "cooling" : "heating"] the room.",\
-			"You hear a click and a faint electronic hum.")
+			"You hear a click and a faint electronic hum.", runemessage = "* click *")
 			playsound(src, 'sound/machines/click.ogg', 50, 1)
 	else
 		//check for when we should stop adjusting temperature
@@ -199,7 +199,7 @@
 			update_use_power(USE_POWER_IDLE)
 			regulating_temperature = 0
 			audible_message("\The [src] clicks quietly as it stops [environment.temperature > target_temperature ? "cooling" : "heating"] the room.",\
-			"You hear a click as a faint electronic humming stops.")
+			"You hear a click as a faint electronic humming stops.", runemessage = "* click *")
 			playsound(src, 'sound/machines/click.ogg', 50, 1)
 
 	if(regulating_temperature)
