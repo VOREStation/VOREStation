@@ -53,7 +53,8 @@
 	name = "Amorphorovir"
 	id = "amorphorovir"
 	result = "amorphorovir"
-	required_reagents = list("cryptobiolin" = 30, "biomass" = 30, "hyperzine" = 15, "phoron" = 5)
+	required_reagents = list("cryptobiolin" = 30, "biomass" = 30, "hyperzine" = 20)
+	catalysts = list("phoron" = 5)
 	result_amount = 1
 
 /decl/chemical_reaction/instant/androrovir
