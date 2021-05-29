@@ -149,7 +149,7 @@
 	subtext = html_encode(subtext)
 	// Store the player's name in a nice bold, naturalement
 	nametext = "<B>[emoter]</B>"
-	return pretext + nametext + subtext
+	return list("pretext" = pretext, "nametext" = nametext, "subtext" = subtext)
 
 /mob/proc/custom_emote(var/m_type = VISIBLE_MESSAGE, var/message, var/range = world.view)
 
@@ -163,8 +163,10 @@
 	else
 		input = message
 
+	var/list/formatted
 	if(input)
-		message = format_emote(src, message)
+		formatted = format_emote(src, message)
+		message = formatted["pretext"] + formatted["nametext"] + formatted["subtext"]
 	else
 		return
 
