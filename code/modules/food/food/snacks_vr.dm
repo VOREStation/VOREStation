@@ -616,7 +616,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/grub
 	name = "grub"
-	desc = "a still writhing grub, soft and squishy."
+	desc = "A still writhing grub, soft and squishy."
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "grub"
 	nutriment_amt = 3
@@ -629,7 +629,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/grub_pink
 	name = "pink candy grub"
-	desc = "a thoroughly candied grub, it smells of raspberry."
+	desc = "A thoroughly candied grub, it smells of raspberry."
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "grub_pink"
 	nutriment_amt = 5
@@ -641,7 +641,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/grub_purple
 	name = "pink candy grub"
-	desc = "a thoroughly candied grub, it smells of grape."
+	desc = "A thoroughly candied grub, it smells of grape."
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "grub_purple"
 	nutriment_amt = 5
@@ -653,7 +653,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/grub_blue
 	name = "pink candy grub"
-	desc = "a thoroughly candied grub, it smells of blueberry."
+	desc = "A thoroughly candied grub, it smells of blueberry."
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "grub_blue"
 	nutriment_amt = 5
@@ -665,7 +665,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/scorpion
 	name = "scorpion"
-	desc = "a scorpion from the sandy deserts, don't get stung!"
+	desc = "A scorpion from the sandy deserts, don't get stung!"
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "scorpion"
 	nutriment_amt = 8
@@ -677,7 +677,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/scorpion_cooked
 	name = "cooked scorpion"
-	desc = "a scorpion baked nice and crispy"
+	desc = "A scorpion. Baked nice and crispy"
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "scorpion_cooked"
 	nutriment_amt = 6
@@ -691,7 +691,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/ant
 	name = "giant honey ant"
-	desc = "a sweetly scented honey ant. it has a huge swollen abdomen full of yummy."
+	desc = "A sweetly scented honey ant. It has a huge swollen abdomen full of yummy."
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "honeyant"
 	nutriment_amt = 2
@@ -707,7 +707,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/antball
 	name = "giant honey ball"
-	desc = "a sweetly scented honey ball, minus the ant. For those who don't like bug bits between their teeth."
+	desc = "A sweetly scented honey ball, minus the ant. For those who don't like bug bits between their teeth."
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "honeyant_clean"
 	nutriment_amt = 4
@@ -720,7 +720,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/honey_candy
 	name = "honey candy"
-	desc = "a clever mimicery of a honey ant abdomen, but it's just a piece of candy. Does not contain actual honey"
+	desc = "A clever mimicry of a honey ant abdomen, but it's just a piece of candy. Does not contain actual honey!"
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "candy_honey"
 	nutriment_amt = 4
@@ -735,7 +735,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/locust
 	name = "yellow jacket locust"
-	desc = "a vibrant bug that looks like a wasp, but is in fact a locust. Crunchy"
+	desc = "A vibrant bug that looks like a wasp, but is in fact a locust. Crunchy."
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "locust"
 	nutriment_amt = 4
@@ -748,7 +748,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/locust_cooked
 	name = "fried locust"
-	desc = "a fried locust, extremely crunchy"
+	desc = "A fried locust, extremely crunchy."
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "locust_cooked"
 	nutriment_amt = 2
