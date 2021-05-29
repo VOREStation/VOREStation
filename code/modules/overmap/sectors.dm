@@ -97,6 +97,18 @@
 		global.using_map.map_levels -= map_z
 	*/
 
+/obj/effect/overmap/visitable/proc/unregister_z_levels()
+	map_sectors -= map_z
+
+	global.using_map.player_levels -= map_z
+	if(!in_space)
+		global.using_map.sealed_levels -= map_z
+	if(base)
+		global.using_map.station_levels -= map_z
+		global.using_map.contact_levels -= map_z
+		global.using_map.map_levels -= map_z
+
+
 /obj/effect/overmap/visitable/proc/get_space_zlevels()
 	if(in_space)
 		return map_z
