@@ -242,8 +242,9 @@
 /obj/item/weapon/storage/secure/briefcase/nsfw_pack_hybrid
 	name = "hybrid cell-loaded gun kit"
 	desc = "A storage case for a multi-purpose handgun. Variety hour!"
-	w_class = ITEMSIZE_LARGE
+	w_class = ITEMSIZE_NORMAL
 	max_w_class = ITEMSIZE_NORMAL
+	can_hold = list(/obj/item/weapon/gun/projectile/cell_loaded,/obj/item/ammo_magazine/cell_mag,/obj/item/ammo_casing/microbattery)
 
 /obj/item/weapon/storage/secure/briefcase/nsfw_pack_hybrid/New()
 	..()
@@ -263,8 +264,9 @@
 /obj/item/weapon/storage/secure/briefcase/nsfw_pack_hybrid_combat
 	name = "military cell-loaded gun kit"
 	desc = "A storage case for a multi-purpose handgun. Variety hour!"
-	w_class = ITEMSIZE_LARGE
+	w_class = ITEMSIZE_NORMAL
 	max_w_class = ITEMSIZE_NORMAL
+	can_hold = list(/obj/item/weapon/gun/projectile/cell_loaded,/obj/item/ammo_magazine/cell_mag,/obj/item/ammo_casing/microbattery)
 
 /obj/item/weapon/storage/secure/briefcase/nsfw_pack_hybrid_combat/New()
 	..()
