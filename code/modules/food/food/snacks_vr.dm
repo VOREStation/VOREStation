@@ -176,7 +176,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/bugball
 	name = "bugball"
-	desc = "A hard piece of chitin, dont chip a tooth!"
+	desc = "A hard piece of chitin, don't chip a tooth!"
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "pillbugball"
 	slice_path = /obj/item/weapon/reagent_containers/food/snacks/pillbug
@@ -250,7 +250,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/lobster
 	name = "raw lobster"
-	desc = "A shifty lobster. You can try eating it, but it's shell is extremely tough."
+	desc = "A shifty lobster. You can try eating it, but its shell is extremely tough."
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "lobster_raw"
 	nutriment_amt = 5
