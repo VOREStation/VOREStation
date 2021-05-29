@@ -492,6 +492,7 @@
 #include "../../offmap_vr/om_ships/screebarge.dm"
 #include "../../offmap_vr/om_ships/aro.dm"
 #include "../../offmap_vr/om_ships/aro2.dm"
+#include "../../offmap_vr/om_ships/aro3.dm"
 #include "../../offmap_vr/om_ships/bearcat.dm"
 #include "../../offmap_vr/om_ships/cruiser.dm"
 #include "../../offmap_vr/om_ships/vespa.dm"

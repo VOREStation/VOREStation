@@ -60,7 +60,7 @@
 		return
 
 	var/chosen_target
-	if(preferred_target && preferred_target in targets)
+	if(preferred_target && (preferred_target in targets))
 		chosen_target = preferred_target
 	else
 		chosen_target = pick(targets)
@@ -183,6 +183,7 @@
 	give_up_movement()
 	lose_target_position()
 	set_stance(STANCE_IDLE)
+	return TRUE
 
 // Check if target is visible to us.
 /datum/ai_holder/proc/can_see_target(atom/movable/the_target, view_range = vision_range)

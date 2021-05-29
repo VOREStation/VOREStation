@@ -35,7 +35,7 @@
 		spawn(0)
 			deactivate()
 
-/datum/nifsoft/soulcatcher/deactivate()
+/datum/nifsoft/soulcatcher/deactivate(var/force = FALSE)
 	if((. = ..()))
 		return TRUE
 
@@ -46,14 +46,14 @@
 	if((. = ..()))
 		//nif.set_flag(NIF_O_SCOTHERS,NIF_FLAGS_OTHER)	//Only required on install if the flag is in the default setting_flags list defined few lines above.
 		if(nif?.human)
-			nif.human.verbs |= /mob/living/carbon/human/nsay
-			nif.human.verbs |= /mob/living/carbon/human/nme
+			nif.human.verbs |= /mob/proc/nsay
+			nif.human.verbs |= /mob/proc/nme
 
 /datum/nifsoft/soulcatcher/uninstall()
 	QDEL_LIST_NULL(brainmobs)
 	if((. = ..()) && nif?.human) //Sometimes NIFs are deleted outside of a human
-		nif.human.verbs -= /mob/living/carbon/human/nsay
-		nif.human.verbs -= /mob/living/carbon/human/nme
+		nif.human.verbs -= /mob/proc/nsay
+		nif.human.verbs -= /mob/proc/nme
 
 /datum/nifsoft/soulcatcher/proc/save_settings()
 	if(!nif)
@@ -336,7 +336,7 @@
 		return FALSE
 	..()
 
-/mob/living/carbon/brain/caught_soul/show_message()
+/mob/living/carbon/brain/caught_soul/show_message(msg, type, alt, alt_type)
 	if(ext_blind || !client)
 		return FALSE
 	..()
@@ -363,7 +363,7 @@
 	else
 		return ..(direction)
 
-/mob/living/carbon/brain/caught_soul/say(var/message)
+/mob/living/carbon/brain/caught_soul/say(var/message, var/datum/language/speaking = null, var/whispering = 0)
 	if(silent) return FALSE
 	soulcatcher.say_into(message,src,eyeobj)
 
@@ -482,9 +482,12 @@
 	set desc = "Speak into your NIF's Soulcatcher."
 	set category = "IC"
 
+	src.nsay_act(message)
+
+/mob/proc/nsay_act(message as text|null)
 	to_chat(src, SPAN_WARNING("You must be a humanoid with a NIF implanted to use that."))
 
-/mob/living/carbon/human/nsay(message as text|null)
+/mob/living/carbon/human/nsay_act(message as text|null)
 	if(stat != CONSCIOUS)
 		to_chat(src,SPAN_WARNING("You can't use NSay while unconscious."))
 		return
@@ -509,9 +512,12 @@
 	set desc = "Emote into your NIF's Soulcatcher."
 	set category = "IC"
 	
+	src.nme_act(message)
+
+/mob/proc/nme_act(message as text|null)
 	to_chat(src, SPAN_WARNING("You must be a humanoid with a NIF implanted to use that."))
 
-/mob/living/carbon/human/nme(message as text|null)
+/mob/living/carbon/human/nme_act(message as text|null)
 	if(stat != CONSCIOUS)
 		to_chat(src,SPAN_WARNING("You can't use NMe while unconscious."))
 		return

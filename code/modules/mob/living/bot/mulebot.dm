@@ -242,7 +242,6 @@
 		M.apply_damage(0.5 * damage, BRUTE, BP_R_ARM)
 
 		blood_splatter(src, M, 1)
-	..()
 
 /mob/living/bot/mulebot/relaymove(var/mob/user, var/direction)
 	if(load == user)

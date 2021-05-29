@@ -481,7 +481,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 	overlays_standing[HAIR_LAYER] = image(face_standing, layer = BODY_LAYER+HAIR_LAYER, "pixel_y" = head_organ.head_offset)
 	apply_layer(HAIR_LAYER)
-	return
+	//return //VOREStation Edit
 
 	// VOREStation Edit - START
 	var/icon/hair_acc_s = get_hair_accessory_overlay()
@@ -565,7 +565,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 				standing.underlays += underlay
 
 	for(var/mut in mutations)
-		if(LASER)
+		if(mut == LASER)
 			standing.overlays += "lasereyes_s" //TODO
 
 	overlays_standing[MUTATIONS_LAYER]	= standing

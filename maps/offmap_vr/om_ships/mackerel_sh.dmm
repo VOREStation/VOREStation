@@ -68,6 +68,12 @@
 /obj/machinery/atmospherics/pipe/manifold/visible/yellow,
 /turf/simulated/floor/plating,
 /area/shuttle/mackerel_sh)
+"fz" = (
+/obj/structure/hull_corner{
+	dir = 4
+	},
+/turf/template_noop,
+/area/shuttle/mackerel_sh)
 "fD" = (
 /obj/structure/handrail{
 	dir = 4
@@ -445,6 +451,12 @@
 	pixel_x = -30
 	},
 /turf/simulated/floor/tiled/techfloor,
+/area/shuttle/mackerel_sh)
+"CH" = (
+/obj/structure/hull_corner{
+	dir = 1
+	},
+/turf/template_noop,
 /area/shuttle/mackerel_sh)
 "Da" = (
 /obj/machinery/portable_atmospherics/canister/air,
@@ -859,12 +871,22 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/mackerel_sh)
+"XJ" = (
+/obj/structure/hull_corner{
+	dir = 8
+	},
+/turf/template_noop,
+/area/shuttle/mackerel_sh)
 "Zb" = (
 /obj/structure/handrail,
 /obj/machinery/light/small{
 	dir = 8
 	},
 /turf/simulated/floor/airless,
+/area/shuttle/mackerel_sh)
+"Zk" = (
+/obj/structure/hull_corner,
+/turf/template_noop,
 /area/shuttle/mackerel_sh)
 "Zp" = (
 /turf/simulated/floor/tiled/techmaint,
@@ -930,13 +952,13 @@ WP
 WP
 WP
 WP
-WP
+Zk
 ka
 ka
 ka
 ka
 ka
-WP
+fz
 WP
 "}
 (3,1,1) = {"
@@ -955,7 +977,7 @@ WP
 WP
 WP
 WP
-WP
+ka
 ka
 Zb
 bI
@@ -980,13 +1002,13 @@ WP
 WP
 WP
 WP
-WP
+XJ
 ka
 ka
 tV
 ka
 ka
-WP
+CH
 WP
 "}
 (5,1,1) = {"
@@ -1017,7 +1039,7 @@ WP
 (6,1,1) = {"
 WP
 WP
-WP
+Zk
 ka
 ka
 ka
@@ -1087,7 +1109,7 @@ tV
 ka
 ka
 ka
-WP
+fz
 "}
 (9,1,1) = {"
 WP
@@ -1187,11 +1209,11 @@ tV
 ka
 ka
 ka
-WP
+CH
 "}
 (13,1,1) = {"
 WP
-WP
+XJ
 ka
 ka
 oe
@@ -1217,7 +1239,7 @@ WP
 (14,1,1) = {"
 WP
 WP
-WP
+XJ
 ka
 ka
 ka
@@ -1280,13 +1302,13 @@ WP
 WP
 WP
 WP
-WP
+Zk
 ka
 ka
 tV
 ka
 ka
-WP
+fz
 WP
 "}
 (17,1,1) = {"
@@ -1305,7 +1327,7 @@ WP
 WP
 WP
 WP
-WP
+ka
 ka
 Dc
 gU
@@ -1330,13 +1352,13 @@ WP
 WP
 WP
 WP
-WP
+XJ
 ka
 ka
 ka
 ka
 ka
-WP
+CH
 WP
 "}
 (19,1,1) = {"

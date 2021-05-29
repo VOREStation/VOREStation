@@ -43,7 +43,7 @@
 		var/turf/aimloc = targloc
 		if(deviation)
 			aimloc = locate(targloc.x+GaussRandRound(deviation,1),targloc.y+GaussRandRound(deviation,1),targloc.z)
-		if(!aimloc || aimloc == curloc || (locs && aimloc in locs))
+		if(!aimloc || aimloc == curloc || (locs && (aimloc in locs)))
 			break
 		playsound(src, fire_sound, fire_volume, 1)
 		projectiles--

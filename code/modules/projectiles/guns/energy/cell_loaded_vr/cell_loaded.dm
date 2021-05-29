@@ -38,7 +38,6 @@
 				if(istype(other_batt,chambered.type) && other_batt.shots_left)
 					switch_to(other_batt)
 					return new chambered.projectile_type()
-					break
 
 	return null
 

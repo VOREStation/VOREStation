@@ -6169,7 +6169,6 @@
 	},
 /obj/fiftyspawner/plastic,
 /obj/fiftyspawner/plastic,
-/obj/fiftyspawner/copper,
 /turf/simulated/floor/tiled,
 /area/engineering/workshop)
 "aoQ" = (
@@ -17634,7 +17633,6 @@
 /obj/structure/table/reinforced,
 /obj/fiftyspawner/rglass,
 /obj/fiftyspawner/rods,
-/obj/fiftyspawner/copper,
 /turf/simulated/floor/tiled,
 /area/ai_monitored/storage/eva)
 "ekv" = (

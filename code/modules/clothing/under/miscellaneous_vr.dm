@@ -38,7 +38,6 @@
 		set src in usr
 
 		adjust_fibers(usr)
-		..()
 
 /obj/item/clothing/under/hyperfiber/proc/adjust_fibers(mob/user)
 	if(hides_bulges == FALSE)
@@ -63,7 +62,6 @@
 	set category = "Object"
 	set src in usr
 	bluespace_size(usr)
-	..()
 
 /obj/item/clothing/under/hyperfiber/bluespace/proc/bluespace_size(mob/usr as mob)
 	if (!ishuman(usr))

@@ -158,10 +158,10 @@
 	data["doors_open"] = lift.doors_are_open()
 	data["fire_mode"] = lift.fire_mode
 
-	data["floors"] = list()
+	var/list/floors = list()
 	for(var/i in lift.floors.len to 1 step -1)
 		var/datum/turbolift_floor/floor = lift.floors[i]
-		data["floors"].Add(list(list(
+		floors.Add(list(list(
 			"id" = i,
 			"ref" = "\ref[floor]",
 			"queued" = (floor in lift.queued_floors),
@@ -170,6 +170,7 @@
 			"label" = floor.label,
 			"name" = floor.name,
 		)))
+	data["floors"] = floors
 	
 	return data
 

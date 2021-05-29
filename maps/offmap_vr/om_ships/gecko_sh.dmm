@@ -85,6 +85,12 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/gecko_sh_cockpit)
+"bE" = (
+/obj/structure/hull_corner/long_vert{
+	dir = 9
+	},
+/turf/template_noop,
+/area/shuttle/gecko_sh_engineering)
 "bI" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel,
 /obj/effect/floor_decal/industrial/warning,
@@ -532,6 +538,12 @@
 	},
 /turf/simulated/floor/plating,
 /area/shuttle/gecko_sh_engineering)
+"kW" = (
+/obj/structure/hull_corner/long_vert{
+	dir = 5
+	},
+/turf/template_noop,
+/area/shuttle/gecko_sh_engineering)
 "lh" = (
 /obj/machinery/light/small,
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
@@ -744,6 +756,12 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/wall/rshull,
+/area/shuttle/gecko_sh)
+"pV" = (
+/obj/structure/hull_corner/long_vert{
+	dir = 6
+	},
+/turf/template_noop,
 /area/shuttle/gecko_sh)
 "qh" = (
 /obj/machinery/door/firedoor/glass,
@@ -1413,6 +1431,9 @@
 	},
 /turf/simulated/floor/plating,
 /area/shuttle/gecko_sh_cockpit)
+"BV" = (
+/turf/template_noop,
+/area/shuttle/gecko_sh_engineering)
 "BW" = (
 /obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/fuel,
@@ -1616,6 +1637,12 @@
 	},
 /obj/structure/catwalk,
 /turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"Fj" = (
+/obj/structure/hull_corner{
+	dir = 4
+	},
+/turf/template_noop,
 /area/shuttle/gecko_sh_engineering)
 "Fp" = (
 /obj/structure/bed/chair/bay/shuttle{
@@ -1836,6 +1863,9 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/gecko_sh_cockpit)
+"Km" = (
+/turf/template_noop,
+/area/shuttle/gecko_sh)
 "Kn" = (
 /obj/effect/floor_decal/industrial/outline/red,
 /obj/machinery/portable_atmospherics/canister/empty,
@@ -2332,6 +2362,12 @@
 /obj/effect/floor_decal/industrial/outline/grey,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/gecko_sh)
+"SJ" = (
+/obj/structure/hull_corner/long_vert{
+	dir = 10
+	},
+/turf/template_noop,
+/area/shuttle/gecko_sh)
 "SV" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -2508,6 +2544,12 @@
 /obj/machinery/portable_atmospherics/canister/air,
 /obj/effect/floor_decal/industrial/outline/blue,
 /turf/simulated/floor/plating,
+/area/shuttle/gecko_sh_engineering)
+"Wx" = (
+/obj/structure/hull_corner{
+	dir = 1
+	},
+/turf/template_noop,
 /area/shuttle/gecko_sh_engineering)
 "Wz" = (
 /turf/simulated/floor/tiled/techfloor,
@@ -2829,7 +2871,7 @@ IQ
 IQ
 IQ
 IQ
-WP
+Fj
 "}
 (3,1,1) = {"
 WP
@@ -2946,8 +2988,8 @@ IQ
 IQ
 IQ
 IQ
-WP
-WP
+BV
+kW
 WP
 WP
 WP
@@ -2958,15 +3000,15 @@ IQ
 IQ
 IQ
 IQ
-WP
+Wx
 "}
 (6,1,1) = {"
 WP
 WP
 WP
-WP
-WP
-WP
+Km
+pV
+ZJ
 ZJ
 ZJ
 ZJ
@@ -3005,12 +3047,12 @@ WP
 "}
 (7,1,1) = {"
 WP
-WP
-WP
+Km
+pV
 ZJ
 ZJ
 ZJ
-ZJ
+Nr
 Nr
 GF
 Nr
@@ -3086,7 +3128,7 @@ aL
 IQ
 IQ
 IQ
-WP
+Fj
 WP
 "}
 (9,1,1) = {"
@@ -3216,7 +3258,7 @@ IQ
 IQ
 IQ
 IQ
-WP
+Fj
 "}
 (12,1,1) = {"
 WP
@@ -3388,7 +3430,7 @@ IQ
 IQ
 IQ
 IQ
-WP
+Wx
 "}
 (16,1,1) = {"
 WP
@@ -3516,17 +3558,17 @@ pG
 IQ
 IQ
 IQ
-WP
+Wx
 WP
 "}
 (19,1,1) = {"
 WP
-WP
-WP
+Km
+SJ
 ZJ
 ZJ
 ZJ
-ZJ
+Nr
 Nr
 uw
 Nr
@@ -3566,9 +3608,9 @@ WP
 WP
 WP
 WP
-WP
-WP
-WP
+Km
+SJ
+ZJ
 ZJ
 ZJ
 ZJ
@@ -3634,8 +3676,8 @@ IQ
 IQ
 IQ
 IQ
-WP
-WP
+BV
+bE
 WP
 WP
 WP
@@ -3646,7 +3688,7 @@ IQ
 IQ
 IQ
 IQ
-WP
+Fj
 "}
 (22,1,1) = {"
 WP
@@ -3775,7 +3817,7 @@ IQ
 IQ
 IQ
 IQ
-WP
+Wx
 "}
 (25,1,1) = {"
 WP

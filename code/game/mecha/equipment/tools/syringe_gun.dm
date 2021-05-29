@@ -461,7 +461,6 @@
 						E.status &= ~ORGAN_BROKEN
 
 /obj/item/mecha_parts/mecha_equipment/crisis_drone/proc/toggle_drone()
-	..()
 	if(chassis)
 		enabled = !enabled
 		if(enabled)

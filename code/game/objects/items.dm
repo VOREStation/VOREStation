@@ -312,7 +312,6 @@
 
 // apparently called whenever an item is removed from a slot, container, or anything else.
 /obj/item/proc/dropped(mob/user as mob)
-	..()
 	if(zoom)
 		zoom() //binoculars, scope, etc
 	appearance_flags &= ~NO_CLIENT_COLOR
@@ -695,7 +694,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	if((usr.stat && !zoom) || !(istype(usr,/mob/living/carbon/human)))
 		to_chat(usr, "You are unable to focus through the [devicename]")
 		cannotzoom = 1
-	else if(!zoom && global_hud.darkMask[1] in usr.client.screen)
+	else if(!zoom && (global_hud.darkMask[1] in usr.client.screen))
 		to_chat(usr, "Your visor gets in the way of looking through the [devicename]")
 		cannotzoom = 1
 	else if(!zoom && usr.get_active_hand() != src)

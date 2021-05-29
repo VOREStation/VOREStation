@@ -259,4 +259,4 @@ obj/item/clothing/mask/chewable/Destroy()
 
 /obj/item/clothing/mask/chewable/candy/pocky/Initialize()
 	. = ..()
-	reagents.add_reagent("chocolate" = 10)
+	reagents.add_reagent("chocolate", 10)

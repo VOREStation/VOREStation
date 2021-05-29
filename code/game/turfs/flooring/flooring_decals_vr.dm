@@ -133,3 +133,6 @@
 
 /obj/effect/floor_decal/emblem/itgdauntless
 	icon_state = "itgdauntless"
+
+/obj/effect/floor_decal/emblem/aronai
+	icon_state = "aronai"

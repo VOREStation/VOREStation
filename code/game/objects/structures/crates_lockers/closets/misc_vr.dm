@@ -207,8 +207,8 @@
 /obj/structure/closet/autolok_wall
 	name = "autolok suit storage"
 	desc = "It's wall-mounted storage unit for an AutoLok suit."
-	icon = 'icons/obj/closets/bases/wall.dmi'
-	closet_appearance = /decl/closet_appearance/wall/autolok
+	icon = 'icons/obj/closets/bases/wall_double.dmi'
+	closet_appearance = /decl/closet_appearance/wall_double/autolok
 	anchored = 1
 	density = 0
 	wall_mounted = 1

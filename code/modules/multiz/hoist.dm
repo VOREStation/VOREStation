@@ -211,7 +211,7 @@
 		size = O.w_class
 
 	user.visible_message(span("notice", "[user] begins to [movtext] \the [hoistee]!"), span("notice", "You begin to [movtext] \the [hoistee]!"), span("notice", "You hear the sound of a crank."))
-	if (do_after(user, (1 SECONDS) * size / 4, act_target = src))
+	if (do_after(user, (1 SECONDS) * size / 4, target = src))
 		move_dir(movedir, 1)
 
 /obj/structure/hoist/proc/collapse_kit()

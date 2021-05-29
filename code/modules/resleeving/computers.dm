@@ -469,7 +469,7 @@
 	icon_state = "harddisk"
 	item_state = "card-id"
 	w_class = ITEMSIZE_SMALL
-	var/datum/transhuman/mind_record/list/stored = list()
+	var/list/datum/transhuman/mind_record/stored = list()
 
 /**
   * Sets a temporary message to display to the user
