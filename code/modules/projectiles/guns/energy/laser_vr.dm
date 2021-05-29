@@ -263,7 +263,7 @@
 	icon_state = "carbinekill"
 	item_state = "energykill"
 	item_icons = list(slot_l_hand_str = 'icons/mob/items/lefthand_guns.dmi', slot_r_hand_str = 'icons/mob/items/righthand_guns.dmi')
-	phase_power = 150
+
 
 	modifystate = "carbinekill"
 	firemodes = list(
@@ -305,6 +305,19 @@
 
 /obj/item/weapon/gun/energy/locked/frontier/holdout/unlocked
 	desc = "An minaturized weapon designed for the purpose of expeditionary support to defend themselves on the field. Includes a built-in crank charger for recharging away from civilization."
+	req_access = newlist() //for toggling safety
+	locked = 0
+	lockable = 0
+
+////////////////Frontier Holdout Plus////////////////
+
+/obj/item/weapon/gun/energy/locked/frontier/holdout/holdoutplus
+	name = "holdout frontier phaser plus"
+	desc = "An minaturized weapon designed for the purpose of expeditionary support to defend themselves on the field. Includes a more economic built-in crank charger for recharging away from civilization. This one has a safety interlock that prevents firing while in proximity to the facility."
+	phase_power = 150
+
+ obj/item/weapon/gun/energy/locked/frontier/holdout/holdoutplus/unlocked
+	desc = "An minaturized weapon designed for the purpose of expeditionary support to defend themselves on the field. Includes a more economic built-in crank charger for recharging away from civilization."
 	req_access = newlist() //for toggling safety
 	locked = 0
 	lockable = 0

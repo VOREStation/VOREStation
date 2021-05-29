@@ -56,7 +56,7 @@
 		EQUIPMENT("Defense Equipment - Razor Drone Deployer",	/obj/item/weapon/grenade/spawnergrenade/manhacks/station/locked,	100),
 		EQUIPMENT("Defense Equipment - Sentry Drone Deployer",	/obj/item/weapon/grenade/spawnergrenade/ward,						150),
 		EQUIPMENT("Defense Equipment - Frontier Carbine",		/obj/item/weapon/gun/energy/locked/frontier/carbine,				750),
-		EQUIPMENT("Defense Equipment - Frontier Holdout",		/obj/item/weapon/gun/energy/locked/frontier/holdout,				500),
+		EQUIPMENT("Defense Equipment - Frontier Holdout Plus",	/obj/item/weapon/gun/energy/locked/frontier/holdout/holdoutplus,	500),
 		EQUIPMENT("Fishing Net",								/obj/item/weapon/material/fishing_net,								50),
 		EQUIPMENT("Titanium Fishing Rod",						/obj/item/weapon/material/fishing_rod/modern,						100),
 		EQUIPMENT("Durasteel Fishing Rod",						/obj/item/weapon/material/fishing_rod/modern/strong,				750),
