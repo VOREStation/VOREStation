@@ -246,7 +246,8 @@
 		//VOREStation Edit End
 
 		for(var/mob/mob in mobs_to_relay)
-			var/message = mob.combine_message(message_pieces, verb, M)
+			var/list/combined = mob.combine_message(message_pieces, verb, M)
+			var/message = combined["formatted"]
 			var/name_used = M.GetVoice()
 			var/rendered = null
 			rendered = "<span class='game say'>[bicon(src)] <span class='name'>[name_used]</span> [message]</span>"

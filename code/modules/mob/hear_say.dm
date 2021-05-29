@@ -2,7 +2,9 @@
 /mob/proc/combine_message(var/list/message_pieces, var/verb, var/mob/speaker, always_stars = FALSE, var/radio = FALSE)
 	var/iteration_count = 0
 	var/msg = "" // This is to make sure that the pieces have actually added something
-	. = "[verb], \""
+	var/raw_msg = ""
+	. = list("formatted" = "[verb], \"", "raw" = "")
+	
 	for(var/datum/multilingual_say_piece/SP in message_pieces)
 		iteration_count++
 		var/piece = SP.message
@@ -27,6 +29,9 @@
 				if(istype(S.say_list) && length(S.say_list.speak))
 					piece = pick(S.say_list.speak)
 
+		raw_msg += (piece + " ")
+		
+		//HTML formatting
 		if(!SP.speaking) // Catch the most generic case first
 			piece = "<span class='message body'>[piece]</span>"
 		else if(radio) // SP.speaking == TRUE enforced by previous !SP.speaking
@@ -38,10 +43,11 @@
 	
 	if(msg == "")
 		// There is literally no content left in this message, we need to shut this shit down
-		. = "" // hear_say will suppress it
+		.["formatted"] = "" // hear_say will suppress it
 	else
-		. = trim(. + trim(msg))
-		. += "\""
+		.["formatted"] = trim(.["formatted"] + trim(msg))
+		.["formatted"] += "\""
+		.["raw"] = trim(raw_msg)
 
 /mob/proc/saypiece_scramble(datum/multilingual_say_piece/SP)
 	if(SP.speaking)
@@ -76,7 +82,8 @@
 		var/mob/living/carbon/human/H = speaker
 		speaker_name = H.GetVoice()
 
-	var/message = combine_message(message_pieces, verb, speaker)
+	var/list/combined = combine_message(message_pieces, verb, speaker)
+	var/message = combined["formatted"]
 	if(message == "")
 		return
 	
@@ -164,7 +171,8 @@
 	if(!client)
 		return
 
-	var/message = combine_message(message_pieces, verb, speaker, always_stars = hard_to_hear, radio = TRUE)
+	var/list/combined = combine_message(message_pieces, verb, speaker, always_stars = hard_to_hear, radio = TRUE)
+	var/message = combined["formatted"]
 	if(sleeping || stat == UNCONSCIOUS) //If unconscious or sleeping
 		hear_sleep(multilingual_to_message(message_pieces))
 		return
@@ -272,7 +280,8 @@
 	return
 
 /mob/proc/hear_holopad_talk(list/message_pieces, var/verb = "says", var/mob/speaker = null)
-	var/message = combine_message(message_pieces, verb, speaker)
+	var/list/combined = combine_message(message_pieces, verb, speaker)
+	var/message = combined["formatted"]
 
 	var/name = speaker.name
 	if(!say_understands(speaker))
