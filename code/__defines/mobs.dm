@@ -443,4 +443,8 @@
 
 #define DEATHGASP_NO_MESSAGE "no message"
 
+<<<<<<< HEAD
 #define RESIST_COOLDOWN		2 SECONDS
+=======
+#define RESIST_COOLDOWN		2 SECONDS
+>>>>>>> 2941049... Merge pull request #8101 from Neerti/resist_button_fix
