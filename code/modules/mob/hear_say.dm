@@ -116,6 +116,7 @@
 			message_to_send = "<font size='3'><b>[message_to_send]</b></font>"
 
 		on_hear_say(message_to_send)
+		create_chat_message(speaker, combined["raw"], italics, list())
 
 		if(speech_sound && (get_dist(speaker, src) <= world.view && z == speaker.z))
 			var/turf/source = speaker ? get_turf(speaker) : get_turf(src)

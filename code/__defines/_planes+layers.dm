@@ -93,6 +93,8 @@ What is the naming convention for planes or layers?
 	#define BELOW_MOB_LAYER			3.9 // Should be converted to plane swaps
 	#define ABOVE_MOB_LAYER			4.1	// Should be converted to plane swaps
 
+#define ABOVE_MOB_PLANE			-24
+
 // Invisible things plane
 #define CLOAKED_PLANE			-15
 
