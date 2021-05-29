@@ -1981,7 +1981,7 @@
 #include "code\modules\clothing\spacesuits\rig\suits\robotics.dm"
 #include "code\modules\clothing\spacesuits\rig\suits\station.dm"
 #include "code\modules\clothing\spacesuits\rig\suits\station_vr.dm"
-#include "code\modules\clothing\spacesuits\void\ert.dm"
+#include "code\modules\clothing\spacesuits\void\ert_vr.dm"
 #include "code\modules\clothing\spacesuits\void\event.dm"
 #include "code\modules\clothing\spacesuits\void\event_vr.dm"
 #include "code\modules\clothing\spacesuits\void\merc.dm"
