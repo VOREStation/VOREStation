@@ -56,7 +56,8 @@ var/list/department_radio_keys = list(
 	":г" = "Supply",        ".г" = "Supply",
 	":м" = "Service",        ".м" = "Service",
 	":з" = "AI Private",    ".з" = "AI Private",
-	":н" = "Explorer",    ".н" = "Explorer"
+	":н" = "Explorer",    ".н" = "Explorer",
+	":ф" = "Talon",        ".ф" = "Talon" //VOREStation Add
 )
 
 
