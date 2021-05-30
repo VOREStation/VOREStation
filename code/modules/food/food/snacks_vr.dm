@@ -277,7 +277,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/cuttlefish
 	name = "raw cuttlefish"
-	desc = "It's an adorable squid! you couldn't possibly be thinking about eating this, right?"
+	desc = "It's an adorable squid! You couldn't possibly be thinking about eating this, right?"
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "cuttlefish_raw"
 	nutriment_amt = 5
@@ -677,7 +677,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/scorpion_cooked
 	name = "cooked scorpion"
-	desc = "A scorpion. Baked nice and crispy"
+	desc = "A scorpion. Baked nice and crispy."
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "scorpion_cooked"
 	nutriment_amt = 6
