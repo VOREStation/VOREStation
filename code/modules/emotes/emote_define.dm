@@ -35,7 +35,7 @@ var/global/list/emotes_by_key
 	var/list/emote_sound_synthetic                      // As above, but used when check_synthetic() is true.
 	var/emote_volume = 50                               // Volume of sound to play.
 	var/emote_volume_synthetic = 50                     // As above, but used when check_synthetic() is true.
-	var/emote_delay = 0                                 // Time in ds that this emote will block further emote use (spam prevention).
+	var/emote_delay = 1.2 SECONDS                       // Time in ds that this emote will block further emote use (spam prevention). // VOREStation Edit
 
 	var/message_type = VISIBLE_MESSAGE                  // Audible/visual flag
 	var/check_restraints                                // Can this emote be used while restrained?
