@@ -199,7 +199,7 @@
 					if(isobserver(M))
 						message = "<span class='emote'><B>[src]</B> ([ghost_follow_link(src, M)]) [input]</span>"
 					M.show_message(message, m_type)
-					M.create_chat_message(src, "* [runemessage] *", FALSE, list("emote"), (m_type == AUDIBLE_MESSAGE))
+					M.create_chat_message(src, "[runemessage]", FALSE, list("emote"), (m_type == AUDIBLE_MESSAGE))
 
 		for(var/obj in o_viewers)
 			var/obj/O = obj

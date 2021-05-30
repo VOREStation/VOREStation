@@ -1691,19 +1691,3 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 		return "CLIENT: [D]"
 	else
 		return "Unknown data type: [D]"
-
-/*
-	is_holder_of(): Returns 1 if A is a holder of B, meaning, A is B.loc or B.loc.loc or B.loc.loc.loc etc.
-	This is essentially the same as calling (locate(B) in A), but a little clearer as to what you're doing, and locate() has been known to bug out or be extremely slow in the past.
-*/
-/proc/is_holder_of(const/atom/movable/A, const/atom/movable/B)
-	if(istype(A, /turf) || istype(B, /turf)) //Clicking on turfs is a common thing and turfs are also not /atom/movable, so it was causing the assertion to fail.
-		return 0
-	ASSERT(istype(A) && istype(B))
-	var/atom/O = B
-	while(O && !isturf(O))
-		if(O == A)
-			return 1
-		O = O.loc
-	return 0
-	

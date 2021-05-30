@@ -78,4 +78,4 @@
 	var/connection_timeofday
 
 	// Runechat messages
-	var/list/seen_messages = list()
+	var/list/seen_messages

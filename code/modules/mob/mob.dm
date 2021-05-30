@@ -131,7 +131,7 @@
 			msg = self_message
 		M.show_message(msg, AUDIBLE_MESSAGE, deaf_message, VISIBLE_MESSAGE)
 		if(runemessage != -1)
-			M.create_chat_message(src, "* [runemessage || message] *", FALSE, list("emote"), audible = FALSE)
+			M.create_chat_message(src, "[runemessage || message]", FALSE, list("emote"), audible = FALSE)
 
 /mob/proc/findname(msg)
 	for(var/mob/M in mob_list)

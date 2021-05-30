@@ -14,6 +14,9 @@
 #define CHAT_MESSAGE_OBJ			2
 #define WXH_TO_HEIGHT(x)			text2num(copytext((x), findtextEx((x), "x") + 1)) // thanks lummox
 
+#define CHAT_RUNE_EMOTE				0x1
+#define CHAT_RUNE_RADIO				0x2
+
 /**
   * # Chat Message Overlay
   *
@@ -22,7 +25,17 @@
   */
 
 // Cached runechat icon
-var/runechat_icon = null
+var/list/runechat_image_cache = list()
+
+
+/hook/startup/proc/runechat_images()
+	var/image/radio_image = image('icons/UI_Icons/chat/chat_icons.dmi', icon_state = "radio")
+	runechat_image_cache["radio"] = radio_image
+
+	var/image/emote_image = image('icons/UI_Icons/chat/chat_icons.dmi', icon_state = "emote")
+	runechat_image_cache["emote"] = emote_image
+	
+	return TRUE
 
 /datum/chatmessage
 	/// The visual element of the chat messsage
@@ -35,6 +48,8 @@ var/runechat_icon = null
 	var/scheduled_destruction
 	/// Contains the approximate amount of lines for height decay
 	var/approx_lines
+	/// If we are currently processing animation and cleanup at EOL
+	var/ending_life
 
 /**
   * Constructs a chat message overlay
@@ -48,7 +63,7 @@ var/runechat_icon = null
   */
 /datum/chatmessage/New(text, atom/target, mob/owner, list/extra_classes = null, lifespan = CHAT_MESSAGE_LIFESPAN)
 	. = ..()
-	if (!istype(target))
+	if(!istype(target))
 		CRASH("Invalid target given for chatmessage")
 	if(!istype(owner) || QDELETED(owner) || !owner.client)
 		stack_trace("/datum/chatmessage created with [isnull(owner) ? "null" : "invalid"] mob owner")
@@ -57,10 +72,12 @@ var/runechat_icon = null
 	generate_image(text, target, owner, extra_classes, lifespan)
 
 /datum/chatmessage/Destroy()
-	if (owned_by)
-		owned_by.seen_messages.Remove(src)
+	if(owned_by)
+		LAZYREMOVEASSOC(owned_by.seen_messages, message_loc, src)
 		owned_by.images.Remove(message)
 		UnregisterSignal(owned_by, COMSIG_PARENT_QDELETING)
+	if(message_loc)
+		UnregisterSignal(message_loc, COMSIG_PARENT_QDELETING)
 	owned_by = null
 	message_loc = null
 	message = null
@@ -78,20 +95,21 @@ var/runechat_icon = null
   */
 /datum/chatmessage/proc/generate_image(text, atom/target, mob/owner, list/extra_classes, lifespan)
 	set waitfor = FALSE
+
 	// Register client who owns this message
 	owned_by = owner.client
 	RegisterSignal(owned_by, COMSIG_PARENT_QDELETING, .proc/qdel_self)
 
-	var/erp_king = owned_by.is_preference_enabled(/datum/client_preference/runechat_long_messages)
-	var/maxlen = erp_king ? CHAT_MESSAGE_EXT_LENGTH : CHAT_MESSAGE_LENGTH
-	var/msgwidth = erp_king ? CHAT_MESSAGE_EXT_WIDTH : CHAT_MESSAGE_WIDTH
+	var/extra_length = owned_by.is_preference_enabled(/datum/client_preference/runechat_long_messages)
+	var/maxlen = extra_length ? CHAT_MESSAGE_EXT_LENGTH : CHAT_MESSAGE_LENGTH
+	var/msgwidth = extra_length ? CHAT_MESSAGE_EXT_WIDTH : CHAT_MESSAGE_WIDTH
 
 	// Clip message
-	if (length_char(text) > maxlen)
+	if(length_char(text) > maxlen)
 		text = copytext_char(text, 1, maxlen + 1) + "..." // BYOND index moment
 
 	// Calculate target color if not already present
-	if (!target.chat_color || target.chat_color_name != target.name)
+	if(!target.chat_color || target.chat_color_name != target.name)
 		target.chat_color = colorize_string(target.name)
 		target.chat_color_darkened = colorize_string(target.name, 0.85, 0.85)
 		target.chat_color_name = target.name
@@ -102,56 +120,68 @@ var/runechat_icon = null
 
 	// Reject whitespace
 	var/static/regex/whitespace = new(@"^\s*$")
-	if (whitespace.Find(text))
+	if(whitespace.Find(text))
 		qdel(src)
 		return
 
 	// Non mobs speakers can be small
-	if (!ismob(target))
+	if(!ismob(target))
 		extra_classes |= "small"
 
 	// If we heard our name, it's important
+	// Differnt from our own system of name emphasis, maybe unify
 	var/list/names = splittext(owner.name, " ")
 	for (var/word in names)
 		text = replacetext(text, word, "<b>[word]</b>")
 
-	// Append radio icon if comes from a radio
-	if (extra_classes.Find("spoken_into_radio"))
-		if (!runechat_icon)
-			var/image/r_icon = image('icons/UI_Icons/chat/chat_icons.dmi', icon_state = "radio")
-			runechat_icon =  "\icon[r_icon]&nbsp;"
-		text = runechat_icon + text
+	var/list/prefixes
+
+	// Append prefixes
+	if(extra_classes.Find("virtual-speaker"))
+		LAZYADD(prefixes, "\icon[runechat_image_cache["radio"]]")
+	if(extra_classes.Find("emote"))
+		// Icon on both ends?
+		//var/image/I = runechat_image_cache["emote"]
+		//text = "\icon[I][text]\icon[I]"
+		
+		// Icon on one end?
+		//LAZYADD(prefixes, "\icon[runechat_image_cache["emote"]]")
+		
+		// Asterisks instead?
+		text = "*&nbsp;[text]&nbsp;*"
+
+	text = "[prefixes?.Join("&nbsp;")][text]"
 
 	// We dim italicized text to make it more distinguishable from regular text
 	var/tgt_color = extra_classes.Find("italics") ? target.chat_color_darkened : target.chat_color
+
 	// Approximate text height
-	// Note we have to replace HTML encoded metacharacters otherwise MeasureText will return a zero height
-	// BYOND Bug #2563917
-	// Construct text
-	var/static/regex/html_metachars = new(@"&[A-Za-z]{1,7};", "g")
 	var/complete_text = "<span class='center maptext [extra_classes != null ? extra_classes.Join(" ") : ""]' style='color: [tgt_color];'>[text]</span>"
-	var/mheight = WXH_TO_HEIGHT(owned_by.MeasureText(replacetext(complete_text, html_metachars, "m"), null, msgwidth))
+	var/mheight = WXH_TO_HEIGHT(owned_by.MeasureText(complete_text, null, msgwidth))
 	approx_lines = max(1, mheight / CHAT_MESSAGE_APPROX_LHEIGHT)
 
 	// Translate any existing messages upwards, apply exponential decay factors to timers
 	message_loc = target
-	if (owned_by.seen_messages)
+	RegisterSignal(message_loc, COMSIG_PARENT_QDELETING, .proc/qdel_self)
+	if(owned_by.seen_messages)
 		var/idx = 1
 		var/combined_height = approx_lines
-		for(var/msg in owned_by.seen_messages)
+		for(var/msg in owned_by.seen_messages[message_loc])
 			var/datum/chatmessage/m = msg
 			animate(m.message, pixel_y = m.message.pixel_y + mheight, time = CHAT_MESSAGE_SPAWN_TIME)
 			combined_height += m.approx_lines
-			var/sched_remaining = m.scheduled_destruction - world.time
-			if (sched_remaining > CHAT_MESSAGE_SPAWN_TIME)
-				var/remaining_time = (sched_remaining) * (CHAT_MESSAGE_EXP_DECAY ** idx++) * (CHAT_MESSAGE_HEIGHT_DECAY ** combined_height)
-				m.scheduled_destruction = world.time + remaining_time
-				spawn(remaining_time)
-					m.end_of_life()
+
+			if(!m.ending_life) // Don't bother!
+				var/sched_remaining = m.scheduled_destruction - world.time
+				if(sched_remaining > CHAT_MESSAGE_SPAWN_TIME)
+					var/remaining_time = (sched_remaining) * (CHAT_MESSAGE_EXP_DECAY ** idx++) * (CHAT_MESSAGE_HEIGHT_DECAY ** combined_height)
+					m.scheduled_destruction = world.time + remaining_time
+					spawn(remaining_time)
+						m.end_of_life()
 
 	// Build message image
 	message = image(loc = message_loc, layer = ABOVE_MOB_LAYER)
-	message.plane = PLANE_LIGHTING_ABOVE
+	message.plane = PLANE_RUNECHAT
 	message.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA | KEEP_APART
 	message.alpha = 0
 	message.pixel_y = owner.bound_height * 0.95
@@ -160,11 +190,11 @@ var/runechat_icon = null
 	message.maptext_x = (msgwidth - owner.bound_width) * -0.5
 	message.maptext = complete_text
 
-	if (is_holder_of(owner, target)) // Special case, holding an atom speaking (pAI, recorder...)
+	if(owner.contains(target)) // Special case, holding an atom speaking (pAI, recorder...)
 		message.plane = PLANE_PLAYER_HUD_ABOVE
 
 	// View the message
-	owned_by.seen_messages.Add(src)
+	LAZYADDASSOCLIST(owned_by.seen_messages, message_loc, src)
 	owned_by.images += message
 	animate(message, alpha = 255, time = CHAT_MESSAGE_SPAWN_TIME)
 
@@ -177,8 +207,9 @@ var/runechat_icon = null
   * Applies final animations to overlay CHAT_MESSAGE_EOL_FADE deciseconds prior to message deletion
   */
 /datum/chatmessage/proc/end_of_life(fadetime = CHAT_MESSAGE_EOL_FADE)
-	if (gc_destroyed)
+	if(gc_destroyed || ending_life)
 		return
+	ending_life = TRUE
 	animate(message, alpha = 0, time = fadetime, flags = ANIMATION_PARALLEL)
 	spawn(fadetime)
 		qdel(src)
@@ -207,7 +238,7 @@ var/runechat_icon = null
 		return
 
 	// Check for virtual speakers (aka hearing a message through a radio)
-	if (existing_extra_classes.Find("radio"))
+	if(existing_extra_classes.Find("radio"))
 		return
 
 	/* Not currently necessary
@@ -219,17 +250,17 @@ var/runechat_icon = null
 	var/list/extra_classes = list()
 	extra_classes += existing_extra_classes
 
-	if (italics)
+	if(italics)
 		extra_classes |= "italics"
 
-	if (client.is_preference_enabled(/datum/client_preference/runechat_border))
+	if(client.is_preference_enabled(/datum/client_preference/runechat_border))
 		extra_classes |= "black_outline"
 
 	var/dist = get_dist(src, speaker)
 	switch (dist)
-		if (4 to 5)
+		if(4 to 5)
 			extra_classes |= "small"
-		if (5 to 16)
+		if(5 to 16)
 			extra_classes |= "very_small"
 
 	// Display visual above source

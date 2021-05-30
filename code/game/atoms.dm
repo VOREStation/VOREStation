@@ -523,7 +523,7 @@
 		if(M.see_invisible >= invisibility && MOB_CAN_SEE_PLANE(M, plane))
 			M.show_message(message, VISIBLE_MESSAGE, blind_message, AUDIBLE_MESSAGE)
 			if(runemessage != -1)
-				M.create_chat_message(src, "* [runemessage || message] *", FALSE, list("emote"), audible = FALSE)
+				M.create_chat_message(src, "[runemessage]", FALSE, list("emote"), audible = FALSE)
 		else if(blind_message)
 			M.show_message(blind_message, AUDIBLE_MESSAGE)
 
@@ -554,7 +554,7 @@
 		var/msg = message
 		M.show_message(msg, AUDIBLE_MESSAGE, deaf_message, VISIBLE_MESSAGE)
 		if(runemessage != -1)
-			M.create_chat_message(src, "* [runemessage || message] *", FALSE, list("emote"))
+			M.create_chat_message(src, "[runemessage || message]", FALSE, list("emote"))
 
 /atom/movable/proc/dropInto(var/atom/destination)
 	while(istype(destination))
