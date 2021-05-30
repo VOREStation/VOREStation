@@ -93,6 +93,8 @@ What is the naming convention for planes or layers?
 	#define BELOW_MOB_LAYER			3.9 // Should be converted to plane swaps
 	#define ABOVE_MOB_LAYER			4.1	// Should be converted to plane swaps
 
+#define ABOVE_MOB_PLANE			-24
+
 // Invisible things plane
 #define CLOAKED_PLANE			-15
 
@@ -122,6 +124,7 @@ What is the naming convention for planes or layers?
 #define PLANE_PLANETLIGHTING	4 //Lighting on planets
 #define PLANE_LIGHTING			5 //Where the lighting (and darkness) lives
 #define PLANE_LIGHTING_ABOVE	6 //For glowy eyes etc. that shouldn't be affected by darkness
+#define PLANE_RUNECHAT			7
 
 #define PLANE_GHOSTS			10 //Spooooooooky ghooooooosts
 #define PLANE_AI_EYE			11 //The AI eye lives here

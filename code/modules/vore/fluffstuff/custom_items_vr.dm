@@ -551,7 +551,7 @@
 	//He's dead, jim
 	if((state == 1) && owner && (owner.stat == DEAD))
 		update_state(2)
-		audible_message("<span class='warning'>The [name] begins flashing red.</span>")
+		visible_message("<span class='warning'>The [name] begins flashing red.</span>")
 		sleep(30)
 		visible_message("<span class='warning'>The [name] shatters into dust!</span>")
 		if(owner_c)
