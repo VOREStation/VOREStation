@@ -359,6 +359,7 @@
 	name = "vending"
 
 /datum/asset/spritesheet/vending/register()
+	populate_vending_products()
 	for(var/k in GLOB.vending_products)
 		var/atom/item = k
 		if(!ispath(item, /atom))
@@ -405,6 +406,22 @@
 
 		Insert(imgid, I)
 	return ..()
+
+// this is cursed but necessary or else vending product icons can be missing
+// basically, if there's any vending machines that aren't already mapped in, our register() will not know
+// that they exist, and therefore can't generate the entries in the spritesheet for them
+// and since assets are unique and can't be reloaded later, we have to make sure that GLOB.vending_products
+// is populated with every single type of vending machine
+// As this is only done at runtime, we have to create all the vending machines in existence and force them
+// to register their products when this asset initializes.
+/datum/asset/spritesheet/vending/proc/populate_vending_products()
+	SSatoms.map_loader_begin()
+	for(var/path in subtypesof(/obj/machinery/vending))
+		var/obj/machinery/vending/x = new path(null)
+		// force an inventory build; with map_loader_begin active, init isn't called
+		x.build_inventory()
+		qdel(x)
+	SSatoms.map_loader_stop()
 
 // /datum/asset/simple/genetics
 // 	assets = list(

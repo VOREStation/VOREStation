@@ -38,7 +38,6 @@
 		set src in usr
 
 		adjust_fibers(usr)
-		..()
 
 /obj/item/clothing/under/hyperfiber/proc/adjust_fibers(mob/user)
 	if(hides_bulges == FALSE)
@@ -63,7 +62,6 @@
 	set category = "Object"
 	set src in usr
 	bluespace_size(usr)
-	..()
 
 /obj/item/clothing/under/hyperfiber/bluespace/proc/bluespace_size(mob/usr as mob)
 	if (!ishuman(usr))
@@ -138,3 +136,13 @@
 	name = "red qipao"
 	icon_state = "qipao_red"
 	item_state = "qipao_red"
+
+/obj/item/clothing/under/pizzaguy
+	name = "pizza delivery uniform"
+	desc = "A dedicated outfit for pizza delivery people, one of most dangerous occupations around these parts. Can be rolled up for extra show of skin."
+	icon = 'icons/obj/clothing/uniforms_vr.dmi'
+	index = "vr"
+	rolled_down_icon = 'icons/mob/uniform_rolled_down_vr.dmi'
+	icon_state = "pizzadelivery"
+	item_state = "pizzadelivery"
+	rolled_down = 0

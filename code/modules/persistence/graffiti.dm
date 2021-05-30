@@ -18,7 +18,8 @@
 	..(newloc)
 	if(!isnull(_age))
 		graffiti_age = _age
-	message = _message
+	if(!isnull(_message))
+		message = _message
 	if(!isnull(author))
 		author = _author
 

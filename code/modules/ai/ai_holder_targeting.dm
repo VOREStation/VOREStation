@@ -60,7 +60,7 @@
 		return
 
 	var/chosen_target
-	if(preferred_target && preferred_target in targets)
+	if(preferred_target && (preferred_target in targets))
 		chosen_target = preferred_target
 	else
 		chosen_target = pick(targets)
@@ -165,18 +165,13 @@
 		target = null
 		lose_target_time = world.time
 
-	give_up_movement()
-
-	if(target_last_seen_turf && intelligence_level >= AI_SMART)
+	if(target_last_seen_turf && intelligence_level >= AI_NORMAL)
 		ai_log("lose_target() : Going into 'engage unseen enemy' mode.", AI_LOG_INFO)
-		engage_unseen_enemy()
-		return TRUE //We're still working on it
+		return engage_unseen_enemy() //We're still working on it
 	else
 		ai_log("lose_target() : Can't chase target, so giving up.", AI_LOG_INFO)
 		remove_target()
 		return find_target() //Returns if we found anything else to do
-
-	return FALSE //Nothing new to do
 
 // 'Hard' loss of target. Clean things up and return to idle.
 /datum/ai_holder/proc/remove_target()
@@ -188,6 +183,7 @@
 	give_up_movement()
 	lose_target_position()
 	set_stance(STANCE_IDLE)
+	return TRUE
 
 // Check if target is visible to us.
 /datum/ai_holder/proc/can_see_target(atom/movable/the_target, view_range = vision_range)

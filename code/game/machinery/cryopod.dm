@@ -96,16 +96,17 @@
 	data["allow_items"] = allow_items
 	data["crew"] = frozen_crew
 	
-	data["items"] = list()
+	var/list/items = list()
 	if(allow_items)
 		for(var/F in frozen_items)
-			data["items"].Add(F) // VOREStation Edit
+			items.Add(F) // VOREStation Edit
 			/* VOREStation Removal
-			data["items"].Add(list(list(
+			items.Add(list(list(
 				"name" = "[F]",
 				"ref" = REF(F),
 			)))
 			VOREStation Removal End */
+	data["items"] = items
 
 	return data
 
@@ -116,7 +117,7 @@
 	add_fingerprint(usr)
 
 	return FALSE // VOREStation Edit - prevent topic exploits
-
+	/* VOREStation Edit - Unreachable due to above
 	switch(action)
 		if("item")
 			if(!allow_items)
@@ -148,7 +149,7 @@
 			for(var/obj/item/I in frozen_items)
 				I.forceMove(get_turf(src))
 				frozen_items -= I
-
+	*/
 
 /obj/item/weapon/circuitboard/cryopodcontrol
 	name = "Circuit board (Cryogenic Oversight Console)"
@@ -507,7 +508,6 @@
 	log_and_message_admins("[key_name(to_despawn)] ([to_despawn.mind.role_alt_title]) entered cryostorage.")
 
 	announce.autosay("[to_despawn.real_name], [to_despawn.mind.role_alt_title], [on_store_message]", "[on_store_name]", announce_channel, using_map.get_map_levels(z, TRUE, om_range = DEFAULT_OVERMAP_RANGE))
-	//visible_message("<span class='notice'>\The [initial(name)] hums and hisses as it moves [to_despawn.real_name] into storage.</span>", 3)
 	visible_message("<span class='notice'>\The [initial(name)] [on_store_visible_message_1] [to_despawn.real_name] [on_store_visible_message_2]</span>", 3)
 
 	//VOREStation Edit begin: Dont delete mobs-in-mobs

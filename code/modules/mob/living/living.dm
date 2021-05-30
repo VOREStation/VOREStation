@@ -625,8 +625,8 @@
 	set name = "Resist"
 	set category = "IC"
 
-	if(!incapacitated(INCAPACITATION_KNOCKOUT) && checkClickCooldown())
-		setClickCooldown(20)
+	if(!incapacitated(INCAPACITATION_KNOCKOUT) && (last_resist_time + RESIST_COOLDOWN < world.time))
+		last_resist_time = world.time
 		resist_grab()
 		if(!weakened)
 			process_resist()

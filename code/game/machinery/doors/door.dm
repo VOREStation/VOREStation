@@ -272,7 +272,8 @@
 			return
 
 		if(repairing && I.is_crowbar())
-			var/obj/item/stack/material/repairing_sheet = get_material().place_sheet(loc)
+			var/datum/material/mat = get_material()
+			var/obj/item/stack/material/repairing_sheet = mat.place_sheet(loc)
 			repairing_sheet.amount += repairing-1
 			repairing = 0
 			to_chat(user, "<span class='notice'>You remove \the [repairing_sheet].</span>")

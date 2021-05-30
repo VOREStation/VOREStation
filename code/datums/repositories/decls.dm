@@ -61,11 +61,11 @@ var/repository/decls/decls_repository = new()
 		fetched_decl_subtypes[decl_prototype] = .
 
 /decl/proc/Initialize()
-	//SHOULD_CALL_PARENT(TRUE)
-	//SHOULD_NOT_SLEEP(TRUE)
+	SHOULD_CALL_PARENT(TRUE)
+	SHOULD_NOT_SLEEP(TRUE)
 	return
 
 /decl/Destroy()
-	//SHOULD_CALL_PARENT(FALSE)
+	SHOULD_CALL_PARENT(FALSE)
 	crash_with("Prevented attempt to delete a decl instance: [log_info_line(src)]")
 	return QDEL_HINT_LETMELIVE // Prevents decl destruction

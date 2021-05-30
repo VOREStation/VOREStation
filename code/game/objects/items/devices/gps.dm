@@ -193,9 +193,9 @@ var/list/GPS_list = list()
 	dat["curr_y"] = curr.y
 	dat["curr_z"] = curr.z
 	dat["curr_z_name"] = strip_improper(using_map.get_zlevel_name(curr.z))
-	dat["gps_list"] = list()
 	dat["z_level_detection"] = using_map.get_map_levels(curr.z, long_range)
 	
+	var/list/gps_list = list()
 	for(var/obj/item/device/gps/G in GPS_list - src)
 
 		if(!can_track(G, dat["z_level_detection"]))
@@ -219,7 +219,9 @@ var/list/GPS_list = list()
 		gps_data["x"] = T.x
 		gps_data["y"] = T.y
 
-		dat["gps_list"][++dat["gps_list"].len] = gps_data
+		gps_list[++gps_list.len] = gps_data
+
+	dat["gps_list"] = gps_list
 
 	return dat
 
@@ -241,7 +243,8 @@ var/list/GPS_list = list()
 		dat += "<tr><td colspan = 4>[hide_signal ? "Tagged" : "Broadcasting"] as '[gps_tag]'.</td>"
 		dat += "<td><a href='?src=\ref[src];tag=1'>\[Change Tag\]</a><a href='?src=\ref[src];range=1'>\[Toggle Scan Range\]</a>[can_hide_signal ? "<a href='?src=\ref[src];hide=1'>\[Toggle Signal Visibility\]</a>":""]</td></tr>"
 
-		if(gps_data["gps_list"].len)
+		var/list/gps_list = gps_data["gps_list"]
+		if(gps_list.len)
 			dat += "<tr><td colspan = 6><b>Detected signals</b></td></tr>"
 			for(var/gps in gps_data["gps_list"])
 				dat += "<tr>"
@@ -482,7 +485,8 @@ var/list/GPS_list = list()
 		dat += "<tr><td colspan = 4>[hide_signal ? "Tagged" : "Broadcasting"] as '[gps_tag]'.</td>"
 		dat += "<td><a href='?src=\ref[src];tag=1'>\[Change Tag\]</a><a href='?src=\ref[src];range=1'>\[Toggle Scan Range\]</a>[can_hide_signal ? "<a href='?src=\ref[src];hide=1'>\[Toggle Signal Visibility\]</a>":""]</td></tr>"
 
-		if(gps_data["gps_list"].len)
+		var/list/gps_list = gps_data["gps_list"]
+		if(gps_list.len)
 			dat += "<tr><td colspan = 6><b>Detected signals</b></td></tr>"
 			for(var/gps in gps_data["gps_list"])
 				dat += "<tr>"

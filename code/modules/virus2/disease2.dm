@@ -253,17 +253,18 @@ var/global/list/virusDB = list()
 		"rate" = stageprob * 10,
 		"resistance" = resistance,
 		"species" = jointext(affected_species, ", "),
-		"symptoms" = list(),
 		"ref" = "\ref[src]",
 	)
-
+	
+	var/list/symptoms = list()
 	for(var/datum/disease2/effectholder/E in effects)
-		.["symptoms"].Add(list(list(
+		symptoms.Add(list(list(
 			"stage" = E.stage,
 			"name" = E.effect.name,
 			"strength" = "[E.multiplier >= 3 ? "Severe" : E.multiplier > 1 ? "Above Average" : "Average"]",
 			"aggressiveness" = E.chance * 15,
 		)))
+	.["symptoms"] = symptoms
 
 /datum/disease2/disease/proc/addToDB()
 	if ("[uniqueID]" in virusDB)

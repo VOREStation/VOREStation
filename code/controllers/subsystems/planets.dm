@@ -33,7 +33,7 @@ SUBSYSTEM_DEF(planets)
 			z_to_planet[Z] = NP
 
 // DO NOT CALL THIS DIRECTLY UNLESS IT'S IN INITIALIZE,
-// USE turf/simulated/proc/make_indoors() and\
+// USE turf/simulated/proc/make_indoors() and
 //     tyrf/simulated/proc/make_outdoors()
 /datum/controller/subsystem/planets/proc/addTurf(var/turf/T)
 	if(z_to_planet.len >= T.z && z_to_planet[T.z])

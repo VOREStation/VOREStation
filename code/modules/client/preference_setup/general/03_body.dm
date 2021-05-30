@@ -37,6 +37,43 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	var/g_wing3 = 30	// Wing tertiary color
 	var/b_wing3 = 30	// Wing tertiary color
 
+// Sanitize ear/wing/tail styles
+/datum/preferences/proc/sanitize_body_styles()
+
+	// Grandfather in anyone loading paths from a save.
+	if(ispath(ear_style, /datum/sprite_accessory))
+		var/datum/sprite_accessory/instance = global.ear_styles_list[ear_style]
+		if(istype(instance))
+			ear_style = instance.name
+	if(ispath(wing_style, /datum/sprite_accessory))
+		var/datum/sprite_accessory/instance = global.wing_styles_list[wing_style]
+		if(istype(instance))
+			wing_style = instance.name
+	if(ispath(tail_style, /datum/sprite_accessory))
+		var/datum/sprite_accessory/instance = global.tail_styles_list[tail_style]
+		if(istype(instance))
+			tail_style = instance.name
+
+	// Sanitize for non-existent keys.
+	if(ear_style && !(ear_style in get_available_styles(global.ear_styles_list)))
+		ear_style = null
+	if(wing_style && !(wing_style in get_available_styles(global.wing_styles_list)))
+		wing_style = null
+	if(tail_style && !(tail_style in get_available_styles(global.tail_styles_list)))
+		tail_style = null
+
+/datum/preferences/proc/get_available_styles(var/style_list)
+	. = list("Normal" = null)
+	for(var/path in style_list)
+		var/datum/sprite_accessory/instance = style_list[path]
+		if(!istype(instance))
+			continue
+		if(instance.ckeys_allowed && (!client || !(client.ckey in instance.ckeys_allowed)))
+			continue
+		if(instance.species_allowed && (!species || !(species in instance.species_allowed)) && (!client || !check_rights(R_ADMIN | R_EVENT | R_FUN, 0, client)) && (!custom_base || !(custom_base in instance.species_allowed))) //VOREStation Edit: Custom Species
+			continue
+		.[instance.name] = instance
+
 /datum/category_item/player_setup_item/general/body
 	name = "Body"
 	sort_order = 3
@@ -228,21 +265,8 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	pref.r_wing3	= sanitize_integer(pref.r_wing3, 0, 255, initial(pref.r_wing3))
 	pref.g_wing3	= sanitize_integer(pref.g_wing3, 0, 255, initial(pref.g_wing3))
 	pref.b_wing3	= sanitize_integer(pref.b_wing3, 0, 255, initial(pref.b_wing3))
-	if(pref.ear_style)
-		pref.ear_style	= sanitize_inlist(pref.ear_style, ear_styles_list, initial(pref.ear_style))
-		var/datum/sprite_accessory/temp_ear_style = ear_styles_list[pref.ear_style]
-		if(temp_ear_style.apply_restrictions && (!(pref.species in temp_ear_style.species_allowed)))
-			pref.ear_style = initial(pref.ear_style)
-	if(pref.tail_style)
-		pref.tail_style	= sanitize_inlist(pref.tail_style, tail_styles_list, initial(pref.tail_style))
-		var/datum/sprite_accessory/temp_tail_style = tail_styles_list[pref.tail_style]
-		if(temp_tail_style.apply_restrictions && (!(pref.species in temp_tail_style.species_allowed)))
-			pref.tail_style = initial(pref.tail_style)
-	if(pref.wing_style)
-		pref.wing_style	= sanitize_inlist(pref.wing_style, wing_styles_list, initial(pref.wing_style))
-		var/datum/sprite_accessory/temp_wing_style = wing_styles_list[pref.wing_style]
-		if(temp_wing_style.apply_restrictions && (!(pref.species in temp_wing_style.species_allowed)))
-			pref.wing_style = initial(pref.wing_style)
+
+	pref.sanitize_body_styles()
 
 // Moved from /datum/preferences/proc/copy_to()
 /datum/category_item/player_setup_item/general/body/copy_to_mob(var/mob/living/carbon/human/character)
@@ -274,37 +298,44 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	character.g_synth	= pref.g_synth
 	character.b_synth	= pref.b_synth
 	character.synth_markings = pref.synth_markings
-	character.ear_style			= ear_styles_list[pref.ear_style]
-	character.r_ears	= pref.r_ears
-	character.b_ears	= pref.b_ears
-	character.g_ears			= pref.g_ears
-	character.r_ears2	= pref.r_ears2
-	character.b_ears2	= pref.b_ears2
-	character.g_ears2	= pref.g_ears2
-	character.r_ears3			= pref.r_ears3
-	character.b_ears3			= pref.b_ears3
-	character.g_ears3			= pref.g_ears3
-	character.tail_style = tail_styles_list[pref.tail_style]
-	character.r_tail	= pref.r_tail
-	character.b_tail	= pref.b_tail
-	character.g_tail	= pref.g_tail
-	character.r_tail2	= pref.r_tail2
-	character.b_tail2	= pref.b_tail2
-	character.g_tail2	= pref.g_tail2
-	character.r_tail3			= pref.r_tail3
-	character.b_tail3			= pref.b_tail3
-	character.g_tail3			= pref.g_tail3
-	character.wing_style = wing_styles_list[pref.wing_style]
-	character.r_wing	= pref.r_wing
-	character.b_wing	= pref.b_wing
-	character.g_wing	= pref.g_wing
-	character.r_wing2	= pref.r_wing2
-	character.b_wing2	= pref.b_wing2
-	character.g_wing2	= pref.g_wing2
-	character.r_wing3			= pref.r_wing3
-	character.b_wing3			= pref.b_wing3
-	character.g_wing3			= pref.g_wing3
-	character.set_gender( pref.biological_gender)
+
+	var/list/ear_styles = pref.get_available_styles(global.ear_styles_list)
+	character.ear_style =  ear_styles[pref.ear_style]
+	character.r_ears =     pref.r_ears
+	character.b_ears =     pref.b_ears
+	character.g_ears =     pref.g_ears
+	character.r_ears2 =    pref.r_ears2
+	character.b_ears2 =    pref.b_ears2
+	character.g_ears2 =    pref.g_ears2
+	character.r_ears3 =    pref.r_ears3
+	character.b_ears3 =    pref.b_ears3
+	character.g_ears3 =    pref.g_ears3
+
+	var/list/tail_styles = pref.get_available_styles(global.tail_styles_list)
+	character.tail_style = tail_styles[pref.tail_style]
+	character.r_tail =     pref.r_tail
+	character.b_tail =     pref.b_tail
+	character.g_tail =     pref.g_tail
+	character.r_tail2 =    pref.r_tail2
+	character.b_tail2 =    pref.b_tail2
+	character.g_tail2 =    pref.g_tail2
+	character.r_tail3 =    pref.r_tail3
+	character.b_tail3 =    pref.b_tail3
+	character.g_tail3 =    pref.g_tail3
+
+	var/list/wing_styles = pref.get_available_styles(global.wing_styles_list)
+	character.wing_style = wing_styles[pref.wing_style]
+	character.r_wing =     pref.r_wing
+	character.b_wing =     pref.b_wing
+	character.g_wing =     pref.g_wing
+	character.r_wing2 =    pref.r_wing2
+	character.b_wing2 =    pref.b_wing2
+	character.g_wing2 =    pref.g_wing2
+	character.r_wing3 =    pref.r_wing3
+	character.b_wing3 =    pref.b_wing3
+	character.g_wing3 =    pref.g_wing3
+
+	character.set_gender(pref.biological_gender)
 
 	// Destroy/cyborgize organs and limbs.
 	for(var/name in list(BP_HEAD, BP_L_HAND, BP_R_HAND, BP_L_ARM, BP_R_ARM, BP_L_FOOT, BP_R_FOOT, BP_L_LEG, BP_R_LEG, BP_GROIN, BP_TORSO))
@@ -363,8 +394,6 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 					pref.body_descriptors[entry] = descriptor.default_value // Species datums have initial default value.
 				else
 					pref.body_descriptors[entry] = CLAMP(last_descriptors[entry], 1, LAZYLEN(descriptor.standalone_value_descriptors))
-
-	return
 
 /datum/category_item/player_setup_item/general/body/content(var/mob/user)
 	. = list()
@@ -519,59 +548,47 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 	. += "<h2>Genetics Settings</h2>"
 
-	var/ear_display = "Normal"
-	if(pref.ear_style && (pref.ear_style in ear_styles_list))
-		var/datum/sprite_accessory/ears/instance = ear_styles_list[pref.ear_style]
-		ear_display = instance.name
-
-	else if(pref.ear_style)
-		ear_display = "REQUIRES UPDATE"
+	var/list/ear_styles = pref.get_available_styles(global.ear_styles_list)
+	var/datum/sprite_accessory/ears/ear = ear_styles[pref.ear_style]
 	. += "<b>Ears</b><br>"
-	. += " Style: <a href='?src=\ref[src];ear_style=1'>[ear_display]</a><br>"
-	if(ear_styles_list[pref.ear_style])
-		var/datum/sprite_accessory/ears/ear = ear_styles_list[pref.ear_style]
+	if(istype(ear))
+		. += " Style: <a href='?src=\ref[src];ear_style=1'>[ear.name]</a><br>"
 		if(ear.do_colouration)
 			. += "<a href='?src=\ref[src];ear_color=1'>Change Color</a> [color_square(pref.r_ears, pref.g_ears, pref.b_ears)]<br>"
 		if(ear.extra_overlay)
 			. += "<a href='?src=\ref[src];ear_color2=1'>Change Secondary Color</a> [color_square(pref.r_ears2, pref.g_ears2, pref.b_ears2)]<br>"
 		if(ear.extra_overlay2)
 			. += "<a href='?src=\ref[src];ear_color3=1'>Change Tertiary Color</a> [color_square(pref.r_ears3, pref.g_ears3, pref.b_ears3)]<br>"
+	else
+		. += " Style: <a href='?src=\ref[src];ear_style=1'>Select</a><br>"
 
-	var/tail_display = "Normal"
-	if(pref.tail_style && (pref.tail_style in tail_styles_list))
-		var/datum/sprite_accessory/tail/instance = tail_styles_list[pref.tail_style]
-		tail_display = instance.name
-	else if(pref.tail_style)
-		tail_display = "REQUIRES UPDATE"
+	var/list/tail_styles = pref.get_available_styles(global.tail_styles_list)
+	var/datum/sprite_accessory/tail/tail = tail_styles[pref.tail_style]
 	. += "<b>Tail</b><br>"
-	. += " Style: <a href='?src=\ref[src];tail_style=1'>[tail_display]</a><br>"
-
-	if(tail_styles_list[pref.tail_style])
-		var/datum/sprite_accessory/tail/T = tail_styles_list[pref.tail_style]
-		if(T.do_colouration)
+	if(istype(tail))
+		. += " Style: <a href='?src=\ref[src];tail_style=1'>[tail.name]</a><br>"
+		if(tail.do_colouration)
 			. += "<a href='?src=\ref[src];tail_color=1'>Change Color</a> [color_square(pref.r_tail, pref.g_tail, pref.b_tail)]<br>"
-		if(T.extra_overlay)
+		if(tail.extra_overlay)
 			. += "<a href='?src=\ref[src];tail_color2=1'>Change Secondary Color</a> [color_square(pref.r_tail2, pref.g_tail2, pref.b_tail2)]<br>"
-		if(T.extra_overlay2)
+		if(tail.extra_overlay2)
 			. += "<a href='?src=\ref[src];tail_color3=1'>Change Tertiary Color</a> [color_square(pref.r_tail3, pref.g_tail3, pref.b_tail3)]<br>"
+	else
+		. += " Style: <a href='?src=\ref[src];tail_style=1'>Select</a><br>"
 
-	var/wing_display = "Normal"
-	if(pref.wing_style && (pref.wing_style in wing_styles_list))
-		var/datum/sprite_accessory/wing/instance = wing_styles_list[pref.wing_style]
-		wing_display = instance.name
-	else if(pref.wing_style)
-		wing_display = "REQUIRES UPDATE"
+	var/list/wing_styles = pref.get_available_styles(global.wing_styles_list)
+	var/datum/sprite_accessory/wing/wings = wing_styles[pref.wing_style]
 	. += "<b>Wing</b><br>"
-	. += " Style: <a href='?src=\ref[src];wing_style=1'>[wing_display]</a><br>"
-
-	if(wing_styles_list[pref.wing_style])
-		var/datum/sprite_accessory/wing/W = wing_styles_list[pref.wing_style]
-		if(W.do_colouration)
+	if(istype(wings))
+		. += " Style: <a href='?src=\ref[src];wing_style=1'>[wings.name]</a><br>"
+		if(wings.do_colouration)
 			. += "<a href='?src=\ref[src];wing_color=1'>Change Color</a> [color_square(pref.r_wing, pref.g_wing, pref.b_wing)]<br>"
-		if(W.extra_overlay)
+		if(wings.extra_overlay)
 			. += "<a href='?src=\ref[src];wing_color2=1'>Change Secondary Color</a> [color_square(pref.r_wing2, pref.g_wing2, pref.b_wing2)]<br>"
-		if(W.extra_overlay2)
+		if(wings.extra_overlay2)
 			. += "<a href='?src=\ref[src];wing_color3=1'>Change Secondary Color</a> [color_square(pref.r_wing3, pref.g_wing3, pref.b_wing3)]<br>"
+	else
+		. += " Style: <a href='?src=\ref[src];wing_style=1'>Select</a><br>"
 
 	. += "<br><a href='?src=\ref[src];marking_style=1'>Body Markings +</a><br>"
 	. += "<table>"
@@ -669,7 +686,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 
 			reset_limbs() // Safety for species with incompatible manufacturers; easier than trying to do it case by case.
 			pref.body_markings.Cut() // Basically same as above.
-
+			
+			pref.sanitize_body_styles()
+			
 			var/min_age = get_min_age()
 			var/max_age = get_max_age()
 			pref.age = max(min(pref.age, max_age), min_age)
@@ -1085,17 +1104,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["ear_style"])
-		// Construct the list of names allowed for this user.
-		var/list/pretty_ear_styles = list("Normal" = null)
-		for(var/path in ear_styles_list)
-			var/datum/sprite_accessory/ears/instance = ear_styles_list[path]
-			if(((!instance.ckeys_allowed) || (usr.ckey in instance.ckeys_allowed)) && ((!instance.apply_restrictions) || (pref.species in instance.species_allowed)) || check_rights(R_ADMIN | R_EVENT | R_FUN, 0, user))	//VOREStation Edit
-				pretty_ear_styles[instance.name] = path
-
-		// Present choice to user
-		var/new_ear_style = input(user, "Pick ears", "Character Preference", pref.ear_style) as null|anything in pretty_ear_styles
+		var/new_ear_style = input(user, "Select an ear style for this character:", "Character Preference", pref.ear_style) as null|anything in pref.get_available_styles(global.ear_styles_list)
 		if(new_ear_style)
-			pref.ear_style = pretty_ear_styles[new_ear_style]
+			pref.ear_style = new_ear_style
 
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 
@@ -1127,18 +1138,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["tail_style"])
-		// Construct the list of names allowed for this user.
-		var/list/pretty_tail_styles = list("Normal" = null)
-		for(var/path in tail_styles_list)
-			var/datum/sprite_accessory/tail/instance = tail_styles_list[path]
-			if(((!instance.ckeys_allowed) || (usr.ckey in instance.ckeys_allowed)) && ((!instance.apply_restrictions) || (pref.species in instance.species_allowed)) || check_rights(R_ADMIN | R_EVENT | R_FUN, 0, user))	//VOREStation Edit
-				pretty_tail_styles[instance.name] = path
-
-		// Present choice to user
-		var/new_tail_style = input(user, "Pick tails", "Character Preference", pref.tail_style) as null|anything in pretty_tail_styles
+		var/new_tail_style = input(user, "Select a tail style for this character:", "Character Preference", pref.tail_style) as null|anything in pref.get_available_styles(global.tail_styles_list)
 		if(new_tail_style)
-			pref.tail_style = pretty_tail_styles[new_tail_style]
-
+			pref.tail_style = new_tail_style
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["tail_color"])
@@ -1169,17 +1171,9 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["wing_style"])
-		// Construct the list of names allowed for this user.
-		var/list/pretty_wing_styles = list("Normal" = null)
-		for(var/path in wing_styles_list)
-			var/datum/sprite_accessory/wing/instance = wing_styles_list[path]
-			if(((!instance.ckeys_allowed) || (usr.ckey in instance.ckeys_allowed)) && ((!instance.apply_restrictions) || (pref.species in instance.species_allowed)) || check_rights(R_ADMIN | R_EVENT | R_FUN, 0, user))	//VOREStation Edit
-				pretty_wing_styles[instance.name] = path
-
-		// Present choice to user
-		var/new_wing_style = input(user, "Pick wings", "Character Preference", pref.wing_style) as null|anything in pretty_wing_styles
+		var/new_wing_style = input(user, "Select a wing style for this character:", "Character Preference", pref.wing_style) as null|anything in pref.get_available_styles(global.wing_styles_list)
 		if(new_wing_style)
-			pref.wing_style = pretty_wing_styles[new_wing_style]
+			pref.wing_style = new_wing_style
 
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 

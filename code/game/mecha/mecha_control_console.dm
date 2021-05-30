@@ -27,11 +27,13 @@
 /obj/machinery/computer/mecha/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
 	
-	data["beacons"] = list()
+	
+	var/list/beacons = list()
 	for(var/obj/item/mecha_parts/mecha_tracking/TR in world)
 		var/list/tr_data = TR.tgui_data(user)
 		if(tr_data)
-			data["beacons"].Add(list(tr_data))
+			beacons.Add(list(tr_data))
+	data["beacons"] = beacons
 	
 	LAZYINITLIST(stored_data)
 	data["stored_data"] = stored_data

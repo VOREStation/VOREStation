@@ -91,6 +91,7 @@
 #define COLOR_DARK_TEAL        "#2db5b5"
 #define COLOR_LIGHT_VIOLET     "#e7bfff"
 #define COLOR_SAN_MARINO_BLUE  "#4b75ab"
+#define COLOR_OLIVE            "#52613b"	//VOREStation Addition
 
 #define	PIPE_COLOR_GREY        "#808080"
 #define	PIPE_COLOR_RED         "#ff0000"
@@ -165,3 +166,9 @@
 
 #define COLOR_ASTEROID_ROCK    "#735555"
 #define COLOR_GOLD             "#ffcc33"
+
+// Discord requires colors to be in decimal instead of hexadecimal.
+#define COLOR_WEBHOOK_DEFAULT	0x8bbbd5 // "#8bbbd5"
+#define COLOR_WEBHOOK_GOOD		0x2ECC71 // "#2ECC71"
+#define COLOR_WEBHOOK_POOR		0xE67E22 // "#E67E22"
+#define COLOR_WEBHOOK_BAD		0xE74C3C // "#E74C3C"

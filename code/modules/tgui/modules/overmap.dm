@@ -158,7 +158,6 @@
 	. = ..()
 	if(!istype(new_linked))
 		CRASH("Warning, [new_linked] is not an overmap ship! Something went horribly wrong for [usr]!")
-		return
 	linked = new_linked
 	name = initial(name) + " ([linked.name])"
 	// HELM

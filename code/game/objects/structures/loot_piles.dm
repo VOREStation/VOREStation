@@ -247,7 +247,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/trash/waffles,
 		/obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat,
 		/obj/item/weapon/reagent_containers/food/snacks/mysterysoup,
-		/obj/item/weapon/reagent_containers/food/snacks/hotdog/old,
+		/obj/item/weapon/reagent_containers/food/snacks/old/hotdog,
 		/obj/item/pizzabox/old,
 		/obj/item/ammo_casing/spent,
 		/obj/item/stack/rods{amount = 5},
@@ -255,7 +255,6 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/stack/material/cardboard{amount = 5},
 		/obj/item/weapon/contraband/poster,
 		/obj/item/weapon/contraband/poster/custom,
-		/obj/item/weapon/material/wirerod,
 		/obj/item/weapon/newspaper,
 		/obj/item/weapon/paper/crumpled,
 		/obj/item/weapon/paper/crumpled/bloody

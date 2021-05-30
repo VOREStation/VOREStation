@@ -66668,10 +66668,6 @@
 /turf/simulated/floor/tiled,
 /area/quartermaster/foyer)
 "cvi" = (
-/obj/structure/bed/chair,
-/obj/machinery/alarm{
-	pixel_y = 22
-	},
 /obj/effect/floor_decal/borderfloor/corner{
 	dir = 1
 	},
@@ -70397,6 +70393,10 @@
 	},
 /obj/effect/floor_decal/corner/brown/bordercorner2{
 	dir = 9
+	},
+/obj/machinery/alarm{
+	dir = 4;
+	pixel_x = -22
 	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/foyer)
@@ -86952,9 +86952,9 @@
 /turf/simulated/floor/plating,
 /area/maintenance/bar)
 "deS" = (
-/obj/machinery/smartfridge,
 /obj/structure/disposalpipe/segment,
-/turf/simulated/wall/r_wall,
+/obj/machinery/smartfridge/produce/persistent,
+/turf/simulated/floor/plating,
 /area/hydroponics)
 "deT" = (
 /turf/simulated/wall,
@@ -114220,6 +114220,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/primary/seconddeck/stairwell)
+"xjf" = (
+/obj/machinery/smartfridge/sheets/persistent,
+/turf/simulated/floor/plating,
+/area/quartermaster/foyer)
 
 (1,1,1) = {"
 aaa
@@ -201992,7 +201996,7 @@ cmS
 chE
 cpX
 crX
-ctL
+xjf
 cvi
 cxl
 cxl

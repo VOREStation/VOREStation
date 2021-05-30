@@ -14,6 +14,7 @@ vchat.db*
 data
 data/
 cfg/
+.vscode
 
 code/game/gamemodes/technomancer/spells/projectile/overload.dm
 code/game/gamemodes/technomancer/spells/projectile/overload.dm

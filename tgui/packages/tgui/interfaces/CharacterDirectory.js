@@ -94,18 +94,18 @@ const ViewCharacter = (props, context) => {
         </Box>
       </Section>
       <Section level={2} title="Character Ad">
-        <Box style={{ "word-break": "break-all" }}>
-          {overlay.character_ad ? overlay.character_ad.split("\n").map((c, i) => <Box key={i}>{c}</Box>) : "Unset."}
+        <Box style={{ "word-break": "break-all" }} prewrap>
+          {overlay.character_ad || "Unset."}
         </Box>
       </Section>
       <Section level={2} title="OOC Notes">
-        <Box style={{ "word-break": "break-all" }}>
-          {overlay.ooc_notes ? overlay.ooc_notes.split("\n").map((c, i) => <Box key={i}>{c}</Box>) : "Unset."}
+        <Box style={{ "word-break": "break-all" }} prewrap>
+          {overlay.ooc_notes || "Unset."}
         </Box>
       </Section>
       <Section level={2} title="Flavor Text">
-        <Box style={{ "word-break": "break-all" }}>
-          {overlay.flavor_text ? overlay.flavor_text.split("\n").map((c, i) => <Box key={i}>{c}</Box>) : "Unset."}
+        <Box style={{ "word-break": "break-all" }} prewrap>
+          {overlay.flavor_text || "Unset."}
         </Box>
       </Section>
     </Section>

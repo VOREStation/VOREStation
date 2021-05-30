@@ -14,7 +14,6 @@
 
 	vocal = 1
 	cleaning = 0
-	blood = 0
 	var/red_switch = 0
 	var/blue_switch = 0
 	var/green_switch = 0

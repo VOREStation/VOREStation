@@ -234,7 +234,6 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 				isbroken=1
 			update_icon()
 			return
-	return
 
 /obj/machinery/newscaster/attack_ai(mob/user)
 	return attack_hand(user)

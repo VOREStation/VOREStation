@@ -254,8 +254,6 @@
 		to_chat(user, "<span class='notice'>You refrain from putting things into the plant pot.</span>")
 		return
 
-	..()
-
 /obj/structure/flora/pottedplant/attack_hand(mob/user)
 	if(!stored_item)
 		to_chat(user, "<span class='filter_notice'><b>You see nothing of interest in [src]...</b></span>")

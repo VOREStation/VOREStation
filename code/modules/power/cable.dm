@@ -510,6 +510,7 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	stacktype = /obj/item/stack/cable_coil
 	drop_sound = 'sound/items/drop/accessory.ogg'
 	pickup_sound = 'sound/items/pickup/accessory.ogg'
+	tool_qualities = list(TOOL_CABLE_COIL)
 
 /obj/item/stack/cable_coil/cyborg
 	name = "cable coil synthesizer"
@@ -634,7 +635,6 @@ obj/structure/cable/proc/cableColor(var/colorC)
 		src.use(15)
 	else
 		to_chat(usr, "<span class='notice'>You cannot do that.</span>")
-	..()
 
 /obj/item/stack/cable_coil/cyborg/verb/set_colour()
 	set name = "Change Colour"

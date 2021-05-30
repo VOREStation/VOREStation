@@ -18,12 +18,12 @@
 /obj/machinery/computer/atmoscontrol/New()
 	..()
 
-/obj/machinery/computer/atmoscontrol/laptop
-	name = "Atmospherics Laptop"
-	desc = "A cheap laptop."
-	icon_screen = "medlaptop"
-	icon_state = "laptop"
-	icon_keyboard = "laptop_key"
+/obj/machinery/computer/atmoscontrol/laptop //[TO DO] Change name to PCU and update mapdata to include replacement computers
+	name = "\improper Atmospherics PCU"
+	desc = "A personal computer unit. It seems to have only the Atmosphereics Control program installed."
+	icon_screen = "pcu_atmo"
+	icon_state = "pcu"
+	icon_keyboard = "pcu_key"
 	density = 0
 
 /obj/machinery/computer/atmoscontrol/attack_ai(var/mob/user as mob)
