@@ -38,14 +38,14 @@
 
 		for(var/obj/item/organ/external/E in organs)
 			for(var/obj/item/weapon/implant/I in E.implants)
-				if(I.implanted)
-					if(istype(I,/obj/item/weapon/implant/backup))
-						if(!mind)
-							holder.icon_state = "hud_backup_nomind"
-						else if(!(mind.name in SStranscore.body_scans))
-							holder.icon_state = "hud_backup_nobody"
-						else
-							holder.icon_state = "hud_backup_norm"
+				if(I.implanted && istype(I,/obj/item/weapon/implant/backup))
+					var/obj/item/weapon/implant/backup/B = I
+					if(!mind)
+						holder.icon_state = "hud_backup_nomind"
+					else if(!(mind.name in B.our_db.body_scans))
+						holder.icon_state = "hud_backup_nobody"
+					else
+						holder.icon_state = "hud_backup_norm"
 
 		apply_hud(BACKUP_HUD, holder)
 

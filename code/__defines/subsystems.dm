@@ -62,7 +62,8 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 #define INIT_ORDER_PLANETS		18
 #define INIT_ORDER_JOB			17
 #define INIT_ORDER_ALARM		16 // Must initialize before atoms.
-#define INIT_ORDER_ATOMS		15
+#define INIT_ORDER_TRANSCORE	15 // VOREStation Edit
+#define INIT_ORDER_ATOMS		14 // VOREStation Edit
 #define INIT_ORDER_MACHINES		10
 #define INIT_ORDER_SHUTTLES		3
 #define INIT_ORDER_TIMER		1
