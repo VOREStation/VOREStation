@@ -5695,9 +5695,16 @@
 /turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/surface_three_hall)
 "aiq" = (
-/obj/machinery/portable_atmospherics/hydroponics/soil,
-/obj/machinery/camera/network/civilian,
-/turf/simulated/floor/grass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
 /area/tether/surfacebase/public_garden_three)
 "air" = (
 /obj/effect/floor_decal/borderfloor{
@@ -5848,12 +5855,13 @@
 /turf/simulated/wall,
 /area/rnd/outpost/xenobiology/outpost_north_airlock)
 "aiF" = (
-/obj/machinery/portable_atmospherics/hydroponics/soil,
-/obj/item/device/radio/intercom{
-	dir = 8;
-	pixel_x = -24
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor,
+/obj/structure/window/reinforced{
+	dir = 1
 	},
-/turf/simulated/floor/grass,
+/turf/simulated/floor/plating,
 /area/tether/surfacebase/public_garden_three)
 "aiG" = (
 /obj/machinery/light,
@@ -6381,12 +6389,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
-"aju" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 4
-	},
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/public_garden_three)
 "ajv" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /obj/effect/floor_decal/industrial/warning{
@@ -6887,14 +6889,11 @@
 /turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/surface_three_hall)
 "akm" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
 	},
-/obj/effect/floor_decal/borderfloor/corner{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/lime/bordercorner{
-	dir = 4
+/obj/effect/floor_decal/corner/lime/border{
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
@@ -17903,41 +17902,22 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/botanystorage)
 "aCY" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/machinery/door/firedoor,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/turf/simulated/floor/plating,
-/area/tether/surfacebase/public_garden_three)
-"aCZ" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/machinery/door/firedoor,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
+/obj/structure/table/bench/wooden,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 8
 	},
-/turf/simulated/floor/plating,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
 /area/tether/surfacebase/public_garden_three)
-"aDa" = (
-/obj/machinery/portable_atmospherics/hydroponics/soil,
+"aCZ" = (
+/obj/structure/flora/ausbushes/brflowers,
 /turf/simulated/floor/grass,
 /area/tether/surfacebase/public_garden_three)
 "aDb" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/machinery/door/firedoor,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/turf/simulated/floor/plating,
+/obj/structure/flora/ausbushes/fernybush,
+/turf/simulated/floor/grass,
 /area/tether/surfacebase/public_garden_three)
 "aDc" = (
 /obj/structure/grille,
@@ -17946,29 +17926,20 @@
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/public_garden_three)
 "aDd" = (
-/obj/machinery/light{
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 1
 	},
-/obj/structure/table/bench/wooden,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/grass,
 /area/tether/surfacebase/public_garden_three)
 "aDe" = (
 /turf/simulated/floor/grass,
 /area/tether/surfacebase/public_garden_three)
 "aDf" = (
-/obj/structure/table/bench/wooden,
+/obj/structure/flora/rocks1,
 /turf/simulated/floor/grass,
 /area/tether/surfacebase/public_garden_three)
 "aDg" = (
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/public_garden_three)
-"aDh" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 5
-	},
-/obj/effect/floor_decal/corner/lime/border{
-	dir = 5
-	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
 "aDi" = (
@@ -17978,6 +17949,10 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals6{
 	dir = 5
+	},
+/obj/machinery/camera/network/civilian{
+	dir = 1;
+	pixel_y = 6
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
@@ -17998,32 +17973,36 @@
 /obj/effect/floor_decal/steeldecal/steel_decals6{
 	dir = 6
 	},
+/obj/machinery/light{
+	pixel_y = 6
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
 "aDl" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/grass,
 /area/tether/surfacebase/public_garden_three)
 "aDm" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
-	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
 	},
 /obj/effect/floor_decal/corner/lime/border{
 	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
 "aDn" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 1
+/turf/simulated/mineral/floor/cave{
+	name = "dirt"
 	},
-/obj/effect/floor_decal/corner/lime/border{
-	dir = 1
-	},
-/turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
 "aDo" = (
 /obj/machinery/shower{
@@ -18050,13 +18029,8 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/triage)
 "aDq" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/machinery/door/firedoor,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/simulated/floor/plating,
+/obj/structure/table/bench/wooden,
+/turf/simulated/floor/grass,
 /area/tether/surfacebase/public_garden_three)
 "aDr" = (
 /obj/effect/floor_decal/borderfloor{
@@ -18073,7 +18047,6 @@
 "aDt" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/material/minihoe,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/item/device/analyzer/plant_analyzer,
 /obj/item/device/analyzer/plant_analyzer,
 /obj/effect/floor_decal/steeldecal/steel_decals6{
@@ -18085,10 +18058,16 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
 "aDu" = (
 /obj/structure/table/bench/wooden,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
 "aDv" = (
@@ -18101,21 +18080,13 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
 "aDw" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "north bump";
-	pixel_y = 28
-	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
 	},
 /obj/effect/floor_decal/corner/lime/border{
 	dir = 1
 	},
-/obj/structure/cable/green{
-	d2 = 4;
-	icon_state = "0-4"
-	},
+/obj/machinery/vending/hydronutrients,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
 "aDx" = (
@@ -18131,11 +18102,8 @@
 /obj/effect/floor_decal/corner/lime/border{
 	dir = 5
 	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
+/obj/machinery/camera/network/tether,
+/obj/machinery/seed_storage/garden,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
 "aDy" = (
@@ -18156,21 +18124,13 @@
 /obj/effect/floor_decal/techfloor/hole/right{
 	dir = 8
 	},
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/public_garden_three)
 "aDz" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/machinery/door/firedoor,
-/obj/structure/window/reinforced{
-	dir = 4
+/obj/structure/bed/chair/wood{
+	dir = 1
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/grass,
 /area/tether/surfacebase/public_garden_three)
 "aDA" = (
 /obj/effect/floor_decal/borderfloor{
@@ -18191,6 +18151,9 @@
 /obj/effect/floor_decal/steeldecal/steel_decals6,
 /obj/structure/table/woodentable,
 /obj/random/maintenance/clean,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
 "aDC" = (
@@ -18227,12 +18190,10 @@
 /area/tether/surfacebase/botanystorage)
 "aDD" = (
 /obj/structure/table/bench/wooden,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
 "aDE" = (
@@ -18250,13 +18211,12 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 4
 	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/alarm{
+	dir = 8;
+	pixel_x = 28
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/public_garden_three)
 "aDG" = (
@@ -18268,6 +18228,9 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals6,
 /obj/structure/table/woodentable,
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
 "aDH" = (
@@ -18281,7 +18244,15 @@
 	},
 /obj/structure/cable/green{
 	d1 = 32;
-	icon_state = "32-1"
+	d2 = 2;
+	icon_state = "32-2"
+	},
+/obj/structure/railing,
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/railing{
+	dir = 8
 	},
 /turf/simulated/open,
 /area/tether/surfacebase/public_garden_three)
@@ -18314,8 +18285,7 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
 "aDL" = (
-/obj/machinery/portable_atmospherics/hydroponics/soil,
-/obj/machinery/light,
+/obj/machinery/camera/network/civilian,
 /turf/simulated/floor/grass,
 /area/tether/surfacebase/public_garden_three)
 "aDM" = (
@@ -18329,40 +18299,42 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/botanystorage)
 "aDN" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/lime/border,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden_three)
+"aDO" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/lime/border,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
-"aDO" = (
-/obj/machinery/alarm{
-	dir = 8;
-	pixel_x = 25
-	},
+"aDP" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 6
 	},
 /obj/effect/floor_decal/corner/lime/border{
 	dir = 6
 	},
-/obj/machinery/camera/network/civilian{
-	dir = 1
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/item/device/radio/intercom{
+	dir = 4;
+	name = "Station Intercom (General)";
+	pixel_x = 24
 	},
 /turf/simulated/floor/tiled,
-/area/tether/surfacebase/public_garden_three)
-"aDP" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/machinery/door/firedoor,
-/obj/structure/window/reinforced,
-/turf/simulated/floor/plating,
 /area/tether/surfacebase/public_garden_three)
 "aDQ" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
 /obj/structure/window/reinforced,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/public_garden_three)
@@ -18373,21 +18345,16 @@
 /obj/effect/floor_decal/corner/lime/bordercorner{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
 "aDS" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/machinery/door/firedoor,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced,
-/turf/simulated/floor/plating,
+/obj/structure/bed/chair/wood,
+/turf/simulated/floor/grass,
 /area/tether/surfacebase/public_garden_three)
 "aDT" = (
 /obj/machinery/light,
-/obj/structure/table/bench/wooden,
 /turf/simulated/floor/grass,
 /area/tether/surfacebase/public_garden_three)
 "aDU" = (
@@ -27318,9 +27285,16 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/servicebackroom)
 "aUC" = (
-/obj/effect/floor_decal/borderfloor/corner,
-/obj/effect/floor_decal/corner/lime/bordercorner,
-/turf/simulated/floor/tiled,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
 /area/tether/surfacebase/public_garden_three)
 "aUD" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -27341,13 +27315,7 @@
 /turf/simulated/floor/tiled/eris/dark/golden,
 /area/shuttle/tourbus/general)
 "aUF" = (
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/corner/lime/border,
-/obj/machinery/seed_storage/garden{
-	dir = 1
-	},
-/obj/machinery/light,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/wood,
 /area/tether/surfacebase/public_garden_three)
 "aUG" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -27404,13 +27372,10 @@
 /area/tether/surfacebase/medical/chemistry)
 "aUM" = (
 /obj/effect/floor_decal/borderfloor{
-	dir = 6
+	dir = 4
 	},
 /obj/effect/floor_decal/corner/lime/border{
-	dir = 6
-	},
-/obj/machinery/vending/hydronutrients{
-	dir = 1
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
@@ -27433,6 +27398,12 @@
 "aUO" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 6
+	},
+/obj/structure/cable/green,
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	pixel_x = 28
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/public_garden_three)
@@ -27591,8 +27562,11 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/chemistry)
 "aVb" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 4
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
@@ -27794,19 +27768,8 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
 "aVr" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 10
-	},
-/obj/effect/floor_decal/corner/lime/border{
-	dir = 10
-	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 9
-	},
-/obj/effect/floor_decal/corner/lime/bordercorner2{
-	dir = 9
-	},
-/turf/simulated/floor/tiled,
+/obj/structure/table/bench/wooden,
+/turf/simulated/floor/wood,
 /area/tether/surfacebase/public_garden_three)
 "aVs" = (
 /obj/structure/lattice,
@@ -27873,11 +27836,17 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/barrestroom)
 "aVx" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/lime/border{
+	dir = 8
+	},
 /obj/machinery/firealarm{
 	dir = 8;
 	pixel_x = -24
 	},
-/turf/simulated/floor/grass,
+/turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
 "aVy" = (
 /obj/structure/disposalpipe/segment{
@@ -37927,6 +37896,14 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
+"bSW" = (
+/obj/structure/table/bench/wooden,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden_three)
 "bTC" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/skills{
@@ -38094,13 +38071,13 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/briefingroom)
 "cwI" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
-	},
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/lime/border,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
@@ -38111,6 +38088,12 @@
 /obj/machinery/light,
 /turf/simulated/floor/wood,
 /area/library)
+"cAZ" = (
+/obj/structure/bed/chair/wood{
+	dir = 8
+	},
+/turf/simulated/floor/grass,
+/area/tether/surfacebase/public_garden_three)
 "cEx" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/stamp/internalaffairs,
@@ -38321,11 +38304,8 @@
 /turf/simulated/floor/plating/eris/under,
 /area/shuttle/tourbus/cockpit)
 "dgA" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 1
-	},
-/turf/simulated/floor/tiled,
+/obj/structure/flora/bboulder2,
+/turf/simulated/floor/grass,
 /area/tether/surfacebase/public_garden_three)
 "dlX" = (
 /obj/structure/table/glass,
@@ -38587,19 +38567,14 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/southhall)
 "erS" = (
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 10
+	},
 /obj/effect/floor_decal/borderfloor{
-	dir = 6
+	dir = 4
 	},
 /obj/effect/floor_decal/corner/lime/border{
-	dir = 6
-	},
-/obj/effect/floor_decal/borderfloor/corner2,
-/obj/effect/floor_decal/corner/lime/bordercorner2,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
@@ -38607,6 +38582,15 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lobby)
+"eCg" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/public_garden_three)
 "eCG" = (
 /obj/machinery/computer/ship/helm,
 /turf/simulated/floor/tiled/eris/white/orangecorner,
@@ -38739,6 +38723,12 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/golden,
 /area/shuttle/tourbus/general)
+"fdB" = (
+/obj/machinery/light/flamp/noshade{
+	pixel_y = 5
+	},
+/turf/simulated/floor/grass,
+/area/tether/surfacebase/public_garden_three)
 "feu" = (
 /obj/machinery/alarm{
 	dir = 1;
@@ -38878,6 +38868,16 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
+"fQa" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/public_garden_three)
 "gae" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -39027,6 +39027,13 @@
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/pool)
+"gOS" = (
+/obj/structure/table/bench/wooden,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/turf/simulated/floor/wood,
+/area/tether/surfacebase/public_garden_three)
 "gRG" = (
 /obj/structure/closet/hydrant{
 	pixel_x = -32
@@ -39095,6 +39102,16 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/briefingroom)
+"hal" = (
+/obj/structure/table/bench/wooden,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/tether/surfacebase/public_garden_three)
 "haS" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/glass{
@@ -39153,15 +39170,22 @@
 /turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/shuttle_pad)
 "hxc" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /obj/effect/floor_decal/borderfloor/corner,
 /obj/effect/floor_decal/corner/lime/bordercorner,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 1
-	},
 /turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden_three)
+"hxr" = (
+/obj/structure/flora/ausbushes/ywflowers{
+	pixel_x = -5;
+	pixel_y = -10
+	},
+/turf/simulated/floor/grass,
 /area/tether/surfacebase/public_garden_three)
 "hxR" = (
 /obj/structure/cable/green{
@@ -39264,6 +39288,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/briefingroom)
+"hMw" = (
+/obj/machinery/hologram/holopad,
+/turf/simulated/mineral/floor/cave{
+	name = "dirt"
+	},
+/area/tether/surfacebase/public_garden_three)
 "hVc" = (
 /obj/structure/table/woodentable,
 /obj/machinery/photocopier/faxmachine{
@@ -39278,6 +39308,25 @@
 	},
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/security/hos)
+"hVd" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/lime/border{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden_three)
+"hXh" = (
+/obj/structure/flora/tree/jungle,
+/turf/simulated/floor/grass,
+/area/tether/surfacebase/public_garden_three)
 "ieb" = (
 /obj/effect/floor_decal/borderfloorblack,
 /obj/effect/floor_decal/industrial/danger,
@@ -39315,13 +39364,9 @@
 /turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/shuttle_pad)
 "iiv" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 6
-	},
-/turf/simulated/floor/tiled,
+/obj/structure/table/woodentable,
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/turf/simulated/floor/wood,
 /area/tether/surfacebase/public_garden_three)
 "ikh" = (
 /obj/machinery/vending/sovietsoda{
@@ -39457,6 +39502,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenobiology/outpost_main)
+"iTV" = (
+/obj/machinery/camera/network/civilian{
+	dir = 1
+	},
+/turf/simulated/floor/grass,
+/area/tether/surfacebase/public_garden_three)
 "iUu" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -39496,6 +39547,15 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
+"jbL" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/turf/simulated/floor/grass,
+/area/tether/surfacebase/public_garden_three)
+"jcR" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden_three)
 "jmQ" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -39607,6 +39667,12 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/southhall)
+"jDF" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/grass,
+/area/tether/surfacebase/public_garden_three)
 "jFq" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/folder{
@@ -39749,6 +39815,15 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/breakroom)
+"jQV" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/public_garden_three)
 "jRO" = (
 /obj/effect/floor_decal/spline/plain,
 /obj/item/weapon/stool/padded,
@@ -40036,6 +40111,16 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/iaa/officea)
+"kKV" = (
+/obj/machinery/light/flamp/noshade{
+	pixel_y = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/floor/grass,
+/area/tether/surfacebase/public_garden_three)
 "kQb" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 5
@@ -40071,6 +40156,11 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenobiology/outpost_main)
+"kTt" = (
+/obj/machinery/portable_atmospherics/hydroponics/soil,
+/obj/machinery/light,
+/turf/simulated/floor/grass,
+/area/tether/surfacebase/public_garden_three)
 "kXo" = (
 /obj/structure/noticeboard{
 	pixel_y = -26
@@ -40091,6 +40181,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
+"kZr" = (
+/obj/machinery/portable_atmospherics/hydroponics/soil,
+/turf/simulated/floor/grass,
+/area/tether/surfacebase/public_garden_three)
 "laB" = (
 /obj/structure/cable/orange{
 	d1 = 4;
@@ -40618,6 +40712,12 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/briefingroom)
+"nio" = (
+/obj/machinery/camera/network/civilian{
+	dir = 9
+	},
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/tether/surfacebase/outside/outside3)
 "nlf" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -40656,6 +40756,18 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/breakroom)
+"noU" = (
+/obj/structure/table/woodentable,
+/turf/simulated/floor/wood,
+/area/tether/surfacebase/public_garden_three)
+"ntl" = (
+/obj/structure/table/bench/wooden,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden_three)
 "nue" = (
 /obj/structure/cable/green{
 	icon_state = "0-2"
@@ -40767,6 +40879,10 @@
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/breakroom)
+"nUE" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/simulated/floor/grass,
+/area/tether/surfacebase/public_garden_three)
 "nXZ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8
@@ -41279,6 +41395,16 @@
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/iaa/officeb)
+"pIJ" = (
+/obj/structure/table/bench/wooden,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/turf/simulated/floor/wood,
+/area/tether/surfacebase/public_garden_three)
 "pJL" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -41295,6 +41421,21 @@
 	},
 /turf/simulated/floor/tiled/eris/white/orangecorner,
 /area/shuttle/tourbus/cockpit)
+"pNF" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/effect/floor_decal/borderfloor/corner{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/lime/bordercorner{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden_three)
 "pOZ" = (
 /turf/simulated/floor/carpet,
 /area/tether/surfacebase/security/hos)
@@ -41414,6 +41555,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/iaa/officeb)
+"qpD" = (
+/obj/structure/flora/ausbushes/ppflowers{
+	pixel_y = -12
+	},
+/turf/simulated/floor/grass,
+/area/tether/surfacebase/public_garden_three)
 "qqP" = (
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled,
@@ -41424,6 +41571,13 @@
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor/plating,
 /area/crew_quarters/recreation_area)
+"qtp" = (
+/obj/structure/table/bench/wooden,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/turf/simulated/floor/wood,
+/area/tether/surfacebase/public_garden_three)
 "qtt" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -41431,6 +41585,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/carpet/blue,
 /area/tether/surfacebase/security/breakroom)
+"qum" = (
+/obj/structure/bed/chair/wood{
+	dir = 4
+	},
+/turf/simulated/floor/grass,
+/area/tether/surfacebase/public_garden_three)
 "qvp" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -41520,6 +41680,12 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
+"qJd" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/grass,
+/area/tether/surfacebase/public_garden_three)
 "qKO" = (
 /obj/structure/closet/hydrant{
 	pixel_x = 32
@@ -41694,9 +41860,6 @@
 "rEZ" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/reagent_containers/glass/bucket,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 6
-	},
 /obj/effect/floor_decal/steeldecal/steel_decals6{
 	dir = 8
 	},
@@ -41706,8 +41869,8 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 8
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
@@ -42032,6 +42195,13 @@
 	},
 /turf/simulated/floor/carpet,
 /area/tether/surfacebase/security/hos)
+"sTZ" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden_three)
 "sWs" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 8
@@ -42058,11 +42228,9 @@
 /turf/simulated/floor/carpet/blue,
 /area/tether/surfacebase/security/breakroom)
 "sXa" = (
-/obj/machinery/holoposter{
-	pixel_x = -30;
-	pixel_y = 30
-	},
-/turf/simulated/floor/grass,
+/obj/structure/table/woodentable,
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/turf/simulated/floor/wood,
 /area/tether/surfacebase/public_garden_three)
 "sXR" = (
 /obj/item/device/radio/intercom/department/security{
@@ -42331,6 +42499,10 @@
 	},
 /turf/simulated/floor/tiled/freezer,
 /area/crew_quarters/pool)
+"ufJ" = (
+/obj/structure/table/woodentable,
+/turf/simulated/floor/grass,
+/area/tether/surfacebase/public_garden_three)
 "uhm" = (
 /obj/structure/bed/chair/bay/chair{
 	dir = 8
@@ -42354,6 +42526,21 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/chemistry)
+"ukn" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/lime/border{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden_three)
 "und" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -42416,6 +42603,13 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lobby)
+"uBR" = (
+/obj/structure/flora/ausbushes/ppflowers{
+	pixel_x = 5;
+	pixel_y = -7
+	},
+/turf/simulated/floor/grass,
+/area/tether/surfacebase/public_garden_three)
 "uFI" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -42430,6 +42624,10 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
+"uMD" = (
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden_three)
 "uNt" = (
 /turf/simulated/open,
 /area/tether/surfacebase/security/upperhall)
@@ -43222,6 +43420,10 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/recreation_area_restroom)
+"xwQ" = (
+/obj/machinery/light/flamp/noshade,
+/turf/simulated/floor/grass,
+/area/tether/surfacebase/public_garden_three)
 "xxe" = (
 /obj/effect/floor_decal/steeldecal/steel_decals_central5{
 	dir = 4
@@ -43266,6 +43468,15 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
+"xFm" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/tether/surfacebase/public_garden_three)
 "xGw" = (
 /obj/effect/floor_decal/spline/plain{
 	dir = 4
@@ -46588,7 +46799,7 @@ aab
 aab
 aab
 aab
-aab
+aMG
 aac
 aac
 aac
@@ -46729,8 +46940,8 @@ aab
 aab
 aab
 aab
-aab
-aab
+aNU
+adG
 aac
 aac
 aac
@@ -46869,10 +47080,10 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
+aMG
+aNU
+adG
+adG
 aac
 aac
 aac
@@ -47010,9 +47221,9 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
+aNU
+adG
+adG
 aac
 aac
 aac
@@ -47151,8 +47362,8 @@ aab
 aab
 aab
 aab
-aab
-aab
+aNU
+adG
 aac
 aac
 aac
@@ -47167,7 +47378,7 @@ aac
 aac
 aac
 aac
-aac
+nio
 aac
 aac
 aac
@@ -47292,25 +47503,25 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
+aNU
+adG
 aac
 aac
 aac
 aac
 aac
 aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
+aiq
+jQV
+arW
+jQV
+jQV
+jQV
+jQV
+jQV
+jQV
+arW
+fQa
 aac
 aac
 aac
@@ -47433,27 +47644,27 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
+aNU
+adG
 aac
 aac
 aac
 aac
 aac
 aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
+aiq
+aDc
+iTV
+arW
+aDe
+aDe
+aDe
+aDe
+aDe
+iTV
+arW
+aDc
+fQa
 aac
 aac
 aac
@@ -47574,29 +47785,29 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
+aOm
+adG
 aac
 aac
 aac
 aac
 aac
 aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
+aiq
+aDc
+aDe
+nUE
+jDF
+aDe
+aDe
+aDe
+aDe
+aDe
+aDe
+jDF
+nUE
+aDc
+fQa
 aac
 aac
 aac
@@ -47717,29 +47928,29 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
 aac
 aac
 aac
 aac
 aac
 aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
+aiq
+aDc
+aDe
+aDe
+aDe
+aDe
+aCZ
+aDe
+aDe
+aDe
+aDe
+aDe
+aDe
+aDe
+aDe
+aDc
+fQa
 aac
 aac
 aac
@@ -47859,14 +48070,6 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aac
-aac
-aac
-aac
-aac
 aac
 aac
 aac
@@ -47874,14 +48077,22 @@ aac
 aac
 aac
 arW
-aDq
-aDq
-aDq
-aDq
 arW
-aac
-aac
-aac
+aDb
+aDe
+aDe
+jbL
+aDe
+jbL
+aDe
+aDe
+aDq
+aDq
+aDe
+aDe
+aDe
+aDe
+aDQ
 aac
 aac
 aac
@@ -48001,29 +48212,29 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
 aac
 aac
 aac
 aac
 aac
 aac
-aac
-aac
-aac
-aac
-aCZ
-arW
-aDa
-aDa
-aDa
-aDL
-arW
+aiF
+aDe
+aDe
+aDe
+aDe
+aDe
+nUE
+aDe
+aDe
+aDe
+aDe
+hXh
+aDe
+aDe
+aDe
+aDe
 aDQ
-aac
-aac
 aac
 aac
 aac
@@ -48143,29 +48354,29 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
 aac
 aac
 aac
 aac
 aac
 aac
-aac
-aac
-aac
-aCZ
-aDc
-aiq
-sXa
-aDe
-aDe
-aDe
 aiF
-aDc
+aCZ
+aUF
+dgA
+aVr
+aDe
+aDe
+aDe
+aDe
+aDe
+aDe
+nUE
+aDe
+aDe
+aDe
+aDe
 aDQ
-aac
 aac
 aac
 aac
@@ -48285,19 +48496,19 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
 aac
 aac
 aac
 aac
 aac
 aac
-aac
-aac
-aCZ
-aDc
+aiF
+aDl
+aVr
+iiv
+qtp
+aDe
+aDe
 aDf
 aDe
 aDj
@@ -48305,8 +48516,8 @@ aDr
 aDr
 aDA
 aDe
-aDf
-aDc
+aDe
+aDe
 aDQ
 aac
 aac
@@ -48427,27 +48638,27 @@ aab
 aab
 aab
 aab
-aab
-aab
 aac
 aac
 aac
 aac
 aac
 aac
-aac
-aac
-arW
-arW
-aDd
-aDf
+aiF
+aDe
+aVr
+sXa
+pIJ
+xwQ
+aDe
+fdB
 aDj
 ajt
 aDu
-aDu
+ntl
 aDR
-aDA
-aDf
+ukn
+aDe
 aDT
 arW
 arW
@@ -48569,28 +48780,28 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
 aac
 aac
 aac
 aac
 aac
 aac
-aac
-aCY
-aDa
+aiF
 aDe
-aDj
-ajt
+aVr
+noU
+aCY
+aDn
+aDn
+aDn
+akm
 aDg
 aDB
 aDG
-aDg
-aDR
-aVr
-aDe
+uMD
+pNF
+aDr
+aDr
 aVx
 aDc
 aip
@@ -48711,27 +48922,27 @@ aab
 aab
 aab
 aab
-aab
-aab
 aac
 aac
 aac
 aac
 aac
 aac
-aac
-aac
-aCY
-aDe
-aDe
+aiF
+aDL
+aVr
+aUF
+xFm
 aDn
-aju
+hMw
+aDn
+akm
 aDi
 aDs
 aDs
 aUw
 aVb
-iiv
+tqY
 tqY
 tqY
 haS
@@ -48853,20 +49064,20 @@ aab
 aab
 aab
 aab
-aab
-aab
 aac
 aac
 aac
 aac
 aac
 aac
-aac
-aac
-aCY
-aDa
+aiF
 aDe
-aDh
+aVr
+noU
+aCY
+aDn
+aDn
+aDn
 akm
 aDk
 aDs
@@ -48874,8 +49085,8 @@ aDs
 aUz
 hxc
 erS
-aDe
-aDe
+erS
+erS
 aDc
 aVA
 sDG
@@ -48995,29 +49206,29 @@ aab
 aab
 aab
 aab
-aab
-aab
 aac
 aac
 aac
 aac
 aac
 aac
-aac
-aac
-arW
-arW
+aiF
+aDe
+aVr
+iiv
+hal
+kKV
 aDd
-aDf
+kKV
 aDm
-aDl
+aDg
 aDt
 rEZ
-dgA
+aDg
 cwI
-aDf
+uBR
+qum
 aDT
-arW
 arW
 aVE
 aWF
@@ -49137,28 +49348,28 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
 aac
 aac
 aac
 aac
 aac
 aac
-aac
-aac
+aiF
+aDl
+aVr
+sXa
+gOS
 aDb
-aDc
-aDf
-aDn
-aDg
-aDu
+aDe
+aDe
+hVd
+jcR
+bSW
 aDD
-aDg
+sTZ
 aDN
-aDf
-aDc
+aDS
+ufJ
 aDz
 agw
 air
@@ -49279,29 +49490,29 @@ aab
 aab
 aab
 aab
-aab
-aab
 aac
 aac
 aac
 aac
 aac
 aac
-aac
-aac
-aac
-aac
-aDb
-aDc
+aiF
+aDe
+aUF
+aDe
+aVr
+aDe
+aDe
+aDe
 acm
 aDv
 aDg
 aDJ
-aUC
+aDg
 aDO
-aDc
 aDS
-aac
+ufJ
+aDz
 agw
 air
 aWF
@@ -49421,29 +49632,29 @@ aab
 aab
 aab
 aab
-aab
-aab
 aac
 aac
 aac
 aac
 aac
 aac
-aac
-aac
-aac
-aac
-aac
-aDb
+aiF
+aDe
+aDe
+aDe
+hXh
+kZr
+qpD
+kTt
 arW
 aDw
 aDg
 aDJ
-aUF
-arW
+aDg
+aDO
 aDS
-aac
-aac
+ufJ
+aDz
 agw
 air
 aWF
@@ -49563,29 +49774,29 @@ aab
 aab
 aab
 aab
-aab
 aac
 aac
 aac
 aac
 aac
 aac
-aac
-aac
-aac
-aac
-aac
-aac
-aac
-aCY
+arW
+arW
+aDe
+aCZ
+aDe
+kZr
+aDe
+kZr
+arW
 aDx
 aDE
 aDK
 aUM
 aDP
-aac
-aac
-aac
+hxr
+cAZ
+aDe
 agw
 aVG
 aWF
@@ -49705,7 +49916,6 @@ aab
 aab
 aab
 aab
-aab
 aac
 aac
 aac
@@ -49713,19 +49923,20 @@ aac
 aac
 aac
 aac
-aac
-aac
-aac
-aac
-aac
-aac
-aCY
+aUC
+aDc
+qJd
+aDe
+kZr
+aDe
+kZr
+arW
 aDy
 aDF
 aDH
 aUO
-aDP
-aac
+arW
+eCg
 agw
 agw
 agw
@@ -49855,17 +50066,17 @@ aac
 aac
 aac
 aac
-aac
-aac
-aac
-aac
-aac
-aac
+aUC
 arW
-aDz
-aDz
-aDz
-aDz
+aDL
+kZr
+aDe
+kZr
+arW
+arW
+arW
+arW
+arW
 arW
 aac
 agw
@@ -49998,12 +50209,12 @@ aac
 aac
 aac
 aac
-aac
-aac
-aac
-aac
-aac
-aac
+arW
+eCg
+eCg
+eCg
+eCg
+arW
 aac
 aac
 aac

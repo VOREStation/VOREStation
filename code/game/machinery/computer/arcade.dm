@@ -519,9 +519,9 @@
 						if(electronics)
 							sleep(10)
 							if(oldfuel > fuel && oldfood > food)
-								src.audible_message("\The [src] lets out a somehow reassuring chime.")
+								src.audible_message("\The [src] lets out a somehow reassuring chime.", runemessage = "* reassuring chime *")
 							else if(oldfuel < fuel || oldfood < food)
-								src.audible_message("\The [src] lets out a somehow ominous chime.")
+								src.audible_message("\The [src] lets out a somehow ominous chime.", runemessage = "* ominous chime *")
 							food = oldfood
 							fuel = oldfuel
 

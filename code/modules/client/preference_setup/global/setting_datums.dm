@@ -290,6 +290,32 @@ var/list/_client_preferences_by_type
 	enabled_description = "Show"
 	disabled_description = "Hide"
 
+/datum/client_preference/runechat_mob
+	description = "Runechat (Mobs)"
+	key = "RUNECHAT_MOB"
+	enabled_description = "Show"
+	disabled_description = "Hide"
+
+/datum/client_preference/runechat_obj
+	description = "Runechat (Objs)"
+	key = "RUNECHAT_OBJ"
+	enabled_description = "Show"
+	disabled_description = "Hide"
+
+/datum/client_preference/runechat_border
+	description = "Runechat Message Border"
+	key = "RUNECHAT_BORDER"
+	enabled_description = "Show"
+	disabled_description = "Hide"
+	enabled_by_default = FALSE
+
+/datum/client_preference/runechat_long_messages
+	description = "Runechat Message Length"
+	key = "RUNECHAT_LONG"
+	enabled_description = "ERP KING"
+	disabled_description = "Normie"
+	enabled_by_default = FALSE
+
 /datum/client_preference/status_indicators/toggled(mob/preference_mob, enabled)
 	. = ..()
 	if(preference_mob && preference_mob.plane_holder)

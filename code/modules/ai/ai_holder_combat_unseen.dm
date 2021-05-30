@@ -16,6 +16,8 @@
 			var/obj/O = find_escape_route()
 			if(istype(O))
 				return give_destination(get_turf(O), 0, TRUE)
+			else
+				return find_target()
 		else
 			return find_target()
 	else

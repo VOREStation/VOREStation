@@ -76,3 +76,6 @@
 	var/connection_realtime
  	///world.timeofday they connected
 	var/connection_timeofday
+
+	// Runechat messages
+	var/list/seen_messages
