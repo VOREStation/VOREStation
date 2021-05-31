@@ -148,7 +148,7 @@
 
 		else if(((occupant.health == occupant.maxHealth)) && (!eject_wait))
 			playsound(src, 'sound/machines/ding.ogg', 50, 1)
-			audible_message("\The [src] signals that the growing process is complete.", runemessage = "* ding *")
+			audible_message("\The [src] signals that the growing process is complete.", runemessage = "ding")
 			connected_message("Growing Process Complete.")
 			locked = 0
 			go_out()

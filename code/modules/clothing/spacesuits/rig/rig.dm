@@ -120,7 +120,7 @@
 	item_state = icon_state
 	wires = new(src)
 
-	if((!req_access || !req_access.len) && (!req_one_access || !req_one_access.len))
+	if(!LAZYLEN(req_access) && !LAZYLEN(req_one_access))
 		locked = 0
 
 	spark_system = new()

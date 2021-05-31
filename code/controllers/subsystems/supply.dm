@@ -205,10 +205,11 @@ SUBSYSTEM_DEF(supply)
 			else if(islist(SP.access) && SP.one_access)
 				var/list/L = SP.access // access var is a plain var, we need a list
 				A.req_one_access = L.Copy()
-				A.req_access.Cut()
+				A.req_access = null
 			else if(islist(SP.access) && !SP.one_access)
 				var/list/L = SP.access
 				A.req_access = L.Copy()
+				A.req_one_access = null
 			else
 				log_debug("<span class='danger'>Supply pack with invalid access restriction [SP.access] encountered!</span>")
 
