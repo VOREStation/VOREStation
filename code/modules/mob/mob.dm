@@ -42,7 +42,6 @@
 	lastarea = get_area(src)
 	hook_vr("mob_new",list(src)) //VOREStation Code
 	update_transform() // Some mobs may start bigger or smaller than normal.
-	update_emotes()
 	return ..()
 
 /mob/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
@@ -234,7 +233,7 @@
 	return 1
 
 
-/mob/proc/ret_grab(obj/effect/list_container/mobl/L as obj, flag)
+/mob/proc/ret_grab(list/L, flag)
 	return
 
 /mob/verb/mode()
@@ -1178,7 +1177,7 @@ mob/verb/shifteast()
 		else
 			registered_z = null
 
-GLOBAL_LIST_EMPTY(living_players_by_zlevel)
+GLOBAL_LIST_EMPTY_TYPED(living_players_by_zlevel, /list)
 /mob/living/update_client_z(new_z)
 	var/precall_reg_z = registered_z
 	. = ..() // will update registered_z if necessary

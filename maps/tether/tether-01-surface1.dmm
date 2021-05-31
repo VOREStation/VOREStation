@@ -29031,6 +29031,12 @@
 	},
 /turf/simulated/floor/tiled/steel_dirty,
 /area/maintenance/lower/atmos)
+"aXs" = (
+/obj/effect/decal/cleanable/cobweb,
+/obj/effect/decal/cleanable/filth,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/dark,
+/area/tether/surfacebase/security/lowerhall)
 "aXt" = (
 /obj/structure/disposalpipe/junction{
 	dir = 4
@@ -29114,6 +29120,10 @@
 	},
 /turf/simulated/floor/tiled/steel_dirty,
 /area/maintenance/lower/atmos)
+"aXx" = (
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/tiled/dark,
+/area/tether/surfacebase/security/lowerhall)
 "aXy" = (
 /obj/random/cash,
 /turf/simulated/floor/plating,
@@ -29129,6 +29139,12 @@
 /obj/item/weapon/pen,
 /turf/simulated/floor/wood,
 /area/vacant/vacant_bar)
+"aXB" = (
+/obj/effect/decal/cleanable/cobweb2,
+/obj/effect/decal/cleanable/filth,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/dark,
+/area/tether/surfacebase/security/lowerhall)
 "aXC" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -29144,6 +29160,25 @@
 /obj/structure/table/woodentable,
 /turf/simulated/floor/wood,
 /area/vacant/vacant_bar)
+"aXD" = (
+/obj/effect/floor_decal/rust,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/dark,
+/area/tether/surfacebase/security/lowerhall)
+"aXE" = (
+/obj/effect/decal/cleanable/generic,
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/tiled/dark,
+/area/tether/surfacebase/security/lowerhall)
+"aXF" = (
+/obj/effect/floor_decal/steeldecal/steel_decals4,
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 10
+	},
+/obj/effect/decal/cleanable/molten_item,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/dark,
+/area/tether/surfacebase/security/lowerhall)
 "aXG" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -29184,6 +29219,29 @@
 "aXJ" = (
 /turf/simulated/floor/tiled/steel_dirty,
 /area/maintenance/lower/atmos)
+"aXK" = (
+/obj/machinery/door/airlock/security{
+	name = "The Hole";
+	req_access = list(2)
+	},
+/obj/machinery/door/firedoor,
+/obj/machinery/button/remote/airlock{
+	id = "thehole";
+	name = "The Hole Bolt Toggle";
+	pixel_x = 0;
+	pixel_y = 26;
+	req_access = list(63);
+	specialfunctions = 4
+	},
+/turf/simulated/floor/tiled/dark,
+/area/tether/surfacebase/security/lowerhall)
+"aXL" = (
+/obj/structure/closet/crate,
+/obj/random/unidentified_medicine,
+/obj/random/drinkbottle,
+/obj/random/tetheraid,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/xenoflora)
 "aXM" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -30271,7 +30329,7 @@
 /area/maintenance/lower/mining_eva)
 "bbx" = (
 /obj/machinery/power/breakerbox/activated{
-	RCon_tag = "SurfMed Substation Bypass"
+	RCon_tag = "Medical Substation Bypass"
 	},
 /turf/simulated/floor,
 /area/maintenance/substation/SurfMedsubstation)
@@ -30407,7 +30465,7 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - SurfMed";
+	RCon_tag = "Substation - Medical";
 	output_attempt = 0
 	},
 /turf/simulated/floor,
@@ -30556,8 +30614,8 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/power/sensor{
-	name = "Powernet Sensor - SurfMed Subgrid";
-	name_tag = "SurfMed Subgrid"
+	name = "Powernet Sensor - Medical Subgrid";
+	name_tag = "Medical Subgrid"
 	},
 /obj/machinery/alarm{
 	dir = 1;
@@ -30784,13 +30842,6 @@
 	dir = 1
 	},
 /obj/structure/catwalk,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/xenoflora)
-"bcC" = (
-/obj/structure/closet/crate,
-/obj/random/unidentified_medicine,
-/obj/random/firstaid,
-/obj/random/drinkbottle,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/xenoflora)
 "bcD" = (
@@ -32318,9 +32369,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_one_hall)
-"epD" = (
-/turf/simulated/floor/tiled/dark,
-/area/tether/surfacebase/security/lowerhall)
 "erc" = (
 /obj/structure/sign/nosmoking_2{
 	pixel_y = 30
@@ -33082,14 +33130,6 @@
 	},
 /turf/simulated/floor,
 /area/tether/surfacebase/security/gasstorage)
-"hdh" = (
-/obj/machinery/door/airlock/security{
-	name = "The Hole";
-	req_access = list(2)
-	},
-/obj/machinery/door/firedoor,
-/turf/simulated/floor/tiled/dark,
-/area/tether/surfacebase/security/lowerhall)
 "hmx" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -34899,13 +34939,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_one_hall)
-"mHm" = (
-/obj/effect/floor_decal/steeldecal/steel_decals4,
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 10
-	},
-/turf/simulated/floor/tiled/dark,
-/area/tether/surfacebase/security/lowerhall)
 "mHO" = (
 /obj/structure/railing{
 	dir = 4
@@ -45270,8 +45303,8 @@ bqI
 txZ
 uge
 gCa
-epD
-epD
+aXs
+aXD
 gCa
 fCk
 fCk
@@ -45412,8 +45445,8 @@ bqI
 kfT
 fmY
 gCa
-epD
-epD
+aXx
+aXE
 gCa
 vTn
 fpU
@@ -45554,8 +45587,8 @@ bqI
 nOB
 csd
 gCa
-epD
-mHm
+aXB
+aXF
 gCa
 ezn
 qPR
@@ -45697,7 +45730,7 @@ paY
 tQH
 gCa
 odn
-hdh
+aXK
 odn
 lTn
 fDx
@@ -48710,7 +48743,7 @@ asL
 apu
 axS
 apu
-bcC
+aXL
 axS
 apu
 bcd

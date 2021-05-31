@@ -45,7 +45,6 @@
 		var/mob/living/carbon/human/H = src.loc
 		H.update_inv_l_hand(0)
 		H.update_inv_r_hand()
-	..()
 
 // Randomizes color
 /obj/item/weapon/melee/umbrella/random/New()

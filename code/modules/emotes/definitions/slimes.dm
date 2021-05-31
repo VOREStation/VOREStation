@@ -8,8 +8,8 @@
 		user.mood = mood
 		user.update_icon()
 
-/decl/emote/slime/check_user(var/atom/user)
-	return isslime(user)
+/decl/emote/slime/mob_can_use(var/atom/user)
+	return ..() && isslime(user)
 
 /decl/emote/slime/pout
 	key = "pout"

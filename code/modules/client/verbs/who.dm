@@ -84,7 +84,7 @@
 		for(var/client/C in GLOB.admins)
 			if(R_ADMIN & C.holder.rights && R_BAN & C.holder.rights)
 
-				if(C.holder.fakekey && (!R_ADMIN & holder.rights && !R_MOD & holder.rights))		//Event Managerss can't see stealthmins
+				if(C.holder.fakekey && !((R_ADMIN & holder.rights) || (R_MOD & holder.rights)))		//Event Managerss can't see stealthmins
 					continue
 
 				msg += "\t[C] is a [C.holder.rank]"
@@ -110,7 +110,7 @@
 			else if(R_ADMIN & C.holder.rights && !(R_SERVER & C.holder.rights))
 				modmsg += "\t[C] is a [C.holder.rank]"
 
-				if(C.holder.fakekey && (!R_ADMIN & holder.rights && !R_MOD & holder.rights))
+				if(C.holder.fakekey && !((R_ADMIN & holder.rights) || (R_MOD & holder.rights)))
 					continue
 				if(C.holder.fakekey)
 					msg += " <i>(as [C.holder.fakekey])</i>"
@@ -131,7 +131,7 @@
 				num_mods_online++
 
 			else if(R_SERVER & C.holder.rights)
-				if(C.holder.fakekey && (!R_ADMIN & holder.rights && !R_MOD & holder.rights))
+				if(C.holder.fakekey && !((R_ADMIN & holder.rights) || (R_MOD & holder.rights)))
 					continue
 				devmsg += "\t[C] is a [C.holder.rank]"
 				if(C.holder.fakekey)
@@ -152,7 +152,7 @@
 				num_devs_online++
 
 			else
-				if(C.holder.fakekey && (!R_ADMIN & holder.rights && !R_MOD & holder.rights))
+				if(C.holder.fakekey && !((R_ADMIN & holder.rights) || (R_MOD & holder.rights)))
 					continue
 				eventMmsg += "\t[C] is a [C.holder.rank]"
 				if(C.holder.fakekey)

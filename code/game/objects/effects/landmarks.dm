@@ -120,6 +120,16 @@
 	invisibility = 101
 	return 1
 
+/obj/effect/landmark/forbidden_level
+	delete_me = 1
+/obj/effect/landmark/forbidden_level/Initialize()
+	. = ..()
+	if(using_map)
+		using_map.secret_levels |= z
+	else
+		log_error("[type] mapped in but no using_map")
+
+
 //Costume spawner landmarks
 /obj/effect/landmark/costume/New() //costume spawner, selects a random subclass and disappears
 

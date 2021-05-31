@@ -55,8 +55,7 @@
 	var/mob/living/silicon/ai/O = ..(move)
 	if(O)
 		O.flavor_text = O.client?.prefs?.flavor_texts["general"]
-	
-	return O
+		return O
 	//VOREStation Edit End
 
 	return ..(move)

@@ -2,6 +2,7 @@
 	key = "spin"
 	check_restraints = TRUE
 	emote_message_3p = "spins!"
+	emote_delay = 2 SECONDS
 
 /decl/emote/visible/spin/do_extra(mob/user)
 	if(istype(user))
@@ -11,6 +12,7 @@
 	key = "sidestep"
 	check_restraints = TRUE
 	emote_message_3p = "steps rhythmically and moves side to side."
+	emote_delay = 1.2 SECONDS
 
 /decl/emote/visible/sidestep/do_extra(mob/user)
 	if(istype(user))
@@ -24,6 +26,7 @@
 	emote_message_1p = "You do a flip!"
 	emote_message_3p = "does a flip!"
 	emote_sound = 'sound/effects/bodyfall4.ogg'
+	emote_delay = 1.2 SECONDS
 
 /decl/emote/visible/flip/do_extra(mob/user)
 	. = ..()
@@ -39,6 +42,7 @@
 	key = "floorspin"
 	emote_message_1p = "You spin around on the floor!"
 	emote_message_3p = "spins around on the floor!"
+	emote_delay = 1.2 SECONDS
 	var/static/list/spin_dirs = list(
 		NORTH,
 		SOUTH,

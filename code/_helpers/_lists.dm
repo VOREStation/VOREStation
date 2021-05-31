@@ -855,4 +855,15 @@ proc/dd_sortedTextList(list/incoming)
 		result += pick(shifts)
 
 	return result
-	
+
+var/global/list/json_cache = list()
+/proc/cached_json_decode(var/json_to_decode)
+	if(!json_to_decode || !length(json_to_decode))
+		return list()
+	try
+		if(isnull(global.json_cache[json_to_decode]))
+			global.json_cache[json_to_decode] = json_decode(json_to_decode)
+		. = global.json_cache[json_to_decode]
+	catch(var/exception/e)
+		log_error("Exception during JSON decoding ([json_to_decode]): [e]")
+		return list()

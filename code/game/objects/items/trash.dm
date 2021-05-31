@@ -214,3 +214,156 @@
 
 /obj/item/trash/attack(mob/M as mob, mob/living/user as mob)
 	return
+
+
+/obj/item/trash/beef //ADDITION 04/11/2021
+	name = "empty beef can"
+	icon_state = "beef"
+	drop_sound = 'sound/items/drop/soda.ogg'
+	pickup_sound = 'sound/items/pickup/soda.ogg'
+
+/obj/item/trash/beans //ADDITION 04/11/2021
+	name = "empty bean can"
+	icon_state = "beans"
+	drop_sound = 'sound/items/drop/soda.ogg'
+	pickup_sound = 'sound/items/pickup/soda.ogg'
+
+/obj/item/trash/spinach //ADDITION 04/11/2021
+	name = "empty spinach can"
+	icon_state = "spinach"
+	drop_sound = 'sound/items/drop/soda.ogg'
+	pickup_sound = 'sound/items/pickup/soda.ogg'
+
+/obj/item/trash/fishegg //ADDITION 04/11/2021
+	name = "empty fisheggs can"
+	icon_state = "fisheggs"
+	drop_sound = 'sound/items/drop/soda.ogg'
+	pickup_sound = 'sound/items/pickup/soda.ogg'
+
+/obj/item/trash/carpegg //ADDITION 04/11/2021
+	name = "empty carpeggs can"
+	icon_state = "carpeggs"
+	drop_sound = 'sound/items/drop/soda.ogg'
+	pickup_sound = 'sound/items/pickup/soda.ogg'
+
+/obj/item/trash/salo //ADDITION 04/11/2021
+	name = "salo pack"
+	icon_state = "pigfat"
+
+/obj/item/trash/croutons //ADDITION 04/11/2021
+	name = "suhariki pack"
+	icon_state = "croutons"
+
+/obj/item/trash/squid //ADDITION 04/11/2021
+	name = "calamari pack"
+	icon_state = "squid"
+
+/obj/item/trash/driedfish //ADDITION 04/11/2021
+	name = "vobla pack"
+	icon_state = "driedfish"
+
+/obj/item/trash/lunacakewrap //ADDITION 04/11/2021
+	name = "cake wrapper"
+	icon_state = "cakewrap"
+
+/obj/item/trash/mochicakewrap //ADDITION 04/11/2021
+	name = "cake wrapper"
+	icon_state = "mochicakewrap"
+
+/obj/item/trash/mooncakewrap //ADDITION 04/11/2021
+	name = "cake wrapper"
+	icon_state = "mooncakewrap"
+
+/obj/item/trash/tidegobs//ADDITION 04/11/2021
+	name = "tide gob bag"
+	icon_state = "tidegobs"
+
+/obj/item/trash/saturno//ADDITION 04/11/2021
+	name = "\improper saturn-Os bag"
+	icon_state = "saturn0s"
+
+/obj/item/trash/jupiter//ADDITION 04/11/2021
+	name = "gello cup"
+	icon_state = "jupiter"
+
+/obj/item/trash/pluto//ADDITION 04/11/2021
+	name = "rod bag"
+	icon_state = "pluto"
+
+/obj/item/trash/venus//ADDITION 04/11/2021
+	name = "hot cakes bag"
+	icon_state = "venus"
+
+/obj/item/trash/mars//ADDITION 04/11/2021
+	name = "frouka box"
+	icon_state = "mars"
+
+/obj/item/trash/oort//ADDITION 04/11/2021
+	name = "oort rock bag"
+	icon_state = "oort"
+
+/obj/item/trash/weebonuts//ADDITION 04/11/2021
+	name = "red alert nuts bag"
+	icon_state = "weebonuts"
+
+/obj/item/trash/stick//ADDITION 04/11/2021
+	name = "stick"
+	desc = "a stick from some snack or other food item, not even useful as crafting material."
+	icon_state = "stick"
+
+/obj/item/trash/maps//ADDITION 04/13/2021
+	name = "empty MAPS can"
+	icon_state = "maps"
+	drop_sound = 'sound/items/drop/soda.ogg'
+	pickup_sound = 'sound/items/pickup/soda.ogg'
+
+/obj/item/trash/spacer_cake_wrap//ADDITION 04/14/2021
+	name = "snack cake wrapper"
+	icon_state = "spacer_cake_wrap"
+
+/obj/item/trash/sun_snax//ADDITION 04/14/2021
+	name = "sun snax bag"
+	icon_state = "sun_snax"
+
+/obj/item/trash/wasabi_peas//ADDITION 04/14/2021
+	name = "wasabi peas bag"
+	icon_state = "wasabi_peas"
+
+/obj/item/trash/namagashi//ADDITION 04/14/2021
+	name = "namagashi bag"
+	icon_state = "namagashi"
+
+/obj/item/trash/pocky//ADDITION 04/14/2021
+	name = "pocky bag"
+	icon_state = "pocky"
+
+/obj/item/trash/appleberry//ADDITION 04/14/2021
+	name = "appleberry can"
+	icon_state = "appleberry"
+	drop_sound = 'sound/items/drop/soda.ogg'
+	pickup_sound = 'sound/items/pickup/soda.ogg'
+
+/obj/item/trash/hakarl//ADDITION 04/22/2021
+	name = "\improper Indigo Co. Hákarl bag"
+	icon_state = "hakarl"
+
+/obj/item/trash/pretzel//ADDITION 04/22/2021
+	name = "\improper Value Pretzel Snack"
+	icon_state = "pretzel"
+
+/obj/item/trash/sweetration//ADDITION 04/20/2021
+	name = "desert ration bag"
+	icon_state = "baseration"
+
+/obj/item/trash/genration//ADDITION 04/20/2021
+	name = "generic ration bag"
+	icon_state = "genration"
+
+/obj/item/trash/meatration//ADDITION 04/20/2021
+	name = "meat ration bag"
+	icon_state = "meatration"
+
+/obj/item/trash/vegration//ADDITION 04/20/2021
+	name = "veggie ration bag"
+	icon_state = "vegration"
+

@@ -213,7 +213,7 @@
 	emote_sound = 'sound/voice/teshsqueak.ogg' // Copyright CC BY 3.0 InspectorJ (freesound.org) for the source audio.
 
 /decl/emote/audible/teshchirp
-	key = "chirp"
+	key = "tchirp" // VOREStation Edit
 	emote_message_1p = "You chirp!"
 	emote_message_3p = "chirps!"
 	emote_message_1p_target = "You chirp at TARGET!"

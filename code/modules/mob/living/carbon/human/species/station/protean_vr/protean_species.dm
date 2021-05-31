@@ -176,7 +176,7 @@
 	for(var/obj/item/organ/I in H.internal_organs)
 		I.removed()
 
-	for(var/obj/item/I in src)
+	for(var/obj/item/I in H.contents)
 		H.drop_from_inventory(I)
 
 	qdel(H)

@@ -246,7 +246,8 @@
 	..()
 	if(prob(10)) // 1 in 10. This thing's made with welder fuel and fertilizer, what do you expect?
 		var/mob/living/carbon/human/H = M
-		H.internal_organs_by_name[O_HEART].take_damage(1)
+		var/obj/item/organ/internal/heart/ht = H.internal_organs_by_name[O_HEART]
+		ht?.take_damage(1)
 		to_chat(M, "<span class='warning'>Huh... Is this what a heart attack feels like?</span>")
 
 /datum/reagent/toxin/potassium_chloride

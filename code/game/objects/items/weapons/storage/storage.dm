@@ -41,13 +41,18 @@
 /obj/item/weapon/storage/Destroy()
 	close_all()
 	QDEL_NULL(boxes)
-	QDEL_NULL(src.storage_start)
-	QDEL_NULL(src.storage_continue)
-	QDEL_NULL(src.storage_end)
-	QDEL_NULL(src.stored_start)
-	QDEL_NULL(src.stored_continue)
-	QDEL_NULL(src.stored_end)
+	QDEL_NULL(storage_start)
+	QDEL_NULL(storage_continue)
+	QDEL_NULL(storage_end)
+	QDEL_NULL(stored_start)
+	QDEL_NULL(stored_continue)
+	QDEL_NULL(stored_end)
 	QDEL_NULL(closer)
+
+	if(ismob(loc))
+		var/mob/M = loc
+		M.remove_from_mob(src)
+
 	. = ..()
 
 /obj/item/weapon/storage/MouseDrop(obj/over_object as obj)

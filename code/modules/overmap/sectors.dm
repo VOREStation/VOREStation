@@ -49,6 +49,12 @@
 	LAZYADD(SSshuttles.sectors_to_initialize, src) //Queued for further init. Will populate the waypoint lists; waypoints not spawned yet will be added in as they spawn.
 	SSshuttles.process_init_queues()
 
+// You generally shouldn't destroy these.
+/obj/effect/overmap/visitable/Destroy()
+	testing("Deleting [src] overmap sector at [x],[y]")
+	unregister_z_levels()
+	return ..()
+
 //This is called later in the init order by SSshuttles to populate sector objects. Importantly for subtypes, shuttles will be created by then.
 /obj/effect/overmap/visitable/proc/populate_sector_objects()
 
@@ -76,6 +82,19 @@
 		global.using_map.station_levels |= map_z
 		global.using_map.contact_levels |= map_z
 		global.using_map.map_levels |= map_z
+	*/
+
+/obj/effect/overmap/visitable/proc/unregister_z_levels()
+	map_sectors -= map_z
+
+	global.using_map.player_levels -= map_z
+	if(!in_space)
+		global.using_map.sealed_levels -= map_z
+	/* VOREStation Removal - We have a map system that does this already.
+	if(base)
+		global.using_map.station_levels -= map_z
+		global.using_map.contact_levels -= map_z
+		global.using_map.map_levels -= map_z
 	*/
 
 /obj/effect/overmap/visitable/proc/get_space_zlevels()
@@ -116,6 +135,9 @@
 
 /obj/effect/overmap/visitable/proc/generate_skybox()
 	return
+
+/obj/effect/overmap/visitable/proc/cleanup()
+	return FALSE
 
 /obj/effect/overmap/visitable/MouseEntered(location, control, params)
 	openToolTip(user = usr, tip_src = src, params = params, title = name)

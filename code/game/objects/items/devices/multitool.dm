@@ -17,7 +17,7 @@
 	drop_sound = 'sound/items/drop/multitool.ogg'
 	pickup_sound = 'sound/items/pickup/multitool.ogg'
 
-	matter = list(DEFAULT_WALL_MATERIAL = 50,"glass" = 20, MAT_COPPER = 10)
+	matter = list(DEFAULT_WALL_MATERIAL = 50,"glass" = 20)
 
 	var/mode_index = 1
 	var/toolmode = MULTITOOL_MODE_STANDARD
@@ -29,7 +29,6 @@
 	var/obj/machinery/connectable	//Used to connect machinery.
 	var/weakref_wiring //Used to store weak references for integrated circuitry. This is now the Omnitool.
 	toolspeed = 1
-	tool_qualities = list(TOOL_MULTITOOL)
 
 /obj/item/device/multitool/attack_self(mob/living/user)
 	var/choice = alert("What do you want to do with \the [src]?","Multitool Menu", "Switch Mode", "Clear Buffers", "Cancel")
@@ -65,6 +64,9 @@
 	accepting_refs = (toolmode == MULTITOOL_MODE_INTCIRCUITS)
 
 	return
+
+/obj/item/device/multitool/is_multitool()
+	return TRUE
 
 /obj/item/device/multitool/cyborg
 	name = "multitool"

@@ -207,7 +207,7 @@
 	return FALSE
 
 /obj/item/device/uav/proc/toggle_packed()
-	if(UAV_ON)
+	if(state == UAV_ON)
 		power_down()
 	switch(state)
 		if(UAV_OFF) //Packing
