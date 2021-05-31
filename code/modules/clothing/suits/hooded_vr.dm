@@ -2,6 +2,12 @@
 /obj/item/clothing/suit/storage/hooded/explorer/medic
 	starting_accessories = list(/obj/item/clothing/accessory/armband/med/cross)
 
+//deluixe explorer suit- I also can't sprite and not sure how to make it better, just a points drain for now
+	/obj/item/clothing/suit/storage/hooded/explorer/deluxe
+	name = "deluxe suit"
+	desc = "An armoured suit for exploring harsh environments. This one is deluxe"
+
+
 /obj/item/clothing/suit/storage/hooded/techpriest
 	name = "tech priest robe"
 	desc = "Praise be to the Omnissiah."
@@ -23,19 +29,19 @@
 	armor = list(melee = 80, bullet = 50, laser = 10, energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 2
 	action_button_name = "Toggle Knight Headgear"
-	
+
 /obj/item/clothing/suit/storage/hooded/knight/galahad
 	name = "crusader's armor"
 	desc = "ye olde knight, risen again."
 	icon_state = "galahad"
 	hoodtype = /obj/item/clothing/head/hood/galahad
-	
+
 /obj/item/clothing/suit/storage/hooded/knight/lancelot
 	name = "crusader's armor"
 	desc = "ye olde knight, risen again."
 	icon_state = "lancelot"
 	hoodtype = /obj/item/clothing/head/hood/lancelot
-	
+
 /obj/item/clothing/suit/storage/hooded/knight/robin
 	name = "crusader's armor"
 	desc = "ye olde knight, risen again. This one seems slightly faster than the rest, but weaker."
@@ -54,15 +60,15 @@
 	icon_override = 'icons/obj/clothing/knights_vr.dmi'
 	hoodtype = /obj/item/clothing/head/hood/galahad_costume
 	action_button_name = "Toggle Knight Headgear"
-	
+
 /obj/item/clothing/suit/storage/hooded/knight_costume/galahad
 	icon_state = "galahad"
 	hoodtype = /obj/item/clothing/head/hood/galahad_costume
-	
+
 /obj/item/clothing/suit/storage/hooded/knight_costume/lancelot
 	icon_state = "lancelot"
 	hoodtype = /obj/item/clothing/head/hood/lancelot_costume
-	
+
 /obj/item/clothing/suit/storage/hooded/knight_costume/robin
 	name = "crusader's armor"
 	desc = "ye olde knight, risen again. This one seems slightly faster than the rest, but weaker."
