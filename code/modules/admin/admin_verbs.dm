@@ -324,8 +324,7 @@
 		var/message = sanitize(input("What do you want the message to be?", "Make Sound") as text|null)
 		if(!message)
 			return
-		for (var/mob/V in hearers(O))
-			V.show_message(message, 2)
+		O.audible_message(message)
 		log_admin("[key_name(usr)] made [O] at [O.x], [O.y], [O.z]. make a sound")
 		message_admins("<font color='blue'>[key_name_admin(usr)] made [O] at [O.x], [O.y], [O.z]. make a sound.</font>", 1)
 		feedback_add_details("admin_verb","MS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

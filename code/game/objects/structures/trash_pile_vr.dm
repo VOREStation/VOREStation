@@ -242,6 +242,7 @@
 					prob(2);/obj/item/weapon/storage/box/syndie_kit/spy,
 					prob(2);/obj/item/weapon/grenade/anti_photon,
 					prob(2);/obj/item/clothing/under/hyperfiber/bluespace,
+					prob(2);/obj/item/weapon/reagent_containers/glass/beaker/vial/amorphorovir,
 					prob(1);/obj/item/clothing/suit/storage/vest/heavy/merc,
 					prob(1);/obj/item/device/nif/bad,
 					prob(1);/obj/item/device/radio_jammer,

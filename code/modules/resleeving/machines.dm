@@ -148,7 +148,7 @@
 
 		else if(((occupant.health == occupant.maxHealth)) && (!eject_wait))
 			playsound(src, 'sound/machines/ding.ogg', 50, 1)
-			audible_message("\The [src] signals that the growing process is complete.")
+			audible_message("\The [src] signals that the growing process is complete.", runemessage = "* ding *")
 			connected_message("Growing Process Complete.")
 			locked = 0
 			go_out()
@@ -536,13 +536,13 @@
 
 	add_fingerprint(user)
 
-/obj/machinery/transhuman/resleever/proc/putmind(var/datum/transhuman/mind_record/MR, mode = 1, var/mob/living/carbon/human/override = null)
+/obj/machinery/transhuman/resleever/proc/putmind(var/datum/transhuman/mind_record/MR, mode = 1, var/mob/living/carbon/human/override = null, var/db_key)
 	if((!occupant || !istype(occupant) || occupant.stat >= DEAD) && mode == 1)
 		return 0
 
 	if(mode == 2 && sleevecards) //Card sleeving
 		var/obj/item/device/sleevecard/card = new /obj/item/device/sleevecard(get_turf(src))
-		card.sleeveInto(MR)
+		card.sleeveInto(MR, db_key = db_key)
 		sleevecards--
 		return 1
 

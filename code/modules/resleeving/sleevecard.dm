@@ -53,8 +53,8 @@
 		to_chat(user,"<span class='notice'>\The [src] displays the name '[infomorph]'.</span>")
 
 //This is a 'hard' proc, it does no permission checking, do that on the computer
-/obj/item/device/sleevecard/proc/sleeveInto(var/datum/transhuman/mind_record/MR)
-	infomorph = new(src,MR.mindname)
+/obj/item/device/sleevecard/proc/sleeveInto(var/datum/transhuman/mind_record/MR, var/db_key)
+	infomorph = new(src,MR.mindname,db_key=db_key)
 
 	for(var/datum/language/L in MR.languages)
 		infomorph.add_language(L.name)

@@ -41,7 +41,7 @@
 /decl/hierarchy/outfit/job/security/detective/forensic
 	name = OUTFIT_JOB_NAME("Forensic technician")
 	head = null
-	suit = /datum/gear/uniform/detective_alt2
+	suit = /obj/item/clothing/suit/storage/det_trench/alt2
 	uniform = /obj/item/clothing/under/det
 //VOREStation Edit End
 

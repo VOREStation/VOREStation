@@ -35,7 +35,7 @@ var/global/list/emotes_by_key
 	var/list/emote_sound_synthetic                      // As above, but used when check_synthetic() is true.
 	var/emote_volume = 50                               // Volume of sound to play.
 	var/emote_volume_synthetic = 50                     // As above, but used when check_synthetic() is true.
-	var/emote_delay = 0                                 // Time in ds that this emote will block further emote use (spam prevention).
+	var/emote_delay = 1.2 SECONDS                       // Time in ds that this emote will block further emote use (spam prevention). // VOREStation Edit
 
 	var/message_type = VISIBLE_MESSAGE                  // Audible/visual flag
 	var/check_restraints                                // Can this emote be used while restrained?
@@ -103,11 +103,14 @@ var/global/list/emotes_by_key
 		if(target)
 			use_1p = replace_target_tokens(use_1p, target)
 		use_1p = "<span class='emote'>[capitalize(replace_user_tokens(use_1p, user))]</span>"
-	var/use_3p = get_emote_message_3p(user, target, extra_params)
-	if(use_3p)
+	var/prefinal_3p
+	var/use_3p
+	var/raw_3p = get_emote_message_3p(user, target, extra_params)
+	if(raw_3p)
 		if(target)
-			use_3p = replace_target_tokens(use_3p, target)
-		use_3p = "<span class='emote'><b>\The [user]</b> [replace_user_tokens(use_3p, user)]</span>"
+			raw_3p = replace_target_tokens(raw_3p, target)
+		prefinal_3p = replace_user_tokens(raw_3p, user)
+		use_3p = "<span class='emote'><b>\The [user]</b> [prefinal_3p]</span>"
 	var/use_radio = get_radio_message(user)
 	if(use_radio)
 		if(target)
@@ -124,12 +127,12 @@ var/global/list/emotes_by_key
 			if(isliving(user))
 				var/mob/living/L = user
 				if(L.silent)
-					M.visible_message(message = "[user] opens their mouth silently!", self_message = "You cannot say anything!", blind_message = emote_message_impaired)
+					M.visible_message(message = "[user] opens their mouth silently!", self_message = "You cannot say anything!", blind_message = emote_message_impaired, runemessage = "opens their mouth silently!")
 					return
 				else
-					M.audible_message(message = use_3p, self_message = use_1p, deaf_message = emote_message_impaired, hearing_distance = use_range, radio_message = use_radio)
+					M.audible_message(message = use_3p, self_message = use_1p, deaf_message = emote_message_impaired, hearing_distance = use_range, radio_message = use_radio, runemessage = prefinal_3p)
 		else
-			M.visible_message(message = use_3p, self_message = use_1p, blind_message = emote_message_impaired, range = use_range)
+			M.visible_message(message = use_3p, self_message = use_1p, blind_message = emote_message_impaired, range = use_range, runemessage = prefinal_3p)
 
 	do_extra(user, target)
 	do_sound(user)

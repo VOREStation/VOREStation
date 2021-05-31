@@ -4,11 +4,16 @@
 	icon_state = "ertsuit"
 	item_state = "ertsuit"
 	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 100, rad = 100)
-	slowdown = 1
+	slowdown = 0.5
 	siemens_coefficient = 0.5
 	species_restricted = list("exclude",SPECIES_DIONA,SPECIES_VOX,SPECIES_TESHARI)	//this thing can autoadapt
 	icon = 'icons/obj/clothing/suits_vr.dmi'
 	w_class = ITEMSIZE_NORMAL //the mark vii packs itself down when not in use, thanks future-materials
+	breach_threshold = 16 //Extra Thicc
+	resilience = 0.05 //Military Armor
+	min_pressure_protection = 0 * ONE_ATMOSPHERE
+	max_pressure_protection = 15* ONE_ATMOSPHERE
+	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE+10000
 
 /obj/item/clothing/suit/space/void/responseteam/command
 	name = "Mark VII-C Emergency Response Team Commander Suit"
@@ -110,6 +115,9 @@
 	plane_slots = list(slot_head)
 	var/hud_active = 1
 	var/activation_sound = 'sound/items/nif_click.ogg'
+	min_pressure_protection = 0 * ONE_ATMOSPHERE
+	max_pressure_protection = 15* ONE_ATMOSPHERE
+	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE+10000
 
 /obj/item/clothing/head/helmet/space/void/responseteam/verb/toggle()
 	set category = "Object"

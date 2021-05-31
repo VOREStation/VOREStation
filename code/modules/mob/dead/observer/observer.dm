@@ -481,6 +481,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/proc/update_following()
 	. = get_turf(src)
 	for(var/mob/observer/dead/M in following_mobs)
+		if(!.)
+			M.stop_following()
+		
 		if(M.following != src)
 			following_mobs -= M
 		else

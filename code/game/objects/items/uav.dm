@@ -305,7 +305,8 @@
 	for(var/wr_master in masters)
 		var/weakref/wr = wr_master
 		var/mob/master = wr.resolve()
-		var/message = master.combine_message(message_pieces, verb, M)
+		var/list/combined = master.combine_message(message_pieces, verb, M)
+		var/message = combined["formatted"]
 		var/rendered = "<i><span class='game say'>UAV received: <span class='name'>[name_used]</span> [message]</span></i>"
 		master.show_message(rendered, 2)
 
