@@ -70,7 +70,7 @@
 		EQUIPMENT ("Survival Equipment - Flare", 				/obj/item/device/flashlight/flare,									20),
 		EQUIPMENT ("Survival Equipment - Bluespace Glowstick", 	/obj/item/device/flashlight/glowstick/bluespace,					40),
 		EQUIPMENT ("Survival Equipment - Explorer Headset", 	/obj/item/device/radio/headset/explorer,							40),
-		EQUIPMENT ("Survival Equipment - Deluxe Explorer Suit",	/obj/item/clothing/suit/storage/hooded/explorer/deluxe,				100),
+		EQUIPMENT ("Survival Equipment - Deluxe Explorer Suit",	/obj/item/clothing/suit/armor/pcarrier/explorer/deluxe				100),
 	)
 	prize_list["Consumables"] = list(
 		EQUIPMENT("1 Marker Beacon",		/obj/item/stack/marker_beacon,													1),

@@ -119,3 +119,8 @@
 	desc = "ye olde knight, risen again."
 	icon_state = "bedevere"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+
+//deluixe explorer suit
+	/obj/item/clothing/suit/armor/pcarrier/explorer/deluxe
+	name = "deluxe explorer suit"
+	desc = "A plate carrier, a do it yourself amour vertion for NT's exploration teams"

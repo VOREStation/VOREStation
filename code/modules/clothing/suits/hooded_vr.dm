@@ -2,12 +2,6 @@
 /obj/item/clothing/suit/storage/hooded/explorer/medic
 	starting_accessories = list(/obj/item/clothing/accessory/armband/med/cross)
 
-//deluixe explorer suit- I also can't sprite and not sure how to make it better, just a points drain for now
-	/obj/item/clothing/suit/storage/hooded/explorer/deluxe
-	name = "deluxe suit"
-	desc = "An armoured suit for exploring harsh environments. This one is deluxe"
-
-
 /obj/item/clothing/suit/storage/hooded/techpriest
 	name = "tech priest robe"
 	desc = "Praise be to the Omnissiah."
