@@ -240,8 +240,10 @@ turf/simulated/mineral/floor/light_corner
 		spawn(1) // Otherwise most of the ore is lost to the explosion, which makes this rather moot.
 			for(var/ore in resources)
 				var/amount_to_give = rand(CEILING(resources[ore]/2, 1), resources[ore])  // Should result in at least one piece of ore.
+				var/oretype = ore_types[ore]
+				if(!oretype)
+					return // this turf can't give that type
 				for(var/i=1, i <= amount_to_give, i++)
-					var/oretype = ore_types[ore]
 					new oretype(src)
 				resources[ore] = 0
 

@@ -13,9 +13,13 @@
 
 		if(SP.speaking && SP.speaking.flags & INNATE) // Snowflake for noise lang
 			if(radio)
-				return SP.speaking.format_message_radio(piece)
+				.["formatted"] = SP.speaking.format_message_radio(piece)
+				.["raw"] = piece
+				return 
 			else
-				return SP.speaking.format_message(piece)
+				.["formatted"] = SP.speaking.format_message(piece)
+				.["raw"] = piece
+				return 
 
 		if(iteration_count == 1)
 			piece = capitalize(piece)
