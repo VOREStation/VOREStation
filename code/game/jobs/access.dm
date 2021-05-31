@@ -1,21 +1,9 @@
-//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
-
-/obj/var/list/req_access = list()
-/obj/var/list/req_one_access = list()
+/obj/var/list/req_access
+/obj/var/list/req_one_access
 
 //returns 1 if this mob has sufficient access to use this object
 /obj/proc/allowed(mob/M)
-	//check if it doesn't require any access at all
-	if(src.check_access(null))
-		return 1
-
-	var/id = M.GetIdCard()
-	if(id)
-		return check_access(id)
-	return 0
-
-///obj/item/proc/GetAccess()
-//	return list()
+	return check_access(M?.GetIdCard())
 
 /atom/movable/proc/GetAccess()
 	var/obj/item/weapon/card/id/id = GetIdCard()
@@ -25,25 +13,47 @@
 	return null
 
 /obj/proc/check_access(obj/item/I)
-	return check_access_list(I ? I.GetAccess() : list())
+	return check_access_list(I ? I.GetAccess() : null)
 
 /obj/proc/check_access_list(var/list/L)
-	if(!req_access)		req_access = list()
-	if(!req_one_access)	req_one_access = list()
-	if(!L)	return 0
-	if(!istype(L, /list))	return 0
+	// We don't require access
+	if(!LAZYLEN(req_access) && !LAZYLEN(req_one_access))
+		return TRUE
+
+	// They passed nothing, but we are something that requires access
+	if(!LAZYLEN(L))
+		return FALSE
+
+	// Run list comparisons
 	return has_access(req_access, req_one_access, L)
 
 /proc/has_access(var/list/req_access, var/list/req_one_access, var/list/accesses)
-	for(var/req in req_access)
-		if(!(req in accesses)) //doesn't have this access
-			return 0
-	if(req_one_access.len)
-		for(var/req in req_one_access)
-			if(req in accesses) //has an access from the single access list
-				return 1
-		return 0
-	return 1
+	// Doesn't have access lists, always works
+	if(!LAZYLEN(req_access) && !LAZYLEN(req_one_access))
+		return TRUE
+	
+	// Didn't pass anything to compare
+	if(!LAZYLEN(accesses))
+		return FALSE
+	
+	// req_access list has priority if set
+	// Requires at least every access in list
+	if(LAZYLEN(req_access))
+		for(var/req in req_access)
+			if(!(req in accesses))
+				return FALSE
+		// Wasn't missing any accesses
+		return TRUE
+
+	// req_one_access is secondary if set
+	// Requires at least one access in list
+	for(var/req in req_one_access)
+		if(req in accesses)
+			// Found at least one
+			return TRUE
+
+	// Didn't find anything that matched
+	return FALSE
 
 /proc/get_centcom_access(job)
 	switch(job)
