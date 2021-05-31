@@ -249,3 +249,44 @@
 		<B>SPEAKER THREE:</B> Predicted to be Allie Wells, human, niece of Captain Wells. 90% confidence.<BR>
 		<B>SPEAKER FOUR, \"MAX\":</B> Predicted to be Maxwell Ulysses Sarevic, zorren, known smuggler, and wanted in the Elysian Colonies for liberation of slaves and, quote, \'harshing my vibe, and being a, like, <U>total lamer</U>, dude\', unquote. 99% confidence.
 	"}
+
+/obj/structure/prop/blackbox/xenobio_station
+	catalogue_data = list(/datum/category_item/catalogue/information/blackbox/xenobio_station)
+
+/datum/category_item/catalogue/information/blackbox/xenobio_station
+	name = "Black Box Data - Xenobiology station"
+	desc = {"
+		<BR>
+		<B>BEGIN LOG</B><BR>
+		<B>R.D.G.R4B</B>: Starting annual report.
+		<B>R.D.G.R4B</B>: Sapient lifesigns: 21. Date: 03/19/2301.<BR>
+		<B>R.D.G.R4B</B>: Non-sapient lifesigns: 4. Date: 03/19/2301.<BR>
+		<BR>
+		<B>R.D.G.R4B</B>: Sapient lifesigns: 19. Date: 03/19/2302.<BR>
+		<B>R.D.G.R4B</B>: Non-sapient lifesigns: 6. Date: 03/19/2302.<BR>
+		<BR>
+		<B>R.D.G.R4B</B>: Sapient lifesigns: 14. Date: 03/19/2304.<BR>
+		<B>R.D.G.R4B</B>: Non-sapient lifesigns: 6. Date: 03/19/2304.<BR>
+		<BR>
+		<B>R.D.G.R4B</B>: Sapient lifesigns: 34. Date: 03/19/2305.<BR>
+		<B>R.D.G.R4B</B>: Non-sapient lifesigns: 12. Date: 03/19/2305.<BR>
+		<BR>
+		<B>R.D.G.R4B</B>: Five year teething report concluded. Starting pentannual report.
+		<B>R.D.G.R4B</B>: Sapient lifesigns: 19. Date: 03/19/2306.<BR>
+		<B>R.D.G.R4B</B>: Non-sapient lifesigns: 16. Date: 03/19/2306.<BR>
+		<BR>
+		<B>R.D.G.R4B</B>: Sapient lifesigns: 11. Date: 03/19/2311.<BR>
+		<B>R.D.G.R4B</B>: Non-sapient lifesigns: 35. Date: 03/19/2311.<BR>
+		<BR>
+		<B>R.D.G.R4B</B>: Sapient lifesigns: 6. Date: 03/19/2316.<BR>
+		<B>R.D.G.R4B</B>: Non-sapient lifesigns: 36. Date: 03/19/2316.<BR>
+		<BR>
+		<B>R.D.G.R4B</B>: Sapient lifesigns: 1. Date: 03/19/2321.<BR>
+		<B>R.D.G.R4B</B>: Non-sapient lifesigns: 194. Date: 03/19/2321.<BR>
+		<BR>
+		<B>R.D.G.R4B</B>: Entering low power mode. Date: 05/04/2321.<BR>
+		<B>R.D.G.R4B</B>: Sapient lifesigns: 0. Date: 05/04/2321.<BR>
+		<B>R.D.G.R4B</B>: Non-sapient lifesigns: 37. Date: 05/04/2321.<BR>
+		<BR>
+		<B>END LOG</B>
+		"}

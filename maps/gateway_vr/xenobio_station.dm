@@ -46,7 +46,7 @@
 	icon_state = "away"
 
 /area/tether_away/xenobio_station/hall1
-	name = "Strange Hallway"
+	name = "Strange Bridge"
 	icon_state = "away"
 
 /area/tether_away/xenobio_station/hall2
@@ -88,18 +88,6 @@
 /obj/item/weapon/paper/awaygate/xenobio_station
 	name = "engine instructions"
 	var/fake_name
-	info = {"<large>R-4D EXPERIMENTAL ENGINE<large><hr>\
-<b>Step 1</b>: Don radiation protection and enter primary chamber<br>\
-<b>Step 2</b>: Press blast door control button and enter secondary chamber<br>\
-<b>Step 3</b>: Fill radiation collectors with phoron tanks<br>\
-<b>Step 4</b>: Activate radiation collectors<br>\
-<b>Step 5</b>: Enter anomaly chamber<br>\
-<b>Step 6</b>: NEVER break eye-contact with Subject #41883<br>\
-<b>Step 7</b>: Press blinking button on Subject #41883<br>\
-<b>Step 8</b>: (OPTIONAL) Interface with Subject #41883 using a multitool, set power level<br>\
-<b>Step 9</b>: Exit chamber while maintaining eye-contact with Subject #41883<br>\
-<b>Step 10</b>: Press secondary chamber blast door control button<br>\
-<b>Step 11</b>: Immediately report to Dr. Kenzer for psych. eval."}
 
 /obj/item/weapon/paper/awaygate/xenobio_station/New()
 	..()
@@ -109,26 +97,18 @@
 <b>Step 2</b>: Press blast door control button and enter secondary chamber<br>\
 <b>Step 3</b>: Fill radiation collectors with phoron tanks<br>\
 <b>Step 4</b>: Activate radiation collectors<br>\
-<b>Step 5</b>: Enter anomaly chamber<br>\
-<b>Step 6</b>: NEVER break eye-contact with Subject #41883<br>\
-<b>Step 7</b>: Press blinking button on Subject #41883<br>\
-<b>Step 8</b>: (OPTIONAL) Interface with Subject #41883 using a multitool, set power level<br>\
-<b>Step 9</b>: Exit chamber while maintaining eye-contact with Subject #41883<br>\
-<b>Step 10</b>: Press secondary chamber blast door control button<br>\
-<b>Step 11</b>: Press primary chamber blast door control button to engage full power output<br>\
-<b>Step 12</b>: Immediately report to Dr. [fake_name] for psych. eval."}
+<b>Step 5</b>: Press secondary chamber blast door control button<br>\
+<b>Step 6</b>: Enter anomaly chamber<br>\
+<b>Step 7</b>: NEVER break eye-contact with Subject #41883<br>\
+<b>Step 8</b>: Press blinking button on Subject #41883<br>\
+<b>Step 9</b>: (OPTIONAL) Interface with Subject #41883 using a multitool, set power level<br>\
+<b>Step 10</b>: Exit chamber while maintaining eye-contact with Subject #41883<br>\
+<b>Step 11</b>: Press secondary chamber blast door control button<br>\
+<b>Step 12</b>: Immediately report to Dr. [fake_name] for psych. eval.<br>\
+<b>NOTE</b>: Access to science wing will only be available when anomaly chamber is <b>CLOSED.</b>"}
 
 /obj/item/weapon/paper/awaygate/xenobio_station/suicide
 	name = "last words"
-	info = {"goodbye everyone<br>\
-i tried telling kenzer that he was crazy but he still went thru with it<br>\
-i dont know if im the only one left in the facility because the alarms arent on anymore<br>\
-if anyone finds this god forbid send this note to sol so they can put my death on record so my wife gets insurance<br>\
-wishful thinking but send my body to sol too so they can see what they did to us<br>\
-actually thats kinda gross and i dont want you to be an accessory to a political statement<br>\
-its wishful thinking so think anyone would come here since the gateway lost calibration after someone suplexed a kururak thru it<br>\
-anyways thank you for reading a dead mans ramblings<br>\
-pvt o'connor 23rd regiment 2nd batallion 34th mp company earth corps"}
 
 /obj/item/weapon/paper/awaygate/xenobio_station/suicide/New()
 	..()
@@ -144,13 +124,13 @@ pvt [fake_name] 23rd regiment 2nd batallion 34<s>nd</s>th mp company earth corps
 
 /obj/item/weapon/paper/awaygate/xenobio_station/gaslamp/New()
 	..()
+	name = "observation log #1"
 	info = {"<h1><center>Specimen log</center></h1><br>\
 <center><i>Form 1e.36/1</i></center><br>\
 <center><small>2298-08-04</small></center><br>\
 <hr><br>\
 <br>\
 <b><large>Investigative parties</large></b><br>\
-Dr. [fake_name]<br>\
 Dr. [fake_name]<br>\
 <br>\
 <b><large>Subject(s)</large></b><br>\
@@ -171,6 +151,21 @@ Subject is a tall squidlike filter-feeder with rubbery skin that stands upright 
 <br>\
 Subject possesses eight (8) appendages and ambulates using tripodal locomotion.<br>\
 <br>\
-Subject observed wrapping feet around potential food items before surrounding the object in it's appendages.<br>\
+Subject observed wrapping appendages around potential food items before surrounding the object in it's appendages.<br>\
 <br>\
 Subject emits an opaque phoron byproduct of unknown composition."}
+
+/obj/item/weapon/paper/awaygate/xenobio_station/gateway
+	name = "read me"
+	info = {"if u came thru the gateway please read this<br>\
+the gateway malfunctioned and seperated us from our timeline<br>\
+i know that sounds insane but this thing can take u to different dimensions and stuff so its not that crazy<br>\
+every time ppl come here everything is the same but information is different<br>
+names, time of day, ppls apperances<br>\
+if u have 2 stay here please be quick incase what happend 2 us happens 2 u<br>\
+im going thru the gate so u may have already met me<br>\
+i wont write my name bc it will just be different the next time u read this<br>\
+you'll probably be here again so u dont need 2 read this again<br>\
+tell whoever owns ur gateway to study it more<br>\
+it doesn't seem to take u 2 the same timeline more than once<br>\
+dont trust anything u see in here as fact"}
