@@ -156,6 +156,8 @@ var/list/runechat_image_cache = list()
 
 	text = "[prefixes?.Join("&nbsp;")][text]"
 
+	text = encode_html_emphasis(text)
+
 	// We dim italicized text to make it more distinguishable from regular text
 	var/tgt_color = extra_classes.Find("italics") ? target.chat_color_darkened : target.chat_color
 
