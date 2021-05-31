@@ -69,24 +69,17 @@
 	. = ..()
 	song.allowed_instrument_ids = SSinstruments.synthesizer_instrument_ids
 
-/* I'll come back to you...
 /obj/item/instrument/piano_synth/headphones
 	name = "headphones"
 	desc = "Unce unce unce unce. Boop!"
-	icon = 'icons/obj/clothing/accessories.dmi'
-	lefthand_file = 'icons/mob/inhands/clothing_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/clothing_righthand.dmi'
 	icon_state = "headphones"
-	inhand_icon_state = "headphones"
-	slot_flags = ITEM_SLOT_EARS | ITEM_SLOT_HEAD
+	slot_flags = SLOT_EARS | SLOT_HEAD
 	force = 0
-	w_class = WEIGHT_CLASS_SMALL
-	custom_price = PAYCHECK_ASSISTANT * 2.5
+	w_class = ITEMSIZE_SMALL
 	instrument_range = 1
 
-/obj/item/instrument/piano_synth/headphones/ComponentInitialize()
+/obj/item/instrument/piano_synth/headphones/Initialize()
 	. = ..()
-	AddElement(/datum/element/update_icon_updates_onmob)
 	RegisterSignal(src, COMSIG_SONG_START, .proc/start_playing)
 	RegisterSignal(src, COMSIG_SONG_END, .proc/stop_playing)
 
@@ -95,27 +88,37 @@
  */
 /obj/item/instrument/piano_synth/headphones/proc/start_playing()
 	SIGNAL_HANDLER
+
 	icon_state = "[initial(icon_state)]_on"
-	update_appearance()
+	if(ishuman(loc))
+		var/mob/living/carbon/human/H = loc
+		if(H.l_ear == src || H.r_ear == src)
+			H.update_inv_ears()
+		else if(H.head == src)
+			H.update_inv_head()
 
 /**
  * Called by a component signal when our song stops playing.
  */
 /obj/item/instrument/piano_synth/headphones/proc/stop_playing()
 	SIGNAL_HANDLER
+
 	icon_state = "[initial(icon_state)]"
-	update_appearance()
+	if(ishuman(loc))
+		var/mob/living/carbon/human/H = loc
+		if(H.l_ear == src || H.r_ear == src)
+			H.update_inv_ears()
+		else if(H.head == src)
+			H.update_inv_head()
+
 
 /obj/item/instrument/piano_synth/headphones/spacepods
 	name = "\improper Nanotrasen space pods"
 	desc = "Flex your money, AND ignore what everyone else says, all at once!"
 	icon_state = "spacepods"
-	inhand_icon_state = "spacepods"
-	slot_flags = ITEM_SLOT_EARS
-	strip_delay = 100 //air pods don't fall out
+	slot_flags = SLOT_EARS
+	//strip_delay = 100 //air pods don't fall out
 	instrument_range = 0 //you're paying for quality here
-	custom_premium_price = PAYCHECK_ASSISTANT * 36 //Save up 5 shifts worth of pay just to lose it down a drainpipe on the sidewalk
-*/
 
 /obj/item/instrument/banjo
 	name = "banjo"
