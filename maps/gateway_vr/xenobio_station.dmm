@@ -76,6 +76,14 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark/violetcorener,
 /area/tether_away/xenobio_station/cages)
+"aL" = (
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/tiled/eris/dark/bluecorner,
+/area/tether_away/xenobio_station/hall1)
 "aM" = (
 /obj/effect/wingrille_spawn/reinforced,
 /obj/machinery/atmospherics/pipe/simple/visible/black{
@@ -84,11 +92,6 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/shuttle/floor/voidcraft,
 /area/tether_away/xenobio_station/atmos/waste)
-"aN" = (
-/obj/effect/decal/cleanable/vomit,
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/tiled/eris/dark/bluecorner,
-/area/tether_away/xenobio_station/hall1)
 "aP" = (
 /obj/structure/table/glass,
 /obj/effect/floor_decal/rust,
@@ -104,6 +107,12 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/tether_away/xenobio_station/engine/smes)
+"aY" = (
+/obj/item/weapon/material/shard,
+/obj/item/weapon/material/shard,
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/tiled/eris/dark/bluecorner,
+/area/tether_away/xenobio_station/hall1)
 "ba" = (
 /obj/structure/outcrop/phoron,
 /turf/simulated/mineral/floor/ignore_cavegen,
@@ -122,11 +131,10 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark/violetcorener,
 /area/tether_away/xenobio_station/cages)
-"bj" = (
-/obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/shuttle/plating,
-/area/tether_away/xenobio_station/maint/xeno)
+"bl" = (
+/obj/effect/decal/cleanable/generic,
+/turf/simulated/mineral/floor/cave,
+/area/tether_away/xenobio_station/cave)
 "bo" = (
 /obj/machinery/door/airlock/hatch,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -162,6 +170,18 @@
 	},
 /turf/simulated/mineral/floor/ignore_cavegen,
 /area/tether_away/xenobio_station/cages)
+"bG" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/turf/simulated/shuttle/plating,
+/area/tether_away/xenobio_station/cave)
+"bH" = (
+/obj/structure/catwalk,
+/obj/effect/alien/weeds/node,
+/obj/effect/floor_decal/rust,
+/turf/simulated/shuttle/plating,
+/area/tether_away/xenobio_station/maint/xeno)
 "bN" = (
 /obj/structure/catwalk,
 /obj/machinery/door/blast/regular{
@@ -189,10 +209,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/maint/xeno)
-"bV" = (
+"bU" = (
 /obj/effect/floor_decal/rust,
-/turf/simulated/floor/tiled/eris/dark/danger,
-/area/tether_away/xenobio_station/engine)
+/turf/simulated/shuttle/wall/voidcraft,
+/area/tether_away/xenobio_station/maint/xeno)
 "bX" = (
 /turf/snow/snow2,
 /area/tether_away/xenobio_station/cages)
@@ -355,6 +375,13 @@
 /obj/structure/table/woodentable,
 /turf/simulated/floor/carpet,
 /area/tether_away/xenobio_station/breakroom2)
+"ew" = (
+/obj/effect/decal/cleanable/ash,
+/obj/effect/floor_decal/rust,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/greengrid,
+/area/tether_away/xenobio_station/hall1)
 "ez" = (
 /obj/effect/spider/stickyweb,
 /mob/living/simple_mob/animal/giant_spider/webslinger{
@@ -393,6 +420,10 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/tether_away/xenobio_station/engine/smes)
+"eO" = (
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/tiled/eris/dark,
+/area/tether_away/xenobio_station/hall1)
 "eP" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -453,12 +484,6 @@
 	},
 /turf/simulated/floor/outdoors/dirt,
 /area/tether_away/xenobio_station/cages)
-"fm" = (
-/obj/effect/alien/egg,
-/obj/random/junk,
-/obj/effect/floor_decal/rust,
-/turf/simulated/shuttle/plating,
-/area/tether_away/xenobio_station/maint/xeno)
 "fs" = (
 /obj/structure/catwalk,
 /obj/structure/railing{
@@ -466,13 +491,6 @@
 	},
 /turf/simulated/floor/lava,
 /area/tether_away/xenobio_station/cave)
-"ft" = (
-/obj/structure/catwalk,
-/obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/generic,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/shuttle/plating,
-/area/tether_away/xenobio_station/maint/xeno)
 "fx" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -534,6 +552,22 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark,
 /area/tether_away/xenobio_station/hall2)
+"fO" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/effect/decal/cleanable/vomit,
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/tiled/eris/dark/danger,
+/area/tether_away/xenobio_station/engine)
 "fP" = (
 /obj/item/weapon/material/kitchen/utensil/fork{
 	default_material = "plastic"
@@ -548,6 +582,11 @@
 /obj/random/projectile/scrapped_ionrifle,
 /turf/simulated/mineral/floor/cave,
 /area/tether_away/xenobio_station/cave)
+"ge" = (
+/obj/structure/trash_pile,
+/obj/effect/floor_decal/rust,
+/turf/simulated/shuttle/plating,
+/area/tether_away/xenobio_station/maint/xeno)
 "gf" = (
 /obj/machinery/telecomms/relay,
 /obj/effect/floor_decal/rust,
@@ -555,12 +594,6 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/greengrid,
 /area/tether_away/xenobio_station/hall1)
-"gh" = (
-/obj/structure/catwalk,
-/obj/random/trash,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/shuttle/plating,
-/area/tether_away/xenobio_station/maint/xeno)
 "gj" = (
 /obj/structure/prop/fake_ai/dead,
 /obj/machinery/light{
@@ -571,6 +604,12 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/greengrid,
 /area/tether_away/xenobio_station/hall1)
+"gk" = (
+/obj/effect/alien/egg,
+/obj/random/junk,
+/obj/effect/floor_decal/rust,
+/turf/simulated/shuttle/plating,
+/area/tether_away/xenobio_station/maint/xeno)
 "gn" = (
 /obj/structure/cable{
 	d1 = 2;
@@ -623,6 +662,12 @@
 	},
 /turf/simulated/shuttle/floor/alienplating,
 /area/tether_away/xenobio_station/cave/vault)
+"gI" = (
+/obj/machinery/door/window,
+/obj/structure/fans/tiny,
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/tiled/eris/dark,
+/area/tether_away/xenobio_station/cages)
 "gL" = (
 /obj/structure/railing/grey{
 	dir = 8
@@ -661,6 +706,16 @@
 	},
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/cages)
+"gZ" = (
+/obj/structure/catwalk,
+/obj/machinery/door/blast/regular{
+	id = "gateway_xeno_puzzle1";
+	maxhealth = 9999999
+	},
+/obj/effect/floor_decal/rust,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/shuttle/plating,
+/area/tether_away/xenobio_station/maint/xeno)
 "ha" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/clipboard,
@@ -672,10 +727,21 @@
 /obj/effect/decal/remains/tajaran,
 /turf/simulated/mineral/floor/cave,
 /area/tether_away/xenobio_station/cave)
+"hl" = (
+/obj/effect/floor_decal/rust,
+/obj/effect/decal/cleanable/generic,
+/turf/simulated/floor/tiled/eris/dark/violetcorener,
+/area/tether_away/xenobio_station/breakroom2)
 "ho" = (
 /obj/item/clothing/under/soviet,
 /turf/snow/snow2,
 /area/tether_away/xenobio_station/cages)
+"hA" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 8
+	},
+/turf/simulated/shuttle/plating,
+/area/tether_away/xenobio_station/cave)
 "hB" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 8
@@ -703,6 +769,11 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/maint/xeno)
+"hR" = (
+/obj/machinery/computer,
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/tiled/eris/dark/bluecorner,
+/area/tether_away/xenobio_station/hall1)
 "hT" = (
 /obj/machinery/power/apc{
 	dir = 8;
@@ -738,11 +809,20 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark,
 /area/tether_away/xenobio_station/hall2)
+"ig" = (
+/turf/simulated/shuttle/plating,
+/area/tether_away/xenobio_station/cave)
 "ij" = (
 /obj/structure/prop/poicanister,
 /obj/effect/floor_decal/rust,
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/cave)
+"iq" = (
+/obj/structure/catwalk,
+/obj/machinery/door/blast/regular/open,
+/obj/effect/floor_decal/rust,
+/turf/simulated/shuttle/plating,
+/area/tether_away/xenobio_station/maint/xeno)
 "iu" = (
 /obj/structure/catwalk,
 /obj/structure/catwalk,
@@ -752,13 +832,6 @@
 /obj/effect/decal/cleanable/generic,
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/maint/xeno)
-"iv" = (
-/obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/greengrid,
-/area/tether_away/xenobio_station/hall1)
 "iz" = (
 /obj/structure/grille,
 /obj/effect/floor_decal/rust,
@@ -795,11 +868,6 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/shuttle/wall/voidcraft,
 /area/tether_away/xenobio_station/breakroom2)
-"iX" = (
-/obj/effect/alien/egg,
-/obj/effect/floor_decal/rust,
-/turf/simulated/shuttle/plating,
-/area/tether_away/xenobio_station/maint/xeno)
 "jf" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 1
@@ -857,13 +925,6 @@
 "jD" = (
 /turf/simulated/floor/carpet,
 /area/tether_away/xenobio_station/breakroom2)
-"jI" = (
-/obj/effect/alien/egg,
-/obj/machinery/light/small,
-/obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/shuttle/plating,
-/area/tether_away/xenobio_station/maint/xeno)
 "jJ" = (
 /mob/living/simple_mob/animal/space/carp{
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate;
@@ -884,29 +945,6 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/carpet/bcarpet,
 /area/tether_away/xenobio_station/breakroom2)
-"kd" = (
-/obj/effect/decal/cleanable/generic,
-/turf/simulated/mineral/floor/cave,
-/area/tether_away/xenobio_station/cave)
-"ki" = (
-/obj/effect/alien/egg,
-/obj/random/junk,
-/obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/generic,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/shuttle/plating,
-/area/tether_away/xenobio_station/maint/xeno)
-"km" = (
-/obj/structure/catwalk,
-/obj/machinery/door/blast/regular/open,
-/obj/effect/floor_decal/rust,
-/turf/simulated/shuttle/plating,
-/area/tether_away/xenobio_station/maint/xeno)
-"ko" = (
-/obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/generic,
-/turf/simulated/shuttle/wall/voidcraft,
-/area/tether_away/xenobio_station/maint/xeno)
 "ks" = (
 /obj/structure/catwalk,
 /obj/structure/railing,
@@ -950,6 +988,10 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark,
 /area/tether_away/xenobio_station/maint/xeno)
+"kQ" = (
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/tiled/eris/dark/danger,
+/area/tether_away/xenobio_station/engine)
 "kR" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -970,6 +1012,18 @@
 /obj/structure/loot_pile/surface/bones,
 /turf/simulated/mineral/floor/cave,
 /area/tether_away/xenobio_station/cave)
+"kU" = (
+/obj/structure/catwalk,
+/obj/effect/floor_decal/rust,
+/turf/simulated/shuttle/plating,
+/area/tether_away/xenobio_station/maint/xeno)
+"kX" = (
+/obj/random/trash,
+/obj/random/junk,
+/obj/effect/floor_decal/rust,
+/obj/effect/decal/cleanable/generic,
+/turf/simulated/shuttle/plating,
+/area/tether_away/xenobio_station/maint/xeno)
 "kY" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 8
@@ -998,12 +1052,6 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark/violetcorener,
 /area/tether_away/xenobio_station/breakroom2)
-"lk" = (
-/obj/random/junk,
-/obj/structure/trash_pile,
-/obj/effect/floor_decal/rust,
-/turf/simulated/shuttle/plating,
-/area/tether_away/xenobio_station/maint/xeno)
 "ln" = (
 /obj/structure/cliff/automatic{
 	dir = 6
@@ -1022,6 +1070,11 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/breakroom2)
+"lB" = (
+/obj/effect/decal/cleanable/vomit,
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/tiled/eris/dark/bluecorner,
+/area/tether_away/xenobio_station/hall1)
 "lE" = (
 /obj/structure/closet/walllocker_double/hydrant/north,
 /obj/effect/floor_decal/rust,
@@ -1055,6 +1108,14 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/maint/xeno)
+"lW" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 8
+	},
+/obj/item/weapon/material/shard,
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/tiled/eris/dark/bluecorner,
+/area/tether_away/xenobio_station/hall1)
 "mb" = (
 /turf/simulated/shuttle/wall/alien/hard_corner,
 /area/tether_away/xenobio_station/cave/vault)
@@ -1065,12 +1126,6 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/cages)
-"mh" = (
-/obj/random/junk,
-/obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/shuttle/plating,
-/area/tether_away/xenobio_station/maint/xeno)
 "mi" = (
 /obj/structure/window/basic{
 	dir = 1
@@ -1089,6 +1144,11 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark/cyancorner,
 /area/tether_away/xenobio_station/atmos)
+"mk" = (
+/obj/structure/filingcabinet/filingcabinet,
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/tiled/eris/dark/bluecorner,
+/area/tether_away/xenobio_station/hall1)
 "mm" = (
 /obj/structure/table/alien,
 /obj/item/weapon/circuitboard/mecha/imperion/targeting,
@@ -1158,6 +1218,14 @@
 /obj/structure/window/plastitanium,
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/tether_away/xenobio_station/cages)
+"mI" = (
+/obj/structure/catwalk,
+/obj/random/junk,
+/obj/random/junk,
+/obj/random/junk,
+/obj/effect/floor_decal/rust,
+/turf/simulated/shuttle/plating,
+/area/tether_away/xenobio_station/maint/xeno)
 "mM" = (
 /mob/living/simple_mob/animal/giant_spider/pepper{
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
@@ -1184,6 +1252,12 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark/cyancorner,
 /area/tether_away/xenobio_station/atmos)
+"mR" = (
+/obj/structure/catwalk,
+/obj/random/trash,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/shuttle/plating,
+/area/tether_away/xenobio_station/maint/xeno)
 "mT" = (
 /obj/structure/catwalk,
 /obj/structure/railing{
@@ -1240,39 +1314,16 @@
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/engine)
 "nk" = (
-/mob/living/simple_mob/animal/space/alien/drone,
+/obj/effect/wingrille_spawn/reinforced,
 /obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/generic,
-/turf/simulated/shuttle/plating,
-/area/tether_away/xenobio_station/maint/xeno)
-"nl" = (
-/obj/structure/bed/chair/office/dark{
-	dir = 8
-	},
-/obj/item/weapon/material/shard,
 /obj/effect/floor_decal/rust,
-/turf/simulated/floor/tiled/eris/dark/bluecorner,
-/area/tether_away/xenobio_station/hall1)
+/turf/simulated/shuttle/floor/voidcraft,
+/area/tether_away/xenobio_station/atmos/waste)
 "no" = (
 /obj/structure/cliff/automatic/corner{
 	dir = 9
 	},
 /turf/simulated/floor/outdoors/dirt,
-/area/tether_away/xenobio_station/cages)
-"nu" = (
-/obj/structure/grille,
-/obj/effect/floor_decal/rust,
-/obj/effect/floor_decal/rust,
-/turf/simulated/shuttle/floor/voidcraft,
-/area/tether_away/xenobio_station/atmos/waste)
-"nv" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/generic,
-/turf/simulated/floor/tiled/eris/dark/violetcorener,
 /area/tether_away/xenobio_station/cages)
 "nw" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -1289,12 +1340,14 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark/cyancorner,
 /area/tether_away/xenobio_station/atmos)
-"nJ" = (
-/obj/structure/catwalk,
-/obj/random/trash,
+"nF" = (
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/vomit,
 /obj/effect/floor_decal/rust,
 /turf/simulated/shuttle/plating,
-/area/tether_away/xenobio_station/maint/xeno)
+/area/tether_away/xenobio_station/engine)
 "nN" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -1338,14 +1391,6 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/shuttle/wall/voidcraft,
 /area/tether_away/xenobio_station/atmos)
-"ob" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/generic,
-/turf/simulated/shuttle/plating,
-/area/tether_away/xenobio_station/cave)
 "oe" = (
 /obj/machinery/atmospherics/pipe/simple/visible/universal{
 	dir = 4
@@ -1364,16 +1409,6 @@
 	},
 /turf/simulated/floor/carpet,
 /area/tether_away/xenobio_station/breakroom2)
-"oi" = (
-/obj/structure/catwalk,
-/obj/machinery/door/blast/regular{
-	id = "gateway_xeno_puzzle1";
-	maxhealth = 9999999
-	},
-/obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/shuttle/plating,
-/area/tether_away/xenobio_station/maint/xeno)
 "ok" = (
 /obj/structure/bed/chair/bay/comfy/blue{
 	dir = 8
@@ -1381,11 +1416,6 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark,
 /area/tether_away/xenobio_station/breakroom)
-"on" = (
-/obj/structure/trash_pile,
-/obj/effect/floor_decal/rust,
-/turf/simulated/shuttle/plating,
-/area/tether_away/xenobio_station/maint/xeno)
 "oq" = (
 /obj/machinery/gateway{
 	dir = 6
@@ -1393,14 +1423,6 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark,
 /area/tether_away/xenobio_station/gate)
-"oA" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/liquid_fuel,
-/turf/simulated/shuttle/plating,
-/area/tether_away/xenobio_station/cave)
 "oL" = (
 /obj/structure/cliff/automatic{
 	dir = 2
@@ -1513,10 +1535,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/maint/xeno)
-"pl" = (
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/tiled/eris/dark/bluecorner,
-/area/tether_away/xenobio_station/hall1)
+"pk" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 4
+	},
+/turf/simulated/shuttle/plating,
+/area/tether_away/xenobio_station/cave)
 "pn" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
@@ -1527,6 +1551,13 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark,
 /area/tether_away/xenobio_station/hall2)
+"po" = (
+/obj/structure/catwalk,
+/obj/random/junk,
+/obj/effect/floor_decal/rust,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/shuttle/plating,
+/area/tether_away/xenobio_station/maint/xeno)
 "ps" = (
 /obj/structure/table/standard,
 /obj/item/weapon/reagent_containers/spray/cleaner,
@@ -1558,17 +1589,20 @@
 "px" = (
 /turf/simulated/shuttle/wall/voidcraft,
 /area/tether_away/xenobio_station/cages)
+"pC" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/floor_decal/rust,
+/obj/effect/decal/cleanable/generic,
+/turf/simulated/floor/tiled/eris/dark/violetcorener,
+/area/tether_away/xenobio_station/cages)
 "pK" = (
 /obj/structure/shuttle/window,
 /obj/structure/grille,
 /obj/effect/floor_decal/rust,
 /turf/simulated/shuttle/plating,
-/area/tether_away/xenobio_station/hall1)
-"pM" = (
-/obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/generic,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/eris/dark/bluecorner,
 /area/tether_away/xenobio_station/hall1)
 "pW" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
@@ -1587,11 +1621,6 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/cave)
-"qe" = (
-/obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/generic,
-/turf/simulated/floor/tiled/eris/dark/violetcorener,
-/area/tether_away/xenobio_station/science)
 "qf" = (
 /obj/structure/railing{
 	dir = 1
@@ -1652,11 +1681,6 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/shuttle/wall/voidcraft/hard_corner,
 /area/tether_away/xenobio_station/maint/xeno)
-"qG" = (
-/obj/structure/railing,
-/obj/effect/floor_decal/rust,
-/turf/simulated/shuttle/plating,
-/area/tether_away/xenobio_station/cave)
 "qI" = (
 /obj/structure/grille/broken,
 /obj/item/weapon/material/shard/plastitaniumglass,
@@ -1678,6 +1702,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/eris/dark/violetcorener,
 /area/tether_away/xenobio_station/science)
+"qP" = (
+/obj/effect/floor_decal/rust,
+/obj/effect/decal/cleanable/ash,
+/turf/simulated/floor/tiled/eris/dark/violetcorener,
+/area/tether_away/xenobio_station/breakroom2)
 "qT" = (
 /obj/structure/frame{
 	anchored = 1
@@ -1687,13 +1716,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/eris/dark/violetcorener,
 /area/tether_away/xenobio_station/science)
-"qU" = (
-/obj/item/toy/plushie/generic{
-	desc = "Go away, I'm a failsafe.";
-	name = "you shouldn't be here"
-	},
-/turf/simulated/mineral/floor/cave,
-/area/tether_away/xenobio_station/cave)
 "qW" = (
 /obj/machinery/door/airlock/voidcraft,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -1705,17 +1727,9 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark,
 /area/tether_away/xenobio_station/cages)
-"qY" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/effect/decal/cleanable/vomit,
+"re" = (
+/mob/living/simple_mob/animal/space/alien/drone,
 /obj/effect/floor_decal/rust,
-/turf/simulated/floor/tiled/eris/dark/danger,
-/area/tether_away/xenobio_station/engine)
-"rk" = (
-/obj/random/junk,
-/obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/generic,
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/maint/xeno)
 "rl" = (
@@ -1788,13 +1802,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/maint/xeno)
-"sf" = (
-/obj/random/trash,
-/obj/random/junk,
-/obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/generic,
-/turf/simulated/shuttle/plating,
-/area/tether_away/xenobio_station/maint/xeno)
 "sm" = (
 /obj/effect/floor_decal/industrial/warning/dust,
 /obj/effect/floor_decal/rust,
@@ -1826,9 +1833,12 @@
 /turf/simulated/mineral/floor/ignore_cavegen,
 /area/tether_away/xenobio_station/cages)
 "sz" = (
+/obj/random/junk,
 /obj/effect/floor_decal/rust,
-/turf/simulated/shuttle/wall/voidcraft/hard_corner,
-/area/tether_away/xenobio_station/cages)
+/obj/effect/decal/cleanable/generic,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/shuttle/plating,
+/area/tether_away/xenobio_station/maint/xeno)
 "sA" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -1844,6 +1854,13 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark,
 /area/tether_away/xenobio_station/hall2)
+"sB" = (
+/obj/structure/catwalk,
+/obj/effect/floor_decal/rust,
+/obj/effect/decal/cleanable/generic,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/shuttle/plating,
+/area/tether_away/xenobio_station/maint/xeno)
 "sD" = (
 /obj/item/weapon/storage/backpack/russian,
 /turf/snow/snow2,
@@ -1877,14 +1894,6 @@
 "tc" = (
 /turf/simulated/shuttle/wall/alien,
 /area/tether_away/xenobio_station/cave/vault)
-"th" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/vomit,
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/tiled/eris/dark/danger,
-/area/tether_away/xenobio_station/engine)
 "tj" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
@@ -1901,15 +1910,6 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/maint/xeno)
-"tq" = (
-/obj/structure/railing/grey{
-	dir = 8
-	},
-/obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/generic,
-/turf/simulated/shuttle/plating,
-/area/tether_away/xenobio_station/maint)
 "tr" = (
 /obj/structure/railing/grey{
 	dir = 8
@@ -1917,12 +1917,6 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/shuttle/wall/voidcraft,
 /area/tether_away/xenobio_station/maint)
-"tu" = (
-/obj/structure/catwalk,
-/obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/generic,
-/turf/simulated/shuttle/plating,
-/area/tether_away/xenobio_station/maint/xeno)
 "tx" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -1932,21 +1926,6 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark/violetcorener,
 /area/tether_away/xenobio_station/breakroom2)
-"tB" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/tiled/eris/dark/violetcorener,
-/area/tether_away/xenobio_station/science)
 "tD" = (
 /obj/structure/railing/grey{
 	dir = 8
@@ -1970,13 +1949,6 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/tether_away/xenobio_station/engine/smes)
-"tH" = (
-/obj/structure/catwalk,
-/obj/random/junk,
-/obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/shuttle/plating,
-/area/tether_away/xenobio_station/maint/xeno)
 "tK" = (
 /obj/structure/catwalk,
 /obj/effect/decal/remains/xeno{
@@ -2056,6 +2028,17 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/maint)
+"un" = (
+/mob/living/simple_mob/animal/space/alien/drone,
+/obj/effect/floor_decal/rust,
+/obj/effect/decal/cleanable/generic,
+/turf/simulated/shuttle/plating,
+/area/tether_away/xenobio_station/maint/xeno)
+"ur" = (
+/obj/effect/floor_decal/rust,
+/obj/effect/floor_decal/rust,
+/turf/simulated/shuttle/wall/voidcraft/hard_corner,
+/area/tether_away/xenobio_station/cages)
 "us" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -2069,10 +2052,13 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark,
 /area/tether_away/xenobio_station/cages)
-"uv" = (
+"uu" = (
+/obj/random/junk,
+/obj/random/junk,
 /obj/effect/floor_decal/rust,
-/turf/simulated/shuttle/wall/voidcraft,
-/area/tether_away/xenobio_station/cages)
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/shuttle/plating,
+/area/tether_away/xenobio_station/maint/xeno)
 "uA" = (
 /obj/structure/catwalk,
 /obj/machinery/light/small/flicker{
@@ -2241,11 +2227,6 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark,
 /area/tether_away/xenobio_station/hall2)
-"vP" = (
-/obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/generic,
-/turf/simulated/floor/tiled/eris/dark/violetcorener,
-/area/tether_away/xenobio_station/cages)
 "vU" = (
 /obj/structure/catwalk,
 /obj/effect/alien/weeds/node,
@@ -2253,6 +2234,15 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/maint/xeno)
+"vY" = (
+/obj/effect/floor_decal/rust,
+/obj/effect/decal/cleanable/molten_item,
+/turf/simulated/floor/tiled/eris/dark/danger,
+/area/tether_away/xenobio_station/engine)
+"we" = (
+/obj/effect/floor_decal/rust,
+/turf/simulated/shuttle/wall/voidcraft,
+/area/tether_away/xenobio_station/cages)
 "wi" = (
 /mob/living/simple_mob/animal/sif/kururak/leader{
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate;
@@ -2265,6 +2255,10 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark,
 /area/tether_away/xenobio_station/breakroom)
+"wn" = (
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/lava,
+/area/tether_away/xenobio_station/cave)
 "wo" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/cable{
@@ -2278,30 +2272,36 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark,
 /area/tether_away/xenobio_station/maint/xeno)
-"wq" = (
-/obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/eris/dark/violetcorener,
-/area/tether_away/xenobio_station/science)
 "wx" = (
 /obj/item/trash/material/metal,
 /turf/simulated/floor/lava,
 /area/tether_away/xenobio_station/cave)
+"wz" = (
+/obj/machinery/computer{
+	dir = 8
+	},
+/obj/item/weapon/material/shard,
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/tiled/eris/dark/bluecorner,
+/area/tether_away/xenobio_station/hall1)
+"wD" = (
+/obj/structure/catwalk,
+/obj/random/junk,
+/obj/random/junk,
+/obj/effect/floor_decal/rust,
+/obj/effect/decal/cleanable/generic,
+/turf/simulated/shuttle/plating,
+/area/tether_away/xenobio_station/maint/xeno)
+"wI" = (
+/obj/effect/floor_decal/rust,
+/obj/effect/decal/cleanable/generic,
+/turf/simulated/floor/tiled/eris/dark/violetcorener,
+/area/tether_away/xenobio_station/cages)
 "wM" = (
 /obj/structure/cliff/automatic{
 	dir = 2
 	},
 /turf/simulated/floor/outdoors/dirt,
-/area/tether_away/xenobio_station/cages)
-"wP" = (
-/obj/machinery/door/airlock/hatch,
-/obj/machinery/door/blast/regular/open{
-	id = "gateway_xenobio_cages"
-	},
-/obj/machinery/door/firedoor/glass,
-/obj/effect/floor_decal/rust,
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/tiled/eris/dark,
 /area/tether_away/xenobio_station/cages)
 "wR" = (
 /obj/structure/cliff/automatic{
@@ -2309,12 +2309,6 @@
 	},
 /turf/simulated/floor/outdoors/dirt,
 /area/tether_away/xenobio_station/cages)
-"wW" = (
-/obj/item/weapon/material/shard,
-/obj/item/weapon/material/shard,
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/tiled/eris/dark/bluecorner,
-/area/tether_away/xenobio_station/hall1)
 "xb" = (
 /mob/living/simple_mob/animal/space/carp/large{
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate;
@@ -2411,9 +2405,10 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/cave)
-"xQ" = (
-/obj/random/trash,
+"xO" = (
+/obj/structure/catwalk,
 /obj/effect/floor_decal/rust,
+/obj/effect/decal/cleanable/generic,
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/maint/xeno)
 "xS" = (
@@ -2525,6 +2520,13 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark/violetcorener,
 /area/tether_away/xenobio_station/cages)
+"yj" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/effect/floor_decal/rust,
+/turf/simulated/shuttle/plating,
+/area/tether_away/xenobio_station/cave)
 "yk" = (
 /obj/structure/railing/grey,
 /obj/item/weapon/storage/firstaid,
@@ -2532,38 +2534,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/maint)
-"yl" = (
-/obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/generic,
-/turf/simulated/shuttle/plating,
-/area/tether_away/xenobio_station/hall1)
-"yp" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/effect/decal/cleanable/vomit,
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/tiled/eris/dark/danger,
-/area/tether_away/xenobio_station/engine)
-"ys" = (
-/obj/structure/catwalk,
-/obj/effect/floor_decal/rust,
-/turf/simulated/shuttle/plating,
-/area/tether_away/xenobio_station/maint/xeno)
-"yv" = (
-/obj/effect/alien/egg,
-/obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/generic,
-/turf/simulated/shuttle/plating,
-/area/tether_away/xenobio_station/maint/xeno)
 "yB" = (
 /obj/machinery/power/smes,
 /obj/effect/floor_decal/rust,
@@ -2600,12 +2570,26 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/shuttle/wall/voidcraft,
 /area/tether_away/xenobio_station/maint)
+"zi" = (
+/obj/effect/alien/egg,
+/obj/machinery/light/small,
+/obj/effect/floor_decal/rust,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/shuttle/plating,
+/area/tether_away/xenobio_station/maint/xeno)
 "zk" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/reagent_containers/glass/beaker/large,
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark/violetcorener,
 /area/tether_away/xenobio_station/science)
+"zp" = (
+/obj/item/toy/plushie/generic{
+	desc = "Go away, I'm a failsafe.";
+	name = "you shouldn't be here"
+	},
+/turf/simulated/mineral/floor/cave,
+/area/tether_away/xenobio_station/cave)
 "zq" = (
 /obj/item/weapon/material/shard/phoron,
 /obj/item/weapon/material/shard/shrapnel,
@@ -2647,11 +2631,12 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/shuttle/wall/voidcraft,
 /area/tether_away/xenobio_station/hall2)
-"zR" = (
+"zH" = (
+/obj/random/junk,
+/obj/structure/trash_pile,
 /obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/generic,
-/turf/simulated/floor/tiled/eris/dark/cyancorner,
-/area/tether_away/xenobio_station/atmos)
+/turf/simulated/shuttle/plating,
+/area/tether_away/xenobio_station/maint/xeno)
 "zU" = (
 /obj/random/trash,
 /obj/machinery/light/small/flicker{
@@ -2745,12 +2730,9 @@
 	},
 /turf/simulated/floor/lava,
 /area/tether_away/xenobio_station/cave)
-"AH" = (
-/obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/generic,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/shuttle/plating,
-/area/tether_away/xenobio_station/maint/xeno)
+"AE" = (
+/turf/unsimulated/wall/planetary/normal,
+/area/tether_away/xenobio_station/cave)
 "AQ" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 4
@@ -2816,10 +2798,6 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/shuttle/wall/voidcraft,
 /area/tether_away/xenobio_station/hall1)
-"Bi" = (
-/obj/effect/floor_decal/rust,
-/turf/simulated/shuttle/plating,
-/area/tether_away/xenobio_station/cages)
 "Bk" = (
 /obj/machinery/light{
 	dir = 8
@@ -2837,15 +2815,17 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/maint)
+"Bn" = (
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 1
+	},
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/tiled/eris/dark/bluecorner,
+/area/tether_away/xenobio_station/hall1)
 "Br" = (
 /mob/living/simple_mob/vore/aggressive/deathclaw,
 /turf/simulated/mineral/floor/cave,
 /area/tether_away/xenobio_station/cave)
-"By" = (
-/obj/structure/filingcabinet/filingcabinet,
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/tiled/eris/dark/bluecorner,
-/area/tether_away/xenobio_station/hall1)
 "BB" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
@@ -2904,12 +2884,25 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/shuttle/wall/voidcraft,
 /area/tether_away/xenobio_station/maint)
+"Cy" = (
+/obj/structure/sign/warning/internals_required{
+	name = "\improper COGNITOHAZARD"
+	},
+/turf/simulated/wall/solidrock{
+	block_tele = 0
+	},
+/area/tether_away/xenobio_station/cave)
 "Cz" = (
 /obj/effect/alien/egg,
 /obj/machinery/light/small,
 /obj/effect/floor_decal/rust,
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/maint/xeno)
+"CD" = (
+/obj/effect/floor_decal/rust,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/eris/dark/violetcorener,
+/area/tether_away/xenobio_station/science)
 "CF" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
@@ -2924,18 +2917,11 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/greengrid,
 /area/tether_away/xenobio_station/hall1)
-"CL" = (
+"CN" = (
 /obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/ash,
-/turf/simulated/floor/tiled/eris/dark/violetcorener,
-/area/tether_away/xenobio_station/breakroom2)
-"CM" = (
-/obj/effect/decal/cleanable/ash,
-/obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/greengrid,
-/area/tether_away/xenobio_station/hall1)
+/obj/effect/decal/cleanable/generic,
+/turf/simulated/floor/tiled/eris/dark/cyancorner,
+/area/tether_away/xenobio_station/atmos)
 "CS" = (
 /obj/structure/window/plastitanium,
 /turf/simulated/floor/outdoors/dirt,
@@ -2980,11 +2966,14 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark/violetcorener,
 /area/tether_away/xenobio_station/science)
-"Dx" = (
-/obj/machinery/computer,
+"Du" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/vomit,
 /obj/effect/floor_decal/rust,
-/turf/simulated/floor/tiled/eris/dark/bluecorner,
-/area/tether_away/xenobio_station/hall1)
+/turf/simulated/floor/tiled/eris/dark/danger,
+/area/tether_away/xenobio_station/engine)
 "DA" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 10
@@ -3002,6 +2991,11 @@
 "DH" = (
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/tether_away/xenobio_station/cages)
+"DL" = (
+/obj/effect/floor_decal/rust,
+/obj/effect/decal/cleanable/generic,
+/turf/simulated/shuttle/wall/voidcraft,
+/area/tether_away/xenobio_station/maint/xeno)
 "DP" = (
 /obj/structure/table/standard,
 /obj/item/weapon/towel/random,
@@ -3009,13 +3003,6 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/tether_away/xenobio_station/breakroom2)
-"DV" = (
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 1
-	},
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/tiled/eris/dark/bluecorner,
-/area/tether_away/xenobio_station/hall1)
 "DW" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -3023,6 +3010,12 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark/bluecorner,
 /area/tether_away/xenobio_station/hall1)
+"DX" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 1
+	},
+/turf/simulated/shuttle/plating,
+/area/tether_away/xenobio_station/cave)
 "DY" = (
 /obj/effect/decal/cleanable/blood/gibs{
 	icon_state = "gibdown1"
@@ -3108,11 +3101,6 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/cave)
-"EC" = (
-/obj/effect/decal/cleanable/blood/splatter,
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/tiled/eris/dark/bluecorner,
-/area/tether_away/xenobio_station/hall1)
 "EF" = (
 /obj/structure/table/rack/steel,
 /obj/effect/floor_decal/rust,
@@ -3207,13 +3195,12 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark,
 /area/tether_away/xenobio_station/gate)
-"FD" = (
-/obj/structure/catwalk,
-/obj/random/junk,
+"FG" = (
+/obj/structure/table/reinforced,
+/obj/machinery/chemical_dispenser,
 /obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/generic,
-/turf/simulated/shuttle/plating,
-/area/tether_away/xenobio_station/maint/xeno)
+/turf/simulated/floor/tiled/eris/dark/violetcorener,
+/area/tether_away/xenobio_station/science)
 "FK" = (
 /obj/random/trash,
 /obj/machinery/light/small/flicker{
@@ -3235,11 +3222,6 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/maint/xeno)
-"FY" = (
-/obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/generic,
-/turf/simulated/shuttle/floor/voidcraft,
-/area/tether_away/xenobio_station/atmos/waste)
 "FZ" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -3248,10 +3230,10 @@
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/maint/xeno)
 "Gh" = (
-/obj/machinery/turretid/lethal{
+/obj/effect/floor_decal/rust,
+/obj/machinery/turretid/stun{
 	control_area = "/area/tether_away/xenobio_station/hall1"
 	},
-/obj/effect/floor_decal/rust,
 /turf/simulated/shuttle/wall/voidcraft/blue,
 /area/tether_away/xenobio_station/hall1)
 "Gn" = (
@@ -3307,6 +3289,10 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/shuttle/wall/voidcraft/blue,
 /area/tether_away/xenobio_station/hall1)
+"GF" = (
+/obj/effect/floor_decal/rust,
+/turf/simulated/shuttle/plating,
+/area/tether_away/xenobio_station/cages)
 "GJ" = (
 /obj/effect/wingrille_spawn/reinforced,
 /obj/effect/floor_decal/rust,
@@ -3387,6 +3373,14 @@
 /obj/effect/floor_decal/rust,
 /turf/space,
 /area/tether_away/xenobio_station/hall1)
+"Ht" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/effect/floor_decal/rust,
+/obj/effect/decal/cleanable/liquid_fuel,
+/turf/simulated/shuttle/plating,
+/area/tether_away/xenobio_station/cave)
 "Hw" = (
 /obj/effect/floor_decal/rust,
 /turf/simulated/shuttle/wall/voidcraft,
@@ -3447,12 +3441,23 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/tether_away/xenobio_station/engine)
+"HV" = (
+/obj/random/trash,
+/obj/random/junk,
+/obj/effect/floor_decal/rust,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/shuttle/plating,
+/area/tether_away/xenobio_station/maint/xeno)
 "HX" = (
 /obj/structure/cliff/automatic{
 	dir = 8
 	},
 /turf/simulated/mineral/floor/cave,
 /area/tether_away/xenobio_station/cave)
+"Ie" = (
+/obj/effect/floor_decal/rust,
+/turf/simulated/shuttle/wall/voidcraft/hard_corner,
+/area/tether_away/xenobio_station/cages)
 "Ig" = (
 /obj/machinery/door/airlock/voidcraft,
 /obj/effect/floor_decal/rust,
@@ -3470,6 +3475,13 @@
 /obj/random/outcrop,
 /turf/snow/snow2,
 /area/tether_away/xenobio_station/cages)
+"It" = (
+/obj/effect/floor_decal/rust,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/greengrid,
+/area/tether_away/xenobio_station/hall1)
 "IF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -3522,17 +3534,18 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/tether_away/xenobio_station/engine)
-"IU" = (
-/obj/item/weapon/material/shard,
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/tiled/eris/dark/bluecorner,
-/area/tether_away/xenobio_station/hall1)
 "IV" = (
 /obj/structure/railing{
 	dir = 1
 	},
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/cave)
+"Ja" = (
+/obj/random/junk,
+/obj/effect/floor_decal/rust,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/shuttle/plating,
+/area/tether_away/xenobio_station/maint/xeno)
 "Jh" = (
 /obj/structure/table/steel_reinforced,
 /obj/effect/floor_decal/rust,
@@ -3547,6 +3560,14 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/tether_away/xenobio_station/engine)
+"Js" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/effect/floor_decal/rust,
+/obj/effect/decal/cleanable/generic,
+/turf/simulated/shuttle/plating,
+/area/tether_away/xenobio_station/cave)
 "Jv" = (
 /obj/machinery/door/airlock/voidcraft,
 /obj/machinery/door/blast/regular{
@@ -3628,10 +3649,6 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark,
 /area/tether_away/xenobio_station/cages)
-"JR" = (
-/obj/effect/floor_decal/rust,
-/turf/simulated/shuttle/wall/voidcraft,
-/area/tether_away/xenobio_station/maint/xeno)
 "JS" = (
 /obj/machinery/atmospherics/pipe/tank/phoron/full,
 /obj/effect/floor_decal/rust,
@@ -3657,6 +3674,14 @@
 	},
 /turf/simulated/mineral/floor/ignore_cavegen,
 /area/tether_away/xenobio_station/cages)
+"JZ" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/effect/floor_decal/rust,
+/obj/effect/decal/cleanable/generic,
+/turf/simulated/shuttle/plating,
+/area/tether_away/xenobio_station/cave)
 "Ka" = (
 /obj/structure/sign/directions/engineering,
 /obj/structure/sign/directions/science{
@@ -3710,23 +3735,18 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/maint/xeno)
-"Km" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/generic,
-/turf/simulated/shuttle/plating,
-/area/tether_away/xenobio_station/cave)
-"Kn" = (
-/obj/effect/wingrille_spawn/reinforced,
-/obj/effect/floor_decal/rust,
-/obj/effect/floor_decal/rust,
-/turf/simulated/shuttle/floor/voidcraft,
-/area/tether_away/xenobio_station/atmos/waste)
 "Kp" = (
 /turf/simulated/floor/outdoors/rocks/virgo3b,
 /area/tether_away/xenobio_station/cages)
+"Kq" = (
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/obj/effect/floor_decal/rust,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/generic,
+/turf/simulated/shuttle/plating,
+/area/tether_away/xenobio_station/maint)
 "Kv" = (
 /obj/structure/shuttle/window,
 /obj/structure/grille,
@@ -3752,6 +3772,10 @@
 	block_tele = 0
 	},
 /area/tether_away/xenobio_station/cave)
+"KF" = (
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/tiled/eris/dark/bluecorner,
+/area/tether_away/xenobio_station/hall1)
 "KH" = (
 /obj/structure/table/woodentable,
 /obj/structure/cable{
@@ -3772,13 +3796,6 @@
 "KK" = (
 /obj/random/trash,
 /obj/random/trash,
-/obj/random/junk,
-/obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/shuttle/plating,
-/area/tether_away/xenobio_station/maint/xeno)
-"KP" = (
-/obj/random/junk,
 /obj/random/junk,
 /obj/effect/floor_decal/rust,
 /obj/effect/decal/cleanable/dirt,
@@ -3815,6 +3832,11 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark,
 /area/tether_away/xenobio_station/maint/xeno)
+"Li" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/tiled/eris/dark/bluecorner,
+/area/tether_away/xenobio_station/hall1)
 "Lk" = (
 /obj/machinery/gateway{
 	dir = 1
@@ -3892,13 +3914,6 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/carpet/bcarpet,
 /area/tether_away/xenobio_station/breakroom2)
-"LL" = (
-/obj/machinery/computer{
-	dir = 4
-	},
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/tiled/eris/dark/bluecorner,
-/area/tether_away/xenobio_station/hall1)
 "LP" = (
 /obj/effect/floor_decal/industrial/warning/dust/corner{
 	dir = 8
@@ -3909,6 +3924,12 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark,
 /area/tether_away/xenobio_station/gate)
+"LQ" = (
+/obj/effect/floor_decal/rust,
+/obj/effect/decal/cleanable/generic,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/eris/dark/bluecorner,
+/area/tether_away/xenobio_station/hall1)
 "LR" = (
 /obj/effect/floor_decal/rust,
 /turf/simulated/shuttle/wall/voidcraft,
@@ -3966,23 +3987,18 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/maint)
-"Ma" = (
-/obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/eris/dark/bluecorner,
-/area/tether_away/xenobio_station/hall1)
 "Mf" = (
+/obj/random/junk,
+/obj/random/junk,
+/obj/random/junk,
+/obj/random/junk,
 /obj/effect/floor_decal/rust,
 /obj/effect/decal/cleanable/generic,
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/maint/xeno)
-"Mj" = (
-/obj/random/junk,
-/obj/random/junk,
-/obj/random/junk,
-/obj/random/junk,
+"Mi" = (
 /obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/generic,
+/obj/effect/decal/cleanable/dirt,
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/maint/xeno)
 "Mk" = (
@@ -4105,12 +4121,6 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/maint/xeno)
-"Ny" = (
-/obj/machinery/door/window,
-/obj/structure/fans/tiny,
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/tiled/eris/dark,
-/area/tether_away/xenobio_station/cages)
 "NC" = (
 /turf/simulated/wall/solidrock{
 	block_tele = 0
@@ -4149,6 +4159,10 @@
 /obj/machinery/vending/giftvendor,
 /turf/simulated/floor/carpet,
 /area/tether_away/xenobio_station/breakroom2)
+"NO" = (
+/obj/machinery/crystal/lava,
+/turf/simulated/shuttle/plating,
+/area/tether_away/xenobio_station/cave)
 "NW" = (
 /obj/item/weapon/material/sword{
 	default_material = "durasteel"
@@ -4168,6 +4182,16 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark,
 /area/tether_away/xenobio_station/maint/xeno)
+"Ol" = (
+/obj/machinery/door/airlock/hatch,
+/obj/machinery/door/blast/regular/open{
+	id = "gateway_xenobio_cages"
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/effect/floor_decal/rust,
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/tiled/eris/dark,
+/area/tether_away/xenobio_station/cages)
 "On" = (
 /obj/machinery/atmospherics/pipe/simple/visible/black{
 	dir = 4
@@ -4216,14 +4240,6 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/shuttle/wall/voidcraft/hard_corner,
 /area/tether_away/xenobio_station/science)
-"ON" = (
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 1
-	},
-/obj/effect/decal/cleanable/blood/splatter,
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/tiled/eris/dark/bluecorner,
-/area/tether_away/xenobio_station/hall1)
 "OQ" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/effect/floor_decal/rust,
@@ -4234,12 +4250,6 @@
 /obj/effect/floor_decal/rust,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/shuttle/plating,
-/area/tether_away/xenobio_station/science)
-"OS" = (
-/obj/structure/table/reinforced,
-/obj/machinery/chemical_dispenser,
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/tiled/eris/dark/violetcorener,
 /area/tether_away/xenobio_station/science)
 "OY" = (
 /obj/machinery/door/airlock/hatch,
@@ -4369,6 +4379,11 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark/violetcorener,
 /area/tether_away/xenobio_station/cages)
+"PT" = (
+/obj/effect/floor_decal/rust,
+/obj/effect/decal/cleanable/generic,
+/turf/simulated/shuttle/plating,
+/area/tether_away/xenobio_station/hall1)
 "PU" = (
 /obj/machinery/atmospherics/binary/passive_gate/on,
 /obj/structure/window/reinforced{
@@ -4417,17 +4432,28 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark/violetcorener,
 /area/tether_away/xenobio_station/cages)
-"Qp" = (
+"Qs" = (
+/obj/effect/decal/cleanable/vomit,
 /obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/molten_item,
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/tether_away/xenobio_station/engine)
-"QD" = (
-/obj/structure/catwalk,
-/obj/effect/alien/weeds/node,
+"Qx" = (
+/obj/structure/grille,
 /obj/effect/floor_decal/rust,
+/obj/effect/floor_decal/rust,
+/turf/simulated/shuttle/floor/voidcraft,
+/area/tether_away/xenobio_station/atmos/waste)
+"Qy" = (
+/obj/effect/alien/egg,
+/obj/effect/floor_decal/rust,
+/obj/effect/decal/cleanable/generic,
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/maint/xeno)
+"QD" = (
+/obj/effect/floor_decal/rust,
+/obj/effect/decal/cleanable/generic,
+/turf/simulated/shuttle/floor/voidcraft,
+/area/tether_away/xenobio_station/atmos/waste)
 "QI" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/effect/floor_decal/rust,
@@ -4532,6 +4558,12 @@
 /obj/machinery/computer/arcade/orion_trail,
 /turf/simulated/floor/carpet,
 /area/tether_away/xenobio_station/breakroom2)
+"RA" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/effect/decal/cleanable/vomit,
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/tiled/eris/dark/danger,
+/area/tether_away/xenobio_station/engine)
 "RG" = (
 /obj/structure/loot_pile/surface/bones,
 /obj/structure/railing/grey{
@@ -4636,11 +4668,6 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark/violetcorener,
 /area/tether_away/xenobio_station/science)
-"Sn" = (
-/mob/living/simple_mob/animal/space/alien/drone,
-/obj/effect/floor_decal/rust,
-/turf/simulated/shuttle/plating,
-/area/tether_away/xenobio_station/maint/xeno)
 "Sp" = (
 /obj/structure/catwalk,
 /obj/effect/floor_decal/rust,
@@ -4671,15 +4698,25 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/cave)
+"Sv" = (
+/obj/machinery/computer{
+	dir = 4
+	},
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/tiled/eris/dark/bluecorner,
+/area/tether_away/xenobio_station/hall1)
+"Sx" = (
+/obj/effect/floor_decal/rust,
+/obj/effect/decal/cleanable/generic,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/shuttle/plating,
+/area/tether_away/xenobio_station/maint/xeno)
 "Sy" = (
 /obj/structure/railing/grey,
 /obj/effect/floor_decal/rust,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/maint)
-"Sz" = (
-/turf/unsimulated/wall/planetary/normal,
-/area/tether_away/xenobio_station/cave)
 "SD" = (
 /obj/structure/window/plastitanium/full,
 /obj/effect/wingrille_spawn/reinforced_phoron,
@@ -4698,13 +4735,10 @@
 /turf/simulated/floor/tiled/eris/dark/violetcorener,
 /area/tether_away/xenobio_station/science)
 "SG" = (
-/obj/structure/catwalk,
-/obj/random/junk,
-/obj/random/junk,
-/obj/random/junk,
+/obj/item/weapon/material/shard,
 /obj/effect/floor_decal/rust,
-/turf/simulated/shuttle/plating,
-/area/tether_away/xenobio_station/maint/xeno)
+/turf/simulated/floor/tiled/eris/dark/bluecorner,
+/area/tether_away/xenobio_station/hall1)
 "SH" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
@@ -4741,13 +4775,6 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/shuttle/wall/voidcraft,
 /area/tether_away/xenobio_station/engine/smes)
-"ST" = (
-/obj/random/trash,
-/obj/random/junk,
-/obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/shuttle/plating,
-/area/tether_away/xenobio_station/maint/xeno)
 "SU" = (
 /obj/machinery/atmospherics/pipe/tank/air/full,
 /obj/effect/floor_decal/rust,
@@ -4792,11 +4819,6 @@
 /obj/item/weapon/material/knife/tacknife/boot,
 /turf/snow/snow2,
 /area/tether_away/xenobio_station/cages)
-"Tl" = (
-/obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/generic,
-/turf/simulated/floor/tiled/eris/dark/violetcorener,
-/area/tether_away/xenobio_station/breakroom2)
 "Ts" = (
 /obj/effect/decal/cleanable/blood/drip{
 	icon_state = "3"
@@ -4893,6 +4915,14 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/cages)
+"Uh" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/floor_decal/rust,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/shuttle/plating,
+/area/tether_away/xenobio_station/maint/xeno)
 "Uk" = (
 /obj/machinery/gateway{
 	dir = 4
@@ -4944,12 +4974,10 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark/violetcorener,
 /area/tether_away/xenobio_station/cages)
-"UM" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
+"UC" = (
+/obj/structure/catwalk,
+/obj/random/trash,
 /obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/dirt,
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/maint/xeno)
 "UU" = (
@@ -4958,6 +4986,10 @@
 /obj/effect/decal/cleanable/cobweb,
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/engine)
+"UV" = (
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/shuttle/plating,
+/area/tether_away/xenobio_station/cave)
 "UY" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 1
@@ -4966,17 +4998,17 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark/bluecorner,
 /area/tether_away/xenobio_station/hall1)
+"Va" = (
+/obj/effect/floor_decal/rust,
+/obj/effect/decal/cleanable/generic,
+/turf/simulated/shuttle/plating,
+/area/tether_away/xenobio_station/maint/xeno)
 "Vb" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
 /obj/effect/floor_decal/rust,
 /turf/simulated/shuttle/plating,
-/area/tether_away/xenobio_station/cages)
-"Vc" = (
-/obj/effect/floor_decal/rust,
-/obj/effect/floor_decal/rust,
-/turf/simulated/shuttle/wall/voidcraft/hard_corner,
 /area/tether_away/xenobio_station/cages)
 "Vd" = (
 /obj/effect/floor_decal/industrial/warning/dust{
@@ -4987,6 +5019,14 @@
 /obj/effect/decal/cleanable/cobweb,
 /turf/simulated/floor/tiled/eris/dark/bluecorner,
 /area/tether_away/xenobio_station/hall1)
+"Ve" = (
+/obj/effect/alien/egg,
+/obj/random/junk,
+/obj/effect/floor_decal/rust,
+/obj/effect/decal/cleanable/generic,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/shuttle/plating,
+/area/tether_away/xenobio_station/maint/xeno)
 "Vf" = (
 /obj/item/weapon/clipboard,
 /obj/effect/floor_decal/rust,
@@ -5028,6 +5068,11 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/maint/xeno)
+"Vz" = (
+/obj/structure/railing,
+/obj/effect/floor_decal/rust,
+/turf/simulated/shuttle/plating,
+/area/tether_away/xenobio_station/cave)
 "VG" = (
 /obj/machinery/computer,
 /obj/item/weapon/material/shard,
@@ -5060,14 +5105,14 @@
 	},
 /turf/simulated/shuttle/floor/alienplating,
 /area/tether_away/xenobio_station/cave/vault)
-"VQ" = (
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/tiled/eris/dark,
-/area/tether_away/xenobio_station/hall1)
 "VS" = (
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark,
 /area/tether_away/xenobio_station/breakroom)
+"VU" = (
+/obj/effect/floor_decal/industrial/warning/corner,
+/turf/simulated/shuttle/plating,
+/area/tether_away/xenobio_station/cave)
 "Wf" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -5121,11 +5166,6 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark/violetcorener,
 /area/tether_away/xenobio_station/cages)
-"Wt" = (
-/obj/effect/decal/cleanable/vomit,
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/tiled/eris/dark/danger,
-/area/tether_away/xenobio_station/engine)
 "WA" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -5173,6 +5213,11 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/maint/xeno)
+"WZ" = (
+/obj/effect/alien/egg,
+/obj/effect/floor_decal/rust,
+/turf/simulated/shuttle/plating,
+/area/tether_away/xenobio_station/maint/xeno)
 "Xb" = (
 /obj/machinery/alarm{
 	pixel_y = 28
@@ -5180,6 +5225,11 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark/violetcorener,
 /area/tether_away/xenobio_station/breakroom2)
+"Xg" = (
+/obj/random/trash,
+/obj/effect/floor_decal/rust,
+/turf/simulated/shuttle/plating,
+/area/tether_away/xenobio_station/maint/xeno)
 "Xl" = (
 /obj/structure/railing{
 	dir = 8
@@ -5260,14 +5310,6 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark/violetcorener,
 /area/tether_away/xenobio_station/cages)
-"XP" = (
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/vomit,
-/obj/effect/floor_decal/rust,
-/turf/simulated/shuttle/plating,
-/area/tether_away/xenobio_station/engine)
 "XQ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 10
@@ -5299,13 +5341,11 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/cages)
-"XX" = (
-/obj/structure/railing{
-	dir = 1
-	},
+"XW" = (
 /obj/effect/floor_decal/rust,
-/turf/simulated/shuttle/plating,
-/area/tether_away/xenobio_station/cave)
+/obj/effect/decal/cleanable/generic,
+/turf/simulated/floor/tiled/eris/dark/violetcorener,
+/area/tether_away/xenobio_station/science)
 "Yc" = (
 /obj/item/weapon/reagent_containers/syringe,
 /obj/effect/decal/cleanable/blood,
@@ -5358,14 +5398,6 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/tether_away/xenobio_station/breakroom2)
-"Ys" = (
-/obj/machinery/computer{
-	dir = 8
-	},
-/obj/item/weapon/material/shard,
-/obj/effect/floor_decal/rust,
-/turf/simulated/floor/tiled/eris/dark/bluecorner,
-/area/tether_away/xenobio_station/hall1)
 "Yu" = (
 /obj/machinery/power/terminal{
 	dir = 4
@@ -5374,6 +5406,11 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/tether_away/xenobio_station/engine/smes)
+"Yw" = (
+/obj/effect/floor_decal/rust,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/eris/dark/bluecorner,
+/area/tether_away/xenobio_station/hall1)
 "YC" = (
 /obj/machinery/door/airlock/voidcraft/vertical,
 /obj/effect/decal/cleanable/blood,
@@ -5411,6 +5448,21 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/shuttle/plating,
 /area/tether_away/xenobio_station/engine)
+"YW" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/tiled/eris/dark/violetcorener,
+/area/tether_away/xenobio_station/science)
 "YZ" = (
 /mob/living/simple_mob/animal/space/bear{
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate;
@@ -5466,14 +5518,6 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark,
 /area/tether_away/xenobio_station/hall2)
-"Zq" = (
-/obj/structure/catwalk,
-/obj/random/junk,
-/obj/random/junk,
-/obj/effect/floor_decal/rust,
-/obj/effect/decal/cleanable/generic,
-/turf/simulated/shuttle/plating,
-/area/tether_away/xenobio_station/maint/xeno)
 "Zr" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -5511,6 +5555,13 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/eris/dark,
 /area/tether_away/xenobio_station/breakroom)
+"ZI" = (
+/obj/structure/catwalk,
+/obj/random/junk,
+/obj/effect/floor_decal/rust,
+/obj/effect/decal/cleanable/generic,
+/turf/simulated/shuttle/plating,
+/area/tether_away/xenobio_station/maint/xeno)
 "ZJ" = (
 /turf/simulated/shuttle/floor/alienplating,
 /area/tether_away/xenobio_station/cave/vault)
@@ -10854,7 +10905,7 @@ ZT
 sN
 Ze
 Ze
-kd
+bl
 Ze
 Ze
 Ze
@@ -11542,7 +11593,7 @@ sN
 bx
 sN
 bx
-XX
+yj
 aA
 Hh
 aA
@@ -11550,7 +11601,7 @@ aA
 aA
 Hh
 aA
-qG
+Vz
 nY
 sN
 sN
@@ -11684,7 +11735,7 @@ sN
 bx
 sN
 bx
-XX
+yj
 aA
 UU
 YV
@@ -11692,7 +11743,7 @@ YV
 YV
 HD
 aA
-qG
+Vz
 nY
 bx
 sN
@@ -11826,7 +11877,7 @@ sN
 bx
 bx
 bx
-XX
+yj
 aA
 Wn
 Zf
@@ -11834,7 +11885,7 @@ ZD
 XJ
 ZV
 aA
-qG
+Vz
 nY
 sN
 sN
@@ -11968,7 +12019,7 @@ sN
 sN
 bx
 bx
-XX
+yj
 aA
 Wn
 eQ
@@ -11976,7 +12027,7 @@ yR
 VI
 ZV
 aA
-qG
+Vz
 nY
 bx
 bx
@@ -12110,7 +12161,7 @@ ZT
 sN
 bx
 bx
-XX
+yj
 aA
 Wn
 xf
@@ -12118,7 +12169,7 @@ ud
 kB
 ZV
 aA
-qG
+Vz
 nY
 bx
 bx
@@ -12252,15 +12303,15 @@ ZT
 sN
 bx
 bx
-XX
+yj
 aA
 XM
 nj
 nj
-XP
+nF
 oR
 aA
-qG
+Vz
 nY
 sN
 bx
@@ -12394,7 +12445,7 @@ ZT
 sN
 bx
 bx
-XX
+yj
 aA
 Nl
 Nl
@@ -12402,7 +12453,7 @@ Nl
 Nl
 OY
 aA
-qG
+Vz
 nY
 sN
 bx
@@ -12536,7 +12587,7 @@ sN
 sN
 bx
 bx
-XX
+yj
 aA
 XD
 XD
@@ -12544,7 +12595,7 @@ XD
 XD
 Ed
 aA
-qG
+Vz
 nY
 bx
 bx
@@ -12678,15 +12729,15 @@ sN
 bx
 bx
 bx
-XX
+yj
 aA
 SW
 HR
 IP
 uK
-Wt
+Qs
 aA
-qG
+Vz
 nY
 sN
 bx
@@ -12820,15 +12871,15 @@ bx
 bx
 sN
 bx
-XX
+yj
 aA
 MP
 OQ
 SH
 BB
-bV
+kQ
 aA
-qG
+Vz
 nY
 bx
 bx
@@ -12962,15 +13013,15 @@ sN
 sN
 sN
 bx
-XX
+yj
 aA
 Yd
-bV
+kQ
 NG
-bV
-Wt
+kQ
+Qs
 aA
-qG
+Vz
 nY
 bx
 sN
@@ -13104,15 +13155,15 @@ sN
 sN
 bx
 bx
-XX
+yj
 aA
 Er
-bV
-yp
-Qp
+kQ
+fO
+vY
 nT
 aA
-qG
+Vz
 nY
 bx
 bx
@@ -13246,7 +13297,7 @@ bx
 bx
 bx
 bx
-XX
+yj
 aA
 aA
 qA
@@ -13254,7 +13305,7 @@ bo
 qA
 aA
 aA
-qG
+Vz
 nY
 bx
 sN
@@ -13269,7 +13320,7 @@ sN
 ZT
 sN
 sN
-kd
+bl
 sN
 sN
 sN
@@ -13385,7 +13436,7 @@ bx
 sN
 bx
 qf
-ob
+Js
 Xl
 Xl
 Ty
@@ -13393,10 +13444,10 @@ aA
 YE
 MP
 NG
-bV
+kQ
 Ji
 aA
-qG
+Vz
 nY
 bx
 bx
@@ -13526,19 +13577,19 @@ bx
 sN
 sN
 bx
-XX
+yj
 Ey
 iz
 iz
-nu
+Qx
 aA
 Cn
 OQ
 ao
-th
+Du
 vw
 aA
-qG
+Vz
 nY
 sN
 bx
@@ -13551,7 +13602,7 @@ bx
 sN
 sN
 sN
-kd
+bl
 Ze
 Ze
 Ze
@@ -13668,7 +13719,7 @@ sN
 sN
 bx
 bx
-XX
+yj
 iz
 Hb
 Hb
@@ -13677,7 +13728,7 @@ aA
 vw
 vw
 NG
-bV
+kQ
 vf
 aA
 MU
@@ -13810,10 +13861,10 @@ sN
 bx
 bx
 bx
-XX
+yj
 iz
 Hb
-FY
+QD
 Hb
 aA
 aA
@@ -13822,7 +13873,7 @@ Co
 Hh
 aA
 aA
-qG
+Vz
 nY
 bx
 bx
@@ -13956,10 +14007,10 @@ Ty
 iz
 Hb
 Kb
-FY
+QD
 aA
 mO
-qY
+RA
 XR
 BB
 aA
@@ -14092,13 +14143,13 @@ sN
 bx
 sN
 bx
-XX
+yj
 oa
 oa
 oa
 GJ
 aM
-Kn
+nk
 aA
 aA
 aA
@@ -14106,7 +14157,7 @@ Co
 Hh
 aA
 Hw
-qG
+Vz
 nY
 bx
 bx
@@ -14123,7 +14174,7 @@ Ze
 Ze
 Ze
 Ze
-kd
+bl
 Ag
 ln
 Ze
@@ -14234,7 +14285,7 @@ bx
 bx
 sN
 bx
-XX
+yj
 oa
 SU
 Ro
@@ -14376,7 +14427,7 @@ bx
 sN
 sN
 bx
-XX
+yj
 oa
 SU
 mP
@@ -14390,7 +14441,7 @@ fx
 RR
 KY
 Hw
-qG
+Vz
 nY
 sN
 sN
@@ -14501,12 +14552,12 @@ GA
 JT
 Ba
 Ba
-LL
+Sv
 Ba
-LL
+Sv
 Ba
 Ba
-By
+mk
 vm
 sN
 bx
@@ -14518,10 +14569,10 @@ sN
 sN
 bx
 bx
-XX
+yj
 oa
 xq
-zR
+CN
 Ex
 pW
 En
@@ -14532,7 +14583,7 @@ tF
 CF
 aT
 Hw
-qG
+Vz
 nY
 sN
 sN
@@ -14645,10 +14696,10 @@ DW
 ni
 ni
 vg
-nl
+lW
 dO
 ni
-pl
+KF
 vm
 bx
 bx
@@ -14660,7 +14711,7 @@ bx
 bx
 bx
 bx
-XX
+yj
 oa
 RV
 xq
@@ -14674,7 +14725,7 @@ xZ
 RR
 Yu
 Hw
-qG
+Vz
 nY
 bx
 bx
@@ -14782,15 +14833,15 @@ ZT
 ZT
 sN
 GA
-Dx
+hR
 dO
 LE
-pl
-pl
-pl
-pl
-Ma
-pl
+KF
+KF
+KF
+KF
+Yw
+KF
 vm
 bx
 bx
@@ -14822,7 +14873,7 @@ Xl
 Xl
 Xl
 Xl
-oA
+Ht
 jm
 an
 Bb
@@ -14929,16 +14980,16 @@ al
 al
 ye
 Am
-IU
-pl
-pl
+SG
+KF
+KF
 LE
 vm
 bx
 bx
 bx
 bx
-XX
+yj
 qy
 qy
 qy
@@ -14964,7 +15015,7 @@ Ij
 Ij
 Ij
 Ij
-qG
+Vz
 nY
 bx
 bx
@@ -15071,10 +15122,10 @@ GA
 GA
 GA
 bS
-pl
-pl
-pl
-pl
+KF
+KF
+KF
+KF
 vm
 Xl
 Xl
@@ -15102,7 +15153,7 @@ TI
 zC
 Go
 zk
-OS
+FG
 pu
 ua
 Ij
@@ -15213,9 +15264,9 @@ VO
 CI
 Gh
 UY
-EC
-pl
-pl
+Li
+KF
+KF
 WB
 sL
 xe
@@ -15227,8 +15278,8 @@ qy
 EF
 Zr
 XK
-VQ
-VQ
+eO
+eO
 Bd
 sm
 Ud
@@ -15248,7 +15299,7 @@ SE
 iV
 Uc
 Ij
-qG
+Vz
 nY
 sN
 bx
@@ -15351,22 +15402,22 @@ ZT
 sN
 GA
 gj
-CM
-iv
+ew
+It
 Ig
-ON
-pl
-Ma
-wW
-pl
+aL
+KF
+Yw
+aY
+KF
 Hp
 EZ
 EZ
-yl
+PT
 EZ
 EZ
 qg
-VQ
+eO
 gv
 Zj
 qz
@@ -15387,10 +15438,10 @@ fB
 Si
 Fa
 Pf
-qe
+XW
 lG
 Ij
-qG
+Vz
 nY
 sN
 bx
@@ -15496,10 +15547,10 @@ gf
 VO
 CI
 Lu
-DV
-pl
-EC
-pl
+Bn
+KF
+Li
+KF
 WB
 sL
 xe
@@ -15511,8 +15562,8 @@ qy
 MQ
 cH
 Av
-VQ
-VQ
+eO
+eO
 qy
 vC
 EV
@@ -15532,7 +15583,7 @@ eP
 iV
 Vu
 Ij
-qG
+Vz
 nY
 bx
 bx
@@ -15638,11 +15689,11 @@ GA
 GA
 GA
 xE
-DV
-aN
-pl
-pl
-pl
+Bn
+lB
+KF
+KF
+KF
 vm
 Oo
 Oo
@@ -15670,7 +15721,7 @@ Xy
 zC
 vs
 iV
-tB
+YW
 iV
 JC
 Ij
@@ -15781,16 +15832,16 @@ hB
 hB
 vp
 dW
-pl
-pl
-pM
-pl
+KF
+KF
+LQ
+KF
 vm
 bx
 sN
 sN
 bx
-XX
+yj
 qy
 qy
 qy
@@ -15816,11 +15867,11 @@ yc
 OM
 Ij
 Ij
-qG
+Vz
 nY
 bx
 bx
-XX
+yj
 iW
 KJ
 KJ
@@ -15829,36 +15880,36 @@ KJ
 KJ
 iW
 Ty
-uv
-uv
-uv
-uv
-uv
-uv
-uv
-uv
-uv
-uv
-uv
-uv
-uv
-uv
-uv
-uv
-uv
-uv
-uv
-uv
-uv
-uv
-uv
-uv
-uv
-uv
-uv
-uv
-uv
-qG
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+Vz
 nY
 bx
 bx
@@ -15918,15 +15969,15 @@ ZT
 ZT
 sN
 GA
-Dx
+hR
 dO
-pl
+KF
 dO
-pl
-Ma
-pl
-pl
-pl
+KF
+Yw
+KF
+KF
+KF
 vm
 bx
 bx
@@ -15962,7 +16013,7 @@ JU
 nY
 bx
 bx
-XX
+yj
 KJ
 kF
 LK
@@ -15971,36 +16022,36 @@ KV
 Tz
 iW
 Ty
-uv
+we
 JS
 XT
-Bi
+GF
 SD
 Kp
 Kp
 Hd
 Kp
 DH
-uv
+we
 nS
 eL
 gQ
 eL
 Kc
-uv
+we
 Qh
 NW
 Bk
 fg
 Xw
-uv
+we
 GN
 GN
 bD
 GN
 sw
-uv
-qG
+we
+Vz
 nY
 sN
 bx
@@ -16063,19 +16114,19 @@ GA
 VG
 vg
 dO
-pl
+KF
 vg
 vg
 vg
 vg
-pl
+KF
 vm
 bx
 bx
 bx
 bx
 bx
-XX
+yj
 co
 sP
 ul
@@ -16098,13 +16149,13 @@ co
 pf
 Kf
 Kv
-qG
+Vz
 nY
 bx
 bx
 Rn
 bx
-XX
+yj
 KJ
 aa
 kc
@@ -16113,7 +16164,7 @@ KV
 aa
 iW
 eG
-uv
+we
 oY
 HM
 Uf
@@ -16123,26 +16174,26 @@ DH
 Kp
 Kp
 Kp
-uv
+we
 eL
 EU
 gP
 gB
 EU
-uv
+we
 dL
 wR
 xF
 Xw
 Xw
-uv
+we
 ez
 II
 eE
 GN
 GN
-uv
-qG
+we
+Vz
 nY
 bx
 bx
@@ -16209,15 +16260,15 @@ MW
 MW
 MW
 MW
-Ys
-By
+wz
+mk
 vm
 bx
 bx
 bx
 sN
 bx
-XX
+yj
 co
 co
 co
@@ -16240,13 +16291,13 @@ xN
 Ij
 pg
 Kv
-qG
+Vz
 nY
 sN
 sN
 sN
 bx
-XX
+yj
 KJ
 aa
 kc
@@ -16255,7 +16306,7 @@ KV
 aa
 iW
 Ty
-uv
+we
 JS
 lb
 Vb
@@ -16265,32 +16316,32 @@ OH
 fy
 DH
 DH
-uv
+we
 eL
 AT
 EU
 EU
 eL
-uv
+we
 wM
 zz
 uX
 Xw
 Xw
-uv
+we
 GN
 II
 II
 mM
 GN
-uv
-qG
+we
+Vz
 nY
 bx
 bx
 bx
-bx
-bx
+ig
+ig
 sN
 bx
 sN
@@ -16382,13 +16433,13 @@ xN
 Ij
 Pd
 Kv
-qG
+Vz
 nY
 bx
 bx
 sN
 bx
-XX
+yj
 KJ
 aa
 aa
@@ -16399,7 +16450,7 @@ iW
 lw
 iW
 iW
-uv
+we
 ec
 ec
 OH
@@ -16407,34 +16458,34 @@ OH
 DH
 DH
 OH
-uv
+we
 eL
 EU
 wi
 EU
 EU
-uv
+we
 dA
 ib
 no
 Xw
 Xw
-uv
+we
 cL
 II
 JV
 II
 eE
-uv
-qG
+we
+Vz
 kL
 bx
+wn
 bx
 bx
-bx
-bx
-sN
-bx
+VU
+Cy
+pk
 sN
 bx
 sN
@@ -16503,7 +16554,7 @@ bx
 bx
 bx
 bx
-Km
+JZ
 co
 Bl
 Ox
@@ -16530,7 +16581,7 @@ PW
 nY
 sN
 bx
-XX
+yj
 KJ
 WH
 jD
@@ -16541,7 +16592,7 @@ iW
 RI
 DP
 ps
-uv
+we
 Vb
 ec
 OH
@@ -16549,34 +16600,34 @@ OH
 OH
 mG
 Mz
-uv
+we
 gP
 EU
 EU
 dj
 uH
-uv
+we
 Ls
 Xw
 DY
 CS
 uH
-uv
+we
 II
 xB
 II
 jj
 uH
-uv
-qG
+we
+Vz
 kL
 bx
 bx
 bx
 bx
-bx
-bx
-bx
+UV
+NO
+bG
 sN
 bx
 sN
@@ -16645,7 +16696,7 @@ bx
 bx
 bx
 bx
-XX
+yj
 co
 Sy
 Pt
@@ -16668,11 +16719,11 @@ YC
 hC
 Ij
 Ij
-qG
+Vz
 nY
 bx
 bx
-XX
+yj
 iW
 Rz
 jD
@@ -16683,7 +16734,7 @@ BW
 vc
 vc
 Yr
-uv
+we
 Vb
 XQ
 uD
@@ -16691,36 +16742,34 @@ uD
 Rf
 cv
 Tx
-sz
+Ie
 SD
 SD
 SD
 SD
-wP
-sz
+Ol
+Ie
 SD
 SD
 SD
 SD
 Tx
-sz
+Ie
 SD
 SD
 SD
 SD
-wP
-uv
-qG
+Ol
+we
+Vz
 nY
 bx
 bx
 bx
 sN
-bx
+hA
 sN
-sN
-sN
-bx
+DX
 sN
 bx
 sN
@@ -16730,9 +16779,11 @@ bx
 sN
 bx
 sN
+bx
 sN
 sN
-Sz
+sN
+AE
 ZT
 ZT
 ZT
@@ -16787,7 +16838,7 @@ bx
 bx
 bx
 bx
-XX
+yj
 co
 Cp
 QK
@@ -16805,7 +16856,7 @@ Ru
 aB
 Ij
 lE
-wq
+CD
 GO
 qO
 tR
@@ -16825,9 +16876,9 @@ iW
 NI
 Jy
 mi
-uv
+we
 DA
-uv
+we
 PU
 aF
 yg
@@ -16852,14 +16903,14 @@ Qo
 Wp
 In
 IM
-qG
+Vz
 nY
 bx
 bx
 bx
 sN
 bx
-bx
+sN
 sN
 sN
 bx
@@ -16874,7 +16925,7 @@ bx
 bx
 Ze
 Ze
-Sz
+AE
 ZT
 ZT
 ZT
@@ -16934,7 +16985,7 @@ Ty
 co
 sP
 Uu
-tq
+Kq
 Uu
 tr
 co
@@ -16946,7 +16997,7 @@ co
 Az
 Az
 Ij
-wq
+CD
 iS
 Yc
 Ts
@@ -16961,20 +17012,20 @@ qD
 aa
 aa
 cg
-Tl
+hl
 aa
 Qd
 iW
 iW
 iW
-uv
-uv
-sz
+we
+we
+Ie
 PO
 In
 XN
 bp
-vP
+wI
 In
 In
 In
@@ -16982,8 +17033,8 @@ TP
 In
 In
 In
-vP
-vP
+wI
+wI
 TP
 In
 In
@@ -16994,7 +17045,7 @@ TP
 In
 In
 IM
-qG
+Vz
 nY
 bx
 bx
@@ -17016,7 +17067,7 @@ sN
 Ze
 Ze
 Ze
-Sz
+AE
 ZT
 ZT
 ZT
@@ -17072,7 +17123,7 @@ bx
 bx
 bx
 bx
-XX
+yj
 co
 co
 co
@@ -17088,7 +17139,7 @@ co
 Ty
 Ty
 Ij
-wq
+CD
 qT
 gn
 St
@@ -17123,7 +17174,7 @@ ay
 XB
 ay
 ay
-nv
+pC
 ay
 ay
 XB
@@ -17136,7 +17187,7 @@ cx
 In
 In
 tM
-qG
+Vz
 nY
 bx
 bx
@@ -17157,8 +17208,8 @@ ZT
 sN
 Ze
 Ze
-qU
-Sz
+zp
+AE
 ZT
 ZT
 ZT
@@ -17230,55 +17281,55 @@ Oo
 Oo
 Ty
 Ij
-wq
-wq
+CD
+CD
 jP
-wq
-wq
+CD
+CD
 pf
-JR
+bU
 vL
 uS
 vL
-JR
+bU
 qD
 Xb
 aa
 oN
 aa
-CL
+qP
 Qd
 mf
 mf
 mf
 mf
 mf
-sz
+Ie
 QJ
 Vf
 bi
 UA
 In
 In
-vP
+wI
 In
 HP
 In
-vP
-vP
+wI
+wI
 In
 In
 HP
 eY
 In
-vP
+wI
 In
 eY
 HP
 RK
 In
 IM
-qG
+Vz
 nY
 bx
 bx
@@ -17296,11 +17347,11 @@ ZT
 ZT
 ZT
 ZT
-Sz
-Sz
-Sz
-Sz
-Sz
+AE
+AE
+AE
+AE
+AE
 ZT
 ZT
 ZT
@@ -17370,18 +17421,18 @@ bx
 bx
 bx
 bx
-XX
+yj
 Ij
 mp
-wq
+CD
 qO
 qO
 qO
 Ij
 Ty
-JR
+bU
 uf
-JR
+bU
 Su
 iW
 lj
@@ -17395,7 +17446,7 @@ Oo
 Oo
 Oo
 Ty
-uv
+we
 Vt
 sn
 zq
@@ -17420,7 +17471,7 @@ eW
 Wp
 In
 IM
-qG
+Vz
 nY
 bx
 bx
@@ -17512,7 +17563,7 @@ bx
 bx
 bx
 bx
-XX
+yj
 Ij
 Kv
 Kv
@@ -17521,9 +17572,9 @@ Kv
 Kv
 Ij
 Ty
-JR
+bU
 Nc
-JR
+bU
 Ty
 Qd
 KJ
@@ -17532,18 +17583,18 @@ KJ
 KJ
 KJ
 iW
-qG
+Vz
 nY
 bx
 bx
-XX
-uv
+yj
+we
 SD
 SD
 qI
 SD
 Tx
-Vc
+ur
 SD
 SD
 SD
@@ -17561,8 +17612,8 @@ SD
 SD
 SD
 QR
-uv
-qG
+we
+Vz
 nY
 bx
 bx
@@ -17654,7 +17705,7 @@ sN
 bx
 bx
 bx
-XX
+yj
 Oo
 Oo
 Oo
@@ -17663,9 +17714,9 @@ Oo
 Oo
 Oo
 Ty
-JR
+bU
 uf
-JR
+bU
 Ty
 Oo
 Oo
@@ -17678,33 +17729,33 @@ JU
 nY
 bx
 bx
-XX
-uv
+yj
+we
 Kg
 Kg
 XS
 YI
 JA
-uv
+we
 II
 II
 II
 jj
-Ny
+gI
 px
 II
 II
 jJ
 jj
-Ny
+gI
 px
 RH
 bX
 bX
 BS
 yE
-uv
-qG
+we
+Vz
 nY
 bx
 sN
@@ -17806,7 +17857,7 @@ bx
 bx
 IV
 qo
-gh
+mR
 qo
 dc
 nY
@@ -17820,14 +17871,14 @@ bx
 bx
 bx
 bx
-XX
-uv
+yj
+we
 Kg
 Kg
 Kg
 Kg
 Kg
-uv
+we
 II
 GX
 Vj
@@ -17845,8 +17896,8 @@ rw
 bX
 bX
 bX
-uv
-qG
+we
+Vz
 nY
 bx
 bx
@@ -17938,7 +17989,7 @@ sN
 bx
 bx
 bx
-XX
+yj
 Xl
 Xl
 Xl
@@ -17947,9 +17998,9 @@ Xl
 Xl
 Xl
 Ty
-JR
+bU
 pj
-JR
+bU
 Ty
 Xl
 Xl
@@ -17962,14 +18013,14 @@ PW
 nY
 bx
 bx
-XX
-uv
+yj
+we
 MN
 Kg
 Kg
 Kg
 Kg
-uv
+we
 II
 II
 II
@@ -17987,8 +18038,8 @@ bX
 YZ
 bX
 bX
-uv
-qG
+we
+Vz
 nY
 sN
 sN
@@ -18080,38 +18131,38 @@ sN
 bx
 bx
 bx
-XX
-JR
-JR
-JR
-JR
-JR
-JR
-JR
-JR
-JR
+yj
+bU
+bU
+bU
+bU
+bU
+bU
+bU
+bU
+bU
 pt
-JR
-JR
-JR
-JR
-JR
-JR
-JR
-JR
-JR
-qG
+bU
+bU
+bU
+bU
+bU
+bU
+bU
+bU
+bU
+Vz
 nY
 bx
 bx
-XX
-uv
+yj
+we
 Kg
 Kg
 Kg
 Kg
 Kg
-uv
+we
 uQ
 II
 GX
@@ -18129,8 +18180,8 @@ sD
 bX
 bX
 Ip
-uv
-qG
+we
+Vz
 nY
 bx
 bx
@@ -18222,38 +18273,38 @@ sN
 sN
 bx
 bx
-XX
-JR
+yj
+bU
 yf
 Pw
 Pw
 rS
 nQ
-JR
-AH
+bU
+Sx
 Pw
 Nc
-mh
+Ja
 jx
-JR
-mh
+bU
+Ja
 Pw
 zZ
-KP
-jI
-JR
-qG
+uu
+zi
+bU
+Vz
 nY
 bx
 bx
-XX
-uv
+yj
+we
 xu
 Kg
 gY
 Kg
 MN
-uv
+we
 Zh
 II
 vj
@@ -18271,8 +18322,8 @@ bX
 Qm
 Tk
 bX
-uv
-qG
+we
+Vz
 nY
 bx
 bx
@@ -18364,57 +18415,57 @@ sN
 bx
 bx
 bx
-XX
-JR
+yj
+bU
 Pw
-rk
-rk
-mh
-bj
-JR
+sz
+sz
+Ja
+Mi
+bU
 cX
-ST
+HV
 uf
-ST
-mh
-JR
+HV
+Ja
+bU
 cX
 yf
 Pw
-ST
+HV
 Pw
-JR
-qG
+bU
+Vz
 nY
 bx
 bx
-XX
-uv
-uv
-uv
-uv
-uv
-uv
-uv
-uv
-uv
-uv
-uv
-uv
-uv
-uv
-uv
-uv
-uv
-uv
-uv
-uv
-uv
-uv
-uv
-uv
-uv
-qG
+yj
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+we
+Vz
 nY
 bx
 bx
@@ -18506,31 +18557,31 @@ bx
 bx
 bx
 bx
-XX
-JR
+yj
+bU
 bT
 iD
 yb
 uf
-ft
-oi
-tH
+sB
+gZ
+po
 uf
 Hg
 uf
-tH
+po
 Up
 uf
-tH
+po
 yb
-mh
+Ja
 KK
-JR
-qG
+bU
+Vz
 nY
 bx
 bx
-XX
+yj
 Oo
 Oo
 Oo
@@ -18648,27 +18699,27 @@ bx
 bx
 bx
 bx
-XX
-JR
+yj
+bU
 Pw
-AH
+Sx
 uf
 iD
-ki
-JR
-bj
-AH
-tH
-mh
-mh
-JR
+Ve
+bU
+Mi
+Sx
+po
+Ja
+Ja
+bU
 bT
-AH
+Sx
 ff
-ST
+HV
 Pw
-JR
-qG
+bU
+Vz
 nY
 bx
 bx
@@ -18790,27 +18841,27 @@ bx
 bx
 bx
 bx
-XX
-JR
+yj
+bU
 lO
 yf
 uf
-rk
+sz
 Pw
-JR
+bU
 se
-bj
+Mi
 uf
-mh
-ST
-JR
-UM
-mh
-tH
+Ja
+HV
+bU
+Uh
+Ja
+po
 Pw
 Pw
-JR
-qG
+bU
+Vz
 nY
 bx
 bx
@@ -18932,27 +18983,27 @@ bx
 bx
 bx
 bx
-XX
-JR
-JR
-JR
+yj
+bU
+bU
+bU
 tk
-JR
-JR
-JR
-JR
-JR
+bU
+bU
+bU
+bU
+bU
 bN
-JR
-JR
-JR
-JR
-JR
-km
-JR
-JR
-JR
-qG
+bU
+bU
+bU
+bU
+bU
+iq
+bU
+bU
+bU
+Vz
 nY
 bx
 bx
@@ -19074,27 +19125,27 @@ bx
 bx
 bx
 bx
-XX
-JR
-on
+yj
+bU
+ge
 PM
-ys
-iX
+kU
+WZ
 hJ
-JR
-iX
+bU
+WZ
 zU
 Vv
 FK
-iX
-JR
+WZ
+bU
 Lm
-sf
-Zq
-iX
+kX
+wD
+WZ
 Cz
-JR
-qG
+bU
+Vz
 nY
 bx
 bx
@@ -19216,27 +19267,27 @@ bx
 bx
 bx
 bx
-XX
-JR
-iX
-Sn
-ys
+yj
+bU
+WZ
+re
+kU
 PM
-iX
-JR
+WZ
+bU
 Sf
 Yg
-nJ
+UC
 oO
-lk
-JR
+zH
+bU
 MX
-Mj
+Mf
 BU
-fm
-iX
-JR
-qG
+gk
+WZ
+bU
+Vz
 nY
 bx
 bx
@@ -19358,27 +19409,27 @@ bx
 bx
 bx
 bx
-XX
-JR
-iX
+yj
+bU
+WZ
 PM
 vU
 PM
 PM
 mz
-ys
-ys
+kU
+kU
 iu
-tu
-FD
+xO
+ZI
 mz
 MS
 BU
 OA
-Mf
-fm
-JR
-qG
+Va
+gk
+bU
+Vz
 nY
 bx
 bx
@@ -19500,26 +19551,26 @@ bx
 bx
 bx
 bx
-XX
-JR
-iX
+yj
+bU
+WZ
 PM
 MS
 PM
 EM
-JR
+bU
 EI
-nk
-tu
+un
+xO
 xi
 qk
-JR
+bU
 Sf
 iJ
 FV
-xQ
-yv
-JR
+Xg
+Qy
+bU
 pv
 nY
 bx
@@ -19642,27 +19693,27 @@ Ze
 bx
 bx
 bx
-XX
-JR
+yj
+bU
 FZ
-on
-ys
+ge
+kU
 PM
-iX
-JR
-iX
+WZ
+bU
+WZ
 Sf
-ys
+kU
 EI
-iX
-JR
+WZ
+bU
 pi
 WQ
-SG
+mI
 Kh
-fm
-JR
-qG
+gk
+bU
+Vz
 sN
 bx
 AD
@@ -19784,26 +19835,26 @@ Ze
 wx
 bx
 bx
-XX
-JR
-JR
-JR
+yj
+bU
+bU
+bU
 tk
-JR
-JR
-JR
-JR
-JR
+bU
+bU
+bU
+bU
+bU
 mz
-ko
-JR
-JR
-JR
-JR
+DL
+bU
+bU
+bU
+bU
 CV
-JR
-JR
-JR
+bU
+bU
+bU
 sN
 sN
 sN
@@ -19927,19 +19978,19 @@ bx
 wx
 bx
 WN
-JR
+bU
 TW
-on
-ys
+ge
+kU
 PM
 Cz
-JR
+bU
 PM
 PM
-ys
+kU
 Lm
 QV
-JR
+bU
 CV
 CV
 CV
@@ -20068,20 +20119,20 @@ Ze
 bx
 bx
 bx
-XX
-JR
+yj
+bU
 Lm
 FM
 FV
 PM
 AY
-JR
+bU
 Lm
 TW
-ys
-iX
+kU
+WZ
 PM
-JR
+bU
 CV
 CV
 CV
@@ -20210,22 +20261,22 @@ bx
 bx
 bx
 bx
-XX
-JR
+yj
+bU
 PM
-Mf
-QD
-ys
-ys
+Va
+bH
+kU
+kU
 tk
-ys
-ys
-QD
-ys
+kU
+kU
+bH
+kU
 FV
 tk
-ys
-tu
+kU
+xO
 xH
 CV
 CV
@@ -20352,20 +20403,20 @@ bx
 bx
 bx
 bx
-XX
-JR
-Mf
+yj
+bU
+Va
 Lm
 Lm
 TW
 Lm
-JR
+bU
 PM
 PM
 PM
 Fb
-Mf
-ko
+Va
+DL
 vn
 PM
 CV
@@ -20494,20 +20545,20 @@ bx
 bx
 bx
 bx
-XX
-JR
+yj
+bU
 FZ
-on
+ge
 PM
 AY
 Lm
-JR
+bU
 FZ
 Nw
 TW
 PM
 Aw
-JR
+bU
 Ue
 CV
 CV
@@ -20636,21 +20687,21 @@ bx
 bx
 bx
 bx
-XX
-JR
-JR
-JR
-JR
-JR
-JR
-JR
-JR
-JR
-JR
-JR
-JR
-JR
-JR
+yj
+bU
+bU
+bU
+bU
+bU
+bU
+bU
+bU
+bU
+bU
+bU
+bU
+bU
+bU
 NC
 NC
 NC
