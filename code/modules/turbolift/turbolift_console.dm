@@ -130,10 +130,10 @@
 			return
 		lift.update_fire_mode(!lift.fire_mode)
 		if(lift.fire_mode)
-			audible_message("<span class='danger'>Firefighter Mode Activated.  Door safeties disabled.  Manual control engaged.</span>", runemessage = "* SCREECH *")
+			audible_message("<span class='danger'>Firefighter Mode Activated.  Door safeties disabled.  Manual control engaged.</span>", runemessage = "SCREECH")
 			playsound(src, 'sound/machines/airalarm.ogg', 25, 0, 4, volume_channel = VOLUME_CHANNEL_ALARMS)
 		else
-			audible_message("<span class='warning'>Firefighter Mode Deactivated. Door safeties enabled.  Automatic control engaged.</span>", runemessage = "* ding *")
+			audible_message("<span class='warning'>Firefighter Mode Deactivated. Door safeties enabled.  Automatic control engaged.</span>", runemessage = "ding")
 		return
 	. = ..()
 
