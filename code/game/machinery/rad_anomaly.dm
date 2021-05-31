@@ -90,3 +90,14 @@
 			user.show_message(text("<span class='warning'>[src] can now be moved.</span>"))
 		else if(anchored)
 			user.show_message(text("<span class='warning'>[src] is now secured.</span>"))
+
+/datum/category_item/catalogue/rad_anomaly
+	name = "Radiation Anomaly"
+	desc = "This object contains an anomalously dense amount of organic matter \
+	and causes a lifesign detector failure when scanned. It is made of a hard metal \
+	and appears to contain a supermatter shard that extends and retracts out of the top. \
+	There is a small blinking red button on the front, with a standard multi-tool outlet \
+	below it. Increasing it's power level seems to cause it to emit radiation on par with\
+	a singularity despite having no other adverse effects. It's construction is not \
+	congruent with any other known anomaly or precursor architechture."
+	value = CATALOGUER_REWARD_EASY
