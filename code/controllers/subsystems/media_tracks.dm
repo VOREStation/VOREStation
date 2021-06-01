@@ -59,9 +59,97 @@ SUBSYSTEM_DEF(media_tracks)
 	sortTim(all_tracks, /proc/cmp_media_track_asc)
 	
 	jukebox_tracks.Cut()
+	lobby_tracks.Cut()
 	
 	for(var/datum/track/T in all_tracks)
 		if(!T.secret)
 			jukebox_tracks += T
 		if(T.lobby)
 			lobby_tracks += T
+
+/datum/controller/subsystem/media_tracks/proc/manual_track_add()
+	var/client/C = usr.client
+	if(!check_rights(R_DEBUG|R_FUN))
+		return
+	
+	// Required
+	var/url = input(C, "REQUIRED: Provide URL for track", "Track URL") as text|null
+	if(!url)
+		return
+	
+	var/title = input(C, "REQUIRED: Provide title for track", "Track Title") as text|null
+	if(!title)
+		return
+	
+	var/duration = input(C, "REQUIRED: Provide duration for track (in deciseconds, aka seconds*10)", "Track Duration") as num|null
+	if(!duration)
+		return
+
+	// Optional
+	var/artist = input(C, "Optional: Provide artist for track", "Track Artist") as text|null
+	if(isnull(artist)) // Cancel rather than empty string
+		return
+	
+	var/genre = input(C, "Optional: Provide genre for track (try to match an existing one)", "Track Genre") as text|null
+	if(isnull(genre)) // Cancel rather than empty string
+		return
+	
+	var/secret = alert(C, "Optional: Mark track as secret?", "Track Secret", "Yes", "Cancel", "No")
+	if(secret == "Cancel")
+		return
+	else if(secret == "Yes")
+		secret = TRUE
+	else
+		secret = FALSE
+	
+	var/lobby = alert(C, "Optional: Mark track as lobby music?", "Track Lobby", "Yes", "Cancel", "No")
+	if(lobby == "Cancel")
+		return
+	else if(secret == "Yes")
+		secret = TRUE
+	else
+		secret = FALSE
+
+	var/datum/track/T = new(url, title, duration, artist, genre)
+			
+	T.secret = secret
+	T.lobby = lobby
+	
+	all_tracks += T
+	
+	report_progress("New media track added by [C]: [title]")
+	sort_tracks()
+
+/datum/controller/subsystem/media_tracks/proc/manual_track_remove()
+	var/client/C = usr.client
+	if(!check_rights(R_DEBUG|R_FUN))
+		return
+
+	var/track = input(C, "Input track title or URL to remove (must be exact)", "Remove Track") as text|null
+	if(!track)
+		return
+	
+	for(var/datum/track/T in all_tracks)
+		if(T.title == track || T.url == track)
+			all_tracks -= T
+			qdel(T)
+			report_progress("Media track removed by [C]: [track]")
+			sort_tracks()
+			return
+	
+	to_chat(C, "<span class='warning>Couldn't find a track matching the specified parameters.</span>")
+
+/datum/controller/subsystem/media_tracks/vv_get_dropdown()
+	. = ..()
+	VV_DROPDOWN_OPTION("", "---")
+	VV_DROPDOWN_OPTION("add_track", "Add New Track")
+	VV_DROPDOWN_OPTION("remove_track", "Remove Track")
+
+/datum/controller/subsystem/media_tracks/vv_do_topic(list/href_list)
+	. = ..()
+	IF_VV_OPTION("add_track")
+		manual_track_add()
+		href_list["datumrefresh"] = "\ref[src]"
+	IF_VV_OPTION("remove_track")
+		manual_track_remove()
+		href_list["datumrefresh"] = "\ref[src]"
