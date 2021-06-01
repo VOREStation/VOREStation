@@ -165,6 +165,7 @@
 	cost=25
 	containertype = /obj/structure/closet/crate/secure/xion
 	containername = "Explorer equipment"
+	access = access_explorer
 
 /datum/supply_pack/pilotgear
 	name= "Pilot gear"
@@ -178,4 +179,5 @@
 	cost=20
 	containertype = /obj/structure/closet/crate/secure/xion
 	containername = "Pilot equipment"
+	access = access_pilot
 
