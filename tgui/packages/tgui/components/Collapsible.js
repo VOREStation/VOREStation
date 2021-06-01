@@ -17,6 +17,7 @@ export class Collapsible extends Component {
     const {
       children,
       color = 'default',
+      child_mt = 1,
       title,
       buttons,
       ...rest
@@ -41,7 +42,7 @@ export class Collapsible extends Component {
           )}
         </div>
         {open && (
-          <Box mt={1}>
+          <Box mt={child_mt}>
             {children}
           </Box>
         )}

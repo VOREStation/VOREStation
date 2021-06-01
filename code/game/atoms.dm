@@ -669,3 +669,6 @@
 
 /atom/proc/get_visible_gender()
 	return gender
+
+/atom/proc/interact(mob/user)
+	return

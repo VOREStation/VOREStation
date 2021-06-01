@@ -16,9 +16,6 @@
 
 	clicksound = "keyboard"
 
-/obj/machinery/computer/New()
-	..()
-
 /obj/machinery/computer/Initialize()
 	. = ..()
 	power_change()

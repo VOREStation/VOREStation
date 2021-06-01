@@ -579,3 +579,10 @@ LOADOUT_WHITELIST 1
 
 # Allowed time from death to defib in minutes
 DEFIB_TIMER 60
+
+# Jukebox track files to load, JSON format. Keys include: 
+# REQUIRED: url (str), title (str), duration (num, in DS)
+# SUGGESTED: artist (str), genre (str)
+# OPTIONAL: secret (bool), lobby (bool)
+#JUKEBOX_TRACK_FILES config/jukebox.json;config/jukebox_private.json
+JUKEBOX_TRACK_FILES config/jukebox.json

@@ -20552,10 +20552,10 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
 "aHz" = (
-/obj/structure/device/piano,
 /obj/effect/floor_decal/spline/plain{
 	dir = 1
 	},
+/obj/structure/musician/piano,
 /turf/simulated/floor/lino,
 /area/tether/surfacebase/entertainment/stage)
 "aHA" = (
@@ -32326,10 +32326,12 @@
 	dir = 4
 	},
 /obj/structure/table/rack/steel,
-/obj/item/device/instrument/violin,
 /obj/effect/floor_decal/spline/plain{
 	dir = 1
 	},
+/obj/item/instrument/violin,
+/obj/item/instrument/piano_synth,
+/obj/item/instrument/recorder,
 /turf/simulated/floor/lino,
 /area/tether/surfacebase/entertainment/stage)
 "bcW" = (

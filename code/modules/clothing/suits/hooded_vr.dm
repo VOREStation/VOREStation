@@ -23,19 +23,19 @@
 	armor = list(melee = 80, bullet = 50, laser = 10, energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 2
 	action_button_name = "Toggle Knight Headgear"
-	
+
 /obj/item/clothing/suit/storage/hooded/knight/galahad
 	name = "crusader's armor"
 	desc = "ye olde knight, risen again."
 	icon_state = "galahad"
 	hoodtype = /obj/item/clothing/head/hood/galahad
-	
+
 /obj/item/clothing/suit/storage/hooded/knight/lancelot
 	name = "crusader's armor"
 	desc = "ye olde knight, risen again."
 	icon_state = "lancelot"
 	hoodtype = /obj/item/clothing/head/hood/lancelot
-	
+
 /obj/item/clothing/suit/storage/hooded/knight/robin
 	name = "crusader's armor"
 	desc = "ye olde knight, risen again. This one seems slightly faster than the rest, but weaker."
@@ -54,15 +54,15 @@
 	icon_override = 'icons/obj/clothing/knights_vr.dmi'
 	hoodtype = /obj/item/clothing/head/hood/galahad_costume
 	action_button_name = "Toggle Knight Headgear"
-	
+
 /obj/item/clothing/suit/storage/hooded/knight_costume/galahad
 	icon_state = "galahad"
 	hoodtype = /obj/item/clothing/head/hood/galahad_costume
-	
+
 /obj/item/clothing/suit/storage/hooded/knight_costume/lancelot
 	icon_state = "lancelot"
 	hoodtype = /obj/item/clothing/head/hood/lancelot_costume
-	
+
 /obj/item/clothing/suit/storage/hooded/knight_costume/robin
 	name = "crusader's armor"
 	desc = "ye olde knight, risen again. This one seems slightly faster than the rest, but weaker."

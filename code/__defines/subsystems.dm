@@ -54,9 +54,12 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 // The numbers just define the ordering, they are meaningless otherwise.
 #define INIT_ORDER_WEBHOOKS		50
 #define INIT_ORDER_SQLITE		40
+#define INIT_ORDER_MEDIA_TRACKS	38 // Gotta get that lobby music up, yo
 #define INIT_ORDER_CHEMISTRY	35
 #define INIT_ORDER_SKYBOX		30
 #define INIT_ORDER_MAPPING		25
+#define INIT_ORDER_SOUNDS		23
+#define INIT_ORDER_INSTRUMENTS	22
 #define INIT_ORDER_DECALS		20
 #define INIT_ORDER_PLANTS		19 // Must initialize before atoms.
 #define INIT_ORDER_PLANETS		18
@@ -91,8 +94,9 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 #define FIRE_PRIORITY_SUPPLY		5
 #define FIRE_PRIORITY_NIGHTSHIFT	5
 #define FIRE_PRIORITY_PLANTS		5
-#define FIRE_PRIORITY_ORBIT			8
-#define FIRE_PRIORITY_VOTE			9
+#define FIRE_PRIORITY_ORBIT			7
+#define FIRE_PRIORITY_VOTE			8
+#define FIRE_PRIORITY_INSTRUMENTS	9
 #define FIRE_PRIORITY_AI			10
 #define FIRE_PRIORITY_GARBAGE		15
 #define FIRE_PRIORITY_ALARM			20

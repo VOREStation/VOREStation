@@ -236,7 +236,8 @@ var/list/runechat_image_cache = list()
 	// Doesn't want to hear
 	if(ismob(speaker) && !client.is_preference_enabled(/datum/client_preference/runechat_mob))
 		return
-	else if(isobj(speaker) && !client.is_preference_enabled(/datum/client_preference/runechat_obj))
+	// I know the pref is 'obj' but people dunno what turfs are
+	else if(!client.is_preference_enabled(/datum/client_preference/runechat_obj))
 		return
 
 	// Incapable of receiving
