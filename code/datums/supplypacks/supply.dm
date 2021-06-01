@@ -151,15 +151,17 @@
 					/obj/item/device/geiger,
 					/obj/item/clothing/suit/storage/hooded/explorer,
 					/obj/item/device/flashlight/glowstick,
+					/obj/item/device/flashlight,
 					/obj/item/stack/marker_beacon/thirty,
 					/obj/item/weapon/storage/belt/explorer,
 					/obj/item/clothing/mask/gas/explorer,
 					/obj/item/weapon/cartridge/explorer,
 			 		/obj/item/device/gps/explorer,
-			 		/obj/item/weapon/cartridge/explorer,
 			 		/obj/item/clothing/under/explorer,
 			 		/obj/item/device/radio/headset/explorer,
 			 		/obj/item/clothing/shoes/boots/winter/explorer,
+					/obj/item/weapon/material/knife/tacknife/survival,
+					/obj/item/weapon/material/knife/machete,
 			 		/obj/item/clothing/accessory/holster/machete,
 					)
 	cost=25
@@ -170,11 +172,21 @@
 /datum/supply_pack/pilotgear
 	name= "Pilot gear"
 	contains = list (
+					/obj/item/weapon/storage/backpack/parachute,
 					/obj/item/device/radio/headset/pilot,
+					/obj/item/device/radio/headset/pilot/alt,
+					/obj/item/clothing/mask/gas/half,
 					/obj/item/device/flashlight/glowstick,
 					/obj/item/stack/marker_beacon/thirty,
 					/obj/item/device/gps/explorer,
+					/obj/item/clothing/gloves/fingerless,
 					/obj/item/device/cataloguer/compact,
+					/obj/item/clothing/suit/storage/toggle/bomber/pilot,
+			 		/obj/item/clothing/shoes/boots/winter/explorer,
+					/obj/item/device/flashlight,
+					/obj/item/weapon/material/knife/tacknife/survival,
+					/obj/item/clothing/head/pilot_vr,
+					/obj/item/clothing/under/rank/pilot1,
 					)
 	cost=20
 	containertype = /obj/structure/closet/crate/secure/xion
