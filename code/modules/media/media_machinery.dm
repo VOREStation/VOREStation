@@ -48,9 +48,9 @@
 	// Update Media Source.
 	A.media_source = null
 	// Clients
-	for(var/mob/M in mobs_in_area(A))
-		if(M && M.client)
-			M.update_music()
+	for(var/m in mobs_in_area(A))
+		var/mob/M = m
+		M.update_music()
 	master_area = null
 
 /obj/machinery/media/Move()
