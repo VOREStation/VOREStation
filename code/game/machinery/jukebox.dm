@@ -33,26 +33,6 @@
 	var/list/queue = list()
 	//VOREStation Add End
 	var/datum/track/current_track
-	var/list/datum/track/tracks = list(
-		new/datum/track("Beyond", 'sound/ambience/ambispace.ogg'),
-		new/datum/track("Clouds of Fire", 'sound/music/clouds.s3m'),
-		new/datum/track("D`Bert", 'sound/music/title2.ogg'),
-		new/datum/track("D`Fort", 'sound/ambience/song_game.ogg'),
-		new/datum/track("Floating", 'sound/music/main.ogg'),
-		new/datum/track("Endless Space", 'sound/music/space.ogg'),
-		new/datum/track("Part A", 'sound/misc/TestLoop1.ogg'),
-		new/datum/track("Scratch", 'sound/music/title1.ogg'),
-		new/datum/track("Trai`Tor", 'sound/music/traitor.ogg'),
-		new/datum/track("Stellar Transit", 'sound/ambience/space/space_serithi.ogg'),
-	)
-
-	// Only visible if hacked
-	var/list/datum/track/secret_tracks = list(
-		new/datum/track("Clown", 'sound/music/clown.ogg'),
-		new/datum/track("Space Asshole", 'sound/music/space_asshole.ogg'),
-		new/datum/track("Thunderdome", 'sound/music/THUNDERDOME.ogg'),
-		new/datum/track("Russkiy rep Diskoteka", 'sound/music/russianrapdisco.ogg')
-	)
 
 /obj/machinery/media/jukebox/Initialize()
 	. = ..()
@@ -68,16 +48,13 @@
 // On initialization, copy our tracks from the global list
 /obj/machinery/media/jukebox/Initialize()
 	. = ..()
-	if(LAZYLEN(all_jukebox_tracks)) //Global list has tracks
-		tracks.Cut()
-		secret_tracks.Cut()
-		for(var/datum/track/T in all_jukebox_tracks) //Load them
-			if(T.secret)
-				secret_tracks |= T
-			else
-				tracks |= T
-	else if(!LAZYLEN(tracks)) //We don't even have default tracks
-		stat |= BROKEN // No tracks configured this round!
+	if(!LAZYLEN(getTracksList()))
+		stat |= BROKEN
+
+/obj/machinery/media/jukebox/proc/getTracksList()
+	PRIVATE_PROC(TRUE)
+	
+	return hacked ? SSmedia_tracks.all_tracks : SSmedia_tracks.jukebox_tracks
 
 /obj/machinery/media/jukebox/process()
 	if(!playing)
@@ -95,6 +72,7 @@
 		queue.Cut(1, 2)  // Remove the item we just took off the list
 	else
 		// Oh... nothing in queue? Well then pick next according to our rules
+		var/list/tracks = getTracksList()
 		switch(loop_mode)
 			if(JUKEMODE_NEXT)
 				var/curTrackIndex = max(1, tracks.Find(current_track))
@@ -119,19 +97,16 @@
 	if(current_track && playing)
 		media_url = current_track.url
 		media_start_time = world.time
-		visible_message("<span class='notice'>\The [src] begins to play [current_track.display()].</span>")
+		audible_message("<span class='notice'>\The [src] begins to play [current_track.display()].</span>", runemessage = "[current_track.display()]")
 	else
 		media_url = ""
 		media_start_time = 0
 	update_music()
 
 /obj/machinery/media/jukebox/proc/set_hacked(var/newhacked)
-	if (hacked == newhacked) return
+	if(hacked == newhacked)
+		return
 	hacked = newhacked
-	if (hacked)
-		tracks.Add(secret_tracks)
-	else
-		tracks.Remove(secret_tracks)
 	updateDialog()
 
 /obj/machinery/media/jukebox/attackby(obj/item/W as obj, mob/user as mob)
@@ -217,13 +192,15 @@
 	data["volume"] = volume
 	data["current_track_ref"] = null
 	data["current_track"] = null
+	data["current_genre"] = null
 	if(current_track)
 		data["current_track_ref"] = "\ref[current_track]"  // Convenient shortcut
 		data["current_track"] = current_track.toTguiList()
+		data["current_genre"] = current_track.genre
 	data["percent"] = playing ? min(100, round(world.time - media_start_time) / current_track.duration) : 0;
 
 	var/list/tgui_tracks = list()
-	for(var/datum/track/T in tracks)
+	for(var/datum/track/T in getTracksList())
 		tgui_tracks.Add(list(T.toTguiList()))
 	data["tracks"] = tgui_tracks
 
@@ -235,7 +212,7 @@
 
 	switch(action)
 		if("change_track")
-			var/datum/track/T = locate(params["change_track"]) in tracks
+			var/datum/track/T = locate(params["change_track"]) in getTracksList()
 			if(istype(T))
 				current_track = T
 				StartPlaying()
@@ -336,6 +313,7 @@
 
 // Advance to the next track - Don't start playing it unless we were already playing
 /obj/machinery/media/jukebox/proc/NextTrack()
+	var/list/tracks = getTracksList()
 	if(!tracks.len) return
 	var/curTrackIndex = max(1, tracks.Find(current_track))
 	var/newTrackIndex = (curTrackIndex % tracks.len) + 1  // Loop back around if past end
@@ -346,6 +324,7 @@
 
 // Advance to the next track - Don't start playing it unless we were already playing
 /obj/machinery/media/jukebox/proc/PrevTrack()
+	var/list/tracks = getTracksList()
 	if(!tracks.len) return
 	var/curTrackIndex = max(1, tracks.Find(current_track))
 	var/newTrackIndex = curTrackIndex == 1 ? tracks.len : curTrackIndex - 1
