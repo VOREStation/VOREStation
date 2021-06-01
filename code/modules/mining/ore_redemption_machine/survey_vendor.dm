@@ -42,7 +42,7 @@
 		new /datum/data/mining_equipment("Defense Equipment - Razor Drone Deployer",/obj/item/weapon/grenade/spawnergrenade/manhacks/station,	50),
 		new /datum/data/mining_equipment("Defense Equipment - Sentry Drone Deployer",/obj/item/weapon/grenade/spawnergrenade/ward,			100),
 		new /datum/data/mining_equipment("Defense Equipment - Steel Machete",	/obj/item/weapon/material/knife/machete,					50),
-		new /datum/data/mining_equipment("Survival Equipment - Insulated Poncho",	/obj/random/thermalponcho,								75),
+		new /datum/data/mining_equipment("Survival Equipment - Insulated Poncho",	/obj/random/thermalponcho,								75)
 		)
 
 /obj/machinery/mineral/equipment_vendor/survey/Initialize(mapload)
@@ -64,10 +64,11 @@
 		EQUIPMENT("Jump Boots",									/obj/item/clothing/shoes/bhop,										250),
 		EQUIPMENT("Mini-Translocator",							/obj/item/device/perfect_tele/one_beacon,							120),
 		EQUIPMENT("Survival Equipment - Insulated Poncho",		/obj/random/thermalponcho,											75),
-		EQUIPMENT ("Survival Equipment - Glowstick", 			/obj/item/device/flashlight/glowstick,								10),
-		EQUIPMENT ("Survival Equipment - Flare", 				/obj/item/device/flashlight/flare,									20),
-		EQUIPMENT ("Survival Equipment - Bluespace Glowstick", 	/obj/item/device/flashlight/glowstick/bluespace,					40),
-		EQUIPMENT ("Survival Equipment - Modular Explorer Suit",/obj/item/clothing/suit/armor/pcarrier/explorer,					150),
+		EQUIPMENT("Survival Equipment - Glowstick", 			/obj/item/device/flashlight/glowstick,								10),
+		EQUIPMENT("Survival Equipment - Flare", 				/obj/item/device/flashlight/flare,									20),
+		EQUIPMENT("Survival Equipment - Bluespace Glowstick",		/obj/item/device/flashlight/glowstick/bluespace,					40),
+		EQUIPMENT("Survival Equipment - Modular Explorer Suit",		/obj/item/clothing/suit/armor/pcarrier/explorer,					200),
+		EQUIPMENT("Survival Equipment - Armored Jumpsuit",		/obj/item/clothing/under/explorer/armored,					200),
 	)
 	prize_list["Consumables"] = list(
 		EQUIPMENT("1 Marker Beacon",		/obj/item/stack/marker_beacon,													1),
