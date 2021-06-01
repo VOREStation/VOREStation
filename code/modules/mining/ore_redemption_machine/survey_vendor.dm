@@ -43,7 +43,6 @@
 		new /datum/data/mining_equipment("Defense Equipment - Sentry Drone Deployer",/obj/item/weapon/grenade/spawnergrenade/ward,			100),
 		new /datum/data/mining_equipment("Defense Equipment - Steel Machete",	/obj/item/weapon/material/knife/machete,					50),
 		new /datum/data/mining_equipment("Survival Equipment - Insulated Poncho",	/obj/random/thermalponcho,								75),
-		new /datum/data/mining_equipment("Survey Tools - Compact Catalouger",				/obj/item/device/cataloguer/compact,				50),
 		)
 
 /obj/machinery/mineral/equipment_vendor/survey/Initialize(mapload)
@@ -56,7 +55,6 @@
 		EQUIPMENT("Defense Equipment - Razor Drone Deployer",	/obj/item/weapon/grenade/spawnergrenade/manhacks/station/locked,	100),
 		EQUIPMENT("Defense Equipment - Sentry Drone Deployer",	/obj/item/weapon/grenade/spawnergrenade/ward,						150),
 		EQUIPMENT("Defense Equipment - Frontier Carbine",		/obj/item/weapon/gun/energy/locked/frontier/carbine,				750),
-		EQUIPMENT("Defense Equipment - Frontier Holdout Plus",	/obj/item/weapon/gun/energy/locked/frontier/holdout/holdoutplus,	500),
 		EQUIPMENT("Fishing Net",								/obj/item/weapon/material/fishing_net,								50),
 		EQUIPMENT("Titanium Fishing Rod",						/obj/item/weapon/material/fishing_rod/modern,						100),
 		EQUIPMENT("Durasteel Fishing Rod",						/obj/item/weapon/material/fishing_rod/modern/strong,				750),
@@ -69,8 +67,7 @@
 		EQUIPMENT ("Survival Equipment - Glowstick", 			/obj/item/device/flashlight/glowstick,								10),
 		EQUIPMENT ("Survival Equipment - Flare", 				/obj/item/device/flashlight/flare,									20),
 		EQUIPMENT ("Survival Equipment - Bluespace Glowstick", 	/obj/item/device/flashlight/glowstick/bluespace,					40),
-		EQUIPMENT ("Survival Equipment - Explorer Headset", 	/obj/item/device/radio/headset/explorer,							40),
-		EQUIPMENT ("Survival Equipment - Deluxe Explorer Suit",	/obj/item/clothing/suit/armor/pcarrier/explorer/deluxe,				100),
+		EQUIPMENT ("Survival Equipment - Modular Explorer Suit",/obj/item/clothing/suit/armor/pcarrier/explorer,					150),
 	)
 	prize_list["Consumables"] = list(
 		EQUIPMENT("1 Marker Beacon",		/obj/item/stack/marker_beacon,													1),

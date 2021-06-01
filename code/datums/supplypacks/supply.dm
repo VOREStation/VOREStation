@@ -146,15 +146,36 @@
 
 /datum/supply_pack/explorergear
 	name="explorer gear"
-	contains = list(
+	contains = list (
 					/obj/item/device/cataloguer,
-					/obj/item/weapon/material/knife/machete,
 					/obj/item/device/geiger,
-					/obj/item/device/gps/mining,
 					/obj/item/clothing/suit/storage/hooded/explorer,
 					/obj/item/device/flashlight/glowstick,
 					/obj/item/stack/marker_beacon/thirty,
+					/obj/item/weapon/storage/belt/explorer,
+					/obj/item/clothing/mask/gas/explorer,
+					/obj/item/weapon/cartridge/explorer,
+			 		/obj/item/device/gps/explorer,
+			 		/obj/item/weapon/cartridge/explorer,
+			 		/obj/item/clothing/under/explorer,
+			 		/obj/item/device/radio/headset/explorer,
+			 		/obj/item/clothing/shoes/boots/winter/explorer,
+			 		/obj/item/clothing/accessory/holster/machete,
 					)
-	cost=10
+	cost=25
 	containertype = /obj/structure/closet/crate/secure/xion
 	containername = "explorer equipment"
+
+/datum/supply_pack/pilotgear
+	name= "pilot gear"
+	contains = list (
+						/obj/item/device/radio/headset/pilot,
+						/obj/item/device/flashlight/glowstick,
+						/obj/item/stack/marker_beacon/thirty,
+						/obj/item/device/gps/explorer,
+						/obj/item/device/cataloguer/compact,
+					)
+	cost=20
+	containertype = /obj/structure/closet/crate/secure/xion
+	containername = "pilot equipment"
+
