@@ -122,5 +122,5 @@
 
 //deluixe explorer suit
 	/obj/item/clothing/suit/armor/pcarrier/explorer/deluxe
-	name = "deluxe explorer suit"
+	name = "modular explorer suit"
 	desc = "A plate carrier, a do it yourself amour vertion for NT's exploration teams"
