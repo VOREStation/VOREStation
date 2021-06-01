@@ -142,7 +142,7 @@
 
 /area/tether/surfacebase/outside
 	name = "Outside - Surface"
-	sound_env = MOUNTAINS
+	sound_env = SOUND_ENVIRONMENT_MOUNTAINS
 /area/tether/surfacebase/outside/outside1
 	icon_state = "outside1"
 /area/tether/surfacebase/outside/outside2
@@ -541,7 +541,7 @@
 /area/tether/surfacebase/security/solitary
 	name = "\improper Surface Security Solitary Confinement"
 	lightswitch = 0
-	sound_env =PADDED_CELL
+	sound_env = SOUND_ENVIRONMENT_PADDED_CELL
 /area/tether/surfacebase/security/gasstorage
 	name = "\improper Surface Security Gas Storage"
 	lightswitch = 0
@@ -639,7 +639,7 @@
 /area/engineering/atmos_intake
 	name = "\improper Atmospherics Intake"
 	icon_state = "atmos"
-	sound_env = MOUNTAINS
+	sound_env = SOUND_ENVIRONMENT_MOUNTAINS
 
 /area/engineering/atmos/hallway
 	name = "\improper Atmospherics Main Hallway"
@@ -1360,7 +1360,7 @@
 	name = "\improper Virology Maintenance"
 /area/maintenance/station/ai
 	name = "\improper AI Maintenance"
-	sound_env = SEWER_PIPE
+	sound_env = SOUND_ENVIRONMENT_SEWER_PIPE
 /area/maintenance/station/exploration
 	name = "\improper Exploration Maintenance"
 /area/maintenance/abandonedlibrary
@@ -1372,7 +1372,7 @@
 /area/maintenance/station/spacecommandmaint
 	name = "\improper Secondary Command Maintenance"
 	icon_state = "bridge"
-	sound_env = SEWER_PIPE
+	sound_env = SOUND_ENVIRONMENT_SEWER_PIPE
 /area/maintenance/substation/spacecommand
 	name = "\improper Secondary Command Substation"
 	icon_state = "substation"
