@@ -303,6 +303,13 @@
 	mappath = 'maps/gateway_vr/listeningpost.dmm'
 	associated_map_datum = /datum/map_z_level/tether_lateload/gateway_destination
 
+#include "../../gateway_vr/prison.dm"
+/datum/map_template/tether_lateload/gateway/listeningpost
+	name = "Central Prison"
+	desc = "Abandoned Minimum security prison"
+	mappath = 'maps/gateway_vr/prison.dmm'
+	associated_map_datum = /datum/map_z_level/tether_lateload/gateway_destination
+
 //////////////////////////////////////////////////////////////////////////////////////
 // Admin-use z-levels for loading whenever an admin feels like
 #if AWAY_MISSION_TEST

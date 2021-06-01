@@ -163,6 +163,7 @@
 		//list("Carp Farm"),
 		//list("Snow Field"),
 		//list("Listening Post")
+		//list("Prison") //Commented out until gateway is reenabled
 		)
 
 	ai_shell_restricted = TRUE
