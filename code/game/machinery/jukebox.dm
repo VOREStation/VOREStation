@@ -48,8 +48,6 @@
 	return ..()
 
 /obj/machinery/media/jukebox/proc/getTracksList()
-	PRIVATE_PROC(TRUE)
-	
 	return hacked ? SSmedia_tracks.all_tracks : SSmedia_tracks.jukebox_tracks
 
 /obj/machinery/media/jukebox/process()
@@ -328,3 +326,126 @@
 	if(playing)
 		start_stop_song()
 	updateDialog()
+
+// Ghostly jukebox for adminbuse
+/obj/machinery/media/jukebox/ghost
+	name = "ghost jukebox"
+	desc = "A jukebox from the nether-realms! Spooky."
+	
+	plane = PLANE_GHOSTS
+	invisibility = INVISIBILITY_OBSERVER
+	alpha = 127
+	
+	icon_state = "jukebox2-virtual"
+	
+	density = FALSE
+	hacked = TRUE
+
+	use_power = USE_POWER_OFF
+	circuit = null
+
+	var/list/custom_tracks = list()
+
+// Just junk to make it sneaky - I wish a lot more stuff was on /obj/machinery/media instead of /jukebox so I could use that.
+/obj/machinery/media/jukebox/ghost/is_incorporeal()
+	return TRUE	
+/obj/machinery/media/jukebox/ghost/audible_message(message, deaf_message, hearing_distance, radio_message, runemessage)
+	return
+/obj/machinery/media/jukebox/ghost/visible_message(message, blind_message, list/exclude_mobs, range, runemessage)
+	return
+/obj/machinery/media/jukebox/ghost/attackby(obj/item/W as obj, mob/user as mob)
+	return
+/obj/machinery/media/jukebox/ghost/attack_ai(mob/user as mob)
+	return
+/obj/machinery/media/jukebox/ghost/attack_hand(var/mob/user as mob)
+	return
+/obj/machinery/media/jukebox/ghost/update_use_power(new_use_power)
+	return	
+/obj/machinery/media/jukebox/ghost/power_change()
+	return
+/obj/machinery/media/jukebox/ghost/emp_act(severity)
+	return
+/obj/machinery/media/jukebox/ghost/emag_act(remaining_charges, mob/user)
+	return
+/obj/machinery/media/jukebox/ghost/explode()
+	return	
+/obj/machinery/media/jukebox/ghost/update_icon()
+	if(playing)
+		animate(src, alpha = 200, time = 5, loop = -1)
+	else
+		animate(src, alpha = initial(alpha), time = 10)
+// End junk
+
+/obj/machinery/media/jukebox/ghost/attack_ghost(var/mob/observer/dead/M)
+	if(!istype(M))
+		return
+
+	if(check_rights(R_FUN|R_ADMIN, show_msg=0))
+		interact(M)
+	else if(current_track)
+		to_chat(M, "\The [src] is playing [current_track.display()].")
+	else
+		to_chat(M, "\The [src] is not playing any music.")
+
+/obj/machinery/media/jukebox/ghost/getTracksList()
+	return (custom_tracks + ..())
+
+/obj/machinery/media/jukebox/ghost/proc/manual_track_add()
+	var/client/C = usr.client
+	if(!check_rights(R_FUN|R_ADMIN))
+		return
+	
+	// Required
+	var/url = input(C, "REQUIRED: Provide URL for track", "Track URL") as text|null
+	if(!url)
+		return
+	
+	var/title = input(C, "REQUIRED: Provide title for track", "Track Title") as text|null
+	if(!title)
+		return
+	
+	var/duration = input(C, "REQUIRED: Provide duration for track (in deciseconds, aka seconds*10)", "Track Duration") as num|null
+	if(!duration)
+		return
+
+	// Optional
+	var/artist = input(C, "Optional: Provide artist for track", "Track Artist") as text|null
+	if(isnull(artist)) // Cancel rather than empty string
+		return
+	
+	// So they're obvious and grouped
+	var/genre = "! Admin Loaded !"
+	
+	custom_tracks += new /datum/track(url, title, duration, artist, genre)
+	
+/obj/machinery/media/jukebox/ghost/proc/manual_track_remove()
+	var/client/C = usr.client
+	if(!check_rights(R_FUN|R_ADMIN))
+		return
+
+	var/track = input(C, "Input track title or URL to remove (must be exact)", "Remove Track") as text|null
+	if(!track)
+		return
+	
+	for(var/datum/track/T in custom_tracks)
+		if(T.title == track || T.url == track)
+			custom_tracks -= T
+			qdel(T)
+			return
+	
+	to_chat(C, "<span class='warning>Couldn't find a track matching the specified parameters.</span>")
+
+/obj/machinery/media/jukebox/ghost/vv_get_dropdown()
+	. = ..()
+	VV_DROPDOWN_OPTION("", "---")
+	VV_DROPDOWN_OPTION("add_track", "Add New Track")
+	VV_DROPDOWN_OPTION("remove_track", "Remove Track")
+
+/obj/machinery/media/jukebox/ghost/vv_do_topic(list/href_list)
+	. = ..()
+	IF_VV_OPTION("add_track")
+		manual_track_add()
+		href_list["datumrefresh"] = "\ref[src]"
+	IF_VV_OPTION("remove_track")
+		manual_track_remove()
+		href_list["datumrefresh"] = "\ref[src]"
