@@ -118,12 +118,6 @@
 /obj/structure/shuttle/window,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/space)
-"rf" = (
-/obj/structure/stairs/top{
-	dir = 8
-	},
-/turf/space,
-/area/space)
 "rA" = (
 /obj/structure/stairs/top{
 	dir = 8
@@ -5237,13 +5231,13 @@ It
 It
 It
 DM
-rf
-rf
+HL
+HL
 DM
 DM
 DM
-rf
-rf
+HL
+HL
 DM
 DM
 FM
