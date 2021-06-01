@@ -304,7 +304,7 @@
 	associated_map_datum = /datum/map_z_level/tether_lateload/gateway_destination
 
 #include "../../gateway_vr/prison.dm"
-/datum/map_template/tether_lateload/gateway/listeningpost
+/datum/map_template/tether_lateload/gateway/prison
 	name = "Central Prison"
 	desc = "Abandoned Minimum security prison"
 	mappath = 'maps/gateway_vr/prison.dmm'
