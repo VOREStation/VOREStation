@@ -8,7 +8,7 @@
 #define JUKEMODE_REPEAT_SONG 3 // Play the same song over and over
 #define JUKEMODE_PLAY_ONCE   4 // Play, then stop.
 
-/obj/machinery/media/jukebox/
+/obj/machinery/media/jukebox
 	name = "space jukebox"
 	desc = "Filled with songs both past and present!"
 	icon = 'icons/obj/jukebox.dmi'
@@ -39,17 +39,13 @@
 	default_apply_parts()
 	wires = new/datum/wires/jukebox(src)
 	update_icon()
+	if(!LAZYLEN(getTracksList()))
+		stat |= BROKEN
 
 /obj/machinery/media/jukebox/Destroy()
 	qdel(wires)
 	wires = null
 	return ..()
-
-// On initialization, copy our tracks from the global list
-/obj/machinery/media/jukebox/Initialize()
-	. = ..()
-	if(!LAZYLEN(getTracksList()))
-		stat |= BROKEN
 
 /obj/machinery/media/jukebox/proc/getTracksList()
 	PRIVATE_PROC(TRUE)

@@ -24,7 +24,7 @@
 /datum/track/proc/display()
 	var str = "\"[title]\""
 	if(artist)
-		str += " by [artist]"
+		str += " by [artist || "Unknown"]"
 	return str
 
 /datum/track/proc/toTguiList()
