@@ -309,19 +309,6 @@
 	locked = 0
 	lockable = 0
 
-////////////////Frontier Holdout Plus////////////////
-
-/obj/item/weapon/gun/energy/locked/frontier/holdout/holdoutplus
-	name = "holdout frontier phaser plus"
-	desc = "An minaturized weapon designed for the purpose of expeditionary support to defend themselves on the field. Includes a more economic built-in crank charger for recharging away from civilization. This one has a safety interlock that prevents firing while in proximity to the facility."
-	phase_power = 150
-
- obj/item/weapon/gun/energy/locked/frontier/holdout/holdoutplus/unlocked
-	desc = "An minaturized weapon designed for the purpose of expeditionary support to defend themselves on the field. Includes a more economic built-in crank charger for recharging away from civilization."
-	req_access = newlist() //for toggling safety
-	locked = 0
-	lockable = 0
-
 ////////////////Phaser Rifle////////////////
 
 /obj/item/weapon/gun/energy/locked/frontier/rifle
