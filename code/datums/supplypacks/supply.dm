@@ -145,7 +145,7 @@
 	containername = "Cargo Train Trolley Crate"
 
 /datum/supply_pack/explorergear
-	name="explorer gear"
+	name="Explorer gear"
 	contains = list (
 					/obj/item/device/cataloguer,
 					/obj/item/device/geiger,
@@ -164,18 +164,18 @@
 					)
 	cost=25
 	containertype = /obj/structure/closet/crate/secure/xion
-	containername = "explorer equipment"
+	containername = "Explorer equipment"
 
 /datum/supply_pack/pilotgear
-	name= "pilot gear"
+	name= "Pilot gear"
 	contains = list (
-						/obj/item/device/radio/headset/pilot,
-						/obj/item/device/flashlight/glowstick,
-						/obj/item/stack/marker_beacon/thirty,
-						/obj/item/device/gps/explorer,
-						/obj/item/device/cataloguer/compact,
+					/obj/item/device/radio/headset/pilot,
+					/obj/item/device/flashlight/glowstick,
+					/obj/item/stack/marker_beacon/thirty,
+					/obj/item/device/gps/explorer,
+					/obj/item/device/cataloguer/compact,
 					)
 	cost=20
 	containertype = /obj/structure/closet/crate/secure/xion
-	containername = "pilot equipment"
+	containername = "Pilot equipment"
 
