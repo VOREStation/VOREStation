@@ -121,9 +121,9 @@
 	return rand(32000, 55000) //Frequency stuff only works with 45kbps oggs.
 
 /client/proc/playtitlemusic()
-	if(!ticker || !all_lobby_tracks.len || !media)	return
+	if(!ticker || !SSmedia_tracks.lobby_tracks.len || !media)	return
 	if(is_preference_enabled(/datum/client_preference/play_lobby_music))
-		var/datum/track/T = pick(all_lobby_tracks)
+		var/datum/track/T = pick(SSmedia_tracks.lobby_tracks)
 		media.push_music(T.url, world.time, 0.85)
 		to_chat(src,"<span class='notice'>Lobby music: <b>[T.title]</b> by <b>[T.artist]</b>.</span>")
 
