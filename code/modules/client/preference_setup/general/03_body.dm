@@ -975,6 +975,8 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 					if(tmp_species in M.species_cannot_use)
 						continue
 					//VOREStation Add - Cyberlimb whitelisting.
+					if(M.unavailable_to_build)
+						continue
 					if(M.whitelisted_to && !(user.ckey in M.whitelisted_to))
 						continue
 					//VOREStation Add End
