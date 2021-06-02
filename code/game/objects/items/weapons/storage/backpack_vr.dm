@@ -83,21 +83,33 @@
 /obj/item/weapon/storage/backpack/ert
 	max_storage_space = INVENTORY_DUFFLEBAG_SPACE
 
+///Exploration Bags///
+
 /obj/item/weapon/storage/backpack/satchel/explorer
 	name = "explorer satchel"
 	desc = "A satchel for carrying a large number of supplies easily."
 	icon = 'icons/obj/clothing/backpack_vr.dmi'
 	icon_override = 'icons/mob/back_vr.dmi'
-	item_state = "satchel-explorer"
-	icon_state = "satchel-explorer"
+	item_state = "satchel-explo"
+	icon_state = "satchel-explo"
 
 /obj/item/weapon/storage/backpack/explorer
 	name = "explorer backpack"
 	desc = "A backpack for carrying a large number of supplies easily."
 	icon = 'icons/obj/clothing/backpack_vr.dmi'
 	icon_override = 'icons/mob/back_vr.dmi'
-	item_state = "explorerpack"
-	icon_state = "explorerpack"
+	item_state = "explopack"
+	icon_state = "explopack"
+
+/obj/item/weapon/storage/backpack/messenger
+	name = "messenger bag"
+	desc = "A sturdy backpack worn over one shoulder."
+	icon = 'icons/obj/clothing/backpack_vr.dmi'
+	icon_override = 'icons/mob/back_vr.dmi'
+	item_state = "courierbagexplo"
+	icon_state = "courierbagexplo"
+
+///End Exploration Bags///
 
 /obj/item/weapon/storage/backpack/satchel/roboticist
 	name = "roboticist satchel"
