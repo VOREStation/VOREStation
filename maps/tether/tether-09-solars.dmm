@@ -955,8 +955,24 @@
 /turf/simulated/floor/tiled/white,
 /area/rnd/outpost/mixing)
 "cf" = (
-/turf/simulated/wall,
-/area/rnd/outpost/testing)
+/obj/effect/floor_decal/steeldecal/steel_decals5,
+/obj/effect/floor_decal/steeldecal/steel_decals5{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/obj/structure/table/standard,
+/obj/item/weapon/storage/toolbox/emergency,
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/outpost/eva)
 "cg" = (
 /turf/simulated/wall,
 /area/rnd/outpost/eva)
@@ -1114,24 +1130,8 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/eva)
 "cA" = (
-/obj/effect/floor_decal/steeldecal/steel_decals5,
-/obj/effect/floor_decal/steeldecal/steel_decals5{
-	dir = 1
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
-	},
-/obj/structure/table/standard,
-/obj/item/weapon/storage/toolbox/emergency,
-/obj/item/device/radio/intercom{
-	dir = 8;
-	pixel_x = 24
-	},
-/turf/simulated/floor/tiled,
-/area/rnd/outpost/eva)
+/turf/simulated/wall/r_wall,
+/area/rnd/outpost/mixing)
 "cB" = (
 /obj/machinery/alarm{
 	pixel_y = 22
@@ -1272,30 +1272,28 @@
 /turf/simulated/floor/tiled/white,
 /area/rnd/outpost/mixing)
 "cQ" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
+/obj/machinery/newscaster{
+	pixel_x = -32;
+	pixel_y = 0
 	},
+/obj/machinery/requests_console/preset/research{
+	pixel_x = 0;
+	pixel_y = 30
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/chemical_dispenser/full,
+/turf/simulated/floor/tiled,
+/area/rnd/outpost/testing)
+"cR" = (
 /obj/item/device/radio/intercom{
 	dir = 1;
 	pixel_y = 24;
 	req_access = list()
 	},
-/obj/structure/table/standard,
-/obj/item/weapon/folder/white,
-/obj/item/weapon/pen/fountain,
-/turf/simulated/floor/tiled,
-/area/rnd/outpost/testing)
-"cR" = (
-/obj/structure/table/standard,
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 4
-	},
-/obj/machinery/newscaster{
-	pixel_y = 32
-	},
-/obj/item/stack/cable_coil,
-/obj/item/stack/cable_coil,
-/obj/item/weapon/tool/wirecutters,
+/obj/structure/table/reinforced,
+/obj/item/weapon/reagent_containers/glass/beaker/large,
+/obj/item/weapon/reagent_containers/dropper,
+/obj/item/clothing/glasses/science,
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/testing)
 "cS" = (
@@ -1310,22 +1308,25 @@
 /obj/machinery/alarm{
 	pixel_y = 22
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/structure/table/reinforced,
+/obj/item/weapon/storage/box/beakers,
+/obj/item/device/reagent_scanner,
+/obj/item/weapon/reagent_containers/spray/cleaner{
+	desc = "Someone has crossed out the 'Space' from Space Cleaner and written in Toxins. Scrawled on the back is, 'Don't go making any messes that this stuff can't clean up.'";
+	name = "Toxins Cleaner"
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/testing)
 "cU" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "east bump";
-	pixel_x = 24
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
 	},
-/obj/structure/cable/green{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/turf/simulated/floor/tiled/steel_grid,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/table/reinforced,
+/obj/item/weapon/storage/box/syringes,
+/obj/item/weapon/storage/fancy/vials,
+/turf/simulated/floor/tiled,
 /area/rnd/outpost/testing)
 "cV" = (
 /obj/structure/cable/green{
@@ -1517,14 +1518,15 @@
 /turf/simulated/floor/tiled/white,
 /area/rnd/outpost/mixing)
 "dr" = (
-/obj/structure/bed/chair/office/light{
-	dir = 8
-	},
-/turf/simulated/floor/tiled,
+/turf/simulated/wall/r_wall,
 /area/rnd/outpost/testing)
 "ds" = (
-/obj/structure/table/standard,
-/obj/item/weapon/tank/phoron,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/bed/chair/office/light{
+	dir = 1
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/testing)
 "dt" = (
@@ -1537,16 +1539,53 @@
 /turf/simulated/floor/tiled/monotile,
 /area/rnd/outpost/testing)
 "du" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/obj/machinery/button/remote/blast_door{
+	dir = 4;
+	id = "toxins_ww";
+	name = "Blast Door Control";
+	pixel_x = -24;
+	pixel_y = 4
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/reagentgrinder,
+/obj/machinery/button/remote/blast_door{
+	dir = 4;
+	id = "toxins_ww_door";
+	name = "Door Bolt Control";
+	pixel_x = -24;
+	pixel_y = -4
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/testing)
 "dv" = (
-/obj/structure/dispenser,
-/obj/machinery/light{
-	icon_state = "tube1";
-	dir = 4
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	pixel_x = 24
 	},
-/turf/simulated/floor/tiled,
+/obj/structure/cable/green{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/structure/closet/crate/science,
+/obj/item/weapon/grenade/chem_grenade,
+/obj/item/weapon/grenade/chem_grenade,
+/obj/item/weapon/grenade/chem_grenade,
+/obj/item/device/assembly/timer,
+/obj/item/device/assembly/timer,
+/obj/item/device/assembly/timer,
+/obj/item/device/assembly/igniter,
+/obj/item/device/assembly/igniter,
+/obj/item/device/assembly/igniter,
+/obj/fiftyspawner/glass,
+/obj/fiftyspawner/steel,
+/obj/item/stack/material/phoron{
+	amount = 5
+	},
+/turf/simulated/floor/tiled/steel_grid,
 /area/rnd/outpost/testing)
 "dw" = (
 /turf/simulated/floor/tiled,
@@ -1715,33 +1754,24 @@
 /turf/simulated/floor/tiled/white,
 /area/rnd/outpost/mixing)
 "dR" = (
-/obj/machinery/firealarm{
-	dir = 1;
-	pixel_x = 0;
-	pixel_y = -26
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/structure/table/standard,
-/obj/item/weapon/weldingtool,
-/obj/item/clothing/glasses/welding,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/testing)
 "dS" = (
-/obj/structure/table/standard,
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 4
+/obj/structure/table/reinforced,
+/obj/item/weapon/folder/red{
+	pixel_x = 2;
+	pixel_y = -3
 	},
-/obj/item/weapon/tool/screwdriver,
-/obj/item/device/assembly_holder/timer_igniter,
-/obj/machinery/camera/network/research_outpost{
-	dir = 4
+/obj/item/weapon/folder/white,
+/obj/item/weapon/folder/blue{
+	pixel_x = -2;
+	pixel_y = 3
 	},
-/obj/machinery/light_switch{
-	dir = 1;
+/obj/item/weapon/pen/fountain{
 	pixel_x = 4;
-	pixel_y = -24
+	pixel_y = 4
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/testing)
@@ -1754,10 +1784,25 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/testing)
 "dU" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
+/obj/structure/table/rack/shelf/steel,
+/obj/machinery/firealarm{
+	dir = 1;
+	pixel_x = 0;
+	pixel_y = -26
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/item/clothing/shoes/boots/tactical,
+/obj/item/clothing/under/tactical{
+	sensor_mode = 3;
+	sensorpref = 1
+	},
+/obj/item/clothing/gloves/tactical,
+/obj/item/clothing/suit/bomb_suit,
+/obj/item/clothing/head/bomb_hood,
+/obj/item/device/gps/science,
+/obj/item/weapon/implant/death_alarm,
+/obj/item/weapon/implanter,
+/obj/item/clothing/mask/gas/explorer,
+/obj/item/weapon/tank/emergency/oxygen/double,
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/testing)
 "dV" = (
@@ -1768,8 +1813,10 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/breakroom)
 "dW" = (
-/obj/machinery/requests_console/preset/research{
-	pixel_y = -30
+/obj/machinery/light_switch{
+	dir = 1;
+	pixel_x = 4;
+	pixel_y = -24
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/testing)
@@ -1974,21 +2021,12 @@
 /turf/simulated/floor/tiled/white,
 /area/rnd/outpost/mixing)
 "er" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/tiled,
-/area/rnd/outpost/testing)
+/turf/simulated/wall/r_wall,
+/area/rnd/outpost/eva)
 "es" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/door/airlock/multi_tile/glass{
-	name = "Toxins Workroom"
-	},
-/obj/machinery/door/firedoor/glass,
+/obj/machinery/chem_master,
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/testing)
 "et" = (
@@ -2357,34 +2395,7 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost)
 "eV" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/effect/floor_decal/borderfloor{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/purple/border{
-	dir = 1
-	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/purple/bordercorner2{
-	dir = 4
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7{
-	dir = 4
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals7,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 1
-	},
-/turf/simulated/floor/tiled,
+/turf/simulated/wall/r_wall,
 /area/rnd/outpost)
 "eW" = (
 /obj/structure/cable/green{
@@ -4068,7 +4079,7 @@
 	},
 /obj/machinery/door/airlock/maintenance/rnd{
 	name = "Science Outpost Atmospherics";
-	req_one_access = list(10,47)
+	req_one_access = list(10,24,47)
 	},
 /obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor,
@@ -4233,7 +4244,8 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/airlock/science{
-	name = "Research Outpost"
+	name = "Research Outpost";
+	req_one_access = list(10,24,47)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled,
@@ -7661,6 +7673,26 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/anomaly_lab)
+"ob" = (
+/obj/machinery/camera/network/research_outpost{
+	dir = 4
+	},
+/obj/structure/table/rack/shelf/steel,
+/obj/item/clothing/shoes/boots/tactical,
+/obj/item/clothing/under/tactical{
+	sensor_mode = 3;
+	sensorpref = 1
+	},
+/obj/item/clothing/gloves/tactical,
+/obj/item/clothing/suit/bomb_suit,
+/obj/item/clothing/head/bomb_hood,
+/obj/item/device/gps/science,
+/obj/item/weapon/implant/death_alarm,
+/obj/item/weapon/implanter,
+/obj/item/clothing/mask/gas/explorer,
+/obj/item/weapon/tank/emergency/oxygen/double,
+/turf/simulated/floor/tiled,
+/area/rnd/outpost/testing)
 "oc" = (
 /obj/item/device/radio/intercom{
 	dir = 4;
@@ -7915,6 +7947,61 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/breakroom)
+"oE" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/regular{
+	dir = 8;
+	id = "toxins_ww";
+	name = "Toxins Workroom Lockdown"
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/outpost/testing)
+"oF" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/purple/border{
+	dir = 1
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/purple/bordercorner2{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/button/remote/blast_door{
+	id = "toxins_ww";
+	name = "Toxins Workroom";
+	pixel_y = 24
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/outpost)
+"oG" = (
+/obj/structure/sign/warning/bomb_range{
+	name = "\improper DANGER - EXPLOSIVES WORKROOM"
+	},
+/turf/simulated/wall/r_wall,
+/area/rnd/outpost/testing)
 "oH" = (
 /obj/structure/table/standard,
 /obj/machinery/light,
@@ -8111,6 +8198,55 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/breakroom)
+"pe" = (
+/obj/machinery/light{
+	icon_state = "tube1";
+	dir = 4
+	},
+/obj/machinery/autolathe{
+	hacked = 1
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/outpost/testing)
+"pf" = (
+/obj/structure/table/reinforced,
+/obj/item/weapon/storage/toolbox/syndicate{
+	pixel_y = 8
+	},
+/obj/item/clothing/glasses/welding{
+	pixel_y = 14
+	},
+/obj/item/stack/cable_coil,
+/obj/item/weapon/storage/secure/briefcase/toxinsfootball{
+	pixel_y = -8
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/outpost/testing)
+"pg" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled,
+/area/rnd/outpost/testing)
+"ph" = (
+/obj/structure/dispenser,
+/turf/simulated/floor/tiled,
+/area/rnd/outpost/testing)
+"pi" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/multi_tile/metal{
+	id_tag = "toxins_ww_door";
+	name = "Toxins Workroom";
+	req_one_access = list(7)
+	},
+/obj/machinery/door/blast/regular{
+	dir = 8;
+	id = "toxins_ww";
+	name = "Toxins Workroom Lockdown"
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/outpost/testing)
 "zg" = (
 /obj/effect/shuttle_landmark{
 	base_area = /area/mine/explored;
@@ -22435,13 +22571,13 @@ ad
 ad
 ad
 ad
-bW
-bW
-bW
-bW
-bW
-bW
-bW
+cA
+cA
+cA
+cA
+cA
+cA
+cA
 bW
 fp
 bW
@@ -22577,13 +22713,13 @@ ad
 ad
 ad
 ad
-ad
-ad
-cf
-cR
-ds
+dr
+cQ
+du
 dS
-cf
+pf
+ob
+dr
 eR
 fs
 fL
@@ -22719,13 +22855,13 @@ ad
 ad
 ad
 ad
-ad
-ad
-cf
-cQ
 dr
-dR
-cf
+cR
+ds
+dw
+dw
+dU
+oG
 eQ
 fr
 fK
@@ -22861,13 +22997,13 @@ ad
 ad
 ad
 ad
-ad
-cf
-cf
+dr
 cT
-du
-dU
+cU
 es
+pg
+dR
+pi
 eT
 ft
 fK
@@ -23003,13 +23139,13 @@ ad
 ad
 ad
 ad
-ad
-cf
+dr
 cw
 cS
 dt
 dT
-er
+dT
+oE
 eS
 ft
 fK
@@ -23145,14 +23281,14 @@ ad
 ad
 ad
 ad
-ad
-cf
+dr
 cy
 cV
 dw
+dw
 dW
-cf
-eV
+dr
+oF
 fu
 fK
 fW
@@ -23287,13 +23423,13 @@ ad
 ad
 ad
 ad
-ad
-cf
+dr
 cx
-cU
 dv
+pe
+ph
 cZ
-cf
+dr
 eU
 ft
 fM
@@ -23429,13 +23565,13 @@ ad
 ad
 jU
 cg
-cg
-cg
-cg
-cg
-eu
-eu
-eu
+er
+er
+er
+er
+eV
+eV
+eV
 eX
 fw
 fO
@@ -23855,7 +23991,7 @@ ad
 ad
 jW
 cg
-cA
+cf
 cX
 dy
 dX

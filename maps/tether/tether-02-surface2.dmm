@@ -3280,8 +3280,9 @@
 "afg" = (
 /obj/machinery/door/airlock/medical{
 	id_tag = "SurfMedicalResleeving";
-	name = "Resleeving Lab";
-	req_access = list(5)
+	name = "Resleeving Washroom";
+	req_access = null;
+	req_one_access = null
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 8
@@ -45170,8 +45171,8 @@ aab
 aab
 aab
 aab
-aac
-aac
+ael
+ael
 aab
 aab
 ael
@@ -45312,8 +45313,8 @@ aab
 aab
 aab
 aab
-aac
-aac
+ael
+ael
 aab
 aab
 ael
@@ -52038,8 +52039,8 @@ abn
 abn
 abn
 abn
-aac
-aac
+ael
+ael
 abn
 abn
 abn
@@ -52173,15 +52174,15 @@ abn
 abn
 abn
 abn
-aac
-aac
+ael
+ael
 abn
 abn
 abn
 abn
 abn
-aac
-aac
+ael
+ael
 abn
 abn
 abn
@@ -52315,8 +52316,8 @@ abn
 abn
 abn
 abn
-aac
-aac
+ael
+ael
 abn
 abn
 abn
@@ -52879,8 +52880,8 @@ aeG
 aeG
 aeG
 aeG
-aac
-aac
+ael
+ael
 abn
 abn
 abn
@@ -53021,8 +53022,8 @@ aeG
 aeG
 aeG
 aeG
-aac
-aac
+ael
+ael
 abn
 abn
 abn
