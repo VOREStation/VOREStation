@@ -305,7 +305,11 @@ var/global/list/disallowed_protean_accessories = list(
 	)
 
 // Helpers - Unsafe, WILL perform change.
-/mob/living/carbon/human/proc/nano_intoblob()
+/mob/living/carbon/human/proc/nano_intoblob(force)
+	if(!force && !isturf(loc))
+		to_chat(src,"<span class='warning'>You can't change forms while inside something.</span>")
+		return
+		
 	var/panel_was_up = FALSE
 	if(client?.statpanel == "Protean")
 		panel_was_up = TRUE
@@ -398,7 +402,11 @@ var/global/list/disallowed_protean_accessories = list(
 		if(istype(I, /obj/item/weapon/holder))
 			root.remove_from_mob(I)
 
-/mob/living/carbon/human/proc/nano_outofblob(var/mob/living/simple_mob/protean_blob/blob)
+/mob/living/carbon/human/proc/nano_outofblob(var/mob/living/simple_mob/protean_blob/blob, force)
+	if(!force && !isturf(loc))
+		to_chat(src,"<span class='warning'>You can't change forms while inside something.</span>")
+		return
+	
 	if(!istype(blob))
 		return
 
