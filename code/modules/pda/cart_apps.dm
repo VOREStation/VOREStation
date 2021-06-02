@@ -302,7 +302,7 @@
 			if(bl.z != cl.z)
 				continue
 			var/direction = get_dir(pda,B)
-			CartData[++CartData.len] = list("x" = bl.x, "y" = bl.y, "dir" = uppertext(dir2text(direction)), "volume" = B.reagents.total_volume, "max_volume" = B.reagents.maximum_volume)
+			CartData[++CartData.len] = list("x" = bl.x, "y" = bl.y, "dir" = uppertext(dir2text(direction)), "volume" = B.mybucket?.reagents.total_volume || 0, "max_volume" = B.mybucket?.reagents.maximum_volume || 0)
 
 	JaniData["mops"] = MopData.len ? MopData : null
 	JaniData["buckets"] = BucketData.len ? BucketData : null

@@ -39,12 +39,6 @@
 		return null
 	return format_text ? format_text(A.name) : A.name
 
-/proc/get_area_master(const/O)
-	var/area/A = get_area(O)
-	if (isarea(A))
-		return A
-
-
 /** Checks if any living humans are in a given area. */
 /proc/area_is_occupied(var/area/myarea)
 	// Testing suggests looping over human_mob_list is quicker than looping over area contents
