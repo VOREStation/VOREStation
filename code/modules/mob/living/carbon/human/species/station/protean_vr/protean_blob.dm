@@ -403,15 +403,11 @@ var/global/list/disallowed_protean_accessories = list(
 			root.remove_from_mob(I)
 
 /mob/living/carbon/human/proc/nano_outofblob(var/mob/living/simple_mob/protean_blob/blob, force)
-	if(!force && !isturf(loc))
-		to_chat(src,"<span class='warning'>You can't change forms while inside something.</span>")
-		return
-	
 	if(!istype(blob))
 		return
-
-	if(istype(blob.loc, /obj/machinery/atmospherics))
-		to_chat(src, "You cannot reform in these confines!")
+	
+	if(!force && !isturf(blob.loc))
+		to_chat(blob,"<span class='warning'>You can't change forms while inside something.</span>")
 		return
 
 	var/panel_was_up = FALSE
