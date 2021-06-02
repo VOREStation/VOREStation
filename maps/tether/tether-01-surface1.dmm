@@ -32647,7 +32647,7 @@
 "fDx" = (
 /obj/machinery/door/airlock/maintenance/sec{
 	name = "Riot Control";
-	req_one_access = list(63,24)
+	req_one_access = list(63)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/green{
 	dir = 4
