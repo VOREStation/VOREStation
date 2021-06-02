@@ -1451,7 +1451,7 @@
 	name = "purple king"
 	desc = "A large king piece for playing chess. It's made of a purple-colored glass."
 	description_info = "The King can move exactly one square horizontally, vertically, or diagonally. If your opponent captures this piece, you lose."
-	icon_state = "b-king"
+	icon_state = "b-king" 
 
 /// Balloon structures
 
