@@ -216,7 +216,8 @@
 			loop_mode = sanitize_inlist(newval, list(JUKEMODE_NEXT, JUKEMODE_RANDOM, JUKEMODE_REPEAT_SONG, JUKEMODE_PLAY_ONCE), loop_mode)
 			return TRUE
 		if("volume")
-			volume = clamp(params["val"], 0, 1)
+			var/newval = text2num(params["val"])
+			volume = clamp(newval, 0, 1)
 			update_music() // To broadcast volume change without restarting song
 			return TRUE
 		if("stop")
