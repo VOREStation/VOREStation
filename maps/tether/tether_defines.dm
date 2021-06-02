@@ -100,7 +100,7 @@
 							NETWORK_RESEARCH_OUTPOST,
 							NETWORK_ROBOTS,
 							NETWORK_SECURITY,
-							NETWORK_TCOMMS,
+							NETWORK_TELECOM,
 							NETWORK_TETHER
 							)
 	secondary_networks = list(
