@@ -1394,7 +1394,7 @@
 
 /obj/item/toy/chess/pawn_white
 	name = "white pawn"
-		desc = "A white pawn chess piece. Get accused of cheating when executing a sick En Passant."
+	desc = "A white pawn chess piece. Get accused of cheating when executing a sick En Passant."
 	description_info = "Pawns can move forward one square, if that square is unoccupied. If the pawn has not yet moved, it has the option of moving two squares forward provided both squares in front of the pawn are unoccupied. A pawn cannot move backward. They can only capture an enemy piece on either of the two tiles diagonally in front of them, but not the tile directly in front of them."
 	icon_state = "white_pawn"
 /obj/item/toy/chess/pawn_black
