@@ -379,9 +379,6 @@ var/global/list/latejoin_tram   = list()
 /obj/machinery/camera/network/tether
 	network = list(NETWORK_TETHER)
 
-/obj/machinery/camera/network/tcomms
-	network = list(NETWORK_TCOMMS)
-
 /obj/machinery/camera/network/outside
 	network = list(NETWORK_OUTSIDE)
 
