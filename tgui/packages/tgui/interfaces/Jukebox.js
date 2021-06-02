@@ -93,16 +93,16 @@ export const Jukebox = (props, context) => {
             <LabeledList.Item label="Volume">
               <Slider
                 minValue={0}
-                step={0.01}
-                value={volume}
-                maxValue={1}
+                step={1}
+                value={volume * 100}
+                maxValue={100}
                 ranges={{
-                  good: [.75, Infinity],
-                  average: [.25, .75],
-                  bad: [0, .25],
+                  good: [75, Infinity],
+                  average: [25, 75],
+                  bad: [0, 25],
                 }}
-                format={val => round(val * 100, 1) + "%"}
-                onChange={(e, val) => act("volume", { val: round(val, 2) })} />
+                format={val => round(val, 1) + "%"}
+                onChange={(e, val) => act("volume", { val: round(val / 100, 2) })} />
             </LabeledList.Item>
           </LabeledList>
         </Section>
