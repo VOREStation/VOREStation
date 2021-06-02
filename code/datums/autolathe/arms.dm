@@ -74,7 +74,7 @@
 	name = "pistol magazine (.45 armor piercing)"
 	path =/obj/item/ammo_magazine/m45/ap
 	hidden = 1
-	resources = list(DEFAULT_WALL_MATERIAL = 500, MAT_PLASTEEL = 300)
+	resources = list(DEFAULT_WALL_MATERIAL = 1000) // VOREStation Edit
 
 /datum/category_item/autolathe/arms/pistol_45hp
 	name = "pistol magazine (.45 hollowpoint)"
