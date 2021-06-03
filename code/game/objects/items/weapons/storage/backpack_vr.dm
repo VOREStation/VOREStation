@@ -102,7 +102,7 @@
 	icon_state = "satchel-explo"
 
 /obj/item/weapon/storage/backpack/messenger/explorer
-	name = "messenger bag"
+	name = "explorer messenger bag"
 	desc = "A sturdy backpack worn over one shoulder."
 	icon = 'icons/obj/clothing/backpack_vr.dmi'
 	icon_override = 'icons/mob/back_vr.dmi'
