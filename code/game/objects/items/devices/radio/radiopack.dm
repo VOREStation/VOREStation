@@ -1,8 +1,9 @@
 /obj/item/device/bluespaceradio
 	name = "bluespace radio"
 	desc = "A powerful radio that uses a tiny bluespace wormhole to send signals directly to subspace receivers and transmitters, bypassing the limitations of subspace."
-	icon = 'icons/obj/radio.dmi'
-	icon_state = "radiopack"
+	icon = 'icons/obj/device_vr.dmi'
+	icon_state = "radio_kit"
+	icon_override = 'icons/mob/back_vr.dmi'
 	item_state = "radiopack"
 	slot_flags = SLOT_BACK
 	force = 5
@@ -99,7 +100,8 @@
 	name = "bluespace radio handset"
 	desc = "A large walkie talkie attached to the bluespace radio by a retractable cord. It sits comfortably on a slot in the radio when not in use."
 	bluespace_radio = TRUE
-	icon_state = "signaller"
+	icon = 'icons/obj/device_vr.dmi'
+	icon_state = "handset"
 	slot_flags = null
 	w_class = ITEMSIZE_LARGE
 	canhear_range = 1
@@ -136,7 +138,7 @@
 		return -1
 	if(!freq)
 		return -1
-	
+
 	//Only listen on main freq
 	if(freq == frequency)
 		return canhear_range
