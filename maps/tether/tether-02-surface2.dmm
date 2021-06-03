@@ -23345,7 +23345,7 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/wood,
+/turf/simulated/floor/tiled/dark,
 /area/engineering/lower/breakroom)
 "aPo" = (
 /obj/structure/cable/cyan{

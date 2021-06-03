@@ -1285,15 +1285,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
 	dir = 5
 	},
-/obj/machinery/access_button{
-	command = "cycle_interior";
-	frequency = 1381;
-	master_tag = "ai_sat_airlock_inner";
-	name = "interior access button";
-	pixel_x = 28;
-	pixel_y = -26;
-	req_one_access = list(61)
-	},
 /turf/simulated/floor/tiled/dark{
 	nitrogen = 100;
 	oxygen = 0;
@@ -1361,7 +1352,6 @@
 	name = "Telecoms Server Access";
 	req_access = list(61)
 	},
-/obj/effect/map_helper/airlock/door/int_door,
 /turf/simulated/floor/tiled/techfloor,
 /area/tcommsat/chamber)
 "acB" = (
@@ -1377,41 +1367,33 @@
 /turf/simulated/floor/tiled/monotile,
 /area/tether/exploration)
 "acC" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/black{
+	dir = 4
+	},
+/obj/machinery/airlock_sensor/airlock_interior{
+	frequency = 1381;
+	id_tag = "server_access_in_sensor";
+	name = "interior sensor";
+	pixel_y = -25
+	},
+/turf/simulated/floor/tiled/dark{
+	nitrogen = 100;
+	oxygen = 0;
+	temperature = 80
+	},
+/area/tcommsat/chamber)
+"acD" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
 	frequency = 1381;
 	id_tag = "server_access_pump"
 	},
-/obj/effect/map_helper/airlock/atmos/chamber_pump,
-/turf/simulated/floor/tiled/techfloor,
-/area/tcommsat/chamber)
-"acD" = (
-/obj/machinery/embedded_controller/radio/airlock/advanced_airlock_controller{
-	frequency = 1381;
-	id_tag = "server_access_airlock";
-	name = "Server Access Airlock";
-	pixel_y = 25;
-	tag_airpump = "server_access_pump";
-	tag_chamber_sensor = "server_access_sensor";
-	tag_exterior_door = "server_access_outer";
-	tag_exterior_sensor = "server_access_ex_sensor";
-	tag_interior_door = "server_access_inner";
-	tag_interior_sensor = "server_access_in_sensor";
-	tag_secure = 1
-	},
-/obj/machinery/airlock_sensor{
-	frequency = 1381;
-	id_tag = "server_access_sensor";
-	pixel_x = 12;
-	pixel_y = 25
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden{
-	dir = 1
-	},
-/obj/effect/map_helper/airlock/sensor/chamber_sensor,
 /turf/simulated/floor/tiled/techfloor,
 /area/tcommsat/chamber)
 "acE" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
 /obj/machinery/door/airlock/maintenance_hatch{
 	frequency = 1381;
 	icon_state = "door_locked";
@@ -1420,10 +1402,6 @@
 	name = "Telecoms Server Access";
 	req_access = list(61)
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 4
-	},
-/obj/effect/map_helper/airlock/door/ext_door,
 /turf/simulated/floor/tiled/techfloor,
 /area/tcommsat/chamber)
 "acF" = (
@@ -1436,14 +1414,12 @@
 	dir = 10;
 	icon_state = "intact"
 	},
-/obj/machinery/access_button{
-	command = "cycle_exterior";
+/obj/machinery/airlock_sensor/airlock_exterior{
 	frequency = 1381;
-	master_tag = "ai_sat_airlock_inner";
-	name = "exterior access button";
-	pixel_x = -26;
-	pixel_y = -26;
-	req_one_access = list(61)
+	id_tag = "server_access_ex_sensor";
+	master_tag = "server_access_airlock";
+	pixel_x = -24;
+	pixel_y = -24
 	},
 /turf/simulated/floor/tiled,
 /area/tcommsat/computer)
@@ -1455,6 +1431,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
+/obj/item/device/multitool,
 /turf/simulated/floor/tiled,
 /area/tcommsat/computer)
 "acH" = (
@@ -2200,6 +2177,12 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/substation/engineering)
+"adJ" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 5
+	},
+/turf/simulated/floor/tiled,
+/area/tcommsat/computer)
 "adK" = (
 /obj/effect/landmark{
 	name = "morphspawn"
@@ -2226,6 +2209,31 @@
 /obj/structure/catwalk,
 /turf/simulated/floor,
 /area/maintenance/station/eng_lower)
+"adM" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden{
+	dir = 1
+	},
+/obj/machinery/embedded_controller/radio/airlock/advanced_airlock_controller{
+	frequency = 1381;
+	id_tag = "server_access_airlock";
+	name = "Server Access Airlock";
+	pixel_y = 25;
+	tag_airpump = "server_access_pump";
+	tag_chamber_sensor = "server_access_sensor";
+	tag_exterior_door = "server_access_outer";
+	tag_exterior_sensor = "server_access_ex_sensor";
+	tag_interior_door = "server_access_inner";
+	tag_interior_sensor = "server_access_in_sensor";
+	tag_secure = 1
+	},
+/obj/machinery/airlock_sensor{
+	frequency = 1381;
+	id_tag = "server_access_sensor";
+	pixel_x = 12;
+	pixel_y = 25
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/tcommsat/chamber)
 "adQ" = (
 /obj/machinery/computer/power_monitor{
 	dir = 4;
@@ -17295,12 +17303,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/excursion/general)
-"dJJ" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 5
-	},
-/turf/simulated/floor/tiled,
-/area/tcommsat/computer)
 "dJL" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -50235,7 +50237,7 @@ avO
 bYg
 acu
 acA
-acC
+acD
 acV
 otm
 pMe
@@ -50375,9 +50377,9 @@ rLI
 rLI
 rLI
 thI
-rLO
+acC
 xTB
-acD
+adM
 huZ
 otm
 cik
@@ -50662,7 +50664,7 @@ thI
 rLO
 xSF
 acF
-dJJ
+adJ
 xEG
 awQ
 hea
