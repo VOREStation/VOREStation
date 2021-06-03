@@ -60,6 +60,7 @@
 	var/channel_text = num2text(channel)
 	channels_playing[channel_text] = 100
 	last_channel_played = channel_text
+	var/turf/source = get_turf(parent)
 	for(var/i in hearing_mobs)
 		var/mob/M = i
 		/* Maybe someday
@@ -69,7 +70,7 @@
 		*/
 		// Jeez
 		M.playsound_local(
-			turf_source = get_turf(parent),
+			turf_source = source,
 			soundin = null,
 			vol = volume,
 			vary = FALSE,
