@@ -239,8 +239,9 @@
 	set category = "Abilities"
 	set hidden = TRUE
 
-	if(!isturf(loc))
-		to_chat(src,"<span class='warning'>You need more space to perform this action!</span>")
+	var/atom/movable/to_locate = temporary_form || src
+	if(!isturf(to_locate.loc))
+		to_chat(to_locate,"<span class='warning'>You need more space to perform this action!</span>")
 		return
 	
 	//Blob form
