@@ -3,9 +3,20 @@
 	icon = 'icons/turf/urban_vr.dmi'
 	icon_state = "concrete1"
 
-/obj/effect/floor_decal/concrete
+/turf/simulated/floor/asphalt
+	name = "asphalt"
+	icon = 'icons/turf/urban_vr.dmi'
+	icon_state = "asphalt"
+
+/turf/simulated/floor/asphalt/paint
+	icon_state = "asphalt_paint"
+
+/obj/effect/floor_decal/corner/concrete
 	name = "concrete corner"
-	icon = 'icons/turf/urban_vr.dmi' // VOREStation Edit
+	icon = 'icons/turf/urban_vr.dmi'
 	icon_state = "concrete_c"
-	plane = DECAL_PLANE
-	layer = MAPPER_DECAL_LAYER
+
+/obj/effect/floor_decal/corner/asphalt
+	name = "asphalt corner"
+	icon = 'icons/turf/urban_vr.dmi'
+	icon_state = "asphalt_c"
