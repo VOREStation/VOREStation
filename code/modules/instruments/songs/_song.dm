@@ -161,7 +161,7 @@
 	var/list/old = hearing_mobs.Copy()
 	hearing_mobs.len = 0
 	var/turf/source = get_turf(parent)
-	var/list/in_range = get_mobs_and_objs_in_view_fast(source, instrument_range)
+	var/list/in_range = get_mobs_and_objs_in_view_fast(source, instrument_range, remote_ghosts = FALSE)
 	for(var/mob/M in in_range["mobs"])
 		hearing_mobs[M] = get_dist(M, source)
 	var/list/exited = old - hearing_mobs
