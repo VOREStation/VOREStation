@@ -136,3 +136,6 @@
 
 /obj/effect/floor_decal/emblem/aronai
 	icon_state = "aronai"
+
+/obj/effect/floor_decal/corner/shoreline
+	icon_state = "beachcorner_45"
