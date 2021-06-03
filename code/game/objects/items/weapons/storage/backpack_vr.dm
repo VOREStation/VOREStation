@@ -85,14 +85,6 @@
 
 ///Exploration Bags///
 
-/obj/item/weapon/storage/backpack/satchel/explorer
-	name = "explorer satchel"
-	desc = "A satchel for carrying a large number of supplies easily."
-	icon = 'icons/obj/clothing/backpack_vr.dmi'
-	icon_override = 'icons/mob/back_vr.dmi'
-	item_state = "satchel-explo"
-	icon_state = "satchel-explo"
-
 /obj/item/weapon/storage/backpack/explorer
 	name = "explorer backpack"
 	desc = "A backpack for carrying a large number of supplies easily."
@@ -101,7 +93,15 @@
 	item_state = "explopack"
 	icon_state = "explopack"
 
-/obj/item/weapon/storage/backpack/messenger
+/obj/item/weapon/storage/backpack/satchel/explorer
+	name = "explorer satchel"
+	desc = "A satchel for carrying a large number of supplies easily."
+	icon = 'icons/obj/clothing/backpack_vr.dmi'
+	icon_override = 'icons/mob/back_vr.dmi'
+	item_state = "satchel-explo"
+	icon_state = "satchel-explo"
+
+/obj/item/weapon/storage/backpack/messenger/explorer
 	name = "messenger bag"
 	desc = "A sturdy backpack worn over one shoulder."
 	icon = 'icons/obj/clothing/backpack_vr.dmi'

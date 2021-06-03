@@ -7,8 +7,9 @@
 	name = "explorer's belt"
 	desc = "A versatile belt with several pouches. It can hold a very wide variety of items, but less items overall than a dedicated belt. Still, it's useful for any explorer who wants to be prepared for anything they might find."
 	icon = 'icons/obj/clothing/belts_vr.dmi'
+	icon_override = 'icons/mob/belt_vr.dmi'
 	icon_state = "explo_belt"
-	item_state = "explo_belt"
+	item_state = "explorer_belt"
 	storage_slots = 5	//makes it strictly inferior to any specialized belt as they have seven slots, but it's far more versatile
 	max_w_class = ITEMSIZE_NORMAL	//limits the max size of thing that can be put in, so no using it to hold five laser cannons
 	max_storage_space = ITEMSIZE_COST_NORMAL * 5
