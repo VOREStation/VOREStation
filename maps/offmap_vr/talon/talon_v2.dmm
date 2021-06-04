@@ -8192,7 +8192,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/reinforced/airless,
-/area/talon_v2/crew_quarters/cap_room)
+/area/talon_v2/bridge)
 "Bi" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -10849,7 +10849,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/reinforced/airless,
-/area/talon_v2/crew_quarters/cap_room)
+/area/talon_v2/bridge)
 "JQ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
