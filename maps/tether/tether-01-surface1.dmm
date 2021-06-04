@@ -4918,8 +4918,21 @@
 /turf/simulated/floor/tiled/white,
 /area/rnd/chemistry_lab)
 "aio" = (
+/obj/machinery/door/firedoor,
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "gogogo";
+	opacity = 0
+	},
 /obj/machinery/camera/network/research{
-	dir = 5
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/testingroom)
@@ -6259,9 +6272,6 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/public_garden_maintenence)
 "akH" = (
-/obj/machinery/camera/network/outside{
-	dir = 9
-	},
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/holodeck_control)
 "akI" = (
@@ -11035,6 +11045,7 @@
 /obj/effect/floor_decal/corner/lightgrey/bordercorner2{
 	dir = 4
 	},
+/obj/machinery/camera/network/civilian,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/locker)
 "asz" = (
@@ -18267,6 +18278,9 @@
 /obj/machinery/alarm{
 	pixel_y = 22
 	},
+/obj/machinery/camera/network/civilian{
+	dir = 9
+	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_dining)
 "aEb" = (
@@ -18355,19 +18369,8 @@
 /turf/simulated/floor/tiled/steel_dirty,
 /area/tether/surfacebase/cargostore/warehouse)
 "aEj" = (
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/sign/warning/moving_parts{
-	desc = "A warning sign for moving parts. This one states 'Put your gathered ore here for processing!' on it.";
-	name = "To Mining Operations Processing";
-	pixel_x = -32
-	},
 /obj/structure/closet/crate,
+/obj/machinery/camera/network/cargo,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/tether/surfacebase/cargostore/warehouse)
 "aEk" = (
@@ -19521,17 +19524,24 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/cargostore)
 "aGi" = (
-/obj/effect/floor_decal/corner/brown{
-	dir = 9
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
 	},
-/obj/effect/floor_decal/corner/brown{
-	dir = 6
+/obj/structure/window/reinforced{
+	dir = 1
 	},
-/obj/machinery/alarm{
-	pixel_y = 22
+/obj/structure/sign/warning/moving_parts{
+	desc = "A warning sign for moving parts. This one states 'Put your gathered ore here for processing!' on it.";
+	name = "To Mining Operations Processing";
+	pixel_x = -32
 	},
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/cargostore)
+/obj/structure/closet/crate,
+/obj/machinery/camera/network/cargo{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/tether/surfacebase/cargostore/warehouse)
 "aGj" = (
 /turf/simulated/wall,
 /area/tether/surfacebase/cargostore/office)
@@ -22265,17 +22275,20 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/cargostore/office)
 "aKQ" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 4
+/obj/effect/floor_decal/corner/brown{
+	dir = 9
 	},
-/obj/effect/floor_decal/corner/brown/border{
-	dir = 4
+/obj/effect/floor_decal/corner/brown{
+	dir = 6
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
+/obj/machinery/alarm{
+	pixel_y = 22
+	},
+/obj/machinery/camera/network/cargo{
+	dir = 8
 	},
 /turf/simulated/floor/tiled,
-/area/tether/surfacebase/cargostore/office)
+/area/tether/surfacebase/cargostore)
 "aKR" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable/green{
@@ -22560,17 +22573,19 @@
 /area/rnd/external)
 "aLt" = (
 /obj/effect/floor_decal/borderfloor{
-	dir = 10
+	dir = 4
 	},
 /obj/effect/floor_decal/corner/brown/border{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
-/obj/structure/table/rack,
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 1
+/obj/machinery/camera/network/cargo{
+	dir = 8
 	},
 /turf/simulated/floor/tiled,
-/area/tether/surfacebase/cargostore)
+/area/tether/surfacebase/cargostore/office)
 "aLu" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/brown/border,
@@ -28470,6 +28485,9 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/camera/network/tether{
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_lodging)
 "aWm" = (
@@ -30565,6 +30583,74 @@
 /obj/structure/table/woodentable,
 /turf/simulated/floor/wood,
 /area/vacant/vacant_bar)
+"bav" = (
+/obj/machinery/camera/network/civilian{
+	dir = 9
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/tram)
+"baw" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/brown/border{
+	dir = 10
+	},
+/obj/structure/table/rack,
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/obj/machinery/camera/network/cargo{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/cargostore)
+"bax" = (
+/obj/machinery/camera/network/engineering{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/engineering/atmos)
+"bay" = (
+/obj/machinery/door/firedoor,
+/obj/structure/grille,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/obj/machinery/door/blast/regular{
+	density = 0;
+	dir = 4;
+	icon_state = "pdoor0";
+	id = "gogogo";
+	opacity = 0
+	},
+/obj/machinery/camera/network/research{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/testingroom)
+"baz" = (
+/obj/structure/grille,
+/obj/machinery/door/firedoor,
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	dir = 8;
+	icon_state = "shutter0";
+	id = "holodeck";
+	name = "Holodeck Privacy Shutters";
+	opacity = 0
+	},
+/obj/structure/window/reinforced/polarized/full{
+	id = "holodeck"
+	},
+/obj/structure/window/reinforced/polarized{
+	dir = 8;
+	id = "holodeck"
+	},
+/obj/machinery/camera/network/civilian,
+/turf/simulated/floor/plating,
+/area/holodeck_control)
 "baA" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
@@ -30590,6 +30676,29 @@
 /obj/item/weapon/bedsheet/mimedouble,
 /turf/simulated/floor/plating,
 /area/crew_quarters/sleep/maintDorm1)
+"baF" = (
+/obj/structure/grille,
+/obj/machinery/door/firedoor,
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	dir = 8;
+	icon_state = "shutter0";
+	id = "holodeck";
+	name = "Holodeck Privacy Shutters";
+	opacity = 0
+	},
+/obj/structure/window/reinforced/polarized/full{
+	id = "holodeck"
+	},
+/obj/structure/window/reinforced/polarized{
+	dir = 8;
+	id = "holodeck"
+	},
+/obj/machinery/camera/network/civilian{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/holodeck_control)
 "baK" = (
 /obj/structure/bed/chair/comfy/black{
 	dir = 8
@@ -41668,14 +41777,14 @@ aad
 aad
 ajO
 ajO
+baz
 ajV
 ajV
 ajV
 ajV
 ajV
 ajV
-ajV
-ajV
+baF
 ajO
 ajO
 aad
@@ -44272,10 +44381,10 @@ aeR
 aeR
 aji
 agF
-agP
+aio
 aiQ
 agD
-aio
+aiB
 abN
 xgQ
 ofS
@@ -45692,7 +45801,7 @@ aeR
 aeR
 ane
 agF
-agP
+bay
 ail
 aiG
 alL
@@ -48270,7 +48379,7 @@ aOx
 aJI
 aPt
 aJI
-aJI
+bax
 aQy
 aRD
 aRW
@@ -50200,14 +50309,14 @@ aBB
 aCr
 aDa
 aDU
-aEj
+aGi
 aCr
 aGb
 aGK
 aHr
 aIq
 aJU
-aLt
+baw
 aGa
 anD
 anU
@@ -51054,7 +51163,7 @@ aDB
 aEh
 aDC
 aCr
-aGi
+aKQ
 aGP
 aHM
 aJt
@@ -51334,7 +51443,7 @@ yaU
 afO
 aBB
 aCr
-aDC
+aEj
 aEh
 aDt
 aCr
@@ -51768,7 +51877,7 @@ aGs
 aGU
 aHT
 aJB
-aKQ
+aLt
 aXQ
 aGj
 aCN
@@ -54649,7 +54758,7 @@ aDu
 aIx
 aDu
 aCR
-aKK
+aDu
 aLj
 aLX
 aMI
@@ -54791,7 +54900,7 @@ aHH
 aIu
 aDu
 aDu
-aDu
+aKK
 aLj
 aLj
 aLj
@@ -55628,7 +55737,7 @@ auB
 auB
 auB
 auB
-auB
+bav
 auB
 auB
 auB
@@ -57461,7 +57570,7 @@ aad
 aad
 auD
 atC
-atC
+aue
 atC
 atC
 aua
@@ -57486,7 +57595,7 @@ atC
 aua
 atC
 atC
-atC
+aue
 atC
 auD
 aad

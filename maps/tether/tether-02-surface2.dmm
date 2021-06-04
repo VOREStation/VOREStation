@@ -7422,6 +7422,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/machinery/camera/network/security{
+	dir = 10
+	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/armory)
 "alB" = (
@@ -13895,14 +13898,14 @@
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/interrogation)
 "awy" = (
-/obj/structure/bed/chair{
-	dir = 4
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/camera/network/security{
+	dir = 10
 	},
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/dark,
-/area/tether/surfacebase/security/interrogation)
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/security/middlehall)
 "awz" = (
 /obj/structure/grille,
 /obj/machinery/door/firedoor/glass,
@@ -16941,6 +16944,9 @@
 	dir = 8;
 	icon_state = "techfloororange_edges"
 	},
+/obj/machinery/camera/network/tether{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/chapel/main)
 "aCW" = (
@@ -17001,10 +17007,13 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/bar)
 "aDe" = (
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/full,
 /obj/machinery/camera/network/civilian{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/dark,
+/turf/simulated/floor,
 /area/chapel/chapel_morgue)
 "aDf" = (
 /obj/structure/morgue,
@@ -25250,6 +25259,10 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/engineering/pumpstation)
+"aSZ" = (
+/obj/machinery/camera/network/civilian,
+/turf/simulated/floor/water/indoors,
+/area/tether/surfacebase/fish_farm)
 "aTa" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -25400,6 +25413,29 @@
 /obj/machinery/door/airlock/maintenance/common,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/lower/south)
+"aTi" = (
+/obj/machinery/camera/network/civilian{
+	dir = 1
+	},
+/turf/simulated/floor/beach/sand/desert,
+/area/tether/surfacebase/fish_farm)
+"aTj" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/obj/machinery/camera/network/security,
+/turf/simulated/floor/tiled/dark,
+/area/tether/surfacebase/security/interrogation)
+"aTk" = (
+/obj/structure/catwalk,
+/obj/machinery/camera/network/engineering{
+	dir = 8
+	},
+/turf/simulated/open,
+/area/engineering/atmos)
 "aTl" = (
 /obj/structure/table/rack,
 /obj/random/maintenance/research,
@@ -42079,8 +42115,8 @@ avT
 avT
 avT
 avT
-awY
-ayw
+azs
+aSZ
 azq
 azq
 ayw
@@ -42091,8 +42127,8 @@ azq
 ayw
 axR
 aFP
-awY
-awY
+azs
+azs
 aGw
 aEc
 aEc
@@ -42232,8 +42268,8 @@ ayw
 azq
 ayw
 axR
-axR
-axR
+aTi
+azs
 awY
 awY
 aEc
@@ -42354,12 +42390,12 @@ aoq
 apA
 ahn
 arA
-arA
+awy
 ahn
 aur
 avn
 avT
-awy
+aTj
 axa
 axT
 avT
@@ -42647,7 +42683,7 @@ awA
 axb
 axU
 avT
-awY
+azs
 azr
 azq
 azq
@@ -42802,7 +42838,7 @@ azq
 ayw
 axR
 aFP
-awY
+azs
 aGw
 aGw
 aqZ
@@ -47098,7 +47134,7 @@ aXB
 aXB
 aXB
 bbB
-bbJ
+aTk
 bbJ
 aVP
 adt
@@ -51173,7 +51209,7 @@ ard
 ato
 aBz
 aCg
-aDe
+aCh
 aDR
 aEv
 aFb
@@ -51459,7 +51495,7 @@ aBz
 aCi
 aDf
 aDS
-aEw
+aDe
 aFd
 aFL
 aBz

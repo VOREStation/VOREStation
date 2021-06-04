@@ -2207,6 +2207,7 @@
 	icon_state = "2-8"
 	},
 /obj/structure/catwalk,
+/obj/machinery/camera/network/engineering,
 /turf/simulated/floor,
 /area/maintenance/station/eng_lower)
 "adM" = (
@@ -2234,6 +2235,55 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/tcommsat/chamber)
+"adN" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
+	},
+/obj/machinery/camera/network/engine,
+/turf/simulated/floor/tiled,
+/area/engineering/engine_airlock)
+"adO" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 10
+	},
+/obj/machinery/embedded_controller/radio/airlock/advanced_airlock_controller{
+	id_tag = "engine_room_airlock";
+	name = "Engine Room Airlock";
+	pixel_x = -24;
+	tag_airpump = "engine_airlock_pump";
+	tag_chamber_sensor = "eng_al_c_snsr";
+	tag_exterior_door = "engine_airlock_exterior";
+	tag_exterior_sensor = "eng_al_ext_snsr";
+	tag_interior_door = "engine_airlock_interior";
+	tag_interior_sensor = "eng_al_int_snsr"
+	},
+/obj/machinery/camera/network/engine{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/engineering/engine_airlock)
+"adP" = (
+/obj/machinery/airlock_sensor/airlock_exterior{
+	id_tag = "eng_al_ext_snsr";
+	layer = 3.3;
+	master_tag = "engine_room_airlock";
+	pixel_x = -22;
+	req_access = list(10)
+	},
+/obj/effect/floor_decal/corner_steel_grid{
+	dir = 9
+	},
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/machinery/atmospherics/portables_connector{
+	dir = 1
+	},
+/obj/machinery/portable_atmospherics/canister/air/airlock,
+/turf/simulated/floor/tiled,
+/area/engineering/engine_airlock)
 "adQ" = (
 /obj/machinery/computer/power_monitor{
 	dir = 4;
@@ -2262,6 +2312,16 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/atmos/backup)
+"adT" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 5
+	},
+/obj/structure/reagent_dispensers/watertank,
+/obj/machinery/camera/network/tether{
+	dir = 4
+	},
+/turf/simulated/floor,
+/area/maintenance/cargo)
 "adU" = (
 /obj/machinery/light/small,
 /obj/machinery/floodlight,
@@ -2320,6 +2380,38 @@
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/engine_smes)
+"aec" = (
+/obj/structure/table/rack,
+/obj/item/device/suit_cooling_unit,
+/obj/item/device/suit_cooling_unit,
+/obj/item/device/suit_cooling_unit,
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/brown/border{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/quartermaster/belterdock)
+"aed" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/brown/border{
+	dir = 4
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/brown/bordercorner2{
+	dir = 5
+	},
+/obj/machinery/camera/network/mining{
+	c_tag = "OPM - Mining Production Room";
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/quartermaster/belterdock)
 "aee" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/universal,
 /obj/structure/railing{
@@ -2346,6 +2438,19 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/tether/exploration)
+"aeg" = (
+/obj/effect/floor_decal/industrial/warning/corner{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/obj/machinery/camera/network/mining{
+	c_tag = "OPM - Mining Production Room";
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
 "aeh" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -2428,6 +2533,33 @@
 "aen" = (
 /turf/simulated/floor/tiled,
 /area/engineering/workshop)
+"aeo" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/camera/network/mining{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
+"aep" = (
+/turf/simulated/wall,
+/area/space)
+"aeq" = (
+/obj/structure/catwalk,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/camera/network/telecom{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/space)
 "aer" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/red{
 	dir = 4
@@ -3701,16 +3833,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/docks)
-"ahd" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
-	},
-/obj/item/device/radio/intercom{
-	dir = 4;
-	pixel_x = 24
-	},
-/turf/simulated/floor/tiled,
-/area/engineering/engine_airlock)
 "ahf" = (
 /obj/effect/floor_decal/industrial/warning,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -4172,23 +4294,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor,
 /area/storage/tech)
-"aiy" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 10
-	},
-/obj/machinery/embedded_controller/radio/airlock/advanced_airlock_controller{
-	id_tag = "engine_room_airlock";
-	name = "Engine Room Airlock";
-	pixel_x = -24;
-	tag_airpump = "engine_airlock_pump";
-	tag_chamber_sensor = "eng_al_c_snsr";
-	tag_exterior_door = "engine_airlock_exterior";
-	tag_exterior_sensor = "eng_al_ext_snsr";
-	tag_interior_door = "engine_airlock_interior";
-	tag_interior_sensor = "eng_al_int_snsr"
-	},
-/turf/simulated/floor/plating,
-/area/engineering/engine_airlock)
 "aiA" = (
 /obj/structure/disposalpipe/segment{
 	dir = 2;
@@ -4207,27 +4312,6 @@
 	id_tag = "engine_airlock_pump"
 	},
 /turf/simulated/floor/plating,
-/area/engineering/engine_airlock)
-"aiD" = (
-/obj/machinery/airlock_sensor/airlock_exterior{
-	id_tag = "eng_al_ext_snsr";
-	layer = 3.3;
-	master_tag = "engine_room_airlock";
-	pixel_x = -22;
-	req_access = list(10)
-	},
-/obj/effect/floor_decal/corner_steel_grid{
-	dir = 9
-	},
-/obj/effect/floor_decal/industrial/outline/yellow,
-/obj/machinery/atmospherics/portables_connector{
-	dir = 1
-	},
-/obj/machinery/camera/network/engine{
-	dir = 1
-	},
-/obj/machinery/portable_atmospherics/canister/air/airlock,
-/turf/simulated/floor/tiled,
 /area/engineering/engine_airlock)
 "aiF" = (
 /obj/machinery/power/apc{
@@ -22893,20 +22977,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/gateway)
-"jEs" = (
-/obj/structure/table/rack,
-/obj/item/device/suit_cooling_unit,
-/obj/item/device/suit_cooling_unit,
-/obj/item/device/suit_cooling_unit,
-/obj/effect/floor_decal/borderfloor{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/brown/border{
-	dir = 1
-	},
-/obj/machinery/camera/network/mining,
-/turf/simulated/floor/tiled,
-/area/quartermaster/belterdock)
 "jFv" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
@@ -25997,13 +26067,6 @@
 /area/tcommsat/entrance{
 	name = "\improper Telecomms Entrance"
 	})
-"mqL" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 5
-	},
-/obj/structure/reagent_dispensers/watertank,
-/turf/simulated/floor,
-/area/maintenance/cargo)
 "mqR" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -28810,21 +28873,6 @@
 /obj/structure/catwalk,
 /turf/simulated/floor,
 /area/maintenance/station/eng_lower)
-"pwU" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/brown/border{
-	dir = 4
-	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 5
-	},
-/obj/effect/floor_decal/corner/brown/bordercorner2{
-	dir = 5
-	},
-/turf/simulated/floor/tiled,
-/area/quartermaster/belterdock)
 "pyy" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -35709,15 +35757,6 @@
 	},
 /turf/simulated/shuttle/floor/yellow/airless,
 /area/shuttle/belter)
-"xZB" = (
-/obj/effect/floor_decal/industrial/warning/corner{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10
-	},
-/turf/simulated/floor/tiled,
-/area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
 "xZW" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -42153,7 +42192,7 @@ aff
 alF
 agF
 ahs
-aiy
+adO
 aiM
 aac
 acz
@@ -42579,7 +42618,7 @@ afj
 alF
 agL
 ahB
-aiD
+adP
 aiM
 aac
 acz
@@ -42861,7 +42900,7 @@ aeC
 aeS
 afk
 alF
-ahd
+adN
 ahK
 aiF
 aiM
@@ -43467,7 +43506,7 @@ tUh
 axz
 kLN
 ady
-mqL
+adT
 mPj
 mPj
 tal
@@ -45912,7 +45951,7 @@ bYr
 cqk
 bYr
 bYr
-jEs
+aec
 tNG
 tNG
 tts
@@ -46056,7 +46095,7 @@ rxK
 bmW
 sCo
 oTk
-pwU
+aed
 hTx
 mLa
 seR
@@ -46770,7 +46809,7 @@ yiu
 nJw
 huL
 huL
-huL
+aeo
 huL
 huL
 mWy
@@ -48329,7 +48368,7 @@ cWq
 sKB
 yiu
 ohT
-xZB
+aeg
 unR
 unR
 unR
@@ -50833,7 +50872,7 @@ aaa
 aaa
 aaa
 ahW
-ahW
+aep
 ahW
 aaa
 aaa
@@ -50975,7 +51014,7 @@ dxY
 dxY
 dxY
 dxY
-dxY
+aeq
 dxY
 dxY
 dxY
