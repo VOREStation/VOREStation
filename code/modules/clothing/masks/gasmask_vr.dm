@@ -22,8 +22,8 @@
 /obj/item/clothing/mask/gas/invisible
 	name = "Cyber Tech PCM"
 	desc = "The latest in nanotechnology. This sensor suite conforms to the user and creates an invisible nanoweve around vital facial components without obstructing their sense of fashion or ability to eat."
-	icon = 'icons/obj/integrated_electronics/electronic_components.dmi'
-	icon_state = "template"
+	icon = 'icons/obj/items.dmi'
+	icon_state = "implantpad-0"
 	item_flags = BLOCK_GAS_SMOKE_EFFECT | AIRTIGHT | FLEXIBLEMATERIAL
 	body_parts_covered = FACE|EYES|HEAD
 	flags_inv = null
@@ -34,6 +34,11 @@
 	desc = "The latest in nanotechnology. This sensor suite conforms to the user and creates an invisible nanoweve around vital facial components without obstructing their sense of fashion or ability to eat. It's a heavily enhanced version used for administrative duties."
 	armor = list(melee = 100, bullet = 100, laser = 100,energy = 100, bomb = 100, bio = 100, rad = 100)
 	siemens_coefficient = 0
+	cold_protection = HEAD
+	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
+	min_pressure_protection = 0 * ONE_ATMOSPHERE
+	max_pressure_protection = 2 * ONE_ATMOSPHERE
+	flash_protection = FLASH_PROTECTION_MAJOR
 	
 /obj/item/clothing/mask/gas/invisible/enhanced
 	name = "enhanced Cyber Tech PCM"
