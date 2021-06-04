@@ -19764,6 +19764,11 @@
 	pixel_y = -28
 	},
 /obj/machinery/light,
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/tram)
 "aGC" = (
@@ -29868,46 +29873,57 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/sleep/maintDorm3)
 "aYU" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 1
+/obj/machinery/atmospherics/portables_connector{
+	dir = 4
 	},
-/obj/structure/grille,
-/turf/simulated/floor/plating,
-/area/tether/surfacebase/tram)
-"aYV" = (
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/tram{
-	maxrate = 9119.25;
+	icon_state = "scrubber:0";
+	maxrate = 9113.25;
+	on = 0;
+	scrub_id = "tram";
 	volume = 1e+038;
 	volume_rate = 1e+038
 	},
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/tram)
+"aYV" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 8
 	},
-/obj/machinery/light{
-	dir = 1
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/tram{
+	icon_state = "scrubber:0";
+	maxrate = 9113.25;
+	on = 0;
+	scrub_id = "tram";
+	volume = 1e+038;
+	volume_rate = 1e+038
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/plating,
 /area/tether/surfacebase/tram)
 "aYW" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden{
-	dir = 8
-	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
 /obj/structure/grille,
+/obj/machinery/atmospherics/pipe/manifold4w/hidden,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/tram)
 "aYX" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
+	},
 /obj/machinery/atmospherics/portables_connector{
-	dir = 8
+	dir = 4
 	},
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/tram{
-	maxrate = 9119.25;
+	icon_state = "scrubber:0";
+	maxrate = 9113.25;
+	on = 0;
+	scrub_id = "tram";
 	volume = 1e+038;
 	volume_rate = 1e+038
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/plating,
 /area/tether/surfacebase/tram)
 "aYY" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -29920,9 +29936,21 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/sleep/maintDorm2)
 "aYZ" = (
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
-/obj/structure/grille,
-/turf/simulated/floor/plating,
+/obj/machinery/atmospherics/portables_connector{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/tram{
+	icon_state = "scrubber:0";
+	maxrate = 9113.25;
+	on = 0;
+	scrub_id = "tram";
+	volume = 1e+038;
+	volume_rate = 1e+038
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
 /area/tether/surfacebase/tram)
 "aZa" = (
 /obj/structure/cable/orange{
@@ -29937,8 +29965,18 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/tram)
 "aZb" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
-/obj/structure/grille,
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
+/obj/machinery/atmospherics/portables_connector{
+	dir = 4
+	},
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/tram{
+	icon_state = "scrubber:0";
+	maxrate = 9113.25;
+	on = 0;
+	scrub_id = "tram";
+	volume = 1e+038;
+	volume_rate = 1e+038
+	},
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/tram)
 "aZc" = (
@@ -30048,10 +30086,8 @@
 /area/crew_quarters/sleep/maintDorm3)
 "aZn" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10
+	dir = 10;
+	icon_state = "intact"
 	},
 /obj/structure/grille,
 /turf/simulated/floor/plating,
@@ -30094,9 +30130,11 @@
 /obj/machinery/atmospherics/portables_connector{
 	dir = 8
 	},
-/obj/machinery/light,
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/tram{
-	maxrate = 9119.25;
+	icon_state = "scrubber:0";
+	maxrate = 9113.25;
+	on = 0;
+	scrub_id = "tram";
 	volume = 1e+038;
 	volume_rate = 1e+038
 	},
@@ -30106,15 +30144,23 @@
 /obj/machinery/atmospherics/portables_connector{
 	dir = 8
 	},
-/obj/machinery/light{
-	dir = 1
-	},
+/obj/machinery/light,
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/tram{
-	maxrate = 9119.25;
+	icon_state = "scrubber:0";
+	maxrate = 9113.25;
+	on = 0;
+	scrub_id = "tram";
 	volume = 1e+038;
 	volume_rate = 1e+038
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
+/area/tether/surfacebase/tram)
+"aZt" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden{
+	dir = 1
+	},
+/obj/structure/grille,
+/turf/simulated/floor/plating,
 /area/tether/surfacebase/tram)
 "aZu" = (
 /obj/machinery/shower{
@@ -30124,23 +30170,23 @@
 /turf/simulated/floor/plating,
 /area/crew_quarters/sleep/maintDorm1)
 "aZv" = (
-/obj/machinery/atmospherics/pipe/vent/high_volume{
-	dir = 1;
-	volume = 1e+038
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
 	},
-/turf/simulated/floor/outdoors/grass/sif/virgo3b,
-/area/tether/surfacebase/outside/outside1)
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/tram)
 "aZw" = (
 /obj/effect/decal/cleanable/blood,
 /turf/simulated/floor/plating,
 /area/vacant/vacant_bar)
 "aZx" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 6;
-	icon_state = "intact"
-	},
-/obj/structure/grille,
-/turf/simulated/floor/plating,
+/obj/machinery/hologram/holopad,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/tram)
+"aZy" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/floor/tiled,
 /area/tether/surfacebase/tram)
 "aZz" = (
 /turf/simulated/floor/wood,
@@ -30151,11 +30197,13 @@
 /turf/simulated/floor/plating,
 /area/crew_quarters/sleep/maintDorm3)
 "aZB" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/cable/orange{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
 	},
-/obj/structure/grille,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/tiled,
 /area/tether/surfacebase/tram)
 "aZC" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -30166,9 +30214,34 @@
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/maintDorm1)
 "aZE" = (
-/turf/simulated/wall{
-	can_open = 1
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/door/airlock/atmos{
+	name = "Tram Atmospherics Control Room"
 	},
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/tether/surfacebase/tram)
+"aZF" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden{
+	dir = 4;
+	icon_state = "map"
+	},
+/obj/structure/grille,
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/tram)
+"aZG" = (
+/obj/machinery/atmospherics/pipe/manifold4w/hidden,
+/obj/structure/grille,
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/tram)
+"aZH" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden,
+/obj/structure/grille,
+/turf/simulated/floor/plating,
 /area/tether/surfacebase/tram)
 "aZI" = (
 /obj/machinery/light_construct{
@@ -30176,6 +30249,13 @@
 	},
 /turf/simulated/floor/wood,
 /area/vacant/vacant_bar)
+"aZJ" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/obj/structure/grille,
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/tram)
 "aZK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -30189,6 +30269,16 @@
 /obj/structure/table,
 /turf/simulated/floor/plating,
 /area/crew_quarters/sleep/maintDorm3)
+"aZM" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/obj/structure/grille,
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/tram)
 "aZN" = (
 /obj/structure/table,
 /obj/item/stack/material/wood{
@@ -30224,11 +30314,36 @@
 /obj/random/junk,
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/maintDorm1)
+"aZT" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/obj/structure/grille,
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/tram)
 "aZU" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/storage/fancy/markers,
 /turf/simulated/floor/plating,
 /area/crew_quarters/sleep/maintDorm1)
+"aZV" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden,
+/obj/structure/grille,
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/tram)
+"aZW" = (
+/obj/machinery/atmospherics/pipe/simple/visible/universal,
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/tram)
 "aZX" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
@@ -30272,12 +30387,68 @@
 /obj/structure/table/bench/padded,
 /turf/simulated/floor/wood,
 /area/vacant/vacant_bar)
+"bac" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/computer/area_atmos/tag{
+	dir = 8;
+	name = "Tram Heavy Scrubber Control";
+	req_one_access = list(24);
+	scrub_id = "tram";
+	use_power = 0
+	},
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/tram)
 "bad" = (
 /turf/simulated/floor/plating,
 /area/crew_quarters/sleep/maintDorm3)
+"bae" = (
+/obj/machinery/atmospherics/valve/digital/open,
+/obj/machinery/alarm{
+	dir = 4;
+	pixel_x = -24
+	},
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/tram)
+"baf" = (
+/obj/machinery/power/thermoregulator{
+	anchored = 1
+	},
+/obj/structure/cable/orange{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/tram)
+"bag" = (
+/obj/machinery/atmospherics/pipe/simple/visible/cyan{
+	dir = 5
+	},
+/obj/machinery/meter,
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/tram)
 "bah" = (
 /turf/simulated/floor/plating,
 /area/crew_quarters/sleep/maintDorm2)
+"bai" = (
+/obj/machinery/light,
+/obj/machinery/atmospherics/portables_connector{
+	dir = 8
+	},
+/obj/machinery/portable_atmospherics/powered/pump/huge/stationary{
+	active_power_usage = 0;
+	direction_out = 1;
+	idle_power_usage = 0;
+	name = "Tram Stationary Air Pump"
+	},
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/tram)
 "baj" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
@@ -30287,6 +30458,23 @@
 	},
 /turf/simulated/floor/plating,
 /area/crew_quarters/sleep/maintDorm2)
+"bak" = (
+/obj/machinery/atmospherics/portables_connector{
+	dir = 4
+	},
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/tram{
+	icon_state = "scrubber:0";
+	maxrate = 9113.25;
+	on = 0;
+	scrub_id = "tram";
+	volume = 1e+038;
+	volume_rate = 1e+038
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/tram)
 "bal" = (
 /obj/machinery/alarm{
 	dir = 8;
@@ -30295,6 +30483,38 @@
 /obj/structure/table/woodentable,
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/maintDorm2)
+"bam" = (
+/obj/machinery/atmospherics/portables_connector{
+	dir = 4
+	},
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/tram{
+	icon_state = "scrubber:0";
+	maxrate = 9113.25;
+	on = 0;
+	scrub_id = "tram";
+	volume = 1e+038;
+	volume_rate = 1e+038
+	},
+/obj/machinery/camera/network/civilian,
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/tram)
+"ban" = (
+/obj/machinery/atmospherics/portables_connector{
+	dir = 8
+	},
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/tram{
+	icon_state = "scrubber:0";
+	maxrate = 9113.25;
+	on = 0;
+	scrub_id = "tram";
+	volume = 1e+038;
+	volume_rate = 1e+038
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/tram)
 "bao" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
@@ -30304,6 +30524,21 @@
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/maintDorm1)
+"bap" = (
+/obj/machinery/atmospherics/portables_connector{
+	dir = 4
+	},
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/tram{
+	icon_state = "scrubber:0";
+	maxrate = 9113.25;
+	on = 0;
+	scrub_id = "tram";
+	volume = 1e+038;
+	volume_rate = 1e+038
+	},
+/obj/machinery/light,
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/tram)
 "baq" = (
 /obj/structure/sign/warning,
 /turf/simulated/wall,
@@ -53959,7 +54194,7 @@ lry
 aql
 arl
 apF
-aah
+atx
 ash
 ash
 ash
@@ -54101,11 +54336,11 @@ lry
 aql
 arl
 apF
-aah
-aah
-aah
-aah
-aah
+bak
+aYU
+aYU
+bap
+atx
 aah
 aah
 aah
@@ -54243,10 +54478,10 @@ lry
 aql
 arl
 apF
-aah
-aah
-aah
-aah
+aZn
+aZF
+aZF
+aZH
 atx
 atx
 atx
@@ -54385,10 +54620,10 @@ lry
 aql
 nlo
 apF
-aah
-aah
-aah
-aah
+bam
+aYU
+aYU
+aZJ
 atx
 atW
 auA
@@ -54527,10 +54762,10 @@ lry
 aql
 aql
 apF
-aah
-aah
-aah
-aah
+aZt
+aZG
+aZG
+aZH
 atx
 afG
 auB
@@ -54669,10 +54904,10 @@ lry
 aqj
 cZF
 apF
-atx
-atx
-atx
-atx
+ban
+aYV
+aYV
+aZJ
 atx
 atX
 auB
@@ -54814,7 +55049,7 @@ aYH
 aYP
 aYP
 aYP
-aYP
+aZM
 atx
 atY
 auB
@@ -54953,10 +55188,10 @@ lry
 apF
 apF
 apF
-aYU
-aYZ
-aYZ
+aYX
 aZb
+aZb
+aZT
 atx
 atZ
 auC
@@ -55098,7 +55333,7 @@ aXV
 aYW
 aYW
 aYW
-aZn
+aZV
 aZd
 aZe
 aZe
@@ -55115,16 +55350,16 @@ auB
 auB
 auB
 auB
-aYJ
-auU
-auB
-atW
-aZE
-aZx
-aZB
-aZB
-aXV
 aZv
+aZx
+aZy
+aZB
+aZE
+aZW
+bae
+bag
+atx
+aad
 aad
 aad
 aad
@@ -55237,34 +55472,34 @@ lry
 aah
 aah
 atx
-aYV
-aYX
-aYX
+aYZ
 aZr
-aZl
-auB
-auB
-auB
-aYJ
-auB
-auB
-auB
-auB
-auB
-auB
-auB
-auB
-auB
-auB
-auB
-aYJ
-auB
-auB
-auB
-aZl
+aZr
 aZs
-aYX
-aZr
+aZl
+auB
+auB
+auB
+aYJ
+auB
+auB
+auB
+auB
+auB
+auB
+auB
+auB
+auB
+auB
+auB
+aYJ
+auB
+auB
+atW
+atx
+bac
+baf
+bai
 atx
 aad
 aad

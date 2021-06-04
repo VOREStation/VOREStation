@@ -21,10 +21,10 @@
 	gid++
 
 	name = "[name] (ID [id])"
-
-/obj/machinery/portable_atmospherics/powered/pump/huge/attack_hand(var/mob/user)
-	to_chat(user, "<span class='notice'>You can't directly interact with this machine. Use the pump control console.</span>")
-
+// Commenting this out because the area_atmos computers will NOT connect to huge air pumps. Getting rid of this is the only way to interact with the Huge Air Pumps right now.
+///obj/machinery/portable_atmospherics/powered/pump/huge/attack_hand(var/mob/user)
+//	to_chat(user, "<span class='notice'>You can't directly interact with this machine. Use the pump control console.</span>")
+//
 /obj/machinery/portable_atmospherics/powered/pump/huge/update_icon()
 	overlays.Cut()
 

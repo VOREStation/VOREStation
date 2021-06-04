@@ -12069,6 +12069,9 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
+/obj/effect/landmark{
+	name = "morphspawn"
+	},
 /turf/simulated/floor/plating,
 /area/engineering/atmos/storage)
 "atu" = (
@@ -13697,8 +13700,9 @@
 /area/tether/surfacebase/surface_two_hall)
 "awe" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
-/obj/effect/landmark{
-	name = "morphspawn"
+/obj/machinery/portable_atmospherics/powered/pump/huge{
+	description_info = "No no no, we need The Big One for this job.";
+	name = "The Big One"
 	},
 /turf/simulated/floor/plating,
 /area/engineering/atmos/storage)
