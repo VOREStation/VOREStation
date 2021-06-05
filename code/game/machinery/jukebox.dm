@@ -29,6 +29,7 @@
 	var/freq = 0 // Currently no effect, will return in phase II of mediamanager.
 	//VOREStation Add
 	var/loop_mode = JUKEMODE_PLAY_ONCE			// Behavior when finished playing a song
+	var/list/obj/item/device/juke_remote/remotes
 	//VOREStation Add End
 	var/datum/track/current_track
 
@@ -89,6 +90,11 @@
 		media_url = ""
 		media_start_time = 0
 	update_music()
+	//VOREStation Add
+	for(var/rem in remotes)
+		var/obj/item/device/juke_remote/remote = rem
+		remote.update_music()
+	//VOREStation Add End
 
 /obj/machinery/media/jukebox/proc/set_hacked(var/newhacked)
 	if(hacked == newhacked)
