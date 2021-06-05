@@ -2530,6 +2530,7 @@
 #include "code\modules\media\media_player_wmp.dm"
 #include "code\modules\media\media_tracks.dm"
 #include "code\modules\media\mediamanager.dm"
+#include "code\modules\media\walkpod.dm"
 #include "code\modules\metric\activity.dm"
 #include "code\modules\metric\count.dm"
 #include "code\modules\metric\department.dm"
