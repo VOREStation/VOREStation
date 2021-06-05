@@ -304,7 +304,7 @@
 	associated_map_datum = /datum/map_z_level/tether_lateload/gateway_destination
 
 #include "../../gateway_vr/xenobio_station.dm"
-/datum/map_template/tether_lateload/gateway/listeningpost
+/datum/map_template/tether_lateload/gateway/xenobio_station
 	name = "Xenobiology station"
 	desc = "Xenobiology station with an experimental reactor and a containment breach"
 	mappath = 'maps/gateway_vr/xenobio_station.dmm'
