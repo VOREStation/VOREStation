@@ -131,6 +131,7 @@
 	armor = list(melee = 25, bullet = 20, laser = 20, energy = 15, bomb = 20, bio = 0, rad = 0)
 	hoodtype = /obj/item/clothing/head/hood/winter/security
 	allowed = list(/obj/item/weapon/pen, /obj/item/weapon/paper, /obj/item/device/flashlight, /obj/item/weapon/tank/emergency/oxygen, /obj/item/weapon/storage/fancy/cigarettes,
+<<<<<<< HEAD
 	/obj/item/weapon/storage/box/matches, /obj/item/weapon/reagent_containers/food/drinks/flask, /obj/item/device/suit_cooling_unit, /obj/item/weapon/gun/energy,
 	/obj/item/weapon/reagent_containers/spray/pepper, /obj/item/weapon/gun/projectile, /obj/item/ammo_magazine, /obj/item/ammo_casing, /obj/item/weapon/melee/baton,
 	/obj/item/weapon/handcuffs, /obj/item/clothing/head/helmet)
@@ -145,6 +146,22 @@
 	/obj/item/weapon/storage/box/matches, /obj/item/weapon/reagent_containers/food/drinks/flask, /obj/item/device/suit_cooling_unit, /obj/item/weapon/gun/energy,
 	/obj/item/weapon/reagent_containers/spray/pepper, /obj/item/weapon/gun/projectile, /obj/item/ammo_magazine, /obj/item/ammo_casing, /obj/item/weapon/melee/baton,
 	/obj/item/weapon/handcuffs, /obj/item/clothing/head/helmet)
+=======
+	/obj/item/weapon/storage/box/matches, /obj/item/weapon/reagent_containers/food/drinks/flask, /obj/item/device/suit_cooling_unit, /obj/item/weapon/gun/energy,
+	/obj/item/weapon/reagent_containers/spray/pepper, /obj/item/weapon/gun/projectile, /obj/item/ammo_magazine, /obj/item/ammo_casing, /obj/item/weapon/melee/baton,
+	/obj/item/weapon/handcuffs, /obj/item/clothing/head/helmet)
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/security/hos
+	name = "head of security's winter coat"
+	desc = "A heavy jacket made from greyshirt hide. There seems to be a sewed in holster, as well as a thin weave of protection against most damage."
+	icon_state = "coathos"
+	armor = list(melee = 30, bullet = 20, laser = 20, energy = 20, bomb = 20, bio = 0, rad = 0)
+	hoodtype = /obj/item/clothing/head/hood/winter/security/hos
+	allowed = list(/obj/item/weapon/pen, /obj/item/weapon/paper, /obj/item/device/flashlight, /obj/item/weapon/tank/emergency/oxygen, /obj/item/weapon/storage/fancy/cigarettes,
+	/obj/item/weapon/storage/box/matches, /obj/item/weapon/reagent_containers/food/drinks/flask, /obj/item/device/suit_cooling_unit, /obj/item/weapon/gun/energy,
+	/obj/item/weapon/reagent_containers/spray/pepper, /obj/item/weapon/gun/projectile, /obj/item/ammo_magazine, /obj/item/ammo_casing, /obj/item/weapon/melee/baton,
+	/obj/item/weapon/handcuffs, /obj/item/clothing/head/helmet)
+>>>>>>> a23eccd... Adds more winter coats + moves existing winter coats to the same file (#8086)
 
 /obj/item/clothing/suit/storage/hooded/wintercoat/medical
 	name = "medical winter coat"
@@ -163,35 +180,50 @@
 	name = "medical winter coat, alt"
 	desc = "A heavy jacket made from 'synthetic' animal furs. There's a thick weave of sterile material, good for virus outbreaks!"
 	icon_state = "coatmedicalalt"
+<<<<<<< HEAD
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 50, rad = 0)
+=======
+>>>>>>> a23eccd... Adds more winter coats + moves existing winter coats to the same file (#8086)
 	hoodtype = /obj/item/clothing/head/hood/winter/medical/alt
 
 /obj/item/clothing/suit/storage/hooded/wintercoat/medical/viro
 	name = "virologist winter coat"
 	desc = "A white winter coat with green markings. Warm, but wont fight off the common cold or any other disease. Might make people stand far away from you in the hallway. The zipper tab looks like an oversized bacteriophage."
 	icon_state = "coatviro"
+<<<<<<< HEAD
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 50, rad = 0)
+=======
+>>>>>>> a23eccd... Adds more winter coats + moves existing winter coats to the same file (#8086)
 	hoodtype = /obj/item/clothing/head/hood/winter/medical/viro
 
 /obj/item/clothing/suit/storage/hooded/wintercoat/medical/para
 	name = "paramedic winter coat"
 	desc = "A heavy jacket made from 'synthetic' animal furs.It has an aura of underappreciation."
 	icon_state = "coatpara"
+<<<<<<< HEAD
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 50, rad = 0)
+=======
+>>>>>>> a23eccd... Adds more winter coats + moves existing winter coats to the same file (#8086)
 	hoodtype = /obj/item/clothing/head/hood/winter/medical/para
 
 /obj/item/clothing/suit/storage/hooded/wintercoat/medical/chemist
 	name = "chemist winter coat"
 	desc = "A lab-grade winter coat made with acid resistant polymers. For the enterprising chemist who was exiled to a frozen wasteland on the go."
 	icon_state = "coatchemist"
+<<<<<<< HEAD
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 50, rad = 0)
+=======
+>>>>>>> a23eccd... Adds more winter coats + moves existing winter coats to the same file (#8086)
 	hoodtype = /obj/item/clothing/head/hood/winter/medical/chemist
 
 /obj/item/clothing/suit/storage/hooded/wintercoat/medical/cmo
 	name = "chief medical officer's winter coat"
 	desc = "A lab-grade winter coat made with acid resistant polymers. For the enterprising chemist who was exiled to a frozen wasteland on the go."
 	icon_state = "coatcmo"
+<<<<<<< HEAD
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 50, rad = 0)
+=======
+>>>>>>> a23eccd... Adds more winter coats + moves existing winter coats to the same file (#8086)
 	hoodtype = /obj/item/clothing/head/hood/winter/medical/cmo
 
 /obj/item/clothing/suit/storage/hooded/wintercoat/medical/sar
@@ -223,7 +255,10 @@
 	name = "robotics winter coat"
 	desc = "A black winter coat with a badass flaming robotic skull for the zipper tab. This one has bright red designs and a few useless buttons."
 	icon_state = "coatrobotics"
+<<<<<<< HEAD
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 10, bio = 0, rad = 0)
+=======
+>>>>>>> a23eccd... Adds more winter coats + moves existing winter coats to the same file (#8086)
 	hoodtype = /obj/item/clothing/head/hood/winter/science/robotics
 
 /obj/item/clothing/suit/storage/hooded/wintercoat/science/rd
@@ -257,7 +292,10 @@
 	name = "atmospherics winter coat"
 	desc = "A heavy jacket made from 'synthetic' animal furs. It seems to have burn marks on the inside from a phoron fire."
 	icon_state = "coatce"
+<<<<<<< HEAD
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 20)
+=======
+>>>>>>> a23eccd... Adds more winter coats + moves existing winter coats to the same file (#8086)
 	hoodtype = /obj/item/clothing/head/hood/winter/engineering/ce
 
 /obj/item/clothing/suit/storage/hooded/wintercoat/hydro
