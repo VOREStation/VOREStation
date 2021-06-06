@@ -34,6 +34,7 @@ var/list/all_maps = list()
 	var/static/list/sealed_levels = list()  // Z-levels that don't allow random transit at edge
 	var/static/list/xenoarch_exempt_levels = list()	//Z-levels exempt from xenoarch finds and digsites spawning.
 	var/static/list/persist_levels = list() // Z-levels where SSpersistence should persist between rounds. Defaults to station_levels if unset.
+	var/static/list/secret_levels = list() // Z-levels that (non-admin) ghosts can't get to
 	var/static/list/empty_levels = list()   // Empty Z-levels that may be used for various things
 	var/static/list/mappable_levels = list()// List of levels where mapping or other similar devices might work fully
 	var/static/list/secret_levels = list() // Z-levels that (non-admin) ghosts can't get to
