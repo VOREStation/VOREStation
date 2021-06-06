@@ -186,7 +186,8 @@ var/list/admin_verbs_server = list(
 	/client/proc/panicbunker,
 	/client/proc/paranoia_logging,
 	/client/proc/ip_reputation,
-	/client/proc/debug_global_variables
+	/client/proc/debug_global_variables,
+	/client/proc/dbcon_fix
 	)
 
 var/list/admin_verbs_debug = list(

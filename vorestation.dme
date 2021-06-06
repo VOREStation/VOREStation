@@ -1678,6 +1678,7 @@
 #include "code\modules\admin\verbs\check_customitem_activity.dm"
 #include "code\modules\admin\verbs\cinematic.dm"
 #include "code\modules\admin\verbs\custom_event.dm"
+#include "code\modules\admin\verbs\dbcon_fix.dm"
 #include "code\modules\admin\verbs\deadsay.dm"
 #include "code\modules\admin\verbs\debug.dm"
 #include "code\modules\admin\verbs\debug_vr.dm"
