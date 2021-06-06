@@ -35,7 +35,11 @@
 	emote_sound = 'sound/voice/biamthelaw.ogg'
 
 /decl/emote/audible/synth/security/mob_can_use(var/mob/living/silicon/robot/user)
+<<<<<<< HEAD
 	return ..() && (istype(user) && (istype(user.module, /obj/item/weapon/robot_module/robot/security) || istype(user.module, /obj/item/weapon/robot_module/robot/knine))) //VOREStation Add - knine module
+=======
+	return ..() && istype(user) && istype(user.module, /obj/item/weapon/robot_module/robot/security)
+>>>>>>> cd50b5a... Merge pull request #8099 from MistakeNot4892/chirp
 
 /decl/emote/audible/synth/security/halt
 	key = "halt"

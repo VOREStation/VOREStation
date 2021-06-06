@@ -1,5 +1,9 @@
 /decl/emote/human/mob_can_use(var/mob/living/carbon/human/user)
+<<<<<<< HEAD
 	return ..() && (istype(user))//VOREStation Edit - What does a mouth have to do with wagging?? && user.check_has_mouth() && !user.isSynthetic())
+=======
+	return ..() && istype(user) && user.check_has_mouth() && !user.isSynthetic()
+>>>>>>> cd50b5a... Merge pull request #8099 from MistakeNot4892/chirp
 
 /decl/emote/human/deathgasp
 	key = "deathgasp"

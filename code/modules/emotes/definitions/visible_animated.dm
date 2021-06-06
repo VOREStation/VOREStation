@@ -12,7 +12,11 @@
 	key = "sidestep"
 	check_restraints = TRUE
 	emote_message_3p = "steps rhythmically and moves side to side."
+<<<<<<< HEAD
 	//emote_delay = 1.2 SECONDS //VOREStation Edit - Delay moved to parent
+=======
+	emote_delay = 1.2 SECONDS
+>>>>>>> cd50b5a... Merge pull request #8099 from MistakeNot4892/chirp
 
 /decl/emote/visible/sidestep/do_extra(mob/user)
 	if(istype(user))
@@ -26,7 +30,11 @@
 	emote_message_1p = "You do a flip!"
 	emote_message_3p = "does a flip!"
 	emote_sound = 'sound/effects/bodyfall4.ogg'
+<<<<<<< HEAD
 	//emote_delay = 1.2 SECONDS //VOREStation Edit - Delay moved to parent
+=======
+	emote_delay = 1.2 SECONDS
+>>>>>>> cd50b5a... Merge pull request #8099 from MistakeNot4892/chirp
 
 /decl/emote/visible/flip/do_extra(mob/user)
 	. = ..()
@@ -42,7 +50,11 @@
 	key = "floorspin"
 	emote_message_1p = "You spin around on the floor!"
 	emote_message_3p = "spins around on the floor!"
+<<<<<<< HEAD
 	//emote_delay = 1.2 SECONDS //VOREStation Edit - Delay moved to parent
+=======
+	emote_delay = 1.2 SECONDS
+>>>>>>> cd50b5a... Merge pull request #8099 from MistakeNot4892/chirp
 	var/static/list/spin_dirs = list(
 		NORTH,
 		SOUTH,

@@ -13,6 +13,7 @@
 /mob/living/can_emote(var/emote_type)
 	return (..() && !(silent && emote_type == AUDIBLE_MESSAGE))
 
+#define EMOTE_REFRESH_SPAM_COOLDOWN (5 SECONDS)
 /mob/proc/emote(var/act, var/m_type, var/message)
 	set waitfor = FALSE
 	// s-s-snowflake
@@ -65,6 +66,7 @@
 		act = copytext(tempstr,1,splitpoint)
 		message = copytext(tempstr,splitpoint+1,0)
 
+<<<<<<< HEAD
 	//VOREStation Add - NIF soulcatcher shortcuts
 	if(act == "nsay")
 		return nsay(message)
@@ -73,6 +75,8 @@
 		return nme(message)
 	//VOREStation Add End
 
+=======
+>>>>>>> cd50b5a... Merge pull request #8099 from MistakeNot4892/chirp
 	var/decl/emote/use_emote = get_emote_by_key(act)
 	if(!istype(use_emote))
 		to_chat(src, SPAN_WARNING("Unknown emote '[act]'. Type <b>say *help</b> for a list of usable emotes."))
