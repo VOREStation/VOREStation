@@ -1536,6 +1536,7 @@
 #include "code\game\objects\structures\props\projectile_lock.dm"
 #include "code\game\objects\structures\props\prop.dm"
 #include "code\game\objects\structures\props\puzzledoor.dm"
+#include "code\game\objects\structures\props\rocks.dm"
 #include "code\game\objects\structures\props\swarm.dm"
 #include "code\game\objects\structures\props\transmitter.dm"
 #include "code\game\objects\structures\stool_bed_chair_nest\alien_nests.dm"
