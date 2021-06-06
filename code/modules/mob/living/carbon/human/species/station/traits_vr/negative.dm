@@ -119,10 +119,46 @@
 	desc = "Your light weight and poor balance make you very susceptible to unhelpful bumping. Think of it like a bowling ball versus a pin."
 	cost = -2
 	var_changes = list("lightweight" = 1)
-	
+
 /datum/trait/negative/neural_hypersensitivity
 	name = "Neural Hypersensitivity"
 	desc = "Your nerves are particularly sensitive to physical changes, leading to experiencing twice the intensity of pain and pleasure alike. Doubles traumatic shock."
 	cost = -1
 	var_changes = list("trauma_mod" = 2)
 	can_take = ORGANICS
+
+//chompers ones
+
+/datum/trait/negative/reduced_biocompat
+	name = "Reduced Biocompatibility"
+	desc = "For whatever reason, you're one of the unlucky few who don't get as much benefit from modern-day chemicals. Remember to note this down in your medical records!"
+	cost = -1
+	var_changes = list("chem_strength_heal" = 0.8)
+
+
+/datum/trait/negative/sensitive_biochem
+	name = "Sensitive Biochemistry"
+	desc = "Your biochemistry is a little delicate, rendering you more susceptible to both deadly toxins and the more subtle ones. You'll probably want to list this in your medical records, and perhaps in your exploitable info as well."
+	cost = -1
+	var_changes = list("chem_strength_tox" = 1.25)
+
+/datum/trait/negative/slipperydirt
+	name = "Dirt Vulnerability"
+	desc = "Even the tiniest particles of dirt give you uneasy footing, even through several layers of footwear."
+	cost = -2
+	var_changes = list("dirtslip" = TRUE)
+
+/datum/trait/negative/less_blood
+	name = "Low blood volume"
+	desc = "You have 33.3% less blood volume compared to most species, making you more prone to blood loss issues."
+	cost = -2
+	var_changes = list("blood_volume" = 375)
+	can_take = ORGANICS
+
+
+/datum/trait/negative/deep_sleeper
+	name = "Deep Sleeper"
+	desc = "When you fall asleep, it takes you four times as long to wake up."
+	cost = -1
+	var_changes = list("waking_speed" = 0.25)
+

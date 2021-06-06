@@ -448,3 +448,46 @@
 /datum/trait/neutral/thinner/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..(S,H)
 	H.update_transform()
+
+
+//chompers stuff
+/datum/trait/negative/scrawny
+	name = "Scrawny"
+	desc = "You have a much harder time breaking free of grabs as well as creating and holding onto grabs on other people."
+	cost = 0
+	var_changes = list("grab_resist_divisor_victims" = 0.5, "grab_resist_divisor_self" = 3, "grab_power_victims" = 1, "grab_power_self" = -1)
+
+
+
+/datum/trait/neutral/autohiss_vassilian
+	name = "Autohiss (Vassilian)"
+	desc = "You buzz your S's, F's, Th's, and R's."
+	cost = 0
+	var_changes = list(
+	autohiss_basic_map = list(
+        "s" = list("sz", "z", "zz"),
+        "f" = list("zk")
+		),
+	autohiss_extra_map = list(
+		"th" = list("zk", "szk"),
+        "r" = list("rk")
+	),
+	autohiss_exempt = list("Vespinae"))
+	excludes = list(/datum/trait/neutral/autohiss_tajaran, /datum/trait/neutral/autohiss_unathi)
+
+/datum/trait/neutral/nutritiongrow
+	name = "Growing"
+	desc = "After you consume enough nutrition, you start to slowly grow while metabolizing nutrition faster."
+	cost = 0
+	var_changes = list("grows" = TRUE)
+
+/datum/trait/neutral/nutritionshrink
+	name = "Shrinking"
+	desc = "If you don't eat enough, your body starts shrinking to make up the difference!"
+	cost = 0
+	var_changes = list("shrinks" = TRUE)
+/datum/trait/neutral/singularity_metabolism
+	name = "Singularity Metabolism"
+	desc = "You are insanely hungry. You can seemingly never get enough to eat. Perhaps you had a singularity as an ancestor, or maybe one is currently living inside of your gut."
+	cost = 0
+	var_changes = list("metabolic_rate" = 2, "hunger_factor" = 1.6, "metabolism" = 0.012)	//2x metabolism speed, 32x hunger speed

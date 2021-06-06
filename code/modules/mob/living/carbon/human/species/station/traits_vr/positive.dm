@@ -156,3 +156,90 @@
 	H.verbs |= /mob/living/carbon/human/proc/weave_structure
 	H.verbs |= /mob/living/carbon/human/proc/weave_item
 	H.verbs |= /mob/living/carbon/human/proc/set_silk_color
+
+///chompers stuff
+/datum/trait/positive/improved_biocompat
+	name = "Improved Biocompatibility"
+	desc = "Your body is naturally (or artificially) more receptive to healing chemicals without being vulnerable to the 'bad stuff'. You heal more efficiently from most chemicals, with no other drawbacks. Remember to note this down in your medical records!"
+	cost = 2
+	var_changes = list("chem_strength_heal" = 1.2)
+
+/datum/trait/positive/pain_tolerance_advanced
+	name = "High Pain Tolerance"
+	desc = "You are noticeably more resistant to pain than most, and experience 20% less pain from all sources."
+	cost = 2
+	var_changes = list("pain_mod" = 0.8)
+
+/datum/trait/positive/linguist
+	name = "Master Linguist"
+	desc = "You are a master of languages! For whatever reason you might have, you are able to learn many more languages than others."
+	cost = 0
+	var_changes = list("num_alternate_languages" = 12)
+
+/datum/trait/negative/hollow
+	name = "Strong Bones"
+	desc = "Your bones and robot limbs are much harder to break."
+	cost = 2
+
+/datum/trait/negative/hollow/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..(S,H)
+	for(var/obj/item/organ/external/O in H.organs)
+		O.min_broken_damage *= 1.5
+		O.min_bruised_damage *= 1.5
+
+
+/datum/trait/positive/lowpressureres
+	name = "Low Pressure Resistance"
+	desc = "Your body is more resistant to low pressures. Pretty simple."
+	cost = 1
+	var_changes = list("hazard_low_pressure" = HAZARD_LOW_PRESSURE*0.66, "warning_low_pressure" = WARNING_LOW_PRESSURE*0.66, "minimum_breath_pressure" = 16*0.66)
+
+/datum/trait/positive/highpressureres
+	name = "High Pressure Resistance"
+	desc = "Your body is more resistant to high pressures. Pretty simple."
+	cost = 1
+	var_changes = list("hazard_high_pressure" = HAZARD_HIGH_PRESSURE*1.5, "warning_high_pressure" = WARNING_HIGH_PRESSURE*1.5)
+
+/datum/trait/positive/rad_resistance
+	name = "Radiation Resistance"
+	desc = "You are generally more resistant to radiation, and it dissipates faster from your body."
+	cost = 2
+	var_changes = list("radiation_mod" = 0.65, "rad_removal_mod" = 3.5, "rad_levels" = list("safe" = 20, "danger_1" = 75, "danger_2" = 100, "danger_3" = 200))
+
+/datum/trait/positive/rad_resistance_extreme
+	name = "Extreme Radiation Resistance"
+	desc = "You are much more resistant to radiation, and it dissipates much faster from your body."
+	cost = 4
+	var_changes = list("radiation_mod" = 0.5, "rad_removal_mod" = 5, "rad_levels" = list("safe" = 40, "danger_1" = 100, "danger_2" = 150, "danger_3" = 250))
+
+/datum/trait/positive/more_blood
+	name = "High blood volume"
+	desc = "You have much 50% more blood than most other people"
+	cost = 2
+	var_changes = list("blood_volume" = 840)
+	excludes = list(/datum/trait/positive/more_blood_extreme,/datum/trait/negative/less_blood)
+	can_take = ORGANICS
+
+/datum/trait/positive/more_blood_extreme
+	name = "Very high blood volume"
+	desc = "You have much 150% more blood than most other people"
+	cost = 4
+	var_changes = list("blood_volume" = 1400)
+	can_take = ORGANICS
+
+
+/datum/trait/positive/table_passer
+	name = "Table passer"
+	desc = "You move over or under tables with ease of a Teshari."
+	cost = 2
+
+/datum/trait/positive/table_passer/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..()
+	H.pass_flags = PASSTABLE
+
+/datum/trait/positive/photosynth
+	name = "Photosynthesis"
+	desc = "Your body is able to produce nutrition from being in light."
+	cost = 0
+	var_changes = list("photosynthesizing" = TRUE)
+	can_take = ORGANICS|SYNTHETICS //Synths actually use nutrition, just with a fancy covering.
