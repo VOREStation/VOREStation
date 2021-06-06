@@ -136,7 +136,7 @@
 /turf/space/Entered(var/atom/movable/A)
 	. = ..()
 
-	if(edge && ticker?.mode)
+	if(edge && ticker?.mode && !density) // !density so 'fake' space turfs don't fling ghosts everywhere
 		A?.touch_map_edge()
 
 /turf/space/proc/Sandbox_Spacemove(atom/movable/A as mob|obj)
