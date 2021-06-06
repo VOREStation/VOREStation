@@ -3,7 +3,13 @@
 /turf/space/internal_edge
 	icon_state = "arrow"
 	opacity = 1
+	density = 1
 	blocks_air = TRUE
+
+/turf/space/internal_edge/Initialize()
+	. = ..()
+	opacity = 1 // This will get reset due to using appearances that are precreated in SSskybox, and apps have opacity = 0
+	density = 1
 
 /turf/space/internal_edge/top
 	dir = NORTH
