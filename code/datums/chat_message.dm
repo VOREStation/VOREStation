@@ -325,10 +325,13 @@ var/list/runechat_image_cache = list()
 		if(5)
 			return rgb(c,m,x)
 
-/atom/proc/runechat_message(message, range = world.view, italics, list/classes = list(), audible = TRUE)
-	var/list/hear = get_mobs_and_objs_in_view_fast(get_turf(src), range, remote_ghosts = FALSE)
-
-	var/list/hearing_mobs = hear["mobs"]
+/atom/proc/runechat_message(message, range = world.view, italics, list/classes = list(), audible = TRUE, list/specific_viewers)
+	var/hearing_mobs
+	if(islist(specific_viewers))
+		hearing_mobs = specific_viewers.Copy()
+	else
+		var/list/hear = get_mobs_and_objs_in_view_fast(get_turf(src), range, remote_ghosts = FALSE)
+		hearing_mobs = hear["mobs"]
 
 	for(var/mob in hearing_mobs)
 		var/mob/M = mob

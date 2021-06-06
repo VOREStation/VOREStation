@@ -1029,7 +1029,9 @@
 					/obj/item/device/radio/headset = 10,
 					/obj/item/device/flashlight = 5,
 					/obj/item/device/laser_pointer = 3,
-					/obj/item/clothing/glasses/omnihud = 10)
+					/obj/item/clothing/glasses/omnihud = 10,
+					/obj/item/device/walkpod = 5,
+					/obj/item/device/juke_remote = 1)
 	prices = list(/obj/item/clothing/suit/circuitry = 100,
 					/obj/item/clothing/head/circuitry = 100,
 					/obj/item/clothing/shoes/circuitry = 100,
@@ -1049,7 +1051,9 @@
 					/obj/item/device/radio/headset = 50,
 					/obj/item/device/flashlight = 100,
 					/obj/item/device/laser_pointer = 200,
-					/obj/item/clothing/glasses/omnihud = 100)
+					/obj/item/clothing/glasses/omnihud = 100,
+					/obj/item/device/walkpod = 300, 
+					/obj/item/device/juke_remote = 1000)
 	premium = list(/obj/item/device/perfect_tele/one_beacon = 1)
 	contraband = list(/obj/item/weapon/disk/nifsoft/compliance = 1)
 
