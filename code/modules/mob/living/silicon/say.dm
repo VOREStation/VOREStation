@@ -72,7 +72,8 @@
 			O.hear_talk(src, message_pieces, verb)
 		/*Radios "filter out" this conversation channel so we don't need to account for them.
 		This is another way of saying that we won't bother dealing with them.*/
-		to_chat(src, "<i><span class='game say'>Holopad transmitted, <span class='name'>[real_name]</span> [combine_message(message_pieces, verb, src)]</span></i>")
+		var/list/combined = combine_message(message_pieces, verb, src)
+		to_chat(src, "<i><span class='game say'>Holopad transmitted, <span class='name'>[real_name]</span> [combined["formatted"]]</span></i>")
 	else
 		to_chat(src, "No holopad connected.")
 		return 0
@@ -114,7 +115,7 @@
 		return 0
 	return 1
 
-/mob/living/silicon/ai/emote(var/act, var/type, var/message)
+/mob/living/silicon/ai/emote(var/act, var/m_type, var/message)
 	var/obj/machinery/hologram/holopad/T = holo
 	if(T && T.masters[src]) //Is the AI using a holopad?
 		. = holopad_emote(message)

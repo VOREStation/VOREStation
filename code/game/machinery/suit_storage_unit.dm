@@ -73,15 +73,10 @@
 			if(prob(50))
 				dump_everything() //So suits dont survive all the time
 			qdel(src)
-			return
 		if(2.0)
 			if(prob(50))
 				dump_everything()
 				qdel(src)
-			return
-		else
-			return
-	return
 
 /obj/machinery/suit_storage_unit/attack_hand(mob/user)
 	if(..())
@@ -632,11 +627,7 @@
 /obj/machinery/suit_cycler/exploration
 	name = "Explorer suit cycler"
 	model_text = "Exploration"
-	departments = list("Exploration","Old Exploration","No Change")
-
-/obj/machinery/suit_cycler/exploration/Initialize()
-	species -= SPECIES_TESHARI
-	return ..()
+	departments = list("Exploration","Expedition Medic","Old Exploration","No Change")
 
 /obj/machinery/suit_cycler/pilot
 	name = "Pilot suit cycler"
@@ -1113,6 +1104,9 @@
 		if("Exploration")
 			parent_helmet = /obj/item/clothing/head/helmet/space/void/exploration
 			parent_suit = /obj/item/clothing/suit/space/void/exploration
+		if("Field Medic")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/expedition_medical
+			parent_suit = /obj/item/clothing/suit/space/void/expedition_medical
 		if("Old Exploration")
 			parent_helmet = /obj/item/clothing/head/helmet/space/void/exploration/alt
 			parent_suit = /obj/item/clothing/suit/space/void/exploration/alt

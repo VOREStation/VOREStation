@@ -12,8 +12,8 @@
 	patrol_speed = 3
 	target_speed = 6
 
+	vocal = 1
 	cleaning = 0
-	blood = 0
 	var/red_switch = 0
 	var/blue_switch = 0
 	var/green_switch = 0
@@ -25,7 +25,7 @@
 		icon_state = "edCLN[on]"
 
 /mob/living/bot/cleanbot/edCLN/handleIdle()
-	if(prob(10))
+	if(vocal && prob(10))
 		custom_emote(2, "makes a less than thrilled beeping sound.")
 		playsound(src, 'sound/machines/synth_yes.ogg', 50, 0)
 

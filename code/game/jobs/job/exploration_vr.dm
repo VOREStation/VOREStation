@@ -73,7 +73,7 @@
 	minimal_access = list(access_pilot)
 	outfit_type = /decl/hierarchy/outfit/job/pilot
 	job_description = "A Pilot flies the various shuttles in the Virgo-Erigone System."
-	alt_titles = list("Co-Pilot" = /datum/alt_title/co_pilot, "Navigator" = /datum/alt_title/navigator)
+	alt_titles = list("Co-Pilot" = /datum/alt_title/co_pilot, "Navigator" = /datum/alt_title/navigator, "Helmsman" = /datum/alt_title/helmsman)
 
 /datum/alt_title/co_pilot
 	title = "Co-Pilot"
@@ -81,6 +81,9 @@
 
 /datum/alt_title/navigator
 	title = "Navigator"
+
+/datum/alt_title/helmsman
+	title = "Helmsman"
 
 
 /datum/job/explorer
@@ -125,7 +128,10 @@
 	minimal_access = list(access_medical, access_medical_equip, access_morgue, access_pilot)
 	outfit_type = /decl/hierarchy/outfit/job/medical/sar
 	job_description = "A Field medic works as the field doctor of expedition teams."
-	alt_titles = list("Expedition Medic" = /datum/alt_title/expedition_medic)
+	alt_titles = list("Expedition Medic" = /datum/alt_title/expedition_medic, "Offsite Medic" = /datum/alt_title/offsite_medic)
 
 /datum/alt_title/expedition_medic
 	title = "Expedition Medic"
+
+/datum/alt_title/offsite_medic
+	title = "Offsite Medic"

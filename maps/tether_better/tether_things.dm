@@ -368,6 +368,8 @@ var/global/list/latejoin_tram   = list()
 	..()
 	for(var/i = 1 to 2)
 		new /obj/item/weapon/gun/energy/locked/frontier(src)
+	for(var/i = 1 to 2)
+		new /obj/item/weapon/gun/energy/locked/frontier/holdout(src)
 
 // Used at centcomm for the elevator
 /obj/machinery/cryopod/robot/door/dorms
@@ -376,9 +378,6 @@ var/global/list/latejoin_tram   = list()
 //Tether-unique network cameras
 /obj/machinery/camera/network/tether
 	network = list(NETWORK_TETHER)
-
-/obj/machinery/camera/network/tcomms
-	network = list(NETWORK_TCOMMS)
 
 /obj/machinery/camera/network/outside
 	network = list(NETWORK_OUTSIDE)

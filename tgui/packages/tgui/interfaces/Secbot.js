@@ -14,7 +14,8 @@ export const Secbot = (props, context) => {
     check_arrest,
     arrest_type,
     declare_arrests,
-    will_patrol,
+    bot_patrolling,
+    patrol,
   } = data;
 
   return (
@@ -80,13 +81,13 @@ export const Secbot = (props, context) => {
                   {declare_arrests ? "Yes" : "No"}
                 </Button>
               </LabeledList.Item>
-              {will_patrol && (
+              {!!bot_patrolling && (
                 <LabeledList.Item label="Auto Patrol">
                   <Button
-                    icon={will_patrol ? "toggle-on" : "toggle-off"}
-                    selected={will_patrol}
+                    icon={patrol ? "toggle-on" : "toggle-off"}
+                    selected={patrol}
                     onClick={() => act("patrol")}>
-                    {will_patrol ? "Yes" : "No"}
+                    {patrol ? "Yes" : "No"}
                   </Button>
                 </LabeledList.Item>
               )}

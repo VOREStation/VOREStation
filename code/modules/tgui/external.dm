@@ -15,7 +15,7 @@
  * optional parent_ui datum/tgui A parent UI that, when closed, closes this UI as well.
  */
 
-/datum/proc/tgui_interact(mob/user, datum/tgui/ui = null, datum/tgui/parent_ui = null)
+/datum/proc/tgui_interact(mob/user, datum/tgui/ui = null, datum/tgui/parent_ui = null, custom_state = null)
 	return FALSE // Not implemented.
 
 /**

@@ -1,5 +1,3 @@
-//TFF 28/8/19 - cleanup of areas placement - removes all but rogueminer_vr stuff.
-
 /area/shuttle/belter
 	name = "Belter Shuttle"
 	icon_state = "shuttle2"

@@ -267,7 +267,7 @@ var/list/spells = typesof(/spell) //needed for the badmin verb for now
 			else
 				user.whisper(replacetext(invocation," ","`"))
 		if(SpI_EMOTE)
-			user.emote("me", 1, invocation) //the 1 means it's for everyone in view, the me makes it an emote, and the invocation is written accordingly.
+			user.custom_emote(VISIBLE_MESSAGE, invocation) 
 
 /////////////////////
 ///UPGRADING PROCS///
@@ -277,7 +277,7 @@ var/list/spells = typesof(/spell) //needed for the badmin verb for now
 	if(level_max[Sp_TOTAL] <= ( spell_levels[Sp_SPEED] + spell_levels[Sp_POWER] )) //too many levels, can't do it
 		return 0
 
-	if(upgrade_type && upgrade_type in spell_levels && upgrade_type in level_max)
+	if(upgrade_type && (upgrade_type in spell_levels) && (upgrade_type in level_max))
 		if(spell_levels[upgrade_type] >= level_max[upgrade_type])
 			return 0
 

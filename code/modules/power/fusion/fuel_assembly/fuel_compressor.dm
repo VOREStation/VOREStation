@@ -1,3 +1,4 @@
+#define FUSION_ROD_SHEET_AMT 15
 /obj/machinery/fusion_fuel_compressor
 	name = "fuel compressor"
 	icon = 'icons/obj/machines/power/fusion.dmi'
@@ -53,15 +54,17 @@
 		if(!mat.is_fusion_fuel)
 			to_chat(user, "<span class='warning'>It would be pointless to make a fuel rod out of [mat.use_name].</span>")
 			return
-		if(M.get_amount() < 15)
+		if(M.get_amount() < FUSION_ROD_SHEET_AMT)
 			to_chat(user, "<span class='warning'>You need at least 25 [mat.sheet_plural_name] to make a fuel rod.</span>")
 			return
 		var/obj/item/weapon/fuel_assembly/F = new(get_turf(src), mat.name)
 		visible_message("<span class='notice'>\The [src] compresses the [mat.use_name] into a new fuel assembly.</span>")
-		M.use(15)
+		M.use(FUSION_ROD_SHEET_AMT)
 		user.put_in_hands(F)
 
 	else if(do_special_fuel_compression(thing, user))
 		return
 
 	return ..()
+
+#undef FUSION_ROD_SHEET_AMT

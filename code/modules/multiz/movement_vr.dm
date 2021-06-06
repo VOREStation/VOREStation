@@ -1,6 +1,6 @@
 
 /mob/living/handle_fall(var/turf/landing)
-	var/mob/drop_mob = locate(/mob, landing)
+	var/mob/drop_mob = locate(/mob/living, landing)
 
 	if(locate(/obj/structure/stairs) in landing)
 		for(var/atom/A in landing)
@@ -17,7 +17,7 @@
 		if(!O.CanFallThru(src, landing))
 			return 1
 
-	if(drop_mob && !(drop_mob == src) && ismob(drop_mob) && isliving(drop_mob)) //Shitload of checks. This is because the game finds various ways to screw me over.
+	if(drop_mob && !(drop_mob == src)) //Shitload of checks. This is because the game finds various ways to screw me over.
 		var/mob/living/drop_living = drop_mob
 		if(drop_living.dropped_onto(src))
 			return
@@ -39,7 +39,7 @@
 			else if(prey.can_be_drop_pred && pred.can_be_drop_prey) //Is person being fallen onto pred & person falling prey
 				pred.feed_grabbed_to_self_falling_nom(prey,pred) //oh, how the tables have turned.
 */
-/mob/zshadow/fall_impact(var/atom/hit_atom) //You actually "fall" onto their shadow, first.
+/mob/zshadow/fall_impact(var/atom/hit_atom, var/damage_min = 0, var/damage_max = 10, var/silent = FALSE, var/planetary = FALSE) //You actually "fall" onto their shadow, first.
 	/*
 	var/floor_below = src.loc.below //holy fuck
 	for(var/mob/M in floor_below.contents)

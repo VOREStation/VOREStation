@@ -150,7 +150,7 @@
 	if(!is_on())
 		return 0
 	if(!check_fuel() || (use_power_oneoff(charge_per_burn) < charge_per_burn) || check_blockage())
-		audible_message(src,"<span class='warning'>[src] coughs once and goes silent!</span>")
+		audible_message(src,"<span class='warning'>[src] coughs once and goes silent!</span>", runemessage = "sputtercough")
 		update_use_power(USE_POWER_OFF)
 		return 0
 

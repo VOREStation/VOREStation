@@ -341,20 +341,20 @@
 	. = ..()
 	reagents.add_reagent("absinthe", 100)
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/melonliquor
-	name = "Emeraldine Melon Liquor"
+/obj/item/weapon/reagent_containers/food/drinks/bottle/melonliquor //MODIFIED ON 04/21/2021
+	name = "Emeraldine Melon Liqueur"
 	desc = "A bottle of 46 proof Emeraldine Melon Liquor. Sweet and light."
-	icon_state = "alco-green" //Placeholder.
+	icon_state = "melon_liqueur"
 	center_of_mass = list("x"=16, "y"=6)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/melonliquor/Initialize()
 	. = ..()
 	reagents.add_reagent("melonliquor", 100)
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/bluecuracao
+/obj/item/weapon/reagent_containers/food/drinks/bottle/bluecuracao //MODIFIED ON 04/21/2021
 	name = "Miss Blue Curacao"
 	desc = "A fruity, exceptionally azure drink. Does not allow the imbiber to use the fifth magic."
-	icon_state = "alco-blue" //Placeholder.
+	icon_state = "blue_curacao"
 	center_of_mass = list("x"=16, "y"=6)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/bluecuracao/Initialize()
@@ -370,36 +370,6 @@
 /obj/item/weapon/reagent_containers/food/drinks/bottle/grenadine/Initialize()
 	. = ..()
 	reagents.add_reagent("grenadine", 100)
-
-/obj/item/weapon/reagent_containers/food/drinks/bottle/cola
-	name = "\improper Space Cola"
-	desc = "Cola. in space"
-	icon_state = "colabottle"
-	center_of_mass = list("x"=16, "y"=6)
-
-/obj/item/weapon/reagent_containers/food/drinks/bottle/cola/Initialize()
-	. = ..()
-	reagents.add_reagent("cola", 100)
-
-/obj/item/weapon/reagent_containers/food/drinks/bottle/space_up
-	name = "\improper Space-Up"
-	desc = "Tastes like a hull breach in your mouth."
-	icon_state = "space-up_bottle"
-	center_of_mass = list("x"=16, "y"=6)
-
-/obj/item/weapon/reagent_containers/food/drinks/bottle/space_up/Initialize()
-	. = ..()
-	reagents.add_reagent("space_up", 100)
-
-/obj/item/weapon/reagent_containers/food/drinks/bottle/space_mountain_wind
-	name = "\improper Space Mountain Wind"
-	desc = "Blows right through you like a space wind."
-	icon_state = "space_mountain_wind_bottle"
-	center_of_mass = list("x"=16, "y"=6)
-
-/obj/item/weapon/reagent_containers/food/drinks/bottle/space_mountain_wind/Initialize()
-	. = ..()
-	reagents.add_reagent("spacemountainwind", 100)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/pwine
 	name = "Warlock's Velvet"
@@ -421,7 +391,107 @@
 	. = ..()
 	reagents.add_reagent("unathiliquor", 100)
 
-//////////////////////////JUICES AND STUFF ///////////////////////
+/obj/item/weapon/reagent_containers/food/drinks/bottle/sake
+	name = "Mono-No-Aware Luxury Sake"
+	desc = "Dry alcohol made from rice, a favorite of businessmen."
+	icon_state = "sakebottle"
+	center_of_mass = list("x"=16, "y"=3)
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/sake/Initialize()
+	. = ..()
+	reagents.add_reagent("sake", 100)
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/champagne
+	name = "Gilthari Luxury Champagne"
+	desc = "For those special occassions."
+	icon_state = "champagne"
+	center_of_mass = list("x"=16, "y"=3)
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/champagne/Initialize()
+	. = ..()
+	reagents.add_reagent("champagne", 100)
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/peppermintschnapps
+	name = "Dr. Bone's Peppermint Schnapps"
+	desc = "A flavoured grain liqueur with a fresh, minty taste."
+	icon_state = "schnapps_pep"
+	center_of_mass = list("x"=16, "y"=3)
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/peppermintschnapps/Initialize()
+	. = ..()
+	reagents.add_reagent("schnapps_pep", 100)
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/peachschnapps
+	name = "Dr. Bone's Peach Schnapps"
+	desc = "A flavoured grain liqueur with a fruity peach taste."
+	icon_state = "schnapps_pea"
+	center_of_mass = list("x"=16, "y"=3)
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/peachschnapps/Initialize()
+	. = ..()
+	reagents.add_reagent("schnapps_pea", 100)
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/lemonadeschnapps
+	name = "Dr. Bone's Lemonade Schnapps"
+	desc = "A flavoured grain liqueur with a sweetish, lemon taste."
+	icon_state = "schnapps_lem"
+	center_of_mass = list("x"=16, "y"=3)
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/lemonadeschnapps/Initialize()
+	. = ..()
+	reagents.add_reagent("schnapps_lem", 100)
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/jager
+	name = "Schusskonig"
+	desc = "A complex tasting digestif. Thank god the original's trademark lapsed."
+	icon_state = "jager_bottle"
+	center_of_mass = list("x"=16, "y"=3)
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/jager/Initialize()
+	. = ..()
+	reagents.add_reagent("jager", 100)
+
+//////////////////////////JUICES AND STUFF///////////////////////
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/cola //MODIFIED ON 04/21/2021
+	name = "\improper two-liter Space Cola"
+	desc = "Cola. In space."
+	icon_state = "colabottle"
+	center_of_mass = list("x"=16, "y"=6)
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/cola/Initialize()
+	. = ..()
+	reagents.add_reagent("cola", 100)
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/space_up //MODIFIED ON 04/21/2021
+	name = "\improper two-liter Space-Up"
+	desc = "Tastes like a hull breach in your mouth."
+	icon_state = "space-up_bottle"
+	center_of_mass = list("x"=16, "y"=6)
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/space_up/Initialize()
+	. = ..()
+	reagents.add_reagent("space_up", 100)
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/space_mountain_wind //MODIFIED ON 04/21/2021
+	name = "\improper two-liter Space Mountain Wind"
+	desc = "Blows right through you like a space wind."
+	icon_state = "space_mountain_wind_bottle"
+	center_of_mass = list("x"=16, "y"=6)
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/space_mountain_wind/Initialize()
+	. = ..()
+	reagents.add_reagent("spacemountainwind", 100)
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/dr_gibb //ADDED ON 04/21/2021
+	name = "\improper two-liter Dr. Gibb"
+	desc = "A delicious mixture of 42 different flavors."
+	icon_state = "dr_gibb_bottle"
+	center_of_mass = list("x"=16, "y"=6)
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/dr_gibb/Initialize()
+	. = ..()
+	reagents.add_reagent("dr_gibb", 100)
 
 /obj/item/weapon/reagent_containers/food/drinks/bottle/orangejuice
 	name = "Orange Juice"
@@ -507,7 +577,8 @@
 	. = ..()
 	reagents.add_reagent("lemonjuice", 100)
 
-//Small bottles
+//////////////////////////SMALL BOTTLES///////////////////////
+
 /obj/item/weapon/reagent_containers/food/drinks/bottle/small
 	volume = 50
 	smash_duration = 1
@@ -578,63 +649,3 @@
 /obj/item/weapon/reagent_containers/food/drinks/bottle/small/ale/hushedwhisper/Initialize()
 	. = ..()
 	reagents.add_reagent("ale", 50)
-
-/obj/item/weapon/reagent_containers/food/drinks/bottle/sake
-	name = "Mono-No-Aware Luxury Sake"
-	desc = "Dry alcohol made from rice, a favorite of businessmen."
-	icon_state = "sakebottle"
-	center_of_mass = list("x"=16, "y"=3)
-
-/obj/item/weapon/reagent_containers/food/drinks/bottle/sake/Initialize()
-	. = ..()
-	reagents.add_reagent("sake", 100)
-
-/obj/item/weapon/reagent_containers/food/drinks/bottle/champagne
-	name = "Gilthari Luxury Champagne"
-	desc = "For those special occassions."
-	icon_state = "champagne"
-	center_of_mass = list("x"=16, "y"=3)
-
-/obj/item/weapon/reagent_containers/food/drinks/bottle/champagne/Initialize()
-	. = ..()
-	reagents.add_reagent("champagne", 100)
-
-/obj/item/weapon/reagent_containers/food/drinks/bottle/peppermintschnapps
-	name = "Dr. Bone's Peppermint Schnapps"
-	desc = "A flavoured grain liqueur with a fresh, minty taste."
-	icon_state = "schnapps_pep"
-	center_of_mass = list("x"=16, "y"=3)
-
-/obj/item/weapon/reagent_containers/food/drinks/bottle/peppermintschnapps/Initialize()
-	. = ..()
-	reagents.add_reagent("schnapps_pep", 100)
-
-/obj/item/weapon/reagent_containers/food/drinks/bottle/peachschnapps
-	name = "Dr. Bone's Peach Schnapps"
-	desc = "A flavoured grain liqueur with a fruity peach taste."
-	icon_state = "schnapps_pea"
-	center_of_mass = list("x"=16, "y"=3)
-
-/obj/item/weapon/reagent_containers/food/drinks/bottle/peachschnapps/Initialize()
-	. = ..()
-	reagents.add_reagent("schnapps_pea", 100)
-
-/obj/item/weapon/reagent_containers/food/drinks/bottle/lemonadeschnapps
-	name = "Dr. Bone's Lemonade Schnapps"
-	desc = "A flavoured grain liqueur with a sweetish, lemon taste."
-	icon_state = "schnapps_lem"
-	center_of_mass = list("x"=16, "y"=3)
-
-/obj/item/weapon/reagent_containers/food/drinks/bottle/lemonadeschnapps/Initialize()
-	. = ..()
-	reagents.add_reagent("schnapps_lem", 100)
-
-/obj/item/weapon/reagent_containers/food/drinks/bottle/jager
-	name = "Schusskonig"
-	desc = "A complex tasting digestif. Thank god the original's trademark lapsed."
-	icon_state = "jager_bottle"
-	center_of_mass = list("x"=16, "y"=3)
-
-/obj/item/weapon/reagent_containers/food/drinks/bottle/jager/Initialize()
-	. = ..()
-	reagents.add_reagent("jager", 100)

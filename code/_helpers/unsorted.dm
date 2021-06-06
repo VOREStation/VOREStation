@@ -19,11 +19,9 @@
 
 	if (!( istext(HTMLstring) ))
 		CRASH("Given non-text argument!")
-		return
 	else
 		if (length(HTMLstring) != 7)
 			CRASH("Given non-HTML argument!")
-			return
 	var/textr = copytext(HTMLstring, 2, 4)
 	var/textg = copytext(HTMLstring, 4, 6)
 	var/textb = copytext(HTMLstring, 6, 8)
@@ -40,7 +38,6 @@
 	if (length(textb) < 2)
 		textr = text("0[]", textb)
 	return text("#[][][]", textr, textg, textb)
-	return
 
 //Returns the middle-most value
 /proc/dd_range(var/low, var/high, var/num)
@@ -1130,8 +1127,6 @@ proc/is_hot(obj/item/W as obj)
 		else
 			return 0
 
-	return 0
-
 //Whether or not the given item counts as sharp in terms of dealing damage
 /proc/is_sharp(obj/O as obj)
 	if(!O)
@@ -1663,3 +1658,36 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 /proc/CallAsync(datum/source, proctype, list/arguments)
 	set waitfor = FALSE
 	return call(source, proctype)(arglist(arguments))
+
+/proc/describeThis(var/datum/D)
+	if(istype(D))
+		var/msg = "[D.type] - [D]"
+		if(isatom(D))
+			var/atom/A = D
+			if(!A.z)
+				msg += " - Coords unavailable (in contents?)"
+				if(ismovable(A))
+					var/turf/T = get_turf(A)
+					if(T)
+						msg += " - Parent turf: [T.x],[T.y],[T.z]"
+					else
+						msg += " - In nullspace"
+				else
+					msg += " - In nullspace"
+			else
+				msg += "- [A.x],[A.y],[A.z]"
+		return msg
+	else if(isnull(D))
+		return "NULL"
+	else if(istext(D))
+		return "TEXT: [D]"
+	else if(isnum(D))
+		return "NUM: [D]"
+	else if(ispath(D))
+		return "PATH: [D]"
+	else if(islist(D))
+		return "LIST: [D]"
+	else if(isclient(D))
+		return "CLIENT: [D]"
+	else
+		return "Unknown data type: [D]"

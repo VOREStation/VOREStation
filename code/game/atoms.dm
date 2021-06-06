@@ -34,6 +34,15 @@
 	// Track if we are already had initialize() called to prevent double-initialization.
 	var/initialized = FALSE
 
+	/// Last name used to calculate a color for the chatmessage overlays
+	var/chat_color_name
+	/// Last color calculated for the the chatmessage overlays
+	var/chat_color
+	/// A luminescence-shifted value of the last color calculated for chatmessage overlays
+	var/chat_color_darkened
+	/// The chat color var, without alpha.
+	var/chat_color_hover
+
 /atom/New(loc, ...)
 	// Don't call ..() unless /datum/New() ever exists
 
@@ -490,7 +499,7 @@
 // Use for objects performing visible actions
 // message is output to anyone who can see, e.g. "The [src] does something!"
 // blind_message (optional) is what blind people will hear e.g. "You hear something!"
-/atom/proc/visible_message(var/message, var/blind_message, var/list/exclude_mobs = null)
+/atom/proc/visible_message(var/message, var/blind_message, var/list/exclude_mobs, var/range = world.view, var/runemessage = "<span style='font-size: 1.5em'>👁</span>")
 
 	//VOREStation Edit
 	var/list/see
@@ -498,7 +507,7 @@
 		var/obj/belly/B = loc
 		see = B.get_mobs_and_objs_in_belly()
 	else
-		see = get_mobs_and_objs_in_view_fast(get_turf(src),world.view,remote_ghosts = FALSE)
+		see = get_mobs_and_objs_in_view_fast(get_turf(src), range, remote_ghosts = FALSE)
 	//VOREStation Edit End
 
 	var/list/seeing_mobs = see["mobs"]
@@ -508,20 +517,22 @@
 
 	for(var/obj in seeing_objs)
 		var/obj/O = obj
-		O.show_message(message, 1, blind_message, 2)
+		O.show_message(message, VISIBLE_MESSAGE, blind_message, AUDIBLE_MESSAGE)
 	for(var/mob in seeing_mobs)
 		var/mob/M = mob
 		if(M.see_invisible >= invisibility && MOB_CAN_SEE_PLANE(M, plane))
-			M.show_message(message, 1, blind_message, 2)
+			M.show_message(message, VISIBLE_MESSAGE, blind_message, AUDIBLE_MESSAGE)
+			if(runemessage != -1)
+				M.create_chat_message(src, "[runemessage]", FALSE, list("emote"), audible = FALSE)
 		else if(blind_message)
-			M.show_message(blind_message, 2)
+			M.show_message(blind_message, AUDIBLE_MESSAGE)
 
 // Show a message to all mobs and objects in earshot of this atom
 // Use for objects performing audible actions
 // message is the message output to anyone who can hear.
 // deaf_message (optional) is what deaf people will see.
 // hearing_distance (optional) is the range, how many tiles away the message can be heard.
-/atom/proc/audible_message(var/message, var/deaf_message, var/hearing_distance)
+/atom/proc/audible_message(var/message, var/deaf_message, var/hearing_distance, var/radio_message, var/runemessage)
 
 	var/range = hearing_distance || world.view
 	var/list/hear = get_mobs_and_objs_in_view_fast(get_turf(src),range,remote_ghosts = FALSE)
@@ -529,14 +540,21 @@
 	var/list/hearing_mobs = hear["mobs"]
 	var/list/hearing_objs = hear["objs"]
 
-	for(var/obj in hearing_objs)
-		var/obj/O = obj
-		O.show_message(message, 2, deaf_message, 1)
+	if(radio_message)
+		for(var/obj in hearing_objs)
+			var/obj/O = obj
+			O.hear_talk(src, list(new /datum/multilingual_say_piece(GLOB.all_languages["Noise"], radio_message)), null)
+	else
+		for(var/obj in hearing_objs)
+			var/obj/O = obj
+			O.show_message(message, AUDIBLE_MESSAGE, deaf_message, VISIBLE_MESSAGE)
 
 	for(var/mob in hearing_mobs)
 		var/mob/M = mob
 		var/msg = message
-		M.show_message(msg, 2, deaf_message, 1)
+		M.show_message(msg, AUDIBLE_MESSAGE, deaf_message, VISIBLE_MESSAGE)
+		if(runemessage != -1)
+			M.create_chat_message(src, "[runemessage || message]", FALSE, list("emote"))
 
 /atom/movable/proc/dropInto(var/atom/destination)
 	while(istype(destination))
@@ -638,6 +656,7 @@
 	. = ..()
 	GLOB.moved_event.raise_event(AM, old_loc, AM.loc)
 	SEND_SIGNAL(src, COMSIG_ATOM_ENTERED, AM, old_loc)
+	SEND_SIGNAL(AM, COMSIG_ATOM_ENTERING, src, old_loc)
 
 /atom/Exit(atom/movable/AM, atom/new_loc)
 	. = ..()
@@ -647,3 +666,9 @@
 /atom/Exited(atom/movable/AM, atom/new_loc)
 	. = ..()
 	SEND_SIGNAL(src, COMSIG_ATOM_EXITED, AM, new_loc)
+
+/atom/proc/get_visible_gender()
+	return gender
+
+/atom/proc/interact(mob/user)
+	return

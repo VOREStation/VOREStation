@@ -31,12 +31,13 @@
 /obj/item/device/megaphone/proc/do_broadcast(var/mob/living/user, var/message)
 	if(emagged)
 		if(insults)
-			user.audible_message("<B>[user.GetVoice()]</B>[user.GetAltName()] broadcasts, <FONT size=3>\"[pick(insultmsg)]\"</FONT>")
+			var/insult = pick(insultmsg)
+			user.audible_message("<B>[user.GetVoice()]</B>[user.GetAltName()] broadcasts, <FONT size=3>\"[insult]\"</FONT>", runemessage = insult)
 			insults--
 		else
 			to_chat(user, "<span class='warning'>*BZZZZzzzzzt*</span>")
 	else
-		user.audible_message("<B>[user.GetVoice()]</B>[user.GetAltName()] broadcasts, <FONT size=3>\"[message]\"</FONT>")
+		user.audible_message("<B>[user.GetVoice()]</B>[user.GetAltName()] broadcasts, <FONT size=3>\"[message]\"</FONT>", runemessage = message)
 
 /obj/item/device/megaphone/attack_self(var/mob/living/user)
 	var/message = sanitize(input(user, "Shout a message?", "Megaphone", null)  as text)
@@ -131,7 +132,8 @@
 /obj/item/device/megaphone/super/do_broadcast(var/mob/living/user, var/message)
 	if(emagged)
 		if(insults)
-			user.audible_message("<B>[user.GetVoice()]</B>[user.GetAltName()] broadcasts, <FONT size=[broadcast_size] face='[broadcast_font]' color='[broadcast_color]'>\"[pick(insultmsg)]\"</FONT>")
+			var/insult = pick(insultmsg)
+			user.audible_message("<B>[user.GetVoice()]</B>[user.GetAltName()] broadcasts, <FONT size=[broadcast_size] face='[broadcast_font]' color='[broadcast_color]'>\"[insult]\"</FONT>", runemessage = insult)
 			if(broadcast_size >= 11)
 				var/turf/T = get_turf(user)
 				playsound(src, 'sound/items/AirHorn.ogg', 100, 1)
@@ -160,4 +162,4 @@
 					qdel(src)
 					return
 	else
-		user.audible_message("<B>[user.GetVoice()]</B>[user.GetAltName()] broadcasts, <FONT size=[broadcast_size] face='[broadcast_font]' color='[broadcast_color]'>\"[message]\"</FONT>")
+		user.audible_message("<B>[user.GetVoice()]</B>[user.GetAltName()] broadcasts, <FONT size=[broadcast_size] face='[broadcast_font]' color='[broadcast_color]'>\"[message]\"</FONT>", runemessage = message)

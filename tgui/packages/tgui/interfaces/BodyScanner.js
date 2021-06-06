@@ -496,6 +496,7 @@ const BodyScannerMainOrgansInternal = props => {
               <Box color="average" display="inline">
                 {reduceOrganStatus([
                   germStatus(o.germ_level),
+                  !!o.inflamed && "Appendicitis detected.",
                 ])}
               </Box>
               <Box display="inline">

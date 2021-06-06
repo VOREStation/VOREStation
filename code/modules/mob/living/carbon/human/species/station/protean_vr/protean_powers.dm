@@ -12,13 +12,16 @@
 		to_chat(src,"<span class='warning'>You must be awake and standing to perform this action!</span>")
 		return
 
+	if(!isturf(loc))
+		to_chat(src,"<span class='warning'>You need more space to perform this action!</span>")
+		return
+
 	var/obj/item/organ/internal/nano/refactory/refactory = nano_get_refactory()
 	//Missing the organ that does this
 	if(!istype(refactory))
 		to_chat(src,"<span class='warning'>You don't have a working refactory module!</span>")
 		return
-
-
+		
 	var/choice = input(src,"Pick the bodypart to change:", "Refactor - One Bodypart") as null|anything in species.has_limbs
 	if(!choice)
 		return
@@ -89,6 +92,10 @@
 
 	if(stat)
 		to_chat(src,"<span class='warning'>You must be awake and standing to perform this action!</span>")
+		return
+
+	if(!isturf(loc))
+		to_chat(src,"<span class='warning'>You need more space to perform this action!</span>")
 		return
 
 	var/obj/item/organ/internal/nano/refactory/refactory = nano_get_refactory()
@@ -201,9 +208,8 @@
 
 	var/obj/item/stack/material/matstack = held
 	var/substance = matstack.material.name
-	var/list/edible_materials = list(MAT_STEEL, MAT_SILVER, MAT_GOLD, MAT_URANIUM, MAT_METALHYDROGEN) //Can't eat all materials, just useful ones.
 	var allowed = FALSE
-	for(var/material in edible_materials)
+	for(var/material in PROTEAN_EDIBLE_MATERIALS)
 		if(material == substance) allowed = TRUE
 	if(!allowed)
 		to_chat(src,"<span class='warning'>You can't process [substance]!</span>")
@@ -233,6 +239,11 @@
 	set category = "Abilities"
 	set hidden = TRUE
 
+	var/atom/movable/to_locate = temporary_form || src
+	if(!isturf(to_locate.loc))
+		to_chat(to_locate,"<span class='warning'>You need more space to perform this action!</span>")
+		return
+	
 	//Blob form
 	if(temporary_form)
 		if(health < maxHealth*0.5)
@@ -300,14 +311,14 @@
 	//Sizing up
 	if(cost > 0)
 		if(refactory.use_stored_material(MAT_STEEL,cost))
-			user.resize(size_factor)
+			user.resize(size_factor, ignore_prefs = TRUE)
 		else
 			to_chat(user,"<span class='warning'>That size change would cost [cost] steel, which you don't have.</span>")
 	//Sizing down (or not at all)
 	else if(cost <= 0)
 		cost = abs(cost)
 		var/actually_added = refactory.add_stored_material(MAT_STEEL,cost)
-		user.resize(size_factor)
+		user.resize(size_factor, ignore_prefs = TRUE)
 		if(actually_added != cost)
 			to_chat(user,"<span class='warning'>Unfortunately, [cost-actually_added] steel was lost due to lack of storage space.</span>")
 

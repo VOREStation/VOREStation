@@ -493,13 +493,14 @@
 	..(severity)
 
 
-/obj/machinery/computer/med_data/laptop
-	name = "Medical Laptop"
-	desc = "A cheap laptop. It seems to have only the medical records program."
-	icon_state = "laptop"
-	icon_keyboard = "laptop_key"
-	icon_screen = "medlaptop"
-	circuit = /obj/item/weapon/circuitboard/med_data/laptop
+/obj/machinery/computer/med_data/laptop //[TO DO] Change name to PCU and update mapdata to include replacement computers
+	name = "\improper Medical Laptop"
+	desc = "A personal computer unit. It seems to have only the medical records program installed."
+	icon_screen = "pcu_generic"
+	icon_state = "pcu"
+	icon_keyboard = "pcu_key"
+	light_color = "#00b000"
+	circuit = /obj/item/weapon/circuitboard/med_data/pcu
 	density = 0
 
 #undef FIELD

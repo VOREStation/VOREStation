@@ -3,7 +3,8 @@
 	var/digestable = TRUE				// Can the mob be digested inside a belly?
 	var/devourable = TRUE				// Can the mob be devoured at all?
 	var/feeding = TRUE					// Can the mob be vorishly force fed or fed to others?
-	var/absorbable = TRUE				// Are you allowed to absorb this person? TFF addition 14/12/19
+	var/absorbable = TRUE				// Are you allowed to absorb this person?
+	var/resizable = TRUE				// Can other people resize you? (Usually ignored for self-resizes)
 	var/digest_leave_remains = FALSE	// Will this mob leave bones/skull/etc after the melty demise?
 	var/allowmobvore = TRUE				// Will simplemobs attempt to eat the mob?
 	var/showvoreprefs = TRUE			// Determines if the mechanical vore preferences button will be displayed on the mob or not.
@@ -27,6 +28,7 @@
 	var/permit_healbelly = TRUE
 	var/can_be_drop_prey = FALSE
 	var/can_be_drop_pred = TRUE			// Mobs are pred by default.
+	var/allow_spontaneous_tf = FALSE	// Obviously.
 	var/next_preyloop					// For Fancy sound internal loop
 	var/adminbus_trash = FALSE			// For abusing trash eater for event shenanigans.
 	var/adminbus_eat_minerals = FALSE	// This creature subsists on a diet of pure adminium.
@@ -225,7 +227,8 @@
 	P.digestable = src.digestable
 	P.devourable = src.devourable
 	P.feeding = src.feeding
-	P.absorbable = src.absorbable	//TFF 14/12/19 - choose whether allowing absorbing
+	P.absorbable = src.absorbable
+	P.resizable = src.resizable
 	P.digest_leave_remains = src.digest_leave_remains
 	P.allowmobvore = src.allowmobvore
 	P.vore_taste = src.vore_taste
@@ -234,6 +237,7 @@
 	P.show_vore_fx = src.show_vore_fx
 	P.can_be_drop_prey = src.can_be_drop_prey
 	P.can_be_drop_pred = src.can_be_drop_pred
+	P.allow_spontaneous_tf = src.allow_spontaneous_tf
 	P.step_mechanics_pref = src.step_mechanics_pref
 	P.pickup_pref = src.pickup_pref
 
@@ -259,7 +263,8 @@
 	digestable = P.digestable
 	devourable = P.devourable
 	feeding = P.feeding
-	absorbable = P.absorbable	//TFF 14/12/19 - choose whether allowing absorbing
+	absorbable = P.absorbable
+	resizable = P.resizable
 	digest_leave_remains = P.digest_leave_remains
 	allowmobvore = P.allowmobvore
 	vore_taste = P.vore_taste
@@ -268,6 +273,7 @@
 	show_vore_fx = P.show_vore_fx
 	can_be_drop_prey = P.can_be_drop_prey
 	can_be_drop_pred = P.can_be_drop_pred
+	allow_spontaneous_tf = P.allow_spontaneous_tf
 	step_mechanics_pref = P.step_mechanics_pref
 	pickup_pref = P.pickup_pref
 
@@ -683,7 +689,6 @@
 				to_chat(src, "<span class='notice'>You can taste the flavor of garbage and leftovers. Delicious?</span>")
 			else
 				to_chat(src, "<span class='notice'>You can taste the flavor of gluttonous waste of food.</span>")
-		//TFF 10/7/19 - Add custom flavour for collars for trash can trait.
 		else if (istype(I,/obj/item/clothing/accessory/collar))
 			visible_message("<span class='warning'>[src] demonstrates their voracious capabilities by swallowing [I] whole!</span>")
 			to_chat(src, "<span class='notice'>You can taste the submissiveness in the wearer of [I]!</span>")
@@ -855,6 +860,7 @@
 	dispvoreprefs += "<b>Healbelly permission:</b> [permit_healbelly ? "Allowed" : "Disallowed"]<br>"
 	dispvoreprefs += "<b>Spontaneous vore prey:</b> [can_be_drop_prey ? "Enabled" : "Disabled"]<br>"
 	dispvoreprefs += "<b>Spontaneous vore pred:</b> [can_be_drop_pred ? "Enabled" : "Disabled"]<br>"
+	dispvoreprefs += "<b>Spontaneous transformation:</b> [allow_spontaneous_tf ? "Enabled" : "Disabled"]<br>"
 	dispvoreprefs += "<b>Can be stepped on/over:</b> [step_mechanics_pref ? "Allowed" : "Disallowed"]<br>"
 	dispvoreprefs += "<b>Can be picked up:</b> [pickup_pref ? "Allowed" : "Disallowed"]<br>"
 	user << browse("<html><head><title>Vore prefs: [src]</title></head><body><center>[dispvoreprefs]</center></body></html>", "window=[name]mvp;size=200x300;can_resize=0;can_minimize=0")
@@ -867,7 +873,7 @@
 	icon_state = ""
 
 /mob/living/proc/vorebelly_printout() //Spew the vorepanel belly messages into chat window for copypasting.
-	set name = "Print Vorebelly Settings"
+	set name = "X-Print Vorebelly Settings"
 	set category = "Preferences"
 	set desc = "Print out your vorebelly messages into chat for copypasting."
 

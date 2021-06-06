@@ -39,7 +39,7 @@
 
 /obj/item/clothing/accessory/proc/get_mob_overlay()
 	if(!istype(loc,/obj/item/clothing/))	//don't need special handling if it's worn as normal item.
-		return ..()
+		return
 	var/tmp_icon_state = "[overlay_state? "[overlay_state]" : "[icon_state]"]"
 	if(ishuman(has_suit.loc))
 		wearer = has_suit.loc

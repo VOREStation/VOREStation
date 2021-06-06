@@ -84,6 +84,7 @@
 			icon_state = "[icon_dead]-[vore_fullness]"
 		else if(((stat == UNCONSCIOUS) || resting || incapacitated(INCAPACITATION_DISABLED) ) && icon_rest && (vore_icons & SA_ICON_REST))
 			icon_state = "[icon_rest]-[vore_fullness]"
+	update_transform()
 
 /mob/living/simple_mob/proc/will_eat(var/mob/living/M)
 	if(client) //You do this yourself, dick!
@@ -265,7 +266,7 @@
 	return FALSE
 
 // Checks to see if mob doesn't like this kind of turf
-/mob/living/simple_mob/IMove(newloc)
+/mob/living/simple_mob/IMove(turf/newloc, safety = TRUE)
 	if(istype(newloc,/turf/unsimulated/floor/sky))
 		return MOVEMENT_FAILED //Mobs aren't that stupid, probably
 	return ..() // Procede as normal.

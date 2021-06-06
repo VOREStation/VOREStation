@@ -22,7 +22,7 @@
 	var/decompiler = FALSE
 	var/delivery = FALSE
 	var/delivery_tag = "Fuel"
-	var/list/deliverylists = list()
+	var/list/list/deliverylists = list()
 	var/list/deliveryslot_1 = list()
 	var/list/deliveryslot_2 = list()
 	var/list/deliveryslot_3 = list()
@@ -716,3 +716,10 @@
 	recycles = FALSE
 
 #undef SLEEPER_INJECT_COST
+
+
+/obj/item/device/dogborg/sleeper/compactor/brewer
+	name = "Brew Belly"
+	desc = "A mounted drunk tank unit with fuel processor."
+	icon_state = "brewer"
+	injection_chems = null

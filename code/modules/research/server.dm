@@ -178,22 +178,24 @@
 	for(var/obj/machinery/r_n_d/server/S in machines)
 		if(istype(S, /obj/machinery/r_n_d/server/centcom) && !badmin)
 			continue
+		var/list/tech = list()
+		var/list/designs = list()
 		var/list/server_data = list(
 			"name" = S.name,
 			"ref" = REF(S),
 			"id" = S.server_id,
 			"id_with_upload" = S.id_with_upload,
 			"id_with_download" = S.id_with_download,
-			"tech" = list(),
-			"designs" = list(),
+			"tech" = tech,
+			"designs" = designs,
 		)
 		for(var/datum/tech/T in S.files.known_tech)
-			server_data["tech"].Add(list(list(
+			tech.Add(list(list(
 				"name" = T.name,
 				"id" = T.id,
 			)))
 		for(var/datum/design/D in S.files.known_designs)
-			server_data["designs"].Add(list(list(
+			designs.Add(list(list(
 				"name" = D.name,
 				"id" = D.id,
 			)))

@@ -78,7 +78,7 @@
  * Radiation protection
  */
 /obj/item/clothing/head/radiation
-	name = "Radiation Hood"
+	name = "Radiation hood"
 	icon_state = "rad"
 	desc = "A hood with radiation protective properties. Label: Made with lead, do not eat insulation"
 	flags_inv = BLOCKHAIR
@@ -99,3 +99,19 @@
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 60, rad = 100)
 	flags_inv = HIDEJUMPSUIT|HIDETAIL|HIDETIE|HIDEHOLSTER
 	item_flags = THICKMATERIAL
+
+/obj/item/clothing/suit/radiation/teshari
+	name = "Small radiation suit"
+	desc = "A specialist suit that protects against radiation, designed specifically for use by Teshari. Made to order by Aether."
+	icon = 'icons/obj/clothing/species/teshari/suits.dmi'
+	icon_override = 'icons/mob/species/teshari/suit.dmi'
+	icon_state = "rad_fitted"
+	species_restricted = list(SPECIES_TESHARI)
+
+/obj/item/clothing/head/radiation/teshari
+	name = "Small radiation hood"
+	desc = "A specialist hood with radiation protective properties, designed specifically for use by Teshari. Made to order by Aether."
+	icon = 'icons/obj/clothing/species/teshari/hats.dmi'
+	icon_override = 'icons/mob/species/teshari/head.dmi'
+	icon_state = "rad_fitted"
+	species_restricted = list(SPECIES_TESHARI)

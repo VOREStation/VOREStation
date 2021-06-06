@@ -26,7 +26,7 @@
 
 	if(isbelly(item_storage))
 		var/obj/belly/B = item_storage
-		g_damage = 0.25 * (B.digest_brute + B.digest_burn)
+		g_damage = 0.25 * (B.digest_brute + B.digest_burn + (B.digest_oxy)/2)
 
 	if(digest_stage > 0)
 		if(g_damage > digest_stage)
@@ -55,8 +55,6 @@
 /////////////
 /obj/item/weapon/hand_tele/digest_act(var/atom/movable/item_storage = null)
 	return FALSE
-/obj/item/weapon/card/id/gold/captain/spare/digest_act(var/atom/movable/item_storage = null)
-	return FALSE
 /obj/item/device/aicard/digest_act(var/atom/movable/item_storage = null)
 	return FALSE
 /obj/item/device/paicard/digest_act(var/atom/movable/item_storage = null)
@@ -78,20 +76,14 @@
 // Some special treatment
 /////////////
 
-/obj/item/weapon/card/id
-	var/lost_access = list()
-
 /obj/item/weapon/card/id/digest_act(atom/movable/item_storage = null)
-	desc = "A partially digested card that has seen better days. The damage appears to be only cosmetic, but the access codes need to be reprogrammed at the HoP office or ID restoration terminal."
+	desc = "A partially digested card that has seen better days. The damage appears to be only cosmetic."
 	if(!sprite_stack || !istype(sprite_stack) || !(sprite_stack.len))
 		icon = 'icons/obj/card_vr.dmi'
 		icon_state = "[initial(icon_state)]_digested"
 	else
 		sprite_stack += "digested"
 	update_icon()
-	if(!(LAZYLEN(lost_access)) && LAZYLEN(access))
-		lost_access = access	//Do not forget what access we lose
-	access = list()			// Then lose it
 	return FALSE
 
 /obj/item/weapon/reagent_containers/food/digest_act(atom/movable/item_storage = null)
@@ -119,7 +111,7 @@
 	if((. = ..()))
 		if(isbelly(item_storage))
 			var/obj/belly/B = item_storage
-			. += 2 * (B.digest_brute + B.digest_burn)
+			. += 2 * (B.digest_brute + B.digest_burn + (B.digest_oxy)/2)
 		else
 			. += 30 //Organs give a little more
 

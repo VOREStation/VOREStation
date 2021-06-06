@@ -10,10 +10,10 @@
 	wait_if_pulled = 1
 	min_target_dist = 0
 
+	var/vocal = 1
 	var/cleaning = 0
 	var/wet_floors = 0
 	var/spray_blood = 0
-	var/blood = 1
 	var/list/target_types = list()
 
 /mob/living/bot/cleanbot/New()
@@ -26,7 +26,7 @@
 	return ..()
 
 /mob/living/bot/cleanbot/handleIdle()
-	if(!wet_floors && !spray_blood && prob(2))
+	if(!wet_floors && !spray_blood && vocal && prob(2))
 		custom_emote(2, "makes an excited booping sound!")
 		playsound(src, 'sound/machines/synth_yes.ogg', 50, 0)
 
@@ -164,8 +164,8 @@
 	data["open"] = open
 	data["locked"] = locked
 
-	data["blood"] = blood
 	data["patrol"] = will_patrol
+	data["vocal"] = vocal
 
 	data["wet_floors"] = wet_floors
 	data["spray_blood"] = spray_blood
@@ -184,13 +184,12 @@
 			else
 				turn_on()
 			. = TRUE
-		if("blood")
-			blood = !blood
-			get_targets()
-			. = TRUE
 		if("patrol")
 			will_patrol = !will_patrol
 			patrol_path = null
+			. = TRUE
+		if("vocal")
+			vocal = !vocal
 			. = TRUE
 		if("wet_floors")
 			wet_floors = !wet_floors
@@ -212,18 +211,7 @@
 		return 1
 
 /mob/living/bot/cleanbot/proc/get_targets()
-	target_types = list()
-
-	target_types += /obj/effect/decal/cleanable/blood/oil
-	target_types += /obj/effect/decal/cleanable/vomit
-	target_types += /obj/effect/decal/cleanable/crayon
-	target_types += /obj/effect/decal/cleanable/liquid_fuel
-	target_types += /obj/effect/decal/cleanable/mucus
-	target_types += /obj/effect/decal/cleanable/dirt
-	target_types += /obj/effect/decal/cleanable/filth
-
-	if(blood)
-		target_types += /obj/effect/decal/cleanable/blood
+	target_types = list(/obj/effect/decal/cleanable)
 
 /* Assembly */
 

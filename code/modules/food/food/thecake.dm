@@ -160,7 +160,6 @@
 	layer_stage = 8
 
 /obj/structure/chaoscake/proc/HasSliceMissing()
-	..()
 	if(slices < maxslices)
 		if(interval >= regentime)
 			interval = 0

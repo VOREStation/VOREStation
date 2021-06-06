@@ -1,10 +1,10 @@
 //Special map objects
 /obj/effect/landmark/map_data/virgo3b
-    height = 7
+    height = 5
 
 /obj/turbolift_map_holder/tether
 	name = "Tether Climber"
-	depth = 7
+	depth = 5
 	lift_size_x = 3
 	lift_size_y = 3
 	icon = 'icons/obj/turbolift_preview_3x3.dmi'
@@ -15,9 +15,7 @@
 		/area/turbolift/t_surface/level2,
 		/area/turbolift/t_surface/level3,
 		/area/turbolift/tether/transit,
-		/area/turbolift/t_station/level1,
-		/area/turbolift/t_station/level2,
-		/area/turbolift/t_station/level3
+		/area/turbolift/t_station/level1
 		)
 
 /datum/turbolift
@@ -368,11 +366,13 @@ var/global/list/latejoin_tram   = list()
 	..()
 	for(var/i = 1 to 2)
 		new /obj/item/weapon/gun/energy/locked/frontier(src)
+	for(var/i = 1 to 2)
+		new /obj/item/weapon/gun/energy/locked/frontier/holdout(src)
 
 // Used at centcomm for the elevator
 /obj/machinery/cryopod/robot/door/dorms
 	spawnpoint_type = /datum/spawnpoint/tram
-/*
+
 //Tether-unique network cameras
 /obj/machinery/camera/network/tether
 	network = list(NETWORK_TETHER)
@@ -388,7 +388,7 @@ var/global/list/latejoin_tram   = list()
 
 /obj/machinery/camera/network/research/xenobio
 	network = list(NETWORK_RESEARCH, NETWORK_XENOBIO)
-*/
+
 //Camera monitors
 /obj/machinery/computer/security/xenobio
 	name = "xenobiology camera monitor"

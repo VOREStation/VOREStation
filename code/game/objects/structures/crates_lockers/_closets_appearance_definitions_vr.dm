@@ -1,4 +1,4 @@
-/decl/closet_appearance/wall/autolok
+/decl/closet_appearance/wall_double/autolok
 	color = COLOR_GRAY20
 	decals = null
 	extra_decals = list(
@@ -65,7 +65,7 @@
 	)
 
 /decl/closet_appearance/secure_closet/expedition
-	color = COLOR_LIGHT_VIOLET
+	color = COLOR_OLIVE
 	decals = list(
 		"lower_side_vent"
 	)
@@ -84,15 +84,18 @@
 
 /decl/closet_appearance/secure_closet/expedition/explorer
 	extra_decals = list(
-		"stripe_vertical_left_full" = COLOR_PURPLE,
-		"stripe_vertical_right_full" = COLOR_PURPLE,
-		"exped" = COLOR_PURPLE
+		"stripe_vertical_mid_full" = COLOR_GRAY40,
+		"exped" = COLOR_GRAY40
 	)
 
 /decl/closet_appearance/secure_closet/expedition/pathfinder
 	extra_decals = list(
-		"stripe_vertical_left_full" = COLOR_PURPLE,
-		"stripe_vertical_mid_full" = COLOR_GRAY40,
-		"stripe_vertical_right_full" = COLOR_PURPLE,
-		"exped" = COLOR_GRAY40
+		"stripe_vertical_left_full" = COLOR_GRAY20,
+		"stripe_vertical_right_full" = COLOR_GRAY20,
+		"exped" = COLOR_GRAY20
 	)
+
+/decl/closet_appearance/crate/fennec
+	base_icon =  'icons/obj/closets/bases/fencrate_vr.dmi'
+	decal_icon = 'icons/obj/closets/decals/crate.dmi'
+	color = "#ffffff"

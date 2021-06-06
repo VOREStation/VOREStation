@@ -176,14 +176,13 @@
 	for(var/obj/item/organ/I in H.internal_organs)
 		I.removed()
 
-	for(var/obj/item/I in src)
+	for(var/obj/item/I in H.contents)
 		H.drop_from_inventory(I)
 
 	qdel(H)
 
 /datum/species/protean/handle_environment_special(var/mob/living/carbon/human/H)
 	if((H.getActualBruteLoss() + H.getActualFireLoss()) > H.maxHealth*0.5 && isturf(H.loc)) //So, only if we're not a blob (we're in nullspace) or in someone (or a locker, really, but whatever)
-		H.nano_intoblob()
 		return ..() //Any instakill shot runtimes since there are no organs after this. No point to not skip these checks, going to nullspace anyway.
 
 	var/obj/item/organ/internal/nano/refactory/refactory = locate() in H.internal_organs
@@ -201,7 +200,7 @@
 		if(refactory.get_stored_material(MAT_GOLD) >= METAL_PER_TICK)
 			H.add_modifier(/datum/modifier/protean/gold, origin = refactory)
 
-		//Silver adds darksight
+		//Silver adds accuracy and evasion
 		if(refactory.get_stored_material(MAT_SILVER) >= METAL_PER_TICK)
 			H.add_modifier(/datum/modifier/protean/silver, origin = refactory)
 
@@ -313,8 +312,8 @@
 	material_name = MAT_STEEL
 
 /datum/modifier/protean/steel/tick()
-	holder.adjustBruteLoss(-2,include_robo = TRUE) //Looks high, but these ARE modified by species resistances, so this is really 20% of this
-	holder.adjustFireLoss(-1,include_robo = TRUE) //And this is really double this
+	holder.adjustBruteLoss(-1,include_robo = TRUE) //Modified by species resistances
+	holder.adjustFireLoss(-0.5,include_robo = TRUE) //Modified by species resistances
 	var/mob/living/carbon/human/H = holder
 	for(var/organ in H.internal_organs)
 		var/obj/item/organ/O = organ

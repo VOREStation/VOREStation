@@ -80,7 +80,7 @@
 		material_needs[component_needed] = rand(1,3)
 
 	if(ispath(my_guntype, /obj/item/weapon/gun/launcher) && prob(50))
-		var/component_needed = pick(/obj/item/weapon/tape_roll, /obj/item/weapon/material/wirerod)
+		var/component_needed = pick(/obj/item/weapon/tape_roll, /obj/item/stack/rods, /obj/item/weapon/handcuffs/cable)
 		material_needs[component_needed] = 1
 
 	if(ispath(my_guntype, /obj/item/weapon/gun/magnetic) && prob(70))

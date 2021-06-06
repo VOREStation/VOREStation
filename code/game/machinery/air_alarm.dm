@@ -191,7 +191,7 @@
 			update_use_power(USE_POWER_ACTIVE)
 			regulating_temperature = 1
 			audible_message("\The [src] clicks as it starts [environment.temperature > target_temperature ? "cooling" : "heating"] the room.",\
-			"You hear a click and a faint electronic hum.")
+			"You hear a click and a faint electronic hum.", runemessage = "* click *")
 			playsound(src, 'sound/machines/click.ogg', 50, 1)
 	else
 		//check for when we should stop adjusting temperature
@@ -199,7 +199,7 @@
 			update_use_power(USE_POWER_IDLE)
 			regulating_temperature = 0
 			audible_message("\The [src] clicks quietly as it stops [environment.temperature > target_temperature ? "cooling" : "heating"] the room.",\
-			"You hear a click as a faint electronic humming stops.")
+			"You hear a click as a faint electronic humming stops.", runemessage = "* click *")
 			playsound(src, 'sound/machines/click.ogg', 50, 1)
 
 	if(regulating_temperature)
@@ -507,42 +507,46 @@
 	var/turf/T = get_turf(src)
 	var/datum/gas_mixture/environment = T.return_air()
 
-	data["environment_data"] = list()
+	var/list/list/environment_data = list()
+	data["environment_data"] = environment_data
+	
 	var/pressure = environment.return_pressure()
-	data["environment_data"] += list(list(
+	environment_data.Add(list(list(
 		"name" = "Pressure",
 		"value" = pressure,
 		"unit" = "kPa",
 		"danger_level" = get_danger_level(pressure, TLV["pressure"])
-	))
+	)))
+	
 	var/temperature = environment.temperature
-	data["environment_data"] += list(list(
+	environment_data.Add(list(list(
 		"name" = "Temperature",
 		"value" = temperature,
 		"unit" = "K ([round(temperature - T0C, 0.1)]C)",
 		"danger_level" = get_danger_level(temperature, TLV["temperature"])
-	))
+	)))
 
 	var/total_moles = environment.total_moles
 	var/partial_pressure = R_IDEAL_GAS_EQUATION * environment.temperature / environment.volume
 	for(var/gas_id in environment.gas)
 		if(!(gas_id in TLV))
 			continue
-		data["environment_data"] += list(list(
+		environment_data.Add(list(list(
 			"name" = gas_id,
 			"value" = environment.gas[gas_id] / total_moles * 100,
 			"unit" = "%",
 			"danger_level" = get_danger_level(environment.gas[gas_id] * partial_pressure, TLV[gas_id])
-		))
+		)))
 	
 	if(!locked || issilicon(user) || data["remoteUser"])
-		data["vents"] = list()
+		var/list/list/vents = list()
+		data["vents"] = vents
 		for(var/id_tag in A.air_vent_names)
 			var/long_name = A.air_vent_names[id_tag]
 			var/list/info = A.air_vent_info[id_tag]
 			if(!info)
 				continue
-			data["vents"] += list(list(
+			vents.Add(list(list(
 				"id_tag"	= id_tag,
 				"long_name" = sanitize(long_name),
 				"power"		= info["power"],
@@ -554,38 +558,42 @@
 				"internal"	= info["internal"],
 				"extdefault"= (info["external"] == ONE_ATMOSPHERE),
 				"intdefault"= (info["internal"] == 0),
-			))
+			)))
+		
 
-		data["scrubbers"] = list()
+		var/list/list/scrubbers = list()
+		data["scrubbers"] = scrubbers
 		for(var/id_tag in alarm_area.air_scrub_names)
 			var/long_name = alarm_area.air_scrub_names[id_tag]
 			var/list/info = alarm_area.air_scrub_info[id_tag]
 			if(!info)
 				continue
-			data["scrubbers"] += list(list(
+			var/list/list/filters = list()
+			scrubbers.Add(list(list(
 				"id_tag"	= id_tag,
 				"long_name" = sanitize(long_name),
 				"power"		= info["power"],
 				"scrubbing"	= info["scrubbing"],
 				"panic"		= info["panic"],
-				"filters"	= list()
-			))
-			data["scrubbers"][data["scrubbers"].len]["filters"] += list(list("name" = "Oxygen",			"command" = "o2_scrub",	"val" = info["filter_o2"]))
-			data["scrubbers"][data["scrubbers"].len]["filters"] += list(list("name" = "Nitrogen",		"command" = "n2_scrub",	"val" = info["filter_n2"]))
-			data["scrubbers"][data["scrubbers"].len]["filters"] += list(list("name" = "Carbon Dioxide", "command" = "co2_scrub","val" = info["filter_co2"]))
-			data["scrubbers"][data["scrubbers"].len]["filters"] += list(list("name" = "Toxin"	, 		"command" = "tox_scrub","val" = info["filter_phoron"]))
-			data["scrubbers"][data["scrubbers"].len]["filters"] += list(list("name" = "Nitrous Oxide",	"command" = "n2o_scrub","val" = info["filter_n2o"]))
-			data["scrubbers"][data["scrubbers"].len]["filters"] += list(list("name" = "Fuel",			"command" = "fuel_scrub","val" = info["filter_fuel"]))
+				"filters"	= filters
+			)))
+			filters.Add(list(list("name" = "Oxygen",			"command" = "o2_scrub",	"val" = info["filter_o2"])))
+			filters.Add(list(list("name" = "Nitrogen",			"command" = "n2_scrub",	"val" = info["filter_n2"])))
+			filters.Add(list(list("name" = "Carbon Dioxide", 	"command" = "co2_scrub","val" = info["filter_co2"])))
+			filters.Add(list(list("name" = "Toxin"	, 			"command" = "tox_scrub","val" = info["filter_phoron"])))
+			filters.Add(list(list("name" = "Nitrous Oxide",		"command" = "n2o_scrub","val" = info["filter_n2o"])))
+			filters.Add(list(list("name" = "Fuel",				"command" = "fuel_scrub","val" = info["filter_fuel"])))
 
-		var/list/modes = list()
 		data["mode"] = mode
+		
+		var/list/list/modes = list()
+		data["modes"] = modes
 		modes[++modes.len] = list("name" = "Filtering - Scrubs out contaminants", 			"mode" = AALARM_MODE_SCRUBBING,		"selected" = mode == AALARM_MODE_SCRUBBING, 	"danger" = 0)
 		modes[++modes.len] = list("name" = "Replace Air - Siphons out air while replacing", "mode" = AALARM_MODE_REPLACEMENT,	"selected" = mode == AALARM_MODE_REPLACEMENT,	"danger" = 0)
 		modes[++modes.len] = list("name" = "Panic - Siphons air out of the room", 			"mode" = AALARM_MODE_PANIC,			"selected" = mode == AALARM_MODE_PANIC, 		"danger" = 1)
 		modes[++modes.len] = list("name" = "Cycle - Siphons air before replacing", 			"mode" = AALARM_MODE_CYCLE,			"selected" = mode == AALARM_MODE_CYCLE, 		"danger" = 1)
 		modes[++modes.len] = list("name" = "Fill - Shuts off scrubbers and opens vents", 	"mode" = AALARM_MODE_FILL,			"selected" = mode == AALARM_MODE_FILL, 			"danger" = 0)
 		modes[++modes.len] = list("name" = "Off - Shuts off vents and scrubbers", 			"mode" = AALARM_MODE_OFF,			"selected" = mode == AALARM_MODE_OFF, 			"danger" = 0)
-		data["modes"] = modes
 
 		var/list/selected
 		var/list/thresholds = list()

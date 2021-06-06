@@ -22,8 +22,8 @@
 	response_harm = "hits"
 
 	harm_intent_damage = 2
-	melee_damage_lower = 10
-	melee_damage_upper = 10
+	melee_damage_lower = 5
+	melee_damage_upper = 5
 	attacktext = list("slashed")
 
 	min_oxy = 0
@@ -36,7 +36,7 @@
 	max_n2 = 0
 	minbodytemp = 0
 	maxbodytemp = 900
-	movement_cooldown = 3
+	movement_cooldown = 4
 
 	var/mob/living/carbon/human/humanform
 	var/obj/item/organ/internal/nano/refactory/refactory
@@ -162,13 +162,15 @@
 	else
 		return ..()
 
-/mob/living/simple_mob/protean_blob/adjustBruteLoss(var/amount)
+/mob/living/simple_mob/protean_blob/adjustBruteLoss(var/amount,var/include_robo)
+	amount *= 1.5
 	if(humanform)
 		return humanform.adjustBruteLoss(amount)
 	else
 		return ..()
 
-/mob/living/simple_mob/protean_blob/adjustFireLoss(var/amount)
+/mob/living/simple_mob/protean_blob/adjustFireLoss(var/amount,var/include_robo)
+	amount *= 1.5
 	if(humanform)
 		return humanform.adjustFireLoss(amount)
 	else
@@ -185,7 +187,7 @@
 		return humanform.adjustOxyLoss(amount)
 	else
 		return ..()
-	
+
 /mob/living/simple_mob/protean_blob/adjustHalLoss(amount)
 	if(humanform)
 		return humanform.adjustHalLoss(amount)
@@ -228,7 +230,7 @@
 	else
 		animate(src, alpha = 0, time = 2 SECONDS)
 		sleep(2 SECONDS)
-	
+
 	if(!QDELETED(src)) // Human's handle death should have taken us, but maybe we were adminspawned or something without a human counterpart
 		qdel(src)
 
@@ -267,9 +269,8 @@
 	if(refactory && istype(A,/obj/item/stack/material))
 		var/obj/item/stack/material/S = A
 		var/substance = S.material.name
-		var/list/edible_materials = list("steel", "plasteel", "diamond", "mhydrogen") //Can't eat all materials, just useful ones.
 		var allowed = FALSE
-		for(var/material in edible_materials)
+		for(var/material in PROTEAN_EDIBLE_MATERIALS)
 			if(material == substance) allowed = TRUE
 		if(!allowed)
 			return
@@ -282,9 +283,8 @@
 	if(refactory && istype(O,/obj/item/stack/material))
 		var/obj/item/stack/material/S = O
 		var/substance = S.material.name
-		var/list/edible_materials = list("steel", "plasteel", "diamond", "mhydrogen") //Can't eat all materials, just useful ones.
 		var allowed = FALSE
-		for(var/material in edible_materials)
+		for(var/material in PROTEAN_EDIBLE_MATERIALS)
 			if(material == substance) allowed = TRUE
 		if(!allowed)
 			return
@@ -305,7 +305,11 @@ var/global/list/disallowed_protean_accessories = list(
 	)
 
 // Helpers - Unsafe, WILL perform change.
-/mob/living/carbon/human/proc/nano_intoblob()
+/mob/living/carbon/human/proc/nano_intoblob(force)
+	if(!force && !isturf(loc))
+		to_chat(src,"<span class='warning'>You can't change forms while inside something.</span>")
+		return
+		
 	var/panel_was_up = FALSE
 	if(client?.statpanel == "Protean")
 		panel_was_up = TRUE
@@ -380,7 +384,7 @@ var/global/list/disallowed_protean_accessories = list(
 		var/obj/belly/B = belly
 		B.forceMove(blob)
 		B.owner = blob
-	
+
 	//We can still speak our languages!
 	blob.languages = languages.Copy()
 
@@ -398,14 +402,18 @@ var/global/list/disallowed_protean_accessories = list(
 		if(istype(I, /obj/item/weapon/holder))
 			root.remove_from_mob(I)
 
-/mob/living/carbon/human/proc/nano_outofblob(var/mob/living/simple_mob/protean_blob/blob)
+/mob/living/carbon/human/proc/nano_outofblob(var/mob/living/simple_mob/protean_blob/blob, force)
 	if(!istype(blob))
+		return
+	
+	if(!force && !isturf(blob.loc))
+		to_chat(blob,"<span class='warning'>You can't change forms while inside something.</span>")
 		return
 
 	var/panel_was_up = FALSE
 	if(client?.statpanel == "Protean")
 		panel_was_up = TRUE
-	
+
 	if(buckled)
 		buckled.unbuckle_mob()
 	if(LAZYLEN(buckled_mobs))
@@ -432,7 +440,7 @@ var/global/list/disallowed_protean_accessories = list(
 	var/atom/reform_spot = blob.drop_location()
 
 	//Size update
-	resize(blob.size_multiplier, FALSE)
+	resize(blob.size_multiplier, FALSE, ignore_prefs = TRUE)
 
 	//Move them back where the blob was
 	forceMove(reform_spot)

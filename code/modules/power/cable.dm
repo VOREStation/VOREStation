@@ -510,6 +510,8 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	stacktype = /obj/item/stack/cable_coil
 	drop_sound = 'sound/items/drop/accessory.ogg'
 	pickup_sound = 'sound/items/pickup/accessory.ogg'
+	tool_qualities = list(TOOL_CABLE_COIL)
+	singular_name = "cable"
 
 /obj/item/stack/cable_coil/cyborg
 	name = "cable coil synthesizer"
@@ -602,15 +604,6 @@ obj/structure/cable/proc/cableColor(var/colorC)
 	else
 		w_class = ITEMSIZE_SMALL
 
-/obj/item/stack/cable_coil/examine(mob/user)
-	. = ..()
-	if(get_amount() == 1)
-		. += "Just a short piece remains."
-	else if(get_amount() == 2)
-		. += "Just a couple of short pieces remain."
-	else if(Adjacent(user))
-		. += "There are [get_amount()] lengths of cable in the coil."
-
 /obj/item/stack/cable_coil/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/device/multitool))
 		var/selected_type = input("Pick new colour.", "Cable Colour", null, null) as null|anything in possible_cable_coil_colours
@@ -634,7 +627,6 @@ obj/structure/cable/proc/cableColor(var/colorC)
 		src.use(15)
 	else
 		to_chat(usr, "<span class='notice'>You cannot do that.</span>")
-	..()
 
 /obj/item/stack/cable_coil/cyborg/verb/set_colour()
 	set name = "Change Colour"

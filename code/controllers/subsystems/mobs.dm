@@ -25,13 +25,10 @@ SUBSYSTEM_DEF(mobs)
 /datum/controller/subsystem/mobs/fire(resumed = 0)
 	if (!resumed)
 		src.currentrun = mob_list.Copy()
-		process_z.Cut()
+		process_z.len = GLOB.living_players_by_zlevel.len
 		slept_mobs = 0
-		var/level = 1
-		while(process_z.len < GLOB.living_players_by_zlevel.len)
-			process_z.len++
+		for(var/level in 1 to process_z.len)
 			process_z[level] = GLOB.living_players_by_zlevel[level].len
-			level++
 
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
@@ -51,3 +48,46 @@ SUBSYSTEM_DEF(mobs)
 
 		if (MC_TICK_CHECK)
 			return
+
+/datum/controller/subsystem/mobs/proc/log_recent()
+	var/msg = "Debug output from the [name] subsystem:\n"
+	msg += "- This subsystem is processed tail-first -\n"
+	if(!currentrun || !mob_list)
+		msg += "ERROR: A critical list [currentrun ? "mob_list" : "currentrun"] is gone!"
+		log_game(msg)
+		log_world(msg)
+		return
+	msg += "Lists: currentrun: [currentrun.len], mob_list: [mob_list.len]\n"
+	
+	if(!currentrun.len)
+		msg += "!!The subsystem just finished the mob_list list, and currentrun is empty (or has never run).\n"
+		msg += "!!The info below is the tail of mob_list instead of currentrun.\n"
+	
+	var/datum/D = currentrun.len ? currentrun[currentrun.len] : mob_list[mob_list.len]
+	msg += "Tail entry: [describeThis(D)] (this is likely the item AFTER the problem item)\n"
+	
+	var/position = mob_list.Find(D)
+	if(!position)
+		msg += "Unable to find context of tail entry in mob_list list.\n"
+	else
+		if(position != mob_list.len)
+			var/additional = mob_list.Find(D, position+1)
+			if(additional)
+				msg += "WARNING: Tail entry found more than once in mob_list list! Context is for the first found.\n"
+		var/start = clamp(position-2,1,mob_list.len)
+		var/end = clamp(position+2,1,mob_list.len)
+		msg += "2 previous elements, then tail, then 2 next elements of mob_list list for context:\n"
+		msg += "---\n"
+		for(var/i in start to end)
+			msg += "[describeThis(mob_list[i])][i == position ? " << TAIL" : ""]\n"
+		msg += "---\n"
+	log_game(msg)
+	log_world(msg)
+
+/datum/controller/subsystem/mobs/fail()
+	..()
+	log_recent()
+
+/datum/controller/subsystem/mobs/critfail()
+	..()
+	log_recent()

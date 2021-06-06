@@ -39,10 +39,13 @@
 /datum/job/atmos
 	spawn_positions = 3
 	pto_type = PTO_ENGINEERING
-	alt_titles = list("Atmospherics Maintainer" = /datum/alt_title/atmos_maint, "Disposals Technician" = /datum/alt_title/disposals_tech)
+	alt_titles = list("Atmospheric Engineer" = /datum/alt_title/atmos_engi, "Atmospheric Maintainer" = /datum/alt_title/atmos_maint, "Disposals Technician" = /datum/alt_title/disposals_tech)
 
 /datum/alt_title/atmos_maint
-	title = "Atmospherics Maintainer"
+	title = "Atmospheric Maintainer"
+
+/datum/alt_title/atmos_engi
+	title = "Atmospheric Engineer"
 
 /datum/alt_title/disposals_tech
 	title = "Disposals Technician"

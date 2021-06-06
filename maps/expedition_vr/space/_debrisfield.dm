@@ -71,8 +71,6 @@
 	icon_state = "debrisexplored"
 	forced_ambience = list('sound/ambience/tension/tension.ogg', 'sound/ambience/tension/horror.ogg')
 
-//TFF 26/12/19 - Sub-areas for the APCs.
-
 /area/submap/debrisfield/derelict/ai_access_port
 	name = "POI - Abandoned Derelict AI Acess Port"
 
@@ -186,10 +184,10 @@
 	shuttle_tag = "Debris Carrier"
 	req_one_access = list()
 
-/obj/mecha/combat/fighter/baron/loaded/busted
+/obj/mecha/combat/fighter/baron/busted
 	starting_components = list(/obj/item/mecha_parts/component/hull/lightweight,/obj/item/mecha_parts/component/actuator/hispeed,/obj/item/mecha_parts/component/armor,/obj/item/mecha_parts/component/gas,/obj/item/mecha_parts/component/electrical/high_current)
 
-/obj/mecha/combat/fighter/baron/loaded/busted/Initialize()
+/obj/mecha/combat/fighter/baron/busted/Initialize()
 	. = ..()
 	health = round(rand(50,120))
 	cell?.charge = 0

@@ -191,6 +191,7 @@
 		preferences_datums[ckey] = prefs
 	prefs.last_ip = address				//these are gonna be used for banning
 	prefs.last_id = computer_id			//these are gonna be used for banning
+	prefs.client = src // Only relevant if we reloaded it from the global list, otherwise prefs/New sets it
 
 	. = ..()	//calls mob.Login()
 	prefs.sanitize_preferences()

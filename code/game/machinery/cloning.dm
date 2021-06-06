@@ -206,7 +206,7 @@
 
 		else if((occupant.health >= heal_level || occupant.health == occupant.getMaxHealth()) && (!eject_wait))
 			playsound(src, 'sound/machines/medbayscanner1.ogg', 50, 1)
-			audible_message("\The [src] signals that the cloning process is complete.")
+			audible_message("\The [src] signals that the cloning process is complete.", runemessage = "ding")
 			connected_message("Cloning Process Complete.")
 			locked = 0
 			go_out()

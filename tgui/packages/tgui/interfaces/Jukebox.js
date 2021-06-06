@@ -1,7 +1,6 @@
 import { round } from 'common/math';
-import { sortBy } from 'common/collections';
 import { useBackend } from "../backend";
-import { Box, Button, LabeledList, ProgressBar, Section, Slider } from "../components";
+import { Box, Button, Collapsible, LabeledList, ProgressBar, Section, Slider } from "../components";
 import { Window } from "../layouts";
 
 export const Jukebox = (props, context) => {
@@ -13,9 +12,21 @@ export const Jukebox = (props, context) => {
     volume,
     current_track_ref,
     current_track,
+    current_genre,
     percent,
     tracks,
   } = data;
+
+  let genre_songs = tracks.length && tracks.reduce((acc, obj) => {
+    let key = obj.genre || "Uncategorized";
+    if (!acc[key]) {
+      acc[key] = [];
+    }
+    acc[key].push(obj);
+    return acc;
+  }, {});
+
+  let true_genre = playing && (current_genre || "Uncategorized");
 
   return (
     <Window width={450} height={600} resizable>
@@ -82,29 +93,39 @@ export const Jukebox = (props, context) => {
             <LabeledList.Item label="Volume">
               <Slider
                 minValue={0}
-                step={0.01}
-                value={volume}
-                maxValue={1}
+                step={1}
+                value={volume * 100}
+                maxValue={100}
                 ranges={{
-                  good: [.75, Infinity],
-                  average: [.25, .75],
-                  bad: [0, .25],
+                  good: [75, Infinity],
+                  average: [25, 75],
+                  bad: [0, 25],
                 }}
-                format={val => round(val * 100, 1) + "%"}
-                onChange={(e, val) => act("volume", { val: round(val, 2) })} />
+                format={val => round(val, 1) + "%"}
+                onChange={(e, val) => act("volume", { val: round(val / 100, 2) })} />
             </LabeledList.Item>
           </LabeledList>
         </Section>
         <Section title="Available Tracks">
-          {tracks.length && sortBy(a => a.title)(tracks).map(track => (
-            <Button
-              fluid
-              icon="play"
-              key={track.ref}
-              selected={current_track_ref === track.ref}
-              onClick={() => act("change_track", { change_track: track.ref })}>
-              {track.title}
-            </Button>
+          {tracks.length && Object.keys(genre_songs).sort().map(genre => (
+            <Collapsible
+              title={genre}
+              key={genre}
+              color={true_genre === genre ? "green" : "default"}
+              child_mt={0}>
+              <div style={{ "margin-left": "1em" }}>
+                {genre_songs[genre].map(track => (
+                  <Button
+                    fluid
+                    icon="play"
+                    key={track.ref}
+                    selected={current_track_ref === track.ref}
+                    onClick={() => act("change_track", { change_track: track.ref })}>
+                    {track.title}
+                  </Button>
+                ))}
+              </div>
+            </Collapsible>
           )) || (
             <Box color="bad">
               Error: No songs loaded.

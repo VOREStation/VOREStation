@@ -207,7 +207,7 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	verbs -= /obj/structure/table/proc/do_put
 	..()
 
-/obj/structure/table/survival_pod/dismantle(obj/item/weapon/wrench/W, mob/user)
+/obj/structure/table/survival_pod/dismantle(obj/item/weapon/tool/wrench/W, mob/user)
 	to_chat(user, "<span class='warning'>You cannot dismantle \the [src].</span>")
 	return
 
@@ -330,6 +330,9 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	light_range = 3
 	light_power = 1
 	light_color = "#FFFFFF"
+
+/obj/structure/fans/hardlight/ex_act()
+	return
 
 /obj/structure/fans/hardlight/colorable
 	name = "hardlight shield"

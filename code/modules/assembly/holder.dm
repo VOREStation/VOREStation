@@ -66,9 +66,9 @@
 /obj/item/device/assembly_holder/Moved(atom/old_loc, direction, forced = FALSE)
 	. = ..()
 	if(isturf(old_loc))
-		unsense_proximity(callback = .HasProximity, center = old_loc)
+		unsense_proximity(callback = /atom/proc/HasProximity, center = old_loc)
 	if(isturf(loc))
-		sense_proximity(callback = .HasProximity)
+		sense_proximity(callback = /atom/proc/HasProximity)
 
 /obj/item/device/assembly_holder/HasProximity(turf/T, atom/movable/AM, old_loc)
 	if(a_left)

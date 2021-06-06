@@ -140,7 +140,7 @@
 	if(large_cocoon)
 		C.icon_state = pick("cocoon_large1","cocoon_large2","cocoon_large3")
 
-	ai_holder.target = null
+	ai_holder.remove_target()
 
 	return TRUE
 
