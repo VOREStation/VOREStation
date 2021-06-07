@@ -124,6 +124,8 @@ var/list/_human_default_emotes = list(
 	/decl/emote/audible/gao,
 	/decl/emote/audible/cackle,
 	/decl/emote/audible/squish,
+	/decl/emote/audible/spiderchitter,
+	/decl/emote/audible/spiderpurr,
 	
 	/decl/emote/visible/mlem,
 	/decl/emote/visible/blep,
