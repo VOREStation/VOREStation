@@ -173,8 +173,8 @@
 /datum/trait/positive/linguist
 	name = "Master Linguist"
 	desc = "You are a master of languages! For whatever reason you might have, you are able to learn many more languages than others."
-	cost = 0
-	var_changes = list("num_alternate_languages" = 12)
+	cost = 2
+	var_changes = list("num_alternate_languages" = 6)
 
 /datum/trait/negative/hollow
 	name = "Strong Bones"
@@ -231,7 +231,7 @@
 /datum/trait/positive/table_passer
 	name = "Table passer"
 	desc = "You move over or under tables with ease of a Teshari."
-	cost = 2
+	cost = 3
 
 /datum/trait/positive/table_passer/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()

@@ -145,7 +145,7 @@
 /datum/trait/negative/slipperydirt
 	name = "Dirt Vulnerability"
 	desc = "Even the tiniest particles of dirt give you uneasy footing, even through several layers of footwear."
-	cost = -2
+	cost = -1
 	var_changes = list("dirtslip" = TRUE)
 
 /datum/trait/negative/less_blood
