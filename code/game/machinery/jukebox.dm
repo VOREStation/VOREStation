@@ -29,8 +29,7 @@
 	var/freq = 0 // Currently no effect, will return in phase II of mediamanager.
 	//VOREStation Add
 	var/loop_mode = JUKEMODE_PLAY_ONCE			// Behavior when finished playing a song
-	var/max_queue_len = 3						// How many songs are we allowed to queue up?
-	var/list/queue = list()
+	var/list/obj/item/device/juke_remote/remotes
 	//VOREStation Add End
 	var/datum/track/current_track
 
@@ -60,29 +59,24 @@
 	// If the current track isn't finished playing, let it keep going
 	if(current_track && world.time < media_start_time + current_track.duration)
 		return
-	// Otherwise time to pick a new one!
-	if(queue.len > 0)
-		current_track = queue[1]
-		queue.Cut(1, 2)  // Remove the item we just took off the list
-	else
-		// Oh... nothing in queue? Well then pick next according to our rules
-		var/list/tracks = getTracksList()
-		switch(loop_mode)
-			if(JUKEMODE_NEXT)
-				var/curTrackIndex = max(1, tracks.Find(current_track))
-				var/newTrackIndex = (curTrackIndex % tracks.len) + 1  // Loop back around if past end
-				current_track = tracks[newTrackIndex]
-			if(JUKEMODE_RANDOM)
-				var/previous_track = current_track
-				do
-					current_track = pick(tracks)
-				while(current_track == previous_track && tracks.len > 1)
-			if(JUKEMODE_REPEAT_SONG)
-				current_track = current_track
-			if(JUKEMODE_PLAY_ONCE)
-				current_track = null
-				playing = 0
-				update_icon()
+	// Oh... nothing in queue? Well then pick next according to our rules
+	var/list/tracks = getTracksList()
+	switch(loop_mode)
+		if(JUKEMODE_NEXT)
+			var/curTrackIndex = max(1, tracks.Find(current_track))
+			var/newTrackIndex = (curTrackIndex % tracks.len) + 1  // Loop back around if past end
+			current_track = tracks[newTrackIndex]
+		if(JUKEMODE_RANDOM)
+			var/previous_track = current_track
+			do
+				current_track = pick(tracks)
+			while(current_track == previous_track && tracks.len > 1)
+		if(JUKEMODE_REPEAT_SONG)
+			current_track = current_track
+		if(JUKEMODE_PLAY_ONCE)
+			current_track = null
+			playing = 0
+			update_icon()
 	updateDialog()
 	start_stop_song()
 
@@ -96,6 +90,11 @@
 		media_url = ""
 		media_start_time = 0
 	update_music()
+	//VOREStation Add
+	for(var/rem in remotes)
+		var/obj/item/device/juke_remote/remote = rem
+		remote.update_music()
+	//VOREStation Add End
 
 /obj/machinery/media/jukebox/proc/set_hacked(var/newhacked)
 	if(hacked == newhacked)
