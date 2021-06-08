@@ -26,7 +26,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 	for(var/obj/item/weapon/stock_parts/S in component_parts)
 		T += S.rating
 	T *= 0.1
-	clamp(T, 0, 1)
+	decon_mod = clamp(T, 0, 1)
 
 /obj/machinery/r_n_d/destructive_analyzer/update_icon()
 	if(panel_open)
