@@ -76,6 +76,9 @@
 /mob/living/simple_mob/update_icon()
 	. = ..()
 	if(vore_active)
+		var/voremob_awake = FALSE
+		if(icon_state == icon_living)
+			voremob_awake = TRUE
 		update_fullness()
 		if(!vore_fullness)
 			return 0
@@ -85,7 +88,7 @@
 			icon_state = "[icon_dead]-[vore_fullness]"
 		else if(((stat == UNCONSCIOUS) || resting || incapacitated(INCAPACITATION_DISABLED) ) && icon_rest && (vore_icons & SA_ICON_REST))
 			icon_state = "[icon_rest]-[vore_fullness]"
-		if(vore_eyes) //Update eye layer if applicable.
+		if(vore_eyes && voremob_awake) //Update eye layer if applicable.
 			remove_eyes()
 			add_eyes()
 	update_transform()
