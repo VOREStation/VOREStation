@@ -285,6 +285,7 @@
 		return
 
 	force_close()
+	return 1
 
 // Proc: repair()
 // Parameters: None
@@ -374,6 +375,82 @@ obj/machinery/door/blast/gate/open
 /obj/machinery/door/blast/gate/bars/open
 	icon_state = "bars_1"
 	density = 0
+
+// SUBTYPE: Multi-tile
+// Pod doors ported from Paradise
+
+ // Whoever wrote the old code for multi-tile spesspod doors needs to burn in hell. - Unknown
+ // Wise words. - Bxil
+/obj/machinery/door/blast/multi_tile
+	name = "large blast door"
+
+/obj/machinery/door/blast/multi_tile/Initialize(mapload)
+	. = ..()
+	apply_opacity_to_my_turfs(opacity)
+
+/obj/machinery/door/blast/multi_tile/open()
+	if((. = ..()))
+		apply_opacity_to_my_turfs(opacity)
+
+/obj/machinery/door/blast/multi_tile/close()
+	if((. = ..()))
+		apply_opacity_to_my_turfs(opacity)
+
+/obj/machinery/door/blast/multi_tile/Destroy()
+	apply_opacity_to_my_turfs(0)
+	return ..()
+
+//Multi-tile poddoors don't turn invisible automatically, so we change the opacity of the turfs below instead one by one.
+/obj/machinery/door/blast/multi_tile/proc/apply_opacity_to_my_turfs(new_opacity)
+	for(var/turf/T in locs)
+		T.opacity = new_opacity
+		T.has_opaque_atom = new_opacity
+		T.reconsider_lights()
+	update_nearby_tiles()
+
+/obj/machinery/door/blast/multi_tile
+	icon_state_open = "open"
+	icon_state_opening = "opening"
+	icon_state_closed = "closed"
+	icon_state_closing = "closing"
+	icon_state = "closed"
+
+/obj/machinery/door/blast/multi_tile/four_tile_ver
+	icon = 'icons/obj/doors/1x4blast_vert.dmi'
+	bound_height = 128
+	width = 4
+	dir = NORTH
+
+/obj/machinery/door/blast/multi_tile/three_tile_ver
+	icon = 'icons/obj/doors/1x3blast_vert.dmi'
+	bound_height = 96
+	width = 3
+	dir = NORTH
+
+/obj/machinery/door/blast/multi_tile/two_tile_ver
+	icon = 'icons/obj/doors/1x2blast_vert.dmi'
+	bound_height = 64
+	width = 2
+	dir = NORTH
+
+/obj/machinery/door/blast/multi_tile/four_tile_hor
+	icon = 'icons/obj/doors/1x4blast_hor.dmi'
+	bound_width = 128
+	width = 4
+	dir = EAST
+
+/obj/machinery/door/blast/multi_tile/three_tile_hor
+	icon = 'icons/obj/doors/1x3blast_hor.dmi'
+	bound_width = 96
+	width = 3
+	dir = EAST
+
+/obj/machinery/door/blast/multi_tile/two_tile_hor
+	icon = 'icons/obj/doors/1x2blast_hor.dmi'
+	bound_width = 64
+	width = 2
+	dir = EAST
+
 
 #undef BLAST_DOOR_CRUSH_DAMAGE
 #undef SHUTTER_CRUSH_DAMAGE

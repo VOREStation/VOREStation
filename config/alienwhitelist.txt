@@ -74,7 +74,6 @@ scoutisafolflol - Xenochimera
 seiga - Vox
 sepulchre - Vox
 stobarico - Protean
-sharplight - Protean
 silvertalismen - Diona
 silvertalismen - Vox
 silvertalismen - Xenochimera
@@ -91,6 +90,7 @@ terrestris - High Skrellian
 timidvi - Diona
 thedavestdave - Protean
 trikonei - Protean
+umbrenos - Black-Eyed Shadekin
 varonis - Xenochimera
 verkister - Xenochimera
 verysoft - Black-Eyed Shadekin

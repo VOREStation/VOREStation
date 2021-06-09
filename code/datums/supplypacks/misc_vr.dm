@@ -118,6 +118,7 @@
 		/obj/item/device/walkpod = 3
 	)
 	cost = 150
+	containertype = /obj/structure/closet/crate
 	containername = "portable music players crate"
 
 /datum/supply_pack/misc/juke_remotes
@@ -126,5 +127,6 @@
 		/obj/item/device/juke_remote = 2
 	)
 	cost = 300
+	containertype = /obj/structure/closet/crate
 	containername = "cordless jukebox speakers crate"
 	
