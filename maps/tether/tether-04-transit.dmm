@@ -1,4 +1,10 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ag" = (
+/obj/structure/bed/chair/wood{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/tether/midpoint)
 "cB" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1;
@@ -46,6 +52,12 @@
 /obj/structure/table/woodentable,
 /turf/simulated/floor/wood,
 /area/tether/midpoint)
+"dU" = (
+/obj/structure/bed/chair/wood{
+	dir = 8
+	},
+/turf/simulated/floor/wood,
+/area/tether/midpoint)
 "fI" = (
 /obj/machinery/light{
 	dir = 1
@@ -74,6 +86,11 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/turf/simulated/floor/wood,
+/area/tether/midpoint)
+"hk" = (
+/obj/structure/table/woodentable,
+/obj/random/plushie,
 /turf/simulated/floor/wood,
 /area/tether/midpoint)
 "hp" = (
@@ -130,6 +147,9 @@
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/reinforced{
 	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
 	},
 /turf/simulated/floor/plating,
 /area/tether/midpoint)
@@ -227,7 +247,7 @@
 /turf/simulated/floor/holofloor/tiled/dark,
 /area/tether/midpoint)
 "sw" = (
-/obj/machinery/vending/coffee{
+/obj/machinery/vending/bepis{
 	dir = 8
 	},
 /turf/simulated/floor/holofloor/tiled/dark,
@@ -271,6 +291,15 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
+/area/tether/midpoint)
+"uA" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 30
+	},
+/turf/simulated/floor/wood,
 /area/tether/midpoint)
 "uC" = (
 /obj/structure/table/woodentable,
@@ -402,6 +431,13 @@
 "Gl" = (
 /turf/simulated/floor/holofloor/tiled/dark,
 /area/tether/elevator)
+"GU" = (
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/tether/midpoint)
 "Ha" = (
 /obj/structure/disposalpipe/up{
 	dir = 8
@@ -415,8 +451,10 @@
 	},
 /area/tether/elevator)
 "Hy" = (
-/obj/structure/disposalpipe/trunk,
-/obj/machinery/disposal,
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/floor/wood,
 /area/tether/midpoint)
 "HK" = (
@@ -583,8 +621,9 @@
 /turf/simulated/floor/plating,
 /area/maintenance/tether_midpoint)
 "RZ" = (
-/obj/structure/flora/pottedplant{
-	icon_state = "plant-21"
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk{
+	dir = 8
 	},
 /turf/simulated/floor/wood,
 /area/tether/midpoint)
@@ -592,6 +631,7 @@
 /obj/machinery/camera/network/civilian{
 	dir = 9
 	},
+/obj/structure/table/bench/padded,
 /turf/simulated/floor/wood,
 /area/tether/midpoint)
 "Tz" = (
@@ -625,10 +665,16 @@
 /turf/simulated/floor/plating,
 /area/maintenance/tether_midpoint)
 "VB" = (
-/obj/structure/disposalpipe/segment{
-	dir = 1;
-	icon_state = "pipe-c"
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -30
 	},
+/turf/simulated/floor/wood,
+/area/tether/midpoint)
+"WU" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/table/bench/padded,
 /turf/simulated/floor/wood,
 /area/tether/midpoint)
 "WY" = (
@@ -8402,10 +8448,10 @@ cH
 pK
 pK
 zi
-tA
-tA
-tA
-tA
+pK
+pK
+pK
+pK
 KN
 pK
 pK
@@ -8542,14 +8588,14 @@ PF
 fI
 pK
 pK
+ag
+ag
 pK
+ag
+ag
 pK
-YB
-dc
-dc
-vh
-pK
-pK
+ag
+ag
 pK
 pK
 Iq
@@ -8684,18 +8730,18 @@ Jl
 pK
 pK
 pK
+dc
+dc
 pK
+dc
+hk
 pK
-tA
-tA
-tA
-tA
+dc
+dc
 pK
-pK
-pK
-pK
-pK
-RZ
+Hy
+Nt
+GU
 PF
 zP
 kz
@@ -8826,16 +8872,16 @@ pK
 pK
 pK
 pK
+dU
+dU
 pK
+dU
+dU
 pK
+dU
+dU
 pK
-pK
-pK
-pK
-pK
-pK
-pK
-pK
+Or
 pK
 pK
 zi
@@ -8974,10 +9020,10 @@ pK
 pK
 pK
 pK
+Pz
 pK
 pK
-Hy
-VB
+Or
 pK
 pK
 pK
@@ -9261,7 +9307,7 @@ oN
 yi
 ML
 Dz
-Or
+uA
 pK
 tA
 tA
@@ -10244,7 +10290,7 @@ tA
 tA
 tA
 pK
-pK
+VB
 Dz
 Qv
 Hs
@@ -10526,10 +10572,10 @@ kz
 nD
 zP
 pK
-pK
-pK
-pK
 Hy
+Nt
+Nt
+Nt
 EI
 oz
 it
@@ -10668,7 +10714,7 @@ kz
 kz
 Et
 Pz
-pK
+Or
 pK
 pK
 pK
@@ -10957,12 +11003,12 @@ fI
 pK
 pK
 pK
-pK
-pK
-pK
-pK
-pK
-pK
+tA
+tA
+tA
+tA
+tA
+tA
 pK
 pK
 pK
@@ -11100,11 +11146,11 @@ zP
 pK
 pK
 Sm
-pK
-pK
-pK
-pK
-Pz
+dc
+dc
+dc
+dc
+WU
 pK
 pK
 NJ
