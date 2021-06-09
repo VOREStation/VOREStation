@@ -42,6 +42,7 @@
 
 	var/vore_fullness = 0				// How "full" the belly is (controls icons)
 	var/vore_icons = 0					// Bitfield for which fields we have vore icons for.
+	var/vore_eyes = FALSE				// For mobs with fullness specific eye overlays.
 	var/life_disabled = 0				// For performance reasons
 
 	var/mount_offset_x = 5				// Horizontal riding offset.
@@ -75,6 +76,9 @@
 /mob/living/simple_mob/update_icon()
 	. = ..()
 	if(vore_active)
+		var/voremob_awake = FALSE
+		if(icon_state == icon_living)
+			voremob_awake = TRUE
 		update_fullness()
 		if(!vore_fullness)
 			return 0
@@ -84,6 +88,9 @@
 			icon_state = "[icon_dead]-[vore_fullness]"
 		else if(((stat == UNCONSCIOUS) || resting || incapacitated(INCAPACITATION_DISABLED) ) && icon_rest && (vore_icons & SA_ICON_REST))
 			icon_state = "[icon_rest]-[vore_fullness]"
+		if(vore_eyes && voremob_awake) //Update eye layer if applicable.
+			remove_eyes()
+			add_eyes()
 	update_transform()
 
 /mob/living/simple_mob/proc/will_eat(var/mob/living/M)
