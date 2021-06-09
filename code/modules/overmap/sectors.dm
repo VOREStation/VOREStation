@@ -25,6 +25,7 @@
 	var/hide_from_reports = FALSE
 
 	var/has_distress_beacon
+	var/list/levels_for_distress
 
 /obj/effect/overmap/visitable/Initialize()
 	. = ..()
@@ -164,6 +165,40 @@
 // prior to being moved to the overmap. This blocks that. Use set_invisibility to adjust invisibility as needed instead.
 /obj/effect/overmap/visitable/sector/hide()
 
+/obj/effect/overmap/visitable/proc/distress(mob/user)
+	if(has_distress_beacon)
+		return FALSE
+	has_distress_beacon = TRUE
+
+	admin_chat_message(message = "Overmap panic button hit on z[z] ([scanner_name || name]) by '[user.ckey]'", color = "#FF2222") //VOREStation Add
+	var/message = "A distress signal has been received from a beacon conforming to MIL-DTL-93352. The signal has been relayed via the local telecomms array. \
+	The beacon was launched from '[scanner_name || name]'. It provided this information: [get_distress_info()]. \
+	Per the Interplanetary Convention on Space SAR, which your organization is party to, those receiving this message must attempt rescue, \
+	or relay the message to those who can. This message will repeat once in 5 minutes. Thank you for your cooperation."
+	
+	if(!levels_for_distress)
+		levels_for_distress = list(1)
+	for(var/zlevel in levels_for_distress)
+		priority_announcement.Announce(message, new_title = "Distress Beacon Detected", new_sound = 'sound/misc/interference.ogg', zlevel = zlevel)
+	
+	var/image/I = image(icon, icon_state = "distress")
+	I.plane = PLANE_LIGHTING_ABOVE
+	I.appearance_flags = KEEP_APART|RESET_TRANSFORM|RESET_COLOR
+	add_overlay(I)
+	
+	addtimer(CALLBACK(src, .proc/distress_update), 5 MINUTES)
+	return TRUE
+
+/obj/effect/overmap/visitable/proc/get_distress_info()
+	return "\[X:[x],Y:[y]\]"
+
+/obj/effect/overmap/visitable/proc/distress_update()
+	var/message = "This is the final message from the distress beacon launched from '[scanner_name || name]'. The beacon sent this update: [get_distress_info()].\
+	Please render assistance under your obligations per the Interplanetary Convention on Space SAR, or relay this message to a party who can. Thank you for your cooperation."
+
+	for(var/zlevel in levels_for_distress)
+		priority_announcement.Announce(message, new_title = "Distress Beacon Update", new_sound = 'sound/misc/interference.ogg', zlevel = zlevel)
+
 /proc/build_overmap()
 	if(!global.using_map.use_overmap)
 		return 1
@@ -186,3 +221,4 @@
 
 	testing("Overmap build complete.")
 	return 1
+
