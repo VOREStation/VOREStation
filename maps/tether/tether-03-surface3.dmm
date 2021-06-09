@@ -29490,6 +29490,9 @@
 "aYi" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/storage/box/donut,
+/obj/structure/panic_button{
+	pixel_x = 32
+	},
 /turf/simulated/floor/tiled/dark,
 /area/bridge)
 "aYj" = (
