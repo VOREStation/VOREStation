@@ -31,6 +31,7 @@
 	var/transferchance = 0 					// % Chance of prey being
 	var/can_taste = FALSE					// If this belly prints the flavor of prey when it eats someone.
 	var/bulge_size = 0.25					// The minimum size the prey has to be in order to show up on examine.
+	var/display_absorbed_examine = FALSE	// Do we display absorption examine messages for this belly at all?
 	var/shrink_grow_size = 1				// This horribly named variable determines the minimum/maximum size it will shrink/grow prey to.
 	var/transferlocation					// Location that the prey is released if they struggle and get dropped off.
 	var/release_sound = "Splatter"			// Sound for letting someone out. Replaced from True/false
@@ -111,6 +112,10 @@
 		"They have something solid in their %belly!",
 		"It looks like they have something in their %belly!")
 
+	var/list/examine_messages_absorbed = list(
+		"Their body looks somewhat larger than usual around the area of their %belly.",
+		"Their %belly looks larger than usual.")
+
 	var/item_digest_mode = IM_DIGEST_FOOD	// Current item-related mode from item_digest_modes
 	var/contaminates = TRUE					// Whether the belly will contaminate stuff
 	var/contamination_flavor = "Generic"	// Determines descriptions of contaminated items
@@ -144,12 +149,14 @@
 		"transferchance",
 		"transferlocation",
 		"bulge_size",
+		"display_absorbed_examine",
 		"shrink_grow_size",
 		"struggle_messages_outside",
 		"struggle_messages_inside",
 		"digest_messages_owner",
 		"digest_messages_prey",
 		"examine_messages",
+		"examine_messages_absorbed",
 		"emote_lists",
 		"emote_time",
 		"emote_active",
@@ -379,11 +386,32 @@
 		else
 			return ""
 
+/obj/belly/proc/get_examine_msg_absorbed()
+	if(contents.len && examine_messages_absorbed.len)
+		var/formatted_message
+		var/raw_message = pick(examine_messages_absorbed)
+
+		var/absorbed_count = 0
+		var/list/absorbed_victims = list()
+		for(var/mob/living/L in contents)
+			if(L.absorbed)
+				absorbed_victims += L
+				absorbed_count++
+
+		formatted_message = replacetext(raw_message, "%belly", lowertext(name))
+		formatted_message = replacetext(formatted_message, "%pred", owner)
+		formatted_message = replacetext(formatted_message, "%prey", english_list(absorbed_victims))
+		formatted_message = replacetext(formatted_message, "%countprey", absorbed_count)
+		if(display_absorbed_examine && absorbed_count)
+			return("<span class='warning'>[formatted_message]</span>")
+		else
+			return ""
+
 // The next function gets the messages set on the belly, in human-readable format.
 // This is useful in customization boxes and such. The delimiter right now is \n\n so
 // in message boxes, this looks nice and is easily delimited.
 /obj/belly/proc/get_messages(type, delim = "\n\n")
-	ASSERT(type == "smo" || type == "smi" || type == "dmo" || type == "dmp" || type == "em" || type == "im_digest" || type == "im_hold" || type == "im_absorb" || type == "im_heal" || type == "im_drain")
+	ASSERT(type == "smo" || type == "smi" || type == "dmo" || type == "dmp" || type == "em" || type == "ema" || type == "im_digest" || type == "im_hold" || type == "im_absorb" || type == "im_heal" || type == "im_drain")
 
 	var/list/raw_messages
 	switch(type)
@@ -397,6 +425,8 @@
 			raw_messages = digest_messages_prey
 		if("em")
 			raw_messages = examine_messages
+		if("ema")
+			raw_messages = examine_messages_absorbed
 		if("im_digest")
 			raw_messages = emote_lists[DM_DIGEST]
 		if("im_hold")
@@ -417,7 +447,7 @@
 // replacement strings and linebreaks as delimiters (two \n\n by default).
 // They also sanitize the messages.
 /obj/belly/proc/set_messages(raw_text, type, delim = "\n\n")
-	ASSERT(type == "smo" || type == "smi" || type == "dmo" || type == "dmp" || type == "em" || type == "im_digest" || type == "im_hold" || type == "im_absorb" || type == "im_heal" || type == "im_drain")
+	ASSERT(type == "smo" || type == "smi" || type == "dmo" || type == "dmp" || type == "em" || type == "ema" || type == "im_digest" || type == "im_hold" || type == "im_absorb" || type == "im_heal" || type == "im_drain")
 
 	var/list/raw_list = text2list(html_encode(raw_text),delim)
 	if(raw_list.len > 10)
@@ -449,6 +479,8 @@
 			digest_messages_prey = raw_list
 		if("em")
 			examine_messages = raw_list
+		if("ema")
+			examine_messages_absorbed = raw_list
 		if("im_digest")
 			emote_lists[DM_DIGEST] = raw_list
 		if("im_hold")
@@ -814,6 +846,11 @@
 	dupe.examine_messages.Cut()
 	for(var/I in examine_messages)
 		dupe.examine_messages += I
+
+	//examine_messages - strings
+	dupe.examine_messages_absorbed.Cut()
+	for(var/I in examine_messages_absorbed)
+		dupe.examine_messages_absorbed += I
 
 	//emote_lists - index: digest mode, key: list of strings
 	dupe.emote_lists.Cut()
