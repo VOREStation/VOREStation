@@ -170,16 +170,16 @@
 		return FALSE
 	has_distress_beacon = TRUE
 
-	admin_chat_message(message = "Overmap panic button hit on z[z] ([scanner_name || name]) by '[user.ckey]'", color = "#FF2222") //VOREStation Add
-	var/message = "A distress signal has been received from a beacon conforming to MIL-DTL-93352. The signal has been relayed via the local telecomms array. \
-	The beacon was launched from '[scanner_name || name]'. It provided this information: [get_distress_info()]. \
-	Per the Interplanetary Convention on Space SAR, which your organization is party to, those receiving this message must attempt rescue, \
-	or relay the message to those who can. This message will repeat once in 5 minutes. Thank you for your cooperation."
+	admin_chat_message(message = "Overmap panic button hit on z[z] ([scanner_name || name]) by '[user?.ckey || "Unknown"]'", color = "#FF2222") //VOREStation Add
+	var/message = "This is an automated distress signal from a MIL-DTL-93352-compliant beacon transmitting on [PUB_FREQ*0.1]kHz. \
+	This beacon was launched from '[scanner_name || name]'. I can provide this additional information to rescuers: [get_distress_info()]. \
+	Per the Interplanetary Convention on Space SAR, those receiving this message must attempt rescue, \
+	or relay the message to those who can. This message will repeat one time in 5 minutes. Thank you for your urgent assistance."
 	
 	if(!levels_for_distress)
 		levels_for_distress = list(1)
 	for(var/zlevel in levels_for_distress)
-		priority_announcement.Announce(message, new_title = "Distress Beacon Detected", new_sound = 'sound/misc/interference.ogg', zlevel = zlevel)
+		priority_announcement.Announce(message, new_title = "Automated Distress Signal", new_sound = 'sound/AI/sos.ogg', zlevel = zlevel)
 	
 	var/image/I = image(icon, icon_state = "distress")
 	I.plane = PLANE_LIGHTING_ABOVE
@@ -190,14 +190,14 @@
 	return TRUE
 
 /obj/effect/overmap/visitable/proc/get_distress_info()
-	return "\[X:[x],Y:[y]\]"
+	return "\[X:[x], Y:[y]\]"
 
 /obj/effect/overmap/visitable/proc/distress_update()
-	var/message = "This is the final message from the distress beacon launched from '[scanner_name || name]'. The beacon sent this update: [get_distress_info()].\
-	Please render assistance under your obligations per the Interplanetary Convention on Space SAR, or relay this message to a party who can. Thank you for your cooperation."
+	var/message = "This is the final message from the distress beacon launched from '[scanner_name || name]'. I can provide this additional information to rescuers: [get_distress_info()]. \
+	Please render assistance under your obligations per the Interplanetary Convention on Space SAR, or relay this message to a party who can. Thank you for your urgent assistance."
 
 	for(var/zlevel in levels_for_distress)
-		priority_announcement.Announce(message, new_title = "Distress Beacon Update", new_sound = 'sound/misc/interference.ogg', zlevel = zlevel)
+		priority_announcement.Announce(message, new_title = "Automated Distress Signal", new_sound = 'sound/AI/sos.ogg', zlevel = zlevel)
 
 /proc/build_overmap()
 	if(!global.using_map.use_overmap)

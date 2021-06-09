@@ -264,7 +264,7 @@
 	var/turf/T = get_turf(src) // Usually we're on the turf, but sometimes we might be landed or something.
 	var/x_to_use = T?.x || "UNK"
 	var/y_to_use = T?.y || "UNK"
-	return "\[X:[x_to_use],Y:[y_to_use],VEL:[get_speed() * 1000],HDG:[get_heading_degrees()]\]"
+	return "\[X:[x_to_use], Y:[y_to_use], VEL:[get_speed() * 1000], HDG:[get_heading_degrees()]\]"
 
 #undef MOVING
 #undef SANITIZE_SPEED
