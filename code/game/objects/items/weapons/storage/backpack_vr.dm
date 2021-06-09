@@ -115,7 +115,7 @@
 	icon_override = 'icons/mob/back_vr.dmi'
 	icon_state = "explorer_duffle"
 
-	
+///Roboticist Bags///
 
 /obj/item/weapon/storage/backpack/satchel/roboticist
 	name = "roboticist satchel"
@@ -132,6 +132,8 @@
 	icon_override = 'icons/mob/back_vr.dmi'
 	item_state = "backpack-robo"
 	icon_state = "backpack-robo"
+
+///Vintage Military Bags///
 
 /obj/item/weapon/storage/backpack/vietnam
 	name = "vietnam backpack"
