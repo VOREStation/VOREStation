@@ -3498,5 +3498,15 @@
 "lobby": false,
 "jukebox": true,
 "genre": "Rock"
+},
+{
+"url": "https://files.catbox.moe/8rn8uz.mp3",
+"title": "I Wupped Batman's Ass",
+"duration": 3270,
+"artist": "Wesley Willis Fiasco",
+"secret": true,
+"lobby": false,
+"jukebox": true,
+"genre": "Rock"
 }
 ]
