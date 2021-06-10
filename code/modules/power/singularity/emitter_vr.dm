@@ -1,10 +1,10 @@
 /obj/machinery/power/emitter
-    icon = 'icons/obj/singularity_vr.dmi' // New emitter sprite
-    var/previous_state = 0
+	icon = 'icons/obj/singularity_vr.dmi' // New emitter sprite
+	var/previous_state = 0
 
 /obj/machinery/power/emitter/Initialize()
-    . = ..()
-    previous_state = state
+	. = ..()
+	previous_state = state
 
 /obj/machinery/power/emitter/update_icon()
 	cut_overlays()
