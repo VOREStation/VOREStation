@@ -139,6 +139,7 @@
 	icon_state = "map";
 	dir = 1
 	},
+/obj/machinery/camera/network/engine,
 /turf/simulated/floor,
 /area/engineering/engine_room)
 "az" = (
