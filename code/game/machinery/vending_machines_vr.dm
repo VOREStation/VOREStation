@@ -1004,6 +1004,8 @@
 	premium = list(/obj/item/clothing/under/color/rainbow = 1)
 	contraband = list(/obj/item/clothing/under/rank/clown = 1)
 
+//////////////////START OF CHIPS CO. VENDORS//////////////////
+
 /obj/machinery/vending/loadout/gadget
 	name = "Chips Co."
 	desc = "A special vendor for devices and gadgets."
@@ -1031,7 +1033,9 @@
 					/obj/item/device/laser_pointer = 3,
 					/obj/item/clothing/glasses/omnihud = 10,
 					/obj/item/device/walkpod = 5,
-					/obj/item/device/juke_remote = 1)
+					/obj/item/device/juke_remote = 1,
+					/obj/item/instrument/piano_synth/headphones = 2, // You're making a subsystem do work, I don't want it TOO busy
+					/obj/item/instrument/piano_synth/headphones/spacepods = 2)
 	prices = list(/obj/item/clothing/suit/circuitry = 100,
 					/obj/item/clothing/head/circuitry = 100,
 					/obj/item/clothing/shoes/circuitry = 100,
@@ -1052,10 +1056,44 @@
 					/obj/item/device/flashlight = 100,
 					/obj/item/device/laser_pointer = 200,
 					/obj/item/clothing/glasses/omnihud = 100,
-					/obj/item/device/walkpod = 300, 
-					/obj/item/device/juke_remote = 1000)
+					/obj/item/device/walkpod = 300,
+					/obj/item/device/juke_remote = 1000,
+					/obj/item/instrument/piano_synth/headphones = 200,
+					/obj/item/instrument/piano_synth/headphones/spacepods = 600)
 	premium = list(/obj/item/device/perfect_tele/one_beacon = 1)
 	contraband = list(/obj/item/weapon/disk/nifsoft/compliance = 1)
+
+/obj/machinery/vending/event/gadget //FOR FACILITATING AND EQUIPPING EVENTS, DO NOT PLACE ON THE NORMAL MAP//
+	name = "Chips Co."
+	desc = "A special vendor for devices and gadgets."
+	product_ads = "You can't RESIST our great deals!;Feeling disconnected? We have a gadget for you!;You know you have the capacity to buy our capacitors!;FILL THAT HOLE IN YOUR HEART WITH OUR PLASTIC DISTRACTIONS!!!;Devices for everyone! Chips Co.!;ROBUST INVENTORY, GREAT PRICES! ;DON'T FORGET THE oyPAD 13s PRO! ON SALE NOW, ONLY ONE THOUSAND THALERS!"
+	icon_state = "gadgets"
+	vend_delay = 11
+	products = list(/obj/item/clothing/suit/circuitry = 1,
+					/obj/item/clothing/head/circuitry = 1,
+					/obj/item/clothing/shoes/circuitry = 1,
+					/obj/item/clothing/gloves/circuitry = 1,
+					/obj/item/clothing/under/circuitry = 1,
+					/obj/item/clothing/glasses/circuitry = 1,
+					/obj/item/clothing/ears/circuitry = 1,
+					/obj/item/device/text_to_speech = 5,
+					/obj/item/device/paicard = 5,
+					/obj/item/device/communicator = 10,
+					/obj/item/device/communicator/watch = 10,
+					/obj/item/device/radio = 10,
+					/obj/item/device/camera = 5,
+					/obj/item/device/taperecorder = 5,
+					/obj/item/modular_computer/tablet/preset/custom_loadout/cheap = 5,
+					/obj/item/device/pda = 10,
+					/obj/item/device/radio/headset = 10,
+					/obj/item/device/flashlight = 5,
+					/obj/item/device/laser_pointer = 3,
+					/obj/item/clothing/glasses/omnihud = 10,
+					/obj/item/device/perfect_tele/one_beacon = 1,
+					/obj/item/weapon/disk/nifsoft/compliance = 1,
+					/obj/item/device/perfect_tele/alien = 10)
+
+//////////////////END OF CHIPS CO. VENDORS//////////////////
 
 /obj/machinery/vending/loadout/loadout_misc
 	name = "Bits and Bobs"
@@ -2368,59 +2406,6 @@
 	premium = list(/obj/item/clothing/under/color/rainbow = 1)
 	contraband = list(/obj/item/clothing/under/rank/clown = 1)
 
-/obj/machinery/vending/loadout/gadget
-	name = "Chips Co."
-	desc = "A special vendor for devices and gadgets."
-	product_ads = "You can't RESIST our great deals!;Feeling disconnected? We have a gadget for you!;You know you have the capacity to buy our capacitors!;FILL THAT HOLE IN YOUR HEART WITH OUR PLASTIC DISTRACTIONS!!!;Devices for everyone! Chips Co.!;ROBUST INVENTORY, GREAT PRICES! ;DON'T FORGET THE oyPAD 13s PRO! ON SALE NOW, ONLY ONE THOUSAND THALERS!"
-	icon_state = "gadgets"
-	vend_delay = 11
-	products = list(/obj/item/clothing/suit/circuitry = 1,
-					/obj/item/clothing/head/circuitry = 1,
-					/obj/item/clothing/shoes/circuitry = 1,
-					/obj/item/clothing/gloves/circuitry = 1,
-					/obj/item/clothing/under/circuitry = 1,
-					/obj/item/clothing/glasses/circuitry = 1,
-					/obj/item/clothing/ears/circuitry = 1,
-					/obj/item/device/text_to_speech = 5,
-					/obj/item/device/paicard = 5,
-					/obj/item/device/communicator = 10,
-					/obj/item/device/communicator/watch = 10,
-					/obj/item/device/radio = 10,
-					/obj/item/device/camera = 5,
-					/obj/item/device/taperecorder = 5,
-					/obj/item/modular_computer/tablet/preset/custom_loadout/cheap = 5,
-					/obj/item/device/pda = 10,
-					/obj/item/device/radio/headset = 10,
-					/obj/item/device/flashlight = 5,
-					/obj/item/device/laser_pointer = 3,
-					/obj/item/clothing/glasses/omnihud = 10,
-					/obj/item/instrument/piano_synth/headphones = 2, // You're making a subsystem do work, I don't want it TOO busy
-					/obj/item/instrument/piano_synth/headphones/spacepods = 2)
-	prices = list(/obj/item/clothing/suit/circuitry = 100,
-					/obj/item/clothing/head/circuitry = 100,
-					/obj/item/clothing/shoes/circuitry = 100,
-					/obj/item/clothing/gloves/circuitry = 100,
-					/obj/item/clothing/under/circuitry = 100,
-					/obj/item/clothing/glasses/circuitry = 100,
-					/obj/item/clothing/ears/circuitry = 100,
-					/obj/item/device/text_to_speech = 300,
-					/obj/item/device/paicard = 100,
-					/obj/item/device/communicator = 100,
-					/obj/item/device/communicator/watch = 100,
-					/obj/item/device/radio = 100,
-					/obj/item/device/camera = 100,
-					/obj/item/device/taperecorder = 100,
-					/obj/item/modular_computer/tablet/preset/custom_loadout/cheap = 1000,
-					/obj/item/device/pda = 50,
-					/obj/item/device/radio/headset = 50,
-					/obj/item/device/flashlight = 100,
-					/obj/item/device/laser_pointer = 200,
-					/obj/item/clothing/glasses/omnihud = 100,
-					/obj/item/instrument/piano_synth/headphones = 200,
-					/obj/item/instrument/piano_synth/headphones/spacepods = 600)
-	premium = list(/obj/item/device/perfect_tele/one_beacon = 1)
-	contraband = list(/obj/item/weapon/disk/nifsoft/compliance = 1)
-
 /obj/machinery/vending/loadout/loadout_misc
 	name = "Bits and Bobs"
 	desc = "A special vendor for things and also stuff!"
@@ -3357,36 +3342,6 @@
 					/obj/item/clothing/under/rippedpunk = 5,
 					/obj/item/clothing/under/color/rainbow = 1,
 					/obj/item/clothing/under/rank/clown = 1)
-
-/obj/machinery/vending/event/gadget //FOR FACILITATING AND EQUIPPING EVENTS, DO NOT PLACE ON THE NORMAL MAP//
-	name = "Chips Co."
-	desc = "A special vendor for devices and gadgets."
-	product_ads = "You can't RESIST our great deals!;Feeling disconnected? We have a gadget for you!;You know you have the capacity to buy our capacitors!;FILL THAT HOLE IN YOUR HEART WITH OUR PLASTIC DISTRACTIONS!!!;Devices for everyone! Chips Co.!;ROBUST INVENTORY, GREAT PRICES! ;DON'T FORGET THE oyPAD 13s PRO! ON SALE NOW, ONLY ONE THOUSAND THALERS!"
-	icon_state = "gadgets"
-	vend_delay = 11
-	products = list(/obj/item/clothing/suit/circuitry = 1,
-					/obj/item/clothing/head/circuitry = 1,
-					/obj/item/clothing/shoes/circuitry = 1,
-					/obj/item/clothing/gloves/circuitry = 1,
-					/obj/item/clothing/under/circuitry = 1,
-					/obj/item/clothing/glasses/circuitry = 1,
-					/obj/item/clothing/ears/circuitry = 1,
-					/obj/item/device/text_to_speech = 5,
-					/obj/item/device/paicard = 5,
-					/obj/item/device/communicator = 10,
-					/obj/item/device/communicator/watch = 10,
-					/obj/item/device/radio = 10,
-					/obj/item/device/camera = 5,
-					/obj/item/device/taperecorder = 5,
-					/obj/item/modular_computer/tablet/preset/custom_loadout/cheap = 5,
-					/obj/item/device/pda = 10,
-					/obj/item/device/radio/headset = 10,
-					/obj/item/device/flashlight = 5,
-					/obj/item/device/laser_pointer = 3,
-					/obj/item/clothing/glasses/omnihud = 10,
-					/obj/item/device/perfect_tele/one_beacon = 1,
-					/obj/item/weapon/disk/nifsoft/compliance = 1,
-					/obj/item/device/perfect_tele/alien = 10)
 
 /obj/machinery/vending/event/loadout_misc //FOR FACILITATING AND EQUIPPING EVENTS, DO NOT PLACE ON THE NORMAL MAP//
 	name = "Bits and Bobs"

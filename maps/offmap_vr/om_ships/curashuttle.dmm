@@ -531,6 +531,9 @@
 /obj/item/bodybag/cryobag/robobag,
 /obj/item/bodybag/cryobag/robobag,
 /obj/item/weapon/storage/belt/utility,
+/obj/structure/panic_button{
+	pixel_y = 32
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/curabitur/curashuttle/eng)
 "aZ" = (

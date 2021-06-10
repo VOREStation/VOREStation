@@ -96,6 +96,7 @@
 	mount_offset_y = 24
 	mount_offset_x = -9
 	has_eye_glow = TRUE
+	vore_eyes = TRUE
 
 /mob/living/simple_mob/vore/aggressive/dragon/Login()
 	. = ..()
