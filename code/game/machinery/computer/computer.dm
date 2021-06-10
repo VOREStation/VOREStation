@@ -34,11 +34,11 @@
 /obj/machinery/computer/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			qdel(src)
+			fall_apart(severity)
 			return
 		if(2.0)
 			if (prob(25))
-				qdel(src)
+				fall_apart(severity)
 				return
 			if (prob(50))
 				for(var/x in verbs)
