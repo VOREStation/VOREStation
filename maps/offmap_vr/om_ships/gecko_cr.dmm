@@ -2144,6 +2144,13 @@
 	},
 /turf/simulated/wall/rshull,
 /area/shuttle/gecko_cr)
+"Nl" = (
+/obj/structure/table/steel,
+/obj/structure/panic_button{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_cr_cockpit)
 "Np" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 6
@@ -3720,7 +3727,7 @@ WP
 WP
 NC
 qL
-wG
+Nl
 ic
 Id
 qL

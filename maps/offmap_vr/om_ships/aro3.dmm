@@ -1883,7 +1883,17 @@
 	dir = 8;
 	icon_state = "tube1"
 	},
-/obj/item/mecha_parts/mecha_equipment/repair_droid,
+/obj/item/clothing/under/explorer{
+	name = "survivalist's jumpsuit"
+	},
+/obj/item/clothing/suit/storage/hooded/explorer{
+	name = "survivalist suit"
+	},
+/obj/item/clothing/shoes/boots/jackboots/toeless{
+	name = "toe-less boots"
+	},
+/obj/item/clothing/shoes/black/cuffs,
+/obj/item/clothing/gloves/fingerless,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/aro3/repair_bay)
 "oW" = (
@@ -2466,15 +2476,6 @@
 /obj/item/device/flashlight/lamp,
 /turf/simulated/floor/carpet/oracarpet,
 /area/aro3/bunkrooms)
-"ul" = (
-/obj/structure/closet/crate/bin{
-	anchored = 1;
-	density = 0;
-	name = "trash bin";
-	pixel_y = 3
-	},
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
-/area/aro3/repair_bay)
 "uE" = (
 /turf/simulated/floor/tiled/eris/white/golden,
 /area/aro3/medical)
@@ -2571,6 +2572,7 @@
 "vD" = (
 /obj/structure/table/rack/shelf/steel,
 /obj/item/mecha_parts/mecha_equipment/tesla_energy_relay,
+/obj/item/mecha_parts/mecha_equipment/cloak,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/aro3/repair_bay)
 "vH" = (
@@ -3068,6 +3070,10 @@
 "yS" = (
 /obj/structure/bed/chair/bay/comfy/yellow{
 	dir = 1
+	},
+/obj/structure/panic_button{
+	pixel_x = 32;
+	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/eris/dark/violetcorener,
 /area/aro3/cockpit)
@@ -3975,11 +3981,11 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
-/obj/item/weapon/inducer/hybrid,
 /obj/machinery/light_switch{
 	dir = 1;
 	pixel_y = -24
 	},
+/obj/item/device/uav/loaded,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/aro3/repair_bay)
 "Gy" = (
@@ -4064,7 +4070,6 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
-/obj/item/device/uav/loaded,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/aro3/repair_bay)
 "Hq" = (
@@ -5155,6 +5160,7 @@
 "Rv" = (
 /obj/structure/table/rack/shelf/steel,
 /obj/item/mecha_parts/mecha_equipment/omni_shield,
+/obj/item/mecha_parts/mecha_equipment/repair_droid,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/aro3/repair_bay)
 "Rw" = (
@@ -5261,7 +5267,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/item/mecha_parts/mecha_equipment/cloak,
+/obj/item/weapon/inducer/hybrid,
+/obj/item/device/perfect_tele/alien/bluefo,
+/obj/item/device/mapping_unit,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/aro3/repair_bay)
 "Ta" = (
@@ -5795,8 +5803,12 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/aro3/medical)
 "Yt" = (
-/obj/structure/table/steel,
-/obj/item/device/perfect_tele/alien/bluefo,
+/obj/structure/closet/crate/bin{
+	anchored = 1;
+	density = 0;
+	name = "trash bin";
+	pixel_y = 3
+	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/aro3/repair_bay)
 "Yu" = (
@@ -15494,7 +15506,7 @@ RJ
 iN
 Fr
 NC
-ul
+hl
 hl
 IS
 yu
