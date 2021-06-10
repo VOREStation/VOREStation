@@ -364,48 +364,55 @@
 // but can easily make the message vary based on how many people are inside, etc.
 // Returns a string which shoul be appended to the Examine output.
 /obj/belly/proc/get_examine_msg()
-	if(contents.len && examine_messages.len)
-		var/formatted_message
-		var/raw_message = pick(examine_messages)
-		var/total_bulge = 0
+	if(!(contents.len) || !(examine_messages.len))
+		return ""
 
-		var/living_count = 0
-		for(var/mob/living/L in contents)
-			living_count++
+	var/formatted_message
+	var/raw_message = pick(examine_messages)
+	var/total_bulge = 0
 
-		formatted_message = replacetext(raw_message, "%belly", lowertext(name))
-		formatted_message = replacetext(formatted_message, "%pred", owner)
-		formatted_message = replacetext(formatted_message, "%prey", english_list(contents))
-		formatted_message = replacetext(formatted_message, "%count", contents.len)
-		formatted_message = replacetext(formatted_message, "%countprey", living_count)
-		for(var/mob/living/P in contents)
-			if(!P.absorbed) //This is required first, in case there's a person absorbed and not absorbed in a stomach.
-				total_bulge += P.size_multiplier
-		if(total_bulge >= bulge_size && bulge_size != 0)
-			return("<span class='warning'>[formatted_message]</span>")
-		else
-			return ""
+	var/living_count = 0
+	for(var/mob/living/L in contents)
+		living_count++
+
+	for(var/mob/living/P in contents)
+		if(!P.absorbed) //This is required first, in case there's a person absorbed and not absorbed in a stomach.
+			total_bulge += P.size_multiplier
+
+	if(total_bulge < bulge_size || bulge_size == 0)
+		return ""
+
+	formatted_message = replacetext(raw_message, "%belly", lowertext(name))
+	formatted_message = replacetext(formatted_message, "%pred", owner)
+	formatted_message = replacetext(formatted_message, "%prey", english_list(contents))
+	formatted_message = replacetext(formatted_message, "%count", contents.len)
+	formatted_message = replacetext(formatted_message, "%countprey", living_count)
+
+	return("<span class='warning'>[formatted_message]</span>")
 
 /obj/belly/proc/get_examine_msg_absorbed()
-	if(contents.len && examine_messages_absorbed.len)
-		var/formatted_message
-		var/raw_message = pick(examine_messages_absorbed)
+	if(!(contents.len) || !(examine_messages_absorbed.len) || !display_absorbed_examine)
+		return ""
 
-		var/absorbed_count = 0
-		var/list/absorbed_victims = list()
-		for(var/mob/living/L in contents)
-			if(L.absorbed)
-				absorbed_victims += L
-				absorbed_count++
+	var/formatted_message
+	var/raw_message = pick(examine_messages_absorbed)
 
-		formatted_message = replacetext(raw_message, "%belly", lowertext(name))
-		formatted_message = replacetext(formatted_message, "%pred", owner)
-		formatted_message = replacetext(formatted_message, "%prey", english_list(absorbed_victims))
-		formatted_message = replacetext(formatted_message, "%countprey", absorbed_count)
-		if(display_absorbed_examine && absorbed_count)
-			return("<span class='warning'>[formatted_message]</span>")
-		else
-			return ""
+	var/absorbed_count = 0
+	var/list/absorbed_victims = list()
+	for(var/mob/living/L in contents)
+		if(L.absorbed)
+			absorbed_victims += L
+			absorbed_count++
+
+	if(!absorbed_count)
+		return ""
+
+	formatted_message = replacetext(raw_message, "%belly", lowertext(name))
+	formatted_message = replacetext(formatted_message, "%pred", owner)
+	formatted_message = replacetext(formatted_message, "%prey", english_list(absorbed_victims))
+	formatted_message = replacetext(formatted_message, "%countprey", absorbed_count)
+
+	return("<span class='warning'>[formatted_message]</span>")
 
 // The next function gets the messages set on the belly, in human-readable format.
 // This is useful in customization boxes and such. The delimiter right now is \n\n so
