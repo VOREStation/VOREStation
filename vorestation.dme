@@ -3390,6 +3390,7 @@
 #include "code\modules\power\singularity\collector.dm"
 #include "code\modules\power\singularity\containment_field.dm"
 #include "code\modules\power\singularity\emitter.dm"
+#include "code\modules\power\singularity\emitter_vr.dm"
 #include "code\modules\power\singularity\field_generator.dm"
 #include "code\modules\power\singularity\generator.dm"
 #include "code\modules\power\singularity\investigate.dm"
