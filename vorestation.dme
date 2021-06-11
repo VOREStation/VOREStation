@@ -349,6 +349,7 @@
 #include "code\datums\autolathe\tools.dm"
 #include "code\datums\autolathe\tools_vr.dm"
 #include "code\datums\components\_component.dm"
+#include "code\datums\components\material_container.dm"
 #include "code\datums\components\resize_guard.dm"
 #include "code\datums\components\crafting\crafting.dm"
 #include "code\datums\components\crafting\crafting_external.dm"
