@@ -154,7 +154,7 @@ var/list/name_to_material
 	if(length(named_arguments))
 		named_arguments = sortList(named_arguments)
 		fullid += named_arguments
-	return list2params(fullid)
+	return replacetext(list2params(fullid), "+", " ")
 
 
 // Material definition and procs follow.

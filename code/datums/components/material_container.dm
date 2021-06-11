@@ -420,7 +420,7 @@
 		mat = GET_MATERIAL_REF(mat)
 	return materials[mat]
 
-/// List format is list(material_name = list(amount = ..., ref = ..., etc.))
+/// List format is list(list(name = ..., amount = ..., ref = ..., etc.), list(...))
 /datum/component/material_container/tgui_data(mob/user)
 	var/list/data = list()
 
