@@ -248,6 +248,13 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
+/datum/sprite_accessory/ears/tajaran_standard
+	name = "tajaran, colorable"
+	desc = ""
+	icon_state = "ears_tajaran_standard"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/ears/kittyhc
 	name = "kitty, colorable"
 	desc = ""
