@@ -24,6 +24,12 @@
 
 // Ears avaliable to anyone
 
+/datum/sprite_accessory/ears/taj_ears
+	name = "tajaran, colorable (old)"
+
+/datum/sprite_accessory/ears/taj_ears_tall
+	name = "tajaran tall, colorable (old)"
+
 /datum/sprite_accessory/ears/alt_ram_horns
 	name = "Solid ram horns"
 	desc = ""
