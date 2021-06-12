@@ -112,9 +112,7 @@
 	var/list/tc = allowed_item_typecache
 	if(!(mat_container_flags & MATCONTAINER_ANY_INTENT) && user.a_intent != I_HELP)
 		return
-	// if(I.item_flags & ABSTRACT)
-	// 	return
-	if(/*(I.flags_1 & HOLOGRAM_1) || (I.item_flags & NO_MAT_REDEMPTION) ||*/ (tc && !is_type_in_typecache(I, tc)))
+	if(tc && !is_type_in_typecache(I, tc))
 		if(!(mat_container_flags & MATCONTAINER_SILENT))
 			to_chat(user, "<span class='warning'>[parent] won't accept [I]!</span>")
 		return
@@ -138,7 +136,7 @@
 	if(!user.unEquip(I))
 		to_chat(user, "<span class='warning'>[I] is stuck to you and cannot be placed into [parent].</span>")
 		return
-	var/inserted = insert_item(I, breakdown_flags= mat_container_flags)
+	var/inserted = insert_item(I, breakdown_flags = mat_container_flags)
 	if(inserted)
 		to_chat(user, "<span class='notice'>You insert a material total of [inserted] into [parent].</span>")
 		qdel(I)
