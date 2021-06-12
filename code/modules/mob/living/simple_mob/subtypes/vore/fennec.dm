@@ -109,19 +109,20 @@
 	response_disarm = "somehow shoves aside"
 	
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate/cooperative
-	var/image/shadow
+	var/image/bigshadow
+	var/autodoom = TRUE
 
 /mob/living/simple_mob/vore/fennec/huge/Initialize()
 	. = ..()
-	shadow = image(icon, icon_state = "shadow")
-	shadow.plane = MOB_PLANE
-	shadow.layer = BELOW_MOB_LAYER
-	shadow.appearance_flags = RESET_COLOR|RESET_TRANSFORM
-	add_overlay(shadow)
+	bigshadow = image(icon, icon_state = "shadow")
+	bigshadow.plane = MOB_PLANE
+	bigshadow.layer = BELOW_MOB_LAYER
+	bigshadow.appearance_flags = RESET_COLOR|RESET_TRANSFORM
+	add_overlay(bigshadow)
 
 /mob/living/simple_mob/vore/fennec/huge/update_icon()
 	. = ..()
-	add_overlay(shadow)
+	add_overlay(bigshadow)
 
 /mob/living/simple_mob/vore/fennec/huge/init_vore()
 	..()
@@ -143,7 +144,7 @@
 
 /mob/living/simple_mob/vore/fennec/huge/apply_attack(atom/A, damage_to_do)
 	// We may stomp or instanom in combat
-	if(isliving(A) && (damage_to_do >= (melee_damage_upper*0.9)))
+	if(autodoom && isliving(A) && (damage_to_do >= (melee_damage_upper*0.9)))
 		var/mob/living/L = A
 		if(will_eat(L))
 			var/obj/belly/B = vore_organs[1]
@@ -151,7 +152,7 @@
 			B.nom_mob(L)
 			ai_holder.find_target()
 			return
-		else if(L.size_multiplier <= 0.5)
+		else if(L.size_multiplier <= 0.5 && L.step_mechanics_pref)
 			custom_emote(message = "stomps [L] into oblivion!")
 			L.gib()
 			return
