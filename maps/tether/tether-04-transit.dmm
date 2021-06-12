@@ -241,9 +241,7 @@
 /turf/simulated/floor/plating,
 /area/maintenance/tether_midpoint)
 "pO" = (
-/obj/machinery/vending/snlvend{
-	dir = 8
-	},
+/obj/machinery/media/jukebox,
 /turf/simulated/floor/holofloor/tiled/dark,
 /area/tether/midpoint)
 "sw" = (
@@ -683,7 +681,7 @@
 /turf/simulated/floor/plating,
 /area/maintenance/tether_midpoint)
 "Xo" = (
-/obj/machinery/vending/weeb{
+/obj/machinery/vending/snlvend{
 	dir = 8
 	},
 /turf/simulated/floor/holofloor/tiled/dark,
