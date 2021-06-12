@@ -267,6 +267,7 @@
 		if(!istype(mat))
 			mat = GET_MATERIAL_REF(mat)
 		materials[mat] += amt
+		total_amount += amt
 	else
 		var/num_materials = length(materials)
 		if(!num_materials)
