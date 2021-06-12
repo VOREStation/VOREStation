@@ -13184,14 +13184,14 @@
 "avz" = (
 /obj/item/weapon/stool/padded,
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/kitchen)
+/area/crew_quarters/bar)
 "avA" = (
 /obj/item/weapon/stool/padded,
 /obj/effect/floor_decal/corner/beige{
 	dir = 6
 	},
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/kitchen)
+/area/crew_quarters/bar)
 "avB" = (
 /obj/structure/table/glass,
 /obj/machinery/reagentgrinder,
@@ -13301,7 +13301,7 @@
 	},
 /obj/effect/floor_decal/spline/plain,
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/kitchen)
+/area/crew_quarters/bar)
 "avN" = (
 /obj/machinery/light{
 	dir = 1
@@ -17434,7 +17434,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/kitchen)
+/area/crew_quarters/bar)
 "aCj" = (
 /obj/effect/floor_decal/borderfloor/corner{
 	dir = 8
@@ -20525,7 +20525,7 @@
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk,
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/kitchen)
+/area/crew_quarters/bar)
 "aHz" = (
 /obj/effect/floor_decal/spline/plain{
 	dir = 1
@@ -33918,7 +33918,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/kitchen)
+/area/crew_quarters/bar)
 "bga" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -33961,7 +33961,7 @@
 	pixel_y = 29
 	},
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/kitchen)
+/area/crew_quarters/bar)
 "bgg" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
