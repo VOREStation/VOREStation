@@ -261,7 +261,7 @@
 		man_rating += M.rating
 
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
-	materials.max_amount = mb_rating * 25000
+	materials.max_amount = mb_rating * 75000
 
 	build_time = 50 / man_rating
 	mat_efficiency = 1.1 - man_rating * 0.1// Normally, price is 1.25 the amount of material, so this shouldn't go higher than 0.6. Maximum rating of parts is 5
