@@ -45,9 +45,13 @@ SUBSYSTEM_DEF(lighting)
 /datum/controller/subsystem/lighting/fire(resumed = FALSE)
 	var/timer
 	if(!resumed)
-		ASSERT(LAZYLEN(currentrun) == 0)  // Santity checks to make sure we don't somehow have items left over from last cycle
-		ASSERT(stage == null) // Or somehow didn't finish all the steps from last cycle
-		stage = SSLIGHTING_STAGE_LIGHTS // Start with Step 1 of course
+		// Santity checks to make sure we don't somehow have items left over from last cycle
+		// Or somehow didn't finish all the steps from last cycle
+		if(LAZYLEN(currentrun) || stage)
+			log_and_message_admins("SSlighting: Was told to start a new run, but the previous run wasn't finished! currentrun.len=[currentrun.len], stage=[stage]")
+			resumed = TRUE
+		else
+			stage = SSLIGHTING_STAGE_LIGHTS // Start with Step 1 of course
 
 	if(stage == SSLIGHTING_STAGE_LIGHTS)
 		timer = TICK_USAGE
@@ -77,10 +81,11 @@ SUBSYSTEM_DEF(lighting)
 		stage = SSLIGHTING_STAGE_DONE
 
 	// Okay, we're done! Woo! Got thru a whole air_master cycle!
-	ASSERT(LAZYLEN(currentrun) == 0) // Sanity checks to make sure there are really none left
-	ASSERT(stage == SSLIGHTING_STAGE_DONE) // And that we didn't somehow skip past the last step
-	currentrun = null
-	stage = null
+	if(LAZYLEN(currentrun) || stage != SSLIGHTING_STAGE_DONE)
+		log_and_message_admins("SSlighting: Was not able to complete a full lighting cycle despite reaching the end of fire(). This shouldn't happen.")
+	else
+		currentrun = null
+		stage = null
 
 /datum/controller/subsystem/lighting/proc/internal_process_lights(resumed = FALSE, init_tick_checks = FALSE)
 	if (!resumed)
