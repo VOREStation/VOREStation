@@ -22,8 +22,6 @@
 	var/list/allowed_item_typecache
 	/// The last main material that was inserted into this container
 	var/last_inserted_id
-	/// Whether or not this material container allows specific amounts from sheets to be inserted
-	var/precise_insertion = FALSE
 	/// A callback for checking wheter we can insert a material into this container
 	var/datum/callback/insertion_check
 	/// A callback invoked before materials are inserted into this container
@@ -136,20 +134,11 @@
 /// Proc used for when player inserts materials
 /datum/component/material_container/proc/user_insert(obj/item/I, mob/living/user, breakdown_flags = mat_container_flags)
 	set waitfor = FALSE
-	var/requested_amount
 	var/active_held = user.get_active_hand()  // differs from I when using TK
-	if(istype(I, /obj/item/stack) && precise_insertion)
-		var/atom/current_parent = parent
-		var/obj/item/stack/S = I
-		requested_amount = input(user, "How much do you want to insert?", "Inserting [S.singular_name]s") as num|null
-		if(isnull(requested_amount) || (requested_amount <= 0))
-			return
-		if(QDELETED(I) || QDELETED(user) || QDELETED(src) || parent != current_parent || user.physical_can_use_tgui_topic(current_parent) < STATUS_INTERACTIVE || user.get_active_hand() != active_held)
-			return
 	if(!user.unEquip(I))
 		to_chat(user, "<span class='warning'>[I] is stuck to you and cannot be placed into [parent].</span>")
 		return
-	var/inserted = insert_item(I, stack_amt = requested_amount, breakdown_flags= mat_container_flags)
+	var/inserted = insert_item(I, breakdown_flags= mat_container_flags)
 	if(inserted)
 		to_chat(user, "<span class='notice'>You insert a material total of [inserted] into [parent].</span>")
 		qdel(I)
@@ -159,7 +148,7 @@
 		user.put_in_active_hand(I)
 
 /// Proc specifically for inserting items, returns the amount of materials entered.
-/datum/component/material_container/proc/insert_item(obj/item/I, multiplier = 1, stack_amt, breakdown_flags = mat_container_flags)
+/datum/component/material_container/proc/insert_item(obj/item/I, multiplier = 1, breakdown_flags = mat_container_flags)
 	if(QDELETED(I))
 		return FALSE
 
@@ -349,7 +338,7 @@
 	for(var/x in mats) //Loop through all required materials
 		var/datum/material/req_mat = x
 		if(!istype(req_mat))
-			if(ispath(req_mat)) //Is this an actual material, or is it a category?
+			if(ispath(req_mat) || istext(req_mat)) //Is this an actual material, or is it a category?
 				req_mat = GET_MATERIAL_REF(req_mat) //Get the ref
 
 			// else // Its a category. (For example MAT_CATEGORY_RIGID)
