@@ -13,8 +13,6 @@
 	circuit = /obj/item/weapon/circuitboard/autolathe
 
 	var/static/datum/category_collection/autolathe/autolathe_recipes
-	// var/list/stored_material =  list(DEFAULT_WALL_MATERIAL = 0, MAT_GLASS = 0, MAT_PLASTEEL = 0, MAT_PLASTIC = 0)
-	// var/list/storage_capacity = list(DEFAULT_WALL_MATERIAL = 0, MAT_GLASS = 0, MAT_PLASTEEL = 0, MAT_PLASTIC = 0)
 
 	var/hacked = 0
 	var/disabled = 0
@@ -37,13 +35,6 @@
 	if(!autolathe_recipes)
 		autolathe_recipes = new()
 	wires = new(src)
-
-	// for(var/Name in name_to_material)
-	// 	if(Name in stored_material)
-	// 		continue
-
-	// 	stored_material[Name] = 0
-	// 	storage_capacity[Name] = 0
 
 	default_apply_parts()
 	RefreshParts()
@@ -145,61 +136,6 @@
 		return
 	
 	return ..()
-
-	// //Resources are being loaded.
-	// var/obj/item/eating = O
-	// if(!eating.matter)
-	// 	to_chat(user, "\The [eating] does not contain significant amounts of useful materials and cannot be accepted.")
-	// 	return
-
-	// var/filltype = 0       // Used to determine message.
-	// var/total_used = 0     // Amount of material used.
-	// var/mass_per_sheet = 0 // Amount of material constituting one sheet.
-
-	// for(var/material in eating.matter)
-
-	// 	if(isnull(stored_material[material]) || isnull(storage_capacity[material]))
-	// 		continue
-
-	// 	if(stored_material[material] >= storage_capacity[material])
-	// 		continue
-
-	// 	var/total_material = eating.matter[material]
-
-	// 	//If it's a stack, we eat multiple sheets.
-	// 	if(istype(eating,/obj/item/stack))
-	// 		var/obj/item/stack/stack = eating
-	// 		total_material *= stack.get_amount()
-
-	// 	if(stored_material[material] + total_material > storage_capacity[material])
-	// 		total_material = storage_capacity[material] - stored_material[material]
-	// 		filltype = 1
-	// 	else
-	// 		filltype = 2
-
-	// 	stored_material[material] += total_material
-	// 	total_used += total_material
-	// 	mass_per_sheet += eating.matter[material]
-
-	// if(!filltype)
-	// 	to_chat(user, "<span class='notice'>\The [src] is full. Please remove material from the autolathe in order to insert more.</span>")
-	// 	return
-	// else if(filltype == 1)
-	// 	to_chat(user, "You fill \the [src] to capacity with \the [eating].")
-	// else
-	// 	to_chat(user, "You fill \the [src] with \the [eating].")
-
-	// flick("autolathe_loading", src) // Plays metal insertion animation. Work out a good way to work out a fitting animation. ~Z
-
-	// if(istype(eating,/obj/item/stack))
-	// 	var/obj/item/stack/stack = eating
-	// 	stack.use(max(1, round(total_used/mass_per_sheet))) // Always use at least 1 to prevent infinite materials.
-	// else
-	// 	user.remove_from_mob(O)
-	// 	qdel(O)
-
-	// updateUsrDialog()
-	// return
 
 /obj/machinery/autolathe/attack_hand(mob/user as mob)
 	user.set_machine(src)
