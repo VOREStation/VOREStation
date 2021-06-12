@@ -120,6 +120,10 @@
 	var/datum/callback/pc = precondition
 	if(pc && !pc.Invoke(user))
 		return
+	if(istype(I, /obj/item/stack))
+		var/obj/item/stack/S = I
+		user_insert_stack(S, user, mat_container_flags)
+		return
 	var/material_amount = get_item_material_amount(I, mat_container_flags)
 	if(!material_amount)
 		to_chat(user, "<span class='warning'>[I] does not contain sufficient materials to be accepted by [parent].</span>")
@@ -128,6 +132,60 @@
 		to_chat(user, "<span class='warning'>[parent] is full. Please remove materials from [parent] in order to insert more.</span>")
 		return
 	user_insert(I, user, mat_container_flags)
+
+/// Proc used for when player inserts a stack
+/datum/component/material_container/proc/user_insert_stack(obj/item/stack/S, mob/living/user, breakdown_flags = mat_container_flags)
+	var/sheets = S.get_amount()
+	if(sheets < 1)
+		to_chat(user, "<span class='warning'>[S] does not contain sufficient materials to be accepted by [parent].</span>")
+		return
+
+	// Cache this since S may go away after use()
+	var/list/sheet_matter = S.matter
+
+	// Calculate total amount of material for one sheet
+	var/matter_per_sheet = 0
+	for(var/material in sheet_matter)
+		matter_per_sheet += sheet_matter[material]
+
+		// If any part of a sheet can't go in us, the whole sheet is invalid
+		if(!can_hold_material(GET_MATERIAL_REF(material)))
+			to_chat(user, "<span class='warning'>[parent] cannot contain [material].</span>")
+			return
+
+	// If we can't fit the material for one sheet, we're full.
+	if(!has_space(matter_per_sheet))
+		to_chat(user, "<span class='warning'>[parent] is full. Please remove materials from [parent] in order to insert more.</span>")
+		return
+
+	// Calculate the maximum amount of sheets we could possibly accept.
+	var/max_sheets = round((max_amount - total_amount) / matter_per_sheet)
+	if(max_sheets <= 0)
+		to_chat(user, "<span class='warning'>[parent] is full. Please remove materials from [parent] in order to insert more.</span>")
+		return
+
+	// Calculate the amount of sheets we're actually going to use.
+	var/sheets_to_use = min(sheets, max_sheets)
+
+	// It shouldn't be possible to add more matter than our max
+	ASSERT((total_amount + (matter_per_sheet * sheets_to_use)) <= max_amount)
+	
+	// Use the amount of sheets from the stack
+	if(!S.use(sheets_to_use))
+		to_chat(user, "<span class='warning'>Something went wrong with your stack. Split it manually and try again.</span>")
+		return
+
+	// We're going to blindly insert all of the materials, our assertion above says it shouldn't be possible to overflow
+	var/inserted = 0
+	for(var/matter in sheet_matter)
+		var/datum/material/MAT = GET_MATERIAL_REF(matter)
+		inserted += insert_amount_mat(sheet_matter[matter] * sheets_to_use, MAT)
+		last_inserted_id = matter
+
+	// Tell the user and wrap up.
+	to_chat(user, "<span class='notice'>You insert a material total of [inserted] into [parent].</span>")
+	if(after_insert)
+		after_insert.Invoke(S, last_inserted_id, inserted)
 
 /// Proc used for when player inserts materials
 /datum/component/material_container/proc/user_insert(obj/item/I, mob/living/user, breakdown_flags = mat_container_flags)

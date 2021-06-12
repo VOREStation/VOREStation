@@ -224,6 +224,7 @@
 				return
 
 			var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
+
 			var/list/materials_used = list()
 
 			var/multiplier = 1
@@ -244,14 +245,15 @@
 
 			//Check if we still have the materials.
 			var/coeff = (making.no_scale ? 1 : mat_efficiency) //stacks are unaffected by production coefficient
+			
 			for(var/MAT in making.resources)
 				var/datum/material/used_material = MAT
 				var/amount_needed = making.resources[MAT] * coeff * multiplier
 				materials_used[used_material] = amount_needed
-			
+
 			if(!materials.has_materials(materials_used))
 				return
-
+			
 			materials.use_materials(materials_used)
 
 			busy = making.name
