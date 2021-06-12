@@ -208,7 +208,7 @@ var/list/dispenser_presets = list()
 	if((dispenser_flags & GD_ONEITEM) && !(dispenser_flags & GD_UNLIMITED) && !one_setting.amount)
 		to_chat(user,"<span class='warning'>There's nothing in here!</span>")
 		return 0
-	if ((dispenser_flags & GD_NOGREED) && (user in used_by) && !emagged)
+	if ((dispenser_flags & GD_NOGREED) && (weakref(user) in used_by) && !emagged)
 		to_chat(user,"<span class='warning'>You've already picked up your gear!</span>")
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 0)
 		return 0
@@ -245,7 +245,7 @@ var/list/dispenser_presets = list()
 	else if(!(dispenser_flags & GD_UNLIMITED))
 		S.amount--
 	if((dispenser_flags & GD_NOGREED) && !emagged)
-		gear_distributed_to["[type]"] |= user
+		gear_distributed_to["[type]"] |= weakref(user)
 	flick("[icon_state]-scan",src)
 	visible_message("\The [src] scans its user.", runemessage = "hums")
 	sleep(30)
@@ -264,15 +264,6 @@ var/list/dispenser_presets = list()
 		emagged = FALSE
 	if(greet && user && !user.stat) // in case we got destroyed while we slept
 		to_chat(user,"<span class='notice'>[S.name] dispensing processed. Have a good day.</span>")
-
-/obj/machinery/gear_dispenser/proc/fit_for(var/obj/item/clothing/C, var/mob/living/carbon/human/H)
-	if(!istype(C))
-		error("Suit dispenser thought [C] was a clothing item")
-		return
-	C.refit_for_species(H.species?.get_bodytype())
-	if(istype(C, /obj/item/clothing/suit/space/void))
-		var/obj/item/clothing/suit/space/void/V = C
-		V.helmet?.refit_for_species(H.species?.get_bodytype())
 
 /obj/machinery/gear_dispenser/emag_act(remaining_charges, mob/user, emag_source)
 	. = ..()
@@ -463,3 +454,78 @@ var/list/dispenser_presets = list()
 	icon_state = "suitdispenserAL"
 	dispenser_flags = GD_ONEITEM|GD_NOGREED|GD_UNLIMITED
 	one_setting = /datum/gear_disp/voidsuit/autolok
+
+// Adminbuse
+/obj/machinery/gear_dispenser/vv_get_dropdown()
+	. = ..()
+	VV_DROPDOWN_OPTION("", "---")
+	VV_DROPDOWN_OPTION("admin_add", "Add New Gear")
+
+/obj/machinery/gear_dispenser/vv_do_topic(list/href_list)
+	. = ..()
+	IF_VV_OPTION("admin_add")
+		admin_add()
+		href_list["datumrefresh"] = "\ref[src]"
+
+/obj/machinery/gear_dispenser/proc/admin_add()
+	if(!check_rights(R_DEBUG|R_FUN))
+		return
+
+	var/example = @{"[
+	{
+		"menuoption": "Cool suit one",
+		"gearlist": ["/obj/item/clothing/suit/space", "/obj/item/clothing/head/helmet/space"],
+		"req_one_access": [5,63]
+	},
+	{
+		"menuoption": "Selection two",
+		"gearlist": ["/obj/random/trash"]
+	}
+]"}
+	
+	/**
+	 * Needs to be valid json with keys of:
+	 * "menuoption" = string for the name
+	 * "gearlist" = array of types (yes the types are not valid json, byond parses them into real types.)
+	 * "req_one_access" = array of numbers (accesses)
+	 */
+	var/input = input(usr, "Paste new gear pack JSON below. See example/code comments.", "Admin-load Dispenser", example) as null|message
+	if(!input)
+		return
+	
+	var/list/parsed = json_decode(input)
+	
+	if(!islist(parsed))
+		return
+	
+	var/list/running = list()
+	for(var/entry in parsed)
+		if(!islist(entry))
+			continue
+		var/list/this_entry = entry
+		var/option_name = this_entry["menuoption"]
+		var/list/types = this_entry["gearlist"]
+		var/list/access = this_entry["req_one_access"]
+	
+		if(!option_name || !islist(types))
+			continue
+
+		for(var/t in types)
+			if(ispath(t))
+				continue
+			types -= t
+			var/tnew = text2path(t)
+			if(ispath(tnew))
+				types += tnew
+	
+		var/datum/gear_disp/G = new()
+	
+		G.name = option_name
+		G.to_spawn = types
+	
+		if(LAZYLEN(access))
+			G.req_one_access = access
+		
+		running[option_name] = G
+	to_chat(usr, "[src] added [running.len] entries")
+	dispenses = running
