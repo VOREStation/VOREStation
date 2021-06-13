@@ -278,3 +278,9 @@
 	flick("autolathe_loading", src)//plays metal insertion animation
 	// use_power(min(1000, amount_inserted / 100))
 	SStgui.update_uis(src)
+
+/obj/machinery/autolathe/examine(mob/user)
+	. = ..()
+	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
+	if(in_range(user, src) || isobserver(user))
+		. += "<span class='notice'>The status display reads: Storing up to <b>[materials.max_amount]</b> material units.<br>Material consumption at <b>[mat_efficiency*100]%</b>.</span>"
