@@ -187,10 +187,11 @@
 				var/amount_needed = making.resources[MAT] * coeff * multiplier
 				materials_used[used_material] = amount_needed
 
-			if(!materials.has_materials(materials_used))
-				return
-			
-			materials.use_materials(materials_used)
+			if(LAZYLEN(materials_used))
+				if(!materials.has_materials(materials_used))
+					return
+				
+				materials.use_materials(materials_used)
 
 			busy = making.name
 			update_use_power(USE_POWER_ACTIVE)
