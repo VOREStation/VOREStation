@@ -1,12 +1,14 @@
+/**
+ * @file
+ * @copyright 2020 Aleksej Komarov
+ * @license MIT
+ */
+
 // UI states, which are mirrored from the BYOND code.
 export const UI_INTERACTIVE = 2;
 export const UI_UPDATE = 1;
 export const UI_DISABLED = 0;
 export const UI_CLOSE = -1;
-
-// Atmospheric helpers
-/** 0.0 Degrees Celsius in Kelvin */
-export const T0C = 273.15;
 
 // All game related colors are stored here
 export const COLORS = {
@@ -40,6 +42,11 @@ export const COLORS = {
     burn: '#e67e22',
     brute: '#e74c3c',
   },
+  // reagent / chemistry related colours
+  reagent: {
+    acidicbuffer: "#fbc314",
+    basicbuffer: "#3853a4",
+  },
 };
 
 // Colors defined in CSS
@@ -64,105 +71,88 @@ export const CSS_COLORS = [
   'label',
 ];
 
-
-// If you ever add a new radio channel, you can either manually update this, or
-// go use /client/verb/generate_tgui_radio_constants() in communications.dm.
+/* IF YOU CHANGE THIS KEEP IT IN SYNC WITH CHAT CSS */
 export const RADIO_CHANNELS = [
   {
-    "name": "Mercenary",
-    "freq": 1213,
-    "color": "#6D3F40",
+    name: 'Syndicate',
+    freq: 1213,
+    color: '#8f4a4b',
   },
   {
-    "name": "Raider",
-    "freq": 1277,
-    "color": "#6D3F40",
+    name: 'Red Team',
+    freq: 1215,
+    color: '#ff4444',
   },
   {
-    "name": "Special Ops",
-    "freq": 1341,
-    "color": "#5C5C8A",
+    name: 'Blue Team',
+    freq: 1217,
+    color: '#3434fd',
   },
   {
-    "name": "AI Private",
-    "freq": 1343,
-    "color": "#FF00FF",
+    name: 'Green Team',
+    freq: 1219,
+    color: '#34fd34',
   },
   {
-    "name": "Response Team",
-    "freq": 1345,
-    "color": "#5C5C8A",
+    name: 'Yellow Team',
+    freq: 1221,
+    color: '#fdfd34',
   },
   {
-    "name": "Supply",
-    "freq": 1347,
-    "color": "#5F4519",
+    name: 'CentCom',
+    freq: 1337,
+    color: '#2681a5',
   },
   {
-    "name": "Service",
-    "freq": 1349,
-    "color": "#6eaa2c",
+    name: 'Supply',
+    freq: 1347,
+    color: '#b88646',
   },
   {
-    "name": "Science",
-    "freq": 1351,
-    "color": "#993399",
+    name: 'Service',
+    freq: 1349,
+    color: '#6ca729',
   },
   {
-    "name": "Command",
-    "freq": 1353,
-    "color": "#193A7A",
+    name: 'Science',
+    freq: 1351,
+    color: '#c68cfa',
   },
   {
-    "name": "Medical",
-    "freq": 1355,
-    "color": "#008160",
+    name: 'Command',
+    freq: 1353,
+    color: '#fcdf03',
   },
   {
-    "name": "Engineering",
-    "freq": 1357,
-    "color": "#A66300",
+    name: 'Medical',
+    freq: 1355,
+    color: '#57b8f0',
   },
   {
-    "name": "Security",
-    "freq": 1359,
-    "color": "#A30000",
+    name: 'Engineering',
+    freq: 1357,
+    color: '#f37746',
   },
   {
-    "name": "Explorer",
-    "freq": 1361,
-    "color": "#555555",
+    name: 'Security',
+    freq: 1359,
+    color: '#dd3535',
   },
   {
-    "name": "Talon",
-    "freq": 1363,
-    "color": "#555555",
+    name: 'AI Private',
+    freq: 1447,
+    color: '#d65d95',
   },
   {
-    "name": "Common",
-    "freq": 1459,
-    "color": "#008000",
-  },
-  {
-    "name": "Entertainment",
-    "freq": 1461,
-    "color": "#339966",
-  },
-  {
-    "name": "Security(I)",
-    "freq": 1475,
-    "color": "#008000",
-  },
-  {
-    "name": "Medical(I)",
-    "freq": 1485,
-    "color": "#008000",
+    name: 'Common',
+    freq: 1459,
+    color: '#1ecc43',
   },
 ];
 
 const GASES = [
   {
-    'id': 'oxygen',
+    'id': 'o2',
     'name': 'Oxygen',
     'label': 'O₂',
     'color': 'blue',
@@ -174,15 +164,15 @@ const GASES = [
     'color': 'red',
   },
   {
-    'id': 'carbon dioxide',
+    'id': 'co2',
     'name': 'Carbon Dioxide',
     'label': 'CO₂',
     'color': 'grey',
   },
   {
-    'id': 'phoron',
-    'name': 'Phoron',
-    'label': 'Phoron',
+    'id': 'plasma',
+    'name': 'Plasma',
+    'label': 'Plasma',
     'color': 'pink',
   },
   {
@@ -244,24 +234,6 @@ const GASES = [
     'name': 'Hydrogen',
     'label': 'H₂',
     'color': 'white',
-  },
-  {
-    'id': 'other',
-    'name': 'Other',
-    'label': 'Other',
-    'color': 'white',
-  },
-  {
-    'id': 'pressure',
-    'name': 'Pressure',
-    'label': 'Pressure',
-    'color': 'average',
-  },
-  {
-    'id': 'temperature',
-    'name': 'Temperature',
-    'label': 'Temperature',
-    'color': 'yellow',
   },
 ];
 

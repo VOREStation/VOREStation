@@ -1,4 +1,10 @@
 /**
+ * @file
+ * @copyright 2020 Aleksej Komarov
+ * @license MIT
+ */
+
+/**
  * Removes excess whitespace and indentation from the string.
  */
 export const multiline = str => {
@@ -91,7 +97,7 @@ export const toTitleCase = str => {
     return str;
   }
   // Handle string
-  const WORDS_UPPER = ['Id', 'Tv', 'Rcd'];
+  const WORDS_UPPER = ['Id', 'Tv'];
   const WORDS_LOWER = [
     'A', 'An', 'And', 'As', 'At', 'But', 'By', 'For', 'For', 'From', 'In',
     'Into', 'Near', 'Nor', 'Of', 'On', 'Onto', 'Or', 'The', 'To', 'With',
@@ -105,7 +111,7 @@ export const toTitleCase = str => {
   }
   for (let word of WORDS_UPPER) {
     const regex = new RegExp('\\b' + word + '\\b', 'g');
-    currentStr = currentStr.replace(regex, str => str.toUpperCase());
+    currentStr = currentStr.replace(regex, str => str.toLowerCase());
   }
   return currentStr;
 };
