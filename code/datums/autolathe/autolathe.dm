@@ -38,6 +38,28 @@
 	name = "All"
 	category_item_type = /datum/category_item/autolathe
 
+// Copypasted from materials, they should show in All
+/datum/category_group/autolathe/all/New()
+	..()
+
+	for(var/Name in name_to_material)
+		var/datum/material/M = name_to_material[Name]
+
+		if(!M.stack_type)	// Shouldn't happen, but might. Never know.
+			continue
+
+		if(istype(M, /datum/material/alienalloy))
+			continue
+
+		var/obj/item/stack/material/S = M.stack_type
+		if(initial(S.name) in items_by_name)
+			continue
+
+		var/datum/category_item/autolathe/materials/WorkDat = new(src, M)
+
+		items |= WorkDat
+		items_by_name[WorkDat.name] = WorkDat
+
 ///datum/category_group/autolathe/all/New()
 
 /datum/category_group/autolathe/arms
