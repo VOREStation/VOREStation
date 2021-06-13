@@ -74,6 +74,7 @@
 				"requirements" = M.resources,
 				"hidden" = M.hidden,
 				"coeff_applies" = !M.no_scale,
+				"is_stack" = M.is_stack,
 			)))
 	data["recipes"] = recipes
 	data["categories"] = categories
@@ -163,7 +164,7 @@
 
 			var/list/materials_used = list()
 
-			var/multiplier = 1
+			var/multiplier = (params["multiplier"] || 1)
 
 			if(making.is_stack)
 				var/max_sheets
