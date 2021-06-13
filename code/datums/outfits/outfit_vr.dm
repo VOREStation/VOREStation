@@ -118,6 +118,9 @@ Keep outfits simple. Spawn with basic uniforms and minimal gear. Gear instead go
 	pda_type = /obj/item/device/pda/explorer
 	id_type = /obj/item/weapon/card/id/exploration
 	id_pda_assignment = "Explorer"
+	backpack = /obj/item/weapon/storage/backpack/explorer
+	satchel_one = /obj/item/weapon/storage/backpack/satchel/explorer
+	messenger_bag = /obj/item/weapon/storage/backpack/messenger/explorer
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_COMPREHENSIVE_SURVIVAL
 
 /decl/hierarchy/outfit/job/pilot
@@ -148,6 +151,9 @@ Keep outfits simple. Spawn with basic uniforms and minimal gear. Gear instead go
 	pda_type = /obj/item/device/pda/sar
 	id_type = /obj/item/weapon/card/id/exploration/fm
 	id_pda_assignment = "Field Medic"
+	backpack = /obj/item/weapon/storage/backpack/explorer
+	satchel_one = /obj/item/weapon/storage/backpack/satchel/explorer
+	messenger_bag = /obj/item/weapon/storage/backpack/messenger/explorer
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL|OUTFIT_COMPREHENSIVE_SURVIVAL
 
 /decl/hierarchy/outfit/job/pathfinder

@@ -2191,7 +2191,6 @@
 "mS" = (
 /obj/structure/table/standard,
 /obj/fiftyspawner/steel,
-/obj/fiftyspawner/copper,
 /turf/simulated/floor/tiled/eris/steel/gray_perforated,
 /area/space)
 "mT" = (

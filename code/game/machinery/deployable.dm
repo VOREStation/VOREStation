@@ -130,8 +130,8 @@ Deployable items
 /obj/machinery/deployable/barrier/emag_act(var/remaining_charges, var/mob/user)
 	if(emagged == 0)
 		emagged = 1
-		req_access.Cut()
-		req_one_access.Cut()
+		LAZYCLEARLIST(req_access)
+		LAZYCLEARLIST(req_one_access)
 		to_chat(user, "You break the ID authentication lock on \the [src].")
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		s.set_up(2, 1, src)

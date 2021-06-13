@@ -330,7 +330,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	icon_state = "thunder"
 	requires_power = 0
 	dynamic_lighting = 0
-	sound_env = ARENA
+	sound_env = SOUND_ENVIRONMENT_ARENA
 	flags = AREA_FLAG_IS_NOT_PERSISTENT
 
 /area/tdome/tdome1
@@ -1323,28 +1323,28 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area/holodeck/source_emptycourt
 	name = "\improper Holodeck - Empty Court"
-	sound_env = ARENA
+	sound_env = SOUND_ENVIRONMENT_ARENA
 
 /area/holodeck/source_boxingcourt
 	name = "\improper Holodeck - Boxing Court"
-	sound_env = ARENA
+	sound_env = SOUND_ENVIRONMENT_ARENA
 
 /area/holodeck/source_basketball
 	name = "\improper Holodeck - Basketball Court"
-	sound_env = ARENA
+	sound_env = SOUND_ENVIRONMENT_ARENA
 
 /area/holodeck/source_thunderdomecourt
 	name = "\improper Holodeck - Thunderdome Court"
 	requires_power = 0
-	sound_env = ARENA
+	sound_env = SOUND_ENVIRONMENT_ARENA
 
 /area/holodeck/source_courtroom
 	name = "\improper Holodeck - Courtroom"
-	sound_env = AUDITORIUM
+	sound_env = SOUND_ENVIRONMENT_AUDITORIUM
 
 /area/holodeck/source_beach
 	name = "\improper Holodeck - Beach"
-	sound_env = PLAIN
+	sound_env = SOUND_ENVIRONMENT_PLAIN
 
 /area/holodeck/source_burntest
 	name = "\improper Holodeck - Atmospheric Burn Test"
@@ -1354,23 +1354,23 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 
 /area/holodeck/source_meetinghall
 	name = "\improper Holodeck - Meeting Hall"
-	sound_env = AUDITORIUM
+	sound_env = SOUND_ENVIRONMENT_AUDITORIUM
 
 /area/holodeck/source_theatre
 	name = "\improper Holodeck - Theatre"
-	sound_env = CONCERT_HALL
+	sound_env = SOUND_ENVIRONMENT_CONCERT_HALL
 
 /area/holodeck/source_picnicarea
 	name = "\improper Holodeck - Picnic Area"
-	sound_env = PLAIN
+	sound_env = SOUND_ENVIRONMENT_PLAIN
 
 /area/holodeck/source_snowfield
 	name = "\improper Holodeck - Snow Field"
-	sound_env = FOREST
+	sound_env = SOUND_ENVIRONMENT_FOREST
 
 /area/holodeck/source_desert
 	name = "\improper Holodeck - Desert"
-	sound_env = PLAIN
+	sound_env = SOUND_ENVIRONMENT_PLAIN
 
 /area/holodeck/source_space
 	name = "\improper Holodeck - Space"

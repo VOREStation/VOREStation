@@ -27,6 +27,7 @@
 	return max_z
 
 /proc/get_area(atom/A)
+	RETURN_TYPE(/area)
 	if(isarea(A))
 		return A
 	var/turf/T = get_turf(A)
@@ -37,12 +38,6 @@
 	if(!A)
 		return null
 	return format_text ? format_text(A.name) : A.name
-
-/proc/get_area_master(const/O)
-	var/area/A = get_area(O)
-	if (isarea(A))
-		return A
-
 
 /** Checks if any living humans are in a given area. */
 /proc/area_is_occupied(var/area/myarea)

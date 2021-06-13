@@ -32,12 +32,8 @@ var/global/list/prevent_respawns = list()
 			qdel(O)
 
 	//Resleeving cleanup
-	if(src.mind.name in SStranscore.backed_up)
-		var/datum/transhuman/mind_record/MR = SStranscore.backed_up[src.mind.name]
-		SStranscore.stop_backup(MR)
-	if(src.mind.name in SStranscore.body_scans) //This uses mind names to avoid people cryo'ing a printed body to delete body scans.
-		var/datum/transhuman/body_record/BR = SStranscore.body_scans[src.mind.name]
-		SStranscore.remove_body(BR)
+	if(mind)
+		SStranscore.leave_round(src)
 
 	//Job slot cleanup
 	var/job = src.mind.assigned_role

@@ -207,7 +207,7 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	verbs -= /obj/structure/table/proc/do_put
 	..()
 
-/obj/structure/table/survival_pod/dismantle(obj/item/weapon/wrench/W, mob/user)
+/obj/structure/table/survival_pod/dismantle(obj/item/weapon/tool/wrench/W, mob/user)
 	to_chat(user, "<span class='warning'>You cannot dismantle \the [src].</span>")
 	return
 

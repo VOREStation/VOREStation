@@ -460,7 +460,7 @@
 		return
 
 	playsound(src, 'sound/machines/defib_charge.ogg', 50, 0)
-	audible_message("<span class='warning'>\The [src] lets out a steadily rising hum...</span>")
+	audible_message("<span class='warning'>\The [src] lets out a steadily rising hum...</span>", runemessage = "whines")
 
 	if(!do_after(user, chargetime, H))
 		return
@@ -527,7 +527,7 @@
 	H.setBrainLoss(brain_damage)
 
 /obj/item/weapon/shockpaddles/proc/make_announcement(var/message, var/msg_class)
-	audible_message("<b>\The [src]</b> [message]", "\The [src] vibrates slightly.")
+	audible_message("<b>\The [src]</b> [message]", "\The [src] vibrates slightly.", runemessage = "buzz")
 
 /obj/item/weapon/shockpaddles/emag_act(mob/user)
 	if(safety)

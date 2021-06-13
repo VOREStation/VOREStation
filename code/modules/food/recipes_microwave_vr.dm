@@ -148,3 +148,39 @@
 	reagents = list("enzyme" = 20, "virusfood" = 5, "nutriment" = 15, "protein" = 15) // labor intensive
 	items = list()
 	result = /obj/item/weapon/storage/box/wings/tray
+
+/datum/recipe/bucket
+	fruit = list("potato" = 1)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/meat,
+		/obj/item/weapon/reagent_containers/food/snacks/meat,
+		/obj/item/weapon/reagent_containers/food/snacks/meat,
+		/obj/item/weapon/reagent_containers/food/snacks/meat
+	)
+	result = /obj/item/weapon/storage/box/wings/bucket
+
+/datum/recipe/grub_pink
+	fruit = list("cherry" = 1)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/grub
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/grub_pink
+
+/datum/recipe/grub_blue
+	fruit = list("berries" = 1)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/grub
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/grub_blue
+
+/datum/recipe/grub_purple
+	fruit = list("grapes" = 1)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/grub
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/grub_purple
+
+/datum/recipe/honey_candy
+	reagents = list("sugar" = 5, "nutriment" = 5)
+	items = list()
+	result = /obj/item/weapon/reagent_containers/food/snacks/honey_candy

@@ -96,16 +96,17 @@
 	data["allow_items"] = allow_items
 	data["crew"] = frozen_crew
 	
-	data["items"] = list()
+	var/list/items = list()
 	if(allow_items)
 		for(var/F in frozen_items)
-			data["items"].Add(F) // VOREStation Edit
+			items.Add(F) // VOREStation Edit
 			/* VOREStation Removal
-			data["items"].Add(list(list(
+			items.Add(list(list(
 				"name" = "[F]",
 				"ref" = REF(F),
 			)))
 			VOREStation Removal End */
+	data["items"] = items
 
 	return data
 
@@ -116,7 +117,7 @@
 	add_fingerprint(usr)
 
 	return FALSE // VOREStation Edit - prevent topic exploits
-
+	/* VOREStation Edit - Unreachable due to above
 	switch(action)
 		if("item")
 			if(!allow_items)
@@ -148,7 +149,7 @@
 			for(var/obj/item/I in frozen_items)
 				I.forceMove(get_turf(src))
 				frozen_items -= I
-
+	*/
 
 /obj/item/weapon/circuitboard/cryopodcontrol
 	name = "Circuit board (Cryogenic Oversight Console)"
@@ -460,12 +461,7 @@
 
 	//VOREStation Edit - Resleeving.
 	if(to_despawn.mind)
-		if(to_despawn.mind.name in SStranscore.backed_up)
-			var/datum/transhuman/mind_record/MR = SStranscore.backed_up[to_despawn.mind.name]
-			SStranscore.stop_backup(MR)
-		if(to_despawn.mind.name in SStranscore.body_scans) //This uses mind names to avoid people cryo'ing a printed body to delete body scans.
-			var/datum/transhuman/body_record/BR = SStranscore.body_scans[to_despawn.mind.name]
-			SStranscore.remove_body(BR)
+		SStranscore.leave_round(to_despawn)
 	//VOREStation Edit End - Resleeving.
 
 	//Handle job slot/tater cleanup.

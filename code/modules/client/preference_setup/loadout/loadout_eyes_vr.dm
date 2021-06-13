@@ -2,7 +2,7 @@
 	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist", "Field Medic")
 
 /datum/gear/eyes/meson
-	display_name = "Optical Meson Scanners (Engineering, Science)"
+	display_name = "Optical Meson Scanners (Eng, Sci, Explo)"
 	allowed_roles = list("Station Engineer","Chief Engineer","Atmospheric Technician", "Scientist", "Research Director", "Explorer", "Pathfinder")
 
 /datum/gear/eyes/arglasses
@@ -55,7 +55,7 @@
 	path = /obj/item/clothing/glasses/fluff/science_proper
 
 /datum/gear/eyes/meson/retinal
-	display_name = "retinal projector, meson (Eng, Sci, Mining)"
+	display_name = "retinal projector, meson (Eng, Sci, Explo)"
 	path = /obj/item/clothing/glasses/omnihud/eng/meson
 
 /datum/gear/eyes/security/secpatch

@@ -423,6 +423,7 @@ var/global/list/##LIST_NAME = list();\
 #define VOLUME_CHANNEL_ALARMS "Alarms"
 #define VOLUME_CHANNEL_VORE "Vore"
 #define VOLUME_CHANNEL_DOORS "Doors"
+#define VOLUME_CHANNEL_INSTRUMENTS "Instruments"
 
 // Make sure you update this or clients won't be able to adjust the channel
 GLOBAL_LIST_INIT(all_volume_channels, list(
@@ -431,6 +432,7 @@ GLOBAL_LIST_INIT(all_volume_channels, list(
 	VOLUME_CHANNEL_ALARMS,
 	VOLUME_CHANNEL_VORE,
 	VOLUME_CHANNEL_DOORS,
+	VOLUME_CHANNEL_INSTRUMENTS
 ))
 
 #define APPEARANCECHANGER_CHANGED_RACE "Race"
@@ -449,3 +451,16 @@ GLOBAL_LIST_INIT(all_volume_channels, list(
 #define LOADOUT_WHITELIST_OFF    0
 #define LOADOUT_WHITELIST_LAX    1
 #define LOADOUT_WHITELIST_STRICT 2
+
+
+#ifndef WINDOWS_HTTP_POST_DLL_LOCATION
+#define WINDOWS_HTTP_POST_DLL_LOCATION "lib/byhttp.dll"
+#endif
+
+#ifndef UNIX_HTTP_POST_DLL_LOCATION
+#define UNIX_HTTP_POST_DLL_LOCATION "lib/libbyhttp.so"
+#endif
+
+#ifndef HTTP_POST_DLL_LOCATION
+#define HTTP_POST_DLL_LOCATION (world.system_type == MS_WINDOWS ? WINDOWS_HTTP_POST_DLL_LOCATION : UNIX_HTTP_POST_DLL_LOCATION)
+#endif

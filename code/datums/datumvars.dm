@@ -72,7 +72,7 @@
 		if(!usr || !result || result == "---Components---" || result == "---Elements---")
 			return
 		if(QDELETED(src))
-			to_chat(usr, "That thing doesn't exist anymore!", confidential = TRUE)
+			to_chat(usr, "That thing doesn't exist anymore!")
 			return
 		var/list/lst = usr.client.get_callproc_args()
 		if(!lst)

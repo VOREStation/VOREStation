@@ -90,8 +90,6 @@
 			dismantle_wall()
 			return 1
 
-	if(..()) return 1
-
 	if(!can_open)
 		if(!material.wall_touch_special(src, user))
 			to_chat(user, "<span class='notice'>You push the wall, but nothing happens.</span>")

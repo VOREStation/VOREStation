@@ -33,7 +33,6 @@ var/list/_human_default_emotes = list(
 	/decl/emote/audible/grunt,
 	/decl/emote/audible/slap,
 	/decl/emote/audible/crack,
-	/decl/emote/human,
 	/decl/emote/human/deathgasp,
 	/decl/emote/audible/giggle,
 	/decl/emote/audible/scream,
@@ -125,6 +124,8 @@ var/list/_human_default_emotes = list(
 	/decl/emote/audible/gao,
 	/decl/emote/audible/cackle,
 	/decl/emote/audible/squish,
+	/decl/emote/audible/spiderchitter,
+	/decl/emote/audible/spiderpurr,
 	
 	/decl/emote/visible/mlem,
 	/decl/emote/visible/blep,
@@ -134,8 +135,10 @@ var/list/_human_default_emotes = list(
 	//VOREStation Add End
 )
 
-/mob/living/carbon/human/get_default_emotes()
-	return global._human_default_emotes
+/mob/living/carbon/human/get_available_emotes()
+	. = global._human_default_emotes
+	if(length(species?.default_emotes))
+		. |= species.default_emotes
 
 /mob/living/carbon/human/verb/pose()
 	set name = "Set Pose"

@@ -111,3 +111,22 @@
 				  access_eva,
 				  access_pilot)
 	one_access = TRUE
+
+/datum/supply_pack/misc/music_players
+	name = "music players (3)"
+	contains = list(
+		/obj/item/device/walkpod = 3
+	)
+	cost = 150
+	containertype = /obj/structure/closet/crate
+	containername = "portable music players crate"
+
+/datum/supply_pack/misc/juke_remotes
+	name = "jukebox remote speakers (2)"
+	contains = list(
+		/obj/item/device/juke_remote = 2
+	)
+	cost = 300
+	containertype = /obj/structure/closet/crate
+	containername = "cordless jukebox speakers crate"
+	

@@ -55,7 +55,7 @@ var/list/mining_overlay_cache = list()
 		"marble" = /obj/item/weapon/ore/marble,
 		"lead" = /obj/item/weapon/ore/lead,
 		"copper" = /obj/item/weapon/ore/copper,
-		"tin" = /obj/item/weapon/ore/tin,
+//		"tin" = /obj/item/weapon/ore/tin,
 		"bauxite" = /obj/item/weapon/ore/bauxite,
 //		"void opal" = /obj/item/weapon/ore/void_opal,
 //		"painite" = /obj/item/weapon/ore/painite,
@@ -240,8 +240,10 @@ turf/simulated/mineral/floor/light_corner
 		spawn(1) // Otherwise most of the ore is lost to the explosion, which makes this rather moot.
 			for(var/ore in resources)
 				var/amount_to_give = rand(CEILING(resources[ore]/2, 1), resources[ore])  // Should result in at least one piece of ore.
+				var/oretype = ore_types[ore]
+				if(!oretype)
+					return // this turf can't give that type
 				for(var/i=1, i <= amount_to_give, i++)
-					var/oretype = ore_types[ore]
 					new oretype(src)
 				resources[ore] = 0
 
@@ -650,10 +652,10 @@ turf/simulated/mineral/floor/light_corner
 
 	var/mineral_name
 	if(rare_ore)
-		mineral_name = pickweight(list("marble" = 5,/* "quartz" = 15,*/ "copper" = 10, "tin" = 5, "bauxite" = 5, "uranium" = 15, "platinum" = 20, "hematite" = 15, "rutile" = 20, "carbon" = 15, "diamond" = 3, "gold" = 15, "silver" = 15, "phoron" = 25, "lead" = 5,/* "void opal" = 1,*/ "verdantium" = 2/*, "painite" = 1*/))
+		mineral_name = pickweight(list("marble" = 5,/* "quartz" = 15,*/ "copper" = 10, /*"tin" = 5,*/ "bauxite" = 5, "uranium" = 15, "platinum" = 20, "hematite" = 15, "rutile" = 20, "carbon" = 15, "diamond" = 3, "gold" = 15, "silver" = 15, "phoron" = 25, "lead" = 5,/* "void opal" = 1,*/ "verdantium" = 2/*, "painite" = 1*/))
 
 	else
-		mineral_name = pickweight(list("marble" = 3,/* "quartz" = 10,*/ "copper" = 20, "tin" = 15, "bauxite" = 15, "uranium" = 10, "platinum" = 10, "hematite" = 70, "rutile" = 15, "carbon" = 70, "diamond" = 2, "gold" = 10, "silver" = 10, "phoron" = 20, "lead" = 3,/* "void opal" = 1,*/ "verdantium" = 1/*, "painite" = 1*/))
+		mineral_name = pickweight(list("marble" = 3,/* "quartz" = 10,*/ "copper" = 20, /*"tin" = 15,*/ "bauxite" = 15, "uranium" = 10, "platinum" = 10, "hematite" = 70, "rutile" = 15, "carbon" = 70, "diamond" = 2, "gold" = 10, "silver" = 10, "phoron" = 20, "lead" = 3,/* "void opal" = 1,*/ "verdantium" = 1/*, "painite" = 1*/))
 
 	if(mineral_name && (mineral_name in GLOB.ore_data))
 		mineral = GLOB.ore_data[mineral_name]

@@ -29,5 +29,5 @@ var/list/_robot_default_emotes = list(
 	//VOREStation Add End
 )
 
-/mob/living/silicon/robot/get_default_emotes()
+/mob/living/silicon/robot/get_available_emotes()
 	return global._robot_default_emotes

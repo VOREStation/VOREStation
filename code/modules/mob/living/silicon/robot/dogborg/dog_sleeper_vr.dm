@@ -22,7 +22,7 @@
 	var/decompiler = FALSE
 	var/delivery = FALSE
 	var/delivery_tag = "Fuel"
-	var/list/deliverylists = list()
+	var/list/list/deliverylists = list()
 	var/list/deliveryslot_1 = list()
 	var/list/deliveryslot_2 = list()
 	var/list/deliveryslot_3 = list()

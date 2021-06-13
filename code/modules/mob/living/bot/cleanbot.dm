@@ -14,7 +14,6 @@
 	var/cleaning = 0
 	var/wet_floors = 0
 	var/spray_blood = 0
-	var/blood = 1
 	var/list/target_types = list()
 
 /mob/living/bot/cleanbot/New()
@@ -163,8 +162,7 @@
 	data["on"] = on
 	data["open"] = open
 	data["locked"] = locked
-	
-	data["blood"] = blood
+
 	data["patrol"] = will_patrol
 	data["vocal"] = vocal
 
@@ -184,10 +182,6 @@
 				turn_off()
 			else
 				turn_on()
-			. = TRUE
-		if("blood")
-			blood = !blood
-			get_targets()
 			. = TRUE
 		if("patrol")
 			will_patrol = !will_patrol
@@ -216,18 +210,7 @@
 		return 1
 
 /mob/living/bot/cleanbot/proc/get_targets()
-	target_types = list()
-
-	target_types += /obj/effect/decal/cleanable/blood/oil
-	target_types += /obj/effect/decal/cleanable/vomit
-	target_types += /obj/effect/decal/cleanable/crayon
-	target_types += /obj/effect/decal/cleanable/liquid_fuel
-	target_types += /obj/effect/decal/cleanable/mucus
-	target_types += /obj/effect/decal/cleanable/dirt
-	target_types += /obj/effect/decal/cleanable/filth
-
-	if(blood)
-		target_types += /obj/effect/decal/cleanable/blood
+	target_types = list(/obj/effect/decal/cleanable)
 
 /* Assembly */
 

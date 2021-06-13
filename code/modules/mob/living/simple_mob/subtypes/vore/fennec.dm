@@ -62,3 +62,101 @@
 	speak = list("SKREEEE!","Chrp?","Ararrrararr.")
 	emote_hear = list("screEEEEeeches!","chirps.")
 	emote_see = list("earflicks","sniffs at the ground")
+
+// LORG FEN
+/datum/category_item/catalogue/fauna/fennec_huge
+	name = "Wildlife - Fennec??"
+	desc = "Classification: Vulpes zerda megaxia\
+	<br><br>This is an unreasonably large fennec..."
+	value = CATALOGUER_REWARD_HARD
+
+/mob/living/simple_mob/vore/fennec/huge
+	icon = 'icons/mob/vore100x100.dmi'
+	icon_rest = null
+	
+	// LORG
+	maxHealth = 500
+	health = 500
+	harm_intent_damage = 40
+	melee_damage_lower = 20
+	melee_damage_upper = 60
+	mob_bump_flag = HEAVY
+	grab_resist = 100
+	mob_class = MOB_CLASS_HUMANOID
+	movement_cooldown = 1
+	melee_miss_chance = 10
+
+	old_x = -32
+	pixel_x = -32
+	default_pixel_x = -32
+	
+	// If you're immune to digestion, they can't digest you anyway!
+	vore_ignores_undigestable = TRUE
+	vore_default_mode = DM_DIGEST
+	devourable = FALSE // until KO'd
+	vore_icons = 0
+
+	// Handled in apply_attack
+	vore_pounce_successrate = 100
+	vore_pounce_chance = 0
+	vore_capacity = 5
+	vore_bump_emote	= "quickly snatches up"
+
+	attacktext = list("stomped","kicked")
+	friendly = list("pet pats", "pats the head of")
+
+	response_help = "pats the paw of"
+	response_disarm = "somehow shoves aside"
+	
+	ai_holder_type = /datum/ai_holder/simple_mob/retaliate/cooperative
+	var/image/bigshadow
+	var/autodoom = TRUE
+
+/mob/living/simple_mob/vore/fennec/huge/Initialize()
+	. = ..()
+	bigshadow = image(icon, icon_state = "shadow")
+	bigshadow.plane = MOB_PLANE
+	bigshadow.layer = BELOW_MOB_LAYER
+	bigshadow.appearance_flags = RESET_COLOR|RESET_TRANSFORM
+	add_overlay(bigshadow)
+
+/mob/living/simple_mob/vore/fennec/huge/update_icon()
+	. = ..()
+	add_overlay(bigshadow)
+
+/mob/living/simple_mob/vore/fennec/huge/init_vore()
+	..()
+	var/obj/belly/B = vore_selected
+	B.name = "Stomach"
+	B.desc = "The slimy wet insides of a rather large fennec! Not quite as clean as the fen on the outside."
+	B.human_prey_swallow_time = 5
+	B.nonhuman_prey_swallow_time = 5
+
+	/* todo
+	B.emote_lists[DM_HOLD] = list()
+	B.emote_lists[DM_DIGEST] = list()
+	B.digest_messages_prey = list()
+	*/
+
+/mob/living/simple_mob/vore/fennec/huge/death()
+	devourable = TRUE
+	return ..()
+
+/mob/living/simple_mob/vore/fennec/huge/apply_attack(atom/A, damage_to_do)
+	// We may stomp or instanom in combat
+	if(autodoom && isliving(A) && (damage_to_do >= (melee_damage_upper*0.9)))
+		var/mob/living/L = A
+		if(will_eat(L))
+			var/obj/belly/B = vore_organs[1]
+			custom_emote(message = "snatches and devours [L]!")
+			B.nom_mob(L)
+			ai_holder.find_target()
+			return
+		else if(L.size_multiplier <= 0.5 && L.step_mechanics_pref)
+			custom_emote(message = "stomps [L] into oblivion!")
+			L.gib()
+			return
+		else
+			return ..()
+	return ..()
+	

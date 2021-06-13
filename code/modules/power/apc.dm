@@ -189,9 +189,7 @@ GLOBAL_LIST_EMPTY(apcs)
 
 	pixel_x = (dir & 3)? 0 : (dir == 4 ? 26 : -26) //VOREStation Edit -> 24 to 26
 	pixel_y = (dir & 3)? (dir ==1 ? 26 : -26) : 0 //VOREStation Edit -> 24 to 26
-	if(building==0)
-		init()
-	else
+	if(building)
 		area = get_area(src)
 		area.apc = src
 		opened = 1
@@ -199,6 +197,16 @@ GLOBAL_LIST_EMPTY(apcs)
 		name = "[area.name] APC"
 		stat |= MAINT
 		update_icon()
+
+/obj/machinery/power/apc/Initialize(mapload, ndir, building)
+	. = ..()
+	if(!building)
+		init()
+		return INITIALIZE_HINT_LATELOAD
+
+/obj/machinery/power/apc/LateInitialize()
+	. = ..()
+	update()
 
 /obj/machinery/power/apc/Destroy()
 	GLOB.apcs -= src
@@ -267,9 +275,6 @@ GLOBAL_LIST_EMPTY(apcs)
 	update_icon()
 
 	make_terminal()
-
-	spawn(5)
-		update()
 
 /obj/machinery/power/apc/examine(mob/user)
 	. = ..()

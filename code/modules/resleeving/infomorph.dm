@@ -58,6 +58,7 @@ var/list/infomorph_emotions = list(
 
 	var/obj/item/weapon/pai_cable/cable		// The cable we produce and use when door or camera jacking
 	var/silence_time			// Timestamp when we were silenced (normally via EMP burst), set to null after silence has faded
+	var/db_key
 
 // Various software-specific vars
 
@@ -83,7 +84,7 @@ var/list/infomorph_emotions = list(
 	var/datum/data/record/securityActive1		// Could probably just combine all these into one
 	var/datum/data/record/securityActive2
 
-/mob/living/silicon/infomorph/New(var/obj/item/device/sleevecard/SC, var/name = "Unknown")
+/mob/living/silicon/infomorph/New(var/obj/item/device/sleevecard/SC, var/name = "Unknown", var/db_key)
 	ASSERT(SC)
 	name = "[initial(name)] ([name])"
 	src.forceMove(SC)
@@ -94,6 +95,8 @@ var/list/infomorph_emotions = list(
 	if(!card.radio)
 		card.radio = new (card)
 	radio = card.radio
+
+	src.db_key = db_key
 
 	//Default languages without universal translator software
 	add_language(LANGUAGE_EAL, 1)
@@ -406,9 +409,7 @@ var/list/infomorph_emotions = list(
 	close_up()
 
 	//Resleeving 'cryo'
-	if(mind && (mind.name in SStranscore.backed_up))
-		var/datum/transhuman/mind_record/MR = SStranscore.backed_up[mind.name]
-		SStranscore.stop_backup(MR)
+	SStranscore.leave_round(src)
 
 	card.removePersonality()
 	clear_client()
@@ -424,11 +425,11 @@ var/list/infomorph_emotions = list(
 	else
 		to_chat(src, "<span class='warning'>You don't have a radio!</span>")
 
-/mob/living/silicon/infomorph/say(var/msg)
+/mob/living/silicon/infomorph/say(var/message, var/datum/language/speaking = null, var/whispering = 0)
 	if(silence_time)
 		to_chat(src, "<font color=green>Communication circuits remain uninitialized.</font>")
 	else
-		..(msg)
+		..(message)
 
 /mob/living/silicon/infomorph/handle_message_mode(message_mode, message, verb, speaking, used_radios, alt_name)
 	switch(message_mode)
@@ -588,7 +589,7 @@ var/global/list/default_infomorph_software = list()
 
 	//Only every so often
 	if(air_master.current_cycle%30 == 1)
-		SStranscore.m_backup(mind)
+		SStranscore.m_backup(mind, database_key = db_key)
 
 	if(health <= 0)
 		death(null,"gives one shrill beep before falling lifeless.")

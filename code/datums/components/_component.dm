@@ -213,10 +213,10 @@
   *
   * Arguments:
   * * datum/target Datum to stop listening to signals from
-  * * sig_typeor_types Signal string key or list of signal keys to stop listening to specifically
+  * * sig_type_or_types Signal string key or list of signal keys to stop listening to specifically
   */
 /datum/proc/UnregisterSignal(datum/target, sig_type_or_types)
-	var/list/lookup = target.comp_lookup
+	var/list/lookup = target?.comp_lookup
 	if(!signal_procs || !signal_procs[target] || !lookup)
 		return
 	if(!islist(sig_type_or_types))
@@ -333,7 +333,7 @@
   * * datum/component/c_type The typepath of the component you want to get a reference to
   */
 /datum/proc/GetComponent(datum/component/c_type)
-	// RETURN_TYPE(c_type)
+	RETURN_TYPE(c_type)
 	if(initial(c_type.dupe_mode) == COMPONENT_DUPE_ALLOWED || initial(c_type.dupe_mode) == COMPONENT_DUPE_SELECTIVE)
 		stack_trace("GetComponent was called to get a component of which multiple copies could be on an object. This can easily break and should be changed. Type: \[[c_type]\]")
 	var/list/dc = datum_components
@@ -353,7 +353,7 @@
   * * datum/component/c_type The typepath of the component you want to get a reference to
   */
 /datum/proc/GetExactComponent(datum/component/c_type)
-	// RETURN_TYPE(c_type)
+	RETURN_TYPE(c_type)
 	if(initial(c_type.dupe_mode) == COMPONENT_DUPE_ALLOWED || initial(c_type.dupe_mode) == COMPONENT_DUPE_SELECTIVE)
 		stack_trace("GetComponent was called to get a component of which multiple copies could be on an object. This can easily break and should be changed. Type: \[[c_type]\]")
 	var/list/dc = datum_components

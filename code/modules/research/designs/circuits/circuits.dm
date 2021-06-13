@@ -5,7 +5,7 @@ CIRCUITS BELOW
 /datum/design/circuit
 	build_type = IMPRINTER
 	req_tech = list(TECH_DATA = 2)
-	materials = list("glass" = 1850, MAT_COPPER = 150)
+	materials = list("glass" = 2000)
 	chemicals = list("sacid" = 20)
 	time = 5
 
@@ -493,7 +493,7 @@ CIRCUITS BELOW
 	name = "'Durand' central control"
 	id = "durand_main"
 	req_tech = list(TECH_DATA = 4)
-	materials = list("glass" = 2000, MAT_GRAPHITE = 1250, MAT_COPPER = 100)
+	materials = list("glass" = 2000, MAT_GRAPHITE = 1250)
 	chemicals = list("sacid" = 20)
 	build_path = /obj/item/weapon/circuitboard/mecha/durand/main
 	sort_string = "NAADA"
@@ -502,7 +502,7 @@ CIRCUITS BELOW
 	name = "'Durand' peripherals control"
 	id = "durand_peri"
 	req_tech = list(TECH_DATA = 4)
-	materials = list("glass" = 2000, MAT_GRAPHITE = 1250, MAT_COPPER = 100)
+	materials = list("glass" = 2000, MAT_GRAPHITE = 1250)
 	chemicals = list("sacid" = 20)
 	build_path = /obj/item/weapon/circuitboard/mecha/durand/peripherals
 	sort_string = "NAADB"
@@ -511,7 +511,7 @@ CIRCUITS BELOW
 	name = "'Durand' weapon control and targeting"
 	id = "durand_targ"
 	req_tech = list(TECH_DATA = 4, TECH_COMBAT = 2)
-	materials = list("glass" = 2000, MAT_GRAPHITE = 1250, MAT_COPPER = 100)
+	materials = list("glass" = 2000, MAT_GRAPHITE = 1250)
 	chemicals = list("sacid" = 20)
 	build_path = /obj/item/weapon/circuitboard/mecha/durand/targeting
 	sort_string = "NAADC"
@@ -578,7 +578,7 @@ CIRCUITS BELOW
 
 /datum/design/circuit/shield
 	req_tech = list(TECH_BLUESPACE = 4, TECH_PHORON = 3)
-	materials = list("glass" = 2000, MAT_COPPER = 100, "gold" = 1000)
+	materials = list("glass" = 2000, "gold" = 1000)
 
 /datum/design/circuit/shield/AssembleDesignName()
 	name = "Shield generator circuit design ([name])"
@@ -662,19 +662,6 @@ CIRCUITS BELOW
 	build_path = /obj/item/weapon/circuitboard/microwave/advanced
 	sort_string = "HACAA"
 
-/datum/design/circuit/pointdefense
-	name = "point defense battery"
-	id = "pointdefense"
-	req_tech = list(TECH_DATA = 2, TECH_ENGINEERING = 3, TECH_COMBAT = 4)
-	build_path = /obj/item/weapon/circuitboard/pointdefense
-	sort_string = "OAABA"
-
-/datum/design/circuit/pointdefense_control
-	name = "point defense control"
-	id = "pointdefense_control"
-	req_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 3, TECH_COMBAT = 2)
-	build_path = /obj/item/weapon/circuitboard/pointdefense_control
-	sort_string = "OAABB"
 
 /datum/design/circuit/shield_generator
 	name = "shield generator"

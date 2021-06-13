@@ -4,24 +4,22 @@
 #define Z_LEVEL_SURFACE_HIGH				3
 #define Z_LEVEL_TRANSIT						4
 #define Z_LEVEL_SPACE_LOW					5
-#define Z_LEVEL_SPACE_MID					6
-#define Z_LEVEL_SPACE_HIGH					7
-#define Z_LEVEL_SURFACE_MINE				8
-#define Z_LEVEL_SOLARS						9
-#define Z_LEVEL_MISC						10
-#define Z_LEVEL_UNDERDARK					11
-#define Z_LEVEL_PLAINS						12
-#define Z_LEVEL_OFFMAP1						13
-//#define Z_LEVEL_OFFMAP2						14
-#define Z_LEVEL_ROGUEMINE_1					14
-#define Z_LEVEL_ROGUEMINE_2					15
-#define Z_LEVEL_BEACH						16
-#define Z_LEVEL_BEACH_CAVE					17
-#define Z_LEVEL_AEROSTAT					18
-#define Z_LEVEL_AEROSTAT_SURFACE				19
-#define Z_LEVEL_DEBRISFIELD					20
-#define Z_LEVEL_FUELDEPOT					21
-#define Z_LEVEL_GATEWAY						22
+#define Z_LEVEL_SURFACE_MINE				6
+#define Z_LEVEL_SOLARS						7
+#define Z_LEVEL_MISC						8
+#define Z_LEVEL_UNDERDARK					9
+#define Z_LEVEL_PLAINS						10
+#define Z_LEVEL_OFFMAP1						11
+//#define Z_LEVEL_OFFMAP2						12
+#define Z_LEVEL_ROGUEMINE_1					12
+#define Z_LEVEL_ROGUEMINE_2					13
+#define Z_LEVEL_BEACH						14
+#define Z_LEVEL_BEACH_CAVE					15
+#define Z_LEVEL_AEROSTAT					16
+#define Z_LEVEL_AEROSTAT_SURFACE			17
+#define Z_LEVEL_DEBRISFIELD					18
+#define Z_LEVEL_FUELDEPOT					19
+#define Z_LEVEL_GATEWAY						20
 
 //Camera networks
 #define NETWORK_TETHER "Tether"
@@ -64,9 +62,7 @@
 		Z_LEVEL_SURFACE_LOW,
 		Z_LEVEL_SURFACE_MID,
 		Z_LEVEL_SURFACE_HIGH,
-		Z_LEVEL_SPACE_LOW,
-		Z_LEVEL_SPACE_MID,
-		Z_LEVEL_SPACE_HIGH))
+		Z_LEVEL_SPACE_LOW))
 
 	station_name  = "EU Vore Core"
 	station_short = "Tether"
@@ -104,7 +100,7 @@
 							NETWORK_RESEARCH_OUTPOST,
 							NETWORK_ROBOTS,
 							NETWORK_SECURITY,
-							NETWORK_TCOMMS,
+							NETWORK_TELECOM,
 							NETWORK_TETHER
 							)
 	secondary_networks = list(
@@ -176,20 +172,18 @@
 		Z_LEVEL_SURFACE_HIGH,
 		Z_LEVEL_TRANSIT,
 		Z_LEVEL_SPACE_LOW,
-		Z_LEVEL_SPACE_MID,
-		Z_LEVEL_SPACE_HIGH,
 		Z_LEVEL_SURFACE_MINE,
 		Z_LEVEL_SOLARS,
 		Z_LEVEL_MISC,
 		Z_LEVEL_BEACH
 		)
 
-	belter_docked_z = 		list(Z_LEVEL_SPACE_HIGH)
+	belter_docked_z = 		list(Z_LEVEL_SPACE_LOW)
 	belter_transit_z =	 	list(Z_LEVEL_MISC)
 	belter_belt_z = 		list(Z_LEVEL_ROGUEMINE_1,
 						 		 Z_LEVEL_ROGUEMINE_2)
 
-	mining_station_z =		list(Z_LEVEL_SPACE_HIGH)
+	mining_station_z =		list(Z_LEVEL_SPACE_LOW)
 	mining_outpost_z =		list(Z_LEVEL_SURFACE_MINE)
 
 	lateload_single_pick = null //Nothing right now.
@@ -267,6 +261,8 @@
 		Z_LEVEL_UNDERDARK
 	)
 
+	levels_for_distress = list(Z_LEVEL_OFFMAP1, Z_LEVEL_BEACH, Z_LEVEL_AEROSTAT, Z_LEVEL_DEBRISFIELD, Z_LEVEL_FUELDEPOT)
+
 /obj/effect/overmap/visitable/sector/virgo3b/Crossed(var/atom/movable/AM)
 	. = ..()
 	announce_atc(AM,going = FALSE)
@@ -276,7 +272,7 @@
 	announce_atc(AM,going = TRUE)
 
 /obj/effect/overmap/visitable/sector/virgo3b/get_space_zlevels()
-	return list(Z_LEVEL_SPACE_LOW, Z_LEVEL_SPACE_MID, Z_LEVEL_SPACE_HIGH)
+	return list(Z_LEVEL_SPACE_LOW)
 
 /obj/effect/overmap/visitable/sector/virgo3b/proc/announce_atc(var/atom/movable/AM, var/going = FALSE)
 	var/message = "Sensor contact for vessel '[AM.name]' has [going ? "left" : "entered"] ATC control area."
@@ -295,7 +291,7 @@
 #define TETHER_MAP_SIZE 140 // Width and height of compiled in tether z levels.
 #define TETHER_HOLOMAP_CENTER_GUTTER 40 // 40px central gutter between columns
 #define TETHER_HOLOMAP_MARGIN_X ((HOLOMAP_ICON_SIZE - (2*TETHER_MAP_SIZE) - TETHER_HOLOMAP_CENTER_GUTTER) / 2) // 80
-#define TETHER_HOLOMAP_MARGIN_Y ((HOLOMAP_ICON_SIZE - (3*TETHER_MAP_SIZE)) / 2) // 30
+#define TETHER_HOLOMAP_MARGIN_Y ((HOLOMAP_ICON_SIZE - (2*TETHER_MAP_SIZE)) / 2) // 30
 
 // We have a bunch of stuff common to the station z levels
 /datum/map_z_level/tether/station
@@ -309,7 +305,7 @@
 	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_SEALED|MAP_LEVEL_XENOARCH_EXEMPT|MAP_LEVEL_PERSIST
 	base_turf = /turf/simulated/floor/outdoors/rocks/virgo3b
 	holomap_offset_x = TETHER_HOLOMAP_MARGIN_X
-	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y + TETHER_MAP_SIZE*0
+	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y
 
 /datum/map_z_level/tether/station/surface_mid
 	z = Z_LEVEL_SURFACE_MID
@@ -317,15 +313,15 @@
 	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_SEALED|MAP_LEVEL_XENOARCH_EXEMPT|MAP_LEVEL_PERSIST
 	base_turf = /turf/simulated/open
 	holomap_offset_x = TETHER_HOLOMAP_MARGIN_X
-	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y + TETHER_MAP_SIZE*1
+	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y + TETHER_MAP_SIZE
 
 /datum/map_z_level/tether/station/surface_high
 	z = Z_LEVEL_SURFACE_HIGH
 	name = "Surface 3"
 	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_SEALED|MAP_LEVEL_XENOARCH_EXEMPT|MAP_LEVEL_PERSIST
 	base_turf = /turf/simulated/open
-	holomap_offset_x = TETHER_HOLOMAP_MARGIN_X
-	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y + TETHER_MAP_SIZE*2
+	holomap_offset_x = TETHER_HOLOMAP_MARGIN_X + TETHER_HOLOMAP_CENTER_GUTTER + TETHER_MAP_SIZE
+	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y
 
 /datum/map_z_level/tether/transit
 	z = Z_LEVEL_TRANSIT
@@ -337,24 +333,8 @@
 	name = "Asteroid 1"
 	base_turf = /turf/space
 	transit_chance = 33
-	holomap_offset_x = HOLOMAP_ICON_SIZE - TETHER_HOLOMAP_MARGIN_X - TETHER_MAP_SIZE
-	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y + TETHER_MAP_SIZE*0
-
-/datum/map_z_level/tether/station/space_mid
-	z = Z_LEVEL_SPACE_MID
-	name = "Asteroid 2"
-	base_turf = /turf/simulated/open
-	transit_chance = 33
-	holomap_offset_x = HOLOMAP_ICON_SIZE - TETHER_HOLOMAP_MARGIN_X - TETHER_MAP_SIZE
-	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y + TETHER_MAP_SIZE*1
-
-/datum/map_z_level/tether/station/space_high
-	z = Z_LEVEL_SPACE_HIGH
-	name = "Asteroid 3"
-	base_turf = /turf/simulated/open
-	transit_chance = 33
-	holomap_offset_x = HOLOMAP_ICON_SIZE - TETHER_HOLOMAP_MARGIN_X - TETHER_MAP_SIZE
-	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y + TETHER_MAP_SIZE*2
+	holomap_offset_x = TETHER_HOLOMAP_MARGIN_X + TETHER_HOLOMAP_CENTER_GUTTER + TETHER_MAP_SIZE
+	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y + TETHER_MAP_SIZE
 
 /datum/map_z_level/tether/mine
 	z = Z_LEVEL_SURFACE_MINE

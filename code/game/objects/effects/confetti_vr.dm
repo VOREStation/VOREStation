@@ -3,8 +3,8 @@
 	icon = 'icons/effects/effects_vr.dmi'
 	icon_state = "confetti"
 
-/obj/effect/effect/sparks/New()
-	..()
+/obj/effect/effect/sparks/Initialize()
+	. = ..()
 	playsound(src, "sounds/items/confetti.ogg ", 100, 1)
 
 /datum/effect/effect/system/confetti_spread

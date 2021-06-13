@@ -139,14 +139,14 @@
 	say_list_type = /datum/say_list/possum
 	catalogue_data = list(/datum/category_item/catalogue/fauna/opossum)
 
-/mob/living/simple_mob/animal/passive/opossum/adjustBruteLoss(damage)
+/mob/living/simple_mob/animal/passive/opossum/adjustBruteLoss(var/amount,var/include_robo)
 	. = ..()
-	if(damage >= 3)
+	if(amount >= 3)
 		respond_to_damage()
 
-/mob/living/simple_mob/animal/passive/opossum/adjustFireLoss(damage)
+/mob/living/simple_mob/animal/passive/opossum/adjustFireLoss(var/amount,var/include_robo)
 	. = ..()
-	if(damage >= 3)
+	if(amount >= 3)
 		respond_to_damage()
 
 /mob/living/simple_mob/animal/passive/opossum/lay_down()
