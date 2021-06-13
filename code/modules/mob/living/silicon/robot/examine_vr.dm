@@ -3,7 +3,9 @@
 	var/list/message_list = list()
 	for(var/belly in vore_organs)
 		var/obj/belly/B = belly
-		message_list += B.get_examine_msg()
-		message_list += B.get_examine_msg_absorbed()
+		if(B.get_examine_msg() != "")
+			message_list += B.get_examine_msg()
+		if(B.get_examine_msg_absorbed() != "")
+			message_list += B.get_examine_msg_absorbed()
 
 	return message_list
