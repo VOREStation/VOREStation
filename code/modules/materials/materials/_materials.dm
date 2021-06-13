@@ -59,7 +59,7 @@ var/list/name_to_material
  * with people converting the entire stations material supply into alloys.
  *
  * Arguments:
- * - flags: A set of flags determining how exactly the materials are broken down. (unused)
+ * - breakdown_flags: A set of flags determining how exactly the materials are broken down. (unused)
  */
 /obj/proc/get_material_composition(breakdown_flags=NONE)
 	. = list()
