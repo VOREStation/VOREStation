@@ -3490,6 +3490,46 @@
 "genre": "Rock"
 },
 {
+"url": "https://files.catbox.moe/aks7qx.m4a",
+"title": "Also Sprach Brooks",
+"duration": 1110,
+"artist": "Shoji Meguro",
+"secret": false,
+"lobby": false,
+"jukebox": true,
+"genre": "Arcade"
+},
+{
+"url": "https://files.catbox.moe/r84ll2.m4a",
+"title": "An Die Freude",
+"duration": 2770,
+"artist": "Shoji Meguro",
+"secret": false,
+"lobby": false,
+"jukebox": true,
+"genre": "Arcade"
+},
+{
+"url": "https://files.catbox.moe/c0kpqn.m4a",
+"title": "Another Winter",
+"duration": 1530,
+"artist": "Anamanaguchi",
+"secret": false,
+"lobby": false,
+"jukebox": true,
+"genre": "Arcade"
+},
+{
+"url": "https://files.catbox.moe/wdbb4d.m4a",
+"title": "Battle on Stage",
+"duration": 1770,
+"artist": "Shoji Meguro",
+"secret": false,
+"lobby": false,
+"jukebox": true,
+"genre": "Arcade"
+},
+{
 "url": "https://files.catbox.moe/f3gvmk.m4a",
 "title": "Holland, 1945",
 "duration": 1920,
@@ -3498,6 +3538,36 @@
 "lobby": false,
 "jukebox": true,
 "genre": "Rock"
+},
+{
+"url": "https://files.catbox.moe/4w2ktl.mp3",
+"title": "Next Step",
+"duration": 2000,
+"artist": "ĀBCD",
+"secret": false,
+"lobby": false,
+"jukebox": true,
+"genre": "Electronic"
+},
+{
+"url": "https://files.catbox.moe/q5jdy9.mp3",
+"title": "Acidjazzed Evening (Stereocool 'Acid Night' Remix)",
+"duration": 3200,
+"artist": "Tempest",
+"secret": false,
+"lobby": false,
+"jukebox": true,
+"genre": "Electronic"
+},
+{
+"url": "https://files.catbox.moe/jugwn3.mp3",
+"title": "Versti",
+"duration": 2240,
+"artist": "Littlepetey",
+"secret": false,
+"lobby": false,
+"jukebox": true,
+"genre": "Electronic"
 },
 {
 "url": "https://files.catbox.moe/8rn8uz.mp3",
