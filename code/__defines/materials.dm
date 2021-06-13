@@ -61,3 +61,15 @@
 #define DEFAULT_WALL_MATERIAL "steel"
 
 #define TABLE_BRITTLE_MATERIAL_MULTIPLIER 4 // Amount table damage is multiplied by if it is made of a brittle material (e.g. glass)
+
+//Material Container Flags.
+///If the container shows the amount of contained materials on examine.
+#define MATCONTAINER_EXAMINE (1<<0)
+///If the container cannot have materials inserted through attackby().
+#define MATCONTAINER_NO_INSERT (1<<1)
+///if the user can insert mats into the container despite the intent.
+#define MATCONTAINER_ANY_INTENT (1<<2)
+///if the user won't receive a warning when attacking the container with an unallowed item.
+#define MATCONTAINER_SILENT (1<<3)
+
+#define GET_MATERIAL_REF(arguments...) _GetMaterialRef(list(##arguments))
