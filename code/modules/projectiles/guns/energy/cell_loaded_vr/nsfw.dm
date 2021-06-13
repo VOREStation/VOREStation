@@ -48,7 +48,6 @@
 	desc = "A storage case for a multi-purpose handgun. Variety hour!"
 	w_class = ITEMSIZE_NORMAL
 	max_w_class = ITEMSIZE_NORMAL
-	can_hold = list(/obj/item/weapon/gun/projectile/cell_loaded/combat,/obj/item/ammo_magazine/cell_mag/combat,/obj/item/ammo_casing/microbattery/combat)
 
 /obj/item/weapon/storage/secure/briefcase/nsfw_pack/New()
 	..()
@@ -62,7 +61,6 @@
 	desc = "A storage case for a multi-purpose handgun. Variety hour!"
 	w_class = ITEMSIZE_NORMAL
 	max_w_class = ITEMSIZE_NORMAL
-	can_hold = list(/obj/item/weapon/gun/projectile/cell_loaded/combat,/obj/item/ammo_magazine/cell_mag/combat,/obj/item/ammo_casing/microbattery/combat)
 
 /obj/item/weapon/storage/secure/briefcase/nsfw_pack_hos/New()
 	..()
