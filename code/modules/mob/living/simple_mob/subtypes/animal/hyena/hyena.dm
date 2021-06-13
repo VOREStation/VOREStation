@@ -82,89 +82,10 @@ They're also cool, and Rykka/Nyria wrote this uwu
 
 	say_list_type = /datum/say_list/hyena
 
-	var/obj/item/clothing/head/hat = null // The hat the yeen is wearing when initialized, var will update with the chosen hat.
-
-// Silly stuff. HATS! Give your yeen a hat today <3
-/mob/living/simple_mob/animal/hyena/verb/remove_hat()
-	set name = "Remove Hat"
-	set desc = "Remove the yeen's hat. You monster. ;~;"
-	set category = "Abilities"
-	set src in view(1)
-
-	drop_hat(usr)
-
-/mob/living/simple_mob/animal/hyena/proc/drop_hat(var/mob/user)
-	if(hat)
-		hat.forceMove(get_turf(user))
-		hat = null
-		update_icon()
-		if(user == src)
-			to_chat(user, "<span class='notice'>You removed your hat.</span>")
-			return
-		to_chat(user, "<span class='warning'>You removed \the [src]'s hat. You monster. ;~;</span>")
-	else
-		if(user == src)
-			to_chat(user, "<span class='notice'>You are not wearing a hat!</span>")
-			return
-		to_chat(user, "<span class='notice'>\The [src] is not wearing a hat!</span>")
-
-/mob/living/simple_mob/animal/hyena/verb/give_hat()
-	set name = "Give Hat"
-	set desc = "Give the yeen a hat. You wonderful bean. <3"
-	set category = "Abilities"
-	set src in view(1)
-
-	take_hat(usr)
-
-/mob/living/simple_mob/animal/hyena/proc/take_hat(var/mob/user)
-	if(hat)
-		if(user == src)
-			to_chat(user, "<span class='notice'>You already have a hat!</span>")
-			return
-		to_chat(user, "<span class='notice'>\The [src] already has a hat!</span>")
-	else
-		if(user == src)
-			if(istype(get_active_hand(), /obj/item/clothing/head))
-				hat = get_active_hand()
-				drop_from_inventory(hat, src)
-				hat.forceMove(src)
-				to_chat(user, "<span class='notice'>You put on the hat.</span>")
-				update_icon()
-			return
-		else if(ishuman(user))
-			var/mob/living/carbon/human/H = user
-
-			if(istype(H.get_active_hand(), /obj/item/clothing/head) && !get_active_hand())
-				var/obj/item/clothing/head/newhat = H.get_active_hand()
-				H.drop_from_inventory(newhat, get_turf(src))
-				if(!stat)
-					intent = I_HELP
-					newhat.attack_hand(src)
-			else if(src.get_active_hand())
-				to_chat(user, "<span class='notice'>\The [src] seems busy with \the [get_active_hand()] already!</span>")
-
-			else
-				to_chat(user, "<span class='warning'>You aren't holding a hat...</span>")
-
 /datum/say_list/hyena
 	speak = list("Huff.", "|R|rr?", "Yap.", "Grr.", "Yip.", "SCREM!")
 	emote_see = list("sniffs", "looks around", "grooms itself", "rolls around")
 	emote_hear = list("yawns", "cackles", "playfully yaps")
-
-/mob/living/simple_mob/animal/hyena/Destroy()
-	if(hat)
-		drop_hat(src) // ;w;
-	..()
-
-/mob/living/simple_mob/animal/hyena/update_icon()
-	overlays.Cut()
-	..()
-	if(hat)
-		var/hat_state = hat.item_state ? hat.item_state : hat.icon_state
-		var/image/I = image('icons/mob/head.dmi', src, hat_state)
-		I.pixel_y = -15 // Hyenas are smol! - TODO: Test this.
-		I.appearance_flags = RESET_COLOR
-		add_overlay(I)
 
 // Start Defining the mob here
 /mob/living/simple_mob/animal/hyena/Nyria
