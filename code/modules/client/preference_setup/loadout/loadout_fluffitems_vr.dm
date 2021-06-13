@@ -763,6 +763,12 @@
     ckeywhitelist = list("pandora029")
     character_name = list("Evelyn Tareen")
 
+/datum/gear/fluff/evelyn_coat
+	path = /obj/item/clothing/suit/storage/hooded/wintercoat/security/fluff/evelyn/
+	display_name = "warden's navy winter coat"
+	ckeywhitelist = list("pandora029")
+	character_name = list("Evelyn Tareen")
+
 /datum/gear/fluff/lily_medal
 	path = /obj/item/clothing/accessory/medal/silver/unity
 	display_name = "Lily's Unity Medal"

@@ -2331,3 +2331,50 @@ Departamental Swimsuits, for general use
 	if(usr.stat) return
 
 	colorswap(usr)
+
+//Pandora029 : Evelyn Tareen
+/obj/item/clothing/suit/storage/hooded/wintercoat/security/fluff/evelyn
+	name = "warden's navy winter coat"
+	desc = "A custom tailored security winter coat in navy blue colors, this one has the rank markings of a warden on it."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "evelyncoat"
+
+	icon_override = 'icons/vore/custom_onmob_vr.dmi'
+	item_state = "evelyncoat_mob"
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/security/fluff/evelyn/ui_action_click()
+	ToggleHood_evelyn()
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/security/fluff/evelyn/equipped(mob/user, slot)
+	if(slot != slot_wear_suit)
+		RemoveHood_evelyn()
+	..()
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/security/fluff/evelyn/proc/RemoveHood_evelyn()
+	icon_state = "evelyncoat"
+	item_state = "evelyncoat_mob"
+	hood_up = 0
+	if(ishuman(hood.loc))
+		var/mob/living/carbon/H = hood.loc
+		H.unEquip(hood, 1)
+		H.update_inv_wear_suit()
+	hood.loc = src
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/security/fluff/evelyn/proc/ToggleHood_evelyn()
+	if(!hood_up)
+		if(ishuman(loc))
+			var/mob/living/carbon/human/H = loc
+			if(H.wear_suit != src)
+				to_chat(H, "<span class='warning'>You must be wearing [src] to put up the hood!</span>")
+				return
+			if(H.head)
+				to_chat(H, "<span class='warning'>You're already wearing something on your head!</span>")
+				return
+			else
+				H.equip_to_slot_if_possible(hood,slot_head,0,0,1)
+				hood_up = 1
+				icon_state = "evelyncoat_t"
+				item_state = "evelyncoat_mob_t"
+				H.update_inv_wear_suit()
+	else
+		RemoveHood_evelyn()
