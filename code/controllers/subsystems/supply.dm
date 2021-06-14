@@ -205,19 +205,11 @@ SUBSYSTEM_DEF(supply)
 			else if(islist(SP.access) && SP.one_access)
 				var/list/L = SP.access // access var is a plain var, we need a list
 				A.req_one_access = L.Copy()
-<<<<<<< HEAD
-				A.req_access = null
-			else if(islist(SP.access) && !SP.one_access)
-				var/list/L = SP.access
-				A.req_access = L.Copy()
-				A.req_one_access = null
-=======
 				LAZYCLEARLIST(A.req_access)
 			else if(islist(SP.access) && !SP.one_access)
 				var/list/L = SP.access
 				A.req_access = L.Copy()
 				LAZYCLEARLIST(A.req_one_access)
->>>>>>> dabfdc1... Merge pull request #8122 from VOREStation/Arokha/access
 			else
 				log_debug("<span class='danger'>Supply pack with invalid access restriction [SP.access] encountered!</span>")
 
