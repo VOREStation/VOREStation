@@ -2342,13 +2342,6 @@ Departamental Swimsuits, for general use
 	icon_override = 'icons/vore/custom_onmob_vr.dmi'
 	item_state = "evelyncoat_mob"
 
-<<<<<<< HEAD
-=======
-	armor = list(melee = 25, bullet = 20, laser = 20, energy = 15, bomb = 20, bio = 0, rad = 0) //same as other sec coats
-
-	var/owner = "pandora029"
-
->>>>>>> pandoracoat
 /obj/item/clothing/suit/storage/hooded/wintercoat/security/fluff/evelyn/ui_action_click()
 	ToggleHood_evelyn()
 
