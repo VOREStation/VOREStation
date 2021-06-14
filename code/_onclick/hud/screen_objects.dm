@@ -711,7 +711,7 @@
 	var/obj/item/device/mapping_unit/owner
 	var/obj/screen/mapper/extras_holder/extras_holder
 
-/obj/screen/movable/mapper_holder/New(newloc, newowner)
+/obj/screen/movable/mapper_holder/Initialize(mapload, newowner)
 	owner = newowner
 	
 	mask_full = new(src) // Full white square mask
@@ -849,15 +849,15 @@
 
 /obj/screen/mapper/powbutton/Click()
 	if(!usr.checkClickCooldown())
-		return 1
+		return TRUE
 	if(usr.stat || usr.paralysis || usr.stunned || usr.weakened)
-		return 1
+		return TRUE
 	if(istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech
-		return 1
+		return TRUE
 	parent.powerClick()
 	flick("powClick",src)
 	usr << get_sfx("button")
-	return 1
+	return TRUE
 
 /obj/screen/mapper/mapbutton
 	icon = 'icons/effects/gpshud.dmi'
@@ -867,15 +867,15 @@
 
 /obj/screen/mapper/mapbutton/Click()
 	if(!usr.checkClickCooldown())
-		return 1
+		return TRUE
 	if(usr.stat || usr.paralysis || usr.stunned || usr.weakened)
-		return 1
+		return TRUE
 	if(istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech
-		return 1
+		return TRUE
 	parent.mapClick()
 	flick("mapClick",src)
 	usr << get_sfx("button")
-	return 1
+	return TRUE
 
 // Markers are 16x16, people have apparently settled on centering them on the 8,8 pixel
 /obj/screen/mapper/marker
