@@ -32,7 +32,7 @@
 		list(
 			"brightness" = 1,
 			"color" = "#631E8A"
-
+		),
 		list(
 			"brightness" = 1.0,
 			"color" = "#A3A291"
