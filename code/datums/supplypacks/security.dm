@@ -421,7 +421,8 @@
 			/obj/item/clothing/accessory/holster,
 			/obj/item/clothing/accessory/holster/armpit,
 			/obj/item/clothing/accessory/holster/waist,
-			/obj/item/clothing/accessory/holster/hip
+			/obj/item/clothing/accessory/holster/hip,
+			/obj/item/clothing/accessory/holster/leg
 			)
 	cost = 15
 	containertype = /obj/structure/closet/crate/hedberg
