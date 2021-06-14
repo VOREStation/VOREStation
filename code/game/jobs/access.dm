@@ -28,34 +28,6 @@
 	return has_access(req_access, req_one_access, L)
 
 /proc/has_access(var/list/req_access, var/list/req_one_access, var/list/accesses)
-<<<<<<< HEAD
-	// Doesn't have access lists, always works
-	if(!LAZYLEN(req_access) && !LAZYLEN(req_one_access))
-		return TRUE
-	
-	// Didn't pass anything to compare
-	if(!LAZYLEN(accesses))
-		return FALSE
-	
-	// req_access list has priority if set
-	// Requires at least every access in list
-	if(LAZYLEN(req_access))
-		for(var/req in req_access)
-			if(!(req in accesses))
-				return FALSE
-		// Wasn't missing any accesses
-		return TRUE
-
-	// req_one_access is secondary if set
-	// Requires at least one access in list
-	for(var/req in req_one_access)
-		if(req in accesses)
-			// Found at least one
-			return TRUE
-
-	// Didn't find anything that matched
-	return FALSE
-=======
 	// req_access list has priority if set
 	// Requires at least every access in list
 	for(var/req in req_access)
@@ -71,7 +43,6 @@
 		return FALSE
 
 	return TRUE
->>>>>>> dabfdc1... Merge pull request #8122 from VOREStation/Arokha/access
 
 /proc/get_centcom_access(job)
 	switch(job)
