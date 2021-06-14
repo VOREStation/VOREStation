@@ -13,7 +13,13 @@
 		// We conserve ammo (or can't shoot) so walk closer
 		if(get_dist(holder, target_last_seen_turf) > 1)
 			return give_destination(target_last_seen_turf, 1, TRUE) // Sets stance as well
-		// We're right there, look around?
+		// We last saw them next to us, so do a blind attack on that tile.
+		else if(melee_on_tile(target_last_seen_turf) != ATTACK_SUCCESSFUL && intelligence_level >= AI_NORMAL)
+			var/obj/O = find_escape_route()
+			if(istype(O))
+				return give_destination(get_turf(O), 0, TRUE)
+			else
+				return find_target()
 		else
 			return find_target()
 	// Shoot in their direction angrily
