@@ -1,12 +1,6 @@
 /obj/item/device/mapping_unit
 	name = "mapping unit"
 	desc = "A portable mapping unit, capable of locating other similar units on a map. Also has a short-range sonar mapping system."
-<<<<<<< HEAD
-	description_info = "Use the device in your hand to add the mapping HUD to your screen. You can then power it on and change mapping modes.\
-	<br>The device will show other powered-on mapping units on the map, as well as activated mapping beacons, but only of the same 'type' mapping unit.\
-	<br>Normal mapping units can only display other normal beacons and mapping units, ERT mapping units can display other ERT, etc."
-=======
->>>>>>> bac077a... Portable mapping devices (#8097)
 	icon_state = "mapping_unit"
 	item_state = null
 	w_class = ITEMSIZE_SMALL
@@ -289,20 +283,10 @@
 			continue
 		var/mob_indicator = HOLOMAP_ERROR
 		var/turf/TU = get_turf(HC)
-<<<<<<< HEAD
-		if(TU.z != T_z)
-			continue
-		
-		// Marker not on a turf
-		if(!TU)
-			continue
-		
-=======
 		// Mapper not on a turf or elsewhere
 		if(!TU || (TU.z != T_z))
 			continue
 	
->>>>>>> bac077a... Portable mapping devices (#8097)
 		// We're the marker
 		if(HC == src)
 			mob_indicator = HOLOMAP_YOU
@@ -352,28 +336,6 @@
 			handle_marker(mark,TU.x,TU.y)
 			extras += mark
 
-<<<<<<< HEAD
-		// Marker beacon items
-		for(var/hb in mapping_beacons)
-			var/obj/item/device/holomap_beacon/HB = hb
-			if(HB.mapper_filter != mapper_filter)
-				continue
-			
-			var/turf/TB = get_turf(HB)
-			if(TU.z != T_z)
-				continue
-			
-			var/marker_cache_key = "\ref[HB]_marker"
-			if(!(marker_cache_key in icon_image_cache))
-				var/obj/screen/mapper/marker/mark = new()
-				mark.icon_state = "beacon"
-				mark.layer = 1
-				icon_image_cache[marker_cache_key] = mark
-			
-			var/obj/screen/mapper/marker/mark = icon_image_cache[marker_cache_key]
-			handle_marker(mark,TB.x,TB.y)
-			extras += mark
-=======
 	// Marker beacon items
 	for(var/hb in mapping_beacons)
 		var/obj/item/device/holomap_beacon/HB = hb
@@ -395,7 +357,6 @@
 		var/obj/screen/mapper/marker/mark = icon_image_cache[marker_cache_key]
 		handle_marker(mark,TB.x,TB.y)
 		extras += mark
->>>>>>> bac077a... Portable mapping devices (#8097)
 
 	if(badmap)
 		var/obj/O = icon_image_cache["bad"]
@@ -453,11 +414,7 @@
 	else
 		in_list = FALSE
 		mapping_beacons -= src
-<<<<<<< HEAD
-	icon_state = initial(icon_state) + in_list ? "_on" : ""
-=======
 	icon_state = "[initial(icon_state)][in_list ? "_on" : ""]"
->>>>>>> bac077a... Portable mapping devices (#8097)
 	to_chat(user,SPAN_NOTICE("The [src] is now [in_list ? "broadcasting" : "disabled"]."))
 
 /obj/item/device/holomap_beacon/Destroy()
