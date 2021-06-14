@@ -312,7 +312,7 @@ const MedicalRecordsViewMedical = (_properties, context) => {
         )
           : medical.comments.map((comment, i) => (
             <Box key={i}>
-              <Box color="label" display="inline">
+              <Box color="label" inline>
                 {comment.header}
               </Box><br />
               {comment.text}

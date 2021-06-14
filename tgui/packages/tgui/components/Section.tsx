@@ -16,7 +16,8 @@ interface SectionProps extends BoxProps {
   fill?: boolean;
   fitted?: boolean;
   scrollable?: boolean;
-  flexGrow?: boolean;
+  flexGrow?: boolean; // VOREStation Addition
+  noTopPadding?: boolean; // VOREStation Addition
   /** @deprecated This property no longer works, please remove it. */
   level?: boolean;
   /** @deprecated Please use `scrollable` property */
@@ -53,7 +54,8 @@ export class Section extends Component<SectionProps> {
       fill,
       fitted,
       scrollable,
-      flexGrow,
+      flexGrow, // VOREStation Addition
+      noTopPadding, // VOREStation Addition
       children,
       ...rest
     } = this.props;
@@ -66,7 +68,7 @@ export class Section extends Component<SectionProps> {
           fill && 'Section--fill',
           fitted && 'Section--fitted',
           scrollable && 'Section--scrollable',
-          flexGrow && 'Section--flex',
+          flexGrow && 'Section--flex', // VOREStation Addition
           className,
           computeBoxClassName(rest),
         ])}
@@ -82,9 +84,14 @@ export class Section extends Component<SectionProps> {
           </div>
         )}
         <div className="Section__rest">
-          <div ref={this.scrollableRef} className="Section__content">
+          {/* Vorestation Edit Start */}
+          <div ref={this.scrollableRef} className={classes([
+            "Section__content",
+            !!noTopPadding && "Section__content--noTopPadding",
+          ])}>
             {children}
           </div>
+          {/* Vorestation Edit End */}
         </div>
       </div>
     );

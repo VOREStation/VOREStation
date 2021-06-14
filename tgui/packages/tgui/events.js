@@ -8,6 +8,7 @@
 
 import { EventEmitter } from 'common/events';
 import { KEY_ALT, KEY_CTRL, KEY_F1, KEY_F12, KEY_SHIFT } from 'common/keycodes';
+import { logger } from './logging';
 
 export const globalEvents = new EventEmitter();
 let ignoreWindowFocus = false;
@@ -94,10 +95,10 @@ const focusNearestTrackedParent = node => {
   const body = document.body;
   while (node && node !== body) {
     if (trackedNodes.includes(node)) {
-      // NOTE: Contains is a DOM4 method
-      if (node.contains(focusedNode)) {
-        return;
-      }
+      // NOTE: Contains is a DOM4 method - VORESTATION REMOVAL
+      // if (node.contains(focusedNode)) {
+      //   return;
+      // }
       focusedNode = node;
       node.focus();
       return;

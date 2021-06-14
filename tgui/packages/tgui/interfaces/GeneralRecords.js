@@ -213,7 +213,7 @@ const GeneralRecordsViewGeneral = (_properties, context) => {
           )
             : general.comments.map((comment, i) => (
               <Box key={i}>
-                <Box color="label" display="inline">
+                <Box color="label" inline>
                   {comment.header}
                 </Box><br />
                 {comment.text}

@@ -121,3 +121,19 @@ $separator-color: colors.$primary !default;
 .Section .Section .Section .Section__titleText {
   font-size: base.em(12px);
 }
+
+/* Vorestation Addition Start */
+.Section--flex {
+  display: flex;
+  flex-flow: column;
+}
+
+.Section--flex .Section__content {
+  overflow: auto;
+  flex-grow: 1;
+}
+
+.Section__content--noTopPadding {
+  padding-top: 0;
+}
+/* Vorestation Addition End */

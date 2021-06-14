@@ -11,7 +11,6 @@
     "inferno-vnode-flags": "^7.4.8",
     "js-yaml": "^4.1.0",
     "marked": "^2.0.3",
-    "prop-types": "^15.7.2",
     "tgui-dev-server": "workspace:*",
     "tgui-polyfill": "workspace:*"
   }
