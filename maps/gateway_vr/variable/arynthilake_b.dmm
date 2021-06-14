@@ -313,6 +313,10 @@
 	outdoors = 1
 	},
 /area/gateway/arynthilake/dome)
+"fC" = (
+/obj/effect/overmap/visitable/sector/tether_gateway/arynthilake,
+/turf/simulated/mineral/ignore_cavegen,
+/area/gateway/arynthilake/caves)
 "fX" = (
 /obj/structure/table/standard{
 	color = "#b8e4ff"
@@ -2889,7 +2893,7 @@ ek
 ek
 ek
 ek
-ek
+fC
 nF
 "}
 (4,1,1) = {"

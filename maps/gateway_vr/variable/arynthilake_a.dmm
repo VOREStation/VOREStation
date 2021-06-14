@@ -1180,6 +1180,10 @@
 /obj/random/maintenance/engineering,
 /turf/simulated/floor/tiled/eris,
 /area/gateway/arynthilake/engine)
+"sl" = (
+/obj/effect/overmap/visitable/sector/tether_gateway/arynthilake,
+/turf/simulated/mineral/ignore_cavegen,
+/area/gateway/arynthilake/caves)
 "sA" = (
 /obj/structure/table/rack/steel,
 /obj/item/clothing/shoes/flats/blue,
@@ -2921,7 +2925,7 @@ Qr
 Qr
 Qr
 Qr
-Qr
+sl
 aa
 "}
 (4,1,1) = {"
