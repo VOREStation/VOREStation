@@ -1,5 +1,5 @@
 /decl/emote/visible
-	key ="tail"
+	key = "tail"
 	emote_message_3p = "waves USER_THEIR tail."
 	message_type = VISIBLE_MESSAGE
 
@@ -9,48 +9,48 @@
 	emote_message_3p = "scratches."
 
 /decl/emote/visible/drool
-	key ="drool"
+	key = "drool"
 	emote_message_3p = "drools."
 	conscious = FALSE
 
 /decl/emote/visible/nod
-	key ="nod"
+	key = "nod"
 	emote_message_3p_target = "nods USER_THEIR head at TARGET."
 	emote_message_3p = "nods USER_THEIR head."
 
 /decl/emote/visible/sway
-	key ="sway"
+	key = "sways"
 	emote_message_3p = "sways around dizzily."
 
 /decl/emote/visible/sulk
-	key ="sulk"
+	key = "sulk"
 	emote_message_3p = "sulks down sadly."
 
 /decl/emote/visible/dance
-	key ="dance"
+	key = "dance"
 	check_restraints = TRUE
 	emote_message_3p = "dances around happily."
 
 /decl/emote/visible/roll
-	key ="roll"
+	key = "roll"
 	check_restraints = TRUE
 	emote_message_3p = "rolls."
 
 /decl/emote/visible/shake
-	key ="shake"
+	key = "shake"
 	emote_message_3p = "shakes USER_THEIR head."
 
 /decl/emote/visible/jump
-	key ="jump"
+	key = "jump"
 	emote_message_3p = "jumps!"
 
 /decl/emote/visible/shiver
-	key ="shiver"
+	key = "shiver"
 	emote_message_3p = "shivers."
 	conscious = FALSE
 
 /decl/emote/visible/collapse
-	key ="collapse"
+	key = "collapse"
 	emote_message_3p = "collapses!"
 
 /decl/emote/visible/collapse/do_extra(var/mob/user)
@@ -216,7 +216,7 @@
 	emote_message_3p = "vibrates!"
 
 /decl/emote/visible/deathgasp_robot
-	key = "deathgasp"
+	key = "rdeathgasp"
 	emote_message_3p = "shudders violently for a moment, then becomes motionless, USER_THEIR eyes slowly darkening."
 
 /decl/emote/visible/handshake
