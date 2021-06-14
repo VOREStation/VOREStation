@@ -167,7 +167,11 @@ var/list/runechat_image_cache = list()
 	approx_lines = max(1, mheight / CHAT_MESSAGE_APPROX_LHEIGHT)
 
 	// Translate any existing messages upwards, apply exponential decay factors to timers
+<<<<<<< HEAD
 	message_loc = target.runechat_holder(src)
+=======
+	message_loc = target
+>>>>>>> 1fd1d84... Runechat (#8121)
 	RegisterSignal(message_loc, COMSIG_PARENT_QDELETING, .proc/qdel_self)
 	if(owned_by.seen_messages)
 		var/idx = 1
@@ -190,10 +194,17 @@ var/list/runechat_image_cache = list()
 	message.plane = PLANE_RUNECHAT
 	message.appearance_flags = APPEARANCE_UI_IGNORE_ALPHA | KEEP_APART
 	message.alpha = 0
+<<<<<<< HEAD
 	message.maptext_width = msgwidth
 	message.maptext_height = mheight
 	message.maptext_x = message_loc.runechat_x_offset(msgwidth, mheight)
 	message.maptext_y = message_loc.runechat_y_offset(msgwidth, mheight)
+=======
+	message.pixel_y = owner.bound_height * 0.95
+	message.maptext_width = msgwidth
+	message.maptext_height = mheight
+	message.maptext_x = (CHAT_MESSAGE_WIDTH - owner.bound_width) * -0.5
+>>>>>>> 1fd1d84... Runechat (#8121)
 	message.maptext = complete_text
 
 	if(owner.contains(target)) // Special case, holding an atom speaking (pAI, recorder...)
@@ -236,8 +247,12 @@ var/list/runechat_image_cache = list()
 	// Doesn't want to hear
 	if(ismob(speaker) && !client.is_preference_enabled(/datum/client_preference/runechat_mob))
 		return
+<<<<<<< HEAD
 	// I know the pref is 'obj' but people dunno what turfs are
 	else if(!client.is_preference_enabled(/datum/client_preference/runechat_obj))
+=======
+	else if(isobj(speaker) && !client.is_preference_enabled(/datum/client_preference/runechat_obj))
+>>>>>>> 1fd1d84... Runechat (#8121)
 		return
 
 	// Incapable of receiving
@@ -325,6 +340,7 @@ var/list/runechat_image_cache = list()
 		if(5)
 			return rgb(c,m,x)
 
+<<<<<<< HEAD
 /atom/proc/runechat_message(message, range = world.view, italics, list/classes = list(), audible = TRUE, list/specific_viewers)
 	var/hearing_mobs
 	if(islist(specific_viewers))
@@ -332,12 +348,19 @@ var/list/runechat_image_cache = list()
 	else
 		var/list/hear = get_mobs_and_objs_in_view_fast(get_turf(src), range, remote_ghosts = FALSE)
 		hearing_mobs = hear["mobs"]
+=======
+/atom/proc/runechat_message(message, range = world.view, italics, list/classes = list(), audible = TRUE)
+	var/list/hear = get_mobs_and_objs_in_view_fast(get_turf(src), range, remote_ghosts = FALSE)
+
+	var/list/hearing_mobs = hear["mobs"]
+>>>>>>> 1fd1d84... Runechat (#8121)
 
 	for(var/mob in hearing_mobs)
 		var/mob/M = mob
 		if(!M.client)
 			continue
 		M.create_chat_message(src, message, italics, classes, audible)
+<<<<<<< HEAD
 
 // Allows you to specify your desired offset for messages from yourself
 /atom/proc/runechat_x_offset(width, height)
@@ -368,3 +391,5 @@ var/list/runechat_image_cache = list()
 	if(istype(loc, /obj/item/weapon/holder))
 		return loc
 	return ..()
+=======
+>>>>>>> 1fd1d84... Runechat (#8121)

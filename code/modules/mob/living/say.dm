@@ -17,7 +17,10 @@ var/list/department_radio_keys = list(
 	":v" = "Service",		".v" = "Service",
 	":p" = "AI Private",	".p" = "AI Private",
 	":y" = "Explorer",	".y" = "Explorer",
+<<<<<<< HEAD
 	":a" = "Talon",		".a" = "Talon", //VOREStation Add,
+=======
+>>>>>>> 1fd1d84... Runechat (#8121)
 
 	":R" = "right ear",	".R" = "right ear",
 	":L" = "left ear",	".L" = "left ear",
@@ -36,7 +39,10 @@ var/list/department_radio_keys = list(
 	":V" = "Service",		".V" = "Service",
 	":P" = "AI Private",	".P" = "AI Private",
 	":Y" = "Explorer",	".Y" = "Explorer",
+<<<<<<< HEAD
 	":A" = "Talon",		".A" = "Talon", //VOREStation Add,
+=======
+>>>>>>> 1fd1d84... Runechat (#8121)
 
 	// Cyrillic characters on the same keys on the Russian QWERTY (phonetic) layout
 	":к" = "right ear",    ".к" = "right ear",
@@ -56,8 +62,12 @@ var/list/department_radio_keys = list(
 	":г" = "Supply",        ".г" = "Supply",
 	":м" = "Service",        ".м" = "Service",
 	":з" = "AI Private",    ".з" = "AI Private",
+<<<<<<< HEAD
 	":н" = "Explorer",    ".н" = "Explorer",
 	":ф" = "Talon",        ".ф" = "Talon" //VOREStation Add
+=======
+	":н" = "Explorer",    ".н" = "Explorer"
+>>>>>>> 1fd1d84... Runechat (#8121)
 )
 
 

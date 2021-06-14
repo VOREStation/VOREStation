@@ -156,8 +156,12 @@
 			return 1
 		else // We failed to close the doors - probably, someone is blocking them; stop trying to move
 			doors_closing = 0
+<<<<<<< HEAD
 			if(!fire_mode)
 				open_doors()
+=======
+			open_doors()
+>>>>>>> 1fd1d84... Runechat (#8121)
 			control_panel_interior.audible_message("\The [current_floor.ext_panel] buzzes loudly.", runemessage = "BUZZ")
 			playsound(control_panel_interior, "sound/machines/buzz-two.ogg", 50, 1)
 			return 0

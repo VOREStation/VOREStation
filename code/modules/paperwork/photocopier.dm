@@ -126,6 +126,7 @@
 			sleep(11*B.pages.len)
 			audible_message("<span class='notice'>You can hear [src] whirring as it finishes printing.</span>", runemessage = "whirr")
 			playsound(src, "sound/machines/buzzbeep.ogg", 30)
+<<<<<<< HEAD
 		else if (has_buckled_mobs()) // VOREStation EDIT: For ass-copying.
 			playsound(src, "sound/machines/copier.ogg", 100, 1)
 			audible_message("<span class='notice'>You can hear [src] whirring as it attempts to scan.</span>", runemessage = "whirr")
@@ -134,6 +135,8 @@
 			sleep(15)
 			audible_message("<span class='notice'>You can hear [src] whirring as it finishes printing.</span>", runemessage = "whirr")
 			playsound(src, "sound/machines/buzzbeep.ogg", 30)
+=======
+>>>>>>> 1fd1d84... Runechat (#8121)
 		else
 			to_chat(user, "<span class='warning'>\The [copyitem] can't be copied by [src].</span>")
 			playsound(src, "sound/machines/buzz-two.ogg", 100)

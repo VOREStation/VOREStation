@@ -20,6 +20,10 @@ var/list/ai_verbs_default = list(
 	/mob/living/silicon/ai/proc/ai_call_shuttle,
 	/mob/living/silicon/ai/proc/ai_camera_track,
 	/mob/living/silicon/ai/proc/ai_camera_list,
+<<<<<<< HEAD
+=======
+	/mob/living/silicon/ai/proc/ai_roster,
+>>>>>>> 1fd1d84... Runechat (#8121)
 	/mob/living/silicon/ai/proc/ai_checklaws,
 	/mob/living/silicon/ai/proc/toggle_camera_light,
 	/mob/living/silicon/ai/proc/take_image,
@@ -208,12 +212,15 @@ var/list/ai_verbs_default = list(
 
 	to_chat(src,radio_text)
 
+<<<<<<< HEAD
 	// Vorestation Edit: Meta Info for AI's. Mostly used for Holograms
 	if (client)
 		var/meta_info = client.prefs.metadata
 		if (meta_info)
 			ooc_notes = meta_info
 
+=======
+>>>>>>> 1fd1d84... Runechat (#8121)
 	if (malf && !(mind in malf.current_antagonists))
 		show_laws()
 		to_chat(src, "<b>These laws may be changed by other players, or by you being the traitor.</b>")
@@ -354,6 +361,15 @@ var/list/ai_verbs_default = list(
 		if(new_sprite) selected_sprite = new_sprite
 	updateicon()
 
+<<<<<<< HEAD
+=======
+// this verb lets the ai see the stations manifest
+/mob/living/silicon/ai/proc/ai_roster()
+	set category = "AI Commands"
+	set name = "Show Crew Manifest"
+	show_station_manifest()
+
+>>>>>>> 1fd1d84... Runechat (#8121)
 /mob/living/silicon/ai/var/message_cooldown = 0
 /mob/living/silicon/ai/proc/ai_announcement()
 	set category = "AI Commands"
@@ -443,12 +459,19 @@ var/list/ai_verbs_default = list(
 	..()
 
 /mob/living/silicon/ai/Topic(href, href_list)
+<<<<<<< HEAD
 	if(..()) //VOREstation edit: So the AI can actually can actually get its OOC prefs read
 		return
 	if(usr != src)
 		return
 	/*if(..()) // <------ MOVED FROM HERE
 		return*/
+=======
+	if(usr != src)
+		return
+	if(..())
+		return
+>>>>>>> 1fd1d84... Runechat (#8121)
 	if (href_list["mach_close"])
 		if (href_list["mach_close"] == "aialerts")
 			viewalerts = 0
@@ -799,11 +822,14 @@ var/list/ai_verbs_default = list(
 	set desc = "Toggles hologram movement based on moving with your virtual eye."
 
 	hologram_follow = !hologram_follow
+<<<<<<< HEAD
 	//VOREStation Add - Required to stop movement because we use walk_to(wards) in hologram.dm
 	if(holo)
 		var/obj/effect/overlay/aiholo/hologram = holo.masters[src]
 		walk(hologram, 0)
 	//VOREStation Add End
+=======
+>>>>>>> 1fd1d84... Runechat (#8121)
 	to_chat(usr, "Your hologram will [hologram_follow ? "follow" : "no longer follow"] you now.")
 
 
@@ -989,6 +1015,7 @@ var/list/ai_verbs_default = list(
 	dead_mob_list -= src
 	ai_list -= src
 	silicon_mob_list -= src
+<<<<<<< HEAD
 	QDEL_NULL(eyeobj)
 
 /mob/living/silicon/ai/announcer/Life()
@@ -998,6 +1025,11 @@ var/list/ai_verbs_default = list(
 	ai_list -= src
 	silicon_mob_list -= src
 	QDEL_NULL(eyeobj)
+=======
+
+/mob/living/silicon/ai/announcer/Life()
+	return
+>>>>>>> 1fd1d84... Runechat (#8121)
 
 #undef AI_CHECK_WIRELESS
 #undef AI_CHECK_RADIO

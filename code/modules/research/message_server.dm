@@ -131,12 +131,20 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 					if(!Console.silent)
 						playsound(Console, 'sound/machines/twobeep.ogg', 50, 1)
 						Console.audible_message(text("[bicon(Console)] *The Requests Console beeps: 'PRIORITY Alert in [sender]'"),,5, runemessage = "beep! beep!")
+<<<<<<< HEAD
 					Console.message_log += list(list("High Priority message from [sender]", "[authmsg]"))
+=======
+					Console.message_log += "<B><FONT color='red'>High Priority message from <A href='?src=\ref[Console];write=[sender]'>[sender]</A></FONT></B><BR>[authmsg]"
+>>>>>>> 1fd1d84... Runechat (#8121)
 				else
 					if(!Console.silent)
 						playsound(Console, 'sound/machines/twobeep.ogg', 50, 1)
 						Console.audible_message(text("[bicon(Console)] *The Requests Console beeps: 'Message from [sender]'"),,4, runemessage = "beep beep")
+<<<<<<< HEAD
 					Console.message_log += list(list("Message from [sender]", "[authmsg]"))
+=======
+					Console.message_log += "<B>Message from <A href='?src=\ref[Console];write=[sender]'>[sender]</A></B><BR>[authmsg]"
+>>>>>>> 1fd1d84... Runechat (#8121)
 			Console.set_light(2)
 
 
