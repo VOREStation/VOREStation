@@ -4920,6 +4920,10 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/structure/panic_button{
+	pixel_x = -32;
+	pixel_y = 32
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/excursion/cockpit)
 "alH" = (
@@ -28594,7 +28598,9 @@
 /turf/simulated/floor/tiled,
 /area/quartermaster/foyer)
 "pjb" = (
-/obj/machinery/door/airlock/multi_tile/metal/mait,
+/obj/machinery/door/airlock/multi_tile/metal/mait{
+	req_one_access = list(1,67)
+	},
 /obj/structure/cable/cyan{
 	d1 = 1;
 	d2 = 2;
@@ -29600,6 +29606,10 @@
 	},
 /obj/structure/table/standard,
 /obj/item/weapon/tank/phoron,
+/obj/structure/panic_button{
+	pixel_x = 32;
+	pixel_y = -32
+	},
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/shuttle/securiship/engines)
 "qxn" = (
@@ -32835,6 +32845,10 @@
 	req_access = list(67)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/structure/panic_button{
+	pixel_x = 32;
+	pixel_y = -32
+	},
 /turf/simulated/floor/tiled/eris/steel/cyancorner,
 /area/shuttle/medivac/cockpit)
 "uqi" = (

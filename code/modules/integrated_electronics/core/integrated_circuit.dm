@@ -100,14 +100,14 @@ a creative player the means to solve many problems.  Circuits are held inside an
 	data["power_draw_per_use"] = power_draw_per_use
 	data["extended_desc"] = extended_desc
 
-	var/list/inputs = list()
-	var/list/outputs = list()
-	var/list/activators = list()
+	var/list/inputs_list = list()
+	var/list/outputs_list = list()
+	var/list/activators_list = list()
 	for(var/datum/integrated_io/io in inputs)
-		inputs.Add(list(tgui_pin_data(io)))
+		inputs_list.Add(list(tgui_pin_data(io)))
 
 	for(var/datum/integrated_io/io in outputs)
-		outputs.Add(list(tgui_pin_data(io)))
+		outputs_list.Add(list(tgui_pin_data(io)))
 
 	for(var/datum/integrated_io/io in activators)
 		var/list/list/activator = list(
@@ -124,11 +124,11 @@ a creative player the means to solve many problems.  Circuits are held inside an
 				"holder_name" = linked.holder.displayed_name,
 			)))
 
-		activators.Add(list(activator))
+		activators_list.Add(list(activator))
 
-	data["inputs"] = inputs
-	data["outputs"] = outputs
-	data["activators"] = activators
+	data["inputs"] = inputs_list
+	data["outputs"] = outputs_list
+	data["activators"] = activators_list
 
 	return data
 

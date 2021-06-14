@@ -14940,6 +14940,16 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/atmospherics)
+"YA" = (
+/obj/structure/bed/chair/bay/comfy/brown{
+	dir = 1
+	},
+/obj/structure/panic_button{
+	pixel_x = 32;
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/talon_v2/bridge)
 "YB" = (
 /obj/effect/map_helper/airlock/sensor/chamber_sensor,
 /obj/machinery/atmospherics/pipe/manifold/hidden/aux{
@@ -25554,7 +25564,7 @@ RF
 eL
 xu
 lZ
-wO
+YA
 wm
 Fv
 qU

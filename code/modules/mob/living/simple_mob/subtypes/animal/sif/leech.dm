@@ -56,7 +56,7 @@
 	var/feeding_delay = 30 SECONDS	// How long do we have to wait to bite our host's organs?
 	var/last_feeding = 0
 
-	intent = I_HELP
+	a_intent = I_HELP
 
 	holder_type = /obj/item/weapon/holder/leech
 
