@@ -81,7 +81,7 @@
 
 /mob/observer/dead/verb/backup_delay()
 	set category = "Ghost"
-	set name = "Delay Transcore Notification"
+	set name = "Cancel Transcore Notification"
 	set desc = "You can use this to avoid automatic backup notification happening. Manual notification can still be used."
 
 	if(!mind)
