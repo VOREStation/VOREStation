@@ -23,5 +23,16 @@
 			"group": "build",
 			"label": "tgui: build"
 		},
+		{
+			"type": "shell",
+			"command": "yarn build",
+			"options": {
+				"cwd": "tgui/packages/tgfont/",
+			},
+			"group": "build",
+			"problemMatcher": [],
+			"label": "tgui: build tgfont",
+			"detail": "node mkdist.cjs && fantasticon --config config.cjs"
+		}
 	]
 }
