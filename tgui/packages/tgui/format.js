@@ -196,3 +196,15 @@ export const formatTime = (val, formatType) => {
     }
   }
 };
+
+/* VOREStation Addition Start */
+export const formatCommaNumber = value => {
+  if (!Number.isFinite(value)) {
+    return value;
+  }
+  // From http://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
+  let parts = value.toString().split(".");
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return parts.join(".");
+};
+/* VOREStation Addition End */

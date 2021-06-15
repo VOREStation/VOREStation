@@ -23,6 +23,7 @@ export const Button = props => {
     iconSpin,
     iconColor,
     iconPosition,
+    iconSize, // VOREStation Addition
     color,
     disabled,
     selected,
@@ -103,7 +104,9 @@ export const Button = props => {
           name={icon}
           color={iconColor}
           rotation={iconRotation}
-          spin={iconSpin} />
+          spin={iconSpin}
+          fontSize={iconSize} // VOREStation Addition
+        />
       )}
     </Box>
   );

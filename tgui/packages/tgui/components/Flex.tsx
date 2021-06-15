@@ -11,6 +11,7 @@ export interface FlexProps extends BoxProps {
   direction?: string | BooleanLike;
   wrap?: string | BooleanLike;
   align?: string | BooleanLike;
+  alignContent?: string | BooleanLike; // VOREStation Addition
   justify?: string | BooleanLike;
   inline?: BooleanLike;
 }
@@ -21,6 +22,7 @@ export const computeFlexProps = (props: FlexProps) => {
     direction,
     wrap,
     align,
+    alignContent, // VOREStation Addition
     justify,
     inline,
     ...rest
@@ -41,6 +43,7 @@ export const computeFlexProps = (props: FlexProps) => {
       'flex-direction': direction,
       'flex-wrap': wrap === true ? 'wrap' : wrap,
       'align-items': align,
+      'align-content': alignContent, // VOREStation Addition
       'justify-content': justify,
     },
     ...rest,

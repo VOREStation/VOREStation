@@ -18,6 +18,7 @@ interface SectionProps extends BoxProps {
   scrollable?: boolean;
   flexGrow?: boolean; // VOREStation Addition
   noTopPadding?: boolean; // VOREStation Addition
+  stretchContents?: boolean; // VOREStation Addition
   /** @deprecated This property no longer works, please remove it. */
   level?: boolean;
   /** @deprecated Please use `scrollable` property */
@@ -56,6 +57,7 @@ export class Section extends Component<SectionProps> {
       scrollable,
       flexGrow, // VOREStation Addition
       noTopPadding, // VOREStation Addition
+      stretchContents, // VOREStation Addition
       children,
       ...rest
     } = this.props;
@@ -87,6 +89,7 @@ export class Section extends Component<SectionProps> {
           {/* Vorestation Edit Start */}
           <div ref={this.scrollableRef} className={classes([
             "Section__content",
+            !!stretchContents && "Section__content--stretchContents",
             !!noTopPadding && "Section__content--noTopPadding",
           ])}>
             {children}

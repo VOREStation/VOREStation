@@ -204,7 +204,10 @@
 		log_tgui(usr, href_list["message"])
 	// Reload all tgui windows
 	if(type == "cacheReloaded")
-		if(!check_rights(R_ADMIN) || usr.client.tgui_cache_reloaded)
+		// Note: Find a solution for the below causing asset CDN to stop working
+		// which doesn't prevent players from using the dev server on prod
+		// whenever the asset CDN is actually used (currently using rsc only)
+		if(/* !check_rights(R_ADMIN) || */ usr.client.tgui_cache_reloaded)
 			return TRUE
 		// Mark as reloaded
 		usr.client.tgui_cache_reloaded = TRUE
