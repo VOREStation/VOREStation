@@ -24636,6 +24636,7 @@
 	},
 /obj/machinery/power/apc{
 	name = "south bump";
+	nightshift_setting = 0;
 	pixel_y = -28;
 	req_access = list(67)
 	},
@@ -26812,6 +26813,11 @@
 /obj/structure/cable/green{
 	d2 = 2;
 	icon_state = "0-2"
+	},
+/obj/item/weapon/surgical/bioregen,
+/obj/item/weapon/paper{
+	info = "To the medical staff of the facility - This device will help in what is known as De-Husking on a patient. All you need to do is use this new device here to start the process, then use a hemostat to pull stuff in place. Finally, use the device once more to finish mending the veins and final wounds and you should be good for a defib on the patient. This machine ALSO works on removing poisons and toxins from someone that normally would be a final nail in their coffin! It works similar to your current external surgery methods, but with this device instead. Handy!";
+	name = "Bio-Regenrator Notice"
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/surgery2)
@@ -36614,6 +36620,11 @@
 /obj/item/device/defib_kit/loaded,
 /obj/item/stack/nanopaste,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/item/weapon/surgical/bioregen,
+/obj/item/weapon/paper{
+	info = "To the medical staff of the facility - This device will help in what is known as De-Husking on a patient. All you need to do is use this new device here to start the process, then use a hemostat to pull stuff in place. Finally, use the device once more to finish mending the veins and final wounds and you should be good for a defib on the patient. This machine ALSO works on removing poisons and toxins from someone that normally would be a final nail in their coffin! It works similar to your current external surgery methods, but with this device instead. Handy!";
+	name = "Bio-Regenrator Notice"
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/surgery1)
 "blK" = (
@@ -36792,6 +36803,7 @@
 	cell_type = /obj/item/weapon/cell/super;
 	dir = 8;
 	name = "west bump";
+	nightshift_setting = 0;
 	pixel_x = -30
 	},
 /obj/structure/cable/green{

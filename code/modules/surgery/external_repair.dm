@@ -128,7 +128,7 @@
 		user.visible_message("<span class='notice'>[user] finishes taping up [target]'s [affected] with \the [tool].</span>", \
 	"<span class='notice'>You finish taping up [target]'s [affected] with \the [tool].</span>")
 		affected.createwound(BRUISE, 10)
-	affected.heal_damage(0, 25, 0, 0)
+	affected.heal_damage(0, 50, 0, 0) //Up from 25
 	if(!(affected.burn_dam))
 		affected.burn_stage = 0
 	if(istype(tool, /obj/item/stack))
@@ -194,7 +194,7 @@
 		user.visible_message("<span class='notice'>[user] finishes taping up [target]'s [affected] with \the [tool].</span>", \
 	"<span class='notice'>You finish taping up [target]'s [affected] with \the [tool].</span>")
 		affected.createwound(BRUISE, 10)
-	affected.heal_damage(25, 0, 0, 0)
+	affected.heal_damage(50, 0, 0, 0) //Up from 25
 	if(!(affected.brute_dam))
 		affected.brute_stage = 0
 	if(istype(tool, /obj/item/stack))
