@@ -400,9 +400,7 @@
 /area/gateway/arynthilake/dome)
 "bV" = (
 /obj/random/mob/semirandom_mob_spawner/humanoid/retaliate,
-/turf/simulated/floor/outdoors/sidewalk{
-	dir = 4
-	},
+/turf/simulated/floor/outdoors/sidewalk/side,
 /area/gateway/arynthilake/dome)
 "bW" = (
 /obj/structure/table/sifwooden_reinforced,
@@ -566,9 +564,7 @@
 	},
 /area/gateway/arynthilake/dome)
 "fo" = (
-/turf/simulated/floor/outdoors/sidewalk{
-	dir = 4
-	},
+/turf/simulated/floor/outdoors/sidewalk/side,
 /area/gateway/arynthilake/dome)
 "fu" = (
 /obj/structure/table/darkglass,
@@ -712,9 +708,7 @@
 /turf/simulated/floor/tiled/eris/dark/monofloor,
 /area/gateway/arynthilake/dome)
 "jm" = (
-/turf/simulated/floor/outdoors/sidewalk{
-	dir = 4
-	},
+/turf/simulated/floor/outdoors/sidewalk/side,
 /area/gateway/arynthilake)
 "jz" = (
 /obj/structure/table/rack,
@@ -1275,9 +1269,7 @@
 	},
 /area/gateway/arynthilake/dome)
 "uV" = (
-/turf/simulated/floor/outdoors/sidewalk{
-	dir = 6
-	},
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/gateway/arynthilake/dome)
 "vt" = (
 /obj/structure/table/standard{
@@ -1709,9 +1701,7 @@
 /turf/simulated/floor/outdoors/newdirt,
 /area/gateway/arynthilake)
 "GJ" = (
-/turf/simulated/floor/outdoors/sidewalk{
-	dir = 4
-	},
+/turf/simulated/floor/outdoors/sidewalk/side,
 /area/gateway/arynthilake/engine)
 "GK" = (
 /obj/structure/railing,
@@ -1898,9 +1888,7 @@
 /obj/machinery/door/airlock/sandstone{
 	name = "Automatic Door"
 	},
-/turf/simulated/floor/outdoors/sidewalk{
-	dir = 4
-	},
+/turf/simulated/floor/outdoors/sidewalk/side,
 /area/gateway/arynthilake/dome)
 "LH" = (
 /obj/structure/bed/pod,
@@ -2220,9 +2208,7 @@
 /turf/simulated/floor/wood,
 /area/gateway/arynthilake/dome)
 "Sb" = (
-/turf/simulated/floor/outdoors/sidewalk{
-	dir = 6
-	},
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/gateway/arynthilake)
 "Sg" = (
 /turf/simulated/floor/reinforced{
@@ -2497,9 +2483,7 @@
 /area/gateway/arynthilake/dome)
 "ZT" = (
 /obj/random/mob/semirandom_mob_spawner/humanoid/retaliate,
-/turf/simulated/floor/outdoors/sidewalk{
-	dir = 6
-	},
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/gateway/arynthilake/dome)
 
 (1,1,1) = {"
@@ -15529,7 +15513,7 @@ aj
 aj
 aj
 aj
-af
+JK
 aj
 aj
 aj
@@ -15669,11 +15653,11 @@ aj
 aj
 aj
 aj
-af
-af
+JK
+JK
 aj
 aj
-af
+JK
 mT
 aj
 aj
@@ -15810,12 +15794,12 @@ aj
 aj
 aj
 aj
-af
-af
-af
-af
-af
-af
+JK
+JK
+JK
+JK
+JK
+JK
 aj
 aj
 aj
@@ -15951,12 +15935,12 @@ aj
 aj
 aj
 aj
-af
-af
+JK
+JK
 al
 al
-af
-af
+JK
+JK
 aj
 aj
 aj
@@ -16093,12 +16077,12 @@ mT
 aj
 aj
 aj
-af
+JK
 al
 al
 al
-af
-af
+JK
+JK
 aj
 aj
 aj
@@ -16235,11 +16219,11 @@ aj
 aj
 aj
 aj
-af
+JK
 al
 CQ
 al
-af
+JK
 aj
 aj
 aj
@@ -16376,12 +16360,12 @@ aj
 aj
 aj
 aj
-af
-af
+JK
+JK
 al
 al
 al
-af
+JK
 aj
 aj
 aj
@@ -16518,12 +16502,12 @@ aj
 aj
 aj
 aj
-af
-af
+JK
+JK
 al
 al
 al
-af
+JK
 aj
 mT
 aj
@@ -16661,11 +16645,11 @@ aj
 aj
 aj
 aj
-af
-af
-af
+JK
+JK
+JK
 al
-af
+JK
 aj
 aj
 aj
@@ -16805,9 +16789,9 @@ aj
 aj
 aj
 aj
-af
-af
-af
+JK
+JK
+JK
 aj
 aj
 aj
@@ -16948,8 +16932,8 @@ mn
 aj
 aj
 aj
-af
-af
+JK
+JK
 aj
 aj
 aj
@@ -17090,9 +17074,9 @@ aj
 aj
 aj
 aj
-af
-af
-af
+JK
+JK
+JK
 aj
 aj
 mT
@@ -17233,9 +17217,9 @@ aj
 aj
 aj
 aj
-af
-af
-af
+JK
+JK
+JK
 aj
 aj
 aj
@@ -17376,8 +17360,8 @@ aj
 aj
 aj
 aj
-af
-af
+JK
+JK
 aj
 aj
 aj
@@ -17518,7 +17502,7 @@ aj
 aj
 aj
 aj
-af
+JK
 aj
 aj
 aj

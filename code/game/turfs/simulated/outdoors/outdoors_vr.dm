@@ -68,7 +68,7 @@
 	name = "sidewalk"
 	desc = "Concrete shaped into a path!"
 	icon = 'icons/turf/outdoors_vr.dmi'
-	icon_state = "sidewalk0"
+	icon_state = "sidewalk"
 	edge_blending_priority = 1
 	movement_cost = -0.5
 	initial_flooring = /decl/flooring/outdoors/sidewalk
@@ -77,7 +77,7 @@
 	name = "sidewalk"
 	desc = "Concrete shaped into a path!"
 	icon = 'icons/turf/outdoors_vr.dmi'
-	icon_base = "sidewalk0"
+	icon_base = "sidewalk"
 	footstep_sounds = list("human" = list(
 		'sound/effects/footstep/LightStone1.ogg',
 		'sound/effects/footstep/LightStone2.ogg',
@@ -86,17 +86,23 @@
 
 /turf/simulated/floor/outdoors/sidewalk/Initialize(mapload)
 	var/possibledirts = list(
-		"sidewalk0" = 150,
-		"sidewalk1" = 3,
-		"sidewalk2" = 3,
-		"sidewalk3" = 3,
-		"sidewalk4" = 3,
-		"sidewalk5" = 3,
-		"sidewalk6" = 2,
-		"sidewalk7" = 2,
-		"sidewalk8" = 2,
-		"sidewalk9" = 2,
-		"sidewalk10" = 2		
+		"[initial(icon_state)]" = 150,
+		"[initial(icon_state)]1" = 3,
+		"[initial(icon_state)]2" = 3,
+		"[initial(icon_state)]3" = 3,
+		"[initial(icon_state)]4" = 3,
+		"[initial(icon_state)]5" = 3,
+		"[initial(icon_state)]6" = 2,
+		"[initial(icon_state)]7" = 2,
+		"[initial(icon_state)]8" = 2,
+		"[initial(icon_state)]9" = 2,
+		"[initial(icon_state)]10" = 2		
 	)
 	flooring_override = pickweight(possibledirts)
 	return ..()	
+
+/turf/simulated/floor/outdoors/sidewalk/side
+	icon_state = "side-walk"
+
+/turf/simulated/floor/outdoors/sidewalk/slab
+	icon_state = "slab"

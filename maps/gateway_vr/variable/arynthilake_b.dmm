@@ -13,9 +13,7 @@
 /area/gateway/arynthilake)
 "ax" = (
 /obj/random/mob/semirandom_mob_spawner/monster/d,
-/turf/simulated/floor/outdoors/sidewalk{
-	dir = 6
-	},
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/gateway/arynthilake/dome)
 "az" = (
 /turf/simulated/floor/outdoors/grass,
@@ -396,9 +394,7 @@
 /turf/simulated/floor/tiled/eris,
 /area/gateway/arynthilake/engine)
 "hl" = (
-/turf/simulated/floor/outdoors/sidewalk{
-	dir = 4
-	},
+/turf/simulated/floor/outdoors/sidewalk/side,
 /area/gateway/arynthilake)
 "hr" = (
 /obj/structure/flora/tree/sif,
@@ -460,9 +456,7 @@
 /turf/simulated/floor/wood/sif/broken,
 /area/gateway/arynthilake/oldcabin)
 "iG" = (
-/turf/simulated/floor/outdoors/sidewalk{
-	dir = 4
-	},
+/turf/simulated/floor/outdoors/sidewalk/side,
 /area/gateway/arynthilake/dome)
 "iI" = (
 /turf/simulated/floor/tiled{
@@ -598,9 +592,7 @@
 /obj/machinery/door/airlock/sandstone{
 	name = "Automatic Door"
 	},
-/turf/simulated/floor/outdoors/sidewalk{
-	dir = 4
-	},
+/turf/simulated/floor/outdoors/sidewalk/side,
 /area/gateway/arynthilake/dome)
 "lt" = (
 /obj/effect/floor_decal/techfloor,
@@ -965,9 +957,7 @@
 /turf/simulated/floor/wood,
 /area/gateway/arynthilake/dome)
 "tk" = (
-/turf/simulated/floor/outdoors/sidewalk{
-	dir = 4
-	},
+/turf/simulated/floor/outdoors/sidewalk/side,
 /area/gateway/arynthilake/engine)
 "tu" = (
 /obj/structure/bookcase,
@@ -1190,9 +1180,7 @@
 /turf/simulated/floor/outdoors/grass/forest,
 /area/gateway/arynthilake)
 "zo" = (
-/turf/simulated/floor/outdoors/sidewalk{
-	dir = 6
-	},
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/gateway/arynthilake/dome)
 "zp" = (
 /turf/simulated/floor/water,
@@ -2404,9 +2392,7 @@
 /turf/simulated/floor/water,
 /area/gateway/arynthilake)
 "Za" = (
-/turf/simulated/floor/outdoors/sidewalk{
-	dir = 6
-	},
+/turf/simulated/floor/outdoors/sidewalk/slab,
 /area/gateway/arynthilake)
 "Zb" = (
 /obj/effect/floor_decal/techfloor{
@@ -7404,7 +7390,7 @@ QA
 QA
 QA
 QA
-iX
+rt
 QA
 QA
 QA
@@ -7546,8 +7532,8 @@ QA
 QA
 QA
 QA
-iX
-iX
+rt
+rt
 QA
 QA
 QA
@@ -7687,9 +7673,9 @@ QA
 QA
 QA
 QA
-iX
-iX
-iX
+rt
+rt
+rt
 QA
 QA
 QA
@@ -7828,9 +7814,9 @@ QA
 QA
 QA
 QA
-iX
-iX
-iX
+rt
+rt
+rt
 QA
 QA
 eg
@@ -7970,8 +7956,8 @@ gs
 QA
 QA
 QA
-iX
-iX
+rt
+rt
 QA
 QA
 QA
@@ -8111,9 +8097,9 @@ QA
 QA
 QA
 QA
-iX
-iX
-iX
+rt
+rt
+rt
 QA
 QA
 QA
@@ -8251,11 +8237,11 @@ QA
 QA
 QA
 QA
-iX
-iX
-iX
+rt
+rt
+rt
 sP
-iX
+rt
 QA
 QA
 QA
@@ -8392,12 +8378,12 @@ QA
 QA
 QA
 QA
-iX
-iX
+rt
+rt
 sP
 sP
 sP
-iX
+rt
 QA
 eg
 QA
@@ -8534,12 +8520,12 @@ QA
 QA
 QA
 QA
-iX
-iX
+rt
+rt
 sP
 sP
 sP
-iX
+rt
 QA
 QA
 QA
@@ -8677,11 +8663,11 @@ QA
 QA
 QA
 QA
-iX
+rt
 sP
 NR
 sP
-iX
+rt
 QA
 QA
 QA
@@ -8819,12 +8805,12 @@ eg
 QA
 QA
 QA
-iX
+rt
 sP
 sP
 sP
-iX
-iX
+rt
+rt
 QA
 QA
 QA
@@ -8961,12 +8947,12 @@ QA
 QA
 QA
 QA
-iX
-iX
+rt
+rt
 sP
 sP
-iX
-iX
+rt
+rt
 QA
 QA
 QA
@@ -9104,12 +9090,12 @@ QA
 QA
 QA
 QA
-iX
-iX
-iX
-iX
-iX
-iX
+rt
+rt
+rt
+rt
+rt
+rt
 QA
 QA
 QA
@@ -9247,11 +9233,11 @@ QA
 QA
 QA
 QA
-iX
-iX
+rt
+rt
 QA
 QA
-iX
+rt
 eg
 QA
 QA
@@ -9391,7 +9377,7 @@ QA
 QA
 QA
 QA
-iX
+rt
 QA
 QA
 QA
