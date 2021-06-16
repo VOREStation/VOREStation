@@ -68,3 +68,13 @@
 	desc = "ye olde knight, risen again. This one seems slightly faster than the rest, but weaker."
 	icon_state = "robin"
 	hoodtype = /obj/item/clothing/head/hood/robin_costume
+
+// Talon Winter Coat
+/obj/item/clothing/suit/storage/hooded/wintercoat/talon
+	name = "ITV winter coat"
+	desc = "A cozy winter coat, covered in thick fur and baring the colors of ITV."
+	icon = 'icons/obj/clothing/suits_vr.dmi'
+	icon_override = 'icons/mob/suit_vr.dmi'
+	icon_state = "taloncoat"
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	hoodtype = /obj/item/clothing/head/hood/winter/talon
