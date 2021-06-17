@@ -14,9 +14,6 @@ SUBSYSTEM_DEF(planets)
 	var/static/list/needs_sun_update = list()
 	var/static/list/needs_temp_update = list()
 
-	var/static/list/queued_turfs = list()
-	var/static/accepting_turfs = FALSE
-
 /datum/controller/subsystem/planets/Initialize(timeofday)
 	admin_notice("<span class='danger'>Initializing planetary weather.</span>", R_DEBUG)
 	createPlanets()
@@ -34,23 +31,11 @@ SUBSYSTEM_DEF(planets)
 				admin_notice("<span class='danger'>Z[Z] is shared by more than one planet!</span>", R_DEBUG)
 				continue
 			z_to_planet[Z] = NP
-	accepting_turfs = TRUE
-	while(queued_turfs.len)
-		addTurf(queued_turfs[queued_turfs.len])
-		queued_turfs.len--
-		CHECK_TICK
-	/* Seems to cause active edges, SOMEHOW. IT'S LIGHT AAAA.
-	for(var/datum/planet/P as anything in planets)
-		updateSunlight(P)
-	*/
 
 // DO NOT CALL THIS DIRECTLY UNLESS IT'S IN INITIALIZE,
 // USE turf/simulated/proc/make_indoors() and
 //     tyrf/simulated/proc/make_outdoors()
 /datum/controller/subsystem/planets/proc/addTurf(var/turf/T)
-	if(!accepting_turfs)
-		queued_turfs |= T
-		return
 	if(z_to_planet.len >= T.z && z_to_planet[T.z])
 		var/datum/planet/P = z_to_planet[T.z]
 		if(!istype(P))
@@ -86,7 +71,8 @@ SUBSYSTEM_DEF(planets)
 		updateSunlight(P)
 		if(MC_TICK_CHECK)
 			return
-
+	
+	#ifndef UNIT_TEST // Don't be updating temperatures and such during unit tests
 	var/list/needs_temp_update = src.needs_temp_update
 	while(needs_temp_update.len)
 		var/datum/planet/P = needs_temp_update[needs_temp_update.len]
@@ -94,6 +80,7 @@ SUBSYSTEM_DEF(planets)
 		updateTemp(P)
 		if(MC_TICK_CHECK)
 			return
+	#endif
 
 	var/list/currentrun = src.currentrun
 	while(currentrun.len)

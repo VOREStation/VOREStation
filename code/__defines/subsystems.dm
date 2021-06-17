@@ -63,6 +63,7 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 #define INIT_ORDER_INSTRUMENTS	22
 #define INIT_ORDER_DECALS		20
 #define INIT_ORDER_PLANTS		19 // Must initialize before atoms.
+#define INIT_ORDER_PLANETS		18
 #define INIT_ORDER_JOB			17
 #define INIT_ORDER_ALARM		16 // Must initialize before atoms.
 #define INIT_ORDER_TRANSCORE	15 // VOREStation Edit
@@ -73,7 +74,6 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 #define INIT_ORDER_DEFAULT		0
 #define INIT_ORDER_LIGHTING		0
 #define INIT_ORDER_AIR			-1
-#define INIT_ORDER_PLANETS		-2
 #define INIT_ORDER_ASSETS		-3
 #define INIT_ORDER_HOLOMAPS		-5
 #define INIT_ORDER_NIGHTSHIFT	-6
