@@ -375,7 +375,7 @@
 
 /obj/item/clothing/accessory/chameleon
 	name = "black tie"
-	desc = "Looks like a black tie, but his one also has a dial inside."
+	desc = "Looks like a black tie, but this one also has a dial inside."
 	icon = 'icons/obj/clothing/ties.dmi'
 	icon_state = "blacktie"
 	origin_tech = list(TECH_ILLEGAL = 3)
