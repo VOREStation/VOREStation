@@ -232,7 +232,7 @@ var/global/list/contamination_flavors = list(
 				"Dirty" = contamination_flavors_dirty,
 				"Musky" = contamination_flavors_musky,
 				"Smelly" = contamination_flavors_smelly,
-				"slimy" = contamination_flavors_slimy,
+				"Slimy" = contamination_flavors_slimy,
 				"Wet" = contamination_flavors_wet)
 
 var/global/list/contamination_flavors_generic = list("acrid",
@@ -449,8 +449,7 @@ var/global/list/contamination_flavors_slimy = list("slimy",
 				"glutinous",
 				"syrupy",
 				"slippery",
-				"gelatinous",
-				"thick")
+				"gelatinous")
 
 var/global/list/contamination_colors = list("green",
 				"white",
