@@ -18,6 +18,22 @@
 			"color" = "#EE9AC6"
 		),
 		list(
+			"brightness" = 1.5,
+			"color" = "#F07AD8"
+		),
+		list(
+			"brightness" = 1.5,
+			"color" = "#61AEF3"
+		),
+		list(
+			"brightness" = 1,
+			"color" = "#f3932d"
+		),
+		list(
+			"brightness" = 1,
+			"color" = "#631E8A"
+		),
+		list(
 			"brightness" = 1.0,
 			"color" = "#A3A291"
 		),
@@ -91,3 +107,69 @@
 				LC.update_lumcount(lum_r, lum_g, lum_b)
 	update_gen--
 	qdel(src)
+
+/obj/effect/fake_sun/warm
+	name = "warm fake sun"
+	desc = "Deletes itself, but first updates all the lighting on outdoor turfs to warm colors."
+
+	possible_light_setups = list(
+
+		list(
+			"brightness" = 6.0,
+			"color" = "#E9FFB8"
+		),
+
+		list(
+			"brightness" = 4.0,
+			"color" = "#F4EA55"
+		),
+		list(
+			"brightness" = 1.0,
+			"color" = "#F07AD8"
+		),
+		list(
+			"brightness" = 1.0,
+			"color" = "#b4361f"
+		),
+
+		list(
+			"brightness" = 0.7,
+			"color" = "#f3932d"
+		),
+
+		list(
+			"brightness" = 0.1,
+			"color" = "#B92B00"
+		)
+	)
+
+/obj/effect/fake_sun/cool
+	name = "fake sun"
+	desc = "Deletes itself, but first updates all the lighting on outdoor turfs to cool colors."
+	possible_light_setups = list(
+
+		list(
+			"brightness" = 6.0,
+			"color" = "#abfff7"
+		),
+		list(
+			"brightness" = 4.0,
+			"color" = "#2e30c9"
+		),
+		list(
+			"brightness" = 1.0,
+			"color" = "#61AEF3"
+		),
+		list(
+			"brightness" = 1.0,
+			"color" = "#61ddf3"
+		),
+		list(
+			"brightness" = 0.3,
+			"color" = "#253682"
+		),
+		list(
+			"brightness" = 0.1,
+			"color" = "#27024B"
+		)
+	)
