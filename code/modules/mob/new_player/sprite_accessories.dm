@@ -39,6 +39,9 @@
 	// Ckey of person allowed to use this, if defined.
 	var/list/ckeys_allowed = null
 
+	/// Should this sprite block emissives?
+	var/em_block = FALSE
+
 /*
 ////////////////////////////
 /  =--------------------=  /
@@ -1519,6 +1522,7 @@ shaved
 /datum/sprite_accessory/facial_hair
 	icon = 'icons/mob/Human_face.dmi'
 	color_blend_mode = ICON_ADD
+	em_block = TRUE
 
 /datum/sprite_accessory/facial_hair/shaved
 	name = "Shaved"

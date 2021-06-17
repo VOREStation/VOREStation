@@ -630,6 +630,13 @@
 	return ..()
 
 // Background 'floor'
+/obj/screen/setup_preview/pm_helper
+	icon = null
+	icon_state = null
+	appearance_flags = PLANE_MASTER
+	plane = PLANE_EMISSIVE
+	alpha = 0
+
 /obj/screen/setup_preview/bg
 	mouse_over_pointer = MOUSE_HAND_POINTER
 

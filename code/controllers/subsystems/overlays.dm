@@ -224,6 +224,32 @@ var/global/image/appearance_bro = new() // Temporarily super-global because of B
 	else if(cut_old)
 		cut_overlays()
 
+/**
+ * Returns a list of overlays that the target atom has
+ *
+ * @param priority If true, returns priority overlays as well
+ * @param special If true, returns special overlays like emissives and em_blockers
+ */
+/proc/get_overlays(atom/other, priority, special)
+	var/list/including = list()
+	if(!other)
+		return including
+
+	for(var/image/I as anything in other.our_overlays)
+		if(!special && I.plane > 0)
+			continue
+		including += I
+	
+	if(!priority)
+		return including
+	
+	for(var/image/I as anything in other.priority_overlays)
+		if(!special && I.plane > 0)
+			continue
+		including += I
+	
+	return including
+
 #undef NOT_QUEUED_ALREADY
 #undef QUEUE_FOR_COMPILE
 

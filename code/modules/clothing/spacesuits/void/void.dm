@@ -120,7 +120,6 @@
 			to_chat(M, "Your suit's cooling unit deploys.")
 			cooler.canremove = 0
 
-
 /obj/item/clothing/suit/space/void/dropped()
 	..()
 
@@ -149,6 +148,22 @@
 	if(cooler)
 		cooler.canremove = 1
 		cooler.forceMove(src)
+
+/obj/item/clothing/suit/space/void/proc/attach_helmet(var/obj/item/clothing/head/helmet/space/void/helm)
+	if(!istype(helm) || helmet)
+		return
+
+	helm.forceMove(src)
+	helm.set_light_flags(helm.light_flags | LIGHT_ATTACHED)
+	helmet = helm
+
+/obj/item/clothing/suit/space/void/proc/remove_helmet()
+	if(!helmet)
+		return
+
+	helmet.forceMove(get_turf(src))
+	helmet.set_light_flags(helmet.light_flags & ~LIGHT_ATTACHED)
+	helmet = null
 
 /obj/item/clothing/suit/space/void/verb/toggle_helmet()
 
@@ -243,9 +258,8 @@
 				src.cooler = null
 			else if(choice == helmet)
 				to_chat(user, "You detach \the [helmet] from \the [src]'s helmet mount.")
-				helmet.forceMove(get_turf(src))
+				remove_helmet()
 				playsound(src, W.usesound, 50, 1)
-				src.helmet = null
 			else if(choice == boots)
 				to_chat(user, "You detach \the [boots] from \the [src]'s boot mounts.")
 				boots.forceMove(get_turf(src))
@@ -260,8 +274,7 @@
 		else
 			to_chat(user, "You attach \the [W] to \the [src]'s helmet mount.")
 			user.drop_item()
-			W.forceMove(src)
-			src.helmet = W
+			attach_helmet(W)
 		return
 	else if(istype(W,/obj/item/clothing/shoes/magboots))
 		if(boots)

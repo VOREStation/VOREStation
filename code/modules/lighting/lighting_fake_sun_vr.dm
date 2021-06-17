@@ -3,6 +3,7 @@
 	desc = "Deletes itself, but first updates all the lighting on outdoor turfs."
 	icon = 'icons/effects/effects_vr.dmi'
 	icon_state = "fakesun"
+	var/datum/light_source/sun/fake_sun
 
 	var/list/possible_light_setups = list(
 		list(
@@ -66,28 +67,31 @@
 
 /obj/effect/fake_sun/LateInitialize()
 	. = ..()
+	var/list/choice = pick(possible_light_setups)
+	if(choice["brightness"] <= LIGHTING_SOFT_THRESHOLD) // dark!
+		return
 
-	var/list/our_choice = pick(possible_light_setups)
+	fake_sun = new
+	fake_sun.light_color = choice["color"]
+	fake_sun.light_power = choice["brightness"]
+
+	var/list/zees = GetConnectedZlevels()
+	var/min = z
+	var/max = z
+	for(var/zee in zees)
+		if(zee < min)
+			min = z
+		if(zee > max)
+			max = z
+
+	var/list/all_turfs = block(locate(1, 1, min), locate(world.maxx, world.maxy, max))
+	var/list/turfs_to_use = list()
+	for(var/turf/T as anything in all_turfs)
+		if(T.outdoors)
+			turfs_to_use += T
 	
-	// Calculate new values to apply
-	var/new_brightness = our_choice["brightness"]
-	var/new_color = our_choice["color"]
-	var/lum_r = new_brightness * GetRedPart  (new_color) / 255
-	var/lum_g = new_brightness * GetGreenPart(new_color) / 255
-	var/lum_b = new_brightness * GetBluePart (new_color) / 255
-	var/static/update_gen = -1 // Used to prevent double-processing corners. Otherwise would happen when looping over adjacent turfs.
-	
-	var/list/turfs = block(locate(1,1,z),locate(world.maxx,world.maxy,z))
-	
-	for(var/turf/simulated/T as anything in turfs)
-		if(!T.lighting_overlay)
-			T.lighting_build_overlay()
-		if(!T.outdoors)
-			continue
-		for(var/C in T.get_corners())
-			var/datum/lighting_corner/LC = C
-			if(LC.update_gen != update_gen && LC.active)
-				LC.update_gen = update_gen
-				LC.update_lumcount(lum_r, lum_g, lum_b)
-	update_gen--
-	qdel(src)
+	if(!turfs_to_use.len)
+		warning("Fake sun placed on a level where it can't find any outdoor turfs to color at [x],[y],[z].")
+		return
+
+	fake_sun.update_corners(turfs_to_use)
