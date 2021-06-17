@@ -127,7 +127,7 @@
 				temp2.icon_state = null
 			temp2.plane = src.plane
 			temp2.color = O.color
-			temp2.overlays += O.overlays
+			temp2.overlays = get_overlays(O, TRUE)
 			// TODO Is pixelx/y needed?
 			o_img += temp2
 		add_overlay(o_img)

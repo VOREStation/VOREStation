@@ -115,7 +115,7 @@
 	is_stump = TRUE
 	density = FALSE
 	icon_state = "[base_state]_stump"
-	overlays.Cut() // For the Sif tree and other future glowy trees.
+	cut_overlays() // For the Sif tree and other future glowy trees.
 	set_light(0)
 
 /obj/structure/flora/tree/ex_act(var/severity)
