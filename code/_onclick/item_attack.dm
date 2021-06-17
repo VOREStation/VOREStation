@@ -41,11 +41,6 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		return TRUE
 	return FALSE
 
-/atom/movable/attackby(obj/item/W, mob/user, var/attack_modifier, var/click_parameters)
-	. = ..()
-	if(!. && !(W.flags & NOBLUDGEON))
-		visible_message("<span class='danger'>[src] has been hit by [user] with [W].</span>")
-
 /mob/living/attackby(obj/item/I, mob/user, var/attack_modifier, var/click_parameters)
 	if(!ismob(user))
 		return 0
