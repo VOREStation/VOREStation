@@ -86,8 +86,7 @@ var/list/dispenser_presets = list()
 		if(voidsuit.helmet)
 			error("[src] created a voidsuit [voidsuit] and wants to add a helmet but it already has one")
 		else
-			voidhelmet = new voidhelmet_type(voidsuit)
-			voidsuit.helmet = voidhelmet
+			voidsuit.attach_helmet(new voidhelmet_type())
 			spawned += voidhelmet
 	// If we're supposed to make boots
 	if(magboots_type)
