@@ -29477,9 +29477,7 @@
 /area/bridge)
 "aYk" = (
 /obj/machinery/papershredder,
-/obj/machinery/light{
-	dir = 2
-	},
+/obj/machinery/light,
 /obj/effect/floor_decal/borderfloor{
 	dir = 10
 	},
@@ -35806,6 +35804,7 @@
 	pixel_x = 6;
 	pixel_y = 31
 	},
+/obj/item/device/denecrotizer/medical,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/storage)
 "bjH" = (

@@ -6,6 +6,7 @@
 #define GD_ONEITEM		2		// only one type of suit comes out of this dispenser.
 #define GD_NOGREED		4		// no-one is allowed more than one item from this TYPE of dispenser unless emagged
 #define GD_UNLIMITED	8		// will not deplete amount when gear is taken
+#define GD_UNIQUE		16		// each instance of this will allow people to take 1 thing
 
 var/list/dispenser_presets = list()
 
@@ -154,6 +155,8 @@ var/list/dispenser_presets = list()
 	var/datum/gear_disp/one_setting
 	var/global/list/gear_distributed_to = list()
 	var/dispenser_flags = GD_NOGREED|GD_UNLIMITED
+	var/unique_dispense_list = list()
+	var/needs_power = 0
 	//req_one_access = list(whatever) // Note that each gear datum can have access, too.
 
 /obj/machinery/gear_dispenser/custom/emag_act(remaining_charges, mob/user, emag_source)
@@ -198,6 +201,9 @@ var/list/dispenser_presets = list()
 
 /obj/machinery/gear_dispenser/proc/can_use(var/mob/living/carbon/human/user)
 	var/list/used_by = gear_distributed_to["[type]"]
+	if(needs_power && inoperable())
+		to_chat(user,"<span class='warning'>The machine does not respond to your prodding.</span>")
+		return 0
 	if(!istype(user))
 		to_chat(user,"<span class='warning'>You can't use this!</span>")
 		return 0
@@ -207,15 +213,19 @@ var/list/dispenser_presets = list()
 	if((dispenser_flags & GD_ONEITEM) && !(dispenser_flags & GD_UNLIMITED) && !one_setting.amount)
 		to_chat(user,"<span class='warning'>There's nothing in here!</span>")
 		return 0
-	if ((dispenser_flags & GD_NOGREED) && (weakref(user) in used_by) && !emagged)
-		to_chat(user,"<span class='warning'>You've already picked up your gear!</span>")
-		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 0)
-		return 0
-	if(emagged)
+	if (!emagged)
+		if ((dispenser_flags & GD_NOGREED) && (user.ckey in used_by))
+			to_chat(user,"<span class='warning'>You've already picked up your gear!</span>")
+			playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 0)
+			return 0
+		if ((dispenser_flags & GD_UNIQUE) && (user.ckey in unique_dispense_list))
+			to_chat(user,"<span class='warning'>You've already picked up your gear!</span>")
+			playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 0)
+			return 0
+	else
 		audible_message("!'^&YouVE alreaDY pIC&$!Ked UP yOU%r Ge^!ar.")
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 100, 0)
-		return 1
-	
+		return 1	
 	// And finally
 	if(allowed(user))
 		return 1
@@ -244,7 +254,10 @@ var/list/dispenser_presets = list()
 	else if(!(dispenser_flags & GD_UNLIMITED))
 		S.amount--
 	if((dispenser_flags & GD_NOGREED) && !emagged)
-		gear_distributed_to["[type]"] |= weakref(user)
+		gear_distributed_to["[type]"] |= user.ckey
+	if((dispenser_flags & GD_UNIQUE) && !emagged)
+		unique_dispense_list |= user.ckey
+
 	flick("[icon_state]-scan",src)
 	visible_message("\The [src] scans its user.", runemessage = "hums")
 	sleep(30)
@@ -528,3 +541,216 @@ var/list/dispenser_presets = list()
 		running[option_name] = G
 	to_chat(usr, "[src] added [running.len] entries")
 	dispenses = running
+
+////////////////////////////// RANDOM SUIT AND WEAPON DISPENSERS ///////////////////////////
+
+/obj/machinery/gear_dispenser/randomvoidsuit
+	name = "Suit Dispenser"
+	desc = "An industrial U-Tak-It Dispenser unit designed to fetch voidsuits."
+	icon_state = "suitdispenserAL"
+	dispenser_flags = GD_ONEITEM|GD_NOGREED
+	one_setting = /datum/gear_disp/voidsuit/random
+
+/datum/gear_disp/voidsuit/random
+	name = "Voidsuit"
+	to_spawn = list()
+	amount = 4
+
+/datum/gear_disp/voidsuit/random/spawn_gear(var/turf/T, var/mob/living/carbon/user)
+	// I copied these from the /obj/random/multiple/voidsuit, but added the "suit" and "helmet"
+	var/list/choice = pick(
+		prob(5);list(
+			"suit" = /obj/item/clothing/suit/space/void,
+			"helmet" = /obj/item/clothing/head/helmet/space/void
+		),
+		prob(5);list(
+			"suit" = /obj/item/clothing/suit/space/void/atmos,
+			"helmet" = /obj/item/clothing/head/helmet/space/void/atmos
+		),
+		prob(5);list(
+			"suit" = /obj/item/clothing/suit/space/void/atmos/alt,
+			"helmet" = /obj/item/clothing/head/helmet/space/void/atmos/alt
+		),
+		prob(5);list(
+			"suit" = /obj/item/clothing/suit/space/void/engineering,
+			"helmet" = /obj/item/clothing/head/helmet/space/void/engineering
+		),
+		prob(5);list(
+			"suit" = /obj/item/clothing/suit/space/void/engineering/alt,
+			"helmet" = /obj/item/clothing/head/helmet/space/void/engineering/alt
+		),
+		prob(5);list(
+			"suit" = /obj/item/clothing/suit/space/void/engineering/hazmat,
+			"helmet" = /obj/item/clothing/head/helmet/space/void/engineering/hazmat
+		),
+		prob(5);list(
+			"suit" = /obj/item/clothing/suit/space/void/engineering/construction,
+			"helmet" = /obj/item/clothing/head/helmet/space/void/engineering/construction
+		),
+		prob(5);list(
+			"suit" = /obj/item/clothing/suit/space/void/engineering/salvage,
+			"helmet" = /obj/item/clothing/head/helmet/space/void/engineering/salvage
+		),
+		prob(5);list(
+			"suit" = /obj/item/clothing/suit/space/void/medical,
+			"helmet" = /obj/item/clothing/head/helmet/space/void/medical
+		),
+		prob(5);list(
+			"suit" = /obj/item/clothing/suit/space/void/medical/alt,
+			"helmet" = /obj/item/clothing/head/helmet/space/void/medical/alt
+		),
+		prob(5);list(
+			"suit" = /obj/item/clothing/suit/space/void/medical/bio,
+			"helmet" = /obj/item/clothing/head/helmet/space/void/medical/bio
+		),
+		prob(5);list(
+			"suit" = /obj/item/clothing/suit/space/void/medical/emt,
+			"helmet" = /obj/item/clothing/head/helmet/space/void/medical/emt
+		),
+		prob(5);list(
+			"suit" = /obj/item/clothing/suit/space/void/merc,
+			"helmet" = /obj/item/clothing/head/helmet/space/void/merc
+		),
+		prob(5);list(
+			"suit" = /obj/item/clothing/suit/space/void/merc/fire,
+			"helmet" = /obj/item/clothing/head/helmet/space/void/merc/fire
+		),
+		prob(5);list(
+			"suit" = /obj/item/clothing/suit/space/void/mining,
+			"helmet" = /obj/item/clothing/head/helmet/space/void/mining
+		),
+		prob(5);list(
+			"suit" = /obj/item/clothing/suit/space/void/mining/alt,
+			"helmet" = /obj/item/clothing/head/helmet/space/void/mining/alt
+		),
+		prob(5);list(
+			"suit" = /obj/item/clothing/suit/space/void/security,
+			"helmet" = /obj/item/clothing/head/helmet/space/void/security
+		),
+		prob(5);list(
+			"suit" = /obj/item/clothing/suit/space/void/security/alt,
+			"helmet" = /obj/item/clothing/head/helmet/space/void/security/alt
+		),
+		prob(5);list(
+			"suit" = /obj/item/clothing/suit/space/void/security/riot,
+			"helmet" = /obj/item/clothing/head/helmet/space/void/security/riot
+		),
+		prob(5);list(
+			"suit" = /obj/item/clothing/suit/space/void/exploration,
+			"helmet" = /obj/item/clothing/head/helmet/space/void/exploration
+		),
+		prob(5);list(
+			"suit" = /obj/item/clothing/suit/space/void/pilot,
+			"helmet" = /obj/item/clothing/head/helmet/space/void/pilot
+		))
+	voidsuit_type = choice["suit"]
+	voidhelmet_type = choice["helmet"]
+	return ..()
+
+/obj/machinery/gear_dispenser/randomweapons
+	name = "Weapon Dispenser"
+	desc = "An industrial U-Tak-It Dispenser unit designed to fetch weapons."
+	dispenser_flags = GD_ONEITEM|GD_NOGREED
+	one_setting = /datum/gear_disp/randomweapons
+
+/datum/gear_disp/randomweapons
+	name = "Weapon"
+	amount = 2
+
+/datum/gear_disp/randomweapons/spawn_gear(var/turf/T, var/mob/living/carbon/user)
+	var/choice = pick(
+					prob(3);/obj/random/multiple/gun/projectile/handgun,
+					prob(2);/obj/random/multiple/gun/projectile/smg,
+					prob(2);/obj/random/multiple/gun/projectile/shotgun,
+					prob(1);/obj/random/multiple/gun/projectile/rifle)
+	to_spawn = list(choice)
+	return ..()
+
+///////////////////Adventure Box//////////////////////////
+
+/obj/machinery/gear_dispenser/adventure_box
+	name = "Dispenser"
+	desc = "An industrial U-Tak-It Dispenser unit designed to fetch items that one might need in dangerous scenarios!"
+	dispenser_flags = GD_UNIQUE
+	dispenses = list(
+		/datum/gear_disp/adventure_box/awayloot,
+		/datum/gear_disp/adventure_box/food,
+		/datum/gear_disp/adventure_box/medical,
+		/datum/gear_disp/adventure_box/tools,
+		/datum/gear_disp/adventure_box/armor,
+		/datum/gear_disp/adventure_box/light
+		)
+	var/chance_to_delete = 0
+
+/obj/machinery/gear_dispenser/adventure_box/Initialize()
+	. = ..()
+	if(prob(chance_to_delete))
+		return INITIALIZE_HINT_QDEL
+
+/datum/gear_disp/adventure_box/medical
+	name = "Medkit"
+	to_spawn = list(/obj/random/firstaid)
+	amount = 2
+
+/datum/gear_disp/adventure_box/awayloot
+	name = "Curious Item"
+	to_spawn = list(/obj/random/awayloot/nofail)
+	amount = 5
+
+/datum/gear_disp/adventure_box/food
+	name = "Food Plate"
+	to_spawn = list(
+					/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar,
+					/obj/item/weapon/reagent_containers/food/snacks/no_raisin,
+					/obj/item/weapon/reagent_containers/food/drinks/tea
+					)
+	amount = 10
+
+/datum/gear_disp/adventure_box/tools
+	name = "Tools"
+	to_spawn = list(
+					/obj/random/tool,
+					/obj/random/tool,
+					/obj/random/tool,
+					/obj/item/weapon/storage/belt/utility
+					)
+	amount = 5
+
+/datum/gear_disp/adventure_box/armor
+	name = "Armor"
+	to_spawn = list(
+					/obj/item/clothing/suit/armor/vest,
+					/obj/item/clothing/head/helmet/bulletproof,
+					/obj/item/clothing/shoes/boots/jackboots
+					)
+	amount = 1
+
+/datum/gear_disp/adventure_box/light
+	name = "Flashlight"
+	to_spawn = list(/obj/item/device/flashlight/maglight)
+	amount = 2
+
+/datum/gear_disp/adventure_box/weapon
+	name = "Ranged Weapon"
+	amount = 1
+//from /obj/random/projectile/random
+/datum/gear_disp/adventure_box/weapon/spawn_gear(var/turf/T, var/mob/living/carbon/user)
+	var/choice = pick(
+					prob(3);/obj/random/multiple/gun/projectile/handgun,
+					prob(2);/obj/random/multiple/gun/projectile/smg,
+					prob(2);/obj/random/multiple/gun/projectile/shotgun,
+					prob(1);/obj/random/multiple/gun/projectile/rifle)
+	to_spawn = list(choice)
+	return ..()
+
+
+/obj/machinery/gear_dispenser/adventure_box/weapon
+	dispenses = list(
+		/datum/gear_disp/adventure_box/awayloot,
+		/datum/gear_disp/adventure_box/food,
+		/datum/gear_disp/adventure_box/medical,
+		/datum/gear_disp/adventure_box/tools,
+		/datum/gear_disp/adventure_box/armor,
+		/datum/gear_disp/adventure_box/light,
+		/datum/gear_disp/adventure_box/weapon
+		)
