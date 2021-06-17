@@ -472,7 +472,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 			face_standing.Blend(hair_s, ICON_OVERLAY)
 
-	if(head_organ.nonsolid || head_organ.transparent)
+	if(head_organ.transparent)		//VOREStation Edit: Prometheans are not ALWAYS transparent
 		face_standing += rgb(,,,120)
 
 	var/icon/ears_s = get_ears_overlay()
