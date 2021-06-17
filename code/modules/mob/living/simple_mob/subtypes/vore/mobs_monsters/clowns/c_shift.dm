@@ -26,7 +26,7 @@
 		name = real_name
 
 
-		overlays.Cut()
+		cut_overlays()
 		alpha = initial(alpha)
 		invisibility = initial(invisibility)
 		see_invisible = initial(see_invisible)
@@ -60,7 +60,7 @@
 		real_name = name
 		name = "Something"
 
-		overlays.Cut()
+		cut_overlays()
 		flick("tp_out",src)
 		sleep(5)
 		invisibility = INVISIBILITY_LEVEL_TWO

@@ -29,32 +29,32 @@
 	update_icon()
 
 /obj/structure/medical_stand/update_icon()
-	overlays.Cut()
+	cut_overlays()
 
 	if (tank)
 		if (breather)
-			overlays += "tube_active"
+			add_overlay("tube_active")
 		else
-			overlays += "tube"
+			add_overlay("tube")
 		if(istype(tank,/obj/item/weapon/tank/anesthetic))
-			overlays += "tank_anest"
+			add_overlay("tank_anest")
 		else if(istype(tank,/obj/item/weapon/tank/nitrogen))
-			overlays += "tank_nitro"
+			add_overlay("tank_nitro")
 		else if(istype(tank,/obj/item/weapon/tank/oxygen))
-			overlays += "tank_oxyg"
+			add_overlay("tank_oxyg")
 		else if(istype(tank,/obj/item/weapon/tank/phoron))
-			overlays += "tank_plasma"
+			add_overlay("tank_plasma")
 		//else if(istype(tank,/obj/item/weapon/tank/hydrogen))
-		//	overlays += "tank_hydro"
+		//	add_overlay("tank_hydro")
 		else
-			overlays += "tank_other"
+			add_overlay("tank_other")
 
 	if(beaker)
-		overlays += "beaker"
+		add_overlay("beaker")
 		if(attached)
-			overlays += "line_active"
+			add_overlay("line_active")
 		else
-			overlays += "line"
+			add_overlay("line")
 		var/datum/reagents/reagents = beaker.reagents
 		var/percent = round((reagents.total_volume / beaker.volume) * 100)
 		if(reagents.total_volume)
@@ -69,7 +69,7 @@
 				if(91 to INFINITY)	filling.icon_state = "reagent100"
 			if (filling.icon)
 				filling.icon += reagents.get_color()
-				overlays += filling
+				add_overlay(filling)
 
 /obj/structure/medical_stand/Destroy()
 	STOP_PROCESSING(SSobj,src)
