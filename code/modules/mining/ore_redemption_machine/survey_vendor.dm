@@ -64,6 +64,11 @@
 		EQUIPMENT("Jump Boots",									/obj/item/clothing/shoes/bhop,										250),
 		EQUIPMENT("Mini-Translocator",							/obj/item/device/perfect_tele/one_beacon,							120),
 		EQUIPMENT("Survival Equipment - Insulated Poncho",		/obj/random/thermalponcho,											75),
+		EQUIPMENT("Survival Equipment - Glowstick", 			/obj/item/device/flashlight/glowstick,								5),
+		EQUIPMENT("Survival Equipment - Flare", 				/obj/item/device/flashlight/flare,									5),
+		EQUIPMENT("Survival Equipment - Radioisotope Glowstick",		/obj/item/device/flashlight/glowstick/radioisotope,					40),
+		EQUIPMENT("Survival Equipment - Modular Explorer Suit",		/obj/item/clothing/suit/armor/pcarrier/explorer,					200),
+		EQUIPMENT("Survival Equipment - Armored Jumpsuit",		/obj/item/clothing/under/explorer/armored,					200),
 	)
 	prize_list["Consumables"] = list(
 		EQUIPMENT("1 Marker Beacon",		/obj/item/stack/marker_beacon,													1),

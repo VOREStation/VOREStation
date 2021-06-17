@@ -49,6 +49,10 @@
 	name = "vial (hyronalin)"
 	prefill = list("hyronalin" = 30)
 
+/obj/item/weapon/reagent_containers/glass/beaker/vial/amorphorovir
+	name = "vial (amorphorovir)"
+	prefill = list("amorphorovir" = 1)
+
 /obj/item/weapon/reagent_containers/glass/beaker/measuring_cup
 	name = "measuring cup"
 	desc = "A measuring cup."

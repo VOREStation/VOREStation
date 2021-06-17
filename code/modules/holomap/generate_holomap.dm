@@ -30,7 +30,6 @@
 	// Starting over if we're running midround (it runs real fast, so that's possible)
 	holoMiniMaps.Cut()
 	extraMiniMaps.Cut()
-	station_holomaps.Cut()
 
 	// Build the base map for each z level
 	for (var/z = 1 to world.maxz)

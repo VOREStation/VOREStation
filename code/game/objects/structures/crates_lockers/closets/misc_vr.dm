@@ -66,9 +66,11 @@
 
 /obj/structure/closet/secure_closet/explorer/Initialize()
 	if(prob(50))
-		starts_with += /obj/item/weapon/storage/backpack
+		starts_with += /obj/item/weapon/storage/backpack/explorer
 	else
-		starts_with += /obj/item/weapon/storage/backpack/satchel/norm
+		starts_with += /obj/item/weapon/storage/backpack/satchel/explorer
+	if(prob(50))
+		starts_with += /obj/item/weapon/storage/backpack/dufflebag/explorer
 	return ..()
 
 //SAR Lockers
@@ -112,6 +114,14 @@
 		/obj/item/device/geiger,
 		/obj/item/bodybag/cryobag,
 		/obj/item/device/cataloguer/compact)
+
+/obj/structure/closet/secure_closet/sar/Initialize()
+	if(prob(50))
+		starts_with += /obj/item/weapon/storage/backpack/medic
+	else
+		starts_with += /obj/item/weapon/storage/backpack/satchel/med
+	if(prob(50))
+		starts_with += /obj/item/weapon/storage/backpack/dufflebag/med
 
 //Pilot Locker
 

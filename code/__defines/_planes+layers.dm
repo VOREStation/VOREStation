@@ -50,10 +50,10 @@ What is the naming convention for planes or layers?
 #define PLANE_LOOKINGGLASS_IMG	-77 // For the Looking Glass holodecks
 
 // OPENSPACE_PLANE reserves all planes between OPENSPACE_PLANE_START and OPENSPACE_PLANE_END inclusive
-#define OPENSPACE_PLANE 		-75 // /turf/simulated/open will use OPENSPACE_PLANE + z (Valid z's being 2 thru 17)
+#define OPENSPACE_PLANE 		-75 // /turf/simulated/open will use OPENSPACE_PLANE + z (Valid z's being 2 thru 27) //VOREStation Edit
 #define OPENSPACE_PLANE_START	-73
-#define OPENSPACE_PLANE_END		-58
-#define OVER_OPENSPACE_PLANE	-57
+#define OPENSPACE_PLANE_END		-48 //VOREStation Edit
+#define OVER_OPENSPACE_PLANE	-47 //VOREStation Edit
 
 // Turf Planes
 #define PLATING_PLANE			-44 // Plating
@@ -93,6 +93,8 @@ What is the naming convention for planes or layers?
 	#define BELOW_MOB_LAYER			3.9 // Should be converted to plane swaps
 	#define ABOVE_MOB_LAYER			4.1	// Should be converted to plane swaps
 
+#define ABOVE_MOB_PLANE			-24
+
 // Invisible things plane
 #define CLOAKED_PLANE			-15
 
@@ -122,6 +124,7 @@ What is the naming convention for planes or layers?
 #define PLANE_PLANETLIGHTING	4 //Lighting on planets
 #define PLANE_LIGHTING			5 //Where the lighting (and darkness) lives
 #define PLANE_LIGHTING_ABOVE	6 //For glowy eyes etc. that shouldn't be affected by darkness
+#define PLANE_RUNECHAT			7
 
 #define PLANE_GHOSTS			10 //Spooooooooky ghooooooosts
 #define PLANE_AI_EYE			11 //The AI eye lives here

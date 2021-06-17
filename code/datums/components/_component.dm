@@ -213,10 +213,10 @@
   *
   * Arguments:
   * * datum/target Datum to stop listening to signals from
-  * * sig_typeor_types Signal string key or list of signal keys to stop listening to specifically
+  * * sig_type_or_types Signal string key or list of signal keys to stop listening to specifically
   */
 /datum/proc/UnregisterSignal(datum/target, sig_type_or_types)
-	var/list/lookup = target.comp_lookup
+	var/list/lookup = target?.comp_lookup
 	if(!signal_procs || !signal_procs[target] || !lookup)
 		return
 	if(!islist(sig_type_or_types))

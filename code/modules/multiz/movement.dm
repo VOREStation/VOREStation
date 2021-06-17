@@ -59,7 +59,7 @@
 			if(lattice)
 				var/pull_up_time = max(5 SECONDS + (src.movement_delay() * 10), 1)
 				to_chat(src, "<span class='notice'>You grab \the [lattice] and start pulling yourself upward...</span>")
-				destination.audible_message("<span class='notice'>You hear something climbing up \the [lattice].</span>")
+				destination.audible_message("<span class='notice'>You hear something climbing up \the [lattice].</span>", runemessage = "clank clang")
 				if(do_after(src, pull_up_time))
 					to_chat(src, "<span class='notice'>You pull yourself up.</span>")
 				else
@@ -74,7 +74,7 @@
 				if(!destination?.Enter(src, old_dest))
 					to_chat(src, "<span class='notice'>There's something in the way up above in that direction, try another.</span>")
 					return 0
-				destination.audible_message("<span class='notice'>You hear something climbing up \the [catwalk].</span>")
+				destination.audible_message("<span class='notice'>You hear something climbing up \the [catwalk].</span>", runemessage = "clank clang")
 				if(do_after(src, pull_up_time))
 					to_chat(src, "<span class='notice'>You pull yourself up.</span>")
 				else
@@ -90,8 +90,8 @@
 						return 0
 					var/fly_time = max(7 SECONDS + (H.movement_delay() * 10), 1) //So it's not too useful for combat. Could make this variable somehow, but that's down the road.
 					to_chat(src, "<span class='notice'>You begin to fly upwards...</span>")
-					destination.audible_message("<span class='notice'>You hear the flapping of wings.</span>")
-					H.audible_message("<span class='notice'>[H] begins to flap \his wings, preparing to move upwards!</span>")
+					destination.audible_message("<span class='notice'>You hear the flapping of wings.</span>", runemessage = "flap flap")
+					H.audible_message("<span class='notice'>[H] begins to flap \his wings, preparing to move upwards!</span>", runemessage = "flap flap")
 					if(do_after(H, fly_time) && H.flying)
 						to_chat(src, "<span class='notice'>You fly upwards.</span>")
 					else

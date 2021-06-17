@@ -73,3 +73,10 @@
 /datum/gear/suit/oversize/New()
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
+
+/*
+Talon winter coat
+*/
+/datum/gear/suit/wintercoat/talon
+	display_name = "winter coat, ITV"
+	path = /obj/item/clothing/suit/storage/hooded/wintercoat/talon

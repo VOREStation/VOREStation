@@ -36,7 +36,11 @@
 		"tether_night" = 50,
 		"tether2_night" = 50,
 		"tether2_dog" = 1,
-		"tether2_love" = 1
+		"tether2_love" = 1,
+		"tether_future" = 10,
+		"logo1" = 20,
+		"logo2" = 20,
+		"gateway" = 5
 	))
 	if(choice)
 		lobby_screens = list(choice)
@@ -100,7 +104,7 @@
 							NETWORK_RESEARCH_OUTPOST,
 							NETWORK_ROBOTS,
 							NETWORK_SECURITY,
-							NETWORK_TCOMMS,
+							NETWORK_TELECOM,
 							NETWORK_TETHER
 							)
 	secondary_networks = list(
@@ -160,9 +164,14 @@
 		)
 
 	lateload_single_pick = list(
-		//list("Carp Farm"),
-		//list("Snow Field"),
-		//list("Listening Post")
+		list("Carp Farm"),
+		list("Snow Field"),
+		list("Listening Post"),
+		list("Honleth Highlands A"),
+		list("Honleth Highlands B"),
+		list("Arynthi Lake Underground A","Arynthi Lake A"),
+		list("Arynthi Lake Underground B","Arynthi Lake B"),
+		list("Eggnog Town Underground","Eggnog Town")
 		)
 
 	ai_shell_restricted = TRUE
@@ -261,6 +270,8 @@
 		Z_LEVEL_UNDERDARK
 	)
 
+	levels_for_distress = list(Z_LEVEL_OFFMAP1, Z_LEVEL_BEACH, Z_LEVEL_AEROSTAT, Z_LEVEL_DEBRISFIELD, Z_LEVEL_FUELDEPOT)
+
 /obj/effect/overmap/visitable/sector/virgo3b/Crossed(var/atom/movable/AM)
 	. = ..()
 	announce_atc(AM,going = FALSE)
@@ -318,7 +329,7 @@
 	name = "Surface 3"
 	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_SEALED|MAP_LEVEL_XENOARCH_EXEMPT|MAP_LEVEL_PERSIST
 	base_turf = /turf/simulated/open
-	holomap_offset_x = TETHER_HOLOMAP_MARGIN_X - TETHER_HOLOMAP_MARGIN_X - TETHER_MAP_SIZE
+	holomap_offset_x = TETHER_HOLOMAP_MARGIN_X + TETHER_HOLOMAP_CENTER_GUTTER + TETHER_MAP_SIZE
 	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y
 
 /datum/map_z_level/tether/transit
@@ -331,7 +342,7 @@
 	name = "Asteroid 1"
 	base_turf = /turf/space
 	transit_chance = 33
-	holomap_offset_x = TETHER_HOLOMAP_MARGIN_X - TETHER_HOLOMAP_MARGIN_X - TETHER_MAP_SIZE
+	holomap_offset_x = TETHER_HOLOMAP_MARGIN_X + TETHER_HOLOMAP_CENTER_GUTTER + TETHER_MAP_SIZE
 	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y + TETHER_MAP_SIZE
 
 /datum/map_z_level/tether/mine

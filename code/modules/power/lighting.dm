@@ -288,8 +288,8 @@ var/global/list/light_type_cache = list()
 	shows_alerts = FALSE	//VOREStation Edit
 	var/lamp_shade = 1
 
-/obj/machinery/light/flamp/New(atom/newloc, obj/machinery/light_construct/construct = null)
-	..(newloc, construct)
+/obj/machinery/light/flamp/Initialize(mapload, obj/machinery/light_construct/construct = null)
+	. = ..()
 	if(construct)
 		start_with_cell = FALSE
 		lamp_shade = 0
@@ -317,15 +317,13 @@ var/global/list/light_type_cache = list()
 	auto_flicker = TRUE
 
 //VOREStation Add - Shadeless!
-/obj/machinery/light/flamp/noshade/New()
+/obj/machinery/light/flamp/noshade
 	lamp_shade = 0
-	update(0)
-	..()
 //VOREStation Add End
 
 // create a new lighting fixture
-/obj/machinery/light/New(atom/newloc, obj/machinery/light_construct/construct = null)
-	..(newloc)
+/obj/machinery/light/Initialize(mapload, obj/machinery/light_construct/construct = null)
+	. =..()
 
 	if(construct)
 		start_with_cell = FALSE

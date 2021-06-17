@@ -46,12 +46,12 @@
 		return
 
 	plant = prepare_icon(emagged ? "emagged" : null)
-	overlays += plant
+	overlays = list(plant)
 	set_light(2)
 	update_use_power(USE_POWER_ACTIVE)
 
 /obj/machinery/holoplant/proc/deactivate()
-	overlays -= plant
+	overlays.Cut()
 	QDEL_NULL(plant)
 	set_light(0)
 	update_use_power(USE_POWER_OFF)
@@ -66,16 +66,16 @@
 /obj/machinery/holoplant/proc/flicker()
 	interference = TRUE
 	spawn(0)
-		overlays -= plant
+		overlays.Cut()
 		set_light(0)
 		sleep(rand(2,4))
-		overlays += plant
+		overlays = list(plant)
 		set_light(2)
 		sleep(rand(2,4))
-		overlays -= plant
+		overlays.Cut()
 		set_light(0)
 		sleep(rand(2,4))
-		overlays += plant
+		overlays = list(plant)
 		set_light(2)
 		interference = FALSE
 

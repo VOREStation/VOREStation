@@ -961,7 +961,8 @@ var/list/ai_verbs_default = list(
 	return track // Feed variable back to AI
 
 /mob/living/silicon/ai/proc/relay_speech(mob/living/M, list/message_pieces, verb)
-	var/message = combine_message(message_pieces, verb, M)
+	var/list/combined = combine_message(message_pieces, verb, M)
+	var/message = combined["formatted"]
 	var/name_used = M.GetVoice()
 	//This communication is imperfect because the holopad "filters" voices and is only designed to connect to the master only.
 	var/rendered = "<i><span class='game say'>Relayed Speech: <span class='name'>[name_used]</span> [message]</span></i>"

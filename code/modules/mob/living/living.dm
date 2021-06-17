@@ -1059,15 +1059,15 @@
 
 /mob/living/get_sound_env(var/pressure_factor)
 	if (hallucination)
-		return PSYCHOTIC
+		return SOUND_ENVIRONMENT_PSYCHOTIC
 	else if (druggy)
-		return DRUGGED
+		return SOUND_ENVIRONMENT_DRUGGED
 	else if (drowsyness)
-		return DIZZY
+		return SOUND_ENVIRONMENT_DIZZY
 	else if (confused)
-		return DIZZY
+		return SOUND_ENVIRONMENT_DIZZY
 	else if (sleeping)
-		return UNDERWATER
+		return SOUND_ENVIRONMENT_UNDERWATER
 	else
 		return ..()
 

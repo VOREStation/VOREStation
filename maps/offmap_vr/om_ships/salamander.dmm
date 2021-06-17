@@ -742,6 +742,10 @@
 	dir = 4;
 	pixel_x = 32
 	},
+/obj/structure/panic_button{
+	pixel_x = 32;
+	pixel_y = -32
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/salamander_engineering)
 "kU" = (

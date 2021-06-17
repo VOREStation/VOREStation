@@ -1430,10 +1430,10 @@ About the new airlock wires panel:
 		//update the door's access to match the electronics'
 		secured_wires = electronics.secure
 		if(electronics.one_access)
-			req_access.Cut()
+			LAZYCLEARLIST(req_access)
 			req_one_access = src.electronics.conf_access
 		else
-			req_one_access.Cut()
+			LAZYCLEARLIST(req_one_access)
 			req_access = src.electronics.conf_access
 
 		//get the name from the assembly
@@ -1479,12 +1479,10 @@ About the new airlock wires panel:
 		src.electronics = new/obj/item/weapon/airlock_electronics( src.loc )
 
 	//update the electronics to match the door's access
-	if(!src.req_access)
-		src.check_access()
-	if(src.req_access.len)
-		electronics.conf_access = src.req_access
-	else if (src.req_one_access.len)
-		electronics.conf_access = src.req_one_access
+	if(LAZYLEN(req_access))
+		electronics.conf_access = req_access
+	else if (LAZYLEN(req_one_access))
+		electronics.conf_access = req_one_access
 		electronics.one_access = 1
 
 /obj/machinery/door/airlock/emp_act(var/severity)

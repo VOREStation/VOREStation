@@ -27,7 +27,7 @@
 		power_usage = brightness_levels[brightness_level]
 	else
 		verbs -= /obj/item/device/flashlight/verb/toggle
-	
+
 	update_icon()
 
 /obj/item/device/flashlight/Destroy()
@@ -451,6 +451,7 @@
 	flashlight_colour = "#FEF923"
 	icon_state = "glowstick_yellow"
 	item_state = "glowstick_yellow"
+
 
 /obj/item/device/flashlight/slime
 	gender = PLURAL

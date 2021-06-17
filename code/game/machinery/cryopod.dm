@@ -461,12 +461,7 @@
 
 	//VOREStation Edit - Resleeving.
 	if(to_despawn.mind)
-		if(to_despawn.mind.name in SStranscore.backed_up)
-			var/datum/transhuman/mind_record/MR = SStranscore.backed_up[to_despawn.mind.name]
-			SStranscore.stop_backup(MR)
-		if(to_despawn.mind.name in SStranscore.body_scans) //This uses mind names to avoid people cryo'ing a printed body to delete body scans.
-			var/datum/transhuman/body_record/BR = SStranscore.body_scans[to_despawn.mind.name]
-			SStranscore.remove_body(BR)
+		SStranscore.leave_round(to_despawn)
 	//VOREStation Edit End - Resleeving.
 
 	//Handle job slot/tater cleanup.
