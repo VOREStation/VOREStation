@@ -175,31 +175,34 @@
 	// Eating with forks
 	if(istype(W,/obj/item/weapon/material/kitchen/utensil))
 		var/obj/item/weapon/material/kitchen/utensil/U = W
-		if(U.scoop_food)
-			if(!U.reagents)
-				U.create_reagents(5)
+		if(!U.reagents)
+			U.create_reagents(5)
 
-			if (U.reagents.total_volume > 0)
-				to_chat(user, "<font color='red'>You already have something on your [U].</font>")
-				return
+		if (U.reagents.total_volume > 0)
+			to_chat(user, "<font color='red'>You already have something on your [U].</font>")
+			return
 
-			user.visible_message( \
-				"[user] scoops up some [src] with \the [U]!", \
-				"<font color='blue'>You scoop up some [src] with \the [U]!</font>" \
-			)
+		user.visible_message( \
+			"[user] scoops up some [src] with \the [U]!", \
+			"<font color='blue'>You scoop up some [src] with \the [U]!</font>" \
+		)
 
+<<<<<<< HEAD
 			src.bitecount++
 			U.cut_overlays()
 			U.loaded = "[src]"
 			var/image/I = new(U.icon, "loadedfood")
 			I.color = src.filling_color
 			U.add_overlay(I)
+=======
+		bitecount++
+>>>>>>> 1672a51... Refactors utensils to use weakrefs (#8140)
 
-			reagents.trans_to_obj(U, min(reagents.total_volume,5))
+		reagents.trans_to_obj(U, min(reagents.total_volume,5))
 
-			if (reagents.total_volume <= 0)
-				qdel(src)
-			return
+		if (reagents.total_volume <= 0)
+			qdel(src)
+		return
 
 	if (is_sliceable())
 		//these are used to allow hiding edge items in food that is not on a table/tray
