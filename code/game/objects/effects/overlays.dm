@@ -143,6 +143,12 @@
 	vis_flags = NONE
 	blocks_emissive = FALSE
 
+/obj/effect/overlay/light_visible/Destroy(force)
+	if(!force)
+		stack_trace("Movable light visible mask deleted, but not by our component")
+		return QDEL_HINT_LETMELIVE
+	return ..()
+
 /obj/effect/overlay/light_cone
 	name = ""
 	icon = 'icons/effects/light_overlays/light_cone.dmi'
@@ -153,4 +159,9 @@
 	vis_flags = NONE
 	alpha = 110
 	blocks_emissive = FALSE
-	
+
+/obj/effect/overlay/light_cone/Destroy(force)
+	if(!force)
+		stack_trace("Directional light cone deleted, but not by our component")
+		return QDEL_HINT_LETMELIVE
+	return ..()

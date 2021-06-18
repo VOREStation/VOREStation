@@ -199,7 +199,9 @@
 			helmet.pickup(H)
 			helmet.canremove = 0
 			to_chat(H, "<span class='info'>You deploy your suit helmet, sealing you off from the world.</span>")
-	helmet.update_light(H)
+	
+	if(helmet.light_system == STATIC_LIGHT)
+		helmet.update_light()
 
 /obj/item/clothing/suit/space/void/verb/eject_tank()
 
