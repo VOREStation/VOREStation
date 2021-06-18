@@ -156,10 +156,17 @@
 	set_parent_attached_to(null)
 	set_holder(null)
 	clean_old_turfs()
-	QDEL_NULL(visible_mask)
+	
+	qdel(visible_mask, TRUE)
+	visible_mask = null
+	
 	if(directional)
-		QDEL_NULL(directional_atom)
-		QDEL_NULL(cone)
+		qdel(directional_atom, TRUE)
+		directional_atom = null
+	
+		qdel(cone, TRUE)
+		cone = null
+	
 	return ..()
 
 

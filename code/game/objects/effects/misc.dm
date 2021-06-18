@@ -100,3 +100,9 @@
 
 /obj/effect/abstract/directional_lighting
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
+/obj/effect/abstract/directional_lighting/Destroy(force)
+	if(!force)
+		stack_trace("Directional light atom deleted, but not by our component")
+		return QDEL_HINT_LETMELIVE
+	return ..()
