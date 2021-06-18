@@ -266,6 +266,7 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	light_range = 5
 	light_power = 1.2
 	light_color = "#DDFFD3"
+	light_on = TRUE
 	pixel_y = -4
 	max_n_of_items = 100
 
@@ -330,6 +331,7 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	light_range = 3
 	light_power = 1
 	light_color = "#FFFFFF"
+	light_on = TRUE
 
 /obj/structure/fans/hardlight/ex_act()
 	return
