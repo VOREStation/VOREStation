@@ -6,6 +6,7 @@
  *		Surgical Drill
  *		Scalpel
  *		Circular Saw
+ *		Bio-Regenerator
  */
 
 /obj/item/weapon/surgical
