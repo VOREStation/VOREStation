@@ -152,6 +152,7 @@
 	light_range = 3
 	light_power = 1
 	light_color = "#B18B25" //clockwork slab background top color
+	light_on = TRUE
 
 /obj/item/clothing/head/hood/winter/narsie
 	name = "runed winter hood"

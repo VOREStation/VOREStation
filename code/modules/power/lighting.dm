@@ -888,7 +888,7 @@ var/global/list/light_type_cache = list()
 	matter = list(DEFAULT_WALL_MATERIAL = 60)
 	
 	///LIGHT_OK, LIGHT_BURNED or LIGHT_BROKEN
-	var/status = 0
+	var/status = LIGHT_OK
 	///Base icon_state name to append suffixes for status
 	var/base_state
 	///Number of times switched on/off

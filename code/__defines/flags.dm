@@ -16,8 +16,6 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 /* Directions */
 ///All the cardinal direction bitflags.
 #define ALL_CARDINALS (NORTH|SOUTH|EAST|WEST)
-///All the dirs except UP and DOWN
-#define ALL_FLAT_DIRS (NORTH|SOUTH|EAST|WEST|NORTHWEST|SOUTHWEST|NORTHEAST|SOUTHEAST)
 
 // datum_flags
 #define DF_VAR_EDITED			(1<<0)

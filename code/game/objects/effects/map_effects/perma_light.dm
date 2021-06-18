@@ -7,6 +7,7 @@
 	light_range = 3
 	light_power = 1
 	light_color = "#FFFFFF"
+	light_on = TRUE
 
 /obj/effect/map_effect/perma_light/brighter
 	name = "permanent light (bright)"

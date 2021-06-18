@@ -46,6 +46,8 @@
 	if(opacity)
 		AddElement(/datum/element/light_blocking)
 	switch(light_system)
+		if(STATIC_LIGHT)
+			update_light()
 		if(MOVABLE_LIGHT)
 			AddComponent(/datum/component/overlay_lighting, starts_on = light_on)
 		if(MOVABLE_LIGHT_DIRECTIONAL)
@@ -53,9 +55,6 @@
 
 /atom/movable/Destroy()
 	. = ..()
-	if(reagents)
-		qdel(reagents)
-		reagents = null
 	for(var/atom/movable/AM in contents)
 		qdel(AM)
 

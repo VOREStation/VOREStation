@@ -78,7 +78,7 @@
 	if(light_system != STATIC_LIGHT)
 		CRASH("update_light() for [src] with following light_system value: [light_system]")
 
-	if (!light_power || !light_range || !light_on) // We won't emit light anyways, destroy the light source.
+	if (!light_on || !light_power || !light_range) // We won't emit light anyways, destroy the light source.
 		QDEL_NULL(light)
 	else
 		if (!ismovable(loc)) // We choose what atom should be the top atom of the light here.

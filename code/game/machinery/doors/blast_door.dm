@@ -397,10 +397,6 @@ obj/machinery/door/blast/gate/open
 		T.set_opacity(new_opacity)
 	update_nearby_tiles()
 
-/obj/machinery/door/blast/multi_tile/Destroy()
-	UnregisterSignal(src, COMSIG_MOVABLE_MOVED)
-	return ..()
-
 /obj/machinery/door/blast/multi_tile
 	icon_state_open = "open"
 	icon_state_opening = "opening"
