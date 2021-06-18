@@ -306,9 +306,6 @@
 	var/output =  {"<form><input type="hidden" name="src" value="\ref[src]"><ul class="sparse">"}
 	if (inputtype == "checkbox" || inputtype == "radio")
 		for (var/i in values)
-			var/div_slider = slidecolor
-			if(!i["allowed_edit"])
-				div_slider = "locked"
 			output += {"<li>
 						<label class="switch">
 							<input type="[inputtype]" value="1" name="[i["name"]]"[i["checked"] ? " checked" : ""][i["allowed_edit"] ? "" : " disabled onclick='return false' onkeydown='return false'"]>
