@@ -196,6 +196,9 @@ var/list/runechat_image_cache = list()
 	message.maptext_y = message_loc.runechat_y_offset(msgwidth, mheight)
 	message.maptext = complete_text
 
+	if(!owner)
+		qdel(src)
+		return
 	if(owner.contains(target)) // Special case, holding an atom speaking (pAI, recorder...)
 		message.plane = PLANE_PLAYER_HUD_ABOVE
 
