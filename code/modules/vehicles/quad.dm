@@ -83,11 +83,11 @@
 
 /obj/vehicle/train/engine/quadbike/update_icon()
 	..()
-	overlays.Cut()
+	cut_overlays()
 	if(custom_frame)
 		var/image/Bodypaint = new(icon = 'icons/obj/custom_items_vehicle.dmi', icon_state = "[frame_state]_a", layer = src.layer)
 		Bodypaint.color = paint_color
-		overlays += Bodypaint
+		add_overlay(Bodypaint)
 
 		var/image/Overmob = new(icon = 'icons/obj/custom_items_vehicle.dmi', icon_state = "[frame_state]_overlay", layer = src.layer + 0.2) //over mobs
 		var/image/Overmob_color = new(icon = 'icons/obj/custom_items_vehicle.dmi', icon_state = "[frame_state]_overlay_a", layer = src.layer + 0.2) //over the over mobs, gives the color.
@@ -95,13 +95,13 @@
 		Overmob_color.plane = MOB_PLANE
 		Overmob_color.color = paint_color
 
-		overlays += Overmob
-		overlays += Overmob_color
+		add_overlay(Overmob)
+		add_overlay(Overmob_color)
 		return
 
 	var/image/Bodypaint = new(icon = 'icons/obj/vehicles_64x64.dmi', icon_state = "[frame_state]_a", layer = src.layer)
 	Bodypaint.color = paint_color
-	overlays += Bodypaint
+	add_overlay(Bodypaint)
 
 	var/image/Overmob = new(icon = 'icons/obj/vehicles_64x64.dmi', icon_state = "[frame_state]_overlay", layer = src.layer + 0.2) //over mobs
 	var/image/Overmob_color = new(icon = 'icons/obj/vehicles_64x64.dmi', icon_state = "[frame_state]_overlay_a", layer = src.layer + 0.2) //over the over mobs, gives the color.
@@ -109,8 +109,8 @@
 	Overmob_color.plane = MOB_PLANE
 	Overmob_color.color = paint_color
 
-	overlays += Overmob
-	overlays += Overmob_color
+	add_overlay(Overmob)
+	add_overlay(Overmob_color)
 
 /obj/vehicle/train/engine/quadbike/Bump(atom/Obstacle)
 	if(!istype(Obstacle, /atom/movable))
@@ -242,11 +242,11 @@
 
 /obj/vehicle/train/trolley/trailer/update_icon()
 	..()
-	overlays.Cut()
+	cut_overlays()
 
 	var/image/Bodypaint = new(icon = 'icons/obj/vehicles_64x64.dmi', icon_state = "[initial(icon_state)]_a", layer = src.layer)
 	Bodypaint.color = paint_color
-	overlays += Bodypaint
+	add_overlay(Bodypaint)
 
 /obj/vehicle/train/trolley/trailer/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/device/multitool) && open)

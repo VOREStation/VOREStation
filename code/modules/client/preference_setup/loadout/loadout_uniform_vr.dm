@@ -216,3 +216,11 @@ Bluespace jumpsuit
 	display_name = "HYPER jumpsuit"
 	path = /obj/item/clothing/under/hyperfiber
 	cost = 2
+
+/*
+Talon jumpsuit
+*/
+/datum/gear/uniform/talonbasic
+	display_name = "ITV Jumpsuit"
+	description = "A jumpsuit that is usually issued to ITV contractors, however others can purchase it to show their support towards ITV."
+	path = /obj/item/clothing/under/rank/talon/basic

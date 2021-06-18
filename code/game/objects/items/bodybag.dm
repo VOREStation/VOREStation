@@ -51,7 +51,7 @@
 		if (t)
 			src.name = "body bag - "
 			src.name += t
-			src.overlays += image(src.icon, "bodybag_label")
+			add_overlay("bodybag_label")
 		else
 			src.name = "body bag"
 	//..() //Doesn't need to run the parent. Since when can fucking bodybags be welded shut? -Agouri
@@ -59,7 +59,7 @@
 	else if(W.is_wirecutter())
 		to_chat(user, "You cut the tag off the bodybag")
 		src.name = "body bag"
-		src.overlays.Cut()
+		cut_overlays()
 		return
 
 /obj/structure/closet/body_bag/store_mobs(var/stored_units)
@@ -107,10 +107,10 @@
 	else
 		icon_state = "closed_unlocked"
 
-	src.overlays.Cut()
+	cut_overlays()
 	/* Ours don't have toetags
 	if(has_label)
-		src.overlays += image(src.icon, "bodybag_label")
+		add_overlay("bodybag_label")
 	*/
 
 
@@ -172,11 +172,11 @@
 
 /obj/structure/closet/body_bag/cryobag/update_icon()
 	..()
-	overlays.Cut()
+	cut_overlays()
 	var/image/I = image(icon, "indicator[opened]")
 	I.appearance_flags = RESET_COLOR
 	I.color = COLOR_LIME
-	overlays += I
+	add_overlay(I)
 
 /obj/structure/closet/body_bag/cryobag/MouseDrop(over_object, src_location, over_location)
 	. = ..()

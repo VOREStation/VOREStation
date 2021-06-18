@@ -61,7 +61,7 @@ const DNAModifierOccupant = (props, context) => {
       title="Occupant"
       buttons={
         <Fragment>
-          <Box color="label" display="inline" mr="0.5rem">
+          <Box color="label" inline mr="0.5rem">
             Door Lock:
           </Box>
           <Button

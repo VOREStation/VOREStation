@@ -152,9 +152,9 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 	if(materials[S.material.name] + amnt <= max_res_amount)
 		if(S && S.get_amount() >= 1)
 			var/count = 0
-			overlays += "fab-load-metal"
+			add_overlay("fab-load-metal")
 			spawn(10)
-				overlays -= "fab-load-metal"
+				cut_overlay("fab-load-metal")
 			while(materials[S.material.name] + amnt <= max_res_amount && S.get_amount() >= 1)
 				materials[S.material.name] += amnt
 				S.use(1)

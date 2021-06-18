@@ -230,7 +230,7 @@ const MedicalRecordsViewGeneral = (_properties, context) => {
         <LabeledList>
           {general.fields.map((field, i) => (
             <LabeledList.Item key={i} label={field.field}>
-              <Box height="20px" display="inline-block" prewrap>
+              <Box height="20px" display="inline-block" preserveWhitespace>
                 {field.value}
               </Box>
               {!!field.edit && (
@@ -293,7 +293,7 @@ const MedicalRecordsViewMedical = (_properties, context) => {
         {medical.fields.map((field, i) => (
           <LabeledList.Item
             key={i}
-            label={field.field} prewrap>
+            label={field.field} preserveWhitespace>
             {field.value}
             <Button
               icon="pen"
@@ -312,7 +312,7 @@ const MedicalRecordsViewMedical = (_properties, context) => {
         )
           : medical.comments.map((comment, i) => (
             <Box key={i}>
-              <Box color="label" display="inline">
+              <Box color="label" inline>
                 {comment.header}
               </Box><br />
               {comment.text}

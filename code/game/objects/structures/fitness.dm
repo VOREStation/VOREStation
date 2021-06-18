@@ -29,6 +29,7 @@
 	name = "weightlifting machine"
 	desc = "A machine used to lift weights."
 	icon_state = "weightlifter"
+	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 	var/weight = 1
 	var/list/qualifiers = list("with ease", "without any trouble", "with great effort")
 

@@ -168,9 +168,9 @@
 /obj/item/weapon/spell/update_icon()
 	if(toggled)
 		var/image/new_overlay = image('icons/obj/spells.dmi',"toggled")
-		overlays |= new_overlay
+		add_overlay(new_overlay)
 	else
-		overlays.Cut()
+		cut_overlays()
 	..()
 
 // Proc: run_checks()

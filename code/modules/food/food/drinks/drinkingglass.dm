@@ -118,7 +118,7 @@
 	matter = list("glass" = 175)
 
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass/shotglass/on_reagent_change()
-	overlays.Cut()
+	cut_overlays()
 
 	if(reagents.total_volume)
 		var/image/filling = image('icons/obj/reagentfillings.dmi', src, "[icon_state]1")
@@ -129,7 +129,7 @@
 			if(8 to INFINITY)	filling.icon_state = "[icon_state]12"
 
 		filling.color += reagents.get_color()
-		overlays += filling
+		add_overlay(filling)
 		name = "shot glass of " + reagents.get_master_reagent_name() //No matter what, the glass will tell you the reagent's name. Might be too abusable in the future.
 	else
 		name = "shot glass"
@@ -146,7 +146,7 @@
 	icon_state = pick("fitness-cup_black", "fitness-cup_red", "fitness-cup_black")
 
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass/fitnessflask/on_reagent_change()
-	overlays.Cut()
+	cut_overlays()
 
 	if(reagents.total_volume)
 		var/image/filling = image('icons/obj/reagentfillings.dmi', src, "fitness-cup10")
@@ -164,7 +164,7 @@
 			if(90 to INFINITY)	filling.icon_state = "fitness-cup100"
 
 		filling.color += reagents.get_color()
-		overlays += filling
+		add_overlay(filling)
 
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass/fitnessflask/proteinshake
 	name = "protein shake"
