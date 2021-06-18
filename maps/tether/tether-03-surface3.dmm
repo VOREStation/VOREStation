@@ -36805,11 +36805,7 @@
 	cell_type = /obj/item/weapon/cell/super;
 	dir = 8;
 	name = "west bump";
-<<<<<<< HEAD
-	nightshift_setting = 0;
-=======
 	nightshift_setting = 2;
->>>>>>> origin/master
 	pixel_x = -30
 	},
 /obj/structure/cable/green{
