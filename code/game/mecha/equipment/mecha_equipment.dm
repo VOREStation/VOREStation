@@ -26,6 +26,8 @@
 	var/mech_flags = NONE
 	var/salvageable = 1
 =======
+	/// Bitflag. Used by exosuit fabricator to assign sub-categories based on which exosuits can equip this.
+	var/mech_flags = NONE
 	var/salvageable = TRUE
 >>>>>>> f9613f2... Removes Global Iterators (#8146)
 	var/required_type = /obj/mecha //may be either a type or a list of allowed types
