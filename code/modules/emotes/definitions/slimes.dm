@@ -12,21 +12,21 @@
 	return ..() && isslime(user)
 
 /decl/emote/slime/pout
-	key = "pout"
+	key = "mpout"
 	mood = "pout"
 
 /decl/emote/slime/sad
-	key = "sad"
+	key = "msad"
 	mood = "sad"
 
 /decl/emote/slime/angry
-	key = "angry"
+	key = "mangry"
 	mood = "angry"
 
 /decl/emote/slime/frown
-	key = "frown"
+	key = "mfrown"
 	mood = "mischevous"
 
 /decl/emote/slime/smile
-	key = "smile"
+	key = "msmile"
 	mood = ":3"

@@ -70,7 +70,7 @@
 			M.Scale(x_scale, y_scale)
 			M.Translate(x_off, y_off)
 			dir.transform = M
-			overlays += dir
+			add_overlay(dir)
 
 /obj/screen/movable/pic_in_pic/ai/set_view_size(width, height, do_refresh = TRUE)
 	if(!aiEye) // Exploit fix
@@ -102,7 +102,7 @@
 		qdel(src)
 		return
 	highlighted = TRUE
-	overlays.Cut()
+	cut_overlays()
 	add_background()
 	add_buttons()
 
@@ -113,7 +113,7 @@
 		qdel(src)
 		return
 	highlighted = FALSE
-	overlays.Cut()
+	cut_overlays()
 	add_background()
 	add_buttons()
 

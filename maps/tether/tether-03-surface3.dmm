@@ -2403,6 +2403,7 @@
 	cell_type = /obj/item/weapon/cell/super;
 	dir = 8;
 	name = "west bump";
+	nightshift_setting = 2;
 	pixel_x = -24
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -3474,6 +3475,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
+	nightshift_setting = 2;
 	pixel_y = 28
 	},
 /obj/structure/cable/green{
@@ -8718,6 +8720,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "east bump";
+	nightshift_setting = 2;
 	pixel_x = 28
 	},
 /obj/structure/cable/green{
@@ -9290,6 +9293,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
+	nightshift_setting = 2;
 	pixel_y = 24
 	},
 /obj/structure/cable/green{
@@ -10897,6 +10901,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
+	nightshift_setting = 2;
 	pixel_y = 24
 	},
 /obj/structure/cable/green{
@@ -13184,14 +13189,14 @@
 "avz" = (
 /obj/item/weapon/stool/padded,
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/kitchen)
+/area/crew_quarters/bar)
 "avA" = (
 /obj/item/weapon/stool/padded,
 /obj/effect/floor_decal/corner/beige{
 	dir = 6
 	},
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/kitchen)
+/area/crew_quarters/bar)
 "avB" = (
 /obj/structure/table/glass,
 /obj/machinery/reagentgrinder,
@@ -13301,7 +13306,7 @@
 	},
 /obj/effect/floor_decal/spline/plain,
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/kitchen)
+/area/crew_quarters/bar)
 "avN" = (
 /obj/machinery/light{
 	dir = 1
@@ -17071,6 +17076,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
+	nightshift_setting = 2;
 	pixel_y = 28
 	},
 /obj/effect/floor_decal/borderfloor{
@@ -17434,7 +17440,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/kitchen)
+/area/crew_quarters/bar)
 "aCj" = (
 /obj/effect/floor_decal/borderfloor/corner{
 	dir = 8
@@ -19612,6 +19618,7 @@
 "aGa" = (
 /obj/machinery/power/apc{
 	name = "south bump";
+	nightshift_setting = 2;
 	pixel_y = -24
 	},
 /obj/structure/cable/green,
@@ -20525,7 +20532,7 @@
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk,
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/kitchen)
+/area/crew_quarters/bar)
 "aHz" = (
 /obj/effect/floor_decal/spline/plain{
 	dir = 1
@@ -23380,6 +23387,7 @@
 /obj/machinery/light,
 /obj/machinery/power/apc{
 	name = "south bump";
+	nightshift_setting = 2;
 	pixel_y = -24
 	},
 /obj/structure/cable/green,
@@ -25575,6 +25583,7 @@
 "aRv" = (
 /obj/machinery/power/apc{
 	name = "south bump";
+	nightshift_setting = 2;
 	pixel_y = -24
 	},
 /obj/structure/cable/green,
@@ -26807,6 +26816,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
+	nightshift_setting = 2;
 	pixel_y = 28
 	},
 /obj/structure/cable/green{
@@ -29139,6 +29149,7 @@
 "aXF" = (
 /obj/machinery/power/apc{
 	name = "south bump";
+	nightshift_setting = 2;
 	pixel_y = -24
 	},
 /obj/structure/cable/green,
@@ -29477,9 +29488,7 @@
 /area/bridge)
 "aYk" = (
 /obj/machinery/papershredder,
-/obj/machinery/light{
-	dir = 2
-	},
+/obj/machinery/light,
 /obj/effect/floor_decal/borderfloor{
 	dir = 10
 	},
@@ -33918,7 +33927,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/kitchen)
+/area/crew_quarters/bar)
 "bga" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -33961,7 +33970,7 @@
 	pixel_y = 29
 	},
 /turf/simulated/floor/tiled/white,
-/area/crew_quarters/kitchen)
+/area/crew_quarters/bar)
 "bgg" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable{
@@ -35806,6 +35815,7 @@
 	pixel_x = 6;
 	pixel_y = 31
 	},
+/obj/item/device/denecrotizer/medical,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/storage)
 "bjH" = (
@@ -35976,6 +35986,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
+	nightshift_setting = 2;
 	pixel_y = 28
 	},
 /obj/structure/cable/green{
@@ -36096,6 +36107,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
+	nightshift_setting = 2;
 	pixel_y = 28
 	},
 /obj/structure/cable/green{
@@ -36792,6 +36804,7 @@
 	cell_type = /obj/item/weapon/cell/super;
 	dir = 8;
 	name = "west bump";
+	nightshift_setting = 2;
 	pixel_x = -30
 	},
 /obj/structure/cable/green{

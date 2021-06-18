@@ -388,24 +388,13 @@ obj/machinery/door/blast/gate/open
 	. = ..()
 	apply_opacity_to_my_turfs(opacity)
 
-/obj/machinery/door/blast/multi_tile/open()
-	if((. = ..()))
-		apply_opacity_to_my_turfs(opacity)
+/obj/machinery/door/blast/multi_tile/set_opacity()
+	. = ..()
+	apply_opacity_to_my_turfs(opacity)
 
-/obj/machinery/door/blast/multi_tile/close()
-	if((. = ..()))
-		apply_opacity_to_my_turfs(opacity)
-
-/obj/machinery/door/blast/multi_tile/Destroy()
-	apply_opacity_to_my_turfs(0)
-	return ..()
-
-//Multi-tile poddoors don't turn invisible automatically, so we change the opacity of the turfs below instead one by one.
 /obj/machinery/door/blast/multi_tile/proc/apply_opacity_to_my_turfs(new_opacity)
 	for(var/turf/T in locs)
-		T.opacity = new_opacity
-		T.has_opaque_atom = new_opacity
-		T.reconsider_lights()
+		T.set_opacity(new_opacity)
 	update_nearby_tiles()
 
 /obj/machinery/door/blast/multi_tile

@@ -129,7 +129,7 @@
 /obj/item/weapon/telecube/proc/teleport_to_mate(var/atom/movable/A, var/areaporting = FALSE)
 	. = FALSE
 
-	if(!A)
+	if(!istype(A))
 		return .
 
 	if(A == src || A == mate)

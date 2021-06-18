@@ -144,6 +144,8 @@ var/list/all_maps = list()
 		mappable_levels = station_levels.Copy()
 	if(!persist_levels?.len)
 		persist_levels = station_levels.Copy()
+	if(!mappable_levels?.len)
+		mappable_levels = station_levels.Copy()
 	if(!allowed_jobs || !allowed_jobs.len)
 		allowed_jobs = subtypesof(/datum/job)
 	if(default_skybox) //Type was specified

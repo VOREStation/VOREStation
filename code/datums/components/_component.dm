@@ -188,7 +188,11 @@
 	var/list/sig_types = islist(sig_type_or_types) ? sig_type_or_types : list(sig_type_or_types)
 	for(var/sig_type in sig_types)
 		if(!override && procs[target][sig_type])
-			stack_trace("[sig_type] overridden. Use override = TRUE to suppress this warning")
+			var/trace_msg = "[sig_type] overridden. Use override = TRUE to suppress this warning."
+			if(isatom(target))
+				var/atom/A = target
+				trace_msg += " [A.x],[A.y],[A.z]"
+			stack_trace(trace_msg)
 
 		procs[target][sig_type] = proctype
 

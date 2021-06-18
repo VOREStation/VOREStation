@@ -74,8 +74,42 @@ SUBSYSTEM_DEF(media_tracks)
 		return
 	
 	// Required
-	var/url = input(C, "REQUIRED: Provide URL for track", "Track URL") as text|null
+	var/url = input(C, "REQUIRED: Provide URL for track, or paste JSON if you know what you're doing. See code comments.", "Track URL") as message|null
 	if(!url)
+		return
+
+	var/list/json
+	try
+		json = json_decode(url)
+	catch
+
+	/**
+	 * Alternatively to using a series of inputs, you can use json and paste it in.
+	 * The json base element needs to be an array, even if it's only one song, so wrap it in []
+	 * The songs are json object literals inside the base array and use these keys:
+	 * "url": the url for the song (REQUIRED) (text)
+	 * "title": the title of the song (REQUIRED) (text)
+	 * "duration": duration of song in 1/10ths of a second (seconds * 10) (REQUIRED) (number)
+	 * "artist": artist of the song (text)
+	 * "genre": artist of the song, REALLY try to match an existing one (text)
+	 * "secret": only on hacked jukeboxes (true/false)
+	 * "lobby": plays in the lobby (true/false)
+	 */
+	
+	if(islist(json))
+		for(var/song in json)
+			if(!islist(song))
+				to_chat(C, "<span class='warning'>Song appears to be malformed.</span>")
+				continue
+			var/list/songdata = song
+			if(!songdata["url"] || !songdata["title"] || !songdata["duration"])
+				to_chat(C, "<span class='warning'>URL, Title, or Duration was missing from a song. Skipping.</span>")
+				continue				
+			var/datum/track/T = new(songdata["url"], songdata["title"], songdata["duration"], songdata["artist"], songdata["genre"], songdata["secret"], songdata["lobby"])
+			all_tracks += T
+			
+			report_progress("New media track added by [C]: [T.title]")
+		sort_tracks()
 		return
 	
 	var/title = input(C, "REQUIRED: Provide title for track", "Track Title") as text|null

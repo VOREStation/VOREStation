@@ -5,8 +5,9 @@ FIRE ALARM
 	name = "fire alarm"
 	desc = "<i>\"Pull this in case of emergency\"</i>. Thus, keep pulling it forever."
 	icon = 'icons/obj/monitors.dmi'
-	icon_state = "fire0"
+	icon_state = "fire"
 	layer = ABOVE_WINDOW_LAYER
+	blocks_emissive = FALSE
 	var/detecting = 1.0
 	var/working = 1.0
 	var/time = 10.0
@@ -45,24 +46,36 @@ FIRE ALARM
 	if(stat & BROKEN)
 		icon_state = "firex"
 		set_light(0)
+		return
 	else if(stat & NOPOWER)
 		icon_state = "firep"
 		set_light(0)
+		return
+
+	var/fire_state
+
+	. = list()
+	icon_state = "fire"
+	if(!detecting)
+		fire_state = "fire1"
+		set_light(l_range = 4, l_power = 0.9, l_color = "#ff0000")
 	else
-		if(!detecting)
-			icon_state = "fire1"
-			set_light(l_range = 4, l_power = 0.9, l_color = "#ff0000")
-		else
-			icon_state = "fire0"
-			switch(seclevel)
-				if("green")	set_light(l_range = 2, l_power = 0.25, l_color = "#00ff00")
-				if("yellow")	set_light(l_range = 2, l_power = 0.25, l_color = "#ffff00")
-				if("violet")	set_light(l_range = 2, l_power = 0.25, l_color = "#9933ff")
-				if("orange")	set_light(l_range = 2, l_power = 0.25, l_color = "#ff9900")
-				if("blue")	set_light(l_range = 2, l_power = 0.25, l_color = "#1024A9")
-				if("red")	set_light(l_range = 4, l_power = 0.9, l_color = "#ff0000")
-				if("delta")	set_light(l_range = 4, l_power = 0.9, l_color = "#FF6633")
-		add_overlay("overlay_[seclevel]")
+		fire_state = "fire0"
+		switch(seclevel)
+			if("green")	set_light(l_range = 2, l_power = 0.25, l_color = "#00ff00")
+			if("yellow")	set_light(l_range = 2, l_power = 0.25, l_color = "#ffff00")
+			if("violet")	set_light(l_range = 2, l_power = 0.25, l_color = "#9933ff")
+			if("orange")	set_light(l_range = 2, l_power = 0.25, l_color = "#ff9900")
+			if("blue")	set_light(l_range = 2, l_power = 0.25, l_color = "#1024A9")
+			if("red")	set_light(l_range = 4, l_power = 0.9, l_color = "#ff0000")
+			if("delta")	set_light(l_range = 4, l_power = 0.9, l_color = "#FF6633")
+	
+	. += mutable_appearance(icon, fire_state)
+	. += emissive_appearance(icon, fire_state)
+	. += mutable_appearance(icon, "overlay_[seclevel]")
+	. += emissive_appearance(icon, "overlay_[seclevel]")
+	
+	add_overlay(.)
 
 /obj/machinery/firealarm/fire_act(datum/gas_mixture/air, temperature, volume)
 	if(detecting)
