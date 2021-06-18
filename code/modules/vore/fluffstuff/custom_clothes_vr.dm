@@ -751,9 +751,9 @@
 	item_state = "pom_mob"
 
 	w_class = ITEMSIZE_SMALL
-	on = 0
-	brightness_on = 5
+	light_range = 5
 	light_overlay = null
+	light_system = MOVABLE_LIGHT
 
 	action_button_name = "Toggle pom-pom"
 
@@ -768,15 +768,13 @@
 	//	to_chat(user, "You cannot turn the light on while in this [user.loc]")
 	//	return
 
-	switch(on)
+	switch(light_on)
 		if(0)
-			on = 1
 			to_chat(user, "You light up your pom-pom.")
 			icon_state = "pom-on"
 			item_state = "pom-on_mob"
 
 		if(1)
-			on = 0
 			to_chat(user, "You dim your pom-pom.")
 			icon_state = "pom"
 			item_state = "pom_mob"

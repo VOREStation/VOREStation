@@ -602,11 +602,11 @@
 	if(!handcuff_overlay)
 		var/state = (hud.l_hand_hud_object == src) ? "l_hand_hud_handcuffs" : "r_hand_hud_handcuffs"
 		handcuff_overlay = image("icon"='icons/mob/screen_gen.dmi', "icon_state"=state)
-	overlays.Cut()
+	cut_overlays()
 	if(hud.mymob && iscarbon(hud.mymob))
 		var/mob/living/carbon/C = hud.mymob
 		if(C.handcuffed)
-			overlays |= handcuff_overlay
+			add_overlay(handcuff_overlay)
 			
 // PIP stuff
 /obj/screen/component_button
@@ -630,6 +630,13 @@
 	return ..()
 
 // Background 'floor'
+/obj/screen/setup_preview/pm_helper
+	icon = null
+	icon_state = null
+	appearance_flags = PLANE_MASTER
+	plane = PLANE_EMISSIVE
+	alpha = 0
+
 /obj/screen/setup_preview/bg
 	mouse_over_pointer = MOUSE_HAND_POINTER
 

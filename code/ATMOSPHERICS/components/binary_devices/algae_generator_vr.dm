@@ -44,10 +44,10 @@
 	// TODO - Make these in actual icon states so its not silly like this
 	var/image/I = image(icon = icon, icon_state = "algae-pipe-overlay", dir = dir)
 	I.color = PIPE_COLOR_BLUE
-	overlays += I
+	add_overlay(I)
 	I = image(icon = icon, icon_state = "algae-pipe-overlay", dir = reverse_dir[dir])
 	I.color = PIPE_COLOR_BLACK
-	overlays += I
+	add_overlay(I)
 
 /obj/machinery/atmospherics/binary/algae_farm/Destroy()
 	. = ..()

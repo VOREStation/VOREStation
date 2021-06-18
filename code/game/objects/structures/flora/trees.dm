@@ -115,7 +115,7 @@
 	is_stump = TRUE
 	density = FALSE
 	icon_state = "[base_state]_stump"
-	overlays.Cut() // For the Sif tree and other future glowy trees.
+	cut_overlays() // For the Sif tree and other future glowy trees.
 	set_light(0)
 
 /obj/structure/flora/tree/ex_act(var/severity)
@@ -265,6 +265,7 @@
 	icon = 'icons/obj/flora/deadtrees.dmi'
 	icon_state = "tree_sif"
 	base_state = "tree_sif"
+	blocks_emissive = FALSE
 	product = /obj/item/stack/material/log/sif
 	catalogue_data = list(/datum/category_item/catalogue/flora/sif_tree)
 	randomize_size = TRUE
@@ -289,7 +290,10 @@
 	update_icon()
 
 /obj/structure/flora/tree/sif/update_icon()
-	set_light(5 - light_shift, 1, "#33ccff")	// 5 variants, missing bulbs. 5th has no bulbs, so no glow.
-	var/image/glow = image(icon = icon, icon_state = "[base_state][light_shift]_glow")
-	glow.plane = PLANE_LIGHTING_ABOVE
-	overlays = list(glow)
+	cut_overlays()
+	var/bulbs = (5 - light_shift)
+	if(bulbs > 0)
+		set_light(bulbs, 1, "#33ccff")	// 5 variants, missing bulbs. 5th has no bulbs, so no glow.
+		add_overlay(mutable_appearance(icon, "[base_state][bulbs]_glow"))
+		add_overlay(emissive_appearance(icon, "[base_state][bulbs]_glow"))
+	
