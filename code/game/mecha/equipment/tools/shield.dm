@@ -70,11 +70,11 @@
 	if(chassis)
 		my_shield.attack_self(chassis.occupant)
 		if(my_shield.active)
-			set_ready_state(0)
+			set_ready_state(FALSE)
 			step_delay = 4
 			log_message("Activated.")
 		else
-			set_ready_state(1)
+			set_ready_state(TRUE)
 			step_delay = 1
 			log_message("Deactivated.")
 

@@ -363,15 +363,15 @@
 	if((my_tool && loc != my_tool) && (my_mecha && loc != my_mecha))
 		forceMove(my_tool)
 	if(active)
-		my_tool.set_ready_state(0)
+		my_tool.set_ready_state(FALSE)
 		if(my_mecha.has_charge(my_tool.energy_drain * 50)) //Stops at around 1000 charge.
 			my_mecha.use_power(my_tool.energy_drain)
 		else
 			destroy_shields()
-			my_tool.set_ready_state(1)
+			my_tool.set_ready_state(TRUE)
 			my_tool.log_message("Power lost.")
 	else
-		my_tool.set_ready_state(1)
+		my_tool.set_ready_state(TRUE)
 
 /obj/item/shield_projector/line/exosuit/attack_self(var/mob/living/user)
 	if(active)

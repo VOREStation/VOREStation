@@ -42,11 +42,11 @@
 	if(shields)
 		shields.set_on(!shields.active)
 		if(shields.active)
-			set_ready_state(0)
+			set_ready_state(FALSE)
 			step_delay = 4
 			log_message("Activated.")
 		else
-			set_ready_state(1)
+			set_ready_state(TRUE)
 			step_delay = initial(step_delay)
 			log_message("Deactivated.")
 
