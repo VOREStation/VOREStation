@@ -149,9 +149,9 @@ obj/machinery/gateway/centerstation/process()
 			M.forceMove(dest.loc)
 			M.set_dir(SOUTH)
 			//VOREStation Addition Start: Mcguffin time!			
-			if(istype(M, /mob/living/carbon/human))
+			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
-				if(!H.client)
+				if(H.client)
 					awaygate.entrydetect()
 			//VOREStation Addition End: Mcguffin time!
 

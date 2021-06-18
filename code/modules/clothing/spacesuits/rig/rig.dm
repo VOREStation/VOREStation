@@ -728,8 +728,8 @@
 				to_chat(H, "<span class='notice'>Your [use_obj.name] [use_obj.gender == PLURAL ? "deploy" : "deploys"] swiftly.</span>")
 				playsound(src, 'sound/machines/rig/rigservo.ogg', 10, FALSE)
 
-	if(piece == "helmet" && helmet)
-		helmet.update_light(H)
+	if(piece == "helmet" && helmet?.light_system == STATIC_LIGHT)
+		helmet.update_light()
 
 /obj/item/weapon/rig/proc/deploy(mob/M,var/sealed)
 
