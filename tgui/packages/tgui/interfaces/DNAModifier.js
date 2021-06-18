@@ -399,7 +399,7 @@ const DNAModifierMainBuffersElement = (props, context) => {
               icon="save"
               content="Export"
               tooltip="Exports this buffer to the currently loaded data disk."
-              tooltipPosition="bottom-left"
+              tooltipPosition="bottom-end"
               onClick={() => act('bufferOption', {
                 option: 'saveDisk',
                 id: id,
