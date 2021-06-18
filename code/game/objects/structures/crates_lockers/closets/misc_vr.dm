@@ -122,6 +122,7 @@
 		starts_with += /obj/item/weapon/storage/backpack/satchel/med
 	if(prob(50))
 		starts_with += /obj/item/weapon/storage/backpack/dufflebag/med
+	return ..()
 
 //Pilot Locker
 
