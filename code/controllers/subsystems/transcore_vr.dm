@@ -15,7 +15,7 @@ SUBSYSTEM_DEF(transcore)
 	init_order = INIT_ORDER_TRANSCORE
 
 	// THINGS
-	var/overdue_time = 5 MINUTES
+	var/overdue_time = 6 MINUTES			// Has to be a multiple of wait var, or else will just round up anyway.
 
 	var/current_step = SSTRANSCORE_IMPLANTS
 
@@ -116,8 +116,6 @@ SUBSYSTEM_DEF(transcore)
 				if(curr_MR.do_notify)
 					db.notify(curr_MR.mindname)
 					curr_MR.last_notification = world.time
-				else
-					curr_MR.last_notification = world.time - 5 MINUTES
 			curr_MR.dead_state = MR_DEAD
 
 		if(MC_TICK_CHECK)
