@@ -3,6 +3,7 @@
 	desc = "Deletes itself, but first updates all the lighting on outdoor turfs."
 	icon = 'icons/effects/effects_vr.dmi'
 	icon_state = "fakesun"
+	invisibility = INVISIBILITY_ABSTRACT
 	var/datum/light_source/sun/fake_sun
 
 	var/list/possible_light_setups = list(
