@@ -1132,6 +1132,7 @@
 #include "code\game\objects\effects\prop\snake.dm"
 #include "code\game\objects\effects\spawners\bombspawner.dm"
 #include "code\game\objects\effects\spawners\gibspawner.dm"
+#include "code\game\objects\effects\spawners\graffiti.dm"
 #include "code\game\objects\effects\temporary_visuals\miscellaneous.dm"
 #include "code\game\objects\effects\temporary_visuals\temporary_visual.dm"
 #include "code\game\objects\effects\temporary_visuals\projectiles\impact.dm"
