@@ -58,7 +58,7 @@ const ActiveConversation = (props, context) => {
           icon="eye"
           selected={clipboardMode}
           tooltip="Enter Clipboard Mode"
-          tooltipPosition="bottom-left"
+          tooltipPosition="bottom-end"
           onClick={() => setClipboardMode(!clipboardMode)} />
       }
       height="450px"
