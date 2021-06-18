@@ -905,7 +905,7 @@ mob/observer/dead/MayRespawn(var/feedback = 0)
 
 		if(choice)
 			icon = 'icons/mob/ghost.dmi'
-			overlays.Cut()
+			cut_overlays()
 
 			if(icon_state && icon)
 				previous_state = icon_state
@@ -936,9 +936,9 @@ mob/observer/dead/MayRespawn(var/feedback = 0)
 			if(PP.pai == null)
 				count++
 				PP.icon = 'icons/obj/pda_vr.dmi' // VOREStation Edit
-				PP.overlays += "pai-ghostalert"
+				PP.add_overlay("pai-ghostalert")
 				spawn(54)
-					PP.overlays.Cut()
+					PP.cut_overlays()
 		to_chat(usr,"<span class='notice'>Flashing the displays of [count] unoccupied PAIs.</span>")
 	else
 		to_chat(usr,"<span class='warning'>You have 'Be pAI' disabled in your character prefs, so we can't help you.</span>")

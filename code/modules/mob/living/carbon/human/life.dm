@@ -1252,7 +1252,7 @@
 				else if(no_damage)
 					health_images += image('icons/mob/screen1_health.dmi',"fullhealth")
 
-				healths_ma.overlays += health_images
+				healths_ma.add_overlay(health_images)
 				healths.appearance = healths_ma
 
 

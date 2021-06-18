@@ -362,7 +362,7 @@ const ResleevingConsolePodGrowers = (props, context) => {
           <Box
             bold
             color={pod.biomass >= 150 ? "good" : "bad"}
-            display="inline">
+            inline>
             <Icon
               name={pod.biomass >= 150 ? "circle" : "circle-o"}
             />&nbsp;
@@ -488,7 +488,7 @@ const ResleevingConsolePodSpods = (props, context) => {
           <Box
             bold
             color={pod.steel >= 15000 ? "good" : "bad"}
-            display="inline">
+            inline>
             <Icon
               name={pod.steel >= 15000 ? "circle" : "circle-o"}
             />&nbsp;
@@ -497,7 +497,7 @@ const ResleevingConsolePodSpods = (props, context) => {
           <Box
             bold
             color={pod.glass >= 15000 ? "good" : "bad"}
-            display="inline">
+            inline>
             <Icon
               name={pod.glass >= 15000 ? "circle" : "circle-o"}
             />&nbsp;

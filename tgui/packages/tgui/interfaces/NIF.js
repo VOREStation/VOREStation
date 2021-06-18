@@ -94,7 +94,7 @@ export const NIF = (props, context) => {
           <Button
             icon="cogs"
             tooltip="Settings"
-            tooltipPosition="bottom-left"
+            tooltipPosition="bottom-end"
             selected={settingsOpen}
             onClick={() => setSettingsOpen(!settingsOpen)} />
         }>

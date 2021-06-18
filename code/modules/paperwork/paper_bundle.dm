@@ -217,7 +217,7 @@
 /obj/item/weapon/paper_bundle/update_icon()
 	var/obj/item/weapon/paper/P = pages[1]
 	icon_state = P.icon_state
-	overlays = P.overlays
+	copy_overlays(P)
 	underlays = 0
 	var/i = 0
 	var/photo
@@ -235,12 +235,12 @@
 			var/obj/item/weapon/photo/Ph = O
 			img = Ph.tiny
 			photo = 1
-			overlays += img
+			add_overlay(img)
 	if(i>1)
 		desc =  "[i] papers clipped to each other."
 	else
 		desc = "A single sheet of paper."
 	if(photo)
 		desc += "\nThere is a photo attached to it."
-	overlays += image('icons/obj/bureaucracy.dmi', "clip")
+	add_overlay(image('icons/obj/bureaucracy.dmi', "clip"))
 	return

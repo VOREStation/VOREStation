@@ -87,7 +87,7 @@
 		if(istype(scanned, /obj/machinery/atmospherics/pipe))
 			var/obj/machinery/atmospherics/pipe/P = scanned
 			I.color = P.pipe_color
-			I.overlays += P.overlays
+			I.add_overlay(P.overlays)
 
 		I.alpha = 128
 		I.mouse_opacity = 0

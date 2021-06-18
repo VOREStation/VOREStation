@@ -86,6 +86,7 @@
 	icon_state = "signmaker_sec"
 	light_range = 4
 	light_power = 4
+	light_on = TRUE
 	var/active = FALSE					// If it's on.
 	var/shield_health = 400				// How much damage the shield blocks before breaking.  This is a shared health pool for all shields attached to this projector.
 	var/max_shield_health = 400			// Ditto.  This is fairly high, but shields are really big, you can't miss them, and laser carbines pump out so much hurt.

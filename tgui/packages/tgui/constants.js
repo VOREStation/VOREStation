@@ -1,12 +1,14 @@
+/**
+ * @file
+ * @copyright 2020 Aleksej Komarov
+ * @license MIT
+ */
+
 // UI states, which are mirrored from the BYOND code.
 export const UI_INTERACTIVE = 2;
 export const UI_UPDATE = 1;
 export const UI_DISABLED = 0;
 export const UI_CLOSE = -1;
-
-// Atmospheric helpers
-/** 0.0 Degrees Celsius in Kelvin */
-export const T0C = 273.15;
 
 // All game related colors are stored here
 export const COLORS = {
@@ -21,6 +23,7 @@ export const COLORS = {
     centcom: '#00c100',
     other: '#c38312',
   },
+  // VOREStation Addition begin
   manifest: {
     command: "#3333FF",
     security: "#8e0000",
@@ -33,12 +36,18 @@ export const COLORS = {
     miscellaneous: "#666666",
     silicon: "#222222",
   },
+  // VOREStation Addition end
   // Damage type colors
   damageType: {
     oxy: '#3498db',
     toxin: '#2ecc71',
     burn: '#e67e22',
     brute: '#e74c3c',
+  },
+  // reagent / chemistry related colours
+  reagent: {
+    acidicbuffer: "#fbc314",
+    basicbuffer: "#3853a4",
   },
 };
 
@@ -64,7 +73,7 @@ export const CSS_COLORS = [
   'label',
 ];
 
-
+// VOREStation Edit Start
 // If you ever add a new radio channel, you can either manually update this, or
 // go use /client/verb/generate_tgui_radio_constants() in communications.dm.
 export const RADIO_CHANNELS = [
@@ -265,6 +274,8 @@ const GASES = [
   },
 ];
 
+// VOREStation Edit End
+
 export const getGasLabel = (gasId, fallbackValue) => {
   const gasSearchString = String(gasId).toLowerCase();
   const gas = GASES.find(gas => gas.id === gasSearchString
@@ -280,3 +291,9 @@ export const getGasColor = gasId => {
     || gas.name.toLowerCase() === gasSearchString);
   return gas && gas.color;
 };
+
+
+// VOREStation Addition start
+/** 0.0 Degrees Celsius in Kelvin */
+export const T0C = 273.15;
+// VOREStation Addition end

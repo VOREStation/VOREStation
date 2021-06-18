@@ -88,3 +88,6 @@
 /proc/cmp_media_track_asc(datum/track/A, datum/track/B)
 	var/genre_sort = sorttext(B.genre || "Uncategorized", A.genre || "Uncategorized")
 	return genre_sort || sorttext(B.title, A.title)
+	
+/proc/cmp_filter_data_priority(list/A, list/B)
+	return A["priority"] - B["priority"]

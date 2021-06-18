@@ -265,7 +265,7 @@
 					markerImage.appearance_flags = RESET_COLOR|PIXEL_SCALE
 					markerImage.pixel_x = holomarker.x+holomarker.offset_x
 					markerImage.pixel_y = holomarker.y+holomarker.offset_y
-					map_app.overlays += markerImage
+					map_app.add_overlay(markerImage)
 
 			var/obj/screen/mapper/map/tmp = new()
 			tmp.appearance = map_app

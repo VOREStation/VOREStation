@@ -181,21 +181,21 @@
 	..()
 
 /obj/vehicle/bike/update_icon()
-	overlays.Cut()
+	cut_overlays()
 
 	if(custom_icon)
 		if(on)
 			var/image/bodypaint = image('icons/obj/custom_items_vehicle.dmi', "[bike_icon]_on_a", src.layer)
 			bodypaint.color = paint_color
-			overlays += bodypaint
+			add_overlay(bodypaint)
 
 			var/image/overmob = image('icons/obj/custom_items_vehicle.dmi', "[bike_icon]_on_overlay", MOB_LAYER + 1)
 			var/image/overmob_color = image('icons/obj/custom_items_vehicle.dmi', "[bike_icon]_on_overlay_a", MOB_LAYER + 1)
 			overmob.plane = MOB_PLANE
 			overmob_color.plane = MOB_PLANE
 			overmob_color.color = paint_color
-			overlays += overmob
-			overlays += overmob_color
+			add_overlay(overmob)
+			add_overlay(overmob_color)
 			if(open)
 				icon_state = "[bike_icon]_on-open"
 			else
@@ -203,15 +203,15 @@
 		else
 			var/image/bodypaint = image('icons/obj/custom_items_vehicle.dmi', "[bike_icon]_off_a", src.layer)
 			bodypaint.color = paint_color
-			overlays += bodypaint
+			add_overlay(bodypaint)
 
 			var/image/overmob = image('icons/obj/custom_items_vehicle.dmi', "[bike_icon]_off_overlay", MOB_LAYER + 1)
 			var/image/overmob_color = image('icons/obj/custom_items_vehicle.dmi', "[bike_icon]_off_overlay_a", MOB_LAYER + 1)
 			overmob.plane = MOB_PLANE
 			overmob_color.plane = MOB_PLANE
 			overmob_color.color = paint_color
-			overlays += overmob
-			overlays += overmob_color
+			add_overlay(overmob)
+			add_overlay(overmob_color)
 			if(open)
 				icon_state = "[bike_icon]_off-open"
 			else
@@ -222,15 +222,15 @@
 	if(on)
 		var/image/bodypaint = image('icons/obj/bike.dmi', "[bike_icon]_on_a", src.layer)
 		bodypaint.color = paint_color
-		overlays += bodypaint
+		add_overlay(bodypaint)
 
 		var/image/overmob = image('icons/obj/bike.dmi', "[bike_icon]_on_overlay", MOB_LAYER + 1)
 		var/image/overmob_color = image('icons/obj/bike.dmi', "[bike_icon]_on_overlay_a", MOB_LAYER + 1)
 		overmob.plane = MOB_PLANE
 		overmob_color.plane = MOB_PLANE
 		overmob_color.color = paint_color
-		overlays += overmob
-		overlays += overmob_color
+		add_overlay(overmob)
+		add_overlay(overmob_color)
 		if(open)
 			icon_state = "[bike_icon]_on-open"
 		else
@@ -238,15 +238,15 @@
 	else
 		var/image/bodypaint = image('icons/obj/bike.dmi', "[bike_icon]_off_a", src.layer)
 		bodypaint.color = paint_color
-		overlays += bodypaint
+		add_overlay(bodypaint)
 
 		var/image/overmob = image('icons/obj/bike.dmi', "[bike_icon]_off_overlay", MOB_LAYER + 1)
 		var/image/overmob_color = image('icons/obj/bike.dmi', "[bike_icon]_off_overlay_a", MOB_LAYER + 1)
 		overmob.plane = MOB_PLANE
 		overmob_color.plane = MOB_PLANE
 		overmob_color.color = paint_color
-		overlays += overmob
-		overlays += overmob_color
+		add_overlay(overmob)
+		add_overlay(overmob_color)
 		if(open)
 			icon_state = "[bike_icon]_off-open"
 		else

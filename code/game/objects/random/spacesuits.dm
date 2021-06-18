@@ -258,3 +258,7 @@
 				prob(4);/obj/item/weapon/rig/light/stealth,
 				prob(3);/obj/item/weapon/rig/hazard,
 				prob(1);/obj/item/weapon/rig/merc/empty)
+//VOREStation Add Start
+/obj/random/rigsuit/chancetofail
+	spawn_nothing_percentage = 50
+//VOREStation Add End

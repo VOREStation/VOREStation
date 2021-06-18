@@ -322,6 +322,7 @@
 	light_range = 3
 	light_power = 1
 	light_color = "#B18B25" //clockwork slab background top color
+	light_on = TRUE
 
 /obj/item/clothing/suit/storage/hooded/wintercoat/narsie
 	name = "runed winter coat"
@@ -336,6 +337,7 @@
 	hoodtype = /obj/item/clothing/head/hood/winter/cosmic
 	light_power = 1.8
 	light_range = 1.2
+	light_on = TRUE
 
 // winter coats end here
 

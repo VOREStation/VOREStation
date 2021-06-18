@@ -104,65 +104,72 @@ const ChemMasterBeaker = (props, context) => {
     beakerReagents,
     bufferNonEmpty,
   } = props;
+
+  let headerButton = bufferNonEmpty ? (
+    <Button.Confirm
+      icon="eject"
+      disabled={!beaker}
+      content="Eject and Clear Buffer"
+      onClick={() => act('eject')}
+    />
+  ) : (
+    <Button
+      icon="eject"
+      disabled={!beaker}
+      content="Eject and Clear Buffer"
+      onClick={() => act('eject')}
+    />
+  );
+
   return (
     <Section
       title="Beaker"
-      buttons={bufferNonEmpty
-        ? <Button.Confirm
-          icon="eject"
-          disabled={!beaker}
-          content="Eject and Clear Buffer"
-          onClick={() => act('eject')}
-        />
-        : <Button
-          icon="eject"
-          disabled={!beaker}
-          content="Eject and Clear Buffer"
-          onClick={() => act('eject')}
-        />}>
+      buttons={headerButton}>
       {beaker
-        ? <BeakerContents
-          beakerLoaded
-          beakerContents={beakerReagents}
-          buttons={(chemical, i) => (
-            <Box mb={(i < beakerReagents.length - 1) && "2px"}>
-              <Button
-                content="Analyze"
-                mb="0"
-                onClick={() => modalOpen(context, 'analyze', {
-                  idx: i + 1,
-                  beaker: 1,
-                })}
-              />
-              {transferAmounts.map((am, j) =>
-                (<Button
-                  key={j}
-                  content={am}
+        ? (
+          <BeakerContents
+            beakerLoaded
+            beakerContents={beakerReagents}
+            buttons={(chemical, i) => (
+              <Box mb={(i < beakerReagents.length - 1) && "2px"}>
+                <Button
+                  content="Analyze"
+                  mb="0"
+                  onClick={() => modalOpen(context, 'analyze', {
+                    idx: i + 1,
+                    beaker: 1,
+                  })}
+                />
+                {transferAmounts.map((am, j) =>
+                  (<Button
+                    key={j}
+                    content={am}
+                    mb="0"
+                    onClick={() => act('add', {
+                      id: chemical.id,
+                      amount: am,
+                    })}
+                  />)
+                )}
+                <Button
+                  content="All"
                   mb="0"
                   onClick={() => act('add', {
                     id: chemical.id,
-                    amount: am,
+                    amount: chemical.volume,
                   })}
-                />)
-              )}
-              <Button
-                content="All"
-                mb="0"
-                onClick={() => act('add', {
-                  id: chemical.id,
-                  amount: chemical.volume,
-                })}
-              />
-              <Button
-                content="Custom.."
-                mb="0"
-                onClick={() => modalOpen(context, 'addcustom', {
-                  id: chemical.id,
-                })}
-              />
-            </Box>
-          )}
-        />
+                />
+                <Button
+                  content="Custom.."
+                  mb="0"
+                  onClick={() => modalOpen(context, 'addcustom', {
+                    id: chemical.id,
+                  })}
+                />
+              </Box>
+            )}
+          />
+        )
         : (
           <Box color="label">
             No beaker loaded.
@@ -193,48 +200,50 @@ const ChemMasterBuffer = (props, context) => {
         </Box>
       }>
       {(bufferReagents.length > 0)
-        ? <BeakerContents
-          beakerLoaded
-          beakerContents={bufferReagents}
-          buttons={(chemical, i) => (
-            <Box mb={(i < bufferReagents.length - 1) && "2px"}>
-              <Button
-                content="Analyze"
-                mb="0"
-                onClick={() => modalOpen(context, 'analyze', {
-                  idx: i + 1,
-                  beaker: 0,
-                })}
-              />
-              {transferAmounts.map((am, i) =>
-                (<Button
-                  key={i}
-                  content={am}
+        ? (
+          <BeakerContents
+            beakerLoaded
+            beakerContents={bufferReagents}
+            buttons={(chemical, i) => (
+              <Box mb={(i < bufferReagents.length - 1) && "2px"}>
+                <Button
+                  content="Analyze"
+                  mb="0"
+                  onClick={() => modalOpen(context, 'analyze', {
+                    idx: i + 1,
+                    beaker: 0,
+                  })}
+                />
+                {transferAmounts.map((am, i) =>
+                  (<Button
+                    key={i}
+                    content={am}
+                    mb="0"
+                    onClick={() => act('remove', {
+                      id: chemical.id,
+                      amount: am,
+                    })}
+                  />)
+                )}
+                <Button
+                  content="All"
                   mb="0"
                   onClick={() => act('remove', {
                     id: chemical.id,
-                    amount: am,
+                    amount: chemical.volume,
                   })}
-                />)
-              )}
-              <Button
-                content="All"
-                mb="0"
-                onClick={() => act('remove', {
-                  id: chemical.id,
-                  amount: chemical.volume,
-                })}
-              />
-              <Button
-                content="Custom.."
-                mb="0"
-                onClick={() => modalOpen(context, 'removecustom', {
-                  id: chemical.id,
-                })}
-              />
-            </Box>
-          )}
-        />
+                />
+                <Button
+                  content="Custom.."
+                  mb="0"
+                  onClick={() => modalOpen(context, 'removecustom', {
+                    id: chemical.id,
+                  })}
+                />
+              </Box>
+            )}
+          />
+        )
         : (
           <Box color="label">
             Buffer is empty.
@@ -258,11 +267,11 @@ const ChemMasterProduction = (props, context) => {
             content={data.loaded_pill_bottle
               ? (
                 data.loaded_pill_bottle_name
-                  + " ("
-                  + data.loaded_pill_bottle_contents_len
-                  + "/"
-                  + data.loaded_pill_bottle_storage_slots
-                  + ")"
+                + " ("
+                + data.loaded_pill_bottle_contents_len
+                + "/"
+                + data.loaded_pill_bottle_storage_slots
+                + ")"
               )
               : "No pill bottle loaded"}
             mb="0.5rem"
@@ -299,11 +308,11 @@ const ChemMasterProduction = (props, context) => {
           content={data.loaded_pill_bottle
             ? (
               data.loaded_pill_bottle_name
-                + " ("
-                + data.loaded_pill_bottle_contents_len
-                + "/"
-                + data.loaded_pill_bottle_storage_slots
-                + ")"
+              + " ("
+              + data.loaded_pill_bottle_contents_len
+              + "/"
+              + data.loaded_pill_bottle_storage_slots
+              + ")"
             )
             : "No pill bottle loaded"}
           mb="0.5rem"

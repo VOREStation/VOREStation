@@ -32,7 +32,7 @@ var/list/gurgled_overlays = list(
 	if(!gurgled)
 		gurgled = TRUE
 		gurgled_color = contamination_color
-		overlays += gurgled_overlays[gurgled_color]
+		add_overlay(gurgled_overlays[gurgled_color])
 		var/list/pickfrom = contamination_flavors[contamination_flavor]
 		var/gurgleflavor = pick(pickfrom)
 		cleanname = src.name
@@ -54,7 +54,7 @@ var/list/gurgled_overlays = list(
 /obj/item/decontaminate() //Decontaminate the sogginess as well.
 	..()
 	gurgled = FALSE
-	overlays -= gurgled_overlays[gurgled_color]
+	cut_overlay(gurgled_overlays[gurgled_color])
 	if(cleanname)
 		name = cleanname
 	if(cleandesc)

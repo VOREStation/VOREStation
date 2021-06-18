@@ -57,9 +57,44 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 	if(active_edges.len)
 		var/list/edge_log = list()
 		for(var/connection_edge/E in active_edges)
+			
+			var/a_temp = E.A.air.temperature
+			var/a_moles = E.A.air.total_moles
+			var/a_vol = E.A.air.volume
+			var/a_gas = ""
+			for(var/gas in E.A.air.gas)
+				a_gas += "[gas]=[E.A.air.gas[gas]]"
+			
+			var/b_temp
+			var/b_moles
+			var/b_vol
+			var/b_gas = ""
+			
+			// Two zones mixing
+			if(istype(E, /connection_edge/zone))
+				var/connection_edge/zone/Z = E
+				b_temp = Z.B.air.temperature
+				b_moles = Z.B.air.total_moles
+				b_vol = Z.B.air.volume
+				for(var/gas in Z.B.air.gas)
+					b_gas += "[gas]=[Z.B.air.gas[gas]]"
+
+			// Zone and unsimulated turfs mixing
+			if(istype(E, /connection_edge/unsimulated))
+				var/connection_edge/unsimulated/U = E
+				b_temp = U.B.temperature
+				b_moles = "Unsim"
+				b_vol = "Unsim"
+				for(var/gas in U.air.gas)
+					b_gas += "[gas]=[U.air.gas[gas]]"
+			
 			edge_log += "Active Edge [E] ([E.type])"
+			edge_log += "Edge side A: T:[a_temp], Mol:[a_moles], Vol:[a_vol], Gas:[a_gas]"
+			edge_log += "Edge side B: T:[b_temp], Mol:[b_moles], Vol:[b_vol], Gas:[b_gas]"
+			
 			for(var/turf/T in E.connecting_turfs)
 				edge_log += "+--- Connecting Turf [T] ([T.type]) @ [T.x], [T.y], [T.z] ([T.loc])"
+				
 		log_debug("Active Edges on ZAS Startup\n" + edge_log.Join("\n"))
 		startup_active_edge_log = edge_log.Copy()
 
@@ -124,7 +159,7 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 		T.post_update_air_properties()
 		T.needs_air_update = 0
 		#ifdef ZASDBG
-		T.overlays -= mark
+		T.cut_overlay(mark)
 		#endif
 		if(MC_TICK_CHECK)
 			return
@@ -139,7 +174,7 @@ Total Unsimulated Turfs: [world.maxx*world.maxy*world.maxz - simulated_turf_coun
 		T.post_update_air_properties()
 		T.needs_air_update = 0
 		#ifdef ZASDBG
-		T.overlays -= mark
+		T.cut_overlay(mark)
 		#endif
 		if(MC_TICK_CHECK)
 			return

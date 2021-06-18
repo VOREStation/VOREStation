@@ -288,22 +288,22 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 	return TRUE
 
 /obj/structure/janitorialcart/update_icon()
-	overlays.Cut()
+	cut_overlays()
 
 	if(mybucket)
-		overlays += "cart_bucket"
+		add_overlay("cart_bucket")
 		if(mybucket.reagents.total_volume >= 1)
-			overlays += "water_cart"
+			add_overlay("water_cart")
 	if(mybag)
-		overlays += "cart_garbage"
+		add_overlay("cart_garbage")
 	if(mymop)
-		overlays += "cart_mop"
+		add_overlay("cart_mop")
 	if(myspray)
-		overlays += "cart_spray"
+		add_overlay("cart_spray")
 	if(myreplacer)
-		overlays += "cart_replacer"
+		add_overlay("cart_replacer")
 	if(signs)
-		overlays += "cart_sign[signs]"
+		add_overlay("cart_sign[signs]")
 
 //This is called if the cart is caught in an explosion, or destroyed by weapon fire
 /obj/structure/janitorialcart/proc/spill(var/chance = 100)
