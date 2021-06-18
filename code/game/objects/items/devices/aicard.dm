@@ -87,10 +87,10 @@
 	return TRUE
 
 /obj/item/device/aicard/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(carded_ai)
 		if (!carded_ai.control_disabled)
-			overlays += image('icons/obj/pda.dmi', "aicard-on")
+			add_overlay("aicard-on")
 		if(carded_ai.stat)
 			icon_state = "aicard-404"
 		else

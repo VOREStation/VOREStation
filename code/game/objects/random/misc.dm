@@ -249,6 +249,7 @@
 				prob(8);/obj/item/weapon/storage/firstaid/o2,
 				prob(6);/obj/item/weapon/storage/firstaid/adv,
 				prob(8);/obj/item/weapon/storage/firstaid/fire,
+				prob(1);/obj/item/device/denecrotizer/medical, //VOREStation Add,
 				prob(1);/obj/item/weapon/storage/firstaid/combat)
 
 /obj/random/contraband

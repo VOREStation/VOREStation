@@ -318,10 +318,22 @@ export const Materials = (props, context) => {
 
   const materials = data.materials || [];
 
+  let display_materials = materials.filter(mat => displayAllMat || mat.amount > 0);
+
+  if (display_materials.length === 0) {
+    return (
+      <Box textAlign="center">
+        <Icon textAlign="center" size={5} name="inbox" />
+        <br />
+        <b>No Materials Loaded.</b>
+      </Box>
+    );
+  }
+
   return (
     <Flex
       wrap="wrap">
-      {materials.map(material => (displayAllMat || material.amount > 0) && (
+      {display_materials.map(material => (
         <Flex.Item
           width="80px"
           key={material.name}>

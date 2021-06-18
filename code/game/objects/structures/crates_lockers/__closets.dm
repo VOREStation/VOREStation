@@ -7,6 +7,7 @@
 	density = 1
 	w_class = ITEMSIZE_HUGE
 	layer = UNDER_JUNK_LAYER
+	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	
 	var/opened = 0
 	var/sealed = 0

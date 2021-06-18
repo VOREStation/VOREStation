@@ -36,7 +36,7 @@
 		qdel(src)
 
 /obj/item/weapon/spacecash/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	name = "[worth] [initial_name]\s"
 	if(worth in list(1000,500,200,100,50,20,10,1))
 		icon_state = "spacecash[worth]"
@@ -53,14 +53,14 @@
 			M.Translate(rand(-6, 6), rand(-4, 8))
 			M.Turn(pick(-45, -27.5, 0, 0, 0, 0, 0, 0, 0, 27.5, 45))
 			banknote.transform = M
-			src.overlays += banknote
+			add_overlay(banknote)
 	if(num == 0) // Less than one thaler, let's just make it look like 1 for ease
 		var/image/banknote = image('icons/obj/items.dmi', "spacecash1")
 		var/matrix/M = matrix()
 		M.Translate(rand(-6, 6), rand(-4, 8))
 		M.Turn(pick(-45, -27.5, 0, 0, 0, 0, 0, 0, 0, 27.5, 45))
 		banknote.transform = M
-		src.overlays += banknote
+		add_overlay(banknote)
 	src.desc = "They are worth [worth] [initial_name]s."
 
 /obj/item/weapon/spacecash/proc/adjust_worth(var/adjust_worth = 0, var/update = 1)

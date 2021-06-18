@@ -86,7 +86,8 @@ datum/preferences
 		"2" = "character_preview_map:2,5",
 		"4"  = "character_preview_map:2,3",
 		"8"  = "character_preview_map:2,1",
-		"BG" = "character_preview_map:1,1 to 3,8"
+		"BG" = "character_preview_map:1,1 to 3,8",
+		"PMH" = "character_preview_map:2,7"
 	)
 
 		//Jobs, uses bitflags
@@ -269,6 +270,13 @@ datum/preferences
 /datum/preferences/proc/update_character_previews(mutable_appearance/MA)
 	if(!client)
 		return
+
+	var/obj/screen/setup_preview/pm_helper/PMH = LAZYACCESS(char_render_holders, "PMH")
+	if(!PMH)
+		PMH = new
+		LAZYSET(char_render_holders, "PMH", PMH)
+		client.screen |= PMH
+	PMH.screen_loc = preview_screen_locs["PMH"]
 
 	var/obj/screen/setup_preview/bg/BG = LAZYACCESS(char_render_holders, "BG")
 	if(!BG)

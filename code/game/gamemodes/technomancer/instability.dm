@@ -90,9 +90,9 @@
 	last_instability_event = world.time
 	spawn(1)
 		var/image/instability_flash = image('icons/obj/spells.dmi',"instability")
-		overlays |= instability_flash
+		add_overlay(instability_flash)
 		sleep(4)
-		overlays.Remove(instability_flash)
+		cut_overlay(instability_flash)
 		qdel(instability_flash)
 
 /mob/living/silicon/instability_effects()

@@ -39,7 +39,7 @@
 #define LAZYACCESSASSOC(L, I, K) L ? L[I] ? L[I][K] ? L[I][K] : null : null : null
 
 // Null-safe L.Cut()
-#define LAZYCLEARLIST(L) if(L) L.Cut()
+#define LAZYCLEARLIST(L) if(L) { L.Cut(); L = null; }
 
 // Reads L or an empty list if L is not a list.  Note: Does NOT assign, L may be an expression.
 #define SANITIZE_LIST(L) ( islist(L) ? L : list() )
