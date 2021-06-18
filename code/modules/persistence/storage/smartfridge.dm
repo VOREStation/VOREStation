@@ -51,7 +51,8 @@
 
 		// Delete some stacks if we want
 		if(stacks_go_missing)
-			count -= count*0.2 // flat loss of 20%
+			var/fuzzy = rand(-5,5)*.01
+			count -= floor(count*(0.8+fuzzy)) // loss of 15-25% with rounding down
 			if(count <= 0)
 				continue
 		
