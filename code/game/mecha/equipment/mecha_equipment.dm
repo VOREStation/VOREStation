@@ -21,15 +21,9 @@
 	var/energy_drain = 0
 	var/obj/mecha/chassis = null
 	var/range = MELEE //bitflags
-<<<<<<< HEAD
-	/// Bitflag. Used by exosuit fabricator to assign sub-categories based on which exosuits can equip this.
-	var/mech_flags = NONE
-	var/salvageable = 1
-=======
 	/// Bitflag. Used by exosuit fabricator to assign sub-categories based on which exosuits can equip this.
 	var/mech_flags = NONE
 	var/salvageable = TRUE
->>>>>>> f9613f2... Removes Global Iterators (#8146)
 	var/required_type = /obj/mecha //may be either a type or a list of allowed types
 	var/equip_type = null //mechaequip2
 	var/allow_duplicate = FALSE
@@ -235,33 +229,6 @@
 
 /obj/item/mecha_parts/mecha_equipment/proc/detach(atom/moveto=null)
 	moveto = moveto || get_turf(chassis)
-<<<<<<< HEAD
-	if(src.Move(moveto))
-		chassis.equipment -= src
-		chassis.universal_equipment -= src
-		if(equip_type)
-			switch(equip_type)
-				if(EQUIP_HULL)
-					chassis.hull_equipment -= src
-				if(EQUIP_WEAPON)
-					chassis.weapon_equipment -= src
-				if(EQUIP_UTILITY)
-					chassis.utility_equipment -= src
-				if(EQUIP_SPECIAL)
-					chassis.special_equipment -= src
-				//VOREStation Addition begin: MICROMECHS
-				if(EQUIP_MICRO_UTILITY)
-					chassis.micro_utility_equipment -= src
-				if(EQUIP_MICRO_WEAPON)
-					chassis.micro_weapon_equipment -= src
-				//VOREStation Addition end: MICROMECHS
-		if(chassis.selected == src)
-			chassis.selected = null
-		update_chassis_page()
-		chassis.log_message("[src] removed from equipment.")
-		chassis = null
-		set_ready_state(1)
-=======
 	forceMove(moveto)
 	chassis.equipment -= src
 	chassis.universal_equipment -= src
@@ -275,11 +242,11 @@
 				chassis.utility_equipment -= src
 			if(EQUIP_SPECIAL)
 				chassis.special_equipment -= src
-		    //VOREStation Addition begin: MICROMECHS
-		    if(EQUIP_MICRO_UTILITY)
-		    	chassis.micro_utility_equipment -= src
-		    if(EQUIP_MICRO_WEAPON)
-		    	chassis.micro_weapon_equipment -= src
+			//VOREStation Addition begin: MICROMECHS
+			if(EQUIP_MICRO_UTILITY)
+				chassis.micro_utility_equipment -= src
+			if(EQUIP_MICRO_WEAPON)
+		    		chassis.micro_weapon_equipment -= src
 		    //VOREStation Addition end: MICROMECHS
 	if(chassis.selected == src)
 		chassis.selected = null
@@ -287,7 +254,6 @@
 	chassis.log_message("[src] removed from equipment.")
 	chassis = null
 	set_ready_state(TRUE)
->>>>>>> f9613f2... Removes Global Iterators (#8146)
 	enable_special = FALSE
 	return
 
