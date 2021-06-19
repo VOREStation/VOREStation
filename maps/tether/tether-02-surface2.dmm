@@ -11352,14 +11352,10 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 1
 	},
-/obj/machinery/vending/cigarette{
-	name = "Cigarette machine";
-	prices = list();
-	products = list(/obj/item/weapon/storage/fancy/cigarettes = 10, /obj/item/weapon/storage/box/matches = 10, /obj/item/weapon/flame/lighter/zippo = 4, /obj/item/clothing/mask/smokable/cigarette/cigar/havana = 2)
-	},
 /obj/effect/floor_decal/techfloor/hole{
 	dir = 1
 	},
+/obj/machinery/vending/sovietvend,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/bar)
 "ash" = (
@@ -25880,7 +25876,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 8
 	},
-/obj/machinery/vending/snack{
+/obj/machinery/vending/weeb{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/monotile,
