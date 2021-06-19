@@ -116,6 +116,7 @@
 	if(do_after(user, revive_time, exclusive = 1, target = target))
 		target.faction = user.faction
 		target.revivedby = user.name
+		target.ai_holder.returns_home = FALSE
 		target.revive()
 		target.sight = initial(target.sight)
 		target.see_in_dark = initial(target.see_in_dark)
