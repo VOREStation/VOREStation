@@ -187,16 +187,7 @@
 			"<font color='blue'>You scoop up some [src] with \the [U]!</font>" \
 		)
 
-<<<<<<< HEAD
-			src.bitecount++
-			U.cut_overlays()
-			U.loaded = "[src]"
-			var/image/I = new(U.icon, "loadedfood")
-			I.color = src.filling_color
-			U.add_overlay(I)
-=======
 		bitecount++
->>>>>>> 1672a51... Refactors utensils to use weakrefs (#8140)
 
 		reagents.trans_to_obj(U, min(reagents.total_volume,5))
 
