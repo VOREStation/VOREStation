@@ -41,7 +41,7 @@
 	if(istype(target, /obj/item/inflatable) || istype(target, /obj/structure/inflatable))
 		my_deployer.pick_up(target, chassis.occupant)
 
-	set_ready_state(0)
+	set_ready_state(FALSE)
 	chassis.use_power(energy_drain)
 	do_after_cooldown()
 	return
