@@ -247,7 +247,7 @@
 				chassis.micro_utility_equipment -= src
 			if(EQUIP_MICRO_WEAPON)
 		    		chassis.micro_weapon_equipment -= src
-		    //VOREStation Addition end: MICROMECHS
+			//VOREStation Addition end: MICROMECHS
 	if(chassis.selected == src)
 		chassis.selected = null
 	update_chassis_page()
