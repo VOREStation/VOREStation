@@ -1427,7 +1427,7 @@
 	name = "Telecoms lethal turret control";
 	pixel_y = 29;
 	req_access = list(61);
-	req_one_access = list(12)
+	req_one_access = list()
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -1749,8 +1749,8 @@
 	desc = "A firewall prevents AIs from interacting with this device.";
 	name = "Telecoms Foyer turret control";
 	pixel_y = 29;
-	req_access = list();
-	req_one_access = list(10,12,16,17,61)
+	req_access = list(61);
+	req_one_access = list()
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tcommsat/entrance{
