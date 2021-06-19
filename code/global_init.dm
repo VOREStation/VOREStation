@@ -22,7 +22,11 @@ var/global/datum/global_init/init = new ()
 	error_log = file("[log_path]-error.log")
 	debug_log = file("[log_path]-debug.log")
 	debug_log << "[log_end]\n[log_end]\nStarting up. [time_stamp()][log_end]\n---------------------[log_end]"
+<<<<<<< HEAD
 */ //VOREStation Removal End
+=======
+	decls_repository = new()	
+>>>>>>> beaf109... Refactors posters to use decls (#8128)
 	load_configuration()
 	makeDatumRefLists()
 
