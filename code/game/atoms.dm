@@ -26,9 +26,16 @@
 	///Chemistry.
 
 	// Overlays
-	var/list/our_overlays	//our local copy of (non-priority) overlays without byond magic. Use procs in SSoverlays to manipulate
-	var/list/priority_overlays	//overlays that should remain on top and not normally removed when using cut_overlay functions, like c4.
+	///Our local copy of (non-priority) overlays without byond magic. Use procs in SSoverlays to manipulate
+	var/list/our_overlays	
+	///Overlays that should remain on top and not normally removed when using cut_overlay functions, like c4.
+	var/list/priority_overlays
+	///vis overlays managed by SSvis_overlays to automaticaly turn them like other overlays
+	var/list/managed_vis_overlays
 
+	///Our local copy of filter data so we can add/remove it
+	var/list/filter_data
+	
 	//Detective Work, used for the duplicate data points kept in the scanners
 	var/list/original_atom
 	// Track if we are already had initialize() called to prevent double-initialization.
@@ -81,6 +88,13 @@
 		crash_with("Warning: [src]([type]) initialized multiple times!")
 	initialized = TRUE
 	return INITIALIZE_HINT_NORMAL
+
+/atom/Destroy()
+	if(reagents)
+		QDEL_NULL(reagents)
+	if(light)
+		QDEL_NULL(light)
+	return ..()
 
 // Called after all object's normal initialize() if initialize() returns INITIALIZE_HINT_LATELOAD
 /atom/proc/LateInitialize()

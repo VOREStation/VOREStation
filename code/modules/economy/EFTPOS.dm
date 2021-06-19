@@ -44,7 +44,7 @@
 	R.offset_y += 0
 	R.ico += "paper_stamp-cent"
 	R.stamped += /obj/item/weapon/stamp
-	R.overlays += stampoverlay
+	R.add_overlay(stampoverlay)
 	R.stamps += "<HR><i>This paper has been stamped by the EFTPOS device.</i>"
 
 /obj/item/device/eftpos/Destroy()
@@ -64,7 +64,7 @@
 	if(!R.stamped)
 		R.stamped = new
 	R.stamped += /obj/item/weapon/stamp
-	R.overlays += stampoverlay
+	R.add_overlay(stampoverlay)
 	R.stamps += "<HR><i>This paper has been stamped by the EFTPOS device.</i>"
 	var/obj/item/smallDelivery/D = new(R.loc)
 	R.loc = D

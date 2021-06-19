@@ -27,14 +27,12 @@
 		. += "\The [drying] is [drying.get_dryness_text()]."
 
 /obj/structure/tanning_rack/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(drying)
-		var/image/I
 		if(drying.wetness)
-			I = image(icon, "leather_wet")
+			add_overlay("leather_wet")
 		else
-			I = image(icon, "leather_dry")
-		add_overlay(I)
+			add_overlay("leather_dry")
 
 /obj/structure/tanning_rack/attackby(var/atom/A, var/mob/user)
 	if(istype(A, /obj/item/stack/wetleather))

@@ -20,7 +20,7 @@
 
 /obj/item/clothing/suit/space/void/responseteam/command/Initialize()
 	..()
-	helmet = new /obj/item/clothing/head/helmet/space/void/responseteam/command //autoinstall the helmet
+	attach_helmet(new /obj/item/clothing/head/helmet/space/void/responseteam/command) //autoinstall the helmet
 
 /obj/item/clothing/suit/space/void/responseteam/medical
 	name = "Mark VII-M Emergency Medical Response Suit"
@@ -29,7 +29,7 @@
 
 /obj/item/clothing/suit/space/void/responseteam/medical/Initialize()
 	..()
-	helmet = new /obj/item/clothing/head/helmet/space/void/responseteam/medical //autoinstall the helmet
+	attach_helmet(new /obj/item/clothing/head/helmet/space/void/responseteam/medical) //autoinstall the helmet
 
 /obj/item/clothing/suit/space/void/responseteam/engineer
 	name = "Mark VII-E Emergency Engineering Response Suit"
@@ -38,7 +38,7 @@
 
 /obj/item/clothing/suit/space/void/responseteam/engineer/Initialize()
 	..()
-	helmet = new /obj/item/clothing/head/helmet/space/void/responseteam/engineer //autoinstall the helmet
+	attach_helmet(new /obj/item/clothing/head/helmet/space/void/responseteam/engineer) //autoinstall the helmet
 
 /obj/item/clothing/suit/space/void/responseteam/security
 	name = "Mark VII-S Emergency Security Response Suit"
@@ -47,7 +47,7 @@
 
 /obj/item/clothing/suit/space/void/responseteam/security/Initialize()
 	..()
-	helmet = new /obj/item/clothing/head/helmet/space/void/responseteam/security //autoinstall the helmet
+	attach_helmet(new /obj/item/clothing/head/helmet/space/void/responseteam/security) //autoinstall the helmet
 
 /obj/item/clothing/suit/space/void/responseteam/janitor
 	name = "Mark VII-J Emergency Cleanup Response Suit"
@@ -59,7 +59,7 @@
 
 /obj/item/clothing/suit/space/void/responseteam/janitor/Initialize()
 	..()
-	helmet = new /obj/item/clothing/head/helmet/space/void/responseteam/janitor //autoinstall the helmet
+	attach_helmet(new /obj/item/clothing/head/helmet/space/void/responseteam/janitor) //autoinstall the helmet
 
 
 //override the attackby screwdriver proc so that people can't remove the helmet

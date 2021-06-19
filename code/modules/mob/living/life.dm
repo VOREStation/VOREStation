@@ -238,10 +238,6 @@
 			set_light(distance, distance * 4, l_color = "#660066")
 			return TRUE
 
-	else if(on_fire)
-		set_light(min(round(fire_stacks), 3), round(fire_stacks), l_color = "#FF9933")
-		return TRUE
-
 	else if(glow_toggle)
 		set_light(glow_range, glow_intensity, glow_color)
 

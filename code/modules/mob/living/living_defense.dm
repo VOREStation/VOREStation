@@ -366,7 +366,7 @@
 /mob/living/proc/IgniteMob()
 	if(fire_stacks > 0 && !on_fire)
 		on_fire = 1
-		handle_light()
+		new/obj/effect/dummy/lighting_obj/moblight/fire(src)
 		throw_alert("fire", /obj/screen/alert/fire)
 		update_fire()
 
@@ -374,7 +374,8 @@
 	if(on_fire)
 		on_fire = 0
 		fire_stacks = 0
-		handle_light()
+		for(var/obj/effect/dummy/lighting_obj/moblight/fire/F in src)
+			qdel(F)
 		clear_alert("fire")
 		update_fire()
 

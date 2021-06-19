@@ -72,22 +72,34 @@
 /obj/item/modular_computer/update_icon()
 	icon_state = icon_state_unpowered
 
-	overlays.Cut()
+	cut_overlays()
+
+	. = list()
+
 	if(bsod)
-		overlays += image(icon = overlay_icon, icon_state = "bsod")
-		return
+		. += mutable_appearance(overlay_icon, "bsod")
+		. += emissive_appearance(overlay_icon, "bsod")
+		return add_overlay(.)
 	if(!enabled)
 		if(icon_state_screensaver)
-			overlays += image(icon = overlay_icon, icon_state = icon_state_screensaver)
+			. += mutable_appearance(overlay_icon, icon_state_screensaver)
+			. += emissive_appearance(overlay_icon, icon_state_screensaver)
 		set_light(0)
-		return
+		return add_overlay(.)
+	
 	set_light(light_strength)
+	
 	if(active_program)
-		overlays += image(icon = overlay_icon, icon_state = active_program.program_icon_state ? active_program.program_icon_state : icon_state_menu)
+		var/program_state = active_program.program_icon_state ? active_program.program_icon_state : icon_state_menu
+		. += mutable_appearance(overlay_icon, program_state)
+		. += emissive_appearance(overlay_icon, program_state)
 		if(active_program.program_key_state)
-			overlays += image(icon = overlay_icon, icon_state = active_program.program_key_state)
+			. += mutable_appearance(overlay_icon, active_program.program_key_state)
 	else
-		overlays += image(icon = overlay_icon, icon_state = icon_state_menu)
+		. += mutable_appearance(overlay_icon, icon_state_menu)
+		. += emissive_appearance(overlay_icon, icon_state_menu)
+	
+	return add_overlay(.)
 
 /obj/item/modular_computer/proc/turn_on(var/mob/user)
 	if(bsod)

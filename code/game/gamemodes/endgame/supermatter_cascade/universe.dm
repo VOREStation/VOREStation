@@ -91,6 +91,8 @@ The access requirements on the Asteroid Shuttles' consoles have now been revoked
 		A.updateicon()
 
 /datum/universal_state/supermatter_cascade/OverlayAndAmbientSet()
+	return
+	/* TODO
 	spawn(0)
 		for(var/datum/lighting_corner/L in world)
 			if(L.z in using_map.admin_levels)
@@ -100,7 +102,7 @@ The access requirements on the Asteroid Shuttles' consoles have now been revoked
 
 		for(var/turf/space/T in world)
 			OnTurfChange(T)
-
+	*/
 /datum/universal_state/supermatter_cascade/proc/MiscSet()
 	for (var/obj/machinery/firealarm/alm in machines)
 		if (!(alm.stat & BROKEN))

@@ -56,6 +56,7 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 #define INIT_ORDER_SQLITE		40
 #define INIT_ORDER_MEDIA_TRACKS	38 // Gotta get that lobby music up, yo
 #define INIT_ORDER_CHEMISTRY	35
+#define INIT_ORDER_VIS			32
 #define INIT_ORDER_SKYBOX		30
 #define INIT_ORDER_MAPPING		25
 #define INIT_ORDER_SOUNDS		23
@@ -94,6 +95,7 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 #define FIRE_PRIORITY_SUPPLY		5
 #define FIRE_PRIORITY_NIGHTSHIFT	5
 #define FIRE_PRIORITY_PLANTS		5
+#define FIRE_PRIORITY_VIS			5
 #define FIRE_PRIORITY_ORBIT			7
 #define FIRE_PRIORITY_VOTE			8
 #define FIRE_PRIORITY_INSTRUMENTS	9

@@ -303,7 +303,7 @@
 	C.pixel_y += 9
 	if(C.layer < layer)
 		C.layer = layer + 0.1
-	overlays += C
+	add_overlay(C)
 
 	busy = 0
 
@@ -312,7 +312,7 @@
 		return
 
 	busy = 1
-	overlays.Cut()
+	cut_overlays()
 
 	load.forceMove(loc)
 	load.pixel_y -= 9

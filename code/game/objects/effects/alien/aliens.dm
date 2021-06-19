@@ -203,6 +203,7 @@
 	desc = "Weird glowing organic growth."
 	layer = ABOVE_TURF_LAYER+0.01
 	light_range = NODERANGE
+	light_on = TRUE
 
 	var/node_range = NODERANGE
 	var/set_color = "#321D37"

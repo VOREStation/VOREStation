@@ -2403,6 +2403,7 @@
 	cell_type = /obj/item/weapon/cell/super;
 	dir = 8;
 	name = "west bump";
+	nightshift_setting = 2;
 	pixel_x = -24
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -3474,6 +3475,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
+	nightshift_setting = 2;
 	pixel_y = 28
 	},
 /obj/structure/cable/green{
@@ -8718,6 +8720,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "east bump";
+	nightshift_setting = 2;
 	pixel_x = 28
 	},
 /obj/structure/cable/green{
@@ -9290,6 +9293,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
+	nightshift_setting = 2;
 	pixel_y = 24
 	},
 /obj/structure/cable/green{
@@ -10897,6 +10901,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
+	nightshift_setting = 2;
 	pixel_y = 24
 	},
 /obj/structure/cable/green{
@@ -17071,6 +17076,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
+	nightshift_setting = 2;
 	pixel_y = 28
 	},
 /obj/effect/floor_decal/borderfloor{
@@ -19612,6 +19618,7 @@
 "aGa" = (
 /obj/machinery/power/apc{
 	name = "south bump";
+	nightshift_setting = 2;
 	pixel_y = -24
 	},
 /obj/structure/cable/green,
@@ -23380,6 +23387,7 @@
 /obj/machinery/light,
 /obj/machinery/power/apc{
 	name = "south bump";
+	nightshift_setting = 2;
 	pixel_y = -24
 	},
 /obj/structure/cable/green,
@@ -24636,6 +24644,7 @@
 	},
 /obj/machinery/power/apc{
 	name = "south bump";
+	nightshift_setting = 0;
 	pixel_y = -28;
 	req_access = list(67)
 	},
@@ -25575,6 +25584,7 @@
 "aRv" = (
 /obj/machinery/power/apc{
 	name = "south bump";
+	nightshift_setting = 2;
 	pixel_y = -24
 	},
 /obj/structure/cable/green,
@@ -26807,6 +26817,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
+	nightshift_setting = 2;
 	pixel_y = 28
 	},
 /obj/structure/cable/green{
@@ -29139,6 +29150,7 @@
 "aXF" = (
 /obj/machinery/power/apc{
 	name = "south bump";
+	nightshift_setting = 2;
 	pixel_y = -24
 	},
 /obj/structure/cable/green,
@@ -29477,9 +29489,7 @@
 /area/bridge)
 "aYk" = (
 /obj/machinery/papershredder,
-/obj/machinery/light{
-	dir = 2
-	},
+/obj/machinery/light,
 /obj/effect/floor_decal/borderfloor{
 	dir = 10
 	},
@@ -35806,6 +35816,7 @@
 	pixel_x = 6;
 	pixel_y = 31
 	},
+/obj/item/device/denecrotizer/medical,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/storage)
 "bjH" = (
@@ -35976,6 +35987,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
+	nightshift_setting = 2;
 	pixel_y = 28
 	},
 /obj/structure/cable/green{
@@ -36096,6 +36108,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
+	nightshift_setting = 2;
 	pixel_y = 28
 	},
 /obj/structure/cable/green{
@@ -36792,6 +36805,7 @@
 	cell_type = /obj/item/weapon/cell/super;
 	dir = 8;
 	name = "west bump";
+	nightshift_setting = 2;
 	pixel_x = -30
 	},
 /obj/structure/cable/green{

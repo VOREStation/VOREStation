@@ -85,6 +85,7 @@ GLOBAL_LIST_EMPTY(apcs)
 	use_power = USE_POWER_OFF
 	clicksound = "switch"
 	req_access = list(access_engine_equip)
+	blocks_emissive = FALSE
 	var/area/area
 	var/areastring = null
 	var/obj/item/weapon/cell/cell
@@ -128,10 +129,6 @@ GLOBAL_LIST_EMPTY(apcs)
 	var/failure_timer = 0
 	var/force_update = 0
 	var/updating_icon = 0
-	var/global/list/status_overlays_lock
-	var/global/list/status_overlays_charging
-	var/global/list/status_overlays_equipment
-	var/global/list/status_overlays_lighting
 	var/global/list/status_overlays_environ
 	var/alarms_hidden = FALSE //If power alarms from this APC are visible on consoles
 	
@@ -306,42 +303,6 @@ GLOBAL_LIST_EMPTY(apcs)
 // update the APC icon to show the three base states
 // also add overlays for indicator lights
 /obj/machinery/power/apc/update_icon()
-	if(!status_overlays)
-		status_overlays = 1
-		status_overlays_lock = new
-		status_overlays_charging = new
-		status_overlays_equipment = new
-		status_overlays_lighting = new
-		status_overlays_environ = new
-
-		status_overlays_lock.len = 2
-		status_overlays_charging.len = 3
-		status_overlays_equipment.len = 4
-		status_overlays_lighting.len = 4
-		status_overlays_environ.len = 4
-
-		status_overlays_lock[1] = image(icon, "apcox-0")    // 0=blue 1=red
-		status_overlays_lock[2] = image(icon, "apcox-1")
-
-		status_overlays_charging[1] = image(icon, "apco3-0")
-		status_overlays_charging[2] = image(icon, "apco3-1")
-		status_overlays_charging[3] = image(icon, "apco3-2")
-
-		status_overlays_equipment[1] = image(icon, "apco0-0")
-		status_overlays_equipment[2] = image(icon, "apco0-1")
-		status_overlays_equipment[3] = image(icon, "apco0-2")
-		status_overlays_equipment[4] = image(icon, "apco0-3")
-
-		status_overlays_lighting[1] = image(icon, "apco1-0")
-		status_overlays_lighting[2] = image(icon, "apco1-1")
-		status_overlays_lighting[3] = image(icon, "apco1-2")
-		status_overlays_lighting[4] = image(icon, "apco1-3")
-
-		status_overlays_environ[1] = image(icon, "apco2-0")
-		status_overlays_environ[2] = image(icon, "apco2-1")
-		status_overlays_environ[3] = image(icon, "apco2-2")
-		status_overlays_environ[4] = image(icon, "apco2-3")
-
 	var/update = check_updates() 		//returns 0 if no need to update icons.
 						// 1 if we need to update the icon_state
 						// 2 if we need to update the overlays
@@ -368,20 +329,25 @@ GLOBAL_LIST_EMPTY(apcs)
 			icon_state = "apcemag"
 
 	if(!(update_state & UPDATE_ALLGOOD))
-		if(overlays.len)
-			overlays = 0
-			return
+		cut_overlays()
+		return
 
 	if(update & 2)
-		if(overlays.len)
-			overlays.len = 0
+		cut_overlays()
 		if(!(stat & (BROKEN|MAINT)) && update_state & UPDATE_ALLGOOD)
-			overlays += status_overlays_lock[locked+1]
-			overlays += status_overlays_charging[charging+1]
+			var/list/new_overlays = list()
+			new_overlays += mutable_appearance(icon, "apcox-[locked]")
+			new_overlays += emissive_appearance(icon, "apcox-[locked]")
+			new_overlays += mutable_appearance(icon, "apco3-[charging]")
+			new_overlays += emissive_appearance(icon, "apco3-[charging]")
 			if(operating)
-				overlays += status_overlays_equipment[equipment+1]
-				overlays += status_overlays_lighting[lighting+1]
-				overlays += status_overlays_environ[environ+1]
+				new_overlays += mutable_appearance(icon, "apco0-[equipment]")
+				new_overlays += emissive_appearance(icon, "apco0-[equipment]")
+				new_overlays += mutable_appearance(icon, "apco1-[lighting]")
+				new_overlays += emissive_appearance(icon, "apco1-[lighting]")
+				new_overlays += mutable_appearance(icon, "apco2-[environ]")
+				new_overlays += emissive_appearance(icon, "apco2-[environ]")
+			add_overlay(new_overlays)
 
 	if(update & 3)
 		if(update_state & UPDATE_BLUESCREEN)

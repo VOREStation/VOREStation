@@ -67,14 +67,14 @@
 			update_icon()
 
 /obj/item/weapon/storage/wallet/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(front_id)
 		var/tiny_state = "id-generic"
 		if("id-[front_id.icon_state]" in cached_icon_states(icon))
 			tiny_state = "id-"+front_id.icon_state
 		var/image/tiny_image = new/image(icon, icon_state = tiny_state)
 		tiny_image.appearance_flags = RESET_COLOR
-		overlays += tiny_image
+		add_overlay(tiny_image)
 
 /obj/item/weapon/storage/wallet/GetID()
 	return front_id

@@ -2,9 +2,6 @@ var/datum/planet/sif/planet_sif = null
 
 /datum/planet/sif
 	name = "Sif"
-
-/datum/planet/sif
-	name = "Sif"
 	desc = "Sif is a terrestrial planet in the Vir system. It is somewhat earth-like, in that it has oceans, a \
 	breathable atmosphere, a magnetic field, weather, and similar gravity to Earth. It is currently the capital planet of Vir. \
 	Its center of government is the equatorial city and site of first settlement, New Reykjavik." // Ripped straight from the wiki.

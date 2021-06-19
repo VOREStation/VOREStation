@@ -26,7 +26,7 @@
 	to_chat(user, "<span class='notice'>You can't directly interact with this machine. Use the pump control console.</span>")
 
 /obj/machinery/portable_atmospherics/powered/pump/huge/update_icon()
-	overlays.Cut()
+	cut_overlays()
 
 	if(on && !(stat & (NOPOWER|BROKEN)))
 		icon_state = "siphon:1"

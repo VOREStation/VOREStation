@@ -232,6 +232,7 @@ var/global/list/contamination_flavors = list(
 				"Dirty" = contamination_flavors_dirty,
 				"Musky" = contamination_flavors_musky,
 				"Smelly" = contamination_flavors_smelly,
+				"Slimy" = contamination_flavors_slimy,
 				"Wet" = contamination_flavors_wet)
 
 var/global/list/contamination_flavors_generic = list("acrid",
@@ -434,6 +435,21 @@ var/global/list/contamination_flavors_musky = list("drenched",
 				"squishy",
 				"sticky",
 				"tainted")
+
+var/global/list/contamination_flavors_slimy = list("slimy",
+				"sloppy",
+				"drippy",
+				"glistening",
+				"dripping",
+				"gunky",
+				"slimed",
+				"mucky",
+				"viscous",
+				"dank",
+				"glutinous",
+				"syrupy",
+				"slippery",
+				"gelatinous")
 
 var/global/list/contamination_colors = list("green",
 				"white",

@@ -29,8 +29,7 @@
 
 	action_button_name = "Toggle Helmet Light"
 	light_overlay = "helmet_light"
-	brightness_on = 4
-	on = 0
+	light_range = 4
 
 /obj/item/clothing/head/helmet/space/Initialize()
 	. = ..()

@@ -34,7 +34,7 @@
 
 /obj/item/device/sleevecard/New()
 	..()
-	overlays += "pai-off"
+	add_overlay("pai-off")
 	radio = new(src)
 
 /obj/item/device/sleevecard/Destroy()
@@ -83,13 +83,13 @@
 /obj/item/device/sleevecard/proc/turnOff()
 	if(infomorph)
 		infomorph.close_up()
-	overlays.Cut()
+	cut_overlays()
 	name = "[initial(name)]"
 
 /obj/item/device/sleevecard/proc/setEmotion(var/emotion)
 	if(infomorph && emotion)
-		overlays.Cut()
-		overlays += emotion
+		cut_overlays()
+		add_overlay(emotion)
 		current_emotion = emotion
 
 /obj/item/device/sleevecard/emp_act(severity)

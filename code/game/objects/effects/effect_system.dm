@@ -4,7 +4,8 @@ defined, then set up when it is created with New(). Then this same system can ju
 it needs to create more trails.A beaker could have a steam_trail_follow system set up, then the steam
 would spawn and follow the beaker, even if it is carried or thrown.
 */
-
+/obj/effect
+	light_on = TRUE
 
 /obj/effect/effect
 	name = "effect"
@@ -12,6 +13,8 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	mouse_opacity = 0
 	unacidable = 1//So effect are not targeted by alien acid.
 	pass_flags = PASSTABLE | PASSGRILLE
+	blocks_emissive = EMISSIVE_BLOCK_GENERIC
+	light_on = TRUE
 
 /datum/effect/effect/system
 	var/number = 3

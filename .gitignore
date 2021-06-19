@@ -14,7 +14,13 @@ vchat.db*
 data
 data/
 cfg/
-.vscode
+
+#Visual studio stuff
+*.vscode/*
+!/.vscode/launch.json
+!/.vscode/extensions.json
+!/.vscode/settings.json
+!/.vscode/tasks.json
 
 code/game/gamemodes/technomancer/spells/projectile/overload.dm
 code/game/gamemodes/technomancer/spells/projectile/overload.dm
