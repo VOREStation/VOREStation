@@ -951,6 +951,10 @@
 	name = "\improper Dock Three"
 	icon_state = "dk_yellow"
 
+/area/tether/station/restroom
+	name = "\improper Unisex Restroom"
+	icon_state = "dk_yellow"
+
 /area/maintenance/station/abandonedholodeck
 	name = "\improper Old Holodeck"
 	icon_state = "dk_yellow"
