@@ -16,5 +16,5 @@
 			)
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure
-	containername = "frontier phaser crate"
+	containername = "phaser handbow crate"
 	access = access_explorer
