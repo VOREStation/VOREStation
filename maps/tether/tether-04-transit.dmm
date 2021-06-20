@@ -257,7 +257,7 @@
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
-/turf/simulated/floor/holofloor/tiled/dark,
+/turf/simulated/floor/tiled/dark,
 /area/tether/midpoint)
 "tn" = (
 /obj/structure/cable{
@@ -698,7 +698,7 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/turf/simulated/floor/holofloor/tiled/dark,
+/turf/simulated/floor/tiled/dark,
 /area/tether/midpoint)
 "YB" = (
 /obj/structure/table/woodentable,
