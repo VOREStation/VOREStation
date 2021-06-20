@@ -112,6 +112,10 @@
 "aN" = (
 /turf/simulated/mineral,
 /area/awaymission/wwmines)
+"aP" = (
+/obj/random/awayloot,
+/turf/simulated/floor/redgrid/off,
+/area/awaymission/wwvault)
 "bh" = (
 /obj/structure/bed/chair/wood{
 	dir = 4
@@ -376,6 +380,10 @@
 /obj/structure/fans/tiny,
 /turf/simulated/floor,
 /area/awaymission/wwrefine)
+"dJ" = (
+/obj/random/awayloot/nofail,
+/turf/simulated/floor/redgrid/off,
+/area/awaymission/wwvault)
 "dK" = (
 /obj/effect/landmark/corpse/doctor{
 	mobname = "Doctor Mugabee"
@@ -424,6 +432,11 @@
 "ee" = (
 /turf/simulated/floor,
 /area/awaymission/wwrefine)
+"ef" = (
+/obj/item/weapon/stool,
+/mob/living/simple_mob/humanoid/merc/ranged,
+/turf/simulated/floor/wood,
+/area/awaymission/wwmines)
 "eg" = (
 /obj/effect/mine/dnascramble,
 /turf/simulated/floor/tiled/asteroid_steel,
@@ -522,6 +535,12 @@
 "eT" = (
 /obj/structure/bed/padded,
 /turf/simulated/floor/wood,
+/area/awaymission/wwmines)
+"eU" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/asteroid_steel,
 /area/awaymission/wwmines)
 "eW" = (
 /obj/structure/window/reinforced{
@@ -706,7 +725,7 @@
 /turf/simulated/wall/r_wall,
 /area/awaymission/wwrefine)
 "fO" = (
-/obj/item/ammo_casing/a10mm,
+/obj/random/gun/random,
 /turf/simulated/floor/carpet,
 /area/awaymission/wwmines)
 "fS" = (
@@ -1967,11 +1986,6 @@
 "RR" = (
 /obj/structure/table/woodentable,
 /obj/machinery/computer/security/telescreen/entertainment,
-/turf/simulated/floor/wood,
-/area/awaymission/wwmines)
-"Sb" = (
-/obj/item/weapon/stool,
-/mob/living/simple_mob/humanoid/merc/ranged,
 /turf/simulated/floor/wood,
 /area/awaymission/wwmines)
 "Sd" = (
@@ -15078,12 +15092,12 @@ cA
 HU
 eg
 cA
-jO
-lY
-lY
-gN
-gN
-kf
+cT
+iE
+iE
+cA
+cA
+eU
 gN
 gN
 gN
@@ -15906,7 +15920,7 @@ bk
 gh
 bk
 eM
-we
+fT
 bj
 bj
 bj
@@ -16332,7 +16346,7 @@ bk
 bk
 bk
 eM
-fT
+ef
 bj
 bV
 kZ
@@ -16754,7 +16768,7 @@ fS
 fE
 bj
 eM
-Sb
+fT
 bj
 bj
 bj
@@ -18315,7 +18329,7 @@ gN
 fS
 bj
 bj
-eM
+HA
 eM
 eM
 eM
@@ -20020,7 +20034,7 @@ cA
 cA
 cA
 cA
-eX
+cA
 cA
 cA
 cT
@@ -20436,8 +20450,8 @@ gN
 gN
 gN
 gN
-gN
 dN
+gN
 gN
 gN
 gN
@@ -20732,7 +20746,7 @@ gN
 gN
 gN
 gN
-gN
+dN
 gN
 gN
 cJ
@@ -20807,7 +20821,7 @@ aa
 aa
 aa
 ab
-av
+aP
 av
 av
 av
@@ -20949,8 +20963,8 @@ aa
 aa
 aa
 ab
-av
-av
+aP
+dJ
 av
 av
 av
@@ -21092,7 +21106,7 @@ aa
 aa
 ab
 aw
-av
+aP
 cp
 ab
 ab
@@ -21165,7 +21179,7 @@ gN
 gN
 gN
 gN
-dN
+gN
 gN
 gN
 gN
