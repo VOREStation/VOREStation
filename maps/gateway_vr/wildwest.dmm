@@ -112,12 +112,6 @@
 "aN" = (
 /turf/simulated/mineral,
 /area/awaymission/wwmines)
-"aP" = (
-/obj/effect/decal/cleanable/blood/gibs/body{
-	 = on_state = "gibup1"
-	},
-/turf/simulated/floor/outdoors/ironsand,
-/area/awaymission/wwmines)
 "bh" = (
 /obj/structure/bed/chair/wood{
 	dir = 4
@@ -382,13 +376,6 @@
 /obj/structure/fans/tiny,
 /turf/simulated/floor,
 /area/awaymission/wwrefine)
-"dJ" = (
-/obj/effect/decal/cleanable/blood/gibs/body{
-	 = on_state = "gibdown1"
-	},
-/obj/effect/floor_decal/corner/paleblue/diagonal,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/wwmines)
 "dK" = (
 /obj/effect/landmark/corpse/doctor{
 	mobname = "Doctor Mugabee"
@@ -437,12 +424,6 @@
 "ee" = (
 /turf/simulated/floor,
 /area/awaymission/wwrefine)
-"ef" = (
-/obj/effect/decal/cleanable/blood/gibs/body{
-	 = on_state = "gibup1"
-	},
-/turf/simulated/floor/tiled/asteroid_steel,
-/area/awaymission/wwmines)
 "eg" = (
 /obj/effect/mine/dnascramble,
 /turf/simulated/floor/tiled/asteroid_steel,
@@ -482,9 +463,6 @@
 /turf/simulated/floor/plating,
 /area/awaymission/wwrefine)
 "ew" = (
-/obj/effect/decal/cleanable/blood/gibs/body{
-	 = on_state = "gibup1"
-	},
 /obj/effect/floor_decal/corner/paleblue/diagonal,
 /obj/machinery/light/small,
 /turf/simulated/floor/tiled/white,
@@ -543,12 +521,6 @@
 /area/awaymission/wwmines)
 "eT" = (
 /obj/structure/bed/padded,
-/turf/simulated/floor/wood,
-/area/awaymission/wwmines)
-"eU" = (
-/obj/effect/decal/cleanable/blood/gibs/body{
-	 = on_state = "gibdown1"
-	},
 /turf/simulated/floor/wood,
 /area/awaymission/wwmines)
 "eW" = (
@@ -767,12 +739,6 @@
 /obj/machinery/microwave,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/awaymission/wwgov)
-"gc" = (
-/turf/simulated/shuttle/wall{
-	 = on_state = "swall_s";
-	dir = 14
-	},
-/area/awaymission/wwrefine)
 "gd" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
@@ -985,12 +951,6 @@
 	},
 /turf/simulated/floor/carpet,
 /area/awaymission/wwmines)
-"hZ" = (
-/turf/simulated/shuttle/wall{
-	 = on_state = "swall";
-	dir = 4
-	},
-/area/awaymission/wwrefine)
 "ia" = (
 /obj/effect/forcefield{
 	desc = "You can't get in. Heh.";
@@ -1000,12 +960,6 @@
 /obj/effect/overmap/visitable/sector/tether_gateway/wildwest,
 /turf/space,
 /area)
-"iv" = (
-/turf/simulated/shuttle/wall{
-	 = on_state = "swall_s";
-	dir = 8
-	},
-/area/awaymission/wwrefine)
 "iA" = (
 /obj/structure/bed/chair/office/light{
 	dir = 4
@@ -1068,9 +1022,7 @@
 /area/awaymission/wwmines)
 "kj" = (
 /obj/machinery/door/unpowered/shuttle,
-/turf/simulated/shuttle{
-	 = on_state = "floor2"
-	},
+/turf/simulated/shuttle/floor,
 /area/awaymission/wwrefine)
 "kG" = (
 /obj/structure/largecrate,
@@ -1140,12 +1092,6 @@
 	},
 /turf/simulated/floor/grass,
 /area/awaymission/wwgov)
-"no" = (
-/turf/simulated/shuttle/wall{
-	 = on_state = "swall_straight";
-	dir = 4
-	},
-/area/awaymission/wwrefine)
 "ns" = (
 /obj/effect/decal/mecha_wreckage/durand{
 	anchored = 1
@@ -1161,15 +1107,6 @@
 /obj/structure/fans/tiny,
 /turf/simulated/floor/tiled/asteroid_steel,
 /area/awaymission/wwgov)
-"oW" = (
-/obj/structure/bed/chair/comfy/beige{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/blood/gibs/body{
-	 = on_state = "gibdown1"
-	},
-/turf/simulated/floor/carpet,
-/area/awaymission/wwmines)
 "pc" = (
 /obj/structure/window/reinforced{
 	dir = 8;
@@ -1213,12 +1150,6 @@
 /obj/structure/fans/tiny,
 /turf/simulated/floor/grass,
 /area/awaymission/wwgov)
-"pT" = (
-/turf/simulated/shuttle/wall{
-	 = on_state = "swall_s";
-	dir = 1
-	},
-/area/awaymission/wwrefine)
 "pV" = (
 /obj/structure/bed/chair/comfy/beige{
 	dir = 4
@@ -1380,12 +1311,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/awaymission/wwgov)
-"vr" = (
-/obj/effect/decal/cleanable/blood/gibs/body{
-	 = on_state = "gibdown1"
-	},
-/turf/simulated/floor/carpet,
-/area/awaymission/wwmines)
 "wa" = (
 /obj/machinery/portable_atmospherics/hydroponics/soil,
 /turf/simulated/floor/grass,
@@ -1398,12 +1323,6 @@
 "wj" = (
 /turf/simulated/shuttle/wall/hard_corner,
 /area/awaymission/wwvault)
-"wp" = (
-/turf/simulated/shuttle/wall{
-	 = on_state = "swall";
-	dir = 8
-	},
-/area/awaymission/wwrefine)
 "ws" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/reagent_containers/food/snacks/donut/slimejelly,
@@ -1487,12 +1406,6 @@
 /area/awaymission/wwrefine)
 "zf" = (
 /obj/structure/bed/chair/comfy/brown,
-/turf/simulated/floor/wood,
-/area/awaymission/wwmines)
-"zg" = (
-/obj/effect/decal/cleanable/blood/gibs/body{
-	 = on_state = "gibup1"
-	},
 /turf/simulated/floor/wood,
 /area/awaymission/wwmines)
 "zr" = (
@@ -1695,12 +1608,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/awaymission/wwmines)
-"FS" = (
-/turf/simulated/shuttle/wall{
-	 = on_state = "swall";
-	dir = 10
-	},
-/area/awaymission/wwrefine)
 "Gh" = (
 /obj/effect/decal/cleanable/blood/gibs/up,
 /turf/simulated/floor/wood,
@@ -1724,9 +1631,7 @@
 "Hi" = (
 /obj/structure/toilet,
 /mob/living/simple_mob/creature,
-/turf/simulated/floor{
-	 = on_state = "white"
-	},
+/turf/space,
 /area/awaymission/wwgov)
 "Hl" = (
 /obj/machinery/mineral/input,
@@ -1757,13 +1662,6 @@
 /obj/effect/landmark/corpse/miner/rig,
 /turf/simulated/floor/tiled/asteroid_steel,
 /area/awaymission/wwrefine)
-"HO" = (
-/obj/effect/decal/cleanable/blood/gibs/body{
-	 = on_state = "gibup1"
-	},
-/obj/effect/floor_decal/corner/paleblue/diagonal,
-/turf/simulated/floor/tiled/white,
-/area/awaymission/wwmines)
 "HT" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/reagent_containers/food/drinks/coffee,
@@ -1780,14 +1678,6 @@
 /obj/structure/window/reinforced{
 	health = 1e+007
 	},
-/turf/simulated/floor/tiled/white,
-/area/awaymission/wwmines)
-"Ij" = (
-/obj/effect/decal/cleanable/blood/gibs/body{
-	 = on_state = "gibup1"
-	},
-/obj/structure/bed/chair/wood,
-/obj/effect/floor_decal/corner/paleblue/diagonal,
 /turf/simulated/floor/tiled/white,
 /area/awaymission/wwmines)
 "Io" = (
@@ -1841,12 +1731,6 @@
 /obj/machinery/washing_machine,
 /turf/simulated/floor/wood,
 /area/awaymission/wwmines)
-"JH" = (
-/turf/simulated/shuttle/wall{
-	 = on_state = "swall";
-	dir = 6
-	},
-/area/awaymission/wwrefine)
 "JN" = (
 /obj/structure/window/reinforced{
 	dir = 1;
@@ -1916,15 +1800,6 @@
 /area/awaymission/wwrefine)
 "Mo" = (
 /obj/structure/bed/chair/office/light{
-	dir = 8
-	},
-/turf/simulated/floor/wood,
-/area/awaymission/wwmines)
-"Mq" = (
-/obj/effect/decal/cleanable/blood/gibs/body{
-	 = on_state = "gibdown1"
-	},
-/obj/machinery/light/small{
 	dir = 8
 	},
 /turf/simulated/floor/wood,
@@ -2030,15 +1905,6 @@
 	},
 /turf/simulated/floor,
 /area/awaymission/wwrefine)
-"PW" = (
-/obj/structure/bed/chair/comfy/beige{
-	dir = 4
-	},
-/obj/effect/decal/cleanable/blood/gibs/body{
-	 = on_state = "gibdown1"
-	},
-/turf/simulated/floor/wood,
-/area/awaymission/wwmines)
 "Qk" = (
 /obj/structure/table/woodentable,
 /turf/simulated/floor/carpet,
@@ -2057,12 +1923,6 @@
 	dir = 8
 	},
 /turf/simulated/floor/wood,
-/area/awaymission/wwmines)
-"Qy" = (
-/obj/effect/decal/cleanable/blood/gibs/body{
-	 = on_state = "gibup1"
-	},
-/turf/simulated/floor/carpet,
 /area/awaymission/wwmines)
 "QL" = (
 /obj/structure/grille,
@@ -2157,12 +2017,6 @@
 /mob/living/simple_mob/humanoid/merc/melee,
 /turf/simulated/floor/wood,
 /area/awaymission/wwmines)
-"SL" = (
-/obj/effect/decal/cleanable/blood/gibs/body{
-	 = on_state = "gibdown1"
-	},
-/turf/simulated/wall/sandstone,
-/area/awaymission/wwmines)
 "Tk" = (
 /obj/machinery/light/small,
 /turf/simulated/floor/plating,
@@ -2187,12 +2041,6 @@
 	},
 /turf/simulated/floor/grass,
 /area/awaymission/wwgov)
-"Uo" = (
-/turf/simulated/shuttle/wall{
-	 = on_state = "swall_straight";
-	dir = 1
-	},
-/area/awaymission/wwrefine)
 "UG" = (
 /obj/structure/table/woodentable,
 /obj/machinery/light/small{
@@ -2275,9 +2123,7 @@
 /turf/space,
 /area)
 "XP" = (
-/turf/simulated/shuttle/wall{
-	 = on_state = "swall_s"
-	},
+/turf/simulated/shuttle/wall,
 /area/awaymission/wwrefine)
 "XU" = (
 /obj/structure/bed/chair/wood{
@@ -2289,12 +2135,6 @@
 "Yg" = (
 /obj/machinery/door/airlock/sandstone,
 /turf/simulated/floor/wood,
-/area/awaymission/wwmines)
-"Ys" = (
-/obj/effect/decal/cleanable/blood/gibs/body{
-	 = on_state = "gibdown1"
-	},
-/turf/simulated/floor/outdoors/ironsand,
 /area/awaymission/wwmines)
 "YI" = (
 /obj/machinery/light/small{
@@ -7724,11 +7564,11 @@ QL
 aa
 aa
 aa
-gc
-Uo
-Uo
-Uo
-pT
+XP
+XP
+XP
+XP
+XP
 aa
 aa
 aa
@@ -7866,15 +7706,15 @@ yW
 aa
 aa
 aa
-no
+XP
 za
 rh
 za
-FS
-Uo
-Uo
-Uo
-pT
+XP
+XP
+XP
+XP
+XP
 aa
 aa
 aa
@@ -8008,7 +7848,7 @@ PJ
 gd
 gd
 zS
-wp
+XP
 za
 za
 za
@@ -8016,7 +7856,7 @@ OH
 ly
 OH
 EW
-no
+XP
 aa
 aa
 aa
@@ -8292,7 +8132,7 @@ sS
 gd
 gd
 zS
-hZ
+XP
 za
 za
 za
@@ -8300,7 +8140,7 @@ OH
 uJ
 OH
 EW
-no
+XP
 aa
 aa
 aa
@@ -8434,15 +8274,15 @@ Ni
 aa
 aa
 aa
-no
+XP
 za
 hq
 za
-JH
-Uo
-Uo
-Uo
-iv
+XP
+XP
+XP
+XP
+XP
 aa
 aa
 aa
@@ -8577,10 +8417,10 @@ aa
 aa
 aa
 XP
-Uo
-Uo
-Uo
-iv
+XP
+XP
+XP
+XP
 aa
 aa
 aa
@@ -11233,7 +11073,7 @@ gN
 gN
 gN
 gN
-aP
+gN
 gN
 gN
 gN
@@ -11247,7 +11087,7 @@ gN
 gN
 gN
 gN
-aP
+gN
 gN
 gN
 gN
@@ -11794,7 +11634,7 @@ gN
 gN
 gN
 cA
-ef
+cA
 cA
 cA
 cA
@@ -11817,7 +11657,7 @@ cA
 dU
 eq
 gN
-aP
+gN
 gN
 gN
 TE
@@ -12356,7 +12196,7 @@ gN
 gN
 gN
 gN
-aP
+gN
 gN
 gN
 gN
@@ -13262,7 +13102,7 @@ aL
 aL
 gN
 gN
-aP
+gN
 gN
 gN
 aL
@@ -13406,7 +13246,7 @@ aL
 rV
 TE
 gN
-aP
+gN
 rV
 aL
 aL
@@ -13687,7 +13527,7 @@ bj
 fS
 gN
 gN
-aP
+gN
 gN
 gN
 gN
@@ -13824,7 +13664,7 @@ Ht
 bj
 bj
 bj
-zg
+bj
 kZ
 fS
 gN
@@ -14105,7 +13945,7 @@ fS
 gN
 fS
 bj
-zg
+bj
 bj
 bj
 xT
@@ -14205,7 +14045,7 @@ gN
 gN
 gN
 gN
-aP
+gN
 gN
 cA
 cA
@@ -14673,11 +14513,11 @@ fS
 gN
 fS
 Ht
-zg
+bj
 bj
 Hq
 bj
-eU
+bj
 fS
 fS
 aL
@@ -14815,7 +14655,7 @@ fS
 gN
 fS
 bj
-eU
+bj
 PG
 bj
 bj
@@ -14912,12 +14752,12 @@ gN
 gN
 gN
 gN
-aP
+gN
 gN
 gN
 gN
 dQ
-ef
+cA
 cA
 cA
 cA
@@ -15076,7 +14916,6 @@ cA
 cA
 cA
 cA
-ef
 cA
 cA
 cA
@@ -15089,14 +14928,15 @@ cA
 cA
 cA
 cA
-ef
+cA
+cA
 iE
 iE
 iE
 iE
 qQ
 cA
-aP
+gN
 lZ
 fS
 fS
@@ -15233,7 +15073,7 @@ cA
 cA
 cA
 cA
-ef
+cA
 cA
 HU
 eg
@@ -15241,10 +15081,10 @@ cA
 jO
 lY
 lY
-Ys
+gN
 gN
 kf
-aP
+gN
 gN
 gN
 gN
@@ -15663,7 +15503,7 @@ du
 bj
 bj
 fS
-aP
+gN
 fS
 bj
 bj
@@ -15809,7 +15649,7 @@ gN
 fS
 Ht
 bj
-eU
+bj
 bj
 bj
 fp
@@ -16373,7 +16213,7 @@ bj
 bj
 bj
 fS
-Ys
+gN
 fS
 bj
 bj
@@ -16657,7 +16497,7 @@ bj
 bj
 kZ
 fS
-aP
+gN
 fS
 Ht
 bj
@@ -16805,7 +16645,7 @@ bj
 bj
 fp
 bj
-eU
+bj
 bj
 bj
 fS
@@ -17355,7 +17195,7 @@ cA
 cA
 cA
 cA
-ef
+cA
 cA
 eg
 cA
@@ -17368,7 +17208,7 @@ cA
 cA
 cA
 cA
-ef
+cA
 cA
 cA
 cA
@@ -17512,7 +17352,7 @@ cA
 cA
 cA
 CO
-ef
+cA
 tA
 cA
 cA
@@ -17934,7 +17774,7 @@ fS
 fS
 fS
 fS
-SL
+fS
 fS
 fC
 fC
@@ -18071,7 +17911,7 @@ Tz
 bj
 bj
 bj
-eU
+bj
 Tz
 bj
 bj
@@ -18082,7 +17922,7 @@ bj
 bj
 pV
 pV
-PW
+pV
 pV
 Tz
 bj
@@ -18222,7 +18062,7 @@ bj
 bj
 bj
 bj
-zg
+bj
 bj
 bj
 bj
@@ -18321,7 +18161,7 @@ gN
 gN
 gN
 gN
-aP
+gN
 gN
 gN
 gN
@@ -18346,11 +18186,11 @@ fS
 gN
 cA
 cA
-ef
+cA
 gN
 fS
 Ht
-vr
+bk
 xo
 Cr
 xo
@@ -18925,7 +18765,7 @@ Ce
 zY
 Io
 zY
-Qy
+bk
 bj
 fS
 fS
@@ -19065,7 +18905,7 @@ hI
 Zs
 hI
 Zs
-oW
+hI
 Zs
 bk
 kZ
@@ -19204,7 +19044,7 @@ fS
 bj
 bk
 bk
-vr
+bk
 CN
 bk
 bk
@@ -19362,7 +19202,7 @@ eM
 eM
 bj
 fC
-zg
+bj
 bj
 fS
 aL
@@ -19641,13 +19481,13 @@ fS
 bj
 hg
 gP
-zg
+bj
 bj
 hg
 bj
 kh
 bj
-eU
+bj
 fS
 aL
 aG
@@ -19906,7 +19746,7 @@ cA
 cA
 cI
 cA
-ef
+cA
 cA
 cA
 gN
@@ -19924,7 +19764,7 @@ bj
 fS
 bj
 Tz
-zg
+bj
 bj
 bj
 Tz
@@ -20197,13 +20037,13 @@ gN
 fS
 kG
 bj
-eU
+bj
 bj
 bj
 fS
 eI
 bj
-zg
+bj
 bj
 fS
 bj
@@ -20740,7 +20580,7 @@ gN
 gN
 gN
 gN
-aP
+gN
 gN
 gN
 gN
@@ -21193,22 +21033,22 @@ bj
 bj
 bj
 bj
-eU
+bj
 zf
 eM
 fS
 rO
-dJ
+fF
 fF
 fF
 ew
 fS
 bj
 bj
-Mq
+Tz
 bj
 bj
-zg
+bj
 bj
 fS
 aL
@@ -21332,7 +21172,7 @@ gN
 gN
 VN
 bj
-zg
+bj
 bj
 bj
 bj
@@ -21604,7 +21444,7 @@ gN
 gN
 gN
 gN
-aP
+gN
 gN
 gN
 gN
@@ -21758,7 +21598,7 @@ gN
 gN
 fS
 bj
-eU
+bj
 bj
 bj
 bj
@@ -21769,12 +21609,12 @@ Rj
 fF
 fF
 fF
-HO
+fF
 KI
 en
 eL
 fF
-Ij
+KI
 en
 eL
 fF
