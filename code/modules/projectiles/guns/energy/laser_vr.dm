@@ -371,8 +371,8 @@
 	charge_cost = 600
 	modifystate = "handbowkill"
 	firemodes = list(
-		list(mode_name="lethal", fire_delay=12, projectile_type=/obj/item/projectile/energy/bolt/heavy, modifystate="handbowkill", charge_cost = 600),
-		list(mode_name="low-power", fire_delay=8, projectile_type=/obj/item/projectile/energy/bolt, modifystate="handbowstun", charge_cost = 200),
+		list(mode_name="lethal", fire_delay=12, projectile_type=/obj/item/projectile/energy/bow/heavy, modifystate="handbowkill", charge_cost = 600),
+		list(mode_name="low-power", fire_delay=8, projectile_type=/obj/item/projectile/energy/bow, modifystate="handbowstun", charge_cost = 200),
 	)
 
 /obj/item/weapon/gun/energy/locked/frontier/handbow/unlocked
