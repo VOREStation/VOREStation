@@ -171,7 +171,8 @@
 		list("Honleth Highlands B"),
 		list("Arynthi Lake Underground A","Arynthi Lake A"),
 		list("Arynthi Lake Underground B","Arynthi Lake B"),
-		list("Eggnog Town Underground","Eggnog Town")
+		list("Eggnog Town Underground","Eggnog Town"),
+		list("Wild West")
 		)
 
 	ai_shell_restricted = TRUE
