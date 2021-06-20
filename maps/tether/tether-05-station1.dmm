@@ -2607,7 +2607,6 @@
 /turf/simulated/floor/tiled/monotile,
 /area/tether/exploration)
 "afE" = (
-/obj/machinery/vending/cola,
 /obj/effect/floor_decal/corner/lightgrey{
 	dir = 9
 	},
@@ -2617,6 +2616,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/vending/cola/soft,
 /turf/simulated/floor/tiled,
 /area/hallway/station/docks)
 "afF" = (
@@ -9184,6 +9184,9 @@
 "axC" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/catwalk,
+/obj/machinery/light/small{
+	dir = 8
+	},
 /turf/simulated/floor,
 /area/storage/emergency_storage/emergency4)
 "axD" = (
@@ -10360,6 +10363,7 @@
 /area/quartermaster/storage)
 "aBH" = (
 /obj/structure/disposalpipe/segment,
+/obj/random/trash_pile,
 /turf/simulated/floor,
 /area/maintenance/station/eng_lower)
 "aBI" = (
@@ -11245,7 +11249,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/tiled/white,
 /area/tether/station/restroom)
 "aFJ" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
@@ -14337,7 +14341,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/airless,
-/area/mine/explored/upper_level)
+/area/quartermaster/storage)
 "bud" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -16250,7 +16254,7 @@
 /obj/item/weapon/mop,
 /obj/item/weapon/reagent_containers/glass/bucket,
 /obj/effect/floor_decal/industrial/hatch/yellow,
-/turf/simulated/floor,
+/turf/simulated/floor/tiled,
 /area/janitor)
 "cOV" = (
 /obj/effect/floor_decal/borderfloor{
@@ -17427,8 +17431,16 @@
 /turf/simulated/floor/tiled,
 /area/tether/exploration/pilot_office)
 "dSp" = (
-/turf/simulated/wall,
-/area/mine/explored/upper_level)
+/obj/structure/disposalpipe/segment,
+/obj/random/junk,
+/obj/random/junk,
+/obj/structure/closet,
+/obj/random/maintenance/medical,
+/obj/random/maintenance/medical,
+/obj/random/tool,
+/obj/random/tool,
+/turf/simulated/floor,
+/area/maintenance/station/eng_lower)
 "dSJ" = (
 /obj/machinery/disposal/deliveryChute,
 /obj/structure/disposalpipe/trunk{
@@ -18816,7 +18828,7 @@
 /area/tcommsat/chamber)
 "fwt" = (
 /obj/machinery/light/small,
-/turf/simulated/floor,
+/turf/simulated/floor/tiled,
 /area/janitor)
 "fwY" = (
 /obj/effect/shuttle_landmark{
@@ -19219,7 +19231,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/simulated/floor,
+/turf/simulated/floor/tiled,
 /area/janitor)
 "fVt" = (
 /obj/effect/floor_decal/borderfloor{
@@ -23234,7 +23246,7 @@
 	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/airless,
-/area/mine/explored/upper_level)
+/area/quartermaster/storage)
 "jWj" = (
 /obj/structure/table/rack{
 	dir = 8;
@@ -27137,6 +27149,7 @@
 /area/tether/station/dock_one)
 "nll" = (
 /obj/random/trash_pile,
+/obj/machinery/light/small,
 /turf/simulated/floor,
 /area/storage/emergency_storage/emergency4)
 "nmN" = (
@@ -27622,7 +27635,7 @@
 /obj/structure/sink{
 	pixel_y = 22
 	},
-/turf/simulated/floor,
+/turf/simulated/floor/tiled,
 /area/janitor)
 "nKT" = (
 /obj/structure/closet,
@@ -30805,7 +30818,7 @@
 	dir = 2;
 	icon_state = "pipe-c"
 	},
-/turf/simulated/floor,
+/turf/simulated/floor/tiled,
 /area/janitor)
 "rKK" = (
 /obj/structure/bed/chair/shuttle{
@@ -34590,6 +34603,13 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled,
 /area/quartermaster/office)
+"wqC" = (
+/obj/random/junk,
+/obj/random/junk,
+/obj/random/tool,
+/obj/structure/closet/crate,
+/turf/simulated/floor,
+/area/maintenance/station/eng_lower)
 "wra" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -35339,7 +35359,7 @@
 	},
 /obj/machinery/disposal,
 /obj/effect/floor_decal/industrial/outline/yellow,
-/turf/simulated/floor,
+/turf/simulated/floor/tiled,
 /area/janitor)
 "xpA" = (
 /turf/simulated/floor/tiled,
@@ -35385,7 +35405,6 @@
 /turf/simulated/floor/wood,
 /area/quartermaster/qm)
 "xuf" = (
-/obj/structure/table/rack/shelf,
 /obj/item/weapon/storage/box/lights/mixed,
 /obj/item/weapon/storage/box/mousetraps,
 /obj/item/weapon/reagent_containers/spray/cleaner,
@@ -35398,7 +35417,8 @@
 	report_danger_level = 0
 	},
 /obj/item/weapon/soap/nanotrasen,
-/turf/simulated/floor,
+/obj/structure/closet,
+/turf/simulated/floor/tiled,
 /area/janitor)
 "xuh" = (
 /obj/structure/cable/green{
@@ -45036,9 +45056,9 @@ abC
 anE
 aBH
 aBH
-aBH
+dSp
 aGP
-kkH
+wqC
 aeO
 aeO
 aeO
@@ -47067,7 +47087,7 @@ kQQ
 lEt
 awN
 bmW
-dSp
+bmW
 bOV
 meW
 qfA
@@ -47209,7 +47229,7 @@ oPH
 tHB
 bOm
 jVr
-dSp
+bmW
 jms
 hQk
 meW
