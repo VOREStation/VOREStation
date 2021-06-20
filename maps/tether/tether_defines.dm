@@ -164,14 +164,14 @@
 		)
 
 	lateload_single_pick = list(
-//		list("Carp Farm"),
-//		list("Snow Field"),
-//		list("Listening Post"),
-//		list("Honleth Highlands A"),
-//		list("Honleth Highlands B"),
-//		list("Arynthi Lake Underground A","Arynthi Lake A"),
-//		list("Arynthi Lake Underground B","Arynthi Lake B"),
-//		list("Eggnog Town Underground","Eggnog Town"),
+		list("Carp Farm"),
+		list("Snow Field"),
+		list("Listening Post"),
+		list("Honleth Highlands A"),
+		list("Honleth Highlands B"),
+		list("Arynthi Lake Underground A","Arynthi Lake A"),
+		list("Arynthi Lake Underground B","Arynthi Lake B"),
+		list("Eggnog Town Underground","Eggnog Town"),
 		list("Wild West")
 		)
 
