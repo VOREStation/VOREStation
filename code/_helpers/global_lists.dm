@@ -26,16 +26,6 @@ var/list/mannequins_
 // Times that players are allowed to respawn ("ckey" = world.time)
 GLOBAL_LIST_EMPTY(respawn_timers)
 
-<<<<<<< HEAD
-// Closets have magic appearances
-GLOBAL_LIST_EMPTY(closet_appearances)
-
-// Posters
-var/global/list/poster_designs = list()
-var/global/list/NT_poster_designs = list()
-
-=======
->>>>>>> beaf109... Refactors posters to use decls (#8128)
 // Holomaps
 var/global/list/holomap_markers = list()
 var/global/list/mapping_units = list()

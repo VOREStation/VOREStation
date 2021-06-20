@@ -291,13 +291,9 @@
 	The image seems important."
 	listing_name = "Safety - Mech Operation"
 
-<<<<<<< HEAD
 //VOREStation Removal Start
 /*
-/datum/poster/nanotrasen/nt_4
-=======
 /decl/poster/nanotrasen/nt_4
->>>>>>> beaf109... Refactors posters to use decls (#8128)
 	icon_state = "ntposter04"
 	name = "Beware Aetotheans"
 	desc = "This poster displays a distinctly hostile-looking red Promethean in a black coat. The fine-print around the edges warns the reader about the dangers posed by Almachi Prometheans."
