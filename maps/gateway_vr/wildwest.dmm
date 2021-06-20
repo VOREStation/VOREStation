@@ -985,10 +985,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/awaymission/wwmines)
-"iE" = (
-/obj/effect/decal/cleanable/blood/tracks,
-/turf/simulated/floor/tiled/asteroid_steel,
-/area/awaymission/wwmines)
 "iU" = (
 /obj/machinery/light/small,
 /turf/simulated/floor/outdoors/ironsand,
@@ -14944,10 +14940,10 @@ cA
 cA
 cA
 cA
-iE
-iE
-iE
-iE
+cA
+ef
+cA
+cA
 qQ
 cA
 gN
@@ -15092,10 +15088,10 @@ cA
 HU
 eg
 cA
-cT
-iE
-iE
 cA
+cA
+cA
+ef
 cA
 eU
 gN
