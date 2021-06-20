@@ -392,8 +392,9 @@
 /turf/simulated/floor/tiled/white,
 /area/awaymission/wwmines)
 "dM" = (
-/obj/item/ammo_casing/a10mm,
-/turf/simulated/floor/outdoors/ironsand,
+/obj/item/weapon/stool,
+/mob/living/simple_mob/humanoid/merc/ranged,
+/turf/simulated/floor/wood,
 /area/awaymission/wwmines)
 "dN" = (
 /mob/living/simple_mob/humanoid/merc/ranged,
@@ -433,9 +434,8 @@
 /turf/simulated/floor,
 /area/awaymission/wwrefine)
 "ef" = (
-/obj/item/weapon/stool,
-/mob/living/simple_mob/humanoid/merc/ranged,
-/turf/simulated/floor/wood,
+/obj/effect/gibspawner/human,
+/turf/simulated/floor/tiled/asteroid_steel,
 /area/awaymission/wwmines)
 "eg" = (
 /obj/effect/mine/dnascramble,
@@ -1084,7 +1084,7 @@
 /turf/simulated/floor/grass,
 /area/awaymission/wwgov)
 "lY" = (
-/obj/effect/decal/cleanable/blood/tracks,
+/obj/effect/gibspawner/human,
 /turf/simulated/floor/outdoors/ironsand,
 /area/awaymission/wwmines)
 "lZ" = (
@@ -11928,7 +11928,7 @@ gN
 gN
 gN
 gN
-dM
+gN
 gN
 gN
 cA
@@ -13227,9 +13227,9 @@ bj
 bj
 bj
 fC
-iE
-iE
-iE
+ef
+cA
+cA
 cA
 cA
 gN
@@ -13799,7 +13799,7 @@ gN
 cA
 cA
 dU
-iE
+cA
 lY
 fC
 bj
@@ -16346,7 +16346,7 @@ bk
 bk
 bk
 eM
-ef
+dM
 bj
 bV
 kZ
@@ -17487,11 +17487,11 @@ bj
 bV
 bj
 pr
-iE
-iE
-iE
-iE
-iE
+cA
+cA
+ef
+cA
+cA
 sG
 cA
 cA
