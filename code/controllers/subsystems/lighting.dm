@@ -86,6 +86,29 @@ SUBSYSTEM_DEF(lighting)
 		queue.Cut(1, i+1)
 
 
+<<<<<<< HEAD
 /datum/controller/subsystem/lighting/Recover()
 	subsystem_initialized = SSlighting.subsystem_initialized
 	..()
+=======
+		DUAL_TICK_CHECK
+
+/datum/controller/subsystem/lighting/stat_entry(msg_prefix)
+	var/list/msg = list(msg_prefix)
+	msg += "T:{"
+	msg += "S [total_lighting_sources] | "
+	msg += "C [total_lighting_corners] | "
+	msg += "O [total_lighting_overlays]"
+	msg += "}"
+	msg += "C:{"
+	msg += "S [round(cost_lights, 1)] | "
+	msg += "C [round(cost_corners, 1)] | "
+	msg += "O [round(cost_overlays, 1)]"
+	msg += "}"
+	..(msg.Join())
+
+#undef DUAL_TICK_CHECK
+#undef SSLIGHTING_STAGE_LIGHTS
+#undef SSLIGHTING_STAGE_CORNERS
+#undef SSLIGHTING_STAGE_OVERLAYS
+>>>>>>> 593246b... Linter diagnostics + bans non-var relative pathing (#8150)

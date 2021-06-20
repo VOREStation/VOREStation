@@ -191,7 +191,7 @@ var/list/global_huds = list(
 
 	var/list/minihuds = list()
 
-datum/hud/New(mob/owner)
+/datum/hud/New(mob/owner)
 	mymob = owner
 	instantiate()
 	..()

@@ -48,7 +48,7 @@
 
 	wizard_garb = 1
 
-obj/item/clothing/shoes/sandal/clogs
+/obj/item/clothing/shoes/sandal/clogs
 	name = "plastic clogs"
 	desc = "A pair of plastic clog shoes."
 	icon_state = "clogs"

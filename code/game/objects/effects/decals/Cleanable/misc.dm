@@ -24,10 +24,9 @@
 
 /obj/effect/decal/cleanable/greenglow
 
-	New()
-		..()
-		spawn(1200)// 2 minutes
-			qdel(src)
+/obj/effect/decal/cleanable/greenglow/New()
+	..()
+	QDEL_IN(src, 2 MINUTES)
 
 /obj/effect/decal/cleanable/dirt
 	name = "dirt"

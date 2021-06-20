@@ -62,6 +62,5 @@
 		client.update_skybox()
 		client.skybox?.scale_to_view(client.view)
 
-#undef SKYBOX_BORDER
 #undef SKYBOX_PIXELS
 #undef SKYBOX_TURFS

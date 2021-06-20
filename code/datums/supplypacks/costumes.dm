@@ -109,7 +109,7 @@
 	containertype = /obj/structure/closet/crate/gilthari
 	containername = "Formal suit crate"
 
-datum/supply_pack/costumes/witch
+/datum/supply_pack/costumes/witch
 	name = "Witch costume"
 	containername = "Witch costume"
 	containertype = /obj/structure/closet/crate/nanothreads

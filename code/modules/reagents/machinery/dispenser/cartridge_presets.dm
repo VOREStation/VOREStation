@@ -1,108 +1,197 @@
-/obj/item/weapon/reagent_containers/chem_disp_cartridge
-	small
-		volume = CARTRIDGE_VOLUME_SMALL
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/small
+	volume = CARTRIDGE_VOLUME_SMALL
 
-	medium
-		volume = CARTRIDGE_VOLUME_MEDIUM
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/medium
+	volume = CARTRIDGE_VOLUME_MEDIUM
 
-	// Multiple
-	water		spawn_reagent = "water"
-	sugar		spawn_reagent = "sugar"
+// Multiple
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/water
+	spawn_reagent = "water"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/sugar
+	spawn_reagent = "sugar"
 
-	// Chemistry
-	hydrogen	spawn_reagent = "hydrogen"
-	lithium		spawn_reagent = "lithium"
-	carbon		spawn_reagent = "carbon"
-	nitrogen	spawn_reagent = "nitrogen"
-	oxygen		spawn_reagent = "oxygen"
-	fluorine	spawn_reagent = "fluorine"
-	sodium		spawn_reagent = "sodium"
-	aluminum	spawn_reagent = "aluminum"
-	silicon		spawn_reagent = "silicon"
-	phosphorus	spawn_reagent = "phosphorus"
-	sulfur		spawn_reagent = "sulfur"
-	chlorine	spawn_reagent = "chlorine"
-	potassium	spawn_reagent = "potassium"
-	iron		spawn_reagent = "iron"
-	copper		spawn_reagent = "copper"
-	mercury		spawn_reagent = "mercury"
-	radium		spawn_reagent = "radium"
-	ethanol		spawn_reagent = "ethanol"
-	sacid		spawn_reagent = "sacid"
-	tungsten	spawn_reagent = "tungsten"
-	calcium		spawn_reagent = "calcium"
+// Chemistry
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/hydrogen
+	spawn_reagent = "hydrogen"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/lithium
+	spawn_reagent = "lithium"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/carbon
+	spawn_reagent = "carbon"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/nitrogen
+	spawn_reagent = "nitrogen"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/oxygen
+	spawn_reagent = "oxygen"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/fluorine
+	spawn_reagent = "fluorine"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/sodium
+	spawn_reagent = "sodium"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/aluminum
+	spawn_reagent = "aluminum"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/silicon
+	spawn_reagent = "silicon"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/phosphorus
+	spawn_reagent = "phosphorus"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/sulfur
+	spawn_reagent = "sulfur"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/chlorine
+	spawn_reagent = "chlorine"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/potassium
+	spawn_reagent = "potassium"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/iron
+	spawn_reagent = "iron"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/copper
+	spawn_reagent = "copper"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/mercury
+	spawn_reagent = "mercury"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/radium
+	spawn_reagent = "radium"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/ethanol
+	spawn_reagent = "ethanol"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/sacid
+	spawn_reagent = "sacid"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/tungsten
+	spawn_reagent = "tungsten"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/calcium
+	spawn_reagent = "calcium"
 
-	// Bar, alcoholic
-	beer		spawn_reagent = "beer"
-	kahlua		spawn_reagent = "kahlua"
-	whiskey		spawn_reagent = "whiskey"
-	wine		spawn_reagent = "wine"
-	vodka		spawn_reagent = "vodka"
-	gin			spawn_reagent = "gin"
-	rum			spawn_reagent = "rum"
-	tequila		spawn_reagent = "tequilla"
-	vermouth	spawn_reagent = "vermouth"
-	cognac		spawn_reagent = "cognac"
-	ale			spawn_reagent = "ale"
-	mead		spawn_reagent = "mead"
-	bitters		spawn_reagent = "bitters"
-	cider		spawn_reagent = "cider"
+// Bar, alcoholic
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/beer
+	spawn_reagent = "beer"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/kahlua
+	spawn_reagent = "kahlua"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/whiskey
+	spawn_reagent = "whiskey"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/wine
+	spawn_reagent = "wine"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/vodka
+	spawn_reagent = "vodka"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/gin
+	spawn_reagent = "gin"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/rum
+	spawn_reagent = "rum"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/tequila
+	spawn_reagent = "tequilla"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/vermouth
+	spawn_reagent = "vermouth"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/cognac
+	spawn_reagent = "cognac"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/ale
+	spawn_reagent = "ale"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/mead
+	spawn_reagent = "mead"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/bitters
+	spawn_reagent = "bitters"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/cider
+	spawn_reagent = "cider"
 
-	// Bar, soft
-	ice			spawn_reagent = "ice"
-	tea			spawn_reagent = "tea"
-	icetea		spawn_reagent = "icetea"
-	cola		spawn_reagent = "cola"
-	smw			spawn_reagent = "spacemountainwind"
-	dr_gibb		spawn_reagent = "dr_gibb"
-	spaceup		spawn_reagent = "space_up"
-	tonic		spawn_reagent = "tonic"
-	sodawater	spawn_reagent = "sodawater"
-	lemon_lime	spawn_reagent = "lemon_lime"
-	orange		spawn_reagent = "orangejuice"
-	lime		spawn_reagent = "limejuice"
-	watermelon	spawn_reagent = "watermelonjuice"
-	lemon		spawn_reagent = "lemonjuice"
+// Bar, soft
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/ice
+	spawn_reagent = "ice"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/tea
+	spawn_reagent = "tea"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/icetea
+	spawn_reagent = "icetea"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/cola
+	spawn_reagent = "cola"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/smw
+	spawn_reagent = "spacemountainwind"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/dr_gibb
+	spawn_reagent = "dr_gibb"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/spaceup
+	spawn_reagent = "space_up"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/tonic
+	spawn_reagent = "tonic"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/sodawater
+	spawn_reagent = "sodawater"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/lemon_lime
+	spawn_reagent = "lemon_lime"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/orange
+	spawn_reagent = "orangejuice"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/lime
+	spawn_reagent = "limejuice"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/watermelon
+	spawn_reagent = "watermelonjuice"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/lemon
+	spawn_reagent = "lemonjuice"
 
-	// Bar, coffee
-	coffee		spawn_reagent = "coffee"
-	cafe_latte	spawn_reagent = "cafe_latte"
-	soy_latte	spawn_reagent = "soy_latte"
-	hot_coco	spawn_reagent = "hot_coco"
-	milk		spawn_reagent = "milk"
-	cream		spawn_reagent = "cream"
-	mint		spawn_reagent = "mint"
-	berry		spawn_reagent = "berryjuice"
-	greentea	spawn_reagent = "greentea"
-	decaf		spawn_reagent = "decaf"
+// Bar, coffee
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/coffee
+	spawn_reagent = "coffee"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/cafe_latte
+	spawn_reagent = "cafe_latte"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/soy_latte
+	spawn_reagent = "soy_latte"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/hot_coco
+	spawn_reagent = "hot_coco"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/milk
+	spawn_reagent = "milk"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/cream
+	spawn_reagent = "cream"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/mint
+	spawn_reagent = "mint"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/berry
+	spawn_reagent = "berryjuice"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/greentea
+	spawn_reagent = "greentea"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/decaf
+	spawn_reagent = "decaf"
 
-	// ERT
-	inaprov		spawn_reagent = "inaprovaline"
-	ryetalyn	spawn_reagent = "ryetalyn"
-	paracetamol	spawn_reagent = "paracetamol"
-	tramadol	spawn_reagent = "tramadol"
-	oxycodone	spawn_reagent = "oxycodone"
-	sterilizine	spawn_reagent = "sterilizine"
-	leporazine	spawn_reagent = "leporazine"
-	kelotane	spawn_reagent = "kelotane"
-	dermaline	spawn_reagent = "dermaline"
-	dexalin		spawn_reagent = "dexalin"
-	dexalin/small	volume = CARTRIDGE_VOLUME_SMALL // For the medicine cartridge crate, so it's not too easy to get large amounts of dexalin
-	dexalin_p	spawn_reagent = "dexalinp"
-	tricord		spawn_reagent = "tricordrazine"
-	dylovene	spawn_reagent = "anti_toxin"
-	synaptizine	spawn_reagent = "synaptizine"
-	hyronalin	spawn_reagent = "hyronalin"
-	arithrazine	spawn_reagent = "arithrazine"
-	alkysine	spawn_reagent = "alkysine"
-	imidazoline	spawn_reagent = "imidazoline"
-	peridaxon	spawn_reagent = "peridaxon"
-	bicaridine	spawn_reagent = "bicaridine"
-	hyperzine	spawn_reagent = "hyperzine"
-	rezadone	spawn_reagent = "rezadone"
-	spaceacillin	spawn_reagent = "spaceacillin"
-	ethylredox	spawn_reagent = "ethylredoxrazine"
-	sleeptox	spawn_reagent = "stoxin"
-	chloral		spawn_reagent = "chloralhydrate"
-	cryoxadone	spawn_reagent = "cryoxadone"
-	clonexadone	spawn_reagent = "clonexadone"
+// ERT
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/inaprov
+	spawn_reagent = "inaprovaline"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/ryetalyn
+	spawn_reagent = "ryetalyn"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/paracetamol
+	spawn_reagent = "paracetamol"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/tramadol
+	spawn_reagent = "tramadol"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/oxycodone
+	spawn_reagent = "oxycodone"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/sterilizine
+	spawn_reagent = "sterilizine"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/leporazine
+	spawn_reagent = "leporazine"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/kelotane
+	spawn_reagent = "kelotane"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/dermaline
+	spawn_reagent = "dermaline"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/dexalin
+	spawn_reagent = "dexalin"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/dexalin/small
+	volume = CARTRIDGE_VOLUME_SMALL // For the medicine cartridge crate, so it's not too easy to get large amounts of dexalin
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/dexalin_p
+	spawn_reagent = "dexalinp"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/tricord
+	spawn_reagent = "tricordrazine"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/dylovene
+	spawn_reagent = "anti_toxin"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/synaptizine
+	spawn_reagent = "synaptizine"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/hyronalin
+	spawn_reagent = "hyronalin"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/arithrazine
+	spawn_reagent = "arithrazine"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/alkysine
+	spawn_reagent = "alkysine"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/imidazoline
+	spawn_reagent = "imidazoline"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/peridaxon
+	spawn_reagent = "peridaxon"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/bicaridine
+	spawn_reagent = "bicaridine"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/hyperzine
+	spawn_reagent = "hyperzine"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/rezadone
+	spawn_reagent = "rezadone"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/spaceacillin
+	spawn_reagent = "spaceacillin"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/ethylredox
+	spawn_reagent = "ethylredoxrazine"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/sleeptox
+	spawn_reagent = "stoxin"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/chloral
+	spawn_reagent = "chloralhydrate"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/cryoxadone
+	spawn_reagent = "cryoxadone"
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/clonexadone
+	spawn_reagent = "clonexadone"

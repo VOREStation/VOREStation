@@ -141,7 +141,7 @@
 	desc = "It's worth 1000 Thalers."
 	worth = 1000
 
-proc/spawn_money(var/sum, spawnloc, mob/living/carbon/human/human_user as mob)
+/proc/spawn_money(var/sum, spawnloc, mob/living/carbon/human/human_user as mob)
 	var/obj/item/weapon/spacecash/SC = new (spawnloc)
 
 	SC.set_worth(sum)
@@ -157,9 +157,10 @@ proc/spawn_money(var/sum, spawnloc, mob/living/carbon/human/human_user as mob)
 	drop_sound = 'sound/items/drop/card.ogg'
 	pickup_sound = 'sound/items/pickup/card.ogg'
 	var/owner_name = "" //So the ATM can set it so the EFTPOS can put a valid name on transactions.
-	attack_self() return  //Don't act
-	attackby()    return  //like actual
-	update_icon() return  //space cash
+
+/obj/item/weapon/spacecash/ewallet/attack_self() return  //Don't act
+/obj/item/weapon/spacecash/ewallet/attackby()    return  //like actual
+/obj/item/weapon/spacecash/ewallet/update_icon() return  //space cash
 
 /obj/item/weapon/spacecash/ewallet/examine(mob/user)
 	. = ..()

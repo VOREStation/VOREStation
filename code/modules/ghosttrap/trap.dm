@@ -3,12 +3,12 @@
 
 var/list/ghost_traps
 
-proc/get_ghost_trap(var/trap_key)
+/proc/get_ghost_trap(var/trap_key)
 	if(!ghost_traps)
 		populate_ghost_traps()
 	return ghost_traps[trap_key]
 
-proc/populate_ghost_traps()
+/proc/populate_ghost_traps()
 	ghost_traps = list()
 	for(var/traptype in typesof(/datum/ghosttrap))
 		var/datum/ghosttrap/G = new traptype

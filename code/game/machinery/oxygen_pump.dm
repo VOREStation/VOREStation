@@ -1,6 +1,3 @@
-#define TANK_MAX_RELEASE_PRESSURE (3*ONE_ATMOSPHERE)
-#define TANK_DEFAULT_RELEASE_PRESSURE ONE_ATMOSPHERE
-
 /obj/machinery/oxygen_pump
 	name = "emergency oxygen pump"
 	icon = 'icons/obj/walllocker.dmi'

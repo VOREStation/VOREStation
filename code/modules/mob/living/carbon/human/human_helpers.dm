@@ -160,8 +160,8 @@
 
 	//These things are allowed to add vision flags.
 	//If you code some crazy item that goes on your feet that lets you see ghosts, you need to add a slot here.
-	var/tmp/list/slots = list(slot_glasses,slot_head)
-	var/tmp/list/compiled_vis = list()
+	var/list/slots = list(slot_glasses,slot_head)
+	var/list/compiled_vis = list()
 
 	for(var/slot in slots)
 		var/obj/item/clothing/O = get_equipped_item(slot) //Change this type if you move the vision stuff to item or something.
@@ -187,12 +187,12 @@
 	if(!compiled_vis.len && !vis_enabled.len)
 		return //Nothin' doin'.
 
-	var/tmp/list/oddities = vis_enabled ^ compiled_vis
+	var/list/oddities = vis_enabled ^ compiled_vis
 	if(!oddities.len)
 		return //Same thing in both lists!
 
-	var/tmp/list/to_enable = oddities - vis_enabled
-	var/tmp/list/to_disable = oddities - compiled_vis
+	var/list/to_enable = oddities - vis_enabled
+	var/list/to_disable = oddities - compiled_vis
 
 	for(var/vis in to_enable)
 		plane_holder.set_vis(vis,TRUE)

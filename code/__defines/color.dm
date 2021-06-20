@@ -165,9 +165,6 @@
 #define COLOR_ASSEMBLY_PURPLE   "#6F6192"
 #define COLOR_ASSEMBLY_HOT_PINK "#FF69B4"
 
-#define COLOR_ASTEROID_ROCK    "#735555"
-#define COLOR_GOLD             "#ffcc33"
-
 // Discord requires colors to be in decimal instead of hexadecimal.
 #define COLOR_WEBHOOK_DEFAULT	0x8bbbd5 // "#8bbbd5"
 #define COLOR_WEBHOOK_GOOD		0x2ECC71 // "#2ECC71"

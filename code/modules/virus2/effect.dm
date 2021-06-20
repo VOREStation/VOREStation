@@ -51,9 +51,9 @@
 	var/badness = 1
 	var/data = null // For semi-procedural effects; this should be generated in generate() if used
 
-	proc/activate(var/mob/living/carbon/mob,var/multiplier)
-	proc/deactivate(var/mob/living/carbon/mob)
-	proc/generate(copy_data) // copy_data will be non-null if this is a copy; it should be used to initialise the data for this effect if present
+/datum/disease2/effect/proc/activate(var/mob/living/carbon/mob,var/multiplier)
+/datum/disease2/effect/proc/deactivate(var/mob/living/carbon/mob)
+/datum/disease2/effect/proc/generate(copy_data) // copy_data will be non-null if this is a copy; it should be used to initialise the data for this effect if present
 
 /datum/disease2/effect/invisible
 	name = "Waiting Syndrome"
