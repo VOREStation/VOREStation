@@ -6704,12 +6704,8 @@
 	desc = "Wup-Az! Brand canned spinach. Notably has less iron in it than a watermelon."
 	trash = /obj/item/trash/spinach
 	filling_color = "#003300"
-<<<<<<< HEAD
 	center_of_mass = list("x"=15, "y"=9)
-=======
-	center_of_mass = "x=15;y=9"
 	nutriment_amt = 5
->>>>>>> 4b964bb... Indescribable! - A Food Flavor Fixing Pass (#8144)
 	nutriment_desc = list("soggy" = 1, "vegetable" = 1)
 	bitesize = 5
 
@@ -6824,12 +6820,8 @@
 	desc = "Now with 20% less lawsuit enabling rhegolith!"
 	//trash = /obj/item/trash/lunacakewrap //need to add code that drops trash but keeps -open state
 	filling_color = "#ffffff"
-<<<<<<< HEAD
 	center_of_mass = list("x"=15, "y"=9)
-=======
-	center_of_mass = "x=15;y=9"
 	nutriment_amt = 6
->>>>>>> 4b964bb... Indescribable! - A Food Flavor Fixing Pass (#8144)
 	nutriment_desc = list("sweetness" = 4, "vanilla" = 1)
 	bitesize = 2
 
@@ -6839,12 +6831,8 @@
 	desc = "Explore the dark side! May contain trace amounts of reconstituted cocoa."
 	//trash = /obj/item/trash/mooncakewrap //need to add code that drops trash but keeps -open state
 	filling_color = "#ffffff"
-<<<<<<< HEAD
 	center_of_mass = list("x"=15, "y"=9)
-=======
-	center_of_mass = "x=15;y=9"
 	nutriment_amt = 6
->>>>>>> 4b964bb... Indescribable! - A Food Flavor Fixing Pass (#8144)
 	nutriment_desc = list("sweetness" = 4, "chocolate" = 1)
 	bitesize = 2
 
@@ -6854,12 +6842,8 @@
 	desc = "Konnichiwa! Many go lucky rice cakes in future!"
 	//trash = /obj/item/trash/mochicakewrap //need to add code that drops trash but keeps -open state
 	filling_color = "#ffffff"
-<<<<<<< HEAD
 	center_of_mass = list("x"=15, "y"=9)
-=======
-	center_of_mass = "x=15;y=9"
 	nutriment_amt = 6
->>>>>>> 4b964bb... Indescribable! - A Food Flavor Fixing Pass (#8144)
 	nutriment_desc = list("sweetness" = 4, "rice" = 1)
 	bitesize = 2
 
