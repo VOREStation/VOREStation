@@ -8,14 +8,9 @@
 	var/datum/radio_frequency/radio_connection
 	var/cur_command = null	//the command the door is currently attempting to complete
 
-<<<<<<< HEAD
-obj/machinery/door/airlock/process()
+/obj/machinery/door/airlock/process()
 	if (..() == PROCESS_KILL && !cur_command)
 		. = PROCESS_KILL
-=======
-/obj/machinery/door/airlock/process()
-	..()
->>>>>>> 593246b... Linter diagnostics + bans non-var relative pathing (#8150)
 	if (arePowerSystemsOn())
 		execute_current_command()
 

@@ -48,14 +48,8 @@
 	var/datum/shuttle/autodock/ferry/escape_pod/pod
 	valid_actions = list("toggle_override", "force_door")
 
-<<<<<<< HEAD
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod/tgui_data(mob/user)
-	var/datum/computer/file/embedded_program/docking/simple/docking_program = program // Cast to proper type
-=======
-/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	var/data[0]
 	var/datum/embedded_program/docking/simple/docking_program = program // Cast to proper type
->>>>>>> 593246b... Linter diagnostics + bans non-var relative pathing (#8150)
 
 	. = list(
 		"docking_status" = docking_program.get_docking_status(),
@@ -85,27 +79,15 @@
 //This controller is for the escape pod berth (station side)
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod_berth
 	name = "escape pod berth controller"
-<<<<<<< HEAD
-	program = /datum/computer/file/embedded_program/docking/simple/escape_pod_berth
+	program = /datum/embedded_program/docking/simple/escape_pod_berth
 	valid_actions = list("toggle_override", "force_door")
 
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod_berth/tgui_data(mob/user)
-	var/datum/computer/file/embedded_program/docking/simple/docking_program = program // Cast to proper type
-
-	var/armed = null
-	if(istype(docking_program, /datum/computer/file/embedded_program/docking/simple/escape_pod_berth))
-		var/datum/computer/file/embedded_program/docking/simple/escape_pod_berth/P = docking_program
-=======
-	program = /datum/embedded_program/docking/simple/escape_pod_berth
-
-/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod_berth/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	var/data[0]
 	var/datum/embedded_program/docking/simple/docking_program = program // Cast to proper type
 
 	var/armed = null
-	if (istype(docking_program, /datum/embedded_program/docking/simple/escape_pod_berth))
+	if(istype(docking_program, /datum/embedded_program/docking/simple/escape_pod_berth))
 		var/datum/embedded_program/docking/simple/escape_pod_berth/P = docking_program
->>>>>>> 593246b... Linter diagnostics + bans non-var relative pathing (#8150)
 		armed = P.armed
 
 	. = list(

@@ -19,8 +19,5 @@
 #define isCardinal(x)			(x == NORTH || x == SOUTH || x == EAST || x == WEST)
 #define isDiagonal(x)			(x == NORTHEAST || x == SOUTHEAST || x == NORTHWEST || x == SOUTHWEST)
 
-<<<<<<< HEAD
 #define IS_OPAQUE_TURF(turf) (turf.directional_opacity == ALL_CARDINALS)
-=======
 #define FOOTSTEP_SPRITE_AMT 2
->>>>>>> 593246b... Linter diagnostics + bans non-var relative pathing (#8150)

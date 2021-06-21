@@ -24,12 +24,7 @@
 	mainOverlay.Blend(main,ICON_ADD)
 	shadeOverlay.Blend(shade,ICON_ADD)
 
-<<<<<<< HEAD
-		add_overlay(mainOverlay)
-		add_overlay(shadeOverlay)
-=======
-	overlays += mainOverlay
-	overlays += shadeOverlay
->>>>>>> 593246b... Linter diagnostics + bans non-var relative pathing (#8150)
+	add_overlay(mainOverlay)
+	add_overlay(shadeOverlay)
 
 	add_hiddenprint(usr)

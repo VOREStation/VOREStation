@@ -224,31 +224,6 @@
 			return S.memory[address]
 
 		else
-<<<<<<< HEAD
-			newsign.data["name"] = "<i>[html_encode(uppertext(source))]</i>"
-		newsign.data["realname"] = newsign.data["name"]
-		newsign.data["job"] = job
-		newsign.data["compression"] = 0
-		newsign.data["message"] = message_to_multilingual(message)
-		newsign.data["type"] = 2 // artificial broadcast
-		if(!isnum(freq))
-			freq = text2num(freq)
-		newsign.frequency = freq
-
-		var/datum/radio_frequency/connection = radio_controller.return_frequency(freq)
-		newsign.data["connection"] = connection
-
-
-		newsign.data["radio"] = hradio
-		newsign.data["vmessage"] = message_to_multilingual(message)
-		newsign.data["vname"] = source
-		newsign.data["vmask"] = 0
-		newsign.data["level"] = list()
-
-		var/pass = S.relay_information(newsign, "/obj/machinery/telecomms/hub")
-		if(!pass)
-			S.relay_information(newsign, "/obj/machinery/telecomms/broadcaster") // send this simple message to broadcasters
-=======
 			S.memory[address] = value
 
 
@@ -303,5 +278,4 @@
 	var/pass = S.relay_information(newsign, "/obj/machinery/telecomms/hub")
 	if(!pass)
 		S.relay_information(newsign, "/obj/machinery/telecomms/broadcaster") // send this simple message to broadcasters
->>>>>>> 593246b... Linter diagnostics + bans non-var relative pathing (#8150)
 

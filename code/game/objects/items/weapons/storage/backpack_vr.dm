@@ -10,13 +10,13 @@
 	var/taurtype = /datum/sprite_accessory/tail/taur/horse //Acceptable taur type to be wearing this
 	var/no_message = "You aren't the appropriate taur type to wear this!"
 
-	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
-		if(..())
-			if(istype(H) && istype(H.tail_style, taurtype))
-				return 1
-			else
-				to_chat(H, "<span class='warning'>[no_message]</span>")
-				return 0
+/obj/item/weapon/storage/backpack/saddlebag/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+	if(..())
+		if(istype(H) && istype(H.tail_style, taurtype))
+			return 1
+		else
+			to_chat(H, "<span class='warning'>[no_message]</span>")
+			return 0
 
 /* If anyone wants to make some... this is how you would.
 /obj/item/weapon/storage/backpack/saddlebag/spider
@@ -38,15 +38,15 @@
 	slowdown = 1 //And are slower, too...
 	var/no_message = "You aren't the appropriate taur type to wear this!"
 
-	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
-		if(..())
-			if(!istype(H))//Error, non HUMAN.
-				log_runtime("[H] was not a valid human!")
-				return
+/obj/item/weapon/storage/backpack/saddlebag_common/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+	if(..())
+		if(!istype(H))//Error, non HUMAN.
+			log_runtime("[H] was not a valid human!")
+			return
 
-			var/datum/sprite_accessory/tail/taur/TT = H.tail_style
-			item_state = "[icon_base]_[TT.icon_sprite_tag]"	//icon_sprite_tag is something like "deer"
-			return 1
+		var/datum/sprite_accessory/tail/taur/TT = H.tail_style
+		item_state = "[icon_base]_[TT.icon_sprite_tag]"	//icon_sprite_tag is something like "deer"
+		return 1
 
 
 

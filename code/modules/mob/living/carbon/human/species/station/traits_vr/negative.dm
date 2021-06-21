@@ -1,6 +1,3 @@
-#define ORGANICS	1
-#define SYNTHETICS	2
-
 /datum/trait/negative
 	category = -1
 
@@ -34,9 +31,9 @@
 	cost = -2
 	var_changes = list("total_health" = 75)
 
-	apply(var/datum/species/S,var/mob/living/carbon/human/H)
-		..(S,H)
-		H.setMaxHealth(S.total_health)
+/datum/trait/negative/endurance_low/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..(S,H)
+	H.setMaxHealth(S.total_health)
 
 /datum/trait/negative/endurance_very_low
 	name = "Extremely Low Endurance"
@@ -44,9 +41,9 @@
 	cost = -3 //Teshari HP. This makes the person a lot more suseptable to getting stunned, killed, etc.
 	var_changes = list("total_health" = 50)
 
-	apply(var/datum/species/S,var/mob/living/carbon/human/H)
-		..(S,H)
-		H.setMaxHealth(S.total_health)
+/datum/trait/negative/endurance_very_low/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..(S,H)
+	H.setMaxHealth(S.total_health)
 
 /datum/trait/negative/minor_brute_weak
 	name = "Minor Brute Weakness"

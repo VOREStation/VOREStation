@@ -73,11 +73,7 @@
 	return
 
 /obj/structure/bigDelivery/update_icon()
-<<<<<<< HEAD
 	cut_overlays()
-=======
-	overlays = new()
->>>>>>> 593246b... Linter diagnostics + bans non-var relative pathing (#8150)
 	if(nameset || examtext)
 		var/image/I = new/image('icons/obj/storage.dmi',"delivery_label")
 		if(icon_state == "deliverycloset")
@@ -90,11 +86,7 @@
 				label_x = rand(-8, 6)
 			I.pixel_x = label_x
 			I.pixel_y = -3
-<<<<<<< HEAD
 		add_overlay(I)
-=======
-		overlays += I
->>>>>>> 593246b... Linter diagnostics + bans non-var relative pathing (#8150)
 	if(src.sortTag)
 		var/image/I = new/image('icons/obj/storage.dmi',"delivery_tag")
 		if(icon_state == "deliverycloset")
@@ -107,11 +99,7 @@
 				tag_x = rand(-8, 6)
 			I.pixel_x = tag_x
 			I.pixel_y = -3
-<<<<<<< HEAD
 		add_overlay(I)
-=======
-		overlays += I
->>>>>>> 593246b... Linter diagnostics + bans non-var relative pathing (#8150)
 
 /obj/structure/bigDelivery/examine(mob/user)
 	. = ..()
@@ -197,20 +185,12 @@
 	return
 
 /obj/item/smallDelivery/update_icon()
-<<<<<<< HEAD
 	cut_overlays()
-=======
-	overlays = new()
->>>>>>> 593246b... Linter diagnostics + bans non-var relative pathing (#8150)
 	if((nameset || examtext) && icon_state != "deliverycrate1")
 		var/image/I = new/image('icons/obj/storage.dmi',"delivery_label")
 		if(icon_state == "deliverycrate5")
 			I.pixel_y = -1
-<<<<<<< HEAD
 		add_overlay(I)
-=======
-		overlays += I
->>>>>>> 593246b... Linter diagnostics + bans non-var relative pathing (#8150)
 	if(src.sortTag)
 		var/image/I = new/image('icons/obj/storage.dmi',"delivery_tag")
 		switch(icon_state)
@@ -227,11 +207,7 @@
 				I.pixel_y = 3
 			if("deliverycrate5")
 				I.pixel_y = -3
-<<<<<<< HEAD
 		add_overlay(I)
-=======
-		overlays += I
->>>>>>> 593246b... Linter diagnostics + bans non-var relative pathing (#8150)
 
 /obj/item/smallDelivery/examine(mob/user)
 	. = ..()
@@ -363,7 +339,6 @@
 	item_state = "electronic"
 	slot_flags = SLOT_BELT
 
-<<<<<<< HEAD
 /obj/item/device/destTagger/tgui_state(mob/user)
 	return GLOB.tgui_inventory_state
 
@@ -395,32 +370,6 @@
 				return FALSE
 			currTag = new_tag
 			. = TRUE
-=======
-/obj/item/device/destTagger/proc/openwindow(mob/user as mob)
-	var/dat = "<tt><center><h1><b>TagMaster 2.3</b></h1></center>"
-
-	dat += "<table style='width:100%; padding:4px;'><tr>"
-	for(var/i = 1, i <= GLOB.tagger_locations.len, i++)
-		dat += "<td><a href='?src=\ref[src];nextTag=[GLOB.tagger_locations[i]]'>[GLOB.tagger_locations[i]]</a></td>"
-
-		if (i%4==0)
-			dat += "</tr><tr>"
-
-	dat += "</tr></table><br>Current Selection: [currTag ? currTag : "None"]</tt>"
-
-	user << browse(dat, "window=destTagScreen;size=450x350")
-	onclose(user, "destTagScreen")
-
-/obj/item/device/destTagger/attack_self(mob/user as mob)
-	openwindow(user)
-	return
-
-/obj/item/device/destTagger/Topic(href, href_list)
-	src.add_fingerprint(usr)
-	if(href_list["nextTag"] && (href_list["nextTag"] in GLOB.tagger_locations))
-		src.currTag = href_list["nextTag"]
-	openwindow(usr)
->>>>>>> 593246b... Linter diagnostics + bans non-var relative pathing (#8150)
 
 /obj/machinery/disposal/deliveryChute
 	name = "Delivery chute"
@@ -430,20 +379,11 @@
 
 	var/c_mode = 0
 
-<<<<<<< HEAD
-/obj/machinery/disposal/deliveryChute/New()
-	..()
-	spawn(5)
-		trunk = locate() in src.loc
-		if(trunk)
-			trunk.linked = src	// link the pipe trunk to self
-=======
 /obj/machinery/disposal/deliveryChute/Initialize()
 	. = ..()
 	trunk = locate() in src.loc
 	if(trunk)
 		trunk.linked = src	// link the pipe trunk to self
->>>>>>> 593246b... Linter diagnostics + bans non-var relative pathing (#8150)
 
 /obj/machinery/disposal/deliveryChute/interact()
 	return
@@ -498,36 +438,6 @@
 		return
 
 	if(I.is_screwdriver())
-<<<<<<< HEAD
-		if(c_mode==0)
-			c_mode=1
-			playsound(src, I.usesound, 50, 1)
-			to_chat(user, "You remove the screws around the power connection.")
-			return
-		else if(c_mode==1)
-			c_mode=0
-			playsound(src, I.usesound, 50, 1)
-			to_chat(user, "You attach the screws around the power connection.")
-			return
-	else if(istype(I, /obj/item/weapon/weldingtool) && c_mode==1)
-		var/obj/item/weapon/weldingtool/W = I
-		if(W.remove_fuel(0,user))
-			playsound(src, W.usesound, 50, 1)
-			to_chat(user, "You start slicing the floorweld off the delivery chute.")
-			if(do_after(user,20 * W.toolspeed))
-				if(!src || !W.isOn()) return
-				to_chat(user, "You sliced the floorweld off the delivery chute.")
-				var/obj/structure/disposalconstruct/C = new (src.loc)
-				C.ptype = 8 // 8 =  Delivery chute
-				C.update()
-				C.anchored = 1
-				C.density = 1
-				qdel(src)
-			return
-		else
-			to_chat(user, "You need more welding fuel to complete this task.")
-			return
-=======
 		c_mode = !c_mode
 		playsound(src, I.usesound, 50, 1)
 		to_chat(user, "You [c_mode ? "remove" : "attach"] the screws around the power connection.")
@@ -549,7 +459,6 @@
 			C.density = 1
 			qdel(src)
 		return
->>>>>>> 593246b... Linter diagnostics + bans non-var relative pathing (#8150)
 
 /obj/machinery/disposal/deliveryChute/Destroy()
 	if(trunk)

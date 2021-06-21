@@ -3,13 +3,9 @@ var/datum/controller/transfer_controller/transfer_controller
 /datum/controller/transfer_controller
 	var/timerbuffer = 0 //buffer for time check
 	var/currenttick = 0
-<<<<<<< HEAD
 	var/shift_hard_end = 0 //VOREStation Edit
 	var/shift_last_vote = 0 //VOREStation Edit
-datum/controller/transfer_controller/New()
-=======
 /datum/controller/transfer_controller/New()
->>>>>>> 593246b... Linter diagnostics + bans non-var relative pathing (#8150)
 	timerbuffer = config.vote_autotransfer_initial
 	shift_hard_end = config.vote_autotransfer_initial + (config.vote_autotransfer_interval * 0) //VOREStation Edit //Change this "1" to how many extend votes you want there to be.
 	shift_last_vote = shift_hard_end - config.vote_autotransfer_interval //VOREStation Edit

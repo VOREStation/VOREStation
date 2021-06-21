@@ -87,7 +87,6 @@
 #include "code\__defines\sqlite_defines.dm"
 #include "code\__defines\stat_tracking.dm"
 #include "code\__defines\subsystems.dm"
-#include "code\__defines\subsystems_vr.dm"
 #include "code\__defines\supply.dm"
 #include "code\__defines\targeting.dm"
 #include "code\__defines\tgs.config.dm"
@@ -206,11 +205,8 @@
 #include "code\ATMOSPHERICS\components\binary_devices\circulator.dm"
 #include "code\ATMOSPHERICS\components\binary_devices\dp_vent_pump.dm"
 #include "code\ATMOSPHERICS\components\binary_devices\passive_gate.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\ATMOSPHERICS\components\binary_devices\passive_gate_vr.dm"
 #include "code\ATMOSPHERICS\components\binary_devices\pipeturbine.dm"
-=======
->>>>>>> 593246b... Linter diagnostics + bans non-var relative pathing (#8150):polaris.dme
 #include "code\ATMOSPHERICS\components\binary_devices\pump.dm"
 #include "code\ATMOSPHERICS\components\binary_devices\volume_pump.dm"
 #include "code\ATMOSPHERICS\components\omni_devices\_omni_extras.dm"
@@ -1742,10 +1738,7 @@
 #include "code\modules\ai\interfaces.dm"
 #include "code\modules\ai\say_list.dm"
 #include "code\modules\ai\ai_holder_subtypes\simple_mob_ai.dm"
-<<<<<<< HEAD:vorestation.dme
 #include "code\modules\ai\ai_holder_subtypes\simple_mob_ai_vr.dm"
-=======
->>>>>>> 593246b... Linter diagnostics + bans non-var relative pathing (#8150):polaris.dme
 #include "code\modules\ai\ai_holder_subtypes\slime_xenobio_ai.dm"
 #include "code\modules\alarm\alarm.dm"
 #include "code\modules\alarm\alarm_handler.dm"
@@ -3096,7 +3089,6 @@
 #include "code\modules\mob\living\simple_mob\subtypes\vore\mobs_monsters\clowns\honkelemental.dm"
 #include "code\modules\mob\living\simple_mob\subtypes\vore\mobs_monsters\clowns\regularclowns.dm"
 #include "code\modules\mob\living\simple_mob\subtypes\vore\morph\morph.dm"
-#include "code\modules\mob\living\simple_mob\subtypes\vore\shadekin\_defines.dm"
 #include "code\modules\mob\living\simple_mob\subtypes\vore\shadekin\ability_objects.dm"
 #include "code\modules\mob\living\simple_mob\subtypes\vore\shadekin\ability_procs.dm"
 #include "code\modules\mob\living\simple_mob\subtypes\vore\shadekin\shadekin.dm"
@@ -3362,12 +3354,7 @@
 #include "code\modules\power\cell.dm"
 #include "code\modules\power\debug_items.dm"
 #include "code\modules\power\generator.dm"
-<<<<<<< HEAD:vorestation.dme
-#include "code\modules\power\generator_type2.dm"
 #include "code\modules\power\gravitygenerator_vr.dm"
-=======
-#include "code\modules\power\gravitygenerator.dm"
->>>>>>> 593246b... Linter diagnostics + bans non-var relative pathing (#8150):polaris.dme
 #include "code\modules\power\grid_checker.dm"
 #include "code\modules\power\lighting.dm"
 #include "code\modules\power\lighting_vr.dm"

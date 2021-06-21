@@ -9,61 +9,6 @@
 	var/icon/virtualIcon
 	var/list/bulletholes = list()
 
-<<<<<<< HEAD
-	Destroy()
-		// if a target is deleted and associated with a stake, force stake to forget
-		for(var/obj/structure/target_stake/T in view(3,src))
-			if(T.pinned_target == src)
-				T.pinned_target = null
-				T.density = 1
-				break
-		..() // delete target
-
-	Moved(atom/old_loc, direction, forced = FALSE)
-		. = ..()
-		// After target moves, check for nearby stakes. If associated, move to target
-		for(var/obj/structure/target_stake/M in view(3,src))
-			if(M.density == 0 && M.pinned_target == src)
-				M.forceMove(loc)
-
-		// This may seem a little counter-intuitive but I assure you that's for a purpose.
-		// Stakes are the ones that carry targets, yes, but in the stake code we set
-		// a stake's density to 0 meaning it can't be pushed anymore. Instead of pushing
-		// the stake now, we have to push the target.
-
-
-
-	attackby(obj/item/W as obj, mob/user as mob)
-		if (istype(W, /obj/item/weapon/weldingtool))
-			var/obj/item/weapon/weldingtool/WT = W
-			if(WT.remove_fuel(0, user))
-				cut_overlays()
-				to_chat(usr, "You slice off [src]'s uneven chunks of aluminum and scorch marks.")
-				return
-
-
-	attack_hand(mob/user as mob)
-		// taking pinned targets off!
-		var/obj/structure/target_stake/stake
-		for(var/obj/structure/target_stake/T in view(3,src))
-			if(T.pinned_target == src)
-				stake = T
-				break
-
-		if(stake)
-			if(stake.pinned_target)
-				stake.density = 1
-				density = 0
-				layer = OBJ_LAYER
-
-				loc = user.loc
-				if(ishuman(user))
-					if(!user.get_active_hand())
-						user.put_in_hands(src)
-						to_chat(user, "You take the target out of the stake.")
-				else
-					src.loc = get_turf(user)
-=======
 /obj/item/target/Destroy()
 	// if a target is deleted and associated with a stake, force stake to forget
 	for(var/obj/structure/target_stake/T in view(3,src))
@@ -91,7 +36,7 @@
 	if (istype(W, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = W
 		if(WT.remove_fuel(0, user))
-			overlays.Cut()
+			cut_overlays()
 			to_chat(usr, "You slice off [src]'s uneven chunks of aluminum and scorch marks.")
 			return
 
@@ -114,7 +59,6 @@
 			if(ishuman(user))
 				if(!user.get_active_hand())
 					user.put_in_hands(src)
->>>>>>> 593246b... Linter diagnostics + bans non-var relative pathing (#8150)
 					to_chat(user, "You take the target out of the stake.")
 			else
 				src.loc = get_turf(user)

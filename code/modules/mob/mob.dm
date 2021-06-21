@@ -1038,7 +1038,7 @@
 		pixel_x--
 		is_shifted = TRUE
 
-mob/verb/shifteast()
+/mob/verb/shifteast()
 	set hidden = TRUE
 	if(!canface())
 		return FALSE

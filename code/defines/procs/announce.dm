@@ -85,7 +85,6 @@
 		if(!istype(M,/mob/new_player) && !isdeaf(M))
 			to_chat(M, command)
 
-<<<<<<< HEAD
 /datum/announcement/priority/Message(var/message as text, var/message_title as text, var/list/zlevels)
 	global_announcer.autosay("<span class='alert'>[message_title]:</span> [message]", announcer ? announcer : ANNOUNCER_NAME, channel = "Common", zlevels = zlevels)
 
@@ -96,13 +95,6 @@
 	global_announcer.autosay("<span class='alert'>[message_title]:</span> [message]", ANNOUNCER_NAME, channel = "Common", zlevels = zlevels)
 
 /datum/announcement/proc/NewsCast(var/message as text, var/message_title as text)
-=======
-/datum/announcement/priority/security/Message(message as text, message_title as text)
-	to_world("<font size=4 color='red'>[message_title]</font>")
-	to_world("<font color='red'>[message]</font>")
-
-/datum/announcement/proc/NewsCast(message as text, message_title as text)
->>>>>>> 593246b... Linter diagnostics + bans non-var relative pathing (#8150)
 	if(!newscast)
 		return
 
@@ -115,19 +107,12 @@
 	announce_newscaster_news(news)
 
 /datum/announcement/proc/PlaySound(var/message_sound, var/list/zlevels)
-<<<<<<< HEAD
-=======
-	if(!message_sound)
-		return
-
->>>>>>> 593246b... Linter diagnostics + bans non-var relative pathing (#8150)
 	for(var/mob/M in player_list)
 		if(zlevels && !(M.z in zlevels))
 			continue
 		if(!istype(M,/mob/new_player) && !isdeaf(M))
 			M << 'sound/AI/preamble.ogg'
 
-<<<<<<< HEAD
 	if(!message_sound)
 		return
 
@@ -140,17 +125,6 @@
 
 /datum/announcement/proc/Sound(var/message_sound, var/list/zlevels)
 	PlaySound(message_sound, zlevels)
-=======
-/datum/announcement/proc/Sound(var/message_sound, var/list/zlevels)
-	PlaySound(message_sound, zlevels)
-
-/datum/announcement/priority/Sound(var/message_sound)
-	if(message_sound)
-		world << message_sound
-
-/datum/announcement/priority/command/Sound(var/message_sound)
-	PlaySound(message_sound)
->>>>>>> 593246b... Linter diagnostics + bans non-var relative pathing (#8150)
 
 /datum/announcement/proc/Log(message as text, message_title as text)
 	if(log)

@@ -436,5 +436,3 @@
 
 		if("newsfeed")
 			newsfeed_channel = text2num(params["newsfeed"])
-
-#undef DEFAULT_MAP_SIZE

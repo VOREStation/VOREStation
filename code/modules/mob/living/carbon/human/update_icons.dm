@@ -79,7 +79,6 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 #define SUIT_STORE_LAYER		17		//Suit storage-slot item
 #define BACK_LAYER				18		//Back-slot item
 #define HAIR_LAYER				19		//The human's hair
-<<<<<<< HEAD
 #define HAIR_ACCESSORY_LAYER	20		//VOREStation edit. Simply move this up a number if things are added.
 #define EARS_LAYER				21		//Both ear-slot items (combined image)
 #define EYES_LAYER				22		//Mob's eyes (used for glowing eyes)
@@ -93,26 +92,9 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 #define TAIL_LAYER_ALT			30		//Modified tail-sprite layer. Tend to be larger.
 #define MODIFIER_EFFECTS_LAYER	31		//Effects drawn by modifiers
 #define FIRE_LAYER				32		//'Mob on fire' overlay layer
-#define WATER_LAYER				33		//'Mob submerged' overlay layer
+#define MOB_WATER_LAYER			33		//'Mob submerged' overlay layer
 #define TARGETED_LAYER			34		//'Aimed at' overlay layer
 #define TOTAL_LAYERS			34		//VOREStation edit. <---- KEEP THIS UPDATED, should always equal the highest number here, used to initialize a list.
-=======
-#define EARS_LAYER				20		//Both ear-slot items (combined image)
-#define EYES_LAYER				21		//Mob's eyes (used for glowing eyes)
-#define FACEMASK_LAYER			22		//Mask-slot item
-#define HEAD_LAYER				23		//Head-slot item
-#define HANDCUFF_LAYER			24		//Handcuffs, if the human is handcuffed, in a secret inv slot
-#define LEGCUFF_LAYER			25		//Same as handcuffs, for legcuffs
-#define L_HAND_LAYER			26		//Left-hand item
-#define R_HAND_LAYER			27		//Right-hand item
-#define WING_LAYER				28		//Wings or protrusions over the suit.
-#define TAIL_LAYER_ALT			29		//Modified tail-sprite layer. Tend to be larger.
-#define MODIFIER_EFFECTS_LAYER	30		//Effects drawn by modifiers
-#define FIRE_LAYER				31		//'Mob on fire' overlay layer
-#define MOB_WATER_LAYER			32		//'Mob submerged' overlay layer
-#define TARGETED_LAYER			33		//'Aimed at' overlay layer
-#define TOTAL_LAYERS			33//<---- KEEP THIS UPDATED, should always equal the highest number here, used to initialize a list.
->>>>>>> 593246b... Linter diagnostics + bans non-var relative pathing (#8150)
 //////////////////////////////////
 
 /mob/living/carbon/human
@@ -1239,15 +1221,11 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 				tail_s.Blend(overlay, ICON_OVERLAY)
 				qdel(overlay)
 
-<<<<<<< HEAD
 		var/image/working = image(tail_s)
 		if(tail_style.em_block)
 			working.overlays += em_block_image_generic(working) // Leaving this as overlays +=
 
-		if(isTaurTail(tail_style))
-=======
 		if(istaurtail(tail_style))
->>>>>>> 593246b... Linter diagnostics + bans non-var relative pathing (#8150)
 			var/datum/sprite_accessory/tail/taur/taurtype = tail_style
 			working.pixel_x = -16
 			if(taurtype.can_ride && !riding_datum)

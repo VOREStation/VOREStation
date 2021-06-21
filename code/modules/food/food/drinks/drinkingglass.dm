@@ -104,12 +104,8 @@
 	matter = list("glass" = 175)
 
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass/shotglass/on_reagent_change()
-<<<<<<< HEAD
 	cut_overlays()
-=======
-	overlays.Cut()
 	name = "shot glass"
->>>>>>> 593246b... Linter diagnostics + bans non-var relative pathing (#8150)
 
 	if(!reagents.total_volume)
 		return
@@ -120,17 +116,9 @@
 		if(4 to 7) 			filling.icon_state = "[icon_state]5"
 		if(8 to INFINITY)	filling.icon_state = "[icon_state]12"
 
-<<<<<<< HEAD
-		filling.color += reagents.get_color()
-		add_overlay(filling)
-		name = "shot glass of " + reagents.get_master_reagent_name() //No matter what, the glass will tell you the reagent's name. Might be too abusable in the future.
-	else
-		name = "shot glass"
-=======
 	filling.color += reagents.get_color()
-	overlays += filling
+	add_overlay(filling)
 	name += " of [reagents.get_master_reagent_name()]" //No matter what, the glass will tell you the reagent's name. Might be too abusable in the future.
->>>>>>> 593246b... Linter diagnostics + bans non-var relative pathing (#8150)
 
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass/fitnessflask
 	name = "fitness shaker"

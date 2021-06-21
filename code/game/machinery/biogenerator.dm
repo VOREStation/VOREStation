@@ -305,5 +305,3 @@
 
 	build_eff = man_rating
 	eat_eff = bin_rating
-
-#undef BIOGENITEM

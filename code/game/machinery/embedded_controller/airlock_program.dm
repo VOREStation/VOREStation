@@ -1,5 +1,4 @@
 //Handles the control of airlocks
-
 #define STATE_IDLE			0
 #define STATE_PREPARE		1
 #define STATE_DEPRESSURIZE	2
@@ -416,8 +415,10 @@ send an additional command to open the door again.
 		signalDoor(doorTag, doorCommand)
 
 #undef SKIPCYCLE_MARGIN
+#undef MIN_TARGET_PRESSURE
 
 #undef STATE_IDLE
+#undef STATE_PREPARE
 #undef STATE_DEPRESSURIZE
 #undef STATE_PRESSURIZE
 

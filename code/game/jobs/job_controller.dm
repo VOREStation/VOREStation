@@ -45,88 +45,13 @@ var/global/datum/controller/occupations/job_master
 		if(J.title == rank)	return J
 	return null
 
-<<<<<<< HEAD
-	proc/AssignRole(var/mob/new_player/player, var/rank, var/latejoin = 0)
-		Debug("Running AR, Player: [player], Rank: [rank], LJ: [latejoin]")
-		if(player && player.mind && rank)
-			var/datum/job/job = GetJob(rank)
-			if(!job)
-				return 0
-			if(job.minimum_character_age && (player.client.prefs.age < job.minimum_character_age))
-				return 0
-			if(jobban_isbanned(player, rank))
-				return 0
-			if(!job.player_old_enough(player.client))
-				return 0
-			//VOREStation Add
-			if(!job.player_has_enough_playtime(player.client))
-				return 0
-			if(!is_job_whitelisted(player, rank))
-				return 0
-			//VOREStation Add End
-
-			var/position_limit = job.total_positions
-			if(!latejoin)
-				position_limit = job.spawn_positions
-			if((job.current_positions < position_limit) || position_limit == -1)
-				Debug("Player: [player] is now Rank: [rank], JCP:[job.current_positions], JPL:[position_limit]")
-				player.mind.assigned_role = rank
-				player.mind.role_alt_title = GetPlayerAltTitle(player, rank)
-				unassigned -= player
-				job.current_positions++
-				return 1
-		Debug("AR has failed, Player: [player], Rank: [rank]")
-		return 0
-=======
 /datum/controller/occupations/proc/GetPlayerAltTitle(mob/new_player/player, rank)
 	return player.client.prefs.GetPlayerAltTitle(GetJob(rank))
->>>>>>> 593246b... Linter diagnostics + bans non-var relative pathing (#8150)
 
 /datum/controller/occupations/proc/AssignRole(var/mob/new_player/player, var/rank, var/latejoin = 0)
 	Debug("Running AR, Player: [player], Rank: [rank], LJ: [latejoin]")
 	if(player && player.mind && rank)
 		var/datum/job/job = GetJob(rank)
-<<<<<<< HEAD
-		if(job && job.total_positions != -1)
-			job.total_positions++
-			return 1
-		return 0
-
-	proc/FindOccupationCandidates(datum/job/job, level, flag)
-		Debug("Running FOC, Job: [job], Level: [level], Flag: [flag]")
-		var/list/candidates = list()
-		for(var/mob/new_player/player in unassigned)
-			if(jobban_isbanned(player, job.title))
-				Debug("FOC isbanned failed, Player: [player]")
-				continue
-			if(!job.player_old_enough(player.client))
-				Debug("FOC player not old enough, Player: [player]")
-				continue
-			if(job.minimum_character_age && (player.client.prefs.age < job.minimum_character_age))
-				Debug("FOC character not old enough, Player: [player]")
-				continue
-			//VOREStation Code Start
-			if(!job.player_has_enough_playtime(player.client))
-				Debug("FOC character not enough playtime, Player: [player]")
-				continue
-			if(!is_job_whitelisted(player, job.title))
-				Debug("FOC is_job_whitelisted failed, Player: [player]")
-				continue
-			//VOREStation Code End
-			if(flag && !(player.client.prefs.be_special & flag))
-				Debug("FOC flag failed, Player: [player], Flag: [flag], ")
-				continue
-			if(player.client.prefs.GetJobDepartment(job, level) & job.flag)
-				Debug("FOC pass, Player: [player], Level:[level]")
-				candidates += player
-		return candidates
-
-	proc/GiveRandomJob(var/mob/new_player/player)
-		Debug("GRJ Giving random job, Player: [player]")
-		for(var/datum/job/job in shuffle(occupations))
-			if(!job)
-				continue
-=======
 		if(!job)
 			return 0
 		if(job.minimum_character_age && (player.client.prefs.age < job.minimum_character_age))
@@ -135,7 +60,12 @@ var/global/datum/controller/occupations/job_master
 			return 0
 		if(!job.player_old_enough(player.client))
 			return 0
->>>>>>> 593246b... Linter diagnostics + bans non-var relative pathing (#8150)
+		//VOREStation Add
+		if(!job.player_has_enough_playtime(player.client))
+			return 0
+		if(!is_job_whitelisted(player, rank))
+			return 0
+		//VOREStation Add End
 
 		var/position_limit = job.total_positions
 		if(!latejoin)
@@ -150,10 +80,6 @@ var/global/datum/controller/occupations/job_master
 	Debug("AR has failed, Player: [player], Rank: [rank]")
 	return 0
 
-<<<<<<< HEAD
-			if(istype(job, GetJob(USELESS_JOB))) // We don't want to give him assistant, that's boring! //VOREStation Edit - Visitor not Assistant
-				continue
-=======
 /datum/controller/occupations/proc/FreeRole(var/rank)	//making additional slot on the fly
 	var/datum/job/job = GetJob(rank)
 	if(job && job.total_positions != -1)
@@ -174,6 +100,14 @@ var/global/datum/controller/occupations/job_master
 		if(job.minimum_character_age && (player.client.prefs.age < job.minimum_character_age))
 			Debug("FOC character not old enough, Player: [player]")
 			continue
+		//VOREStation Code Start
+		if(!job.player_has_enough_playtime(player.client))
+			Debug("FOC character not enough playtime, Player: [player]")
+			continue
+		if(!is_job_whitelisted(player, job.title))
+			Debug("FOC is_job_whitelisted failed, Player: [player]")
+			continue
+		//VOREStation Code End
 		if(flag && !(player.client.prefs.be_special & flag))
 			Debug("FOC flag failed, Player: [player], Flag: [flag], ")
 			continue
@@ -191,7 +125,7 @@ var/global/datum/controller/occupations/job_master
 		if(job.minimum_character_age && (player.client.prefs.age < job.minimum_character_age))
 			continue
 
-		if(istype(job, GetJob("Assistant"))) // We don't want to give him assistant, that's boring!
+		if(istype(job, GetJob(USELESS_JOB))) // We don't want to give him assistant, that's boring! //VOREStation Edit - Visitor not Assistant
 			continue
 
 		if(SSjob.is_job_in_department(job.title, DEPARTMENT_COMMAND)) //If you want a command position, select it!
@@ -204,6 +138,15 @@ var/global/datum/controller/occupations/job_master
 		if(!job.player_old_enough(player.client))
 			Debug("GRJ player not old enough, Player: [player]")
 			continue
+
+		//VOREStation Code Start
+		if(!job.player_has_enough_playtime(player.client))
+			Debug("GRJ player not enough playtime, Player: [player]")
+			continue
+		if(!is_job_whitelisted(player, job.title))
+			Debug("GRJ player not whitelisted for this job, Player: [player], Job: [job.title]")
+			continue
+		//VOREStation Code End
 
 		if((job.current_positions < job.spawn_positions) || job.spawn_positions == -1)
 			Debug("GRJ Random job given, Player: [player], Job: [job]")
@@ -229,7 +172,6 @@ var/global/datum/controller/occupations/job_master
 			if(!job)	continue
 			var/list/candidates = FindOccupationCandidates(job, level)
 			if(!candidates.len)	continue
->>>>>>> 593246b... Linter diagnostics + bans non-var relative pathing (#8150)
 
 			// Build a weighted list, weight by age.
 			var/list/weightedCandidates = list()
@@ -256,23 +198,6 @@ var/global/datum/controller/occupations/job_master
 						// If there's ABSOLUTELY NOBODY ELSE
 						if(candidates.len == 1) weightedCandidates[V] = 1
 
-<<<<<<< HEAD
-			//VOREStation Code Start
-			if(!job.player_has_enough_playtime(player.client))
-				Debug("GRJ player not enough playtime, Player: [player]")
-				continue
-			if(!is_job_whitelisted(player, job.title))
-				Debug("GRJ player not whitelisted for this job, Player: [player], Job: [job.title]")
-				continue
-			//VOREStation Code End
-
-			if((job.current_positions < job.spawn_positions) || job.spawn_positions == -1)
-				Debug("GRJ Random job given, Player: [player], Job: [job]")
-				AssignRole(player, job.title)
-				unassigned -= player
-				break
-=======
->>>>>>> 593246b... Linter diagnostics + bans non-var relative pathing (#8150)
 
 			var/mob/new_player/candidate = pickweight(weightedCandidates)
 			if(AssignRole(candidate, command_position))
@@ -319,20 +244,7 @@ var/global/datum/controller/occupations/job_master
 	//Shuffle players and jobs
 	unassigned = shuffle(unassigned)
 
-<<<<<<< HEAD
-		//People who wants to be assistants, sure, go on.
-		Debug("DO, Running Assistant Check 1")
-		var/datum/job/assist = new DEFAULT_JOB_TYPE ()
-		var/list/assistant_candidates = FindOccupationCandidates(assist, 3)
-		Debug("AC1, Candidates: [assistant_candidates.len]")
-		for(var/mob/new_player/player in assistant_candidates)
-			Debug("AC1 pass, Player: [player]")
-			AssignRole(player, USELESS_JOB) //VOREStation Edit - Visitor not Assistant
-			assistant_candidates -= player
-		Debug("DO, AC1 end")
-=======
 	HandleFeedbackGathering()
->>>>>>> 593246b... Linter diagnostics + bans non-var relative pathing (#8150)
 
 	//People who wants to be assistants, sure, go on.
 	Debug("DO, Running Assistant Check 1")
@@ -341,7 +253,7 @@ var/global/datum/controller/occupations/job_master
 	Debug("AC1, Candidates: [assistant_candidates.len]")
 	for(var/mob/new_player/player in assistant_candidates)
 		Debug("AC1 pass, Player: [player]")
-		AssignRole(player, "Assistant")
+		AssignRole(player, USELESS_JOB) //VOREStation Edit - Visitor not Assistant
 		assistant_candidates -= player
 	Debug("DO, AC1 end")
 
@@ -377,20 +289,15 @@ var/global/datum/controller/occupations/job_master
 					Debug("DO isbanned failed, Player: [player], Job:[job.title]")
 					continue
 
-<<<<<<< HEAD
-					//VOREStation Add
-					if(!job.player_has_enough_playtime(player.client))
-						Debug("DO player not enough playtime, Player: [player]")
-						continue
-					//VOREStation Add End
-
-					// If the player wants that job on this level, then try give it to him.
-					if(player.client.prefs.GetJobDepartment(job, level) & job.flag)
-=======
 				if(!job.player_old_enough(player.client))
 					Debug("DO player not old enough, Player: [player], Job:[job.title]")
 					continue
->>>>>>> 593246b... Linter diagnostics + bans non-var relative pathing (#8150)
+
+				//VOREStation Add
+				if(!job.player_has_enough_playtime(player.client))
+					Debug("DO player not enough playtime, Player: [player]")
+					continue
+				//VOREStation Add End
 
 				// If the player wants that job on this level, then try give it to him.
 				if(player.client.prefs.GetJobDepartment(job, level) & job.flag)
@@ -433,15 +340,8 @@ var/global/datum/controller/occupations/job_master
 	for(var/mob/new_player/player in unassigned)
 		if(player.client.prefs.alternate_option == BE_ASSISTANT)
 			Debug("AC2 Assistant located, Player: [player]")
-			AssignRole(player, "Assistant")
+			AssignRole(player, USELESS_JOB) //VOREStation Edit - Visitor not Assistant
 
-<<<<<<< HEAD
-		// For those who wanted to be assistant if their preferences were filled, here you go.
-		for(var/mob/new_player/player in unassigned)
-			if(player.client.prefs.alternate_option == BE_ASSISTANT)
-				Debug("AC2 Assistant located, Player: [player]")
-				AssignRole(player, USELESS_JOB) //VOREStation Edit - Visitor not Assistant
-=======
 	//For ones returning to lobby
 	for(var/mob/new_player/player in unassigned)
 		if(player.client.prefs.alternate_option == RETURN_TO_LOBBY)
@@ -478,7 +378,6 @@ var/global/datum/controller/occupations/job_master
 				return
 			else
 				H.forceMove(T)
->>>>>>> 593246b... Linter diagnostics + bans non-var relative pathing (#8150)
 
 		// Moving wheelchair if they have one
 		if(H.buckled && istype(H.buckled, /obj/structure/bed/chair/wheelchair))
@@ -488,7 +387,7 @@ var/global/datum/controller/occupations/job_master
 	if(job)
 
 		//Equip custom gear loadout.
-		var/list/custom_equip_slots = list() //If more than one item takes the same slot, all after the first one spawn in storage.
+		var/list/custom_equip_slots = list()
 		var/list/custom_equip_leftovers = list()
 		if(H.client.prefs.gear && H.client.prefs.gear.len && !(job.mob_type & JOB_SILICON))
 			for(var/thing in H.client.prefs.gear)
@@ -521,53 +420,6 @@ var/global/datum/controller/occupations/job_master
 					I.implant_loadout(H)
 					continue
 
-<<<<<<< HEAD
-			//Equip custom gear loadout.
-			var/list/custom_equip_slots = list()
-			var/list/custom_equip_leftovers = list()
-			if(H.client.prefs.gear && H.client.prefs.gear.len && !(job.mob_type & JOB_SILICON))
-				for(var/thing in H.client.prefs.gear)
-					var/datum/gear/G = gear_datums[thing]
-					if(!G) //Not a real gear datum (maybe removed, as this is loaded from their savefile)
-						continue
-
-					var/permitted
-					// Check if it is restricted to certain roles
-					if(G.allowed_roles)
-						for(var/job_name in G.allowed_roles)
-							if(job.title == job_name)
-								permitted = 1
-					else
-						permitted = 1
-
-					// Check if they're whitelisted for this gear (in alien whitelist? seriously?)
-					if(G.whitelisted && !is_alien_whitelisted(H, GLOB.all_species[G.whitelisted]))
-						permitted = 0
-
-					// If they aren't, tell them
-					if(!permitted)
-						to_chat(H, "<span class='warning'>Your current species, job or whitelist status does not permit you to spawn with [thing]!</span>")
-						continue
-
-					// Implants get special treatment
-					if(G.slot == "implant")
-						var/obj/item/weapon/implant/I = G.spawn_item(H, H.client.prefs.gear[G.display_name])
-						I.invisibility = 100
-						I.implant_loadout(H)
-						continue
-
-					// Try desperately (and sorta poorly) to equip the item. Now with increased desperation!
-					if(G.slot && !(G.slot in custom_equip_slots))
-						var/metadata = H.client.prefs.gear[G.display_name]
-						if(G.slot == slot_wear_mask || G.slot == slot_wear_suit || G.slot == slot_head)
-							custom_equip_leftovers += thing
-						else if(H.equip_to_slot_or_del(G.spawn_item(H, metadata), G.slot))
-							to_chat(H, "<span class='notice'>Equipping you with \the [thing]!</span>")
-							if(G.slot != slot_tie)
-								custom_equip_slots.Add(G.slot)
-						else
-							custom_equip_leftovers.Add(thing)
-=======
 				// Try desperately (and sorta poorly) to equip the item. Now with increased desperation!
 				if(G.slot && !(G.slot in custom_equip_slots))
 					var/metadata = H.client.prefs.gear[G.display_name]
@@ -577,7 +429,6 @@ var/global/datum/controller/occupations/job_master
 						to_chat(H, "<span class='notice'>Equipping you with \the [thing]!</span>")
 						if(G.slot != slot_tie)
 							custom_equip_slots.Add(G.slot)
->>>>>>> 593246b... Linter diagnostics + bans non-var relative pathing (#8150)
 					else
 						custom_equip_leftovers.Add(thing)
 				else
@@ -613,6 +464,7 @@ var/global/datum/controller/occupations/job_master
 
 	H.job = rank
 	log_game("JOINED [key_name(H)] as \"[rank]\"")
+	log_game("SPECIES [key_name(H)] is a: \"[H.species.name]\"") //VOREStation Add
 
 	// If they're head, give them the account info for their department
 	if(H.mind && job.department_accounts)
@@ -654,133 +506,6 @@ var/global/datum/controller/occupations/job_master
 					to_chat(H, "<span class='notice'>Placing \the [thing] in your [B.name]!</span>")
 					var/datum/gear/G = gear_datums[thing]
 					var/metadata = H.client.prefs.gear[G.display_name]
-<<<<<<< HEAD
-					if(H.equip_to_slot_or_del(G.spawn_item(H, metadata), G.slot))
-						to_chat(H, "<span class='notice'>Equipping you with \the [thing]!</span>")
-						custom_equip_slots.Add(G.slot)
-					else
-						spawn_in_storage += thing
-		else
-			to_chat(H, "Your job is [rank] and the game just can't handle it! Please report this bug to an administrator.")
-
-		H.job = rank
-		log_game("JOINED [key_name(H)] as \"[rank]\"")
-		log_game("SPECIES [key_name(H)] is a: \"[H.species.name]\"") //VOREStation Add
-
-		// If they're head, give them the account info for their department
-		if(H.mind && job.department_accounts)
-			var/remembered_info = ""
-			for(var/D in job.department_accounts)
-				var/datum/money_account/department_account = department_accounts[D]
-				if(department_account)
-					remembered_info += "<b>Department account number ([D]):</b> #[department_account.account_number]<br>"
-					remembered_info += "<b>Department account pin ([D]):</b> [department_account.remote_access_pin]<br>"
-					remembered_info += "<b>Department account funds ([D]):</b> $[department_account.money]<br>"
-
-			H.mind.store_memory(remembered_info)
-
-		var/alt_title = null
-		if(H.mind)
-			H.mind.assigned_role = rank
-			alt_title = H.mind.role_alt_title
-
-			// If we're a silicon, we may be done at this point
-			if(job.mob_type & JOB_SILICON_ROBOT)
-				return H.Robotize()
-			if(job.mob_type & JOB_SILICON_AI)
-				return H
-
-			// TWEET PEEP
-			if(rank == "Site Manager")
-				var/sound/announce_sound = (ticker.current_state <= GAME_STATE_SETTING_UP) ? null : sound('sound/misc/boatswain.ogg', volume=20)
-				captain_announcement.Announce("All hands, [alt_title ? alt_title : "Site Manager"] [H.real_name] on deck!", new_sound = announce_sound, zlevel = H.z)
-
-			//Deferred item spawning.
-			if(spawn_in_storage && spawn_in_storage.len)
-				var/obj/item/weapon/storage/B
-				for(var/obj/item/weapon/storage/S in H.contents)
-					B = S
-					break
-
-				if(!isnull(B))
-					for(var/thing in spawn_in_storage)
-						to_chat(H, "<span class='notice'>Placing \the [thing] in your [B.name]!</span>")
-						var/datum/gear/G = gear_datums[thing]
-						var/metadata = H.client.prefs.gear[G.display_name]
-						G.spawn_item(B, metadata)
-				else
-					to_chat(H, "<span class='danger'>Failed to locate a storage object on your mob, either you spawned with no arms and no backpack or this is a bug.</span>")
-
-		if(istype(H)) //give humans wheelchairs, if they need them.
-			var/obj/item/organ/external/l_foot = H.get_organ("l_foot")
-			var/obj/item/organ/external/r_foot = H.get_organ("r_foot")
-			var/obj/item/weapon/storage/S = locate() in H.contents
-			var/obj/item/wheelchair/R
-			if(S)
-				R = locate() in S.contents
-			if(!l_foot || !r_foot || R)
-				var/wheelchair_type = R?.unfolded_type || /obj/structure/bed/chair/wheelchair
-				var/obj/structure/bed/chair/wheelchair/W = new wheelchair_type(H.loc)
-				W.buckle_mob(H)
-				H.update_canmove()
-				W.set_dir(H.dir)
-				W.add_fingerprint(H)
-				if(R)
-					W.color = R.color
-					qdel(R)
-
-		to_chat(H, "<B>You are [job.total_positions == 1 ? "the" : "a"] [alt_title ? alt_title : rank].</B>")
-
-		if(job.supervisors)
-			to_chat(H, "<b>As the [alt_title ? alt_title : rank] you answer directly to [job.supervisors]. Special circumstances may change this.</b>")
-		if(job.has_headset)
-			H.equip_to_slot_or_del(new /obj/item/device/radio/headset(H), slot_l_ear)
-			to_chat(H, "<b>To speak on your department's radio channel use :h. For the use of other channels, examine your headset.</b>")
-
-		if(job.req_admin_notify)
-			to_chat(H, "<b>You are playing a job that is important for Game Progression. If you have to disconnect, please notify the admins via adminhelp.</b>")
-
-		// EMAIL GENERATION
-		// Email addresses will be created under this domain name. Mostly for the looks.
-		var/domain = "freemail.nt"
-		if(using_map && LAZYLEN(using_map.usable_email_tlds))
-			domain = using_map.usable_email_tlds[1]
-		var/sanitized_name = sanitize(replacetext(replacetext(lowertext(H.real_name), " ", "."), "'", ""))
-		var/complete_login = "[sanitized_name]@[domain]"
-
-		// It is VERY unlikely that we'll have two players, in the same round, with the same name and branch, but still, this is here.
-		// If such conflict is encountered, a random number will be appended to the email address. If this fails too, no email account will be created.
-		if(ntnet_global.does_email_exist(complete_login))
-			complete_login = "[sanitized_name][random_id(/datum/computer_file/data/email_account/, 100, 999)]@[domain]"
-
-		// If even fallback login generation failed, just don't give them an email. The chance of this happening is astronomically low.
-		if(ntnet_global.does_email_exist(complete_login))
-			to_chat(H, "You were not assigned an email address.")
-			H.mind.store_memory("You were not assigned an email address.")
-		else
-			var/datum/computer_file/data/email_account/EA = new/datum/computer_file/data/email_account()
-			EA.password = GenerateKey()
-			EA.login = 	complete_login
-			to_chat(H, "Your email account address is <b>[EA.login]</b> and the password is <b>[EA.password]</b>. This information has also been placed into your notes.")
-			H.mind.store_memory("Your email account address is [EA.login] and the password is [EA.password].")
-		// END EMAIL GENERATION
-
-		//Gives glasses to the vision impaired
-		if(H.disabilities & NEARSIGHTED)
-			var/equipped = H.equip_to_slot_or_del(new /obj/item/clothing/glasses/regular(H), slot_glasses)
-			if(equipped != 1)
-				var/obj/item/clothing/glasses/G = H.glasses
-				G.prescription = 1
-
-		BITSET(H.hud_updateflag, ID_HUD)
-		BITSET(H.hud_updateflag, IMPLOYAL_HUD)
-		BITSET(H.hud_updateflag, SPECIALROLE_HUD)
-		return H
-
-	proc/LoadJobs(jobsfile) //ran during round setup, reads info from jobs.txt -- Urist
-		if(!config.load_jobs_from_txt)
-			return 0
-=======
 					G.spawn_item(B, metadata)
 			else
 				to_chat(H, "<span class='danger'>Failed to locate a storage object on your mob, either you spawned with no arms and no backpack or this is a bug.</span>")
@@ -854,7 +579,6 @@ var/global/datum/controller/occupations/job_master
 /datum/controller/occupations/proc/LoadJobs(jobsfile) //ran during round setup, reads info from jobs.txt -- Urist
 	if(!config.load_jobs_from_txt)
 		return 0
->>>>>>> 593246b... Linter diagnostics + bans non-var relative pathing (#8150)
 
 	var/list/jobEntries = file2list(jobsfile)
 
@@ -887,42 +611,6 @@ var/global/datum/controller/occupations/job_master
 	return 1
 
 
-<<<<<<< HEAD
-	proc/HandleFeedbackGathering()
-		for(var/datum/job/job in occupations)
-			var/tmp_str = "|[job.title]|"
-
-			var/level1 = 0 //high
-			var/level2 = 0 //medium
-			var/level3 = 0 //low
-			var/level4 = 0 //never
-			var/level5 = 0 //banned
-			var/level6 = 0 //account too young
-			for(var/mob/new_player/player in player_list)
-				if(!(player.ready && player.mind && !player.mind.assigned_role))
-					continue //This player is not ready
-				if(jobban_isbanned(player, job.title))
-					level5++
-					continue
-				if(!job.player_old_enough(player.client))
-					level6++
-					continue
-				//VOREStation Add
-				if(!job.player_has_enough_playtime(player.client))
-					level6++
-					continue
-				//VOREStation Add End
-				if(player.client.prefs.GetJobDepartment(job, 1) & job.flag)
-					level1++
-				else if(player.client.prefs.GetJobDepartment(job, 2) & job.flag)
-					level2++
-				else if(player.client.prefs.GetJobDepartment(job, 3) & job.flag)
-					level3++
-				else level4++ //not selected
-
-			tmp_str += "HIGH=[level1]|MEDIUM=[level2]|LOW=[level3]|NEVER=[level4]|BANNED=[level5]|YOUNG=[level6]|-"
-			feedback_add_details("job_preferences",tmp_str)
-=======
 /datum/controller/occupations/proc/HandleFeedbackGathering()
 	for(var/datum/job/job in occupations)
 		var/tmp_str = "|[job.title]|"
@@ -942,6 +630,11 @@ var/global/datum/controller/occupations/job_master
 			if(!job.player_old_enough(player.client))
 				level6++
 				continue
+			//VOREStation Add
+			if(!job.player_has_enough_playtime(player.client))
+				level6++
+				continue
+			//VOREStation Add End
 			if(player.client.prefs.GetJobDepartment(job, 1) & job.flag)
 				level1++
 			else if(player.client.prefs.GetJobDepartment(job, 2) & job.flag)
@@ -952,7 +645,6 @@ var/global/datum/controller/occupations/job_master
 
 		tmp_str += "HIGH=[level1]|MEDIUM=[level2]|LOW=[level3]|NEVER=[level4]|BANNED=[level5]|YOUNG=[level6]|-"
 		feedback_add_details("job_preferences",tmp_str)
->>>>>>> 593246b... Linter diagnostics + bans non-var relative pathing (#8150)
 
 /datum/controller/occupations/proc/LateSpawn(var/client/C, var/rank)
 

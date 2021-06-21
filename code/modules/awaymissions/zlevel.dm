@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-proc/createRandomZlevel()
-	if(awaydestinations.len || UNIT_TEST)	//crude, but it saves another var! //VOREStation Edit - No loading away missions during CI testing
-=======
 /proc/createRandomZlevel()
-	if(awaydestinations.len)	//crude, but it saves another var!
->>>>>>> 593246b... Linter diagnostics + bans non-var relative pathing (#8150)
+	if(awaydestinations.len || UNIT_TEST)	//crude, but it saves another var! //VOREStation Edit - No loading away missions during CI testing
 		return
 
 	var/list/potentialRandomZlevels = list()

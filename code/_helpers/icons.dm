@@ -366,18 +366,14 @@ world
 	. = list(r, g, b)
 	if(usealpha) . += alpha
 
-<<<<<<< HEAD
-proc/RGBdec2hex(var/list/values)
+/proc/RGBdec2hex(var/list/values)
 	var/string = ""
 	while(values.len)
 		string = "[num2text(values[values.len], 2, 16)][string]"
 		values.len--
 	return "#[string]"
 
-proc/ReadHSV(hsv)
-=======
 /proc/ReadHSV(hsv)
->>>>>>> 593246b... Linter diagnostics + bans non-var relative pathing (#8150)
 	if(!hsv) return
 
 	// interpret the HSV or HSVA value

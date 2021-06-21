@@ -1,6 +1,3 @@
-#define ORGANICS	1
-#define SYNTHETICS	2
-
 /datum/trait
 	var/name
 	var/desc = "Contact a developer if you see this trait."

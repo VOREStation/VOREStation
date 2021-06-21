@@ -123,41 +123,6 @@ var/global/list/all_objectives = list()
 		return 0
 	return 0
 
-<<<<<<< HEAD
-datum/objective/anti_revolution/demote
-	find_target()
-		..()
-		if(target && target.current)
-			var/datum/gender/T = gender_datums[target.current.get_visible_gender()]
-			explanation_text = "[target.current.real_name], the [target.assigned_role]  has been classified as harmful to [using_map.company_name]'s goals. Demote [T.him] to assistant."
-		else
-			explanation_text = "Free Objective"
-		return target
-
-	find_target_by_role(role, role_type=0)
-		..(role, role_type)
-		if(target && target.current)
-			var/datum/gender/T = gender_datums[target.current.get_visible_gender()]
-			explanation_text = "[target.current.real_name], the [!role_type ? target.assigned_role : target.special_role] has been classified as harmful to [using_map.company_name]'s goals. Demote [T.him] to assistant."
-		else
-			explanation_text = "Free Objective"
-		return target
-
-	check_completion()
-		if(target && target.current && istype(target,/mob/living/carbon/human))
-			var/obj/item/weapon/card/id/I = target.current:wear_id
-			if(istype(I, /obj/item/device/pda))
-				var/obj/item/device/pda/P = I
-				I = P.id
-
-			if(!istype(I)) return 1
-
-			if(I.assignment == USELESS_JOB) //VOREStation Edit - Visitor not Assistant
-				return 1
-			else
-				return 0
-		return 1
-=======
 /datum/objective/anti_revolution/demote/find_target()
 	..()
 	if(target && target.current)
@@ -166,7 +131,6 @@ datum/objective/anti_revolution/demote
 	else
 		explanation_text = "Free Objective"
 	return target
->>>>>>> 593246b... Linter diagnostics + bans non-var relative pathing (#8150)
 
 /datum/objective/anti_revolution/demote/find_target_by_role(role, role_type=0)
 	..(role, role_type)
@@ -186,7 +150,7 @@ datum/objective/anti_revolution/demote
 
 		if(!istype(I)) return 1
 
-		if(I.assignment == "Assistant")
+		if(I.assignment == USELESS_JOB) //VOREStation Edit - Visitor not Assistant
 			return 1
 		else
 			return 0
