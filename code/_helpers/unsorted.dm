@@ -1621,6 +1621,9 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	// 'Utility' planes
 	. += new /obj/screen/plane_master/fullbright						//Lighting system (lighting_overlay objects)
 	. += new /obj/screen/plane_master/lighting							//Lighting system (but different!)
+	. += new /obj/screen/plane_master/o_light_visual					//Object lighting (using masks)
+	. += new /obj/screen/plane_master/emissive							//Emissive overlays
+	
 	. += new /obj/screen/plane_master/ghosts							//Ghosts!
 	. += new /obj/screen/plane_master{plane = PLANE_AI_EYE}			//AI Eye!
 

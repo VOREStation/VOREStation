@@ -298,14 +298,15 @@
 //
 /mob/living/proc/examine_bellies()
 	if(!show_pudge()) //Some clothing or equipment can hide this.
-		return ""
+		return list()
 
-	var/message = ""
+	var/list/message_list = list()
 	for (var/belly in vore_organs)
 		var/obj/belly/B = belly
-		message += B.get_examine_msg()
+		message_list += B.get_examine_msg()
+		message_list += B.get_examine_msg_absorbed()
 
-	return message
+	return message_list
 
 //
 // Whether or not people can see our belly messages
@@ -897,6 +898,8 @@
 				to_chat(src, "<span class='notice'>[msg]</span>")
 			to_chat(src, "<span class='notice'><b>Examine messages:</b></span>")
 			for(var/msg in B.examine_messages)
+				to_chat(src, "<span class='notice'>[msg]</span>")
+			for(var/msg in B.examine_messages_absorbed)
 				to_chat(src, "<span class='notice'>[msg]</span>")
 			to_chat(src, "<span class='notice'><b>Emote lists:</b></span>")
 			for(var/EL in B.emote_lists)

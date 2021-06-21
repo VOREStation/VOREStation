@@ -207,7 +207,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		else
 			DI = damage_icon_parts[cache_index]
 
-		standing_image.overlays += DI
+		standing_image.add_overlay(DI)
 
 	overlays_standing[DAMAGE_LAYER]	= standing_image
 	apply_layer(DAMAGE_LAYER)
@@ -472,14 +472,21 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 			face_standing.Blend(hair_s, ICON_OVERLAY)
 
-	if(head_organ.nonsolid || head_organ.transparent)
+	if(head_organ.transparent)		//VOREStation Edit: Prometheans are not ALWAYS transparent
 		face_standing += rgb(,,,120)
 
 	var/icon/ears_s = get_ears_overlay()
+	var/image/em_block_ears
 	if(ears_s)
 		face_standing.Blend(ears_s, ICON_OVERLAY)
+		if(ear_style?.em_block)
+			em_block_ears = em_block_image_generic(image(ears_s))
+	
+	var/image/semifinal = image(face_standing, layer = BODY_LAYER+HAIR_LAYER, "pixel_y" = head_organ.head_offset)
+	if(em_block_ears)
+		semifinal.overlays += em_block_ears // Leaving this as overlays +=
 
-	overlays_standing[HAIR_LAYER] = image(face_standing, layer = BODY_LAYER+HAIR_LAYER, "pixel_y" = head_organ.head_offset)
+	overlays_standing[HAIR_LAYER] = semifinal
 	apply_layer(HAIR_LAYER)
 	//return //VOREStation Edit
 
@@ -532,6 +539,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	else
 		eyes_icon.Blend(rgb(128,0,0), ICON_ADD)
 
+	// Convert to emissive at some point
 	var/image/eyes_image = image(eyes_icon)
 	eyes_image.plane = PLANE_LIGHTING_ABOVE
 	eyes_image.appearance_flags = appearance_flags
@@ -566,7 +574,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 	for(var/mut in mutations)
 		if(mut == LASER)
-			standing.overlays += "lasereyes_s" //TODO
+			standing.overlays += "lasereyes_s" // Leaving this as overlays +=
 
 	overlays_standing[MUTATIONS_LAYER]	= standing
 	apply_layer(MUTATIONS_LAYER)
@@ -1067,7 +1075,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	for(var/datum/modifier/M in modifiers)
 		if(M.mob_overlay_state)
 			var/image/I = image(icon = 'icons/mob/modifier_effects.dmi', icon_state = M.mob_overlay_state)
-			effects.overlays += I //TODO, this compositing is annoying.
+			effects.overlays += I // Leaving this as overlays +=
 
 	overlays_standing[MODIFIER_EFFECTS_LAYER] = effects
 
@@ -1113,7 +1121,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	for(var/obj/item/organ/external/E in organs)
 		if(E.open)
 			var/image/I = image(icon = 'icons/mob/surgery.dmi',  icon_state = "[E.icon_name][round(E.open)]", layer = BODY_LAYER+SURGERY_LAYER)
-			total.overlays += I //TODO: This compositing is annoying
+			total.overlays += I // Leaving this as overlays +=
 
 	if(total.overlays.len)
 		overlays_standing[SURGERY_LAYER] = total
@@ -1127,7 +1135,9 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	if(synthetic && synthetic.includes_wing && !wing_style && !wings_hidden) //VOREStation Edit
 		var/icon/wing_s = new/icon("icon" = synthetic.icon, "icon_state" = "wing") //I dunno. If synths have some custom wing?
 		wing_s.Blend(rgb(src.r_skin, src.g_skin, src.b_skin), species.color_mult ? ICON_MULTIPLY : ICON_ADD)
-		return image(wing_s)
+		var/image/working = image(wing_s)
+		working.overlays += em_block_image_generic(working) // Leaving this as overlays +=
+		return working
 
 	//If you have custom wings selected
 	if(wing_style && !(wear_suit && wear_suit.flags_inv & HIDETAIL) && !wings_hidden) //VOREStation Edit
@@ -1150,7 +1160,10 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 				overlay.Blend(rgb(src.r_wing3, src.g_wing3, src.b_wing3), wing_style.color_blend_mode)
 				wing_s.Blend(overlay, ICON_OVERLAY)
 				qdel(overlay)
-		return image(wing_s)
+		var/image/working = image(wing_s)
+		if(wing_style.em_block)
+			working.overlays += em_block_image_generic(working) // Leaving this as overlays +=
+		return working
 
 /mob/living/carbon/human/proc/get_ears_overlay()
 	if(ear_style && !(head && (head.flags_inv & BLOCKHEADHAIR)))
@@ -1208,15 +1221,20 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 				tail_s.Blend(overlay, ICON_OVERLAY)
 				qdel(overlay)
 
+		var/image/working = image(tail_s)
+		if(tail_style.em_block)
+			working.overlays += em_block_image_generic(working) // Leaving this as overlays +=
+
 		if(isTaurTail(tail_style))
 			var/datum/sprite_accessory/tail/taur/taurtype = tail_style
+			working.pixel_x = -16
 			if(taurtype.can_ride && !riding_datum)
 				riding_datum = new /datum/riding/taur(src)
 				verbs |= /mob/living/carbon/human/proc/taur_mount
 				verbs |= /mob/living/proc/toggle_rider_reins
-			return image(tail_s, "pixel_x" = -16)
+			return working
 		else
-			return image(tail_s)
+			return working
 	return null
 
 // TODO - Move this to where it should go ~Leshana

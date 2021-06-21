@@ -94,3 +94,38 @@
 	icon_state = "pizzadelivery"
 	icon = 'icons/obj/clothing/hats_vr.dmi'
 	icon_override = 'icons/mob/head_vr.dmi'
+
+//////////TALON HATS//////////
+
+/obj/item/clothing/head/soft/talon
+	name = "ITV baseball cap"
+	desc = "It's a ballcap bearing the colors of ITV."
+	icon = 'icons/obj/clothing/hats_vr.dmi'
+	icon_override = 'icons/mob/head_vr.dmi'
+	icon_state = "talonsoft"
+	item_state = "talonsoft"
+	item_state_slots = list(slot_r_hand_str = "blacksoft", slot_l_hand_str = "blacksoft")
+
+/obj/item/clothing/head/caphat/talon
+	name = "ITV nautical hat"
+	desc = "It's a classic nautical hat bearing the colors of ITV. Perfect for commanding the Talon."
+	icon = 'icons/obj/clothing/hats_vr.dmi'
+	icon_override = 'icons/mob/head_vr.dmi'
+	icon_state = "talon_captain_cap"
+	item_state = "taloncaptaincap"
+
+obj/item/clothing/head/beret/talon
+	name = "ITV beret"
+	desc = "It's a basic baret colored to match ITV's uniforms."
+	icon = 'icons/obj/clothing/hats_vr.dmi'
+	icon_override = 'icons/mob/head_vr.dmi'
+	icon_state = "beret_talon"
+	item_state = "baret_talon"
+
+obj/item/clothing/head/beret/talon/command
+	name = "ITV officer beret"
+	desc = "It's a basic baret colored to match ITV's uniforms with a badge pinned on the front. Perfect for commanders."
+	icon = 'icons/obj/clothing/hats_vr.dmi'
+	icon_override = 'icons/mob/head_vr.dmi'
+	icon_state = "beret_talon_officer"
+	item_state = "baret_talon_command"

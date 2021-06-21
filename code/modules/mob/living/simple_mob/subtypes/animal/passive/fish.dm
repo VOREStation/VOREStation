@@ -180,7 +180,7 @@
 	update_icon()
 
 /mob/living/simple_mob/animal/passive/fish/icebass/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	..()
 
 	if(!dorsal_image)
@@ -253,7 +253,7 @@
 	update_icon()
 
 /mob/living/simple_mob/animal/passive/fish/rockfish/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	..()
 	if(!head_image)
 		head_image = image(icon, "[icon_state]_mask")

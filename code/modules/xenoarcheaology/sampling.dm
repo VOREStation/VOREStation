@@ -143,8 +143,8 @@
 			//update the sample bag
 			filled_bag.icon_state = "evidence"
 			var/image/I = image("icon"=R, "layer"=FLOAT_LAYER)
-			filled_bag.overlays += I
-			filled_bag.overlays += "evidence"
+			add_overlay(I)
+			add_overlay("evidence")
 			filled_bag.w_class = ITEMSIZE_TINY
 
 			to_chat(user, "<span class='notice'>You take a core sample of the [item_to_sample].</span>")

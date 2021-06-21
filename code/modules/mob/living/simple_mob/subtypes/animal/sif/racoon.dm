@@ -140,7 +140,7 @@
 	..()
 
 /mob/living/simple_mob/animal/sif/sakimm/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	..()
 	if(hat)
 		var/hat_state = hat.item_state ? hat.item_state : hat.icon_state

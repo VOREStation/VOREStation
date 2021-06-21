@@ -6,6 +6,7 @@
  *		Surgical Drill
  *		Scalpel
  *		Circular Saw
+ *		Bio-Regenerator
  */
 
 /obj/item/weapon/surgical
@@ -21,6 +22,16 @@
 	if(user.a_intent == I_HELP)	//A tad messy, but this should stop people from smacking their patients in surgery
 		return 0
 	..()
+
+/*
+ * Bio-Regenerator
+ */
+/obj/item/weapon/surgical/bioregen
+	name="bioregenerator"
+	desc="A special tool used in surgeries which can pull toxins from and restore oxygen to organic tissue as well as recreate missing biological structures to allow otherwise irreperable flesh to be mended."
+	icon='icons/obj/surgery_vr.dmi'
+	icon_state="bioregen"
+	drop_sound = 'sound/items/drop/scrap.ogg'
 
 /*
  * Retractor

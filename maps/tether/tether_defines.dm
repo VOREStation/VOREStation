@@ -36,7 +36,11 @@
 		"tether_night" = 50,
 		"tether2_night" = 50,
 		"tether2_dog" = 1,
-		"tether2_love" = 1
+		"tether2_love" = 1,
+		"tether_future" = 10,
+		"logo1" = 20,
+		"logo2" = 20,
+		"gateway" = 5
 	))
 	if(choice)
 		lobby_screens = list(choice)
@@ -160,9 +164,15 @@
 		)
 
 	lateload_single_pick = list(
-		//list("Carp Farm"),
-		//list("Snow Field"),
-		//list("Listening Post")
+		list("Carp Farm"),
+		list("Snow Field"),
+		list("Listening Post"),
+		list("Honleth Highlands A"),
+		list("Honleth Highlands B"),
+		list("Arynthi Lake Underground A","Arynthi Lake A"),
+		list("Arynthi Lake Underground B","Arynthi Lake B"),
+		list("Eggnog Town Underground","Eggnog Town"),
+		list("Wild West")
 		)
 
 	ai_shell_restricted = TRUE

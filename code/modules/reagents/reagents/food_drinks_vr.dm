@@ -67,16 +67,16 @@
 	glass_name = "Monster Tamer"
 	glass_desc = "This looks like a vaguely-alcoholic slurry of meat. Gross."
 
-/datum/reagent/ethanol/pink_moo
-	name = "Pink Moo"
-	id = "pinkmoo"
+/datum/reagent/ethanol/pink_russian
+	name = "Pink Russian"
+	id = "pinkrussian"
 	description = "Like a White Russian but with 100% more pink!"
 	taste_description = "strawberry icecream, with a coffee kick"
 	color = "#d789bd"
 	strength = 15
 
-	glass_name = "Pink Moo"
-	glass_desc = "A very familiar looking drink. ...moo?"
+	glass_name = "Pink Russian"
+	glass_desc = "A very pink drink, yet with strong sense of power to it."
 
 /datum/reagent/ethanol/originalsin
 	name = "Original Sin"

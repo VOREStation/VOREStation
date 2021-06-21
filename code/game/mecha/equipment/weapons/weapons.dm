@@ -57,12 +57,12 @@
 		var/P = new projectile(projectile_turf)
 		Fire(P, target, params)
 		if(i == 1)
-			set_ready_state(0)
+			set_ready_state(FALSE)
 		if(fire_cooldown)
 			sleep(fire_cooldown)
 	if(auto_rearm)
 		projectiles = projectiles_per_shot
-//	set_ready_state(0)
+//	set_ready_state(FALSE)
 
 	do_after_cooldown()
 

@@ -123,6 +123,7 @@
 	icon = 'icons/mob/human_races/sprite_accessories/taurs.dmi'
 	do_colouration = 1 // Yes color, using tail color
 	color_blend_mode = ICON_MULTIPLY  // The sprites for taurs are designed for ICON_MULTIPLY
+	em_block = TRUE
 
 	var/icon/suit_sprites = null //File for suit sprites, if any.
 	var/icon/under_sprites = null

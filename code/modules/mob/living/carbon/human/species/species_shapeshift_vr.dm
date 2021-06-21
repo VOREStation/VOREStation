@@ -176,3 +176,4 @@
 		L.transparent = !L.transparent
 	visible_message("<span class='notice'>\The [src]'s interal composition seems to change.</span>")
 	update_icons_body()
+	update_hair()

@@ -143,7 +143,7 @@
 	spawn_nothing_percentage = 0
 
 /obj/random/cargopod/item_to_spawn()
-	return pick(prob(10);/obj/item/weapon/contraband/poster,\
+	return pick(prob(10);/obj/item/poster,\
 				prob(8);/obj/item/weapon/haircomb,\
 				prob(6);/obj/item/weapon/storage/pill_bottle/paracetamol,\
 				prob(6);/obj/item/weapon/material/butterflyblade,\

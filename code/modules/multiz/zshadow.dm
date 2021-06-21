@@ -117,10 +117,10 @@
 	if(!typing_indicator)
 		init_typing_indicator("typing")
 	if(state && !typing)
-		overlays += typing_indicator
+		add_overlay(typing_indicator)
 		typing = 1
 	else if(!state && typing)
-		overlays -= typing_indicator
+		cut_overlay(typing_indicator)
 		typing = 0
 	if(shadow)
 		shadow.set_typing_indicator(state)

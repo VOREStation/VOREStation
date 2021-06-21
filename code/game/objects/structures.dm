@@ -1,6 +1,7 @@
 /obj/structure
 	icon = 'icons/obj/structures.dmi'
 	w_class = ITEMSIZE_NO_CONTAINER
+	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 
 	var/climbable
 	var/climb_delay = 3.5 SECONDS

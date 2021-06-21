@@ -214,7 +214,7 @@
 	modifystate = "phaserkill"
 	firemodes = list(
 		list(mode_name="lethal", fire_delay=12, projectile_type=/obj/item/projectile/beam/blue, modifystate="phaserkill", charge_cost = 300),
-		list(mode_name="low-power", fire_delay=8, projectile_type=/obj/item/projectile/beam/weaklaser/blue, modifystate="phaserstun", charge_cost = 80),
+		list(mode_name="low-power", fire_delay=8, projectile_type=/obj/item/projectile/beam/weaklaser/blue, modifystate="phaserstun", charge_cost = 100),
 	)
 
 /obj/item/weapon/gun/energy/locked/frontier/unload_ammo(var/mob/user)
@@ -268,7 +268,7 @@
 	modifystate = "carbinekill"
 	firemodes = list(
 		list(mode_name="lethal", fire_delay=8, projectile_type=/obj/item/projectile/beam/blue, modifystate="carbinekill", charge_cost = 300),
-		list(mode_name="low-power", fire_delay=5, projectile_type=/obj/item/projectile/beam/weaklaser/blue, modifystate="carbinestun", charge_cost = 80),
+		list(mode_name="low-power", fire_delay=5, projectile_type=/obj/item/projectile/beam/weaklaser/blue, modifystate="carbinestun", charge_cost = 100),
 	)
 
 /obj/item/weapon/gun/energy/locked/frontier/carbine/update_icon()
@@ -299,7 +299,7 @@
 	modifystate = "holdoutkill"
 	firemodes = list(
 		list(mode_name="lethal", fire_delay=12, projectile_type=/obj/item/projectile/beam/blue, modifystate="holdoutkill", charge_cost = 600),
-		list(mode_name="low-power", fire_delay=8, projectile_type=/obj/item/projectile/beam/weaklaser/blue, modifystate="holdoutstun", charge_cost = 160),
+		list(mode_name="low-power", fire_delay=8, projectile_type=/obj/item/projectile/beam/weaklaser/blue, modifystate="holdoutstun", charge_cost = 200),
 		list(mode_name="stun", fire_delay=12, projectile_type=/obj/item/projectile/beam/stun/med, modifystate="holdoutshock", charge_cost = 300),
 	)
 
@@ -353,6 +353,30 @@
 
 /obj/item/weapon/gun/energy/locked/frontier/rifle/unlocked
 	desc = "A much larger, heavier weapon than the typical frontier-type weapons, this DMR can be fired both from the hip, and in scope. Includes a built-in crank charger for recharging away from civilization."
+	req_access = newlist() //for toggling safety
+	locked = 0
+	lockable = 0
+
+///phaser bow///
+
+/obj/item/weapon/gun/energy/locked/frontier/handbow
+	name = "phaser handbow"
+	desc = "An minaturized weapon that fires a bolt of energy. Includes a built-in crank charger for recharging away from civilization. This one has a safety interlock that prevents firing while in proximity to the facility."
+	icon = 'icons/obj/gun_vr.dmi'
+	icon_state = "handbowkill"
+	item_state = null
+	phase_power = 100
+
+	w_class = ITEMSIZE_SMALL
+	charge_cost = 600
+	modifystate = "handbowkill"
+	firemodes = list(
+		list(mode_name="lethal", fire_delay=12, projectile_type=/obj/item/projectile/energy/bow/heavy, modifystate="handbowkill", charge_cost = 600),
+		list(mode_name="low-power", fire_delay=8, projectile_type=/obj/item/projectile/energy/bow, modifystate="handbowstun", charge_cost = 200),
+	)
+
+/obj/item/weapon/gun/energy/locked/frontier/handbow/unlocked
+	desc = "An minaturized weapon that fires a bolt of energy. Includes a built-in crank charger for recharging away from civilization."
 	req_access = newlist() //for toggling safety
 	locked = 0
 	lockable = 0

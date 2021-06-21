@@ -92,7 +92,7 @@
 "bN" = (/obj/structure/table/rack,/obj/item/weapon/storage/toolbox/emergency,/turf/simulated/shuttle/floor{icon_state = "floor_white"},/area/submap/cave/qShuttle)
 "bO" = (/obj/structure/table/rack,/obj/item/clothing/head/soft/mbill{desc = "It's a ballcap bearing the colors of Major Bill's Shipping. This one looks at least a few decades out of date."; name = "old shipping cap"},/turf/simulated/shuttle/floor{icon_state = "floor_white"},/area/submap/cave/qShuttle)
 "bP" = (/obj/structure/ore_box,/turf/simulated/shuttle/floor{icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
-"bQ" = (/obj/item/weapon/contraband/poster,/turf/simulated/shuttle/floor{icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
+"bQ" = (/obj/item/poster,/turf/simulated/shuttle/floor{icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
 "bR" = (/obj/structure/loot_pile/maint/technical,/turf/simulated/shuttle/floor{icon_state = "floor_yellow"},/area/submap/cave/qShuttle)
 "bS" = (/obj/structure/sign/biohazard,/turf/simulated/shuttle/wall/hard_corner,/area/submap/cave/qShuttle)
 "bT" = (/obj/item/tape/medical{icon_state = "tape_v_0"},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/qShuttle)
@@ -144,3 +144,4 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 "}
+

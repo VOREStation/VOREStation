@@ -119,6 +119,8 @@ Class Procs:
 
 	var/speed_process = FALSE			//If false, SSmachines. If true, SSfastprocess.
 
+	blocks_emissive = EMISSIVE_BLOCK_GENERIC
+
 /obj/machinery/New(l, d=0)
 	..(l)
 	if(d)

@@ -26,13 +26,6 @@ var/list/mannequins_
 // Times that players are allowed to respawn ("ckey" = world.time)
 GLOBAL_LIST_EMPTY(respawn_timers)
 
-// Closets have magic appearances
-GLOBAL_LIST_EMPTY(closet_appearances)
-
-// Posters
-var/global/list/poster_designs = list()
-var/global/list/NT_poster_designs = list()
-
 // Holomaps
 var/global/list/holomap_markers = list()
 var/global/list/mapping_units = list()
@@ -213,18 +206,6 @@ GLOBAL_LIST_EMPTY(mannequins)
 		if(S.spawn_flags & SPECIES_IS_WHITELISTED)
 			GLOB.whitelisted_species += S.name
 
-	//Posters
-	paths = typesof(/datum/poster) - /datum/poster
-	paths -= typesof(/datum/poster/nanotrasen)
-	for(var/T in paths)
-		var/datum/poster/P = new T
-		poster_designs += P
-
-	paths = typesof(/datum/poster/nanotrasen)
-	for(var/T in paths)
-		var/datum/poster/P = new T
-		NT_poster_designs += P
-
 	//Ores
 	paths = typesof(/ore)-/ore
 	for(var/oretype in paths)
@@ -236,10 +217,7 @@ GLOBAL_LIST_EMPTY(mannequins)
 		GLOB.alloy_data += new alloytype()
 
 	//Closet appearances
-	paths = typesof(/decl/closet_appearance)
-	for(var/T in paths)
-		var/decl/closet_appearance/app = new T()
-		GLOB.closet_appearances[T] = app
+	GLOB.closet_appearances = decls_repository.get_decls_of_type(/decl/closet_appearance)
 
 	paths = typesof(/datum/sprite_accessory/ears) - /datum/sprite_accessory/ears
 	for(var/path in paths)

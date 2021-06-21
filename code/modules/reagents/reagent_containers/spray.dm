@@ -232,7 +232,7 @@
 /obj/item/weapon/reagent_containers/spray/chemsprayer/hosed/update_icon()
 	..()
 
-	overlays.Cut()
+	cut_overlays()
 
 	if(!hose_overlay)
 		hose_overlay = new icon(icon, "[icon_state]+hose")
