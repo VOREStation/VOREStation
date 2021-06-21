@@ -72,7 +72,7 @@
 		if(C.holder.fakekey && check_rights(R_ADMIN|R_MOD, FALSE, src))	// Only admins and mods can see stealthmins
 			continue
 		// VOREStation Edit End
-		if(check_rights(R_ADMIN, FALSE, C) && check_rights(R_BAN, FALSE, C)) // admins //VOREStation Edit
+		if(check_rights(R_BAN, FALSE, C)) // admins //VOREStation Edit
 			num_admins_online++
 		else if(check_rights(R_ADMIN, FALSE, C) && !check_rights(R_SERVER, FALSE, C)) // mods //VOREStation Edit: Game masters
 			category = R_MOD
