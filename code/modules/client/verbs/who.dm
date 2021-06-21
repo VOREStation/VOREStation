@@ -72,15 +72,15 @@
 		if(C.holder.fakekey && check_rights(R_ADMIN|R_MOD, FALSE, src))	// Only admins and mods can see stealthmins
 			continue
 		// VOREStation Edit End
-		if(check_rights(R_ADMIN, FALSE, C)) // admins
+		if(check_rights(R_ADMIN, FALSE, C) && check_rights(R_BAN, FALSE, C)) // admins //VOREStation Edit
 			num_admins_online++
-		else if(check_rights(R_MOD, FALSE, C)) // mods
+		else if(check_rights(R_ADMIN, FALSE, C) && !check_rights(R_SERVER, FALSE, C)) // mods //VOREStation Edit: Game masters
 			category = R_MOD
 			num_mods_online++
 		else if(check_rights(R_SERVER, FALSE, C)) // developers
 			category = R_SERVER
 			num_devs_online++
-		else if(check_rights(R_EVENT, FALSE, C)) // event managers
+		else if(check_rights(R_STEALTH, FALSE, C)) // event managers //VOREStation Edit: Retired Staff
 			category = R_EVENT
 			num_event_managers_online++
 		
