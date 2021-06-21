@@ -668,9 +668,9 @@
 /datum/supply_pack/security/posters
 	name = "Gear - Morale Posters"
 	contains = list(
-			/obj/item/weapon/contraband/poster/nanotrasen = 6
+			/obj/item/poster/nanotrasen = 6
 			)
-	cost = 20
+	cost = 10
 	containertype = /obj/structure/closet/crate/secure/nanotrasen
 	containername = "Morale Posters"
 	access = access_maint_tunnels
