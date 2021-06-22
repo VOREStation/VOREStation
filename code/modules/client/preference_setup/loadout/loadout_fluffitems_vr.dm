@@ -854,6 +854,12 @@
 	display_name = "LUNA's Distinguished Conduct Medal"
 	ckeywhitelist = list("residentcody")
 	character_name = list("LUNA")
+	
+/datum/gear/fluff/pathfinder_id
+	path = /obj/item/weapon/card/id/event/polymorphic/itg
+	display_name = "Pathfinder's ITG ID"
+	ckeywhitelist = list("residentcody")
+	character_name = list("Pathfinder")
 
 /datum/gear/fluff/nikki_dorky_outfit
 	path = /obj/item/weapon/storage/box/fluff
