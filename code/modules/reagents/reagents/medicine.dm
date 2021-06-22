@@ -8,7 +8,7 @@
 	reagent_state = LIQUID
 	color = "#00BFFF"
 	overdose = REAGENTS_OVERDOSE * 2
-	metabolism = REM * 0.5
+	metabolism = REM * 0.1
 	scannable = 1
 
 /datum/reagent/inaprovaline/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -24,9 +24,9 @@
 	reagent_state = LIQUID
 	color = "#00BFFF"
 	overdose = REAGENTS_OVERDOSE * 2
-	metabolism = REM * 0.5
+	metabolism = REM * 0.1
 	scannable = 1
-	touch_met = REM * 0.75
+	touch_met = REM * 0.15
 	can_overdose_touch = TRUE
 
 /datum/reagent/inaprovaline/topical/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)

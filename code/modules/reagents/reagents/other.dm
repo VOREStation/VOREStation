@@ -180,8 +180,8 @@
 /datum/reagent/adminordrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.heal_organ_damage(40,40)
 	M.adjustCloneLoss(-40)
-	M.adjustToxLoss(-50)
-	M.adjustOxyLoss(-100)
+	M.adjustToxLoss(-40)
+	M.adjustOxyLoss(-300)
 	M.hallucination = 0
 	M.setBrainLoss(0)
 	M.disabilities = 0
@@ -204,6 +204,7 @@
 	M.add_chemical_effect(CE_ANTIBIOTIC, ANTIBIO_SUPER)
 	M.add_chemical_effect(CE_STABLE, 15)
 	M.add_chemical_effect(CE_PAINKILLER, 200)
+	M.remove_a_modifier_of_type(/datum/modifier/poisoned)
 	if(M.bodytemperature > 310)
 		M.bodytemperature = max(310, M.bodytemperature - (40 * TEMPERATURE_DAMAGE_COEFFICIENT))
 	else if(M.bodytemperature < 311)
