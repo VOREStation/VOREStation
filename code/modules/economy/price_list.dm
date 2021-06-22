@@ -980,9 +980,8 @@
 /obj/item/weapon/reagent_containers/food/snacks/dionaroast
 	price_tag = 25
 
-/obj/item/pizzabox
-	get_item_cost()
-		return get_item_cost(pizza)
+/obj/item/pizzabox/get_item_cost()
+	return get_item_cost(pizza)
 
 
 //***************//

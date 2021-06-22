@@ -946,7 +946,7 @@
 	metabolism = REM * 0.5
 	overdose = REAGENTS_OVERDOSE
 
-datum/reagent/talum_quem/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/talum_quem/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
 

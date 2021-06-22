@@ -1,6 +1,6 @@
 # This file has all the information on what versions of libraries are thrown into the code
 # For dreamchecker
-export SPACEMANDMM_TAG=suite-1.4
+export SPACEMAN_DMM_VERSION=suite-1.7
 # For NanoUI + TGUI
 export NODE_VERSION=12
 # Byond Major

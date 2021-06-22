@@ -114,7 +114,7 @@
 	icon_state = "talon_captain_cap"
 	item_state = "taloncaptaincap"
 
-obj/item/clothing/head/beret/talon
+/obj/item/clothing/head/beret/talon
 	name = "ITV beret"
 	desc = "It's a basic baret colored to match ITV's uniforms."
 	icon = 'icons/obj/clothing/hats_vr.dmi'
@@ -122,7 +122,7 @@ obj/item/clothing/head/beret/talon
 	icon_state = "beret_talon"
 	item_state = "baret_talon"
 
-obj/item/clothing/head/beret/talon/command
+/obj/item/clothing/head/beret/talon/command
 	name = "ITV officer beret"
 	desc = "It's a basic baret colored to match ITV's uniforms with a badge pinned on the front. Perfect for commanders."
 	icon = 'icons/obj/clothing/hats_vr.dmi'

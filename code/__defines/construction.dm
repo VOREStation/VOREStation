@@ -50,7 +50,6 @@
 #define PIPING_LAYER_DEFAULT	PIPING_LAYER_REGULAR
 
 // We offset the layer values of the different pipe types to ensure they look nice
-#define PIPES_SCRUBBER_LAYER	(PIPES_LAYER - 0.05)
 #define PIPES_AUX_LAYER			(PIPES_LAYER - 0.04)
 #define PIPES_FUEL_LAYER		(PIPES_LAYER - 0.03)
 #define PIPES_SCRUBBER_LAYER	(PIPES_LAYER - 0.02)

@@ -1490,7 +1490,7 @@
 	name = "\improper Mining Outpost Shuttle - Station"
 	ambience = AMBIENCE_HANGAR
 	sound_env = LARGE_ENCLOSED
-area/shuttle/mining_outpost/shuttle
+/area/shuttle/mining_outpost/shuttle
 	name = "\improper Mining Outpost Shuttle"
 	icon_state = "shuttle2"
 // Elevator area //

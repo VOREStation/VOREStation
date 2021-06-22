@@ -17,22 +17,22 @@
 	icon_state = "backbone"
 	var/datum/construction/construct
 
-	attackby(obj/item/W as obj, mob/user as mob)
-		if(!construct || !construct.action(W, user))
-			..()
-		return
+/obj/item/mecha_parts/chassis/attackby(obj/item/W as obj, mob/user as mob)
+	if(!construct || !construct.action(W, user))
+		..()
+	return
 
-	attack_hand()
-		return
+/obj/item/mecha_parts/chassis/attack_hand()
+	return
 
 /////////// Ripley
 
 /obj/item/mecha_parts/chassis/ripley
 	name = "Ripley Chassis"
 
-	New()
-		..()
-		construct = new /datum/construction/mecha/ripley_chassis(src)
+/obj/item/mecha_parts/chassis/ripley/New()
+	..()
+	construct = new /datum/construction/mecha/ripley_chassis(src)
 
 /obj/item/mecha_parts/part/ripley_torso
 	name="Ripley Torso"
@@ -69,9 +69,9 @@
 /obj/item/mecha_parts/chassis/gygax
 	name = "Gygax Chassis"
 
-	New()
-		..()
-		construct = new /datum/construction/mecha/gygax_chassis(src)
+/obj/item/mecha_parts/chassis/gygax/New()
+	..()
+	construct = new /datum/construction/mecha/gygax_chassis(src)
 
 /obj/item/mecha_parts/part/gygax_torso
 	name="Gygax Torso"
@@ -117,18 +117,18 @@
 /obj/item/mecha_parts/chassis/serenity
 	name = "Serenity Chassis"
 
-	New()
-		..()
-		construct = new /datum/construction/mecha/serenity_chassis(src)
+/obj/item/mecha_parts/chassis/serenity/New()
+	..()
+	construct = new /datum/construction/mecha/serenity_chassis(src)
 
 //////////// Durand
 
 /obj/item/mecha_parts/chassis/durand
 	name = "Durand Chassis"
 
-	New()
-		..()
-		construct = new /datum/construction/mecha/durand_chassis(src)
+/obj/item/mecha_parts/chassis/durand/New()
+	..()
+	construct = new /datum/construction/mecha/durand_chassis(src)
 
 /obj/item/mecha_parts/part/durand_torso
 	name="Durand Torso"
@@ -172,9 +172,9 @@
 /obj/item/mecha_parts/chassis/firefighter
 	name = "Firefighter Chassis"
 
-	New()
-		..()
-		construct = new /datum/construction/mecha/firefighter_chassis(src)
+/obj/item/mecha_parts/chassis/firefighter/New()
+	..()
+	construct = new /datum/construction/mecha/firefighter_chassis(src)
 /*
 /obj/item/mecha_parts/part/firefighter_torso
 	name="Ripley-on-Fire Torso"
@@ -203,9 +203,9 @@
 	name = "Phazon Chassis"
 	origin_tech = list(TECH_MATERIAL = 7)
 
-	New()
-		..()
-		construct = new /datum/construction/mecha/phazon_chassis(src)
+/obj/item/mecha_parts/chassis/phazon/New()
+	..()
+	construct = new /datum/construction/mecha/phazon_chassis(src)
 
 /obj/item/mecha_parts/part/phazon_torso
 	name="Phazon Torso"
@@ -255,9 +255,9 @@
 /obj/item/mecha_parts/chassis/odysseus
 	name = "Odysseus Chassis"
 
-	New()
-		..()
-		construct = new /datum/construction/mecha/odysseus_chassis(src)
+/obj/item/mecha_parts/chassis/odysseus/New()
+	..()
+	construct = new /datum/construction/mecha/odysseus_chassis(src)
 
 /obj/item/mecha_parts/part/odysseus_head
 	name="Odysseus Head"
@@ -307,9 +307,9 @@
 	name = "Janus Chassis"
 	origin_tech = list(TECH_MATERIAL = 7)
 
-	New()
-		..()
-		construct = new /datum/construction/mecha/janus_chassis(src)
+/obj/item/mecha_parts/chassis/janus/New()
+	..()
+	construct = new /datum/construction/mecha/janus_chassis(src)
 
 /obj/item/mecha_parts/part/janus_torso
 	name="Imperion Torso"

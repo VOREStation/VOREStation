@@ -3,7 +3,7 @@
  * Moved to game/gamemodes/cult/construct_spells.dm. Here for posterity.
  */
 /*
-proc/findNullRod(var/atom/target)
+/proc/findNullRod(var/atom/target)
 	if(istype(target,/obj/item/weapon/nullrod))
 		return 1
 	else if(target.contents)

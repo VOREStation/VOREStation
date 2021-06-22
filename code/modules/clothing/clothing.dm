@@ -782,13 +782,13 @@
 /obj/item/clothing/suit/equipped(var/mob/user, var/slot)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if((taurized && !isTaurTail(H.tail_style)) || (!taurized && isTaurTail(H.tail_style)))
+		if((taurized && !istaurtail(H.tail_style)) || (!taurized && istaurtail(H.tail_style)))
 			taurize(user)
 
 	return ..()
 
 /obj/item/clothing/suit/proc/taurize(var/mob/living/carbon/human/Taur)
-	if(isTaurTail(Taur.tail_style))
+	if(istaurtail(Taur.tail_style))
 		var/datum/sprite_accessory/tail/taur/taurtail = Taur.tail_style
 		if(taurtail.suit_sprites && (get_worn_icon_state(slot_wear_suit_str) in cached_icon_states(taurtail.suit_sprites)))
 			icon_override = taurtail.suit_sprites

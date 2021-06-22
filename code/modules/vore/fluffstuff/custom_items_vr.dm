@@ -773,11 +773,12 @@
 	icon_state = "dragor_dot"
 	w_class = ITEMSIZE_SMALL
 
-	attack_self(mob/user as mob)
-		if(user.ckey == "pontifexminimus")
-			user.verbs |= /mob/living/carbon/human/proc/shapeshifter_select_gender
-		else
-			return
+/obj/item/weapon/fluff/dragor_dot/attack_self(mob/user as mob)
+	if(user.ckey == "pontifexminimus")
+		user.verbs |= /mob/living/carbon/human/proc/shapeshifter_select_gender
+	else
+		return
+
 //LuminescentRing: Briana Moore
 /obj/item/weapon/storage/backpack/messenger/black/fluff/briana
 	name = "2561 graduation bag"

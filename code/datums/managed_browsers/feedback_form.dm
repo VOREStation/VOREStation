@@ -4,7 +4,7 @@
 /client/can_vv_get(var_name)
 	return var_name != NAMEOF(src, feedback_form) // No snooping.
 
-GENERAL_PROTECT_DATUM(datum/managed_browser/feedback_form)
+GENERAL_PROTECT_DATUM(/datum/managed_browser/feedback_form)
 
 // A fairly simple object to hold information about a player's feedback as it's being written.
 // Having this be it's own object instead of being baked into /mob/new_player allows for it to be used

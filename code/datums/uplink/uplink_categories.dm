@@ -6,7 +6,7 @@
 	..()
 	items = list()
 
-datum/uplink_category/ammunition
+/datum/uplink_category/ammunition
 	name = "Ammunition"
 
 /datum/uplink_category/services

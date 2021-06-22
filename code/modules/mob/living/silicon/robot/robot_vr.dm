@@ -235,7 +235,7 @@
 
 	var/mob/living/carbon/human/H = M
 
-	if(isTaurTail(H.tail_style))
+	if(istaurtail(H.tail_style))
 		to_chat(src, "<span class='warning'>Too many legs. TOO MANY LEGS!!</span>")
 		return FALSE
 	if(M.loc != src.loc)

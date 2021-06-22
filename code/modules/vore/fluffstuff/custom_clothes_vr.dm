@@ -1761,13 +1761,13 @@ Departamental Swimsuits, for general use
 	item_state = "hasd_helm"
 	species_restricted = null
 
-	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
-		if(..())
-			if(H.ckey != "silencedmp5a5")
-				to_chat(H, "<span class='warning'>...The faceplate is clearly not made for your anatomy, thus, does not fit.</span>")
-				return 0
-			else
-				return 1
+/obj/item/clothing/head/helmet/space/void/security/hasd/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+	if(..())
+		if(H.ckey != "silencedmp5a5")
+			to_chat(H, "<span class='warning'>...The faceplate is clearly not made for your anatomy, thus, does not fit.</span>")
+			return 0
+		else
+			return 1
 
 /obj/item/clothing/suit/space/void/security/hasd
 	name = "HASD EVA bodyplates"
@@ -1779,12 +1779,12 @@ Departamental Swimsuits, for general use
 	item_state = "hasd_suit"
 	pixel_x = -16
 
-	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
-		if(..() && istype(H) && H.ckey == "silencedmp5a5")
-			return 1
-		else
-			to_chat(H, "<span class='warning'>This suit is not designed for you.</span>")
-			return 0
+/obj/item/clothing/suit/space/void/security/hasd/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+	if(..() && istype(H) && H.ckey == "silencedmp5a5")
+		return 1
+	else
+		to_chat(H, "<span class='warning'>This suit is not designed for you.</span>")
+		return 0
 
 //Zigfe:Zaoozaoo Xrimxuqmqixzix
 /obj/item/clothing/head/fluff/zao

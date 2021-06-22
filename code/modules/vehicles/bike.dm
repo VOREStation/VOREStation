@@ -28,8 +28,8 @@
 	var/datum/effect/effect/system/ion_trail_follow/ion
 	var/kickstand = 1
 
-/obj/vehicle/bike/New()
-	..()
+/obj/vehicle/bike/Initialize()
+	. = ..()
 	cell = new /obj/item/weapon/cell/high(src)
 	ion = new /datum/effect/effect/system/ion_trail_follow()
 	ion.set_up(src)

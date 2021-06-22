@@ -29,7 +29,7 @@ mob
 			if(sandbox)
 				sandbox.update()
 
-datum/hSB
+/datum/hSB
 	var/owner = null
 	var/admin = 0
 	proc
