@@ -1205,6 +1205,12 @@
 	ckeywhitelist = list("verysoft")
 	character_name = list("Harmony")
 
+/datum/gear/fluff/shine-runner_id
+	path = /obj/item/weapon/card/id/event/polymorphic/itg
+	display_name = "Shine-Runner's ITG-ID card"
+	ckeywhitelist = list("verysoft")
+	character_name = list("Shine-Runner")
+
 //  W CKEYS
 /datum/gear/fluff/sthasha_bracer
 	path = /obj/item/clothing/accessory/bracer/fluff/xander_sthasha
