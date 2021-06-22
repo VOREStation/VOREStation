@@ -186,6 +186,7 @@
 	icon_state = "green"
 	filled_reagents = list("anti_toxin" = 5)
 
+//Special autoinjectors, while having potent chems like the 15u ones, the chems are usually potent enough that 5u is enough
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/bonemed
 	name = "bone repair injector"
 	desc = "A rapid and safe way to administer small amounts of drugs by untrained or trained personnel. This one excels at treating damage to bones."
