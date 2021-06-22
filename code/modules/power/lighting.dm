@@ -392,25 +392,33 @@ var/global/list/light_type_cache = list()
 		..()
 //VOREStation Edit Start
 /obj/machinery/light/proc/set_alert_atmos()
-	if(shows_alerts)
-		current_alert = "atmos"
-		brightness_color = "#6D6DFC"
-		if(on)
-			update()
+	if(!shows_alerts)
+		return
+	current_alert = "atmos"
+	brightness_color = "#6D6DFC"
+	update()
 
 /obj/machinery/light/proc/set_alert_fire()
-	if(shows_alerts)
-		current_alert = "fire"
-		brightness_color = "#FF3030"
-		if(on)
-			update()
+	if(!shows_alerts)
+		return
+	current_alert = "fire"
+	brightness_color = "#FF3030"
+	update()
 
 /obj/machinery/light/proc/reset_alert()
-	if(shows_alerts)
-		current_alert = null
-		brightness_color = initial(brightness_color) || "" // Workaround for BYOND stupidity. Can't set it to null or it won't clear.
-		if(on)
-			update()
+	if(!shows_alerts)
+		return
+
+	current_alert = null
+	var/obj/item/weapon/light/L = get_light_type_instance(light_type)
+	
+	if(L)
+		update_from_bulb(L)
+	else
+		brightness_color = nightshift_enabled ? initial(brightness_color_ns) : initial(brightness_color)
+	
+	update()
+
 //VOREstation Edit End
 // update lighting
 /obj/machinery/light/proc/update(var/trigger = 1)
