@@ -198,7 +198,7 @@
 	icon = 'icons/obj/rollerbed.dmi'
 	icon_state = "rollerbed"
 	anchored = 0
-	surgery_odds = 66 //VOREStation Edit
+	surgery_odds = 50 //VOREStation Edit
 	var/bedtype = /obj/structure/bed/roller
 	var/rollertype = /obj/item/roller
 
