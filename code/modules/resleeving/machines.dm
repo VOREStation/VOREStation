@@ -69,6 +69,21 @@
 		else if(status == 3) //Digital organ
 			I.digitize()
 
+	//Give breathing equipment if needed
+	if(current_project.breath_type != "oxygen")
+		H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath(H), slot_wear_mask)
+		var/obj/item/weapon/tank/tankpath
+		if(current_project.breath_type == "phoron")
+			tankpath = /obj/item/weapon/tank/vox
+		else
+			tankpath = text2path("/obj/item/weapon/tank/" + current_project.breath_type)
+
+		if(tankpath)
+			H.equip_to_slot_or_del(new tankpath(H), slot_back)
+			H.internal = H.back
+			if(istype(H.internal,/obj/item/weapon/tank) && H.internals)
+				H.internals.icon_state = "internal1"
+
 	occupant = H
 
 	//Set the name or generate one
