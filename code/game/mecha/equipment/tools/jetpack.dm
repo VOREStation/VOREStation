@@ -31,14 +31,14 @@
 	return equip_ready
 
 /obj/item/mecha_parts/mecha_equipment/tool/jetpack/proc/turn_on()
-	set_ready_state(0)
+	set_ready_state(FALSE)
 	chassis.proc_res["dyndomove"] = src
 	ion_trail.start()
 	occupant_message("Activated")
 	log_message("Activated")
 
 /obj/item/mecha_parts/mecha_equipment/tool/jetpack/proc/turn_off()
-	set_ready_state(1)
+	set_ready_state(TRUE)
 	chassis.proc_res["dyndomove"] = null
 	ion_trail.stop()
 	occupant_message("Deactivated")
@@ -62,10 +62,9 @@
 	if(move_result)
 		wait = 1
 		chassis.use_power(energy_drain)
-		if(!chassis.pr_inertial_movement.active())
-			chassis.pr_inertial_movement.start(list(chassis,direction))
-		else
-			chassis.pr_inertial_movement.set_process_args(list(chassis,direction))
+		chassis.float_direction = direction
+		if(!(chassis.current_processes & MECHA_PROC_MOVEMENT))
+			chassis.start_process(MECHA_PROC_MOVEMENT)
 		do_after_cooldown()
 		return 1
 	return 0

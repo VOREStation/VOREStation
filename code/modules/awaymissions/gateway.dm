@@ -51,7 +51,7 @@
 	density = 1
 */ //VOREStation Removal End
 
-obj/machinery/gateway/centerstation/process()
+/obj/machinery/gateway/centerstation/process()
 	if(stat & (NOPOWER))
 		if(active) toggleoff()
 		return
@@ -148,6 +148,13 @@ obj/machinery/gateway/centerstation/process()
 		if(dest)
 			M.forceMove(dest.loc)
 			M.set_dir(SOUTH)
+			//VOREStation Addition Start: Mcguffin time!			
+			if(ishuman(M))
+				var/mob/living/carbon/human/H = M
+				if(H.client)
+					awaygate.entrydetect()
+			//VOREStation Addition End: Mcguffin time!
+
 			//VOREStation Addition Start: Abduction!
 			if(istype(M, /mob/living) && dest.abductor)
 				var/mob/living/L = M

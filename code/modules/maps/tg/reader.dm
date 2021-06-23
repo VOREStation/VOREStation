@@ -159,7 +159,6 @@ GLOBAL_DATUM_INIT(_preloader, /dmm_suite/preloader, new)
 						var/model_key = copytext(line, tpos, tpos + key_len)
 						line_keys[++line_keys.len] = model_key
 						#ifdef TESTING
-						else
 							++turfsSkipped
 						#endif
 						CHECK_TICK

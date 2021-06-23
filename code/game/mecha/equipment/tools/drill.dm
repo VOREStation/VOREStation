@@ -13,7 +13,7 @@
 	if(isobj(target))
 		var/obj/target_obj = target
 		if(!target_obj.vars.Find("unacidable") || target_obj.unacidable)	return
-	set_ready_state(0)
+	set_ready_state(FALSE)
 	chassis.use_power(energy_drain)
 	chassis.visible_message("<span class='danger'>[chassis] starts to drill [target]</span>", "<span class='warning'>You hear the drill.</span>")
 	occupant_message("<span class='danger'>You start to drill [target]</span>")
@@ -100,7 +100,7 @@
 	if(isobj(target))
 		var/obj/target_obj = target
 		if(target_obj.unacidable)	return
-	set_ready_state(0)
+	set_ready_state(FALSE)
 	chassis.use_power(energy_drain)
 	chassis.visible_message("<span class='danger'>[chassis] starts to bore into \the [target]</span>", "<span class='warning'>You hear the bore.</span>")
 	occupant_message("<span class='danger'>You start to bore into \the [target]</span>")

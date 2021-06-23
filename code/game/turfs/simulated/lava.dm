@@ -10,6 +10,7 @@
 	light_range = 2
 	light_power = 0.75
 	light_color = LIGHT_COLOR_LAVA
+	light_on = TRUE
 	movement_cost = 2
 	can_build_into_floor = TRUE
 	can_dirty = FALSE
@@ -23,6 +24,7 @@
 	if(!outdoors)
 		name = "magma"
 	update_icon()
+	update_light()
 	return ..()
 
 /turf/simulated/floor/lava/make_outdoors()

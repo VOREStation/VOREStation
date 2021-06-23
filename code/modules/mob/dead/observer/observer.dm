@@ -837,7 +837,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	plane_holder.set_vis(VIS_FULLBRIGHT, !seedarkness) //Inversion, because "not seeing" the darkness is "seeing" the lighting plane master.
 	plane_holder.set_vis(VIS_GHOSTS, ghostvision)
 
-mob/observer/dead/MayRespawn(var/feedback = 0)
+/mob/observer/dead/MayRespawn(var/feedback = 0)
 	if(!client)
 		return 0
 	if(mind && mind.current && mind.current.stat != DEAD && can_reenter_corpse)
@@ -905,7 +905,7 @@ mob/observer/dead/MayRespawn(var/feedback = 0)
 
 		if(choice)
 			icon = 'icons/mob/ghost.dmi'
-			overlays.Cut()
+			cut_overlays()
 
 			if(icon_state && icon)
 				previous_state = icon_state
@@ -936,9 +936,9 @@ mob/observer/dead/MayRespawn(var/feedback = 0)
 			if(PP.pai == null)
 				count++
 				PP.icon = 'icons/obj/pda_vr.dmi' // VOREStation Edit
-				PP.overlays += "pai-ghostalert"
+				PP.add_overlay("pai-ghostalert")
 				spawn(54)
-					PP.overlays.Cut()
+					PP.cut_overlays()
 		to_chat(usr,"<span class='notice'>Flashing the displays of [count] unoccupied PAIs.</span>")
 	else
 		to_chat(usr,"<span class='warning'>You have 'Be pAI' disabled in your character prefs, so we can't help you.</span>")

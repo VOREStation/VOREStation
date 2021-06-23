@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2020 Aleksej Komarov
+ * SPDX-License-Identifier: MIT
+ */
+
 @use 'sass:color';
 @use 'sass:meta';
 
@@ -29,7 +34,7 @@
     'border-color': #fff,
   ));
   @include meta.load-css('../components/ProgressBar.scss', $with: (
-    'color-background': rgba(0, 0, 0, 0.5),
+    'background-color': rgba(0, 0, 0, 0.5),
   ));
   @include meta.load-css('../components/Section.scss');
 
@@ -37,7 +42,7 @@
   @include meta.load-css('../layouts/Layout.scss');
   @include meta.load-css('../layouts/Window.scss');
   @include meta.load-css('../layouts/TitleBar.scss', $with: (
-    'color-background': #381608,
+    'background-color': #381608,
   ));
 
   .Button {

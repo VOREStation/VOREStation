@@ -6,9 +6,9 @@
 	var/obj/item/assembly/shock_kit/part = null
 	var/last_time = 1.0
 
-/obj/structure/bed/chair/e_chair/New()
-	..()
-	overlays += image('icons/obj/objects.dmi', src, "echair_over", MOB_LAYER + 1, dir)
+/obj/structure/bed/chair/e_chair/Initialize()
+	. = ..()
+	add_overlay(image('icons/obj/objects.dmi', src, "echair_over", MOB_LAYER + 1, dir))
 	return
 
 /obj/structure/bed/chair/e_chair/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -39,8 +39,8 @@
 
 /obj/structure/bed/chair/e_chair/rotate_clockwise()
 	..()
-	overlays.Cut()
-	overlays += image('icons/obj/objects.dmi', src, "echair_over", MOB_LAYER + 1, dir)	//there's probably a better way of handling this, but eh. -Pete
+	cut_overlays()
+	add_overlay(image('icons/obj/objects.dmi', src, "echair_over", MOB_LAYER + 1, dir))	//there's probably a better way of handling this, but eh. -Pete
 	return
 
 /obj/structure/bed/chair/e_chair/proc/shock()

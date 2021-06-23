@@ -156,7 +156,12 @@
 	light_range = 3
 	light_power = 0.75
 	light_color = "#ff0066" // Pink-ish
+	light_on = TRUE
 	block_tele = TRUE // Will be used for dungeons so this is needed to stop cheesing with handteles.
+
+/turf/simulated/shuttle/wall/alien/Initialize()
+	. = ..()
+	update_light()
 
 /turf/simulated/shuttle/wall/alien/hard_corner
 	name = "hardcorner wall"

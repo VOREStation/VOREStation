@@ -430,6 +430,6 @@
 /datum/stack_recipe_list
 	var/title = "ERROR"
 	var/list/recipes = null
-	New(title, recipes)
-		src.title = title
-		src.recipes = recipes
+/datum/stack_recipe_list/New(title, recipes)
+	src.title = title
+	src.recipes = recipes

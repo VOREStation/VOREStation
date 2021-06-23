@@ -30,7 +30,6 @@
 
 	thermal_conductivity = 0.040
 	heat_capacity = 10000
-	var/lava = 0
 
 /turf/simulated/floor/is_plating()
 	return (!flooring || flooring.is_plating)

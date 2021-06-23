@@ -17,6 +17,8 @@
 	power_equip = FALSE
 	power_environ = FALSE
 	power_light = FALSE
+	base_turf = /turf/simulated/mineral/floor/cave
+
 /area/submap/admin_upload/pow
 	name = "\improper Unknown Area AU+P"
 	requires_power = 0

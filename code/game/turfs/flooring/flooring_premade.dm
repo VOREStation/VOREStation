@@ -422,8 +422,6 @@
 	icon_state = "snowyplayingdrift"
 	initial_flooring = /decl/flooring/snow/plating/drift
 
-#define FOOTSTEP_SPRITE_AMT 2
-
 // TODO: Move foortprints to a datum-component signal so they can actually be applied to other turf types, like sand, or mud
 /turf/simulated/floor/snow/Entered(atom/A)
 	if(isliving(A))

@@ -12,13 +12,13 @@
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3)
 
 /obj/item/weapon/gun/projectile/revolver/consul/proc/update_charge()
+	cut_overlays()
 	if(loaded.len==0)
-		overlays += "inspector_off"
+		add_overlay("inspector_off")
 	else
-		overlays += "inspector_on"
+		add_overlay("inspector_on")
 
 /obj/item/weapon/gun/projectile/revolver/consul/update_icon()
-	overlays.Cut()
 	update_charge()
 
 //.357 special ammo

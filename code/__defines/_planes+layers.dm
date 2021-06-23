@@ -50,10 +50,10 @@ What is the naming convention for planes or layers?
 #define PLANE_LOOKINGGLASS_IMG	-77 // For the Looking Glass holodecks
 
 // OPENSPACE_PLANE reserves all planes between OPENSPACE_PLANE_START and OPENSPACE_PLANE_END inclusive
-#define OPENSPACE_PLANE 		-75 // /turf/simulated/open will use OPENSPACE_PLANE + z (Valid z's being 2 thru 17)
+#define OPENSPACE_PLANE 		-75 // /turf/simulated/open will use OPENSPACE_PLANE + z (Valid z's being 2 thru 27) //VOREStation Edit
 #define OPENSPACE_PLANE_START	-73
-#define OPENSPACE_PLANE_END		-58
-#define OVER_OPENSPACE_PLANE	-57
+#define OPENSPACE_PLANE_END		-48 //VOREStation Edit
+#define OVER_OPENSPACE_PLANE	-47 //VOREStation Edit
 
 // Turf Planes
 #define PLATING_PLANE			-44 // Plating
@@ -122,9 +122,21 @@ What is the naming convention for planes or layers?
 
 #define PLANE_ADMIN1			3 //Purely for shenanigans (below lighting)
 #define PLANE_PLANETLIGHTING	4 //Lighting on planets
+
 #define PLANE_LIGHTING			5 //Where the lighting (and darkness) lives
-#define PLANE_LIGHTING_ABOVE	6 //For glowy eyes etc. that shouldn't be affected by darkness
-#define PLANE_RUNECHAT			7
+	#define LIGHTING_RENDER_TARGET	"LIGHT_PLANE"
+
+#define PLANE_O_LIGHTING_VISUAL	6 //For masking the lighting plane
+	#define O_LIGHTING_VISUAL_RENDER_TARGET	"O_LIGHT_VISUAL_PLANE"
+
+#define PLANE_LIGHTING_ABOVE	7 //For glowy eyes etc. that shouldn't be affected by darkness
+	#define LIGHTING_ABOVE_RENDER_TARGET	"LIGHTING_ABOVE_PLANE"
+
+#define PLANE_EMISSIVE			8 //Glowing lights in otherwise dark areas using overlays/sprites
+	#define EMISSIVE_RENDER_TARGET "*EMISSIVE_PLANE"
+	#define EMISSIVE_LAYER_UNBLOCKABLE 9999
+
+#define PLANE_RUNECHAT			9
 
 #define PLANE_GHOSTS			10 //Spooooooooky ghooooooosts
 #define PLANE_AI_EYE			11 //The AI eye lives here

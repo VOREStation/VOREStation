@@ -263,13 +263,13 @@
 	body_parts_covered = UPPER_TORSO|ARMS
 	flags_inv = HIDETIE|HIDEHOLSTER
 
-obj/item/clothing/suit/kimono
+/obj/item/clothing/suit/kimono
 	name = "kimono"
 	desc = "A traditional Japanese kimono."
 	icon_state = "kimono"
 	addblends = "kimono_a"
 
-obj/item/clothing/suit/kamishimo
+/obj/item/clothing/suit/kamishimo
 	name = "kamishimo"
 	desc = "Traditional Japanese menswear."
 	icon_state = "kamishimo"

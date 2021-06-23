@@ -12,7 +12,7 @@
 	//ID of the landmark
 	var/landmark_tag
 	//ID of the controller on the dock side (intialize to id_tag, becomes reference)
-	var/datum/computer/file/embedded_program/docking/docking_controller
+	var/datum/embedded_program/docking/docking_controller
 	//Map of shuttle names to ID of controller used for this landmark for shuttles with multiple ones.
 	var/list/special_dock_targets
 

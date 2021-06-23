@@ -86,19 +86,19 @@ var/list/mining_overlay_cache = list()
 	can_build_into_floor = TRUE
 
 //Alternative sand floor sprite.
-turf/simulated/mineral/floor/light
+/turf/simulated/mineral/floor/light
 	icon_state = "sand-light"
 	sand_icon_state = "sand-light"
 
-turf/simulated/mineral/floor/light_border
+/turf/simulated/mineral/floor/light_border
 	icon_state = "sand-light-border"
 	sand_icon_state = "sand-light-border"
 
-turf/simulated/mineral/floor/light_nub
+/turf/simulated/mineral/floor/light_nub
 	icon_state = "sand-light-nub"
 	sand_icon_state = "sand-light-nub"
 
-turf/simulated/mineral/floor/light_corner
+/turf/simulated/mineral/floor/light_corner
 	icon_state = "sand-light-corner"
 	sand_icon_state = "sand-light-corner"
 
@@ -125,7 +125,7 @@ turf/simulated/mineral/floor/light_corner
 
 /turf/simulated/mineral/proc/update_general()
 	update_icon(1)
-	recalc_atom_opacity()
+	recalculate_directional_opacity()
 	if(ticker && ticker.current_state == GAME_STATE_PLAYING)
 		reconsider_lights()
 		if(air_master)

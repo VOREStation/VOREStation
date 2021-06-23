@@ -26,7 +26,7 @@
 
 	if(isbelly(item_storage))
 		var/obj/belly/B = item_storage
-		g_damage = 0.25 * (B.digest_brute + B.digest_burn + (B.digest_oxy)/2)
+		g_damage = 0.25 * (B.digest_brute + B.digest_burn)
 
 	if(digest_stage > 0)
 		if(g_damage > digest_stage)
@@ -91,7 +91,7 @@
 		var/obj/belly/B = item_storage
 		if(ishuman(B.owner))
 			var/mob/living/carbon/human/H = B.owner
-			reagents.trans_to_holder(H.ingested, (reagents.total_volume * 0.3), 1, 0)
+			reagents.trans_to_holder(H.ingested, (reagents.total_volume * 0.5), 1, 0)
 		else if(isrobot(B.owner))
 			var/mob/living/silicon/robot/R = B.owner
 			R.cell.charge += 150

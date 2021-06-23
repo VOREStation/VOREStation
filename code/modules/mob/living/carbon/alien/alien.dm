@@ -7,6 +7,7 @@
 	health = 100
 	maxHealth = 100
 	mob_size = 4
+	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 
 	inventory_panel_type = null // Disable inventory
 

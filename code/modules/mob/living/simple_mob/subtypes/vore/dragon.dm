@@ -66,11 +66,11 @@
 	name = "Virgo 3b Fauna - Phoron Dragon"
 	desc = "Classification: Phoron Draconinae\
 	<br><br>\
-	A cousin to the dragons of space, Phoron Dragons are a rare and rather unique site to see in the wilds of Virgo 3b. \
+	A cousin to the dragons of space, Phoron Dragons are a rare and rather unique sight to see in the wilds of Virgo 3b. \
 	Their terrifying appearance isn't just for looks, the black scales with mutated Phoron deposits in the skin are meant \
-	to intimidate and frighten potential prey. They are mainly carnivorus in nature but can survive off of a mixed diet \
-	of meats and plant based foods in certain circumstances - usually these circumstances are not ideal for the preadator. \
-	It is unknown still how the Phoron Dragon came to be but scientist speculate that common Dragons such as Red Dragons \
+	to intimidate and frighten potential prey. They are mainly carnivorous in nature but can survive off of a mixed diet \
+	of meats and plant based foods in certain circumstances - usually these circumstances are not ideal for the predator. \
+	It is unknown still how the Phoron Dragon came to be but scientists speculate that common Dragons such as Red Dragons \
 	somehow ended up on Virgo 3b and through a period of evolutionary mutation became the modern day Phoron Dragon.\
 	<br>\
 	Female dragons will often lay a clutch of eggs similar to that of other reptilian species after she is properly mated. \
@@ -78,8 +78,8 @@
 	this time of season have been known to be increasingly hostile. Travellers are warned against traversing in the wilds \
 	during these seasons because of the increased hostility.\
 	<br>\
-	Unlike their more fiery cousins, these dragons do not breathe flame as it would ignite both the surrounding Phoron and \
-	the internal Phoron deposits of its body. Scientist still do not know how or when in the evolutionary chain they devolved \
+	Unlike their more fiery cousins, these dragons do not breathe flames as it would ignite both the surrounding Phoron and \
+	the internal Phoron deposits of its body. Scientists still do not know how or when in the evolutionary chain they lost \
 	their signature fire breath but it was likely very early in the chain otherwise the entire species would be extinct."
 	value = CATALOGUER_REWARD_HARD
 

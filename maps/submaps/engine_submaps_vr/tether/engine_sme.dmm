@@ -219,13 +219,13 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "east bump";
+	nightshift_setting = 2;
 	pixel_x = 28
 	},
 /turf/simulated/floor,
 /area/engineering/engine_room)
 "aL" = (
 /obj/effect/floor_decal/industrial/warning/cee{
-	icon_state = "warningcee";
 	dir = 1
 	},
 /turf/simulated/floor/reinforced/nitrogen{

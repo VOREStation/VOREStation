@@ -80,7 +80,7 @@
 /obj/machinery/sleep_console/tgui_act(action, params, datum/tgui/ui, datum/tgui_state/state)
 	if(sleeper)
 		return sleeper.tgui_act(action, params, ui, state)
-	return FALSE
+	return ..()
 
 /obj/machinery/sleeper
 	name = "sleeper"

@@ -163,7 +163,7 @@
 //
 // "T" Orientation - Inputs are on oposite sides instead of adjacent
 //
-obj/machinery/atmospherics/trinary/mixer/t_mixer
+/obj/machinery/atmospherics/trinary/mixer/t_mixer
 	icon_state = "tmap"
 	construction_type = /obj/item/pipe/trinary  // Can't flip a "T", its symmetrical
 	pipe_state = "t_mixer"

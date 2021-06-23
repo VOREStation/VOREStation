@@ -1,3 +1,9 @@
+/**
+ * @file
+ * @copyright 2020 Aleksej Komarov
+ * @license MIT
+ */
+
 import { Component } from 'inferno';
 import { Box } from './Box';
 import { Button } from './Button';
@@ -17,7 +23,6 @@ export class Collapsible extends Component {
     const {
       children,
       color = 'default',
-      child_mt = 1,
       title,
       buttons,
       ...rest
@@ -42,7 +47,7 @@ export class Collapsible extends Component {
           )}
         </div>
         {open && (
-          <Box mt={child_mt}>
+          <Box mt={1}>
             {children}
           </Box>
         )}

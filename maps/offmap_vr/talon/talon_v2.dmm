@@ -1894,7 +1894,14 @@
 /area/talon_v2/engineering/star_store)
 "fd" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/head/beret/talon,
+/obj/item/clothing/head/beret/talon,
+/obj/item/clothing/head/beret/talon,
+/obj/item/clothing/head/beret/talon,
+/obj/item/clothing/suit/storage/hooded/wintercoat/talon,
+/obj/item/clothing/suit/storage/hooded/wintercoat/talon,
+/obj/item/clothing/suit/storage/hooded/wintercoat/talon,
+/obj/item/clothing/suit/storage/hooded/wintercoat/talon,
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/secure_storage)
 "ff" = (
@@ -5937,6 +5944,15 @@
 /obj/structure/lattice,
 /turf/space,
 /area/space)
+"tn" = (
+/obj/structure/table/rack/shelf/steel,
+/obj/machinery/recharger/wallcharger{
+	pixel_x = 5;
+	pixel_y = 24
+	},
+/obj/item/weapon/storage/backpack/dufflebag/talon,
+/turf/simulated/floor/tiled/techfloor,
+/area/talon_v2/armory)
 "to" = (
 /obj/machinery/light{
 	dir = 4
@@ -10567,6 +10583,13 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/talon_v2/central_hallway/fore)
+"IX" = (
+/obj/structure/table/rack/shelf/steel,
+/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/shoes/magboots,
+/turf/simulated/floor/tiled/techfloor,
+/area/talon_v2/secure_storage)
 "IY" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -14442,6 +14465,17 @@
 "WJ" = (
 /turf/simulated/wall/shull,
 /area/talon_v2/crew_quarters/eng_room)
+"WK" = (
+/obj/structure/table/woodentable,
+/obj/item/clothing/accessory/talon{
+	pixel_x = 4;
+	pixel_y = 7
+	},
+/obj/item/clothing/head/caphat/talon{
+	pixel_x = -5
+	},
+/turf/simulated/floor/wood,
+/area/talon_v2/crew_quarters/cap_room)
 "WM" = (
 /obj/machinery/atmospherics/unary/engine/bigger{
 	dir = 1
@@ -23051,7 +23085,7 @@ Dd
 ZF
 KC
 Oj
-Pm
+tn
 nK
 gg
 SX
@@ -23188,7 +23222,7 @@ AR
 XG
 zv
 XG
-ln
+IX
 Dd
 lW
 KC
@@ -24156,7 +24190,7 @@ NV
 oC
 oC
 NV
-gm
+WK
 gm
 Nq
 Ht

@@ -95,6 +95,5 @@
 				C.ear_deaf += 10
 			to_chat(L, span("danger", "Lightning struck nearby, and the thunderclap is deafening!"))
 
-#undef GROUNDING_ROD_RANGE
 #undef LIGHTNING_ZAP_RANGE
 #undef LIGHTNING_POWER

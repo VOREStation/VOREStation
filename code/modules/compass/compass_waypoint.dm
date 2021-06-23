@@ -25,6 +25,3 @@
 	M.Translate(0, (name ? COMPASS_LABEL_OFFSET-4 : COMPASS_LABEL_OFFSET))
 	M.Turn(ATAN2(cy-y, cx-x)+180)
 	compass_overlay.transform = M
-
-#undef COMPASS_PERIOD
-#undef COMPASS_INTERVAL

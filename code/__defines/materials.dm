@@ -57,9 +57,6 @@
 #define MATERIAL_BRITTLE    0x2
 #define MATERIAL_PADDING    0x4
 
-#define DEFAULT_TABLE_MATERIAL "plastic"
-#define DEFAULT_WALL_MATERIAL "steel"
-
 #define TABLE_BRITTLE_MATERIAL_MULTIPLIER 4 // Amount table damage is multiplied by if it is made of a brittle material (e.g. glass)
 
 //Material Container Flags.

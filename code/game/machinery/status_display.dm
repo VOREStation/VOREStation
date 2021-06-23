@@ -198,7 +198,7 @@
 	if(!picture || picture_state != state)
 		picture_state = state
 		picture = image('icons/obj/status_display.dmi', icon_state=picture_state)
-	overlays |= picture
+	add_overlay(picture)
 
 /obj/machinery/status_display/proc/update_display(line1, line2)
 	var/new_text = {"<div style="font-size:[FONT_SIZE];color:[FONT_COLOR];font:'[FONT_STYLE]';text-align:center;" valign="top">[line1]<br>[line2]</div>"}
@@ -234,8 +234,7 @@
 	return ""
 
 /obj/machinery/status_display/proc/remove_display()
-	if(overlays.len)
-		overlays.Cut()
+	cut_overlays()
 	if(maptext)
 		maptext = ""
 
@@ -263,8 +262,7 @@
 			set_light(0)
 	update()
 
-#undef CHARS_PER_LINE
-#undef FOND_SIZE
+#undef FONT_SIZE
 #undef FONT_COLOR
 #undef FONT_STYLE
 #undef SCROLL_SPEED

@@ -21,8 +21,8 @@
 
 	pto_type = PTO_CIVILIAN
 
-	get_access()
-		return get_all_accesses().Copy()
+/datum/job/centcom_officer/get_access()
+	return get_all_accesses().Copy()
 
 /datum/job/emergency_responder //For staff managing/leading ERTs
 	title = "Emergency Responder"
@@ -47,8 +47,8 @@
 
 	pto_type = PTO_CIVILIAN
 
-	get_access()
-		return get_all_accesses().Copy()
+/datum/job/emergency_responder/get_access()
+	return get_all_accesses().Copy()
 
 /datum/job/clown
 	title = "Clown"

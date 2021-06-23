@@ -2,6 +2,7 @@
 	real_name = "Test Dummy"
 	status_flags = GODMODE|CANPUSH
 	has_huds = FALSE
+	blocks_emissive = FALSE
 
 /mob/living/carbon/human/dummy/Initialize()
 	. = ..()

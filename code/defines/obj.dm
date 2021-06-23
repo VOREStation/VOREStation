@@ -4,16 +4,16 @@
 	anchored = 1
 	density = 1
 
-	attackby(obj/item/weapon/W as obj, mob/user as mob)
-		return attack_hand(user)
+/obj/structure/signpost/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	return attack_hand(user)
 
-	attack_hand(mob/user as mob)
-		switch(alert("Travel back to ss13?",,"Yes","No"))
-			if("Yes")
-				if(user.z != src.z)	return
-				user.forceMove(pick(latejoin))
-			if("No")
-				return
+/obj/structure/signpost/attack_hand(mob/user as mob)
+	switch(alert("Travel back to ss13?",,"Yes","No"))
+		if("Yes")
+			if(user.z != src.z)	return
+			user.forceMove(pick(latejoin))
+		if("No")
+			return
 
 /obj/effect/mark
 		var/mark = ""
@@ -99,9 +99,9 @@
 	drop_sound = 'sound/items/drop/rubber.ogg'
 	pickup_sound = 'sound/items/pickup/rubber.ogg'
 
-	afterattack(atom/target as mob|obj|turf|area, mob/user as mob)
-		user.drop_item()
-		src.throw_at(target, throw_range, throw_speed, user)
+/obj/item/weapon/beach_ball/afterattack(atom/target as mob|obj|turf|area, mob/user as mob)
+	user.drop_item()
+	src.throw_at(target, throw_range, throw_speed, user)
 
 /obj/effect/spawner
 	name = "object spawner"

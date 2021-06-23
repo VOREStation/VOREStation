@@ -28,7 +28,7 @@
 	else
 		occupant_message("[target] is not compatible with any present hardpoints.")
 
-	set_ready_state(0)
+	set_ready_state(FALSE)
 	chassis.use_power(energy_drain)
 	do_after_cooldown()
 	return

@@ -105,7 +105,7 @@ var/datum/antagonist/wizard/wizards
 	for(var/spell/spell_to_remove in src.spell_list)
 		remove_spell(spell_to_remove)
 
-obj/item/clothing
+/obj/item/clothing
 	var/wizard_garb = 0
 
 // Does this clothing slot count as wizard garb? (Combines a few checks)

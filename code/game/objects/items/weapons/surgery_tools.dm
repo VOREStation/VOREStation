@@ -6,6 +6,7 @@
  *		Surgical Drill
  *		Scalpel
  *		Circular Saw
+ *		Bio-Regenerator
  */
 
 /obj/item/weapon/surgical
@@ -21,6 +22,16 @@
 	if(user.a_intent == I_HELP)	//A tad messy, but this should stop people from smacking their patients in surgery
 		return 0
 	..()
+
+/*
+ * Bio-Regenerator
+ */
+/obj/item/weapon/surgical/bioregen
+	name="bioregenerator"
+	desc="A special tool used in surgeries which can pull toxins from and restore oxygen to organic tissue as well as recreate missing biological structures to allow otherwise irreperable flesh to be mended."
+	icon='icons/obj/surgery_vr.dmi'
+	icon_state="bioregen"
+	drop_sound = 'sound/items/drop/scrap.ogg'
 
 /*
  * Retractor
@@ -73,11 +84,11 @@
 	attack_verb = list("drilled")
 	drop_sound = 'sound/items/drop/accessory.ogg'
 
-	suicide_act(mob/user)
-		var/datum/gender/TU = gender_datums[user.get_visible_gender()]
-		to_chat(viewers(user),pick("<span class='danger'>\The [user] is pressing \the [src] to [TU.his] temple and activating it! It looks like [TU.hes] trying to commit suicide.</span>",
-		                       "<span class='danger'>\The [user] is pressing \the [src] to [TU.his] chest and activating it! It looks like [TU.hes] trying to commit suicide.</span>"))
-		return (BRUTELOSS)
+/obj/item/weapon/surgical/surgicaldrill/suicide_act(mob/user)
+	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
+	to_chat(viewers(user),pick("<span class='danger'>\The [user] is pressing \the [src] to [TU.his] temple and activating it! It looks like [TU.hes] trying to commit suicide.</span>",
+							"<span class='danger'>\The [user] is pressing \the [src] to [TU.his] chest and activating it! It looks like [TU.hes] trying to commit suicide.</span>"))
+	return (BRUTELOSS)
 
 /*
  * Scalpel
@@ -99,12 +110,12 @@
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	drop_sound = 'sound/items/drop/knife.ogg'
 
-	suicide_act(mob/user)
-		var/datum/gender/TU = gender_datums[user.get_visible_gender()]
-		to_chat(viewers(user),pick("<span class='danger'>\The [user] is slitting [TU.his] wrists with the [src.name]! It looks like [TU.hes] trying to commit suicide.</span>", \
-		                      "<span class='danger'>\The [user] is slitting [TU.his] throat with the [src.name]! It looks like [TU.hes] trying to commit suicide.</span>", \
-		                      "<span class='danger'>\The [user] is slitting [TU.his] stomach open with the [src.name]! It looks like [TU.hes] trying to commit seppuku.</span>"))
-		return (BRUTELOSS)
+/obj/item/weapon/surgical/scalpel/suicide_act(mob/user)
+	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
+	to_chat(viewers(user),pick("<span class='danger'>\The [user] is slitting [TU.his] wrists with the [src.name]! It looks like [TU.hes] trying to commit suicide.</span>", \
+							"<span class='danger'>\The [user] is slitting [TU.his] throat with the [src.name]! It looks like [TU.hes] trying to commit suicide.</span>", \
+							"<span class='danger'>\The [user] is slitting [TU.his] stomach open with the [src.name]! It looks like [TU.hes] trying to commit seppuku.</span>"))
+	return (BRUTELOSS)
 
 /*
  * Researchable Scalpels
