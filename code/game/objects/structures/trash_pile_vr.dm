@@ -143,7 +143,7 @@
 					prob(2);/obj/item/clothing/under/hyperfiber,
 					prob(2);/obj/item/device/camera,
 					prob(2);/obj/item/weapon/cell/super,
-					prob(2);/obj/item/weapon/contraband/poster,
+					prob(2);/obj/item/poster,
 					prob(3);/obj/item/weapon/storage/box/sinpockets,
 					prob(2);/obj/item/weapon/storage/secure/briefcase,
 					prob(4);/obj/item/clothing/under/fluff/latexmaid,
