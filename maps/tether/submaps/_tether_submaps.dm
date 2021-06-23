@@ -355,6 +355,13 @@
 	mappath = 'maps/gateway_vr/eggnogtownunderground.dmm'
 	associated_map_datum = /datum/map_z_level/tether_lateload/gateway_destination
 
+#include "../../gateway_vr/wildwest.dm"
+/datum/map_template/tether_lateload/gateway/wildwest
+	name = "Wild West"
+	desc = "A classic."
+	mappath = 'maps/gateway_vr/wildwest.dmm'
+	associated_map_datum = /datum/map_z_level/tether_lateload/gateway_destination
+
 //////////////////////////////////////////////////////////////////////////////////////
 // Admin-use z-levels for loading whenever an admin feels like
 #if AWAY_MISSION_TEST

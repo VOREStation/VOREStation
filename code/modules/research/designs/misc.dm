@@ -12,7 +12,7 @@
 	build_path = /obj/item/device/communicator
 	sort_string = "TAAAA"
 
-datum/design/item/general/laserpointer
+/datum/design/item/general/laserpointer
 	name = "laser pointer"
 	desc = "Don't shine it in your eyes!"
 	id = "laser_pointer"

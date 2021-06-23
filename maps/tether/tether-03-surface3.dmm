@@ -24644,6 +24644,7 @@
 	},
 /obj/machinery/power/apc{
 	name = "south bump";
+	nightshift_setting = 0;
 	pixel_y = -28;
 	req_access = list(67)
 	},

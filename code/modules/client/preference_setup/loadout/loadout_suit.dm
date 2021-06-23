@@ -98,7 +98,7 @@
 	display_name = "trenchcoat, grey"
 	path = /obj/item/clothing/suit/storage/trench/grey
 
-datum/gear/suit/duster
+/datum/gear/suit/duster
 	display_name = "cowboy duster"
 	path = /obj/item/clothing/suit/storage/duster
 

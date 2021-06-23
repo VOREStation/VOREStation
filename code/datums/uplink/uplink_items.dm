@@ -95,7 +95,7 @@ var/datum/uplink/uplink = new()
 	log_and_message_admins("\the [M] bought \a [src] through the uplink")
 	M.mind.purchase_log[src] += 1
 
-datum/uplink_item/dd_SortValue()
+/datum/uplink_item/dd_SortValue()
 	return item_cost
 
 /********************************

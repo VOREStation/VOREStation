@@ -19,6 +19,8 @@ much more likely to show up. This is done for several purposes;
 
 /obj/random/unidentified_medicine/item_to_spawn()
 	return pick(
+		/obj/item/weapon/reagent_containers/hypospray/autoinjector/bonemed/unidentified,
+		/obj/item/weapon/reagent_containers/hypospray/autoinjector/clonemed/unidentified,
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/brute/unidentified,
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/burn/unidentified,
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/toxin/unidentified,
@@ -27,7 +29,6 @@ much more likely to show up. This is done for several purposes;
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/pain/unidentified,
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/organ/unidentified,
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/clotting/unidentified,
-		/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/bonemed/unidentified,
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/combat/unidentified,
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/healing_nanites/unidentified,
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/stimm/unidentified,
@@ -62,9 +63,11 @@ much more likely to show up. This is done for several purposes;
 // Medicine belonging to a place still being occupied (or was recently), meaning the goods might still be fresh, and better.
 /obj/random/unidentified_medicine/fresh_medicine/item_to_spawn()
 	// More likely to get something good, and a chance to get rare medicines.
-	// 75 Good, 25 Bad. 75% chance of getting something good.
+	// 80 Good, 25 Bad. 76% chance of getting something good.
 	// Good odds, but the contents aren't super great unless someone gets lucky.
 	return pick(
+		prob(5);/obj/item/weapon/reagent_containers/hypospray/autoinjector/bonemed/unidentified,
+		prob(5);/obj/item/weapon/reagent_containers/hypospray/autoinjector/clonemed/unidentified,
 		prob(10);/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/brute/unidentified,
 		prob(10);/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/burn/unidentified,
 		prob(10);/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/toxin/unidentified,
@@ -73,7 +76,6 @@ much more likely to show up. This is done for several purposes;
 		prob(10);/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/pain/unidentified,
 		prob(5);/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/organ/unidentified,
 		prob(5);/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/clotting/unidentified,
-		prob(5);/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/bonemed/unidentified,
 		prob(25);/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/expired/unidentified)
 
 // For military PoIs like BSD. High odds of good loot since those PoIs are really hard.
@@ -82,12 +84,13 @@ much more likely to show up. This is done for several purposes;
 	// 75 Good, 30 Bad, roughly 71.4% chance to get something good.
 	// Very high but very hard to reach and still has a chance of ending poorly if injecting blind.
 	return pick(
+		prob(5);/obj/item/weapon/reagent_containers/hypospray/autoinjector/bonemed/unidentified,
+		prob(5);/obj/item/weapon/reagent_containers/hypospray/autoinjector/clonemed/unidentified,
 		prob(5);/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/brute/unidentified,
 		prob(5);/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/burn/unidentified,
 		prob(5);/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/pain/unidentified,
 		prob(10);/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/organ/unidentified,
 		prob(10);/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/clotting/unidentified,
-		prob(10);/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/bonemed/unidentified,
 		prob(30);/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/combat/unidentified,
 		prob(10);/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/soporific/unidentified,
 		prob(30);/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/cyanide/unidentified)
@@ -95,13 +98,14 @@ much more likely to show up. This is done for several purposes;
 // Hyposprays found inside various illicit places.
 /obj/random/unidentified_medicine/drug_den/item_to_spawn()
 	// Combat stims are common, but so are nasty drugs.
-	// 65 Good, 160 Bad, roughly 28.8% to get something good.
+	// 70 Good, 160 Bad, roughly 30% to get something good.
 	// Poor odds, but there are a lot of these scattered in the drug dens and illegal chem labs.
 	return pick(
+		prob(5);/obj/item/weapon/reagent_containers/hypospray/autoinjector/bonemed/unidentified,
+		prob(5);/obj/item/weapon/reagent_containers/hypospray/autoinjector/clonemed/unidentified,
 		prob(10);/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/pain/unidentified,
 		prob(5);/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/organ/unidentified,
 		prob(5);/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/clotting/unidentified,
-		prob(5);/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/bonemed/unidentified,
 		prob(40);/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/combat/unidentified,
 		prob(20);/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/stimm/unidentified,
 		prob(20);/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/space_drugs/unidentified,
@@ -120,9 +124,10 @@ much more likely to show up. This is done for several purposes;
 	// 45 Good, 45 Bad, 50% chance to get something good.
 	// Do you feel lucky?
 	return pick(
+		prob(5);/obj/item/weapon/reagent_containers/hypospray/autoinjector/bonemed/unidentified,
+		prob(5);/obj/item/weapon/reagent_containers/hypospray/autoinjector/clonemed/unidentified,
 		prob(10);/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/organ/unidentified,
 		prob(10);/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/clotting/unidentified,
-		prob(10);/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/bonemed/unidentified,
 		prob(10);/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/combat/unidentified,
 		prob(5);/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/healing_nanites/unidentified,
 		prob(20);/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/contaminated/unidentified,

@@ -76,7 +76,7 @@ var/list/sounds_cache = list()
 				M << 'bananaphone.ogg'
 
 
-client/proc/space_asshole()
+/client/proc/space_asshole()
 	set category = "Fun"
 	set name = "Space Asshole"
 
@@ -87,7 +87,7 @@ client/proc/space_asshole()
 				M << 'sound/music/space_asshole.ogg'
 
 
-client/proc/honk_theme()
+/client/proc/honk_theme()
 	set category = "Fun"
 	set name = "Honk"
 

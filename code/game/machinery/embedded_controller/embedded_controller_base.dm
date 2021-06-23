@@ -3,7 +3,7 @@
 	anchored = 1
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
-	var/datum/computer/file/embedded_program/program	//the currently executing program
+	var/datum/embedded_program/program	//the currently executing program
 	var/list/valid_actions = list()
 	var/on = 1
 

@@ -73,7 +73,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/tool/cable_layer/proc/use_cable(amount)
 	if(!cable || cable.amount<1)
-		set_ready_state(1)
+		set_ready_state(TRUE)
 		occupant_message("Cable depleted, [src] deactivated.")
 		log_message("Cable depleted, [src] deactivated.")
 		return

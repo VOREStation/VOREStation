@@ -17,44 +17,44 @@
 	var/icon_broken = "lockbox+b"
 
 
-	attackby(obj/item/weapon/W as obj, mob/user as mob)
-		if (istype(W, /obj/item/weapon/card/id))
-			if(src.broken)
-				to_chat(user, "<span class='warning'>It appears to be broken.</span>")
+/obj/item/weapon/storage/lockbox/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if (istype(W, /obj/item/weapon/card/id))
+		if(src.broken)
+			to_chat(user, "<span class='warning'>It appears to be broken.</span>")
+			return
+		if(src.allowed(user))
+			src.locked = !( src.locked )
+			if(src.locked)
+				src.icon_state = src.icon_locked
+				to_chat(user, "<span class='notice'>You lock \the [src]!</span>")
+				close_all()
 				return
-			if(src.allowed(user))
-				src.locked = !( src.locked )
-				if(src.locked)
-					src.icon_state = src.icon_locked
-					to_chat(user, "<span class='notice'>You lock \the [src]!</span>")
-					close_all()
-					return
-				else
-					src.icon_state = src.icon_closed
-					to_chat(user, "<span class='notice'>You unlock \the [src]!</span>")
-					return
 			else
-				to_chat(user, "<span class='warning'>Access Denied</span>")
-		else if(istype(W, /obj/item/weapon/melee/energy/blade))
-			if(emag_act(INFINITY, user, W, "The locker has been sliced open by [user] with an energy blade!", "You hear metal being sliced and sparks flying."))
-				var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
-				spark_system.set_up(5, 0, src.loc)
-				spark_system.start()
-				playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
-				playsound(src, "sparks", 50, 1)
-		if(!locked)
-			..()
+				src.icon_state = src.icon_closed
+				to_chat(user, "<span class='notice'>You unlock \the [src]!</span>")
+				return
 		else
-			to_chat(user, "<span class='warning'>It's locked!</span>")
-		return
+			to_chat(user, "<span class='warning'>Access Denied</span>")
+	else if(istype(W, /obj/item/weapon/melee/energy/blade))
+		if(emag_act(INFINITY, user, W, "The locker has been sliced open by [user] with an energy blade!", "You hear metal being sliced and sparks flying."))
+			var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
+			spark_system.set_up(5, 0, src.loc)
+			spark_system.start()
+			playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
+			playsound(src, "sparks", 50, 1)
+	if(!locked)
+		..()
+	else
+		to_chat(user, "<span class='warning'>It's locked!</span>")
+	return
 
 
-	show_to(mob/user as mob)
-		if(locked)
-			to_chat(user, "<span class='warning'>It's locked!</span>")
-		else
-			..()
-		return
+/obj/item/weapon/storage/lockbox/show_to(mob/user as mob)
+	if(locked)
+		to_chat(user, "<span class='warning'>It's locked!</span>")
+	else
+		..()
+	return
 
 /obj/item/weapon/storage/lockbox/emag_act(var/remaining_charges, var/mob/user, var/emag_source, var/visual_feedback = "", var/audible_feedback = "")
 	if(!broken)

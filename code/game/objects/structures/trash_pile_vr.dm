@@ -187,7 +187,7 @@
 					prob(2);/obj/item/device/flashlight/glowstick/blue,
 					prob(2);/obj/item/weapon/card/emag_broken,
 					prob(2);/obj/item/weapon/cell/super,
-					prob(2);/obj/item/weapon/contraband/poster,
+					prob(2);/obj/item/poster,
 					prob(2);/obj/item/weapon/reagent_containers/glass/rag,
 					prob(2);/obj/item/weapon/storage/box/sinpockets,
 					prob(2);/obj/item/weapon/storage/secure/briefcase,

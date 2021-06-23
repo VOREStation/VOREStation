@@ -137,7 +137,8 @@
 		/obj/item/stack/medical/advanced/bruise_pack,
 		/obj/item/stack/nanopaste,
 		/obj/item/device/healthanalyzer/advanced,
-		/obj/item/weapon/autopsy_scanner
+		/obj/item/weapon/autopsy_scanner,
+		/obj/item/weapon/surgical/bioregen
 		)
 
 	starts_with = list(
@@ -152,7 +153,8 @@
 		/obj/item/weapon/surgical/FixOVein,
 		/obj/item/stack/medical/advanced/bruise_pack,
 		/obj/item/device/healthanalyzer/advanced,
-		/obj/item/weapon/autopsy_scanner
+		/obj/item/weapon/autopsy_scanner,
+		/obj/item/weapon/surgical/bioregen
 		)
 
 /obj/item/weapon/storage/firstaid/clotting
@@ -165,7 +167,7 @@
 	name = "bone repair kit"
 	desc = "Contains chemicals to mend broken bones."
 	max_storage_space = ITEMSIZE_COST_SMALL * 7
-	starts_with = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/bonemed = 8)
+	starts_with = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector/bonemed = 8)
 
 /*
  * Pill Bottles

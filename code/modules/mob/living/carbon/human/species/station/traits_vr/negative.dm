@@ -1,6 +1,3 @@
-#define ORGANICS	1
-#define SYNTHETICS	2
-
 /datum/trait/negative
 	category = -1
 
@@ -34,9 +31,9 @@
 	cost = -2
 	var_changes = list("total_health" = 75)
 
-	apply(var/datum/species/S,var/mob/living/carbon/human/H)
-		..(S,H)
-		H.setMaxHealth(S.total_health)
+/datum/trait/negative/endurance_low/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..(S,H)
+	H.setMaxHealth(S.total_health)
 
 /datum/trait/negative/endurance_very_low
 	name = "Extremely Low Endurance"
@@ -44,9 +41,9 @@
 	cost = -3 //Teshari HP. This makes the person a lot more suseptable to getting stunned, killed, etc.
 	var_changes = list("total_health" = 50)
 
-	apply(var/datum/species/S,var/mob/living/carbon/human/H)
-		..(S,H)
-		H.setMaxHealth(S.total_health)
+/datum/trait/negative/endurance_very_low/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..(S,H)
+	H.setMaxHealth(S.total_health)
 
 /datum/trait/negative/minor_brute_weak
 	name = "Minor Brute Weakness"
@@ -119,10 +116,24 @@
 	desc = "Your light weight and poor balance make you very susceptible to unhelpful bumping. Think of it like a bowling ball versus a pin."
 	cost = -2
 	var_changes = list("lightweight" = 1)
-	
+
 /datum/trait/negative/neural_hypersensitivity
 	name = "Neural Hypersensitivity"
 	desc = "Your nerves are particularly sensitive to physical changes, leading to experiencing twice the intensity of pain and pleasure alike. Doubles traumatic shock."
 	cost = -1
 	var_changes = list("trauma_mod" = 2)
 	can_take = ORGANICS
+
+/datum/trait/negative/breathes
+	cost = -2
+	can_take = ORGANICS
+
+/datum/trait/negative/breathes/phoron
+	name = "Phoron Breather"
+	desc = "You breathe phoron instead of oxygen (which is poisonous to you), much like a Vox."
+	var_changes = list("breath_type" = "phoron", "poison_type" = "oxygen")
+
+/datum/trait/negative/breathes/nitrogen
+	name = "Nitrogen Breather"
+	desc = "You breathe nitrogen instead of oxygen (which is poisonous to you). Incidentally, phoron isn't poisonous to breathe to you."
+	var_changes = list("breath_type" = "nitrogen", "poison_type" = "oxygen")
