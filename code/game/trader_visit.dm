@@ -34,7 +34,7 @@ var/can_call_traders = 1
 	log_admin("[key_name(usr)] used Dispatch Beruang Trader Ship.")
 	trigger_trader_visit()
 
-client/verb/JoinTraders()
+/client/verb/JoinTraders()
 
 	set name = "Join Trader Visit"
 	set category = "IC"
@@ -54,7 +54,7 @@ client/verb/JoinTraders()
 	else
 		to_chat(usr, "You need to be an observer or new player to use this.")
 
-proc/trigger_trader_visit()
+/proc/trigger_trader_visit()
 	if(!can_call_traders)
 		return
 	if(send_beruang)

@@ -35,7 +35,7 @@
 	if(!target_turf)
 		return
 	chassis.use_power(energy_drain)
-	set_ready_state(0)
+	set_ready_state(FALSE)
 	var/obj/effect/portal/P = new /obj/effect/portal(get_turf(target))
 	P.target = target_turf
 	P.creator = null

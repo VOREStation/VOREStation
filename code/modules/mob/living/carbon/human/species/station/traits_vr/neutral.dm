@@ -1,6 +1,3 @@
-#define ORGANICS	1
-#define SYNTHETICS	2
-
 /datum/trait/neutral
 
 /datum/trait/neutral/metabolism_up
@@ -174,7 +171,7 @@
 	desc = "You're highly allergic to gluten proteins, which are found in most common grains."
 	cost = 0
 	custom_only = FALSE
-	var/allergen = GRAINS
+	var/allergen = ALLERGEN_GRAINS
 
 /datum/trait/neutral/allergy/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	S.allergens |= allergen
@@ -185,63 +182,63 @@
 	desc = "You're highly allergic to just about any form of meat. You're probably better off just sticking to vegetables. NB: By taking this trait, you acknowledge there is a risk your character may suffer a fatal reaction if exposed to this substance."
 	cost = 0
 	custom_only = FALSE
-	allergen = MEAT
+	allergen = ALLERGEN_MEAT
 
 /datum/trait/neutral/allergy/fish
 	name = "Allergy: Fish"
 	desc = "You're highly allergic to fish. It's probably best to avoid seafood in general. NB: By taking this trait, you acknowledge there is a risk your character may suffer a fatal reaction if exposed to this substance."
 	cost = 0
 	custom_only = FALSE
-	allergen = FISH
+	allergen = ALLERGEN_FISH
 
 /datum/trait/neutral/allergy/fruit
 	name = "Allergy: Fruit"
 	desc = "You're highly allergic to fruit. Vegetables are fine, but you should probably read up on how to tell the difference. Remember, tomatoes are a fruit. NB: By taking this trait, you acknowledge there is a risk your character may suffer a fatal reaction if exposed to this substance."
 	cost = 0
 	custom_only = FALSE
-	allergen = FRUIT
+	allergen = ALLERGEN_FRUIT
 
 /datum/trait/neutral/allergy/vegetable
 	name = "Allergy: Vegetable"
 	desc = "You're highly allergic to vegetables. Fruit are fine, but you should probably read up on how to tell the difference. NB: By taking this trait, you acknowledge there is a risk your character may suffer a fatal reaction if exposed to this substance."
 	cost = 0
 	custom_only = FALSE
-	allergen = VEGETABLE
+	allergen = ALLERGEN_VEGETABLE
 
 /datum/trait/neutral/allergy/nuts
 	name = "Allergy: Nuts"
 	desc = "You're highly allergic to hard-shell seeds, such as peanuts. NB: By taking this trait, you acknowledge there is a risk your character may suffer a fatal reaction if exposed to this substance."
 	cost = 0
 	custom_only = FALSE
-	allergen = SEEDS
+	allergen = ALLERGEN_SEEDS
 
 /datum/trait/neutral/allergy/soy
 	name = "Allergy: Soy"
 	desc = "You're highly allergic to soybeans, and some other kinds of bean. NB: By taking this trait, you acknowledge there is a risk your character may suffer a fatal reaction if exposed to this substance."
 	cost = 0
 	custom_only = FALSE
-	allergen = BEANS
+	allergen = ALLERGEN_BEANS
 
 /datum/trait/neutral/allergy/dairy
 	name = "Allergy: Lactose"
 	desc = "You're highly allergic to lactose, and consequently, just about all forms of dairy. NB: By taking this trait, you acknowledge there is a risk your character may suffer a fatal reaction if exposed to this substance."
 	cost = 0
 	custom_only = FALSE
-	allergen = DAIRY
+	allergen = ALLERGEN_DAIRY
 
 /datum/trait/neutral/allergy/fungi
 	name = "Allergy: Fungi"
 	desc = "You're highly allergic to fungi such as mushrooms. NB: By taking this trait, you acknowledge there is a risk your character may suffer a fatal reaction if exposed to this substance."
 	cost = 0
 	custom_only = FALSE
-	allergen = FUNGI
+	allergen = ALLERGEN_FUNGI
 
 /datum/trait/neutral/allergy/coffee
 	name = "Allergy: Coffee"
 	desc = "You're highly allergic to coffee in specific. NB: By taking this trait, you acknowledge there is a risk your character may suffer a fatal reaction if exposed to this substance."
 	cost = 0
 	custom_only = FALSE
-	allergen = COFFEE
+	allergen = ALLERGEN_COFFEE
 
 /datum/trait/neutral/allergen_reduced_effect
 	name = "Reduced Allergen Reaction"

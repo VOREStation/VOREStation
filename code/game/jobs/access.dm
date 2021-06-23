@@ -28,32 +28,21 @@
 	return has_access(req_access, req_one_access, L)
 
 /proc/has_access(var/list/req_access, var/list/req_one_access, var/list/accesses)
-	// Doesn't have access lists, always works
-	if(!LAZYLEN(req_access) && !LAZYLEN(req_one_access))
-		return TRUE
-	
-	// Didn't pass anything to compare
-	if(!LAZYLEN(accesses))
-		return FALSE
-	
 	// req_access list has priority if set
 	// Requires at least every access in list
-	if(LAZYLEN(req_access))
-		for(var/req in req_access)
-			if(!(req in accesses))
-				return FALSE
-		// Wasn't missing any accesses
-		return TRUE
+	for(var/req in req_access)
+		if(!(req in accesses))
+			return FALSE
 
 	// req_one_access is secondary if set
 	// Requires at least one access in list
-	for(var/req in req_one_access)
-		if(req in accesses)
-			// Found at least one
-			return TRUE
+	if(LAZYLEN(req_one_access))
+		for(var/req in req_one_access)
+			if(req in accesses)
+				return TRUE
+		return FALSE
 
-	// Didn't find anything that matched
-	return FALSE
+	return TRUE
 
 /proc/get_centcom_access(job)
 	switch(job)
@@ -240,13 +229,13 @@
 /mob/living/silicon/GetIdCard()
 	return idcard
 
-proc/FindNameFromID(var/mob/living/carbon/human/H)
+/proc/FindNameFromID(var/mob/living/carbon/human/H)
 	ASSERT(istype(H))
 	var/obj/item/weapon/card/id/C = H.GetIdCard()
 	if(C)
 		return C.registered_name
 
-proc/get_all_job_icons() //For all existing HUD icons
+/proc/get_all_job_icons() //For all existing HUD icons
 	return joblist + list("Prisoner")
 
 /obj/proc/GetJobName() //Used in secHUD icon generation

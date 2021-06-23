@@ -188,7 +188,7 @@ export const ComplexModal = (props, context) => {
       maxHeight={props.maxHeight || (window.innerHeight / 2 + "px")}
       onEnter={modalOnEnter}
       mx="auto">
-      <Box display="inline">
+      <Box inline>
         {text}
       </Box>
       {modalBody}

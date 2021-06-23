@@ -377,37 +377,40 @@
 //Vision flags, for dealing with plane visibility
 #define VIS_FULLBRIGHT		1
 #define VIS_LIGHTING		2
-#define VIS_GHOSTS			3
-#define VIS_AI_EYE			4
+#define VIS_O_LIGHT         3
+#define VIS_EMISSIVE        4
 
-#define VIS_CH_STATUS		5
-#define VIS_CH_HEALTH		6
-#define VIS_CH_LIFE			7
-#define VIS_CH_ID			8
-#define VIS_CH_WANTED		9
-#define VIS_CH_IMPLOYAL		10
-#define VIS_CH_IMPTRACK		11
-#define VIS_CH_IMPCHEM		12
-#define VIS_CH_SPECIAL		13
-#define VIS_CH_STATUS_OOC	14
+#define VIS_GHOSTS			5
+#define VIS_AI_EYE			6
 
-#define VIS_ADMIN1			15
-#define VIS_ADMIN2			16
-#define VIS_ADMIN3			17
+#define VIS_CH_STATUS		7
+#define VIS_CH_HEALTH		8
+#define VIS_CH_LIFE			9
+#define VIS_CH_ID			10
+#define VIS_CH_WANTED		11
+#define VIS_CH_IMPLOYAL		12
+#define VIS_CH_IMPTRACK		13
+#define VIS_CH_IMPCHEM		14
+#define VIS_CH_SPECIAL		15
+#define VIS_CH_STATUS_OOC	16
 
-#define VIS_MESONS			18
+#define VIS_ADMIN1			17
+#define VIS_ADMIN2			18
+#define VIS_ADMIN3			19
 
-#define VIS_TURFS			19
-#define VIS_OBJS			20
-#define VIS_MOBS			21
+#define VIS_MESONS			20
 
-#define VIS_BUILDMODE		22
+#define VIS_TURFS			21
+#define VIS_OBJS			22
+#define VIS_MOBS		    23
 
-#define VIS_CLOAKED			23
+#define VIS_BUILDMODE		24
 
-#define VIS_STATUS			24
+#define VIS_CLOAKED			25
 
-#define VIS_COUNT			24 //Must be highest number from above.
+#define VIS_STATUS			26
+
+#define VIS_COUNT			26 //Must be highest number from above.
 
 //Some mob icon layering defines
 #define BODY_LAYER		-100

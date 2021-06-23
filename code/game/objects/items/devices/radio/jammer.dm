@@ -109,8 +109,7 @@ var/global/list/active_radio_jammers = list()
 
 	// Only Cut() if we need to.
 	if(overlay_percent != last_overlay_percent)
-		overlays.Cut()
-		var/image/I = image(src.icon, src, "jammer_overlay_[overlay_percent]")
-		overlays += I
+		cut_overlays()
+		add_overlay("jammer_overlay_[overlay_percent]")
 		last_overlay_percent = overlay_percent
 

@@ -160,7 +160,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	//STINGS//	//They get a pretty header because there's just so fucking many of them ;_;
 	//////////
 
-turf/proc/AdjacentTurfsRangedSting()
+/turf/proc/AdjacentTurfsRangedSting()
 	//Yes this is snowflakey, but I couldn't get it to work any other way.. -Luke
 	var/list/allowed = list(
 		/obj/structure/table,

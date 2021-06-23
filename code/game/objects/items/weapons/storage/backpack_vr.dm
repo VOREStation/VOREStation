@@ -115,6 +115,38 @@
 	icon_override = 'icons/mob/back_vr.dmi'
 	icon_state = "explorer_duffle"
 
+///Talon Bags///
+
+/obj/item/weapon/storage/backpack/talon
+	name = "ITV backpack"
+	desc = "A backpack for carrying a large number of supplies easily."
+	icon = 'icons/obj/clothing/backpack_vr.dmi'
+	icon_override = 'icons/mob/back_vr.dmi'
+	icon_state = "talon"
+
+/obj/item/weapon/storage/backpack/satchel/talon
+	name = "ITV satchel"
+	desc = "A satchel for carrying a large number of supplies easily."
+	icon = 'icons/obj/clothing/backpack_vr.dmi'
+	icon_override = 'icons/mob/back_vr.dmi'
+	icon_state = "talon_satchel"
+	item_state_slots = null
+
+/obj/item/weapon/storage/backpack/messenger/talon
+	name = "ITV messenger bag"
+	desc = "A sturdy backpack worn over one shoulder."
+	icon = 'icons/obj/clothing/backpack_vr.dmi'
+	icon_override = 'icons/mob/back_vr.dmi'
+	icon_state = "talon_courier"
+	item_state_slots = null
+
+/obj/item/weapon/storage/backpack/dufflebag/talon
+	name = "ITV dufflebag"
+	desc = "A large dufflebag for holding extra supplies."
+	icon = 'icons/obj/clothing/backpack_vr.dmi'
+	icon_override = 'icons/mob/back_vr.dmi'
+	icon_state = "talon_duffle"
+
 ///Roboticist Bags///
 
 /obj/item/weapon/storage/backpack/satchel/roboticist

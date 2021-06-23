@@ -73,9 +73,9 @@
 
 		var/obj/item/device/perfect_tele_beacon/beacon = beacons[bcn]
 		if(destination == beacon)
-			I.overlays += radial_seton
+			I.add_overlay(radial_seton)
 		else
-			I.overlays += radial_set
+			I.add_overlay(radial_set)
 
 		radial_images[bcn] = I
 
@@ -83,7 +83,7 @@
 
 	if(beacons_left)
 		var/image/I = image(icon = 'icons/mob/radial_vr.dmi', icon_state = "tl_[index]")
-		I.overlays += radial_plus
+		I.add_overlay(radial_plus)
 		radial_images["New Beacon"] = I
 
 /obj/item/device/perfect_tele/attack_hand(mob/user)

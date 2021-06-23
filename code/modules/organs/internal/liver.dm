@@ -1,5 +1,3 @@
-#define PROCESS_ACCURACY 10
-
 /obj/item/organ/internal/liver
 	name = "liver"
 	icon_state = "liver"

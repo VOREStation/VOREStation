@@ -109,14 +109,14 @@
 	env.merge(removed)
 
 /obj/machinery/power/thermoregulator/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(on)
-		overlays += "lasergen-on"
+		add_overlay("lasergen-on")
 		switch(mode)
 			if(MODE_HEATING)
-				overlays += "lasergen-heat"
+				add_overlay("lasergen-heat")
 			if(MODE_COOLING)
-				overlays += "lasergen-cool"
+				add_overlay("lasergen-cool")
 
 /obj/machinery/power/thermoregulator/proc/turn_off()
 	on = 0

@@ -106,7 +106,7 @@
 
 
 /obj/machinery/r_n_d/protolathe/update_icon()
-	overlays.Cut()
+	cut_overlays()
 
 	icon_state = initial(icon_state)
 
@@ -175,9 +175,9 @@
 
 	var/stacktype = S.type
 	var/t = getMaterialName(stacktype)
-	overlays += "protolathe_[t]"
+	add_overlay("protolathe_[t]")
 	spawn(10)
-		overlays -= "protolathe_[t]"
+		cut_overlay("protolathe_[t]")
 
 	updateUsrDialog()
 	return

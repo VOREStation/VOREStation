@@ -90,12 +90,16 @@
 	opened_at = world.time
 	window.acquire_lock(src)
 	if(!window.is_ready())
-		window.initialize(inline_assets = list(
+		window.initialize(
+			fancy = user.client.prefs.tgui_fancy,
+			inline_assets = list(
+			get_asset_datum(/datum/asset/simple/tgui_common),
 			get_asset_datum(/datum/asset/simple/tgui)
 		))
 	else
 		window.send_message("ping")
 	window.send_asset(get_asset_datum(/datum/asset/simple/fontawesome))
+	window.send_asset(get_asset_datum(/datum/asset/simple/tgfont))
 	for(var/datum/asset/asset in src_object.ui_assets(user))
 		window.send_asset(asset)
 	window.send_message("update", get_payload(
@@ -159,8 +163,8 @@
  */
 /datum/tgui/proc/send_asset(datum/asset/asset)
 	if(!window)
-		CRASH("send_asset() can only be called after open().")
-	window.send_asset(asset)
+		CRASH("send_asset() was called either without calling open() first or when open() did not return TRUE.")
+	return window.send_asset(asset)
 
 /**
  * public
@@ -215,6 +219,11 @@
 			"size" = window_size,
 			"fancy" = user.client.prefs.tgui_fancy,
 			"locked" = user.client.prefs.tgui_lock,
+		),
+		"client" = list(
+			"ckey" = user.client.ckey,
+			"address" = user.client.address,
+			"computer_id" = user.client.computer_id,
 		),
 		"user" = list(
 			"name" = "[user]",
@@ -295,8 +304,10 @@
 /datum/tgui/proc/on_message(type, list/payload, list/href_list)
 	// Pass act type messages to tgui_act
 	if(type && copytext(type, 1, 5) == "act/")
+		var/act_type = copytext(type, 5)
+		log_tgui(user, "Action: [act_type] [href_list["payload"]], Window: [window.id], Source: [src_object]")
 		process_status()
-		if(src_object.tgui_act(copytext(type, 5), payload, src, state))
+		if(src_object.tgui_act(act_type, payload, src, state))
 			SStgui.update_uis(src_object)
 		return FALSE
 	switch(type)

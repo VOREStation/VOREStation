@@ -24,6 +24,7 @@
 	// If you create a program which is limited to Laptops and Consoles you don't have to add it's icon_state overlay for Tablets too, for example.
 
 	icon = null												// This thing isn't meant to be used on it's own. Subtypes should supply their own icon.
+	blocks_emissive = FALSE
 	var/overlay_icon = null									// Icon file used for overlays
 	icon_state = null
 	center_of_mass = null									// No pixelshifting by placing on tables, etc.

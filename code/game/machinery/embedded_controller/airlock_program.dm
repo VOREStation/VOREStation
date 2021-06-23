@@ -1,5 +1,4 @@
 //Handles the control of airlocks
-
 #define STATE_IDLE			0
 #define STATE_PREPARE		1
 #define STATE_DEPRESSURIZE	2
@@ -12,7 +11,7 @@
 #define MIN_TARGET_PRESSURE (ONE_ATMOSPHERE * 0.05) // Never try to pump to pure vacuum, its not happening.
 #define SKIPCYCLE_MARGIN	1 // Skip cycling airlock (just open the doors) if pressures are within this range.
 
-/datum/computer/file/embedded_program/airlock
+/datum/embedded_program/airlock
 	var/tag_exterior_door
 	var/tag_interior_door
 	var/tag_airpump
@@ -29,7 +28,7 @@
 	var/tag_pump_out_external
 	var/tag_pump_out_internal
 
-/datum/computer/file/embedded_program/airlock/New(var/obj/machinery/embedded_controller/M)
+/datum/embedded_program/airlock/New(var/obj/machinery/embedded_controller/M)
 	..(M)
 
 	memory["chamber_sensor_pressure"] = ONE_ATMOSPHERE
@@ -62,7 +61,7 @@
 			signalDoor(tag_exterior_door, "update")		//signals connected doors to update their status
 			signalDoor(tag_interior_door, "update")
 
-/datum/computer/file/embedded_program/airlock/receive_signal(datum/signal/signal, receive_method, receive_param)
+/datum/embedded_program/airlock/receive_signal(datum/signal/signal, receive_method, receive_param)
 	var/receive_tag = signal.data["tag"]
 	if(!receive_tag) return
 
@@ -115,7 +114,7 @@
 						receive_user_command("cycle_int")
 
 
-/datum/computer/file/embedded_program/airlock/receive_user_command(command)
+/datum/embedded_program/airlock/receive_user_command(command)
 	var/shutdown_pump = 0
 	. = TRUE
 	switch(command)
@@ -175,7 +174,7 @@
 
 
 
-/datum/computer/file/embedded_program/airlock/process()
+/datum/embedded_program/airlock/process()
 	if(!state) //Idle
 		if(target_state)
 			switch(target_state)
@@ -278,49 +277,49 @@
 
 //these are here so that other types don't have to make so many assuptions about our implementation
 
-/datum/computer/file/embedded_program/airlock/proc/begin_cycle_in()
+/datum/embedded_program/airlock/proc/begin_cycle_in()
 	state = STATE_IDLE
 	target_state = TARGET_INOPEN
 	memory["purge"] = cycle_to_external_air
 
-/datum/computer/file/embedded_program/airlock/proc/begin_dock_cycle()
+/datum/embedded_program/airlock/proc/begin_dock_cycle()
 	state = STATE_IDLE
 	target_state = TARGET_INOPEN
-/datum/computer/file/embedded_program/airlock/proc/begin_cycle_out()
+/datum/embedded_program/airlock/proc/begin_cycle_out()
 	state = STATE_IDLE
 	target_state = TARGET_OUTOPEN
 	memory["purge"] = cycle_to_external_air
 
-/datum/computer/file/embedded_program/airlock/proc/close_doors()
+/datum/embedded_program/airlock/proc/close_doors()
 	toggleDoor(memory["interior_status"], tag_interior_door, 1, "close")
 	toggleDoor(memory["exterior_status"], tag_exterior_door, 1, "close")
 
-/datum/computer/file/embedded_program/airlock/proc/stop_cycling()
+/datum/embedded_program/airlock/proc/stop_cycling()
 	state = STATE_IDLE
 	target_state = TARGET_NONE
 
-/datum/computer/file/embedded_program/airlock/proc/done_cycling()
+/datum/embedded_program/airlock/proc/done_cycling()
 	return (state == STATE_IDLE && target_state == TARGET_NONE)
 
 //are the doors closed and locked?
-/datum/computer/file/embedded_program/airlock/proc/check_exterior_door_secured()
+/datum/embedded_program/airlock/proc/check_exterior_door_secured()
 	return (memory["exterior_status"]["state"] == "closed" &&  memory["exterior_status"]["lock"] == "locked")
 
-/datum/computer/file/embedded_program/airlock/proc/check_interior_door_secured()
+/datum/embedded_program/airlock/proc/check_interior_door_secured()
 	return (memory["interior_status"]["state"] == "closed" &&  memory["interior_status"]["lock"] == "locked")
 
-/datum/computer/file/embedded_program/airlock/proc/check_doors_secured()
+/datum/embedded_program/airlock/proc/check_doors_secured()
 	var/ext_closed = check_exterior_door_secured()
 	var/int_closed = check_interior_door_secured()
 	return (ext_closed && int_closed)
 
-/datum/computer/file/embedded_program/airlock/proc/signalDoor(var/tag, var/command)
+/datum/embedded_program/airlock/proc/signalDoor(var/tag, var/command)
 	var/datum/signal/signal = new
 	signal.data["tag"] = tag
 	signal.data["command"] = command
 	post_signal(signal, RADIO_AIRLOCK)
 
-/datum/computer/file/embedded_program/airlock/proc/signalPump(var/tag, var/power, var/direction, var/pressure)
+/datum/embedded_program/airlock/proc/signalPump(var/tag, var/power, var/direction, var/pressure)
 	var/datum/signal/signal = new
 	signal.data = list(
 		"tag" = tag,
@@ -332,7 +331,7 @@
 	post_signal(signal)
 
 //this is called to set the appropriate door state at the end of a cycling process, or for the exterior buttons
-/datum/computer/file/embedded_program/airlock/proc/cycleDoors(var/target)
+/datum/embedded_program/airlock/proc/cycleDoors(var/target)
 	switch(target)
 		if(TARGET_OUTOPEN)
 			toggleDoor(memory["interior_status"], tag_interior_door, memory["secure"], "close")
@@ -348,17 +347,17 @@
 			signalDoor(tag_exterior_door, command)
 			signalDoor(tag_interior_door, command)
 
-datum/computer/file/embedded_program/airlock/proc/signal_mech_sensor(var/command, var/sensor)
+/datum/embedded_program/airlock/proc/signal_mech_sensor(var/command, var/sensor)
 	var/datum/signal/signal = new
 	signal.data["tag"] = sensor
 	signal.data["command"] = command
 	post_signal(signal)
 
-/datum/computer/file/embedded_program/airlock/proc/enable_mech_regulation()
+/datum/embedded_program/airlock/proc/enable_mech_regulation()
 	signal_mech_sensor("enable", tag_shuttle_mech_sensor)
 	signal_mech_sensor("enable", tag_airlock_mech_sensor)
 
-/datum/computer/file/embedded_program/airlock/proc/disable_mech_regulation()
+/datum/embedded_program/airlock/proc/disable_mech_regulation()
 	signal_mech_sensor("disable", tag_shuttle_mech_sensor)
 	signal_mech_sensor("disable", tag_airlock_mech_sensor)
 
@@ -374,7 +373,7 @@ Only sends a command if it is needed, i.e. if the door is
 already open, passing an open command to this proc will not
 send an additional command to open the door again.
 ----------------------------------------------------------*/
-/datum/computer/file/embedded_program/airlock/proc/toggleDoor(var/list/doorStatus, var/doorTag, var/secure, var/command)
+/datum/embedded_program/airlock/proc/toggleDoor(var/list/doorStatus, var/doorTag, var/secure, var/command)
 	var/doorCommand = null
 
 	if(command == "toggle")
@@ -416,8 +415,10 @@ send an additional command to open the door again.
 		signalDoor(doorTag, doorCommand)
 
 #undef SKIPCYCLE_MARGIN
+#undef MIN_TARGET_PRESSURE
 
 #undef STATE_IDLE
+#undef STATE_PREPARE
 #undef STATE_DEPRESSURIZE
 #undef STATE_PRESSURIZE
 

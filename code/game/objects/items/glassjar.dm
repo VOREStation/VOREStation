@@ -86,7 +86,7 @@
 
 /obj/item/glass_jar/update_icon() // Also updates name and desc
 	underlays.Cut()
-	overlays.Cut()
+	cut_overlays()
 	switch(contains)
 		if(JAR_NOTHING)
 			name = initial(name)
@@ -138,7 +138,7 @@
 
 /obj/item/glass_jar/fish/update_icon() // Also updates name and desc
 	underlays.Cut()
-	overlays.Cut()
+	cut_overlays()
 
 	if(filled)
 		underlays += image(icon, "[icon_state]_water")

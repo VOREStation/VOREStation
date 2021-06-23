@@ -630,9 +630,9 @@
 				flick("[loading_icon_state]", src)
 				// yess hacky but whatever
 				if(loading_icon_state == "mechfab-idle")
-					overlays += "mechfab-load-metal"
+					add_overlay("mechfab-load-metal")
 					spawn(10)
-						overlays -= "mechfab-load-metal"
+						cut_overlays("mechfab-load-metal")
 				while(materials[S.material.name] + amnt <= res_max_amount && S.get_amount() >= 1)
 					materials[S.material.name] += amnt
 					S.use(1)

@@ -38,7 +38,7 @@
 	icon_state = "blank"
 	var/image/I = image(icon, "fuel_assembly")
 	I.color = fuel_colour
-	overlays += list(I, image(icon, "fuel_assembly_bracket"))
+	add_overlay(list(I, image(icon, "fuel_assembly_bracket")))
 	rod_quantities[fuel_type] = initial_amount
 
 /obj/item/weapon/fuel_assembly/process()

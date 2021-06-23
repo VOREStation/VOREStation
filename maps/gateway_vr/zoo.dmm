@@ -2518,7 +2518,7 @@
 /turf/simulated/floor/plating,
 /area/awaymission/zoo/pirateship)
 "hl" = (
-/obj/item/weapon/contraband/poster,
+/obj/item/poster,
 /turf/simulated/floor/plating,
 /area/awaymission/zoo/pirateship)
 "hm" = (

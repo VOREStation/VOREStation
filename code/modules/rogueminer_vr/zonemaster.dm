@@ -395,7 +395,7 @@
 
 	for(var/atom/I in myarea.contents)
 		if(I.type == /turf/space)
-			I.overlays.Cut()
+			I.cut_overlays()
 			continue
 		else if(!I.simulated)
 			continue
@@ -407,7 +407,7 @@
 	//A deletion so nice that I give it twice
 	for(var/atom/I in myarea.contents)
 		if(I.type == /turf/space)
-			I.overlays.Cut()
+			I.cut_overlays()
 			continue
 		else if(!I.simulated)
 			continue

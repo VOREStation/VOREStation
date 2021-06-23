@@ -2,8 +2,6 @@
 // Constants and standard colors for the holomap
 //
 
-#define WORLD_ICON_SIZE 32	// Size of a standard tile in pixels (world.icon_size)
-#define PIXEL_MULTIPLIER WORLD_ICON_SIZE/32	// Convert from normal icon size of 32 to whatever insane thing this server is using.
 #define HOLOMAP_ICON 'icons/480x480.dmi' // Icon file to start with when drawing holomaps (to get a 480x480 canvas).
 #define HOLOMAP_ICON_SIZE 480 // Pixel width & height of the holomap icon.  Used for auto-centering etc.
 #define ui_holomap "CENTER-7, CENTER-7" // Screen location of the holomap "hud"
@@ -21,6 +19,7 @@
 #define HOLOMAP_EXTRA_STATIONMAP				"stationmapformatted"
 #define HOLOMAP_EXTRA_STATIONMAP_STRATEGIC		"stationmapstrategic"
 #define HOLOMAP_EXTRA_STATIONMAPAREAS			"stationareas"
+#define HOLOMAP_EXTRA_STATIONMAPSMALL			"stationmapsmall"
 #define HOLOMAP_EXTRA_STATIONMAPSMALL_NORTH		"stationmapsmallnorth"
 #define HOLOMAP_EXTRA_STATIONMAPSMALL_SOUTH		"stationmapsmallsouth"
 #define HOLOMAP_EXTRA_STATIONMAPSMALL_EAST		"stationmapsmalleast"
@@ -85,7 +84,3 @@
 // #define HOLOMAP_MARKER_DISK				"diskspawn"
 // #define HOLOMAP_MARKER_SKIPJACK			"skipjack"
 // #define HOLOMAP_MARKER_SYNDISHUTTLE		"syndishuttle"
-
-#define HOLOMAP_EXTRA_STATIONMAP			"stationmapformatted"
-#define HOLOMAP_EXTRA_STATIONMAPAREAS		"stationareas"
-#define HOLOMAP_EXTRA_STATIONMAPSMALL		"stationmapsmall"

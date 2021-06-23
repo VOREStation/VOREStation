@@ -126,9 +126,10 @@ const VoreBellySelectionAndCustomization = (props, context) => {
         {our_bellies.map(belly => (
           <Tabs.Tab
             key={belly.name}
-            color={belly.selected ? "green" : digestModeToColor[belly.digest_mode]}
+            selected={belly.selected}
+            textColor={digestModeToColor[belly.digest_mode]}
             onClick={() => act("bellypick", { bellypick: belly.ref })}>
-            <Box inline color={belly.selected && digestModeToColor[belly.digest_mode] || null}>
+            <Box inline textColor={belly.selected && digestModeToColor[belly.digest_mode] || null}>
               {belly.name} ({belly.contents})
             </Box>
           </Tabs.Tab>

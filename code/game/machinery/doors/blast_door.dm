@@ -306,7 +306,7 @@
 
 // SUBTYPE: Regular
 // Your classical blast door, found almost everywhere.
-obj/machinery/door/blast/regular
+/obj/machinery/door/blast/regular
 	icon_state_open = "pdoor0"
 	icon_state_opening = "pdoorc0"
 	icon_state_closed = "pdoor1"
@@ -314,7 +314,7 @@ obj/machinery/door/blast/regular
 	icon_state = "pdoor1"
 	maxhealth = 600
 
-obj/machinery/door/blast/regular/open
+/obj/machinery/door/blast/regular/open
 	icon_state = "pdoor0"
 	density = 0
 	opacity = 0
@@ -331,7 +331,7 @@ obj/machinery/door/blast/regular/open
 
 // SUBTYPE: Transparent
 // Not technically a blast door but operates like one. Allows air and light.
-obj/machinery/door/blast/gate
+/obj/machinery/door/blast/gate
 	name = "thick gate"
 	icon_state_open = "tshutter0"
 	icon_state_opening = "tshutterc0"
@@ -344,7 +344,7 @@ obj/machinery/door/blast/gate
 	opacity = 0
 	istransparent = 1
 
-obj/machinery/door/blast/gate/open
+/obj/machinery/door/blast/gate/open
 	icon_state = "tshutter0"
 	density = 0
 
@@ -388,24 +388,13 @@ obj/machinery/door/blast/gate/open
 	. = ..()
 	apply_opacity_to_my_turfs(opacity)
 
-/obj/machinery/door/blast/multi_tile/open()
-	if((. = ..()))
-		apply_opacity_to_my_turfs(opacity)
+/obj/machinery/door/blast/multi_tile/set_opacity()
+	. = ..()
+	apply_opacity_to_my_turfs(opacity)
 
-/obj/machinery/door/blast/multi_tile/close()
-	if((. = ..()))
-		apply_opacity_to_my_turfs(opacity)
-
-/obj/machinery/door/blast/multi_tile/Destroy()
-	apply_opacity_to_my_turfs(0)
-	return ..()
-
-//Multi-tile poddoors don't turn invisible automatically, so we change the opacity of the turfs below instead one by one.
 /obj/machinery/door/blast/multi_tile/proc/apply_opacity_to_my_turfs(new_opacity)
 	for(var/turf/T in locs)
-		T.opacity = new_opacity
-		T.has_opaque_atom = new_opacity
-		T.reconsider_lights()
+		T.set_opacity(new_opacity)
 	update_nearby_tiles()
 
 /obj/machinery/door/blast/multi_tile

@@ -11,6 +11,9 @@
 	pass_flags = PASSTABLE
 	mouse_opacity = 0
 	hitsound = 'sound/weapons/pierce.ogg'
+
+	blocks_emissive = EMISSIVE_BLOCK_GENERIC
+
 	var/hitsound_wall = null // Played when something hits a wall, or anything else that isn't a mob.
 
 	////TG PROJECTILE SYTSEM
@@ -49,6 +52,7 @@
 	var/datum/beam_components_cache/beam_components
 
 	//Fancy hitscan lighting effects!
+	light_on = TRUE
 	var/hitscan_light_intensity = 1.5
 	var/hitscan_light_range = 0.75
 	var/hitscan_light_color_override
