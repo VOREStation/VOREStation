@@ -582,22 +582,24 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/centralhall)
 "aaR" = (
+/obj/machinery/vending/loadout/uniform,
+/obj/machinery/camera/network/medbay{
+	dir = 10
+	},
 /obj/effect/floor_decal/borderfloorwhite{
-	dir = 1
+	dir = 6
 	},
 /obj/effect/floor_decal/corner/paleblue/border{
-	dir = 1
+	dir = 6
 	},
 /obj/machinery/power/apc{
-	dir = 1;
-	name = "north bump";
-	pixel_y = 24
+	name = "south bump";
+	nightshift_setting = 2;
+	pixel_y = -28
 	},
-/obj/structure/cable/green{
-	icon_state = "0-8"
-	},
+/obj/structure/cable/green,
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/centralhall)
+/area/tether/surfacebase/medical/resleeving)
 "aaS" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 1
@@ -2786,23 +2788,23 @@
 /turf/simulated/wall,
 /area/tether/surfacebase/medical/patient_a)
 "aen" = (
-/obj/machinery/vending/loadout/uniform,
-/obj/machinery/camera/network/medbay{
-	dir = 10
-	},
 /obj/effect/floor_decal/borderfloorwhite{
-	dir = 6
+	dir = 1
 	},
 /obj/effect/floor_decal/corner/paleblue/border{
-	dir = 6
+	dir = 1
 	},
 /obj/machinery/power/apc{
-	name = "south bump";
-	pixel_y = -28
+	dir = 1;
+	name = "north bump";
+	nightshift_setting = 2;
+	pixel_y = 24
 	},
-/obj/structure/cable/green,
+/obj/structure/cable/green{
+	icon_state = "0-8"
+	},
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/resleeving)
+/area/tether/surfacebase/medical/centralhall)
 "aeo" = (
 /obj/structure/bed/psych{
 	name = "couch"
@@ -5328,6 +5330,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "east bump";
+	nightshift_setting = 2;
 	pixel_x = 28
 	},
 /obj/effect/floor_decal/borderfloorwhite{
@@ -6773,39 +6776,23 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/uppersouthstairwell)
 "akG" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment,
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	d2 = 2;
-	icon_state = "0-2"
-	},
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "east bump";
-	pixel_x = 24
+	nightshift_setting = 2;
+	pixel_x = 28
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
 	},
 /obj/structure/cable/green{
-	icon_state = "1-2"
+	icon_state = "0-8"
 	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 6
-	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 6
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/uppersouthstairwell)
+/turf/simulated/floor/tiled/dark,
+/area/tether/surfacebase/security/armory)
 "akH" = (
 /obj/structure/toilet{
 	dir = 8
@@ -8134,19 +8121,15 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "east bump";
+	nightshift_setting = 2;
 	pixel_x = 28
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
-	},
 /obj/structure/cable/green{
-	icon_state = "0-8"
+	d2 = 2;
+	icon_state = "0-2"
 	},
-/turf/simulated/floor/tiled/dark,
-/area/tether/surfacebase/security/armory)
+/turf/simulated/floor,
+/area/maintenance/substation/medsec)
 "amD" = (
 /turf/simulated/wall/r_wall,
 /area/maintenance/lower/north)
@@ -10187,17 +10170,40 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
 "aqb" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "east bump";
-	pixel_x = 28
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment,
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 4
 	},
 /obj/structure/cable/green{
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/turf/simulated/floor,
-/area/maintenance/substation/medsec)
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	nightshift_setting = 2;
+	pixel_x = 24
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 6
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/uppersouthstairwell)
 "aqc" = (
 /obj/effect/floor_decal/corner/paleblue/diagonal,
 /obj/item/device/radio/intercom/department/medbay{
@@ -11866,6 +11872,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "east bump";
+	nightshift_setting = 2;
 	pixel_x = 28
 	},
 /obj/structure/cable{
@@ -14837,22 +14844,18 @@
 /turf/simulated/floor/water/indoors,
 /area/tether/surfacebase/fish_farm)
 "ayx" = (
-/obj/effect/floor_decal/techfloor{
-	dir = 4
-	},
-/obj/structure/railing{
-	dir = 8
-	},
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "east bump";
+	nightshift_setting = 2;
 	pixel_x = 28
 	},
 /obj/structure/cable/green{
+	d2 = 8;
 	icon_state = "0-8"
 	},
-/turf/simulated/floor/tiled/techfloor,
-/area/maintenance/asmaint2)
+/turf/simulated/floor/tiled/dark,
+/area/bridge_hallway)
 "ayy" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -17303,17 +17306,19 @@
 /turf/simulated/floor/tiled/dark,
 /area/bridge_hallway)
 "aDF" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable,
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "east bump";
+	nightshift_setting = 2;
 	pixel_x = 28
 	},
-/obj/structure/cable/green{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/turf/simulated/floor/tiled/dark,
-/area/bridge_hallway)
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/fish_farm)
 "aDG" = (
 /obj/structure/cable/green{
 	icon_state = "0-2"
@@ -17809,18 +17814,15 @@
 /turf/simulated/floor/beach/sand/desert,
 /area/tether/surfacebase/fish_farm)
 "aEC" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 8
-	},
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable,
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "east bump";
+	nightshift_setting = 2;
 	pixel_x = 28
 	},
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/fish_farm)
+/obj/structure/cable/green,
+/turf/simulated/floor/wood,
+/area/bridge/meeting_room)
 "aED" = (
 /obj/structure/cable{
 	d1 = 2;
@@ -19079,11 +19081,15 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "east bump";
+	nightshift_setting = 2;
 	pixel_x = 28
 	},
-/obj/structure/cable/green,
-/turf/simulated/floor/wood,
-/area/bridge/meeting_room)
+/obj/structure/cable/green{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/simulated/floor,
+/area/maintenance/substation/research)
 "aHf" = (
 /obj/structure/lattice,
 /obj/machinery/alarm{
@@ -20930,17 +20936,27 @@
 /turf/simulated/floor,
 /area/maintenance/substation/research)
 "aKW" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/mauve/border{
+	dir = 4
+	},
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "east bump";
+	nightshift_setting = 2;
 	pixel_x = 28
 	},
 /obj/structure/cable/green{
-	d2 = 2;
-	icon_state = "0-2"
+	d2 = 8;
+	icon_state = "0-8"
 	},
-/turf/simulated/floor,
-/area/maintenance/substation/research)
+/obj/structure/bed/chair/office/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/rdoffice)
 "aKX" = (
 /turf/simulated/wall/r_wall,
 /area/ai_cyborg_station)
@@ -21595,23 +21611,18 @@
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
 	},
-/obj/effect/floor_decal/corner/mauve/border{
-	dir = 4
+/obj/structure/cable{
+	d2 = 8;
+	icon_state = "0-8"
 	},
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "east bump";
+	nightshift_setting = 2;
 	pixel_x = 28
 	},
-/obj/structure/cable/green{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/obj/structure/bed/chair/office/light{
-	dir = 8
-	},
-/turf/simulated/floor/tiled,
-/area/rnd/rdoffice)
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/east_stairs_two)
 "aMo" = (
 /turf/simulated/wall,
 /area/rnd/lockers)
@@ -24162,20 +24173,23 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/east_stairs_two)
 "aQY" = (
-/obj/effect/floor_decal/borderfloor{
+/obj/effect/floor_decal/techfloor{
 	dir = 4
 	},
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
+/obj/structure/railing{
+	dir = 8
 	},
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "east bump";
+	nightshift_setting = 2;
 	pixel_x = 28
 	},
-/turf/simulated/floor/tiled/techmaint,
-/area/tether/surfacebase/east_stairs_two)
+/obj/structure/cable/green{
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/maintenance/asmaint2)
 "aQZ" = (
 /obj/structure/railing{
 	dir = 4
@@ -25458,6 +25472,42 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/south)
+"aTm" = (
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	nightshift_setting = 2;
+	pixel_x = 28
+	},
+/obj/structure/cable/cyan{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/yellow/border{
+	dir = 5
+	},
+/obj/machinery/computer/rcon,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/engineering/atmos/monitoring)
+"aTn" = (
+/obj/structure/cable/green{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	nightshift_setting = 2;
+	pixel_x = 28
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/maintenance/asmaint2)
 "aTo" = (
 /obj/structure/catwalk,
 /obj/effect/floor_decal/rust,
@@ -25475,6 +25525,51 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/south)
+"aTq" = (
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	nightshift_setting = 2;
+	pixel_x = 28
+	},
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/south)
+"aTr" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	nightshift_setting = 2;
+	pixel_x = 28
+	},
+/obj/structure/cable,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/maintenance/readingrooms)
+"aTs" = (
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	nightshift_setting = 2;
+	pixel_x = 28
+	},
+/obj/structure/cable/orange{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/wood,
+/area/tether/surfacebase/reading_room)
 "aTw" = (
 /obj/structure/flora/pottedplant/stoutbush,
 /obj/machinery/camera/network/research{
@@ -28041,28 +28136,6 @@
 /obj/machinery/computer/power_monitor,
 /turf/simulated/floor/tiled,
 /area/engineering/atmos/monitoring)
-"aYp" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "east bump";
-	pixel_x = 28
-	},
-/obj/structure/cable/cyan{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/obj/effect/floor_decal/borderfloor{
-	dir = 5
-	},
-/obj/effect/floor_decal/corner/yellow/border{
-	dir = 5
-	},
-/obj/machinery/computer/rcon,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/simulated/floor/tiled,
-/area/engineering/atmos/monitoring)
 "aYq" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/zpipe/down{
@@ -29039,18 +29112,6 @@
 	},
 /turf/simulated/floor/tiled/steel_dirty,
 /area/maintenance/asmaint2)
-"bbw" = (
-/obj/structure/cable/green{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "east bump";
-	pixel_x = 28
-	},
-/turf/simulated/floor/tiled/steel_dirty,
-/area/maintenance/asmaint2)
 "bbz" = (
 /obj/structure/railing,
 /obj/machinery/light{
@@ -29348,19 +29409,6 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/simulated/floor/plating,
-/area/maintenance/lower/south)
-"bcO" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "east bump";
-	pixel_x = 28
-	},
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "bcP" = (
@@ -31356,18 +31404,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/reading_room)
-"bjT" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "east bump";
-	pixel_x = 28
-	},
-/obj/structure/cable/orange{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/turf/simulated/floor/wood,
-/area/tether/surfacebase/reading_room)
 "bjU" = (
 /obj/machinery/door/blast/regular{
 	id = "xenobiodiv5";
@@ -33307,23 +33343,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/reading_room)
-"jWK" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "east bump";
-	pixel_x = 28
-	},
-/obj/structure/cable,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/maintenance/readingrooms)
 "jZC" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -42295,7 +42314,7 @@ avC
 axf
 axf
 ayb
-ayx
+aQY
 ayK
 ayK
 ayK
@@ -42564,7 +42583,7 @@ aJI
 aKg
 aKT
 aLA
-aMn
+aKW
 aMX
 aNv
 aOk
@@ -43130,7 +43149,7 @@ aEc
 aEc
 aJJ
 aBb
-aKW
+aHe
 aLD
 aMo
 aMZ
@@ -43157,7 +43176,7 @@ aHm
 aHE
 baT
 aEH
-bbw
+aTn
 bbH
 bbW
 aHE
@@ -43544,7 +43563,7 @@ aBD
 aCs
 aDn
 aDW
-aEC
+aDF
 aFf
 awY
 awY
@@ -45366,7 +45385,7 @@ aim
 ajt
 akl
 alz
-amC
+akG
 anw
 aoF
 apS
@@ -46272,7 +46291,7 @@ aSd
 aWd
 aWX
 aXF
-aYp
+aTm
 aYQ
 aZp
 aZP
@@ -46503,7 +46522,7 @@ ajO
 alL
 akM
 amG
-aqb
+amC
 ase
 auN
 boQ
@@ -46777,7 +46796,7 @@ acf
 acu
 acX
 adH
-aen
+aaR
 akM
 afV
 ago
@@ -47382,7 +47401,7 @@ aEN
 aFp
 aGg
 aGK
-aHe
+aEC
 aHv
 aGF
 aIu
@@ -47802,7 +47821,7 @@ aAM
 aBp
 aBX
 aCO
-aDF
+ayx
 aAJ
 aEP
 aAk
@@ -47916,7 +47935,7 @@ adI
 aeo
 afc
 abz
-aaR
+aen
 aam
 aiy
 ajF
@@ -48392,7 +48411,7 @@ aNV
 aNV
 aNV
 aNV
-aQY
+aMn
 aRA
 aSm
 aTb
@@ -49841,7 +49860,7 @@ bde
 bdE
 csF
 cMd
-jWK
+aTr
 cMd
 gus
 jxi
@@ -50195,7 +50214,7 @@ abE
 adV
 aiG
 akt
-akG
+aqb
 akQ
 akU
 alG
@@ -50404,7 +50423,7 @@ aZr
 aZr
 aZr
 bcA
-bcO
+aTq
 bdh
 aZr
 bdR
@@ -50987,7 +51006,7 @@ bij
 biL
 bjg
 bjF
-bjT
+aTs
 bkq
 bkG
 bgU
