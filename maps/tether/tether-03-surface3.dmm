@@ -9591,6 +9591,7 @@
 	pixel_x = -23;
 	pixel_y = 9
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
 "apj" = (
@@ -11927,6 +11928,10 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
 "atg" = (
@@ -12213,6 +12218,9 @@
 /obj/effect/floor_decal/corner/grey/diagonal,
 /obj/item/weapon/material/knife/butch,
 /obj/item/weapon/material/kitchen/rollingpin,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
 "atN" = (
@@ -14767,6 +14775,9 @@
 "ayh" = (
 /obj/structure/closet/secure_closet/freezer/meat,
 /obj/machinery/camera/network/civilian,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/freezer/cold,
 /area/crew_quarters/freezer)
 "ayi" = (
@@ -15602,11 +15613,15 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/triage)
 "azv" = (
-/obj/structure/sign/double/barsign{
-	dir = 8
+/obj/machinery/disposal/wall{
+	dir = 1;
+	name = "Direct-To-Freezer Chute"
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 4
 	},
 /turf/simulated/wall,
-/area/crew_quarters/bar)
+/area/crew_quarters/kitchen)
 "azw" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -16040,6 +16055,9 @@
 /obj/structure/table/standard,
 /obj/effect/floor_decal/corner/grey/diagonal,
 /obj/machinery/microwave,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
 "aAa" = (
@@ -17088,7 +17106,16 @@
 /turf/simulated/floor/tiled,
 /area/rnd/research/testingrange)
 "aBJ" = (
-/obj/machinery/icecream_vat,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/warning,
+/obj/machinery/disposal/deliveryChute{
+	dir = 4
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/freezer/cold,
 /area/crew_quarters/freezer)
 "aBK" = (
@@ -20105,6 +20132,10 @@
 	layer = 3.3;
 	pixel_y = 26
 	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor/tiled/freezer/cold,
 /area/crew_quarters/freezer)
 "aGP" = (
@@ -26924,6 +26955,7 @@
 /area/tether/surfacebase/medical/storage)
 "aTW" = (
 /obj/machinery/light,
+/obj/machinery/icecream_vat,
 /turf/simulated/floor/tiled/freezer/cold,
 /area/crew_quarters/freezer)
 "aTX" = (
@@ -27036,11 +27068,11 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/servicebackroom)
 "aUh" = (
-/obj/structure/kitchenspike,
 /obj/machinery/alarm/freezer{
 	dir = 1;
 	pixel_y = -25
 	},
+/obj/structure/kitchenspike,
 /turf/simulated/floor/tiled/freezer/cold,
 /area/crew_quarters/freezer)
 "aUi" = (
@@ -30996,6 +31028,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 6
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
 "baN" = (
@@ -32376,6 +32409,9 @@
 	pixel_x = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
 "bdb" = (
@@ -33170,6 +33206,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/table/standard,
 /obj/machinery/microwave,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
 "beA" = (
@@ -33557,6 +33596,9 @@
 /obj/machinery/reagentgrinder,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
@@ -34115,6 +34157,9 @@
 /obj/item/device/destTagger{
 	pixel_x = 4;
 	pixel_y = 3
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
@@ -38989,6 +39034,23 @@
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
+"gAN" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor,
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	dir = 2;
+	icon_state = "shutter0";
+	id = "freezer";
+	name = "Freezer Shutters";
+	opacity = 0
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/crew_quarters/freezer)
 "gHh" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow{
 	dir = 10
@@ -39468,6 +39530,13 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/carpet/blue,
 /area/tether/surfacebase/security/breakroom)
+"iMl" = (
+/obj/effect/floor_decal/corner/grey/diagonal,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/kitchen)
 "iOL" = (
 /obj/machinery/alarm{
 	dir = 1;
@@ -41405,6 +41474,28 @@
 	},
 /turf/simulated/floor/carpet/blue,
 /area/tether/surfacebase/security/breakroom)
+"pLI" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/firedoor/glass,
+/obj/effect/floor_decal/spline/plain{
+	dir = 5
+	},
+/obj/item/weapon/reagent_containers/food/condiment/small/peppermill{
+	pixel_x = 3
+	},
+/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker{
+	pixel_x = -3
+	},
+/obj/machinery/door/blast/gate/thin{
+	id = "kitchen2";
+	layer = 3.3
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/kitchen)
 "pNk" = (
 /obj/machinery/computer/shuttle_control/explore/tourbus,
 /obj/machinery/light/small{
@@ -43519,6 +43610,30 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
+"xKk" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/beige/border{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 9
+	},
+/obj/structure/sign/double/barsign{
+	dir = 8;
+	pixel_x = 32
+	},
+/turf/simulated/floor/tiled,
+/area/hallway/lower/third_south)
 "xOa" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -57770,7 +57885,7 @@ awU
 aCJ
 axw
 axw
-axw
+xKk
 aAf
 aCJ
 axw
@@ -57902,7 +58017,7 @@ aBF
 aXT
 aXT
 bbN
-aru
+azv
 aGh
 aru
 avp
@@ -57912,7 +58027,7 @@ aru
 avd
 aru
 arJ
-azv
+arJ
 arJ
 aCS
 avK
@@ -58044,7 +58159,7 @@ aVO
 ate
 ate
 baB
-asD
+pLI
 baM
 api
 atf
@@ -58331,7 +58446,7 @@ aZJ
 aKc
 beu
 aqY
-anj
+iMl
 anj
 oII
 anj
@@ -59041,7 +59156,7 @@ aZg
 ani
 anj
 bgx
-anj
+iMl
 bgx
 nXZ
 bgx
@@ -59183,7 +59298,7 @@ bcg
 anj
 atA
 aAL
-anj
+iMl
 aGi
 bgq
 bgr
@@ -59325,7 +59440,7 @@ aru
 aES
 aIN
 aCf
-anj
+iMl
 bgx
 nXZ
 baq
@@ -59467,7 +59582,7 @@ avL
 atA
 aZX
 aBD
-anj
+iMl
 bgx
 rBz
 bew
@@ -59609,7 +59724,7 @@ aru
 bca
 anj
 anj
-anj
+iMl
 baq
 bek
 aru
@@ -59893,7 +60008,7 @@ atb
 aBy
 aKt
 aoJ
-aLe
+gAN
 bdS
 aLe
 aoJ
