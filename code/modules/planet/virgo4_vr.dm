@@ -92,7 +92,7 @@ var/datum/planet/virgo4/planet_virgo4 = null
 		new_color = rgb(new_r, new_g, new_b)
 
 	spawn(1)
-		update_sun_deferred(2, new_brightness, new_color)
+		update_sun_deferred(new_brightness, new_color)
 
 
 /datum/weather_holder/virgo4
