@@ -89,3 +89,8 @@
 	toytype["Classic"] = /obj/item/toy/chewtoy/tall/poly
 	gear_tweaks += new/datum/gear_tweak/path(toytype)
 	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/textmug
+	display_name = "mug with text"
+	description = "A mug with something written on it."
+	path = /obj/item/weapon/reagent_containers/food/drinks/textmug
