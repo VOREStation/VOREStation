@@ -102,7 +102,7 @@ export const ComplexModal = (props, context) => {
         placeholder="ENTER to submit"
         width="100%"
         my="0.5rem"
-        autofocus
+        autoFocus
         onChange={(_e, val) => {
           curValue = val;
         }}

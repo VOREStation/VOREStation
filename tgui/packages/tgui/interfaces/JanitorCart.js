@@ -64,7 +64,7 @@ export const JanitorCart = (props, context) => {
           height="64px"
           position="relative"
           tooltip={myspray ? myspray : "Spray Slot"}
-          tooltipPosition="top-right"
+          tooltipPosition="top-end"
           color={myspray ? "grey" : "transparent"}
           style={{
             border: myspray ? null : "2px solid grey",
@@ -90,7 +90,7 @@ export const JanitorCart = (props, context) => {
           height="64px"
           position="relative"
           tooltip={signs ? signs : "Signs Slot"}
-          tooltipPosition="top-left"
+          tooltipPosition="top-start"
           color={signs ? "grey" : "transparent"}
           style={{
             border: signs ? null : "2px solid grey",
