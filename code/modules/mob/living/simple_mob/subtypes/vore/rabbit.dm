@@ -91,7 +91,7 @@
 /datum/say_list/rabbit
 	speak = list("chrrrs.")
 	emote_hear = list("screms.")
-	emote_see = list("earflicks","wiggles it's tail", "wiggles its nose")
+	emote_see = list("earflicks","wiggles its tail", "wiggles its nose")
 
 /mob/living/simple_mob/vore/rabbit/black
 	icon_state = "rabbit_black"
