@@ -465,3 +465,6 @@ GLOBAL_LIST_INIT(all_volume_channels, list(
 #endif
 
 #define DOCK_ATTEMPT_TIMEOUT 200	//how long in ticks we wait before assuming the docking controller is broken or blown up.
+
+#define SMES_TGUI_INPUT 1
+#define SMES_TGUI_OUTPUT 2

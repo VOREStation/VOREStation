@@ -95,7 +95,7 @@ $separator-color: colors.$primary !default;
   overflow-y: hidden;
 
   & > .Section__rest > .Section__content {
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
   }
 }
