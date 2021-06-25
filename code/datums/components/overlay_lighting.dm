@@ -94,7 +94,6 @@
 		cone = new()
 		cone_hint_x = movable_parent.light_cone_x_offset
 		cone_hint_y = movable_parent.light_cone_y_offset
-		cone.transform = cone.transform.Translate(-32, -32)
 		set_direction(movable_parent.dir)
 	if(!isnull(_range))
 		movable_parent.set_light_range(_range)
@@ -454,7 +453,7 @@
 		.++
 
 	directional_atom.forceMove(scanning)
-	directional_atom.face_light(GET_PARENT, .)
+	directional_atom.face_light(GET_PARENT, dir2angle(current_direction), .)
 
 ///Tries to place the directional light in a specific turf
 /datum/component/overlay_lighting/proc/place_directional_light(turf/target)
@@ -475,8 +474,13 @@
 		.++
 
 	directional_atom.forceMove(scanning)
-	directional_atom.face_light(GET_PARENT, .)
-	set_direction(get_dir(GET_PARENT, scanning), TRUE)
+	var/turf/Ts = get_turf(GET_PARENT)
+	var/turf/To = get_turf(GET_LIGHT_SOURCE)
+	
+	var/angle = Get_Angle(Ts, To)
+	
+	directional_atom.face_light(GET_PARENT, angle, .)
+	set_cone_direction(NORTH, angle)
 
 ///Called when current_holder changes loc.
 /datum/component/overlay_lighting/proc/on_holder_dir_change(atom/movable/source, olddir, newdir)
@@ -488,6 +492,15 @@
 	SIGNAL_HANDLER
 	set_direction(newdir)
 
+///Sets the cone's direction for directional lighting
+/datum/component/overlay_lighting/proc/set_cone_direction(dir, angle)
+	cone.reset_transform()
+	if(dir)
+		cone.set_dir(dir)
+	if(angle)
+		cone.transform = turn(cone.transform, angle)
+	cone.apply_standard_transform()
+
 ///Sets a new direction for the directional cast, then updates luminosity
 /datum/component/overlay_lighting/proc/set_direction(newdir, skip_update)
 	if(!newdir)
@@ -495,7 +508,7 @@
 	if(current_direction == newdir)
 		return
 	current_direction = newdir
-	cone.set_dir(newdir)
+	set_cone_direction(newdir)
 	
 	if(newdir & NORTH)
 		cone.pixel_y = 16

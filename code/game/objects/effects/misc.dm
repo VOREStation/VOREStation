@@ -116,13 +116,9 @@
 	. = ..()
 	vis_contents += light_spot
 
-/obj/effect/abstract/directional_lighting/proc/face_light(atom/movable/source, distance)
+/obj/effect/abstract/directional_lighting/proc/face_light(atom/movable/source, angle, distance)
 	if(!loc) // We're in nullspace
 		return
-	
-	var/turf/Ts = get_turf(source)
-	var/turf/To = get_turf(src)
-	var/angle = Get_Angle(Ts, To)
 	
 	// Save ourselves some matrix math
 	if(angle != trans_angle)
