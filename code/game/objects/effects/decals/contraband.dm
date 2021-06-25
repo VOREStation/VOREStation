@@ -195,7 +195,7 @@
 	if(ruined)
 		return
 
-	if(alert("Do I want to rip the poster from the wall?","You think...","Yes","No") == "Yes")
+	if(alert(usr, "Do I want to rip the poster from the wall?","You think...","Yes","No") == "Yes")
 
 		if(ruined || !user.Adjacent(src))
 			return

@@ -73,7 +73,7 @@ var/global/list/all_tooltip_styles = list(
 		I.alpha = UI_style_alpha_new
 
 
-	if(alert("Like it? Save changes?",,"Yes", "No") == "Yes")
+	if(alert(usr, "Like it? Save changes?","Save?","Yes", "No") == "Yes")
 		prefs.UI_style = UI_style_new
 		prefs.UI_style_alpha = UI_style_alpha_new
 		prefs.UI_style_color = UI_style_color_new

@@ -273,7 +273,7 @@ var/list/debug_verbs = list (
 	set category = "ZAS"
 	set name = "Reboot ZAS"
 
-	if(alert("This will destroy and remake all zone geometry on the whole map.","Reboot ZAS","Reboot ZAS","Nevermind") == "Reboot ZAS")
+	if(alert(usr, "This will destroy and remake all zone geometry on the whole map.","Reboot ZAS","Reboot ZAS","Nevermind") == "Reboot ZAS")
 		SSair.RebootZAS()
 
 /client/proc/count_objects_on_z_level()

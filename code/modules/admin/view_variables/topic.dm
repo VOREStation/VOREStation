@@ -177,14 +177,14 @@
 			to_chat(usr, "This can only be used on instances of type /obj")
 			return
 
-		var/action_type = alert("Strict type ([O.type]) or type and all subtypes?",,"Strict type","Type and subtypes","Cancel")
+		var/action_type = alert(usr, "Strict type ([O.type]) or type and all subtypes?","Type Selection","Strict type","Type and subtypes","Cancel")
 		if(action_type == "Cancel" || !action_type)
 			return
 
-		if(alert("Are you really sure you want to delete all objects of type [O.type]?",,"Yes","No") != "Yes")
+		if(alert(usr, "Are you really sure you want to delete all objects of type [O.type]?","Delete All?","Yes","No") != "Yes")
 			return
 
-		if(alert("Second confirmation required. Delete?",,"Yes","No") != "Yes")
+		if(alert(usr, "Second confirmation required. Delete?","REALLY?","Yes","No") != "Yes")
 			return
 
 		var/O_type = O.type
@@ -235,7 +235,7 @@
 			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
 			return
 
-		if(alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")	return
+		if(alert(usr, "Confirm mob type change?","Confirm","Transform","Cancel") != "Transform")	return
 		if(!H)
 			to_chat(usr, "Mob doesn't exist anymore")
 			return
@@ -249,7 +249,7 @@
 			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
 			return
 
-		if(alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")	return
+		if(alert(usr, "Confirm mob type change?","Confirm","Transform","Cancel") != "Transform")	return
 		if(!H)
 			to_chat(usr, "Mob doesn't exist anymore")
 			return
@@ -263,7 +263,7 @@
 			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
 			return
 
-		if(alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")	return
+		if(alert(usr, "Confirm mob type change?","Confirm","Transform","Cancel") != "Transform")	return
 		if(!H)
 			to_chat(usr, "Mob doesn't exist anymore")
 			return
@@ -277,7 +277,7 @@
 			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
 			return
 
-		if(alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")	return
+		if(alert(usr, "Confirm mob type change?","Confirm","Transform","Cancel") != "Transform")	return
 		if(!H)
 			to_chat(usr, "Mob doesn't exist anymore")
 			return
@@ -508,7 +508,7 @@
 		var/client/C = value["value"]
 		if (!C)
 			return
-		var/prompt = alert("Do you want to grant [C] access to view this VV window? (they will not be able to edit or change anysrc nor open nested vv windows unless they themselves are an admin)", "Confirm", "Yes", "No")
+		var/prompt = alert(usr, "Do you want to grant [C] access to view this VV window? (they will not be able to edit or change anysrc nor open nested vv windows unless they themselves are an admin)", "Confirm", "Yes", "No")
 		if (prompt != "Yes")
 			return
 		if(!thing)

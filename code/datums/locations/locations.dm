@@ -33,7 +33,7 @@ var/global/datum/locations/milky_way/all_locations = new()
 		var/specific = alert(user, "The location currently selected is [choice.name].  More specific options exist, would you like to pick a more specific location?",
 		"Choose location", "Yes", "No")
 		if(specific == "Yes" && length(choice.contents) > 0)
-			choice = input(user, "Please choose a location.","Locations") as null|anything in choice.contents
+			choice = input(user, "Please choose a location.", "Locations") as null|anything in choice.contents
 		else
 			break
 	to_chat(user,choice.name)

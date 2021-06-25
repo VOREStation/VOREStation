@@ -21,7 +21,7 @@
 	if(!ghostjoin)
 		return ..()
 
-	var/reply = alert("Would you like to become [src]? It is bound to [revivedby].",,"Yes","No")
+	var/reply = alert(usr, "Would you like to become [src]? It is bound to [revivedby].","Bind To","Yes","No")
 	if(reply == "No")
 		return
 

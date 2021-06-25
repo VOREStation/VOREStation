@@ -47,7 +47,7 @@
 		error("Hardware without description: [C]")
 		return
 
-	var/confirmation = alert("[note] - Is this what you want?", "Hardware selection", "Yes", "No")
+	var/confirmation = alert(user, "[note] - Is this what you want?", "Hardware selection", "Yes", "No")
 	if(confirmation != "Yes")
 		to_chat(user, "Selection cancelled. Use command again to select")
 		return

@@ -404,11 +404,11 @@
 				var/choice = input("Are you certain you wish to upload this title to the Archive?") in list("Confirm", "Abort")
 				if(choice == "Confirm")
 					if(scanner.cache.unique)
-						alert("This book has been rejected from the database. Aborting!")
+						alert(usr, "This book has been rejected from the database. Aborting!")
 					else
 						establish_old_db_connection()
 						if(!dbcon_old.IsConnected())
-							alert("Connection to Archive has been severed. Aborting.")
+							alert(usr, "Connection to Archive has been severed. Aborting.")
 						else
 							/*
 							var/sqltitle = dbcon.Quote(scanner.cache.name)
@@ -425,14 +425,14 @@
 								to_chat(usr,query.ErrorMsg())
 							else
 								log_game("[usr.name]/[usr.key] has uploaded the book titled [scanner.cache.name], [length(scanner.cache.dat)] signs")
-								alert("Upload Complete.")
+								alert(usr, "Upload Complete.")
 	//VOREStation Edit End
 
 	if(href_list["targetid"])
 		var/sqlid = sanitizeSQL(href_list["targetid"])
 		establish_old_db_connection()
 		if(!dbcon_old.IsConnected())
-			alert("Connection to Archive has been severed. Aborting.")
+			alert(usr, "Connection to Archive has been severed. Aborting.")
 		if(bibledelay)
 			for (var/mob/V in hearers(src))
 				V.show_message("<b>[src]</b>'s monitor flashes, \"Printer unavailable. Please allow a short time before attempting to print.\"")
@@ -463,7 +463,7 @@
 		var/sqlid = sanitizeSQL(href_list["delid"])
 		establish_old_db_connection()
 		if(!dbcon_old.IsConnected())
-			alert("Connection to Archive has been severed. Aborting.")
+			alert(usr, "Connection to Archive has been severed. Aborting.")
 		else
 			var/DBQuery/query = dbcon_old.NewQuery("DELETE FROM library WHERE id=[sqlid]")
 			query.Execute()

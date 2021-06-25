@@ -120,7 +120,7 @@
 	target=null
 	location = null
 
-	switch(alert("Please select the mode you want to put the pinpointer in.", "Pinpointer Mode Select", "Location", "Disk Recovery", "Other Signature"))
+	switch(alert(usr, "Please select the mode you want to put the pinpointer in.", "Pinpointer Mode Select", "Location", "Disk Recovery", "Other Signature"))
 		if("Location")
 			mode = 1
 
@@ -145,7 +145,7 @@
 
 		if("Other Signature")
 			mode = 2
-			switch(alert("Search for item signature or DNA fragment?" , "Signature Mode Select" , "" , "Item" , "DNA"))
+			switch(alert(usr, "Search for item signature or DNA fragment?" , "Signature Mode Select" , "" , "Item" , "DNA"))
 
 				if("Item")
 					var/datum/objective/steal/itemlist

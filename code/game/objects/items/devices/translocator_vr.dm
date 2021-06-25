@@ -166,16 +166,16 @@
 	switch(choice)
 		if("Create Beacon")
 			if(beacons_left <= 0)
-				alert("The translocator can't support any more beacons!","Error")
+				alert(usr, "The translocator can't support any more beacons!","Error")
 				return
 
 			var/new_name = html_encode(input(user,"New beacon's name (2-20 char):","[src]") as text|null)
 
 			if(length(new_name) > 20 || length(new_name) < 2)
-				alert("Entered name length invalid (must be longer than 2, no more than than 20).","Error")
+				alert(usr, "Entered name length invalid (must be longer than 2, no more than than 20).","Error")
 				return
 			if(new_name in beacons)
-				alert("No duplicate names, please. '[new_name]' exists already.","Error")
+				alert(usr, "No duplicate names, please. '[new_name]' exists already.","Error")
 				return
 
 			var/obj/item/device/perfect_tele_beacon/nb = new(get_turf(src))

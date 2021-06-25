@@ -19,7 +19,7 @@
 		message_admins("[key_name_admin(usr)] jumped to [A]", 1)
 		feedback_add_details("admin_verb","JA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	else
-		alert("Admin jumping disabled")
+		alert(usr, "Admin jumping disabled")
 
 /client/proc/jumptoturf(var/turf/T in world)
 	set name = "Jump to Turf"
@@ -33,7 +33,7 @@
 		usr.forceMove(T)
 		feedback_add_details("admin_verb","JT") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	else
-		alert("Admin jumping disabled")
+		alert(usr, "Admin jumping disabled")
 	return
 
 /client/proc/jumptomob(var/mob/M in mob_list)
@@ -57,7 +57,7 @@
 			else
 				to_chat(A, "<span class='filter_adminlog'>This mob is not located in the game world.</span>")
 	else
-		alert("Admin jumping disabled")
+		alert(usr, "Admin jumping disabled")
 
 /client/proc/jumptocoord(tx as num, ty as num, tz as num)
 	set category = "Admin"
@@ -79,7 +79,7 @@
 		message_admins("[key_name_admin(usr)] jumped to coordinates [tx], [ty], [tz]")
 
 	else
-		alert("Admin jumping disabled")
+		alert(usr, "Admin jumping disabled")
 
 /client/proc/jumptokey()
 	set category = "Admin"
@@ -103,7 +103,7 @@
 		usr.forceMove(get_turf(M))
 		feedback_add_details("admin_verb","JK") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	else
-		alert("Admin jumping disabled")
+		alert(usr, "Admin jumping disabled")
 
 /client/proc/Getmob(var/mob/M in mob_list)
 	set category = "Admin"
@@ -120,7 +120,7 @@
 		M.forceMove(get_turf(usr))
 		feedback_add_details("admin_verb","GM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	else
-		alert("Admin jumping disabled")
+		alert(usr, "Admin jumping disabled")
 
 /client/proc/Getkey()
 	set category = "Admin"
@@ -150,7 +150,7 @@
 			M.forceMove(get_turf(usr))
 			feedback_add_details("admin_verb","GK") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	else
-		alert("Admin jumping disabled")
+		alert(usr, "Admin jumping disabled")
 
 /client/proc/sendmob(var/mob/M in sortmobs())
 	set category = "Admin"
@@ -169,7 +169,7 @@
 			message_admins(msg)
 			admin_ticket_log(M, msg)
 		else
-			alert("Admin jumping disabled")
+		alert(usr, "Admin jumping disabled")
 
 /client/proc/cmd_admin_move_atom(var/atom/movable/AM, tx as num, ty as num, tz as num)
 	set category = "Admin"
@@ -199,4 +199,4 @@
 		feedback_add_details("admin_verb", "MA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 		message_admins("[key_name_admin(usr)] jumped [AM] to coordinates [tx], [ty], [tz]")
 	else
-		alert("Admin jumping disabled")
+		alert(usr, "Admin jumping disabled")

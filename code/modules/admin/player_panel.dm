@@ -411,4 +411,4 @@
 		dat += "</body></html>"
 		usr << browse(dat, "window=roundstatus;size=400x500")
 	else
-		alert("The game hasn't started yet!")
+		alert(usr, "The game hasn't started yet!")

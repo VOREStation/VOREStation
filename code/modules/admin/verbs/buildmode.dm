@@ -275,7 +275,7 @@
 						master.buildmode.valueholder = input(usr,"Enter variable value:" ,"Value") as turf in world
 
 			if(BUILDMODE_ROOM)
-				var/choice = alert("Would you like to change the floor or wall holders?","Room Builder", "Floor", "Wall")
+				var/choice = alert(usr, "Would you like to change the floor or wall holders?","Room Builder", "Floor", "Wall")
 				switch(choice)
 					if("Floor")
 						floor_holder = get_path_from_partial_text(/turf/simulated/floor/plating)
@@ -283,7 +283,7 @@
 						wall_holder = get_path_from_partial_text(/turf/simulated/wall)
 
 			if(BUILDMODE_LIGHTS)
-				var/choice = alert("Change the new light range, power, or color?", "Light Maker", "Range", "Power", "Color")
+				var/choice = alert(usr, "Change the new light range, power, or color?", "Light Maker", "Range", "Power", "Color")
 				switch(choice)
 					if("Range")
 						var/input = input("New light range.","Light Maker",3) as null|num
@@ -635,7 +635,7 @@
 			matches += path
 
 	if(matches.len==0)
-		alert("No results found.  Sorry.")
+		alert(usr, "No results found.  Sorry.")
 		return
 
 	var/result = null

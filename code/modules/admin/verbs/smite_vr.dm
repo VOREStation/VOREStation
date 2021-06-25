@@ -77,7 +77,7 @@
 
 			kin_type = kin_types[kin_type]
 
-			var/myself = alert("Control the shadekin yourself or delete pred and prey after?","Control Shadekin?","Control","Cancel","Delete")
+			var/myself = alert(usr, "Control the shadekin yourself or delete pred and prey after?","Control Shadekin?","Control","Cancel","Delete")
 			if(myself == "Cancel" || !target)
 				return
 

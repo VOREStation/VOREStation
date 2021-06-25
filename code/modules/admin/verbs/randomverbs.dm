@@ -23,7 +23,7 @@
 
 	if (ismob(M))
 		if(istype(M, /mob/living/silicon/ai))
-			alert("The AI can't be sent to prison you jerk!", null, null, null, null, null)
+			alert(usr, "The AI can't be sent to prison you jerk!")
 			return
 		//strip their stuff before they teleport into a cell :downs:
 		for(var/obj/item/W in M)
@@ -590,7 +590,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!mob)
 		return
 	if(!istype(M))
-		alert("Cannot revive a ghost")
+		alert(usr, "Cannot revive a ghost")
 		return
 	if(config.allow_admin_rev)
 		M.revive()
@@ -600,7 +600,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		message_admins(msg)
 		admin_ticket_log(M, msg)
 	else
-		alert("Admin revive disabled")
+		alert(usr, "Admin revive disabled")
 	feedback_add_details("admin_verb","REJU") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_create_centcom_report()
@@ -620,7 +620,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	//New message handling
 	post_comm_message(customname, replacetext(input, "\n", "<br/>"))
 
-	switch(alert("Should this be announced to the general population?",,"Yes","No"))
+	switch(alert(usr, "Should this be announced to the general population?","Show world?","Yes","No"))
 		if("Yes")
 			command_announcement.Announce(input, customname, new_sound = 'sound/AI/commandreport.ogg', msg_sanitized = 1);
 		if("No")
@@ -752,7 +752,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		to_chat(src, "Only administrators may use this command.")
 		return
 	var/mob/M = null
-	switch(alert("How would you like to ban someone today?", "Manual Ban", "Key List", "Enter Manually", "Cancel"))
+	switch(alert(usr, "How would you like to ban someone today?", "Manual Ban", "Key List", "Enter Manually", "Cancel"))
 		if("Key List")
 			var/list/keys = list()
 			for(var/mob/M in player_list)
@@ -762,10 +762,10 @@ Traitors and the like can also be revived with the previous role mostly intact.
 				return
 			M = selection:mob
 			if ((M.client && M.client.holder && (M.client.holder.level >= holder.level)))
-				alert("You cannot perform this action. You must be of a higher administrative rank!")
+				alert(usr, "You cannot perform this action. You must be of a higher administrative rank!")
 				return
 
-	switch(alert("Temporary Ban?",,"Yes","No"))
+	switch(alert(usr, "Temporary Ban?","Temporary Ban","Yes","No"))
 	if("Yes")
 		var/mins = input(usr,"How long (in minutes)?","Ban time",1440) as num
 		if(!mins)
@@ -1007,7 +1007,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!M)
 		return
 
-	var/confirm = alert("Are you sure you want to cryo [M]?","Confirmation","No","Yes")
+	var/confirm = alert(usr, "Are you sure you want to cryo [M]?","Confirmation","No","Yes")
 	if(confirm == "No")
 		return
 

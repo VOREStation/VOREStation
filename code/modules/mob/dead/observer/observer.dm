@@ -911,7 +911,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 				previous_state = icon_state
 
 			icon_state = possible_ghost_sprites[choice]
-			finalized = alert("Look at your sprite. Is this what you wish to use?",,"No","Yes")
+			finalized = alert(src, "Look at your sprite. Is this what you wish to use?","Ghost Sprite","No","Yes")
 
 			ghost_sprite = possible_ghost_sprites[choice]
 

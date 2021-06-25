@@ -8,12 +8,9 @@
 	return attack_hand(user)
 
 /obj/structure/signpost/attack_hand(mob/user as mob)
-	switch(alert("Travel back to ss13?",,"Yes","No"))
-		if("Yes")
-			if(user.z != src.z)	return
-			user.forceMove(pick(latejoin))
-		if("No")
-			return
+	if(alert(user, "Travel back to ss13?","Return?","Yes","No") == "Yes")
+		if(user.z != src.z)	return
+		user.forceMove(pick(latejoin))
 
 /obj/effect/mark
 		var/mark = ""

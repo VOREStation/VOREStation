@@ -24,12 +24,12 @@ var/silent_ert = 0
 	if(send_emergency_team)
 		to_chat(usr, "<span class='danger'>[using_map.boss_name] has already dispatched an emergency response team!</span>")
 		return
-	if(alert("Do you want to dispatch an Emergency Response Team?",,"Yes","No") != "Yes")
+	if(alert(usr, "Do you want to dispatch an Emergency Response Team?","ERT","Yes","No") != "Yes")
 		return
-	if(alert("Do you want this Response Team to be announced?",,"Yes","No") != "Yes")
+	if(alert(usr, "Do you want this Response Team to be announced?","ERT","Yes","No") != "Yes")
 		silent_ert = 1
 	if(get_security_level() != "red") // Allow admins to reconsider if the alert level isn't Red
-		switch(alert("The station is not in red alert. Do you still want to dispatch a response team?",,"Yes","No"))
+		switch(alert(usr, "The station is not in red alert. Do you still want to dispatch a response team?","ERT","Yes","No"))
 			if("No")
 				return
 	if(send_emergency_team)

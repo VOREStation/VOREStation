@@ -242,7 +242,7 @@
 			show_pictures = !show_pictures
 			return TRUE
 		if("int_help")
-			alert("These control how your belly responds to someone using 'resist' while inside you. The percent chance to trigger each is listed below, \
+			alert(usr, "These control how your belly responds to someone using 'resist' while inside you. The percent chance to trigger each is listed below, \
 					and you can change them to whatever you see fit. Setting them to 0% will disable the possibility of that interaction. \
 					These only function as long as interactions are turned on in general. Keep in mind, the 'belly mode' interactions (digest/absorb) \
 					will affect all prey in that belly, if one resists and triggers digestion/absorption. If multiple trigger at the same time, \
@@ -305,17 +305,17 @@
 
 		if("saveprefs")
 			if(!host.save_vore_prefs())
-				alert("ERROR: Virgo-specific preferences failed to save!","Error")
+				alert(usr, "ERROR: Virgo-specific preferences failed to save!","Error")
 			else
 				to_chat(usr, "<span class='notice'>Virgo-specific preferences saved!</span>")
 				unsaved_changes = FALSE
 			return TRUE
 		if("reloadprefs")
-			var/alert = alert("Are you sure you want to reload character slot preferences? This will remove your current vore organs and eject their contents.","Confirmation","Reload","Cancel")
+			var/alert = alert(usr, "Are you sure you want to reload character slot preferences? This will remove your current vore organs and eject their contents.","Confirmation","Reload","Cancel")
 			if(alert != "Reload")
 				return FALSE
 			if(!host.apply_vore_prefs())
-				alert("ERROR: Virgo-specific preferences failed to apply!","Error")
+				alert(usr, "ERROR: Virgo-specific preferences failed to apply!","Error")
 			else
 				to_chat(usr,"<span class='notice'>Virgo-specific preferences applied from active slot!</span>")
 				unsaved_changes = FALSE
@@ -327,7 +327,7 @@
 
 			new_flavor = readd_quotes(new_flavor)
 			if(length(new_flavor) > FLAVOR_MAX)
-				alert("Entered flavor/taste text too long. [FLAVOR_MAX] character limit.","Error!")
+				alert(usr, "Entered flavor/taste text too long. [FLAVOR_MAX] character limit.","Error!")
 				return FALSE
 			host.vore_taste = new_flavor
 			unsaved_changes = TRUE
@@ -339,7 +339,7 @@
 
 			new_smell = readd_quotes(new_smell)
 			if(length(new_smell) > FLAVOR_MAX)
-				alert("Entered perfume/smell text too long. [FLAVOR_MAX] character limit.","Error!")
+				alert(usr, "Entered perfume/smell text too long. [FLAVOR_MAX] character limit.","Error!")
 				return FALSE
 			host.vore_smell = new_smell
 			unsaved_changes = TRUE
@@ -446,10 +446,10 @@
 
 	var/intent = "Examine"
 	if(isliving(target))
-		intent = alert("What do you want to do to them?","Query","Examine","Help Out","Devour")
+		intent = alert(usr, "What do you want to do to them?","Query","Examine","Help Out","Devour")
 
 	else if(istype(target, /obj/item))
-		intent = alert("What do you want to do to that?","Query","Examine","Use Hand")
+		intent = alert(usr, "What do you want to do to that?","Query","Examine","Use Hand")
 
 	switch(intent)
 		if("Examine") //Examine a mob inside another mob
@@ -518,7 +518,7 @@
 
 	//Handle the [All] choice. Ugh inelegant. Someone make this pretty.
 	if(params["pickall"])
-		intent = alert("Eject all, Move all?","Query","Eject all","Cancel","Move all")
+		intent = alert(usr, "Eject all, Move all?","Query","Eject all","Cancel","Move all")
 		switch(intent)
 			if("Cancel")
 				return TRUE
@@ -597,7 +597,7 @@
 
 /datum/vore_look/proc/set_attr(mob/user, params)
 	if(!host.vore_selected)
-		alert("No belly selected to modify.")
+		alert(usr, "No belly selected to modify.")
 		return FALSE
 
 	var/attr = params["attribute"]
@@ -685,7 +685,7 @@
 			if(new_desc)
 				new_desc = readd_quotes(new_desc)
 				if(length(new_desc) > BELLIES_DESC_MAX)
-					alert("Entered belly desc too long. [BELLIES_DESC_MAX] character limit.","Error")
+					alert(usr, "Entered belly desc too long. [BELLIES_DESC_MAX] character limit.","Error")
 					return FALSE
 				host.vore_selected.desc = new_desc
 				. = TRUE
@@ -763,7 +763,7 @@
 			var/new_verb = html_encode(input(usr,"New verb when eating (infinitive tense, e.g. nom or swallow):","New Verb") as text|null)
 
 			if(length(new_verb) > BELLIES_NAME_MAX || length(new_verb) < BELLIES_NAME_MIN)
-				alert("Entered verb length invalid (must be longer than [BELLIES_NAME_MIN], no longer than [BELLIES_NAME_MAX]).","Error")
+				alert(usr, "Entered verb length invalid (must be longer than [BELLIES_NAME_MIN], no longer than [BELLIES_NAME_MAX]).","Error")
 				return FALSE
 
 			host.vore_selected.vore_verb = new_verb
@@ -891,7 +891,7 @@
 				host.vore_selected.escapable = 0
 				to_chat(usr,"<span class='warning'>Prey will not be able to have special interactions with your [lowertext(host.vore_selected.name)].</span>")
 			else
-				alert("Something went wrong. Your stomach will now not have special interactions. Press the button enable them again and tell a dev.","Error") //If they somehow have a varable that's not 0 or 1
+				alert(usr, "Something went wrong. Your stomach will now not have special interactions. Press the button enable them again and tell a dev.","Error") //If they somehow have a varable that's not 0 or 1
 				host.vore_selected.escapable = 0
 			. = TRUE
 		if("b_escapechance")
@@ -936,7 +936,7 @@
 			host.vore_selected.disable_hud = !host.vore_selected.disable_hud
 			. = TRUE
 		if("b_del")
-			var/alert = alert("Are you sure you want to delete your [lowertext(host.vore_selected.name)]?","Confirmation","Delete","Cancel")
+			var/alert = alert(usr, "Are you sure you want to delete your [lowertext(host.vore_selected.name)]?","Confirmation","Delete","Cancel")
 			if(!(alert == "Delete"))
 				return FALSE
 

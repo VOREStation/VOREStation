@@ -64,7 +64,7 @@
 
 	//Already full
 	if (hologram.bellied)
-		var/choice = alert("You can only contain one person. [hologram.bellied] is in you.", "Already Full", "Drop Mob", "Cancel")
+		var/choice = alert(usr, "You can only contain one person. [hologram.bellied] is in you.", "Already Full", "Drop Mob", "Cancel")
 		if(choice == "Drop Mob")
 			hologram.drop_prey()
 		return

@@ -57,7 +57,7 @@
 			var/datum/computer_file/data/F = HDD.find_file_by_name(open_file)
 			if(!F || !istype(F))
 				return
-			if(F.do_not_edit && (alert("WARNING: This file is not compatible with editor. Editing it may result in permanently corrupted formatting or damaged data consistency. Edit anyway?", "Incompatible File", "No", "Yes") == "No"))
+			if(F.do_not_edit && (alert(usr, "WARNING: This file is not compatible with editor. Editing it may result in permanently corrupted formatting or damaged data consistency. Edit anyway?", "Incompatible File", "No", "Yes") == "No"))
 				return
 
 			var/oldtext = html_decode(F.stored_data)

@@ -118,7 +118,7 @@
 		return
 
 	if(href_list["confirm"])
-		switch(alert("Are you sure you want to send the fax as is?",, "Yes", "No"))
+		switch(alert(usr, "Are you sure you want to send the fax as is?","Send Fax", "Yes", "No"))
 			if("Yes")
 				if(headerOn)
 					info = header + info

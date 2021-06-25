@@ -10,7 +10,7 @@
 	var/targetselected = 0
 	var/returnval = null
 
-	switch(alert("Proc owned by something?",,"Yes","No"))
+	switch(alert(usr, "Proc owned by something?","Call Proc","Yes","No"))
 		if("Yes")
 			targetselected = 1
 			var/list/value = vv_get_value(default_class = VV_ATOM_REFERENCE, classes = list(VV_ATOM_REFERENCE, VV_DATUM_REFERENCE, VV_MOB_REFERENCE, VV_CLIENT))

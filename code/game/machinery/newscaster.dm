@@ -413,7 +413,7 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 				set_temp("Error: Could not submit feed channel to network: A feed channel already exists under your name.", "danger", FALSE)
 				return TRUE
 
-			var/choice = alert("Please confirm Feed channel creation","Network Channel Handler","Confirm","Cancel")
+			var/choice = alert(usr, "Please confirm Feed channel creation","Network Channel Handler","Confirm","Cancel")
 			if(choice == "Confirm")
 				news_network.CreateFeedChannel(channel_name, our_user, c_locked)
 				set_temp("Feed channel [channel_name] created successfully.", "success", FALSE)
@@ -490,11 +490,11 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 				set_temp("Error: Could not submit wanted issue to network: Author unverified.", "danger", FALSE)
 				return TRUE
 
-			var/choice = alert("Please confirm Wanted Issue change.", "Network Security Handler", "Confirm", "Cancel")
+			var/choice = alert(usr, "Please confirm Wanted Issue change.", "Network Security Handler", "Confirm", "Cancel")
 			if(choice == "Confirm")
 				if(news_network.wanted_issue)
 					if(news_network.wanted_issue.is_admin_message)
-						alert("The wanted issue has been distributed by a [using_map.company_name] higherup. You cannot edit it.", "Ok")
+						alert(usr, "The wanted issue has been distributed by a [using_map.company_name] higherup. You cannot edit it.", "Ok")
 						return
 					news_network.wanted_issue.author = channel_name
 					news_network.wanted_issue.body = msg
@@ -519,9 +519,9 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 			if(!securityCaster)
 				return FALSE
 			if(news_network.wanted_issue.is_admin_message)
-				alert("The wanted issue has been distributed by a [using_map.company_name] higherup. You cannot take it down.","Ok")
+				alert(usr, "The wanted issue has been distributed by a [using_map.company_name] higherup. You cannot take it down.","Ok")
 				return
-			var/choice = alert("Please confirm Wanted Issue removal","Network Security Handler","Confirm","Cancel")
+			var/choice = alert(usr, "Please confirm Wanted Issue removal","Network Security Handler","Confirm","Cancel")
 			if(choice=="Confirm")
 				news_network.wanted_issue = null
 				for(var/obj/machinery/newscaster/NEWSCASTER in allCasters)
@@ -534,7 +534,7 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 				return FALSE
 			var/datum/feed_channel/FC = locate(params["ref"])
 			if(FC.is_admin_channel)
-				alert("This channel was created by a [using_map.company_name] Officer. You cannot censor it.","Ok")
+				alert(usr, "This channel was created by a [using_map.company_name] Officer. You cannot censor it.","Ok")
 				return
 			if(FC.author != "\[REDACTED\]")
 				FC.backup_author = FC.author
@@ -549,7 +549,7 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 				return FALSE
 			var/datum/feed_message/MSG = locate(params["ref"])
 			if(MSG.is_admin_message)
-				alert("This message was created by a [using_map.company_name] Officer. You cannot censor its author.","Ok")
+				alert(usr, "This message was created by a [using_map.company_name] Officer. You cannot censor its author.","Ok")
 				return
 			if(MSG.author != "\[REDACTED\]")
 				MSG.backup_author = MSG.author
@@ -564,7 +564,7 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 				return FALSE
 			var/datum/feed_message/MSG = locate(params["ref"])
 			if(MSG.is_admin_message)
-				alert("This channel was created by a [using_map.company_name] Officer. You cannot censor it.","Ok")
+				alert(usr, "This channel was created by a [using_map.company_name] Officer. You cannot censor it.","Ok")
 				return
 			if(MSG.body != "\[REDACTED\]")
 				MSG.backup_body = MSG.body
@@ -586,7 +586,7 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 				return FALSE
 			var/datum/feed_channel/FC = locate(params["ref"])
 			if(FC.is_admin_channel)
-				alert("This channel was created by a [using_map.company_name] Officer. You cannot place a D-Notice upon it.","Ok")
+				alert(usr, "This channel was created by a [using_map.company_name] Officer. You cannot place a D-Notice upon it.","Ok")
 				return
 			FC.censored = !FC.censored
 			FC.update()

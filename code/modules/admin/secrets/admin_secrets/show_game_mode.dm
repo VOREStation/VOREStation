@@ -10,5 +10,5 @@
 	. = ..()
 	if(!.)
 		return
-	if (ticker.mode) alert("The game mode is [ticker.mode.name]")
-	else alert("For some reason there's a ticker, but not a game mode")
+	if (ticker.mode) alert(usr, "The game mode is [ticker.mode.name]")
+	else alert(usr, "For some reason there's a ticker, but not a game mode")

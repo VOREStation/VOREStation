@@ -664,7 +664,7 @@
 	var/willing = null //We don't want to allow people to be forced into despawning.
 
 	if(M.client)
-		if(alert(M,"Would you like to enter long-term storage?",,"Yes","No") == "Yes")
+		if(alert(M,"Would you like to enter long-term storage?","Cryopod","Yes","No") == "Yes")
 			if(!M) return
 			willing = 1
 	else

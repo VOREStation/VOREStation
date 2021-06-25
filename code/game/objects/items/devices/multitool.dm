@@ -32,7 +32,7 @@
 	tool_qualities = list(TOOL_MULTITOOL)
 
 /obj/item/device/multitool/attack_self(mob/living/user)
-	var/choice = alert("What do you want to do with \the [src]?","Multitool Menu", "Switch Mode", "Clear Buffers", "Cancel")
+	var/choice = alert(usr, "What do you want to do with \the [src]?","Multitool Menu", "Switch Mode", "Clear Buffers", "Cancel")
 	switch(choice)
 		if("Cancel")
 			to_chat(user,"<span class='notice'>You lower \the [src].</span>")

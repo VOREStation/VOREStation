@@ -374,7 +374,7 @@
 	set category = "Admin"
 
 	if(holder)
-		if(alert("Confirm self-deadmin for the round? You can't re-admin yourself without someone promoting you.",,"Yes","No") == "Yes")
+		if(alert(usr, "Confirm self-deadmin for the round? You can't re-admin yourself without someone promoting you.","Deadmin","Yes","No") == "Yes")
 			log_admin("[src] deadmined themself.")
 			message_admins("[src] deadmined themself.", 1)
 			deadmin()
@@ -432,7 +432,7 @@
 
 	if(!check_rights(R_ADMIN|R_EVENT))	return
 	var sec_level = input(usr, "It's currently code [get_security_level()].", "Select Security Level")  as null|anything in (list("green","yellow","violet","orange","blue","red","delta")-get_security_level())
-	if(alert("Switch from code [get_security_level()] to code [sec_level]?","Change security level?","Yes","No") == "Yes")
+	if(alert(usr, "Switch from code [get_security_level()] to code [sec_level]?","Change security level?","Yes","No") == "Yes")
 		set_security_level(sec_level)
 		log_admin("[key_name(usr)] changed the security level to code [sec_level].")
 
@@ -504,7 +504,7 @@
 	set desc = "Tells mob to man up and deal with it."
 	set popup_menu = FALSE //VOREStation Edit - Declutter.
 
-	if(alert("Are you sure you want to tell them to man up?","Confirmation","Deal with it","No")=="No") return
+	if(alert(usr, "Are you sure you want to tell them to man up?","Confirmation","Deal with it","No")=="No") return
 
 	to_chat(T, "<span class='filter_system notice'><b><font size=3>Man up and deal with it.</font></b></span>")
 	to_chat(T, "<span class='filter_system notice'>Move along.</span>")
@@ -517,7 +517,7 @@
 	set name = "Man Up Global"
 	set desc = "Tells everyone to man up and deal with it."
 
-	if(alert("Are you sure you want to tell the whole server up?","Confirmation","Deal with it","No")=="No") return
+	if(alert(usr, "Are you sure you want to tell the whole server up?","Confirmation","Deal with it","No")=="No") return
 
 	for (var/mob/T as mob in mob_list)
 		to_chat(T, "<br><center><span class='filter_system notice'><b><font size=4>Man up.<br> Deal with it.</font></b><br>Move along.</span></center><br>")

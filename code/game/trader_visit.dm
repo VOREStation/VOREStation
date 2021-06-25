@@ -20,10 +20,10 @@ var/can_call_traders = 1
 	if(send_beruang)
 		to_chat(usr, "<span class='danger'>The Beruang has already been sent this round!</span>")
 		return
-	if(alert("Do you want to dispatch the Beruang trade ship?",,"Yes","No") != "Yes")
+	if(alert(usr, "Do you want to dispatch the Beruang trade ship?","Trade Ship","Yes","No") != "Yes")
 		return
 	if(get_security_level() == "red") // Allow admins to reconsider if the alert level is Red
-		switch(alert("The station is in red alert. Do you still want to send traders?",,"Yes","No"))
+		switch(alert(usr, "The station is in red alert. Do you still want to send traders?","Trade Ship","Yes","No"))
 			if("No")
 				return
 	if(send_beruang)

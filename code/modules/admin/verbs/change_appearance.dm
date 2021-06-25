@@ -26,7 +26,7 @@
 		to_chat(usr, "<span class='filter_arning'> Only mobs with clients can alter their own appearance.</span>")
 		return
 	var/datum/gender/T = gender_datums[H.get_visible_gender()]
-	switch(alert("Do you wish for [H] to be allowed to select non-whitelisted races?","Alter Mob Appearance","Yes","No","Cancel"))
+	switch(alert(usr, "Do you wish for [H] to be allowed to select non-whitelisted races?","Alter Mob Appearance","Yes","No","Cancel"))
 		if("Yes")
 			log_and_message_admins("has allowed [H] to change [T.his] appearance, without whitelisting of races.")
 			H.change_appearance(APPEARANCE_ALL, H, check_species_whitelist = 0)
@@ -46,7 +46,7 @@
 	if(!istype(M, /mob/living/carbon/human))
 		to_chat(usr, "<span class='warning'>You can only do this to humans!</span>")
 		return
-	switch(alert("Are you sure you wish to edit this mob's appearance? Skrell, Unathi, Tajaran can result in unintended consequences.",,"Yes","No"))
+	switch(alert(usr, "Are you sure you wish to edit this mob's appearance? Skrell, Unathi, Tajaran can result in unintended consequences.","Danger!","Yes","No"))
 		if("No")
 			return
 	var/new_facial = input("Please select facial hair color.", "Character Generation") as color

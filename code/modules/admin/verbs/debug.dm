@@ -98,7 +98,7 @@
 	set name = "Make Robot"
 
 	if(!ticker)
-		alert("Wait until the game starts")
+		alert(usr, "Wait until the game starts")
 		return
 	if(istype(M, /mob/living/carbon/human))
 		log_admin("[key_name(src)] has robotized [M.key].")
@@ -106,22 +106,22 @@
 			M:Robotize()
 
 	else
-		alert("Invalid mob")
+		alert(usr, "Invalid mob")
 
 /client/proc/cmd_admin_animalize(var/mob/M in mob_list)
 	set category = "Fun"
 	set name = "Make Simple Animal"
 
 	if(!ticker)
-		alert("Wait until the game starts")
+		alert(usr, "Wait until the game starts")
 		return
 
 	if(!M)
-		alert("That mob doesn't seem to exist, close the panel and try again.")
+		alert(usr, "That mob doesn't seem to exist, close the panel and try again.")
 		return
 
 	if(istype(M, /mob/new_player))
-		alert("The mob must not be a new_player.")
+		alert(usr, "The mob must not be a new_player.")
 		return
 
 	log_admin("[key_name(src)] has animalized [M.key].")
@@ -161,7 +161,7 @@
 	set name = "Make Alien"
 
 	if(!ticker)
-		alert("Wait until the game starts")
+		alert(usr, "Wait until the game starts")
 		return
 	if(ishuman(M))
 		log_admin("[key_name(src)] has alienized [M.key].")
@@ -171,7 +171,7 @@
 		log_admin("[key_name(usr)] made [key_name(M)] into an alien.")
 		message_admins("<span class='notice'>[key_name_admin(usr)] made [key_name(M)] into an alien.</span>", 1)
 	else
-		alert("Invalid mob")
+		alert(usr, "Invalid mob")
 
 
 //TODO: merge the vievars version into this or something maybe mayhaps
@@ -272,7 +272,7 @@
 	set name = "Grant Full Access"
 
 	if (!ticker)
-		alert("Wait until the game starts")
+		alert(usr, "Wait until the game starts")
 		return
 	if (istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
@@ -293,7 +293,7 @@
 			H.equip_to_slot_or_del(id, slot_wear_id)
 			H.update_inv_wear_id()
 	else
-		alert("Invalid mob")
+		alert(usr, "Invalid mob")
 	feedback_add_details("admin_verb","GFA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	log_admin("[key_name(src)] has granted [M.key] full access.")
 	message_admins("<font color='blue'>[key_name_admin(usr)] has granted [M.key] full access.</font>", 1)
@@ -305,7 +305,7 @@
 
 	if(!check_rights(R_DEBUG|R_ADMIN|R_EVENT))	return
 	if(M.ckey)
-		if(alert("This mob is being controlled by [M.ckey]. Are you sure you wish to assume control of it? [M.ckey] will be made a ghost.",,"Yes","No") != "Yes")
+		if(alert(usr, "This mob is being controlled by [M.ckey]. Are you sure you wish to assume control of it? [M.ckey] will be made a ghost.","Confirmation","Yes","No") != "Yes")
 			return
 		else
 			var/mob/observer/dead/ghost = new/mob/observer/dead(M,1)
@@ -453,7 +453,7 @@
 	set name = "Start Singularity"
 	set desc = "Sets up the singularity and all machines to get power flowing through the station"
 
-	if(alert("Are you sure? This will start up the engine. Should only be used during debug!",,"Yes","No") != "Yes")
+	if(alert(usr, "Are you sure? This will start up the engine. Should only be used during debug!","Start Singularity","Yes","No") != "Yes")
 		return
 
 	for(var/obj/machinery/power/emitter/E in machines)
@@ -499,7 +499,7 @@
 
 	if(!check_rights(R_DEBUG|R_ADMIN))      return
 
-	var/response = alert("Are you sure? This will start up the engine. Should only be used during debug!",,"Setup Completely","Setup except coolant","No")
+	var/response = alert(usr, "Are you sure? This will start up the engine. Should only be used during debug!","Setup Supermatter","Setup Completely","Setup except coolant","No")
 
 	if(response == "No")
 		return
@@ -606,7 +606,7 @@
 // DNA2 - Admin Hax
 /client/proc/cmd_admin_toggle_block(var/mob/M,var/block)
 	if(!ticker)
-		alert("Wait until the game starts")
+		alert(usr, "Wait until the game starts")
 		return
 	if(istype(M, /mob/living/carbon))
 		M.dna.SetSEState(block,!M.dna.GetSEState(block))
@@ -617,7 +617,7 @@
 		message_admins("[key_name_admin(src)] has toggled [M.key]'s [blockname] block [state]!")
 		log_admin("[key_name(src)] has toggled [M.key]'s [blockname] block [state]!")
 	else
-		alert("Invalid mob")
+		alert(usr, "Invalid mob")
 
 /datum/admins/proc/view_runtimes()
 	set category = "Debug"

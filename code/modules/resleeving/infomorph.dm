@@ -367,7 +367,7 @@ var/list/infomorph_emotions = list(
 	var/obj/item/weapon/card/id/ID = W.GetID()
 	if(ID)
 		if (idaccessible == 1)
-			switch(alert(user, "Do you wish to add access to [src] or remove access from [src]?",,"Add Access","Remove Access", "Cancel"))
+			switch(alert(user, "Do you wish to add access to [src] or remove access from [src]?","Modify Access","Add Access","Remove Access", "Cancel"))
 				if("Add Access")
 					idcard.access |= ID.access
 					to_chat(user, "<span class='notice'>You add the access from the [W] to [src].</span>")
@@ -402,7 +402,7 @@ var/list/infomorph_emotions = list(
 	set desc = "Wipe yourself from your hardware. This is functionally equivalent to cryo or robotic storage, freeing up your job slot."
 
 	// Make sure people don't kill themselves accidentally
-	if(alert("WARNING: This will immediately remove you from the round, and remove your mind backups from storage, similar to cryo. Are you entirely sure you want to do this?",
+	if(alert(usr, "WARNING: This will immediately remove you from the round, and remove your mind backups from storage, similar to cryo. Are you entirely sure you want to do this?",
 					"Suspend Self", "No", "No", "Yes") != "Yes")
 		return
 

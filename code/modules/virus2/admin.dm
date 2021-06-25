@@ -155,7 +155,7 @@
 			if(!I) return
 			infectionchance = I
 		if("stype")
-			var/S = alert("Which spread type?", "Spread Type", "Contact", "Airborne", "Blood")
+			var/S = alert(usr, "Which spread type?", "Spread Type", "Contact", "Airborne", "Blood")
 			if(!S) return
 			spreadtype = S
 		if("speed")
@@ -193,7 +193,7 @@
 			species |= infectee.species.get_bodytype()
 		if("go")
 			if(!antigens.len)
-				var/a = alert("This disease has no antigens; it will be impossible to permanently immunise anyone without them.\
+				var/a = alert(usr, "This disease has no antigens; it will be impossible to permanently immunise anyone without them.\
 								It is strongly recommended to set at least one antigen. Do you want to go back and edit your virus?", "Antigens", "Yes", "Yes", "No")
 				if(a == "Yes") return
 			var/datum/disease2/disease/D = new

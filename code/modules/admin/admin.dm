@@ -665,7 +665,7 @@ var/global/floorIsLava = 0
 	set desc="Restarts the world"
 	if (!usr.client.holder)
 		return
-	var/confirm = alert("Restart the game world?", "Restart", "Yes", "Cancel")
+	var/confirm = alert(usr, "Restart the game world?", "Restart", "Yes", "Cancel")
 	if(confirm == "Cancel")
 		return
 	if(confirm == "Yes")
@@ -1010,7 +1010,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 		SSticker.delay_end = !SSticker.delay_end
 		log_admin("[key_name(usr)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
 		message_admins("<font color='blue'>[key_name(usr)] [SSticker.delay_end ? "delayed the round end" : "has made the round end normally"].</font>", 1)
-		return //alert("Round end delayed", null, null, null, null, null)
+		return
 	round_progressing = !round_progressing
 	if (!round_progressing)
 		to_world("<b>The game start has been delayed.</b>")
@@ -1049,7 +1049,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set desc="Reboots the server post haste"
 	set name="Immediate Reboot"
 	if(!usr.client.holder)	return
-	if( alert("Reboot server?",,"Yes","No") == "No")
+	if( alert(usr, "Reboot server?","Reboot!","Yes","No") == "No")
 		return
 	to_world("<font color='red'><b>Rebooting world!</b></font> <font color='blue'>Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!</font>")
 	log_admin("[key_name(usr)] initiated an immediate reboot.")
@@ -1071,9 +1071,9 @@ var/datum/announcement/minor/admin_min_announcer = new
 			message_admins("[key_name_admin(usr)] has unprisoned [key_name_admin(M)]", 1)
 			log_admin("[key_name(usr)] has unprisoned [key_name(M)]")
 		else
-			alert("Admin jumping disabled")
+			alert(usr, "Admin jumping disabled")
 	else
-		alert("[M.name] is not prisoned.")
+		alert(usr, "[M.name] is not prisoned.")
 	feedback_add_details("admin_verb","UP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 ////////////////////////////////////////////////////////////////////////////////////////////////ADMIN HELPER PROCS
@@ -1226,7 +1226,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set name = "Show Game Mode"
 
 	if(!ticker || !ticker.mode)
-		alert("Not before roundstart!", "Alert")
+		alert(usr, "Not before roundstart!", "Alert")
 		return
 
 	var/out = "<font size=3><b>Current mode: [ticker.mode.name] (<a href='?src=\ref[ticker.mode];debug_antag=self'>[ticker.mode.config_tag]</a>)</b></font><br/>"
@@ -1512,7 +1512,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 			msg = "has paralyzed [key_name(H)]."
 			log_and_message_admins(msg)
 		else
-			if(alert(src, "[key_name(H)] is paralyzed, would you like to unparalyze them?",,"Yes","No") == "Yes")
+			if(alert(src, "[key_name(H)] is paralyzed, would you like to unparalyze them?","Paralyze Mob","Yes","No") == "Yes")
 				H.SetParalysis(0)
 				msg = "has unparalyzed [key_name(H)]."
 				log_and_message_admins(msg)
@@ -1586,7 +1586,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 
 	var/shouldStamp = 1
 	if(!P.sender) // admin initiated
-		switch(alert("Would you like the fax stamped?",, "Yes", "No"))
+		switch(alert(usr, "Would you like the fax stamped?","Stamped?", "Yes", "No"))
 			if("No")
 				shouldStamp = 0
 
