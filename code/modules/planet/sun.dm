@@ -39,6 +39,7 @@
 		return
 	T.vis_contents += sun
 	T.dynamic_lumcount += our_brightness
+	T.set_luminosity(1, TRUE)
 
 /datum/sun_holder/proc/remove_from_turf(turf/T)
 	if(!(sun in T.vis_contents))
@@ -46,6 +47,7 @@
 		return
 	T.vis_contents -= sun
 	T.dynamic_lumcount -= our_brightness
+	T.set_luminosity(!IS_DYNAMIC_LIGHTING(T), TRUE)
 
 /datum/sun_holder/proc/rainbow()
 	var/end = world.time + 30 SECONDS
