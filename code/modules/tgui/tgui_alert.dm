@@ -10,6 +10,12 @@
  * * timeout - The timeout of the alert, after which the modal will close and qdel itself. Set to zero for no timeout.
  */
 /proc/tgui_alert(mob/user, message = null, title = null, list/buttons = list("Ok"), timeout = 0)
+	if (istext(buttons))
+		stack_trace("tgui_alert() received text for buttons instead of list")
+		return
+	if (istext(user))
+		stack_trace("tgui_alert() received text for user instead of list")
+		return
 	if (!user)
 		user = usr
 	if (!istype(user))
@@ -38,6 +44,12 @@
  * * timeout - The timeout of the alert, after which the modal will close and qdel itself. Disabled by default, can be set to seconds otherwise.
  */
 /proc/tgui_alert_async(mob/user, message = null, title = null, list/buttons = list("Ok"), datum/callback/callback, timeout = 0)
+	if (istext(buttons))
+		stack_trace("tgui_alert() received text for buttons instead of list")
+		return
+	if (istext(user))
+		stack_trace("tgui_alert() received text for user instead of list")
+		return
 	if (!user)
 		user = usr
 	if (!istype(user))
@@ -138,7 +150,7 @@
 	var/datum/callback/callback
 
 /datum/tgui_modal/async/New(mob/user, message, title, list/buttons, callback, timeout)
-	..(user, title, message, buttons, timeout)
+	..(user, message, title, buttons, timeout)
 	src.callback = callback
 
 /datum/tgui_modal/async/Destroy(force, ...)

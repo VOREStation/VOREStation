@@ -10,6 +10,9 @@
  * * timeout - The timeout of the input box, after which the input box will close and qdel itself. Set to zero for no timeout.
  */
 /proc/tgui_input_list(mob/user, message, title, list/buttons, timeout = 0)
+	if (istext(user))
+		stack_trace("tgui_alert() received text for user instead of list")
+		return
 	if (!user)
 		user = usr
 	if(!length(buttons))
@@ -40,6 +43,9 @@
  * * timeout - The timeout of the input box, after which the menu will close and qdel itself. Set to zero for no timeout.
  */
 /proc/tgui_input_list_async(mob/user, message, title, list/buttons, datum/callback/callback, timeout = 60 SECONDS)
+	if (istext(user))
+		stack_trace("tgui_alert() received text for user instead of list")
+		return
 	if (!user)
 		user = usr
 	if(!length(buttons))
