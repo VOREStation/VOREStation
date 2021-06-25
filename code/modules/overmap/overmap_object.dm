@@ -14,6 +14,9 @@
 	var/skybox_pixel_y		//Shift from lower left corner of skybox
 	var/image/cached_skybox_image	//Cachey
 
+	light_system = MOVABLE_LIGHT
+	light_on = FALSE
+
 //Overlay of how this object should look on other skyboxes
 /obj/effect/overmap/proc/get_skybox_representation()
 	if(!cached_skybox_image)
@@ -55,7 +58,6 @@
 		return INITIALIZE_HINT_QDEL
 
 	if(known)
-		//layer = ABOVE_LIGHTING_LAYER
 		plane = PLANE_LIGHTING_ABOVE
 		for(var/obj/machinery/computer/ship/helm/H in global.machines)
 			H.get_known_sectors()
