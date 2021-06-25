@@ -169,7 +169,7 @@
 				"cost" = P.cost,
 				"group" = P.group,
 				"contraband" = P.contraband,
-				"manifest" = uniquelist(P.manifest),
+				"manifest" = uniqueList(P.manifest),
 				"random" = P.num_contained,
 				"ref" = "\ref[P]"
 			)
@@ -201,7 +201,7 @@
 			var/list/payload = list(
 				"name" = P.name,
 				"cost" = P.cost,
-				"manifest" = uniquelist(P.manifest),
+				"manifest" = uniqueList(P.manifest),
 				"ref" = "\ref[P]",
 				"random" = P.num_contained,
 			)

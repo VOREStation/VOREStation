@@ -54,7 +54,7 @@
 	data["isAI"] = isAI(user)
 
 	var/z = get_z(user)
-	var/list/map_levels = uniquelist(using_map.get_map_levels(z, TRUE, om_range = DEFAULT_OVERMAP_RANGE))
+	var/list/map_levels = uniqueList(using_map.get_map_levels(z, TRUE, om_range = DEFAULT_OVERMAP_RANGE))
 	data["map_levels"] = map_levels
 
 	var/list/crewmembers = list()
