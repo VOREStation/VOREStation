@@ -206,7 +206,7 @@
 [b]Notice[/b]: REPLACE ME"} //Uses the paper/book syntax
 	start_x = 2
 	start_y = 2
-	known = 0
+	known = FALSE
 
 // It notifies admins when you spawn it and gives you a 'JMP' and 'VV' link in the message so you can find it easily.
 /obj/effect/overmap/visitable/admin_use/Initialize()
@@ -227,7 +227,7 @@
 	fore_dir = NORTH //You may need to edit this ingame if you want your ship to fly correctly!
 	start_x = 2
 	start_y = 2
-	known = 0
+	known = FALSE
 
 // Similarly notifies you
 /obj/effect/overmap/visitable/ship/admin_use/Initialize()

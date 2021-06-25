@@ -16,6 +16,7 @@
 	dir = NORTH
 	icon_state = "ship"
 	appearance_flags = TILE_BOUND|KEEP_TOGETHER|LONG_GLIDE //VOREStation Edit
+	light_power = 4
 	var/moving_state = "ship_moving"
 
 	var/vessel_mass = 10000             //tonnes, arbitrary number, affects acceleration provided by engines
