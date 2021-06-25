@@ -46,14 +46,14 @@
 		window_flash(C)
 		if(query_sound)
 			SEND_SOUND(C, sound(query_sound))
-		var/response = alert(C, question, "[role_name] request", "Yes", "No", "Never for this round")
+		var/response = tgui_alert(C, question, "[role_name] request", list("Yes", "No", "Never for this round"))
 		if(response == "Yes")
-			response = alert(C, "Are you sure you want to play as a [role_name]?", "[role_name] request", "Yes", "No") // Protection from a misclick.
+			response = tgui_alert(C, "Are you sure you want to play as a [role_name]?", "[role_name] request", list("Yes", "No")) // Protection from a misclick.
 		if(!C || !src)
 			return
 		if(response == "Yes")
 			if(finished || (cutoff_number && candidates.len >= cutoff_number) )
-				to_chat(C, "<span class='warning'>Unfortunately, you were not fast enough, and there are no more available roles.  Sorry.</span>")
+				to_chat(C, "<span class='warning'>Unfortunately, you were not fast enough, and there are no more available roles. Sorry.</span>")
 				return
 			candidates.Add(C.mob)
 			if(cutoff_number && candidates.len >= cutoff_number)

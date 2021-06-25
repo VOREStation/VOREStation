@@ -54,7 +54,7 @@ var/const/HOLOPAD_MODE = RANGE_BASED
 /obj/machinery/hologram/holopad/attack_hand(var/mob/living/carbon/human/user) //Carn: Hologram requests.
 	if(!istype(user))
 		return
-	if(alert(user,"Would you like to request an AI's presence?","Request AI","Yes","No") == "Yes")
+	if(tgui_alert(user,"Would you like to request an AI's presence?","Request AI",list("Yes","No")) == "Yes")
 		if(last_request + 200 < world.time) //don't spam the AI with requests you jerk!
 			last_request = world.time
 			to_chat(user, "<span class='notice'>You request an AI's presence.</span>")

@@ -287,7 +287,7 @@ Implant Specifics:<BR>"}
 		t.hotspot_expose(3500,125)
 
 /obj/item/weapon/implant/explosive/post_implant(mob/source as mob)
-	elevel = alert(usr, "What sort of explosion would you prefer?", "Implant Intent", "Localized Limb", "Destroy Body", "Full Explosion")
+	elevel = tgui_alert(usr, "What sort of explosion would you prefer?", "Implant Intent", list("Localized Limb", "Destroy Body", "Full Explosion"))
 	phrase = input("Choose activation phrase:") as text
 	var/list/replacechars = list("'" = "","\"" = "",">" = "","<" = "","(" = "",")" = "")
 	phrase = replace_characters(phrase, replacechars)

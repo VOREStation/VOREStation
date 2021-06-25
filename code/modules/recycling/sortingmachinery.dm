@@ -40,7 +40,7 @@
 			to_chat(user, "<span class='warning'>You need to set a destination first!</span>")
 
 	else if(istype(W, /obj/item/weapon/pen))
-		switch(alert(usr, "What would you like to alter?","Select Alteration","Title","Description", "Cancel"))
+		switch(tgui_alert(usr, "What would you like to alter?","Select Alteration",list("Title","Description","Cancel")))
 			if("Title")
 				var/str = sanitizeSafe(input(usr,"Label text?","Set label",""), MAX_NAME_LEN)
 				if(!str || !length(str))
@@ -151,7 +151,7 @@
 			to_chat(user, "<span class='warning'>You need to set a destination first!</span>")
 
 	else if(istype(W, /obj/item/weapon/pen))
-		switch(alert(usr, "What would you like to alter?","Select Alteration","Title","Description", "Cancel"))
+		switch(tgui_alert(usr, "What would you like to alter?","Select Alteration",list("Title","Description","Cancel")))
 			if("Title")
 				var/str = sanitizeSafe(input(usr,"Label text?","Set label",""), MAX_NAME_LEN)
 				if(!str || !length(str))

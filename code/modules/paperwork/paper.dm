@@ -433,7 +433,7 @@
 		var/obj/item/i = usr.get_active_hand() // Check to see if he still got that darn pen, also check if he's using a crayon or pen.
 		var/iscrayon = 0
 		if(!istype(i, /obj/item/weapon/pen))
-			alert(usr, "You aren't holding a pen anymore! If you want to keep your work, grab one.", "", "Okay")
+			tgui_alert(usr, "You aren't holding a pen anymore! If you want to keep your work, grab one.", "No Pen!") // Should remain tgui_alert() (blocking)
 			i = usr.get_active_hand()
 
 		if(!istype(i, /obj/item/weapon/pen))

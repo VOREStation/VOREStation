@@ -330,10 +330,10 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 			return
 
 		if (C>=26 + runedec + cult.current_antagonists.len) //including the useless rune at the secret room, shouldn't count against the limit of 25 runes - Urist
-			alert(user, "The cloth of reality can't take that much of a strain. Remove some runes first!")
+			tgui_alert_async(user, "The cloth of reality can't take that much of a strain. Remove some runes first!")
 			return
 		else
-			switch(alert(user, "You open the tome", "Tome", "Read it","Scribe a rune","Cancel"))
+			switch(tgui_alert(user, "You open the tome", "Tome", list("Read it","Scribe a rune","Cancel")))
 				if("Cancel")
 					return
 				if("Read it")

@@ -4,7 +4,7 @@
 
 	// Sanity is mostly handled in chimera_regenerate()
 
-	var/confirm = alert(usr, "Are you sure you want to completely reconstruct your form? This process can take up to twenty minutes, depending on how hungry you are, and you will be unable to move.", "Confirm Regeneration", "Yes", "No")
+	var/confirm = tgui_alert(usr, "Are you sure you want to completely reconstruct your form? This process can take up to twenty minutes, depending on how hungry you are, and you will be unable to move.", "Confirm Regeneration", list("Yes", "No"))
 	if(confirm == "Yes")
 		chimera_regenerate()
 
@@ -91,7 +91,7 @@
 		verbs -= /mob/living/carbon/human/proc/hatch
 		return
 
-	var/confirm = alert(usr, "Are you sure you want to hatch right now? This will be very obvious to anyone in view.", "Confirm Regeneration", "Yes", "No")
+	var/confirm = tgui_alert(usr, "Are you sure you want to hatch right now? This will be very obvious to anyone in view.", "Confirm Regeneration", list("Yes", "No"))
 	if(confirm == "Yes")
 
 		//Dead when hatching
@@ -721,13 +721,13 @@
 	if(!T_ext) //Picking something here is critical.
 		return
 	if(T_ext.vital)
-		if(alert(usr, "Are you sure you wish to severely damage their [T_ext]? It will likely kill [T]...","Shred Limb","Yes", "No") != "Yes")
+		if(tgui_alert(usr, "Are you sure you wish to severely damage their [T_ext]? It will likely kill [T]...","Shred Limb",list("Yes", "No")) != "Yes")
 			return //If they reconsider, don't continue.
 
 	//Any internal organ, if there are any
 	var/obj/item/organ/internal/T_int = input(src,"Do you wish to severely damage an internal organ, as well? If not, click 'cancel'") as null|anything in T_ext.internal_organs
 	if(T_int && T_int.vital)
-		if(alert(usr, "Are you sure you wish to severely damage their [T_int]? It will likely kill [T]...","Shred Limb","Yes", "No") != "Yes")
+		if(tgui_alert(usr, "Are you sure you wish to severely damage their [T_int]? It will likely kill [T]...","Shred Limb",list("Yes", "No")) != "Yes")
 			return //If they reconsider, don't continue.
 
 	//And a belly, if they want
@@ -889,7 +889,7 @@
 			return
 
 		if(choice)
-			finalized = alert(src, "Are you sure you want to weave [desired_result.title]? It will cost you [desired_result.cost] silk.","Confirmation","Yes","No")
+			finalized = tgui_alert(src, "Are you sure you want to weave [desired_result.title]? It will cost you [desired_result.cost] silk.","Confirmation",list("Yes","No"))
 
 	if(!desired_result || !istype(desired_result))
 		return
@@ -948,7 +948,7 @@
 			return
 
 		if(choice)
-			finalized = alert(src, "Are you sure you want to weave [desired_result.title]? It will cost you [desired_result.cost] silk.","Confirmation","Yes","No")
+			finalized = tgui_alert(src, "Are you sure you want to weave [desired_result.title]? It will cost you [desired_result.cost] silk.","Confirmation",list("Yes","No"))
 
 	if(!desired_result || !istype(desired_result))
 		return

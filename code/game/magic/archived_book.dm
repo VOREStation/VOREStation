@@ -48,7 +48,8 @@ var/global/datum/book_manager/book_mgr = new()
 		var/DBConnection/dbcon = new()
 		dbcon.Connect("dbi:mysql:[sqldb]:[sqladdress]:[sqlport]","[sqllogin]","[sqlpass]")
 		if(!dbcon.IsConnected())
-			alert(usr, "Connection to Archive has been severed. Aborting.")
+			tgui_alert_async(usr, "Connection to Archive has been severed. Aborting.")
+			return
 		else
 			var/DBQuery/query = dbcon.NewQuery("DELETE FROM library WHERE id=[isbn]")
 			if(!query.Execute())

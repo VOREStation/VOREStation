@@ -120,10 +120,11 @@
 
 	if(!(user.ckey in warned_users))
 		warned_users |= user.ckey
-		alert(user,"This device can be easily used to break ERP preferences due to the nature of teleporting \
-		and tele-vore. Make sure you carefully examine someone's OOC prefs before teleporting them if you are \
-		going to use this device for ERP purposes. This device records all warnings given and teleport events for \
-		admin review in case of pref-breaking, so just don't do it.","OOC WARNING")
+		tgui_alert_async(user,{"
+This device can be easily used to break ERP preferences due to the nature of teleporting and tele-vore.
+Make sure you carefully examine someone's OOC prefs before teleporting them if you are going to use this device for ERP purposes.
+This device records all warnings given and teleport events for admin review in case of pref-breaking, so just don't do it.
+"},"OOC Warning")
 	var/choice = show_radial_menu(user, radial_menu_anchor, radial_images, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = TRUE)
 
 	if(!choice)
@@ -162,20 +163,20 @@
 		rebuild_radial_images()
 
 	/* Ye olde text-based way
-	var/choice = alert(user,"What do you want to do?","[src]","Create Beacon","Cancel","Target Beacon")
+	var/choice = tgui_alert(user,"What do you want to do?","[src]",list("Create Beacon","Cancel","Target Beacon"))
 	switch(choice)
 		if("Create Beacon")
 			if(beacons_left <= 0)
-				alert(usr, "The translocator can't support any more beacons!","Error")
+				tgui_alert_async(usr, "The translocator can't support any more beacons!","Error")
 				return
 
 			var/new_name = html_encode(input(user,"New beacon's name (2-20 char):","[src]") as text|null)
 
 			if(length(new_name) > 20 || length(new_name) < 2)
-				alert(usr, "Entered name length invalid (must be longer than 2, no more than than 20).","Error")
+				tgui_alert_async(usr, "Entered name length invalid (must be longer than 2, no more than than 20).","Error")
 				return
 			if(new_name in beacons)
-				alert(usr, "No duplicate names, please. '[new_name]' exists already.","Error")
+				tgui_alert_async(usr, "No duplicate names, please. '[new_name]' exists already.","Error")
 				return
 
 			var/obj/item/device/perfect_tele_beacon/nb = new(get_turf(src))
@@ -421,14 +422,14 @@
 /obj/item/device/perfect_tele_beacon/attack_hand(mob/user)
 	if((user.ckey != creator) && !(user.ckey in warned_users))
 		warned_users |= user.ckey
-		var/choice = alert(user,"This device is a translocator beacon. Having it on your person may mean that anyone \
-		who teleports to this beacon gets teleported into your selected vore-belly. If you are prey-only \
-		or don't wish to potentially have a random person teleported into you, it's suggested that you \
-		not carry this around.","OOC WARNING","Take It","Leave It")
+		var/choice = tgui_alert(user, {"
+This device is a translocator beacon. Having it on your person may mean that anyone
+who teleports to this beacon gets teleported into your selected vore-belly. If you are prey-only
+or don't wish to potentially have a random person teleported into you, it's suggested that you
+not carry this around."}, "OOC Warning", list("Take It","Leave It"))
 		if(choice == "Leave It")
 			return
-
-	..()
+		..()
 
 /obj/item/device/perfect_tele_beacon/stationary
 	name = "stationary translocator beacon"
@@ -443,7 +444,7 @@ GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/device/perfect_tele_beac
 	if(!isliving(user))
 		return
 	var/mob/living/L = user
-	var/confirm = alert(user, "You COULD eat the beacon...", "Eat beacon?", "Eat it!", "No, thanks.")
+	var/confirm = tgui_alert(user, "You COULD eat the beacon...", "Eat beacon?", list("Eat it!", "No, thanks."))
 	if(confirm == "Eat it!")
 		var/obj/belly/bellychoice = input("Which belly?","Select A Belly") as null|anything in L.vore_organs
 		if(bellychoice)

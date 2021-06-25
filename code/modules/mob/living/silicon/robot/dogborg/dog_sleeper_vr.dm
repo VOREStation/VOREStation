@@ -321,7 +321,7 @@
 		return
 	if(href_list["clean"])
 		if(!cleaning)
-			var/confirm = alert(usr, "You are about to engage self-cleaning mode. This will fill your [src] with caustic enzymes to remove any objects or biomatter, and convert them into energy. Are you sure?", "Confirmation", "Self-Clean", "Cancel")
+			var/confirm = tgui_alert(usr, "You are about to engage self-cleaning mode. This will fill your [src] with caustic enzymes to remove any objects or biomatter, and convert them into energy. Are you sure?", "Confirmation", list("Self-Clean", "Cancel"))
 			if(confirm == "Self-Clean")
 				if(cleaning)
 					return

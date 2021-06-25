@@ -8,7 +8,7 @@
 	return attack_hand(user)
 
 /obj/structure/signpost/attack_hand(mob/user as mob)
-	if(alert(user, "Travel back to ss13?","Return?","Yes","No") == "Yes")
+	if(tgui_alert(user, "Travel back to ss13?","Return?",list("Yes","No")) == "Yes")
 		if(user.z != src.z)	return
 		user.forceMove(pick(latejoin))
 

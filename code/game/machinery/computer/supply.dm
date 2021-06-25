@@ -394,7 +394,7 @@
 			if(!(authorization & SUP_ACCEPT_ORDERS))
 				return FALSE
 			var/list/L = E.contents[params["index"]]
-			var/field = alert(usr, "Select which field to edit", , "Name", "Quantity", "Value")
+			var/field = tgui_alert(usr, "Select which field to edit", "Field Choice", list("Name", "Quantity", "Value"))
 
 			var/new_val = sanitize(input(usr, field, "Enter the new value for this field:", L[lowertext(field)]) as null|text)
 			if(!new_val)

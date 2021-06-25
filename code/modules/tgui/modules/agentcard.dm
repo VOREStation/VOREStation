@@ -118,7 +118,7 @@
 				to_chat(usr, "<span class='notice'>Sex changed to '[new_sex]'.</span>")
 				. = TRUE
 		if("factoryreset")
-			if(alert(usr, "This will factory reset the card, including access and owner. Continue?", "Factory Reset", "No", "Yes") == "Yes" && tgui_status(usr, state) == STATUS_INTERACTIVE)
+			if(tgui_alert(usr, "This will factory reset the card, including access and owner. Continue?", "Factory Reset", list("No", "Yes")) == "Yes" && tgui_status(usr, state) == STATUS_INTERACTIVE)
 				S.age = initial(S.age)
 				S.access = syndicate_access.Copy()
 				S.assignment = initial(S.assignment)

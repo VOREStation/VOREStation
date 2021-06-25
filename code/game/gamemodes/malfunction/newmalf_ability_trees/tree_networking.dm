@@ -140,7 +140,7 @@
 	set desc = "500 CPU - Begins hacking station's primary firewall, quickly overtaking remaining APC systems. When completed grants access to station's self-destruct mechanism. Network administrators will probably notice this."
 	var/price = 500
 	var/mob/living/silicon/ai/user = usr
-	if (alert(user, "Begin system override? This cannot be stopped once started. The network administrators will probably notice this.", "System Override:", "Yes", "No") != "Yes")
+	if (tgui_alert(user, "Begin system override? This cannot be stopped once started. The network administrators will probably notice this.", "System Override:", list("Yes", "No")) != "Yes")
 		return
 	if (!ability_prechecks(user, price) || !ability_pay(user, price) || user.system_override)
 		if(user.system_override)

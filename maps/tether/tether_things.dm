@@ -249,7 +249,7 @@
 
 	var/mob/living/carbon/human/user = AM
 
-	var/choice = alert(usr, "Do you want to depart via the tram? Your character will leave the round.","Departure","Yes","No")
+	var/choice = tgui_alert(usr, "Do you want to depart via the tram? Your character will leave the round.","Departure",list("Yes","No"))
 	if(user && Adjacent(user) && choice == "Yes")
 		var/mob/observer/dead/newghost = user.ghostize()
 		newghost.timeofdeath = world.time

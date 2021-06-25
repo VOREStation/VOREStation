@@ -132,7 +132,7 @@
 		return
 
 	if(container)
-		var/response = alert(user, "What do you want to do?", "Bioprinter Menu", "Print Limbs", "Cancel")
+		var/response = tgui_alert(user, "What do you want to do?", list("Bioprinter Menu", "Print Limbs", "Cancel"))
 		if(response == "Print Limbs")
 			printing_menu(user)
 	else

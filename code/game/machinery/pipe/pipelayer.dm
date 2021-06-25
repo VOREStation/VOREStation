@@ -59,7 +59,7 @@
 		if(metal < 1)
 			to_chat(user, "\The [src] is empty.")
 			return
-		var/answer = alert(user, "Do you want to eject all the metal in \the [src]?", , "Yes","No")
+		var/answer = tgui_alert(user, "Do you want to eject all the metal in \the [src]?", "Eject?", list("Yes","No"))
 		if(answer == "Yes")
 			var/amount_ejected = eject_metal()
 			user.visible_message("<span class='notice'>[user] removes [amount_ejected] sheet\s of [DEFAULT_WALL_MATERIAL] from the \the [src].</span>",

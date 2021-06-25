@@ -367,7 +367,7 @@
 
 	// Final chance to abort "respawning"
 	if(mind && timeofdeath) // They had spawned before
-		var/choice = alert(usr, "Returning to the menu will prevent your character from being revived in-round. Are you sure?", "Confirmation", "No, wait", "Yes, leave")
+		var/choice = tgui_alert(usr, "Returning to the menu will prevent your character from being revived in-round. Are you sure?", "Confirmation", list("No, wait", "Yes, leave"))
 		if(choice == "No, wait")
 			return
 

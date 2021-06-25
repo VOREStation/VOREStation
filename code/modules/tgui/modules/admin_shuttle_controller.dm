@@ -86,7 +86,7 @@
 					shuttle.launch()
 			else if(istype(S, /datum/shuttle/autodock))
 				var/datum/shuttle/autodock/shuttle = S
-				if(alert(usr, "Are you sure you want to launch [shuttle]?", "Launching Shuttle", "Yes", "No") == "Yes")
+				if(tgui_alert(usr, "Are you sure you want to launch [shuttle]?", "Launching Shuttle", list("Yes", "No")) == "Yes")
 					shuttle.launch(src)
 			else
 				to_chat(usr, "<span class='notice'>The shuttle control panel isn't quite sure how to move [S] ([S?.type]).</span>")

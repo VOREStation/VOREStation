@@ -101,7 +101,7 @@ mob
 					hsb.req_access = list()
 					var/accesses = get_all_accesses()
 					for(var/A in accesses)
-						if(alert(usr, "Will this airlock require [get_access_desc(A)] access?", "Sandbox:", "Yes", "No") == "Yes")
+						if(tgui_alert(usr, "Will this airlock require [get_access_desc(A)] access?", "Sandbox:", list("Yes", "No")) == "Yes")
 							LAZYADD(hsb.req_access, A)
 
 					hsb.loc = usr.loc

@@ -26,9 +26,8 @@
 	for(var/S in template.get_affected_turfs(T,centered = TRUE, orientation=orientation))
 		preview += image('icons/misc/debug_group.dmi',S ,"red")
 	usr.client.images += preview
-	if(alert(usr,"Confirm location.", "Template Confirm","No","Yes") == "Yes")
-		if(template.annihilate && alert(usr,"This template is set to annihilate everything in the red square.  \
-		\nEVERYTHING IN THE RED SQUARE WILL BE DELETED, ARE YOU ABSOLUTELY SURE?", "Template Confirm","No","Yes") == "No")
+	if(tgui_alert(usr,"Confirm location.", "Template Confirm",list("No","Yes")) == "Yes")
+		if(template.annihilate && tgui_alert(usr,"This template is set to annihilate everything in the red square. EVERYTHING IN THE RED SQUARE WILL BE DELETED, ARE YOU ABSOLUTELY SURE?", "Template Confirm", list("No","Yes")) == "No")
 			usr.client.images -= preview
 			return
 
@@ -57,11 +56,11 @@
 	orientation = dir2angle(orientation)
 
 	if((!(orientation%180) && template.width > world.maxx || template.height > world.maxy) || (orientation%180 && template.width > world.maxy || template.height > world.maxx))
-		if(alert(usr,"This template is larger than the existing z-levels. It will EXPAND ALL Z-LEVELS to match the size of the template. This may cause chaos. Are you sure you want to do this?","DANGER!!!","Cancel","Yes") == "Cancel")
+		if(tgui_alert(usr,"This template is larger than the existing z-levels. It will EXPAND ALL Z-LEVELS to match the size of the template. This may cause chaos. Are you sure you want to do this?","DANGER!!!",list("Cancel","Yes")) == "Cancel")
 			to_chat(usr,"Template placement aborted.")
 			return
 
-	if(alert(usr,"Confirm map load.", "Template Confirm","No","Yes") == "Yes")
+	if(tgui_alert(usr,"Confirm map load.", "Template Confirm",list("No","Yes")) == "Yes")
 		if(template.load_new_z(orientation=orientation))
 			message_admins("<span class='adminnotice'>[key_name_admin(usr)] has placed a map template ([template.name]) on Z level [world.maxz].</span>")
 		else

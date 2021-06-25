@@ -142,7 +142,8 @@
 	src.callback = callback
 
 /datum/tgui_modal/async/Destroy(force, ...)
-	QDEL_NULL(callback)
+	if(callback)
+		QDEL_NULL(callback)
 	. = ..()
 
 /datum/tgui_modal/async/tgui_close(mob/user)
@@ -153,7 +154,7 @@
 	. = ..()
 	if (!. || choice == null)
 		return
-	callback.InvokeAsync(choice)
+	callback?.InvokeAsync(choice)
 	qdel(src)
 
 /datum/tgui_modal/async/wait()

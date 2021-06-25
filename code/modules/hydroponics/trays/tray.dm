@@ -148,7 +148,7 @@
 	var/datum/ghosttrap/plant/G = get_ghost_trap("living plant")
 	if(!G.assess_candidate(user))
 		return
-	var/response = alert(user, "Are you sure you want to harvest this [seed.display_name]?", "Living plant request", "Yes", "No")
+	var/response = tgui_alert(user, "Are you sure you want to harvest this [seed.display_name]?", "Living plant request", list("Yes", "No"))
 	if(response == "Yes")
 		harvest()
 	return

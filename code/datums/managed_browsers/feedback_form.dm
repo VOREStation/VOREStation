@@ -129,7 +129,7 @@ GENERAL_PROTECT_DATUM(/datum/managed_browser/feedback_form)
 			to_chat(my_client, span("warning", "It appears you didn't write anything, or it was invalid."))
 			return
 
-		if(alert(my_client, "Are you sure you want to submit your feedback?", "Confirm Submission", "No", "Yes") == "Yes")
+		if(tgui_alert(my_client, "Are you sure you want to submit your feedback?", "Confirm Submission", list("No", "Yes")) == "Yes")
 			var/author_text = my_client.ckey
 			if(can_be_private() && feedback_hide_author)
 				author_text = md5(my_client.ckey + SSsqlite.get_feedback_pepper())

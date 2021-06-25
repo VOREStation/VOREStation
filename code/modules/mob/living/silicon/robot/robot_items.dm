@@ -17,13 +17,13 @@
 	files = new /datum/research/techonly(src) //Setup the research data holder.
 
 /obj/item/weapon/portable_destructive_analyzer/attack_self(user as mob)
-	var/response = alert(user, 	"Analyzing the item inside will *DESTROY* the item for good.\n\
+	var/response = tgui_alert(user, 	"Analyzing the item inside will *DESTROY* the item for good.\n\
 							Syncing to the research server will send the data that is stored inside to research.\n\
 							Ejecting will place the loaded item onto the floor.",
-							"What would you like to do?", "Analyze", "Sync", "Eject")
+							"What would you like to do?", list("Analyze", "Sync", "Eject"))
 	if(response == "Analyze")
 		if(loaded_item)
-			var/confirm = alert(user, "This will destroy the item inside forever.  Are you sure?","Confirm Analyze","Yes","No")
+			var/confirm = tgui_alert(user, "This will destroy the item inside forever. Are you sure?","Confirm Analyze",list("Yes","No"))
 			if(confirm == "Yes" && !QDELETED(loaded_item)) //This is pretty copypasta-y
 				to_chat(user, "You activate the analyzer's microlaser, analyzing \the [loaded_item] and breaking it down.")
 				flick("portable_analyzer_scan", src)

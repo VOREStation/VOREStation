@@ -56,7 +56,7 @@
 			break
 
 		if(choice)
-			finalized = alert(M, "Are you sure you want to play as [choice]?","Confirmation","No","Yes")
+			finalized = tgui_alert(M, "Are you sure you want to play as [choice]?","Confirmation",list("No","Yes"))
 
 	if(randomize)
 		choice = pick(possible_mobs)

@@ -45,7 +45,7 @@
 			to_chat(user, "<span class='warning'>This guest pass is already deactivated!</span>")
 			return
 
-		var/confirm = alert(usr, "Do you really want to deactivate this guest pass? (you can't reactivate it)", "Confirm Deactivation", "Yes", "No")
+		var/confirm = tgui_alert(usr, "Do you really want to deactivate this guest pass? (you can't reactivate it)", "Confirm Deactivation", list("Yes", "No"))
 		if(confirm == "Yes")
 			//rip guest pass </3
 			user.visible_message("<span class='notice'>\The [user] deactivates \the [src].</span>")

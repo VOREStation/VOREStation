@@ -3,7 +3,7 @@
 	set name = "Show Air Report"
 
 	if(!master_controller || !air_master)
-		alert(usr,"Master_controller or air_master not found.","Air Report")
+		tgui_alert_async(usr,"Master_controller or air_master not found.","Air Report")
 		return
 
 	var/active_groups = air_master.active_zones

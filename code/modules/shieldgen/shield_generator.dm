@@ -458,7 +458,7 @@
 		if("begin_shutdown")
 			if(running < SHIELD_RUNNING) // Discharging or off
 				return
-			var/alert = alert(usr, "Are you sure you wish to do this? It will drain the power inside the internal storage rapidly.", "Are you sure?", "Yes", "No")
+			var/alert = tgui_alert(usr, "Are you sure you wish to do this? It will drain the power inside the internal storage rapidly.", "Are you sure?", list("Yes", "No"))
 			if(tgui_status(usr, state) != STATUS_INTERACTIVE)
 				return
 			if(running < SHIELD_RUNNING)

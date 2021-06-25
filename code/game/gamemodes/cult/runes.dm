@@ -172,7 +172,7 @@ var/list/sacrificed = list()
 				to_chat(target, "<span class='danger'>And you were able to force it out of your mind. You now know the truth, there's something horrible out there, stop it and its minions at all costs.</span>")
 
 			else spawn()
-				var/choice = alert(target,"Do you want to join the cult?","Submit to Nar'Sie","Resist","Submit")
+				var/choice = tgui_alert(target,"Do you want to join the cult?","Submit to Nar'Sie",list("Resist","Submit"))
 				waiting_for_input[target] = 0
 				if(choice == "Submit") //choosing 'Resist' does nothing of course.
 					cult.add_antagonist(target.mind)

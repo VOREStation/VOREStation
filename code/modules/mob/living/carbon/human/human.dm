@@ -779,7 +779,7 @@
 	if(new_style)
 		f_style = new_style
 
-	var/new_gender = alert(usr, "Please select gender.", "Character Generation", "Male", "Female", "Neutral")
+	var/new_gender = tgui_alert("Please select gender.", "Character Generation", list("Male", "Female", "Neutral"))
 	if (new_gender)
 		if(new_gender == "Male")
 			gender = MALE

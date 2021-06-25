@@ -31,7 +31,7 @@
 		if(refactory.get_stored_material(DEFAULT_WALL_MATERIAL) < PER_LIMB_STEEL_COST)
 			to_chat(src,"<span class='warning'>You're missing that limb, and need to store at least [PER_LIMB_STEEL_COST] steel to regenerate it.</span>")
 			return
-		var/regen = alert(src,"That limb is missing, do you want to regenerate it in exchange for [PER_LIMB_STEEL_COST] steel?","Regenerate limb?","Yes","No")
+		var/regen = tgui_alert(src,"That limb is missing, do you want to regenerate it in exchange for [PER_LIMB_STEEL_COST] steel?","Regenerate limb?",list("Yes","No"))
 		if(regen != "Yes")
 			return
 		if(!refactory.use_stored_material(DEFAULT_WALL_MATERIAL,PER_LIMB_STEEL_COST))
@@ -109,7 +109,7 @@
 		to_chat(src, "<span class='warning'>You are already refactoring!</span>")
 		return
 
-	var/swap_not_rebuild = alert(src,"Do you want to rebuild, or reshape?","Rebuild or Reshape","Reshape","Cancel","Rebuild")
+	var/swap_not_rebuild = tgui_alert(src,"Do you want to rebuild, or reshape?","Rebuild or Reshape",list("Reshape","Cancel","Rebuild"))
 	if(swap_not_rebuild == "Cancel")
 		return
 	if(swap_not_rebuild == "Reshape")

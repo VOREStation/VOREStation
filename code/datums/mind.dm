@@ -122,7 +122,7 @@
 
 /datum/mind/proc/edit_memory()
 	if(!ticker || !ticker.mode)
-		alert(usr, "Not before round-start!", "Alert")
+		tgui_alert_async(usr, "Not before round-start!", "Alert")
 		return
 
 	var/out = "<B>[name]</B>[(current&&(current.real_name!=name))?" (as [current.real_name])":""]<br>"

@@ -186,12 +186,6 @@
 		return TOPIC_NOACTION
 
 	else if(href_list["custom_species"])
-		/*if(pref.species != "Custom Species")
-			alert(usr, "You cannot set a custom species name unless you set your character to use the 'Custom Species' \
-			species on the 'General' tab. If you have this set to something, it's because you had it set before the \
-			Trait system was implemented. If you wish to change it, set your species to 'Custom Species' and configure \
-			the species completely.")
-			return TOPIC_REFRESH*/ //There was no reason to have this.
 		var/raw_choice = sanitize(input(user, "Input your custom species name:",
 			"Character Preference", pref.custom_species) as null|text, MAX_NAME_LEN)
 		if (CanUseTopic(user))
@@ -214,28 +208,28 @@
 		return TOPIC_REFRESH
 
 	else if(href_list["blood_reset"])
-		var/choice = alert(usr, "Reset blood color to human default (#A10808)?","Reset Blood Color","Reset","Cancel")
+		var/choice = tgui_alert(usr, "Reset blood color to human default (#A10808)?","Reset Blood Color",list("Reset","Cancel"))
 		if(choice == "Reset")
 			pref.blood_color = "#A10808"
 		return TOPIC_REFRESH
 
 	else if(href_list["clicked_pos_trait"])
 		var/datum/trait/trait = text2path(href_list["clicked_pos_trait"])
-		var/choice = alert(usr, "Remove [initial(trait.name)] and regain [initial(trait.cost)] points?","Remove Trait","Remove","Cancel")
+		var/choice = tgui_alert(usr, "Remove [initial(trait.name)] and regain [initial(trait.cost)] points?","Remove Trait",list("Remove","Cancel"))
 		if(choice == "Remove")
 			pref.pos_traits -= trait
 		return TOPIC_REFRESH
 
 	else if(href_list["clicked_neu_trait"])
 		var/datum/trait/trait = text2path(href_list["clicked_neu_trait"])
-		var/choice = alert(usr, "Remove [initial(trait.name)]?","Remove Trait","Remove","Cancel")
+		var/choice = tgui_alert(usr, "Remove [initial(trait.name)]?","Remove Trait",list("Remove","Cancel"))
 		if(choice == "Remove")
 			pref.neu_traits -= trait
 		return TOPIC_REFRESH
 
 	else if(href_list["clicked_neg_trait"])
 		var/datum/trait/trait = text2path(href_list["clicked_neg_trait"])
-		var/choice = alert(usr, "Remove [initial(trait.name)] and lose [initial(trait.cost)] points?","Remove Trait","Remove","Cancel")
+		var/choice = tgui_alert(usr, "Remove [initial(trait.name)] and lose [initial(trait.cost)] points?","Remove Trait",list("Remove","Cancel"))
 		if(choice == "Remove")
 			pref.neg_traits -= trait
 		return TOPIC_REFRESH
@@ -310,7 +304,7 @@
 				done = TRUE
 			if(trait_choice in nicelist)
 				var/datum/trait/path = nicelist[trait_choice]
-				var/choice = alert(usr, "\[Cost:[initial(path.cost)]\] [initial(path.desc)]",initial(path.name),"Take Trait","Cancel","Go Back")
+				var/choice = tgui_alert(usr, "\[Cost:[initial(path.cost)]\] [initial(path.desc)]",initial(path.name),"Take Trait",list("Cancel","Go Back"))
 				if(choice == "Cancel")
 					trait_choice = null
 				if(choice != "Go Back")
@@ -325,21 +319,21 @@
 			var/conflict = FALSE
 
 			if(pref.dirty_synth && !(instance.can_take & SYNTHETICS))
-				alert(usr, "The trait you've selected can only be taken by organic characters!","Error")
+				tgui_alert_async(usr, "The trait you've selected can only be taken by organic characters!","Error")
 				pref.dirty_synth = 0	//Just to be sure
 				return TOPIC_REFRESH
 
 			if(pref.gross_meatbag && !(instance.can_take & ORGANICS))
-				alert(usr, "The trait you've selected can only be taken by synthetic characters!","Error")
+				tgui_alert_async(usr, "The trait you've selected can only be taken by synthetic characters!","Error")
 				pref.gross_meatbag = 0	//Just to be sure
 				return TOPIC_REFRESH
 
 			if(pref.species in instance.banned_species)
-				alert(usr, "The trait you've selected cannot be taken by the species you've chosen!","Error")
+				tgui_alert_async(usr, "The trait you've selected cannot be taken by the species you've chosen!","Error")
 				return TOPIC_REFRESH
 
 			if( LAZYLEN(instance.allowed_species) && !(pref.species in instance.allowed_species)) //Adding white list handling -shark
-				alert(usr, "The trait you've selected cannot be taken by the species you've chosen!","Error")
+				tgui_alert_async(usr, "The trait you've selected cannot be taken by the species you've chosen!","Error")
 				return TOPIC_REFRESH
 
 			if(trait_choice in pref.pos_traits + pref.neu_traits + pref.neg_traits)
@@ -358,8 +352,7 @@
 							break varconflict
 
 			if(conflict)
-				alert(usr, "You cannot take this trait and [conflict] at the same time. \
-				Please remove that trait, or pick another trait to add.","Error")
+				tgui_alert_async(usr, "You cannot take this trait and [conflict] at the same time. Please remove that trait, or pick another trait to add.", "Error")
 				return TOPIC_REFRESH
 
 			mylist += path

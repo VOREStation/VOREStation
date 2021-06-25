@@ -473,7 +473,7 @@
 			var/try_name = input(target,"Pick a name for your new form!", "New Name", target.name)
 			var/clean_name = sanitizeName(try_name, allow_numbers = TRUE)
 			if(clean_name)
-				var/okay = alert(target,"New name will be '[clean_name]', ok?", "Confirmation","Cancel","Ok")
+				var/okay = tgui_alert(target,"New name will be '[clean_name]', ok?", "Confirmation",list("Cancel","Ok"))
 				if(okay == "Ok")
 					new_name = clean_name
 
@@ -567,7 +567,7 @@
 			var/try_name = input(target,"Pick a name for your new form!", "New Name", target.name)
 			var/clean_name = sanitizeName(try_name, allow_numbers = TRUE)
 			if(clean_name)
-				var/okay = alert(target,"New name will be '[clean_name]', ok?", "Confirmation","Cancel","Ok")
+				var/okay = tgui_alert(target,"New name will be '[clean_name]', ok?", "Confirmation",list("Cancel","Ok"))
 				if(okay == "Ok")
 					new_name = clean_name
 

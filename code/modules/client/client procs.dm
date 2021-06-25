@@ -160,7 +160,7 @@
 		return null
 
 	if(!config.guests_allowed && IsGuestKey(key))
-		alert(src,"This server doesn't allow guest accounts to play. Please go to http://www.byond.com/ and register for a key.","Guest","OK")
+		alert(src,"This server doesn't allow guest accounts to play. Please go to http://www.byond.com/ and register for a key.","Guest") // Not tgui_alert
 		del(src)
 		return
 
@@ -385,8 +385,7 @@
 	else
 		var/error_message = query_hours.ErrorMsg() // Need this out here since the spawn below will split the stack and who knows what'll happen by the time it runs
 		log_debug("Error loading play hours for [ckey]: [error_message]")
-		spawn(0)
-			alert(src, "The query to load your existing playtime failed. Screenshot this, give the screenshot to a developer, and reconnect, otherwise you may lose any recorded play hours (which may limit access to jobs). ERROR: [error_message]", "PROBLEMS!!")
+		tgui_alert_async(src, "The query to load your existing playtime failed. Screenshot this, give the screenshot to a developer, and reconnect, otherwise you may lose any recorded play hours (which may limit access to jobs). ERROR: [error_message]", "PROBLEMS!!")
 	// VOREStation Edit End - Department Hours
 
 	if(sql_id)
@@ -472,7 +471,7 @@
 
 	//Timing
 	if(src.chatOutputLoadedAt > (world.time - 10 SECONDS))
-		alert(src, "You can only try to reload VChat every 10 seconds at most.")
+		tgui_alert_async(src, "You can only try to reload VChat every 10 seconds at most.")
 		return
 
 	verbs -= /client/proc/vchat_export_log

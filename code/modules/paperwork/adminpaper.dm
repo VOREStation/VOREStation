@@ -40,7 +40,7 @@
 	var/originhash = md5("[origin]")
 	var/timehash = copytext(md5("[world.time]"),1,10)
 	var/text = null
-	var/logo = alert(usr, "Do you want the header of your fax to have a NanoTrasen, SolGov, or Trader logo?","Fax Logo","NanoTrasen","SolGov","Trader") //VOREStation Add - Trader
+	var/logo = tgui_alert(usr, "Do you want the header of your fax to have a NanoTrasen, SolGov, or Trader logo?","Fax Logo",list("NanoTrasen","SolGov","Trader")) //VOREStation Add - Trader
 	if(logo == "SolGov")
 		logo = "sglogo.png"
 	//VOREStation Edit/Add
@@ -118,7 +118,7 @@
 		return
 
 	if(href_list["confirm"])
-		switch(alert(usr, "Are you sure you want to send the fax as is?","Send Fax", "Yes", "No"))
+		switch(tgui_alert(usr, "Are you sure you want to send the fax as is?","Send Fax", list("Yes", "No")))
 			if("Yes")
 				if(headerOn)
 					info = header + info

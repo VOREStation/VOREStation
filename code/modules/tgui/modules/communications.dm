@@ -282,7 +282,7 @@
 			if(isAI(usr) || isrobot(usr))
 				to_chat(usr, "<span class='warning'>Firewalls prevent you from recalling the shuttle.</span>")
 				return
-			var/response = alert(usr, "Are you sure you wish to recall the shuttle?", "Confirm", "Yes", "No")
+			var/response = tgui_alert(usr, "Are you sure you wish to recall the shuttle?", "Confirm", list("Yes", "No"))
 			if(response == "Yes")
 				cancel_call_proc(usr)
 			setMenuState(usr, COMM_SCREEN_MAIN)
@@ -301,7 +301,7 @@
 			var/datum/comm_message_listener/l = obtain_message_listener()
 			if(params["msgid"])
 				setCurrentMessage(usr, text2num(params["msgid"]))
-			var/response = alert(usr, "Are you sure you wish to delete this message?", "Confirm", "Yes", "No")
+			var/response = tgui_alert(usr, "Are you sure you wish to delete this message?", "Confirm", list("Yes", "No"))
 			if(response == "Yes")
 				if(current_viewing_message)
 					if(l != global_message_listener)

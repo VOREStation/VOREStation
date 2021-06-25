@@ -404,7 +404,7 @@
 
 					//Body to sleeve into, but mind is in another living body.
 					if(active_mr.mind_ref.current && active_mr.mind_ref.current.stat < DEAD) //Mind is in a body already that's alive
-						var/answer = alert(active_mr.mind_ref.current,"Someone is attempting to restore a backup of your mind. Do you want to abandon this body, and move there? You MAY suffer memory loss! (Same rules as CMD apply)","Resleeving","No","Yes")
+						var/answer = tgui_alert(active_mr.mind_ref.current,"Someone is attempting to restore a backup of your mind. Do you want to abandon this body, and move there? You MAY suffer memory loss! (Same rules as CMD apply)","Resleeving",list("No","Yes"))
 
 						//They declined to be moved.
 						if(answer == "No")

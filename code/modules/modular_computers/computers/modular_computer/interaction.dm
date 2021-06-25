@@ -101,7 +101,7 @@
 	if(enabled)
 		tgui_interact(user)
 	else if(check_rights(R_ADMIN|R_EVENT, 0, user))
-		var/response = alert(user, "This computer is turned off. Would you like to turn it on?", "Admin Override", "Yes", "No")
+		var/response = tgui_alert(user, "This computer is turned off. Would you like to turn it on?", "Admin Override", list("Yes", "No"))
 		if(response == "Yes")
 			turn_on(user)
 

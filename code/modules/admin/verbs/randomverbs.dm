@@ -4,7 +4,7 @@
 	if(!holder)
 		return
 
-	var/confirm = alert(src, "Make [M] drop everything?", "Message", "Yes", "No")
+	var/confirm = tgui_alert(src, "Make [M] drop everything?", "Message", list("Yes", "No"))
 	if(confirm != "Yes")
 		return
 
@@ -23,7 +23,7 @@
 
 	if (ismob(M))
 		if(istype(M, /mob/living/silicon/ai))
-			alert(usr, "The AI can't be sent to prison you jerk!")
+			tgui_alert_async(usr, "The AI can't be sent to prison you jerk!")
 			return
 		//strip their stuff before they teleport into a cell :downs:
 		for(var/obj/item/W in M)
@@ -49,7 +49,7 @@
 	if(!holder)
 		return
 
-	var/age = alert(src, "Age check", "Show accounts yonger then _____ days","7", "30" , "All")
+	var/age = tgui_alert(src, "Age check", "Show accounts yonger then _____ days", list("7","30","All"))
 
 	if(age == "All")
 		age = 9999999
@@ -220,12 +220,12 @@
 	if(!holder)
 		return
 
-	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
+	var/confirm = tgui_alert(src, "You sure?", "Confirm", list("Yes", "No"))
 	if(confirm != "Yes") return
 	log_admin("[key_name(src)] has added a random AI law.")
 	message_admins("[key_name_admin(src)] has added a random AI law.", 1)
 
-	var/show_log = alert(src, "Show ion message?", "Message", "Yes", "No")
+	var/show_log = tgui_alert(src, "Show ion message?", "Message", list("Yes", "No"))
 	if(show_log == "Yes")
 		command_announcement.Announce("Ion storm detected near \the [station_name()]. Please check all AI-controlled equipment for errors.", "Anomaly Alert", new_sound = 'sound/AI/ionstorm.ogg')
 
@@ -275,7 +275,7 @@ Ccomp's first proc.
 		return
 	
 	if(GLOB.respawn_timers[target] == -1) // Their respawn timer is set to -1, which is 'not allowed to respawn'
-		var/response = alert(src, "Are you sure you wish to allow this individual to respawn? They would normally not be able to.","Allow impossible respawn?","No","Yes")
+		var/response = tgui_alert(src, "Are you sure you wish to allow this individual to respawn? They would normally not be able to.","Allow impossible respawn?",list("No","Yes"))
 		if(response == "No")
 			return
 	
@@ -387,11 +387,11 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 
 	//I frontload all the questions so we don't have a half-done process while you're reading.
-	var/location = alert(src, "Please specify where to spawn them.", "Location", "Right Here", "Arrivals", "Cancel")
+	var/location = tgui_alert(src, "Please specify where to spawn them.", "Location", list("Right Here", "Arrivals", "Cancel"))
 	if(location == "Cancel" || !location)
 		return
 
-	var/announce = alert(src,"Announce as if they had just arrived?", "Announce", "Yes", "No", "Cancel")
+	var/announce = tgui_alert(src,"Announce as if they had just arrived?", "Announce", list("Yes", "No", "Cancel"))
 	if(announce == "Cancel")
 		return
 	else if(announce == "Yes") //Too bad buttons can't just have 1/0 values and different display strings
@@ -399,7 +399,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	else
 		announce = 0
 
-	var/inhabit = alert(src,"Put the person into the spawned mob?", "Inhabit", "Yes", "No", "Cancel")
+	var/inhabit = tgui_alert(src,"Put the person into the spawned mob?", "Inhabit", list("Yes", "No", "Cancel"))
 	if(inhabit == "Cancel")
 		return
 	else if(inhabit == "Yes")
@@ -415,13 +415,13 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	//Found their record, they were spawned previously
 	if(record_found)
-		var/samejob = alert(src,"Found [picked_client.prefs.real_name] in data core. They were [record_found.fields["real_rank"]] this round. Assign same job? They will not be re-added to the manifest/records, either way.","Previously spawned","Yes","Assistant","No")
+		var/samejob = tgui_alert(src,"Found [picked_client.prefs.real_name] in data core. They were [record_found.fields["real_rank"]] this round. Assign same job? They will not be re-added to the manifest/records, either way.","Previously spawned",list("Yes","Assistant","No"))
 		if(samejob == "Yes")
 			charjob = record_found.fields["real_rank"]
 		else if(samejob == USELESS_JOB) //VOREStation Edit - Visitor not Assistant
 			charjob = USELESS_JOB //VOREStation Edit - Visitor not Assistant
 	else
-		records = alert(src,"No data core entry detected. Would you like add them to the manifest, and sec/med/HR records?","Records","Yes","No","Cancel")
+		records = tgui_alert(src,"No data core entry detected. Would you like add them to the manifest, and sec/med/HR records?","Records",list("Yes","No","Cancel"))
 		if(records == "Cancel")
 			return
 		if(records == "Yes")
@@ -440,7 +440,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	//If you've picked a job by now, you can equip them.
 	var/equipment
 	if(charjob)
-		equipment = alert(src,"Spawn them with equipment?", "Equipment", "Yes", "No", "Cancel")
+		equipment = tgui_alert(src,"Spawn them with equipment?", "Equipment", list("Yes", "No", "Cancel"))
 		if(equipment == "Cancel")
 			return
 		else if(equipment == "Yes")
@@ -464,7 +464,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	switch(location)
 		if("Right Here") //Spawn them on your turf
 			spawnloc = get_turf(src.mob)
-			sparks = alert(src,"Sparks like they teleported in?", "Showy", "Yes", "No", "Cancel")
+			sparks = tgui_alert(src,"Sparks like they teleported in?", "Showy", list("Yes", "No", "Cancel"))
 			if(sparks == "Cancel")
 				return
 			if(sparks == "No")
@@ -575,7 +575,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	log_admin("Admin [key_name(usr)] has added a new AI law - [input]")
 	message_admins("Admin [key_name_admin(usr)] has added a new AI law - [input]", 1)
 
-	var/show_log = alert(src, "Show ion message?", "Message", "Yes", "No")
+	var/show_log = tgui_alert(src, "Show ion message?", "Message", list("Yes", "No"))
 	if(show_log == "Yes")
 		command_announcement.Announce("Ion storm detected near the [station_name()]. Please check all AI-controlled equipment for errors.", "Anomaly Alert", new_sound = 'sound/AI/ionstorm.ogg')
 	feedback_add_details("admin_verb","IONC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -590,7 +590,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!mob)
 		return
 	if(!istype(M))
-		alert(usr, "Cannot revive a ghost")
+		tgui_alert_async(usr, "Cannot revive a ghost")
 		return
 	if(config.allow_admin_rev)
 		M.revive()
@@ -600,7 +600,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		message_admins(msg)
 		admin_ticket_log(M, msg)
 	else
-		alert(usr, "Admin revive disabled")
+		tgui_alert_async(usr, "Admin revive disabled")
 	feedback_add_details("admin_verb","REJU") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_create_centcom_report()
@@ -620,7 +620,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	//New message handling
 	post_comm_message(customname, replacetext(input, "\n", "<br/>"))
 
-	switch(alert(usr, "Should this be announced to the general population?","Show world?","Yes","No"))
+	switch(tgui_alert(usr, "Should this be announced to the general population?","Show world?",list("Yes","No")))
 		if("Yes")
 			command_announcement.Announce(input, customname, new_sound = 'sound/AI/commandreport.ogg', msg_sanitized = 1);
 		if("No")
@@ -669,7 +669,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	if ((devastation != -1) || (heavy != -1) || (light != -1) || (flash != -1))
 		if ((devastation > 20) || (heavy > 20) || (light > 20))
-			if (alert(src, "Are you sure you want to do this? It will laaag.", "Confirmation", "Yes", "No") == "No")
+			if (tgui_alert(src, "Are you sure you want to do this? It will laaag.", "Confirmation", list("Yes", "No")) == "No")
 				return
 
 		explosion(O, devastation, heavy, light, flash)
@@ -712,7 +712,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	if(!check_rights(R_ADMIN|R_FUN))	return //VOREStation Edit
 
-	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
+	var/confirm = tgui_alert(src, "You sure?", "Confirm", list("Yes", "No"))
 	if(confirm != "Yes") return
 	//Due to the delay here its easy for something to have happened to the mob
 	if(!M)	return
@@ -734,7 +734,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!holder)
 		return
 
-	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
+	var/confirm = tgui_alert(src, "You sure?", "Confirm", list("Yes", "No"))
 	if(confirm == "Yes")
 		if (istype(mob, /mob/observer/dead)) // so they don't spam gibs everywhere
 			return
@@ -752,7 +752,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		to_chat(src, "Only administrators may use this command.")
 		return
 	var/mob/M = null
-	switch(alert(usr, "How would you like to ban someone today?", "Manual Ban", "Key List", "Enter Manually", "Cancel"))
+	switch(tgui_alert(usr, "How would you like to ban someone today?", "Manual Ban", "Key List", "Enter Manually", "Cancel"))
 		if("Key List")
 			var/list/keys = list()
 			for(var/mob/M in player_list)
@@ -762,10 +762,10 @@ Traitors and the like can also be revived with the previous role mostly intact.
 				return
 			M = selection:mob
 			if ((M.client && M.client.holder && (M.client.holder.level >= holder.level)))
-				alert(usr, "You cannot perform this action. You must be of a higher administrative rank!")
+				tgui_alert_async(usr, "You cannot perform this action. You must be of a higher administrative rank!")
 				return
 
-	switch(alert(usr, "Temporary Ban?","Temporary Ban","Yes","No"))
+	switch(tgui_alert(usr, "Temporary Ban?","Temporary Ban",list("Yes","No")))
 	if("Yes")
 		var/mins = input(usr,"How long (in minutes)?","Ban time",1440) as num
 		if(!mins)
@@ -879,7 +879,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	if(!check_rights(R_ADMIN))	return //VOREStation Edit
 
-	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
+	var/confirm = tgui_alert(src, "You sure?", "Confirm", list("Yes", "No"))
 	if(confirm != "Yes") return
 
 	var/choice
@@ -908,7 +908,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	if(!check_rights(R_ADMIN))	return //VOREStation Edit
 
-	if(alert(src, "You sure?", "Confirm", "Yes", "No") != "Yes") return
+	if(tgui_alert(src, "You sure?", "Confirm", list("Yes", "No")) != "Yes") return
 
 	if(!ticker || !emergency_shuttle.can_recall())
 		return
@@ -962,7 +962,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 
 
-	var/notifyplayers = alert(src, "Do you want to notify the players?", "Options", "Yes", "No", "Cancel")
+	var/notifyplayers = tgui_alert(src, "Do you want to notify the players?", "Options", list("Yes", "No", "Cancel"))
 	if(notifyplayers == "Cancel")
 		return
 
@@ -1007,7 +1007,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!M)
 		return
 
-	var/confirm = alert(usr, "Are you sure you want to cryo [M]?","Confirmation","No","Yes")
+	var/confirm = tgui_alert(usr, "Are you sure you want to cryo [M]?","Confirmation",list("No","Yes"))
 	if(confirm == "No")
 		return
 

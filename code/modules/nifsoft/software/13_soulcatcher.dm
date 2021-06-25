@@ -144,7 +144,7 @@
 			if("Erase Contents")
 				var/mob/living/carbon/brain/caught_soul/brainpick = input(nif.human,"Select a mind to delete:","Erase Mind") as null|anything in brainmobs
 
-				var/warning = alert(nif.human,"Are you SURE you want to erase \"[brainpick]\"?","Erase Mind","CANCEL","DELETE","CANCEL")
+				var/warning = tgui_alert(nif.human,"Are you SURE you want to erase \"[brainpick]\"?","Erase Mind",list("CANCEL","DELETE"))
 				if(warning == "DELETE")
 					brainmobs -= brainpick
 					qdel(brainpick)

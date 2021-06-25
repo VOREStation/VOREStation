@@ -343,7 +343,7 @@
 		if(!choice) return
 
 		icon_state = possible_chassis[choice]
-		finalized = alert(usr, "Look at your sprite. Is this what you wish to use?","Choose Chassis","No","Yes")
+		finalized = tgui_alert(usr, "Look at your sprite. Is this what you wish to use?","Choose Chassis",list("No","Yes"))
 
 	chassis = possible_chassis[choice]
 	verbs |= /mob/living/proc/hide
@@ -458,7 +458,7 @@
 	var/obj/item/weapon/card/id/ID = W.GetID()
 	if(ID)
 		if (idaccessible == 1)
-			switch(alert(user, "Do you wish to add access to [src] or remove access from [src]?","Access Modify","Add Access","Remove Access", "Cancel"))
+			switch(tgui_alert(user, "Do you wish to add access to [src] or remove access from [src]?","Access Modify",list("Add Access","Remove Access", "Cancel")))
 				if("Add Access")
 					idcard.access |= ID.access
 					to_chat(user, "<span class='notice'>You add the access from the [W] to [src].</span>")
@@ -492,8 +492,7 @@
 	set desc = "Wipe your software. This is functionally equivalent to cryo or robotic storage, freeing up your job slot."
 
 	// Make sure people don't kill themselves accidentally
-	if(alert(usr, "WARNING: This will immediately wipe your software and ghost you, removing your character from the round permanently (similar to cryo and robotic storage). Are you entirely sure you want to do this?",
-					"Wipe Software", "No", "No", "Yes") != "Yes")
+	if(tgui_alert(usr, "WARNING: This will immediately wipe your software and ghost you, removing your character from the round permanently (similar to cryo and robotic storage). Are you entirely sure you want to do this?", "Wipe Software", list("No", "Yes")) != "Yes")
 		return
 
 	close_up()

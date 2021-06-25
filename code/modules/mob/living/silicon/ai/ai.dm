@@ -382,7 +382,7 @@ var/list/ai_verbs_default = list(
 	if(check_unable(AI_CHECK_WIRELESS))
 		return
 
-	var/confirm = alert(usr, "Are you sure you want to call the shuttle?", "Confirm Shuttle Call", "Yes", "No")
+	var/confirm = tgui_alert(usr, "Are you sure you want to call the shuttle?", "Confirm Shuttle Call", list("Yes", "No"))
 
 	if(check_unable(AI_CHECK_WIRELESS))
 		return
@@ -401,7 +401,7 @@ var/list/ai_verbs_default = list(
 	if(check_unable(AI_CHECK_WIRELESS))
 		return
 
-	var/confirm = alert(usr, "Are you sure you want to recall the shuttle?", "Confirm Shuttle Recall", "Yes", "No")
+	var/confirm = tgui_alert(usr, "Are you sure you want to recall the shuttle?", "Confirm Shuttle Recall", list("Yes", "No"))
 	if(check_unable(AI_CHECK_WIRELESS))
 		return
 
@@ -597,7 +597,7 @@ var/list/ai_verbs_default = list(
 		return
 
 	var/input
-	var/choice = alert(usr, "Would you like to select a hologram based on a (visible) crew member, switch to unique avatar, or load your character from your character slot?","Hologram Selection","Crew Member","Unique","My Character")
+	var/choice = tgui_alert(usr, "Would you like to select a hologram based on a (visible) crew member, switch to unique avatar, or load your character from your character slot?","Hologram Selection",list("Crew Member","Unique","My Character"))
 
 	switch(choice)
 		if("Crew Member") //A seeable crew member (or a dog)
@@ -611,7 +611,7 @@ var/list/ai_verbs_default = list(
 				holo_icon = new_holo
 
 			else
-				alert(usr, "No suitable records found. Aborting.")
+				tgui_alert_async(usr, "No suitable records found. Aborting.")
 
 		if("My Character") //Loaded character slot
 			if(!client || !client.prefs) return
@@ -853,7 +853,7 @@ var/list/ai_verbs_default = list(
 				A = D
 
 		if(istype(A))
-			switch(alert(src, "Do you want to open \the [A] for [target]?", "Doorknob_v2a.exe", "Yes", "No"))
+			switch(tgui_alert(src, "Do you want to open \the [A] for [target]?", "Doorknob_v2a.exe", list("Yes", "No")))
 				if("Yes")
 					A.AIShiftClick()
 					to_chat(src, "<span class='notice'>You open \the [A] for [target].</span>")
