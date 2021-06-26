@@ -168,6 +168,8 @@
 	var/runemessage
 	if(input)
 		formatted = format_emote(src, message)
+		if(!islist(formatted))
+			return
 		message = formatted["pretext"] + formatted["nametext"] + formatted["subtext"]
 		runemessage = formatted["subtext"]
 		// This is just personal preference (but I'm objectively right) that custom emotes shouldn't have periods at the end in runechat
