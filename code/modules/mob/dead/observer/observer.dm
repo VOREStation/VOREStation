@@ -130,6 +130,7 @@
 		name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
 	real_name = name
 	animate(src, pixel_y = 2, time = 10, loop = -1)
+	observer_mob_list += src
 	..()
 
 /mob/observer/dead/Topic(href, href_list)
@@ -504,6 +505,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		var/mob/M = following
 		M.following_mobs -= src
 	stop_following()
+	observer_mob_list -= src
 	return ..()
 
 /mob/Moved(atom/old_loc, direction, forced = FALSE)
