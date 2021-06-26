@@ -390,7 +390,7 @@
 								subtargets += H
 							if(subtargets.len)
 								var/oc_sanity = sleever.occupant
-								override = input(usr,"Multiple bodies detected. Select target for resleeving of [active_mr.mindname] manually. Sleeving of primary body is unsafe with sub-contents, and is not listed.", "Resleeving Target") as null|anything in subtargets
+								override = tgui_input_list(usr,"Multiple bodies detected. Select target for resleeving of [active_mr.mindname] manually. Sleeving of primary body is unsafe with sub-contents, and is not listed.", "Resleeving Target", subtargets)
 								if(!override || oc_sanity != sleever.occupant || !(override in sleever.occupant))
 									set_temp("Error: Target selection aborted.", "danger")
 									tgui_modal_clear(src)

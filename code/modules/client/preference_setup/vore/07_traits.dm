@@ -196,13 +196,13 @@
 		var/list/choices = GLOB.custom_species_bases
 		if(pref.species != SPECIES_CUSTOM)
 			choices = (choices | pref.species)
-		var/text_choice = input("Pick an icon set for your species:","Icon Base") in choices
+		var/text_choice = tgui_input_list(usr, "Pick an icon set for your species:","Icon Base", choices)
 		if(text_choice in choices)
 			pref.custom_base = text_choice
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["blood_color"])
-		var/color_choice = input("Pick a blood color (does not apply to synths)","Blood Color",pref.blood_color) as color
+		var/color_choice = input(usr, "Pick a blood color (does not apply to synths)","Blood Color",pref.blood_color) as color
 		if(color_choice)
 			pref.blood_color = sanitize_hexcolor(color_choice, default="#A10808")
 		return TOPIC_REFRESH
@@ -295,18 +295,27 @@
 
 		var/traits_left = pref.max_traits - (pref.pos_traits.len + pref.neg_traits.len)
 
+		var/message = "Select a trait to learn more."
+		if(mode != NEUTRAL_MODE)
+			message = "\[Remaining: [points_left] points, [traits_left] traits\]\n" + message
+		var/title = "Traits"
+		switch(mode)
+			if(POSITIVE_MODE)
+				title = "Positive Traits"
+			if(NEUTRAL_MODE)
+				title = "Neutral Traits"
+			if(NEGATIVE_MODE)
+				title = "Negative Traits"
+
 		var/trait_choice
 		var/done = FALSE
 		while(!done)
-			var/message = "\[Remaining: [points_left] points, [traits_left] traits\] Select a trait to read the description and see the cost."
-			trait_choice = input(message,"Trait List") as null|anything in nicelist
+			trait_choice = tgui_input_list(usr, message, title, nicelist)
 			if(!trait_choice)
 				done = TRUE
 			if(trait_choice in nicelist)
 				var/datum/trait/path = nicelist[trait_choice]
-				var/choice = tgui_alert(usr, "\[Cost:[initial(path.cost)]\] [initial(path.desc)]",initial(path.name),"Take Trait",list("Cancel","Go Back"))
-				if(choice == "Cancel")
-					trait_choice = null
+				var/choice = tgui_alert(usr, "\[Cost:[initial(path.cost)]\] [initial(path.desc)]",initial(path.name), list("Take Trait","Go Back"))
 				if(choice != "Go Back")
 					done = TRUE
 
@@ -319,21 +328,21 @@
 			var/conflict = FALSE
 
 			if(pref.dirty_synth && !(instance.can_take & SYNTHETICS))
-				tgui_alert_async(usr, "The trait you've selected can only be taken by organic characters!","Error")
+				tgui_alert_async(usr, "The trait you've selected can only be taken by organic characters!", "Error")
 				pref.dirty_synth = 0	//Just to be sure
 				return TOPIC_REFRESH
 
 			if(pref.gross_meatbag && !(instance.can_take & ORGANICS))
-				tgui_alert_async(usr, "The trait you've selected can only be taken by synthetic characters!","Error")
+				tgui_alert_async(usr, "The trait you've selected can only be taken by synthetic characters!", "Error")
 				pref.gross_meatbag = 0	//Just to be sure
 				return TOPIC_REFRESH
 
 			if(pref.species in instance.banned_species)
-				tgui_alert_async(usr, "The trait you've selected cannot be taken by the species you've chosen!","Error")
+				tgui_alert_async(usr, "The trait you've selected cannot be taken by the species you've chosen!", "Error")
 				return TOPIC_REFRESH
 
-			if( LAZYLEN(instance.allowed_species) && !(pref.species in instance.allowed_species)) //Adding white list handling -shark
-				tgui_alert_async(usr, "The trait you've selected cannot be taken by the species you've chosen!","Error")
+			if( LAZYLEN(instance.allowed_species) && !(pref.species in instance.allowed_species))
+				tgui_alert_async(usr, "The trait you've selected cannot be taken by the species you've chosen!", "Error")
 				return TOPIC_REFRESH
 
 			if(trait_choice in pref.pos_traits + pref.neu_traits + pref.neg_traits)

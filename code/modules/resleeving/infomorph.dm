@@ -317,7 +317,7 @@ var/list/infomorph_emotions = list(
 	set category = "Card Commands"
 	set name = "Choose Chassis"
 
-	var/choice = input(usr,"What would you like to use for your mobile chassis icon? This decision can only be made once.") as null|anything in possible_chassis
+	var/choice = tgui_input_list(usr,"What would you like to use for your mobile chassis icon? This decision can only be made once.", "Chassis Choice", possible_chassis)
 	if(!choice) return
 
 	icon_state = possible_chassis[choice]
@@ -327,7 +327,7 @@ var/list/infomorph_emotions = list(
 	set category = "Card Commands"
 	set name = "Choose Speech Verbs"
 
-	var/choice = input(usr,"What theme would you like to use for your speech verbs? This decision can only be made once.") as null|anything in possible_say_verbs
+	var/choice = tgui_input_list(usr,"What theme would you like to use for your speech verbs? This decision can only be made once.", "Verb Choice", possible_say_verbs)
 	if(!choice) return
 
 	var/list/sayverbs = possible_say_verbs[choice]

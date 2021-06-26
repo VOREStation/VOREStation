@@ -188,7 +188,7 @@ var/list/dispenser_presets = list()
 			dispenser_flags &= ~GD_BUSY
 			return
 		
-		var/choice = input("Select equipment to dispense.", "Equipment Dispenser") as null|anything in gear_list
+		var/choice = tgui_input_list(usr, "Select equipment to dispense.", "Equipment Dispenser", gear_list)
 		
 		if(!choice)
 			dispenser_flags &= ~GD_BUSY

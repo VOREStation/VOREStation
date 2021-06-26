@@ -14,7 +14,7 @@
 		if (istype(SSshuttles.shuttles[shuttle_tag], /datum/shuttle/autodock))
 			valid_shuttles += shuttle_tag
 
-	var/shuttle_tag = input(user, "Which shuttle do you want to launch?") as null|anything in valid_shuttles
+	var/shuttle_tag = tgui_input_list(user, "Which shuttle do you want to launch?", "Shuttle Choice", valid_shuttles)
 	if (!shuttle_tag)
 		return
 

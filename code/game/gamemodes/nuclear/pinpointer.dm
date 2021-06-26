@@ -150,7 +150,7 @@
 				if("Item")
 					var/datum/objective/steal/itemlist
 					itemlist = itemlist
-					var/targetitem = input("Select item to search for.", "Item Mode Select","") as null|anything in itemlist.possible_items
+					var/targetitem = tgui_input_list(usr, "Select item to search for.", "Item Mode Select", itemlist.possible_items)
 					if(!targetitem)
 						return
 					target=locate(itemlist.possible_items[targetitem])
@@ -160,7 +160,7 @@
 					to_chat(usr, "You set the pinpointer to locate [targetitem]")
 
 				if("DNA")
-					var/DNAstring = input("Input DNA string to search for." , "Please Enter String." , "")
+					var/DNAstring = input(usr, "Input DNA string to search for." , "Please Enter String." , "")
 					if(!DNAstring)
 						return
 					for(var/mob/living/carbon/M in mob_list)

@@ -9,7 +9,7 @@
  * * buttons - The options that can be chosen by the user, each string is assigned a button on the UI.
  * * timeout - The timeout of the input box, after which the input box will close and qdel itself. Set to zero for no timeout.
  */
-/proc/tgui_input_list(mob/user, message, title, list/buttons, timeout = 0)
+/proc/tgui_input_list(mob/user, message, title, list/buttons, default, timeout = 0)
 	if (istext(user))
 		stack_trace("tgui_alert() received text for user instead of list")
 		return
@@ -23,7 +23,7 @@
 			user = client.mob
 		else
 			return
-	var/datum/tgui_list_input/input = new(user, message, title, buttons, timeout)
+	var/datum/tgui_list_input/input = new(user, message, title, buttons, default, timeout)
 	input.tgui_interact(user)
 	input.wait()
 	if (input)
@@ -42,7 +42,7 @@
  * * callback - The callback to be invoked when a choice is made.
  * * timeout - The timeout of the input box, after which the menu will close and qdel itself. Set to zero for no timeout.
  */
-/proc/tgui_input_list_async(mob/user, message, title, list/buttons, datum/callback/callback, timeout = 60 SECONDS)
+/proc/tgui_input_list_async(mob/user, message, title, list/buttons, default, datum/callback/callback, timeout = 60 SECONDS)
 	if (istext(user))
 		stack_trace("tgui_alert() received text for user instead of list")
 		return
@@ -56,7 +56,7 @@
 			user = client.mob
 		else
 			return
-	var/datum/tgui_list_input/async/input = new(user, message, title, buttons, callback, timeout)
+	var/datum/tgui_list_input/async/input = new(user, message, title, buttons, default, callback, timeout)
 	input.tgui_interact(user)
 
 /**
@@ -83,7 +83,7 @@
 	/// Boolean field describing if the tgui_list_input was closed by the user.
 	var/closed
 
-/datum/tgui_list_input/New(mob/user, message, title, list/buttons, timeout)
+/datum/tgui_list_input/New(mob/user, message, title, list/buttons, default, timeout)
 	src.title = title
 	src.message = message
 	src.buttons = list()
@@ -171,8 +171,8 @@
 	/// The callback to be invoked by the tgui_list_input upon having a choice made.
 	var/datum/callback/callback
 
-/datum/tgui_list_input/async/New(mob/user, message, title, list/buttons, callback, timeout)
-	..(user, title, message, buttons, timeout)
+/datum/tgui_list_input/async/New(mob/user, message, title, list/buttons, default, callback, timeout)
+	..(user, title, message, buttons, default, timeout)
 	src.callback = callback
 
 /datum/tgui_list_input/async/Destroy(force, ...)

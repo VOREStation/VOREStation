@@ -85,3 +85,6 @@
 	
 /proc/cmp_filter_data_priority(list/A, list/B)
 	return A["priority"] - B["priority"]
+
+/proc/cmp_trait_datums_name(datum/trait/A, datum/trait/B)
+	return A.sort == B.sort ? sorttext("[B.name]","[A.name]") : A.sort - B.sort

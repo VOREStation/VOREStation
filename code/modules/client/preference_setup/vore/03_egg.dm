@@ -29,7 +29,7 @@
 
 	else if(href_list["vore_egg_type"])
 		var/list/vore_egg_types = global_vore_egg_types
-		var/selection = input(user, "Choose your character's egg type:", "Character Preference", pref.vore_egg_type) as null|anything in vore_egg_types
+		var/selection = tgui_input_list(user, "Choose your character's egg type:", "Character Preference", vore_egg_types, pref.vore_egg_type)
 		if(selection)
 			pref.vore_egg_type = selection
 			return TOPIC_REFRESH

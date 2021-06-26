@@ -16,9 +16,9 @@
 			var/override
 			switch(parameter)
 				if(1)
-					override = input(src,"mode = ?","Enter Parameter",null) as anything in list("mercenary","no override")
+					override = tgui_input_list(src,"mode = ?","Enter Parameter", list("mercenary","no override"))
 				if(0)
-					override = input(src,"mode = ?","Enter Parameter",null) as anything in list("blob","mercenary","AI malfunction","no override")
+					override = tgui_input_list(src,"mode = ?","Enter Parameter", list("blob","mercenary","AI malfunction","no override"))
 			ticker.station_explosion_cinematic(parameter,override)
 
 	log_admin("[key_name(src)] launched cinematic \"[cinematic]\"")

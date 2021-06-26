@@ -22,7 +22,7 @@
 
 			else
 
-				var/choice = input("Select a target hose connector.", "Socket Disconnect", null) as null|anything in available_sockets
+				var/choice = tgui_input_list(usr, "Select a target hose connector.", "Socket Disconnect", available_sockets)
 
 				if(choice)
 					var/obj/item/hose_connector/AC = choice

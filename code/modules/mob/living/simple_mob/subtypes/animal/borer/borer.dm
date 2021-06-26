@@ -241,7 +241,7 @@
 					nearby_mobs += LM
 			var/mob/living/speaker
 			if(nearby_mobs.len)
-				speaker = input("Choose a target speaker.") as null|anything in nearby_mobs
+				speaker = tgui_input_list(usr, "Choose a target speaker:", "Target Choice", nearby_mobs)
 			if(speaker)
 				log_admin("[src.ckey]/([src]) tried to force [speaker] to say: [message]")
 				message_admins("[src.ckey]/([src]) tried to force [speaker] to say: [message]")

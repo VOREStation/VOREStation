@@ -61,13 +61,13 @@
 
 /datum/category_item/player_setup_item/general/background/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(href_list["econ_status"])
-		var/new_class = input(user, "Choose your economic status. This will affect the amount of money you will start with.", "Character Preference", pref.economic_status)  as null|anything in ECONOMIC_CLASS
+		var/new_class = tgui_input_list(user, "Choose your economic status. This will affect the amount of money you will start with.", "Character Preference", ECONOMIC_CLASS, pref.economic_status)
 		if(new_class && CanUseTopic(user))
 			pref.economic_status = new_class
 			return TOPIC_REFRESH
 
 	else if(href_list["home_system"])
-		var/choice = input(user, "Please choose a home system.", "Character Preference", pref.home_system) as null|anything in home_system_choices + list("Unset","Other")
+		var/choice = tgui_input_list(user, "Please choose a home system.", "Character Preference", home_system_choices + list("Unset","Other"), pref.home_system)
 		if(!choice || !CanUseTopic(user))
 			return TOPIC_NOACTION
 		if(choice == "Other")
@@ -79,7 +79,7 @@
 		return TOPIC_REFRESH
 
 	else if(href_list["citizenship"])
-		var/choice = input(user, "Please choose your current citizenship.", "Character Preference", pref.citizenship) as null|anything in citizenship_choices + list("None","Other")
+		var/choice = tgui_input_list(user, "Please choose your current citizenship.", "Character Preference", citizenship_choices + list("None","Other"), pref.citizenship)
 		if(!choice || !CanUseTopic(user))
 			return TOPIC_NOACTION
 		if(choice == "Other")
@@ -91,7 +91,7 @@
 		return TOPIC_REFRESH
 
 	else if(href_list["faction"])
-		var/choice = input(user, "Please choose a faction to work for.", "Character Preference", pref.faction) as null|anything in faction_choices + list("None","Other")
+		var/choice = tgui_input_list(user, "Please choose a faction to work for.", "Character Preference", faction_choices + list("None","Other"), pref.faction)
 		if(!choice || !CanUseTopic(user))
 			return TOPIC_NOACTION
 		if(choice == "Other")
@@ -103,7 +103,7 @@
 		return TOPIC_REFRESH
 
 	else if(href_list["religion"])
-		var/choice = input(user, "Please choose a religion.", "Character Preference", pref.religion) as null|anything in religion_choices + list("None","Other")
+		var/choice = tgui_input_list(user, "Please choose a religion.", "Character Preference", religion_choices + list("None","Other"), pref.religion)
 		if(!choice || !CanUseTopic(user))
 			return TOPIC_NOACTION
 		if(choice == "Other")

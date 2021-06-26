@@ -260,7 +260,7 @@
 				master.buildmode.varholder = input(usr,"Enter variable name:" ,"Name", "name")
 				if(master.buildmode.varholder in locked && !check_rights(R_DEBUG,0))
 					return 1
-				var/thetype = input(usr,"Select variable type:" ,"Type") in list("text","number","mob-reference","obj-reference","turf-reference")
+				var/thetype = tgui_input_list(usr,"Select variable type:", "Type", list("text","number","mob-reference","obj-reference","turf-reference"))
 				if(!thetype) return 1
 				switch(thetype)
 					if("text")
@@ -268,11 +268,11 @@
 					if("number")
 						master.buildmode.valueholder = input(usr,"Enter variable value:" ,"Value", 123) as num
 					if("mob-reference")
-						master.buildmode.valueholder = input(usr,"Enter variable value:" ,"Value") as mob in mob_list
+						master.buildmode.valueholder = tgui_input_list(usr,"Enter variable value:", "Value", mob_list)
 					if("obj-reference")
-						master.buildmode.valueholder = input(usr,"Enter variable value:" ,"Value") as obj in world
+						master.buildmode.valueholder = tgui_input_list(usr,"Enter variable value:", "Value", world)
 					if("turf-reference")
-						master.buildmode.valueholder = input(usr,"Enter variable value:" ,"Value") as turf in world
+						master.buildmode.valueholder = tgui_input_list(usr,"Enter variable value:", "Value", world)
 
 			if(BUILDMODE_ROOM)
 				var/choice = tgui_alert(usr, "Would you like to change the floor or wall holders?","Room Builder", list("Floor", "Wall"))
@@ -286,15 +286,15 @@
 				var/choice = tgui_alert(usr, "Change the new light range, power, or color?", "Light Maker", list("Range", "Power", "Color"))
 				switch(choice)
 					if("Range")
-						var/input = input("New light range.","Light Maker",3) as null|num
+						var/input = input(usr, "New light range.","Light Maker",3) as null|num
 						if(input)
 							new_light_range = input
 					if("Power")
-						var/input = input("New light power.","Light Maker",3) as null|num
+						var/input = input(usr, "New light power.","Light Maker",3) as null|num
 						if(input)
 							new_light_intensity = input
 					if("Color")
-						var/input = input("New light color.","Light Maker",3) as null|color
+						var/input = input(usr, "New light color.","Light Maker",3) as null|color
 						if(input)
 							new_light_color = input
 	return 1
@@ -625,7 +625,7 @@
 			return
 
 /obj/effect/bmode/buildmode/proc/get_path_from_partial_text(default_path)
-	var/desired_path = input("Enter full or partial typepath.","Typepath","[default_path]")
+	var/desired_path = input(usr, "Enter full or partial typepath.","Typepath","[default_path]")
 
 	var/list/types = typesof(/atom)
 	var/list/matches = list()
@@ -643,7 +643,7 @@
 	if(matches.len==1)
 		result = matches[1]
 	else
-		result = input("Select an atom type", "Spawn Atom", matches[1]) as null|anything in matches
+		result = tgui_input_list(usr, "Select an atom type", "Spawn Atom", matches)
 		if(!objholder)
 			result = default_path
 	return result

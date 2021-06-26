@@ -262,7 +262,7 @@ GLOBAL_LIST_BOILERPLATE(all_deactivated_AI_cores, /obj/structure/AIcore/deactiva
 	for(var/obj/structure/AIcore/deactivated/D in all_deactivated_AI_cores)
 		cores["[D] ([D.loc.loc])"] = D
 
-	var/id = input("Which core?", "Toggle AI Core Latejoin", null) as null|anything in cores
+	var/id = tgui_input_list(usr, "Which core?", "Toggle AI Core Latejoin", cores)
 	if(!id) return
 
 	var/obj/structure/AIcore/deactivated/D = cores[id]

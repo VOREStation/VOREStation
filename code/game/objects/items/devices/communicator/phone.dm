@@ -315,7 +315,7 @@
 		to_chat(src , "<span class='danger'>There are no available communicators, sorry.</span>")
 		return
 
-	var/choice = input(src,"Send a voice request to whom?") as null|anything in choices
+	var/choice = tgui_input_list(src,"Send a voice request to whom?", "Recipient Choice", choices)
 	if(choice)
 		var/obj/item/device/communicator/chosen_communicator = choice
 		var/mob/observer/dead/O = src

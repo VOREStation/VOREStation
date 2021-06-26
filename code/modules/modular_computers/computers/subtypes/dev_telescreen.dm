@@ -34,7 +34,7 @@
 			pixel_y = 0
 			to_chat(user, "You unsecure \the [src].")
 		else
-			var/choice = input(user, "Where do you want to place \the [src]?", "Offset selection") in list("North", "South", "West", "East", "This tile", "Cancel")
+			var/choice = tgui_input_list(user, "Where do you want to place \the [src]?", "Offset selection", list("North", "South", "West", "East", "This tile", "Cancel"))
 			var/valid = FALSE
 			switch(choice)
 				if("North")

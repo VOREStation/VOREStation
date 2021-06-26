@@ -324,11 +324,11 @@
 					post_status(src, params["statdisp"], user = usr)
 
 		if("setmsg1")
-			stat_msg1 = reject_bad_text(sanitize(input("Line 1", "Enter Message Text", stat_msg1) as text|null, 40), 40)
+			stat_msg1 = reject_bad_text(sanitize(input(usr, "Line 1", "Enter Message Text", stat_msg1) as text|null, 40), 40)
 			setMenuState(usr, COMM_SCREEN_STAT)
 
 		if("setmsg2")
-			stat_msg2 = reject_bad_text(sanitize(input("Line 2", "Enter Message Text", stat_msg2) as text|null, 40), 40)
+			stat_msg2 = reject_bad_text(sanitize(input(usr, "Line 2", "Enter Message Text", stat_msg2) as text|null, 40), 40)
 			setMenuState(usr, COMM_SCREEN_STAT)
 
 		// OMG CENTCOMM LETTERHEAD
@@ -337,7 +337,7 @@
 				if(centcomm_message_cooldown > world.time)
 					to_chat(usr, "<span class='warning'>Arrays recycling. Please stand by.</span>")
 					return
-				var/input = sanitize(input("Please choose a message to transmit to [using_map.boss_short] via quantum entanglement. \
+				var/input = sanitize(input(usr, "Please choose a message to transmit to [using_map.boss_short] via quantum entanglement. \
 				Please be aware that this process is very expensive, and abuse will lead to... termination.  \
 				Transmission does not guarantee a response. \
 				There is a 30 second delay before you may send another message, be clear, full and concise.", "Central Command Quantum Messaging") as null|message)

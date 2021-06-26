@@ -82,7 +82,7 @@
 	if(default_part_replacement(user, W))
 		return
 	if (!panel_open && W.is_wrench())
-		P_type_t = input("Choose pipe type", "Pipe type") as null|anything in Pipes
+		P_type_t = tgui_input_list(usr, "Choose pipe type", "Pipe type", Pipes)
 		P_type = Pipes[P_type_t]
 		user.visible_message("<span class='notice'>[user] has set \the [src] to manufacture [P_type_t].</span>", "<span class='notice'>You set \the [src] to manufacture [P_type_t].</span>")
 		return

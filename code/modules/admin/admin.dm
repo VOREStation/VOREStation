@@ -688,7 +688,7 @@ var/global/floorIsLava = 0
 	set desc="Announce your desires to the world"
 	if(!check_rights(0))	return
 
-	var/message = input("Global message to send:", "Admin Announce", null, null)  as message//todo: sanitize for all?
+	var/message = input(usr, "Global message to send:", "Admin Announce", null, null)  as message//todo: sanitize for all?
 	if(message)
 		if(!check_rights(R_SERVER,0))
 			message = sanitize(message, 500, extra = 0)
@@ -706,14 +706,14 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set desc = "Send an intercom message, like an arrivals announcement."
 	if(!check_rights(0))	return
 
-	var/channel = input("Channel for message:","Channel", null) as null|anything in radiochannels
+	var/channel = tgui_input_list(usr, "Channel for message:","Channel", radiochannels)
 
 	if(channel) //They picked a channel
-		var/sender = input("Name of sender (max 75):", "Announcement", "Announcement Computer") as null|text
+		var/sender = input(usr, "Name of sender (max 75):", "Announcement", "Announcement Computer") as null|text
 
 		if(sender) //They put a sender
 			sender = sanitize(sender, 75, extra = 0)
-			var/message = input("Message content (max 500):", "Contents", "This is a test of the announcement system.") as null|message
+			var/message = input(usr, "Message content (max 500):", "Contents", "This is a test of the announcement system.") as null|message
 
 			if(message) //They put a message
 				message = sanitize(message, 500, extra = 0)
@@ -729,7 +729,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set waitfor = FALSE //Why bother? We have some sleeps. You can leave tho!
 	if(!check_rights(0))	return
 
-	var/channel = input("Channel for message:","Channel", null) as null|anything in radiochannels
+	var/channel = tgui_input_list(usr, "Channel for message:","Channel", radiochannels)
 
 	if(!channel) //They picked a channel
 		return
@@ -1112,7 +1112,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 
 	if(!seedtype || !SSplants.seeds[seedtype])
 		return
-	var/amount = input("Amount of fruit to spawn", "Fruit Amount", 1) as null|num
+	var/amount = input(usr, "Amount of fruit to spawn", "Fruit Amount", 1) as null|num
 	if(!isnull(amount))
 		var/datum/seed/S = SSplants.seeds[seedtype]
 		S.harvest(usr,0,0,amount)
@@ -1125,12 +1125,12 @@ var/datum/announcement/minor/admin_min_announcer = new
 
 	if(!check_rights(R_SPAWN))	return
 
-	var/owner = input("Select a ckey.", "Spawn Custom Item") as null|anything in custom_items
+	var/owner = tgui_input_list(usr, "Select a ckey.", "Spawn Custom Item", custom_items)
 	if(!owner|| !custom_items[owner])
 		return
 
 	var/list/possible_items = custom_items[owner]
-	var/datum/custom_item/item_to_spawn = input("Select an item to spawn.", "Spawn Custom Item") as null|anything in possible_items
+	var/datum/custom_item/item_to_spawn = tgui_input_list(usr, "Select an item to spawn.", "Spawn Custom Item", possible_items)
 	if(!item_to_spawn)
 		return
 
@@ -1191,7 +1191,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	if(matches.len==1)
 		chosen = matches[1]
 	else
-		chosen = input("Select an atom type", "Spawn Atom", matches[1]) as null|anything in matches
+		chosen = tgui_input_list(usr, "Select an atom type", "Spawn Atom", matches)
 		if(!chosen)
 			return
 
@@ -1351,7 +1351,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 		to_chat(usr, "Error: you are not an admin!")
 		return
 
-	var/mob/living/carbon/human/M = input("Select mob.", "Select mob.") as null|anything in human_mob_list
+	var/mob/living/carbon/human/M = tgui_input_list(usr, "Select mob.", "Select mob.", human_mob_list)
 	if(!M) return
 
 	show_skill_window(usr, M)
@@ -1472,7 +1472,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 		to_chat(usr, "Mode has not started.")
 		return
 
-	var/antag_type = input("Choose a template.","Force Latespawn") as null|anything in all_antag_types
+	var/antag_type = tgui_input_list(usr, "Choose a template.","Force Latespawn", all_antag_types)
 	if(!antag_type || !all_antag_types[antag_type])
 		to_chat(usr, "Aborting.")
 		return
@@ -1525,7 +1525,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	var/crystals
 
 	if(check_rights(R_ADMIN|R_EVENT))
-		crystals = input("Amount of telecrystals for [H.ckey], currently [H.mind.tcrystals].", crystals) as null|num
+		crystals = input(usr, "Amount of telecrystals for [H.ckey], currently [H.mind.tcrystals].", crystals) as null|num
 		if (!isnull(crystals))
 			H.mind.tcrystals = crystals
 			var/msg = "[key_name(usr)] has modified [H.ckey]'s telecrystals to [crystals]."
@@ -1541,7 +1541,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	var/crystals
 
 	if(check_rights(R_ADMIN|R_EVENT))
-		crystals = input("Amount of telecrystals to give to [H.ckey], currently [H.mind.tcrystals].", crystals) as null|num
+		crystals = input(usr, "Amount of telecrystals to give to [H.ckey], currently [H.mind.tcrystals].", crystals) as null|num
 		if (!isnull(crystals))
 			H.mind.tcrystals += crystals
 			var/msg = "[key_name(usr)] has added [crystals] to [H.ckey]'s telecrystals."
@@ -1554,7 +1554,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	set category = "Special Verbs"
 	set name = "Send Fax"
 	set desc = "Sends a fax to this machine"
-	var/department = input("Choose a fax", "Fax") as null|anything in alldepartments
+	var/department = tgui_input_list(usr, "Choose a fax", "Fax", alldepartments)
 	for(var/obj/machinery/photocopier/faxmachine/sendto in allfaxes)
 		if(sendto.department == department)
 

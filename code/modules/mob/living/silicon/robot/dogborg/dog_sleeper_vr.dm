@@ -345,7 +345,7 @@
 		sleeperUI(usr)
 		return
 	if(href_list["deliveryslot"])
-		var/tag = input("Select active delivery slot.") as null|anything in deliverylists
+		var/tag = tgui_input_list(usr, "Select active delivery slot:", "Slot Choice", deliverylists)
 		if(!tag)
 			return 0
 		delivery_tag = tag

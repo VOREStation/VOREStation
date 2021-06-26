@@ -69,7 +69,7 @@
 			hologram.drop_prey()
 		return
 
-	var/mob/living/prey = input(src,"Select a mob to eat","Holonoms") as mob in oview(0,eyeobj)|null
+	var/mob/living/prey = tgui_input_list(src,"Select a mob to eat","Holonoms", oview(0,eyeobj))
 	if(!prey)
 		return //Probably cancelled
 

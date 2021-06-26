@@ -30,7 +30,7 @@
 		to_chat(user,"<span class='notice'>There are no warrants available</span>")
 		return
 	var/temp
-	temp = input(user, "Which warrant would you like to load?") as null|anything in warrants
+	temp = tgui_input_list(user, "Which warrant would you like to load?", "Warrant Selection", warrants)
 	for(var/datum/data/record/warrant/W in data_core.warrants)
 		if(W.fields["namewarrant"] == temp)
 			active = W

@@ -138,11 +138,11 @@
 	for(var/mob/C in mob_list)
 		if(C.key)
 			available.Add(C)
-	var/mob/choice = input("Choose a player to play the pAI", "Spawn pAI") in available
+	var/mob/choice = tgui_input_list(usr, "Choose a player to play the pAI", "Spawn pAI", available)
 	if(!choice)
 		return 0
 	if(!istype(choice, /mob/observer/dead))
-		var/confirm = input("[choice.key] isn't ghosting right now. Are you sure you want to yank them out of them out of their body and place them in this pAI?", "Spawn pAI Confirmation", "No") in list("Yes", "No")
+		var/confirm = tgui_alert(usr, "[choice.key] isn't ghosting right now. Are you sure you want to yank them out of them out of their body and place them in this pAI?", "Spawn pAI Confirmation", list("No", "Yes"))
 		if(confirm != "Yes")
 			return 0
 	var/obj/item/device/paicard/card = new(T)
@@ -181,7 +181,7 @@
 
 	// to prevent REALLY stupid deletions
 	var/blocked = list(/obj, /mob, /mob/living, /mob/living/carbon, /mob/living/carbon/human, /mob/observer/dead, /mob/living/silicon, /mob/living/silicon/robot, /mob/living/silicon/ai)
-	var/hsbitem = input(usr, "Choose an object to delete.", "Delete:") as null|anything in typesof(/obj) + typesof(/mob) - blocked
+	var/hsbitem = tgui_input_list(usr, "Choose an object to delete.", "Delete:", typesof(/obj) + typesof(/mob) - blocked)
 	if(hsbitem)
 		for(var/atom/O in world)
 			if(istype(O, hsbitem))
@@ -432,7 +432,7 @@
 
 	var/mob/living/carbon/human/H = target
 
-	var/decl/hierarchy/outfit/outfit = input("Select outfit.", "Select equipment.") as null|anything in outfits()
+	var/decl/hierarchy/outfit/outfit = tgui_input_list(usr, "Select outfit.", "Select equipment.", outfits())
 	if(!outfit)
 		return
 
@@ -580,7 +580,7 @@
 	set name = "Debug Mob Lists"
 	set desc = "For when you just gotta know"
 
-	switch(input("Which list?") in list("Players","Admins","Mobs","Living Mobs","Dead Mobs", "Clients"))
+	switch(tgui_input_list(usr, "Which list?", "List Choice", list("Players","Admins","Mobs","Living Mobs","Dead Mobs", "Clients")))
 		if("Players")
 			to_chat(usr, span("filter_debuglogs", jointext(player_list,",")))
 		if("Admins")
@@ -637,9 +637,9 @@
 	if(!check_rights(R_DEBUG))
 		return
 
-	var/datum/planet/planet = input(usr, "Which planet do you want to modify the weather on?", "Change Weather") in SSplanets.planets
+	var/datum/planet/planet = tgui_input_list(usr, "Which planet do you want to modify the weather on?", "Change Weather", SSplanets.planets)
 	if(istype(planet))
-		var/datum/weather/new_weather = input(usr, "What weather do you want to change to?", "Change Weather") as null|anything in planet.weather_holder.allowed_weather_types
+		var/datum/weather/new_weather = tgui_input_list(usr, "What weather do you want to change to?", "Change Weather", planet.weather_holder.allowed_weather_types)
 		if(new_weather)
 			planet.weather_holder.change_weather(new_weather)
 			planet.weather_holder.rebuild_forecast()
@@ -655,7 +655,7 @@
 	if(!check_rights(R_DEBUG))
 		return
 
-	var/datum/planet/planet = input(usr, "Which planet do you want to modify time on?", "Change Time") in SSplanets.planets
+	var/datum/planet/planet = tgui_input_list(usr, "Which planet do you want to modify time on?", "Change Time", SSplanets.planets)
 	if(istype(planet))
 		var/datum/time/current_time_datum = planet.current_time
 		var/new_hour = input(usr, "What hour do you want to change to?", "Change Time", text2num(current_time_datum.show_time("hh"))) as null|num

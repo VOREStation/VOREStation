@@ -113,7 +113,7 @@
 	for(var/datum/poster/posteroption in poster_designs)
 		options[posteroption.listing_name] = posteroption
 
-	var/choice = input(M,"Choose a poster!","Customize Poster") in options
+	var/choice = tgui_input_list(M, "Choose a poster!", "Customize Poster", options)
 	if(src && choice && !M.stat && in_range(M,src))
 		var serial = poster_designs.Find(options[choice])
 		serial_number = serial

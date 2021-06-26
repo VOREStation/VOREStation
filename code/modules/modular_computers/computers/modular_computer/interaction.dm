@@ -180,7 +180,7 @@
 		for(var/obj/item/weapon/computer_hardware/H in all_components)
 			component_names.Add(H.name)
 
-		var/choice = input(usr, "Which component do you want to uninstall?", "Computer maintenance", null) as null|anything in component_names
+		var/choice = tgui_input_list(usr, "Which component do you want to uninstall?", "Computer maintenance", component_names)
 
 		if(!choice)
 			return

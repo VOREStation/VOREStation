@@ -350,7 +350,7 @@ var/list/ai_verbs_default = list(
 		return
 
 	if (!custom_sprite)
-		var/new_sprite = input("Select an icon!", "AI", selected_sprite) as null|anything in ai_icons
+		var/new_sprite = tgui_input_list(usr, "Select an icon!", "AI", ai_icons)
 		if(new_sprite) selected_sprite = new_sprite
 	updateicon()
 
@@ -603,7 +603,7 @@ var/list/ai_verbs_default = list(
 		if("Crew Member") //A seeable crew member (or a dog)
 			var/list/targets = trackable_mobs()
 			if(targets.len)
-				input = input("Select a crew member:") as null|anything in targets //The definition of "crew member" is a little loose...
+				input = tgui_input_list(usr, "Select a crew member:", "Hologram Choice", targets) //The definition of "crew member" is a little loose...
 				//This is torture, I know. If someone knows a better way...
 				if(!input) return
 				var/new_holo = getHologramIcon(getCompoundIcon(targets[input]))
@@ -651,7 +651,7 @@ var/list/ai_verbs_default = list(
 				"male skrell",
 				"female skrell"
 			)
-			input = input("Please select a hologram:") as null|anything in icon_list
+			input = tgui_input_list(usr, "Please select a hologram:", "Hologram Choice", icon_list)
 			if(input)
 				qdel(holo_icon)
 				switch(input)

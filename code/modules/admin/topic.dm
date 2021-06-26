@@ -141,9 +141,9 @@
 		else if(task == "rank")
 			var/new_rank
 			if(admin_ranks.len)
-				new_rank = input("Please select a rank", "New rank", null, null) as null|anything in (admin_ranks|"*New Rank*")
+				new_rank = tgui_input_list(usr, "Please select a rank", "New rank", (admin_ranks|"*New Rank*"))
 			else
-				new_rank = input("Please select a rank", "New rank", null, null) as null|anything in list("Game Master","Game Admin", "Trial Admin", "Admin Observer","*New Rank*")
+				new_rank = tgui_input_list(usr, "Please select a rank", "New rank", list("Game Master","Game Admin", "Trial Admin", "Admin Observer","*New Rank*"))
 
 			var/rights = 0
 			if(D)
@@ -151,7 +151,7 @@
 			switch(new_rank)
 				if(null,"") return
 				if("*New Rank*")
-					new_rank = input("Please input a new rank", "New custom rank", null, null) as null|text
+					new_rank = input(usr, "Please input a new rank", "New custom rank", null, null) as null|text
 					if(config.admin_legacy_system)
 						new_rank = ckeyEx(new_rank)
 					if(!new_rank)
@@ -187,7 +187,7 @@
 			var/list/permissionlist = list()
 			for(var/i=1, i<=R_MAXPERMISSION, i<<=1)		//that <<= is shorthand for i = i << 1. Which is a left bitshift
 				permissionlist[rights2text(i)] = i
-			var/new_permission = input("Select a permission to turn on/off", "Permission toggle", null, null) as null|anything in permissionlist
+			var/new_permission = tgui_input_list(usr, "Select a permission to turn on/off", "Permission toggle", permissionlist)
 			if(!new_permission)	return
 			D.rights ^= permissionlist[new_permission]
 
@@ -232,7 +232,7 @@
 		if(!check_rights(R_SERVER))	return
 
 		if (emergency_shuttle.wait_for_launch)
-			var/new_time_left = input("Enter new shuttle launch countdown (seconds):","Edit Shuttle Launch Time", emergency_shuttle.estimate_launch_time() ) as num
+			var/new_time_left = input(usr, "Enter new shuttle launch countdown (seconds):","Edit Shuttle Launch Time", emergency_shuttle.estimate_launch_time() ) as num
 
 			emergency_shuttle.launch_time = world.time + new_time_left*10
 
@@ -240,7 +240,7 @@
 			message_admins("<font color='blue'>[key_name_admin(usr)] edited the Emergency Shuttle's launch time to [new_time_left*10]</font>", 1)
 		else if (emergency_shuttle.shuttle.has_arrive_time())
 
-			var/new_time_left = input("Enter new shuttle arrival time (seconds):","Edit Shuttle Arrival Time", emergency_shuttle.estimate_arrival_time() ) as num
+			var/new_time_left = input(usr, "Enter new shuttle arrival time (seconds):","Edit Shuttle Arrival Time", emergency_shuttle.estimate_arrival_time() ) as num
 			emergency_shuttle.shuttle.arrive_time = world.time + new_time_left*10
 
 			log_admin("[key_name(usr)] edited the Emergency Shuttle's arrival time to [new_time_left]")
@@ -819,7 +819,7 @@
 		if (ismob(M))
 			if(!check_if_greater_rights_than(M.client))
 				return
-			var/reason = sanitize(input("Please enter reason.") as null|message)
+			var/reason = sanitize(input(usr, "Please enter reason.") as null|message)
 			if(!reason)
 				return
 
@@ -1018,7 +1018,7 @@
 		if(!ismob(M))
 			to_chat(usr, "<span class='filter_adminlog'>this can only be used on instances of type /mob</span>")
 
-		var/speech = input("What will [key_name(M)] say?.", "Force speech", "")// Don't need to sanitize, since it does that in say(), we also trust our admins.
+		var/speech = input(usr, "What will [key_name(M)] say?.", "Force speech", "") // Don't need to sanitize, since it does that in say(), we also trust our admins.
 		if(!speech)	return
 		M.say(speech)
 		speech = sanitize(speech) // Nah, we don't trust them
@@ -1739,7 +1739,7 @@
 		var/list/available_channels = list()
 		for(var/datum/feed_channel/F in news_network.network_channels)
 			available_channels += F.channel_name
-		src.admincaster_feed_channel.channel_name = sanitizeSafe(input(usr, "Choose receiving Feed Channel", "Network Channel Handler") in available_channels )
+		src.admincaster_feed_channel.channel_name = sanitizeSafe(tgui_input_list(usr, "Choose receiving Feed Channel", "Network Channel Handler", available_channels ))
 		src.access_news_network()
 
 	else if(href_list["ac_set_new_title"])
@@ -1947,7 +1947,7 @@
 
 	if(href_list["add_player_info"])
 		var/key = href_list["add_player_info"]
-		var/add = sanitize(input("Add Player Info") as null|text)
+		var/add = sanitize(input(usr, "Add Player Info") as null|text)
 		if(!add) return
 
 		notes_add(key,add,usr)

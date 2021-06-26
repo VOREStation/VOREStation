@@ -106,7 +106,7 @@
 				C.c_tag = input
 
 				for(var/i = 5; i >= 0; i -= 1)
-					var/direct = input(user, "Direction?", "Assembling Camera", null) in list("LEAVE IT", "NORTH", "EAST", "SOUTH", "WEST" )
+					var/direct = tgui_input_list(user, "Direction?", "Assembling Camera", list("NORTH", "EAST", "SOUTH", "WEST", "LEAVE IT"))
 					if(direct != "LEAVE IT")
 						C.dir = text2dir(direct)
 					if(i != 0)

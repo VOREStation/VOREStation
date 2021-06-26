@@ -38,7 +38,7 @@
 		to_chat(M, "<span class='notice'>You don't feel cool enough to name this gun, chump.</span>")
 		return 0
 
-	var/input = sanitizeSafe(input("What do you want to name the gun?", ,""), MAX_NAME_LEN)
+	var/input = sanitizeSafe(input(usr, "What do you want to name the gun?", ,""), MAX_NAME_LEN)
 
 	if(src && input && !M.stat && in_range(M,src))
 		name = input
@@ -61,7 +61,7 @@
 	options["Jindal T15 Chooha"] = "p08"
 	options["Jindal KP-45W"] = "p08b"
 	options["PCA-11 Tenzu"] = "enforcer_black"
-	var/choice = input(M,"Choose your sprite!","Resprite Gun") in options
+	var/choice = tgui_input_list(M,"Choose your sprite!","Resprite Gun", options)
 	if(src && choice && !M.stat && in_range(M,src))
 		icon_state = options[choice]
 		unique_reskin = options[choice]

@@ -99,7 +99,7 @@
 	if(sensors)
 		switch(action)
 			if("range")
-				var/nrange = input("Set new sensors range", "Sensor range", sensors.range) as num|null
+				var/nrange = input(usr, "Set new sensors range", "Sensor range", sensors.range) as num|null
 				if(tgui_status(usr, state) != STATUS_INTERACTIVE)
 					return FALSE
 				if(nrange)

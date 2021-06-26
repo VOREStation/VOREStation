@@ -74,7 +74,7 @@
 
 /obj/vehicle/train/engine/quadbike/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/device/multitool) && open)
-		var/new_paint = input("Please select paint color.", "Paint Color", paint_color) as color|null
+		var/new_paint = input(usr, "Please select paint color.", "Paint Color", paint_color) as color|null
 		if(new_paint)
 			paint_color = new_paint
 			update_icon()
@@ -250,7 +250,7 @@
 
 /obj/vehicle/train/trolley/trailer/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/device/multitool) && open)
-		var/new_paint = input("Please select paint color.", "Paint Color", paint_color) as color|null
+		var/new_paint = input(usr, "Please select paint color.", "Paint Color", paint_color) as color|null
 		if(new_paint)
 			paint_color = new_paint
 			update_icon()

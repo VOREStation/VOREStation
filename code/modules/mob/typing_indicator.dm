@@ -43,7 +43,7 @@
 	set hidden = 1
 
 	set_typing_indicator(TRUE)
-	var/message = input("","say (text)") as text
+	var/message = input(usr, "","say (text)") as text
 	set_typing_indicator(FALSE)
 
 	if(message)
@@ -54,7 +54,7 @@
 	set hidden = 1
 
 	set_typing_indicator(TRUE)
-	var/message = input("","me (text)") as message //VOREStation Edit
+	var/message = input(usr, "","me (text)") as message //VOREStation Edit
 	set_typing_indicator(FALSE)
 
 	if(message)

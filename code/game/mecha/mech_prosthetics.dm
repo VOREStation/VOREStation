@@ -108,7 +108,7 @@
 
 	switch(action)
 		if("species")
-			var/new_species = input(usr, "Select a new species", "Prosfab Species Selection", "Human") as null|anything in species_types
+			var/new_species = tgui_input_list(usr, "Select a new species", "Prosfab Species Selection", species_types)
 			if(new_species && tgui_status(usr, state) == STATUS_INTERACTIVE)
 				species = new_species
 			return
@@ -122,7 +122,7 @@
 					continue
 				new_manufacturers += A
 
-			var/new_manufacturer = input(usr, "Select a new manufacturer", "Prosfab Species Selection", "Unbranded") as null|anything in new_manufacturers
+			var/new_manufacturer = tgui_input_list(usr, "Select a new manufacturer", "Prosfab Species Selection", new_manufacturers)
 			if(new_manufacturer && tgui_status(usr, state) == STATUS_INTERACTIVE)
 				manufacturer = new_manufacturer
 			return

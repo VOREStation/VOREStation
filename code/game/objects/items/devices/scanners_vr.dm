@@ -60,7 +60,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 				choices += H
 	// Subtargets
 	if(choices.len > 1)
-		var/mob/living/new_M = input(user, "Ambiguous target. Please validate target:", "Target Validation", M) as null|anything in choices
+		var/mob/living/new_M = tgui_input_list(user, "Ambiguous target. Please validate target:", "Target Validation", choices, M)
 		if(!new_M || !M.Adjacent(user))
 			return
 		M = new_M

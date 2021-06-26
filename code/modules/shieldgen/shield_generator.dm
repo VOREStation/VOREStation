@@ -485,7 +485,7 @@
 			if(!running)
 				return TRUE
 
-			var/choice = input(usr, "Are you sure that you want to initiate an emergency shield shutdown? This will instantly drop the shield, and may result in unstable release of stored electromagnetic energy. Proceed at your own risk.") in list("Yes", "No")
+			var/choice = tgui_alert(usr, "Are you sure that you want to initiate an emergency shield shutdown? This will instantly drop the shield, and may result in unstable release of stored electromagnetic energy. Proceed at your own risk.", "Confirmation", list("No", "Yes"))
 			if((choice != "Yes") || !running)
 				return TRUE
 

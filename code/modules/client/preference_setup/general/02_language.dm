@@ -78,7 +78,7 @@
 			if(!available_languages.len)
 				tgui_alert_async(user, "There are no additional languages available to select.")
 			else
-				var/new_lang = input(user, "Select an additional language", "Character Generation", null) as null|anything in available_languages
+				var/new_lang = tgui_input_list(user, "Select an additional language", "Character Generation", available_languages)
 				if(new_lang && pref.alternate_languages.len < S.num_alternate_languages)
 					pref.alternate_languages |= new_lang
 					return TOPIC_REFRESH
@@ -87,7 +87,7 @@
 		var/char
 		var/keys[0]
 		do
-			char = input("Enter a single special character.\nYou may re-select the same characters.\nThe following characters are already in use by radio: ; : .\nThe following characters are already in use by special say commands: ! * ^", "Enter Character - [3 - keys.len] remaining") as null|text
+			char = input(usr, "Enter a single special character.\nYou may re-select the same characters.\nThe following characters are already in use by radio: ; : .\nThe following characters are already in use by special say commands: ! * ^", "Enter Character - [3 - keys.len] remaining") as null|text
 			if(char)
 				if(length(char) > 1)
 					tgui_alert_async(user, "Only single characters allowed.", "Error")

@@ -197,7 +197,7 @@
 
 	if(W.is_screwdriver())
 		if(boots || tank || cooler)
-			var/choice = input("What component would you like to remove?") as null|anything in list(boots,tank,cooler)
+			var/choice = tgui_input_list(usr, "What component would you like to remove?", "Remove Component", list(boots,tank,cooler))
 			if(!choice) return
 
 			if(choice == tank)	//No, a switch doesn't work here. Sorry. ~Techhead

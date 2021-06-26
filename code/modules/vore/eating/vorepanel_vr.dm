@@ -536,7 +536,7 @@
 					to_chat(user,"<span class='warning'>You can't do that in your state!</span>")
 					return TRUE
 
-				var/obj/belly/choice = input("Move all where?","Select Belly") as null|anything in host.vore_organs
+				var/obj/belly/choice = tgui_input_list(usr, "Move all where?","Select Belly", host.vore_organs)
 				if(!choice)
 					return FALSE
 
@@ -552,7 +552,7 @@
 	var/list/available_options = list("Examine", "Eject", "Move")
 	if(ishuman(target))
 		available_options += "Transform"
-	intent = input(user, "What would you like to do with [target]?", "Vore Pick", "Examine") as null|anything in available_options
+	intent = tgui_input_list(user, "What would you like to do with [target]?", "Vore Pick", "Examine", available_options)
 	switch(intent)
 		if("Examine")
 			var/list/results = target.examine(host)
@@ -574,7 +574,7 @@
 				to_chat(user,"<span class='warning'>You can't do that in your state!</span>")
 				return TRUE
 
-			var/obj/belly/choice = input("Move [target] where?","Select Belly") as null|anything in host.vore_organs
+			var/obj/belly/choice = tgui_input_list(usr, "Move [target] where?","Select Belly", host.vore_organs)
 			if(!choice || !(target in host.vore_selected))
 				return TRUE
 
@@ -630,7 +630,7 @@
 			. = TRUE
 		if("b_mode")
 			var/list/menu_list = host.vore_selected.digest_modes.Copy()
-			var/new_mode = input("Choose Mode (currently [host.vore_selected.digest_mode])") as null|anything in menu_list
+			var/new_mode = tgui_input_list(usr, "Choose Mode (currently [host.vore_selected.digest_mode])", "Mode Choice", menu_list)
 			if(!new_mode)
 				return FALSE
 
@@ -638,7 +638,7 @@
 			. = TRUE
 		if("b_addons")
 			var/list/menu_list = host.vore_selected.mode_flag_list.Copy()
-			var/toggle_addon = input("Toggle Addon") as null|anything in menu_list
+			var/toggle_addon = tgui_input_list(usr, "Toggle Addon", "Addon Choice", menu_list)
 			if(!toggle_addon)
 				return FALSE
 			host.vore_selected.mode_flags ^= host.vore_selected.mode_flag_list[toggle_addon]
@@ -647,7 +647,7 @@
 		if("b_item_mode")
 			var/list/menu_list = host.vore_selected.item_digest_modes.Copy()
 
-			var/new_mode = input("Choose Mode (currently [host.vore_selected.item_digest_mode])") as null|anything in menu_list
+			var/new_mode = tgui_input_list(usr, "Choose Mode (currently [host.vore_selected.item_digest_mode])", "Mode Choice", menu_list)
 			if(!new_mode)
 				return FALSE
 
@@ -659,14 +659,14 @@
 			. = TRUE
 		if("b_contamination_flavor")
 			var/list/menu_list = contamination_flavors.Copy()
-			var/new_flavor = input("Choose Contamination Flavor Text Type (currently [host.vore_selected.contamination_flavor])") as null|anything in menu_list
+			var/new_flavor = tgui_input_list(usr, "Choose Contamination Flavor Text Type (currently [host.vore_selected.contamination_flavor])", "Flavor Choice", menu_list)
 			if(!new_flavor)
 				return FALSE
 			host.vore_selected.contamination_flavor = new_flavor
 			. = TRUE
 		if("b_contamination_color")
 			var/list/menu_list = contamination_colors.Copy()
-			var/new_color = input("Choose Contamination Color (currently [host.vore_selected.contamination_color])") as null|anything in menu_list
+			var/new_color = tgui_input_list(usr, "Choose Contamination Color (currently [host.vore_selected.contamination_color])", "Color Choice", menu_list)
 			if(!new_color)
 				return FALSE
 			host.vore_selected.contamination_color = new_color
@@ -674,7 +674,7 @@
 			. = TRUE
 		if("b_egg_type")
 			var/list/menu_list = global_vore_egg_types.Copy()
-			var/new_egg_type = input("Choose Egg Type (currently [host.vore_selected.egg_type])") as null|anything in menu_list
+			var/new_egg_type = tgui_input_list(usr, "Choose Egg Type (currently [host.vore_selected.egg_type])", "Egg Choice", menu_list)
 			if(!new_egg_type)
 				return FALSE
 			host.vore_selected.egg_type = new_egg_type
@@ -777,9 +777,9 @@
 		if("b_release")
 			var/choice
 			if(host.vore_selected.fancy_vore)
-				choice = input(user,"Currently set to [host.vore_selected.release_sound]","Select Sound") as null|anything in fancy_release_sounds
+				choice = tgui_input_list(user,"Currently set to [host.vore_selected.release_sound]","Select Sound", fancy_release_sounds)
 			else
-				choice = input(user,"Currently set to [host.vore_selected.release_sound]","Select Sound") as null|anything in classic_release_sounds
+				choice = tgui_input_list(user,"Currently set to [host.vore_selected.release_sound]","Select Sound", classic_release_sounds)
 
 			if(!choice)
 				return FALSE
@@ -799,9 +799,9 @@
 		if("b_sound")
 			var/choice
 			if(host.vore_selected.fancy_vore)
-				choice = input(user,"Currently set to [host.vore_selected.vore_sound]","Select Sound") as null|anything in fancy_vore_sounds
+				choice = tgui_input_list(user,"Currently set to [host.vore_selected.vore_sound]","Select Sound", fancy_vore_sounds)
 			else
-				choice = input(user,"Currently set to [host.vore_selected.vore_sound]","Select Sound") as null|anything in classic_vore_sounds
+				choice = tgui_input_list(user,"Currently set to [host.vore_selected.vore_sound]","Select Sound", classic_vore_sounds)
 
 			if(!choice)
 				return FALSE
@@ -910,7 +910,7 @@
 				host.vore_selected.transferchance = sanitize_integer(transfer_chance_input, 0, 100, initial(host.vore_selected.transferchance))
 			. = TRUE
 		if("b_transferlocation")
-			var/obj/belly/choice = input("Where do you want your [lowertext(host.vore_selected.name)] to lead if prey resists?","Select Belly") as null|anything in (host.vore_organs + "None - Remove" - host.vore_selected)
+			var/obj/belly/choice = tgui_input_list(usr, "Where do you want your [lowertext(host.vore_selected.name)] to lead if prey resists?","Select Belly", (host.vore_organs + "None - Remove" - host.vore_selected))
 
 			if(!choice) //They cancelled, no changes
 				return FALSE

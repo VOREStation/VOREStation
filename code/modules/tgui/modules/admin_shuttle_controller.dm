@@ -69,7 +69,7 @@
 			var/datum/shuttle/S = locate(params["ref"])
 			if(istype(S, /datum/shuttle/autodock/multi))
 				var/datum/shuttle/autodock/multi/shuttle = S
-				var/dest_key = input("Choose shuttle destination", "Shuttle Destination") as null|anything in shuttle.get_destinations()
+				var/dest_key = tgui_input_list(usr, "Choose shuttle destination", "Shuttle Destination", shuttle.get_destinations())
 				if(dest_key)
 					shuttle.set_destination(dest_key, usr)
 					shuttle.launch(src)
@@ -80,7 +80,7 @@
 				if(!LAZYLEN(possible_d))
 					to_chat(usr, "<span class='warning'>There are no possible destinations for [shuttle] ([shuttle.type])</span>")
 					return FALSE
-				D = input("Choose shuttle destination", "Shuttle Destination") as null|anything in possible_d
+				D = tgui_input_list(usr, "Choose shuttle destination", "Shuttle Destination", possible_d)
 				if(D)
 					shuttle.set_destination(possible_d[D])
 					shuttle.launch()

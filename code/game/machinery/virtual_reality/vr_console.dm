@@ -230,7 +230,7 @@
 		for(var/obj/effect/landmark/virtual_reality/sloc in landmarks_list)
 			vr_landmarks += sloc.name
 
-		S = input(occupant, "Please select a location to spawn your avatar at:", "Spawn location") as null|anything in vr_landmarks
+		S = tgui_input_list(occupant, "Please select a location to spawn your avatar at:", "Spawn location", vr_landmarks)
 		if(!S)
 			return 0
 

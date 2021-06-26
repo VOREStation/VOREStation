@@ -315,7 +315,7 @@ var/list/GPS_list = list()
 	if(href_list["track_color"])
 		var/obj/item/device/gps/gps = locate(href_list["track_color"])
 		if(istype(gps) && !QDELETED(gps))
-			var/new_colour = input("Enter a new tracking color.", "GPS Waypoint Color") as color|null
+			var/new_colour = input(usr, "Enter a new tracking color.", "GPS Waypoint Color") as color|null
 			if(new_colour && istype(gps) && !QDELETED(gps) && holder == usr && !usr.incapacitated())
 				to_chat(usr, SPAN_NOTICE("You adjust the colour \the [src] is using to highlight [gps.gps_tag]."))
 				LAZYSET(tracking_devices, href_list["track_color"], new_colour)
@@ -323,7 +323,7 @@ var/list/GPS_list = list()
 				. = TRUE
 
 	if(href_list["tag"])
-		var/a = input("Please enter desired tag.", name, gps_tag) as text
+		var/a = input(usr, "Please enter desired tag.", name, gps_tag) as text
 		a = uppertext(copytext(sanitize(a), 1, 11))
 		if(in_range(src, usr))
 			gps_tag = a

@@ -318,7 +318,7 @@
 		to_chat(vandal, "<span class='warning'>There's too much graffiti here to add more.</span>")
 		return FALSE
 
-	var/message = sanitize(input("Enter a message to engrave.", "Graffiti") as null|text, trim = TRUE)
+	var/message = sanitize(input(usr, "Enter a message to engrave.", "Graffiti") as null|text, trim = TRUE)
 	if(!message)
 		return FALSE
 

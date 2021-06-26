@@ -37,7 +37,7 @@
 /obj/structure/bonfire/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/stack/rods) && !can_buckle && !grill)
 		var/obj/item/stack/rods/R = W
-		var/choice = input(user, "What would you like to construct?", "Bonfire") as null|anything in list("Stake","Grill")
+		var/choice = tgui_input_list(user, "What would you like to construct?", "Bonfire", list("Stake","Grill"))
 		switch(choice)
 			if("Stake")
 				R.use(1)

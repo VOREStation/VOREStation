@@ -84,7 +84,7 @@
 	if (!holder)
 		return
 
-	var/msg = sanitize(input("Message:", text("Subtle PM to [M.key]")) as text)
+	var/msg = sanitize(input(usr, "Message:", text("Subtle PM to [M.key]")) as text)
 
 	if (!msg)
 		return
@@ -106,7 +106,7 @@
 	if (!holder)
 		return
 
-	var/msg = input("Message:", text("Enter the text you wish to appear to everyone:")) as text
+	var/msg = input(usr, "Message:", text("Enter the text you wish to appear to everyone:")) as text
 	if(!(msg[1] == "<" && msg[length(msg)] == ">")) //You can use HTML but only if the whole thing is HTML. Tries to prevent admin 'accidents'.
 		msg = sanitize(msg)
 
@@ -125,12 +125,12 @@
 		return
 
 	if(!M)
-		M = input("Direct narrate to who?", "Active Players") as null|anything in get_mob_with_client_list()
+		M = tgui_input_list(usr, "Direct narrate to who?", "Active Players", get_mob_with_client_list())
 
 	if(!M)
 		return
 
-	var/msg = input("Message:", text("Enter the text you wish to appear to your target:")) as text
+	var/msg = input(usr, "Message:", text("Enter the text you wish to appear to your target:")) as text
 	if(msg && !(msg[1] == "<" && msg[length(msg)] == ">")) //You can use HTML but only if the whole thing is HTML. Tries to prevent admin 'accidents'.
 		msg = sanitize(msg)
 
@@ -270,7 +270,7 @@ Ccomp's first proc.
 	if(!holder)
 		return
 
-	var/target = input("Select a ckey to allow to rejoin", "Allow Respawn Selector") as null|anything in GLOB.respawn_timers
+	var/target = tgui_input_list(usr, "Select a ckey to allow to rejoin", "Allow Respawn Selector", GLOB.respawn_timers)
 	if(!target)
 		return
 	
@@ -376,7 +376,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!holder)
 		return
 
-	var/client/picked_client = input(src, "Please specify which client's character to spawn.", "Client", "") as null|anything in GLOB.clients
+	var/client/picked_client = tgui_input_list(src, "Please specify which client's character to spawn.", "Client", GLOB.clients)
 	if(!picked_client)
 		return
 
@@ -431,7 +431,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	//Well you're not reloading their job or they never had one.
 	if(!charjob)
-		var/pickjob = input(src,"Pick a job to assign them (or none).","Job Select","-No Job-") as null|anything in joblist + "-No Job-"
+		var/pickjob = tgui_input_list(src,"Pick a job to assign them (or none).","Job Select", joblist + "-No Job-", "-No Job-")
 		if(!pickjob)
 			return
 		if(pickjob != "-No Job-")
@@ -658,13 +658,13 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	if(!check_rights(R_DEBUG|R_FUN))	return //VOREStation Edit
 
-	var/devastation = input("Range of total devastation. -1 to none", text("Input"))  as num|null
+	var/devastation = input(usr, "Range of total devastation. -1 to none", text("Input"))  as num|null
 	if(devastation == null) return
-	var/heavy = input("Range of heavy impact. -1 to none", text("Input"))  as num|null
+	var/heavy = input(usr, "Range of heavy impact. -1 to none", text("Input"))  as num|null
 	if(heavy == null) return
-	var/light = input("Range of light impact. -1 to none", text("Input"))  as num|null
+	var/light = input(usr, "Range of light impact. -1 to none", text("Input"))  as num|null
 	if(light == null) return
-	var/flash = input("Range of flash. -1 to none", text("Input"))  as num|null
+	var/flash = input(usr, "Range of flash. -1 to none", text("Input"))  as num|null
 	if(flash == null) return
 
 	if ((devastation != -1) || (heavy != -1) || (light != -1) || (flash != -1))
@@ -686,13 +686,13 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	if(!check_rights(R_DEBUG|R_FUN))	return //VOREStation Edit
 
-	var/heavy = input("Range of heavy pulse.", text("Input"))  as num|null
+	var/heavy = input(usr, "Range of heavy pulse.", text("Input"))  as num|null
 	if(heavy == null) return
-	var/med = input("Range of medium pulse.", text("Input"))  as num|null
+	var/med = input(usr, "Range of medium pulse.", text("Input"))  as num|null
 	if(med == null) return
-	var/light = input("Range of light pulse.", text("Input"))  as num|null
+	var/light = input(usr, "Range of light pulse.", text("Input"))  as num|null
 	if(light == null) return
-	var/long = input("Range of long pulse.", text("Input"))  as num|null
+	var/long = input(usr, "Range of long pulse.", text("Input"))  as num|null
 	if(long == null) return
 
 	if (heavy || med || light || long)
@@ -757,7 +757,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			var/list/keys = list()
 			for(var/mob/M in player_list)
 				keys += M.client
-			var/selection = input("Please, select a player!", "Admin Jumping", null, null) as null|anything in keys
+			var/selection = tgui_input_list(usr, "Please, select a player!", "Admin Jumping", keys)
 			if(!selection)
 				return
 			M = selection:mob
@@ -860,7 +860,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	var/view = src.view
 	if(view == world.view)
-		view = input("Select view range:", "FUCK YE", 7) in list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,128)
+		view = tgui_input_list(usr, "Select view range:", "FUCK YE", 7, list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,128))
 	else
 		view = world.view
 	mob.set_viewsize(view)
@@ -884,13 +884,13 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	var/choice
 	if(ticker.mode.auto_recall_shuttle)
-		choice = input("The shuttle will just return if you call it. Call anyway?") in list("Confirm", "Cancel")
+		choice = tgui_input_list(usr, "The shuttle will just return if you call it. Call anyway?", list("Confirm", "Cancel"))
 		if(choice == "Confirm")
 			emergency_shuttle.auto_recall = 1	//enable auto-recall
 		else
 			return
 
-	choice = input("Is this an emergency evacuation or a crew transfer?") in list("Emergency", "Crew Transfer")
+	choice = tgui_input_list(usr, "Is this an emergency evacuation or a crew transfer?", list("Emergency", "Crew Transfer"))
 	if (choice == "Emergency")
 		emergency_shuttle.call_evac()
 	else
@@ -1029,7 +1029,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	feedback_add_details("admin_verb","ACRYO") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 	if(ishuman(M))
-		var/obj/machinery/cryopod/CP = human_cryopods[input(usr,"Select a cryopod to use","Cryopod Choice") as null|anything in human_cryopods]
+		var/choice = tgui_input_list(usr,"Select a cryopod to use","Cryopod Choice", human_cryopods)
+		var/obj/machinery/cryopod/CP = human_cryopods[choice]
 		if(!CP)
 			return
 		M.ghostize()
@@ -1044,7 +1045,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			ai.clear_client()
 			return
 		else
-			var/obj/machinery/cryopod/robot/CP = robot_cryopods[input(usr,"Select a cryopod to use","Cryopod Choice") as null|anything in robot_cryopods]
+			var/choice = tgui_input_list(usr,"Select a cryopod to use","Cryopod Choice", robot_cryopods)
+			var/obj/machinery/cryopod/robot/CP = robot_cryopods[choice]
 			if(!CP)
 				return
 			M.ghostize()

@@ -73,21 +73,21 @@
 		return
 
 	if(href_list["settitle"])
-		var/newtitle = input("Enter a title to search for:") as text|null
+		var/newtitle = input(usr, "Enter a title to search for:") as text|null
 		if(newtitle)
 			title = sanitize(newtitle)
 		else
 			title = null
 		title = sanitizeSQL(title)
 	if(href_list["setcategory"])
-		var/newcategory = input("Choose a category to search for:") in list("Any", "Fiction", "Non-Fiction", "Adult", "Reference", "Religion")
+		var/newcategory = tgui_input_list(usr, "Choose a category to search for:", list("Any", "Fiction", "Non-Fiction", "Adult", "Reference", "Religion"))
 		if(newcategory)
 			category = sanitize(newcategory)
 		else
 			category = "Any"
 		category = sanitizeSQL(category)
 	if(href_list["setauthor"])
-		var/newauthor = input("Enter an author to search for:") as text|null
+		var/newauthor = input(usr, "Enter an author to search for:") as text|null
 		if(newauthor)
 			author = sanitize(newauthor)
 		else
@@ -372,9 +372,9 @@
 		if(checkoutperiod < 1)
 			checkoutperiod = 1
 	if(href_list["editbook"])
-		buffer_book = sanitizeSafe(input("Enter the book's title:") as text|null)
+		buffer_book = sanitizeSafe(input(usr, "Enter the book's title:") as text|null)
 	if(href_list["editmob"])
-		buffer_mob = sanitize(input("Enter the recipient's name:") as text|null, MAX_NAME_LEN)
+		buffer_mob = sanitize(input(usr, "Enter the recipient's name:") as text|null, MAX_NAME_LEN)
 	if(href_list["checkout"])
 		var/datum/borrowbook/b = new /datum/borrowbook
 		b.bookname = sanitizeSafe(buffer_book)
@@ -389,11 +389,11 @@
 		var/obj/item/weapon/book/b = locate(href_list["delbook"])
 		inventory.Remove(b)
 	if(href_list["setauthor"])
-		var/newauthor = sanitize(input("Enter the author's name: ") as text|null)
+		var/newauthor = sanitize(input(usr, "Enter the author's name: ") as text|null)
 		if(newauthor)
 			scanner.cache.author = newauthor
 	if(href_list["setcategory"])
-		var/newcategory = input("Choose a category: ") in list("Fiction", "Non-Fiction", "Adult", "Reference", "Religion")
+		var/newcategory = tgui_input_list(usr, "Choose a category: ", list("Fiction", "Non-Fiction", "Adult", "Reference", "Religion"))
 		if(newcategory)
 			upload_category = newcategory
 
@@ -401,7 +401,7 @@
 	if(href_list["upload"])
 		if(scanner)
 			if(scanner.cache)
-				var/choice = input("Are you certain you wish to upload this title to the Archive?") in list("Confirm", "Abort")
+				var/choice = tgui_alert(usr, "Are you certain you wish to upload this title to the Archive?", "Confirmation", list("Confirm", "Abort"))
 				if(choice == "Confirm")
 					if(scanner.cache.unique)
 						tgui_alert_async(usr, "This book has been rejected from the database. Aborting!")
@@ -469,7 +469,7 @@
 			query.Execute()
 
 	if(href_list["orderbyid"])
-		var/orderid = input("Enter your order:") as num|null
+		var/orderid = input(usr, "Enter your order:") as num|null
 		if(orderid)
 			if(isnum(orderid))
 				var/nhref = "src=\ref[src];targetid=[orderid]"

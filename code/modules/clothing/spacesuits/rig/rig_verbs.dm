@@ -214,7 +214,7 @@
 		if(module.selectable)
 			selectable |= module
 
-	var/obj/item/rig_module/module = input("Which module do you wish to select?") as null|anything in selectable
+	var/obj/item/rig_module/module = tgui_input_list(usr, "Which module do you wish to select?", "Select Module", selectable)
 
 	if(!istype(module))
 		selected_module = null
@@ -250,7 +250,7 @@
 		if(module.toggleable)
 			selectable |= module
 
-	var/obj/item/rig_module/module = input("Which module do you wish to toggle?") as null|anything in selectable
+	var/obj/item/rig_module/module = tgui_input_list(usr, "Which module do you wish to toggle?", "Toggle Module", selectable)
 
 	if(!istype(module))
 		return
@@ -288,7 +288,7 @@
 		if(module.usable)
 			selectable |= module
 
-	var/obj/item/rig_module/module = input("Which module do you wish to engage?") as null|anything in selectable
+	var/obj/item/rig_module/module = tgui_input_list(usr, "Which module do you wish to engage?", "Engage Module", selectable)
 
 	if(!istype(module))
 		return

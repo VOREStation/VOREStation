@@ -45,7 +45,7 @@ var/global/list/all_tooltip_styles = list(
 			to_chat(usr, "<span class='warning'>You must be a human or a robot to use this verb.</span>")
 			return
 
-	var/UI_style_new = input(usr, "Select a style. White is recommended for customization") as null|anything in all_ui_styles
+	var/UI_style_new = tgui_input_list(usr, "Select a style. White is recommended for customization", "UI Style Choice", all_ui_styles)
 	if(!UI_style_new) return
 
 	var/UI_style_alpha_new = input(usr, "Select a new alpha (transparency) parameter for your UI, between 50 and 255") as null|num

@@ -700,9 +700,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(src, "<span class = 'warning'>There is no blood to use nearby.</span>")
 		return
 
-	var/obj/effect/decal/cleanable/blood/choice = input(src,"What blood would you like to use?") in null|choices
+	var/obj/effect/decal/cleanable/blood/choice = tgui_input_list(src, "What blood would you like to use?", "Blood Choice", choices)
 
-	var/direction = input(src,"Which way?","Tile selection") as anything in list("Here","North","South","East","West")
+	var/direction = tgui_input_list(src,"Which way?","Tile selection", list("Here","North","South","East","West"))
 	var/turf/simulated/T = src.loc
 	if (direction != "Here")
 		T = get_step(T,text2dir(direction))
@@ -725,7 +725,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/max_length = 50
 
-	var/message = sanitize(input("Write a message. It cannot be longer than [max_length] characters.","Blood writing", ""))
+	var/message = sanitize(input(usr, "Write a message. It cannot be longer than [max_length] characters.","Blood writing", ""))
 
 	if (message)
 
@@ -876,7 +876,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		var/list/options = list()
 		for(var/mob/living/Ms in view(src))
 			options += Ms
-		var/mob/living/M = input(src, "Select who to whisper to:", "Whisper to?", null) as null|mob in options
+		var/mob/living/M = tgui_input_list(src, "Select who to whisper to:", "Whisper to?", options)
 		if(!M)
 			return 0
 		var/msg = sanitize(input(src, "Message:", "Spectral Whisper") as text|null)

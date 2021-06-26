@@ -1483,7 +1483,7 @@
 				else
 					to_chat(user, "<span class='notice'>\The [src] appears to be missing \the [slot].</span>")
 
-			var/remove = input(user, "Which component do you want to pry out?", "Remove Component") as null|anything in removable_components
+			var/remove = tgui_input_list(user, "Which component do you want to pry out?", "Remove Component", removable_components)
 			if(!remove)
 				return
 
@@ -2596,7 +2596,7 @@
 			to_chat(user, "<span class='warning'>There are no passengers to remove.</span>")
 			return
 
-		var/pname = input(user, "Choose a passenger to forcibly remove.", "Forcibly Remove Passenger") as null|anything in passengers
+		var/pname = tgui_input_list(user, "Choose a passenger to forcibly remove.", "Forcibly Remove Passenger", passengers)
 
 		if (!pname)
 			return

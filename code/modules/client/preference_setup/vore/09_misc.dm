@@ -40,13 +40,13 @@
 		pref.show_in_directory = pref.show_in_directory ? 0 : 1;
 		return TOPIC_REFRESH
 	else if(href_list["directory_tag"])
-		var/new_tag = input(user, "Pick a new Vore tag for the character directory", "Character Vore Tag", pref.directory_tag) as null|anything in GLOB.char_directory_tags
+		var/new_tag = tgui_input_list(user, "Pick a new Vore tag for the character directory", "Character Vore Tag", GLOB.char_directory_tags, pref.directory_tag)
 		if(!new_tag)
 			return
 		pref.directory_tag = new_tag
 		return TOPIC_REFRESH
 	else if(href_list["directory_erptag"])
-		var/new_erptag = input(user, "Pick a new ERP tag for the character directory", "Character ERP Tag", pref.directory_erptag) as null|anything in GLOB.char_directory_erptags
+		var/new_erptag = tgui_input_list(user, "Pick a new ERP tag for the character directory", "Character ERP Tag", GLOB.char_directory_erptags, pref.directory_erptag)
 		if(!new_erptag)
 			return
 		pref.directory_erptag = new_erptag
@@ -56,7 +56,7 @@
 		pref.directory_ad = msg
 		return TOPIC_REFRESH
 	else if(href_list["toggle_sensor_setting"])
-		var/new_sensorpref = input(user, "Choose your character's sensor preferences:", "Character Preferences", sensorpreflist[pref.sensorpref]) as null|anything in sensorpreflist
+		var/new_sensorpref = tgui_input_list(user, "Choose your character's sensor preferences:", "Character Preferences", sensorpreflist, sensorpreflist[pref.sensorpref])
 		if (!isnull(new_sensorpref) && CanUseTopic(user))
 			pref.sensorpref = sensorpreflist.Find(new_sensorpref)
 			return TOPIC_REFRESH

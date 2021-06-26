@@ -5,12 +5,12 @@
 	var/datum/map_template/template
 
 
-	var/map = input(usr, "Choose a Map Template to place at your CURRENT LOCATION","Place Map Template") as null|anything in SSmapping.map_templates
+	var/map = tgui_input_list(usr, "Choose a Map Template to place at your CURRENT LOCATION","Place Map Template", SSmapping.map_templates)
 	if(!map)
 		return
 	template = SSmapping.map_templates[map]
 
-	var/orientation = text2dir(input(usr, "Choose an orientation for this Map Template.", "Orientation") as null|anything in list("North", "South", "East", "West"))
+	var/orientation = text2dir(tgui_input_list(usr, "Choose an orientation for this Map Template.", "Orientation", list("North", "South", "East", "West")))
 	if(!orientation)
 		return
 
@@ -43,12 +43,12 @@
 
 	var/datum/map_template/template
 
-	var/map = input(usr, "Choose a Map Template to place on a new Z-level.","Place Map Template") as null|anything in SSmapping.map_templates
+	var/map = tgui_input_list(usr, "Choose a Map Template to place on a new Z-level.","Place Map Template", SSmapping.map_templates)
 	if(!map)
 		return
 	template = SSmapping.map_templates[map]
 
-	var/orientation = text2dir(input(usr, "Choose an orientation for this Map Template.", "Orientation") as null|anything in list("North", "South", "East", "West"))
+	var/orientation = text2dir(tgui_input_list(usr, "Choose an orientation for this Map Template.", "Orientation", list("North", "South", "East", "West")))
 	if(!orientation)
 		return
 

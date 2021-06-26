@@ -108,7 +108,7 @@
 		if(Choices.len == 1)
 			target_choice = Choices[1]
 		else
-			target_choice = input("Choose augment location:") in Choices
+			target_choice = tgui_input_list(usr, "Choose augment location:", "Choose Location", Choices)
 
 	else
 		return FALSE

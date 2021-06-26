@@ -325,7 +325,7 @@
 		if(I && !(I.status & ORGAN_CUT_AWAY) && I.parent_organ == target_zone)
 			attached_organs |= organ
 
-	var/organ_to_remove = input(user, "Which organ do you want to prepare for removal?") as null|anything in attached_organs
+	var/organ_to_remove = tgui_input_list(user, "Which organ do you want to prepare for removal?", "Organ Choice", attached_organs)
 	if(!organ_to_remove)
 		return 0
 
@@ -375,7 +375,7 @@
 		if(I && (I.status & ORGAN_CUT_AWAY) && (I.robotic >= ORGAN_ROBOT) && I.parent_organ == target_zone)
 			removable_organs |= organ
 
-	var/organ_to_replace = input(user, "Which organ do you want to reattach?") as null|anything in removable_organs
+	var/organ_to_replace = tgui_input_list(user, "Which organ do you want to reattach?", "Organ Choice", removable_organs)
 	if(!organ_to_replace)
 		return 0
 

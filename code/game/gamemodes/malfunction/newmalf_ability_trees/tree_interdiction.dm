@@ -95,7 +95,9 @@
 			return
 
 
-		var/targetname = input("Select unlock target: ") in robot_names
+		var/targetname = tgui_input_list(user, "Select unlock target:", "Unlock Target", robot_names)
+		if(!targetname)
+			return
 		for(var/mob/living/silicon/robot/R in robots)
 			if(targetname == R.name)
 				target = R

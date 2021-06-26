@@ -112,7 +112,7 @@ GENERAL_PROTECT_DATUM(/datum/managed_browser/feedback_form)
 		return
 
 	if(href_list["feedback_choose_topic"])
-		feedback_topic = input(my_client, "Choose the topic you want to submit your feedback under.", "Feedback Topic", feedback_topic) in config.sqlite_feedback_topics
+		feedback_topic = tgui_input_list(my_client, "Choose the topic you want to submit your feedback under.", "Feedback Topic", config.sqlite_feedback_topics)
 		display()
 		return
 

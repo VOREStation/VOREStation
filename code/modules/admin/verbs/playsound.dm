@@ -41,7 +41,7 @@ var/list/sounds_cache = list()
 	sounds += "--CANCEL--"
 	sounds += sounds_cache
 
-	var/melody = input("Select a sound from the server to play", "Server sound list", "--CANCEL--") in sounds
+	var/melody = tgui_input_list(usr, "Select a sound from the server to play", "Server sound list", sounds, "--CANCEL--")
 
 	if(melody == "--CANCEL--")	return
 

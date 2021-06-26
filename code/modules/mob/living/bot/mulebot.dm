@@ -116,7 +116,7 @@
 			var/new_dest
 			var/list/beaconlist = GetBeaconList()
 			if(beaconlist.len)
-				new_dest = input("Select new home tag", "Mulebot [suffix ? "([suffix])" : ""]", null) in null|beaconlist
+				new_dest = tgui_input_list(usr, "Select new home tag", "Mulebot [suffix ? "([suffix])" : ""]", beaconlist)
 			else
 				tgui_alert_async(usr, "No destination beacons available.")
 			if(new_dest)
@@ -154,7 +154,7 @@
 			var/new_dest
 			var/list/beaconlist = GetBeaconList()
 			if(beaconlist.len)
-				new_dest = input("Select new destination tag", "Mulebot [suffix ? "([suffix])" : ""]") in null|beaconlist
+				new_dest = tgui_input_list(usr, "Select new destination tag", "Mulebot [suffix ? "([suffix])" : ""]", beaconlist)
 			else
 				tgui_alert_async(usr, "No destination beacons available.")
 			if(new_dest)

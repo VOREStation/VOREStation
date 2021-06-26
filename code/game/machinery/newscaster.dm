@@ -425,7 +425,7 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 			for(var/datum/feed_channel/F in news_network.network_channels)
 				if((!F.locked || F.author == scanned_user) && !F.censored)
 					available_channels += F.channel_name
-			var/new_channel_name = input(usr, "Choose receiving Feed Channel", "Network Channel Handler") as null|anything in available_channels
+			var/new_channel_name = tgui_input_list(usr, "Choose receiving Feed Channel", "Network Channel Handler", available_channels)
 			if(new_channel_name)
 				channel_name = new_channel_name
 			return TRUE

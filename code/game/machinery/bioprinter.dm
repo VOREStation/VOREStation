@@ -149,7 +149,7 @@
 	if(anomalous_organs)
 		possible_list |= anomalous_products
 
-	var/choice = input("What would you like to print?") as null|anything in possible_list
+	var/choice = tgui_input_list(usr, "What would you like to print?", "Print Choice", possible_list)
 
 	if(!choice || printing || (stat & (BROKEN|NOPOWER)))
 		return

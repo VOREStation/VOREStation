@@ -162,45 +162,6 @@ This device records all warnings given and teleport events for admin review in c
 		destination = beacons[choice]
 		rebuild_radial_images()
 
-	/* Ye olde text-based way
-	var/choice = tgui_alert(user,"What do you want to do?","[src]",list("Create Beacon","Cancel","Target Beacon"))
-	switch(choice)
-		if("Create Beacon")
-			if(beacons_left <= 0)
-				tgui_alert_async(usr, "The translocator can't support any more beacons!","Error")
-				return
-
-			var/new_name = html_encode(input(user,"New beacon's name (2-20 char):","[src]") as text|null)
-
-			if(length(new_name) > 20 || length(new_name) < 2)
-				tgui_alert_async(usr, "Entered name length invalid (must be longer than 2, no more than than 20).","Error")
-				return
-			if(new_name in beacons)
-				tgui_alert_async(usr, "No duplicate names, please. '[new_name]' exists already.","Error")
-				return
-
-			var/obj/item/device/perfect_tele_beacon/nb = new(get_turf(src))
-			nb.tele_name = new_name
-			nb.tele_hand = src
-			nb.creator = user.ckey
-			beacons[new_name] = nb
-			beacons_left--
-			if(isliving(user))
-				var/mob/living/L = user
-				L.put_in_any_hand_if_possible(nb)
-
-		if("Target Beacon")
-			if(!beacons.len)
-				to_chat(user,"<span class='warning'>\The [src] doesn't have any beacons!</span>")
-			else
-				var/target = input("Which beacon do you target?","[src]") in beacons|null
-				if(target && (target in beacons))
-					destination = beacons[target]
-					to_chat(user,"<span class='notice'>Destination set to '[target]'.</span>")
-		else
-			return
-	*/
-
 /obj/item/device/perfect_tele/attackby(obj/W, mob/user)
 	if(istype(W,cell_type) && !power_source)
 		power_source = W
@@ -446,7 +407,7 @@ GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/device/perfect_tele_beac
 	var/mob/living/L = user
 	var/confirm = tgui_alert(user, "You COULD eat the beacon...", "Eat beacon?", list("Eat it!", "No, thanks."))
 	if(confirm == "Eat it!")
-		var/obj/belly/bellychoice = input("Which belly?","Select A Belly") as null|anything in L.vore_organs
+		var/obj/belly/bellychoice = tgui_input_list(usr, "Which belly?","Select A Belly", L.vore_organs)
 		if(bellychoice)
 			user.visible_message("<span class='warning'>[user] is trying to stuff \the [src] into [user.gender == MALE ? "his" : user.gender == FEMALE ? "her" : "their"] [bellychoice]!</span>","<span class='notice'>You begin putting \the [src] into your [bellychoice]!</span>")
 			if(do_after(user,5 SECONDS,src))

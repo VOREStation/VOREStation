@@ -93,8 +93,8 @@
 	if(!ability_prechecks(user, price))
 		return
 
-	var/title = input("Select message title: ")
-	var/text = input("Select message text: ")
+	var/title = input(usr, "Select message title: ")
+	var/text = input(usr, "Select message text: ")
 	if(!title || !text || !ability_pay(user, price))
 		to_chat(user, "Hack Aborted")
 		return
@@ -120,8 +120,8 @@
 	if(!ability_prechecks(user, price))
 		return
 
-	var/alert_target = input("Select new alert level:") in list("green", "yellow", "violet", "orange", "blue", "red", "delta", "CANCEL")
-	if(!alert_target || !ability_pay(user, price) || alert_target == "CANCEL")
+	var/alert_target = tgui_input_list(user, "Select new alert level:", "Alert Level", list("green", "yellow", "violet", "orange", "blue", "red", "delta"))
+	if(!alert_target || !ability_pay(user, price))
 		to_chat(user, "Hack Aborted")
 		return
 

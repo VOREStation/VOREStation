@@ -56,7 +56,7 @@
 	if(H.wear_mask != src)
 		to_chat(usr, "<span class='warning'>You have not installed \the [src] yet.</span>")
 		return
-	var/choice = input("Select a screen icon.") as null|anything in monitor_states
+	var/choice = tgui_input_list(usr, "Select a screen icon:", "Head Monitor Choice", monitor_states)
 	if(choice)
 		monitor_state_index = choice
 		update_icon()
