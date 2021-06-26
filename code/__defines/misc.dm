@@ -468,3 +468,7 @@ GLOBAL_LIST_INIT(all_volume_channels, list(
 
 #define SMES_TGUI_INPUT 1
 #define SMES_TGUI_OUTPUT 2
+
+#define TRAIT_SORT_NORMAL 1
+#define TRAIT_SORT_BODYTYPE 2
+#define TRAIT_SORT_SPECIES 3

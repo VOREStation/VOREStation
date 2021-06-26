@@ -22,7 +22,7 @@
 		to_chat(src,"<span class='warning'>You don't have a working refactory module!</span>")
 		return
 		
-	var/choice = input(src,"Pick the bodypart to change:", "Refactor - One Bodypart") as null|anything in species.has_limbs
+	var/choice = tgui_input_list(src,"Pick the bodypart to change:", "Refactor - One Bodypart", species.has_limbs)
 	if(!choice)
 		return
 
@@ -68,7 +68,7 @@
 		usable_manufacturers[company] = M
 	if(!usable_manufacturers.len)
 		return
-	var/manu_choice = input(src, "Which manufacturer do you wish to mimic for this limb?", "Manufacturer for [choice]") as null|anything in usable_manufacturers
+	var/manu_choice = tgui_input_list(src, "Which manufacturer do you wish to mimic for this limb?", "Manufacturer for [choice]", usable_manufacturers)
 
 	if(!manu_choice)
 		return //Changed mind
@@ -125,7 +125,7 @@
 			usable_manufacturers[company] = M
 		if(!usable_manufacturers.len)
 			return
-		var/manu_choice = input(src, "Which manufacturer do you wish to mimic?", "Manufacturer") as null|anything in usable_manufacturers
+		var/manu_choice = tgui_input_list(src, "Which manufacturer do you wish to mimic?", "Manufacturer", usable_manufacturers)
 
 		if(!manu_choice)
 			return //Changed mind
@@ -272,7 +272,7 @@
 		to_chat(src,"<span class='warning'>You must be awake and standing to perform this action!</span>")
 		return
 
-	var/new_species = input("Please select a species to emulate.", "Shapeshifter Body") as null|anything in GLOB.playable_species
+	var/new_species = tgui_input_list(usr, "Please select a species to emulate.", "Shapeshifter Body", GLOB.playable_species)
 	if(new_species)
 		impersonate_bodytype = new_species
 		species?.base_species = new_species // Really though you better have a species
