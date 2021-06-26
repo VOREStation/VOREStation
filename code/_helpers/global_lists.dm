@@ -201,6 +201,12 @@ GLOBAL_LIST_EMPTY(mannequins)
 		S.race_key = rkey //Used in mob icon caching.
 		GLOB.all_species[S.name] = S
 
+	//Shakey shakey shake
+	sortTim(GLOB.all_species, /proc/cmp_species, associative = TRUE)
+
+	//Split up the rest
+	for(var/speciesname in GLOB.all_species)
+		var/datum/species/S = GLOB.all_species[speciesname]
 		if(!(S.spawn_flags & SPECIES_IS_RESTRICTED))
 			GLOB.playable_species += S.name
 		if(S.spawn_flags & SPECIES_IS_WHITELISTED)
