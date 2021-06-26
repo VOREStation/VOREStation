@@ -65,11 +65,13 @@ export class AlertModal extends Component {
     const { current } = this.state;
     const focusCurrentButton = () => this.setCurrent(current, false);
 
+    const windowHeight = Math.max(150, message.length);
+
     return (
       <Window
         title={title}
         width={350}
-        height={150}
+        height={windowHeight}
         canClose={timeout > 0}>
         {timeout && <Loader value={timeout} />}
         <Window.Content
