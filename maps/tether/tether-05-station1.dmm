@@ -1374,8 +1374,7 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 10;
-	icon_state = "intact"
+	dir = 10
 	},
 /turf/simulated/floor/tiled,
 /area/tcommsat/computer)
@@ -1387,12 +1386,15 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = 26
+	},
 /turf/simulated/floor/tiled,
 /area/tcommsat/computer)
 "acE" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 10;
-	icon_state = "intact"
+	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -1421,7 +1423,6 @@
 	},
 /obj/machinery/turretid/lethal{
 	ailock = 1;
-	check_synth = 0;
 	control_area = /area/tcommsat/chamber;
 	desc = "A firewall prevents AIs from interacting with this device.";
 	name = "Telecoms lethal turret control";
@@ -1744,7 +1745,6 @@
 	},
 /obj/machinery/turretid/stun{
 	ailock = 1;
-	check_synth = 0;
 	control_area = /area/tcomsat;
 	desc = "A firewall prevents AIs from interacting with this device.";
 	name = "Telecoms Foyer turret control";
@@ -1902,9 +1902,7 @@
 	name = "\improper Telecomms Entrance"
 	})
 "adm" = (
-/obj/machinery/atmospherics/binary/passive_gate/on{
-	dir = 2
-	},
+/obj/machinery/atmospherics/binary/passive_gate/on,
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 8;
@@ -2213,6 +2211,11 @@
 	dir = 4
 	},
 /obj/machinery/meter,
+/obj/machinery/light_switch{
+	dir = 1;
+	pixel_x = -16;
+	pixel_y = -24
+	},
 /turf/simulated/floor/tiled,
 /area/engineering/gravity_lobby)
 "adI" = (
@@ -3114,6 +3117,10 @@
 	id = "qm_office";
 	pixel_x = 26;
 	pixel_y = 8
+	},
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = 24
 	},
 /turf/simulated/floor/wood,
 /area/quartermaster/qm)
@@ -4182,6 +4189,10 @@
 	pixel_y = 22
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = 24
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/exploration/hallway)
 "aij" = (
@@ -4219,10 +4230,6 @@
 /obj/effect/floor_decal/corner/lightgrey/border,
 /obj/effect/floor_decal/borderfloor/corner2,
 /obj/effect/floor_decal/corner/lightgrey/bordercorner2,
-/obj/machinery/computer/id_restorer{
-	dir = 1;
-	pixel_y = -32
-	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/docks)
 "aio" = (
@@ -4831,6 +4838,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
+	},
+/obj/machinery/light_switch{
+	pixel_x = 11;
+	pixel_y = 24
 	},
 /turf/simulated/floor/tiled,
 /area/tether/exploration/pathfinder_office)
@@ -7828,6 +7839,10 @@
 /obj/machinery/camera/network/engineering{
 	dir = 8
 	},
+/obj/machinery/light_switch{
+	pixel_x = 11;
+	pixel_y = 24
+	},
 /turf/simulated/floor/tiled,
 /area/engineering/atmos/backup)
 "arQ" = (
@@ -8823,6 +8838,7 @@
 /area/engineering/engine_eva)
 "avl" = (
 /obj/machinery/light_switch{
+	dir = 1;
 	pixel_x = -12;
 	pixel_y = -24
 	},
@@ -8900,6 +8916,10 @@
 /obj/structure/table/reinforced,
 /obj/item/device/suit_cooling_unit,
 /obj/item/device/suit_cooling_unit,
+/obj/machinery/light_switch{
+	pixel_x = 11;
+	pixel_y = 24
+	},
 /turf/simulated/floor/tiled,
 /area/engineering/engine_eva)
 "avt" = (
@@ -13477,6 +13497,11 @@
 	pixel_y = -24
 	},
 /obj/random/tech_supply,
+/obj/machinery/light_switch{
+	dir = 1;
+	pixel_x = -13;
+	pixel_y = -27
+	},
 /turf/simulated/floor/tiled,
 /area/engineering/engineering_monitoring)
 "aVN" = (
@@ -14340,6 +14365,11 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 8
 	},
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_x = -26;
+	pixel_y = -8
+	},
 /turf/simulated/floor/tiled,
 /area/gateway/prep_room)
 "biP" = (
@@ -14888,6 +14918,11 @@
 	},
 /obj/effect/floor_decal/corner/green/bordercorner2{
 	dir = 6
+	},
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = 26;
+	pixel_y = 5
 	},
 /turf/simulated/floor/tiled,
 /area/tether/exploration/equipment)
@@ -17263,6 +17298,10 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
 	},
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_x = -26
+	},
 /turf/simulated/floor/tiled/dark,
 /area/ai_server_room)
 "dwX" = (
@@ -17311,6 +17350,10 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
+	},
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = 24
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tcommsat/entrance{
@@ -17694,6 +17737,15 @@
 	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/foyer)
+"dVD" = (
+/obj/structure/table/steel,
+/obj/machinery/light_switch{
+	dir = 1;
+	pixel_x = 9;
+	pixel_y = -24
+	},
+/turf/simulated/floor,
+/area/storage/tech)
 "dVT" = (
 /obj/structure/closet,
 /obj/random/maintenance/clean,
@@ -18690,6 +18742,10 @@
 "fck" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
+	},
+/obj/machinery/light_switch{
+	dir = 1;
+	pixel_y = -24
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/tcommsat/chamber)
@@ -19924,6 +19980,7 @@
 /area/gateway)
 "gDl" = (
 /obj/machinery/light_switch{
+	dir = 1;
 	pixel_x = -12;
 	pixel_y = -24
 	},
@@ -20957,6 +21014,10 @@
 /obj/item/weapon/stock_parts/subspace/treatment,
 /obj/item/weapon/stock_parts/subspace/treatment,
 /obj/item/weapon/stock_parts/subspace/treatment,
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_x = -26
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tcomfoyer{
 	name = "\improper Telecomms Storage"
@@ -22957,6 +23018,11 @@
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 8
 	},
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = 24;
+	pixel_y = 5
+	},
 /turf/simulated/floor/tiled,
 /area/tether/station/dock_two)
 "jEf" = (
@@ -24403,9 +24469,6 @@
 /turf/simulated/floor/plating,
 /area/maintenance/substation/tcomms)
 "kSd" = (
-/obj/machinery/vending/cola{
-	dir = 4
-	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
 	},
@@ -24419,6 +24482,9 @@
 	dir = 6
 	},
 /obj/machinery/camera/network/tether{
+	dir = 4
+	},
+/obj/machinery/vending/fitness{
 	dir = 4
 	},
 /turf/simulated/floor/tiled,
@@ -29002,6 +29068,11 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = 24;
+	pixel_y = 4
+	},
 /turf/simulated/floor/tiled,
 /area/tether/exploration/pilot_office)
 "pMe" = (
@@ -29350,6 +29421,11 @@
 /area/quartermaster/foyer)
 "qjQ" = (
 /obj/structure/disposalpipe/segment,
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_x = -25;
+	pixel_y = 20
+	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock/refinery)
 "qkG" = (
@@ -31181,6 +31257,10 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
+/obj/machinery/light_switch{
+	pixel_x = 12;
+	pixel_y = 30
+	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/delivery)
 "sme" = (
@@ -31218,6 +31298,16 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/station/dock_one)
+"spX" = (
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/brown/border,
+/obj/machinery/light_switch{
+	dir = 1;
+	pixel_x = -13;
+	pixel_y = -30
+	},
+/turf/simulated/floor/tiled,
+/area/quartermaster/belterdock)
 "sqz" = (
 /obj/structure/disposalpipe/trunk,
 /obj/structure/disposaloutlet{
@@ -33380,6 +33470,7 @@
 /obj/item/weapon/tool/crowbar,
 /obj/item/weapon/shovel,
 /obj/machinery/light_switch{
+	dir = 1;
 	pixel_x = -11;
 	pixel_y = -24
 	},
@@ -33631,6 +33722,14 @@
 "veJ" = (
 /turf/simulated/shuttle/floor/yellow,
 /area/shuttle/mining_outpost/shuttle)
+"vfW" = (
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = 31;
+	pixel_y = -6
+	},
+/turf/simulated/floor/tiled,
+/area/quartermaster/warehouse)
 "vga" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/maintenance/common,
@@ -34055,6 +34154,10 @@
 	},
 /obj/structure/cable/green{
 	icon_state = "0-2"
+	},
+/obj/machinery/light_switch{
+	pixel_x = -11;
+	pixel_y = 26
 	},
 /turf/simulated/floor/tiled,
 /area/ai_monitored/storage/eva)
@@ -44098,7 +44201,7 @@ aln
 hmm
 apC
 cue
-aka
+dVD
 aaN
 uWn
 acz
@@ -46153,7 +46256,7 @@ sBs
 nob
 azc
 aah
-azV
+vfW
 aBP
 pmX
 aDS
@@ -46310,7 +46413,7 @@ pyQ
 bwH
 fva
 cVW
-cHV
+spX
 seR
 tBs
 kAo

@@ -3815,6 +3815,7 @@
 	dir = 8;
 	pixel_x = 24
 	},
+/obj/machinery/light/small,
 /turf/simulated/floor/tiled,
 /area/rnd/hardstorage)
 "ags" = (
@@ -6361,9 +6362,11 @@
 /turf/simulated/floor/plating,
 /area/hallway/lower/first_west)
 "akT" = (
-/obj/structure/sign/poster,
-/turf/simulated/wall,
-/area/hallway/lower/first_west)
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/reinforced,
+/area/rnd/testingroom)
 "akU" = (
 /obj/item/device/radio/intercom{
 	dir = 8;
@@ -6532,6 +6535,9 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/structure/sign/poster{
+	pixel_y = 32
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/lower/first_west)
@@ -7796,6 +7802,9 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 10
+	},
+/obj/machinery/light{
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/lower/first_west)
@@ -13208,6 +13217,9 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/corner/red/border{
+	dir = 4
+	},
+/obj/machinery/light/small{
 	dir = 4
 	},
 /turf/simulated/floor/tiled,
@@ -21769,6 +21781,9 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/hallway)
 "aJY" = (
@@ -26672,6 +26687,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/black{
 	dir = 4
 	},
+/obj/machinery/light,
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/atmos/processing)
 "aTg" = (
@@ -31056,6 +31072,7 @@
 	dir = 5
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/machinery/light,
 /turf/simulated/floor/tiled,
 /area/rnd/external)
 "bcV" = (
@@ -32584,6 +32601,10 @@
 /obj/effect/floor_decal/corner/red/border,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/lowerhall)
+"fna" = (
+/obj/machinery/light/small,
+/turf/simulated/floor/tiled,
+/area/rnd/hardstorage)
 "fpU" = (
 /obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/manifold/hidden/green,
@@ -33123,6 +33144,10 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/trash_pit)
+"haz" = (
+/obj/machinery/light,
+/turf/simulated/floor/tiled,
+/area/engineering/atmos/processing)
 "hco" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/green{
 	dir = 9
@@ -33953,6 +33978,12 @@
 	},
 /turf/simulated/floor/carpet/gaycarpet,
 /area/tether/surfacebase/funny/clownoffice)
+"jYP" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/engineering/atmos)
 "kbZ" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 9
@@ -44360,7 +44391,7 @@ axI
 awU
 aAk
 abN
-aeR
+akT
 aeR
 agl
 agN
@@ -44893,7 +44924,7 @@ akn
 abE
 jbU
 akJ
-akT
+ahl
 alg
 alq
 alB
@@ -45355,7 +45386,7 @@ abn
 abn
 acx
 afg
-abv
+fna
 abm
 aCm
 akg
@@ -46095,7 +46126,7 @@ aQR
 aRu
 aPl
 aPl
-aPl
+haz
 aOR
 aTW
 aUv
@@ -47652,7 +47683,7 @@ aOx
 aJI
 aPt
 aJI
-aJI
+jYP
 aQy
 aRD
 aRW

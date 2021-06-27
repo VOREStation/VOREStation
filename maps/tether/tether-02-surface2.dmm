@@ -14370,11 +14370,11 @@
 /area/tether/surfacebase/surface_two_hall)
 "axu" = (
 /obj/effect/floor_decal/corner/paleblue/diagonal,
-/obj/structure/sign/poster{
-	pixel_x = -32
-	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
+	},
+/obj/structure/sign/poster{
+	pixel_x = -32
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
@@ -34679,14 +34679,14 @@
 /area/ai_upload)
 "xbt" = (
 /obj/effect/floor_decal/corner/paleblue/diagonal,
-/obj/structure/sign/poster{
-	pixel_x = -32
-	},
 /obj/structure/bed/chair{
 	dir = 4
 	},
 /obj/effect/landmark/start{
 	name = "Medical Doctor"
+	},
+/obj/structure/sign/poster{
+	pixel_x = -32
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
