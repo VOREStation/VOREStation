@@ -6,19 +6,25 @@
 	var/obj/item/weapon/tank/internal = null//Human/Monkey
 	var/obj/item/clothing/mask/wear_mask = null//Carbon
 
-/mob/living/equip_to_storage(obj/item/newitem)
+/mob/living/equip_to_storage(obj/item/newitem, user_initiated = FALSE)
 	// Try put it in their backpack
 	if(istype(src.back,/obj/item/weapon/storage))
 		var/obj/item/weapon/storage/backpack = src.back
 		if(backpack.can_be_inserted(newitem, 1))
-			newitem.forceMove(src.back)
-			return 1
+			if(user_initiated)
+				backpack.handle_item_insertion(newitem)
+			else
+				newitem.forceMove(src.back)
+			return src.back
 
 	// Try to place it in any item that can store stuff, on the mob.
 	for(var/obj/item/weapon/storage/S in src.contents)
 		if (S.can_be_inserted(newitem, 1))
-			newitem.forceMove(S)
-			return 1
+			if(user_initiated)
+				S.handle_item_insertion(newitem)
+			else
+				newitem.forceMove(S)
+			return S
 	return 0
 
 //Returns the thing in our active hand
