@@ -115,7 +115,8 @@
 /obj/structure/sign/poster
 	name = "poster"
 	desc = "A large piece of space-resistant printed paper. "
-	icon = 'icons/obj/contraband.dmi'
+	icon = 'icons/obj/contraband_vr.dmi' //VOREStation Edit
+	icon_state = "poster" //VOREStation Edit
 	anchored = 1
 	var/decl/poster/poster_decl = null
 	var/target_poster_decl_path = /decl/poster
