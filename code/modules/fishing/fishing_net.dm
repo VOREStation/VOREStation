@@ -14,7 +14,7 @@
 	w_class = ITEMSIZE_SMALL
 	flags = NOBLUDGEON
 
-	slowdown = 0.25
+	slowdown = 0.5
 
 	reach = 2
 

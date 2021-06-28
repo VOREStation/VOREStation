@@ -103,7 +103,7 @@
 	armor = list(melee = 75, bullet = 60, laser = 60, energy = 60, bomb = 60, bio = 0, rad = 0) //It costs 3 points, so it should be very protective.
 	siemens_coefficient = 0.3
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
-	slowdown = 3
+	slowdown = 1.5
 
 /obj/item/clothing/suit/space/changeling/armored/New()
 	..()
