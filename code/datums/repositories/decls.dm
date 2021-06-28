@@ -14,8 +14,7 @@
 //     III. Thou shalt not write a decl that relies on arguments supplied to New().
 //     IV.  Thou shalt not call Initialize() on a /decl.
 
-var/repository/decls/decls_repository // Initialiozed in /datum/global_init/New()
-
+var/repository/decls/decls_repository = new()
 /repository/decls
 	var/list/fetched_decls
 	var/list/fetched_decl_types

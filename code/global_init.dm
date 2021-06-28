@@ -22,8 +22,11 @@ var/global/datum/global_init/init = new ()
 	error_log = file("[log_path]-error.log")
 	debug_log = file("[log_path]-debug.log")
 	debug_log << "[log_end]\n[log_end]\nStarting up. [time_stamp()][log_end]\n---------------------[log_end]"
+<<<<<<< HEAD
 */ //VOREStation Removal End
 	decls_repository = new()	
+=======
+>>>>>>> 671b5e7... Closet appearance decls correctly use the repository (#8154)
 	load_configuration()
 	makeDatumRefLists()
 

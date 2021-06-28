@@ -216,9 +216,6 @@ GLOBAL_LIST_EMPTY(mannequins)
 	for(var/alloytype in paths)
 		GLOB.alloy_data += new alloytype()
 
-	//Closet appearances
-	GLOB.closet_appearances = decls_repository.get_decls_of_type(/decl/closet_appearance)
-
 	paths = typesof(/datum/sprite_accessory/ears) - /datum/sprite_accessory/ears
 	for(var/path in paths)
 		var/obj/item/clothing/head/instance = new path()
