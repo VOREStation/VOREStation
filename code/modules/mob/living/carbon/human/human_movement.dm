@@ -164,10 +164,14 @@
 			. += turf_move_cost
 
 	// Wind makes it easier or harder to move, depending on if you're with or against the wind.
+<<<<<<< HEAD
 	// I don't like that so I'm commenting it out :)
 	// VOREstation Edit Start 
 /*
 	if(T.outdoors && (T.z <= SSplanets.z_to_planet.len))
+=======
+	if((T.outdoors == OUTDOORS_YES) && (T.z <= SSplanets.z_to_planet.len))
+>>>>>>> 6782e64... Adds optional area-based definition for outdoors-ness. (#8155)
 		var/datum/planet/P = SSplanets.z_to_planet[z]
 		if(P)
 			var/datum/weather_holder/WH = P.weather_holder
