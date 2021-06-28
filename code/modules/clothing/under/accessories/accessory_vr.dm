@@ -124,7 +124,7 @@
 	if(usr.stat) return
 
 	if(!jingled)
-		usr.audible_message("[usr] jingles the [src]'s bell.")
+		usr.audible_message("[usr] jingles the [src]'s bell.", runemessage = "jingle")
 		playsound(src, 'sound/items/pickup/ring.ogg', 50, 1)
 		jingled = 1
 		addtimer(CALLBACK(src, .proc/jingledreset), 50)
@@ -366,3 +366,12 @@
 	item_state = "silverthree"
 	overlay_state = "silverthree"
 	desc = "A silver medal awarded to a group which has demonstrated exceptional teamwork to achieve a notable feat. This one has three bronze service stars, denoting that it has been awarded four times."
+
+/obj/item/clothing/accessory/talon
+	name = "ITV pin"
+	desc = "A collectable enamel pin that resembles ITV's company logo."
+	icon = 'icons/obj/clothing/ties_vr.dmi'
+	icon_override = 'icons/mob/ties_vr.dmi'
+	icon_state = "talon_pin"
+	item_state = "talonpin"
+	overlay_state = "talonpin"

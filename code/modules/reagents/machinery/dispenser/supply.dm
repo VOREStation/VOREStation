@@ -147,27 +147,23 @@
 	group = "Reagents"
 
 #define SEC_PACK(_tname, _type, _name, _cname, _cost, _access)\
-	datum/supply_pack/dispenser_cartridges{\
-		_tname {\
-			name = _name ;\
-			containername = _cname ;\
-			containertype = /obj/structure/closet/crate/secure;\
-			access = list( _access );\
-			cost = _cost ;\
-			contains = list( _type , _type );\
-			group = "Reagent Cartridges"\
-		}\
+	/datum/supply_pack/dispenser_cartridges/##_tname {\
+		name = _name ;\
+		containername = _cname ;\
+		containertype = /obj/structure/closet/crate/secure;\
+		access = list( _access );\
+		cost = _cost ;\
+		contains = list( _type , _type );\
+		group = "Reagent Cartridges"\
 	}
 #define PACK(_tname, _type, _name, _cname, _cost)\
-	datum/supply_pack/dispenser_cartridges{\
-		_tname {\
-			name = _name ;\
-			containername = _cname ;\
-			containertype = /obj/structure/closet/crate;\
-			cost = _cost ;\
-			contains = list( _type , _type );\
-			group = "Reagent Cartridges"\
-		}\
+	/datum/supply_pack/dispenser_cartridges/##_tname {\
+		name = _name ;\
+		containername = _cname ;\
+		containertype = /obj/structure/closet/crate;\
+		cost = _cost ;\
+		contains = list( _type , _type );\
+		group = "Reagent Cartridges"\
 	}
 
 // Chemistry-restricted (raw reagents excluding sugar/water)

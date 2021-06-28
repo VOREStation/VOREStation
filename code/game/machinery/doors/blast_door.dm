@@ -285,6 +285,7 @@
 		return
 
 	force_close()
+	return 1
 
 // Proc: repair()
 // Parameters: None
@@ -305,7 +306,7 @@
 
 // SUBTYPE: Regular
 // Your classical blast door, found almost everywhere.
-obj/machinery/door/blast/regular
+/obj/machinery/door/blast/regular
 	icon_state_open = "pdoor0"
 	icon_state_opening = "pdoorc0"
 	icon_state_closed = "pdoor1"
@@ -313,7 +314,7 @@ obj/machinery/door/blast/regular
 	icon_state = "pdoor1"
 	maxhealth = 600
 
-obj/machinery/door/blast/regular/open
+/obj/machinery/door/blast/regular/open
 	icon_state = "pdoor0"
 	density = 0
 	opacity = 0
@@ -330,7 +331,7 @@ obj/machinery/door/blast/regular/open
 
 // SUBTYPE: Transparent
 // Not technically a blast door but operates like one. Allows air and light.
-obj/machinery/door/blast/gate
+/obj/machinery/door/blast/gate
 	name = "thick gate"
 	icon_state_open = "tshutter0"
 	icon_state_opening = "tshutterc0"
@@ -343,7 +344,7 @@ obj/machinery/door/blast/gate
 	opacity = 0
 	istransparent = 1
 
-obj/machinery/door/blast/gate/open
+/obj/machinery/door/blast/gate/open
 	icon_state = "tshutter0"
 	density = 0
 
@@ -374,6 +375,71 @@ obj/machinery/door/blast/gate/open
 /obj/machinery/door/blast/gate/bars/open
 	icon_state = "bars_1"
 	density = 0
+
+// SUBTYPE: Multi-tile
+// Pod doors ported from Paradise
+
+ // Whoever wrote the old code for multi-tile spesspod doors needs to burn in hell. - Unknown
+ // Wise words. - Bxil
+/obj/machinery/door/blast/multi_tile
+	name = "large blast door"
+
+/obj/machinery/door/blast/multi_tile/Initialize(mapload)
+	. = ..()
+	apply_opacity_to_my_turfs(opacity)
+
+/obj/machinery/door/blast/multi_tile/set_opacity()
+	. = ..()
+	apply_opacity_to_my_turfs(opacity)
+
+/obj/machinery/door/blast/multi_tile/proc/apply_opacity_to_my_turfs(new_opacity)
+	for(var/turf/T in locs)
+		T.set_opacity(new_opacity)
+	update_nearby_tiles()
+
+/obj/machinery/door/blast/multi_tile
+	icon_state_open = "open"
+	icon_state_opening = "opening"
+	icon_state_closed = "closed"
+	icon_state_closing = "closing"
+	icon_state = "closed"
+
+/obj/machinery/door/blast/multi_tile/four_tile_ver
+	icon = 'icons/obj/doors/1x4blast_vert.dmi'
+	bound_height = 128
+	width = 4
+	dir = NORTH
+
+/obj/machinery/door/blast/multi_tile/three_tile_ver
+	icon = 'icons/obj/doors/1x3blast_vert.dmi'
+	bound_height = 96
+	width = 3
+	dir = NORTH
+
+/obj/machinery/door/blast/multi_tile/two_tile_ver
+	icon = 'icons/obj/doors/1x2blast_vert.dmi'
+	bound_height = 64
+	width = 2
+	dir = NORTH
+
+/obj/machinery/door/blast/multi_tile/four_tile_hor
+	icon = 'icons/obj/doors/1x4blast_hor.dmi'
+	bound_width = 128
+	width = 4
+	dir = EAST
+
+/obj/machinery/door/blast/multi_tile/three_tile_hor
+	icon = 'icons/obj/doors/1x3blast_hor.dmi'
+	bound_width = 96
+	width = 3
+	dir = EAST
+
+/obj/machinery/door/blast/multi_tile/two_tile_hor
+	icon = 'icons/obj/doors/1x2blast_hor.dmi'
+	bound_width = 64
+	width = 2
+	dir = EAST
+
 
 #undef BLAST_DOOR_CRUSH_DAMAGE
 #undef SHUTTER_CRUSH_DAMAGE

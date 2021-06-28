@@ -28,7 +28,7 @@
 
 	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/telecube)
 
-	slowdown = 5
+	slowdown = 2.5
 
 	throw_range = 2
 
@@ -129,7 +129,7 @@
 /obj/item/weapon/telecube/proc/teleport_to_mate(var/atom/movable/A, var/areaporting = FALSE)
 	. = FALSE
 
-	if(!A)
+	if(!istype(A))
 		return .
 
 	if(A == src || A == mate)

@@ -120,9 +120,6 @@
 	tgui_interact(user)
 	..()
 
-/obj/proc/interact(mob/user)
-	return
-
 /mob/proc/unset_machine()
 	machine?.remove_visual(src)
 	src.machine = null

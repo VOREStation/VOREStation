@@ -25,7 +25,7 @@
 			var/obj/belly/B = belly
 			B.escapable = initial(B.escapable)
 
-		overlays.Cut()
+		cut_overlays()
 		alpha = initial(alpha)
 		invisibility = initial(invisibility)
 		see_invisible = initial(see_invisible)
@@ -80,7 +80,7 @@
 			var/obj/belly/B = belly
 			B.escapable = FALSE
 
-		overlays.Cut()
+		cut_overlays()
 		flick("tp_out",src)
 		sleep(5)
 		invisibility = INVISIBILITY_LEVEL_TWO

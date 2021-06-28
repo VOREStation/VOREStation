@@ -220,6 +220,7 @@
 		return current_destination.routes.Copy()
 
 /datum/shuttle_web_master/proc/get_current_destination()
+	RETURN_TYPE(/datum/shuttle_destination)
 	return current_destination
 
 /datum/shuttle_web_master/proc/get_destination_by_type(var/type_to_get)

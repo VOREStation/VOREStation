@@ -139,6 +139,13 @@
 	ckeywhitelist = list("storesund97")
 	character_name = list("Aurora")
 
+/datum/gear/fluff/ashling
+	path = /obj/item/clothing/accessory/storage/ritualharness/fluff/antoinette
+	display_name = "Ritual Harness"
+	description = "Antoinette's ritual supplies."
+	ckeywhitelist = list("ashling")
+	character_name = list("Antoinette DeKaultieste")
+
 //  B CKEYS
 /datum/gear/fluff/yuuko_kimono
 	path = /obj/item/clothing/under/fluff/sakura_hokkaido_kimono
@@ -763,6 +770,12 @@
     ckeywhitelist = list("pandora029")
     character_name = list("Evelyn Tareen")
 
+/datum/gear/fluff/evelyn_coat
+	path = /obj/item/clothing/suit/storage/hooded/wintercoat/security/fluff/evelyn/
+	display_name = "warden's navy winter coat"
+	ckeywhitelist = list("pandora029")
+	character_name = list("Evelyn Tareen")
+
 /datum/gear/fluff/lily_medal
 	path = /obj/item/clothing/accessory/medal/silver/unity
 	display_name = "Lily's Unity Medal"
@@ -835,12 +848,18 @@
 	display_name = "LUNA's Nobel Science Award"
 	ckeywhitelist = list("residentcody")
 	character_name = list("LUNA")
-	
+
 /datum/gear/fluff/luna_conduct_medal
 	path = /obj/item/clothing/accessory/medal/conduct
 	display_name = "LUNA's Distinguished Conduct Medal"
 	ckeywhitelist = list("residentcody")
 	character_name = list("LUNA")
+	
+/datum/gear/fluff/pathfinder_id
+	path = /obj/item/weapon/card/id/event/polymorphic/itg
+	display_name = "Pathfinder's ITG ID"
+	ckeywhitelist = list("residentcody")
+	character_name = list("Pathfinder")
 
 /datum/gear/fluff/nikki_dorky_outfit
 	path = /obj/item/weapon/storage/box/fluff
@@ -1191,6 +1210,12 @@
 	display_name = "Harmony's ITG-ID card"
 	ckeywhitelist = list("verysoft")
 	character_name = list("Harmony")
+
+/datum/gear/fluff/shinerunner_id
+	path = /obj/item/weapon/card/id/event/polymorphic/itg
+	display_name = "Shine-Runner's ITG-ID card"
+	ckeywhitelist = list("verysoft")
+	character_name = list("Shine-Runner")
 
 //  W CKEYS
 /datum/gear/fluff/sthasha_bracer

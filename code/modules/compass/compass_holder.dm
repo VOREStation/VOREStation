@@ -75,7 +75,7 @@
 	var/set_overlays = (compass_static_labels | compass_waypoint_markers)
 	if(show_heading)
 		set_overlays |= compass_heading_marker
-	overlays = set_overlays
+	overlays = set_overlays // ???
 
 /obj/compass_holder/proc/clear_waypoint(var/id)
 	LAZYREMOVE(compass_waypoints, id)

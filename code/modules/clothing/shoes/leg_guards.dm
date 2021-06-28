@@ -60,7 +60,7 @@
 	icon_state = "leg_guards_flexitac"
 	item_state_slots = list(slot_r_hand_str = "jackboots", slot_l_hand_str = "jackboots")
 	siemens_coefficient = 0.6
-	slowdown = SHOES_SLOWDOWN+0.2
+	slowdown = SHOES_SLOWDOWN+0.5
 	armor = list(melee = 40, bullet = 40, laser = 60, energy = 35, bomb = 30, bio = 0, rad = 0)
 	min_cold_protection_temperature = T0C - 20
 	cold_protection = LEGS

@@ -17,6 +17,8 @@
 	use_sound = 'sound/items/drop/flesh.ogg'
 
 /obj/item/weapon/storage/vore_egg/open(mob/user as mob)
+	if(isobserver(user))
+		return
 	icon = open_egg_icon
 	..()
 

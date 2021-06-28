@@ -48,7 +48,6 @@
 	. = ..()
 
 /obj/machinery/station_map/proc/setup_holomap()
-	. = ..()
 	bogus = FALSE
 	var/turf/T = get_turf(src)
 	original_zLevel = T.z
@@ -170,7 +169,7 @@
 	if(!holomap_datum)
 		return //Not yet.
 		
-	overlays.Cut()
+	cut_overlays()
 	if(stat & BROKEN)
 		icon_state = "station_mapb"
 	else if((stat & NOPOWER) || !anchored)
@@ -181,8 +180,8 @@
 		if(bogus)
 			holomap_datum.initialize_holomap_bogus()
 		else
-			small_station_map.icon = SSholomaps.extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAPSMALL]_[original_zLevel]"]
-			overlays |= small_station_map
+			small_station_map = image(SSholomaps.extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAPSMALL]_[original_zLevel]"], dir = src.dir)
+			add_overlay(small_station_map)
 			holomap_datum.initialize_holomap(get_turf(src))
 
 	// Put the little "map" overlay down where it looks nice
@@ -190,12 +189,12 @@
 		floor_markings.dir = src.dir
 		floor_markings.pixel_x = -src.pixel_x
 		floor_markings.pixel_y = -src.pixel_y
-		overlays += floor_markings
+		add_overlay(floor_markings)
 
 	if(panel_open)
-		overlays += "station_map-panel"
+		add_overlay("station_map-panel")
 	else
-		overlays -= "station_map-panel"
+		cut_overlay("station_map-panel")
 
 /obj/machinery/station_map/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	src.add_fingerprint(user)
@@ -241,9 +240,29 @@
 	origin_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 2)
 	req_components = list()
 
-// TODO
-// //Portable holomaps, currently AI/Borg/MoMMI only
+/datum/holomap_marker
+	var/x
+	var/y
+	var/z
+	var/offset_x = -8
+	var/offset_y = -8
+	var/filter
+	var/id // used for icon_state of the marker on maps
+	var/icon = 'icons/holomap_markers.dmi'
+	var/color //used by path rune markers
 
-// TODO
-// OHHHH YEAH - STRATEGIC HOLOMAP! NICE!
-// It will need to wait until later tho.
+/obj/effect/landmark/holomarker
+	delete_me = TRUE
+
+	var/filter = HOLOMAP_FILTER_STATIONMAP
+	var/id = "generic"
+
+/obj/effect/landmark/holomarker/Initialize()
+	. = ..()
+	var/datum/holomap_marker/holomarker = new()
+	holomarker.id = id
+	holomarker.filter = filter
+	holomarker.x = src.x
+	holomarker.y = src.y
+	holomarker.z = src.z
+	holomap_markers["[id]_\ref[src]"] = holomarker

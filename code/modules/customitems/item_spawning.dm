@@ -190,7 +190,7 @@
 
 		// Check for required access.
 		var/obj/item/weapon/card/id/current_id = M.wear_id
-		if(citem.req_access && citem.req_access > 0)
+		if(citem.req_access && citem.req_access > 0) // These are numbers, not lists
 			if(!(istype(current_id) && (citem.req_access in current_id.access)))
 				log_debug("Custom Item: [key_name(M)] Does not have required access.")
 				continue

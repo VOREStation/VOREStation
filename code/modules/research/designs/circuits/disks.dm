@@ -2,7 +2,7 @@
 /datum/design/circuit/disk
 	build_type = IMPRINTER
 	req_tech = list(TECH_DATA = 3)
-	materials = list(MAT_PLASTIC = 2000, MAT_GLASS = 1000, MAT_COPPER = 150)
+	materials = list(MAT_PLASTIC = 2000, MAT_GLASS = 1000)
 	chemicals = list("pacid" = 10)
 	time = 5
 

@@ -531,7 +531,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/no_raisin
 	price_tag = 1
 
-/obj/item/weapon/reagent_containers/food/snacks/spacetwinkie
+/obj/item/weapon/reagent_containers/food/snacks/packaged/spacetwinkie
 	price_tag = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/skrellsnacks
@@ -612,7 +612,7 @@
 
 // Cookies and Candies //
 
-/obj/item/weapon/reagent_containers/food/snacks/cookie
+/obj/item/weapon/reagent_containers/food/snacks/cookiesnack
 	price_tag = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/chocolatebar
@@ -682,9 +682,6 @@
 	price_tag = 5
 
 /obj/item/weapon/reagent_containers/food/snacks/wingfangchu
-	price_tag = 5
-
-/obj/item/weapon/reagent_containers/food/snacks/kabob
 	price_tag = 5
 
 /obj/item/weapon/reagent_containers/food/snacks/monkeykabob
@@ -983,9 +980,8 @@
 /obj/item/weapon/reagent_containers/food/snacks/dionaroast
 	price_tag = 25
 
-/obj/item/pizzabox
-	get_item_cost()
-		return get_item_cost(pizza)
+/obj/item/pizzabox/get_item_cost()
+	return get_item_cost(pizza)
 
 
 //***************//

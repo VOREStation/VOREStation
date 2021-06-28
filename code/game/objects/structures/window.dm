@@ -84,14 +84,13 @@
 		updateSilicate()
 
 /obj/structure/window/proc/updateSilicate()
-	if (overlays)
-		overlays.Cut()
+	cut_overlays()
 	update_icon()
 
 	var/image/img = image(src)
 	img.color = "#ffffff"
 	img.alpha = silicate * 255 / 100
-	overlays += img
+	add_overlay(img)
 
 /obj/structure/window/proc/shatter(var/display_message = 1)
 	playsound(src, "shatter", 70, 1)
@@ -425,7 +424,7 @@
 	return fulltile
 
 /obj/structure/window/is_between_turfs(var/turf/origin, var/turf/target)
-	if(fulltile)
+	if(is_fulltile())
 		return TRUE
 	return ..()
 
@@ -448,7 +447,7 @@
 /obj/structure/window/update_icon()
 	//A little cludge here, since I don't know how it will work with slim windows. Most likely VERY wrong.
 	//this way it will only update full-tile ones
-	overlays.Cut()
+	cut_overlays()
 	if(!is_fulltile())
 		// Rotate the sprite somewhat so non-fulltiled windows can be seen as needing repair.
 		var/full_tilt_degrees = 15
@@ -459,6 +458,8 @@
 
 		icon_state = "[basestate]"
 		return
+	else
+		flags = 0 // Removes ON_BORDER and OPPOSITE_OPACITY
 	var/list/dirs = list()
 	if(anchored)
 		for(var/obj/structure/window/W in orange(src,1))
@@ -470,7 +471,7 @@
 	icon_state = ""
 	for(var/i = 1 to 4)
 		var/image/I = image(icon, "[basestate][connections[i]]", dir = 1<<(i-1))
-		overlays += I
+		add_overlay(I)
 
 	// Damage overlays.
 	var/ratio = health / maxhealth
@@ -479,7 +480,7 @@
 	if(ratio > 75)
 		return
 	var/image/I = image(icon, "damage[ratio]", layer = layer + 0.1)
-	overlays += I
+	add_overlay(I)
 
 	return
 
@@ -504,6 +505,7 @@
 	icon_state = "window-full"
 	maxhealth = 24
 	fulltile = TRUE
+	flags = 0
 
 /obj/structure/window/phoronbasic
 	name = "phoron window"
@@ -521,6 +523,7 @@
 	icon_state = "phoronwindow-full"
 	maxhealth = 80
 	fulltile = TRUE
+	flags = 0
 
 /obj/structure/window/phoronreinforced
 	name = "reinforced borosilicate window"
@@ -539,6 +542,7 @@
 	icon_state = "phoronrwindow-full"
 	maxhealth = 160
 	fulltile = TRUE
+	flags = 0
 
 /obj/structure/window/reinforced
 	name = "reinforced window"
@@ -556,6 +560,7 @@
 	icon_state = "rwindow-full"
 	maxhealth = 80
 	fulltile = TRUE
+	flags = 0
 
 /obj/structure/window/reinforced/tinted
 	name = "tinted window"
@@ -593,6 +598,7 @@
 	icon_state = "rwindow-full"
 	maxhealth = 80
 	fulltile = TRUE
+	flags = 0
 
 /obj/structure/window/reinforced/polarized/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/device/multitool) && !anchored) // Only allow programming if unanchored!
@@ -618,12 +624,12 @@
 	else
 		animate(src, color="#222222", time=5)
 		set_opacity(1)
-
-
+	var/turf/T = get_turf(src)
+	T.recalculate_directional_opacity()
 
 /obj/machinery/button/windowtint
 	name = "window tint control"
-	icon = 'icons/obj/power.dmi'
+	icon = 'icons/obj/stationobjs_vr.dmi' // VOREStation Edit - New icons
 	icon_state = "light0"
 	desc = "A remote control switch for polarized windows."
 	var/range = 7

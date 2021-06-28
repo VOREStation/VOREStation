@@ -119,7 +119,7 @@
 			continue
 		if(!H.shuttle_comp || !(get_area(H) in shuttle_area))
 			H.shuttle_comp = null
-			H.audible_message("<span class='warning'>\The [H] pings as it loses it's connection with the ship.</span>")
+			H.audible_message("<span class='warning'>\The [H] pings as it loses it's connection with the ship.</span>", runemessage = "ping")
 			H.update_hud("discon")
 			helmets -= H
 		else

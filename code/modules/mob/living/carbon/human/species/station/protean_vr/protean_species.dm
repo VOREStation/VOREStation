@@ -176,14 +176,13 @@
 	for(var/obj/item/organ/I in H.internal_organs)
 		I.removed()
 
-	for(var/obj/item/I in src)
+	for(var/obj/item/I in H.contents)
 		H.drop_from_inventory(I)
 
 	qdel(H)
 
 /datum/species/protean/handle_environment_special(var/mob/living/carbon/human/H)
 	if((H.getActualBruteLoss() + H.getActualFireLoss()) > H.maxHealth*0.5 && isturf(H.loc)) //So, only if we're not a blob (we're in nullspace) or in someone (or a locker, really, but whatever)
-		H.nano_intoblob()
 		return ..() //Any instakill shot runtimes since there are no organs after this. No point to not skip these checks, going to nullspace anyway.
 
 	var/obj/item/organ/internal/nano/refactory/refactory = locate() in H.internal_organs

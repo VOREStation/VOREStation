@@ -625,8 +625,8 @@
 	set name = "Resist"
 	set category = "IC"
 
-	if(!incapacitated(INCAPACITATION_KNOCKOUT) && checkClickCooldown())
-		setClickCooldown(20)
+	if(!incapacitated(INCAPACITATION_KNOCKOUT) && (last_resist_time + RESIST_COOLDOWN < world.time))
+		last_resist_time = world.time
 		resist_grab()
 		if(!weakened)
 			process_resist()
@@ -1059,15 +1059,15 @@
 
 /mob/living/get_sound_env(var/pressure_factor)
 	if (hallucination)
-		return PSYCHOTIC
+		return SOUND_ENVIRONMENT_PSYCHOTIC
 	else if (druggy)
-		return DRUGGED
+		return SOUND_ENVIRONMENT_DRUGGED
 	else if (drowsyness)
-		return DIZZY
+		return SOUND_ENVIRONMENT_DIZZY
 	else if (confused)
-		return DIZZY
+		return SOUND_ENVIRONMENT_DIZZY
 	else if (sleeping)
-		return UNDERWATER
+		return SOUND_ENVIRONMENT_UNDERWATER
 	else
 		return ..()
 

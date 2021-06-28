@@ -57,7 +57,7 @@
 
 /mob/living/simple_mob/animal/giant_spider/nurse/inject_poison(mob/living/L, target_zone)
 	..() // Inject the stoxin here.
-	if(ishuman(L) && prob(egg_inject_chance))
+	if(ishuman(L) && prob(egg_inject_chance) && can_lay_eggs)			//VOREStation Edit
 		var/mob/living/carbon/human/H = L
 		var/obj/item/organ/external/O = H.get_organ(target_zone)
 		if(O)
@@ -140,14 +140,14 @@
 	if(large_cocoon)
 		C.icon_state = pick("cocoon_large1","cocoon_large2","cocoon_large3")
 
-	ai_holder.target = null
+	ai_holder.remove_target()
 
 	return TRUE
 
 /mob/living/simple_mob/animal/giant_spider/nurse/handle_special()
 	set waitfor = FALSE
 	if(get_AI_stance() == STANCE_IDLE && !is_AI_busy() && isturf(loc))
-		if(fed)
+		if(fed && can_lay_eggs)			//VOREStation Edit
 			lay_eggs(loc)
 		else
 			web_tile(loc)

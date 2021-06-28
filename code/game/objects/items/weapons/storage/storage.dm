@@ -41,13 +41,18 @@
 /obj/item/weapon/storage/Destroy()
 	close_all()
 	QDEL_NULL(boxes)
-	QDEL_NULL(src.storage_start)
-	QDEL_NULL(src.storage_continue)
-	QDEL_NULL(src.storage_end)
-	QDEL_NULL(src.stored_start)
-	QDEL_NULL(src.stored_continue)
-	QDEL_NULL(src.stored_end)
+	QDEL_NULL(storage_start)
+	QDEL_NULL(storage_continue)
+	QDEL_NULL(storage_end)
+	QDEL_NULL(stored_start)
+	QDEL_NULL(stored_continue)
+	QDEL_NULL(stored_end)
 	QDEL_NULL(closer)
+
+	if(ismob(loc))
+		var/mob/M = loc
+		M.remove_from_mob(src)
+
 	. = ..()
 
 /obj/item/weapon/storage/MouseDrop(obj/over_object as obj)
@@ -221,7 +226,7 @@
 	var/stored_cap_width = 4 //length of sprite for start and end of the box representing the stored item
 	var/storage_width = min( round( 224 * max_storage_space/baseline_max_storage_space ,1) ,274) //length of sprite for the box representing total storage space
 
-	storage_start.overlays.Cut()
+	storage_start.cut_overlays()
 
 	var/matrix/M = matrix()
 	M.Scale((storage_width-storage_cap_width*2+3)/32,1)
@@ -248,9 +253,9 @@
 		src.stored_start.transform = M_start
 		src.stored_continue.transform = M_continue
 		src.stored_end.transform = M_end
-		storage_start.overlays += src.stored_start
-		storage_start.overlays += src.stored_continue
-		storage_start.overlays += src.stored_end
+		storage_start.add_overlay(stored_start)
+		storage_start.add_overlay(stored_continue)
+		storage_start.add_overlay(stored_end)
 
 		O.screen_loc = "4:[round((startpoint+endpoint)/2)+2],2:16"
 		O.maptext = ""
@@ -264,11 +269,11 @@
 	var/obj/item/sample_object
 	var/number
 
-	New(obj/item/sample as obj)
-		if(!istype(sample))
-			qdel(src)
-		sample_object = sample
-		number = 1
+/datum/numbered_display/New(obj/item/sample as obj)
+	if(!istype(sample))
+		qdel(src)
+	sample_object = sample
+	number = 1
 
 //This proc determins the size of the inventory to be displayed. Please touch it only if you know what you're doing.
 /obj/item/weapon/storage/proc/orient2hud(mob/user as mob)
@@ -696,7 +701,7 @@
 	var/closed_state
 
 /obj/item/weapon/storage/trinketbox/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(open)
 		icon_state = open_state
 
@@ -709,7 +714,7 @@
 			else if(istype(contents[1], /obj/item/clothing/accessory/medal))
 				contained_image = "medal_trinket"
 			if(contained_image)
-				overlays += contained_image
+				add_overlay(contained_image)
 	else
 		icon_state = closed_state
 

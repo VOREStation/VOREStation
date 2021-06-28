@@ -2027,6 +2027,7 @@
 "adD" = (
 /obj/machinery/power/apc{
 	name = "south bump";
+	nightshift_setting = 2;
 	pixel_y = -28
 	},
 /obj/effect/floor_decal/borderfloorblack{
@@ -2868,7 +2869,7 @@
 	dir = 8
 	},
 /obj/structure/sign/poster{
-	pixel_y = 32
+	dir = 1
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lowmedbaymaint)
@@ -3815,6 +3816,7 @@
 	dir = 8;
 	pixel_x = 24
 	},
+/obj/machinery/light/small,
 /turf/simulated/floor/tiled,
 /area/rnd/hardstorage)
 "ags" = (
@@ -6361,9 +6363,11 @@
 /turf/simulated/floor/plating,
 /area/hallway/lower/first_west)
 "akT" = (
-/obj/structure/sign/poster,
-/turf/simulated/wall,
-/area/hallway/lower/first_west)
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/reinforced,
+/area/rnd/testingroom)
 "akU" = (
 /obj/item/device/radio/intercom{
 	dir = 8;
@@ -6532,6 +6536,9 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/structure/sign/poster{
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/lower/first_west)
@@ -7599,6 +7606,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
+	nightshift_setting = 2;
 	pixel_y = 28
 	},
 /obj/structure/cable/green{
@@ -7796,6 +7804,9 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 10
 	},
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/hallway/lower/first_west)
 "anc" = (
@@ -7904,6 +7915,7 @@
 	},
 /obj/machinery/power/apc{
 	name = "south bump";
+	nightshift_setting = 2;
 	pixel_y = -28
 	},
 /turf/simulated/floor/tiled,
@@ -9972,6 +9984,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "east bump";
+	nightshift_setting = 2;
 	pixel_x = 28
 	},
 /obj/structure/cable/green{
@@ -10308,7 +10321,7 @@
 	dir = 8
 	},
 /obj/structure/sign/poster{
-	pixel_y = 32
+	dir = 1
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/first_aid_west)
@@ -10666,6 +10679,7 @@
 /obj/structure/bed/roller,
 /obj/machinery/power/apc{
 	name = "south bump";
+	nightshift_setting = 2;
 	pixel_y = -24
 	},
 /obj/structure/cable,
@@ -11548,6 +11562,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "east bump";
+	nightshift_setting = 2;
 	pixel_x = 28
 	},
 /obj/structure/cable/orange{
@@ -13206,6 +13221,9 @@
 /obj/effect/floor_decal/corner/red/border{
 	dir = 4
 	},
+/obj/machinery/light/small{
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/security/checkpoint)
 "awi" = (
@@ -14692,6 +14710,7 @@
 /obj/random/medical,
 /obj/machinery/power/apc{
 	name = "south bump";
+	nightshift_setting = 2;
 	pixel_y = -32
 	},
 /obj/structure/cable/green,
@@ -17588,6 +17607,9 @@
 /obj/effect/floor_decal/corner/lightgrey/border{
 	dir = 8
 	},
+/obj/structure/sign/poster{
+	dir = 8
+	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/locker/laundry_arrival)
 "aCI" = (
@@ -19754,6 +19776,7 @@
 "aGB" = (
 /obj/structure/cable/orange,
 /obj/machinery/power/apc/high{
+	nightshift_setting = 2;
 	pixel_y = -28
 	},
 /obj/machinery/light,
@@ -21763,6 +21786,9 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/hallway)
 "aJY" = (
@@ -21898,6 +21924,7 @@
 	},
 /obj/machinery/power/apc/super{
 	dir = 1;
+	nightshift_setting = 2;
 	pixel_y = 28
 	},
 /obj/machinery/button/remote/blast_door{
@@ -24755,6 +24782,7 @@
 	},
 /obj/machinery/power/apc/super{
 	dir = 1;
+	nightshift_setting = 2;
 	pixel_y = 28
 	},
 /turf/simulated/floor/tiled,
@@ -26664,6 +26692,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/black{
 	dir = 4
 	},
+/obj/machinery/light,
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/atmos/processing)
 "aTg" = (
@@ -28345,6 +28374,9 @@
 "aWb" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/item/weapon/stool/padded,
+/obj/structure/sign/poster{
+	dir = 1
+	},
 /turf/simulated/floor/wood,
 /area/vacant/vacant_bar)
 "aWc" = (
@@ -29030,6 +29062,12 @@
 	},
 /turf/simulated/floor/tiled/steel_dirty,
 /area/maintenance/lower/atmos)
+"aXs" = (
+/obj/effect/decal/cleanable/cobweb,
+/obj/effect/decal/cleanable/filth,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/dark,
+/area/tether/surfacebase/security/lowerhall)
 "aXt" = (
 /obj/structure/disposalpipe/junction{
 	dir = 4
@@ -29113,6 +29151,10 @@
 	},
 /turf/simulated/floor/tiled/steel_dirty,
 /area/maintenance/lower/atmos)
+"aXx" = (
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/tiled/dark,
+/area/tether/surfacebase/security/lowerhall)
 "aXy" = (
 /obj/random/cash,
 /turf/simulated/floor/plating,
@@ -29126,8 +29168,17 @@
 /obj/structure/table/steel,
 /obj/item/weapon/paper_bin,
 /obj/item/weapon/pen,
+/obj/structure/sign/poster{
+	dir = 8
+	},
 /turf/simulated/floor/wood,
 /area/vacant/vacant_bar)
+"aXB" = (
+/obj/effect/decal/cleanable/cobweb2,
+/obj/effect/decal/cleanable/filth,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/dark,
+/area/tether/surfacebase/security/lowerhall)
 "aXC" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -29143,6 +29194,25 @@
 /obj/structure/table/woodentable,
 /turf/simulated/floor/wood,
 /area/vacant/vacant_bar)
+"aXD" = (
+/obj/effect/floor_decal/rust,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/dark,
+/area/tether/surfacebase/security/lowerhall)
+"aXE" = (
+/obj/effect/decal/cleanable/generic,
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/tiled/dark,
+/area/tether/surfacebase/security/lowerhall)
+"aXF" = (
+/obj/effect/floor_decal/steeldecal/steel_decals4,
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 10
+	},
+/obj/effect/decal/cleanable/molten_item,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/dark,
+/area/tether/surfacebase/security/lowerhall)
 "aXG" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -29183,6 +29253,28 @@
 "aXJ" = (
 /turf/simulated/floor/tiled/steel_dirty,
 /area/maintenance/lower/atmos)
+"aXK" = (
+/obj/machinery/door/airlock/security{
+	name = "The Hole";
+	req_access = list(2)
+	},
+/obj/machinery/door/firedoor,
+/obj/machinery/button/remote/airlock{
+	id = "thehole";
+	name = "The Hole Bolt Toggle";
+	pixel_y = 26;
+	req_access = list(63);
+	specialfunctions = 4
+	},
+/turf/simulated/floor/tiled/dark,
+/area/tether/surfacebase/security/lowerhall)
+"aXL" = (
+/obj/structure/closet/crate,
+/obj/random/unidentified_medicine,
+/obj/random/drinkbottle,
+/obj/random/tetheraid,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/xenoflora)
 "aXM" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -30270,7 +30362,7 @@
 /area/maintenance/lower/mining_eva)
 "bbx" = (
 /obj/machinery/power/breakerbox/activated{
-	RCon_tag = "SurfMed Substation Bypass"
+	RCon_tag = "Medical Substation Bypass"
 	},
 /turf/simulated/floor,
 /area/maintenance/substation/SurfMedsubstation)
@@ -30406,7 +30498,7 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - SurfMed";
+	RCon_tag = "Substation - Medical";
 	output_attempt = 0
 	},
 /turf/simulated/floor,
@@ -30555,8 +30647,8 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/power/sensor{
-	name = "Powernet Sensor - SurfMed Subgrid";
-	name_tag = "SurfMed Subgrid"
+	name = "Powernet Sensor - Medical Subgrid";
+	name_tag = "Medical Subgrid"
 	},
 /obj/machinery/alarm{
 	dir = 1;
@@ -30645,6 +30737,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "east bump";
+	nightshift_setting = 2;
 	pixel_x = 24
 	},
 /obj/structure/cable/green{
@@ -30783,13 +30876,6 @@
 	dir = 1
 	},
 /obj/structure/catwalk,
-/turf/simulated/floor/plating,
-/area/maintenance/lower/xenoflora)
-"bcC" = (
-/obj/structure/closet/crate,
-/obj/random/unidentified_medicine,
-/obj/random/firstaid,
-/obj/random/drinkbottle,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/xenoflora)
 "bcD" = (
@@ -30994,6 +31080,7 @@
 	dir = 5
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/machinery/light,
 /turf/simulated/floor/tiled,
 /area/rnd/external)
 "bcV" = (
@@ -32317,9 +32404,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_one_hall)
-"epD" = (
-/turf/simulated/floor/tiled/dark,
-/area/tether/surfacebase/security/lowerhall)
 "erc" = (
 /obj/structure/sign/nosmoking_2{
 	pixel_y = 30
@@ -32525,6 +32609,10 @@
 /obj/effect/floor_decal/corner/red/border,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/lowerhall)
+"fna" = (
+/obj/machinery/light/small,
+/turf/simulated/floor/tiled,
+/area/rnd/hardstorage)
 "fpU" = (
 /obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/manifold/hidden/green,
@@ -32598,7 +32686,7 @@
 "fDx" = (
 /obj/machinery/door/airlock/maintenance/sec{
 	name = "Riot Control";
-	req_one_access = list(63,24)
+	req_one_access = list(63)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/green{
 	dir = 4
@@ -33064,6 +33152,10 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/trash_pit)
+"haz" = (
+/obj/machinery/light,
+/turf/simulated/floor/tiled,
+/area/engineering/atmos/processing)
 "hco" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/green{
 	dir = 9
@@ -33081,14 +33173,6 @@
 	},
 /turf/simulated/floor,
 /area/tether/surfacebase/security/gasstorage)
-"hdh" = (
-/obj/machinery/door/airlock/security{
-	name = "The Hole";
-	req_access = list(2)
-	},
-/obj/machinery/door/firedoor,
-/turf/simulated/floor/tiled/dark,
-/area/tether/surfacebase/security/lowerhall)
 "hmx" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -33902,6 +33986,12 @@
 	},
 /turf/simulated/floor/carpet/gaycarpet,
 /area/tether/surfacebase/funny/clownoffice)
+"jYP" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/engineering/atmos)
 "kbZ" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 9
@@ -34716,6 +34806,10 @@
 	},
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/funny/hideyhole)
+"lZU" = (
+/obj/structure/sign/poster,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/tram)
 "meS" = (
 /turf/simulated/floor/carpet/gaycarpet,
 /area/tether/surfacebase/funny/clownoffice)
@@ -34799,6 +34893,10 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/tether/surfacebase/tram)
+"mtL" = (
+/obj/structure/sign/poster,
+/turf/simulated/floor/lino,
+/area/crew_quarters/visitor_dining)
 "mvM" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -34898,13 +34996,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_one_hall)
-"mHm" = (
-/obj/effect/floor_decal/steeldecal/steel_decals4,
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 10
-	},
-/turf/simulated/floor/tiled/dark,
-/area/tether/surfacebase/security/lowerhall)
 "mHO" = (
 /obj/structure/railing{
 	dir = 4
@@ -35196,6 +35287,7 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "west bump";
+	nightshift_setting = 2;
 	pixel_x = -28
 	},
 /obj/effect/floor_decal/industrial/warning{
@@ -35312,6 +35404,7 @@
 "nID" = (
 /obj/machinery/power/apc{
 	name = "south bump";
+	nightshift_setting = 2;
 	pixel_y = -32
 	},
 /obj/structure/cable/green,
@@ -35843,6 +35936,12 @@
 	},
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/plating,
+/area/crew_quarters/visitor_laundry)
+"pxk" = (
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/grey/border,
+/obj/structure/sign/poster,
+/turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_laundry)
 "pyD" = (
 /obj/machinery/door/airlock/maintenance/common{
@@ -44327,7 +44426,7 @@ axI
 awU
 aAk
 abN
-aeR
+akT
 aeR
 agl
 agN
@@ -44860,7 +44959,7 @@ akn
 abE
 jbU
 akJ
-akT
+ahl
 alg
 alq
 alB
@@ -45282,8 +45381,8 @@ bqI
 txZ
 uge
 gCa
-epD
-epD
+aXs
+aXD
 gCa
 fCk
 fCk
@@ -45322,7 +45421,7 @@ abn
 abn
 acx
 afg
-abv
+fna
 abm
 aCm
 akg
@@ -45424,8 +45523,8 @@ bqI
 kfT
 fmY
 gCa
-epD
-epD
+aXx
+aXE
 gCa
 vTn
 fpU
@@ -45566,8 +45665,8 @@ bqI
 nOB
 csd
 gCa
-epD
-mHm
+aXB
+aXF
 gCa
 ezn
 qPR
@@ -45709,7 +45808,7 @@ paY
 tQH
 gCa
 odn
-hdh
+aXK
 odn
 lTn
 fDx
@@ -46062,7 +46161,7 @@ aQR
 aRu
 aPl
 aPl
-aPl
+haz
 aOR
 aTW
 aUv
@@ -47619,7 +47718,7 @@ aOx
 aJI
 aPt
 aJI
-aJI
+jYP
 aQy
 aRD
 aRW
@@ -48722,7 +48821,7 @@ asL
 apu
 axS
 apu
-bcC
+aXL
 axS
 apu
 bcd
@@ -53171,7 +53270,7 @@ aVA
 aVQ
 bHR
 aUP
-bcT
+pxk
 aVn
 anK
 aYi
@@ -53288,7 +53387,7 @@ aDu
 atm
 aCQ
 aJV
-aDu
+mtL
 aLj
 aLT
 aME
@@ -54418,7 +54517,7 @@ auB
 aEO
 lsh
 aFW
-auB
+lZU
 aCO
 jCv
 aIz

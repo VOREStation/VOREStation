@@ -108,7 +108,7 @@
 			var/obj/item/organ/O = occupant.internal_organs_by_name[O_BRAIN]
 			O.take_damage(severity * 2)
 			visible_message("<span class='danger'>\The [src]'s internal lighting flashes rapidly, before the hatch swings open with a cloud of smoke.</span>")
-			smoke.set_up(n = severity, 0, src)
+			smoke.set_up(severity, 0, src)
 			smoke.start("#202020")
 		go_out()
 

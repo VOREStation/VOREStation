@@ -69,6 +69,21 @@
 		else if(status == 3) //Digital organ
 			I.digitize()
 
+	//Give breathing equipment if needed
+	if(current_project.breath_type != "oxygen")
+		H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath(H), slot_wear_mask)
+		var/obj/item/weapon/tank/tankpath
+		if(current_project.breath_type == "phoron")
+			tankpath = /obj/item/weapon/tank/vox
+		else
+			tankpath = text2path("/obj/item/weapon/tank/" + current_project.breath_type)
+
+		if(tankpath)
+			H.equip_to_slot_or_del(new tankpath(H), slot_back)
+			H.internal = H.back
+			if(istype(H.internal,/obj/item/weapon/tank) && H.internals)
+				H.internals.icon_state = "internal1"
+
 	occupant = H
 
 	//Set the name or generate one
@@ -148,7 +163,7 @@
 
 		else if(((occupant.health == occupant.maxHealth)) && (!eject_wait))
 			playsound(src, 'sound/machines/ding.ogg', 50, 1)
-			audible_message("\The [src] signals that the growing process is complete.")
+			audible_message("\The [src] signals that the growing process is complete.", runemessage = "ding")
 			connected_message("Growing Process Complete.")
 			locked = 0
 			go_out()
@@ -536,13 +551,13 @@
 
 	add_fingerprint(user)
 
-/obj/machinery/transhuman/resleever/proc/putmind(var/datum/transhuman/mind_record/MR, mode = 1, var/mob/living/carbon/human/override = null)
+/obj/machinery/transhuman/resleever/proc/putmind(var/datum/transhuman/mind_record/MR, mode = 1, var/mob/living/carbon/human/override = null, var/db_key)
 	if((!occupant || !istype(occupant) || occupant.stat >= DEAD) && mode == 1)
 		return 0
 
 	if(mode == 2 && sleevecards) //Card sleeving
 		var/obj/item/device/sleevecard/card = new /obj/item/device/sleevecard(get_turf(src))
-		card.sleeveInto(MR)
+		card.sleeveInto(MR, db_key = db_key)
 		sleevecards--
 		return 1
 

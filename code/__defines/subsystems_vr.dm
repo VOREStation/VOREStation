@@ -1,1 +1,0 @@
-#define INIT_ORDER_HOLOMAPS	-5 //VOREStation Add

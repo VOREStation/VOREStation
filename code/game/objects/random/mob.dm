@@ -60,6 +60,10 @@
 		M.pixel_x = pixel_x
 		M.pixel_y = pixel_y
 
+	if(mob_faction)
+		M.faction = mob_faction
+
+
 
 /obj/random/mob/sif
 	name = "Random Sif Animal"

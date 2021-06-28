@@ -28,7 +28,7 @@
 	priority_mode = TRUE
 	cancel_pending_floors()
 	update_ext_panel_icons()
-	control_panel_interior.audible_message("<span class='info'>This turbolift is responding to a priority call.  Please exit the lift when it stops and make way.</span>")
+	control_panel_interior.audible_message("<span class='info'>This turbolift is responding to a priority call.  Please exit the lift when it stops and make way.</span>", runemessage = "BUZZ")
 	spawn(time)
 		priority_mode = FALSE
 		update_ext_panel_icons()
@@ -158,7 +158,7 @@
 			doors_closing = 0
 			if(!fire_mode)
 				open_doors()
-			control_panel_interior.audible_message("\The [current_floor.ext_panel] buzzes loudly.")
+			control_panel_interior.audible_message("\The [current_floor.ext_panel] buzzes loudly.", runemessage = "BUZZ")
 			playsound(control_panel_interior, "sound/machines/buzz-two.ogg", 50, 1)
 			return 0
 

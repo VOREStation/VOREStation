@@ -112,7 +112,8 @@
 	var/used = FALSE
 
 /obj/item/device/fbp_backup_cell/Initialize()
-	overlays += image(icon,"[icon_state]1")
+	. = ..()
+	add_overlay("[icon_state]1")
 
 /obj/item/device/fbp_backup_cell/attack(mob/living/M as mob, mob/user as mob)
 	if(!used && ishuman(M))
@@ -134,7 +135,7 @@
 		return
 	used = TRUE
 	desc += " This one has already been used."
-	overlays.Cut()
+	cut_overlays()
 	target.adjust_nutrition(amount)
 	user.custom_emote(message = "connects \the [src] to [user == target ? "their" : "[target]'s"] charging port, expending it.")
 

@@ -5,7 +5,7 @@
 	icon_state = "void"
 	item_state_slots = list(slot_r_hand_str = "syndicate", slot_l_hand_str = "syndicate")
 	heat_protection = HEAD
-	armor = list(melee = 40, bullet = 5, laser = 20,energy = 5, bomb = 35, bio = 100, rad = 20)
+	armor = list(melee = 30, bullet = 5, laser = 20,energy = 5, bomb = 35, bio = 100, rad = 20)
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	min_pressure_protection = 0 * ONE_ATMOSPHERE
 	max_pressure_protection = 10 * ONE_ATMOSPHERE
@@ -35,8 +35,8 @@
 	icon_state = "void"
 	item_state_slots = list(slot_r_hand_str = "space_suit_syndicate", slot_l_hand_str = "space_suit_syndicate")
 	desc = "A high-tech dark red space suit. Used for AI satellite maintenance."
-	slowdown = 1
-	armor = list(melee = 40, bullet = 5, laser = 20,energy = 5, bomb = 35, bio = 100, rad = 20)
+	slowdown = 0.5
+	armor = list(melee = 30, bullet = 5, laser = 20,energy = 5, bomb = 35, bio = 100, rad = 20)
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit)
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
@@ -120,7 +120,6 @@
 			to_chat(M, "Your suit's cooling unit deploys.")
 			cooler.canremove = 0
 
-
 /obj/item/clothing/suit/space/void/dropped()
 	..()
 
@@ -149,6 +148,22 @@
 	if(cooler)
 		cooler.canremove = 1
 		cooler.forceMove(src)
+
+/obj/item/clothing/suit/space/void/proc/attach_helmet(var/obj/item/clothing/head/helmet/space/void/helm)
+	if(!istype(helm) || helmet)
+		return
+
+	helm.forceMove(src)
+	helm.set_light_flags(helm.light_flags | LIGHT_ATTACHED)
+	helmet = helm
+
+/obj/item/clothing/suit/space/void/proc/remove_helmet()
+	if(!helmet)
+		return
+
+	helmet.forceMove(get_turf(src))
+	helmet.set_light_flags(helmet.light_flags & ~LIGHT_ATTACHED)
+	helmet = null
 
 /obj/item/clothing/suit/space/void/verb/toggle_helmet()
 
@@ -184,7 +199,9 @@
 			helmet.pickup(H)
 			helmet.canremove = 0
 			to_chat(H, "<span class='info'>You deploy your suit helmet, sealing you off from the world.</span>")
-	helmet.update_light(H)
+	
+	if(helmet.light_system == STATIC_LIGHT)
+		helmet.update_light()
 
 /obj/item/clothing/suit/space/void/verb/eject_tank()
 
@@ -243,9 +260,8 @@
 				src.cooler = null
 			else if(choice == helmet)
 				to_chat(user, "You detach \the [helmet] from \the [src]'s helmet mount.")
-				helmet.forceMove(get_turf(src))
+				remove_helmet()
 				playsound(src, W.usesound, 50, 1)
-				src.helmet = null
 			else if(choice == boots)
 				to_chat(user, "You detach \the [boots] from \the [src]'s boot mounts.")
 				boots.forceMove(get_turf(src))
@@ -260,8 +276,7 @@
 		else
 			to_chat(user, "You attach \the [W] to \the [src]'s helmet mount.")
 			user.drop_item()
-			W.forceMove(src)
-			src.helmet = W
+			attach_helmet(W)
 		return
 	else if(istype(W,/obj/item/clothing/shoes/magboots))
 		if(boots)

@@ -65,7 +65,7 @@
 		if(shuttle.has_arrive_time())
 			shuttle_status["location"] = "In transit"
 			shuttle_status["mode"] = SUP_SHUTTLE_TRANSIT
-			shuttle_status["time"] = shuttle.eta_seconds()
+			shuttle_status["time"] = shuttle.eta_deciseconds() // tgui expects time for it's formatTime() in DS
 
 		else
 			shuttle_status["time"] = 0

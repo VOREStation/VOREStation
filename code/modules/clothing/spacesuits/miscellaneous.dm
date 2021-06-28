@@ -99,4 +99,4 @@
 	name = "Emergency Softsuit"
 	icon_state = "syndicate-orange"
 	desc = "A thin, ungainly softsuit colored in blaze orange for rescuers to easily locate, looks pretty fragile."
-	slowdown = 4
+	slowdown = 2

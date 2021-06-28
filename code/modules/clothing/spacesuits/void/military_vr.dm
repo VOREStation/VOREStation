@@ -12,6 +12,8 @@
 	item_state_slots = list(slot_r_hand_str = "sec_voidsuit", slot_l_hand_str = "sec_voidsuit")
 	slowdown = 1.5
 	armor = list(melee = 60, bullet = 35, laser = 35, energy = 15, bomb = 55, bio = 100, rad = 20)
+	breach_threshold = 14 //These are kinda thicc
+	resilience = 0.15 //Armored
 
 /obj/item/clothing/head/helmet/space/void/security/prototype
 	name = "\improper security prototype voidsuit helmet"
@@ -51,3 +53,6 @@
 	icon = 'icons/obj/clothing/suits_vr.dmi'
 	icon_override = 'icons/mob/suit_vr.dmi'
 	species_restricted = null
+	breach_threshold = 16 //Extra Thicc
+	resilience = 0.05 //Military Armor
+

@@ -81,7 +81,7 @@
 	var/seal_delay = SEAL_DELAY
 	var/sealing                                               // Keeps track of seal status independantly of canremove.
 	var/offline = 1                                           // Should we be applying suit maluses?
-	var/offline_slowdown = 3                                  // If the suit is deployed and unpowered, it sets slowdown to this.
+	var/offline_slowdown = 1.5                                  // If the suit is deployed and unpowered, it sets slowdown to this.
 	var/vision_restriction
 	var/offline_vision_restriction = 1                        // 0 - none, 1 - welder vision, 2 - blind. Maybe move this to helmets.
 	var/airtight = 1 //If set, will adjust AIRTIGHT flag and pressure protections on components. Otherwise it should leave them untouched.
@@ -120,7 +120,7 @@
 	item_state = icon_state
 	wires = new(src)
 
-	if((!req_access || !req_access.len) && (!req_one_access || !req_one_access.len))
+	if(!LAZYLEN(req_access) && !LAZYLEN(req_one_access))
 		locked = 0
 
 	spark_system = new()
@@ -509,7 +509,7 @@
 			if(!offline)
 				if(istype(wearer))
 					if(!canremove)
-						if (offline_slowdown < 3)
+						if (offline_slowdown < 1.5)
 							to_chat(wearer, "<span class='danger'>Your suit beeps stridently, and suddenly goes dead.</span>")
 						else
 							to_chat(wearer, "<span class='danger'>Your suit beeps stridently, and suddenly you're wearing a leaden mass of metal and plastic composites instead of a powered suit.</span>")
@@ -585,8 +585,7 @@
 
 /obj/item/weapon/rig/update_icon(var/update_mob_icon)
 
-	//TODO: Maybe consider a cache for this (use mob_icon as blank canvas, use suit icon overlay).
-	overlays.Cut()
+	cut_overlays()
 	if(!mob_icon || update_mob_icon)
 		var/species_icon = 'icons/mob/rig_back.dmi'
 		// Since setting mob_icon will override the species checks in
@@ -598,7 +597,7 @@
 	if(installed_modules.len)
 		for(var/obj/item/rig_module/module in installed_modules)
 			if(module.suit_overlay)
-				chest.overlays += image("icon" = 'icons/mob/rig_modules.dmi', "icon_state" = "[module.suit_overlay]", "dir" = SOUTH)
+				chest.add_overlay(image('icons/mob/rig_modules.dmi', icon_state = "[module.suit_overlay]", dir = SOUTH))
 
 	if(wearer)
 		wearer.update_inv_shoes()
@@ -729,8 +728,8 @@
 				to_chat(H, "<span class='notice'>Your [use_obj.name] [use_obj.gender == PLURAL ? "deploy" : "deploys"] swiftly.</span>")
 				playsound(src, 'sound/machines/rig/rigservo.ogg', 10, FALSE)
 
-	if(piece == "helmet" && helmet)
-		helmet.update_light(H)
+	if(piece == "helmet" && helmet?.light_system == STATIC_LIGHT)
+		helmet.update_light()
 
 /obj/item/weapon/rig/proc/deploy(mob/M,var/sealed)
 

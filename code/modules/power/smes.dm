@@ -375,7 +375,6 @@ GLOBAL_LIST_EMPTY(smeses)
 		return 0
 	return round(100.0*charge/capacity, 0.1)
 
-
 /obj/machinery/power/smes/tgui_act(action, params)
 	if(..())
 		return TRUE
@@ -389,39 +388,30 @@ GLOBAL_LIST_EMPTY(smeses)
 			update_icon()
 			. = TRUE
 		if("input")
-			var/target = params["target"]
-			var/adjust = text2num(params["adjust"])
-			if(target == "min")
-				target = 0
-				. = TRUE
-			else if(target == "max")
-				target = input_level_max
-				. = TRUE
-			else if(adjust)
-				target = input_level + adjust
-				. = TRUE
-			else if(text2num(target) != null)
-				target = text2num(target)
-				. = TRUE
-			if(.)
-				input_level = clamp(target, 0, input_level_max)
+			tgui_set_io(SMES_TGUI_INPUT, params["target"], text2num(params["adjust"]))
 		if("output")
-			var/target = params["target"]
-			var/adjust = text2num(params["adjust"])
-			if(target == "min")
-				target = 0
-				. = TRUE
-			else if(target == "max")
-				target = output_level_max
-				. = TRUE
-			else if(adjust)
-				target = output_level + adjust
-				. = TRUE
-			else if(text2num(target) != null)
-				target = text2num(target)
-				. = TRUE
-			if(.)
-				output_level = clamp(target, 0, output_level_max)
+			tgui_set_io(SMES_TGUI_OUTPUT, params["target"], text2num(params["adjust"]))
+
+/obj/machinery/power/smes/proc/tgui_set_io(io, target, adjust)
+	if(target == "min")
+		target = 0
+		. = TRUE
+	else if(target == "max")
+		target = output_level_max
+		. = TRUE
+	else if(adjust)
+		target = output_level + adjust
+		. = TRUE
+	else if(text2num(target) != null)
+		target = text2num(target)
+		. = TRUE
+	if(.)
+		switch(io)
+			if(SMES_TGUI_INPUT)
+				set_input(target)
+			if(SMES_TGUI_OUTPUT)	
+				set_output(target)
+
 
 /obj/machinery/power/smes/proc/inputting(var/do_input)
 	input_attempt = do_input
@@ -460,8 +450,7 @@ GLOBAL_LIST_EMPTY(smeses)
 	..()
 
 /obj/machinery/power/smes/bullet_act(var/obj/item/projectile/Proj)
-	if(Proj.damage_type == BRUTE || Proj.damage_type == BURN)
-		take_damage(Proj.damage)
+	take_damage(Proj.get_structure_damage())
 
 /obj/machinery/power/smes/ex_act(var/severity)
 	// Two strong explosions will destroy a SMES.
@@ -483,3 +472,32 @@ GLOBAL_LIST_EMPTY(smeses)
 			. += "<span class='filter_notice'><span class='notice'>It's casing is quite seriously damaged.</span></span>"
 		if(0 to 24)
 			. += "<span class='filter_notice'>It's casing has some minor damage.</span>"
+
+
+// Proc: toggle_input()
+// Parameters: None
+// Description: Switches the input on/off depending on previous setting
+/obj/machinery/power/smes/proc/toggle_input()
+	inputting(!input_attempt)
+	update_icon()
+
+// Proc: toggle_output()
+// Parameters: None
+// Description: Switches the output on/off depending on previous setting
+/obj/machinery/power/smes/proc/toggle_output()
+	outputting(!output_attempt)
+	update_icon()
+
+// Proc: set_input()
+// Parameters: 1 (new_input - New input value in Watts)
+// Description: Sets input setting on this SMES. Trims it if limits are exceeded.
+/obj/machinery/power/smes/proc/set_input(var/new_input = 0)
+	input_level = between(0, new_input, input_level_max)
+	update_icon()
+
+// Proc: set_output()
+// Parameters: 1 (new_output - New output value in Watts)
+// Description: Sets output setting on this SMES. Trims it if limits are exceeded.
+/obj/machinery/power/smes/proc/set_output(var/new_output = 0)
+	output_level = between(0, new_output, output_level_max)
+	update_icon()

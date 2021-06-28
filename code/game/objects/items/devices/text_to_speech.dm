@@ -24,5 +24,6 @@
 
 	var/message = sanitize(input(user,"Choose a message to relay to those around you.") as text|null)
 	if(message)
-		var/obj/item/device/text_to_speech/O = src
-		audible_message("[bicon(O)] \The [O.name] states, \"[message]\"")
+		audible_message("[bicon(src)] \The [src.name] states, \"[message]\"", runemessage = "synthesized speech")
+		if(ismob(loc))
+			loc.audible_message("", runemessage = "\[TTS Voice\] [message]")

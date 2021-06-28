@@ -17,7 +17,7 @@
 	drop_sound = 'sound/items/drop/multitool.ogg'
 	pickup_sound = 'sound/items/pickup/multitool.ogg'
 
-	matter = list(DEFAULT_WALL_MATERIAL = 50,"glass" = 20, MAT_COPPER = 10)
+	matter = list(DEFAULT_WALL_MATERIAL = 50,"glass" = 20)
 
 	var/mode_index = 1
 	var/toolmode = MULTITOOL_MODE_STANDARD
@@ -65,6 +65,9 @@
 	accepting_refs = (toolmode == MULTITOOL_MODE_INTCIRCUITS)
 
 	return
+
+/obj/item/device/multitool/is_multitool()
+	return TRUE
 
 /obj/item/device/multitool/cyborg
 	name = "multitool"

@@ -221,7 +221,7 @@
 
 //They phase back to the dark when killed
 /mob/living/simple_mob/shadekin/death(gibbed, deathmessage = "phases to somewhere far away!")
-	overlays = list()
+	cut_overlays()
 	icon_state = ""
 	flick("tp_out",src)
 	spawn(1 SECOND)

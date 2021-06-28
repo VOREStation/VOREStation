@@ -11,5 +11,4 @@
 			if(B.mode_flags & DM_FLAG_JAMSENSORS)
 				return TRUE
 		current = current.loc
-
- 	return FALSE
+	return FALSE

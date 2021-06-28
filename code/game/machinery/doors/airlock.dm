@@ -13,6 +13,12 @@
 	power_channel = ENVIRON
 
 	explosion_resistance = 10
+	
+	// Doors do their own stuff
+	bullet_vulnerability = 0
+	
+	blocks_emissive = EMISSIVE_BLOCK_GENERIC // Not quite as nice as /tg/'s custom masks. We should make those sometime
+
 	var/aiControlDisabled = 0 //If 1, AI control is disabled until the AI hacks back in and disables the lock. If 2, the AI has bypassed the lock. If -1, the control is enabled but the AI had bypassed it earlier, so if it is disabled again the AI would have no trouble getting back in.
 	var/hackProof = 0 // if 1, this door can't be hacked by the AI
 	var/electrified_until = 0			//World time when the door is no longer electrified. -1 if it is permanently electrified until someone fixes it.
@@ -791,35 +797,34 @@ About the new airlock wires panel:
 
 
 /obj/machinery/door/airlock/update_icon()
-	if(overlays) overlays.Cut()
+	cut_overlays()
 	if(density)
 		if(locked && lights && src.arePowerSystemsOn())
 			icon_state = "door_locked"
 		else
 			icon_state = "door_closed"
 		if(p_open || welded)
-			overlays = list()
 			if(p_open)
-				overlays += image(icon, "panel_open")
+				add_overlay("panel_open")
 			if (!(stat & NOPOWER))
 				if(stat & BROKEN)
-					overlays += image(icon, "sparks_broken")
+					add_overlay("sparks_broken")
 				else if (health < maxhealth * 3/4)
-					overlays += image(icon, "sparks_damaged")
+					add_overlay("sparks_damaged")
 			if(welded)
-				overlays += image(icon, "welded")
+				add_overlay("welded")
 		else if (health < maxhealth * 3/4 && !(stat & NOPOWER))
-			overlays += image(icon, "sparks_damaged")
+			add_overlay("sparks_damaged")
 	else
 		icon_state = "door_open"
 		if((stat & BROKEN) && !(stat & NOPOWER))
-			overlays += image(icon, "sparks_open")
+			add_overlay("sparks_open")
 	return
 
 /obj/machinery/door/airlock/do_animate(animation)
 	switch(animation)
 		if("opening")
-			if(overlays) overlays.Cut()
+			cut_overlay()
 			if(p_open)
 				spawn(2) // The only work around that works. Downside is that the door will be gone for a millisecond.
 					flick("o_door_opening", src)  //can not use flick due to BYOND bug updating overlays right before flicking
@@ -828,7 +833,7 @@ About the new airlock wires panel:
 				flick("door_opening", src)//[stat ? "_stat":]
 				update_icon()
 		if("closing")
-			if(overlays) overlays.Cut()
+			cut_overlay()
 			if(p_open)
 				spawn(2)
 					flick("o_door_closing", src)
@@ -1430,10 +1435,10 @@ About the new airlock wires panel:
 		//update the door's access to match the electronics'
 		secured_wires = electronics.secure
 		if(electronics.one_access)
-			req_access.Cut()
+			LAZYCLEARLIST(req_access)
 			req_one_access = src.electronics.conf_access
 		else
-			req_one_access.Cut()
+			LAZYCLEARLIST(req_one_access)
 			req_access = src.electronics.conf_access
 
 		//get the name from the assembly
@@ -1479,12 +1484,10 @@ About the new airlock wires panel:
 		src.electronics = new/obj/item/weapon/airlock_electronics( src.loc )
 
 	//update the electronics to match the door's access
-	if(!src.req_access)
-		src.check_access()
-	if(src.req_access.len)
-		electronics.conf_access = src.req_access
-	else if (src.req_one_access.len)
-		electronics.conf_access = src.req_one_access
+	if(LAZYLEN(req_access))
+		electronics.conf_access = req_access
+	else if (LAZYLEN(req_one_access))
+		electronics.conf_access = req_one_access
 		electronics.one_access = 1
 
 /obj/machinery/door/airlock/emp_act(var/severity)

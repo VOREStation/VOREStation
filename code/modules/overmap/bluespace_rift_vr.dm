@@ -5,7 +5,7 @@
 	icon_state = "portal"
 	color = "#2288FF"
 
-	known = 0			//shows up on nav computers automatically
+	known = FALSE			//shows up on nav computers automatically
 	scannable = TRUE       //if set to TRUE will show up on ship sensors for detailed scans
 
 	var/obj/effect/overmap/bluespace_rift/partner

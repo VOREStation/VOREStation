@@ -254,8 +254,6 @@
 		to_chat(user, "<span class='notice'>You refrain from putting things into the plant pot.</span>")
 		return
 
-	..()
-
 /obj/structure/flora/pottedplant/attack_hand(mob/user)
 	if(!stored_item)
 		to_chat(user, "<span class='filter_notice'><b>You see nothing of interest in [src]...</b></span>")
@@ -315,6 +313,7 @@
 	light_range = 2
 	light_power = 0.6
 	light_color = "#33CCFF"
+	light_on = TRUE
 	catalogue_data = list(/datum/category_item/catalogue/flora/sif_tree)
 
 /obj/structure/flora/pottedplant/orientaltree
@@ -374,6 +373,7 @@
 	light_range = 2
 	light_power = 0.6
 	light_color = "#FF6633"
+	light_on = TRUE
 
 /obj/structure/flora/pottedplant/minitree
 	name = "potted tree"
@@ -441,6 +441,7 @@
 	light_range = 2
 	light_power = 0.6
 	light_color = "#FF6633"
+	light_on = TRUE
 	catalogue_data = list(/datum/category_item/catalogue/flora/subterranean_bulbs)
 
 /obj/structure/flora/sif/subterranean/Initialize()

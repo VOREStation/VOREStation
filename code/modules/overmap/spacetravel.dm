@@ -1,24 +1,24 @@
-//list used to cache empty zlevels to avoid nedless map bloat
-var/list/cached_space = list()
-
 //Space stragglers go here
-
 /obj/effect/overmap/visitable/sector/temporary
 	name = "Deep Space"
 	invisibility = 101
-	known = 0
+	known = FALSE
+	in_space = TRUE
 
-/obj/effect/overmap/visitable/sector/temporary/New(var/nx, var/ny, var/nz)
+/obj/effect/overmap/visitable/sector/temporary/New(var/nx, var/ny)
 	loc = locate(nx, ny, global.using_map.overmap_z)
 	x = nx
 	y = ny
-	map_z += nz
-	map_sectors["[nz]"] = src
-	testing("Temporary sector at [x],[y] was created, corresponding zlevel is [nz].")
+	var/emptyz = global.using_map.get_empty_zlevel()
+	map_z += emptyz
+	map_sectors["[emptyz]"] = src
+	testing("Temporary sector at [x],[y] was created, corresponding zlevel is [emptyz].")
 
 /obj/effect/overmap/visitable/sector/temporary/Destroy()
-	map_sectors["[map_z]"] = null
-	testing("Temporary sector at [x],[y] was deleted.")
+	for(var/zlevel in map_z)
+		using_map.cache_empty_zlevel(zlevel)
+	testing("Temporary sector at [x],[y] was destroyed, returning empty zlevel [map_z[1]] to map datum.")
+	return ..()
 
 /obj/effect/overmap/visitable/sector/temporary/proc/can_die(var/mob/observer)
 	testing("Checking if sector at [map_z[1]] can die.")
@@ -28,20 +28,18 @@ var/list/cached_space = list()
 			return 0
 	return 1
 
-proc/get_deepspace(x,y)
+/obj/effect/overmap/visitable/sector/temporary/cleanup()
+	if(can_die())
+		qdel(src)
+
+/proc/get_deepspace(x,y)
 	var/turf/unsimulated/map/overmap_turf = locate(x,y,global.using_map.overmap_z)
 	if(!istype(overmap_turf))
 		CRASH("Attempt to get deepspace at ([x],[y]) which is not on overmap: [overmap_turf]")
 	var/obj/effect/overmap/visitable/sector/temporary/res = locate() in overmap_turf
 	if(istype(res))
 		return res
-	else if(cached_space.len)
-		res = cached_space[cached_space.len]
-		cached_space -= res
-		res.forceMove(overmap_turf)
-		return res
-	else
-		return new /obj/effect/overmap/visitable/sector/temporary(x, y, global.using_map.get_empty_zlevel())
+	return new /obj/effect/overmap/visitable/sector/temporary(x, y)
 
 /atom/movable/proc/lost_in_space()
 	for(var/atom/movable/AM in contents)
@@ -77,7 +75,7 @@ proc/get_deepspace(x,y)
 	return FALSE
 	// return isnull(client) && !key && stat == DEAD // Allows bodies that players have ghosted from to be deleted - Ater
 
-proc/overmap_spacetravel(var/turf/space/T, var/atom/movable/A)
+/proc/overmap_spacetravel(var/turf/space/T, var/atom/movable/A)
 	if (!T || !A)
 		return
 
@@ -139,9 +137,4 @@ proc/overmap_spacetravel(var/turf/space/T, var/atom/movable/A)
 			if(D.pulling)
 				D.pulling.forceMove(dest)
 
-	if(istype(M, /obj/effect/overmap/visitable/sector/temporary))
-		var/obj/effect/overmap/visitable/sector/temporary/source = M
-		if (source.can_die())
-			testing("Caching [M] for future use")
-			source.moveToNullspace()
-			cached_space += source
+	M.cleanup()

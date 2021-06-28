@@ -1,7 +1,6 @@
 // Adding needed defines to /mob/living
 // Note: Polaris had this on /mob/living/carbon/human We need it higher up for animals and stuff.
 /mob/living
-	var/size_multiplier = 1 //multiplier for the mob's icon size
 	var/holder_default
 	var/step_mechanics_pref = TRUE		// Allow participation in macro-micro step mechanics
 	var/pickup_pref = TRUE				// Allow participation in macro-micro pickup mechanics
@@ -214,7 +213,7 @@
 			var/mob/living/carbon/human/H = src
 			if(H.flying)
 				return TRUE //Silently pass without a message.
-			if(isTaurTail(H.tail_style))
+			if(istaurtail(H.tail_style))
 				var/datum/sprite_accessory/tail/taur/tail = H.tail_style
 				src_message = tail.msg_owner_help_run
 				tmob_message = tail.msg_prey_help_run
@@ -224,7 +223,7 @@
 			src_message = "You run between [tmob]'s legs."
 			tmob_message = "[src] runs between your legs."
 			var/mob/living/carbon/human/H = tmob
-			if(isTaurTail(H.tail_style))
+			if(istaurtail(H.tail_style))
 				var/datum/sprite_accessory/tail/taur/tail = H.tail_style
 				src_message = tail.msg_prey_stepunder
 				tmob_message = tail.msg_owner_stepunder
@@ -305,7 +304,7 @@
 	var/message_pred = null
 	var/message_prey = null
 	var/datum/sprite_accessory/tail/taur/tail = null
-	if(isTaurTail(pred.tail_style))
+	if(istaurtail(pred.tail_style))
 		tail = pred.tail_style
 
 	if(a_intent == I_GRAB)

@@ -87,14 +87,14 @@ var/list/holder_mob_icon_cache = list()
 
 /obj/item/weapon/holder/proc/sync(var/mob/living/M)
 	dir = 2
-	overlays.Cut()
+	overlays.Cut() // Not using SSoverlays for this due to performance
 	icon = M.icon
 	icon_state = M.icon_state
 	item_state = M.item_state
 	color = M.color
 	name = M.name
 	desc = M.desc
-	overlays |= M.overlays
+	overlays |= M.overlays // Not using SSoverlays for this due to performance
 	var/mob/living/carbon/human/H = loc
 	if(istype(H))
 		if(H.l_hand == src)

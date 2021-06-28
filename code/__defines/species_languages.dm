@@ -25,19 +25,18 @@
 #define EMP_OXY_DMG	0x100	// EMPs inflict oxy damage
 
 // Species allergens
-#define MEAT		0x1	// Skrell won't like this.
-#define FISH		0x2	// Seperate for completion's sake. Still bad for skrell.
-#define FRUIT		0x4	// An apple a day only keeps the doctor away if they're allergic.
-#define VEGETABLE	0x8	// Taters 'n' carrots. Potato allergy is a thing, apparently.
-#define GRAINS		0x10	// Wheat, oats, etc.
-#define BEANS		0x20	// The musical fruit! Includes soy.
-#define SEEDS		0x40	// Hope you don't have a nut allergy.
-#define DAIRY		0x80	// Lactose intolerance, ho! Also bad for skrell.
-#define FUNGI		0x100	// Delicious shrooms.
-#define COFFEE		0x200	// Mostly here for tajara.
-#define GENERIC		0x400	// Catchall for stuff that doesn't fall into the groups above. You shouldn't be allergic to this type, ever.
-#define SUGARS		0x800	// For unathi-like reactions
-#define EGGS      0x1000 // For Skrell eggs allergy
+#define ALLERGEN_MEAT		0x1		// Skrell won't like this.
+#define ALLERGEN_FISH		0x2		// Seperate for completion's sake. Still bad for skrell.
+#define ALLERGEN_FRUIT		0x4		// An apple a day only keeps the doctor away if they're allergic.
+#define ALLERGEN_VEGETABLE	0x8		// Taters 'n' carrots. Potato allergy is a thing, apparently.
+#define ALLERGEN_GRAINS		0x10	// Wheat, oats, etc.
+#define ALLERGEN_BEANS		0x20	// The musical fruit! Includes soy.
+#define ALLERGEN_SEEDS		0x40	// Hope you don't have a nut allergy.
+#define ALLERGEN_DAIRY		0x80	// Lactose intolerance, ho! Also bad for skrell.
+#define ALLERGEN_FUNGI		0x100	// Delicious shrooms.
+#define ALLERGEN_COFFEE		0x200	// Mostly here for tajara.
+#define ALLERGEN_SUGARS		0x400	// For unathi-like reactions
+#define ALLERGEN_EGGS		0x800	// For Skrell eggs allergy
 
 // Allergen reactions
 #define AG_TOX_DMG	0x1	// the classic 

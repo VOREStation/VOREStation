@@ -208,11 +208,10 @@
 
 /obj/item/weapon/weldingtool/update_icon()
 	..()
-	overlays.Cut()
+	cut_overlays()
 	// Welding overlay.
 	if(welding)
-		var/image/I = image(icon, src, "[icon_state]-on")
-		overlays.Add(I)
+		add_overlay("[icon_state]-on")
 		item_state = "[initial(item_state)]1"
 	else
 		item_state = initial(item_state)
@@ -221,8 +220,7 @@
 	if(change_icons && get_max_fuel())
 		var/ratio = get_fuel() / get_max_fuel()
 		ratio = CEILING(ratio * 4, 1) * 25
-		var/image/I = image(icon, src, "[icon_state][ratio]")
-		overlays.Add(I)
+		add_overlay("[icon_state][ratio]")
 
 	// Lights
 	if(welding && flame_intensity)
@@ -462,7 +460,6 @@
 	icon_state = "hybwelder"
 	max_fuel = 80 //more max fuel is better! Even if it doesn't actually use fuel.
 	eye_safety_modifier = -2	// Brighter than the sun. Literally, you can look at the sun with a welding mask of proper grade, this will burn through that.
-	slowdown = 0.1
 	toolspeed = 0.25
 	w_class = ITEMSIZE_NORMAL
 	flame_intensity = 5

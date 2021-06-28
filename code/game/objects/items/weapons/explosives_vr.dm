@@ -10,7 +10,7 @@
 	var/turf/T = get_turf(target)
 	if(T.z in using_map.station_levels)
 		target.visible_message("<span class='danger'>\The [src] lets out a loud beep as safeties trigger, before imploding and falling apart.</span>")
-		target.overlays -= image_overlay
+		target.cut_overlay(image_overlay, TRUE)
 		qdel(src)
 		return 0
 	else

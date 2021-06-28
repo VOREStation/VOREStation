@@ -20,6 +20,8 @@
 #define TICKS2DS(T) ((T) TICKS) 				// Convert ticks to deciseconds
 #define DS2NEARESTTICK(DS) TICKS2DS(-round(-(DS2TICKS(DS))))
 
+var/world_startup_time
+
 /proc/get_game_time()
 	var/global/time_offset = 0
 	var/global/last_time = 0
@@ -78,7 +80,7 @@ var/next_station_date_change = 1 DAY
 	return time2text(wtime - GLOB.timezoneOffset, format)
 
 /* Returns 1 if it is the selected month and day */
-proc/isDay(var/month, var/day)
+/proc/isDay(var/month, var/day)
 	if(isnum(month) && isnum(day))
 		var/MM = text2num(time2text(world.timeofday, "MM")) // get the current month
 		var/DD = text2num(time2text(world.timeofday, "DD")) // get the current day

@@ -10,7 +10,7 @@ var/list/table_icon_cache = list()
 	climbable = 1
 	layer = TABLE_LAYER
 	throwpass = 1
-	surgery_odds = 66
+	surgery_odds = 50 //VOREStation Edit
 	var/flipped = 0
 	var/maxhealth = 10
 	var/health = 10
@@ -353,31 +353,31 @@ var/list/table_icon_cache = list()
 /obj/structure/table/update_icon()
 	if(flipped != 1)
 		icon_state = "blank"
-		overlays.Cut()
+		cut_overlays()
 
 		// Base frame shape. Mostly done for glass/diamond tables, where this is visible.
 		for(var/i = 1 to 4)
 			var/image/I = get_table_image(icon, connections[i], 1<<(i-1))
-			overlays += I
+			add_overlay(I)
 
 		// Standard table image
 		if(material)
 			for(var/i = 1 to 4)
 				var/image/I = get_table_image(icon, "[material.icon_base]_[connections[i]]", 1<<(i-1), material.icon_colour, 255 * material.opacity)
-				overlays += I
+				add_overlay(I)
 
 		// Reinforcements
 		if(reinforced)
 			for(var/i = 1 to 4)
 				var/image/I = get_table_image(icon, "[reinforced.icon_reinf]_[connections[i]]", 1<<(i-1), reinforced.icon_colour, 255 * reinforced.opacity)
-				overlays += I
+				add_overlay(I)
 
 		if(carpeted)
 			for(var/i = 1 to 4)
 				var/image/I = get_table_image(icon, "carpet_[connections[i]]", 1<<(i-1))
-				overlays += I
+				add_overlay(I)
 	else
-		overlays.Cut()
+		cut_overlays()
 		var/type = 0
 		var/tabledirs = 0
 		for(var/direction in list(turn(dir,90), turn(dir,-90)) )
@@ -398,7 +398,7 @@ var/list/table_icon_cache = list()
 			var/image/I = image(icon, "[material.icon_base]_flip[type]")
 			I.color = material.icon_colour
 			I.alpha = 255 * material.opacity
-			overlays += I
+			add_overlay(I)
 			name = "[material.display_name] table"
 		else
 			name = "table frame"
@@ -407,10 +407,10 @@ var/list/table_icon_cache = list()
 			var/image/I = image(icon, "[reinforced.icon_reinf]_flip[type]")
 			I.color = reinforced.icon_colour
 			I.alpha = 255 * reinforced.opacity
-			overlays += I
+			add_overlay(I)
 
 		if(carpeted)
-			overlays += "carpet_flip[type]"
+			add_overlay("carpet_flip[type]")
 
 
 #define CORNER_NONE 0

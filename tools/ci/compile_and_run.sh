@@ -11,9 +11,13 @@ cp config/example/* config/
 # Define any unit test defines that need to run
 echo "#define ${TEST_DEFINE} 1" > ${TEST_FILE}
 
-# Compile a copy of the codebase
-DreamMaker $BASENAME.dme
+# Compile a copy of the codebase, and print errors as Github Actions annotations
+DreamMaker $BASENAME.dme > compile.log
 exitVal=$?
+cat compile.log
+if [ $exitVal -gt 0 ]; then
+	sed -E -n 's/^(.+?\.dm):([0-9]+):(error|warning): (.+)$/::\3 file=\1,line=\2::\4/gp' < compile.log
+fi
 
 # Compile failed on map_test
 if [ $exitVal -gt 0 ] && [ $TEST_DEFINE = "MAP_TEST" ]; then

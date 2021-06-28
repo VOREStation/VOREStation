@@ -121,7 +121,7 @@
 				var/obj/item/clothing/head/newhat = H.get_active_hand()
 				H.drop_from_inventory(newhat, get_turf(src))
 				if(!stat)
-					intent = I_HELP
+					a_intent = I_HELP
 					newhat.attack_hand(src)
 			else if(src.get_active_hand())
 				to_chat(user, "<span class='notice'>\The [src] seems busy with \the [get_active_hand()] already!</span>")
@@ -140,7 +140,7 @@
 	..()
 
 /mob/living/simple_mob/animal/sif/sakimm/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	..()
 	if(hat)
 		var/hat_state = hat.item_state ? hat.item_state : hat.icon_state

@@ -9,6 +9,7 @@
 	density = 0
 	anchored = 1
 	store_mobs = 0
+	wall_mounted = 1
 
 //spawns 2 sets of breathmask, emergency oxy tank and crowbar
 
@@ -86,6 +87,8 @@
 	closet_appearance = /decl/closet_appearance/wall_double
 	density = 0
 	anchored = 1
+	store_mobs = 0
+	wall_mounted = 1
 	plane = TURF_PLANE
 	layer = ABOVE_TURF_LAYER
 
@@ -156,7 +159,6 @@
 	closet_appearance = /decl/closet_appearance/wall_double/fire_safety
 	anchored = 1
 	density = 0
-	wall_mounted = 1
 
 	starts_with = list(
 		/obj/item/clothing/suit/fire/firefighter,

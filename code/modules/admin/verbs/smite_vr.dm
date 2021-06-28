@@ -104,7 +104,7 @@
 			sleep(1 SECOND)
 			shadekin.dir = SOUTH
 			sleep(1 SECOND)
-			shadekin.audible_message("<b>[shadekin]</b> belches loudly!")
+			shadekin.audible_message("<b>[shadekin]</b> belches loudly!", runemessage = "URRRRRP")
 			sleep(2 SECONDS)
 			shadekin.phase_shift()
 			target.transforming = FALSE //Undo cheap hack

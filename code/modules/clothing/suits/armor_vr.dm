@@ -19,13 +19,13 @@
 	icon = 'icons/mob/taursuits_wolf_vr.dmi'
 	icon_state = "wolf_item"
 	item_state = "heavy_wolf_armor"
-	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
-		if(..())
-			if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
-				return ..()
-			else
-				to_chat(H,"<span class='warning'>You need to have a wolf-taur half to wear this.</span>")
-				return 0
+/obj/item/clothing/suit/armor/vest/wolftaur/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+	if(..())
+		if(istype(H) && istype(H.tail_style, /datum/sprite_accessory/tail/taur/wolf))
+			return ..()
+		else
+			to_chat(H,"<span class='warning'>You need to have a wolf-taur half to wear this.</span>")
+			return 0
 
 // HoS armor improved by Vorestation to be slightly better than normal security stuff.
 /obj/item/clothing/suit/storage/vest/hoscoat
@@ -119,3 +119,8 @@
 	desc = "ye olde knight, risen again."
 	icon_state = "bedevere"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+
+//Deluxe explorer suit
+/obj/item/clothing/suit/armor/pcarrier/explorer/deluxe
+	name = "modular explorer suit"
+	desc = "A modification of the explorer suit with a modular armor system. Requires you to insert armor plates."

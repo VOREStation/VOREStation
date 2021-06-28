@@ -129,7 +129,7 @@
 	B.digest_brute = 0.05
 	B.digest_burn = 0.05
 	B.mode_flags = 8
-	B.belly_fullscreen = "base"
+	B.belly_fullscreen = "a_tumby"
 	B.struggle_messages_inside = list(
 		"Your struggling only causes %pred's doughy gut to smother you against those wrinkled walls...",
 		"As you squirm, %pred's %belly flexxes over you heavily, forming you back into a small ball...",
@@ -169,6 +169,7 @@
 	icon_living = "cass"
 	icon_dead = "cass_dead"
 	icon_rest = "cass_rest"
+	ic_revivable = 0
 
 	faction = "theatre"
 	gender = PLURAL
@@ -188,6 +189,7 @@
 	retaliate = 1
 	cooperative = TRUE
 	speak_chance = 1
+	lose_target_timeout = 0 // Easily distracted
 
 /datum/ai_holder/simple_mob/woof/hostile
 	hostile = 1
@@ -244,3 +246,20 @@
 
 	projectiletype = /obj/item/projectile/forcebolt/harmless/awoobolt
 	projectilesound = 'sound/voice/long_awoo.ogg'
+
+/mob/living/simple_mob/vore/woof/cass/attack_hand(mob/living/carbon/human/M as mob)
+	if(stat != DEAD)
+		return ..()
+	if(M.a_intent == I_HELP)
+		M.visible_message("[M] pets [src].", runemessage = "pets [src]")
+		if(do_after(M, 30 SECONDS, exclusive = 1, target = src))
+			faction = M.faction
+			revive()
+			sight = initial(sight)
+			see_in_dark = initial(see_in_dark)
+			see_invisible = initial(see_invisible)
+			update_icon()
+			visible_message("[src] stops playing dead.", runemessage = "[src] stops playing dead")
+		else
+			M.visible_message("The petting was interrupted!!!", runemessage = "The petting was interrupted")
+	return
