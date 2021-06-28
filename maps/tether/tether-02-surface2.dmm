@@ -5038,6 +5038,7 @@
 	pixel_x = 2;
 	pixel_y = 3
 	},
+/obj/item/weapon/gun/energy/stunrevolver/vintage,
 /turf/simulated/floor/carpet,
 /area/tether/surfacebase/security/detective/officea)
 "ahU" = (
@@ -5051,6 +5052,7 @@
 	pixel_x = 2;
 	pixel_y = 3
 	},
+/obj/item/weapon/gun/energy/stunrevolver/vintage,
 /turf/simulated/floor/carpet,
 /area/tether/surfacebase/security/detective/officeb)
 "ahV" = (
