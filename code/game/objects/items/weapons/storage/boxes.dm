@@ -527,6 +527,9 @@
 	max_storage_space = ITEMSIZE_COST_NORMAL * 5 // Formally 21.  Odd numbers are bad.
 	use_to_pickup = 1 // for picking up broken bulbs, not that most people will try
 
+/obj/item/weapon/storage/box/freezer/red
+	icon_state = "portafreezer_red"
+
 /obj/item/weapon/storage/box/freezer/Entered(var/atom/movable/AM)
 	if(istype(AM, /obj/item/organ))
 		var/obj/item/organ/O = AM
