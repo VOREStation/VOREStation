@@ -50,7 +50,7 @@
 	flags = PHORONGUARD
 	item_flags = THICKMATERIAL
 	siemens_coefficient = 0.2
-	offline_slowdown = 5
+	offline_slowdown = 2.5
 	allowed = list(
 		/obj/item/weapon/gun,
 		/obj/item/device/flashlight,
