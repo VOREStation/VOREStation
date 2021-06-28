@@ -114,14 +114,15 @@
 	set category = "Admin"
 	set name = "Get Mob"
 	set desc = "Mob to teleport"
+
 	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
 		return
 	if(config.allow_admin_jump)
 		var/mob/M = tgui_input_list(usr, "Pick a mob:", "Get Mob", mob_list)
 		if(!M)
 			return
-		log_admin("[key_name(usr)] jumped to [key_name(M)]")
-		var/msg = "[key_name_admin(usr)] jumped to [key_name_admin(M)]"
+		log_admin("[key_name(usr)] jumped [key_name(M)] to them")
+		var/msg = "[key_name_admin(usr)] jumped [key_name_admin(M)] to them"
 		message_admins(msg)
 		admin_ticket_log(M, msg)
 		M.on_mob_jump()

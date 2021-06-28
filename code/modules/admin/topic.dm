@@ -1522,23 +1522,63 @@
 		P.adminbrowse()
 
 	else if(href_list["jumpto"])
-		if(!check_rights(R_ADMIN|R_EVENT|R_MOD))	return
+		if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
+			return
+		if(!config.allow_admin_jump)
+			tgui_alert_async(usr, "Admin jumping disabled")
+			return
 
 		var/mob/M = locate(href_list["jumpto"])
-		usr.client.jumptomob(M)
+		if(!M)
+			return
+		
+		var/turf/T = get_turf(M)
+		if(isturf(T))
+			usr.on_mob_jump()
+			usr.forceMove(T)
+			feedback_add_details("admin_verb","JM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+			log_and_message_admins("[key_name_admin(usr)] jumped to [key_name_admin(M)]")
+		else
+			to_chat(usr, "<span class='filter_adminlog'>This mob is not located in the game world.</span>")
 
 	else if(href_list["getmob"])
-		if(!check_rights(R_ADMIN|R_EVENT|R_FUN))	return
+		if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
+			return
+		if(!config.allow_admin_jump)
+			tgui_alert_async(usr, "Admin jumping disabled")
+			return
+		if(tgui_alert(usr, "Confirm?", "Message", list("Yes", "No")) != "Yes")
+			return
 
-		if(tgui_alert(usr, "Confirm?", "Message", list("Yes", "No")) != "Yes")	return
 		var/mob/M = locate(href_list["getmob"])
-		usr.client.Getmob(M)
+		if(!M)
+			return
+		M.on_mob_jump()
+		M.forceMove(get_turf(usr))
+		var/msg = "[key_name_admin(usr)] jumped [key_name_admin(M)] to them"
+		log_and_message_admins(msg)
+		admin_ticket_log(M, msg)
+		feedback_add_details("admin_verb","GM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 	else if(href_list["sendmob"])
-		if(!check_rights(R_ADMIN|R_EVENT|R_FUN))	return
+		if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
+			return
+		if(!config.allow_admin_jump)
+			tgui_alert_async(usr, "Admin jumping disabled")
+			return
 
 		var/mob/M = locate(href_list["sendmob"])
-		usr.client.sendmob(M)
+		if(!M)
+			return
+		var/area/A = tgui_input_list(usr, "Pick an area:", "Send Mob", return_sorted_areas())
+		if(!A)
+			return
+		M.on_mob_jump()
+		M.forceMove(pick(get_area_turfs(A)))
+		var/msg = "[key_name_admin(usr)] teleported [ADMIN_LOOKUPFLW(M)]"
+		log_and_message_admins(msg)
+		admin_ticket_log(M, msg)
+		feedback_add_details("admin_verb","SMOB") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 	else if(href_list["narrateto"])
 		if(!check_rights(R_ADMIN|R_EVENT|R_FUN))	return
