@@ -424,3 +424,20 @@
 /obj/structure/fireplace/water_act(amount)
 	if(prob(amount * 10))
 		extinguish()
+
+
+/obj/structure/fireplace/barrel
+	name = "barrel fire pit"
+	desc = "Seems like this barrel might make an ideal fire pit."
+	icon_state = "barrelfire"
+	density = TRUE
+	anchored = FALSE
+
+/obj/structure/fireplace/barrel/update_icon()
+	if(burning)
+		icon_state = "[initial(icon_state)]1"
+		var/light_strength = max(get_fuel_amount() / 2, 2)
+		set_light(light_strength, light_strength, "#FF9933")
+	else
+		icon_state = initial(icon_state)
+		set_light(0)
