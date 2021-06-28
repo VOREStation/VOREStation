@@ -219,7 +219,7 @@
   * Removes the overlay to show the fab working and sets idle power usage settings. Additionally resets the description and turns off queue processing.
   */
 /obj/machinery/mecha_part_fabricator/proc/on_finish_printing()
-	cut_overlay("fab-active")
+	cut_overlays("fab-active")
 	use_power = USE_POWER_IDLE
 	desc = initial(desc)
 	process_queue = FALSE
