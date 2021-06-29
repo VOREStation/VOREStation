@@ -384,43 +384,256 @@
 	name = "donut"
 	desc = "Goes great with Robust Coffee."
 	description_fluff = "These donuts claim to be made fresh daily in a boutique bakery in New Reykjavik and delivered to Nanotrasen's hardworking asset protection crew. They're probably synthesized."
-	icon_state = "donut1"
+	icon = 'icons/obj/food_donuts.dmi'
+	icon_state = "donut"
 	filling_color = "#D9C386"
-	var/overlay_state = "box-donut1"
-	center_of_mass = list("x"=13, "y"=16)
 	nutriment_desc = list("sweetness", "donut")
-
-/obj/item/weapon/reagent_containers/food/snacks/donut/normal
-	name = "donut"
-	desc = "Goes great with Robust Coffee."
-	icon_state = "donut1"
 	nutriment_amt = 3
-	bitesize = 3
+	bitesize = 4
+	var/overlay_state = "donut_inbox"
 
-/obj/item/weapon/reagent_containers/food/snacks/donut/normal/Initialize()
+/obj/item/weapon/reagent_containers/food/snacks/donut/plain
+	name = "plain donut"
+	icon_state = "donut"
+	desc = "A plain ol' donut."
+/obj/item/weapon/reagent_containers/food/snacks/donut/plain/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 3, nutriment_desc)
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/plain/jelly
+	name = "plain jelly donut"
+	icon_state = "jelly"
+	desc = "At least this one has jelly!"
+/obj/item/weapon/reagent_containers/food/snacks/donut/plain/jelly/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent("berryjuice", 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/pink
+	name = "pink frosted donut"
+	icon_state = "donut_pink"
+	desc = "This one has pink frosting!"
+	overlay_state = "donut_pink_inbox"
+/obj/item/weapon/reagent_containers/food/snacks/donut/pink/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 3, nutriment_desc)
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/pink/jelly
+	name = "pink frosted jelly donut"
+	icon_state = "jelly_pink"
+	desc = "This one has pink frosting and a jelly filling!"
+/obj/item/weapon/reagent_containers/food/snacks/donut/pink/jelly/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent("berryjuice", 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/purple
+	name = "purple frosted donut"
+	icon_state = "donut_purple"
+	desc = "This one has purple frosting!"
+	overlay_state = "donut_purple_inbox"
+/obj/item/weapon/reagent_containers/food/snacks/donut/purple/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 3, nutriment_desc)
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/purple/jelly
+	name = "purple frosted jelly donut"
+	icon_state = "jelly_purple"
+	desc = "This one has purple frosting and a jelly filling!"
+/obj/item/weapon/reagent_containers/food/snacks/donut/purple/jelly/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent("berryjuice", 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/green
+	name = "green frosted donut"
+	icon_state = "donut_green"
+	desc = "This one has green frosting!"
+	overlay_state = "donut_green_inbox"
+/obj/item/weapon/reagent_containers/food/snacks/donut/green/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 3, nutriment_desc)
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/green/jelly
+	name = "green frosted jelly donut"
+	icon_state = "jelly_green"
+	desc = "This one has green frosting and a jelly filling!"
+/obj/item/weapon/reagent_containers/food/snacks/donut/green/jelly/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent("berryjuice", 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/beige
+	name = "beige frosted donut"
+	icon_state = "donut_beige"
+	desc = "This one has beige frosting!"
+	overlay_state = "donut_beige_inbox"
+/obj/item/weapon/reagent_containers/food/snacks/donut/beige/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 3, nutriment_desc)
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/beige/jelly
+	name = "beige frosted jelly donut"
+	icon_state = "jelly_beige"
+	desc = "This one has beige frosting and a jelly filling!"
+/obj/item/weapon/reagent_containers/food/snacks/donut/beige/jelly/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent("berryjuice", 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/choc
+	name = "chocolate frosted donut"
+	icon_state = "donut_choc"
+	desc = "This one has chocolate frosting!"
+	overlay_state = "donut_choc_inbox"
+/obj/item/weapon/reagent_containers/food/snacks/donut/choc/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 3, nutriment_desc)
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/choc/jelly
+	name = "chocolate frosted jelly donut"
+	icon_state = "jelly_choc"
+	desc = "This one has chocolate frosting and a jelly filling!"
+/obj/item/weapon/reagent_containers/food/snacks/donut/choc/jelly/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent("berryjuice", 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/blue
+	name = "blue frosted donut"
+	icon_state = "donut_blue"
+	desc = "This one has blue frosting!"
+	overlay_state = "donut_blue_inbox"
+/obj/item/weapon/reagent_containers/food/snacks/donut/blue/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 3, nutriment_desc)
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/blue/jelly
+	name = "blue frosted jelly donut"
+	icon_state = "jelly_blue"
+	desc = "This one has blue frosting and a jelly filling!"
+/obj/item/weapon/reagent_containers/food/snacks/donut/blue/jelly/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent("berryjuice", 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/yellow
+	name = "yellow frosted donut"
+	icon_state = "donut_yellow"
+	desc = "This one has yellow frosting!"
+	overlay_state = "donut_yellow_inbox"
+/obj/item/weapon/reagent_containers/food/snacks/donut/yellow/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 3, nutriment_desc)
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/yellow/jelly
+	name = "yellow frosted jelly donut"
+	icon_state = "jelly_yellow"
+	desc = "This one has yellow frosting and a jelly filling!"
+/obj/item/weapon/reagent_containers/food/snacks/donut/yellow/jelly/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent("berryjuice", 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/olive
+	name = "olive frosted donut"
+	icon_state = "donut_olive"
+	desc = "This one has olive frosting!"
+	overlay_state = "donut_olive_inbox"
+/obj/item/weapon/reagent_containers/food/snacks/donut/olive/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 3, nutriment_desc)
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/olive/jelly
+	name = "olive frosted jelly donut"
+	icon_state = "jelly_olive"
+	desc = "This one has olive frosting and a jelly filling!"
+/obj/item/weapon/reagent_containers/food/snacks/donut/olive/jelly/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent("berryjuice", 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/homer
+	name = "frosted donut with sprinkles"
+	icon_state = "donut_homer"
+	desc = "It's a d'ohnut!"
+	overlay_state = "donut_homer_inbox"
+/obj/item/weapon/reagent_containers/food/snacks/donut/homer/Initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 3, nutriment_desc)
 	reagents.add_reagent("sprinkles", 1)
-	if(prob(30))
-		src.icon_state = "donut2"
-		src.overlay_state = "box-donut2"
-		src.name = "frosted donut"
-		reagents.add_reagent("sprinkles", 2)
-		center_of_mass = list("x"=19, "y"=16)
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/homer/jelly
+	name = "frosted jelly donut with sprinkles"
+	icon_state = "jelly_homer"
+	desc = "It's a d'ohnut with jelly filling!"
+/obj/item/weapon/reagent_containers/food/snacks/donut/homer/jelly/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent("sprinkles", 1)
+	reagents.add_reagent("berryjuice", 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/choc_sprinkles
+	name = "chocolate sprinkles donut"
+	icon_state = "donut_choc_sprinkles"
+	desc = "Mmm, chocolate with sprinkles... approaching maximum donut."
+	overlay_state = "donut_choc_sprinkles_inbox"
+/obj/item/weapon/reagent_containers/food/snacks/donut/choc_sprinkles/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent("sprinkles", 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/choc_sprinkles/jelly
+	name = "chocolate sprinkles jelly donut"
+	icon_state = "jelly_choc_sprinkles"
+	desc = "Pretty sure this is the most sugar you can pack into a donut."
+/obj/item/weapon/reagent_containers/food/snacks/donut/choc_sprinkles/jelly/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent("sprinkles", 1)
+	reagents.add_reagent("berryjuice", 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/meat
+	name = "meat donut"
+	icon_state = "donut_meat"
+	desc = "This donut has ... meat? Is it made of meat?!"
+	overlay_state = "donut_meat_inbox"
+/obj/item/weapon/reagent_containers/food/snacks/donut/meat/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 3, nutriment_desc)
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/laugh
+	name = "laugh donut"
+	icon_state = "donut_laugh"
+	desc = "Try not to laugh."
+	overlay_state = "donut_laugh_inbox"
+/obj/item/weapon/reagent_containers/food/snacks/donut/laugh/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 3, nutriment_desc)
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/laugh/jelly
+	name = "laugh jelly donut"
+	icon_state = "jelly_laugh"
+	desc = "Try not to be jelly."
+/obj/item/weapon/reagent_containers/food/snacks/donut/laugh/jelly/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent("berryjuice", 5)
+
 
 /obj/item/weapon/reagent_containers/food/snacks/donut/chaos
 	name = "Chaos Donut"
 	desc = "Like life, it never quite tastes the same."
-	icon_state = "donut1"
+	icon_state = "donut_chaos"
 	filling_color = "#ED11E6"
 	nutriment_amt = 2
 	bitesize = 10
+	overlay_state = "donut_chaos_inbox"
 
 /obj/item/weapon/reagent_containers/food/snacks/donut/chaos/Initialize()
 	. = ..()
 	reagents.add_reagent("sprinkles", 1)
-	var/chaosselect = pick(1,2,3,4,5,6,7,8,9,10)
-	switch(chaosselect)
+	switch(rand(1,10))
 		if(1)
 			reagents.add_reagent("nutriment", 3, nutriment_desc)
 		if(2)
@@ -441,87 +654,28 @@
 			reagents.add_reagent("berryjuice", 3)
 		if(10)
 			reagents.add_reagent("tricordrazine", 3)
-	if(prob(30))
-		src.icon_state = "donut2"
-		src.overlay_state = "box-donut2"
-		src.name = "Frosted Chaos Donut"
-		reagents.add_reagent("sprinkles", 2)
 
-/obj/item/weapon/reagent_containers/food/snacks/donut/jelly
-	name = "Jelly Donut"
-	desc = "You jelly?"
-	icon_state = "jdonut1"
+/obj/item/weapon/reagent_containers/food/snacks/donut/plain/jelly/poisonberry
 	filling_color = "#ED1169"
-	center_of_mass = list("x"=16, "y"=11)
-	nutriment_amt = 3
-	bitesize = 5
 
-/obj/item/weapon/reagent_containers/food/snacks/donut/jelly/Initialize()
+/obj/item/weapon/reagent_containers/food/snacks/donut/plain/jelly/poisonberry/Initialize()
 	. = ..()
-	reagents.add_reagent("sprinkles", 1)
-	reagents.add_reagent("berryjuice", 5)
-	if(prob(30))
-		src.icon_state = "jdonut2"
-		src.overlay_state = "box-donut2"
-		src.name = "Frosted Jelly Donut"
-		reagents.add_reagent("sprinkles", 2)
-
-/obj/item/weapon/reagent_containers/food/snacks/donut/poisonberry
-	name = "Jelly Donut"
-	desc = "You jelly?"
-	icon_state = "jdonut1"
-	filling_color = "#ED1169"
-	center_of_mass = list("x"=16, "y"=11)
-	nutriment_amt = 3
-	bitesize = 5
-
-/obj/item/weapon/reagent_containers/food/snacks/donut/poisonberry/Initialize()
-	. = ..()
-	reagents.add_reagent("sprinkles", 1)
 	reagents.add_reagent("poisonberryjuice", 5)
-	if(prob(30))
-		src.icon_state = "jdonut2"
-		src.overlay_state = "box-donut2"
-		src.name = "Frosted Jelly Donut"
-		reagents.add_reagent("sprinkles", 2)
 
-/obj/item/weapon/reagent_containers/food/snacks/donut/slimejelly
-	name = "Jelly Donut"
-	desc = "You jelly?"
-	icon_state = "jdonut1"
+/obj/item/weapon/reagent_containers/food/snacks/donut/plain/jelly/slimejelly
 	filling_color = "#ED1169"
-	center_of_mass = list("x"=16, "y"=11)
-	nutriment_amt = 3
-	bitesize = 5
 
-/obj/item/weapon/reagent_containers/food/snacks/donut/slimejelly/Initialize()
+/obj/item/weapon/reagent_containers/food/snacks/donut/plain/jelly/slimejelly/Initialize()
 	. = ..()
-	reagents.add_reagent("sprinkles", 1)
 	reagents.add_reagent("slimejelly", 5)
-	if(prob(30))
-		src.icon_state = "jdonut2"
-		src.overlay_state = "box-donut2"
-		src.name = "Frosted Jelly Donut"
-		reagents.add_reagent("sprinkles", 2)
 
-/obj/item/weapon/reagent_containers/food/snacks/donut/cherryjelly
-	name = "Jelly Donut"
-	desc = "You jelly?"
-	icon_state = "jdonut1"
+/obj/item/weapon/reagent_containers/food/snacks/donut/plain/jelly/cherryjelly
 	filling_color = "#ED1169"
-	center_of_mass = list("x"=16, "y"=11)
-	nutriment_amt = 3
-	bitesize = 5
 
-/obj/item/weapon/reagent_containers/food/snacks/donut/cherryjelly/Initialize()
+/obj/item/weapon/reagent_containers/food/snacks/donut/plain/jelly/cherryjelly/Initialize()
 	. = ..()
-	reagents.add_reagent("sprinkles", 1)
 	reagents.add_reagent("cherryjelly", 5)
-	if(prob(30))
-		src.icon_state = "jdonut2"
-		src.overlay_state = "box-donut2"
-		src.name = "Frosted Jelly Donut"
-		reagents.add_reagent("sprinkles", 2)
+
 
 /obj/item/weapon/reagent_containers/food/snacks/egg
 	name = "egg"
