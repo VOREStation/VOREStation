@@ -39,7 +39,7 @@
 /obj/machinery/vending/boozeomat
 	name = "Booze-O-Mat"
 	desc = "A technological marvel, the ads would have you believe this is able to mix just the mixture you'd like to drink the moment you ask for one."
-	icon_state = "fridge_dark"
+	icon_state = "boozeomat"
 	products = list(/obj/item/weapon/reagent_containers/food/drinks/glass2/square = 10,
 					/obj/item/weapon/reagent_containers/food/drinks/glass2/rocks = 10,
 					/obj/item/weapon/reagent_containers/food/drinks/glass2/shake = 10,
