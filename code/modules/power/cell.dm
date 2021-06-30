@@ -5,8 +5,8 @@
 /obj/item/weapon/cell
 	name = "power cell"
 	desc = "A rechargable electrochemical power cell."
-	icon = 'icons/obj/power.dmi'
-	icon_state = "cell"
+	icon = 'icons/obj/power_cells.dmi'
+	icon_state = "b_st"
 	item_state = "cell"
 	origin_tech = list(TECH_POWER = 1)
 	force = 5.0
@@ -29,8 +29,7 @@
 	pickup_sound = 'sound/items/pickup/component.ogg'
 
 	// Overlay stuff.
-	var/overlay_half_state = "cell-o1" // Overlay used when not fully charged but not empty.
-	var/overlay_full_state = "cell-o2" // Overlay used when fully charged.
+	var/standard_overlays = TRUE
 	var/last_overlay_state = null // Used to optimize update_icon() calls.
 
 /obj/item/weapon/cell/New()
@@ -73,29 +72,14 @@
 #define OVERLAY_EMPTY	0
 
 /obj/item/weapon/cell/update_icon()
-	var/new_overlay = null // The overlay that is needed.
-	// If it's different than the current overlay, then it'll get changed.
-	// Otherwise nothing happens, to save on CPU.
-
-	if(charge < 0.01) // Empty.
-		new_overlay = OVERLAY_EMPTY
-		if(last_overlay_state != new_overlay)
-			cut_overlays()
-
-	else if(charge/maxcharge >= 0.995) // Full
-		new_overlay = OVERLAY_FULL
-		if(last_overlay_state != new_overlay)
-			cut_overlay(overlay_half_state)
-			add_overlay(overlay_full_state)
-
-
-	else // Inbetween.
-		new_overlay = OVERLAY_PARTIAL
-		if(last_overlay_state != new_overlay)
-			cut_overlay(overlay_full_state)
-			add_overlay(overlay_half_state)
-
-	last_overlay_state = new_overlay
+	if(!standard_overlays)
+		return
+	var/ratio = clamp(round(charge / maxcharge, 0.25) * 100, 0, 100)
+	var/new_state = "[icon_state]_[ratio]"
+	if(new_state != last_overlay_state)
+		cut_overlay(last_overlay_state)
+		add_overlay(new_state)
+		last_overlay_state = new_state
 
 #undef OVERLAY_FULL
 #undef OVERLAY_PARTIAL
