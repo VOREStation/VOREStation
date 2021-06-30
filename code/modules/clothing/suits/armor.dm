@@ -389,7 +389,7 @@
 	armor = list(melee = 40, bullet = 40, laser = 60, energy = 35, bomb = 30, bio = 0, rad = 0)
 	cold_protection = UPPER_TORSO|LOWER_TORSO
 	min_cold_protection_temperature = T0C - 20
-	slowdown = 0.3
+	slowdown = 0.5
 
 /obj/item/clothing/suit/storage/vest/detective
 	name = "detective armor vest"

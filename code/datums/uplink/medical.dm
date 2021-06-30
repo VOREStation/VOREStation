@@ -33,13 +33,24 @@
 /datum/uplink_item/item/medical/bonemeds
 	name = "Bone Repair injector"
 	item_cost = 10
-	path = /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/bonemed
+	path = /obj/item/weapon/reagent_containers/hypospray/autoinjector/bonemed
+
+/datum/uplink_item/item/medical/clonemeds
+	name = "Clone injector"
+	item_cost = 15
+	path = /obj/item/weapon/reagent_containers/hypospray/autoinjector/clonemed
 
 /datum/uplink_item/item/medical/bonemeds_case
 	name = "Bone Repair case"
 	item_cost = 20
 	desc = "A case of three osteodaxon injectors. Can rapidly remove and stow up to six injectors."
 	path = /obj/item/weapon/storage/quickdraw/syringe_case/bonemed
+
+/datum/uplink_item/item/medical/clonemeds_case
+	name = "Clone case"
+	item_cost = 30
+	desc = "A case of three rezadone injectors. Can rapidly remove and stow up to six injectors."
+	path = /obj/item/weapon/storage/quickdraw/syringe_case/clonemed
 
 /datum/uplink_item/item/medical/ambrosiadeusseeds
 	name = "Box of 7x ambrosia deus seed packets"

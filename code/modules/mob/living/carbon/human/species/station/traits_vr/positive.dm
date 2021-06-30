@@ -153,3 +153,8 @@
 	H.verbs |= /mob/living/carbon/human/proc/weave_structure
 	H.verbs |= /mob/living/carbon/human/proc/weave_item
 	H.verbs |= /mob/living/carbon/human/proc/set_silk_color
+
+/datum/trait/positive/water_breather
+	name = "Water Breather"
+	desc = "You can breathe under water."
+	cost = 1

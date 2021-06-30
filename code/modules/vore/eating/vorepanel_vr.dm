@@ -164,7 +164,6 @@
 			"emote_time" = selected.emote_time,
 			"emote_active" = selected.emote_active,
 			"belly_fullscreen" = selected.belly_fullscreen,
-			"possible_fullscreens" = icon_states('icons/mob/screen_full_vore.dmi'),
 		)
 
 		var/list/addons = list()
@@ -192,6 +191,7 @@
 			selected_list["interacts"]["digestchance"] = selected.digestchance
 
 		selected_list["disable_hud"] = selected.disable_hud
+		selected_list["possible_fullscreens"] = icon_states('icons/mob/screen_full_vore.dmi')
 
 		var/list/selected_contents = list()
 		for(var/O in selected)

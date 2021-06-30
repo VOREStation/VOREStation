@@ -2868,7 +2868,7 @@
 	dir = 8
 	},
 /obj/structure/sign/poster{
-	pixel_y = 32
+	dir = 1
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lowmedbaymaint)
@@ -3815,6 +3815,7 @@
 	dir = 8;
 	pixel_x = 24
 	},
+/obj/machinery/light/small,
 /turf/simulated/floor/tiled,
 /area/rnd/hardstorage)
 "ags" = (
@@ -6361,9 +6362,11 @@
 /turf/simulated/floor/plating,
 /area/hallway/lower/first_west)
 "akT" = (
-/obj/structure/sign/poster,
-/turf/simulated/wall,
-/area/hallway/lower/first_west)
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/reinforced,
+/area/rnd/testingroom)
 "akU" = (
 /obj/item/device/radio/intercom{
 	dir = 8;
@@ -6532,6 +6535,9 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/structure/sign/poster{
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/lower/first_west)
@@ -7796,6 +7802,9 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 10
+	},
+/obj/machinery/light{
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/lower/first_west)
@@ -10311,7 +10320,7 @@
 	dir = 8
 	},
 /obj/structure/sign/poster{
-	pixel_y = 32
+	dir = 1
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/first_aid_west)
@@ -13208,6 +13217,9 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/corner/red/border{
+	dir = 4
+	},
+/obj/machinery/light/small{
 	dir = 4
 	},
 /turf/simulated/floor/tiled,
@@ -17593,6 +17605,9 @@
 /obj/effect/floor_decal/corner/lightgrey/border{
 	dir = 8
 	},
+/obj/structure/sign/poster{
+	dir = 8
+	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/locker/laundry_arrival)
 "aCI" = (
@@ -21768,6 +21783,9 @@
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
+	},
+/obj/machinery/light{
+	dir = 8
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/hallway)
@@ -26672,6 +26690,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/black{
 	dir = 4
 	},
+/obj/machinery/light,
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/atmos/processing)
 "aTg" = (
@@ -28356,6 +28375,9 @@
 "aWb" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/item/weapon/stool/padded,
+/obj/structure/sign/poster{
+	dir = 1
+	},
 /turf/simulated/floor/wood,
 /area/vacant/vacant_bar)
 "aWc" = (
@@ -29147,6 +29169,9 @@
 /obj/structure/table/steel,
 /obj/item/weapon/paper_bin,
 /obj/item/weapon/pen,
+/obj/structure/sign/poster{
+	dir = 8
+	},
 /turf/simulated/floor/wood,
 /area/vacant/vacant_bar)
 "aXB" = (
@@ -31056,6 +31081,7 @@
 	dir = 5
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/machinery/light,
 /turf/simulated/floor/tiled,
 /area/rnd/external)
 "bcV" = (
@@ -32584,6 +32610,10 @@
 /obj/effect/floor_decal/corner/red/border,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/lowerhall)
+"fna" = (
+/obj/machinery/light/small,
+/turf/simulated/floor/tiled,
+/area/rnd/hardstorage)
 "fpU" = (
 /obj/machinery/meter,
 /obj/machinery/atmospherics/pipe/manifold/hidden/green,
@@ -33123,6 +33153,10 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/trash_pit)
+"haz" = (
+/obj/machinery/light,
+/turf/simulated/floor/tiled,
+/area/engineering/atmos/processing)
 "hco" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/green{
 	dir = 9
@@ -33953,6 +33987,12 @@
 	},
 /turf/simulated/floor/carpet/gaycarpet,
 /area/tether/surfacebase/funny/clownoffice)
+"jYP" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/engineering/atmos)
 "kbZ" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 9
@@ -34767,6 +34807,10 @@
 	},
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/funny/hideyhole)
+"lZU" = (
+/obj/structure/sign/poster,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/tram)
 "meS" = (
 /turf/simulated/floor/carpet/gaycarpet,
 /area/tether/surfacebase/funny/clownoffice)
@@ -34850,6 +34894,10 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/tether/surfacebase/tram)
+"mtL" = (
+/obj/structure/sign/poster,
+/turf/simulated/floor/lino,
+/area/crew_quarters/visitor_dining)
 "mvM" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -35876,6 +35924,12 @@
 	},
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/plating,
+/area/crew_quarters/visitor_laundry)
+"pxk" = (
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/grey/border,
+/obj/structure/sign/poster,
+/turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_laundry)
 "pyD" = (
 /obj/machinery/door/airlock/maintenance/common{
@@ -44360,7 +44414,7 @@ axI
 awU
 aAk
 abN
-aeR
+akT
 aeR
 agl
 agN
@@ -44893,7 +44947,7 @@ akn
 abE
 jbU
 akJ
-akT
+ahl
 alg
 alq
 alB
@@ -45355,7 +45409,7 @@ abn
 abn
 acx
 afg
-abv
+fna
 abm
 aCm
 akg
@@ -46095,7 +46149,7 @@ aQR
 aRu
 aPl
 aPl
-aPl
+haz
 aOR
 aTW
 aUv
@@ -47652,7 +47706,7 @@ aOx
 aJI
 aPt
 aJI
-aJI
+jYP
 aQy
 aRD
 aRW
@@ -53204,7 +53258,7 @@ aVA
 aVQ
 bHR
 aUP
-bcT
+pxk
 aVn
 anK
 aYi
@@ -53321,7 +53375,7 @@ aDu
 atm
 aCQ
 aJV
-aDu
+mtL
 aLj
 aLT
 aME
@@ -54451,7 +54505,7 @@ auB
 aEO
 lsh
 aFW
-auB
+lZU
 aCO
 jCv
 aIz

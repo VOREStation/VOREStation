@@ -292,7 +292,7 @@
 	zone_sel.color = HUD.ui_color
 	zone_sel.alpha = HUD.ui_alpha
 	zone_sel.cut_overlays()
-	zone_sel.add_overlay(image('icons/mob/zone_sel.dmi', "[zone_sel.selecting]"))
+	zone_sel.update_icon()
 	hud_elements |= zone_sel
 
 	//Handle the gun settings buttons
