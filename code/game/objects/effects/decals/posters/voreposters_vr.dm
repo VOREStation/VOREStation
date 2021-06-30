@@ -386,3 +386,7 @@
 	icon_state = "inthedarkposter"
 	name = "Stars in the Dark"
 	desc = "A depiction of some kind of constellation. It is ominously dark surrounding these lights, while the lights themselves are incredibly bright yellow. The pattern is striking and draws the eye, not unlike eyes watching you, it is hard not to stare. The poster seems almost to stare back. This seems to be a poster depicting the icon of some religeon."
+/decl/poster/vore_101
+	icon_state = "cafejoanposter"
+	name = "Cafe Risu"
+	desc = "A poster depicting a familiar face readying to slurp a big mug of coffee. The face of addiction is not always unpleasant. Sometimes it takes the form of a pretty squirrel partaking of her morning treat..."
