@@ -379,38 +379,39 @@
 #define VIS_LIGHTING		2
 #define VIS_O_LIGHT         3
 #define VIS_EMISSIVE        4
+#define VIS_OPENSPACE       5
 
-#define VIS_GHOSTS			5
-#define VIS_AI_EYE			6
+#define VIS_GHOSTS			6
+#define VIS_AI_EYE			7
 
-#define VIS_CH_STATUS		7
-#define VIS_CH_HEALTH		8
-#define VIS_CH_LIFE			9
-#define VIS_CH_ID			10
-#define VIS_CH_WANTED		11
-#define VIS_CH_IMPLOYAL		12
-#define VIS_CH_IMPTRACK		13
-#define VIS_CH_IMPCHEM		14
-#define VIS_CH_SPECIAL		15
-#define VIS_CH_STATUS_OOC	16
+#define VIS_CH_STATUS		8
+#define VIS_CH_HEALTH		9
+#define VIS_CH_LIFE			10
+#define VIS_CH_ID			11
+#define VIS_CH_WANTED		12
+#define VIS_CH_IMPLOYAL		13
+#define VIS_CH_IMPTRACK		14
+#define VIS_CH_IMPCHEM		15
+#define VIS_CH_SPECIAL		16
+#define VIS_CH_STATUS_OOC	17
 
-#define VIS_ADMIN1			17
-#define VIS_ADMIN2			18
-#define VIS_ADMIN3			19
+#define VIS_ADMIN1			18
+#define VIS_ADMIN2			19
+#define VIS_ADMIN3			20
 
-#define VIS_MESONS			20
+#define VIS_MESONS			21
 
-#define VIS_TURFS			21
-#define VIS_OBJS			22
-#define VIS_MOBS		    23
+#define VIS_TURFS			22
+#define VIS_OBJS			23
+#define VIS_MOBS		    24
 
-#define VIS_BUILDMODE		24
+#define VIS_BUILDMODE		25
 
-#define VIS_CLOAKED			25
+#define VIS_CLOAKED			26
 
-#define VIS_STATUS			26
+#define VIS_STATUS			27
 
-#define VIS_COUNT			26 //Must be highest number from above.
+#define VIS_COUNT			27 //Must be highest number from above.
 
 //Some mob icon layering defines
 #define BODY_LAYER		-100

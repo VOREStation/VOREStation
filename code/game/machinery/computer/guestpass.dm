@@ -82,6 +82,7 @@
 	desc = "Used to print temporary passes for people. Handy!"
 	icon_state = "guest"
 	layer = ABOVE_WINDOW_LAYER
+	vis_flags = VIS_HIDE // They have an emissive that looks bad in openspace due to their wall-mounted nature
 	icon_keyboard = null
 	icon_screen = "pass"
 	density = 0
