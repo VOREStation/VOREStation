@@ -6,6 +6,7 @@
 	icon_state = "shimmer"
 	color = "#171DFF" //bloo
 	in_space = 0
+	unknown_state = "field"
 
 /datum/map_template/tether_lateload/gateway/honlethhighlands_a/on_map_loaded(z)
     . = ..()

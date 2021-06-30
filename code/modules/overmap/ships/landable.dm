@@ -7,8 +7,7 @@
 	var/obj/effect/shuttle_landmark/ship/landmark       // Record our open space landmark for easy reference.
 	var/multiz = 0										// Index of multi-z levels, starts at 0
 	var/status = SHIP_STATUS_LANDED
-	icon_state = "shuttle"
-	moving_state = "shuttle_moving"
+	icon_state = "shuttle_nosprite"
 
 /obj/effect/overmap/visitable/ship/landable/Destroy()
 	GLOB.shuttle_pre_move_event.unregister(SSshuttles.shuttles[shuttle], src)
