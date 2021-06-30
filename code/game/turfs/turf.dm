@@ -40,7 +40,7 @@
 		Entered(AM)
 
 	//Lighting related
-	luminosity = !(dynamic_lighting)
+	set_luminosity(!(dynamic_lighting))
 	
 	if(opacity)
 		directional_opacity = ALL_CARDINALS
