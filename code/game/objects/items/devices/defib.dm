@@ -43,25 +43,23 @@
 
 
 /obj/item/device/defib_kit/update_icon()
-	var/list/new_overlays = list()
+	cut_overlays()
 
 	if(paddles && paddles.loc == src) //in case paddles got destroyed somehow.
-		new_overlays += "[initial(icon_state)]-paddles"
+		add_overlay("[initial(icon_state)]-paddles")
 	if(bcell && paddles)
 		if(bcell.check_charge(paddles.chargecost))
 			if(paddles.combat)
-				new_overlays += "[initial(icon_state)]-combat"
+				add_overlay("[initial(icon_state)]-combat")
 			else if(!paddles.safety)
-				new_overlays += "[initial(icon_state)]-emagged"
+				add_overlay("[initial(icon_state)]-emagged")
 			else
-				new_overlays += "[initial(icon_state)]-powered"
+				add_overlay("[initial(icon_state)]-powered")
 
 		var/ratio = CEILING(bcell.percent()/25, 1) * 25
-		new_overlays += "[initial(icon_state)]-charge[ratio]"
+		add_overlay("[initial(icon_state)]-charge[ratio]")
 	else
-		new_overlays += "[initial(icon_state)]-nocell"
-
-	overlays = new_overlays
+		add_overlay("[initial(icon_state)]-nocell")
 
 /obj/item/device/defib_kit/ui_action_click()
 	toggle_paddles()
@@ -460,7 +458,7 @@
 		return
 
 	playsound(src, 'sound/machines/defib_charge.ogg', 50, 0)
-	audible_message("<span class='warning'>\The [src] lets out a steadily rising hum...</span>")
+	audible_message("<span class='warning'>\The [src] lets out a steadily rising hum...</span>", runemessage = "whines")
 
 	if(!do_after(user, chargetime, H))
 		return
@@ -527,7 +525,7 @@
 	H.setBrainLoss(brain_damage)
 
 /obj/item/weapon/shockpaddles/proc/make_announcement(var/message, var/msg_class)
-	audible_message("<b>\The [src]</b> [message]", "\The [src] vibrates slightly.")
+	audible_message("<b>\The [src]</b> [message]", "\The [src] vibrates slightly.", runemessage = "buzz")
 
 /obj/item/weapon/shockpaddles/emag_act(mob/user)
 	if(safety)

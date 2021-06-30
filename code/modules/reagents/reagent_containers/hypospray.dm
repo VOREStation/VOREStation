@@ -186,6 +186,17 @@
 	icon_state = "green"
 	filled_reagents = list("anti_toxin" = 5)
 
+//Special autoinjectors, while having potent chems like the 15u ones, the chems are usually potent enough that 5u is enough
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/bonemed
+	name = "bone repair injector"
+	desc = "A rapid and safe way to administer small amounts of drugs by untrained or trained personnel. This one excels at treating damage to bones."
+	filled_reagents = list("osteodaxon" = 5)
+
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/clonemed
+	name = "clone injector"
+	desc = "A rapid and safe way to administer small amounts of drugs by untrained or trained personnel. This one excels at treating genetic damage."
+	filled_reagents = list("rezadone" = 5)
+
 // These have a 15u capacity, somewhat higher tech level, and generally more useful chems, but are otherwise the same as the regular autoinjectors.
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector
 	name = "empty hypo"
@@ -246,11 +257,6 @@
 	name = "clotting agent"
 	desc = "A refined version of the standard autoinjector, allowing greater capacity. This variant excels at treating bleeding wounds and internal bleeding."
 	filled_reagents = list("inaprovaline" = 5, "myelamine" = 10)
-
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/bonemed
-	name = "bone repair injector"
-	desc = "A refined version of the standard autoinjector, allowing greater capacity. This one excels at treating damage to bones."
-	filled_reagents = list("inaprovaline" = 5, "osteodaxon" = 10)
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/glucose
 	name = "glucose hypo"

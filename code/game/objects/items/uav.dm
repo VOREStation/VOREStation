@@ -13,7 +13,7 @@
 	var/cell_type = null //Can put a starting cell here
 
 	density = 1 //Is dense, but not anchored, so you can swap with it
-	slowdown = 3 //Heevvee.
+	slowdown = 1.5 //Heevvee.
 
 	health = 100
 	var/power_per_process = 50 // About 6.5 minutes of use on a high-cell (10,000)
@@ -207,20 +207,20 @@
 	return FALSE
 
 /obj/item/device/uav/proc/toggle_packed()
-	if(UAV_ON)
+	if(state == UAV_ON)
 		power_down()
 	switch(state)
 		if(UAV_OFF) //Packing
 			state = UAV_PACKED
 			w_class = ITEMSIZE_LARGE
-			slowdown = 1
+			slowdown = 0.5
 			density = FALSE
 			update_icon()
 			return TRUE
 		if(UAV_PACKED) //Unpacking
 			state = UAV_OFF
 			w_class = ITEMSIZE_HUGE
-			slowdown = 3
+			slowdown = 1.5
 			density = TRUE
 			update_icon()
 			return TRUE
@@ -305,7 +305,8 @@
 	for(var/wr_master in masters)
 		var/weakref/wr = wr_master
 		var/mob/master = wr.resolve()
-		var/message = master.combine_message(message_pieces, verb, M)
+		var/list/combined = master.combine_message(message_pieces, verb, M)
+		var/message = combined["formatted"]
 		var/rendered = "<i><span class='game say'>UAV received: <span class='name'>[name_used]</span> [message]</span></i>"
 		master.show_message(rendered, 2)
 

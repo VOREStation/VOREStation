@@ -27,6 +27,8 @@
 		new /datum/data/mining_equipment("Titanium Fishing Rod",		/obj/item/weapon/material/fishing_rod/modern,						50),
 		new /datum/data/mining_equipment("Direct Payment - 1000",		/obj/item/weapon/spacecash/c1000,									500),
 		new /datum/data/mining_equipment("Industrial Equipment - Phoron Bore",	/obj/item/weapon/gun/magnetic/matfed/phoronbore/loaded,		500),
+		new /datum/data/mining_equipment("Survey Tools - Mapping Unit",	/obj/item/device/mapping_unit,										150),
+		new /datum/data/mining_equipment("Survey Tools - Mapping Beacon",/obj/item/device/holomap_beacon,									25),
 		new /datum/data/mining_equipment("Survey Tools - Shovel",		/obj/item/weapon/shovel,											20),
 		new /datum/data/mining_equipment("Survey Tools - Mechanical Trap",	/obj/item/weapon/beartrap,										30),
 		new /datum/data/mining_equipment("Digital Tablet - Standard",	/obj/item/modular_computer/tablet/preset/custom_loadout/standard,	100),
@@ -62,6 +64,11 @@
 		EQUIPMENT("Jump Boots",									/obj/item/clothing/shoes/bhop,										250),
 		EQUIPMENT("Mini-Translocator",							/obj/item/device/perfect_tele/one_beacon,							120),
 		EQUIPMENT("Survival Equipment - Insulated Poncho",		/obj/random/thermalponcho,											75),
+		EQUIPMENT("Survival Equipment - Glowstick", 			/obj/item/device/flashlight/glowstick,								5),
+		EQUIPMENT("Survival Equipment - Flare", 				/obj/item/device/flashlight/flare,									5),
+		EQUIPMENT("Survival Equipment - Radioisotope Glowstick",		/obj/item/device/flashlight/glowstick/radioisotope,					40),
+		EQUIPMENT("Survival Equipment - Modular Explorer Suit",		/obj/item/clothing/suit/armor/pcarrier/explorer,					200),
+		EQUIPMENT("Survival Equipment - Armored Jumpsuit",		/obj/item/clothing/under/explorer/armored,					200),
 	)
 	prize_list["Consumables"] = list(
 		EQUIPMENT("1 Marker Beacon",		/obj/item/stack/marker_beacon,													1),

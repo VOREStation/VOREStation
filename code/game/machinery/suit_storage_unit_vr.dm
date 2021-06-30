@@ -6,7 +6,7 @@
 /obj/machinery/suit_cycler/exploration
 	req_access = null
 	req_one_access = list(access_explorer,access_medical_equip)
-	departments = list("Exploration","Expedition Medic","No Change")
+	departments = list("Exploration","Field Medic","No Change")
 
 /obj/machinery/suit_cycler/pilot
 	req_access = list(access_pilot)

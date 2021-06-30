@@ -1,6 +1,3 @@
-#define ZONE_BLOCKED 2
-#define AIR_BLOCKED 1
-
 //Interactions
 /turf/simulated/wall/proc/toggle_open(var/mob/user)
 
@@ -36,9 +33,6 @@
 
 	can_open = WALL_CAN_OPEN
 	update_icon()
-
-#undef ZONE_BLOCKED
-#undef AIR_BLOCKED
 
 /turf/simulated/wall/proc/update_air()
 	if(!air_master)
@@ -89,8 +83,6 @@
 			to_chat(user, "<span class='danger'>\The [material.display_name] crumbles under your touch!</span>")
 			dismantle_wall()
 			return 1
-
-	if(..()) return 1
 
 	if(!can_open)
 		if(!material.wall_touch_special(src, user))

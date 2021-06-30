@@ -368,6 +368,15 @@ var/global/list/additional_antag_types = list()
 		feedback_set("escaped_on_pod_5",escaped_on_pod_5)
 
 	send2mainirc("A round of [src.name] has ended - [surviving_total] survivors, [ghosts] ghosts.")
+	SSwebhooks.send(
+		WEBHOOK_ROUNDEND, 
+		list(
+			"survivors" = surviving_total, 
+			"escaped" = escaped_total, 
+			"ghosts" = ghosts, 
+			"clients" = clients
+		)
+	)
 
 	return 0
 
@@ -460,7 +469,7 @@ var/global/list/additional_antag_types = list()
 //////////////////////////
 //Reports player logouts//
 //////////////////////////
-proc/display_roundstart_logout_report()
+/proc/display_roundstart_logout_report()
 	var/msg = "<span class='notice'><b>Roundstart logout report</b>\n\n"
 	for(var/mob/living/L in mob_list)
 
@@ -512,7 +521,7 @@ proc/display_roundstart_logout_report()
 		if(M.client && M.client.holder)
 			to_chat(M,msg)
 
-proc/get_nt_opposed()
+/proc/get_nt_opposed()
 	var/list/dudes = list()
 	for(var/mob/living/carbon/human/man in player_list)
 		if(man.client)

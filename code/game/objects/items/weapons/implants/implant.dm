@@ -119,6 +119,9 @@ GLOBAL_LIST_BOILERPLATE(all_tracking_implants, /obj/item/weapon/implant/tracking
 
 /obj/item/weapon/implant/tracking/Destroy()
 	STOP_PROCESSING(SSobj, src)
+	if(part)
+		part.implants -= src
+	part = imp_in = null
 	return ..()
 
 /obj/item/weapon/implant/tracking/process()

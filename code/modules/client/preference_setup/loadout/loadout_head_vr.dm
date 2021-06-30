@@ -1,3 +1,8 @@
+/datum/gear/head/cap/med
+	display_name = "cap, medical (Medical)"
+	path = /obj/item/clothing/head/soft/med
+	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic","Field Medic")
+
 /*/datum/gear/head/cap/sol
 	display_name = "cap, sol"
 	path = /obj/item/clothing/head/soft/sol*/
@@ -43,3 +48,15 @@
 /datum/gear/head/tigerpeltpink
 	display_name = "pink tiger pelt"
 	path = /obj/item/clothing/head/pelt/tigerpeltpink
+
+/*
+Talon hats
+*/
+/datum/gear/head/cap/talon
+	display_name = "cap, ITV"
+	path = /obj/item/clothing/head/soft/talon
+
+/datum/gear/head/beret/talon
+	display_name = "beret, ITV"
+	path = /obj/item/clothing/head/beret
+

@@ -8,7 +8,7 @@
 	var/list/active_timers  //for SStimer
 	var/list/datum_components //for /datum/components
 	var/list/comp_lookup
-	var/list/signal_procs
+	var/list/list/signal_procs // List of lists
 	var/signal_enabled = FALSE
 	var/weakref/weakref // Holder of weakref instance pointing to this datum
 	var/datum_flags = NONE

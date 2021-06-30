@@ -3,7 +3,7 @@
     key = "vwag"
     emote_message_3p = ""
 
-/decl/emote/helper/vwag/check_user(mob/living/carbon/human/user)
+/decl/emote/helper/vwag/mob_can_use(mob/living/carbon/human/user)
     if(!istype(user) || (!user.tail_style || !user.tail_style.ani_state))
         return FALSE
     return ..()
@@ -20,7 +20,7 @@
     key = "vflap"
     emote_message_3p = ""
 
-/decl/emote/helper/vflap/check_user(mob/living/carbon/human/user)
+/decl/emote/helper/vflap/mob_can_use(mob/living/carbon/human/user)
     if(!istype(user) || (!user.wing_style || !user.wing_style.ani_state))
         return FALSE
     return ..()

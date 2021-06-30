@@ -109,15 +109,10 @@
 /obj/item/weapon/storage/box/holobadge
 	name = "holobadge box"
 	desc = "A box claiming to contain holobadges."
-	New()
-		new /obj/item/clothing/accessory/badge/holo(src)
-		new /obj/item/clothing/accessory/badge/holo(src)
-		new /obj/item/clothing/accessory/badge/holo(src)
-		new /obj/item/clothing/accessory/badge/holo(src)
-		new /obj/item/clothing/accessory/badge/holo/cord(src)
-		new /obj/item/clothing/accessory/badge/holo/cord(src)
-		..()
-		return
+	starts_with = list(
+		/obj/item/clothing/accessory/badge/holo = 4,
+		/obj/item/clothing/accessory/badge/holo/cord = 2
+	)
 
 /obj/item/clothing/accessory/badge/holo/warden
 	name = "warden's holobadge"
@@ -140,16 +135,14 @@
 /obj/item/weapon/storage/box/holobadge/hos
 	name = "holobadge box"
 	desc = "A box claiming to contain holobadges."
-	New()
-		new /obj/item/clothing/accessory/badge/holo(src)
-		new /obj/item/clothing/accessory/badge/holo(src)
-		new /obj/item/clothing/accessory/badge/holo/warden(src)
-		new /obj/item/clothing/accessory/badge/holo/detective(src)
-		new /obj/item/clothing/accessory/badge/holo/detective(src)
-		new /obj/item/clothing/accessory/badge/holo/hos(src)
-		new /obj/item/clothing/accessory/badge/holo/cord(src)
-		..()
-		return
+	starts_with = list(
+		/obj/item/clothing/accessory/badge/holo = 2,
+		/obj/item/clothing/accessory/badge/holo/warden = 1,
+		/obj/item/clothing/accessory/badge/holo/detective = 2,
+		/obj/item/clothing/accessory/badge/holo/hos = 1,
+		/obj/item/clothing/accessory/badge/holo/cord = 1
+		
+	)
 
 // Synthmorph bag / Corporation badges. Primarily used on the robobag, but can be worn. Default is NT.
 

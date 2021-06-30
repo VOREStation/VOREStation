@@ -17,6 +17,8 @@
 
 	anchored = 1	//  don't get pushed around
 
+	var/created_for
+
 /mob/new_player/New()
 	mob_list += src
 	initialized = TRUE // Explicitly don't use Initialize().  New players join super early and use New()

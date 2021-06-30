@@ -2168,7 +2168,7 @@
 /area/awaymission/snow_outpost/dark)
 "hm" = (
 /obj/structure/closet/cabinet,
-/obj/item/weapon/contraband/poster,
+/obj/item/poster,
 /turf/simulated/floor/carpet,
 /area/awaymission/snow_outpost/dark)
 "hn" = (

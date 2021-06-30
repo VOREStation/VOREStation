@@ -34,7 +34,6 @@
 	force = 8
 	throwforce = 10
 	w_class = ITEMSIZE_NORMAL
-	slowdown = 0.1
 	origin_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 3, TECH_PHORON = 2)
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked", "warped", "blasted")
 	usesound = 'sound/effects/stealthoff.ogg'

@@ -23,6 +23,7 @@
 							/obj/item/clothing/head/cowboy_hat/small				= 2,
 							/obj/item/toy/stickhorse								= 2
 							)
+	var/list/special_prizes = list() // Holds instanced objects, intended for admins to shove surprises inside or something.
 
 /obj/machinery/computer/arcade/Initialize()
 	. = ..()
@@ -35,16 +36,17 @@
 		return INITIALIZE_HINT_QDEL
 
 /obj/machinery/computer/arcade/proc/prizevend()
-	if(!(contents-circuit).len)
+	if(LAZYLEN(special_prizes)) // Downstream wanted the 'win things inside contents sans circuitboard' feature kept.
+		var/atom/movable/AM = pick_n_take(special_prizes)
+		AM.forceMove(get_turf(src))
+		special_prizes -= AM
+	
+	else if(LAZYLEN(prizes))
 		var/prizeselect = pickweight(prizes)
 		new prizeselect(src.loc)
 
 		if(istype(prizeselect, /obj/item/clothing/suit/syndicatefake)) //Helmet is part of the suit
 			new	/obj/item/clothing/head/syndicatefake(src.loc)
-
-	else
-		var/atom/movable/prize = pick(contents-circuit)
-		prize.loc = src.loc
 
 /obj/machinery/computer/arcade/attack_ai(mob/user as mob)
 	return attack_hand(user)
@@ -517,9 +519,9 @@
 						if(electronics)
 							sleep(10)
 							if(oldfuel > fuel && oldfood > food)
-								src.audible_message("\The [src] lets out a somehow reassuring chime.")
+								src.audible_message("\The [src] lets out a somehow reassuring chime.", runemessage = "reassuring chime")
 							else if(oldfuel < fuel || oldfood < food)
-								src.audible_message("\The [src] lets out a somehow ominous chime.")
+								src.audible_message("\The [src] lets out a somehow ominous chime.", runemessage = "ominous chime")
 							food = oldfood
 							fuel = oldfuel
 

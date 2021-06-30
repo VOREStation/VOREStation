@@ -65,11 +65,11 @@
 
 // Makes a tiny overlay of the thing the player has copied, so they can easily tell what they currently have.
 /obj/item/weapon/spell/illusion/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(copied)
 		var/image/temp_image = image(copied)
 		var/matrix/M = matrix()
 		M.Scale(0.5, 0.5)
 		temp_image.transform = M
 //		temp_image.pixel_y = 8
-		src.overlays.Add(temp_image)
+		add_overlay(temp_image)

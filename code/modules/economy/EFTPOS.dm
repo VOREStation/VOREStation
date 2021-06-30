@@ -44,7 +44,7 @@
 	R.offset_y += 0
 	R.ico += "paper_stamp-cent"
 	R.stamped += /obj/item/weapon/stamp
-	R.overlays += stampoverlay
+	R.add_overlay(stampoverlay)
 	R.stamps += "<HR><i>This paper has been stamped by the EFTPOS device.</i>"
 
 /obj/item/device/eftpos/Destroy()
@@ -64,7 +64,7 @@
 	if(!R.stamped)
 		R.stamped = new
 	R.stamped += /obj/item/weapon/stamp
-	R.overlays += stampoverlay
+	R.add_overlay(stampoverlay)
 	R.stamps += "<HR><i>This paper has been stamped by the EFTPOS device.</i>"
 	var/obj/item/smallDelivery/D = new(R.loc)
 	R.loc = D
@@ -207,7 +207,7 @@
 				var/obj/item/I = usr.get_active_hand()
 				if (istype(I, /obj/item/weapon/card))
 					var/obj/item/weapon/card/id/C = I
-					if(access_cent_captain in C.access || access_hop in C.access || access_captain in C.access)
+					if((access_cent_captain in C.access) || (access_hop in C.access) || (access_captain in C.access))
 						access_code = 0
 						to_chat(usr, "[bicon(src)]<span class='info'>Access code reset to 0.</span>")
 				else if (istype(I, /obj/item/weapon/card/emag))
@@ -285,7 +285,5 @@
 				playsound(src, 'sound/machines/chime.ogg', 50, 1)
 				src.visible_message("[bicon(src)] \The [src] chimes.")
 				transaction_paid = 1
-	else
-		..()
 
 	//emag?

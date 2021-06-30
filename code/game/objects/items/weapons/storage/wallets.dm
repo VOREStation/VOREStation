@@ -46,12 +46,14 @@
 	drop_sound = 'sound/items/drop/leather.ogg'
 	pickup_sound = 'sound/items/pickup/leather.ogg'
 
+	var/original_name // Due to loadout customizations and such
+
 /obj/item/weapon/storage/wallet/remove_from_storage(obj/item/W as obj, atom/new_location)
 	. = ..(W, new_location)
 	if(.)
 		if(W == front_id)
 			front_id = null
-			name = initial(name)
+			name = original_name || initial(name)
 			update_icon()
 
 /obj/item/weapon/storage/wallet/handle_item_insertion(obj/item/W as obj, prevent_warning = 0)
@@ -59,18 +61,20 @@
 	if(.)
 		if(!front_id && istype(W, /obj/item/weapon/card/id))
 			front_id = W
-			name = "[name] ([front_id])"
+			if(!original_name)
+				original_name = name
+			name = "[original_name] ([front_id])"
 			update_icon()
 
 /obj/item/weapon/storage/wallet/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(front_id)
 		var/tiny_state = "id-generic"
-		if("id-"+front_id.icon_state in cached_icon_states(icon))
+		if("id-[front_id.icon_state]" in cached_icon_states(icon))
 			tiny_state = "id-"+front_id.icon_state
 		var/image/tiny_image = new/image(icon, icon_state = tiny_state)
 		tiny_image.appearance_flags = RESET_COLOR
-		overlays += tiny_image
+		add_overlay(tiny_image)
 
 /obj/item/weapon/storage/wallet/GetID()
 	return front_id

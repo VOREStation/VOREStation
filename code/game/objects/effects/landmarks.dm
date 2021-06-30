@@ -108,6 +108,16 @@
 
 	return 1
 
+/obj/effect/landmark/forbidden_level
+	delete_me = 1
+/obj/effect/landmark/forbidden_level/Initialize()
+	. = ..()
+	if(using_map)
+		using_map.secret_levels |= z
+	else
+		log_error("[type] mapped in but no using_map")
+
+
 /obj/effect/landmark/virtual_reality
 	name = "virtual_reality"
 	icon = 'icons/mob/screen1.dmi'
@@ -119,6 +129,7 @@
 	tag = "virtual_reality*[name]"
 	invisibility = 101
 	return 1
+
 
 //Costume spawner landmarks
 /obj/effect/landmark/costume/New() //costume spawner, selects a random subclass and disappears

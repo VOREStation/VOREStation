@@ -61,7 +61,7 @@ const DNAModifierOccupant = (props, context) => {
       title="Occupant"
       buttons={
         <Fragment>
-          <Box color="label" display="inline" mr="0.5rem">
+          <Box color="label" inline mr="0.5rem">
             Door Lock:
           </Box>
           <Button
@@ -399,7 +399,7 @@ const DNAModifierMainBuffersElement = (props, context) => {
               icon="save"
               content="Export"
               tooltip="Exports this buffer to the currently loaded data disk."
-              tooltipPosition="bottom-left"
+              tooltipPosition="bottom-end"
               onClick={() => act('bufferOption', {
                 option: 'saveDisk',
                 id: id,

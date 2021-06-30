@@ -52,16 +52,22 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 // Subsystem init_order, from highest priority to lowest priority
 // Subsystems shutdown in the reverse of the order they initialize in
 // The numbers just define the ordering, they are meaningless otherwise.
+#define INIT_ORDER_WEBHOOKS		50
 #define INIT_ORDER_SQLITE		40
+#define INIT_ORDER_MEDIA_TRACKS	38 // Gotta get that lobby music up, yo
 #define INIT_ORDER_CHEMISTRY	35
+#define INIT_ORDER_VIS			32
 #define INIT_ORDER_SKYBOX		30
 #define INIT_ORDER_MAPPING		25
+#define INIT_ORDER_SOUNDS		23
+#define INIT_ORDER_INSTRUMENTS	22
 #define INIT_ORDER_DECALS		20
 #define INIT_ORDER_PLANTS		19 // Must initialize before atoms.
 #define INIT_ORDER_PLANETS		18
 #define INIT_ORDER_JOB			17
 #define INIT_ORDER_ALARM		16 // Must initialize before atoms.
-#define INIT_ORDER_ATOMS		15
+#define INIT_ORDER_TRANSCORE	15 // VOREStation Edit
+#define INIT_ORDER_ATOMS		14 // VOREStation Edit
 #define INIT_ORDER_MACHINES		10
 #define INIT_ORDER_SHUTTLES		3
 #define INIT_ORDER_TIMER		1
@@ -89,8 +95,10 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 #define FIRE_PRIORITY_SUPPLY		5
 #define FIRE_PRIORITY_NIGHTSHIFT	5
 #define FIRE_PRIORITY_PLANTS		5
-#define FIRE_PRIORITY_ORBIT			8
-#define FIRE_PRIORITY_VOTE			9
+#define FIRE_PRIORITY_VIS			5
+#define FIRE_PRIORITY_ORBIT			7
+#define FIRE_PRIORITY_VOTE			8
+#define FIRE_PRIORITY_INSTRUMENTS	9
 #define FIRE_PRIORITY_AI			10
 #define FIRE_PRIORITY_GARBAGE		15
 #define FIRE_PRIORITY_ALARM			20
@@ -111,7 +119,7 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 // Macro defining the actual code applying our overlays lists to the BYOND overlays list. (I guess a macro for speed)
 // TODO - I don't really like the location of this macro define.  Consider it. ~Leshana
 #define COMPILE_OVERLAYS(A)\
-	if (TRUE) {\
+	do {\
 		var/list/oo = A.our_overlays;\
 		var/list/po = A.priority_overlays;\
 		if(LAZYLEN(po)){\
@@ -129,4 +137,4 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 			A.overlays.Cut();\
 		}\
 		A.flags &= ~OVERLAY_QUEUED;\
-	}
+	} while (FALSE)

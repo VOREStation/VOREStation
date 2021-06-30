@@ -29,7 +29,7 @@ mob
 			if(sandbox)
 				sandbox.update()
 
-datum/hSB
+/datum/hSB
 	var/owner = null
 	var/admin = 0
 	proc
@@ -102,7 +102,7 @@ datum/hSB
 					var/accesses = get_all_accesses()
 					for(var/A in accesses)
 						if(alert(usr, "Will this airlock require [get_access_desc(A)] access?", "Sandbox:", "Yes", "No") == "Yes")
-							hsb.req_access += A
+							LAZYADD(hsb.req_access, A)
 
 					hsb.loc = usr.loc
 					to_chat(usr, "<b>Sandbox:  Created an airlock.</b>")

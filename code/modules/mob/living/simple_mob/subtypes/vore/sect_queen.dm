@@ -33,6 +33,7 @@
 	icon = 'icons/mob/vore64x64.dmi'
 	vis_height = 64
 	has_eye_glow = TRUE
+	vore_eyes = TRUE
 
 	faction = "insects"
 	maxHealth = 200

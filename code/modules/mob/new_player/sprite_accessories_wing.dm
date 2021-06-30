@@ -11,6 +11,7 @@
 	do_colouration = 0 //Set to 1 to enable coloration using the tail color.
 
 	color_blend_mode = ICON_ADD // Only appliciable if do_coloration = 1
+	em_block = TRUE
 	var/extra_overlay // Icon state of an additional overlay to blend in.
 	var/extra_overlay2 //Tertiary.
 	var/clothing_can_hide = 1 // If true, clothing with HIDETAIL hides it. If the clothing is bulky enough to hide a tail, it should also hide wings.

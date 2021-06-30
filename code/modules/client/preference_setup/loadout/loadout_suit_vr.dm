@@ -1,14 +1,5 @@
-/datum/gear/suit/wintercoat/medical
-	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist", "Field Medic")
-
-/datum/gear/suit/wintercoat/science
-	allowed_roles = list("Research Director","Scientist", "Roboticist", "Xenobiologist", "Xenobotanist", "Explorer", "Pathfinder")
-
 /datum/gear/suit/snowsuit/medical
 	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist", "Field Medic")
-
-/datum/gear/suit/snowsuit/science
-	allowed_roles = list("Research Director","Scientist", "Roboticist", "Xenobiologist", "Xenobotanist", "Explorer", "Pathfinder")
 
 /datum/gear/suit/labcoat_colorable
 	display_name = "labcoat, colorable"
@@ -55,7 +46,7 @@
 /datum/gear/suit/roles/medical/ems_jacket
 	display_name = "first responder jacket"
 	path = /obj/item/clothing/suit/storage/toggle/fr_jacket
-	allowed_roles = list("Chief Medical Officer","Paramedic","Medical Doctor")
+	allowed_roles = list("Chief Medical Officer","Paramedic","Medical Doctor","Field Medic")
 
 //imo-superior 'martian' style jacket with the star-of-life design
 /datum/gear/suit/roles/medical/ems_jacket/alt
@@ -66,7 +57,7 @@
 /datum/gear/suit/roles/medical/paramedic_vest
 	display_name = "paramedic vest"
 	path = /obj/item/clothing/suit/storage/toggle/paramedic
-	allowed_roles = list("Chief Medical Officer","Paramedic","Medical Doctor")
+	allowed_roles = list("Chief Medical Officer","Paramedic","Medical Doctor","Field Medic")
 
 //greek thing
 /datum/gear/suit/chiton
@@ -82,3 +73,10 @@
 /datum/gear/suit/oversize/New()
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
+
+/*
+Talon winter coat
+*/
+/datum/gear/suit/wintercoat/talon
+	display_name = "winter coat, ITV"
+	path = /obj/item/clothing/suit/storage/hooded/wintercoat/talon

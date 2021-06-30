@@ -39,9 +39,9 @@
 			log_misc("ToR data updated!")
 			if(usr)
 				to_chat(usr, "<span class='filter_adminlog'>ToRban updated.</span>")
-			return 1
+			return
 		log_misc("ToR data update aborted: no data.")
-		return 0
+		return
 
 /client/proc/ToRban(task in list("update","toggle","show","remove","remove all","find"))
 	set name = "ToRban"

@@ -59,9 +59,11 @@
     emote_message_3p = "lets out a bork."
     emote_sound = 'sound/voice/bork.ogg'
 /decl/emote/audible/mrow
+    key = "mrow"
     emote_message_3p = "lets out a mrow."
     emote_sound = 'sound/voice/mrow.ogg'
 /decl/emote/audible/hypno
+    key = "hypno"
     emote_message_3p = "lets out a mystifying tone."
     emote_sound = 'sound/voice/hypno.ogg'
 /decl/emote/audible/hiss
@@ -127,3 +129,11 @@
     key = "cackle"
     emote_message_3p = "cackles hysterically!"
     emote_sound = 'sound/voice/YeenCackle.ogg'
+/decl/emote/audible/spiderchitter
+    key = "spiderchitter"
+    emote_message_3p = "chitters."
+    emote_sound = 'sound/voice/spiderchitter.ogg'
+/decl/emote/audible/spiderpurr
+    key = "spiderpurr"
+    emote_message_3p = "purrs."
+    emote_sound = 'sound/voice/spiderpurr.ogg'

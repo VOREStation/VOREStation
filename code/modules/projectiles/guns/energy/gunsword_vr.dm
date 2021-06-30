@@ -123,4 +123,4 @@
 		return (BRUTELOSS|FIRELOSS)
 
 /obj/item/weapon/cell/device/weapon/gunsword/update_icon()
-	overlays.Cut()
+	cut_overlays()

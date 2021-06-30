@@ -136,6 +136,12 @@
 "ka" = (
 /turf/simulated/wall/shull,
 /area/shuttle/mackerel_hc)
+"kq" = (
+/obj/structure/hull_corner{
+	dir = 1
+	},
+/turf/template_noop,
+/area/shuttle/mackerel_hc)
 "kU" = (
 /obj/machinery/portable_atmospherics/canister/air,
 /obj/machinery/atmospherics/portables_connector{
@@ -198,6 +204,10 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/techfloor,
+/area/shuttle/mackerel_hc)
+"pQ" = (
+/obj/structure/hull_corner,
+/turf/simulated/floor/airless,
 /area/shuttle/mackerel_hc)
 "pZ" = (
 /obj/structure/handrail{
@@ -307,6 +317,12 @@
 	},
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled/techmaint,
+/area/shuttle/mackerel_hc)
+"vt" = (
+/obj/structure/hull_corner{
+	dir = 4
+	},
+/turf/template_noop,
 /area/shuttle/mackerel_hc)
 "we" = (
 /obj/structure/closet/crate/engineering,
@@ -526,6 +542,10 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/mackerel_hc)
+"GW" = (
+/obj/structure/hull_corner,
+/turf/template_noop,
+/area/shuttle/mackerel_hc)
 "Jq" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 4
@@ -569,6 +589,12 @@
 /obj/machinery/atmospherics/pipe/manifold/visible/yellow,
 /turf/simulated/floor/plating,
 /area/shuttle/mackerel_hc)
+"JY" = (
+/obj/structure/hull_corner{
+	dir = 8
+	},
+/turf/template_noop,
+/area/shuttle/mackerel_hc)
 "Kb" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/effect/floor_decal/industrial/warning/corner{
@@ -594,6 +620,10 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
 	pixel_x = 30
+	},
+/obj/structure/panic_button{
+	pixel_x = 32;
+	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/mackerel_hc)
@@ -773,6 +803,12 @@
 /obj/structure/handrail,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/mackerel_hc)
+"UW" = (
+/obj/structure/hull_corner{
+	dir = 8
+	},
+/turf/simulated/floor/airless,
+/area/shuttle/mackerel_hc)
 "UY" = (
 /obj/machinery/atmospherics/unary/engine{
 	dir = 1
@@ -937,13 +973,13 @@ WP
 WP
 WP
 WP
-WP
+GW
 ka
 ka
 ka
 ka
 ka
-WP
+vt
 WP
 "}
 (3,1,1) = {"
@@ -964,7 +1000,7 @@ WP
 WP
 WP
 WP
-WP
+ka
 ka
 Zb
 bI
@@ -991,7 +1027,7 @@ WP
 WP
 WP
 WP
-WP
+ka
 ka
 jx
 dJ
@@ -1018,13 +1054,13 @@ ka
 WP
 WP
 WP
-WP
+JY
 ka
 ka
 tV
 ka
 ka
-WP
+kq
 WP
 "}
 (6,1,1) = {"
@@ -1059,7 +1095,7 @@ WP
 ka
 az
 az
-az
+pQ
 ka
 ka
 ka
@@ -1133,7 +1169,7 @@ tV
 ka
 ka
 ka
-WP
+vt
 "}
 (10,1,1) = {"
 WP
@@ -1241,7 +1277,7 @@ tV
 ka
 ka
 ka
-WP
+kq
 "}
 (14,1,1) = {"
 WP
@@ -1275,7 +1311,7 @@ WP
 ka
 az
 az
-az
+UW
 ka
 ka
 ka
@@ -1342,13 +1378,13 @@ ka
 WP
 WP
 WP
-WP
+GW
 ka
 ka
 tV
 ka
 ka
-WP
+vt
 WP
 "}
 (18,1,1) = {"
@@ -1369,7 +1405,7 @@ WP
 WP
 WP
 WP
-WP
+ka
 ka
 jx
 dJ
@@ -1396,7 +1432,7 @@ WP
 WP
 WP
 WP
-WP
+ka
 ka
 WI
 Qz
@@ -1423,13 +1459,13 @@ WP
 WP
 WP
 WP
-WP
+JY
 ka
 ka
 ka
 ka
 ka
-WP
+kq
 WP
 "}
 (21,1,1) = {"

@@ -93,7 +93,7 @@
 			var/obj/belly/B = belly
 			B.escapable = initial(B.escapable)
 
-		//overlays.Cut()
+		//cut_overlays()
 		invisibility = initial(invisibility)
 		see_invisible = initial(see_invisible)
 		incorporeal_move = initial(incorporeal_move)
@@ -148,7 +148,7 @@
 		sleep(5)
 		invisibility = INVISIBILITY_LEVEL_TWO
 		see_invisible = INVISIBILITY_LEVEL_TWO
-		//overlays.Cut()
+		//cut_overlays()
 		update_icon()
 		alpha = 127
 

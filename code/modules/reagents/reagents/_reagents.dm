@@ -26,7 +26,7 @@
 	var/affects_dead = 0	// Does this chem process inside a corpse?
 	var/affects_robots = 0	// Does this chem process inside a Synth?
 	
-	var/allergen_type = GENERIC	// What potential allergens does this contain?
+	var/allergen_type		// What potential allergens does this contain?
 	var/allergen_factor = 1	// If the potential allergens are mixed and low-volume, they're a bit less dangerous. Needed for drinks because they're a single reagent compared to food which contains multiple seperate reagents.
 
 	var/cup_icon_state = null

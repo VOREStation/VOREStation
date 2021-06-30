@@ -381,7 +381,7 @@
 	desc = "A bag for storing pills, patches, and bottles."
 	max_storage_space = 200
 	w_class = ITEMSIZE_LARGE
-	slowdown = 1
+	slowdown = 3
 	can_hold = list(/obj/item/weapon/reagent_containers/pill,/obj/item/weapon/reagent_containers/glass/beaker,/obj/item/weapon/reagent_containers/glass/bottle)
 
 	// -----------------------------

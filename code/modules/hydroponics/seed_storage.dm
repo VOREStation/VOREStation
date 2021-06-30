@@ -405,9 +405,9 @@
 		panel_open = !panel_open
 		to_chat(user, "You [panel_open ? "open" : "close"] the maintenance panel.")
 		playsound(src, O.usesound, 50, 1)
-		overlays.Cut()
+		cut_overlays()
 		if(panel_open)
-			overlays += image(icon, "[initial(icon_state)]-panel")
+			add_overlay("[initial(icon_state)]-panel")
 	else if((O.is_wirecutter() || istype(O, /obj/item/device/multitool)) && panel_open)
 		wires.Interact(user)
 
@@ -417,7 +417,7 @@
 		if(lockdown)
 			to_chat(user, "<span class='notice'>\The [src]'s control panel thunks, as its cover retracts.</span>")
 			lockdown = 0
-		if(req_access || req_one_access)
+		if(LAZYLEN(req_access) || LAZYLEN(req_one_access))
 			req_access = list()
 			req_one_access = list()
 			to_chat(user, "<span class='warning'>\The [src]'s access mechanism shorts out.</span>")

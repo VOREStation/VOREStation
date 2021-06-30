@@ -142,11 +142,11 @@
 	if(user.a_intent)
 		switch(user.a_intent)
 			if(I_HURT)
-				if(prob(10) && istype(target, /mob/living/carbon/human) && user.zone_sel in list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT, BP_L_ARM, BP_R_ARM, BP_L_HAND, BP_R_HAND))
+				if(prob(10) && istype(target, /mob/living/carbon/human) && (user.zone_sel in list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT, BP_L_ARM, BP_R_ARM, BP_L_HAND, BP_R_HAND)))
 					to_chat(target, "<span class='warning'>\The [src] rips at your hands!</span>")
 					ranged_disarm(target)
 			if(I_DISARM)
-				if(prob(min(90, force * 3)) && istype(target, /mob/living/carbon/human) && user.zone_sel in list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT, BP_L_ARM, BP_R_ARM, BP_L_HAND, BP_R_HAND))
+				if(prob(min(90, force * 3)) && istype(target, /mob/living/carbon/human) && (user.zone_sel in list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT, BP_L_ARM, BP_R_ARM, BP_L_HAND, BP_R_HAND)))
 					ranged_disarm(target)
 				else
 					target.visible_message("<span class='danger'>\The [src] sends \the [target] stumbling away.</span>")
@@ -175,7 +175,7 @@
 						visible_message("<span class='danger'>[H]'s [W] goes off due to \the [src]!</span>")
 						return W.afterattack(target,H)
 
-		if(!(H.species.flags & NO_SLIP) && prob(10) && user.zone_sel in list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT))
+		if(!(H.species.flags & NO_SLIP) && prob(10) && (user.zone_sel in list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT)))
 			var/armor_check = H.run_armor_check(user.zone_sel, "melee")
 			H.apply_effect(3, WEAKEN, armor_check)
 			playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)

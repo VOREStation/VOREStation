@@ -102,6 +102,10 @@ SUBSYSTEM_DEF(mapping)
 			return
 
 		for(var/map in picklist)
+			if(islist(map))
+				// TRIPLE NEST. In this situation we pick one at random from the choices in the list.
+				//This allows a sort of a1,a2,a3,b1,b2,b3,c1,c2,c3 setup where it picks one 'a', one 'b', one 'c'
+				map = pick(map)
 			var/datum/map_template/MT = map_templates[map]
 			if(!istype(MT))
 				error("Randompick Z level \"[map]\" is not a valid map!")

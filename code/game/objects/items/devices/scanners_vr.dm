@@ -19,7 +19,14 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 
 	var/ooc_notes = null //For holding prefs
 
+	// Resleeving database this machine interacts with. Blank for default database
+	// Needs a matching /datum/transcore_db with key defined in code
+	var/db_key
+	var/datum/transcore_db/our_db // These persist all round and are never destroyed, just keep a hard ref
 
+/obj/item/device/sleevemate/Initialize()
+	. = ..()
+	our_db = SStranscore.db_by_key(db_key)
 
 //These don't perform any checks and need to be wrapped by checks
 /obj/item/device/sleevemate/proc/clear_mind()
@@ -77,7 +84,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 			clear_mind()
 		if("Backup")
 			to_chat(user,"<span class='notice'>Internal copy of [stored_mind.name] backed up to database.</span>")
-			SStranscore.m_backup(stored_mind,null,one_time = TRUE)
+			our_db.m_backup(stored_mind,null,one_time = TRUE)
 		if("Cancel")
 			return
 
@@ -171,7 +178,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 
 	//The actual options
 	if(href_list["mindscan"])
-		if(!target.mind || target.mind.name in prevent_respawns)
+		if(!target.mind || (target.mind.name in prevent_respawns))
 			to_chat(usr,"<span class='warning'>Target seems totally braindead.</span>")
 			return
 
@@ -183,7 +190,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 
 		usr.visible_message("[usr] begins scanning [target]'s mind.","<span class='notice'>You begin scanning [target]'s mind.</span>")
 		if(do_after(usr,8 SECONDS,target))
-			SStranscore.m_backup(target.mind,nif,one_time = TRUE)
+			our_db.m_backup(target.mind,nif,one_time = TRUE)
 			to_chat(usr,"<span class='notice'>Mind backed up!</span>")
 		else
 			to_chat(usr,"<span class='warning'>You must remain close to your target!</span>")
@@ -200,7 +207,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 		usr.visible_message("[usr] begins scanning [target]'s body.","<span class='notice'>You begin scanning [target]'s body.</span>")
 		if(do_after(usr,8 SECONDS,target))
 			var/datum/transhuman/body_record/BR = new()
-			BR.init_from_mob(H, TRUE, TRUE)
+			BR.init_from_mob(H, TRUE, TRUE, database_key = db_key)
 			to_chat(usr,"<span class='notice'>Body scanned!</span>")
 		else
 			to_chat(usr,"<span class='warning'>You must remain close to your target!</span>")
@@ -208,7 +215,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 		return
 
 	if(href_list["mindsteal"])
-		if(!target.mind || target.mind.name in prevent_respawns)
+		if(!target.mind || (target.mind.name in prevent_respawns))
 			to_chat(usr,"<span class='warning'>Target seems totally braindead.</span>")
 			return
 

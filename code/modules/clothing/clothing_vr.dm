@@ -40,7 +40,7 @@
 			to_chat(user, "<span class='warning'>You can't fit anyone else into \the [src]!</span>")
 		else
 			var/obj/item/weapon/holder/micro/holder = I
-			if(holder.held_mob && holder.held_mob in holder)
+			if(holder.held_mob && (holder.held_mob in holder))
 				to_chat(holder.held_mob, "<span class='warning'>[user] stuffs you into \the [src]!</span>")
 				holder.held_mob.forceMove(src)
 				to_chat(user, "<span class='notice'>You stuff \the [holder.held_mob] into \the [src]!</span>")

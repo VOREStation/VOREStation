@@ -14,7 +14,7 @@
 	w_class = ITEMSIZE_SMALL
 	flags = NOBLUDGEON
 
-	slowdown = 0.25
+	slowdown = 0.5
 
 	reach = 2
 
@@ -78,7 +78,7 @@
 
 /obj/item/weapon/material/fishing_net/update_icon() // Also updates name and desc
 	underlays.Cut()
-	overlays.Cut()
+	cut_overlays()
 
 	..()
 

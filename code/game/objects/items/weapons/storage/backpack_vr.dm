@@ -10,13 +10,13 @@
 	var/taurtype = /datum/sprite_accessory/tail/taur/horse //Acceptable taur type to be wearing this
 	var/no_message = "You aren't the appropriate taur type to wear this!"
 
-	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
-		if(..())
-			if(istype(H) && istype(H.tail_style, taurtype))
-				return 1
-			else
-				to_chat(H, "<span class='warning'>[no_message]</span>")
-				return 0
+/obj/item/weapon/storage/backpack/saddlebag/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+	if(..())
+		if(istype(H) && istype(H.tail_style, taurtype))
+			return 1
+		else
+			to_chat(H, "<span class='warning'>[no_message]</span>")
+			return 0
 
 /* If anyone wants to make some... this is how you would.
 /obj/item/weapon/storage/backpack/saddlebag/spider
@@ -38,15 +38,15 @@
 	slowdown = 1 //And are slower, too...
 	var/no_message = "You aren't the appropriate taur type to wear this!"
 
-	mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
-		if(..())
-			if(!istype(H))//Error, non HUMAN.
-				log_runtime("[H] was not a valid human!")
-				return
+/obj/item/weapon/storage/backpack/saddlebag_common/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+	if(..())
+		if(!istype(H))//Error, non HUMAN.
+			log_runtime("[H] was not a valid human!")
+			return
 
-			var/datum/sprite_accessory/tail/taur/TT = H.tail_style
-			item_state = "[icon_base]_[TT.icon_sprite_tag]"	//icon_sprite_tag is something like "deer"
-			return 1
+		var/datum/sprite_accessory/tail/taur/TT = H.tail_style
+		item_state = "[icon_base]_[TT.icon_sprite_tag]"	//icon_sprite_tag is something like "deer"
+		return 1
 
 
 
@@ -83,21 +83,71 @@
 /obj/item/weapon/storage/backpack/ert
 	max_storage_space = INVENTORY_DUFFLEBAG_SPACE
 
-/obj/item/weapon/storage/backpack/satchel/explorer
-	name = "explorer satchel"
-	desc = "A satchel for carrying a large number of supplies easily."
-	icon = 'icons/obj/clothing/backpack_vr.dmi'
-	icon_override = 'icons/mob/back_vr.dmi'
-	item_state = "satchel-explorer"
-	icon_state = "satchel-explorer"
+///Exploration Bags///
 
 /obj/item/weapon/storage/backpack/explorer
-	name = "explorer backpack"
+	name = "exploration backpack"
 	desc = "A backpack for carrying a large number of supplies easily."
 	icon = 'icons/obj/clothing/backpack_vr.dmi'
 	icon_override = 'icons/mob/back_vr.dmi'
-	item_state = "explorerpack"
-	icon_state = "explorerpack"
+	icon_state = "explorer"
+
+/obj/item/weapon/storage/backpack/satchel/explorer
+	name = "exploration satchel"
+	desc = "A satchel for carrying a large number of supplies easily."
+	icon = 'icons/obj/clothing/backpack_vr.dmi'
+	icon_override = 'icons/mob/back_vr.dmi'
+	icon_state = "explorer_satchel"
+	item_state_slots = null
+
+/obj/item/weapon/storage/backpack/messenger/explorer
+	name = "exploration messenger bag"
+	desc = "A sturdy backpack worn over one shoulder."
+	icon = 'icons/obj/clothing/backpack_vr.dmi'
+	icon_override = 'icons/mob/back_vr.dmi'
+	icon_state = "explorer_courier"
+	item_state_slots = null
+
+/obj/item/weapon/storage/backpack/dufflebag/explorer
+	name = "exploration dufflebag"
+	desc = "A large dufflebag for holding extra supplies."
+	icon = 'icons/obj/clothing/backpack_vr.dmi'
+	icon_override = 'icons/mob/back_vr.dmi'
+	icon_state = "explorer_duffle"
+
+///Talon Bags///
+
+/obj/item/weapon/storage/backpack/talon
+	name = "ITV backpack"
+	desc = "A backpack for carrying a large number of supplies easily."
+	icon = 'icons/obj/clothing/backpack_vr.dmi'
+	icon_override = 'icons/mob/back_vr.dmi'
+	icon_state = "talon"
+
+/obj/item/weapon/storage/backpack/satchel/talon
+	name = "ITV satchel"
+	desc = "A satchel for carrying a large number of supplies easily."
+	icon = 'icons/obj/clothing/backpack_vr.dmi'
+	icon_override = 'icons/mob/back_vr.dmi'
+	icon_state = "talon_satchel"
+	item_state_slots = null
+
+/obj/item/weapon/storage/backpack/messenger/talon
+	name = "ITV messenger bag"
+	desc = "A sturdy backpack worn over one shoulder."
+	icon = 'icons/obj/clothing/backpack_vr.dmi'
+	icon_override = 'icons/mob/back_vr.dmi'
+	icon_state = "talon_courier"
+	item_state_slots = null
+
+/obj/item/weapon/storage/backpack/dufflebag/talon
+	name = "ITV dufflebag"
+	desc = "A large dufflebag for holding extra supplies."
+	icon = 'icons/obj/clothing/backpack_vr.dmi'
+	icon_override = 'icons/mob/back_vr.dmi'
+	icon_state = "talon_duffle"
+
+///Roboticist Bags///
 
 /obj/item/weapon/storage/backpack/satchel/roboticist
 	name = "roboticist satchel"
@@ -114,6 +164,8 @@
 	icon_override = 'icons/mob/back_vr.dmi'
 	item_state = "backpack-robo"
 	icon_state = "backpack-robo"
+
+///Vintage Military Bags///
 
 /obj/item/weapon/storage/backpack/vietnam
 	name = "vietnam backpack"

@@ -1,7 +1,7 @@
 import { round } from 'common/math';
 import { Fragment } from 'inferno';
 import { useBackend, useSharedState } from "../backend";
-import { Box, Button, Flex, Icon, LabeledList, ProgressBar, Section, Divider, Tabs } from "../components";
+import { Box, Button, Flex, Icon, LabeledList, ProgressBar, Section, Divider, Tabs, Stack } from "../components";
 import { Window } from "../layouts";
 import { sortBy, filter } from 'common/collections';
 import { logger } from '../logging';
@@ -21,7 +21,7 @@ export const ICPrinter = (props, context) => {
   } = data;
 
   return (
-    <Window width={500} height={630}>
+    <Window width={600} height={630}>
       <Window.Content scrollable>
         <Section title="Status">
           <LabeledList>
@@ -44,7 +44,6 @@ export const ICPrinter = (props, context) => {
           </Box>
         </Section>
         <ICPrinterCategories />
-        
       </Window.Content>
     </Window>
   );
@@ -76,38 +75,44 @@ const ICPrinterCategories = (props, context) => {
 
   return (
     <Section title="Circuits">
-      <Tabs>
-        {sortBy(cat => cat.name)(categories).map(cat => (
-          <Tabs.Tab
-            selected={categoryTarget === cat.name}
-            onClick={() => setcategoryTarget(cat.name)}
-            key={cat.name}>
-            {cat.name}
-          </Tabs.Tab>
-        ))}
-      </Tabs>
-      {selectedCategory && (
-        <Section title={selectedCategory.name} level={2}>
-          <LabeledList>
-            {sortBy(item => item.name)(selectedCategory.items).map(item => (
-              <LabeledList.Item
-                key={item.name}
-                label={item.name}
-                labelColor={item.can_build ? "good" : "bad"}
-                buttons={
-                  <Button
-                    disabled={!canBuild(item, data)}
-                    icon="print"
-                    onClick={() => act("build", { build: item.path })}>
-                    Print
-                  </Button>
-                }>
-                {item.desc}
-              </LabeledList.Item>
+      <Stack fill>
+        <Stack.Item mr={2}>
+          <Tabs vertical>
+            {sortBy(cat => cat.name)(categories).map(cat => (
+              <Tabs.Tab
+                selected={categoryTarget === cat.name}
+                onClick={() => setcategoryTarget(cat.name)}
+                key={cat.name}>
+                {cat.name}
+              </Tabs.Tab>
             ))}
-          </LabeledList>
-        </Section>
-      ) || "No category selected."}
+          </Tabs>
+        </Stack.Item>
+        <Stack.Item>
+          {selectedCategory && (
+            <Section>
+              <LabeledList>
+                {sortBy(item => item.name)(selectedCategory.items).map(item => (
+                  <LabeledList.Item
+                    key={item.name}
+                    label={item.name}
+                    labelColor={item.can_build ? "good" : "bad"}
+                    buttons={
+                      <Button
+                        disabled={!canBuild(item, data)}
+                        icon="print"
+                        onClick={() => act("build", { build: item.path })}>
+                        Print
+                      </Button>
+                    }>
+                    {item.desc}
+                  </LabeledList.Item>
+                ))}
+              </LabeledList>
+            </Section>
+          ) || "No category selected."}
+        </Stack.Item>
+      </Stack>
     </Section>
   );
 };

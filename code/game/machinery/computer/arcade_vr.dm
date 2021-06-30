@@ -1,5 +1,5 @@
 /obj/machinery/computer/arcade
-	list/prizes = list(	/obj/item/weapon/storage/box/snappops					= 2,
+	prizes = list(	/obj/item/weapon/storage/box/snappops					= 2,
 							/obj/item/toy/blink										= 2,
 							/obj/item/clothing/under/syndicate/tacticool			= 2,
 							/obj/item/toy/sword										= 2,

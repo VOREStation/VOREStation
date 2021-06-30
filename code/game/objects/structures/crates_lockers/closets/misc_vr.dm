@@ -66,9 +66,11 @@
 
 /obj/structure/closet/secure_closet/explorer/Initialize()
 	if(prob(50))
-		starts_with += /obj/item/weapon/storage/backpack
+		starts_with += /obj/item/weapon/storage/backpack/explorer
 	else
-		starts_with += /obj/item/weapon/storage/backpack/satchel/norm
+		starts_with += /obj/item/weapon/storage/backpack/satchel/explorer
+	if(prob(50))
+		starts_with += /obj/item/weapon/storage/backpack/dufflebag/explorer
 	return ..()
 
 //SAR Lockers
@@ -113,6 +115,15 @@
 		/obj/item/bodybag/cryobag,
 		/obj/item/device/cataloguer/compact)
 
+/obj/structure/closet/secure_closet/sar/Initialize()
+	if(prob(50))
+		starts_with += /obj/item/weapon/storage/backpack/medic
+	else
+		starts_with += /obj/item/weapon/storage/backpack/satchel/med
+	if(prob(50))
+		starts_with += /obj/item/weapon/storage/backpack/dufflebag/med
+	return ..()
+
 //Pilot Locker
 
 /obj/structure/closet/secure_closet/pilot
@@ -124,7 +135,7 @@
 		/obj/item/weapon/storage/backpack/parachute,
 		/obj/item/weapon/material/knife/tacknife/survival,
 		/obj/item/weapon/gun/energy/locked/frontier/holdout,
-		/obj/item/clothing/head/ompilot,
+		/obj/item/clothing/head/pilot_vr,
 		/obj/item/clothing/under/rank/pilot1,
 		/obj/item/clothing/suit/storage/toggle/bomber/pilot,
 		/obj/item/clothing/shoes/boots/winter/explorer,
@@ -180,7 +191,8 @@
 		/obj/random/explorer_shield,
 		/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
 		/obj/item/weapon/reagent_containers/food/snacks/liquidprotein,
-		/obj/item/device/cataloguer/compact/pathfinder)
+		/obj/item/device/cataloguer/compact/pathfinder,
+		/obj/item/device/mapping_unit)
 
 /obj/structure/closet/secure_closet/pathfinder/Initialize()
 	if(prob(50))
@@ -206,8 +218,8 @@
 /obj/structure/closet/autolok_wall
 	name = "autolok suit storage"
 	desc = "It's wall-mounted storage unit for an AutoLok suit."
-	icon = 'icons/obj/closets/bases/wall.dmi'
-	closet_appearance = /decl/closet_appearance/wall/autolok
+	icon = 'icons/obj/closets/bases/wall_double.dmi'
+	closet_appearance = /decl/closet_appearance/wall_double/autolok
 	anchored = 1
 	density = 0
 	wall_mounted = 1

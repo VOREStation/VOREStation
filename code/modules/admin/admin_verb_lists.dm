@@ -186,7 +186,8 @@ var/list/admin_verbs_server = list(
 	/client/proc/panicbunker,
 	/client/proc/paranoia_logging,
 	/client/proc/ip_reputation,
-	/client/proc/debug_global_variables
+	/client/proc/debug_global_variables,
+	/client/proc/dbcon_fix
 	)
 
 var/list/admin_verbs_debug = list(
@@ -235,7 +236,9 @@ var/list/admin_verbs_debug = list(
 	/client/proc/admin_give_modifier,
 	/client/proc/simple_DPS,
 	/datum/admins/proc/view_feedback,
-	/client/proc/debug_global_variables
+	/client/proc/debug_global_variables,
+	/client/proc/ping_webhook,
+	/client/proc/reload_webhooks
 	)
 
 var/list/admin_verbs_paranoid_debug = list(

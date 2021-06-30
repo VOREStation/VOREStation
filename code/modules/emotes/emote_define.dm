@@ -4,6 +4,13 @@
 //   gender-appropriate version of the same.
 // - Impaired messages do not do any substitutions.
 
+var/global/list/emotes_by_key
+
+/proc/get_emote_by_key(var/key)
+	if(!global.emotes_by_key)
+		decls_repository.get_decls_of_type(/decl/emote) // emotes_by_key will be updated in emote Initialize()
+	return global.emotes_by_key[key]
+
 /decl/emote
 	var/key                                             // Command to use emote ie. '*[key]'
 	var/emote_message_1p                                // First person message ('You do a flip!')
@@ -28,12 +35,18 @@
 	var/list/emote_sound_synthetic                      // As above, but used when check_synthetic() is true.
 	var/emote_volume = 50                               // Volume of sound to play.
 	var/emote_volume_synthetic = 50                     // As above, but used when check_synthetic() is true.
+	var/emote_delay = 1.2 SECONDS                       // Time in ds that this emote will block further emote use (spam prevention). // VOREStation Edit
 
 	var/message_type = VISIBLE_MESSAGE                  // Audible/visual flag
 	var/check_restraints                                // Can this emote be used while restrained?
 	var/check_range                                     // falsy, or a range outside which the emote will not work
 	var/conscious = TRUE                                // Do we need to be awake to emote this?
 	var/emote_range = 0                                 // If >0, restricts emote visibility to viewers within range.
+
+/decl/emote/Initialize()
+	. = ..()
+	if(key)
+		LAZYSET(global.emotes_by_key, key, src)
 
 /decl/emote/proc/get_emote_message_1p(var/atom/user, var/atom/target, var/extra_params)
 	if(target)
@@ -90,11 +103,14 @@
 		if(target)
 			use_1p = replace_target_tokens(use_1p, target)
 		use_1p = "<span class='emote'>[capitalize(replace_user_tokens(use_1p, user))]</span>"
-	var/use_3p = get_emote_message_3p(user, target, extra_params)
-	if(use_3p)
+	var/prefinal_3p
+	var/use_3p
+	var/raw_3p = get_emote_message_3p(user, target, extra_params)
+	if(raw_3p)
 		if(target)
-			use_3p = replace_target_tokens(use_3p, target)
-		use_3p = "<span class='emote'><b>\The [user]</b> [replace_user_tokens(use_3p, user)]</span>"
+			raw_3p = replace_target_tokens(raw_3p, target)
+		prefinal_3p = replace_user_tokens(raw_3p, user)
+		use_3p = "<span class='emote'><b>\The [user]</b> [prefinal_3p]</span>"
 	var/use_radio = get_radio_message(user)
 	if(use_radio)
 		if(target)
@@ -111,12 +127,12 @@
 			if(isliving(user))
 				var/mob/living/L = user
 				if(L.silent)
-					M.visible_message(message = "[user] opens their mouth silently!", self_message = "You cannot say anything!", blind_message = emote_message_impaired)
+					M.visible_message(message = "[user] opens their mouth silently!", self_message = "You cannot say anything!", blind_message = emote_message_impaired, runemessage = "opens their mouth silently!")
 					return
 				else
-					M.audible_message(message = use_3p, self_message = use_1p, deaf_message = emote_message_impaired, hearing_distance = use_range, radio_message = use_radio)
+					M.audible_message(message = use_3p, self_message = use_1p, deaf_message = emote_message_impaired, hearing_distance = use_range, radio_message = use_radio, runemessage = prefinal_3p)
 		else
-			M.visible_message(message = use_3p, self_message = use_1p, blind_message = emote_message_impaired, range = use_range)
+			M.visible_message(message = use_3p, self_message = use_1p, blind_message = emote_message_impaired, range = use_range, runemessage = prefinal_3p)
 
 	do_extra(user, target)
 	do_sound(user)
@@ -162,8 +178,8 @@
 	if(sound_to_play)
 		playsound(user.loc, sound_to_play, use_sound["vol"], 0, preference = /datum/client_preference/emote_noises) //VOREStation Add - Preference
 
-/decl/emote/proc/check_user(var/atom/user)
-	return TRUE
+/decl/emote/proc/mob_can_use(var/mob/user)
+	return istype(user) && user.stat != DEAD && (type in user.get_available_emotes())
 
 /decl/emote/proc/can_target()
 	return (emote_message_1p_target || emote_message_3p_target)

@@ -98,7 +98,7 @@
 	display_name = "trenchcoat, grey"
 	path = /obj/item/clothing/suit/storage/trench/grey
 
-datum/gear/suit/duster
+/datum/gear/suit/duster
 	display_name = "cowboy duster"
 	path = /obj/item/clothing/suit/storage/duster
 
@@ -337,6 +337,8 @@ datum/gear/suit/duster
 	path = /obj/item/clothing/suit/storage/forensics/red
 	allowed_roles = list("Detective")
 
+// winter coats go here
+
 /datum/gear/suit/wintercoat
 	display_name = "winter coat"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat
@@ -346,38 +348,134 @@ datum/gear/suit/duster
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/captain
 	allowed_roles = list("Site Manager")
 
+/datum/gear/suit/wintercoat/hop
+	display_name = "winter coat, head of personnel"
+	path = /obj/item/clothing/suit/storage/hooded/wintercoat/hop
+	allowed_roles = list("Head of Personnel")
+
 /datum/gear/suit/wintercoat/security
 	display_name = "winter coat, security"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/security
 	allowed_roles = list("Security Officer", "Head of Security", "Warden", "Detective")
 
+/datum/gear/suit/wintercoat/security/hos
+	display_name = "winter coat, head of security"
+	path = /obj/item/clothing/suit/storage/hooded/wintercoat/security/hos
+	allowed_roles = list("Head of Security")
+
 /datum/gear/suit/wintercoat/medical
 	display_name = "winter coat, medical"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/medical
+	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist", "Field Medic")
+
+/datum/gear/suit/wintercoat/medical/alt
+	display_name = "winter coat, medical alt"
+	path = /obj/item/clothing/suit/storage/hooded/wintercoat/medical/alt
+	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist", "Field Medic")
+
+/datum/gear/suit/wintercoat/medical/viro
+	display_name = "winter coat, virologist"
+	path = /obj/item/clothing/suit/storage/hooded/wintercoat/medical/viro
+	allowed_roles = list("Medical Doctor","Chief Medical Officer")
+
+/datum/gear/suit/wintercoat/medical/para
+	display_name = "winter coat, paramedic"
+	path = /obj/item/clothing/suit/storage/hooded/wintercoat/medical/para
+	allowed_roles = list("Medical Doctor","Chief Medical Officer","Paramedic")
+
+/datum/gear/suit/wintercoat/medical/chemist
+	display_name = "winter coat, chemist"
+	path = /obj/item/clothing/suit/storage/hooded/wintercoat/medical/chemist
+	allowed_roles = list("Chief Medical Officer","Chemist")
+
+/datum/gear/suit/wintercoat/medical/cmo
+	display_name = "winter coat, chief medical officer"
+	path = /obj/item/clothing/suit/storage/hooded/wintercoat/medical/cmo
+	allowed_roles = list("Chief Medical Officer")
+
+/datum/gear/suit/wintercoat/medical/sar
+	display_name = "winter coat, search and rescue"
+	path = /obj/item/clothing/suit/storage/hooded/wintercoat/medical/sar
+	allowed_roles = list("Chief Medical Officer", "Field Medic")
 
 /datum/gear/suit/wintercoat/science
 	display_name = "winter coat, science"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/science
+	allowed_roles = list("Research Director","Scientist", "Roboticist", "Xenobiologist", "Xenobotanist")
+
+
+/datum/gear/suit/wintercoat/science/robotics
+	display_name = "winter coat, robotics"
+	path = /obj/item/clothing/suit/storage/hooded/wintercoat/science/robotics
+	allowed_roles = list("Research Director", "Roboticist")
+
+/datum/gear/suit/wintercoat/science/rd
+	display_name = "winter coat, research director"
+	path = /obj/item/clothing/suit/storage/hooded/wintercoat/science/rd
+	allowed_roles = list("Research Director")
 
 /datum/gear/suit/wintercoat/engineering
 	display_name = "winter coat, engineering"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/engineering
+	allowed_roles = list("Chief Engineer","Atmospheric Technician", "Station Engineer")
 
-/datum/gear/suit/wintercoat/atmos
+/datum/gear/suit/wintercoat/engineering/atmos
 	display_name = "winter coat, atmospherics"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/engineering/atmos
+	allowed_roles = list("Chief Engineer", "Atmospheric Technician")
+
+/datum/gear/suit/wintercoat/engineering/ce
+	display_name = "winter coat, chief engineer"
+	path = /obj/item/clothing/suit/storage/hooded/wintercoat/engineering/ce
+	allowed_roles = list("Chief Engineer")
 
 /datum/gear/suit/wintercoat/hydro
 	display_name = "winter coat, hydroponics"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/hydro
+	allowed_roles = list("Botanist", "Xenobotanist")
 
 /datum/gear/suit/wintercoat/cargo
 	display_name = "winter coat, cargo"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/cargo
+	allowed_roles = list("Quartermaster","Cargo Technician")
 
 /datum/gear/suit/wintercoat/miner
 	display_name = "winter coat, mining"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/miner
+	allowed_roles = list("Shaft Miner")
+
+/datum/gear/suit/wintercoat/cargo/qm
+	display_name = "winter coat, quartermaster"
+	path = /obj/item/clothing/suit/storage/hooded/wintercoat/cargo/qm
+	allowed_roles = list("Quartermaster")
+
+/datum/gear/suit/wintercoat/bar
+	display_name = "winter coat, bartender"
+	path = /obj/item/clothing/suit/storage/hooded/wintercoat/bar
+	allowed_roles = list("Bartender")
+
+/datum/gear/suit/wintercoat/janitor
+	display_name = "winter coat, janitor"
+	path = /obj/item/clothing/suit/storage/hooded/wintercoat/janitor
+	allowed_roles = list("Janitor")
+
+/datum/gear/suit/wintercoat/aformal
+	display_name = "winter coat, assistant formal"
+	path = /obj/item/clothing/suit/storage/hooded/wintercoat/aformal
+
+/datum/gear/suit/wintercoat/ratvar
+	display_name = "winter coat, brassy"
+	path = /obj/item/clothing/suit/storage/hooded/wintercoat/ratvar
+
+/datum/gear/suit/wintercoat/narsie
+	display_name = "winter coat, runed"
+	path = /obj/item/clothing/suit/storage/hooded/wintercoat/narsie
+
+/datum/gear/suit/wintercoat/cosmic
+	display_name = "winter coat, cosmic"
+	path = /obj/item/clothing/suit/storage/hooded/wintercoat/cosmic
+
+// winter coats end here
 
 /datum/gear/suit/varsity
 	display_name = "varsity jacket selection"

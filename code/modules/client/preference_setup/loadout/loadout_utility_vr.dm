@@ -54,7 +54,16 @@
 /datum/gear/utility/dufflebag/sci
 	display_name = "science dufflebag"
 	path = /obj/item/weapon/storage/backpack/dufflebag/sci
-	allowed_roles = list("Research Director","Scientist","Roboticist","Xenobiologist","Xenobotanist","Explorer","Pathfinder")
+	allowed_roles = list("Research Director","Scientist","Roboticist","Xenobiologist","Xenobotanist")
+
+/datum/gear/utility/dufflebag/explorer
+	display_name = "explorer dufflebag"
+	path = /obj/item/weapon/storage/backpack/dufflebag/explorer
+	allowed_roles = list("Pathfinder","Explorer")
+
+/datum/gear/utility/dufflebag/talon
+	display_name = "ITV dufflebag"
+	path = /obj/item/weapon/storage/backpack/dufflebag/explorer
 
 /datum/gear/utility/ID
 	display_name = "contractor identification card"

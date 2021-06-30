@@ -58,7 +58,7 @@
 	collection = null
 	return ..()
 
-datum/category_group/dd_SortValue()
+/datum/category_group/dd_SortValue()
 	return name
 
 
@@ -67,7 +67,7 @@ datum/category_group/dd_SortValue()
 *****************/
 /datum/category_item
 	var/name = ""
-	var/list/datum/category_group/category		// The group this item belongs to
+	var/datum/category_group/category		// The group this item belongs to
 
 /datum/category_item/New(var/datum/category_group/cg)
 	..()
@@ -77,5 +77,5 @@ datum/category_group/dd_SortValue()
 	category = null
 	return ..()
 
-datum/category_item/dd_SortValue()
+/datum/category_item/dd_SortValue()
 	return name

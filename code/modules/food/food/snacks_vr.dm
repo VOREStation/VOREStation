@@ -176,7 +176,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/bugball
 	name = "bugball"
-	desc = "A hard chitin, dont chip a tooth!"
+	desc = "A hard piece of chitin, don't chip a tooth!"
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "pillbugball"
 	slice_path = /obj/item/weapon/reagent_containers/food/snacks/pillbug
@@ -250,7 +250,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/lobster
 	name = "raw lobster"
-	desc = "a shifty lobster. You can try eating it, but its shell is extremely tough."
+	desc = "A shifty lobster. You can try eating it, but its shell is extremely tough."
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "lobster_raw"
 	nutriment_amt = 5
@@ -261,7 +261,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/lobstercooked
 	name = "cooked lobster"
-	desc = "a luxurious plate of cooked lobster, its taste accentuated by lemon juice. Reinvigorating!"
+	desc = "A luxurious plate of cooked lobster, its taste accentuated by lemon juice. Reinvigorating!"
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "lobster_cooked"
 	trash = /obj/item/trash/plate
@@ -277,7 +277,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/cuttlefish
 	name = "raw cuttlefish"
-	desc = "it's an adorable squid! you can't possible be thinking about eating this right?"
+	desc = "It's an adorable squid! You couldn't possibly be thinking about eating this, right?"
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "cuttlefish_raw"
 	nutriment_amt = 5
@@ -288,7 +288,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/cuttlefishcooked
 	name = "cooked cuttlefish"
-	desc = "it's a roasted cuttlefish. rubbery, squishy, an acquired taste."
+	desc = "It's a roasted cuttlefish. Rubbery, squishy, an acquired taste."
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "cuttlefish_cooked"
 	nutriment_amt = 20
@@ -301,7 +301,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/monkfish
 	name = "extra large monkfish"
-	desc = "it's a huge monkfish. better clean it first, you can't possibly eat it like this."
+	desc = "It's a huge monkfish. Better clean it first, you can't possibly eat it like this."
 	icon = 'icons/obj/food48x48_vr.dmi'
 	icon_state = "monkfish_raw"
 	nutriment_amt = 30
@@ -316,7 +316,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/monkfishfillet
 	name = "monkfish fillet"
-	desc = "it's a fillet sliced from a monkfish."
+	desc = "It's a fillet sliced from a monkfish."
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "monkfish_fillet"
 	nutriment_amt = 5
@@ -328,7 +328,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/monkfishcooked
 	name = "seasoned monkfish"
-	desc = "a delicious slice of monkfish prepared with sweet chili and spring onion."
+	desc = "A delicious slice of monkfish prepared with sweet chili and spring onion."
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "monkfish_cooked"
 	nutriment_amt = 10
@@ -344,7 +344,7 @@
 	name = "monkfish remains"
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "monkfish_remains"
-	desc = "the work of a madman."
+	desc = "The work of a madman."
 	w_class = ITEMSIZE_LARGE
 	nutriment_amt = 10
 	slice_path = /obj/item/clothing/head/fish
@@ -357,7 +357,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/sharkchunk
 	name = "chunk of shark meat"
-	desc = "still rough, needs to be cut into even smaller chunks."
+	desc = "Still rough, needs to be cut into even smaller chunks."
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "sharkmeat_chunk"
 	nutriment_amt = 15
@@ -371,21 +371,21 @@
 	reagents.add_reagent("protein", 20)
 
 /obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish/sharkmeat
-	name = "a slice of sharkmeat"
-	desc = "now it's small enough to cook with."
+	name = "slice of sharkmeat"
+	desc = "Now it's small enough to cook with."
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "sharkmeat"
 	nutriment_amt = 2
 	toxin_amount = null
 
-/obj/item/weapon/reagent_containers/food/snacks/sharkmeat/Initialize()
+/obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish/sharkmeat/Initialize()
 	. = ..()
 	bitesize = 3
 	reagents.add_reagent("protein", 2)
 
 /obj/item/weapon/reagent_containers/food/snacks/sharkmeatcooked
 	name = "shark steak"
-	desc = "finally, some food for real men."
+	desc = "Finally, some food for real men."
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "sharkmeat_cooked"
 	nutriment_amt = 5
@@ -399,7 +399,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/sharkmeatdip
 	name = "hot shark shank"
-	desc = "a shank of shark meat dipped in hot sauce."
+	desc = "A shank of shark meat dipped in hot sauce."
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "sharkmeat_dip"
 	nutriment_amt = 5
@@ -414,7 +414,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/sharkmeatcubes
 	name = "shark cubes"
-	desc = "foul scented fermented shark cubes, it's said to make men fly, or just make them really fat."
+	desc = "Foul scented fermented shark cubes, it's said to make men fly, or just make them really fat."
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "sharkmeat_cubes"
 	nutriment_amt = 8
@@ -600,4 +600,161 @@
 	. = ..()
 	bitesize = 3
 
+//Fennec foods
+/obj/item/weapon/storage/box/wings/bucket
+	name = "Bucket o' grubs"
+	desc = "A bucket full of writhing grubs."
+	icon_state = "bucket6"
+	icon_base = "bucket"
+	startswith = 6
+	w_class = ITEMSIZE_LARGE
+	max_storage_space = ITEMSIZE_COST_SMALL * 6
+	starts_with = list(
+		/obj/item/weapon/reagent_containers/food/snacks/grub = 6
+	)
+	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/grub)
 
+/obj/item/weapon/reagent_containers/food/snacks/grub
+	name = "grub"
+	desc = "A still writhing grub, soft and squishy."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "grub"
+	nutriment_amt = 3
+	nutriment_desc = list("goo" = 1, "slime" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/grub/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 2)
+	bitesize = 3
+
+/obj/item/weapon/reagent_containers/food/snacks/grub_pink
+	name = "pink candy grub"
+	desc = "A thoroughly candied grub, it smells of raspberry."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "grub_pink"
+	nutriment_amt = 5
+	nutriment_desc = list("raspberry" = 4, "goo" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/grub_pink/Initialize()
+	. = ..()
+	bitesize = 3
+
+/obj/item/weapon/reagent_containers/food/snacks/grub_purple
+	name = "pink candy grub"
+	desc = "A thoroughly candied grub, it smells of grape."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "grub_purple"
+	nutriment_amt = 5
+	nutriment_desc = list("grape" = 4, "goo" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/grub_purple/Initialize()
+	. = ..()
+	bitesize = 3
+
+/obj/item/weapon/reagent_containers/food/snacks/grub_blue
+	name = "pink candy grub"
+	desc = "A thoroughly candied grub, it smells of blueberry."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "grub_blue"
+	nutriment_amt = 5
+	nutriment_desc = list("blueberry" = 4, "goo" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/grub_blue/Initialize()
+	. = ..()
+	bitesize = 3
+
+/obj/item/weapon/reagent_containers/food/snacks/scorpion
+	name = "scorpion"
+	desc = "A scorpion from the sandy deserts, don't get stung!"
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "scorpion"
+	nutriment_amt = 8
+	nutriment_desc = list("crunchy" = 4, "shell bits" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/scorpion/Initialize()
+	. = ..()
+	bitesize = 1
+
+/obj/item/weapon/reagent_containers/food/snacks/scorpion_cooked
+	name = "cooked scorpion"
+	desc = "A scorpion. Baked nice and crispy."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "scorpion_cooked"
+	nutriment_amt = 6
+	nutriment_desc = list("crispy" = 4, "exotic meat" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/scorpion_cooked/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 2)
+	reagents.add_reagent("protein", 4)
+	bitesize = 4
+
+/obj/item/weapon/reagent_containers/food/snacks/ant
+	name = "giant honey ant"
+	desc = "A sweetly scented honey ant. It has a huge swollen abdomen full of yummy."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "honeyant"
+	nutriment_amt = 2
+	nutriment_desc = list("crunchy" = 1, "goo" = 1)
+	slice_path = /obj/item/weapon/reagent_containers/food/snacks/antball
+	slices_num = 1
+
+/obj/item/weapon/reagent_containers/food/snacks/ant/Initialize()
+	. = ..()
+	reagents.add_reagent("honey", 2)
+	reagents.add_reagent("protein", 3)
+	bitesize = 1
+
+/obj/item/weapon/reagent_containers/food/snacks/antball
+	name = "giant honey ball"
+	desc = "A sweetly scented honey ball, minus the ant. For those who don't like bug bits between their teeth."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "honeyant_clean"
+	nutriment_amt = 4
+	nutriment_desc = list("goo" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/antball/Initialize()
+	. = ..()
+	reagents.add_reagent("honey", 2)
+	bitesize = 1
+
+/obj/item/weapon/reagent_containers/food/snacks/honey_candy
+	name = "honey candy"
+	desc = "A clever mimicry of a honey ant abdomen, but it's just a piece of candy. Does not contain actual honey!"
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "candy_honey"
+	nutriment_amt = 4
+	nutriment_desc = list("goo" = 1, "honey" = 1)
+	slice_path = /obj/item/weapon/reagent_containers/food/snacks/antball
+	slices_num = 1
+
+/obj/item/weapon/reagent_containers/food/snacks/honey_candy/Initialize()
+	. = ..()
+	reagents.add_reagent("sugar", 2)
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/locust
+	name = "yellow jacket locust"
+	desc = "A vibrant bug that looks like a wasp, but is in fact a locust. Crunchy."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "locust"
+	nutriment_amt = 4
+	nutriment_desc = list("crunchy" = 1, "goo" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/locust/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 1)
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/locust_cooked
+	name = "fried locust"
+	desc = "A fried locust, extremely crunchy."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "locust_cooked"
+	nutriment_amt = 2
+	nutriment_desc = list("crunchy" = 4)
+
+/obj/item/weapon/reagent_containers/food/snacks/locust_cooked/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 3)
+	bitesize = 2

@@ -80,7 +80,7 @@
 	A.contents.Add(T)
 	if(old_area)
 		// Handle dynamic lighting update if
-		if(T.dynamic_lighting && old_area.dynamic_lighting != A.dynamic_lighting)
+		if(SSlighting.subsystem_initialized && T.dynamic_lighting && old_area.dynamic_lighting != A.dynamic_lighting)
 			if(A.dynamic_lighting)
 				T.lighting_build_overlay()
 			else
@@ -353,21 +353,23 @@
 
 var/list/mob/living/forced_ambiance_list = new
 
-/area/Entered(A)
-	if(!istype(A,/mob/living))	return
+/area/Entered(mob/M)
+	if(!istype(M) || !M.ckey)
+		return
+	
+	if(!isliving(M))
+		M.lastarea = src
+		return
 
-	var/mob/living/L = A
-	if(!L.ckey)	return
-
+	var/mob/living/L = M
 	if(!L.lastarea)
-		L.lastarea = get_area(L.loc)
-	var/area/newarea = get_area(L.loc)
+		L.lastarea = src
 	var/area/oldarea = L.lastarea
-	if((oldarea.has_gravity == 0) && (newarea.has_gravity == 1) && (L.m_intent == "run")) // Being ready when you change areas gives you a chance to avoid falling all together.
+	if((oldarea.has_gravity == 0) && (has_gravity == 1) && (L.m_intent == "run")) // Being ready when you change areas gives you a chance to avoid falling all together.
 		thunk(L)
 		L.update_floating( L.Check_Dense_Object() )
 
-	L.lastarea = newarea
+	L.lastarea = src
 	L.lastareachange = world.time
 	play_ambience(L, initial = TRUE)
 	if(no_spoilers)

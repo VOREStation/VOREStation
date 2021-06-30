@@ -61,19 +61,19 @@ var/bomb_set
 		if(auth)
 			if(opened == 0)
 				opened = 1
-				overlays += image(icon, "npanel_open")
+				add_overlay("npanel_open")
 				to_chat(user, "You unscrew the control panel of [src].")
 
 			else
 				opened = 0
-				overlays -= image(icon, "npanel_open")
+				cut_overlay("npanel_open")
 				to_chat(user, "You screw the control panel of [src] back on.")
 		else
 			if(opened == 0)
 				to_chat(user, "The [src] emits a buzzing noise, the panel staying locked in.")
 			if(opened == 1)
 				opened = 0
-				overlays -= image(icon, "npanel_open")
+				cut_overlay("npanel_open")
 				to_chat(user, "You screw the control panel of [src] back on.")
 			flick("nuclearbombc", src)
 
@@ -200,9 +200,8 @@ var/bomb_set
 		extended = 1
 	return
 
-obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
-	var/dat as text
-	dat += "<TT><B>Nuclear Fission Explosive</B><BR>\nNuclear Device Wires:</A><HR>"
+/obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
+	var/dat = "<TT><B>Nuclear Fission Explosive</B><BR>\nNuclear Device Wires:</A><HR>"
 	for(var/wire in wires)
 		dat += text("[wire] Wire: <A href='?src=\ref[src];wire=[wire];act=wire'>[wires[wire] ? "Mend" : "Cut"]</A> <A href='?src=\ref[src];wire=[wire];act=pulse'>Pulse</A><BR>")
 	dat += text("<HR>The device is [timing ? "shaking!" : "still"]<BR>")

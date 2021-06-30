@@ -23,6 +23,7 @@ var/const/cyberbeast_monitor_styles = "blank=cyber_blank;\
 	desc = "Nano-y!"
 	lifelike = 1
 	unavailable_to_build = 1
+	unavailable_at_chargen = 1
 
 //////////////// For-specific-character fluff ones /////////////////
 // arokha : Aronai Sieyes

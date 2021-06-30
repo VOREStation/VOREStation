@@ -7,7 +7,7 @@
 #define COLOR_MAROON           "#800000"
 #define COLOR_PURPLE           "#800080"
 #define COLOR_VIOLET           "#9933ff"
-#define COLOR_OLIVE            "#808000"
+#define COLOR_OLIVE            "#52613b" // VOREStation Edit
 #define COLOR_BROWN_ORANGE     "#824b28"
 #define COLOR_DARK_ORANGE      "#b95a00"
 #define COLOR_GRAY40           "#666666"
@@ -91,6 +91,7 @@
 #define COLOR_DARK_TEAL        "#2db5b5"
 #define COLOR_LIGHT_VIOLET     "#e7bfff"
 #define COLOR_SAN_MARINO_BLUE  "#4b75ab"
+#define COLOR_HALF_TRANSPARENT_BLACK    "#0000007A"
 
 #define	PIPE_COLOR_GREY        "#808080"
 #define	PIPE_COLOR_RED         "#ff0000"
@@ -163,5 +164,44 @@
 #define COLOR_ASSEMBLY_PURPLE   "#6F6192"
 #define COLOR_ASSEMBLY_HOT_PINK "#FF69B4"
 
-#define COLOR_ASTEROID_ROCK    "#735555"
-#define COLOR_GOLD             "#ffcc33"
+// Discord requires colors to be in decimal instead of hexadecimal.
+#define COLOR_WEBHOOK_DEFAULT	0x8bbbd5 // "#8bbbd5"
+#define COLOR_WEBHOOK_GOOD		0x2ECC71 // "#2ECC71"
+#define COLOR_WEBHOOK_POOR		0xE67E22 // "#E67E22"
+#define COLOR_WEBHOOK_BAD		0xE74C3C // "#E74C3C"
+
+//Some defines to generalise colours used in lighting.
+//Important note on colors. Colors can end up significantly different from the basic html picture, especially when saturated
+#define LIGHT_COLOR_RED        "#FA8282" //Warm but extremely diluted red. rgb(250, 130, 130)
+#define LIGHT_COLOR_GREEN      "#64C864" //Bright but quickly dissipating neon green. rgb(100, 200, 100)
+#define LIGHT_COLOR_BLUE       "#6496FA" //Cold, diluted blue. rgb(100, 150, 250)
+
+#define LIGHT_COLOR_BLUEGREEN  "#7DE1AF" //Light blueish green. rgb(125, 225, 175)
+#define LIGHT_COLOR_CYAN       "#7DE1E1" //Diluted cyan. rgb(125, 225, 225)
+#define LIGHT_COLOR_LIGHT_CYAN "#40CEFF" //More-saturated cyan. rgb(64, 206, 255)
+#define LIGHT_COLOR_DARK_BLUE  "#6496FA" //Saturated blue. rgb(51, 117, 248)
+#define LIGHT_COLOR_PINK       "#E17DE1" //Diluted, mid-warmth pink. rgb(225, 125, 225)
+#define LIGHT_COLOR_YELLOW     "#E1E17D" //Dimmed yellow, leaning kaki. rgb(225, 225, 125)
+#define LIGHT_COLOR_BROWN      "#966432" //Clear brown, mostly dim. rgb(150, 100, 50)
+#define LIGHT_COLOR_ORANGE     "#FA9632" //Mostly pure orange. rgb(250, 150, 50)
+#define LIGHT_COLOR_PURPLE     "#952CF4" //Light Purple. rgb(149, 44, 244)
+#define LIGHT_COLOR_LAVENDER   "#9B51FF" //Less-saturated light purple. rgb(155, 81, 255)
+
+//These ones aren't a direct colour like the ones above, because nothing would fit
+#define LIGHT_COLOR_FIRE       "#FAA019" //Warm orange color, leaning strongly towards yellow. rgb(250, 160, 25)
+#define LIGHT_COLOR_LAVA       "#C48A18" //Very warm yellow, leaning slightly towards orange. rgb(196, 138, 24)
+#define LIGHT_COLOR_FLARE      "#FA644B" //Bright, non-saturated red. Leaning slightly towards pink for visibility. rgb(250, 100, 75)
+#define LIGHT_COLOR_SLIME_LAMP "#AFC84B" //Weird color, between yellow and green, very slimy. rgb(175, 200, 75)
+#define LIGHT_COLOR_TUNGSTEN   "#FAE1AF" //Extremely diluted yellow, close to skin color (for some reason). rgb(250, 225, 175)
+#define LIGHT_COLOR_HALOGEN    "#F0FAFA" //Barely visible cyan-ish hue, as the doctor prescribed. rgb(240, 250, 250)
+
+//Lighting values used by the station lights
+#define LIGHT_COLOR_FLUORESCENT_TUBE "#E0EFFF"
+#define LIGHT_COLOR_FLUORESCENT_FLASHLIGHT "#CDDDFF"
+#define LIGHT_COLOR_INCANDESCENT_TUBE "#fffed9"
+#define LIGHT_COLOR_INCANDESCENT_BULB "#ffe7ce"
+#define LIGHT_COLOR_INCANDESCENT_FLASHLIGHT "#FFCC66"
+#define LIGHT_COLOR_NIGHTSHIFT "#EFCC86"
+
+//Fake ambient occlusion filter
+#define AMBIENT_OCCLUSION filter(type="drop_shadow", x=0, y=-2, size=4, offset=3, color="#04080F80")

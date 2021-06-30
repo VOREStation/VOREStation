@@ -301,25 +301,25 @@
 	ram_cost = 15
 	id = "ar_hud"
 
-	toggle(mob/living/silicon/infomorph/user)
-		user.arHUD = !user.arHUD
-		if(user.plane_holder)
-			user.plane_holder.set_vis(VIS_CH_ID,user.arHUD)
-			user.plane_holder.set_vis(VIS_CH_HEALTH_VR,user.arHUD)
+/datum/infomorph_software/ar_hud/toggle(mob/living/silicon/infomorph/user)
+	user.arHUD = !user.arHUD
+	if(user.plane_holder)
+		user.plane_holder.set_vis(VIS_CH_ID,user.arHUD)
+		user.plane_holder.set_vis(VIS_CH_HEALTH_VR,user.arHUD)
 
-	is_active(mob/living/silicon/infomorph/user)
-		return user.arHUD
+/datum/infomorph_software/ar_hud/is_active(mob/living/silicon/infomorph/user)
+	return user.arHUD
 
 /datum/infomorph_software/translator
 	name = "Universal Translator"
 	ram_cost = 15
 	id = "translator"
 
-	toggle(mob/living/silicon/infomorph/user)
-		user.translator.attack_self(user)
+/datum/infomorph_software/translator/toggle(mob/living/silicon/infomorph/user)
+	user.translator.attack_self(user)
 
-	is_active(mob/living/silicon/infomorph/user)
-		return user.translator.listening
+/datum/infomorph_software/translator/is_active(mob/living/silicon/infomorph/user)
+	return user.translator.listening
 
 
 /datum/infomorph_software/signaller

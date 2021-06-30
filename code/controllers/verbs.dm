@@ -4,6 +4,7 @@
 // Clickable stat() button.
 /obj/effect/statclick
 	name = "Initializing..."
+	blocks_emissive = FALSE
 	var/target
 
 /obj/effect/statclick/New(loc, text, target) //Don't port this to Initialize it's too critical

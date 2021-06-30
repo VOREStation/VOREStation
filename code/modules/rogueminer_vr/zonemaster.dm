@@ -27,8 +27,8 @@
 	var/original_mobs = 0
 
 	//in-use spawns from the area
-	var/obj/asteroid_spawner/list/rockspawns = list()
-	var/obj/rogue_mobspawner/list/mobspawns = list()
+	var/list/obj/asteroid_spawner/rockspawns = list()
+	var/list/obj/rogue_mobspawner/mobspawns = list()
 
 /datum/rogue/zonemaster/New(var/area/A)
 	ASSERT(A)
@@ -395,7 +395,7 @@
 
 	for(var/atom/I in myarea.contents)
 		if(I.type == /turf/space)
-			I.overlays.Cut()
+			I.cut_overlays()
 			continue
 		else if(!I.simulated)
 			continue
@@ -407,7 +407,7 @@
 	//A deletion so nice that I give it twice
 	for(var/atom/I in myarea.contents)
 		if(I.type == /turf/space)
-			I.overlays.Cut()
+			I.cut_overlays()
 			continue
 		else if(!I.simulated)
 			continue

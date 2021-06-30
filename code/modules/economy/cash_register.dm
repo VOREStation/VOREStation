@@ -50,7 +50,7 @@
 		if(cash_stored)
 			spawn_money(cash_stored, loc, user)
 			cash_stored = 0
-			overlays -= "register_cash"
+			cut_overlay("register_cash")
 		else
 			open_cash_box()
 	else
@@ -181,7 +181,7 @@
 		if(cash_open)
 			to_chat(user, "You neatly sort the cash into the box.")
 			cash_stored += SC.worth
-			overlays |= "register_cash"
+			add_overlay("register_cash")
 			if(ishuman(user))
 				var/mob/living/carbon/human/H = user
 				H.drop_from_inventory(SC)
@@ -468,15 +468,15 @@
 
 	if(cash_open)
 		cash_open = 0
-		overlays -= "register_approve"
-		overlays -= "register_open"
-		overlays -= "register_cash"
+		cut_overlay("register_approve")
+		cut_overlay("register_open")
+		cut_overlay("register_cash")
 	else if(!cash_locked)
 		cash_open = 1
-		overlays += "register_approve"
-		overlays += "register_open"
+		add_overlay("register_approve")
+		add_overlay("register_open")
 		if(cash_stored)
-			overlays += "register_cash"
+			add_overlay("register_cash")
 	else
 		to_chat(usr, "<span class='warning'>The cash box is locked.</span>")
 

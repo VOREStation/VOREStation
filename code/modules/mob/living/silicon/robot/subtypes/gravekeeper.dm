@@ -14,7 +14,7 @@
 
 	mmi = new /obj/item/device/mmi/digital/robot(src) // Explicitly a drone.
 	module = new /obj/item/weapon/robot_module/robot/gravekeeper(src)
-	overlays.Cut()
+	cut_overlays()
 	init_id()
 
 	updatename("Gravekeeper")

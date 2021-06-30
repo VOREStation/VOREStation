@@ -72,7 +72,7 @@
 /turf/simulated/open/proc/update()
 	plane = OPENSPACE_PLANE + src.z
 	below = GetBelow(src)
-	turf_changed_event.register(below, src, /turf/simulated/open/update_icon)
+	turf_changed_event.register(below, src, /atom/proc/update_icon)
 	levelupdate()
 	below.update_icon() // So the 'ceiling-less' overlay gets added.
 	for(var/atom/movable/A in src)
@@ -127,7 +127,7 @@
 				temp2.icon_state = null
 			temp2.plane = src.plane
 			temp2.color = O.color
-			temp2.overlays += O.overlays
+			temp2.overlays = get_overlays(O, TRUE)
 			// TODO Is pixelx/y needed?
 			o_img += temp2
 		add_overlay(o_img)

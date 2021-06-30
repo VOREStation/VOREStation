@@ -25,7 +25,7 @@
 	if(wrapped)
 		add_overlay("[initial(icon_state)]_wrapper")
 
-obj/item/clothing/mask/chewable/Initialize()
+/obj/item/clothing/mask/chewable/Initialize()
 	. = ..()
 	flags |= NOREACT // so it doesn't react until you light it
 	create_reagents(chem_volume) // making the cigarrete a chemical holder with a maximum volume of 15
@@ -47,7 +47,7 @@ obj/item/clothing/mask/chewable/Initialize()
 	STOP_PROCESSING(SSprocessing, src)
 	..()
 
-obj/item/clothing/mask/chewable/Destroy()
+/obj/item/clothing/mask/chewable/Destroy()
 	. = ..()
 	STOP_PROCESSING(SSprocessing, src)
 
@@ -135,6 +135,9 @@ obj/item/clothing/mask/chewable/Destroy()
 	throwforce = 2
 	slot_flags = SLOT_BELT
 	starts_with = list(/obj/item/clothing/mask/chewable/tobacco = 6)
+
+/obj/item/weapon/storage/chewables/Initialize()
+	. = ..()
 	make_exact_fit()
 
 //Tobacco Tins
@@ -231,3 +234,32 @@ obj/item/clothing/mask/chewable/Destroy()
 	color = reagents.get_color()
 	update_icon()
 
+/obj/item/weapon/storage/box/pocky //ADDITION 04/17/2021
+	name = "\improper Totemo yoi Pocky"
+	desc = "A bundle of chocolate-coated bisquit sticks."
+	icon = 'icons/obj/food_snacks.dmi'
+	icon_state = "pockys"
+	item_state = "pocky"
+	w_class = 1
+	starts_with = list(/obj/item/clothing/mask/chewable/candy/pocky = 8)
+	can_hold = list(/obj/item/clothing/mask/chewable/candy/pocky)
+	use_sound = 'sound/items/drop/paper.ogg'
+	drop_sound = 'sound/items/drop/wrapper.ogg'
+	max_storage_space = 8
+	foldable = null
+	trash = /obj/item/trash/pocky
+
+/obj/item/clothing/mask/chewable/candy/pocky //ADDITION 04/17/2021
+	name = "chocolate pocky"
+	desc = "A chocolate-coated biscuit stick."
+	icon_state = "pocky"
+	item_state = "pocky"
+
+/obj/item/clothing/mask/chewable/candy/pocky/process()
+	chew()
+	if(chewtime < 1)
+		spitout(0)
+
+/obj/item/clothing/mask/chewable/candy/pocky/Initialize()
+	. = ..()
+	reagents.add_reagent("chocolate", 10)

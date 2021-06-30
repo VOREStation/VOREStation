@@ -100,3 +100,12 @@
 	icon_override = 'icons/mob/suit_vr.dmi'
 	icon_state = "cyberpunksleek_long"
 	item_state = "cyberpunksleek_long"
+
+//Talon Hoodie
+/obj/item/clothing/suit/storage/toggle/hoodie/talon
+	name = "ITV hoodie"
+	desc = "A warm, blue sweatshirt bearing ITV markings."
+	icon = 'icons/obj/clothing/suits_vr.dmi'
+	icon_override = 'icons/mob/suit_vr.dmi'
+	icon_state = "talonhoodie"
+	item_state_slots = list(slot_r_hand_str = "suit_blue", slot_l_hand_str = "suit_blue")

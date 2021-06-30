@@ -8,6 +8,7 @@
 	var/list/can_hold //VOREStation Add
 	var/holster_in = 'sound/items/holsterin.ogg'
 	var/holster_out = 'sound/items/holsterout.ogg'
+	w_class = ITEMSIZE_NORMAL
 
 /obj/item/clothing/accessory/holster/proc/holster(var/obj/item/I, var/mob/living/user)
 	if(holstered && istype(user))

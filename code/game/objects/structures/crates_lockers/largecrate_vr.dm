@@ -134,3 +134,8 @@
 	starts_with = list(pick(/mob/living/simple_mob/vore/fennec,
 						/mob/living/simple_mob/vore/fennix;0.5))
 	return ..()
+
+/obj/structure/largecrate/animal/jerboa
+	name = "Jerboa Crate"
+	desc = "Lots, and lots of squeaking."
+	starts_with = list(/mob/living/simple_mob/animal/passive/mouse/jerboa)

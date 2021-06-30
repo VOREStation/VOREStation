@@ -27,3 +27,36 @@
 
 /turf/simulated/floor/tiled/freezer/cold
 	temperature = T0C - 5
+
+/turf/simulated/floor/redgrid
+	name = "processing strata"
+	icon = 'icons/turf/flooring/circuit_vr.dmi'
+	icon_state = "rcircuit"
+	initial_flooring = /decl/flooring/reinforced/circuit/red
+
+/decl/flooring/reinforced/circuit/red
+	name = "processing strata"
+	icon = 'icons/turf/flooring/circuit_vr.dmi'
+	icon_base = "rcircuit"
+
+/turf/simulated/floor/redgrid/animated
+	name = "pulsing pattern"
+	icon = 'icons/turf/flooring/circuit_vr.dmi'
+	icon_state = "rcircuitanim"
+	initial_flooring = /decl/flooring/reinforced/circuit/red/animated
+
+/decl/flooring/reinforced/circuit/red/animated
+	name = "pulsing pattern"
+	icon = 'icons/turf/flooring/circuit_vr.dmi'
+	icon_base = "rcircuitanim"
+
+/turf/simulated/floor/redgrid/off
+	name = "dark pattern"
+	icon = 'icons/turf/flooring/circuit_vr.dmi'
+	icon_state = "rcircuitanim_broken"
+	initial_flooring = /decl/flooring/reinforced/circuit/red/off
+
+/decl/flooring/reinforced/circuit/red/off
+	name = "dark pattern"
+	icon = 'icons/turf/flooring/circuit_vr.dmi'
+	icon_base = "rcircuitanim_broken"
