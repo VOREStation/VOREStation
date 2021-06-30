@@ -41,6 +41,11 @@
 		"Type Zero" = "pai-typezero",
 		"Raccoon" = "pai-raccoon",
 		"Raptor" = "pai-raptor",
+		"Corgi" = "pai-corgi",
+		"Bat" = "pai-bat",
+		"Butterfly" = "pai-butterfly",
+		"Hawk" = "pai-hawk",
+		"Duffel" = "pai-duffel",
 		"Rat" = "rat",
 		"Panther" = "panther"
 		//VOREStation Addition End

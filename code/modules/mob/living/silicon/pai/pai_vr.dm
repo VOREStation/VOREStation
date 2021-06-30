@@ -26,14 +26,23 @@
 /mob/living/silicon/pai/update_icon() //Some functions cause this to occur, such as resting
 	..()
 	update_fullness_pai()
+	
 	if(!people_eaten && !resting)
 		icon_state = "[chassis]" //Using icon_state here resulted in quite a few bugs. Chassis is much less buggy.
 	else if(!people_eaten && resting)
 		icon_state = "[chassis]_rest"
+	
+	// Unfortunately not all these states exist, ugh.
 	else if(people_eaten && !resting)
-		icon_state = "[chassis]_full"
+		if("[chassis]_full" in cached_icon_states(icon))
+			icon_state = "[chassis]_full"
+		else
+			icon_state = "[chassis]"
 	else if(people_eaten && resting)
-		icon_state = "[chassis]_rest_full"
+		if("[chassis]_rest_full" in cached_icon_states(icon))
+			icon_state = "[chassis]_rest_full"
+		else
+			icon_state = "[chassis]_rest"
 
 	if(chassis in wide_chassis)
 		icon = 'icons/mob/pai_vr64x64.dmi'
