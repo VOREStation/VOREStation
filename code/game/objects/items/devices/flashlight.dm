@@ -5,7 +5,7 @@
 	icon_state = "flashlight"
 	w_class = ITEMSIZE_SMALL
 	slot_flags = SLOT_BELT
-	matter = list(DEFAULT_WALL_MATERIAL = 50,"glass" = 20)
+	matter = list(MAT_STEEL = 50,"glass" = 20)
 	action_button_name = "Toggle Flashlight"
 	
 	light_system = MOVABLE_LIGHT_DIRECTIONAL
@@ -251,7 +251,7 @@
 	slot_flags = SLOT_BELT
 	w_class = ITEMSIZE_SMALL
 	attack_verb = list ("smacked", "thwacked", "thunked")
-	matter = list(DEFAULT_WALL_MATERIAL = 200,"glass" = 50)
+	matter = list(MAT_STEEL = 200,"glass" = 50)
 	hitsound = "swing_hit"
 
 /obj/item/device/flashlight/drone

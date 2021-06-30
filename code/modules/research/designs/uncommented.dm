@@ -10,7 +10,7 @@
 	name = "loyalty"
 	id = "implant_loyal"
 	req_tech = list(TECH_MATERIAL = 2, TECH_BIO = 3)
-	materials = list(DEFAULT_WALL_MATERIAL = 7000, "glass" = 7000)
+	materials = list(MAT_STEEL = 7000, "glass" = 7000)
 	build_path = /obj/item/weapon/implantcase/loyalty"
 
 /datum/design/rust_core_control

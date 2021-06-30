@@ -1,5 +1,5 @@
 /datum/material/steel
-	name = DEFAULT_WALL_MATERIAL
+	name = MAT_STEEL
 	stack_type = /obj/item/stack/material/steel
 	integrity = 150
 	conductivity = 11 // Assuming this is carbon steel, it would actually be slightly less conductive than iron, but lets ignore that.

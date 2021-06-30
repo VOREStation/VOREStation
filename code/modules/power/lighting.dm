@@ -893,6 +893,7 @@ var/global/list/light_type_cache = list()
 	force = 2
 	throwforce = 5
 	w_class = ITEMSIZE_TINY
+<<<<<<< HEAD
 	matter = list(DEFAULT_WALL_MATERIAL = 60)
 	
 	///LIGHT_OK, LIGHT_BURNED or LIGHT_BROKEN
@@ -904,6 +905,13 @@ var/global/list/light_type_cache = list()
 	///Is this light set to explode
 	var/rigged = 0
 	///The chance (prob()) that this light will be broken at roundstart
+=======
+	var/status = 0		// LIGHT_OK, LIGHT_BURNED or LIGHT_BROKEN
+	var/base_state
+	var/switchcount = 0	// number of times switched
+	matter = list(MAT_STEEL = 60)
+	var/rigged = 0		// true if rigged to explode
+>>>>>>> 9595119... Replaces DEFAULT_WALL_MATERIAL with MAT_STEEL, where applicable (#8156)
 	var/broken_chance = 2
 
 	///The raidus in turfs this light will reach. It will be at it's most dim this many turfs away.

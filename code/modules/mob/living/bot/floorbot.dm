@@ -205,7 +205,7 @@
 
 	if(emagged && istype(A, /turf/simulated/floor))
 		var/turf/simulated/floor/F = A
-		busy = 1
+		busy = TRUE
 		update_icons()
 		if(F.flooring)
 			visible_message("<span class='warning'>\The [src] begins to tear the floor tile from the floor!</span>")
@@ -218,7 +218,7 @@
 				F.ReplaceWithLattice()
 				addTiles(1)
 		target = null
-		busy = 0
+		busy = FALSE
 		update_icons()
 	else if(istype(A, /turf/space) || istype(A, /turf/simulated/mineral/floor))
 		var/building = 2
@@ -226,7 +226,7 @@
 			building = 1
 		if(amount < building)
 			return
-		busy = 1
+		busy = TRUE
 		update_icons()
 		visible_message("<span class='notice'>\The [src] begins to repair the hole.</span>")
 		if(do_after(src, 50))
@@ -238,22 +238,22 @@
 					I = new /obj/item/stack/rods(src)
 				A.attackby(I, src)
 		target = null
-		busy = 0
+		busy = FALSE
 		update_icons()
 	else if(istype(A, /turf/simulated/floor))
 		var/turf/simulated/floor/F = A
 		if(F.broken || F.burnt)
-			busy = 1
+			busy = TRUE
 			update_icons()
 			visible_message("<span class='notice'>\The [src] begins to remove the broken floor.</span>")
 			if(do_after(src, 50, F))
 				if(F.broken || F.burnt)
 					F.make_plating()
 			target = null
-			busy = 0
+			busy = FALSE
 			update_icons()
 		else if(!F.flooring && amount)
-			busy = 1
+			busy = TRUE
 			update_icons()
 			visible_message("<span class='notice'>\The [src] begins to improve the floor.</span>")
 			if(do_after(src, 50))
@@ -261,12 +261,12 @@
 					F.set_flooring(get_flooring_data(floor_build_type))
 					addTiles(-1)
 			target = null
-			busy = 0
+			busy = FALSE
 			update_icons()
 	else if(istype(A, /obj/item/stack/tile/floor) && amount < maxAmount)
 		var/obj/item/stack/tile/floor/T = A
 		visible_message("<span class='notice'>\The [src] begins to collect tiles.</span>")
-		busy = 1
+		busy = TRUE
 		update_icons()
 		if(do_after(src, 20))
 			if(T)
@@ -274,18 +274,20 @@
 				T.use(eaten)
 				addTiles(eaten)
 		target = null
-		busy = 0
+		busy = FALSE
 		update_icons()
-	else if(istype(A, /obj/item/stack/material) && amount + 4 <= maxAmount)
+	else if(istype(A, /obj/item/stack/material))
 		var/obj/item/stack/material/M = A
 		if(M.get_material_name() == DEFAULT_WALL_MATERIAL)
 			visible_message("<span class='notice'>\The [src] begins to make tiles.</span>")
-			busy = 1
-			update_icons()
-			if(do_after(50))
-				if(M)
-					M.use(1)
-					addTiles(4)
+			while(amount + 4 <= maxAmount)
+				busy = TRUE
+				update_icons()
+				if(do_after(5 SECONDS))
+					if(M)
+						M.use(1)
+						addTiles(4)
+			busy = FALSE
 
 /mob/living/bot/floorbot/explode()
 	turn_off()

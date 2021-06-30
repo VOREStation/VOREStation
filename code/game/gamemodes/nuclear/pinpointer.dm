@@ -7,7 +7,7 @@
 	item_state = "electronic"
 	throw_speed = 4
 	throw_range = 20
-	matter = list(DEFAULT_WALL_MATERIAL = 500)
+	matter = list(MAT_STEEL = 500)
 	preserve_item = 1
 	var/obj/item/weapon/disk/nuclear/the_disk = null
 	var/active = 0

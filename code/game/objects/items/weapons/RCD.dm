@@ -14,7 +14,7 @@
 	throw_range = 5
 	w_class = ITEMSIZE_NORMAL
 	origin_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 2)
-	matter = list(DEFAULT_WALL_MATERIAL = 50000)
+	matter = list(MAT_STEEL = 50000)
 	preserve_item = TRUE // RCDs are pretty important.
 	var/datum/effect/effect/system/spark_spread/spark_system
 	var/stored_matter = 0

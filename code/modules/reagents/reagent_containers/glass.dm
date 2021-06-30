@@ -259,7 +259,7 @@
 	icon_state = "bucket"
 	item_state = "bucket"
 	center_of_mass = list("x" = 16,"y" = 10)
-	matter = list(DEFAULT_WALL_MATERIAL = 200)
+	matter = list(MAT_STEEL = 200)
 	w_class = ITEMSIZE_NORMAL
 	amount_per_transfer_from_this = 20
 	possible_transfer_amounts = list(10,20,30,60,120)
@@ -283,7 +283,7 @@
 		user.drop_from_inventory(src)
 		qdel(src)
 		return
-	else if(istype(D, /obj/item/stack/material) && D.get_material_name() == DEFAULT_WALL_MATERIAL)
+	else if(istype(D, /obj/item/stack/material) && D.get_material_name() == MAT_STEEL)
 		var/obj/item/stack/material/M = D
 		if (M.use(1))
 			var/obj/item/weapon/secbot_assembly/edCLN_assembly/B = new /obj/item/weapon/secbot_assembly/edCLN_assembly

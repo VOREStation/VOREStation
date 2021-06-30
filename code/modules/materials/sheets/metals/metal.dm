@@ -1,7 +1,7 @@
 /obj/item/stack/material/steel
-	name = DEFAULT_WALL_MATERIAL
+	name = MAT_STEEL
 	icon_state = "sheet-refined"
-	default_type = DEFAULT_WALL_MATERIAL
+	default_type = MAT_STEEL
 	no_variants = FALSE
 	apply_colour = TRUE
 

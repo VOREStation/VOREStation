@@ -5,7 +5,7 @@
 	icon_state = "deep_scan_device"
 	item_state = "electronic"
 	origin_tech = list(TECH_MAGNET = 1, TECH_ENGINEERING = 1)
-	matter = list(DEFAULT_WALL_MATERIAL = 150)
+	matter = list(MAT_STEEL = 150)
 	var/scan_time = 2 SECONDS
 	var/range = 2
 	var/exact = FALSE
@@ -74,7 +74,7 @@
 	desc = "An advanced device used to locate ore deep underground."
 	description_info = "This scanner has variable range, you can use the Set Scanner Range verb, or alt+click the device. Drills dig in 5x5."
 	origin_tech = list(TECH_MAGNET = 4, TECH_ENGINEERING = 4)
-	matter = list(DEFAULT_WALL_MATERIAL = 150)
+	matter = list(MAT_STEEL = 150)
 	scan_time = 0.5 SECONDS
 	exact = TRUE
 

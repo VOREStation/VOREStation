@@ -1,7 +1,7 @@
 // HUDs
 
 /datum/design/item/hud
-	materials = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
+	materials = list(MAT_STEEL = 50, "glass" = 50)
 
 /datum/design/item/hud/AssembleDesignName()
 	..()

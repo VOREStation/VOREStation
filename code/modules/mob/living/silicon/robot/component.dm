@@ -212,7 +212,7 @@
 	name = "broken component"
 	icon = 'icons/obj/robot_component.dmi'
 	icon_state = "broken"
-	matter = list(DEFAULT_WALL_MATERIAL = 1000)
+	matter = list(MAT_STEEL = 1000)
 
 /obj/item/broken_device/random
 	var/list/possible_icons = list("binradio_broken",
