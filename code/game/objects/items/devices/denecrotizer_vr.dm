@@ -1,20 +1,43 @@
 /mob/living/simple_mob //makes it so that any simplemob can potentially be revived by players and joined by ghosts
-	var/ghostjoin = 0
-	var/ic_revivable = 0
+	var/ghostjoin = FALSE
+	var/ic_revivable = FALSE
 	var/revivedby = "no one"
+
+/mob/living/simple_mob/vv_edit_var(var_name, var_value)
+	switch(var_name)
+		if(NAMEOF(src, ghostjoin))
+			if(ghostjoin == var_value)
+				return
+
+			if(var_value)
+				ghostjoin = TRUE
+				active_ghost_pods |= src
+			else
+				ghostjoin = FALSE
+				active_ghost_pods -= src
+
+			ghostjoin_icon()
+			. =  TRUE
+
+	if(!isnull(.))
+		datum_flags |= DF_VAR_EDITED
+		return
+
+	. = ..()
+
 
 //The stuff we want to be revivable normally
 /mob/living/simple_mob/animal
-	ic_revivable = 1
+	ic_revivable = TRUE
 /mob/living/simple_mob/otie
-	ic_revivable = 1
+	ic_revivable = TRUE
 /mob/living/simple_mob/vore
-	ic_revivable = 1
+	ic_revivable = TRUE
 //The stuff that would be revivable but that we don't want to be revivable
 /mob/living/simple_mob/animal/giant_spider/nurse //no you can't revive the ones who can lay eggs and get webs everywhere
-	ic_revivable = 0
+	ic_revivable = FALSE
 /mob/living/simple_mob/animal/giant_spider/carrier //or the ones who fart babies when they die
-	ic_revivable = 0
+	ic_revivable = FALSE
 
 /// A ghost has clicked us
 /mob/living/simple_mob/attack_ghost(mob/observer/dead/user as mob)
@@ -156,7 +179,7 @@
 		log_and_message_admins("[key_name_admin(user)] used a denecrotizer to revive a simple mob: [target]. [ADMIN_FLW(src)]")
 		if(!target.mind) //if it doesn't have a mind then no one has been playing as it, and it is safe to offer to ghosts.
 			target.ghostjoin = 1
-			active_ghost_pods += target
+			active_ghost_pods |= target
 			target.ghostjoin_icon()
 		last_used = world.time
 		charges--
@@ -202,11 +225,11 @@
 		I.invisibility = INVISIBILITY_OBSERVER
 		I.plane = PLANE_GHOSTS
 		I.appearance_flags = KEEP_APART|RESET_TRANSFORM
-
+	
+	cut_overlay(I)
+	
 	if(ghostjoin)
 		add_overlay(I)
-	else
-		cut_overlay(I)
 
 /obj/item/device/denecrotizer/medical //Can revive more things, but without the special ghost and faction stuff. For medical use.
 	name = "commercial denecrotizer"
