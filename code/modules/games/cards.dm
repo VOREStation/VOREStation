@@ -133,7 +133,7 @@
 			players += player
 	//players -= usr
 
-	var/mob/living/M = input("Who do you wish to deal a card?") as null|anything in players
+	var/mob/living/M = tgui_input_list(usr, "Who do you wish to deal a card?", "Deal to whom?", players)
 	if(!usr || !src || !M) return
 
 	deal_at(usr, M, 1)
@@ -157,10 +157,10 @@
 			players += player
 	//players -= usr
 	var/maxcards = max(min(cards.len,10),1)
-	var/dcard = input("How many card(s) do you wish to deal? You may deal up to [maxcards] cards.") as num
+	var/dcard = input(usr, "How many card(s) do you wish to deal? You may deal up to [maxcards] cards.") as num
 	if(dcard > maxcards)
 		return
-	var/mob/living/M = input("Who do you wish to deal [dcard] card(s)?") as null|anything in players
+	var/mob/living/M = tgui_input_list(usr, "Who do you wish to deal [dcard] card(s)?", "Deal to whom?", players)
 	if(!usr || !src || !M) return
 
 	deal_at(usr, M, dcard)
@@ -321,14 +321,14 @@
 
 	var/i
 	var/maxcards = min(cards.len,5) // Maximum of 5 cards at once
-	var/discards = input("How many cards do you want to discard? You may discard up to [maxcards] card(s)") as num
+	var/discards = input(usr, "How many cards do you want to discard? You may discard up to [maxcards] card(s)") as num
 	if(discards > maxcards)
 		return
 	for	(i = 0;i < discards;i++)
 		var/list/to_discard = list()
 		for(var/datum/playingcard/P in cards)
 			to_discard[P.name] = P
-		var/discarding = input("Which card do you wish to put down?") as null|anything in to_discard
+		var/discarding = tgui_input_list(usr, "Which card do you wish to put down?", "Card Selection", to_discard)
 
 		if(!discarding || !to_discard[discarding] || !usr || !src) return
 
@@ -379,7 +379,7 @@
 	var/pickablecards = list()
 	for(var/datum/playingcard/P in cards)
 		pickablecards[P.name] += P
-	var/pickedcard = input("Which card do you want to remove from the hand?")	as null|anything in pickablecards
+	var/pickedcard = tgui_input_list(usr, "Which card do you want to remove from the hand?", "Card Selection", pickablecards)
 
 	if(!pickedcard || !pickablecards[pickedcard] || !usr || !src) return
 

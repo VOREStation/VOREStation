@@ -330,10 +330,10 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 			return
 
 		if (C>=26 + runedec + cult.current_antagonists.len) //including the useless rune at the secret room, shouldn't count against the limit of 25 runes - Urist
-			alert("The cloth of reality can't take that much of a strain. Remove some runes first!")
+			tgui_alert_async(user, "The cloth of reality can't take that much of a strain. Remove some runes first!")
 			return
 		else
-			switch(alert("You open the tome",,"Read it","Scribe a rune", "Cancel"))
+			switch(tgui_alert(user, "You open the tome", "Tome", list("Read it","Scribe a rune","Cancel")))
 				if("Cancel")
 					return
 				if("Read it")
@@ -448,7 +448,7 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 		if (!istype(user.loc,/turf))
 			to_chat(user, "<span class='notice'>You do not have enough space to write a proper rune.</span>")
 		var/list/runes = list("teleport", "itemport", "tome", "armor", "convert", "tear in reality", "emp", "drain", "seer", "raise", "obscure", "reveal", "astral journey", "manifest", "imbue talisman", "sacrifice", "wall", "freedom", "cultsummon", "deafen", "blind", "bloodboil", "communicate", "stun")
-		r = input("Choose a rune to scribe", "Rune Scribing") in runes //not cancellable.
+		r = input(usr, "Choose a rune to scribe", "Rune Scribing") in runes // Remains input() for extreme blocking
 		var/obj/effect/rune/R = new /obj/effect/rune
 		if(istype(user, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = user
@@ -461,7 +461,7 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 				var/list/words = list("ire", "ego", "nahlizet", "certum", "veri", "jatkaa", "balaq", "mgar", "karazet", "geeri")
 				var/beacon
 				if(usr)
-					beacon = input("Select the last rune", "Rune Scribing") in words
+					beacon = input(usr, "Select the last rune", "Rune Scribing") in words // Remains input() for extreme blocking
 				R.word1=cultwords["travel"]
 				R.word2=cultwords["self"]
 				R.word3=beacon
@@ -471,7 +471,7 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 				var/list/words = list("ire", "ego", "nahlizet", "certum", "veri", "jatkaa", "balaq", "mgar", "karazet", "geeri")
 				var/beacon
 				if(usr)
-					beacon = input("Select the last rune", "Rune Scribing") in words
+					beacon = input(usr, "Select the last rune", "Rune Scribing") in words // Remains input() for extreme blocking
 				R.word1=cultwords["travel"]
 				R.word2=cultwords["other"]
 				R.word3=beacon

@@ -64,6 +64,5 @@
 
 	//Final popup notice
 	if (!pass)
-		spawn()
-			alert(src,"There were problems with spawning your character. Check your message log for details.","Error","OK")
+		tgui_alert_async(src,"There were problems with spawning your character. Check your message log for details.","Error")
 	return pass

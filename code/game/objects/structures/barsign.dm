@@ -36,7 +36,7 @@
 	var/obj/item/weapon/card/id/card = I.GetID()
 	if(istype(card))
 		if(access_bar in card.GetAccess())
-			var/sign_type = input(user, "What would you like to change the barsign to?") as null|anything in get_valid_states(0)
+			var/sign_type = tgui_input_list(user, "What would you like to change the barsign to?", "Bar Sign Choice", get_valid_states(0))
 			if(!sign_type)
 				return
 			icon_state = sign_type

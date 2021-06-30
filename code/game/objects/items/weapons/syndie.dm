@@ -89,7 +89,7 @@
 		user.visible_message("<span class='rose'>Without even breaking stride, \the [user] flips open \the [src] in one smooth movement.</span>")
 
 	else if(lit && detonator_mode)
-		switch(alert(user, "What would you like to do?", "Lighter", "Press the button.", "Close the lighter."))
+		switch(tgui_alert(user, "What would you like to do?", "Lighter", list("Press the button.", "Close the lighter.")))
 			if("Press the button.")
 				to_chat(user, "<span class='warning'>You press the button.</span>")
 				icon_state = "[base_state]click"

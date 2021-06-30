@@ -22,7 +22,7 @@
 
 /obj/item/weapon/disk/xenobio/attack_self(var/mob/user as mob)
 	if(genes.len)
-		var/choice = alert(user, "Are you sure you want to wipe the disk?", "Xenobiological Data", "No", "Yes")
+		var/choice = tgui_alert(user, "Are you sure you want to wipe the disk?", "Xenobiological Data", list("No", "Yes"))
 		if(src && user && genes && choice && choice == "Yes" && user.Adjacent(get_turf(src)))
 			to_chat(user, "You wipe the disk data.")
 			name = initial(name)

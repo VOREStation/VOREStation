@@ -326,7 +326,7 @@
 		if("ejectify")
 			go_out()
 		if("changestasis")
-			var/new_stasis = input("Levels deeper than 50% stasis level will render the patient unconscious.","Stasis Level") as null|anything in stasis_choices
+			var/new_stasis = tgui_input_list(usr, "Levels deeper than 50% stasis level will render the patient unconscious.","Stasis Level", stasis_choices)
 			if(new_stasis)
 				stasis_level = stasis_choices[new_stasis]
 		if("auto_eject_dead_on")

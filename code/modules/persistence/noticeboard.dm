@@ -56,7 +56,7 @@
 
 /obj/structure/noticeboard/attackby(obj/item/I, mob/user)
 	if(I.is_screwdriver())
-		var/choice = input("Which direction do you wish to place the noticeboard?", "Noticeboard Offset") as null|anything in list("North", "South", "East", "West", "No Offset")
+		var/choice = tgui_input_list(usr, "Which direction do you wish to place the noticeboard?", "Noticeboard Offset", list("North", "South", "East", "West", "No Offset"))
 		if(choice && Adjacent(user) && I.loc == user && !user.incapacitated())
 			playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
 			switch(choice)

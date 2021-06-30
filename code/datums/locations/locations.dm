@@ -30,47 +30,11 @@ var/global/datum/locations/milky_way/all_locations = new()
 /proc/choose_location_datum(client/user)
 	var/datum/locations/choice = all_locations
 	while(length(choice.contents) > 0) //For some reason it wouldn't let me do contents.len even when I defined it as a list.
-		var/specific = alert(user, "The location currently selected is [choice.name].  More specific options exist, would you like to pick a more specific location?",
-		"Choose location", "Yes", "No")
+		var/specific = tgui_alert(user, "The location currently selected is [choice.name].  More specific options exist, would you like to pick a more specific location?", "Choose location", list("Yes", "No"))
 		if(specific == "Yes" && length(choice.contents) > 0)
-			choice = input(user, "Please choose a location.","Locations") as null|anything in choice.contents
+			choice = tgui_input_list(user, "Please choose a location.", "Locations", choice.contents)
 		else
 			break
 	to_chat(user,choice.name)
 	to_chat(user,choice.desc)
 	return choice
-
-//	var/datum/locations/choice = input(user, "Please choose a location.","Locations") as null|anything in all_locations
-//	if(choice && choice.contents.len > 0)
-
-
-/*
-/datum/locations/proc/show_contents()
-//	to_world("[src]\n[desc]")
-	for(var/datum/locations/a in contents)
-		to_world("[a]\n[a.parent ? "Located in [a.parent]\n" : ""][a.desc]")
-		a.show_contents()
-	to_world("\n")
-
-/datum/locations/proc/count_locations()
-	var/i = 0
-	for(var/datum/locations/a in contents)
-		i = i + a.count_locations()
-	return i
-
-/client/verb/show_locations()
-	set name = "Show Locations"
-	set category = "Debug"
-	locations.show_contents()
-
-/client/verb/debug_locations()
-	set name = "Debug Locations"
-	set category = "Debug"
-	debug_variables(locations)
-
-/client/verb/count_locations()
-	set name = "Count Locations"
-	set category = "Debug"
-	var/location_number = locations.count_locations()
-	to_world(location_number)
-*/

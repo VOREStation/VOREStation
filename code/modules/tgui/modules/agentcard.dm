@@ -54,7 +54,7 @@
 				to_chat(usr, "<span class='notice'>Age has been set to '[S.age]'.</span>")
 				. = TRUE
 		if("appearance")
-			var/datum/card_state/choice = input(usr, "Select the appearance for this card.", "Agent Card Appearance") as null|anything in id_card_states()
+			var/datum/card_state/choice = tgui_input_list(usr, "Select the appearance for this card.", "Agent Card Appearance", id_card_states())
 			if(choice && tgui_status(usr, state) == STATUS_INTERACTIVE)
 				S.icon_state = choice.icon_state
 				S.item_state = choice.item_state
@@ -118,7 +118,7 @@
 				to_chat(usr, "<span class='notice'>Sex changed to '[new_sex]'.</span>")
 				. = TRUE
 		if("factoryreset")
-			if(alert("This will factory reset the card, including access and owner. Continue?", "Factory Reset", "No", "Yes") == "Yes" && tgui_status(usr, state) == STATUS_INTERACTIVE)
+			if(tgui_alert(usr, "This will factory reset the card, including access and owner. Continue?", "Factory Reset", list("No", "Yes")) == "Yes" && tgui_status(usr, state) == STATUS_INTERACTIVE)
 				S.age = initial(S.age)
 				S.access = syndicate_access.Copy()
 				S.assignment = initial(S.assignment)

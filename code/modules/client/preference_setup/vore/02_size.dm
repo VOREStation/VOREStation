@@ -78,7 +78,7 @@
 			swear to god I will find you and I will punch you for not reading these directions!\n\
 			([WEIGHT_MIN]-[WEIGHT_MAX])", "Character Preference") as num|null
 		if(new_weight)
-			var/unit_of_measurement = alert(user, "Is that number in pounds (lb) or kilograms (kg)?", "Confirmation", "Pounds", "Kilograms")
+			var/unit_of_measurement = tgui_alert(user, "Is that number in pounds (lb) or kilograms (kg)?", "Confirmation", list("Pounds", "Kilograms"))
 			if(unit_of_measurement == "Pounds")
 				new_weight = round(text2num(new_weight),4)
 			if(unit_of_measurement == "Kilograms")

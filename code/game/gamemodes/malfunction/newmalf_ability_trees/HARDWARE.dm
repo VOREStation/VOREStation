@@ -23,7 +23,7 @@
 		user.bombing_core = 0
 		return
 
-	var/choice = alert("Really destroy core?", "Core self-destruct", "YES", "NO")
+	var/choice = tgui_alert(user, "Really destroy core?", "Core self-destruct", list("YES", "NO"))
 	if(choice != "YES")
 		return
 
@@ -82,7 +82,7 @@
 		user.bombing_station = 0
 		return
 
-	var/choice = alert("Really destroy station?", "Station self-destruct", "YES", "NO")
+	var/choice = tgui_alert(user, "Really destroy station?", "Station self-destruct", list("YES", "NO"))
 	if(choice != "YES")
 		return
 	if(!ability_prechecks(user, 0, 0))

@@ -34,7 +34,7 @@
 		to_chat(src, span("warning", "No usable AI shell beacons detected."))
 
 	if(!target || !(target in possible)) //If the AI is looking for a new shell, or its pre-selected shell is no longer valid
-		target = input(src, "Which body to control?") as null|anything in possible
+		target = tgui_input_list(src, "Which body to control?", "Shell Choice", possible)
 
 	if(!target || target.stat == DEAD || target.deployed || !(!target.connected_ai || (target.connected_ai == src) ) )
 		if(target)

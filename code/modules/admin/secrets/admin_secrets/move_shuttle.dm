@@ -9,16 +9,16 @@
 	. = ..()
 	if(!.)
 		return
-	var/confirm = alert(user, "This command directly moves a shuttle from one area to another. DO NOT USE THIS UNLESS YOU ARE DEBUGGING A SHUTTLE AND YOU KNOW WHAT YOU ARE DOING.", "Are you sure?", "Ok", "Cancel")
+	var/confirm = tgui_alert(user, "This command directly moves a shuttle from one area to another. DO NOT USE THIS UNLESS YOU ARE DEBUGGING A SHUTTLE AND YOU KNOW WHAT YOU ARE DOING.", "Are you sure?", list("Ok", "Cancel"))
 	if (confirm == "Cancel")
 		return
 
-	var/shuttle_tag = input(user, "Which shuttle do you want to jump?") as null|anything in SSshuttles.shuttles
+	var/shuttle_tag = tgui_input_list(user, "Which shuttle do you want to jump?", "Shuttle Choice", SSshuttles.shuttles)
 	if (!shuttle_tag) return
 
 	var/datum/shuttle/S = SSshuttles.shuttles[shuttle_tag]
 
-	var/destination_tag = input(user, "Which landmark do you want to jump to? (IF YOU GET THIS WRONG THINGS WILL BREAK)") as null|anything in SSshuttles.registered_shuttle_landmarks
+	var/destination_tag = tgui_input_list(user, "Which landmark do you want to jump to? (IF YOU GET THIS WRONG THINGS WILL BREAK)", "Landmark Choice", SSshuttles.registered_shuttle_landmarks)
 	if (!destination_tag) return
 	var/destination_location = SSshuttles.get_landmark(destination_tag)
 	if (!destination_location) return

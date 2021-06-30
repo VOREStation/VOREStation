@@ -68,7 +68,7 @@
 	set name = "Choose Chassis"
 	var/choice
 
-	choice = input(usr,"What would you like to use for your mobile chassis icon?") as null|anything in possible_chassis
+	choice = tgui_input_list(usr, "What would you like to use for your mobile chassis icon?", "Chassis Choice", possible_chassis)
 	if(!choice) return
 	chassis = possible_chassis[choice]
 	verbs |= /mob/living/proc/hide

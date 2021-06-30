@@ -350,7 +350,7 @@
 
 /obj/item/stack/attack_hand(mob/user as mob)
 	if (user.get_inactive_hand() == src)
-		var/N = input("How many stacks of [src] would you like to split off?  There are currently [amount].", "Split stacks", 1) as num|null
+		var/N = input(usr, "How many stacks of [src] would you like to split off?  There are currently [amount].", "Split stacks", 1) as num|null
 		if(N)
 			var/obj/item/stack/F = src.split(N)
 			if (F)

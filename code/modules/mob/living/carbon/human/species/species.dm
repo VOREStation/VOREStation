@@ -272,6 +272,8 @@
 	var/icon_height = 32
 	var/agility = 20 //prob() to do agile things
 
+	var/sort_hint = SPECIES_SORT_NORMAL
+
 /datum/species/proc/update_attack_types()
 	unarmed_attacks = list()
 	for(var/u_type in unarmed_types)
@@ -304,6 +306,14 @@
 		if(!inherent_verbs)
 			inherent_verbs = list()
 		inherent_verbs |= /mob/living/carbon/human/proc/regurgitate
+
+	update_sort_hint()
+
+/datum/species/proc/update_sort_hint()
+	if(spawn_flags & SPECIES_IS_RESTRICTED)
+		sort_hint = SPECIES_SORT_RESTRICTED
+	else if(spawn_flags & SPECIES_IS_WHITELISTED)
+		sort_hint = SPECIES_SORT_WHITELISTED
 
 /datum/species/proc/sanitize_name(var/name, var/robot = 0)
 	return sanitizeName(name, MAX_NAME_LEN, robot)

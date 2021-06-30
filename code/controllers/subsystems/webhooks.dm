@@ -82,7 +82,7 @@ SUBSYSTEM_DEF(webhooks)
 		to_chat(usr, SPAN_WARNING("Webhook list is empty; either webhooks are disabled, webhooks aren't configured, or the subsystem hasn't initialized."))
 		return
 
-	var/choice = input(usr, "Select a webhook to ping.", "Ping Webhook") as null|anything in SSwebhooks.webhook_decls
+	var/choice = tgui_input_list(usr, "Select a webhook to ping.", "Ping Webhook", SSwebhooks.webhook_decls)
 	if(choice && SSwebhooks.webhook_decls[choice])
 		var/decl/webhook/webhook = SSwebhooks.webhook_decls[choice]
 		log_and_message_admins("has pinged webhook [choice].", usr)

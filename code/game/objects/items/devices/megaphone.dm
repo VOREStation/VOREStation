@@ -98,7 +98,7 @@
 	adjust_volume(usr)
 
 /obj/item/device/megaphone/super/proc/adjust_volume(var/mob/living/user)
-	var/new_volume = input(user, "Set Volume") as null|anything in volume_options
+	var/new_volume = tgui_input_list(user, "Set Volume", "Set Volume", volume_options)
 
 	if(new_volume && Adjacent(user))
 		broadcast_size = new_volume
@@ -111,7 +111,7 @@
 	adjust_font(usr)
 
 /obj/item/device/megaphone/super/proc/adjust_font(var/mob/living/user)
-	var/new_font = input(user, "Set Volume") as null|anything in font_options
+	var/new_font = tgui_input_list(user, "Set Volume", "Set Volume", font_options)
 
 	if(new_font && Adjacent(user))
 		broadcast_font = new_font
@@ -124,7 +124,7 @@
 	adjust_color(usr)
 
 /obj/item/device/megaphone/super/proc/adjust_color(var/mob/living/user)
-	var/new_color = input(user, "Set Volume") as null|anything in color_options
+	var/new_color = tgui_input_list(user, "Set Volume", "Set Volume", color_options)
 
 	if(new_color && Adjacent(user))
 		broadcast_color = new_color

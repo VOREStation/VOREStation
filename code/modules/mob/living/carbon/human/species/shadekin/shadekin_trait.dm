@@ -1,4 +1,5 @@
 /datum/trait/kintype
+	sort = TRAIT_SORT_SPECIES
 	allowed_species = list(SPECIES_SHADEKIN)
 	var/color = BLUE_EYES
 	name = "Shadekin Blue Adaptation"

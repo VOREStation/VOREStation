@@ -195,7 +195,7 @@
 		to_chat(src,"<span class='warning'>Nobody nearby to mend!</span>")
 		return FALSE
 
-	var/mob/living/target = input(src,"Pick someone to mend:","Mend Other") as null|anything in targets
+	var/mob/living/target = tgui_input_list(src,"Pick someone to mend:","Mend Other", targets)
 	if(!target)
 		return FALSE
 

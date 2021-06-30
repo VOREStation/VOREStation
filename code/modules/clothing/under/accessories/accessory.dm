@@ -364,7 +364,7 @@
 	if(!M.mind)
 		return 0
 
-	var/input = sanitizeSafe(input("Who do you want to dedicate the bracelet to?", ,""), MAX_NAME_LEN)
+	var/input = sanitizeSafe(input(usr, "Who do you want to dedicate the bracelet to?", ,""), MAX_NAME_LEN)
 
 	if(src && input && !M.stat && in_range(M,src))
 		desc = "A beautiful friendship bracelet in all the colors of the rainbow. It's dedicated to [input]."

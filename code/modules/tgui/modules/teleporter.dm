@@ -59,7 +59,7 @@
 						areaindex[tmpname] = 1
 					L[tmpname] = I
 
-			var/desc = input("Please select a location to lock in.", "Locking Menu") in L|null
+			var/desc = tgui_input_list(usr, "Please select a location to lock in.", "Locking Menu", L)
 			if(!desc)
 				return FALSE
 			if(tgui_status(usr, state) != STATUS_INTERACTIVE)

@@ -16,33 +16,63 @@
 /mob/living/simple_mob/animal/giant_spider/carrier //or the ones who fart babies when they die
 	ic_revivable = 0
 
-//WHEN GHOSTS ATTACK!!!!!
+/// A ghost has clicked us
 /mob/living/simple_mob/attack_ghost(mob/observer/dead/user as mob)
 	if(!ghostjoin)
 		return ..()
 
-	var/reply = alert("Would you like to become [src]? It is bound to [revivedby].",,"Yes","No")
-	if(reply == "No")
-		return
+	if(!evaluate_ghost_join(user))
+		return ..()
 
-	if(ckey) //FIRST ONE TO CLICK YES GETS IT!!!!!! Channel your inner youtube commenter.
-		to_chat(src, "<span class='notice'>Sorry, someone else has already inhabited [src].</span>")
-		return
-	
-	log_and_message_admins("[key_name_admin(user)] joined [src] as a ghost [ADMIN_FLW(src)]")
+	tgui_alert_async(usr, "Would you like to become [src]? It is bound to [revivedby].", "Become Mob", list("Yes","No"), CALLBACK(src, .proc/reply_ghost_join), 20 SECONDS)
+
+/// A reply to an async alert request was received
+/mob/living/simple_mob/proc/reply_ghost_join(response)
+	if(response != "Yes")
+		return // ok
+
+	var/mob/observer/dead/D = usr
+	if(evaluate_ghost_join(D))
+		ghost_join(D)
+
+/// Inject a ghost into this mob. Assumes you've done all sanity before this point.
+/mob/living/simple_mob/proc/ghost_join(mob/observer/dead/D)
+	log_and_message_admins("[key_name_admin(D)] joined [src] as a ghost [ADMIN_FLW(src)]")
 	active_ghost_pods -= src
-	if(user.mind)
-		user.mind.active = TRUE
-		user.mind.transfer_to(src)
+	
+	// Move the ghost in
+	if(D.mind)
+		D.mind.active = TRUE
+		D.mind.transfer_to(src)
 	else
-		src.ckey = user.ckey
-	qdel(user)
-	ghostjoin = 0
+		src.ckey = D.ckey
+	qdel(D)
+	
+	// Clean up the simplemob
+	ghostjoin = FALSE
 	ghostjoin_icon()
 	if(revivedby != "no one")
 		to_chat(src, "<span class='notice'>Where once your life had been rough and scary, you have been assisted by [revivedby]. They seem to be the reason you are on your feet again... so perhaps you should help them out.</span> <span class= warning> Being as you were revived, you are allied with the station. Do not attack anyone unless they are threatening the one who revived you. And try to listen to the one who revived you within reason. Of course, you may do scenes as you like, but you must still respect preferences.</span>")
-		visible_message("[src]'s eyes flicker with a curious intelligence.")
+		visible_message("[src]'s eyes flicker with a curious intelligence.", runemessage = "looks around")
 
+/// Evaluate someone for being allowed to join as this mob from being a ghost
+/mob/living/simple_mob/proc/evaluate_ghost_join(mob/observer/dead/D)
+	if(!istype(D) || !D.client)
+		stack_trace("A non-ghost mob was evaluated for joining into a simplemob...")
+		return FALSE
+
+	// At this point we can at least send them messages as to why they can't join, since they are a mob with a client
+	if(!ghostjoin)	
+		to_chat(D, "<span class='notice'>Sorry, [src] is no longer ghost-joinable.</span>")
+		return FALSE
+
+	if(ckey)
+		to_chat(D, "<span class='notice'>Sorry, someone else has already inhabited [src].</span>")
+		return FALSE
+	
+	// Insert whatever ban checks you want here if we ever add simplemob bans
+
+	return TRUE
 
 /obj/item/device/denecrotizer //Away map reward. FOR TRAINED NECROMANCERS ONLY. >:C
 	name = "experimental denecrotizer"

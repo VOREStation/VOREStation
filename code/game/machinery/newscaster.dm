@@ -413,7 +413,7 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 				set_temp("Error: Could not submit feed channel to network: A feed channel already exists under your name.", "danger", FALSE)
 				return TRUE
 
-			var/choice = alert("Please confirm Feed channel creation","Network Channel Handler","Confirm","Cancel")
+			var/choice = tgui_alert(usr, "Please confirm Feed channel creation","Network Channel Handler",list("Confirm","Cancel"))
 			if(choice == "Confirm")
 				news_network.CreateFeedChannel(channel_name, our_user, c_locked)
 				set_temp("Feed channel [channel_name] created successfully.", "success", FALSE)
@@ -425,7 +425,7 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 			for(var/datum/feed_channel/F in news_network.network_channels)
 				if((!F.locked || F.author == scanned_user) && !F.censored)
 					available_channels += F.channel_name
-			var/new_channel_name = input(usr, "Choose receiving Feed Channel", "Network Channel Handler") as null|anything in available_channels
+			var/new_channel_name = tgui_input_list(usr, "Choose receiving Feed Channel", "Network Channel Handler", available_channels)
 			if(new_channel_name)
 				channel_name = new_channel_name
 			return TRUE
@@ -490,11 +490,11 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 				set_temp("Error: Could not submit wanted issue to network: Author unverified.", "danger", FALSE)
 				return TRUE
 
-			var/choice = alert("Please confirm Wanted Issue change.", "Network Security Handler", "Confirm", "Cancel")
+			var/choice = tgui_alert(usr, "Please confirm Wanted Issue change.", "Network Security Handler", list("Confirm", "Cancel"))
 			if(choice == "Confirm")
 				if(news_network.wanted_issue)
 					if(news_network.wanted_issue.is_admin_message)
-						alert("The wanted issue has been distributed by a [using_map.company_name] higherup. You cannot edit it.", "Ok")
+						tgui_alert_async(usr, "The wanted issue has been distributed by a [using_map.company_name] higherup. You cannot edit it.")
 						return
 					news_network.wanted_issue.author = channel_name
 					news_network.wanted_issue.body = msg
@@ -519,9 +519,9 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 			if(!securityCaster)
 				return FALSE
 			if(news_network.wanted_issue.is_admin_message)
-				alert("The wanted issue has been distributed by a [using_map.company_name] higherup. You cannot take it down.","Ok")
+				tgui_alert_async(usr, "The wanted issue has been distributed by a [using_map.company_name] higherup. You cannot take it down.")
 				return
-			var/choice = alert("Please confirm Wanted Issue removal","Network Security Handler","Confirm","Cancel")
+			var/choice = tgui_alert(usr, "Please confirm Wanted Issue removal","Network Security Handler",list("Confirm","Cancel"))
 			if(choice=="Confirm")
 				news_network.wanted_issue = null
 				for(var/obj/machinery/newscaster/NEWSCASTER in allCasters)
@@ -534,7 +534,7 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 				return FALSE
 			var/datum/feed_channel/FC = locate(params["ref"])
 			if(FC.is_admin_channel)
-				alert("This channel was created by a [using_map.company_name] Officer. You cannot censor it.","Ok")
+				tgui_alert_async(usr, "This channel was created by a [using_map.company_name] Officer. You cannot censor it.")
 				return
 			if(FC.author != "\[REDACTED\]")
 				FC.backup_author = FC.author
@@ -549,7 +549,7 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 				return FALSE
 			var/datum/feed_message/MSG = locate(params["ref"])
 			if(MSG.is_admin_message)
-				alert("This message was created by a [using_map.company_name] Officer. You cannot censor its author.","Ok")
+				tgui_alert_async(usr, "This message was created by a [using_map.company_name] Officer. You cannot censor its author.")
 				return
 			if(MSG.author != "\[REDACTED\]")
 				MSG.backup_author = MSG.author
@@ -564,7 +564,7 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 				return FALSE
 			var/datum/feed_message/MSG = locate(params["ref"])
 			if(MSG.is_admin_message)
-				alert("This channel was created by a [using_map.company_name] Officer. You cannot censor it.","Ok")
+				tgui_alert_async(usr, "This channel was created by a [using_map.company_name] Officer. You cannot censor it.")
 				return
 			if(MSG.body != "\[REDACTED\]")
 				MSG.backup_body = MSG.body
@@ -586,7 +586,7 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 				return FALSE
 			var/datum/feed_channel/FC = locate(params["ref"])
 			if(FC.is_admin_channel)
-				alert("This channel was created by a [using_map.company_name] Officer. You cannot place a D-Notice upon it.","Ok")
+				tgui_alert_async(usr, "This channel was created by a [using_map.company_name] Officer. You cannot place a D-Notice upon it.")
 				return
 			FC.censored = !FC.censored
 			FC.update()

@@ -49,7 +49,7 @@
 			return
 	var/response = ""
 	if(!papers.len > 0)
-		response = alert(user, "Do you take regular paper, or Carbon copy paper?", "Paper type request", "Regular", "Carbon-Copy", "Cancel")
+		response = tgui_alert(user, "Do you take regular paper, or Carbon copy paper?", "Paper type request", list("Regular", "Carbon-Copy", "Cancel"))
 		if (response != "Regular" && response != "Carbon-Copy")
 			add_fingerprint(user)
 			return

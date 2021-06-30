@@ -64,7 +64,7 @@
 
 	var/datum/disease2/effect/Eff = s[stage]
 
-	var/C = input("Select effect for stage [stage]:", "Stage [stage]", initial(Eff.name)) as null|anything in L
+	var/C = tgui_input_list(usr, "Select effect for stage [stage]:", "Stage [stage]", L, Eff)
 	if(!C) return
 	return L[C]
 
@@ -130,12 +130,12 @@
 				s_multiplier[stage] = max(1, round(initial(E.maxm)/2))
 			else if(href_list["chance"])
 				var/datum/disease2/effect/Eff = s[stage]
-				var/I = input("Chance, per tick, of this effect happening (min 0, max [initial(Eff.chance_maxm)])", "Effect Chance", s_chance[stage]) as null|num
+				var/I = input(usr, "Chance, per tick, of this effect happening (min 0, max [initial(Eff.chance_maxm)])", "Effect Chance", s_chance[stage]) as null|num
 				if(I == null || I < 0 || I > initial(Eff.chance_maxm)) return
 				s_chance[stage] = I
 			else if(href_list["multiplier"])
 				var/datum/disease2/effect/Eff = s[stage]
-				var/I = input("Multiplier for this effect (min 1, max [initial(Eff.maxm)])", "Effect Multiplier", s_multiplier[stage]) as null|num
+				var/I = input(usr, "Multiplier for this effect (min 1, max [initial(Eff.maxm)])", "Effect Multiplier", s_multiplier[stage]) as null|num
 				if(I == null || I < 1 || I > initial(Eff.maxm)) return
 				s_multiplier[stage] = I
 		if("species")
@@ -151,15 +151,15 @@
 				if(!infectee.species || !(infectee.species.get_bodytype() in species))
 					infectee = null
 		if("ichance")
-			var/I = input("Input infection chance", "Infection Chance", infectionchance) as null|num
+			var/I = input(usr, "Input infection chance", "Infection Chance", infectionchance) as null|num
 			if(!I) return
 			infectionchance = I
 		if("stype")
-			var/S = alert("Which spread type?", "Spread Type", "Contact", "Airborne", "Blood")
+			var/S = tgui_alert(usr, "Which spread type?", "Spread Type", list("Contact", "Airborne", "Blood"))
 			if(!S) return
 			spreadtype = S
 		if("speed")
-			var/S = input("Input speed", "Speed", speed) as null|num
+			var/S = input(usr, "Input speed", "Speed", speed) as null|num
 			if(!S) return
 			speed = S
 		if("antigen")
@@ -173,7 +173,7 @@
 			else if(href_list["reset"])
 				antigens = list()
 		if("resistance")
-			var/S = input("Input % resistance to antibiotics", "Resistance", resistance) as null|num
+			var/S = input(usr, "Input % resistance to antibiotics", "Resistance", resistance) as null|num
 			if(!S) return
 			resistance = S
 		if("infectee")
@@ -187,14 +187,14 @@
 			if(!candidates.len)
 				to_chat(usr, "No possible candidates found!")
 
-			var/I = input("Choose initial infectee", "Infectee", infectee) as null|anything in candidates
+			var/I = tgui_input_list(usr, "Choose initial infectee", "Infectee", candidates)
 			if(!I || !candidates[I]) return
 			infectee = candidates[I]
 			species |= infectee.species.get_bodytype()
 		if("go")
 			if(!antigens.len)
-				var/a = alert("This disease has no antigens; it will be impossible to permanently immunise anyone without them.\
-								It is strongly recommended to set at least one antigen. Do you want to go back and edit your virus?", "Antigens", "Yes", "Yes", "No")
+				var/a = tgui_alert(usr, "This disease has no antigens; it will be impossible to permanently immunise anyone without them.\
+								It is strongly recommended to set at least one antigen. Do you want to go back and edit your virus?", "Antigens", list("Yes", "No"))
 				if(a == "Yes") return
 			var/datum/disease2/disease/D = new
 			D.infectionchance = infectionchance
