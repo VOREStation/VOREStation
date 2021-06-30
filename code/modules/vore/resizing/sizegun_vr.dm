@@ -71,6 +71,16 @@
 	charge_cost = 0
 	projectile_type = /obj/item/projectile/beam/sizelaser/admin
 
+/obj/item/weapon/gun/energy/sizegun/abductor
+	name = "alien size gun"
+	icon_state = "sizegun-abductor"
+	item_state = "laser"
+	charge_cost = 0
+	projectile_type = /obj/item/projectile/beam/sizelaser/admin
+
+/obj/item/weapon/gun/energy/sizegun/abductor/update_icon(ignore_inhands)
+	item_state = initial(item_state)
+
 /obj/item/weapon/gun/energy/sizegun/admin/select_size()
 	set name = "Select Size"
 	set category = "Object"
