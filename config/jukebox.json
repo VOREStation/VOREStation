@@ -3565,7 +3565,7 @@
 "duration": 2240,
 "artist": "Littlepetey",
 "secret": false,
-"lobby": false,
+"lobby": true,
 "jukebox": true,
 "genre": "Electronic"
 },
