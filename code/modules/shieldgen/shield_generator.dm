@@ -710,7 +710,7 @@
 		component_parts -= cap
 		qdel(cap)
 
-	component_parts += new /obj/item/weapon/stock_parts/capacitor/omni(src)
+	component_parts += new /obj/item/weapon/stock_parts/capacitor/hyper(src)
 	component_parts += new /obj/item/weapon/smes_coil/super_capacity(src)
 	RefreshParts()
 	current_energy = max_energy
