@@ -2,6 +2,7 @@
 	name = "observer"
 	desc = "This shouldn't appear"
 	density = 0
+	vis_flags = NONE
 
 /mob/observer/dead
 	name = "ghost"

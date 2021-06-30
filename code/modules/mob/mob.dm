@@ -84,9 +84,6 @@
 		else
 			exclude_mobs = list(src)
 		src.show_message(self_message, 1, blind_message, 2)
-	// Transfer messages about what we are doing to upstairs
-	if(shadow)
-		shadow.visible_message(message, self_message, blind_message, exclude_mobs, range)
 	if(isnull(runemessage))
 		runemessage = -1
 	. = ..(message, blind_message, exclude_mobs, range, runemessage) // Really not ideal that atom/visible_message has different arg numbering :(

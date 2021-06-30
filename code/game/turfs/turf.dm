@@ -2,6 +2,7 @@
 	icon = 'icons/turf/floors.dmi'
 	layer = TURF_LAYER
 	plane = TURF_PLANE
+	vis_flags = VIS_INHERIT_ID | VIS_INHERIT_PLANE// Important for interaction with and visualization of openspace.
 	level = 1
 	var/holy = 0
 
@@ -48,6 +49,13 @@
 	//Pathfinding related
 	if(movement_cost && pathweight == 1) // This updates pathweight automatically.
 		pathweight = movement_cost
+
+	var/turf/Ab = GetAbove(src)
+	if(Ab)
+		Ab.multiz_turf_new(src, DOWN)
+	var/turf/Be = GetBelow(src)
+	if(Be)
+		Be.multiz_turf_new(src, UP)
 
 /turf/Destroy()
 	. = QDEL_HINT_IWILLGC

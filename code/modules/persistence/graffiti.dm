@@ -4,6 +4,7 @@
 	icon = 'icons/effects/writing.dmi'
 	desc = "It looks like someone has scratched something here."
 	plane = DIRTY_PLANE
+	layer = DIRTY_LAYER
 	gender = PLURAL
 	blend_mode = BLEND_MULTIPLY
 	color = "#000000"

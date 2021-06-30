@@ -30,6 +30,7 @@
 	icon = 'icons/obj/monitors_vr.dmi' //VOREStation Edit - Other icons
 	icon_state = "alarm0"
 	layer = ABOVE_WINDOW_LAYER
+	vis_flags = VIS_HIDE // They have an emissive that looks bad in openspace due to their wall-mounted nature
 	anchored = 1
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 80

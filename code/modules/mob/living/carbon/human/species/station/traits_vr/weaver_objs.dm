@@ -39,6 +39,7 @@
 /obj/effect/weaversilk/floor
 	var/possible_icon_states = list("floorweb1", "floorweb2", "floorweb3", "floorweb4", "floorweb5", "floorweb6", "floorweb7", "floorweb8")
 	plane = DIRTY_PLANE
+	layer = DIRTY_LAYER
 
 /obj/effect/weaversilk/floor/Initialize()
 	..()

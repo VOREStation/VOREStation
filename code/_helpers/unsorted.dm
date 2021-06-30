@@ -852,10 +852,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 						if(z_level_change) // Same goes for mobs.
 							M.onTransitZ(T.z, X.z)
 
-						if(istype(M, /mob/living))
-							var/mob/living/LM = M
-							LM.check_shadow() // Need to check their Z-shadow, which is normally done in forceMove().
-
 					if(shuttlework)
 						var/turf/simulated/shuttle/SS = T
 						SS.landed_holder.leave_turf()

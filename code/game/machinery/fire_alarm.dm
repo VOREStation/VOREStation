@@ -8,6 +8,7 @@ FIRE ALARM
 	icon_state = "fire"
 	layer = ABOVE_WINDOW_LAYER
 	blocks_emissive = FALSE
+	vis_flags = VIS_HIDE // They have an emissive that looks bad in openspace due to their wall-mounted nature
 	var/detecting = 1.0
 	var/working = 1.0
 	var/time = 10.0

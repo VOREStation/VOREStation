@@ -13,6 +13,7 @@
 	idle_power_usage = 10
 	active_power_usage = 500
 	circuit = /obj/item/weapon/circuitboard/station_map
+	vis_flags = VIS_HIDE // They have an emissive that looks bad in openspace due to their wall-mounted nature
 
 	// TODO - Port use_auto_lights from /vg - for now declare here
 	var/use_auto_lights = 1
