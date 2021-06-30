@@ -153,6 +153,9 @@ var/list/preferences_datums = list()
 
 	var/list/volume_channels = list()
 
+	///If they are currently in the process of swapping slots, don't let them open 999 windows for it and get confused
+	var/selecting_slots = FALSE
+
 
 /datum/preferences/New(client/C)
 	player_setup = new(src)
@@ -391,6 +394,9 @@ var/list/preferences_datums = list()
 			character.descriptors[entry] = body_descriptors[entry]
 
 /datum/preferences/proc/open_load_dialog(mob/user)
+	if(selecting_slots)
+		to_chat(user, "<span class='warning'>You already have a slot selection dialog open!</span>")
+		return
 	var/savefile/S = new /savefile(path)
 	if(!S)
 		error("Somehow missing savefile path?! [path]")
@@ -411,7 +417,9 @@ var/list/preferences_datums = list()
 			name = "[i] - [name]"
 		charlist["[name][nickname ? " ([nickname])" : ""]"] = i
 
+	selecting_slots = TRUE
 	var/choice = tgui_input_list(user, "Select a character to load:", "Load Slot", charlist)
+	selecting_slots = FALSE
 	if(!choice)
 		return
 	
@@ -426,6 +434,9 @@ var/list/preferences_datums = list()
 	ShowChoices(user)
 
 /datum/preferences/proc/open_copy_dialog(mob/user)
+	if(selecting_slots)
+		to_chat(user, "<span class='warning'>You already have a slot selection dialog open!</span>")
+		return
 	var/savefile/S = new /savefile(path)
 	if(!S)
 		error("Somehow missing savefile path?! [path]")
@@ -446,7 +457,9 @@ var/list/preferences_datums = list()
 			name = "[i] - [name]"
 		charlist["[name][nickname ? " ([nickname])" : ""]"] = i
 
+	selecting_slots = TRUE
 	var/choice = tgui_input_list(user, "Select a character to COPY TO:", "Copy Slot", charlist)
+	selecting_slots = FALSE
 	if(!choice)
 		return
 	
