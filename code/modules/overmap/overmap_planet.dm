@@ -1,7 +1,10 @@
 /obj/effect/overmap/visitable/planet
 	name = "planet"
-	icon_state = "globe"
+	icon_state = "lush"
 	in_space = 0
+
+	unknown_name = "unknown planet"
+	unknown_state = "planet"
 
 	var/datum/gas_mixture/atmosphere
 
