@@ -4,6 +4,10 @@
 	desc = "yummy"
 	icon = 'icons/obj/food.dmi'
 	icon_state = null
+	center_of_mass = list("x"=16, "y"=16)
+	w_class = ITEMSIZE_SMALL
+	force = 0
+	
 	var/bitesize = 1
 	var/bitecount = 0
 	var/trash = null
@@ -18,11 +22,10 @@
 	var/icon/flat_icon = null //Used to cache a flat icon generated from dipping in batter. This is used again to make the cooked-batter-overlay
 	var/do_coating_prefix = 1 //If 0, we wont do "battered thing" or similar prefixes. Mainly for recipes that include batter but have a special name
 	var/cooked_icon = null //Used for foods that are "cooked" without being made into a specific recipe or combination.
+	/// If this has a wrapper on it. If true, it will print a message and ask you to remove it. Handling that is up to you.
+	var/package = FALSE
 	//Generally applied during modification cooking with oven/fryer
 	//Used to stop deepfried meat from looking like slightly tanned raw meat, and make it actually look cooked
-	center_of_mass = list("x"=16, "y"=16)
-	w_class = ITEMSIZE_SMALL
-	force = 0
 
 /obj/item/weapon/reagent_containers/food/snacks/Initialize()
 	. = ..()
@@ -55,6 +58,10 @@
 		user.drop_from_inventory(src)
 		qdel(src)
 		return 0
+
+	if(package)
+		to_chat(M, "<span class='warning'>How do you expect to eat this with the package still on?</span>")
+		return FALSE
 
 	if(istype(M, /mob/living/carbon))
 		//TODO: replace with standard_feed_mob() call.
