@@ -194,7 +194,7 @@
 		return
 
 	if(output_options.len)
-		var/choice = input("What specific food do you wish to make with \the [src]?") as null|anything in output_options+"Default"
+		var/choice = tgui_input_list(usr, "What specific food do you wish to make with \the [src]?", "Food Output Choice", output_options+"Default")
 		if(!choice)
 			return
 		if(choice == "Default")
@@ -613,7 +613,7 @@
 			if (CI.container)
 				menuoptions[CI.container.label(menuoptions.len)] = CI
 
-		var/selection = input(user, "Which item would you like to remove?", "Remove ingredients") as null|anything in menuoptions
+		var/selection = tgui_input_list(user, "Which item would you like to remove?", "Remove ingredients", menuoptions)
 		if (selection)
 			var/datum/cooking_item/CI = menuoptions[selection]
 			eject(CI, user)

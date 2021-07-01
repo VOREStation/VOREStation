@@ -3,6 +3,7 @@
 	desc = "A rune drawn in crayon."
 	icon = 'icons/obj/rune.dmi'
 	plane = DIRTY_PLANE
+	layer = DIRTY_LAYER
 	anchored = 1
 
 /obj/effect/decal/cleanable/crayon/New(location,main = "#FFFFFF",shade = "#000000",var/type = "rune")

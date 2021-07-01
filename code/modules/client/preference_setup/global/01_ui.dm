@@ -58,7 +58,7 @@
 
 /datum/category_item/player_setup_item/player_global/ui/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(href_list["select_style"])
-		var/UI_style_new = input(user, "Choose UI style.", "Character Preference", pref.UI_style) as null|anything in all_ui_styles
+		var/UI_style_new = tgui_input_list(user, "Choose UI style.", "Character Preference", all_ui_styles, pref.UI_style)
 		if(!UI_style_new || !CanUseTopic(user)) return TOPIC_NOACTION
 		pref.UI_style = UI_style_new
 		return TOPIC_REFRESH
@@ -82,7 +82,7 @@
 			return TOPIC_REFRESH
 
 	else if(href_list["select_tooltip_style"])
-		var/tooltip_style_new = input(user, "Choose tooltip style.", "Global Preference", pref.tooltipstyle) as null|anything in all_tooltip_styles
+		var/tooltip_style_new = tgui_input_list(user, "Choose tooltip style.", "Global Preference", all_tooltip_styles, pref.tooltipstyle)
 		if(!tooltip_style_new || !CanUseTopic(user)) return TOPIC_NOACTION
 		pref.tooltipstyle = tooltip_style_new
 		return TOPIC_REFRESH

@@ -260,7 +260,7 @@
 			to_chat(user, span("warning","There are no viable hosts within range..."))
 			return
 
-		M = input(src,"Who do we wish to infest?") in null|choices
+		M = tgui_input_list(src, "Who do we wish to infest?", "Target Choice", choices)
 
 	if(!M || !src) return
 
@@ -359,7 +359,7 @@
 			to_chat(src, span("warning","There are no viable hosts within range..."))
 			return
 
-		M = input(src,"Who do we wish to inject?") in null|choices
+		M = tgui_input_list(src, "Who do we wish to inject?", "Target Choice", choices)
 
 	if(!M || stat)
 		return
@@ -401,7 +401,7 @@
 		return
 
 	if(host)
-		var/chem = input("Select a chemical to produce.", "Chemicals") as null|anything in produceable_chemicals
+		var/chem = tgui_input_list(usr, "Select a chemical to produce.", "Chemicals", produceable_chemicals)
 		inject_meds(chem)
 
 /mob/living/simple_mob/animal/sif/leech/proc/inject_meds(var/chem)
@@ -428,7 +428,7 @@
 
 		var/target
 		if(client)
-			target = input("Select an organ to feed on.", "Organs") as null|anything in host_internal_organs
+			target = tgui_input_list(usr, "Select an organ to feed on.", "Organs", host_internal_organs)
 			if(!target)
 				to_chat(src, span("alien","We decide not to feed."))
 				return

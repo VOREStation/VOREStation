@@ -248,7 +248,7 @@
 			var/obj/machinery/r_n_d/server/target = locate(params["server"])
 			if(!istype(target))
 				return FALSE
-			var/choice = alert("Technology Data Rest", "Are you sure you want to reset this technology to its default data? Data lost cannot be recovered.", "Continue", "Cancel")
+			var/choice = tgui_alert(usr, "Technology Data Rest", "Are you sure you want to reset this technology to its default data? Data lost cannot be recovered.", list("Continue", "Cancel"))
 			if(choice == "Continue")
 				for(var/datum/tech/T in target.files.known_tech)
 					if(T.id == params["tech"])
@@ -261,7 +261,7 @@
 			var/obj/machinery/r_n_d/server/target = locate(params["server"])
 			if(!istype(target))
 				return FALSE
-			var/choice = alert("Design Data Deletion", "Are you sure you want to delete this design? If you still have the prerequisites for the design, it'll reset to its base reliability. Data lost cannot be recovered.", "Continue", "Cancel")
+			var/choice = tgui_alert(usr, "Design Data Deletion", "Are you sure you want to delete this design? If you still have the prerequisites for the design, it'll reset to its base reliability. Data lost cannot be recovered.", list("Continue", "Cancel"))
 			if(choice == "Continue")
 				for(var/datum/design/D in target.files.known_designs)
 					if(D.id == params["design"])

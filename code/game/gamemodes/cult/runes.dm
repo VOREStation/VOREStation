@@ -172,7 +172,7 @@ var/list/sacrificed = list()
 				to_chat(target, "<span class='danger'>And you were able to force it out of your mind. You now know the truth, there's something horrible out there, stop it and its minions at all costs.</span>")
 
 			else spawn()
-				var/choice = alert(target,"Do you want to join the cult?","Submit to Nar'Sie","Resist","Submit")
+				var/choice = tgui_alert(target,"Do you want to join the cult?","Submit to Nar'Sie",list("Resist","Submit"))
 				waiting_for_input[target] = 0
 				if(choice == "Submit") //choosing 'Resist' does nothing of course.
 					cult.add_antagonist(target.mind)
@@ -826,7 +826,7 @@ var/list/sacrificed = list()
 			users+=C
 	var/dam = round(15 / users.len)
 	if(users.len>=3)
-		var/mob/living/carbon/cultist = input("Choose the one who you want to free", "Followers of Geometer") as null|anything in (cultists - users)
+		var/mob/living/carbon/cultist = tgui_input_list(user, "Choose the one who you want to free", "Followers of Geometer", (cultists - users))
 		if(!cultist)
 			return fizzle()
 		if (cultist == user) //just to be sure.
@@ -872,7 +872,7 @@ var/list/sacrificed = list()
 		if(iscultist(C) && !C.stat)
 			users += C
 	if(users.len>=3)
-		var/mob/living/carbon/cultist = input("Choose the one who you want to summon", "Followers of Geometer") as null|anything in (cultists - user)
+		var/mob/living/carbon/cultist = tgui_input_list(user, "Choose the one who you want to summon", "Followers of Geometer", (cultists - user))
 		if(!cultist)
 			return fizzle()
 		if (cultist == user) //just to be sure.

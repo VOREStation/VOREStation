@@ -3,7 +3,7 @@
 	name = "string pin"
 
 /datum/integrated_io/string/ask_for_pin_data(mob/user)
-	var/new_data = input("Please type in a string.","[src] string writing") as null|text
+	var/new_data = input(usr, "Please type in a string.","[src] string writing") as null|text
 	new_data = sanitizeSafe(new_data, MAX_MESSAGE_LEN, 0, 0)
 
 	if(new_data && holder.check_interactivity(user) )

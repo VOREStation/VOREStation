@@ -133,7 +133,7 @@
 		if(accessory_amount == 1)
 			A = accessories[1] // If there's only one accessory, just remove it without any additional prompts.
 		else
-			A = input("Select an accessory to remove from \the [src]") as null|anything in accessories
+			A = tgui_input_list(usr, "Select an accessory to remove from \the [src]", "Accessory Choice", accessories)
 
 	if(A)
 		remove_accessory(usr,A)

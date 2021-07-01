@@ -154,7 +154,7 @@
 		to_chat(src, "<span class='danger'>There are no available drone spawn points, sorry.</span>")
 		return
 
-	var/choice = input(src,"Which fabricator do you wish to use?") as null|anything in all_fabricators
+	var/choice = tgui_input_list(src, "Which fabricator do you wish to use?", "Fabricator Choice", all_fabricators)
 	if(choice)
 		var/obj/machinery/drone_fabricator/chosen_fabricator = all_fabricators[choice]
 		chosen_fabricator.create_drone(src.client)

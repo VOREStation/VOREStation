@@ -125,7 +125,7 @@
 							break
 						else
 							if(aspell.can_improve("speed") && aspell.can_improve("power"))
-								switch(alert(src, "Do you want to upgrade this spell's speed or power?", "Select Upgrade", "Speed", "Power", "Cancel"))
+								switch(tgui_alert(src, "Do you want to upgrade this spell's speed or power?", "Select Upgrade", list("Speed", "Power", "Cancel")))
 									if("Speed")
 										temp = aspell.quicken_spell()
 									if("Power")

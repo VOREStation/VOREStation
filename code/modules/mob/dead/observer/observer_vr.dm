@@ -3,7 +3,7 @@
 	set name = "Join Into Soulcatcher"
 	set desc = "Select a player with a working NIF + Soulcatcher NIFSoft to join into it."
 
-	var/picked = input("Pick a friend with NIF and Soulcatcher to join into. Harrass strangers, get banned. Not everyone has a NIF w/ Soulcatcher.","Select a player") as null|anything in player_list
+	var/picked = tgui_input_list(usr, "Pick a friend with NIF and Soulcatcher to join into. Harrass strangers, get banned. Not everyone has a NIF w/ Soulcatcher.","Select a player", player_list)
 
 	//Didn't pick anyone or picked a null
 	if(!picked)
@@ -36,7 +36,7 @@
 	var/req_time = world.time
 	nif.notify("Transient mindstate detected, analyzing...")
 	sleep(15) //So if they are typing they get interrupted by sound and message, and don't type over the box
-	var/response = alert(H,"[src] ([src.key]) wants to join into your Soulcatcher.","Soulcatcher Request","Deny","Allow")
+	var/response = tgui_alert(H,"[src] ([src.key]) wants to join into your Soulcatcher.","Soulcatcher Request",list("Deny","Allow"))
 
 	if(response == "Deny")
 		to_chat(src,"<span class='warning'>[H] denied your request.</span>")
@@ -88,7 +88,7 @@
 	if(!istype(usr, /mob/observer/dead)) //Make sure they're an observer!
 		return
 
-	var/input = input(usr, "Select a ghost pod:", "Ghost Jump") as null|anything in observe_list_format(active_ghost_pods)
+	var/input = tgui_input_list(usr, "Select a ghost pod:", "Ghost Jump", observe_list_format(active_ghost_pods))
 	if(!input)
 		to_chat(src, "No active ghost pods detected.")
 		return

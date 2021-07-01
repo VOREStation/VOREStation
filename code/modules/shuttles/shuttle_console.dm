@@ -104,7 +104,7 @@
 			return TRUE
 
 		if("set_codes")
-			var/newcode = input("Input new docking codes", "Docking codes", shuttle.docking_codes) as text|null
+			var/newcode = input(usr, "Input new docking codes", "Docking codes", shuttle.docking_codes) as text|null
 			if(newcode && !..())
 				shuttle.set_docking_codes(uppertext(newcode))
 			return TRUE

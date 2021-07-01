@@ -15,7 +15,7 @@
 		to_chat(src, "<span class='warning'>You don't have anything in your hands to give to \the [target].</span>")
 		return
 
-	if(alert(target,"[src] wants to give you \a [I]. Will you accept it?","Item Offer","Yes","No") == "No") //VOREStation Edit - make yes on the left to be consistent with other dialogs
+	if(tgui_alert(target,"[src] wants to give you \a [I]. Will you accept it?","Item Offer",list("Yes","No")) == "No") //VOREStation Edit - make yes on the left to be consistent with other dialogs
 		target.visible_message("<span class='notice'>\The [src] tried to hand \the [I] to \the [target], \
 		but \the [target] didn't want it.</span>")
 		return

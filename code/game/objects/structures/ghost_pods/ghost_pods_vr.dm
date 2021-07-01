@@ -23,7 +23,7 @@
 		return
 
 	busy = TRUE
-	var/choice = input(user, "Are you certain you wish to activate this pod?", "Control Pod") as null|anything in list("Yes", "No")
+	var/choice = tgui_alert(user, "Are you certain you wish to activate this pod?", "Control Pod", list("Yes", "No"))
 
 	if(!choice || choice == "No")
 		busy = FALSE

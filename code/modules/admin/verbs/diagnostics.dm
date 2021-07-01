@@ -3,7 +3,7 @@
 	set name = "Show Air Report"
 
 	if(!master_controller || !air_master)
-		alert(usr,"Master_controller or air_master not found.","Air Report")
+		tgui_alert_async(usr,"Master_controller or air_master not found.","Air Report")
 		return
 
 	var/active_groups = air_master.active_zones
@@ -177,7 +177,7 @@
 	set desc = "This searches all the active jobban entries for the current round and outputs the results to standard output."
 	set category = "Debug"
 
-	var/job_filter = input("Contains what?","Job Filter") as text|null
+	var/job_filter = input(usr, "Contains what?","Job Filter") as text|null
 	if(!job_filter)
 		return
 

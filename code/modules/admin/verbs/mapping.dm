@@ -69,7 +69,7 @@ GLOBAL_LIST_BOILERPLATE(all_debugging_effects, /obj/effect/debugging)
 	set name = "Camera Report"
 
 	if(!master_controller)
-		alert(usr,"Master_controller not found.","Sec Camera Report")
+		tgui_alert_async(usr,"Master_controller not found.","Sec Camera Report")
 		return 0
 
 	var/list/obj/machinery/camera/CL = list()
@@ -273,19 +273,19 @@ var/list/debug_verbs = list (
 	set category = "ZAS"
 	set name = "Reboot ZAS"
 
-	if(alert("This will destroy and remake all zone geometry on the whole map.","Reboot ZAS","Reboot ZAS","Nevermind") == "Reboot ZAS")
+	if(tgui_alert(usr, "This will destroy and remake all zone geometry on the whole map.","Reboot ZAS",list("Reboot ZAS","Nevermind")) == "Reboot ZAS")
 		SSair.RebootZAS()
 
 /client/proc/count_objects_on_z_level()
 	set category = "Mapping"
 	set name = "Count Objects On Level"
-	var/level = input("Which z-level?","Level?") as text
+	var/level = input(usr, "Which z-level?","Level?") as text
 	if(!level) return
 	var/num_level = text2num(level)
 	if(!num_level) return
 	if(!isnum(num_level)) return
 
-	var/type_text = input("Which type path?","Path?") as text
+	var/type_text = input(usr, "Which type path?","Path?") as text
 	if(!type_text) return
 	var/type_path = text2path(type_text)
 	if(!type_path) return
@@ -323,7 +323,7 @@ var/list/debug_verbs = list (
 	set category = "Mapping"
 	set name = "Count Objects All"
 
-	var/type_text = input("Which type path?","") as text
+	var/type_text = input(usr, "Which type path?","") as text
 	if(!type_text) return
 	var/type_path = text2path(type_text)
 	if(!type_path) return

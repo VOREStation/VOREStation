@@ -37,7 +37,7 @@
 	if(client || key || stat == DEAD || !ticker || !ticker.mode)
 		return ..()
 
-	var/confirm = alert("Do you wish to take control of \the [src]?", "Platform Control", "No", "Yes")
+	var/confirm = tgui_alert(usr, "Do you wish to take control of \the [src]?", "Platform Control", list("No", "Yes"))
 	if(confirm != "Yes" || QDELETED(src) || client || key || stat == DEAD || !ticker || !ticker.mode)
 		return ..()
 

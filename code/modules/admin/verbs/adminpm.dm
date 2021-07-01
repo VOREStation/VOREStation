@@ -31,7 +31,7 @@
 				targets["[T.mob.real_name](as [T.mob.name]) - [T]"] = T
 		else
 			targets["(No Mob) - [T]"] = T
-	var/target = input(src,"To whom shall we send a message?","Admin PM",null) as null|anything in sortList(targets)
+	var/target = tgui_input_list(src,"To whom shall we send a message?","Admin PM", sortList(targets))
 	if(!target) //Admin canceled
 		return
 	cmd_admin_pm(targets[target],null)

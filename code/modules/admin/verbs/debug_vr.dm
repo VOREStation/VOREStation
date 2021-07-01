@@ -8,7 +8,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/mob/living/carbon/human/H = input("Pick a mob with a player","Quick NIF") as null|anything in player_list
+	var/mob/living/carbon/human/H = tgui_input_list(usr, "Pick a mob with a player","Quick NIF", player_list)
 
 	if(!H)
 		return
@@ -39,7 +39,7 @@
 
 		var/list/show_NIFs = sortList(NIFs) // the list that will be shown to the user to pick from
 
-		input_NIF = input("Pick the NIF type","Quick NIF") in show_NIFs
+		input_NIF = tgui_input_list(usr, "Pick the NIF type","Quick NIF", show_NIFs)
 		var/chosen_NIF = NIFs[capitalize(input_NIF)]
 
 		if(chosen_NIF)

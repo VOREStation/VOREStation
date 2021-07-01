@@ -48,7 +48,7 @@
 	options["Moon Gem"] = "moon"
 	options["Tajaran Figure"] = "catrobe"
 
-	var/choice = input(M,"Choose your icon!","Customize Figure") in options
+	var/choice = tgui_input_list(M, "Choose your icon!", "Customize Figure", options)
 	if(src && choice && !M.stat && in_range(M,src))
 		icon_state = options[choice]
 		if(options[choice] == "frobe")
@@ -123,7 +123,7 @@
 	var/mob/M = usr
 	if(!M.mind)	return 0
 
-	var/input = sanitizeSafe(input("What do you want to name the icon?", ,""), MAX_NAME_LEN)
+	var/input = sanitizeSafe(input(usr, "What do you want to name the icon?", ,""), MAX_NAME_LEN)
 
 	if(src && input && !M.stat && in_range(M,src))
 		name = "icon of " + input

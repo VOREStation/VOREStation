@@ -71,7 +71,7 @@
 
 /obj/structure/barricade/cutout/attackby(var/obj/I, var/mob/user)
 	if(is_type_in_list(I, painters))
-		var/choice = input(user, "What would you like to paint the cutout as?", "Cutout Painting") as null|anything in cutout_types
+		var/choice = tgui_input_list(user, "What would you like to paint the cutout as?", "Cutout Painting", cutout_types)
 		if(!choice || !Adjacent(user, src) || I != user.get_active_hand())
 			return TRUE
 		if(do_after(user, 10 SECONDS, src))

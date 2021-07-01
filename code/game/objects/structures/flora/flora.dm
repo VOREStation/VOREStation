@@ -5,7 +5,7 @@
 
 	anchored = TRUE // Usually, plants don't move. Usually.
 	plane = DECAL_PLANE
-	layer = BELOW_MOB_LAYER
+	layer = DECAL_LAYER
 
 	var/randomize_size = FALSE
 	var/max_x_scale = 1.25

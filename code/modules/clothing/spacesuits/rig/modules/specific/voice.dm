@@ -29,9 +29,9 @@
 	if(!..())
 		return 0
 
-	var/choice= input("Would you like to toggle the synthesiser or set the name?") as null|anything in list("Enable","Disable","Set Name")
+	var/choice = tgui_alert(usr, "Would you like to toggle the synthesiser or set the name?","",list("Enable","Disable","Set Name","Cancel"))
 
-	if(!choice)
+	if(!choice || choice == "Cancel")
 		return 0
 
 	switch(choice)

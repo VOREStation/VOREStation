@@ -74,7 +74,7 @@
 	set desc = "Select your resting pose."
 	sitting = FALSE
 	bellyup = FALSE
-	var/choice = alert(src, "Select resting pose", "", "Resting", "Sitting", "Belly up")
+	var/choice = tgui_alert(src, "Select resting pose", "Resting Pose", list("Resting", "Sitting", "Belly up"))
 	switch(choice)
 		if("Resting")
 			return 0
