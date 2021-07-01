@@ -83,10 +83,15 @@
 
 /obj/structure/bed/chair/shuttle
 	name = "chair"
-	desc = "You sit in this. Either by will or force."
 	icon_state = "shuttlechair"
-	color = null
 	base_icon = "shuttlechair"
+	color = null
+	applies_material_colour = 0
+
+/obj/structure/bed/chair/shuttle_padded
+	icon_state = "shuttlechair2"
+	base_icon = "shuttlechair2"
+	color = null
 	applies_material_colour = 0
 
 // Leaving this in for the sake of compilation.
