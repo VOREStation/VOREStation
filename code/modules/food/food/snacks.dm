@@ -21,11 +21,18 @@
 	var/datum/reagent/nutriment/coating/coating = null
 	var/icon/flat_icon = null //Used to cache a flat icon generated from dipping in batter. This is used again to make the cooked-batter-overlay
 	var/do_coating_prefix = 1 //If 0, we wont do "battered thing" or similar prefixes. Mainly for recipes that include batter but have a special name
-	var/cooked_icon = null //Used for foods that are "cooked" without being made into a specific recipe or combination.
-	/// If this has a wrapper on it. If true, it will print a message and ask you to remove it. Handling that is up to you.
+	
+	/// Used for foods that are "cooked" without being made into a specific recipe or combination.
+	/// Generally applied during modification cooking with oven/fryer
+	/// Used to stop deepfried meat from looking like slightly tanned raw meat, and make it actually look cooked
+	var/cooked_icon = null
+	
+	/// If this has a wrapper on it. If true, it will print a message and ask you to remove it
 	var/package = FALSE
-	//Generally applied during modification cooking with oven/fryer
-	//Used to stop deepfried meat from looking like slightly tanned raw meat, and make it actually look cooked
+	/// Packaged meals drop this trash type item when opened, if set
+	var/package_trash
+	/// Packaged meals switch to this state when opened, if set
+	var/package_open_state
 
 /obj/item/weapon/reagent_containers/food/snacks/Initialize()
 	. = ..()
@@ -50,7 +57,8 @@
 	return
 
 /obj/item/weapon/reagent_containers/food/snacks/attack_self(mob/user as mob)
-	return
+	if(package && !user.incapacitated())
+		unpackage(user)
 
 /obj/item/weapon/reagent_containers/food/snacks/attack(mob/living/M as mob, mob/user as mob, def_zone)
 	if(reagents && !reagents.total_volume)
@@ -244,6 +252,17 @@
 		for(var/atom/movable/something in contents)
 			something.dropInto(loc)
 	. = ..()
+
+	return
+
+/obj/item/weapon/reagent_containers/food/snacks/proc/unpackage(mob/user)
+	package = FALSE
+	to_chat(user, "<span class='notice'>You unwrap [src].</span>")
+	playsound(user,'sound/effects/pageturn2.ogg', 15, 1)
+	if(package_trash)
+		new package_trash(src.drop_location())
+	if(package_open_state)
+		icon_state = package_open_state
 
 ////////////////////////////////////////////////////////////////////////////////
 /// FOOD END
@@ -7081,3 +7100,36 @@
 /obj/item/weapon/reagent_containers/food/snacks/packaged/sweetration/Initialize()
 	. = ..()
 	reagents.add_reagent("sugar", 6)
+
+/obj/item/weapon/reagent_containers/food/snacks/vendor_burger
+	name = "packaged burger"
+	icon_state = "packburger"
+	desc = "A burger stored in a plastic wrapping for vending machine distribution. Surely it tastes fine!"
+	package = TRUE
+	package_trash = /obj/item/trash/vendor_burger
+	package_open_state = "smolburger"
+	nutriment_amt = 3
+	nutriment_desc = list("stale burger" = 3)
+	starts_with = list("sodiumchloride" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/vendor_hotdog
+	name = "packaged hotdog"
+	icon_state = "packhotdog"
+	desc = "A hotdog stored in a plastic wrapping for vending machine distribution. Surely it tastes fine!"
+	package = TRUE
+	package_trash = /obj/item/trash/vendor_hotdog
+	package_open_state = "smolhotdog"
+	nutriment_amt = 3
+	nutriment_desc = list("stale hotdog" = 3)
+	starts_with = list("sodiumchloride" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/vendor_burrito
+	name = "packaged burrito"
+	icon_state = "packburrito"
+	desc = "A burrito stored in a plastic wrapping for vending machine distribution. Surely it tastes fine!"
+	package = TRUE
+	package_trash = /obj/item/trash/vendor_burrito
+	package_open_state = "smolburrito"
+	nutriment_amt = 3
+	nutriment_desc = list("stale burrito" = 3)
+	starts_with = list("sodiumchloride" = 1)
