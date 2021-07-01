@@ -7,6 +7,7 @@
 	var/amount_per_transfer_from_this = 5
 	var/possible_transfer_amounts = list(5,10,15,25,30)
 	var/volume = 30
+	var/list/starts_with
 
 /obj/item/weapon/reagent_containers/verb/set_APTFT() //set amount_per_transfer_from_this
 	set name = "Set transfer amount"
@@ -21,6 +22,16 @@
 	if(!possible_transfer_amounts)
 		src.verbs -= /obj/item/weapon/reagent_containers/verb/set_APTFT
 	create_reagents(volume)
+	
+	if(starts_with)
+		var/total_so_far = 0
+		for(var/string in starts_with)
+			var/amt = starts_with[string] || 1
+			total_so_far += amt
+			reagents.add_reagent(string, amt)
+		if(total_so_far > volume)
+			warning("[src]([src.type]) starts with more reagents than it has total volume")
+		starts_with = null // it should gc, since it's just strings and numbers
 
 /obj/item/weapon/reagent_containers/attack_self(mob/user as mob)
 	return
