@@ -349,14 +349,10 @@ MRE Stuff
 	desc = "A packaged [flavor] from a Meal Ready-to-Eat, there is a lengthy list of [pick("obscure", "arcane", "unintelligible", "revolutionary", "sophisticated", "unspellable")] ingredients and addictives printed on the back."
 	. = ..()
 
-/obj/item/weapon/reagent_containers/food/snacks/tgmc_mre_component/attack_self(mob/user as mob)
-	if (package)
-		to_chat(user, "<span class='notice'>You pull open the MRE package!</span>")
-		playsound(loc,'sound/effects/pageturn2.ogg', 15, 1)
-		name = "\improper" + flavor
-		desc = "The contents of a standard issue CRS MRE. This one is " + flavor + "."
-		icon_state = "tgmcmre_[flavor]"
-		package = FALSE
+/obj/item/weapon/reagent_containers/food/snacks/tgmc_mre_component/unpackage(mob/user as mob)
+	. = ..()
+	name = "\improper" + flavor
+	desc = "The contents of a standard issue CRS MRE. This one is " + flavor + "."
 
 /obj/item/weapon/reagent_containers/food/snacks/tgmc_mre_component/proc/determinetype(newflavor)
 	name = "\improper MRE component" + " (" + newflavor + ")"
@@ -381,5 +377,6 @@ MRE Stuff
 			icon_state = "tgmcmre_dessert"
 			nutriment_amt = 2
 			starts_with = list("sugar" = 1)
-
+	
+	package_open_state = "tgmcmre_[flavor]"
 	nutriment_desc = list("[new_taste]" = nutriment_amt)

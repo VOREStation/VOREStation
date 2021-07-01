@@ -370,4 +370,16 @@
 /obj/item/trash/tgmc_mre
 	name = "\improper CRS ration bag"
 	icon_state = "tgmc_mre_trash"
+
+/obj/item/trash/vendor_burger
+	name = "burger wrapper"
+	icon_state = "packburger_wrapper"
+	
+/obj/item/trash/vendor_hotdog
+	name = "hotdog wrapper"
+	icon_state = "packhotdog_wrapper"
+	
+/obj/item/trash/vendor_burrito
+	name = "burrito wrapper"
+	icon_state = "packburrito_wrapper"
 	

@@ -4082,7 +4082,10 @@
 					/obj/item/weapon/reagent_containers/food/snacks/sliceable/sharkchunk = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/spagetti = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/xenomeat = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat = 10)
+					/obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/vendor_burger = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/vendor_hotdog = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/vendor_burrito = 10)
 	vend_delay = 15
 
 /obj/machinery/vending/event/food/safe //FOR FACILITATING/OUTFITTING EVENTS, DO NOT PUT THESE ON THE MAP//
@@ -4473,7 +4476,10 @@
 					/obj/item/weapon/reagent_containers/food/snacks/wingfangchu = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/wishsoup = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/yellowcurry = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/zestfish = 10)
+					/obj/item/weapon/reagent_containers/food/snacks/zestfish = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/vendor_burger = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/vendor_hotdog = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/vendor_burrito = 10)
 	vend_delay = 15
 
 /obj/machinery/vending/event/food/ingredients //FOR FACILITATING/OUTFITTING EVENTS, DO NOT PUT THESE ON THE MAP//
