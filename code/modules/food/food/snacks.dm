@@ -260,7 +260,8 @@
 	to_chat(user, "<span class='notice'>You unwrap [src].</span>")
 	playsound(user,'sound/effects/pageturn2.ogg', 15, 1)
 	if(package_trash)
-		new package_trash(src.drop_location())
+		var/obj/item/T = new package_trash
+		user.put_in_hands(T)
 	if(package_open_state)
 		icon_state = package_open_state
 
