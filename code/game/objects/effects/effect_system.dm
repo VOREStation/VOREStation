@@ -6,6 +6,10 @@ would spawn and follow the beaker, even if it is carried or thrown.
 */
 /obj/effect
 	light_on = TRUE
+	plane = ABOVE_MOB_PLANE
+
+/obj/effect/decal
+	plane = OBJ_PLANE
 
 /obj/effect/effect
 	name = "effect"
