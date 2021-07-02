@@ -77,7 +77,7 @@ SUBSYSTEM_DEF(vis_overlays)
 	if(!length(thing.managed_vis_overlays))
 		thing.managed_vis_overlays = null
 
-/atom/proc/add_vis_overlay(icon, iconstate, layer, plane, dir, alpha, add_appearance_flags, add_vis_flags, unique)
+/atom/proc/add_vis_overlay(icon, iconstate, layer, plane, dir, alpha, add_appearance_flags, add_vis_flags = VIS_INHERIT_ID, unique)
 	// The extremely minimal version where you just pass a string and nothing else
 	if(istext(icon))
 		iconstate = icon
