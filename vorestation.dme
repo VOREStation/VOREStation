@@ -1432,7 +1432,6 @@
 #include "code\game\objects\structures\coathanger.dm"
 #include "code\game\objects\structures\curtains.dm"
 #include "code\game\objects\structures\dancepole_vr.dm"
-#include "code\game\objects\structures\decorative.dm"
 #include "code\game\objects\structures\displaycase.dm"
 #include "code\game\objects\structures\dogbed.dm"
 #include "code\game\objects\structures\door_assembly.dm"
