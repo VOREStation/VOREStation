@@ -245,6 +245,9 @@ SERVER your.domain:6000
 ## GitHub address
 #GITHUBURL https://github.com/owner/repo
 
+## Discord address
+#DISCORDURL https://discord.gg/someinvite
+
 ## Rules URL
 #RULESURL https://rules.your.domain/
 

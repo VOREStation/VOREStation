@@ -124,6 +124,7 @@ var/list/gamemode_cache = list()
 	var/static/wikisearchurl
 	var/static/forumurl
 	var/static/githuburl
+	var/static/discordurl
 	var/static/rulesurl
 	var/static/mapurl
 
@@ -543,6 +544,10 @@ var/list/gamemode_cache = list()
 
 				if ("githuburl")
 					config.githuburl = value
+
+				if ("discordurl")
+					config.discordurl = value
+
 				if ("guest_jobban")
 					config.guest_jobban = 1
 

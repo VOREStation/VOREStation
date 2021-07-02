@@ -67,6 +67,19 @@
 		to_chat(src, "<span class='danger'>The GitHub URL is not set in the server configuration.</span>")
 	return
 
+/client/verb/discord()
+	set name = "Discord"
+	set desc = "Visit the discord"
+	set hidden = 1
+
+	if(config.discordurl)
+		if(tgui_alert(usr, "This will open the Discord in your browser. Are you sure?","Visit Website",list("Yes","No"))=="No")
+			return
+		src << link(config.discordurl)
+	else
+		to_chat(src, "<span class='danger'>The Discord URL is not set in the server configuration.</span>")
+	return
+
 /client/verb/hotkeys_help()
 	set name = "hotkeys-help"
 	set category = "OOC"
