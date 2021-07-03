@@ -79,8 +79,10 @@
 		new /datum/stack_recipe("conveyor switch", /obj/machinery/conveyor_switch, 2, time = 20, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
 		new /datum/stack_recipe("grenade casing", /obj/item/weapon/grenade/chem_grenade, recycle_material = "[name]"),
 		new /datum/stack_recipe("light fixture frame", /obj/item/frame/light, 2, recycle_material = "[name]"),
+		new /datum/stack_recipe("floor light fixture frame", /obj/machinery/light_construct/floortube, 2, recycle_material = "[name]"),
 		new /datum/stack_recipe("small light fixture frame", /obj/item/frame/light/small, 1, recycle_material = "[name]"),
 		new /datum/stack_recipe("floor lamp fixture frame", /obj/machinery/light_construct/flamp, 2, recycle_material = "[name]"),
+		new /datum/stack_recipe("big floor lamp fixture frame", /obj/machinery/light_construct/bigfloorlamp, 3, recycle_material = "[name]"),
 		new /datum/stack_recipe("apc frame", /obj/item/frame/apc, 2, recycle_material = "[name]"),
 		new /datum/stack_recipe("desk bell", /obj/item/weapon/deskbell, 1, on_floor = 1, supplied_material = "[name]"),
 		new /datum/stack_recipe("tanning rack", /obj/structure/tanning_rack, 3, one_per_turf = TRUE, time = 20, on_floor = TRUE, supplied_material = "[name]")

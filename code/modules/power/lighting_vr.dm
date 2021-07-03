@@ -69,10 +69,20 @@
 	desc = "A floor light fixture under construction."
 	icon = 'icons/obj/lighting_vr.dmi'
 	icon_state = "floortube-construct-stage1"
-	anchored = 1
 	stage = 1
+	anchored = 0
 	fixture_type = /obj/machinery/light/floortube
-	sheets_refunded = 1
+	sheets_refunded = 2
+
+/obj/machinery/light_construct/floortube/verb/rotate_clockwise()
+    set name = "Rotate Fixture Clockwise"
+    set category = "Object"
+    set src in view(1)
+
+    if (usr.stat || usr.restrained() || anchored)
+        return
+
+    src.set_dir(turn(src.dir, 270))
 
 /obj/machinery/light_construct/floortube/update_icon()
 	switch(stage)
@@ -92,6 +102,7 @@
 	desc = "A set of tube lights on a raised, solid fixture"
 	shows_alerts = FALSE
 	density = 1
+	anchored = 1
 	plane = MOB_PLANE
 	layer = ABOVE_MOB_LAYER
 	construct_type = /obj/machinery/light_construct/bigfloorlamp
@@ -104,10 +115,10 @@
 	desc = "A big floor light fixture under construction."
 	icon = 'icons/obj/lighting32x64.dmi'
 	icon_state = "big_flamp-construct-stage1"
-	anchored = 1
 	stage = 1
+	anchored = 0
 	fixture_type = /obj/machinery/light/bigfloorlamp
-	sheets_refunded = 1
+	sheets_refunded = 3
 
 /obj/machinery/light_construct/bigfloorlamp/update_icon()
 	switch(stage)
