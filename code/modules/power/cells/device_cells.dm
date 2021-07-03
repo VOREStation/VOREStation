@@ -10,7 +10,7 @@
 	throw_range = 7
 	maxcharge = 480
 	charge_amount = 5
-	matter = list("metal" = 350, "glass" = 50)
+	matter = list(MAT_STEEL = 350, MAT_GLASS = 50)
 	preserve_item = 1
 
 /obj/item/weapon/cell/device/weapon

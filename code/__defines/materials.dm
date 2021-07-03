@@ -1,6 +1,3 @@
-#define DEFAULT_TABLE_MATERIAL "plastic"
-#define DEFAULT_WALL_MATERIAL "steel"
-
 #define MAT_IRON			"iron"
 #define MAT_MARBLE			"marble"
 #define MAT_STEEL			"steel"
@@ -46,6 +43,9 @@
 #define MAT_PAINITE			"painite"
 #define MAT_BOROSILICATE	"borosilicate glass"
 #define MAT_SANDSTONE		"sandstone"
+
+#define DEFAULT_TABLE_MATERIAL MAT_PLASTIC
+#define DEFAULT_WALL_MATERIAL MAT_STEEL
 
 #define SHARD_SHARD "shard"
 #define SHARD_SHRAPNEL "shrapnel"

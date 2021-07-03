@@ -122,7 +122,7 @@
 /datum/category_item/autolathe/general/idcard
 	name = "ID Card"
 	path = /obj/item/weapon/card/id
-	resources = list(DEFAULT_WALL_MATERIAL = 100, MAT_GLASS = 100, MAT_PLASTIC = 300)
+	resources = list(MAT_STEEL = 100, MAT_GLASS = 100, MAT_PLASTIC = 300)
 	man_rating = 2
 
 /datum/category_item/autolathe/general/handcuffs

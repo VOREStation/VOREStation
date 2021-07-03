@@ -237,7 +237,7 @@
 /mob/living/simple_mob/protean_blob/Life()
 	. = ..()
 	if(. && istype(refactory) && humanform)
-		if(!healing && (human_brute || human_burn) && refactory.get_stored_material(DEFAULT_WALL_MATERIAL) >= 100)
+		if(!healing && (human_brute || human_burn) && refactory.get_stored_material(MAT_STEEL) >= 100)
 			healing = humanform.add_modifier(/datum/modifier/protean/steel, origin = refactory)
 		else if(healing && !(human_brute || human_burn))
 			healing.expire()
