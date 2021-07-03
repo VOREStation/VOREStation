@@ -43,7 +43,7 @@
 	data["status"] = "MISSING"
 	data["contacts"] = list()
 
-	if(sensors)
+	if(sensors || find_sensors())
 		data["on"] = sensors.use_power
 		data["range"] = sensors.range
 		data["health"] = sensors.health
@@ -84,6 +84,15 @@
 			if(usr && !isAI(usr))
 				viewing_overmap(usr) ? unlook(usr) : look(usr)
 			. = TRUE
+
+/obj/machinery/computer/ship/sensors/OnTopic(var/mob/user, var/list/href_list, state)
+	if((. = ..()))
+		return
+
+	if (!linked)
+		var/obj/effect/overmap/visitable/sector = get_overmap_sector(src.z)
+		if(!istype(sector) || !attempt_hook_up_recursive(sector))
+			return TOPIC_NOACTION
 
 		if("link")
 			find_sensors()
