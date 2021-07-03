@@ -91,6 +91,12 @@
 	var/stored_ore = list()
 	var/last_update = 0
 
+/obj/item/weapon/storage/bag/ore/holding
+	name = "mining satchel of holding"
+	desc = "Like a mining satchel, but when you put your hand in, you're pretty sure you can feel time itself."
+	icon_state = "satchel_bspace"
+	max_storage_space = ITEMSIZE_COST_NORMAL * 75 // 3x
+
 /obj/item/weapon/storage/bag/ore/remove_from_storage(obj/item/W as obj, atom/new_location)
 	if(!istype(W)) return 0
 
