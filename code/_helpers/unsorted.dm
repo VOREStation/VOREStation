@@ -394,8 +394,9 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		borgs[name] = A
 
 	if (borgs.len)
-		select = input("Unshackled borg signals detected:", "Borg selection", null, null) as null|anything in borgs
-		return borgs[select]
+		select = tgui_input_list(usr, "Unshackled borg signals detected:", "Borg selection", borgs)
+		if(select)
+			return borgs[select]
 
 //When a borg is activated, it can choose which AI it wants to be slaved to
 /proc/active_ais()
@@ -421,7 +422,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 /proc/select_active_ai(var/mob/user)
 	var/list/ais = active_ais()
 	if(ais.len)
-		if(user)	. = input(usr,"AI signals detected:", "AI selection") in ais
+		if(user)	. = tgui_input_list(usr, "AI signals detected:", "AI selection", ais)
 		else		. = pick(ais)
 	return .
 
@@ -850,10 +851,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 						if(z_level_change) // Same goes for mobs.
 							M.onTransitZ(T.z, X.z)
-
-						if(istype(M, /mob/living))
-							var/mob/living/LM = M
-							LM.check_shadow() // Need to check their Z-shadow, which is normally done in forceMove().
 
 					if(shuttlework)
 						var/turf/simulated/shuttle/SS = T
@@ -1489,7 +1486,7 @@ var/mob/dview/dview_mob = new
 
 /proc/pick_closest_path(value, list/matches = get_fancy_list_of_atom_types())
 	if (value == FALSE) //nothing should be calling us with a number, so this is safe
-		value = input("Enter type to find (blank for all, cancel to cancel)", "Search for type") as null|text
+		value = input(usr, "Enter type to find (blank for all, cancel to cancel)", "Search for type") as null|text
 		if (isnull(value))
 			return
 	value = trim(value)
@@ -1503,7 +1500,7 @@ var/mob/dview/dview_mob = new
 	if(matches.len==1)
 		chosen = matches[1]
 	else
-		chosen = input("Select a type", "Pick Type", matches[1]) as null|anything in matches
+		chosen = tgui_input_list(usr, "Select a type", "Pick Type", matches)
 		if(!chosen)
 			return
 	chosen = matches[chosen]

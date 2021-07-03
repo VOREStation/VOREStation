@@ -509,19 +509,27 @@ var/global/list/remainless_species = list(SPECIES_PROMETHEAN,
 		var/datum/trait/instance = new path()
 		if(!instance.name)
 			continue //A prototype or something
-		var/category = instance.category
 		var/cost = instance.cost
 		traits_costs[path] = cost
 		all_traits[path] = instance
+	
+	// Shakey shakey shake
+	sortTim(all_traits, /proc/cmp_trait_datums_name, associative = TRUE)
+	
+	// Split 'em up
+	for(var/traitpath in all_traits)
+		var/datum/trait/T = all_traits[traitpath]
+		var/category = T.category
 		switch(category)
 			if(-INFINITY to -0.1)
-				negative_traits[path] = instance
+				negative_traits[traitpath] = T
 			if(0)
-				neutral_traits[path] = instance
-				if(!(instance.custom_only))
-					everyone_traits[path] = instance
+				neutral_traits[traitpath] = T
+				if(!(T.custom_only))
+					everyone_traits[traitpath] = T
 			if(0.1 to INFINITY)
-				positive_traits[path] = instance
+				positive_traits[traitpath] = T
+		
 
 	// Weaver recipe stuff
 	paths = typesof(/datum/weaver_recipe/structure) - /datum/weaver_recipe/structure

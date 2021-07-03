@@ -8,6 +8,7 @@ var/global/list/silicon_mob_list = list()			//List of all silicon mobs, includin
 var/global/list/ai_list = list()					//List of all AIs, including clientless
 var/global/list/living_mob_list = list()			//List of all alive mobs, including clientless. Excludes /mob/new_player
 var/global/list/dead_mob_list = list()				//List of all dead mobs, including clientless. Excludes /mob/new_player
+var/global/list/observer_mob_list = list()			//List of all /mob/observer/dead, including clientless.
 var/global/list/listening_objects = list()			//List of all objects which care about receiving messages (communicators, radios, etc)
 var/global/list/cleanbot_reserved_turfs = list()	//List of all turfs currently targeted by some cleanbot
 
@@ -201,6 +202,12 @@ GLOBAL_LIST_EMPTY(mannequins)
 		S.race_key = rkey //Used in mob icon caching.
 		GLOB.all_species[S.name] = S
 
+	//Shakey shakey shake
+	sortTim(GLOB.all_species, /proc/cmp_species, associative = TRUE)
+
+	//Split up the rest
+	for(var/speciesname in GLOB.all_species)
+		var/datum/species/S = GLOB.all_species[speciesname]
 		if(!(S.spawn_flags & SPECIES_IS_RESTRICTED))
 			GLOB.playable_species += S.name
 		if(S.spawn_flags & SPECIES_IS_WHITELISTED)

@@ -458,7 +458,7 @@
 		if("begin_shutdown")
 			if(running < SHIELD_RUNNING) // Discharging or off
 				return
-			var/alert = alert(usr, "Are you sure you wish to do this? It will drain the power inside the internal storage rapidly.", "Are you sure?", "Yes", "No")
+			var/alert = tgui_alert(usr, "Are you sure you wish to do this? It will drain the power inside the internal storage rapidly.", "Are you sure?", list("Yes", "No"))
 			if(tgui_status(usr, state) != STATUS_INTERACTIVE)
 				return
 			if(running < SHIELD_RUNNING)
@@ -485,7 +485,7 @@
 			if(!running)
 				return TRUE
 
-			var/choice = input(usr, "Are you sure that you want to initiate an emergency shield shutdown? This will instantly drop the shield, and may result in unstable release of stored electromagnetic energy. Proceed at your own risk.") in list("Yes", "No")
+			var/choice = tgui_alert(usr, "Are you sure that you want to initiate an emergency shield shutdown? This will instantly drop the shield, and may result in unstable release of stored electromagnetic energy. Proceed at your own risk.", "Confirmation", list("No", "Yes"))
 			if((choice != "Yes") || !running)
 				return TRUE
 

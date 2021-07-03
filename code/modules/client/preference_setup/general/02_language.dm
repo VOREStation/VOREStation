@@ -62,7 +62,7 @@
 	else if(href_list["add_language"])
 		var/datum/species/S = GLOB.all_species[pref.species]
 		if(pref.alternate_languages.len >= S.num_alternate_languages)
-			alert(user, "You have already selected the maximum number of alternate languages for this species!")
+			tgui_alert_async(user, "You have already selected the maximum number of alternate languages for this species!")
 		else
 			var/list/available_languages = S.secondary_langs.Copy()
 			for(var/L in GLOB.all_languages)
@@ -76,9 +76,9 @@
 			available_languages -= pref.alternate_languages
 
 			if(!available_languages.len)
-				alert(user, "There are no additional languages available to select.")
+				tgui_alert_async(user, "There are no additional languages available to select.")
 			else
-				var/new_lang = input(user, "Select an additional language", "Character Generation", null) as null|anything in available_languages
+				var/new_lang = tgui_input_list(user, "Select an additional language", "Character Generation", available_languages)
 				if(new_lang && pref.alternate_languages.len < S.num_alternate_languages)
 					pref.alternate_languages |= new_lang
 					return TOPIC_REFRESH
@@ -87,16 +87,16 @@
 		var/char
 		var/keys[0]
 		do
-			char = input("Enter a single special character.\nYou may re-select the same characters.\nThe following characters are already in use by radio: ; : .\nThe following characters are already in use by special say commands: ! * ^", "Enter Character - [3 - keys.len] remaining") as null|text
+			char = input(usr, "Enter a single special character.\nYou may re-select the same characters.\nThe following characters are already in use by radio: ; : .\nThe following characters are already in use by special say commands: ! * ^", "Enter Character - [3 - keys.len] remaining") as null|text
 			if(char)
 				if(length(char) > 1)
-					alert(user, "Only single characters allowed.", "Error", "Ok")
+					tgui_alert_async(user, "Only single characters allowed.", "Error")
 				else if(char in list(";", ":", "."))
-					alert(user, "Radio character. Rejected.", "Error", "Ok")
+					tgui_alert_async(user, "Radio character. Rejected.", "Error")
 				else if(char in list("!","*","^","-"))
-					alert(user, "Say character. Rejected.", "Error", "Ok")
+					tgui_alert_async(user, "Say character. Rejected.", "Error")
 				else if(contains_az09(char))
-					alert(user, "Non-special character. Rejected.", "Error", "Ok")
+					tgui_alert_async(user, "Non-special character. Rejected.", "Error")
 				else
 					keys.Add(char)
 		while(char && keys.len < 3)

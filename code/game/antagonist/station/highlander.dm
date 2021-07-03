@@ -56,7 +56,7 @@ var/datum/antagonist/highlander/highlanders
 /proc/only_one()
 
 	if(!ticker)
-		alert("The game hasn't started yet!")
+		tgui_alert_async(usr,"The game hasn't started yet!")
 		return
 
 	for(var/mob/living/carbon/human/H in player_list)

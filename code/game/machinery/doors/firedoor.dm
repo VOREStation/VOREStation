@@ -152,8 +152,8 @@
 		if(A.firedoors_closed)
 			alarmed = 1
 
-	var/answer = alert(user, "Would you like to [density ? "open" : "close"] this [src.name]?[ alarmed && density ? "\nNote that by doing so, you acknowledge any damages from opening this\n[src.name] as being your own fault, and you will be held accountable under the law." : ""]",\
-	"\The [src]", "Yes, [density ? "open" : "close"]", "No")
+	var/answer = tgui_alert(user, "Would you like to [density ? "open" : "close"] this [src.name]?[ alarmed && density ? "\nNote that by doing so, you acknowledge any damages from opening this\n[src.name] as being your own fault, and you will be held accountable under the law." : ""]",\
+	"\The [src]", list("Yes, [density ? "open" : "close"]", "No"))
 	if(answer == "No")
 		return
 	if(user.incapacitated() || (get_dist(src, user) > 1 && !issilicon(user)))

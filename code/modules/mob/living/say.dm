@@ -342,20 +342,6 @@ var/list/channel_to_radio_key = new
 	speech_bubble.alpha = CLAMP(sb_alpha, 0, 255)
 	images_to_clients[speech_bubble] = list()
 
-	// Attempt Multi-Z Talking
-	var/mob/above = src.shadow
-	while(!QDELETED(above))
-		var/turf/ST = get_turf(above)
-		if(ST)
-			var/list/results = get_mobs_and_objs_in_view_fast(ST, world.view)
-			var/image/z_speech_bubble = generate_speech_bubble(above, "h[speech_bubble_test]")
-			images_to_clients[z_speech_bubble] = list()
-			for(var/item in results["mobs"])
-				if(item != above && !(item in listening))
-					listening[item] = z_speech_bubble
-			listening_obj |= results["objs"]
-		above = above.shadow
-
 	//Main 'say' and 'whisper' message delivery
 	for(var/mob/M in listening)
 		spawn(0) //Using spawns to queue all the messages for AFTER this proc is done, and stop runtimes

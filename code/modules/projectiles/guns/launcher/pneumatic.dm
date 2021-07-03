@@ -32,7 +32,7 @@
 	set name = "Set Valve Pressure"
 	set category = "Object"
 	set src in range(0)
-	var/N = input("Percentage of tank used per shot:","[src]") as null|anything in possible_pressure_amounts
+	var/N = tgui_input_list(usr, "Percentage of tank used per shot:","[src]", possible_pressure_amounts)
 	if (N)
 		pressure_setting = N
 		to_chat(usr, "You dial the pressure valve to [pressure_setting]%.")

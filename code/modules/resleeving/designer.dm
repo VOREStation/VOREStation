@@ -394,7 +394,7 @@
 	ASSERT(istype(G))
 
 	if(params["target_href"] == "bio_gender")
-		var/new_gender = input(user, "Choose your character's biological gender:", "Character Preference", active_br.bodygender) as null|anything in G.get_genders()
+		var/new_gender = tgui_input_list(user, "Choose your character's biological gender:", "Character Preference", G.get_genders())
 		if(new_gender)
 			active_br.bodygender = new_gender
 			active_br.mydna.dna.SetUIState(DNA_UI_GENDER, new_gender!=MALE, 1)

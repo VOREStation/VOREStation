@@ -55,7 +55,7 @@
 			. = TRUE
 
 		if("set_global_limit")
-			var/newlim = input("Input new thrust limit (0..100%)", "Thrust limit", linked.thrust_limit*100) as num
+			var/newlim = input(usr, "Input new thrust limit (0..100%)", "Thrust limit", linked.thrust_limit*100) as num
 			if(tgui_status(usr, state) != STATUS_INTERACTIVE)
 				return FALSE
 			linked.thrust_limit = clamp(newlim/100, 0, 1)
@@ -71,7 +71,7 @@
 
 		if("set_limit")
 			var/datum/ship_engine/E = locate(params["engine"])
-			var/newlim = input("Input new thrust limit (0..100)", "Thrust limit", E.get_thrust_limit()) as num
+			var/newlim = input(usr, "Input new thrust limit (0..100)", "Thrust limit", E.get_thrust_limit()) as num
 			if(tgui_status(usr, state) != STATUS_INTERACTIVE)
 				return FALSE
 			var/limit = clamp(newlim/100, 0, 1)

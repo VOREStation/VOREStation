@@ -6,7 +6,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/result = alert(src, "Really strike your tile with lightning?", "Confirm Badmin" , "No", "Yes (Cosmetic)", "Yes (Real)")
+	var/result = tgui_alert(src, "Really strike your tile with lightning?", "Confirm Badmin" , list("No", "Yes (Cosmetic)", "Yes (Real)"))
 
 	if(result == "No")
 		return

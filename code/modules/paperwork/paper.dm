@@ -425,15 +425,18 @@
 			to_chat(usr, "<span class='info'>There isn't enough space left on \the [src] to write anything.</span>")
 			return
 
-		var/t =  sanitize(input("Enter what you want to write:", "Write", null, null) as message, MAX_PAPER_MESSAGE_LEN, extra = 0)
-
+		var/raw = input(usr, "Enter what you want to write:", "Write") as null|message
+		if(!raw)
+			return
+		
+		var/t =  sanitize(raw, MAX_PAPER_MESSAGE_LEN, extra = 0)
 		if(!t)
 			return
 
 		var/obj/item/i = usr.get_active_hand() // Check to see if he still got that darn pen, also check if he's using a crayon or pen.
 		var/iscrayon = 0
 		if(!istype(i, /obj/item/weapon/pen))
-			alert(usr, "You aren't holding a pen anymore! If you want to keep your work, grab one.", "", "Okay")
+			tgui_alert(usr, "You aren't holding a pen anymore! If you want to keep your work, grab one.", "No Pen!") // Should remain tgui_alert() (blocking)
 			i = usr.get_active_hand()
 
 		if(!istype(i, /obj/item/weapon/pen))

@@ -105,8 +105,10 @@
 	new painting_decal(F, painting_dir, painting_colour)
 
 /obj/item/device/floor_painter/attack_self(var/mob/user)
-	var/choice = input("Do you wish to change the decal type, paint direction, or paint colour?") as null|anything in list("Decal","Direction", "Colour")
-	if(choice == "Decal")
+	var/choice = tgui_alert(usr, "Do you wish to change the decal type, paint direction, or paint colour?", "Modify What?", list("Decal","Direction","Colour","Cancel"))
+	if(choice == "Cancel")
+		return
+	else if(choice == "Decal")
 		choose_decal()
 	else if(choice == "Direction")
 		choose_direction()
@@ -139,7 +141,7 @@
 	if(usr.incapacitated())
 		return
 
-	var/new_decal = input("Select a decal.") as null|anything in decals
+	var/new_decal = tgui_input_list(usr, "Select a decal:", "Decal Choice", decals)
 	if(new_decal && !isnull(decals[new_decal]))
 		decal = new_decal
 		to_chat(usr, "<span class='notice'>You set \the [src] decal to '[decal]'.</span>")
@@ -153,7 +155,7 @@
 	if(usr.incapacitated())
 		return
 
-	var/new_dir = input("Select a direction.") as null|anything in paint_dirs
+	var/new_dir = tgui_input_list(usr, "Select a direction:", "Direction Choice", paint_dirs)
 	if(new_dir && !isnull(paint_dirs[new_dir]))
 		paint_dir = new_dir
 		to_chat(usr, "<span class='notice'>You set \the [src] direction to '[paint_dir]'.</span>")

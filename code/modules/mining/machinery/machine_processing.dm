@@ -100,7 +100,7 @@
 			var/ore = params["ore"]
 			var/new_setting = params["set"]
 			if(new_setting == null)
-				new_setting = input("What setting do you wish to use for processing [ore]]?") as null|anything in list("Smelting","Compressing","Alloying","Nothing")
+				new_setting = tgui_input_list(usr, "What setting do you wish to use for processing [ore]]?", "Process Setting", list("Smelting","Compressing","Alloying","Nothing"))
 				if(!new_setting)
 					return
 				switch(new_setting)

@@ -18,6 +18,7 @@
 	plane_masters[VIS_LIGHTING] 	= new /obj/screen/plane_master/lighting							//Lighting system (but different!)
 	plane_masters[VIS_O_LIGHT]		= new /obj/screen/plane_master/o_light_visual					//Object lighting (using masks)
 	plane_masters[VIS_EMISSIVE] 	= new /obj/screen/plane_master/emissive							//Emissive overlays
+	plane_masters[VIS_OPENSPACE]	= new /obj/screen/plane_master/openspace						//Openspace drop shadows mostly
 	plane_masters[VIS_GHOSTS] 		= new /obj/screen/plane_master/ghosts							//Ghosts!
 	plane_masters[VIS_AI_EYE]		= new /obj/screen/plane_master{plane = PLANE_AI_EYE}			//AI Eye!
 
@@ -222,6 +223,20 @@
 /obj/screen/plane_master/emissive/Initialize()
 	. = ..()
 	add_filter("em_block_masking", 1, color_matrix_filter(GLOB.em_mask_matrix))
+
+/////////////////
+//Openspace gets some magic filters for layers
+/obj/screen/plane_master/openspace
+	plane = OPENSPACE_BACKDROP_PLANE
+	blend_mode = BLEND_MULTIPLY
+	alpha = 255
+
+/obj/screen/plane_master/openspace/Initialize()
+	. = ..()
+	//add_filter("multiz_lighting_mask", 1, alpha_mask_filter(render_source = O_LIGHTING_VISUAL_RENDER_TARGET, flags = MASK_INVERSE)) // Makes fake planet lights not work right
+	add_filter("first_stage_openspace", 2, drop_shadow_filter(color = "#04080FAA", size = -10))
+	add_filter("second_stage_openspace", 3, drop_shadow_filter(color = "#04080FAA", size = -15))
+	//add_filter("third_stage_openspace", 4, drop_shadow_filter(color = "#04080FAA", size = -20)) // TOO dark
 
 /////////////////
 //Ghosts has a special alpha level

@@ -233,7 +233,7 @@
 			if(params["amount"])
 				amount = params["amount"]
 			else
-				amount = input("How many items?", "How many items would you like to take out?", 1) as num|null
+				amount = input(usr, "How many items?", "How many items would you like to take out?", 1) as num|null
 			
 			if(QDELETED(src) || QDELETED(usr) || !usr.Adjacent(src))
 				return FALSE

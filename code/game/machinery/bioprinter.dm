@@ -132,7 +132,7 @@
 		return
 
 	if(container)
-		var/response = alert(user, "What do you want to do?", "Bioprinter Menu", "Print Limbs", "Cancel")
+		var/response = tgui_alert(user, "What do you want to do?", list("Bioprinter Menu", "Print Limbs", "Cancel"))
 		if(response == "Print Limbs")
 			printing_menu(user)
 	else
@@ -149,7 +149,7 @@
 	if(anomalous_organs)
 		possible_list |= anomalous_products
 
-	var/choice = input("What would you like to print?") as null|anything in possible_list
+	var/choice = tgui_input_list(usr, "What would you like to print?", "Print Choice", possible_list)
 
 	if(!choice || printing || (stat & (BROKEN|NOPOWER)))
 		return

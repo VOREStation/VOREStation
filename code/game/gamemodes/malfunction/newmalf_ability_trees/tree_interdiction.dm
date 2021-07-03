@@ -47,7 +47,7 @@
 	if(!ability_prechecks(user, price))
 		return
 
-	if (alert(user, "Really recall the shuttle?", "Recall Shuttle: ", "Yes", "No") != "Yes")
+	if (tgui_alert(user, "Really recall the shuttle?", "Recall Shuttle: ", list(list("Yes", "No"))) != "Yes")
 		return
 
 	if(!ability_pay(user, price))
@@ -95,14 +95,16 @@
 			return
 
 
-		var/targetname = input("Select unlock target: ") in robot_names
+		var/targetname = tgui_input_list(user, "Select unlock target:", "Unlock Target", robot_names)
+		if(!targetname)
+			return
 		for(var/mob/living/silicon/robot/R in robots)
 			if(targetname == R.name)
 				target = R
 				break
 
 	if(target)
-		if(alert(user, "Really try to unlock cyborg [target.name]?", "Unlock Cyborg", "Yes", "No") != "Yes")
+		if(tgui_alert(user, "Really try to unlock cyborg [target.name]?", "Unlock Cyborg", list("Yes", "No")) != "Yes")
 			return
 		if(!ability_pay(user, price))
 			return
@@ -153,7 +155,7 @@
 		return
 
 	if(target)
-		if(alert(user, "Really try to hack cyborg [target.name]?", "Hack Cyborg", "Yes", "No") != "Yes")
+		if(tgui_alert(user, "Really try to hack cyborg [target.name]?", "Hack Cyborg", list("Yes", "No")) != "Yes")
 			return
 		if(!ability_pay(user, price))
 			return
@@ -213,7 +215,7 @@
 		return
 
 	if(target)
-		if(alert(user, "Really try to hack AI [target.name]?", "Hack AI", "Yes", "No") != "Yes")
+		if(tgui_alert(user, "Really try to hack AI [target.name]?", "Hack AI", list("Yes", "No")) != "Yes")
 			return
 		if(!ability_pay(user, price))
 			return
@@ -248,7 +250,7 @@
 				to_chat(target, "SYSTEM LOG: User: Admin - Connection Lost. Changes Reverted.")
 				return
 			to_chat(user, "Hack succeeded. The AI is now under your exclusive control.")
-			to_chat(target, "SYSTEM LOG: System re¡3RT5§^#COMU@(#$)TED)@$")
+			to_chat(target, "SYSTEM LOG: System reï¿½3RT5ï¿½^#COMU@(#$)TED)@$")
 			for(var/i = 0, i < 5, i++)
 				var/temptxt = pick("1101000100101001010001001001",\
 							   	   "0101000100100100000100010010",\

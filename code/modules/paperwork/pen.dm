@@ -231,11 +231,11 @@
 		personnel_list.Add(t.fields["name"])
 	personnel_list.Add("Anonymous")
 
-	var/new_signature = input("Enter new signature pattern.", "New Signature") as null|anything in personnel_list
+	var/new_signature = tgui_input_list(usr, "Enter new signature pattern.", "New Signature", personnel_list)
 	if(new_signature)
 		signature = new_signature
 	*/
-	signature = sanitize(input("Enter new signature. Leave blank for 'Anonymous'", "New Signature", signature))
+	signature = sanitize(input(usr, "Enter new signature. Leave blank for 'Anonymous'", "New Signature", signature))
 
 /obj/item/weapon/pen/proc/get_signature(var/mob/user)
 	return (user && user.real_name) ? user.real_name : "Anonymous"
@@ -248,7 +248,7 @@
 	set category = "Object"
 
 	var/list/possible_colours = list ("Yellow", "Green", "Pink", "Blue", "Orange", "Cyan", "Red", "Invisible", "Black")
-	var/selected_type = input("Pick new colour.", "Pen Colour", null, null) as null|anything in possible_colours
+	var/selected_type = tgui_input_list(usr, "Pick new colour.", "Pen Colour", possible_colours)
 
 	if(selected_type)
 		switch(selected_type)

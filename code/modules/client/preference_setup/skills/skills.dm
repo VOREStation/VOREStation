@@ -68,7 +68,7 @@
 		return TOPIC_REFRESH
 
 	else if(href_list["preconfigured"])
-		var/selected = input(user, "Select a skillset", "Skillset") as null|anything in SKILL_PRE
+		var/selected = tgui_input_list(user, "Select a skillset", "Skillset", SKILL_PRE)
 		if(!selected || !CanUseTopic(user)) return
 
 		pref.ZeroSkills(1)

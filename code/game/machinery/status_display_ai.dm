@@ -41,7 +41,9 @@ var/list/ai_status_emotions = list(
 
 /proc/set_ai_status_displays(mob/user as mob)
 	var/list/ai_emotions = get_ai_emotions(user.ckey)
-	var/emote = input("Please, select a status!", "AI Status", null, null) in ai_emotions
+	var/emote = tgui_input_list(user, "Please, select a status:", "AI Status", ai_emotions)
+	if(!emote)
+		return
 	for (var/obj/machinery/M in machines) //change status
 		if(istype(M, /obj/machinery/ai_status_display))
 			var/obj/machinery/ai_status_display/AISD = M
@@ -80,9 +82,11 @@ var/list/ai_status_emotions = list(
 		attack_hand(user)
 	return
 
-/obj/machinery/ai_status_display/attack_ai/(mob/user as mob)
+/obj/machinery/ai_status_display/attack_ai(mob/user as mob)
 	var/list/ai_emotions = get_ai_emotions(user.ckey)
-	var/emote = input("Please, select a status!", "AI Status", null, null) in ai_emotions
+	var/emote = tgui_input_list(user, "Please, select a status:", "AI Status", ai_emotions)
+	if(!emote)
+		return
 	emotion = emote
 
 /obj/machinery/ai_status_display/process()

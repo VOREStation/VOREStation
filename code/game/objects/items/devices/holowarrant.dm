@@ -30,7 +30,7 @@
 		to_chat(user,"<span class='notice'>There are no warrants available</span>")
 		return
 	var/temp
-	temp = input(user, "Which warrant would you like to load?") as null|anything in warrants
+	temp = tgui_input_list(user, "Which warrant would you like to load?", "Warrant Selection", warrants)
 	for(var/datum/data/record/warrant/W in data_core.warrants)
 		if(W.fields["namewarrant"] == temp)
 			active = W
@@ -40,7 +40,7 @@
 	if(active)
 		var/obj/item/weapon/card/id/I = W.GetIdCard()
 		if(access_hos in I.access) // VOREStation edit
-			var/choice = alert(user, "Would you like to authorize this warrant?","Warrant authorization","Yes","No")
+			var/choice = tgui_alert(user, "Would you like to authorize this warrant?","Warrant authorization",list("Yes","No"))
 			if(choice == "Yes")
 				active.fields["auth"] = "[I.registered_name] - [I.assignment ? I.assignment : "(Unknown)"]"
 			user.visible_message("<span class='notice'>You swipe \the [I] through the [src].</span>", \

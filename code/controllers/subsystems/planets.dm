@@ -104,7 +104,7 @@ SUBSYSTEM_DEF(planets)
 
 /datum/controller/subsystem/planets/proc/updateSunlight(var/datum/planet/P)
 	var/new_brightness = P.sun["brightness"]
-	P.sun_holder.update_brightness(new_brightness)
+	P.sun_holder.update_brightness(new_brightness, P.planet_floors)
 	
 	var/new_color = P.sun["color"]
 	P.sun_holder.update_color(new_color)

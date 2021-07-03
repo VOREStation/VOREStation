@@ -118,7 +118,7 @@
 		return
 
 /obj/item/device/closet_painter/attack_self(var/mob/user)
-	var/choice = input("Do you wish to change the regular closet colour or the secure closet colour?") as null|anything in list("Regular Closet Colour","Secure Closet Colour")
+	var/choice = tgui_alert(usr, "Do you wish to change the regular closet color or the secure closet color?", "Color Selection", list("Regular Closet Colour","Cancel","Secure Closet Colour"))
 	if(choice == "Regular Closet Colour")
 		choose_colour()
 	else if(choice == "Secure Closet Colour")
@@ -137,7 +137,7 @@
 	if(usr.incapacitated())
 		return
 
-	var/new_colour = input("Select a colour.") as null|anything in colours
+	var/new_colour = tgui_input_list(usr, "Select a color:", "Color Selection", colours)
 	if(new_colour && !isnull(colours[new_colour]))
 		colour = new_colour
 		to_chat(usr, "<span class='notice'>You set \the [src] regular closet colour to '[colour]'.</span>")
@@ -151,7 +151,7 @@
 	if(usr.incapacitated())
 		return
 
-	var/new_colour_secure = input("Select a colour.") as null|anything in colours_secure
+	var/new_colour_secure = tgui_input_list(usr, "Select a color:", "Color Selection", colours_secure)
 	if(new_colour_secure && !isnull(colours_secure[new_colour_secure]))
 		colour_secure = new_colour_secure
 		to_chat(usr, "<span class='notice'>You set \the [src] secure closet colour to '[colour_secure]'.</span>")

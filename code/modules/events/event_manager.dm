@@ -156,13 +156,13 @@
 		config.allow_random_events = text2num(href_list["pause_all"])
 		log_and_message_admins("has [config.allow_random_events ? "resumed" : "paused"] countdown for all events.")
 	else if(href_list["interval"])
-		var/delay = input("Enter delay modifier. A value less than one means events fire more often, higher than one less often.", "Set Interval Modifier") as num|null
+		var/delay = input(usr, "Enter delay modifier. A value less than one means events fire more often, higher than one less often.", "Set Interval Modifier") as num|null
 		if(delay && delay > 0)
 			var/datum/event_container/EC = locate(href_list["interval"])
 			EC.delay_modifier = delay
 			log_and_message_admins("has set the interval modifier for [severity_to_string[EC.severity]] events to [EC.delay_modifier].")
 	else if(href_list["stop"])
-		if(alert("Stopping an event may have unintended side-effects. Continue?","Stopping Event!","Yes","No") != "Yes")
+		if(tgui_alert(usr, "Stopping an event may have unintended side-effects. Continue?","Stopping Event!",list("Yes","No")) != "Yes")
 			return
 		var/datum/event/E = locate(href_list["stop"])
 		var/datum/event_meta/EM = E.event_meta
@@ -173,17 +173,17 @@
 	else if(href_list["back"])
 		selected_event_container = null
 	else if(href_list["set_name"])
-		var/name = sanitize(input("Enter event name.", "Set Name") as text|null)
+		var/name = sanitize(input(usr, "Enter event name.", "Set Name") as text|null)
 		if(name)
 			var/datum/event_meta/EM = locate(href_list["set_name"])
 			EM.name = name
 	else if(href_list["set_type"])
-		var/type = input("Select event type.", "Select") as null|anything in allEvents
+		var/type = tgui_input_list(usr, "Select event type.", "Select", allEvents)
 		if(type)
 			var/datum/event_meta/EM = locate(href_list["set_type"])
 			EM.event_type = type
 	else if(href_list["set_weight"])
-		var/weight = input("Enter weight. A higher value means higher chance for the event of being selected.", "Set Weight") as num|null
+		var/weight = input(usr, "Enter weight. A higher value means higher chance for the event of being selected.", "Set Weight") as num|null
 		if(weight && weight > 0)
 			var/datum/event_meta/EM = locate(href_list["set_weight"])
 			EM.weight = weight
@@ -199,7 +199,7 @@
 		EM.enabled = !EM.enabled
 		log_and_message_admins("has [EM.enabled ? "enabled" : "disabled"] the [severity_to_string[EM.severity]] event '[EM.name]'.")
 	else if(href_list["remove"])
-		if(alert("This will remove the event from rotation. Continue?","Removing Event!","Yes","No") != "Yes")
+		if(tgui_alert(usr, "This will remove the event from rotation. Continue?","Removing Event!",list("Yes","No")) != "Yes")
 			return
 		var/datum/event_meta/EM = locate(href_list["remove"])
 		var/datum/event_container/EC = locate(href_list["EC"])
@@ -208,7 +208,7 @@
 	else if(href_list["add"])
 		if(!new_event.name || !new_event.event_type)
 			return
-		if(alert("This will add a new event to the rotation. Continue?","Add Event!","Yes","No") != "Yes")
+		if(tgui_alert(usr, "This will add a new event to the rotation. Continue?","Add Event!",list("Yes","No")) != "Yes")
 			return
 		new_event.severity = selected_event_container.severity
 		selected_event_container.available_events += new_event

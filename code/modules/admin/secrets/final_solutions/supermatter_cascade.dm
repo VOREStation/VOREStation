@@ -5,7 +5,7 @@
 	. = ..()
 	if(!.)
 		return
-	var/choice = input(user, "You sure you want to destroy the universe and create a large explosion at your location? Misuse of this could result in removal of flags or hilarity.") in list("NO TIME TO EXPLAIN", "Cancel")
+	var/choice = tgui_alert(user, "You sure you want to destroy the universe and create a large explosion at your location? Misuse of this could result in removal of flags or hilarity.","WARNING!", list("NO TIME TO EXPLAIN", "Cancel"))
 	if(choice == "NO TIME TO EXPLAIN")
 		explosion(get_turf(user), 8, 16, 24, 32, 1)
 		new /turf/unsimulated/wall/supermatter(get_turf(user))

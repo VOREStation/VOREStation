@@ -47,7 +47,7 @@ fundamental differences
 		return
 
 	if(output_options.len)
-		var/choice = input("What specific food do you wish to make with \the [src]?") as null|anything in output_options
+		var/choice = tgui_input_list(usr, "What specific food do you wish to make with \the [src]?", "Food Output Choice", output_options)
 		if(!choice)
 			return
 		else
@@ -90,7 +90,7 @@ fundamental differences
 				for (var/obj/item/I in CI.container)
 					menuoptions[I.name] = I
 
-		var/selection = input(user, "Which item would you like to remove? If you want to remove chemicals, use an empty beaker.", "Remove ingredients") as null|anything in menuoptions
+		var/selection = tgui_input_list(user, "Which item would you like to remove? If you want to remove chemicals, use an empty beaker.", "Remove ingredients", menuoptions)
 		if (selection)
 			var/obj/item/I = menuoptions[selection]
 			if (!user || !user.put_in_hands(I))

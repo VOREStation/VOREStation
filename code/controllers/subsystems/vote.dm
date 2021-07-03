@@ -352,7 +352,7 @@ SUBSYSTEM_DEF(vote)
 
 		if("cancel")
 			if(usr.client.holder)
-				if("Yes" == alert(usr, "You are about to cancel this vote. Are you sure?", "Cancel Vote", "No", "Yes"))
+				if("Yes" == tgui_alert(usr, "You are about to cancel this vote. Are you sure?", "Cancel Vote", list("No", "Yes")))
 					reset()
 		if("toggle_restart")
 			if(usr.client.holder)

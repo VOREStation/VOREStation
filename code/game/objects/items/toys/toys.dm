@@ -320,7 +320,7 @@
 		to_chat(user, "<span class='warning'>You can't do that right now!</span>")
 		return
 
-	if(alert("Are you sure you want to recolor your blade?", "Confirm Recolor", "Yes", "No") == "Yes")
+	if(tgui_alert(usr, "Are you sure you want to recolor your blade?", "Confirm Recolor", list("Yes", "No")) == "Yes")
 		var/energy_color_input = input(usr,"","Choose Energy Color",lcolor) as color|null
 		if(energy_color_input)
 			lcolor = sanitize_hexcolor(energy_color_input)
@@ -897,7 +897,7 @@
 	if(!M.mind)
 		return 0
 
-	var/input = sanitizeSafe(input("What do you want to name the plushie?", ,""), MAX_NAME_LEN)
+	var/input = sanitizeSafe(input(usr, "What do you want to name the plushie?", ,""), MAX_NAME_LEN)
 
 	if(src && input && !M.stat && in_range(M,src))
 		name = input
