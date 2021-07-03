@@ -70,12 +70,31 @@
 		var/datum/transhuman/mind_record/record = db.backed_up[src.mind.name]
 		if(!(record.dead_state == MR_DEAD))
 			to_chat(src, "<span class='warning'>Your backup is not past-due yet.</span>")
-		else if((world.time - record.last_notification) < 10 MINUTES)
+		else if((world.time - record.last_notification) < 5 MINUTES)
 			to_chat(src, "<span class='warning'>Too little time has passed since your last notification.</span>")
 		else
-			db.notify(record.mindname, TRUE)
+			db.notify(record.mindname)
 			record.last_notification = world.time
 			to_chat(src, "<span class='notice'>New notification has been sent.</span>")
+	else
+		to_chat(src,"<span class='warning'>No backup record could be found, sorry.</span>")
+
+/mob/observer/dead/verb/backup_delay()
+	set category = "Ghost"
+	set name = "Cancel Transcore Notification"
+	set desc = "You can use this to avoid automatic backup notification happening. Manual notification can still be used."
+
+	if(!mind)
+		to_chat(src,"<span class='warning'>Your ghost is missing game values that allow this functionality, sorry.</span>")
+		return
+	var/datum/transcore_db/db = SStranscore.db_by_mind_name(mind.name)
+	if(db)
+		var/datum/transhuman/mind_record/record = db.backed_up[src.mind.name]
+		if(record.dead_state == MR_DEAD || !(record.do_notify))
+			to_chat(src, "<span class='warning'>The notification has already happened or been delayed.</span>")
+		else
+			record.do_notify = FALSE
+			to_chat(src, "<span class='notice'>Overdue mind backup notification delayed successfully.</span>")
 	else
 		to_chat(src,"<span class='warning'>No backup record could be found, sorry.</span>")
 
