@@ -2,6 +2,7 @@
 
 /obj/item/weapon/nailpolish
 	name = "nail polish"
+	desc = "Nail polish, to paint your nails with. Or someone else's!"
 	icon = 'icons/obj/nailpolish_vr.dmi'
 	icon_state = "nailpolish"
 	var/colour = "#FF0000"
@@ -100,7 +101,51 @@
 			return
 	body_part.nail_polish = polish
 	target.update_icons_body()
+
+/obj/item/weapon/nailpolish_remover
+	name = "nail polish remover"
+	desc = "Paint thinner, acetone, nail polish remover; whatever you call it, it gets the job done."
+	drop_sound = 'sound/items/drop/helm.ogg'
+	pickup_sound = 'sound/items/pickup/helm.ogg'
+	icon = 'icons/obj/nailpolish_vr.dmi'
+	icon_state = "nailpolishremover"
+	var/open = FALSE
+
+/obj/item/weapon/nailpolish_remover/attack_self(var/mob/user)
+	open = !open
+	to_chat(user, SPAN_NOTICE("You [open ? "open" : "close"] \the [src]."))
+	update_icon()
+
+/obj/item/weapon/nailpolish_remover/update_icon()
+	. = ..()
+	icon_state = "[initial(icon_state)][open ? "open" : null]"
+
+/obj/item/weapon/nailpolish_remover/attack(var/mob/user, var/mob/living/carbon/human/target)
+	if(!open)
+		return
+
+	if(!istype(target))
+		return
 	
+	var/bp = user.zone_sel.selecting
+	var/obj/item/organ/external/body_part = target.get_organ(bp)
+	if(!body_part)
+		to_chat(user, SPAN_WARNING("[target] is missing that limb!"))
+		return
+	if(!body_part.nail_polish)
+		to_chat(user, SPAN_NOTICE("[target]'s [body_part.name] has no nail polish to remove!"))
+		return
+	if(user == target)
+		user.visible_message("<b>\The [user]</b> removes their nail polish with \the [src].", "You remove your nail polish with \the [src].")
+	else
+		if(do_after(user, 2 SECONDS, target))
+			user.visible_message("<b>\The [user]</b> removes \the [target]'s nail polish with \the [src].", "You remove \the [target]'s nail polish with \the [src].")
+		else
+			to_chat(user, SPAN_NOTICE("Both you and [target] must stay still!"))
+			return
+	body_part.nail_polish = null
+	target.update_icons_body()
+
 /datum/nail_polish
 	var/icon = 'icons/obj/nailpolish_vr.dmi'
 	var/icon_state

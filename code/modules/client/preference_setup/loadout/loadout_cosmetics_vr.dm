@@ -1,5 +1,6 @@
 /datum/gear/cosmetic/nailpolish
 	display_name = "nail polish (colorable)"
+	description = "Nail polish, available in every color of the rainbow! Doesn't come with nail polish remover."
 	path = /obj/item/weapon/nailpolish
 
 /datum/gear/cosmetic/nailpolish/New()
@@ -11,4 +12,8 @@
 	polish.set_colour(polish.color)
 	polish.color = null
 	return polish
-	
+
+/datum/gear/cosmetic/nailpolish_remover
+	display_name = "nail polish remover"
+	description = "Nail polish remover, for when the fun's over. Doesn't come with nail polish."
+	path = /obj/item/weapon/nailpolish_remover
