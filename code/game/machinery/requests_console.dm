@@ -30,6 +30,9 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 	icon_state = "req_comp0"
 	layer = ABOVE_WINDOW_LAYER
 	circuit = /obj/item/weapon/circuitboard/request
+	blocks_emissive = NONE
+	light_power = 0.25
+	light_color = "#00ff00"
 	var/department = "Unknown" //The list of all departments on the station (Determined from this variable on each unit) Set this to the same thing if you want several consoles in one department
 	var/list/message_log = list() //List of all messages
 	var/departmentType = 0 		//Bitflag. Zero is reply-only. Map currently uses raw numbers instead of defines.
@@ -55,20 +58,8 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 	light_range = 0
 	var/datum/announcement/announcement = new
 
-/obj/machinery/requests_console/power_change()
-	..()
-	update_icon()
-
-/obj/machinery/requests_console/update_icon()
-	if(stat & NOPOWER)
-		if(icon_state != "req_comp_off")
-			icon_state = "req_comp_off"
-	else
-		if(icon_state == "req_comp_off")
-			icon_state = "req_comp[newmessagepriority]"
-
-/obj/machinery/requests_console/New()
-	..()
+/obj/machinery/requests_console/Initialize()
+	. = ..()
 
 	announcement.title = "[department] announcement"
 	announcement.newscast = 1
@@ -82,7 +73,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 	if(departmentType & RC_INFO)
 		req_console_information |= department
 
-	set_light(1)
+	update_icon()
 
 /obj/machinery/requests_console/Destroy()
 	allConsoles -= src
@@ -99,6 +90,24 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 		if(departmentType & RC_INFO)
 			req_console_information -= department
 	return ..()
+
+/obj/machinery/requests_console/power_change()
+	..()
+	update_icon()
+
+/obj/machinery/requests_console/update_icon()
+	cut_overlays()
+	
+	if(stat & NOPOWER)
+		set_light(0)
+		set_light_on(FALSE)
+		icon_state = "req_comp_off"
+	else
+		icon_state = "req_comp_[newmessagepriority]"
+		add_overlay(mutable_appearance(icon, "req_comp_ov[newmessagepriority]"))
+		add_overlay(emissive_appearance(icon, "req_comp_ov[newmessagepriority]"))
+		set_light(2)
+		set_light_on(TRUE)
 
 /obj/machinery/requests_console/attack_hand(user as mob)
 	if(..(user))

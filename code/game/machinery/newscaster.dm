@@ -129,6 +129,10 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 	icon = 'icons/obj/terminals_vr.dmi' //VOREStation Edit
 	icon_state = "newscaster_normal"
 	layer = ABOVE_WINDOW_LAYER
+	blocks_emissive = NONE
+	light_power = 0.9
+	light_range = 2
+	light_color = "#00ff00"
 	var/isbroken = 0  //1 if someone banged it with something heavy
 	var/ispowered = 1 //starts powered, changes with power_change()
 	//var/list/datum/feed_channel/channel_list = list() //This list will contain the names of the feed channels. Each name will refer to a data region where the messages of the feed channels are stored.
@@ -176,6 +180,7 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 
 /obj/machinery/newscaster/LateInitialize()
 	node = get_exonet_node()
+	update_icon()
 
 /obj/machinery/newscaster/Destroy()
 	allCasters -= src
@@ -183,25 +188,34 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 	return ..()
 
 /obj/machinery/newscaster/update_icon()
+	cut_overlays()
 	if(!ispowered || isbroken)
 		icon_state = "newscaster_off"
 		if(isbroken) //If the thing is smashed, add crack overlay on top of the unpowered sprite.
-			cut_overlays()
 			add_overlay("crack3")
+		set_light(0)
+		set_light_on(FALSE)
 		return
 
-	cut_overlays() //reset overlays
 	if(news_network.wanted_issue) //wanted icon state, there can be no overlays on it as it's a priority message
 		icon_state = "newscaster_wanted"
+		add_overlay(mutable_appearance(icon, "newscaster_wanted_ov"))
+		add_overlay(emissive_appearance(icon, "newscaster_wanted_ov"))
 		return
 
 	if(alert) //new message alert overlay
 		add_overlay("newscaster_alert")
+		add_overlay(mutable_appearance(icon, "newscaster_alert"))
+		add_overlay(emissive_appearance(icon, "newscaster_alert"))
 
 	if(hitstaken > 0) //Cosmetic damage overlay
 		add_overlay("crack[hitstaken]")
-
+	
 	icon_state = "newscaster_normal"
+	add_overlay(emissive_appearance(icon, "newscaster_normal_ov"))
+	add_overlay(mutable_appearance(icon, "newscaster_normal_ov"))
+	set_light(2)
+	set_light_on(TRUE)
 	return
 
 /obj/machinery/newscaster/power_change()
