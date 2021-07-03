@@ -20,6 +20,14 @@
 	if(!isnull(entries_decay_at) && !isnull(entries_expire_at))
 		entries_decay_at = round(entries_expire_at * entries_decay_at)
 
+/datum/persistent/proc/Initialize()
+	if(fexists(filename))
+		var/list/tokens = json_decode(file2text(filename))
+		for(var/list/token in tokens)
+			if(!CheckTokenSanity(token))
+				tokens -= token
+		ProcessAndApplyTokens(tokens)
+
 /datum/persistent/proc/GetValidTurf(var/turf/T, var/list/token)
 	if(T && CheckTurfContents(T, token))
 		return T
@@ -92,14 +100,6 @@
 		"z" = T.z,
 		"age" = GetEntryAge(entry)
 	)
-
-/datum/persistent/proc/Initialize()
-	if(fexists(filename))
-		var/list/tokens = json_decode(file2text(filename))
-		for(var/list/token in tokens)
-			if(!CheckTokenSanity(token))
-				tokens -= token
-		ProcessAndApplyTokens(tokens)
 
 /datum/persistent/proc/Shutdown()
 	if(fexists(filename))

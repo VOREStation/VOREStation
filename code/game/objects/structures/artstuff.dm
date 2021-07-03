@@ -293,7 +293,8 @@
 
 /obj/structure/sign/painting/Initialize(mapload, dir, building)
 	. = ..()
-	SSpersistence.painting_frames += src
+	if(persistence_id)
+		SSpersistence.painting_frames += src
 	if(dir)
 		set_dir(dir)
 	if(building)
@@ -369,20 +370,21 @@
 		for(var/y in 1 to height)
 			grid[x][y] = I.GetPixel(x,h-y)
 
-/*
-
 /**
  * Loads a painting from SSpersistence. Called globally by said subsystem when it inits
  *
  * Deleting paintings leaves their json, so this proc will remove the json and try again if it finds one of those.
  */
 /obj/structure/sign/painting/proc/load_persistent()
-	if(!persistence_id || !SSpersistence.paintings || !SSpersistence.paintings[persistence_id])
+	if(!persistence_id || !SSpersistence.paintings)
 		return
-	var/list/painting_category = SSpersistence.paintings[persistence_id]
+	var/list/painting_category = list()
+	for (var/list/P in SSpersistence.paintings)
+		if(P["persistence_id"] == persistence_id)
+			painting_category[++painting_category.len] = P
 	var/list/painting
 	while(!painting)
-		if(!length(SSpersistence.paintings[persistence_id]))
+		if(!length(painting_category))
 			return //aborts loading anything this category has no usable paintings
 		var/list/chosen = pick(painting_category)
 		if(!fexists("data/paintings/[persistence_id]/[chosen["md5"]].png")) //shitmin deleted this art, lets remove json entry to avoid errors
@@ -426,10 +428,8 @@
 		current_canvas.painting_name = "Untitled Artwork"
 	var/data = current_canvas.get_data_string()
 	var/md5 = md5(lowertext(data))
-	var/list/current = SSpersistence.paintings[persistence_id]
-	if(!current)
-		current = list()
-	for(var/list/entry in current)
+	LAZYINITLIST(SSpersistence.paintings)
+	for(var/list/entry in SSpersistence.paintings)
 		if(entry["md5"] == md5)
 			return
 	var/png_directory = "data/paintings/[persistence_id]/"
@@ -437,9 +437,13 @@
 	var/result = rustg_dmi_create_png(png_path,"[current_canvas.width]","[current_canvas.height]",data)
 	if(result)
 		CRASH("Error saving persistent painting: [result]")
-	current += list(list("title" = current_canvas.painting_name , "md5" = md5, "author" = current_canvas.author_name, "ckey" = current_canvas.author_ckey))
-	SSpersistence.paintings[persistence_id] = current
-*/
+	SSpersistence.paintings += list(list(
+		"persistence_id" = persistence_id,
+		"title" = current_canvas.painting_name,
+		"md5" = md5,
+		"author" = current_canvas.author_name,
+		"ckey" = current_canvas.author_ckey
+	))
 
 /*
 /obj/structure/sign/painting/vv_get_dropdown()

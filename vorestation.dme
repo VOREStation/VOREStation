@@ -3327,6 +3327,7 @@
 #include "code\modules\persistence\filth.dm"
 #include "code\modules\persistence\graffiti.dm"
 #include "code\modules\persistence\noticeboard.dm"
+#include "code\modules\persistence\paintings.dm"
 #include "code\modules\persistence\serialize.dm"
 #include "code\modules\persistence\datum\persistence_datum.dm"
 #include "code\modules\persistence\effects\filth.dm"
