@@ -4,6 +4,9 @@ SUBSYSTEM_DEF(persistence)
 	flags = SS_NO_FIRE
 	var/list/tracking_values = list()
 	var/list/persistence_datums = list()
+	
+	/// Places our subsystem can spawn paintings (helps with art spawning differently across maps)
+	var/list/painting_frames = list()
 
 /datum/controller/subsystem/persistence/Initialize()
 	. = ..()
