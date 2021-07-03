@@ -36,7 +36,7 @@
 	origin_tech = list(TECH_DATA = 8, TECH_POWER = 8, TECH_PHORON = 8, TECH_ENGINEERING = 8)
 	req_components = list(
 		/obj/item/stack/cable_coil = 5,
-		/obj/item/weapon/stock_parts/capacitor/omni = 1)
+		/obj/item/weapon/stock_parts/capacitor/hyper = 1)
 
 /obj/item/weapon/circuitboard/machine/abductor/core/hybrid
 	name = T_BOARD("void generator (hybrid)")
@@ -45,8 +45,8 @@
 	origin_tech = list(TECH_DATA = 8, TECH_POWER = 8, TECH_PHORON = 8, TECH_ENGINEERING = 8)
 	req_components = list(
 		/obj/item/stack/cable_coil = 5,
-		/obj/item/weapon/stock_parts/capacitor/omni = 1,
-		/obj/item/weapon/stock_parts/micro_laser/omni = 1)
+		/obj/item/weapon/stock_parts/capacitor/hyper = 1,
+		/obj/item/weapon/stock_parts/micro_laser/hyper = 1)
 
 // Radioisotope Thermoelectric Generator (RTG)
 // Simple power generator that would replace "magic SMES" on various derelicts.
