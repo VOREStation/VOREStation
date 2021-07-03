@@ -974,6 +974,11 @@
 	outdoors = 1
 	},
 /area/gateway/arynthilake)
+"tC" = (
+/turf/simulated/floor/tiled/eris/dark/brown_platform{
+	outdoors = 1
+	},
+/area/gateway/arynthilake/dome)
 "uj" = (
 /obj/random/mob/semirandom_mob_spawner/humanoid,
 /turf/simulated/floor/carpet/sblucarpet,
@@ -18085,7 +18090,7 @@ Qm
 Xz
 Xz
 HN
-Kw
+tC
 Ia
 lQ
 lQ
@@ -18227,7 +18232,7 @@ Qm
 kv
 kv
 Fi
-Kw
+tC
 Ia
 lQ
 lQ
@@ -18369,7 +18374,7 @@ Qm
 qy
 RK
 Fi
-Kw
+tC
 Ia
 lQ
 lQ
@@ -18937,7 +18942,7 @@ Dk
 nP
 nP
 nP
-Kw
+tC
 Ia
 nC
 iG
@@ -19079,7 +19084,7 @@ Qm
 nP
 nP
 HN
-Kw
+tC
 Ia
 nC
 iG
