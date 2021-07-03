@@ -153,6 +153,9 @@ var/list/preferences_datums = list()
 
 	var/list/volume_channels = list()
 
+	///If they are currently in the process of swapping slots, don't let them open 999 windows for it and get confused
+	var/selecting_slots = FALSE
+
 
 /datum/preferences/New(client/C)
 	player_setup = new(src)
@@ -234,7 +237,6 @@ var/list/preferences_datums = list()
 
 	if(!get_mob_by_key(client_ckey))
 		to_chat(user, "<span class='danger'>No mob exists for the given client!</span>")
-		close_load_dialog(user)
 		return
 
 	if(!char_render_holders)
@@ -343,11 +345,6 @@ var/list/preferences_datums = list()
 		if(!IsGuestKey(usr.key))
 			open_load_dialog(usr)
 			return 1
-	else if(href_list["changeslot"])
-		load_character(text2num(href_list["changeslot"]))
-		attempt_vr(client.prefs_vr,"load_vore","") //VOREStation Edit
-		sanitize_preferences()
-		close_load_dialog(usr)
 	else if(href_list["resetslot"])
 		if("No" == tgui_alert(usr, "This will reset the current slot. Continue?", "Reset current slot?", list("No", "Yes")))
 			return 0
@@ -359,10 +356,6 @@ var/list/preferences_datums = list()
 		if(!IsGuestKey(usr.key))
 			open_copy_dialog(usr)
 			return 1
-	else if(href_list["overwrite"])
-		overwrite_character(text2num(href_list["overwrite"]))
-		sanitize_preferences()
-		close_load_dialog(usr)
 	else if(href_list["close"])
 		// User closed preferences window, cleanup anything we need to.
 		clear_character_previews()
@@ -401,53 +394,80 @@ var/list/preferences_datums = list()
 			character.descriptors[entry] = body_descriptors[entry]
 
 /datum/preferences/proc/open_load_dialog(mob/user)
-	var/dat = "<body>"
-	dat += "<tt><center>"
-
+	if(selecting_slots)
+		to_chat(user, "<span class='warning'>You already have a slot selection dialog open!</span>")
+		return
 	var/savefile/S = new /savefile(path)
-	if(S)
-		dat += "<b>Select a character slot to load</b><hr>"
-		var/name
-		var/nickname //vorestation edit - This set appends nicknames to the save slot
-		for(var/i=1, i<= config.character_slots, i++)
-			S.cd = "/character[i]"
-			S["real_name"] >> name
-			S["nickname"] >> nickname //vorestation edit
-			if(!name)	name = "Character[i]"
-			if(i==default_slot)
-				name = "<b>[name]</b>"
-			dat += "<a href='?src=\ref[src];changeslot=[i]'>[name][nickname ? " ([nickname])" : ""]</a><br>" //vorestation edit
+	if(!S)
+		error("Somehow missing savefile path?! [path]")
+		return
 
-	dat += "<hr>"
-	dat += "</center></tt>"
-	//user << browse(dat, "window=saves;size=300x390")
-	panel = new(user, "Character Slots", "Character Slots", 300, 390, src)
-	panel.set_content(dat)
-	panel.open()
+	var/name
+	var/nickname //vorestation edit - This set appends nicknames to the save slot
+	var/list/charlist = list()
+	for(var/i=1, i<= config.character_slots, i++)
+		S.cd = "/character[i]"
+		S["real_name"] >> name
+		S["nickname"] >> nickname //vorestation edit
+		if(!name)
+			name = "[i] - \[Unused Slot\]"
+		else if(i == default_slot)
+			name = "►[i] - [name]"
+		else
+			name = "[i] - [name]"
+		charlist["[name][nickname ? " ([nickname])" : ""]"] = i
 
-/datum/preferences/proc/close_load_dialog(mob/user)
-	//user << browse(null, "window=saves")
-	panel.close()
+	selecting_slots = TRUE
+	var/choice = tgui_input_list(user, "Select a character to load:", "Load Slot", charlist)
+	selecting_slots = FALSE
+	if(!choice)
+		return
+	
+	var/slotnum = charlist[choice]
+	if(!slotnum)
+		error("Player picked [choice] slot to load, but that wasn't one we sent.")
+		return
+	
+	load_character(slotnum)
+	attempt_vr(user.client?.prefs_vr,"load_vore","") //VOREStation Edit
+	sanitize_preferences()
+	ShowChoices(user)
 
 /datum/preferences/proc/open_copy_dialog(mob/user)
-	var/dat = "<body>"
-	dat += "<tt><center>"
-
+	if(selecting_slots)
+		to_chat(user, "<span class='warning'>You already have a slot selection dialog open!</span>")
+		return
 	var/savefile/S = new /savefile(path)
-	if(S)
-		dat += "<b>Select a character slot to overwrite</b><br>"
-		dat += "<b>You will then need to save to confirm</b><hr>"
-		var/name
-		for(var/i=1, i<= config.character_slots, i++)
-			S.cd = "/character[i]"
-			S["real_name"] >> name
-			if(!name)	name = "Character[i]"
-			if(i==default_slot)
-				name = "<b>[name]</b>"
-			dat += "<a href='?src=\ref[src];overwrite=[i]'>[name]</a><br>"
+	if(!S)
+		error("Somehow missing savefile path?! [path]")
+		return
 
-	dat += "<hr>"
-	dat += "</center></tt>"
-	panel = new(user, "Character Slots", "Character Slots", 300, 390, src)
-	panel.set_content(dat)
-	panel.open()
+	var/name
+	var/nickname //vorestation edit - This set appends nicknames to the save slot
+	var/list/charlist = list()
+	for(var/i=1, i<= config.character_slots, i++)
+		S.cd = "/character[i]"
+		S["real_name"] >> name
+		S["nickname"] >> nickname //vorestation edit
+		if(!name)
+			name = "[i] - \[Unused Slot\]"
+		if(i == default_slot)
+			name = "►[i] - [name]"
+		else
+			name = "[i] - [name]"
+		charlist["[name][nickname ? " ([nickname])" : ""]"] = i
+
+	selecting_slots = TRUE
+	var/choice = tgui_input_list(user, "Select a character to COPY TO:", "Copy Slot", charlist)
+	selecting_slots = FALSE
+	if(!choice)
+		return
+	
+	var/slotnum = charlist[choice]
+	if(!slotnum)
+		error("Player picked [choice] slot to copy to, but that wasn't one we sent.")
+		return
+	
+	overwrite_character(slotnum)
+	sanitize_preferences()
+	ShowChoices(user)
