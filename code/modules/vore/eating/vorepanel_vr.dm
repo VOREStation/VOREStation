@@ -6,7 +6,7 @@
 #define BELLIES_NAME_MIN 2
 #define BELLIES_NAME_MAX 40
 #define BELLIES_DESC_MAX 4096
-#define FLAVOR_MAX 40
+#define FLAVOR_MAX 400
 
 /mob/living
 	var/datum/vore_look/vorePanel
@@ -321,7 +321,7 @@
 				unsaved_changes = FALSE
 			return TRUE
 		if("setflavor")
-			var/new_flavor = html_encode(input(usr,"What your character tastes like (40ch limit). This text will be printed to the pred after 'X tastes of...' so just put something like 'strawberries and cream':","Character Flavor",host.vore_taste) as text|null)
+			var/new_flavor = html_encode(input(usr,"What your character tastes like (400ch limit). This text will be printed to the pred after 'X tastes of...' so just put something like 'strawberries and cream':","Character Flavor",host.vore_taste) as text|null)
 			if(!new_flavor)
 				return FALSE
 
@@ -333,7 +333,7 @@
 			unsaved_changes = TRUE
 			return TRUE
 		if("setsmell")
-			var/new_smell = html_encode(input(usr,"What your character smells like (40ch limit). This text will be printed to the pred after 'X smells of...' so just put something like 'strawberries and cream':","Character Smell",host.vore_smell) as text|null)
+			var/new_smell = html_encode(input(usr,"What your character smells like (400ch limit). This text will be printed to the pred after 'X smells of...' so just put something like 'strawberries and cream':","Character Smell",host.vore_smell) as text|null)
 			if(!new_smell)
 				return FALSE
 
