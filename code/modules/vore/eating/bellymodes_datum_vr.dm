@@ -176,10 +176,7 @@ GLOBAL_LIST_INIT(digest_modes, list())
 			if(isliving(C))
 				var/mob/living/M = C
 				B.ownegg.w_class = M.size_multiplier * 4 //Egg size and weight scaled to match occupant.
-				var/obj/item/weapon/holder/H = new M.holder_type(B.ownegg)
-				H.held_mob = M
-				M.forceMove(H)
-				H.sync(M)
+				var/obj/item/weapon/holder/H = new M.holder_type(B.ownegg, M)
 				B.ownegg.max_storage_space = H.w_class
 				B.ownegg.icon_scale_x = 0.25 * B.ownegg.w_class
 				B.ownegg.icon_scale_y = 0.25 * B.ownegg.w_class

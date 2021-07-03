@@ -25,11 +25,9 @@
 
 	var/mob/M = loc
 	var/was_in_hands = istype(M) && (src == M.get_active_hand() || src == M.get_inactive_hand())
-
-	critter_holder = new(loc)
+	
 	critter = new critter(critter_holder)
-	critter_holder.held_mob = critter
-	critter_holder.sync(critter)
+	critter_holder = new(loc, critter)
 
 	if(istype(M))
 		M.drop_from_inventory(src)

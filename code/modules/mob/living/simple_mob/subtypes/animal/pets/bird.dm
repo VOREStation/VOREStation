@@ -45,12 +45,11 @@
 	item_icons = null
 	w_class = ITEMSIZE_SMALL
 
-/obj/item/weapon/holder/bird/sync(var/mob/living/simple_mob/SM)
-	..()
-	icon_state = SM.icon_rest // Looks better if the bird isn't flapping constantly in the UI.
+/obj/item/weapon/holder/bird/Initialize()
+	. = ..()
+	held_mob?.lay_down()
 
 // Subtypes for birbs.
-
 /mob/living/simple_mob/animal/passive/bird/black_bird
 	name = "common blackbird"
 	desc = "A species of bird, both the males and females are known to be territorial on their breeding grounds."
