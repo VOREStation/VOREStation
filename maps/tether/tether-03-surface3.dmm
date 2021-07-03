@@ -34140,16 +34140,6 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/barbackmaintenance)
 "bgz" = (
-/obj/effect/floor_decal/spline/plain{
-	dir = 4
-	},
-/obj/structure/table/marble,
-/obj/machinery/camera/network/civilian{
-	dir = 9
-	},
-/obj/machinery/chemical_dispenser/bar_coffee/full{
-	dir = 8
-	},
 /turf/simulated/floor/lino,
 /area/crew_quarters/bar)
 "bgA" = (
@@ -34286,7 +34276,7 @@
 /obj/machinery/camera/network/civilian{
 	dir = 9
 	},
-/obj/machinery/chemical_dispenser/bar_coffee{
+/obj/machinery/chemical_dispenser/bar_coffee/full{
 	dir = 8
 	},
 /turf/simulated/floor/lino,
