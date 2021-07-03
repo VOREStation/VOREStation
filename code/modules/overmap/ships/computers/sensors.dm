@@ -6,6 +6,7 @@
 	circuit = /obj/item/weapon/circuitboard/sensors
 	extra_view = 4
 	var/obj/machinery/shipsensors/sensors
+	whitelisted_types = list(/obj/effect/overmap/visitable) // Stationary emplacements can support sensors
 
 /obj/machinery/computer/ship/sensors/attempt_hook_up(obj/effect/overmap/visitable/ship/sector)
 	if(!(. = ..()))
