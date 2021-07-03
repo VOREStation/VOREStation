@@ -7,11 +7,12 @@
  * * message - The content of the input box, shown in the body of the TGUI window.
  * * title - The title of the input box, shown on the top of the TGUI window.
  * * buttons - The options that can be chosen by the user, each string is assigned a button on the UI.
+ * * default - The option with this value will be selected on first paint of the TGUI window.
  * * timeout - The timeout of the input box, after which the input box will close and qdel itself. Set to zero for no timeout.
  */
 /proc/tgui_input_list(mob/user, message, title, list/buttons, default, timeout = 0)
 	if (istext(user))
-		stack_trace("tgui_alert() received text for user instead of list")
+		stack_trace("tgui_alert() received text for user instead of mob")
 		return
 	if (!user)
 		user = usr
@@ -39,12 +40,13 @@
  * * message - The content of the input box, shown in the body of the TGUI window.
  * * title - The title of the input box, shown on the top of the TGUI window.
  * * buttons - The options that can be chosen by the user, each string is assigned a button on the UI.
+ * * default - The option with this value will be selected on first paint of the TGUI window.
  * * callback - The callback to be invoked when a choice is made.
  * * timeout - The timeout of the input box, after which the menu will close and qdel itself. Set to zero for no timeout.
  */
 /proc/tgui_input_list_async(mob/user, message, title, list/buttons, default, datum/callback/callback, timeout = 60 SECONDS)
 	if (istext(user))
-		stack_trace("tgui_alert() received text for user instead of list")
+		stack_trace("tgui_alert() received text for user instead of mob")
 		return
 	if (!user)
 		user = usr
@@ -74,6 +76,8 @@
 	var/list/buttons
 	/// Buttons (strings specifically) mapped to the actual value (e.g. a mob or a verb)
 	var/list/buttons_map
+	/// Value of the button that should be pre-selected on first paint.
+	var/initial
 	/// The button that the user has pressed, null if no selection has been made
 	var/choice
 	/// The time at which the tgui_list_input was created, for displaying timeout progress.
@@ -88,6 +92,7 @@
 	src.message = message
 	src.buttons = list()
 	src.buttons_map = list()
+	src.initial = default
 	var/list/repeat_buttons = list()
 
 	// Gets rid of illegal characters
@@ -138,7 +143,8 @@
 	. = list(
 		"title" = title,
 		"message" = message,
-		"buttons" = buttons
+		"buttons" = buttons,
+		"initial" = initial
 	)
 
 /datum/tgui_list_input/tgui_data(mob/user)
