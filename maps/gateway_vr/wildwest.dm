@@ -185,3 +185,6 @@
 	icon_state = "shimmer"
 	color = "#8b0b0b" //red
 	in_space = 1
+	unknown_state = "field"
+	known = FALSE
+	

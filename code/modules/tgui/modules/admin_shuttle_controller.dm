@@ -22,7 +22,7 @@
 	for(var/ship in SSshuttles.ships)
 		var/obj/effect/overmap/visitable/ship/S = ship
 		overmap_ships.Add(list(list(
-			"name" = S.scanner_name || S.name,
+			"name" = S.name,
 			"ref" = REF(S),
 		)))
 	data["overmap_ships"] = overmap_ships

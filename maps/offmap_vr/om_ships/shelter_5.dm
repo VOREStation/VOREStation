@@ -40,7 +40,7 @@
 
 // The 'ship'
 /obj/effect/overmap/visitable/ship/landable/escapepod
-	scanner_name = "Escape Pod"
+	name = "Escape Pod"
 	scanner_desc = @{"[i]Registration[/i]: NOT AVAILABLE
 [i]Class[/i]: Escape Pod
 [i]Transponder[/i]: Transmitting (CIV), non-hostile

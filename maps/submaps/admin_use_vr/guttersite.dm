@@ -6,9 +6,8 @@
 	scanner_desc = @{"[i]Transponder[/i]: Strong Comms Signal
 [b]Notice[/b]: WARNING! KEEP OUT! MEMBERS ONLY!"}
 	icon = 'icons/obj/overmap_vr.dmi'
-	icon_state = "guttersite"
+	icon_state = "os_fortress_r"
 	known = FALSE
-	color = "#ee3333" //Redish, so it stands out against the other debris-like icons
 	initial_generic_waypoints = list("guttersite_lshuttle", "guttersite_sshuttle", "guttersite_mshuttle")
 
 // -- Objs -- //

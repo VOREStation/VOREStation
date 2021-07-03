@@ -9,6 +9,7 @@
 	known = FALSE
 	color = "#ee3333" //Redish, so it stands out against the other debris-like icons
 	initial_generic_waypoints = list("debrisfield_se", "debrisfield_nw")
+	icon_state = "spacehulk_g"
 
 // -- Objs -- //
 
@@ -146,7 +147,7 @@
 	. = ..()
 
 /obj/effect/overmap/visitable/ship/landable/tinycarrier
-	scanner_name = "TBD"
+	name = "TBD"
 	scanner_desc = "TBD"
 	vessel_mass = 12000
 	vessel_size = SHIP_SIZE_SMALL
@@ -156,7 +157,7 @@
 	. = ..()
 	var/datum/lore/organization/O = loremaster.organizations[/datum/lore/organization/other/sysdef]
 	var/newname = "SDV [pick(O.ship_names)]"
-	scanner_name = newname
+	name = newname
 	scanner_desc = {"\[i\]Registration\[/i\]: [newname]
 \[i\]Class\[/i\]: Light Escort Carrier
 \[i\]Transponder\[/i\]: Transmitting (MIL), Weak Signal

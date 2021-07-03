@@ -9,6 +9,9 @@
 	icon_state = "fueldepot"
 	color = "#33FF33"
 	initial_generic_waypoints = list("fueldepot_east","fueldepot_west","fueldepot_north","fueldepot_south")
+	unknown_state = "station"
+	known = TRUE
+	icon_state = "fueldepot_g"
 
 /area/tether_away/fueldepot
 	name = "Away Mission - Fuel Depot"

@@ -148,12 +148,11 @@
 
 // The 'ship'
 /obj/effect/overmap/visitable/ship/landable/salamander
-	scanner_name = "Salamander-class Corvette"
+	name = "Salamander-class Corvette"
 	scanner_desc = @{"[i]Registration[/i]: ITV Independence
 [i]Class[/i]: Corvette
 [i]Transponder[/i]: Transmitting (CIV), non-hostile
 [b]Notice[/b]: Multirole independent vessel"}
-	color = "#00AA00" //green, because money
 	vessel_mass = 4500
 	vessel_size = SHIP_SIZE_LARGE
 	fore_dir = EAST
@@ -179,12 +178,11 @@
 
 // The 'ship'
 /obj/effect/overmap/visitable/ship/landable/salamander_wreck
-	scanner_name = "Wrecked Salamander-class Corvette"
+	name = "Wrecked Salamander-class Corvette"
 	scanner_desc = @{"[i]Registration[/i]: ITV Unity
 [i]Class[/i]: Corvette
 [i]Transponder[/i]: Not Transmitting
 [b]Notice[/b]: Damage to hull is consistent with intentional scuttling procedures, no distress call logged"}
-	color = "#008800" //green, because money
 	vessel_mass = 4500
 	vessel_size = SHIP_SIZE_LARGE
 	fore_dir = EAST
