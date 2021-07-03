@@ -27,7 +27,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/Initialize()
 	. = ..()
 	if(nutriment_amt)
-		reagents.add_reagent("nutriment",nutriment_amt,nutriment_desc)
+		reagents.add_reagent("nutriment",(nutriment_amt*2),nutriment_desc)		//VOREStation Edit: Undoes global nutrition nerf
 
 	//Placeholder for effect that trigger on eating that aren't tied to reagents.
 /obj/item/weapon/reagent_containers/food/snacks/proc/On_Consume(var/mob/M)
