@@ -6,8 +6,9 @@
 	name = "size gun" //I have no idea why this was called shrink ray when this increased and decreased size.
 	desc = "A highly advanced ray gun with a knob on the side to adjust the size you desire. Warning: Do not insert into mouth."
 	icon = 'icons/obj/gun_vr.dmi'
-	icon_state = "sizegun-shrink100" // Someone can probably do better. -Ace
-	item_state = null	//so the human update icon uses the icon_state instead
+	icon_override = 'icons/obj/gun_vr.dmi'
+	icon_state = "sizegun-shrink100"
+	item_state = "sizegun-shrink"
 	fire_sound = 'sound/weapons/wave.ogg'
 	charge_cost = 240
 	projectile_type = /obj/item/projectile/beam/sizelaser
@@ -41,6 +42,7 @@
 	set category = "Object"
 	set src in view(1)
 
+	var/prev_size = size_set_to
 	var/size_select = input(usr, "Put the desired size (25-200%), (1-600%) in dormitory areas.", "Set Size", size_set_to * 100) as num|null
 	if(!size_select)
 		return //cancelled
@@ -50,6 +52,14 @@
 	to_chat(usr, "<span class='notice'>You set the size to [size_select]%</span>")
 	if(size_set_to < RESIZE_MINIMUM || size_set_to > RESIZE_MAXIMUM)
 		to_chat(usr, "<span class='notice'>Note: Resizing limited to 25-200% automatically while outside dormatory areas.</span>") //hint that we clamp it in resize
+	
+	if(size_set_to >= 1 && prev_size < 1)
+		item_state = modifystate = "sizegun-grow"
+		update_icon()
+		
+	else if(size_set_to < 1 && prev_size >= 1)
+		item_state = modifystate = "sizegun-shrink"
+		update_icon()
 
 /obj/item/weapon/gun/energy/sizegun/examine(mob/user)
 	. = ..()
@@ -60,6 +70,16 @@
 	desc = "Sizegun, without limits on minimum/maximum size, and with unlimited charge. Time to show 'em that size does matter."
 	charge_cost = 0
 	projectile_type = /obj/item/projectile/beam/sizelaser/admin
+
+/obj/item/weapon/gun/energy/sizegun/abductor
+	name = "alien size gun"
+	icon_state = "sizegun-abductor"
+	item_state = "laser"
+	charge_cost = 0
+	projectile_type = /obj/item/projectile/beam/sizelaser/admin
+
+/obj/item/weapon/gun/energy/sizegun/abductor/update_icon(ignore_inhands)
+	item_state = initial(item_state)
 
 /obj/item/weapon/gun/energy/sizegun/admin/select_size()
 	set name = "Select Size"
