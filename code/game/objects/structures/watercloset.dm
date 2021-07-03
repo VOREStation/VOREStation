@@ -4,7 +4,7 @@
 	name = "toilet"
 	desc = "The HT-451, a torque rotation-based, waste disposal unit for small matter. This one seems remarkably clean."
 	icon = 'icons/obj/watercloset.dmi'
-	icon_state = "toilet00"
+	icon_state = "toilet"
 	density = 0
 	anchored = 1
 	var/open = 0			//if the lid is up
@@ -41,7 +41,7 @@
 	update_icon()
 
 /obj/structure/toilet/update_icon()
-	icon_state = "toilet[open][cistern]"
+	icon_state = "[initial(icon_state)][open][cistern]"
 
 /obj/structure/toilet/attackby(obj/item/I as obj, mob/living/user as mob)
 	if(I.is_crowbar())
@@ -91,7 +91,39 @@
 		to_chat(user, "You carefully place \the [I] into the cistern.")
 		return
 
+/obj/structure/toilet/prison
+	name = "prison toilet"
+	icon_state = "toilet2"
 
+/obj/structure/toilet/prison/attack_hand(mob/living/user)
+	return
+
+/obj/structure/toilet/prison/attackby(obj/item/I, mob/living/user)
+	if(istype(I, /obj/item/weapon/grab))
+	user.setClickCooldown(user.get_attack_speed(I))
+	var/obj/item/weapon/grab/G = I
+
+	if(isliving(G.affecting))
+		var/mob/living/GM = G.affecting
+
+		if(G.state>1)
+			if(!GM.loc == get_turf(src))
+				to_chat(user, "<span class='notice'>[GM.name] needs to be on the toilet.</span>")
+				return
+			if(open && !swirlie)
+				user.visible_message("<span class='danger'>[user] starts to give [GM.name] a swirlie!</span>", "<span class='notice'>You start to give [GM.name] a swirlie!</span>")
+				swirlie = GM
+				if(do_after(user, 30, GM))
+					user.visible_message("<span class='danger'>[user] gives [GM.name] a swirlie!</span>", "<span class='notice'>You give [GM.name] a swirlie!</span>", "You hear a toilet flushing.")
+					if(!GM.internal)
+						GM.adjustOxyLoss(5)
+				swirlie = null
+			else
+				user.visible_message("<span class='danger'>[user] slams [GM.name] into the [src]!</span>", "<span class='notice'>You slam [GM.name] into the [src]!</span>")
+				GM.adjustBruteLoss(5)
+		else
+			to_chat(user, "<span class='notice'>You need a tighter grip.</span>")
+	
 
 /obj/structure/urinal
 	name = "urinal"
@@ -391,7 +423,11 @@
 
 /obj/structure/sink/kitchen
 	name = "kitchen sink"
-	icon_state = "sink_alt"
+	icon_state = "sink2"
+
+/obj/structure/sink/countertop
+	name = "countertop sink"
+	icon_state = "sink3"
 
 /obj/structure/sink/puddle	//splishy splashy ^_^
 	name = "puddle"
