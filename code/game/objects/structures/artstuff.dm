@@ -159,7 +159,7 @@
 /obj/item/canvas/proc/generate_proper_overlay()
 	if(icon_generated)
 		return
-	var/png_filename = "data/paintings/temp_painting.png"
+	var/png_filename = "data/persistent/paintings/temp_painting.png"
 	var/result = rustg_dmi_create_png(png_filename,"[width]","[height]",get_data_string())
 	if(result)
 		CRASH("Error generating painting png : [result]")
@@ -273,23 +273,25 @@
 	var/persistence_id
 
 //Presets for art gallery mapping, for paintings to be shared across stations
-/obj/structure/sign/painting/library
+/obj/structure/sign/painting/public
 	name = "\improper Public Painting Exhibit mounting"
 	desc = "For art pieces hung by the public."
 	desc_with_canvas = "A piece of art (or \"art\"). Anyone could've hung it."
-	persistence_id = "library"
+	persistence_id = "public"
 
 /obj/structure/sign/painting/library_secure
 	name = "\improper Curated Painting Exhibit mounting"
 	desc = "For masterpieces hand-picked by the curator."
 	desc_with_canvas = "A masterpiece hand-picked by the curator, supposedly."
-	persistence_id = "library_secure"
+	persistence_id = "library"
+	req_one_access = list(access_library)
 
 /obj/structure/sign/painting/library_private // keep your smut away from prying eyes, or non-librarians at least
 	name = "\improper Private Painting Exhibit mounting"
 	desc = "For art pieces deemed too subversive or too illegal to be shared outside of curators."
 	desc_with_canvas = "A painting hung away from lesser minds."
 	persistence_id = "library_private"
+	req_one_access = list(access_library)
 
 /obj/structure/sign/painting/Initialize(mapload, dir, building)
 	. = ..()
@@ -324,6 +326,9 @@
 		. += "<span class='notice'>Use wirecutters to remove the painting.</span>"
 
 /obj/structure/sign/painting/proc/frame_canvas(mob/user,obj/item/canvas/new_canvas)
+	if(!allowed(user))
+		to_chat(user, "<span class='warning'>You're not comfortable framing this canvas in such a prestigious spot!</span>")
+		return
 	if(user.drop_from_inventory(new_canvas, src))
 		current_canvas = new_canvas
 		if(!current_canvas.finalized)
@@ -387,14 +392,14 @@
 		if(!length(painting_category))
 			return //aborts loading anything this category has no usable paintings
 		var/list/chosen = pick(painting_category)
-		if(!fexists("data/paintings/[persistence_id]/[chosen["md5"]].png")) //shitmin deleted this art, lets remove json entry to avoid errors
+		if(!fexists("data/persistent/paintings/[persistence_id]/[chosen["md5"]].png")) //shitmin deleted this art, lets remove json entry to avoid errors
 			painting_category -= list(chosen)
 			continue //and try again
 		painting = chosen
 	var/title = painting["title"]
 	var/author_name = painting["author"]
 	var/author_ckey = painting["ckey"]
-	var/png = "data/paintings/[persistence_id]/[painting["md5"]].png"
+	var/png = "data/persistent/paintings/[persistence_id]/[painting["md5"]].png"
 	if(!title)
 		title = "Untitled Artwork" //legacy artwork allowed null names which was bad for the json, lets fix that
 		painting["title"] = title
@@ -432,7 +437,7 @@
 	for(var/list/entry in SSpersistence.paintings)
 		if(entry["md5"] == md5)
 			return
-	var/png_directory = "data/paintings/[persistence_id]/"
+	var/png_directory = "data/persistent/paintings/[persistence_id]/"
 	var/png_path = png_directory + "[md5].png"
 	var/result = rustg_dmi_create_png(png_path,"[current_canvas.width]","[current_canvas.height]",data)
 	if(result)
@@ -445,7 +450,6 @@
 		"ckey" = current_canvas.author_ckey
 	))
 
-/*
 /obj/structure/sign/painting/vv_get_dropdown()
 	. = ..()
 	VV_DROPDOWN_OPTION("removepainting", "Remove Persistent Painting")
@@ -461,17 +465,16 @@
 			return
 		var/md5 = md5(lowertext(current_canvas.get_data_string()))
 		var/author = current_canvas.author_ckey
-		var/list/current = SSpersistence.paintings[persistence_id]
-		if(current)
-			for(var/list/entry in current)
-				if(entry["md5"] == md5)
-					current -= entry
-			var/png = "data/paintings/[persistence_id]/[md5].png"
-			fdel(png)
+		var/list/filenames_found = list()
+		for(var/list/entry in SSpersistence.paintings)
+			if(entry["md5"] == md5)
+				filenames_found += "data/persistent/paintings/[entry["persistence_id"]]/[entry["md5"]].png"
+				SSpersistence.paintings -= entry
+		for(var/png in filenames_found)
+			if(fexists(png))
+				fdel(png)
 		for(var/obj/structure/sign/painting/P in SSpersistence.painting_frames)
 			if(P.current_canvas && md5(P.current_canvas.get_data_string()) == md5)
 				QDEL_NULL(P.current_canvas)
 				P.update_appearance()
-		log_admin("[key_name(user)] has deleted a persistent painting made by [author].")
-		message_admins("<span class='notice'>[key_name_admin(user)] has deleted persistent painting made by [author].</span>")
-*/
+		log_and_message_admins("<span class='notice'>[key_name_admin(user)] has deleted persistent painting made by [author].</span>")
