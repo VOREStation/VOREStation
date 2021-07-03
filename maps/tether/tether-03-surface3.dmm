@@ -34175,7 +34175,7 @@
 /obj/machinery/camera/network/civilian{
 	dir = 9
 	},
-/obj/machinery/chemical_dispenser/bar_coffee{
+/obj/machinery/chemical_dispenser/bar_coffee/full{
 	dir = 8
 	},
 /turf/simulated/floor/lino,
