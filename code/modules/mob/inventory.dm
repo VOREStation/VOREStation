@@ -138,7 +138,7 @@ var/list/slot_equipment_priority = list( \
 /mob/proc/put_in_hands(var/obj/item/W)
 	if(!W)
 		return 0
-	W.forceMove(get_turf(src))
+	W.forceMove(drop_location())
 	W.reset_plane_and_layer()
 	W.dropped()
 	return 0
