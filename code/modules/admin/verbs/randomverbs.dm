@@ -273,12 +273,12 @@ Ccomp's first proc.
 	var/target = tgui_input_list(usr, "Select a ckey to allow to rejoin", "Allow Respawn Selector", GLOB.respawn_timers)
 	if(!target)
 		return
-	
+
 	if(GLOB.respawn_timers[target] == -1) // Their respawn timer is set to -1, which is 'not allowed to respawn'
 		var/response = tgui_alert(src, "Are you sure you wish to allow this individual to respawn? They would normally not be able to.","Allow impossible respawn?",list("No","Yes"))
 		if(response == "No")
 			return
-	
+
 	GLOB.respawn_timers -= target
 
 	var/found_client = FALSE
@@ -295,7 +295,7 @@ Ccomp's first proc.
 
 	if(!found_client)
 		to_chat(src, "<span class='notice'>The associated client didn't appear to be connected, so they couldn't be notified, but they can now respawn if they reconnect.</span>")
-	
+
 	log_admin("[key_name(usr)] allowed [found_client ? key_name(found_client) : target] to bypass the respawn time limit")
 	message_admins("Admin [key_name_admin(usr)] allowed [found_client ? key_name_admin(found_client) : target] to bypass the respawn time limit", 1)
 
@@ -483,7 +483,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 
 	new_character = new(spawnloc)
-	
+
 	if(sparks)
 		anim(spawnloc,new_character,'icons/mob/mob.dmi',,"phasein",,new_character.dir)
 		playsound(spawnloc, "sparks", 50, 1)
@@ -537,6 +537,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	//A redraw for good measure
 	new_character.regenerate_icons()
+
+	new_character.update_transform() //VOREStation Edit
 
 	//If we're announcing their arrival
 	if(announce)
