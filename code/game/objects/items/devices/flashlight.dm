@@ -212,10 +212,12 @@
 
 /obj/item/device/flashlight/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
-	var/turf/T = get_turf(target)
+	if(!on)
+		return
 	var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting)
 	if(!OL)
 		return
+	var/turf/T = get_turf(target)
 	OL.place_directional_light(T)
 
 /obj/item/device/flashlight/pen
