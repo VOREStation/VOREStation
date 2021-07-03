@@ -112,7 +112,7 @@
 	name = "Serenity Chassis"
 	id = "serenity_chassis"
 	build_path = /obj/item/mecha_parts/chassis/serenity
-	materials = list(MAT_STEEL = 18750, MAT_PHOTON = 4000)
+	materials = list(MAT_STEEL = 18750, MAT_PHORON = 4000)
 
 /datum/design/item/mechfab/gygax/chassis
 	name = "Gygax Chassis"
@@ -433,14 +433,14 @@
 	id = "mech_laser_xray"
 	req_tech = list(TECH_MATERIAL = 3, TECH_COMBAT = 3, TECH_PHORON = 3, TECH_POWER = 4)
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/xray
-	materials = list(MAT_STEEL = 9000, MAT_GLASS = 3000, MAT_PHOTON = 1000, MAT_SILVER = 1500, MAT_GOLD = 2500, MAT_PLASTIC = 2000)
+	materials = list(MAT_STEEL = 9000, MAT_GLASS = 3000, MAT_PHORON = 1000, MAT_SILVER = 1500, MAT_GOLD = 2500, MAT_PLASTIC = 2000)
 
 /datum/design/item/mecha/weapon/rigged_laser_xray
 	name = "Jury-Rigged Xray Rifle"
 	id = "mech_laser_xray-r"
 	req_tech = list(TECH_MATERIAL = 3, TECH_COMBAT = 3, TECH_PHORON = 3, TECH_POWER = 4)
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser/xray/rigged
-	materials = list(MAT_STEEL = 8500, MAT_GLASS = 2500, MAT_PHOTON = 1000, MAT_SILVER = 1250, MAT_GOLD = 2000, MAT_PLASTIC = 2000)
+	materials = list(MAT_STEEL = 8500, MAT_GLASS = 2500, MAT_PHORON = 1000, MAT_SILVER = 1250, MAT_GOLD = 2000, MAT_PLASTIC = 2000)
 
 /datum/design/item/mecha/weapon/phase
 	name = "NT-PE \"Scorpio\" Phase-Emitter"
@@ -504,7 +504,7 @@
 	desc = "A weapon that violates the CCWC at two hundred gallons per minute."
 	id = "mech_flamer_full"
 	req_tech = list(TECH_MATERIAL = 4, TECH_COMBAT = 6, TECH_PHORON = 4, TECH_ILLEGAL = 4)
-	materials = list(MAT_STEEL = 10000, MAT_GOLD = 2000, MAT_URANIUM = 3000, MAT_PHOTON = 8000)
+	materials = list(MAT_STEEL = 10000, MAT_GOLD = 2000, MAT_URANIUM = 3000, MAT_PHORON = 8000)
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/flamer
 
 /datum/design/item/mecha/weapon/flamer_rigged
@@ -512,7 +512,7 @@
 	desc = "A weapon that accidentally violates the CCWC at one hundred gallons per minute."
 	id = "mech_flamer_rigged"
 	req_tech = list(TECH_MATERIAL = 3, TECH_COMBAT = 3, TECH_PHORON = 3, TECH_ILLEGAL = 2)
-	materials = list(MAT_STEEL = 8000, MAT_GOLD = 1500, MAT_SILVER = 1500, MAT_URANIUM = 2000, MAT_PHOTON = 6000)
+	materials = list(MAT_STEEL = 8000, MAT_GOLD = 1500, MAT_SILVER = 1500, MAT_URANIUM = 2000, MAT_PHORON = 6000)
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/energy/flamer/rigged
 
 /datum/design/item/mecha/weapon/flame_mg
@@ -520,7 +520,7 @@
 	desc = "A weapon that violates the CCWC at sixty rounds a minute."
 	id = "mech_lmg_flamer"
 	req_tech = list(TECH_MATERIAL = 4, TECH_COMBAT = 5, TECH_PHORON = 2, TECH_ILLEGAL = 1)
-	materials = list(MAT_STEEL = 8000, MAT_GOLD = 2000, MAT_SILVER = 1750, MAT_URANIUM = 1500, MAT_PHOTON = 4000)
+	materials = list(MAT_STEEL = 8000, MAT_GOLD = 2000, MAT_SILVER = 1750, MAT_URANIUM = 1500, MAT_PHORON = 4000)
 	build_path = /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/incendiary
 
 // *** Nonweapon modules
@@ -550,7 +550,7 @@
 	desc = "An exosuit-mounted rapid construction device."
 	id = "mech_rcd"
 	time = 120
-	materials = list(MAT_STEEL = 20000, MAT_PLASTIC = 10000, MAT_PHOTON = 18750, MAT_SILVER = 15000, MAT_GOLD = 15000)
+	materials = list(MAT_STEEL = 20000, MAT_PLASTIC = 10000, MAT_PHORON = 18750, MAT_SILVER = 15000, MAT_GOLD = 15000)
 	req_tech = list(TECH_MATERIAL = 4, TECH_BLUESPACE = 3, TECH_MAGNET = 4, TECH_POWER = 4, TECH_ENGINEERING = 4)
 	build_path = /obj/item/mecha_parts/mecha_equipment/tool/rcd
 
@@ -575,7 +575,7 @@
 	desc = "Linear shield projector. Deploys a large, familiar, and rectangular shield in one direction at a time."
 	id = "mech_shield_droid"
 	req_tech = list(TECH_PHORON = 3, TECH_MAGNET = 6, TECH_ILLEGAL = 4)
-	materials = list(MAT_STEEL = 8000, MAT_GOLD = 2000, MAT_SILVER = 3000, MAT_PHOTON = 5000, MAT_GLASS = 3750)
+	materials = list(MAT_STEEL = 8000, MAT_GOLD = 2000, MAT_SILVER = 3000, MAT_PHORON = 5000, MAT_GLASS = 3750)
 	build_path = /obj/item/mecha_parts/mecha_equipment/combat_shield
 
 /datum/design/item/mecha/omni_shield
@@ -583,7 +583,7 @@
 	desc = "Integral shield projector. Can only protect the exosuit, but has no weak angles."
 	id = "mech_shield_omni"
 	req_tech = list(TECH_PHORON = 3, TECH_MAGNET = 6, TECH_ILLEGAL = 4)
-	materials = list(MAT_STEEL = 8000, MAT_GOLD = 2000, MAT_SILVER = 3000, MAT_PHOTON = 5000, MAT_GLASS = 3750)
+	materials = list(MAT_STEEL = 8000, MAT_GOLD = 2000, MAT_SILVER = 3000, MAT_PHORON = 5000, MAT_GLASS = 3750)
 	build_path = /obj/item/mecha_parts/mecha_equipment/omni_shield
 */
 
@@ -662,7 +662,7 @@
 	desc = "A heavy duty bore. Bigger, better, stronger than the core sampler, but not quite as good as a large drill."
 	id = "mech_ground_drill"
 	req_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 2, TECH_PHORON = 1)
-	materials = list(MAT_STEEL = 7000, MAT_SILVER = 3000, MAT_PHOTON = 2000)
+	materials = list(MAT_STEEL = 7000, MAT_SILVER = 3000, MAT_PHORON = 2000)
 	build_path = /obj/item/mecha_parts/mecha_equipment/tool/drill/bore
 
 /datum/design/item/mecha/orescanner
@@ -784,7 +784,7 @@
 	desc = "A space-bike's un-assembled frame."
 	id = "vehicle_chassis_spacebike"
 	req_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 6, TECH_BLUESPACE = 3, TECH_PHORON = 3)
-	materials = list(MAT_STEEL = 12000, MAT_SILVER = 3000, MAT_PHOTON = 3000, MAT_OSMIUM = 1000)
+	materials = list(MAT_STEEL = 12000, MAT_SILVER = 3000, MAT_PHORON = 3000, MAT_OSMIUM = 1000)
 	build_path = /obj/item/weapon/vehicle_assembly/spacebike
 
 /datum/design/item/mechfab/vehicle/quadbike_chassis
