@@ -2256,10 +2256,6 @@
 	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/gateway/arynthilake/dome)
-"TI" = (
-/obj/random/mob/semirandom_mob_spawner/monster,
-/turf/simulated/floor/tiled/eris/dark/monofloor,
-/area/gateway/arynthilake/dome)
 "TR" = (
 /turf/unsimulated/wall/planetary/normal{
 	desc = "Why would you want to go this way??!?";
@@ -6611,7 +6607,7 @@ Qr
 Qr
 qM
 vG
-TI
+aY
 Vo
 qM
 AQ

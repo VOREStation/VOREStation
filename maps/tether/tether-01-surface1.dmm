@@ -8890,10 +8890,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_one_hall)
-"aoR" = (
-/obj/machinery/light/flamp/noshade,
-/turf/simulated/floor/grass,
-/area/tether/surfacebase/surface_one_hall)
 "aoS" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/simulated/floor/grass,
@@ -33298,6 +33294,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/locker/laundry_arrival)
+"hzr" = (
+/obj/machinery/light/bigfloorlamp,
+/turf/simulated/floor/grass,
+/area/tether/surfacebase/surface_one_hall)
 "hAe" = (
 /turf/simulated/floor/looking_glass{
 	dir = 5
@@ -50366,21 +50366,21 @@ aKd
 aie
 anW
 aoj
-aoR
+hzr
 apA
 apA
 apA
-aoR
+hzr
 ary
 ary
 ary
 ary
 ary
-aoR
+hzr
 apA
 apA
 apA
-aoR
+hzr
 aoj
 awH
 axk
@@ -51083,7 +51083,7 @@ aqf
 arg
 arA
 arz
-aoR
+hzr
 arz
 asO
 apC
@@ -51786,21 +51786,21 @@ aef
 bbq
 anW
 aoj
-aoR
+hzr
 apA
 apA
 apA
-aoR
+hzr
 ary
 ary
 ary
 ary
 ary
-aoR
+hzr
 apA
 apA
 apA
-aoR
+hzr
 aoj
 awH
 axm

@@ -13989,10 +13989,10 @@
 /obj/machinery/chemical_dispenser/bar_alc/full{
 	dir = 8
 	},
-/obj/machinery/light{
-	dir = 1
-	},
 /obj/structure/sign/poster{
+	dir = 4
+	},
+/obj/machinery/light{
 	dir = 4
 	},
 /turf/simulated/floor/lino,
@@ -14215,9 +14215,6 @@
 /obj/structure/table/marble,
 /obj/machinery/chemical_dispenser/bar_soft/full{
 	dir = 8
-	},
-/obj/machinery/light{
-	dir = 4
 	},
 /turf/simulated/floor/lino,
 /area/crew_quarters/bar)
@@ -14669,10 +14666,20 @@
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/bar_backroom)
 "axZ" = (
+/obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/hologram/holopad,
-/turf/simulated/floor/wood,
-/area/crew_quarters/bar)
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/light/floortube{
+	dir = 4;
+	pixel_x = 6
+	},
+/turf/simulated/floor/tiled/dark,
+/area/bridge_hallway)
 "aya" = (
 /obj/machinery/space_heater,
 /turf/simulated/floor/tiled/techmaint,
@@ -14974,6 +14981,10 @@
 /area/tether/surfacebase/barbackmaintenance)
 "ayE" = (
 /obj/structure/closet/firecloset,
+/obj/machinery/light/floortube{
+	dir = 8;
+	pixel_x = -6
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/barbackmaintenance)
 "ayF" = (
@@ -16130,9 +16141,6 @@
 /obj/random/maintenance/clean,
 /obj/random/maintenance/clean,
 /obj/structure/table/rack/steel,
-/obj/machinery/light/small{
-	dir = 8
-	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/barbackmaintenance)
 "aAm" = (
@@ -20302,6 +20310,9 @@
 "aHl" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/flame/candle,
+/obj/machinery/light/floortube{
+	pixel_y = -6
+	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
 "aHm" = (
@@ -29818,9 +29829,6 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/light{
-	dir = 4
-	},
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
@@ -29851,6 +29859,10 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/machinery/light/floortube{
+	dir = 4;
+	pixel_x = 6
 	},
 /turf/simulated/floor/tiled/dark,
 /area/bridge_hallway)
@@ -30769,7 +30781,11 @@
 /turf/simulated/floor/tiled/eris/cafe,
 /area/hydroponics)
 "baC" = (
-/obj/machinery/light,
+/obj/structure/table/woodentable,
+/obj/machinery/light/floortube{
+	dir = 1;
+	pixel_y = 6
+	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
 "baD" = (
@@ -32902,11 +32918,12 @@
 /turf/simulated/floor/grass,
 /area/hydroponics)
 "bel" = (
-/obj/machinery/light{
-	dir = 8
-	},
 /obj/effect/floor_decal/techfloor{
 	dir = 8
+	},
+/obj/machinery/light/floortube{
+	dir = 8;
+	pixel_x = -3
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/crew_quarters/sleep/cryo)
@@ -33276,11 +33293,12 @@
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
 "beP" = (
-/obj/machinery/light{
-	dir = 4
-	},
 /obj/effect/floor_decal/techfloor{
 	dir = 4
+	},
+/obj/machinery/light/floortube{
+	dir = 4;
+	pixel_x = 2
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/crew_quarters/sleep/cryo)
@@ -33879,7 +33897,7 @@
 /obj/effect/landmark{
 	name = "Observer-Start"
 	},
-/obj/machinery/light/flamp/noshade,
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
 "bge" = (
@@ -38655,12 +38673,6 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/golden,
 /area/shuttle/tourbus/general)
-"fdB" = (
-/obj/machinery/light/flamp/noshade{
-	pixel_y = 5
-	},
-/turf/simulated/floor/grass,
-/area/tether/surfacebase/public_garden_three)
 "feu" = (
 /obj/machinery/alarm{
 	dir = 1;
@@ -40094,13 +40106,11 @@
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/iaa/officea)
 "kKV" = (
-/obj/machinery/light/flamp/noshade{
-	pixel_y = 5
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/light/bigfloorlamp,
 /turf/simulated/floor/grass,
 /area/tether/surfacebase/public_garden_three)
 "kQb" = (
@@ -41673,6 +41683,10 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/southhall)
+"qFD" = (
+/obj/machinery/light,
+/turf/simulated/floor/wood,
+/area/crew_quarters/bar)
 "qFL" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8;
@@ -43510,7 +43524,7 @@
 /turf/simulated/floor/grass,
 /area/hydroponics)
 "xwQ" = (
-/obj/machinery/light/flamp/noshade,
+/obj/machinery/light/bigfloorlamp,
 /turf/simulated/floor/grass,
 /area/tether/surfacebase/public_garden_three)
 "xxe" = (
@@ -48740,7 +48754,7 @@ sXa
 pIJ
 xwQ
 aDe
-fdB
+xwQ
 aDj
 ajt
 aDu
@@ -56285,7 +56299,7 @@ aZs
 aTt
 aEb
 aSE
-aYS
+axZ
 aYh
 aYS
 aYY
@@ -58871,7 +58885,7 @@ aHl
 aIi
 bgd
 aLd
-bbT
+baC
 bcm
 aAG
 bfR
@@ -59153,12 +59167,12 @@ asX
 asX
 aET
 aIo
-axZ
+bbM
 bbM
 bbV
 aAc
 aAG
-baC
+asX
 ayM
 bdV
 beb
@@ -59300,7 +59314,7 @@ asX
 bfY
 bbY
 bfl
-asX
+qFD
 ayM
 ayd
 ayb
