@@ -75,6 +75,26 @@
 /obj/item/weapon/material/kitchen/utensil/fork/plastic
 	default_material = "plastic"
 
+/obj/item/weapon/material/kitchen/utensil/foon
+	name = "foon"
+	desc = "It's a foon. The forgotten cousin of the spork."
+	icon_state = "foon"
+	sharp = TRUE
+	edge = FALSE
+
+/obj/item/weapon/material/kitchen/utensil/foon/plastic
+	default_material = "plastic"
+
+/obj/item/weapon/material/kitchen/utensil/spork
+	name = "spork"
+	desc = "It's a spork. The (un)holy merger of a spoon and fork."
+	icon_state = "spork"
+	sharp = TRUE
+	edge = FALSE
+
+/obj/item/weapon/material/kitchen/utensil/spork/plastic
+	default_material = "plastic"
+
 /obj/item/weapon/material/kitchen/utensil/spoon
 	name = "spoon"
 	desc = "It's a spoon. You can see your own upside-down face in it."
