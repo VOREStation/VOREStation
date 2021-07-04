@@ -2,7 +2,7 @@
 /obj/item/weapon/cell/device
 	name = "device power cell"
 	desc = "A small power cell designed to power handheld devices."
-	icon_state = "dcell"
+	icon_state = "m_st"
 	item_state = "egg6"
 	w_class = ITEMSIZE_SMALL
 	force = 0
@@ -16,7 +16,7 @@
 /obj/item/weapon/cell/device/weapon
 	name = "weapon power cell"
 	desc = "A small power cell designed to power handheld weaponry."
-	icon_state = "wcell"
+	icon_state = "m_sup"
 	maxcharge = 2400
 	charge_amount = 20
 
@@ -28,7 +28,7 @@
 /obj/item/weapon/cell/device/weapon/recharge
 	name = "self-charging weapon power cell"
 	desc = "A small power cell designed to power handheld weaponry. This one recharges itself."
-//	icon_state = "wcell" //TODO: Different sprite
+	icon_state = "meb_m_nu"
 	self_recharge = TRUE
 	charge_amount = 120
 	charge_delay = 75

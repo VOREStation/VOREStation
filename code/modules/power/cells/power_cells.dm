@@ -2,6 +2,7 @@
 	name = "\improper rechargable AA battery"
 	desc = "You can't top the plasma top." //TOTALLY TRADEMARK INFRINGEMENT
 	origin_tech = list(TECH_POWER = 0)
+	icon_state = "s_st"
 	maxcharge = 500
 	matter = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 40)
 
@@ -12,6 +13,7 @@
 /obj/item/weapon/cell/secborg
 	name = "security borg rechargable D battery"
 	origin_tech = list(TECH_POWER = 0)
+	icon_state = "meb_s_st"
 	maxcharge = 600	//600 max charge / 100 charge per shot = six shots
 	matter = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 40)
 
@@ -23,13 +25,14 @@
 /obj/item/weapon/cell/apc
 	name = "heavy-duty power cell"
 	origin_tech = list(TECH_POWER = 1)
+	icon_state = "meb_b_st"
 	maxcharge = 5000
 	matter = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 50)
 
 /obj/item/weapon/cell/high
 	name = "high-capacity power cell"
 	origin_tech = list(TECH_POWER = 2)
-	icon_state = "hcell"
+	icon_state = "b_hi"
 	maxcharge = 10000
 	matter = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 60)
 
@@ -41,7 +44,7 @@
 /obj/item/weapon/cell/super
 	name = "super-capacity power cell"
 	origin_tech = list(TECH_POWER = 5)
-	icon_state = "scell"
+	icon_state = "b_sup"
 	maxcharge = 20000
 	matter = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 70)
 
@@ -53,7 +56,7 @@
 /obj/item/weapon/cell/hyper
 	name = "hyper-capacity power cell"
 	origin_tech = list(TECH_POWER = 6)
-	icon_state = "hpcell"
+	icon_state = "b_hy"
 	maxcharge = 30000
 	matter = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 80)
 
@@ -64,12 +67,13 @@
 
 /obj/item/weapon/cell/mech
 	name = "mecha power cell"
+	icon_state = "exs_l"
 	charge = 15000
 	maxcharge = 15000
 
 /obj/item/weapon/cell/infinite
 	name = "infinite-capacity power cell!"
-	icon_state = "icell"
+	icon_state = "infinite_b"
 	origin_tech =  null
 	maxcharge = 30000 //determines how badly mobs get shocked
 	matter = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 80)
@@ -89,6 +93,7 @@
 	charge = 100
 	maxcharge = 300
 	minor_fault = 1
+	standard_overlays = FALSE
 
 /obj/item/weapon/cell/slime
 	name = "charged slime core"
@@ -100,13 +105,14 @@
 	maxcharge = 10000
 	matter = null
 	self_recharge = TRUE
+	standard_overlays = FALSE
 
 //Not actually a cell, but if people look for it, they'll probably look near other cells
 /obj/item/device/fbp_backup_cell
 	name = "backup battery"
 	desc = "A small one-time-use chemical battery for synthetic crew when they are low on power in emergency situations."
-	icon = 'icons/obj/power.dmi'
-	icon_state = "fbp_cell"
+	icon = 'icons/obj/power_cells.dmi'
+	icon_state = "exs_s"
 	w_class = ITEMSIZE_SMALL
 	var/amount = 100
 	var/used = FALSE
@@ -144,6 +150,7 @@
 	desc = "A tiny power cell with a very low power capacity. Used in light fixtures to power them in the event of an outage."
 	maxcharge = 120 //Emergency lights use 0.2 W per tick, meaning ~10 minutes of emergency power from a cell
 	matter = list("glass" = 20)
+	icon_state = "meb_s_sup"
 	w_class = ITEMSIZE_TINY
 
 /obj/item/weapon/cell/emergency_light/Initialize()
