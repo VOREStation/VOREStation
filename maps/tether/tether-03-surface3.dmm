@@ -8976,9 +8976,6 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
 "aoj" = (
-/obj/machinery/alarm{
-	pixel_y = 22
-	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
 	},
@@ -8989,6 +8986,9 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals7,
+/obj/structure/sign/painting/public{
+	pixel_y = 30
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
 "aok" = (
@@ -9209,6 +9209,9 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 4
+	},
+/obj/machinery/alarm{
+	pixel_y = 22
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
@@ -11902,9 +11905,9 @@
 	dir = 4;
 	pixel_x = -30
 	},
-/obj/structure/sink{
+/obj/structure/sink/kitchen{
 	dir = 8;
-	pixel_x = -12
+	pixel_x = -11
 	},
 /turf/simulated/floor/grass,
 /area/hydroponics)
@@ -11913,10 +11916,9 @@
 /turf/simulated/floor/grass,
 /area/hydroponics)
 "atg" = (
-/obj/structure/sink{
+/obj/structure/sink/kitchen{
 	dir = 8;
-	pixel_x = -12;
-	pixel_y = 2
+	pixel_x = -11
 	},
 /turf/simulated/floor/grass,
 /area/hydroponics)
@@ -13161,7 +13163,9 @@
 /turf/simulated/wall,
 /area/crew_quarters/kitchen)
 "avz" = (
-/obj/item/weapon/stool/padded,
+/obj/item/weapon/stool/padded{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/bar)
 "avA" = (
@@ -13453,6 +13457,9 @@
 "awd" = (
 /obj/machinery/librarycomp,
 /obj/structure/table/woodentable,
+/obj/structure/sign/painting/library_secure{
+	pixel_x = -30
+	},
 /turf/simulated/floor/carpet,
 /area/library)
 "awe" = (
@@ -13525,10 +13532,12 @@
 /obj/structure/sink{
 	dir = 8;
 	pixel_x = -12;
-	pixel_y = 2
+	pixel_y = -3
 	},
 /obj/structure/mirror{
-	pixel_x = -28
+	dir = 4;
+	pixel_x = -25;
+	pixel_y = 5
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/captain)
@@ -14216,6 +14225,9 @@
 /obj/machinery/chemical_dispenser/bar_soft/full{
 	dir = 8
 	},
+/obj/structure/sign/painting/library_secure{
+	pixel_x = 30
+	},
 /turf/simulated/floor/lino,
 /area/crew_quarters/bar)
 "axp" = (
@@ -14648,6 +14660,12 @@
 /obj/item/weapon/storage/briefcase{
 	pixel_x = 3
 	},
+/obj/structure/sign/painting/library_private{
+	pixel_x = 30
+	},
+/obj/structure/sign/painting/library_private{
+	pixel_y = 30
+	},
 /turf/simulated/floor/carpet,
 /area/tether/surfacebase/library/study)
 "axX" = (
@@ -15041,18 +15059,23 @@
 /obj/effect/landmark/start{
 	name = "Librarian"
 	},
+/obj/structure/sign/painting/library_secure{
+	pixel_x = 30
+	},
 /turf/simulated/floor/carpet,
 /area/library)
 "ayJ" = (
 /obj/effect/floor_decal/spline/plain{
 	dir = 6
 	},
-/obj/item/weapon/stool/padded,
 /obj/structure/cable/green{
 	icon_state = "0-8"
 	},
 /obj/machinery/light{
 	dir = 4
+	},
+/obj/item/weapon/stool/padded{
+	dir = 1
 	},
 /turf/simulated/floor/lino,
 /area/crew_quarters/bar)
@@ -15540,12 +15563,14 @@
 /obj/effect/floor_decal/spline/plain{
 	dir = 8
 	},
-/obj/item/weapon/stool/padded,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
+	},
+/obj/item/weapon/stool/padded{
+	dir = 4
 	},
 /turf/simulated/floor/lino,
 /area/crew_quarters/bar)
@@ -16279,6 +16304,9 @@
 	},
 /obj/item/device/camera,
 /obj/item/device/tape,
+/obj/structure/sign/painting/library_private{
+	pixel_x = -30
+	},
 /turf/simulated/floor/carpet,
 /area/tether/surfacebase/library/study)
 "aAx" = (
@@ -16745,6 +16773,9 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals7,
+/obj/structure/sign/painting/public{
+	pixel_y = 30
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
 "aBj" = (
@@ -18179,8 +18210,8 @@
 /turf/simulated/open,
 /area/tether/surfacebase/public_garden_three)
 "aDI" = (
-/obj/structure/sink{
-	pixel_y = 24
+/obj/structure/sink/kitchen{
+	pixel_y = 20
 	},
 /turf/simulated/floor/grass,
 /area/hydroponics)
@@ -18813,6 +18844,9 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
+/obj/structure/sign/painting/library_secure{
+	pixel_y = -30
+	},
 /turf/simulated/floor/carpet,
 /area/library)
 "aES" = (
@@ -18843,6 +18877,9 @@
 	},
 /obj/structure/bed/chair/office/dark{
 	dir = 1
+	},
+/obj/structure/sign/painting/library_secure{
+	pixel_y = -30
 	},
 /turf/simulated/floor/carpet,
 /area/library)
@@ -20346,9 +20383,11 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/botanystorage)
 "aHp" = (
-/obj/item/weapon/stool/padded,
 /obj/effect/floor_decal/corner/beige{
 	dir = 6
+	},
+/obj/item/weapon/stool/padded{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/bar)
@@ -20369,7 +20408,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 8
 	},
-/obj/item/weapon/stool/padded,
+/obj/item/weapon/stool/padded{
+	dir = 4
+	},
 /turf/simulated/floor/carpet/turcarpet,
 /area/crew_quarters/bar)
 "aHt" = (
@@ -20908,7 +20949,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 8
 	},
-/obj/item/weapon/stool/padded,
+/obj/item/weapon/stool/padded{
+	dir = 8
+	},
 /turf/simulated/floor/carpet/turcarpet,
 /area/crew_quarters/bar)
 "aIh" = (
@@ -20966,7 +21009,9 @@
 /obj/effect/floor_decal/spline/plain{
 	dir = 8
 	},
-/obj/item/weapon/stool/padded,
+/obj/item/weapon/stool/padded{
+	dir = 4
+	},
 /turf/simulated/floor/lino,
 /area/crew_quarters/bar)
 "aIn" = (
@@ -21228,9 +21273,11 @@
 /obj/effect/floor_decal/spline/plain{
 	dir = 8
 	},
-/obj/item/weapon/stool/padded,
 /obj/structure/disposalpipe/segment{
 	dir = 8
+	},
+/obj/item/weapon/stool/padded{
+	dir = 4
 	},
 /turf/simulated/floor/lino,
 /area/crew_quarters/bar)
@@ -21782,7 +21829,9 @@
 	dir = 2;
 	icon_state = "pipe-c"
 	},
-/obj/item/weapon/stool/padded,
+/obj/item/weapon/stool/padded{
+	dir = 8
+	},
 /turf/simulated/floor/carpet/turcarpet,
 /area/crew_quarters/bar)
 "aJL" = (
@@ -22090,7 +22139,9 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment,
-/obj/item/weapon/stool/padded,
+/obj/item/weapon/stool/padded{
+	dir = 8
+	},
 /turf/simulated/floor/carpet/turcarpet,
 /area/crew_quarters/bar)
 "aKp" = (
@@ -22198,7 +22249,7 @@
 "aKy" = (
 /obj/effect/floor_decal/corner/grey/diagonal,
 /obj/structure/sink/kitchen{
-	pixel_y = 28
+	pixel_y = 20
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
@@ -23182,10 +23233,13 @@
 "aMw" = (
 /obj/structure/sink{
 	dir = 8;
-	pixel_x = -12
+	pixel_x = -12;
+	pixel_y = -3
 	},
 /obj/structure/mirror{
-	pixel_x = -25
+	dir = 4;
+	pixel_x = -26;
+	pixel_y = 5
 	},
 /obj/machinery/vending/wallmed1/public{
 	pixel_y = 28
@@ -25109,7 +25163,9 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenobiology/outpost_breakroom)
 "aQw" = (
-/obj/item/weapon/stool/padded,
+/obj/item/weapon/stool/padded{
+	dir = 1
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenobiology/outpost_breakroom)
 "aQx" = (
@@ -27745,6 +27801,9 @@
 /obj/effect/floor_decal/corner/lightgrey{
 	dir = 9
 	},
+/obj/structure/sign/painting/public{
+	pixel_y = 30
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
 "aVr" = (
@@ -29313,6 +29372,9 @@
 /area/crew_quarters/captain)
 "aXX" = (
 /obj/structure/filingcabinet/filingcabinet,
+/obj/structure/sign/painting/library_secure{
+	pixel_x = 30
+	},
 /turf/simulated/floor/tiled/dark,
 /area/bridge)
 "aXY" = (
@@ -30289,6 +30351,9 @@
 /obj/machinery/photocopier/faxmachine{
 	department = "Head of Personnel's Office"
 	},
+/obj/structure/sign/painting/library_secure{
+	pixel_x = -30
+	},
 /turf/simulated/floor/carpet,
 /area/crew_quarters/heads/hop)
 "aZO" = (
@@ -30590,6 +30655,9 @@
 /area/crew_quarters/captain)
 "baj" = (
 /obj/structure/displaycase,
+/obj/structure/sign/painting/library_secure{
+	pixel_y = 30
+	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/captain)
 "bak" = (
@@ -30762,9 +30830,11 @@
 /obj/structure/disposalpipe/segment{
 	dir = 8
 	},
-/obj/item/weapon/stool/padded,
 /obj/machinery/light{
 	dir = 8
+	},
+/obj/item/weapon/stool/padded{
+	dir = 4
 	},
 /turf/simulated/floor/carpet/turcarpet,
 /area/crew_quarters/bar)
@@ -31009,6 +31079,9 @@
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8"
+	},
+/obj/structure/sign/painting/public{
+	pixel_x = 30
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
@@ -31526,21 +31599,25 @@
 /obj/effect/floor_decal/spline/plain{
 	dir = 8
 	},
-/obj/item/weapon/stool/padded,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/item/weapon/stool/padded{
+	dir = 4
+	},
 /turf/simulated/floor/lino,
 /area/crew_quarters/bar)
 "bbS" = (
 /obj/effect/floor_decal/spline/plain{
 	dir = 8
 	},
-/obj/item/weapon/stool/padded,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
+	},
+/obj/item/weapon/stool/padded{
+	dir = 4
 	},
 /turf/simulated/floor/lino,
 /area/crew_quarters/bar)
@@ -31822,6 +31899,9 @@
 "bcr" = (
 /obj/effect/floor_decal/spline/plain{
 	dir = 1
+	},
+/obj/structure/sign/painting/library_secure{
+	pixel_x = -30
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/entertainment/stage)
@@ -32946,6 +33026,9 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/structure/sign/painting/library_secure{
+	pixel_x = -30
+	},
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/tether/surfacebase/barbackmaintenance)
 "beo" = (
@@ -33227,7 +33310,6 @@
 /area/tether/surfacebase/entertainment/stage)
 "beK" = (
 /obj/effect/floor_decal/spline/plain,
-/obj/item/weapon/stool/padded,
 /obj/structure/cable/green{
 	d1 = 4;
 	d2 = 8;
@@ -33237,6 +33319,9 @@
 	d1 = 1;
 	d2 = 8;
 	icon_state = "1-8"
+	},
+/obj/item/weapon/stool/padded{
+	dir = 1
 	},
 /turf/simulated/floor/lino,
 /area/crew_quarters/bar)
@@ -34178,11 +34263,13 @@
 /area/crew_quarters/bar)
 "bgE" = (
 /obj/effect/floor_decal/spline/plain,
-/obj/item/weapon/stool/padded,
 /obj/structure/cable/green{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/item/weapon/stool/padded{
+	dir = 1
 	},
 /turf/simulated/floor/lino,
 /area/crew_quarters/bar)
@@ -38011,6 +38098,12 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/iaa/officea)
+"cEW" = (
+/obj/structure/sign/painting/library_secure{
+	pixel_y = -30
+	},
+/turf/simulated/floor/wood,
+/area/crew_quarters/bar)
 "cFA" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -38615,8 +38708,7 @@
 	pixel_y = 20
 	},
 /obj/structure/mirror{
-	dir = 4;
-	pixel_y = 32
+	pixel_y = 38
 	},
 /obj/machinery/light/small{
 	dir = 4
@@ -38966,10 +39058,12 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/shuttle_pad)
 "gLg" = (
-/obj/item/weapon/stool/padded,
 /obj/machinery/holoposter{
 	dir = 8;
 	pixel_x = 30
+	},
+/obj/item/weapon/stool/padded{
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/pool)
@@ -39790,7 +39884,9 @@
 /area/tether/surfacebase/public_garden_three)
 "jRO" = (
 /obj/effect/floor_decal/spline/plain,
-/obj/item/weapon/stool/padded,
+/obj/item/weapon/stool/padded{
+	dir = 1
+	},
 /turf/simulated/floor/carpet/turcarpet,
 /area/crew_quarters/bar)
 "jSV" = (
@@ -40719,6 +40815,20 @@
 	},
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/tether/surfacebase/outside/outside3)
+"niG" = (
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/lightgrey/border,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 1
+	},
+/obj/structure/sign/painting/public{
+	pixel_y = -30
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_three_hall)
 "nlf" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -40768,6 +40878,12 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/barrestroom)
+"nsm" = (
+/obj/structure/sign/painting/library_secure{
+	pixel_y = -30
+	},
+/turf/simulated/floor/carpet,
+/area/library)
 "ntl" = (
 /obj/structure/table/bench/wooden,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -40979,6 +41095,12 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/recreation_area_restroom)
+"oqI" = (
+/obj/item/weapon/stool/padded{
+	dir = 4
+	},
+/turf/simulated/floor/carpet/turcarpet,
+/area/crew_quarters/bar)
 "orc" = (
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/lower/medsec_maintenance)
@@ -41008,6 +41130,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
+"oBJ" = (
+/obj/structure/sign/painting/public{
+	pixel_x = 30
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/cafeteria)
 "oCC" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -41160,6 +41288,12 @@
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/recreation_area)
+"oTr" = (
+/obj/structure/sign/painting/public{
+	pixel_x = -30
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/cafeteria)
 "oUI" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -41609,8 +41743,7 @@
 	pixel_y = 20
 	},
 /obj/structure/mirror{
-	dir = 4;
-	pixel_y = 32
+	pixel_y = 38
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/barrestroom)
@@ -42600,6 +42733,24 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/chemistry)
+"uiW" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 10
+	},
+/obj/structure/sign/painting/public{
+	pixel_x = 30
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_three_hall)
 "ukn" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 10
@@ -43025,6 +43176,22 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/shuttle_pad)
+"vVD" = (
+/obj/effect/floor_decal/spline/plain,
+/obj/structure/sign/painting/library_secure{
+	pixel_x = -30
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/entertainment/stage)
+"vXo" = (
+/obj/structure/bed/chair/comfy/beige{
+	dir = 8
+	},
+/obj/structure/sign/painting/library_secure{
+	pixel_x = 30
+	},
+/turf/simulated/floor/tiled/eris/steel/bar_dance,
+/area/tether/surfacebase/barbackmaintenance)
 "vYr" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -43314,6 +43481,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/briefingroom)
+"wTj" = (
+/obj/structure/sign/painting/library_secure{
+	pixel_x = -30
+	},
+/turf/simulated/floor/wood,
+/area/library)
 "wXr" = (
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 6
@@ -43549,6 +43722,24 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals7,
 /obj/machinery/camera/network/tether,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_three_hall)
+"xEb" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 6
+	},
+/obj/structure/sign/painting/public{
+	pixel_x = -30
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
 "xEB" = (
@@ -50319,7 +50510,7 @@ agw
 agw
 air
 aWF
-akn
+niG
 akS
 alB
 amp
@@ -52888,7 +53079,7 @@ aix
 apQ
 asS
 aha
-aha
+xEb
 aOb
 ass
 asR
@@ -54326,7 +54517,7 @@ azi
 aAw
 azP
 aCG
-azT
+wTj
 azT
 aFn
 aFt
@@ -54473,7 +54664,7 @@ aEU
 aHc
 aFu
 aHc
-aEU
+nsm
 axg
 aGZ
 aHR
@@ -55011,7 +55202,7 @@ ali
 ali
 ali
 ali
-ali
+uiW
 ali
 aOT
 ali
@@ -56502,7 +56693,7 @@ biF
 bsr
 cun
 gsP
-biL
+oTr
 bjs
 biF
 adG
@@ -56601,7 +56792,7 @@ bdm
 bdg
 bdo
 beJ
-bgk
+vVD
 bbk
 bgB
 aYC
@@ -58164,7 +58355,7 @@ aCT
 cGs
 aHs
 baA
-aIl
+oqI
 aIO
 bgD
 asX
@@ -58774,7 +58965,7 @@ biF
 gYa
 lWN
 qKO
-biL
+oBJ
 bjv
 biF
 adG
@@ -59162,7 +59353,7 @@ bbM
 bbV
 aAc
 aAG
-asX
+cEW
 ayM
 bdV
 beb
@@ -59592,7 +59783,7 @@ baW
 ayM
 bea
 aHC
-bfz
+vXo
 bfz
 bfz
 aHC
