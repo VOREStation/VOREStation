@@ -492,6 +492,18 @@ var/global/list/remainless_species = list(SPECIES_PROMETHEAN,
 				SPECIES_GOLEM,					//Some special species that may or may not be ever used in event too,
 				SPECIES_SHADEKIN)			//Shadefluffers just poof away
 
+/var/global/list/alt_titles_with_icons = list(
+				"Virologist",
+				"Apprentice Engineer",
+				"Medical Intern",
+				"Research Intern",
+				"Security Cadet",
+				"Jr. Cargo Tech",
+				"Jr. Explorer",
+				"Server",
+				"Electrician",
+				"Barista")
+
 /var/global/list/existing_solargrubs = list()
 
 /hook/startup/proc/init_vore_datum_ref_lists()
@@ -512,10 +524,10 @@ var/global/list/remainless_species = list(SPECIES_PROMETHEAN,
 		var/cost = instance.cost
 		traits_costs[path] = cost
 		all_traits[path] = instance
-	
+
 	// Shakey shakey shake
 	sortTim(all_traits, /proc/cmp_trait_datums_name, associative = TRUE)
-	
+
 	// Split 'em up
 	for(var/traitpath in all_traits)
 		var/datum/trait/T = all_traits[traitpath]
@@ -529,7 +541,7 @@ var/global/list/remainless_species = list(SPECIES_PROMETHEAN,
 					everyone_traits[traitpath] = T
 			if(0.1 to INFINITY)
 				positive_traits[traitpath] = T
-		
+
 
 	// Weaver recipe stuff
 	paths = typesof(/datum/weaver_recipe/structure) - /datum/weaver_recipe/structure
