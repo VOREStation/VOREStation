@@ -7,7 +7,7 @@
 import { clamp01 } from 'common/math';
 import { useBackend, useLocalState } from '../backend';
 import { Box, Button, Section, Input, Stack } from '../components';
-import { KEY_DOWN, KEY_UP, KEY_ENTER, KEY_SPACE } from 'common/keycodes';
+import { KEY_DOWN, KEY_UP, KEY_ENTER, KEY_SPACE, KEY_ESCAPE, KEY_HOME, KEY_END } from 'common/keycodes';
 import { Window } from '../layouts';
 
 let lastScrollTime = 0;
@@ -47,6 +47,14 @@ export const ListInput = (props, context) => {
     }
     lastScrollTime = performance.now() + 125;
 
+    if (e.keyCode === KEY_HOME || e.keyCode === KEY_END) {
+      let index = e.keyCode === KEY_HOME ? 0 : buttons.length - 1;
+      setSelectedButton(buttons[index]);
+      setLastCharCode(null);
+      document.getElementById(buttons[index]).focus();
+      return;
+    }
+
     if (e.keyCode === KEY_UP || e.keyCode === KEY_DOWN) {
       let direction = 1;
       if (e.keyCode === KEY_UP) direction = -1;
@@ -66,6 +74,11 @@ export const ListInput = (props, context) => {
 
     if (e.keyCode === KEY_SPACE || e.keyCode === KEY_ENTER) {
       act("choose", { choice: selectedButton });
+      return;
+    }
+
+    if (e.keyCode === KEY_ESCAPE) {
+      act("cancel");
       return;
     }
 
@@ -116,6 +129,7 @@ export const ListInput = (props, context) => {
             <Section
               fill
               scrollable
+              autoFocus
               className="ListInput__Section"
               title={message}
               tabIndex={0}

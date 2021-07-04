@@ -39,6 +39,9 @@ export class Section extends Component<SectionProps> {
     if (this.scrollable) {
       addScrollableNode(this.scrollableRef.current);
     }
+    if (this.props.autoFocus) {
+      setTimeout(() => this.scrollableRef.current.focus(), 1);
+    }
   }
 
   componentWillUnmount() {
