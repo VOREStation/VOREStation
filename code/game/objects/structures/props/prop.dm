@@ -115,6 +115,13 @@
 	icon = 'icons/obj/structures/decor32x64.dmi'
 	icon_state = "eotp"
 
+// gravity generator from Eris
+/obj/structure/prop/gravygen
+	icon = 'icons/obj/structures/decor64x64.dmi'
+	icon_state = "bigdice"
+	bound_width = 64
+	bound_height = 64
+
 // dna vault from /tg/
 /obj/structure/prop/dna_vault
 	icon = 'icons/obj/structures/decor96x96.dmi'
@@ -273,12 +280,63 @@
 
 /**
  * Possible 'state' options for change_state(state) are:
+ * off: Boring, round
+ * on: Spinny glowy
+ */
+// conduit of soul from Eris
+/obj/structure/prop/conduit
+	icon = 'icons/obj/structures/decor.dmi'
+	icon_state = "conduit_off"
+
+/obj/structure/prop/conduit/change_state(state)
+	. = ..()
+	switch(state)
+		if("on")
+			icon_state = "conduit_spin"
+			flick("conduit_starting", src)
+		if("off")
+			icon_state = "conduit_off"
+			flick("conduit_stopping", src)
+
+/obj/structure/prop/conduit/starts_on
+	icon_state = "conduit_spin"
+
+/**
+ * Possible 'state' options for change_state(state) are:
+ * on: Doing some kinda worky thing
+ * off: Not doing much of anything
+ * empty: No blue crystal thingy
+ * loaded: off but without the animation
+ */
+// some kinda NT thing from Eris
+/obj/structure/prop/core
+	icon = 'icons/obj/structures/decor.dmi'
+	icon_state = "core_inactive"
+
+/obj/structure/prop/core/change_state(state)
+	. = ..()
+	switch(state)
+		if("on")
+			icon_state = "core_active"
+			flick("core_warmup", src)
+		if("off")
+			icon_state = "core_inactive"
+			flick("core_shutdown", src)
+		if("empty")
+			icon_state = "core_empty"
+		if("loaded")
+			icon_state = "core_inactive"
+
+/obj/structure/prop/core/starts_on
+	icon_state = "core_active"
+
+/**
+ * Possible 'state' options for change_state(state) are:
  * down: In the ground, glowing
  * up: Out of the ground, open
  */
 // experimental science destructor from /tg/
 /obj/structure/prop/tube
-	icon = 'icons/obj/structures/decor.dmi'
 	icon = 'icons/obj/structures/decor32x64.dmi'
 	icon_state = "tube_open"
 
@@ -395,6 +453,62 @@
 
 /**
  * Possible 'state' options for change_state(state) are:
+ * idle: The default look
+ * active: Glowy lights in the center
+ * panel_open: Opened panel (wiring)
+ * panel_closed: Closed panel
+ */
+// trade beacon from Eris
+/obj/structure/prop/tradebeacon
+	icon = 'icons/obj/structures/decor.dmi'
+	icon_state = "tradebeacon"
+
+/obj/structure/prop/tradebeacon/change_state(state)
+	. = ..()
+	switch(state)
+		if("idle")
+			icon_state = "tradebeacon"
+		if("active")
+			icon_state = "tradebeacon_active"
+		if("panel_open")
+			cut_overlay("tradebeacon_panel")
+			add_overlay("tradebeacon_panel")
+		if("panel_closed")
+			cut_overlay("tradebeacon_panel")
+
+/obj/structure/prop/tradebeacon/starts_active
+	icon_state = "tradebeacon_active"
+
+/**
+ * Possible 'state' options for change_state(state) are:
+ * idle: The default look
+ * active: Glowy lights in the center
+ * panel_open: Opened panel (wiring)
+ * panel_closed: Closed panel
+ */
+// another trade beacon from Eris
+/obj/structure/prop/tradebeacon2
+	icon = 'icons/obj/structures/decor.dmi'
+	icon_state = "tradebeacon"
+
+/obj/structure/prop/tradebeacon2/change_state(state)
+	. = ..()
+	switch(state)
+		if("idle")
+			icon_state = "tradebeacon_sending"
+		if("active")
+			icon_state = "tradebeacon_sending_active"
+		if("panel_open")
+			cut_overlay("tradebeacon_sending_panel")
+			add_overlay("tradebeacon_sending_panel")
+		if("panel_closed")
+			cut_overlay("tradebeacon_sending_panel")
+
+/obj/structure/prop/tradebeacon2/starts_active
+	icon_state = "tradebeacon_sending_active"
+
+/**
+ * Possible 'state' options for change_state(state) are:
  * off: Non-spinny
  * on: Spinny and floaty
  */
@@ -413,6 +527,48 @@
 
 /obj/structure/prop/nt_obelisk/starts_on
 	icon_state = "nt_obelisk_on"
+
+/**
+ * Possible 'state' options for change_state(state) are:
+ * off: Inert
+ * on: Hand destroying machinery
+ */
+// 'sorter' from Eris
+/obj/structure/prop/sorter
+	icon = 'icons/obj/structures/decor.dmi'
+	icon_state = "sorter"
+
+/obj/structure/prop/sorter/change_state(state)
+	. = ..()
+	switch(state)
+		if("off")
+			icon_state = "sorter"
+		if("on")
+			icon_state = "sorter-process"
+
+/obj/structure/prop/sorter/starts_on
+	icon_state = "sorter-process"
+
+/**
+ * Possible 'state' options for change_state(state) are:
+ * off: Inert
+ * on: Hand destroying machinery
+ */
+// 'smelter' from Eris
+/obj/structure/prop/smelter
+	icon = 'icons/obj/structures/decor.dmi'
+	icon_state = "smelter"
+
+/obj/structure/prop/smelter/change_state(state)
+	. = ..()
+	switch(state)
+		if("off")
+			icon_state = "smelter"
+		if("on")
+			icon_state = "smelter-process"
+
+/obj/structure/prop/smelter/starts_on
+	icon_state = "smelter-process"
 
 /**
  * Possible 'state' options for change_state(state) are:
