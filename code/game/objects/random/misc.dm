@@ -71,8 +71,8 @@
 /obj/random/powercell
 	name = "random powercell"
 	desc = "This is a random powercell."
-	icon = 'icons/obj/power.dmi'
-	icon_state = "cell"
+	icon = 'icons/obj/power_cells.dmi'
+	icon_state = "random"
 
 /obj/random/powercell/item_to_spawn()
 	return pick(prob(40);/obj/item/weapon/cell,
@@ -133,8 +133,8 @@
 /obj/random/tech_supply
 	name = "random tech supply"
 	desc = "This is a random piece of technology supplies."
-	icon = 'icons/obj/power.dmi'
-	icon_state = "cell"
+	icon = 'icons/obj/power_cells.dmi'
+	icon_state = "random"
 	spawn_nothing_percentage = 25
 
 /obj/random/tech_supply/item_to_spawn()
