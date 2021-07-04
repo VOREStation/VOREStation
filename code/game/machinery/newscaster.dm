@@ -333,6 +333,7 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 	// Creating Messages
 	// data["channel_name"] = channel_name
 	data["msg"] = msg
+	data["title"] = title
 	data["photo_data"] = !!photo_data
 
 	// Printing menu
@@ -445,11 +446,11 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 			return TRUE
 
 		if("set_new_message")
-			msg = sanitize(input(usr, "Write your Feed story", "Network Channel Handler", "") as message|null)
+			msg = sanitize(tgui_input_message(usr, "Write your Feed story", "Network Channel Handler"))
 			return TRUE
 
 		if("set_new_title")
-			title = sanitize(input(usr, "Enter your Feed title", "Network Channel Handler", "") as message|null)
+			title = sanitize(tgui_input_text(usr, "Enter your Feed title", "Network Channel Handler"))
 			return TRUE
 
 		if("set_attachment")
