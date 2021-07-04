@@ -29,7 +29,7 @@
 			all_underwear[WRC.name] = WRI.name
 
 
-	backbag = rand(1,5)
+	backbag = rand(1,6)
 	pdachoice = rand(1,5)
 	age = rand(current_species.min_age, current_species.max_age)
 	b_type = RANDOM_BLOOD_TYPE
