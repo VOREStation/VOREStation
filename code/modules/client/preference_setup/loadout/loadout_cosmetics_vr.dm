@@ -5,7 +5,8 @@
 
 /datum/gear/cosmetic/nailpolish/New()
 	..()
-	gear_tweaks += gear_tweak_free_color_choice
+	// can't set description, it'll look funny
+	gear_tweaks = list(gear_tweak_free_color_choice, gear_tweak_free_name)
 
 /datum/gear/cosmetic/nailpolish/spawn_item(var/location, var/metadata)
 	var/obj/item/weapon/nailpolish/polish = ..()

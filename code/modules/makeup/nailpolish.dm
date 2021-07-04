@@ -2,34 +2,27 @@
 
 /obj/item/weapon/nailpolish
 	name = "nail polish"
-	desc = "Nail polish, to paint your nails with. Or someone else's!"
+	desc = "to paint your nails with. Or someone else's!"
 	icon = 'icons/obj/nailpolish_vr.dmi'
 	icon_state = "nailpolish"
-	var/colour = "#FF0000"
-	var/icon/top_underlay
-	var/icon/top_underlay_open
-	var/icon/color_underlay
-	var/icon/color_underlay_open
+	var/colour = "#FFFFFF"
+	var/image/top_underlay
+	var/image/color_underlay
 	var/open = FALSE
 	drop_sound = 'sound/items/drop/glass.ogg'
 	pickup_sound = 'sound/items/pickup/glass.ogg'
 
 /obj/item/weapon/nailpolish/Initialize()
 	. = ..()
-	regenerate_icons()
-
-/obj/item/weapon/nailpolish/proc/regenerate_icons()
-	top_underlay = icon(icon, "top")
-	top_underlay_open = icon(icon, "top-open")
-	color_underlay = icon(icon, "color")
-	color_underlay.Blend(colour, ICON_MULTIPLY)
-	color_underlay_open = icon(icon, "color-open")
-	color_underlay_open.Blend(colour, ICON_MULTIPLY)
+	desc = "<font color='[colour]'>Nail polish,</font> " + initial(desc)
+	top_underlay = image(icon, "top")
+	color_underlay = image(icon, "color")
 	update_icon()
 
 /obj/item/weapon/nailpolish/proc/set_colour(var/_colour)
 	colour = _colour
-	regenerate_icons()
+	desc = "<font color='[colour]'>Nail polish,</font> " + initial(desc)
+	update_icon()
 
 /obj/item/weapon/nailpolish/attack_self(var/mob/user)
 	open = !open
@@ -38,38 +31,30 @@
 
 /obj/item/weapon/nailpolish/update_icon()
 	. = ..()
-	underlays.Cut()
-	icon_state = "[initial(icon_state)][open ? "-open" : null]"
-	if (open)
-		underlays = list(color_underlay_open, top_underlay_open)
-	else
-		underlays = list(color_underlay, top_underlay)
+	icon_state = "[initial(icon_state)][open ? "-open" : ""]"
+	top_underlay.icon_state = "top[open ? "-open" : ""]"
+	color_underlay.icon_state = "color[open ? "-open" : ""]"
+	color_underlay.color = colour
+	underlays = list(color_underlay, top_underlay)
 
-/obj/item/weapon/nailpolish/proc/get_polish(var/mob/living/carbon/human/target, var/bp)
-	var/static/forbidden_parts
-	if(!forbidden_parts)
-		forbidden_parts = BP_ALL - list(BP_L_HAND, BP_R_HAND, BP_L_FOOT, BP_R_FOOT)
-	if(!istype(target)) // humantypes only for now
-		return FALSE
-	var/obj/item/organ/external/body_part = target.get_organ(bp)
-	if(!body_part)
+/obj/item/organ/external/proc/get_polish(var/colour)
+	var/static/forbidden_parts = BP_ALL - list(BP_L_HAND, BP_R_HAND, BP_L_FOOT, BP_R_FOOT)
+	if(organ_tag in forbidden_parts)
 		return FALSE
 	var/ico
 	var/icostate
-	if(length(body_part.markings))
-		for(var/mark_name in body_part.markings)
-			var/mark_data = body_part.markings[mark_name]
+	if(length(markings))
+		for(var/mark_name in markings)
+			var/mark_data = markings[mark_name]
 			var/datum/sprite_accessory/marking/mark = mark_data["datum"]
 			if(length(mark.body_parts & forbidden_parts))
 				continue
 			ico = mark.icon
-			icostate = "[mark.icon_state]-[bp]"
+			icostate = "[mark.icon_state]-[organ_tag]"
 			break
 	else
 		ico = 'icons/obj/nailpolish_vr.dmi'
-		icostate = bp
-		if(bp in forbidden_parts)
-			return FALSE
+		icostate = organ_tag
 	return new /datum/nail_polish(ico, icostate, colour)
 
 /obj/item/weapon/nailpolish/attack(var/mob/user, var/mob/living/carbon/human/target)
@@ -87,7 +72,7 @@
 	if(body_part.nail_polish)
 		to_chat(user, SPAN_NOTICE("[target]'s [body_part.name] already has nail polish on!"))
 		return
-	var/datum/nail_polish/polish = get_polish(target, bp)
+	var/datum/nail_polish/polish = body_part.get_polish(colour)
 	if(!polish)
 		to_chat(user, SPAN_NOTICE("You can't find any nails on [body_part] to paint."))
 		return
@@ -99,8 +84,11 @@
 		else
 			to_chat(user, SPAN_NOTICE("Both you and [target] must stay still!"))
 			return
-	body_part.nail_polish = polish
-	target.update_icons_body()
+	body_part.set_polish(polish)
+
+/obj/item/organ/external/proc/set_polish(var/datum/nail_polish/polish)
+	nail_polish = polish
+	owner?.update_icons_body()
 
 /obj/item/weapon/nailpolish_remover
 	name = "nail polish remover"
@@ -118,7 +106,7 @@
 
 /obj/item/weapon/nailpolish_remover/update_icon()
 	. = ..()
-	icon_state = "[initial(icon_state)][open ? "open" : null]"
+	icon_state = "[initial(icon_state)][open ? "-open" : ""]"
 
 /obj/item/weapon/nailpolish_remover/attack(var/mob/user, var/mob/living/carbon/human/target)
 	if(!open)
@@ -143,8 +131,7 @@
 		else
 			to_chat(user, SPAN_NOTICE("Both you and [target] must stay still!"))
 			return
-	body_part.nail_polish = null
-	target.update_icons_body()
+	body_part.set_polish(null)
 
 /datum/nail_polish
 	var/icon = 'icons/obj/nailpolish_vr.dmi'
