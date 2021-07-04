@@ -56,9 +56,14 @@
 	///boolean that blocks persistence from saving it. enabled from printing copies, because we do not want to save copies.
 	var/no_save = FALSE
 
-	// Painting overlay offset when framed
+	/// From the origin of the turf we're on, where should the left of the canvas pixel be
 	var/framed_offset_x = 11
+	/// From the origin of the turf we're on, where should the bottom of the canvas be
 	var/framed_offset_y = 10
+	/// The frame takes the painting's offset, then moves this X offset
+	var/frame_offset_x = -1
+	/// The frame takes the painting's offset, then moves this Y offset
+	var/frame_offset_y = -1
 
 	pixel_x = 10
 	pixel_y = 9
@@ -229,14 +234,16 @@
 
 /obj/item/canvas/twentyfour_twentyfour
 	name = "ai universal standard canvas"
-	desc = "Besides being very large, the AI can accept these as a display from their internal database after you've hung it up."
+	//desc = "Besides being very large, the AI can accept these as a display from their internal database after you've hung it up." // Not yet
 	icon_state = "24x24"
 	width = 24
 	height = 24
 	pixel_x = 2
-	pixel_y = 1
+	pixel_y = 2
 	framed_offset_x = 4
-	framed_offset_y = 5
+	framed_offset_y = 4
+	frame_offset_x = -2
+	frame_offset_y = -2
 
 /obj/item/frame/painting
 	name = "painting frame"
@@ -370,8 +377,8 @@
 	MA.pixel_y = current_canvas.framed_offset_y
 	. += MA
 	var/mutable_appearance/frame = mutable_appearance(current_canvas.icon,"[current_canvas.icon_state]frame")
-	frame.pixel_x = current_canvas.framed_offset_x - 1
-	frame.pixel_y = current_canvas.framed_offset_y - 1
+	frame.pixel_x = current_canvas.framed_offset_x + current_canvas.frame_offset_x
+	frame.pixel_y = current_canvas.framed_offset_y + current_canvas.frame_offset_y
 	. += frame
 
 	add_overlay(.)
