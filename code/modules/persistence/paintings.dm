@@ -1,6 +1,6 @@
 /datum/persistent/paintings
 	name = "paintings"
-	entries_expire_at = 10 // 10 rounds
+	entries_expire_at = 1000 // Basically forever
 
 /datum/persistent/paintings/SetFilename()
     filename = "data/persistent/paintings.json"
