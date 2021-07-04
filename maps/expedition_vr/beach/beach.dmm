@@ -63,8 +63,7 @@
 "ap" = (
 /obj/effect/overlay/palmtree_r,
 /turf/simulated/floor/water/beach/corner{
-	dir = 8;
-	icon_state = "beachcorner"
+	dir = 8
 	},
 /area/tether_away/beach/jungle)
 "aq" = (
@@ -97,10 +96,7 @@
 /turf/simulated/floor/wood,
 /area/tether_away/beach)
 "ax" = (
-/turf/simulated/mineral/floor/cave{
-	name = "dirt";
-	outdoors = 1
-	},
+/turf/simulated/floor/outdoors/newdirt,
 /area/tether_away/beach/jungle)
 "ay" = (
 /obj/structure/table/glass,
@@ -275,8 +271,7 @@
 /area/tether_away/beach/jungle)
 "bk" = (
 /turf/simulated/floor/water/beach{
-	dir = 1;
-	icon_state = "beach"
+	dir = 1
 	},
 /area/tether_away/beach/water)
 "bl" = (
@@ -342,8 +337,7 @@
 /area/tether_away/beach/cavebase)
 "cA" = (
 /turf/simulated/floor/water/beach{
-	dir = 10;
-	icon_state = "beach"
+	dir = 10
 	},
 /area/tether_away/beach/water)
 "cN" = (
@@ -385,8 +379,7 @@
 /area/tether_away/beach/resort/lockermed)
 "dY" = (
 /turf/simulated/floor/water/beach/corner{
-	dir = 8;
-	icon_state = "beachcorner"
+	dir = 8
 	},
 /area/tether_away/beach)
 "et" = (
@@ -497,8 +490,7 @@
 /area/tether_away/beach/cavebase)
 "gA" = (
 /turf/simulated/floor/water/beach{
-	dir = 6;
-	icon_state = "beach"
+	dir = 6
 	},
 /area/tether_away/beach/water)
 "gU" = (
@@ -561,13 +553,11 @@
 /area/tether_away/beach/cavebase)
 "hR" = (
 /obj/machinery/power/terminal{
-	dir = 8;
-	icon_state = "term"
+	dir = 8
 	},
 /obj/structure/cable{
 	d2 = 2;
-	icon_state = "0-2";
-	pixel_y = 0
+	icon_state = "0-2"
 	},
 /turf/simulated/floor/tiled/asteroid_steel,
 /area/tether_away/beach/powershed)
@@ -582,7 +572,6 @@
 "hV" = (
 /obj/structure/undies_wardrobe{
 	density = 0;
-	pixel_x = 0;
 	pixel_y = 18
 	},
 /obj/structure/cable/cyan{
@@ -689,7 +678,6 @@
 "kR" = (
 /obj/structure/undies_wardrobe{
 	density = 0;
-	pixel_x = 0;
 	pixel_y = 18
 	},
 /obj/structure/cable/cyan{
@@ -737,8 +725,7 @@
 /area/tether_away/beach/resort/janibar)
 "le" = (
 /turf/simulated/floor/water/beach{
-	dir = 5;
-	icon_state = "beach"
+	dir = 5
 	},
 /area/tether_away/beach/jungle)
 "lh" = (
@@ -799,9 +786,7 @@
 "mF" = (
 /obj/structure/sink{
 	dir = 4;
-	icon_state = "sink";
-	pixel_x = 11;
-	pixel_y = 0
+	pixel_x = 11
 	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/tether_away/beach/resort/kitchen)
@@ -809,12 +794,10 @@
 /obj/machinery/power/solar_control,
 /obj/structure/cable{
 	d2 = 2;
-	icon_state = "0-2";
-	pixel_y = 0
+	icon_state = "0-2"
 	},
 /obj/machinery/light/small{
-	dir = 4;
-	pixel_y = 0
+	dir = 4
 	},
 /turf/simulated/floor/tiled/asteroid_steel,
 /area/tether_away/beach/powershed)
@@ -832,8 +815,7 @@
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
-	icon_state = "1-2";
-	pixel_y = 0
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/asteroid_steel{
 	outdoors = 1
@@ -841,6 +823,7 @@
 /area/tether_away/beach/resort)
 "mW" = (
 /obj/structure/mirror{
+	dir = 8;
 	pixel_x = 27
 	},
 /turf/simulated/floor/wood,
@@ -848,8 +831,7 @@
 "nm" = (
 /obj/structure/cable{
 	d2 = 2;
-	icon_state = "0-2";
-	pixel_y = 0
+	icon_state = "0-2"
 	},
 /obj/machinery/power/tracker,
 /turf/simulated/floor{
@@ -880,8 +862,7 @@
 /area/tether_away/beach/resort/dorm1)
 "oC" = (
 /turf/simulated/floor/water/beach{
-	dir = 4;
-	icon_state = "beach"
+	dir = 4
 	},
 /area/tether_away/beach/jungle)
 "oF" = (
@@ -930,8 +911,7 @@
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
-	icon_state = "1-2";
-	pixel_y = 0
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/asteroid_steel,
 /area/tether_away/beach/powershed)
@@ -983,8 +963,7 @@
 /area/tether_away/beach/resort)
 "pS" = (
 /turf/simulated/floor/water/beach{
-	dir = 1;
-	icon_state = "beach"
+	dir = 1
 	},
 /area/tether_away/beach/jungle)
 "qi" = (
@@ -1022,7 +1001,6 @@
 "rJ" = (
 /obj/structure/undies_wardrobe{
 	density = 0;
-	pixel_x = 0;
 	pixel_y = 18
 	},
 /obj/structure/cable/cyan{
@@ -1055,16 +1033,13 @@
 /area/tether_away/beach/resort)
 "tj" = (
 /turf/simulated/floor/water/beach{
-	dir = 5;
-	icon_state = "beach"
+	dir = 5
 	},
 /area/tether_away/beach/water)
 "tl" = (
 /obj/machinery/shower{
 	dir = 4;
-	icon_state = "shower";
-	pixel_x = 2;
-	pixel_y = 0
+	pixel_x = 2
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals10,
 /obj/effect/floor_decal/steeldecal/steel_decals10{
@@ -1105,8 +1080,7 @@
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
-	icon_state = "1-2";
-	pixel_y = 0
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/asteroid_steel{
 	outdoors = 1
@@ -1160,6 +1134,7 @@
 /area/tether_away/beach/resort/kitchen)
 "uT" = (
 /obj/structure/mirror{
+	dir = 4;
 	pixel_x = -27
 	},
 /turf/simulated/floor/wood,
@@ -1357,8 +1332,7 @@
 /area/tether_away/beach/resort/dorm3)
 "BG" = (
 /turf/simulated/floor/water/beach/corner{
-	dir = 8;
-	icon_state = "beachcorner"
+	dir = 8
 	},
 /area/tether_away/beach/jungle)
 "BP" = (
@@ -1400,8 +1374,7 @@
 /area/tether_away/beach/resort/kitchen)
 "CP" = (
 /turf/simulated/floor/water/beach{
-	dir = 10;
-	icon_state = "beach"
+	dir = 10
 	},
 /area/tether_away/beach/jungle)
 "Dq" = (
@@ -1420,8 +1393,7 @@
 "DA" = (
 /obj/structure/cable{
 	d2 = 2;
-	icon_state = "0-2";
-	pixel_y = 0
+	icon_state = "0-2"
 	},
 /obj/item/solar_assembly,
 /turf/simulated/floor{
@@ -1447,8 +1419,7 @@
 /area/tether_away/beach/resort/dorm2)
 "DL" = (
 /turf/simulated/floor/water/beach/corner{
-	dir = 8;
-	icon_state = "beachcorner"
+	dir = 8
 	},
 /area/tether_away/beach/water)
 "Ed" = (
@@ -1459,8 +1430,7 @@
 /area/tether_away/beach/cavebase)
 "Ee" = (
 /turf/simulated/floor/water/beach/corner{
-	dir = 4;
-	icon_state = "beachcorner"
+	dir = 4
 	},
 /area/tether_away/beach/jungle)
 "Eh" = (
@@ -1484,8 +1454,7 @@
 /area/tether_away/beach/resort/dorm4)
 "Ey" = (
 /turf/simulated/floor/water/beach{
-	dir = 6;
-	icon_state = "beach"
+	dir = 6
 	},
 /area/tether_away/beach/jungle)
 "EG" = (
@@ -1538,14 +1507,14 @@
 /area/tether_away/beach/resort/kitchen)
 "HO" = (
 /obj/structure/mirror{
+	dir = 8;
 	pixel_x = 27
 	},
 /turf/simulated/floor/wood,
 /area/tether_away/beach/resort/dorm3)
 "Ij" = (
 /turf/simulated/floor/water/beach/corner{
-	dir = 4;
-	icon_state = "beachcorner"
+	dir = 4
 	},
 /area/tether_away/beach/water)
 "IA" = (
@@ -1631,8 +1600,7 @@
 /area/tether_away/beach/resort/kitchen)
 "Kw" = (
 /turf/simulated/floor/water/beach{
-	dir = 8;
-	icon_state = "beach"
+	dir = 8
 	},
 /area/tether_away/beach/jungle)
 "KN" = (
@@ -1674,9 +1642,7 @@
 "LO" = (
 /obj/machinery/shower{
 	dir = 4;
-	icon_state = "shower";
-	pixel_x = 2;
-	pixel_y = 0
+	pixel_x = 2
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals10,
 /obj/effect/floor_decal/steeldecal/steel_decals10{
@@ -1717,8 +1683,7 @@
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
-	icon_state = "1-2";
-	pixel_y = 0
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/asteroid_steel{
 	outdoors = 1
@@ -1779,6 +1744,9 @@
 	},
 /turf/simulated/floor/lino,
 /area/tether_away/beach/resort/kitchen)
+"Ow" = (
+/turf/simulated/floor/outdoors/newdirt,
+/area/tether_away/beach/cavebase)
 "OK" = (
 /obj/effect/overlay/palmtree_l,
 /turf/simulated/floor/beach/sand/outdoors,
@@ -1837,6 +1805,7 @@
 /area/tether_away/beach/resort/janibar)
 "QY" = (
 /obj/structure/mirror{
+	dir = 4;
 	pixel_x = -27
 	},
 /turf/simulated/floor/wood,
@@ -1916,16 +1885,14 @@
 /area/tether_away/beach/resort/dorm3)
 "RQ" = (
 /turf/simulated/floor/water/beach{
-	dir = 8;
-	icon_state = "beach"
+	dir = 8
 	},
 /area/tether_away/beach/water)
 "RX" = (
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
-	icon_state = "1-2";
-	pixel_y = 0
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/asteroid_steel{
 	outdoors = 1
@@ -1933,16 +1900,13 @@
 /area/tether_away/beach/resort)
 "Sv" = (
 /turf/simulated/floor/water/beach{
-	dir = 9;
-	icon_state = "beach"
+	dir = 9
 	},
 /area/tether_away/beach/jungle)
 "Sz" = (
 /obj/structure/sink{
 	dir = 4;
-	icon_state = "sink";
-	pixel_x = 11;
-	pixel_y = 0
+	pixel_x = 11
 	},
 /turf/simulated/floor/tiled/asteroid_steel,
 /area/tether_away/beach/resort/janibar)
@@ -2039,8 +2003,7 @@
 /area/tether_away/beach/resort/lockermed)
 "Va" = (
 /turf/simulated/floor/water/beach/corner{
-	dir = 1;
-	icon_state = "beachcorner"
+	dir = 1
 	},
 /area/tether_away/beach/water)
 "Vo" = (
@@ -2055,8 +2018,7 @@
 /area/tether_away/beach/jungle)
 "VS" = (
 /turf/simulated/floor/water/beach/corner{
-	dir = 1;
-	icon_state = "beachcorner"
+	dir = 1
 	},
 /area/tether_away/beach/jungle)
 "Wc" = (
@@ -2092,7 +2054,6 @@
 "WS" = (
 /obj/structure/undies_wardrobe{
 	density = 0;
-	pixel_x = 0;
 	pixel_y = 18
 	},
 /obj/structure/cable/cyan{
@@ -2108,8 +2069,7 @@
 /area/tether_away/beach/resort/lockermed)
 "WX" = (
 /turf/simulated/floor/water/beach{
-	dir = 9;
-	icon_state = "beach"
+	dir = 9
 	},
 /area/tether_away/beach/water)
 "Xd" = (
@@ -2127,8 +2087,7 @@
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
-	icon_state = "1-2";
-	pixel_y = 0
+	icon_state = "1-2"
 	},
 /turf/simulated/floor{
 	outdoors = 1
@@ -5685,7 +5644,7 @@ bp
 ae
 ae
 ax
-xy
+Ow
 Xd
 ZC
 ZC
