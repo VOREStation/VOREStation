@@ -240,3 +240,44 @@
 	. = ..()
 	cell = new /obj/item/weapon/cell/void/hybrid(src)
 	RefreshParts()
+
+
+// Kugelblitz generator, confined black hole like a singulo but smoller and higher tech
+// Presumably whoever made these has better tech than most
+/obj/machinery/power/rtg/kugelblitz
+	name = "kugelblitz generator"
+	desc = "A power source harnessing a small black hole."
+	icon = 'icons/obj/structures/decor64x64.dmi'
+	icon_state = "bigdice"
+	bound_width = 64
+	bound_height = 64
+	power_gen = 30000
+	irradiate = FALSE // Green energy!
+	can_buckle = FALSE
+
+/obj/machinery/power/rtg/kugelblitz/proc/asplod()
+	visible_message("<span class='danger'>\The [src] lets out an shower of sparks as it starts to lose stability!</span>",\
+		"<span class='italics'>You hear a loud electrical crack!</span>")
+	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
+	var/turf/T = get_turf(src)
+	qdel(src)
+	new /obj/singularity(T)
+
+/obj/machinery/power/rtg/kugelblitz/blob_act(obj/structure/blob/B)
+	asplod()
+
+/obj/machinery/power/rtg/kugelblitz/ex_act()
+	asplod()
+
+/obj/machinery/power/rtg/kugelblitz/fire_act(exposed_temperature, exposed_volume)
+	asplod()
+
+/obj/machinery/power/rtg/kugelblitz/tesla_act()
+	..() //extend the zap
+	asplod()
+
+/obj/machinery/power/rtg/kugelblitz/bullet_act(obj/item/projectile/Proj)
+	. = ..()
+	if(istype(Proj) && !Proj.nodamage && ((Proj.damage_type == BURN) || (Proj.damage_type == BRUTE)) && Proj.damage >= 20)
+		log_and_message_admins("[ADMIN_LOOKUPFLW(Proj.firer)] triggered a kugelblitz core explosion at [x],[y],[z] via projectile.")
+		asplod()
