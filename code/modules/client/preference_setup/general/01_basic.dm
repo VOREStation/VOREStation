@@ -100,7 +100,7 @@
 		return TOPIC_REFRESH
 
 	else if(href_list["nickname"])
-		var/raw_nickname = input(user, "Choose your character's nickname:", "Character Nickname")  as text|null
+		var/raw_nickname = tgui_input_text(user, "Choose your character's nickname:", "Character Nickname", pref.nickname)
 		if (!isnull(raw_nickname) && CanUseTopic(user))
 			var/new_nickname = sanitize_name(raw_nickname, pref.species, is_FBP())
 			if(new_nickname)
@@ -140,7 +140,7 @@
 		return TOPIC_REFRESH
 
 	else if(href_list["metadata"])
-		var/new_metadata = sanitize(input(user, "Enter any information you'd like others to see, such as Roleplay-preferences:", "Game Preference" , html_decode(pref.metadata)) as message|null, extra = 0) //VOREStation Edit
+		var/new_metadata = sanitize(tgui_input_message(user, "Enter any information you'd like others to see, such as Roleplay-preferences:", "Game Preference" , html_decode(pref.metadata)), extra = 0) //VOREStation Edit
 		if(new_metadata && CanUseTopic(user))
 			pref.metadata = new_metadata
 			return TOPIC_REFRESH
