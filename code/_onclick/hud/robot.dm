@@ -142,7 +142,7 @@ var/obj/screen/robot_inventory
 	zone_sel.icon = HUD.ui_style
 	zone_sel.alpha = HUD.ui_alpha
 	zone_sel.cut_overlays()
-	zone_sel.add_overlay(image('icons/mob/zone_sel.dmi', "[zone_sel.selecting]"))
+	zone_sel.update_icon()
 
 	//Handle the gun settings buttons
 	gun_setting_icon = new /obj/screen/gun/mode(null)

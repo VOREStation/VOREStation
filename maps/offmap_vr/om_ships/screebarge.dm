@@ -48,7 +48,6 @@
 /obj/effect/overmap/visitable/ship/landable/screebarge
 	name = "Battle Barge"
 	desc = "Some sort of makeshift battle barge. Appears to be armed."
-	color = "#95c633" //Greenish
 	vessel_mass = 3000
 	vessel_size = SHIP_SIZE_SMALL
 	shuttle = "Battle Barge"

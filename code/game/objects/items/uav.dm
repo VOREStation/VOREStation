@@ -13,9 +13,14 @@
 	var/cell_type = null //Can put a starting cell here
 
 	density = 1 //Is dense, but not anchored, so you can swap with it
-	slowdown = 3 //Heevvee.
+	slowdown = 1.5 //Heevvee.
 
 	health = 100
+
+	light_system = MOVABLE_LIGHT_DIRECTIONAL
+	light_cone_y_offset = 5
+	light_range = 4
+	light_power = 4
 	var/power_per_process = 50 // About 6.5 minutes of use on a high-cell (10,000)
 	var/state = UAV_OFF
 
@@ -24,7 +29,7 @@
 	var/list/mob/living/masters
 
 	// So you know which is which
-	var/nickname = "Generic Droan"
+	var/nickname = "Unnamed UAV"
 
 	// Radial menu
 	var/static/image/radial_pickup = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_pickup")
@@ -213,14 +218,14 @@
 		if(UAV_OFF) //Packing
 			state = UAV_PACKED
 			w_class = ITEMSIZE_LARGE
-			slowdown = 1
+			slowdown = 0.5
 			density = FALSE
 			update_icon()
 			return TRUE
 		if(UAV_PACKED) //Unpacking
 			state = UAV_OFF
 			w_class = ITEMSIZE_HUGE
-			slowdown = 3
+			slowdown = 1.5
 			density = TRUE
 			update_icon()
 			return TRUE
@@ -236,7 +241,7 @@
 	state = UAV_ON
 	update_icon()
 	start_hover()
-	set_light(4, 4, "#FFFFFF")
+	set_light_on(TRUE)
 	START_PROCESSING(SSobj, src)
 	no_masters_time = 0
 	visible_message("<span class='notice'>[nickname] buzzes and lifts into the air.</span>")
@@ -248,7 +253,7 @@
 	state = UAV_OFF
 	update_icon()
 	stop_hover()
-	set_light(0)
+	set_light_on(FALSE)
 	LAZYCLEARLIST(masters)
 	STOP_PROCESSING(SSobj, src)
 	visible_message("<span class='notice'>[nickname] gracefully settles onto the ground.</span>")

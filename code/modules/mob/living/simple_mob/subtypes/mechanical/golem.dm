@@ -85,7 +85,7 @@
 	active_spell = new path(src)
 
 /mob/living/simple_mob/mechanical/technomancer_golem/verb/test_giving_spells()
-	var/choice = input(usr, "What spell?", "Give spell") as null|anything in known_spells
+	var/choice = tgui_input_list(usr, "What spell?", "Give spell", known_spells)
 	if(choice)
 		place_spell_in_hand(known_spells[choice])
 	else

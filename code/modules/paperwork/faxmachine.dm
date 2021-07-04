@@ -125,7 +125,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 
 		if("dept")
 			var/lastdestination = destination
-			destination = input(usr, "Which department?", "Choose a department", "") as null|anything in (alldepartments + admin_departments)
+			destination = tgui_input_list(usr, "Which department?", "Choose a department", (alldepartments + admin_departments))
 			if(!destination)
 				destination = lastdestination
 

@@ -34,8 +34,12 @@ export class Input extends Component {
     };
     this.handleFocus = e => {
       const { editing } = this.state;
+      const { autoSelect } = this.props;
       if (!editing) {
         this.setEditing(true);
+      }
+      if (autoSelect) {
+        e.target.select();
       }
     };
     this.handleBlur = e => {

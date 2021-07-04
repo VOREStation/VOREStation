@@ -185,7 +185,7 @@
 			choices["[typechoice] ([found.len])"] = found // Prettified name for the user input below)
 			searching = found // Now we only search the list we just made, because of the order of our types list, each subsequent list will be a subset of the one we just finished
 		
-		var/choice = input(usr,"Based on your AI holder's mob location, we'll edit mobs on Z [levels_working.Join(",")]. What types do you want to alter?") as null|anything in choices
+		var/choice = tgui_input_list(usr,"Based on your AI holder's mob location, we'll edit mobs on Z [levels_working.Join(",")]. What types do you want to alter?", "Types", choices)
 		if(!choice)
 			href_list["datumrefresh"] = "\ref[src]"
 			return

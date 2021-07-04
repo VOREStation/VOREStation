@@ -294,7 +294,7 @@
 /obj/item/toy/rock/attackby(obj/item/I as obj, mob/living/user as mob, proximity)
 	if(!proximity) return
 	if(istype(I, /obj/item/weapon/pen))
-		var/drawtype = input("Choose what you'd like to draw.", "Faces") in list("fred","roxie","rock")
+		var/drawtype = tgui_alert(user, "Choose what you'd like to draw.", "Faces", list("fred","roxie","rock","Cancel"))
 		switch(drawtype)
 			if("fred")
 				src.icon_state = "fred"

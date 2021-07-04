@@ -42,6 +42,9 @@
 		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right, "descriptor" = "right foot")
 		)
 
+/datum/species/custom/update_sort_hint()
+	sort_hint = SPECIES_SORT_CUSTOM
+
 /datum/species/custom/get_race_key()
 	var/datum/species/real = GLOB.all_species[base_species]
 	return real.race_key

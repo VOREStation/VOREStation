@@ -398,7 +398,7 @@
 			choices += M
 	choices -= src
 
-	var/mob/living/T = input(src,"Who do you wish to leap at?") as null|anything in choices
+	var/mob/living/T = tgui_input_list(src,"Who do you wish to leap at?","Target Choice", choices)
 
 	if(!T || !src || src.stat) return
 
@@ -455,7 +455,7 @@
 	options["Whiskey Soda"] = "Liqour Licker"
 	options["Grape Soda"] = "The Grapist"
 	options["Demon's Blood"] = "Vampire's Aid"
-	var/choice = input(M,"Choose your drink!") in options
+	var/choice = tgui_input_list(M, "Choose your drink!", "Drink Choice", options)
 	if(src && choice && !M.stat && in_range(M,src))
 		icontype = options[choice]
 		var/active_sound = 'sound/effects/bubbles.ogg'

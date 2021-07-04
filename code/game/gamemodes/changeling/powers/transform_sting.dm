@@ -16,13 +16,11 @@
 	if(!changeling)
 		return 0
 
-
-
 	var/list/names = list()
 	for(var/datum/dna/DNA in changeling.absorbed_dna)
 		names += "[DNA.real_name]"
 
-	var/S = input("Select the target DNA: ", "Target DNA", null) as null|anything in names
+	var/S = tgui_input_list(src, "Select the target DNA:", "Target DNA", names)
 	if(!S)
 		return
 

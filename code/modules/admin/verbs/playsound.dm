@@ -10,7 +10,7 @@ var/list/sounds_cache = list()
 
 	sounds_cache += S
 
-	if(alert("Do you ready?\nSong: [S]\nNow you can also play this sound using \"Play Server Sound\".", "Confirmation request" ,"Play", "Cancel") == "Cancel")
+	if(tgui_alert(usr, "Do you ready?\nSong: [S]\nNow you can also play this sound using \"Play Server Sound\".", "Confirmation request", list("Play","Cancel")) == "Cancel")
 		return
 
 	log_admin("[key_name(src)] played sound [S]")
@@ -41,7 +41,7 @@ var/list/sounds_cache = list()
 	sounds += "--CANCEL--"
 	sounds += sounds_cache
 
-	var/melody = input("Select a sound from the server to play", "Server sound list", "--CANCEL--") in sounds
+	var/melody = tgui_input_list(usr, "Select a sound from the server to play", "Server sound list", sounds, "--CANCEL--")
 
 	if(melody == "--CANCEL--")	return
 

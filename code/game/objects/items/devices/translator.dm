@@ -14,7 +14,7 @@
 
 /obj/item/device/universal_translator/attack_self(mob/user)
 	if(!listening) //Turning ON
-		langset = input(user,"Translate to which of your languages?","Language Selection") as null|anything in user.languages
+		langset = tgui_input_list(user,"Translate to which of your languages?","Language Selection", user.languages)
 		if(langset)
 			if(langset && ((langset.flags & NONVERBAL) || (langset.flags & HIVEMIND) || (!langset.machine_understands)))
 				//Nonverbal means no spoken words to translate, so I didn't see the need to remove it.

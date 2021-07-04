@@ -161,6 +161,20 @@
 	alpha = 110
 	blocks_emissive = FALSE
 
+	var/static/matrix/normal_transform
+
+/obj/effect/overlay/light_cone/Initialize()
+	. = ..()
+	apply_standard_transform()
+
+/obj/effect/overlay/light_cone/proc/reset_transform(apply_standard)
+	transform = initial(transform)
+	if(apply_standard)
+		apply_standard_transform()
+
+/obj/effect/overlay/light_cone/proc/apply_standard_transform()
+	transform = transform.Translate(-32, -32)
+
 /obj/effect/overlay/light_cone/Destroy(force)
 	if(!force)
 		stack_trace("Directional light cone deleted, but not by our component")

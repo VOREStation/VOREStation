@@ -402,7 +402,7 @@
 	if(usr.sleeping)
 		to_chat(usr, "<font color='red'>You are already sleeping</font>")
 		return
-	if(alert(src,"You sure you want to sleep for a while?","Sleep","Yes","No") == "Yes")
+	if(tgui_alert(src,"You sure you want to sleep for a while?","Sleep",list("Yes","No")) == "Yes")
 		usr.AdjustSleeping(20)
 
 /mob/living/carbon/Bump(atom/A)

@@ -4,8 +4,9 @@
 	scanner_desc = @{"It is difficult to tell just what is beyond this strange shimmering shape. The air beyond seems breathable."}
 	icon = 'icons/obj/overmap_vr.dmi'
 	icon_state = "shimmer"
-	color = "#171DFF" //bloo
 	in_space = 0
+	unknown_state = "field"
+	known = FALSE
 
 /datum/map_template/tether_lateload/gateway/arynthilake/on_map_loaded(z)
     . = ..()

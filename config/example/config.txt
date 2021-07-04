@@ -245,6 +245,9 @@ SERVER your.domain:6000
 ## GitHub address
 #GITHUBURL https://github.com/owner/repo
 
+## Discord address
+#DISCORDURL https://discord.gg/someinvite
+
 ## Rules URL
 #RULESURL https://rules.your.domain/
 
@@ -338,7 +341,7 @@ ALLOW_CULT_GHOSTWRITER
 REQ_CULT_GHOSTWRITER 6
 
 ## Sets the number of available character slots
-CHARACTER_SLOTS 35
+CHARACTER_SLOTS 50
 ## Sets the number of loadout slots per character
 #LOADOUT_SLOTS 3
 

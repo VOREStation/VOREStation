@@ -34,7 +34,7 @@
 		to_chat(user, "<span class=warning>There's nothing on the glass to remove!</span>")
 		return
 
-	var/choice = input(user, "What would you like to remove from the glass?") as null|anything in extras
+	var/choice = tgui_input_list(user, "What would you like to remove from the glass?", "Removal Choice", extras)
 	if(!choice || !(choice in extras))
 		return
 

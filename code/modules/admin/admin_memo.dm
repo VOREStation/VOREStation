@@ -47,7 +47,7 @@
 	if(F)
 		var/ckey
 		if(check_rights(R_SERVER,0))	//high ranking admins can delete other admin's memos
-			ckey = input(src,"Whose memo shall we remove?","Remove Memo",null) as null|anything in F.dir
+			ckey = tgui_input_list(src,"Whose memo shall we remove?","Remove Memo", F.dir)
 		else
 			ckey = src.ckey
 		if(ckey)

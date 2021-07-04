@@ -6,7 +6,7 @@
 	if(!holder)
 		return
 
-	var/client/picked_client = input(src, "Who are we spawning as a mob?", "Client", "Cancel") as null|anything in GLOB.clients
+	var/client/picked_client = tgui_input_list(src, "Who are we spawning as a mob?", "Client", GLOB.clients)
 	if(!picked_client)
 		return
 	var/list/types = typesof(/mob/living)
@@ -23,17 +23,17 @@
 	if(matches.len==1)
 		chosen = matches[1]
 	else
-		chosen = input("Select a mob type", "Select Mob", matches[1]) as null|anything in matches
+		chosen = tgui_input_list(usr, "Select a mob type", "Select Mob", matches)
 		if(!chosen)
 			return
 
-	var/char_name = alert(src, "Spawn mob with their character name?", "Mob name", "Yes", "No", "Cancel")
+	var/char_name = tgui_alert(src, "Spawn mob with their character name?", "Mob name", list("Yes", "No", "Cancel"))
 	var/name = 0
 	if(char_name == "Cancel")
 		return
 	if(char_name == "Yes")
 		name = 1
-	var/vorgans = alert(src, "Spawn mob with their character's vore organs and prefs?", "Vore organs", "Yes", "No", "Cancel")
+	var/vorgans = tgui_alert(src, "Spawn mob with their character's vore organs and prefs?", "Vore organs", list("Yes", "No", "Cancel"))
 	var/organs
 	if(vorgans == "Cancel")
 		return
@@ -81,7 +81,7 @@
 	if (!holder)
 		return
 
-	var/msg = input("Message:", text("Enter the text you wish to appear to everyone:")) as text
+	var/msg = input(usr, "Message:", text("Enter the text you wish to appear to everyone:")) as text
 	if(!(msg[1] == "<" && msg[length(msg)] == ">")) //You can use HTML but only if the whole thing is HTML. Tries to prevent admin 'accidents'.
 		msg = sanitize(msg)
 

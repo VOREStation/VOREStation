@@ -1006,7 +1006,7 @@
 /area/gateway/arynthilake/engine)
 "pa" = (
 /obj/random/mob/semirandom_mob_spawner/monster,
-/turf/simulated/floor/tiled/eris/white/brown_platform{
+/turf/simulated/floor/tiled/eris/dark/brown_platform{
 	outdoors = 1
 	},
 /area/gateway/arynthilake/dome)
@@ -1238,6 +1238,11 @@
 "tN" = (
 /turf/simulated/floor/outdoors/grass,
 /area/gateway/arynthilake/caves)
+"tS" = (
+/turf/simulated/floor/tiled/eris/dark/brown_platform{
+	outdoors = 1
+	},
+/area/gateway/arynthilake/dome)
 "tU" = (
 /obj/structure/table/steel_reinforced,
 /obj/machinery/reagentgrinder,
@@ -2255,10 +2260,6 @@
 	plane = -34
 	},
 /turf/simulated/floor/tiled/eris/cafe,
-/area/gateway/arynthilake/dome)
-"TI" = (
-/obj/random/mob/semirandom_mob_spawner/monster,
-/turf/simulated/floor/tiled/eris/dark/monofloor,
 /area/gateway/arynthilake/dome)
 "TR" = (
 /turf/unsimulated/wall/planetary/normal{
@@ -5623,7 +5624,7 @@ qM
 bc
 bc
 bc
-pb
+tS
 yY
 hw
 fo
@@ -5765,7 +5766,7 @@ aZ
 bc
 wm
 bc
-pb
+tS
 yY
 hw
 fo
@@ -6333,7 +6334,7 @@ qM
 At
 Rm
 Er
-pb
+tS
 yY
 Nm
 Nm
@@ -6475,7 +6476,7 @@ qM
 zQ
 zQ
 Er
-pb
+tS
 yY
 Nm
 Nm
@@ -6611,7 +6612,7 @@ Qr
 Qr
 qM
 vG
-TI
+aY
 Vo
 qM
 AQ

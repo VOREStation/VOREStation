@@ -148,6 +148,7 @@
 	else
 		name = "[base_name] ([label_text])"
 	desc = "[base_desc] It is labeled \"[label_text]\"."
+	update_icon()
 
 /obj/item/weapon/reagent_containers/glass/beaker
 	name = "beaker"
@@ -187,19 +188,21 @@
 
 		var/percent = round((reagents.total_volume / volume) * 100)
 		switch(percent)
-			if(0 to 9)		filling.icon_state = "[icon_state]-10"
-			if(10 to 24) 	filling.icon_state = "[icon_state]10"
-			if(25 to 49)	filling.icon_state = "[icon_state]25"
-			if(50 to 74)	filling.icon_state = "[icon_state]50"
-			if(75 to 79)	filling.icon_state = "[icon_state]75"
-			if(80 to 90)	filling.icon_state = "[icon_state]80"
-			if(91 to INFINITY)	filling.icon_state = "[icon_state]100"
+			if(0.1 to 20)	filling.icon_state = "[icon_state]-10"
+			if(20 to 40) 	filling.icon_state = "[icon_state]-20"
+			if(40 to 60)	filling.icon_state = "[icon_state]-40"
+			if(60 to 80)	filling.icon_state = "[icon_state]-60"
+			if(80 to 100)	filling.icon_state = "[icon_state]-80"
+			if(100 to INFINITY)	filling.icon_state = "[icon_state]-100"
 
 		filling.color = reagents.get_color()
 		add_overlay(filling)
 
 	if (!is_open_container())
 		add_overlay("lid_[initial(icon_state)]")
+
+	if (label_text)
+		add_overlay("label_[initial(icon_state)]")
 
 /obj/item/weapon/reagent_containers/glass/beaker/large
 	name = "large beaker"

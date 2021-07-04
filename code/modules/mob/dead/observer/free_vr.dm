@@ -11,8 +11,8 @@ var/global/list/prevent_respawns = list()
 	set category = "OOC"
 	set desc = "Free your job slot, remove yourself from the manifest, and prevent respawning as this character for this round."
 
-	var/confirm = alert("This will free up your job slot, remove you from the manifest, and allow you to respawn as this character. You can rejoin as another \
-	character if you like. Do this now?","Quit This Round","Quit Round","Cancel")
+	var/confirm = tgui_alert(usr, "This will free up your job slot, remove you from the manifest, and allow you to respawn as this character. You can rejoin as another \
+	character if you like. Do this now?","Quit This Round",list("Quit Round","Cancel"))
 	if(confirm != "Quit Round")
 		return
 

@@ -19,14 +19,12 @@
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5;
-	icon_state = "intact-scrubbers"
+	dir = 5
 	},
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
-	icon_state = "1-2";
-	pixel_y = 0
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/tether_midpoint)
@@ -107,14 +105,10 @@
 /turf/simulated/floor/tiled/dark,
 /area/tether/midpoint)
 "iK" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/alarm{
-	pixel_y = 26
-	},
-/turf/simulated/floor/wood,
-/area/tether/midpoint)
+/obj/structure/closet,
+/obj/random/plushie,
+/turf/simulated/floor/plating,
+/area/maintenance/tether_midpoint)
 "jt" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/door/firedoor/glass/hidden,
@@ -186,8 +180,7 @@
 	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/visible/scrubbers{
-	dir = 4;
-	icon_state = "map-scrubbers"
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/visible/supply{
 	dir = 4
@@ -214,12 +207,10 @@
 "oz" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5;
-	icon_state = "intact-scrubbers"
+	dir = 5
 	},
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/dark,
@@ -231,7 +222,7 @@
 /turf/simulated/floor/plating,
 /area/maintenance/tether_midpoint)
 "oP" = (
-/obj/structure/grille,
+/obj/random/junk,
 /turf/simulated/floor/plating,
 /area/maintenance/tether_midpoint)
 "pK" = (
@@ -241,14 +232,44 @@
 /turf/simulated/floor/plating,
 /area/maintenance/tether_midpoint)
 "pO" = (
-/obj/machinery/media/jukebox,
-/turf/simulated/floor/holofloor/tiled/dark,
-/area/tether/midpoint)
-"sw" = (
-/obj/machinery/vending/bepis{
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals9,
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 8
 	},
-/turf/simulated/floor/holofloor/tiled/dark,
+/obj/machinery/media/jukebox,
+/turf/simulated/floor/tiled/monotile,
+/area/tether/midpoint)
+"sw" = (
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals9,
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 8
+	},
+/obj/machinery/vending/snlvend,
+/turf/simulated/floor/tiled/monotile,
 /area/tether/midpoint)
 "sR" = (
 /obj/effect/floor_decal/borderfloorblack{
@@ -257,14 +278,13 @@
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
-/turf/simulated/floor/holofloor/tiled/dark,
+/turf/simulated/floor/tiled/dark,
 /area/tether/midpoint)
 "tn" = (
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
-	icon_state = "1-2";
-	pixel_y = 0
+	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
@@ -282,8 +302,7 @@
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
-	icon_state = "1-2";
-	pixel_y = 0
+	icon_state = "1-2"
 	},
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 4
@@ -331,8 +350,7 @@
 /area/tether/midpoint)
 "xl" = (
 /obj/machinery/light/small{
-	dir = 4;
-	pixel_y = 0
+	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/zpipe/down,
 /obj/machinery/atmospherics/pipe/zpipe/down/scrubbers,
@@ -352,8 +370,7 @@
 /area/maintenance/tether_midpoint)
 "zi" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /turf/simulated/floor/wood,
 /area/tether/midpoint)
@@ -460,25 +477,21 @@
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
-	icon_state = "1-2";
-	pixel_y = 0
+	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/plating,
 /area/maintenance/tether_midpoint)
 "Iq" = (
-/obj/machinery/light{
-	dir = 2
-	},
+/obj/machinery/light,
 /turf/simulated/floor/wood,
 /area/tether/midpoint)
 "It" = (
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
-	icon_state = "1-2";
-	pixel_y = 0
+	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
@@ -497,23 +510,30 @@
 	dir = 5
 	},
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/dark,
 /area/tether/midpoint)
 "Kh" = (
-/obj/structure/disposalpipe/segment{
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals9,
+/obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 4
 	},
-/obj/machinery/firealarm{
-	dir = 2;
-	layer = 3.3;
-	pixel_x = 0;
-	pixel_y = 26
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 1
 	},
-/turf/simulated/floor/wood,
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 8
+	},
+/obj/machinery/vending/bepis,
+/turf/simulated/floor/tiled/monotile,
 /area/tether/midpoint)
 "KH" = (
 /obj/structure/disposalpipe/segment{
@@ -533,8 +553,7 @@
 	dir = 1
 	},
 /obj/machinery/light/small{
-	dir = 4;
-	pixel_y = 0
+	dir = 4
 	},
 /obj/structure/lattice,
 /obj/machinery/door/firedoor/glass,
@@ -566,8 +585,7 @@
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
-	icon_state = "1-2";
-	pixel_y = 0
+	icon_state = "1-2"
 	},
 /obj/structure/lattice,
 /obj/structure/disposalpipe/down,
@@ -618,6 +636,12 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/tether_midpoint)
+"QE" = (
+/obj/structure/sign/painting/public{
+	pixel_y = -30
+	},
+/turf/simulated/floor/wood,
+/area/tether/midpoint)
 "RZ" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -668,6 +692,12 @@
 	},
 /turf/simulated/floor/wood,
 /area/tether/midpoint)
+"Wc" = (
+/obj/structure/sign/painting/public{
+	pixel_x = 30
+	},
+/turf/simulated/floor/wood,
+/area/tether/midpoint)
 "WU" = (
 /obj/machinery/light{
 	dir = 4
@@ -676,15 +706,23 @@
 /turf/simulated/floor/wood,
 /area/tether/midpoint)
 "WY" = (
-/obj/random/junk,
-/obj/random/junk,
-/turf/simulated/floor/plating,
-/area/maintenance/tether_midpoint)
-"Xo" = (
-/obj/machinery/vending/snlvend{
-	dir = 8
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
-/turf/simulated/floor/holofloor/tiled/dark,
+/obj/machinery/alarm{
+	pixel_y = 26
+	},
+/turf/simulated/floor/wood,
+/area/tether/midpoint)
+"Xo" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/firealarm{
+	layer = 3.3;
+	pixel_y = 26
+	},
+/turf/simulated/floor/wood,
 /area/tether/midpoint)
 "XO" = (
 /obj/effect/floor_decal/borderfloorblack,
@@ -698,21 +736,15 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/turf/simulated/floor/holofloor/tiled/dark,
+/turf/simulated/floor/tiled/dark,
 /area/tether/midpoint)
 "YB" = (
 /obj/structure/table/woodentable,
 /obj/structure/flora/pottedplant/smallcactus{
-	pixel_x = 0;
 	pixel_y = 8
 	},
 /turf/simulated/floor/wood,
 /area/tether/midpoint)
-"Zd" = (
-/obj/structure/closet,
-/obj/random/plushie,
-/turf/simulated/floor/plating,
-/area/maintenance/tether_midpoint)
 
 (1,1,1) = {"
 kz
@@ -9013,11 +9045,11 @@ pK
 pK
 pK
 pK
+Pz
+Wc
 pK
 pK
-pK
-pK
-pK
+Wc
 Pz
 pK
 pK
@@ -9155,9 +9187,9 @@ pK
 pK
 PF
 PF
-pO
-Xo
-sw
+PF
+PF
+PF
 PF
 PF
 PF
@@ -9296,15 +9328,15 @@ tA
 pK
 pK
 Dz
-Dz
-Dz
-Dz
-Dz
+iK
+pM
+pM
+pM
 Dz
 oN
 yi
 ML
-Dz
+PF
 uA
 pK
 tA
@@ -9444,9 +9476,9 @@ cB
 Oq
 mz
 pM
+oP
 pM
-pM
-Dz
+PF
 wM
 pK
 dc
@@ -9578,7 +9610,7 @@ tA
 tA
 tA
 pK
-pK
+QE
 Dz
 Qv
 xl
@@ -9587,9 +9619,9 @@ jE
 Ha
 gV
 Ls
-pM
-Dz
-Or
+PF
+PF
+WY
 pK
 tA
 tA
@@ -9729,9 +9761,9 @@ Hs
 Hs
 Hs
 Hs
-WY
-Dz
-iK
+PF
+pO
+Or
 pK
 pK
 pK
@@ -9871,9 +9903,9 @@ Gl
 Gl
 Gl
 Hs
-oP
-Dz
-Kh
+PF
+sw
+Or
 pK
 pK
 pK
@@ -10004,7 +10036,7 @@ tA
 tA
 tA
 pK
-pK
+QE
 Dz
 Qv
 Hs
@@ -10013,8 +10045,8 @@ Gl
 Gl
 Gl
 Hs
-pM
-Dz
+PF
+Kh
 hi
 pK
 tA
@@ -10155,8 +10187,8 @@ Gl
 Gl
 Gl
 Hs
-pM
-Dz
+PF
+PF
 wM
 pK
 dc
@@ -10297,9 +10329,9 @@ Gl
 Gl
 Gl
 Hs
-Zd
-Dz
-Or
+pM
+PF
+Xo
 pK
 tA
 tA
@@ -10440,7 +10472,7 @@ Gl
 Hs
 Hs
 Dz
-Dz
+PF
 Or
 pK
 pK

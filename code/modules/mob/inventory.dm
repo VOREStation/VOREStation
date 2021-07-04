@@ -50,7 +50,7 @@ var/list/slot_equipment_priority = list( \
 /mob/proc/equip_to_slot_if_possible(obj/item/W as obj, slot, del_on_fail = 0, disable_warning = 0, redraw_mob = 1)
 	if(!W)
 		return 0
-	if(!W.mob_can_equip(src, slot))
+	if(!W.mob_can_equip(src, slot, disable_warning))
 		if(del_on_fail)
 			qdel(W)
 
@@ -93,7 +93,7 @@ var/list/slot_equipment_priority = list( \
 
 	return 0
 
-/mob/proc/equip_to_storage(obj/item/newitem)
+/mob/proc/equip_to_storage(obj/item/newitem, user_initiated = FALSE)
 	return 0
 
 /* Hands */
@@ -138,7 +138,7 @@ var/list/slot_equipment_priority = list( \
 /mob/proc/put_in_hands(var/obj/item/W)
 	if(!W)
 		return 0
-	W.forceMove(get_turf(src))
+	W.forceMove(drop_location())
 	W.reset_plane_and_layer()
 	W.dropped()
 	return 0
@@ -147,12 +147,9 @@ var/list/slot_equipment_priority = list( \
 // If canremove or other conditions need to be checked then use unEquip instead.
 
 /mob/proc/drop_from_inventory(var/obj/item/W, var/atom/target)
-	if(W)
-		remove_from_mob(W, target)
-		if(!(W && W.loc))
-			return 1 // self destroying objects (tk, grabs)
-		return 1
-	return 0
+	if(!W)
+		return 0
+	return remove_from_mob(W, target)
 
 //Drops the item in our left hand
 /mob/proc/drop_l_hand(var/atom/Target)

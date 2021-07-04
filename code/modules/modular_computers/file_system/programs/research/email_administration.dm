@@ -117,7 +117,7 @@
 			return TRUE
 
 		if("newaccount")
-			var/newdomain = sanitize(input(usr,"Pick domain:", "Domain name") as null|anything in using_map.usable_email_tlds)
+			var/newdomain = sanitize(tgui_input_list(usr,"Pick domain:", "Domain name", using_map.usable_email_tlds))
 			if(!newdomain)
 				return TRUE
 			var/newlogin = sanitize(input(usr,"Pick account name (@[newdomain]):", "Account name"), 100)

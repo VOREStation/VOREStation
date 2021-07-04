@@ -9,14 +9,7 @@
 	set desc = "Customize the text which appears when you type- e.g. 'says', 'asks', 'exclaims'."
 
 	if(src.client)
-		var/customsaylist[] = list(
-				"Say",
-				"Whisper",
-				"Ask (?)",
-				"Exclaim/Shout/Yell (!)",
-				"Cancel"
-			)
-		var/sayselect = input("Which say-verb do you wish to customize?") as null|anything in customsaylist //we can't use alert() for this because there's too many terms
+		var/sayselect = tgui_alert(src, "Which say-verb do you wish to customize?", "Select Verb", list("Say","Whisper","Ask (?)","Exclaim/Shout/Yell (!)","Cancel"))
 
 		if(sayselect == "Say")
 			custom_say =  sanitize(input(usr, "This word or phrase will appear instead of 'says': [src] says, \"Hi.\"", "Custom Say", null)  as text)

@@ -28,7 +28,7 @@
 
 	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/telecube)
 
-	slowdown = 5
+	slowdown = 2.5
 
 	throw_range = 2
 

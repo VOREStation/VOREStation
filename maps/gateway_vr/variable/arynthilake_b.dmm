@@ -29,10 +29,6 @@
 	},
 /turf/simulated/floor/tiled/eris/white/brown_platform,
 /area/gateway/arynthilake/dome)
-"bb" = (
-/obj/random/mob/semirandom_mob_spawner/monster/d,
-/turf/simulated/floor/tiled/eris/dark/monofloor,
-/area/gateway/arynthilake/dome)
 "bj" = (
 /obj/machinery/light{
 	dir = 1
@@ -978,6 +974,11 @@
 	outdoors = 1
 	},
 /area/gateway/arynthilake)
+"tC" = (
+/turf/simulated/floor/tiled/eris/dark/brown_platform{
+	outdoors = 1
+	},
+/area/gateway/arynthilake/dome)
 "uj" = (
 /obj/random/mob/semirandom_mob_spawner/humanoid,
 /turf/simulated/floor/carpet/sblucarpet,
@@ -18089,7 +18090,7 @@ Qm
 Xz
 Xz
 HN
-Kw
+tC
 Ia
 lQ
 lQ
@@ -18225,13 +18226,13 @@ ek
 ek
 Qm
 JT
-bb
+JT
 mq
 Qm
 kv
 kv
 Fi
-Kw
+tC
 Ia
 lQ
 lQ
@@ -18373,7 +18374,7 @@ Qm
 qy
 RK
 Fi
-Kw
+tC
 Ia
 lQ
 lQ
@@ -18941,7 +18942,7 @@ Dk
 nP
 nP
 nP
-Kw
+tC
 Ia
 nC
 iG
@@ -19083,7 +19084,7 @@ Qm
 nP
 nP
 HN
-Kw
+tC
 Ia
 nC
 iG

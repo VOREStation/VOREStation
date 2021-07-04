@@ -116,7 +116,7 @@
 
 /obj/machinery/space_heater/stumble_into(mob/living/M)
 	..()
-	if(on)
+	if(state)
 		M.apply_damage(10, BURN)
 		M.emote("scream")
 

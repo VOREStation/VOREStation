@@ -14,7 +14,7 @@
 	var_changes = list("item_slowdown_mod" = 0.5)
 
 /datum/trait/positive/hardy_plus
-	name = "Major Hardy"
+	name = "Hardy, Major"
 	desc = "Allows you to carry heavy equipment with almost no slowdown."
 	cost = 2
 	var_changes = list("item_slowdown_mod" = 0.25)
@@ -36,7 +36,7 @@
 	var_changes = list("siemens_coefficient" = 0.9)
 
 /datum/trait/positive/nonconductive_plus
-	name = "Major Non-Conductive"
+	name = "Non-Conductive, Major"
 	desc = "Decreases your susceptibility to electric shocks by a 25% amount."
 	cost = 2 //Let us not forget this effects tasers!
 	var_changes = list("siemens_coefficient" = 0.75)
@@ -48,7 +48,7 @@
 	var_changes = list("darksight" = 5, "flash_mod" = 1.1)
 
 /datum/trait/positive/darksight_plus
-	name = "Darksight (Major)"
+	name = "Darksight, Major"
 	desc = "Allows you to see in the dark for the whole screen."
 	cost = 2
 	var_changes = list("darksight" = 8, "flash_mod" = 1.2)
@@ -72,7 +72,7 @@
 	var_changes = list("unarmed_types" = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/punch, /datum/unarmed_attack/bite/sharp/numbing))
 
 /datum/trait/positive/minor_brute_resist
-	name = "Minor Brute Resist"
+	name = "Brute Resist, Minor"
 	desc = "Adds 15% resistance to brute damage sources."
 	cost = 2
 	var_changes = list("brute_mod" = 0.85)
@@ -85,7 +85,7 @@
 	excludes = list(/datum/trait/positive/minor_burn_resist,/datum/trait/positive/burn_resist)
 
 /datum/trait/positive/minor_burn_resist
-	name = "Minor Burn Resist"
+	name = "Burn Resist, Minor"
 	desc = "Adds 15% resistance to burn damage sources."
 	cost = 2
 	var_changes = list("burn_mod" = 0.85)

@@ -246,8 +246,7 @@
 [i]Transponder[/i]: Transmitting (CIV), NanoTrasen IFF
 [b]Notice[/b]: NanoTrasen Base, authorized personnel only"}
 	base = 1
-	icon_state = "globe"
-	color = "#d35b5b"
+	icon_state = "reddwarf"
 	initial_generic_waypoints = list(
 		"tether_dockarm_d1a1", //Bottom left,
 		"tether_dockarm_d1a2", //Top left,

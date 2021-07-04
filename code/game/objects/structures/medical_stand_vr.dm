@@ -107,7 +107,7 @@
 
 		var/action_type
 		if(available_options.len > 1)
-			action_type = input(usr, "What do you want to attach/detach?") as null|anything in available_options
+			action_type = tgui_input_list(usr, "What do you want to attach/detach?", "Attach/Detach Choice", available_options)
 		else if(available_options.len)
 			action_type = available_options[1]
 		if(usr.stat == DEAD || !CanMouseDrop(target))
@@ -175,7 +175,7 @@
 
 	var/action_type
 	if(available_options.len > 1)
-		action_type = input(user, "What do you want to do?") as null|anything in available_options
+		action_type = tgui_input_list(user, "What do you want to do?", "Stand Choice", available_options)
 	else if(available_options.len)
 		action_type = available_options[1]
 	switch (action_type)
@@ -240,7 +240,7 @@
 	set name = "Set IV transfer amount"
 	set category = "Object"
 	set src in range(1)
-	var/N = input("Amount per transfer from this:","[src]") as null|anything in transfer_amounts
+	var/N = tgui_input_list(usr, "Amount per transfer from this:","[src]", transfer_amounts)
 	if(N)
 		transfer_amount = N
 

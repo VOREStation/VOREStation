@@ -9,20 +9,20 @@
 	. = ..()
 	if(!.)
 		return
-	var/shuttle_tag = input(user, "Which shuttle do you want to jump?") as null|anything in SSshuttles.shuttles
+	var/shuttle_tag = tgui_input_list(user, "Which shuttle do you want to jump?", "Shuttle Choice", SSshuttles.shuttles)
 	if (!shuttle_tag) return
 
 	var/datum/shuttle/S = SSshuttles.shuttles[shuttle_tag]
 
-	var/origin_area = input(user, "Which area is the shuttle at now? (MAKE SURE THIS IS CORRECT OR THINGS WILL BREAK)") as null|area in world
+	var/origin_area = tgui_input_list(user, "Which area is the shuttle at now? (MAKE SURE THIS IS CORRECT OR THINGS WILL BREAK)", "Area Choice", return_areas())
 	if (!origin_area) return
 
-	var/destination_area = input(user, "Which area is the shuttle at now? (MAKE SURE THIS IS CORRECT OR THINGS WILL BREAK)") as null|area in world
+	var/destination_area = tgui_input_list(user, "Which area is the shuttle at now? (MAKE SURE THIS IS CORRECT OR THINGS WILL BREAK)", "Area Choice", return_areas())
 	if (!destination_area) return
 
-	var/long_jump = alert(user, "Is there a transition area for this jump?","", "Yes", "No")
+	var/long_jump = tgui_alert(user, "Is there a transition area for this jump?","Transition?", list("Yes","No"))
 	if (long_jump == "Yes")
-		var/transition_area = input(user, "Which area is the transition area? (MAKE SURE THIS IS CORRECT OR THINGS WILL BREAK)") as null|area in world
+		var/transition_area = tgui_input_list(user, "Which area is the transition area? (MAKE SURE THIS IS CORRECT OR THINGS WILL BREAK)", "Area Choice", return_areas())
 		if (!transition_area) return
 
 		var/move_duration = input(user, "How many seconds will this jump take?") as num

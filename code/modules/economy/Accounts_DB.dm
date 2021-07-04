@@ -127,12 +127,12 @@
 			creating_new_account = 1
 
 		if("add_funds")
-			var/amount = input("Enter the amount you wish to add", "Silently add funds") as num
+			var/amount = input(usr, "Enter the amount you wish to add", "Silently add funds") as num
 			if(detailed_account_view)
 				detailed_account_view.money = min(detailed_account_view.money + amount, fund_cap)
 
 		if("remove_funds")
-			var/amount = input("Enter the amount you wish to remove", "Silently remove funds") as num
+			var/amount = input(usr, "Enter the amount you wish to remove", "Silently remove funds") as num
 			if(detailed_account_view)
 				detailed_account_view.money = max(detailed_account_view.money - amount, -fund_cap)
 

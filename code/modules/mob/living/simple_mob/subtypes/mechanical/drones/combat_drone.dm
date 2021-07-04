@@ -60,6 +60,11 @@
 	var/datum/effect/effect/system/ion_trail_follow/ion_trail = null
 	var/obj/item/shield_projector/shields = null
 
+/mob/living/simple_mob/mechanical/combat_drone/melee
+	icon_state = "droneM"
+	icon_dead = "droneM_dead"
+	ai_holder_type = /datum/ai_holder/simple_mob/melee/hit_and_run
+
 /mob/living/simple_mob/mechanical/combat_drone/Initialize()
 	ion_trail = new
 	ion_trail.set_up(src)

@@ -97,7 +97,6 @@
 			var/their_slowdown = max(H.calculate_item_encumbrance(), 1)
 			item_tally = max(item_tally, their_slowdown) // If our slowdown is less than theirs, then we become as slow as them (before species modifires).
 
-	item_tally /= 2 //VOREStation Add
 	item_tally *= species.item_slowdown_mod
 
 	. += item_tally

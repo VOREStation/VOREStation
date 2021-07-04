@@ -510,14 +510,14 @@
 
 /obj/item/toy/mecha/ripley
 	name = "toy ripley"
-	desc = "Mini-Mecha action figure! Collect them all! 1/11."
+	desc = "Mini-Mecha action figure! Collect them all! 1/13."
 	max_combat_health = 4 // 200 integrity
 	special_attack_type = SPECIAL_ATTACK_DAMAGE
 	special_attack_cry = "GIGA DRILL BREAK"
 
 /obj/item/toy/mecha/fireripley
 	name = "toy firefighting ripley"
-	desc = "Mini-Mecha action figure! Collect them all! 2/11."
+	desc = "Mini-Mecha action figure! Collect them all! 2/13."
 	icon_state = "fireripleytoy"
 	max_combat_health = 5 // 250 integrity?
 	special_attack_type = SPECIAL_ATTACK_UTILITY
@@ -525,7 +525,7 @@
 
 /obj/item/toy/mecha/deathripley
 	name = "toy deathsquad ripley"
-	desc = "Mini-Mecha action figure! Collect them all! 3/11."
+	desc = "Mini-Mecha action figure! Collect them all! 3/13."
 	icon_state = "deathripleytoy"
 	max_combat_health = 5 // 250 integrity
 	special_attack_type = SPECIAL_ATTACK_OTHER
@@ -542,7 +542,7 @@
 
 /obj/item/toy/mecha/gygax
 	name = "toy gygax"
-	desc = "Mini-Mecha action figure! Collect them all! 4/11."
+	desc = "Mini-Mecha action figure! Collect them all! 4/13."
 	icon_state = "gygaxtoy"
 	max_combat_health = 5 // 250 integrity
 	special_attack_type = SPECIAL_ATTACK_UTILITY
@@ -550,7 +550,7 @@
 
 /obj/item/toy/mecha/durand
 	name = "toy durand"
-	desc = "Mini-Mecha action figure! Collect them all! 5/11."
+	desc = "Mini-Mecha action figure! Collect them all! 5/13."
 	icon_state = "durandtoy"
 	max_combat_health = 6 // 400 integrity
 	special_attack_type = SPECIAL_ATTACK_HEAL
@@ -558,7 +558,7 @@
 
 /obj/item/toy/mecha/honk
 	name = "toy H.O.N.K."
-	desc = "Mini-Mecha action figure! Collect them all! 6/11."
+	desc = "Mini-Mecha action figure! Collect them all! 6/13."
 	icon_state = "honktoy"
 	max_combat_health = 4 // 140 integrity
 	special_attack_type = SPECIAL_ATTACK_OTHER
@@ -572,7 +572,7 @@
 
 /obj/item/toy/mecha/marauder
 	name = "toy marauder"
-	desc = "Mini-Mecha action figure! Collect them all! 7/11."
+	desc = "Mini-Mecha action figure! Collect them all! 7/13."
 	icon_state = "maraudertoy"
 	max_combat_health = 7 // 500 integrity
 	special_attack_type = SPECIAL_ATTACK_DAMAGE
@@ -580,7 +580,7 @@
 
 /obj/item/toy/mecha/seraph
 	name = "toy seraph"
-	desc = "Mini-Mecha action figure! Collect them all! 8/11."
+	desc = "Mini-Mecha action figure! Collect them all! 8/13."
 	icon_state = "seraphtoy"
 	max_combat_health = 8 // 550 integrity
 	special_attack_type = SPECIAL_ATTACK_DAMAGE
@@ -588,7 +588,7 @@
 
 /obj/item/toy/mecha/mauler
 	name = "toy mauler"
-	desc = "Mini-Mecha action figure! Collect them all! 9/11."
+	desc = "Mini-Mecha action figure! Collect them all! 9/13."
 	icon_state = "maulertoy"
 	max_combat_health = 7 // 500 integrity
 	special_attack_type = SPECIAL_ATTACK_DAMAGE
@@ -596,7 +596,7 @@
 
 /obj/item/toy/mecha/odysseus
 	name = "toy odysseus"
-	desc = "Mini-Mecha action figure! Collect them all! 10/11."
+	desc = "Mini-Mecha action figure! Collect them all! 10/13."
 	icon_state = "odysseustoy"
 	max_combat_health = 4 // 120 integrity
 	special_attack_type = SPECIAL_ATTACK_HEAL
@@ -604,13 +604,12 @@
 
 /obj/item/toy/mecha/phazon
 	name = "toy phazon"
-	desc = "Mini-Mecha action figure! Collect them all! 11/11."
+	desc = "Mini-Mecha action figure! Collect them all! 11/13."
 	icon_state = "phazontoy"
 	max_combat_health = 6 // 200 integrity
 	special_attack_type = SPECIAL_ATTACK_UTILITY
 	special_attack_cry = "NO-CLIP"
 
-/* // TG-Station Added toys, commenting these out until I port 'em later.
 /obj/item/toy/mecha/reticence
 	name = "toy Reticence"
 	desc = "12/13"
@@ -633,7 +632,14 @@
 	max_combat_health = 4 //200 integrity
 	special_attack_type = SPECIAL_ATTACK_UTILITY
 	special_attack_cry = "ROLL OUT"
-*/
+
+/obj/item/toy/mecha/fivestars
+	name = "toy fivestars"
+	desc = "Five stars!"
+	icon_state = "fivestarstoy"
+	max_combat_health = 4 //200 integrity
+	special_attack_type = SPECIAL_ATTACK_UTILITY
+	special_attack_cry = "ROLL OUT"
 
 #undef SPECIAL_ATTACK_HEAL
 #undef SPECIAL_ATTACK_DAMAGE

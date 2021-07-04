@@ -84,7 +84,7 @@
 /obj/item/weapon/mining_scanner/advanced/verb/change_size()
 	set name = "Set Scanner Range"
 	set category = "Object"
-	var/custom_range = input("Scanner Range","Pick a range to scan. ") as null|anything in list(0,1,2,3,4,5,6,7)
+	var/custom_range = tgui_input_list(usr, "Scanner Range","Pick a range to scan. ", list(0,1,2,3,4,5,6,7))
 	if(custom_range)
 		range = custom_range
 		to_chat(usr, "<span class='notice'>Scanner will now look up to [range] tile(s) away.</span>")

@@ -125,7 +125,7 @@ SUBSYSTEM_DEF(game_master)
 
 /datum/controller/subsystem/game_master/proc/choose_game_master(mob/user)
 	var/list/subtypes = subtypesof(/datum/game_master)
-	var/new_gm_path = input(user, "What kind of Game Master do you want?", "New Game Master", /datum/game_master/default) as null|anything in subtypes
+	var/new_gm_path = tgui_input_list(user, "What kind of Game Master do you want?", "New Game Master", subtypes)
 	if(new_gm_path)
 		log_and_message_admins("has swapped the current GM ([GM.type]) for a new GM ([new_gm_path]).")
 		GM = new new_gm_path(src)
