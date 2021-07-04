@@ -1184,15 +1184,13 @@
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/aro3/atmos)
 "iZ" = (
-/obj/machinery/power/terminal{
-	dir = 4
+/obj/effect/floor_decal/industrial/warning{
+	dir = 5
 	},
 /obj/structure/cable/cyan{
-	d2 = 8;
-	icon_state = "0-8"
+	icon_state = "2-4"
 	},
-/obj/structure/cable/cyan,
-/turf/simulated/floor/plating/eris/under,
+/turf/simulated/floor/tiled/eris/white/gray_platform,
 /area/aro3/power)
 "jb" = (
 /obj/machinery/power/apc/alarms_hidden{
@@ -1650,18 +1648,16 @@
 /turf/simulated/floor/tiled/eris/cafe,
 /area/aro3/kitchen)
 "mW" = (
-/obj/machinery/power/terminal{
-	dir = 4
+/obj/effect/floor_decal/industrial/warning{
+	dir = 6
 	},
 /obj/structure/cable/cyan{
-	d2 = 8;
-	icon_state = "0-8"
+	icon_state = "4-8"
 	},
 /obj/structure/cable/cyan{
-	d2 = 1;
-	icon_state = "0-2"
+	icon_state = "1-8"
 	},
-/turf/simulated/floor/plating/eris/under,
+/turf/simulated/floor/tiled/eris/white/gray_platform,
 /area/aro3/power)
 "mX" = (
 /obj/structure/flora/tree/jungle_small,
@@ -2047,19 +2043,6 @@
 "qC" = (
 /turf/space/internal_edge/bottomleft,
 /area/aro3/bar)
-"qG" = (
-/obj/structure/cable/cyan{
-	d2 = 1;
-	icon_state = "0-4"
-	},
-/obj/machinery/power/smes/buildable/hybrid{
-	input_attempt = 1;
-	input_level = 250000;
-	input_level_max = 250000;
-	output_level = 190000
-	},
-/turf/simulated/floor/plating/eris/under,
-/area/aro3/power)
 "qH" = (
 /obj/machinery/vending/loadout/clothing,
 /turf/simulated/floor/tiled/eris/dark/gray_platform,
@@ -2228,11 +2211,10 @@
 /turf/simulated/floor/tiled/eris/dark,
 /area/aro3/function)
 "rP" = (
-/obj/machinery/power/rtg/abductor/hybrid/built,
-/obj/structure/cable/cyan{
-	icon_state = "0-4"
+/obj/effect/floor_decal/industrial/warning{
+	dir = 9
 	},
-/turf/simulated/floor/plating/eris/under,
+/turf/simulated/floor/tiled/eris/white/gray_platform,
 /area/aro3/power)
 "rU" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -2713,15 +2695,11 @@
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/aro3/hallway_port)
 "wx" = (
-/obj/machinery/power/smes/buildable/hybrid{
-	input_attempt = 1;
-	input_level = 250000;
-	input_level_max = 250000;
-	output_level = 190000
+/obj/machinery/power/terminal{
+	dir = 4
 	},
 /obj/structure/cable/cyan{
-	d2 = 1;
-	icon_state = "0-4"
+	icon_state = "0-8"
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/aro3/power)
@@ -2787,10 +2765,15 @@
 /turf/simulated/wall/rpshull,
 /area/space)
 "wW" = (
+/obj/machinery/power/smes/buildable/hybrid{
+	input_attempt = 1;
+	input_level = 250000;
+	input_level_max = 250000;
+	output_level = 190000
+	},
 /obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
+	d2 = 1;
+	icon_state = "0-4"
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/aro3/power)
@@ -3679,7 +3662,7 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/aro3/repair_bay)
 "DM" = (
-/obj/machinery/gear_dispenser/suit/autolok,
+/obj/machinery/gear_dispenser/suit_fancy/autolok,
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/aro3/eva_hall)
 "DQ" = (
@@ -3967,12 +3950,16 @@
 /turf/simulated/floor/tiled/white,
 /area/aro3/suite_starboard_wc)
 "Gs" = (
-/obj/structure/cable/cyan{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
+/obj/machinery/power/rtg/kugelblitz{
+	pixel_y = 10
 	},
-/turf/simulated/floor/plating/eris/under,
+/obj/effect/floor_decal/industrial/warning{
+	dir = 10
+	},
+/obj/structure/cable/cyan{
+	icon_state = "0-4"
+	},
+/turf/simulated/floor/tiled/eris/white/gray_platform,
 /area/aro3/power)
 "Gt" = (
 /obj/structure/table/steel,
@@ -5178,9 +5165,14 @@
 /area/aro3/surfluid)
 "RK" = (
 /obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
+	d2 = 1;
+	icon_state = "0-4"
+	},
+/obj/machinery/power/smes/buildable/hybrid{
+	input_attempt = 1;
+	input_level = 250000;
+	input_level_max = 250000;
+	output_level = 190000
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/aro3/power)
@@ -13949,10 +13941,10 @@ xj
 uE
 kH
 aq
+TW
 rP
-rP
-rP
-rP
+Gs
+TW
 aq
 Fn
 yn
@@ -14091,10 +14083,10 @@ xj
 uE
 Lq
 aq
-Gs
+TW
 iZ
 mW
-RK
+TW
 aq
 Fn
 Fn
@@ -14235,7 +14227,7 @@ XQ
 aq
 TW
 wx
-qG
+wx
 TW
 aq
 aq
@@ -14377,7 +14369,7 @@ NV
 aq
 qV
 wW
-wW
+RK
 TW
 TW
 aq
