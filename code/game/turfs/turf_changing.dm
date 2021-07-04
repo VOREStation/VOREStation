@@ -59,6 +59,7 @@
 		if(S.zone) S.zone.rebuild()
 
 	cut_overlays(TRUE)
+	RemoveElement(/datum/element/turf_z_transparency)
 
 	if(ispath(N, /turf/simulated/floor))
 		var/turf/simulated/W = new N( locate(src.x, src.y, src.z) )
