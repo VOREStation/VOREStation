@@ -286,6 +286,13 @@
 	persistence_id = "library"
 	req_one_access = list(access_library)
 
+/obj/structure/sign/painting/chapel_secure
+	name = "\improper Religious Painting Exhibit mounting"
+	desc = "For masterpieces hand-picked by the chaplain."
+	desc_with_canvas = "A masterpiece hand-picked by the chaplain, supposedly."
+	persistence_id = "chapel"
+	req_one_access = list(access_chapel_office)
+
 /obj/structure/sign/painting/library_private // keep your smut away from prying eyes, or non-librarians at least
 	name = "\improper Private Painting Exhibit mounting"
 	desc = "For art pieces deemed too subversive or too illegal to be shared outside of curators."
