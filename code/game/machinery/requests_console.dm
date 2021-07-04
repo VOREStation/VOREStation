@@ -27,7 +27,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 	desc = "A console intended to send requests to different departments on the station."
 	anchored = 1
 	icon = 'icons/obj/terminals_vr.dmi' //VOREStation Edit
-	icon_state = "req_comp0"
+	icon_state = "req_comp_0"
 	layer = ABOVE_WINDOW_LAYER
 	circuit = /obj/item/weapon/circuitboard/request
 	blocks_emissive = NONE
@@ -221,8 +221,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 				for (var/obj/machinery/requests_console/Console in allConsoles)
 					if(Console.department == department)
 						Console.newmessagepriority = 0
-						Console.icon_state = "req_comp0"
-						Console.set_light(1)
+						Console.update_icon()
 			if(tempScreen == RCS_MAINMENU)
 				reset_message()
 			screen = tempScreen
