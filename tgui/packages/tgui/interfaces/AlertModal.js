@@ -70,6 +70,7 @@ export class AlertModal extends Component {
     return (
       <Window
         title={title}
+        theme="abstract"
         width={350}
         height={windowHeight}
         canClose={timeout > 0}>
