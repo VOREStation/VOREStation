@@ -177,7 +177,7 @@
 	if(!S.open)
 		to_chat(user, "<span class='warning'>You have to cut [S] open first!</span>")
 		return
-	M.visible_message("<span class='notice'>\The [user] scans the wounds on [M]'s [S.name] with [src]</span>")
+	M.visible_message("<b>\The [user]</b> scans the wounds on [M]'s [S.name] with [src]")
 
 	src.add_data(S)
 

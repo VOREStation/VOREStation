@@ -63,7 +63,7 @@
 
 		if(removing)
 			user.put_in_hands(removing)
-			user.visible_message("<span class='notice'>\The [user] removes \the [removing] from \the [src].</span>")
+			user.visible_message("<b>\The [user]</b> removes \the [removing] from \the [src].")
 			playsound(src, 'sound/machines/click.ogg', 10, 1)
 			update_icon()
 			return
@@ -91,7 +91,7 @@
 				to_chat(user, "<span class='warning'>\The [src] has no manipulator installed.</span>")
 				return
 			user.put_in_hands(manipulator)
-			user.visible_message("<span class='notice'>\The [user] levers \the [manipulator] from \the [src].</span>")
+			user.visible_message("<b>\The [user]</b> levers \the [manipulator] from \the [src].")
 			playsound(src, thing.usesound, 50, 1)
 			mat_cost = initial(mat_cost)
 			manipulator = null
@@ -107,7 +107,7 @@
 			user.drop_from_inventory(manipulator, src)
 			playsound(src, 'sound/machines/click.ogg', 10,1)
 			mat_cost = initial(mat_cost) / (2*manipulator.rating)
-			user.visible_message("<span class='notice'>\The [user] slots \the [manipulator] into \the [src].</span>")
+			user.visible_message("<b>\The [user]</b> slots \the [manipulator] into \the [src].")
 			update_icon()
 			update_rating_mod()
 			return
@@ -143,7 +143,7 @@
 			mat_storage += (SHEET_MATERIAL_AMOUNT/2*0.8) //two plasma ores needed per sheet, some inefficiency for not using refined product
 			success = TRUE
 		if(success)
-			user.visible_message("<span class='notice'>\The [user] loads \the [src] with \the [M].</span>")
+			user.visible_message("<b>\The [user]</b> loads \the [src] with \the [M].")
 			playsound(src, 'sound/weapons/flipblade.ogg', 50, 1)
 		update_icon()
 		return

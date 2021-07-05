@@ -90,11 +90,11 @@
 
 /obj/structure/prop/prism/proc/rotate_auto(var/new_bearing)
 	if(rotation_lock)
-		visible_message("<span class='notice'>\The [src] shudders.</span>")
+		visible_message("<b>\The [src]</b> shudders.")
 		playsound(src, 'sound/effects/clang.ogg', 50, 1)
 		return
 
-	visible_message("<span class='notice'>\The [src] rotates to a bearing of [new_bearing].</span>")
+	visible_message("<b>\The [src]</b> rotates to a bearing of [new_bearing].")
 
 	var/rotate_degrees = new_bearing - degrees_from_north
 

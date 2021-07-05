@@ -1964,7 +1964,7 @@
 		if(ishuman(occupant))
 			GrantActions(occupant, 1)
 	else
-		visible_message("<span class='notice'>\The [usr] starts to climb into [src.name]</span>")
+		visible_message("<b>\The [usr]</b> starts to climb into [src.name]")
 		if(enter_after(40,usr))
 			if(!src.occupant)
 				moved_inside(usr)
@@ -2604,11 +2604,11 @@
 		var/obj/item/mecha_parts/mecha_equipment/tool/passenger/P = passengers[pname]
 		var/mob/occupant = P.occupant
 
-		user.visible_message("<span class='notice'>\The [user] begins opening the hatch on \the [P]...</span>", "<span class='notice'>You begin opening the hatch on \the [P]...</span>")
+		user.visible_message("<b>\The [user]</b> begins opening the hatch on \the [P]...", "<span class='notice'>You begin opening the hatch on \the [P]...</span>")
 		if (!do_after(user, 40))
 			return
 
-		user.visible_message("<span class='notice'>\The [user] opens the hatch on \the [P] and removes [occupant]!</span>", "<span class='notice'>You open the hatch on \the [P] and remove [occupant]!</span>")
+		user.visible_message("<b>\The [user]</b> opens the hatch on \the [P] and removes [occupant]!", "<span class='notice'>You open the hatch on \the [P] and remove [occupant]!</span>")
 		P.go_out()
 		P.log_message("[occupant] was removed.")
 		return
@@ -2795,7 +2795,7 @@
 	if(prob(temp_deflect_chance))//Deflected
 		src.log_append_to_last("Armor saved.")
 		src.occupant_message("<span class='notice'>\The [user]'s attack is stopped by the armor.</span>")
-		visible_message("<span class='notice'>\The [user] rebounds off [src.name]'s armor!</span>")
+		visible_message("<b>\The [user]</b> rebounds off [src.name]'s armor!")
 		user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name]</font>")
 		playsound(src, 'sound/weapons/slash.ogg', 50, 1, -1)
 

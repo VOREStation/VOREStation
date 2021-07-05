@@ -217,7 +217,7 @@
 	if(istype(aiming_with, /obj/item/weapon/gun))
 		playsound(owner, 'sound/weapons/TargetOff.ogg', 50,1)
 	if(!no_message)
-		owner.visible_message("<span class='notice'>\The [owner] lowers \the [aiming_with].</span>")
+		owner.visible_message("<b>\The [owner]</b> lowers \the [aiming_with].")
 
 	aiming_with = null
 	aiming_at.aimed -= src

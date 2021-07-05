@@ -398,7 +398,7 @@ var/list/mining_overlay_cache = list()
 
 		if (istype(W, /obj/item/device/measuring_tape))
 			var/obj/item/device/measuring_tape/P = W
-			user.visible_message("<span class='notice'>\The [user] extends \a [P] towards \the [src].</span>","<span class='notice'>You extend \the [P] towards \the [src].</span>")
+			user.visible_message("<b>\The [user]</b> extends \a [P] towards \the [src].","<span class='notice'>You extend \the [P] towards \the [src].</span>")
 			if(do_after(user, 15))
 				to_chat(user, "<span class='notice'>\The [src] has been excavated to a depth of [excavation_level]cm.</span>")
 			return
@@ -408,7 +408,7 @@ var/list/mining_overlay_cache = list()
 			if(C.mode) //Mode means scanning
 				C.depth_scanner.scan_atom(user, src)
 			else
-				user.visible_message("<span class='notice'>\The [user] extends \the [C] over \the [src], a flurry of red beams scanning \the [src]'s surface!</span>", "<span class='notice'>You extend \the [C] over \the [src], a flurry of red beams scanning \the [src]'s surface!</span>")
+				user.visible_message("<b>\The [user]</b> extends \the [C] over \the [src], a flurry of red beams scanning \the [src]'s surface!", "<span class='notice'>You extend \the [C] over \the [src], a flurry of red beams scanning \the [src]'s surface!</span>")
 				if(do_after(user, 15))
 					to_chat(user, "<span class='notice'>\The [src] has been excavated to a depth of [excavation_level]cm.</span>")
 			return
