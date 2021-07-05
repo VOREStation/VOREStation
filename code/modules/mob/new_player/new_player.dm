@@ -132,8 +132,6 @@
 		new_player_panel_proc()
 
 	if(href_list["observe"])
-		var/alert_time = ticker?.current_state <= GAME_STATE_SETTING_UP ? 1 : round(config.respawn_time/10/60)
-
 		if(tgui_alert(src,"Are you sure you wish to observe? If you do, make sure to not use any knowledge gained from observing if you decide to join later.","Player Setup",list("Yes","No")) == "Yes")
 			if(!client)	return 1
 

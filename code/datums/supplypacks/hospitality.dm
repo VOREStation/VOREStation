@@ -79,6 +79,23 @@
 	containertype = /obj/structure/closet/crate/allico
 	containername = "crate of gifts"
 
+/datum/supply_pack/hospitality/painting
+	name = "Painting equipment"
+	contains = list(
+		/obj/item/paint_brush = 2,
+		/obj/item/paint_palette = 2,
+		/obj/item/weapon/reagent_containers/glass/rag = 2,
+		/obj/structure/easel = 1, // How does that even fit
+		/obj/item/canvas = 1,
+		/obj/item/canvas/nineteen_nineteen = 1,
+		/obj/item/canvas/twentyfour_twentyfour = 1,
+		/obj/item/canvas/twentythree_nineteen = 1,
+		/obj/item/canvas/twentythree_twentythree = 1
+	)
+	cost = 20
+	containertype = /obj/structure/closet/crate/centauri
+	containername = "Painting equipment"
+
 /datum/supply_pack/randomised/hospitality/
 	group = "Hospitality"
 

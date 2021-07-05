@@ -1819,6 +1819,7 @@ shaved
 //Teshari things
 /datum/sprite_accessory/hair/teshari
 	name = "Teshari Default"
+	icon_add = 'icons/mob/human_face_vr_add.dmi'
 	icon_state = "teshari_default"
 	species_allowed = list(SPECIES_TESHARI)
 
@@ -1855,8 +1856,8 @@ shaved
 	icon_state = "teshari_mohawk"
 
 /datum/sprite_accessory/hair/teshari/pointy
-		name = "Teshari Pointy"
-		icon_state = "teshari_pointy"
+	name = "Teshari Pointy"
+	icon_state = "teshari_pointy"
 
 /datum/sprite_accessory/hair/teshari/upright
 	name = "Teshari Upright"
@@ -1875,7 +1876,6 @@ shaved
 	icon_state = "teshari_mushroom"
 
 //Tesh things ported from Ark Station
-
 /datum/sprite_accessory/hair/teshari/twies
 	name = "Teshari Twies"
 	icon_state = "teshari_twies"
