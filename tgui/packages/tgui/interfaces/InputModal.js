@@ -60,6 +60,7 @@ export const InputModal = (props, context) => {
           width="100%"
           height="100%"
           autoFocus
+          dontUseTabForIndent
           onKeyDown={handleKeyDown}
           onChange={(_e, val) => {
             setCurValue(val);
