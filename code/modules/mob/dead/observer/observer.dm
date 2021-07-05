@@ -334,16 +334,15 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	to_chat(src, "<font color='blue'><B>AntagHUD [antagHUD ? "Enabled" : "Disabled"]</B></font>")
 
 /mob/observer/dead/proc/jumpable_areas()
-	var/list/areas = sortAtom(return_areas())
+	var/list/areas = return_sorted_areas()
 	if(client?.holder)
 		return areas
 	
-	var/list/area_map = list()
-	for(var/area/A as anything in areas)
+	for(var/key in areas)
+		var/area/A = areas[key]
 		if(A.z in using_map?.secret_levels)
-			continue
-		area_map[A.name] = A
-	return area_map
+			areas -= key
+	return areas
 
 /mob/observer/dead/proc/jumpable_mobs()
 	var/list/mobs = getmobs()
