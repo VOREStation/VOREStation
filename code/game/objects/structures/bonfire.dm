@@ -180,8 +180,9 @@
 			O.fire_act(null, 1000, 500)
 		else if(isliving(A) && get_fuel_amount() > 4)
 			var/mob/living/L = A
-			L.adjust_fire_stacks(get_fuel_amount() / 4)
-			L.IgniteMob()
+			if(!(L.is_incorporeal()))
+				L.adjust_fire_stacks(get_fuel_amount() / 4)
+				L.IgniteMob()
 
 /obj/structure/bonfire/update_icon()
 	cut_overlays()
