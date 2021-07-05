@@ -26,11 +26,11 @@
 	var/drain_finalized = 0				// Determines if the succubus drain will be KO'd/absorbed. Can be toggled on at any time.
 	var/fuzzy = 0						// Preference toggle for sharp/fuzzy icon.
 	var/permit_healbelly = TRUE
-	var/can_be_drop_prey = FALSE
+	var/can_be_drop_prey = TRUE
 	var/can_be_drop_pred = TRUE			// Mobs are pred by default.
 	var/allow_spontaneous_tf = FALSE	// Obviously.
 	var/next_preyloop					// For Fancy sound internal loop
-	var/adminbus_trash = FALSE			// For abusing trash eater for event shenanigans.
+	var/adminbus_trash = TRUE			// For abusing trash eater for event shenanigans.
 	var/adminbus_eat_minerals = FALSE	// This creature subsists on a diet of pure adminium.
 	var/vis_height = 32					// Sprite height used for resize features.
 	var/show_vore_fx = TRUE				// Show belly fullscreens
@@ -500,7 +500,14 @@
 		return FALSE
 
 	// Prepare messages
-	if(user == pred) //Feeding someone to yourself
+	//CHOMPEdit begin
+	if(prey.is_slipping)
+		attempt_msg = "<span class='warning'>It seems like [prey] is about to slide into [pred]'s [lowertext(belly.name)]!</span>"
+		success_msg = "<span class='warning'>[prey] suddenly slides into [pred]'s [lowertext(belly.name)]!</span>"
+	else if(pred.is_slipping)
+		attempt_msg = "<span class='warning'>It seems like [prey] is gonna end up inside [pred]'s [lowertext(belly.name)] as [pred] comes sliding over!</span>"
+		success_msg = "<span class='warning'>[prey] suddenly slips inside of [pred]'s [lowertext(belly.name)] as [pred] slides into them!</span>"
+	else if(user == pred) //CHOMPEdit End //Feeding someone to yourself
 		attempt_msg = "<span class='warning'>[pred] is attempting to [lowertext(belly.vore_verb)] [prey] into their [lowertext(belly.name)]!</span>"
 		success_msg = "<span class='warning'>[pred] manages to [lowertext(belly.vore_verb)] [prey] into their [lowertext(belly.name)]!</span>"
 	else //Feeding someone to another person
