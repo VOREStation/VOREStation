@@ -1,4 +1,4 @@
-#define INVENTORY_POUCH_SPACE INVENTORY_STANDARD_SPACE*0.25 // 25% the size of a backpack for normal size
+#define INVENTORY_POUCH_SPACE ITEMSIZE_COST_SMALL*4 // 25% the size of a backpack for normal size
 
 // Pouches for small storage in pocket slots
 /obj/item/weapon/storage/pouch
@@ -48,13 +48,13 @@
 	name = "storage pouch (large)"
 	desc = "This storage pouch can be used to provide a good amount of additional storage for quick access."
 	icon_state = "large_generic"
-	max_storage_space = INVENTORY_POUCH_SPACE*2
+	max_storage_space = ITEMSIZE_COST_SMALL*6
 
 /obj/item/weapon/storage/pouch/small
 	name = "storage pouch (small)"
 	desc = "This storage pouch can be used to provide a small amount of additional storage for quick access."
 	icon_state = "small_generic"
-	max_storage_space = INVENTORY_POUCH_SPACE*0.5
+	max_storage_space = ITEMSIZE_COST_SMALL*2
 
 /obj/item/weapon/storage/pouch/ammo
 	name = "storage pouch (ammo)"
