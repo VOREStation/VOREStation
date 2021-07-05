@@ -2,9 +2,24 @@ macro "borghotkeymode"
 	elem 
 		name = "TAB"
 		command = ".winset \"mainwindow.macro=borgmacro hotkey_toggle.is-checked=false input.focus=true input.background-color=#D3B5B5\""
-	elem 
-		name = "CENTER+REP"
-		command = ".center"
+	elem
+		name = "Shift"
+		command = "KeyDown Shift"
+	elem
+		name = "Shift+UP"
+		command = "KeyUp Shift"
+	elem
+		name = "Ctrl"
+		command = "KeyDown Ctrl"
+	elem
+		name = "Ctrl+UP"
+		command = "KeyUp Ctrl"
+	elem
+		name = "Alt"
+		command = "KeyDown Alt"
+	elem
+		name = "Alt+UP"
+		command = "KeyUp Alt"
 	elem 
 		name = "NORTHEAST"
 		command = ".northeast"
@@ -24,8 +39,11 @@ macro "borghotkeymode"
 		name = "CTRL+WEST"
 		command = "westface"
 	elem 
-		name = "WEST+REP"
-		command = ".west"
+		name = "West"
+		command = "KeyDown West"
+	elem
+		name = "West+UP"
+		command = "KeyUp West"
 	elem 
 		name = "ALT+NORTH"
 		command = "northfaceperm"
@@ -33,8 +51,11 @@ macro "borghotkeymode"
 		name = "CTRL+NORTH"
 		command = "northface"
 	elem 
-		name = "NORTH+REP"
-		command = ".moveup"
+		name = "North"
+		command = "KeyDown North"
+	elem
+		name = "North+UP"
+		command = "KeyUp North"
 	elem 
 		name = "ALT+EAST"
 		command = "eastfaceperm"
@@ -42,18 +63,18 @@ macro "borghotkeymode"
 		name = "CTRL+EAST"
 		command = "eastface"
 	elem 
-		name = "EAST+REP"
-		command = ".moveright"
+		name = "East"
+		command = "KeyDown East"
+	elem
+		name = "East+UP"
+		command = "KeyUp East"
 	elem 
 		name = "ALT+SOUTH"
 		command = "southfaceperm"
 	elem 
 		name = "CTRL+SOUTH"
 		command = "southface"
-	elem 
-		name = "SOUTH+REP"
-		command = ".movedown"
-	elem 
+	elem
 		name = "CTRL+SHIFT+NORTH"
 		command = "shiftnorth"
 	elem 
@@ -65,6 +86,11 @@ macro "borghotkeymode"
 	elem 
 		name = "CTRL+SHIFT+EAST"
 		command = "shifteast"
+		name = "South"
+		command = "KeyDown South"
+	elem
+		name = "South+UP"
+		command = "KeyUp South"
 	elem 
 		name = "INSERT"
 		command = "a-intent right"
@@ -99,17 +125,17 @@ macro "borghotkeymode"
 		name = "5"
 		command = ".me"
 	elem 
-		name = "A+REP"
-		command = ".moveleft"
+		name = "A"
+		command = "KeyDown A"
+	elem
+		name = "A+UP"
+		command = "KeyUp A"
 	elem 
-		name = "CTRL+A+REP"
-		command = ".moveleft"
-	elem 
-		name = "D+REP"
-		command = ".moveright"
-	elem 
-		name = "CTRL+D+REP"
-		command = ".moveright"
+		name = "D"
+		command = "KeyDown D"
+	elem
+		name = "D+UP"
+		command = "KeyUp D"
 	elem 
 		name = "F"
 		command = "a-intent left"
@@ -141,20 +167,20 @@ macro "borghotkeymode"
 		name = "CTRL+R"
 		command = ".southwest"
 	elem "s_key"
-		name = "S+REP"
-		command = ".movedown"
-	elem 
-		name = "CTRL+S+REP"
-		command = ".movedown"
+		name = "S"
+		command = "KeyDown S"
+	elem
+		name = "S+UP"
+		command = "KeyUp S"
 	elem 
 		name = "T"
 		command = ".say"
 	elem "w_key"
-		name = "W+REP"
-		command = ".moveup"
-	elem 
-		name = "CTRL+W+REP"
-		command = ".moveup"
+		name = "W"
+		command = "KeyDown W"
+	elem
+		name = "W+UP"
+		command = "KeyUp W"
 	elem 
 		name = "X"
 		command = ".northeast"
@@ -235,9 +261,24 @@ macro "macro"
 	elem 
 		name = "TAB"
 		command = ".winset \"mainwindow.macro=hotkeymode hotkey_toggle.is-checked=true mapwindow.map.focus=true\""
-	elem 
-		name = "CENTER+REP"
-		command = ".center"
+	elem
+		name = "Shift"
+		command = "KeyDown Shift"
+	elem
+		name = "Shift+UP"
+		command = "KeyUp Shift"
+	elem
+		name = "Ctrl"
+		command = "KeyDown Ctrl"
+	elem
+		name = "Ctrl+UP"
+		command = "KeyUp Ctrl"
+	elem
+		name = "Alt"
+		command = "KeyDown Alt"
+	elem
+		name = "Alt+UP"
+		command = "KeyUp Alt"
 	elem 
 		name = "NORTHEAST"
 		command = ".northeast"
@@ -257,8 +298,11 @@ macro "macro"
 		name = "CTRL+WEST"
 		command = "westface"
 	elem 
-		name = "WEST+REP"
-		command = ".moveleft"
+		name = "West"
+		command = "KeyDown West"
+	elem
+		name = "West+UP"
+		command = "KeyUp West"
 	elem 
 		name = "ALT+NORTH"
 		command = "northfaceperm"
@@ -266,8 +310,11 @@ macro "macro"
 		name = "CTRL+NORTH"
 		command = "northface"
 	elem 
-		name = "NORTH+REP"
-		command = ".moveup"
+		name = "North"
+		command = "KeyDown North"
+	elem
+		name = "North+UP"
+		command = "KeyUp North"
 	elem 
 		name = "ALT+EAST"
 		command = "eastfaceperm"
@@ -275,18 +322,18 @@ macro "macro"
 		name = "CTRL+EAST"
 		command = "eastface"
 	elem 
-		name = "EAST+REP"
-		command = ".moveright"
+		name = "East"
+		command = "KeyDown East"
+	elem
+		name = "East+UP"
+		command = "KeyUp East"
 	elem 
 		name = "ALT+SOUTH"
 		command = "southfaceperm"
 	elem 
 		name = "CTRL+SOUTH"
 		command = "southface"
-	elem 
-		name = "SOUTH+REP"
-		command = ".movedown"
-	elem 
+	elem
 		name = "CTRL+SHIFT+NORTH"
 		command = "shiftnorth"
 	elem 
@@ -298,6 +345,11 @@ macro "macro"
 	elem 
 		name = "CTRL+SHIFT+EAST"
 		command = "shifteast"
+		name = "South"
+		command = "KeyDown South"
+	elem
+		name = "South+UP"
+		command = "KeyUp South"
 	elem 
 		name = "INSERT"
 		command = "a-intent right"
@@ -317,11 +369,17 @@ macro "macro"
 		name = "CTRL+4"
 		command = "a-intent harm"
 	elem 
-		name = "CTRL+A+REP"
-		command = ".moveleft"
+		name = "CTRL+A"
+		command = "KeyDown A"
+	elem
+		name = "CTRL+A+UP"
+		command = "KeyUp A"
 	elem 
-		name = "CTRL+D+REP"
-		command = ".moveright"
+		name = "CTRL+D"
+		command = "KeyDown D"
+	elem
+		name = "CTRL+D+UP"
+		command = "KeyUp D"
 	elem 
 		name = "CTRL+E"
 		command = "quick-equip"
@@ -338,11 +396,17 @@ macro "macro"
 		name = "CTRL+R"
 		command = ".southwest"
 	elem 
-		name = "CTRL+S+REP"
-		command = ".movedown"
+		name = "CTRL+S"
+		command = "KeyDown S"
+	elem
+		name = "CTRL+S+UP"
+		command = "KeyUp S"
 	elem 
-		name = "CTRL+W+REP"
-		command = ".moveup"
+		name = "CTRL+W"
+		command = "KeyDown W"
+	elem
+		name = "CTRL+W+UP"
+		command = "KeyUp W"
 	elem 
 		name = "CTRL+X"
 		command = ".northeast"
@@ -420,9 +484,24 @@ macro "hotkeymode"
 	elem 
 		name = "TAB"
 		command = ".winset \"mainwindow.macro=macro hotkey_toggle.is-checked=false input.focus=true\""
-	elem 
-		name = "CENTER+REP"
-		command = ".center"
+	elem
+		name = "Shift"
+		command = "KeyDown Shift"
+	elem
+		name = "Shift+UP"
+		command = "KeyUp Shift"
+	elem
+		name = "Ctrl"
+		command = "KeyDown Ctrl"
+	elem
+		name = "Ctrl+UP"
+		command = "KeyUp Ctrl"
+	elem
+		name = "Alt"
+		command = "KeyDown Alt"
+	elem
+		name = "Alt+UP"
+		command = "KeyUp Alt"
 	elem 
 		name = "NORTHEAST"
 		command = ".northeast"
@@ -442,8 +521,11 @@ macro "hotkeymode"
 		name = "CTRL+WEST"
 		command = "westface"
 	elem 
-		name = "WEST+REP"
-		command = ".moveleft"
+		name = "West"
+		command = "KeyDown West"
+	elem
+		name = "West+UP"
+		command = "KeyUp West"
 	elem 
 		name = "ALT+NORTH"
 		command = "northfaceperm"
@@ -451,8 +533,11 @@ macro "hotkeymode"
 		name = "CTRL+NORTH"
 		command = "northface"
 	elem 
-		name = "NORTH+REP"
-		command = ".moveup"
+		name = "North"
+		command = "KeyDown North"
+	elem
+		name = "North+UP"
+		command = "KeyUp North"
 	elem 
 		name = "ALT+EAST"
 		command = "eastfaceperm"
@@ -460,18 +545,18 @@ macro "hotkeymode"
 		name = "CTRL+EAST"
 		command = "eastface"
 	elem 
-		name = "EAST+REP"
-		command = ".moveright"
+		name = "East"
+		command = "KeyDown East"
+	elem
+		name = "East+UP"
+		command = "KeyUp East"
 	elem 
 		name = "ALT+SOUTH"
 		command = "southfaceperm"
 	elem 
 		name = "CTRL+SOUTH"
 		command = "southface"
-	elem 
-		name = "SOUTH+REP"
-		command = ".movedown"
-	elem 
+	elem
 		name = "CTRL+SHIFT+NORTH"
 		command = "shiftnorth"
 	elem 
@@ -483,6 +568,11 @@ macro "hotkeymode"
 	elem 
 		name = "CTRL+SHIFT+EAST"
 		command = "shifteast"
+		name = "South"
+		command = "KeyDown South"
+	elem
+		name = "South+UP"
+		command = "KeyUp South"
 	elem 
 		name = "INSERT"
 		command = "a-intent right"
@@ -520,17 +610,17 @@ macro "hotkeymode"
 		name = "6"
 		command = ".Subtle"
 	elem 
-		name = "A+REP"
-		command = ".moveleft"
+		name = "A"
+		command = "KeyDown A"
+	elem
+		name = "A+UP"
+		command = "KeyUp A"
 	elem 
-		name = "CTRL+A+REP"
-		command = ".moveleft"
-	elem 
-		name = "D+REP"
-		command = ".moveright"
-	elem 
-		name = "CTRL+D+REP"
-		command = ".moveright"
+		name = "D"
+		command = "KeyDown D"
+	elem
+		name = "D+UP"
+		command = "KeyUp D"
 	elem 
 		name = "E"
 		command = "quick-equip"
@@ -574,20 +664,20 @@ macro "hotkeymode"
 		name = "CTRL+R"
 		command = ".southwest"
 	elem "s_key"
-		name = "S+REP"
-		command = ".movedown"
-	elem 
-		name = "CTRL+S+REP"
-		command = ".movedown"
+		name = "S"
+		command = "KeyDown S"
+	elem
+		name = "S+UP"
+		command = "KeyUp S"
 	elem 
 		name = "T"
 		command = ".say"
 	elem "w_key"
-		name = "W+REP"
-		command = ".moveup"
-	elem 
-		name = "CTRL+W+REP"
-		command = ".moveup"
+		name = "W"
+		command = "KeyDown W"
+	elem
+		name = "W+UP"
+		command = "KeyUp W"
 	elem 
 		name = "X"
 		command = ".northeast"
@@ -674,9 +764,24 @@ macro "borgmacro"
 	elem 
 		name = "TAB"
 		command = ".winset \"mainwindow.macro=borghotkeymode hotkey_toggle.is-checked=true mapwindow.map.focus=true input.background-color=#F0F0F0\""
-	elem 
-		name = "CENTER+REP"
-		command = ".center"
+	elem
+		name = "Shift"
+		command = "KeyDown Shift"
+	elem
+		name = "Shift+UP"
+		command = "KeyUp Shift"
+	elem
+		name = "Ctrl"
+		command = "KeyDown Ctrl"
+	elem
+		name = "Ctrl+UP"
+		command = "KeyUp Ctrl"
+	elem
+		name = "Alt"
+		command = "KeyDown Alt"
+	elem
+		name = "Alt+UP"
+		command = "KeyUp Alt"
 	elem 
 		name = "NORTHEAST"
 		command = ".northeast"
@@ -696,8 +801,11 @@ macro "borgmacro"
 		name = "CTRL+WEST"
 		command = "westface"
 	elem 
-		name = "WEST+REP"
-		command = ".moveleft"
+		name = "West"
+		command = "KeyDown West"
+	elem
+		name = "West+UP"
+		command = "KeyUp West"
 	elem 
 		name = "ALT+NORTH"
 		command = "northfaceperm"
@@ -705,8 +813,11 @@ macro "borgmacro"
 		name = "CTRL+NORTH"
 		command = "northface"
 	elem 
-		name = "NORTH+REP"
-		command = ".moveup"
+		name = "North"
+		command = "KeyDown North"
+	elem
+		name = "North+UP"
+		command = "KeyUp North"
 	elem 
 		name = "ALT+EAST"
 		command = "eastfaceperm"
@@ -714,18 +825,18 @@ macro "borgmacro"
 		name = "CTRL+EAST"
 		command = "eastface"
 	elem 
-		name = "EAST+REP"
-		command = ".moveright"
+		name = "East"
+		command = "KeyDown East"
+	elem
+		name = "East+UP"
+		command = "KeyUp East"
 	elem 
 		name = "ALT+SOUTH"
 		command = "southfaceperm"
 	elem 
 		name = "CTRL+SOUTH"
 		command = "southface"
-	elem 
-		name = "SOUTH+REP"
-		command = ".movedown"
-	elem 
+	elem
 		name = "CTRL+SHIFT+NORTH"
 		command = "shiftnorth"
 	elem 
@@ -737,6 +848,11 @@ macro "borgmacro"
 	elem 
 		name = "CTRL+SHIFT+EAST"
 		command = "shifteast"
+		name = "South"
+		command = "KeyDown South"
+	elem
+		name = "South+UP"
+		command = "KeyUp South"
 	elem 
 		name = "INSERT"
 		command = "a-intent right"
@@ -756,11 +872,17 @@ macro "borgmacro"
 		name = "CTRL+4"
 		command = "a-intent left"
 	elem 
-		name = "CTRL+A+REP"
-		command = ".moveleft"
+		name = "CTRL+A"
+		command = "KeyDown A"
+	elem
+		name = "CTRL+A+UP"
+		command = "KeyUp A"
 	elem 
-		name = "CTRL+D+REP"
-		command = ".moveright"
+		name = "CTRL+D"
+		command = "KeyDown D"
+	elem
+		name = "CTRL+D+UP"
+		command = "KeyUp D"
 	elem 
 		name = "CTRL+F"
 		command = "a-intent left"
@@ -774,11 +896,17 @@ macro "borgmacro"
 		name = "CTRL+R"
 		command = ".southwest"
 	elem 
-		name = "CTRL+S+REP"
-		command = ".movedown"
+		name = "CTRL+S"
+		command = "KeyDown S"
+	elem
+		name = "CTRL+S+UP"
+		command = "KeyUp S"
 	elem 
-		name = "CTRL+W+REP"
-		command = ".moveup"
+		name = "CTRL+W"
+		command = "KeyDown W"
+	elem
+		name = "CTRL+W+UP"
+		command = "KeyUp W"
 	elem 
 		name = "CTRL+X"
 		command = ".northeast"
