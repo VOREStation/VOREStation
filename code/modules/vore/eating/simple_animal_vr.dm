@@ -29,7 +29,7 @@
 //
 /mob/living/simple_mob/proc/toggle_digestion()
 	set name = "Toggle Animal's Digestion"
-	set desc = "Enables digestion on this mob for 20 minutes."
+	set desc = "Enables digestion on this mob for three minutes."
 	set category = "OOC"
 	set src in oview(1)
 
@@ -39,14 +39,14 @@
 	if(!vore_selected)
 		to_chat(user, "<span class='warning'>[src] isn't planning on eating anything much less digesting it.</span>")
 		return
-	if(ai_holder.retaliate || (ai_holder.hostile && faction != user.faction))
+	if(ai_holder.hostile && faction != user.faction))
 		to_chat(user, "<span class='warning'>This predator isn't friendly, and doesn't give a shit about your opinions of it digesting you.</span>")
 		return
 	if(vore_selected.digest_mode == DM_HOLD)
-		var/confirm = tgui_alert(user, "Enabling digestion on [name] will cause it to digest all stomach contents. Using this to break OOC prefs is against the rules. Digestion will reset after 20 minutes.", "Enabling [name]'s Digestion", list("Enable", "Cancel"))
+		var/confirm = tgui_alert(user, "Enabling digestion on [name] will cause it to digest all stomach contents. Using this to break OOC prefs is against the rules. Digestion will reset after three minutes.", "Enabling [name]'s Digestion", list("Enable", "Cancel"))
 		if(confirm == "Enable")
 			vore_selected.digest_mode = DM_DIGEST
-			addtimer(VARSET_CALLBACK(vore_selected, digest_mode, vore_default_mode), 20 MINUTES)
+			addtimer(VARSET_CALLBACK(vore_selected, digest_mode, vore_default_mode), 3 MINUTES)
 	else
 		var/confirm = tgui_alert(user, "This mob is currently set to process all stomach contents. Do you want to disable this?", "Disabling [name]'s Digestion", list("Disable", "Cancel"))
 		if(confirm == "Disable")
