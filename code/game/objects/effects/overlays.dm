@@ -1,12 +1,14 @@
 /obj/effect/overlay
 	name = "overlay"
 	unacidable = 1
+	plane = OBJ_PLANE
 	var/i_attached//Added for possible image attachments to objects. For hallucinations and the like.
 
 /obj/effect/overlay/beam//Not actually a projectile, just an effect.
 	name="beam"
 	icon='icons/effects/beam.dmi'
 	icon_state="b_beam"
+	plane = ABOVE_OBJ_PLANE
 	var/tmp/atom/BeamSource
 
 /obj/effect/overlay/beam/New()
