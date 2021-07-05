@@ -241,11 +241,12 @@
 			return
 
 	var/old_loc = src.loc
-	src.pickup(user)
 	if (istype(src.loc, /obj/item/weapon/storage))
 		var/obj/item/weapon/storage/S = src.loc
-		S.remove_from_storage(src)
-
+		if(!S.remove_from_storage(src))
+			return
+	
+	src.pickup(user)
 	src.throwing = 0
 	if (src.loc == user)
 		if(!user.unEquip(src))
