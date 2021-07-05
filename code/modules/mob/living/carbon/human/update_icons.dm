@@ -271,6 +271,11 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 			for(var/M in part.markings)
 				icon_key += "[M][part.markings[M]["color"]]"
+			
+			// VOREStation Edit Start
+			if(part.nail_polish)
+				icon_key += "_[part.nail_polish.icon]_[part.nail_polish.icon_state]_[part.nail_polish.color]"
+			// VOREStation Edit End
 
 			if(part.robotic >= ORGAN_ROBOT)
 				icon_key += "2[part.model ? "-[part.model]": ""]"

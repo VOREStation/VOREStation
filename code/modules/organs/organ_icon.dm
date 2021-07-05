@@ -131,6 +131,15 @@ var/global/list/limb_icon_cache = list()
 					I.Blend(rgb(h_col[1],h_col[2],h_col[3]), ICON_MULTIPLY) //VOREStation edit
 					limb_icon_cache[cache_key] = I
 				mob_icon.Blend(limb_icon_cache[cache_key], ICON_OVERLAY)
+			
+			// VOREStation edit start
+			if(nail_polish)
+				var/icon/I = new(nail_polish.icon, nail_polish.icon_state)
+				I.Blend(nail_polish.color, ICON_MULTIPLY)
+				add_overlay(I)
+				mob_icon.Blend(I, ICON_OVERLAY)
+				icon_cache_key += "_[nail_polish.icon]_[nail_polish.icon_state]_[nail_polish.color]"
+			// VOREStation edit end
 
 	if(model)
 		icon_cache_key += "_model_[model]"
