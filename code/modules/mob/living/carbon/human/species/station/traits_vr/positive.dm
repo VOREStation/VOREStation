@@ -11,13 +11,13 @@
 	name = "Hardy"
 	desc = "Allows you to carry heavy equipment with less slowdown."
 	cost = 1
-	var_changes = list("item_slowdown_mod" = 0.4)
+	var_changes = list("item_slowdown_mod" = 0.25)
 
 /datum/trait/positive/hardy_plus
 	name = "Hardy, Major"
 	desc = "Allows you to carry heavy equipment with almost no slowdown."
 	cost = 1
-	var_changes = list("item_slowdown_mod" = 0.15)
+	var_changes = list("item_slowdown_mod" = 0.1)
 
 /datum/trait/positive/endurance_high
 	name = "High Endurance"
@@ -45,13 +45,13 @@
 	name = "Darksight"
 	desc = "Allows you to see a short distance in the dark."
 	cost = 1
-	var_changes = list("darksight" = 5, "flash_mod" = 1.1)
+	var_changes = list("darksight" = 5, "flash_mod" = 2.0)
 
 /datum/trait/positive/darksight_plus
 	name = "Darksight, Major"
 	desc = "Allows you to see in the dark for the whole screen."
 	cost = 1
-	var_changes = list("darksight" = 8, "flash_mod" = 1.2)
+	var_changes = list("darksight" = 8, "flash_mod" = 3.0)
 
 /datum/trait/positive/melee_attack
 	name = "Sharp Melee"
