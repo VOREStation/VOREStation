@@ -6,6 +6,7 @@
 	icon_state = "strangepresent"
 	density = 1
 	anchored = 0
+	plane = OBJ_PLANE
 
 /obj/effect/temporary_effect
 	name = "self deleting effect"
@@ -25,7 +26,7 @@
 	desc = "Something swinging really wide."
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "cleave"
-	plane = MOB_PLANE
+	plane = ABOVE_MOB_PLANE
 	layer = ABOVE_MOB_LAYER
 	time_to_die = 6
 	alpha = 140
@@ -73,6 +74,7 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	light_on = TRUE
 	blocks_emissive = FALSE
+	plane = OBJ_PLANE
 
 /obj/effect/dummy/lighting_obj/Initialize(mapload, _range, _power, _color, _duration)
 	. = ..()
