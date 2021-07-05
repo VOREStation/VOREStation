@@ -39,3 +39,13 @@
 	materials = list("gold" = 2000, "diamond" = 1000, "uranium" = 250)
 	build_path = /obj/item/weapon/storage/bag/trash/holding
 	sort_string = "QAAAC"
+
+/datum/design/item/boh/pouch_holding
+	name = "Pouch of Holding"
+	desc = "Somehow compresses the storage of a backpack into a pouch-sized container!"
+	id = "pouch_holding"
+	req_tech = list(TECH_BLUESPACE = 3, TECH_MATERIAL = 5)
+	materials = list("gold" = 3000, "diamond" = 2000, "uranium" = 250)
+	build_path = /obj/item/weapon/storage/pouch/holding
+	sort_string = "QAAAD"
+	
