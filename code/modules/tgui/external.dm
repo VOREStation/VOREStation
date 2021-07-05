@@ -162,13 +162,13 @@
 	set name = "Fix TGUI"
 	set category = "OOC"
 
-	if(alert(src, "Only use this verb if you have a white TGUI window stuck on your screen.", "Fix TGUI", "Continue", "Nevermind") != "Continue")
+	if(alert(src, "Only use this verb if you have a white TGUI window stuck on your screen.", "Fix TGUI", "Continue", "Nevermind") != "Continue") // Not tgui_alert since we're fixing tgui
 		return
 
 	SStgui.close_user_uis(mob)
-	if(alert(src, "Did that fix the problem?", "Fix TGUI", "Yes", "No") == "No")
+	if(alert(src, "Did that fix the problem?", "Fix TGUI", "Yes", "No") == "No") // Not tgui_alert since we're fixing tgui
 		SStgui.force_close_all_windows(mob)
-		alert(src, "UIs should be fixed now. If not, please cry to your nearest coder.", "Fix TGUI")
+		alert(src, "UIs should be fixed now. If not, please cry to your nearest coder.", "Fix TGUI") // Not tgui_alert since we're fixing tgui
 
 /**
  * verb

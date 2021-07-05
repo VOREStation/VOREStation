@@ -185,7 +185,7 @@
 	if(!length(detachable_limbs))
 		to_chat(src, SPAN_WARNING("You have no detachable limbs."))
 		return FALSE
-	var/obj/item/organ/external/E = input(usr, "Which limb do you wish to detach?", "Limb Removal") as null|anything in detachable_limbs
+	var/obj/item/organ/external/E = tgui_input_list(usr, "Which limb do you wish to detach?", "Limb Removal", detachable_limbs)
 	if(!check_can_detach_modular_limb(E))
 		return FALSE
 	if(!do_after(src, 2 SECONDS, src))

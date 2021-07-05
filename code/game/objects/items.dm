@@ -253,6 +253,7 @@
 	else
 		if(isliving(src.loc))
 			return
+			
 	if(user.put_in_active_hand(src))
 		if(isturf(old_loc))
 			var/obj/effect/temporary_effect/item_pickup_ghost/ghost = new(old_loc)

@@ -333,6 +333,8 @@ var/list/table_icon_cache = list()
 		return FALSE
 	if(istype(src,/obj/structure/table/bench) && !istype(S,/obj/structure/table/bench))
 		return FALSE
+	if(istype(src,/obj/structure/table/rack) && !istype(S,/obj/structure/table/rack))
+		return FALSE
 	if(istype(S,/obj/structure/table))
 		return TRUE
 	..()

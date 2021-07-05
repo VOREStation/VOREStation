@@ -102,7 +102,7 @@
 	for(var/decl/poster/posteroption in decls_repository.get_decls_of_type(/decl/poster))
 		options[posteroption.listing_name] = posteroption
 
-	var/choice = input(M,"Choose a poster!","Customize Poster") in options
+	var/choice = tgui_input_list(M, "Choose a poster!", "Customize Poster", options)
 	if(src && choice && !M.stat && in_range(M,src))
 		poster_decl = options[choice]
 		name = "rolled-up poly-poster - No.[poster_decl.icon_state]"
@@ -179,7 +179,7 @@
 	if(ruined)
 		return
 
-	if(alert("Do I want to rip the poster from the wall?","You think...","Yes","No") == "Yes")
+	if(tgui_alert(usr, "Do I want to rip the poster from the wall?","You think...",list("Yes","No")) == "Yes")
 
 		if(ruined || !user.Adjacent(src))
 			return

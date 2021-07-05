@@ -15,6 +15,7 @@
 	var/dead_state = 0
 	var/last_update = 0
 	var/last_notification
+	var/do_notify = TRUE
 
 	//Backend
 	var/ckey = ""

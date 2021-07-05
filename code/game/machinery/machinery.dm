@@ -122,8 +122,8 @@ Class Procs:
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 
 /obj/machinery/New(l, d=0)
-	..(l)
-	if(d)
+	..()
+	if(isnum(d))
 		set_dir(d)
 	if(ispath(circuit))
 		circuit = new circuit(src)

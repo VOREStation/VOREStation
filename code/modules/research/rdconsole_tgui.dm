@@ -410,7 +410,7 @@
 				to_chat(usr, "<span class='notice'>The destructive analyzer is busy at the moment.</span>")
 				return
 
-			if(alert("Proceeding will destroy loaded item. Continue?", "Destructive analyzer confirmation", "Yes", "No") == "No" || !linked_destroy)
+			if(tgui_alert(usr, "Proceeding will destroy loaded item. Continue?", "Destructive analyzer confirmation", list("Yes", "No")) == "No" || !linked_destroy)
 				return
 			linked_destroy.busy = 1
 			busy_msg = "Processing and Updating Database..."
@@ -605,7 +605,7 @@
 
 		if("reset") //Reset the R&D console's database.
 			griefProtection()
-			var/choice = alert("R&D Console Database Reset", "Are you sure you want to reset the R&D console's database? Data lost cannot be recovered.", "Continue", "Cancel")
+			var/choice = tgui_alert(usr, "R&D Console Database Reset", "Are you sure you want to reset the R&D console's database? Data lost cannot be recovered.", list("Continue", "Cancel"))
 			if(choice == "Continue")
 				busy_msg = "Updating Database..."
 				qdel(files)

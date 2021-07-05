@@ -105,14 +105,10 @@
 /turf/simulated/floor/tiled/dark,
 /area/tether/midpoint)
 "iK" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/alarm{
-	pixel_y = 26
-	},
-/turf/simulated/floor/wood,
-/area/tether/midpoint)
+/obj/structure/closet,
+/obj/random/plushie,
+/turf/simulated/floor/plating,
+/area/maintenance/tether_midpoint)
 "jt" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/door/firedoor/glass/hidden,
@@ -226,7 +222,7 @@
 /turf/simulated/floor/plating,
 /area/maintenance/tether_midpoint)
 "oP" = (
-/obj/structure/grille,
+/obj/random/junk,
 /turf/simulated/floor/plating,
 /area/maintenance/tether_midpoint)
 "pK" = (
@@ -236,14 +232,44 @@
 /turf/simulated/floor/plating,
 /area/maintenance/tether_midpoint)
 "pO" = (
-/obj/machinery/media/jukebox,
-/turf/simulated/floor/holofloor/tiled/dark,
-/area/tether/midpoint)
-"sw" = (
-/obj/machinery/vending/bepis{
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals9,
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 8
 	},
-/turf/simulated/floor/holofloor/tiled/dark,
+/obj/machinery/media/jukebox,
+/turf/simulated/floor/tiled/monotile,
+/area/tether/midpoint)
+"sw" = (
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals9,
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 8
+	},
+/obj/machinery/vending/snlvend,
+/turf/simulated/floor/tiled/monotile,
 /area/tether/midpoint)
 "sR" = (
 /obj/effect/floor_decal/borderfloorblack{
@@ -490,14 +516,24 @@
 /turf/simulated/floor/tiled/dark,
 /area/tether/midpoint)
 "Kh" = (
-/obj/structure/disposalpipe/segment{
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals9,
+/obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 4
 	},
-/obj/machinery/firealarm{
-	layer = 3.3;
-	pixel_y = 26
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 1
 	},
-/turf/simulated/floor/wood,
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 8
+	},
+/obj/machinery/vending/bepis,
+/turf/simulated/floor/tiled/monotile,
 /area/tether/midpoint)
 "KH" = (
 /obj/structure/disposalpipe/segment{
@@ -600,6 +636,12 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/tether_midpoint)
+"QE" = (
+/obj/structure/sign/painting/public{
+	pixel_y = -30
+	},
+/turf/simulated/floor/wood,
+/area/tether/midpoint)
 "RZ" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -650,6 +692,12 @@
 	},
 /turf/simulated/floor/wood,
 /area/tether/midpoint)
+"Wc" = (
+/obj/structure/sign/painting/public{
+	pixel_x = 30
+	},
+/turf/simulated/floor/wood,
+/area/tether/midpoint)
 "WU" = (
 /obj/machinery/light{
 	dir = 4
@@ -658,15 +706,23 @@
 /turf/simulated/floor/wood,
 /area/tether/midpoint)
 "WY" = (
-/obj/random/junk,
-/obj/random/junk,
-/turf/simulated/floor/plating,
-/area/maintenance/tether_midpoint)
-"Xo" = (
-/obj/machinery/vending/snlvend{
-	dir = 8
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
-/turf/simulated/floor/holofloor/tiled/dark,
+/obj/machinery/alarm{
+	pixel_y = 26
+	},
+/turf/simulated/floor/wood,
+/area/tether/midpoint)
+"Xo" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/firealarm{
+	layer = 3.3;
+	pixel_y = 26
+	},
+/turf/simulated/floor/wood,
 /area/tether/midpoint)
 "XO" = (
 /obj/effect/floor_decal/borderfloorblack,
@@ -689,11 +745,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/tether/midpoint)
-"Zd" = (
-/obj/structure/closet,
-/obj/random/plushie,
-/turf/simulated/floor/plating,
-/area/maintenance/tether_midpoint)
 
 (1,1,1) = {"
 kz
@@ -8994,11 +9045,11 @@ pK
 pK
 pK
 pK
+Pz
+Wc
 pK
 pK
-pK
-pK
-pK
+Wc
 Pz
 pK
 pK
@@ -9136,9 +9187,9 @@ pK
 pK
 PF
 PF
-pO
-Xo
-sw
+PF
+PF
+PF
 PF
 PF
 PF
@@ -9277,15 +9328,15 @@ tA
 pK
 pK
 Dz
-Dz
-Dz
-Dz
-Dz
+iK
+pM
+pM
+pM
 Dz
 oN
 yi
 ML
-Dz
+PF
 uA
 pK
 tA
@@ -9425,9 +9476,9 @@ cB
 Oq
 mz
 pM
+oP
 pM
-pM
-Dz
+PF
 wM
 pK
 dc
@@ -9559,7 +9610,7 @@ tA
 tA
 tA
 pK
-pK
+QE
 Dz
 Qv
 xl
@@ -9568,9 +9619,9 @@ jE
 Ha
 gV
 Ls
-pM
-Dz
-Or
+PF
+PF
+WY
 pK
 tA
 tA
@@ -9710,9 +9761,9 @@ Hs
 Hs
 Hs
 Hs
-WY
-Dz
-iK
+PF
+pO
+Or
 pK
 pK
 pK
@@ -9852,9 +9903,9 @@ Gl
 Gl
 Gl
 Hs
-oP
-Dz
-Kh
+PF
+sw
+Or
 pK
 pK
 pK
@@ -9985,7 +10036,7 @@ tA
 tA
 tA
 pK
-pK
+QE
 Dz
 Qv
 Hs
@@ -9994,8 +10045,8 @@ Gl
 Gl
 Gl
 Hs
-pM
-Dz
+PF
+Kh
 hi
 pK
 tA
@@ -10136,8 +10187,8 @@ Gl
 Gl
 Gl
 Hs
-pM
-Dz
+PF
+PF
 wM
 pK
 dc
@@ -10278,9 +10329,9 @@ Gl
 Gl
 Gl
 Hs
-Zd
-Dz
-Or
+pM
+PF
+Xo
 pK
 tA
 tA
@@ -10421,7 +10472,7 @@ Gl
 Hs
 Hs
 Dz
-Dz
+PF
 Or
 pK
 pK

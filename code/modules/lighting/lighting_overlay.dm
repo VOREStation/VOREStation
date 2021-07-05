@@ -26,7 +26,7 @@
 		stack_trace("a lighting object was assigned to a turf that already had a lighting object!")
 
 	affected_turf.lighting_object = src
-	affected_turf.luminosity = 0
+	affected_turf.set_luminosity(0)
 
 	for(var/turf/space/space_tile in RANGE_TURFS(1, affected_turf))
 		space_tile.update_starlight()
@@ -40,7 +40,7 @@
 	SSlighting.objects_queue -= src
 	if (isturf(affected_turf))
 		affected_turf.lighting_object = null
-		affected_turf.luminosity = 1
+		affected_turf.set_luminosity(1)
 		affected_turf.underlays -= current_underlay
 	affected_turf = null
 	return ..()
@@ -112,7 +112,7 @@
 
 		affected_turf.underlays += current_underlay
 
-	affected_turf.luminosity = set_luminosity
+	affected_turf.set_luminosity(set_luminosity)
 
 /datum/lighting_object/proc/removefromturf()
 	affected_turf.underlays -= current_underlay

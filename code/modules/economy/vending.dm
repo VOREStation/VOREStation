@@ -36,7 +36,11 @@
 	var/list/products	= list() // For each, use the following pattern:
 	var/list/contraband	= list() // list(/type/path = amount,/type/path2 = amount2)
 	var/list/premium 	= list() // No specified amount = only one in stock
+	/// Set automatically, allows coin use
+	var/has_premium = FALSE
 	var/list/prices     = list() // Prices for each item, list(/type/path = price), items not in the list don't have a price.
+	/// Set automatically, enables pricing
+	var/has_prices = FALSE
 
 	// List of vending_product items available.
 	var/list/product_records = list()
@@ -115,14 +119,23 @@ GLOBAL_LIST_EMPTY(vending_products)
 			product_records.Add(product)
 			GLOB.vending_products[entry] = 1
 
+	if(LAZYLEN(prices))
+		has_prices = TRUE
+	if(LAZYLEN(premium))
+		has_premium = TRUE
+
+	LAZYCLEARLIST(products)
+	LAZYCLEARLIST(contraband)
+	LAZYCLEARLIST(premium)
+	LAZYCLEARLIST(prices)
+	all_products.Cut()
+
 /obj/machinery/vending/Destroy()
 	qdel(wires)
 	wires = null
 	qdel(coin)
 	coin = null
-	for(var/datum/stored_item/vending_product/R in product_records)
-		qdel(R)
-	product_records = null
+	QDEL_NULL_LIST(product_records)
 	return ..()
 
 /obj/machinery/vending/ex_act(severity)
@@ -171,7 +184,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 		if(panel_open)
 			attack_hand(user)
 		return
-	else if(istype(W, /obj/item/weapon/coin) && premium.len > 0)
+	else if(istype(W, /obj/item/weapon/coin) && has_premium)
 		user.drop_item()
 		W.forceMove(src)
 		coin = W
@@ -266,7 +279,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	// Have the customer punch in the PIN before checking if there's enough money. Prevents people from figuring out acct is
 	// empty at high security levels
 	if(customer_account.security_level != 0) //If card requires pin authentication (ie seclevel 1 or 2)
-		var/attempt_pin = input("Enter pin code", "Vendor transaction") as num
+		var/attempt_pin = input(usr, "Enter pin code", "Vendor transaction") as num
 		customer_account = attempt_account_access(I.associated_account_number, attempt_pin, 2)
 
 		if(!customer_account)
@@ -350,7 +363,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	var/list/data = list()
 	var/list/listed_products = list()
 
-	data["chargesMoney"] = length(prices) > 0 ? TRUE : FALSE
+	data["chargesMoney"] = has_prices ? TRUE : FALSE
 	for(var/key = 1 to product_records.len)
 		var/datum/stored_item/vending_product/I = product_records[key]
 

@@ -306,12 +306,6 @@ This actually tests if they have the same entries and values.
 	for(var/i=1, i<L.len, ++i)
 		L.Swap(i,rand(i,L.len))
 
-//Return a list with no duplicate entries
-/proc/uniquelist(var/list/L)
-	. = list()
-	for(var/i in L)
-		. |= i
-
 //same, but returns nothing and acts on list in place (also handles associated values properly)
 /proc/uniqueList_inplace(list/L)
 	var/temp = L.Copy()
@@ -867,3 +861,16 @@ var/global/list/json_cache = list()
 	catch(var/exception/e)
 		log_error("Exception during JSON decoding ([json_to_decode]): [e]")
 		return list()
+
+//takes an input_key, as text, and the list of keys already used, outputting a replacement key in the format of "[input_key] ([number_of_duplicates])" if it finds a duplicate
+//use this for lists of things that might have the same name, like mobs or objects, that you plan on giving to a player as input
+/proc/avoid_assoc_duplicate_keys(input_key, list/used_key_list)
+	if(!input_key || !istype(used_key_list))
+		return
+	if(used_key_list[input_key])
+		used_key_list[input_key]++
+		input_key = "[input_key] ([used_key_list[input_key]])"
+	else
+		used_key_list[input_key] = 1
+	return input_key
+	

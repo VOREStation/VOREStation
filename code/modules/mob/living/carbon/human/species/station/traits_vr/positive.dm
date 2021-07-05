@@ -4,25 +4,25 @@
 /datum/trait/positive/speed_fast
 	name = "Haste"
 	desc = "Allows you to move faster on average than baseline."
-	cost = 3
+	cost = 4
 	var_changes = list("slowdown" = -0.5)
 
 /datum/trait/positive/hardy
 	name = "Hardy"
 	desc = "Allows you to carry heavy equipment with less slowdown."
-	cost = 0
-	var_changes = list("item_slowdown_mod" = 0.25)
+	cost = 1
+	var_changes = list("item_slowdown_mod" = 0.5)
 
 /datum/trait/positive/hardy_plus
-	name = "Major Hardy"
+	name = "Hardy, Major"
 	desc = "Allows you to carry heavy equipment with almost no slowdown."
-	cost = 1
-	var_changes = list("item_slowdown_mod" = 0.1)
+	cost = 2
+	var_changes = list("item_slowdown_mod" = 0.25)
 
 /datum/trait/positive/endurance_high
 	name = "High Endurance"
 	desc = "Increases your maximum total hitpoints to 125"
-	cost = 3
+	cost = 4
 	var_changes = list("total_health" = 125)
 
 /datum/trait/positive/endurance_high/apply(var/datum/species/S,var/mob/living/carbon/human/H)
@@ -31,27 +31,27 @@
 
 /datum/trait/positive/nonconductive
 	name = "Non-Conductive"
-	desc = "Decreases your susceptibility to electric shocks by a 50% amount."
+	desc = "Decreases your susceptibility to electric shocks by a 10% amount."
 	cost = 1 //This effects tasers!
-	var_changes = list("siemens_coefficient" = 0.5)
+	var_changes = list("siemens_coefficient" = 0.9)
 
 /datum/trait/positive/nonconductive_plus
-	name = "Major Non-Conductive"
-	desc = "Decreases your susceptibility to electric shocks by a 65% amount."
+	name = "Non-Conductive, Major"
+	desc = "Decreases your susceptibility to electric shocks by a 25% amount."
 	cost = 2 //Let us not forget this effects tasers!
-	var_changes = list("siemens_coefficient" = 0.35)
+	var_changes = list("siemens_coefficient" = 0.75)
 
 /datum/trait/positive/darksight
 	name = "Darksight"
 	desc = "Allows you to see a short distance in the dark."
-	cost = 0
-	var_changes = list("darksight" = 5, "flash_mod" = 2.0)
+	cost = 1
+	var_changes = list("darksight" = 5, "flash_mod" = 1.1)
 
 /datum/trait/positive/darksight_plus
-	name = "Darksight (Major)"
+	name = "Darksight, Major"
 	desc = "Allows you to see in the dark for the whole screen."
-	cost = 0
-	var_changes = list("darksight" = 8, "flash_mod" = 3.0)
+	cost = 2
+	var_changes = list("darksight" = 8, "flash_mod" = 1.2)
 
 /datum/trait/positive/melee_attack
 	name = "Sharp Melee"
@@ -62,7 +62,7 @@
 /datum/trait/positive/melee_attack_fangs
 	name = "Sharp Melee & Numbing Fangs"
 	desc = "Provides sharp melee attacks that do slightly more damage, along with fangs that makes the person bit unable to feel their body or pain."
-	cost = 0
+	cost = 2
 	var_changes = list("unarmed_types" = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp, /datum/unarmed_attack/bite/sharp/numbing))
 
 /datum/trait/positive/fangs
@@ -72,36 +72,36 @@
 	var_changes = list("unarmed_types" = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/punch, /datum/unarmed_attack/bite/sharp/numbing))
 
 /datum/trait/positive/minor_brute_resist
-	name = "Minor Brute Resist"
+	name = "Brute Resist, Minor"
 	desc = "Adds 15% resistance to brute damage sources."
-	cost = 1
+	cost = 2
 	var_changes = list("brute_mod" = 0.85)
 
 /datum/trait/positive/brute_resist
 	name = "Brute Resist"
 	desc = "Adds 25% resistance to brute damage sources."
-	cost = 2
+	cost = 3
 	var_changes = list("brute_mod" = 0.75)
 	excludes = list(/datum/trait/positive/minor_burn_resist,/datum/trait/positive/burn_resist)
 
 /datum/trait/positive/minor_burn_resist
-	name = "Minor Burn Resist"
+	name = "Burn Resist, Minor"
 	desc = "Adds 15% resistance to burn damage sources."
-	cost = 1
+	cost = 2
 	var_changes = list("burn_mod" = 0.85)
 
 /datum/trait/positive/burn_resist
 	name = "Burn Resist"
 	desc = "Adds 25% resistance to burn damage sources."
-	cost = 2
+	cost = 3
 	var_changes = list("burn_mod" = 0.75)
 	excludes = list(/datum/trait/positive/minor_brute_resist,/datum/trait/positive/brute_resist)
 
 /datum/trait/positive/photoresistant
 	name = "Photoresistant"
-	desc = "Decreases stun duration from flashes and other light-based stuns and disabilities by 50%"
+	desc = "Decreases stun duration from flashes and other light-based stuns and disabilities by 20%"
 	cost = 1
-	var_changes = list("flash_mod" = 0.5)
+	var_changes = list("flash_mod" = 0.8)
 
 /datum/trait/positive/winged_flight
 	name = "Winged Flight"
@@ -122,7 +122,7 @@
 /datum/trait/positive/antiseptic_saliva
 	name = "Antiseptic Saliva"
 	desc = "Your saliva has especially strong antiseptic properties that can be used to heal small wounds."
-	cost = 0
+	cost = 1
 
 /datum/trait/positive/antiseptic_saliva/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..()
@@ -131,7 +131,7 @@
 /datum/trait/positive/traceur
 	name = "Traceur"
 	desc = "You're capable of parkour and can *flip over low objects (most of the time)."
-	cost = 1
+	cost = 2
 	var_changes = list("agility" = 90)
 
 /datum/trait/positive/snowwalker
@@ -143,7 +143,7 @@
 /datum/trait/positive/weaver
 	name = "Weaver"
 	desc = "You can produce silk and create various articles of clothing and objects."
-	cost = 0
+	cost = 2
 	var_changes = list("is_weaver" = 1)
 
 /datum/trait/positive/weaver/apply(var/datum/species/S,var/mob/living/carbon/human/H)

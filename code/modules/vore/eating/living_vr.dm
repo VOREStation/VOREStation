@@ -5,7 +5,7 @@
 	var/feeding = TRUE					// Can the mob be vorishly force fed or fed to others?
 	var/absorbable = TRUE				// Are you allowed to absorb this person?
 	var/resizable = TRUE				// Can other people resize you? (Usually ignored for self-resizes)
-	var/digest_leave_remains = TRUE	// Will this mob leave bones/skull/etc after the melty demise?
+	var/digest_leave_remains = FALSE	// Will this mob leave bones/skull/etc after the melty demise?
 	var/allowmobvore = TRUE				// Will simplemobs attempt to eat the mob?
 	var/showvoreprefs = TRUE			// Determines if the mechanical vore preferences button will be displayed on the mob or not.
 	var/obj/belly/vore_selected			// Default to no vore capability.
@@ -26,11 +26,11 @@
 	var/drain_finalized = 0				// Determines if the succubus drain will be KO'd/absorbed. Can be toggled on at any time.
 	var/fuzzy = 0						// Preference toggle for sharp/fuzzy icon.
 	var/permit_healbelly = TRUE
-	var/can_be_drop_prey = TRUE
+	var/can_be_drop_prey = FALSE
 	var/can_be_drop_pred = TRUE			// Mobs are pred by default.
 	var/allow_spontaneous_tf = FALSE	// Obviously.
 	var/next_preyloop					// For Fancy sound internal loop
-	var/adminbus_trash = TRUE			// For abusing trash eater for event shenanigans.
+	var/adminbus_trash = FALSE			// For abusing trash eater for event shenanigans.
 	var/adminbus_eat_minerals = FALSE	// This creature subsists on a diet of pure adminium.
 	var/vis_height = 32					// Sprite height used for resize features.
 	var/show_vore_fx = TRUE				// Show belly fullscreens
@@ -161,12 +161,9 @@
 
 	//Handle case: /obj/item/device/radio/beacon
 	else if(istype(I,/obj/item/device/radio/beacon))
-		var/confirm = alert(user,
-			"[src == user ? "Eat the beacon?" : "Feed the beacon to [src]?"]",
-			"Confirmation",
-			"Yes!", "Cancel")
+		var/confirm = tgui_alert(user, "[src == user ? "Eat the beacon?" : "Feed the beacon to [src]?"]", "Confirmation", list("Yes!", "Cancel"))
 		if(confirm == "Yes!")
-			var/obj/belly/B = input("Which belly?", "Select A Belly") as null|anything in vore_organs
+			var/obj/belly/B = tgui_input_list(usr, "Which belly?", "Select A Belly", vore_organs)
 			if(!istype(B))
 				return TRUE
 			visible_message("<span class='warning'>[user] is trying to stuff a beacon into [src]'s [lowertext(B.name)]!</span>",
@@ -416,13 +413,15 @@
 	//You're in a belly!
 	if(isbelly(loc))
 		var/obj/belly/B = loc
-		var/confirm = alert(src, "You're in a mob. This is for escaping from preference-breaking and if you're otherwise unable to escape from endo (pred AFK for a long time).", "Confirmation", "Okay", "Cancel")
+		var/confirm = tgui_alert(src, "You're in a mob. Don't use this as a trick to get out of hostile animals. This is for escaping from preference-breaking and if you're otherwise unable to escape from endo (pred AFK for a long time).", "Confirmation", list("Okay", "Cancel"))
 		if(confirm != "Okay" || loc != B)
 			return
 		//Actual escaping
 		absorbed = 0	//Make sure we're not absorbed
 		muffled = 0		//Removes Muffling
 		forceMove(get_turf(src)) //Just move me up to the turf, let's not cascade through bellies, there's been a problem, let's just leave.
+		for(var/mob/living/simple_mob/SA in range(10))
+			SA.prey_excludes[src] = world.time
 		log_and_message_admins("[key_name(src)] used the OOC escape button to get out of [key_name(B.owner)] ([B.owner ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[B.owner.x];Y=[B.owner.y];Z=[B.owner.z]'>JMP</a>" : "null"])")
 
 		if(!ishuman(B.owner))
@@ -433,7 +432,7 @@
 		var/mob/living/silicon/pred = loc.loc //Thing holding the belly!
 		var/obj/item/device/dogborg/sleeper/belly = loc //The belly!
 
-		var/confirm = alert(src, "You're in a dogborg sleeper. This is for escaping from preference-breaking or if your predator disconnects/AFKs. If your preferences were being broken, please admin-help as well.", "Confirmation", "Okay", "Cancel")
+		var/confirm = tgui_alert(src, "You're in a dogborg sleeper. This is for escaping from preference-breaking or if your predator disconnects/AFKs. If your preferences were being broken, please admin-help as well.", "Confirmation", list("Okay", "Cancel"))
 		if(confirm != "Okay" || loc != belly)
 			return
 		//Actual escaping
@@ -460,17 +459,17 @@
 /mob/living/proc/eat_held_mob(mob/living/user, mob/living/prey, mob/living/pred)
 	var/belly
 	if(user != pred)
-		belly = input("Choose Belly") in pred.vore_organs
+		belly = tgui_input_list(usr, "Choose Belly", "Belly Choice", pred.vore_organs)
 	else
 		belly = pred.vore_selected
 	return perform_the_nom(user, prey, pred, belly)
 
 /mob/living/proc/feed_self_to_grabbed(mob/living/user, mob/living/pred)
-	var/belly = input("Choose Belly") in pred.vore_organs
+	var/belly = tgui_input_list(usr, "Choose Belly", "Belly Choice", pred.vore_organs)
 	return perform_the_nom(user, user, pred, belly)
 
 /mob/living/proc/feed_grabbed_to_other(mob/living/user, mob/living/prey, mob/living/pred)
-	var/belly = input("Choose Belly") in pred.vore_organs
+	var/belly = tgui_input_list(usr, "Choose Belly", "Belly Choice", pred.vore_organs)
 	return perform_the_nom(user, prey, pred, belly)
 
 //
@@ -480,7 +479,9 @@
 	//Sanity
 	if(!user || !prey || !pred || !istype(belly) || !(belly in pred.vore_organs))
 		log_debug("[user] attempted to feed [prey] to [pred], via [belly ? lowertext(belly.name) : "*null*"] but it went wrong.")
-		return
+		return FALSE
+	if(pred == prey)
+		return FALSE
 
 	// The belly selected at the time of noms
 	var/attempt_msg = "ERROR: Vore message couldn't be created. Notify a dev. (at)"
@@ -499,14 +500,7 @@
 		return FALSE
 
 	// Prepare messages
-	//CHOMPEdit begin
-	if(prey.is_slipping)
-		attempt_msg = "<span class='warning'>It seems like [prey] is about to slide into [pred]'s [lowertext(belly.name)]!</span>"
-		success_msg = "<span class='warning'>[prey] suddenly slides into [pred]'s [lowertext(belly.name)]!</span>"
-	else if(pred.is_slipping)
-		attempt_msg = "<span class='warning'>It seems like [prey] is gonna end up inside [pred]'s [lowertext(belly.name)] as [pred] comes sliding over!</span>"
-		success_msg = "<span class='warning'>[prey] suddenly slips inside of [pred]'s [lowertext(belly.name)] as [pred] slides into them!</span>"
-	else if(user == pred) //CHOMPEdit End //Feeding someone to yourself
+	if(user == pred) //Feeding someone to yourself
 		attempt_msg = "<span class='warning'>[pred] is attempting to [lowertext(belly.vore_verb)] [prey] into their [lowertext(belly.name)]!</span>"
 		success_msg = "<span class='warning'>[pred] manages to [lowertext(belly.vore_verb)] [prey] into their [lowertext(belly.name)]!</span>"
 	else //Feeding someone to another person
@@ -628,7 +622,7 @@
 				else
 					visible_message("<span class='warning'>[src] is threatening to make [P] disappear!</span>")
 					if(P.id)
-						var/confirm = alert(src, "The PDA you're holding contains a vulnerable ID card. Will you risk it?", "Confirmation", "Definitely", "Cancel")
+						var/confirm = tgui_alert(src, "The PDA you're holding contains a vulnerable ID card. Will you risk it?", "Confirmation", list("Definitely", "Cancel"))
 						if(confirm != "Definitely")
 							return
 					if(!do_after(src, 100, P))
@@ -695,7 +689,6 @@
 				to_chat(src, "<span class='notice'>You can taste the flavor of garbage and leftovers. Delicious?</span>")
 			else
 				to_chat(src, "<span class='notice'>You can taste the flavor of gluttonous waste of food.</span>")
-		//TFF 10/7/19 - Add custom flavour for collars for trash can trait.
 		else if (istype(I,/obj/item/clothing/accessory/collar))
 			visible_message("<span class='warning'>[src] demonstrates their voracious capabilities by swallowing [I] whole!</span>")
 			to_chat(src, "<span class='notice'>You can taste the submissiveness in the wearer of [I]!</span>")

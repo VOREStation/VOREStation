@@ -37,7 +37,7 @@
 		to_chat(user, "<span class='notice'>No ID is inserted.</span>")
 		return
 
-	var/choice = alert(user,"What do you want to do?","[src]","Restore ID access","Eject ID","Cancel")
+	var/choice = tgui_alert(user,"What do you want to do?","[src]",list("Restore ID access","Eject ID","Cancel"))
 	if(user.incapacitated() || (get_dist(src, user) > 1))
 		return
 	switch(choice)

@@ -22,90 +22,70 @@ var/list/holder_mob_icon_cache = list()
 		)
 	pixel_y = 8
 	var/mob/living/held_mob
+	var/matrix/original_transform
+	var/original_vis_flags = NONE
 
-/obj/item/weapon/holder/New()
-	..()
+/obj/item/weapon/holder/Initialize(mapload, mob/held)
+	ASSERT(ismob(held))
+	. = ..()
+	held_mob = held
+	original_vis_flags = held.vis_flags
+	held.vis_flags = VIS_INHERIT_ID|VIS_INHERIT_LAYER|VIS_INHERIT_PLANE
+
+	held.forceMove(src)
+	vis_contents += held
+	name = held.name
+	original_transform = held.transform
+	held.transform = null
+
+	// I really hate this, but I'm sleepy and unable to figure out a nice stateful way to do it
+	// Entered and Exited seem ideal but all the inventory procs are trash and put items on
+	// turfs before you when manhandling things in/out of backpacks and inventory slots.
 	START_PROCESSING(SSobj, src)
+
+/obj/item/weapon/holder/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	if(held_mob)
+		dump_mob()
+	if(ismob(loc))
+		var/mob/M = loc
+		M.drop_from_inventory(src, get_turf(src))
+	return ..()
+
+/obj/item/weapon/holder/process()
+	if(held_mob?.loc != src || isturf(loc))
+		qdel(src)
+
+/obj/item/weapon/holder/proc/dump_mob()
+	if(!held_mob)
+		return
+	held_mob.transform = original_transform
+	held_mob.vis_flags = original_vis_flags
+	held_mob.forceMove(get_turf(src))
+	held_mob = null
 
 /obj/item/weapon/holder/throw_at(atom/target, range, speed, thrower)
 	if(held_mob)
-		held_mob.forceMove(loc)
+		var/mob/localref = held_mob
+		dump_mob()
 		var/thrower_mob_size = 1
 		if(ismob(thrower))
 			var/mob/M = thrower
 			thrower_mob_size = M.mob_size
-		var/mob_range = round(range * min(thrower_mob_size / held_mob.mob_size, 1))
-		held_mob.throw_at(target, mob_range, speed, thrower)
-		held_mob = null
-	drop_items()
-	qdel(src)
-
-/obj/item/weapon/holder/Destroy()
-	STOP_PROCESSING(SSobj, src)
-	return ..()
-
-/obj/item/weapon/holder/process()
-	update_state()
-	drop_items()
-
-/obj/item/weapon/holder/dropped()
-	..()
-	spawn(1)
-		update_state()
-
-/obj/item/weapon/holder/proc/update_state()
-	if(!(contents.len))
-		qdel(src)
-	else if(isturf(loc))
-		drop_items()
-		if(held_mob)
-			held_mob.forceMove(loc)
-			held_mob = null
-		qdel(src)
-
-/obj/item/weapon/holder/proc/drop_items()
-	for(var/atom/movable/M in contents)
-		if(M == held_mob)
-			continue
-		M.forceMove(get_turf(src))
-
-/obj/item/weapon/holder/onDropInto(var/atom/movable/AM)
-	if(ismob(loc))   // Bypass our holding mob and drop directly to its loc
-		return loc.loc
-	return ..()
+		var/mob_range = round(range * min(thrower_mob_size / localref.mob_size, 1))
+		localref.throw_at(target, mob_range, speed, thrower)
 
 /obj/item/weapon/holder/GetID()
-	for(var/mob/M in contents)
-		var/obj/item/I = M.GetIdCard()
-		if(I)
-			return I
-	return null
+	return held_mob?.GetIdCard()
 
 /obj/item/weapon/holder/GetAccess()
 	var/obj/item/I = GetID()
-	return I ? I.GetAccess() : ..()
-
-/obj/item/weapon/holder/proc/sync(var/mob/living/M)
-	dir = 2
-	overlays.Cut() // Not using SSoverlays for this due to performance
-	icon = M.icon
-	icon_state = M.icon_state
-	item_state = M.item_state
-	color = M.color
-	name = M.name
-	desc = M.desc
-	overlays |= M.overlays // Not using SSoverlays for this due to performance
-	var/mob/living/carbon/human/H = loc
-	if(istype(H))
-		if(H.l_hand == src)
-			H.update_inv_l_hand()
-		else if(H.r_hand == src)
-			H.update_inv_r_hand()
+	return I?.GetAccess() || ..()
 
 /obj/item/weapon/holder/container_resist(mob/living/held)
-	var/mob/M = loc
-	if(istype(M))
-		M.drop_from_inventory(src)
+	if(ismob(loc))
+		var/mob/M = loc
+		M.drop_from_inventory(src) // If it's another item, we can just continue existing, or if it's a turf we'll qdel() in Moved()
 		to_chat(M, "<span class='warning'>\The [held] wriggles out of your grip!</span>")
 		to_chat(held, "<span class='warning'>You wiggle out of [M]'s grip!</span>")
 	else if(istype(loc, /obj/item/clothing/accessory/holster))
@@ -113,10 +93,10 @@ var/list/holder_mob_icon_cache = list()
 		if(holster.holstered == src)
 			holster.clear_holster()			
 		to_chat(held, "<span class='warning'>You extricate yourself from [holster].</span>")
-		held.forceMove(get_turf(held))
+		forceMove(get_turf(src))
 	else if(isitem(loc))
 		to_chat(held, "<span class='warning'>You struggle free of [loc].</span>")
-		held.forceMove(get_turf(held))
+		forceMove(get_turf(src))
 
 //Mob specific holders.
 /obj/item/weapon/holder/diona
@@ -197,9 +177,7 @@ var/list/holder_mob_icon_cache = list()
 	else
 		if(grabber.incapacitated()) return
 
-	var/obj/item/weapon/holder/H = new holder_type(get_turf(src))
-	H.held_mob = src
-	src.forceMove(H)
+	var/obj/item/weapon/holder/H = new holder_type(get_turf(src), src)
 	grabber.put_in_hands(H)
 
 	if(self_grab)
@@ -211,44 +189,9 @@ var/list/holder_mob_icon_cache = list()
 		to_chat(src, "<span class='notice'>\The [grabber] scoops you up!</span>")
 
 	add_attack_logs(grabber, H.held_mob, "Scooped up", FALSE) // Not important enough to notify admins, but still helpful.
-	H.sync(src)
 	return H
 
 /obj/item/weapon/holder/human
 	icon = 'icons/mob/holder_complex.dmi'
 	var/list/generate_for_slots = list(slot_l_hand_str, slot_r_hand_str, slot_back_str)
 	slot_flags = SLOT_BACK
-
-/obj/item/weapon/holder/human/sync(var/mob/living/M)
-
-	// Generate appropriate on-mob icons.
-	var/mob/living/carbon/human/owner = M
-	if(istype(owner) && owner.species)
-
-		var/skin_colour = rgb(owner.r_skin, owner.g_skin, owner.b_skin)
-		var/hair_colour = rgb(owner.r_hair, owner.g_hair, owner.b_hair)
-		var/eye_colour =  rgb(owner.r_eyes, owner.g_eyes, owner.b_eyes)
-		var/species_name = lowertext(owner.species.get_bodytype(owner))
-
-		for(var/cache_entry in generate_for_slots)
-			var/cache_key = "[owner.species]-[cache_entry]-[skin_colour]-[hair_colour]"
-			if(!holder_mob_icon_cache[cache_key])
-
-				// Generate individual icons.
-				var/icon/mob_icon = icon(icon, "[species_name]_holder_[cache_entry]_base")
-				mob_icon.Blend(skin_colour, ICON_ADD)
-				var/icon/hair_icon = icon(icon, "[species_name]_holder_[cache_entry]_hair")
-				hair_icon.Blend(hair_colour, ICON_ADD)
-				var/icon/eyes_icon = icon(icon, "[species_name]_holder_[cache_entry]_eyes")
-				eyes_icon.Blend(eye_colour, ICON_ADD)
-
-				// Blend them together.
-				mob_icon.Blend(eyes_icon, ICON_OVERLAY)
-				mob_icon.Blend(hair_icon, ICON_OVERLAY)
-
-				// Add to the cache.
-				holder_mob_icon_cache[cache_key] = mob_icon
-			item_icons[cache_entry] = holder_mob_icon_cache[cache_key]
-
-	// Handle the rest of sync().
-	..(M)

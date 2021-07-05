@@ -57,7 +57,7 @@ RSF
 	if(!Adjacent(user) || !istype(user))
 		to_chat(user,"<span class='notice'>You are too far away.</span>")
 		return
-	var/glass_choice = input(user, "Please choose which type of glass you would like to produce.") as null|anything in container_types
+	var/glass_choice = tgui_input_list(user, "Please choose which type of glass you would like to produce.", "Glass Choice", container_types)
 
 	if(glass_choice)
 		glasstype = container_types[glass_choice]

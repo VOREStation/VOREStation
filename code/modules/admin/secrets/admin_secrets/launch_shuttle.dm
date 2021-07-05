@@ -14,7 +14,7 @@
 		if (istype(SSshuttles.shuttles[shuttle_tag], /datum/shuttle/autodock))
 			valid_shuttles += shuttle_tag
 
-	var/shuttle_tag = input(user, "Which shuttle do you want to launch?") as null|anything in valid_shuttles
+	var/shuttle_tag = tgui_input_list(user, "Which shuttle do you want to launch?", "Shuttle Choice", valid_shuttles)
 	if (!shuttle_tag)
 		return
 
@@ -23,4 +23,4 @@
 		S.launch(user)
 		log_and_message_admins("launched the [shuttle_tag] shuttle", user)
 	else
-		alert(user, "The [shuttle_tag] shuttle cannot be launched at this time. It's probably busy.")
+		tgui_alert_async(user, "The [shuttle_tag] shuttle cannot be launched at this time. It's probably busy.")

@@ -11,6 +11,7 @@
 	mountain_color = "#735555"
 	ice_color = "FFFFFF"
 	icecaps = "icecaps"
+	icon_state = "frozen"
 
 /obj/effect/overmap/visitable/planet/Sif/Initialize()
 	atmosphere = new(CELL_VOLUME)

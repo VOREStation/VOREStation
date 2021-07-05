@@ -78,7 +78,7 @@
 			swear to god I will find you and I will punch you for not reading these directions!\n\
 			([WEIGHT_MIN]-[WEIGHT_MAX])", "Character Preference") as num|null
 		if(new_weight)
-			var/unit_of_measurement = alert(user, "Is that number in pounds (lb) or kilograms (kg)?", "Confirmation", "Pounds", "Kilograms")
+			var/unit_of_measurement = tgui_alert(user, "Is that number in pounds (lb) or kilograms (kg)?", "Confirmation", list("Pounds", "Kilograms"))
 			if(unit_of_measurement == "Pounds")
 				new_weight = round(text2num(new_weight),4)
 			if(unit_of_measurement == "Kilograms")
@@ -87,19 +87,19 @@
 			return TOPIC_REFRESH
 
 	else if(href_list["weight_gain"])
-		var/weight_gain_rate = input(user, "Choose your character's rate of weight gain between 100% \
+		var/weight_gain_rate = tgui_input_num(user, "Choose your character's rate of weight gain between 100% \
 			(full realism body fat gain) and 0% (no body fat gain).\n\
 			(If you want to disable weight gain, set this to 0.01 to round it to 0%.)\
-			([WEIGHT_CHANGE_MIN]-[WEIGHT_CHANGE_MAX])", "Character Preference") as num|null
+			([WEIGHT_CHANGE_MIN]-[WEIGHT_CHANGE_MAX])", "Character Preference", pref.weight_gain)
 		if(weight_gain_rate)
 			pref.weight_gain = round(text2num(weight_gain_rate),1)
 			return TOPIC_REFRESH
 
 	else if(href_list["weight_loss"])
-		var/weight_loss_rate = input(user, "Choose your character's rate of weight loss between 100% \
+		var/weight_loss_rate = tgui_input_num(user, "Choose your character's rate of weight loss between 100% \
 			(full realism body fat loss) and 0% (no body fat loss).\n\
 			(If you want to disable weight loss, set this to 0.01 round it to 0%.)\
-			([WEIGHT_CHANGE_MIN]-[WEIGHT_CHANGE_MAX])", "Character Preference") as num|null
+			([WEIGHT_CHANGE_MIN]-[WEIGHT_CHANGE_MAX])", "Character Preference", pref.weight_loss)
 		if(weight_loss_rate)
 			pref.weight_loss = round(text2num(weight_loss_rate),1)
 			return TOPIC_REFRESH

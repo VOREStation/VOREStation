@@ -22,7 +22,7 @@
 			if(D.species && D.species.name == SPECIES_DIONA)
 				choices += C
 
-	var/mob/living/M = input(src,"Who do you wish to merge with?") in null|choices
+	var/mob/living/M = tgui_input_list(src, "Who do you wish to merge with?", "Merge Choice", choices)
 
 	if(!M)
 		to_chat(src, "There is nothing nearby to merge with.")

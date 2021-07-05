@@ -59,23 +59,23 @@ var/global/list/additional_antag_types = list()
 		var/choice = ""
 		switch(href_list["set"])
 			if("shuttle_delay")
-				choice = input("Enter a new shuttle delay multiplier") as num
+				choice = input(usr, "Enter a new shuttle delay multiplier") as num
 				if(!choice || choice < 1 || choice > 20)
 					return
 				shuttle_delay = choice
 			if("antag_scaling")
-				choice = input("Enter a new antagonist cap scaling coefficient.") as num
+				choice = input(usr, "Enter a new antagonist cap scaling coefficient.") as num
 				if(isnull(choice) || choice < 0 || choice > 100)
 					return
 				antag_scaling_coeff = choice
 			if("event_modifier_moderate")
-				choice = input("Enter a new moderate event time modifier.") as num
+				choice = input(usr, "Enter a new moderate event time modifier.") as num
 				if(isnull(choice) || choice < 0 || choice > 100)
 					return
 				event_delay_mod_moderate = choice
 				refresh_event_modifiers()
 			if("event_modifier_severe")
-				choice = input("Enter a new moderate event time modifier.") as num
+				choice = input(usr, "Enter a new moderate event time modifier.") as num
 				if(isnull(choice) || choice < 0 || choice > 100)
 					return
 				event_delay_mod_major = choice
@@ -99,7 +99,7 @@ var/global/list/additional_antag_types = list()
 			additional_antag_types -= antag.id
 			message_admins("Admin [key_name_admin(usr)] removed [antag.role_text] template from game mode.")
 	else if(href_list["add_antag_type"])
-		var/choice = input("Which type do you wish to add?") as null|anything in all_antag_types
+		var/choice = tgui_input_list(usr, "Which type do you wish to add?", "Select Antag Type", all_antag_types)
 		if(!choice)
 			return
 		var/datum/antagonist/antag = all_antag_types[choice]

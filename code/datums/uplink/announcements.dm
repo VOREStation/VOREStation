@@ -16,10 +16,10 @@
 	item_cost = 20
 
 /datum/uplink_item/abstract/announcements/fake_centcom/extra_args(var/mob/user)
-	var/title = sanitize(input("Enter your announcement title.", "Announcement Title") as null|text)
+	var/title = sanitize(input(usr, "Enter your announcement title.", "Announcement Title") as null|text)
 	if(!title)
 		return
-	var/message = sanitize(input("Enter your announcement message.", "Announcement Title") as null|text)
+	var/message = sanitize(input(usr, "Enter your announcement message.", "Announcement Title") as null|text)
 	if(!message)
 		return
 	return list("title" = title, "message" = message)

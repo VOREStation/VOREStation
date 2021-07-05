@@ -129,7 +129,7 @@ SUBSYSTEM_DEF(media_tracks)
 	if(isnull(genre)) // Cancel rather than empty string
 		return
 	
-	var/secret = alert(C, "Optional: Mark track as secret?", "Track Secret", "Yes", "Cancel", "No")
+	var/secret = tgui_alert(C, "Optional: Mark track as secret?", "Track Secret", list("Yes", "Cancel", "No"))
 	if(secret == "Cancel")
 		return
 	else if(secret == "Yes")
@@ -137,7 +137,7 @@ SUBSYSTEM_DEF(media_tracks)
 	else
 		secret = FALSE
 	
-	var/lobby = alert(C, "Optional: Mark track as lobby music?", "Track Lobby", "Yes", "Cancel", "No")
+	var/lobby = tgui_alert(C, "Optional: Mark track as lobby music?", "Track Lobby", list("Yes", "Cancel", "No"))
 	if(lobby == "Cancel")
 		return
 	else if(secret == "Yes")

@@ -45,6 +45,7 @@
 /obj/item/weapon/storage/secure/briefcase/ml3m_pack_med
 	name = "\improper ML-3 \'Medigun\' kit"
 	desc = "A storage case for a multi-purpose healing gun. Variety hour!"
+	icon_state = "medbriefcase"
 	w_class = ITEMSIZE_NORMAL
 	max_w_class = ITEMSIZE_NORMAL
 
@@ -59,6 +60,7 @@
 /obj/item/weapon/storage/secure/briefcase/ml3m_pack_cmo
 	name = "\improper Advanced ML-3 \'Medigun\' kit"
 	desc = "A storage case for a multi-purpose healing gun. Variety hour!"
+	icon_state = "medbriefcase"
 	w_class = ITEMSIZE_NORMAL
 	max_w_class = ITEMSIZE_NORMAL
 

@@ -287,8 +287,8 @@ Implant Specifics:<BR>"}
 		t.hotspot_expose(3500,125)
 
 /obj/item/weapon/implant/explosive/post_implant(mob/source as mob)
-	elevel = alert("What sort of explosion would you prefer?", "Implant Intent", "Localized Limb", "Destroy Body", "Full Explosion")
-	phrase = input("Choose activation phrase:") as text
+	elevel = tgui_alert(usr, "What sort of explosion would you prefer?", "Implant Intent", list("Localized Limb", "Destroy Body", "Full Explosion"))
+	phrase = input(usr, "Choose activation phrase:") as text
 	var/list/replacechars = list("'" = "","\"" = "",">" = "","<" = "","(" = "",")" = "")
 	phrase = replace_characters(phrase, replacechars)
 	usr.mind.store_memory("Explosive implant in [source] can be activated by saying something containing the phrase ''[src.phrase]'', <B>say [src.phrase]</B> to attempt to activate.", 0, 0)
@@ -618,7 +618,10 @@ the implant may become unstable and either pre-maturely inject the subject or si
 	qdel(src)
 
 /obj/item/weapon/implant/compressed/post_implant(mob/source)
-	src.activation_emote = input("Choose activation emote:") in list("blink", "blink_r", "eyebrow", "chuckle", "twitch", "frown", "nod", "blush", "giggle", "grin", "groan", "shrug", "smile", "pale", "sniff", "whimper", "wink")
+	var/choices = list("blink", "blink_r", "eyebrow", "chuckle", "twitch", "frown", "nod", "blush", "giggle", "grin", "groan", "shrug", "smile", "pale", "sniff", "whimper", "wink")
+	activation_emote = tgui_input_list(usr, "Choose activation emote. If you cancel this, one will be picked at random.", "Implant Activation", choices)
+	if(!activation_emote)
+		activation_emote = pick(choices)
 	if (source.mind)
 		source.mind.store_memory("Compressed matter implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate.", 0, 0)
 	to_chat(source, "The implanted compressed matter implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate.")

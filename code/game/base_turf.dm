@@ -19,11 +19,11 @@
 
 	if(!holder)	return
 
-	var/choice = input("Which Z-level do you wish to set the base turf for?") as num|null
+	var/choice = input(usr, "Which Z-level do you wish to set the base turf for?") as num|null
 	if(!choice)
 		return
 
-	var/new_base_path = input("Please select a turf path (cancel to reset to /turf/space).") as null|anything in typesof(/turf)
+	var/new_base_path = tgui_input_list(usr, "Please select a turf path (cancel to reset to /turf/space).", "Set Base Turf", typesof(/turf))
 	if(!new_base_path)
 		new_base_path = /turf/space
 	using_map.base_turf_by_z["[choice]"] = new_base_path

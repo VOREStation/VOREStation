@@ -45,7 +45,7 @@
 	else
 		chargesa--
 		insistinga = 0
-		var/wish = input("You want...","Wish") as null|anything in list("Power","Wealth","Immortality","To Kill","Peace")
+		var/wish = tgui_input_list(usr, "You want...","Wish", list("Power","Wealth","Immortality","To Kill","Peace"))
 		switch(wish)
 			if("Power")
 				to_chat(user, "<B>Your wish is granted, but at a terrible cost...</B>")
@@ -185,3 +185,6 @@
 	icon_state = "shimmer"
 	color = "#8b0b0b" //red
 	in_space = 1
+	unknown_state = "field"
+	known = FALSE
+	

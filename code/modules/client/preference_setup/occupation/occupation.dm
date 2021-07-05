@@ -233,7 +233,7 @@
 		var/datum/job/job = locate(href_list["select_alt_title"])
 		if (job)
 			var/choices = list(job.title) + job.alt_titles
-			var/choice = input("Choose a title for [job.title].", "Choose Title", pref.GetPlayerAltTitle(job)) as anything in choices|null
+			var/choice = tgui_input_list(usr, "Choose a title for [job.title].", "Choose Title", choices, pref.GetPlayerAltTitle(job))
 			if(choice && CanUseTopic(user))
 				SetPlayerAltTitle(job, choice)
 				return (pref.equip_preview_mob ? TOPIC_REFRESH_UPDATE_PREVIEW : TOPIC_REFRESH)

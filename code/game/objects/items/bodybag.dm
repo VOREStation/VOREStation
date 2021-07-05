@@ -148,8 +148,7 @@
 
 /obj/structure/closet/body_bag/cryobag/attack_hand(mob/living/user)
 	if(used)
-		var/confirm = alert(user, "Are you sure you want to open \the [src]? \
-		\The [src] will expire upon opening it.", "Confirm Opening", "No", "Yes")
+		var/confirm = tgui_alert(user, "Are you sure you want to open \the [src]? \The [src] will expire upon opening it.", "Confirm Opening", list("No", "Yes"))
 		if(confirm == "Yes")
 			..() // Will call `toggle()` and open the bag.
 	else

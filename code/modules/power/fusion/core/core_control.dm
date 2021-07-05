@@ -24,7 +24,7 @@
 /obj/machinery/computer/fusion_core_control/attackby(var/obj/item/thing, var/mob/user)
 	..()
 	if(istype(thing, /obj/item/device/multitool))
-		var/new_ident = sanitize_text(input("Enter a new ident tag.", "Core Control", monitor.core_tag) as null|text)
+		var/new_ident = sanitize_text(input(usr, "Enter a new ident tag.", "Core Control", monitor.core_tag) as null|text)
 		if(new_ident && user.Adjacent(src))
 			monitor.core_tag = new_ident
 //			id_tag = new_ident
@@ -185,7 +185,7 @@
 	if(href_list["str"])
 		var/val = text2num(href_list["str"])
 		if(!val) //Value is 0, which is manual entering.
-			cur_viewed_device.set_strength(input("Enter the new field power density (W.m^-3)", "Fusion Control", cur_viewed_device.field_strength) as num)
+			cur_viewed_device.set_strength(input(usr, "Enter the new field power density (W.m^-3)", "Fusion Control", cur_viewed_device.field_strength) as num)
 		else
 			cur_viewed_device.set_strength(cur_viewed_device.field_strength + val)
 		updateUsrDialog()

@@ -50,7 +50,7 @@
 /obj/structure/ghost_pod/manual/attack_hand(var/mob/living/user)
 	if(!used)
 		if(confirm_before_open)
-			if(alert(user, "Are you sure you want to touch \the [src]?", "Confirm", "No", "Yes") == "No")
+			if(tgui_alert(user, "Are you sure you want to touch \the [src]?", "Confirm", list("No", "Yes")) == "No")
 				return
 		trigger()
 		// VOREStation Addition Start
@@ -87,7 +87,7 @@
 		to_chat(user, "<span class='warning'>Another spirit appears to have gotten to \the [src] before you.  Sorry.</span>")
 		return
 
-	var/choice = input(user, "Are you certain you wish to activate this pod?", "Control Pod") as null|anything in list("Yes", "No")
+	var/choice = tgui_alert(user, "Are you certain you wish to activate this pod?", "Control Pod", list("Yes", "No"))
 
 	if(!choice || choice == "No")
 		return

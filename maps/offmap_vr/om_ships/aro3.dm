@@ -77,9 +77,9 @@
 
 // The 'ship'
 /obj/effect/overmap/visitable/ship/aro3
-	name = "spacecraft"
+	name = "Aronai Sieyes"
 	desc = "Spacefaring vessel. Friendly IFF detected."
-	scanner_name = "Aronai Sieyes"
+	icon_state = "moe_cruiser_g"
 	scanner_desc = @{"[i]Registration[/i]: Aronai Sieyes
 [i]Class[/i]: Small Frigate (Low Displacement)
 [i]Transponder[/i]: Transmitting (CIV), non-hostile
@@ -90,6 +90,7 @@
 	initial_generic_waypoints = list("aronai3_fore", "aronai3_aft", "aronai3_port", "aronai3_starboard")
 	initial_restricted_waypoints = list("Aro's Boat" = list("omship_spawn_aroboat3"))
 	fore_dir = NORTH
+	known = FALSE
 
 	skybox_icon = 'aro3.dmi'
 	skybox_icon_state = "skybox"

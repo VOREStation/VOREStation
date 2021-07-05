@@ -53,6 +53,16 @@
 		icon_state = "trashbag2"
 	else icon_state = "trashbag3"
 
+/obj/item/weapon/storage/bag/trash/holding
+	name = "trash bag of holding"
+	desc = "The latest and greatest in custodial convenience, a trashbag that is capable of holding vast quantities of garbage."
+	icon_state = "bluetrashbag"
+	origin_tech = list(TECH_BLUESPACE = 3)
+	max_w_class = ITEMSIZE_NORMAL
+	max_storage_space = ITEMSIZE_COST_NORMAL * 10 // Slightly less than BoH
+
+/obj/item/weapon/storage/bag/trash/holding/update_icon()
+	return
 
 // -----------------------------
 //        Plastic Bag
@@ -90,6 +100,12 @@
 	can_hold = list(/obj/item/weapon/ore)
 	var/stored_ore = list()
 	var/last_update = 0
+
+/obj/item/weapon/storage/bag/ore/holding
+	name = "mining satchel of holding"
+	desc = "Like a mining satchel, but when you put your hand in, you're pretty sure you can feel time itself."
+	icon_state = "satchel_bspace"
+	max_storage_space = ITEMSIZE_COST_NORMAL * 75 // 3x
 
 /obj/item/weapon/storage/bag/ore/remove_from_storage(obj/item/W as obj, atom/new_location)
 	if(!istype(W)) return 0

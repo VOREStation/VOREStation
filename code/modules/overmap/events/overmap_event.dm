@@ -9,7 +9,6 @@
 	icon = 'icons/obj/overmap.dmi'
 	icon_state = "event"
 	opacity = 1
-	known = FALSE
 	var/list/events							// List of event datum paths
 	var/list/event_icon_states				// Randomly picked from
 	var/difficulty = EVENT_LEVEL_MODERATE

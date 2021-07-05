@@ -171,7 +171,7 @@
 		if(!choices.len)
 			choices["radial"] = get_turf(src)
 
-		A = input(src,"What do we wish to flash?") in null|choices
+		A = tgui_input_list(src, "What do we wish to flash?", "Target Choice", choices)
 
 
 	visible_message(span("alien","\The [src] flares its tails!"))
@@ -256,7 +256,7 @@
 			to_chat(src, span("warning","There are no viable targets within range..."))
 			return
 
-		A = input(src,"What do we wish to strike?") in null|choices
+		A = tgui_input_list(src, "What do we wish to strike?", "Target Choice", choices)
 
 	if(!A || !src) return
 

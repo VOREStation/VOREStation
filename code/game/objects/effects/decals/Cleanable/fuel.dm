@@ -3,6 +3,7 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "fuel"
 	plane = DIRTY_PLANE
+	layer = DIRTY_LAYER
 	anchored = 1
 	var/amount = 1
 	generic_filth = TRUE

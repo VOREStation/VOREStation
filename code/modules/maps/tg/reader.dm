@@ -152,7 +152,7 @@ GLOBAL_DATUM_INIT(_preloader, /dmm_suite/preloader, new)
 					if(xcrd > world.maxx)
 						if(cropMap)
 							break
-						else
+						else if(!measureOnly)
 							world.maxx = xcrd
 
 					if(xcrd >= 1)

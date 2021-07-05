@@ -20,4 +20,5 @@
 #define isDiagonal(x)			(x == NORTHEAST || x == SOUTHEAST || x == NORTHWEST || x == SOUTHWEST)
 
 #define IS_OPAQUE_TURF(turf) (turf.directional_opacity == ALL_CARDINALS)
+#define IS_OPAQUE_TURF_DIR(turf, dir) (turf.directional_opacity & dir)
 #define FOOTSTEP_SPRITE_AMT 2

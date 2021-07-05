@@ -22,7 +22,7 @@
 	for(var/ship in SSshuttles.ships)
 		var/obj/effect/overmap/visitable/ship/S = ship
 		overmap_ships.Add(list(list(
-			"name" = S.scanner_name || S.name,
+			"name" = S.name,
 			"ref" = REF(S),
 		)))
 	data["overmap_ships"] = overmap_ships
@@ -69,7 +69,7 @@
 			var/datum/shuttle/S = locate(params["ref"])
 			if(istype(S, /datum/shuttle/autodock/multi))
 				var/datum/shuttle/autodock/multi/shuttle = S
-				var/dest_key = input("Choose shuttle destination", "Shuttle Destination") as null|anything in shuttle.get_destinations()
+				var/dest_key = tgui_input_list(usr, "Choose shuttle destination", "Shuttle Destination", shuttle.get_destinations())
 				if(dest_key)
 					shuttle.set_destination(dest_key, usr)
 					shuttle.launch(src)
@@ -80,13 +80,13 @@
 				if(!LAZYLEN(possible_d))
 					to_chat(usr, "<span class='warning'>There are no possible destinations for [shuttle] ([shuttle.type])</span>")
 					return FALSE
-				D = input("Choose shuttle destination", "Shuttle Destination") as null|anything in possible_d
+				D = tgui_input_list(usr, "Choose shuttle destination", "Shuttle Destination", possible_d)
 				if(D)
 					shuttle.set_destination(possible_d[D])
 					shuttle.launch()
 			else if(istype(S, /datum/shuttle/autodock))
 				var/datum/shuttle/autodock/shuttle = S
-				if(alert(usr, "Are you sure you want to launch [shuttle]?", "Launching Shuttle", "Yes", "No") == "Yes")
+				if(tgui_alert(usr, "Are you sure you want to launch [shuttle]?", "Launching Shuttle", list("Yes", "No")) == "Yes")
 					shuttle.launch(src)
 			else
 				to_chat(usr, "<span class='notice'>The shuttle control panel isn't quite sure how to move [S] ([S?.type]).</span>")

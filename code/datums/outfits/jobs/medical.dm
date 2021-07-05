@@ -65,6 +65,7 @@
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/chemist
 	backpack = /obj/item/weapon/storage/backpack/chemistry
 	satchel_one = /obj/item/weapon/storage/backpack/satchel/chem
+	sports_bag = /obj/item/weapon/storage/backpack/sport/chem
 	id_type = /obj/item/weapon/card/id/medical/chemist
 	pda_type = /obj/item/device/pda/chemist
 

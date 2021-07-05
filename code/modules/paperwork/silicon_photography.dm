@@ -43,7 +43,7 @@
 		return
 	for(var/obj/item/weapon/photo/t in cam.aipictures)
 		nametemp += t.name
-	find = input("Select image (numbered in order taken)") as null|anything in nametemp
+	find = tgui_input_list(usr, "Select image (numbered in order taken)", "Picture Choice", nametemp)
 	if(!find)
 		return
 

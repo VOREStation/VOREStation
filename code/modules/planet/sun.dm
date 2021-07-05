@@ -2,26 +2,52 @@
 	var/atom/movable/sun_visuals/sun = new
 	var/datum/planet/our_planet
 
+	var/our_color = "#FFFFFF"
+	var/our_brightness = 1.0
+
 /datum/sun_holder/New(var/source)
 	our_planet = source
 
 /datum/sun_holder/proc/update_color(new_color)
-	sun.color = new_color
+	// Doesn't save much work, but might save a smidge of client work
+	if(our_color == new_color)
+		return
+	
+	// Visible change
+	sun.color = our_color = new_color
 
-/datum/sun_holder/proc/update_brightness(new_brightness)
-	sun.alpha = round(CLAMP01(new_brightness)*255,1)
-
+/datum/sun_holder/proc/update_brightness(new_brightness, list/turfs)
+	// Doesn't save much work, but might save a smidge of client work
+	if(our_brightness == new_brightness)
+		return
+	
+	// Store the old for math
+	. = our_brightness
+	our_brightness = new_brightness
+	
+	// Visible change
+	sun.alpha = round(CLAMP01(our_brightness)*255,1)
+	
+	// Update dynamic lumcount so darksight and stuff works
+	var/difference = . - our_brightness
+	for(var/turf/T as anything in turfs)
+		T.dynamic_lumcount -= difference
+	
 /datum/sun_holder/proc/apply_to_turf(turf/T)
 	if(sun in T.vis_contents)
 		warning("Was asked to add fake sun to [T.x], [T.y], [T.z] despite already having us in it's vis contents")
 		return
 	T.vis_contents += sun
+	T.dynamic_lumcount += our_brightness
+	T.set_luminosity(1, TRUE)
 
 /datum/sun_holder/proc/remove_from_turf(turf/T)
 	if(!(sun in T.vis_contents))
 		warning("Was asked to remove fake sun from [T.x], [T.y], [T.z] despite it not having us in it's vis contents")
 		return
 	T.vis_contents -= sun
+	T.dynamic_lumcount -= our_brightness
+	T.set_luminosity(!IS_DYNAMIC_LIGHTING(T), TRUE)
 
 /datum/sun_holder/proc/rainbow()
 	var/end = world.time + 30 SECONDS

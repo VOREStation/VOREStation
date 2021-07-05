@@ -245,60 +245,79 @@
 
 //Teshari things
 /datum/sprite_accessory/hair/teshari
+	name = "Teshari Default"
 	icon_add = 'icons/mob/human_face_vr_add.dmi'
 
 /datum/sprite_accessory/hair/teshari_altdefault
+	name = "Teshari Default (Alt)"
 	icon_add = 'icons/mob/human_face_vr_add.dmi'
 
 /datum/sprite_accessory/hair/teshari_tight
+	name = "Teshari Tight"
 	icon_add = 'icons/mob/human_face_vr_add.dmi'
 
 /datum/sprite_accessory/hair/teshari_excited
+	name = "Teshari Excited"
 	icon_add = 'icons/mob/human_face_vr_add.dmi'
 
 /datum/sprite_accessory/hair/teshari_spike
+	name = "Teshari Spike"
 	icon_add = 'icons/mob/human_face_vr_add.dmi'
 
 /datum/sprite_accessory/hair/teshari_long
+	name = "Teshari Long"
 	icon_add = 'icons/mob/human_face_vr_add.dmi'
 
 /datum/sprite_accessory/hair/teshari_burst
+	name = "Teshari Burst"
 	icon_add = 'icons/mob/human_face_vr_add.dmi'
 
 /datum/sprite_accessory/hair/teshari_shortburst
+	name = "Teshari Shortburst"
 	icon_add = 'icons/mob/human_face_vr_add.dmi'
 
 /datum/sprite_accessory/hair/teshari_mohawk
+	name = "Teshari Mohawk"
 	icon_add = 'icons/mob/human_face_vr_add.dmi'
 
 /datum/sprite_accessory/hair/teshari_pointy
+	name = "Teshari Pointy"
 	icon_add = 'icons/mob/human_face_vr_add.dmi'
 
 /datum/sprite_accessory/hair/teshari_upright
+	name = "Teshari Upright"
 	icon_add = 'icons/mob/human_face_vr_add.dmi'
 
 /datum/sprite_accessory/hair/teshari_mane
+	name = "Teshari Mane"
 	icon_add = 'icons/mob/human_face_vr_add.dmi'
 
 /datum/sprite_accessory/hair/teshari_droopy
+	name = "Teshari Droopy"
 	icon_add = 'icons/mob/human_face_vr_add.dmi'
 
 /datum/sprite_accessory/hair/teshari_mushroom
+	name = "Teshari Mushroom"
 	icon_add = 'icons/mob/human_face_vr_add.dmi'
 
 /datum/sprite_accessory/hair/teshari_twies
+	name = "Teshari Twies"
 	icon_add = 'icons/mob/human_face_vr_add.dmi'
 
 /datum/sprite_accessory/hair/teshari_backstrafe
+	name = "Teshari Backstrafe"
 	icon_add = 'icons/mob/human_face_vr_add.dmi'
 
 /datum/sprite_accessory/hair/teshari_longway
+	name = "Teshari Longway"
 	icon_add = 'icons/mob/human_face_vr_add.dmi'
 
 /datum/sprite_accessory/hair/teshari_tree
+	name = "Teshari Tree"
 	icon_add = 'icons/mob/human_face_vr_add.dmi'
 
 /datum/sprite_accessory/hair/teshari_fluffymohawk
+	name = "Teshari Fluffy Mohawk"
 	icon =  'icons/mob/human_face_vr.dmi'
 	icon_add = 'icons/mob/human_face_vr_add.dmi'
 

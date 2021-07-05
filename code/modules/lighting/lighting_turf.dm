@@ -93,6 +93,13 @@
 		return
 	recalculate_directional_opacity()
 
+///Setter for the byond luminosity var
+/turf/proc/set_luminosity(new_luminosity, force)
+	// SSplanets handles outdoor turfs
+	if(outdoors && !force)
+		return
+	
+	luminosity = new_luminosity
 
 ///Calculate on which directions this turfs block view.
 /turf/proc/recalculate_directional_opacity()

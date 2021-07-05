@@ -50,7 +50,7 @@
 	"Down" = DOWN,\
 	#endif
 	"N/A" = null)
-	var/direction = input("What direction do you wish to test?","Set direction") as null|anything in direction_list
+	var/direction = tgui_input_list(usr, "What direction do you wish to test?","Set direction", direction_list)
 	if(!direction)
 		return
 

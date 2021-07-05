@@ -34,21 +34,6 @@
 			var/mob/living/simple_mob/S = L
 			user.visible_message("<span class='notice'>[user] [S.response_help] \the [S].</span>")
 
-/obj/item/weapon/holder/micro/update_state()
-	if(isturf(loc) || !held_mob || held_mob.loc != src)
-		qdel(src)
-
-/obj/item/weapon/holder/micro/Destroy()
-	var/turf/here = get_turf(src)
-	for(var/atom/movable/A in src)
-		A.forceMove(here)
-	return ..()
-
-/obj/item/weapon/holder/micro/sync(var/mob/living/M)
-	..()
-	for(var/mob/living/carbon/human/I in contents)
-		item_state = lowertext(I.species.name)
-
 //Egg features.
 /obj/item/weapon/holder/attack_hand(mob/living/user as mob)
 	if(istype(src.loc, /obj/item/weapon/storage/vore_egg)) //Don't scoop up the egged mob

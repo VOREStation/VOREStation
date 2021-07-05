@@ -11,5 +11,8 @@
 	base_icon = "bar_stool_base"
 	anchored = 1
 
+/obj/item/weapon/stool/baystool/padded
+	icon_state = "bar_stool_padded_preview" //set for the map
+
 /obj/item/weapon/stool/baystool/padded/New(var/newloc, var/new_material)
 	..(newloc, "steel", "carpet")

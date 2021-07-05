@@ -59,7 +59,7 @@
 		if(metal < 1)
 			to_chat(user, "\The [src] is empty.")
 			return
-		var/answer = alert(user, "Do you want to eject all the metal in \the [src]?", , "Yes","No")
+		var/answer = tgui_alert(user, "Do you want to eject all the metal in \the [src]?", "Eject?", list("Yes","No"))
 		if(answer == "Yes")
 			var/amount_ejected = eject_metal()
 			user.visible_message("<span class='notice'>[user] removes [amount_ejected] sheet\s of [DEFAULT_WALL_MATERIAL] from the \the [src].</span>",
@@ -82,7 +82,7 @@
 	if(default_part_replacement(user, W))
 		return
 	if (!panel_open && W.is_wrench())
-		P_type_t = input("Choose pipe type", "Pipe type") as null|anything in Pipes
+		P_type_t = tgui_input_list(usr, "Choose pipe type", "Pipe type", Pipes)
 		P_type = Pipes[P_type_t]
 		user.visible_message("<span class='notice'>[user] has set \the [src] to manufacture [P_type_t].</span>", "<span class='notice'>You set \the [src] to manufacture [P_type_t].</span>")
 		return

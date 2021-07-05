@@ -135,8 +135,8 @@
 				return
 
 			if(length_char(t) >= MUSIC_MAXLINES * MUSIC_MAXLINECHARS)
-				var/cont = input(usr, "Your message is too long! Would you like to continue editing it?", "", "yes") in list("yes", "no")
-				if(cont == "no")
+				var/cont = tgui_alert(usr, "Your message is too long! Would you like to continue editing it?", "Too long!", list("Yes", "No"))
+				if(cont == "No")
 					break
 		while(length_char(t) > MUSIC_MAXLINES * MUSIC_MAXLINECHARS)
 		ParseSong(t)
@@ -163,7 +163,7 @@
 		INVOKE_ASYNC(src, .proc/start_playing, usr)
 
 	else if(href_list["newline"])
-		var/newline = html_encode(input("Enter your line: ", parent.name) as text|null)
+		var/newline = html_encode(input(usr, "Enter your line: ", parent.name) as text|null)
 		if(!newline || !in_range(parent, usr))
 			return
 		if(lines.len > MUSIC_MAXLINES)
@@ -221,11 +221,11 @@
 			var/datum/instrument/I = SSinstruments.get_instrument(i)
 			if(I)
 				LAZYSET(categories[I.category || "ERROR CATEGORY"], I.name, I.id)
-		var/cat = input(usr, "Select Category", "Instrument Category") as null|anything in categories
+		var/cat = tgui_input_list(usr, "Select Category", "Instrument Category", categories)
 		if(!cat)
 			return
 		var/list/instruments = categories[cat]
-		var/choice = input(usr, "Select Instrument", "Instrument Selection") as null|anything in instruments
+		var/choice = tgui_input_list(usr, "Select Instrument", "Instrument Selection", instruments)
 		if(!choice)
 			return
 		choice = instruments[choice] //get id
@@ -238,7 +238,7 @@
 			note_shift = clamp(amount, note_shift_min, note_shift_max)
 
 	else if(href_list["setsustainmode"])
-		var/choice = input(usr, "Choose a sustain mode", "Sustain Mode") as null|anything in list("Linear", "Exponential")
+		var/choice = tgui_input_list(usr, "Choose a sustain mode", "Sustain Mode", list("Linear", "Exponential"))
 		switch(choice)
 			if("Linear")
 				sustain_mode = SUSTAIN_LINEAR

@@ -210,6 +210,16 @@
 	else
 		..()
 
+/obj/item/device/flashlight/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	if(!on)
+		return
+	var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting)
+	if(!OL)
+		return
+	var/turf/T = get_turf(target)
+	OL.place_directional_light(T)
+
 /obj/item/device/flashlight/pen
 	name = "penlight"
 	desc = "A pen-sized light, used by medical staff."

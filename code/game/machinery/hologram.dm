@@ -54,7 +54,7 @@ var/const/HOLOPAD_MODE = RANGE_BASED
 /obj/machinery/hologram/holopad/attack_hand(var/mob/living/carbon/human/user) //Carn: Hologram requests.
 	if(!istype(user))
 		return
-	if(alert(user,"Would you like to request an AI's presence?",,"Yes","No") == "Yes")
+	if(tgui_alert(user,"Would you like to request an AI's presence?","Request AI",list("Yes","No")) == "Yes")
 		if(last_request + 200 < world.time) //don't spam the AI with requests you jerk!
 			last_request = world.time
 			to_chat(user, "<span class='notice'>You request an AI's presence.</span>")
@@ -223,7 +223,7 @@ Holographic project of everything else.
 	var/icon/flat_icon = icon(getFlatIcon(src,0))//Need to make sure it's a new icon so the old one is not reused.
 	flat_icon.ColorTone(rgb(125,180,225))//Let's make it bluish.
 	flat_icon.ChangeOpacity(0.5)//Make it half transparent.
-	var/input = input("Select what icon state to use in effect.",,"")
+	var/input = input(usr, "Select what icon state to use in effect.",,"")
 	if(input)
 		var/icon/alpha_mask = new('icons/effects/effects.dmi', "[input]")
 		flat_icon.AddAlphaMask(alpha_mask)//Finally, let's mix in a distortion effect.

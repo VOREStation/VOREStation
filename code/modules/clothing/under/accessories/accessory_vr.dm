@@ -46,9 +46,9 @@
 
 /obj/item/clothing/accessory/choker/attack_self(mob/user as mob)
 	if(!customized)
-		var/design = input(user,"Descriptor?","Pick descriptor","") in list("plain","simple","ornate","elegant","opulent")
-		var/material = input(user,"Material?","Pick material","") in list("leather","velvet","lace","fabric","latex","plastic","metal","chain","silver","gold","platinum","steel","bead","ruby","sapphire","emerald","diamond")
-		var/type = input(user,"Type?","Pick type","") in list("choker","collar","necklace")
+		var/design = tgui_input_list(user,"Descriptor?","Pick descriptor","Descriptor", list("plain","simple","ornate","elegant","opulent"))
+		var/material = tgui_input_list(user,"Material?","Pick material","Material", list("leather","velvet","lace","fabric","latex","plastic","metal","chain","silver","gold","platinum","steel","bead","ruby","sapphire","emerald","diamond"))
+		var/type = tgui_input_list(user,"Type?","Pick type","Type", list("choker","collar","necklace"))
 		name = "[design] [material] [type]"
 		desc = "A [type], made of [material]. It's rather [design]."
 		customized = 1

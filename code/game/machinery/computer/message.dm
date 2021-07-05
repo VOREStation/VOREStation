@@ -198,7 +198,7 @@
 		//Find a server
 		if("find")
 			if(message_servers && message_servers.len > 1)
-				linkedServer = input(usr,"Please select a server.", "Select a server.", null) as null|anything in message_servers
+				linkedServer = tgui_input_list(usr,"Please select a server.", "Select a server.", message_servers)
 				set_temp("NOTICE: Server selected.", "alert")
 			else if(message_servers && message_servers.len > 0)
 				linkedServer = message_servers[1]

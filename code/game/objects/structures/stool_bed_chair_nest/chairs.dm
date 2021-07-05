@@ -83,10 +83,15 @@
 
 /obj/structure/bed/chair/shuttle
 	name = "chair"
-	desc = "You sit in this. Either by will or force."
 	icon_state = "shuttlechair"
-	color = null
 	base_icon = "shuttlechair"
+	color = null
+	applies_material_colour = 0
+
+/obj/structure/bed/chair/shuttle_padded
+	icon_state = "shuttlechair2"
+	base_icon = "shuttlechair2"
+	color = null
 	applies_material_colour = 0
 
 // Leaving this in for the sake of compilation.
@@ -223,6 +228,7 @@
 	icon_state = "sofamiddle"
 	applies_material_colour = 1
 	var/sofa_material = "carpet"
+	var/corner_piece = FALSE
 
 /obj/structure/bed/chair/sofa/update_icon()
 	if(applies_material_colour && sofa_material)
@@ -234,9 +240,9 @@
 		else
 			name = "[sofa_material] [initial(name)]"
 
-/obj/structure/bed/chair/update_layer()
+/obj/structure/bed/chair/sofa/update_layer()
 	// Corner east/west should be on top of mobs, any other state's north should be.
-	if((icon_state == "sofacorner" && ((dir & EAST) || (dir & WEST))) || (icon_state != "sofacorner" && (dir & NORTH)))
+	if((corner_piece && ((dir & EAST) || (dir & WEST))) || (!corner_piece && (dir & NORTH)))
 		plane = MOB_PLANE
 		layer = MOB_LAYER + 0.1
 	else
@@ -253,6 +259,44 @@
 /obj/structure/bed/chair/sofa/corner
 	icon_state = "sofacorner"
 	base_icon = "sofacorner"
+	corner_piece = TRUE
+
+// Wooden nonsofa - no corners
+/obj/structure/bed/chair/sofa/pew
+	name = "pew bench"
+	desc = "If they want you to go to church, why do they make these so uncomfortable?"
+	base_icon = "pewmiddle"
+	icon_state = "pewmiddle"
+	applies_material_colour = FALSE
+
+/obj/structure/bed/chair/sofa/pew/left
+	icon_state = "pewend_left"
+	base_icon = "pewend_left"
+
+/obj/structure/bed/chair/sofa/pew/right
+	icon_state = "pewend_right"
+	base_icon = "pewend_right"
+
+// Corporate sofa - one color fits all
+/obj/structure/bed/chair/sofa/corp
+	name = "black leather sofa"
+	desc = "How corporate!"
+	base_icon = "corp_sofamiddle"
+	icon_state = "corp_sofamiddle"
+	applies_material_colour = FALSE
+
+/obj/structure/bed/chair/sofa/corp/left
+	icon_state = "corp_sofaend_left"
+	base_icon = "corp_sofaend_left"
+
+/obj/structure/bed/chair/sofa/corp/right
+	icon_state = "corp_sofaend_right"
+	base_icon = "corp_sofaend_right"
+
+/obj/structure/bed/chair/sofa/corp/corner
+	icon_state = "corp_sofacorner"
+	base_icon = "corp_sofacorner"
+	corner_piece = TRUE
 
 //color variations
 

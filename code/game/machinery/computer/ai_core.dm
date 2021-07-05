@@ -168,7 +168,7 @@
 				playsound(src, P.usesound, 50, 1)
 				to_chat(user, "<span class='notice'>You connect the monitor.</span>")
 				if(!brain)
-					var/open_for_latejoin = alert(user, "Would you like this core to be open for latejoining AIs?", "Latejoin", "Yes", "Yes", "No") == "Yes"
+					var/open_for_latejoin = tgui_alert(user, "Would you like this core to be open for latejoining AIs?", "Latejoin", list("Yes", "No")) == "Yes"
 					var/obj/structure/AIcore/deactivated/D = new(loc)
 					if(open_for_latejoin)
 						empty_playable_ai_cores += D
@@ -262,7 +262,7 @@ GLOBAL_LIST_BOILERPLATE(all_deactivated_AI_cores, /obj/structure/AIcore/deactiva
 	for(var/obj/structure/AIcore/deactivated/D in all_deactivated_AI_cores)
 		cores["[D] ([D.loc.loc])"] = D
 
-	var/id = input("Which core?", "Toggle AI Core Latejoin", null) as null|anything in cores
+	var/id = tgui_input_list(usr, "Which core?", "Toggle AI Core Latejoin", cores)
 	if(!id) return
 
 	var/obj/structure/AIcore/deactivated/D = cores[id]
