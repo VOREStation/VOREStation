@@ -11,6 +11,7 @@
 	light_color = "#00ff00"
 	light_power = 0.25
 	blocks_emissive = NONE
+	vis_flags = VIS_HIDE // They have an emissive that looks bad in openspace due to their wall-mounted nature
 	var/circuit = /obj/item/weapon/circuitboard/intercom
 	var/number = 0
 	var/wiresexposed = 0

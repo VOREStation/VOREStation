@@ -33,6 +33,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 	blocks_emissive = NONE
 	light_power = 0.25
 	light_color = "#00ff00"
+	vis_flags = VIS_HIDE // They have an emissive that looks bad in openspace due to their wall-mounted nature
 	var/department = "Unknown" //The list of all departments on the station (Determined from this variable on each unit) Set this to the same thing if you want several consoles in one department
 	var/list/message_log = list() //List of all messages
 	var/departmentType = 0 		//Bitflag. Zero is reply-only. Map currently uses raw numbers instead of defines.
