@@ -246,7 +246,7 @@
 			to_chat(user, "<span class='notice'>You ready \the [src]!  Click and drag the target around to shoot.</span>")
 		else//Otherwise just make a new one
 			auto_target = new/obj/screen/auto_target(get_turf(A), src)
-			visible_message("<span class='danger'>\[user] readies the [src]!</span>")
+			visible_message("<span class='danger'>\The [user] readies the [src]!</span>")
 			playsound(src, 'sound/weapons/TargetOn.ogg', 50, 1)
 			to_chat(user, "<span class='notice'>You ready \the [src]!  Click and drag the target around to shoot.</span>")
 			return
