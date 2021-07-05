@@ -1278,7 +1278,7 @@
 		var/client/C = usr.client
 		if(!isobserver(usr))	C.admin_ghost()
 		sleep(2)
-		C.jumptomob(M)
+		C.do_jumptomob(M)
 
 	else if(href_list["adminplayerobservefollow"])
 		if(!check_rights(R_MOD|R_ADMIN|R_SERVER)) //VOREStation Edit
