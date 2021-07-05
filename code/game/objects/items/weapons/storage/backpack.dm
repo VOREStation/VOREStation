@@ -465,29 +465,29 @@
 		return
 
 	if(!parachute)	//This packs the parachute
-		H.visible_message("<span class='notice'>\The [H] starts to pack \the [src]!</span>", \
+		H.visible_message("<b>\The [H]</b> starts to pack \the [src]!", \
 					"<span class='notice'>You start to pack \the [src]!</span>", \
 					"You hear the shuffling of cloth.")
 		if(do_after(H, 50))
-			H.visible_message("<span class='notice'>\The [H] finishes packing \the [src]!</span>", \
+			H.visible_message("<b>\The [H]</b> finishes packing \the [src]!", \
 					"<span class='notice'>You finish packing \the [src]!</span>", \
 					"You hear the shuffling of cloth.")
 			parachute = TRUE
 		else
-			H.visible_message("<span class='notice'>\The [src] gives up on packing \the [src]!</span>", \
+			H.visible_message("<b>\The [src]</b> gives up on packing \the [src]!", \
 					"<span class='notice'>You give up on packing \the [src]!</span>")
 			return
 	else			//This unpacks the parachute
-		H.visible_message("<span class='notice'>\The [src] starts to unpack \the [src]!</span>", \
+		H.visible_message("<b>\The [src]</b> starts to unpack \the [src]!", \
 					"<span class='notice'>You start to unpack \the [src]!</span>", \
 					"You hear the shuffling of cloth.")
 		if(do_after(H, 25))
-			H.visible_message("<span class='notice'>\The [src] finishes unpacking \the [src]!</span>", \
+			H.visible_message("<b>\The [src]</b> finishes unpacking \the [src]!", \
 					"<span class='notice'>You finish unpacking \the [src]!</span>", \
 					"You hear the shuffling of cloth.")
 			parachute = FALSE
 		else
-			H.visible_message("<span class='notice'>\The [src] decides not to unpack \the [src]!</span>", \
+			H.visible_message("<b>\The [src]</b> decides not to unpack \the [src]!", \
 					"<span class='notice'>You decide not to unpack \the [src]!</span>")
 	return
 

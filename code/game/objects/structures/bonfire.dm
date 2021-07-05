@@ -160,7 +160,7 @@
 		burning = FALSE
 		update_icon()
 		STOP_PROCESSING(SSobj, src)
-		visible_message("<span class='notice'>\The [src] stops burning.</span>")
+		visible_message("<b>\The [src]</b> stops burning.")
 
 /obj/structure/bonfire/proc/ignite()
 	if(!burning && get_fuel_amount())
@@ -353,7 +353,7 @@
 		burning = FALSE
 		update_icon()
 		STOP_PROCESSING(SSobj, src)
-		visible_message("<span class='notice'>\The [src] stops burning.</span>")
+		visible_message("<b>\The [src]</b> stops burning.")
 
 /obj/structure/fireplace/proc/ignite()
 	if(!burning && get_fuel_amount())

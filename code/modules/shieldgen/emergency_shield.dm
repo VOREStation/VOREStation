@@ -24,7 +24,7 @@
 
 /obj/machinery/shield/proc/check_failure()
 	if (src.health <= 0)
-		visible_message("<span class='notice'>\The [src] dissipates!</span>")
+		visible_message("<b>\The [src]</b> dissipates!")
 		qdel(src)
 		return
 

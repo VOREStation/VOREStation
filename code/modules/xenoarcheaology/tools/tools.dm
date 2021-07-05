@@ -111,7 +111,7 @@
 	var/material = "unknown"
 
 /obj/item/device/depth_scanner/proc/scan_atom(var/mob/user, var/atom/A)
-	user.visible_message("<span class='notice'>\The [user] scans \the [A], the air around them humming gently.</span>")
+	user.visible_message("<b>\The [user]</b> scans \the [A], the air around them humming gently.")
 
 	if(istype(A, /turf/simulated/mineral))
 		var/turf/simulated/mineral/M = A

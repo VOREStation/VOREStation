@@ -215,7 +215,7 @@
 			damage = damage / 2
 		take_damage(damage)
 	else
-		visible_message("<span class='notice'>\The [user] bonks \the [src] harmlessly.</span>")
+		visible_message("<b>\The [user]</b> bonks \the [src] harmlessly.")
 	user.do_attack_animation(src)
 	return 1
 
@@ -302,7 +302,7 @@
 		if (C.use(1))
 			playsound(src, 'sound/effects/sparks1.ogg', 75, 1)
 			user.visible_message( \
-				"<span class='notice'>\The [user] begins to wire \the [src] for electrochromic tinting.</span>", \
+				"<b>\The [user]</b> begins to wire \the [src] for electrochromic tinting.", \
 				"<span class='notice'>You begin to wire \the [src] for electrochromic tinting.</span>", \
 				"You hear sparks.")
 			if(do_after(user, 20 * C.toolspeed, src) && state == 0)

@@ -116,7 +116,7 @@
 				my_storage.rangedload(T, src)
 
 		if(my_storage.contents.len >= my_storage.max_storage_space)
-			visible_message("<span class='notice'>\The [src] emits a shrill beep, indicating its storage is full.</span>")
+			visible_message("<b>\The [src]</b> emits a shrill beep, indicating its storage is full.")
 
 		var/obj/structure/ore_box/OB = locate() in view(2, src)
 

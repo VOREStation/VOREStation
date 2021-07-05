@@ -163,7 +163,7 @@
 	printing = 1
 	update_icon()
 
-	visible_message("<span class='notice'>\The [src] begins churning.</span>")
+	visible_message("<b>\The [src]</b> begins churning.")
 
 	sleep(print_delay)
 
@@ -211,7 +211,7 @@
 /obj/machinery/organ_printer/proc/can_print(var/choice, var/masscount = 0)
 	var/biomass = get_biomass_volume()
 	if(biomass < masscount)
-		visible_message("<span class='notice'>\The [src] displays a warning: 'Not enough biomass. [biomass] stored and [masscount] needed.'</span>")
+		visible_message("<b>\The [src]</b> displays a warning: 'Not enough biomass. [biomass] stored and [masscount] needed.'")
 		return 0
 
 	if(!loaded_dna || !loaded_dna["donor"])

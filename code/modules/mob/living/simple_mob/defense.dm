@@ -64,7 +64,7 @@
 					MED.amount -= 1
 					if(MED.amount <= 0)
 						qdel(MED)
-					visible_message("<span class='notice'>\The [user] applies the [MED] on [src].</span>")
+					visible_message("<b>\The [user]</b> applies the [MED] on [src].")
 		else
 			var/datum/gender/T = gender_datums[src.get_visible_gender()]
 			to_chat(user, "<span class='notice'>\The [src] is dead, medical items won't bring [T.him] back to life.</span>") // the gender lookup is somewhat overkill, but it functions identically to the obsolete gender macros and future-proofs this code

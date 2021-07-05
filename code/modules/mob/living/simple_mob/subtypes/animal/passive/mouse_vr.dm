@@ -38,7 +38,7 @@
 		var/obj/item/weapon/storage/S = O
 		var/obj/item/weapon/holder/H = new holder_type(get_turf(src),src) //this works weird, but it creates an empty holder, to see if that holder can fit
 		if(S.can_be_inserted(H) && (src.size_multiplier <= 0.75))
-			visible_message("<span class='notice'>\the [src] squeezes into \the [S].</span>")
+			visible_message("<b>\The [src]</b> squeezes into \the [S].")
 			H.forceMove(S)
 			return 1
 		else

@@ -121,7 +121,7 @@
 			if(L.stat == DEAD)
 				summoned_mobs -= L
 				spawn(1)
-					L.visible_message("<span class='notice'>\The [L] begins to fade away...</span>")
+					L.visible_message("<b>\The [L]</b> begins to fade away...")
 					animate(L, alpha = 255, alpha = 0, time = 30) // Makes them fade into nothingness.
 					sleep(30)
 					qdel(L)
