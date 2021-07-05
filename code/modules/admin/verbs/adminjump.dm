@@ -39,6 +39,7 @@
 		tgui_alert_async(usr, "Admin jumping disabled")
 	return
 
+/// Verb wrapper around do_jumptomob()
 /client/proc/jumptomob()
 	set category = "Admin"
 	set name = "Jump to Mob"
@@ -47,24 +48,30 @@
 	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
 		return
 
-	if(config.allow_admin_jump)
-		var/mob/M = tgui_input_list(usr, "Pick a mob:", "Jump to Mob", mob_list)
-		if(!M)
-			return
+	var/mob/M = tgui_input_list(usr, "Pick a mob:", "Jump to Mob", mob_list)
+	if(!M) // Cancelled
+		return
+	do_jumptomob(M)
+
+/// Performs the jumps
+/client/proc/do_jumptomob(var/mob/M)
+	if(!config.allow_admin_jump)
+		tgui_alert_async(usr, "Admin jumping disabled")
+		return
+	if(!M)
+		return
+
+	var/mob/A = src.mob // Impossible to be unset, enforced by byond
+	var/turf/T = get_turf(M)
+	if(isturf(T))
+		A.on_mob_jump()
+		A.forceMove(T)
 		log_admin("[key_name(usr)] jumped to [key_name(M)]")
 		message_admins("[key_name_admin(usr)] jumped to [key_name_admin(M)]", 1)
-		if(src.mob)
-			var/mob/A = src.mob
-			var/turf/T = get_turf(M)
-			if(T && isturf(T))
-				feedback_add_details("admin_verb","JM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-				A.on_mob_jump()
-				A.forceMove(T)
-			else
-				to_chat(A, "<span class='filter_adminlog'>This mob is not located in the game world.</span>")
+		feedback_add_details("admin_verb","JM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	else
-		tgui_alert_async(usr, "Admin jumping disabled")
-
+		to_chat(A, "<span class='filter_adminlog'>This mob is not located in the game world.</span>")
+		
 /client/proc/jumptocoord(tx as num, ty as num, tz as num)
 	set category = "Admin"
 	set name = "Jump to Coordinate"

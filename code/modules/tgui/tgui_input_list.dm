@@ -99,6 +99,10 @@
 	var/static/regex/whitelistedWords = regex(@{"([^\u0020-\u8000]+)"})
 
 	for(var/i in buttons)
+		if(isnull(i))
+			stack_trace("Null in a tgui_input_list() buttons")
+			continue
+
 		var/string_key = whitelistedWords.Replace("[i]", "")
 
 		//avoids duplicated keys E.g: when areas have the same name
