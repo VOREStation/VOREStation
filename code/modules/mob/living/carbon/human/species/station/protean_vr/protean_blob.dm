@@ -248,10 +248,12 @@
 	if(resting)
 		animate(src,alpha = 40,time = 1 SECOND)
 		mouse_opacity = 0
+		plane = ABOVE_OBJ_PLANE
 	else
 		mouse_opacity = 1
 		icon_state = "wake"
 		animate(src,alpha = 255,time = 1 SECOND)
+		plane = MOB_PLANE
 		sleep(7)
 		update_icon()
 		//Potential glob noms
