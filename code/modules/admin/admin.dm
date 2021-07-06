@@ -688,7 +688,7 @@ var/global/floorIsLava = 0
 	set desc="Announce your desires to the world"
 	if(!check_rights(0))	return
 
-	var/message = input(usr, "Global message to send:", "Admin Announce", null, null)  as message//todo: sanitize for all?
+	var/message = tgui_input_message(usr, "Global message to send:", "Admin Announce")
 	if(message)
 		if(!check_rights(R_SERVER,0))
 			message = sanitize(message, 500, extra = 0)

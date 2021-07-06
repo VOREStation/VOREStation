@@ -178,4 +178,4 @@
 	user.drop_item()
 	W.loc = src
 	stored_materials.Add(W)
-	src.visible_message("<span class='notice'>\The [user] inserts \the [W] into \the [src].</span>")
+	src.visible_message("<b>\The [user]</b> inserts \the [W] into \the [src].")

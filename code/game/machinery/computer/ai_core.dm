@@ -234,21 +234,21 @@ GLOBAL_LIST_BOILERPLATE(all_deactivated_AI_cores, /obj/structure/AIcore/deactiva
 		return
 	else if(W.is_wrench())
 		if(anchored)
-			user.visible_message("<span class='notice'>\The [user] starts to unbolt \the [src] from the plating...</span>")
+			user.visible_message("<b>\The [user]</b> starts to unbolt \the [src] from the plating...")
 			playsound(src, W.usesound, 50, 1)
 			if(!do_after(user,40 * W.toolspeed))
-				user.visible_message("<span class='notice'>\The [user] decides not to unbolt \the [src].</span>")
+				user.visible_message("<b>\The [user]</b> decides not to unbolt \the [src].")
 				return
-			user.visible_message("<span class='notice'>\The [user] finishes unfastening \the [src]!</span>")
+			user.visible_message("<b>\The [user]</b> finishes unfastening \the [src]!")
 			anchored = 0
 			return
 		else
-			user.visible_message("<span class='notice'>\The [user] starts to bolt \the [src] to the plating...</span>")
+			user.visible_message("<b>\The [user]</b> starts to bolt \the [src] to the plating...")
 			playsound(src, W.usesound, 50, 1)
 			if(!do_after(user,40 * W.toolspeed))
-				user.visible_message("<span class='notice'>\The [user] decides not to bolt \the [src].</span>")
+				user.visible_message("<b>\The [user]</b> decides not to bolt \the [src].")
 				return
-			user.visible_message("<span class='notice'>\The [user] finishes fastening down \the [src]!</span>")
+			user.visible_message("<b>\The [user]</b> finishes fastening down \the [src]!")
 			anchored = 1
 			return
 	else

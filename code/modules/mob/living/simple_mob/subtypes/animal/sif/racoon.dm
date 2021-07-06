@@ -181,7 +181,7 @@
 	if(holder.get_active_hand() && istype(holder.get_active_hand(), /obj/item/clothing/head) && !S.hat)
 		var/obj/item/I = holder.get_active_hand()
 		S.take_hat(S)
-		holder.visible_message("<span class='notice'>\The [holder] wears \the [I]</span>")
+		holder.visible_message("<b>\The [holder]</b> wears \the [I]")
 
 /mob/living/simple_mob/animal/sif/sakimm/intelligent
 	desc = "What appears to be an oversized rodent with hands. This one has a curious look in its eyes."
@@ -327,7 +327,7 @@
 		if(istype(holder) && istype(holder.get_active_hand(), /obj/item/clothing/head) && !S.hat)
 			var/obj/item/I = holder.get_active_hand()
 			S.take_hat(S)
-			holder.visible_message("<span class='notice'>\The [holder] wears \the [I]</span>")
+			holder.visible_message("<b>\The [holder]</b> wears \the [I]")
 		carrying_item = TRUE
 
 	if(istype(holder) && S.hat)		// Do we have a hat? Hats are loot.

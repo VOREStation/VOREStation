@@ -87,8 +87,10 @@
 			to_chat(usr, "<span class='info'>There isn't enough space left on \the [src] to write anything.</span>")
 			return
 
-		var/t =  sanitize(input(usr, "Enter what you want to write:", "Write", null, null) as message, free_space, extra = 0)
-
+		var/raw_t = tgui_input_message(usr, "Enter what you want to write:", "Write")
+		if(!raw_t)
+			return
+		var/t =  sanitize(raw_t, free_space, extra = 0)
 		if(!t)
 			return
 

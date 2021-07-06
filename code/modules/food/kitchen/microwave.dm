@@ -77,24 +77,24 @@
 	if(src.broken > 0)
 		if(src.broken == 2 && O.is_screwdriver()) // If it's broken and they're using a screwdriver
 			user.visible_message( \
-				"<span class='notice'>\The [user] starts to fix part of the microwave.</span>", \
+				"<b>\The [user]</b> starts to fix part of the microwave.", \
 				"<span class='notice'>You start to fix part of the microwave.</span>" \
 			)
 			playsound(src, O.usesound, 50, 1)
 			if (do_after(user,20 * O.toolspeed))
 				user.visible_message( \
-					"<span class='notice'>\The [user] fixes part of the microwave.</span>", \
+					"<b>\The [user]</b> fixes part of the microwave.", \
 					"<span class='notice'>You have fixed part of the microwave.</span>" \
 				)
 				src.broken = 1 // Fix it a bit
 		else if(src.broken == 1 && O.is_wrench()) // If it's broken and they're doing the wrench
 			user.visible_message( \
-				"<span class='notice'>\The [user] starts to fix part of the microwave.</span>", \
+				"<b>\The [user]</b> starts to fix part of the microwave.", \
 				"<span class='notice'>You start to fix part of the microwave.</span>" \
 			)
 			if (do_after(user,20 * O.toolspeed))
 				user.visible_message( \
-					"<span class='notice'>\The [user] fixes the microwave.</span>", \
+					"<b>\The [user]</b> fixes the microwave.", \
 					"<span class='notice'>You have fixed the microwave.</span>" \
 				)
 				src.icon_state = "mw"
@@ -108,7 +108,7 @@
 	else if(src.dirty==100) // The microwave is all dirty so can't be used!
 		if(istype(O, /obj/item/weapon/reagent_containers/spray/cleaner) || istype(O, /obj/item/weapon/soap)) // If they're trying to clean it then let them
 			user.visible_message( \
-				"<span class='notice'>\The [user] starts to clean the microwave.</span>", \
+				"<b>\The [user]</b> starts to clean the microwave.", \
 				"<span class='notice'>You start to clean the microwave.</span>" \
 			)
 			if (do_after(user,20))

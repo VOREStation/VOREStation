@@ -47,7 +47,7 @@
 		var/obj/item/weapon/weldingtool/welder = thing
 		if(welder.isOn() && welder.remove_fuel(0,user) && do_after(user, 5, src) && !QDELETED(src))
 			playsound(src.loc, welder.usesound, 50, 1)
-			user.visible_message("<span class='notice'>\The [user] clears away some graffiti.</span>")
+			user.visible_message("<b>\The [user]</b> clears away some graffiti.")
 			qdel(src)
 	else if(thing.sharp)
 
