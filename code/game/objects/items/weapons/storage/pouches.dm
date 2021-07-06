@@ -44,6 +44,9 @@
 
 	return FALSE
 
+/obj/item/weapon/storage/pouch/pocket_description(mob/haver, mob/examiner)
+	return "[src]"
+
 /obj/item/weapon/storage/pouch/large
 	name = "storage pouch (large)"
 	desc = "This storage pouch can be used to provide a good amount of additional storage for quick access."
