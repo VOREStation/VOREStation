@@ -244,7 +244,7 @@ GLOBAL_LIST_EMPTY(mannequins)
 		wing_styles_list[path] = instance
 
 	// VOREStation Add - Vore Modes!
-	paths = subtypesof(/datum/digest_mode)
+	paths = typesof(/datum/digest_mode)
 	for(var/T in paths)
 		var/datum/digest_mode/DM = new T
 		GLOB.digest_modes[DM.id] = DM
