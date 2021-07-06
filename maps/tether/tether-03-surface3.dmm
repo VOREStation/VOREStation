@@ -14646,6 +14646,13 @@
 /obj/item/weapon/pen/invisible,
 /obj/item/weapon/pen/invisible,
 /obj/item/weapon/pen/invisible,
+/obj/item/canvas,
+/obj/item/canvas/nineteen_nineteen,
+/obj/item/canvas/twentyfour_twentyfour,
+/obj/item/canvas/twentythree_nineteen,
+/obj/item/canvas/twentythree_twentythree,
+/obj/item/paint_brush,
+/obj/item/paint_palette,
 /turf/simulated/floor/carpet,
 /area/tether/surfacebase/library/study)
 "axW" = (
@@ -34119,6 +34126,10 @@
 	dir = 10
 	},
 /obj/item/weapon/book/manual/cook_guide,
+/obj/machinery/light/floortube{
+	dir = 1;
+	pixel_y = 6
+	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
 "bgq" = (

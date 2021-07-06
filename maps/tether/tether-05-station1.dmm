@@ -12713,7 +12713,7 @@
 /area/maintenance/station/eng_lower)
 "aMy" = (
 /obj/machinery/conveyor{
-	dir = 10;
+	dir = 5;
 	id = "QMLoad"
 	},
 /turf/simulated/floor,
@@ -19586,11 +19586,11 @@
 /turf/simulated/floor/tiled,
 /area/tether/station/dock_one)
 "fWn" = (
+/obj/machinery/light,
 /obj/machinery/conveyor{
 	dir = 1;
 	id = "QMLoad"
 	},
-/obj/machinery/light,
 /turf/simulated/floor,
 /area/quartermaster/storage)
 "fWt" = (
@@ -28627,11 +28627,6 @@
 /area/tether/exploration/hallway)
 "oEH" = (
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock/maintenance/common,
-/obj/machinery/door/airlock{
-	name = "Custodial Closet";
-	req_access = list(26)
-	},
 /obj/structure/cable/green{
 	d1 = 4;
 	d2 = 8;
@@ -28639,6 +28634,10 @@
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/machinery/door/airlock{
+	name = "Custodial Closet";
+	req_access = list(26)
 	},
 /turf/simulated/floor/tiled,
 /area/janitor)
@@ -29615,7 +29614,7 @@
 /area/shuttle/securiship/engines)
 "qby" = (
 /obj/machinery/conveyor{
-	dir = 9;
+	dir = 6;
 	id = "miningops"
 	},
 /turf/simulated/floor/plating,
@@ -32004,7 +32003,7 @@
 /area/hallway/station/atrium)
 "sKB" = (
 /obj/machinery/conveyor{
-	dir = 5;
+	dir = 10;
 	id = "miningops"
 	},
 /obj/machinery/mineral/input,

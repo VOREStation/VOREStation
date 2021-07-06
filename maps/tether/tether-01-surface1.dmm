@@ -17764,7 +17764,7 @@
 "aDa" = (
 /obj/structure/plasticflaps,
 /obj/machinery/conveyor{
-	dir = 10;
+	dir = 5;
 	id = "gloriouscargopipeline"
 	},
 /turf/simulated/floor/tiled/steel_dirty,
