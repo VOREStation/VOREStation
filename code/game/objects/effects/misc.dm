@@ -44,7 +44,7 @@
 	icon = 'icons/goonstation/featherzone.dmi'
 	icon_state = "hazard-corners"
 	time_to_die = 5 SECONDS
-	plane = ABOVE_OBJ_PLANE
+	plane = PLANE_LIGHTING_ABOVE
 	//VOREStation Edit End
 
 // The manifestation of Zeus's might. Or just a really unlucky day.
