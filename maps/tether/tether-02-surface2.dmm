@@ -221,6 +221,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
+/obj/machinery/vending/coffee,
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/medical/centralhall)
 "aat" = (
@@ -383,13 +384,6 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/centralhall)
 "aaG" = (
-/obj/structure/window/reinforced,
-/turf/simulated/floor/wood,
-/area/tether/surfacebase/medical/centralhall)
-"aaH" = (
-/obj/machinery/vending/coffee{
-	dir = 8
-	},
 /obj/structure/window/reinforced,
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/medical/centralhall)
@@ -1678,15 +1672,13 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/middlehall)
 "acx" = (
-/obj/machinery/vending/medical{
-	dir = 8
-	},
 /obj/machinery/camera/network/medbay{
 	dir = 9
 	},
 /obj/structure/window/reinforced{
 	dir = 1
 	},
+/obj/machinery/vending/medical,
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/medical/centralhall)
 "acy" = (
@@ -22124,6 +22116,9 @@
 "aNc" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/structure/closet/firecloset,
+/obj/structure/sign/painting/public{
+	pixel_y = -30
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/surface_two_hall)
 "aNd" = (
@@ -31020,6 +31015,9 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
+/obj/structure/sign/painting/public{
+	pixel_x = -30
+	},
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/reading_room)
 "biK" = (
@@ -31148,6 +31146,9 @@
 "bje" = (
 /obj/structure/table/glass,
 /obj/item/device/flashlight/lamp/green,
+/obj/structure/sign/painting/public{
+	pixel_x = -30
+	},
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/reading_room)
 "bjg" = (
@@ -31803,6 +31804,9 @@
 "blk" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
+	},
+/obj/structure/sign/painting/public{
+	pixel_x = 30
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/southhall)
@@ -34017,6 +34021,9 @@
 	},
 /obj/effect/floor_decal/techfloor{
 	dir = 4
+	},
+/obj/structure/sign/painting/library_secure{
+	pixel_x = -30
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai_upload)
@@ -47744,7 +47751,7 @@ aar
 abv
 abC
 acx
-aaH
+aaG
 aaO
 afa
 ahG

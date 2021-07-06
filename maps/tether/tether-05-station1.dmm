@@ -6394,6 +6394,9 @@
 /area/storage/tech)
 "aod" = (
 /obj/structure/filingcabinet,
+/obj/structure/sign/painting/library_secure{
+	pixel_x = 30
+	},
 /turf/simulated/floor/tiled/dark,
 /area/tcommsat/computer)
 "aof" = (
@@ -14857,6 +14860,9 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment,
+/obj/structure/sign/painting/public{
+	pixel_x = 30
+	},
 /turf/simulated/floor/tiled,
 /area/tether/station/dock_one)
 "byp" = (
@@ -31169,6 +31175,24 @@
 "rMb" = (
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock/refinery)
+"rOV" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 9
+	},
+/obj/structure/sign/painting/public{
+	pixel_x = 30
+	},
+/turf/simulated/floor/tiled,
+/area/tether/station/dock_one)
 "rPU" = (
 /obj/machinery/light{
 	dir = 8
@@ -39972,7 +39996,7 @@ mra
 xkZ
 mra
 mra
-mra
+rOV
 fDN
 mra
 mra
