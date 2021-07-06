@@ -165,4 +165,4 @@
 
 			if(!recharge_complete && recharging_atom.percent() >= 100)
 				recharge_complete = TRUE
-				visible_message(SPAN_NOTICE("\The [src] beeps and flashes a green light above \his recharging port."))
+				visible_message("<b>\The [src]</b> beeps and flashes a green light above \his recharging port.")

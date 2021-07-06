@@ -60,6 +60,7 @@ export const InputModal = (props, context) => {
           width="100%"
           height="100%"
           autoFocus
+          dontUseTabForIndent
           onKeyDown={handleKeyDown}
           onChange={(_e, val) => {
             setCurValue(val);
@@ -70,7 +71,7 @@ export const InputModal = (props, context) => {
   }
 
   return (
-    <Window title={title} width={initialWidth} height={initialHeight}>
+    <Window title={title} theme="abstract" width={initialWidth} height={initialHeight}>
       {timeout !== undefined && <Loader value={timeout} />}
       <Window.Content>
         <Stack fill vertical>

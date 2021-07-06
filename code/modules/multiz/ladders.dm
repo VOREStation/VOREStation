@@ -94,7 +94,7 @@
 
 /obj/structure/ladder/proc/climbLadder(var/mob/M, var/obj/target_ladder)
 	var/direction = (target_ladder == target_up ? "up" : "down")
-	M.visible_message("<span class='notice'>\The [M] begins climbing [direction] \the [src]!</span>",
+	M.visible_message("<b>\The [M]</b> begins climbing [direction] \the [src]!",
 		"You begin climbing [direction] \the [src]!",
 		"You hear the grunting and clanging of a metal ladder being used.")
 

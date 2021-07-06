@@ -185,7 +185,7 @@ var/list/_cat_default_emotes = list(
 /mob/living/simple_mob/animal/passive/cat/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/pen) || istype(W, /obj/item/device/flashlight/pen))
 		if(named)
-			to_chat(user, "<span class='notice'>\the [name] already has a name!</span>")
+			to_chat(user, "<span class='notice'>\The [name] already has a name!</span>")
 		else
 			var/tmp_name = sanitizeSafe(input(user, "Give \the [name] a name", "Name"), MAX_NAME_LEN)
 			if(length(tmp_name) > 50)

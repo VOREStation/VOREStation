@@ -235,7 +235,7 @@
 				user.visible_message("<span class='notice'>\The [user] crudely slices \the [src] with [W]!</span>", "<span class='notice'>You crudely slice \the [src] with your [W]!</span>")
 				slices_lost = rand(1,min(1,round(slices_num/2)))
 			else
-				user.visible_message("<span class='notice'>\The [user] slices \the [src]!</span>", "<span class='notice'>You slice \the [src]!</span>")
+				user.visible_message("<b>\The [user]</b> slices \the [src]!", "<span class='notice'>You slice \the [src]!</span>")
 
 			var/reagents_per_slice = reagents.total_volume/slices_num
 			for(var/i=1 to (slices_num-slices_lost))
@@ -1833,7 +1833,7 @@
 		Unwrap(user)
 
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube/proc/Expand()
-	src.visible_message("<span class='notice'>\The [src] expands!</span>")
+	src.visible_message("<b>\The [src]</b> expands!")
 	var/mob/living/carbon/human/H = new(get_turf(src))
 	H.set_species(monkey_type)
 	H.real_name = H.species.get_random_name()

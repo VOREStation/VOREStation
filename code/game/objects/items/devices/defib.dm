@@ -86,7 +86,7 @@
 		reattach_paddles(user)
 	else if(istype(W, /obj/item/weapon/cell))
 		if(bcell)
-			to_chat(user, "<span class='notice'>\the [src] already has a cell.</span>")
+			to_chat(user, "<span class='notice'>\The [src] already has a cell.</span>")
 		else
 			if(!user.unEquip(W))
 				return
@@ -392,7 +392,7 @@
 	user.visible_message("<span class='warning'>\The [user] begins to place [src] on [H]'s chest.</span>", "<span class='warning'>You begin to place [src] on [H]'s chest...</span>")
 	if(!do_after(user, 30, H))
 		return
-	user.visible_message("<span class='notice'>\The [user] places [src] on [H]'s chest.</span>", "<span class='warning'>You place [src] on [H]'s chest.</span>")
+	user.visible_message("<b>\The [user]</b> places [src] on [H]'s chest.", "<span class='warning'>You place [src] on [H]'s chest.</span>")
 	playsound(src, 'sound/machines/defib_charge.ogg', 50, 0)
 
 	var/error = can_defib(H)
