@@ -5,6 +5,7 @@
 	anchored = 1
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "uglymine"
+	plane = OBJ_PLANE
 	var/triggered = 0
 	var/smoke_strength = 3
 	var/obj/item/weapon/mine/mineitemtype = /obj/item/weapon/mine
