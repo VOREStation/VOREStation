@@ -248,10 +248,12 @@
 	if(resting)
 		animate(src,alpha = 40,time = 1 SECOND)
 		mouse_opacity = 0
+		plane = ABOVE_OBJ_PLANE
 	else
 		mouse_opacity = 1
 		icon_state = "wake"
 		animate(src,alpha = 255,time = 1 SECOND)
+		plane = MOB_PLANE
 		sleep(7)
 		update_icon()
 		//Potential glob noms
@@ -309,7 +311,7 @@ var/global/list/disallowed_protean_accessories = list(
 	if(!force && !isturf(loc))
 		to_chat(src,"<span class='warning'>You can't change forms while inside something.</span>")
 		return
-		
+
 	var/panel_was_up = FALSE
 	if(client?.statpanel == "Protean")
 		panel_was_up = TRUE
@@ -405,7 +407,7 @@ var/global/list/disallowed_protean_accessories = list(
 /mob/living/carbon/human/proc/nano_outofblob(var/mob/living/simple_mob/protean_blob/blob, force)
 	if(!istype(blob))
 		return
-	
+
 	if(!force && !isturf(blob.loc))
 		to_chat(blob,"<span class='warning'>You can't change forms while inside something.</span>")
 		return
