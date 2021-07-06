@@ -49,6 +49,8 @@
 	var/use_sound = "rustle"	//sound played when used. null for no sound.
 	var/list/starts_with //Things to spawn on the box on spawn
 	var/empty //Mapper override to spawn an empty version of a container that usually has stuff
+	/// If you can use this storage while in a pocket
+	var/pocketable = FALSE
 
 /obj/item/weapon/storage/Initialize()
 	. = ..()
@@ -101,6 +103,7 @@
 				count--
 				new newtype(src)
 		starts_with = null //Reduce list count.
+		update_icon()
 
 	calibrate_size()
 
@@ -473,6 +476,9 @@
 /obj/item/weapon/storage/proc/handle_item_insertion(obj/item/W as obj, prevent_warning = 0)
 	if(!istype(W)) return 0
 
+	if(!stall_insertion(W, usr)) // Can sleep here and delay removal for slow storage
+		return 0
+
 	if(usr)
 		usr.remove_from_mob(W,target = src) //If given a target, handles forceMove()
 		W.on_enter_storage(src)
@@ -506,6 +512,9 @@
 /obj/item/weapon/storage/proc/remove_from_storage(obj/item/W as obj, atom/new_location)
 	if(!istype(W)) return 0
 
+	if(!stall_removal(W, usr)) // Can sleep here and delay removal for slow storage
+		return 0
+
 	if(istype(src, /obj/item/weapon/storage/fancy))
 		var/obj/item/weapon/storage/fancy/F = src
 		F.update_icon(1)
@@ -533,6 +542,14 @@
 	W.on_exit_storage(src)
 	update_icon()
 	return 1
+
+/// Called before insertion completes, allowing you to delay or cancel it
+/obj/item/weapon/storage/proc/stall_insertion(obj/item/W, mob/user)
+	return TRUE
+
+/// Called before removal completes, allowing you to delay or cancel it
+/obj/item/weapon/storage/proc/stall_removal(obj/item/W, mob/user)
+	return TRUE
 
 //This proc is called when you want to place an item into the storage item.
 /obj/item/weapon/storage/attackby(obj/item/W as obj, mob/user as mob)
@@ -579,7 +596,7 @@
 	return
 
 /obj/item/weapon/storage/attack_hand(mob/user as mob)
-	if(ishuman(user))
+	if(ishuman(user) && !pocketable)
 		var/mob/living/carbon/human/H = user
 		if(H.l_store == src && !H.get_active_hand())	//Prevents opening if it's in a pocket.
 			H.put_in_hands(src)

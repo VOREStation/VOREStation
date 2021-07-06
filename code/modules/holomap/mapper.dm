@@ -185,7 +185,7 @@
 		hud_item.off(FALSE)
 
 /obj/item/device/mapping_unit/proc/hide_device()
-	hud_datum.unapply_to_hud()
+	hud_datum?.unapply_to_hud()
 
 /obj/item/device/mapping_unit/proc/last_run()
 	stop_updates()

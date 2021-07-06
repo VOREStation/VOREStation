@@ -101,6 +101,18 @@
 		ui.open()
 
 /obj/item/canvas/attackby(obj/item/I, mob/living/user, params)
+	if(istype(I, /obj/item/paint_palette))
+		var/choice = tgui_alert(user, "Adjusting the base color of this canvas will replace ALL pixels with the selected color. Are you sure?", "Confirm Color Fill", list("Yes", "No"))
+		if(choice == "No")
+			return
+		var/basecolor = input(user, "Select a base color for the canvas:", "Base Color", canvas_color) as null|color
+		if(basecolor && Adjacent(user, src) && Adjacent(user, I))
+			canvas_color = basecolor
+			reset_grid()
+			user.visible_message("[user] smears paint on [src], covering the entire thing in paint.", "You smear paint on [src], changing the color of the entire thing.", runemessage = "smears paint")
+			update_appearance()
+			return
+			
 	if(user.a_intent == I_HELP)
 		tgui_interact(user)
 	else
@@ -183,7 +195,10 @@
 /obj/item/canvas/proc/get_paint_tool_color(obj/item/I)
 	if(!I)
 		return
-	if(istype(I, /obj/item/weapon/pen/crayon))
+	if(istype(I, /obj/item/paint_brush))
+		var/obj/item/paint_brush/P = I
+		return P.selected_color
+	else if(istype(I, /obj/item/weapon/pen/crayon))
 		var/obj/item/weapon/pen/crayon/crayon = I
 		return crayon.colour
 	else if(istype(I, /obj/item/weapon/pen))
@@ -244,6 +259,58 @@
 	framed_offset_y = 4
 	frame_offset_x = -2
 	frame_offset_y = -2
+
+/obj/item/paint_brush
+	name = "artist's paintbrush"
+	desc = "When you really want to put together a masterpiece!"
+	description_info = "Hit this on a palette to set the color, and use it on a canvas to paint with that color."
+	icon = 'icons/obj/artstuff.dmi'
+	icon_state = "brush"
+	var/selected_color = "#000000"
+	var/image/color_drop
+	var/hud_level = FALSE
+
+/obj/item/paint_brush/Initialize()
+	. = ..()
+	color_drop = image(icon, null, "brush_color")
+	color_drop.color = selected_color
+
+// When picked up
+/obj/item/paint_brush/hud_layerise()
+	. = ..()
+	hud_level = TRUE
+	update_paint()
+
+// When put down
+/obj/item/paint_brush/reset_plane_and_layer()
+	. = ..()
+	hud_level = FALSE
+	update_paint()
+
+/obj/item/paint_brush/proc/update_paint(var/new_color)
+	if(new_color)
+		selected_color = new_color
+		color_drop.color = new_color
+		
+	cut_overlays()
+	if(hud_level)
+		add_overlay(color_drop)
+
+/obj/item/paint_palette
+	name = "artist's palette"
+	desc = "Helps to have a paintbrush, too."
+	description_info = "You can hit this on a canvas to set the entire canvas color (but note that it will wipe out any works in progress). You can hit a paintbrush on this to set the color."
+	icon = 'icons/obj/artstuff.dmi'
+	icon_state = "palette"
+
+/obj/item/paint_palette/attackby(obj/item/weapon/W, mob/user)
+	if(istype(W, /obj/item/paint_brush))
+		var/obj/item/paint_brush/P = W
+		var/newcolor = input(user, "Select a new paint color:", "Paint Palette", P.selected_color) as null|color
+		if(newcolor && Adjacent(user, P) && Adjacent(user, src))
+			P.update_paint(newcolor)
+	else
+		return ..()
 
 /obj/item/frame/painting
 	name = "painting frame"

@@ -421,7 +421,7 @@ emp_act
 				return
 
 		if(!zone)
-			visible_message("<span class='notice'>\The [O] misses [src] narrowly!</span>")
+			visible_message("<b>\The [O]</b> misses [src] narrowly!")
 			return
 
 		O.throwing = 0		//it hit, so stop moving

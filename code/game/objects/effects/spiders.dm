@@ -236,7 +236,7 @@
 				last_itch = world.time
 				to_chat(O.owner, "<span class='notice'>Your [O.name] itches...</span>")
 	else if(prob(1))
-		src.visible_message("<span class='notice'>\The [src] skitters.</span>")
+		src.visible_message("<b>\The [src]</b> skitters.")
 
 	if(amount_grown >= 0)
 		amount_grown += rand(0,2)

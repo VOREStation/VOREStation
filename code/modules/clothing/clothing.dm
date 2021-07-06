@@ -677,7 +677,7 @@
 		user.unEquip(I)
 		I.forceMove(src)
 		holding = I
-		user.visible_message("<span class='notice'>\The [user] shoves \the [I] into \the [src].</span>")
+		user.visible_message("<b>\The [user]</b> shoves \the [I] into \the [src].")
 		verbs |= /obj/item/clothing/shoes/proc/draw_knife
 		update_icon()
 	else

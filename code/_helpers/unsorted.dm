@@ -686,12 +686,12 @@ Turf and target are seperate in case you want to teleport some distance from a t
 /proc/return_areas()
 	var/list/area/areas = list()
 	for(var/area/A in world)
-		areas += A
+		areas[A.name] = A
 	return areas
 
 //Returns: all the areas in the world, sorted.
 /proc/return_sorted_areas()
-	return sortAtom(return_areas())
+	return sortTim(return_areas(), /proc/cmp_text_asc)
 
 //Takes: Area type as text string or as typepath OR an instance of the area.
 //Returns: A list of all areas of that type in the world.

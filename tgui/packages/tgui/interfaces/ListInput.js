@@ -120,6 +120,7 @@ export const ListInput = (props, context) => {
   return (
     <Window
       title={title}
+      theme="abstract"
       width={325}
       height={325}>
       {timeout !== undefined && <Loader value={timeout} />}

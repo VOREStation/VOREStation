@@ -209,10 +209,10 @@
 		if(use_cell_power())
 			active = !active
 			if(active)
-				visible_message("<span class='notice'>\The [src] lurches downwards, grinding noisily.</span>")
+				visible_message("<b>\The [src]</b> lurches downwards, grinding noisily.")
 				need_update_field = 1
 			else
-				visible_message("<span class='notice'>\The [src] shudders to a grinding halt.</span>")
+				visible_message("<b>\The [src]</b> shudders to a grinding halt.")
 		else
 			to_chat(user, "<span class='notice'>The drill is unpowered.</span>")
 	else
@@ -273,7 +273,7 @@
 /obj/machinery/mining/drill/proc/system_error(var/error)
 
 	if(error)
-		src.visible_message("<span class='notice'>\The [src] flashes a '[error]' warning.</span>")
+		src.visible_message("<b>\The [src]</b> flashes a '[error]' warning.")
 		faultreporter.autosay(error, src.name, "Supply")
 	need_player_check = 1
 	active = 0

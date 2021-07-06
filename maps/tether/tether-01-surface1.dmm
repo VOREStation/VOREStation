@@ -38463,6 +38463,14 @@
 	pixel_x = -24
 	},
 /obj/structure/easel,
+/obj/item/paint_palette,
+/obj/item/paint_palette{
+	pixel_y = -4
+	},
+/obj/item/paint_brush,
+/obj/item/paint_brush{
+	pixel_x = 4
+	},
 /turf/simulated/floor/tiled,
 /area/storage/art)
 "xyI" = (
