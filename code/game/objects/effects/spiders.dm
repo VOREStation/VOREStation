@@ -5,6 +5,7 @@
 	icon = 'icons/effects/effects.dmi'
 	anchored = 1
 	density = 0
+	plane = OBJ_PLANE
 	var/health = 15
 
 //similar to weeds, but only barfed out by nurses manually
