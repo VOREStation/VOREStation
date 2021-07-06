@@ -418,6 +418,9 @@
 		update_appearance()
 
 /obj/structure/sign/painting/proc/unframe_canvas(mob/living/user)
+	if(!allowed(user))
+		to_chat(user, "<span class='warning'>You're not comfortable removing this prestigious canvas!</span>")
+		return
 	if(current_canvas)
 		current_canvas.forceMove(drop_location())
 		current_canvas = null
