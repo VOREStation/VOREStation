@@ -39,7 +39,7 @@
 	if(!vore_selected)
 		to_chat(user, "<span class='warning'>[src] isn't planning on eating anything much less digesting it.</span>")
 		return
-	if(ai_holder.hostile && faction != user.faction))
+	if(ai_holder.hostile && faction != user.faction)
 		to_chat(user, "<span class='warning'>This predator isn't friendly, and doesn't give a shit about your opinions of it digesting you.</span>")
 		return
 	if(vore_selected.digest_mode == DM_HOLD)
