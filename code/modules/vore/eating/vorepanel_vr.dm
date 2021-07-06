@@ -48,7 +48,7 @@
 /datum/vore_look/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "VorePanel", "Inside!")
+		ui = new(user, src, "VorePanel", "Vore Panel")
 		ui.open()
 
 // This looks weird, but all tgui_host is used for is state checking
