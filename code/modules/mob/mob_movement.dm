@@ -164,6 +164,9 @@
 	next_move_dir_add = 0	// This one I *think* exists so you can tap move and it will move even if delay isn't quite up.
 	next_move_dir_sub = 0 	// I'm not really sure why next_move_dir_sub even exists.
 
+	if(!n || !direct)
+		return
+
 	// If dead and we try to move in our mob, it leaves our body
 	if(my_mob.stat == DEAD && isliving(my_mob) && !my_mob.forbid_seeing_deadchat)
 		my_mob.ghostize()
