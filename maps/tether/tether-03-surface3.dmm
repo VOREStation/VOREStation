@@ -41250,6 +41250,9 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
+/obj/structure/sign/painting/library_secure{
+	pixel_y = -30
+	},
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/security/hos)
 "oMK" = (
