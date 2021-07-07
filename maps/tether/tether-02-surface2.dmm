@@ -16395,9 +16395,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals_central1{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/monotile{
-	dir = 
-	},
+/turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/surface_two_hall)
 "aBS" = (
 /obj/effect/floor_decal/steeldecal/steel_decals6{
