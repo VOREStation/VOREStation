@@ -90,6 +90,8 @@ What is the naming convention for planes or layers?
 	#define ON_WINDOW_LAYER			3.3 // Ontop of a window
 	#define ABOVE_WINDOW_LAYER 		3.4 //Above full tile windows so wall items are clickable
 
+#define ABOVE_OBJ_PLANE -30
+
 // Mob planes
 #define MOB_PLANE				-25
 	#define BELOW_MOB_LAYER			3.9 // Should be converted to plane swaps

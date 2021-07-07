@@ -7,6 +7,7 @@
 	name="beam"
 	icon='icons/effects/beam.dmi'
 	icon_state="b_beam"
+	plane = ABOVE_OBJ_PLANE
 	var/tmp/atom/BeamSource
 
 /obj/effect/overlay/beam/New()
@@ -62,6 +63,7 @@
 	icon = 'icons/turf/overlays.dmi'
 	icon_state = "snow"
 	anchored = 1
+	plane = TURF_PLANE
 
 // Todo: Add a version that gradually reaccumulates over time by means of alpha transparency. -Spades
 /obj/effect/overlay/snow/attackby(obj/item/W as obj, mob/user as mob)
