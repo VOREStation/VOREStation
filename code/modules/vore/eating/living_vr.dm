@@ -518,7 +518,7 @@
 		swallow_time = istype(prey, /mob/living/carbon/human) ? belly.human_prey_swallow_time : belly.nonhuman_prey_swallow_time
 
 	//Timer and progress bar
-	if(!do_after(user, swallow_time, prey))
+	if(!do_after(user, swallow_time, prey, exclusive = TRUE))
 		return FALSE // Prey escpaed (or user disabled) before timer expired.
 
 	// If we got this far, nom successful! Announce it!
