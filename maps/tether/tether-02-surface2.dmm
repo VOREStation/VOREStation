@@ -33199,6 +33199,13 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai)
+"gOR" = (
+/obj/machinery/recharge_station,
+/obj/machinery/computer/cryopod/gateway{
+	pixel_y = -30
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/ai_cyborg_station)
 "gXE" = (
 /obj/machinery/light{
 	dir = 8
@@ -47414,7 +47421,7 @@ mKS
 aKX
 pLN
 rqU
-sSw
+gOR
 aKX
 adt
 adt

@@ -237,6 +237,9 @@
 /obj/effect/landmark{
 	name = "JoinLateCyborg"
 	},
+/obj/machinery/computer/cryopod/gateway{
+	pixel_x = -32
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/station/exploration)
 "aay" = (
