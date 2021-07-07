@@ -462,12 +462,14 @@
  * Deleting paintings leaves their json, so this proc will remove the json and try again if it finds one of those.
  */
 /obj/structure/sign/painting/proc/load_persistent()
-	if(!persistence_id || !SSpersistence.paintings)
+	if(!persistence_id || !LAZYLEN(SSpersistence.unpicked_paintings))
 		return
+	
 	var/list/painting_category = list()
-	for (var/list/P in SSpersistence.paintings)
+	for (var/list/P in SSpersistence.unpicked_paintings)
 		if(P["persistence_id"] == persistence_id)
 			painting_category[++painting_category.len] = P
+	
 	var/list/painting
 	while(!painting)
 		if(!length(painting_category))
@@ -475,24 +477,30 @@
 		var/list/chosen = pick(painting_category)
 		if(!fexists("data/persistent/paintings/[persistence_id]/[chosen["md5"]].png")) //shitmin deleted this art, lets remove json entry to avoid errors
 			painting_category -= list(chosen)
+			SSpersistence.unpicked_paintings -= chosen
 			continue //and try again
 		painting = chosen
+		SSpersistence.unpicked_paintings -= chosen
+	
 	var/title = painting["title"]
 	var/author_name = painting["author"]
 	var/author_ckey = painting["ckey"]
 	var/png = "data/persistent/paintings/[persistence_id]/[painting["md5"]].png"
-	if(!title)
-		title = "Untitled Artwork" //legacy artwork allowed null names which was bad for the json, lets fix that
-		painting["title"] = title
 	var/icon/I = new(png)
 	var/obj/item/canvas/new_canvas
 	var/w = I.Width()
 	var/h = I.Height()
+	
 	for(var/T in typesof(/obj/item/canvas))
 		new_canvas = T
 		if(initial(new_canvas.width) == w && initial(new_canvas.height) == h)
 			new_canvas = new T(src)
 			break
+
+	if(!new_canvas)
+		warning("Couldn't find a canvas to match [w]x[h] of painting")
+		return
+	
 	new_canvas.fill_grid_from_icon(I)
 	new_canvas.generated_icon = I
 	new_canvas.icon_generated = TRUE
@@ -512,18 +520,20 @@
 		return
 	if(!current_canvas.painting_name)
 		current_canvas.painting_name = "Untitled Artwork"
+	
 	var/data = current_canvas.get_data_string()
 	var/md5 = md5(lowertext(data))
-	LAZYINITLIST(SSpersistence.paintings)
-	for(var/list/entry in SSpersistence.paintings)
+	for(var/list/entry in SSpersistence.all_paintings)
 		if(entry["md5"] == md5 && entry["persistence_id"] == persistence_id)
 			return
 	var/png_directory = "data/persistent/paintings/[persistence_id]/"
 	var/png_path = png_directory + "[md5].png"
 	var/result = rustg_dmi_create_png(png_path,"[current_canvas.width]","[current_canvas.height]",data)
+	
 	if(result)
 		CRASH("Error saving persistent painting: [result]")
-	SSpersistence.paintings += list(list(
+	
+	SSpersistence.all_paintings += list(list(
 		"persistence_id" = persistence_id,
 		"title" = current_canvas.painting_name,
 		"md5" = md5,
@@ -547,10 +557,10 @@
 		var/md5 = md5(lowertext(current_canvas.get_data_string()))
 		var/author = current_canvas.author_ckey
 		var/list/filenames_found = list()
-		for(var/list/entry in SSpersistence.paintings)
+		for(var/list/entry in SSpersistence.all_paintings)
 			if(entry["md5"] == md5)
 				filenames_found += "data/persistent/paintings/[entry["persistence_id"]]/[entry["md5"]].png"
-				SSpersistence.paintings -= entry
+				SSpersistence.all_paintings -= entry
 		for(var/png in filenames_found)
 			if(fexists(png))
 				fdel(png)

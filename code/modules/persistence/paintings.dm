@@ -8,16 +8,17 @@
 /datum/persistent/paintings/Initialize()
 	. = ..()
 	if(fexists(filename))
-		SSpersistence.paintings = json_decode(file2text(filename))
-		var/list/tokens = SSpersistence.paintings
+		SSpersistence.all_paintings = json_decode(file2text(filename))
+		var/list/tokens = SSpersistence.all_paintings
 		for(var/list/token in tokens)
 			token["age"]++ // Increment age!
 			if(!CheckTokenSanity(token))
 				tokens -= token
-
+	
+	SSpersistence.unpicked_paintings = SSpersistence.all_paintings.Copy()
+	
 	for(var/obj/structure/sign/painting/P in SSpersistence.painting_frames)
 		P.load_persistent()
-	return
 
 /datum/persistent/paintings/CheckTokenSanity(var/list/token)
 	var/png_filename = "data/paintings/[token["persistence_id"]]/[token["md5"]].png"
@@ -33,4 +34,4 @@
 
 	if(fexists(filename))
 		fdel(filename)
-	to_file(file(filename), json_encode(SSpersistence.paintings))
+	to_file(file(filename), json_encode(SSpersistence.all_paintings))
