@@ -11640,9 +11640,6 @@
 	name = "\improper Telecomms Solar Field"
 	})
 "aFe" = (
-/obj/machinery/door/airlock{
-	name = "Unisex Bathrooms"
-	},
 /obj/structure/cable/green{
 	d1 = 4;
 	d2 = 8;
