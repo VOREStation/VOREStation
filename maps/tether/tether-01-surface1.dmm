@@ -18284,7 +18284,7 @@
 	req_one_access = list(25)
 	},
 /obj/structure/sink{
-	pixel_y = 28
+	pixel_y = 22
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_dining)
