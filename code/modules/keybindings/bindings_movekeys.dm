@@ -38,6 +38,12 @@ var/global/list/MOVE_KEY_MAPPINGS = list(
 		DEBUG_INPUT("Saving [dirs2text(movement)] into next_move_dir_ADD")
 		next_move_dir_add |= movement
 
+	#ifdef CARDINAL_INPUT_ONLY
+	if(movement)
+		DEBUG_INPUT("set last=[dirs2text(movement)]")
+		last_move_dir_pressed = movement
+	#endif
+
 	mob.focus?.key_down(movekey, src)
 
 /client/verb/moveKeyUp(movekeyName as text)

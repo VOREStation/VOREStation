@@ -101,3 +101,10 @@
 	/// Note that only dirs that were already held at the start of this cycle are included, if it pressed then released it won't be in here.
  	/// On next move, subtract this dir from the move that would otherwise be done
 	var/next_move_dir_sub
+
+	#ifdef CARDINAL_INPUT_ONLY
+
+	/// Movement dir of the most recently pressed movement key.  Used in cardinal-only movement mode.
+	var/last_move_dir_pressed = NONE
+
+	#endif

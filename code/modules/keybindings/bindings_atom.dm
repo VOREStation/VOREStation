@@ -25,6 +25,17 @@
 	if((movement_dir & (EAST|WEST)) == (EAST|WEST))
 		movement_dir &= ~(EAST|WEST)
 
+	#ifdef CARDINAL_INPUT_ONLY
+	if(movement_dir & user.last_move_dir_pressed)
+		movement_dir = user.last_move_dir_pressed
+	else if (movement_dir == NORTHEAST || movement_dir == NORTHWEST)
+		DEBUG_INPUT("overriding to NORTH: movement_dir=[dirs2text(movement_dir)] last=[dirs2text(user.last_move_dir_pressed)]")
+		movement_dir = NORTH
+	else if (movement_dir == SOUTHEAST || movement_dir == SOUTHWEST)
+		DEBUG_INPUT("overriding to SOUTH: movement_dir=[dirs2text(movement_dir)] last=[dirs2text(user.last_move_dir_pressed)]")
+		movement_dir = SOUTH
+	#endif
+
 	// Compensate for client camera spinning (client.dir) so our movement still makes sense I guess.
 	if(movement_dir) // Only compensate if non-zero, as byond will auto-fill dir otherwise
 		movement_dir = turn(movement_dir, -dir2angle(user.dir))
