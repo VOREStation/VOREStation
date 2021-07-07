@@ -39,12 +39,20 @@
 	if(nutriment_amt)
 		reagents.add_reagent("nutriment",(nutriment_amt*2),nutriment_desc)		//VOREStation Edit: Undoes global nutrition nerf
 
-	//Placeholder for effect that trigger on eating that aren't tied to reagents.
+//Placeholder for effect that trigger on eating that aren't tied to reagents.
 /obj/item/weapon/reagent_containers/food/snacks/proc/On_Consume(var/mob/M)
 	if(!usr)
 		usr = M
 	if(!reagents.total_volume)
 		M.visible_message("<span class='notice'>[M] finishes eating \the [src].</span>","<span class='notice'>You finish eating \the [src].</span>")
+		// Embedded-in-food smol vore
+		for(var/obj/item/weapon/holder/holder in src)
+			if(holder.held_mob?.devourable && isliving(M))
+				var/mob/living/L = M
+				holder.held_mob.forceMove(L.vore_selected)
+				holder.held_mob = null
+				qdel(holder)
+		
 		usr.drop_from_inventory(src)	//so icons update :[
 
 		if(trash)
