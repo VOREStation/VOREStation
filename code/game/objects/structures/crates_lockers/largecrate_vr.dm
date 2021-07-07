@@ -54,6 +54,7 @@
 						/mob/living/simple_mob/vore/aggressive/rat,
 						/mob/living/simple_mob/vore/aggressive/rat/tame,
 						/mob/living/simple_mob/vore/rabbit,
+						/mob/living/simple_mob/vore/weretiger;0.5,
 //						/mob/living/simple_mob/otie;0.5
 						))
 	return ..()
@@ -139,3 +140,8 @@
 	name = "Jerboa Crate"
 	desc = "Lots, and lots of squeaking."
 	starts_with = list(/mob/living/simple_mob/animal/passive/mouse/jerboa)
+
+/obj/structure/largecrate/animal/weretiger
+	name = "Weretiger Crate"
+	desc = "You can hear a lot of annoyed scratches, clearly someone doesn't enjoy being locked up."
+	starts_with = list(/mob/living/simple_mob/vore/weretiger)
