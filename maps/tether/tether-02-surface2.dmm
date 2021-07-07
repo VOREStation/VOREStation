@@ -16395,9 +16395,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals_central1{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/monofloor{
-	dir = 1
-	},
+/turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/surface_two_hall)
 "aBS" = (
 /obj/effect/floor_decal/steeldecal/steel_decals6{
@@ -16825,7 +16823,7 @@
 	name = "Atrium Second Floor"
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals_central1,
-/turf/simulated/floor/tiled/monofloor,
+/turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/surface_two_hall)
 "aCF" = (
 /obj/structure/cable{

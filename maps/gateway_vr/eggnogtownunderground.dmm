@@ -17,8 +17,7 @@
 /area/gateway/eggnogtown/hotspring)
 "af" = (
 /obj/machinery/light/small{
-	dir = 8;
-	pixel_x = 0
+	dir = 8
 	},
 /turf/simulated/mineral/floor/ignore_cavegen{
 	temperature = 258.15
@@ -234,8 +233,7 @@
 /area/gateway/eggnogtown/vibeout)
 "kV" = (
 /obj/machinery/light/small{
-	dir = 8;
-	pixel_x = 0
+	dir = 8
 	},
 /turf/simulated/mineral/floor/ignore_cavegen{
 	temperature = 303.15
@@ -267,8 +265,7 @@
 /area/gateway/eggnogtown/vibeout)
 "ma" = (
 /obj/machinery/light/small{
-	dir = 8;
-	pixel_x = 0
+	dir = 8
 	},
 /turf/unsimulated/beach/water{
 	name = "hot spring";
@@ -313,8 +310,7 @@
 /area/gateway/eggnogtown/vibeout)
 "qb" = (
 /obj/machinery/light/small{
-	dir = 4;
-	pixel_y = 0
+	dir = 4
 	},
 /turf/simulated/floor/bmarble{
 	temperature = 303.15
@@ -429,8 +425,7 @@
 /area/gateway/eggnogtown/houserhomestead/basement)
 "vs" = (
 /obj/machinery/light/small{
-	dir = 4;
-	pixel_y = 0
+	dir = 4
 	},
 /turf/simulated/mineral/floor/ignore_cavegen{
 	temperature = 303.15

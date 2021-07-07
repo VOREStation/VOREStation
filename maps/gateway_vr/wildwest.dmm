@@ -1393,7 +1393,7 @@
 /area/awaymission/wwvault)
 "ws" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/snacks/donut/slimejelly,
+/obj/item/weapon/reagent_containers/food/snacks/donut/pink/jelly,
 /turf/simulated/floor/carpet,
 /area/awaymission/wwmines)
 "xo" = (
@@ -1504,7 +1504,7 @@
 /area/awaymission/wwrefine)
 "zY" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/snacks/donut/jelly,
+/obj/item/weapon/reagent_containers/food/snacks/donut/choc/jelly,
 /turf/simulated/floor/carpet,
 /area/awaymission/wwmines)
 "AA" = (
@@ -1527,7 +1527,7 @@
 /area/awaymission/wwmines)
 "Ce" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/snacks/donut/normal,
+/obj/item/weapon/reagent_containers/food/snacks/donut/plain,
 /turf/simulated/floor/carpet,
 /area/awaymission/wwmines)
 "Ch" = (
@@ -1721,7 +1721,7 @@
 "Io" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/reagent_containers/food/drinks/coffee,
-/obj/item/weapon/reagent_containers/food/snacks/donut/slimejelly,
+/obj/item/weapon/reagent_containers/food/snacks/donut/pink/jelly,
 /turf/simulated/floor/carpet,
 /area/awaymission/wwmines)
 "Iy" = (
