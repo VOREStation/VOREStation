@@ -54,6 +54,9 @@ What is the naming convention for planes or layers?
 	#define OPENSPACE_LAYER 	600 // Above every other layer
 #define OPENSPACE_BACKDROP_PLANE	-50 // Black square has to be above openspace turfs
 
+#define MAP_VIEW_PLANE			-48 // Plane for 'embedded' maps in consoles and such
+	#define MAP_VIEW_LAYER			0
+
 // Turf Planes
 #define PLATING_PLANE			-44 // Plating
 	#define DISPOSAL_LAYER		2.1 // Under objects, even when planeswapped
