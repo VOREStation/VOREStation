@@ -7108,7 +7108,7 @@
 	desc = "A burger stored in a plastic wrapping for vending machine distribution. Surely it tastes fine!"
 	package = TRUE
 	package_trash = /obj/item/trash/vendor_burger
-	package_open_state = "smolburger"
+	package_open_state = "smolcheeseburger"
 	nutriment_amt = 3
 	nutriment_desc = list("stale burger" = 3)
 	starts_with = list("sodiumchloride" = 1)
