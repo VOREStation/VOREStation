@@ -158,6 +158,15 @@ var/list/flooring_types
 	build_type = /obj/item/stack/tile/grass/sif/forest
 	has_base_range = 1
 
+/decl/flooring/grass/amita
+	name = "thick growth"
+	desc = "Beeg grass."
+	flags = TURF_REMOVE_SHOVEL
+	icon = 'icons/turf/outdoors.dmi'
+	icon_base = "grass_sif_dark"
+	build_type = /obj/item/stack/tile/grass/amita
+	has_base_range = 1
+
 /decl/flooring/water
 	name = "water"
 	desc = "Water is wet, gosh, who knew!"
