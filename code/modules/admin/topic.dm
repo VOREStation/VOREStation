@@ -1570,9 +1570,16 @@
 		var/mob/M = locate(href_list["sendmob"])
 		if(!M)
 			return
-		var/area/A = tgui_input_list(usr, "Pick an area:", "Send Mob", return_sorted_areas())
+		
+		var/list/areachoices = return_sorted_areas()
+		var/choice = tgui_input_list(usr, "Pick an area:", "Send Mob", areachoices)
+		if(!choice)
+			return
+		
+		var/area/A = areachoices[choice]
 		if(!A)
 			return
+			
 		M.on_mob_jump()
 		M.forceMove(pick(get_area_turfs(A)))
 		var/msg = "[key_name_admin(usr)] teleported [ADMIN_LOOKUPFLW(M)]"
