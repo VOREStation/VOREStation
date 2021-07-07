@@ -40,20 +40,19 @@
 		reagents.add_reagent("nutriment",(nutriment_amt*2),nutriment_desc)		//VOREStation Edit: Undoes global nutrition nerf
 
 //Placeholder for effect that trigger on eating that aren't tied to reagents.
-/obj/item/weapon/reagent_containers/food/snacks/proc/On_Consume(var/mob/M)
-	if(!usr)
+/obj/item/weapon/reagent_containers/food/snacks/proc/On_Consume(var/mob/living/M)
+	if(!usr) // what
 		usr = M
 	if(!reagents.total_volume)
 		M.visible_message("<span class='notice'>[M] finishes eating \the [src].</span>","<span class='notice'>You finish eating \the [src].</span>")
 		// Embedded-in-food smol vore
 		for(var/obj/item/weapon/holder/holder in src)
-			if(holder.held_mob?.devourable && isliving(M))
-				var/mob/living/L = M
-				holder.held_mob.forceMove(L.vore_selected)
+			if(holder.held_mob?.devourable)
+				holder.held_mob.forceMove(M.vore_selected)
 				holder.held_mob = null
 				qdel(holder)
 		
-		usr.drop_from_inventory(src)	//so icons update :[
+		usr.drop_from_inventory(src) // Drop food from inventory so it doesn't end up staying on the hud after qdel, and so inhands go away
 
 		if(trash)
 			if(ispath(trash,/obj/item))
@@ -62,7 +61,6 @@
 			else if(istype(trash,/obj/item))
 				usr.put_in_hands(trash)
 		qdel(src)
-	return
 
 /obj/item/weapon/reagent_containers/food/snacks/attack_self(mob/user as mob)
 	if(package && !user.incapacitated())
@@ -4266,7 +4264,7 @@
 		if (!feeder)
 			feeder = eater
 
-		feeder.drop_from_inventory(src)	//so icons update :[ //what the fuck is this????
+		feeder.drop_from_inventory(src) // Drop food from inventory so it doesn't end up staying on the hud after qdel, and so inhands go away
 
 		if(trash)
 			if(ispath(trash,/obj/item))
