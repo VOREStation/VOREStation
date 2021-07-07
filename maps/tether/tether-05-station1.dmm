@@ -8781,10 +8781,11 @@
 /turf/simulated/floor/tiled,
 /area/engineering/atmos/backup)
 "auX" = (
-/obj/effect/floor_decal/industrial/hatch/yellow,
-/turf/simulated/floor/tiled/monofloor{
+/obj/effect/floor_decal/steeldecal/monofloor{
 	dir = 4
 	},
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/turf/simulated/floor/tiled/monotile,
 /area/tether/station/dock_two)
 "auY" = (
 /obj/machinery/atmospherics/omni/atmos_filter{
@@ -11090,6 +11091,9 @@
 /obj/machinery/door/airlock/glass_engineering{
 	name = "Engineering EVA Storage";
 	req_one_access = list(11,24)
+	},
+/obj/effect/floor_decal/steeldecal/monofloor{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/engineering/workshop)
@@ -13478,6 +13482,15 @@
 /obj/structure/catwalk,
 /turf/simulated/floor,
 /area/maintenance/station/eng_lower)
+"aVm" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/glass_engineering{
+	name = "Engineering EVA Storage";
+	req_one_access = list(11,24)
+	},
+/obj/effect/floor_decal/steeldecal/monofloor,
+/turf/simulated/floor/tiled/monotile,
+/area/engineering/workshop)
 "aVs" = (
 /obj/structure/plasticflaps,
 /obj/machinery/conveyor{
@@ -33152,11 +33165,12 @@
 /area/ai_monitored/storage/eva)
 "tZN" = (
 /obj/machinery/door/airlock/multi_tile/glass,
-/obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/effect/map_helper/airlock/door/simple,
-/turf/simulated/floor/tiled/monofloor{
+/obj/effect/floor_decal/steeldecal/monofloor{
 	dir = 8
 	},
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/turf/simulated/floor/tiled/monotile,
 /area/tether/station/dock_two)
 "tZQ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow{
@@ -42227,7 +42241,7 @@ agd
 acS
 aqN
 aCM
-aCM
+aVm
 aqN
 acS
 anu

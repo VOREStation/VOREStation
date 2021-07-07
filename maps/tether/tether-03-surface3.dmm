@@ -5585,9 +5585,6 @@
 "aii" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/disposalpipe/segment,
-/obj/effect/floor_decal/steeldecal/steel_decals_central1{
-	dir = 4
-	},
 /obj/machinery/door/blast/shutters{
 	closed_layer = 10;
 	density = 0;
@@ -5604,9 +5601,13 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/monofloor{
+/obj/effect/floor_decal/steeldecal/monofloor{
 	dir = 4
 	},
+/obj/effect/floor_decal/steeldecal/steel_decals_central1{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/medical/lobby)
 "aij" = (
 /obj/structure/sign/greencross,
@@ -6559,15 +6560,9 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/recreation_area_restroom)
 "ajL" = (
-/obj/machinery/door/airlock/multi_tile/glass{
-	name = "Security Lobby"
-	},
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/effect/floor_decal/steeldecal/steel_decals_central1{
-	dir = 8
-	},
 /obj/machinery/door/blast/regular{
 	density = 0;
 	icon_state = "pdoor0";
@@ -6576,9 +6571,16 @@
 	opacity = 0
 	},
 /obj/structure/disposalpipe/segment,
-/turf/simulated/floor/tiled/monofloor{
+/obj/effect/floor_decal/steeldecal/monofloor{
 	dir = 8
 	},
+/obj/effect/floor_decal/steeldecal/steel_decals_central1{
+	dir = 8
+	},
+/obj/machinery/door/airlock/multi_tile/glass{
+	name = "Security Lobby"
+	},
+/turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/security/lobby)
 "ajM" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -6606,9 +6608,6 @@
 /area/tether/surfacebase/security/upperhall)
 "ajO" = (
 /obj/machinery/door/firedoor/glass,
-/obj/effect/floor_decal/steeldecal/steel_decals_central1{
-	dir = 4
-	},
 /obj/machinery/door/blast/regular{
 	density = 0;
 	icon_state = "pdoor0";
@@ -6617,9 +6616,13 @@
 	opacity = 0
 	},
 /obj/structure/disposalpipe/segment,
-/turf/simulated/floor/tiled/monofloor{
+/obj/effect/floor_decal/steeldecal/monofloor{
 	dir = 4
 	},
+/obj/effect/floor_decal/steeldecal/steel_decals_central1{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/security/lobby)
 "ajP" = (
 /obj/structure/cable/green{
@@ -7278,9 +7281,7 @@
 	dir = 8
 	},
 /obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/tiled/monofloor{
-	dir = 8
-	},
+/turf/simulated/floor/tiled/monotile,
 /area/crew_quarters/pool)
 "akV" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -7294,9 +7295,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/monofloor{
-	dir = 4
-	},
+/turf/simulated/floor/tiled/monotile,
 /area/crew_quarters/pool)
 "akW" = (
 /obj/machinery/atmospherics/pipe/simple/visible{
@@ -7789,9 +7788,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals_central1{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/monofloor{
-	dir = 1
-	},
+/turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/north_stairs_three)
 "alW" = (
 /obj/effect/floor_decal/steeldecal/steel_decals6{
@@ -8122,7 +8119,7 @@
 	name = "Atrium Third Floor"
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals_central1,
-/turf/simulated/floor/tiled/monofloor,
+/turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/north_stairs_three)
 "amG" = (
 /obj/structure/cable{
@@ -14616,9 +14613,7 @@
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled/monofloor{
-	dir = 8
-	},
+/turf/simulated/floor/tiled/monotile,
 /area/library)
 "axT" = (
 /obj/machinery/door/firedoor/glass,
@@ -14626,9 +14621,7 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment,
-/turf/simulated/floor/tiled/monofloor{
-	dir = 4
-	},
+/turf/simulated/floor/tiled/monotile,
 /area/library)
 "axU" = (
 /obj/structure/bookcase{
@@ -20436,12 +20429,13 @@
 /area/hallway/lower/third_south)
 "aHu" = (
 /obj/machinery/door/firedoor/glass,
+/obj/effect/floor_decal/steeldecal/monofloor{
+	dir = 1
+	},
 /obj/effect/floor_decal/steeldecal/steel_decals_central1{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/monofloor{
-	dir = 1
-	},
+/turf/simulated/floor/tiled/monotile,
 /area/crew_quarters/bar)
 "aHv" = (
 /obj/machinery/door/airlock{
@@ -23855,9 +23849,10 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/turf/simulated/floor/tiled/monofloor{
+/obj/effect/floor_decal/steeldecal/monofloor{
 	dir = 1
 	},
+/turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/shuttle_pad)
 "aNH" = (
 /obj/structure/window/reinforced{
@@ -23912,7 +23907,8 @@
 /turf/simulated/open/virgo3b,
 /area/tether/surfacebase/outside/outside3)
 "aNN" = (
-/turf/simulated/floor/tiled/monofloor,
+/obj/effect/floor_decal/steeldecal/monofloor,
+/turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/shuttle_pad)
 "aNO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -27189,18 +27185,14 @@
 /obj/effect/floor_decal/steeldecal/steel_decals_central1{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/monofloor{
-	dir = 8
-	},
+/turf/simulated/floor/tiled/monotile,
 /area/hallway/lower/third_south)
 "aUp" = (
 /obj/machinery/door/firedoor,
 /obj/effect/floor_decal/steeldecal/steel_decals_central1{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/monofloor{
-	dir = 4
-	},
+/turf/simulated/floor/tiled/monotile,
 /area/hallway/lower/third_south)
 "aUq" = (
 /obj/effect/floor_decal/rust/part_rusted1,
@@ -27836,13 +27828,7 @@
 /turf/simulated/open,
 /area/maintenance/lower/mining)
 "aVt" = (
-/obj/machinery/door/airlock/multi_tile/glass{
-	name = "Infirmary Lobby"
-	},
 /obj/machinery/door/firedoor/glass,
-/obj/effect/floor_decal/steeldecal/steel_decals_central1{
-	dir = 8
-	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/blast/shutters{
 	closed_layer = 10;
@@ -27857,9 +27843,16 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/monofloor{
+/obj/effect/floor_decal/steeldecal/monofloor{
 	dir = 8
 	},
+/obj/effect/floor_decal/steeldecal/steel_decals_central1{
+	dir = 8
+	},
+/obj/machinery/door/airlock/multi_tile/glass{
+	name = "Infirmary Lobby"
+	},
+/turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/medical/lobby)
 "aVu" = (
 /obj/effect/floor_decal/corner/lightgrey{
@@ -28917,9 +28910,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/monofloor{
-	dir = 4
-	},
+/turf/simulated/floor/tiled/monotile,
 /area/library)
 "aXm" = (
 /obj/effect/decal/cleanable/blood/oil,
@@ -34449,7 +34440,13 @@
 /area/crew_quarters/bar)
 "bgU" = (
 /obj/machinery/door/firedoor,
-/turf/simulated/floor/tiled,
+/obj/effect/floor_decal/steeldecal/monofloor{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals_central1{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/monotile,
 /area/crew_quarters/sleep/cryo)
 "bgV" = (
 /obj/machinery/firealarm{
@@ -34546,6 +34543,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/effect/floor_decal/steeldecal/monofloor,
+/obj/effect/floor_decal/steeldecal/steel_decals_central1,
 /obj/machinery/door/airlock/multi_tile/metal{
 	dir = 2;
 	name = "Cryogenic Storage"
@@ -35114,9 +35113,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/monofloor{
-	dir = 1
-	},
+/turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/topairlock)
 "bil" = (
 /obj/effect/floor_decal/steeldecal/steel_decals5{
@@ -35265,7 +35262,7 @@
 	name = "Surface EVA"
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals_central1,
-/turf/simulated/floor/tiled/monofloor,
+/turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/topairlock)
 "biv" = (
 /obj/effect/floor_decal/steeldecal/steel_decals5{
@@ -38258,6 +38255,10 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
+/obj/machinery/door/airlock/multi_tile/metal{
+	dir = 2;
+	name = "Cryogenic Storage"
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/southhall)
 "daN" = (
@@ -41097,9 +41098,10 @@
 /area/crew_quarters/recreation_area)
 "ooM" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow,
-/turf/simulated/floor/tiled/monofloor{
+/obj/effect/floor_decal/steeldecal/monofloor{
 	dir = 1
 	},
+/turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/shuttle_pad)
 "opE" = (
 /obj/effect/floor_decal/steeldecal/steel_decals4{
@@ -42363,24 +42365,25 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenobiology/outpost_hallway)
 "sPd" = (
-/obj/machinery/door/airlock/multi_tile/glass{
-	dir = 1;
-	name = "Bar"
-	},
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/green{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals_central1,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/monofloor,
+/obj/effect/floor_decal/steeldecal/monofloor,
+/obj/effect/floor_decal/steeldecal/steel_decals_central1,
+/obj/machinery/door/airlock/multi_tile/glass{
+	dir = 1;
+	name = "Bar"
+	},
+/turf/simulated/floor/tiled/monotile,
 /area/crew_quarters/bar)
 "sSK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -42922,7 +42925,8 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow{
 	dir = 9
 	},
-/turf/simulated/floor/tiled/monofloor,
+/obj/effect/floor_decal/steeldecal/monofloor,
+/turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/shuttle_pad)
 "viF" = (
 /obj/structure/disposalpipe/segment,
