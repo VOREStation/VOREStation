@@ -253,6 +253,9 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 4
 	},
+/obj/structure/sign/painting/public{
+	pixel_x = -30
+	},
 /turf/simulated/floor/wood,
 /area/talon_v2/crew_quarters/meditation)
 "az" = (
@@ -2090,6 +2093,9 @@
 /area/talon_v2/crew_quarters/cap_room)
 "fC" = (
 /obj/structure/reagent_dispensers/water_cooler/full,
+/obj/structure/sign/painting/public{
+	pixel_y = 30
+	},
 /turf/simulated/floor/wood,
 /area/talon_v2/crew_quarters/bar)
 "fF" = (
@@ -2185,6 +2191,9 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/structure/sign/painting/public{
+	pixel_x = 30
 	},
 /turf/simulated/floor/carpet/blucarpet,
 /area/talon_v2/crew_quarters/cap_room)
@@ -4731,6 +4740,9 @@
 /area/talon_v2/central_hallway)
 "po" = (
 /obj/machinery/fitness/punching_bag,
+/obj/structure/sign/painting/public{
+	pixel_x = 30
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/workroom)
 "pp" = (
@@ -8568,6 +8580,9 @@
 	},
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering)
+"Ct" = (
+/turf/simulated/floor/plating,
+/area/talon_v2/crew_quarters/bar)
 "Cw" = (
 /obj/structure/bed/chair/bay/chair{
 	dir = 1
@@ -8925,6 +8940,9 @@
 /area/talon_v2/maintenance/wing_starboard)
 "DK" = (
 /obj/machinery/vending/nifsoft_shop,
+/obj/structure/sign/painting/public{
+	pixel_y = 30
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/central_hallway/fore)
 "DM" = (
@@ -9454,6 +9472,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/port_store)
+"FH" = (
+/obj/structure/sign/painting/public{
+	pixel_x = -30
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/talon_v2/central_hallway/fore)
 "FJ" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -10382,11 +10406,13 @@
 /turf/simulated/floor/plating,
 /area/talon_v2/maintenance/fore_port)
 "Ip" = (
-/obj/item/weapon/stool/baystool/padded,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
 	},
 /obj/effect/floor_decal/corner/black/diagonal,
+/obj/item/weapon/stool/baystool/padded{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/talon_v2/crew_quarters/bar)
 "Iq" = (
@@ -12069,12 +12095,14 @@
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/atmospherics)
 "Oq" = (
-/obj/item/weapon/stool/baystool/padded,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/effect/floor_decal/corner/black/diagonal,
+/obj/item/weapon/stool/baystool/padded{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/talon_v2/crew_quarters/bar)
 "Ot" = (
@@ -14153,9 +14181,11 @@
 /turf/simulated/floor/tiled/white,
 /area/talon_v2/medical)
 "VF" = (
-/obj/item/weapon/stool/baystool/padded,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/effect/floor_decal/corner/black/diagonal,
+/obj/item/weapon/stool/baystool/padded{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/talon_v2/crew_quarters/bar)
 "VH" = (
@@ -25183,7 +25213,7 @@ LB
 tb
 QC
 nB
-tb
+FH
 tb
 nW
 tc
@@ -26173,7 +26203,7 @@ TT
 JO
 qc
 qI
-oh
+Ct
 DU
 Hl
 Hl
