@@ -119,7 +119,8 @@ GLOBAL_VAR_INIT(round_start_time, 0)
 /var/rollovercheck_last_timeofday = 0
 /proc/update_midnight_rollover()
 	if (world.timeofday < rollovercheck_last_timeofday) //TIME IS GOING BACKWARDS!
-		return midnight_rollovers++
+		midnight_rollovers += 1
+	rollovercheck_last_timeofday = world.timeofday
 	return midnight_rollovers
 
 //Increases delay as the server gets more overloaded,
