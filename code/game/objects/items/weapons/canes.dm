@@ -97,7 +97,7 @@
 /obj/item/weapon/cane/white/collapsible/attack_self(mob/user as mob)
 	on = !on
 	if(on)
-		user.visible_message("<span class='notice'>\The [user] extends the white cane.</span>",\
+		user.visible_message("<b>\The [user]</b> extends the white cane.",\
 				"<span class='warning'>You extend the white cane.</span>",\
 				"You hear an ominous click.")
 		icon_state = "whitecane1out"
@@ -106,7 +106,7 @@
 		force = 5
 		attack_verb = list("smacked", "struck", "cracked", "beaten")
 	else
-		user.visible_message("<span class='notice'>\The [user] collapses the white cane.</span>",\
+		user.visible_message("<b>\The [user]</b> collapses the white cane.",\
 		"<span class='notice'>You collapse the white cane.</span>",\
 		"You hear a click.")
 		icon_state = "whitecane1in"

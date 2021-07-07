@@ -319,7 +319,7 @@
 		CI = new /datum/cooking_item/(CC)
 		I.forceMove(src)
 		cooking_objs.Add(CI)
-		user.visible_message("<span class='notice'>\The [user] puts \the [I] into \the [src].</span>")
+		user.visible_message("<b>\The [user]</b> puts \the [I] into \the [src].")
 		if (CC.check_contents() == 0)//If we're just putting an empty container in, then dont start any processing.
 			return TRUE
 	else
@@ -333,7 +333,7 @@
 		CI.combine_target = selected_option
 
 	// We can actually start cooking now.
-	user.visible_message("<span class='notice'>\The [user] puts \the [I] into \the [src].</span>")
+	user.visible_message("<b>\The [user]</b> puts \the [I] into \the [src].")
 
 	get_cooking_work(CI)
 	cooking = TRUE
@@ -433,7 +433,7 @@
 
 /obj/machinery/appliance/proc/finish_cooking(var/datum/cooking_item/CI)
 
-	src.visible_message("<span class='notice'>\The [src] pings!</span>")
+	src.visible_message("<b>\The [src]</b> pings!")
 	if(cooked_sound)
 		playsound(get_turf(src), cooked_sound, 50, 1)
 	//Check recipes first, a valid recipe overrides other options

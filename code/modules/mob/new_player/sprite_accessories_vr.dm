@@ -243,64 +243,6 @@
 	icon_state = "hair_fingerwave"
 	species_allowed = list(SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_TAJ, SPECIES_SERGAL, SPECIES_FENNEC, SPECIES_ZORREN_HIGH, SPECIES_PROTEAN)
 
-//Teshari things
-/datum/sprite_accessory/hair/teshari
-	icon_add = 'icons/mob/human_face_vr_add.dmi'
-
-/datum/sprite_accessory/hair/teshari_altdefault
-	icon_add = 'icons/mob/human_face_vr_add.dmi'
-
-/datum/sprite_accessory/hair/teshari_tight
-	icon_add = 'icons/mob/human_face_vr_add.dmi'
-
-/datum/sprite_accessory/hair/teshari_excited
-	icon_add = 'icons/mob/human_face_vr_add.dmi'
-
-/datum/sprite_accessory/hair/teshari_spike
-	icon_add = 'icons/mob/human_face_vr_add.dmi'
-
-/datum/sprite_accessory/hair/teshari_long
-	icon_add = 'icons/mob/human_face_vr_add.dmi'
-
-/datum/sprite_accessory/hair/teshari_burst
-	icon_add = 'icons/mob/human_face_vr_add.dmi'
-
-/datum/sprite_accessory/hair/teshari_shortburst
-	icon_add = 'icons/mob/human_face_vr_add.dmi'
-
-/datum/sprite_accessory/hair/teshari_mohawk
-	icon_add = 'icons/mob/human_face_vr_add.dmi'
-
-/datum/sprite_accessory/hair/teshari_pointy
-	icon_add = 'icons/mob/human_face_vr_add.dmi'
-
-/datum/sprite_accessory/hair/teshari_upright
-	icon_add = 'icons/mob/human_face_vr_add.dmi'
-
-/datum/sprite_accessory/hair/teshari_mane
-	icon_add = 'icons/mob/human_face_vr_add.dmi'
-
-/datum/sprite_accessory/hair/teshari_droopy
-	icon_add = 'icons/mob/human_face_vr_add.dmi'
-
-/datum/sprite_accessory/hair/teshari_mushroom
-	icon_add = 'icons/mob/human_face_vr_add.dmi'
-
-/datum/sprite_accessory/hair/teshari_twies
-	icon_add = 'icons/mob/human_face_vr_add.dmi'
-
-/datum/sprite_accessory/hair/teshari_backstrafe
-	icon_add = 'icons/mob/human_face_vr_add.dmi'
-
-/datum/sprite_accessory/hair/teshari_longway
-	icon_add = 'icons/mob/human_face_vr_add.dmi'
-
-/datum/sprite_accessory/hair/teshari_tree
-	icon_add = 'icons/mob/human_face_vr_add.dmi'
-
-/datum/sprite_accessory/hair/teshari_fluffymohawk
-	icon =  'icons/mob/human_face_vr.dmi'
-	icon_add = 'icons/mob/human_face_vr_add.dmi'
 
 //Skrell 'hairstyles' - these were requested for a chimera and screw it, if one wants to eat seafood, go nuts
 /datum/sprite_accessory/hair/skr_tentacle_veryshort

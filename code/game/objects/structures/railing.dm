@@ -205,7 +205,7 @@
 	if(W.is_wrench() && !anchored)
 		playsound(src, W.usesound, 50, 1)
 		if(do_after(user, 20, src))
-			user.visible_message("<span class='notice'>\The [user] dismantles \the [src].</span>", "<span class='notice'>You dismantle \the [src].</span>")
+			user.visible_message("<b>\The [user]</b> dismantles \the [src].", "<span class='notice'>You dismantle \the [src].</span>")
 			new /obj/item/stack/material/steel(get_turf(usr), 2)
 			qdel(src)
 			return
@@ -216,13 +216,13 @@
 		if(F.welding)
 			playsound(src, F.usesound, 50, 1)
 			if(do_after(user, 20, src))
-				user.visible_message("<span class='notice'>\The [user] repairs some damage to \the [src].</span>", "<span class='notice'>You repair some damage to \the [src].</span>")
+				user.visible_message("<b>\The [user]</b> repairs some damage to \the [src].", "<span class='notice'>You repair some damage to \the [src].</span>")
 				health = min(health+(maxhealth/5), maxhealth) // 20% repair per application
 				return
 
 	// Install
 	if(W.is_screwdriver())
-		user.visible_message(anchored ? "<span class='notice'>\The [user] begins unscrewing \the [src].</span>" : "<span class='notice'>\The [user] begins fasten \the [src].</span>" )
+		user.visible_message(anchored ? "<b>\The [user]</b> begins unscrewing \the [src]." : "<b>\The [user]</b> begins fasten \the [src]." )
 		playsound(src, W.usesound, 75, 1)
 		if(do_after(user, 10, src))
 			to_chat(user, (anchored ? "<span class='notice'>You have unfastened \the [src] from the floor.</span>" : "<span class='notice'>You have fastened \the [src] to the floor.</span>"))
@@ -286,14 +286,14 @@
 		return
 
 	usr.visible_message("<span class='warning'>[user] starts climbing onto \the [src]!</span>")
-	climbers |= user
+	LAZYDISTINCTADD(climbers, user)
 
 	if(!do_after(user,(issmall(user) ? 20 : 34)))
-		climbers -= user
+		LAZYREMOVE(climbers, user)
 		return
 
 	if(!can_climb(user, post_climb_check=1))
-		climbers -= user
+		LAZYREMOVE(climbers, user)
 		return
 
 	if(get_turf(user) == get_turf(src))
@@ -303,7 +303,7 @@
 
 	usr.visible_message("<span class='warning'>[user] climbed over \the [src]!</span>")
 	if(!anchored)	take_damage(maxhealth) // Fatboy
-	climbers -= user
+	LAZYREMOVE(climbers, user)
 
 /obj/structure/railing/can_climb(var/mob/living/user, post_climb_check=0)
 	if(!..())

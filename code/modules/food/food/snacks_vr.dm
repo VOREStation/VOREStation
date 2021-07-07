@@ -476,7 +476,7 @@
 	. = ..()
 
 /obj/item/weapon/reagent_containers/food/snacks/cube/proc/Expand()
-	src.visible_message("<span class='notice'>\The [src] expands!</span>")
+	src.visible_message("<b>\The [src]</b> expands!")
 	new food_type(get_turf(src))
 	qdel(src)
 

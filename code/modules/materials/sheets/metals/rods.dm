@@ -67,7 +67,7 @@ var/global/list/datum/stack_recipe/rods_recipes = list( \
 		var/obj/item/stack/medical/splint/ghetto/new_splint = new(get_turf(user))
 		new_splint.add_fingerprint(user)
 
-		user.visible_message("<span class='notice'>\The [user] constructs \a [new_splint] out of a [singular_name].</span>", \
+		user.visible_message("<b>\The [user]</b> constructs \a [new_splint] out of a [singular_name].", \
 				"<span class='notice'>You use make \a [new_splint] out of a [singular_name].</span>")
 		src.use(1)
 		return

@@ -15,7 +15,7 @@
 		return
 
 	if(!activated)
-		to_chat(user, "<span class='warning'>\the [src] has not yet been activated.  Sorry.</span>")
+		to_chat(user, "<span class='warning'>\The [src] has not yet been activated.  Sorry.</span>")
 		return
 
 	if(used)

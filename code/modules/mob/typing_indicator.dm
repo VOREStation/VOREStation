@@ -40,7 +40,7 @@
 	set hidden = 1
 
 	set_typing_indicator(TRUE)
-	var/message = input(usr, "","say (text)") as text
+	var/message = tgui_input_text(usr, "Type your message:", "Say")
 	set_typing_indicator(FALSE)
 
 	if(message)
@@ -51,8 +51,25 @@
 	set hidden = 1
 
 	set_typing_indicator(TRUE)
-	var/message = input(usr, "","me (text)") as message //VOREStation Edit
+	var/message = tgui_input_message(usr, "Type your message:", "Emote")
 	set_typing_indicator(FALSE)
 
 	if(message)
 		me_verb(message)
+
+// No typing indicators here, but this is the file where the wrappers are, so...
+/mob/verb/whisper_wrapper()
+	set name = ".Whisper"
+	set hidden = 1
+
+	var/message = tgui_input_text(usr, "Type your message:", "Whisper")
+	if(message)
+		whisper(message)
+
+/mob/verb/subtle_wrapper()
+	set name = ".Subtle"
+	set hidden = 1
+
+	var/message = tgui_input_message(usr, "Type your message:", "Subtle")
+	if(message)
+		me_verb_subtle(message)

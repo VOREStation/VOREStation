@@ -636,6 +636,12 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/tether_midpoint)
+"QE" = (
+/obj/structure/sign/painting/public{
+	pixel_y = -30
+	},
+/turf/simulated/floor/wood,
+/area/tether/midpoint)
 "RZ" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -683,6 +689,12 @@
 "VB" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_y = -30
+	},
+/turf/simulated/floor/wood,
+/area/tether/midpoint)
+"Wc" = (
+/obj/structure/sign/painting/public{
+	pixel_x = 30
 	},
 /turf/simulated/floor/wood,
 /area/tether/midpoint)
@@ -9034,10 +9046,10 @@ pK
 pK
 pK
 Pz
+Wc
 pK
 pK
-pK
-pK
+Wc
 Pz
 pK
 pK
@@ -9598,7 +9610,7 @@ tA
 tA
 tA
 pK
-pK
+QE
 Dz
 Qv
 xl
@@ -10024,7 +10036,7 @@ tA
 tA
 tA
 pK
-pK
+QE
 Dz
 Qv
 Hs

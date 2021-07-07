@@ -110,7 +110,7 @@ var/list/table_icon_cache = list()
 		return 1
 
 	if(carpeted && W.is_crowbar())
-		user.visible_message("<span class='notice'>\The [user] removes the carpet from \the [src].</span>",
+		user.visible_message("<b>\The [user]</b> removes the carpet from \the [src].",
 		                              "<span class='notice'>You remove the carpet from \the [src].</span>")
 		new carpeted_type(loc)
 		carpeted = 0
@@ -120,7 +120,7 @@ var/list/table_icon_cache = list()
 	if(!carpeted && material && istype(W, /obj/item/stack/tile/carpet))
 		var/obj/item/stack/tile/carpet/C = W
 		if(C.use(1))
-			user.visible_message("<span class='notice'>\The [user] adds \the [C] to \the [src].</span>",
+			user.visible_message("<b>\The [user]</b> adds \the [C] to \the [src].",
 			                              "<span class='notice'>You add \the [C] to \the [src].</span>")
 			carpeted = 1
 			carpeted_type = W.type
@@ -151,7 +151,7 @@ var/list/table_icon_cache = list()
 			playsound(src, F.usesound, 50, 1)
 			if(!do_after(user, 20 * F.toolspeed) || !F.remove_fuel(1, user))
 				return
-			user.visible_message("<span class='notice'>\The [user] repairs some damage to \the [src].</span>",
+			user.visible_message("<b>\The [user]</b> repairs some damage to \the [src].",
 			                              "<span class='notice'>You repair some damage to \the [src].</span>")
 			health = max(health+(maxhealth/5), maxhealth) // 20% repair per application
 			return 1
@@ -191,7 +191,7 @@ var/list/table_icon_cache = list()
 			src.break_to_parts()
 			user.do_attack_animation(src)
 			return 1
-	visible_message("<span class='notice'>\The [user] scratches at \the [src]!</span>")
+	visible_message("<b>\The [user]</b> scratches at \the [src]!")
 	return ..()
 
 /obj/structure/table/MouseDrop_T(obj/item/stack/material/what)
@@ -260,14 +260,14 @@ var/list/table_icon_cache = list()
 
 	if(manipulating) return M
 	manipulating = 1
-	user.visible_message("<span class='notice'>\The [user] begins removing the [type_holding] holding \the [src]'s [M.display_name] [what] in place.</span>",
+	user.visible_message("<b>\The [user]</b> begins removing the [type_holding] holding \the [src]'s [M.display_name] [what] in place.",
 	                              "<span class='notice'>You begin removing the [type_holding] holding \the [src]'s [M.display_name] [what] in place.</span>")
 	if(sound)
 		playsound(src, sound, 50, 1)
 	if(!do_after(user, delay))
 		manipulating = 0
 		return M
-	user.visible_message("<span class='notice'>\The [user] removes the [M.display_name] [what] from \the [src].</span>",
+	user.visible_message("<b>\The [user]</b> removes the [M.display_name] [what] from \the [src].",
 	                              "<span class='notice'>You remove the [M.display_name] [what] from \the [src].</span>")
 	new M.stack_type(src.loc)
 	manipulating = 0
@@ -282,13 +282,13 @@ var/list/table_icon_cache = list()
 /obj/structure/table/proc/dismantle(obj/item/W, mob/user)
 	if(manipulating) return
 	manipulating = 1
-	user.visible_message("<span class='notice'>\The [user] begins dismantling \the [src].</span>",
+	user.visible_message("<b>\The [user]</b> begins dismantling \the [src].",
 	                              "<span class='notice'>You begin dismantling \the [src].</span>")
 	playsound(src, W.usesound, 50, 1)
 	if(!do_after(user, 20 * W.toolspeed))
 		manipulating = 0
 		return
-	user.visible_message("<span class='notice'>\The [user] dismantles \the [src].</span>",
+	user.visible_message("<b>\The [user]</b> dismantles \the [src].",
 	                              "<span class='notice'>You dismantle \the [src].</span>")
 	new /obj/item/stack/material/steel(src.loc)
 	qdel(src)
@@ -332,6 +332,8 @@ var/list/table_icon_cache = list()
 	if(istype(S,/obj/structure/table/bench) && !istype(src,/obj/structure/table/bench))
 		return FALSE
 	if(istype(src,/obj/structure/table/bench) && !istype(S,/obj/structure/table/bench))
+		return FALSE
+	if(istype(src,/obj/structure/table/rack) && !istype(S,/obj/structure/table/rack))
 		return FALSE
 	if(istype(S,/obj/structure/table))
 		return TRUE

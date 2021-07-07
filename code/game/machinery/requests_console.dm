@@ -27,12 +27,13 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 	desc = "A console intended to send requests to different departments on the station."
 	anchored = 1
 	icon = 'icons/obj/terminals_vr.dmi' //VOREStation Edit
-	icon_state = "req_comp0"
+	icon_state = "req_comp_0"
 	layer = ABOVE_WINDOW_LAYER
 	circuit = /obj/item/weapon/circuitboard/request
 	blocks_emissive = NONE
 	light_power = 0.25
 	light_color = "#00ff00"
+	vis_flags = VIS_HIDE // They have an emissive that looks bad in openspace due to their wall-mounted nature
 	var/department = "Unknown" //The list of all departments on the station (Determined from this variable on each unit) Set this to the same thing if you want several consoles in one department
 	var/list/message_log = list() //List of all messages
 	var/departmentType = 0 		//Bitflag. Zero is reply-only. Map currently uses raw numbers instead of defines.
@@ -221,8 +222,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 				for (var/obj/machinery/requests_console/Console in allConsoles)
 					if(Console.department == department)
 						Console.newmessagepriority = 0
-						Console.icon_state = "req_comp0"
-						Console.set_light(1)
+						Console.update_icon()
 			if(tempScreen == RCS_MAINMENU)
 				reset_message()
 			screen = tempScreen

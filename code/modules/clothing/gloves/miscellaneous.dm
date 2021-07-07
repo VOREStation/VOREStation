@@ -62,7 +62,7 @@
 
 //TODO: Make inflating gloves a thing
 /*/obj/item/clothing/gloves/sterile/proc/Inflate(/mob/living/carbon/human/user)
-	user.visible_message("<span class='notice'>\The [src] expands!</span>")
+	user.visible_message("<b>\The [src]</b> expands!")
 	qdel(src)*/
 
 /obj/item/clothing/gloves/sterile/latex

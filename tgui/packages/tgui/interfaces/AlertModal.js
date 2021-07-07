@@ -70,6 +70,7 @@ export class AlertModal extends Component {
     return (
       <Window
         title={title}
+        theme="abstract"
         width={350}
         height={windowHeight}
         canClose={timeout > 0}>
@@ -92,9 +93,9 @@ export class AlertModal extends Component {
                 </Flex>
               </Flex.Item>
               <Flex.Item my={2}>
-                <Flex className="AlertModal__Buttons">
+                <Flex className="AlertModal__Buttons" wrap>
                   {buttons.map((button, buttonIndex) => (
-                    <Flex.Item key={buttonIndex} mx={1}>
+                    <Flex.Item key={buttonIndex} mx={1} my={0.5}>
                       <div
                         ref={this.buttonRefs[buttonIndex]}
                         className="Button Button--color--default"

@@ -53,6 +53,16 @@
 		icon_state = "trashbag2"
 	else icon_state = "trashbag3"
 
+/obj/item/weapon/storage/bag/trash/holding
+	name = "trash bag of holding"
+	desc = "The latest and greatest in custodial convenience, a trashbag that is capable of holding vast quantities of garbage."
+	icon_state = "bluetrashbag"
+	origin_tech = list(TECH_BLUESPACE = 3)
+	max_w_class = ITEMSIZE_NORMAL
+	max_storage_space = ITEMSIZE_COST_NORMAL * 10 // Slightly less than BoH
+
+/obj/item/weapon/storage/bag/trash/holding/update_icon()
+	return
 
 // -----------------------------
 //        Plastic Bag

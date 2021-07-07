@@ -123,6 +123,16 @@
 	icon_state = "render"
 	applies_material_colour = 0
 
+/obj/item/weapon/material/knife/table
+	name = "table knife"
+	icon = 'icons/obj/kitchen.dmi'
+	icon_state = "knife_table"
+	sharp = FALSE // blunted tip
+	force_divisor = 0.1
+
+/obj/item/weapon/material/knife/table/plastic
+	default_material = "plastic"
+
 /obj/item/weapon/material/knife/butch
 	name = "butcher's cleaver"
 	icon_state = "butch"

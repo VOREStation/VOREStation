@@ -153,7 +153,7 @@ Whatever you did that made the last camera window disappear-- don't do that agai
 	. = ..()
 
 /area/ai_multicam_room
-	name = "ai_multicam_room"
+	name = "AI Multicam Room"
 	icon_state = "ai_camera_room"
 	dynamic_lighting = FALSE
 	ambience = list()

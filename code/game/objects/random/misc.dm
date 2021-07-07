@@ -71,8 +71,8 @@
 /obj/random/powercell
 	name = "random powercell"
 	desc = "This is a random powercell."
-	icon = 'icons/obj/power.dmi'
-	icon_state = "cell"
+	icon = 'icons/obj/power_cells.dmi'
+	icon_state = "random"
 
 /obj/random/powercell/item_to_spawn()
 	return pick(prob(40);/obj/item/weapon/cell,
@@ -133,8 +133,8 @@
 /obj/random/tech_supply
 	name = "random tech supply"
 	desc = "This is a random piece of technology supplies."
-	icon = 'icons/obj/power.dmi'
-	icon_state = "cell"
+	icon = 'icons/obj/power_cells.dmi'
+	icon_state = "random"
 	spawn_nothing_percentage = 25
 
 /obj/random/tech_supply/item_to_spawn()
@@ -955,3 +955,26 @@
 				prob(3);/obj/item/clothing/accessory/poncho/thermal/green,
 				prob(3);/obj/item/clothing/accessory/poncho/thermal/purple,
 				prob(3);/obj/item/clothing/accessory/poncho/thermal/blue)
+
+/obj/random/pouch
+	name = "Random Storage Pouch"
+	desc = "This is a random storage pouch."
+	icon = 'icons/obj/clothing/pouches.dmi'
+	icon_state = "random"
+
+/obj/random/pouch/item_to_spawn()
+	return pick(
+		prob(10);/obj/item/weapon/storage/pouch, // medium
+		prob(3);/obj/item/weapon/storage/pouch/large,
+		prob(8);/obj/item/weapon/storage/pouch/small,
+		prob(5);/obj/item/weapon/storage/pouch/ammo,
+		prob(5);/obj/item/weapon/storage/pouch/eng_tool,
+		prob(5);/obj/item/weapon/storage/pouch/eng_supply,
+		prob(5);/obj/item/weapon/storage/pouch/eng_parts,
+		prob(5);/obj/item/weapon/storage/pouch/medical,
+		prob(5);/obj/item/weapon/storage/pouch/flares/full_flare,
+		prob(5);/obj/item/weapon/storage/pouch/flares/full_glow,
+		prob(5);/obj/item/weapon/storage/pouch/holster,
+		prob(5);/obj/item/weapon/storage/pouch/baton/full,
+		prob(1);/obj/item/weapon/storage/pouch/holding
+	)

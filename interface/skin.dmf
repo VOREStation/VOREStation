@@ -518,7 +518,7 @@ macro "hotkeymode"
 		command = ".me"
 	elem 
 		name = "6"
-		command = "subtle"
+		command = ".Subtle"
 	elem 
 		name = "A+REP"
 		command = ".moveleft"
@@ -596,10 +596,10 @@ macro "hotkeymode"
 		command = ".northeast"
 	elem 
 		name = "Y"
-		command = "whisper"
+		command = ".Whisper"
 	elem 
 		name = "CTRL+Y"
-		command = "whisper"
+		command = ".Whisper"
 	elem 
 		name = "Z"
 		command = "Activate-Held-Object"

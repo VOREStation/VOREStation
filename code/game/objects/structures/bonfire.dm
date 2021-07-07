@@ -160,7 +160,7 @@
 		burning = FALSE
 		update_icon()
 		STOP_PROCESSING(SSobj, src)
-		visible_message("<span class='notice'>\The [src] stops burning.</span>")
+		visible_message("<b>\The [src]</b> stops burning.")
 
 /obj/structure/bonfire/proc/ignite()
 	if(!burning && get_fuel_amount())
@@ -180,8 +180,9 @@
 			O.fire_act(null, 1000, 500)
 		else if(isliving(A) && get_fuel_amount() > 4)
 			var/mob/living/L = A
-			L.adjust_fire_stacks(get_fuel_amount() / 4)
-			L.IgniteMob()
+			if(!(L.is_incorporeal()))
+				L.adjust_fire_stacks(get_fuel_amount() / 4)
+				L.IgniteMob()
 
 /obj/structure/bonfire/update_icon()
 	cut_overlays()
@@ -353,7 +354,7 @@
 		burning = FALSE
 		update_icon()
 		STOP_PROCESSING(SSobj, src)
-		visible_message("<span class='notice'>\The [src] stops burning.</span>")
+		visible_message("<b>\The [src]</b> stops burning.")
 
 /obj/structure/fireplace/proc/ignite()
 	if(!burning && get_fuel_amount())

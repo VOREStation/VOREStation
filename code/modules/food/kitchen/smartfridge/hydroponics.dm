@@ -24,19 +24,6 @@
 	icon_state = "showcase"
 	icon_base = "showcase"
 
-/obj/machinery/smartfridge/drinks/update_icon()
-	cut_overlays()
-	if(stat & (BROKEN|NOPOWER))
-		icon_state = "[icon_base]-off"
-	else
-		icon_state = icon_base
-
-	if(panel_open)
-		add_overlay("[icon_base]-panel")
-
-	if(!stat && contents.len)
-		add_overlay("[icon_base]-fill")
-
 /obj/machinery/smartfridge/drinks/accept_check(var/obj/item/O as obj)
 	if(istype(O,/obj/item/weapon/reagent_containers/glass) || istype(O,/obj/item/weapon/reagent_containers/food/drinks) || istype(O,/obj/item/weapon/reagent_containers/food/condiment))
 		return TRUE

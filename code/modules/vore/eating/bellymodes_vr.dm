@@ -9,6 +9,10 @@
 			qdel(src)
 			return
 
+	// VERY early exit
+	if(!contents.len)
+		return
+
 	var/play_sound //Potential sound to play at the end to avoid code duplication.
 	var/to_update = FALSE //Did anything update worthy happen?
 
@@ -50,28 +54,29 @@
 		if(hta_returns["to_update"])
 			to_update = hta_returns["to_update"]
 
-	if(!islist(touchable_mobs))
+	if(!LAZYLEN(touchable_mobs))
 		return
 
 ///////////////////// Early Non-Mode Handling /////////////////////
-	var/list/EL = emote_lists[digest_mode]
-	if(LAZYLEN(EL) && touchable_mobs && next_emote <= world.time && emote_active)
-		next_emote = world.time + (emote_time SECONDS)
-		for(var/mob/living/M in contents)
-			if(digest_mode == DM_DIGEST && !M.digestable)
-				continue // don't give digesty messages to indigestible people
+	if(emote_active)
+		var/list/EL = emote_lists[digest_mode]
+		if(LAZYLEN(EL) && next_emote <= world.time)
 			var/living_count = 0
 			for(var/mob/living/L in contents)
 				living_count++
+			next_emote = world.time + (emote_time SECONDS)
+			for(var/mob/living/M in contents)
+				if(digest_mode == DM_DIGEST && !M.digestable)
+					continue // don't give digesty messages to indigestible people
 
-			var/raw_message = pick(EL)
-			var/formatted_message
-			formatted_message = replacetext(raw_message, "%belly", lowertext(name))
-			formatted_message = replacetext(formatted_message, "%pred", owner)
-			formatted_message = replacetext(formatted_message, "%prey", english_list(contents))
-			formatted_message = replacetext(formatted_message, "%count", contents.len)
-			formatted_message = replacetext(formatted_message, "%countprey", living_count)
-			to_chat(M, "<span class='notice'>[formatted_message]</span>")
+				var/raw_message = pick(EL)
+				var/formatted_message
+				formatted_message = replacetext(raw_message, "%belly", lowertext(name))
+				formatted_message = replacetext(formatted_message, "%pred", owner)
+				formatted_message = replacetext(formatted_message, "%prey", english_list(contents))
+				formatted_message = replacetext(formatted_message, "%count", contents.len)
+				formatted_message = replacetext(formatted_message, "%countprey", living_count)
+				to_chat(M, "<span class='notice'>[formatted_message]</span>")
 
 	if(!digestion_noise_chance)
 		digestion_noise_chance = DM.noise_chance

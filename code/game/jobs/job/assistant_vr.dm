@@ -16,8 +16,7 @@
 	access = list()			//See /datum/job/intern/get_access()
 	minimal_access = list()	//See /datum/job/intern/get_access()
 	outfit_type = /decl/hierarchy/outfit/job/assistant/intern
-	alt_titles = list("Intern" = /datum/alt_title/intern,
-					  "Apprentice Engineer" = /datum/alt_title/intern_eng,
+	alt_titles = list("Apprentice Engineer" = /datum/alt_title/intern_eng,
 					  "Medical Intern" = /datum/alt_title/intern_med,
 					  "Research Intern" = /datum/alt_title/intern_sci,
 					  "Security Cadet" = /datum/alt_title/intern_sec,
@@ -27,9 +26,6 @@
 	job_description = "An Intern does whatever is requested of them, often doing so in process of learning \
 						another job. Though they are part of the crew, they have no real authority."
 	timeoff_factor = 0 // Interns, noh
-
-/datum/alt_title/intern
-	title = "Intern"
 
 /datum/alt_title/intern_eng
 	title = "Apprentice Engineer"

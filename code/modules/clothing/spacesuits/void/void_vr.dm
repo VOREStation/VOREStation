@@ -141,13 +141,14 @@
 /obj/item/clothing/suit/space/void/autolok
 	name = "AutoLok pressure suit"
 	desc = "A high-tech snug-fitting pressure suit. Fits any species. It offers very little physical protection, but is equipped with sensors that will automatically deploy the integral helmet to protect the wearer."
+	icon = 'icons/obj/clothing/suits_vr.dmi'
 	icon_state = "autoloksuit"
 	item_state = "autoloksuit"
+	item_state_slots = list(slot_r_hand_str = "space_suit_syndicate", slot_l_hand_str = "space_suit_syndicate")
 	armor = list(melee = 15, bullet = 5, laser = 5,energy = 5, bomb = 5, bio = 100, rad = 80)
 	slowdown = 0.5
 	siemens_coefficient = 1
 	species_restricted = list("exclude",SPECIES_DIONA,SPECIES_VOX)	//this thing can autoadapt
-	icon = 'icons/obj/clothing/suits_vr.dmi'
 	breach_threshold = 6 //this thing is basically tissue paper
 	w_class = ITEMSIZE_NORMAL //if it's snug, high-tech, and made of relatively soft materials, it should be much easier to store!
 

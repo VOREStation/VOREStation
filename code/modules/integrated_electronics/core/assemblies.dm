@@ -268,7 +268,7 @@
 			if(S.scan(target))
 				scanned = TRUE
 		if(scanned)
-			visible_message("<span class='notice'>\The [user] waves \the [src] around [target].</span>")
+			visible_message("<b>\The [user]</b> waves \the [src] around [target].")
 
 /obj/item/device/electronic_assembly/attackby(var/obj/item/I, var/mob/user)
 	if(can_anchor && I.is_wrench())

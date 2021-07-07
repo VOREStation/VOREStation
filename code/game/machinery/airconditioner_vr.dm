@@ -76,7 +76,7 @@
 		return
 
 	if(draw_power(idle_power_usage) < idle_power_usage)
-		visible_message("<span class='notice'>\The [src] shuts down.</span>")
+		visible_message("<b>\The [src]</b> shuts down.")
 		turn_off()
 		return
 

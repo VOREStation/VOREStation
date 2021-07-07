@@ -383,7 +383,7 @@
 
 	var/obj/item/stack/material/S = W
 	if(!(S.material.name in stored_material))
-		to_chat(user, "<span class='warning'>\the [src] doesn't accept [S.material]!</span>")
+		to_chat(user, "<span class='warning'>\The [src] doesn't accept [S.material]!</span>")
 		return
 
 	var/amnt = S.perunit

@@ -567,7 +567,7 @@
 			take_damage(incoming_damage)
 			S.do_attack_animation(src)
 			return 1
-		visible_message("<span class='notice'>\The [L] bonks \the [src]'s casing!</span>")
+		visible_message("<b>\The [L]</b> bonks \the [src]'s casing!")
 	return ..()
 
 /obj/machinery/porta_turret/emag_act(var/remaining_charges, var/mob/user)
@@ -1007,7 +1007,7 @@
 					return
 				var/obj/item/weapon/gun/energy/E = I //typecasts the item to an energy gun
 				if(!user.unEquip(I))
-					to_chat(user, "<span class='notice'>\the [I] is stuck to your hand, you cannot put it in \the [src]</span>")
+					to_chat(user, "<span class='notice'>\The [I] is stuck to your hand, you cannot put it in \the [src]</span>")
 					return
 				installation = I.type //installation becomes I.type
 				gun_charge = E.power_supply.charge //the gun's charge is stored in gun_charge
@@ -1028,7 +1028,7 @@
 			if(isprox(I))
 				build_step = 5
 				if(!user.unEquip(I))
-					to_chat(user, "<span class='notice'>\the [I] is stuck to your hand, you cannot put it in \the [src]</span>")
+					to_chat(user, "<span class='notice'>\The [I] is stuck to your hand, you cannot put it in \the [src]</span>")
 					return
 				to_chat(user, "<span class='notice'>You add the prox sensor to the turret.</span>")
 				qdel(I)

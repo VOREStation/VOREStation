@@ -116,5 +116,5 @@
 		if(prob(10))
 			for(var/mob/living/L in hearers(holder))
 				if(!istype(L, holder)) // Don't follow other hooligan crabs.
-					holder.visible_message("<span class='notice'>\The [holder] starts to follow \the [L].</span>")
+					holder.visible_message("<b>\The [holder]</b> starts to follow \the [L].")
 					set_follow(L, rand(20 SECONDS, 40 SECONDS))

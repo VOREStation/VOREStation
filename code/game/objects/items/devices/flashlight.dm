@@ -115,7 +115,7 @@
 			if(!vision)
 				to_chat(user, "<span class='warning'>You can't find any [H.species.vision_organ ? H.species.vision_organ : "eyes"] on [H]!</span>")
 
-			user.visible_message("<span class='notice'>\The [user] directs [src] to [M]'s eyes.</span>", \
+			user.visible_message("<b>\The [user]</b> directs [src] to [M]'s eyes.", \
 							 	 "<span class='notice'>You direct [src] to [M]'s eyes.</span>")
 			if(H != user)	//can't look into your own eyes buster
 				if(M.stat == DEAD || M.blinded)	//mob is dead or fully blind
