@@ -516,7 +516,7 @@
 	var/md5 = md5(lowertext(data))
 	LAZYINITLIST(SSpersistence.paintings)
 	for(var/list/entry in SSpersistence.paintings)
-		if(entry["md5"] == md5)
+		if(entry["md5"] == md5 && entry["persistence_id"] == persistence_id)
 			return
 	var/png_directory = "data/persistent/paintings/[persistence_id]/"
 	var/png_path = png_directory + "[md5].png"
