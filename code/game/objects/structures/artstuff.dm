@@ -345,6 +345,7 @@
 	///Description set when canvas is added.
 	var/desc_with_canvas
 	var/persistence_id
+	var/loaded = FALSE
 
 //Presets for art gallery mapping, for paintings to be shared across stations
 /obj/structure/sign/painting/public
@@ -402,9 +403,17 @@
 	. = ..()
 	if(persistence_id)
 		. += "<span class='notice'>Any painting placed here will be archived at the end of the shift.</span>"
+
 	if(current_canvas)
 		current_canvas.tgui_interact(user)
 		. += "<span class='notice'>Use wirecutters to remove the painting.</span>"
+
+		// Painting loaded and persistent frame, give a hint about removal safety
+		if(persistence_id)
+			if(loaded)
+				. += "<span class='notice'>Don't worry, the currently framed painting has already been entered into the archives and can be safely removed. It will still be used on future shifts.</span>"
+			else
+				. += "<span class='warning'>This painting has not been entered into the archives yet. Removing it will prevent that from happening.</span>"
 
 /obj/structure/sign/painting/proc/frame_canvas(mob/user,obj/item/canvas/new_canvas)
 	if(!allowed(user))
@@ -418,9 +427,13 @@
 		update_appearance()
 
 /obj/structure/sign/painting/proc/unframe_canvas(mob/living/user)
+	if(!allowed(user))
+		to_chat(user, "<span class='warning'>You're not comfortable removing this prestigious canvas!</span>")
+		return
 	if(current_canvas)
 		current_canvas.forceMove(drop_location())
 		current_canvas = null
+		loaded = FALSE
 		to_chat(user, "<span class='notice'>You remove the painting from the frame.</span>")
 		update_appearance()
 
@@ -502,6 +515,7 @@
 	new_canvas.author_ckey = author_ckey
 	new_canvas.name = "painting - [title]"
 	current_canvas = new_canvas
+	loaded = TRUE
 	update_appearance()
 
 /obj/structure/sign/painting/proc/save_persistent()
@@ -558,4 +572,5 @@
 			if(P.current_canvas && md5(P.current_canvas.get_data_string()) == md5)
 				QDEL_NULL(P.current_canvas)
 				P.update_appearance()
+		loaded = FALSE
 		log_and_message_admins("<span class='notice'>[key_name_admin(user)] has deleted persistent painting made by [author].</span>")
