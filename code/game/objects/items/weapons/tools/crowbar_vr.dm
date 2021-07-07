@@ -14,7 +14,7 @@
 	item_state = "crowbar"
 	w_class = ITEMSIZE_SMALL
 	origin_tech = list(TECH_ENGINEERING = 1)
-	matter = list(DEFAULT_WALL_MATERIAL = 30)
+	matter = list(MAT_STEEL = 30)
 	attack_verb = list("whapped", "smacked", "swatted", "thwacked", "hit")
 	usesound = 'sound/items/crowbar.ogg'
 	toolspeed = 1

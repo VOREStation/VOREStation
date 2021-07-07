@@ -8,7 +8,7 @@ var/list/GPS_list = list()
 	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_BELT
 	origin_tech = list(TECH_MATERIAL = 2, TECH_BLUESPACE = 2, TECH_MAGNET = 1)
-	matter = list(DEFAULT_WALL_MATERIAL = 500)
+	matter = list(MAT_STEEL = 500)
 
 	var/gps_tag = "GEN0"
 	var/emped = FALSE

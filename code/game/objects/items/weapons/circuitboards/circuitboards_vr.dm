@@ -52,11 +52,11 @@
 	name = T_BOARD("timeclock")
 	build_path = /obj/machinery/computer/timeclock
 	board_type = new /datum/frame/frame_types/timeclock_terminal
-	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
+	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
 
 // Board for the ID restorer in id_restorer_vr.dm
 /obj/item/weapon/circuitboard/id_restorer
 	name = T_BOARD("ID restoration console")
 	build_path = /obj/machinery/computer/id_restorer
 	board_type = new /datum/frame/frame_types/id_restorer
-	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
+	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)

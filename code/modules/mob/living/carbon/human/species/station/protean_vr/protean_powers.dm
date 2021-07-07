@@ -28,13 +28,13 @@
 
 	//Organ is missing, needs restoring
 	if(!organs_by_name[choice] || istype(organs_by_name[choice], /obj/item/organ/external/stump)) //allows limb stumps to regenerate like removed limbs.
-		if(refactory.get_stored_material(DEFAULT_WALL_MATERIAL) < PER_LIMB_STEEL_COST)
+		if(refactory.get_stored_material(MAT_STEEL) < PER_LIMB_STEEL_COST)
 			to_chat(src,"<span class='warning'>You're missing that limb, and need to store at least [PER_LIMB_STEEL_COST] steel to regenerate it.</span>")
 			return
 		var/regen = tgui_alert(src,"That limb is missing, do you want to regenerate it in exchange for [PER_LIMB_STEEL_COST] steel?","Regenerate limb?",list("Yes","No"))
 		if(regen != "Yes")
 			return
-		if(!refactory.use_stored_material(DEFAULT_WALL_MATERIAL,PER_LIMB_STEEL_COST))
+		if(!refactory.use_stored_material(MAT_STEEL,PER_LIMB_STEEL_COST))
 			return
 		if(organs_by_name[choice])
 			var/obj/item/organ/external/oldlimb = organs_by_name[choice]
@@ -148,7 +148,7 @@
 		return
 
 	//Not enough resources (AND spends the resources, should be the last check)
-	if(!refactory.use_stored_material(DEFAULT_WALL_MATERIAL,refactory.max_storage))
+	if(!refactory.use_stored_material(MAT_STEEL,refactory.max_storage))
 		to_chat(src, "<span class='warning'>You need to be maxed out on normal metal to do this!</span>")
 		return
 

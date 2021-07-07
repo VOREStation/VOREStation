@@ -10,7 +10,7 @@
 	force = 5.0
 	throwforce = 7.0
 	w_class = ITEMSIZE_NORMAL
-	matter = list(DEFAULT_WALL_MATERIAL = 50)
+	matter = list(MAT_STEEL = 50)
 	attack_verb = list("bludgeoned", "whacked", "disciplined", "thrashed")
 
 /obj/item/weapon/cane/crutch

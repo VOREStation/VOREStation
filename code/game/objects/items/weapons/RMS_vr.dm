@@ -212,7 +212,7 @@
 /obj/item/weapon/rms/attack_self(mob/user)
 	var/list/choices = list(
 		"Steel" = radial_image_steel,
-		"Glass" = radial_image_glass,
+		MAT_GLASS = radial_image_glass,
 		"Cloth" = radial_image_cloth,
 		"Plastic" = radial_image_plastic,
 		"Stone" = radial_image_stone,

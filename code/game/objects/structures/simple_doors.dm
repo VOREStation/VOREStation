@@ -33,7 +33,7 @@
 
 /obj/structure/simple_door/proc/set_material(var/material_name)
 	if(!material_name)
-		material_name = DEFAULT_WALL_MATERIAL
+		material_name = MAT_STEEL
 	material = get_material_by_name(material_name)
 	if(!material)
 		return

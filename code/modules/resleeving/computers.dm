@@ -162,8 +162,8 @@
 			"spod" = "\ref[spod]",
 			"name" = sanitize(capitalize(spod.name)),
 			"busy" = spod.busy,
-			"steel" = spod.stored_material[DEFAULT_WALL_MATERIAL],
-			"glass" = spod.stored_material["glass"]
+			"steel" = spod.stored_material[MAT_STEEL],
+			"glass" = spod.stored_material[MAT_GLASS]
 		)))
 	data["spods"] = temppods.Copy()
 	temppods.Cut()
@@ -289,8 +289,8 @@
 							return
 
 						//Not enough steel or glass
-						else if(spod.stored_material[DEFAULT_WALL_MATERIAL] < spod.body_cost)
-							set_temp("Error: Not enough [DEFAULT_WALL_MATERIAL] in SynthFab.", "danger")
+						else if(spod.stored_material[MAT_STEEL] < spod.body_cost)
+							set_temp("Error: Not enough [MAT_STEEL] in SynthFab.", "danger")
 							return
 						else if(spod.stored_material["glass"] < spod.body_cost)
 							set_temp("Error: Not enough glass in SynthFab.", "danger")

@@ -13,7 +13,7 @@
 		slot_r_hand_str = 'icons/mob/items/righthand_material.dmi',
 		)
 
-	var/default_type = DEFAULT_WALL_MATERIAL
+	var/default_type = MAT_STEEL
 	var/datum/material/material
 	var/perunit = SHEET_MATERIAL_AMOUNT
 	var/apply_colour //temp pending icon rewrite
@@ -26,7 +26,7 @@
 	randpixel_xy()
 
 	if(!default_type)
-		default_type = DEFAULT_WALL_MATERIAL
+		default_type = MAT_STEEL
 	material = get_material_by_name("[default_type]")
 	if(!material)
 		return INITIALIZE_HINT_QDEL

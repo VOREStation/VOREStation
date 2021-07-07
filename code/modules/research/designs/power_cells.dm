@@ -20,7 +20,7 @@
 	build_type = PROTOLATHE | MECHFAB
 	id = "basic_cell"
 	req_tech = list(TECH_POWER = 1)
-	materials = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 50)
+	materials = list(MAT_STEEL = 700, MAT_GLASS = 50)
 	build_path = /obj/item/weapon/cell
 	category = list("Misc")
 	sort_string = "BAAAA"
@@ -30,7 +30,7 @@
 	build_type = PROTOLATHE | MECHFAB
 	id = "high_cell"
 	req_tech = list(TECH_POWER = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 60)
+	materials = list(MAT_STEEL = 700, MAT_GLASS = 60)
 	build_path = /obj/item/weapon/cell/high
 	category = list("Misc")
 	sort_string = "BAAAB"
@@ -39,7 +39,7 @@
 	name = "super-capacity"
 	id = "super_cell"
 	req_tech = list(TECH_POWER = 3, TECH_MATERIAL = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 70)
+	materials = list(MAT_STEEL = 700, MAT_GLASS = 70)
 	build_path = /obj/item/weapon/cell/super
 	category = list("Misc")
 	sort_string = "BAAAC"
@@ -48,7 +48,7 @@
 	name = "hyper-capacity"
 	id = "hyper_cell"
 	req_tech = list(TECH_POWER = 5, TECH_MATERIAL = 4)
-	materials = list(DEFAULT_WALL_MATERIAL = 400, "gold" = 150, "silver" = 150, "glass" = 70)
+	materials = list(MAT_STEEL = 400, MAT_GOLD = 150, MAT_SILVER = 150, MAT_GLASS = 70)
 	build_path = /obj/item/weapon/cell/hyper
 	category = list("Misc")
 	sort_string = "BAAAD"
@@ -57,7 +57,7 @@
 	name = "device"
 	build_type = PROTOLATHE
 	id = "device"
-	materials = list(DEFAULT_WALL_MATERIAL = 350, "glass" = 25)
+	materials = list(MAT_STEEL = 350, MAT_GLASS = 25)
 	build_path = /obj/item/weapon/cell/device
 	category = list("Misc")
 	sort_string = "BAABA"
@@ -66,7 +66,7 @@
 	name = "weapon"
 	build_type = PROTOLATHE
 	id = "weapon"
-	materials = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 50)
+	materials = list(MAT_STEEL = 700, MAT_GLASS = 50)
 	build_path = /obj/item/weapon/cell/device/weapon
 	category = list("Misc")
 	sort_string = "BAABB"

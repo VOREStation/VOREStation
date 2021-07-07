@@ -5,7 +5,7 @@
 	origin_tech = list(TECH_POWER = 2)
 	icon_state = "exs_m"
 	maxcharge = 10000
-	matter = list(DEFAULT_WALL_MATERIAL = 1000, MAT_GLASS = 80, MAT_SILVER = 100)
+	matter = list(MAT_STEEL = 1000, MAT_GLASS = 80, MAT_SILVER = 100)
 	self_recharge = TRUE
 	charge_amount = 150
 

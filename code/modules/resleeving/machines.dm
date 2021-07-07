@@ -194,7 +194,7 @@
 	density = 1
 	anchored = 1
 
-	var/list/stored_material =  list(DEFAULT_WALL_MATERIAL = 30000, "glass" = 30000)
+	var/list/stored_material =  list(MAT_STEEL = 30000, MAT_GLASS = 30000)
 	var/connected      //What console it's done up with
 	var/busy = 0       //Busy cloning
 	var/body_cost = 15000  //Cost of a cloned body (metal and glass ea.)
@@ -255,7 +255,7 @@
 	if(!istype(BR) || busy)
 		return 0
 
-	if(stored_material[DEFAULT_WALL_MATERIAL] < body_cost || stored_material["glass"] < body_cost)
+	if(stored_material[MAT_STEEL] < body_cost || stored_material["glass"] < body_cost)
 		return 0
 
 	current_project = BR
@@ -350,7 +350,7 @@
 	H.loc = get_turf(src)
 
 	//Machine specific stuff at the end
-	stored_material[DEFAULT_WALL_MATERIAL] -= body_cost
+	stored_material[MAT_STEEL] -= body_cost
 	stored_material["glass"] -= body_cost
 	busy = 0
 	update_icon()
