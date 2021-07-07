@@ -132,7 +132,7 @@ export const releaseHeldKeys = () => {
     if (keyState[byondKeyCode]) {
       keyState[byondKeyCode] = false;
       logger.log(`releasing key "${byondKeyCode}"`);
-      Byond.command(`KeyUp "${byondKeyCode}"`);
+      Byond.command(`TguiKeyUp "${byondKeyCode}"`);
     }
   }
 };

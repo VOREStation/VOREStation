@@ -96,6 +96,19 @@
 		if ("SOUTHEAST") return 6
 		if ("SOUTHWEST") return 10
 
+// Turns a direction into text showing all bits set
+/proc/dirs2text(direction)
+	if(!direction)
+		return ""
+	var/list/dirs = list()
+	if(direction & NORTH) dirs += "NORTH"
+	if(direction & SOUTH) dirs += "SOUTH"
+	if(direction & EAST) dirs += "EAST"
+	if(direction & WEST) dirs += "WEST"
+	if(direction & UP) dirs += "UP"
+	if(direction & DOWN) dirs += "DOWN"
+	return dirs.Join(" ")
+
 // Converts an angle (degrees) into an ss13 direction
 /proc/angle2dir(var/degree)
 	degree = (degree + 22.5) % 365 // 22.5 = 45 / 2
