@@ -55,11 +55,8 @@
 		usr.drop_from_inventory(src) // Drop food from inventory so it doesn't end up staying on the hud after qdel, and so inhands go away
 
 		if(trash)
-			if(ispath(trash,/obj/item))
-				var/obj/item/TrashItem = new trash(usr)
-				usr.put_in_hands(TrashItem)
-			else if(istype(trash,/obj/item))
-				usr.put_in_hands(trash)
+			var/obj/item/TrashItem = new trash(usr)
+			usr.put_in_hands(TrashItem)
 		qdel(src)
 
 /obj/item/weapon/reagent_containers/food/snacks/attack_self(mob/user as mob)
