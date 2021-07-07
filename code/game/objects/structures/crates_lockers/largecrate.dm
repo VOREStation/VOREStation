@@ -31,7 +31,14 @@
 		for(var/atom/movable/AM in contents)
 			if(AM.simulated)
 				AM.forceMove(T)
-
+			//VOREStation Add Start
+			if(isanimal(AM)) 
+				var/mob/living/simple_mob/AMBLINAL = AM
+				if(!AMBLINAL.mind)
+					AMBLINAL.ghostjoin = 1
+					AMBLINAL.ghostjoin_icon()
+					active_ghost_pods |= AMBLINAL
+			//VOREStation Add End
 		user.visible_message("<span class='notice'>[user] pries \the [src] open.</span>", \
 							 "<span class='notice'>You pry open \the [src].</span>", \
 							 "<span class='notice'>You hear splitting wood.</span>")
