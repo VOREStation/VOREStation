@@ -25,7 +25,7 @@
 	desc = "Something swinging really wide."
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "cleave"
-	plane = MOB_PLANE
+	plane = ABOVE_MOB_PLANE
 	layer = ABOVE_MOB_LAYER
 	time_to_die = 6
 	alpha = 140
@@ -44,6 +44,7 @@
 	icon = 'icons/goonstation/featherzone.dmi'
 	icon_state = "hazard-corners"
 	time_to_die = 5 SECONDS
+	plane = PLANE_LIGHTING_ABOVE
 	//VOREStation Edit End
 
 // The manifestation of Zeus's might. Or just a really unlucky day.
@@ -100,6 +101,7 @@
 
 /obj/effect/abstract
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	plane = ABOVE_MOB_PLANE
 
 /obj/effect/abstract/light_spot
 	icon = 'icons/effects/eris_flashlight.dmi'
@@ -119,14 +121,14 @@
 /obj/effect/abstract/directional_lighting/proc/face_light(atom/movable/source, angle, distance)
 	if(!loc) // We're in nullspace
 		return
-	
+
 	// Save ourselves some matrix math
 	if(angle != trans_angle)
 		trans_angle = angle
 		// Doing this in one operation (tn = turn(initial(tn), angle)) has strange results...
 		light_spot.transform = initial(light_spot.transform)
 		light_spot.transform = turn(light_spot.transform, angle)
-		
+
 	if(icon_dist != distance)
 		icon_dist = distance
 		switch(distance)
@@ -143,8 +145,8 @@
 	if(!force)
 		stack_trace("Directional light atom deleted, but not by our component")
 		return QDEL_HINT_LETMELIVE
-	
+
 	vis_contents.Cut()
 	qdel_null(light_spot)
-	
+
 	return ..()

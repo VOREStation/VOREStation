@@ -622,7 +622,7 @@
 							if(istype(T,/obj/item/stack))
 								var/obj/item/stack/stack = T
 								total_material *= stack.get_amount()
-							if(material == DEFAULT_WALL_MATERIAL)
+							if(material == MAT_STEEL)
 								metal.add_charge(total_material)
 							if(material == "glass")
 								glass.add_charge(total_material)

@@ -34,6 +34,7 @@ two tiles on initialization, and which way a cliff is facing may change during m
 	climbable = TRUE
 	climb_delay = 10 SECONDS
 	block_turf_edges = TRUE // Don't want turf edges popping up from the cliff edge.
+	plane = TURF_PLANE
 
 	var/icon_variant = null // Used to make cliffs less repeative by having a selection of sprites to display.
 	var/corner = FALSE // Used for icon things.

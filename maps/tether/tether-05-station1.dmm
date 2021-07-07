@@ -237,6 +237,9 @@
 /obj/effect/landmark{
 	name = "JoinLateCyborg"
 	},
+/obj/machinery/computer/cryopod/gateway{
+	pixel_x = -32
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/station/exploration)
 "aay" = (
@@ -1257,17 +1260,12 @@
 /turf/simulated/floor,
 /area/maintenance/station/eng_lower)
 "acr" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/disposalpipe/segment,
-/obj/structure/catwalk,
+/obj/random/trash_pile,
 /obj/structure/cable/green{
-	icon_state = "2-4"
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
 	},
 /turf/simulated/floor,
 /area/maintenance/station/eng_lower)
@@ -6212,7 +6210,7 @@
 	},
 /obj/structure/catwalk,
 /obj/structure/cable/green{
-	icon_state = "4-8"
+	icon_state = "2-4"
 	},
 /turf/simulated/floor,
 /area/maintenance/station/eng_lower)
@@ -6394,6 +6392,9 @@
 /area/storage/tech)
 "aod" = (
 /obj/structure/filingcabinet,
+/obj/structure/sign/painting/library_secure{
+	pixel_x = 30
+	},
 /turf/simulated/floor/tiled/dark,
 /area/tcommsat/computer)
 "aof" = (
@@ -12713,7 +12714,7 @@
 /area/maintenance/station/eng_lower)
 "aMy" = (
 /obj/machinery/conveyor{
-	dir = 10;
+	dir = 5;
 	id = "QMLoad"
 	},
 /turf/simulated/floor,
@@ -14857,6 +14858,9 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment,
+/obj/structure/sign/painting/public{
+	pixel_x = 30
+	},
 /turf/simulated/floor/tiled,
 /area/tether/station/dock_one)
 "byp" = (
@@ -15163,7 +15167,7 @@
 /area/ai_monitored/storage/eva)
 "bJG" = (
 /obj/machinery/power/smes/buildable{
-	RCon_tag = "Substation - Exploration";
+	RCon_tag = "Substation - Asteroid civilian";
 	output_attempt = 0
 	},
 /obj/structure/cable{
@@ -19586,11 +19590,11 @@
 /turf/simulated/floor/tiled,
 /area/tether/station/dock_one)
 "fWn" = (
+/obj/machinery/light,
 /obj/machinery/conveyor{
 	dir = 1;
 	id = "QMLoad"
 	},
-/obj/machinery/light,
 /turf/simulated/floor,
 /area/quartermaster/storage)
 "fWt" = (
@@ -23437,7 +23441,7 @@
 /area/quartermaster/warehouse)
 "jUt" = (
 /obj/machinery/door/airlock/maintenance/engi{
-	name = "Exploration Substation"
+	name = "Asteroid civilian Substation"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -24971,7 +24975,7 @@
 /area/tether/station/dock_two)
 "lhm" = (
 /obj/machinery/power/breakerbox/activated{
-	RCon_tag = "Exploration Substation Bypass"
+	RCon_tag = "Asteroid civilian Substation Bypass"
 	},
 /turf/simulated/floor,
 /area/maintenance/substation/civilian)
@@ -27223,12 +27227,10 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/disposalpipe/segment,
 /obj/structure/catwalk,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
-	},
 /obj/effect/floor_decal/rust,
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
 /turf/simulated/floor,
 /area/maintenance/station/eng_lower)
 "nfp" = (
@@ -27527,7 +27529,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/maintenance/engi{
-	name = "Exploration Substation"
+	name = "Asteroid civilian Substation"
 	},
 /turf/simulated/floor,
 /area/maintenance/substation/civilian)
@@ -28627,11 +28629,6 @@
 /area/tether/exploration/hallway)
 "oEH" = (
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock/maintenance/common,
-/obj/machinery/door/airlock{
-	name = "Custodial Closet";
-	req_access = list(26)
-	},
 /obj/structure/cable/green{
 	d1 = 4;
 	d2 = 8;
@@ -28639,6 +28636,10 @@
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/machinery/door/airlock{
+	name = "Custodial Closet";
+	req_access = list(26)
 	},
 /turf/simulated/floor/tiled,
 /area/janitor)
@@ -29615,7 +29616,7 @@
 /area/shuttle/securiship/engines)
 "qby" = (
 /obj/machinery/conveyor{
-	dir = 9;
+	dir = 6;
 	id = "miningops"
 	},
 /turf/simulated/floor/plating,
@@ -29941,8 +29942,8 @@
 /area/hallway/station/docks)
 "qri" = (
 /obj/machinery/power/sensor{
-	name = "Powernet Sensor - Exploration Subgrid";
-	name_tag = "Exploration Subgrid"
+	name = "Powernet Sensor - Asteroid civilian Subgrid";
+	name_tag = "Asteroid civilian Subgrid"
 	},
 /obj/structure/cable/green{
 	d2 = 2;
@@ -31170,6 +31171,24 @@
 "rMb" = (
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock/refinery)
+"rOV" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 9
+	},
+/obj/structure/sign/painting/public{
+	pixel_x = 30
+	},
+/turf/simulated/floor/tiled,
+/area/tether/station/dock_one)
 "rPU" = (
 /obj/machinery/light{
 	dir = 8
@@ -32004,7 +32023,7 @@
 /area/hallway/station/atrium)
 "sKB" = (
 /obj/machinery/conveyor{
-	dir = 5;
+	dir = 10;
 	id = "miningops"
 	},
 /obj/machinery/mineral/input,
@@ -39973,7 +39992,7 @@ mra
 xkZ
 mra
 mra
-mra
+rOV
 fDN
 mra
 mra
@@ -45187,7 +45206,7 @@ atT
 dso
 dso
 acM
-acr
+dso
 neb
 ujK
 dso
@@ -45330,7 +45349,7 @@ ahq
 aiX
 abC
 anE
-aBH
+acr
 aBH
 fFM
 aGP

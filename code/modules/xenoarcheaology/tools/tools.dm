@@ -4,7 +4,7 @@
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "measuring"
 	origin_tech = list(TECH_MATERIAL = 1)
-	matter = list(DEFAULT_WALL_MATERIAL = 100)
+	matter = list(MAT_STEEL = 100)
 	w_class = ITEMSIZE_SMALL
 
 /obj/item/weapon/storage/bag/fossils
@@ -37,7 +37,7 @@
 	icon_state = "flashgun"
 	item_state = "lampgreen"
 	origin_tech = list(TECH_BLUESPACE = 3, TECH_MAGNET = 3)
-	matter = list(DEFAULT_WALL_MATERIAL = 10000,"glass" = 5000)
+	matter = list(MAT_STEEL = 10000,MAT_GLASS = 5000)
 	w_class = ITEMSIZE_SMALL
 	slot_flags = SLOT_BELT
 
@@ -95,7 +95,7 @@
 	icon_state = "depth_scanner"
 	item_state = "analyzer"
 	origin_tech = list(TECH_MAGNET = 2, TECH_ENGINEERING = 2, TECH_BLUESPACE = 2)
-	matter = list(DEFAULT_WALL_MATERIAL = 1000,"glass" = 1000)
+	matter = list(MAT_STEEL = 1000,MAT_GLASS = 1000)
 	w_class = ITEMSIZE_SMALL
 	slot_flags = SLOT_BELT
 	var/list/positive_locations = list()
@@ -226,7 +226,7 @@
 	icon_state = "pinoff"	//pinonfar, pinonmedium, pinonclose, pinondirect, pinonnull
 	item_state = "electronic"
 	origin_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 2, TECH_BLUESPACE = 3)
-	matter = list(DEFAULT_WALL_MATERIAL = 1000,"glass" = 500)
+	matter = list(MAT_STEEL = 1000,MAT_GLASS = 500)
 	var/frequency = PUB_FREQ
 	var/scan_ticks = 0
 	var/obj/item/device/radio/target_radio
@@ -325,7 +325,7 @@
 	item_state = "lampgreen"
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	origin_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 3, TECH_BLUESPACE = 2)
-	matter = list(DEFAULT_WALL_MATERIAL = 10000,"glass" = 5000)
+	matter = list(MAT_STEEL = 10000,MAT_GLASS = 5000)
 	w_class = ITEMSIZE_SMALL
 	slot_flags = SLOT_BELT
 	var/mode = 1 //Start off scanning. 1 = scanning, 0 = measuring

@@ -3,7 +3,7 @@
 
 /mob/living
 	var/ooc_notes = null
-	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER
+	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER|LONG_GLIDE
 	var/hunger_rate = DEFAULT_HUNGER_FACTOR
 //custom say verbs
 	var/custom_say = null

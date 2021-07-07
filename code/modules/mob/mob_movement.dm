@@ -140,21 +140,31 @@
 	// Used many times below, faster reference.
 	var/atom/loc = my_mob.loc
 
-	// We're controlling an object which is SOMEHOW DIFFERENT FROM AN EYE??
+	// We're controlling an object which is when admins possess an object.
 	if(my_mob.control_object)
 		Move_object(direct)
 
 	// Ghosty mob movement
 	if(my_mob.incorporeal_move && isobserver(my_mob))
 		Process_Incorpmove(direct)
+		DEBUG_INPUT("--------")
+		next_move_dir_add = 0	// This one I *think* exists so you can tap move and it will move even if delay isn't quite up.
+		next_move_dir_sub = 0 	// I'm not really sure why next_move_dir_sub even exists.
 		return
 
 	// We're in the middle of another move we've already decided to do
 	if(moving)
+		log_debug("Client [src] attempted to move while moving=[moving]")
 		return 0
 
 	// We're still cooling down from the last move
 	if(!my_mob.checkMoveCooldown())
+		return
+	DEBUG_INPUT("--------")
+	next_move_dir_add = 0	// This one I *think* exists so you can tap move and it will move even if delay isn't quite up.
+	next_move_dir_sub = 0 	// I'm not really sure why next_move_dir_sub even exists.
+
+	if(!n || !direct)
 		return
 
 	// If dead and we try to move in our mob, it leaves our body
@@ -286,6 +296,10 @@
 		. = my_mob.buckled.relaymove(my_mob,direct)
 	else
 		. = my_mob.SelfMove(n, direct, total_delay)
+
+	// If we ended up moving diagonally, increase delay.
+	if((direct & (direct - 1)) && mob.loc == n)
+		my_mob.setMoveCooldown(total_delay * 2)
 
 	// If we have a grab
 	var/list/grablist = my_mob.ret_grab()

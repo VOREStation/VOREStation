@@ -950,11 +950,23 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/public_garden_maintenence)
 "abD" = (
-/obj/machinery/light/small{
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/lightgrey/border,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 1
 	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 8
+	},
+/obj/machinery/light,
 /turf/simulated/floor/tiled,
-/area/rnd/hardstorage)
+/area/hallway/lower/first_west)
 "abE" = (
 /turf/simulated/floor/plating,
 /area/maintenance/lower/public_garden_maintenence)
@@ -6010,6 +6022,10 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 5
+	},
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/hallway)
@@ -16477,6 +16493,9 @@
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/lightgrey/border,
 /obj/structure/closet/firecloset,
+/obj/structure/sign/painting/public{
+	pixel_y = -30
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_one_hall)
 "aAO" = (
@@ -17356,10 +17375,6 @@
 /obj/effect/floor_decal/corner/mauve/border{
 	dir = 1
 	},
-/obj/machinery/firealarm{
-	layer = 3.3;
-	pixel_y = 26
-	},
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 4
 	},
@@ -17367,6 +17382,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
 	},
+/obj/machinery/vending/cola,
 /turf/simulated/floor/tiled,
 /area/rnd/hallway)
 "aCo" = (
@@ -17383,6 +17399,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
+/obj/machinery/vending/coffee,
 /turf/simulated/floor/tiled,
 /area/rnd/hallway)
 "aCp" = (
@@ -17592,6 +17609,9 @@
 	dir = 8
 	},
 /obj/machinery/vending/cola,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway/lower/first_west)
 "aCI" = (
@@ -17764,7 +17784,7 @@
 "aDa" = (
 /obj/structure/plasticflaps,
 /obj/machinery/conveyor{
-	dir = 10;
+	dir = 5;
 	id = "gloriouscargopipeline"
 	},
 /turf/simulated/floor/tiled/steel_dirty,
@@ -18110,26 +18130,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled,
 /area/rnd/hallway)
-"aDK" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment,
-/obj/machinery/vending/cola{
-	dir = 8
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals9{
-	dir = 8
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals9{
-	dir = 1
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals9{
-	dir = 4
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals9,
-/turf/simulated/floor/tiled/monotile,
-/area/rnd/hallway)
 "aDL" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -18284,7 +18284,7 @@
 	req_one_access = list(25)
 	},
 /obj/structure/sink{
-	pixel_y = 28
+	pixel_y = 22
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_dining)
@@ -18445,20 +18445,7 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment,
-/obj/machinery/vending/coffee{
-	dir = 8
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals9{
-	dir = 8
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals9{
-	dir = 1
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals9{
-	dir = 4
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals9,
-/turf/simulated/floor/tiled/monotile,
+/turf/simulated/floor/tiled,
 /area/rnd/hallway)
 "aEo" = (
 /obj/effect/floor_decal/steeldecal/steel_decals4{
@@ -31940,6 +31927,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/hallway)
+"cMk" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/hardstorage)
 "cNL" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -35019,6 +35012,13 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_one)
+"lWU" = (
+/obj/structure/closet/crate/plastic,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/hardstorage)
 "lXE" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
@@ -44854,9 +44854,9 @@ xoT
 sBl
 aun
 atG
-ahK
+ahL
 laI
-ajt
+abD
 ahl
 apj
 apj
@@ -46009,7 +46009,7 @@ apj
 auK
 avh
 abm
-abv
+cMk
 abv
 abv
 acD
@@ -46293,7 +46293,7 @@ apj
 auK
 avh
 abm
-abD
+abv
 abv
 abv
 adz
@@ -46302,7 +46302,7 @@ agn
 agE
 ajJ
 aDe
-aDK
+aEn
 aEn
 aDe
 aDe
@@ -46719,7 +46719,7 @@ apj
 auK
 avh
 abm
-abI
+lWU
 abv
 abv
 adM

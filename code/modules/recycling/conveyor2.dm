@@ -67,8 +67,8 @@
 
 /obj/machinery/conveyor/proc/update_dir()
 	if(!(dir in cardinal)) // Diagonal. Forwards is *away* from dir, curving to the right.
-		forwards = turn(dir, 135)
-		backwards = turn(dir, 45)
+		forwards = turn(dir, 45)
+		backwards = turn(dir, 135)
 	else
 		forwards = dir
 		backwards = turn(dir, 180)

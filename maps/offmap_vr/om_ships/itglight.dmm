@@ -62,7 +62,6 @@
 /area/itglight/readyroom)
 "af" = (
 /obj/structure/table/wooden_reinforced,
-/obj/item/weapon/paper/dockingcodes,
 /obj/item/weapon/card/id/event/accessset/itg/crew/captain,
 /obj/machinery/computer/ship/navigation/telescreen{
 	pixel_y = -32
@@ -388,8 +387,7 @@
 /area/itglight/captain)
 "bC" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5;
-	icon_state = "intact-scrubbers"
+	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
@@ -774,12 +772,10 @@
 /area/itglight/readyroom)
 "ei" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9;
-	pixel_y = 0
+	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5;
-	icon_state = "intact-scrubbers"
+	dir = 5
 	},
 /turf/simulated/floor/tiled/eris/white/cargo,
 /area/itglight/medbay)
@@ -1684,8 +1680,7 @@
 "jB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 8;
-	icon_state = "map-supply"
+	dir = 8
 	},
 /obj/item/weapon/tank/jetpack/oxygen,
 /obj/item/weapon/tank/jetpack/oxygen,
@@ -1853,8 +1848,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 8;
-	icon_state = "map-supply"
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 8
@@ -1972,9 +1966,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 2
-	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/structure/cable/pink{
 	d1 = 4;
 	d2 = 8;
@@ -2116,9 +2108,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 2
-	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /obj/structure/cable/pink{
 	d1 = 4;
 	d2 = 8;
@@ -2416,8 +2406,7 @@
 	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9;
-	icon_state = "intact-scrubbers"
+	dir = 9
 	},
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/metingroom)
@@ -2580,8 +2569,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9;
-	icon_state = "intact-scrubbers"
+	dir = 9
 	},
 /obj/structure/cable/pink{
 	d1 = 1;
@@ -2630,8 +2618,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 8;
-	icon_state = "map-supply"
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -2754,7 +2741,6 @@
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/itglight/starboardhighsec)
 "qU" = (
-/obj/item/weapon/stool/baystool/padded,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
@@ -2765,6 +2751,9 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/item/weapon/stool/baystool/padded{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/itglight/kitchen)
@@ -3635,8 +3624,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9;
-	icon_state = "intact-scrubbers"
+	dir = 9
 	},
 /turf/simulated/floor/tiled/eris/white/cargo,
 /area/itglight/medbay)
@@ -3778,8 +3766,7 @@
 /area/itglight/portcargo)
 "ym" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 8;
-	icon_state = "map-supply"
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/structure/cable/pink{
@@ -3993,8 +3980,7 @@
 	},
 /obj/structure/catwalk,
 /obj/machinery/atmospherics/pipe/manifold/hidden{
-	dir = 4;
-	icon_state = "map"
+	dir = 4
 	},
 /turf/simulated/floor,
 /area/itglight/starboardengi)
@@ -5015,8 +5001,7 @@
 /area/itglight/starboarddocking)
 "EQ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9;
-	icon_state = "intact-scrubbers"
+	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
@@ -5169,9 +5154,11 @@
 /turf/space,
 /area/space)
 "FB" = (
-/obj/item/weapon/stool/baystool/padded,
 /obj/structure/window/reinforced{
 	pixel_y = -3
+	},
+/obj/item/weapon/stool/baystool/padded{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/itglight/kitchen)
@@ -5372,9 +5359,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 2
-	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
 	},
@@ -6100,8 +6085,7 @@
 /area/space)
 "KM" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5;
-	icon_state = "intact-scrubbers"
+	dir = 5
 	},
 /obj/structure/catwalk,
 /turf/simulated/floor,
@@ -6183,8 +6167,7 @@
 /area/itglight/forehall)
 "LI" = (
 /obj/machinery/light/small{
-	dir = 8;
-	pixel_x = 0
+	dir = 8
 	},
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/monotile,
@@ -7307,8 +7290,7 @@
 "Sz" = (
 /obj/machinery/light/small,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9;
-	pixel_y = 0
+	dir = 9
 	},
 /turf/simulated/floor/tiled/dark,
 /area/itglight/passengersleeping)
@@ -7731,9 +7713,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 2
-	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /turf/simulated/floor/tiled/eris/white/cargo,
 /area/itglight/medbay)
 "Vs" = (
@@ -7742,6 +7722,12 @@
 	},
 /turf/simulated/floor,
 /area/itglight/starboardengi)
+"Vt" = (
+/obj/item/weapon/stool/baystool/padded{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/eris/cafe,
+/area/itglight/kitchen)
 "Vz" = (
 /obj/machinery/newscaster{
 	pixel_x = -12;
@@ -8328,8 +8314,7 @@
 "YM" = (
 /obj/structure/curtain/open/shower,
 /obj/machinery/shower{
-	dir = 1;
-	icon_state = "shower"
+	dir = 1
 	},
 /turf/simulated/floor/tiled{
 	icon_state = "techmaint"
@@ -8456,8 +8441,7 @@
 /area/itglight/starboardsolars)
 "Zi" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 5;
-	icon_state = "intact-supply"
+	dir = 5
 	},
 /obj/structure/cable/pink{
 	d1 = 4;
@@ -8492,7 +8476,9 @@
 /turf/simulated/floor/tiled/eris/cafe,
 /area/itglight/kitchen)
 "Zp" = (
-/obj/item/weapon/stool/baystool/padded,
+/obj/item/weapon/stool/baystool/padded{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/itglight/kitchen)
 "Zq" = (
@@ -17236,7 +17222,7 @@ WN
 Np
 Ct
 cx
-Zp
+Vt
 fE
 Kx
 cA

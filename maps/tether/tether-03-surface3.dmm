@@ -13816,6 +13816,9 @@
 	dir = 8
 	},
 /obj/structure/closet/firecloset,
+/obj/structure/sign/painting/public{
+	pixel_y = -30
+	},
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
 "awG" = (
@@ -14646,6 +14649,13 @@
 /obj/item/weapon/pen/invisible,
 /obj/item/weapon/pen/invisible,
 /obj/item/weapon/pen/invisible,
+/obj/item/canvas,
+/obj/item/canvas/nineteen_nineteen,
+/obj/item/canvas/twentyfour_twentyfour,
+/obj/item/canvas/twentythree_nineteen,
+/obj/item/canvas/twentythree_twentythree,
+/obj/item/paint_brush,
+/obj/item/paint_palette,
 /turf/simulated/floor/carpet,
 /area/tether/surfacebase/library/study)
 "axW" = (
@@ -34119,6 +34129,10 @@
 	dir = 10
 	},
 /obj/item/weapon/book/manual/cook_guide,
+/obj/machinery/light/floortube{
+	dir = 1;
+	pixel_y = 6
+	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
 "bgq" = (
@@ -39868,8 +39882,8 @@
 /obj/effect/floor_decal/corner/red/border{
 	dir = 4
 	},
-/obj/structure/sign/poster{
-	dir = 4
+/obj/structure/sign/painting/library_secure{
+	pixel_x = 30
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/breakroom)
@@ -39950,6 +39964,15 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow,
 /turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/shuttle_pad)
+"kar" = (
+/obj/structure/bed/chair/wood{
+	dir = 1
+	},
+/obj/structure/sign/painting/public{
+	pixel_y = -30
+	},
+/turf/simulated/floor/grass,
+/area/tether/surfacebase/public_garden_three)
 "kcC" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -40668,6 +40691,9 @@
 /obj/machinery/alarm{
 	pixel_y = 22
 	},
+/obj/structure/sign/painting/public{
+	pixel_x = 30
+	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/iaa/officeb)
 "mDf" = (
@@ -41238,6 +41264,9 @@
 /obj/structure/cable/green{
 	d2 = 4;
 	icon_state = "0-4"
+	},
+/obj/structure/sign/painting/library_secure{
+	pixel_y = -30
 	},
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/security/hos)
@@ -42029,6 +42058,9 @@
 	},
 /obj/machinery/alarm{
 	pixel_y = 22
+	},
+/obj/structure/sign/painting/public{
+	pixel_x = -30
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/iaa/officea)
@@ -49795,7 +49827,7 @@ aDJ
 aqp
 aDO
 aDS
-ufJ
+kar
 arW
 arN
 air

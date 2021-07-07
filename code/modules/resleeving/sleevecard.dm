@@ -23,7 +23,7 @@
 	var/mob/living/silicon/infomorph/infomorph
 	var/current_emotion = 1
 
-	matter = list(DEFAULT_WALL_MATERIAL = 4000, "glass" = 4000)
+	matter = list(MAT_STEEL = 4000, MAT_GLASS = 4000)
 
 /obj/item/device/sleevecard/relaymove(var/mob/user, var/direction)
 	if(user.stat || user.stunned)

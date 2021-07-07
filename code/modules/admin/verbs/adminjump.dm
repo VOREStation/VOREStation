@@ -4,25 +4,32 @@
 /mob/observer/dead/on_mob_jump()
 	following = null
 
-/client/proc/Jump()
+/client/proc/Jump(areaname as null|anything in return_sorted_areas())
 	set name = "Jump to Area"
 	set desc = "Area to jump to"
 	set category = "Admin"
 	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
 		return
 	
-	if(config.allow_admin_jump)
-		var/area/A = tgui_input_list(usr, "Pick an area:", "Jump to Area", return_sorted_areas())
-		if(!A)
-			return
-		usr.on_mob_jump()
-		usr.forceMove(pick(get_area_turfs(A)))
-
-		log_admin("[key_name(usr)] jumped to [A]")
-		message_admins("[key_name_admin(usr)] jumped to [A]", 1)
-		feedback_add_details("admin_verb","JA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	else
+	if(!config.allow_admin_jump)
 		tgui_alert_async(usr, "Admin jumping disabled")
+		return
+
+	var/area/A
+	
+	if(areaname)
+		A = return_sorted_areas()[areaname]
+	else
+		A = tgui_input_list(usr, "Pick an area:", "Jump to Area", return_sorted_areas())
+	
+	if(!A)
+		return
+
+	usr.on_mob_jump()
+	usr.forceMove(pick(get_area_turfs(A)))
+	log_admin("[key_name(usr)] jumped to [A]")
+	message_admins("[key_name_admin(usr)] jumped to [A]", 1)
+	feedback_add_details("admin_verb","JA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/jumptoturf(var/turf/T in world)
 	set name = "Jump to Turf"
@@ -40,7 +47,7 @@
 	return
 
 /// Verb wrapper around do_jumptomob()
-/client/proc/jumptomob()
+/client/proc/jumptomob(mob as null|anything in mob_list)
 	set category = "Admin"
 	set name = "Jump to Mob"
 	set popup_menu = FALSE //VOREStation Edit - Declutter.
@@ -48,16 +55,16 @@
 	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
 		return
 
-	var/mob/M = tgui_input_list(usr, "Pick a mob:", "Jump to Mob", mob_list)
-	if(!M) // Cancelled
-		return
-	do_jumptomob(M)
+	do_jumptomob(mob)
 
-/// Performs the jumps
+/// Performs the jumps, also called from admin Topic() for JMP links
 /client/proc/do_jumptomob(var/mob/M)
 	if(!config.allow_admin_jump)
 		tgui_alert_async(usr, "Admin jumping disabled")
 		return
+	
+	if(!M)
+		M = tgui_input_list(usr, "Pick a mob:", "Jump to Mob", mob_list)
 	if(!M)
 		return
 

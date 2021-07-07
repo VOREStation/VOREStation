@@ -345,6 +345,7 @@
 	///Description set when canvas is added.
 	var/desc_with_canvas
 	var/persistence_id
+	var/loaded = FALSE
 
 //Presets for art gallery mapping, for paintings to be shared across stations
 /obj/structure/sign/painting/public
@@ -402,9 +403,17 @@
 	. = ..()
 	if(persistence_id)
 		. += "<span class='notice'>Any painting placed here will be archived at the end of the shift.</span>"
+
 	if(current_canvas)
 		current_canvas.tgui_interact(user)
 		. += "<span class='notice'>Use wirecutters to remove the painting.</span>"
+
+		// Painting loaded and persistent frame, give a hint about removal safety
+		if(persistence_id)
+			if(loaded)
+				. += "<span class='notice'>Don't worry, the currently framed painting has already been entered into the archives and can be safely removed. It will still be used on future shifts.</span>"
+			else
+				. += "<span class='warning'>This painting has not been entered into the archives yet. Removing it will prevent that from happening.</span>"
 
 /obj/structure/sign/painting/proc/frame_canvas(mob/user,obj/item/canvas/new_canvas)
 	if(!allowed(user))
@@ -418,9 +427,13 @@
 		update_appearance()
 
 /obj/structure/sign/painting/proc/unframe_canvas(mob/living/user)
+	if(!allowed(user))
+		to_chat(user, "<span class='warning'>You're not comfortable removing this prestigious canvas!</span>")
+		return
 	if(current_canvas)
 		current_canvas.forceMove(drop_location())
 		current_canvas = null
+		loaded = FALSE
 		to_chat(user, "<span class='notice'>You remove the painting from the frame.</span>")
 		update_appearance()
 
@@ -462,12 +475,14 @@
  * Deleting paintings leaves their json, so this proc will remove the json and try again if it finds one of those.
  */
 /obj/structure/sign/painting/proc/load_persistent()
-	if(!persistence_id || !SSpersistence.paintings)
+	if(!persistence_id || !LAZYLEN(SSpersistence.unpicked_paintings))
 		return
+	
 	var/list/painting_category = list()
-	for (var/list/P in SSpersistence.paintings)
+	for (var/list/P in SSpersistence.unpicked_paintings)
 		if(P["persistence_id"] == persistence_id)
 			painting_category[++painting_category.len] = P
+	
 	var/list/painting
 	while(!painting)
 		if(!length(painting_category))
@@ -475,24 +490,30 @@
 		var/list/chosen = pick(painting_category)
 		if(!fexists("data/persistent/paintings/[persistence_id]/[chosen["md5"]].png")) //shitmin deleted this art, lets remove json entry to avoid errors
 			painting_category -= list(chosen)
+			SSpersistence.unpicked_paintings -= chosen
 			continue //and try again
 		painting = chosen
+		SSpersistence.unpicked_paintings -= chosen
+	
 	var/title = painting["title"]
 	var/author_name = painting["author"]
 	var/author_ckey = painting["ckey"]
 	var/png = "data/persistent/paintings/[persistence_id]/[painting["md5"]].png"
-	if(!title)
-		title = "Untitled Artwork" //legacy artwork allowed null names which was bad for the json, lets fix that
-		painting["title"] = title
 	var/icon/I = new(png)
 	var/obj/item/canvas/new_canvas
 	var/w = I.Width()
 	var/h = I.Height()
+	
 	for(var/T in typesof(/obj/item/canvas))
 		new_canvas = T
 		if(initial(new_canvas.width) == w && initial(new_canvas.height) == h)
 			new_canvas = new T(src)
 			break
+
+	if(!new_canvas)
+		warning("Couldn't find a canvas to match [w]x[h] of painting")
+		return
+	
 	new_canvas.fill_grid_from_icon(I)
 	new_canvas.generated_icon = I
 	new_canvas.icon_generated = TRUE
@@ -502,6 +523,7 @@
 	new_canvas.author_ckey = author_ckey
 	new_canvas.name = "painting - [title]"
 	current_canvas = new_canvas
+	loaded = TRUE
 	update_appearance()
 
 /obj/structure/sign/painting/proc/save_persistent()
@@ -512,18 +534,20 @@
 		return
 	if(!current_canvas.painting_name)
 		current_canvas.painting_name = "Untitled Artwork"
+	
 	var/data = current_canvas.get_data_string()
 	var/md5 = md5(lowertext(data))
-	LAZYINITLIST(SSpersistence.paintings)
-	for(var/list/entry in SSpersistence.paintings)
-		if(entry["md5"] == md5)
+	for(var/list/entry in SSpersistence.all_paintings)
+		if(entry["md5"] == md5 && entry["persistence_id"] == persistence_id)
 			return
 	var/png_directory = "data/persistent/paintings/[persistence_id]/"
 	var/png_path = png_directory + "[md5].png"
 	var/result = rustg_dmi_create_png(png_path,"[current_canvas.width]","[current_canvas.height]",data)
+	
 	if(result)
 		CRASH("Error saving persistent painting: [result]")
-	SSpersistence.paintings += list(list(
+	
+	SSpersistence.all_paintings += list(list(
 		"persistence_id" = persistence_id,
 		"title" = current_canvas.painting_name,
 		"md5" = md5,
@@ -547,10 +571,10 @@
 		var/md5 = md5(lowertext(current_canvas.get_data_string()))
 		var/author = current_canvas.author_ckey
 		var/list/filenames_found = list()
-		for(var/list/entry in SSpersistence.paintings)
+		for(var/list/entry in SSpersistence.all_paintings)
 			if(entry["md5"] == md5)
 				filenames_found += "data/persistent/paintings/[entry["persistence_id"]]/[entry["md5"]].png"
-				SSpersistence.paintings -= entry
+				SSpersistence.all_paintings -= entry
 		for(var/png in filenames_found)
 			if(fexists(png))
 				fdel(png)
@@ -558,4 +582,5 @@
 			if(P.current_canvas && md5(P.current_canvas.get_data_string()) == md5)
 				QDEL_NULL(P.current_canvas)
 				P.update_appearance()
+		loaded = FALSE
 		log_and_message_admins("<span class='notice'>[key_name_admin(user)] has deleted persistent painting made by [author].</span>")

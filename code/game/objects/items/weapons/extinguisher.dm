@@ -10,7 +10,7 @@
 	throw_speed = 2
 	throw_range = 10
 	force = 10
-	matter = list(DEFAULT_WALL_MATERIAL = 90)
+	matter = list(MAT_STEEL = 90)
 	attack_verb = list("slammed", "whacked", "bashed", "thunked", "battered", "bludgeoned", "thrashed")
 	drop_sound = 'sound/items/drop/gascan.ogg'
 	pickup_sound = 'sound/items/pickup/gascan.ogg'

@@ -517,11 +517,9 @@
 		for(var/obj/item/W in M)
 			if(istype(W, /obj/item/organ/internal/mmi_holder/posibrain))
 				var/obj/item/organ/internal/mmi_holder/MMI = W
-				var/atom/movable/brain = MMI.removed()
-				if(brain)
-					M.remove_from_mob(brain,owner)
-					brain.forceMove(src)
-					items_preserved += brain
+				var/obj/item/device/mmi/brainbox = MMI.removed()
+				if(brainbox)
+					items_preserved += brainbox
 			for(var/slot in slots)
 				var/obj/item/I = M.get_equipped_item(slot = slot)
 				if(I)

@@ -29,8 +29,8 @@
 /obj/screen/map_view
 	icon_state = "blank"
 	// Map view has to be on the lowest plane to enable proper lighting
-	layer = SPACE_PLANE
-	plane = SPACE_PLANE
+	layer = MAP_VIEW_LAYER
+	plane = MAP_VIEW_PLANE
 
 /**
  * A generic background object.
@@ -41,8 +41,8 @@
 	name = "background"
 	icon = 'icons/mob/map_backgrounds.dmi'
 	icon_state = "clear"
-	layer = SPACE_PLANE
-	plane = SPACE_PLANE
+	layer = MAP_VIEW_LAYER
+	plane = MAP_VIEW_PLANE
 
 /**
  * Sets screen_loc of this screen object, in form of point coordinates,

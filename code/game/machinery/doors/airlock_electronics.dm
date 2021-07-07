@@ -4,7 +4,7 @@
 	icon_state = "door_electronics"
 	w_class = ITEMSIZE_SMALL //It should be tiny! -Agouri
 
-	matter = list(DEFAULT_WALL_MATERIAL = 50,"glass" = 50)
+	matter = list(MAT_STEEL = 50,MAT_GLASS = 50)
 
 	req_one_access = list(access_engine, access_talon) // Access to unlock the device, ignored if emagged //VOREStation Edit - Add talon
 	var/list/apply_any_access = list(access_engine) // Can apply any access, not just their own

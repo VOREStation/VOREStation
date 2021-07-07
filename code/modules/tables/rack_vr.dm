@@ -2,7 +2,7 @@
 	color = "#666666"
 
 /obj/structure/table/rack/steel/New()
-	material = get_material_by_name(DEFAULT_WALL_MATERIAL)
+	material = get_material_by_name(MAT_STEEL)
 	..()
 
 /obj/structure/table/rack/shelf
@@ -15,5 +15,5 @@
 	color = "#666666"
 
 /obj/structure/table/rack/shelf/steel/New()
-	material = get_material_by_name(DEFAULT_WALL_MATERIAL)
+	material = get_material_by_name(MAT_STEEL)
 	..()

@@ -1,6 +1,6 @@
 /datum/material/steel/holographic
-	name = "holo" + DEFAULT_WALL_MATERIAL
-	display_name = DEFAULT_WALL_MATERIAL
+	name = "holo" + MAT_STEEL
+	display_name = MAT_STEEL
 	stack_type = null
 	shard_type = SHARD_NONE
 
