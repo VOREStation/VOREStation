@@ -109,13 +109,11 @@
 
 	sun = new(null)
 
-	sun.color = choice["color"]
-	sun.alpha = round(CLAMP01(choice["brightness"])*255,1)
+	sun.set_color(choice["color"])
+	sun.set_alpha(round(CLAMP01(choice["brightness"])*255,1))
 
 	for(var/turf/T as anything in turfs_to_use)
-		T.vis_contents += sun
-		T.dynamic_lumcount = 0.5 // Cheap hack
-		T.set_luminosity(1, TRUE)
+		sun.apply_to_turf(T)
 
 /obj/effect/fake_sun/warm
 	name = "warm fake sun"
