@@ -123,7 +123,7 @@
 				add_reagent_id = "[item]juice"
 			if(add_reagent_id) //If we did find it, add it to our list of reagents to add, and add the number to our total.
 				add_reagents[add_reagent_id] += data[item]
-			totalnum += data[item]
+				totalnum += data[item]
 
 		if(totalnum)
 			var/multconst = amount/totalnum //We're going to add these extra reagents so that they share the ratio described, but only add up to 1x the existing amount at the most
