@@ -574,7 +574,7 @@
 		for(var/list/entry in SSpersistence.all_paintings)
 			if(entry["md5"] == md5)
 				filenames_found += "data/persistent/paintings/[entry["persistence_id"]]/[entry["md5"]].png"
-				SSpersistence.all_paintings -= entry
+				SSpersistence.all_paintings -= list(entry)
 		for(var/png in filenames_found)
 			if(fexists(png))
 				fdel(png)
