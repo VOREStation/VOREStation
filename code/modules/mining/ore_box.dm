@@ -18,7 +18,7 @@
 		var/obj/item/weapon/storage/S = W
 		if(!S.contents.len)
 			return
-		S.hide_from(usr)
+		S.hide_from(user)
 		for(var/obj/item/weapon/ore/O in S.contents)
 			S.remove_from_storage(O, src) //This will move the item to this item's contents
 		to_chat(user, "<span class='notice'>You empty the satchel into the box.</span>")

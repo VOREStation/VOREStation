@@ -38255,10 +38255,6 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/obj/machinery/door/airlock/multi_tile/metal{
-	dir = 2;
-	name = "Cryogenic Storage"
-	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/southhall)
 "daN" = (
@@ -41247,7 +41243,7 @@
 	dir = 8;
 	health = 1e+006
 	},
-/turf/simulated/wall,
+/turf/simulated/floor/plating,
 /area/tether/surfacebase/medical/storage)
 "oKw" = (
 /obj/structure/table/reinforced,
@@ -58615,7 +58611,7 @@ aaq
 aac
 abn
 ajG
-iUu
+aaz
 aaB
 aUj
 adV

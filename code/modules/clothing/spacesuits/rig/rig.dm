@@ -335,7 +335,7 @@
 						if("helmet")
 							to_chat(M, "<span class='notice'>\The [piece] hisses [!seal_target ? "closed" : "open"].</span>")
 							M.update_inv_head()
-							if(helmet)
+							if(helmet?.light_system == STATIC_LIGHT)
 								helmet.update_light(wearer)
 
 					//sealed pieces become airtight, protecting against diseases
