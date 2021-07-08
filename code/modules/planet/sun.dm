@@ -77,7 +77,6 @@
 	color = "#FFFFFF"
 	
 	var/turfs_providing_spreads = list()
-	var/turfs_receiving_spreads = list()
 	var/spreads = list()
 
 /atom/movable/sun_visuals/New()
@@ -131,10 +130,11 @@
 				// Inner corner
 				else
 					OL = spreads["i[direction]"]
-				T.vis_contents += OL
-				LAZYADD(localspreads, OL)
-				LAZYADD(turfs_receiving_spreads[dirturf], OL)
+				dirturf.vis_contents += OL
 				dirturf.set_luminosity(1)
+				LAZYINITLIST(localspreads)
+				LAZYINITLIST(localspreads[dirturf])
+				LAZYADD(localspreads[dirturf], OL)
 	
 	// Take all orthagonals
 	for(var/direction in cardinal)
@@ -146,10 +146,11 @@
 			if(TL && TR && TL.outdoors != TR.outdoors)
 				continue
 			var/atom/movable/sun_visuals_overlap/OL = spreads["[direction]"]
-			T.vis_contents += OL
-			LAZYADD(localspreads, OL)
-			LAZYADD(turfs_receiving_spreads[dirturf], OL)
+			dirturf.vis_contents += OL
 			dirturf.set_luminosity(1)
+			LAZYINITLIST(localspreads)
+			LAZYINITLIST(localspreads[dirturf])
+			LAZYADD(localspreads[dirturf], OL)
 
 	if(LAZYLEN(localspreads))
 		turfs_providing_spreads[T] = localspreads
@@ -157,10 +158,12 @@
 /atom/movable/sun_visuals/proc/remove_from_turf(var/turf/T)
 	T.vis_contents -= src
 	T.dynamic_lumcount -= 0.5
-	T.set_luminosity(!IS_DYNAMIC_LIGHTING(T), TRUE)
+	T.set_luminosity(0, TRUE)
 	var/list/applied = turfs_providing_spreads[T]
 	if(LAZYLEN(applied))
-		T.vis_contents -= applied
+		for(var/turf/old as anything in applied)
+			old.vis_contents -= applied[old]
+			applied -= old
 		turfs_providing_spreads -= T
 		applied.Cut()
 
@@ -176,12 +179,3 @@
 	..()
 	icon_state = newstate
 	dir = newdir
-	if(newdir & NORTH)
-		pixel_y = 32
-	else if(newdir & SOUTH)
-		pixel_y = -32
-
-	if(newdir & EAST)
-		pixel_x = 32
-	else if(newdir & WEST)
-		pixel_x = -32
