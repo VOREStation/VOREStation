@@ -75,6 +75,12 @@ macro "borghotkeymode"
 		name = "CTRL+SOUTH"
 		command = "southface"
 	elem
+		name = "South"
+		command = "KeyDown South"
+	elem
+		name = "South+UP"
+		command = "KeyUp South"
+	elem
 		name = "CTRL+SHIFT+NORTH"
 		command = "shiftnorth"
 	elem 
@@ -86,11 +92,6 @@ macro "borghotkeymode"
 	elem 
 		name = "CTRL+SHIFT+EAST"
 		command = "shifteast"
-		name = "South"
-		command = "KeyDown South"
-	elem
-		name = "South+UP"
-		command = "KeyUp South"
 	elem 
 		name = "INSERT"
 		command = "a-intent right"
@@ -334,6 +335,12 @@ macro "macro"
 		name = "CTRL+SOUTH"
 		command = "southface"
 	elem
+		name = "South"
+		command = "KeyDown South"
+	elem
+		name = "South+UP"
+		command = "KeyUp South"
+	elem
 		name = "CTRL+SHIFT+NORTH"
 		command = "shiftnorth"
 	elem 
@@ -345,11 +352,6 @@ macro "macro"
 	elem 
 		name = "CTRL+SHIFT+EAST"
 		command = "shifteast"
-		name = "South"
-		command = "KeyDown South"
-	elem
-		name = "South+UP"
-		command = "KeyUp South"
 	elem 
 		name = "INSERT"
 		command = "a-intent right"
@@ -557,6 +559,12 @@ macro "hotkeymode"
 		name = "CTRL+SOUTH"
 		command = "southface"
 	elem
+		name = "South"
+		command = "KeyDown South"
+	elem
+		name = "South+UP"
+		command = "KeyUp South"
+	elem
 		name = "CTRL+SHIFT+NORTH"
 		command = "shiftnorth"
 	elem 
@@ -568,11 +576,6 @@ macro "hotkeymode"
 	elem 
 		name = "CTRL+SHIFT+EAST"
 		command = "shifteast"
-		name = "South"
-		command = "KeyDown South"
-	elem
-		name = "South+UP"
-		command = "KeyUp South"
 	elem 
 		name = "INSERT"
 		command = "a-intent right"
@@ -837,6 +840,12 @@ macro "borgmacro"
 		name = "CTRL+SOUTH"
 		command = "southface"
 	elem
+		name = "South"
+		command = "KeyDown South"
+	elem
+		name = "South+UP"
+		command = "KeyUp South"
+	elem
 		name = "CTRL+SHIFT+NORTH"
 		command = "shiftnorth"
 	elem 
@@ -848,11 +857,6 @@ macro "borgmacro"
 	elem 
 		name = "CTRL+SHIFT+EAST"
 		command = "shifteast"
-		name = "South"
-		command = "KeyDown South"
-	elem
-		name = "South+UP"
-		command = "KeyUp South"
 	elem 
 		name = "INSERT"
 		command = "a-intent right"
