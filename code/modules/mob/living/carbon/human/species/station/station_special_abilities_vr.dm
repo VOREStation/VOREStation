@@ -910,7 +910,7 @@
 		to_chat(src, "<span class='warning'>You can't weave here!</span>")
 		return
 
-	if(do_after(src, desired_result.time, exclusive = TRUE))
+	if(do_after(src, desired_result.time, exclusive = TASK_USER_EXCLUSIVE))
 		if(desired_result.cost > species.silk_reserve)
 			to_chat(src, "<span class='warning'>You don't have enough silk to weave that!</span>")
 			return
@@ -969,7 +969,7 @@
 		to_chat(src, "<span class='warning'>You can't weave here!</span>")
 		return
 
-	if(do_after(src, desired_result.time, exclusive = TRUE))
+	if(do_after(src, desired_result.time, exclusive = TASK_USER_EXCLUSIVE))
 		if(desired_result.cost > species.silk_reserve)
 			to_chat(src, "<span class='warning'>You don't have enough silk to weave that!</span>")
 			return

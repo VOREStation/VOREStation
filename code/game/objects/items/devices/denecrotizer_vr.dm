@@ -145,7 +145,7 @@
 			return FALSE
 		if(!target.mind) 
 			user.visible_message("[user] gently presses [src] to [target]...", runemessage = "presses [src] to [target]")
-			if(do_after(user, revive_time, exclusive = 1, target = target))
+			if(do_after(user, revive_time, exclusive = TASK_USER_EXCLUSIVE, target = target))
 				target.faction = user.faction
 				target.revivedby = user.name
 				target.ghostjoin = 1
@@ -166,7 +166,7 @@
 
 /obj/item/device/denecrotizer/proc/ghostjoin_rez(mob/living/simple_mob/target, mob/living/user)
 	user.visible_message("[user] gently presses [src] to [target]...", runemessage = "presses [src] to [target]")
-	if(do_after(user, revive_time, exclusive = 1, target = target))
+	if(do_after(user, revive_time, exclusive = TASK_ALL_EXCLUSIVE, target = target))
 		target.faction = user.faction
 		target.revivedby = user.name
 		target.ai_holder.returns_home = FALSE
@@ -190,7 +190,7 @@
 		
 /obj/item/device/denecrotizer/proc/basic_rez(mob/living/simple_mob/target, mob/living/user) //so medical can have a way to bring back people's pets or whatever, does not change any settings about the mob or offer it to ghosts.
 	user.visible_message("[user] presses [src] to [target]...", runemessage = "presses [src] to [target]")
-	if(do_after(user, revive_time, exclusive = 1, target = target))
+	if(do_after(user, revive_time, exclusive = TASK_ALL_EXCLUSIVE, target = target))
 		target.revive()
 		target.sight = initial(target.sight)
 		target.see_in_dark = initial(target.see_in_dark)
