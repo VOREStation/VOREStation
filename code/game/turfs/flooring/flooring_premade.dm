@@ -106,12 +106,6 @@
 	icon_state = "techmaint"
 	initial_flooring = /decl/flooring/tiling/new_tile/techmaint
 
-/turf/simulated/floor/tiled/monofloor
-	name = "floor"
-	icon = 'icons/turf/flooring/tiles_vr.dmi'
-	icon_state = "monofloor"
-	initial_flooring = /decl/flooring/tiling/new_tile/monofloor
-
 /turf/simulated/floor/tiled/techfloor
 	name = "floor"
 	icon = 'icons/turf/flooring/techfloor.dmi'

@@ -15,6 +15,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	pass_flags = PASSTABLE | PASSGRILLE
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	light_on = TRUE
+	plane = ABOVE_OBJ_PLANE
 
 /datum/effect/effect/system
 	var/number = 3
@@ -267,11 +268,11 @@ steam.start() -- spawns the effect
 /obj/effect/effect/smoke/bad/burntfood
 	color = "#000000"
 	time_to_live = 600
-	
+
 /obj/effect/effect/smoke/bad/burntfood/process()
 	for(var/mob/living/L in get_turf(src))
 		affect(L)
-	
+
 /obj/effect/effect/smoke/bad/burntfood/affect(var/mob/living/L) // This stuff is extra-vile.
 	if (!..())
 		return 0
@@ -392,7 +393,7 @@ steam.start() -- spawns the effect
 
 /datum/effect/effect/system/smoke_spread/bad
 	smoke_type = /obj/effect/effect/smoke/bad
-	
+
 /datum/effect/effect/system/smoke_spread/bad/burntfood
 	smoke_type = /obj/effect/effect/smoke/bad/burntfood
 

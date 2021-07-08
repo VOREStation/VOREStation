@@ -141,7 +141,12 @@ GLOBAL_VAR_INIT(chicken_count, 0)	// How mant chickens DO we have?
 	if(!stat)
 		amount_grown += rand(1,2)
 		if(amount_grown >= 100)
-			new /mob/living/simple_mob/animal/passive/chicken(src.loc)
+		//VOREStation Edit Begin
+			var/mob/living/simple_mob/animal/passive/chicken/C = new (src.loc)
+			C.ghostjoin = 1
+			C.ghostjoin_icon()
+			active_ghost_pods |= C
+		//VOREStation Edit End
 			qdel(src)
 
 // Say Lists

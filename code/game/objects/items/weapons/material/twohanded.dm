@@ -174,7 +174,7 @@
 	force_divisor = 0.3
 	force = 10
 	thrown_force_divisor = 1
-	default_material = "DEFAULT_WALL_MATERIAL"
+	default_material = "MAT_STEEL"
 	fragile = 0
 	sharp = 1
 	edge = 0

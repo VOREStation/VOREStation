@@ -11,5 +11,5 @@
 	desc = "A suit mounted size gun. Features interface-based target size adjustment for hands-free size-altering shenanigans."
 	id = "rig_gun_sizegun"
 	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 3000, MAT_GLASS = 2000, MAT_URANIUM = 2000)
+	materials = list(MAT_STEEL = 3000, MAT_GLASS = 2000, MAT_URANIUM = 2000)
 	build_path = /obj/item/rig_module/mounted/sizegun

@@ -297,6 +297,9 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/structure/sign/painting/public{
+	pixel_y = 30
+	},
 /turf/simulated/floor/virgo3b_indoors,
 /area/tether/outpost/solars_shed)
 "aE" = (

@@ -231,7 +231,7 @@
 /datum/modifier/protean
 	stacks = MODIFIER_STACK_FORBID
 	var/material_use = METAL_PER_TICK
-	var/material_name = DEFAULT_WALL_MATERIAL
+	var/material_name = MAT_STEEL
 
 /datum/modifier/protean/on_applied()
 	. = ..()

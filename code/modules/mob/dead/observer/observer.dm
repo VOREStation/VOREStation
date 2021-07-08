@@ -98,7 +98,6 @@
 	sight |= SEE_TURFS | SEE_MOBS | SEE_OBJS | SEE_SELF
 	see_invisible = SEE_INVISIBLE_OBSERVER
 	see_in_dark = world.view //I mean. I don't even know if byond has occlusion culling... but...
-	verbs += /mob/observer/dead/proc/dead_tele
 
 	var/turf/T
 	if(ismob(body))
@@ -342,6 +341,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		var/area/A = areas[key]
 		if(A.z in using_map?.secret_levels)
 			areas -= key
+
 	return areas
 
 /mob/observer/dead/proc/jumpable_mobs()
@@ -353,41 +353,62 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		var/mobz = get_z(mobs[key])
 		if(mobz in using_map?.secret_levels)
 			mobs -= key
+	
 	return mobs
 
-/mob/observer/dead/proc/dead_tele()
-	set category = "Ghost"
+/mob/observer/dead/verb/dead_tele(areaname as null|anything in jumpable_areas())
 	set name = "Teleport"
-	set desc = "Teleport to a location"
+	set category = "Ghost"
+	set desc = "Teleport to a location."
 
 	if(!istype(usr, /mob/observer/dead))
 		to_chat(usr, "Not when you're not dead!")
 		return
 
-	var/list/areas = jumpable_areas()
-	var/input = tgui_input_list(usr, "Select an area:", "Ghost Teleport", areas)
-	if(!input)
-		return
+	var/area/A
 	
-	var/area/A = areas[input]
-	if(!A) return
-	usr.forceMove(pick(get_area_turfs(A)))
+	if(!areaname)
+		var/list/areas = jumpable_areas()
+		var/input = tgui_input_list(usr, "Select an area:", "Ghost Teleport", areas)
+		if(!input)
+			return
+		A = areas[input]
+		if(!A)
+			return
+
+	if(!istype(usr, /mob/observer/dead))
+		to_chat(usr, "Not when you're not dead!")
+		return
+
+	usr.forceMove(pick(get_area_turfs(A || jumpable_areas()[areaname])))
 	usr.on_mob_jump()
 
-/mob/observer/dead/verb/follow()
+/mob/observer/dead/verb/follow(mobname as null|anything in jumpable_mobs())
+	set name = "Follow"
 	set category = "Ghost"
-	set name = "Follow" // "Haunt"
 	set desc = "Follow and haunt a mob."
 
-	var/list/possible_mobs = jumpable_mobs()
-	var/input = tgui_input_list(usr, "Select a mob:", "Ghost Follow", possible_mobs)
-	if(!input)
+	if(!istype(usr, /mob/observer/dead))
+		to_chat(usr, "Not when you're not dead!")
 		return
-	
-	var/target = possible_mobs[input]
-	if(!target) return
-	ManualFollow(target)
 
+	var/mob/M
+
+	if(!mobname)
+		var/list/possible_mobs = jumpable_mobs()
+		var/input = tgui_input_list(usr, "Select a mob:", "Ghost Follow", possible_mobs)
+		if(!input)
+			return
+		M = possible_mobs[input]
+		if(!M)
+			return
+
+	if(!istype(usr, /mob/observer/dead))
+		to_chat(usr, "Not when you're not dead!")
+		return
+
+	ManualFollow(M || jumpable_mobs()[mobname])
+	
 /mob/observer/dead/forceMove(atom/destination)
 	if(client?.holder)
 		return ..()

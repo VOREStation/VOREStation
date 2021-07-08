@@ -214,8 +214,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9;
-	icon_state = "intact-scrubbers"
+	dir = 9
 	},
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/aro3/hallway_bunkrooms)
@@ -512,8 +511,7 @@
 "dO" = (
 /obj/structure/table/steel,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9;
-	icon_state = "intact-scrubbers"
+	dir = 9
 	},
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/aro3/workshop)
@@ -590,9 +588,7 @@
 "en" = (
 /obj/structure/table/marble,
 /obj/item/weapon/reagent_containers/food/condiment/enzyme,
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 2
-	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/aro3/kitchen)
 "ep" = (
@@ -606,8 +602,7 @@
 "eA" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9;
-	icon_state = "intact-scrubbers"
+	dir = 9
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/aro3/power)
@@ -763,7 +758,6 @@
 	req_access = list()
 	},
 /obj/structure/cable/cyan{
-	d2 = 1;
 	icon_state = "0-2"
 	},
 /turf/simulated/floor/tiled/eris/white,
@@ -776,8 +770,7 @@
 /area/aro3/medical)
 "go" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5;
-	icon_state = "intact-scrubbers"
+	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/eris/steel/bar_flat,
@@ -853,8 +846,7 @@
 /area/aro3/atmos)
 "gK" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -1198,7 +1190,6 @@
 	req_access = list()
 	},
 /obj/structure/cable/cyan{
-	d2 = 1;
 	icon_state = "0-2"
 	},
 /turf/simulated/floor/tiled/eris/dark,
@@ -1374,12 +1365,13 @@
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
 	},
+/obj/effect/floor_decal/steeldecal/monofloor{
+	dir = 8
+	},
 /obj/effect/floor_decal/emblem/aronai{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/monofloor{
-	dir = 8
-	},
+/turf/simulated/floor/tiled/monotile,
 /area/aro3/eva_hall)
 "ku" = (
 /obj/structure/cable/cyan{
@@ -1867,8 +1859,7 @@
 /area/aro3/eva_hall)
 "oP" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
@@ -1876,8 +1867,7 @@
 "oT" = (
 /obj/structure/table/rack/shelf/steel,
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /obj/item/clothing/under/explorer{
 	name = "survivalist's jumpsuit"
@@ -1954,7 +1944,6 @@
 /area/aro3/function)
 "ps" = (
 /obj/structure/cable/cyan{
-	d2 = 1;
 	icon_state = "0-2"
 	},
 /obj/structure/cable/cyan{
@@ -2030,16 +2019,6 @@
 /obj/structure/fans/hardlight,
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/aro3/eva_hall)
-"qu" = (
-/obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
-	},
-/obj/structure/cable/cyan{
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
-/area/aro3/hallway_port)
 "qC" = (
 /turf/space/internal_edge/bottomleft,
 /area/aro3/bar)
@@ -2772,7 +2751,6 @@
 	output_level = 190000
 	},
 /obj/structure/cable/cyan{
-	d2 = 1;
 	icon_state = "0-4"
 	},
 /turf/simulated/floor/plating/eris/under,
@@ -2902,8 +2880,7 @@
 /area/aro3/workshop)
 "xN" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 5;
-	icon_state = "intact-supply"
+	dir = 5
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/aro3/atmos)
@@ -2977,8 +2954,7 @@
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 5;
-	icon_state = "intact-supply"
+	dir = 5
 	},
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/aro3/flight_deck)
@@ -3078,8 +3054,7 @@
 /area/aro3/power)
 "yW" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/aro3/kitchen)
@@ -3483,8 +3458,7 @@
 "Ci" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9;
-	icon_state = "intact-scrubbers"
+	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 8
@@ -3838,12 +3812,13 @@
 "Fj" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/floor_decal/steeldecal/monofloor{
+	dir = 4
+	},
 /obj/effect/floor_decal/emblem/aronai{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/monofloor{
-	dir = 4
-	},
+/turf/simulated/floor/tiled/monotile,
 /area/aro3/eva_hall)
 "Fl" = (
 /obj/structure/bed/double/padded,
@@ -4367,8 +4342,7 @@
 /area/aro3/workshop)
 "KS" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /obj/structure/closet/crate/bin{
 	anchored = 1;
@@ -5019,8 +4993,7 @@
 /area/aro3/function)
 "Qv" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9;
-	pixel_y = 0
+	dir = 9
 	},
 /turf/simulated/floor/tiled/eris/steel/bar_flat,
 /area/aro3/bar)
@@ -5165,7 +5138,6 @@
 /area/aro3/surfluid)
 "RK" = (
 /obj/structure/cable/cyan{
-	d2 = 1;
 	icon_state = "0-4"
 	},
 /obj/machinery/power/smes/buildable/hybrid{
@@ -5218,9 +5190,7 @@
 "SC" = (
 /obj/structure/table/marble,
 /obj/machinery/microwave,
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 2
-	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/aro3/kitchen)
 "SD" = (
@@ -5942,7 +5912,6 @@
 	req_access = list()
 	},
 /obj/structure/cable/cyan{
-	d2 = 1;
 	icon_state = "0-2"
 	},
 /turf/simulated/floor/tiled/eris/white,
@@ -14910,7 +14879,7 @@ Yf
 lI
 Yf
 Yf
-qu
+Le
 Eh
 Yf
 Yf

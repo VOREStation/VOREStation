@@ -44,6 +44,9 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment,
+/obj/structure/sign/painting/public{
+	pixel_x = -30
+	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/midpoint)
 "dc" = (

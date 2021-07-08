@@ -231,3 +231,5 @@
 	var/in_enclosed_vehicle = 0	//For mechs and fighters ambiance. Can be used in other cases.
 
 	var/list/progressbars = null //VOREStation Edit
+
+	var/datum/focus //What receives our keyboard inputs. src by default // VOREStation Add - Key Handling

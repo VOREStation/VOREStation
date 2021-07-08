@@ -4,7 +4,7 @@
 	origin_tech = list(TECH_POWER = 0)
 	icon_state = "s_st"
 	maxcharge = 500
-	matter = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 40)
+	matter = list(MAT_STEEL = 700, MAT_GLASS = 40)
 
 /obj/item/weapon/cell/crap/empty/New()
 	..()
@@ -15,7 +15,7 @@
 	origin_tech = list(TECH_POWER = 0)
 	icon_state = "meb_s_st"
 	maxcharge = 600	//600 max charge / 100 charge per shot = six shots
-	matter = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 40)
+	matter = list(MAT_STEEL = 700, MAT_GLASS = 40)
 
 /obj/item/weapon/cell/secborg/empty/New()
 	..()
@@ -27,14 +27,14 @@
 	origin_tech = list(TECH_POWER = 1)
 	icon_state = "meb_b_st"
 	maxcharge = 5000
-	matter = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 50)
+	matter = list(MAT_STEEL = 700, MAT_GLASS = 50)
 
 /obj/item/weapon/cell/high
 	name = "high-capacity power cell"
 	origin_tech = list(TECH_POWER = 2)
 	icon_state = "b_hi"
 	maxcharge = 10000
-	matter = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 60)
+	matter = list(MAT_STEEL = 700, MAT_GLASS = 60)
 
 /obj/item/weapon/cell/high/empty/New()
 	..()
@@ -46,7 +46,7 @@
 	origin_tech = list(TECH_POWER = 5)
 	icon_state = "b_sup"
 	maxcharge = 20000
-	matter = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 70)
+	matter = list(MAT_STEEL = 700, MAT_GLASS = 70)
 
 /obj/item/weapon/cell/super/empty/New()
 	..()
@@ -58,7 +58,7 @@
 	origin_tech = list(TECH_POWER = 6)
 	icon_state = "b_hy"
 	maxcharge = 30000
-	matter = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 80)
+	matter = list(MAT_STEEL = 700, MAT_GLASS = 80)
 
 /obj/item/weapon/cell/hyper/empty/New()
 	..()
@@ -76,7 +76,7 @@
 	icon_state = "infinite_b"
 	origin_tech =  null
 	maxcharge = 30000 //determines how badly mobs get shocked
-	matter = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 80)
+	matter = list(MAT_STEEL = 700, MAT_GLASS = 80)
 
 /obj/item/weapon/cell/infinite/check_charge()
 	return 1
@@ -149,7 +149,7 @@
 	name = "miniature power cell"
 	desc = "A tiny power cell with a very low power capacity. Used in light fixtures to power them in the event of an outage."
 	maxcharge = 120 //Emergency lights use 0.2 W per tick, meaning ~10 minutes of emergency power from a cell
-	matter = list("glass" = 20)
+	matter = list(MAT_GLASS = 20)
 	icon_state = "meb_s_sup"
 	w_class = ITEMSIZE_TINY
 

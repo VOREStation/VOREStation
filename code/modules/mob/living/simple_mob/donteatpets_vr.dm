@@ -24,6 +24,10 @@
 	digestable = 0
 	devourable = 0
 
+/mob/living/simple_mob/animal/passive/opossum/poppy
+	digestable = 0
+	devourable = 0
+
 /mob/living/carbon/human/monkey/punpun
 	digestable = 0
 	devourable = 0
@@ -48,5 +52,9 @@
 	devourable = 0
 
 /mob/living/simple_mob/slime/xenobio/rainbow/kendrick
+	digestable = 0
+	devourable = 0
+
+/mob/living/simple_mob/animal/passive/chick
 	digestable = 0
 	devourable = 0

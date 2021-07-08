@@ -47,7 +47,7 @@ const digestModeToPreyMode = {
 export const VorePanel = (props, context) => {
   const { act, data } = useBackend(context);
   return (
-    <Window width={700} height={660} resizable>
+    <Window width={700} height={660} theme="abstract" resizable>
       <Window.Content scrollable>
         {data.unsaved_changes && (
           <NoticeBox danger>
@@ -759,7 +759,7 @@ const VoreUserPreferences = (props, context) => {
             selected={step_mechanics_active}
             fluid
             tooltipPosition="top"
-            tooltip={step_mechanics_active 
+            tooltip={step_mechanics_active
               ? "This setting controls whether or not you participate in size-based step mechanics."
               + "Includes both stepping on others, as well as getting stepped on. Click to disable step mechanics."
               : ("You will not participate in step mechanics."
@@ -773,7 +773,7 @@ const VoreUserPreferences = (props, context) => {
             selected={show_vore_fx}
             fluid
             tooltipPosition="top"
-            tooltip={show_vore_fx 
+            tooltip={show_vore_fx
               ? "This setting controls whether or not a pred is allowed to mess with your HUD and fullscreen overlays."
               + "Click to disable all FX."
               : ("Regardless of Predator Setting, you will not see their FX settings."
@@ -787,7 +787,7 @@ const VoreUserPreferences = (props, context) => {
             selected={digest_leave_remains}
             fluid
             tooltipPosition="top"
-            tooltip={digest_leave_remains 
+            tooltip={digest_leave_remains
               ? "Your Predator must have this setting enabled in their belly modes to allow remains to show up,"
               + "if they do not, they will not leave your remains behind, even with this on. Click to disable remains"
               : ("Regardless of Predator Setting, you will not leave remains behind."
@@ -801,7 +801,7 @@ const VoreUserPreferences = (props, context) => {
             selected={pickup_mechanics_active}
             fluid
             tooltipPosition="top"
-            tooltip={pickup_mechanics_active 
+            tooltip={pickup_mechanics_active
               ? "Allows macros to pick you up into their hands, and you to pick up micros."
               + "Click to disable pick-up mechanics"
               : ("You will not participate in pick-up mechanics."

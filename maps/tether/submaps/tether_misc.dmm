@@ -2514,6 +2514,12 @@
 	},
 /turf/unsimulated/wall,
 /area/centcom/simulated/terminal)
+"tr" = (
+/obj/structure/sign/painting/public{
+	pixel_y = -30
+	},
+/turf/simulated/floor/tiled/steel,
+/area/centcom/simulated/main_hall)
 "tu" = (
 /obj/structure/sign/warning{
 	name = "\improper STAND AWAY FROM TRACK EDGE"
@@ -2690,6 +2696,12 @@
 /obj/structure/grille,
 /turf/simulated/floor/plating/eris/under,
 /area/shuttle/escape)
+"xu" = (
+/obj/structure/sign/painting/public{
+	pixel_y = 30
+	},
+/turf/simulated/floor/tiled/steel,
+/area/centcom/simulated/main_hall)
 "xB" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 1
@@ -2717,6 +2729,9 @@
 "xY" = (
 /obj/structure/table/reinforced,
 /obj/machinery/chemical_dispenser/bar_soft/full,
+/obj/structure/sign/painting/public{
+	pixel_y = -30
+	},
 /turf/simulated/floor/wood,
 /area/centcom/simulated/bar)
 "ya" = (
@@ -2777,6 +2792,12 @@
 	},
 /turf/space/transit/east,
 /area/space)
+"zd" = (
+/obj/structure/sign/painting/public{
+	pixel_x = -30
+	},
+/turf/simulated/floor/wood,
+/area/centcom/simulated/restaurant)
 "zp" = (
 /obj/machinery/chem_master,
 /turf/simulated/floor/tiled/white,
@@ -3028,6 +3049,21 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/shuttle/escape)
+"Eu" = (
+/obj/structure/sign/painting/public{
+	pixel_y = -30
+	},
+/turf/simulated/floor/tiled,
+/area/centcom/simulated/terminal)
+"Ex" = (
+/obj/structure/bed/chair/wood/wings{
+	dir = 8
+	},
+/obj/structure/sign/painting/public{
+	pixel_x = 30
+	},
+/turf/simulated/floor/wood,
+/area/centcom/simulated/restaurant)
 "ET" = (
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/centcom/simulated/terminal)
@@ -3127,6 +3163,15 @@
 /obj/random/forgotten_tram,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/escape)
+"GU" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/structure/sign/painting/public{
+	pixel_x = 30
+	},
+/turf/simulated/floor/tiled,
+/area/centcom/simulated/terminal)
 "GW" = (
 /obj/item/toy/chess/king_white,
 /turf/simulated/floor/holofloor/bmarble,
@@ -19045,7 +19090,7 @@ Nq
 Nq
 Nq
 Nq
-Nq
+Eu
 dZ
 ae
 ae
@@ -19184,7 +19229,7 @@ WE
 TI
 QY
 SH
-SH
+GU
 XH
 Pf
 QY
@@ -19744,7 +19789,7 @@ Vj
 Vj
 VU
 Vu
-Ru
+xu
 Ru
 Ru
 Ru
@@ -20180,7 +20225,7 @@ VQ
 XB
 Xa
 VQ
-VQ
+zd
 WW
 Xe
 FC
@@ -21590,7 +21635,7 @@ Vi
 Vi
 VX
 Vu
-Ru
+xu
 Ru
 Ru
 Ru
@@ -21742,7 +21787,7 @@ Xk
 XX
 VQ
 VQ
-ZC
+Ex
 ZC
 XX
 VQ
@@ -23152,7 +23197,7 @@ Ut
 VD
 VU
 Vu
-Ru
+xu
 Ru
 Ru
 Ru
@@ -23866,7 +23911,7 @@ Ru
 Ru
 Ru
 Ru
-Ru
+tr
 Vd
 XR
 Yj

@@ -122,6 +122,7 @@
 	screen_loc = "CENTER"
 	plane = -100 //Dodge just in case someone instantiates one of these accidentally, don't end up on 0 with plane_master
 	appearance_flags = PLANE_MASTER
+	vis_flags = NONE
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT	//Normally unclickable
 	alpha = 0	//Hidden from view
 	var/desired_alpha = 255	//What we go to when we're enabled

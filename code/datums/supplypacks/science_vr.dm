@@ -22,6 +22,13 @@
 	containername = "EXTREMELY Dangerous Predator crate"
 	access = access_xenobiology
 	contraband = 1
+
+/datum/supply_pack/sci/weretiger
+	name = "Exotic Weretiger crate"
+	cost = 55
+	containertype = /obj/structure/largecrate/animal/weretiger
+	containername = "Weretiger crate"
+	access = access_xenobiology
 /*
 /datum/supply_pack/sci/otie
 	name = "VARMAcorp adoptable reject (Dangerous!)"

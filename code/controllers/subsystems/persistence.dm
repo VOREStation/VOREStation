@@ -7,7 +7,8 @@ SUBSYSTEM_DEF(persistence)
 	
 	/// Places our subsystem can spawn paintings (helps with art spawning differently across maps)
 	var/list/obj/structure/sign/painting/painting_frames = list()
-	var/list/paintings = list()
+	var/list/all_paintings = list()
+	var/list/unpicked_paintings = list()
 
 /datum/controller/subsystem/persistence/Initialize()
 	. = ..()

@@ -278,7 +278,7 @@
 		update_icons()
 	else if(istype(A, /obj/item/stack/material) && amount + 4 <= maxAmount)
 		var/obj/item/stack/material/M = A
-		if(M.get_material_name() == DEFAULT_WALL_MATERIAL)
+		if(M.get_material_name() == MAT_STEEL)
 			visible_message("<b>\The [src]</b> begins to make tiles.")
 			busy = 1
 			update_icons()
