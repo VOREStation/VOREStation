@@ -41243,7 +41243,7 @@
 	dir = 8;
 	health = 1e+006
 	},
-/turf/simulated/wall,
+/turf/simulated/floor/plating,
 /area/tether/surfacebase/medical/storage)
 "oKw" = (
 /obj/structure/table/reinforced,
@@ -58611,7 +58611,7 @@ aaq
 aac
 abn
 ajG
-iUu
+aaz
 aaB
 aUj
 adV
