@@ -490,10 +490,10 @@
 		var/list/chosen = pick(painting_category)
 		if(!fexists("data/persistent/paintings/[persistence_id]/[chosen["md5"]].png")) //shitmin deleted this art, lets remove json entry to avoid errors
 			painting_category -= list(chosen)
-			SSpersistence.unpicked_paintings -= chosen
+			SSpersistence.unpicked_paintings -= list(chosen)
 			continue //and try again
 		painting = chosen
-		SSpersistence.unpicked_paintings -= chosen
+		SSpersistence.unpicked_paintings -= list(chosen)
 	
 	var/title = painting["title"]
 	var/author_name = painting["author"]
