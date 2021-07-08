@@ -147,6 +147,7 @@ var/list/holder_mob_icon_cache = list()
 
 /obj/item/weapon/holder/cat/bluespace
 	origin_tech = list(TECH_BIO = 2, TECH_BLUESPACE = 6)
+	item_state = "bscat"
 
 /obj/item/weapon/holder/cat/spacecat
 	origin_tech = list(TECH_BIO = 2, TECH_MATERIAL = 4)
