@@ -2319,7 +2319,7 @@ Departamental Swimsuits, for general use
 			item_state = "rgb"
 			overlay_state = "rgb"
 			to_chat(user, "The polychromic plates in your cloak activate, turning it white.")
-		has_suit.update_clothing_icon()
+		has_suit?.update_clothing_icon()
 
 /obj/item/clothing/accessory/poncho/roles/cloak/fluff/cloakglowing/verb/color_verb()
 	set name = "Swap color"
