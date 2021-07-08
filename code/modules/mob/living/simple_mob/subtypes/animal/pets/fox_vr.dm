@@ -7,7 +7,7 @@
 	icon_living = "fox2"
 	icon_dead = "fox2_dead"
 	icon_rest = "fox2_rest"
-	icon = 'icons/mob/fox_vr.dmi'
+	icon = 'icons/mob/pets.dmi'
 
 	movement_cooldown = 0.5
 	see_in_dark = 6
@@ -28,6 +28,7 @@
 
 	say_list_type = /datum/say_list/fox
 	ai_holder_type = /datum/ai_holder/simple_mob/fox
+	holder_type = /obj/item/weapon/holder/fox
 
 	var/turns_since_scan = 0
 	var/mob/flee_target
@@ -224,7 +225,7 @@
 	name = "syndi-fox"
 	desc = "It's a DASTARDLY fox! The horror! Call the shuttle!"
 	tt_desc = "Vulpes malus"
-	icon = 'icons/mob/fox_vr.dmi'
+	icon = 'icons/mob/pets.dmi'
 	icon_state = "syndifox"
 	icon_living = "syndifox"
 	icon_dead = "syndifox_dead"
