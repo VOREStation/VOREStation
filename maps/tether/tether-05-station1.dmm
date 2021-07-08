@@ -12713,13 +12713,6 @@
 /obj/structure/catwalk,
 /turf/simulated/floor,
 /area/maintenance/station/eng_lower)
-"aMy" = (
-/obj/machinery/conveyor{
-	dir = 5;
-	id = "QMLoad"
-	},
-/turf/simulated/floor,
-/area/quartermaster/storage)
 "aMB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -19602,7 +19595,7 @@
 "fWn" = (
 /obj/machinery/light,
 /obj/machinery/conveyor{
-	dir = 1;
+	dir = 5;
 	id = "QMLoad"
 	},
 /turf/simulated/floor,
@@ -29624,13 +29617,6 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/shuttle/securiship/engines)
-"qby" = (
-/obj/machinery/conveyor{
-	dir = 6;
-	id = "miningops"
-	},
-/turf/simulated/floor/plating,
-/area/quartermaster/belterdock/refinery)
 "qcg" = (
 /obj/machinery/camera/network/telecom,
 /obj/structure/cable/yellow{
@@ -32032,11 +32018,12 @@
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
 "sKB" = (
-/obj/machinery/conveyor{
-	dir = 10;
-	id = "miningops"
-	},
 /obj/machinery/mineral/input,
+/obj/machinery/conveyor{
+	dir = 8;
+	id = "miningops";
+	movedir = null
+	},
 /turf/simulated/floor/plating,
 /area/quartermaster/belterdock/refinery)
 "sLp" = (
@@ -48097,7 +48084,7 @@ sBQ
 aAr
 aAz
 aBF
-aMy
+aDq
 gVb
 dQD
 fWn
@@ -48814,7 +48801,7 @@ asG
 asG
 sLH
 xur
-qby
+cWq
 cWq
 dgF
 nEy
