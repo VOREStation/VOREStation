@@ -66,8 +66,7 @@
 			/obj/item/weapon/surgical/bonegel,
 			/obj/item/weapon/surgical/retractor,
 			/obj/item/weapon/surgical/bonesetter,
-			/obj/item/weapon/surgical/circular_saw,
-			/obj/item/weapon/surgical/bioregen
+			/obj/item/weapon/surgical/circular_saw
 			)
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure/veymed
