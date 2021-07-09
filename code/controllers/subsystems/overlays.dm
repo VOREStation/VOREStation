@@ -10,15 +10,19 @@ SUBSYSTEM_DEF(overlays)
 	var/list/overlay_icon_state_caches	// Cache thing
 	var/list/overlay_icon_cache			// Cache thing
 
-var/global/image/stringbro = new() // Temporarily super-global because of BYOND init order dumbness.
-var/global/image/iconbro = new() // Temporarily super-global because of BYOND init order dumbness.
-var/global/image/appearance_bro = new() // Temporarily super-global because of BYOND init order dumbness.
+	var/static/image/stringbro
+	var/static/image/iconbro
+	var/static/image/appearance_bro
 
 /datum/controller/subsystem/overlays/PreInit()
 	overlay_icon_state_caches = list()
 	overlay_icon_cache = list()
 	queue = list()
 	stats = list()
+
+	stringbro = new()
+	iconbro = new()
+	appearance_bro = new()
 
 /datum/controller/subsystem/overlays/Initialize()
 	fire(mc_check = FALSE)
@@ -71,12 +75,12 @@ var/global/image/appearance_bro = new() // Temporarily super-global because of B
 		var/cached_appearance = cached_icon["[iconstate]"]
 		if (cached_appearance)
 			return cached_appearance
-	stringbro.icon = icon
-	stringbro.icon_state = iconstate
+	SSoverlays.stringbro.icon = icon
+	SSoverlays.stringbro.icon_state = iconstate
 	if (!cached_icon) //not using the macro to save an associated lookup
 		cached_icon = list()
 		icon_states_cache[icon] = cached_icon
-	var/cached_appearance = stringbro.appearance
+	var/cached_appearance = SSoverlays.stringbro.appearance
 	cached_icon["[iconstate]"] = cached_appearance
 	return cached_appearance
 
@@ -85,8 +89,8 @@ var/global/image/appearance_bro = new() // Temporarily super-global because of B
 	var/list/icon_cache = SSoverlays.overlay_icon_cache
 	. = icon_cache[icon]
 	if (!.)
-		iconbro.icon = icon
-		. = iconbro.appearance
+		SSoverlays.iconbro.icon = icon
+		. = SSoverlays.iconbro.appearance
 		icon_cache[icon] = .
 
 /atom/proc/build_appearance_list(old_overlays)
@@ -106,11 +110,11 @@ var/global/image/appearance_bro = new() // Temporarily super-global because of B
 				var/atom/A = overlay
 				if (A.flags & OVERLAY_QUEUED)
 					COMPILE_OVERLAYS(A)
-			appearance_bro.appearance = overlay //this works for images and atoms too!
+			SSoverlays.appearance_bro.appearance = overlay //this works for images and atoms too!
 			if(!ispath(overlay))
 				var/image/I = overlay
-				appearance_bro.dir = I.dir
-			new_overlays += appearance_bro.appearance
+				SSoverlays.appearance_bro.dir = I.dir
+			new_overlays += SSoverlays.appearance_bro.appearance
 	return new_overlays
 
 #define NOT_QUEUED_ALREADY (!(flags & OVERLAY_QUEUED))
