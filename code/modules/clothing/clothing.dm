@@ -26,8 +26,6 @@
 	var/ear_protection = 0
 	var/blood_sprite_state
 
-	var/index			//null by default, if set, will change which dmi it uses
-
 	var/update_icon_define = null	// Only needed if you've got multiple files for the same type of clothing
 
 	var/polychromic = FALSE //VOREStation edit
@@ -758,26 +756,10 @@
 	valid_accessory_slots = (ACCESSORY_SLOT_OVER | ACCESSORY_SLOT_ARMBAND)
 	restricted_accessory_slots = (ACCESSORY_SLOT_ARMBAND)
 
-/obj/item/clothing/suit/set_clothing_index()
-	..()
-
-	if(index && !icon_override)
-		icon = new /icon("icons/obj/clothing/suits_[index].dmi")
-		item_icons = list(
-			slot_l_hand_str = new /icon("icons/mob/items/lefthand_suits_[index].dmi"),
-			slot_r_hand_str = new /icon("icons/mob/items/righthand_suits_[index].dmi"),
-		)
-
-		return 1
-
-	return 0
-
 /obj/item/clothing/suit/update_clothing_icon()
 	if (ismob(src.loc))
 		var/mob/M = src.loc
 		M.update_inv_wear_suit()
-
-	set_clothing_index()
 
 /obj/item/clothing/suit/equipped(var/mob/user, var/slot)
 	if(ishuman(user))
@@ -901,23 +883,6 @@
 	if(rolled_sleeves == -1)
 		verbs -= /obj/item/clothing/under/verb/rollsleeves
 
-/obj/item/clothing/under/set_clothing_index()
-	..()
-
-	if(index && !icon_override)
-		icon = new /icon("icons/obj/clothing/uniforms_[index].dmi")
-
-		item_icons = list(
-			slot_l_hand_str = new /icon("icons/mob/items/lefthand_uniforms_[index].dmi"),
-			slot_r_hand_str = new /icon("icons/mob/items/righthand_uniforms_[index].dmi"),
-			)
-
-		rolled_down_icon = new /icon("icons/mob/uniform_rolled_down_[index].dmi")
-		rolled_down_sleeves_icon = new /icon("icons/mob/uniform_sleeves_rolled_[index].dmi")
-		return 1
-
-	return 0
-
 /obj/item/clothing/under/proc/update_rolldown_status()
 	var/mob/living/carbon/human/H
 	if(istype(src.loc, /mob/living/carbon/human))
@@ -955,8 +920,8 @@
 		under_icon = item_icons[slot_w_uniform_str]
 	else if ("[worn_state]_s" in cached_icon_states(rolled_down_sleeves_icon))
 		under_icon = rolled_down_sleeves_icon
-	else if(index)
-		under_icon = new /icon("[INV_W_UNIFORM_DEF_ICON]_[index].dmi")
+	else
+		under_icon = new /icon(INV_W_UNIFORM_DEF_ICON)
 
 	// The _s is because the icon update procs append it.
 	if((under_icon == rolled_down_sleeves_icon && ("[worn_state]_s" in cached_icon_states(under_icon))) || ("[worn_state]_r_s" in cached_icon_states(under_icon)))

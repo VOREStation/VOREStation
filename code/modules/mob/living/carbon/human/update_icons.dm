@@ -641,11 +641,10 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	var/obj/item/clothing/under/under = w_uniform
 
 	var/uniform_sprite
-
-	if(under.index)
-		uniform_sprite = "[INV_W_UNIFORM_DEF_ICON]_[under.index].dmi"
+	if(istype(under) && !isnull(under.update_icon_define))
+		uniform_sprite = under.update_icon_define
 	else
-		uniform_sprite = "[INV_W_UNIFORM_DEF_ICON].dmi"
+		uniform_sprite = INV_W_UNIFORM_DEF_ICON
 
 	//Build a uniform sprite
 	var/icon/c_mask = tail_style?.clip_mask
@@ -824,12 +823,10 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	var/obj/item/clothing/suit/suit = wear_suit
 	var/suit_sprite
 
-	if(istype(suit) && suit.index)
-		suit_sprite = "[INV_SUIT_DEF_ICON]_[suit.index].dmi"
-	else if(istype(suit, /obj/item/clothing) && !isnull(suit.update_icon_define))
+	if(istype(suit) && !isnull(suit.update_icon_define))
 		suit_sprite = suit.update_icon_define
 	else
-		suit_sprite = "[INV_SUIT_DEF_ICON].dmi"
+		suit_sprite = INV_SUIT_DEF_ICON
 
 	var/icon/c_mask = null
 	var/tail_is_rendered = (overlays_standing[TAIL_LAYER] || overlays_standing[TAIL_LAYER_ALT])

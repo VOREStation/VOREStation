@@ -141,7 +141,6 @@
 	name = "pizza delivery uniform"
 	desc = "A dedicated outfit for pizza delivery people, one of most dangerous occupations around these parts. Can be rolled up for extra show of skin."
 	icon = 'icons/inventory/uniform/item_vr.dmi'
-	index = "vr"
 	rolled_down_icon = 'icons/inventory/uniform/mob_vr_rolled_down.dmi'
 	icon_state = "pizzadelivery"
 	item_state = "pizzadelivery"
@@ -153,7 +152,6 @@
 	name = "ITV jumpsuit"
 	desc = "A basic jumpsuit that bares the ITV logo on the breast."
 	icon = 'icons/inventory/uniform/item_vr.dmi'
-	index = "vr"
 	rolled_down_icon = 'icons/inventory/uniform/mob_vr_rolled_down.dmi'
 	icon_override = 'icons/inventory/uniform/mob_vr.dmi'
 	icon_state = "talon_basic"
@@ -164,7 +162,6 @@
 	name = "ITV proper jumpsuit"
 	desc = "A neat and proper uniform for a proper company."
 	icon = 'icons/inventory/uniform/item_vr.dmi'
-	index = "vr"
 	rolled_down_icon = 'icons/inventory/uniform/mob_vr_rolled_down.dmi'
 	icon_override = 'icons/inventory/uniform/mob_vr.dmi'
 	icon_state = "talon_jumpsuit"
@@ -175,7 +172,6 @@
 	name = "ITV security jumpsuit"
 	desc = "A sleek, streamlined version of ITV's standard jumpsuit that bares security markings."
 	icon = 'icons/inventory/uniform/item_vr.dmi'
-	index = "vr"
 	rolled_down_icon = 'icons/inventory/uniform/mob_vr_rolled_down.dmi'
 	icon_override = 'icons/inventory/uniform/mob_vr.dmi'
 	icon_state = "talon_security"
@@ -186,7 +182,6 @@
 	name = "ITV pilot jumpsuit"
 	desc = "A sleek, streamlined version of ITV's standard jumpsuit. Made from cushioned fabric to handle intense flight."
 	icon = 'icons/inventory/uniform/item_vr.dmi'
-	index = "vr"
 	rolled_down_icon = 'icons/inventory/uniform/mob_vr_rolled_down.dmi'
 	icon_override = 'icons/inventory/uniform/mob_vr.dmi'
 	icon_state = "talon_pilot"
@@ -197,7 +192,6 @@
 	name = "ITV command jumpsuit"
 	desc = "A commanding jumpsuit fit for a commanding officer."
 	icon = 'icons/inventory/uniform/item_vr.dmi'
-	index = "vr"
 	rolled_down_icon = 'icons/inventory/uniform/mob_vr_rolled_down.dmi'
 	icon_override = 'icons/inventory/uniform/mob_vr.dmi'
 	icon_state = "talon_captain"
