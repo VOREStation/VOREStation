@@ -247,7 +247,7 @@ var/list/mob_hat_cache = list()
 
 	to_chat(src, "<b>Obey these laws:</b>")
 	laws.show_laws(src)
-	to_chat(src, "<span class='danger'>ALERT: [user.real_name] is your new master. Obey your new laws and \his commands.</span>")
+	to_chat(src, "<span class='danger'>ALERT: [user.real_name] is your new master. Obey your new laws and [TU.his] commands.</span>")
 	return 1
 
 //DRONE LIFE/DEATH

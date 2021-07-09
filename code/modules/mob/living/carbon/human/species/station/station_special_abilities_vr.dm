@@ -604,7 +604,8 @@
 				C.nutrition = 0 //Completely drained of everything.
 				C.absorbing_prey = 0
 				to_chat(C, "<span class='danger'>You have completely fed [T] every part of your body!</span>")
-				to_chat(T, "<span class='notice'>You feel quite strong and well fed, as [C] finishes feeding \himself to you!</span>")
+				var/datum/gender/G = gender_datums[get_visible_gender()]
+				to_chat(T, "<span class='notice'>You feel quite strong and well fed, as [C] finishes feeding [G.himself] to you!</span>")
 				add_attack_logs(C,T,"Slime fed")
 				C.feed_grabbed_to_self_falling_nom(T,C) //Reused this proc instead of making a new one to cut down on code usage.
 				return

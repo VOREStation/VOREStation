@@ -76,19 +76,11 @@
 
 /obj/item/weapon/haircomb/attack_self(mob/living/user)
 	var/text = "person"
-	if(ishuman(user))
-		var/mob/living/carbon/human/U = user
-		switch(U.identifying_gender)
-			if(MALE)
-				text = "guy"
-			if(FEMALE)
-				text = "lady"
-	else
-		switch(user.gender)
-			if(MALE)
-				text = "guy"
-			if(FEMALE)
-				text = "lady"
+	switch(user.get_visible_gender())
+		if(MALE)
+			text = "guy"
+		if(FEMALE)
+			text = "lady"
 	user.visible_message("<span class='notice'>[user] uses [src] to comb their hair with incredible style and sophistication. What a [text].</span>")
 
 /obj/item/weapon/makeover

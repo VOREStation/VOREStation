@@ -102,7 +102,8 @@
 		for(var/obj/item/piece in list(helmet,gloves,chest,boots))
 			if(!piece || piece.loc != wearer)
 				continue
-			. += "[bicon(piece)] \The [piece] [piece.gender == PLURAL ? "are" : "is"] deployed."
+			var/datum/gender/G = gender_datums[piece.get_visible_gender()]
+			. += "[bicon(piece)] \The [piece] [G.is] deployed."
 
 	if(src.loc == usr)
 		. += "The access panel is [locked? "locked" : "unlocked"]."
@@ -698,6 +699,7 @@
 			check_slot = H.wear_suit
 
 	if(use_obj)
+		var/datum/gender/UG = gender_datums[use_obj.get_visible_gender()]
 		if(check_slot == use_obj && deploy_mode != ONLY_DEPLOY)
 
 			var/mob/living/carbon/human/holder
@@ -706,7 +708,7 @@
 				holder = use_obj.loc
 				if(istype(holder))
 					if(use_obj && check_slot == use_obj)
-						to_chat(H, "<span class='notice'><b>Your [use_obj.name] [use_obj.gender == PLURAL ? "retract" : "retracts"] swiftly.</b></span>")
+						to_chat(H, "<span class='notice'><b>Your [use_obj.name] retract[UG.s] swiftly.</b></span>")
 						playsound(src, 'sound/machines/rig/rigservo.ogg', 10, FALSE)
 						use_obj.canremove = 1
 						holder.drop_from_inventory(use_obj)
@@ -722,10 +724,11 @@
 			if(!H.equip_to_slot_if_possible(use_obj, equip_to, 0, 1))
 				use_obj.forceMove(src)
 				if(check_slot)
-					to_chat(H, "<span class='danger'>You are unable to deploy \the [piece] as \the [check_slot] [check_slot.gender == PLURAL ? "are" : "is"] in the way.</span>")
+					var/datum/gender/CG = gender_datums[check_slot.get_visible_gender()]
+					to_chat(H, "<span class='danger'>You are unable to deploy \the [piece] as \the [check_slot] [CG.is] in the way.</span>")
 					return
 			else
-				to_chat(H, "<span class='notice'>Your [use_obj.name] [use_obj.gender == PLURAL ? "deploy" : "deploys"] swiftly.</span>")
+				to_chat(H, "<span class='notice'>Your [use_obj.name] deploy[UG.s] swiftly.</span>")
 				playsound(src, 'sound/machines/rig/rigservo.ogg', 10, FALSE)
 
 	if(piece == "helmet" && helmet?.light_system == STATIC_LIGHT)

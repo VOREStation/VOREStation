@@ -64,7 +64,8 @@
 
 	//General
 	if ((!A.fingerprints || !A.fingerprints.len) && !A.suit_fibers && !A.blood_DNA)
-		user.visible_message("\The [user] scans \the [A] with \a [src], the air around [user.gender == MALE ? "him" : "her"] humming[prob(70) ? " gently." : "."]" ,\
+		var/datum/gender/G = gender_datums[user.get_visible_gender()]
+		user.visible_message("\The [user] scans \the [A] with \a [src], the air around [G.him] humming[prob(70) ? " gently." : "."]" ,\
 		"<span class='warning'>Unable to locate any fingerprints, materials, fibers, or blood on [A]!</span>",\
 		"You hear a faint hum of electrical equipment.")
 		flick("[icon_state]0",src)
@@ -119,7 +120,8 @@
 			for(var/blood in A.blood_DNA)
 				to_chat(user, "Blood type: <span class='warning'>[A.blood_DNA[blood]]</span> DNA: <span class='warning'>[blood]</span>")
 
-	user.visible_message("\The [user] scans \the [A] with \a [src], the air around [user.gender == MALE ? "him" : "her"] humming[prob(70) ? " gently." : "."]" ,\
+	var/datum/gender/G = gender_datums[user.get_visible_gender()]
+	user.visible_message("\The [user] scans \the [A] with \a [src], the air around [G.him] humming[prob(70) ? " gently." : "."]" ,\
 	"<span class='notice'>You finish scanning \the [A].</span>",\
 	"You hear a faint hum of electrical equipment.")
 	flick("[icon_state]1",src)

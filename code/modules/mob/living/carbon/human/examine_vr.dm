@@ -3,66 +3,37 @@
 		return ""
 	var/message = ""
 	var/weight_examine = round(weight)
-	var/t_He 	= "It" //capitalised for use at the start of each line.
-	var/t_he	= "it"
-	var/t_his 	= "its"
-	var/t_His 	= "Its"
-	var/t_is 	= "is"
-	var/t_has 	= "has"
+	var/datum/gender/G = gender_datums[get_visible_gender()]
 	var/t_heavy = "heavy"
-	switch(identifying_gender) //Gender is their "real" gender. Identifying_gender is their "chosen" gender.
+	switch(get_gender()) // NOT get_visible_gender
 		if(MALE)
-			t_He 	= "He"
-			t_he 	= "he"
-			t_His 	= "His"
-			t_his 	= "his"
 			t_heavy = "bulky"
 		if(FEMALE)
-			t_He 	= "She"
-			t_he	= "she"
-			t_His 	= "Her"
-			t_his 	= "her"
 			t_heavy = "curvy"
-		if(PLURAL)
-			t_He	= "They"
-			t_he	= "they"
-			t_His 	= "Their"
-			t_his 	= "their"
-			t_is 	= "are"
-			t_has 	= "have"
-		if(NEUTER)
-			t_He 	= "It"
-			t_he	= "it"
-			t_His 	= "Its"
-			t_his 	= "its"
 		if(HERM)
-			t_He 	= "Shi"
-			t_he	= "shi"
-			t_His 	= "Hir"
-			t_his 	= "hir"
 			t_heavy = "curvy"
 
 	switch(weight_examine)
 		if(0 to 74)
-			message = "<span class='warning'>[t_He] [t_is] terribly lithe and frail!</span>"
+			message = "<span class='warning'>[G.He] [G.is] terribly lithe and frail!</span>"
 		if(75 to 99)
-			message = "[t_He] [t_has] a very slender frame."
+			message = "[G.He] [G.has] a very slender frame."
 		if(100 to 124)
-			message = "[t_He] [t_has] a lightweight, athletic build."
+			message = "[G.He] [G.has] a lightweight, athletic build."
 		if(125 to 174)
-			message = "[t_He] [t_has] a healthy, average body."
+			message = "[G.He] [G.has] a healthy, average body."
 		if(175 to 224)
-			message = "[t_He] [t_has] a thick, [t_heavy] physique."
+			message = "[G.He] [G.has] a thick, [t_heavy] physique."
 		if(225 to 274)
-			message = "[t_He] [t_has] a plush, chubby figure."
+			message = "[G.He] [G.has] a plush, chubby figure."
 		if(275 to 325)
-			message = "[t_He] [t_has] an especially plump body with a round potbelly and large hips."
+			message = "[G.He] [G.has] an especially plump body with a round potbelly and large hips."
 		if(325 to 374)
-			message = "[t_He] [t_has] a very fat frame with a bulging potbelly, squishy rolls of pudge, very wide hips, and plump set of jiggling thighs."
+			message = "[G.He] [G.has] a very fat frame with a bulging potbelly, squishy rolls of pudge, very wide hips, and plump set of jiggling thighs."
 		if(375 to 474)
-			message = "<span class='warning'>[t_He] [t_is] incredibly obese. [t_His] massive potbelly sags over [t_his] waistline while [t_his] fat ass would probably require two chairs to sit down comfortably!</span>"
+			message = "<span class='warning'>[G.He] [G.is] incredibly obese. [G.His] massive potbelly sags over [G.his] waistline while [G.his] fat ass would probably require two chairs to sit down comfortably!</span>"
 		else
-			message += "<span class='warning'>[t_He] [t_is] so morbidly obese, you wonder how [t_he] can even stand, let alone waddle around the station. [t_He] can't get any fatter without being immobilized.</span>"
+			message += "<span class='warning'>[G.He] [G.is] so morbidly obese, you wonder how [G.he] can even stand, let alone waddle around the station. [G.He] can't get any fatter without being immobilized.</span>"
 	return message //Credit to Aronai for helping me actually get this working!
 
 /mob/living/carbon/human/proc/examine_nutrition()
@@ -70,53 +41,26 @@
 		return ""
 	var/message = ""
 	var/nutrition_examine = round(nutrition)
-	var/t_He 	= "It" //capitalised for use at the start of each line.
-	var/t_His 	= "Its"
-	var/t_his 	= "its"
-	var/t_is 	= "is"
-	var/t_has 	= "has"
-	switch(identifying_gender)
-		if(MALE)
-			t_He 	= "He"
-			t_his 	= "his"
-			t_His 	= "His"
-		if(FEMALE)
-			t_He 	= "She"
-			t_his 	= "her"
-			t_His 	= "Her"
-		if(PLURAL)
-			t_He  	= "They"
-			t_his 	= "their"
-			t_His 	= "Their"
-			t_is	= "are"
-			t_has 	= "have"
-		if(NEUTER)
-			t_He 	= "It"
-			t_his 	= "its"
-			t_His	= "Its"
-		if(HERM)
-			t_He 	= "Shi"
-			t_his 	= "hir"
-			t_His 	= "Hir"
+	var/datum/gender/G = gender_datums[get_visible_gender()]
 	switch(nutrition_examine)
 		if(0 to 49)
-			message = "<span class='warning'>[t_He] [t_is] starving! You can hear [t_his] stomach snarling from across the room!</span>"
+			message = "<span class='warning'>[G.He] [G.is] starving! You can hear [G.his] stomach snarling from across the room!</span>"
 		if(50 to 99)
-			message = "<span class='warning'>[t_He] [t_is] extremely hungry. A deep growl occasionally rumbles from [t_his] empty stomach.</span>"
+			message = "<span class='warning'>[G.He] [G.is] extremely hungry. A deep growl occasionally rumbles from [G.his] empty stomach.</span>"
 		if(100 to 499)
 			return message //Well that's pretty normal, really.
 		if(500 to 999) // Fat.
-			message = "[t_He] [t_has] a stuffed belly, bloated fat and round from eating too much."
+			message = "[G.He] [G.has] a stuffed belly, bloated fat and round from eating too much."
 		if(1000 to 1399)
-			message = "[t_He] [t_has] a rotund, thick gut. It bulges from their body obscenely, close to sagging under its own weight."
+			message = "[G.He] [G.has] a rotund, thick gut. It bulges from their body obscenely, close to sagging under its own weight."
 		if(1400 to 1934) // One person fully digested.
-			message = "<span class='warning'>[t_He] [t_is] sporting a large, round, sagging stomach. It's contains at least their body weight worth of glorping slush.</span>"
+			message = "<span class='warning'>[G.He] [G.is] sporting a large, round, sagging stomach. It's contains at least their body weight worth of glorping slush.</span>"
 		if(1935 to 3004) // Two people.
-			message = "<span class='warning'>[t_He] [t_is] engorged with a huge stomach that sags and wobbles as they move. [t_He] must have consumed at least twice their body weight. It looks incredibly soft.</span>"
+			message = "<span class='warning'>[G.He] [G.is] engorged with a huge stomach that sags and wobbles as they move. [G.He] must have consumed at least twice their body weight. It looks incredibly soft.</span>"
 		if(3005 to 4074) // Three people.
-			message = "<span class='warning'>[t_His] stomach is firmly packed with digesting slop. [t_He] must have eaten at least a few times worth their body weight! It looks hard for them to stand, and [t_his] gut jiggles when they move.</span>"
+			message = "<span class='warning'>[G.His] stomach is firmly packed with digesting slop. [G.He] must have eaten at least a few times worth their body weight! It looks hard for them to stand, and [G.his] gut jiggles when they move.</span>"
 		if(4075 to INFINITY) // Four or more people.
-			message = "<span class='warning'>[t_He] [t_is] so absolutely stuffed that you aren't sure how it's possible to move. [t_He] can't seem to swell any bigger. The surface of [t_his] belly looks sorely strained!</span>"
+			message = "<span class='warning'>[G.He] [G.is] so absolutely stuffed that you aren't sure how it's possible to move. [G.He] can't seem to swell any bigger. The surface of [G.his] belly looks sorely strained!</span>"
 	return message
 
 //For OmniHUD records access for appropriate models
@@ -159,38 +103,11 @@
 		return "<span class='notice'>[nif.examine_msg]</span>"
 
 /mob/living/carbon/human/proc/examine_chimera(mob/living/carbon/human/H)
-	var/t_He 	= "It" //capitalised for use at the start of each line.
-	var/t_his 	= "its"
-	var/t_His 	= "Its"
-	var/t_appear 	= "appears"
-	var/t_has 	= "has"
-	switch(identifying_gender) //Gender is their "real" gender. Identifying_gender is their "chosen" gender.
-		if(MALE)
-			t_He 	= "He"
-			t_His 	= "His"
-			t_his 	= "his"
-		if(FEMALE)
-			t_He 	= "She"
-			t_His 	= "Her"
-			t_his 	= "her"
-		if(PLURAL)
-			t_He	= "They"
-			t_His 	= "Their"
-			t_his 	= "their"
-			t_appear 	= "appear"
-			t_has 	= "have"
-		if(NEUTER)
-			t_He 	= "It"
-			t_His 	= "Its"
-			t_his 	= "its"
-		if(HERM)
-			t_He 	= "Shi"
-			t_His 	= "Hir"
-			t_his 	= "hir"
+	var/datum/gender/G = gender_datums[get_visible_gender()]
 	if(revive_ready == REVIVING_NOW || revive_ready == REVIVING_DONE)
 		if(stat == DEAD)
-			return "<span class='warning'>[t_His] body is twitching subtly.</span>"
+			return "<span class='warning'>[G.His] body is twitching subtly.</span>"
 		else
-			return "<span class='notice'>[t_He] [t_appear] to be in some sort of torpor.</span>"
+			return "<span class='notice'>[G.He] appear[G.s] to be in some sort of torpor.</span>"
 	if(feral)
-		return "<span class='warning'>[t_He] [t_has] a crazed, wild look in [t_his] eyes!</span>"
+		return "<span class='warning'>[G.He] [G.has] a crazed, wild look in [G.his] eyes!</span>"

@@ -76,7 +76,7 @@ var/global/list/sparring_attack_cache = list()
 						target.set_dir(reverse_dir[target.dir])
 					target.apply_effect(attack_damage * 0.4, WEAKEN, armour)
 			if(BP_GROIN)
-				target.visible_message("<span class='warning'>[target] looks like [TT.he] [TT.is] in pain!</span>", "<span class='warning'>[(target.gender=="female") ? "Oh god that hurt!" : "Oh no, not your[pick("testicles", "crown jewels", "clockweights", "family jewels", "marbles", "bean bags", "teabags", "sweetmeats", "goolies")]!"]</span>") // I see no easy way to fix this for non-organic or neuter characters.
+				target.visible_message("<span class='warning'>[target] looks like [TT.he] [TT.is] in pain!</span>", "<span class='warning'>[(target.gender=="female") ? "Oh god that hurt!" : "Oh no, not your [pick("testicles", "crown jewels", "clockweights", "family jewels", "marbles", "bean bags", "teabags", "sweetmeats", "goolies")]!"]</span>") // I see no easy way to fix this for non-organic or neuter characters.
 				target.apply_effects(stutter = attack_damage * 2, agony = attack_damage* 3, blocked = armour)
 			if("l_leg", "l_foot", "r_leg", "r_foot")
 				if(!target.lying)

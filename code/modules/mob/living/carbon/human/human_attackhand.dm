@@ -35,7 +35,6 @@
 	return null
 
 /mob/living/carbon/human/attack_hand(mob/living/M as mob)
-	var/datum/gender/TT = gender_datums[M.get_visible_gender()]
 	var/mob/living/carbon/human/H = M
 	if(istype(H))
 		var/obj/item/organ/external/temp = H.organs_by_name["r_hand"]
@@ -68,6 +67,7 @@
 		var/mob/living/carbon/C = M
 		C.spread_disease_to(src, "Contact")
 
+	var/datum/gender/GS = gender_datums[get_visible_gender()]
 	switch(M.a_intent)
 		if(I_HELP)
 
@@ -80,7 +80,7 @@
 					to_chat(H, "<span class='danger'>You don't have a mouth, you cannot perform CPR!</span>")
 					return
 				if(!check_has_mouth())
-					to_chat(H, "<span class='danger'>They don't have a mouth, you cannot perform CPR!</span>")
+					to_chat(H, "<span class='danger'>[GS.He] [GS.do]n't have a mouth, you cannot perform CPR!</span>")
 					return
 				if((H.head && (H.head.body_parts_covered & FACE)) || (H.wear_mask && (H.wear_mask.body_parts_covered & FACE)))
 					to_chat(H, "<span class='notice'>Remove your mask!</span>")
@@ -125,7 +125,7 @@
 
 			var/obj/item/weapon/grab/G = new /obj/item/weapon/grab(M, src)
 			if(buckled)
-				to_chat(M, "<span class='notice'>You cannot grab [src], [TT.he] is buckled in!</span>")
+				to_chat(M, "<span class='notice'>You cannot grab [src], [GS.he] is buckled in!</span>")
 				return
 			if(!G)	//the grab will delete itself in New if affecting is anchored
 				return
@@ -136,8 +136,8 @@
 			H.do_attack_animation(src)
 			playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 			//VORESTATION EDIT
-			visible_message("<span class='warning'>[M] has grabbed [src] [(M.zone_sel.selecting == BP_L_HAND || M.zone_sel.selecting == BP_R_HAND)? "by [(gender==FEMALE)? "her" : ((gender==MALE)? "his": "their")] hands": "passively"]!</span>")
-			//VORESTATION END END
+			visible_message("<span class='warning'>[M] has grabbed [src] [(M.zone_sel.selecting == BP_L_HAND || M.zone_sel.selecting == BP_R_HAND)? "by [G.his] hands": "passively"]!</span>")
+			//VORESTATION EDIT END
 			return TRUE
 
 		if(I_HURT)
@@ -163,7 +163,7 @@
 			var/obj/item/organ/external/affecting = get_organ(hit_zone)
 
 			if(!affecting || affecting.is_stump())
-				to_chat(M, "<span class='danger'>They are missing that limb!</span>")
+				to_chat(M, "<span class='danger'>[GS.He] [GS.is] missing that limb!</span>")
 				return TRUE
 
 			switch(src.a_intent)
@@ -223,7 +223,7 @@
 					if(!src.lying)
 						attack_message = "[H] attempted to strike [src], but missed!"
 					else
-						attack_message = "[H] attempted to strike [src], but [TT.he] rolled out of the way!"
+						attack_message = "[H] attempted to strike [src], but [GS.he] rolled out of the way!"
 						src.set_dir(pick(cardinal))
 					miss_type = 1
 

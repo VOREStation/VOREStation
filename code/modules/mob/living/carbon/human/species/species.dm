@@ -398,23 +398,8 @@
 
 /datum/species/proc/hug(var/mob/living/carbon/human/H, var/mob/living/target)
 
-	var/t_him = "them"
-	if(ishuman(target))
-		var/mob/living/carbon/human/T = target
-		if(!T.species.ambiguous_genders || (T.species.ambiguous_genders && H.species == T.species))
-			switch(T.identifying_gender)
-				if(MALE)
-					t_him = "him"
-				if(FEMALE)
-					t_him = "her"
-		else
-			t_him = "them"
-	else
-		switch(target.gender)
-			if(MALE)
-				t_him = "him"
-			if(FEMALE)
-				t_him = "her"
+	var/datum/gender/TG = gender_datums[target.get_visible_gender()]
+	
 	//VOREStation Edit Start - Headpats and Handshakes.
 	if(H.zone_sel.selecting == "head")
 		H.visible_message( \
@@ -430,8 +415,8 @@
 			"<span class='notice'>You boop [target] on the nose.</span>", )
 	//VOREStation Edit End
 	else
-		H.visible_message("<span class='notice'>[H] hugs [target] to make [t_him] feel better!</span>", \
-						"<span class='notice'>You hug [target] to make [t_him] feel better!</span>")
+		H.visible_message("<span class='notice'>[H] hugs [target] to make [TG.him] feel better!</span>", \
+						"<span class='notice'>You hug [target] to make [TG.him] feel better!</span>")
 
 /datum/species/proc/remove_inherent_verbs(var/mob/living/carbon/human/H)
 	if(inherent_verbs)
