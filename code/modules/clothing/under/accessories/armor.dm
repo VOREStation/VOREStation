@@ -397,7 +397,7 @@
 /obj/item/clothing/accessory/armor/helmcover
 	name = "helmet cover"
 	desc = "A fabric cover for armored helmets."
-	icon_override = 'icons/mob/ties.dmi'
+	icon_override = 'icons/inventory/accessory/mob.dmi'
 	icon = 'icons/obj/clothing/modular_armor.dmi'
 	icon_state = "helmcover_blue"
 	slot = ACCESSORY_SLOT_HELM_C

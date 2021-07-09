@@ -156,7 +156,7 @@
 	name = "electronic earwear"
 	desc = "It's a wearable case for electronics. This one appears to be a technical-looking headset."
 	description_info = "Control-shift-click on this with an item in hand to use it on the integrated circuit."
-	icon = 'icons/obj/clothing/ears.dmi'
+	icon = 'icons/inventory/ears/item.dmi'
 	icon_state = "circuitry"
 	item_state = "circuitry"
 

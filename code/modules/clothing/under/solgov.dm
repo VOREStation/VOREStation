@@ -4,8 +4,8 @@
 /obj/item/clothing/under/solgov
 	name = "master solgov uniform"
 	desc = "You shouldn't be seeing this."
-	icon = 'icons/obj/clothing/uniforms_solgov.dmi'
-	item_icons = list(slot_w_uniform_str = 'icons/mob/uniform_solgov.dmi')
+	icon = 'icons/inventory/uniform/item.dmi'
+	item_icons = list(slot_w_uniform_str = 'icons/inventory/uniform/mob.dmi')
 	rolled_down = 0
 	rolled_sleeves = 0
 	armor = list(melee = 5, bullet = 0, laser = 5, energy = 5, bomb = 0, bio = 5, rad = 5)
@@ -474,8 +474,8 @@
 /obj/item/clothing/under/saare
 	name = "master SAARE uniform"
 	desc = "You shouldn't be seeing this."
-	icon = 'icons/obj/clothing/uniforms_solgov.dmi'
-	item_icons = list(slot_w_uniform_str = 'icons/mob/uniform_solgov.dmi')
+	icon = 'icons/inventory/uniform/item.dmi'
+	item_icons = list(slot_w_uniform_str = 'icons/inventory/uniform/mob.dmi')
 	armor = list(melee = 5, bullet = 0, laser = 5, energy = 5, bomb = 0, bio = 5, rad = 5)
 	siemens_coefficient = 0.8
 

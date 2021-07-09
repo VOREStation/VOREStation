@@ -5,8 +5,8 @@
 /obj/item/clothing/suit/storage/toggle/paramedic
 	name = "paramedic vest"
 	desc = "A vest that protects against minor chemical spills."
-	icon = 'icons/obj/clothing/suits_vr.dmi'
-	icon_override = 'icons/mob/suit_vr.dmi'
+	icon = 'icons/inventory/suit/item_vr.dmi'
+	icon_override = 'icons/inventory/suit/mob_vr.dmi'
 	icon_state = "paramedic-vest"
 	item_state = "paramedic-vest"
 	item_state_slots = list(slot_r_hand_str = "blue_labcoat", slot_l_hand_str = "blue_labcoat")
@@ -19,14 +19,14 @@
 
 /obj/item/clothing/head/radiation
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/mob/species/teshari/helmet_vr.dmi',
-		SPECIES_VOX = 'icons/mob/species/vox/head.dmi',
-		SPECIES_WEREBEAST = 'icons/mob/species/werebeast/head.dmi'
+		SPECIES_TESHARI = 'icons/inventory/head/mob_vr_teshari.dmi',
+		SPECIES_VOX = 'icons/inventory/head/mob_vox.dmi',
+		SPECIES_WEREBEAST = 'icons/inventory/head/mob_werebeast.dmi'
 		)
 
 /obj/item/clothing/suit/radiation
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/mob/species/teshari/suit_vr.dmi',
-		SPECIES_VOX = 'icons/mob/species/vox/suit.dmi',
-		SPECIES_WEREBEAST = 'icons/mob/species/werebeast/suit.dmi'
+		SPECIES_TESHARI = 'icons/inventory/suit/mob_vr_teshari.dmi',
+		SPECIES_VOX = 'icons/inventory/suit/mob_vox.dmi',
+		SPECIES_WEREBEAST = 'icons/inventory/suit/mob_werebeast.dmi'
 		)

@@ -5,8 +5,8 @@
 /obj/item/clothing/suit/storage/hooded/techpriest
 	name = "tech priest robe"
 	desc = "Praise be to the Omnissiah."
-	icon = 'icons/obj/clothing/suits_vr.dmi'
-	icon_override = 'icons/mob/suit_vr.dmi'
+	icon = 'icons/inventory/suit/item_vr.dmi'
+	icon_override = 'icons/inventory/suit/mob_vr.dmi'
 	icon_state = "techpriest"
 	hoodtype = /obj/item/clothing/head/hood/techpriest
 	armor = list(melee = 20, bullet = 10, laser = 10, energy = 10, bomb = 25, bio = 50, rad = 25)
@@ -73,8 +73,8 @@
 /obj/item/clothing/suit/storage/hooded/wintercoat/talon
 	name = "ITV winter coat"
 	desc = "A cozy winter coat, covered in thick fur and baring the colors of ITV."
-	icon = 'icons/obj/clothing/suits_vr.dmi'
-	icon_override = 'icons/mob/suit_vr.dmi'
+	icon = 'icons/inventory/suit/item_vr.dmi'
+	icon_override = 'icons/inventory/suit/mob_vr.dmi'
 	icon_state = "taloncoat"
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	hoodtype = /obj/item/clothing/head/hood/winter/talon

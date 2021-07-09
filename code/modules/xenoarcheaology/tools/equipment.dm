@@ -1,7 +1,7 @@
 /obj/item/clothing/suit/bio_suit/anomaly
 	name = "Anomaly suit"
 	desc = "A sealed bio suit capable of insulating against exotic alien energies."
-	icon = 'icons/obj/clothing/spacesuits.dmi'
+	icon = 'icons/inventory/suit/item.dmi'
 	icon_state = "engspace_suit"
 	item_state = "engspace_suit"
 	update_icon_define = "icons/mob/spacesuit.dmi"

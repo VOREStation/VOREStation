@@ -37,7 +37,7 @@
 		verbs |= /obj/item/clothing/head/helmet/space/proc/toggle_camera
 
 	if(type == /obj/item/clothing/head/helmet/space) //VOREStation edit - use the specially refitted sprites by KBraid. Done this way to avoid breaking subtypes.
-		sprite_sheets[SPECIES_TESHARI] = 'icons/mob/species/teshari/helmet_vr.dmi'
+		sprite_sheets[SPECIES_TESHARI] = 'icons/inventory/head/mob_vr_teshari.dmi'
 
 /obj/item/clothing/head/helmet/space/proc/toggle_camera()
 	set name = "Toggle Helmet Camera"
@@ -68,8 +68,7 @@
 /obj/item/clothing/suit/space
 	name = "Space suit"
 	desc = "A suit that protects against low pressure environments."
-	icon = 'icons/obj/clothing/spacesuits.dmi'
-	update_icon_define = INV_SPACESUIT_DEF_ICON
+	icon = 'icons/inventory/suit/item.dmi'
 	icon_state = "space"
 	w_class = ITEMSIZE_HUGE // So you can't fit this in your bag and be prepared at all times.
 	gas_transfer_coefficient = 0.01
@@ -95,7 +94,7 @@
 /obj/item/clothing/suit/space/Initialize()
 	. = ..()
 	if(type == /obj/item/clothing/suit/space)
-		sprite_sheets[SPECIES_TESHARI] = 'icons/mob/species/teshari/suit_vr.dmi'
+		sprite_sheets[SPECIES_TESHARI] = 'icons/inventory/suit/mob_vr_teshari.dmi' // aAAAaaAAAAA
 //VOREStation edit end.
 
 /obj/item/clothing/suit/space/equipped(mob/M)

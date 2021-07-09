@@ -10,5 +10,5 @@
 	desc = "Sturdy mess of black synthcotton belts and buckles."
 	icon_state = "pilot_webbing2"
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/mob/species/teshari/ties.dmi'
+		SPECIES_TESHARI = 'icons/inventory/accessory/mob_teshari.dmi'
 	)
