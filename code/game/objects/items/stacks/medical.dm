@@ -408,7 +408,7 @@
 				to_chat(user, "<span class='danger'>You can't apply a splint to the arm you're using!</span>")
 				return
 			user.visible_message("<span class='danger'>[user] starts to apply \the [src] to their [limb].</span>", "<span class='danger'>You start to apply \the [src] to your [limb].</span>", "<span class='danger'>You hear something being wrapped.</span>")
-		if(do_after(user, 50, M, exclusive = TRUE))
+		if(do_after(user, 50, M, exclusive = TASK_USER_EXCLUSIVE))
 			if(affecting.splinted)
 				to_chat(user, "<span class='danger'>[M]'s [limb] is already splinted!</span>")
 				return

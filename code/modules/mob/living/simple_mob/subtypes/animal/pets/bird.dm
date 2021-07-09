@@ -38,17 +38,6 @@
 	emote_hear = list("chirps","caws")
 	emote_see = list("shakes their head", "ruffles their feathers")
 
-/obj/item/weapon/holder/bird
-	name = "bird"
-	desc = "It's a bird!"
-	icon_state = null
-	item_icons = null
-	w_class = ITEMSIZE_SMALL
-
-/obj/item/weapon/holder/bird/Initialize()
-	. = ..()
-	held_mob?.lay_down()
-
 // Subtypes for birbs.
 /mob/living/simple_mob/animal/passive/bird/black_bird
 	name = "common blackbird"

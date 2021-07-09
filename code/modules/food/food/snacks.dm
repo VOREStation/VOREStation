@@ -193,24 +193,7 @@
 	// Eating with forks
 	if(istype(W,/obj/item/weapon/material/kitchen/utensil))
 		var/obj/item/weapon/material/kitchen/utensil/U = W
-		if(!U.reagents)
-			U.create_reagents(5)
-
-		if (U.reagents.total_volume > 0)
-			to_chat(user, "<font color='red'>You already have something on your [U].</font>")
-			return
-
-		user.visible_message( \
-			"[user] scoops up some [src] with \the [U]!", \
-			"<font color='blue'>You scoop up some [src] with \the [U]!</font>" \
-		)
-
-		bitecount++
-
-		reagents.trans_to_obj(U, min(reagents.total_volume,5))
-
-		if (reagents.total_volume <= 0)
-			qdel(src)
+		U.load_food(user, src)
 		return
 
 	if (is_sliceable())

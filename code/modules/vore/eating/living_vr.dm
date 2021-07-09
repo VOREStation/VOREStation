@@ -521,7 +521,7 @@
 	prey.ai_holder?.react_to_attack(user)
 	
 	//Timer and progress bar
-	if(!do_after(user, swallow_time, prey, exclusive = TRUE))
+	if(!do_after(user, swallow_time, prey, exclusive = TASK_USER_EXCLUSIVE))
 		return FALSE // Prey escpaed (or user disabled) before timer expired.
 
 	// If we got this far, nom successful! Announce it!
@@ -798,7 +798,7 @@
 		playsound(src, 'sound/items/eatfood.ogg', rand(10,50), 1)
 		var/T = (istype(M) ? M.hardness/40 : 1) SECONDS //1.5 seconds to eat a sheet of metal. 2.5 for durasteel and diamond & 1 by default (applies to some ores like raw carbon, slag, etc.
 		to_chat(src, "<span class='notice'>You start crunching on [I] with your powerful jaws, attempting to tear it apart...</span>")
-		if(do_after(feeder, T, ignore_movement = TRUE, exclusive = TRUE)) //Eat on the move, but not multiple things at once.
+		if(do_after(feeder, T, ignore_movement = TRUE, exclusive = TASK_ALL_EXCLUSIVE)) //Eat on the move, but not multiple things at once.
 			if(feeder != src)
 				to_chat(feeder, "<span class='notice'>You feed [I] to [src].</span>")
 				log_admin("VORE: [feeder] fed [src] [I].")
