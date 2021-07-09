@@ -3995,6 +3995,7 @@
 #include "code\unit_tests\language_tests.dm"
 #include "code\unit_tests\loadout_tests.dm"
 #include "code\unit_tests\map_tests.dm"
+#include "code\unit_tests\material_tests.dm"
 #include "code\unit_tests\mob_tests.dm"
 #include "code\unit_tests\recipe_tests.dm"
 #include "code\unit_tests\research_tests.dm"
