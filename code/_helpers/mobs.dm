@@ -244,7 +244,7 @@ Proc for attack log creation, because really why not
 	if(exclusive & TASK_USER_EXCLUSIVE)
 		user.status_flags |= DOING_TASK
 	
-	if(target && exclusive & TASK_TARGET_EXCLUSIVE)
+	if(target && (exclusive & TASK_TARGET_EXCLUSIVE))
 		target.flags |= IS_BUSY
 
 	. = TRUE
@@ -285,7 +285,7 @@ Proc for attack log creation, because really why not
 
 	if(exclusive & TASK_USER_EXCLUSIVE)
 		user.status_flags &= ~DOING_TASK
-	if(target & exclusive & TASK_TARGET_EXCLUSIVE)
+	if(target && (exclusive & TASK_TARGET_EXCLUSIVE))
 		target.flags &= ~IS_BUSY
 
 	if(progbar)
