@@ -16241,6 +16241,9 @@
 	dir = 8;
 	pixel_x = 24
 	},
+/obj/item/device/paicard{
+	pixel_x = 4
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/fish_farm)
 "aBG" = (
@@ -19173,6 +19176,9 @@
 "aHj" = (
 /obj/structure/table/woodentable,
 /obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/item/device/paicard{
+	pixel_x = 4
+	},
 /turf/simulated/floor/carpet,
 /area/chapel/main)
 "aHk" = (
@@ -33877,6 +33883,13 @@
 /obj/item/weapon/grenade/anti_photon,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/funny/hideyhole)
+"owg" = (
+/obj/structure/table/marble,
+/obj/item/device/paicard{
+	pixel_x = 4
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden_two)
 "oXH" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -40244,7 +40257,7 @@ apq
 aqw
 aib
 ast
-atG
+owg
 ass
 avi
 akX

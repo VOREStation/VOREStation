@@ -7487,6 +7487,9 @@
 	dir = 1
 	},
 /obj/structure/closet/crate,
+/obj/item/device/paicard{
+	pixel_x = 4
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/public_garden_one)
 "amC" = (
@@ -34023,6 +34026,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
 	},
+/obj/item/device/paicard{
+	pixel_x = 4
+	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_laundry)
 "jCv" = (
@@ -35417,6 +35423,20 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/plating,
 /area/maintenance/substation/SurfMedsubstation)
+"ncj" = (
+/obj/structure/table/standard{
+	name = "plastic table frame"
+	},
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/item/device/paicard{
+	pixel_x = 4
+	},
+/turf/simulated/floor/tiled,
+/area/crew_quarters/locker)
 "ndH" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -52837,7 +52857,7 @@ apF
 ash
 ast
 asU
-atp
+ncj
 hoH
 ast
 auR

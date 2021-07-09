@@ -18590,6 +18590,9 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
+/obj/item/device/paicard{
+	pixel_x = 4
+	},
 /turf/simulated/floor/carpet,
 /area/library)
 "aEv" = (
@@ -41987,6 +41990,13 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/carpet,
 /area/tether/surfacebase/security/hos)
+"rpN" = (
+/obj/structure/table/woodentable,
+/obj/item/device/paicard{
+	pixel_x = 4
+	},
+/turf/simulated/floor/wood,
+/area/tether/surfacebase/entertainment)
 "rrG" = (
 /obj/structure/table/steel,
 /obj/item/weapon/folder/red{
@@ -57386,7 +57396,7 @@ aGA
 aEd
 bbl
 beX
-beX
+rpN
 bcY
 bdq
 bbk
