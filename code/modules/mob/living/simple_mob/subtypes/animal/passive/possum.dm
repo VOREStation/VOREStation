@@ -111,6 +111,7 @@
 	real_name = "opossum"
 	tt_desc = "Didelphis astrum"
 	desc = "It's an opossum, a small scavenging marsupial."
+	icon = 'icons/mob/pets.dmi'
 	icon_state = "possum"
 	item_state = "possum"
 	icon_living = "possum"

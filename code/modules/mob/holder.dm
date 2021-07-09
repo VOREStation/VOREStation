@@ -102,37 +102,136 @@ var/list/holder_mob_icon_cache = list()
 /obj/item/weapon/holder/diona
 	origin_tech = list(TECH_MAGNET = 3, TECH_BIO = 5)
 	slot_flags = SLOT_HEAD | SLOT_OCLOTHING | SLOT_HOLSTER
+	item_state = "diona"
 
 /obj/item/weapon/holder/drone
 	origin_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 5)
+	item_state = "repairbot"
 
 /obj/item/weapon/holder/drone/swarm
 	origin_tech = list(TECH_MAGNET = 6, TECH_ENGINEERING = 7, TECH_PRECURSOR = 2, TECH_ARCANE = 1)
+	item_state = "constructiondrone"
 
 /obj/item/weapon/holder/pai
 	origin_tech = list(TECH_DATA = 2)
 
+/obj/item/weapon/holder/pai/Initialize(mapload, mob/held)
+	. = ..()
+	item_state = held.icon_state
+
 /obj/item/weapon/holder/mouse
 	w_class = ITEMSIZE_TINY
 
+/obj/item/weapon/holder/pai/Initialize(mapload, mob/held)
+	. = ..()
+	item_state = held.icon_state
+
 /obj/item/weapon/holder/possum
 	origin_tech = list(TECH_BIO = 2)
+	item_state = "possum"
 
 /obj/item/weapon/holder/possum/poppy
 	origin_tech = list(TECH_BIO = 2, TECH_ENGINEERING = 4)
+	item_state = "poppy"
 
 /obj/item/weapon/holder/cat
 	origin_tech = list(TECH_BIO = 2)
+	item_state = "cat"
 
 /obj/item/weapon/holder/cat/runtime
 	origin_tech = list(TECH_BIO = 2, TECH_DATA = 4)
 
+/obj/item/weapon/holder/cat/cak
+	origin_tech = list(TECH_BIO = 2)
+	item_state = "cak"
+
+/obj/item/weapon/holder/cat/bluespace
+	origin_tech = list(TECH_BIO = 2, TECH_BLUESPACE = 6)
+	item_state = "bscat"
+
+/obj/item/weapon/holder/cat/spacecat
+	origin_tech = list(TECH_BIO = 2, TECH_MATERIAL = 4)
+	item_state = "spacecat"
+
+/obj/item/weapon/holder/cat/original
+	origin_tech = list(TECH_BIO = 2, TECH_BLUESPACE = 4)
+	item_state = "original"
+
+/obj/item/weapon/holder/cat/breadcat
+	origin_tech = list(TECH_BIO = 2)
+	item_state = "breadcat"
+
+/obj/item/weapon/holder/corgi
+	origin_tech = list(TECH_BIO = 2)
+	item_state = "corgi"
+
+/obj/item/weapon/holder/lisa
+	origin_tech = list(TECH_BIO = 2)
+	item_state = "lisa"
+
+/obj/item/weapon/holder/old_corgi
+	origin_tech = list(TECH_BIO = 2)
+	item_state = "old_corgi"
+
+/obj/item/weapon/holder/void_puppy
+	origin_tech = list(TECH_BIO = 2, TECH_BLUESPACE = 3)
+	item_state = "void_puppy"
+
+/obj/item/weapon/holder/narsian
+	origin_tech = list(TECH_BIO = 2, TECH_ILLEGAL = 3)
+	item_state = "narsian"
+
+/obj/item/weapon/holder/bullterrier
+	origin_tech = list(TECH_BIO = 2)
+	item_state = "bullterrier"
+
+/obj/item/weapon/holder/fox
+	origin_tech = list(TECH_BIO = 2)
+	item_state = "fox"
+
+/obj/item/weapon/holder/pug
+	origin_tech = list(TECH_BIO = 2)
+	item_state = "pug"
+
+/obj/item/weapon/holder/sloth
+	origin_tech = list(TECH_BIO = 2)
+	item_state = "sloth"
+
 /obj/item/weapon/holder/borer
 	origin_tech = list(TECH_BIO = 6)
+	item_state = "brainslug"
 
 /obj/item/weapon/holder/leech
 	color = "#003366"
 	origin_tech = list(TECH_BIO = 5, TECH_PHORON = 2)
+
+/obj/item/weapon/holder/cat/fluff/tabiranth
+	name = "Spirit"
+	desc = "A small, inquisitive feline, who constantly seems to investigate his surroundings."
+	gender = MALE
+	icon_state = "kitten"
+	w_class = ITEMSIZE_SMALL
+
+/obj/item/weapon/holder/cat/kitten
+	icon_state = "kitten"
+	w_class = ITEMSIZE_SMALL
+
+/obj/item/weapon/holder/cat/fluff/bones
+	name = "Bones"
+	desc = "It's Bones! Meow."
+	gender = MALE
+	icon_state = "cat3"
+
+/obj/item/weapon/holder/bird
+	name = "bird"
+	desc = "It's a bird!"
+	icon_state = null
+	item_icons = null
+	w_class = ITEMSIZE_SMALL
+
+/obj/item/weapon/holder/bird/Initialize()
+	. = ..()
+	held_mob?.lay_down()
 
 /obj/item/weapon/holder/fish
 	attack_verb = list("fished", "disrespected", "smacked", "smackereled")
