@@ -203,7 +203,7 @@
 
 	admin_chat_message(message = "Overmap panic button hit on z[z] ([name]) by '[user?.ckey || "Unknown"]'", color = "#FF2222") //VOREStation Add
 	var/message = "This is an automated distress signal from a MIL-DTL-93352-compliant beacon transmitting on [PUB_FREQ*0.1]kHz. \
-	This beacon was launched from '[name]'. I can provide this additional information to rescuers: [get_distress_info()]. \
+	This beacon was launched from '[initial(name)]'. I can provide this additional information to rescuers: [get_distress_info()]. \
 	Per the Interplanetary Convention on Space SAR, those receiving this message must attempt rescue, \
 	or relay the message to those who can. This message will repeat one time in 5 minutes. Thank you for your urgent assistance."
 	
@@ -224,7 +224,7 @@
 	return "\[X:[x], Y:[y]\]"
 
 /obj/effect/overmap/visitable/proc/distress_update()
-	var/message = "This is the final message from the distress beacon launched from '[name]'. I can provide this additional information to rescuers: [get_distress_info()]. \
+	var/message = "This is the final message from the distress beacon launched from '[initial(name)]'. I can provide this additional information to rescuers: [get_distress_info()]. \
 	Please render assistance under your obligations per the Interplanetary Convention on Space SAR, or relay this message to a party who can. Thank you for your urgent assistance."
 
 	for(var/zlevel in levels_for_distress)
