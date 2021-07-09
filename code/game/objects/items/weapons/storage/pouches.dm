@@ -23,7 +23,7 @@
 	if(user.get_active_hand() == src || user.get_inactive_hand() == src)
 		return TRUE // Skip delay
 
-	if(insert_delay && !do_after(user, 2 SECONDS, src, needhand = TRUE, exclusive = TRUE))
+	if(insert_delay && !do_after(user, 2 SECONDS, src, needhand = TRUE, exclusive = TASK_USER_EXCLUSIVE))
 		return FALSE // Moved or whatever
 
 	if(W in src)
@@ -36,7 +36,7 @@
 	if(user.get_active_hand() == src || user.get_inactive_hand() == src)
 		return TRUE // Skip delay
 	
-	if(remove_delay && !do_after(user, 2 SECONDS, src, needhand = TRUE, exclusive = TRUE))
+	if(remove_delay && !do_after(user, 2 SECONDS, src, needhand = TRUE, exclusive = TASK_USER_EXCLUSIVE))
 		return FALSE // Moved or whatever
 
 	if(W in src)
