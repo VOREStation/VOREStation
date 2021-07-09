@@ -67,10 +67,12 @@
 
 /datum/material/wood/log
 	name = MAT_LOG
+	display_name = "wood" // will lead to "wood log"
 	icon_base = "log"
 	stack_type = /obj/item/stack/material/log
-	sheet_singular_name = null
-	sheet_plural_name = "pile"
+	sheet_singular_name = "log"
+	sheet_plural_name = "logs"
+	sheet_collective_name = "pile"
 	pass_stack_colors = TRUE
 	supply_conversion_value = 1
 
@@ -81,6 +83,7 @@
 
 /datum/material/wood/log/sif
 	name = MAT_SIFLOG
+	display_name = "alien wood"
 	icon_colour = "#0099cc" // Cyan-ish
 	stack_origin_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2)
 	stack_type = /obj/item/stack/material/log/sif
