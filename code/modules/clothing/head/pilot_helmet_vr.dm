@@ -2,7 +2,7 @@
 /obj/item/clothing/head/pilot_vr
 	name = "standard pilot helmet"
 	desc = "Standard pilot gear. Protects the head from impacts. This one has a retractable visor"
-	icon = 'icons/obj/clothing/helmets_vr.dmi'
+	icon = 'icons/inventory/head/item_vr.dmi'
 	icon_state = "pilot1"
 	armor = list(melee = 20, bullet = 10, laser = 10, energy = 5, bomb = 10, bio = 0, rad = 0)
 	flags_inv = HIDEEARS
@@ -11,9 +11,9 @@
 	heat_protection = HEAD
 	max_heat_protection_temperature = HELMET_MAX_HEAT_PROTECTION_TEMPERATURE
 	w_class = ITEMSIZE_NORMAL
-	item_icons = list(slot_head_str = 'icons/mob/head_vr.dmi')
+	item_icons = list(slot_head_str = 'icons/inventory/head/mob_vr.dmi')
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/mob/species/teshari/helmet_vr.dmi'
+		SPECIES_TESHARI = 'icons/inventory/head/mob_vr_teshari.dmi'
 		)
 	action_button_name = "Toggle Visor"
 
@@ -30,9 +30,9 @@
 	name = "colored pilot helmet"
 	desc = "A colored version of the standard pilot helmet. Protects the head from impacts. This one has a retractable visor"
 	icon_state = "pilot2"
-	item_icons = list(slot_head_str = 'icons/mob/head_vr.dmi')
+	item_icons = list(slot_head_str = 'icons/inventory/head/mob_vr.dmi')
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/mob/species/teshari/helmet_vr.dmi'
+		SPECIES_TESHARI = 'icons/inventory/head/mob_vr_teshari.dmi'
 		)
 	action_button_name = "Toggle Visor"
 
@@ -51,9 +51,9 @@
 	name = "ITV pilot helmet"
 	desc = "An ITV version of the standard pilot helmet. Protects the head from impacts. This one has a retractable visor"
 	icon_state = "pilot3"
-	item_icons = list(slot_head_str = 'icons/mob/head_vr.dmi')
+	item_icons = list(slot_head_str = 'icons/inventory/head/mob_vr.dmi')
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/mob/species/teshari/helmet_vr.dmi'
+		SPECIES_TESHARI = 'icons/inventory/head/mob_vr_teshari.dmi'
 		)
 	action_button_name = "Toggle Visor"
 

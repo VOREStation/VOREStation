@@ -182,7 +182,7 @@
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "solara_dress"
 
-	icon_override = 'icons/mob/uniform.dmi'
+	icon_override = 'icons/inventory/uniform/mob.dmi'
 	item_state = "solara_dress"
 
 //For general use
@@ -698,10 +698,10 @@
 	desc = " This is Lethe's Hat! A little tag attached inside reads: 'If found please return to Lethe! Or else!' It looks rather worn in. It also lacks armor."
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 
-	icon = 'icons/obj/clothing/hats.dmi'
+	icon = 'icons/inventory/head/item.dmi'
 	icon_state = "hoscap"
 
-	icon_override = 'icons/mob/head.dmi'
+	icon_override = 'icons/inventory/head/mob.dmi'
 	item_state = "hoscap"
 
 /obj/item/weapon/storage/belt/utility/fluff/vulpine

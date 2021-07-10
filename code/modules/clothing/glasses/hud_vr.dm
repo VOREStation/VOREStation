@@ -116,8 +116,8 @@
 /obj/item/clothing/glasses/omnihud/visor
 	name = "AR visor"
 	desc = "The VZR-AR are a product based upon the classic AR Glasses, just more fashionable."
-	icon_override = 'icons/mob/eyes_vr.dmi'
-	icon = 'icons/mob/eyes_vr.dmi'
+	icon_override = 'icons/inventory/eyes/mob_vr.dmi'
+	icon = 'icons/inventory/eyes/mob_vr.dmi'
 	icon_state = "visor_CIV"
 	item_state = "visor_CIV"
 

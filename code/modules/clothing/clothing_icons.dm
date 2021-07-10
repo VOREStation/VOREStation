@@ -10,12 +10,6 @@
 		bloodsies.color		= blood_color
 		standing.add_overlay(bloodsies)
 
-//UNIFORM: Always appends "_s" to iconstate, stupidly.
-/obj/item/clothing/under/get_worn_icon_state(var/slot_name)
-	var/state2use = ..()
-	state2use += "_s"
-	return state2use
-
 //HELMET: May have a lighting overlay
 /obj/item/clothing/head/make_worn_icon(var/body_type,var/slot_name,var/inhands,var/default_icon,var/default_layer = 0,var/icon/clip_mask = null)
 	var/image/standing = ..()

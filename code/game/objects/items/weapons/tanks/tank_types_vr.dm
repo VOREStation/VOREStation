@@ -2,7 +2,7 @@
 	name = "double emergency phoron tank"
 	desc = "Contains dangerous phoron. Do not inhale. Warning: extremely flammable."
 	icon = 'icons/obj/tank_vr.dmi'
-	icon_override = 'icons/mob/belt_vr.dmi'
+	icon_override = 'icons/inventory/belt/mob_vr.dmi'
 	icon_state = "emergency_double_vox"
 	gauge_icon = "indicator_double"
 	gauge_cap = 3
@@ -39,7 +39,7 @@
 
 /obj/item/weapon/tank/vox	//Can't be a child of phoron or the gas amount gets screwey.
 	icon = 'icons/obj/tank_vr.dmi'
-	icon_override = 'icons/mob/back_vr.dmi'
+	icon_override = 'icons/inventory/back/mob_vr.dmi'
 	icon_state = "phoron_vox"
 	gauge_cap = 3
 	gauge_icon = "indicator_double"
@@ -82,7 +82,7 @@
 
 /obj/item/weapon/tank/emergency/phoron
 	icon = 'icons/obj/tank_vr.dmi'
-	icon_override = 'icons/mob/belt_vr.dmi'
+	icon_override = 'icons/inventory/belt/mob_vr.dmi'
 	icon_state = "emergency_phoron_vox"
 	gauge_icon = "indicator_smalltank"
 	volume = 6

@@ -6,15 +6,15 @@
 	name = "plain choker"
 	slot_flags = SLOT_TIE | SLOT_OCLOTHING
 	desc = "A simple, plain choker. Or maybe it's a collar? Use in-hand to customize it."
-	icon = 'icons/obj/clothing/ties_vr.dmi'
-	icon_override = 'icons/mob/ties_vr.dmi'
+	icon = 'icons/inventory/accessory/item_vr.dmi'
+	icon_override = 'icons/inventory/accessory/mob_vr.dmi'
 	icon_state = "choker_cst"
 	item_state = "choker_cst"
 	overlay_state = "choker_cst"
 	var/customized = 0
 	var/icon_previous_override
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/mob/species/teshari/ties_vr.dmi'
+		SPECIES_TESHARI = 'icons/inventory/accessory/mob_vr_teshari.dmi'
 		)
 
 //Forces different sprite sheet on equip
@@ -58,14 +58,14 @@
 
 /obj/item/clothing/accessory/collar
 	slot_flags = SLOT_TIE | SLOT_OCLOTHING
-	icon = 'icons/obj/clothing/ties_vr.dmi'
-	icon_override = 'icons/mob/ties_vr.dmi'
+	icon = 'icons/inventory/accessory/item_vr.dmi'
+	icon_override = 'icons/inventory/accessory/mob_vr.dmi'
 	icon_state = "collar_blk"
 	var/writtenon = 0
 	var/icon_previous_override
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/mob/species/teshari/ties_vr.dmi'
-		)
+		SPECIES_TESHARI = 'icons/inventory/accessory/mob_vr_teshari.dmi'
+	)
 
 //Forces different sprite sheet on equip
 /obj/item/clothing/accessory/collar/New()
@@ -360,8 +360,8 @@
 	desc = "A silver medal awarded to a group which has demonstrated exceptional teamwork to achieve a notable feat."
 
 /obj/item/clothing/accessory/medal/silver/unity/tabiranth
-	icon = 'icons/obj/clothing/ties_vr.dmi'
-	icon_override = 'icons/mob/ties_vr.dmi'
+	icon = 'icons/inventory/accessory/item_vr.dmi'
+	icon_override = 'icons/inventory/accessory/mob_vr.dmi'
 	icon_state = "silverthree"
 	item_state = "silverthree"
 	overlay_state = "silverthree"
@@ -370,8 +370,8 @@
 /obj/item/clothing/accessory/talon
 	name = "ITV pin"
 	desc = "A collectable enamel pin that resembles ITV's company logo."
-	icon = 'icons/obj/clothing/ties_vr.dmi'
-	icon_override = 'icons/mob/ties_vr.dmi'
+	icon = 'icons/inventory/accessory/item_vr.dmi'
+	icon_override = 'icons/inventory/accessory/mob_vr.dmi'
 	icon_state = "talon_pin"
 	item_state = "talonpin"
 	overlay_state = "talonpin"
