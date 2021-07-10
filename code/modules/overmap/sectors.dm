@@ -165,7 +165,7 @@
 		for(var/thing in restricted_waypoints[shuttle_name])
 			.[thing] = name
 
-/obj/effect/overmap/visitable/proc/generate_skybox()
+/obj/effect/overmap/visitable/proc/generate_skybox(zlevel)
 	return
 
 /obj/effect/overmap/visitable/proc/cleanup()
