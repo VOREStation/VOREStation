@@ -53,13 +53,13 @@
 	if(istype(I, /obj/item/device/multitool))
 		if(panel_open)
 			var/obj/item/device/multitool/M = I
-			M.buffer = src
+			M.connectable = src
 			to_chat(user, "<span class='notice'>You save the data in [I]'s buffer.</span>")
 			return 1
 		else
 			var/obj/item/device/multitool/M = I
-			if(istype(M.buffer, /obj/machinery/power/quantumpad))
-				linked_pad = M.buffer
+			if(istype(M.connectable, /obj/machinery/power/quantumpad))
+				linked_pad = M.connectable
 				to_chat(user, "<span class='notice'>You link [src] to the one in [I]'s buffer.</span>")
 				return 1
 
