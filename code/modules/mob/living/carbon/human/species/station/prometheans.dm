@@ -152,23 +152,9 @@ var/datum/species/shapeshifter/promethean/prometheans
 /datum/species/shapeshifter/promethean/hug(var/mob/living/carbon/human/H, var/mob/living/target)
 
 	if(H.zone_sel.selecting == "head" || H.zone_sel.selecting == "r_hand" || H.zone_sel.selecting == "l_hand") return ..() //VOREStation Edit
-	var/t_him = "them"
-	if(ishuman(target))
-		var/mob/living/carbon/human/T = target
-		switch(T.identifying_gender)
-			if(MALE)
-				t_him = "him"
-			if(FEMALE)
-				t_him = "her"
-	else
-		switch(target.gender)
-			if(MALE)
-				t_him = "him"
-			if(FEMALE)
-				t_him = "her"
-
-	H.visible_message("<b>\The [H]</b> glomps [target] to make [t_him] feel better!", \
-					"<span class='notice'>You glomp [target] to make [t_him] feel better!</span>")
+	var/datum/gender/TG = gender_datums[target.get_visible_gender()]
+	H.visible_message("<b>\The [H]</b> glomps [target] to make [TG.him] feel better!", \
+					"<span class='notice'>You glomp [target] to make [TG.him] feel better!</span>")
 	H.apply_stored_shock_to(target)
 
 /datum/species/shapeshifter/promethean/handle_death(var/mob/living/carbon/human/H)

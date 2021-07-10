@@ -1369,13 +1369,8 @@
 		else
 			health_description = "This mob type has no health to speak of."
 
-		//Gener
-		switch(M.gender)
-			if(MALE,FEMALE)	gender_description = "[M.gender]"
-			else			gender_description = "<font color='red'><b>[M.gender]</b></font>"
-
 		to_chat(src.owner, "<span class='filter_adminlog'><b>Info about [M.name]:</b><br>\
-							Mob type = [M.type]; Gender = [gender_description] Damage = [health_description]<br>\
+							Mob type = [M.type]; Gender = [M.identifying_gender]; Sex = [M.gender] Damage = [health_description]<br>\
 							Name = <b>[M.name]</b>; Real_name = [M.real_name]; Mind_name = [M.mind?"[M.mind.name]":""]; Key = <b>[M.key]</b>;<br>\
 							Location = [location_description];<br>\
 							[special_role_description]<br>\
