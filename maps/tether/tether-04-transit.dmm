@@ -1,9 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "ag" = (
-/obj/structure/bed/chair/wood{
-	dir = 4
-	},
-/turf/simulated/floor/wood,
+/obj/structure/bed/chair/wood,
+/turf/simulated/floor/midpoint_glass/reinf,
 /area/tether/midpoint)
 "cB" = (
 /obj/structure/disposalpipe/segment{
@@ -50,14 +48,15 @@
 /turf/simulated/floor/tiled/dark,
 /area/tether/midpoint)
 "dc" = (
-/obj/structure/table/woodentable,
-/turf/simulated/floor/wood,
+/obj/structure/bed/chair/wood{
+	dir = 1
+	},
+/turf/simulated/floor/midpoint_glass/reinf,
 /area/tether/midpoint)
 "dU" = (
-/obj/structure/bed/chair/wood{
-	dir = 8
-	},
-/turf/simulated/floor/wood,
+/obj/structure/table/woodentable,
+/obj/random/plushie,
+/turf/simulated/floor/midpoint_glass/reinf,
 /area/tether/midpoint)
 "fI" = (
 /obj/machinery/light{
@@ -89,15 +88,10 @@
 	},
 /turf/simulated/floor/wood,
 /area/tether/midpoint)
-"hk" = (
-/obj/structure/table/woodentable,
-/obj/random/plushie,
-/turf/simulated/floor/wood,
-/area/tether/midpoint)
 "hp" = (
 /obj/structure/table/woodentable,
 /obj/machinery/camera/network/civilian,
-/turf/simulated/floor/wood,
+/turf/simulated/floor/midpoint_glass/reinf,
 /area/tether/midpoint)
 "it" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -151,13 +145,11 @@
 /turf/simulated/floor/plating,
 /area/tether/midpoint)
 "kz" = (
-/obj/effect/step_trigger/teleporter/planetary_fall/virgo3b,
-/turf/simulated/sky/virgo3b,
+/turf/space/v3b_midpoint,
 /area/tether/transit)
 "lL" = (
 /obj/effect/blocker,
-/obj/effect/step_trigger/teleporter/planetary_fall/virgo3b,
-/turf/simulated/sky/virgo3b,
+/turf/space/v3b_midpoint,
 /area/tether/transit)
 "mz" = (
 /obj/machinery/power/apc{
@@ -173,6 +165,9 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/tether_midpoint)
+"mT" = (
+/turf/simulated/floor/midpoint_glass/reinf,
+/area/tether/midpoint)
 "no" = (
 /obj/machinery/atmospherics/pipe/simple/visible,
 /obj/structure/cable{
@@ -297,10 +292,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/midpoint)
-"tA" = (
-/obj/structure/table/bench/padded,
-/turf/simulated/floor/wood,
-/area/tether/midpoint)
 "tB" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -311,6 +302,10 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
+/area/tether/midpoint)
+"tM" = (
+/obj/structure/table/woodentable,
+/turf/simulated/floor/midpoint_glass/reinf,
 /area/tether/midpoint)
 "uA" = (
 /obj/structure/disposalpipe/segment{
@@ -326,21 +321,21 @@
 /obj/machinery/holoposter{
 	pixel_y = 30
 	},
-/turf/simulated/floor/wood,
+/turf/simulated/floor/midpoint_glass/reinf,
 /area/tether/midpoint)
 "vh" = (
 /obj/structure/table/woodentable,
 /obj/structure/flora/pottedplant/small{
 	pixel_y = 8
 	},
-/turf/simulated/floor/wood,
+/turf/simulated/floor/midpoint_glass/reinf,
 /area/tether/midpoint)
 "vt" = (
 /obj/structure/table/woodentable,
 /obj/machinery/camera/network/civilian{
 	dir = 1
 	},
-/turf/simulated/floor/wood,
+/turf/simulated/floor/midpoint_glass/reinf,
 /area/tether/midpoint)
 "wM" = (
 /obj/structure/disposalpipe/segment{
@@ -411,7 +406,7 @@
 /obj/machinery/holoposter{
 	pixel_y = -30
 	},
-/turf/simulated/floor/wood,
+/turf/simulated/floor/midpoint_glass/reinf,
 /area/tether/midpoint)
 "Dz" = (
 /turf/simulated/wall/r_wall,
@@ -549,7 +544,10 @@
 /obj/machinery/camera/network/civilian{
 	dir = 4
 	},
-/turf/simulated/floor/wood,
+/obj/structure/bed/chair/wood{
+	dir = 1
+	},
+/turf/simulated/floor/midpoint_glass/reinf,
 /area/tether/midpoint)
 "Ls" = (
 /obj/structure/disposalpipe/down{
@@ -645,6 +643,13 @@
 	},
 /turf/simulated/floor/wood,
 /area/tether/midpoint)
+"Rl" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/table/woodentable,
+/turf/simulated/floor/midpoint_glass/reinf,
+/area/tether/midpoint)
 "RZ" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -657,7 +662,7 @@
 	dir = 9
 	},
 /obj/structure/table/bench/padded,
-/turf/simulated/floor/wood,
+/turf/simulated/floor/midpoint_glass/reinf,
 /area/tether/midpoint)
 "Tz" = (
 /obj/structure/cable{
@@ -701,12 +706,16 @@
 	},
 /turf/simulated/floor/wood,
 /area/tether/midpoint)
+"Wf" = (
+/obj/structure/table/bench/padded,
+/turf/simulated/floor/midpoint_glass/reinf,
+/area/tether/midpoint)
 "WU" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /obj/structure/table/bench/padded,
-/turf/simulated/floor/wood,
+/turf/simulated/floor/midpoint_glass/reinf,
 /area/tether/midpoint)
 "WY" = (
 /obj/structure/disposalpipe/segment{
@@ -746,7 +755,7 @@
 /obj/structure/flora/pottedplant/smallcactus{
 	pixel_y = 8
 	},
-/turf/simulated/floor/wood,
+/turf/simulated/floor/midpoint_glass/reinf,
 /area/tether/midpoint)
 
 (1,1,1) = {"
@@ -6333,8 +6342,6 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
 lL
 lL
@@ -6371,8 +6378,10 @@ lL
 lL
 lL
 lL
-kz
-kz
+lL
+lL
+lL
+lL
 kz
 kz
 kz
@@ -6475,8 +6484,6 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
 kz
 kz
@@ -6512,9 +6519,11 @@ kz
 kz
 kz
 kz
+kz
+kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -6617,8 +6626,6 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
 kz
 kz
@@ -6654,9 +6661,11 @@ kz
 kz
 kz
 kz
+kz
+kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -6759,8 +6768,6 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
 kz
 kz
@@ -6796,9 +6803,11 @@ kz
 kz
 kz
 kz
+kz
+kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -6901,8 +6910,6 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
 kz
 kz
@@ -6938,9 +6945,11 @@ kz
 kz
 kz
 kz
+kz
+kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -7043,8 +7052,6 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
 kz
 kz
@@ -7080,9 +7087,11 @@ kz
 kz
 kz
 kz
+kz
+kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -7185,8 +7194,6 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
 kz
 kz
@@ -7222,9 +7229,11 @@ kz
 kz
 kz
 kz
+kz
+kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -7327,8 +7336,6 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
 kz
 kz
@@ -7364,9 +7371,11 @@ kz
 kz
 kz
 kz
+kz
+kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -7469,8 +7478,6 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
 kz
 kz
@@ -7506,9 +7513,11 @@ kz
 kz
 kz
 kz
+kz
+kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -7611,8 +7620,6 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
 kz
 kz
@@ -7648,9 +7655,11 @@ kz
 kz
 kz
 kz
+kz
+kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -7753,8 +7762,6 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
 kz
 kz
@@ -7790,9 +7797,11 @@ kz
 kz
 kz
 kz
+kz
+kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -7895,8 +7904,6 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
 kz
 kz
@@ -7932,9 +7939,11 @@ kz
 kz
 kz
 kz
+kz
+kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -8037,8 +8046,6 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
 kz
 kz
@@ -8074,9 +8081,11 @@ kz
 kz
 kz
 kz
+kz
+kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -8179,8 +8188,6 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
 kz
 kz
@@ -8216,9 +8223,11 @@ kz
 kz
 kz
 kz
+kz
+kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -8321,9 +8330,9 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
+kz
+kz
 kz
 kz
 kz
@@ -8358,9 +8367,9 @@ kz
 kz
 kz
 kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -8463,9 +8472,9 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
+kz
+kz
 kz
 kz
 kz
@@ -8478,16 +8487,16 @@ kz
 NJ
 Qc
 cH
-pK
-pK
-zi
-pK
-pK
-pK
-pK
+mT
+ag
+Rl
+dc
+mT
+ag
+dU
 KN
-pK
-pK
+mT
+mT
 kn
 Qc
 zP
@@ -8500,9 +8509,9 @@ kz
 kz
 kz
 kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -8605,9 +8614,9 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
+kz
+kz
 kz
 kz
 kz
@@ -8620,16 +8629,16 @@ PF
 PF
 fI
 pK
-pK
+mT
 ag
+tM
+dc
+mT
 ag
-pK
-ag
-ag
-pK
-ag
-ag
-pK
+tM
+dc
+mT
+mT
 pK
 Iq
 PF
@@ -8642,9 +8651,9 @@ kz
 kz
 kz
 kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -8747,9 +8756,9 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
+kz
+kz
 kz
 kz
 kz
@@ -8763,14 +8772,14 @@ Jl
 pK
 pK
 pK
-dc
-dc
 pK
-dc
-hk
 pK
-dc
-dc
+pK
+pK
+pK
+pK
+pK
+pK
 pK
 Hy
 Nt
@@ -8784,9 +8793,9 @@ kz
 kz
 kz
 kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -8889,9 +8898,9 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
+kz
+kz
 kz
 kz
 kz
@@ -8905,14 +8914,14 @@ pK
 pK
 pK
 pK
-dU
-dU
 pK
-dU
-dU
 pK
-dU
-dU
+pK
+pK
+pK
+pK
+pK
+pK
 pK
 Or
 pK
@@ -8926,9 +8935,9 @@ kz
 kz
 kz
 kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -9031,9 +9040,9 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
+kz
+kz
 kz
 kz
 kz
@@ -9068,9 +9077,9 @@ kz
 kz
 kz
 kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -9173,8 +9182,6 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
 kz
 kz
@@ -9182,9 +9189,11 @@ kz
 kz
 kz
 kz
+kz
+kz
 Et
-pK
-pK
+mT
+mT
 pK
 pK
 pK
@@ -9201,8 +9210,8 @@ PF
 Or
 pK
 pK
-pK
-pK
+mT
+mT
 Et
 kz
 kz
@@ -9210,9 +9219,9 @@ kz
 kz
 kz
 kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -9315,8 +9324,6 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
 kz
 kz
@@ -9324,10 +9331,12 @@ kz
 kz
 kz
 kz
+kz
+kz
 Et
-tA
-tA
-tA
+Wf
+Wf
+pK
 pK
 pK
 Dz
@@ -9342,9 +9351,9 @@ ML
 PF
 uA
 pK
-tA
-tA
-tA
+pK
+Wf
+Wf
 Et
 kz
 kz
@@ -9352,9 +9361,9 @@ kz
 kz
 kz
 kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -9457,9 +9466,9 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
+kz
+kz
 kz
 kz
 kz
@@ -9469,7 +9478,7 @@ kz
 PF
 uC
 vh
-dc
+pK
 pK
 Iq
 Dz
@@ -9484,7 +9493,7 @@ pM
 PF
 wM
 pK
-dc
+pK
 YB
 vt
 PF
@@ -9494,9 +9503,9 @@ kz
 kz
 kz
 kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -9599,8 +9608,6 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
 kz
 kz
@@ -9608,10 +9615,12 @@ kz
 kz
 kz
 kz
+kz
+kz
 Et
-tA
-tA
-tA
+Wf
+Wf
+pK
 pK
 QE
 Dz
@@ -9626,9 +9635,9 @@ PF
 PF
 WY
 pK
-tA
-tA
-tA
+pK
+Wf
+Wf
 Et
 kz
 kz
@@ -9636,9 +9645,9 @@ kz
 kz
 kz
 kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -9741,8 +9750,6 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
 kz
 kz
@@ -9750,9 +9757,11 @@ kz
 kz
 kz
 kz
+kz
+kz
 Et
-pK
-pK
+mT
+mT
 pK
 pK
 pK
@@ -9769,8 +9778,8 @@ pO
 Or
 pK
 pK
-pK
-pK
+mT
+mT
 Et
 kz
 kz
@@ -9778,9 +9787,9 @@ kz
 kz
 kz
 kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -9883,8 +9892,6 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
 kz
 kz
@@ -9892,9 +9899,11 @@ kz
 kz
 kz
 kz
+kz
+kz
 Et
-pK
-pK
+mT
+mT
 pK
 pK
 pK
@@ -9911,8 +9920,8 @@ sw
 Or
 pK
 pK
-pK
-pK
+mT
+mT
 Et
 kz
 kz
@@ -9920,9 +9929,9 @@ kz
 kz
 kz
 kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -10025,8 +10034,6 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
 kz
 kz
@@ -10034,10 +10041,12 @@ kz
 kz
 kz
 kz
+kz
+kz
 Et
-tA
-tA
-tA
+Wf
+Wf
+pK
 pK
 QE
 Dz
@@ -10052,9 +10061,9 @@ PF
 Kh
 hi
 pK
-tA
-tA
-tA
+pK
+Wf
+Wf
 Et
 kz
 kz
@@ -10062,9 +10071,9 @@ kz
 kz
 kz
 kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -10167,9 +10176,9 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
+kz
+kz
 kz
 kz
 kz
@@ -10179,7 +10188,7 @@ kz
 PF
 hp
 YB
-dc
+pK
 pK
 Iq
 Dz
@@ -10194,7 +10203,7 @@ PF
 PF
 wM
 pK
-dc
+pK
 vh
 zZ
 PF
@@ -10204,9 +10213,9 @@ kz
 kz
 kz
 kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -10309,8 +10318,6 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
 kz
 kz
@@ -10318,10 +10325,12 @@ kz
 kz
 kz
 kz
+kz
+kz
 Et
-tA
-tA
-tA
+Wf
+Wf
+pK
 pK
 VB
 Dz
@@ -10336,9 +10345,9 @@ pM
 PF
 Xo
 pK
-tA
-tA
-tA
+pK
+Wf
+Wf
 Et
 kz
 kz
@@ -10346,9 +10355,9 @@ kz
 kz
 kz
 kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -10451,8 +10460,6 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
 kz
 kz
@@ -10460,9 +10467,11 @@ kz
 kz
 kz
 kz
+kz
+kz
 Et
-pK
-pK
+mT
+mT
 pK
 pK
 pK
@@ -10479,8 +10488,8 @@ PF
 Or
 pK
 pK
-pK
-pK
+mT
+mT
 Et
 kz
 kz
@@ -10488,9 +10497,9 @@ kz
 kz
 kz
 kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -10593,9 +10602,9 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
+kz
+kz
 kz
 kz
 kz
@@ -10630,9 +10639,9 @@ kz
 kz
 kz
 kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -10735,9 +10744,9 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
+kz
+kz
 kz
 kz
 kz
@@ -10772,9 +10781,9 @@ kz
 kz
 kz
 kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -10877,9 +10886,9 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
+kz
+kz
 kz
 kz
 kz
@@ -10914,9 +10923,9 @@ kz
 kz
 kz
 kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -11019,9 +11028,9 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
+kz
+kz
 kz
 kz
 kz
@@ -11034,16 +11043,16 @@ PF
 PF
 fI
 pK
-pK
-pK
-tA
-tA
-tA
-tA
-tA
-tA
-pK
-pK
+mT
+mT
+Wf
+Wf
+Wf
+Wf
+Wf
+Wf
+mT
+mT
 pK
 Iq
 PF
@@ -11056,9 +11065,9 @@ kz
 kz
 kz
 kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -11161,9 +11170,9 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
+kz
+kz
 kz
 kz
 kz
@@ -11176,16 +11185,16 @@ kz
 nD
 Qc
 zP
-pK
-pK
+mT
+mT
 Sm
-dc
-dc
-dc
-dc
+tM
+tM
+tM
+tM
 WU
-pK
-pK
+mT
+mT
 NJ
 Qc
 gq
@@ -11198,9 +11207,9 @@ kz
 kz
 kz
 kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -11303,9 +11312,9 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
+kz
+kz
 kz
 kz
 kz
@@ -11340,9 +11349,9 @@ kz
 kz
 kz
 kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -11445,8 +11454,6 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
 kz
 kz
@@ -11482,9 +11489,11 @@ kz
 kz
 kz
 kz
+kz
+kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -11587,8 +11596,6 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
 kz
 kz
@@ -11624,9 +11631,11 @@ kz
 kz
 kz
 kz
+kz
+kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -11729,8 +11738,6 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
 kz
 kz
@@ -11766,9 +11773,11 @@ kz
 kz
 kz
 kz
+kz
+kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -11871,8 +11880,6 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
 kz
 kz
@@ -11908,9 +11915,11 @@ kz
 kz
 kz
 kz
+kz
+kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -12013,8 +12022,6 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
 kz
 kz
@@ -12050,9 +12057,11 @@ kz
 kz
 kz
 kz
+kz
+kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -12155,8 +12164,6 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
 kz
 kz
@@ -12192,9 +12199,11 @@ kz
 kz
 kz
 kz
+kz
+kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -12297,8 +12306,6 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
 kz
 kz
@@ -12334,9 +12341,11 @@ kz
 kz
 kz
 kz
+kz
+kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -12439,8 +12448,6 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
 kz
 kz
@@ -12476,9 +12483,11 @@ kz
 kz
 kz
 kz
+kz
+kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -12581,8 +12590,6 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
 kz
 kz
@@ -12618,9 +12625,11 @@ kz
 kz
 kz
 kz
+kz
+kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -12723,8 +12732,6 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
 kz
 kz
@@ -12760,9 +12767,11 @@ kz
 kz
 kz
 kz
+kz
+kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -12865,8 +12874,6 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
 kz
 kz
@@ -12902,9 +12909,11 @@ kz
 kz
 kz
 kz
+kz
+kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -13007,8 +13016,6 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
 kz
 kz
@@ -13044,9 +13051,11 @@ kz
 kz
 kz
 kz
+kz
+kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -13149,8 +13158,6 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
 kz
 kz
@@ -13186,9 +13193,11 @@ kz
 kz
 kz
 kz
+kz
+kz
+kz
+kz
 lL
-kz
-kz
 kz
 kz
 kz
@@ -13291,46 +13300,46 @@ kz
 kz
 kz
 kz
-kz
-kz
 lL
-kz
-kz
-kz
-kz
-kz
-kz
-kz
-kz
-kz
-kz
-kz
-kz
-kz
-kz
-kz
-kz
-kz
-kz
-kz
-kz
-kz
-kz
-kz
-kz
-kz
-kz
-kz
-kz
-kz
-kz
-kz
-kz
-kz
-kz
 lL
-kz
-kz
+lL
+lL
+lL
+lL
+lL
+lL
+lL
+lL
+lL
+lL
+lL
+lL
+lL
+lL
+lL
+lL
+lL
+lL
+lL
+lL
+lL
+lL
+lL
+lL
+lL
+lL
+lL
+lL
+lL
+lL
+lL
+lL
+lL
+lL
+lL
+lL
+lL
+lL
 kz
 kz
 kz
@@ -13435,7 +13444,6 @@ kz
 kz
 kz
 kz
-lL
 kz
 kz
 kz
@@ -13470,7 +13478,8 @@ kz
 kz
 kz
 kz
-lL
+kz
+kz
 kz
 kz
 kz
@@ -13577,7 +13586,6 @@ kz
 kz
 kz
 kz
-lL
 kz
 kz
 kz
@@ -13612,7 +13620,8 @@ kz
 kz
 kz
 kz
-lL
+kz
+kz
 kz
 kz
 kz
@@ -13719,7 +13728,6 @@ kz
 kz
 kz
 kz
-lL
 kz
 kz
 kz
@@ -13754,7 +13762,8 @@ kz
 kz
 kz
 kz
-lL
+kz
+kz
 kz
 kz
 kz
@@ -13861,7 +13870,6 @@ kz
 kz
 kz
 kz
-lL
 kz
 kz
 kz
@@ -13896,7 +13904,8 @@ kz
 kz
 kz
 kz
-lL
+kz
+kz
 kz
 kz
 kz
@@ -14003,7 +14012,6 @@ kz
 kz
 kz
 kz
-lL
 kz
 kz
 kz
@@ -14038,7 +14046,8 @@ kz
 kz
 kz
 kz
-lL
+kz
+kz
 kz
 kz
 kz
@@ -14145,7 +14154,6 @@ kz
 kz
 kz
 kz
-lL
 kz
 kz
 kz
@@ -14180,7 +14188,8 @@ kz
 kz
 kz
 kz
-lL
+kz
+kz
 kz
 kz
 kz
@@ -14287,7 +14296,6 @@ kz
 kz
 kz
 kz
-lL
 kz
 kz
 kz
@@ -14322,7 +14330,8 @@ kz
 kz
 kz
 kz
-lL
+kz
+kz
 kz
 kz
 kz
@@ -14429,42 +14438,42 @@ kz
 kz
 kz
 kz
-lL
-lL
-lL
-lL
-lL
-lL
-lL
-lL
-lL
-lL
-lL
-lL
-lL
-lL
-lL
-lL
-lL
-lL
-lL
-lL
-lL
-lL
-lL
-lL
-lL
-lL
-lL
-lL
-lL
-lL
-lL
-lL
-lL
-lL
-lL
-lL
+kz
+kz
+kz
+kz
+kz
+kz
+kz
+kz
+kz
+kz
+kz
+kz
+kz
+kz
+kz
+kz
+kz
+kz
+kz
+kz
+kz
+kz
+kz
+kz
+kz
+kz
+kz
+kz
+kz
+kz
+kz
+kz
+kz
+kz
+kz
+kz
 kz
 kz
 kz
