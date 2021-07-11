@@ -5,7 +5,10 @@
 
 /datum/crafting_recipe
 	var/name = "" //in-game display name
-	var/list/reqs = list() //type paths of items consumed associated with how many are needed
+	/// type paths of items consumed associated with how many are needed
+	/// Note that stacks have special handling: the logic accounts for having '23' available
+	/// in the case of just having one stack of 23 amount, so stack/steel = 23 is fine
+	var/list/reqs = list()
 	var/list/blacklist = list() //type paths of items explicitly not allowed as an ingredient
 	var/result //type path of item resulting from this craft
 	/// String defines of items needed but not consumed. Lazy list.
@@ -44,13 +47,3 @@
 
 /datum/crafting_recipe/proc/on_craft_completion(mob/user, atom/result)
 	return
-
-/datum/crafting_recipe/stunprod
-	name = "Stunprod"
-	result = /obj/item/weapon/melee/baton/cattleprod
-	reqs = list(/obj/item/weapon/handcuffs/cable = 1,
-				/obj/item/stack/rods = 1,
-				/obj/item/weapon/tool/wirecutters = 1)
-	time = 40
-	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
