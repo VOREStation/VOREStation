@@ -34,6 +34,7 @@
 #define MAT_CHITIN			"chitin"
 #define MAT_CLOTH			"cloth"
 #define MAT_SYNCLOTH		"syncloth"
+#define MAT_FIBERS			"fibers"
 #define MAT_COPPER			"copper"
 #define MAT_QUARTZ			"quartz"
 #define MAT_TIN				"tin"

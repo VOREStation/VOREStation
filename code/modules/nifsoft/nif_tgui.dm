@@ -60,7 +60,7 @@
 	
 	user.verbs |= /mob/living/carbon/human/proc/nif_menu
 
-/datum/component/nif_menu/proc/nif_menu_click(obj/screen/nif/image, location, control, params, user)
+/datum/component/nif_menu/proc/nif_menu_click(source, location, control, params, user)
 	var/mob/living/carbon/human/H = user
 	if(istype(H) && H.nif)
 		INVOKE_ASYNC(H.nif, .proc/tgui_interact, user)
