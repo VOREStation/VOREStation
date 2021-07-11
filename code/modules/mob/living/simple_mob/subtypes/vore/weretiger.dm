@@ -27,6 +27,7 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
 
 	pixel_x = -16
+	default_pixel_x = -16
 
 	has_hands = 1
 
