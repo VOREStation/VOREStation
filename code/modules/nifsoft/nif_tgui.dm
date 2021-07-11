@@ -55,7 +55,7 @@
 		screen_icon = new()
 		RegisterSignal(screen_icon, COMSIG_CLICK, .proc/nif_menu_click)
 	screen_icon.icon = HUD.ui_style
-	HUD.other += screen_icon
+	LAZYADD(HUD.other_important, screen_icon)
 	user.client?.screen += screen_icon
 	
 	user.verbs |= /mob/living/carbon/human/proc/nif_menu
