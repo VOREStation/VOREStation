@@ -215,3 +215,72 @@ VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor)
 	dir = EAST
 /turf/simulated/sky/virgo3b/moving/west
 	dir = WEST
+
+/turf/simulated/floor/midpoint_glass
+	name = "glass floor"
+	desc = "Dont jump on it, or do, I'm not your mom."
+	icon = 'icons/turf/flooring/glass.dmi'
+	icon_state = "glass-0"
+	base_icon_state = "glass"
+
+/turf/simulated/floor/midpoint_glass/reinf
+	name = "reinforced glass floor"
+	desc = "Do jump on it, it can take it."
+	icon = 'icons/turf/flooring/reinf_glass.dmi'
+	icon_state = "reinf_glass-0"
+	base_icon_state = "reinf_glass"
+
+/turf/simulated/floor/midpoint_glass/Initialize()
+	. = ..()
+	return INITIALIZE_HINT_LATELOAD
+
+/turf/simulated/floor/midpoint_glass/LateInitialize()
+	do_icons()
+
+/turf/simulated/floor/midpoint_glass/proc/do_icons()
+	var/new_junction = NONE
+
+	for(var/direction in cardinal) //Cardinal case first.
+		var/turf/T = get_step(src, direction)
+		if(istype(T, type))
+			new_junction |= direction
+
+	if(!(new_junction & (NORTH|SOUTH)) || !(new_junction & (EAST|WEST)))
+		icon_state = "[base_icon_state]-[new_junction]"
+		return
+
+	if(new_junction & NORTH)
+		if(new_junction & WEST)
+			var/turf/T = get_step(src, NORTHWEST)
+			if(istype(T, type))
+				new_junction |= (1<<7)
+
+		if(new_junction & EAST)
+			var/turf/T = get_step(src, NORTHEAST)
+			if(istype(T, type))
+				new_junction |= (1<<4)
+
+	if(new_junction & SOUTH)
+		if(new_junction & WEST)
+			var/turf/T = get_step(src, SOUTHWEST)
+			if(istype(T, type))
+				new_junction |= (1<<6)
+
+		if(new_junction & EAST)
+			var/turf/T = get_step(src, SOUTHEAST)
+			if(istype(T, type))
+				new_junction |= (1<<5)
+
+	icon_state = "[base_icon_state]-[new_junction]"
+	
+	add_vis_overlay('icons/effects/effects.dmi', "white", plane = SPACE_PLANE, add_vis_flags = VIS_INHERIT_ID|VIS_UNDERLAY)
+
+/turf/space/v3b_midpoint/Initialize()
+	. = ..()
+	new /obj/effect/step_trigger/teleporter/planetary_fall/virgo3b(src)
+
+/turf/space/v3b_midpoint/ChangeTurf(turf/N, tell_universe, force_lighting_update, preserve_outdoors)
+	. = ..()
+	for(var/obj/effect/step_trigger/teleporter/planetary_fall/virgo3b/F in src)
+		qdel(F)
+		

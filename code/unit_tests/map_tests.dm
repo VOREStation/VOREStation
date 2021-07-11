@@ -1,9 +1,18 @@
+/*
+ *
+ *  Map Unit Tests.
+ *  Zone checks / APC / Scrubber / Vent / Cryopod Computers.
+ *
+ *
+ */
+
 /datum/unit_test/apc_area_test
-	name = "MAP: Area Test APC / Scrubbers / Vents Z level 1"
+	name = "MAP: Area Test APCs"
 
 /datum/unit_test/apc_area_test/start_test()
 	var/list/bad_areas = list()
 	var/area_test_count = 0
+	// We don't care either way.
 	var/list/exempt_areas = typesof(/area/space,
 					/area/syndicate_station,
 					/area/skipjack_station,
@@ -12,66 +21,50 @@
 					/area/holodeck,
 					/area/supply/station,
 					/area/mine,
-					/area/vacant/vacant_shop,
+					/area/vacant,
 					/area/turbolift,
 					/area/submap					)
 
-	var/list/exempt_from_atmos = typesof(/area/maintenance,
-						/area/storage,
-						/area/engineering/atmos/storage,
-						/area/rnd/test_area,
-						/area/construction,
-						/area/server,
-						/area/mine,
-						/area/vacant/vacant_shop,
-						/area/rnd/research_storage, // This should probably be fixed,
-						/area/security/riot_control // This should probably be fixed,
-						)
-
+	// Should NOT have an APC.
 	var/list/exempt_from_apc = typesof(/area/construction,
 						/area/medical/genetics,
-						/area/mine,
-						/area/vacant/vacant_shop
+						/area/mine
 						)
 
 	// Some maps have areas specific to the map, so include those.
 	exempt_areas += using_map.unit_test_exempt_areas.Copy()
-	exempt_from_atmos += using_map.unit_test_exempt_from_atmos.Copy()
 	exempt_from_apc += using_map.unit_test_exempt_from_apc.Copy()
 
-	var/list/zs_to_test = using_map.unit_test_z_levels || list(1) //Either you set it, or you just get z1
-
 	for(var/area/A in world)
-		if((A.z in zs_to_test) && !(A.type in exempt_areas))
-			area_test_count++
-			var/area_good = 1
-			var/bad_msg = "--------------- [A.name]([A.type])"
+		if(isNotStationLevel(A.z))
+			continue
+		if(A.type in exempt_areas)
+			continue
+		area_test_count++
+		var/area_good = 1
+		var/bad_msg = "--------------- [A.name]([A.type])"
 
+		if(!A.apc && !(A.type in exempt_from_apc))
+			log_bad("[bad_msg] lacks an APC.")
+			area_good = 0
+		else if(A.apc && (A.type in exempt_from_apc))
+			log_bad("[bad_msg] is not supposed to have an APC.")
+			area_good = 0
 
-			if(isnull(A.apc) && !(A.type in exempt_from_apc))
-				log_unit_test("[bad_msg] lacks an APC.")
-				area_good = 0
-
-			if(!A.air_scrub_info.len && !(A.type in exempt_from_atmos))
-				log_unit_test("[bad_msg] lacks an Air scrubber.")
-				area_good = 0
-
-			if(!A.air_vent_info.len && !(A.type in exempt_from_atmos))
-				log_unit_test("[bad_msg] lacks an Air vent.")
-				area_good = 0
-
-			if(!area_good)
-				bad_areas.Add(A)
+		if(!area_good)
+			bad_areas.Add(A)
 
 	if(bad_areas.len)
-		fail("\[[bad_areas.len]/[area_test_count]\]Some areas lacked APCs, Air Scrubbers, or Air vents.")
+		fail("\[[bad_areas.len]/[area_test_count]\]Some areas did not have the expected APC/vent/scrubber setup.")
 	else
-		pass("All \[[area_test_count]\] areas contained APCs, Air scrubbers, and Air vents.")
+		pass("All \[[area_test_count]\] areas contained APCs, air scrubbers, and air vents.")
 
 	return 1
 
+//=======================================================================================
+
 /datum/unit_test/wire_test
-	name = "MAP: Cable Test Z level 1"
+	name = "MAP: Cable Overlap Test"
 
 /datum/unit_test/wire_test/start_test()
 	var/wire_test_count = 0
@@ -82,21 +75,17 @@
 	var/list/dirs_checked = list()
 
 	for(C in world)
-		T = null
-
 		T = get_turf(C)
-		if(T && T.z == 1)
-			cable_turfs |= get_turf(C)
+		cable_turfs |= get_turf(C)
 
 	for(T in cable_turfs)
-		var/bad_msg = "--------------- [T.name] \[[T.x] / [T.y] / [T.z]\]"
 		dirs_checked.Cut()
 		for(C in T)
 			wire_test_count++
 			var/combined_dir = "[C.d1]-[C.d2]"
 			if(combined_dir in dirs_checked)
 				bad_tests++
-				log_unit_test("[bad_msg] Contains multiple wires with same direction on top of each other.")
+				log_unit_test("\t [T.log_info_line()] Contains multiple wires with same direction on top of each other.")
 			dirs_checked.Add(combined_dir)
 
 	if(bad_tests)
@@ -105,6 +94,300 @@
 		pass("All \[[wire_test_count]\] wires had no overlapping cables going the same direction.")
 
 	return 1
+
+//=======================================================================================
+
+/datum/unit_test/correct_allowed_spawn_test
+	name = "MAP: All allowed_spawns entries should have spawnpoints on map."
+
+/datum/unit_test/correct_allowed_spawn_test/start_test()
+	var/failed = FALSE
+
+	for(var/spawn_name in using_map.allowed_spawns)
+		var/datum/spawnpoint/spawnpoint = spawntypes[spawn_name]
+		if(!spawnpoint)
+			log_unit_test("Map allows spawning in [spawn_name], but [spawn_name] is null!")
+			failed = TRUE
+		else if(!spawnpoint.turfs.len)
+			log_unit_test("Map allows spawning in [spawn_name], but [spawn_name] has no associated spawn turfs.")
+			failed = TRUE
+
+	if(failed)
+		log_unit_test("Following spawn points exist:")
+		for(var/spawnpoint in spawntypes)
+			log_unit_test("\t[spawnpoint] (\ref[spawnpoint])")
+		log_unit_test("Following spawn points are allowed:")
+		for(var/spawnpoint in using_map.allowed_spawns)
+			log_unit_test("\t[spawnpoint] (\ref[spawnpoint])")
+		fail("Some of the entries in allowed_spawns have no spawnpoint turfs.")
+	else
+		pass("All entries in allowed_spawns have spawnpoints.")
+
+	return 1
+
+//=======================================================================================
+
+/datum/unit_test/cryopod_comp_check
+	name = "MAP: Cryopod Validity Check"
+
+/datum/unit_test/cryopod_comp_check/start_test()
+	var/pass = TRUE
+
+	for(var/obj/machinery/cryopod/C in global.machines)
+		if(!C.control_computer)
+			log_bad("[get_area(C)] lacks a cryopod control computer while holding a cryopod.")
+			pass = FALSE
+
+	for(var/obj/machinery/computer/cryopod/C in global.machines)
+		if(!(locate(/obj/machinery/cryopod) in get_area(C)))
+			log_bad("[get_area(C)] lacks a cryopod while holding a control computer.")
+			pass = FALSE
+
+	if(pass)
+		pass("All cryopods have their respective control computers.")
+	else
+		fail("Cryopods were not set up correctly.")
+
+	return 1
+
+//=======================================================================================
+
+/datum/unit_test/camera_nil_c_tag_check
+	name = "MAP: Camera nil c_tag check"
+
+/datum/unit_test/camera_nil_c_tag_check/start_test()
+	var/pass = TRUE
+
+	for(var/obj/machinery/camera/C in world)
+		if(!C.c_tag)
+			log_bad("The following camera does not have a c_tag set: [C.log_info_line()]")
+			pass = FALSE
+
+	if(pass)
+		pass("All cameras have c_tag set.")
+	else
+		fail("One or more cameras do not have the c_tag set.")
+
+	return 1
+
+//=======================================================================================
+
+/datum/unit_test/camera_unique_c_tag_check
+	name = "MAP: Camera unique c_tag check"
+	var/exceptions = list(
+		"video camera circuit" = TRUE // TODO: Switch to a define
+	)
+
+/datum/unit_test/camera_unique_c_tag_check/start_test()
+	var/cameras_by_ctag = list()
+	var/checked_cameras = 0
+	var/failed_tags = list()
+
+	for(var/obj/machinery/camera/C in world)
+		if(!C.c_tag)
+			continue
+		if(exceptions[C.c_tag])
+			continue
+		checked_cameras++
+		if((C.c_tag in cameras_by_ctag))
+			failed_tags[C.c_tag] = TRUE
+		LAZYADD(cameras_by_ctag[C.c_tag], C)
+
+	if(length(failed_tags))
+		for(var/ctag in failed_tags)
+			log_bad("Tag [ctag] had [length(cameras_by_ctag[ctag])] cameras:")
+			for(var/obj/machinery/camera/C in cameras_by_ctag[ctag])
+				log_bad("\t[C] at [C.x], [C.y], [C.z] (in [get_area(C)])")
+		fail("[length(failed_tags)] duplicate camera c_tag\s found.")
+	else
+		pass("[checked_cameras] camera\s have a unique c_tag.")
+
+	return 1
+
+//=======================================================================================
+
+/datum/unit_test/disposal_segments_shall_connect_with_other_disposal_pipes
+	name = "MAP: Disposal segments shall connect with other disposal pipes"
+
+/datum/unit_test/disposal_segments_shall_connect_with_other_disposal_pipes/start_test()
+	var/list/faulty_pipes = list()
+
+	for(var/obj/structure/disposalpipe/segment/D in world)
+		if(!isPlayerLevel(D.z))
+			continue
+		var/failed = FALSE
+		for(var/checkdir in global.cardinal)
+			if(!(checkdir & D.dpdir))
+				continue
+			var/turf/partnerTurf = get_step(D, checkdir)
+			if(!partnerTurf)
+				continue
+			var/foundMatch = FALSE
+			for(var/obj/structure/disposalpipe/partner in partnerTurf)
+				if(get_dir(partner, D) & partner.dpdir)
+					foundMatch = TRUE
+			if(!foundMatch)
+				failed = TRUE
+				break
+		if(failed)
+			log_bad("Following disposal pipe does not connect correctly: [D.log_info_line()]")
+			faulty_pipes += D
+
+	if(faulty_pipes.len)
+		fail("[faulty_pipes.len] disposal segment\s did not connect with other disposal pipes.")
+	else
+		pass("All disposal segments connect with other disposal pipes.")
+
+	return 1
+
+//=======================================================================================
+
+/datum/unit_test/wire_dir_and_icon_stat
+	name = "MAP: Cable Dir And Icon State Test"
+
+/datum/unit_test/wire_dir_and_icon_stat/start_test()
+	var/list/bad_cables = list()
+
+	for(var/obj/structure/cable/C in world)
+		if(istype(C, /obj/structure/cable/ender))
+			continue
+		var/expected_icon_state = "[C.d1]-[C.d2]"
+		if(C.icon_state != expected_icon_state)
+			bad_cables |= C
+			log_bad("[C.log_info_line()] has an invalid icon state. Expected [expected_icon_state], was [C.icon_state]")
+		if(!(C.icon_state in icon_states(C.icon)))
+			bad_cables |= C
+			log_bad("[C.log_info_line()] has an non-existing icon state.")
+
+	if(bad_cables.len)
+		fail("Found [bad_cables.len] cable\s with an unexpected icon state.")
+	else
+		pass("All wires had their expected icon state.")
+
+	return 1
+
+//=======================================================================================
+
+/datum/unit_test/station_power_terminals_shall_be_wired
+	name = "MAP: Station power terminals shall be wired"
+
+/datum/unit_test/station_power_terminals_shall_be_wired/start_test()
+	var/failures = 0
+	for(var/obj/machinery/power/terminal/term in global.machines)
+		var/turf/T = get_turf(term)
+		if(!T)
+			failures++
+			log_bad("Nullspace terminal : [term.log_info_line()]")
+			continue
+
+		if(!isStationLevel(T.z))
+			continue
+
+		var/found_cable = FALSE
+		for(var/obj/structure/cable/C in T)
+			if(C.d2 > 0 && C.d1 == 0)
+				found_cable = TRUE
+				break
+		if(!found_cable)
+			failures++
+			log_bad("Unwired terminal : [term.log_info_line()]")
+
+	if(failures)
+		fail("[failures] unwired power terminal\s.")
+	else
+		pass("All station power terminals are wired.")
+	return 1
+
+//=======================================================================================
+
+/datum/unit_test/station_wires_shall_be_connected
+	name = "MAP: Station wires shall be connected"
+	var/list/exceptions
+
+/datum/unit_test/station_wires_shall_be_connected/start_test()
+	var/failures = 0
+
+	for(var/obj/structure/cable/C in world)
+		if(!all_ends_connected(C))
+			failures++
+
+	if(failures)
+		fail("Found [failures] cable\s without connections.")
+	else if(exceptions.len)
+		for(var/turf/entry in exceptions)
+			log_bad("[entry.log_info_line()] - [english_list(exceptions[entry])] ")
+		fail("Unnecessary exceptions need to be cleaned up.")
+	else
+		pass("All station wires are properly connected.")
+
+	return 1
+
+// We work on the assumption that another test ensures we only have valid directions
+/datum/unit_test/station_wires_shall_be_connected/proc/all_ends_connected(var/obj/structure/cable/C)
+	. = TRUE
+
+	var/turf/source_turf = get_turf(C)
+	if(!source_turf)
+		log_bad("Nullspace wire: [C.log_info_line()]")
+		return FALSE
+
+	// We don't care about non-station wires
+	if(!isStationLevel(source_turf.z))
+		return TRUE
+	
+	var/area/source_area = get_area(source_turf)
+	if(source_area.type in using_map.wire_test_exempt_areas)
+		return TRUE
+
+	for(var/dir in list(C.d1, C.d2))
+		if(!dir) // Don't care about knots
+			continue
+		var/rev_dir = global.reverse_dir[dir]
+
+		var/turf/target_turf
+		if(dir == UP)
+			target_turf = GetAbove(C)
+		if(dir == DOWN)
+			target_turf = GetBelow(C)
+		else
+			target_turf = get_step(C, dir)
+
+		var/connected = FALSE
+		for(var/obj/structure/cable/revC in target_turf)
+			if(revC.d1 == rev_dir || revC.d2 == rev_dir)
+				connected = TRUE
+				break
+
+		if(!connected)
+			var/dir_message = (C.dir == initial(C.dir)) ? "" : " (Potential mapping error, check d1/d2 and icon state)"
+			log_bad("Disconnected wire: [dir2text(dir)] - [C.log_info_line()]")
+			. = FALSE
+
+//=======================================================================================
+
+/datum/unit_test/bad_doors
+	name = "MAP: Check for bad doors"
+
+/datum/unit_test/bad_doors/start_test()
+	var/checks = 0
+	var/failed_checks = 0
+	for(var/obj/machinery/door/airlock/A in world)
+		var/turf/T = get_turf(A)
+		checks++
+		if(!isPlayerLevel(A.z))
+			continue
+		if(istype(T, /turf/space) || isopenspace(T) || T.density)
+			failed_checks++
+			log_unit_test("Airlock [A] with bad turf at ([A.x],[A.y],[A.z]) in [T.loc].")
+	
+	if(failed_checks)
+		fail("\[[failed_checks] / [checks]\] Some doors had improper turfs below them.")
+	else
+		pass("All \[[checks]\] doors have proper turfs below them.")
+	
+	return 1
+
+//=======================================================================================
 
 /datum/unit_test/active_edges
 	name = "MAP: Active edges (all maps)"

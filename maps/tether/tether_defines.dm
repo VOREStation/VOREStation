@@ -132,25 +132,28 @@
 
 	unit_test_exempt_areas = list(
 		/area/tether/surfacebase/outside/outside1,
+		/area/tether/surfacebase/outside/outside2,
+		/area/tether/surfacebase/outside/outside3,
 		/area/tether/elevator,
-		/area/vacant/vacant_site,
-		/area/vacant/vacant_site/east,
+		/area/outpost/mining_main/passage,
 		/area/crew_quarters/sleep/Dorm_1/holo,
 		/area/crew_quarters/sleep/Dorm_3/holo,
 		/area/crew_quarters/sleep/Dorm_5/holo,
 		/area/crew_quarters/sleep/Dorm_7/holo,
 		/area/looking_glass/lg_1,
-		/area/rnd/miscellaneous_lab
+		/area/rnd/miscellaneous_lab,
+		/area/rnd/external, //  Outside
+		/area/tether/transit,
+		/area/asteroid,
+		/area/tether_away,
+		/area/gateway,
+		/area/engineering/atmos_intake,
 		)
-
-	unit_test_exempt_from_atmos = list(
-		/area/engineering/atmos_intake, // Outside,
-		/area/rnd/external, //  Outside,
-		/area/tether/surfacebase/emergency_storage/rnd,
-		/area/tether/surfacebase/emergency_storage/atrium,
-		/area/tether/surfacebase/lowernortheva, // it airlock
-		/area/tether/surfacebase/lowernortheva/external, //it outside
-		/area/tether/surfacebase/security/gasstorage) //it maint
+	
+	wire_test_exempt_areas = list(
+		/area/maintenance/asmaint2,
+		/area/tether/outpost/solars_outside
+	)
 
 
 	lateload_z_levels = list(
