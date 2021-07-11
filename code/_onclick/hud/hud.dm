@@ -177,7 +177,10 @@ var/list/global_huds = list(
 	var/obj/screen/move_intent
 
 	var/list/adding
+	/// Misc hud elements that are hidden when the hud is minimized
 	var/list/other
+	/// Same, but always shown even when the hud is minimized
+	var/list/other_important
 	var/list/miniobjs
 	var/list/obj/screen/hotkeybuttons
 
@@ -214,6 +217,7 @@ var/list/global_huds = list(
 	move_intent = null
 	adding = null
 	other = null
+	other_important = null
 	hotkeybuttons = null
 //	item_action_list = null // ?
 	mymob = null
@@ -367,12 +371,16 @@ var/list/global_huds = list(
 			client.screen -= hud_used.other
 		if(hud_used.hotkeybuttons)
 			client.screen -= hud_used.hotkeybuttons
+		if(hud_used.other_important)
+			client.screen -= hud_used.other_important
 	else
 		hud_used.hud_shown = 1
 		if(hud_used.adding)
 			client.screen += hud_used.adding
 		if(hud_used.other && hud_used.inventory_shown)
 			client.screen += hud_used.other
+		if(hud_used.other_important)
+			client.screen += hud_used.other_important
 		if(hud_used.hotkeybuttons && !hud_used.hotkey_ui_hidden)
 			client.screen += hud_used.hotkeybuttons
 		if(healths)
