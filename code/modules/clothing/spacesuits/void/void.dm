@@ -15,16 +15,16 @@
 	//Species-specific stuff.
 	species_restricted = list("Human", "Promethean")
 	sprite_sheets_refit = list(
-		SPECIES_UNATHI = 'icons/mob/species/unathi/helmet.dmi',
-		SPECIES_TAJ = 'icons/mob/species/tajaran/helmet.dmi',
-		SPECIES_SKRELL = 'icons/mob/species/skrell/helmet.dmi'
+		SPECIES_UNATHI = 'icons/inventory/head/mob_unathi.dmi',
+		SPECIES_TAJ = 'icons/inventory/head/mob_tajaran.dmi',
+		SPECIES_SKRELL = 'icons/inventory/head/mob_skrell.dmi'
 		//Teshari have a general sprite sheet defined in modules/clothing/clothing.dm
 		)
 	sprite_sheets_obj = list(
-		SPECIES_UNATHI = 'icons/obj/clothing/species/unathi/hats.dmi',
-		SPECIES_TAJ = 'icons/obj/clothing/species/tajaran/hats.dmi',
-		SPECIES_SKRELL = 'icons/obj/clothing/species/skrell/hats.dmi',
-		SPECIES_TESHARI = 'icons/obj/clothing/species/teshari/hats.dmi'
+		SPECIES_UNATHI = 'icons/inventory/head/item_unathi.dmi',
+		SPECIES_TAJ = 'icons/inventory/head/item_tajaran.dmi',
+		SPECIES_SKRELL = 'icons/inventory/head/item_skrell.dmi',
+		SPECIES_TESHARI = 'icons/inventory/head/item_teshari.dmi'
 		)
 
 	light_overlay = "helmet_light"
@@ -45,16 +45,16 @@
 
 	species_restricted = list("Human", SPECIES_SKRELL, "Promethean")
 	sprite_sheets_refit = list(
-		SPECIES_UNATHI = 'icons/mob/species/unathi/suit.dmi',
-		SPECIES_TAJ = 'icons/mob/species/tajaran/suit.dmi',
-		SPECIES_SKRELL = 'icons/mob/species/skrell/suit.dmi'
+		SPECIES_UNATHI = 'icons/inventory/suit/mob_unathi.dmi',
+		SPECIES_TAJ = 'icons/inventory/suit/mob_tajaran.dmi',
+		SPECIES_SKRELL = 'icons/inventory/suit/mob_skrell.dmi'
 		//Teshari have a general sprite sheet defined in modules/clothing/clothing.dm
 		)
 	sprite_sheets_obj = list(
-		SPECIES_UNATHI = 'icons/obj/clothing/species/unathi/suits.dmi',
-		SPECIES_TAJ = 'icons/obj/clothing/species/tajaran/suits.dmi',
-		SPECIES_SKRELL = 'icons/obj/clothing/species/skrell/suits.dmi',
-		SPECIES_TESHARI = 'icons/obj/clothing/species/teshari/suits.dmi'
+		SPECIES_UNATHI = 'icons/inventory/suit/item_unathi.dmi',
+		SPECIES_TAJ = 'icons/inventory/suit/item_tajaran.dmi',
+		SPECIES_SKRELL = 'icons/inventory/suit/item_skrell.dmi',
+		SPECIES_TESHARI = 'icons/inventory/suit/item_teshari.dmi'
 		)
 
 	//Breach thresholds, should ideally be inherited by most (if not all) voidsuits.

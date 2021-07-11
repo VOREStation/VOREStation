@@ -336,7 +336,6 @@
 /obj/item/weapon/storage/belt/chameleon
 	name = "belt"
 	desc = "Can hold various things.  It also has a small dial inside one of the pouches."
-	icon = 'icons/obj/clothing/belts.dmi'
 	icon_state = "utilitybelt"
 	origin_tech = list(TECH_ILLEGAL = 3)
 	var/global/list/clothing_choices
@@ -376,7 +375,7 @@
 /obj/item/clothing/accessory/chameleon
 	name = "black tie"
 	desc = "Looks like a black tie, but his one also has a dial inside."
-	icon = 'icons/obj/clothing/ties.dmi'
+	icon = 'icons/inventory/accessory/item.dmi'
 	icon_state = "blacktie"
 	origin_tech = list(TECH_ILLEGAL = 3)
 	var/global/list/clothing_choices

@@ -1411,9 +1411,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 8
 	},
-/obj/machinery/light/small{
-	dir = 1
-	},
 /obj/machinery/firealarm{
 	pixel_y = 25
 	},
@@ -1621,7 +1618,6 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/light/small,
 /turf/simulated/floor/tiled,
 /area/tcomsat{
 	name = "\improper Telecomms Lobby"
@@ -1890,6 +1886,9 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/light/no_nightshift{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/dark,
 /area/tcommsat/entrance{
 	name = "\improper Telecomms Entrance"
@@ -1903,9 +1902,6 @@
 	},
 /obj/structure/cable/green{
 	icon_state = "0-4"
-	},
-/obj/machinery/light/small{
-	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tcommsat/entrance{
@@ -2094,9 +2090,6 @@
 	name = "\improper Telecomms Entrance"
 	})
 "ady" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
@@ -2243,9 +2236,6 @@
 /area/maintenance/substation/engineering)
 "adJ" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
-/obj/machinery/light/small{
-	dir = 8
-	},
 /obj/machinery/atmospherics/portables_connector{
 	dir = 4
 	},
@@ -9121,7 +9111,7 @@
 	pressure_checks_default = 0;
 	use_power = 1
 	},
-/obj/machinery/light{
+/obj/machinery/light/no_nightshift{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark{
@@ -9271,7 +9261,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
-/obj/machinery/light/small,
+/obj/machinery/light/no_nightshift,
 /turf/simulated/floor/tiled,
 /area/tcommsat/computer)
 "awD" = (
@@ -9532,7 +9522,7 @@
 	pump_direction = 0;
 	use_power = 1
 	},
-/obj/machinery/light{
+/obj/machinery/light/no_nightshift{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark{
@@ -10655,11 +10645,17 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
+/obj/machinery/light/no_nightshift{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/dark,
 /area/ai_server_room)
 "aBu" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
+	},
+/obj/machinery/light/no_nightshift{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
 /area/bridge/secondary/teleporter)
@@ -16996,6 +16992,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
+/obj/machinery/light/no_nightshift,
 /turf/simulated/floor/tiled/techmaint,
 /area/tcomfoyer{
 	name = "\improper Telecomms Storage"
@@ -17525,9 +17522,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
-	},
-/obj/machinery/light/small{
-	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
 /area/ai_server_room)
@@ -19164,7 +19158,7 @@
 /turf/simulated/floor/carpet,
 /area/engineering/foyer)
 "fvZ" = (
-/obj/machinery/light{
+/obj/machinery/light/no_nightshift{
 	dir = 1
 	},
 /turf/simulated/floor/bluegrid{
@@ -19427,9 +19421,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 8
-	},
-/obj/machinery/light/small{
-	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
 /area/bridge/secondary/teleporter)
@@ -20126,9 +20117,6 @@
 /obj/item/weapon/stock_parts/subspace/amplifier,
 /obj/item/weapon/stock_parts/subspace/amplifier,
 /obj/item/weapon/stock_parts/subspace/amplifier,
-/obj/machinery/light/small{
-	dir = 8
-	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tcomfoyer{
 	name = "\improper Telecomms Storage"
@@ -20721,7 +20709,6 @@
 	dir = 8;
 	pixel_x = -24
 	},
-/obj/machinery/light/small,
 /turf/simulated/floor/tiled/dark,
 /area/tcommsat/computer)
 "hjG" = (
@@ -21026,7 +21013,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 9
 	},
-/obj/machinery/light/small,
+/obj/machinery/light/no_nightshift,
 /turf/simulated/floor/tiled/techfloor,
 /area/tcommsat/chamber)
 "hwC" = (
@@ -21587,9 +21574,6 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
-	},
-/obj/machinery/light/small{
-	dir = 1
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/substation/tcomms)
@@ -22255,7 +22239,6 @@
 /obj/item/weapon/stock_parts/micro_laser/high,
 /obj/item/weapon/stock_parts/micro_laser/high,
 /obj/item/weapon/stock_parts/micro_laser/high,
-/obj/machinery/light/small,
 /turf/simulated/floor/tiled/techmaint,
 /area/tcomfoyer{
 	name = "\improper Telecomms Storage"
@@ -22439,7 +22422,6 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
-/obj/machinery/light/small,
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 4;
@@ -22449,6 +22431,7 @@
 	dir = 4;
 	pixel_x = -22
 	},
+/obj/machinery/light/no_nightshift,
 /turf/simulated/floor/plating,
 /area/maintenance/substation/tcomms)
 "iIr" = (
@@ -27059,7 +27042,6 @@
 /area/space)
 "mVE" = (
 /obj/machinery/computer/teleporter,
-/obj/machinery/light/small,
 /turf/simulated/floor/tiled/dark,
 /area/bridge/secondary/teleporter)
 "mVM" = (
@@ -28609,9 +28591,6 @@
 	dir = 8;
 	network = "tcommsat"
 	},
-/obj/machinery/light/small{
-	dir = 1
-	},
 /turf/simulated/floor/tiled/dark,
 /area/tcommsat/computer)
 "oEs" = (
@@ -29392,6 +29371,9 @@
 /obj/item/weapon/stock_parts/subspace/analyzer,
 /obj/item/weapon/stock_parts/subspace/analyzer,
 /obj/item/weapon/stock_parts/subspace/analyzer,
+/obj/machinery/light/no_nightshift{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tcomfoyer{
 	name = "\improper Telecomms Storage"
@@ -33687,6 +33669,7 @@
 /turf/simulated/floor,
 /area/maintenance/cargo)
 "uKQ" = (
+/obj/machinery/light/no_nightshift,
 /turf/simulated/floor/tiled/dark,
 /area/tcommsat/computer)
 "uKX" = (
@@ -34914,7 +34897,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/light/small{
+/obj/machinery/light/no_nightshift{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,

@@ -390,7 +390,7 @@ or don't wish to potentially have a random person teleported into you, it's sugg
 not carry this around."}, "OOC Warning", list("Take It","Leave It"))
 		if(choice == "Leave It")
 			return
-		..()
+	return ..()
 
 /obj/item/device/perfect_tele_beacon/stationary
 	name = "stationary translocator beacon"
