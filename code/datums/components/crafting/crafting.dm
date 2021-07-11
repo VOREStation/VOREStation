@@ -357,7 +357,7 @@
 			container.close_all()
 		qdel(DL)
 
-/datum/component/personal_crafting/proc/component_ui_interact(/obj/screen/craft/image, location, control, params, user)
+/datum/component/personal_crafting/proc/component_ui_interact(source, location, control, params, user)
 	// SIGNAL_HANDLER
 
 	if(user == parent)
