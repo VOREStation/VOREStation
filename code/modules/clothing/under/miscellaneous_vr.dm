@@ -197,3 +197,31 @@
 	icon_state = "talon_captain"
 	item_state = "talon_captain"
 	rolled_sleeves = 0
+
+// Excelsior uniforms
+/obj/item/clothing/under/excelsior
+	name = "\improper Excelsior uniform"
+	desc = "A uniform from a particular spaceship: Excelsior."
+	
+	icon = 'icons/inventory/uniform/item_vr.dmi'
+	default_worn_icon = 'icons/inventory/uniform/mob_vr.dmi'
+	icon_state = "excelsior_white"
+
+/obj/item/clothing/under/excelsior/mixed
+	icon_state = "excelsior_mixed"
+/obj/item/clothing/under/excelsior/orange
+	icon_state = "excelsior_orange"
+
+// Summer dresses
+/obj/item/clothing/under/summerdress
+	name = "summer dress"
+	desc = "A nice summer dress."
+	
+	icon = 'icons/inventory/uniform/item_vr.dmi'
+	default_worn_icon = 'icons/inventory/uniform/mob_vr.dmi'
+	icon_state = "summerdress"
+
+/obj/item/clothing/under/summerdress/red
+	icon_state = "summerdress3"
+/obj/item/clothing/under/summerdress/blue
+	icon_state = "summerdress2"

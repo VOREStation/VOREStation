@@ -122,6 +122,15 @@
 	rolled_sleeves = -1
 
 /obj/item/clothing/under/rank/medical/paramedic
+	name = "paramedic uniform"
+	desc = "It's made of a special fiber that provides minor protection against biohazards. This one is the color scheme that designates a rapid first responder."
+	icon_state = "paramedic"
+	item_state_slots = list(slot_r_hand_str = "white", slot_l_hand_str = "white")
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
+	rolled_down = -1
+	rolled_sleeves = -1
+
+/obj/item/clothing/under/rank/medical/paramedic_alt
 	name = "short sleeve medical jumpsuit"
 	desc = "It's made of a special fiber that provides minor protection against biohazards. This one has a cross on the chest denoting that the wearer is trained medical personnel."
 	icon_state = "medical_short"

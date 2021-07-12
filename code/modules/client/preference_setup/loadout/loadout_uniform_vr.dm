@@ -224,3 +224,17 @@ Talon jumpsuit
 	display_name = "ITV Jumpsuit"
 	description = "A jumpsuit that is usually issued to ITV contractors, however others can purchase it to show their support towards ITV."
 	path = /obj/item/clothing/under/rank/talon/basic
+
+// Summer dresses
+/datum/gear/uniform/summerdress
+	display_name = "summer dress selection"
+	path = /obj/item/clothing/under/summerdress
+
+/datum/gear/uniform/summerdress/New()
+	..()
+	var/list/dresses = list(
+		"black and white" = /obj/item/clothing/under/summerdress,
+		"blue and white" = /obj/item/clothing/under/summerdress/blue,
+		"red and white" = /obj/item/clothing/under/summerdress/red
+	)
+	gear_tweaks += new/datum/gear_tweak/path(dresses)

@@ -59,3 +59,7 @@
 	resources = list(MAT_PLASTIC = 5000, MAT_STEEL = 2000)
 	hidden = 1
 	man_rating = 2
+
+/datum/category_item/autolathe/tools/rsf
+	name = "rapid service fabricator"
+	path = /obj/item/weapon/rsf

@@ -7,7 +7,6 @@
  */
 
 /obj/item/weapon/rig
-
 	name = "hardsuit control module"
 	icon = 'icons/obj/rig_modules.dmi'
 	desc = "A back-mounted hardsuit deployment and control mechanism."
@@ -26,6 +25,8 @@
 	permeability_coefficient = 0.1
 	unacidable = 1
 	preserve_item = 1
+
+	var/default_mob_icon = 'icons/mob/rig_back.dmi'
 
 	var/suit_state //The string used for the suit's icon_state.
 
@@ -96,22 +97,8 @@
 	var/datum/effect/effect/system/spark_spread/spark_system
 	var/datum/mini_hud/rig/minihud
 
-/obj/item/weapon/rig/examine()
-	. = ..()
-	if(wearer)
-		for(var/obj/item/piece in list(helmet,gloves,chest,boots))
-			if(!piece || piece.loc != wearer)
-				continue
-			. += "[bicon(piece)] \The [piece] [piece.gender == PLURAL ? "are" : "is"] deployed."
-
-	if(src.loc == usr)
-		. += "The access panel is [locked? "locked" : "unlocked"]."
-		. += "The maintenance panel is [open ? "open" : "closed"]."
-		. += "Hardsuit systems are [offline ? "<span class='warning'>offline</span>" : "<span class='notice'>online</span>"]."
-		. += "The cooling stystem is [cooling_on ? "active" : "inactive"]."
-
-		if(open)
-			. += "It's equipped with [english_list(installed_modules)]."
+	// Action button
+	action_button_name = "Hardsuit Interface"
 
 /obj/item/weapon/rig/New()
 	..()
@@ -183,6 +170,23 @@
 	qdel(spark_system)
 	spark_system = null
 	return ..()
+
+/obj/item/weapon/rig/examine()
+	. = ..()
+	if(wearer)
+		for(var/obj/item/piece in list(helmet,gloves,chest,boots))
+			if(!piece || piece.loc != wearer)
+				continue
+			. += "[bicon(piece)] \The [piece] [piece.gender == PLURAL ? "are" : "is"] deployed."
+
+	if(src.loc == usr)
+		. += "The access panel is [locked? "locked" : "unlocked"]."
+		. += "The maintenance panel is [open ? "open" : "closed"]."
+		. += "Hardsuit systems are [offline ? "<span class='warning'>offline</span>" : "<span class='notice'>online</span>"]."
+		. += "The cooling stystem is [cooling_on ? "active" : "inactive"]."
+
+		if(open)
+			. += "It's equipped with [english_list(installed_modules)]."
 
 // We only care about processing when we're on a mob
 /obj/item/weapon/rig/Moved(old_loc, direction, forced)
@@ -587,7 +591,7 @@
 
 	cut_overlays()
 	if(!mob_icon || update_mob_icon)
-		var/species_icon = 'icons/mob/rig_back.dmi'
+		var/species_icon = default_mob_icon
 		// Since setting mob_icon will override the species checks in
 		// update_inv_wear_suit(), handle species checks here.
 		if(wearer && sprite_sheets && sprite_sheets[wearer.species.get_bodytype(wearer)])
@@ -597,7 +601,7 @@
 	if(installed_modules.len)
 		for(var/obj/item/rig_module/module in installed_modules)
 			if(module.suit_overlay)
-				chest.add_overlay(image('icons/mob/rig_modules.dmi', icon_state = "[module.suit_overlay]", dir = SOUTH))
+				chest.add_overlay(image(module.suit_overlay_icon, icon_state = "[module.suit_overlay]", dir = SOUTH))
 
 	if(wearer)
 		wearer.update_inv_shoes()

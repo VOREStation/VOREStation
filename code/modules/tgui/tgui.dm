@@ -257,12 +257,14 @@
 		return
 	// Validate ping
 	if(!initialized && world.time - opened_at > TGUI_PING_TIMEOUT)
+		// #ifdef TGUI_DEBUGGING // Always log zombie windows
 		log_tgui(user, \
 			"Error: Zombie window detected, killing it with fire.\n" \
 			+ "window_id: [window.id]\n" \
 			+ "opened_at: [opened_at]\n" \
 			+ "world.time: [world.time]")
 		close(can_be_suspended = FALSE)
+		// #endif
 		return
 	// Update through a normal call to ui_interact
 	if(status != STATUS_DISABLED && (autoupdate || force))
@@ -288,9 +290,6 @@
 		status = min(status, parent_ui.status)
 	return prev_status != status
 
-/datum/tgui/proc/log_message(message)
-	log_tgui("[user] ([user.ckey]) using \"[title]\":\n[message]")
-
 /datum/tgui/proc/set_map_z_level(nz)
 	map_z_level = nz
 
@@ -305,7 +304,9 @@
 	// Pass act type messages to tgui_act
 	if(type && copytext(type, 1, 5) == "act/")
 		var/act_type = copytext(type, 5)
+		#ifdef TGUI_DEBUGGING
 		log_tgui(user, "Action: [act_type] [href_list["payload"]], Window: [window.id], Source: [src_object]")
+		#endif
 		process_status()
 		if(src_object.tgui_act(act_type, payload, src, state))
 			SStgui.update_uis(src_object)

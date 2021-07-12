@@ -158,6 +158,15 @@
 				usr.put_in_l_hand(src)
 		src.add_fingerprint(usr)
 
+/obj/item/weapon/storage/AltClick(mob/user)
+	if(user in is_seeing)
+		src.close(user)
+	// I would think there should be some incap check here or something
+	// But MouseDrop doesn't use one (as of this writing), so...
+	else if(isliving(user) && Adjacent(user))
+		src.open(user)
+	else
+		return ..()
 
 /obj/item/weapon/storage/proc/return_inv()
 

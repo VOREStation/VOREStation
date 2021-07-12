@@ -31,16 +31,20 @@
 	path = /obj/item/clothing/suit/poncho
 
 //Detective alternative
-/datum/gear/uniform/detective_alt
-	display_name = "sleek modern coat, detective"
+/datum/gear/suit/detective_alt
+	display_name = "sleek modern coat selection, detective"
 	path = /obj/item/clothing/suit/storage/det_trench/alt
 	allowed_roles = list("Head of Security", "Detective")
 
-//Detective alternative
-/datum/gear/uniform/detective_alt2
-	display_name = "sleek modern coat (long), detective"
-	path = /obj/item/clothing/suit/storage/det_trench/alt2
-	allowed_roles = list("Head of Security", "Detective")
+/datum/gear/suit/detective_alt/New()
+	..()
+	var/list/coats = list(
+		"Modern coat (tan)" = /obj/item/clothing/suit/storage/det_trench/alt,
+		"Modern coat (long, tan)" = /obj/item/clothing/suit/storage/det_trench/alt2,
+		"Modern coat (black)" = /obj/item/clothing/suit/storage/det_trench/alt/black,
+		"Modern coat (long, black)" = /obj/item/clothing/suit/storage/det_trench/alt2/black
+	)
+	gear_tweaks += new/datum/gear_tweak/path(coats)
 
 //Emergency Responder jackets for Parameds & EMTs, but also general Medical Staff
 /datum/gear/suit/roles/medical/ems_jacket

@@ -53,3 +53,128 @@
 
 /obj/item/weapon/rig/robotics
 	allowed = list(/obj/item/device/flashlight, /obj/item/weapon/storage/box, /obj/item/weapon/storage/belt, /obj/item/device/defib_kit/compact)
+
+// 'Technomancer' hardsuit
+/obj/item/weapon/rig/focalpoint
+	name = "\improper F.P.E. hardsuit control module"
+	desc = "A high-end hardsuit produced by Focal Point Energistics, focused around repair and construction."
+	
+	icon = 'icons/obj/rig_modules_vr.dmi' // the item
+	default_mob_icon = 'icons/mob/rig_back_vr.dmi' // the onmob
+	icon_state = "techno_rig"
+	suit_type = "\improper F.P.E. hardsuit"
+	cell_type = /obj/item/weapon/cell/hyper
+
+	// Copied from CE rig
+	slowdown = 0
+	offline_slowdown = 0
+	offline_vision_restriction = 0
+	rigsuit_max_pressure = 20 * ONE_ATMOSPHERE			  // Max pressure the rig protects against when sealed
+	rigsuit_min_pressure = 0							  // Min pressure the rig protects against when sealed
+	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
+	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE // so it's like a rig firesuit
+	armor = list("melee" = 40, "bullet" = 10, "laser" = 30, "energy" = 55, "bomb" = 70, "bio" = 100, "rad" = 100)
+	
+	chest_type = /obj/item/clothing/suit/space/rig/focalpoint
+	helm_type = /obj/item/clothing/head/helmet/space/rig/focalpoint
+	boot_type = /obj/item/clothing/shoes/magboots/rig/focalpoint
+	glove_type = /obj/item/clothing/gloves/gauntlets/rig/focalpoint
+
+/obj/item/weapon/rig/focalpoint/equipped
+	initial_modules = list(
+		/obj/item/rig_module/maneuvering_jets,
+		/obj/item/rig_module/teleporter, // Try not to set yourself on fire
+		/obj/item/rig_module/device/rcd,
+		/obj/item/rig_module/grenade_launcher/metalfoam
+	)
+
+/obj/item/clothing/head/helmet/space/rig/focalpoint
+	icon = 'icons/inventory/head/item_vr.dmi'
+	default_worn_icon = 'icons/inventory/head/mob_vr.dmi'
+	icon_state = "techno_rig"
+	// No animal people sprites for these yet, sad times
+	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
+	sprite_sheets = list()
+
+/obj/item/clothing/suit/space/rig/focalpoint
+	icon = 'icons/inventory/suit/item_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	icon_state = "techno_rig"
+	// No animal people sprites for these yet, sad times
+	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
+	sprite_sheets = list()
+
+/obj/item/clothing/shoes/magboots/rig/focalpoint
+	icon = 'icons/inventory/feet/item_vr.dmi'
+	default_worn_icon = 'icons/inventory/feet/mob_vr.dmi'
+	icon_state = "techno_rig"
+	// No animal people sprites for these yet, sad times
+	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
+	sprite_sheets = list()
+
+/obj/item/clothing/gloves/gauntlets/rig/focalpoint
+	icon = 'icons/inventory/hands/item_vr.dmi'
+	default_worn_icon = 'icons/inventory/hands/mob_vr.dmi'
+	icon_state = "techno_rig"
+	siemens_coefficient = 0
+	// No animal people sprites for these yet, sad times
+	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
+	sprite_sheets = list()
+
+// 'Ironhammer' hardsuit
+/obj/item/weapon/rig/hephaestus
+	name = "\improper Hephaestus hardsuit control module"
+	desc = "A high-end hardsuit produced by Hephaestus Industries, focused on destroying the competition. Literally."
+	
+	icon = 'icons/obj/rig_modules_vr.dmi' // the item
+	default_mob_icon = 'icons/mob/rig_back_vr.dmi' // the onmob
+	icon_state = "ihs_rig"
+	suit_type = "\improper Hephaestus hardsuit"
+	cell_type = /obj/item/weapon/cell/super
+
+	armor = list("melee" = 70, "bullet" = 70, "laser" = 70, "energy" = 50, "bomb" = 60, "bio" = 100, "rad" = 20)
+	
+	chest_type = /obj/item/clothing/suit/space/rig/hephaestus
+	helm_type = /obj/item/clothing/head/helmet/space/rig/hephaestus
+	boot_type = /obj/item/clothing/shoes/magboots/rig/hephaestus
+	glove_type = /obj/item/clothing/gloves/gauntlets/rig/hephaestus
+
+/obj/item/weapon/rig/hephaestus/equipped
+	initial_modules = list(
+		/obj/item/rig_module/maneuvering_jets,
+		/obj/item/rig_module/grenade_launcher,
+		/obj/item/rig_module/mounted/egun,
+		/obj/item/rig_module/mounted/energy_blade
+	)
+
+/obj/item/clothing/head/helmet/space/rig/hephaestus
+	icon = 'icons/inventory/head/item_vr.dmi'
+	default_worn_icon = 'icons/inventory/head/mob_vr.dmi'
+	icon_state = "ihs_rig"
+	// No animal people sprites for these yet, sad times
+	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
+	sprite_sheets = list()
+
+/obj/item/clothing/suit/space/rig/hephaestus
+	icon = 'icons/inventory/suit/item_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	icon_state = "ihs_rig"
+	// No animal people sprites for these yet, sad times
+	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
+	sprite_sheets = list()
+
+/obj/item/clothing/shoes/magboots/rig/hephaestus
+	icon = 'icons/inventory/feet/item_vr.dmi'
+	default_worn_icon = 'icons/inventory/feet/mob_vr.dmi'
+	icon_state = "ihs_rig"
+	// No animal people sprites for these yet, sad times
+	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
+	sprite_sheets = list()
+
+/obj/item/clothing/gloves/gauntlets/rig/hephaestus
+	icon = 'icons/inventory/hands/item_vr.dmi'
+	default_worn_icon = 'icons/inventory/hands/mob_vr.dmi'
+	icon_state = "ihs_rig"
+	// No animal people sprites for these yet, sad times
+	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
+	sprite_sheets = list()

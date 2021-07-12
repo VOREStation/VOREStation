@@ -390,7 +390,7 @@
 //**** Here lives snow ****
 /turf/simulated/floor/snow
 	name = "snow"
-	icon = 'icons/turf/snow_new.dmi'
+	icon = 'icons/turf/outdoors.dmi'
 	icon_state = "snow"
 	initial_flooring = /decl/flooring/snow
 	var/list/crossed_dirs = list()
