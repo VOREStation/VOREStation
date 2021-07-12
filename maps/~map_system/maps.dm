@@ -133,6 +133,7 @@ var/list/all_maps = list()
 	var/list/wire_test_exempt_areas = list()
 	
 	var/list/disposal_test_exempt_areas = list()
+	var/list/disposal_test_exempt_root_areas = list()
 
 	var/list/planet_datums_to_make = list() // Types of `/datum/planet`s that will be instantiated by SSPlanets.
 

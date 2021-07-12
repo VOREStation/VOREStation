@@ -155,7 +155,7 @@
 		/area/tether/outpost/solars_outside
 	)
 	
-	disposal_test_exempt_areas = typesof(
+	disposal_test_exempt_areas = list(
 		/area/crew_quarters/sleep/maintDorm1,
 		/area/crew_quarters/sleep/maintDorm2,
 		/area/crew_quarters/sleep/maintDorm3,
