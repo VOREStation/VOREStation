@@ -68,11 +68,17 @@
 	for(var/client/C in GLOB.admins) // VOREStation Edit - GLOB
 		var/temp = ""
 		var/category = R_ADMIN
+<<<<<<< HEAD
 		// VOREStation Edit - Apply stealthmin protection to all levels
 		if(C.holder.fakekey && !check_rights(R_ADMIN|R_MOD, FALSE, src))	// Only admins and mods can see stealthmins
 			continue
 		// VOREStation Edit End
 		if(check_rights(R_BAN, FALSE, C)) // admins //VOREStation Edit
+=======
+		if(check_rights(R_ADMIN, FALSE, C)) // admins
+			if(C.holder.fakekey && !check_rights_for(src, R_ADMIN|R_MOD))	// Only admins and mods can see stealthmins
+				continue
+>>>>>>> 351c82238ee... Merge pull request #8161 from MarinaGryphon/patch-6
 			num_admins_online++
 		else if(check_rights(R_ADMIN, FALSE, C) && !check_rights(R_SERVER, FALSE, C)) // mods //VOREStation Edit: Game masters
 			category = R_MOD
