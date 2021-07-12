@@ -216,7 +216,7 @@
 		if(!isPlayerLevel(D.z))
 			continue
 		var/area/Darea = get_area(D)
-		if((Darea.type in using_map.disposal_test_exempt_areas) || is_type_in_list(Darea, disposal_test_exempt_root_areas))
+		if((Darea.type in using_map.disposal_test_exempt_areas) || is_type_in_list(Darea, using_map.disposal_test_exempt_root_areas))
 			continue
 		var/failed = FALSE
 		for(var/checkdir in global.cardinal)
