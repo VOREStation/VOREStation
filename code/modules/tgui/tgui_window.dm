@@ -53,7 +53,9 @@
 		inline_assets = list(),
 		inline_html = "",
 		fancy = FALSE)
+	#ifdef TGUI_DEBUGGING
 	log_tgui(client, "[id]/initiailize ([src])")
+	#endif
 	if(!client)
 		return
 	src.inline_assets = inline_assets
@@ -177,7 +179,9 @@
 	if(!client)
 		return
 	if(can_be_suspended && can_be_suspended())
+		#ifdef TGUI_DEBUGGING
 		log_tgui(client, "[id]/close: suspending")
+		#endif
 		status = TGUI_WINDOW_READY
 		send_message("suspend")
 		// You would think that BYOND would null out client or make it stop passing istypes or, y'know, ANYTHING during
@@ -187,7 +191,9 @@
 		if(!logout && client)
 			winset(client, null, "mapwindow.map.focus=true")
 		return
+	#ifdef TGUI_DEBUGGING
 	log_tgui(client, "[id]/close")
+	#endif
 	release_lock()
 	status = TGUI_WINDOW_CLOSED
 	message_queue = null
