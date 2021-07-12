@@ -80,7 +80,8 @@ var/list/dispenser_presets = list()
 	var/spawned = list()
 
 	voidsuit = new voidsuit_type(T)
-	spawned += voidsuit
+	spawned += voidsuit // We only add the voidsuit so the game doesn't try to put the tank/helmet/boots etc into their hands
+	
 	// If we're supposed to make a helmet
 	if(voidhelmet_type)
 		// The coder may not have realized this type spawns its own helmet
@@ -97,7 +98,6 @@ var/list/dispenser_presets = list()
 		else
 			magboots = new magboots_type(voidsuit)
 			voidsuit.boots = magboots
-			spawned += magboots
 	
 	if(refit)
 		voidsuit.refit_for_species(user.species?.get_bodytype()) // does helmet and boots if they're attached
@@ -109,7 +109,6 @@ var/list/dispenser_presets = list()
 			else
 				var/obj/item/life_support = new /obj/item/device/suit_cooling_unit(voidsuit)
 				voidsuit.cooler = life_support
-				spawned += life_support
 		else if(user.species?.breath_type)
 			if(voidsuit.tank)
 				error("[src] created a voidsuit [voidsuit] and wants to add a tank but it already has one")
@@ -121,7 +120,6 @@ var/list/dispenser_presets = list()
 				if(tankpath)
 					var/obj/item/life_support = new tankpath(voidsuit)
 					voidsuit.tank = life_support
-					spawned += life_support
 				else
 					voidsuit.audible_message("Dispenser warning: Unable to locate suitable airtank for user.")
 
