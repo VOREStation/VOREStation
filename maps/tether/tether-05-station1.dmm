@@ -1120,11 +1120,11 @@
 /obj/structure/window/reinforced/polarized/full{
 	id = "ce_office"
 	},
-/obj/structure/cable/green{
-	dir = 1
-	},
 /obj/structure/window/reinforced{
 	dir = 1
+	},
+/obj/structure/cable/green{
+	icon_state = "0-2"
 	},
 /turf/simulated/floor,
 /area/storage/tech)
@@ -31164,28 +31164,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/station/dock_one)
-"rQf" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/simulated/floor/tiled,
-/area/quartermaster/foyer)
 "rQq" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -47888,7 +47866,7 @@ abS
 acj
 aaD
 kPM
-rQf
+kVK
 tne
 aBM
 sYe

@@ -26729,7 +26729,7 @@
 	id = "hop_office"
 	},
 /obj/structure/cable/green{
-	dir = 1
+	icon_state = "0-2"
 	},
 /turf/simulated/floor/plating,
 /area/crew_quarters/heads/hop)
@@ -26745,7 +26745,7 @@
 	},
 /obj/structure/cable/green,
 /obj/structure/cable/green{
-	dir = 1
+	icon_state = "0-2"
 	},
 /turf/simulated/floor/plating,
 /area/crew_quarters/heads/hop)
