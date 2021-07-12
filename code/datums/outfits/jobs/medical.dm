@@ -92,7 +92,7 @@
 
 /decl/hierarchy/outfit/job/medical/paramedic
 	name = OUTFIT_JOB_NAME("Paramedic")
-	uniform = /obj/item/clothing/under/rank/medical/scrubs/black
+	uniform = /obj/item/clothing/under/rank/medical/paramedic
 	suit = /obj/item/clothing/suit/storage/toggle/fr_jacket
 	shoes = /obj/item/clothing/shoes/boots/jackboots
 	l_hand = /obj/item/weapon/storage/firstaid/regular
@@ -103,5 +103,5 @@
 
 /decl/hierarchy/outfit/job/medical/paramedic/emt
 	name = OUTFIT_JOB_NAME("Emergency Medical Technician")
-	uniform = /obj/item/clothing/under/rank/medical/paramedic
+	uniform = /obj/item/clothing/under/rank/medical/paramedic_alt
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/emt

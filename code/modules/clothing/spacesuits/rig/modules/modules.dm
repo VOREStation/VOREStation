@@ -41,6 +41,7 @@
 
 	// Icons.
 	var/suit_overlay
+	var/suit_overlay_icon = 'icons/mob/rig_modules.dmi'
 	var/suit_overlay_active             // If set, drawn over icon and mob when effect is active.
 	var/suit_overlay_inactive           // As above, inactive.
 	var/suit_overlay_used               // As above, when engaged.
