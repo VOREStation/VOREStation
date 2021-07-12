@@ -51,6 +51,7 @@
 	var/forbid_events = FALSE // If true, random events will not start inside this area.
 	var/no_spoilers = FALSE // If true, makes it much more difficult to see what is inside an area with things like mesons.
 	var/soundproofed = FALSE // If true, blocks sounds from other areas and prevents hearers on other areas from hearing the sounds within.
+	var/used_ctags = list()
 
 /area/Initialize()
 	. = ..()
