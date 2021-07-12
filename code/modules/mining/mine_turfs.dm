@@ -73,6 +73,30 @@ var/list/mining_overlay_cache = list()
 	rock_icon_state = "rock-light"
 	random_icon = 1
 
+/turf/simulated/mineral/alt
+	icon_state = "rock-alt"
+	rock_side_icon_state = "rock_side-alt"
+	sand_icon_state = "asteroid"
+	rock_icon_state = "rock-alt"
+
+/turf/simulated/mineral/icey
+	icon_state = "rock-icey"
+	rock_side_icon_state = "rock_side-icey"
+	sand_icon_state = "sand-icey" // to be replaced
+	rock_icon_state = "rock-icey"
+
+/turf/simulated/mineral/crystal
+	icon_state = "rock-crystal"
+	rock_side_icon_state = "rock_side-crystal"
+	sand_icon_state = "sand-icey" // to be replaced
+	rock_icon_state = "rock-crystal"
+
+/turf/simulated/mineral/crystal_shiny
+	icon_state = "rock-crystal-shiny"
+	rock_side_icon_state = "rock_side-crystal"
+	sand_icon_state = "sand-icey" // to be replaced
+	rock_icon_state = "rock-crystal-shiny"
+
 /turf/simulated/mineral/ignore_mapgen
 	ignore_mapgen = 1
 
@@ -89,6 +113,10 @@ var/list/mining_overlay_cache = list()
 /turf/simulated/mineral/floor/light
 	icon_state = "sand-light"
 	sand_icon_state = "sand-light"
+
+/turf/simulated/mineral/floor/icey
+	icon_state = "sand-icey"
+	sand_icon_state = "sand-icey" // to be replaced
 
 /turf/simulated/mineral/floor/light_border
 	icon_state = "sand-light-border"
