@@ -1904,7 +1904,7 @@ Departamental Swimsuits, for general use
 	item_icons = list()
 	default_worn_icon = 'icons/vore/custom_clothes_vr.dmi'
 	color = COLOR_NAVY
-	sprite_sheets = null
+	sprite_sheets = list()
 
 //SweetBlueSylveon:Pip Shyner
 /obj/item/clothing/accessory/poncho/roles/cloak/hop/fluff/pip
