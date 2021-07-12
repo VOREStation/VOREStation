@@ -35,10 +35,8 @@
 	armor = list(melee = 50, bullet = 40, laser = 40, energy = 25, bomb = 25, bio = 0, rad = 0)
 
 /obj/item/clothing/suit/storage/vest/hoscoat/jensen
-	name = "armored trenchcoat"
-	desc = "A trenchcoat augmented with a special alloy for some protection and style."
-	icon_state = "hostrench"
-	flags_inv = HIDEHOLSTER
+	icon = 'icons/inventory/suit/item_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
 
 // Override Polaris's "confederate" naming convention. I hate it.
 /obj/item/clothing/suit/storage/vest/solgov
@@ -124,3 +122,24 @@
 /obj/item/clothing/suit/armor/pcarrier/explorer/deluxe
 	name = "modular explorer suit"
 	desc = "A modification of the explorer suit with a modular armor system. Requires you to insert armor plates."
+
+// 'Crusader' armor
+/obj/item/clothing/suit/armor/crusader
+	name = "crusader armor"
+	desc = "God will protect those who defend his faith."
+	
+	armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 25, "bomb" = 30, "bio" = 0, "rad" = 0)
+
+	icon = 'icons/inventory/suit/item_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	icon_state = "crusader_suit"
+
+/obj/item/clothing/head/helmet/crusader
+	name = "crusader helmet"
+	desc = "God will protect those who defend his faith."
+	
+	armor = list("melee" = 50, "bullet" = 50, "laser" = 50, "energy" = 25, "bomb" = 30, "bio" = 0, "rad" = 0)
+
+	icon = 'icons/inventory/head/item_vr.dmi'
+	default_worn_icon = 'icons/inventory/head/mob_vr.dmi'
+	icon_state = "crusader_head"
