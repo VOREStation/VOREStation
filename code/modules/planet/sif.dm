@@ -553,10 +553,5 @@ var/datum/planet/sif/planet_sif = null
 	var/turf/T = pick(turfs) // We get one try per tick.
 	if(!istype(T))
 		return
-<<<<<<< HEAD
-	if(T.outdoors)
-		SSradiation.radiate(T, rand(fallout_rad_low, fallout_rad_high))
-=======
 	if(T.outdoors == OUTDOORS_YES)
 		SSradiation.radiate(T, rand(fallout_rad_low, fallout_rad_high))
->>>>>>> 6782e64... Adds optional area-based definition for outdoors-ness. (#8155)
