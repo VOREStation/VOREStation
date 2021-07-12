@@ -216,7 +216,7 @@
 		if(!isPlayerLevel(D.z))
 			continue
 		var/area/Darea = get_area(D)
-		if(Darea.type in using_map.disposal_test_exempt_areas)
+		if((Darea.type in using_map.disposal_test_exempt_areas) || is_type_in_list(Darea, disposal_test_exempt_root_areas))
 			continue
 		var/failed = FALSE
 		for(var/checkdir in global.cardinal)
@@ -303,7 +303,6 @@
 
 /datum/unit_test/station_wires_shall_be_connected
 	name = "MAP: Station wires shall be connected"
-	var/list/exceptions
 
 /datum/unit_test/station_wires_shall_be_connected/start_test()
 	var/failures = 0
@@ -316,10 +315,6 @@
 
 	if(failures)
 		fail("Found [failures] cable\s without connections.")
-	else if(exceptions.len)
-		for(var/turf/entry in exceptions)
-			log_bad("[entry.log_info_line()] - [english_list(exceptions[entry])] ")
-		fail("Unnecessary exceptions need to be cleaned up.")
 	else
 		pass("All station wires are properly connected.")
 
