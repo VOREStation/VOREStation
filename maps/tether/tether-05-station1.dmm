@@ -22119,9 +22119,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/office)
-"isj" = (
-/turf/simulated/wall/r_wall,
-/area/engineering/locker_room)
 "isr" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -42439,9 +42436,9 @@ abq
 aiM
 aiM
 aac
-isj
-isj
-isj
+acz
+acz
+acz
 aoy
 alM
 amf

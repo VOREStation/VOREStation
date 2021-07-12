@@ -22285,7 +22285,6 @@
 	req_one_access = list(5,47)
 	},
 /obj/machinery/door/firedoor,
-/obj/structure/disposalpipe/segment,
 /obj/structure/cable/green{
 	icon_state = "1-2"
 	},
