@@ -138,7 +138,7 @@
 		if("[seed.get_trait(TRAIT_PRODUCT_ICON)]-leaf" in cached_icon_states('icons/obj/hydroponics_products.dmi'))
 			var/image/fruit_leaves = image('icons/obj/hydroponics_products.dmi',"[seed.get_trait(TRAIT_PRODUCT_ICON)]-leaf")
 			fruit_leaves.color = "[seed.get_trait(TRAIT_PLANT_COLOUR)]"
-			add_overlay(fruit_leaves)
+			plant_icon.add_overlay(fruit_leaves)
 		SSplants.plant_icon_cache[icon_key] = plant_icon
 	add_overlay(plant_icon)
 
