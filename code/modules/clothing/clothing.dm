@@ -542,7 +542,7 @@
 
 		// Generate and cache the on-mob icon, which is used in update_inv_head().
 		var/body_type = (H && H.species.get_bodytype(H))
-		var/cache_key = "[light_overlay][body_type && sprite_sheets[body_type] ? "_[body_type]" : ""]"
+		var/cache_key = "[light_overlay][body_type && sprite_sheets[body_type] ? body_type : ""]"
 		if(!light_overlay_cache[cache_key])
 			var/use_icon = LAZYACCESS(sprite_sheets,body_type) || 'icons/mob/light_overlays.dmi'
 			light_overlay_cache[cache_key] = image(icon = use_icon, icon_state = "[light_overlay]")
