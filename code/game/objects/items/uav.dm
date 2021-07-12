@@ -97,8 +97,10 @@
 				return
 		// Can disasemble or reassemble from packed or off (and this one takes time)
 		if("(Dis)Assemble")
-			if(can_transition_to(state == UAV_PACKED ? UAV_OFF : UAV_PACKED, user) && do_after(user, 10 SECONDS, src))
-				return toggle_packed(user)
+			if(can_transition_to(state == UAV_PACKED ? UAV_OFF : UAV_PACKED, user))
+				user.visible_message("<b>[user]</b> starts [state == UAV_PACKED ? "unpacking" : "packing"] [src].", "You start [state == UAV_PACKED ? "unpacking" : "packing"] [src].")
+				if(do_after(user, 10 SECONDS, src))
+					return toggle_packed(user)
 		// Can toggle power from on and off
 		if("Toggle Power")
 			if(can_transition_to(state == UAV_ON ? UAV_OFF : UAV_ON, user))
