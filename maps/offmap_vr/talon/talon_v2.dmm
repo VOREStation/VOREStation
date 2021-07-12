@@ -2260,10 +2260,6 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/armory)
 "gj" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
-	},
 /obj/machinery/power/sensor{
 	name = "Talon Power Generation";
 	name_tag = "TLN-PWR-GEN"
