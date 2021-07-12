@@ -22,3 +22,9 @@
 #define IS_OPAQUE_TURF(turf) (turf.directional_opacity == ALL_CARDINALS)
 #define IS_OPAQUE_TURF_DIR(turf, dir) (turf.directional_opacity & dir)
 #define FOOTSTEP_SPRITE_AMT 2
+
+// Used to designate if a turf (or its area) should initialize as outdoors or not.
+#define OUTDOORS_YES		1	// This being 1 helps with backwards compatibility.
+#define OUTDOORS_NO			0	// Ditto.
+#define OUTDOORS_AREA		-1	// If a turf has this, it will defer to the area's settings on init.
+								// Note that after init, it will be either YES or NO.

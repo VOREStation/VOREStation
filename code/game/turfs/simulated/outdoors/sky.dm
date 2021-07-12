@@ -4,7 +4,7 @@
 	desc = "Hope you don't have a fear of heights."
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "sky_slow"
-	outdoors = TRUE
+	outdoors = OUTDOORS_YES
 
 	// Assume there's a vacuum for the purposes of avoiding active edges at initialization, as well as ZAS fun if a window breaks.
 	oxygen = 0

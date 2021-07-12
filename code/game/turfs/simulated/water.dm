@@ -8,7 +8,7 @@
 	var/under_state = "rock"
 	edge_blending_priority = -1
 	movement_cost = 4
-	outdoors = TRUE
+	outdoors = OUTDOORS_YES
 
 	layer = WATER_FLOOR_LAYER
 
@@ -106,12 +106,12 @@
 	name = "pool"
 	desc = "Don't worry, it's not closed."
 	under_state = "pool"
-	outdoors = FALSE
+	outdoors = OUTDOORS_NO
 
 /turf/simulated/floor/water/deep/pool
 	name = "deep pool"
 	desc = "Don't worry, it's not closed."
-	outdoors = FALSE
+	outdoors = OUTDOORS_NO
 
 /mob/living/proc/can_breathe_water()
 	return FALSE

@@ -17,7 +17,7 @@
 	initial_flooring = /decl/flooring/lava // Defining this in case someone DOES step on lava and survive. Somehow.
 
 /turf/simulated/floor/lava/outdoors
-	outdoors = TRUE
+	outdoors = OUTDOORS_YES
 
 // For maximum pedantry.
 /turf/simulated/floor/lava/Initialize()

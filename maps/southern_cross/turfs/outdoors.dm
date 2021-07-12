@@ -24,19 +24,19 @@
 	oxygen		= MOLES_O2SIF
 	nitrogen	= MOLES_N2SIF
 	temperature	= TEMPERATURE_SIF
-	outdoors = TRUE
+	outdoors = OUTDOORS_YES
 
 /turf/simulated/floor/tiled/steel/sif/planetuse
 	oxygen		= MOLES_O2SIF
 	nitrogen	= MOLES_N2SIF
 	temperature	= TEMPERATURE_SIF
-	outdoors = TRUE
+	outdoors = OUTDOORS_YES
 
 /turf/simulated/floor/plating/sif/planetuse
 	oxygen		= MOLES_O2SIF
 	nitrogen	= MOLES_N2SIF
 	temperature	= TEMPERATURE_SIF
-	outdoors = TRUE
+	outdoors = OUTDOORS_YES
 
 /turf/simulated/floor/outdoors/snow/sif/planetuse
 	oxygen		= MOLES_O2SIF
