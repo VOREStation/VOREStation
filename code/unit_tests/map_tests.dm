@@ -215,6 +215,9 @@
 	for(var/obj/structure/disposalpipe/segment/D in world)
 		if(!isPlayerLevel(D.z))
 			continue
+		var/area/Darea = get_area(D)
+		if(Darea.type in using_map.disposal_test_exempt_areas)
+			continue
 		var/failed = FALSE
 		for(var/checkdir in global.cardinal)
 			if(!(checkdir & D.dpdir))
@@ -249,8 +252,6 @@
 	var/list/bad_cables = list()
 
 	for(var/obj/structure/cable/C in world)
-		if(istype(C, /obj/structure/cable/ender))
-			continue
 		var/expected_icon_state = "[C.d1]-[C.d2]"
 		if(C.icon_state != expected_icon_state)
 			bad_cables |= C
@@ -308,6 +309,8 @@
 	var/failures = 0
 
 	for(var/obj/structure/cable/C in world)
+		if(istype(C, /obj/structure/cable/ender))
+			continue
 		if(!all_ends_connected(C))
 			failures++
 

@@ -154,6 +154,13 @@
 		/area/maintenance/asmaint2,
 		/area/tether/outpost/solars_outside
 	)
+	
+	disposal_test_exempt_areas = list(
+		/area/crew_quarters/sleep/maintDorm1,
+		/area/crew_quarters/sleep/maintDorm2,
+		/area/crew_quarters/sleep/maintDorm3,
+		/area/crew_quarters/sleep/maintDorm4
+	)
 
 
 	lateload_z_levels = list(
