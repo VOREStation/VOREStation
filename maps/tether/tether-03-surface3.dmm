@@ -2965,6 +2965,7 @@
 /obj/effect/floor_decal/corner/red/border{
 	dir = 1
 	},
+/obj/machinery/vending/wardrobe/lawdrobe,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/iaa/officecommon)
 "aes" = (
@@ -8324,6 +8325,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
+/obj/item/device/paicard,
 /turf/simulated/floor/wood,
 /area/crew_quarters/recreation_area)
 "anb" = (
@@ -9779,6 +9781,7 @@
 /obj/random/maintenance/medical,
 /obj/random/maintenance/clean,
 /obj/random/maintenance/clean,
+/obj/item/device/paicard,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/surface_three_hall)
 "apA" = (
@@ -19614,7 +19617,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
 	},
-/obj/structure/closet/crate,
+/obj/machinery/vending/wardrobe/bardrobe,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/servicebackroom)
 "aGf" = (
@@ -23213,14 +23216,6 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
-/obj/machinery/button/remote/blast_door{
-	id = "mechbay-inner";
-	name = "Mech Bay";
-	pixel_x = 26;
-	pixel_y = -26;
-	req_access = list(29,47);
-	req_one_access = list(47)
-	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/robotics)
 "aMv" = (
@@ -23231,6 +23226,24 @@
 /obj/machinery/door/blast/regular{
 	id = "mechbay-inner";
 	name = "Mech Bay"
+	},
+/obj/machinery/button/remote/blast_door{
+	dir = 4;
+	id = "mechbay";
+	name = "Mech Bay";
+	pixel_x = 5;
+	pixel_y = -29;
+	req_access = list(29,47);
+	req_one_access = list(47)
+	},
+/obj/machinery/button/remote/blast_door{
+	dir = 8;
+	id = "mechbay-inner";
+	name = "Mech Bay";
+	pixel_x = -5;
+	pixel_y = -28;
+	req_access = list(29,47);
+	req_one_access = list(47)
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/robotics/mechbay)
@@ -23256,14 +23269,6 @@
 	},
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
-	},
-/obj/machinery/button/remote/blast_door{
-	id = "mechbay-inner";
-	name = "Mech Bay";
-	pixel_x = -26;
-	pixel_y = -26;
-	req_access = list(29,47);
-	req_one_access = list(47)
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/robotics/mechbay)
@@ -31445,6 +31450,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
+/obj/machinery/vending/wardrobe/chefdrobe,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/servicebackroom)
 "bbC" = (
@@ -38289,10 +38295,11 @@
 	req_one_access = list(47)
 	},
 /obj/machinery/button/remote/blast_door{
+	dir = 1;
 	id = "mechbay";
 	name = "Mech Bay";
-	pixel_x = 27;
-	pixel_y = 6;
+	pixel_x = 28;
+	pixel_y = 5;
 	req_access = list(29,47);
 	req_one_access = list(47)
 	},
@@ -38403,6 +38410,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/cafeteria)
+"dAe" = (
+/obj/machinery/door/firedoor/glass/hidden/steel{
+	dir = 2
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/shuttle_pad)
 "dDQ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -39047,6 +39060,12 @@
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
+"gCV" = (
+/obj/machinery/door/firedoor/glass/hidden/steel{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/shuttle_pad)
 "gHh" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow{
 	dir = 10
@@ -39311,6 +39330,17 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
+"hHL" = (
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/door/firedoor/glass/hidden/steel{
+	dir = 2
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/shuttle_pad)
 "hId" = (
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled,
@@ -40219,6 +40249,16 @@
 /obj/machinery/light/bigfloorlamp,
 /turf/simulated/floor/grass,
 /area/tether/surfacebase/public_garden_three)
+"kPC" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/lime/border{
+	dir = 1
+	},
+/obj/machinery/vending/wardrobe/hydrobe,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/botanystorage)
 "kQb" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 5
@@ -40490,6 +40530,11 @@
 	},
 /turf/simulated/floor/carpet,
 /area/tether/surfacebase/security/hos)
+"lHr" = (
+/obj/structure/table/woodentable,
+/obj/item/device/paicard,
+/turf/simulated/floor/wood,
+/area/tether/surfacebase/entertainment)
 "lIe" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/lightgrey/border,
@@ -41670,6 +41715,17 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/southhall)
+"qcV" = (
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/door/firedoor/glass/hidden/steel{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/shuttle_pad)
 "qda" = (
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/structure/bed/chair{
@@ -56556,8 +56612,8 @@ aKj
 aKj
 aKj
 aKf
-aKg
-cdv
+gCV
+hHL
 aKf
 aNX
 aKj
@@ -57124,8 +57180,8 @@ aKj
 aKj
 aNj
 aKf
-cdv
-aKg
+qcV
+dAe
 aKf
 aKj
 aKj
@@ -57392,7 +57448,7 @@ bdq
 bbk
 bbk
 beS
-beX
+lHr
 beX
 bcM
 bco
@@ -57614,7 +57670,7 @@ aab
 aab
 aab
 aaq
-aaU
+bow
 ajG
 ajG
 aar
@@ -57756,8 +57812,8 @@ aab
 aab
 aab
 aaq
-aac
-aaU
+aaq
+bow
 ajG
 aaq
 uWw
@@ -57896,10 +57952,10 @@ aab
 aab
 aab
 aab
-aaq
-aaq
-aac
-abn
+aab
+aab
+aab
+aOm
 ajG
 aaq
 acy
@@ -58038,10 +58094,10 @@ aab
 aab
 aab
 aab
-aaq
-aaq
-aaq
-abn
+aab
+aab
+aab
+aOm
 ajG
 aaq
 acy
@@ -58180,10 +58236,10 @@ aab
 aab
 aab
 aab
-aaq
-aac
-aaq
-abn
+aab
+aab
+aab
+aOm
 ajG
 aaq
 uWw
@@ -58322,10 +58378,10 @@ aab
 aab
 aab
 aab
-aaq
-aac
-aac
-abn
+aab
+aab
+aab
+aOm
 ajG
 aaq
 uWw
@@ -58464,10 +58520,10 @@ aab
 aab
 aab
 aab
-aaq
-aac
-aac
-bou
+aab
+aab
+aab
+aOm
 ajG
 oJw
 acy
@@ -58606,10 +58662,10 @@ aab
 aab
 aab
 aab
-aaq
-aaq
-aac
-abn
+aab
+aab
+aab
+aOm
 ajG
 aaz
 aaB
@@ -58750,8 +58806,8 @@ aab
 aab
 aab
 aab
-aac
-abn
+aab
+aOm
 ajG
 iUu
 aaC
@@ -58893,7 +58949,7 @@ aab
 aab
 aab
 aab
-abn
+aOm
 ajG
 aaz
 aaD
@@ -60936,7 +60992,7 @@ aUh
 aoJ
 aGe
 aGJ
-aAb
+aFM
 aJt
 aVC
 aXN
@@ -61078,7 +61134,7 @@ aoJ
 aoJ
 bbv
 bcC
-aAb
+aFM
 aJt
 aJt
 aJt
@@ -61626,7 +61682,7 @@ aAH
 aBm
 aBM
 ayg
-aAK
+kPC
 aEm
 aEF
 aFg
