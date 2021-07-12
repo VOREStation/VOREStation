@@ -360,7 +360,7 @@
 
 		if(!connected)
 			var/dir_message = (C.dir == initial(C.dir)) ? "" : " (Potential mapping error, check d1/d2 and icon state)"
-			log_bad("Disconnected wire: [dir2text(dir)] - [C.log_info_line()]")
+			log_bad("Disconnected wire: [dir2text(dir)] - [C.log_info_line()][dir_message]")
 			. = FALSE
 
 //=======================================================================================
