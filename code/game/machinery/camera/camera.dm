@@ -64,7 +64,10 @@
 	// VOREStation Edit Start - Make mapping with cameras easier
 	if(!c_tag)
 		var/area/A = get_area(src)
-		c_tag = "[A ? A.name : "Unknown"] #[A.max_ctag++]"
+		if(A)
+			c_tag = "[A.name] #[A.max_ctag++]"
+		else
+			c_tag = "Unknown #[rand(111, 999)]"
 	..()
 	// VOREStation Edit End
 
