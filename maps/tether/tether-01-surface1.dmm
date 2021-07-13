@@ -16215,16 +16215,23 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/research)
 "aAu" = (
-/obj/effect/floor_decal/rust,
 /obj/structure/cable/heavyduty{
-	icon_state = "4-8"
+	icon_state = "1-2"
 	},
 /obj/structure/railing{
 	dir = 8
 	},
-/obj/structure/catwalk,
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
 /turf/simulated/floor/virgo3b_indoors,
-/area/tether/surfacebase/outside/outside1)
+/area/maintenance/lower/solars)
 "aAv" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -16260,14 +16267,16 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/research)
 "aAx" = (
-/obj/effect/floor_decal/rust,
 /obj/structure/cable/heavyduty{
 	icon_state = "4-8"
 	},
 /obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/railing,
+/obj/structure/railing{
 	dir = 4
 	},
-/obj/structure/catwalk,
 /turf/simulated/floor/virgo3b_indoors,
 /area/tether/surfacebase/outside/outside1)
 "aAy" = (
@@ -16820,6 +16829,9 @@
 /obj/structure/railing,
 /obj/structure/railing{
 	dir = 4
+	},
+/obj/structure/railing{
+	dir = 8
 	},
 /turf/simulated/floor/virgo3b_indoors,
 /area/tether/surfacebase/outside/outside1)
@@ -39998,8 +40010,8 @@ aad
 aad
 aad
 aad
-baV
-baV
+baU
+baU
 aah
 baU
 ano
@@ -40021,10 +40033,10 @@ aah
 ano
 aah
 aah
-yiS
+aAx
 aah
-baV
-baV
+baU
+baU
 aad
 aad
 aad
@@ -40141,10 +40153,6 @@ aad
 aad
 aad
 aad
-baV
-baV
-baU
-kGQ
 baU
 baU
 baU
@@ -40163,10 +40171,14 @@ baU
 kGQ
 baU
 baU
-aAu
 baU
-baV
-baV
+kGQ
+baU
+baU
+aGG
+baU
+baU
+baU
 aad
 aad
 aad
@@ -40283,8 +40295,8 @@ aad
 aad
 aad
 aad
-baV
-baV
+baU
+baU
 baU
 kGQ
 baU
@@ -40307,8 +40319,8 @@ baU
 baU
 aGG
 baU
-baV
-baV
+baU
+baU
 aad
 aad
 aad
@@ -40426,7 +40438,7 @@ aad
 aad
 aad
 aad
-baV
+baU
 baU
 kGQ
 baU
@@ -40449,8 +40461,8 @@ baU
 baU
 aGG
 baU
-baV
-baV
+baU
+baU
 aad
 aad
 aad
@@ -40567,8 +40579,8 @@ aad
 aad
 aad
 aad
-baV
-baV
+baU
+baU
 baU
 kGQ
 baU
@@ -40591,8 +40603,8 @@ baU
 baU
 aGG
 baU
-baV
-baV
+baU
+baU
 aad
 aad
 aad
@@ -40709,10 +40721,6 @@ aad
 aad
 aad
 aad
-baV
-baV
-baU
-kGQ
 baU
 baU
 baU
@@ -40731,11 +40739,15 @@ baU
 kGQ
 baU
 baU
-aAx
 baU
-baV
-baV
-baV
+kGQ
+baU
+baU
+aGG
+baU
+baU
+baU
+baU
 aad
 aad
 aad
@@ -40854,15 +40866,7 @@ aib
 aib
 iwg
 iwg
-iwg
-iwg
-iwg
-iwg
-aAs
-iwg
-iwg
-iwg
-iwg
+aAu
 iwg
 iwg
 iwg
@@ -40870,14 +40874,22 @@ aAs
 iwg
 iwg
 iwg
+aAs
 iwg
+iwg
+iwg
+aAs
+iwg
+iwg
+iwg
+aAs
 iwg
 iwg
 aBu
 baU
-baV
-baV
-baV
+baU
+baU
+baU
 aad
 ajK
 aad
@@ -40992,8 +41004,8 @@ aad
 aGE
 aad
 aad
-baV
-baV
+baU
+baU
 aah
 aah
 ano
