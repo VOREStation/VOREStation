@@ -190,7 +190,7 @@
 /obj/machinery/alarm/proc/handle_heating_cooling(var/datum/gas_mixture/environment)
 	if(!regulating_temperature)
 		//check for when we should start adjusting temperature
-		if(!get_danger_level(target_temperature, TLV["temperature"]) && abs(environment.temperature - target_temperature) > 2.0 && environment.return_pressure() >= 1)
+		if(!GET_AIR_DANGER_LEVEL(target_temperature, TLV["temperature"]) && abs(environment.temperature - target_temperature) > 2.0 && environment.return_pressure() >= 1)
 			update_use_power(USE_POWER_ACTIVE)
 			regulating_temperature = 1
 			audible_message("\The [src] clicks as it starts [environment.temperature > target_temperature ? "cooling" : "heating"] the room.",\
@@ -198,7 +198,7 @@
 			playsound(src, 'sound/machines/click.ogg', 50, 1)
 	else
 		//check for when we should stop adjusting temperature
-		if(get_danger_level(target_temperature, TLV["temperature"]) || abs(environment.temperature - target_temperature) <= 0.5 || environment.return_pressure() < 1)
+		if(GET_AIR_DANGER_LEVEL(target_temperature, TLV["temperature"]) || abs(environment.temperature - target_temperature) <= 0.5 || environment.return_pressure() < 1)
 			update_use_power(USE_POWER_IDLE)
 			regulating_temperature = 0
 			audible_message("\The [src] clicks quietly as it stops [environment.temperature > target_temperature ? "cooling" : "heating"] the room.",\
@@ -245,12 +245,12 @@
 	for(var/g in trace_gas)
 		other_moles += environment.gas[g] //this is only going to be used in a partial pressure calc, so we don't need to worry about group_multiplier here.
 
-	pressure_dangerlevel = get_danger_level(environment_pressure, TLV["pressure"])
-	oxygen_dangerlevel = get_danger_level(environment.gas["oxygen"]*partial_pressure, TLV["oxygen"])
-	co2_dangerlevel = get_danger_level(environment.gas["carbon_dioxide"]*partial_pressure, TLV["carbon dioxide"])
-	phoron_dangerlevel = get_danger_level(environment.gas["phoron"]*partial_pressure, TLV["phoron"])
-	temperature_dangerlevel = get_danger_level(environment.temperature, TLV["temperature"])
-	other_dangerlevel = get_danger_level(other_moles*partial_pressure, TLV["other"])
+	pressure_dangerlevel = GET_AIR_DANGER_LEVEL(environment_pressure, TLV["pressure"])
+	oxygen_dangerlevel = GET_AIR_DANGER_LEVEL(environment.gas["oxygen"]*partial_pressure, TLV["oxygen"])
+	co2_dangerlevel = GET_AIR_DANGER_LEVEL(environment.gas["carbon_dioxide"]*partial_pressure, TLV["carbon dioxide"])
+	phoron_dangerlevel = GET_AIR_DANGER_LEVEL(environment.gas["phoron"]*partial_pressure, TLV["phoron"])
+	temperature_dangerlevel = GET_AIR_DANGER_LEVEL(environment.temperature, TLV["temperature"])
+	other_dangerlevel = GET_AIR_DANGER_LEVEL(other_moles*partial_pressure, TLV["other"])
 
 	return max(
 		pressure_dangerlevel,
@@ -291,13 +291,6 @@
 		if(!(AA.stat & (NOPOWER|BROKEN)))
 			alarm_area.master_air_alarm = AA
 			return 1
-	return 0
-
-/obj/machinery/alarm/proc/get_danger_level(var/current_value, var/list/danger_levels)
-	if((current_value >= danger_levels[4] && danger_levels[4] > 0) || current_value <= danger_levels[1])
-		return 2
-	if((current_value >= danger_levels[3] && danger_levels[3] > 0) || current_value <= danger_levels[2])
-		return 1
 	return 0
 
 /obj/machinery/alarm/update_icon()
@@ -529,7 +522,7 @@
 		"name" = "Pressure",
 		"value" = pressure,
 		"unit" = "kPa",
-		"danger_level" = get_danger_level(pressure, TLV["pressure"])
+		"danger_level" = GET_AIR_DANGER_LEVEL(pressure, TLV["pressure"])
 	)))
 	
 	var/temperature = environment.temperature
@@ -537,7 +530,7 @@
 		"name" = "Temperature",
 		"value" = temperature,
 		"unit" = "K ([round(temperature - T0C, 0.1)]C)",
-		"danger_level" = get_danger_level(temperature, TLV["temperature"])
+		"danger_level" = GET_AIR_DANGER_LEVEL(temperature, TLV["temperature"])
 	)))
 
 	var/total_moles = environment.total_moles
@@ -549,7 +542,7 @@
 			"name" = gas_id,
 			"value" = environment.gas[gas_id] / total_moles * 100,
 			"unit" = "%",
-			"danger_level" = get_danger_level(environment.gas[gas_id] * partial_pressure, TLV[gas_id])
+			"danger_level" = GET_AIR_DANGER_LEVEL(environment.gas[gas_id] * partial_pressure, TLV[gas_id])
 		)))
 	
 	if(!locked || issilicon(user) || data["remoteUser"])

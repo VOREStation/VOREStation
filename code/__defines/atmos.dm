@@ -98,3 +98,6 @@
 // Used in various things like tanks and oxygen pumps.
 #define TANK_MAX_RELEASE_PRESSURE (3*ONE_ATMOSPHERE)
 #define TANK_DEFAULT_RELEASE_PRESSURE ONE_ATMOSPHERE
+
+// Used by air alarms
+#define GET_AIR_DANGER_LEVEL(x, y) (((x >= y[4] && y[4] > 0) || x <= y[1]) ? 2 : ((x >= y[3] && y[3] > 0) || x <= y[2]) ? 1 : 0)
