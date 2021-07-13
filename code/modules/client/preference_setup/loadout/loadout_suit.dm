@@ -236,46 +236,46 @@
 	)
 	gear_tweaks += new/datum/gear_tweak/path(cloaks)
 
-/datum/gear/suit/roles/poncho/cloak_hos
+/datum/gear/suit/roles/cloak_hos
 	display_name = "cloak, head of security"
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/hos
 	allowed_roles = list("Head of Security")
 
-/datum/gear/suit/roles/poncho/cloak_cmo
+/datum/gear/suit/roles/cloak_cmo
 	display_name = "cloak, chief medical officer"
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/cmo
 	allowed_roles = list("Chief Medical Officer")
 
-/datum/gear/suit/roles/poncho/cloak_ce
+/datum/gear/suit/roles/cloak_ce
 	display_name = "cloak, chief engineer"
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/ce
 	allowed_roles = list("Chief Engineer")
 
-/datum/gear/suit/roles/poncho/cloak_rd
+/datum/gear/suit/roles/cloak_rd
 	display_name = "cloak, research director"
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/rd
 	allowed_roles = list("Research Director")
 
-/datum/gear/suit/roles/poncho/cloak_qm
+/datum/gear/suit/roles/cloak_qm
 	display_name = "cloak, quartermaster"
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/qm
 	allowed_roles = list("Quartermaster")
 
-/datum/gear/suit/roles/poncho/cloak_captain
+/datum/gear/suit/roles/cloak_captain
 	display_name = "cloak, site manager"
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/captain
 	allowed_roles = list("Site Manager")
 
-/datum/gear/suit/roles/poncho/cloak_hop
+/datum/gear/suit/roles/cloak_hop
 	display_name = "cloak, head of personnel"
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/hop
 	allowed_roles = list("Head of Personnel")
 
-/datum/gear/suit/roles/poncho/cloak_custom //A colorable cloak
+/datum/gear/suit/cloak_custom //A colorable cloak
 	display_name = "cloak, colorable"
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/custom
 
-/datum/gear/suit/roles/poncho/cloak/custom/New()
+/datum/gear/suit/cloak_custom/New()
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
@@ -325,8 +325,6 @@
 	display_name = "coat, cargo tech"
 	path = /obj/item/clothing/suit/storage/cargo
 	allowed_roles = list("Quartermaster","Shaft Miner","Cargo Technician","Head of Personnel")
-
-/obj/item/clothing/suit/storage/cargo
 
 // winter coats go here
 /datum/gear/suit/wintercoat
