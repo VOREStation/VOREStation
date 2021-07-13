@@ -39,7 +39,7 @@
 	if(!DM)
 		log_debug("Digest mode [digest_mode] didn't exist in the digest_modes list!!")
 		return FALSE
-	if(DM.handle_atoms(src, touchable_atoms))
+	if(DM.handle_atoms(src, touchable_atoms) == TRUE)
 		updateVRPanels()
 		return
 
