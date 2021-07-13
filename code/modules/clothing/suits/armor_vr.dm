@@ -34,10 +34,6 @@
 /obj/item/clothing/suit/storage/vest/hos
 	armor = list(melee = 50, bullet = 40, laser = 40, energy = 25, bomb = 25, bio = 0, rad = 0)
 
-/obj/item/clothing/suit/storage/vest/hoscoat/jensen
-	icon = 'icons/inventory/suit/item_vr.dmi'
-	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
-
 // Override Polaris's "confederate" naming convention. I hate it.
 /obj/item/clothing/suit/storage/vest/solgov
 	name = "peacekeeper armored vest"
