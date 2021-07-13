@@ -41,7 +41,6 @@
 		return FALSE
 	if(DM.handle_atoms(src, touchable_atoms) == TRUE)
 		updateVRPanels()
-		return
 
 	var/list/touchable_mobs = null
 
