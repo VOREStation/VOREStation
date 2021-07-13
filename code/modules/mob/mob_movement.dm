@@ -169,6 +169,7 @@
 
 	// If dead and we try to move in our mob, it leaves our body
 	if(my_mob.stat == DEAD && isliving(my_mob) && !my_mob.forbid_seeing_deadchat)
+		my_mob.setMoveCooldown(my_mob.movement_delay(n, direct))
 		my_mob.ghostize()
 		return
 
