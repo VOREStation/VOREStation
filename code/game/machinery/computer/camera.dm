@@ -89,6 +89,8 @@ GLOBAL_LIST_EMPTY(entertainment_screens)
 	GLOB.entertainment_screens += src
 
 	var/static/icon/mask = icon('icons/obj/entertainment_monitor.dmi', "mask")
+
+	add_overlay("glass")
 	
 	pinboard = new()
 	pinboard.icon = icon
@@ -120,7 +122,7 @@ GLOBAL_LIST_EMPTY(entertainment_screens)
 	attack_hand(usr)
 
 /obj/machinery/computer/security/telescreen/entertainment/update_icon()
-	return ..() // NUH
+	return // NUH
 
 /obj/machinery/computer/security/telescreen/entertainment/proc/show_thing(atom/thing)
 	if(showing)
