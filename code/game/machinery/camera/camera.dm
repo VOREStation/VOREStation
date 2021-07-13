@@ -64,13 +64,7 @@
 	// VOREStation Edit Start - Make mapping with cameras easier
 	if(!c_tag)
 		var/area/A = get_area(src)
-		c_tag = "[A ? A.name : "Unknown"] #[rand(111,999)]"
-		if(length(used_ctags) >= 888) // The max number of unique ids from 111 to 999 inclusive
-			error("[get_area(src)] has over the maximum number of tagless cameras, and has run out of IDs!")
-		else	
-			while(c_tag in A.used_ctags))
-				c_tag = "[A ? A.name : "Unknown"] #[rand(111,999)]"
-			A.used_ctags += c_tag
+		c_tag = "[A ? A.name : "Unknown"] #[A.max_ctag++]"
 	..()
 	// VOREStation Edit End
 
