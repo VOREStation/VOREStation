@@ -335,7 +335,7 @@ var/list/all_maps = list()
 		custom_skybox = new custom_skybox()
 
 /datum/map_z_level/Destroy(var/force)
-	crash_with("Attempt to delete a map_z_level instance [log_info_line(src)]")
+	stack_trace("Attempt to delete a map_z_level instance [log_info_line(src)]")
 	if(!force)
 		return QDEL_HINT_LETMELIVE // No.
 	if (using_map.zlevels["[z]"] == src)

@@ -83,9 +83,9 @@
 // Must return an Initialize hint. Defined in code/__defines/subsystems.dm
 /atom/proc/Initialize(mapload, ...)
 	if(QDELETED(src))
-		crash_with("GC: -- [type] had initialize() called after qdel() --")
+		stack_trace("GC: -- [type] had initialize() called after qdel() --")
 	if(initialized)
-		crash_with("Warning: [src]([type]) initialized multiple times!")
+		stack_trace("Warning: [src]([type]) initialized multiple times!")
 	initialized = TRUE
 	return INITIALIZE_HINT_NORMAL
 

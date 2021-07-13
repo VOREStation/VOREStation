@@ -165,7 +165,7 @@
 		return
 
 	if(!damtype)
-		crash_with("CANARY: shield.take_damage() callled without damtype.")
+		stack_trace("CANARY: shield.take_damage() callled without damtype.")
 
 	if(!damage)
 		return
