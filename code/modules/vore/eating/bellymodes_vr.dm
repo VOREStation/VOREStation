@@ -54,7 +54,7 @@
 		if(hta_returns["to_update"])
 			to_update = hta_returns["to_update"]
 
-	if(!LAZYLEN(touchable_mobs))
+	if(!to_update)
 		return
 
 ///////////////////// Early Non-Mode Handling /////////////////////

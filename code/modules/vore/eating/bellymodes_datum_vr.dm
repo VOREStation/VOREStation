@@ -15,7 +15,7 @@ GLOBAL_LIST_INIT(digest_modes, list())
 	return null
 
 /datum/digest_mode/proc/handle_atoms(obj/belly/B, list/touchable_atoms)
-    return FALSE
+	return FALSE
 
 /datum/digest_mode/digest
 	id = DM_DIGEST
