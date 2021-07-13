@@ -117,7 +117,7 @@
 
 /obj/item/device/tvcamera/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
-	if(camera.status)
+	if(camera.status && !isturf(target))
 		show_tvs(target)
 		user.visible_message("<b>[user]</b> aims [src] at [target].", "You aim [src] at [target].")
 		if(user.machine == src)
