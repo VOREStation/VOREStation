@@ -39,8 +39,9 @@
 	if(!DM)
 		log_debug("Digest mode [digest_mode] didn't exist in the digest_modes list!!")
 		return FALSE
-	if(DM.handle_atoms(src, touchable_atoms) == TRUE)
+	if(DM.handle_atoms(src, touchable_atoms))
 		updateVRPanels()
+		return
 
 	var/list/touchable_mobs = null
 
@@ -180,6 +181,7 @@
 		//get rid of things like blood drops and gibs that end up in there
 		else if(istype(A, /obj/effect/decal/cleanable))
 			qdel(A)
+		to_update = TRUE
 
 	return list("to_update" = to_update, "touchable_mobs" = touchable_mobs, "digestion_noise_chance" = digestion_noise_chance)
 
