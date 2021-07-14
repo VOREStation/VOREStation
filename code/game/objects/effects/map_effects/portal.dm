@@ -201,7 +201,7 @@ when portals are shortly lived, or when portals are made to be obvious with spec
 			break
 
 	if(!counterpart)
-		crash_with("Portal master [type] ([x],[y],[z]) could not find another portal master with a matching portal_id ([portal_id]).")
+		stack_trace("Portal master [type] ([x],[y],[z]) could not find another portal master with a matching portal_id ([portal_id]).")
 
 /obj/effect/map_effect/portal/master/proc/make_visuals()
 	var/list/observed_turfs = list()

@@ -506,7 +506,7 @@
 		if (!S)
 			continue
 
-		words |= text2list(S.name," ")
+		words |= splittext(S.name," ")
 		cooktypes |= S.cooked
 
 		if (S.reagents && S.reagents.total_volume > 0)
