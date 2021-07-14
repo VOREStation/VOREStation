@@ -256,7 +256,7 @@ SUBSYSTEM_DEF(transcore)
 	var/datum/transcore_db/db = SStranscore.db_by_mind_name(MR.mindname)
 	var/datum/transhuman/body_record/BR = db.body_scans[MR.mindname]
 	if(!BR)
-		global_announcer.autosay("[MR.mindname] is past-due for a mind backup, but lacks a corresponding body record." "TransCore Oversight", "Medical")
+		global_announcer.autosay("[MR.mindname] is past-due for a mind backup, but lacks a corresponding body record.", "TransCore Oversight", "Medical")
 		return
 	global_announcer.autosay("[MR.mindname] is past-due for a mind backup.", "TransCore Oversight", BR.synthetic ? "Science" : "Medical")
 
