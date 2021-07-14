@@ -13,12 +13,13 @@
 	var/list/network = list()
 
 	var/datum/tgui_module/camera/camera
+	var/camera_datum_type = /datum/tgui_module/camera
 
 /obj/machinery/computer/security/Initialize()
 	. = ..()
 	if(!LAZYLEN(network))
 		network = get_default_networks()
-	camera = new(src, network)
+	camera = new camera_datum_type(src, network)
 
 /obj/machinery/computer/security/proc/get_default_networks()
 	. = using_map.station_networks.Copy()
@@ -67,19 +68,41 @@
 	density = 0
 	circuit = null
 
+GLOBAL_LIST_EMPTY(entertainment_screens)
 /obj/machinery/computer/security/telescreen/entertainment
 	name = "entertainment monitor"
 	desc = "Damn, why do they never have anything interesting on these things?"
-	icon = 'icons/obj/status_display.dmi'
-	icon_screen = "entertainment"
+	icon = 'icons/obj/entertainment_monitor.dmi'
+	icon_state = "screen"
+	icon_screen = null
 	light_color = "#FFEEDB"
 	light_range_on = 2
 	network = list(NETWORK_THUNDER)
 	circuit = /obj/item/weapon/circuitboard/security/telescreen/entertainment
+	camera_datum_type = /datum/tgui_module/camera/bigscreen
+	
 	var/obj/item/device/radio/radio = null
+	var/obj/effect/overlay/vis/pinboard
+	var/weakref/showing
 
 /obj/machinery/computer/security/telescreen/entertainment/Initialize()
+	GLOB.entertainment_screens += src
+
+	var/static/icon/mask = icon('icons/obj/entertainment_monitor.dmi', "mask")
+
+	add_overlay("glass")
+	
+	pinboard = new()
+	pinboard.icon = icon
+	pinboard.icon_state = "pinboard"
+	pinboard.layer = 0.1
+	pinboard.vis_flags = VIS_UNDERLAY|VIS_INHERIT_ID|VIS_INHERIT_PLANE
+	pinboard.appearance_flags = KEEP_TOGETHER
+	pinboard.add_filter("screen cutter", 1, alpha_mask_filter(icon = mask))
+	vis_contents += pinboard
+
 	. = ..()
+
 	radio = new(src)
 	radio.listening = TRUE
 	radio.broadcasting = FALSE
@@ -87,13 +110,44 @@
 	radio.canhear_range = 7 // Same as default sight range.
 	power_change()
 
+/obj/machinery/computer/security/telescreen/entertainment/Destroy()
+	if(showing)
+		stop_showing()
+	vis_contents.Cut()
+	qdel_null(pinboard)
+	qdel_null(radio)
+	return ..()
+
+/obj/machinery/computer/security/telescreen/entertainment/Click(location, control, params)
+	attack_hand(usr)
+
+/obj/machinery/computer/security/telescreen/entertainment/update_icon()
+	return // NUH
+
+/obj/machinery/computer/security/telescreen/entertainment/proc/show_thing(atom/thing)
+	if(showing)
+		stop_showing()
+	if(stat & NOPOWER)
+		return
+	showing = weakref(thing)
+	pinboard.vis_contents = list(thing)
+
+/obj/machinery/computer/security/telescreen/entertainment/proc/stop_showing()
+	// Reverse of the above
+	pinboard.vis_contents = null
+	showing = null
+
+/obj/machinery/computer/security/telescreen/entertainment/proc/maybe_stop_showing(weakref/thingref)
+	if(showing == thingref)
+		stop_showing()
+
 /obj/machinery/computer/security/telescreen/entertainment/power_change()
 	..()
-	if(radio)
-		if(stat & NOPOWER)
-			radio.on = FALSE
-		else
-			radio.on = TRUE
+	if(stat & NOPOWER)
+		radio?.on = FALSE
+		stop_showing()
+	else
+		radio?.on = TRUE
 
 /obj/machinery/computer/security/wooden_tv
 	name = "security camera monitor"
