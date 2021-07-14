@@ -51,7 +51,7 @@
 	var/image/I
 	if(!hatch_open)
 		for(var/i = 1 to 4)
-			I = image(icon, "catwalk[connections[i]]", dir = 1<<(i-1))
+			I = image(icon, "catwalk[connections?[i] || 0]", dir = 1<<(i-1))
 			add_overlay(I)
 	if(plating_color)
 		I = image(icon, "plated")
