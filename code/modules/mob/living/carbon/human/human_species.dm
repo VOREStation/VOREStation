@@ -23,8 +23,8 @@
 	delete_inventory()
 
 /mob/living/carbon/human/dummy/mannequin/autoequip
-	icon = 'icons/effects/species.dmi'
-	icon_state = "lizard_f_s_full"
+	icon = 'icons/mob/human_races/r_human.dmi'
+	icon_state = "preview"
 
 /mob/living/carbon/human/dummy/mannequin/autoequip/Initialize()
 	icon = null
