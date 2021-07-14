@@ -16,8 +16,10 @@
 	var/play_sound //Potential sound to play at the end to avoid code duplication.
 	var/to_update = FALSE //Did anything update worthy happen?
 
-///////////////////// Prey Loop Refresh/hack //////////////////////
-	prey_loop()
+/////////////////////////// Exit Early ////////////////////////////
+	var/list/touchable_atoms = contents - items_preserved
+	if(!length(touchable_atoms))
+		return
 
 /////////////////////////// Sound Selections ///////////////////////////
 	var/digestion_noise_chance = 0
@@ -30,10 +32,7 @@
 		prey_digest = sound(get_sfx("fancy_digest_prey"))
 		pred_digest = sound(get_sfx("fancy_digest_pred"))
 
-/////////////////////////// Exit Early ////////////////////////////
-	var/list/touchable_atoms = contents - items_preserved
-	if(!length(touchable_atoms))
-		return
+///////////////////// Early Non-Mode Handling /////////////////////
 
 	var/datum/digest_mode/DM = GLOB.digest_modes["[digest_mode]"]
 	if(!DM)
@@ -54,44 +53,8 @@
 		if(hta_returns["to_update"])
 			to_update = hta_returns["to_update"]
 
-	if(!LAZYLEN(touchable_mobs))
-		return
-
-///////////////////// Early Non-Mode Handling /////////////////////
-	if(emote_active)
-		var/list/EL = emote_lists[digest_mode]
-		if(LAZYLEN(EL) && next_emote <= world.time)
-			var/living_count = 0
-			for(var/mob/living/L in contents)
-				living_count++
-			next_emote = world.time + (emote_time SECONDS)
-			for(var/mob/living/M in contents)
-				if(digest_mode == DM_DIGEST && !M.digestable)
-					continue // don't give digesty messages to indigestible people
-
-				var/raw_message = pick(EL)
-				var/formatted_message
-				formatted_message = replacetext(raw_message, "%belly", lowertext(name))
-				formatted_message = replacetext(formatted_message, "%pred", owner)
-				formatted_message = replacetext(formatted_message, "%prey", english_list(contents))
-				formatted_message = replacetext(formatted_message, "%count", contents.len)
-				formatted_message = replacetext(formatted_message, "%countprey", living_count)
-				to_chat(M, "<span class='notice'>[formatted_message]</span>")
-
 	if(!digestion_noise_chance)
 		digestion_noise_chance = DM.noise_chance
-
-
-///////////////////// Time to actually process mobs /////////////////////
-	for(var/target in touchable_mobs)
-		var/mob/living/L = target
-		if(!istype(L))
-			continue
-		var/list/returns = DM.process_mob(src, target)
-		if(istype(returns) && returns["to_update"])
-			to_update = TRUE
-		if(istype(returns) && returns["soundToPlay"] && !play_sound)
-			play_sound = returns["soundToPlay"]
 
 /////////////////////////// Make any noise ///////////////////////////
 	if(digestion_noise_chance && prob(digestion_noise_chance))
@@ -113,6 +76,45 @@
 
 	if(to_update)
 		updateVRPanels()
+
+	if(!LAZYLEN(touchable_mobs))
+		return
+
+///////////////////// Prey Loop Refresh/hack //////////////////////
+	prey_loop()
+
+///////////////////// Time to actually process mobs /////////////////////
+
+	for(var/target in touchable_mobs)
+		var/mob/living/L = target
+		if(!istype(L))
+			continue
+		var/list/returns = DM.process_mob(src, target)
+		if(istype(returns) && returns["to_update"])
+			to_update = TRUE
+		if(istype(returns) && returns["soundToPlay"] && !play_sound)
+			play_sound = returns["soundToPlay"]
+
+	if(emote_active)
+		var/list/EL = emote_lists[digest_mode]
+		if(LAZYLEN(EL) && next_emote <= world.time)
+			var/living_count = 0
+			for(var/mob/living/L in contents)
+				living_count++
+			next_emote = world.time + (emote_time SECONDS)
+			for(var/mob/living/M in contents)
+				if(digest_mode == DM_DIGEST && !M.digestable)
+					continue // don't give digesty messages to indigestible people
+
+				var/raw_message = pick(EL)
+				var/formatted_message
+				formatted_message = replacetext(raw_message, "%belly", lowertext(name))
+				formatted_message = replacetext(formatted_message, "%pred", owner)
+				formatted_message = replacetext(formatted_message, "%prey", english_list(contents))
+				formatted_message = replacetext(formatted_message, "%count", contents.len)
+				formatted_message = replacetext(formatted_message, "%countprey", living_count)
+				to_chat(M, "<span class='notice'>[formatted_message]</span>")
+
 
 /obj/belly/proc/handle_touchable_atoms(list/touchable_atoms)
 	var/did_an_item = FALSE // Only do one item per cycle.
