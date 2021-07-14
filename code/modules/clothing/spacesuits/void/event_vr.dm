@@ -86,7 +86,7 @@
 	
 	// No animal people sprites for these yet, sad times
 	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
-	sprite_sheets = list()
+	sprite_sheets = null
 
 /obj/item/clothing/suit/space/void/hev/violet
 	icon_state = "hev_violet"
@@ -102,7 +102,7 @@
 	
 	// No animal people sprites for these yet, sad times
 	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
-	sprite_sheets = list()
+	sprite_sheets = null
 
 /obj/item/clothing/head/helmet/space/void/hev/violet
 	icon_state = "hev_violet"
@@ -121,7 +121,7 @@
 
 	// No animal people sprites for these yet, sad times
 	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
-	sprite_sheets = list()
+	sprite_sheets = null
 
 /obj/item/clothing/head/helmet/space/void/makeshift
 	name = "makeshift voidsuit helmet"
@@ -135,7 +135,7 @@
 
 	// No animal people sprites for these yet, sad times
 	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
-	sprite_sheets = list()
+	sprite_sheets = null
 
 // 'Custodian' armor
 /obj/item/clothing/suit/space/void/custodian
@@ -150,7 +150,7 @@
 	
 	// No animal people sprites for these yet, sad times
 	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
-	sprite_sheets = list()
+	sprite_sheets = null
 
 /obj/item/clothing/head/helmet/space/void/custodian
 	name = "custodian helmet"
@@ -164,7 +164,7 @@
 	
 	// No animal people sprites for these yet, sad times
 	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
-	sprite_sheets = list()
+	sprite_sheets = null
 
 // 'Moebius' armor
 /obj/item/clothing/suit/space/void/aether
@@ -179,7 +179,7 @@
 
 	// No animal people sprites for these yet, sad times
 	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
-	sprite_sheets = list()
+	sprite_sheets = null
 
 /obj/item/clothing/head/helmet/space/void/aether
 	name = "\improper Aether voidsuit helmet"
@@ -193,7 +193,7 @@
 
 	// No animal people sprites for these yet, sad times
 	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
-	sprite_sheets = list()
+	sprite_sheets = null
 
 /obj/item/clothing/head/helmet/space/void/aether/verb/select_color()
 	set name = "Helmet Color"
@@ -218,7 +218,7 @@
 	
 	// No animal people sprites for these yet, sad times
 	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
-	sprite_sheets = list()
+	sprite_sheets = null
 
 /obj/item/clothing/head/helmet/space/void/excelsior
 	name = "\improper Excelsior voidsuit helmet"
@@ -230,4 +230,4 @@
 	
 	// No animal people sprites for these yet, sad times
 	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
-	sprite_sheets = list()
+	sprite_sheets = null

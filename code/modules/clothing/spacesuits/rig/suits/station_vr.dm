@@ -94,7 +94,7 @@
 	icon_state = "techno_rig"
 	// No animal people sprites for these yet, sad times
 	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
-	sprite_sheets = list()
+	sprite_sheets = null
 
 /obj/item/clothing/suit/space/rig/focalpoint
 	icon = 'icons/inventory/suit/item_vr.dmi'
@@ -102,7 +102,7 @@
 	icon_state = "techno_rig"
 	// No animal people sprites for these yet, sad times
 	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
-	sprite_sheets = list()
+	sprite_sheets = null
 
 /obj/item/clothing/shoes/magboots/rig/focalpoint
 	icon = 'icons/inventory/feet/item_vr.dmi'
@@ -110,7 +110,7 @@
 	icon_state = "techno_rig"
 	// No animal people sprites for these yet, sad times
 	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
-	sprite_sheets = list()
+	sprite_sheets = null
 
 /obj/item/clothing/gloves/gauntlets/rig/focalpoint
 	icon = 'icons/inventory/hands/item_vr.dmi'
@@ -119,7 +119,7 @@
 	siemens_coefficient = 0
 	// No animal people sprites for these yet, sad times
 	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
-	sprite_sheets = list()
+	sprite_sheets = null
 
 // 'Ironhammer' hardsuit
 /obj/item/weapon/rig/hephaestus
@@ -153,7 +153,7 @@
 	icon_state = "ihs_rig"
 	// No animal people sprites for these yet, sad times
 	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
-	sprite_sheets = list()
+	sprite_sheets = null
 
 /obj/item/clothing/suit/space/rig/hephaestus
 	icon = 'icons/inventory/suit/item_vr.dmi'
@@ -161,7 +161,7 @@
 	icon_state = "ihs_rig"
 	// No animal people sprites for these yet, sad times
 	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
-	sprite_sheets = list()
+	sprite_sheets = null
 
 /obj/item/clothing/shoes/magboots/rig/hephaestus
 	icon = 'icons/inventory/feet/item_vr.dmi'
@@ -169,7 +169,7 @@
 	icon_state = "ihs_rig"
 	// No animal people sprites for these yet, sad times
 	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
-	sprite_sheets = list()
+	sprite_sheets = null
 
 /obj/item/clothing/gloves/gauntlets/rig/hephaestus
 	icon = 'icons/inventory/hands/item_vr.dmi'
@@ -177,4 +177,4 @@
 	icon_state = "ihs_rig"
 	// No animal people sprites for these yet, sad times
 	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
-	sprite_sheets = list()
+	sprite_sheets = null

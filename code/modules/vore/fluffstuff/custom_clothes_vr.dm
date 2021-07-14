@@ -1018,7 +1018,7 @@
 	icon_state = "gildedcuffs"
 
 	icon_override = 'icons/vore/custom_onmob_vr.dmi'
-	item_icons = list()
+	item_icons = null
 
 	body_parts_covered = 0
 
@@ -1847,7 +1847,7 @@ Departamental Swimsuits, for general use
 	rolled_down = 0
 	rolled_sleeves = 0
 	starting_accessories = null
-	item_icons = list()
+	item_icons = null
 
 //Vorrarkul: Melanie Farmer
 /obj/item/clothing/under/fluff/slime_skeleton
@@ -1901,10 +1901,10 @@ Departamental Swimsuits, for general use
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "latex_clothes"
-	item_icons = list()
+	item_icons = null
 	default_worn_icon = 'icons/vore/custom_clothes_vr.dmi'
 	color = COLOR_NAVY
-	sprite_sheets = list()
+	sprite_sheets = null
 
 //SweetBlueSylveon:Pip Shyner
 /obj/item/clothing/accessory/poncho/roles/cloak/hop/fluff/pip
@@ -1994,7 +1994,7 @@ Departamental Swimsuits, for general use
 	icon_override = 'icons/vore/custom_onmob_vr.dmi'
 	icon_state = "nikki_outfit"
 	item_state = "nikki_outfit"
-	item_icons = list()
+	item_icons = null
 	sensor_mode = 3 // I'm a dumbass and forget these all the time please understand :(
 
 /obj/item/clothing/under/skirt/outfit/fluff/nikki/mob_can_equip(var/mob/living/carbon/human/M, slot, disable_warning = 0)

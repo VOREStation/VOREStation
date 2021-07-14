@@ -594,7 +594,7 @@
 		var/species_icon = default_mob_icon
 		// Since setting mob_icon will override the species checks in
 		// update_inv_wear_suit(), handle species checks here.
-		if(wearer && sprite_sheets && sprite_sheets[wearer.species.get_bodytype(wearer)])
+		if(wearer && LAZYACCESS(sprite_sheets, wearer.species.get_bodytype(wearer)))
 			species_icon =  sprite_sheets[wearer.species.get_bodytype(wearer)]
 		mob_icon = icon(icon = species_icon, icon_state = "[icon_state]")
 

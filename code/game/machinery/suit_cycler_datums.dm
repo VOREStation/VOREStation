@@ -270,7 +270,7 @@ GLOBAL_LIST_EMPTY(suit_cycler_emagged)
 // the presence of the species in the sprite_sheets_obj list on the helmet and suit
 /datum/suit_cycler_choice/species/proc/can_refit_to(obj/item/clothing/head/helmet/helmet, obj/item/clothing/suit/space/suit)
 	for(var/obj/item/clothing/C in list(helmet, suit))
-		if(C.sprite_sheets_obj[name])
+		if(LAZYACCESS(C.sprite_sheets_obj, name))
 			if(!(C.icon_state in cached_icon_states(C.sprite_sheets_obj[name])))
 				return FALSE // Species was in sprite_sheets_obj, but had no sprite for this object in particular
 
