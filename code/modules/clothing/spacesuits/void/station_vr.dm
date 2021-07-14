@@ -7,9 +7,9 @@
 		SPECIES_XENOHYBRID 		= 'icons/inventory/head/mob_unathi.dmi',
 		SPECIES_AKULA			= 'icons/inventory/head/mob_unathi.dmi',
 		SPECIES_SERGAL			= 'icons/inventory/head/mob_unathi.dmi',
-		SPECIES_VULPKANIN		= 'icons/inventory/head/mob_vulpkanin.dmi',
-		SPECIES_ZORREN_HIGH		= 'icons/inventory/head/mob_vulpkanin.dmi',
-		SPECIES_FENNEC			= 'icons/inventory/head/mob_vulpkanin.dmi'
+		SPECIES_VULPKANIN		= 'icons/inventory/head/mob_vr_vulpkanin.dmi',
+		SPECIES_ZORREN_HIGH		= 'icons/inventory/head/mob_vr_vulpkanin.dmi',
+		SPECIES_FENNEC			= 'icons/inventory/head/mob_vr_vulpkanin.dmi'
 		)
 	sprite_sheets_obj = list(
 		SPECIES_TAJ 			= 'icons/inventory/head/item.dmi',
@@ -30,11 +30,11 @@
 		SPECIES_SKRELL 			= 'icons/inventory/suit/mob_skrell.dmi',
 		SPECIES_UNATHI 			= 'icons/inventory/suit/mob_unathi.dmi',
 		SPECIES_XENOHYBRID 		= 'icons/inventory/suit/mob_unathi.dmi',
-		SPECIES_AKULA			= 'icons/inventory/suit/mob_akula.dmi',
-		SPECIES_SERGAL			= 'icons/inventory/suit/mob_sergal.dmi',
-		SPECIES_VULPKANIN		= 'icons/inventory/suit/mob_vulpkanin.dmi',
-		SPECIES_ZORREN_HIGH		= 'icons/inventory/suit/mob_vulpkanin.dmi',
-		SPECIES_FENNEC			= 'icons/inventory/suit/mob_vulpkanin.dmi'
+		SPECIES_AKULA			= 'icons/inventory/suit/mob_vr_akula.dmi',
+		SPECIES_SERGAL			= 'icons/inventory/suit/mob_vr_sergal.dmi',
+		SPECIES_VULPKANIN		= 'icons/inventory/suit/mob_vr_vulpkanin.dmi',
+		SPECIES_ZORREN_HIGH		= 'icons/inventory/suit/mob_vr_vulpkanin.dmi',
+		SPECIES_FENNEC			= 'icons/inventory/suit/mob_vr_vulpkanin.dmi'
 		)
 	sprite_sheets_obj = list(
 		SPECIES_TAJ			= 'icons/inventory/suit/item.dmi',
