@@ -144,7 +144,8 @@
 	var/image/I
 
 	for(var/i = 1 to 4)
-		I = image('icons/obj/sandbags.dmi', "sandbags[connections[i]]", dir = 1<<(i-1))
+		var/connect = connections?[i] || 0
+		I = image('icons/obj/sandbags.dmi', "sandbags[connect]", dir = 1<<(i-1))
 		I.color = material.icon_colour
 		add_overlay(I)
 
