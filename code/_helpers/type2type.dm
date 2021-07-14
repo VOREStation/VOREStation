@@ -4,7 +4,6 @@
  *			hex2num & num2hex
  *			file2list
  *			angle2dir
- *			angle2text
  */
 
 // Returns an integer given a hexadecimal number string as input.
@@ -130,10 +129,6 @@
 		if (SOUTHEAST) return 135
 		if (NORTHWEST) return 315
 		if (SOUTHWEST) return 225
-
-// Returns the angle in english
-/proc/angle2text(var/degree)
-	return dir2text(angle2dir(degree))
 
 // Converts a blend_mode constant to one acceptable to icon.Blend()
 /proc/blendMode2iconMode(blend_mode)
