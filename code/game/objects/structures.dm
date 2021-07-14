@@ -10,8 +10,8 @@
 	var/list/climbers
 	var/block_turf_edges = FALSE // If true, turf edge icons will not be made on the turf this occupies.
 	
-	var/list/connections = list("0", "0", "0", "0")
-	var/list/other_connections = list("0", "0", "0", "0")
+	var/list/connections
+	var/list/other_connections
 	var/list/blend_objects = newlist() // Objects which to blend with
 	var/list/noblend_objects = newlist() //Objects to avoid blending with (such as children of listed blend objects.
 

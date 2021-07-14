@@ -107,7 +107,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	if(QDESTROYING(src))
 		return
 
-	crash_with("CANARY: Old human update_icons was called.")
+	stack_trace("CANARY: Old human update_icons was called.")
 
 	update_hud()		//TODO: remove the need for this
 
@@ -839,7 +839,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	apply_layer(SUIT_LAYER)
 
 /mob/living/carbon/human/update_inv_pockets()
-	crash_with("Someone called update_inv_pockets even though it's dumb")
+	stack_trace("Someone called update_inv_pockets even though it's dumb")
 
 /mob/living/carbon/human/update_inv_wear_mask()
 	if(QDESTROYING(src))

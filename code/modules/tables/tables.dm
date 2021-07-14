@@ -359,24 +359,27 @@ var/list/table_icon_cache = list()
 
 		// Base frame shape. Mostly done for glass/diamond tables, where this is visible.
 		for(var/i = 1 to 4)
-			var/image/I = get_table_image(icon, connections[i], 1<<(i-1))
+			var/image/I = get_table_image(icon, connections?[i] || 0, 1<<(i-1))
 			add_overlay(I)
 
 		// Standard table image
 		if(material)
 			for(var/i = 1 to 4)
-				var/image/I = get_table_image(icon, "[material.icon_base]_[connections[i]]", 1<<(i-1), material.icon_colour, 255 * material.opacity)
+				var/connect = connections?[i] || 0
+				var/image/I = get_table_image(icon, "[material.icon_base]_[connect]", 1<<(i-1), material.icon_colour, 255 * material.opacity)
 				add_overlay(I)
 
 		// Reinforcements
 		if(reinforced)
 			for(var/i = 1 to 4)
-				var/image/I = get_table_image(icon, "[reinforced.icon_reinf]_[connections[i]]", 1<<(i-1), reinforced.icon_colour, 255 * reinforced.opacity)
+				var/connect = connections?[i] || 0
+				var/image/I = get_table_image(icon, "[reinforced.icon_reinf]_[connect]", 1<<(i-1), reinforced.icon_colour, 255 * reinforced.opacity)
 				add_overlay(I)
 
 		if(carpeted)
 			for(var/i = 1 to 4)
-				var/image/I = get_table_image(icon, "carpet_[connections[i]]", 1<<(i-1))
+				var/connect = connections?[i] || 0
+				var/image/I = get_table_image(icon, "carpet_[connect]", 1<<(i-1))
 				add_overlay(I)
 	else
 		cut_overlays()

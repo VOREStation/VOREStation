@@ -1,6 +1,6 @@
 //#define TESTING
-#if DM_VERSION < 506
-#warn This compiler is out of date. You may experience issues with projectile animations.
+#if DM_VERSION < 512
+#error This compiler is out of date Please update to at least BYOND 512.
 #endif
 
 // Items that ask to be called every cycle.
