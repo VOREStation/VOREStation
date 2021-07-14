@@ -245,6 +245,8 @@
 	var/list/gateway_zs = GetConnectedZlevels(GLOB.gateway_away.z)
 	if(z in gateway_zs)
 		return FALSE // It's not calibrated and we're in a connected z
+	
+	return TRUE
 
 /obj/machinery/power/quantumpad/proc/gateway_scatter(mob/user)
 	var/obj/effect/landmark/dest = pick(awaydestinations)
