@@ -114,7 +114,7 @@ SUBSYSTEM_DEF(transcore)
 		else
 			if(curr_MR.dead_state != MR_DEAD) //First time switching to dead
 				if(curr_MR.do_notify)
-					db.notify(curr_MR.mindname)
+					db.notify(curr_MR)
 					curr_MR.last_notification = world.time
 			curr_MR.dead_state = MR_DEAD
 
@@ -250,10 +250,15 @@ SUBSYSTEM_DEF(transcore)
 
 	return 1
 
-// Send a past-due notification to the medical radio channel.
-/datum/transcore_db/proc/notify(var/name)
-	ASSERT(name)
-	global_announcer.autosay("[name] is past-due for a mind backup.", "TransCore Oversight", "Medical")
+// Send a past-due notification to the proper radio channel.
+/datum/transcore_db/proc/notify(var/datum/transhuman/mind_record/MR)
+	ASSERT(MR)
+	var/datum/transcore_db/db = SStranscore.db_by_mind_name(MR.mindname)
+	var/datum/transhuman/body_record/BR = db.body_scans[MR.mindname]
+	if(!BR)
+		global_announcer.autosay("[MR.mindname] is past-due for a mind backup, but lacks a corresponding body record.", "TransCore Oversight", "Medical")
+		return
+	global_announcer.autosay("[MR.mindname] is past-due for a mind backup.", "TransCore Oversight", BR.synthetic ? "Science" : "Medical")
 
 // Called from mind_record to add itself to the transcore.
 /datum/transcore_db/proc/add_backup(var/datum/transhuman/mind_record/MR)
