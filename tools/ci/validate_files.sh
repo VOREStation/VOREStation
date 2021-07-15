@@ -63,7 +63,7 @@ if [ $retVal -ne 0 ]; then
 fi
 
 # Checking that all boolean vars use TRUE|FALSE instead of 0|1
-booleans="sharp edge density anchored can_buckle use_to_pickup was_bloodied canremove simulated panel_open opacity unacidable climbable attack_sharp"
+booleans="sharp edge density anchored can_buckle use_to_pickup was_bloodied canremove simulated panel_open unacidable climbable attack_sharp"
 for VAR in $booleans; do
   echo "Checking for $VAR = 0 or 1"
   ! (grep -Prn "\b${VAR}\s*=\s*(0|1)(?![\d\.])\b" code > ${VAR}.txt)
