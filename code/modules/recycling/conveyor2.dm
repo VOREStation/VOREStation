@@ -13,6 +13,7 @@
 	plane = TURF_PLANE
 	layer = ABOVE_TURF_LAYER
 	anchored = TRUE
+	active_power_usage = 100
 	circuit = /obj/item/weapon/circuitboard/conveyor
 	var/operating = OFF	// 1 if running forward, -1 if backwards, 0 if off
 	var/operable = 1	// true if can operate (no broken segments in this belt run)
@@ -44,6 +45,10 @@
 		speed_process = forced
 	else
 		speed_process = !speed_process // switching gears
+	if(speed_process) // high gear
+		update_active_power_usage(initial(idle_power_usage) * 4)
+	else // low gear
+		update_active_power_usage(initial(idle_power_usage))
 	update()
 
 /obj/machinery/conveyor/proc/set_operating(var/new_operating)
@@ -74,6 +79,7 @@
 	if(stat & BROKEN)
 		icon_state = "conveyor-broken"
 		operating = OFF
+		update_use_power(USE_POWER_OFF)
 		return
 	if(!operable)
 		operating = OFF
@@ -82,13 +88,16 @@
 	icon_state = "conveyor[operating]"
 
 	if(!operating)
+		update_use_power(USE_POWER_OFF)
 		return
 	if(speed_process) // high gear
 		STOP_MACHINE_PROCESSING(src)
 		START_PROCESSING(SSfastprocess, src)
+		update_use_power(USE_POWER_ACTIVE)
 	else // low gear
 		STOP_PROCESSING(SSfastprocess, src)
 		START_MACHINE_PROCESSING(src)
+		update_use_power(USE_POWER_ACTIVE)
 
 	// machine process
 	// move items to the target location
@@ -97,8 +106,6 @@
 		return PROCESS_KILL
 	if(!operating)
 		return PROCESS_KILL
-	
-	use_power(100)
 
 	affecting = loc.contents - src		// moved items will be all in loc
 	spawn(1)	// slight delay to prevent infinite propagation due to map order	//TODO: please no spawn() in process(). It's a very bad idea
