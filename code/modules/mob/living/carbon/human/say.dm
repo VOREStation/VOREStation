@@ -129,6 +129,11 @@
 			message_data[2] = pick(M.say_verbs)
 			. = 1
 
+	if(CE_SPEEDBOOST in chem_effects || is_jittery) // motor mouth
+		for(var/datum/multilingual_say_piece/S in message_data[1])
+			S.message = replacetext(S.message," ","")
+			S.message = replacetext(S.message,",","")
+			S.message = replacetext(S.message,";","")
 	else
 		. = ..(message_data)
 
