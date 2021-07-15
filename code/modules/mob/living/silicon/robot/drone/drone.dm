@@ -1,7 +1,7 @@
 var/list/mob_hat_cache = list()
 /proc/get_hat_icon(var/obj/item/hat, var/offset_x = 0, var/offset_y = 0)
 	var/t_state = hat.icon_state
-	if(hat.item_state_slots && hat.item_state_slots[slot_head_str])
+	if(LAZYACCESS(hat.item_state_slots, slot_head_str))
 		t_state = hat.item_state_slots[slot_head_str]
 	else if(hat.item_state)
 		t_state = hat.item_state
@@ -10,7 +10,7 @@ var/list/mob_hat_cache = list()
 		var/t_icon = INV_HEAD_DEF_ICON // are unique across multiple dmis, but whatever.
 		if(hat.icon_override)
 			t_icon = hat.icon_override
-		else if(hat.item_icons && (slot_head_str in hat.item_icons))
+		else if(LAZYACCESS(hat.item_icons, slot_head_str))
 			t_icon = hat.item_icons[slot_head_str]
 		var/image/I = image(icon = t_icon, icon_state = t_state)
 		I.pixel_x = offset_x

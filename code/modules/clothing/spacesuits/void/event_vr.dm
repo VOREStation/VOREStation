@@ -84,9 +84,8 @@
 	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
 	icon_state = "hev_orange"
 	
-	// No animal people sprites for these yet, sad times
-	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
-	sprite_sheets = list()
+	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
+	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
 
 /obj/item/clothing/suit/space/void/hev/violet
 	icon_state = "hev_violet"
@@ -100,9 +99,8 @@
 	default_worn_icon = 'icons/inventory/head/mob_vr.dmi'
 	icon_state = "hev_orange"
 	
-	// No animal people sprites for these yet, sad times
-	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
-	sprite_sheets = list()
+	sprite_sheets = ALL_VR_SPRITE_SHEETS_HEAD_MOB
+	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_HEAD_ITEM
 
 /obj/item/clothing/head/helmet/space/void/hev/violet
 	icon_state = "hev_violet"
@@ -119,9 +117,8 @@
 	
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0)
 
-	// No animal people sprites for these yet, sad times
-	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
-	sprite_sheets = list()
+	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
+	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
 
 /obj/item/clothing/head/helmet/space/void/makeshift
 	name = "makeshift voidsuit helmet"
@@ -133,9 +130,8 @@
 
 	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0)
 
-	// No animal people sprites for these yet, sad times
-	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
-	sprite_sheets = list()
+	sprite_sheets = ALL_VR_SPRITE_SHEETS_HEAD_MOB
+	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_HEAD_ITEM
 
 // 'Custodian' armor
 /obj/item/clothing/suit/space/void/custodian
@@ -148,9 +144,8 @@
 
 	armor = list("melee" = 70, "bullet" = 70, "laser" = 70, "energy" = 50, "bomb" = 40, "bio" = 0, "rad" = 20)
 	
-	// No animal people sprites for these yet, sad times
-	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
-	sprite_sheets = list()
+	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
+	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
 
 /obj/item/clothing/head/helmet/space/void/custodian
 	name = "custodian helmet"
@@ -162,9 +157,8 @@
 
 	armor = list("melee" = 70, "bullet" = 70, "laser" = 70, "energy" = 50, "bomb" = 40, "bio" = 0, "rad" = 20)
 	
-	// No animal people sprites for these yet, sad times
-	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
-	sprite_sheets = list()
+	sprite_sheets = ALL_VR_SPRITE_SHEETS_HEAD_MOB
+	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_HEAD_ITEM
 
 // 'Moebius' armor
 /obj/item/clothing/suit/space/void/aether
@@ -177,9 +171,8 @@
 
 	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 20, "bomb" = 20, "bio" = 100, "rad" = 20)
 
-	// No animal people sprites for these yet, sad times
-	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
-	sprite_sheets = list()
+	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
+	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
 
 /obj/item/clothing/head/helmet/space/void/aether
 	name = "\improper Aether voidsuit helmet"
@@ -191,9 +184,8 @@
 
 	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 20, "bomb" = 20, "bio" = 100, "rad" = 20)
 
-	// No animal people sprites for these yet, sad times
-	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
-	sprite_sheets = list()
+	sprite_sheets = ALL_VR_SPRITE_SHEETS_HEAD_MOB
+	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_HEAD_ITEM
 
 /obj/item/clothing/head/helmet/space/void/aether/verb/select_color()
 	set name = "Helmet Color"
@@ -216,9 +208,8 @@
 	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
 	icon_state = "excelsior"
 	
-	// No animal people sprites for these yet, sad times
-	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
-	sprite_sheets = list()
+	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
+	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
 
 /obj/item/clothing/head/helmet/space/void/excelsior
 	name = "\improper Excelsior voidsuit helmet"
@@ -228,6 +219,5 @@
 	default_worn_icon = 'icons/inventory/head/mob_vr.dmi'
 	icon_state = "excelsior"
 	
-	// No animal people sprites for these yet, sad times
-	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
-	sprite_sheets = list()
+	sprite_sheets = ALL_VR_SPRITE_SHEETS_HEAD_MOB
+	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_HEAD_ITEM
