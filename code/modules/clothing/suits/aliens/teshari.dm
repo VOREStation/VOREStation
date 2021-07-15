@@ -3,7 +3,7 @@
 	name = "black cloak"
 	desc = "It drapes over a Teshari's shoulders and closes at the neck with pockets convienently placed inside."
 	icon = 'icons/inventory/suit/item_teshari.dmi'
-	icon = 'icons/inventory/suit/mob_teshari.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob_teshari.dmi'
 	icon_state = "tesh_cloak_bn"
 	item_state = "tesh_cloak_bn"
 	species_restricted = list(SPECIES_TESHARI)
