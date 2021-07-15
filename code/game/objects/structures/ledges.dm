@@ -54,7 +54,7 @@
 	if(!can_climb(user))
 		return
 
-	usr.visible_message("<span class='warning'>[user] starts climbing onto \the [src]!</span>")
+	user.visible_message("<span class='warning'>[user] starts climbing onto \the [src]!</span>")
 	LAZYDISTINCTADD(climbers, user)
 
 	if(!do_after(user,(issmall(user) ? 20 : 34)))
@@ -65,12 +65,16 @@
 		LAZYREMOVE(climbers, user)
 		return
 
+	var/did_move = FALSE
 	if(get_turf(user) == get_turf(src))
-		usr.forceMove(get_step(src, src.dir))
+		did_move = user.Move(get_step(src, src.dir))
 	else
-		usr.forceMove(get_turf(src))
+		did_move = user.Move(get_turf(src))
 
-	usr.visible_message("<span class='warning'>[user] climbed over \the [src]!</span>")
+	if(did_move)
+		user.visible_message("<span class='warning'>[user] climbed over \the [src]!</span>")
+	else
+		user.visible_message("<span class='warning'>[user] tried to climb over \the [src], but failed!</span>")
 	LAZYREMOVE(climbers, user)
 
 /obj/structure/ledge/can_climb(var/mob/living/user, post_climb_check=0)
