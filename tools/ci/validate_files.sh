@@ -62,6 +62,19 @@ if [ $retVal -ne 0 ]; then
   FAILED=1
 fi
 
+# Checking that all boolean vars use TRUE|FALSE instead of 0|1
+booleans="sharp edge density anchored can_buckle use_to_pickup was_bloodied canremove simulated panel_open opacity"
+for VAR in $booleans; do
+  echo "Checking for $VAR = 0 or 1"
+  ! (grep -Prn "\b${VAR}\s*=\s*(0|1)(?![\d\.])\b" code > ${VAR}.txt)
+  retVal=$?
+  if [ $retVal -ne 0 ]; then
+    echo -e "${RED} $VAR should be set to TRUE|FALSE instead of 0|1${NC}"
+    sed -E -n "s/^(.+?\.dm):([0-9]+):\s+(.+)$/\1:\2: \3/gp" < ${VAR}.txt
+    FAILED=1
+  fi
+done
+
 #Checking for missed tags
 python tools/TagMatcher/tag-matcher.py ../..
 retVal=$?
@@ -69,6 +82,5 @@ if [ $retVal -ne 0 ]; then
   echo -e "${RED}Some HTML tags are missing their opening/closing partners. Please correct this.${NC}"
   FAILED=1
 fi
-
 # Quit with our status code
 exit $FAILED
