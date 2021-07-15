@@ -110,10 +110,6 @@ var/list/channel_to_radio_key = new
 			S.message = stutter(S.message)
 			verb = pick("stammers","stutters")
 			. = 1
-		if(reagents.has_reagent("hyperzine")) // motor mouthed hyperzine user
-			S.message = replacetext(S.message," ","")
-			S.message = replacetext(S.message,",","")
-			S.message = replacetext(S.message,";","")
 		//VOREStation Edit Start
 		if(muffled)
 			verb = pick("muffles")

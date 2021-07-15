@@ -128,6 +128,10 @@
 			message_data[1] = pick(M.say_messages)
 			message_data[2] = pick(M.say_verbs)
 			. = 1
+	if(CE_SPEEDBOOST in chem_effects || is_jittery) // motor mouth
+			message_data[1] = replacetext(message_data[1]," ","")
+			message_data[1] = replacetext(message_data[1],",","")
+			message_data[1] = replacetext(message_data[1],";","")
 
 	else
 		. = ..(message_data)
