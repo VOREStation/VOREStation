@@ -347,6 +347,7 @@
 	item_state = null
 	sprite_sheets = null
 	sprite_sheets_obj = null
+	siemens_coefficient = 0 // insulated
 
 // Pathfinder rig from bay - event/reward stuff here
 /obj/item/weapon/rig/pathfinder
