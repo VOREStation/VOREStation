@@ -164,7 +164,7 @@
 
 	//Set icon
 	if (sprite_sheets_refit && (target_species in sprite_sheets_refit))
-		sprite_sheets[target_species] = sprite_sheets_refit[target_species]
+		LAZYSET(sprite_sheets, target_species, sprite_sheets_refit[target_species])
 
 	if (sprite_sheets_obj && (target_species in sprite_sheets_obj))
 		icon = sprite_sheets_obj[target_species]
@@ -212,7 +212,7 @@
 
 	//Set icon
 	if (sprite_sheets_refit && (target_species in sprite_sheets_refit))
-		sprite_sheets[target_species] = sprite_sheets_refit[target_species]
+		LAZYSET(sprite_sheets, target_species, sprite_sheets_refit[target_species])
 
 	if (sprite_sheets_obj && (target_species in sprite_sheets_obj))
 		icon = sprite_sheets_obj[target_species]
@@ -542,9 +542,9 @@
 
 		// Generate and cache the on-mob icon, which is used in update_inv_head().
 		var/body_type = (H && H.species.get_bodytype(H))
-		var/cache_key = "[light_overlay][body_type && sprite_sheets[body_type] ? body_type : ""]"
+		var/cache_key = "[light_overlay][body_type && LAZYACCESS(sprite_sheets, body_type) ? body_type : ""]"
 		if(!light_overlay_cache[cache_key])
-			var/use_icon = LAZYACCESS(sprite_sheets,body_type) || 'icons/mob/light_overlays.dmi'
+			var/use_icon = LAZYACCESS(sprite_sheets, body_type) || 'icons/mob/light_overlays.dmi'
 			light_overlay_cache[cache_key] = image(icon = use_icon, icon_state = "[light_overlay]")
 
 	else if(helmet_light)
@@ -867,9 +867,7 @@
 /obj/item/clothing/under/New()
 	..()
 	if(worn_state)
-		if(!item_state_slots)
-			item_state_slots = list()
-		item_state_slots[slot_w_uniform_str] = worn_state
+		LAZYSET(item_state_slots, slot_w_uniform_str, worn_state)
 	else
 		worn_state = icon_state
 
@@ -891,9 +889,9 @@
 	var/icon/under_icon
 	if(icon_override)
 		under_icon = icon_override
-	else if(H && sprite_sheets && sprite_sheets[H.species.get_bodytype(H)])
+	else if(H && LAZYACCESS(sprite_sheets, H.species.get_bodytype(H)))
 		under_icon = sprite_sheets[H.species.get_bodytype(H)]
-	else if(item_icons && item_icons[slot_w_uniform_str])
+	else if(LAZYACCESS(item_icons, slot_w_uniform_str))
 		under_icon = item_icons[slot_w_uniform_str]
 	else if (worn_state in cached_icon_states(rolled_down_icon))
 		under_icon = rolled_down_icon
@@ -914,9 +912,9 @@
 	var/icon/under_icon
 	if(icon_override)
 		under_icon = icon_override
-	else if(H && sprite_sheets && sprite_sheets[H.species.get_bodytype(H)])
+	else if(H && LAZYACCESS(sprite_sheets, H.species.get_bodytype(H)))
 		under_icon = sprite_sheets[H.species.get_bodytype(H)]
-	else if(item_icons && item_icons[slot_w_uniform_str])
+	else if(LAZYACCESS(item_icons, slot_w_uniform_str))
 		under_icon = item_icons[slot_w_uniform_str]
 	else if (worn_state in cached_icon_states(rolled_down_sleeves_icon))
 		under_icon = rolled_down_sleeves_icon
@@ -1009,16 +1007,16 @@
 		body_parts_covered &= ~(UPPER_TORSO|ARMS)
 		if(worn_state in cached_icon_states(rolled_down_icon))
 			icon_override = rolled_down_icon
-			item_state_slots[slot_w_uniform_str] = worn_state
+			LAZYSET(item_state_slots, slot_w_uniform_str, worn_state)
 		else
-			item_state_slots[slot_w_uniform_str] = "[worn_state]_d"
+			LAZYSET(item_state_slots, slot_w_uniform_str, "[worn_state]_d")
 
 		to_chat(usr, "<span class='notice'>You roll down your [src].</span>")
 	else
 		body_parts_covered = initial(body_parts_covered)
 		if(icon_override == rolled_down_icon)
 			icon_override = initial(icon_override)
-		item_state_slots[slot_w_uniform_str] = worn_state
+		LAZYSET(item_state_slots, slot_w_uniform_str, worn_state)
 		to_chat(usr, "<span class='notice'>You roll up your [src].</span>")
 	update_clothing_icon()
 
@@ -1042,15 +1040,15 @@
 		body_parts_covered &= ~(ARMS)
 		if(worn_state in cached_icon_states(rolled_down_sleeves_icon))
 			icon_override = rolled_down_sleeves_icon
-			item_state_slots[slot_w_uniform_str] = worn_state
+			LAZYSET(item_state_slots, slot_w_uniform_str, worn_state)
 		else
-			item_state_slots[slot_w_uniform_str] = "[worn_state]_r"
+			LAZYSET(item_state_slots, slot_w_uniform_str, "[worn_state]_r")
 		to_chat(usr, "<span class='notice'>You roll up your [src]'s sleeves.</span>")
 	else
 		body_parts_covered = initial(body_parts_covered)
 		if(icon_override == rolled_down_sleeves_icon)
 			icon_override = initial(icon_override)
-		item_state_slots[slot_w_uniform_str] = worn_state
+		LAZYSET(item_state_slots, slot_w_uniform_str, worn_state)
 		to_chat(usr, "<span class='notice'>You roll down your [src]'s sleeves.</span>")
 	update_clothing_icon()
 
