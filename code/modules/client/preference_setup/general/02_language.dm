@@ -5,26 +5,33 @@
 
 /datum/category_item/player_setup_item/general/language/load_character(var/savefile/S)
 	S["language"]			>> pref.alternate_languages
+	testing("LANGSANI: Loaded from [pref.client]'s character [pref.real_name || "-name not yet loaded-"] savefile: [english_list(pref.alternate_languages || list())]")
 	S["language_prefixes"]	>> pref.language_prefixes
 
 /datum/category_item/player_setup_item/general/language/save_character(var/savefile/S)
 	S["language"]			<< pref.alternate_languages
+	testing("LANGSANI: Saved to [pref.client]'s character [pref.real_name || "-name not yet loaded-"] savefile: [english_list(pref.alternate_languages || list())]")
 	S["language_prefixes"]	<< pref.language_prefixes
 
 /datum/category_item/player_setup_item/general/language/sanitize_character()
-	if(!islist(pref.alternate_languages))	pref.alternate_languages = list()
+	if(!islist(pref.alternate_languages))
+		testing("LANGSANI: Sanitizing languages on [pref.client]'s character [pref.real_name || "-name not yet loaded-"] because their character has no languages list")
+		pref.alternate_languages = list()
 	if(pref.species)
 		var/datum/species/S = GLOB.all_species[pref.species]
 		if(!istype(S))
+			testing("LANGSANI: Failed sani on [pref.client]'s character [pref.real_name || "-name not yet loaded-"] because their species ([pref.species]) isn't in the global list")
 			return
 			
 		if(pref.alternate_languages.len > S.num_alternate_languages)
+			testing("LANGSANI: Truncated [pref.client]'s character [pref.real_name || "-name not yet loaded-"] language list because it was too long (len: [pref.alternate_languages.len], allowed: [S.num_alternate_languages])")
 			pref.alternate_languages.len = S.num_alternate_languages // Truncate to allowed length
 
 		// Sanitize illegal languages
 		for(var/language in pref.alternate_languages)
 			var/datum/language/L = GLOB.all_languages[language]
 			if(!istype(L) || (L.flags & RESTRICTED) || (!(language in S.secondary_langs) && !is_lang_whitelisted(pref.client, L)))
+				testing("LANGSANI: Removed [L?.name || "lang not found"] from [pref.client]'s character [pref.real_name || "-name not yet loaded-"] because it failed allowed checks")
 				pref.alternate_languages -= language
 
 	if(isnull(pref.language_prefixes) || !pref.language_prefixes.len)
