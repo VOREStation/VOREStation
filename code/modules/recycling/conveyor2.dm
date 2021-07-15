@@ -35,8 +35,7 @@
 	update_dir()
 
 	if(on)
-		operating = FORWARDS
-		setmove()
+		set_operating(FORWARDS)
 
 	default_apply_parts()
 
@@ -45,14 +44,12 @@
 		speed_process = forced
 	else
 		speed_process = !speed_process // switching gears
-	if(speed_process) // high gear
-		STOP_MACHINE_PROCESSING(src)
-		START_PROCESSING(SSfastprocess, src)
-	else // low gear
-		STOP_PROCESSING(SSfastprocess, src)
-		START_MACHINE_PROCESSING(src)
+	update()
 
-/obj/machinery/conveyor/proc/setmove()
+/obj/machinery/conveyor/proc/set_operating(var/new_operating)
+	if(new_operating == operating)
+		return // No change
+	operating = new_operating
 	if(operating == FORWARDS)
 		movedir = forwards
 	else if(operating == BACKWARDS)
@@ -84,13 +81,23 @@
 		operating = OFF
 	icon_state = "conveyor[operating]"
 
+	if(!operating)
+		return
+	if(speed_process) // high gear
+		STOP_MACHINE_PROCESSING(src)
+		START_PROCESSING(SSfastprocess, src)
+	else // low gear
+		STOP_PROCESSING(SSfastprocess, src)
+		START_MACHINE_PROCESSING(src)
+
 	// machine process
 	// move items to the target location
 /obj/machinery/conveyor/process()
 	if(stat & (BROKEN | NOPOWER))
-		return
+		return PROCESS_KILL
 	if(!operating)
-		return
+		return PROCESS_KILL
+	
 	use_power(100)
 
 	affecting = loc.contents - src		// moved items will be all in loc
@@ -177,8 +184,8 @@
 		C.set_operable(stepdir, id, op)
 
 /obj/machinery/conveyor/power_change()
-	..()
-	update()
+	if((. = ..()))
+		update()
 
 // the conveyor control switch
 //
@@ -242,8 +249,7 @@
 	operated = 0
 
 	for(var/obj/machinery/conveyor/C in conveyors)
-		C.operating = position
-		C.setmove()
+		C.set_operating(position)
 
 // attack with hand, switch position
 /obj/machinery/conveyor_switch/attack_hand(mob/user)
