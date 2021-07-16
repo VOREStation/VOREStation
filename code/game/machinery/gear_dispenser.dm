@@ -585,6 +585,80 @@ var/list/dispenser_presets = list()
 	one_setting = /datum/gear_disp/voidsuit/aether
 	special_frame = "frame_purple"
 
+////////////////////////////// COMMONWEALTH SUIT DISPENSERS ///////////////////////////
+/datum/gear_disp/voidsuit/com_mining
+	name = "Commonwealth mining voidsuit"
+	voidsuit_type = /obj/item/clothing/suit/space/void/mining/alt2
+	voidhelmet_type = /obj/item/clothing/head/helmet/space/void/mining/alt2
+
+/datum/gear_disp/voidsuit/com_riot
+	name = "Commonwealth crowd control voidsuit"
+	voidsuit_type = /obj/item/clothing/suit/space/void/security/riot/alt
+	voidhelmet_type = /obj/item/clothing/head/helmet/space/void/security/riot/alt
+
+/datum/gear_disp/voidsuit/com_pilot
+	name = "Commonwealth pilot voidsuit"
+	voidsuit_type = /obj/item/clothing/suit/space/void/pilot/alt2
+	voidhelmet_type = /obj/item/clothing/head/helmet/space/void/pilot/alt2
+
+/datum/gear_disp/voidsuit/com_medical
+	name = "Commonwealth medical voidsuit"
+	voidsuit_type = /obj/item/clothing/suit/space/void/medical/alt2
+	voidhelmet_type = /obj/item/clothing/head/helmet/space/void/medical/alt2
+
+/datum/gear_disp/voidsuit/com_explorer
+	name = "Commonwealth explorer voidsuit"
+	voidsuit_type = /obj/item/clothing/suit/space/void/exploration/alt2
+	voidhelmet_type = /obj/item/clothing/head/helmet/space/void/exploration/alt2
+
+/datum/gear_disp/voidsuit/com_engineering
+	name = "Commonwealth engineering voidsuit"
+	voidsuit_type = /obj/item/clothing/suit/space/void/engineering/alt2
+	voidhelmet_type = /obj/item/clothing/head/helmet/space/void/engineering/alt2
+
+/datum/gear_disp/voidsuit/com_atmos
+	name = "Commonwealth atmos voidsuit"
+	voidsuit_type = /obj/item/clothing/suit/space/void/atmos/alt2
+	voidhelmet_type = /obj/item/clothing/head/helmet/space/void/atmos/alt2
+
+/datum/gear_disp/voidsuit/com_command
+	name = "Commonwealth command voidsuit"
+	voidsuit_type = /obj/item/clothing/suit/space/void/captain/alt
+	voidhelmet_type = /obj/item/clothing/head/helmet/space/void/captain/alt
+
+/obj/machinery/gear_dispenser/suit/commonwealth
+	name = "\improper Commonwealth Voidsuit Dispenser"
+	desc = "An industrial U-Tak-It Dispenser unit designed to fetch surplus Commonwealth voidsuits."
+	icon_state = "suitdispenserMB"
+	dispenser_flags = GD_NOGREED|GD_UNLIMITED
+	dispenses = list(
+		/datum/gear_disp/voidsuit/com_mining,
+		/datum/gear_disp/voidsuit/com_riot,
+		/datum/gear_disp/voidsuit/com_pilot,
+		/datum/gear_disp/voidsuit/com_medical,
+		/datum/gear_disp/voidsuit/com_explorer,
+		/datum/gear_disp/voidsuit/com_engineering,
+		/datum/gear_disp/voidsuit/com_atmos,
+		/datum/gear_disp/voidsuit/com_command
+	)
+
+/obj/machinery/gear_dispenser/suit_fancy/commonwealth
+	name = "\improper Commonwealth Voidsuit Dispenser"
+	desc = "A commercial U-Tak-It Dispenser unit designed to fetch surplus Commonwealth voidsuits."
+	dispenser_flags = GD_NOGREED|GD_UNLIMITED
+	one_setting = /datum/gear_disp/voidsuit/aether
+	special_frame = "frame_red"
+	dispenses = list(
+		/datum/gear_disp/voidsuit/com_mining,
+		/datum/gear_disp/voidsuit/com_riot,
+		/datum/gear_disp/voidsuit/com_pilot,
+		/datum/gear_disp/voidsuit/com_medical,
+		/datum/gear_disp/voidsuit/com_explorer,
+		/datum/gear_disp/voidsuit/com_engineering,
+		/datum/gear_disp/voidsuit/com_atmos,
+		/datum/gear_disp/voidsuit/com_command
+	)
+
 // Adminbuse
 /obj/machinery/gear_dispenser/vv_get_dropdown()
 	. = ..()
