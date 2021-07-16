@@ -172,7 +172,7 @@ update_flag
 
 		src.destroyed = 1
 		playsound(src, 'sound/effects/spray.ogg', 10, 1, -3)
-		src.density = 0
+		src.density = FALSE
 		update_icon()
 
 		if (src.holding)

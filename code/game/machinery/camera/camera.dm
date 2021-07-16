@@ -174,7 +174,7 @@
 		if(weld(W, user))
 			if(assembly)
 				assembly.loc = src.loc
-				assembly.anchored = 1
+				assembly.anchored = TRUE
 				assembly.camera_name = c_tag
 				assembly.camera_network = english_list(network, NETWORK_DEFAULT, ",", ",")
 				assembly.update_icon()

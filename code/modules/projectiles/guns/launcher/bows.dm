@@ -6,8 +6,8 @@
 	item_state = "bolt"
 	throwforce = 8
 	w_class = ITEMSIZE_NORMAL
-	sharp = 1
-	edge = 0
+	sharp = TRUE
+	edge = FALSE
 
 /obj/item/weapon/arrow/energy
 	name = "hardlight arrow"
@@ -17,8 +17,8 @@
 	item_state = "bolt"
 	throwforce = 10
 	w_class = ITEMSIZE_NORMAL
-	sharp = 0
-	edge = 1
+	sharp = FALSE
+	edge = TRUE
 
 /obj/item/weapon/arrow/energy/throw_impact(atom/hit_atom)
 	. = ..()

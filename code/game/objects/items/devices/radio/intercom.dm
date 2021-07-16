@@ -147,7 +147,7 @@
 		A.pixel_y = pixel_y
 		A.circuit = M
 		A.set_dir(dir)
-		A.anchored = 1
+		A.anchored = TRUE
 		A.state = 2
 		A.update_icon()
 		M.deconstruct(src)

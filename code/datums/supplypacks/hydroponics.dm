@@ -153,6 +153,6 @@
 	cost = 50
 	containertype = /obj/structure/closet/crate/aether
 	containername = "Hydroponics tray crate"
-	contains = list(/obj/machinery/portable_atmospherics/hydroponics{anchored = 0} = 3)
+	contains = list(/obj/machinery/portable_atmospherics/hydroponics{anchored = FALSE} = 3)
 	access = access_hydroponics
 

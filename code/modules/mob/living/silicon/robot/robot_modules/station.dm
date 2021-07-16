@@ -61,7 +61,7 @@ var/global/list/robot_modules = list(
 	R.choose_icon(R.module_sprites.len + 1, R.module_sprites)
 
 	for(var/obj/item/I in modules)
-		I.canremove = 0
+		I.canremove = FALSE
 
 /obj/item/weapon/robot_module/proc/Reset(var/mob/living/silicon/robot/R)
 	remove_camera_networks(R)

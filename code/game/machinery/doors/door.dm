@@ -157,7 +157,7 @@
 /obj/machinery/door/CanZASPass(turf/T, is_zone)
 	if(is_zone)
 		return !block_air_zones // Block merging unless block_air_zones = 0
-	return !density // Block airflow unless density = 0
+	return !density // Block airflow unless density = FALSE
 
 /obj/machinery/door/proc/bumpopen(mob/user as mob)
 	if(operating)	return
@@ -429,7 +429,7 @@
 	icon_state = "door0"
 	set_opacity(0)
 	sleep(3)
-	src.density = 0
+	src.density = FALSE
 	update_nearby_tiles()
 	sleep(7)
 	src.layer = open_layer
@@ -454,7 +454,7 @@
 	close_door_at = 0
 	do_animate("closing")
 	sleep(3)
-	src.density = 1
+	src.density = TRUE
 	explosion_resistance = initial(explosion_resistance)
 	src.layer = closed_layer
 	update_nearby_tiles()

@@ -143,7 +143,7 @@
 	for(var/obj/item/piece in list(gloves,helmet,boots,chest))
 		if(!istype(piece))
 			continue
-		piece.canremove = 0
+		piece.canremove = FALSE
 		piece.name = "[suit_type] [initial(piece.name)]"
 		piece.desc = "It seems to be part of a [src.name]."
 		piece.icon_state = "[suit_state]"
@@ -712,11 +712,11 @@
 					if(use_obj && check_slot == use_obj)
 						to_chat(H, "<span class='notice'><b>Your [use_obj.name] [use_obj.gender == PLURAL ? "retract" : "retracts"] swiftly.</b></span>")
 						playsound(src, 'sound/machines/rig/rigservo.ogg', 10, FALSE)
-						use_obj.canremove = 1
+						use_obj.canremove = TRUE
 						holder.drop_from_inventory(use_obj)
 						use_obj.forceMove(get_turf(src))
 						use_obj.dropped()
-						use_obj.canremove = 0
+						use_obj.canremove = FALSE
 						use_obj.forceMove(src)
 
 		else if (deploy_mode != ONLY_RETRACT)

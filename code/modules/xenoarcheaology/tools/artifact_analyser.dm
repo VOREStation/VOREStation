@@ -72,7 +72,7 @@
 						if(A.being_used)
 							artifact_in_use = 1
 						else
-							A.anchored = 1
+							A.anchored = TRUE
 							A.being_used = 1
 
 					if(artifact_in_use)
@@ -113,7 +113,7 @@
 
 		if(scanned_object && istype(scanned_object, /obj/machinery/artifact))
 			var/obj/machinery/artifact/A = scanned_object
-			A.anchored = 0
+			A.anchored = FALSE
 			A.being_used = 0
 			scanned_object = null
 

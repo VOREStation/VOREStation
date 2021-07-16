@@ -933,10 +933,10 @@
 			. = ..(obstacle)
 			return
 		if(istype(O, /obj/effect/portal))	//derpfix
-			src.anchored = 0				//I have no idea what this really fix.
+			src.anchored = FALSE				//I have no idea what this really fix.
 			O.Crossed(src)
 			spawn(0)//countering portal teleport spawn(0), hurr
-				src.anchored = 1
+				src.anchored = TRUE
 		else if(O.anchored)
 			obstacle.Bumped(src)
 		else
@@ -2688,7 +2688,7 @@
 		O.canmove = 1
 		O.name = AI.name
 		O.real_name = AI.real_name
-		O.anchored = 1
+		O.anchored = TRUE
 		O.aiRestorePowerRoutine = 0
 		O.control_disabled = 1 // Can't control things remotely if you're stuck in a card!
 		O.laws = AI.laws

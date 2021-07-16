@@ -74,7 +74,7 @@
 			pulse.icon = 'icons/effects/effects.dmi'
 			pulse.icon_state = "heal"
 			pulse.name = "heal"
-			pulse.anchored = 1
+			pulse.anchored = TRUE
 			spawn(20)
 				qdel(pulse)
 			to_chat(target, "<span class='notice'>As the beam strikes you, your injuries close up!</span>")

@@ -166,14 +166,14 @@
 			state = 1
 			playsound(src, W.usesound, 75, 1)
 			to_chat(user, "You secure the external reinforcing bolts to the floor.")
-			src.anchored = 1
+			src.anchored = TRUE
 			return
 
 		else if(state == 1)
 			state = 0
 			playsound(src, W.usesound, 75, 1)
 			to_chat(user, "You undo the external reinforcing bolts.")
-			src.anchored = 0
+			src.anchored = FALSE
 			return
 
 	if(istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
