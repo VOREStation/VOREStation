@@ -87,3 +87,20 @@
 	icon_colour = "#0099cc" // Cyan-ish
 	stack_origin_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2)
 	stack_type = /obj/item/stack/material/log/sif
+
+//VOREStation Addition Start
+/datum/material/wood/stick
+	name = "wooden stick"
+	icon_colour = "#824B28"
+	display_name = "wood"
+	icon_base = "stick"
+	stack_type = /obj/item/stack/material/stick
+	sheet_collective_name = "pile"
+	pass_stack_colors = TRUE
+	supply_conversion_value = 1
+	sheet_singular_name = "stick"
+	sheet_plural_name = "sticks"
+
+/datum/material/wood/stick/generate_recipes()
+	return
+//VOREStation Addition End
