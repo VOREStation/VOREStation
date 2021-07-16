@@ -226,8 +226,8 @@
 	desc = "It's a secure wall-mounted storage unit for first aid supplies."
 	plane = TURF_PLANE
 	layer = ABOVE_TURF_LAYER
-	anchored = 1
-	density = 0
+	anchored = TRUE
+	density = FALSE
 	wall_mounted = 1
 	store_mobs = 0
 	req_access = list(access_medical_equip)

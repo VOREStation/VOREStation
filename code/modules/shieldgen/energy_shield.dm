@@ -6,10 +6,10 @@
 	desc = "An impenetrable field of energy, capable of blocking anything as long as it's active."
 	icon = 'icons/obj/machines/shielding_vr.dmi'
 	icon_state = "shield"
-	anchored = 1
+	anchored = TRUE
 	plane = MOB_PLANE
 	layer = ABOVE_MOB_LAYER
-	density = 1
+	density = TRUE
 	invisibility = 0
 	var/obj/machinery/power/shield_generator/gen = null // Owning generator
 	var/disabled_for = 0

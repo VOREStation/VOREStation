@@ -4,8 +4,8 @@
 	desc = "This space is blocked off by a barricade."
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "barricade"
-	anchored = 1.0
-	density = 1.0
+	anchored = TRUE
+	density = TRUE
 	var/health = 100
 	var/maxhealth = 100
 	var/datum/material/material

@@ -13,7 +13,7 @@
 	var/global/list/starting_legal_nifsoft
 	var/global/list/starting_illegal_nifsoft
 
-	density = 0
+	density = FALSE
 	opacity = 0
 	var/datum/entopic/entopic
 

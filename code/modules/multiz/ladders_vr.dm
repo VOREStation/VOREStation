@@ -3,10 +3,10 @@
 	desc = "Looks unstable. Best to test it with the clown."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "portal"
-	density = 1
-	unacidable = 1//Can't destroy energy portals.
+	density = TRUE
+	unacidable = TRUE//Can't destroy energy portals.
 	var/failchance = 0
-	anchored = 1
+	anchored = TRUE
 	var/obj/structure/portal_subtle/target
 
 /obj/structure/portal_subtle/Destroy()
@@ -64,9 +64,9 @@
 	desc = "Looks unstable. Best to test it with the clown."
 	icon = 'icons/obj/stationobjs_vr.dmi'
 	icon_state = "portalgateway"
-	density = 1
-	unacidable = 1//Can't destroy energy portals.
-	anchored = 1
+	density = TRUE
+	unacidable = TRUE//Can't destroy energy portals.
+	anchored = TRUE
 
 /obj/structure/portal_gateway/Bumped(mob/M as mob|obj)
 	if(istype(M,/mob) && !(istype(M,/mob/living)))

@@ -108,7 +108,7 @@
 /obj/structure/smoletrack
 	icon = 'icons/vore/smoleworld_vr.dmi'
 	color = "#ffffff"
-	density = 0
+	density = FALSE
 
 /obj/structure/smoletrack/attack_hand(mob/user)
 	if(user.a_intent == I_DISARM)
@@ -164,35 +164,35 @@
 	icon = 'icons/vore/smoleworld_vr.dmi'
 	icon_state = "carstraight"
 	desc = "A long set of tiny road."
-	anchored = 1
+	anchored = TRUE
 
 /obj/structure/smoletrack/roadT
 	name = "road threeway piece"
 	icon = 'icons/vore/smoleworld_vr.dmi'
 	icon_state = "carthreeway"
 	desc = "A tiny threeway road piece."
-	anchored = 1
+	anchored = TRUE
 
 /obj/structure/smoletrack/roadturn
 	name = "road turn piece"
 	icon = 'icons/vore/smoleworld_vr.dmi'
 	icon_state = "carturn"
 	desc = "A tiny turn road piece."
-	anchored = 1
+	anchored = TRUE
 
 /obj/structure/smoletrack/roadF
 	name = "road four-way piece"
 	icon = 'icons/vore/smoleworld_vr.dmi'
 	icon_state = "carfourway"
 	desc = "A four-way road piece."
-	anchored = 1
+	anchored = TRUE
 
 //buildings code
 //Defining building actions
 /obj/structure/smolebuilding
 	icon = 'icons/vore/smoleworld_vr.dmi'
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	color = "#ffffff"
 	var/health = 75
 	var/damage
@@ -317,7 +317,7 @@
 /obj/structure/smoleruins
 	icon = 'icons/vore/smoleworld_vr.dmi'
 	icon_state = "ruins"
-	density = 0
+	density = FALSE
 
 /obj/structure/smolebuilding/houses
 	name = "smole houses"

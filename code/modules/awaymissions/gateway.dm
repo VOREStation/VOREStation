@@ -3,15 +3,15 @@
 	desc = "A mysterious gateway built by unknown hands.  It allows for faster than light travel to far-flung locations and even alternate realities."  //VOREStation Edit
 	icon = 'icons/obj/machines/gateway.dmi'
 	icon_state = "off"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	var/active = 0
 
 
 /obj/machinery/gateway/Initialize()
 	update_icon()
 	if(dir == SOUTH)
-		density = 0
+		density = FALSE
 	. = ..()
 
 /obj/machinery/gateway/update_icon()
@@ -25,7 +25,7 @@
 //this is da important part wot makes things go
 GLOBAL_DATUM(gateway_station, /obj/machinery/gateway/centerstation)
 /obj/machinery/gateway/centerstation
-	density = 1
+	density = TRUE
 	icon_state = "offcenter"
 	use_power = USE_POWER_IDLE
 
@@ -50,7 +50,7 @@ GLOBAL_DATUM(gateway_station, /obj/machinery/gateway/centerstation)
 		awaygate = locate(/obj/machinery/gateway/centeraway)
 	
 	. = ..()
-	density = 1 //VOREStation Add
+	density = TRUE //VOREStation Add
 
 /obj/machinery/gateway/centerstation/Destroy()
 	if(awaygate?.stationgate == src)
@@ -66,7 +66,7 @@ GLOBAL_DATUM(gateway_station, /obj/machinery/gateway/centerstation)
 	icon_state = "offcenter"
 /* VOREStation Removal - Doesn't do anything
 /obj/machinery/gateway/centerstation/New()
-	density = 1
+	density = TRUE
 */ //VOREStation Removal End
 
 /obj/machinery/gateway/centerstation/process()
@@ -238,7 +238,7 @@ GLOBAL_DATUM(gateway_station, /obj/machinery/gateway/centerstation)
 /////////////////////////////////////Away////////////////////////
 GLOBAL_DATUM(gateway_away, /obj/machinery/gateway/centeraway)
 /obj/machinery/gateway/centeraway
-	density = 1
+	density = TRUE
 	icon_state = "offcenter"
 	use_power = USE_POWER_OFF
 	var/calibrated = 1
@@ -247,7 +247,7 @@ GLOBAL_DATUM(gateway_away, /obj/machinery/gateway/centeraway)
 	var/obj/machinery/gateway/centerstation/stationgate = null
 
 /obj/machinery/gateway/centeraway/New()
-	density = 1
+	density = TRUE
 
 /obj/machinery/gateway/centeraway/Initialize()
 	if(GLOB.gateway_away)
@@ -262,7 +262,7 @@ GLOBAL_DATUM(gateway_away, /obj/machinery/gateway/centeraway)
 	else
 		stationgate = locate(/obj/machinery/gateway/centerstation)
 	. = ..()
-	density = 1 //VOREStation Add
+	density = TRUE //VOREStation Add
 
 /obj/machinery/gateway/centeraway/Destroy()
 	if(stationgate?.awaygate == src)

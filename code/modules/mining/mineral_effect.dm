@@ -3,8 +3,8 @@
 	icon = 'icons/obj/mining.dmi'
 	desc = "Shiny."
 	mouse_opacity = 0
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 	var/ore_key
 	var/image/scanner_image
 	var/ore_reagent	// Reagent from pumping water near this ore.

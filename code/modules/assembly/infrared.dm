@@ -148,7 +148,7 @@
 	icon_state = "ibeam"
 	var/obj/item/device/assembly/infra/master = null
 	var/visible = 0
-	anchored = 1
+	anchored = TRUE
 
 /obj/effect/beam/i_beam/Initialize()
 	. = ..()

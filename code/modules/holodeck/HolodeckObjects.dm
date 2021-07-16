@@ -128,7 +128,7 @@
 	desc = "Apply butt."
 	icon = 'icons/obj/furniture.dmi'
 	icon_state = "stool_padded_preview"
-	anchored = 1.0
+	anchored = TRUE
 	pressure_resistance = 15
 
 /obj/item/clothing/gloves/boxing/hologlove
@@ -212,7 +212,7 @@
 		if(W.damtype == BRUTE || W.damtype == BURN)
 			hit(W.force)
 			if(health <= 7)
-				anchored = 0
+				anchored = FALSE
 				update_nearby_icons()
 				step(src, get_dir(user, src))
 		else
@@ -367,8 +367,8 @@
 	desc = "Boom, Shakalaka!"
 	icon = 'icons/obj/basketball.dmi'
 	icon_state = "hoop"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	throwpass = 1
 
 /obj/structure/holohoop/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -411,7 +411,7 @@
 	var/area/currentarea = null
 	var/eventstarted = 0
 
-	anchored = 1.0
+	anchored = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 2
 	active_power_usage = 6

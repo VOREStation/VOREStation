@@ -4,7 +4,7 @@
 	plane = ABOVE_PLANE
 	icon_state = "empty"
 	appearance_flags = 0
-	anchored = 1
+	anchored = TRUE
 	var/cult = 0
 
 /obj/structure/sign/double/barsign/proc/get_valid_states(initial=1)

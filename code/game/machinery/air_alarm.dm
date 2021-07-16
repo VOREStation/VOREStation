@@ -31,7 +31,7 @@
 	icon_state = "alarm_0"
 	layer = ABOVE_WINDOW_LAYER
 	vis_flags = VIS_HIDE // They have an emissive that looks bad in openspace due to their wall-mounted nature
-	anchored = 1
+	anchored = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 80
 	active_power_usage = 1000 //For heating/cooling rooms. 1000 joules equates to about 1 degree every 2 seconds for a single tile of air.
@@ -50,7 +50,7 @@
 	var/rcon_setting = 2
 	var/rcon_time = 0
 	var/locked = 1
-	panel_open = 0 // If it's been screwdrivered open.
+	panel_open = FALSE // If it's been screwdrivered open.
 	var/aidisabled = 0
 	var/shorted = 0
 	circuit = /obj/item/weapon/circuitboard/airalarm

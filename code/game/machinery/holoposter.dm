@@ -4,7 +4,7 @@ GLOBAL_LIST_EMPTY(holoposters)
 	desc = "A wall-mounted holographic projector displaying advertisements by all manner of factions. How much do they pay to advertise here?"
 	icon = 'icons/obj/holoposter_vr.dmi'
 	icon_state = "off"
-	anchored = 1
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 80
 	power_channel = ENVIRON

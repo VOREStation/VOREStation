@@ -3,11 +3,11 @@
 	desc = "Stick 'em up!"
 	icon = 'icons/effects/Targeted.dmi'
 	icon_state = "locking"
-	anchored = 1
-	density = 0
+	anchored = TRUE
+	density = FALSE
 	opacity = 0
 	plane = ABOVE_PLANE
-	simulated = 0
+	simulated = FALSE
 	mouse_opacity = 0
 
 	var/mob/living/aiming_at   // Who are we currently targeting, if anyone?

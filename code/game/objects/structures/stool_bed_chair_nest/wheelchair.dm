@@ -3,7 +3,7 @@
 	desc = "You sit in this. Either by will or force."
 	icon = 'icons/obj/wheelchair.dmi'
 	icon_state = "wheelchair"
-	anchored = 0
+	anchored = FALSE
 	buckle_movable = 1
 
 	var/folded_type = /obj/item/wheelchair

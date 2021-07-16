@@ -263,8 +263,8 @@
 	desc = ""
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "null"
-	anchored = 1
-	density = 0
+	anchored = TRUE
+	density = FALSE
 
 /*
  * Toy swords
@@ -827,8 +827,8 @@
 	desc = "A very generic plushie. It seems to not want to exist."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "ianplushie"
-	anchored = 0
-	density = 1
+	anchored = FALSE
+	density = TRUE
 	var/phrase = "I don't want to exist anymore!"
 	var/searching = FALSE
 	var/opened = FALSE	// has this been slit open? this will allow you to store an object in a plushie.
@@ -1537,8 +1537,8 @@
 	desc = "A generic balloon. How boring."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "ghostballoon"
-	anchored = 0
-	density = 0
+	anchored = FALSE
+	density = FALSE
 
 /obj/structure/balloon/attack_hand(mob/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)

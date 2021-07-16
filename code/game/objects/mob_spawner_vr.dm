@@ -3,7 +3,7 @@
 	desc = "This shouldn't be seen, yell at a dev."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "rift"
-	anchored = 1
+	anchored = TRUE
 
 	var/last_spawn = 0
 	var/spawn_delay = 10 MINUTES
@@ -153,7 +153,7 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 	mob_faction = "wild animal"
 	total_spawns = -1
 	destructible = 0
-	anchored = 1
+	anchored = TRUE
 	invisibility = 101
 	spawn_types = list(
 	/mob/living/simple_mob/animal/passive/gaslamp = 20,
@@ -171,7 +171,7 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 	total_spawns = -1
 	destructible = 1
 	health = 50
-	anchored = 1
+	anchored = TRUE
 	icon = 'icons/mob/actions.dmi'
 	icon_state = "alien_egg"
 	spawn_types = list(
@@ -190,7 +190,7 @@ It also makes it so a ghost wont know where all the goodies/mobs are.
 	total_spawns = 1
 	destructible = 1
 	health = 50
-	anchored = 1
+	anchored = TRUE
 	icon = 'icons/mob/actions.dmi'
 	icon_state = "alien_egg"
 	spawn_types = list(

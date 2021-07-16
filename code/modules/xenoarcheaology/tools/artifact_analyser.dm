@@ -3,8 +3,8 @@
 	desc = "Studies the emissions of anomalous materials to discover their uses."
 	icon = 'icons/obj/virology_vr.dmi' //VOREStation Edit
 	icon_state = "isolator"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	var/scan_in_progress = 0
 	var/scan_num = 0
 	var/obj/scanned_obj

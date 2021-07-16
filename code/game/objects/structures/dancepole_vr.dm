@@ -4,8 +4,8 @@
 	desc = "Engineered for your entertainment"
 	icon = 'icons/obj/objects_vr.dmi'
 	icon_state = "dancepole"
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 
 /obj/structure/dancepole/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(O.is_screwdriver())
