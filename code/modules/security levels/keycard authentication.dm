@@ -55,7 +55,7 @@
 			A.pixel_y = pixel_y
 			A.set_dir(dir)
 			A.circuit = M
-			A.anchored = 1
+			A.anchored = TRUE
 			for (var/obj/C in src)
 				C.forceMove(loc)
 			A.state = 3

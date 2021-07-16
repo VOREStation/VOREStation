@@ -119,7 +119,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 	hologram.icon = A.holo_icon
 	//hologram.mouse_opacity = 0//So you can't click on it. //VOREStation Removal
 	hologram.layer = FLY_LAYER//Above all the other objects/mobs. Or the vast majority of them.
-	hologram.anchored = 1//So space wind cannot drag it.
+	hologram.anchored = TRUE//So space wind cannot drag it.
 	hologram.name = "[A.name] (Hologram)"//If someone decides to right click.
 	hologram.set_light(2)	//hologram lighting
 	hologram.color = color //painted holopad gives coloured holograms

@@ -50,7 +50,7 @@
 	if(operating == -1)
 		ae.icon_state = "door_electronics_smoked"
 		operating = 0
-	src.density = 0
+	src.density = FALSE
 	playsound(src, "shatter", 70, 1)
 	if(display_message)
 		visible_message("[src] shatters!")
@@ -228,7 +228,7 @@
 				if (src.base_state == "right" || src.base_state == "rightsecure")
 					wa.facing = "r"
 				wa.set_dir(src.dir)
-				wa.anchored = 1
+				wa.anchored = TRUE
 				wa.created_name = name
 				wa.state = "02"
 				wa.step = 2

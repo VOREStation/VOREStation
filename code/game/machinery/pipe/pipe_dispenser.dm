@@ -124,7 +124,7 @@
 					"<span class='notice'>[user] unfastens \the [src].</span>", \
 					"<span class='notice'>You have unfastened \the [src]. Now it can be pulled somewhere else.</span>", \
 					"You hear ratchet.")
-				src.anchored = 0
+				src.anchored = FALSE
 				src.stat |= MAINT
 				src.unwrenched = 1
 				if (usr.machine==src)
@@ -137,7 +137,7 @@
 					"<span class='notice'>[user] fastens \the [src].</span>", \
 					"<span class='notice'>You have fastened \the [src]. Now it can dispense pipes.</span>", \
 					"You hear ratchet.")
-				src.anchored = 1
+				src.anchored = TRUE
 				src.stat &= ~MAINT
 				src.unwrenched = 0
 				power_change()

@@ -146,14 +146,14 @@
 			user.visible_message("[user.name] secures the [src.name] to the floor.", \
 				"You secure the anchor bolts to the floor.", \
 				"You hear a ratchet.")
-			src.anchored = 1
+			src.anchored = TRUE
 			connect_to_network()
 		else if(!linked_shielding.len > 0)
 			playsound(src, W.usesound, 75, 1)
 			user.visible_message("[user.name] unsecures the [src.name].", \
 				"You remove the anchor bolts.", \
 				"You hear a ratchet.")
-			src.anchored = 0
+			src.anchored = FALSE
 			disconnect_from_network()
 		else
 			to_chat(user, "<font color='red'>Once bolted and linked to a shielding unit it the [src.name] is unable to be moved!</font>")

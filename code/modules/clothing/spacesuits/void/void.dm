@@ -97,28 +97,28 @@
 
 	if(boots)
 		if (H.equip_to_slot_if_possible(boots, slot_shoes))
-			boots.canremove = 0
+			boots.canremove = FALSE
 
 	if(helmet)
 		if(H.head)
 			to_chat(M, "You are unable to deploy your suit's helmet as \the [H.head] is in the way.")
 		else if (H.equip_to_slot_if_possible(helmet, slot_head))
 			to_chat(M, "Your suit's helmet deploys with a hiss.")
-			helmet.canremove = 0
+			helmet.canremove = FALSE
 
 	if(tank)
 		if(H.s_store) //In case someone finds a way.
 			to_chat(M, "Alarmingly, the valve on your suit's installed tank fails to engage.")
 		else if (H.equip_to_slot_if_possible(tank, slot_s_store))
 			to_chat(M, "The valve on your suit's installed tank safely engages.")
-			tank.canremove = 0
+			tank.canremove = FALSE
 
 	if(cooler)
 		if(H.s_store) //Ditto
 			to_chat(M, "Alarmingly, the cooling unit installed into your suit fails to deploy.")
 		else if (H.equip_to_slot_if_possible(cooler, slot_s_store))
 			to_chat(M, "Your suit's cooling unit deploys.")
-			cooler.canremove = 0
+			cooler.canremove = FALSE
 
 /obj/item/clothing/suit/space/void/dropped()
 	..()
@@ -126,7 +126,7 @@
 	var/mob/living/carbon/human/H
 
 	if(helmet)
-		helmet.canremove = 1
+		helmet.canremove = TRUE
 		H = helmet.loc
 		if(istype(H))
 			if(helmet && H.head == helmet)
@@ -134,7 +134,7 @@
 				helmet.forceMove(src)
 
 	if(boots)
-		boots.canremove = 1
+		boots.canremove = TRUE
 		H = boots.loc
 		if(istype(H))
 			if(boots && H.shoes == boots)
@@ -142,11 +142,11 @@
 				boots.forceMove(src)
 
 	if(tank)
-		tank.canremove = 1
+		tank.canremove = TRUE
 		tank.forceMove(src)
 
 	if(cooler)
-		cooler.canremove = 1
+		cooler.canremove = TRUE
 		cooler.forceMove(src)
 
 /obj/item/clothing/suit/space/void/proc/attach_helmet(var/obj/item/clothing/head/helmet/space/void/helm)
@@ -188,7 +188,7 @@
 
 	if(H.head == helmet)
 		to_chat(H, "<span class='notice'>You retract your suit helmet.</span>")
-		helmet.canremove = 1
+		helmet.canremove = TRUE
 		H.drop_from_inventory(helmet)
 		helmet.forceMove(src)
 	else
@@ -197,7 +197,7 @@
 			return
 		if(H.equip_to_slot_if_possible(helmet, slot_head))
 			helmet.pickup(H)
-			helmet.canremove = 0
+			helmet.canremove = FALSE
 			to_chat(H, "<span class='info'>You deploy your suit helmet, sealing you off from the world.</span>")
 	
 	if(helmet.light_system == STATIC_LIGHT)
@@ -229,7 +229,7 @@
 		removing = cooler
 		cooler = null
 	to_chat(H, "<span class='info'>You press the emergency release, ejecting \the [removing] from your suit.</span>")
-	removing.canremove = 1
+	removing.canremove = TRUE
 	H.drop_from_inventory(removing)
 
 /obj/item/clothing/suit/space/void/attackby(obj/item/W as obj, mob/user as mob)

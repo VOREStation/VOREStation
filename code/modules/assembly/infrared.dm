@@ -65,11 +65,11 @@
 	for(var/i = 1 to limit)
 		var/obj/effect/beam/i_beam/I = new /obj/effect/beam/i_beam(current_spot)
 		I.master = src
-		I.density = 1
+		I.density = TRUE
 		I.set_dir(dir)
 		if(!step(I, I.dir)) //Try to take a step in that direction
 			return //Couldn't, oh well, we hit a wall or something. Beam should qdel itself in it's Bump().
-		I.density = 0
+		I.density = FALSE
 		i_beams |= I
 		I.visible = visible
 

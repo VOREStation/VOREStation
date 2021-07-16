@@ -58,8 +58,8 @@
 
 	if(istype(damage_source, /obj/item/projectile))
 		var/obj/item/projectile/P = damage_source
-		P.sharp = 0
-		P.edge = 0
+		P.sharp = FALSE
+		P.edge = FALSE
 		P.embed_chance = 0
 		if(P.agony)
 			var/agony_blocked = P.agony * (modified_block_percentage / 100)

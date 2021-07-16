@@ -309,7 +309,7 @@
 		simulation_results += "<hr>Final Result: No detonation."
 
 /obj/machinery/bomb_tester/proc/canister_sim()
-	test_canister.anchored = 1
+	test_canister.anchored = TRUE
 	faketank.volume = tank1.air_contents.volume
 	faketank.copy_from(tank1.air_contents)
 	faketank_integrity = tank1.integrity
@@ -346,7 +346,7 @@
 	update_use_power(USE_POWER_IDLE)
 	update_icon()
 	if(test_canister && test_canister.anchored && !test_canister.connected_port)
-		test_canister.anchored = 0
+		test_canister.anchored = FALSE
 	if(cancelled)
 		return
 	if(simulation_results == "Error")

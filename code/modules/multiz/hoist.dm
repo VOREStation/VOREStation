@@ -47,7 +47,7 @@
 	hoistee = AM
 	if(ismob(AM))
 		source_hook.buckle_mob(AM)
-	AM.anchored = 1 // why isn't this being set by buckle_mob for silicons?
+	AM.anchored = TRUE // why isn't this being set by buckle_mob for silicons?
 	source_hook.layer = AM.layer + 0.1
 
 /obj/effect/hoist_hook/MouseDrop(atom/dest)
@@ -128,7 +128,7 @@
 	if(ismob(hoistee))
 		source_hook.unbuckle_mob(hoistee)
 	else
-		hoistee.anchored = 0
+		hoistee.anchored = FALSE
 	hoistee = null
 	layer = NORMAL_LAYER
 
