@@ -7,7 +7,7 @@
 	icon = 'icons/obj/machines/shielding_vr.dmi'
 	icon_state = "generator0"
 	circuit = /obj/item/weapon/circuitboard/shield_generator
-	density = 1
+	density = TRUE
 	var/datum/wires/shield_generator/wires = null
 	var/list/field_segments = list()    // List of all shield segments owned by this generator.
 	var/list/damaged_segments = list()  // List of shield segments that have failed and are currently regenerating.

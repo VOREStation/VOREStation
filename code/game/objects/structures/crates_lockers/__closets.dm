@@ -4,7 +4,7 @@
 	desc = "It's a basic storage unit."
 	icon = 'icons/obj/closets/bases/closet.dmi'
 	icon_state = "base"
-	density = 1
+	density = TRUE
 	w_class = ITEMSIZE_HUGE
 	layer = UNDER_JUNK_LAYER
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC

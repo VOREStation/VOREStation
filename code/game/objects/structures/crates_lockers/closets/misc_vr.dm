@@ -220,8 +220,8 @@
 	desc = "It's wall-mounted storage unit for an AutoLok suit."
 	icon = 'icons/obj/closets/bases/wall_double.dmi'
 	closet_appearance = /decl/closet_appearance/wall_double/autolok
-	anchored = 1
-	density = 0
+	anchored = TRUE
+	density = FALSE
 	wall_mounted = 1
 	store_mobs = 0
 
@@ -236,8 +236,8 @@
 	desc = "It's wall-mounted storage unit for an emergency suit."
 	icon = 'icons/obj/closets/bases/wall.dmi'
 	closet_appearance = /decl/closet_appearance/wall/emergency
-	anchored = 1
-	density = 0
+	anchored = TRUE
+	density = FALSE
 	wall_mounted = 1
 	store_mobs = 0
 

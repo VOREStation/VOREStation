@@ -4,7 +4,7 @@
 	icon = 'icons/obj/storage_vr.dmi'	//VOREStation Edit
 	icon_state = "deliverycloset"
 	var/obj/wrapped = null
-	density = 1
+	density = TRUE
 	var/sortTag = null
 	flags = NOBLUDGEON
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
@@ -374,7 +374,7 @@
 /obj/machinery/disposal/deliveryChute
 	name = "Delivery chute"
 	desc = "A chute for big and small packages alike!"
-	density = 1
+	density = TRUE
 	icon_state = "intake"
 
 	var/c_mode = 0

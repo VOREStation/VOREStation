@@ -17,8 +17,8 @@
 	desc = "Converts plants into biomass, which can be used for fertilizer and sort-of-synthetic products."
 	icon = 'icons/obj/biogenerator_vr.dmi' //VOREStation Edit
 	icon_state = "biogen-stand"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	circuit = /obj/item/weapon/circuitboard/biogenerator
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 40

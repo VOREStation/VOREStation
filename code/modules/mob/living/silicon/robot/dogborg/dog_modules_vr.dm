@@ -327,8 +327,8 @@
 	icon_state = "swordtail"
 	desc = "A glowing pink dagger normally attached to the end of a cyborg's tail. It appears to be extremely sharp."
 	force = 20 //Takes 5 hits to 100-0
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 	throwforce = 0 //This shouldn't be thrown in the first place.
 	hitsound = 'sound/weapons/blade1.ogg'
 	attack_verb = list("slashed", "stabbed", "jabbed", "mauled", "sliced")

@@ -48,8 +48,8 @@
 	var/active_throwforce = 20
 	var/active_w_class = ITEMSIZE_LARGE
 	var/active_embed_chance = 0		//In the off chance one of these is supposed to embed, you can just tweak this var
-	sharp = 0
-	edge = 0
+	sharp = FALSE
+	edge = FALSE
 	armor_penetration = 50
 	flags = NOBLOODY
 	var/lrange = 2
@@ -66,8 +66,8 @@
 	embed_chance = active_embed_chance
 	force = active_force
 	throwforce = active_throwforce
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 	w_class = active_w_class
 	playsound(src, 'sound/weapons/saberon.ogg', 50, 1)
 	set_light(lrange, lpower, lcolor)

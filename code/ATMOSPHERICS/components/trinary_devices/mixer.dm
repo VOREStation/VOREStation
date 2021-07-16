@@ -3,7 +3,7 @@
 	icon_state = "map"
 	construction_type = /obj/item/pipe/trinary/flippable
 	pipe_state = "mixer"
-	density = 0
+	density = FALSE
 	level = 1
 
 	name = "Gas mixer"

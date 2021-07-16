@@ -203,7 +203,7 @@
 	charge_cost = 300
 
 	battery_lock = 1
-	unacidable = 1
+	unacidable = TRUE
 
 	var/recharging = 0
 	var/phase_power = 75

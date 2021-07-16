@@ -4,7 +4,7 @@
 	icon = 'icons/obj/radio_vr.dmi' //VOREStation Edit - New Icon
 	icon_state = "intercom"
 	layer = ABOVE_WINDOW_LAYER
-	anchored = 1
+	anchored = TRUE
 	w_class = ITEMSIZE_LARGE
 	canhear_range = 7 //VOREStation Edit
 	flags = NOBLOODY

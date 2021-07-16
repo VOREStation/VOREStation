@@ -23,8 +23,8 @@
 	layer = ABOVE_WINDOW_LAYER
 	desc = "A remote control for a door."
 	req_access = list(access_brig)
-	anchored = 1.0    		// can't pick it up
-	density = 0       		// can walk through it.
+	anchored = TRUE    		// can't pick it up
+	density = FALSE       		// can walk through it.
 	var/id = null     		// id of door it controls.
 	var/activation_time = 0
 	var/timer_duration = 0

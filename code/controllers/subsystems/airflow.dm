@@ -135,7 +135,7 @@ SUBSYSTEM_DEF(airflow)
 	airflow_od = 0
 
 	if (!density)
-		density = 1
+		density = TRUE
 		airflow_od = 1
 
 	return TRUE

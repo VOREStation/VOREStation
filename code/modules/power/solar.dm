@@ -11,8 +11,8 @@ GLOBAL_LIST_EMPTY(solars_list)
 	desc = "A solar electrical generator."
 	icon = 'icons/obj/power.dmi'
 	icon_state = "sp_base"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	use_power = USE_POWER_OFF
 	idle_power_usage = 0
 	active_power_usage = 0
@@ -202,7 +202,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 	icon_state = "sp_base"
 	item_state = "camera"
 	w_class = ITEMSIZE_LARGE // Pretty big!
-	anchored = 0
+	anchored = FALSE
 	var/tracker = 0
 
 /obj/item/solar_assembly/attack_hand(var/mob/user)
@@ -214,13 +214,13 @@ GLOBAL_LIST_EMPTY(solars_list)
 		return 0
 	if(!anchored)
 		if(W.is_wrench())
-			anchored = 1
+			anchored = TRUE
 			user.visible_message("<span class='notice'>[user] wrenches the solar assembly into place.</span>")
 			playsound(src, W.usesound, 75, 1)
 			return 1
 	else
 		if(W.is_wrench())
-			anchored = 0
+			anchored = FALSE
 			user.visible_message("<span class='notice'>[user] unwrenches the solar assembly from it's place.</span>")
 			playsound(src, W.usesound, 75, 1)
 			return 1
@@ -264,8 +264,8 @@ GLOBAL_LIST_EMPTY(solars_list)
 	desc = "A controller for solar panel arrays."
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "solar"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 250
 	var/id = 0

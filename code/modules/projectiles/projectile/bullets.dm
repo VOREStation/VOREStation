@@ -7,7 +7,7 @@
 	nodamage = 0
 	check_armour = "bullet"
 	embed_chance = 20	//Modified in the actual embed process, but this should keep embed chance about the same
-	sharp = 1
+	sharp = TRUE
 	hitsound_wall = "ricochet"
 	impact_effect_type = /obj/effect/temp_visual/impact_effect
 	excavation_amount  = 20
@@ -100,7 +100,7 @@
 	damage = 10
 	agony = 60
 	embed_chance = 0
-	sharp = 0
+	sharp = FALSE
 	check_armour = "melee"
 
 /obj/item/projectile/bullet/pistol/rubber // "Rubber" bullets for all other pistols.
@@ -108,7 +108,7 @@
 	damage = 5
 	agony = 40
 	embed_chance = 0
-	sharp = 0
+	sharp = FALSE
 	check_armour = "melee"
 	fire_sound ='sound/weapons/Gunshot_pathetic.ogg' // Rubber shots have less powder in the casing.
 
@@ -125,7 +125,7 @@
 	damage = 20
 	agony = 60
 	embed_chance = 0
-	sharp = 0
+	sharp = FALSE
 	check_armour = "melee"
 
 //Should do about 80 damage at 1 tile distance (adjacent), and 50 damage at 3 tiles distance.
@@ -150,7 +150,7 @@
 	fire_sound = 'sound/weapons/Laser.ogg' // Really? We got nothing better than this?
 	damage = 15
 	embed_chance = 0
-	sharp = 0
+	sharp = FALSE
 	check_armour = "melee"
 
 	combustion = FALSE
@@ -208,7 +208,7 @@
 	SA_bonus_damage = 35 // 50 total on animals.
 	SA_vulnerability = SA_ANIMAL
 
-/obj/item/projectile/bullet/rifle/a145 // 14.5×114mm is bigger than a .50 BMG round.
+/obj/item/projectile/bullet/rifle/a145 // 14.5ï¿½114mm is bigger than a .50 BMG round.
 	fire_sound = 'sound/weapons/Gunshot_cannon.ogg' // This is literally an anti-tank rifle caliber. It better sound like a fucking cannon.
 	damage = 80
 	stun = 3
@@ -248,7 +248,7 @@
 	fire_sound = 'sound/effects/Explosion1.ogg'
 	damage = 20
 	embed_chance = 0
-	edge = 1
+	edge = TRUE
 
 /obj/item/projectile/bullet/burstbullet/on_hit(var/atom/target, var/blocked = 0)
 	if(isturf(target))
@@ -304,7 +304,7 @@
 	damage = 0
 	nodamage = 1
 	embed_chance = 0
-	sharp = 0
+	sharp = FALSE
 
 	combustion = FALSE
 
@@ -319,7 +319,7 @@
 	damage = 0
 	nodamage = 1
 	embed_chance = 0
-	sharp = 0
+	sharp = FALSE
 
 /obj/item/projectile/bullet/blank/cap/process()
 	loc = null

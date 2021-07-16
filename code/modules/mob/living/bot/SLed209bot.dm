@@ -3,7 +3,7 @@
 	desc = "A security robot.  He looks less than thrilled."
 	icon = 'icons/obj/aibots.dmi'
 	icon_state = "sled2090"
-	density = 1
+	density = TRUE
 	health = 200
 	maxHealth = 200
 

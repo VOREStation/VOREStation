@@ -25,7 +25,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 /obj/machinery/requests_console
 	name = "requests console"
 	desc = "A console intended to send requests to different departments on the station."
-	anchored = 1
+	anchored = TRUE
 	icon = 'icons/obj/terminals_vr.dmi' //VOREStation Edit
 	icon_state = "req_comp_0"
 	layer = ABOVE_WINDOW_LAYER

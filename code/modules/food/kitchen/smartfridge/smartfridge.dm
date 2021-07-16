@@ -7,8 +7,8 @@
 	icon_state = "smartfridge"
 	var/icon_base = "smartfridge" //Iconstate to base all the broken/deny/etc on
 	var/icon_contents = "misc" //Overlay to put on glass to show contents
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 5
 	active_power_usage = 100

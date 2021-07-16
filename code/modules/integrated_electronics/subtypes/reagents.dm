@@ -1,7 +1,7 @@
 /obj/item/integrated_circuit/reagent
 	category_text = "Reagent"
 	var/volume = 0
-	unacidable = 1
+	unacidable = TRUE
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_BIO = 2)
 
 /obj/item/integrated_circuit/reagent/New()

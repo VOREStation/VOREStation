@@ -13,8 +13,8 @@
 	icon = 'icons/obj/furniture.dmi'
 	icon_state = "bed"
 	pressure_resistance = 15
-	anchored = 1
-	can_buckle = 1
+	anchored = TRUE
+	can_buckle = TRUE
 	buckle_dir = SOUTH
 	buckle_lying = 1
 	var/datum/material/material
@@ -197,7 +197,7 @@
 	desc = "A portable bed-on-wheels made for transporting medical patients."
 	icon = 'icons/obj/rollerbed.dmi'
 	icon_state = "rollerbed"
-	anchored = 0
+	anchored = FALSE
 	surgery_odds = 50 //VOREStation Edit
 	var/bedtype = /obj/structure/bed/roller
 	var/rollertype = /obj/item/roller
@@ -297,12 +297,12 @@
 	if(M.buckled == src)
 		M.pixel_y = 6
 		M.old_y = 6
-		density = 1
+		density = TRUE
 		icon_state = "[initial(icon_state)]_up"
 	else
 		M.pixel_y = 0
 		M.old_y = 0
-		density = 0
+		density = FALSE
 		icon_state = "[initial(icon_state)]"
 	update_icon()
 	return ..()

@@ -65,7 +65,7 @@
 	icon_screen = null
 	light_range_on = 0
 	network = list(NETWORK_THUNDER)
-	density = 0
+	density = FALSE
 	circuit = null
 
 GLOBAL_LIST_EMPTY(entertainment_screens)

@@ -16,7 +16,7 @@
 	icon_state = "closed_unlocked"
 	seal_tool = null
 	breakout_sound = 'sound/weapons/thudswoosh.ogg'
-	anchored = 1
+	anchored = TRUE
 	max_closets = 1
 	opened = 1
 	closet_appearance = null // Special icon for us

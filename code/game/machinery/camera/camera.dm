@@ -13,7 +13,7 @@
 	var/c_tag = null
 	var/c_tag_order = 999
 	var/status = 1
-	anchored = 1.0
+	anchored = TRUE
 	var/invuln = 0
 	var/bugged = 0
 	var/obj/item/weapon/camera_assembly/assembly = null

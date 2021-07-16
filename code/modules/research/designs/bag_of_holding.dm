@@ -31,7 +31,7 @@
 	build_path = /obj/item/weapon/storage/backpack/holding/duffle
 	sort_string = "QAAAB"
 
-/datum/design/item/boh/bag_holding
+/datum/design/item/boh/trashbag_holding
 	name = "Trashbag of Holding"
 	desc = "Considerably more utilitarian than the Bag of Holding, the Trashbag of Holding is a janitor's best friend."
 	id = "trashbag_holding"

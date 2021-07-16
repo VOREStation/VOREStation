@@ -4,8 +4,8 @@ GLOBAL_LIST_EMPTY(fuel_injectors)
 	name = "fuel injector"
 	icon = 'icons/obj/machines/power/fusion.dmi'
 	icon_state = "injector0"
-	density = 1
-	anchored = 0
+	density = TRUE
+	anchored = FALSE
 	req_access = list(access_engine)
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
@@ -31,7 +31,7 @@ GLOBAL_LIST_EMPTY(fuel_injectors)
 	return ..()
 
 /obj/machinery/fusion_fuel_injector/mapped
-	anchored = 1
+	anchored = TRUE
 
 /obj/machinery/fusion_fuel_injector/process()
 	if(injecting)

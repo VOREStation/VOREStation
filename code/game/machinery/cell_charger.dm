@@ -7,7 +7,7 @@
 	desc = "A much more powerful version of the standard recharger that is specially designed for charging power cells."
 	icon = 'icons/obj/power.dmi'
 	icon_state = "recharger"
-	anchored = 1
+	anchored = TRUE
 	use_power = USE_POWER_IDLE
 	power_channel = EQUIP
 	idle_power_usage = 5

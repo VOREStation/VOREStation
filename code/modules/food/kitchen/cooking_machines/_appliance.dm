@@ -10,8 +10,8 @@
 	desc = "You shouldn't be seeing this!"
 	icon = 'icons/obj/cooking_machines.dmi'
 	var/appliancetype = 0
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 5			// Power used when turned on, but not processing anything

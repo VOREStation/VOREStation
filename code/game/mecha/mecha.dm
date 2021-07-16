@@ -26,10 +26,10 @@
 	desc = "Exosuit"
 	description_info = "Alt click to strafe."
 	icon = 'icons/mecha/mecha.dmi'
-	density = 1							//Dense. To raise the heat.
+	density = TRUE							//Dense. To raise the heat.
 	opacity = 1							//Opaque. Menacing.
-	anchored = 1						//No pulling around.
-	unacidable = 1						//And no deleting hoomans inside
+	anchored = TRUE						//No pulling around.
+	unacidable = TRUE						//And no deleting hoomans inside
 	layer = MOB_LAYER					//Icon draw layer
 	infra_luminosity = 15				//Byond implementation is bugged.
 	var/initial_icon = null				//Mech type for resetting icon. Only used for reskinning kits (see custom items)
