@@ -157,7 +157,7 @@
 /obj/machinery/door/CanZASPass(turf/T, is_zone)
 	if(is_zone)
 		return !block_air_zones // Block merging unless block_air_zones = 0
-	return !density // Block airflow unless density = 0
+	return !density // Block airflow unless density = FALSE
 
 /obj/machinery/door/proc/bumpopen(mob/user as mob)
 	if(operating)	return

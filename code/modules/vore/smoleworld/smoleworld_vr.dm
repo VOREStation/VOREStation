@@ -357,7 +357,7 @@
 //	desc = "Lets burn rubber!"
 //	icon = 'icons/vore/smoleworld_vr.dmi'
 //	icon_state = "smolecarA"
-//	anchored = 0
+//	anchored = FALSE
 //	buckle_movable = 1
 //	var/carry_type = /obj/item/smolecar
 //

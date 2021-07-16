@@ -41,7 +41,7 @@
 /obj/structure/kitchenspike/stumble_into(mob/living/M)
 	playsound(src, "sound/weapons/pierce.ogg", 25, 1, -1)
 	visible_message("<span class='warning'>[M] [pick("ran", "slammed")] into the spikes on \the [src]!</span>")
-	M.apply_damage(15, BRUTE, sharp=1)
+	M.apply_damage(15, BRUTE, sharp = TRUE)
 	M.Weaken(5)
 	M.stop_flying()
 
