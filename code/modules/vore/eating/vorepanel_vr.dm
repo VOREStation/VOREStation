@@ -479,7 +479,7 @@
 
 			to_chat(user,"<font color='green'>You begin to push [M] to freedom!</font>")
 			to_chat(M,"[host] begins to push you to freedom!")
-			to_chat(M.loc,"<span class='warning'>Someone is trying to escape from inside you!</span>")
+			to_chat(OB.owner,"<span class='warning'>Someone is trying to escape from inside you!</span>")
 			sleep(50)
 			if(prob(33))
 				OB.release_specific_contents(M)
