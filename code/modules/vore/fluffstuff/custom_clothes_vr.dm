@@ -139,7 +139,7 @@
 	icon_state = "joanasuna"
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
-	item_state = "joanasuna"
+	item_state = "joanasuna_mob"
 
 //eekasqueak:Serkii Miishy
 /obj/item/clothing/under/skirt/fluff/serkii
@@ -150,7 +150,7 @@
 	icon_state = "serkiskirt"
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
-	item_state = "serkiskirt"
+	item_state = "serkiskirt_mob"
 
 //Unknown. Please check records from the forums.
 /obj/item/clothing/under/suit_jacket/female/fluff/miqote
@@ -161,7 +161,7 @@
 	icon_state = "miqote"
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
-	item_state = "miqote"
+	item_state = "miqote_mob"
 
 //JoanRisu:Joan Risu
 /obj/item/clothing/under/fluff/nightgown
@@ -172,7 +172,7 @@
 	icon_state = "joannightgown"
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
-	item_state = "joannightgown"
+	item_state = "joannightgown_mob"
 
 //Vorrarkul:Lucina Dakarim
 /obj/item/clothing/under/dress/fluff/lucinadress
@@ -464,7 +464,7 @@
 	icon_state = "harmcaptain"
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
-	item_state = "harmcaptain"
+	item_state = "harmcaptain_mob"
 	//Variant
 /obj/item/clothing/under/rank/captain/fluff/harmuniform/centcom
 	name = "\improper CentCom administrator's uniform"
@@ -484,7 +484,7 @@
 	icon_state = "tasaldsuit"
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
-	item_state = "tasaldsuit"
+	item_state = "tasaldsuit_mob"
 	armor = list(melee = 10, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 
 // bwoincognito:Tasald Corlethian
@@ -653,7 +653,7 @@
 	icon_state = "screesuit"
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
-	item_state = "screesuit"
+	item_state = "screesuit_mob"
 
 /obj/item/clothing/under/fluff/screesuit/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
 	if(..())
@@ -944,7 +944,7 @@
 	name = "Earth Swimsuit"
 	desc = "The suit of Subject 688,509,403. Made of an enviromentally safe elastic. Dry-clean not required."
 	icon_state = "fluffearthenbreath"
-	item_state = "fluffearthenbreath"
+	item_state = "fluffearthenbreath_mob"
 
 //jacobdragon:Earthen Breath
 /obj/item/clothing/head/fluff/hairflowerpin
@@ -1488,7 +1488,7 @@ Departamental Swimsuits, for general use
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "nanovest"
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
-	item_state = "nanovest"
+	item_state = "nanovest_mob"
 
 //General use
 /obj/item/clothing/suit/storage/fluff/loincloth
@@ -1499,7 +1499,7 @@ Departamental Swimsuits, for general use
 	icon_state = "loincloth"
 
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
-	item_state = "loincloth"
+	item_state = "loincloth_mob"
 
 //BeyondMyLife: Ne'tra Ky'ram
 /obj/item/clothing/suit/storage/hooded/wintercoat/kilanocoat
@@ -1557,7 +1557,7 @@ Departamental Swimsuits, for general use
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "kilanosuit"
-	item_state = "kilanosuit"
+	item_state = "kilanosuit_mob"
 	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.9
 
@@ -1654,7 +1654,7 @@ Departamental Swimsuits, for general use
 	name = "purple and silver dress uniform"
 	desc = "A royal purple dress, replicating the usual captains dress, made of the same glossy/silky material, with odd oriental and foriegn patterns on it, silver lined too!"
 	icon_state = "kilanosuit_p"
-	item_state = "kilanosuit_p"
+	item_state = "kilanosuit_p_mob"
 
 //Mewchild: Phi Vietsi
 /obj/item/clothing/gloves/ring/seal/signet/fluff/phi
@@ -1841,8 +1841,8 @@ Departamental Swimsuits, for general use
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 
 	icon_state = "blackutility_med"
-	worn_state = "blackutility_med"
-	item_state = "blackutility_med"
+	worn_state = "blackutility_med_mob"
+	item_state = "blackutility_med_mob"
 
 	rolled_down = 0
 	rolled_sleeves = 0
@@ -1901,6 +1901,7 @@ Departamental Swimsuits, for general use
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "latex_clothes"
+	item_state = "latex_clothes_mob"
 	item_icons = null
 	default_worn_icon = 'icons/vore/custom_clothes_vr.dmi'
 	color = COLOR_NAVY
