@@ -8,8 +8,8 @@
 	throw_speed = 3
 	throw_range = 7
 	w_class = ITEMSIZE_NORMAL
-	sharp = 0
-	edge = 0
+	sharp = FALSE
+	edge = FALSE
 	item_icons = list(
 			slot_l_hand_str = 'icons/mob/items/lefthand_material.dmi',
 			slot_r_hand_str = 'icons/mob/items/righthand_material.dmi',
@@ -120,8 +120,8 @@
 	playsound(src, "shatter", 70, 1)
 	dulled = 1
 	if(is_sharp() || has_edge())
-		sharp = 0
-		edge = 0
+		sharp = FALSE
+		edge = FALSE
 
 /obj/item/weapon/material/proc/repair(var/repair_amount, var/repair_time, mob/living/user)
 	if(!fragile)

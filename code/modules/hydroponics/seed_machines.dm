@@ -35,8 +35,8 @@
 /obj/machinery/botany
 	icon = 'icons/obj/hydroponics_machines_vr.dmi' //VOREStation Edit
 	icon_state = "hydrotray3"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	use_power = USE_POWER_IDLE
 
 	var/obj/item/seeds/seed // Currently loaded seed packet.

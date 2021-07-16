@@ -3,7 +3,7 @@
 	desc = "A large metal lattice that seems to exist solely to annoy consumers."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "vehicle_cage"
-	density = 1
+	density = TRUE
 	var/obj/vehicle/my_vehicle
 	var/my_vehicle_type
 	var/paint_color = "#666666"

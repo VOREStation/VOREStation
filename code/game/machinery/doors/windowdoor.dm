@@ -57,7 +57,7 @@
 	qdel(src)
 
 /obj/machinery/door/window/Destroy()
-	density = 0
+	density = FALSE
 	update_nearby_tiles()
 	return ..()
 
@@ -117,7 +117,7 @@
 	sleep(10)
 
 	explosion_resistance = 0
-	density = 0
+	density = FALSE
 	update_icon()
 	update_nearby_tiles()
 

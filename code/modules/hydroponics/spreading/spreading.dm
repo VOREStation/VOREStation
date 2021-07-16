@@ -29,9 +29,9 @@
 		message_admins("<span class='notice'>Event: Spacevines failed to find a viable turf.</span>")
 
 /obj/effect/dead_plant
-	anchored = 1
+	anchored = TRUE
 	opacity = 0
-	density = 0
+	density = FALSE
 	color = DEAD_PLANT_COLOUR
 
 /obj/effect/dead_plant/attack_hand()
@@ -45,10 +45,10 @@
 
 /obj/effect/plant
 	name = "plant"
-	anchored = 1
-	can_buckle = 1
+	anchored = TRUE
+	can_buckle = TRUE
 	opacity = 0
-	density = 0
+	density = FALSE
 	icon = 'icons/obj/hydroponics_growing.dmi'
 	icon_state = "bush4-1"
 	pass_flags = PASSTABLE
@@ -197,10 +197,10 @@
 		plane = ABOVE_PLANE
 		set_opacity(1)
 		if(!isnull(seed.chems["woodpulp"]))
-			density = 1
+			density = TRUE
 	else
 		reset_plane_and_layer()
-		density = 0
+		density = FALSE
 
 /obj/effect/plant/proc/calc_dir()
 	set background = 1

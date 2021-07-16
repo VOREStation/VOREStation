@@ -6,8 +6,8 @@
 	item_state = "baton"
 	slot_flags = SLOT_BELT
 	force = 15
-	sharp = 0
-	edge = 0
+	sharp = FALSE
+	edge = FALSE
 	throwforce = 7
 	flags = NOCONDUCT
 	w_class = ITEMSIZE_NORMAL

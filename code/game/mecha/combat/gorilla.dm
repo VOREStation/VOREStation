@@ -167,4 +167,4 @@
 	icon_state = "pzrwreck"
 	plane = MOB_PLANE
 	pixel_x = -16
-	anchored = 1 // It's fucking huge. You aren't moving it.
+	anchored = TRUE // It's fucking huge. You aren't moving it.

@@ -58,7 +58,7 @@
 	icon = 'icons/turf/shuttle_parts.dmi'
 	icon_state = "nozzle"
 	opacity = 1
-	density = 1
+	density = TRUE
 	can_atmos_pass = ATMOS_PASS_NO
 	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_FUEL
 
@@ -188,7 +188,7 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "smoke"
 	light_color = "#ed9200"
-	anchored = 1
+	anchored = TRUE
 
 /obj/effect/engine_exhaust/New(var/turf/nloc, var/ndir, var/flame)
 	..(nloc)

@@ -157,7 +157,7 @@
 
 /obj/vehicle/bike/turn_on()
 	ion.start()
-	anchored = 1
+	anchored = TRUE
 
 	update_icon()
 

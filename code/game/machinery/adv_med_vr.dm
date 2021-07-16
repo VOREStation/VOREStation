@@ -5,7 +5,7 @@
 /obj/machinery/body_scanconsole
 	icon = 'icons/obj/Cryogenic2_vr.dmi'
 	icon_state = "scanner_terminal_off"
-	density = 1
+	density = TRUE
 
 /obj/machinery/bodyscanner/proc/get_occupant_data_vr(list/incoming, mob/living/carbon/human/H)
 	var/humanprey = 0

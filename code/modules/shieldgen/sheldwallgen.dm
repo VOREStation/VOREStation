@@ -4,8 +4,8 @@
 		desc = "A shield generator."
 		icon = 'icons/obj/stationobjs.dmi'
 		icon_state = "Shield_Gen"
-		anchored = 0
-		density = 1
+		anchored = FALSE
+		density = TRUE
 		req_access = list(access_engine_equip)
 		var/active = 0
 		var/power = 0
@@ -224,9 +224,9 @@
 		desc = "An energy shield."
 		icon = 'icons/effects/effects.dmi'
 		icon_state = "shieldwall"
-		anchored = 1
-		density = 1
-		unacidable = 1
+		anchored = TRUE
+		density = TRUE
+		unacidable = TRUE
 		light_range = 3
 		var/needs_power = 0
 		var/active = 1

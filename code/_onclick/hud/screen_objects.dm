@@ -12,7 +12,7 @@
 	appearance_flags = TILE_BOUND|PIXEL_SCALE|NO_CLIENT_COLOR
 	layer = LAYER_HUD_BASE
 	plane = PLANE_PLAYER_HUD
-	unacidable = 1
+	unacidable = TRUE
 	var/obj/master = null	//A reference to the object in the slot. Grabs or items, generally.
 	var/datum/hud/hud = null // A reference to the owner HUD, if any.
 

@@ -3,7 +3,7 @@
 	desc = "A hefty wooden crate."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "densecrate"
-	density = 1
+	density = TRUE
 	var/list/starts_with
 
 /obj/structure/largecrate/Initialize()

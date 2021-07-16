@@ -74,8 +74,8 @@
 	icon_state = "nothing"
 	var/canmove = 1
 	var/reappearing = 0
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 	var/turf/last_valid_turf
 
 /obj/effect/dummy/spell_jaunt/New(var/location)

@@ -1,8 +1,8 @@
 //trees
 /obj/structure/flora/tree
 	name = "tree"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	pixel_x = -16
 	plane = MOB_PLANE // You know what, let's play it safe.
 	layer = ABOVE_MOB_LAYER

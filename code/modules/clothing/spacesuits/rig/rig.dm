@@ -23,7 +23,7 @@
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.2
 	permeability_coefficient = 0.1
-	unacidable = 1
+	unacidable = TRUE
 	preserve_item = 1
 
 	var/default_mob_icon = 'icons/mob/rig_back.dmi'
@@ -244,7 +244,7 @@
 
 /obj/item/weapon/rig/proc/reset()
 	offline = 2
-	canremove = 1
+	canremove = TRUE
 	for(var/obj/item/piece in list(helmet,boots,gloves,chest))
 		if(!piece) continue
 		piece.icon_state = "[suit_state]"
@@ -254,7 +254,7 @@
 
 /obj/item/weapon/rig/proc/cut_suit()
 	offline = 2
-	canremove = 1
+	canremove = TRUE
 	toggle_piece("helmet", loc, ONLY_RETRACT, TRUE)
 	toggle_piece("gauntlets", loc, ONLY_RETRACT, TRUE)
 	toggle_piece("boots", loc, ONLY_RETRACT, TRUE)
@@ -284,7 +284,7 @@
 		M.client?.screen += booting_L
 		M.client?.screen += booting_R
 
-	canremove = 0 // No removing the suit while unsealing.
+	canremove = FALSE // No removing the suit while unsealing.
 	sealing = 1
 
 	if(!seal_target && !suit_is_deployed())

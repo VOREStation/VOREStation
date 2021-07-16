@@ -13,8 +13,8 @@
 	name = "windoor assembly"
 	icon = 'icons/obj/doors/windoor.dmi'
 	icon_state = "l_windoor_assembly01"
-	anchored = 0
-	density = 0
+	anchored = FALSE
+	density = FALSE
 	dir = NORTH
 	w_class = ITEMSIZE_NORMAL
 
@@ -36,7 +36,7 @@
 	..()
 	if(constructed)
 		state = "01"
-		anchored = 0
+		anchored = FALSE
 	switch(start_dir)
 		if(NORTH, SOUTH, EAST, WEST)
 			set_dir(start_dir)
@@ -47,7 +47,7 @@
 	update_nearby_tiles(need_rebuild=1)
 
 /obj/structure/windoor_assembly/Destroy()
-	density = 0
+	density = FALSE
 	update_nearby_tiles()
 	..()
 
@@ -200,7 +200,7 @@
 
 					if(!src) return
 
-					density = 1 //Shouldn't matter but just incase
+					density = TRUE //Shouldn't matter but just incase
 					to_chat(user,"<span class='notice'>You finish the windoor!</span>")
 
 					if(secure)

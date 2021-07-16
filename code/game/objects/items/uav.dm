@@ -12,7 +12,7 @@
 	var/obj/item/weapon/cell/cell
 	var/cell_type = null //Can put a starting cell here
 
-	density = 1 //Is dense, but not anchored, so you can swap with it
+	density = TRUE //Is dense, but not anchored, so you can swap with it
 	slowdown = 1.5 //Heevvee.
 
 	health = 100
