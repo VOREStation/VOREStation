@@ -88,7 +88,7 @@
 			if(src.locked || src.welded)
 				visible_message("<span class='alium'>\The [user] begins tearing into \the [src] internals!</span>")
 				src.do_animate("deny")
-				if(do_after(user,5 SECONDS,src))
+				if(do_after(user,15 SECONDS,src))
 					visible_message("<span class='danger'>\The [user] tears \the [src] open, sparks flying from its electronics!</span>")
 					src.do_animate("spark")
 					playsound(src, 'sound/machines/door/airlock_tear_apart.ogg', 100, 1, volume_channel = VOLUME_CHANNEL_DOORS)
