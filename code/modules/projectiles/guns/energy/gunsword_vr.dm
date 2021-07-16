@@ -89,7 +89,7 @@
 	edge = initial(edge)
 	w_class = initial(w_class)
 	set_light(0,0)
-	attack_verb = list()
+	attack_verb = null
 
 
 /obj/item/weapon/cell/device/weapon/gunsword/attack_self(mob/living/user as mob)

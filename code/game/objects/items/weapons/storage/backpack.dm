@@ -70,7 +70,6 @@
 	w_class = ITEMSIZE_LARGE
 	max_w_class = ITEMSIZE_NORMAL
 	max_storage_space = ITEMSIZE_COST_NORMAL * 100 // can store a ton of shit!
-	item_state_slots = null
 
 /obj/item/weapon/storage/backpack/cultpack
 	name = "trophy rack"

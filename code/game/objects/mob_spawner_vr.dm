@@ -76,7 +76,7 @@
 
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	user.do_attack_animation(src)
-	visible_message("<span class='warning'>\The [src] has been [I.attack_verb.len ? "[pick(I.attack_verb)]":"attacked"] with \the [I] by [user].</span>")
+	visible_message("<span class='warning'>\The [src] has been [LAZYLEN(I.attack_verb) ? "[pick(I.attack_verb)]":"attacked"] with \the [I] by [user].</span>")
 	take_damage(I.force)
 
 /obj/structure/mob_spawner/bullet_act(var/obj/item/projectile/Proj)

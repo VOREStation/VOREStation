@@ -570,7 +570,6 @@ var/list/dispenser_presets = list()
 	name = "Aether Voidsuit"
 	voidsuit_type = /obj/item/clothing/suit/space/void/aether
 	voidhelmet_type = /obj/item/clothing/head/helmet/space/void/aether
-	refit = FALSE // No animal sprites AAA!
 
 /obj/machinery/gear_dispenser/suit/aether
 	name = "\improper Aether Voidsuit Dispenser"

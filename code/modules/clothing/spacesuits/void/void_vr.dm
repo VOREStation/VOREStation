@@ -7,62 +7,14 @@
 
 /obj/item/clothing/head/helmet/space/void
 	species_restricted = list(SPECIES_HUMAN, SPECIES_RAPALA, SPECIES_VASILISSAN, SPECIES_ALRAUNE, SPECIES_PROMETHEAN, SPECIES_XENOCHIMERA)
-	sprite_sheets = list(
-		SPECIES_TAJ 				= 'icons/inventory/head/mob_tajaran.dmi',
-		SPECIES_SKRELL 				= 'icons/inventory/head/mob_skrell.dmi',
-		SPECIES_UNATHI 				= 'icons/inventory/head/mob_unathi.dmi',
-		SPECIES_TESHARI				= 'icons/inventory/head/mob_teshari.dmi',
-		SPECIES_XENOHYBRID 			= 'icons/inventory/head/mob_unathi.dmi',
-		SPECIES_AKULA				= 'icons/inventory/head/mob_akula.dmi',
-		SPECIES_SERGAL				= 'icons/inventory/head/mob_sergal.dmi',
-		SPECIES_NEVREAN				= 'icons/inventory/head/mob_sergal.dmi',
-		SPECIES_VULPKANIN			= 'icons/inventory/head/mob_vulpkanin.dmi',
-		SPECIES_ZORREN_HIGH			= 'icons/inventory/head/mob_vulpkanin.dmi',
-		SPECIES_FENNEC				= 'icons/inventory/head/mob_vulpkanin.dmi'
-		)
-	sprite_sheets_obj = list(
-		SPECIES_TAJ 			= 'icons/inventory/head/item_tajaran.dmi',
-		SPECIES_SKRELL			= 'icons/inventory/head/item_skrell.dmi',
-		SPECIES_UNATHI			= 'icons/inventory/head/item_unathi.dmi',
-		SPECIES_TESHARI			= 'icons/inventory/head/item_teshari.dmi',
-		SPECIES_XENOHYBRID		= 'icons/inventory/head/item_unathi.dmi',
-		SPECIES_AKULA			= 'icons/inventory/head/item_akula.dmi',
-		SPECIES_SERGAL			= 'icons/inventory/head/item_sergal.dmi',
-		SPECIES_NEVREAN			= 'icons/inventory/head/item_sergal.dmi',
-		SPECIES_VULPKANIN		= 'icons/inventory/head/item_vulpkanin.dmi',
-		SPECIES_ZORREN_HIGH		= 'icons/inventory/head/item_vulpkanin.dmi',
-		SPECIES_FENNEC			= 'icons/inventory/head/item_vulpkanin.dmi'
-		)
+	sprite_sheets = VR_SPECIES_SPRITE_SHEETS_HEAD_MOB
+	sprite_sheets_obj = VR_SPECIES_SPRITE_SHEETS_HEAD_ITEM
 
 /obj/item/clothing/suit/space/void
 	species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_RAPALA, SPECIES_VASILISSAN, SPECIES_ALRAUNE, SPECIES_PROMETHEAN, SPECIES_XENOCHIMERA)
-	sprite_sheets = list(
-		SPECIES_TAJ 				= 'icons/inventory/suit/mob_tajaran.dmi',
-		SPECIES_SKRELL 				= 'icons/inventory/suit/mob_skrell.dmi',
-		SPECIES_UNATHI 				= 'icons/inventory/suit/mob_unathi.dmi',
-		SPECIES_TESHARI				= 'icons/inventory/suit/mob_teshari.dmi',
-		SPECIES_XENOHYBRID 			= 'icons/inventory/suit/mob_unathi.dmi',
-		SPECIES_AKULA				= 'icons/inventory/suit/mob_akula.dmi',
-		SPECIES_SERGAL				= 'icons/inventory/suit/mob_sergal.dmi',
-		SPECIES_NEVREAN				= 'icons/inventory/suit/mob_sergal.dmi',
-		SPECIES_VULPKANIN			= 'icons/inventory/suit/mob_vulpkanin.dmi',
-		SPECIES_ZORREN_HIGH			= 'icons/inventory/suit/mob_vulpkanin.dmi',
-		SPECIES_FENNEC				= 'icons/inventory/suit/mob_vulpkanin.dmi'
-		)
-	sprite_sheets_obj = list(
-		SPECIES_TAJ			= 'icons/inventory/suit/item_tajaran.dmi',
-		SPECIES_SKRELL			= 'icons/inventory/suit/item_skrell.dmi',
-		SPECIES_UNATHI			= 'icons/inventory/suit/item_unathi.dmi',
-		SPECIES_TESHARI			= 'icons/inventory/suit/item_teshari.dmi',
-		SPECIES_XENOHYBRID		= 'icons/inventory/suit/item_unathi.dmi',
-		SPECIES_AKULA			= 'icons/inventory/suit/item_akula.dmi',
-		SPECIES_SERGAL			= 'icons/inventory/suit/item_sergal.dmi',
-		SPECIES_NEVREAN			= 'icons/inventory/suit/item_sergal.dmi',
-		SPECIES_VULPKANIN		= 'icons/inventory/suit/item_vulpkanin.dmi',
-		SPECIES_ZORREN_HIGH		= 'icons/inventory/suit/item_vulpkanin.dmi',
-		SPECIES_FENNEC			= 'icons/inventory/suit/item_vulpkanin.dmi'
-		)
-
+	sprite_sheets = VR_SPECIES_SPRITE_SHEETS_SUIT_MOB
+	sprite_sheets_obj = VR_SPECIES_SPRITE_SHEETS_SUIT_ITEM
+	
 	// This is a hack to prevent the item_state variable on the suits from taking effect
 	// when the item is equipped in outer clothing slot.
 	// This variable is normally used to set the icon_override when the suit is refitted,
@@ -152,33 +104,9 @@
 	breach_threshold = 6 //this thing is basically tissue paper
 	w_class = ITEMSIZE_NORMAL //if it's snug, high-tech, and made of relatively soft materials, it should be much easier to store!
 	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
-
-/obj/item/clothing/suit/space/void/autolok
-	sprite_sheets = list(
-		SPECIES_HUMAN			= 'icons/inventory/suit/mob_vr.dmi',
-		SPECIES_TAJ 			= 'icons/inventory/suit/mob_vr_tajaran.dmi',
-		SPECIES_SKRELL 			= 'icons/inventory/suit/mob_vr_skrell.dmi',
-		SPECIES_UNATHI 			= 'icons/inventory/suit/mob_vr_unathi.dmi',
-		SPECIES_XENOHYBRID 		= 'icons/inventory/suit/mob_vr_unathi.dmi',
-		SPECIES_AKULA			= 'icons/inventory/suit/mob_vr_unathi.dmi',
-		SPECIES_SERGAL			= 'icons/inventory/suit/mob_vr_unathi.dmi',
-		SPECIES_VULPKANIN		= 'icons/inventory/suit/mob_vr_vulpkanin.dmi',
-		SPECIES_ZORREN_HIGH		= 'icons/inventory/suit/mob_vr_vulpkanin.dmi',
-		SPECIES_FENNEC			= 'icons/inventory/suit/mob_vr_vulpkanin.dmi',
-		SPECIES_TESHARI			= 'icons/inventory/suit/mob_vr_teshari.dmi'
-		)
-	sprite_sheets_obj = list(
-		SPECIES_TAJ			= 'icons/inventory/suit/item_vr.dmi',
-		SPECIES_SKRELL			= 'icons/inventory/suit/item_vr.dmi',
-		SPECIES_UNATHI			= 'icons/inventory/suit/item_vr.dmi',
-		SPECIES_XENOHYBRID		= 'icons/inventory/suit/item_vr.dmi',
-		SPECIES_AKULA			= 'icons/inventory/suit/item_vr.dmi',
-		SPECIES_SERGAL			= 'icons/inventory/suit/item_vr.dmi',
-		SPECIES_VULPKANIN		= 'icons/inventory/suit/item_vr.dmi',
-		SPECIES_ZORREN_HIGH		= 'icons/inventory/suit/item_vr.dmi',
-		SPECIES_FENNEC			= 'icons/inventory/suit/item_vr.dmi',
-		SPECIES_TESHARI			= 'icons/inventory/suit/item_vr.dmi'
-		)
+	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
+	sprite_sheets_obj = null
+	sprite_sheets_refit = null
 
 /obj/item/clothing/suit/space/void/autolok/Initialize()
 	. = ..()
@@ -232,31 +160,7 @@
 	species_restricted = list("exclude",SPECIES_DIONA,SPECIES_VOX)	//this thing can autoadapt too
 	flags_inv = HIDEEARS|BLOCKHAIR //removed HIDEFACE/MASK/EYES flags so sunglasses or facemasks don't disappear. still gotta have BLOCKHAIR or it'll clip out tho.
 	default_worn_icon = 'icons/inventory/head/mob_vr.dmi'
-
-/obj/item/clothing/head/helmet/space/void/autolok
-	sprite_sheets = list(
-		SPECIES_HUMAN			= 'icons/inventory/head/mob_vr.dmi',
-		SPECIES_TAJ 			= 'icons/inventory/head/mob_vr_tajaran.dmi',
-		SPECIES_SKRELL 			= 'icons/inventory/head/mob_vr_skrell.dmi',
-		SPECIES_UNATHI 			= 'icons/inventory/head/mob_vr_unathi.dmi',
-		SPECIES_XENOHYBRID 		= 'icons/inventory/head/mob_vr_unathi.dmi',
-		SPECIES_AKULA			= 'icons/inventory/head/mob_vr_unathi.dmi',
-		SPECIES_SERGAL			= 'icons/inventory/head/mob_vr_unathi.dmi',
-		SPECIES_VULPKANIN		= 'icons/inventory/head/mob_vr_vulpkanin.dmi',
-		SPECIES_ZORREN_HIGH		= 'icons/inventory/head/mob_vr_vulpkanin.dmi',
-		SPECIES_FENNEC			= 'icons/inventory/head/mob_vr_vulpkanin.dmi',
-		SPECIES_TESHARI			= 'icons/inventory/head/mob_vr_teshari.dmi'
-		)
-	sprite_sheets_obj = list(
-		SPECIES_TAJ 			= 'icons/inventory/head/item_vr.dmi',
-		SPECIES_SKRELL			= 'icons/inventory/head/item_vr.dmi',
-		SPECIES_UNATHI			= 'icons/inventory/head/item_vr.dmi',
-		SPECIES_XENOHYBRID		= 'icons/inventory/head/item_vr.dmi',
-		SPECIES_AKULA			= 'icons/inventory/head/item_vr.dmi',
-		SPECIES_SERGAL			= 'icons/inventory/head/item_vr.dmi',
-		SPECIES_VULPKANIN		= 'icons/inventory/head/item_vr.dmi',
-		SPECIES_ZORREN_HIGH		= 'icons/inventory/head/item_vr.dmi',
-		SPECIES_FENNEC			= 'icons/inventory/head/item_vr.dmi',
-		SPECIES_TESHARI			= 'icons/inventory/head/item_vr.dmi'
-		)
-	sprite_sheets_refit = list()	//have to nullify this as well just to be thorough
+	sprite_sheets = ALL_VR_SPRITE_SHEETS_HEAD_MOB
+	sprite_sheets_obj = null
+	sprite_sheets_refit = null
+	

@@ -15,7 +15,7 @@
 	user.setClickCooldown(user.get_attack_speed(W))
 
 	if(W.force)
-		visible_message("<span class='warning'>\The [src] has been [pick(W.attack_verb)] with \the [W][(user ? " by [user]." : ".")]</span>")
+		visible_message("<span class='warning'>\The [src] has been [LAZYLEN(W.attack_verb) ? pick(W.attack_verb) : "attacked"] with \the [W][(user ? " by [user]." : ".")]</span>")
 		qdel(src)
 
 /obj/effect/weaversilk/bullet_act(var/obj/item/projectile/Proj)

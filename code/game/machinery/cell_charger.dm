@@ -73,12 +73,13 @@
 	charging = null
 
 	charge_state = CHARGER_EMPTY
-	update_icon()
 
 	if((stat & (BROKEN|NOPOWER)) || !anchored)
 		update_use_power(USE_POWER_OFF)
 	else
 		update_use_power(USE_POWER_IDLE)
+	
+	update_icon()
 
 /obj/machinery/cell_charger/examine(mob/user)
 	. = ..()
@@ -130,16 +131,13 @@
 	if(charging)
 		remove_item(user)
 		user.visible_message("[user] removes [charging] from [src].", "You remove [charging] from [src].")
-		update_icon()
 
 /obj/machinery/cell_charger/attack_ai(mob/user)
 	if(istype(user, /mob/living/silicon/robot) && Adjacent(user)) // Borgs can remove the cell if they are near enough
 		if(charging)
-			user.visible_message("[user] removes [charging] from [src].", "You remove [charging] from [src].")
-			charging.loc = src.loc
-			charging.update_icon()
-			charging = null
-			update_icon()
+			remove_item(user)
+			user.visible_message("[user] disconnects [charging] from [src].", "You disconnect [charging] from [src].")
+			
 
 /obj/machinery/cell_charger/emp_act(severity)
 	if(stat & (BROKEN|NOPOWER))
