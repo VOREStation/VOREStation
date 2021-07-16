@@ -113,7 +113,7 @@
 	destroy_on_harvest = TRUE
 	harvest_tool = /obj/item/weapon/material/knife
 	randomize_harvest_count = FALSE
-	harvest_loot = list(/obj/item/stack/material/fiber = 1)
+	harvest_loot = list(/obj/item/stack/material/fiber = rand(1-2))
 	max_harvests = 1
 
 /obj/structure/flora/ausbushes/New()
