@@ -6,9 +6,9 @@
 	name = "ladder assembly"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "ladder00"
-	density = 0
+	density = FALSE
 	opacity = 0
-	anchored = 0
+	anchored = FALSE
 	w_class = ITEMSIZE_HUGE
 
 	var/state = 0

@@ -1,6 +1,7 @@
 /datum/robolimb
 	var/includes_tail			//Cyberlimbs dmi includes a tail sprite to wear.
 	var/includes_wing			//Cyberlimbs dmi includes a wing sprite to wear.
+	var/includes_ears			//Cyberlimbs dmi includes ear sprites to wear.
 	var/list/whitelisted_to		//List of ckeys that are allowed to pick this in charsetup.
 
 //////////////// For-specific-character fluff ones ///////////////// May be viable to place these into a custom_item subfolder, in order to allow CI Repo integration.

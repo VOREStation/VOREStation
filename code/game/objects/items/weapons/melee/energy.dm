@@ -4,8 +4,8 @@
 	var/active_throwforce
 	var/active_w_class
 	var/active_embed_chance = 0		//In the off chance one of these is supposed to embed, you can just tweak this var
-	sharp = 0
-	edge = 0
+	sharp = FALSE
+	edge = FALSE
 	armor_penetration = 50
 	flags = NOCONDUCT | NOBLOODY
 	var/lrange = 2
@@ -54,8 +54,8 @@
 	embed_chance = active_embed_chance
 	force = active_force
 	throwforce = active_throwforce
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 	w_class = active_w_class
 	playsound(src, 'sound/weapons/saberon.ogg', 50, 1)
 	update_icon()
@@ -224,8 +224,8 @@
 	w_class = ITEMSIZE_NORMAL
 	origin_tech = list(TECH_MAGNET = 3, TECH_COMBAT = 4)
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 	can_cleave = TRUE
 
 /obj/item/weapon/melee/energy/axe/activate(mob/living/user)
@@ -276,8 +276,8 @@
 	w_class = ITEMSIZE_SMALL
 	flags = NOBLOODY
 	origin_tech = list(TECH_MAGNET = 3, TECH_ILLEGAL = 4)
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 	colorable = TRUE
 	drop_sound = 'sound/items/drop/sword.ogg'
 	pickup_sound = 'sound/items/pickup/sword.ogg'
@@ -358,8 +358,8 @@
 	active_force = 5
 	active_throwforce = 3
 	active_embed_chance = 0
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 	armor_penetration = 0
 	flags = NOBLOODY
 	lrange = 2
@@ -427,9 +427,9 @@
 	item_state = "blade"
 	force = 40 //Normal attacks deal very high damage - about the same as wielded fire axe
 	armor_penetration = 100
-	sharp = 1
-	edge = 1
-	anchored = 1    // Never spawned outside of inventory, should be fine.
+	sharp = TRUE
+	edge = TRUE
+	anchored = TRUE    // Never spawned outside of inventory, should be fine.
 	throwforce = 1  //Throwing or dropping the item deletes it.
 	throw_speed = 1
 	throw_range = 1
@@ -514,8 +514,8 @@
 	desc = "Concentrated energy forming a sharp tip at the end of a long rod."
 	icon_state = "espear"
 	armor_penetration = 75
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 	force = 5
 	throwforce = 10
 	throw_speed = 7

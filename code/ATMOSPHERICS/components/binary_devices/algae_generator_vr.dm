@@ -6,8 +6,8 @@
 	icon = 'icons/obj/machines/algae_vr.dmi'
 	icon_state = "algae-off"
 	circuit = /obj/item/weapon/circuitboard/algae_farm
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	power_channel = EQUIP
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 100		// Minimal lights to keep algae alive

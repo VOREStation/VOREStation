@@ -3,7 +3,7 @@
 	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER|LONG_GLIDE
 	glide_size = 8
 	var/last_move = null //The direction the atom last moved
-	var/anchored = 0
+	var/anchored = FALSE
 	// var/elevation = 2    - not used anywhere
 	var/moving_diagonally
 	var/move_speed = 10
@@ -523,7 +523,7 @@
 //Overlays
 /atom/movable/overlay
 	var/atom/master = null
-	anchored = 1
+	anchored = TRUE
 
 /atom/movable/overlay/New()
 	for(var/x in src.verbs)

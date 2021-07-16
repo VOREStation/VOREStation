@@ -151,7 +151,7 @@
 		purge -= 1
 
 /mob/living/simple_mob/death(gibbed, deathmessage = "dies!")
-	density = 0 //We don't block even if we did before
+	density = FALSE //We don't block even if we did before
 
 	if(has_eye_glow)
 		remove_eyes()

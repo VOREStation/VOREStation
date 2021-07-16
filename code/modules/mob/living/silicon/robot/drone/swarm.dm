@@ -14,7 +14,7 @@
 	pass_flags = PASSTABLE
 	braintype = "Drone"
 	lawupdate = 0
-	density = 1
+	density = TRUE
 	idcard_type = /obj/item/weapon/card/id/syndicate
 	req_access = list(999)
 	integrated_light_power = 3

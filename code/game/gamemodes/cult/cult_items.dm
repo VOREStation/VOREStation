@@ -10,8 +10,8 @@
 	drop_sound = 'sound/items/drop/sword.ogg'
 	pickup_sound = 'sound/items/pickup/sword.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	edge = 1
-	sharp = 1
+	edge = TRUE
+	sharp = TRUE
 
 /obj/item/weapon/melee/cultblade/cultify()
 	return

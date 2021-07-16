@@ -7,11 +7,11 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 	desc = "A gravitational singularity."
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "singularity_s1"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	plane = ABOVE_PLANE
 	light_range = 6
-	unacidable = 1 //Don't comment this out.
+	unacidable = TRUE //Don't comment this out.
 
 	var/current_size = 1
 	var/allowed_size = 1

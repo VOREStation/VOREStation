@@ -147,8 +147,8 @@ var/list/dispenser_presets = list()
 	desc = "An industrial U-Tak-It Dispenser unit designed to fetch all kinds of equipment."
 	icon = 'icons/obj/suitdispenser.dmi'
 	icon_state = "geardispenser"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	var/list/dispenses = list(/datum/gear_disp/trash) // put your gear datums here!
 	var/datum/gear_disp/one_setting
 	var/global/list/gear_distributed_to = list()
@@ -570,7 +570,6 @@ var/list/dispenser_presets = list()
 	name = "Aether Voidsuit"
 	voidsuit_type = /obj/item/clothing/suit/space/void/aether
 	voidhelmet_type = /obj/item/clothing/head/helmet/space/void/aether
-	refit = FALSE // No animal sprites AAA!
 
 /obj/machinery/gear_dispenser/suit/aether
 	name = "\improper Aether Voidsuit Dispenser"

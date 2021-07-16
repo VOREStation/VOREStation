@@ -3,8 +3,8 @@
 	desc = "A mech recharger, built into the floor."
 	icon = 'icons/mecha/mech_bay.dmi'
 	icon_state = "recharge_floor"
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 	layer = TURF_LAYER + 0.1
 	circuit = /obj/item/weapon/circuitboard/mech_recharger
 

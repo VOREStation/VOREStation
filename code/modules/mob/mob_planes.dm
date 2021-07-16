@@ -215,6 +215,7 @@
 	render_target = O_LIGHTING_VISUAL_RENDER_TARGET
 	blend_mode = BLEND_MULTIPLY
 	alpha = 255
+	appearance_flags = PLANE_MASTER|NO_CLIENT_COLOR // NO_CLIENT_COLOR because it has some naughty interactions with colorblindness that I can't figure out. Byond bug?
 
 /obj/screen/plane_master/emissive
 	plane = PLANE_EMISSIVE

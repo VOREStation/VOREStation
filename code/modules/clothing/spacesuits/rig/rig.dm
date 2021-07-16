@@ -23,7 +23,7 @@
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.2
 	permeability_coefficient = 0.1
-	unacidable = 1
+	unacidable = TRUE
 	preserve_item = 1
 
 	var/default_mob_icon = 'icons/mob/rig_back.dmi'
@@ -244,7 +244,7 @@
 
 /obj/item/weapon/rig/proc/reset()
 	offline = 2
-	canremove = 1
+	canremove = TRUE
 	for(var/obj/item/piece in list(helmet,boots,gloves,chest))
 		if(!piece) continue
 		piece.icon_state = "[suit_state]"
@@ -254,7 +254,7 @@
 
 /obj/item/weapon/rig/proc/cut_suit()
 	offline = 2
-	canremove = 1
+	canremove = TRUE
 	toggle_piece("helmet", loc, ONLY_RETRACT, TRUE)
 	toggle_piece("gauntlets", loc, ONLY_RETRACT, TRUE)
 	toggle_piece("boots", loc, ONLY_RETRACT, TRUE)
@@ -281,10 +281,10 @@
 		booting_R.icon_state = "boot_load"
 		animate(booting_L, alpha=230, time=30, easing=SINE_EASING)
 		animate(booting_R, alpha=200, time=20, easing=SINE_EASING)
-		M.client.screen += booting_L
-		M.client.screen += booting_R
+		M.client?.screen += booting_L
+		M.client?.screen += booting_R
 
-	canremove = 0 // No removing the suit while unsealing.
+	canremove = FALSE // No removing the suit while unsealing.
 	sealing = 1
 
 	if(!seal_target && !suit_is_deployed())
@@ -358,8 +358,8 @@
 	sealing = null
 
 	if(failed_to_seal)
-		M.client.screen -= booting_L
-		M.client.screen -= booting_R
+		M.client?.screen -= booting_L
+		M.client?.screen -= booting_R
 		qdel(booting_L)
 		qdel(booting_R)
 		for(var/obj/item/piece in list(helmet,boots,gloves,chest))
@@ -380,11 +380,11 @@
 			minihud = new (M.hud_used, src)
 	to_chat(M, "<span class='notice'><b>Your entire suit [canremove ? "loosens as the components relax" : "tightens around you as the components lock into place"].</b></span>")
 	playsound(src, 'sound/machines/rig/rigstarted.ogg', 10, FALSE)
-	M.client.screen -= booting_L
+	M.client?.screen -= booting_L
 	qdel(booting_L)
 	booting_R.icon_state = "boot_done"
 	spawn(40)
-		M.client.screen -= booting_R
+		M.client?.screen -= booting_R
 		qdel(booting_R)
 
 	if(canremove)
@@ -594,8 +594,8 @@
 		var/species_icon = default_mob_icon
 		// Since setting mob_icon will override the species checks in
 		// update_inv_wear_suit(), handle species checks here.
-		if(wearer && sprite_sheets && sprite_sheets[wearer.species.get_bodytype(wearer)])
-			species_icon =  sprite_sheets[wearer.species.get_bodytype(wearer)]
+		if(wearer && LAZYACCESS(sprite_sheets, wearer.species.get_bodytype(wearer)))
+			species_icon = sprite_sheets[wearer.species.get_bodytype(wearer)]
 		mob_icon = icon(icon = species_icon, icon_state = "[icon_state]")
 
 	if(installed_modules.len)

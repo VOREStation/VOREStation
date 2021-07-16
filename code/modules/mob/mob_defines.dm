@@ -1,5 +1,5 @@
 /mob
-	density = 1
+	density = TRUE
 	layer = MOB_LAYER
 	plane = MOB_PLANE
 	animate_movement = 2
@@ -90,7 +90,7 @@
 	var/canmove = 1
 	//Allows mobs to move through dense areas without restriction. For instance, in space or out of holder objects.
 	var/incorporeal_move = 0 //0 is off, 1 is normal, 2 is for ninjas.
-	var/unacidable = 0
+	var/unacidable = FALSE
 	var/list/pinned = list()            // List of things pinning this creature to walls (see living_defense.dm)
 	var/list/embedded = list()          // Embedded items, since simple mobs don't have organs.
 	var/list/languages = list()         // For speaking/listening.

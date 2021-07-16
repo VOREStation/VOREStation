@@ -945,7 +945,7 @@
 		if(O == selection)
 			pinned -= O
 		if(!pinned.len)
-			anchored = 0
+			anchored = FALSE
 	return 1
 
 //Check for brain worms in head.

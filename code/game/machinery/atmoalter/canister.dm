@@ -2,7 +2,7 @@
 	name = "canister"
 	icon = 'icons/obj/atmos.dmi'
 	icon_state = "yellow"
-	density = 1
+	density = TRUE
 	var/health = 100.0
 	w_class = ITEMSIZE_HUGE
 

@@ -4,7 +4,7 @@
 	desc = "A standard recharger for all devices that use power."
 	icon = 'icons/obj/stationobjs_vr.dmi' //VOREStation Edit
 	icon_state = "recharger0"
-	anchored = 1
+	anchored = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 4
 	active_power_usage = 40000	//40 kW
@@ -104,7 +104,7 @@
 		charging = null
 		update_icon()
 
-/obj/machinery/cell_charger/attack_ai(mob/user)
+/obj/machinery/recharger/attack_ai(mob/user)
 	if(istype(user, /mob/living/silicon/robot) && Adjacent(user)) // Borgs can remove the cell if they are near enough
 		if(charging)
 			user.visible_message("[user] removes [charging] from [src].", "You remove [charging] from [src].")

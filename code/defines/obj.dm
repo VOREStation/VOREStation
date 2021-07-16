@@ -1,8 +1,8 @@
 /obj/structure/signpost
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "signpost"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 
 /obj/structure/signpost/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	return attack_hand(user)
@@ -16,15 +16,15 @@
 		var/mark = ""
 		icon = 'icons/misc/mark.dmi'
 		icon_state = "blank"
-		anchored = 1
+		anchored = TRUE
 		layer = 99
 		mouse_opacity = 0
-		unacidable = 1//Just to be sure.
+		unacidable = TRUE//Just to be sure.
 
 /obj/effect/beam
 	name = "beam"
-	density = 0
-	unacidable = 1//Just to be sure.
+	density = FALSE
+	unacidable = TRUE//Just to be sure.
 	var/def_zone
 	pass_flags = PASSTABLE
 
@@ -33,8 +33,8 @@
 	name = "begin"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "begin"
-	anchored = 1.0
-	unacidable = 1
+	anchored = TRUE
+	unacidable = TRUE
 
 /*
  * This item is completely unused, but removing it will break something in R&D and Radio code causing PDA and Ninja code to fail on compile
@@ -58,7 +58,7 @@
 /obj/effect/projection
 	name = "Projection"
 	desc = "This looks like a projection of something."
-	anchored = 1.0
+	anchored = TRUE
 
 /obj/effect/shut_controller
 	name = "shut controller"
@@ -70,9 +70,9 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "showcase_1"
 	desc = "A stand with the empty body of a cyborg bolted to it."
-	density = 1
-	anchored = 1
-	unacidable = 1//temporary until I decide whether the borg can be removed. -veyveyr
+	density = TRUE
+	anchored = TRUE
+	unacidable = TRUE//temporary until I decide whether the borg can be removed. -veyveyr
 
 /obj/structure/showcase/sign
 	name = "WARNING: WILDERNESS"
@@ -86,8 +86,8 @@
 	icon = 'icons/misc/beach.dmi'
 	icon_state = "beachball"
 	name = "beach ball"
-	density = 0
-	anchored = 0
+	density = FALSE
+	anchored = FALSE
 	w_class = ITEMSIZE_LARGE
 	force = 0.0
 	throwforce = 0.0

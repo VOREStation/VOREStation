@@ -316,7 +316,7 @@
 
 /obj/machinery/door/blast/regular/open
 	icon_state = "pdoor0"
-	density = 0
+	density = FALSE
 	opacity = 0
 
 // SUBTYPE: Shutters
@@ -346,7 +346,7 @@
 
 /obj/machinery/door/blast/gate/open
 	icon_state = "tshutter0"
-	density = 0
+	density = FALSE
 
 /obj/machinery/door/blast/gate/thin
 	name = "thin gate"
@@ -360,7 +360,7 @@
 
 /obj/machinery/door/blast/gate/thin/open
 	icon_state = "shutter2_1"
-	density = 0
+	density = FALSE
 
 /obj/machinery/door/blast/gate/bars
 	name = "prison bars"
@@ -374,7 +374,7 @@
 
 /obj/machinery/door/blast/gate/bars/open
 	icon_state = "bars_1"
-	density = 0
+	density = FALSE
 
 // SUBTYPE: Multi-tile
 // Pod doors ported from Paradise

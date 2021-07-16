@@ -2,7 +2,7 @@
 	name = "automatic pipe layer"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "pipe_d"
-	density = 1
+	density = TRUE
 	circuit = /obj/item/weapon/circuitboard/pipelayer
 	var/turf/old_turf		// Last turf we were on.
 	var/old_dir				// Last direction we were facing.

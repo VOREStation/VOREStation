@@ -15,7 +15,7 @@
 	light_color = "#00b000"
 	req_one_access = list(access_heads)
 	circuit = /obj/item/weapon/circuitboard/skills/pcu
-	density = 0
+	density = FALSE
 	var/obj/item/weapon/card/id/scan = null
 	var/authenticated = null
 	var/rank = null

@@ -6,7 +6,7 @@
 	desc = "A device for extracting power from high-energy plasma in toroidal fields."
 	icon = 'icons/obj/machines/power/fusion.dmi'
 	icon_state = "mag_trap0"
-	anchored = 1
+	anchored = TRUE
 	var/list/things_in_range = list()//what is in a radius of us?
 	var/list/fields_in_range = list()//What EM fields are in that radius?
 	var/list/active_field = list()//Our active field.

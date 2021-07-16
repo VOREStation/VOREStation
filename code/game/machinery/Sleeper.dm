@@ -4,8 +4,8 @@
 	icon = 'icons/obj/Cryogenic2_vr.dmi' //VOREStation Edit - Better icon.
 	icon_state = "sleeperconsole"
 	var/obj/machinery/sleeper/sleeper
-	anchored = 1 //About time someone fixed this.
-	density = 1 //VOREStation Edit - Big console
+	anchored = TRUE //About time someone fixed this.
+	density = TRUE //VOREStation Edit - Big console
 	dir = 8
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 40
@@ -87,8 +87,8 @@
 	desc = "A stasis pod with built-in injectors, a dialysis machine, and a limited health scanner."
 	icon = 'icons/obj/Cryogenic2_vr.dmi' //VOREStation Edit - Better icons
 	icon_state = "sleeper_0"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	circuit = /obj/item/weapon/circuitboard/sleeper
 	var/mob/living/carbon/human/occupant = null
 	var/list/available_chemicals = list()

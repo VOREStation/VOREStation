@@ -3,8 +3,8 @@
 	desc = "Not a hiding place. Unfit for pets."
 	icon = 'icons/obj/machines/washing_machine_vr.dmi' //VOREStation Edit
 	icon_state = "wm_1" //VOREStation Edit
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
 	clicksound = "button"
 	clickvol = 40
 

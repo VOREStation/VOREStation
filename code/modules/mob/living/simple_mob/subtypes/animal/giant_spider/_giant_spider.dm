@@ -85,7 +85,7 @@
 
 	melee_damage_lower = 18
 	melee_damage_upper = 30
-	attack_sharp = 1
+	attack_sharp = TRUE
 	attack_edge = 1
 	attack_sound = 'sound/weapons/bite.ogg'
 

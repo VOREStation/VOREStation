@@ -3,8 +3,8 @@
 	attack_noun = list("fangs")
 	attack_sound = 'sound/weapons/bite.ogg'
 	shredding = 0
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 
 /datum/unarmed_attack/bite/sharp/numbing/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
 	var/obj/item/organ/external/affecting = target.get_organ(zone)

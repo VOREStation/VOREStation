@@ -156,11 +156,11 @@
 		var/mob/living/M = loc
 		if(istype(M))
 			if(M.can_wield_item(src) && src.is_held_twohanded(M))
-				item_state_slots[slot_l_hand_str] = wielded_item_state
-				item_state_slots[slot_r_hand_str] = wielded_item_state
+				LAZYSET(item_state_slots, slot_l_hand_str, wielded_item_state)
+				LAZYSET(item_state_slots, slot_r_hand_str, wielded_item_state)
 			else
-				item_state_slots[slot_l_hand_str] = initial(item_state)
-				item_state_slots[slot_r_hand_str] = initial(item_state)
+				LAZYSET(item_state_slots, slot_l_hand_str, initial(item_state))
+				LAZYSET(item_state_slots, slot_r_hand_str, initial(item_state))
 	..()
 
 

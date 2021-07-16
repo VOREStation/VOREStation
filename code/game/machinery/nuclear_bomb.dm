@@ -5,7 +5,7 @@ var/bomb_set
 	desc = "Uh oh. RUN!!!!"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "nuclearbomb0"
-	density = 1
+	density = TRUE
 	var/deployable = 0.0
 	var/extended = 0.0
 	var/lighthack = 0
@@ -157,7 +157,7 @@ var/bomb_set
 					if(do_after(user,80 * O.toolspeed))
 						if(!src || !user) return
 						user.visible_message("[user] crowbars [src] off of the anchors. It can now be moved.", "You jam the crowbar under the nuclear device and lift it off its anchors. You can now move it!")
-						anchored = 0
+						anchored = FALSE
 						removal_stage = 5
 				return
 	..()
@@ -190,7 +190,7 @@ var/bomb_set
 		onclose(user, "nuclearbomb")
 	else if(deployable)
 		if(removal_stage < 5)
-			anchored = 1
+			anchored = TRUE
 			visible_message("<span class='warning'>With a steely snap, bolts slide out of [src] and anchor it to the flooring!</span>")
 		else
 			visible_message("<span class='warning'>\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut.</span>")
@@ -336,7 +336,7 @@ var/bomb_set
 				if(href_list["anchor"])
 
 					if(removal_stage == 5)
-						anchored = 0
+						anchored = FALSE
 						visible_message("<span class='warning'>\The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut.</span>")
 						return
 

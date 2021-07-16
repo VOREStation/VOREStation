@@ -98,8 +98,8 @@
 	desc = "Cut, cut, and once more cut."
 	icon_state = "scalpel"
 	force = 10.0
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_EARS
 	throwforce = 5.0
@@ -172,8 +172,8 @@
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	matter = list(MAT_STEEL = 20000,MAT_GLASS = 10000)
 	attack_verb = list("attacked", "slashed", "sawed", "cut")
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 
 /obj/item/weapon/surgical/circular_saw/manager
 	name = "energetic bone diverter"

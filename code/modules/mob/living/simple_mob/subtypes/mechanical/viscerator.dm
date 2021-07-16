@@ -40,7 +40,7 @@
 	melee_damage_lower = 4 // Approx 8 DPS.
 	melee_damage_upper = 4
 	base_attack_cooldown = 5 // Two attacks a second or so.
-	attack_sharp = 1
+	attack_sharp = TRUE
 	attack_edge = 1
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	attacktext = list("cut", "sliced")

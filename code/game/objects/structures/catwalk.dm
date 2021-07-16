@@ -5,8 +5,8 @@
 	icon_state = "catwalk"
 	plane = DECAL_PLANE
 	layer = DECAL_LAYER
-	density = 0
-	anchored = 1.0
+	density = FALSE
+	anchored = TRUE
 	var/hatch_open = FALSE
 	var/plating_color = null
 	var/obj/item/stack/tile/plated_tile = null
@@ -137,8 +137,8 @@
 	name = "plated catwalk spawner"
 	icon = 'icons/turf/catwalks.dmi'
 	icon_state = "catwalk_plated"
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
 	var/activated = FALSE
 	plane = DECAL_PLANE
 	layer = DECAL_LAYER

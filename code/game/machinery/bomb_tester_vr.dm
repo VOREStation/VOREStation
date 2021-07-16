@@ -7,8 +7,8 @@
 	desc = "A device that can calculate the potential explosive yield of provided gases."
 	icon = 'icons/obj/machines/bomb_tester_vr.dmi'
 	icon_state = "generic"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	idle_power_usage = 50
 	active_power_usage = 1.5 KILOWATTS
 
