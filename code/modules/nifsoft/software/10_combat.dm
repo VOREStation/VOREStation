@@ -56,8 +56,8 @@ var/global/datum/unarmed_attack/hardclaws/unarmed_hardclaws = new()
 	damage = 15
 	attack_sound = "punch"
 	miss_sound = 'sound/weapons/punchmiss.ogg'
-	sharp = TRUE
-	edge = TRUE
+	sharp = 1
+	edge = 1
 	sparring_variant_type = /datum/unarmed_attack/hardclaws
 
 /datum/nifsoft/hidelaser

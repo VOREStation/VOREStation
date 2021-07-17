@@ -11,7 +11,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	name = "effect"
 	icon = 'icons/effects/effects.dmi'
 	mouse_opacity = 0
-	unacidable = TRUE//So effect are not targeted by alien acid.
+	unacidable = 1//So effect are not targeted by alien acid.
 	pass_flags = PASSTABLE | PASSGRILLE
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 	light_on = TRUE
@@ -60,7 +60,7 @@ steam.start() -- spawns the effect
 	name = "steam"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "extinguish"
-	density = FALSE
+	density = 0
 
 /datum/effect/effect/system/steam_spread/set_up(n = 3, c = 0, turf/loc)
 	if(n > 10)
@@ -98,7 +98,7 @@ steam.start() -- spawns the effect
 	name = "sparks"
 	icon_state = "sparks"
 	var/amount = 6.0
-	anchored = TRUE
+	anchored = 1.0
 	mouse_opacity = 0
 
 /obj/effect/effect/sparks/Initialize()
@@ -168,7 +168,7 @@ steam.start() -- spawns the effect
 	name = "smoke"
 	icon_state = "smoke"
 	opacity = 1
-	anchored = FALSE
+	anchored = 0.0
 	mouse_opacity = 0
 	var/amount = 6.0
 	var/time_to_live = 100
@@ -422,7 +422,7 @@ steam.start() -- spawns the effect
 /obj/effect/effect/ion_trails
 	name = "ion trails"
 	icon_state = "ion_trails"
-	anchored = TRUE
+	anchored = 1.0
 
 /datum/effect/effect/system/ion_trail_follow
 	var/turf/oldposition

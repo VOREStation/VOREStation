@@ -2,10 +2,10 @@
 	name = "outcrop"
 	desc = "A boring rocky outcrop."
 	icon = 'icons/obj/outcrop.dmi'
-	density = TRUE
+	density = 1
 	throwpass = 1
-	climbable = TRUE
-	anchored = TRUE
+	climbable = 1
+	anchored = 1
 	icon_state = "outcrop"
 	var/mindrop = 5
 	var/upperdrop = 10

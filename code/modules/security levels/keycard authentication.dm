@@ -16,7 +16,7 @@
 	var/mob/event_confirmed_by
 	//1 = select event
 	//2 = authenticate
-	anchored = TRUE
+	anchored = 1.0
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 2
 	active_power_usage = 6
@@ -55,7 +55,7 @@
 			A.pixel_y = pixel_y
 			A.set_dir(dir)
 			A.circuit = M
-			A.anchored = TRUE
+			A.anchored = 1
 			for (var/obj/C in src)
 				C.forceMove(loc)
 			A.state = 3

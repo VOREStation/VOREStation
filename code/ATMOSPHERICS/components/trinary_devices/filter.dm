@@ -3,7 +3,7 @@
 	icon_state = "map"
 	construction_type = /obj/item/pipe/trinary/flippable
 	pipe_state = "filter"
-	density = FALSE
+	density = 0
 	level = 1
 
 	name = "Gas filter"

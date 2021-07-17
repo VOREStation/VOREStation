@@ -6,9 +6,9 @@
 /obj/structure/transit_tube
 	icon = 'icons/obj/pipes/transit_tube.dmi'
 	icon_state = "E-W"
-	density = TRUE
+	density = 1
 	layer = ABOVE_JUNK_LAYER
-	anchored = TRUE
+	anchored = 1.0
 	var/list/tube_dirs = null
 	var/exit_delay = 2
 	var/enter_delay = 1
@@ -40,8 +40,8 @@
 	icon = 'icons/obj/pipes/transit_tube_pod.dmi'
 	icon_state = "pod"
 	animate_movement = FORWARD_STEPS
-	anchored = TRUE
-	density = TRUE
+	anchored = 1.0
+	density = 1
 	var/moving = 0
 	var/datum/gas_mixture/air_contents = new()
 
@@ -334,7 +334,7 @@
 				current_tube.pod_stopped(src, dir)
 				break
 
-		density = TRUE
+		density = 1
 
 		// If the pod is no longer in a tube, move in a line until stopped or slowed to a halt.
 		//  /turf/inertial_drift appears to only work on mobs, and re-implementing some of the
@@ -427,7 +427,7 @@
 		tube_dirs = parse_dirs(icon_state)
 
 		if(copytext(icon_state, 1, 3) == "D-" || findtextEx(icon_state, "Pass"))
-			density = FALSE
+			density = 0
 
 
 

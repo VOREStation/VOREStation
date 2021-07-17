@@ -80,16 +80,15 @@ var/list/dispenser_presets = list()
 	var/spawned = list()
 
 	voidsuit = new voidsuit_type(T)
-	spawned += voidsuit // We only add the voidsuit so the game doesn't try to put the tank/helmet/boots etc into their hands
-	
+	spawned += voidsuit
 	// If we're supposed to make a helmet
 	if(voidhelmet_type)
 		// The coder may not have realized this type spawns its own helmet
 		if(voidsuit.helmet)
 			error("[src] created a voidsuit [voidsuit] and wants to add a helmet but it already has one")
 		else
-			voidhelmet = new voidhelmet_type()
-			voidsuit.attach_helmet(voidhelmet)
+			voidsuit.attach_helmet(new voidhelmet_type())
+			spawned += voidhelmet
 	// If we're supposed to make boots
 	if(magboots_type)
 		// The coder may not have realized thist ype spawns its own boots
@@ -98,6 +97,7 @@ var/list/dispenser_presets = list()
 		else
 			magboots = new magboots_type(voidsuit)
 			voidsuit.boots = magboots
+			spawned += magboots
 	
 	if(refit)
 		voidsuit.refit_for_species(user.species?.get_bodytype()) // does helmet and boots if they're attached
@@ -109,6 +109,7 @@ var/list/dispenser_presets = list()
 			else
 				var/obj/item/life_support = new /obj/item/device/suit_cooling_unit(voidsuit)
 				voidsuit.cooler = life_support
+				spawned += life_support
 		else if(user.species?.breath_type)
 			if(voidsuit.tank)
 				error("[src] created a voidsuit [voidsuit] and wants to add a tank but it already has one")
@@ -120,6 +121,7 @@ var/list/dispenser_presets = list()
 				if(tankpath)
 					var/obj/item/life_support = new tankpath(voidsuit)
 					voidsuit.tank = life_support
+					spawned += life_support
 				else
 					voidsuit.audible_message("Dispenser warning: Unable to locate suitable airtank for user.")
 
@@ -147,8 +149,8 @@ var/list/dispenser_presets = list()
 	desc = "An industrial U-Tak-It Dispenser unit designed to fetch all kinds of equipment."
 	icon = 'icons/obj/suitdispenser.dmi'
 	icon_state = "geardispenser"
-	anchored = TRUE
-	density = TRUE
+	anchored = 1
+	density = 1
 	var/list/dispenses = list(/datum/gear_disp/trash) // put your gear datums here!
 	var/datum/gear_disp/one_setting
 	var/global/list/gear_distributed_to = list()
@@ -564,26 +566,6 @@ var/list/dispenser_presets = list()
 	dispenser_flags = GD_ONEITEM|GD_NOGREED|GD_UNLIMITED
 	one_setting = /datum/gear_disp/voidsuit/autolok
 	special_frame = "frame_grey"
-
-////////////////////////////// MOEBIUS SUIT DISPENSERS ///////////////////////////
-/datum/gear_disp/voidsuit/aether
-	name = "Aether Voidsuit"
-	voidsuit_type = /obj/item/clothing/suit/space/void/aether
-	voidhelmet_type = /obj/item/clothing/head/helmet/space/void/aether
-
-/obj/machinery/gear_dispenser/suit/aether
-	name = "\improper Aether Voidsuit Dispenser"
-	desc = "An industrial U-Tak-It Dispenser unit designed to fetch a specific Aether-produced high-end suit."
-	icon_state = "suitdispenserMB"
-	dispenser_flags = GD_ONEITEM|GD_NOGREED|GD_UNLIMITED
-	one_setting = /datum/gear_disp/voidsuit/aether
-
-/obj/machinery/gear_dispenser/suit_fancy/aether
-	name = "\improper Aether Voidsuit Dispenser"
-	desc = "A commercial U-Tak-It Dispenser unit designed to fetch a specific Aether-produced high-end suit."
-	dispenser_flags = GD_ONEITEM|GD_NOGREED|GD_UNLIMITED
-	one_setting = /datum/gear_disp/voidsuit/aether
-	special_frame = "frame_purple"
 
 // Adminbuse
 /obj/machinery/gear_dispenser/vv_get_dropdown()

@@ -39,7 +39,7 @@
 				//it still ends up in your blood. (also balance but muh fluff)
 	allowed = list(/obj/item/device/flashlight, /obj/item/weapon/tank/emergency/oxygen, /obj/item/weapon/tank/oxygen)
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0) //No armor at all.
-	canremove = FALSE
+	canremove = 0
 
 /obj/item/clothing/suit/space/changeling/New()
 	..()
@@ -58,7 +58,7 @@
 	flags = BLOCKHAIR //Again, no THICKMATERIAL.
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	body_parts_covered = HEAD|FACE|EYES
-	canremove = FALSE
+	canremove = 0
 
 /obj/item/clothing/head/helmet/space/changeling/dropped()
 	qdel(src)
@@ -68,7 +68,7 @@
 	name = "fleshy grippers"
 	icon_state = "lingspacesuit"
 	action_button_name = "Toggle Grippers"
-	canremove = FALSE
+	canremove = 0
 
 /obj/item/clothing/shoes/magboots/changeling/set_slowdown()
 	slowdown = shoes? max(SHOES_SLOWDOWN, shoes.slowdown): SHOES_SLOWDOWN	//So you can't put on magboots to make you walk faster.

@@ -2,7 +2,7 @@
 	name = "Huge Air Pump"
 	icon = 'icons/obj/atmos.dmi'
 	icon_state = "siphon:0"
-	anchored = TRUE
+	anchored = 1
 	volume = 500000
 
 	use_power = USE_POWER_IDLE

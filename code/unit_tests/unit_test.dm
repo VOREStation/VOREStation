@@ -30,7 +30,7 @@ var/total_unit_tests = 0
 	log_unit_test("Initializing Unit Testing")
 
 	if(!ticker)
-		stack_trace("No Ticker")
+		crash_with("No Ticker")
 		world.Del()
 
 	var/said_msg = 0

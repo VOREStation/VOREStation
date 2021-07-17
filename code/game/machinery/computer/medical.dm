@@ -501,7 +501,7 @@
 	icon_keyboard = "pcu_key"
 	light_color = "#00b000"
 	circuit = /obj/item/weapon/circuitboard/med_data/pcu
-	density = FALSE
+	density = 0
 
 #undef FIELD
 #undef MED_FIELD

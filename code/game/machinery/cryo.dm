@@ -5,8 +5,8 @@
 	desc = "Used to cool people down for medical reasons. Totally."
 	icon = 'icons/obj/cryogenics.dmi' // map only
 	icon_state = "pod_preview"
-	density = TRUE
-	anchored = TRUE
+	density = 1
+	anchored = 1.0
 	layer = UNDER_JUNK_LAYER
 	interact_offline = 1
 

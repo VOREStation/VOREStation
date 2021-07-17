@@ -11,8 +11,8 @@ GLOBAL_LIST_EMPTY(solars_list)
 	desc = "A solar electrical generator."
 	icon = 'icons/obj/power.dmi'
 	icon_state = "sp_base"
-	anchored = TRUE
-	density = TRUE
+	anchored = 1
+	density = 1
 	use_power = USE_POWER_OFF
 	idle_power_usage = 0
 	active_power_usage = 0
@@ -202,7 +202,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 	icon_state = "sp_base"
 	item_state = "camera"
 	w_class = ITEMSIZE_LARGE // Pretty big!
-	anchored = FALSE
+	anchored = 0
 	var/tracker = 0
 
 /obj/item/solar_assembly/attack_hand(var/mob/user)
@@ -214,13 +214,13 @@ GLOBAL_LIST_EMPTY(solars_list)
 		return 0
 	if(!anchored)
 		if(W.is_wrench())
-			anchored = TRUE
+			anchored = 1
 			user.visible_message("<span class='notice'>[user] wrenches the solar assembly into place.</span>")
 			playsound(src, W.usesound, 75, 1)
 			return 1
 	else
 		if(W.is_wrench())
-			anchored = FALSE
+			anchored = 0
 			user.visible_message("<span class='notice'>[user] unwrenches the solar assembly from it's place.</span>")
 			playsound(src, W.usesound, 75, 1)
 			return 1
@@ -264,8 +264,8 @@ GLOBAL_LIST_EMPTY(solars_list)
 	desc = "A controller for solar panel arrays."
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "solar"
-	anchored = TRUE
-	density = TRUE
+	anchored = 1
+	density = 1
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 250
 	var/id = 0
@@ -421,7 +421,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 				A.circuit = M
 				A.state = 3
 				A.icon_state = "computer_3"
-				A.anchored = TRUE
+				A.anchored = 1
 				qdel(src)
 			else
 				to_chat(user, "<font color='blue'>You disconnect the monitor.</font>")
@@ -432,7 +432,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 				A.circuit = M
 				A.state = 4
 				A.icon_state = "computer_4"
-				A.anchored = TRUE
+				A.anchored = 1
 				qdel(src)
 	else
 		src.attack_hand(user)

@@ -32,7 +32,7 @@
 	Victim = M
 	loc = M.loc
 	canmove = 0
-	anchored = TRUE
+	anchored = 1
 
 	regenerate_icons()
 
@@ -81,7 +81,7 @@
 			break
 
 	canmove = 1
-	anchored = FALSE
+	anchored = 0
 
 	if(M && invalidFeedTarget(M)) // This means that the slime drained the victim
 		if(!client)

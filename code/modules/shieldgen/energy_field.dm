@@ -14,10 +14,10 @@
 	icon = 'icons/obj/machines/shielding.dmi'
 	icon_state = "shield"
 	alpha = 100
-	anchored = TRUE
+	anchored = 1
 	plane = MOB_PLANE
 	layer = ABOVE_MOB_LAYER
-	density = FALSE
+	density = 0
 	can_atmos_pass = ATMOS_PASS_DENSITY
 	var/obj/machinery/shield_gen/my_gen = null
 	var/strength = 0 // in Renwicks
@@ -101,13 +101,13 @@
 
 		ticks_recovering = min(ticks_recovering + 2, 10)
 		if(strength < 1) // We broke
-			density = FALSE
+			density = 0
 			ticks_recovering = 10
 			strength = 0
 
 	else if(amount > 0) // Healing damage.
 		if(strength >= 1)
-			density = TRUE
+			density = 1
 
 	if(density != old_density)
 		update_icon()

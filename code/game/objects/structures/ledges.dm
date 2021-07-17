@@ -2,10 +2,10 @@
 	name = "rock ledge"
 	desc = "An easily scaleable rocky ledge."
 	icon = 'icons/obj/ledges.dmi'
-	density = TRUE
+	density = 1
 	throwpass = 1
-	climbable = TRUE
-	anchored = TRUE
+	climbable = 1
+	anchored = 1
 	var/solidledge = 1
 	flags = ON_BORDER
 	layer = STAIRS_LAYER
@@ -17,23 +17,23 @@
 	name = "rock ledge"
 	desc = "An easily scaleable rocky ledge."
 	icon = 'icons/obj/ledges.dmi'
-	density = TRUE
+	density = 1
 	throwpass = 1
-	climbable = TRUE
-	anchored = TRUE
+	climbable = 1
+	anchored = 1
 	layer = STAIRS_LAYER
 
 /obj/structure/ledge/ledge_nub
 	desc = "Part of a rocky ledge."
 	icon_state = "ledge-nub"
-	density = FALSE
+	density = 0
 	solidledge = 0
 
 /obj/structure/ledge/ledge_stairs
 	name = "rock stairs"
 	desc = "A colorful set of rocky stairs"
 	icon_state = "ledge-stairs"
-	density = FALSE
+	density = 0
 	solidledge = 0
 
 /obj/structure/ledge/CanPass(atom/movable/mover, turf/target)

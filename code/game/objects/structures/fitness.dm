@@ -1,13 +1,13 @@
 /obj/structure/fitness
 	icon = 'icons/obj/stationobjs.dmi'
-	anchored = TRUE
+	anchored = 1
 	var/being_used = 0
 
 /obj/structure/fitness/punchingbag
 	name = "punching bag"
 	desc = "A punching bag."
 	icon_state = "punchingbag"
-	density = TRUE
+	density = 1
 	var/list/hit_message = list("hit", "punch", "kick", "robust")
 
 /obj/structure/fitness/punchingbag/attack_hand(var/mob/living/carbon/human/user)

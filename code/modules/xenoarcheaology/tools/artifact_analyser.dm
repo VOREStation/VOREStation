@@ -3,8 +3,8 @@
 	desc = "Studies the emissions of anomalous materials to discover their uses."
 	icon = 'icons/obj/virology_vr.dmi' //VOREStation Edit
 	icon_state = "isolator"
-	anchored = TRUE
-	density = TRUE
+	anchored = 1
+	density = 1
 	var/scan_in_progress = 0
 	var/scan_num = 0
 	var/obj/scanned_obj
@@ -72,7 +72,7 @@
 						if(A.being_used)
 							artifact_in_use = 1
 						else
-							A.anchored = TRUE
+							A.anchored = 1
 							A.being_used = 1
 
 					if(artifact_in_use)
@@ -113,7 +113,7 @@
 
 		if(scanned_object && istype(scanned_object, /obj/machinery/artifact))
 			var/obj/machinery/artifact/A = scanned_object
-			A.anchored = FALSE
+			A.anchored = 0
 			A.being_used = 0
 			scanned_object = null
 

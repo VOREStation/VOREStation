@@ -23,14 +23,14 @@
 	if(istype(H) && H.wear_mask == src)
 		var/obj/item/organ/external/E = H.organs_by_name[BP_HEAD]
 		var/datum/robolimb/robohead = all_robolimbs[E.model]
-		canremove = FALSE
+		canremove = 0
 		if(robohead.monitor_styles)
 			monitor_states = params2list(robohead.monitor_styles)
 			icon_state = monitor_states[monitor_state_index]
 			to_chat(H, "<span class='notice'>\The [src] connects to your display output.</span>")
 
 /obj/item/clothing/mask/monitor/dropped()
-	canremove = TRUE
+	canremove = 1
 	return ..()
 
 /obj/item/clothing/mask/monitor/mob_can_equip(var/mob/living/carbon/human/user, var/slot, disable_warning = FALSE)

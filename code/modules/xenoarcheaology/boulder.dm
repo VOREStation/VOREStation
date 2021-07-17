@@ -3,9 +3,9 @@
 	desc = "Leftover rock from an excavation, it's been partially dug out already but there's still a lot to go."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "boulder1"
-	density = TRUE
+	density = 1
 	opacity = 1
-	anchored = TRUE
+	anchored = 1
 	var/excavation_level = 0
 	var/datum/geosample/geological_data
 	var/datum/artifact_find/artifact_find

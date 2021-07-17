@@ -14,8 +14,8 @@
 	desc = "A large cabinet with drawers."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "filingcabinet"
-	density = TRUE
-	anchored = TRUE
+	density = 1
+	anchored = 1
 
 /obj/structure/filingcabinet/chestdrawer
 	name = "chest drawer"

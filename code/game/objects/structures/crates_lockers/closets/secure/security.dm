@@ -260,7 +260,7 @@ GLOBAL_LIST_BOILERPLATE(all_brig_closets, /obj/structure/closet/secure_closet/br
 	name = "brig locker"
 	req_access = list(access_brig)
 	closet_appearance = /decl/closet_appearance/secure_closet/brig
-	anchored = TRUE
+	anchored = 1
 	var/id = null
 
 	starts_with = list(
@@ -270,7 +270,7 @@ GLOBAL_LIST_BOILERPLATE(all_brig_closets, /obj/structure/closet/secure_closet/br
 /obj/structure/closet/secure_closet/posters
 	name = "morale storage"
 	req_access = list(access_security)
-	anchored = TRUE
+	anchored = 1
 
 	starts_with = list(
 		/obj/item/poster/nanotrasen,
@@ -297,7 +297,7 @@ GLOBAL_LIST_BOILERPLATE(all_brig_closets, /obj/structure/closet/secure_closet/br
 	name = "wall locker"
 	req_access = list(access_security)
 	closet_appearance = /decl/closet_appearance/wall
-	density = TRUE
+	density = 1
 
 	//too small to put a man in
 	large = 0

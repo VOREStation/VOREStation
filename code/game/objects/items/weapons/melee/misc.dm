@@ -59,8 +59,8 @@
 	force = 30
 	throwforce = 10
 	w_class = ITEMSIZE_NORMAL
-	sharp = TRUE
-	edge = TRUE
+	sharp = 1
+	edge = 1
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	can_speak = 1

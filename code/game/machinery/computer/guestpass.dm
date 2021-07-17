@@ -85,7 +85,7 @@
 	vis_flags = VIS_HIDE // They have an emissive that looks bad in openspace due to their wall-mounted nature
 	icon_keyboard = null
 	icon_screen = "pass"
-	density = FALSE
+	density = 0
 	circuit = /obj/item/weapon/circuitboard/guestpass
 
 	var/obj/item/weapon/card/id/giver

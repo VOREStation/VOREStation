@@ -5,10 +5,10 @@
 /obj/item/weapon/storage/backpack
 	name = "backpack"
 	desc = "You wear this on your back and put items into it."
-	icon = 'icons/inventory/back/item.dmi'
+	icon = 'icons/obj/clothing/backpack.dmi'
 	icon_state = "backpack"
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/inventory/back/mob_teshari.dmi'
+		SPECIES_TESHARI = 'icons/mob/species/teshari/back.dmi'
 		)
 	w_class = ITEMSIZE_LARGE
 	slot_flags = SLOT_BACK
@@ -70,6 +70,7 @@
 	w_class = ITEMSIZE_LARGE
 	max_w_class = ITEMSIZE_NORMAL
 	max_storage_space = ITEMSIZE_COST_NORMAL * 100 // can store a ton of shit!
+	item_state_slots = null
 
 /obj/item/weapon/storage/backpack/cultpack
 	name = "trophy rack"

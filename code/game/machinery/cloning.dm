@@ -29,8 +29,8 @@
 /obj/machinery/clonepod
 	name = "cloning pod"
 	desc = "An electronically-lockable pod for growing organic tissue."
-	density = TRUE
-	anchored = TRUE
+	density = 1
+	anchored = 1
 	circuit = /obj/item/weapon/circuitboard/clonepod
 	icon = 'icons/obj/cloning.dmi'
 	icon_state = "pod_0"
@@ -255,11 +255,11 @@
 			to_chat(user, "<span class='warning'>Can not do that while [src] is in use.</span>")
 		else
 			if(anchored)
-				anchored = FALSE
+				anchored = 0
 				connected.pods -= src
 				connected = null
 			else
-				anchored = TRUE
+				anchored = 1
 			playsound(src, W.usesound, 100, 1)
 			if(anchored)
 				user.visible_message("[user] secures [src] to the floor.", "You secure [src] to the floor.")

@@ -6,10 +6,10 @@
 	desc = "An impenetrable field of energy, capable of blocking anything as long as it's active."
 	icon = 'icons/obj/machines/shielding_vr.dmi'
 	icon_state = "shield"
-	anchored = TRUE
+	anchored = 1
 	plane = MOB_PLANE
 	layer = ABOVE_MOB_LAYER
-	density = TRUE
+	density = 1
 	invisibility = 0
 	var/obj/machinery/power/shield_generator/gen = null // Owning generator
 	var/disabled_for = 0
@@ -165,7 +165,7 @@
 		return
 
 	if(!damtype)
-		stack_trace("CANARY: shield.take_damage() callled without damtype.")
+		crash_with("CANARY: shield.take_damage() callled without damtype.")
 
 	if(!damage)
 		return

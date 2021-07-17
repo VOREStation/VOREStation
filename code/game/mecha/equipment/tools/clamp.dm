@@ -78,13 +78,13 @@
 		chassis.visible_message("[chassis] lifts [target] and starts to load it into cargo compartment.")
 		set_ready_state(FALSE)
 		chassis.use_power(energy_drain)
-		O.anchored = TRUE
+		O.anchored = 1
 		var/T = chassis.loc
 		if(do_after_cooldown(target))
 			if(T == chassis.loc && src == chassis.selected)
 				cargo_holder.cargo += O
 				O.loc = chassis
-				O.anchored = FALSE
+				O.anchored = 0
 				occupant_message("<span class='notice'>[target] succesfully loaded.</span>")
 				log_message("Loaded [O]. Cargo compartment capacity: [cargo_holder.cargo_capacity - cargo_holder.cargo.len]")
 			else
@@ -139,13 +139,13 @@
 				chassis.visible_message("[chassis] lifts [target] and starts to load it into cargo compartment.")
 				set_ready_state(FALSE)
 				chassis.use_power(energy_drain)
-				O.anchored = TRUE
+				O.anchored = 1
 				var/T = chassis.loc
 				if(do_after_cooldown(target))
 					if(T == chassis.loc && src == chassis.selected)
 						cargo_holder.cargo += O
 						O.loc = chassis
-						O.anchored = FALSE
+						O.anchored = 0
 						chassis.occupant_message("<span class='notice'>[target] succesfully loaded.</span>")
 						chassis.log_message("Loaded [O]. Cargo compartment capacity: [cargo_holder.cargo_capacity - cargo_holder.cargo.len]")
 					else

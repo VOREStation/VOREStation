@@ -33,7 +33,6 @@
 		/obj/item/clothing/under/rank/research_director/rdalt,
 		/obj/item/clothing/under/rank/research_director/dress_rd,
 		/obj/item/clothing/suit/storage/toggle/labcoat,
-		/obj/item/clothing/suit/storage/toggle/labcoat/modern,
 		/obj/item/weapon/cartridge/rd,
 		/obj/item/clothing/shoes/white,
 		/obj/item/clothing/shoes/laceup/brown,
@@ -55,7 +54,6 @@
 	starts_with = list(
 		/obj/item/clothing/under/rank/scientist,
 		/obj/item/clothing/suit/storage/toggle/labcoat,
-		/obj/item/clothing/suit/storage/toggle/labcoat/modern,
 		/obj/item/clothing/shoes/white,
 		/obj/item/weapon/melee/umbrella, // vorestation addition,
 		/obj/item/clothing/glasses/science,

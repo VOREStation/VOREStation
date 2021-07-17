@@ -3,11 +3,11 @@
 	desc = "Firm yet springy, perhaps this could be useful!"
 	icon = 'icons/obj/fitness_vr.dmi'
 	icon_state = "ropes"
-	density = TRUE
+	density = 1
 	throwpass = 1
-	climbable = TRUE
+	climbable = 1
 	layer = WINDOW_LAYER
-	anchored = TRUE
+	anchored = 1
 	flags = ON_BORDER
 /obj/structure/fitness/boxing_ropes/CanPass(atom/movable/mover, turf/target) //sets it so that players can enter turf from all directions except the main direction.
 	if(istype(mover) && mover.checkpass(PASSTABLE))
@@ -60,12 +60,12 @@
 	desc = "Firm yet springy, perhaps this could be useful!"
 	icon = 'icons/obj/fitness_vr.dmi'
 	icon_state = "ropes"
-	density = TRUE
+	density = 1
 	throwpass = 1
-	climbable = TRUE
+	climbable = 1
 	plane = MOB_PLANE
 	layer = ABOVE_MOB_LAYER
-	anchored = TRUE
+	anchored = 1
 	flags = ON_BORDER
 /obj/structure/fitness/boxing_ropes_bottom/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSTABLE))
@@ -120,11 +120,11 @@
 	desc = "A sturdy post that looks like it could support even the most heaviest of heavy weights!"
 	icon = 'icons/obj/fitness_vr.dmi'
 	icon_state = "turnbuckle"
-	density = TRUE
+	density = 1
 	throwpass = 1
-	climbable = TRUE
+	climbable = 1
 	layer = WINDOW_LAYER
-	anchored = TRUE
+	anchored = 1
 	flags = ON_BORDER
 /obj/structure/fitness/boxing_turnbuckle/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSTABLE))

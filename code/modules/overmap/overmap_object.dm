@@ -37,12 +37,12 @@
 	return ..()
 
 //Overlay of how this object should look on other skyboxes
-/obj/effect/overmap/proc/get_skybox_representation(zlevel)
+/obj/effect/overmap/proc/get_skybox_representation()
 	if(!cached_skybox_image)
-		build_skybox_representation(zlevel)
+		build_skybox_representation()
 	return cached_skybox_image
 
-/obj/effect/overmap/proc/build_skybox_representation(zlevel)
+/obj/effect/overmap/proc/build_skybox_representation()
 	if(!skybox_icon)
 		return
 	var/image/I = image(icon = skybox_icon, icon_state = skybox_icon_state)

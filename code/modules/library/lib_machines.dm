@@ -24,8 +24,8 @@
 	name = "visitor computer"
 	icon = 'icons/obj/library.dmi'
 	icon_state = "computer"
-	anchored = TRUE
-	density = TRUE
+	anchored = 1
+	density = 1
 	var/screenstate = 0
 	var/title
 	var/category = "Any"
@@ -119,8 +119,8 @@
 	desc = "Print books from the archives! (You aren't quite sure how they're printed by it, though.)"
 	icon = 'icons/obj/library.dmi'
 	icon_state = "computer"
-	anchored = TRUE
-	density = TRUE
+	anchored = 1
+	density = 1
 	var/arcanecheckout = 0
 	var/screenstate = 0 // 0 - Main Menu, 1 - Inventory, 2 - Checked Out, 3 - Check Out a Book
 	var/sortby = "author"
@@ -492,8 +492,8 @@
 	desc = "A scanner for scanning in books and papers."
 	icon = 'icons/obj/library.dmi'
 	icon_state = "bigscanner"
-	anchored = TRUE
-	density = TRUE
+	anchored = 1
+	density = 1
 	var/obj/item/weapon/book/cache		// Last scanned book
 
 /obj/machinery/libraryscanner/attackby(var/obj/O as obj, var/mob/user as mob)
@@ -544,8 +544,8 @@
 	desc = "Bundles up a stack of inserted paper into a convenient book format."
 	icon = 'icons/obj/library.dmi'
 	icon_state = "binder"
-	anchored = TRUE
-	density = TRUE
+	anchored = 1
+	density = 1
 
 /obj/machinery/bookbinder/attackby(var/obj/O as obj, var/mob/user as mob)
 	if(istype(O, /obj/item/weapon/paper) || istype(O, /obj/item/weapon/paper_bundle))

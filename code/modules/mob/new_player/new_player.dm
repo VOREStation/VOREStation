@@ -11,11 +11,11 @@
 
 	invisibility = 101
 
-	density = FALSE
+	density = 0
 	stat = 2
 	canmove = 0
 
-	anchored = TRUE	//  don't get pushed around
+	anchored = 1	//  don't get pushed around
 
 	var/created_for
 

@@ -47,7 +47,7 @@
 	desc = "A trolley designed to transport security equipment to a scene."
 	icon = 'icons/obj/vehicles_vr.dmi'
 	icon_state = "secitemcarrierbot"
-	anchored = FALSE
+	anchored = 0
 	passenger_allowed = 0
 	locked = 0
 
@@ -397,6 +397,6 @@
 	src.active_engines = active_engines
 
 	if(!lead && !tow)
-		anchored = FALSE
+		anchored = 0
 	else
-		anchored = TRUE
+		anchored = 1

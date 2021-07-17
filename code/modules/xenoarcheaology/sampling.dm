@@ -5,7 +5,7 @@
 	icon_state = "sliver1"
 	randpixel = 8
 	w_class = ITEMSIZE_TINY
-	sharp = TRUE
+	sharp = 1
 	var/datum/geosample/geological_data
 
 /obj/item/weapon/rocksliver/New()

@@ -4,7 +4,7 @@
 	icon = 'icons/obj/stationobjs_vr.dmi' //VOREStation Edit
 	icon_state = "exonet" //VOREStation Edit
 	idle_power_usage = 2500
-	density = TRUE
+	density = 1
 	var/on = 1
 	var/toggle = 1
 

@@ -27,8 +27,7 @@
 		/mob/living/carbon/human/proc/sonar_ping,
 		/mob/living/carbon/human/proc/tie_hair,
 		/mob/living/proc/flying_toggle,
-		/mob/living/proc/start_wings_hovering,
-		/mob/living/carbon/human/proc/tie_hair)		//Xenochimera get all the special verbs since they can't select traits.
+		/mob/living/proc/start_wings_hovering) //Xenochimera get all the special verbs since they can't select traits.
 
 	virus_immune = 1 // They practically ARE one.
 	min_age = 18
@@ -335,8 +334,7 @@
 		/mob/living/carbon/human/proc/toggle_silk_production,
 		/mob/living/carbon/human/proc/weave_structure,
 		/mob/living/carbon/human/proc/weave_item,
-		/mob/living/carbon/human/proc/set_silk_color,
-		/mob/living/carbon/human/proc/tie_hair)
+		/mob/living/carbon/human/proc/set_silk_color)
 
 	min_age = 18
 	max_age = 80

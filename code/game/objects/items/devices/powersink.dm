@@ -38,7 +38,7 @@
 					to_chat(user, "No exposed cable here to attach to.")
 					return
 				else
-					anchored = TRUE
+					anchored = 1
 					mode = 1
 					src.visible_message("<span class='notice'>[user] attaches [src] to the cable!</span>")
 					playsound(src, I.usesound, 50, 1)
@@ -50,7 +50,7 @@
 			if (mode == 2)
 				STOP_PROCESSING(SSobj, src) // Now the power sink actually stops draining the station's power if you unhook it. --NeoFite
 				STOP_PROCESSING_POWER_OBJECT(src)
-			anchored = FALSE
+			anchored = 0
 			mode = 0
 			src.visible_message("<span class='notice'>[user] detaches [src] from the cable!</span>")
 			set_light(0)

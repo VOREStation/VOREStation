@@ -4,7 +4,7 @@
 	desc = "A bluespace telepad used for teleporting objects to and from a location."
 	icon = 'icons/obj/telescience.dmi'
 	icon_state = "pad-idle"
-	anchored = TRUE
+	anchored = 1
 	use_power = USE_POWER_IDLE
 	circuit = /obj/item/weapon/circuitboard/telesci_pad
 	idle_power_usage = 200

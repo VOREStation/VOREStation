@@ -164,7 +164,7 @@ LINEN BINS
 	desc = "A linen bin. It looks rather cosy."
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "linenbin-full"
-	anchored = TRUE
+	anchored = 1
 	var/amount = 20
 	var/list/sheets = list()
 	var/obj/item/hidden = null

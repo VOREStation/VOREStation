@@ -18,7 +18,7 @@
 /obj/item/weapon/reagent_containers/food/drinks/bottle/Initialize()
 	. = ..()
 	if(isGlass)
-		unacidable = TRUE
+		unacidable = 1
 		drop_sound = 'sound/items/drop/bottle.ogg'
 		pickup_sound = 'sound/items/pickup/bottle.ogg'
 
@@ -184,8 +184,8 @@
 	item_state = "beer"
 	flags = NOCONDUCT
 	attack_verb = list("stabbed", "slashed", "attacked")
-	sharp = TRUE
-	edge = FALSE
+	sharp = 1
+	edge = 0
 	var/icon/broken_outline = icon('icons/obj/drinks.dmi', "broken")
 
 /obj/item/weapon/broken_bottle/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)

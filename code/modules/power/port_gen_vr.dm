@@ -5,7 +5,7 @@
 	icon_state = "potato"
 	time_per_sheet = 1152 //same power output, but a 50 sheet stack will last 4 hours at max safe power
 	power_gen = 50000 //watts
-	anchored = TRUE
+	anchored = 1
 
 // Circuits for the RTGs below
 /obj/item/weapon/circuitboard/machine/rtg

@@ -42,8 +42,8 @@
 			attack_verb = list("shredded", "ripped", "torn")
 			playsound(src, 'sound/weapons/chainsaw_startup.ogg',40,1)
 			force = active_force
-			edge = TRUE
-			sharp = TRUE
+			edge = 1
+			sharp = 1
 			on = 1
 			update_icon()
 		else
@@ -55,8 +55,8 @@
 	attack_verb = list("bluntly hit", "beat", "knocked")
 	playsound(src, 'sound/weapons/chainsaw_turnoff.ogg',40,1)
 	force = inactive_force
-	edge = FALSE
-	sharp = FALSE
+	edge = 0
+	sharp = 0
 	on = 0
 	update_icon()
 

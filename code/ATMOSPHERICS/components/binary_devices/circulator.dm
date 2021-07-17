@@ -5,7 +5,7 @@
 	desc = "A gas circulator turbine and heat exchanger."
 	icon = 'icons/obj/power.dmi'
 	icon_state = "circ-unassembled"
-	anchored = FALSE
+	anchored = 0
 	pipe_flags = PIPING_DEFAULT_LAYER_ONLY|PIPING_ONE_PER_TURF
 
 	var/kinetic_efficiency = 0.04 //combined kinetic and kinetic-to-electric efficiency
@@ -21,7 +21,7 @@
 	var/stored_energy = 0
 	var/temperature_overlay
 
-	density = TRUE
+	density = 1
 
 /obj/machinery/atmospherics/binary/circulator/New()
 	..()

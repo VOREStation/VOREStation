@@ -5,8 +5,8 @@
 	icon_state = "catwalk"
 	plane = DECAL_PLANE
 	layer = DECAL_LAYER
-	density = FALSE
-	anchored = TRUE
+	density = 0
+	anchored = 1.0
 	var/hatch_open = FALSE
 	var/plating_color = null
 	var/obj/item/stack/tile/plated_tile = null
@@ -51,8 +51,7 @@
 	var/image/I
 	if(!hatch_open)
 		for(var/i = 1 to 4)
-			var/connect = connections?[i] || 0
-			I = image(icon, "catwalk[connect]", dir = 1<<(i-1))
+			I = image(icon, "catwalk[connections[i]]", dir = 1<<(i-1))
 			add_overlay(I)
 	if(plating_color)
 		I = image(icon, "plated")
@@ -137,8 +136,8 @@
 	name = "plated catwalk spawner"
 	icon = 'icons/turf/catwalks.dmi'
 	icon_state = "catwalk_plated"
-	density = TRUE
-	anchored = TRUE
+	density = 1
+	anchored = 1.0
 	var/activated = FALSE
 	plane = DECAL_PLANE
 	layer = DECAL_LAYER

@@ -2,8 +2,8 @@
 /obj/structure/lift
 	name = "turbolift control component"
 	icon = 'icons/obj/turbolift.dmi'
-	anchored = TRUE
-	density = FALSE
+	anchored = 1
+	density = 0
 	plane = MOB_PLANE
 
 	var/datum/turbolift/lift

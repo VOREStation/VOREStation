@@ -15,7 +15,7 @@
 		for(var/id in dispense_reagents)
 			var/datum/reagent/R = SSchemistry.chemical_reagents[id]
 			if(!R)
-				stack_trace("[src] at [x],[y],[z] failed to find reagent '[id]'!")
+				crash_with("[src] at [x],[y],[z] failed to find reagent '[id]'!")
 				dispense_reagents -= id
 				continue
 			var/obj/item/weapon/reagent_containers/chem_disp_cartridge/C = cartridges[R.name]

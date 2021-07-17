@@ -3,9 +3,9 @@
 	icon = 'icons/obj/kitchen_vr.dmi'
 	icon_state = "foodcart-0"
 	desc = "The ultimate in food transport! When opened you notice two compartments with odd blue glows to them. One feels very warm, while the other is very cold."
-	anchored = FALSE
+	anchored = 0
 	opacity = 0
-	density = TRUE
+	density = 1
 
 /obj/structure/foodcart/Initialize()
 	. = ..()

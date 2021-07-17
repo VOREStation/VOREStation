@@ -33,10 +33,9 @@ var/const/cyberbeast_monitor_styles = "blank=cyber_blank;\
 	icon = 'icons/mob/human_races/cyberlimbs/_fluff_vr/aronai.dmi'
 	blood_color = "#5dd4fc"
 	includes_tail = 1
-	includes_ears = 1
 	lifelike = 1
 	unavailable_to_build = 1
-	suggested_species = SPECIES_VULPKANIN
+	suggested_species = "Tajara"
 	whitelisted_to = list("arokha")
 
 /obj/item/weapon/disk/limb/kitsuhana

@@ -6,8 +6,8 @@
 
 	var/base_state = "syndipod_"
 
-	density = TRUE
-	anchored = TRUE
+	density = 1
+	anchored = 1
 	circuit = /obj/item/weapon/circuitboard/vr_sleeper
 	var/mob/living/carbon/human/occupant = null
 	var/mob/living/carbon/human/avatar = null

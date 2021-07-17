@@ -170,8 +170,8 @@
 	item_state = "joanariamob"
 	origin_tech = "materials=7"
 	force = 15
-	sharp = TRUE
-	edge = TRUE
+	sharp = 1
+	edge = 1
 	hitsound = 'sound/weapons/bladeslice.ogg'
 
 
@@ -937,8 +937,8 @@
 	icon_state = "stunstaff00"
 	var/base_icon = "stunstaff"
 	force = 5
-	sharp = FALSE
-	edge = FALSE
+	sharp = 0
+	edge = 0
 	throwforce = 7
 	w_class = ITEMSIZE_HUGE
 	origin_tech = list(TECH_COMBAT = 2)
@@ -1033,8 +1033,8 @@
 	var/active_throwforce
 	var/active_w_class
 	var/active_embed_chance = 0
-	sharp = FALSE
-	edge = FALSE
+	sharp = 0
+	edge = 0
 
 /obj/item/weapon/melee/fluffstuff/proc/activate(mob/living/user)
 	if(active)
@@ -1043,8 +1043,8 @@
 	embed_chance = active_embed_chance
 	force = active_force
 	throwforce = active_throwforce
-	sharp = TRUE
-	edge = TRUE
+	sharp = 1
+	edge = 1
 	w_class = active_w_class
 	playsound(src, 'sound/weapons/sparkle.ogg', 50, 1)
 
@@ -1116,8 +1116,8 @@
 
 	..()
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	sharp = TRUE
-	edge = TRUE
+	sharp = 1
+	edge = 1
 	icon_state = "[active_state]_sharp"
 	damtype = BRUTE
 

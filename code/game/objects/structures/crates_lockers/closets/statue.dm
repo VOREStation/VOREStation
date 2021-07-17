@@ -3,8 +3,8 @@
 	desc = "An incredibly lifelike marble carving"
 	icon = 'icons/obj/statue.dmi'
 	icon_state = "human_male"
-	density = TRUE
-	anchored = TRUE
+	density = 1
+	anchored = 1
 	health = 0 //destroying the statue kills the mob within
 	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 	var/intialTox = 0 	//these are here to keep the mob from taking damage from things that logically wouldn't affect a rock
@@ -17,7 +17,7 @@
 	if(L && (ishuman(L) || L.isMonkey() || iscorgi(L)))
 		if(L.buckled)
 			L.buckled = 0
-			L.anchored = FALSE
+			L.anchored = 0
 		if(L.client)
 			L.client.perspective = EYE_PERSPECTIVE
 			L.client.eye = src

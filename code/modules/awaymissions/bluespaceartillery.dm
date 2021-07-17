@@ -4,8 +4,8 @@
 	name = "bluespace artillery control"
 	icon_state = "control_boxp1"
 	icon = 'icons/obj/machines/particle_accelerator2.dmi'
-	density = TRUE
-	anchored = TRUE
+	density = 1
+	anchored = 1
 
 /obj/machinery/artillerycontrol/process()
 	if(src.reload<180)
@@ -14,11 +14,11 @@
 /obj/structure/artilleryplaceholder
 	name = "artillery"
 	icon = 'icons/obj/machines/artillery.dmi'
-	anchored = TRUE
-	density = TRUE
+	anchored = 1
+	density = 1
 
 /obj/structure/artilleryplaceholder/decorative
-	density = FALSE
+	density = 0
 
 /obj/machinery/artillerycontrol/attack_hand(mob/user as mob)
 	user.set_machine(src)

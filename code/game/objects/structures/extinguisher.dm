@@ -4,8 +4,8 @@
 	icon = 'icons/obj/closet.dmi'
 	icon_state = "extinguisher_closed"
 	layer = ABOVE_WINDOW_LAYER
-	anchored = TRUE
-	density = FALSE
+	anchored = 1
+	density = 0
 	var/obj/item/weapon/extinguisher/has_extinguisher
 	var/opened = 0
 

@@ -93,17 +93,13 @@ SUBSYSTEM_DEF(skybox)
 	. = ..()
 
 /datum/controller/subsystem/skybox/proc/get_skybox(z)
-	if(!subsystem_initialized)
-		return // WAIT
 	if(!skybox_cache["[z]"])
 		skybox_cache["[z]"] = generate_skybox(z)
 	return skybox_cache["[z]"]
 
 /datum/controller/subsystem/skybox/proc/generate_skybox(z)
 	var/datum/skybox_settings/settings = global.using_map.get_skybox_datum(z)
-	
-	var/new_overlays = list()
-	
+
 	var/image/res = image(settings.icon)
 	res.appearance_flags = KEEP_TOGETHER
 
@@ -115,26 +111,23 @@ SUBSYSTEM_DEF(skybox)
 		stars.appearance_flags = RESET_COLOR
 		base.overlays += stars
 
-	new_overlays += base
+	res.overlays += base
 
 	if(global.using_map.use_overmap && settings.use_overmap_details)
 		var/obj/effect/overmap/visitable/O = get_overmap_sector(z)
 		if(istype(O))
-			var/image/self_image = O.generate_skybox(z)
-			new_overlays += self_image
+			var/image/overmap = image(settings.icon)
+			overmap.overlays += O.generate_skybox()
 			for(var/obj/effect/overmap/visitable/other in O.loc)
 				if(other != O)
-					new_overlays += other.get_skybox_representation(z)
+					overmap.overlays += other.get_skybox_representation()
+			overmap.appearance_flags = RESET_COLOR
+			res.overlays += overmap
 
 	// Allow events to apply custom overlays to skybox! (Awesome!)
 	for(var/datum/event/E in SSevents.active_events)
 		if(E.has_skybox_image && E.isRunning && (z in E.affecting_z))
-			new_overlays += E.get_skybox_image()
-	
-	for(var/image/I in new_overlays)
-		I.appearance_flags |= RESET_COLOR
-
-	res.overlays = new_overlays
+			res.overlays += E.get_skybox_image()
 
 	return res
 

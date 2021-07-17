@@ -27,7 +27,7 @@
 	open_sound = 'sound/items/zip.ogg'
 	close_sound = 'sound/items/zip.ogg'
 	var/item_path = /obj/item/bodybag
-	density = FALSE
+	density = 0
 	storage_capacity = (MOB_MEDIUM * 2) - 1
 	var/contains_body = 0
 
@@ -59,7 +59,7 @@
 
 /obj/structure/closet/body_bag/close()
 	if(..())
-		density = FALSE
+		density = 0
 		return 1
 	return 0
 

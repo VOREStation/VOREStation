@@ -50,7 +50,7 @@
 			deployed = 1
 			user.drop_from_inventory(src)
 			update_icon()
-			anchored = TRUE
+			anchored = 1
 
 /obj/item/weapon/beartrap/attack_hand(mob/user as mob)
 	if(has_buckled_mobs() && can_use(user))
@@ -63,7 +63,7 @@
 			user.visible_message("<span class='notice'>[victim] has been freed from \the [src] by [user].</span>")
 			for(var/A in buckled_mobs)
 				unbuckle_mob(A)
-			anchored = FALSE
+			anchored = 0
 	else if(deployed && can_use(user))
 		user.visible_message(
 			"<span class='danger'>[user] starts to disarm \the [src].</span>",
@@ -78,7 +78,7 @@
 				"<span class='notice'>You have disarmed \the [src]!</span>"
 				)
 			deployed = 0
-			anchored = FALSE
+			anchored = 0
 			update_icon()
 	else
 		..()
@@ -116,7 +116,7 @@
 
 	//trap the victim in place
 	set_dir(L.dir)
-	can_buckle = TRUE
+	can_buckle = 1
 	buckle_mob(L)
 	L.Stun(stun_length)
 	to_chat(L, "<span class='danger'>The steel jaws of \the [src] bite into you, trapping you in place!</span>")
@@ -137,7 +137,7 @@
 				)
 			attack_mob(L)
 			if(!has_buckled_mobs())
-				anchored = FALSE
+				anchored = 0
 			deployed = 0
 			update_icon()
 	..()
@@ -210,7 +210,7 @@
 				"<span class='danger'>[user] has collected \the [src].</span>",
 				"<span class='notice'>You have collected \the [src]!</span>"
 				)
-			anchored = FALSE
+			anchored = 0
 			update_icon()
 	else
 		..()
@@ -235,7 +235,7 @@
 				playsound(src, 'sound/items/Wirecutter.ogg',40, 1)
 			user.drop_from_inventory(src)
 			forceMove(get_turf(src))
-			anchored = TRUE
+			anchored = 1
 			update_icon()
 
 /obj/item/weapon/material/barbedwire/attackby(obj/item/W as obj, mob/user as mob)

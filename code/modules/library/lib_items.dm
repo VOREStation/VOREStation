@@ -16,8 +16,8 @@
 	desc = "A set of wooden shelves, perfect for placing books on."
 	icon = 'icons/obj/library.dmi'
 	icon_state = "book-0"
-	anchored = TRUE
-	density = TRUE
+	anchored = 1
+	density = 1
 	opacity = 1
 
 /obj/structure/bookcase/Initialize()
@@ -104,7 +104,7 @@ Book Cart
 	name = "book cart"
 	icon = 'icons/obj/library.dmi'
 	icon_state = "bookcart-0"
-	anchored = FALSE
+	anchored = 0
 	opacity = 0
 
 /obj/structure/bookcase/bookcart/attackby(obj/item/O as obj, mob/user as mob)

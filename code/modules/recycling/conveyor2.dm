@@ -12,7 +12,7 @@
 	desc = "A conveyor belt."
 	plane = TURF_PLANE
 	layer = ABOVE_TURF_LAYER
-	anchored = TRUE
+	anchored = 1
 	circuit = /obj/item/weapon/circuitboard/conveyor
 	var/operating = OFF	// 1 if running forward, -1 if backwards, 0 if off
 	var/operable = 1	// true if can operate (no broken segments in this belt run)
@@ -197,7 +197,7 @@
 	var/id = "" 				// must match conveyor IDs to control them
 
 	var/list/conveyors		// the list of converyors that are controlled by this switch
-	anchored = TRUE
+	anchored = 1
 	var/speed_active = FALSE // are the linked conveyors on SSfastprocess?
 
 

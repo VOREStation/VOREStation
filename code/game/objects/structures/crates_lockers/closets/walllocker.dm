@@ -6,8 +6,8 @@
 	name = "Wall Locker"
 	icon = 'icons/obj/closets/bases/wall.dmi'
 	closet_appearance = /decl/closet_appearance/wall
-	density = FALSE
-	anchored = TRUE
+	density = 0
+	anchored = 1
 	store_mobs = 0
 	wall_mounted = 1
 
@@ -85,8 +85,8 @@
 	name = "Wall Cabinet"
 	icon = 'icons/obj/closets/bases/wall_double.dmi'
 	closet_appearance = /decl/closet_appearance/wall_double
-	density = FALSE
-	anchored = TRUE
+	density = 0
+	anchored = 1
 	store_mobs = 0
 	wall_mounted = 1
 	plane = TURF_PLANE
@@ -113,8 +113,8 @@
 	name = "Kitchen Cabinet"
 	icon = 'icons/obj/closets/bases/wall_double.dmi'
 	closet_appearance = /decl/closet_appearance/wall_double/kitchen
-	density = FALSE
-	anchored = TRUE
+	density = 0
+	anchored = 1
 
 /obj/structure/closet/walllocker_double/kitchen/north
 	pixel_y = 32
@@ -157,8 +157,8 @@
 	name = "fire-safety closet"
 	desc = "It's a storage cabinet packed with fire-fighting supplies."
 	closet_appearance = /decl/closet_appearance/wall_double/fire_safety
-	anchored = TRUE
-	density = FALSE
+	anchored = 1
+	density = 0
 
 	starts_with = list(
 		/obj/item/clothing/suit/fire/firefighter,

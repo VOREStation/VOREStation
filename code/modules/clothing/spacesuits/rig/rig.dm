@@ -7,6 +7,7 @@
  */
 
 /obj/item/weapon/rig
+
 	name = "hardsuit control module"
 	icon = 'icons/obj/rig_modules.dmi'
 	desc = "A back-mounted hardsuit deployment and control mechanism."
@@ -23,10 +24,8 @@
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.2
 	permeability_coefficient = 0.1
-	unacidable = TRUE
+	unacidable = 1
 	preserve_item = 1
-
-	var/default_mob_icon = 'icons/mob/rig_back.dmi'
 
 	var/suit_state //The string used for the suit's icon_state.
 
@@ -97,8 +96,22 @@
 	var/datum/effect/effect/system/spark_spread/spark_system
 	var/datum/mini_hud/rig/minihud
 
-	// Action button
-	action_button_name = "Hardsuit Interface"
+/obj/item/weapon/rig/examine()
+	. = ..()
+	if(wearer)
+		for(var/obj/item/piece in list(helmet,gloves,chest,boots))
+			if(!piece || piece.loc != wearer)
+				continue
+			. += "[bicon(piece)] \The [piece] [piece.gender == PLURAL ? "are" : "is"] deployed."
+
+	if(src.loc == usr)
+		. += "The access panel is [locked? "locked" : "unlocked"]."
+		. += "The maintenance panel is [open ? "open" : "closed"]."
+		. += "Hardsuit systems are [offline ? "<span class='warning'>offline</span>" : "<span class='notice'>online</span>"]."
+		. += "The cooling stystem is [cooling_on ? "active" : "inactive"]."
+
+		if(open)
+			. += "It's equipped with [english_list(installed_modules)]."
 
 /obj/item/weapon/rig/New()
 	..()
@@ -143,7 +156,7 @@
 	for(var/obj/item/piece in list(gloves,helmet,boots,chest))
 		if(!istype(piece))
 			continue
-		piece.canremove = FALSE
+		piece.canremove = 0
 		piece.name = "[suit_type] [initial(piece.name)]"
 		piece.desc = "It seems to be part of a [src.name]."
 		piece.icon_state = "[suit_state]"
@@ -170,23 +183,6 @@
 	qdel(spark_system)
 	spark_system = null
 	return ..()
-
-/obj/item/weapon/rig/examine()
-	. = ..()
-	if(wearer)
-		for(var/obj/item/piece in list(helmet,gloves,chest,boots))
-			if(!piece || piece.loc != wearer)
-				continue
-			. += "[bicon(piece)] \The [piece] [piece.gender == PLURAL ? "are" : "is"] deployed."
-
-	if(src.loc == usr)
-		. += "The access panel is [locked? "locked" : "unlocked"]."
-		. += "The maintenance panel is [open ? "open" : "closed"]."
-		. += "Hardsuit systems are [offline ? "<span class='warning'>offline</span>" : "<span class='notice'>online</span>"]."
-		. += "The cooling stystem is [cooling_on ? "active" : "inactive"]."
-
-		if(open)
-			. += "It's equipped with [english_list(installed_modules)]."
 
 // We only care about processing when we're on a mob
 /obj/item/weapon/rig/Moved(old_loc, direction, forced)
@@ -244,7 +240,7 @@
 
 /obj/item/weapon/rig/proc/reset()
 	offline = 2
-	canremove = TRUE
+	canremove = 1
 	for(var/obj/item/piece in list(helmet,boots,gloves,chest))
 		if(!piece) continue
 		piece.icon_state = "[suit_state]"
@@ -254,7 +250,7 @@
 
 /obj/item/weapon/rig/proc/cut_suit()
 	offline = 2
-	canremove = TRUE
+	canremove = 1
 	toggle_piece("helmet", loc, ONLY_RETRACT, TRUE)
 	toggle_piece("gauntlets", loc, ONLY_RETRACT, TRUE)
 	toggle_piece("boots", loc, ONLY_RETRACT, TRUE)
@@ -281,10 +277,10 @@
 		booting_R.icon_state = "boot_load"
 		animate(booting_L, alpha=230, time=30, easing=SINE_EASING)
 		animate(booting_R, alpha=200, time=20, easing=SINE_EASING)
-		M.client?.screen += booting_L
-		M.client?.screen += booting_R
+		M.client.screen += booting_L
+		M.client.screen += booting_R
 
-	canremove = FALSE // No removing the suit while unsealing.
+	canremove = 0 // No removing the suit while unsealing.
 	sealing = 1
 
 	if(!seal_target && !suit_is_deployed())
@@ -358,8 +354,8 @@
 	sealing = null
 
 	if(failed_to_seal)
-		M.client?.screen -= booting_L
-		M.client?.screen -= booting_R
+		M.client.screen -= booting_L
+		M.client.screen -= booting_R
 		qdel(booting_L)
 		qdel(booting_R)
 		for(var/obj/item/piece in list(helmet,boots,gloves,chest))
@@ -380,11 +376,11 @@
 			minihud = new (M.hud_used, src)
 	to_chat(M, "<span class='notice'><b>Your entire suit [canremove ? "loosens as the components relax" : "tightens around you as the components lock into place"].</b></span>")
 	playsound(src, 'sound/machines/rig/rigstarted.ogg', 10, FALSE)
-	M.client?.screen -= booting_L
+	M.client.screen -= booting_L
 	qdel(booting_L)
 	booting_R.icon_state = "boot_done"
 	spawn(40)
-		M.client?.screen -= booting_R
+		M.client.screen -= booting_R
 		qdel(booting_R)
 
 	if(canremove)
@@ -591,17 +587,17 @@
 
 	cut_overlays()
 	if(!mob_icon || update_mob_icon)
-		var/species_icon = default_mob_icon
+		var/species_icon = 'icons/mob/rig_back.dmi'
 		// Since setting mob_icon will override the species checks in
 		// update_inv_wear_suit(), handle species checks here.
-		if(wearer && LAZYACCESS(sprite_sheets, wearer.species.get_bodytype(wearer)))
-			species_icon = sprite_sheets[wearer.species.get_bodytype(wearer)]
+		if(wearer && sprite_sheets && sprite_sheets[wearer.species.get_bodytype(wearer)])
+			species_icon =  sprite_sheets[wearer.species.get_bodytype(wearer)]
 		mob_icon = icon(icon = species_icon, icon_state = "[icon_state]")
 
 	if(installed_modules.len)
 		for(var/obj/item/rig_module/module in installed_modules)
 			if(module.suit_overlay)
-				chest.add_overlay(image(module.suit_overlay_icon, icon_state = "[module.suit_overlay]", dir = SOUTH))
+				chest.add_overlay(image('icons/mob/rig_modules.dmi', icon_state = "[module.suit_overlay]", dir = SOUTH))
 
 	if(wearer)
 		wearer.update_inv_shoes()
@@ -712,11 +708,11 @@
 					if(use_obj && check_slot == use_obj)
 						to_chat(H, "<span class='notice'><b>Your [use_obj.name] [use_obj.gender == PLURAL ? "retract" : "retracts"] swiftly.</b></span>")
 						playsound(src, 'sound/machines/rig/rigservo.ogg', 10, FALSE)
-						use_obj.canremove = TRUE
+						use_obj.canremove = 1
 						holder.drop_from_inventory(use_obj)
 						use_obj.forceMove(get_turf(src))
 						use_obj.dropped()
-						use_obj.canremove = FALSE
+						use_obj.canremove = 0
 						use_obj.forceMove(src)
 
 		else if (deploy_mode != ONLY_RETRACT)

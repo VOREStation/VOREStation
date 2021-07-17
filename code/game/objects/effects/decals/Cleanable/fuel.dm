@@ -4,7 +4,7 @@
 	icon_state = "fuel"
 	plane = DIRTY_PLANE
 	layer = DIRTY_LAYER
-	anchored = TRUE
+	anchored = 1
 	var/amount = 1
 	generic_filth = TRUE
 	persistent = FALSE
@@ -51,7 +51,7 @@
 
 /obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel
 	icon_state = "mustard"
-	anchored = FALSE
+	anchored = 0
 
 /obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel/New(newLoc, amt = 1, d = 0)
 	set_dir(d) //Setting this direction means you won't get torched by your own flamethrower.

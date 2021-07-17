@@ -150,8 +150,8 @@
 	embed_chance = active_embed_chance
 	force = active_force
 	throwforce = active_throwforce
-	sharp = TRUE
-	edge = TRUE
+	sharp = 1
+	edge = 1
 	w_class = active_w_class
 	playsound(src, 'sound/weapons/saberon.ogg', 15, 1)
 	damtype = SEARING

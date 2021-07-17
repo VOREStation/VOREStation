@@ -10,8 +10,8 @@
 	desc = "This looks suspicious..."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "syndbeacon"
-	anchored = TRUE
-	density = TRUE
+	anchored = 1
+	density = 1
 	var/temptext = ""
 	var/selfdestructing = 0
 	var/charges = 1
@@ -77,8 +77,8 @@
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "beacon"
 
-	anchored = FALSE
-	density = TRUE
+	anchored = 0
+	density = 1
 	layer = MOB_LAYER - 0.1 //so people can't hide it and it's REALLY OBVIOUS
 	stat = 0
 
@@ -125,7 +125,7 @@
 			return
 
 		if(anchored)
-			anchored = FALSE
+			anchored = 0
 			to_chat(user, "<span class='notice'>You unscrew the beacon from the floor.</span>")
 			playsound(src, W.usesound, 50, 1)
 			disconnect_from_network()
@@ -134,7 +134,7 @@
 			if(!connect_to_network())
 				to_chat(user, "This device must be placed over an exposed cable.")
 				return
-			anchored = TRUE
+			anchored = 1
 			to_chat(user, "<span class='notice'>You screw the beacon to the floor and attach the cable.</span>")
 			playsound(src, W.usesound, 50, 1)
 			return

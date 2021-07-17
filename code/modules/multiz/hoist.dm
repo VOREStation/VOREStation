@@ -21,8 +21,8 @@
 	icon = 'icons/obj/hoists.dmi'
 	icon_state = "hoist_hook"
 	var/obj/structure/hoist/source_hoist
-	can_buckle = TRUE
-	anchored = TRUE
+	can_buckle = 1
+	anchored = 1
 	description_info = "Click and drag someone (or any object) to this to attach them to the clamp. If you are within reach, when you click and drag this to a turf adjacent to you, it will move the attached object there and release it."
 
 /obj/effect/hoist_hook/attack_hand(mob/living/user)
@@ -47,7 +47,7 @@
 	hoistee = AM
 	if(ismob(AM))
 		source_hook.buckle_mob(AM)
-	AM.anchored = TRUE // why isn't this being set by buckle_mob for silicons?
+	AM.anchored = 1 // why isn't this being set by buckle_mob for silicons?
 	source_hook.layer = AM.layer + 0.1
 
 /obj/effect/hoist_hook/MouseDrop(atom/dest)
@@ -91,8 +91,8 @@
 	icon = 'icons/obj/hoists.dmi'
 	icon_state = "hoist_base"
 	var/broken = 0
-	density = TRUE
-	anchored = TRUE
+	density = 1
+	anchored = 1
 	name = "hoist"
 	desc = "A manual hoist, uses a clamp and pulley to hoist things."
 	var/atom/movable/hoistee
@@ -128,7 +128,7 @@
 	if(ismob(hoistee))
 		source_hook.unbuckle_mob(hoistee)
 	else
-		hoistee.anchored = FALSE
+		hoistee.anchored = 0
 	hoistee = null
 	layer = NORMAL_LAYER
 

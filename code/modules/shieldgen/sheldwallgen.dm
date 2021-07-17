@@ -4,8 +4,8 @@
 		desc = "A shield generator."
 		icon = 'icons/obj/stationobjs.dmi'
 		icon_state = "Shield_Gen"
-		anchored = FALSE
-		density = TRUE
+		anchored = 0
+		density = 1
 		req_access = list(access_engine_equip)
 		var/active = 0
 		var/power = 0
@@ -166,14 +166,14 @@
 			state = 1
 			playsound(src, W.usesound, 75, 1)
 			to_chat(user, "You secure the external reinforcing bolts to the floor.")
-			src.anchored = TRUE
+			src.anchored = 1
 			return
 
 		else if(state == 1)
 			state = 0
 			playsound(src, W.usesound, 75, 1)
 			to_chat(user, "You undo the external reinforcing bolts.")
-			src.anchored = FALSE
+			src.anchored = 0
 			return
 
 	if(istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
@@ -224,9 +224,9 @@
 		desc = "An energy shield."
 		icon = 'icons/effects/effects.dmi'
 		icon_state = "shieldwall"
-		anchored = TRUE
-		density = TRUE
-		unacidable = TRUE
+		anchored = 1
+		density = 1
+		unacidable = 1
 		light_range = 3
 		var/needs_power = 0
 		var/active = 1

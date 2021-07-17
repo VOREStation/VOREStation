@@ -4,8 +4,8 @@
 	desc = "The name isn't descriptive enough?"
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "grinder"
-	density = TRUE
-	anchored = TRUE
+	density = 1
+	anchored = 1
 	req_access = list(access_kitchen,access_morgue)
 
 	var/operating = 0 //Is it on?

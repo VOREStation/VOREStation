@@ -187,8 +187,8 @@
 	closet_appearance = /decl/closet_appearance/wall/hydrant
 	plane = TURF_PLANE
 	layer = ABOVE_TURF_LAYER
-	anchored = TRUE
-	density = FALSE
+	anchored = 1
+	density = 0
 	wall_mounted = 1
 	store_mobs = 0
 
@@ -207,7 +207,7 @@
 	name = "first-aid closet"
 	desc = "It's wall-mounted storage unit for first aid supplies."
 	closet_appearance = /decl/closet_appearance/wall/medical
-	anchored = TRUE
-	density = FALSE
+	anchored = 1
+	density = 0
 	wall_mounted = 1
 	store_mobs = 0

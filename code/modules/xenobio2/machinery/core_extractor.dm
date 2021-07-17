@@ -8,8 +8,8 @@
 	desc = "A machine for cutting up slimes to get to their cores."
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "scanner_0old"
-	density = TRUE
-	anchored = TRUE
+	density = 1
+	anchored = 1
 	circuit = /obj/item/weapon/circuitboard/slimeextractor
 	var/inuse
 	var/mob/living/simple_mob/xeno/slime/occupant = null

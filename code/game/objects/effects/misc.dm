@@ -4,8 +4,8 @@
 	desc = "It's a ... present?"
 	icon = 'icons/obj/items.dmi'
 	icon_state = "strangepresent"
-	density = TRUE
-	anchored = FALSE
+	density = 1
+	anchored = 0
 
 /obj/effect/temporary_effect
 	name = "self deleting effect"

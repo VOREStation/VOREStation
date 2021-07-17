@@ -352,7 +352,7 @@
 /**********************************/
 
 /obj/structure/symbol
-	anchored = TRUE
+	anchored = 1
 	layer = 3.5
 	name = "strange symbol"
 	icon = 'icons/obj/decals_vr.dmi'

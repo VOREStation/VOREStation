@@ -5,13 +5,13 @@
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "mirror"
 	layer = ABOVE_WINDOW_LAYER
-	density = FALSE
-	anchored = TRUE
+	density = 0
+	anchored = 1
 	var/shattered = 0
 	var/glass = 1
 	var/datum/tgui_module/appearance_changer/mirror/M
 
-/obj/structure/mirror/Initialize(mapload, var/dir, var/building = 0, mob/user as mob)
+/obj/structure/mirror/New(var/loc, var/dir, var/building = 0, mob/user as mob)
 	M = new(src, null)
 	if(building)
 		glass = 0

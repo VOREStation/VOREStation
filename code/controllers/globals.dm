@@ -20,7 +20,7 @@ GLOBAL_REAL(GLOB, /datum/controller/global_vars)
 	Initialize(exclude_these)
 
 /datum/controller/global_vars/Destroy(force)
-	stack_trace("There was an attempt to qdel the global vars holder!")
+	crash_with("There was an attempt to qdel the global vars holder!")
 	if(!force)
 		return QDEL_HINT_LETMELIVE
 

@@ -20,4 +20,4 @@
 			card.update_icon()
 
 	. = ..(gibbed,"gives one shrill beep before falling lifeless.")
-	density = TRUE
+	density = 1

@@ -17,7 +17,7 @@
 	var/in_stasis = FALSE
 		//minimum pressure before check_pressure(...) should be called
 
-	can_buckle = TRUE
+	can_buckle = 1
 	buckle_require_restraints = 1
 	buckle_lying = -1
 

@@ -21,7 +21,7 @@
 	desc = "The sky is falling!"
 	icon = 'icons/obj/meteor.dmi'
 	icon_state = "large"
-	anchored = TRUE
+	anchored = 1
 
 /obj/effect/meteor_falling/New()
 	..()
@@ -73,8 +73,8 @@
 	desc = "A big hunk of star-stuff."
 	icon = 'icons/obj/meteor.dmi'
 	icon_state = "large"
-	density = TRUE
-	climbable = TRUE
+	density = 1
+	climbable = 1
 
 /obj/structure/meteorite/New()
 	..()

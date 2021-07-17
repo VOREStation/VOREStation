@@ -3,10 +3,10 @@
 	desc = "An object used in marking graves."
 	icon_state = "gravemarker"
 
-	density = TRUE
-	anchored = TRUE
+	density = 1
+	anchored = 1
 	throwpass = 1
-	climbable = TRUE
+	climbable = 1
 
 	layer = ABOVE_JUNK_LAYER
 

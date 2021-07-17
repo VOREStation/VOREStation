@@ -15,7 +15,6 @@
 
 	var/harvest_tool = null // The type of item used to harvest the plant.
 	var/harvest_count = 0
-	var/destroy_on_harvest = FALSE
 
 	var/randomize_harvest_count = TRUE
 	var/max_harvests = 0
@@ -54,8 +53,6 @@
 
 		else
 			to_chat(user, "<span class='notice'>You harvest \the [AM] from \the [src].</span>")
-			if(harvest_count >= max_harvests && destroy_on_harvest)
-				qdel(src)
 			return
 
 	..(W, user)
@@ -69,12 +66,11 @@
 /obj/structure/flora/proc/spawn_harvest(var/path = null, var/mob/user = null)
 	if(!ispath(path))
 		return 0
-	
-	var/atom/movable/AM = new path()
+	var/turf/Target = get_turf(src)
 	if(user)
-		user.put_in_hands(AM)
-	else
-		AM.forceMove(drop_location())
+		Target = get_turf(user)
+
+	var/atom/movable/AM = new path(Target)
 
 	harvest_count++
 	return AM
@@ -84,12 +80,6 @@
 	name = "bush"
 	icon = 'icons/obj/flora/snowflora.dmi'
 	icon_state = "snowbush1"
-	
-	destroy_on_harvest = TRUE
-	harvest_tool = /obj/item/weapon/material/knife
-	randomize_harvest_count = FALSE
-	harvest_loot = list(/obj/item/stack/material/fiber = 1)
-	max_harvests = 1
 
 /obj/structure/flora/bush/New()
 	..()
@@ -109,12 +99,6 @@
 	name = "bush"
 	icon = 'icons/obj/flora/ausflora.dmi'
 	icon_state = "firstbush_1"
-	
-	destroy_on_harvest = TRUE
-	harvest_tool = /obj/item/weapon/material/knife
-	randomize_harvest_count = FALSE
-	harvest_loot = list(/obj/item/stack/material/fiber = 1)
-	max_harvests = 1
 
 /obj/structure/flora/ausbushes/New()
 	..()

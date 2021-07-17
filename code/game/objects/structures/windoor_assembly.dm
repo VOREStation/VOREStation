@@ -13,8 +13,8 @@
 	name = "windoor assembly"
 	icon = 'icons/obj/doors/windoor.dmi'
 	icon_state = "l_windoor_assembly01"
-	anchored = FALSE
-	density = FALSE
+	anchored = 0
+	density = 0
 	dir = NORTH
 	w_class = ITEMSIZE_NORMAL
 
@@ -36,7 +36,7 @@
 	..()
 	if(constructed)
 		state = "01"
-		anchored = FALSE
+		anchored = 0
 	switch(start_dir)
 		if(NORTH, SOUTH, EAST, WEST)
 			set_dir(start_dir)
@@ -47,7 +47,7 @@
 	update_nearby_tiles(need_rebuild=1)
 
 /obj/structure/windoor_assembly/Destroy()
-	density = FALSE
+	density = 0
 	update_nearby_tiles()
 	..()
 
@@ -113,7 +113,7 @@
 				if(do_after(user, 40 * W.toolspeed))
 					if(!src) return
 					to_chat(user,"<span class='notice'>You've secured the windoor assembly!</span>")
-					src.anchored = TRUE
+					src.anchored = 1
 					step = 0
 
 			//Unwrenching an unsecure assembly un-anchors it. Step 4 undone
@@ -124,7 +124,7 @@
 				if(do_after(user, 40 * W.toolspeed))
 					if(!src) return
 					to_chat(user,"<span class='notice'>You've unsecured the windoor assembly!</span>")
-					src.anchored = FALSE
+					src.anchored = 0
 					step = null
 
 			//Adding cable to the assembly. Step 5 complete.
@@ -200,7 +200,7 @@
 
 					if(!src) return
 
-					density = TRUE //Shouldn't matter but just incase
+					density = 1 //Shouldn't matter but just incase
 					to_chat(user,"<span class='notice'>You finish the windoor!</span>")
 
 					if(secure)
@@ -212,7 +212,7 @@
 							windoor.icon_state = "rightsecureopen"
 							windoor.base_state = "rightsecure"
 						windoor.set_dir(src.dir)
-						windoor.density = FALSE
+						windoor.density = 0
 						if(created_name)
 							windoor.name = created_name
 						spawn(0)
@@ -234,7 +234,7 @@
 							windoor.icon_state = "rightopen"
 							windoor.base_state = "right"
 						windoor.set_dir(src.dir)
-						windoor.density = FALSE
+						windoor.density = 0
 						if(created_name)
 							windoor.name = created_name
 						spawn(0)

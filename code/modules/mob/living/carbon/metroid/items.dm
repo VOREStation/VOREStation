@@ -256,12 +256,12 @@
 			qdel(src)*/
 */
 /obj/effect/golemrune
-	anchored = TRUE
+	anchored = 1
 	desc = "a strange rune used to create golems. It glows when spirits are nearby."
 	name = "rune"
 	icon = 'icons/obj/rune.dmi'
 	icon_state = "golem"
-	unacidable = TRUE
+	unacidable = 1
 	layer = TURF_LAYER
 
 	New()

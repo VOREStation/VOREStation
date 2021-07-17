@@ -4,8 +4,8 @@
 	name = "gravity generator control"
 	desc = "A computer to control a local gravity generator.  Qualified personnel only."
 	icon_state = "airtunnel0e"
-	anchored = TRUE
-	density = TRUE
+	anchored = 1
+	density = 1
 	var/obj/machinery/gravity_generator = null
 
 
@@ -14,8 +14,8 @@
 	desc = "A device which produces a gravaton field when set up."
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "TheSingGen"
-	anchored = TRUE
-	density = TRUE
+	anchored = 1
+	density = 1
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 200
 	active_power_usage = 1000

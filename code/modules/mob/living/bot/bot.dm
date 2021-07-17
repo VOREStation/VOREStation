@@ -5,7 +5,7 @@
 	icon = 'icons/obj/aibots.dmi'
 	layer = MOB_LAYER
 	universal_speak = 1
-	density = FALSE
+	density = 0
 
 	makes_dirt = FALSE	// No more dirt from Beepsky
 

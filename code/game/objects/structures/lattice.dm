@@ -3,8 +3,8 @@
 	desc = "A lightweight support lattice."
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "latticefull"
-	density = FALSE
-	anchored = TRUE
+	density = 0
+	anchored = 1.0
 	w_class = ITEMSIZE_NORMAL
 	plane = PLATING_PLANE
 

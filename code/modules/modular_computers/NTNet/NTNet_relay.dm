@@ -6,8 +6,8 @@
 	active_power_usage = 20000 //20kW, apropriate for machine that keeps massive cross-Zlevel wireless network operational.
 	idle_power_usage = 100
 	icon_state = "ntnet"
-	anchored = TRUE
-	density = TRUE
+	anchored = 1
+	density = 1
 	circuit = /obj/item/weapon/circuitboard/ntnet_relay
 	var/datum/ntnet/NTNet = null // This is mostly for backwards reference and to allow varedit modifications from ingame.
 	var/enabled = 1				// Set to 0 if the relay was turned off

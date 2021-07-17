@@ -3,7 +3,7 @@
 	desc = "It has stubby legs bolted up against it's body for stabilising."
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "suspension2"
-	density = TRUE
+	density = 1
 	req_access = list(access_research)
 	var/obj/item/weapon/cell/cell
 	var/locked = TRUE
@@ -95,9 +95,9 @@
 	else if(W.is_wrench())
 		if(!suspension_field)
 			if(anchored)
-				anchored = FALSE
+				anchored = 0
 			else
-				anchored = TRUE
+				anchored = 1
 			playsound(src, W.usesound, 50, 1)
 			to_chat(user, "<span class='notice'>You wrench the stabilising legs [anchored ? "into place" : "up against the body"].</span>")
 			if(anchored)
@@ -198,8 +198,8 @@
 /obj/effect/suspension_field
 	name = "energy field"
 	icon = 'icons/effects/effects.dmi'
-	anchored = TRUE
-	density = TRUE
+	anchored = 1
+	density = 1
 
 /obj/effect/suspension_field/Destroy()
 	for(var/atom/movable/I in src)

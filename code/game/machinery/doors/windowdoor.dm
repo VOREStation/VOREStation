@@ -50,14 +50,14 @@
 	if(operating == -1)
 		ae.icon_state = "door_electronics_smoked"
 		operating = 0
-	src.density = FALSE
+	src.density = 0
 	playsound(src, "shatter", 70, 1)
 	if(display_message)
 		visible_message("[src] shatters!")
 	qdel(src)
 
 /obj/machinery/door/window/Destroy()
-	density = FALSE
+	density = 0
 	update_nearby_tiles()
 	return ..()
 
@@ -117,7 +117,7 @@
 	sleep(10)
 
 	explosion_resistance = 0
-	density = FALSE
+	density = 0
 	update_icon()
 	update_nearby_tiles()
 
@@ -228,7 +228,7 @@
 				if (src.base_state == "right" || src.base_state == "rightsecure")
 					wa.facing = "r"
 				wa.set_dir(src.dir)
-				wa.anchored = TRUE
+				wa.anchored = 1
 				wa.created_name = name
 				wa.state = "02"
 				wa.step = 2

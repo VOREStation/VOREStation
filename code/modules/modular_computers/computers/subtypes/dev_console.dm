@@ -8,7 +8,7 @@
 	icon_state_menu = "menu"
 	hardware_flag = PROGRAM_CONSOLE
 	anchored = TRUE
-	density = TRUE
+	density = 1
 	layer = 2.9
 	base_idle_power_usage = 100
 	base_active_power_usage = 500

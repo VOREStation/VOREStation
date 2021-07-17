@@ -6,7 +6,7 @@
 	w_class = ITEMSIZE_SMALL
 	force = 2.0
 	det_time = null
-	unacidable = TRUE
+	unacidable = 1
 
 	var/stage = 0
 	var/state = 0

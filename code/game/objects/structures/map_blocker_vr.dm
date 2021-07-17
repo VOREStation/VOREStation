@@ -4,10 +4,10 @@
 	desc = "You can't go there!"
 	icon = 'icons/turf/wall_masks.dmi'
 	icon_state = "rdebug"
-	anchored = TRUE
+	anchored = 1.0
 	opacity = 0
-	density = TRUE
-	unacidable = TRUE
+	density = 1
+	unacidable = 1
 
 /obj/effect/blocker/Initialize() // For non-gateway maps.
 	. = ..()

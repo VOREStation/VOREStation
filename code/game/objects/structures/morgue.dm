@@ -16,10 +16,10 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "morgue1"
 	dir = EAST
-	density = TRUE
+	density = 1
 	var/obj/structure/m_tray/connected = null
 	var/list/occupants = list()
-	anchored = TRUE
+	anchored = 1.0
 
 /obj/structure/morgue/Destroy()
 	if(connected)
@@ -147,10 +147,10 @@
 	desc = "Apply corpse before closing."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "morguet"
-	density = TRUE
+	density = 1
 	plane = TURF_PLANE
 	var/obj/structure/morgue/connected = null
-	anchored = TRUE
+	anchored = 1
 	throwpass = 1
 
 /obj/structure/m_tray/Destroy()

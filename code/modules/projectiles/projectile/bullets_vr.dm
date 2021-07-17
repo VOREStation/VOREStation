@@ -2,7 +2,7 @@
 	damage = 10
 	agony = 60
 	embed_chance = 0
-	sharp = FALSE
+	sharp = 0
 	check_armour = "melee"
 
 /obj/item/projectile/energy/flash/strong

@@ -13,7 +13,7 @@ var/global/list/map_sectors = list()
 
 /turf/unsimulated/map/edge
 	opacity = 1
-	density = TRUE
+	density = 1
 	var/map_is_to_my
 	var/turf/unsimulated/map/edge/wrap_buddy
 

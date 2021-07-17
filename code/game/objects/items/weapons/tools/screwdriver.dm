@@ -19,7 +19,7 @@
 	pickup_sound = 'sound/items/pickup/screwdriver.ogg'
 	matter = list(MAT_STEEL = 75)
 	attack_verb = list("stabbed")
-	sharp  = TRUE
+	sharp  = 1
 	toolspeed = 1
 	tool_qualities = list(TOOL_SCREWDRIVER)
 	var/random_color = TRUE

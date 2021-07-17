@@ -13,9 +13,10 @@
 	body_parts_covered = copy.body_parts_covered
 	flags_inv = copy.flags_inv
 
-	item_icons = copy.item_icons?.Copy()
-	item_state_slots = copy.item_state_slots?.Copy()
-	sprite_sheets = copy.sprite_sheets?.Copy()
+	item_icons = copy.item_icons.Copy()
+	if(copy.item_state_slots) //Runtime prevention for backpacks
+		item_state_slots = copy.item_state_slots.Copy()
+	sprite_sheets = copy.sprite_sheets.Copy()
 	//copying sprite_sheets_obj should be unnecessary as chameleon items are not refittable.
 
 	return copy //for inheritance
@@ -53,7 +54,7 @@
 	name = "psychedelic"
 	desc = "Groovy!"
 	icon_state = "psyche"
-	LAZYSET(item_state_slots, slot_w_uniform_str, "psyche")
+	item_state_slots[slot_w_uniform_str] = "psyche"
 	update_icon()
 	update_clothing_icon()
 
@@ -335,6 +336,7 @@
 /obj/item/weapon/storage/belt/chameleon
 	name = "belt"
 	desc = "Can hold various things.  It also has a small dial inside one of the pouches."
+	icon = 'icons/obj/clothing/belts.dmi'
 	icon_state = "utilitybelt"
 	origin_tech = list(TECH_ILLEGAL = 3)
 	var/global/list/clothing_choices
@@ -374,7 +376,7 @@
 /obj/item/clothing/accessory/chameleon
 	name = "black tie"
 	desc = "Looks like a black tie, but his one also has a dial inside."
-	icon = 'icons/inventory/accessory/item.dmi'
+	icon = 'icons/obj/clothing/ties.dmi'
 	icon_state = "blacktie"
 	origin_tech = list(TECH_ILLEGAL = 3)
 	var/global/list/clothing_choices

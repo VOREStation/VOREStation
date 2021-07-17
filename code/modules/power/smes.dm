@@ -10,8 +10,8 @@ GLOBAL_LIST_EMPTY(smeses)
 	name = "power storage unit"
 	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit."
 	icon_state = "smes"
-	density = TRUE
-	anchored = TRUE
+	density = 1
+	anchored = 1
 	use_power = USE_POWER_OFF
 	circuit = /obj/item/weapon/circuitboard/smes
 	clicksound = "switch"

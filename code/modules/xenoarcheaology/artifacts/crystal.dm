@@ -2,7 +2,7 @@
 	name = "large crystal"
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "crystal"
-	density = TRUE
+	density = 1
 
 /obj/structure/crystal/New()
 	..()

@@ -3,8 +3,8 @@
 	icon_state = "prosfab"
 	name = "Prosthetics Fabricator"
 	desc = "A machine used for construction of prosthetics."
-	density = TRUE
-	anchored = TRUE
+	density = 1
+	anchored = 1
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 20
 	active_power_usage = 5000

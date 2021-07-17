@@ -4,7 +4,7 @@
 	icon = 'icons/obj/radio_vr.dmi' //VOREStation Edit - New Icon
 	icon_state = "intercom"
 	layer = ABOVE_WINDOW_LAYER
-	anchored = TRUE
+	anchored = 1
 	w_class = ITEMSIZE_LARGE
 	canhear_range = 7 //VOREStation Edit
 	flags = NOBLOODY
@@ -147,7 +147,7 @@
 		A.pixel_y = pixel_y
 		A.circuit = M
 		A.set_dir(dir)
-		A.anchored = TRUE
+		A.anchored = 1
 		A.state = 2
 		A.update_icon()
 		M.deconstruct(src)

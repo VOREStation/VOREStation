@@ -6,8 +6,8 @@
 	icon = 'icons/obj/machines/particle_accelerator_vr.dmi' //VOREStation Edit
 	icon_state = "control_box"
 	reference = "control_box"
-	anchored = FALSE
-	density = TRUE
+	anchored = 0
+	density = 1
 	use_power = USE_POWER_OFF
 	idle_power_usage = 500
 	active_power_usage = 70000 //70 kW per unit of strength

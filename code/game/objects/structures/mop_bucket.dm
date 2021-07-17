@@ -3,8 +3,8 @@
 	desc = "Fill it with water, but don't forget a mop!"
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "mopbucket"
-	density = TRUE
-	climbable = TRUE
+	density = 1
+	climbable = 1
 	w_class = ITEMSIZE_NORMAL
 	pressure_resistance = 5
 	flags = OPENCONTAINER

@@ -1,7 +1,7 @@
 /mob/observer
 	name = "observer"
 	desc = "This shouldn't appear"
-	density = FALSE
+	density = 0
 	vis_flags = NONE
 
 /mob/observer/dead
@@ -12,7 +12,7 @@
 	stat = DEAD
 	canmove = 0
 	blinded = 0
-	anchored = TRUE	//  don't get pushed around
+	anchored = 1	//  don't get pushed around
 
 	var/can_reenter_corpse
 	var/datum/hud/living/carbon/hud = null // hud

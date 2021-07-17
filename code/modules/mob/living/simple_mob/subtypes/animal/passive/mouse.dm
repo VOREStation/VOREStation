@@ -21,7 +21,7 @@
 //	can_pull_size = ITEMSIZE_TINY
 //	can_pull_mobs = MOB_PULL_NONE
 	layer = MOB_LAYER
-	density = FALSE
+	density = 0
 
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"

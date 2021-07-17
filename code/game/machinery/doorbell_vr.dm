@@ -7,7 +7,7 @@
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
 	active_power_usage = 200
-	anchored = TRUE
+	anchored = 1
 	var/id_tag = null
 	var/chime_sound = 'sound/machines/doorbell.ogg'
 

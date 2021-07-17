@@ -78,21 +78,13 @@ export const createSearch = (searchText, stringifier) => {
   };
 };
 
-export const isUppercase = chr => {
-  return chr.toUpperCase() === chr;
-};
-
 export const capitalize = str => {
   // Handle array
   if (Array.isArray(str)) {
     return str.map(capitalize);
   }
   // Handle string
-  let chr = str.charAt(0);
-  if (isUppercase(chr)) {
-    return str; // Already caps, might be an acronym, so don't mess it up by lowercasing the rest
-  }
-  return chr.toUpperCase() + str.slice(1).toLowerCase();
+  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 };
 
 export const toTitleCase = str => {

@@ -3,8 +3,8 @@
 	desc = "This device injects antimatter into connected shielding units, the more antimatter injected the more power produced.  Wrench the device to set it up."
 	icon = 'icons/obj/machines/antimatter.dmi'
 	icon_state = "control"
-	anchored = TRUE
-	density = TRUE
+	anchored = 1
+	density = 1
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 100
 	active_power_usage = 1000
@@ -146,14 +146,14 @@
 			user.visible_message("[user.name] secures the [src.name] to the floor.", \
 				"You secure the anchor bolts to the floor.", \
 				"You hear a ratchet.")
-			src.anchored = TRUE
+			src.anchored = 1
 			connect_to_network()
 		else if(!linked_shielding.len > 0)
 			playsound(src, W.usesound, 75, 1)
 			user.visible_message("[user.name] unsecures the [src.name].", \
 				"You remove the anchor bolts.", \
 				"You hear a ratchet.")
-			src.anchored = FALSE
+			src.anchored = 0
 			disconnect_from_network()
 		else
 			to_chat(user, "<font color='red'>Once bolted and linked to a shielding unit it the [src.name] is unable to be moved!</font>")

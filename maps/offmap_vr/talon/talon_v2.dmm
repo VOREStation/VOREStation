@@ -1141,7 +1141,6 @@
 /area/talon_v2/anomaly_storage)
 "cZ" = (
 /obj/structure/table/woodentable,
-/obj/item/device/paicard,
 /turf/simulated/floor/wood,
 /area/talon_v2/crew_quarters/meditation)
 "da" = (
@@ -1502,7 +1501,6 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/item/device/paicard,
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/workroom)
 "dV" = (
@@ -1851,15 +1849,6 @@
 	},
 /obj/machinery/light{
 	dir = 8
-	},
-/obj/structure/dogbed,
-/mob/living/simple_mob/animal/passive/dog/bullterrier{
-	desc = "That's Rupert. He looks pretty important. He looks at you with an unwavering gaze of strength and power. You feel like it would be a mistake to challenge his authority.";
-	devourable = 0;
-	digestable = 0;
-	health = 200;
-	maxHealth = 200;
-	name = "Rupert"
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/bridge)
@@ -2260,6 +2249,10 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/armory)
 "gj" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
 /obj/machinery/power/sensor{
 	name = "Talon Power Generation";
 	name_tag = "TLN-PWR-GEN"
@@ -13719,13 +13712,8 @@
 /turf/simulated/wall/rshull,
 /area/talon_v2/maintenance/wing_port)
 "TT" = (
-/mob/living/simple_mob/animal/passive/dog/corgi/puppy{
-	desc = "That's Hendrickson, warden of the Talon's brig. No schemes can escape the watchful gleam of this corgi's deep, dark eyes.";
-	name = "Hendrickson"
-	},
-/obj/structure/dogbed,
-/turf/simulated/floor/tiled/techfloor,
-/area/talon_v2/brig)
+/turf/simulated/wall/rshull,
+/area/space)
 "TW" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -23679,7 +23667,7 @@ hS
 MT
 db
 ZW
-TT
+Kj
 Xm
 aN
 qm
@@ -26211,7 +26199,7 @@ aa
 aa
 aa
 mI
-JO
+TT
 JO
 qc
 qI

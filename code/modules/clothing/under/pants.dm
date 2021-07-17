@@ -5,6 +5,7 @@
 	icon_state = "jeans"
 	gender = PLURAL
 	body_parts_covered = LOWER_TORSO|LEGS
+	index = 1
 
 /obj/item/clothing/under/pants/ripped
 	name = "ripped jeans"

@@ -2,8 +2,8 @@
 	name = "robotic fabricator"
 	icon = 'icons/obj/robotics.dmi'
 	icon_state = "fab-idle"
-	density = TRUE
-	anchored = TRUE
+	density = 1
+	anchored = 1
 	var/metal_amount = 0
 	var/operating = 0
 	var/obj/item/robot_parts/being_built = null

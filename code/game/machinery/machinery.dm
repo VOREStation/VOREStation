@@ -105,7 +105,7 @@ Class Procs:
 	var/power_init_complete = FALSE
 	var/list/component_parts = null //list of all the parts used to build it, if made from certain kinds of frames.
 	var/uid
-	var/panel_open = FALSE
+	var/panel_open = 0
 	var/global/gl_uid = 1
 	var/clicksound			// sound played on succesful interface. Just put it in the list of vars at the start.
 	var/clickvol = 40		// volume
@@ -176,7 +176,7 @@ Class Procs:
 		pulse2.icon = 'icons/effects/effects.dmi'
 		pulse2.icon_state = "empdisable"
 		pulse2.name = "emp sparks"
-		pulse2.anchored = TRUE
+		pulse2.anchored = 1
 		pulse2.set_dir(pick(cardinal))
 
 		spawn(10)
@@ -441,15 +441,15 @@ Class Procs:
 	var/obj/structure/frame/A = new /obj/structure/frame(src.loc)
 	var/obj/item/weapon/circuitboard/M = circuit
 	A.circuit = M
-	A.anchored = TRUE
+	A.anchored = 1
 	A.frame_type = M.board_type
 	if(A.frame_type.circuit)
 		A.need_circuit = 0
 
 	if(A.frame_type.frame_class == FRAME_CLASS_ALARM || A.frame_type.frame_class == FRAME_CLASS_DISPLAY)
-		A.density = FALSE
+		A.density = 0
 	else
-		A.density = TRUE
+		A.density = 1
 
 	if(A.frame_type.frame_class == FRAME_CLASS_MACHINE)
 		for(var/obj/D in component_parts)

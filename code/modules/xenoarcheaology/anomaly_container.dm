@@ -3,7 +3,7 @@
 	desc = "Used to safely contain and move anomalies."
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "anomaly_container"
-	density = TRUE
+	density = 1
 
 	var/obj/machinery/artifact/contained
 

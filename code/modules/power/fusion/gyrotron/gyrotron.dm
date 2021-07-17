@@ -18,7 +18,7 @@ GLOBAL_LIST_EMPTY(gyrotrons)
 
 
 /obj/machinery/power/emitter/gyrotron/anchored
-	anchored = TRUE
+	anchored = 1
 	state = 2
 
 /obj/machinery/power/emitter/gyrotron/Initialize()

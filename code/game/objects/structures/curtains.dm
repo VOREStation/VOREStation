@@ -6,7 +6,7 @@
 	plane = MOB_PLANE
 	layer = ABOVE_MOB_LAYER
 	opacity = 1
-	density = FALSE
+	density = 0
 
 /obj/structure/curtain/open
 	icon_state = "open"

@@ -3,9 +3,9 @@
 	desc = "A ladder. You can climb it up and down."
 	icon_state = "ladder01"
 	icon = 'icons/obj/structures/multiz.dmi'
-	density = FALSE
+	density = 0
 	opacity = 0
-	anchored = TRUE
+	anchored = 1
 
 	var/allowed_directions = DOWN
 	var/obj/structure/ladder/target_up

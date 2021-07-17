@@ -42,7 +42,7 @@
 			if(I_HURT)
 				check_armour = "bullet"
 				damage *= 3
-				sharp = TRUE
+				sharp = 1
 				agony = 20
 			if(I_GRAB)
 				check_armour = "melee"

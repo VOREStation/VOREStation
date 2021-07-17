@@ -11,8 +11,8 @@
 	name = "Mulebot"
 	desc = "A Multiple Utility Load Effector bot."
 	icon_state = "mulebot0"
-	anchored = TRUE
-	density = TRUE
+	anchored = 1
+	density = 1
 	health = 150
 	maxHealth = 150
 	mob_bump_flag = HEAVY

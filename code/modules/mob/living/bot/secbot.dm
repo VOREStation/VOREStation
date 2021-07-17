@@ -13,7 +13,7 @@
 	patrol_speed = 2
 	target_speed = 3
 
-	density = TRUE
+	density = 1
 
 	var/default_icon_state = "secbot"
 	var/idcheck = FALSE // If true, arrests for having weapons without authorization.

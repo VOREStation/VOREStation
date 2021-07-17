@@ -11,8 +11,8 @@
 	desc = "A generic vending machine."
 	icon = 'icons/obj/vending.dmi'
 	icon_state = "generic"
-	anchored = TRUE
-	density = TRUE
+	anchored = 1
+	density = 1
 	clicksound = "button"
 
 	// Power

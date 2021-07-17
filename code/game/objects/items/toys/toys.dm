@@ -263,8 +263,8 @@
 	desc = ""
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "null"
-	anchored = TRUE
-	density = FALSE
+	anchored = 1
+	density = 0
 
 /*
  * Toy swords
@@ -827,8 +827,8 @@
 	desc = "A very generic plushie. It seems to not want to exist."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "ianplushie"
-	anchored = FALSE
-	density = TRUE
+	anchored = 0
+	density = 1
 	var/phrase = "I don't want to exist anymore!"
 	var/searching = FALSE
 	var/opened = FALSE	// has this been slit open? this will allow you to store an object in a plushie.
@@ -1442,7 +1442,7 @@
 	name = "inflatable duck"
 	desc = "No bother to sink or swim when you can just float!"
 	icon_state = "inflatable"
-	icon = 'icons/inventory/belt/item.dmi'
+	icon = 'icons/obj/clothing/belts.dmi'
 	slot_flags = SLOT_BELT
 	drop_sound = 'sound/items/drop/rubber.ogg'
 
@@ -1537,8 +1537,8 @@
 	desc = "A generic balloon. How boring."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "ghostballoon"
-	anchored = FALSE
-	density = FALSE
+	anchored = 0
+	density = 0
 
 /obj/structure/balloon/attack_hand(mob/user)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)

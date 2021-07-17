@@ -3,8 +3,8 @@
 	desc = "Analyzes diseases to find out information about them!"
 	icon = 'icons/obj/virology_vr.dmi' //VOREStation Edit
 	icon_state = "analyser"
-	anchored = TRUE
-	density = TRUE
+	anchored = 1
+	density = 1
 
 	var/scanning = 0
 	var/pause = 0

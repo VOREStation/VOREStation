@@ -134,7 +134,7 @@
 	..(newloc,"steel","orange")
 
 /obj/structure/bed/chair/office
-	anchored = FALSE
+	anchored = 0
 	buckle_movable = 1
 
 /obj/structure/bed/chair/office/update_icon()

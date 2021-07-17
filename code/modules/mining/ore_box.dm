@@ -5,7 +5,7 @@
 	icon_state = "orebox0"
 	name = "ore box"
 	desc = "A heavy box used for storing ore."
-	density = TRUE
+	density = 1
 	var/last_update = 0
 	var/list/stored_ore = list()
 

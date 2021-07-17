@@ -22,4 +22,4 @@
 	name = "door"
 	icon_state = "door1"
 	opacity = 1
-	density = TRUE
+	density = 1

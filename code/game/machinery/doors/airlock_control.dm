@@ -152,7 +152,7 @@
 	name = "airlock sensor"
 	desc = "Sends atmospheric readings to a nearby controller."
 
-	anchored = TRUE
+	anchored = 1
 	power_channel = ENVIRON
 
 	var/id_tag
@@ -237,7 +237,7 @@
 	layer = ABOVE_WINDOW_LAYER
 	name = "access button"
 
-	anchored = TRUE
+	anchored = 1
 	power_channel = ENVIRON
 
 	var/master_tag

@@ -14,7 +14,7 @@
 	health = 150
 	melee_damage_lower = 20
 	melee_damage_upper = 25
-	attack_sharp = TRUE
+	attack_sharp = 1
 	attacktext = list("violently stabbed")
 	friendly = list("caresses")
 	movement_cooldown = 0

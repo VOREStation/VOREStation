@@ -30,7 +30,7 @@
 	desc = "A large, flat platform made for putting things on. Or people."
 	icon = 'icons/obj/vehicles_vr.dmi'	//VOREStation Edit
 	icon_state = "cargo_trailer"
-	anchored = FALSE
+	anchored = 0
 	passenger_allowed = 0
 	locked = 0
 
@@ -385,9 +385,9 @@
 	src.active_engines = active_engines
 
 	if(!lead && !tow)
-		anchored = FALSE
+		anchored = 0
 	else
-		anchored = TRUE
+		anchored = 1
 
 // VOREStation Edit Start - Overlay stuff for the chair-like effect
 /obj/vehicle/train/engine/update_icon()

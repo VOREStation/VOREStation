@@ -3,8 +3,8 @@
 	name = "Coin press"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "coinpress0"
-	density = TRUE
-	anchored = TRUE
+	density = 1
+	anchored = 1.0
 	var/obj/machinery/mineral/input = null
 	var/obj/machinery/mineral/output = null
 	var/amt_silver = 0 //amount of silver

@@ -1,8 +1,8 @@
 /obj/machinery/disease2/isolator/
 	name = "pathogenic isolator"
 	desc = "Used to isolate and identify diseases, allowing for comparison with a remote database."
-	density = TRUE
-	anchored = TRUE
+	density = 1
+	anchored = 1
 	icon = 'icons/obj/virology_vr.dmi' //VOREStation Edit
 	icon_state = "isolator"
 	var/isolating = 0

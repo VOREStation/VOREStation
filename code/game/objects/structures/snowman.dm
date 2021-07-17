@@ -3,7 +3,7 @@
 	icon = 'icons/obj/snowman.dmi'
 	icon_state = "snowman"
 	desc = "A happy little snowman smiles back at you!"
-	anchored = TRUE
+	anchored = 1
 
 /obj/structure/snowman/attack_hand(mob/user as mob)
 	if(user.a_intent == I_HURT)

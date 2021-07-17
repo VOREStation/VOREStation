@@ -1,6 +1,6 @@
 /obj/structure/AIcore
-	density = TRUE
-	anchored = FALSE
+	density = 1
+	anchored = 0
 	name = "\improper AI core"
 	icon = 'icons/mob/AI.dmi'
 	icon_state = "0"
@@ -18,7 +18,7 @@
 				playsound(src, P.usesound, 50, 1)
 				if(do_after(user, 20 * P.toolspeed))
 					to_chat(user, "<span class='notice'>You wrench the frame into place.</span>")
-					anchored = TRUE
+					anchored = 1
 					state = 1
 			if(istype(P, /obj/item/weapon/weldingtool))
 				var/obj/item/weapon/weldingtool/WT = P
@@ -36,7 +36,7 @@
 				playsound(src, P.usesound, 50, 1)
 				if(do_after(user, 20 * P.toolspeed))
 					to_chat(user, "<span class='notice'>You unfasten the frame.</span>")
-					anchored = FALSE
+					anchored = 0
 					state = 0
 			if(istype(P, /obj/item/weapon/circuitboard/aicore) && !circuit)
 				playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
@@ -187,7 +187,7 @@ GLOBAL_LIST_BOILERPLATE(all_deactivated_AI_cores, /obj/structure/AIcore/deactiva
 	name = "inactive AI"
 	icon = 'icons/mob/AI.dmi'
 	icon_state = "ai-empty"
-	anchored = TRUE
+	anchored = 1
 	state = 20//So it doesn't interact based on the above. Not really necessary.
 
 /obj/structure/AIcore/deactivated/Destroy()
@@ -240,7 +240,7 @@ GLOBAL_LIST_BOILERPLATE(all_deactivated_AI_cores, /obj/structure/AIcore/deactiva
 				user.visible_message("<b>\The [user]</b> decides not to unbolt \the [src].")
 				return
 			user.visible_message("<b>\The [user]</b> finishes unfastening \the [src]!")
-			anchored = FALSE
+			anchored = 0
 			return
 		else
 			user.visible_message("<b>\The [user]</b> starts to bolt \the [src] to the plating...")
@@ -249,7 +249,7 @@ GLOBAL_LIST_BOILERPLATE(all_deactivated_AI_cores, /obj/structure/AIcore/deactiva
 				user.visible_message("<b>\The [user]</b> decides not to bolt \the [src].")
 				return
 			user.visible_message("<b>\The [user]</b> finishes fastening down \the [src]!")
-			anchored = TRUE
+			anchored = 1
 			return
 	else
 		return ..()

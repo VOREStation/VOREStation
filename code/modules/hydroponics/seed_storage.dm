@@ -22,8 +22,8 @@
 	desc = "It stores, sorts, and dispenses seeds."
 	icon = 'icons/obj/vending.dmi'
 	icon_state = "seeds"
-	density = TRUE
-	anchored = TRUE
+	density = 1
+	anchored = 1
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 100
 

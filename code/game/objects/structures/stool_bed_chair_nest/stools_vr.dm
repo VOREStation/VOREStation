@@ -9,7 +9,7 @@
 	throwforce = 10
 	w_class = ITEMSIZE_HUGE
 	base_icon = "bar_stool_base"
-	anchored = TRUE
+	anchored = 1
 
 /obj/item/weapon/stool/baystool/padded
 	icon_state = "bar_stool_padded_preview" //set for the map

@@ -10,8 +10,8 @@
 	pickup_sound = 'sound/items/pickup/sword.ogg'
 	throwforce = 8
 	w_class = ITEMSIZE_NORMAL
-	sharp = TRUE
-	edge = FALSE
+	sharp = 1
+	edge = 0
 
 /obj/item/weapon/arrow/proc/removed() //Helper for metal rods falling apart.
 	return
@@ -19,8 +19,8 @@
 /obj/item/weapon/spike
 	name = "alloy spike"
 	desc = "It's about a foot of weird silver metal with a wicked point."
-	sharp = TRUE
-	edge = FALSE
+	sharp = 1
+	edge = 0
 	throwforce = 5
 	w_class = ITEMSIZE_SMALL
 	icon = 'icons/obj/weapons.dmi'

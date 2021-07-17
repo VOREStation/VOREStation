@@ -22,11 +22,11 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 
 /obj/effect/rune
 	desc = "A strange collection of symbols drawn in blood."
-	anchored = TRUE
+	anchored = 1
 	icon = 'icons/obj/rune.dmi'
 	icon_state = "1"
 	var/visibility = 0
-	unacidable = TRUE
+	unacidable = 1
 	layer = TURF_LAYER
 
 

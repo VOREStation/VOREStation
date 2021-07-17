@@ -122,9 +122,9 @@
 			return
 
 		//move out to the destination
-		child.anchored = FALSE
+		child.anchored = 0
 		step_to(child, target_turf)
-		child.anchored = TRUE
+		child.anchored = 1
 		child.update_icon()
 
 		//see if anything is there

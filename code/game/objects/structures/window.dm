@@ -2,13 +2,13 @@
 	name = "window"
 	desc = "A window."
 	icon = 'icons/obj/structures_vr.dmi' // VOREStation Edit - New icons
-	density = TRUE
+	density = 1
 	can_atmos_pass = ATMOS_PASS_PROC
 	w_class = ITEMSIZE_NORMAL
 
 	layer = WINDOW_LAYER
 	pressure_resistance = 4*ONE_ATMOSPHERE
-	anchored = TRUE
+	anchored = 1.0
 	flags = ON_BORDER
 	var/maxhealth = 14.0
 	var/maximal_heat = T0C + 100 		// Maximal heat before this window begins taking damage from fire
@@ -167,7 +167,7 @@
 		tforce = I.throwforce
 	if(reinf) tforce *= 0.25
 	if(health - tforce <= 7 && !reinf)
-		anchored = FALSE
+		anchored = 0
 		update_verbs()
 		update_nearby_icons()
 		step(src, get_dir(AM, src))
@@ -325,7 +325,7 @@
 			user.do_attack_animation(src)
 			hit(W.force)
 			if(health <= 7)
-				anchored = FALSE
+				anchored = 0
 				update_nearby_icons()
 				step(src, get_dir(user, src))
 		else
@@ -392,7 +392,7 @@
 
 	//player-constructed windows
 	if (constructed)
-		anchored = FALSE
+		anchored = 0
 		state = 0
 		update_verbs()
 
@@ -405,7 +405,7 @@
 
 
 /obj/structure/window/Destroy()
-	density = FALSE
+	density = 0
 	update_nearby_tiles()
 	var/turf/location = loc
 	. = ..()

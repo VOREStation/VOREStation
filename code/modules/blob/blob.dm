@@ -6,9 +6,9 @@
 	light_range = 2
 	light_color = "#b5ff5b"
 	desc = "Some blob creature thingy"
-	density = TRUE
+	density = 1
 	opacity = 0
-	anchored = TRUE
+	anchored = 1
 	mouse_opacity = 2
 
 	var/maxHealth = 30
@@ -193,7 +193,7 @@
 	update_nearby_tiles()
 
 /obj/effect/blob/shield/Destroy()
-	density = FALSE
+	density = 0
 	update_nearby_tiles()
 	..()
 

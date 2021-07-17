@@ -94,12 +94,12 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "energynet"
 
-	density = TRUE
+	density = 1
 	opacity = 0
 	mouse_opacity = 1
-	anchored = FALSE
+	anchored = 0
 
-	can_buckle = TRUE
+	can_buckle = 1
 	buckle_lying = 0
 	buckle_dir = SOUTH
 

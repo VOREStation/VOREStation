@@ -7,8 +7,8 @@
 	desc = "A huge pipe segment used for constructing disposal systems."
 	icon = 'icons/obj/pipes/disposal.dmi'
 	icon_state = "conpipe-s"
-	anchored = FALSE
-	density = FALSE
+	anchored = 0
+	density = 0
 	pressure_resistance = 5*ONE_ATMOSPHERE
 	matter = list(MAT_STEEL = 1850)
 	level = 2
@@ -37,7 +37,7 @@
 
 	switch(ptype)
 		if(DISPOSAL_PIPE_BIN, DISPOSAL_PIPE_OUTLET, DISPOSAL_PIPE_CHUTE)
-			density = TRUE
+			density = 1
 		if(DISPOSAL_PIPE_SORTER, DISPOSAL_PIPE_SORTER_FLIPPED)
 			subtype = newsubtype
 
@@ -248,12 +248,12 @@
 	// wrench: (un)anchor
 	if(I.is_wrench())
 		if(anchored)
-			anchored = FALSE
+			anchored = 0
 			if(ispipe)
 				level = 2
-				density = FALSE
+				density = 0
 			else
-				density = TRUE
+				density = 1
 			to_chat(user, "You detach the [nicetype] from the underfloor.")
 		else
 			if(ptype == DISPOSAL_PIPE_BIN || ptype == DISPOSAL_PIPE_OUTLET || ptype == DISPOSAL_PIPE_CHUTE) // Disposal or outlet
@@ -274,12 +274,12 @@
 						to_chat(user, "There is already a [nicetype] at that location.")
 						return
 
-			anchored = TRUE
+			anchored = 1
 			if(ispipe)
 				level = 1 // We don't want disposal bins to disappear under the floors
-				density = FALSE
+				density = 0
 			else
-				density = TRUE // We don't want disposal bins or outlets to go density 0
+				density = 1 // We don't want disposal bins or outlets to go density 0
 			to_chat(user, "You attach the [nicetype] to the underfloor.")
 		playsound(src, I.usesound, 100, 1)
 		update()

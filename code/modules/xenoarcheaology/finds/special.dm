@@ -170,7 +170,7 @@
 	name = "shadow wight"
 	icon = 'icons/mob/mob.dmi'
 	icon_state = "shade"
-	density = TRUE
+	density = 1
 
 /obj/effect/shadow_wight/New()
 	START_PROCESSING(SSobj, src)

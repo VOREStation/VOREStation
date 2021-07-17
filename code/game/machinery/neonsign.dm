@@ -9,7 +9,7 @@
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 2
 	active_power_usage = 4
-	anchored = TRUE
+	anchored = 1
 	var/lit = 0
 	var/id = null
 	var/on_icon = "sign_on"
