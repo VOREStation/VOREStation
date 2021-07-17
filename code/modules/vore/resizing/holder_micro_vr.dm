@@ -4,11 +4,11 @@
 	name = "micro"
 	desc = "Another crewmember, small enough to fit in your hand."
 	icon_state = "micro"
-	icon_override = 'icons/mob/head_vr.dmi'
+	icon_override = 'icons/inventory/head/mob_vr.dmi'
 	slot_flags = SLOT_FEET | SLOT_HEAD | SLOT_ID
 	w_class = ITEMSIZE_SMALL
-	item_icons = list() // No in-hand sprites (for now, anyway, we could totally add some)
-	pixel_y = 0			// Override value from parent.
+	item_icons = null // No in-hand sprites (for now, anyway, we could totally add some)
+	pixel_y = 0		  // Override value from parent.
 
 /obj/item/weapon/holder/micro/examine(mob/user)
 	. = list()

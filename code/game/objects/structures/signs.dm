@@ -1,8 +1,8 @@
 /obj/structure/sign
 	icon = 'icons/obj/decals.dmi'
-	anchored = 1
+	anchored = TRUE
 	opacity = 0
-	density = 0
+	density = FALSE
 	plane = OBJ_PLANE //VOREStation Edit
 	layer = ABOVE_JUNK_LAYER //VOREStation Edit
 	w_class = ITEMSIZE_NORMAL

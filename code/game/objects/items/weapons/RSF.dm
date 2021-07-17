@@ -11,8 +11,9 @@ RSF
 	icon = 'icons/obj/tools_vr.dmi' //VOREStation Edit
 	icon_state = "rsf" //VOREStation Edit
 	opacity = 0
-	density = 0
-	anchored = 0.0
+	density = FALSE
+	anchored = FALSE
+	matter = list(DEFAULT_WALL_MATERIAL = 25000)
 	var/stored_matter = 30
 	var/mode = 1
 	var/obj/item/weapon/reagent_containers/glasstype = /obj/item/weapon/reagent_containers/food/drinks/metaglass

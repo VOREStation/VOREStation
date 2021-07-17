@@ -3,7 +3,7 @@
 	desc = "Let there be light!"
 	icon = 'icons/obj/machines/floodlight.dmi'
 	icon_state = "flood00"
-	density = 1
+	density = TRUE
 	light_system = MOVABLE_LIGHT_DIRECTIONAL
 	light_cone_y_offset = 8
 	var/on = 0

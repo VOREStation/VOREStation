@@ -94,7 +94,7 @@
 	icon = 'icons/obj/device.dmi'
 	icon_state = "geiger_wall"
 	item_state = "geiger_wall"
-	anchored = 1
+	anchored = TRUE
 	scanning = 1
 	radiation_count = 0
 	plane = TURF_PLANE

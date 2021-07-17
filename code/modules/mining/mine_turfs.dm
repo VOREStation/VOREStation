@@ -5,7 +5,7 @@ var/list/mining_overlay_cache = list()
 	name = "impassable rock"
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "rock-dark"
-	density = 1
+	density = TRUE
 
 /turf/simulated/mineral //wall piece
 	name = "rock"
@@ -18,7 +18,7 @@ var/list/mining_overlay_cache = list()
 	oxygen = 0
 	nitrogen = 0
 	opacity = 1
-	density = 1
+	density = TRUE
 	blocks_air = 1
 	temperature = T0C
 
@@ -73,6 +73,30 @@ var/list/mining_overlay_cache = list()
 	rock_icon_state = "rock-light"
 	random_icon = 1
 
+/turf/simulated/mineral/alt
+	icon_state = "rock-alt"
+	rock_side_icon_state = "rock_side-alt"
+	sand_icon_state = "asteroid"
+	rock_icon_state = "rock-alt"
+
+/turf/simulated/mineral/icey
+	icon_state = "rock-icey"
+	rock_side_icon_state = "rock_side-icey"
+	sand_icon_state = "sand-icey" // to be replaced
+	rock_icon_state = "rock-icey"
+
+/turf/simulated/mineral/crystal
+	icon_state = "rock-crystal"
+	rock_side_icon_state = "rock_side-crystal"
+	sand_icon_state = "sand-icey" // to be replaced
+	rock_icon_state = "rock-crystal"
+
+/turf/simulated/mineral/crystal_shiny
+	icon_state = "rock-crystal-shiny"
+	rock_side_icon_state = "rock_side-crystal"
+	sand_icon_state = "sand-icey" // to be replaced
+	rock_icon_state = "rock-crystal-shiny"
+
 /turf/simulated/mineral/ignore_mapgen
 	ignore_mapgen = 1
 
@@ -80,7 +104,7 @@ var/list/mining_overlay_cache = list()
 	name = "sand"
 	icon = 'icons/turf/flooring/asteroid.dmi'
 	icon_state = "asteroid"
-	density = 0
+	density = FALSE
 	opacity = 0
 	blocks_air = 0
 	can_build_into_floor = TRUE
@@ -89,6 +113,10 @@ var/list/mining_overlay_cache = list()
 /turf/simulated/mineral/floor/light
 	icon_state = "sand-light"
 	sand_icon_state = "sand-light"
+
+/turf/simulated/mineral/floor/icey
+	icon_state = "sand-icey"
+	sand_icon_state = "sand-icey" // to be replaced
 
 /turf/simulated/mineral/floor/light_border
 	icon_state = "sand-light-border"
@@ -108,7 +136,7 @@ var/list/mining_overlay_cache = list()
 /turf/simulated/mineral/proc/make_floor()
 	if(!density && !opacity)
 		return
-	density = 0
+	density = FALSE
 	opacity = 0
 	blocks_air = 0
 	can_build_into_floor = TRUE
@@ -117,7 +145,7 @@ var/list/mining_overlay_cache = list()
 /turf/simulated/mineral/proc/make_wall()
 	if(density && opacity)
 		return
-	density = 1
+	density = TRUE
 	opacity = 1
 	blocks_air = 1
 	can_build_into_floor = FALSE

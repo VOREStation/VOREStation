@@ -15,7 +15,7 @@
 	melee_damage_lower = 25
 	melee_damage_upper = 30
 	attack_armor_pen = 15
-	attack_sharp = 1
+	attack_sharp = TRUE
 	attack_edge = 1
 	attacktext = list("slashed")
 	friendly = list("pinches")

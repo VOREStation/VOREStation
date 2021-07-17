@@ -327,7 +327,7 @@
 // Things that prevent objects standing on them from falling into turf below
 /obj/structure/catwalk/CanFallThru(atom/movable/mover as mob|obj, turf/target as turf)
 	if((target.z < z) && !hatch_open)
-		return FALSE // TODO - Technically should be density = 1 and flags |= ON_BORDER
+		return FALSE // TODO - Technically should be density = TRUE and flags |= ON_BORDER
 	if(!isturf(mover.loc))
 		return FALSE // Only let loose floor items fall. No more snatching things off people's hands.
 	else
@@ -345,7 +345,7 @@
 	if(!isturf(mover.loc))
 		return FALSE // Only let loose floor items fall. No more snatching things off people's hands.
 	else
-		return FALSE // TODO - Technically should be density = 1 and flags |= ON_BORDER
+		return FALSE // TODO - Technically should be density = TRUE and flags |= ON_BORDER
 
 // So you'll slam when falling onto a grille
 /obj/structure/lattice/CheckFall(var/atom/movable/falling_atom)

@@ -158,6 +158,15 @@
 				usr.put_in_l_hand(src)
 		src.add_fingerprint(usr)
 
+/obj/item/weapon/storage/AltClick(mob/user)
+	if(user in is_seeing)
+		src.close(user)
+	// I would think there should be some incap check here or something
+	// But MouseDrop doesn't use one (as of this writing), so...
+	else if(isliving(user) && Adjacent(user))
+		src.open(user)
+	else
+		return ..()
 
 /obj/item/weapon/storage/proc/return_inv()
 
@@ -653,9 +662,20 @@
 /obj/item/weapon/storage/verb/quick_empty()
 	set name = "Empty Contents"
 	set category = "Object"
+	set src in view(1)
 
-	if(((!(ishuman(usr) || isrobot(usr))) && (src.loc != usr)) || usr.stat || usr.restrained())
+	// Only humans and robots can dump contents
+	if(!(ishuman(usr) || isrobot(usr)))
 		return
+
+	// Hard to do when you're KO'd
+	if(usr.incapacitated())
+		return
+
+	// Has to be at least adjacent (just for safety, src in view should handle this already)
+	if(!Adjacent(usr))
+		return
+
 	drop_contents()
 
 /obj/item/weapon/storage/proc/drop_contents() // why is this a proc? literally just for RPEDs

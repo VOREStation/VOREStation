@@ -5,23 +5,23 @@
 	name = "fish skull"
 	desc = "You... you're not actually going to wear that, right?"
 	icon_state = "fishskull"
-	icon = 'icons/obj/clothing/hats_vr.dmi'
-	icon_override = 'icons/mob/head_vr.dmi'
+	icon = 'icons/inventory/head/item_vr.dmi'
+	icon_override = 'icons/inventory/head/mob_vr.dmi'
 	flags_inv = HIDEEARS|BLOCKHAIR
 
 /obj/item/clothing/head/crown
 	name = "crown"
 	desc = "How regal!"
 	icon_state = "crown"
-	icon = 'icons/obj/clothing/hats_vr.dmi'
-	icon_override = 'icons/mob/head_vr.dmi'
+	icon = 'icons/inventory/head/item_vr.dmi'
+	icon_override = 'icons/inventory/head/mob_vr.dmi'
 
 /obj/item/clothing/head/fancy_crown
 	name = "fancy crown"
 	desc = "How extraordinarily regal!"
 	icon_state = "fancycrown"
-	icon = 'icons/obj/clothing/hats_vr.dmi'
-	icon_override = 'icons/mob/head_vr.dmi'
+	icon = 'icons/inventory/head/item_vr.dmi'
+	icon_override = 'icons/inventory/head/mob_vr.dmi'
 
 /obj/item/clothing/head/shiny_hood
 	icon_override = 'icons/mob/modular_shiny_vr.dmi'
@@ -51,8 +51,8 @@
 /obj/item/clothing/head/pelt
 	name = "Bear pelt"
 	desc = "A luxurious bear pelt, good to keep warm in winter. Or to sleep through winter."
-	icon = 'icons/obj/clothing/hats_vr.dmi'
-	icon_override = 'icons/mob/head_vr.dmi'
+	icon = 'icons/inventory/head/item_vr.dmi'
+	icon_override = 'icons/inventory/head/mob_vr.dmi'
 	icon_state = "bearpelt_brown"
 	item_state = "bearpelt_brown"
 
@@ -92,16 +92,16 @@
 	name = "pizza delivery visor"
 	desc = "A fancy visor showing alignment to pizza delivery service. Extremely risky career choice."
 	icon_state = "pizzadelivery"
-	icon = 'icons/obj/clothing/hats_vr.dmi'
-	icon_override = 'icons/mob/head_vr.dmi'
+	icon = 'icons/inventory/head/item_vr.dmi'
+	icon_override = 'icons/inventory/head/mob_vr.dmi'
 
 //////////TALON HATS//////////
 
 /obj/item/clothing/head/soft/talon
 	name = "ITV baseball cap"
 	desc = "It's a ballcap bearing the colors of ITV."
-	icon = 'icons/obj/clothing/hats_vr.dmi'
-	icon_override = 'icons/mob/head_vr.dmi'
+	icon = 'icons/inventory/head/item_vr.dmi'
+	icon_override = 'icons/inventory/head/mob_vr.dmi'
 	icon_state = "talonsoft"
 	item_state = "talonsoft"
 	item_state_slots = list(slot_r_hand_str = "blacksoft", slot_l_hand_str = "blacksoft")
@@ -109,23 +109,23 @@
 /obj/item/clothing/head/caphat/talon
 	name = "ITV nautical hat"
 	desc = "It's a classic nautical hat bearing the colors of ITV. Perfect for commanding the Talon."
-	icon = 'icons/obj/clothing/hats_vr.dmi'
-	icon_override = 'icons/mob/head_vr.dmi'
+	icon = 'icons/inventory/head/item_vr.dmi'
+	icon_override = 'icons/inventory/head/mob_vr.dmi'
 	icon_state = "talon_captain_cap"
 	item_state = "taloncaptaincap"
 
 /obj/item/clothing/head/beret/talon
 	name = "ITV beret"
 	desc = "It's a basic baret colored to match ITV's uniforms."
-	icon = 'icons/obj/clothing/hats_vr.dmi'
-	icon_override = 'icons/mob/head_vr.dmi'
+	icon = 'icons/inventory/head/item_vr.dmi'
+	icon_override = 'icons/inventory/head/mob_vr.dmi'
 	icon_state = "beret_talon"
 	item_state = "baret_talon"
 
 /obj/item/clothing/head/beret/talon/command
 	name = "ITV officer beret"
 	desc = "It's a basic baret colored to match ITV's uniforms with a badge pinned on the front. Perfect for commanders."
-	icon = 'icons/obj/clothing/hats_vr.dmi'
-	icon_override = 'icons/mob/head_vr.dmi'
+	icon = 'icons/inventory/head/item_vr.dmi'
+	icon_override = 'icons/inventory/head/mob_vr.dmi'
 	icon_state = "beret_talon_officer"
 	item_state = "baret_talon_command"

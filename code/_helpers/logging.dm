@@ -172,6 +172,9 @@
 #endif
 
 /proc/log_tgui(user_or_client, text)
+	if(!text)
+		stack_trace("Pointless log_tgui message")
+		return
 	var/entry = ""
 	if(!user_or_client)
 		entry += "no user"

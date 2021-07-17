@@ -15,16 +15,16 @@
 	//Species-specific stuff.
 	species_restricted = list("Human", "Promethean")
 	sprite_sheets_refit = list(
-		SPECIES_UNATHI = 'icons/mob/species/unathi/helmet.dmi',
-		SPECIES_TAJ = 'icons/mob/species/tajaran/helmet.dmi',
-		SPECIES_SKRELL = 'icons/mob/species/skrell/helmet.dmi'
+		SPECIES_UNATHI = 'icons/inventory/head/mob_unathi.dmi',
+		SPECIES_TAJ = 'icons/inventory/head/mob_tajaran.dmi',
+		SPECIES_SKRELL = 'icons/inventory/head/mob_skrell.dmi'
 		//Teshari have a general sprite sheet defined in modules/clothing/clothing.dm
 		)
 	sprite_sheets_obj = list(
-		SPECIES_UNATHI = 'icons/obj/clothing/species/unathi/hats.dmi',
-		SPECIES_TAJ = 'icons/obj/clothing/species/tajaran/hats.dmi',
-		SPECIES_SKRELL = 'icons/obj/clothing/species/skrell/hats.dmi',
-		SPECIES_TESHARI = 'icons/obj/clothing/species/teshari/hats.dmi'
+		SPECIES_UNATHI = 'icons/inventory/head/item_unathi.dmi',
+		SPECIES_TAJ = 'icons/inventory/head/item_tajaran.dmi',
+		SPECIES_SKRELL = 'icons/inventory/head/item_skrell.dmi',
+		SPECIES_TESHARI = 'icons/inventory/head/item_teshari.dmi'
 		)
 
 	light_overlay = "helmet_light"
@@ -45,16 +45,16 @@
 
 	species_restricted = list("Human", SPECIES_SKRELL, "Promethean")
 	sprite_sheets_refit = list(
-		SPECIES_UNATHI = 'icons/mob/species/unathi/suit.dmi',
-		SPECIES_TAJ = 'icons/mob/species/tajaran/suit.dmi',
-		SPECIES_SKRELL = 'icons/mob/species/skrell/suit.dmi'
+		SPECIES_UNATHI = 'icons/inventory/suit/mob_unathi.dmi',
+		SPECIES_TAJ = 'icons/inventory/suit/mob_tajaran.dmi',
+		SPECIES_SKRELL = 'icons/inventory/suit/mob_skrell.dmi'
 		//Teshari have a general sprite sheet defined in modules/clothing/clothing.dm
 		)
 	sprite_sheets_obj = list(
-		SPECIES_UNATHI = 'icons/obj/clothing/species/unathi/suits.dmi',
-		SPECIES_TAJ = 'icons/obj/clothing/species/tajaran/suits.dmi',
-		SPECIES_SKRELL = 'icons/obj/clothing/species/skrell/suits.dmi',
-		SPECIES_TESHARI = 'icons/obj/clothing/species/teshari/suits.dmi'
+		SPECIES_UNATHI = 'icons/inventory/suit/item_unathi.dmi',
+		SPECIES_TAJ = 'icons/inventory/suit/item_tajaran.dmi',
+		SPECIES_SKRELL = 'icons/inventory/suit/item_skrell.dmi',
+		SPECIES_TESHARI = 'icons/inventory/suit/item_teshari.dmi'
 		)
 
 	//Breach thresholds, should ideally be inherited by most (if not all) voidsuits.
@@ -97,28 +97,28 @@
 
 	if(boots)
 		if (H.equip_to_slot_if_possible(boots, slot_shoes))
-			boots.canremove = 0
+			boots.canremove = FALSE
 
 	if(helmet)
 		if(H.head)
 			to_chat(M, "You are unable to deploy your suit's helmet as \the [H.head] is in the way.")
 		else if (H.equip_to_slot_if_possible(helmet, slot_head))
 			to_chat(M, "Your suit's helmet deploys with a hiss.")
-			helmet.canremove = 0
+			helmet.canremove = FALSE
 
 	if(tank)
 		if(H.s_store) //In case someone finds a way.
 			to_chat(M, "Alarmingly, the valve on your suit's installed tank fails to engage.")
 		else if (H.equip_to_slot_if_possible(tank, slot_s_store))
 			to_chat(M, "The valve on your suit's installed tank safely engages.")
-			tank.canremove = 0
+			tank.canremove = FALSE
 
 	if(cooler)
 		if(H.s_store) //Ditto
 			to_chat(M, "Alarmingly, the cooling unit installed into your suit fails to deploy.")
 		else if (H.equip_to_slot_if_possible(cooler, slot_s_store))
 			to_chat(M, "Your suit's cooling unit deploys.")
-			cooler.canremove = 0
+			cooler.canremove = FALSE
 
 /obj/item/clothing/suit/space/void/dropped()
 	..()
@@ -126,7 +126,7 @@
 	var/mob/living/carbon/human/H
 
 	if(helmet)
-		helmet.canremove = 1
+		helmet.canremove = TRUE
 		H = helmet.loc
 		if(istype(H))
 			if(helmet && H.head == helmet)
@@ -134,7 +134,7 @@
 				helmet.forceMove(src)
 
 	if(boots)
-		boots.canremove = 1
+		boots.canremove = TRUE
 		H = boots.loc
 		if(istype(H))
 			if(boots && H.shoes == boots)
@@ -142,11 +142,11 @@
 				boots.forceMove(src)
 
 	if(tank)
-		tank.canremove = 1
+		tank.canremove = TRUE
 		tank.forceMove(src)
 
 	if(cooler)
-		cooler.canremove = 1
+		cooler.canremove = TRUE
 		cooler.forceMove(src)
 
 /obj/item/clothing/suit/space/void/proc/attach_helmet(var/obj/item/clothing/head/helmet/space/void/helm)
@@ -188,7 +188,7 @@
 
 	if(H.head == helmet)
 		to_chat(H, "<span class='notice'>You retract your suit helmet.</span>")
-		helmet.canremove = 1
+		helmet.canremove = TRUE
 		H.drop_from_inventory(helmet)
 		helmet.forceMove(src)
 	else
@@ -197,7 +197,7 @@
 			return
 		if(H.equip_to_slot_if_possible(helmet, slot_head))
 			helmet.pickup(H)
-			helmet.canremove = 0
+			helmet.canremove = FALSE
 			to_chat(H, "<span class='info'>You deploy your suit helmet, sealing you off from the world.</span>")
 	
 	if(helmet.light_system == STATIC_LIGHT)
@@ -229,7 +229,7 @@
 		removing = cooler
 		cooler = null
 	to_chat(H, "<span class='info'>You press the emergency release, ejecting \the [removing] from your suit.</span>")
-	removing.canremove = 1
+	removing.canremove = TRUE
 	H.drop_from_inventory(removing)
 
 /obj/item/clothing/suit/space/void/attackby(obj/item/W as obj, mob/user as mob)

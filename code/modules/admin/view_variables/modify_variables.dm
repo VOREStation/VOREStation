@@ -98,7 +98,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 	L += var_value
 
 	if(IS_VALID_ASSOC_KEY(var_value))
-		switch(tgui_alert(usr, "Would you like to associate a value with the list entry?","List VV","Yes","No"))
+		switch(tgui_alert(usr, "Would you like to associate a value with the list entry?","List VV",list("Yes","No")))
 			if("Yes")
 				L[var_value] = mod_list_add_ass(O) //hehe
 	if (O)
@@ -117,7 +117,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 		return
 
 	if(L.len > 1000)
-		var/confirm = tgui_alert(src, "The list you're trying to edit is very long, continuing may crash the server.", "Warning", "Continue", "Abort")
+		var/confirm = tgui_alert(src, "The list you're trying to edit is very long, continuing may crash the server.", "Long List!", list("Warning", "Continue", "Abort"))
 		if(confirm != "Continue")
 			return
 
@@ -181,7 +181,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 		return
 	var/assoc = 0
 	if(IS_VALID_ASSOC_KEY(L[index]))
-		var/prompt = tgui_alert(src, "Do you want to edit the key or its assigned value?", "Associated List", "Key", "Assigned Value", "Cancel")
+		var/prompt = tgui_alert(src, "Do you want to edit the key or its assigned value?", "Associated List", list("Key", "Assigned Value", "Cancel"))
 		if (prompt == "Cancel")
 			return
 		if (prompt == "Assigned Value")

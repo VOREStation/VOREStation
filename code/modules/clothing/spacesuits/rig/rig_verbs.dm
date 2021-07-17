@@ -9,6 +9,11 @@
 	if(wearer && (wearer.back == src || wearer.belt == src))
 		tgui_interact(usr)
 
+// So the UI button clicks come here
+/obj/item/weapon/rig/ui_action_click()
+	if(usr == wearer && (wearer.back == src || wearer.belt == src))
+		tgui_interact(usr)
+
 /obj/item/weapon/rig/verb/toggle_vision()
 
 	set name = "Toggle Visor"

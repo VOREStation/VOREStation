@@ -946,7 +946,7 @@
 /obj/random/thermalponcho
 	name = "random thermal poncho"
 	desc = "This is a thermal poncho spawn."
-	icon = 'icons/obj/clothing/ties.dmi'
+	icon = 'icons/inventory/accessory/item.dmi'
 	icon_state = "classicponcho"
 
 /obj/random/thermalponcho/item_to_spawn()
@@ -959,7 +959,7 @@
 /obj/random/pouch
 	name = "Random Storage Pouch"
 	desc = "This is a random storage pouch."
-	icon = 'icons/obj/clothing/pouches.dmi'
+	icon = 'icons/inventory/pockets/item.dmi'
 	icon_state = "random"
 
 /obj/random/pouch/item_to_spawn()

@@ -106,7 +106,7 @@
 	name = "autojoin wall"
 	icon_state = "light"
 	opacity = 1
-	density = 1
+	density = TRUE
 	blocks_air = 1
 
 	var/base_state = "light" //The base iconstate to base sprites on

@@ -5,7 +5,7 @@
 	desc = "A rectangular steel crate."
 	icon = 'icons/obj/closets/bases/crate.dmi'
 	closet_appearance = /decl/closet_appearance/crate
-	climbable = 1
+	climbable = TRUE
 	dir = 4 //Spawn facing 'forward' by default.
 	var/points_per_crate = 5
 	var/rigged = 0

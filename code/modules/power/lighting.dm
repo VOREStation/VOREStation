@@ -24,7 +24,7 @@ var/global/list/light_type_cache = list()
 	desc = "A light fixture under construction."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "tube-construct-stage1"
-	anchored = 1
+	anchored = TRUE
 	plane = MOB_PLANE
 	layer = ABOVE_MOB_LAYER
 	var/stage = 1
@@ -166,7 +166,7 @@ var/global/list/light_type_cache = list()
 	desc = "A small light fixture under construction."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "bulb-construct-stage1"
-	anchored = 1
+	anchored = TRUE
 	stage = 1
 	fixture_type = /obj/machinery/light/small
 	sheets_refunded = 1
@@ -185,7 +185,7 @@ var/global/list/light_type_cache = list()
 	desc = "A floor light fixture under construction."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "flamp-construct-stage1"
-	anchored = 0
+	anchored = FALSE
 	plane = OBJ_PLANE
 	layer = OBJ_LAYER
 	stage = 1
@@ -208,7 +208,7 @@ var/global/list/light_type_cache = list()
 	var/base_state = "tube"		// base description and icon_state
 	icon_state = "tube1"
 	desc = "A lighting fixture."
-	anchored = 1
+	anchored = TRUE
 	plane = MOB_PLANE
 	layer = ABOVE_MOB_LAYER
 	use_power = USE_POWER_ACTIVE
@@ -1051,7 +1051,7 @@ var/global/list/light_type_cache = list()
 		src.visible_message("<font color='red'>[name] shatters.</font>","<font color='red'> You hear a small glass object shatter.</font>")
 		status = LIGHT_BROKEN
 		force = 5
-		sharp = 1
+		sharp = TRUE
 		playsound(src, 'sound/effects/Glasshit.ogg', 75, 1)
 		update_icon()
 

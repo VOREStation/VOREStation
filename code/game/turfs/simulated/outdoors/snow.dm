@@ -53,6 +53,16 @@
 	desc = "Looks slippery."
 	edge_blending_priority = 0
 
+/turf/simulated/floor/outdoors/ice/dark
+	name = "black ice"
+	icon_state = "ice_dark"
+	desc = "An uneven surface of dark rocks glazed over by solid ice. Looks slippey, maybe even painful"
+
+/turf/simulated/floor/outdoors/ice/dark_smooth
+	name = "smooth black ice"
+	icon_state = "ice_dark_smooth"
+	desc = "Dark rock that has been smoothened to be perfectly even. It's coated in a layer of slippey ice"
+
 /turf/simulated/floor/outdoors/ice/Entered(var/mob/living/M)
 	sleep(1 * world.tick_lag)
 	if(istype(M, /mob/living))

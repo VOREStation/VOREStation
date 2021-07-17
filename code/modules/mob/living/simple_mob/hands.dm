@@ -52,7 +52,7 @@
 
 		//determine icon state to use
 		var/t_state
-		if(r_hand.item_state_slots && r_hand.item_state_slots[slot_r_hand_str])
+		if(LAZYACCESS(r_hand.item_state_slots, slot_r_hand_str))
 			t_state = r_hand.item_state_slots[slot_r_hand_str]
 		else if(r_hand.item_state)
 			t_state = r_hand.item_state
@@ -61,7 +61,7 @@
 
 		//determine icon to use
 		var/icon/t_icon
-		if(r_hand.item_icons && (slot_r_hand_str in r_hand.item_icons))
+		if(LAZYACCESS(r_hand.item_icons, slot_r_hand_str))
 			t_icon = r_hand.item_icons[slot_r_hand_str]
 		else if(r_hand.icon_override)
 			t_state += "_r"
@@ -89,7 +89,7 @@
 
 		//determine icon state to use
 		var/t_state
-		if(l_hand.item_state_slots && l_hand.item_state_slots[slot_l_hand_str])
+		if(LAZYACCESS(l_hand.item_state_slots, slot_l_hand_str))
 			t_state = l_hand.item_state_slots[slot_l_hand_str]
 		else if(l_hand.item_state)
 			t_state = l_hand.item_state
@@ -98,7 +98,7 @@
 
 		//determine icon to use
 		var/icon/t_icon
-		if(l_hand.item_icons && (slot_l_hand_str in l_hand.item_icons))
+		if(LAZYACCESS(l_hand.item_icons, slot_l_hand_str))
 			t_icon = l_hand.item_icons[slot_l_hand_str]
 		else if(l_hand.icon_override)
 			t_state += "_l"

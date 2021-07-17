@@ -144,7 +144,7 @@
 	..()
 	if(hat)
 		var/hat_state = hat.item_state ? hat.item_state : hat.icon_state
-		var/image/I = image('icons/mob/head.dmi', src, hat_state)
+		var/image/I = image('icons/inventory/head/mob.dmi', src, hat_state)
 		I.pixel_y = -15 // Sakimm are tiny!
 		I.appearance_flags = RESET_COLOR
 		add_overlay(I)

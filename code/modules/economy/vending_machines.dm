@@ -406,7 +406,7 @@
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?"
 	icon_state = "wallmed"
 	layer = ABOVE_WINDOW_LAYER
-	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
+	density = FALSE //It is wall-mounted, and thus, not dense. --Superxpdude
 	products = list(/obj/item/stack/medical/bruise_pack = 2,
 				/obj/item/stack/medical/ointment = 2,
 				/obj/item/weapon/reagent_containers/hypospray/autoinjector = 4,
@@ -424,7 +424,7 @@
 	description_fluff = "NanoMed is NanoTrasen's medical science division, and provides almost all of the modern medbay essentials in-house at no extra charge. By using this vending machine, employees accept liability for products that may or may not be temporarily replaced by placebos or experimental treatments."
 	icon_state = "wallmed"
 	layer = ABOVE_WINDOW_LAYER
-	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
+	density = FALSE //It is wall-mounted, and thus, not dense. --Superxpdude
 	products = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector = 5,
 				/obj/item/weapon/reagent_containers/syringe/antitoxin = 3,
 				/obj/item/stack/medical/bruise_pack = 3,
@@ -1144,6 +1144,7 @@
 		/obj/item/clothing/head/surgery/black = 5,
 		/obj/item/clothing/shoes/white = 5,
 		/obj/item/clothing/suit/storage/toggle/labcoat = 5,
+		/obj/item/clothing/suit/storage/toggle/labcoat/modern = 5,
 		/obj/item/clothing/mask/surgical = 5,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/medical = 5,
 		/obj/item/clothing/shoes/boots/winter/medical = 5
@@ -1215,6 +1216,7 @@
 		/obj/item/clothing/under/rank/scientist/skirt = 5,
 		/obj/item/clothing/under/rank/scientist/turtleneck = 5,
 		/obj/item/clothing/suit/storage/toggle/labcoat = 5,
+		/obj/item/clothing/suit/storage/toggle/labcoat/modern = 5,
 		/obj/item/clothing/shoes/white = 5,
 		/obj/item/clothing/shoes/slippers = 5,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/science = 5,
@@ -1336,6 +1338,7 @@
 		/obj/item/clothing/under/rank/cargotech/jeans = 5,
 		/obj/item/clothing/under/rank/cargotech/jeans/female = 5,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/cargo = 5,
+		/obj/item/clothing/suit/storage/cargo = 5,
 		/obj/item/clothing/shoes/boots/winter/supply = 5,
 		/obj/item/clothing/shoes/black = 5,
 		/obj/item/clothing/gloves/black = 5,

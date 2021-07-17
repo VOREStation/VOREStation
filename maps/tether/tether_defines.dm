@@ -246,7 +246,15 @@
 [i]Transponder[/i]: Transmitting (CIV), NanoTrasen IFF
 [b]Notice[/b]: NanoTrasen Base, authorized personnel only"}
 	base = 1
-	icon_state = "reddwarf"
+	
+	icon = 'icons/obj/overmap_vr.dmi'
+	icon_state = "virgo3b"
+
+	skybox_icon = 'icons/skybox/virgo3b.dmi'
+	skybox_icon_state = "small"
+	skybox_pixel_x = 0
+	skybox_pixel_y = 0
+
 	initial_generic_waypoints = list(
 		"tether_dockarm_d1a1", //Bottom left,
 		"tether_dockarm_d1a2", //Top left,
@@ -296,6 +304,15 @@
 	else if(istype(AM, /obj/effect/overmap/visitable/ship))
 		atc.msg(message)
 
+/obj/effect/overmap/visitable/sector/virgo3b/generate_skybox(zlevel)
+	var/static/image/bigone = image(icon = 'icons/skybox/virgo3b.dmi', icon_state = "large")
+	var/static/image/smallone = image(icon = 'icons/skybox/virgo3b.dmi', icon_state = "small")
+	
+	if(zlevel == Z_LEVEL_TRANSIT)
+		return bigone
+	else
+		return smallone
+
 // For making the 6-in-1 holomap, we calculate some offsets
 #define TETHER_MAP_SIZE 140 // Width and height of compiled in tether z levels.
 #define TETHER_HOLOMAP_CENTER_GUTTER 40 // 40px central gutter between columns
@@ -336,6 +353,7 @@
 	z = Z_LEVEL_TRANSIT
 	name = "Transit"
 	flags = MAP_LEVEL_STATION|MAP_LEVEL_SEALED|MAP_LEVEL_PLAYER|MAP_LEVEL_CONTACT|MAP_LEVEL_XENOARCH_EXEMPT
+	base_turf = /turf/space/v3b_midpoint // Special type that spawns fall triggers
 
 /datum/map_z_level/tether/station/space_low
 	z = Z_LEVEL_SPACE_LOW

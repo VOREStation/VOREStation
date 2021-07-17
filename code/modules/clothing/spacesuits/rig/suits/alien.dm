@@ -74,7 +74,7 @@
 	name = "talons"
 	species_restricted = list(SPECIES_VOX)
 	sprite_sheets = list(
-		SPECIES_VOX = 'icons/mob/species/vox/shoes.dmi'
+		SPECIES_VOX = 'icons/inventory/feet/mob_vox.dmi'
 		)
 
 /obj/item/clothing/suit/space/rig/vox
@@ -84,7 +84,7 @@
 	siemens_coefficient = 0
 	species_restricted = list(SPECIES_VOX)
 	sprite_sheets = list(
-		SPECIES_VOX = 'icons/mob/species/vox/gloves.dmi'
+		SPECIES_VOX = 'icons/inventory/hands/mob_vox.dmi'
 		)
 
 /obj/item/weapon/rig/vox/carapace

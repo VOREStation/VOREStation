@@ -12,7 +12,7 @@
 	name = "administrative supply closet"
 	desc = "It's a storage unit for things that have no right being here."
 	closet_appearance = /decl/closet_appearance/tactical
-	anchored = 0
+	anchored = FALSE
 
 /obj/structure/closet/gimmick/russian
 	name = "russian surplus closet"
@@ -44,7 +44,7 @@
 	name = "\improper Thunderdome closet"
 	desc = "Everything you need!"
 	closet_appearance = /decl/closet_appearance/thunderdomered
-	anchored = 1
+	anchored = TRUE
 
 /obj/structure/closet/thunderdome/tdred
 	name = "red-team Thunderdome closet"

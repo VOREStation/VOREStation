@@ -8,8 +8,8 @@
 	icon_keyboard = "generic_key"
 	icon_screen = "comm_logs"
 	light_color = "#00b000"
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
 	circuit = /obj/item/weapon/circuitboard/atmoscontrol
 	req_access = list(access_ce)
 	var/list/monitored_alarm_ids = null
@@ -24,7 +24,7 @@
 	icon_screen = "pcu_atmo"
 	icon_state = "pcu"
 	icon_keyboard = "pcu_key"
-	density = 0
+	density = FALSE
 
 /obj/machinery/computer/atmoscontrol/attack_ai(var/mob/user as mob)
 	tgui_interact(user)

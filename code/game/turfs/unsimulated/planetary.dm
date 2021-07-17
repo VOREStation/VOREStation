@@ -6,7 +6,7 @@
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "riveted"
 	opacity = 1
-	density = 1
+	density = TRUE
 	alpha = 0
 	blocks_air = 0
 

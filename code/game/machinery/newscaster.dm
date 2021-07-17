@@ -161,7 +161,7 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 	var/hitstaken = 0      //Death at 3 hits from an item with force>=15
 	var/datum/feed_channel/viewing_channel = null
 	light_range = 0
-	anchored = 1
+	anchored = TRUE
 	var/obj/machinery/exonet_node/node = null
 	circuit = /obj/item/weapon/circuitboard/newscaster
 	// TGUI

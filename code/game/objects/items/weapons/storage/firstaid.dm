@@ -182,7 +182,7 @@
 	can_hold = list(/obj/item/weapon/reagent_containers/pill,/obj/item/weapon/dice,/obj/item/weapon/paper)
 	allow_quick_gather = 1
 	allow_quick_empty = 1
-	use_to_pickup = 1
+	use_to_pickup = TRUE
 	use_sound = 'sound/items/storage/pillbottle.ogg'
 	max_storage_space = ITEMSIZE_COST_TINY * 14
 	max_w_class = ITEMSIZE_TINY

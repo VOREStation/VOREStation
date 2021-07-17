@@ -8,7 +8,6 @@
 	flags_inv = HIDEHOLSTER
 	allowed = list(/obj/item/device/analyzer,/obj/item/stack/medical,/obj/item/weapon/dnainjector,/obj/item/weapon/reagent_containers/dropper,/obj/item/weapon/reagent_containers/syringe,/obj/item/weapon/reagent_containers/hypospray,/obj/item/device/healthanalyzer,/obj/item/device/flashlight/pen,/obj/item/weapon/reagent_containers/glass/bottle,/obj/item/weapon/reagent_containers/glass/beaker,/obj/item/weapon/reagent_containers/pill,/obj/item/weapon/storage/pill_bottle,/obj/item/weapon/paper)
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 50, rad = 0)
-	index = 1
 
 /obj/item/clothing/suit/storage/toggle/labcoat/red
 	name = "red labcoat"
@@ -110,4 +109,3 @@
 	name = "golden plague doctor suit"
 	desc = "If it worked then, it works now. This classic design comes in gold."
 	icon_state = "plaguedoctor2"
-	index = 1

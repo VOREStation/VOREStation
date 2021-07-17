@@ -14,7 +14,7 @@
 	icon = 'icons/obj/Cryogenic2_vr.dmi' //VOREStation Edit - New Icon
 	icon_state = "cellconsole"
 	circuit = /obj/item/weapon/circuitboard/cryopodcontrol
-	density = 0
+	density = FALSE
 	interact_offline = 1
 	var/mode = null
 
@@ -183,7 +183,7 @@
 	desc = "A bewildering tangle of machinery and pipes."
 	icon = 'icons/obj/Cryogenic2_vr.dmi' //VOREStation Edit - New Icon
 	icon_state = "cryo_rear"
-	anchored = 1
+	anchored = TRUE
 	dir = WEST
 
 //Cryopods themselves.
@@ -192,8 +192,8 @@
 	desc = "A man-sized pod for entering suspended animation."
 	icon = 'icons/obj/Cryogenic2_vr.dmi' //VOREStation Edit - New Icon
 	icon_state = "cryopod_0" //VOREStation Edit - New Icon
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	dir = WEST
 
 	var/base_icon_state = "cryopod_0" //VOREStation Edit - New Icon
@@ -491,6 +491,19 @@
 	for(var/datum/data/record/G in data_core.general)
 		if((G.fields["name"] == to_despawn.real_name))
 			qdel(G)
+	
+	// Also check the hidden version of each datacore, if they're an offmap role.
+	var/datum/job/J = SSjob.get_job(job)
+	if(J?.offmap_spawn)
+		for(var/datum/data/record/R in data_core.hidden_general)
+			if((R.fields["name"] == to_despawn.real_name))
+				qdel(R)
+		for(var/datum/data/record/T in data_core.hidden_security)
+			if((T.fields["name"] == to_despawn.real_name))
+				qdel(T)
+		for(var/datum/data/record/G in data_core.hidden_medical)
+			if((G.fields["name"] == to_despawn.real_name))
+				qdel(G)
 
 	icon_state = base_icon_state
 

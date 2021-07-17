@@ -6,15 +6,15 @@
 
 // Since we changed the gas mask sprite, if we want the old one for some reason use this.
 /obj/item/clothing/mask/gas/wwii
-	icon = 'icons/obj/clothing/masks.dmi'
-	icon_override = 'icons/mob/mask.dmi'
+	icon = 'icons/inventory/face/item.dmi'
+	icon_override = 'icons/inventory/face/mob.dmi'
 	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE
 
 /obj/item/clothing/mask/gas/imperial
 	name = "imperial soldier facemask"
 	desc = "A close-fitting tactical mask that can be connected to an air supply."
 	icon_state = "ge_visor"
-	icon = 'icons/obj/clothing/masks_vr.dmi'
-	icon_override = 'icons/mob/mask_vr.dmi'
+	icon = 'icons/inventory/face/item_vr.dmi'
+	icon_override = 'icons/inventory/face/mob_vr.dmi'
 	body_parts_covered = FACE|EYES
 	flags_inv = HIDEEARS|HIDEEYES|HIDEFACE

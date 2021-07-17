@@ -3,7 +3,7 @@
 	desc = "A high-tech animal cage, designed to keep contained fauna docile and safe."
 	icon = 'icons/obj/storage_vr.dmi' //VOREStation Edit
 	icon_state = "critteropen"
-	density = 1
+	density = TRUE
 
 	var/mob/living/simple_mob/contained
 

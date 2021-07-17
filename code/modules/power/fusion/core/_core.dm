@@ -12,11 +12,11 @@ GLOBAL_LIST_EMPTY(fusion_cores)
 	desc = "An enormous solenoid for generating extremely high power electromagnetic fields. It includes a kinetic energy harvester."
 	icon = 'icons/obj/machines/power/fusion.dmi'
 	icon_state = "core0"
-	density = 1
+	density = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 50
 	active_power_usage = 500 //multiplied by field strength
-	anchored = 0
+	anchored = FALSE
 
 	circuit = /obj/item/weapon/circuitboard/fusion_core
 
@@ -30,7 +30,7 @@ GLOBAL_LIST_EMPTY(fusion_cores)
 	var/reactant_dump = FALSE	// Does the tokomak actively try to syphon materials?
 
 /obj/machinery/power/fusion_core/mapped
-	anchored = 1
+	anchored = TRUE
 
 /obj/machinery/power/fusion_core/Initialize()
 	. = ..()
