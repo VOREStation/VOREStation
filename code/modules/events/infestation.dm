@@ -110,7 +110,6 @@
 #undef LOC_CHAPEL
 #undef LOC_LIBRARY
 #undef LOC_HYDRO
-#undef LOC_VAULT
 #undef LOC_TECH
 #undef LOC_GARDEN
 #undef LOC_STEMNGR
