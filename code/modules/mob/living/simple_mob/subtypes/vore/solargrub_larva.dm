@@ -30,7 +30,7 @@ var/global/list/grub_machine_overlays = list()
 	pass_flags = PASSTABLE
 	can_pull_size = ITEMSIZE_TINY
 	can_pull_mobs = MOB_PULL_NONE
-	density = 0
+	density = FALSE
 
 	//stop_when_pulled = 0
 

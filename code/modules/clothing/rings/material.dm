@@ -1,7 +1,7 @@
 /////////////////////////////////////////
 //Material Rings
 /obj/item/clothing/gloves/ring/material
-	icon = 'icons/obj/clothing/rings.dmi'
+	icon = 'icons/inventory/hands/item.dmi'
 	icon_state = "material"
 
 /obj/item/clothing/gloves/ring/material/New(var/newloc, var/new_material)

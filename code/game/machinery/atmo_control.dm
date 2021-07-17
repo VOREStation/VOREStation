@@ -4,7 +4,7 @@
 	name = "Gas Sensor"
 	desc = "Senses atmospheric conditions."
 
-	anchored = 1
+	anchored = TRUE
 	var/state = 0
 
 	var/id_tag

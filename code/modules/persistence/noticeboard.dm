@@ -4,8 +4,8 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "nboard00"
 	layer = ABOVE_WINDOW_LAYER
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 	var/list/notices
 	var/base_icon_state = "nboard0"
 	var/const/max_notices = 5

@@ -3,8 +3,8 @@
 	name = "fuel compressor"
 	icon = 'icons/obj/machines/power/fusion.dmi'
 	icon_state = "fuel_compressor1"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 
 	circuit = /obj/item/weapon/circuitboard/fusion_fuel_compressor
 

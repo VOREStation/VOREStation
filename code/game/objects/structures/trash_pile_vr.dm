@@ -3,8 +3,8 @@
 	desc = "A heap of garbage, but maybe there's something interesting inside?"
 	icon = 'icons/obj/trash_piles.dmi'
 	icon_state = "randompile"
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
 
 	var/list/searchedby	= list()// Characters that have searched this trashpile, with values of searched time.
 	var/mob/living/hider		// A simple animal that might be hiding in the pile

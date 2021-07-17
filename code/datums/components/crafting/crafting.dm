@@ -8,7 +8,7 @@
 	var/datum/hud/H = user.hud_used
 	var/obj/screen/craft/C = new()
 	C.icon = H.ui_style
-	H.other += C
+	LAZYADD(H.other_important, C)
 	CL.screen += C
 	RegisterSignal(C, COMSIG_CLICK, .proc/component_ui_interact)
 
@@ -49,6 +49,7 @@
 	var/datum/action/innate/crafting/button
 	var/display_craftable_only = FALSE
 	var/display_compact = TRUE
+	var/tgui_category_hint
 
 /* This is what procs do:
 	get_environment - gets a list of things accessable for crafting by user
@@ -357,7 +358,7 @@
 			container.close_all()
 		qdel(DL)
 
-/datum/component/personal_crafting/proc/component_ui_interact(/obj/screen/craft/image, location, control, params, user)
+/datum/component/personal_crafting/proc/component_ui_interact(source, location, control, params, user)
 	// SIGNAL_HANDLER
 
 	if(user == parent)
@@ -380,6 +381,18 @@
 		ui.open()
 
 /datum/component/personal_crafting/tgui_data(mob/user)
+	// ANNOYING. We won't know what category will be on top (and thus first selected) in the UI
+	// until we crunch all the resources in tgui_static_data. So it just sets a hint and we
+	// consume it and set the category on the first UI open
+	if(tgui_category_hint)
+		cur_category = tgui_category_hint
+		tgui_category_hint = null
+		if(islist(categories[cur_category]))
+			var/list/subcats = categories[cur_category]
+			cur_subcategory = subcats[1]
+		else
+			cur_subcategory = CAT_NONE
+	
 	var/list/data = list()
 	data["busy"] = busy
 	data["category"] = cur_category
@@ -411,6 +424,7 @@
 		var/datum/crafting_recipe/R = rec
 
 		if(R.name == "") //This is one of the invalid parents that sneaks in
+			GLOB.crafting_recipes -= rec
 			continue
 
 		if(!R.always_available && !(R.type in user?.mind?.learned_recipes)) //User doesn't actually know how to make this.
@@ -426,6 +440,9 @@
 				crafting_recipes[R.category][R.subcategory] = list()
 				crafting_recipes[R.category]["has_subcats"] = TRUE
 			crafting_recipes[R.category][R.subcategory] += list(build_recipe_data(R))
+
+	if(crafting_recipes.len)
+		tgui_category_hint = crafting_recipes[1]
 
 	data["crafting_recipes"] = crafting_recipes
 	return data

@@ -19,7 +19,7 @@
 		pulse.icon = 'icons/effects/effects.dmi'
 		pulse.icon_state = "emppulse"
 		pulse.name = "emp pulse"
-		pulse.anchored = 1
+		pulse.anchored = TRUE
 		spawn(20)
 			qdel(pulse)
 

@@ -1,7 +1,7 @@
 /obj/structure/girder
 	icon_state = "girder"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	plane = PLATING_PLANE
 	w_class = ITEMSIZE_HUGE
 	var/state = 0
@@ -68,7 +68,7 @@
 
 /obj/structure/girder/displaced
 	icon_state = "displaced"
-	anchored = 0
+	anchored = FALSE
 	health = 50
 	cover = 25
 
@@ -79,7 +79,7 @@
 /obj/structure/girder/proc/displace()
 	name = "displaced [girder_material.display_name] [initial(name)]"
 	icon_state = "displaced"
-	anchored = 0
+	anchored = FALSE
 	health = (displaced_health - round(current_damage / 4))
 	cover = 25
 
@@ -134,7 +134,7 @@
 
 /obj/structure/girder/proc/reset_girder()
 	name = "[girder_material.display_name] [initial(name)]"
-	anchored = 1
+	anchored = TRUE
 	cover = initial(cover)
 	health = min(max_health - current_damage,max_health)
 	state = 0

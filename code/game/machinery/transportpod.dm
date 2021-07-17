@@ -4,8 +4,8 @@
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "borg_pod_opened"
 
-	density = 1 //thicc
-	anchored = 1
+	density = TRUE //thicc
+	anchored = TRUE
 	use_power = USE_POWER_OFF
 
 	var/in_transit = 0

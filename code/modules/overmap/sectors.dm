@@ -165,7 +165,7 @@
 		for(var/thing in restricted_waypoints[shuttle_name])
 			.[thing] = name
 
-/obj/effect/overmap/visitable/proc/generate_skybox()
+/obj/effect/overmap/visitable/proc/generate_skybox(zlevel)
 	return
 
 /obj/effect/overmap/visitable/proc/cleanup()
@@ -190,7 +190,7 @@
 	name = "generic sector"
 	desc = "Sector with some stuff in it."
 	icon_state = "sector"
-	anchored = 1
+	anchored = TRUE
 
 // Because of the way these are spawned, they will potentially have their invisibility adjusted by the turfs they are mapped on
 // prior to being moved to the overmap. This blocks that. Use set_invisibility to adjust invisibility as needed instead.

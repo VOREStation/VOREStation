@@ -497,7 +497,7 @@
 	storage_slots = 24
 	can_hold = list(/obj/item/weapon/light/tube, /obj/item/weapon/light/bulb)
 	max_storage_space = ITEMSIZE_COST_SMALL * 24 //holds 24 items of w_class 2
-	use_to_pickup = 1 // for picking up broken bulbs, not that most people will try
+	use_to_pickup = TRUE // for picking up broken bulbs, not that most people will try
 
 /obj/item/weapon/storage/box/lights/bulbs
 	starts_with = list(/obj/item/weapon/light/bulb = 24)
@@ -525,7 +525,7 @@
 	max_w_class = ITEMSIZE_NORMAL
 	can_hold = list(/obj/item/organ)
 	max_storage_space = ITEMSIZE_COST_NORMAL * 5 // Formally 21.  Odd numbers are bad.
-	use_to_pickup = 1 // for picking up broken bulbs, not that most people will try
+	use_to_pickup = TRUE // for picking up broken bulbs, not that most people will try
 
 /obj/item/weapon/storage/box/freezer/red
 	icon_state = "portafreezer_red"

@@ -8,8 +8,8 @@
 /obj/machinery/xenobio2/manualinjector
 	name = "biological injector"
 	desc = "Injects biological organisms that are inserted with the contents of an inserted beaker at the command of a remote computer."
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	use_power = USE_POWER_IDLE
 	icon = 'icons/obj/biogenerator.dmi'
 	icon_state = "biogen-work"

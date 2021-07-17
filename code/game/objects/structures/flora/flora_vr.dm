@@ -79,14 +79,14 @@
 	icon = 'icons/obj/flora/amayastuff.dmi'
 	desc = "Small stones sit beside this large boulder. Moss grows on the top of each of them."
 	icon_state = "bigboulder1"
-	density = 1
+	density = TRUE
 	
 /obj/structure/flora/bboulder2
 	name = "jagged large boulder"
 	icon = 'icons/obj/flora/amayastuff.dmi'
 	desc = "This boulder has had plates broken off it. Moss grows in the cracks and across the top."
 	icon_state = "bigboulder2"
-	density = 1
+	density = TRUE
 	
 /obj/structure/flora/rocks1
 	name = "rocks"

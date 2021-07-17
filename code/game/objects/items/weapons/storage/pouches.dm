@@ -4,7 +4,7 @@
 /obj/item/weapon/storage/pouch
 	name = "storage pouch (medium)"
 	desc = "This storage pouch can be used to provide some additional storage for quick access."
-	icon = 'icons/obj/clothing/pouches.dmi'
+	icon = 'icons/inventory/pockets/item.dmi'
 	slot_flags = SLOT_POCKET
 	drop_sound = 'sound/items/drop/backpack.ogg'
 	pickup_sound = 'sound/items/pickup/backpack.ogg'

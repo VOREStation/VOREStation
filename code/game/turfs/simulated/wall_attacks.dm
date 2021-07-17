@@ -9,7 +9,7 @@
 	if(density)
 		can_open = WALL_OPENING
 		//flick("[material.icon_base]fwall_opening", src)
-		density = 0
+		density = FALSE
 		blocks_air = ZONE_BLOCKED
 		update_icon()
 		update_air()
@@ -21,7 +21,7 @@
 	else
 		can_open = WALL_OPENING
 		//flick("[material.icon_base]fwall_closing", src)
-		density = 1
+		density = TRUE
 		blocks_air = AIR_BLOCKED
 		update_icon()
 		update_air()

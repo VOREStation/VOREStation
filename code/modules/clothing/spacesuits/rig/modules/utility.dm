@@ -8,7 +8,6 @@
  * /obj/item/rig_module/device/arch_drill
  * /obj/item/rig_module/device/anomaly_scanner
  * /obj/item/rig_module/maneuvering_jets
- * /obj/item/rig_module/foam_sprayer
  * /obj/item/rig_module/device/broadcaster
  * /obj/item/rig_module/chem_dispenser
  * /obj/item/rig_module/chem_dispenser/injector
@@ -411,11 +410,7 @@
 	jets.holder = null
 	jets.ion_trail.set_up(jets)
 
-/obj/item/rig_module/foam_sprayer
-
-
 //Deployable Mop
-
 /obj/item/rig_module/mounted/mop
 
 	name = "mop projector"

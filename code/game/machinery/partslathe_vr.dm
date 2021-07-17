@@ -21,8 +21,8 @@
 	icon = 'icons/obj/partslathe_vr.dmi'
 	icon_state = "partslathe-idle"
 	circuit = /obj/item/weapon/circuitboard/partslathe
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 30
 	active_power_usage = 5000

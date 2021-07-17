@@ -296,3 +296,7 @@
 
 /datum/tgui_module/camera/ntos/hacked/New(host)
 	. = ..(host, using_map.station_networks.Copy())
+
+/datum/tgui_module/camera/bigscreen/tgui_state(mob/user)
+	return GLOB.tgui_physical_state_bigscreen
+	

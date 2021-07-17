@@ -357,7 +357,6 @@
 	name = "maid costume"
 	desc = "Maid in China."
 	icon_state = "maid"
-	index = 1
 
 /obj/item/clothing/under/dress/maid/janitor
 	name = "maid uniform"
@@ -539,38 +538,32 @@
 	name = "revealing dress"
 	desc = "A very revealing black and blue dress. Is this work appropriate?"
 	icon_state = "revealingdress"
-	index = 1
 
 /obj/item/clothing/under/dress/gothic
 	name = "gothic dress"
 	desc = "A black dress with a sheer mesh over it, tastefully old school goth."
 	icon_state = "gothic"
-	index = 1
 
 /obj/item/clothing/under/dress/formalred
 	name = "formal red dress"
 	desc = "A very formal red dress, for those fancy galas."
 	icon_state = "formalred"
 	flags_inv = HIDESHOES
-	index = 1
 
 /obj/item/clothing/under/dress/pentagram
 	name = "pentagram dress"
 	desc = "A black dress with straps over the chest in the shape of a pentagram."
 	icon_state = "pentagram"
-	index = 1
 
 /obj/item/clothing/under/dress/yellowswoop
 	name = "yellow swooped dress"
 	desc = "A yellow dress that swoops to the side."
 	icon_state = "yellowswoop"
-	index = 1
 
 /obj/item/clothing/under/dress/countess
 	name = "countess dress"
 	desc = "A red and black dress fit for a countess."
 	icon_state = "countess"
-	index = 1
 
 /*
  * wedding stuff
@@ -614,13 +607,11 @@
 	desc = "A lovely floofed out dress for formal occasions. Comes in many colors!"
 	icon_state = "floofdress"
 	flags_inv = HIDESHOES
-	index = 1
 
 /obj/item/clothing/under/wedding/whitegown
 	name = "white gown"
 	desc = "A elegant white gown with accents of sheer mesh."
 	icon_state = "whitegown"
-	index = 1
 
 /*
 Uniforms and such
@@ -643,48 +634,41 @@ Uniforms and such
 	desc = "A cute pink sundress."
 	icon_state = "pinksun"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-	index = 1
 
 /obj/item/clothing/under/dress/sundress_white
 	name = "white sundress"
 	desc = "A white sundress, it's short."
 	icon_state = "whitesun"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-	index = 1
 
 /obj/item/clothing/under/dress/sundress_pinkbow
 	name = "bowed pink sundress"
 	desc = "A cute pink sundress with a bow."
 	icon_state = "bowsun"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-	index = 1
 
 /obj/item/clothing/under/dress/sundress_blue
 	name = "long blue sundress"
 	desc = "A long blue sun dress with white frills towards the bottom."
 	icon_state = "bluesun"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
-	index = 1
 
 /obj/item/clothing/under/dress/sundress_pinkshort
 	name = "short pink sundress"
 	desc = "A very short pink sundress, it's more like a chemise."
 	icon_state = "shortpink"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-	index = 1
 
 /obj/item/clothing/under/dress/twopiece
 	name = "two-piece dress"
 	desc = "A fancy two-piece dress, the pieces are sewn together."
 	icon_state = "twopiece"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-	index = 1
 
 /obj/item/clothing/under/dress/gothic2
 	name = "lacey gothic dress"
 	desc = "An elegant gothic dress with lace decorations."
 	icon_state = "gothic2"
-	index = 1
 
 /obj/item/clothing/under/captainformal
 	name = "site manager's formal uniform"
@@ -869,43 +853,36 @@ Uniforms and such
 	name = "ripped punk jeans"
 	desc = "Black ripped jeans and a fishnet top. How punk."
 	icon_state = "rippedpunk"
-	index = 1
 
 /obj/item/clothing/under/greenasym
 	name = "green asymmetrical jumpsuit"
 	desc = "A green futuristic uniform with asymmetrical pants. Trendy!"
 	icon_state = "greenasym"
-	index = 1
 
 /obj/item/clothing/under/cyberpunkharness
 	name = "cyberpunk strapped harness"
 	desc = "A cyberpunk styled harness and pants. Perfect for your dystopian future."
 	icon_state = "cyberhell"
-	index = 1
 
 /obj/item/clothing/under/blackngold
 	name = "black and gold gown"
 	desc = "A black and gold gown. You get the impression this is typically worn for religious purposes."
 	icon_state = "blackngold"
-	index = 1
 
 /obj/item/clothing/under/sheerblue
 	name = "sheer blue dress"
 	desc = "An entirely sheer blue dress. Best worn with something underneath!"
 	icon_state = "sheerblue"
-	index = 1
 
 /obj/item/clothing/under/disheveled
 	name = "disheveled suit"
 	desc = "What might pass as well maintained formal attire. If you're blind."
 	icon_state = "disheveled"
-	index = 1
 
 /obj/item/clothing/under/flower_skirt
 	name = "flower skirt"
 	desc = "A flowery skirt that comes in a variety of colors."
 	icon_state = "flowerskirt"
-	index = 1
 
 /*
  * swimsuit

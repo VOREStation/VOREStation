@@ -190,7 +190,7 @@
 /obj/item/trash/spitgum
 	name = "old gum"
 	desc = "A disgusting chewed up wad of gum."
-	icon = 'icons/obj/clothing/masks.dmi'
+	icon = 'icons/inventory/face/item.dmi'
 	icon_state = "spit-gum"
 	drop_sound = 'sound/items/drop/flesh.ogg'
 	pickup_sound = 'sound/items/pickup/flesh.ogg'
@@ -198,7 +198,7 @@
 /obj/item/trash/lollibutt
 	name = "lollipop stick"
 	desc = "A lollipop stick devoid of pop."
-	icon = 'icons/obj/clothing/masks.dmi'
+	icon = 'icons/inventory/face/item.dmi'
 	icon_state = "pop-stick"
 	drop_sound = 'sound/items/drop/component.ogg'
 	pickup_sound = 'sound/items/pickup/component.ogg'
@@ -206,7 +206,7 @@
 /obj/item/trash/spitwad
 	name = "spit wad"
 	desc = "A disgusting spitwad."
-	icon = 'icons/obj/clothing/masks.dmi'
+	icon = 'icons/inventory/face/item.dmi'
 	icon_state = "spit-chew"
 	drop_sound = 'sound/items/drop/flesh.ogg'
 	pickup_sound = 'sound/items/pickup/flesh.ogg'

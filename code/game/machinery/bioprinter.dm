@@ -7,8 +7,8 @@
 	icon = 'icons/obj/surgery_vr.dmi' //VOREStation Edit
 	icon_state = "bioprinter"
 
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 40
 	active_power_usage = 300

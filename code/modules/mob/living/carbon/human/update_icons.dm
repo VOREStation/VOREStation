@@ -107,7 +107,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	if(QDESTROYING(src))
 		return
 
-	crash_with("CANARY: Old human update_icons was called.")
+	stack_trace("CANARY: Old human update_icons was called.")
 
 	update_hud()		//TODO: remove the need for this
 
@@ -641,11 +641,10 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	var/obj/item/clothing/under/under = w_uniform
 
 	var/uniform_sprite
-
-	if(under.index)
-		uniform_sprite = "[INV_W_UNIFORM_DEF_ICON]_[under.index].dmi"
+	if(istype(under) && !isnull(under.update_icon_define))
+		uniform_sprite = under.update_icon_define
 	else
-		uniform_sprite = "[INV_W_UNIFORM_DEF_ICON].dmi"
+		uniform_sprite = INV_W_UNIFORM_DEF_ICON
 
 	//Build a uniform sprite
 	var/icon/c_mask = tail_style?.clip_mask
@@ -824,12 +823,10 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	var/obj/item/clothing/suit/suit = wear_suit
 	var/suit_sprite
 
-	if(istype(suit) && suit.index)
-		suit_sprite = "[INV_SUIT_DEF_ICON]_[suit.index].dmi"
-	else if(istype(suit, /obj/item/clothing) && !isnull(suit.update_icon_define))
+	if(istype(suit) && !isnull(suit.update_icon_define))
 		suit_sprite = suit.update_icon_define
 	else
-		suit_sprite = "[INV_SUIT_DEF_ICON].dmi"
+		suit_sprite = INV_SUIT_DEF_ICON
 
 	var/icon/c_mask = null
 	var/tail_is_rendered = (overlays_standing[TAIL_LAYER] || overlays_standing[TAIL_LAYER_ALT])
@@ -842,7 +839,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	apply_layer(SUIT_LAYER)
 
 /mob/living/carbon/human/update_inv_pockets()
-	crash_with("Someone called update_inv_pockets even though it's dumb")
+	stack_trace("Someone called update_inv_pockets even though it's dumb")
 
 /mob/living/carbon/human/update_inv_wear_mask()
 	if(QDESTROYING(src))
@@ -1171,6 +1168,13 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		return working
 
 /mob/living/carbon/human/proc/get_ears_overlay()
+	//If you are FBP with ear style and didn't set a custom one
+	var/datum/robolimb/model = isSynthetic()
+	if(istype(model) && model.includes_ears && !ear_style)
+		var/icon/ears_s = new/icon("icon" = synthetic.icon, "icon_state" = "ears")
+		ears_s.Blend(rgb(src.r_ears, src.g_ears, src.b_ears), species.color_mult ? ICON_MULTIPLY : ICON_ADD)
+		return ears_s
+
 	if(ear_style && !(head && (head.flags_inv & BLOCKHEADHAIR)))
 		var/icon/ears_s = new/icon("icon" = ear_style.icon, "icon_state" = ear_style.icon_state)
 		if(ear_style.do_colouration)
@@ -1192,7 +1196,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 /mob/living/carbon/human/proc/get_tail_image()
 	//If you are FBP with tail style and didn't set a custom one
 	var/datum/robolimb/model = isSynthetic()
-	if(istype(model) && model.includes_tail && !tail_style)
+	if(istype(model) && model.includes_tail && !tail_style && !(wear_suit && wear_suit.flags_inv & HIDETAIL))
 		var/icon/tail_s = new/icon("icon" = synthetic.icon, "icon_state" = "tail")
 		tail_s.Blend(rgb(src.r_skin, src.g_skin, src.b_skin), species.color_mult ? ICON_MULTIPLY : ICON_ADD)
 		return image(tail_s)

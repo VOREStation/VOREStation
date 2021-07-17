@@ -7,13 +7,13 @@
 	item_state = "technomancer_core"
 	w_class = ITEMSIZE_HUGE
 	slot_flags = SLOT_BACK
-	unacidable = 1
+	unacidable = TRUE
 	origin_tech = list(
 		TECH_MATERIAL = 8, TECH_ENGINEERING = 8, TECH_POWER = 8, TECH_BLUESPACE = 10,
 		TECH_COMBAT = 7, TECH_MAGNET = 9, TECH_DATA = 5
 		)
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/mob/species/teshari/back.dmi'
+		SPECIES_TESHARI = 'icons/inventory/back/mob_teshari.dmi'
 		)
 	var/energy = 10000
 	var/max_energy = 10000

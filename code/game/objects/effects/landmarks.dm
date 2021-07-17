@@ -2,9 +2,9 @@
 	name = "landmark"
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x2"
-	anchored = 1.0
-	unacidable = 1
-	simulated = 0
+	anchored = TRUE
+	unacidable = TRUE
+	simulated = FALSE
 	invisibility = 100
 	var/delete_me = 0
 
@@ -24,7 +24,7 @@
 			return
 		if("JoinLate") // Bit difference, since we need the spawn point to move.
 			latejoin += src
-			simulated = 1
+			simulated = TRUE
 		//	delete_me = 1
 			return
 		if("JoinLateGateway")
@@ -99,7 +99,7 @@
 	name = "start"
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x"
-	anchored = 1.0
+	anchored = TRUE
 
 /obj/effect/landmark/start/New()
 	..()
@@ -122,7 +122,7 @@
 	name = "virtual_reality"
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x"
-	anchored = 1.0
+	anchored = TRUE
 
 /obj/effect/landmark/virtual_reality/New()
 	..()

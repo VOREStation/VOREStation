@@ -52,7 +52,7 @@
 	mob_size = MOB_SMALL
 	pass_flags = PASSTABLE
 	layer = MOB_LAYER
-	density = 0
+	density = FALSE
 
 	response_help  = "pets"
 	response_disarm = "nudges"

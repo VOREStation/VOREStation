@@ -48,7 +48,7 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 	icon = 'icons/turf/floors.dmi'
 	icon_state = "invisible"
 	desc = "Watch your step!"
-	density = 0
+	density = FALSE
 	plane = OPENSPACE_PLANE
 	pathweight = 100000 //Seriously, don't try and path over this one numbnuts
 	dynamic_lighting = 0 // Someday lets do proper lighting z-transfer.  Until then we are leaving this off so it looks nicer.

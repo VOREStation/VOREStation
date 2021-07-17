@@ -3,8 +3,8 @@
 	desc = "A tray usually full of fluid for growing plants."
 	icon = 'icons/obj/hydroponics_machines_vr.dmi' //VOREStation Edit
 	icon_state = "hydrotray3"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	flags = OPENCONTAINER
 	volume = 100
 

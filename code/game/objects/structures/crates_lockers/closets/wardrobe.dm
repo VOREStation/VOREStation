@@ -206,6 +206,7 @@
 		/obj/item/clothing/under/rank/scientist/skirt = 2,
 		/obj/item/clothing/under/rank/scientist/turtleneck = 3,
 		/obj/item/clothing/suit/storage/toggle/labcoat = 3,
+		/obj/item/clothing/suit/storage/toggle/labcoat/modern = 3,
 		/obj/item/clothing/shoes/white = 3,
 		/obj/item/clothing/shoes/slippers = 3,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/science,

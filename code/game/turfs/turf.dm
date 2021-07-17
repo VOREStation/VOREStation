@@ -171,7 +171,7 @@
 	if(istype(mover)) // turf/Enter(...) will perform more advanced checks
 		return !density
 
-	crash_with("Non movable passed to turf CanPass : [mover]")
+	stack_trace("Non movable passed to turf CanPass : [mover]")
 	return FALSE
 
 //There's a lot of QDELETED() calls here if someone can figure out how to optimize this but not runtime when something gets deleted by a Bump/CanPass/Cross call, lemme know or go ahead and fix this mess - kevinz000

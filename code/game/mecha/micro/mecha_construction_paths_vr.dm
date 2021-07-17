@@ -22,7 +22,7 @@
 	const_holder.construct = new /datum/construction/reversible/mecha/polecat(const_holder)
 	const_holder.icon = 'icons/mecha/mech_construction_vr.dmi'
 	const_holder.icon_state = "polecat0"
-	const_holder.density = 1
+	const_holder.density = TRUE
 	const_holder.overlays.len = 0
 	spawn()
 		qdel(src)
@@ -303,7 +303,7 @@
 	const_holder.construct = new /datum/construction/reversible/mecha/gopher(const_holder)
 	const_holder.icon = 'icons/mecha/mech_construction_vr.dmi'
 	const_holder.icon_state = "gopher0"
-	const_holder.density = 1
+	const_holder.density = TRUE
 	const_holder.overlays.len = 0
 	spawn()
 		qdel(src)
@@ -512,7 +512,7 @@
 	const_holder.construct = new /datum/construction/reversible/mecha/weasel(const_holder)
 	const_holder.icon = 'icons/mecha/mech_construction_vr.dmi'
 	const_holder.icon_state = "weasel0"
-	const_holder.density = 1
+	const_holder.density = TRUE
 	const_holder.overlays.len = 0
 	spawn()
 		qdel(src)

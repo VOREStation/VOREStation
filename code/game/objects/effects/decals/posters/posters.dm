@@ -117,7 +117,7 @@
 	desc = "A large piece of space-resistant printed paper. "
 	icon = 'icons/obj/contraband_vr.dmi' //VOREStation Edit
 	icon_state = "poster" //VOREStation Edit
-	anchored = 1
+	anchored = TRUE
 	var/decl/poster/poster_decl = null
 	var/target_poster_decl_path = /decl/poster
 	var/roll_type = /obj/item/poster
