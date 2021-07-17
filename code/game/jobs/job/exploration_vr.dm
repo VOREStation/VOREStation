@@ -47,7 +47,7 @@
 	minimal_access = list(access_eva, access_maint_tunnels, access_external_airlocks, access_pilot, access_explorer, access_gateway)
 	outfit_type = /decl/hierarchy/outfit/job/pathfinder
 	job_description = "The Pathfinder's job is to lead and manage expeditions, and is the primary authority on all off-station expeditions."
-	alt_titles = list("Expedition Lead" = /datum/alt_title/expedition_lead, "Exploration Manager" = /datum/alt_title/exploration_manager, "Offsite Coordinator" = /datum/alt_title/offsite_coordinator, "Chief Wild Life Defender" = /datum/alt_title/steve_irwin_boss)
+	alt_titles = list("Expedition Lead" = /datum/alt_title/expedition_lead, "Exploration Manager" = /datum/alt_title/exploration_manager, "Offsite Coordinator" = /datum/alt_title/offsite_coordinator, "Chief Wild Life Defender" = /datum/alt_title/steve_irwin_boss,)
 
 /datum/alt_title/expedition_lead
 	title = "Expedition Lead"
@@ -108,8 +108,7 @@
 	minimal_access = list(access_explorer, access_external_airlocks, access_eva)
 	outfit_type = /decl/hierarchy/outfit/job/explorer2
 	job_description = "An Explorer searches for interesting things, and returns them to the station."
-	alt_titles = list("Surveyor" = /datum/alt_title/surveyor, "Offsite Scout" = /datum/alt_title/offsite_scout, "Offsite Support" = /datum/alt_title/offsite_support, "Wild Life Defender"
- = /datum/alt_title/steve_irwin)
+	alt_titles = list("Surveyor" = /datum/alt_title/surveyor, "Offsite Scout" = /datum/alt_title/offsite_scout, "Offsite Support" = /datum/alt_title/offsite_support, "Wild Life Defender" = /datum/alt_title/steve_irwin,)
 
 /datum/alt_title/surveyor
 	title = "Surveyor"
