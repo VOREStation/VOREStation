@@ -8,7 +8,6 @@
 #define LOC_GARDEN 7
 #define LOC_STEMNGR 8
 #define LOC_RESEARCH 9
-#define LOC_TRIAGE 10
 
 #define VERM_MICE 0
 #define VERM_LIZARDS 1
@@ -58,9 +57,6 @@
 		if(LOC_RESEARCH)
 			spawn_area_type = /area/rnd/research
 			locstring = "the research division"
-		if(LOC_TRIAGE)
-			spawn_area_type = /area/tether/surfacebase/medical/triage
-			locstring = "triage"
 
 	for(var/areapath in typesof(spawn_area_type))
 		var/area/A = locate(areapath)
@@ -119,7 +115,6 @@
 #undef LOC_GARDEN
 #undef LOC_STEMNGR
 #undef LOC_RESEARCH
-#undef LOC_TRIAGE
 
 #undef VERM_MICE
 #undef VERM_LIZARDS
