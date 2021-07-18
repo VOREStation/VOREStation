@@ -47,13 +47,17 @@
 	minimal_access = list(access_eva, access_maint_tunnels, access_external_airlocks, access_pilot, access_explorer, access_gateway)
 	outfit_type = /decl/hierarchy/outfit/job/pathfinder
 	job_description = "The Pathfinder's job is to lead and manage expeditions, and is the primary authority on all off-station expeditions."
-	alt_titles = list("Expedition Lead" = /datum/alt_title/expedition_lead, "Exploration Manager" = /datum/alt_title/exploration_manager)
+	alt_titles = list("Expedition Lead" = /datum/alt_title/expedition_lead, "Exploration Manager" = /datum/alt_title/exploration_manager, "Offsite Coordinator" = /datum/alt_title/offsite_coordinator)
 
 /datum/alt_title/expedition_lead
 	title = "Expedition Lead"
 
 /datum/alt_title/exploration_manager
 	title = "Exploration Manager"
+
+/datum/alt_title/offsite_coordinator
+	title = "Offsite Coordinator"
+
 
 
 /datum/job/pilot
@@ -102,13 +106,16 @@
 	minimal_access = list(access_explorer, access_external_airlocks, access_eva)
 	outfit_type = /decl/hierarchy/outfit/job/explorer2
 	job_description = "An Explorer searches for interesting things, and returns them to the station."
-	alt_titles = list("Surveyor" = /datum/alt_title/surveyor, "Offsite Scout" = /datum/alt_title/offsite_scout)
+	alt_titles = list("Surveyor" = /datum/alt_title/surveyor, "Offsite Scout" = /datum/alt_title/offsite_scout, "Offsite Support" = /datum/alt_title/offsite_support)
 
 /datum/alt_title/surveyor
 	title = "Surveyor"
 
 /datum/alt_title/offsite_scout
 	title = "Offsite Scout"
+
+/datum/alt_title/offsite_support
+	title = "Offsite Support"
 
 
 /datum/job/sar
@@ -128,10 +135,13 @@
 	minimal_access = list(access_medical, access_medical_equip, access_morgue, access_pilot)
 	outfit_type = /decl/hierarchy/outfit/job/medical/sar
 	job_description = "A Field medic works as the field doctor of expedition teams."
-	alt_titles = list("Expedition Medic" = /datum/alt_title/expedition_medic, "Offsite Medic" = /datum/alt_title/offsite_medic)
+	alt_titles = list("Expedition Medic" = /datum/alt_title/expedition_medic, "Offsite Medic" = /datum/alt_title/offsite_medic, "Offsite First Aider" = /datum/alt_title/offsite_first_aider)
 
 /datum/alt_title/expedition_medic
 	title = "Expedition Medic"
 
 /datum/alt_title/offsite_medic
 	title = "Offsite Medic"
+
+/datum/alt_title/offsite_first_aider
+	title = "Offsite First Aider"
