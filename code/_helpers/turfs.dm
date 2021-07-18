@@ -146,6 +146,9 @@
 			O.loc = X
 			if(O.light_system == STATIC_LIGHT)
 				O.update_light()
+			else
+				var/datum/component/overlay_lighting/OL = O.GetComponent(/datum/component/overlay_lighting)
+				OL?.on_parent_moved(O, X, O.dir, TRUE)
 			if(z_level_change) // The objects still need to know if their z-level changed.
 				O.onTransitZ(T.z, X.z)
 
