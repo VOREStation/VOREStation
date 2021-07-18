@@ -233,8 +233,7 @@
 		riding_datum.handle_vehicle_layer()
 		riding_datum.handle_vehicle_offsets()
 	for (var/datum/light_source/light as anything in light_sources) // Cycle through the light sources on this atom and tell them to update.
-		if(light.source_atom.light_system == STATIC_LIGHT)
-			light.source_atom.update_light()
+		light.source_atom.update_light()
 	return TRUE
 
 /atom/movable/set_dir(newdir)
