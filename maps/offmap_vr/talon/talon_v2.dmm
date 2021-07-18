@@ -10638,7 +10638,9 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 1
 	},
-/obj/machinery/suspension_gen,
+/obj/machinery/suspension_gen{
+	req_access = list(301)
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/anomaly_storage)
 "Jf" = (
