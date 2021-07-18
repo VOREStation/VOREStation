@@ -137,6 +137,19 @@
 	throwforce = 7.0
 	w_class = ITEMSIZE_SMALL
 
+/obj/item/weapon/shovel/wood
+	name = "wooden shovel"
+	desc = "An improvised tool for digging and moving dirt."
+	icon = 'icons/obj/items.dmi'
+	icon_state = "woodshovel"
+	slot_flags = SLOT_BELT
+	item_state = "woodshovel"
+	w_class = ITEMSIZE_NORMAL
+	matter = list(MAT_WOOD = 50)
+	sharp = 0
+	edge = 1
+
+
 
 /**********************Mining car (Crate like thing, not the rail car)**************************/
 

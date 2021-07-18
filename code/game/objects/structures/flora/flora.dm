@@ -112,9 +112,33 @@
 	
 	destroy_on_harvest = TRUE
 	harvest_tool = /obj/item/weapon/material/knife
-	randomize_harvest_count = FALSE
+	randomize_harvest_count = TRUE
 	harvest_loot = list(/obj/item/stack/material/fiber = 1)
-	max_harvests = 1
+	min_harvests = 1
+	max_harvests = 3		
+
+/obj/structure/flora/ausbushes/spawn_harvest(var/path = null, var/mob/user = null)
+	. = ..()
+	if(. && prob(15))
+		var/static/list/possibleseeds = list(
+								/obj/item/seeds/ambrosiavulgarisseed = 1,
+								/obj/item/seeds/carrotseed = 5,
+								/obj/item/seeds/chiliseed = 5,
+								/obj/item/seeds/cornseed = 10,
+								/obj/item/seeds/grapeseed = 5,
+								/obj/item/seeds/grassseed = 1,
+								/obj/item/seeds/lavenderseed = 5,
+								/obj/item/seeds/onionseed = 5,
+								/obj/item/seeds/random = 1,
+								/obj/item/seeds/reishimycelium = 5,
+								/obj/item/seeds/sugarcaneseed = 5,
+								/obj/item/seeds/tomatoseed = 5,
+								/obj/item/seeds/towermycelium = 5,
+								/obj/item/seeds/watermelonseed = 10,
+								/obj/item/seeds/wheatseed = 25,
+								/obj/item/seeds/whitebeetseed = 5)
+		var/choice = pickweight(possibleseeds)
+		new choice(get_turf(user))
 
 /obj/structure/flora/ausbushes/New()
 	..()
