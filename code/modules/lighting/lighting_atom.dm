@@ -63,8 +63,9 @@
 		if(!isnull(set_light_on(l_on)))
 			needs_update = TRUE
 
-	if(needs_update && light_system == STATIC_LIGHT)
-		update_light()
+	if(needs_update)
+		if(light_system == STATIC_LIGHT)
+			update_light()
 
 #undef NONSENSICAL_VALUE
 
