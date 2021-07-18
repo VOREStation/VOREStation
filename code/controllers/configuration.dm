@@ -231,7 +231,7 @@ var/list/gamemode_cache = list()
 	// 15, 45, 70 minutes respectively
 	var/static/list/event_delay_upper = list(EVENT_LEVEL_MUNDANE = 9000,	EVENT_LEVEL_MODERATE = 27000,	EVENT_LEVEL_MAJOR = 42000)
 
-	var/static/aliens_allowed = 0
+	var/static/aliens_allowed = 1 //Changed to 1 so player xenos can lay eggs.
 	var/static/ninjas_allowed = 0
 	var/static/abandon_allowed = 1
 	var/static/ooc_allowed = 1

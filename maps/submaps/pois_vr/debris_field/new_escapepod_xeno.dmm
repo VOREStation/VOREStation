@@ -66,7 +66,6 @@
 /area/submap/debrisfield/misc_debris)
 "W" = (
 /obj/effect/alien/weeds,
-/obj/effect/alien/egg,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/misc_debris)
 "X" = (

@@ -7,7 +7,7 @@
 "g" = (/obj/effect/alien/weeds/node,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/vault4)
 "h" = (/obj/effect/alien/weeds,/obj/random/multiple/minevault,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/vault4)
 "i" = (/obj/effect/alien/weeds,/mob/living/simple_mob/animal/space/alien,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/vault4)
-"j" = (/obj/effect/alien/weeds,/obj/effect/alien/egg,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/vault4)
+"j" = (/obj/effect/alien/weeds,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/vault4)
 
 (1,1,1) = {"
 aaaaaaaaa

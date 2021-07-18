@@ -1,3 +1,8 @@
+/mob/living/carbon/alien/diona/Stat() //Specified where progression is at, doesn't work right for some things in carbon/alien
+	. = ..()
+	if(. && statpanel("Status"))
+		stat("Growth", "[round(amount_grown)]/[max_grown]")
+
 /mob/living/carbon/alien/diona/confirm_evolution()
 
 	if(!is_alien_whitelisted(src, GLOB.all_species[SPECIES_DIONA]))

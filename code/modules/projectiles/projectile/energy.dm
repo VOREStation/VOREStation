@@ -144,17 +144,21 @@
 	agony = 10
 	check_armour = "bio"
 	armor_penetration = 25	// It's acid
+	hitsound_wall = 'sound/weapons/effects/alien_spit_wall.ogg'
+	hitsound = 'sound/weapons/effects/alien_spit_wall.ogg'
 
 	combustion = FALSE
 
 /obj/item/projectile/energy/neurotoxin
 	name = "neurotoxic spit"
 	icon_state = "neurotoxin"
-	damage = 5
+	damage = 0
 	damage_type = BIOACID
 	agony = 80
 	check_armour = "bio"
 	armor_penetration = 25	// It's acid-based
+	hitsound_wall = 'sound/weapons/effects/alien_spit_wall.ogg'
+	hitsound = 'sound/weapons/effects/alien_spit_wall.ogg'
 
 	combustion = FALSE
 

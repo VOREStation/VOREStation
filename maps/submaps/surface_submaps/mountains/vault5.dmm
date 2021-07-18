@@ -6,7 +6,7 @@
 "f" = (/obj/effect/alien/weeds,/obj/item/clothing/suit/storage/vest/tactical,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/vault5)
 "g" = (/obj/effect/alien/weeds,/obj/structure/bed/nest,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/vault5)
 "h" = (/obj/effect/alien/weeds,/obj/random/multiple/minevault,/mob/living/simple_mob/animal/space/alien/sentinel/praetorian,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/vault5)
-"i" = (/obj/effect/alien/weeds,/obj/effect/alien/egg,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/vault5)
+"i" = (/obj/effect/alien/weeds,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/vault5)
 "j" = (/obj/effect/alien/weeds,/obj/effect/alien/weeds/node,/mob/living/simple_mob/animal/space/alien/queen/empress,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/vault5)
 "k" = (/obj/effect/alien/weeds,/obj/item/clothing/head/helmet/tac,/obj/item/weapon/gun/projectile/SVD,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/vault5)
 

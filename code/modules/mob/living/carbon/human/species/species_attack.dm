@@ -64,11 +64,11 @@
 
 /datum/unarmed_attack/claws/strong/xeno
 	attack_verb = list("slashed", "gouged", "stabbed")
-	damage = 10
+	damage = 15
 
 /datum/unarmed_attack/claws/strong/xeno/queen
 	attack_verb = list("slashed", "gouged", "stabbed", "gored")
-	damage = 15
+	damage = 20
 
 /datum/unarmed_attack/bite/strong
 	attack_name = "strong bite"
@@ -77,7 +77,7 @@
 	shredding = 1
 
 /datum/unarmed_attack/bite/strong/xeno
-	damage = 10
+	damage = 15
 
 /datum/unarmed_attack/slime_glomp
 	attack_name = "glomp"
