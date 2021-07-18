@@ -421,7 +421,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 				A.circuit = M
 				A.state = 3
 				A.icon_state = "computer_3"
-				A.anchored = 1
+				A.anchored = TRUE
 				qdel(src)
 			else
 				to_chat(user, "<font color='blue'>You disconnect the monitor.</font>")
@@ -432,7 +432,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 				A.circuit = M
 				A.state = 4
 				A.icon_state = "computer_4"
-				A.anchored = 1
+				A.anchored = TRUE
 				qdel(src)
 	else
 		src.attack_hand(user)

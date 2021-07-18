@@ -113,7 +113,7 @@
 				if(do_after(user, 40 * W.toolspeed))
 					if(!src) return
 					to_chat(user,"<span class='notice'>You've secured the windoor assembly!</span>")
-					src.anchored = 1
+					src.anchored = TRUE
 					step = 0
 
 			//Unwrenching an unsecure assembly un-anchors it. Step 4 undone
@@ -124,7 +124,7 @@
 				if(do_after(user, 40 * W.toolspeed))
 					if(!src) return
 					to_chat(user,"<span class='notice'>You've unsecured the windoor assembly!</span>")
-					src.anchored = 0
+					src.anchored = FALSE
 					step = null
 
 			//Adding cable to the assembly. Step 5 complete.
@@ -212,7 +212,7 @@
 							windoor.icon_state = "rightsecureopen"
 							windoor.base_state = "rightsecure"
 						windoor.set_dir(src.dir)
-						windoor.density = 0
+						windoor.density = FALSE
 						if(created_name)
 							windoor.name = created_name
 						spawn(0)
@@ -234,7 +234,7 @@
 							windoor.icon_state = "rightopen"
 							windoor.base_state = "right"
 						windoor.set_dir(src.dir)
-						windoor.density = 0
+						windoor.density = FALSE
 						if(created_name)
 							windoor.name = created_name
 						spawn(0)

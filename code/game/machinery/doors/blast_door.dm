@@ -86,7 +86,7 @@
 	src.operating = 1
 	playsound(src, open_sound, 100, 1)
 	flick(icon_state_opening, src)
-	src.density = 0
+	src.density = FALSE
 	update_nearby_tiles()
 	src.update_icon()
 	src.set_opacity(0)
@@ -106,7 +106,7 @@
 	playsound(src, close_sound, 100, 1)
 	src.layer = closed_layer
 	flick(icon_state_closing, src)
-	src.density = 1
+	src.density = TRUE
 	update_nearby_tiles()
 	src.update_icon()
 	if(src.istransparent)

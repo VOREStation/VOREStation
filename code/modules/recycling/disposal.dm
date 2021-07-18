@@ -85,8 +85,8 @@
 					var/obj/structure/disposalconstruct/C = new (src.loc)
 					src.transfer_fingerprints_to(C)
 					C.ptype = 6 // 6 = disposal unit
-					C.anchored = 1
-					C.density = 1
+					C.anchored = TRUE
+					C.density = TRUE
 					C.update()
 					qdel(src)
 				return
@@ -1018,8 +1018,8 @@
 	C.subtype = src.subtype
 	src.transfer_fingerprints_to(C)
 	C.set_dir(dir)
-	C.density = 0
-	C.anchored = 1
+	C.density = FALSE
+	C.anchored = TRUE
 	C.update()
 
 	qdel(src)
@@ -1576,8 +1576,8 @@
 				src.transfer_fingerprints_to(C)
 				C.ptype = 7 // 7 =  outlet
 				C.update()
-				C.anchored = 1
-				C.density = 1
+				C.anchored = TRUE
+				C.density = TRUE
 				qdel(src)
 			return
 		else

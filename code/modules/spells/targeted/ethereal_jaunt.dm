@@ -23,8 +23,8 @@
 			var/obj/effect/dummy/spell_jaunt/holder = new /obj/effect/dummy/spell_jaunt( mobloc )
 			var/atom/movable/overlay/animation = new /atom/movable/overlay( mobloc )
 			animation.name = "water"
-			animation.density = 0
-			animation.anchored = 1
+			animation.density = FALSE
+			animation.anchored = TRUE
 			animation.icon = 'icons/mob/mob.dmi'
 			animation.plane = MOB_PLANE
 			animation.layer = ABOVE_MOB_LAYER

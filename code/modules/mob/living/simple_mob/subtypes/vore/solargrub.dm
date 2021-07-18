@@ -123,7 +123,7 @@ List of things solar grubs should be able to do:
 		L.reagents.add_reagent(poison_type, poison_per_bite)
 
 /mob/living/simple_mob/vore/solargrub/death()
-	src.anchored = 0
+	src.anchored = FALSE
 	set_light(0)
 	..()
 
@@ -160,6 +160,6 @@ List of things solar grubs should be able to do:
 		"The deceptively severe heat trapped within the solargrub works in tandem with its inner muscles and your tingling, prickling stomach juice bath to weaken you!")
 
 /datum/ai_holder/simple_mob/retaliate/solargrub/react_to_attack(atom/movable/attacker)
-	holder.anchored = 0
+	holder.anchored = FALSE
 	holder.set_AI_busy(FALSE)
 	..()

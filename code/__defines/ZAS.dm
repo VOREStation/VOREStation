@@ -9,5 +9,5 @@
 // More complicated, conditional airflow should override CanZASPass().
 #define ATMOS_PASS_YES			1	// Always blocks air and zones.
 #define ATMOS_PASS_NO			2	// Never blocks air or zones.
-#define ATMOS_PASS_DENSITY		3	// Blocks air and zones if density = 1, allows both if density = 0
+#define ATMOS_PASS_DENSITY		3	// Blocks air and zones if density = TRUE, allows both if density = FALSE
 #define ATMOS_PASS_PROC			4	// Call CanZASPass() using c_airblock

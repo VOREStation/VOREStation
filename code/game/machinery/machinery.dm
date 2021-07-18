@@ -176,7 +176,7 @@ Class Procs:
 		pulse2.icon = 'icons/effects/effects.dmi'
 		pulse2.icon_state = "empdisable"
 		pulse2.name = "emp sparks"
-		pulse2.anchored = 1
+		pulse2.anchored = TRUE
 		pulse2.set_dir(pick(cardinal))
 
 		spawn(10)
@@ -441,15 +441,15 @@ Class Procs:
 	var/obj/structure/frame/A = new /obj/structure/frame(src.loc)
 	var/obj/item/weapon/circuitboard/M = circuit
 	A.circuit = M
-	A.anchored = 1
+	A.anchored = TRUE
 	A.frame_type = M.board_type
 	if(A.frame_type.circuit)
 		A.need_circuit = 0
 
 	if(A.frame_type.frame_class == FRAME_CLASS_ALARM || A.frame_type.frame_class == FRAME_CLASS_DISPLAY)
-		A.density = 0
+		A.density = FALSE
 	else
-		A.density = 1
+		A.density = TRUE
 
 	if(A.frame_type.frame_class == FRAME_CLASS_MACHINE)
 		for(var/obj/D in component_parts)

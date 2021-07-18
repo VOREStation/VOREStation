@@ -241,40 +241,48 @@
 	display_name = "cloak, head of security"
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/hos
 	allowed_roles = list("Head of Security")
+	cost = 1
 
 /datum/gear/suit/roles/cloak_cmo
 	display_name = "cloak, chief medical officer"
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/cmo
 	allowed_roles = list("Chief Medical Officer")
+	cost = 1
 
 /datum/gear/suit/roles/cloak_ce
 	display_name = "cloak, chief engineer"
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/ce
 	allowed_roles = list("Chief Engineer")
+	cost = 1
 
 /datum/gear/suit/roles/cloak_rd
 	display_name = "cloak, research director"
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/rd
 	allowed_roles = list("Research Director")
+	cost = 1
 
 /datum/gear/suit/roles/cloak_qm
 	display_name = "cloak, quartermaster"
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/qm
 	allowed_roles = list("Quartermaster")
+	cost = 1
 
 /datum/gear/suit/roles/cloak_captain
 	display_name = "cloak, site manager"
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/captain
 	allowed_roles = list("Site Manager")
+	cost = 1
 
 /datum/gear/suit/roles/cloak_hop
 	display_name = "cloak, head of personnel"
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/hop
 	allowed_roles = list("Head of Personnel")
+	cost = 1
 
 /datum/gear/suit/cloak_custom //A colorable cloak
 	display_name = "cloak, colorable"
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/custom
+	cost = 1
 
 /datum/gear/suit/cloak_custom/New()
 	..()

@@ -648,7 +648,7 @@
 /datum/reagent/frostoil/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
-	M.bodytemperature = max(M.bodytemperature - 10 * TEMPERATURE_DAMAGE_COEFFICIENT, 215)
+	M.bodytemperature = min(M.bodytemperature, max(M.bodytemperature - 10 * TEMPERATURE_DAMAGE_COEFFICIENT, 215))
 	if(prob(1))
 		M.emote("shiver")
 	holder.remove_reagent("capsaicin", 5)

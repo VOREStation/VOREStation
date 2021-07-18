@@ -25,7 +25,7 @@
 
 	if(istype(W, /obj/item/target))
 		density = FALSE
-		W.density = 1
+		W.density = TRUE
 		user.remove_from_mob(W)
 		W.loc = loc
 		W.layer = ABOVE_JUNK_LAYER
@@ -37,7 +37,7 @@
 	// taking pinned targets off!
 	if(pinned_target)
 		density = TRUE
-		pinned_target.density = 0
+		pinned_target.density = FALSE
 		pinned_target.layer = OBJ_LAYER
 
 		pinned_target.loc = user.loc
