@@ -10,6 +10,8 @@
 	integrity = 40
 	pass_stack_colors = TRUE
 	supply_conversion_value = 2
+	hardness = 5
+
 
 /datum/material/cloth/generate_recipes()
 	recipes = list(
@@ -45,6 +47,7 @@
 	protectiveness = 15 // 4%
 	pass_stack_colors = TRUE
 	supply_conversion_value = 3
+	hardness = 5
 
 /datum/material/cloth/teal
 	name = "teal"
@@ -107,23 +110,27 @@
 	display_name = "comfy"
 	use_name = "red upholstery"
 	icon_colour = "#DA020A"
-	flags = MATERIAL_PADDING
+	flags = MATERIAL_PADDING|MATERIAL_BRITTLE
 	ignition_point = T0C+232
 	melting_point = T0C+300
 	sheet_singular_name = "tile"
 	sheet_plural_name = "tiles"
 	protectiveness = 1 // 4%
 	conductive = 0
+	hardness = 5
+	integrity = 40
 
 /datum/material/cotton
 	name = "cotton"
 	display_name ="cotton"
 	icon_colour = "#FFFFFF"
-	flags = MATERIAL_PADDING
+	flags = MATERIAL_PADDING|MATERIAL_BRITTLE
 	ignition_point = T0C+232
 	melting_point = T0C+300
 	protectiveness = 1 // 4%
 	conductive = 0
+	hardness = 5
+	integrity = 10
 
 /datum/material/fibers
 	name = MAT_FIBERS
@@ -131,9 +138,11 @@
 	sheet_singular_name = "fiber"
 	sheet_singular_name = "fibers"
 	icon_colour = "#006b0e"
-	flags = MATERIAL_PADDING
+	flags = MATERIAL_PADDING|MATERIAL_BRITTLE
 	ignition_point = T0C+232
 	melting_point = T0C+300
 	protectiveness = 1 // 4%
 	conductive = 0
 	pass_stack_colors = TRUE
+	hardness = 5
+	integrity = 5
