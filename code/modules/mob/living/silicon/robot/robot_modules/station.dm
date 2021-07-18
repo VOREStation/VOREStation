@@ -9,7 +9,12 @@ var/global/list/robot_modules = list(
 	"Security" 		= /obj/item/weapon/robot_module/robot/security/general,
 	"Combat" 		= /obj/item/weapon/robot_module/robot/security/combat,
 	"Engineering"	= /obj/item/weapon/robot_module/robot/engineering/general,
-	"Janitor" 		= /obj/item/weapon/robot_module/robot/janitor
+	"Janitor" 		= /obj/item/weapon/robot_module/robot/janitor,
+	"Gravekeeper"	= /obj/item/weapon/robot_module/robot/gravekeeper,
+	"Lost"			= /obj/item/weapon/robot_module/robot/lost,
+	"Protector" 	= /obj/item/weapon/robot_module/robot/syndicate/protector,
+	"Mechanist" 	= /obj/item/weapon/robot_module/robot/syndicate/mechanist,
+	"Combat Medic"	= /obj/item/weapon/robot_module/robot/syndicate/combat_medic
 	)
 
 /obj/item/weapon/robot_module

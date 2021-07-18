@@ -271,14 +271,18 @@
 		modules.Add(robot_module_types)
 		if(crisis || security_level == SEC_LEVEL_RED || crisis_override)
 			to_chat(src, "<font color='red'>Crisis mode active. Combat module available.</font>")
-			modules+="Combat"
-			modules+="ERT"
+			modules += emergency_module_types
+		for(var/module_name in whitelisted_module_types)
+			if(is_borg_whitelisted(src, module_name))
+				modules += module_name
 	//VOREStatation Edit End: shell restrictions
 	modtype = tgui_input_list(usr, "Please, select a module!", "Robot module", modules)
 
 	if(module)
 		return
 	if(!(modtype in robot_modules))
+		return
+	if(!is_borg_whitelisted(src, modtype))
 		return
 
 	var/module_type = robot_modules[modtype]
