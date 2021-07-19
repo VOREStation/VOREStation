@@ -764,17 +764,23 @@
 /obj/item/clothing/suit/equipped(var/mob/user, var/slot)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if((taurized && !istaurtail(H.tail_style)) || (!taurized && istaurtail(H.tail_style)))
-			taurize(user)
+		var/taurtail = istaurtail(H.tail_style)
+		if((taurized && !taurtail) || (!taurized && taurtail))
+			taurize(user, taurtail)
 
 	return ..()
 
-/obj/item/clothing/suit/proc/taurize(var/mob/living/carbon/human/Taur)
-	if(istaurtail(Taur.tail_style))
+/obj/item/clothing/suit/proc/taurize(var/mob/living/carbon/human/Taur, has_taur_tail = FALSE)
+	if(has_taur_tail)
 		var/datum/sprite_accessory/tail/taur/taurtail = Taur.tail_style
 		if(taurtail.suit_sprites && (get_worn_icon_state(slot_wear_suit_str) in cached_icon_states(taurtail.suit_sprites)))
 			icon_override = taurtail.suit_sprites
 			taurized = TRUE
+	// means that if a taur puts on an already taurized suit without a taur sprite
+	// for their taur type, but the previous taur type had a sprite, it stays
+	// taurized and they end up with that taur style which is funny
+	else 
+		taurized = FALSE
 
 	if(!taurized)
 		icon_override = initial(icon_override)

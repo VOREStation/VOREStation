@@ -84,7 +84,11 @@
 	h_style = "vulpkanin, dual-color"
 	return ..(new_loc, SPECIES_VULPKANIN)
 
-
+/mob/living/carbon/human/dummy/mannequin/autoequip/teshari
+	icon = 'icons/mob/human_races/r_teshari.dmi'
+/mob/living/carbon/human/dummy/mannequin/autoequip/teshari/Initialize(var/new_loc)
+	//h_style = "teshari, dual-color"
+	return ..(new_loc, SPECIES_TESHARI)
 
 /mob/living/carbon/human/skrell/Initialize(var/new_loc)
 	h_style = "Skrell Short Tentacles"

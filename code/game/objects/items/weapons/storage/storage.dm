@@ -529,7 +529,10 @@
 		F.update_icon(1)
 
 	for(var/mob/M in is_seeing)
-		M?.client.screen -= W
+		if(!M.client || QDELETED(M))
+			hide_from(M)
+		else
+			M.client.screen -= W
 
 	if(new_location)
 		if(ismob(loc))

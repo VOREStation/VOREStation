@@ -368,8 +368,8 @@
 	desc = "A silver medal awarded to a group which has demonstrated exceptional teamwork to achieve a notable feat. This one has three bronze service stars, denoting that it has been awarded four times."
 
 /obj/item/clothing/accessory/talon
-	name = "ITV pin"
-	desc = "A collectable enamel pin that resembles ITV's company logo."
+	name = "Talon pin"
+	desc = "A collectable enamel pin that resembles ITV Talon's ship logo."
 	icon = 'icons/inventory/accessory/item_vr.dmi'
 	icon_override = 'icons/inventory/accessory/mob_vr.dmi'
 	icon_state = "talon_pin"

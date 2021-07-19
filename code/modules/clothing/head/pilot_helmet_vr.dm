@@ -48,8 +48,8 @@
 //////////Talon Pilot Headgear//////////
 
 /obj/item/clothing/head/pilot_vr/talon
-	name = "ITV pilot helmet"
-	desc = "An ITV version of the standard pilot helmet. Protects the head from impacts. This one has a retractable visor"
+	name = "Talon pilot helmet"
+	desc = "An ITV Talon version of the standard pilot helmet. Protects the head from impacts. This one has a retractable visor"
 	icon_state = "pilot3"
 	item_icons = list(slot_head_str = 'icons/inventory/head/mob_vr.dmi')
 	sprite_sheets = list(

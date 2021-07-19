@@ -88,7 +88,7 @@
 /obj/item/clothing/suit/storage/det_trench/alt
 	name = "sleek modern coat"
 	desc = "A sleek overcoat made of neo-laminated fabric. Has a reasonably sized pocket on the inside."
-	
+
 	icon = 'icons/inventory/suit/item_vr.dmi'
 	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
 	icon_state = "cyberpunksleek"
@@ -96,7 +96,7 @@
 /obj/item/clothing/suit/storage/det_trench/alt2
 	name = "sleek modern coat (long)"
 	desc = "A sleek long overcoat made of neo-laminated fabric. Has a reasonably sized pocket on the inside."
-	
+
 	icon = 'icons/inventory/suit/item_vr.dmi'
 	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
 	icon_state = "cyberpunksleek_long"
@@ -109,8 +109,8 @@
 
 //Talon Hoodie
 /obj/item/clothing/suit/storage/toggle/hoodie/talon
-	name = "ITV hoodie"
-	desc = "A warm, blue sweatshirt bearing ITV markings."
+	name = "Talon hoodie"
+	desc = "A warm, blue sweatshirt bearing ITV Talon markings."
 	icon = 'icons/inventory/suit/item_vr.dmi'
 	icon_override = 'icons/inventory/suit/mob_vr.dmi'
 	icon_state = "talonhoodie"
@@ -120,7 +120,7 @@
 /obj/item/clothing/suit/storage/bladerunner
 	name = "leather coat"
 	desc = "An old leather coat. Has probably seen things you wouldn't believe."
-	
+
 	icon = 'icons/inventory/suit/item_vr.dmi'
 	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
 	icon_state = "bladerunner_coat"
@@ -129,9 +129,8 @@
 /obj/item/clothing/suit/cyberpunk
 	name = "cyberpunk vest"
 	desc = "A red vest with golden streaks. It's made out of tough materials, and can protect fairly well against bullets. Wake the fuck up, Samurai."
-	
+
 	icon = 'icons/inventory/suit/item_vr.dmi'
 	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
 	icon_state = "cyberpunk"
 	armor = list("melee" = 10, "bullet" = 20, "laser" = 10, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0)
-	
