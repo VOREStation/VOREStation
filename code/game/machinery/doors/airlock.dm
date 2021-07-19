@@ -218,12 +218,12 @@
 	open_sound_powered = 'sound/machines/door/space1o.ogg'
 	close_sound_powered = 'sound/machines/door/space1c.ogg'
 
-/obj/machinery/door/airlock/external/glass/bolted
+/obj/machinery/door/airlock/external/bolted
 	icon_state = "door_locked" // So it looks visibly bolted in map editor
 	locked = 1
 
 // For convenience in making docking ports: one that is pre-bolted with frequency set!
-/obj/machinery/door/airlock/external/glass/bolted/cycling
+/obj/machinery/door/airlock/external/bolted/cycling
 	frequency = 1379
 
 /obj/machinery/door/airlock/glass_external
