@@ -529,7 +529,10 @@
 		F.update_icon(1)
 
 	for(var/mob/M in is_seeing)
-		M?.client.screen -= W
+		if(!M.client || QDELETED(M))
+			hide_from(M)
+		else
+			M.client.screen -= W
 
 	if(new_location)
 		if(ismob(loc))
@@ -662,20 +665,9 @@
 /obj/item/weapon/storage/verb/quick_empty()
 	set name = "Empty Contents"
 	set category = "Object"
-	set src in view(1)
 
-	// Only humans and robots can dump contents
-	if(!(ishuman(usr) || isrobot(usr)))
+	if(((!(ishuman(usr) || isrobot(usr))) && (src.loc != usr)) || usr.stat || usr.restrained())
 		return
-
-	// Hard to do when you're KO'd
-	if(usr.incapacitated())
-		return
-
-	// Has to be at least adjacent (just for safety, src in view should handle this already)
-	if(!Adjacent(usr))
-		return
-
 	drop_contents()
 
 /obj/item/weapon/storage/proc/drop_contents() // why is this a proc? literally just for RPEDs
