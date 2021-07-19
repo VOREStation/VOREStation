@@ -186,3 +186,31 @@ VIRGO2_TURF_CREATE(/turf/simulated/mineral/floor/ignore_mapgen)
 /area/tether_away/aerostat/surface/unexplored
 	name = "Away Mission - Aerostat Surface (UE)"
 	icon_state = "unexplored"
+
+VIRGO2_TURF_CREATE(/turf/simulated/floor/hull)
+/area/tether_away/aerostat/surface/outpost
+	requires_power = TRUE
+	dynamic_lighting = TRUE
+	ambience = null
+
+/area/tether_away/aerostat/surface/outpost/backroom
+	name = "V4 Outpost - Research Area"
+/area/tether_away/aerostat/surface/outpost/hallway
+	name = "V4 Outpost - Hallway"
+/area/tether_away/aerostat/surface/outpost/cafe
+	name = "V4 Outpost - Cafe"
+/area/tether_away/aerostat/surface/outpost/park
+	name = "V4 Outpost - Park"
+/area/tether_away/aerostat/surface/outpost/officerone
+	name = "V4 Outpost - Officer's Quarters 1"
+/area/tether_away/aerostat/surface/outpost/officertwo
+	name = "V4 Outpost - Officer's Quarters 2"
+/area/tether_away/aerostat/surface/outpost/barracks
+	name = "V4 Outpost - Barracks"
+/area/tether_away/aerostat/surface/outpost/airlock
+	name = "V4 Outpost - Airlock"
+/area/tether_away/aerostat/surface/outpost/powerroom
+	name = "V4 Outpost - Power Room"
+/area/tether_away/aerostat/surface/outpost/guardpost
+	name = "V4 Outpost - Guard Post"
+	
