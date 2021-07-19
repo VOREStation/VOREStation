@@ -82,5 +82,5 @@
 Talon winter coat
 */
 /datum/gear/suit/wintercoat/talon
-	display_name = "winter coat, ITV"
+	display_name = "winter coat, Talon"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/talon

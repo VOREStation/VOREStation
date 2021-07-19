@@ -117,6 +117,6 @@
 Talon pin
 */
 /datum/gear/accessory/talonpin
-	display_name = "ITV pin"
-	description = "A small enamel pin of the ITV logo."
+	display_name = "Talon pin"
+	description = "A small enamel pin of the Talon logo."
 	path = /obj/item/clothing/accessory/talon

@@ -53,10 +53,10 @@
 Talon hats
 */
 /datum/gear/head/cap/talon
-	display_name = "cap, ITV"
+	display_name = "cap, Talon"
 	path = /obj/item/clothing/head/soft/talon
 
 /datum/gear/head/beret/talon
-	display_name = "beret, ITV"
+	display_name = "beret, Talon"
 	path = /obj/item/clothing/head/beret
 
