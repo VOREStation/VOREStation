@@ -118,14 +118,14 @@
 ///Talon Bags///
 
 /obj/item/weapon/storage/backpack/talon
-	name = "ITV backpack"
+	name = "Talon backpack"
 	desc = "A backpack for carrying a large number of supplies easily."
 	icon = 'icons/inventory/back/item_vr.dmi'
 	icon_override = 'icons/inventory/back/mob_vr.dmi'
 	icon_state = "talon"
 
 /obj/item/weapon/storage/backpack/satchel/talon
-	name = "ITV satchel"
+	name = "Talon satchel"
 	desc = "A satchel for carrying a large number of supplies easily."
 	icon = 'icons/inventory/back/item_vr.dmi'
 	icon_override = 'icons/inventory/back/mob_vr.dmi'
@@ -133,7 +133,7 @@
 	item_state_slots = null
 
 /obj/item/weapon/storage/backpack/messenger/talon
-	name = "ITV messenger bag"
+	name = "Talon messenger bag"
 	desc = "A sturdy backpack worn over one shoulder."
 	icon = 'icons/inventory/back/item_vr.dmi'
 	icon_override = 'icons/inventory/back/mob_vr.dmi'
@@ -141,7 +141,7 @@
 	item_state_slots = null
 
 /obj/item/weapon/storage/backpack/dufflebag/talon
-	name = "ITV dufflebag"
+	name = "Talon dufflebag"
 	desc = "A large dufflebag for holding extra supplies."
 	icon = 'icons/inventory/back/item_vr.dmi'
 	icon_override = 'icons/inventory/back/mob_vr.dmi'

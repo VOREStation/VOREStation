@@ -30,7 +30,7 @@
 
 // Talon Winter Hood
 /obj/item/clothing/head/hood/winter/talon
-	name = "ITV winter hood"
+	name = "Talon winter hood"
 	desc = "A cozy winter hood attached to a heavy winter jacket."
 	icon_override = 'icons/inventory/head/mob_vr.dmi'
 	icon_state = "winterhood_talon"
