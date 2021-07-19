@@ -472,7 +472,7 @@ emp_act
 			mass = I.w_class/THROWNOBJ_KNOCKBACK_DIVISOR
 		var/momentum = speed*mass
 
-		if(O.throw_source && momentum >= THROWNOBJ_KNOCKBACK_SPEED)
+		if(O.throw_source && momentum >= THROWNOBJ_KNOCKBACK_SPEED && !buckled)
 			var/dir = get_dir(O.throw_source, src)
 
 			visible_message("<font color='red'>[src] staggers under the impact!</font>","<font color='red'>You stagger under the impact!</font>")
