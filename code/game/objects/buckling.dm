@@ -54,6 +54,10 @@
 	if(!can_buckle_check(M, forced))
 		return FALSE
 
+	if(M == src)
+		stack_trace("Recursive buckle warning: [M] being buckled to self.")
+		return
+
 	M.buckled = src
 	M.facing_dir = null
 	M.set_dir(buckle_dir ? buckle_dir : dir)
