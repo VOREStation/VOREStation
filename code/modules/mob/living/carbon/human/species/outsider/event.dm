@@ -112,7 +112,6 @@ Variables you may want to make use of are:
 		)
 
 	var/use_bodyshape = SPECIES_HUMAN
-	var/waterbreathing = 0
 	var/overcome_gravity = 0
 	var/hover = 0
 
@@ -199,7 +198,7 @@ Variables you may want to make use of are:
 
 /datum/species/event1/proc/toggle_cloning()
 	flags ^= NO_SCAN
-	
+
 /datum/species/event1/proc/toggle_defibbing()
 	flags ^= NO_DEFIB
 
@@ -214,9 +213,6 @@ Variables you may want to make use of are:
 
 /datum/species/event1/get_bodytype(var/mob/living/carbon/human/H) //Default to human sprites, if they're based on another species, var edit use_bodyshape to the correct thing in _defines/mobs.dm of the species you want to use.
 	return use_bodyshape
-
-/datum/species/event1/can_breathe_water()
-	return waterbreathing
 
 /datum/species/event1/can_overcome_gravity(var/mob/living/carbon/human/H)
 	return overcome_gravity
