@@ -82,6 +82,12 @@
 		healing.expire()
 	return ..()
 
+/mob/living/simple_mob/protean_blob/say_understands(var/mob/other, var/datum/language/speaking = null)
+	// The parent of this proc and its parent are SHAMS and should be rewritten, but I'm not up to it right now.
+	if(!speaking)
+		return TRUE // can understand common, they're like, a normal person thing
+	return ..()
+
 /mob/living/simple_mob/protean_blob/speech_bubble_appearance()
 	return "synthetic"
 
