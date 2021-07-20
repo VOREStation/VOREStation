@@ -69,10 +69,6 @@ VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor)
 			"uranium" = 10,
 			"platinum" = 10,
 			"hematite" = 20,
-			"copper" = 8,
-//			"tin" = 4,
-			"bauxite" = 4,
-			"rutile" = 4,
 			"carbon" = 20,
 			"diamond" = 1,
 			"gold" = 8,
@@ -86,10 +82,6 @@ VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor)
 			"uranium" = 5,
 			"platinum" = 5,
 			"hematite" = 35,
-			"copper" = 15,
-//			"tin" = 10,
-			"bauxite" = 10,
-			"rutile" = 10,
 			"carbon" = 35,
 			"gold" = 3,
 			"silver" = 3,
@@ -272,7 +264,7 @@ VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor)
 				new_junction |= (1<<5)
 
 	icon_state = "[base_icon_state]-[new_junction]"
-	
+
 	add_vis_overlay('icons/effects/effects.dmi', "white", plane = SPACE_PLANE, add_vis_flags = VIS_INHERIT_ID|VIS_UNDERLAY)
 
 /turf/space/v3b_midpoint/Initialize()
@@ -283,4 +275,3 @@ VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor)
 	. = ..()
 	for(var/obj/effect/step_trigger/teleporter/planetary_fall/virgo3b/F in src)
 		qdel(F)
-		
