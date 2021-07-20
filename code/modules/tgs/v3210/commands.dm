@@ -8,7 +8,7 @@
 	var/list/command_name_types = list()
 	var/list/warned_command_names = warnings_only ? list() : null
 	var/warned_about_the_dangers_of_robutussin = !warnings_only
-	for(var/I in typesof(/datum/tgs_chat_command) - /datum/tgs_chat_command)
+	for(var/I in subtypesof(/datum/tgs_chat_command))
 		if(!warned_about_the_dangers_of_robutussin)
 			TGS_ERROR_LOG("Custom chat commands in [ApiVersion()] lacks the /datum/tgs_chat_user/sender.channel field!")
 			warned_about_the_dangers_of_robutussin = TRUE

@@ -43,7 +43,7 @@
 
 	if(!available_recipes)
 		available_recipes = new
-		for(var/datum/recipe/type as anything in (typesof(/datum/recipe)-/datum/recipe))
+		for(var/datum/recipe/type as anything in subtypesof(/datum/recipe))
 			if((initial(type.appliance) & appliancetype))
 				available_recipes += new type
 		

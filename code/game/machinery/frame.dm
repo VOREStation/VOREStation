@@ -5,7 +5,7 @@
 	//Create global frame type list if it hasn't been made already.
 	construction_frame_wall = list()
 	construction_frame_floor = list()
-	for(var/R in typesof(/datum/frame/frame_types) - /datum/frame/frame_types)
+	for(var/R in subtypesof(/datum/frame/frame_types))
 		var/datum/frame/frame_types/type = new R
 		if(type.frame_style == FRAME_STYLE_WALL)
 			construction_frame_wall += type

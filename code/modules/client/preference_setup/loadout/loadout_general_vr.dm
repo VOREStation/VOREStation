@@ -18,7 +18,7 @@
 /datum/gear/character/New()
 	..()
 	var/list/characters = list()
-	for(var/obj/item/toy/character/character_type as anything in typesof(/obj/item/toy/character/) - /obj/item/toy/character)
+	for(var/obj/item/toy/character/character_type as anything in subtypesof(/obj/item/toy/character))
 		characters[initial(character_type.name)] = character_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(characters))
 
@@ -30,7 +30,7 @@
 /datum/gear/mechtoy/New()
 	..()
 	var/list/mechs = list()
-	for(var/obj/item/toy/mecha/mech_type as anything in typesof(/obj/item/toy/mecha/) - /obj/item/toy/mecha/)
+	for(var/obj/item/toy/mecha/mech_type as anything in subtypesof(/obj/item/toy/mecha))
 		mechs[initial(mech_type.name)] = mech_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(mechs))
 

@@ -270,7 +270,7 @@ GLOBAL_LIST_EMPTY(mannequins)
 
 /*
 	// Custom species traits
-	paths = subtypesof(/datum/trait) - /datum/trait
+	paths = subtypesof(/datum/trait)
 	for(var/path in paths)
 		var/datum/trait/instance = new path()
 		if(!instance.name)

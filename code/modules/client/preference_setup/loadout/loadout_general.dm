@@ -53,7 +53,7 @@
 /datum/gear/plushie/New()
 	..()
 	var/list/plushies = list()
-	for(var/obj/item/toy/plushie/plushie_type as anything in subtypesof(/obj/item/toy/plushie/) - /obj/item/toy/plushie/therapy)
+	for(var/obj/item/toy/plushie/plushie_type as anything in subtypesof(/obj/item/toy/plushie) - /obj/item/toy/plushie/therapy)
 		plushies[initial(plushie_type.name)] = plushie_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(plushies))
 
@@ -65,7 +65,7 @@
 /datum/gear/figure/New()
 	..()
 	var/list/figures = list()
-	for(var/obj/item/toy/figure/figure_type as anything in typesof(/obj/item/toy/figure/) - /obj/item/toy/figure)
+	for(var/obj/item/toy/figure/figure_type as anything in subtypesof(/obj/item/toy/figure))
 		figures[initial(figure_type.name)] = figure_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(figures))
 

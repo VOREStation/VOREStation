@@ -52,12 +52,12 @@ GLOBAL_LIST_INIT(design_datums, list())
 
 /datum/research/New()		//Insert techs into possible_tech here. Known_tech automatically updated.
 	if(!LAZYLEN(GLOB.design_datums))
-		for(var/T in typesof(/datum/design) - /datum/design)
+		for(var/T in subtypesof(/datum/design))
 			GLOB.design_datums += new T
 	possible_designs = GLOB.design_datums
 
 	if(!LAZYLEN(known_tech))
-		for(var/T in typesof(/datum/tech) - /datum/tech)
+		for(var/T in subtypesof(/datum/tech))
 			known_tech += new T
 	RefreshResearch()
 

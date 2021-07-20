@@ -354,7 +354,7 @@
 /obj/machinery/partslathe/proc/update_recipe_list()
 	if(!partslathe_recipies)
 		partslathe_recipies = list()
-		var/list/paths = typesof(/obj/item/weapon/stock_parts)-/obj/item/weapon/stock_parts
+		var/list/paths = subtypesof(/obj/item/weapon/stock_parts)
 		for(var/type in paths)
 			var/obj/item/weapon/stock_parts/I = new type()
 			if(getHighestOriginTechLevel(I) > 1)
