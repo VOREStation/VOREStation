@@ -80,7 +80,7 @@
 	headquarters = "Luna, Sol"
 	motto = ""
 
-	ship_prefixes = list("NSV" = "exploration", "NTV" = "hauling", "NDV" = "patrol", "NRV" = "emergency response", "NDV" = "asset protection")
+	ship_prefixes = list("NSV" = "Cruelty Squad", "NTV" = "hauling", "NDV" = "patrol", "NRV" = "emergency response", "NDV" = "asset protection")
 	//Scientist naming scheme
 	ship_names = list(
 		"Bardeen",

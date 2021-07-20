@@ -149,7 +149,7 @@ GLOBAL_LIST_EMPTY(suit_cycler_emagged)
 
 
 /datum/suit_cycler_choice/department/exp/standard
-	name = "Exploration"
+	name = "Cruelty Squad"
 	helmet_becomes = /obj/item/clothing/head/helmet/space/void/exploration
 	suit_becomes = /obj/item/clothing/suit/space/void/exploration
 /datum/suit_cycler_choice/department/exp/medic

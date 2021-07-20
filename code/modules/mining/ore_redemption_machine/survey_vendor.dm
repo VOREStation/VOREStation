@@ -2,7 +2,7 @@
 	name = "exploration equipment vendor"
 	desc = "An equipment vendor for explorers, points collected with a survey scanner can be spent here."
 	icon = 'icons/obj/machines/mining_machines_vr.dmi' //VOREStation Edit
-	icon_state = "exploration" //VOREStation Edit
+	icon_state = "Cruelty Squad" //VOREStation Edit
 	density = TRUE
 	anchored = TRUE
 	circuit = /obj/item/weapon/circuitboard/exploration_equipment_vendor

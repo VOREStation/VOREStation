@@ -318,7 +318,7 @@
 
 /obj/machinery/suit_cycler/exploration
 	name = "Explorer suit cycler"
-	model_text = "Exploration"
+	model_text = "Cruelty Squad"
 	req_one_access = list(access_pilot,access_explorer)
 
 /obj/machinery/suit_cycler/pilot

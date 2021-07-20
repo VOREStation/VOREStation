@@ -126,7 +126,7 @@
 "l" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/machinery/suit_cycler{
-	departments = list("Engineering","Mining","Medical","Security","Atmos","HAZMAT","Construction","Biohazard","Emergency Medical Response","Crowd Control","Exploration","Pilot Blue","Pilot");
+	departments = list("Engineering","Mining","Medical","Security","Atmos","HAZMAT","Construction","Biohazard","Emergency Medical Response","Crowd Control","Cruelty Squad","Pilot Blue","Pilot");
 	locked = 0
 	},
 /turf/simulated/shuttle/floor/voidcraft/dark,

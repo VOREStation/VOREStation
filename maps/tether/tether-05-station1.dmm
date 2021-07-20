@@ -14454,7 +14454,7 @@
 "bmv" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/machinery/requests_console{
-	department = "Exploration";
+	department = "Cruelty Squad";
 	dir = 1;
 	name = "Exploration Requests Console";
 	pixel_y = -30

@@ -13,7 +13,7 @@
 
 /obj/machinery/computer/shuttle_control/explore/bearcat
 	name = "exploration shuttle console"
-	shuttle_tag = "Exploration"
+	shuttle_tag = "Cruelty Squad"
 	landing_type = /area/ship/scrap/shuttle/outgoing
 
 

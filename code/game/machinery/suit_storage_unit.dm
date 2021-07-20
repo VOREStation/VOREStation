@@ -666,7 +666,7 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 
 /obj/machinery/suit_cycler/exploration
 	name = "Explorer suit cycler"
-	model_text = "Exploration"
+	model_text = "Cruelty Squad"
 	limit_departments = list(
 		/datum/suit_cycler_choice/department/exp
 	)

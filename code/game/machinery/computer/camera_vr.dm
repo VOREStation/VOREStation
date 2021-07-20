@@ -10,7 +10,7 @@
 					"Command",
 					"Engine",
 					"Engineering",
-					"Exploration",
+					"Cruelty Squad",
 					"Medical",
 					"Mining Outpost",
 					"Outside",

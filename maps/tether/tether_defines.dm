@@ -25,7 +25,7 @@
 #define NETWORK_TETHER "Tether"
 #define NETWORK_TCOMMS "Telecommunications" //Using different from Polaris one for better name
 #define NETWORK_OUTSIDE "Outside"
-#define NETWORK_EXPLORATION "Exploration"
+#define NETWORK_EXPLORATION "Cruelty Squad"
 #define NETWORK_XENOBIO "Xenobiology"
 
 /datum/map/tether/New()
