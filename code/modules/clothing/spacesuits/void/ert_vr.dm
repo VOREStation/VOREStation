@@ -239,4 +239,3 @@
 		SPECIES_ALRAUNE			= 'icons/inventory/head/item_vr.dmi',
 		SPECIES_ZADDAT			= 'icons/inventory/head/item_vr.dmi'
 		)
-	sprite_sheets_refit = list()	//have to nullify this as well just to be thorough

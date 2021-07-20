@@ -14,18 +14,8 @@
 
 	//Species-specific stuff.
 	species_restricted = list("Human", "Promethean")
-	sprite_sheets_refit = list(
-		SPECIES_UNATHI = 'icons/inventory/head/mob_unathi.dmi',
-		SPECIES_TAJ = 'icons/inventory/head/mob_tajaran.dmi',
-		SPECIES_SKRELL = 'icons/inventory/head/mob_skrell.dmi'
-		//Teshari have a general sprite sheet defined in modules/clothing/clothing.dm
-		)
-	sprite_sheets_obj = list(
-		SPECIES_UNATHI = 'icons/inventory/head/item_unathi.dmi',
-		SPECIES_TAJ = 'icons/inventory/head/item_tajaran.dmi',
-		SPECIES_SKRELL = 'icons/inventory/head/item_skrell.dmi',
-		SPECIES_TESHARI = 'icons/inventory/head/item_teshari.dmi'
-		)
+	sprite_sheets = VR_SPECIES_SPRITE_SHEETS_HEAD_MOB
+	sprite_sheets_obj = VR_SPECIES_SPRITE_SHEETS_HEAD_ITEM
 
 	light_overlay = "helmet_light"
 	var/no_cycle = FALSE	//stop this item from being put in a cycler
@@ -44,18 +34,8 @@
 	max_pressure_protection = 10 * ONE_ATMOSPHERE
 
 	species_restricted = list("Human", SPECIES_SKRELL, "Promethean")
-	sprite_sheets_refit = list(
-		SPECIES_UNATHI = 'icons/inventory/suit/mob_unathi.dmi',
-		SPECIES_TAJ = 'icons/inventory/suit/mob_tajaran.dmi',
-		SPECIES_SKRELL = 'icons/inventory/suit/mob_skrell.dmi'
-		//Teshari have a general sprite sheet defined in modules/clothing/clothing.dm
-		)
-	sprite_sheets_obj = list(
-		SPECIES_UNATHI = 'icons/inventory/suit/item_unathi.dmi',
-		SPECIES_TAJ = 'icons/inventory/suit/item_tajaran.dmi',
-		SPECIES_SKRELL = 'icons/inventory/suit/item_skrell.dmi',
-		SPECIES_TESHARI = 'icons/inventory/suit/item_teshari.dmi'
-		)
+	sprite_sheets = VR_SPECIES_SPRITE_SHEETS_SUIT_MOB
+	sprite_sheets_obj = VR_SPECIES_SPRITE_SHEETS_SUIT_ITEM
 
 	//Breach thresholds, should ideally be inherited by most (if not all) voidsuits.
 	//With 0.2 resiliance, will reach 10 breach damage after 3 laser carbine blasts or 8 smg hits.
