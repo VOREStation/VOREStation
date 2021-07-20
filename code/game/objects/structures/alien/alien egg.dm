@@ -43,49 +43,69 @@
 	else
 		icon_state = "egg"
 
+	// Ghostjoinable icon
+	var/static/image/I
+	if(!I)
+		I = image('icons/mob/hud_vr.dmi', "ghostjoin")
+		I.invisibility = INVISIBILITY_OBSERVER
+		I.plane = PLANE_GHOSTS
+		I.appearance_flags = KEEP_APART|RESET_TRANSFORM
+	
+	if(progress >= MAX_PROGRESS)
+		add_overlay(I)
+	else
+		cut_overlay(I)
+
+
 /obj/structure/alien/egg/attack_ghost(var/mob/observer/ghost/user)
-	if(progress == -1) //Egg has been hatched.
+	// Still a ghost?
+	if(!istype(user))
 		return
-
-	if(progress < MAX_PROGRESS)
-		to_chat(user, "\The [src] has not yet matured.")
-		return
-
-	if(!user.MayRespawn(1))
-		return
-
+	
 	// Check for bans properly.
 	if(jobban_isbanned(user, "Xenomorph"))
 		to_chat(user, "<span class='danger'>You are banned from playing a Xenomorph.</span>")
 		return
+		
+	// Check for respawn
+	if(!user.MayRespawn(1))
+		to_chat(user, "<span class='danger'>You aren't allowed to respawn.</span>")
+		return
+	
+	if(progress == -1)
+		tgui_alert_async(user, "That egg has already hatched.")
+	else if(progress >= MAX_PROGRESS)
+		tgui_alert_async(user, "Are you sure you want to join as a Xenomorph larva?", "Become Larva", list("Yes","No"), CALLBACK(src, .proc/ghost_dunk), 20 SECONDS)
+	else
+		tgui_alert_async(user, "\The [src] has not yet matured.")
 
-	var/confirm = alert(user, "Are you sure you want to join as a Xenomorph larva?", "Become Larva", "No", "Yes")
-
-	if(!src || confirm != "Yes")
+/obj/structure/alien/egg/proc/ghost_dunk(choice)
+	if(choice != "Yes")
+		return
+	var/mob/observer/dead/user = usr
+	if(progress < MAX_PROGRESS || !istype(user))
 		return
 
-	if(!user || !user.ckey)
-		return
-
-	if(progress == -1) //Egg has been hatched.
-		to_chat(user, "Too slow...")
-		return
-
-	flick("egg_opening",src)
 	progress = -1 // No harvesting pls.
-	sleep(5)
+	flick("egg_opening",src)
+	sleep(5) //5ds animation
 
-	if(!src || !user)
+	if(!src || !istype(user))
 		visible_message("<span class='alium'>\The [src] writhes with internal motion, but nothing comes out.</span>")
 		progress = MAX_PROGRESS // Someone else can have a go.
 		return // What a pain.
 
 	// Create the mob, transfer over key.
 	var/mob/living/carbon/alien/larva/larva = new(get_turf(src))
-	larva.ckey = user.ckey
-	spawn(-1)
-		if(user) qdel(user) // Remove the keyless ghost if it exists.
-
+	
+	// Move the ghost in
+	if(user.mind)
+		user.mind.active = TRUE
+		user.mind.transfer_to(larva)
+	else
+		larva.ckey = user.ckey
+	qdel(user)
+	
 	visible_message("<span class='alium'>\The [src] splits open with a wet slithering noise, and \the [larva] writhes free!</span>")
 
 	// Turn us into a hatched egg.
