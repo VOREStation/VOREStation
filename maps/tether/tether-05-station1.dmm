@@ -33274,8 +33274,8 @@
 	},
 /obj/machinery/door/airlock/science{
 	name = "Pathfinder";
-	req_access = list(62,43,67);
-	req_one_access = newlist()
+	req_access = null;
+	req_one_access = list(44)
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/tether/exploration/pathfinder_office)
