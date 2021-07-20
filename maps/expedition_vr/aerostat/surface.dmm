@@ -421,6 +421,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/eris/dark,
 /area/tether_away/aerostat/surface/outpost/cafe)
+"nx" = (
+/obj/structure/sign/painting/away_areas{
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/eris/bcircuit,
+/area/tether_away/aerostat/surface/outpost/hallway)
 "nI" = (
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
@@ -550,6 +556,13 @@
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/tether_away/aerostat/surface/outpost/powerroom)
+"ru" = (
+/obj/structure/table/woodentable,
+/obj/structure/sign/painting/away_areas{
+	pixel_x = 32
+	},
+/turf/simulated/floor/tiled/eris/dark,
+/area/tether_away/aerostat/surface/outpost/cafe)
 "rA" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
@@ -1116,6 +1129,13 @@
 /obj/structure/medical_stand/anesthetic,
 /turf/simulated/floor/tiled/eris/bcircuit,
 /area/tether_away/aerostat/surface/outpost/backroom)
+"GH" = (
+/obj/structure/table/woodentable,
+/obj/structure/sign/painting/away_areas{
+	pixel_x = 32
+	},
+/turf/simulated/floor/wood,
+/area/tether_away/aerostat/surface/outpost/barracks)
 "Ha" = (
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
@@ -1402,6 +1422,8 @@
 "ON" = (
 /obj/structure/table/rack/shelf/steel,
 /obj/item/weapon/storage/box/glasses,
+/obj/item/paint_brush,
+/obj/item/paint_palette,
 /turf/simulated/floor/tiled/eris/dark/monofloor,
 /area/tether_away/aerostat/surface/outpost/cafe)
 "OT" = (
@@ -1550,6 +1572,8 @@
 "Ur" = (
 /obj/structure/table/rack/shelf/steel,
 /obj/item/weapon/storage/box/glasses/pint,
+/obj/item/canvas/twentyfour_twentyfour,
+/obj/item/canvas/nineteen_nineteen,
 /turf/simulated/floor/tiled/eris/dark/monofloor,
 /area/tether_away/aerostat/surface/outpost/cafe)
 "UC" = (
@@ -2602,9 +2626,9 @@ Ge
 QJ
 Zb
 br
-zN
-zN
-zN
+nx
+nx
+nx
 br
 zN
 dE
@@ -5308,9 +5332,9 @@ gq
 dE
 zr
 WC
+ru
 Ra
-Ra
-Ra
+ru
 iu
 WF
 Oi
@@ -6301,7 +6325,7 @@ Rw
 Bs
 sA
 nK
-nK
+GH
 tG
 gx
 gx
