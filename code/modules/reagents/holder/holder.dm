@@ -85,20 +85,17 @@
 	var/list/effect_reactions = list()
 	do
 		reaction_occurred = FALSE
-		for(var/i in reagent_list)
-			var/datum/reagent/R = i
+		for(var/datum/reagent/R as anything in reagent_list)
 			if(SSchemistry.instant_reactions_by_reagent[R.id])
 				eligible_reactions |= SSchemistry.instant_reactions_by_reagent[R.id]
 
-		for(var/i in eligible_reactions)
-			var/decl/chemical_reaction/C = i
+		for(var/decl/chemical_reaction/C as anything in eligible_reactions)
 			if(C.can_happen(src) && C.process(src))
 				effect_reactions |= C
 				reaction_occurred = TRUE
 		eligible_reactions.len = 0
 	while(reaction_occurred)
-	for(var/i in effect_reactions)
-		var/decl/chemical_reaction/C = i
+	for(var/decl/chemical_reaction/C as anything in effect_reactions)
 		C.post_reaction(src)
 	update_total()
 
@@ -145,8 +142,7 @@
 	return 0
 
 /datum/reagents/proc/isolate_reagent(reagent)
-	for(var/A in reagent_list)
-		var/datum/reagent/R = A
+	for(var/datum/reagent/R as anything in reagent_list)
 		if(R.id != reagent)
 			del_reagent(R.id)
 			update_total()
@@ -484,14 +480,12 @@
 		objs += O
 	if (objs.len)
 		var/objportion = (amount * 0.2) / objs.len
-		for (var/o in objs)
-			var/obj/O = o
+		for(var/obj/O as anything in objs)
 			trans_to(O, objportion, multiplier, copy)
 	amount = min(amount, total_volume)
 	if (mobs.len)
 		var/mobportion = (amount * 0.5) / mobs.len
-		for (var/m in mobs)
-			var/mob/M = m
+		for(var/mob/M as anything in mobs)
 			trans_to(M, mobportion, multiplier, copy)
 	trans_to(T, total_volume, multiplier, copy)
 	if (total_volume <= 0)

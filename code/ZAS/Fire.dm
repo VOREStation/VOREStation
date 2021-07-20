@@ -71,8 +71,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 
 	var/fuel_to_remove = used_liquid_fuel/(fuel_objs.len*LIQUIDFUEL_AMOUNT_TO_MOL) //convert back to liquid volume units
 
-	for(var/O in fuel_objs)
-		var/obj/effect/decal/cleanable/liquid_fuel/fuel = O
+	for(var/obj/effect/decal/cleanable/liquid_fuel/fuel as anything in fuel_objs)
 		if(!istype(fuel))
 			fuel_objs -= fuel
 			continue

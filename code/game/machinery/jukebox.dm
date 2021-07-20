@@ -91,8 +91,7 @@
 		media_start_time = 0
 	update_music()
 	//VOREStation Add
-	for(var/rem in remotes)
-		var/obj/item/device/juke_remote/remote = rem
+	for(var/obj/item/device/juke_remote/remote as anything in remotes)
 		remote.update_music()
 	//VOREStation Add End
 

@@ -194,8 +194,7 @@
 		var/list/m_viewers = in_range["mobs"]
 		var/list/o_viewers = in_range["objs"]
 
-		for(var/mob in m_viewers)
-			var/mob/M = mob
+		for(var/mob/M as anything in m_viewers)
 			spawn(0) // It's possible that it could be deleted in the meantime, or that it runtimes.
 				if(M)
 					if(isobserver(M))
@@ -203,8 +202,7 @@
 					M.show_message(message, m_type)
 					M.create_chat_message(src, "[runemessage]", FALSE, list("emote"), (m_type == AUDIBLE_MESSAGE))
 
-		for(var/obj in o_viewers)
-			var/obj/O = obj
+		for(var/obj/O as anything in o_viewers)
 			spawn(0)
 				if(O)
 					O.see_emote(src, message, m_type)

@@ -18,8 +18,7 @@ var/global/list/total_extraction_beacons = list()
 
 /obj/item/extraction_pack/attack_self(mob/user)
 	var/list/possible_beacons = list()
-	for(var/B in global.total_extraction_beacons)
-		var/obj/structure/extraction_point/EP = B
+	for(var/obj/structure/extraction_point/EP as anything in global.total_extraction_beacons)
 		if(EP.beacon_network in beacon_networks)
 			possible_beacons += EP
 

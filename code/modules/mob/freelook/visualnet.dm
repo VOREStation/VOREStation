@@ -49,8 +49,7 @@
 	var/list/chunks_pre_seen = list()
 	var/list/chunks_post_seen = list()
 
-	for(var/V in moved_eyes)
-		var/mob/observer/eye/eye = V
+	for(var/mob/observer/eye/eye as anything in moved_eyes)
 		if(C)
 			chunks_pre_seen |= eye.visibleChunks
 		// 0xf = 15
@@ -69,31 +68,26 @@
 		var/list/remove = eye.visibleChunks - visibleChunks
 		var/list/add = visibleChunks - eye.visibleChunks
 
-		for(var/chunk in remove)
-			var/datum/chunk/c = chunk
+		for(var/datum/chunk/c as anything in remove)
 			c.remove(eye, FALSE)
 
-		for(var/chunk in add)
-			var/datum/chunk/c = chunk
+		for(var/datum/chunk/c as anything in add)
 			c.add(eye, FALSE)
 
 		if(C)
 			chunks_post_seen |= eye.visibleChunks
 
 	if(C)
-		for(var/V in other_eyes)
-			var/mob/observer/eye/eye = V
+		for(var/mob/observer/eye/eye as anything in other_eyes)
 			chunks_post_seen |= eye.visibleChunks
 
 		var/list/remove = chunks_pre_seen - chunks_post_seen
 		var/list/add = chunks_post_seen - chunks_pre_seen
 
-		for(var/chunk in remove)
-			var/datum/chunk/c = chunk
+		for(var/datum/chunk/c as anything in remove)
 			C.images -= c.obscured
 
-		for(var/chunk in add)
-			var/datum/chunk/c = chunk
+		for(var/datum/chunk/c as anything in add)
 			C.images += c.obscured
 
 // Updates the chunks that the turf is located in. Use this when obstacles are destroyed or	when doors open.

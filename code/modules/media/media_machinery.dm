@@ -48,8 +48,7 @@
 	// Update Media Source.
 	A.media_source = null
 	// Clients
-	for(var/m in mobs_in_area(A))
-		var/mob/M = m
+	for(var/mob/M as anything in mobs_in_area(A))
 		M.update_music()
 	master_area = null
 

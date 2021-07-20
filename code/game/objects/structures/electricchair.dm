@@ -65,8 +65,7 @@
 	s.set_up(12, 1, src)
 	s.start()
 	if(has_buckled_mobs())
-		for(var/a in buckled_mobs)
-			var/mob/living/L = a
+		for(var/mob/living/L as anything in buckled_mobs)
 			L.burn_skin(85)
 			to_chat(L, "<span class='danger'>You feel a deep shock course through your body!</span>")
 			sleep(1)

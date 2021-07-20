@@ -3,8 +3,7 @@
 
 /datum/unit_test/loadout_test_shall_have_name_cost_path/start_test()
 	var/failed = 0
-	for(var/geartype in typesof(/datum/gear) - /datum/gear)
-		var/datum/gear/G = geartype
+	for(var/datum/gear/G as anything in subtypesof(/datum/gear))
 
 		if(!initial(G.display_name))
 			log_unit_test("[G]: Loadout - Missing display name.")

@@ -32,8 +32,7 @@
 	if(shifted_out)
 		shifted_out = FALSE
 		name = real_name
-		for(var/belly in vore_organs)
-			var/obj/belly/B = belly
+		for(var/obj/belly/B as anything in vore_organs)
 			B.escapable = initial(B.escapable)
 
 		cut_overlays()
@@ -89,8 +88,7 @@
 		name = "Something"
 		health = maxHealth	//Fullheal
 
-		for(var/belly in vore_organs)
-			var/obj/belly/B = belly
+		for(var/obj/belly/B as anything in vore_organs)
 			B.escapable = FALSE
 
 		cut_overlays()
@@ -145,8 +143,7 @@
 	real_name = name
 	name = "Something"
 
-	for(var/belly in vore_organs)
-		var/obj/belly/B = belly
+	for(var/obj/belly/B as anything in vore_organs)
 		B.escapable = FALSE
 
 	cut_overlays()
@@ -166,8 +163,7 @@
 	spawn(300)
 		shifted_out = FALSE
 		name = real_name
-		for(var/belly in vore_organs)
-			var/obj/belly/B = belly
+		for(var/obj/belly/B as anything in vore_organs)
 			B.escapable = initial(B.escapable)
 
 		cut_overlays()

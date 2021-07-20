@@ -263,8 +263,7 @@
 	var/count = 0
 
 	//Iterate over contents and move them all
-	for(var/thing in contents)
-		var/atom/movable/AM = thing
+	for(var/atom/movable/AM as anything in contents)
 		if(isliving(AM))
 			var/mob/living/L = AM
 			if(L.absorbed && !include_absorbed)
@@ -576,8 +575,7 @@
 	//This in particular will recurse oddly because if there is absorbed prey of prey of prey...
 	//it will just move them up one belly. This should never happen though since... when they were
 	//absobred, they should have been absorbed as well!
-	for(var/belly in M.vore_organs)
-		var/obj/belly/B = belly
+	for(var/obj/belly/B as anything in M.vore_organs)
 		for(var/mob/living/Mm in B)
 			if(Mm.absorbed)
 				absorb_living(Mm)
@@ -714,8 +712,7 @@
 
 		else if(prob(transferchance) && transferlocation) //Next, let's have it see if they end up getting into an even bigger mess then when they started.
 			var/obj/belly/dest_belly
-			for(var/belly in owner.vore_organs)
-				var/obj/belly/B = belly
+			for(var/obj/belly/B as anything in owner.vore_organs)
 				if(B.name == transferlocation)
 					dest_belly = B
 					break

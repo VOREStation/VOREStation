@@ -272,9 +272,8 @@
 	for(var/A in circuit.req_components)
 		req_components[A] = circuit.req_components[A]
 	req_component_names = circuit.req_components.Copy()
-	for(var/A in req_components)
-		var/obj/ct = A
-		req_component_names[A] = initial(ct.name)
+	for(var/obj/ct as anything in req_components)
+		req_component_names[ct] = initial(ct.name)
 
 /obj/structure/frame/New(var/loc, var/dir, var/building = 0, var/datum/frame/frame_types/type, mob/user as mob)
 	..()

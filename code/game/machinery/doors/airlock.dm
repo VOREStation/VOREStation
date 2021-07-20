@@ -1220,8 +1220,7 @@ About the new airlock wires panel:
 	use_power(360)	//360 W seems much more appropriate for an actuator moving an industrial door capable of crushing people
 
 	//if the door is unpowered then it doesn't make sense to hear the woosh of a pneumatic actuator
-	for(var/P in player_list)
-		var/mob/M = P
+	for(var/mob/M as anything in player_list)
 		if(!M || !M.client)
 			continue
 		var/old_sounds = M.client.is_preference_enabled(/datum/client_preference/old_door_sounds)
@@ -1349,8 +1348,7 @@ About the new airlock wires panel:
 
 	use_power(360)	//360 W seems much more appropriate for an actuator moving an industrial door capable of crushing people
 	has_beeped = 0
-	for(var/P in player_list)
-		var/mob/M = P
+	for(var/mob/M as anything in player_list)
 		if(!M || !M.client)
 			continue
 		var/old_sounds = M.client.is_preference_enabled(/datum/client_preference/old_door_sounds)

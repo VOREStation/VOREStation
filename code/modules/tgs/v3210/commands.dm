@@ -32,8 +32,7 @@
 /datum/tgs_api/v3210/proc/HandleServiceCustomCommand(command, sender, params)
 	if(!cached_custom_tgs_chat_commands)
 		cached_custom_tgs_chat_commands = list()
-		for(var/I in typesof(/datum/tgs_chat_command) - /datum/tgs_chat_command)
-			var/datum/tgs_chat_command/stc = I
+		for(var/datum/tgs_chat_command/stc as anything in subtypesof(/datum/tgs_chat_command))
 			cached_custom_tgs_chat_commands[lowertext(initial(stc.name))] = stc
 
 	var/command_type = cached_custom_tgs_chat_commands[command]

@@ -252,6 +252,5 @@
 	return TRUE
 
 /obj/structure/proc/refresh_neighbors()
-	for(var/thing in RANGE_TURFS(1, src))
-		var/turf/T = thing
+	for(var/turf/T as anything in RANGE_TURFS(1, src))
 		T.update_icon()

@@ -120,8 +120,7 @@ GLOBAL_LIST_INIT(design_datums, list())
 
 // A simple helper proc to find the name of a tech with a given ID.
 /proc/CallTechName(var/ID)
-	for(var/T in subtypesof(/datum/tech))
-		var/datum/tech/check_tech = T
+	for(var/datum/tech/check_tech as anything in subtypesof(/datum/tech))
 		if(initial(check_tech.id) == ID)
 			return  initial(check_tech.name)
 

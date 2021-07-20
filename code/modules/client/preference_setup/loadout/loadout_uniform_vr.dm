@@ -171,8 +171,7 @@ Swimsuits
 /datum/gear/uniform/swimsuits/New()
 	..()
 	var/list/swimsuits = list()
-	for(var/swimsuit in typesof(/obj/item/weapon/storage/box/fluff/swimsuit))
-		var/obj/item/weapon/storage/box/fluff/swimsuit/swimsuit_type = swimsuit
+	for(var/obj/item/weapon/storage/box/fluff/swimsuit/swimsuit_type as anything in typesof(/obj/item/weapon/storage/box/fluff/swimsuit))
 		swimsuits[initial(swimsuit_type.name)] = swimsuit_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(swimsuits))
 

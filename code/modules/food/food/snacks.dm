@@ -4149,8 +4149,7 @@
 
 	//Calculate the reagents of the coating needed
 	var/req = 0
-	for (var/r in reagents.reagent_list)
-		var/datum/reagent/R = r
+	for(var/datum/reagent/R as anything in reagents.reagent_list)
 		if (istype(R, /datum/reagent/nutriment))
 			req += R.volume * 0.2
 		else
@@ -4232,8 +4231,7 @@
 		if (do_coating_prefix == 1)
 			name = "[coating.coated_adj] [name]"
 
-	for (var/r in reagents.reagent_list)
-		var/datum/reagent/R = r
+	for(var/datum/reagent/R as anything in reagents.reagent_list)
 		if (istype(R, /datum/reagent/nutriment/coating))
 			var/datum/reagent/nutriment/coating/C = R
 			C.data["cooked"] = 1

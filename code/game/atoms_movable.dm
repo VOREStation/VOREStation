@@ -134,8 +134,7 @@
 					oldarea.Exited(src, newloc)
 
 				// Multi-tile objects can't reach here, otherwise you'd need to avoid uncrossing yourself
-				for(var/i in oldloc)
-					var/atom/movable/thing = i
+				for(var/atom/movable/thing as anything in oldloc)
 					// We don't call parent so we are calling this for byond
 					thing.Uncrossed(src)
 
@@ -145,8 +144,7 @@
 					newarea.Entered(src, oldloc)
 
 				// Multi-tile objects can't reach here, otherwise you'd need to avoid uncrossing yourself
-				for(var/i in loc)
-					var/atom/movable/thing = i
+				for(var/atom/movable/thing as anything in loc)
 					// We don't call parent so we are calling this for byond
 					thing.Crossed(src, oldloc)
 
@@ -315,8 +313,7 @@
 					old_area.Exited(src, destination)
 
 			// Uncross everything where we left
-			for(var/i in oldloc)
-				var/atom/movable/AM = i
+			for(var/atom/movable/AM as anything in oldloc)
 				if(AM == src)
 					continue
 				AM.Uncrossed(src)
@@ -341,8 +338,7 @@
 				destarea.Entered(src, oldloc)
 
 			// We ignore ourselves because if we're multi-tile we might be in both old and new locs
-			for(var/i in destination)
-				var/atom/movable/AM = i
+			for(var/atom/movable/AM as anything in destination)
 				if(AM == src)
 					continue
 				AM.Crossed(src, oldloc)
@@ -364,8 +360,7 @@
 		loc = null
 
 		// Uncross everything where we left (no multitile safety like above because we are definitely not still there)
-		for(var/i in oldloc)
-			var/atom/movable/AM = i
+		for(var/atom/movable/AM as anything in oldloc)
 			AM.Uncrossed(src)
 
 		// Exited() our loc and area
@@ -379,8 +374,7 @@
 /atom/movable/proc/onTransitZ(old_z,new_z)
 	GLOB.z_moved_event.raise_event(src, old_z, new_z)
 	SEND_SIGNAL(src, COMSIG_MOVABLE_Z_CHANGED, old_z, new_z)
-	for(var/item in src) // Notify contents of Z-transition. This can be overridden IF we know the items contents do not care.
-		var/atom/movable/AM = item
+	for(var/atom/movable/AM as anything in src) // Notify contents of Z-transition. This can be overridden IF we know the items contents do not care.
 		AM.onTransitZ(old_z,new_z)
 
 /atom/movable/proc/glide_for(movetime)

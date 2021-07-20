@@ -127,8 +127,7 @@
 			return TRUE
 		if("visible")
 			visible = !visible
-			for(var/ibeam in i_beams)
-				var/obj/effect/beam/i_beam/I = ibeam
+			for(var/obj/effect/beam/i_beam/I as anything in i_beams)
 				I.visible = visible
 				CHECK_TICK
 			return TRUE

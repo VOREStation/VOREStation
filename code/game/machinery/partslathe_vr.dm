@@ -265,8 +265,7 @@
 	if(istype(copy_board))
 		data["copyBoard"] = copy_board.name
 		var/list/req_components_ui = list()
-		for(var/CP in (copy_board.req_components || list()))
-			var/obj/comp_path = CP
+		for(var/obj/comp_path as anything in (copy_board.req_components || list()))
 			var/comp_amt = copy_board.req_components[comp_path]
 			if(comp_amt && (comp_path in partslathe_recipies))
 				req_components_ui.Add(list(list("name" = initial(comp_path.name), "qty" = comp_amt)))
