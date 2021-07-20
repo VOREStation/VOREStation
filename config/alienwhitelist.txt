@@ -92,6 +92,7 @@ terrestris - Common Skrellian
 terrestris - High Skrellian
 timidvi - Diona
 thedavestdave - Protean
+trifireblade - Protean
 trikonei - Protean
 umbrenos - Black-Eyed Shadekin
 varonis - Xenochimera
