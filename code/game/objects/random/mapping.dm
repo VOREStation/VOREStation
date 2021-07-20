@@ -464,7 +464,7 @@
 
 /obj/random/multiple/ore_pile/item_to_spawn()
 	return pick(
-			prob(10);list(
+			/*prob(10);list(
 				/obj/item/weapon/ore/bauxite,
 				/obj/item/weapon/ore/bauxite,
 				/obj/item/weapon/ore/bauxite,
@@ -475,7 +475,7 @@
 				/obj/item/weapon/ore/bauxite,
 				/obj/item/weapon/ore/bauxite,
 				/obj/item/weapon/ore/bauxite
-			),
+			),*/
 			prob(10);list(
 				/obj/item/weapon/ore/coal,
 				/obj/item/weapon/ore/coal,
@@ -488,7 +488,7 @@
 				/obj/item/weapon/ore/coal,
 				/obj/item/weapon/ore/coal
 			),
-			prob(10);list(
+			/*prob(10);list(
 				/obj/item/weapon/ore/copper,
 				/obj/item/weapon/ore/copper,
 				/obj/item/weapon/ore/copper,
@@ -499,7 +499,7 @@
 				/obj/item/weapon/ore/copper,
 				/obj/item/weapon/ore/copper,
 				/obj/item/weapon/ore/copper
-			),
+			),*/
 			prob(3);list(
 				/obj/item/weapon/ore/diamond,
 				/obj/item/weapon/ore/diamond,
@@ -598,11 +598,11 @@
 			prob(2);list(
 				/obj/item/weapon/ore/verdantium,
 				/obj/item/weapon/ore/verdantium
-			),
+			),/*
 			prob(2);list(
 				/obj/item/weapon/ore/void_opal,
 				/obj/item/weapon/ore/void_opal
-			),
+			),*/
 		)
 
 /obj/random/multiple/corp_crate
