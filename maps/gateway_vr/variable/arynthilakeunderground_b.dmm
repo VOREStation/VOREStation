@@ -103,6 +103,10 @@
 /obj/random/awayloot,
 /turf/simulated/floor/tiled/eris/techmaint,
 /area/gateway/arynthilake/engine)
+"jX" = (
+/obj/effect/landmark/hidden_level,
+/turf/simulated/mineral/ignore_cavegen,
+/area/gateway/arynthilake/underground)
 "kb" = (
 /turf/simulated/wall/r_wall,
 /area/gateway/arynthilake/engine)
@@ -723,7 +727,7 @@ bL
 bL
 bL
 bL
-bL
+jX
 bX
 "}
 (3,1,1) = {"
