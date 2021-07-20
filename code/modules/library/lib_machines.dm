@@ -80,7 +80,7 @@
 			title = null
 		title = sanitizeSQL(title)
 	if(href_list["setcategory"])
-		var/newcategory = tgui_input_list(usr, "Choose a category to search for:", list("Any", "Fiction", "Non-Fiction", "Adult", "Reference", "Religion"))
+		var/newcategory = tgui_input_list(usr, "Choose a category to search for:", "Category", list("Any", "Fiction", "Non-Fiction", "Adult", "Reference", "Religion"))
 		if(newcategory)
 			category = sanitize(newcategory)
 		else
@@ -393,7 +393,7 @@
 		if(newauthor)
 			scanner.cache.author = newauthor
 	if(href_list["setcategory"])
-		var/newcategory = tgui_input_list(usr, "Choose a category: ", list("Fiction", "Non-Fiction", "Adult", "Reference", "Religion"))
+		var/newcategory = tgui_input_list(usr, "Choose a category: ", "Category", list("Fiction", "Non-Fiction", "Adult", "Reference", "Religion"))
 		if(newcategory)
 			upload_category = newcategory
 
