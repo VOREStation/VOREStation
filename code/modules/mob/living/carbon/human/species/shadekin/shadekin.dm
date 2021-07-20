@@ -264,19 +264,19 @@
 
 	var/eyecolor_type = BLUE_EYES
 	switch(eyecolor_hue)
-		if(0 to 10)
+		if(0 to 20)
 			eyecolor_type = RED_EYES
-		if(11 to 40)
+		if(21 to 50)
 			eyecolor_type = ORANGE_EYES
-		if(41 to 70)
+		if(51 to 70)
 			eyecolor_type = YELLOW_EYES
 		if(71 to 160)
 			eyecolor_type = GREEN_EYES
-		if(161 to 250)
+		if(161 to 260)
 			eyecolor_type = BLUE_EYES
-		if(251 to 330)
+		if(261 to 340)
 			eyecolor_type = PURPLE_EYES
-		if(331 to 360)
+		if(341 to 360)
 			eyecolor_type = RED_EYES
 
 	return eyecolor_type
