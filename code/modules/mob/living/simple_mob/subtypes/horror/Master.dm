@@ -10,7 +10,7 @@
 	icon = 'icons/mob/horror_show/master.dmi'
 	vis_height = 64
 	icon_gib = "generic_gib"
-	anchored = 1
+	anchored = TRUE
 
 	attack_sound = 'sound/h_sounds/shitty_tim.ogg'
 

@@ -232,7 +232,7 @@ var/list/flooring_types
 /decl/flooring/snow
 	name = "snow"
 	desc = "A layer of many tiny bits of frozen water. It's hard to tell how deep it is."
-	icon = 'icons/turf/snow_new.dmi'
+	icon = 'icons/turf/outdoors.dmi'
 	icon_base = "snow"
 	footstep_sounds = list("human" = list(
 		'sound/effects/footstep/snow1.ogg',

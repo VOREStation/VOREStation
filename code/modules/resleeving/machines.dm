@@ -191,8 +191,8 @@
 	icon = 'icons/obj/machines/synthpod.dmi'
 	icon_state = "pod_0"
 	circuit = /obj/item/weapon/circuitboard/transhuman_synthprinter
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 
 	var/list/stored_material =  list(MAT_STEEL = 30000, MAT_GLASS = 30000)
 	var/connected      //What console it's done up with
@@ -418,9 +418,9 @@
 	icon = 'icons/obj/machines/implantchair.dmi'
 	icon_state = "implantchair"
 	circuit = /obj/item/weapon/circuitboard/transhuman_resleever
-	density = 1
+	density = TRUE
 	opacity = 0
-	anchored = 1
+	anchored = TRUE
 	var/blur_amount
 	var/confuse_amount
 	var/sickness_duration

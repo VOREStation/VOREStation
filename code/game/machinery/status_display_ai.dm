@@ -63,8 +63,8 @@ var/list/ai_status_emotions = list(
 	icon_state = "frame"
 	layer = ABOVE_WINDOW_LAYER
 	name = "AI display"
-	anchored = 1
-	density = 0
+	anchored = TRUE
+	density = FALSE
 	circuit =  /obj/item/weapon/circuitboard/ai_status_display
 
 	var/mode = 0	// 0 = Blank

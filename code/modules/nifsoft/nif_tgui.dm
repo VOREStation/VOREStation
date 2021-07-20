@@ -55,12 +55,12 @@
 		screen_icon = new()
 		RegisterSignal(screen_icon, COMSIG_CLICK, .proc/nif_menu_click)
 	screen_icon.icon = HUD.ui_style
-	HUD.other += screen_icon
+	LAZYADD(HUD.other_important, screen_icon)
 	user.client?.screen += screen_icon
 	
 	user.verbs |= /mob/living/carbon/human/proc/nif_menu
 
-/datum/component/nif_menu/proc/nif_menu_click(obj/screen/nif/image, location, control, params, user)
+/datum/component/nif_menu/proc/nif_menu_click(source, location, control, params, user)
 	var/mob/living/carbon/human/H = user
 	if(istype(H) && H.nif)
 		INVOKE_ASYNC(H.nif, .proc/tgui_interact, user)

@@ -86,17 +86,17 @@
 		var/mob/living/carbon/human/X = user
 		if(istype(X.species, /datum/species/xenos))
 			if(src.locked || src.welded)
-				visible_message("<span class='alium'>\The [user] begins digging into \the [src] internals!</span>")
+				visible_message("<span class='alium'>\The [user] begins tearing into \the [src] internals!</span>")
 				src.do_animate("deny")
-				if(do_after(user,5 SECONDS,src))
-					visible_message("<span class='danger'>\The [user] forces \the [src] open, sparks flying from its electronics!</span>")
+				if(do_after(user,15 SECONDS,src))
+					visible_message("<span class='danger'>\The [user] tears \the [src] open, sparks flying from its electronics!</span>")
 					src.do_animate("spark")
-					playsound(src, 'sound/machines/door/airlock_creaking.ogg', 100, 1, volume_channel = VOLUME_CHANNEL_DOORS)
+					playsound(src, 'sound/machines/door/airlock_tear_apart.ogg', 100, 1, volume_channel = VOLUME_CHANNEL_DOORS)
 					src.locked = 0
 					src.welded = 0
 					update_icon()
 					open(1)
-					src.emag_act()
+					src.set_broken() //These aren't emags, these be CLAWS
 			else if(src.density)
 				visible_message("<span class='alium'>\The [user] begins forcing \the [src] open!</span>")
 				if(do_after(user, 5 SECONDS,src))
@@ -218,12 +218,12 @@
 	open_sound_powered = 'sound/machines/door/space1o.ogg'
 	close_sound_powered = 'sound/machines/door/space1c.ogg'
 
-/obj/machinery/door/airlock/external/glass/bolted
+/obj/machinery/door/airlock/external/bolted
 	icon_state = "door_locked" // So it looks visibly bolted in map editor
 	locked = 1
 
 // For convenience in making docking ports: one that is pre-bolted with frequency set!
-/obj/machinery/door/airlock/external/glass/bolted/cycling
+/obj/machinery/door/airlock/external/bolted/cycling
 	frequency = 1379
 
 /obj/machinery/door/airlock/glass_external
@@ -1137,7 +1137,7 @@ About the new airlock wires panel:
 				if (istype(da, /obj/structure/door_assembly/multi_tile))
 					da.set_dir(src.dir)
 
-				da.anchored = 1
+				da.anchored = TRUE
 				if(mineral)
 					da.glass = mineral
 				//else if(glass)

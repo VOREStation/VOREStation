@@ -2,7 +2,7 @@
 	name = "quantum pad"
 	desc = "A bluespace quantum-linked telepad used for teleporting objects to other quantum pads."
 	icon = 'icons/obj/telescience.dmi'
-	icon_state = "qpad-idle"
+	icon_state = "qpad"
 	anchored = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 200
@@ -26,6 +26,7 @@
 	connect_to_network()
 	if(map_pad_id)
 		mapped_quantum_pads[map_pad_id] = src
+	update_icon()
 
 /obj/machinery/power/quantumpad/Destroy()
 	mapped_quantum_pads -= map_pad_id
@@ -53,14 +54,15 @@
 	if(istype(I, /obj/item/device/multitool))
 		if(panel_open)
 			var/obj/item/device/multitool/M = I
-			M.buffer = src
+			M.connectable = src
 			to_chat(user, "<span class='notice'>You save the data in [I]'s buffer.</span>")
 			return 1
 		else
 			var/obj/item/device/multitool/M = I
-			if(istype(M.buffer, /obj/machinery/power/quantumpad))
-				linked_pad = M.buffer
+			if(istype(M.connectable, /obj/machinery/power/quantumpad))
+				linked_pad = M.connectable
 				to_chat(user, "<span class='notice'>You link [src] to the one in [I]'s buffer.</span>")
+				update_icon()
 				return 1
 
 	if(default_part_replacement(user, I))
@@ -73,11 +75,27 @@
 
 /obj/machinery/power/quantumpad/update_icon()
 	. = ..()
-
-	if(inoperable() || panel_open)
-		icon_state = "pad-idle-o"
+	
+	cut_overlays()
+	if(panel_open)
+		add_overlay("qpad-panel")
+	
+	if(inoperable() || panel_open || !powernet)
+		icon_state = "[initial(icon_state)]-o"
+	else if (!linked_pad)
+		icon_state = "[initial(icon_state)]-b"
 	else
 		icon_state = initial(icon_state)
+
+// Panel flips retry power cable connections so you don't have to decon the whole thing
+/obj/machinery/power/quantumpad/default_deconstruction_screwdriver(var/mob/user, var/obj/item/S)
+	if((. = ..()))
+		var/original_powernet = powernet
+		if(powernet)
+			disconnect_from_network()
+		connect_to_network()
+		if(powernet != original_powernet)
+			update_icon()		
 
 /obj/machinery/power/quantumpad/attack_hand(mob/user)
 	. = ..()
@@ -133,57 +151,114 @@
 		ghost.forceMove(get_turf(linked_pad))
 
 /obj/machinery/power/quantumpad/proc/doteleport(mob/user)
+	update_icon()
 	if(!linked_pad)
 		return
 	playsound(src, 'sound/weapons/flash.ogg', 25, 1)
 	teleporting = 1
 
 	spawn(teleport_speed)
+		// We gone
 		if(!src || QDELETED(src))
 			teleporting = 0
 			return
+		// Broken or whatever
 		if(inoperable())
 			to_chat(user, "<span class='warning'>[src] is nonfunctional!</span>")
 			teleporting = 0
 			return
+		// Linked pad or not, we can always re-scatter people
+		if(!can_traverse_gateway())
+			teleporting = 0
+			last_teleport = world.time
+			gateway_scatter(user)
+			return
+		// Nothing to teleport to
 		if(!linked_pad || QDELETED(linked_pad) || linked_pad.inoperable())
 			to_chat(user, "<span class='warning'>Linked pad is not responding to ping. Teleport aborted.</span>")
+			teleporting = 0
+			return
+		// Insufficient power
+		if(!use_teleport_power())
+			to_chat(user, "<span class='warning'>Power is not sufficient to complete a teleport. Teleport aborted.</span>")
 			teleporting = 0
 			return
 
 		teleporting = 0
 		last_teleport = world.time
 
-		// use a lot of power
-		var/power_to_use = 10000 / power_efficiency
-		if(draw_power(power_to_use) != power_to_use)
-			to_chat(user, "<span class='warning'>Power is not sufficient to complete a teleport. Teleport aborted.</span>")
-			return
 		sparks()
 		linked_pad.sparks()
 
-		flick("qpad-beam", src)
+		flick("qpad-beam-out", src)
 		playsound(src, 'sound/weapons/emitter2.ogg', 25, 1, extrarange = 3, falloff = 5)
-		flick("qpad-beam", linked_pad)
+		flick("qpad-beam-in", linked_pad)
 		playsound(linked_pad, 'sound/weapons/emitter2.ogg', 25, 1, extrarange = 3, falloff = 5)
-		for(var/atom/movable/ROI in get_turf(src))
-			// if is anchored, don't let through
-			if(ROI.anchored)
-				if(isliving(ROI))
-					var/mob/living/L = ROI
-					if(L.buckled)
-						// TP people on office chairs
-						if(L.buckled.anchored)
-							continue
-					else
-						continue
-				else if(!isobserver(ROI))
-					continue
-			do_teleport(ROI, get_turf(linked_pad), local = FALSE)
+		
+		transport_objects(get_turf(linked_pad))
 
 /obj/machinery/power/quantumpad/proc/initMappedLink()
 	. = FALSE
 	var/obj/machinery/power/quantumpad/link = mapped_quantum_pads[map_pad_link_id]
 	if(link)
 		linked_pad = link
+		update_icon()
 		. = TRUE
+
+/obj/machinery/power/quantumpad/proc/use_teleport_power()
+	var/area/A = get_area(src)
+	// Well, I guess you can do it!
+	if(!A?.requires_power)
+		return TRUE
+	
+	// Otherwise we'll need a powernet
+	var/power_to_use = 10000 / power_efficiency
+	if(draw_power(power_to_use) != power_to_use)
+		return FALSE
+	return TRUE
+
+/obj/machinery/power/quantumpad/proc/transport_objects(turf/destination)
+	for(var/atom/movable/ROI in get_turf(src))
+		// if is anchored, don't let through
+		if(ROI.anchored)
+			if(isliving(ROI))
+				var/mob/living/L = ROI
+				if(L.buckled)
+					// TP people on office chairs
+					if(L.buckled.anchored)
+						continue
+				else
+					continue
+			else if(!isobserver(ROI))
+				continue
+		do_teleport(ROI, destination, local = FALSE)
+
+/obj/machinery/power/quantumpad/proc/can_traverse_gateway()
+	// Well, if there's no gateway map we're definitely not on it
+	if(!GLOB.gateway_away)
+		return TRUE
+	
+	// Traverse!
+	if(GLOB.gateway_away.calibrated)
+		return TRUE
+
+	var/list/gateway_zs = GetConnectedZlevels(GLOB.gateway_away.z)
+	if(z in gateway_zs)
+		return FALSE // It's not calibrated and we're in a connected z
+	
+	return TRUE
+
+/obj/machinery/power/quantumpad/proc/gateway_scatter(mob/user)
+	var/obj/effect/landmark/dest = pick(awaydestinations)
+	if(!dest)
+		to_chat(user, "<span class='warning'>Nothing happens... maybe there's no signal to the remote pad?</span>")
+		return
+	// Insufficient power
+	if(!use_teleport_power())
+		to_chat(user, "<span class='warning'>Power is not sufficient to complete a teleport. Teleport aborted.</span>")
+		return
+
+	sparks()
+	to_chat(user, "<span class='warning'>You feel yourself pulled in different directions, before ending up not far from where you started.</span>")
+	flick("qpad-beam-out", src)
+	transport_objects(get_turf(dest))

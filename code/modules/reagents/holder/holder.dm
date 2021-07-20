@@ -111,27 +111,6 @@
 	update_total()
 	amount = min(amount, get_free_space())
 
-	if(istype(my_atom,/obj/item/weapon/reagent_containers/food)) //The following code is targeted specifically at getting allergen reagents into food items, since for the most part they're not applied by default.
-		var/list/add_reagents = list()
-		var/totalnum = 0
-
-		for(var/item in data) //Try to find the ID
-			var/add_reagent_id = null
-			if(item in SSchemistry.chemical_reagents)
-				add_reagent_id = item
-			else if("[item]juice" in SSchemistry.chemical_reagents)
-				add_reagent_id = "[item]juice"
-			if(add_reagent_id) //If we did find it, add it to our list of reagents to add, and add the number to our total.
-				add_reagents[add_reagent_id] += data[item]
-			totalnum += data[item]
-
-		if(totalnum)
-			var/multconst = amount/totalnum //We're going to add these extra reagents so that they share the ratio described, but only add up to 1x the existing amount at the most
-			for(var/item in add_reagents)
-				add_reagent(item,add_reagents[item]*multconst)
-
-
-
 
 	for(var/datum/reagent/current in reagent_list)
 		if(current.id == id)
@@ -162,7 +141,7 @@
 			my_atom.on_reagent_change()
 		return 1
 	else
-		crash_with("[my_atom] attempted to add a reagent called '[id]' which doesn't exist. ([usr])")
+		stack_trace("[my_atom] attempted to add a reagent called '[id]' which doesn't exist. ([usr])")
 	return 0
 
 /datum/reagents/proc/isolate_reagent(reagent)
@@ -517,7 +496,7 @@
 	trans_to(T, total_volume, multiplier, copy)
 	if (total_volume <= 0)
 		qdel(src)
-		
+
 /**
  * Calls [/datum/reagent/proc/on_update] on every reagent in this holder
  *

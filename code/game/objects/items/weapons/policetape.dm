@@ -32,7 +32,7 @@ var/list/tape_roll_applications = list()
 /obj/item/tape
 	name = "tape"
 	icon = 'icons/policetape.dmi'
-	anchored = 1
+	anchored = TRUE
 	layer = WINDOW_LAYER
 	var/lifted = 0
 	var/crumpled = 0

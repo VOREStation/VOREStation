@@ -13,7 +13,7 @@ BLIND     // can't see anything
 
 /obj/item/clothing/glasses
 	name = "glasses"
-	icon = 'icons/obj/clothing/glasses.dmi'
+	icon = 'icons/inventory/eyes/item.dmi'
 	w_class = ITEMSIZE_SMALL
 	slot_flags = SLOT_EYES
 	plane_slots = list(slot_glasses)
@@ -31,8 +31,8 @@ BLIND     // can't see anything
 	pickup_sound = 'sound/items/pickup/accessory.ogg'
 
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/mob/species/teshari/eyes.dmi',
-		SPECIES_VOX = 'icons/mob/species/vox/eyes.dmi'
+		SPECIES_TESHARI = 'icons/inventory/eyes/mob_teshari.dmi',
+		SPECIES_VOX = 'icons/inventory/eyes/mob_vox.dmi'
 		)
 
 /obj/item/clothing/glasses/update_clothing_icon()

@@ -10,8 +10,8 @@ GLOBAL_LIST_EMPTY(smeses)
 	name = "power storage unit"
 	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit."
 	icon_state = "smes"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	use_power = USE_POWER_OFF
 	circuit = /obj/item/weapon/circuitboard/smes
 	clicksound = "switch"
@@ -68,14 +68,8 @@ GLOBAL_LIST_EMPTY(smeses)
 /obj/machinery/power/smes/Initialize()
 	. = ..()
 	GLOB.smeses += src
-	for(var/d in GLOB.cardinal)
-		var/turf/T = get_step(src, d)
-		for(var/obj/machinery/power/terminal/term in T)
-			if(term && term.dir == turn(d, 180) && !term.master)
-				terminals |= term
-				term.master = src
-				term.connect_to_network()
-	if(!terminals.len)
+	add_nearby_terminals()
+	if(!check_terminals())
 		stat |= BROKEN
 		return
 	update_icon()
@@ -90,6 +84,20 @@ GLOBAL_LIST_EMPTY(smeses)
 	terminals = null
 	GLOB.smeses -= src
 	return ..()
+
+/obj/machinery/power/smes/proc/add_nearby_terminals()
+	for(var/d in GLOB.cardinal)
+		var/turf/T = get_step(src, d)
+		for(var/obj/machinery/power/terminal/term in T)
+			if(term && term.dir == turn(d, 180) && !term.master)
+				terminals |= term
+				term.master = src
+				term.connect_to_network()
+
+/obj/machinery/power/smes/proc/check_terminals()
+	if(!terminals.len)
+		return FALSE
+	return TRUE
 
 /obj/machinery/power/smes/add_avail(var/amount)
 	if(..(amount))

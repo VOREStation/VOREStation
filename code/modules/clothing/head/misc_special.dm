@@ -182,14 +182,14 @@
 	icon_state = "kitty"
 	body_parts_covered = 0
 	siemens_coefficient = 1.5
-	item_icons = list()
+	item_icons = null
 
 /obj/item/clothing/head/kitty/update_icon(var/mob/living/carbon/human/user)
 	if(!istype(user)) return
-	var/icon/ears = new/icon("icon" = 'icons/mob/head.dmi', "icon_state" = "kitty")
+	var/icon/ears = new/icon("icon" = 'icons/inventory/head/mob.dmi', "icon_state" = "kitty")
 	ears.Blend(rgb(user.r_hair, user.g_hair, user.b_hair), ICON_ADD)
 
-	var/icon/earbit = new/icon("icon" = 'icons/mob/head.dmi', "icon_state" = "kittyinner")
+	var/icon/earbit = new/icon("icon" = 'icons/inventory/head/mob.dmi', "icon_state" = "kittyinner")
 	ears.Blend(earbit, ICON_OVERLAY)
 
 /obj/item/clothing/head/richard

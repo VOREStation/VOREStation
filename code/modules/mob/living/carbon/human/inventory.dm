@@ -193,6 +193,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 		s_store = null
 		update_inv_s_store()
 	else if (W == back)
+		worn_clothing -= back
 		back = null
 		update_inv_back()
 	else if (W == handcuffed)
@@ -304,6 +305,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 		if(slot_gloves)
 			src.gloves = W
 			W.equipped(src, slot)
+			worn_clothing += gloves
 			update_inv_gloves()
 		if(slot_head)
 			src.head = W

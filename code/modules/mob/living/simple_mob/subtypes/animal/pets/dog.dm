@@ -3,6 +3,7 @@
 	real_name = "dog"
 	desc = "It's a dog."
 	tt_desc = "E Canis lupus familiaris"
+	icon = 'icons/mob/pets.dmi'
 	icon_state = "corgi"
 	icon_living = "corgi"
 	icon_dead = "corgi_dead"
@@ -87,6 +88,7 @@
 	icon_state = "corgi"
 	icon_living = "corgi"
 	icon_dead = "corgi_dead"
+	holder_type = /obj/item/weapon/holder/corgi
 
 /mob/living/simple_mob/animal/passive/dog/corgi/puppy
 	name = "corgi puppy"
@@ -95,6 +97,7 @@
 	icon_state = "puppy"
 	icon_living = "puppy"
 	icon_dead = "puppy_dead"
+	holder_type = /obj/item/weapon/holder/corgi
 
 //pupplies cannot wear anything.
 /mob/living/simple_mob/animal/passive/dog/corgi/puppy/Topic(href, href_list)
@@ -116,6 +119,7 @@
 	var/turns_since_scan = 0
 	var/obj/movement_target
 	makes_dirt = FALSE	//VOREStation edit: no more dirt
+	holder_type = /obj/item/weapon/holder/corgi
 
 /mob/living/simple_mob/animal/passive/dog/corgi/Ian/Life()
 	..()
@@ -180,6 +184,7 @@
 	response_harm   = "kicks"
 	var/turns_since_scan = 0
 	var/puppies = 0
+	holder_type = /obj/item/weapon/holder/lisa
 
 //Lisa already has a cute bow!
 /mob/living/simple_mob/animal/passive/dog/corgi/Lisa/Topic(href, href_list)
@@ -219,6 +224,35 @@
 					set_dir(i)
 					sleep(1)
 
+//NARSIAN HAS COME
+/mob/living/simple_mob/animal/passive/dog/corgi/narsian
+	name = "Nars-Ian"
+	desc = "It's a corgi???"
+	icon_state = "narsian"
+	icon_living = "narsian"
+	icon_rest = "narsian_rest"
+	icon_dead = "narsian_dead"
+
+	makes_dirt = FALSE
+	holder_type = /obj/item/weapon/holder/narsian
+
+/mob/living/simple_mob/animal/passive/dog/void_puppy
+	name = "void puppy"
+	desc = "My stars!"
+	icon_state = "void_puppy"
+	icon_living = "void_puppy"
+	icon_dead = "void_puppy_dead"
+	holder_type = /obj/item/weapon/holder/void_puppy
+
+/mob/living/simple_mob/animal/passive/dog/bullterrier
+	name = "bull terrier"
+	desc = "It's a bull terrier."
+	icon_state = "bullterrier"
+	icon_living = "bullterrier"
+	icon_dead = "bullterrier_dead"
+	icon_rest = null
+	holder_type = /obj/item/weapon/holder/bullterrier
+
 // Tamaskans
 /mob/living/simple_mob/animal/passive/dog/tamaskan
 	name = "tamaskan"
@@ -235,7 +269,6 @@
 	desc = "It's a tamaskan, the name Spice can be found on its collar."
 
 // Brittany Spaniel
-
 /mob/living/simple_mob/animal/passive/dog/brittany
 	name = "brittany"
 	real_name = "brittany"

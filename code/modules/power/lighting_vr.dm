@@ -70,7 +70,7 @@
 	icon = 'icons/obj/lighting_vr.dmi'
 	icon_state = "floortube-construct-stage1"
 	stage = 1
-	anchored = 0
+	anchored = FALSE
 	fixture_type = /obj/machinery/light/floortube
 	sheets_refunded = 2
 
@@ -101,8 +101,8 @@
 	base_state = "big_flamp"
 	desc = "A set of tube lights on a raised, solid fixture"
 	shows_alerts = FALSE
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	plane = MOB_PLANE
 	layer = ABOVE_MOB_LAYER
 	construct_type = /obj/machinery/light_construct/bigfloorlamp
@@ -116,7 +116,7 @@
 	icon = 'icons/obj/lighting32x64.dmi'
 	icon_state = "big_flamp-construct-stage1"
 	stage = 1
-	anchored = 0
+	anchored = FALSE
 	fixture_type = /obj/machinery/light/bigfloorlamp
 	sheets_refunded = 3
 

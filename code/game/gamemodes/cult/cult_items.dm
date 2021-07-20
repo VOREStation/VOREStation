@@ -10,8 +10,8 @@
 	drop_sound = 'sound/items/drop/sword.ogg'
 	pickup_sound = 'sound/items/pickup/sword.ogg'
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	edge = 1
-	sharp = 1
+	edge = TRUE
+	sharp = TRUE
 
 /obj/item/weapon/melee/cultblade/cultify()
 	return
@@ -26,7 +26,7 @@
 		var/obj/item/organ/external/affecting = H.get_organ(zone)
 		to_chat(user, "<span class='danger'>An inexplicable force rips through your [affecting.name], tearing the sword from your grasp!</span>")
 		//random amount of damage between half of the blade's force and the full force of the blade.
-		user.apply_damage(rand(force/2, force), BRUTE, zone, 0, sharp=1, edge=1)
+		user.apply_damage(rand(force/2, force), BRUTE, zone, 0, sharp = TRUE, edge = TRUE)
 		user.Weaken(5)
 	else if(!istype(user, /mob/living/simple_mob/construct))
 		to_chat(user, "<span class='danger'>An inexplicable force rips through you, tearing the sword from your grasp!</span>")

@@ -160,7 +160,7 @@
 	name = "all terrain trailer"
 	icon = 'icons/obj/vehicles_64x64.dmi'
 	icon_state = "quadtrailer"
-	anchored = 0
+	anchored = FALSE
 	passenger_allowed = 1
 	buckle_lying = 1
 	locked = 0

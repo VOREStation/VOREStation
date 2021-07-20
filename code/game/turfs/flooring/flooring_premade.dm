@@ -106,12 +106,6 @@
 	icon_state = "techmaint"
 	initial_flooring = /decl/flooring/tiling/new_tile/techmaint
 
-/turf/simulated/floor/tiled/monofloor
-	name = "floor"
-	icon = 'icons/turf/flooring/tiles_vr.dmi'
-	icon_state = "monofloor"
-	initial_flooring = /decl/flooring/tiling/new_tile/monofloor
-
 /turf/simulated/floor/tiled/techfloor
 	name = "floor"
 	icon = 'icons/turf/flooring/techfloor.dmi'
@@ -396,7 +390,7 @@
 //**** Here lives snow ****
 /turf/simulated/floor/snow
 	name = "snow"
-	icon = 'icons/turf/snow_new.dmi'
+	icon = 'icons/turf/outdoors.dmi'
 	icon_state = "snow"
 	initial_flooring = /decl/flooring/snow
 	var/list/crossed_dirs = list()

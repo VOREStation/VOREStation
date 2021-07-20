@@ -390,14 +390,14 @@ or don't wish to potentially have a random person teleported into you, it's sugg
 not carry this around."}, "OOC Warning", list("Take It","Leave It"))
 		if(choice == "Leave It")
 			return
-		..()
+	return ..()
 
 /obj/item/device/perfect_tele_beacon/stationary
 	name = "stationary translocator beacon"
 	icon = 'icons/obj/radio_vr.dmi'
 	icon_state = "floor_beacon"
 	w_class = ITEMSIZE_HUGE
-	anchored = 1
+	anchored = TRUE
 
 GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/device/perfect_tele_beacon/stationary)
 
@@ -462,7 +462,7 @@ GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/device/perfect_tele_beac
 	icon_state = "frontiertrans"
 	beacons_left = 1 //Just one
 	battery_lock = 1
-	unacidable = 1
+	unacidable = TRUE
 	failure_chance = 0 //Percent
 
 	var/phase_power = 75

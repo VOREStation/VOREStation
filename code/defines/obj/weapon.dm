@@ -19,8 +19,8 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "rcd"
 	opacity = 0
-	density = 0
-	anchored = 0.0
+	density = FALSE
+	anchored = FALSE
 	var/stored_matter = 0
 	var/mode = 1
 	w_class = ITEMSIZE_NORMAL
@@ -302,7 +302,7 @@
 	w_class = ITEMSIZE_HUGE
 	can_hold = list(/obj/item/weapon/stock_parts)
 	storage_slots = 50
-	use_to_pickup = 1
+	use_to_pickup = TRUE
 	allow_quick_gather = 1
 	allow_quick_empty = 1
 	collection_mode = 1
@@ -320,7 +320,7 @@
 	w_class = ITEMSIZE_HUGE
 	can_hold = list(/obj/item/weapon/stock_parts)
 	storage_slots = 200
-	use_to_pickup = 1
+	use_to_pickup = TRUE
 	allow_quick_gather = 1
 	allow_quick_empty = 1
 	collection_mode = 1

@@ -79,20 +79,33 @@
 		pref.pos_traits.Cut()
 		pref.neg_traits.Cut()
 	// Clean up positive traits
-	for(var/path in pref.pos_traits)
+	for(var/datum/trait/path as anything in pref.pos_traits)
 		if(!(path in positive_traits))
 			pref.pos_traits -= path
+			continue
+		var/take_flags = initial(path.can_take)
+		if((pref.dirty_synth && !(take_flags & SYNTHETICS)) || (pref.gross_meatbag && !(take_flags & ORGANICS)))
+			pref.pos_traits -= path
 	//Neutral traits
-	for(var/path in pref.neu_traits)
+	for(var/datum/trait/path as anything in pref.neu_traits)
 		if(!(path in neutral_traits))
 			pref.neu_traits -= path
+			continue
 		if(!(pref.species == SPECIES_CUSTOM) && !(path in everyone_traits))
 			pref.neu_traits -= path
+			continue
+		var/take_flags = initial(path.can_take)
+		if((pref.dirty_synth && !(take_flags & SYNTHETICS)) || (pref.gross_meatbag && !(take_flags & ORGANICS)))
+			pref.neu_traits -= path
 	//Negative traits
-	for(var/path in pref.neg_traits)
+	for(var/datum/trait/path as anything in pref.neg_traits)
 		if(!(path in negative_traits))
 			pref.neg_traits -= path
-
+			continue
+		var/take_flags = initial(path.can_take)
+		if((pref.dirty_synth && !(take_flags & SYNTHETICS)) || (pref.gross_meatbag && !(take_flags & ORGANICS)))
+			pref.neg_traits -= path
+	
 	var/datum/species/selected_species = GLOB.all_species[pref.species]
 	if(selected_species.selects_bodytype)
 		// Allowed!

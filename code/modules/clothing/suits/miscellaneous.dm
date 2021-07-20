@@ -43,7 +43,7 @@
 /obj/item/clothing/suit/poncho
 	name = "poncho"
 	desc = "A simple, comfortable poncho."
-	icon = 'icons/mob/suit.dmi'
+	icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "poncho"
 	item_state = "poncho"
 	item_icons = list(
@@ -105,9 +105,7 @@
 
 /obj/item/clothing/suit/syndicatefake
 	name = "red space suit replica"
-	icon = 'icons/obj/clothing/spacesuits.dmi'
 	icon_state = "syndicate"
-	default_worn_icon = 'icons/mob/spacesuit.dmi'
 	desc = "A plastic replica of the syndicate space suit, you'll look just like a real murderous syndicate agent in this! This is a toy, it is not made for use in space!"
 	w_class = ITEMSIZE_NORMAL
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank/emergency/oxygen,/obj/item/toy)
@@ -430,7 +428,6 @@
 	icon_state = "militaryjacket_tan"
 	item_state_slots = list(slot_r_hand_str = "suit_orange", slot_l_hand_str = "suit_orange")
 	flags_inv = HIDEHOLSTER
-	index = 1
 
 /obj/item/clothing/suit/storage/miljacket/grey
 	name = "grey military jacket"
@@ -438,7 +435,6 @@
 	icon_state = "militaryjacket_grey"
 	item_state_slots = list(slot_r_hand_str = "suit_grey", slot_l_hand_str = "suit_grey")
 	flags_inv = HIDEHOLSTER
-	index = 1
 
 /obj/item/clothing/suit/storage/miljacket/navy
 	name = "navy military jacket"
@@ -446,7 +442,6 @@
 	icon_state = "militaryjacket_navy"
 	item_state_slots = list(slot_r_hand_str = "suit_navy", slot_l_hand_str = "suit_navy")
 	flags_inv = HIDEHOLSTER
-	index = 1
 
 /obj/item/clothing/suit/storage/miljacket/black
 	name = "black military jacket"
@@ -454,7 +449,6 @@
 	icon_state = "militaryjacket_black"
 	item_state_slots = list(slot_r_hand_str = "suit_black", slot_l_hand_str = "suit_black")
 	flags_inv = HIDEHOLSTER
-	index = 1
 
 /obj/item/clothing/suit/storage/miljacket/white
 	name = "white military jacket"
@@ -462,7 +456,6 @@
 	icon_state = "militaryjacket_white"
 	item_state_slots = list(slot_r_hand_str = "med_dep_jacket", slot_l_hand_str = "med_dep_jacket")
 	flags_inv = HIDEHOLSTER
-	index = 1
 
 /obj/item/clothing/suit/storage/toggle/bomber
 	name = "bomber jacket"

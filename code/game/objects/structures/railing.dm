@@ -3,11 +3,11 @@
 	name = "railing"
 	desc = "A standard steel railing, painted orange.  Play stupid games, win stupid prizes."
 	icon = 'icons/obj/railing.dmi'
-	density = 1
+	density = TRUE
 	throwpass = 1
-	climbable = 1
+	climbable = TRUE
 	layer = WINDOW_LAYER
-	anchored = 1
+	anchored = TRUE
 	flags = ON_BORDER
 	icon_state = "railing0"
 	var/broken = FALSE
@@ -26,7 +26,7 @@
 	..()
 	// TODO - "constructed" is not passed to us. We need to find a way to do this safely.
 	if (constructed) // player-constructed railings
-		anchored = 0
+		anchored = FALSE
 	if(climbable)
 		verbs += /obj/structure/proc/climb_on
 

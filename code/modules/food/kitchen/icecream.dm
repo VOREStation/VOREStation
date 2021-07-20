@@ -12,8 +12,8 @@
 	desc = "Ding-aling ding dong. Get your NanoTrasen-approved ice cream!"
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "icecream_vat"
-	density = 1
-	anchored = 0
+	density = TRUE
+	anchored = FALSE
 	use_power = USE_POWER_OFF
 	flags = OPENCONTAINER | NOREACT
 

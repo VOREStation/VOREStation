@@ -66,8 +66,7 @@
 			/obj/item/weapon/surgical/bonegel,
 			/obj/item/weapon/surgical/retractor,
 			/obj/item/weapon/surgical/bonesetter,
-			/obj/item/weapon/surgical/circular_saw,
-			/obj/item/weapon/surgical/bioregen
+			/obj/item/weapon/surgical/circular_saw
 			)
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure/veymed
@@ -203,7 +202,7 @@
 			/obj/item/clothing/under/rank/medical/paramedic,
 			/obj/item/clothing/suit/storage/toggle/fr_jacket,
 			/obj/item/clothing/mask/gas,
-			/obj/item/clothing/under/rank/medical/paramedic,
+			/obj/item/clothing/under/rank/medical/paramedic_alt,
 			/obj/item/clothing/accessory/stethoscope,
 			/obj/item/weapon/storage/firstaid/adv,
 			/obj/item/clothing/shoes/boots/jackboots,
@@ -306,8 +305,8 @@
 /datum/supply_pack/med/medicalbiosuits
 	name = "Medical biohazard gear"
 	contains = list(
-			/obj/item/clothing/head/bio_hood = 3,
-			/obj/item/clothing/suit/bio_suit = 3,
+			/obj/item/clothing/head/bio_hood/modern = 3,
+			/obj/item/clothing/suit/bio_suit/modern = 3,
 			/obj/item/clothing/head/bio_hood/virology = 2,
 			/obj/item/clothing/suit/bio_suit/cmo,
 			/obj/item/clothing/head/bio_hood/cmo,

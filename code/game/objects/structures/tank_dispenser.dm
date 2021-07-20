@@ -5,8 +5,8 @@
 	desc = "A simple yet bulky storage device for gas tanks. Has room for up to ten oxygen tanks, and ten phoron tanks."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "dispenser"
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
 	w_class = ITEMSIZE_HUGE
 	var/oxygentanks = TANK_DISPENSER_CAPACITY
 	var/phorontanks = TANK_DISPENSER_CAPACITY
@@ -76,10 +76,10 @@
 	else if(I.is_wrench())
 		if(anchored)
 			to_chat(user, "<span class='notice'>You lean down and unwrench [src].</span>")
-			anchored = 0
+			anchored = FALSE
 		else
 			to_chat(user, "<span class='notice'>You wrench [src] into place.</span>")
-			anchored = 1
+			anchored = TRUE
 		return
 	else if(user.a_intent != I_HURT)
 		to_chat(user, "<span class='notice'>[I] does not fit into [src].</span>")

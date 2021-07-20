@@ -228,21 +228,21 @@
 
 	if(!delivery && compactor && length(contents))//garbage counter for trashpup
 		dat += "<font color='red'><B>Current load:</B> [length(contents)] / [max_item_count] objects.</font><BR>"
-		dat += "<font color='gray'>([list2text(contents,", ")])</font><BR><BR>"
+		dat += "<font color='gray'>([contents.Join(", ")])</font><BR><BR>"
 
 	if(delivery && length(contents))
 		dat += "<font color='red'><B>Current load:</B> [length(contents)] / [max_item_count] objects.</font><BR>"
 		dat += "<font color='gray'>Cargo compartment slot: Cargo 1.</font><BR>"
 		if(length(deliveryslot_1))
-			dat += "<font color='gray'>([list2text(deliveryslot_1,", ")])</font><BR>"
+			dat += "<font color='gray'>([deliveryslot_1.Join(", ")])</font><BR>"
 		dat += "<font color='gray'>Cargo compartment slot: Cargo 2.</font><BR>"
 		if(length(deliveryslot_2))
-			dat += "<font color='gray'>([list2text(deliveryslot_2,", ")])</font><BR>"
+			dat += "<font color='gray'>([deliveryslot_2.Join(", ")])</font><BR>"
 		dat += "<font color='gray'>Cargo compartment slot: Cargo 3.</font><BR>"
 		if(length(deliveryslot_3))
-			dat += "<font color='gray'>([list2text(deliveryslot_3,", ")])</font><BR>"
+			dat += "<font color='gray'>([deliveryslot_3.Join(", ")])</font><BR>"
 		dat += "<font color='red'>Cargo compartment slot: Fuel.</font><BR>"
-		dat += "<font color='red'>([list2text(contents - (deliveryslot_1 + deliveryslot_2 + deliveryslot_3),", ")])</font><BR><BR>"
+		dat += "<font color='red'>([jointext(contents - (deliveryslot_1 + deliveryslot_2 + deliveryslot_3),", ")])</font><BR><BR>"
 
 	if(analyzer && !synced)
 		dat += "<A href='?src=\ref[src];sync=1'>Sync Files</A><BR>"

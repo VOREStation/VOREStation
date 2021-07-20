@@ -60,6 +60,7 @@
 	for(var/organ in organs)
 		qdel(organ)
 	QDEL_NULL(nif)	//VOREStation Add
+	worn_clothing.Cut()
 	return ..()
 
 /mob/living/carbon/human/Stat()

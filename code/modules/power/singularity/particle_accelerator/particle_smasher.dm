@@ -7,8 +7,8 @@
 	desc = "A strange device used to create exotic matter."
 	icon = 'icons/obj/machines/particle_smasher.dmi'
 	icon_state = "smasher"
-	anchored = 0
-	density = 1
+	anchored = FALSE
+	density = TRUE
 	use_power = USE_POWER_OFF
 
 	var/successful_craft = FALSE	// Are we waiting to be emptied?

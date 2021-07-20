@@ -1,7 +1,7 @@
 /obj/item/clothing/mask/chewable
 	name = "chewable item master"
 	desc = "If you are seeing this, ahelp it."
-	icon = 'icons/obj/clothing/masks.dmi'
+	icon = 'icons/inventory/face/item.dmi'
 	drop_sound = 'sound/items/drop/food.ogg'
 	body_parts_covered = 0
 
@@ -252,7 +252,7 @@
 /obj/item/clothing/mask/chewable/candy/pocky //ADDITION 04/17/2021
 	name = "chocolate pocky"
 	desc = "A chocolate-coated biscuit stick."
-	icon_state = "pocky"
+	icon_state = "pockystick"
 	item_state = "pocky"
 
 /obj/item/clothing/mask/chewable/candy/pocky/process()

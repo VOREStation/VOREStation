@@ -1180,6 +1180,8 @@ var/list/floor_decals = list()
 /obj/effect/floor_decal/steeldecal/steel_decals_central7
 	icon_state = "steel_decals_central7"
 
+/obj/effect/floor_decal/steeldecal/monofloor //VOREStation Add
+	icon_state = "monofloor" //VOREStation Add
 
 /obj/effect/floor_decal/techfloor
 	name = "techfloor edges"

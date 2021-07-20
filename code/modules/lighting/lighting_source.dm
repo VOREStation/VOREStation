@@ -139,18 +139,6 @@
 		. * applied_lum_b                        \
 	);
 
-#define APPLY_CORNER_SIMPLE(C)                   \
-	. = light_power;                             \
-	var/OLD = effect_str[C];                     \
-	                                             \
-	C.update_lumcount                            \
-	(                                            \
-		(. * lum_r) - (OLD * applied_lum_r),     \
-		(. * lum_g) - (OLD * applied_lum_g),     \
-		(. * lum_b) - (OLD * applied_lum_b)      \
-	);                                           \
-
-
 /datum/light_source/proc/remove_lum()
 	applied = FALSE
 	for (var/datum/lighting_corner/corner as anything in effect_str)
@@ -284,91 +272,7 @@
 
 	UNSETEMPTY(effect_str)
 
-// For planets and fake suns
-/datum/light_source/sun
-	light_range = 1
-	light_color = "#FFFFFF"
-	light_power = 2
-	var/applied_power = 2
-
-/datum/light_source/sun/New()
-	return
-
-/datum/light_source/sun/force_update()
-	return
-
-/datum/light_source/sun/vis_update()
-	return
-
-/datum/light_source/sun/update_corners(var/list/turfs_to_update)
-	if(!LAZYLEN(turfs_to_update))
-		stack_trace("Planet sun tried to update with no turfs given")
-		return
-
-	// Update lum_r/g/b from our light_color
-	PARSE_LIGHT_COLOR(src)
-	
-	// Noop update
-	if(lum_r == applied_lum_r && lum_g == applied_lum_g && lum_b == applied_lum_b && light_power == applied_power)
-		return
-	
-	// No reason to unapply on the first run or if previous run was 0 power
-	if(applied)
-		remove_lum()
-
-	// Entirely dark, just stop now that we've remove_lum()'d
-	if(!light_power)
-		applied = FALSE
-		return
-
-	LAZYINITLIST(effect_str)
-
-	var/list/datum/lighting_corner/corners = list()
-	for(var/turf/T as anything in turfs_to_update)
-		if(!IS_OPAQUE_TURF(T))
-			if(!T.lighting_corners_initialised)
-				T.generate_missing_corners()
-			
-			var/datum/lighting_corner/LC = T.lighting_corner_NE
-			if(!corners[LC])	
-				corners[LC] = 1
-				APPLY_CORNER_SIMPLE(LC)
-				LAZYADD(LC.affecting, src)
-				effect_str[LC] = .
-			
-			LC = T.lighting_corner_SE
-			if(!corners[LC])	
-				corners[LC] = 1
-				APPLY_CORNER_SIMPLE(LC)
-				LAZYADD(LC.affecting, src)
-				effect_str[LC] = .
-			
-			LC = T.lighting_corner_NW
-			if(!corners[LC])	
-				corners[LC] = 1
-				APPLY_CORNER_SIMPLE(LC)
-				LAZYADD(LC.affecting, src)
-				effect_str[LC] = .
-			
-			LC = T.lighting_corner_SW
-			if(!corners[LC])	
-				corners[LC] = 1
-				APPLY_CORNER_SIMPLE(LC)
-				LAZYADD(LC.affecting, src)
-				effect_str[LC] = .
-
-		CHECK_TICK
-
-	applied_lum_r = lum_r
-	applied_lum_g = lum_g
-	applied_lum_b = lum_b
-	applied_power = light_power
-	applied = TRUE // remove_lum() now necessary in the future
-
-	UNSETEMPTY(effect_str)
-
 #undef EFFECT_UPDATE
 #undef LUM_FALLOFF
 #undef REMOVE_CORNER
 #undef APPLY_CORNER
-#undef APPLY_CORNER_SIMPLE

@@ -44,7 +44,7 @@
 		"sand" = 2
 		)
 	product = /obj/item/stack/material/glass/phoronglass
-
+/*
 /datum/alloy/bronze
 	metaltag = "bronze"
 	requires = list(
@@ -52,3 +52,4 @@
 		"tin" = 1
 		)
 	product = /obj/item/stack/material/bronze
+*/

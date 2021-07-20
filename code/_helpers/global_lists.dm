@@ -213,6 +213,26 @@ GLOBAL_LIST_EMPTY(mannequins)
 		if(S.spawn_flags & SPECIES_IS_WHITELISTED)
 			GLOB.whitelisted_species += S.name
 
+	// Suit cyclers
+	paths = subtypesof(/datum/suit_cycler_choice/department)
+	for(var/path in paths)
+		var/datum/suit_cycler_choice/SCC = path
+		if(!initial(SCC.name))
+			continue
+		GLOB.suit_cycler_departments += new path()
+	paths = subtypesof(/datum/suit_cycler_choice/species)
+	for(var/path in paths)
+		var/datum/suit_cycler_choice/SCC = path
+		if(!initial(SCC.name))
+			continue
+		GLOB.suit_cycler_species += new path()
+	paths = subtypesof(/datum/suit_cycler_choice/department/emag)
+	for(var/path in paths)
+		var/datum/suit_cycler_choice/SCC = path
+		if(!initial(SCC.name))
+			continue
+		GLOB.suit_cycler_emagged += new path()
+
 	//Ores
 	paths = subtypesof(/ore)
 	for(var/oretype in paths)

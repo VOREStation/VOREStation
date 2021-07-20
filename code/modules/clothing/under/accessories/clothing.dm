@@ -48,7 +48,7 @@
 	desc = "A simple, comfortable poncho."
 	icon_state = "classicponcho"
 	item_state = "classicponcho"
-	icon_override = 'icons/mob/ties.dmi'
+	icon_override = 'icons/inventory/accessory/mob.dmi'
 	var/fire_resist = T0C+100
 	allowed = list(/obj/item/weapon/tank/emergency/oxygen)
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
@@ -58,7 +58,7 @@
 	w_class = ITEMSIZE_NORMAL
 	slot = ACCESSORY_SLOT_OVER
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/mob/species/teshari/suit.dmi'
+		SPECIES_TESHARI = 'icons/inventory/suit/mob_teshari.dmi'
 	)
 
 /obj/item/clothing/accessory/poncho/equipped() //Solution for race-specific sprites for an accessory which is also a suit. Suit icons break if you don't use icon override which then also overrides race-specific sprites.
@@ -66,9 +66,9 @@
 	var/mob/living/carbon/human/H = loc
 	if(istype(H) && H.wear_suit == src)
 		if(H.species.name == SPECIES_TESHARI)
-			icon_override = 'icons/mob/species/teshari/suit.dmi'
+			icon_override = 'icons/inventory/suit/mob_teshari.dmi'
 		else
-			icon_override = 'icons/mob/ties.dmi'
+			icon_override = 'icons/inventory/accessory/mob.dmi'
 		update_clothing_icon()
 
 /obj/item/clothing/accessory/poncho/dropped() //Resets the override to prevent the wrong .dmi from being used because equipped only triggers when wearing ponchos as suits.
@@ -262,7 +262,7 @@
 	desc = "For some classy, murderous fun."
 	icon_state = "vest"
 	item_state = "vest"
-	icon_override = 'icons/mob/ties.dmi'
+	icon_override = 'icons/inventory/accessory/mob.dmi'
 	item_state_slots = list(slot_r_hand_str = "wcoat", slot_l_hand_str = "wcoat")
 	allowed = list(/obj/item/weapon/pen, /obj/item/weapon/paper, /obj/item/device/flashlight, /obj/item/weapon/tank/emergency/oxygen, /obj/item/weapon/storage/fancy/cigarettes, /obj/item/weapon/storage/box/matches, /obj/item/weapon/reagent_containers/food/drinks/flask)
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
@@ -313,7 +313,7 @@
 /obj/item/clothing/accessory/sweater
 	name = "sweater"
 	desc = "A warm knit sweater."
-	icon_override = 'icons/mob/ties.dmi'
+	icon_override = 'icons/inventory/accessory/mob.dmi'
 	icon_state = "sweater"
 	slot_flags = SLOT_OCLOTHING | SLOT_TIE
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS

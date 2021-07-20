@@ -144,12 +144,15 @@ Proc for attack log creation, because really why not
 
 /proc/do_mob(mob/user , mob/target, time = 30, target_zone = 0, uninterruptible = FALSE, progress = TRUE, ignore_movement = FALSE, exclusive = FALSE)
 	if(!user || !target)
-		return 0
+		return FALSE
 	if(!time)
-		return 1 //Done!
+		return TRUE //Done!
 	if(user.status_flags & DOING_TASK)
 		to_chat(user, "<span class='warning'>You're in the middle of doing something else already.</span>")
-		return 0 //Performing an exclusive do_after or do_mob already
+		return FALSE //Performing an exclusive do_after or do_mob already
+	if(target?.flags & IS_BUSY)
+		to_chat(user, "<span class='warning'>Someone is already doing something with \the [target].</span>")
+		return FALSE
 	var/user_loc = user.loc
 	var/target_loc = target.loc
 
@@ -161,8 +164,10 @@ Proc for attack log creation, because really why not
 	var/endtime = world.time+time
 	var/starttime = world.time
 
-	if(exclusive)
+	if(exclusive & TASK_USER_EXCLUSIVE)
 		user.status_flags |= DOING_TASK
+	if(target && exclusive & TASK_TARGET_EXCLUSIVE)
+		target.flags |= IS_BUSY
 
 	. = TRUE
 	while (world.time < endtime)
@@ -195,20 +200,26 @@ Proc for attack log creation, because really why not
 			. = FALSE
 			break
 
-	if(exclusive)
+	if(exclusive & TASK_USER_EXCLUSIVE)
 		user.status_flags &= ~DOING_TASK
+	if(exclusive & TASK_TARGET_EXCLUSIVE)
+		target?.status_flags &= ~IS_BUSY
 
 	if (progbar)
 		qdel(progbar)
 
 /proc/do_after(mob/user, delay, atom/target = null, needhand = TRUE, progress = TRUE, incapacitation_flags = INCAPACITATION_DEFAULT, ignore_movement = FALSE, max_distance = null, exclusive = FALSE)
 	if(!user)
-		return 0
+		return FALSE
 	if(!delay)
-		return 1 //Okay. Done.
+		return TRUE //Okay. Done.
 	if(user.status_flags & DOING_TASK)
 		to_chat(user, "<span class='warning'>You're in the middle of doing something else already.</span>")
-		return 0 //Performing an exclusive do_after or do_mob already
+		return FALSE //Performing an exclusive do_after or do_mob already
+	if(target?.flags & IS_BUSY)
+		to_chat(user, "<span class='warning'>Someone is already doing something with \the [target].</span>")
+		return FALSE
+		
 	var/atom/target_loc = null
 	if(target)
 		target_loc = target.loc
@@ -230,10 +241,13 @@ Proc for attack log creation, because really why not
 	var/endtime = world.time + delay
 	var/starttime = world.time
 
-	if(exclusive)
+	if(exclusive & TASK_USER_EXCLUSIVE)
 		user.status_flags |= DOING_TASK
+	
+	if(target && (exclusive & TASK_TARGET_EXCLUSIVE))
+		target.flags |= IS_BUSY
 
-	. = 1
+	. = TRUE
 	while (world.time < endtime)
 		stoplag(1)
 		if(progress)
@@ -269,8 +283,10 @@ Proc for attack log creation, because really why not
 			. = FALSE
 			break
 
-	if(exclusive)
+	if(exclusive & TASK_USER_EXCLUSIVE)
 		user.status_flags &= ~DOING_TASK
+	if(target && (exclusive & TASK_TARGET_EXCLUSIVE))
+		target.flags &= ~IS_BUSY
 
 	if(progbar)
 		qdel(progbar)

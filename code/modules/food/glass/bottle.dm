@@ -53,10 +53,10 @@
 		add_overlay(filling)
 
 	if (!is_open_container())
-		add_overlay("lid_[initial(icon_state)]")
+		add_overlay("lid_[icon_state]")
 
 	if (label_text)
-		add_overlay("label_[initial(icon_state)]")
+		add_overlay("label_[icon_state]")
 
 /obj/item/weapon/reagent_containers/glass/bottle/inaprovaline
 	name = "inaprovaline bottle"

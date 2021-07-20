@@ -181,7 +181,7 @@
 	if(A == firer) // For this, you CAN shoot yourself.
 		on_impact(A)
 
-		density = 0
+		density = FALSE
 		invisibility = 101
 
 		qdel(src)

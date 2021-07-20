@@ -4,7 +4,7 @@
 /obj/item/weapon/storage/pouch
 	name = "storage pouch (medium)"
 	desc = "This storage pouch can be used to provide some additional storage for quick access."
-	icon = 'icons/obj/clothing/pouches.dmi'
+	icon = 'icons/inventory/pockets/item.dmi'
 	slot_flags = SLOT_POCKET
 	drop_sound = 'sound/items/drop/backpack.ogg'
 	pickup_sound = 'sound/items/pickup/backpack.ogg'
@@ -23,7 +23,7 @@
 	if(user.get_active_hand() == src || user.get_inactive_hand() == src)
 		return TRUE // Skip delay
 
-	if(insert_delay && !do_after(user, 2 SECONDS, src, needhand = TRUE, exclusive = TRUE))
+	if(insert_delay && !do_after(user, 2 SECONDS, src, needhand = TRUE, exclusive = TASK_USER_EXCLUSIVE))
 		return FALSE // Moved or whatever
 
 	if(W in src)
@@ -36,7 +36,7 @@
 	if(user.get_active_hand() == src || user.get_inactive_hand() == src)
 		return TRUE // Skip delay
 	
-	if(remove_delay && !do_after(user, 2 SECONDS, src, needhand = TRUE, exclusive = TRUE))
+	if(remove_delay && !do_after(user, 2 SECONDS, src, needhand = TRUE, exclusive = TASK_USER_EXCLUSIVE))
 		return FALSE // Moved or whatever
 
 	if(W in src)

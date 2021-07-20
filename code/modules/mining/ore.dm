@@ -106,7 +106,7 @@
 	icon_state = "ore_lead"
 	material = MAT_LEAD
 	origin_tech = list(TECH_MATERIAL = 3)
-
+/*
 /obj/item/weapon/ore/copper
 	name = "raw copper"
 	icon_state = "ore_copper"
@@ -121,12 +121,12 @@
 	name = "raw bauxite"
 	icon_state = "ore_bauxite"
 	material = "bauxite"
-
+*/
 /obj/item/weapon/ore/rutile
 	name = "raw rutile"
 	icon_state = "ore_rutile"
 	material = "rutile"
-
+/*
 /obj/item/weapon/ore/void_opal
 	name = "raw void opal"
 	icon_state = "ore_void_opal"
@@ -141,7 +141,7 @@
 	name = "raw quartz"
 	icon_state = "ore_quartz"
 	material = "quartz"
-
+*/
 /obj/item/weapon/ore/slag
 	name = "Slag"
 	desc = "Someone screwed up..."

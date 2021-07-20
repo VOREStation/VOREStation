@@ -54,7 +54,7 @@
 	icon_state = "arm_blade"
 	w_class = ITEMSIZE_HUGE
 	force = 5
-	anchored = 1
+	anchored = TRUE
 	throwforce = 0 //Just to be on the safe side
 	throw_range = 0
 	throw_speed = 0
@@ -138,8 +138,8 @@
 	icon_state = "arm_blade"
 	force = 40
 	armor_penetration = 15
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 	pry = 1
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	defend_chance = 60
@@ -157,8 +157,8 @@
 	desc = "A grotesque claw made out of bone and flesh that cleaves through people as a hot knife through butter."
 	icon_state = "ling_claw"
 	force = 15
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	defend_chance = 50
 	projectile_parry_chance = 15

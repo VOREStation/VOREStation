@@ -24,8 +24,8 @@
 	name = "visitor computer"
 	icon = 'icons/obj/library.dmi'
 	icon_state = "computer"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	var/screenstate = 0
 	var/title
 	var/category = "Any"
@@ -80,7 +80,7 @@
 			title = null
 		title = sanitizeSQL(title)
 	if(href_list["setcategory"])
-		var/newcategory = tgui_input_list(usr, "Choose a category to search for:", list("Any", "Fiction", "Non-Fiction", "Adult", "Reference", "Religion"))
+		var/newcategory = tgui_input_list(usr, "Choose a category to search for:", "Category", list("Any", "Fiction", "Non-Fiction", "Adult", "Reference", "Religion"))
 		if(newcategory)
 			category = sanitize(newcategory)
 		else
@@ -119,8 +119,8 @@
 	desc = "Print books from the archives! (You aren't quite sure how they're printed by it, though.)"
 	icon = 'icons/obj/library.dmi'
 	icon_state = "computer"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	var/arcanecheckout = 0
 	var/screenstate = 0 // 0 - Main Menu, 1 - Inventory, 2 - Checked Out, 3 - Check Out a Book
 	var/sortby = "author"
@@ -393,7 +393,7 @@
 		if(newauthor)
 			scanner.cache.author = newauthor
 	if(href_list["setcategory"])
-		var/newcategory = tgui_input_list(usr, "Choose a category: ", list("Fiction", "Non-Fiction", "Adult", "Reference", "Religion"))
+		var/newcategory = tgui_input_list(usr, "Choose a category: ", "Category", list("Fiction", "Non-Fiction", "Adult", "Reference", "Religion"))
 		if(newcategory)
 			upload_category = newcategory
 
@@ -492,8 +492,8 @@
 	desc = "A scanner for scanning in books and papers."
 	icon = 'icons/obj/library.dmi'
 	icon_state = "bigscanner"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	var/obj/item/weapon/book/cache		// Last scanned book
 
 /obj/machinery/libraryscanner/attackby(var/obj/O as obj, var/mob/user as mob)
@@ -544,8 +544,8 @@
 	desc = "Bundles up a stack of inserted paper into a convenient book format."
 	icon = 'icons/obj/library.dmi'
 	icon_state = "binder"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 
 /obj/machinery/bookbinder/attackby(var/obj/O as obj, var/mob/user as mob)
 	if(istype(O, /obj/item/weapon/paper) || istype(O, /obj/item/weapon/paper_bundle))

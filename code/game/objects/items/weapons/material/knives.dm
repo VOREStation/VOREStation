@@ -14,8 +14,8 @@
 
 /obj/item/weapon/material/butterfly/update_force()
 	if(active)
-		edge = 1
-		sharp = 1
+		edge = TRUE
+		sharp = TRUE
 		..() //Updates force.
 		throwforce = max(3,force-3)
 		hitsound = 'sound/weapons/bladeslice.ogg'
@@ -24,8 +24,8 @@
 		attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	else
 		force = 3
-		edge = 0
-		sharp = 0
+		edge = FALSE
+		sharp = FALSE
 		hitsound = initial(hitsound)
 		icon_state = initial(icon_state)
 		w_class = initial(w_class)
@@ -63,8 +63,8 @@
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "knife"
 	desc = "A general purpose Chef's Knife made by SpaceCook Incorporated. Guaranteed to stay sharp for years to come."
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 	force_divisor = 0.15 // 9 when wielded with hardness 60 (steel)
 	matter = list(MAT_STEEL = 12000)
 	origin_tech = list(TECH_MATERIAL = 1)

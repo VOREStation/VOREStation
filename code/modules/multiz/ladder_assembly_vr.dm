@@ -6,9 +6,9 @@
 	name = "ladder assembly"
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "ladder00"
-	density = 0
+	density = FALSE
 	opacity = 0
-	anchored = 0
+	anchored = FALSE
 	w_class = ITEMSIZE_HUGE
 
 	var/state = 0
@@ -29,14 +29,14 @@
 				user.visible_message("\The [user] secures \the [src]'s reinforcing bolts.", \
 					"You secure the reinforcing bolts.", \
 					"You hear a ratchet")
-				src.anchored = 1
+				src.anchored = TRUE
 			if(CONSTRUCTION_WRENCHED)
 				state = CONSTRUCTION_UNANCHORED
 				playsound(src, 'sound/items/Ratchet.ogg', 75, 1)
 				user.visible_message("\The [user] unsecures \the [src]'s reinforcing bolts.", \
 					"You undo the reinforcing bolts.", \
 					"You hear a ratchet")
-				src.anchored = 0
+				src.anchored = FALSE
 			if(CONSTRUCTION_WELDED)
 				to_chat(user, "<span class='warning'>\The [src] needs to be unwelded.</span>")
 		return
