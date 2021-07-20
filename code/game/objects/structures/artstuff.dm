@@ -375,6 +375,12 @@
 	persistence_id = "library_private"
 	req_one_access = list(access_library)
 
+/obj/structure/sign/painting/away_areas // for very hard-to-get-to areas
+	name = "\improper Remote Painting Exhibit mounting"
+	desc = "For art pieces made in the depths of space."
+	desc_with_canvas = "A painting hung where only the determined can reach it."
+	persistence_id = "away_area"
+
 /obj/structure/sign/painting/Initialize(mapload, dir, building)
 	. = ..()
 	if(persistence_id)
