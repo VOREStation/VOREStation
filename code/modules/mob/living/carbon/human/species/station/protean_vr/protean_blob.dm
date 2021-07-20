@@ -91,6 +91,9 @@
 /mob/living/simple_mob/protean_blob/init_vore()
 	return //Don't make a random belly, don't waste your time
 
+/mob/living/simple_mob/protean_blob/isSynthetic()
+	return TRUE // yup
+
 /mob/living/simple_mob/protean_blob/Stat()
 	..()
 	if(humanform)
