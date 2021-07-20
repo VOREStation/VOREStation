@@ -49,8 +49,7 @@
 		data["target_name"] = id_card ? id_card.name : "-----"
 
 	var/list/departments = list()
-	for(var/D in SSjob.get_all_department_datums())
-		var/datum/department/dept = D
+	for(var/datum/department/dept as anything in SSjob.get_all_department_datums())
 		if(!dept.assignable) // No AI ID cards for you.
 			continue
 		if(dept.centcom_only && !is_centcom)

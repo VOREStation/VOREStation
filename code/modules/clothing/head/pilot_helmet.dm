@@ -166,8 +166,7 @@
 			I.color = newcolor
 
 /obj/item/clothing/head/pilot/Destroy()
-	for(var/img in raw_images)
-		var/image/I = img
+	for(var/image/I as anything in raw_images)
 		I.loc = null
 	shuttle_comp = null
 	qdel(pilot_hud)

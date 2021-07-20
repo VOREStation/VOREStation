@@ -56,8 +56,7 @@
 		. += "<span class='notice'>\The [src] contains:</span>"
 		if(beaker)
 			. += "<span class='notice'>- \A [beaker].</span>"
-		for(var/i in holdingitems)
-			var/obj/item/O = i
+		for(var/obj/item/O as anything in holdingitems)
 			. += "<span class='notice'>- \A [O.name].</span>"
 
 	if(!(stat & (NOPOWER|BROKEN)))

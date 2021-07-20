@@ -269,14 +269,12 @@
 /mob/living/simple_mob/animal/space/carp/holographic/init_vore()
 	. = ..()
 	var/safe = (faction == "neutral")
-	for(var/belly in vore_organs)
-		var/obj/belly/B = belly
+	for(var/obj/belly/B as anything in vore_organs)
 		B.digest_mode = safe ? DM_HOLD : vore_default_mode
 
 /mob/living/simple_mob/animal/space/carp/holographic/set_safety(var/safe)
 	. = ..()
-	for(var/belly in vore_organs)
-		var/obj/belly/B = belly
+	for(var/obj/belly/B as anything in vore_organs)
 		B.digest_mode = safe ? DM_HOLD : vore_default_mode
 
 /mob/living/simple_mob/animal/passive/mouse

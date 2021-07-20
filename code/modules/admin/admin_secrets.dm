@@ -12,7 +12,7 @@ var/datum/admin_secrets/admin_secrets = new()
 	for(var/datum/admin_secret_category/category in categories)
 		category_assoc[category.type] = category
 
-	for(var/item_type in (typesof(/datum/admin_secret_item) - /datum/admin_secret_item))
+	for(var/item_type in subtypesof(/datum/admin_secret_item))
 		var/datum/admin_secret_item/secret_item = item_type
 		if(!initial(secret_item.name))
 			continue

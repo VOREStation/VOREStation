@@ -265,12 +265,11 @@
 
 /obj/machinery/shower/process()
 	if(!on) return
-	for(var/thing in loc)
-		var/atom/movable/AM = thing
-		var/mob/living/L = thing
-		if(istype(AM) && AM.simulated)
+	for(var/atom/movable/AM in loc)
+		if(AM.simulated)
 			wash(AM)
-			if(istype(L))
+			if(isliving(AM))
+				var/mob/living/L = AM
 				process_heat(L)
 	wash_floor()
 	reagents.add_reagent("water", reagents.get_free_space())

@@ -402,8 +402,7 @@
 
 	var/list/surroundings = get_surroundings(user)
 	var/list/craftability = list()
-	for(var/rec in GLOB.crafting_recipes)
-		var/datum/crafting_recipe/R = rec
+	for(var/datum/crafting_recipe/R as anything in GLOB.crafting_recipes)
 
 		if(!R.always_available && !(R.type in user?.mind?.learned_recipes)) //User doesn't actually know how to make this.
 			continue
@@ -420,11 +419,10 @@
 	var/list/data = list()
 
 	var/list/crafting_recipes = list()
-	for(var/rec in GLOB.crafting_recipes)
-		var/datum/crafting_recipe/R = rec
+	for(var/datum/crafting_recipe/R as anything in GLOB.crafting_recipes)
 
 		if(R.name == "") //This is one of the invalid parents that sneaks in
-			GLOB.crafting_recipes -= rec
+			GLOB.crafting_recipes -= R
 			continue
 
 		if(!R.always_available && !(R.type in user?.mind?.learned_recipes)) //User doesn't actually know how to make this.

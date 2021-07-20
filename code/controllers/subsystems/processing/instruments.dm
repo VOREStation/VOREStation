@@ -33,11 +33,10 @@ PROCESSING_SUBSYSTEM_DEF(instruments)
 	songs -= S
 
 /datum/controller/subsystem/processing/instruments/proc/initialize_instrument_data()
-	for(var/path in subtypesof(/datum/instrument))
-		var/datum/instrument/I = path
-		if(initial(I.abstract_type) == path)
+	for(var/datum/instrument/I as anything in subtypesof(/datum/instrument))
+		if(initial(I.abstract_type) == I)
 			continue
-		I = new path
+		I = new I
 		I.Initialize()
 		if(!I.id)
 			qdel(I)

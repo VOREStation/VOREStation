@@ -13,7 +13,7 @@ SUBSYSTEM_DEF(events)
 	var/datum/event_meta/new_event = new
 
 /datum/controller/subsystem/events/Initialize()
-	allEvents = typesof(/datum/event) - /datum/event
+	allEvents = subtypesof(/datum/event)
 	event_containers = list(
 			EVENT_LEVEL_MUNDANE 	= new/datum/event_container/mundane,
 			EVENT_LEVEL_MODERATE	= new/datum/event_container/moderate,

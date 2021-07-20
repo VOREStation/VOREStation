@@ -176,8 +176,7 @@
 	return M
 
 /atom/movable/proc/handle_buckled_mob_movement(atom/old_loc, direct, movetime)
-	for(var/A in buckled_mobs)
-		var/mob/living/L = A
+	for(var/mob/living/L as anything in buckled_mobs)
 		if(!L.Move(loc, direct, movetime))
 			L.forceMove(loc, direct, movetime)
 			L.last_move = last_move

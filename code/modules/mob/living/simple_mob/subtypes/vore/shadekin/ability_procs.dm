@@ -21,8 +21,7 @@
 		ability_flags &= ~AB_PHASE_SHIFTED
 		mouse_opacity = 1
 		name = real_name
-		for(var/belly in vore_organs)
-			var/obj/belly/B = belly
+		for(var/obj/belly/B as anything in vore_organs)
 			B.escapable = initial(B.escapable)
 
 		cut_overlays()
@@ -76,8 +75,7 @@
 		real_name = name
 		name = "Something"
 
-		for(var/belly in vore_organs)
-			var/obj/belly/B = belly
+		for(var/obj/belly/B as anything in vore_organs)
 			B.escapable = FALSE
 
 		cut_overlays()

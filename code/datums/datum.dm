@@ -30,8 +30,7 @@
 	//clear timers
 	var/list/timers = active_timers
 	active_timers = null
-	for(var/thing in timers)
-		var/datum/timedevent/timer = thing
+	for(var/datum/timedevent/timer as anything in timers)
 		if (timer.spent)
 			continue
 		qdel(timer)
@@ -45,8 +44,7 @@
 	if(dc)
 		var/all_components = dc[/datum/component]
 		if(length(all_components))
-			for(var/I in all_components)
-				var/datum/component/C = I
+			for(var/datum/component/C as anything in all_components)
 				qdel(C, FALSE, TRUE)
 		else
 			var/datum/component/C = all_components
@@ -58,8 +56,7 @@
 		for(var/sig in lookup)
 			var/list/comps = lookup[sig]
 			if(length(comps))
-				for(var/i in comps)
-					var/datum/component/comp = i
+				for(var/datum/component/comp as anything in comps)
 					comp.UnregisterSignal(src, sig)
 			else
 				var/datum/component/comp = comps

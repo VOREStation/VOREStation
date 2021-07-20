@@ -40,8 +40,7 @@
 	if(!stamped)
 		stamped = new
 	else if(stamped)
-		for(var/S in stamped)
-			var/obj/item/weapon/stamp/ = S
+		for(var/obj/item/weapon/stamp/stamp as anything in stamped)
 			var/image/stampoverlay = image('icons/obj/bureaucracy.dmi', "paperplane_[initial(stamp.icon_state)]")
 			add_overlay(stampoverlay)
 

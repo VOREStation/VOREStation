@@ -94,8 +94,7 @@
 
 /datum/shuttle/ferry/tether_backup/process_longjump(var/area/origin, var/area/intended_destination)
 	var/failures = engines.len
-	for(var/engine in engines)
-		var/obj/structure/shuttle/engine/E = engine
+	for(var/obj/structure/shuttle/engine/E as anything in engines)
 		failures -= E.jump()
 
 	#define MOVE_PER(x) move_time*(x/100) SECONDS

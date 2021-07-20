@@ -33,8 +33,7 @@
 		if(batt.shots_left)
 			return new chambered.projectile_type()
 		else
-			for(var/B in ammo_magazine.stored_ammo)
-				var/obj/item/ammo_casing/microbattery/other_batt = B
+			for(var/obj/item/ammo_casing/microbattery/other_batt as anything in ammo_magazine.stored_ammo)
 				if(istype(other_batt,chambered.type) && other_batt.shots_left)
 					switch_to(other_batt)
 					return new chambered.projectile_type()
@@ -53,8 +52,7 @@
 	charge_left = batt.shots_left
 	max_charge = initial(batt.shots_left)
 	if(ammo_magazine) //Crawl to find more
-		for(var/B in ammo_magazine.stored_ammo)
-			var/obj/item/ammo_casing/microbattery/bullet = B
+		for(var/obj/item/ammo_casing/microbattery/bullet as anything in ammo_magazine.stored_ammo)
 			if(istype(bullet,batt.type))
 				charge_left += bullet.shots_left
 				max_charge += initial(bullet.shots_left)
@@ -178,8 +176,7 @@
 		return //Why bother
 
 	var/current = 0
-	for(var/B in stored_ammo)
-		var/obj/item/ammo_casing/microbattery/batt = B
+	for(var/obj/item/ammo_casing/microbattery/batt as anything in stored_ammo)
 		var/image/cap = image(icon, icon_state = "[capname]_cap")
 		cap.color = batt.type_color
 		cap.pixel_x = current * x_offset //Caps don't need a pixel_y offset

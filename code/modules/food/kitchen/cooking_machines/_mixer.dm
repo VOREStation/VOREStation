@@ -80,8 +80,7 @@ fundamental differences
 /obj/machinery/appliance/mixer/removal_menu(var/mob/user)
 	if (can_remove_items(user))
 		var/list/menuoptions = list()
-		for (var/a in cooking_objs)
-			var/datum/cooking_item/CI = a
+		for(var/datum/cooking_item/CI as anything in cooking_objs)
 			if (CI.container)
 				if (!CI.container.check_contents())
 					to_chat(user, "There's nothing in [src] you can remove!")

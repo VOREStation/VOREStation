@@ -54,7 +54,7 @@ var/datum/antagonist/mutineer/mutineers
 
 	proc/get_directive_candidates()
 		var/list/candidates[0]
-		for(var/T in typesof(/datum/directive) - /datum/directive)
+		for(var/T in subtypesof(/datum/directive))
 			var/datum/directive/D = new T(src)
 			if (D.meets_prerequisites())
 				candidates.Add(D)

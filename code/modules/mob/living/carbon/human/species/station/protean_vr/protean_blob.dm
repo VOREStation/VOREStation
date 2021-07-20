@@ -385,8 +385,7 @@ var/global/list/disallowed_protean_accessories = list(
 	//Transfer vore organs
 	blob.vore_organs = vore_organs
 	blob.vore_selected = vore_selected
-	for(var/belly in vore_organs)
-		var/obj/belly/B = belly
+	for(var/obj/belly/B as anything in vore_organs)
 		B.forceMove(blob)
 		B.owner = blob
 
@@ -456,8 +455,7 @@ var/global/list/disallowed_protean_accessories = list(
 
 	//Transfer vore organs
 	vore_selected = blob.vore_selected
-	for(var/belly in blob.vore_organs)
-		var/obj/belly/B = belly
+	for(var/obj/belly/B as anything in blob.vore_organs)
 		B.forceMove(src)
 		B.owner = src
 

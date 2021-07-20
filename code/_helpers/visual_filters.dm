@@ -335,8 +335,7 @@ GLOBAL_LIST_INIT(master_filter_info, list(
 /obj/item/update_filters()
 	. = ..()
 	/* Will port this from TG
-	for(var/X in actions)
-		var/datum/action/A = X
+	for(var/datum/action/A as anything in actions)
 		A.UpdateButtonIcon()
 	*/
 

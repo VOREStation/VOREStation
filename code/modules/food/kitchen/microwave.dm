@@ -43,8 +43,7 @@
 
 	if(!available_recipes)
 		available_recipes = new
-		for(var/T in (typesof(/datum/recipe)-/datum/recipe))
-			var/datum/recipe/type = T
+		for(var/datum/recipe/type as anything in subtypesof(/datum/recipe))
 			if((initial(type.appliance) & appliancetype))
 				available_recipes += new type
 		
@@ -423,8 +422,7 @@
 			valid = 1
 			sleep(2)
 
-	for(var/r in cooked_items)
-		var/atom/movable/R = r
+	for(var/atom/movable/R as anything in cooked_items)
 		R.forceMove(src) //Move everything from the buffer back to the container
 
 	QDEL_NULL(temp)//Delete buffer object

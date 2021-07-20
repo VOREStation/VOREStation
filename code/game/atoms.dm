@@ -153,8 +153,7 @@
 	ASSERT(callback)
 	ASSERT(isturf(loc))
 	var/list/turfs = trange(range, src)
-	for(var/t in turfs)
-		var/turf/T = t
+	for(var/turf/T as anything in turfs)
 		GLOB.turf_entered_event.register(T, src, callback)
 
 //Unregister from prox listening in a certain range. You should do this BEFORE you move, but if you
@@ -162,8 +161,7 @@
 /atom/proc/unsense_proximity(var/range = 1, var/callback, var/center)
 	ASSERT(isturf(center) || isturf(loc))
 	var/list/turfs = trange(range, center ? center : src)
-	for(var/t in turfs)
-		var/turf/T = t
+	for(var/turf/T as anything in turfs)
 		GLOB.turf_entered_event.unregister(T, src, callback)
 
 
@@ -529,11 +527,9 @@
 	if(LAZYLEN(exclude_mobs))
 		seeing_mobs -= exclude_mobs
 
-	for(var/obj in seeing_objs)
-		var/obj/O = obj
+	for(var/obj/O as anything in seeing_objs)
 		O.show_message(message, VISIBLE_MESSAGE, blind_message, AUDIBLE_MESSAGE)
-	for(var/mob in seeing_mobs)
-		var/mob/M = mob
+	for(var/mob/M as anything in seeing_mobs)
 		if(M.see_invisible >= invisibility && MOB_CAN_SEE_PLANE(M, plane))
 			M.show_message(message, VISIBLE_MESSAGE, blind_message, AUDIBLE_MESSAGE)
 			if(runemessage != -1)
@@ -555,16 +551,13 @@
 	var/list/hearing_objs = hear["objs"]
 
 	if(radio_message)
-		for(var/obj in hearing_objs)
-			var/obj/O = obj
+		for(var/obj/O as anything in hearing_objs)
 			O.hear_talk(src, list(new /datum/multilingual_say_piece(GLOB.all_languages["Noise"], radio_message)), null)
 	else
-		for(var/obj in hearing_objs)
-			var/obj/O = obj
+		for(var/obj/O as anything in hearing_objs)
 			O.show_message(message, AUDIBLE_MESSAGE, deaf_message, VISIBLE_MESSAGE)
 
-	for(var/mob in hearing_mobs)
-		var/mob/M = mob
+	for(var/mob/M as anything in hearing_mobs)
 		var/msg = message
 		M.show_message(msg, AUDIBLE_MESSAGE, deaf_message, VISIBLE_MESSAGE)
 		if(runemessage != -1)

@@ -75,10 +75,9 @@
 	to_chat(nif.human,"<b>\[[bicon(nif.big_icon)]NIF\]</b> <b>Soulcatcher</b> displays, \"<span class='notice nif'>[message]</span>\"")
 	nif.human << sound
 
-	for(var/brainmob in brainmobs)
-		var/mob/living/carbon/brain/caught_soul/CS = brainmob
+	for(var/mob/living/carbon/brain/caught_soul/CS as anything in brainmobs)
 		to_chat(CS,"<b>\[[bicon(nif.big_icon)]NIF\]</b> <b>Soulcatcher</b> displays, \"<span class='notice nif'>[message]</span>\"")
-		brainmob << sound
+		CS << sound
 
 /datum/nifsoft/soulcatcher/proc/say_into(var/message, var/mob/living/sender, var/mob/eyeobj)
 	var/sender_name = eyeobj ? eyeobj.name : sender.name
@@ -90,8 +89,7 @@
 	//Not AR Projecting
 	else
 		to_chat(nif.human,"<span class='game say nif'><b>\[[bicon(nif.big_icon)]NIF\]</b> <b>[sender_name]</b> speaks, \"[message]\"</span>")
-		for(var/brainmob in brainmobs)
-			var/mob/living/carbon/brain/caught_soul/CS = brainmob
+		for(var/mob/living/carbon/brain/caught_soul/CS as anything in brainmobs)
 			to_chat(CS,"<span class='game say nif'><b>\[[bicon(nif.big_icon)]NIF\]</b> <b>[sender_name]</b> speaks, \"[message]\"</span>")
 
 	log_nsay(message,nif.human.real_name,sender)
@@ -106,8 +104,7 @@
 	//Not AR Projecting
 	else
 		to_chat(nif.human,"<span class='emote nif'><b>\[[bicon(nif.big_icon)]NIF\]</b> <b>[sender_name]</b> [message]</span>")
-		for(var/brainmob in brainmobs)
-			var/mob/living/carbon/brain/caught_soul/CS = brainmob
+		for(var/mob/living/carbon/brain/caught_soul/CS as anything in brainmobs)
 			to_chat(CS,"<span class='emote nif'><b>\[[bicon(nif.big_icon)]NIF\]</b> <b>[sender_name]</b> [message]</span>")
 
 	log_nme(message,nif.human.real_name,sender)
@@ -135,8 +132,7 @@
 				new_flavor = sanitize(new_flavor, MAX_MESSAGE_LEN*2)
 				inside_flavor = new_flavor
 				nif.notify("Updating VR environment...")
-				for(var/brain in brainmobs)
-					var/mob/living/carbon/brain/caught_soul/CS = brain
+				for(var/mob/living/carbon/brain/caught_soul/CS as anything in brainmobs)
 					to_chat(CS,"<span class='notice'>Your surroundings change to...</span>\n[inside_flavor]")
 				save_settings()
 				return TRUE
@@ -179,24 +175,20 @@
 				nif.clear_flag(NIF_O_SCOTHERS,NIF_FLAGS_OTHER)
 		if(NIF_SC_ALLOW_EARS)
 			if(setting_flags & NIF_SC_ALLOW_EARS)
-				for(var/brain in brainmobs)
-					var/mob/living/carbon/brain/caught_soul/brainmob = brain
+				for(var/mob/living/carbon/brain/caught_soul/brainmob as anything in brainmobs)
 					brainmob.ext_deaf = FALSE
 				notify_message = "External audio input enabled."
 			else
-				for(var/brain in brainmobs)
-					var/mob/living/carbon/brain/caught_soul/brainmob = brain
+				for(var/mob/living/carbon/brain/caught_soul/brainmob as anything in brainmobs)
 					brainmob.ext_deaf = TRUE
 				notify_message = "External audio input disabled."
 		if(NIF_SC_ALLOW_EYES)
 			if(setting_flags & NIF_SC_ALLOW_EYES)
-				for(var/brain in brainmobs)
-					var/mob/living/carbon/brain/caught_soul/brainmob = brain
+				for(var/mob/living/carbon/brain/caught_soul/brainmob as anything in brainmobs)
 					brainmob.ext_blind = FALSE
 				notify_message = "External video input enabled."
 			else
-				for(var/brain in brainmobs)
-					var/mob/living/carbon/brain/caught_soul/brainmob = brain
+				for(var/mob/living/carbon/brain/caught_soul/brainmob as anything in brainmobs)
 					brainmob.ext_blind = TRUE
 				notify_message = "External video input disabled."
 

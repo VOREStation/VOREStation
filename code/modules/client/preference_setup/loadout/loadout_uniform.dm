@@ -16,8 +16,7 @@
 /datum/gear/uniform/cheongsam/New()
 	..()
 	var/list/cheongasms = list()
-	for(var/cheongasm in typesof(/obj/item/clothing/under/cheongsam))
-		var/obj/item/clothing/under/cheongsam/cheongasm_type = cheongasm
+	for(var/obj/item/clothing/under/cheongsam/cheongasm_type as anything in typesof(/obj/item/clothing/under/cheongsam))
 		cheongasms[initial(cheongasm_type.name)] = cheongasm_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(cheongasms))
 
@@ -28,8 +27,7 @@
 /datum/gear/uniform/croptop/New()
 	..()
 	var/list/croptops = list()
-	for(var/croptop in typesof(/obj/item/clothing/under/croptop))
-		var/obj/item/clothing/under/croptop/croptop_type = croptop
+	for(var/obj/item/clothing/under/croptop/croptop_type as anything in typesof(/obj/item/clothing/under/croptop))
 		croptops[initial(croptop_type.name)] = croptop_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(croptops))
 
@@ -52,8 +50,7 @@
 /datum/gear/uniform/jumpsuit/New()
 	..()
 	var/list/jumpclothes = list()
-	for(var/jump in typesof(/obj/item/clothing/under/color))
-		var/obj/item/clothing/under/color/jumps = jump
+	for(var/obj/item/clothing/under/color/jumps as anything in typesof(/obj/item/clothing/under/color))
 		jumpclothes[initial(jumps.name)] = jumps
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(jumpclothes))
 
@@ -78,8 +75,7 @@
 /datum/gear/uniform/pants/New()
 	..()
 	var/list/pants = list()
-	for(var/pant in typesof(/obj/item/clothing/under/pants))
-		var/obj/item/clothing/under/pants/pant_type = pant
+	for(var/obj/item/clothing/under/pants/pant_type as anything in typesof(/obj/item/clothing/under/pants))
 		pants[initial(pant_type.name)] = pant_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(pants))
 
@@ -90,8 +86,7 @@
 /datum/gear/uniform/shorts/New()
 	..()
 	var/list/shorts = list()
-	for(var/short in typesof(/obj/item/clothing/under/shorts))
-		var/obj/item/clothing/under/pants/short_type = short
+	for(var/obj/item/clothing/under/pants/short_type as anything in typesof(/obj/item/clothing/under/shorts))
 		shorts[initial(short_type.name)] = short_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(shorts))
 
@@ -212,8 +207,7 @@
 /datum/gear/uniform/suit/lawyer/New()
 	..()
 	var/list/lsuits = list()
-	for(var/lsuit in typesof(/obj/item/clothing/under/lawyer))
-		var/obj/item/clothing/suit/lsuit_type = lsuit
+	for(var/obj/item/clothing/suit/lsuit_type as anything in typesof(/obj/item/clothing/under/lawyer))
 		lsuits[initial(lsuit_type.name)] = lsuit_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(lsuits))
 
@@ -273,8 +267,7 @@
 /datum/gear/uniform/scrub/New()
 	..()
 	var/list/scrubs = list()
-	for(var/scrub in typesof(/obj/item/clothing/under/rank/medical/scrubs))
-		var/obj/item/clothing/under/rank/medical/scrubs/scrub_type = scrub
+	for(var/obj/item/clothing/under/rank/medical/scrubs/scrub_type as anything in typesof(/obj/item/clothing/under/rank/medical/scrubs))
 		scrubs[initial(scrub_type.name)] = scrub_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(scrubs))
 
@@ -396,8 +389,7 @@
 /datum/gear/uniform/dresses/maid/New()
 	..()
 	var/list/maids = list()
-	for(var/maid in typesof(/obj/item/clothing/under/dress/maid))
-		var/obj/item/clothing/under/dress/maid/maid_type = maid
+	for(var/obj/item/clothing/under/dress/maid/maid_type as anything in typesof(/obj/item/clothing/under/dress/maid))
 		maids[initial(maid_type.name)] = maid_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(maids))
 

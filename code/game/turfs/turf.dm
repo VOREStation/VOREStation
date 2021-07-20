@@ -238,19 +238,17 @@
 
 /turf/proc/AdjacentTurfs(var/check_blockage = TRUE)
 	. = list()
-	for(var/t in (trange(1,src) - src))
-		var/turf/T = t
+	for(var/turf/T as anything in (trange(1,src) - src))
 		if(check_blockage)
 			if(!T.density)
 				if(!LinkBlocked(src, T) && !TurfBlockedNonWindow(T))
-					. += t
+					. += T
 		else
-			. += t
+			. += T
 
 /turf/proc/CardinalTurfs(var/check_blockage = TRUE)
 	. = list()
-	for(var/ad in AdjacentTurfs(check_blockage))
-		var/turf/T = ad
+	for(var/turf/T as anything in AdjacentTurfs(check_blockage))
 		if(T.x == src.x || T.y == src.y)
 			. += T
 

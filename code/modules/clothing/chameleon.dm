@@ -24,15 +24,14 @@
 	. = list()
 
 	var/i = 1 //in case there is a collision with both name AND icon_state
-	for(var/typepath in typesof(basetype) - blacklist)
-		var/obj/O = typepath
+	for(var/obj/O as anything in typesof(basetype) - blacklist)
 		if(initial(O.icon) && initial(O.icon_state))
 			var/name = initial(O.name)
 			if(name in .)
 				name += " ([initial(O.icon_state)])"
 			if(name in .)
 				name += " \[[i++]\]"
-			.[name] = typepath
+			.[name] = O
 
 /obj/item/clothing/under/chameleon
 //starts off as black

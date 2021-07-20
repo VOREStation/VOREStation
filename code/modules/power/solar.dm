@@ -314,8 +314,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 
 // This would use LateInitialize(), however the powernet does not appear to exist during that time.
 /hook/roundstart/proc/auto_start_solars()
-	for(var/a in GLOB.solars_list)
-		var/obj/machinery/power/solar_control/SC = a
+	for(var/obj/machinery/power/solar_control/SC as anything in GLOB.solars_list)
 		SC.auto_start()
 	return TRUE
 

@@ -197,8 +197,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	shortcut_cache.Cut()
 
 /obj/item/device/pda/proc/update_programs()
-	for(var/A in programs)
-		var/datum/data/pda/P = A
+	for(var/datum/data/pda/P as anything in programs)
 		P.pda = src
 
 /obj/item/device/pda/proc/detonate_act(var/obj/item/device/pda/P)
