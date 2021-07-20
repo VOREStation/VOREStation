@@ -29,7 +29,7 @@
 
 /hook/startup/proc/generateGasData()
 	gas_data = new
-	for(var/p in (typesof(/decl/xgm_gas) - /decl/xgm_gas))
+	for(var/p in subtypesof(/decl/xgm_gas))
 		var/decl/xgm_gas/gas = new p //avoid initial() because of potential New() actions
 
 		if(gas.id in gas_data.gases)

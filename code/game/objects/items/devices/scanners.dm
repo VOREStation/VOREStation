@@ -133,8 +133,7 @@ HALOGEN COUNTER	- Radcount on mobs
 			var/unknown = 0
 			var/reagentdata[0]
 			var/unknownreagents[0]
-			for(var/A in C.reagents.reagent_list)
-				var/datum/reagent/R = A
+			for(var/datum/reagent/R as anything in C.reagents.reagent_list)
 				if(R.scannable)
 					reagentdata["[R.id]"] = "<span class='notice'>\t[round(C.reagents.get_reagent_amount(R.id), 1)]u [R.name][(R.overdose && R.volume > R.overdose) ? " - <span class='danger'>Overdose</span>" : ""]</span><br>"
 				else
@@ -155,8 +154,7 @@ HALOGEN COUNTER	- Radcount on mobs
 			var/unknown = 0
 			var/stomachreagentdata[0]
 			var/stomachunknownreagents[0]
-			for(var/B in C.ingested.reagent_list)
-				var/datum/reagent/R = B
+			for(var/datum/reagent/R as anything in C.ingested.reagent_list)
 				if(R.scannable)
 					stomachreagentdata["[R.id]"] = "<span class='notice'>\t[round(C.ingested.get_reagent_amount(R.id), 1)]u [R.name][(R.overdose && R.volume > R.overdose) ? " - <span class='danger'>Overdose</span>" : ""]</span><br>"
 					if (advscan == 0 || showadvscan == 0)
@@ -179,8 +177,7 @@ HALOGEN COUNTER	- Radcount on mobs
 			var/unknown = 0
 			var/touchreagentdata[0]
 			var/touchunknownreagents[0]
-			for(var/B in C.touching.reagent_list)
-				var/datum/reagent/R = B
+			for(var/datum/reagent/R as anything in C.touching.reagent_list)
 				if(R.scannable)
 					touchreagentdata["[R.id]"] = "<span class='notice'>\t[round(C.touching.get_reagent_amount(R.id), 1)]u [R.name][(R.overdose && R.can_overdose_touch && R.volume > R.overdose) ? " - <span class='danger'>Overdose</span>" : ""]</span><br>"
 					if (advscan == 0 || showadvscan == 0)

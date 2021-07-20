@@ -296,8 +296,7 @@
 							/obj/item/instrument/harmonica,
 							/obj/item/instrument/piano_synth/headphones
 							)
-		for(var/V in templist)
-			var/atom/A = V
+		for(var/atom/A as anything in templist)
 			instruments[initial(A.name)] = A
 	return instruments
 */

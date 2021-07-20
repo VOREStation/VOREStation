@@ -240,8 +240,7 @@
 
 	var/static/alternative_targets = typecacheof(list(/obj/item, /obj/structure))
 
-	for(var/AT in typecache_filter_list(range(vision_range, holder), alternative_targets))
-		var/obj/O = AT
+	for(var/obj/O as anything in typecache_filter_list(range(vision_range, holder), alternative_targets))
 		if(can_see(holder, O, vision_range) && !O.anchored)
 			. += O
 

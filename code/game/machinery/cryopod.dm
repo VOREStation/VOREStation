@@ -373,8 +373,7 @@
 	hook_vr("despawn", list(to_despawn, src))
 	if(isliving(to_despawn))
 		var/mob/living/L = to_despawn
-		for(var/belly in L.vore_organs)
-			var/obj/belly/B = belly
+		for(var/obj/belly/B as anything in L.vore_organs)
 			for(var/mob/living/sub_L in B)
 				despawn_occupant(sub_L)
 			for(var/obj/item/W in B)

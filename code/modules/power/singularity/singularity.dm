@@ -265,8 +265,7 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 	return 1
 
 /obj/singularity/proc/eat()
-	for(var/T in orange(grav_pull, src))
-		var/atom/X = T
+	for(var/atom/X as anything in orange(grav_pull, src))
 		if(!X.simulated)
 			continue
 		var/dist = get_dist(X, src)

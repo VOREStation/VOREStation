@@ -17,8 +17,7 @@
 	var/list/listeners = player_list
 	if(!ignore_walls) //these sounds don't carry through walls
 		listeners = listeners & hearers(maxdistance,turf_source)
-	for(var/P in listeners)
-		var/mob/M = P
+	for(var/mob/M as anything in listeners)
 		if(!M || !M.client)
 			continue
 		var/turf/T = get_turf(M)

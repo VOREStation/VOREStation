@@ -111,8 +111,7 @@ SUBSYSTEM_DEF(planets)
 
 /datum/controller/subsystem/planets/proc/updateTemp(var/datum/planet/P)
 	//Set new temperatures
-	for(var/W in P.planet_walls)
-		var/turf/unsimulated/wall/planetary/wall = W
+	for(var/turf/unsimulated/wall/planetary/wall as anything in P.planet_walls)
 		wall.set_temperature(P.weather_holder.temperature)
 		CHECK_TICK
 
@@ -120,8 +119,7 @@ SUBSYSTEM_DEF(planets)
 	var/count = 100000
 	while(count > 0)
 		count--
-		for(var/planet in planets)
-			var/datum/planet/P = planet
+		for(var/datum/planet/P as anything in planets)
 			if(P.weather_holder)
 				P.weather_holder.change_weather(pick(P.weather_holder.allowed_weather_types))
 		sleep(3)

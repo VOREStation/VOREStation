@@ -55,14 +55,14 @@
 		choice = tgui_alert(usr, "Do you wish to add structures or machines?","Supply Drop",list("No","Yes"))
 		if(choice == "Yes")
 			while(1)
-				var/adding_loot_type = tgui_input_list(usr, "Select a new loot path. Cancel to finish.", "Loot Selection", typesof(/obj) - typesof(/obj/item))
+				var/adding_loot_type = tgui_input_list(usr, "Select a new loot path. Cancel to finish.", "Loot Selection", subtypesof(/obj))
 				if(!adding_loot_type)
 					break
 				chosen_loot_types |= adding_loot_type
 		choice = tgui_alert(usr, "Do you wish to add any non-weapon items?","Supply Drop",list("No","Yes"))
 		if(choice == "Yes")
 			while(1)
-				var/adding_loot_type = tgui_input_list(usr, "Select a new loot path. Cancel to finish.", "Loot Selection", typesof(/obj/item) - typesof(/obj/item/weapon))
+				var/adding_loot_type = tgui_input_list(usr, "Select a new loot path. Cancel to finish.", "Loot Selection", subtypesof(/obj/item))
 				if(!adding_loot_type)
 					break
 				chosen_loot_types |= adding_loot_type

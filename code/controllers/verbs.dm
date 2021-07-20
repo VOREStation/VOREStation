@@ -75,8 +75,7 @@
 	options["MC"] = Master
 	options["Failsafe"] = Failsafe
 	options["Configuration"] = config
-	for(var/i in Master.subsystems)
-		var/datum/controller/subsystem/S = i
+	for(var/datum/controller/subsystem/S as anything in Master.subsystems)
 		if(!istype(S))		//Eh, we're a debug verb, let's have typechecking.
 			continue
 		var/strtype = "SS[get_end_section_of_type(S.type)]"

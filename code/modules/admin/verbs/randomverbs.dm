@@ -282,8 +282,7 @@ Ccomp's first proc.
 	GLOB.respawn_timers -= target
 
 	var/found_client = FALSE
-	for(var/c in GLOB.clients)
-		var/client/C = c
+	for(var/client/C as anything in GLOB.clients)
 		if(C.ckey == target)
 			found_client = C
 			to_chat(C, "<span class='notice'><B>You may now respawn. You should roleplay as if you learned nothing about the round during your time with the dead.</B></span>")

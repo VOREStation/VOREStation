@@ -215,23 +215,20 @@ GLOBAL_LIST_EMPTY(mannequins)
 
 	// Suit cyclers
 	paths = subtypesof(/datum/suit_cycler_choice/department)
-	for(var/path in paths)
-		var/datum/suit_cycler_choice/SCC = path
+	for(var/datum/suit_cycler_choice/SCC as anything in paths)
 		if(!initial(SCC.name))
 			continue
-		GLOB.suit_cycler_departments += new path()
+		GLOB.suit_cycler_departments += new SCC()
 	paths = subtypesof(/datum/suit_cycler_choice/species)
-	for(var/path in paths)
-		var/datum/suit_cycler_choice/SCC = path
+	for(var/datum/suit_cycler_choice/SCC as anything in paths)
 		if(!initial(SCC.name))
 			continue
-		GLOB.suit_cycler_species += new path()
+		GLOB.suit_cycler_species += new SCC()
 	paths = subtypesof(/datum/suit_cycler_choice/department/emag)
-	for(var/path in paths)
-		var/datum/suit_cycler_choice/SCC = path
+	for(var/datum/suit_cycler_choice/SCC as anything in paths)
 		if(!initial(SCC.name))
 			continue
-		GLOB.suit_cycler_emagged += new path()
+		GLOB.suit_cycler_emagged += new SCC()
 
 	//Ores
 	paths = subtypesof(/ore)
@@ -273,7 +270,7 @@ GLOBAL_LIST_EMPTY(mannequins)
 
 /*
 	// Custom species traits
-	paths = subtypesof(/datum/trait) - /datum/trait
+	paths = subtypesof(/datum/trait)
 	for(var/path in paths)
 		var/datum/trait/instance = new path()
 		if(!instance.name)

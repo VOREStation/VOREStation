@@ -202,8 +202,7 @@ SUBSYSTEM_DEF(timer)
 
 	bucket_count -= length(spent)
 
-	for (var/i in spent)
-		var/datum/timedevent/qtimer = i
+	for(var/datum/timedevent/qtimer as anything in spent)
 		if(QDELETED(qtimer))
 			bucket_count++
 			continue

@@ -191,8 +191,7 @@
 		return
 
 	var/farEnough = 1
-	for(var/A in SSxenoarch.digsite_spawning_turfs)
-		var/turf/T = A
+	for(var/turf/T as anything in SSxenoarch.digsite_spawning_turfs)
 		if(T in range(5, M))
 			farEnough = 0
 			break

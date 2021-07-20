@@ -111,8 +111,7 @@ GLOBAL_LIST_EMPTY(all_blobs)
 
 	shuffle_inplace(blobs_to_affect)
 
-	for(var/L in blobs_to_affect)
-		var/obj/structure/blob/B = L
+	for(var/obj/structure/blob/B as anything in blobs_to_affect)
 		if(B.faction != faction)
 			continue
 

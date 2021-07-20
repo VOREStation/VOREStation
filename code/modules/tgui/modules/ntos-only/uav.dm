@@ -30,8 +30,7 @@
 	var/list/paired_map = list()
 	var/obj/item/modular_computer/mc_host = tgui_host()
 	if(istype(mc_host))
-		for(var/puav in mc_host.paired_uavs)
-			var/weakref/wr = puav
+		for(var/weakref/wr as anything in mc_host.paired_uavs)
 			var/obj/item/device/uav/U = wr.resolve()
 			paired_map.Add(list(list("name" = "[U ? U.nickname : "!!Missing!!"]", "uavref" = "\ref[U]")))
 
@@ -148,8 +147,7 @@
 	var/list/zlevels_in_long_range = using_map.get_map_levels(their_z, TRUE, om_range = DEFAULT_OVERMAP_RANGE) - zlevels_in_range
 	var/their_signal = 0
 	// Measure z-distance between the AM passed in and the nearest relay
-	for(var/relay in ntnet_global.relays)
-		var/obj/machinery/ntnet_relay/R = relay
+	for(var/obj/machinery/ntnet_relay/R as anything in ntnet_global.relays)
 		if(!R.operable())
 			continue
 		if(R.z == their_z)

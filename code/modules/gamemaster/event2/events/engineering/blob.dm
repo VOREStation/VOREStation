@@ -111,16 +111,14 @@
 		log_debug("Spawned [new_blob.overmind.blob_type.name] blob at [get_area(new_blob)].")
 
 /datum/event2/event/blob/should_end()
-	for(var/WR in blobs)
-		var/weakref/weakref = WR
+	for(var/weakref/weakref as anything in blobs)
 		if(weakref.resolve()) // If the weakref is resolvable, that means the blob hasn't been deleted yet.
 			return FALSE
 	return TRUE // Only end if all blobs die.
 
 // Normally this does nothing, but is useful if aborted by an admin.
 /datum/event2/event/blob/end()
-	for(var/WR in blobs)
-		var/weakref/weakref = WR
+	for(var/weakref/weakref as anything in blobs)
 		var/obj/structure/blob/core/B = weakref.resolve()
 		if(istype(B))
 			qdel(B)
@@ -130,8 +128,7 @@
 		var/danger_level = 0
 		var/list/blob_type_names = list()
 		var/multiblob = FALSE
-		for(var/WR in blobs)
-			var/weakref/weakref = WR
+		for(var/weakref/weakref as anything in blobs)
 			var/obj/structure/blob/core/B = weakref.resolve()
 			if(!istype(B))
 				continue

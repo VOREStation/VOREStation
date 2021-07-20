@@ -868,9 +868,8 @@
 		update_transform()
 		//VOREStation Add
 		if(lying && LAZYLEN(buckled_mobs))
-			for(var/rider in buckled_mobs)
-				var/mob/living/L = rider
-				if(buckled_mobs[rider] != "riding")
+			for(var/mob/living/L as anything in buckled_mobs)
+				if(buckled_mobs[L] != "riding")
 					continue // Only boot off riders
 				if(riding_datum)
 					riding_datum.force_dismount(L)

@@ -158,7 +158,7 @@
 	var/mob/living/spawned_mob
 	var/list/spawned_mobs = list()
 
-	var/spawn_path = tgui_input_list(usr, "Select a mob type.", "Drop Pod Selection", typesof(/mob/living)-/mob/living)
+	var/spawn_path = tgui_input_list(usr, "Select a mob type.", "Drop Pod Selection", subtypesof(/mob/living))
 	if(!spawn_path)
 		return
 

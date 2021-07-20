@@ -21,8 +21,7 @@
 	screenobjs += new /obj/screen/rig/deco1_f
 	screenobjs += new /obj/screen/rig/deco2_f
 
-	for(var/scr in screenobjs)
-		var/obj/screen/S = scr
+	for(var/obj/screen/S as anything in screenobjs)
 		S.master = owner_rig
 	..()
 
@@ -71,8 +70,7 @@
 	screenobjs += new /obj/screen/mech/deco1_f
 	screenobjs += new /obj/screen/mech/deco2_f
 
-	for(var/scr in screenobjs)
-		var/obj/screen/S = scr
+	for(var/obj/screen/S as anything in screenobjs)
 		S.master = owner_mech
 	..()
 

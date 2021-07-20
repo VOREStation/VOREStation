@@ -1,4 +1,4 @@
-/* 
+/*
 **	For now, these are just neutral traits for Xenochimera only to take.
 **	These are only traits that they should reasonably be able to evolve to acquire themselves.
 **	I won't add the resistances though because those are kinda lame for a 'chimera to take!
@@ -46,6 +46,15 @@
 	allowed_species = list(SPECIES_XENOCHIMERA)
 	name = "Xenochimera: Snow Walker"
 	desc = "You've adapted to traversing snowy terrain. Snow does not slow you down!"
+	cost = 0
+	category = 0
+	custom_only = FALSE
+
+/datum/trait/positive/water_breather/xenochimera
+	sort = TRAIT_SORT_SPECIES
+	allowed_species = list(SPECIES_XENOCHIMERA)
+	name = "Xenochimera: Water Breather"
+	desc = "You can breathe under water."
 	cost = 0
 	category = 0
 	custom_only = FALSE

@@ -175,11 +175,10 @@
 		var/list/choices = list()
 		for(var/typechoice in types)
 			var/list/found = list()
-			for(var/mob in searching) // Isnt't there a helper for this, maybe? I forget.
-				var/atom/M = mob
+			for(var/atom/M as anything in searching) // Isnt't there a helper for this, maybe? I forget.
 				if(!(M.z in levels_working))
 					continue
-				if(!istype(mob,typechoice))
+				if(!istype(M,typechoice))
 					continue
 				found += M
 			choices["[typechoice] ([found.len])"] = found // Prettified name for the user input below)
@@ -190,8 +189,7 @@
 			href_list["datumrefresh"] = "\ref[src]"
 			return
 		var/list/selected = choices[choice]
-		for(var/mob in selected)
-			var/mob/living/L = mob
+		for(var/mob/living/L as anything in selected)
 			if(!istype(L))
 				to_chat(usr,"<span class='warning'>Skipping incompatible mob: [L] [ADMIN_COORDJMP(L)]</span>")
 				continue

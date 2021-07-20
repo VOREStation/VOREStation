@@ -121,6 +121,10 @@
 /obj/random/awayloot,
 /turf/simulated/floor/tiled/eris/steel/techfloor,
 /area/gateway/arynthilake/engine)
+"nD" = (
+/obj/effect/landmark/hidden_level,
+/turf/simulated/mineral/ignore_cavegen,
+/area/gateway/arynthilake/underground)
 "nO" = (
 /turf/simulated/mineral/floor/ignore_cavegen,
 /area/gateway/arynthilake/underground)
@@ -670,7 +674,7 @@ gh
 gh
 gh
 gh
-gh
+nD
 Ft
 "}
 (3,1,1) = {"

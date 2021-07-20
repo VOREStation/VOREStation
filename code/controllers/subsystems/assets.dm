@@ -6,8 +6,7 @@ SUBSYSTEM_DEF(assets)
 	var/list/preload = list()
 
 /datum/controller/subsystem/assets/Initialize(timeofday)
-	for(var/type in typesof(/datum/asset))
-		var/datum/asset/A = type
+	for(var/datum/asset/A as anything in typesof(/datum/asset))
 		if (type != initial(A._abstract))
 			get_asset_datum(type)
 

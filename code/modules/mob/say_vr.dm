@@ -49,8 +49,7 @@
 		var/list/vis_mobs = vis["mobs"]
 		var/list/vis_objs = vis["objs"]
 
-		for(var/vismob in vis_mobs)
-			var/mob/M = vismob
+		for(var/mob/M as anything in vis_mobs)
 			if(isobserver(M) && !is_preference_enabled(/datum/client_preference/whisubtle_vis) && !M.client?.holder)
 				spawn(0)
 					M.show_message(undisplayed_message, 2)
@@ -58,8 +57,7 @@
 				spawn(0)
 					M.show_message(message, 2)
 
-		for(var/visobj in vis_objs)
-			var/obj/O = visobj
+		for(var/obj/O as anything in vis_objs)
 			spawn(0)
 				O.see_emote(src, message, 2)
 

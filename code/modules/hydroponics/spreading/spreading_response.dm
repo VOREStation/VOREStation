@@ -49,8 +49,7 @@
 
 /obj/effect/plant/proc/unbuckle()
 	if(has_buckled_mobs())
-		for(var/A in buckled_mobs)
-			var/mob/living/L = A
+		for(var/mob/living/L as anything in buckled_mobs)
 			if(L.buckled == src)
 				L.buckled = null
 				L.anchored = initial(L.anchored)
@@ -64,8 +63,7 @@
 		if(seed)
 			chance = round(100/(20*seed.get_trait(TRAIT_POTENCY)/100))
 		if(prob(chance))
-			for(var/A in buckled_mobs)
-				var/mob/living/L = A
+			for(var/mob/living/L as anything in buckled_mobs)
 				if(!(user in buckled_mobs))
 					L.visible_message(\
 					"<b>\The [user]</b> frees \the [L] from \the [src].",\

@@ -341,6 +341,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		var/area/A = areas[key]
 		if(A.z in using_map?.secret_levels)
 			areas -= key
+		if(A.z in using_map?.hidden_levels)
+			areas -= key
 
 	return areas
 
@@ -353,10 +355,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		var/mobz = get_z(mobs[key])
 		if(mobz in using_map?.secret_levels)
 			mobs -= key
-	
+		if(mobz in using_map?.hidden_levels)
+			mobs -= key
+
 	return mobs
 
-/mob/observer/dead/verb/dead_tele(areaname as null|anything in jumpable_areas())
+/mob/observer/dead/verb/dead_tele(areaname as anything in jumpable_areas())
 	set name = "Teleport"
 	set category = "Ghost"
 	set desc = "Teleport to a location."
@@ -383,7 +387,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	usr.forceMove(pick(get_area_turfs(A || jumpable_areas()[areaname])))
 	usr.on_mob_jump()
 
-/mob/observer/dead/verb/follow(mobname as null|anything in jumpable_mobs())
+/mob/observer/dead/verb/follow(mobname as anything in jumpable_mobs())
 	set name = "Follow"
 	set category = "Ghost"
 	set desc = "Follow and haunt a mob."

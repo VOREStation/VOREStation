@@ -51,8 +51,7 @@
 	. = ..()
 	if(.)
 		if(has_buckled_mobs())
-			for(var/A in buckled_mobs)
-				var/mob/living/L = A
+			for(var/mob/living/L as anything in buckled_mobs)
 				L.set_dir(dir)
 
 /obj/structure/bed/chair/wheelchair/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -95,8 +94,7 @@
 	var/turf/T = null
 	//--1---Move occupant---1--//
 	if(has_buckled_mobs())
-		for(var/A in buckled_mobs)
-			var/mob/living/L = A
+		for(var/mob/living/L as anything in buckled_mobs)
 			L.buckled = null
 			step(L, direction)
 			L.buckled = src
@@ -128,8 +126,7 @@
 	. = ..()
 	playsound(src, 'sound/effects/roll.ogg', 75, 1)
 	if(has_buckled_mobs())
-		for(var/A in buckled_mobs)
-			var/mob/living/occupant = A
+		for(var/mob/living/occupant as anything in buckled_mobs)
 			if(!driving)
 				occupant.buckled = null
 				occupant.Move(src.loc)

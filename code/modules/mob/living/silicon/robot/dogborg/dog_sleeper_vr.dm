@@ -567,8 +567,7 @@
 						'sound/vore/death10.ogg')
 					playsound(src, deathsound, vol = 100, vary = 1, falloff = 0.1, ignore_walls = TRUE, preference = /datum/client_preference/digestion_noises)
 					if(is_vore_predator(T))
-						for(var/belly in T.vore_organs)
-							var/obj/belly/B = belly
+						for(var/obj/belly/B as anything in T.vore_organs)
 							for(var/atom/movable/thing in B)
 								thing.forceMove(src)
 								if(ismob(thing))

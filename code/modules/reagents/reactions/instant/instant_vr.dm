@@ -208,7 +208,8 @@
 	result_amount = 1
 
 /decl/chemical_reaction/instant/slime_food/on_reaction(var/datum/reagents/holder)
-	var/list/borks = typesof(/obj/item/weapon/reagent_containers/food/snacks) - /obj/item/weapon/reagent_containers/food/snacks // BORK BORK BORK
+	var/list/borks = subtypesof(/obj/item/weapon/reagent_containers/food/snacks)
+	
 
 	playsound(holder.my_atom, 'sound/effects/phasein.ogg', 100, 1)
 

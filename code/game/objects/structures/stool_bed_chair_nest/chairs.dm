@@ -63,8 +63,7 @@
 	..()
 	update_layer()
 	if(has_buckled_mobs())
-		for(var/A in buckled_mobs)
-			var/mob/living/L = A
+		for(var/mob/living/L as anything in buckled_mobs)
 			L.set_dir(dir)
 
 /obj/structure/bed/chair/verb/rotate_clockwise()
@@ -151,8 +150,7 @@
 	playsound(src, 'sound/effects/roll.ogg', 100, 1)
 
 /obj/structure/bed/chair/office/handle_buckled_mob_movement(atom/new_loc, direction, movetime)
-	for(var/A in buckled_mobs)
-		var/mob/living/occupant = A
+	for(var/mob/living/occupant as anything in buckled_mobs)
 		occupant.buckled = null
 		occupant.Move(loc, direction, movetime)
 		occupant.buckled = src

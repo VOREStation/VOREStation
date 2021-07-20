@@ -117,6 +117,15 @@
 	else
 		log_error("[type] mapped in but no using_map")
 
+/obj/effect/landmark/hidden_level
+	delete_me = 1
+/obj/effect/landmark/hidden_level/Initialize()
+	. = ..()
+	if(using_map)
+		using_map.hidden_levels |= z
+	else
+		log_error("[type] mapped in but no using_map")
+
 
 /obj/effect/landmark/virtual_reality
 	name = "virtual_reality"
