@@ -14,12 +14,13 @@ GLOBAL_LIST_EMPTY(suit_cycler_emagged)
 	var/helmet_becomes
 
 /datum/suit_cycler_choice/department/proc/can_refit_helmet(obj/item/clothing/head/helmet/helmet)
-	return !!helmet_becomes
+	return helmet && !!helmet_becomes
 
 /datum/suit_cycler_choice/department/proc/do_refit_helmet(obj/item/clothing/head/helmet/helmet)
 	var/obj/item/clothing/tmp = new helmet_becomes()
 	helmet.name = "refitted [tmp.name]"
 	helmet.desc = tmp.desc
+	helmet.icon = tmp.icon
 	helmet.icon_state = tmp.icon_state
 	helmet.item_state = tmp.item_state
 	helmet.item_state_slots = tmp.item_state_slots?.Copy()
@@ -28,12 +29,13 @@ GLOBAL_LIST_EMPTY(suit_cycler_emagged)
 	helmet.default_worn_icon = tmp.default_worn_icon
 
 /datum/suit_cycler_choice/department/proc/can_refit_suit(obj/item/clothing/suit/space/suit)
-	return !!suit_becomes
+	return suit && !!suit_becomes
 
 /datum/suit_cycler_choice/department/proc/do_refit_suit(obj/item/clothing/suit/space/suit)
 	var/obj/item/clothing/tmp = new suit_becomes()
 	suit.name = "refitted [tmp.name]"
 	suit.desc = tmp.desc
+	suit.icon = tmp.icon
 	suit.icon_state = tmp.icon_state
 	suit.item_state = tmp.item_state
 	suit.item_state_slots = tmp.item_state_slots?.Copy()
@@ -305,16 +307,16 @@ GLOBAL_LIST_EMPTY(suit_cycler_emagged)
 
 // Uses same logic as it used to, which is that it bases an assumption of 'we should have custom sprites' on
 // the presence of the species in the sprite_sheets_obj list on the helmet and suit
-/datum/suit_cycler_choice/species/proc/can_refit_to(obj/item/clothing/head/helmet/helmet, obj/item/clothing/suit/space/suit)
-	for(var/obj/item/clothing/C in list(helmet, suit))
+/datum/suit_cycler_choice/species/proc/can_refit_to(...)
+	for(var/obj/item/clothing/C in args)
 		if(LAZYACCESS(C.sprite_sheets_obj, name))
 			if(!(C.icon_state in cached_icon_states(C.sprite_sheets_obj[name])))
 				return FALSE // Species was in sprite_sheets_obj, but had no sprite for this object in particular
 
 	return TRUE
 
-/datum/suit_cycler_choice/species/proc/do_refit_to(obj/item/clothing/head/helmet/helmet, obj/item/clothing/suit/space/suit)
-	for(var/obj/item/clothing/C in list(helmet, suit))
+/datum/suit_cycler_choice/species/proc/do_refit_to(...)
+	for(var/obj/item/clothing/C in args)
 		C.refit_for_species(name)
 
 /datum/suit_cycler_choice/species/noop

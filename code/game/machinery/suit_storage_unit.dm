@@ -1114,17 +1114,20 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 /obj/machinery/suit_cycler/proc/apply_paintjob()
 	if(!target_species || !target_department)
 		return
-	if(suit?.helmet)
-		visible_message("[bicon(src)]<span class='warning'>Separate the suit and helmet before applying any customizations.</span>")
-		return
 	
-	if(helmet && target_department.can_refit_helmet(helmet))
+	// Helmet to new paint
+	if(target_department.can_refit_helmet(helmet))
 		target_department.do_refit_helmet(helmet)
-	if(suit && target_department.can_refit_suit(suit))
+	// Suit to new paint
+	if(target_department.can_refit_suit(suit))
 		target_department.do_refit_suit(suit)
-	
-	if(target_species.can_refit_to(helmet, suit))
-		target_species.do_refit_to(helmet, suit)
+	// Attached voidsuit helmet to new paint
+	if(target_department.can_refit_helmet(suit?.helmet))
+		target_department.do_refit_helmet(suit.helmet)
+
+	// Species fitting for all 3 potential changes
+	if(target_species.can_refit_to(helmet, suit, suit?.helmet))
+		target_species.do_refit_to(helmet, suit, suit?.helmet)
 	else
 		visible_message("[bicon(src)]<span class='warning'>Unable to apply specified cosmetics with specified species. Please try again with a different species or cosmetic option selected.</span>")
 		return

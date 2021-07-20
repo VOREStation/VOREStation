@@ -20,7 +20,7 @@ var/const/commandos_possible = 6 //if more Commandos are needed in the future
 
 	var/datum/antagonist/deathsquad/team
 
-	var/choice = tgui_input_list(usr, "Select type of strike team:", list("Heavy Asset Protection", "Mercenaries"))
+	var/choice = tgui_input_list(usr, "Select type of strike team:", "Strike Team", list("Heavy Asset Protection", "Mercenaries"))
 	if(!choice)
 		return
 

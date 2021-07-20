@@ -7,20 +7,10 @@
 
 /obj/item/clothing/head/helmet/space/void
 	species_restricted = list(SPECIES_HUMAN, SPECIES_RAPALA, SPECIES_VASILISSAN, SPECIES_ALRAUNE, SPECIES_PROMETHEAN, SPECIES_XENOCHIMERA)
-	sprite_sheets = VR_SPECIES_SPRITE_SHEETS_HEAD_MOB
-	sprite_sheets_obj = VR_SPECIES_SPRITE_SHEETS_HEAD_ITEM
 
 /obj/item/clothing/suit/space/void
 	species_restricted = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_RAPALA, SPECIES_VASILISSAN, SPECIES_ALRAUNE, SPECIES_PROMETHEAN, SPECIES_XENOCHIMERA)
-	sprite_sheets = VR_SPECIES_SPRITE_SHEETS_SUIT_MOB
-	sprite_sheets_obj = VR_SPECIES_SPRITE_SHEETS_SUIT_ITEM
 	
-	// This is a hack to prevent the item_state variable on the suits from taking effect
-	// when the item is equipped in outer clothing slot.
-	// This variable is normally used to set the icon_override when the suit is refitted,
-	// however the species spritesheet now means we no longer need that anyway!
-	sprite_sheets_refit = list()
-
 /obj/item/clothing/head/helmet/space/void/heck
 	name = "\improper H.E.C.K. helmet"
 	desc = "Hostile Environiment Cross-Kinetic Helmet: A helmet designed to withstand the wide variety of hazards from \[REDACTED\]. It wasn't enough for its last owner."
@@ -106,7 +96,6 @@
 	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
 	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
 	sprite_sheets_obj = null
-	sprite_sheets_refit = null
 
 /obj/item/clothing/suit/space/void/autolok/Initialize()
 	. = ..()
@@ -162,5 +151,4 @@
 	default_worn_icon = 'icons/inventory/head/mob_vr.dmi'
 	sprite_sheets = ALL_VR_SPRITE_SHEETS_HEAD_MOB
 	sprite_sheets_obj = null
-	sprite_sheets_refit = null
 	

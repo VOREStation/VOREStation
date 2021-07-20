@@ -7,7 +7,6 @@
 	unacidable = TRUE //No longer shall our kind be foiled by lone chemists with spray bottles!
 	armor = list(melee = 40, bullet = 20, laser = 20,energy = 20, bomb = 35, bio = 100, rad = 60)
 	siemens_coefficient = 0.7
-	sprite_sheets_refit = null
 	sprite_sheets_obj = null
 	wizard_garb = 1
 
@@ -20,6 +19,5 @@
 	unacidable = TRUE
 	armor = list(melee = 40, bullet = 20, laser = 20,energy = 20, bomb = 35, bio = 100, rad = 60)
 	siemens_coefficient = 0.7
-	sprite_sheets_refit = null
 	sprite_sheets_obj = null
 	wizard_garb = 1
