@@ -340,6 +340,8 @@
 	reagent_tag = IS_SKRELL
 	allergens = ALLERGEN_MEAT|ALLERGEN_FISH|ALLERGEN_DAIRY|ALLERGEN_EGGS
 
+	water_breather = TRUE
+
 	has_limbs = list(
 		BP_TORSO =  list("path" = /obj/item/organ/external/chest),
 		BP_GROIN =  list("path" = /obj/item/organ/external/groin),
@@ -353,9 +355,6 @@
 		BP_L_FOOT = list("path" = /obj/item/organ/external/foot),
 		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right)
 		)
-
-/datum/species/skrell/can_breathe_water()
-	return TRUE
 
 /datum/species/zaddat
 	name = SPECIES_ZADDAT

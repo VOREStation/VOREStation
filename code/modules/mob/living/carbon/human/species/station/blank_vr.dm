@@ -57,12 +57,6 @@
 
 // Stub species overrides for shoving trait abilities into
 
-//Called when face-down in the water or otherwise over their head.
-// Return: TRUE for able to breathe fine in water.
-/datum/species/custom/can_breathe_water()
-	return /datum/trait/positive/water_breather in traits
-
-
 //Called during handle_environment in Life() ticks.
 // Return: Not used.
 /datum/species/custom/handle_environment_special(var/mob/living/carbon/human/H)

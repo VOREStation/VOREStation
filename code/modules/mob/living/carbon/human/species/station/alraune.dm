@@ -20,6 +20,7 @@
 	breath_type = "oxygen"
 	poison_type = "phoron"
 	exhale_type = "oxygen"
+	water_breather = TRUE  //eh, why not? Aquatic plants are a thing.
 
 	// Heat and cold resistances are 20 degrees broader on the level 1 range, level 2 is default, level 3 is much weaker, halfway between L2 and normal L3.
 	// Essentially, they can tolerate a broader range of comfortable temperatures, but suffer more at extremes.
@@ -89,9 +90,6 @@
 		O_EYES =     /obj/item/organ/internal/eyes/alraune,
 		A_FRUIT =    /obj/item/organ/internal/fruitgland,
 		)
-
-/datum/species/alraune/can_breathe_water()
-	return TRUE //eh, why not? Aquatic plants are a thing.
 
 
 /datum/species/alraune/handle_environment_special(var/mob/living/carbon/human/H)
