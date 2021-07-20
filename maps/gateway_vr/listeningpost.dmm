@@ -416,6 +416,10 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/airless,
 /area/awaymission/listeningpost)
+"Hp" = (
+/obj/effect/landmark/hidden_level,
+/turf/space,
+/area/space)
 
 (1,1,1) = {"
 aa
@@ -840,7 +844,7 @@ aa
 aa
 aa
 aa
-aa
+Hp
 aa
 "}
 (4,1,1) = {"

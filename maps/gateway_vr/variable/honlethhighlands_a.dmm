@@ -1984,6 +1984,12 @@
 /obj/item/weapon/stool/padded,
 /turf/simulated/floor/lino,
 /area/gateway/honlethhighlands/town/bar)
+"Ey" = (
+/obj/effect/landmark/hidden_level,
+/turf/simulated/floor/water/deep{
+	temperature = 253.15
+	},
+/area/gateway/honlethhighlands/beach)
 "EP" = (
 /obj/structure/table/glass,
 /obj/item/weapon/paper_bin,
@@ -3504,7 +3510,7 @@ bm
 bm
 bm
 bm
-bm
+Ey
 aa
 "}
 (5,1,1) = {"
