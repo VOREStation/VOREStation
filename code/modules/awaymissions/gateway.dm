@@ -176,6 +176,8 @@ GLOBAL_DATUM(gateway_station, /obj/machinery/gateway/centerstation)
 			//VOREStation Addition Start: Abduction!
 			if(istype(M, /mob/living) && dest.abductor)
 				var/mob/living/L = M
+				if(L.nutrition > 500) 
+					L.nutrition = 500 //If the aim is to negate people overpreparing, then they shouldn't be able to stuff themselves full of food either.
 				//Situations to get the mob out of
 				if(L.buckled)
 					L.buckled.unbuckle_mob()
