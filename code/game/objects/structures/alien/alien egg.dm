@@ -37,7 +37,7 @@
 
 /obj/structure/alien/egg/update_icon()
 	if(progress == -1)
-		icon_state = "egg_hatched"
+		icon_state = "egg_opened"
 	else if(progress < MAX_PROGRESS)
 		icon_state = "egg_growing"
 	else
@@ -57,19 +57,20 @@
 		cut_overlay(I)
 
 
-/obj/structure/alien/egg/attack_ghost(var/mob/observer/ghost/user)
+/obj/structure/alien/egg/attack_ghost(var/mob/observer/dead/user)
 	// Still a ghost?
 	if(!istype(user))
+		tgui_alert_async(user, "You have to be an observer to join as this Xenomorph larva.")
 		return
 	
 	// Check for bans properly.
 	if(jobban_isbanned(user, "Xenomorph"))
-		to_chat(user, "<span class='danger'>You are banned from playing a Xenomorph.</span>")
+		tgui_alert_async(user, "You are banned from playing a Xenomorph, so you can't join as this Xenomorph larva.")
 		return
 		
 	// Check for respawn
 	if(!user.MayRespawn(1))
-		to_chat(user, "<span class='danger'>You aren't allowed to respawn.</span>")
+		tgui_alert_async(user, "You aren't allowed to respawn, so you can't join as this Xenomorph larva.")
 		return
 	
 	if(progress == -1)
