@@ -78,7 +78,7 @@
 			var/datum/component/resize_guard/guard = GetComponent(/datum/component/resize_guard)
 			if(guard)
 				qdel(guard)
-	
+
 	if(size_multiplier == new_size)
 		return 1
 
@@ -143,7 +143,7 @@
 	var/nagmessage = "Adjust your mass to be a size between 25 to 200% (or 1% to 600% in dormitories). (DO NOT ABUSE)"
 	var/new_size = input(nagmessage, "Pick a Size") as num|null
 	if(size_range_check(new_size))
-		resize(new_size/100)
+		resize(new_size/100, uncapped = has_large_resize_bounds(), ignore_prefs = TRUE)
 		// I'm not entirely convinced that `src ? ADMIN_JMP(src) : "null"` here does anything
 		// but just in case it does, I'm leaving the null-src checking
 		message_admins("[key_name(src)] used the resize command in-game to be [new_size]% size. [src ? ADMIN_JMP(src) : "null"]")
