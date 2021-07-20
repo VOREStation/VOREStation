@@ -261,6 +261,7 @@
 	for(var/organ in organs + internal_organs)
 		var/obj/item/organ/O = organ
 		O.species = species
+	species.post_spawn_special(src)
 //VOREStation Add End
 
 // Used below, simple injection modifier.

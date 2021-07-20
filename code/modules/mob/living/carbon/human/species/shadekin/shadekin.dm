@@ -256,3 +256,74 @@
 
 		H.shadekin_display.icon_state = "shadekin-[l_icon]-[e_icon]"
 	return
+
+/datum/species/shadekin/proc/get_shadekin_eyecolor(var/mob/living/carbon/human/H)
+	var/eyecolor_rgb = rgb(H.r_eyes, H.g_eyes, H.b_eyes)
+
+	var/eyecolor_hue = HueToAngle(ReadHSV(RGBtoHSV(eyecolor_rgb))[1])
+
+	var/eyecolor_type = BLUE_EYES
+	switch(eyecolor_hue)
+		if(0 to 10)
+			eyecolor_type = RED_EYES
+		if(11 to 40)
+			eyecolor_type = ORANGE_EYES
+		if(41 to 70)
+			eyecolor_type = YELLOW_EYES
+		if(71 to 160)
+			eyecolor_type = GREEN_EYES
+		if(161 to 250)
+			eyecolor_type = BLUE_EYES
+		if(251 to 330)
+			eyecolor_type = PURPLE_EYES
+		if(331 to 360)
+			eyecolor_type = RED_EYES
+
+	return eyecolor_type
+
+/datum/species/shadekin/post_spawn_special(var/mob/living/carbon/human/H)
+	.=..()
+
+	var/eyecolor_type = get_shadekin_eyecolor(H)
+
+	switch(eyecolor_type)
+		if(BLUE_EYES)
+			total_health = 100
+			energy_light = 0.5
+			energy_dark = 0.5
+		if(RED_EYES)
+			total_health = 200
+			energy_light = -1
+			energy_dark = 0.1
+		if(PURPLE_EYES)
+			total_health = 150
+			energy_light = -0.5
+			energy_dark = 1
+		if(YELLOW_EYES)
+			total_health = 100
+			energy_light = -2
+			energy_dark = 3
+		if(GREEN_EYES)
+			total_health = 100
+			energy_light = 0.125
+			energy_dark = 2
+		if(ORANGE_EYES)
+			total_health = 175
+			energy_light = -0.5
+			energy_dark = 0.25
+
+	H.maxHealth = total_health
+
+	H.health = H.maxHealth
+
+/datum/species/shadekin/produceCopy(var/list/traits, var/mob/living/carbon/human/H, var/custom_base)
+
+	var/datum/species/shadekin/new_copy = ..()
+
+	new_copy.total_health = total_health
+
+	new_copy.energy_light = energy_light
+
+	new_copy.energy_dark = energy_dark
+
+	return new_copy
