@@ -65,8 +65,9 @@
 			for(var/obj/effect/spider/eggcluster/E in O.implants)
 				eggcount++
 			if(!eggcount)
-				var/eggs = new egg_type(O, src)
+				var/obj/effect/spider/eggcluster/eggs = new egg_type(O, src)
 				O.implants += eggs
+				eggs.faction = faction
 				to_chat(H, span("critical", "\The [src] injects something into your [O.name]!") ) // Oh god its laying eggs in me!
 
 // Webs target in a web if able to.
@@ -205,7 +206,8 @@
 		return FALSE // Spamclick protection.
 
 	set_AI_busy(FALSE)
-	new egg_type(T)
+	var/obj/effect/spider/eggcluster/eggs = new egg_type(T)
+	eggs.faction = faction
 	fed--
 	laying_eggs = FALSE
 	return TRUE
