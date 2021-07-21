@@ -100,6 +100,7 @@ SUBSYSTEM_DEF(machines)
 	if (!resumed)
 		src.current_run = global.pipe_networks.Copy()
 	//cache for sanic speed (lists are references anyways)
+	var/wait = src.wait
 	var/list/current_run = src.current_run
 	while(current_run.len)
 		var/datum/pipe_network/PN = current_run[current_run.len]
@@ -117,6 +118,7 @@ SUBSYSTEM_DEF(machines)
 	if (!resumed)
 		src.current_run = global.processing_machines.Copy()
 
+	var/wait = src.wait
 	var/list/current_run = src.current_run
 	while(current_run.len)
 		var/obj/machinery/M = current_run[current_run.len]
@@ -133,6 +135,7 @@ SUBSYSTEM_DEF(machines)
 	if (!resumed)
 		src.current_run = global.powernets.Copy()
 
+	var/wait = src.wait
 	var/list/current_run = src.current_run
 	while(current_run.len)
 		var/datum/powernet/PN = current_run[current_run.len]
@@ -152,6 +155,7 @@ SUBSYSTEM_DEF(machines)
 	if (!resumed)
 		src.current_run = global.processing_power_items.Copy()
 
+	var/wait = src.wait
 	var/list/current_run = src.current_run
 	while(current_run.len)
 		var/obj/item/I = current_run[current_run.len]
