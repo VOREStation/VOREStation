@@ -32,8 +32,7 @@ var/list/ai_verbs_default = list(
 /proc/AutoUpdateAI(obj/subject)
 	var/is_in_use = 0
 	if (subject!=null)
-		for(var/A in ai_list)
-			var/mob/living/silicon/ai/M = A
+		for(var/mob/living/silicon/ai/M as anything in ai_list)
 			if ((M.client && M.machine == subject))
 				is_in_use = 1
 				subject.attack_ai(M)
@@ -44,8 +43,8 @@ var/list/ai_verbs_default = list(
 	name = "AI"
 	icon = 'icons/mob/AI.dmi'//
 	icon_state = "ai"
-	anchored = 1 // -- TLE
-	density = 1
+	anchored = TRUE // -- TLE
+	density = TRUE
 	status_flags = CANSTUN|CANPARALYSE|CANPUSH
 	shouldnt_see = list(/mob/observer/eye, /obj/effect/rune)
 	var/list/network = list(NETWORK_DEFAULT)
@@ -124,9 +123,9 @@ var/list/ai_verbs_default = list(
 	if(!is_dummy)
 		aiPDA = new/obj/item/device/pda/ai(src)
 	SetName(pickedName)
-	anchored = 1
+	anchored = TRUE
 	canmove = 0
-	density = 1
+	density = TRUE
 	loc = loc
 
 	if(!is_dummy)
@@ -761,7 +760,7 @@ var/list/ai_verbs_default = list(
 				user.visible_message("<font color='blue'>\The [user] decides not to unbolt \the [src].</font>")
 				return
 			user.visible_message("<font color='blue'>\The [user] finishes unfastening \the [src]!</font>")
-			anchored = 0
+			anchored = FALSE
 			return
 		else
 			playsound(src, W.usesound, 50, 1)
@@ -770,7 +769,7 @@ var/list/ai_verbs_default = list(
 				user.visible_message("<font color='blue'>\The [user] decides not to bolt \the [src].</font>")
 				return
 			user.visible_message("<font color='blue'>\The [user] finishes fastening down \the [src]!</font>")
-			anchored = 1
+			anchored = TRUE
 			return
 	else
 		return ..()

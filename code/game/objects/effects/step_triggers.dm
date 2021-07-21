@@ -5,7 +5,7 @@
 	var/stopper = 1 // stops throwers
 	invisibility = 99 // nope cant see this shit
 	plane = ABOVE_PLANE
-	anchored = 1
+	anchored = TRUE
 	icon = 'icons/mob/screen1.dmi' //VS Edit
 	icon_state = "centermarker" //VS Edit
 

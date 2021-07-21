@@ -3,8 +3,8 @@
 	attack_verb = list("bit", "chomped on")
 	attack_sound = 'sound/weapons/bite.ogg'
 	shredding = 0
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 
 /datum/unarmed_attack/diona
 	attack_name = "tendrils"
@@ -21,8 +21,8 @@
 	eye_attack_text_victim = "sharp claws"
 	attack_sound = 'sound/weapons/slice.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 
 /datum/unarmed_attack/claws/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
 	var/skill = user.skills["combat"]
@@ -64,11 +64,11 @@
 
 /datum/unarmed_attack/claws/strong/xeno
 	attack_verb = list("slashed", "gouged", "stabbed")
-	damage = 10
+	damage = 15
 
 /datum/unarmed_attack/claws/strong/xeno/queen
 	attack_verb = list("slashed", "gouged", "stabbed", "gored")
-	damage = 15
+	damage = 20
 
 /datum/unarmed_attack/bite/strong
 	attack_name = "strong bite"
@@ -77,7 +77,7 @@
 	shredding = 1
 
 /datum/unarmed_attack/bite/strong/xeno
-	damage = 10
+	damage = 15
 
 /datum/unarmed_attack/slime_glomp
 	attack_name = "glomp"

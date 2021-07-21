@@ -74,8 +74,7 @@
 			plant.layer = layer + 0.1
 
 	if(has_buckled_mobs())
-		for(var/A in buckled_mobs)
-			var/mob/living/L = A
+		for(var/mob/living/L as anything in buckled_mobs)
 			seed.do_sting(L,src)
 			if(seed.get_trait(TRAIT_CARNIVOROUS))
 				seed.do_thorns(L,src)
@@ -122,9 +121,9 @@
 			return
 
 		//move out to the destination
-		child.anchored = 0
+		child.anchored = FALSE
 		step_to(child, target_turf)
-		child.anchored = 1
+		child.anchored = TRUE
 		child.update_icon()
 
 		//see if anything is there

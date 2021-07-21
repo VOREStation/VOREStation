@@ -191,16 +191,16 @@
 "az" = (
 /obj/machinery/atmospherics/binary/algae_farm,
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
-	icon_state = "intact";
-	dir = 5
+	dir = 5;
+	icon_state = "intact"
 	},
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/tether_away/aerostat/inside)
 "aA" = (
 /obj/machinery/atmospherics/binary/algae_farm,
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
-	icon_state = "intact";
-	dir = 9
+	dir = 9;
+	icon_state = "intact"
 	},
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/tether_away/aerostat/inside)
@@ -219,12 +219,12 @@
 "aC" = (
 /obj/machinery/atmospherics/binary/algae_farm,
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
-	icon_state = "intact";
-	dir = 5
+	dir = 5;
+	icon_state = "intact"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
-	icon_state = "intact";
-	dir = 5
+	dir = 5;
+	icon_state = "intact"
 	},
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/tether_away/aerostat/inside)
@@ -252,8 +252,8 @@
 "aF" = (
 /obj/machinery/atmospherics/binary/algae_farm,
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
-	icon_state = "intact";
-	dir = 6
+	dir = 6;
+	icon_state = "intact"
 	},
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/tether_away/aerostat/inside)
@@ -283,8 +283,8 @@
 "aI" = (
 /obj/machinery/atmospherics/binary/algae_farm,
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
-	icon_state = "intact";
-	dir = 10
+	dir = 10;
+	icon_state = "intact"
 	},
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/tether_away/aerostat/inside)
@@ -779,8 +779,8 @@
 /area/tether_away/aerostat/inside)
 "cg" = (
 /obj/machinery/door/airlock/multi_tile/metal{
-	icon_state = "door_closed";
-	dir = 1
+	dir = 1;
+	icon_state = "door_closed"
 	},
 /turf/simulated/floor/plating/virgo2,
 /area/tether_away/aerostat/inside)
@@ -799,8 +799,8 @@
 "cj" = (
 /obj/machinery/computer/shuttle_control/aerostat_shuttle,
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 1
+	dir = 1;
+	icon_state = "tube1"
 	},
 /turf/simulated/shuttle/floor/yellow,
 /area/shuttle/aerostat)
@@ -835,8 +835,8 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/multi_tile/metal{
-	icon_state = "door_closed";
-	dir = 1
+	dir = 1;
+	icon_state = "door_closed"
 	},
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/tether_away/aerostat/inside)
@@ -922,7 +922,7 @@
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/tether_away/aerostat/inside)
 "cD" = (
-/obj/machinery/cryopod/robot,
+/obj/structure/salvageable/server_os,
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/tether_away/aerostat/inside)
 "cE" = (
@@ -1468,8 +1468,8 @@
 "dM" = (
 /obj/machinery/power/smes/buildable,
 /obj/structure/cable{
-	icon_state = "0-2";
-	d2 = 2
+	d2 = 2;
+	icon_state = "0-2"
 	},
 /turf/simulated/floor/bluegrid/virgo2,
 /area/tether_away/aerostat/inside)
@@ -1692,6 +1692,10 @@
 /obj/random/firstaid,
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/tether_away/aerostat/inside)
+"yq" = (
+/obj/structure/salvageable/machine_os,
+/turf/simulated/floor/tiled/techfloor/virgo2,
+/area/tether_away/aerostat/inside)
 "yy" = (
 /obj/structure/salvageable/autolathe,
 /turf/simulated/floor/tiled/techfloor/virgo2,
@@ -1753,6 +1757,10 @@
 /obj/structure/metal_edge,
 /turf/unsimulated/floor/sky/virgo2_sky,
 /area/tether_away/aerostat)
+"Lt" = (
+/obj/structure/salvageable/data_os,
+/turf/simulated/floor/tiled/techfloor/virgo2,
+/area/tether_away/aerostat/inside)
 "Lw" = (
 /obj/structure/table/standard,
 /obj/random/powercell,
@@ -1768,8 +1776,8 @@
 /area/tether_away/aerostat/inside)
 "ON" = (
 /obj/structure/railing{
-	icon_state = "railing0";
-	dir = 1
+	dir = 1;
+	icon_state = "railing0"
 	},
 /turf/simulated/floor/plating/virgo2,
 /area/tether_away/aerostat)
@@ -11528,7 +11536,7 @@ bv
 bK
 bK
 cz
-cD
+yy
 bv
 be
 be
@@ -11670,7 +11678,7 @@ bv
 gX
 bK
 cz
-cD
+TR
 bv
 be
 be
@@ -11704,7 +11712,7 @@ aw
 bq
 be
 bv
-cD
+Lt
 cB
 bK
 bK
@@ -11812,7 +11820,7 @@ bv
 fH
 bK
 cz
-cD
+gX
 bv
 be
 be
@@ -11846,7 +11854,7 @@ aw
 bq
 be
 bv
-cD
+Lt
 cB
 bK
 TR
@@ -11954,7 +11962,7 @@ bv
 bK
 bK
 cz
-cD
+QE
 bv
 be
 be
@@ -11988,7 +11996,7 @@ bU
 bs
 be
 bv
-cD
+yq
 cB
 bK
 TR

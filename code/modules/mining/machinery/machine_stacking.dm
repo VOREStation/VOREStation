@@ -5,8 +5,8 @@
 	icon = 'icons/obj/machines/mining_machines_vr.dmi'  // VOREStation Edit
 	icon_state = "console"
 	layer = ABOVE_WINDOW_LAYER
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	var/obj/machinery/mineral/stacking_machine/machine = null
 	//var/machinedir = SOUTHEAST //This is really dumb, so lets burn it with fire.
 
@@ -77,8 +77,8 @@
 	name = "stacking machine"
 	icon = 'icons/obj/machines/mining_machines_vr.dmi' // VOREStation Edit
 	icon_state = "stacker"
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
 	var/obj/machinery/mineral/stacking_unit_console/console
 	var/obj/machinery/mineral/input = null
 	var/obj/machinery/mineral/output = null
@@ -89,11 +89,10 @@
 /obj/machinery/mineral/stacking_machine/New()
 	..()
 
-	for(var/stacktype in (subtypesof(/obj/item/stack/material) - typesof(/obj/item/stack/material/cyborg)))
-		var/obj/item/stack/material/S = stacktype
+	for(var/obj/item/stack/material/S as anything in (subtypesof(/obj/item/stack/material) - typesof(/obj/item/stack/material/cyborg)))
 		var/s_matname = initial(S.default_type)
 		stack_storage[s_matname] = 0
-		stack_paths[s_matname] = stacktype
+		stack_paths[s_matname] = S
 
 	spawn( 5 )
 		for (var/dir in cardinal)

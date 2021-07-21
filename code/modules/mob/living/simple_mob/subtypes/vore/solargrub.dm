@@ -74,7 +74,7 @@ List of things solar grubs should be able to do:
 				var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 				sparks.set_up(5, 0, get_turf(src))
 				sparks.start()
-			anchored = 1
+			anchored = TRUE
 			PN = attached.powernet
 			PN.draw_power(100000) // previous value 150000
 			var/apc_drain_rate = 750 //Going to see if grubs are better as a minimal bother. previous value : 4000
@@ -86,7 +86,7 @@ List of things solar grubs should be able to do:
 						var/drain_val = min(apc_drain_rate, cur_charge)
 						A.cell.use(drain_val * CELLRATE)
 		else if(!attached && anchored)
-			anchored = 0
+			anchored = FALSE
 			PN = null
 
 /mob/living/simple_mob/vore/solargrub //active noms
@@ -123,7 +123,7 @@ List of things solar grubs should be able to do:
 		L.reagents.add_reagent(poison_type, poison_per_bite)
 
 /mob/living/simple_mob/vore/solargrub/death()
-	src.anchored = 0
+	src.anchored = FALSE
 	set_light(0)
 	..()
 
@@ -160,6 +160,6 @@ List of things solar grubs should be able to do:
 		"The deceptively severe heat trapped within the solargrub works in tandem with its inner muscles and your tingling, prickling stomach juice bath to weaken you!")
 
 /datum/ai_holder/simple_mob/retaliate/solargrub/react_to_attack(atom/movable/attacker)
-	holder.anchored = 0
+	holder.anchored = FALSE
 	holder.set_AI_busy(FALSE)
 	..()

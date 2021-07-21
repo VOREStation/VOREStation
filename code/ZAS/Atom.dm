@@ -93,8 +93,7 @@
 			return AIR_BLOCKED
 
 	var/result = 0
-	for(var/mm in contents)
-		var/atom/movable/M = mm
+	for(var/atom/movable/M as anything in contents)
 		switch(M.can_atmos_pass)
 			if(ATMOS_PASS_YES)
 				continue

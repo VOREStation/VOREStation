@@ -171,7 +171,7 @@
 	if(istype(mover)) // turf/Enter(...) will perform more advanced checks
 		return !density
 
-	crash_with("Non movable passed to turf CanPass : [mover]")
+	stack_trace("Non movable passed to turf CanPass : [mover]")
 	return FALSE
 
 //There's a lot of QDELETED() calls here if someone can figure out how to optimize this but not runtime when something gets deleted by a Bump/CanPass/Cross call, lemme know or go ahead and fix this mess - kevinz000
@@ -238,19 +238,17 @@
 
 /turf/proc/AdjacentTurfs(var/check_blockage = TRUE)
 	. = list()
-	for(var/t in (trange(1,src) - src))
-		var/turf/T = t
+	for(var/turf/T as anything in (trange(1,src) - src))
 		if(check_blockage)
 			if(!T.density)
 				if(!LinkBlocked(src, T) && !TurfBlockedNonWindow(T))
-					. += t
+					. += T
 		else
-			. += t
+			. += T
 
 /turf/proc/CardinalTurfs(var/check_blockage = TRUE)
 	. = list()
-	for(var/ad in AdjacentTurfs(check_blockage))
-		var/turf/T = ad
+	for(var/turf/T as anything in AdjacentTurfs(check_blockage))
 		if(T.x == src.x || T.y == src.y)
 			. += T
 

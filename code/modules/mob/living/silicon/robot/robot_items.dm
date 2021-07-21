@@ -282,7 +282,7 @@
 	switch(choice)
 
 		if("Colour")
-			var/newcolour = tgui_input_list(usr, "Which colour would you like to use?", list("black","blue","red","green","yellow"))
+			var/newcolour = tgui_input_list(usr, "Which colour would you like to use?", "Color Choice", list("black","blue","red","green","yellow"))
 			if(newcolour) colour = newcolour
 
 		if("Mode")
@@ -401,7 +401,7 @@
 	set category = "Object"
 	set src in range(0)
 
-	var/N = tgui_input_list(usr, "How much damage should the shield absorb?", list("5","10","25","50","75","100"))
+	var/N = tgui_input_list(usr, "How much damage should the shield absorb?", "Shield Level", list("5","10","25","50","75","100"))
 	if (N)
 		shield_level = text2num(N)/100
 

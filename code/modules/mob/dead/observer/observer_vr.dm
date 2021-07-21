@@ -73,7 +73,7 @@
 		else if((world.time - record.last_notification) < 5 MINUTES)
 			to_chat(src, "<span class='warning'>Too little time has passed since your last notification.</span>")
 		else
-			db.notify(record.mindname)
+			db.notify(record)
 			record.last_notification = world.time
 			to_chat(src, "<span class='notice'>New notification has been sent.</span>")
 	else

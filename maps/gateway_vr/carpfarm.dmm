@@ -749,6 +749,10 @@
 /obj/effect/overmap/visitable/sector/tether_gateway/carpfarm,
 /turf/space,
 /area/space)
+"Ia" = (
+/obj/effect/landmark/hidden_level,
+/turf/space,
+/area/space)
 "Zb" = (
 /obj/effect/shuttle_landmark{
 	base_area = /area/space;
@@ -1182,7 +1186,7 @@ aa
 aa
 aa
 aa
-aa
+Ia
 aa
 "}
 (4,1,1) = {"

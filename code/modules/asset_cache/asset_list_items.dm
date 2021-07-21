@@ -375,8 +375,7 @@
 
 /datum/asset/spritesheet/vending/register()
 	populate_vending_products()
-	for(var/k in GLOB.vending_products)
-		var/atom/item = k
+	for(var/atom/item as anything in GLOB.vending_products)
 		if(!ispath(item, /atom))
 			continue
 
@@ -388,14 +387,6 @@
 		if(ispath(item, /obj/item/weapon/reagent_containers/food/drinks/glass2) && !ispath(item, /obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask))
 			var/obj/item/weapon/reagent_containers/food/drinks/glass2/G = item
 			icon_state = initial(G.base_icon)
-		if(ispath(item, /obj/item/clothing/suit))
-			var/obj/item/clothing/suit/U = item
-			if(initial(U.index))
-				icon_file = "icons/obj/clothing/suits_[initial(U.index)].dmi"
-		if(ispath(item, /obj/item/clothing/under))
-			var/obj/item/clothing/under/U = item
-			if(initial(U.index))
-				icon_file = "icons/obj/clothing/uniforms_[initial(U.index)].dmi"
 		if(ispath(item, /obj/item/weapon/reagent_containers/hypospray/autoinjector))
 			icon_state += "0"
 

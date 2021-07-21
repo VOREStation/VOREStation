@@ -62,7 +62,7 @@
 	allowed_roles = list("Pathfinder","Explorer")
 
 /datum/gear/utility/dufflebag/talon
-	display_name = "ITV dufflebag"
+	display_name = "Talon dufflebag"
 	path = /obj/item/weapon/storage/backpack/dufflebag/explorer
 
 /datum/gear/utility/ID

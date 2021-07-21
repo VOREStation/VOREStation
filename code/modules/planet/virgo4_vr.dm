@@ -444,8 +444,7 @@ var/datum/planet/virgo4/planet_virgo4 = null
 
 /datum/weather/virgo4/ash_storm/process_effects()
 	..()
-	for(var/thing in living_mob_list)
-		var/mob/living/L = thing
+	for(var/mob/living/L as anything in living_mob_list)
 		if(L.z in holder.our_planet.expected_z_levels)
 			var/turf/T = get_turf(L)
 			if(!T.outdoors)
@@ -481,8 +480,7 @@ var/datum/planet/virgo4/planet_virgo4 = null
 
 /datum/weather/virgo4/fallout/process_effects()
 	..()
-	for(var/thing in living_mob_list)
-		var/mob/living/L = thing
+	for(var/mob/living/L as anything in living_mob_list)
 		if(L.z in holder.our_planet.expected_z_levels)
 			irradiate_nearby_turf(L)
 			var/turf/T = get_turf(L)

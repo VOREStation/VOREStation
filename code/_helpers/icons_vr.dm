@@ -12,14 +12,14 @@
 	var/final_average
 	if (accurate) //keeping it legible
 		for(var/i = 1 to total)
-			RGB = ReadRGB(colors[i])
+			RGB = rgb2num(colors[i])
 			colorsum[1] += RGB[1]*RGB[1]
 			colorsum[2] += RGB[2]*RGB[2]
 			colorsum[3] += RGB[3]*RGB[3]
 		final_average = rgb(sqrt(colorsum[1]/total), sqrt(colorsum[2]/total), sqrt(colorsum[3]/total))
 	else
 		for(var/i = 1 to total)
-			RGB = ReadRGB(colors[i])
+			RGB = rgb2num(colors[i])
 			colorsum[1] += RGB[1]
 			colorsum[2] += RGB[2]
 			colorsum[3] += RGB[3]
@@ -32,7 +32,7 @@
 		for(var/y_pixel = 1 to I.Height())
 			var/this_color = I.GetPixel(x_pixel, y_pixel)
 			if(this_color)
-				if (ignoreGreyscale && ReadHSV(RGBtoHSV(this_color))[2] == 0) //If saturation is 0, must be greyscale
+				if (ignoreGreyscale && rgb2num(this_color, COLORSPACE_HSV)[2] == 0) //If saturation is 0, must be greyscale
 					continue
 				colors.Add(this_color)
 	return colors

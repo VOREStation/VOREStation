@@ -54,8 +54,7 @@ var/global/mob/living/carbon/human/dummy/mannequin/sleevemate_mob
 	// Gather potential subtargets
 	var/list/choices = list(M)
 	if(istype(M))
-		for(var/belly in M.vore_organs)
-			var/obj/belly/B = belly
+		for(var/obj/belly/B as anything in M.vore_organs)
 			for(var/mob/living/carbon/human/H in B) // I do want an istype
 				choices += H
 	// Subtargets

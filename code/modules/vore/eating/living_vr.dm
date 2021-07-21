@@ -239,8 +239,7 @@
 	P.pickup_pref = src.pickup_pref
 
 	var/list/serialized = list()
-	for(var/belly in src.vore_organs)
-		var/obj/belly/B = belly
+	for(var/obj/belly/B as anything in src.vore_organs)
 		serialized += list(B.serialize()) //Can't add a list as an object to another list in Byond. Thanks.
 
 	P.belly_prefs = serialized
@@ -286,8 +285,7 @@
 // Release everything in every vore organ
 //
 /mob/living/proc/release_vore_contents(var/include_absorbed = TRUE, var/silent = FALSE)
-	for(var/belly in vore_organs)
-		var/obj/belly/B = belly
+	for(var/obj/belly/B as anything in vore_organs)
 		B.release_all_contents(include_absorbed, silent)
 
 //
@@ -298,10 +296,12 @@
 		return list()
 
 	var/list/message_list = list()
-	for (var/belly in vore_organs)
-		var/obj/belly/B = belly
-		message_list += B.get_examine_msg()
-		message_list += B.get_examine_msg_absorbed()
+	for(var/obj/belly/B as anything in vore_organs)
+		var/bellymessage = B.get_examine_msg()
+		if(bellymessage) message_list += bellymessage
+
+		bellymessage = B.get_examine_msg_absorbed()
+		if(bellymessage) message_list += bellymessage
 
 	return message_list
 
@@ -519,9 +519,9 @@
 
 	// Their AI should get notified so they can stab us
 	prey.ai_holder?.react_to_attack(user)
-	
+
 	//Timer and progress bar
-	if(!do_after(user, swallow_time, prey, exclusive = TRUE))
+	if(!do_after(user, swallow_time, prey, exclusive = TASK_USER_EXCLUSIVE))
 		return FALSE // Prey escpaed (or user disabled) before timer expired.
 
 	// If we got this far, nom successful! Announce it!
@@ -798,7 +798,7 @@
 		playsound(src, 'sound/items/eatfood.ogg', rand(10,50), 1)
 		var/T = (istype(M) ? M.hardness/40 : 1) SECONDS //1.5 seconds to eat a sheet of metal. 2.5 for durasteel and diamond & 1 by default (applies to some ores like raw carbon, slag, etc.
 		to_chat(src, "<span class='notice'>You start crunching on [I] with your powerful jaws, attempting to tear it apart...</span>")
-		if(do_after(feeder, T, ignore_movement = TRUE, exclusive = TRUE)) //Eat on the move, but not multiple things at once.
+		if(do_after(feeder, T, ignore_movement = TRUE, exclusive = TASK_ALL_EXCLUSIVE)) //Eat on the move, but not multiple things at once.
 			if(feeder != src)
 				to_chat(feeder, "<span class='notice'>You feed [I] to [src].</span>")
 				log_admin("VORE: [feeder] fed [src] [I].")

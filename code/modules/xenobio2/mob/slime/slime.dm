@@ -82,7 +82,7 @@ Slime definitions, Life and New live here.
 
 /mob/living/simple_mob/xeno/slime/New()
 	..()
-	for(var/datum/language/L in (typesof(/datum/language) - /datum/language))
+	for(var/datum/language/L in subtypesof(/datum/language))
 		languages += L
 	speak += "[station_name()]?"
 	traitdat.source = "Slime"

@@ -81,7 +81,7 @@ GLOBAL_LIST_EMPTY(apcs)
 	icon = 'icons/obj/power.dmi'
 	icon_state = "apc0"
 	layer = ABOVE_WINDOW_LAYER
-	anchored = 1
+	anchored = TRUE
 	use_power = USE_POWER_OFF
 	clicksound = "switch"
 	req_access = list(access_engine_equip)

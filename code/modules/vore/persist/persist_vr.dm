@@ -40,7 +40,7 @@
  */
 /proc/prep_for_persist(var/mob/persister)
 	if(!istype(persister))
-		crash_with("Persist (P4P): Given non-mob [persister].")
+		stack_trace("Persist (P4P): Given non-mob [persister].")
 		return
 
 	// Find out of this mob is a proper mob!
@@ -74,7 +74,7 @@
 
 /proc/persist_interround_data(var/mob/occupant, var/datum/spawnpoint/new_spawn_point_type)
 	if(!istype(occupant))
-		crash_with("Persist (PID): Given non-mob [occupant].")
+		stack_trace("Persist (PID): Given non-mob [occupant].")
 		return
 
 	var/datum/preferences/prefs = prep_for_persist(occupant)
@@ -225,7 +225,7 @@
 */
 /proc/persist_nif_data(var/mob/living/carbon/human/H,var/datum/preferences/prefs)
 	if(!istype(H))
-		crash_with("Persist (NIF): Given a nonhuman: [H]")
+		stack_trace("Persist (NIF): Given a nonhuman: [H]")
 		return
 
 	if(!prefs)

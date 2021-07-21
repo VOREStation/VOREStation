@@ -6,8 +6,8 @@
 	icon = 'icons/obj/structures/multiz.dmi'
 	icon_state = "stair"
 	opacity = 0
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 	layer = STAIRS_LAYER
 
 /obj/structure/stairs/Initialize()

@@ -65,8 +65,8 @@
 	desc = "It scans DNA structures."
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "scanner_0"
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 50
 	active_power_usage = 300
@@ -274,7 +274,7 @@
 	desc = "Scan DNA."
 	icon_keyboard = "med_key"
 	icon_screen = "dna"
-	density = 1
+	density = TRUE
 	circuit = /obj/item/weapon/circuitboard/scan_consolenew
 	var/selected_ui_block = 1.0
 	var/selected_ui_subblock = 1.0
@@ -290,7 +290,7 @@
 	var/obj/machinery/dna_scannernew/connected = null
 	var/obj/item/weapon/disk/data/disk = null
 	var/selected_menu_key = PAGE_UI
-	anchored = 1
+	anchored = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
 	active_power_usage = 400

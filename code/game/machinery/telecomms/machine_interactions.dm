@@ -83,12 +83,11 @@
 		data["linked"] = linked
 		
 		var/list/filter = list()
-		if(LAZYLEN(freq_listening))
-			for(var/x in freq_listening)
-				filter.Add(list(list(
-					"name" = "[format_frequency(x)]",
-					"freq" = x,
-				)))
+		for(var/x in freq_listening)
+			filter.Add(list(list(
+				"name" = "[format_frequency(x)]",
+				"freq" = x,
+			)))
 		data["filter"] = filter
 
 	return data

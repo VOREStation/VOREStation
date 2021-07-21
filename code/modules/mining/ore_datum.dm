@@ -175,7 +175,7 @@
 	ore = /obj/item/weapon/ore/lead
 	scan_icon = "mineral_rare"
 	reagent = "lead"
-
+/*
 /ore/copper
 	name = "copper"
 	display_name = "copper"
@@ -215,7 +215,7 @@
 	ore = /obj/item/weapon/ore/bauxite
 	scan_icon = "mineral_common"
 	reagent = "aluminum"
-
+*/
 /ore/rutile
 	name = "rutile"
 	display_name = "rutile"
@@ -225,7 +225,7 @@
 	alloy = 1
 	ore = /obj/item/weapon/ore/rutile
 	scan_icon = "mineral_uncommon"
-
+/*
 /ore/painite
 	name = "painite"
 	display_name = "rough painite"
@@ -243,3 +243,4 @@
 	spread_chance = 1
 	ore = /obj/item/weapon/ore/void_opal
 	scan_icon = "mineral_rare"
+*/

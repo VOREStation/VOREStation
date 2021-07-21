@@ -125,7 +125,7 @@
 	/obj/item/weapon/pickaxe/hand)
 	max_storage_space = ITEMSIZE_COST_SMALL * 9
 	max_w_class = ITEMSIZE_SMALL
-	use_to_pickup = 1
+	use_to_pickup = TRUE
 
 /obj/item/weapon/storage/excavation/New()
 	..()

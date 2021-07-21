@@ -58,7 +58,7 @@
 	icon = 'icons/turf/shuttle_parts.dmi'
 	icon_state = "nozzle"
 	opacity = 1
-	density = 1
+	density = TRUE
 	can_atmos_pass = ATMOS_PASS_NO
 	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_FUEL
 
@@ -86,8 +86,7 @@
 	controller = new(src)
 	update_nearby_tiles(need_rebuild=1)
 
-	for(var/ship in SSshuttles.ships)
-		var/obj/effect/overmap/visitable/ship/S = ship
+	for(var/obj/effect/overmap/visitable/ship/S as anything in SSshuttles.ships)
 		if(S.check_ownership(src))
 			S.engines |= controller
 			if(dir != S.fore_dir)
@@ -188,7 +187,7 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "smoke"
 	light_color = "#ed9200"
-	anchored = 1
+	anchored = TRUE
 
 /obj/effect/engine_exhaust/New(var/turf/nloc, var/ndir, var/flame)
 	..(nloc)

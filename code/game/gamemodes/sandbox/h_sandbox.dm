@@ -107,7 +107,7 @@ mob
 					hsb.loc = usr.loc
 					to_chat(usr, "<b>Sandbox:  Created an airlock.</b>")
 				if("hsbcanister")
-					var/list/hsbcanisters = typesof(/obj/machinery/portable_atmospherics/canister/) - /obj/machinery/portable_atmospherics/canister/
+					var/list/hsbcanisters = subtypesof(/obj/machinery/portable_atmospherics/canister)
 					var/hsbcanister = tgui_input_list(usr, "Choose a canister to spawn:", "Sandbox", hsbcanisters)
 					if(hsbcanister)
 						new hsbcanister(usr.loc)

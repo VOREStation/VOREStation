@@ -193,24 +193,7 @@
 	// Eating with forks
 	if(istype(W,/obj/item/weapon/material/kitchen/utensil))
 		var/obj/item/weapon/material/kitchen/utensil/U = W
-		if(!U.reagents)
-			U.create_reagents(5)
-
-		if (U.reagents.total_volume > 0)
-			to_chat(user, "<font color='red'>You already have something on your [U].</font>")
-			return
-
-		user.visible_message( \
-			"[user] scoops up some [src] with \the [U]!", \
-			"<font color='blue'>You scoop up some [src] with \the [U]!</font>" \
-		)
-
-		bitecount++
-
-		reagents.trans_to_obj(U, min(reagents.total_volume,5))
-
-		if (reagents.total_volume <= 0)
-			qdel(src)
+		U.load_food(user, src)
 		return
 
 	if (is_sliceable())
@@ -4166,8 +4149,7 @@
 
 	//Calculate the reagents of the coating needed
 	var/req = 0
-	for (var/r in reagents.reagent_list)
-		var/datum/reagent/R = r
+	for(var/datum/reagent/R as anything in reagents.reagent_list)
 		if (istype(R, /datum/reagent/nutriment))
 			req += R.volume * 0.2
 		else
@@ -4249,8 +4231,7 @@
 		if (do_coating_prefix == 1)
 			name = "[coating.coated_adj] [name]"
 
-	for (var/r in reagents.reagent_list)
-		var/datum/reagent/R = r
+	for(var/datum/reagent/R as anything in reagents.reagent_list)
 		if (istype(R, /datum/reagent/nutriment/coating))
 			var/datum/reagent/nutriment/coating/C = R
 			C.data["cooked"] = 1

@@ -30,6 +30,7 @@ funnyman2003 - Xenochimera
 greennyy - Protean
 hawkerthegreat - Vox
 hollifex - Diona
+huenererschrecker - Xenochimera
 h0lysquirr3l - Protean
 idcaboutaname - Protean
 inuzari - Diona
@@ -91,6 +92,7 @@ terrestris - Common Skrellian
 terrestris - High Skrellian
 timidvi - Diona
 thedavestdave - Protean
+trifireblade - Protean
 trikonei - Protean
 umbrenos - Black-Eyed Shadekin
 varonis - Xenochimera
@@ -102,6 +104,7 @@ voidalynx - Protean
 wickedtemp - Shadekin Empathy
 xioen - Diona
 xioen - Xenochimera
+xioen - Protean
 xonkon - Protean
 zalvine - Shadekin Empathy
 zammyman215 - Vox

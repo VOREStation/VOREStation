@@ -63,7 +63,7 @@
 	ASSERT(which)
 	var/obj/screen/plane_master/PM = plane_masters[which]
 	if(!PM)
-		crash_with("Tried to alter [which] in plane_holder on [my_mob]!")
+		stack_trace("Tried to alter [which] in plane_holder on [my_mob]!")
 
 	if(my_mob.alpha <= EFFECTIVE_INVIS)
 		state = FALSE
@@ -83,7 +83,7 @@
 	ASSERT(which)
 	var/obj/screen/plane_master/PM = plane_masters[which]
 	if(!PM)
-		crash_with("Tried to alter [which] in plane_holder on [my_mob]!")
+		stack_trace("Tried to alter [which] in plane_holder on [my_mob]!")
 	PM.set_desired_alpha(new_alpha)
 	if(PM.sub_planes)
 		var/list/subplanes = PM.sub_planes
@@ -94,7 +94,7 @@
 	ASSERT(which)
 	var/obj/screen/plane_master/PM = plane_masters[which]
 	if(!PM)
-		crash_with("Tried to set_ao [which] in plane_holder on [my_mob]!")
+		stack_trace("Tried to set_ao [which] in plane_holder on [my_mob]!")
 	PM.set_ambient_occlusion(enabled)
 	if(PM.sub_planes)
 		var/list/subplanes = PM.sub_planes
@@ -105,7 +105,7 @@
 	ASSERT(which)
 	var/obj/screen/plane_master/PM = plane_masters[which]
 	if(!PM)
-		crash_with("Tried to alter [which] in plane_holder on [my_mob]!")
+		stack_trace("Tried to alter [which] in plane_holder on [my_mob]!")
 	PM.alter_plane_values(arglist(values))
 	if(PM.sub_planes)
 		var/list/subplanes = PM.sub_planes
@@ -215,6 +215,7 @@
 	render_target = O_LIGHTING_VISUAL_RENDER_TARGET
 	blend_mode = BLEND_MULTIPLY
 	alpha = 255
+	appearance_flags = PLANE_MASTER|NO_CLIENT_COLOR // NO_CLIENT_COLOR because it has some naughty interactions with colorblindness that I can't figure out. Byond bug?
 
 /obj/screen/plane_master/emissive
 	plane = PLANE_EMISSIVE

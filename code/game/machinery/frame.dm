@@ -5,7 +5,7 @@
 	//Create global frame type list if it hasn't been made already.
 	construction_frame_wall = list()
 	construction_frame_floor = list()
-	for(var/R in typesof(/datum/frame/frame_types) - /datum/frame/frame_types)
+	for(var/R in subtypesof(/datum/frame/frame_types))
 		var/datum/frame/frame_types/type = new R
 		if(type.frame_style == FRAME_STYLE_WALL)
 			construction_frame_wall += type
@@ -272,9 +272,8 @@
 	for(var/A in circuit.req_components)
 		req_components[A] = circuit.req_components[A]
 	req_component_names = circuit.req_components.Copy()
-	for(var/A in req_components)
-		var/obj/ct = A
-		req_component_names[A] = initial(ct.name)
+	for(var/obj/ct as anything in req_components)
+		req_component_names[ct] = initial(ct.name)
 
 /obj/structure/frame/New(var/loc, var/dir, var/building = 0, var/datum/frame/frame_types/type, mob/user as mob)
 	..()

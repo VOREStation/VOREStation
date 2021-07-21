@@ -870,7 +870,6 @@
 /turf/simulated/floor/tiled/dark,
 /area/submap/debrisfield/derelict/interior)
 "cF" = (
-/obj/effect/alien/egg,
 /obj/effect/alien/weeds,
 /turf/simulated/floor/tiled/dark,
 /area/submap/debrisfield/derelict/interior)

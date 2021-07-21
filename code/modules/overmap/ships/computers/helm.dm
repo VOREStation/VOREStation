@@ -278,7 +278,7 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 	icon_keyboard = null
 	icon_screen = null
 	circuit = /obj/item/weapon/circuitboard/nav/tele
-	density = 0
+	density = FALSE
 
 /obj/machinery/computer/ship/navigation/telescreen/update_icon()
 	if(stat & NOPOWER || stat & BROKEN)

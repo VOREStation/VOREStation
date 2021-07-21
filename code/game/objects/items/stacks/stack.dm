@@ -56,14 +56,17 @@
 			icon_state = "[initial(icon_state)]_3"
 		item_state = initial(icon_state)
 
+/obj/item/stack/proc/get_examine_string()
+	if(!uses_charge)
+		return "There [src.amount == 1 ? "is" : "are"] [src.amount] [src.singular_name]\s in the stack."
+	else
+		return "There is enough charge for [get_amount()]."
+
 /obj/item/stack/examine(mob/user)
 	. = ..()
 
 	if(Adjacent(user))
-		if(!uses_charge)
-			. += "There are [src.amount] [src.singular_name]\s in the stack."
-		else
-			. += "There is enough charge for [get_amount()]."
+		. += get_examine_string()
 
 /obj/item/stack/attack_self(mob/user)
 	tgui_interact(user)

@@ -231,7 +231,7 @@ var/list/gamemode_cache = list()
 	// 15, 45, 70 minutes respectively
 	var/static/list/event_delay_upper = list(EVENT_LEVEL_MUNDANE = 9000,	EVENT_LEVEL_MODERATE = 27000,	EVENT_LEVEL_MAJOR = 42000)
 
-	var/static/aliens_allowed = 0
+	var/static/aliens_allowed = 1 //Changed to 1 so player xenos can lay eggs.
 	var/static/ninjas_allowed = 0
 	var/static/abandon_allowed = 1
 	var/static/ooc_allowed = 1
@@ -298,7 +298,7 @@ var/list/gamemode_cache = list()
 	var/static/list/jukebox_track_files
 
 /datum/configuration/New()
-	var/list/L = typesof(/datum/game_mode) - /datum/game_mode
+	var/list/L = subtypesof(/datum/game_mode)
 	for (var/T in L)
 		// I wish I didn't have to instance the game modes in order to look up
 		// their information, but it is the only way (at least that I know of).

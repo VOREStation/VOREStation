@@ -13,8 +13,7 @@
 /datum/gear/accessory/armband/New()
 	..()
 	var/list/armbands = list()
-	for(var/armband in (typesof(/obj/item/clothing/accessory/armband) - typesof(/obj/item/clothing/accessory/armband/med/color)))
-		var/obj/item/clothing/accessory/armband_type = armband
+	for(var/obj/item/clothing/accessory/armband_type as anything in (typesof(/obj/item/clothing/accessory/armband) - typesof(/obj/item/clothing/accessory/armband/med/color)))
 		armbands[initial(armband_type.name)] = armband_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(armbands))
 
@@ -71,8 +70,7 @@
 /datum/gear/accessory/wcoat/New()
 	..()
 	var/list/wcoats = list()
-	for(var/wcoat in typesof(/obj/item/clothing/accessory/wcoat))
-		var/obj/item/clothing/accessory/wcoat_type = wcoat
+	for(var/obj/item/clothing/accessory/wcoat_type as anything in typesof(/obj/item/clothing/accessory/wcoat))
 		wcoats[initial(wcoat_type.name)] = wcoat_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(wcoats))
 
@@ -84,8 +82,7 @@
 /datum/gear/accessory/holster/New()
 	..()
 	var/list/holsters = list()
-	for(var/holster in typesof(/obj/item/clothing/accessory/holster))
-		var/obj/item/clothing/accessory/holster_type = holster
+	for(var/obj/item/clothing/accessory/holster_type as anything in typesof(/obj/item/clothing/accessory/holster))
 		holsters[initial(holster_type.name)] = holster_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(holsters))
 
@@ -97,8 +94,7 @@
 /datum/gear/accessory/tie/New()
 	..()
 	var/list/ties = list()
-	for(var/tie in typesof(/obj/item/clothing/accessory/tie))
-		var/obj/item/clothing/accessory/tie_type = tie
+	for(var/obj/item/clothing/accessory/tie_type as anything in typesof(/obj/item/clothing/accessory/tie))
 		ties[initial(tie_type.name)] = tie_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(ties))
 
@@ -110,8 +106,7 @@
 /datum/gear/accessory/scarf/New()
 	..()
 	var/list/scarfs = list()
-	for(var/scarf in typesof(/obj/item/clothing/accessory/scarf))
-		var/obj/item/clothing/accessory/scarf_type = scarf
+	for(var/obj/item/clothing/accessory/scarf_type as anything in typesof(/obj/item/clothing/accessory/scarf))
 		scarfs[initial(scarf_type.name)] = scarf_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(scarfs))
 
@@ -132,8 +127,7 @@
 /datum/gear/accessory/jacket/New()
 	..()
 	var/list/jackets = list()
-	for(var/jacket in typesof(/obj/item/clothing/accessory/jacket))
-		var/obj/item/clothing/accessory/jacket_type = jacket
+	for(var/obj/item/clothing/accessory/jacket_type as anything in typesof(/obj/item/clothing/accessory/jacket))
 		jackets[initial(jacket_type.name)] = jacket_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(jackets))
 
@@ -179,8 +173,7 @@
 /datum/gear/accessory/fannypack/New()
 	..()
 	var/list/fannys = list()
-	for(var/fanny in typesof(/obj/item/weapon/storage/belt/fannypack))
-		var/obj/item/weapon/storage/belt/fannypack/fanny_type = fanny
+	for(var/obj/item/weapon/storage/belt/fannypack/fanny_type as anything in typesof(/obj/item/weapon/storage/belt/fannypack))
 		fannys[initial(fanny_type.name)] = fanny_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(fannys))
 
@@ -280,8 +273,7 @@
 /datum/gear/accessory/asym/New()
 	..()
 	var/list/asyms = list()
-	for(var/asym in typesof(/obj/item/clothing/accessory/asymmetric))
-		var/obj/item/clothing/accessory/asymmetric_type = asym
+	for(var/obj/item/clothing/accessory/asymmetric_type as anything in typesof(/obj/item/clothing/accessory/asymmetric))
 		asyms[initial(asymmetric_type.name)] = asymmetric_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(asyms))
 

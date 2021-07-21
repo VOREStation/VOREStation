@@ -111,6 +111,7 @@
 	real_name = "opossum"
 	tt_desc = "Didelphis astrum"
 	desc = "It's an opossum, a small scavenging marsupial."
+	icon = 'icons/mob/pets.dmi'
 	icon_state = "possum"
 	item_state = "possum"
 	icon_living = "possum"
@@ -125,7 +126,7 @@
 	response_help = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm = "stamps on"
-	density = 0
+	density = FALSE
 	minbodytemp = 223
 	maxbodytemp = 323
 	universal_speak = FALSE

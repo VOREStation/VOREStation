@@ -34,11 +34,10 @@ SUBSYSTEM_DEF(mapping)
 	..()
 
 /datum/controller/subsystem/mapping/proc/load_map_templates()
-	for(var/T in subtypesof(/datum/map_template))
-		var/datum/map_template/template = T
+	for(var/datum/map_template/template as anything in subtypesof(/datum/map_template))
 		if(!(initial(template.mappath))) // If it's missing the actual path its probably a base type or being used for inheritence.
 			continue
-		template = new T()
+		template = new template()
 		map_templates[template.name] = template
 	return TRUE
 
@@ -113,8 +112,7 @@ SUBSYSTEM_DEF(mapping)
 				MT.load_new_z(centered = FALSE)
 
 /datum/controller/subsystem/mapping/proc/preloadShelterTemplates()
-	for(var/item in subtypesof(/datum/map_template/shelter))
-		var/datum/map_template/shelter/shelter_type = item
+	for(var/datum/map_template/shelter/shelter_type as anything in subtypesof(/datum/map_template/shelter))
 		if(!(initial(shelter_type.mappath)))
 			continue
 		var/datum/map_template/shelter/S = new shelter_type()

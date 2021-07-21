@@ -14,8 +14,8 @@
 	icon = 'icons/obj/jukebox.dmi'
 	icon_state = "jukebox2-nopower"
 	var/state_base = "jukebox2"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	power_channel = EQUIP
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
@@ -91,8 +91,7 @@
 		media_start_time = 0
 	update_music()
 	//VOREStation Add
-	for(var/rem in remotes)
-		var/obj/item/device/juke_remote/remote = rem
+	for(var/obj/item/device/juke_remote/remote as anything in remotes)
 		remote.update_music()
 	//VOREStation Add End
 

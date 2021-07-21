@@ -99,9 +99,8 @@
 /datum/component/material_container/proc/on_examine(datum/source, mob/user, list/examine_texts)
 	SIGNAL_HANDLER
 
-	for(var/I in materials)
-		var/datum/material/M = I
-		var/amt = materials[I]
+	for(var/datum/material/M as anything in materials)
+		var/amt = materials[M]
 		if(amt)
 			examine_texts += "<span class='notice'>It has [amt] units of [lowertext(M.name)] stored.</span>"
 
@@ -327,13 +326,13 @@
 
 	var/list/mats_to_remove = list() //Assoc list MAT | AMOUNT
 
-	for(var/x in mats) //Loop through all required materials
-		var/datum/material/req_mat = x
+	for(var/datum/material/req_mat as anything in mats) //Loop through all required materials
+		var/imat = req_mat
 		if(!istype(req_mat))
 			req_mat = GET_MATERIAL_REF(req_mat) //Get the ref if necesary
 		if(!materials[req_mat]) //Do we have the resource?
 			return FALSE //Can't afford it
-		var/amount_required = mats[x] * multiplier
+		var/amount_required = mats[imat] * multiplier
 		if(!(materials[req_mat] >= amount_required)) // do we have enough of the resource?
 			return FALSE //Can't afford it
 		mats_to_remove[req_mat] += amount_required //Add it to the assoc list of things to remove
@@ -392,8 +391,8 @@
 	if(!mats || !mats.len)
 		return FALSE
 
-	for(var/x in mats) //Loop through all required materials
-		var/datum/material/req_mat = x
+	for(var/datum/material/req_mat as anything in mats) //Loop through all required materials
+		var/imat = req_mat
 		if(!istype(req_mat))
 			if(ispath(req_mat) || istext(req_mat)) //Is this an actual material, or is it a category?
 				req_mat = GET_MATERIAL_REF(req_mat) //Get the ref
@@ -404,7 +403,7 @@
 			// 	else
 			// 		continue
 
-		if(!has_enough_of_material(req_mat, mats[x], multiplier))//Not a category, so just check the normal way
+		if(!has_enough_of_material(req_mat, mats[imat], multiplier))//Not a category, so just check the normal way
 			return FALSE
 
 	return TRUE

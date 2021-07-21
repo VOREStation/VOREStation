@@ -11,7 +11,7 @@
 	var/pass_flags = 0
 	var/throwpass = 0
 	var/germ_level = GERM_LEVEL_AMBIENT // The higher the germ level, the more germ on the atom.
-	var/simulated = 1 //filter for actions - used by lighting overlays
+	var/simulated = TRUE //filter for actions - used by lighting overlays
 	var/atom_say_verb = "says"
 	var/bubble_icon = "normal" ///what icon the atom uses for speechbubbles
 	var/fluorescent // Shows up under a UV light.
@@ -83,9 +83,9 @@
 // Must return an Initialize hint. Defined in code/__defines/subsystems.dm
 /atom/proc/Initialize(mapload, ...)
 	if(QDELETED(src))
-		crash_with("GC: -- [type] had initialize() called after qdel() --")
+		stack_trace("GC: -- [type] had initialize() called after qdel() --")
 	if(initialized)
-		crash_with("Warning: [src]([type]) initialized multiple times!")
+		stack_trace("Warning: [src]([type]) initialized multiple times!")
 	initialized = TRUE
 	return INITIALIZE_HINT_NORMAL
 
@@ -153,8 +153,7 @@
 	ASSERT(callback)
 	ASSERT(isturf(loc))
 	var/list/turfs = trange(range, src)
-	for(var/t in turfs)
-		var/turf/T = t
+	for(var/turf/T as anything in turfs)
 		GLOB.turf_entered_event.register(T, src, callback)
 
 //Unregister from prox listening in a certain range. You should do this BEFORE you move, but if you
@@ -162,8 +161,7 @@
 /atom/proc/unsense_proximity(var/range = 1, var/callback, var/center)
 	ASSERT(isturf(center) || isturf(loc))
 	var/list/turfs = trange(range, center ? center : src)
-	for(var/t in turfs)
-		var/turf/T = t
+	for(var/turf/T as anything in turfs)
 		GLOB.turf_entered_event.unregister(T, src, callback)
 
 
@@ -454,7 +452,7 @@
 	if(!blood_DNA || !istype(blood_DNA, /list))	//if our list of DNA doesn't exist yet (or isn't a list) initialise it.
 		blood_DNA = list()
 
-	was_bloodied = 1
+	was_bloodied = TRUE
 	if(!blood_color)
 		blood_color = "#A10808"
 	if(istype(M))
@@ -529,11 +527,9 @@
 	if(LAZYLEN(exclude_mobs))
 		seeing_mobs -= exclude_mobs
 
-	for(var/obj in seeing_objs)
-		var/obj/O = obj
+	for(var/obj/O as anything in seeing_objs)
 		O.show_message(message, VISIBLE_MESSAGE, blind_message, AUDIBLE_MESSAGE)
-	for(var/mob in seeing_mobs)
-		var/mob/M = mob
+	for(var/mob/M as anything in seeing_mobs)
 		if(M.see_invisible >= invisibility && MOB_CAN_SEE_PLANE(M, plane))
 			M.show_message(message, VISIBLE_MESSAGE, blind_message, AUDIBLE_MESSAGE)
 			if(runemessage != -1)
@@ -555,16 +551,13 @@
 	var/list/hearing_objs = hear["objs"]
 
 	if(radio_message)
-		for(var/obj in hearing_objs)
-			var/obj/O = obj
+		for(var/obj/O as anything in hearing_objs)
 			O.hear_talk(src, list(new /datum/multilingual_say_piece(GLOB.all_languages["Noise"], radio_message)), null)
 	else
-		for(var/obj in hearing_objs)
-			var/obj/O = obj
+		for(var/obj/O as anything in hearing_objs)
 			O.show_message(message, AUDIBLE_MESSAGE, deaf_message, VISIBLE_MESSAGE)
 
-	for(var/mob in hearing_mobs)
-		var/mob/M = mob
+	for(var/mob/M as anything in hearing_mobs)
 		var/msg = message
 		M.show_message(msg, AUDIBLE_MESSAGE, deaf_message, VISIBLE_MESSAGE)
 		if(runemessage != -1)

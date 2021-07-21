@@ -17,11 +17,9 @@
 		//VOREStation Edit End
 		nest = null
 
-	for(var/s in owned_soul_links)
-		var/datum/soul_link/S = s
+	for(var/datum/soul_link/S as anything in owned_soul_links)
 		S.owner_died(gibbed)
-	for(var/s in shared_soul_links)
-		var/datum/soul_link/S = s
+	for(var/datum/soul_link/S as anything in shared_soul_links)
 		S.sharer_died(gibbed)
 
 	. = ..()

@@ -177,8 +177,7 @@ var/list/wrapped_species_by_ref = list()
 
 	last_special = world.time + 50
 
-	var/current = RGBdec2hex(list(r_skin, g_skin, b_skin))
-	var/new_skin = input(usr, "Please select a new body color.", "Shapeshifter Colour", current) as null|color
+	var/new_skin = input(usr, "Please select a new body color.", "Shapeshifter Colour", rgb(r_skin, g_skin, b_skin)) as null|color
 	if(!new_skin)
 		return
 	shapeshifter_set_colour(new_skin)

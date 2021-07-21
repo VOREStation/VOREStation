@@ -22,6 +22,7 @@
 	health_hud_intensity = 2
 	num_alternate_languages = 3
 	assisted_langs = list(LANGUAGE_EAL, LANGUAGE_ROOTLOCAL, LANGUAGE_ROOTGLOBAL, LANGUAGE_VOX)
+	inherent_verbs = list(/mob/living/carbon/human/proc/tie_hair)
 
 	genders = list(MALE, FEMALE, PLURAL, NEUTER)
 
@@ -55,12 +56,6 @@
 	H.hunger_rate = H.species.hunger_factor
 
 // Stub species overrides for shoving trait abilities into
-
-//Called when face-down in the water or otherwise over their head.
-// Return: TRUE for able to breathe fine in water.
-/datum/species/custom/can_breathe_water()
-	return /datum/trait/positive/water_breather in traits
-
 
 //Called during handle_environment in Life() ticks.
 // Return: Not used.

@@ -835,12 +835,12 @@
 		return
 
 	if(!C.anchored && !C.pulledby) //Not currently anchored, and not pulled by anyone.
-		C.anchored = 1 //This is the only way to stop the inertial_drift.
+		C.anchored = TRUE //This is the only way to stop the inertial_drift.
 		C.adjust_nutrition(-25)
 		update_floating()
 		to_chat(C, "<span class='notice'>You hover in place.</span>")
 		spawn(6) //.6 seconds.
-			C.anchored = 0
+			C.anchored = FALSE
 	else
 		return
 
@@ -910,7 +910,7 @@
 		to_chat(src, "<span class='warning'>You can't weave here!</span>")
 		return
 
-	if(do_after(src, desired_result.time, exclusive = TRUE))
+	if(do_after(src, desired_result.time, exclusive = TASK_USER_EXCLUSIVE))
 		if(desired_result.cost > species.silk_reserve)
 			to_chat(src, "<span class='warning'>You don't have enough silk to weave that!</span>")
 			return
@@ -969,7 +969,7 @@
 		to_chat(src, "<span class='warning'>You can't weave here!</span>")
 		return
 
-	if(do_after(src, desired_result.time, exclusive = TRUE))
+	if(do_after(src, desired_result.time, exclusive = TASK_USER_EXCLUSIVE))
 		if(desired_result.cost > species.silk_reserve)
 			to_chat(src, "<span class='warning'>You don't have enough silk to weave that!</span>")
 			return

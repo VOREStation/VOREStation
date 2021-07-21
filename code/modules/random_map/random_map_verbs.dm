@@ -36,7 +36,7 @@
 
 	if(!holder)	return
 
-	var/map_datum = tgui_input_list(usr, "Choose a map to create.", "Map Choice", typesof(/datum/random_map)-/datum/random_map)
+	var/map_datum = tgui_input_list(usr, "Choose a map to create.", "Map Choice", subtypesof(/datum/random_map))
 	if(!map_datum)
 		return
 

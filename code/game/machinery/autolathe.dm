@@ -2,8 +2,8 @@
 	name = "autolathe"
 	desc = "It produces items using metal and glass."
 	icon_state = "autolathe"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
 	active_power_usage = 2000
@@ -183,9 +183,8 @@
 			//Check if we still have the materials.
 			var/coeff = (making.no_scale ? 1 : mat_efficiency) //stacks are unaffected by production coefficient
 			
-			for(var/MAT in making.resources)
-				var/datum/material/used_material = MAT
-				var/amount_needed = making.resources[MAT] * coeff * multiplier
+			for(var/datum/material/used_material as anything in making.resources)
+				var/amount_needed = making.resources[used_material] * coeff * multiplier
 				materials_used[used_material] = amount_needed
 
 			if(LAZYLEN(materials_used))

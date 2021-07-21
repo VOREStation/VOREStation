@@ -74,13 +74,12 @@
 	if(href_list["discord_reg"])
 		var/their_id = html_decode(href_list["discord_reg"])
 		var/sane = FALSE
-		for(var/item in GLOB.pending_discord_registrations)
-			var/list/L = item
+		for(var/list/L as anything in GLOB.pending_discord_registrations)
 			if(!islist(L))
-				GLOB.pending_discord_registrations -= item
+				GLOB.pending_discord_registrations -= L
 				continue
 			if(L["ckey"] == ckey && L["id"] == their_id)
-				GLOB.pending_discord_registrations -= list(item)
+				GLOB.pending_discord_registrations -= list(L)
 				var/time = L["time"]
 				if((world.realtime - time) > 10 MINUTES)
 					to_chat(src, "<span class='warning'>Sorry, that link has expired. Please request another on Discord.</span>")

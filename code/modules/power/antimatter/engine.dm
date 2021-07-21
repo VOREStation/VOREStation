@@ -1,7 +1,7 @@
 /obj/machinery/power/am_engine
 	icon = 'icons/am_engine.dmi'
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
 	flags = ON_BORDER
 
 /obj/machinery/power/am_engine/bits
@@ -98,7 +98,7 @@
 		H_fuel = 0
 		antiH_fuel = 0
 	else
-		var/residual_matter = modulus(H_fuel - antiH_fuel)
+		var/residual_matter = abs(H_fuel - antiH_fuel)
 		var/mass = antiH_fuel + H_fuel - residual_matter
 		energy = convert2energy(mass)
 		if( H_fuel > antiH_fuel )
@@ -149,7 +149,7 @@
 		else	//else if they're not equal determine which isn't equal
 				//and set it equal to either H or antiH so we don't lose anything
 
-			var/residual_matter = modulus(H_fuel - antiH_fuel)
+			var/residual_matter = abs(H_fuel - antiH_fuel)
 			mass = antiH_fuel + H_fuel - residual_matter
 			energy = convert2energy(mass)
 

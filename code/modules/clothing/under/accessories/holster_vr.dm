@@ -6,11 +6,11 @@
 /obj/item/clothing/accessory/holster/machete/rapier
 	name = "rapier sheath"
 	desc = "A beautiful red sheath, probably for a beautiful blade."
-	icon = 'icons/obj/clothing/ties_vr.dmi'
+	icon = 'icons/inventory/accessory/item_vr.dmi'
 	icon_state = "sheath"
 	slot_flags = SLOT_BELT|ACCESSORY_SLOT_WEAPON
 	var/has_full_icon = 1
-	icon_override = 'icons/mob/ties_vr.dmi'
+	icon_override = 'icons/inventory/accessory/mob_vr.dmi'
 	overlay_state = "sheath"
 	can_hold = list(/obj/item/weapon/melee/rapier)
 

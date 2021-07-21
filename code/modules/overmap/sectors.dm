@@ -165,7 +165,7 @@
 		for(var/thing in restricted_waypoints[shuttle_name])
 			.[thing] = name
 
-/obj/effect/overmap/visitable/proc/generate_skybox()
+/obj/effect/overmap/visitable/proc/generate_skybox(zlevel)
 	return
 
 /obj/effect/overmap/visitable/proc/cleanup()
@@ -190,7 +190,7 @@
 	name = "generic sector"
 	desc = "Sector with some stuff in it."
 	icon_state = "sector"
-	anchored = 1
+	anchored = TRUE
 
 // Because of the way these are spawned, they will potentially have their invisibility adjusted by the turfs they are mapped on
 // prior to being moved to the overmap. This blocks that. Use set_invisibility to adjust invisibility as needed instead.
@@ -203,7 +203,7 @@
 
 	admin_chat_message(message = "Overmap panic button hit on z[z] ([name]) by '[user?.ckey || "Unknown"]'", color = "#FF2222") //VOREStation Add
 	var/message = "This is an automated distress signal from a MIL-DTL-93352-compliant beacon transmitting on [PUB_FREQ*0.1]kHz. \
-	This beacon was launched from '[name]'. I can provide this additional information to rescuers: [get_distress_info()]. \
+	This beacon was launched from '[initial(name)]'. I can provide this additional information to rescuers: [get_distress_info()]. \
 	Per the Interplanetary Convention on Space SAR, those receiving this message must attempt rescue, \
 	or relay the message to those who can. This message will repeat one time in 5 minutes. Thank you for your urgent assistance."
 	
@@ -224,7 +224,7 @@
 	return "\[X:[x], Y:[y]\]"
 
 /obj/effect/overmap/visitable/proc/distress_update()
-	var/message = "This is the final message from the distress beacon launched from '[name]'. I can provide this additional information to rescuers: [get_distress_info()]. \
+	var/message = "This is the final message from the distress beacon launched from '[initial(name)]'. I can provide this additional information to rescuers: [get_distress_info()]. \
 	Please render assistance under your obligations per the Interplanetary Convention on Space SAR, or relay this message to a party who can. Thank you for your urgent assistance."
 
 	for(var/zlevel in levels_for_distress)
@@ -240,8 +240,7 @@
 
 	testing("Putting overmap on [global.using_map.overmap_z]")
 	var/area/overmap/A = new
-	for (var/square in block(locate(1,1,global.using_map.overmap_z), locate(global.using_map.overmap_size,global.using_map.overmap_size,global.using_map.overmap_z)))
-		var/turf/T = square
+	for(var/turf/T as anything in block(locate(1,1,global.using_map.overmap_z), locate(global.using_map.overmap_size,global.using_map.overmap_size,global.using_map.overmap_z)))
 		if(T.x == 1 || T.y == 1 || T.x == global.using_map.overmap_size || T.y == global.using_map.overmap_size)
 			T = T.ChangeTurf(/turf/unsimulated/map/edge)
 		else

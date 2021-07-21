@@ -69,7 +69,7 @@
 		var/temp = ""
 		var/category = R_ADMIN
 		// VOREStation Edit - Apply stealthmin protection to all levels
-		if(C.holder.fakekey && !check_rights(R_ADMIN|R_MOD, FALSE, src))	// Only admins and mods can see stealthmins
+		if(C.holder.fakekey && !check_rights_for(src, R_ADMIN|R_MOD))	// Only admins and mods can see stealthmins
 			continue
 		// VOREStation Edit End
 		if(check_rights(R_BAN, FALSE, C)) // admins //VOREStation Edit

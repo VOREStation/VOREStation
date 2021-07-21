@@ -86,7 +86,7 @@
 	if(dir != NORTH)
 		plane = MOB_PLANE
 		layer = ABOVE_MOB_LAYER
-	climbable = 0 //flipping tables allows them to be used as makeshift barriers
+	climbable = FALSE //flipping tables allows them to be used as makeshift barriers
 	flipped = 1
 	flags |= ON_BORDER
 	for(var/D in list(turn(direction, 90), turn(direction, -90)))

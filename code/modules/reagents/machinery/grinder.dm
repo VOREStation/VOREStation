@@ -4,8 +4,8 @@
 	desc = "Grinds stuff into itty bitty bits."
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "juicer1"
-	density = 0
-	anchored = 0
+	density = FALSE
+	anchored = FALSE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 5
 	active_power_usage = 100
@@ -28,6 +28,7 @@
 		/obj/item/stack/material/sandstone = list("silicon", "oxygen"),
 		/obj/item/stack/material/glass = list("silicon"),
 		/obj/item/stack/material/glass/phoronglass = list("platinum", "silicon", "silicon", "silicon"), //5 platinum, 15 silicon,
+		/obj/item/stack/material/supermatter = list("supermatter")
 		)
 
 	var/static/radial_examine = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_examine")
@@ -55,8 +56,7 @@
 		. += "<span class='notice'>\The [src] contains:</span>"
 		if(beaker)
 			. += "<span class='notice'>- \A [beaker].</span>"
-		for(var/i in holdingitems)
-			var/obj/item/O = i
+		for(var/obj/item/O as anything in holdingitems)
 			. += "<span class='notice'>- \A [O.name].</span>"
 
 	if(!(stat & (NOPOWER|BROKEN)))

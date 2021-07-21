@@ -37,8 +37,7 @@
 	
 	cam_plane_masters = get_tgui_plane_masters()
 
-	for(var/plane in cam_plane_masters)
-		var/obj/screen/instance = plane
+	for(var/obj/screen/instance as anything in cam_plane_masters)
 		instance.assigned_map = map_name
 		instance.del_on_map_removal = FALSE
 		instance.screen_loc = "[map_name]:CENTER"
@@ -296,3 +295,7 @@
 
 /datum/tgui_module/camera/ntos/hacked/New(host)
 	. = ..(host, using_map.station_networks.Copy())
+
+/datum/tgui_module/camera/bigscreen/tgui_state(mob/user)
+	return GLOB.tgui_physical_state_bigscreen
+	

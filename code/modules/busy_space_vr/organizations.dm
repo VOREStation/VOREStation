@@ -1402,7 +1402,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 // Other
-/datum/lore/organization/other/kitsuhana	//sorry KHI, but you're not a coherent stellar government, and you're definitely not a TSC. you get to go in the Others pool.
+/datum/lore/organization/other/kitsuhana	//sorry KHI, but you're not a coherent stellar government, and you're definitely not a TSC. you get to go in the Others pool. //makes sense to me!
 	name = "Kitsuhana Heavy Industries"
 	short_name = ""	//whitespace haaaack
 	desc = "A large post-scarcity amalgamation of races, Kitsuhana is no longer a company but rather a loose association of 'members' \

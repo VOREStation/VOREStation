@@ -20,7 +20,7 @@
 	icon = 'icons/turf/stomach_vr.dmi'
 	icon_state = "flesh"
 	opacity = 1
-	density = 1
+	density = TRUE
 	blocks_air = 1
 
 /turf/simulated/flesh/colour
@@ -29,7 +29,7 @@
 	icon = 'icons/turf/stomach_vr.dmi'
 	icon_state = "colorable-wall"
 	opacity = 1
-	density = 1
+	density = TRUE
 	blocks_air = 1
 
 /turf/simulated/flesh/attackby()
@@ -67,7 +67,7 @@ var/list/flesh_overlay_cache = list()
 	icon = 'icons/goonstation/turf/meatland.dmi'
 	icon_state = "bloodwall_2"
 	opacity = 1
-	density = 1
+	density = TRUE
 	blocks_air = 1
 
 /turf/simulated/goreeyes
@@ -76,7 +76,7 @@ var/list/flesh_overlay_cache = list()
 	icon = 'icons/goonstation/turf/meatland.dmi'
 	icon_state = "bloodwall_4"
 	opacity = 1
-	density = 1
+	density = TRUE
 	blocks_air = 1
 
 /turf/simulated/shuttle/wall/flock

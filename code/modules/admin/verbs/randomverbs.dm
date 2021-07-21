@@ -282,8 +282,7 @@ Ccomp's first proc.
 	GLOB.respawn_timers -= target
 
 	var/found_client = FALSE
-	for(var/c in GLOB.clients)
-		var/client/C = c
+	for(var/client/C as anything in GLOB.clients)
 		if(C.ckey == target)
 			found_client = C
 			to_chat(C, "<span class='notice'><B>You may now respawn. You should roleplay as if you learned nothing about the round during your time with the dead.</B></span>")
@@ -862,7 +861,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	var/view = src.view
 	if(view == world.view)
-		view = tgui_input_list(usr, "Select view range:", "FUCK YE", 7, list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,128))
+		view = tgui_input_list(usr, "Select view range:", "FUCK YE", list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,128))
 	else
 		view = world.view
 	mob.set_viewsize(view)
@@ -886,13 +885,13 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	var/choice
 	if(ticker.mode.auto_recall_shuttle)
-		choice = tgui_input_list(usr, "The shuttle will just return if you call it. Call anyway?", list("Confirm", "Cancel"))
+		choice = tgui_input_list(usr, "The shuttle will just return if you call it. Call anyway?", "Shuttle Call", list("Confirm", "Cancel"))
 		if(choice == "Confirm")
 			emergency_shuttle.auto_recall = 1	//enable auto-recall
 		else
 			return
 
-	choice = tgui_input_list(usr, "Is this an emergency evacuation or a crew transfer?", list("Emergency", "Crew Transfer"))
+	choice = tgui_input_list(usr, "Is this an emergency evacuation or a crew transfer?", "Shuttle Call", list("Emergency", "Crew Transfer"))
 	if (choice == "Emergency")
 		emergency_shuttle.call_evac()
 	else

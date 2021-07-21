@@ -107,7 +107,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	if(QDESTROYING(src))
 		return
 
-	crash_with("CANARY: Old human update_icons was called.")
+	stack_trace("CANARY: Old human update_icons was called.")
 
 	update_hud()		//TODO: remove the need for this
 
@@ -348,7 +348,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 			if(husk)
 				base_icon.ColorTone(husk_color_mod)
 			else if(hulk)
-				var/list/tone = ReadRGB(hulk_color_mod)
+				var/list/tone = rgb2num(hulk_color_mod)
 				base_icon.MapColors(rgb(tone[1],0,0),rgb(0,tone[2],0),rgb(0,0,tone[3]))
 
 		//Handle husk overlay.
@@ -641,11 +641,10 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	var/obj/item/clothing/under/under = w_uniform
 
 	var/uniform_sprite
-
-	if(under.index)
-		uniform_sprite = "[INV_W_UNIFORM_DEF_ICON]_[under.index].dmi"
+	if(istype(under) && !isnull(under.update_icon_define))
+		uniform_sprite = under.update_icon_define
 	else
-		uniform_sprite = "[INV_W_UNIFORM_DEF_ICON].dmi"
+		uniform_sprite = INV_W_UNIFORM_DEF_ICON
 
 	//Build a uniform sprite
 	var/icon/c_mask = tail_style?.clip_mask
@@ -824,12 +823,10 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	var/obj/item/clothing/suit/suit = wear_suit
 	var/suit_sprite
 
-	if(istype(suit) && suit.index)
-		suit_sprite = "[INV_SUIT_DEF_ICON]_[suit.index].dmi"
-	else if(istype(suit, /obj/item/clothing) && !isnull(suit.update_icon_define))
+	if(istype(suit) && !isnull(suit.update_icon_define))
 		suit_sprite = suit.update_icon_define
 	else
-		suit_sprite = "[INV_SUIT_DEF_ICON].dmi"
+		suit_sprite = INV_SUIT_DEF_ICON
 
 	var/icon/c_mask = null
 	var/tail_is_rendered = (overlays_standing[TAIL_LAYER] || overlays_standing[TAIL_LAYER_ALT])
@@ -842,7 +839,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	apply_layer(SUIT_LAYER)
 
 /mob/living/carbon/human/update_inv_pockets()
-	crash_with("Someone called update_inv_pockets even though it's dumb")
+	stack_trace("Someone called update_inv_pockets even though it's dumb")
 
 /mob/living/carbon/human/update_inv_wear_mask()
 	if(QDESTROYING(src))

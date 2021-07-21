@@ -97,7 +97,7 @@
 	uninstall_component(user, portable_drive)
 	update_uis()
 
-/obj/item/modular_computer/attack_ghost(var/mob/observer/ghost/user)
+/obj/item/modular_computer/attack_ghost(var/mob/observer/dead/user)
 	if(enabled)
 		tgui_interact(user)
 	else if(check_rights(R_ADMIN|R_EVENT, 0, user))

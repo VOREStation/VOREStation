@@ -107,7 +107,8 @@
 //defineing actions
 /obj/structure/smoletrack
 	icon = 'icons/vore/smoleworld_vr.dmi'
-	density = 0
+	color = "#ffffff"
+	density = FALSE
 
 /obj/structure/smoletrack/attack_hand(mob/user)
 	if(user.a_intent == I_DISARM)
@@ -120,6 +121,7 @@
 			new /obj/item/stack/material/smolebricks(F)
 		qdel(src)
 
+//rotates piece
 /obj/structure/smoletrack/verb/rotate_clockwise()
 	set name = "Rotate Road Clockwise"
 	set category = "Object"
@@ -128,6 +130,33 @@
 		return
 	src.set_dir(turn(src.dir, 270))
 
+//color roads
+/obj/structure/smoletrack/verb/colorpieces()
+	set name = "Use Color Pieces"
+	set category = "Object"
+	set src in oview(1)
+	if(ismouse(usr) || (isobserver(usr) && !config.ghost_interaction))
+		return
+	var/new_color = input(usr, "Please select color.", "Paint Color", color) as color|null
+	color = new_color
+	return
+
+
+// probably redundant, allows for direct way to dismantal without knowing intents
+/obj/structure/smoletrack/verb/menudismantal()
+	set name = "Take Road Apart"
+	set category = "Object"
+	set src in oview(1)
+	if(ismouse(usr) || (isobserver(usr) && !config.ghost_interaction))
+		return
+	playsound(src, 'sound/items/smolesmallbuild.ogg', 50, 1, -1, volume_channel = VOLUME_CHANNEL_MASTER)
+	var/turf/simulated/floor/F = get_turf(src)
+	if(istype(F))
+		new /obj/item/stack/material/smolebricks(F)
+	qdel(src)
+	return
+
+
 // Road pieces
 
 /obj/structure/smoletrack/roadS
@@ -135,35 +164,36 @@
 	icon = 'icons/vore/smoleworld_vr.dmi'
 	icon_state = "carstraight"
 	desc = "A long set of tiny road."
-	anchored = 1
+	anchored = TRUE
 
 /obj/structure/smoletrack/roadT
 	name = "road threeway piece"
 	icon = 'icons/vore/smoleworld_vr.dmi'
 	icon_state = "carthreeway"
 	desc = "A tiny threeway road piece."
-	anchored = 1
+	anchored = TRUE
 
 /obj/structure/smoletrack/roadturn
 	name = "road turn piece"
 	icon = 'icons/vore/smoleworld_vr.dmi'
 	icon_state = "carturn"
 	desc = "A tiny turn road piece."
-	anchored = 1
+	anchored = TRUE
 
 /obj/structure/smoletrack/roadF
 	name = "road four-way piece"
 	icon = 'icons/vore/smoleworld_vr.dmi'
 	icon_state = "carfourway"
 	desc = "A four-way road piece."
-	anchored = 1
+	anchored = TRUE
 
 //buildings code
 //Defining building actions
 /obj/structure/smolebuilding
 	icon = 'icons/vore/smoleworld_vr.dmi'
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
+	color = "#ffffff"
 	var/health = 75
 	var/damage
 //makes it so buildings can be dismaintaled or GodZilla style attacked
@@ -258,31 +288,60 @@
 	qdel(src)
 	return
 
+//color buildings
+/obj/structure/smolebuilding/verb/colorpieces()
+	set name = "Use Color Pieces"
+	set category = "Object"
+	set src in oview(1)
+	if(ismouse(usr) || (isobserver(usr) && !config.ghost_interaction))
+		return
+	var/new_color = input(usr, "Please select color.", "Paint Color", color) as color|null
+	color = new_color
+	return
+
+//probably a bit redundant but gives a more direct way to disassemble buildings without using intents
+/obj/structure/smolebuilding/verb/menudismantal()
+	set name = "Take Building Apart"
+	set category = "Object"
+	set src in oview(1)
+	if(ismouse(usr) || (isobserver(usr) && !config.ghost_interaction))
+		return
+	playsound(src, 'sound/items/smolesmallbuild.ogg', 50, 1, -1, volume_channel = VOLUME_CHANNEL_MASTER)
+	if(!isnull(loc))
+		new /obj/item/stack/material/smolebricks(loc)
+		new /obj/item/stack/material/smolebricks(loc)
+	qdel(src)
+	return
+
 //buildings
 /obj/structure/smoleruins
 	icon = 'icons/vore/smoleworld_vr.dmi'
 	icon_state = "ruins"
-	density = 0
+	density = FALSE
 
 /obj/structure/smolebuilding/houses
 	name = "smole houses"
 	icon = 'icons/vore/smoleworld_vr.dmi'
 	icon_state = "smolehouses"
+	color = "#ffffff"
 
 /obj/structure/smolebuilding/business
 	name = "smole business"
 	icon = 'icons/vore/smoleworld_vr.dmi'
 	icon_state = "smolebusiness"
+	color = "#ffffff"
 
 /obj/structure/smolebuilding/warehouses
 	name = "smole warehouses"
 	icon = 'icons/vore/smoleworld_vr.dmi'
 	icon_state = "smolewarehouses"
+	color = "#ffffff"
 
 /obj/structure/smolebuilding/museum
 	name = "smole museum"
 	icon = 'icons/vore/smoleworld_vr.dmi'
 	icon_state = "smolemuseum"
+	color = "#ffffff"
 //
 //CAR STUFF < WILL BE MESSED WITH IN A LATER UPDATE COMMENTED OUT FOR NOW
 ///obj/item/smolecar
@@ -298,7 +357,7 @@
 //	desc = "Lets burn rubber!"
 //	icon = 'icons/vore/smoleworld_vr.dmi'
 //	icon_state = "smolecarA"
-//	anchored = 0
+//	anchored = FALSE
 //	buckle_movable = 1
 //	var/carry_type = /obj/item/smolecar
 //
@@ -312,11 +371,11 @@
 //
 //
 //snack planets, currently just plopped out will be organized later.
-/obj/item/trash/Asteroidsmall
+/obj/item/trash/candychunk
 	icon = 'icons/vore/smoleworld_vr.dmi'
-	icon_state = "sp_asteriodB"
-	name = "asteriod"
-	desc = "A solid chunk of candy crumb that looks like a asteriod."
+	icon_state = "sp_sugarchunk"
+	name = "chunk of candy"
+	desc = "A solid chunk of candy crumbs, looks like it could be messy."
 
 /obj/item/trash/Asteroidlarge
 	icon = 'icons/vore/smoleworld_vr.dmi'
@@ -351,7 +410,6 @@
 	icon = 'icons/vore/smoleworld_vr.dmi'
 	icon_state = "sp_moon"
 	bitesize = 1
-	trash = /obj/item/trash/Asteroidsmall
 	nutriment_amt = 2
 	nutriment_desc = list("sugar" = 2)
 	drop_sound = 'sound/items/drop/basketball.ogg'
@@ -373,7 +431,7 @@
 	icon = 'icons/vore/smoleworld_vr.dmi'
 	icon_state = "sp_phoron"
 	bitesize = 3
-	trash = /obj/item/trash/Asteroidmulti
+	trash = /obj/item/trash/candychunk
 	nutriment_amt = 2
 	nutriment_desc = list("spicy" = 2)
 	drop_sound = 'sound/items/drop/basketball.ogg'
@@ -384,7 +442,7 @@
 	icon = 'icons/vore/smoleworld_vr.dmi'
 	icon_state = "sp_virgoprime"
 	bitesize = 3
-	trash = /obj/item/trash/Asteroidmulti
+	trash = /obj/item/trash/candychunk
 	nutriment_amt = 2
 	nutriment_desc = list("salty" = 2)
 	drop_sound = 'sound/items/drop/basketball.ogg'

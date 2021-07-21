@@ -2022,6 +2022,10 @@
 	},
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/gateway/arynthilake/dome)
+"Ry" = (
+/obj/effect/landmark/hidden_level,
+/turf/simulated/mineral/ignore_cavegen,
+/area/gateway/arynthilake/caves)
 "RK" = (
 /obj/structure/table/fancyblack,
 /obj/effect/landmark/mcguffin_spawner,
@@ -3022,7 +3026,7 @@ ek
 ek
 ek
 ek
-ek
+Ry
 nF
 "}
 (5,1,1) = {"

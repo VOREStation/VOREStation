@@ -2,7 +2,7 @@
 	name = "bluespace radio"
 	desc = "A powerful radio that uses a tiny bluespace wormhole to send signals directly to subspace receivers and transmitters, bypassing the limitations of subspace."
 	icon = 'icons/obj/device_vr.dmi' // VOREStation Edit
-	icon_override = 'icons/mob/back_vr.dmi' // VOREStation Edit
+	icon_override = 'icons/inventory/back/mob_vr.dmi' // VOREStation Edit
 	icon_state = "radiopack"
 	item_state = "radiopack"
 	slot_flags = SLOT_BACK

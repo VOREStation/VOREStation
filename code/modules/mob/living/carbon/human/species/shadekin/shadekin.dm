@@ -70,6 +70,7 @@
 
 	breath_type = null
 	poison_type = null
+	water_breather = TRUE	//They don't quite breathe
 
 	vision_flags = SEE_SELF|SEE_MOBS
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_SKIN_COLOR | HAS_EYE_COLOR | HAS_UNDERWEAR
@@ -130,9 +131,6 @@
 
 /datum/species/shadekin/handle_environment_special(var/mob/living/carbon/human/H)
 	handle_shade(H)
-
-/datum/species/shadekin/can_breathe_water()
-	return TRUE	//they dont quite breathe
 
 /datum/species/shadekin/add_inherent_verbs(var/mob/living/carbon/human/H)
 	..()

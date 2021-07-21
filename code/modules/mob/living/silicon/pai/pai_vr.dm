@@ -17,8 +17,7 @@
 
 /mob/living/silicon/pai/proc/update_fullness_pai() //Determines if they have something in their stomach. Copied and slightly modified.
 	var/new_people_eaten = 0
-	for(var/belly in vore_organs)
-		var/obj/belly/B = belly
+	for(var/obj/belly/B as anything in vore_organs)
 		for(var/mob/living/M in B)
 			new_people_eaten += M.size_multiplier
 	people_eaten = min(1, new_people_eaten)

@@ -382,11 +382,9 @@ var/list/channel_to_radio_key = new
 
 	//Remove all those images. At least it's just ONE spawn this time.
 	spawn(30)
-		for(var/img in images_to_clients)
-			var/image/I = img
+		for(var/image/I as anything in images_to_clients)
 			var/list/clients_from_image = images_to_clients[I]
-			for(var/client in clients_from_image)
-				var/client/C = client
+			for(var/client/C as anything in clients_from_image)
 				if(C) //Could have disconnected after message sent, before removing bubble.
 					C.images -= I
 			qdel(I)
@@ -411,12 +409,10 @@ var/list/channel_to_radio_key = new
 	else
 		var/list/potentials = get_mobs_and_objs_in_view_fast(T, world.view)
 		var/list/mobs = potentials["mobs"]
-		for(var/hearer in mobs)
-			var/mob/M = hearer
+		for(var/mob/M as anything in mobs)
 			M.hear_signlang(message, verb, language, src)
 		var/list/objs = potentials["objs"]
-		for(var/hearer in objs)
-			var/obj/O = hearer
+		for(var/obj/O as anything in objs)
 			O.hear_signlang(message, verb, language, src)
 	return 1
 

@@ -682,12 +682,11 @@
 	for(var/turf/T in oview(world.view, src))
 		seenturfs += T
 
-	for(var/mob in living_mob_list)
-		var/mob/M = mob
+	for(var/mob/M as anything in living_mob_list)
 		if(M.z != z) //Skip
 			continue
 		if(get_turf(M) in seenturfs)
-			assess_and_assign(mob, targets, secondarytargets)
+			assess_and_assign(M, targets, secondarytargets)
 
 	/* This was dumb. Why do this and then check line of sight later?
 	for(var/mob/M in mobs_in_xray_view(world.view, src))
@@ -934,7 +933,7 @@
 	name = "turret frame"
 	icon = 'icons/obj/turrets.dmi'
 	icon_state = "turret_frame"
-	density=1
+	density=TRUE
 	var/target_type = /obj/machinery/porta_turret	// The type we intend to build
 	var/build_step = 0			//the current step in the building process
 	var/finish_name="turret"	//the name applied to the product turret

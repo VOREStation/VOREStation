@@ -3,8 +3,8 @@
 	icon_state = "mechfab-idle"
 	name = "Exosuit Fabricator"
 	desc = "A machine used for construction of mechas."
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 20
 	active_power_usage = 5000

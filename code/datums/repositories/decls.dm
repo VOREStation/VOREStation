@@ -67,5 +67,5 @@ var/repository/decls/decls_repository // Initialiozed in /datum/global_init/New(
 
 /decl/Destroy()
 	SHOULD_CALL_PARENT(FALSE)
-	crash_with("Prevented attempt to delete a decl instance: [log_info_line(src)]")
+	stack_trace("Prevented attempt to delete a decl instance: [log_info_line(src)]")
 	return QDEL_HINT_LETMELIVE // Prevents decl destruction

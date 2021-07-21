@@ -158,3 +158,4 @@
 	name = "Water Breather"
 	desc = "You can breathe under water."
 	cost = 1
+	var_changes = list("water_breather" = 1)

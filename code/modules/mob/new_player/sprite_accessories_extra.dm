@@ -498,7 +498,7 @@
 /*
 werewolf_nose
 	name = "Werewolf nose"
-	icon = 'icons/mob/species/werebeast/werebeast_markings.dmi'
+	icon = 'icons/inventory/werebeast_markings/mob_werebeast.dmi'
 	icon_state = "werewolf_nose"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_HEAD)
@@ -506,7 +506,7 @@ werewolf_nose
 
 werewolf_face
 	name = "Werewolf face"
-	icon = 'icons/mob/species/werebeast/werebeast_markings.dmi'
+	icon = 'icons/inventory/werebeast_markings/mob_werebeast.dmi'
 	icon_state = "werewolf"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_HEAD)
@@ -514,7 +514,7 @@ werewolf_face
 
 werewolf_belly
 	name = "Werewolf belly"
-	icon = 'icons/mob/species/werebeast/werebeast_markings.dmi'
+	icon = 'icons/inventory/werebeast_markings/mob_werebeast.dmi'
 	icon_state = "werewolf"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_GROIN,BP_TORSO)
@@ -522,7 +522,7 @@ werewolf_belly
 
 werewolf_socks
 	name = "Werewolf socks"
-	icon = 'icons/mob/species/werebeast/werebeast_markings.dmi'
+	icon = 'icons/inventory/werebeast_markings/mob_werebeast.dmi'
 	icon_state = "werewolf"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND)
