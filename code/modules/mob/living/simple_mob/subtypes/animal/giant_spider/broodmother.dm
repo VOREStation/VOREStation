@@ -25,29 +25,29 @@
 	projectilesound = 'sound/weapons/pierce.ogg'
 
 	var/list/possible_brood_types = list(
-										/mob/living/simple_mob/animal/giant_spider/frost/broodling,
-										/mob/living/simple_mob/animal/giant_spider/electric/broodling,
-										/mob/living/simple_mob/animal/giant_spider/hunter/broodling,
-										/mob/living/simple_mob/animal/giant_spider/lurker/broodling,
-										/mob/living/simple_mob/animal/giant_spider/nurse/broodling,
-										/mob/living/simple_mob/animal/giant_spider/pepper/broodling,
-										/mob/living/simple_mob/animal/giant_spider/thermic/broodling,
-										/mob/living/simple_mob/animal/giant_spider/tunneler/broodling,
-										/mob/living/simple_mob/animal/giant_spider/webslinger/broodling,
-										/mob/living/simple_mob/animal/giant_spider/broodling)
+		/mob/living/simple_mob/animal/giant_spider/frost/broodling,
+		/mob/living/simple_mob/animal/giant_spider/electric/broodling,
+		/mob/living/simple_mob/animal/giant_spider/hunter/broodling,
+		/mob/living/simple_mob/animal/giant_spider/lurker/broodling,
+		/mob/living/simple_mob/animal/giant_spider/nurse/broodling,
+		/mob/living/simple_mob/animal/giant_spider/pepper/broodling,
+		/mob/living/simple_mob/animal/giant_spider/thermic/broodling,
+		/mob/living/simple_mob/animal/giant_spider/tunneler/broodling,
+		/mob/living/simple_mob/animal/giant_spider/webslinger/broodling,
+		/mob/living/simple_mob/animal/giant_spider/broodling)
 
 	var/list/possible_death_brood_types = list(
-										/mob/living/simple_mob/animal/giant_spider/frost,
-										/mob/living/simple_mob/animal/giant_spider/electric,
-										/mob/living/simple_mob/animal/giant_spider/hunter,
-										/mob/living/simple_mob/animal/giant_spider/lurker,
-										/mob/living/simple_mob/animal/giant_spider/pepper,
-										/mob/living/simple_mob/animal/giant_spider/thermic,
-										/mob/living/simple_mob/animal/giant_spider/tunneler,
-										/mob/living/simple_mob/animal/giant_spider/webslinger,
-										/mob/living/simple_mob/animal/giant_spider/phorogenic,
-										/mob/living/simple_mob/animal/giant_spider/carrier,
-										/mob/living/simple_mob/animal/giant_spider)
+		/mob/living/simple_mob/animal/giant_spider/frost,
+		/mob/living/simple_mob/animal/giant_spider/electric,
+		/mob/living/simple_mob/animal/giant_spider/hunter,
+		/mob/living/simple_mob/animal/giant_spider/lurker,
+		/mob/living/simple_mob/animal/giant_spider/pepper,
+		/mob/living/simple_mob/animal/giant_spider/thermic,
+		/mob/living/simple_mob/animal/giant_spider/tunneler,
+		/mob/living/simple_mob/animal/giant_spider/webslinger,
+		/mob/living/simple_mob/animal/giant_spider/phorogenic,
+		/mob/living/simple_mob/animal/giant_spider/carrier,
+		/mob/living/simple_mob/animal/giant_spider)
 	var/max_brood = 8
 	var/death_brood = 8
 	var/brood_per_spawn = 4
