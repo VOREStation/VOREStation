@@ -385,8 +385,8 @@
 /obj/machinery/power/emitter{
 	anchored = 1;
 	dir = 8;
+	icon_state = "emitter2";
 	id = "EngineEmitter";
-	pixel_y = 8;
 	state = 2
 	},
 /obj/structure/cable/cyan{

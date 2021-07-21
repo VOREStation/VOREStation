@@ -265,7 +265,7 @@
 			return
 	//VOREStation Edit End
 
-	if(can_fall())
+	if(can_fall() && can_fall_to(below))
 		// We spawn here to let the current move operation complete before we start falling. fall() is normally called from
 		// Entered() which is part of Move(), by spawn()ing we let that complete.  But we want to preserve if we were in client movement
 		// or normal movement so other move behavior can continue.
@@ -318,6 +318,18 @@
 	if(..())
 		return species.can_fall(src)
 
+// Another check that we probably can just merge into can_fall exept for messing up overrides
+/atom/movable/proc/can_fall_to(turf/landing)
+	// Check if there is anything in our turf we are standing on to prevent falling.
+	for(var/obj/O in loc)
+		if(!O.CanFallThru(src, landing))
+			return FALSE
+	// See if something in turf below prevents us from falling into it.
+	for(var/atom/A in landing)
+		if(!A.CanPass(src, src.loc, 1, 0))
+			return FALSE
+	return TRUE
+
 // Check if this atom prevents things standing on it from falling. Return TRUE to allow the fall.
 /obj/proc/CanFallThru(atom/movable/mover as mob|obj, turf/target as turf)
 	if(!isturf(mover.loc)) // VORESTATION EDIT. We clearly didn't have enough backup checks.
@@ -356,15 +368,6 @@
 // Actually process the falling movement and impacts.
 /atom/movable/proc/handle_fall(var/turf/landing)
 	var/turf/oldloc = loc
-
-	// Check if there is anything in our turf we are standing on to prevent falling.
-	for(var/obj/O in loc)
-		if(!O.CanFallThru(src, landing))
-			return FALSE
-	// See if something in turf below prevents us from falling into it.
-	for(var/atom/A in landing)
-		if(!A.CanPass(src, src.loc, 1, 0))
-			return FALSE
 
 	// Now lets move there!
 	if(!Move(landing))
