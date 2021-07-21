@@ -122,6 +122,7 @@
 /obj/structure/cable/cyan,
 /obj/machinery/power/emitter{
 	anchored = 1;
+	icon_state = "emitter1";
 	state = 1
 	},
 /turf/simulated/floor/airless,
@@ -1632,6 +1633,7 @@
 /obj/machinery/power/emitter{
 	anchored = 1;
 	dir = 1;
+	icon_state = "emitter1";
 	state = 1
 	},
 /turf/simulated/floor/airless,
