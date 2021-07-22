@@ -23,7 +23,7 @@
 
 /datum/event/infestation/start()
 
-	location = rand(0,10)
+	location = rand(0,9)
 	var/list/turf/simulated/floor/turfs = list()
 	var/spawn_area_type
 	switch(location)
