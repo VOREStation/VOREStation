@@ -11,6 +11,7 @@
 	//atom_flags = ATOM_FLAG_NO_TEMP_CHANGE | ATOM_FLAG_CLIMBABLE | ATOM_FLAG_CAN_BE_PAINTED | ATOM_FLAG_ADJACENT_EXCEPTION
 	anchored = TRUE
 	density = TRUE
+	climbable = TRUE
 	throwpass = 1
 	layer = TABLE_LAYER
 
@@ -71,34 +72,20 @@
 		else
 			to_chat(user, "<span class='danger'>It's nearly falling to pieces.</span>")
 
-/obj/structure/low_wall/attackby(var/obj/item/W, var/mob/user)
+/obj/structure/low_wall/attackby(var/obj/item/W, var/mob/user, var/hit_modifier, var/click_parameters)
 	src.add_fingerprint(user)
 
-	//grille placing
+	// Making grilles (only works on Bay ones currently)
 	if(istype(W, /obj/item/stack/rods))
-		if(!grille_type)
-			to_chat(user, "<span class='notice'>This type of wall frame doesn't support grilles.</span>")
-			return
-		for(var/obj/structure/window/WINDOW in loc)
-			if(WINDOW.dir == get_dir(src, user))
-				to_chat(user, "<span class='notice'>There is a window in the way.</span>")
-				return
-		var/obj/item/stack/rods/ST = W
-		if(ST.get_amount() < 2)
-			to_chat(user, "<span class='warning'>You need at least two rods to do this.</span>")
-			return
-		to_chat(user, "<span class='notice'>Assembling grille...</span>")
-		if(!do_after(user, 10, ST, exclusive = TASK_ALL_EXCLUSIVE))
-			return
-		if(!ST.use(2))
-			return
-		new /obj/structure/grille/bay(loc)
+		handle_rod_use(user, W)
 		return
-
-	//window placing // TODO
+	
+	// Making windows, different per subtype
 	else if(istype(W, /obj/item/stack/material/glass))
-		new /obj/structure/window/bay(loc, SOUTHWEST, TRUE)
-
+		handle_glass_use(user, W)
+		return
+	
+	// Dismantling the half wall
 	if(W.is_wrench())
 		for(var/obj/structure/S in loc)
 			if(istype(S, /obj/structure/window))
@@ -112,25 +99,90 @@
 		if(do_after(user, 40, src))
 			to_chat(user, "<span class='notice'>You dissasembled the low wall!</span>")
 			dismantle()
-	/* TODO
-	else if(istype(W, /obj/item/gun/energy/plasmacutter))
-		var/obj/item/gun/energy/plasmacutter/cutter = W
-		if(!cutter.slice(user))
-			return
-		playsound(src.loc, 'sound/items/Welder.ogg', 100, 1)
-		to_chat(user, "<span class='notice'>Now slicing through the low wall...</span>")
-		if(do_after(user, 20,src))
-			to_chat(user, "<span class='warning'>You have sliced through the low wall!</span>")
-			dismantle()
-	*/
+
+	// Handle placing things
+	if(isrobot(user))
+		return
+
+	if(W.loc != user) // This should stop mounted modules ending up outside the module.
+		return
+
+	if(can_place_items() && user.unEquip(W, 0, src.loc) && user.is_preference_enabled(/datum/client_preference/precision_placement))
+		auto_align(W, click_parameters)
+		return 1
+	
 	return ..()
 
-/obj/structure/low_wall/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(air_group || (height==0)) return 1
+/obj/structure/low_wall/proc/can_place_items()
+	for(var/obj/structure/S in loc)
+		if(S == src)
+			continue
+		if(S.density)
+			return FALSE
+	return TRUE
+
+/obj/structure/low_wall/MouseDrop_T(obj/O as obj, mob/user as mob)
+	if(istype(O, /obj/structure/window))
+		var/obj/structure/window/W = O
+		if(Adjacent(W) && !W.anchored)
+			to_chat("<span class='notice'>You hoist [W] up onto [src].</span>")
+			W.forceMove(loc)
+			return
+	if ((!( istype(O, /obj/item/weapon) ) || user.get_active_hand() != O))
+		return ..()
+	if(isrobot(user))
+		return
+	if(can_place_items())
+		user.unEquip(O, 0, src.loc)
+
+/obj/structure/low_wall/proc/handle_rod_use(mob/user, obj/item/stack/rods/R)
+	if(!grille_type)
+		to_chat(user, "<span class='notice'>This type of wall frame doesn't support grilles.</span>")
+		return
+	for(var/obj/structure/window/WINDOW in loc)
+		if(WINDOW.dir == get_dir(src, user))
+			to_chat(user, "<span class='notice'>There is a window in the way.</span>")
+			return
+	if(R.get_amount() < 2)
+		to_chat(user, "<span class='warning'>You need at least two rods to do this.</span>")
+		return
+	to_chat(user, "<span class='notice'>Assembling grille...</span>")
+	if(!do_after(user, 1 SECONDS, R, exclusive = TASK_ALL_EXCLUSIVE))
+		return
+	if(!R.use(2))
+		return
+	new grille_type(loc)
+	return
+
+/obj/structure/low_wall/proc/handle_glass_use(mob/user, obj/item/stack/material/glass/G)
+	var/window_type = get_window_build_type(user, G)
+	if(!window_type)
+		to_chat(user, "<span class='notice'>You can't build that type of window on this type of low wall.</span>")
+		return
+	for(var/obj/structure/window/WINDOW in loc)
+		if(WINDOW.dir == get_dir(src, user))
+			to_chat(user, "<span class='notice'>There is already a window here.</span>")
+			return
+	if(G.get_amount() < 4)
+		to_chat(user, "<span class='warning'>You need at least four sheets of glass to do this.</span>")
+		return
+	to_chat(user, "<span class='notice'>Assembling window...</span>")
+	if(!do_after(user, 4 SECONDS, G, exclusive = TASK_ALL_EXCLUSIVE))
+		return
+	if(!G.use(2))
+		return
+	new window_type(loc, null, TRUE)
+	return
+
+/obj/structure/low_wall/proc/get_window_build_type(mob/user, obj/item/stack/material/glass/G)
+	return null
+
+/obj/structure/low_wall/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover,/obj/item/projectile))
-		return 1
+		return TRUE
 	if(istype(mover) && mover.checkpass(PASSTABLE))
-		return 1
+		return TRUE
+	return FALSE
 
 // Bay's version
 /obj/structure/low_wall/bay/update_icon()
@@ -198,8 +250,24 @@
 	if(health <= 0)
 		dismantle()
 
+/obj/structure/low_wall/attack_generic(var/mob/user, var/damage, var/attack_verb)
+	visible_message("<span class='danger'>[user] [attack_verb] the [src]!</span>")
+	user.do_attack_animation(src)
+	take_damage(damage)
+	return ..()
+
 /obj/structure/low_wall/proc/dismantle()
-	new /obj/item/stack/material/steel(get_turf(src), 3)
+	var/stacktype = material?.stack_type
+	if(stacktype)
+		new stacktype(get_turf(src), 3)
+	// If we were violently dismantled
+	for(var/obj/structure/window/W in loc)
+		if(W.anchored)
+			W.shatter()
+	for(var/obj/structure/grille/G in loc)
+		if(G.anchored)
+			G.health = 0
+			G.healthcheck()
 	qdel(src)
 
 /**
@@ -213,6 +281,17 @@
 /obj/structure/low_wall/bay/reinforced
 	default_material = MAT_PLASTEEL
 
+/obj/structure/low_wall/bay/get_window_build_type(mob/user, obj/item/stack/material/glass/G)
+	switch(G.material.name)
+		if(MAT_GLASS)
+			return /obj/structure/window/bay
+		if(MAT_RGLASS)
+			return /obj/structure/window/bay/reinforced
+		if(MAT_PGLASS)
+			return /obj/structure/window/bay/phoronbasic
+		if(MAT_RPGLASS)
+			return /obj/structure/window/bay/phoronreinforced
+
 /obj/structure/low_wall/eris
 	icon = 'icons/obj/wall_frame_eris.dmi'
 	grille_type = null
@@ -220,6 +299,17 @@
 
 /obj/structure/low_wall/eris/reinforced
 	default_material = MAT_PLASTEEL
+
+/obj/structure/low_wall/eris/get_window_build_type(mob/user, obj/item/stack/material/glass/G)
+	switch(G.material.name)
+		if(MAT_GLASS)
+			return /obj/structure/window/eris
+		if(MAT_RGLASS)
+			return /obj/structure/window/eris/reinforced
+		if(MAT_PGLASS)
+			return /obj/structure/window/eris/phoronbasic
+		if(MAT_RPGLASS)
+			return /obj/structure/window/eris/phoronreinforced
 
 /**
  * Bay's fancier icon grilles
