@@ -60,10 +60,6 @@
 			new /datum/stack_recipe("tall filing cabinet", /obj/structure/filingcabinet/filingcabinet, 4, time = 20, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
 			new /datum/stack_recipe("chest drawer", /obj/structure/filingcabinet/chestdrawer, 4, time = 20, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
 		)),
-		new /datum/stack_recipe_list("low walls",list(
-			new /datum/stack_recipe("low wall (bay style)", /obj/structure/low_wall/bay, 3, one_per_turf = 1, on_floor = 1, supplied_material = "[name]", recycle_material = "[name]"),
-			new /datum/stack_recipe("low wall (eris style)", /obj/structure/low_wall/eris, 3, one_per_turf = 1, on_floor = 1, supplied_material = "[name]", recycle_material = "[name]")
-		)),
 		new /datum/stack_recipe("table frame", /obj/structure/table, 1, time = 10, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
 		new /datum/stack_recipe("bench frame", /obj/structure/table/bench, 1, time = 10, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
 		new /datum/stack_recipe("rack", /obj/structure/table/rack, 1, time = 5, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),

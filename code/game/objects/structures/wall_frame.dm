@@ -47,7 +47,7 @@
 
 /obj/structure/low_wall/LateInitialize()
 	. = ..()
-	update_connections()
+	update_connections(1)
 	update_icon()
 
 /obj/structure/low_wall/Destroy()
