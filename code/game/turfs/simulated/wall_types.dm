@@ -329,3 +329,44 @@
 
 /obj/structure/hull_corner/long_horiz/get_dirs_to_test()
 	return list(dir, turn(dir,90), turn(dir,-90))
+
+
+
+// Eris walls
+/turf/simulated/wall/eris
+	icon = 'icons/turf/wall_masks_eris.dmi'
+	icon_state = "generic"
+	wall_masks = 'icons/turf/wall_masks_eris.dmi'
+
+/turf/simulated/wall/eris/can_join_with_low_wall(var/obj/structure/low_wall/WF)
+	return istype(WF, /obj/structure/low_wall/eris)
+
+/turf/simulated/wall/eris/r_wall
+	icon_state = "rgeneric"
+/turf/simulated/wall/eris/r_wall/Initialize(mapload)
+	. = ..(mapload, "plasteel","plasteel")
+
+// Bay walls
+/turf/simulated/wall/bay
+	icon = 'icons/turf/wall_masks_bay.dmi'
+	icon_state = "generic"
+	wall_masks = 'icons/turf/wall_masks_bay.dmi'
+
+	var/stripe_color // Adds a colored stripe to the walls
+
+/turf/simulated/wall/bay/can_join_with_low_wall(var/obj/structure/low_wall/WF)
+	return istype(WF, /obj/structure/low_wall/bay)
+
+/turf/simulated/wall/bay/update_icon()
+	. = ..()
+	if(stripe_color)
+		var/image/I
+		for(var/i = 1 to 4)
+			I = image(wall_masks, "stripe[wall_connections[i]]", dir = 1<<(i-1))
+			I.color = stripe_color
+			add_overlay(I)
+
+/turf/simulated/wall/bay/r_wall
+	icon_state = "rgeneric"
+/turf/simulated/wall/bay/r_wall/Initialize(mapload)
+	. = ..(mapload, "plasteel","plasteel")
