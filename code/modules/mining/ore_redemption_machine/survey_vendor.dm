@@ -66,9 +66,9 @@
 		EQUIPMENT("Survival Equipment - Insulated Poncho",		/obj/random/thermalponcho,											75),
 		EQUIPMENT("Survival Equipment - Glowstick", 			/obj/item/device/flashlight/glowstick,								5),
 		EQUIPMENT("Survival Equipment - Flare", 				/obj/item/device/flashlight/flare,									5),
-		EQUIPMENT("Survival Equipment - Radioisotope Glowstick",		/obj/item/device/flashlight/glowstick/radioisotope,					40),
-		EQUIPMENT("Survival Equipment - Modular Explorer Suit",		/obj/item/clothing/suit/armor/pcarrier/explorer,					200),
-		EQUIPMENT("Survival Equipment - Armored Jumpsuit",		/obj/item/clothing/under/explorer/armored,					200),
+		EQUIPMENT("Survival Equipment - Radioisotope Glowstick",		/obj/item/device/flashlight/glowstick/radioisotope,			40),
+		EQUIPMENT("Survival Equipment - Modular Explorer Suit",		/obj/item/clothing/suit/armor/pcarrier/explorer,				200),
+		EQUIPMENT("Survival Equipment - Armored Jumpsuit",		/obj/item/clothing/under/explorer/armored,							200),
 	)
 	prize_list["Consumables"] = list(
 		EQUIPMENT("1 Marker Beacon",		/obj/item/stack/marker_beacon,													1),
@@ -97,8 +97,8 @@
 		EQUIPMENT("Cigar",						/obj/item/clothing/mask/smokable/cigarette/cigar/havana,			15),
 		EQUIPMENT("Digital Tablet - Standard",	/obj/item/modular_computer/tablet/preset/custom_loadout/standard,	50),
 		EQUIPMENT("Digital Tablet - Advanced",	/obj/item/modular_computer/tablet/preset/custom_loadout/advanced,	100),
-		EQUIPMENT("Industrial Equipment - Phoron Bore",	/obj/item/weapon/gun/magnetic/matfed/phoronbore/loaded,						300),
-		EQUIPMENT("Industrial Equipment - Inducer",			/obj/item/weapon/inducer,								90),
+		EQUIPMENT("Industrial Equipment - Phoron Bore",	/obj/item/weapon/gun/magnetic/matfed/phoronbore/loaded,		300),
+		EQUIPMENT("Industrial Equipment - Inducer",			/obj/item/weapon/inducer,								750),
 		EQUIPMENT("Laser Pointer",				/obj/item/device/laser_pointer,										90),
 		EQUIPMENT("Luxury Shelter Capsule",		/obj/item/device/survivalcapsule/luxury,							310),
 		EQUIPMENT("Bar Shelter Capsule",		/obj/item/device/survivalcapsule/luxurybar,							1000),
