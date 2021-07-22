@@ -56,6 +56,10 @@
 	name = "bbq chips bag"
 	icon_state = "chips_bbq"
 
+/obj/item/trash/chips/snv
+	name = "salt & vinegar chips bag"
+	icon_state = "chips_snv"
+
 /obj/item/trash/cookiesnack
 	name = "\improper Carps Ahoy! miniature cookies packet"
 	icon_state = "cookiesnack"
