@@ -7067,14 +7067,8 @@
 	name = "packaged burger"
 	icon_state = "smolburger"
 	desc = "A burger stored in a plastic wrapping for vending machine distribution. Surely it tastes fine!"
-<<<<<<< HEAD
-	package = TRUE
-	package_trash = /obj/item/trash/vendor_burger
-	package_open_state = "smolcheeseburger"
-=======
 	package_trash = /obj/item/trash/smolburger
 	package_open_state = "smolburger_open"
->>>>>>> 3fc302d1c8 (Base Commit)
 	nutriment_amt = 3
 	nutriment_desc = list("stale burger" = 3)
 
