@@ -6283,6 +6283,16 @@
 	nutriment_amt = 3
 	nutriment_desc = list("salt" = 1, "barbeque sauce" = 2)
 
+/obj/item/weapon/reagent_containers/food/snacks/chips/snv
+	name = "\improper Mike's Salt & Vinegar Chips"
+	desc = "Painful to eat yet you just can't stop!"
+	description_fluff = "Mike's Salt & Vinegar chips have been a staple of parties and events for decades, the chosen secondary dish to ordinary chips."
+	icon = 'icons/obj/food_snacks.dmi'
+	icon_state = "chips_snv"
+	trash = /obj/item/trash/chips/snv
+	nutriment_amt = 3
+	nutriment_desc = list("salt" = 1, "vinegar" = 2)
+
 /obj/item/weapon/reagent_containers/food/snacks/tastybread
 	name = "bread tube"
 	desc = "Bread in a tube. Chewy...and surprisingly tasty."
