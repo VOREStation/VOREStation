@@ -2924,6 +2924,8 @@
 #include "code\modules\mob\living\simple_mob\subtypes\animal\farm animals\cow.dm"
 #include "code\modules\mob\living\simple_mob\subtypes\animal\farm animals\goat.dm"
 #include "code\modules\mob\living\simple_mob\subtypes\animal\giant_spider\_giant_spider.dm"
+#include "code\modules\mob\living\simple_mob\subtypes\animal\giant_spider\broodmother.dm"
+#include "code\modules\mob\living\simple_mob\subtypes\animal\giant_spider\broodmother_spawn.dm"
 #include "code\modules\mob\living\simple_mob\subtypes\animal\giant_spider\carrier.dm"
 #include "code\modules\mob\living\simple_mob\subtypes\animal\giant_spider\electric.dm"
 #include "code\modules\mob\living\simple_mob\subtypes\animal\giant_spider\frost.dm"

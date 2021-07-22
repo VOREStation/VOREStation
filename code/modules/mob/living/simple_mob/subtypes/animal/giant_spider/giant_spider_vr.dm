@@ -52,6 +52,8 @@
 	old_x = -16
 	old_y = 0
 
+	egg_type = /obj/effect/spider/eggcluster/royal
+
 /mob/living/simple_mob/animal/giant_spider/nurse
 	var/can_lay_eggs = TRUE
 
