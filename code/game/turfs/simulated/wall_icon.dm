@@ -51,30 +51,30 @@
 	var/image/I
 
 	if(!density)
-		I = image('icons/turf/wall_masks.dmi', "[material.icon_base]fwall_open")
+		I = image(wall_masks, "[material.icon_base]fwall_open")
 		I.color = material.icon_colour
 		add_overlay(I)
 		return
 
 	for(var/i = 1 to 4)
-		I = image('icons/turf/wall_masks.dmi', "[material.icon_base][wall_connections[i]]", dir = 1<<(i-1))
+		I = image(wall_masks, "[material.icon_base][wall_connections[i]]", dir = 1<<(i-1))
 		I.color = material.icon_colour
 		add_overlay(I)
 
 	if(reinf_material)
 		if(construction_stage != null && construction_stage < 6)
-			I = image('icons/turf/wall_masks.dmi', "reinf_construct-[construction_stage]")
+			I = image(wall_masks, "reinf_construct-[construction_stage]")
 			I.color = reinf_material.icon_colour
 			add_overlay(I)
 		else
-			if("[reinf_material.icon_reinf]0" in cached_icon_states('icons/turf/wall_masks.dmi'))
+			if("[reinf_material.icon_reinf]0" in cached_icon_states(wall_masks))
 				// Directional icon
 				for(var/i = 1 to 4)
-					I = image('icons/turf/wall_masks.dmi', "[reinf_material.icon_reinf][wall_connections[i]]", dir = 1<<(i-1))
+					I = image(wall_masks, "[reinf_material.icon_reinf][wall_connections[i]]", dir = 1<<(i-1))
 					I.color = reinf_material.icon_colour
 					add_overlay(I)
-			else
-				I = image('icons/turf/wall_masks.dmi', reinf_material.icon_reinf)
+			else if("[reinf_material.icon_reinf]" in cached_icon_states(wall_masks))
+				I = image(wall_masks, reinf_material.icon_reinf)
 				I.color = reinf_material.icon_colour
 				add_overlay(I)
 
