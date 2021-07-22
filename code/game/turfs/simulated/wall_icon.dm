@@ -104,14 +104,18 @@
 	if(!material)
 		return
 	var/list/dirs = list()
-	for(var/turf/simulated/wall/W in orange(src, 1))
+	var/inrange = orange(src, 1)
+	for(var/turf/simulated/wall/W in inrange)
 		if(!W.material)
 			continue
 		if(propagate)
 			W.update_connections()
 			W.update_icon()
-		if(can_join_with(W))
+		if(can_join_with_wall(W))
 			dirs += get_dir(src, W)
+	for(var/obj/structure/low_wall/WF in inrange)
+		if(can_join_with_low_wall(WF))
+			dirs += get_dir(src, WF)
 
 	if(material.icon_base == "hull") // Could be improved...
 		var/additional_dirs = 0
@@ -127,8 +131,7 @@
 
 	wall_connections = dirs_to_corner_states(dirs)
 
-/turf/simulated/wall/proc/can_join_with(var/turf/simulated/wall/W)
-	//VOREStation Edit Start
+/turf/simulated/wall/proc/can_join_with_wall(var/turf/simulated/wall/W)
 	//No blending if no material
 	if(!material || !W.material)
 		return 0
@@ -138,5 +141,7 @@
 	//Also blend if they have the same iconbase
 	if(material.icon_base == W.material.icon_base)
 		return 1
-	//VOREStation Edit End
 	return 0
+
+/turf/simulated/wall/proc/can_join_with_low_wall(var/obj/structure/low_wall/WF)
+	return FALSE

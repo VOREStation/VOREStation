@@ -338,6 +338,9 @@
 	icon_state = "generic"
 	wall_masks = 'icons/turf/wall_masks_eris.dmi'
 
+/turf/simulated/wall/eris/can_join_with_low_wall(var/obj/structure/low_wall/WF)
+	return istype(WF, /obj/structure/low_wall/eris)
+
 /turf/simulated/wall/eris/r_wall
 	icon_state = "rgeneric"
 /turf/simulated/wall/eris/r_wall/Initialize(mapload)
@@ -350,6 +353,9 @@
 	wall_masks = 'icons/turf/wall_masks_bay.dmi'
 
 	var/stripe_color // Adds a colored stripe to the walls
+
+/turf/simulated/wall/bay/can_join_with_low_wall(var/obj/structure/low_wall/WF)
+	return istype(WF, /obj/structure/low_wall/bay)
 
 /turf/simulated/wall/bay/update_icon()
 	. = ..()
