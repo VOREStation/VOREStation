@@ -1168,6 +1168,13 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		return working
 
 /mob/living/carbon/human/proc/get_ears_overlay()
+	//If you are FBP with ear style and didn't set a custom one
+	var/datum/robolimb/model = isSynthetic()
+	if(istype(model) && model.includes_ears && !ear_style)
+		var/icon/ears_s = new/icon("icon" = synthetic.icon, "icon_state" = "ears")
+		ears_s.Blend(rgb(src.r_ears, src.g_ears, src.b_ears), species.color_mult ? ICON_MULTIPLY : ICON_ADD)
+		return ears_s
+	
 	if(ear_style && !(head && (head.flags_inv & BLOCKHEADHAIR)))
 		var/icon/ears_s = new/icon("icon" = ear_style.icon, "icon_state" = ear_style.icon_state)
 		if(ear_style.do_colouration)
