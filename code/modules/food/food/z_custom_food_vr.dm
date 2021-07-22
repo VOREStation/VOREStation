@@ -8,7 +8,6 @@ var/global/ingredientLimit = 20
 
 /obj/item/weapon/reagent_containers/food/snacks/customizable
 	icon = 'icons/obj/food_custom.dmi'
-	trash = /obj/item/trash/plate
 	bitesize = 2
 
 	var/ingMax = 100

@@ -89,10 +89,26 @@
 /obj/item/trash/plate
 	name = "plate"
 	icon_state = "plate"
+	drop_sound = 'sound/items/drop/food.ogg'
+	pickup_sound = 'sound/items/pickup/food.ogg'
+
+/obj/item/trash/asian_bowl
+	name = "asian bowl"
+	icon_state	= "asian_bowl"
+	drop_sound = 'sound/items/drop/food.ogg'
+	pickup_sound = 'sound/items/pickup/food.ogg'
 
 /obj/item/trash/snack_bowl
 	name = "snack bowl"
 	icon_state	= "snack_bowl"
+	drop_sound = 'sound/items/drop/food.ogg'
+	pickup_sound = 'sound/items/pickup/food.ogg'
+
+/obj/item/trash/small_bowl
+	name = "small bowl"
+	icon_state	= "small_bowl"
+	drop_sound = 'sound/items/drop/food.ogg'
+	pickup_sound = 'sound/items/pickup/food.ogg'
 
 /obj/item/trash/pistachios
 	name = "pistachios packet"
@@ -246,6 +262,12 @@
 	drop_sound = 'sound/items/drop/soda.ogg'
 	pickup_sound = 'sound/items/pickup/soda.ogg'
 
+/obj/item/trash/ntbeans
+	name = "empty baked bean can"
+	icon_state = "ntbeans"
+	drop_sound = 'sound/items/drop/soda.ogg'
+	pickup_sound = 'sound/items/pickup/soda.ogg'
+
 /obj/item/trash/salo
 	name = "salo pack"
 	icon_state = "pigfat"
@@ -317,9 +339,9 @@
 	drop_sound = 'sound/items/drop/soda.ogg'
 	pickup_sound = 'sound/items/pickup/soda.ogg'
 
-/obj/item/trash/spacer_cake_wrap
+/obj/item/trash/spacercake_wrap
 	name = "snack cake wrapper"
-	icon_state = "spacer_cake_wrap"
+	icon_state = "spacercake_wrap"
 
 /obj/item/trash/sun_snax
 	name = "sun snax bag"
@@ -371,15 +393,15 @@
 	name = "\improper CRS ration bag"
 	icon_state = "tgmc_mre_trash"
 
-/obj/item/trash/vendor_burger
-	name = "burger wrapper"
-	icon_state = "packburger_wrapper"
-	
-/obj/item/trash/vendor_hotdog
-	name = "hotdog wrapper"
-	icon_state = "packhotdog_wrapper"
-	
-/obj/item/trash/vendor_burrito
-	name = "burrito wrapper"
-	icon_state = "packburrito_wrapper"
-	
+/obj/item/trash/smolburger
+	name = "burger packaging"
+	icon_state = "smolburger"
+
+/obj/item/trash/smolhotdog
+	name = "hotdog packaging"
+	icon_state = "smolhotdog"
+
+/obj/item/trash/smolburrito
+	name = "burrito packaging"
+	icon_state = "smolburrito"
+

@@ -1,9 +1,9 @@
-/datum/recipe/ovenchips
+/datum/recipe/ovenfries
 	appliance = OVEN
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/rawsticks
 	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/ovenchips
+	result = /obj/item/weapon/reagent_containers/food/snacks/ovenfries
 
 //Roasts
 //---------------
