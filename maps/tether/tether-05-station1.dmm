@@ -12942,10 +12942,7 @@
 "aQh" = (
 /obj/structure/window/basic,
 /obj/machinery/door/window/westleft,
-/obj/effect/floor_decal/spline/fancy/wood{
-	dir = 10
-	},
-/turf/simulated/floor/outdoors/grass/forest,
+/turf/simulated/floor/grass,
 /area/crew_quarters/heads/chief)
 "aQi" = (
 /obj/structure/disposalpipe/segment,
@@ -12971,8 +12968,7 @@
 /area/crew_quarters/heads/chief)
 "aQl" = (
 /obj/structure/window/basic,
-/obj/effect/floor_decal/spline/fancy/wood,
-/turf/simulated/floor/outdoors/grass/forest,
+/turf/simulated/floor/grass,
 /area/crew_quarters/heads/chief)
 "aQn" = (
 /obj/structure/cable/green{
@@ -13733,7 +13729,7 @@
 /area/tcommsat/chamber)
 "aZg" = (
 /mob/living/simple_mob/animal/passive/bird/parrot/poly,
-/turf/simulated/floor/outdoors/grass/forest,
+/turf/simulated/floor/grass,
 /area/crew_quarters/heads/chief)
 "aZr" = (
 /obj/machinery/computer/atmos_alert,
@@ -35402,10 +35398,7 @@
 /obj/structure/window/basic{
 	dir = 8
 	},
-/obj/effect/floor_decal/spline/fancy/wood{
-	dir = 8
-	},
-/turf/simulated/floor/outdoors/grass/forest,
+/turf/simulated/floor/grass,
 /area/crew_quarters/heads/chief)
 "xbQ" = (
 /obj/machinery/door/airlock/glass_mining{
