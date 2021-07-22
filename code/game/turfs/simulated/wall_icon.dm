@@ -117,6 +117,10 @@
 		if(can_join_with_low_wall(WF))
 			dirs += get_dir(src, WF)
 
+	special_wall_connections(dirs, inrange)
+	wall_connections = dirs_to_corner_states(dirs)
+
+/turf/simulated/wall/proc/special_wall_connections(list/dirs, list/inrange)
 	if(material.icon_base == "hull") // Could be improved...
 		var/additional_dirs = 0
 		for(var/direction in alldirs)
@@ -128,8 +132,6 @@
 			for(var/diag_dir in cornerdirs)
 				if ((additional_dirs & diag_dir) == diag_dir)
 					dirs += diag_dir
-
-	wall_connections = dirs_to_corner_states(dirs)
 
 /turf/simulated/wall/proc/can_join_with_wall(var/turf/simulated/wall/W)
 	//No blending if no material

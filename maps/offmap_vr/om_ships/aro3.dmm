@@ -41,8 +41,11 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/aro3/flight_deck)
+"ap" = (
+/turf/simulated/wall/eris/r_wall,
+/area/aro3/suite_port)
 "aq" = (
-/turf/simulated/wall/rpshull,
+/turf/simulated/wall/eris/r_wall,
 /area/aro3/power)
 "at" = (
 /obj/structure/cable/cyan{
@@ -130,7 +133,7 @@
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
 	},
-/turf/simulated/wall/rpshull,
+/turf/simulated/wall/eris/r_wall,
 /area/aro3/suite_starboard)
 "aY" = (
 /obj/structure/railing/grey{
@@ -179,7 +182,7 @@
 /obj/structure/cable/cyan{
 	icon_state = "1-8"
 	},
-/turf/simulated/wall/rpshull,
+/turf/simulated/wall/eris/r_wall,
 /area/aro3/cockpit)
 "bs" = (
 /obj/machinery/power/rtg/abductor/hybrid/built,
@@ -270,7 +273,9 @@
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/outdoors/grass/heavy,
+/turf/simulated/floor/outdoors/grass/heavy{
+	outdoors = 0
+	},
 /area/aro3/park)
 "cc" = (
 /obj/structure/closet/walllocker/emerglocker/north,
@@ -333,10 +338,8 @@
 /turf/simulated/floor/tiled/eris/dark/gray_platform,
 /area/aro3/hallway_bunkrooms)
 "cB" = (
-/obj/structure/window/plastitanium/full,
-/obj/structure/grille,
-/turf/simulated/floor/plating/eris/under,
-/area/space)
+/turf/simulated/wall/eris/r_wall,
+/area/aro3/eva_hall)
 "cH" = (
 /turf/simulated/floor/water/indoors/surfluid,
 /area/aro3/surfluid)
@@ -577,7 +580,9 @@
 /turf/simulated/floor/tiled/eris/dark/panels,
 /area/aro3/suite_port)
 "el" = (
-/turf/simulated/floor/outdoors/grass/heavy,
+/turf/simulated/floor/outdoors/grass/heavy{
+	outdoors = 0
+	},
 /area/aro3/park)
 "em" = (
 /obj/structure/table/darkglass,
@@ -669,7 +674,7 @@
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/aro3/hallway_bunkrooms)
 "ff" = (
-/obj/structure/window/plastitanium/full,
+/obj/effect/low_wall_spawner/eris/rglass,
 /turf/simulated/floor/plating/eris/under,
 /area/aro3/repair_bay)
 "fo" = (
@@ -700,7 +705,7 @@
 /turf/simulated/floor/tiled/eris/steel/bar_light,
 /area/aro3/bar)
 "fB" = (
-/turf/simulated/wall/rpshull,
+/turf/simulated/wall/eris/r_wall,
 /area/aro3/atmos)
 "fC" = (
 /obj/machinery/light{
@@ -712,7 +717,7 @@
 /obj/structure/cable/cyan{
 	icon_state = "1-4"
 	},
-/turf/simulated/wall/rpshull,
+/turf/simulated/wall/eris/r_wall,
 /area/aro3/cockpit)
 "fL" = (
 /turf/simulated/wall/rpshull,
@@ -1027,6 +1032,9 @@
 	},
 /turf/simulated/wall/rpshull,
 /area/space)
+"hM" = (
+/turf/simulated/wall/eris/r_wall,
+/area/aro3/suite_starboard)
 "hN" = (
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
@@ -1087,8 +1095,7 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/aro3/power)
 "iy" = (
-/obj/structure/window/plastitanium/full,
-/obj/structure/grille,
+/obj/effect/low_wall_spawner/eris/rglass,
 /turf/simulated/floor/plating/eris/under,
 /area/aro3/cockpit)
 "iB" = (
@@ -1247,7 +1254,9 @@
 	dir = 1;
 	pixel_y = -26
 	},
-/turf/simulated/floor/outdoors/grass/heavy,
+/turf/simulated/floor/outdoors/grass/heavy{
+	outdoors = 0
+	},
 /area/aro3/park)
 "jx" = (
 /obj/structure/closet/crate/medical/blood,
@@ -1274,6 +1283,9 @@
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/space)
+"jM" = (
+/turf/space/internal_edge/right,
+/area/aro3/park)
 "jO" = (
 /obj/machinery/atmospherics/pipe/simple/visible/universal{
 	dir = 8
@@ -1512,7 +1524,7 @@
 /turf/simulated/floor/tiled/eris/white,
 /area/aro3/wc_starboard)
 "lu" = (
-/turf/simulated/wall/rpshull,
+/turf/simulated/wall/eris/r_wall,
 /area/aro3/park)
 "lv" = (
 /obj/structure/table/woodentable,
@@ -1559,7 +1571,7 @@
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/aro3/hallway_port)
 "lO" = (
-/turf/simulated/wall/rpshull,
+/turf/simulated/wall/eris/r_wall,
 /area/aro3/medical)
 "lP" = (
 /obj/structure/cable/cyan{
@@ -1682,8 +1694,13 @@
 /turf/simulated/floor/tiled/eris/white/gray_platform,
 /area/aro3/power)
 "mX" = (
-/obj/structure/flora/tree/jungle_small,
-/turf/simulated/floor/outdoors/grass/heavy,
+/obj/structure/flora/tree/jungle_small{
+	pixel_x = -38;
+	pixel_y = 7
+	},
+/turf/simulated/floor/outdoors/grass/heavy{
+	outdoors = 0
+	},
 /area/aro3/park)
 "nd" = (
 /obj/machinery/power/apc/alarms_hidden{
@@ -1729,7 +1746,7 @@
 /turf/simulated/floor/tiled/eris/dark,
 /area/aro3/function)
 "ns" = (
-/turf/simulated/wall/rpshull,
+/turf/simulated/wall/eris/r_wall,
 /area/aro3/function)
 "ny" = (
 /obj/structure/cable/cyan{
@@ -2028,7 +2045,9 @@
 "qh" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/outdoors/grass/heavy,
+/turf/simulated/floor/outdoors/grass/heavy{
+	outdoors = 0
+	},
 /area/aro3/park)
 "qi" = (
 /obj/machinery/power/apc/alarms_hidden{
@@ -2128,7 +2147,7 @@
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
 	},
-/turf/simulated/wall/rpshull,
+/turf/simulated/wall/eris/r_wall,
 /area/aro3/suite_starboard_wc)
 "re" = (
 /obj/structure/cable/cyan{
@@ -2196,7 +2215,9 @@
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/outdoors/grass/heavy,
+/turf/simulated/floor/outdoors/grass/heavy{
+	outdoors = 0
+	},
 /area/aro3/park)
 "rJ" = (
 /obj/structure/cable/cyan{
@@ -2225,6 +2246,15 @@
 	},
 /turf/simulated/floor/tiled/eris/white/gray_platform,
 /area/aro3/power)
+"rR" = (
+/obj/structure/flora/tree/jungle_small{
+	pixel_x = -27;
+	pixel_y = -3
+	},
+/turf/simulated/floor/outdoors/grass/heavy{
+	outdoors = 0
+	},
+/area/aro3/park)
 "rU" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -2576,7 +2606,7 @@
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
 	},
-/turf/simulated/wall/rpshull,
+/turf/simulated/wall/eris/r_wall,
 /area/aro3/bar)
 "vJ" = (
 /obj/machinery/light,
@@ -2637,7 +2667,9 @@
 /obj/structure/cable/cyan{
 	icon_state = "0-8"
 	},
-/turf/simulated/floor/outdoors/grass/heavy,
+/turf/simulated/floor/outdoors/grass/heavy{
+	outdoors = 0
+	},
 /area/aro3/park)
 "wc" = (
 /obj/structure/lattice,
@@ -3053,7 +3085,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/outdoors/grass/heavy,
+/turf/simulated/floor/outdoors/grass/heavy{
+	outdoors = 0
+	},
 /area/aro3/park)
 "yQ" = (
 /obj/machinery/power/apc/alarms_hidden{
@@ -3150,7 +3184,7 @@
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/aro3/eva_hall)
 "zo" = (
-/turf/simulated/wall/rpshull,
+/turf/simulated/wall/eris/r_wall,
 /area/aro3/bunkrooms)
 "zq" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -3241,7 +3275,7 @@
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
 	},
-/turf/simulated/wall/rpshull,
+/turf/simulated/wall/eris/r_wall,
 /area/aro3/atmos)
 "zM" = (
 /obj/structure/cable/cyan{
@@ -3501,7 +3535,7 @@
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
 	},
-/turf/simulated/wall/rpshull,
+/turf/simulated/wall/eris/r_wall,
 /area/aro3/suite_port_wc)
 "Ci" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
@@ -3914,7 +3948,8 @@
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/aro3/bar)
 "Fy" = (
-/turf/simulated/wall/rpshull,
+/obj/effect/low_wall_spawner/eris/rglass,
+/turf/simulated/floor/plating/eris/under,
 /area/aro3/kitchen)
 "FE" = (
 /obj/machinery/light{
@@ -4053,7 +4088,7 @@
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/aro3/flight_deck)
 "Hd" = (
-/turf/simulated/wall/rpshull,
+/turf/simulated/wall/eris/r_wall,
 /area/aro3/hallway_starboard)
 "Hh" = (
 /turf/simulated/floor/plating/eris/under,
@@ -4142,7 +4177,7 @@
 /turf/simulated/floor/tiled/eris/dark/gray_platform,
 /area/aro3/repair_bay)
 "HJ" = (
-/turf/simulated/wall/rpshull,
+/turf/simulated/wall/eris/r_wall,
 /area/aro3/wc_port)
 "HL" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -4176,6 +4211,19 @@
 	},
 /turf/simulated/floor/tiled/eris/dark,
 /area/aro3/atmos)
+"Io" = (
+/obj/structure/cable/cyan{
+	icon_state = "1-2"
+	},
+/obj/machinery/alarm/alarms_hidden{
+	dir = 4;
+	pixel_x = -26
+	},
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/aro3/hallway_port)
+"Iq" = (
+/turf/simulated/wall/eris/r_wall,
+/area/aro3/flight_deck)
 "Is" = (
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/aro3/repair_bay)
@@ -4215,12 +4263,15 @@
 	},
 /turf/simulated/floor/tiled/eris/dark,
 /area/aro3/surfluid)
+"IR" = (
+/turf/simulated/wall/eris/r_wall,
+/area/aro3/wc_starboard)
 "IS" = (
 /obj/effect/floor_decal/industrial/hatch,
 /turf/simulated/floor/tiled/eris/dark/gray_platform,
 /area/aro3/repair_bay)
 "IT" = (
-/turf/simulated/wall/rpshull,
+/turf/simulated/wall/eris/r_wall,
 /area/aro3/hallway_port)
 "IX" = (
 /obj/structure/cable/cyan{
@@ -4238,7 +4289,7 @@
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/aro3/function)
 "Jj" = (
-/obj/structure/window/plastitanium/full,
+/obj/effect/low_wall_spawner/eris/rglass,
 /turf/simulated/floor/plating/eris/under,
 /area/aro3/flight_deck)
 "Jl" = (
@@ -4294,7 +4345,9 @@
 	dir = 1;
 	pixel_y = -24
 	},
-/turf/simulated/floor/outdoors/grass/heavy,
+/turf/simulated/floor/outdoors/grass/heavy{
+	outdoors = 0
+	},
 /area/aro3/park)
 "Kl" = (
 /obj/structure/table/woodentable,
@@ -4311,7 +4364,7 @@
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
 	},
-/turf/simulated/wall/rpshull,
+/turf/simulated/wall/eris/r_wall,
 /area/aro3/suite_port)
 "Kp" = (
 /obj/structure/table/glass,
@@ -4325,7 +4378,7 @@
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
 	},
-/turf/simulated/wall/rpshull,
+/turf/simulated/wall/eris/r_wall,
 /area/aro3/hallway_bunkrooms)
 "Kw" = (
 /obj/machinery/pointdefense_control{
@@ -4349,10 +4402,7 @@
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/aro3/hallway_starboard)
 "KB" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/simulated/floor/water/deep/indoors,
+/turf/space/internal_edge/topleft,
 /area/aro3/park)
 "KC" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -4375,7 +4425,7 @@
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
 	},
-/turf/simulated/wall/rpshull,
+/turf/simulated/wall/eris/r_wall,
 /area/aro3/cockpit)
 "KI" = (
 /obj/machinery/power/pointdefense{
@@ -4432,6 +4482,9 @@
 	},
 /turf/simulated/floor/carpet/turcarpet,
 /area/aro3/suite_port)
+"Lb" = (
+/turf/simulated/wall/eris/r_wall,
+/area/aro3/bar)
 "Le" = (
 /obj/machinery/light{
 	dir = 8
@@ -4598,7 +4651,7 @@
 /obj/structure/cable/cyan{
 	icon_state = "1-4"
 	},
-/turf/simulated/wall/rpshull,
+/turf/simulated/wall/eris/r_wall,
 /area/aro3/atmos)
 "Mh" = (
 /obj/structure/lattice,
@@ -4621,18 +4674,11 @@
 /turf/simulated/floor/plating/eris/under,
 /area/aro3/atmos)
 "Ml" = (
-/obj/structure/cable/cyan{
-	icon_state = "1-2"
+/obj/structure/table/bench/steel,
+/turf/simulated/floor/outdoors/grass/heavy{
+	outdoors = 0
 	},
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 4
-	},
-/obj/machinery/alarm/alarms_hidden{
-	dir = 4;
-	pixel_x = -26
-	},
-/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
-/area/aro3/hallway_port)
+/area/aro3/park)
 "Mn" = (
 /obj/machinery/sleeper{
 	dir = 4
@@ -4661,10 +4707,8 @@
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/aro3/flight_deck)
 "MC" = (
-/obj/structure/sign/warning/docking_area,
-/obj/structure/window/plastitanium/full,
-/turf/simulated/floor/plating/eris/under,
-/area/aro3/flight_deck)
+/turf/space/internal_edge/topright,
+/area/aro3/park)
 "MD" = (
 /obj/structure/table/rack/shelf/steel,
 /turf/simulated/floor/tiled/techmaint,
@@ -4766,7 +4810,7 @@
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/aro3/kitchen)
 "NC" = (
-/turf/simulated/wall/rpshull,
+/turf/simulated/wall/eris/r_wall,
 /area/aro3/repair_bay)
 "NF" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
@@ -4782,7 +4826,7 @@
 /obj/structure/cable/cyan{
 	icon_state = "1-8"
 	},
-/turf/simulated/wall/rpshull,
+/turf/simulated/wall/eris/r_wall,
 /area/aro3/power)
 "NJ" = (
 /obj/machinery/light{
@@ -4882,6 +4926,18 @@
 "Ov" = (
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/aro3/flight_deck)
+"Ox" = (
+/obj/structure/cable/cyan{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/aro3/hallway_starboard)
 "Oy" = (
 /obj/structure/window/basic{
 	dir = 4
@@ -4963,7 +5019,12 @@
 /area/aro3/function)
 "Pe" = (
 /obj/structure/table/bench/steel,
-/turf/simulated/floor/outdoors/grass/heavy,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/outdoors/grass/heavy{
+	outdoors = 0
+	},
 /area/aro3/park)
 "Pi" = (
 /obj/machinery/alarm/alarms_hidden{
@@ -5209,11 +5270,11 @@
 /turf/simulated/floor/tiled/eris/cafe,
 /area/aro3/kitchen)
 "Rz" = (
-/obj/structure/window/plastitanium/full,
+/obj/effect/low_wall_spawner/eris/rglass,
 /turf/simulated/floor/plating/eris/under,
 /area/aro3/surfluid)
 "RJ" = (
-/turf/simulated/wall/rpshull,
+/turf/simulated/wall/eris/r_wall,
 /area/aro3/surfluid)
 "RK" = (
 /obj/structure/cable/cyan{
@@ -5233,6 +5294,9 @@
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/space)
+"RR" = (
+/turf/space/internal_edge/bottomleft,
+/area/aro3/park)
 "Sa" = (
 /obj/effect/floor_decal/industrial/warning/dust,
 /obj/structure/cable/cyan{
@@ -5337,6 +5401,9 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/shuttle/aroboat3)
+"Tc" = (
+/turf/simulated/wall/eris/r_wall,
+/area/aro3/workshop)
 "Tg" = (
 /obj/machinery/alarm/alarms_hidden{
 	dir = 1;
@@ -5410,7 +5477,7 @@
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
 	},
-/turf/simulated/wall/rpshull,
+/turf/simulated/wall/eris/r_wall,
 /area/aro3/power)
 "TK" = (
 /obj/structure/cable/cyan{
@@ -5458,7 +5525,7 @@
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
 	},
-/turf/simulated/wall/rpshull,
+/turf/simulated/wall/eris/r_wall,
 /area/aro3/medical)
 "Ua" = (
 /turf/space,
@@ -5518,7 +5585,7 @@
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/aro3/hallway_starboard)
 "Uy" = (
-/turf/simulated/wall/rpshull,
+/turf/simulated/wall/eris/r_wall,
 /area/aro3/suite_port_wc)
 "Uz" = (
 /turf/simulated/floor/tiled/eris/dark,
@@ -5563,6 +5630,9 @@
 /obj/structure/fans/hardlight,
 /turf/simulated/floor/reinforced,
 /area/aro3/flight_deck)
+"Vk" = (
+/turf/space/internal_edge/bottomright,
+/area/aro3/park)
 "Vl" = (
 /obj/structure/table/glass,
 /obj/item/weapon/storage/firstaid/adv,
@@ -5592,7 +5662,7 @@
 /turf/simulated/floor/water/indoors/surfluid,
 /area/aro3/surfluid)
 "VD" = (
-/turf/simulated/wall/rpshull,
+/turf/simulated/wall/eris/r_wall,
 /area/aro3/suite_starboard_wc)
 "VO" = (
 /obj/structure/sink/kitchen{
@@ -5624,6 +5694,9 @@
 	},
 /turf/simulated/floor/wood,
 /area/aro3/suite_port)
+"VZ" = (
+/turf/simulated/wall/eris/r_wall,
+/area/aro3/kitchen)
 "Wc" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -5647,6 +5720,10 @@
 /obj/machinery/meter,
 /turf/simulated/floor/plating/eris/under,
 /area/aro3/atmos)
+"Wy" = (
+/obj/effect/low_wall_spawner/eris/rglass,
+/turf/simulated/floor/plating/eris/under,
+/area/aro3/medical)
 "Wz" = (
 /obj/structure/table/steel,
 /turf/simulated/floor/tiled/eris/dark/gray_platform,
@@ -5655,7 +5732,7 @@
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
 	},
-/turf/simulated/wall/rpshull,
+/turf/simulated/wall/eris/r_wall,
 /area/aro3/workshop)
 "WB" = (
 /obj/item/modular_computer/console/preset/civilian,
@@ -5688,7 +5765,7 @@
 /turf/simulated/floor/tiled/eris/dark,
 /area/aro3/surfluid)
 "WN" = (
-/turf/simulated/wall/rpshull,
+/turf/simulated/wall/eris/r_wall,
 /area/aro3/hallway_bunkrooms)
 "WP" = (
 /obj/structure/closet/walllocker/emerglocker/north,
@@ -5702,7 +5779,7 @@
 /turf/simulated/floor/tiled/eris/cafe,
 /area/aro3/kitchen)
 "WU" = (
-/obj/structure/window/plastitanium/full,
+/obj/effect/low_wall_spawner/eris/rglass,
 /turf/simulated/floor/plating/eris/under,
 /area/aro3/bar)
 "WV" = (
@@ -5767,10 +5844,7 @@
 /turf/simulated/floor/water/indoors/surfluid,
 /area/aro3/medical)
 "Xv" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/simulated/floor/water/deep/indoors,
+/turf/space/internal_edge/left,
 /area/aro3/park)
 "XE" = (
 /obj/structure/lattice,
@@ -5812,6 +5886,18 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/shuttle/aroboat3)
+"Yb" = (
+/obj/structure/cable/cyan{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/aro3/hallway_port)
 "Yf" = (
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
@@ -5955,7 +6041,7 @@
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/aro3/hallway_port)
 "Zm" = (
-/turf/simulated/wall/rpshull,
+/turf/simulated/wall/eris/r_wall,
 /area/aro3/cockpit)
 "Zo" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -13821,10 +13907,10 @@ hD
 jC
 Fn
 Fn
-eN
-eN
-eN
-eN
+ap
+ap
+ap
+ap
 HJ
 HJ
 JU
@@ -13963,11 +14049,11 @@ Fn
 Fn
 Fn
 eN
-eN
+ap
 Yu
 Pu
 Wg
-eN
+ap
 pV
 hN
 WN
@@ -14103,13 +14189,13 @@ Fn
 Fn
 Fn
 Fn
-eN
-eN
-eN
+ap
+ap
+ap
 Rm
-eN
-eN
-eN
+ap
+ap
+ap
 zI
 ef
 WN
@@ -14251,7 +14337,7 @@ lf
 lf
 MY
 bH
-eN
+ap
 ye
 ZP
 fc
@@ -14387,7 +14473,7 @@ Uy
 Uy
 CR
 Oy
-eN
+ap
 xh
 KX
 II
@@ -14535,7 +14621,7 @@ ra
 pj
 af
 iS
-eN
+ap
 Fr
 qI
 WN
@@ -14671,13 +14757,13 @@ QE
 yQ
 dG
 Dr
-eN
+ap
 QV
 Kl
 Yz
 gd
 OR
-eN
+ap
 MS
 To
 WN
@@ -14813,13 +14899,13 @@ Uy
 Uy
 Uy
 Uy
-eN
-eN
-eN
-eN
+ap
+ap
+ap
+ap
 bk
-eN
-eN
+ap
+ap
 Fr
 qI
 WN
@@ -14831,8 +14917,8 @@ zo
 zo
 lO
 lO
-lO
-lO
+Wy
+Wy
 lO
 lO
 iN
@@ -14972,10 +15058,10 @@ Yf
 Yf
 Yf
 Yf
+Io
+SE
 Yf
-Ml
-Le
-lI
+Yb
 Yf
 Yf
 wu
@@ -15221,11 +15307,11 @@ Fn
 Fn
 Fn
 Fn
-Nu
+cB
 qm
 Aa
-Nu
-Nu
+cB
+cB
 ns
 ns
 ns
@@ -15240,19 +15326,19 @@ ns
 ns
 ns
 ns
-Fy
-Fy
-Fy
+VZ
+VZ
+VZ
 qI
 Fr
+VZ
 Fy
 Fy
-Fy
-RJ
 RJ
 RJ
 Rz
-RJ
+Rz
+Rz
 RJ
 RJ
 iN
@@ -15266,18 +15352,18 @@ NC
 NC
 oz
 qI
-Ur
-Ur
-Ur
-Ur
-Ur
-Ur
-Ur
+Iq
+Iq
+Iq
+Iq
+Iq
+Iq
+Iq
 Jj
 Jj
 Jj
-Ur
-Ur
+Iq
+Iq
 Ur
 Ua
 Ua
@@ -15358,16 +15444,16 @@ zD
 Ae
 Fn
 lu
-lu
-lu
-lu
-lu
-lu
+KB
+Xv
+Xv
+Xv
+RR
 lu
 XF
 XF
 fZ
-Nu
+cB
 Uu
 Dn
 Dn
@@ -15382,12 +15468,12 @@ Dn
 Dn
 Dn
 CQ
-Fy
+VZ
 AC
-Fy
+VZ
 dn
 Aj
-Fy
+VZ
 WR
 yD
 RJ
@@ -15408,7 +15494,7 @@ uI
 NC
 Ty
 To
-Ur
+Iq
 Hc
 Ov
 HE
@@ -15500,16 +15586,16 @@ KF
 Zm
 Zm
 lu
-lu
 Xj
-Xv
+Xj
+Xj
 Xj
 Xj
 lu
 XF
 XF
 kc
-Nu
+cB
 EC
 EF
 pr
@@ -15524,7 +15610,7 @@ HH
 HH
 jh
 cm
-Fy
+VZ
 AD
 iL
 mQ
@@ -15550,7 +15636,7 @@ hl
 NC
 Rj
 qI
-Ur
+Iq
 wq
 Ov
 Fc
@@ -15651,7 +15737,7 @@ lu
 DM
 XF
 XF
-Nu
+cB
 EC
 zu
 uJ
@@ -15666,7 +15752,7 @@ uJ
 uJ
 iJ
 cm
-Fy
+VZ
 ym
 AD
 AD
@@ -15692,7 +15778,7 @@ CW
 NC
 mF
 qI
-Ur
+Iq
 aA
 Ov
 Fc
@@ -15784,7 +15870,7 @@ NQ
 kM
 Zm
 lu
-Pe
+Ml
 el
 el
 mX
@@ -15793,8 +15879,8 @@ lu
 lu
 PV
 Tv
-Nu
-Nu
+cB
+cB
 Pb
 rN
 CA
@@ -15808,7 +15894,7 @@ kb
 uJ
 rx
 ns
-Fy
+VZ
 VO
 AD
 AD
@@ -15834,7 +15920,7 @@ Hn
 NC
 oz
 qI
-MC
+Jj
 Ov
 Ov
 HE
@@ -15918,7 +16004,7 @@ Hv
 Hv
 Hv
 Hv
-cB
+Hv
 iy
 PP
 tL
@@ -16060,7 +16146,7 @@ Hv
 Hv
 Hv
 Hv
-cB
+Hv
 iy
 Lt
 dE
@@ -16210,17 +16296,17 @@ NQ
 Zo
 Zm
 lu
-Pe
+Ml
 el
 el
-mX
+rR
 jr
 lu
 lu
 VQ
 Tg
-Nu
-Nu
+cB
+cB
 Pb
 pr
 QZ
@@ -16234,7 +16320,7 @@ Jl
 uJ
 Us
 ns
-Fy
+VZ
 yU
 AD
 AD
@@ -16260,7 +16346,7 @@ Gt
 NC
 OV
 Mr
-MC
+Jj
 am
 Ov
 Ov
@@ -16361,7 +16447,7 @@ lu
 vP
 XF
 XF
-Nu
+cB
 EC
 zu
 uJ
@@ -16376,7 +16462,7 @@ uJ
 uJ
 iJ
 cm
-Fy
+VZ
 vN
 AD
 AD
@@ -16402,7 +16488,7 @@ Yt
 NC
 Md
 Hz
-Ur
+Iq
 UR
 Ov
 Qe
@@ -16494,16 +16580,16 @@ KF
 Zm
 Zm
 lu
-lu
 Xj
-KB
+Xj
+Xj
 Xj
 Xj
 lu
 XF
 XF
 kc
-Nu
+cB
 EC
 EF
 rN
@@ -16518,7 +16604,7 @@ PJ
 PJ
 Ls
 cm
-Fy
+VZ
 AD
 AD
 AD
@@ -16544,7 +16630,7 @@ hl
 NC
 kj
 Mr
-Ur
+Iq
 gP
 Ov
 Qe
@@ -16636,16 +16722,16 @@ hH
 at
 Fn
 lu
-lu
-lu
-lu
-lu
-lu
+MC
+jM
+jM
+jM
+Vk
 lu
 XF
 XF
 SD
-Nu
+cB
 hk
 EU
 EU
@@ -16660,12 +16746,12 @@ EU
 EU
 EU
 IF
-Fy
+VZ
 TN
-Fy
+VZ
 sw
 Aj
-Fy
+VZ
 ec
 AQ
 RJ
@@ -16686,7 +16772,7 @@ uI
 NC
 KA
 Uv
-Ur
+Iq
 jU
 Ov
 kg
@@ -16783,11 +16869,11 @@ Fn
 Fn
 Fn
 Fn
-Nu
+cB
 qm
 Aa
-Nu
-Nu
+cB
+cB
 ns
 ns
 ns
@@ -16802,19 +16888,19 @@ ns
 ns
 ns
 ns
-Fy
-Fy
-Fy
+VZ
+VZ
+VZ
 kl
 CH
+VZ
 Fy
 Fy
-Fy
-RJ
 RJ
 RJ
 Rz
-RJ
+Rz
+Rz
 RJ
 RJ
 Mr
@@ -16828,18 +16914,18 @@ NC
 NC
 OV
 Mr
-Ur
-Ur
-Ur
-Ur
-Ur
-Ur
-Ur
+Iq
+Iq
+Iq
+Iq
+Iq
+Iq
+Iq
 Jj
 Jj
 Jj
-Ur
-Ur
+Iq
+Iq
 Ur
 Ua
 Ua
@@ -17104,8 +17190,8 @@ Hr
 Sj
 Hr
 LT
-sD
-KU
+Hr
+Ox
 Hr
 Ze
 ne
@@ -17227,33 +17313,33 @@ VD
 VD
 VD
 VD
-pS
-pS
-pS
-pS
+hM
+hM
+hM
+hM
 jy
-pS
-pS
+hM
+hM
 CH
 Mr
-EV
-EV
-EV
-EV
+Lb
+Lb
+Lb
 WU
 WU
-EV
-ly
-ly
-ly
-ly
-ly
-ly
+WU
+Lb
+Tc
+Tc
+Tc
+Tc
+Tc
+Tc
 CH
 Mr
-ly
-ly
-ly
+Tc
+Tc
+Tc
 fB
 JK
 Ie
@@ -17369,31 +17455,31 @@ Nm
 hu
 Iu
 eK
-pS
+hM
 wy
 dF
 lv
 ig
 sr
-pS
+hM
 Gg
 Uv
-EV
+Lb
 JM
 aZ
 Fx
 DH
 Fx
 WJ
-ly
+Tc
 aY
 ki
 lC
 aY
-ly
+Tc
 lq
 mg
-ly
+Tc
 aY
 aY
 fB
@@ -17517,17 +17603,17 @@ fb
 Hq
 nL
 od
-pS
+hM
 CH
 Mr
-EV
-EV
+Lb
+Lb
 nz
 Fx
 xp
 Fx
 al
-ly
+Tc
 Wz
 nm
 tl
@@ -17653,7 +17739,7 @@ VD
 VD
 AX
 Gp
-pS
+hM
 WB
 Eu
 US
@@ -17668,8 +17754,8 @@ gE
 YY
 Kz
 hT
-EV
-ly
+Lb
+Tc
 aa
 nm
 tl
@@ -17801,7 +17887,7 @@ xP
 xP
 kk
 ZL
-pS
+hM
 PO
 aR
 DY
@@ -17811,7 +17897,7 @@ go
 Qv
 YY
 WJ
-ly
+Tc
 nm
 nm
 tl
@@ -17937,23 +18023,23 @@ Fn
 Fn
 Fn
 Fn
-pS
-pS
-pS
+hM
+hM
+hM
 tY
-pS
-pS
-pS
+hM
+hM
+hM
 QT
 sW
-EV
-EV
+Lb
+Lb
 zW
 YF
 Fx
 YY
 WJ
-ly
+Tc
 PN
 nm
 tl
@@ -18081,21 +18167,21 @@ Fn
 Fn
 Fn
 pS
-pS
+hM
 xw
 Fl
 YN
-pS
+hM
 Yj
 LS
-EV
+Lb
 mG
 iI
 DH
 Fx
 YY
 WJ
-ly
+Tc
 MN
 nm
 tl
@@ -18223,21 +18309,21 @@ hD
 zS
 Fn
 Fn
-eN
-pS
-pS
-pS
-fL
-fL
+ap
+hM
+hM
+hM
+IR
+IR
 hC
-EV
+Lb
 zY
 aO
 DH
 Fx
 YY
 WJ
-ly
+Tc
 dM
 nm
 tl
@@ -18369,17 +18455,17 @@ Fn
 Fn
 Fn
 Fn
-fL
+IR
 Zw
 ws
-EV
+Lb
 eR
 em
 DH
 Fx
 YY
 WJ
-ly
+Tc
 Wz
 FE
 tl
@@ -18388,8 +18474,8 @@ xI
 PL
 Aq
 Rp
-ly
-ly
+Tc
+Tc
 Fn
 Fn
 Fn
@@ -18511,26 +18597,26 @@ EI
 Fn
 Fn
 Fn
-fL
+IR
 lr
 dH
-EV
+Lb
 YY
 zM
 YY
 YY
 hT
-EV
-ly
-ly
-ly
-ly
+Lb
+Tc
+Tc
+Tc
+Tc
 Nj
-ly
-ly
-ly
-ly
-ly
+Tc
+Tc
+Tc
+Tc
+Tc
 Fn
 Fn
 Ua
@@ -18653,24 +18739,24 @@ Ua
 HG
 Fn
 Fn
-fL
-fL
+IR
+IR
 uY
-EV
+Lb
 YY
 fz
 hA
 gu
 YY
 qC
-ly
+Tc
 hn
 KP
 Uq
 Uq
 Uq
 Ln
-ly
+Tc
 ly
 Fn
 Fn
@@ -18796,23 +18882,23 @@ Ua
 HG
 Fn
 Fn
-fL
-fL
-EV
+IR
+IR
+Lb
 YY
 zM
 YY
 YY
 YY
 WJ
-ly
+Tc
 Uq
 Uq
 ri
 qR
 KE
-ly
-ly
+Tc
+Tc
 Fn
 Fn
 dk
@@ -18940,20 +19026,20 @@ HG
 Fn
 Fn
 fL
-EV
-EV
+Lb
+Lb
 dP
-EV
-EV
-EV
-EV
-ly
+Lb
+Lb
+Lb
+Lb
+Tc
 Uq
 zk
-ly
-ly
-ly
-ly
+Tc
+Tc
+Tc
+Tc
 Fn
 Fn
 dk
@@ -19083,16 +19169,16 @@ HG
 Fn
 Fn
 EV
-EV
+Lb
 oh
 Rt
 sG
 sG
 MD
-ly
+Tc
 ZU
-ly
-ly
+Tc
+Tc
 Fn
 Fn
 Fn
@@ -19225,15 +19311,15 @@ Ua
 HG
 Fn
 Fn
-EV
-EV
+Lb
+Lb
 vu
 nX
 Rt
 pT
-EV
-ly
-ly
+Lb
+Tc
+Tc
 Fn
 Fn
 dk
@@ -19368,12 +19454,12 @@ Ua
 HG
 Fn
 Fn
-EV
-EV
+Lb
+Lb
 MD
 dK
 MD
-EV
+Lb
 Fn
 Fn
 Fn
@@ -19511,11 +19597,11 @@ Ua
 HG
 Fn
 Fn
-EV
-EV
+Lb
+Lb
 vH
-EV
-EV
+Lb
+Lb
 Fn
 Fn
 dk

@@ -22,7 +22,7 @@
 	//rad_resistance_modifier = 0.5
 
 	// blend_objects defined on subtypes	
-	noblend_objects = list(/obj/machinery/door/window)
+	noblend_objects = list(/obj/machinery/door/window, /obj/machinery/door/firedoor)
 	
 	var/default_material = DEFAULT_WALL_MATERIAL
 	var/datum/material/material
@@ -369,7 +369,7 @@
 /obj/structure/window/bay
 	icon = 'icons/obj/bay_window.dmi'
 	blend_objects = list(/obj/machinery/door, /turf/simulated/wall/bay)
-	noblend_objects = list(/obj/machinery/door/window)
+	noblend_objects = list(/obj/machinery/door/window, /obj/machinery/door/firedoor)
 	icon_state = "preview_glass"
 	basestate = "window"
 	alpha = 180
@@ -465,7 +465,7 @@
 /obj/structure/window/eris
 	icon = 'icons/obj/eris_window.dmi'
 	blend_objects = list(/obj/machinery/door, /turf/simulated/wall/eris)
-	noblend_objects = list(/obj/machinery/door/window)
+	noblend_objects = list(/obj/machinery/door/window, /obj/machinery/door/firedoor)
 	icon_state = "preview_glass"
 	basestate = "window"
 	fulltile = TRUE

@@ -337,9 +337,31 @@
 	icon = 'icons/turf/wall_masks_eris.dmi'
 	icon_state = "generic"
 	wall_masks = 'icons/turf/wall_masks_eris.dmi'
+	var/list/blend_objects = list(/obj/machinery/door)
+	var/list/noblend_objects = list(/obj/machinery/door/window, /obj/machinery/door/firedoor)
 
 /turf/simulated/wall/eris/can_join_with_low_wall(var/obj/structure/low_wall/WF)
 	return istype(WF, /obj/structure/low_wall/eris)
+/turf/simulated/wall/eris/special_wall_connections(list/dirs, list/inrange)
+	..()
+	for(var/direction in cardinal)
+		var/turf/T = get_step(src, direction)
+		var/decided_to_blend = FALSE
+		blend_obj_loop:
+			for(var/obj/O in T)
+				for(var/b_type in blend_objects)
+					if(istype(O, b_type))
+						decided_to_blend = TRUE
+						for(var/obj/structure/S in T)
+							if(istype(S, src))
+								decided_to_blend = FALSE
+						for(var/nb_type in noblend_objects)
+							if(istype(O, nb_type))
+								decided_to_blend = FALSE
+
+					if(decided_to_blend)
+						dirs += direction
+						break blend_obj_loop // breaks outer loop
 
 /turf/simulated/wall/eris/r_wall
 	icon_state = "rgeneric"
@@ -351,6 +373,8 @@
 	icon = 'icons/turf/wall_masks_bay.dmi'
 	icon_state = "generic"
 	wall_masks = 'icons/turf/wall_masks_bay.dmi'
+	var/list/blend_objects = list(/obj/machinery/door)
+	var/list/noblend_objects = list(/obj/machinery/door/window, /obj/machinery/door/firedoor)
 
 	var/stripe_color // Adds a colored stripe to the walls
 
@@ -365,6 +389,27 @@
 			I = image(wall_masks, "stripe[wall_connections[i]]", dir = 1<<(i-1))
 			I.color = stripe_color
 			add_overlay(I)
+
+/turf/simulated/wall/bay/special_wall_connections(list/dirs, list/inrange)
+	..()
+	for(var/direction in cardinal)
+		var/turf/T = get_step(src, direction)
+		var/decided_to_blend = FALSE
+		blend_obj_loop:
+			for(var/obj/O in T)
+				for(var/b_type in blend_objects)
+					if(istype(O, b_type))
+						decided_to_blend = TRUE
+						for(var/obj/structure/S in T)
+							if(istype(S, src))
+								decided_to_blend = FALSE
+						for(var/nb_type in noblend_objects)
+							if(istype(O, nb_type))
+								decided_to_blend = FALSE
+
+					if(decided_to_blend)
+						dirs += direction
+						break blend_obj_loop // breaks outer loop
 
 /turf/simulated/wall/bay/r_wall
 	icon_state = "rgeneric"
