@@ -136,7 +136,7 @@
 		EQUIPMENT("Fine Excavation Kit - Hand Pick",		/obj/item/weapon/pickaxe/hand,					375),
 		EQUIPMENT("Explosive Excavation Kit - Plastic Charge",/obj/item/weapon/plastique/seismic/locked,	1500),
 		EQUIPMENT("Industrial Equipment - Phoron Bore",		/obj/item/weapon/gun/magnetic/matfed/phoronbore/loaded,			3000),
-		EQUIPMENT("Industrial Equipment - Inducer",			/obj/item/weapon/inducer,						900),
+		EQUIPMENT("Industrial Equipment - Inducer",			/obj/item/weapon/inducer,						3500),
 		EQUIPMENT("Industrial Equipment - Sheet-Snatcher",	/obj/item/weapon/storage/bag/sheetsnatcher,		500),
 	)
 	prize_list["Hardsuit"] = list(
