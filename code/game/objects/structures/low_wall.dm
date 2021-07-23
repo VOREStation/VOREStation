@@ -584,23 +584,22 @@
 	icon_state = "sp_rphoron"
 	window_type = /obj/structure/window/bay/phoronreinforced
 
-/obj/effect/low_wall_spawner/bay/grille
-	icon = 'icons/obj/wall_frame_bay.dmi'
-	icon_state = "sp_glass_g"
-	low_wall_type = /obj/structure/low_wall/bay
+/obj/effect/low_wall_spawner/bay/reinforced
+	icon_state = "spr_glass_g"
+	low_wall_type = /obj/structure/low_wall/bay/reinforced
 	grille_type = /obj/structure/grille/bay
 	window_type = /obj/structure/window/bay
 
-/obj/effect/low_wall_spawner/bay/grille/rglass
-	icon_state = "sp_rglass_g"
+/obj/effect/low_wall_spawner/bay/reinforced/rglass
+	icon_state = "spr_rglass_g"
 	window_type = /obj/structure/window/bay/reinforced
 
-/obj/effect/low_wall_spawner/bay/grille/phoron
-	icon_state = "sp_phoron_g"
+/obj/effect/low_wall_spawner/bay/reinforced/phoron
+	icon_state = "spr_phoron_g"
 	window_type = /obj/structure/window/bay/phoronbasic
 
-/obj/effect/low_wall_spawner/bay/grille/rphoron
-	icon_state = "sp_rphoron_g"
+/obj/effect/low_wall_spawner/bay/reinforced/rphoron
+	icon_state = "spr_rphoron_g"
 	window_type = /obj/structure/window/bay/phoronreinforced
 
 // Eris types
@@ -620,4 +619,21 @@
 
 /obj/effect/low_wall_spawner/eris/rphoron
 	icon_state = "sp_rphoron"
+	window_type = /obj/structure/window/eris/phoronreinforced
+
+/obj/effect/low_wall_spawner/eris/reinforced
+	icon_state = "spr_glass"
+	low_wall_type = /obj/structure/low_wall/eris/reinforced
+	window_type = /obj/structure/window/eris
+
+/obj/effect/low_wall_spawner/eris/reinforced/rglass
+	icon_state = "spr_rglass"
+	window_type = /obj/structure/window/eris/reinforced
+
+/obj/effect/low_wall_spawner/eris/reinforced/phoron
+	icon_state = "spr_phoron"
+	window_type = /obj/structure/window/eris/phoronbasic
+
+/obj/effect/low_wall_spawner/eris/reinforced/rphoron
+	icon_state = "spr_rphoron"
 	window_type = /obj/structure/window/eris/phoronreinforced
