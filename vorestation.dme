@@ -927,6 +927,7 @@
 #include "code\game\machinery\computer\timeclock_vr.dm"
 #include "code\game\machinery\computer\~computer_vr.dm"
 #include "code\game\machinery\doors\airlock.dm"
+#include "code\game\machinery\doors\airlock_angled.dm"
 #include "code\game\machinery\doors\airlock_control.dm"
 #include "code\game\machinery\doors\airlock_electronics.dm"
 #include "code\game\machinery\doors\airlock_vr.dm"
