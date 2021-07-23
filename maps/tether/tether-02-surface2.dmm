@@ -32808,6 +32808,7 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 4
 	},
+/obj/machinery/holoplant,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai)
 "cRq" = (
@@ -32977,6 +32978,10 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/chapel/main)
+"eZx" = (
+/obj/machinery/holoplant,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/ai)
 "eZG" = (
 /obj/machinery/camera/network/command,
 /obj/effect/floor_decal/techfloor{
@@ -33337,6 +33342,13 @@
 	},
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/reading_room)
+"jUQ" = (
+/obj/effect/floor_decal/techfloor{
+	dir = 8
+	},
+/obj/machinery/holoplant,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/ai)
 "jWK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/disposalpipe/segment,
@@ -34040,6 +34052,7 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai_upload)
 "qSJ" = (
+/obj/machinery/media/jukebox/hacked,
 /turf/simulated/floor/tiled/techmaint,
 /area/ai)
 "qUf" = (
@@ -49092,11 +49105,11 @@ adt
 pBU
 rlN
 srN
-rlN
+eZx
 kiL
 pAF
 fyj
-rXR
+jUQ
 kEC
 rlN
 pBU
