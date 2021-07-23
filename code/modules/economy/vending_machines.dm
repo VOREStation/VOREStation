@@ -72,6 +72,7 @@
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/wine = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/whitewine = 5,
+					/obj/item/weapon/reagent_containers/food/drinks/bottle/grapejuice = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/jager = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/small/ale = 15,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/small/ale/hushedwhisper = 15,
