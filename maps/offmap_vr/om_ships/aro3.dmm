@@ -86,6 +86,14 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/aro3/function)
+"aG" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/aro3/hallway_port)
 "aH" = (
 /obj/machinery/autolathe,
 /turf/simulated/floor/tiled/eris/dark/danger,
@@ -106,12 +114,6 @@
 	},
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/aro3/bar)
-"aQ" = (
-/obj/machinery/door/airlock{
-	name = "Bunk Room 2"
-	},
-/turf/simulated/floor/tiled/eris/dark/panels,
-/area/aro3/bunkrooms)
 "aR" = (
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
@@ -142,12 +144,11 @@
 /turf/simulated/floor/water/indoors/surfluid,
 /area/aro3/workshop)
 "aZ" = (
-/obj/machinery/power/apc/alarms_hidden{
-	dir = 8;
-	req_access = list()
-	},
 /obj/structure/cable/cyan{
 	icon_state = "0-4"
+	},
+/obj/machinery/power/apc/angled/hidden{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/aro3/bar)
@@ -172,9 +173,11 @@
 /turf/simulated/floor/plating/eris/under,
 /area/aro3/atmos)
 "bk" = (
-/obj/machinery/door/airlock{
+/obj/machinery/door/airlock/angled/standard{
+	dir = 4;
 	id_tag = "aro3_private1";
-	name = "Private Room 1"
+	name = "private quarters 1";
+	stripe_color = "#00AA00
 	},
 /turf/simulated/floor/tiled/eris/dark/panels,
 /area/aro3/suite_port)
@@ -194,6 +197,13 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/shuttle/aroboat3)
+"bv" = (
+/obj/machinery/door/airlock/angled/standard{
+	name = "bunkroom 3";
+	stripe_color = "#00AA00
+	},
+/turf/simulated/floor/tiled/eris/dark/panels,
+/area/aro3/bunkrooms)
 "bC" = (
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
@@ -212,6 +222,9 @@
 	dir = 8;
 	pixel_x = -32;
 	pixel_y = 0
+	},
+/obj/machinery/firealarm/angled/hidden{
+	dir = 1
 	},
 /turf/simulated/floor/carpet/turcarpet,
 /area/aro3/suite_port)
@@ -360,15 +373,14 @@
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/aro3/repair_bay)
 "cK" = (
-/obj/machinery/power/apc/alarms_hidden{
-	dir = 8;
-	req_access = list()
-	},
 /obj/structure/cable/cyan,
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/power/apc/angled/hidden{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
@@ -482,9 +494,8 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
-/obj/machinery/alarm/alarms_hidden{
-	dir = 4;
-	pixel_x = -26
+/obj/machinery/alarm/angled/hidden{
+	dir = 4
 	},
 /turf/simulated/floor/wood,
 /area/aro3/suite_starboard)
@@ -523,11 +534,13 @@
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/aro3/workshop)
 "dP" = (
-/obj/machinery/door/airlock/maintenance/common{
-	name = "Bar Storage"
-	},
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/angled/standard{
+	dir = 4;
+	name = "storage room";
+	stripe_color = "#9e6243"
 	},
 /turf/simulated/floor/tiled/eris/dark/panels,
 /area/aro3/bar)
@@ -570,12 +583,13 @@
 "ei" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/door/airlock{
-	id_tag = "aro3_private1";
-	name = "Private Room 1"
-	},
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/angled/standard{
+	id_tag = "aro3_private1";
+	name = "private quarters 1";
+	stripe_color = "#00AA00
 	},
 /turf/simulated/floor/tiled/eris/dark/panels,
 /area/aro3/suite_port)
@@ -612,6 +626,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
+	},
+/obj/machinery/firealarm/angled/hidden{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/aro3/power)
@@ -674,7 +691,7 @@
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/aro3/hallway_bunkrooms)
 "ff" = (
-/obj/effect/low_wall_spawner/eris/rglass,
+/obj/effect/low_wall_spawner/eris/reinforced/rglass,
 /turf/simulated/floor/plating/eris/under,
 /area/aro3/repair_bay)
 "fo" = (
@@ -734,9 +751,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/door/airlock{
+/obj/machinery/door/airlock/angled/standard{
 	id_tag = "aro3_private2";
-	name = "Private Room 2"
+	name = "private quarters 2";
+	stripe_color = "#00AA00
 	},
 /turf/simulated/floor/tiled/eris/dark/panels,
 /area/aro3/suite_starboard)
@@ -768,12 +786,11 @@
 /obj/structure/sink{
 	pixel_y = 24
 	},
-/obj/machinery/power/apc/alarms_hidden{
-	dir = 4;
-	req_access = list()
-	},
 /obj/structure/cable/cyan{
 	icon_state = "0-2"
+	},
+/obj/machinery/power/apc/angled/hidden{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/white,
 /area/aro3/wc_port)
@@ -868,25 +885,25 @@
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/aro3/hallway_starboard)
 "gP" = (
-/obj/machinery/power/apc/alarms_hidden{
-	dir = 1;
-	req_access = list()
-	},
 /obj/structure/cable/cyan{
 	icon_state = "0-8"
+	},
+/obj/machinery/power/apc/angled/hidden{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/aro3/flight_deck)
 "gQ" = (
-/obj/machinery/power/apc/alarms_hidden{
-	dir = 8;
-	req_access = list()
-	},
 /obj/structure/cable/cyan,
+/obj/machinery/power/apc/angled/hidden{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/eris/dark,
 /area/aro3/workshop)
 "gR" = (
-/obj/machinery/computer/ship/engines,
+/obj/machinery/computer/ship/engines{
+	req_one_access = list(777)
+	},
 /turf/simulated/floor/tiled/eris/dark/violetcorener,
 /area/aro3/cockpit)
 "gU" = (
@@ -911,9 +928,8 @@
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
 	},
-/obj/machinery/alarm/alarms_hidden{
-	dir = 8;
-	pixel_x = 26
+/obj/machinery/alarm/angled/hidden{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/aro3/hallway_starboard)
@@ -980,12 +996,11 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/aro3/workshop)
 "hu" = (
-/obj/machinery/power/apc/alarms_hidden{
-	dir = 8;
-	req_access = list()
-	},
 /obj/structure/cable/cyan{
 	icon_state = "0-4"
+	},
+/obj/machinery/power/apc/angled/hidden{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/white,
 /area/aro3/suite_starboard_wc)
@@ -1012,11 +1027,13 @@
 /turf/simulated/floor/tiled/eris/steel/bar_light,
 /area/aro3/bar)
 "hC" = (
-/obj/machinery/door/airlock{
-	name = "Public WC"
-	},
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/angled/standard{
+	dir = 4;
+	name = "public restroom";
+	stripe_color = "#00AA00
 	},
 /turf/simulated/floor/tiled/eris/dark/panels,
 /area/aro3/wc_starboard)
@@ -1051,18 +1068,21 @@
 /turf/simulated/floor/tiled/eris/steel/bar_flat,
 /area/aro3/bar)
 "hU" = (
-/obj/machinery/door/airlock/maintenance/common,
+/obj/machinery/door/airlock/angled/standard/glass{
+	name = "spare supplies"
+	},
 /turf/simulated/floor/tiled/eris/dark/panels,
 /area/aro3/hallway_port)
 "hX" = (
 /turf/simulated/floor/carpet/purcarpet,
 /area/aro3/bunkrooms)
 "ia" = (
-/obj/machinery/door/airlock/multi_tile/glass{
-	name = "Bar"
-	},
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/angled/double/glass{
+	name = "bar";
+	stripe_color = "#00AA00"
 	},
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/aro3/bar)
@@ -1075,10 +1095,6 @@
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/aro3/repair_bay)
 "is" = (
-/obj/machinery/door/airlock/multi_tile/glass{
-	dir = 2;
-	name = "Medical Bay"
-	},
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
 	},
@@ -1088,6 +1104,11 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 8
 	},
+/obj/machinery/door/airlock/angled/double/glass{
+	dir = 8;
+	name = "medical";
+	stripe_color = "#6084e0"
+	},
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/aro3/medical)
 "iw" = (
@@ -1095,7 +1116,7 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/aro3/power)
 "iy" = (
-/obj/effect/low_wall_spawner/eris/rglass,
+/obj/effect/low_wall_spawner/eris/reinforced/rglass,
 /turf/simulated/floor/plating/eris/under,
 /area/aro3/cockpit)
 "iB" = (
@@ -1126,11 +1147,13 @@
 /turf/simulated/floor/tiled/eris/white/golden,
 /area/aro3/medical)
 "iF" = (
-/obj/machinery/door/airlock/maintenance/common{
-	name = "Personal Storage"
-	},
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/angled/standard{
+	dir = 4;
+	name = "storage room";
+	stripe_color = "#9e6243"
 	},
 /turf/simulated/floor/tiled/eris/dark/panels,
 /area/aro3/hallway_bunkrooms)
@@ -1151,12 +1174,11 @@
 /turf/simulated/floor/tiled/eris/dark,
 /area/aro3/function)
 "iL" = (
-/obj/machinery/power/apc/alarms_hidden{
-	dir = 8;
-	req_access = list()
-	},
 /obj/structure/cable/cyan{
 	icon_state = "0-2"
+	},
+/obj/machinery/power/apc/angled/hidden{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/aro3/kitchen)
@@ -1182,24 +1204,23 @@
 /turf/simulated/floor/carpet/purcarpet,
 /area/aro3/bunkrooms)
 "iS" = (
-/obj/machinery/power/apc/alarms_hidden{
-	req_access = list()
-	},
 /obj/structure/cable/cyan,
+/obj/machinery/power/apc/angled/hidden,
 /turf/simulated/floor/wood,
 /area/aro3/suite_port)
 "iV" = (
 /turf/simulated/floor/carpet/oracarpet,
 /area/aro3/bunkrooms)
 "iY" = (
-/obj/machinery/door/airlock/multi_tile/glass{
-	name = "Atmos Management"
-	},
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/door/airlock/angled/double/glass{
+	name = "atmos room";
+	stripe_color = "#32d3bb"
+	},
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/aro3/atmos)
 "iZ" = (
@@ -1212,12 +1233,11 @@
 /turf/simulated/floor/tiled/eris/white/gray_platform,
 /area/aro3/power)
 "jb" = (
-/obj/machinery/power/apc/alarms_hidden{
-	dir = 8;
-	req_access = list()
-	},
 /obj/structure/cable/cyan{
 	icon_state = "0-2"
+	},
+/obj/machinery/power/apc/angled/hidden{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark,
 /area/aro3/function)
@@ -1250,10 +1270,6 @@
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
 	},
-/obj/machinery/alarm/alarms_hidden{
-	dir = 1;
-	pixel_y = -26
-	},
 /turf/simulated/floor/outdoors/grass/heavy{
 	outdoors = 0
 	},
@@ -1267,14 +1283,18 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/aro3/medical)
 "jy" = (
-/obj/machinery/door/airlock{
+/obj/machinery/door/airlock/angled/standard{
+	dir = 4;
 	id_tag = "aro3_private2";
-	name = "Private Room 2"
+	name = "private quarters 2";
+	stripe_color = "#00AA00
 	},
 /turf/simulated/floor/tiled/eris/dark/panels,
 /area/aro3/suite_starboard)
 "jz" = (
-/obj/machinery/computer/ship/sensors,
+/obj/machinery/computer/ship/sensors{
+	req_one_access = list(777)
+	},
 /turf/simulated/floor/tiled/eris/dark/violetcorener,
 /area/aro3/cockpit)
 "jC" = (
@@ -1297,9 +1317,7 @@
 /turf/simulated/floor/tiled/eris/dark/gray_platform,
 /area/aro3/hallway_bunkrooms)
 "jU" = (
-/obj/machinery/alarm/alarms_hidden{
-	pixel_y = 26
-	},
+/obj/machinery/alarm/angled/hidden,
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/aro3/flight_deck)
 "jV" = (
@@ -1379,8 +1397,9 @@
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/aro3/hallway_starboard)
 "km" = (
-/obj/machinery/door/airlock{
-	name = "Toilet"
+/obj/machinery/door/airlock/angled/standard{
+	name = "toilet";
+	stripe_color = "#00AA00
 	},
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/aro3/suite_starboard_wc)
@@ -1424,6 +1443,9 @@
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/firealarm/angled/hidden{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/aro3/atmos)
 "kH" = (
@@ -1441,15 +1463,13 @@
 /turf/simulated/floor/tiled/eris/dark,
 /area/aro3/workshop)
 "kM" = (
-/obj/machinery/power/apc/alarms_hidden{
-	req_access = list()
-	},
 /obj/structure/cable/cyan{
 	icon_state = "0-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 8
 	},
+/obj/machinery/power/apc/angled/hidden,
 /turf/simulated/floor/tiled/eris/dark/violetcorener,
 /area/aro3/cockpit)
 "kP" = (
@@ -1477,13 +1497,13 @@
 /turf/simulated/floor/plating/eris/under,
 /area/space)
 "lc" = (
-/obj/machinery/door/airlock/multi_tile/glass{
-	dir = 2
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/machinery/door/airlock/angled/double/glass{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/steel/panels,
@@ -1553,14 +1573,9 @@
 /turf/simulated/floor/wood,
 /area/aro3/suite_starboard)
 "lC" = (
-/obj/structure/railing/grey{
-	dir = 4
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/simulated/floor/water/indoors/surfluid,
-/area/aro3/workshop)
+/obj/machinery/firealarm/angled/hidden,
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/aro3/hallway_port)
 "lI" = (
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
@@ -1596,12 +1611,13 @@
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/aro3/flight_deck)
 "mg" = (
-/obj/machinery/door/airlock/multi_tile/glass{
-	dir = 2;
-	name = "Workshop"
-	},
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/angled/double/glass{
+	dir = 8;
+	name = "workshop";
+	stripe_color = "#AA00AA"
 	},
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/aro3/workshop)
@@ -1653,11 +1669,10 @@
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/aro3/bar)
 "mI" = (
-/obj/machinery/power/apc/alarms_hidden{
-	dir = 4;
-	req_access = list()
-	},
 /obj/structure/cable/cyan,
+/obj/machinery/power/apc/angled/hidden{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/eris/white/golden,
 /area/aro3/medical)
 "mL" = (
@@ -1703,15 +1718,14 @@
 	},
 /area/aro3/park)
 "nd" = (
-/obj/machinery/power/apc/alarms_hidden{
-	dir = 4;
-	req_access = list()
-	},
 /obj/structure/cable/cyan{
 	icon_state = "0-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/power/apc/angled/hidden{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/aro3/hallway_port)
 "ne" = (
@@ -1777,6 +1791,12 @@
 	},
 /turf/simulated/floor/tiled/eris/white/golden,
 /area/aro3/medical)
+"nH" = (
+/obj/machinery/alarm/angled/hidden{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/eris/dark/danger,
+/area/aro3/eva_hall)
 "nI" = (
 /obj/structure/cable/cyan{
 	icon_state = "1-8"
@@ -1819,11 +1839,13 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/aro3/bar)
+"oc" = (
+/obj/machinery/light/floortube,
+/turf/simulated/floor/tiled/eris/dark,
+/area/aro3/function)
 "od" = (
-/obj/machinery/power/apc/alarms_hidden{
-	req_access = list()
-	},
 /obj/structure/cable/cyan,
+/obj/machinery/power/apc/angled/hidden,
 /turf/simulated/floor/wood,
 /area/aro3/suite_starboard)
 "oh" = (
@@ -1884,6 +1906,13 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/aro3/eva_hall)
+"oG" = (
+/obj/structure/table/bench/steel,
+/obj/machinery/firealarm/angled/hidden,
+/turf/simulated/floor/outdoors/grass/heavy{
+	outdoors = 0
+	},
+/area/aro3/park)
 "oK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -1898,8 +1927,7 @@
 /turf/simulated/floor/tiled/eris/steel/bar_flat,
 /area/aro3/bar)
 "oN" = (
-/obj/machinery/door/blast/regular{
-	dir = 2;
+/obj/machinery/door/blast/multi_tile/two_tile_ver{
 	id = "aroshipshutter_portair"
 	},
 /turf/simulated/floor/reinforced/airless,
@@ -1963,6 +1991,18 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/aro3/function)
+"pm" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/aro3/hallway_port)
 "pn" = (
 /obj/structure/toilet{
 	pixel_y = 12
@@ -2050,12 +2090,11 @@
 	},
 /area/aro3/park)
 "qi" = (
-/obj/machinery/power/apc/alarms_hidden{
-	dir = 4;
-	req_access = list()
-	},
 /obj/structure/cable/cyan{
 	icon_state = "0-8"
+	},
+/obj/machinery/power/apc/angled/hidden{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/aro3/hallway_bunkrooms)
@@ -2068,6 +2107,13 @@
 /obj/structure/fans/hardlight,
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/aro3/eva_hall)
+"qu" = (
+/obj/machinery/door/airlock/angled/standard{
+	name = "bunkroom 2";
+	stripe_color = "#00AA00
+	},
+/turf/simulated/floor/tiled/eris/dark/panels,
+/area/aro3/bunkrooms)
 "qC" = (
 /turf/space/internal_edge/bottomleft,
 /area/aro3/bar)
@@ -2200,7 +2246,6 @@
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/aro3/flight_deck)
 "rx" = (
-/obj/machinery/light,
 /obj/structure/bed/chair/sofa/corp/left{
 	dir = 1
 	},
@@ -2261,11 +2306,11 @@
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/aro3/repair_bay)
 "rY" = (
-/obj/machinery/door/airlock/multi_tile/glass{
-	dir = 2
-	},
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/angled/double/glass{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/aro3/function)
@@ -2277,15 +2322,11 @@
 /obj/structure/closet/walllocker_double/medical/west,
 /turf/simulated/floor/tiled/eris/white/cargo,
 /area/aro3/medical)
-"sk" = (
-/obj/machinery/door/airlock{
-	name = "Bunk Room 1"
-	},
-/turf/simulated/floor/tiled/eris/dark/panels,
-/area/aro3/bunkrooms)
 "so" = (
-/obj/machinery/door/airlock/maintenance/common{
-	name = "Medical Storage"
+/obj/machinery/door/airlock/angled/standard{
+	dir = 4;
+	name = "storage room";
+	stripe_color = "#9e6243"
 	},
 /turf/simulated/floor/tiled/eris/dark/panels,
 /area/aro3/medical)
@@ -2326,6 +2367,12 @@
 "sw" = (
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/aro3/kitchen)
+"sx" = (
+/obj/machinery/firealarm/angled/hidden{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/eris/dark/danger,
+/area/aro3/flight_deck)
 "sD" = (
 /obj/machinery/light{
 	dir = 4
@@ -2360,14 +2407,18 @@
 /obj/machinery/chemical_dispenser/bar_soft/full{
 	dir = 8
 	},
+/obj/machinery/firealarm/angled/hidden{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/eris/dark,
 /area/aro3/function)
 "sT" = (
-/obj/machinery/door/airlock{
-	name = "WC"
-	},
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/angled/standard{
+	name = "restroom";
+	stripe_color = "#00AA00
 	},
 /turf/simulated/floor/tiled/eris/dark/panels,
 /area/aro3/suite_port)
@@ -2402,7 +2453,7 @@
 "ti" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/door/airlock/multi_tile/glass,
+/obj/machinery/door/airlock/angled/double/glass,
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/aro3/hallway_starboard)
 "tk" = (
@@ -2443,12 +2494,10 @@
 	},
 /area/shuttle/aroboat3)
 "tB" = (
-/obj/machinery/alarm/alarms_hidden{
-	pixel_y = 26
-	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
+/obj/machinery/alarm/angled/hidden,
 /turf/simulated/floor/tiled/eris/dark,
 /area/aro3/surfluid)
 "tD" = (
@@ -2471,13 +2520,15 @@
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/multi_tile/glass,
+/obj/machinery/door/airlock/angled/double/glass,
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/aro3/hallway_port)
 "tY" = (
-/obj/machinery/door/airlock{
+/obj/machinery/door/airlock/angled/standard{
+	dir = 4;
 	id_tag = "aro3_private2_bed";
-	name = "Private Room 1"
+	name = "bedroom";
+	stripe_color = "#00AA00
 	},
 /turf/simulated/floor/tiled/eris/dark/panels,
 /area/aro3/suite_starboard)
@@ -2591,8 +2642,8 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/aro3/bar)
 "vx" = (
-/obj/machinery/door/airlock/multi_tile/glass{
-	name = "Kitchen/Tech Room"
+/obj/machinery/door/airlock/angled/double/glass{
+	name = "ship systems"
 	},
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/aro3/surfluid)
@@ -2609,15 +2660,14 @@
 /turf/simulated/wall/eris/r_wall,
 /area/aro3/bar)
 "vJ" = (
-/obj/machinery/light,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 8
+/obj/structure/railing/grey{
+	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
+/obj/machinery/light{
+	dir = 1
 	},
-/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
-/area/aro3/hallway_port)
+/turf/simulated/floor/water/indoors/surfluid,
+/area/aro3/workshop)
 "vL" = (
 /obj/structure/table/marble,
 /obj/item/weapon/material/kitchen/rollingpin,
@@ -2638,6 +2688,7 @@
 /area/aro3/hallway_port)
 "vN" = (
 /obj/structure/table/marble,
+/obj/machinery/alarm/angled/hidden,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/aro3/kitchen)
 "vP" = (
@@ -2661,12 +2712,10 @@
 /turf/simulated/floor/tiled/eris/dark,
 /area/aro3/power)
 "vZ" = (
-/obj/machinery/power/apc/alarms_hidden{
-	req_access = list()
-	},
 /obj/structure/cable/cyan{
 	icon_state = "0-8"
 	},
+/obj/machinery/power/apc/angled/hidden,
 /turf/simulated/floor/outdoors/grass/heavy{
 	outdoors = 0
 	},
@@ -2680,6 +2729,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/portable_atmospherics/canister/air,
 /turf/simulated/floor/plating/eris/under,
 /area/aro3/atmos)
 "wf" = (
@@ -2879,13 +2929,13 @@
 /turf/simulated/floor/reinforced/airless,
 /area/space)
 "xo" = (
-/obj/machinery/door/airlock/multi_tile/glass{
-	dir = 2
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/machinery/door/airlock/angled/double/glass{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/steel/panels,
@@ -3002,8 +3052,8 @@
 /turf/simulated/floor/tiled/eris/dark,
 /area/aro3/surfluid)
 "ym" = (
-/obj/machinery/alarm/alarms_hidden{
-	pixel_y = 26
+/obj/structure/sink/kitchen{
+	pixel_y = 24
 	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/aro3/kitchen)
@@ -3011,6 +3061,10 @@
 /obj/structure/lattice,
 /turf/space,
 /area/space)
+"yo" = (
+/obj/machinery/alarm/angled/hidden,
+/turf/simulated/floor/tiled/eris/dark/gray_platform,
+/area/aro3/workshop)
 "yu" = (
 /obj/machinery/mech_recharger{
 	icon = 'icons/turf/shuttle_alien_blue.dmi'
@@ -3090,12 +3144,11 @@
 	},
 /area/aro3/park)
 "yQ" = (
-/obj/machinery/power/apc/alarms_hidden{
-	dir = 4;
-	req_access = list()
-	},
 /obj/structure/cable/cyan{
 	icon_state = "0-8"
+	},
+/obj/machinery/power/apc/angled/hidden{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/white,
 /area/aro3/suite_port_wc)
@@ -3118,6 +3171,10 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/violetcorener,
 /area/aro3/cockpit)
+"yT" = (
+/obj/machinery/alarm/angled/hidden,
+/turf/simulated/floor/tiled/eris/steel/bar_flat,
+/area/aro3/bar)
 "yU" = (
 /obj/machinery/light_switch{
 	pixel_y = 24
@@ -3126,11 +3183,12 @@
 /turf/simulated/floor/tiled/eris/cafe,
 /area/aro3/kitchen)
 "yV" = (
-/obj/machinery/door/airlock/multi_tile/glass{
-	name = "Power Management"
-	},
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/angled/double/glass{
+	name = "engine room";
+	stripe_color = "#e6ef40"
 	},
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/aro3/power)
@@ -3177,9 +3235,11 @@
 /turf/space,
 /area/space)
 "zm" = (
-/obj/machinery/door/airlock/multi_tile/glass,
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/angled/double/glass{
+	name = "public hall"
 	},
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/aro3/eva_hall)
@@ -3244,15 +3304,14 @@
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/aro3/flight_deck)
 "zG" = (
-/obj/machinery/power/apc/alarms_hidden{
-	dir = 8;
-	req_access = list()
-	},
 /obj/structure/cable/cyan{
 	icon_state = "0-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/power/apc/angled/hidden{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/aro3/hallway_starboard)
 "zI" = (
@@ -3323,17 +3382,15 @@
 /area/aro3/bar)
 "Aa" = (
 /obj/structure/fans/hardlight,
-/obj/machinery/door/airlock/multi_tile/glass{
-	dir = 2
+/obj/machinery/door/airlock/angled/double/glass{
+	dir = 8;
+	door_color = "#AA0000";
+	name = "port airlock";
+	stripe_color = "#FFFFFF"
 	},
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/aro3/eva_hall)
 "Ac" = (
-/obj/machinery/alarm/alarms_hidden{
-	dir = 8;
-	pixel_x = 26;
-	pixel_y = 4
-	},
 /obj/structure/closet/crate/bin{
 	anchored = 1;
 	density = 0;
@@ -3343,6 +3400,9 @@
 	dir = 8;
 	pixel_x = 24;
 	pixel_y = -8
+	},
+/obj/machinery/alarm/angled/hidden{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark,
 /area/aro3/function)
@@ -3386,15 +3446,15 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/aro3/hallway_bunkrooms)
 "Aj" = (
-/obj/machinery/door/airlock/multi_tile/glass{
-	dir = 2;
-	name = "Kitchen"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
+	},
+/obj/machinery/door/airlock/angled/double/glass{
+	dir = 8;
+	name = "kitchen"
 	},
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/aro3/kitchen)
@@ -3529,6 +3589,9 @@
 /obj/structure/bed/chair/bay/comfy/blue{
 	dir = 1
 	},
+/obj/machinery/firealarm/angled/hidden{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/eris/dark/violetcorener,
 /area/aro3/cockpit)
 "Cg" = (
@@ -3548,9 +3611,7 @@
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/aro3/flight_deck)
 "Cq" = (
-/obj/machinery/alarm/alarms_hidden{
-	pixel_y = 26
-	},
+/obj/machinery/alarm/angled/hidden,
 /turf/simulated/floor/plating/eris/under,
 /area/aro3/atmos)
 "Cu" = (
@@ -3586,11 +3647,10 @@
 /turf/simulated/floor/tiled/eris/dark/violetcorener,
 /area/aro3/cockpit)
 "Cz" = (
-/obj/machinery/alarm/alarms_hidden{
-	dir = 8;
-	pixel_x = 26
-	},
 /obj/structure/flora/pottedplant/sticky,
+/obj/machinery/alarm/angled/hidden{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/aro3/hallway_bunkrooms)
 "CA" = (
@@ -3643,10 +3703,8 @@
 /area/aro3/suite_port_wc)
 "CW" = (
 /obj/structure/table/steel,
-/obj/machinery/power/apc/alarms_hidden{
-	req_access = list()
-	},
 /obj/structure/cable/cyan,
+/obj/machinery/power/apc/angled/hidden,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/aro3/repair_bay)
 "CY" = (
@@ -3707,6 +3765,12 @@
 	},
 /turf/simulated/wall/rpshull,
 /area/space)
+"DG" = (
+/obj/machinery/firealarm/angled/hidden{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/eris/cafe,
+/area/aro3/kitchen)
 "DH" = (
 /obj/structure/table/darkglass,
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
@@ -3717,9 +3781,15 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/aro3/repair_bay)
 "DM" = (
-/obj/machinery/gear_dispenser/suit_fancy/autolok,
+/obj/machinery/gear_dispenser/suit_fancy/commonwealth,
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/aro3/eva_hall)
+"DP" = (
+/obj/machinery/firealarm/angled/hidden{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/eris/dark,
+/area/aro3/workshop)
 "DQ" = (
 /obj/structure/bed/chair/sofa/corp/left{
 	dir = 4
@@ -3799,9 +3869,7 @@
 /turf/simulated/floor/carpet/turcarpet,
 /area/aro3/suite_starboard)
 "Ew" = (
-/obj/machinery/alarm/alarms_hidden{
-	pixel_y = 26
-	},
+/obj/machinery/alarm/angled/hidden,
 /turf/simulated/floor/plating/eris/under,
 /area/aro3/power)
 "Ex" = (
@@ -3850,8 +3918,9 @@
 /turf/simulated/floor/tiled/eris/white/cargo,
 /area/aro3/medical)
 "EM" = (
-/obj/machinery/door/airlock{
-	name = "Toilet"
+/obj/machinery/door/airlock/angled/standard{
+	name = "toilet";
+	stripe_color = "#00AA00
 	},
 /turf/simulated/floor/tiled/eris/dark/panels,
 /area/aro3/suite_port_wc)
@@ -3931,11 +4000,12 @@
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/aro3/hallway_port)
 "Fu" = (
-/obj/machinery/door/airlock{
-	name = "WC"
-	},
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/angled/standard{
+	name = "restroom";
+	stripe_color = "#00AA00
 	},
 /turf/simulated/floor/tiled/eris/dark/panels,
 /area/aro3/suite_starboard)
@@ -3948,7 +4018,7 @@
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/aro3/bar)
 "Fy" = (
-/obj/effect/low_wall_spawner/eris/rglass,
+/obj/effect/low_wall_spawner/eris/reinforced/rglass,
 /turf/simulated/floor/plating/eris/under,
 /area/aro3/kitchen)
 "FE" = (
@@ -3970,6 +4040,9 @@
 /obj/structure/table/glass,
 /obj/item/weapon/reagent_containers/blood/prelabeled/OMinus,
 /obj/item/weapon/reagent_containers/blood/empty,
+/obj/machinery/firealarm/angled/hidden{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/eris/white/cargo,
 /area/aro3/medical)
 "FP" = (
@@ -4145,17 +4218,9 @@
 /turf/simulated/floor/tiled/eris/dark,
 /area/aro3/function)
 "Hz" = (
-/obj/structure/cable/cyan{
-	icon_state = "4-8"
-	},
-/obj/machinery/button/remote/blast_door{
-	dir = 1;
-	id = "aroshipshutter_ramp2";
-	name = "hangar shutters";
-	pixel_y = -28
-	},
-/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
-/area/aro3/hallway_starboard)
+/obj/effect/low_wall_spawner/eris/reinforced/rglass,
+/turf/simulated/floor/plating/eris/under,
+/area/aro3/workshop)
 "HE" = (
 /turf/simulated/shuttle/wall/voidcraft/blue,
 /area/shuttle/aroboat3)
@@ -4184,6 +4249,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/aro3/eva_hall)
+"HO" = (
+/obj/machinery/firealarm/angled/hidden{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/area/aro3/repair_bay)
 "HS" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red{
 	dir = 5
@@ -4215,9 +4286,8 @@
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
 	},
-/obj/machinery/alarm/alarms_hidden{
-	dir = 4;
-	pixel_x = -26
+/obj/machinery/alarm/angled/hidden{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/aro3/hallway_port)
@@ -4289,7 +4359,7 @@
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/aro3/function)
 "Jj" = (
-/obj/effect/low_wall_spawner/eris/rglass,
+/obj/effect/low_wall_spawner/eris/reinforced/rglass,
 /turf/simulated/floor/plating/eris/under,
 /area/aro3/flight_deck)
 "Jl" = (
@@ -4320,11 +4390,13 @@
 /turf/simulated/floor/tiled/eris/steel/bar_light,
 /area/aro3/bar)
 "JU" = (
-/obj/machinery/door/airlock{
-	name = "Public WC"
-	},
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/angled/standard{
+	dir = 4;
+	name = "public restroom";
+	stripe_color = "#00AA00
 	},
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/aro3/wc_port)
@@ -4354,9 +4426,8 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
-/obj/machinery/alarm/alarms_hidden{
-	dir = 8;
-	pixel_x = 26
+/obj/machinery/alarm/angled/hidden{
+	dir = 8
 	},
 /turf/simulated/floor/wood,
 /area/aro3/suite_port)
@@ -4438,8 +4509,8 @@
 /turf/simulated/floor/reinforced/airless,
 /area/space)
 "KK" = (
-/obj/machinery/door/airlock/multi_tile/glass{
-	name = "Repair Bay"
+/obj/machinery/door/airlock/angled/double/glass{
+	name = "repair bay"
 	},
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/aro3/repair_bay)
@@ -4561,7 +4632,9 @@
 /turf/simulated/floor/tiled/eris/dark,
 /area/aro3/function)
 "Lt" = (
-/obj/machinery/computer/ship/navigation,
+/obj/machinery/computer/ship/navigation{
+	req_one_access = list(777)
+	},
 /turf/simulated/floor/tiled/eris/dark/violetcorener,
 /area/aro3/cockpit)
 "LD" = (
@@ -4573,6 +4646,12 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/aro3/hallway_port)
+"LE" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/eris/cafe,
+/area/aro3/kitchen)
 "LH" = (
 /obj/structure/cable/cyan{
 	icon_state = "2-8"
@@ -4607,18 +4686,9 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/aro3/hallway_starboard)
 "LT" = (
-/obj/structure/cable/cyan{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 8
-	},
-/obj/machinery/alarm/alarms_hidden{
-	dir = 8;
-	pixel_x = 26
-	},
-/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
-/area/aro3/hallway_starboard)
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/simulated/floor/plating/eris/under,
+/area/aro3/atmos)
 "LW" = (
 /obj/structure/hull_corner,
 /turf/space,
@@ -4724,13 +4794,18 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_platform,
 /area/aro3/workshop)
+"MO" = (
+/obj/machinery/firealarm/angled/hidden{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/eris/steel/bar_flat,
+/area/aro3/bar)
 "MQ" = (
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
 	},
-/obj/machinery/alarm/alarms_hidden{
-	dir = 4;
-	pixel_x = -26
+/obj/machinery/alarm/angled/hidden{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/white/golden,
 /area/aro3/medical)
@@ -4782,8 +4857,10 @@
 /turf/simulated/floor/tiled/eris/white/golden,
 /area/aro3/medical)
 "Nj" = (
-/obj/machinery/door/airlock/maintenance/common{
-	name = "Materials Storage"
+/obj/machinery/door/airlock/angled/standard{
+	dir = 4;
+	name = "storage room";
+	stripe_color = "#9e6243"
 	},
 /turf/simulated/floor/tiled/eris/dark/panels,
 /area/aro3/workshop)
@@ -4893,6 +4970,18 @@
 /obj/structure/lattice,
 /turf/space,
 /area/space)
+"Op" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/aro3/hallway_starboard)
 "Oq" = (
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
@@ -4908,10 +4997,8 @@
 /turf/simulated/floor/tiled/eris/white/cargo,
 /area/aro3/medical)
 "Os" = (
-/obj/machinery/power/apc/alarms_hidden{
-	req_access = list()
-	},
 /obj/structure/cable/cyan,
+/obj/machinery/power/apc/angled/hidden,
 /turf/simulated/floor/tiled/eris/dark,
 /area/aro3/surfluid)
 "Ou" = (
@@ -4954,8 +5041,7 @@
 /turf/simulated/floor/tiled/eris/white/golden,
 /area/aro3/medical)
 "OF" = (
-/obj/machinery/door/blast/regular{
-	dir = 2;
+/obj/machinery/door/blast/multi_tile/two_tile_ver{
 	id = "aroshipshutter_stbdair"
 	},
 /turf/simulated/floor/reinforced/airless,
@@ -5003,11 +5089,11 @@
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/aro3/hallway_starboard)
 "OW" = (
-/obj/machinery/door/airlock/multi_tile/glass{
-	name = "Tech Room"
-	},
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/angled/double/glass{
+	name = "ship systems"
 	},
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/aro3/surfluid)
@@ -5027,9 +5113,7 @@
 	},
 /area/aro3/park)
 "Pi" = (
-/obj/machinery/alarm/alarms_hidden{
-	pixel_y = 26
-	},
+/obj/machinery/alarm/angled/hidden,
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/aro3/repair_bay)
 "Pu" = (
@@ -5050,6 +5134,12 @@
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/aro3/power)
+"Pz" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/aro3/hallway_port)
 "PB" = (
 /obj/structure/closet/crate/freezer/centauri,
 /turf/simulated/floor/tiled/eris/cafe,
@@ -5105,7 +5195,7 @@
 /area/aro3/hallway_starboard)
 "PP" = (
 /obj/machinery/computer/ship/helm{
-	req_one_access = list()
+	req_one_access = list(777)
 	},
 /turf/simulated/floor/tiled/eris/dark/violetcorener,
 /area/aro3/cockpit)
@@ -5113,6 +5203,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
+/obj/machinery/firealarm/angled/hidden,
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/aro3/eva_hall)
 "Qb" = (
@@ -5162,8 +5253,9 @@
 "QD" = (
 /obj/structure/fans/hardlight,
 /obj/machinery/door/firedoor/glass/hidden,
-/obj/machinery/door/blast/multi_tile/two_tile_hor{
-	id = "aroshipshutter_ramp2"
+/obj/machinery/door/airlock/angled/double/glass{
+	name = "hangar";
+	stripe_color = "#AA0000"
 	},
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/aro3/flight_deck)
@@ -5180,11 +5272,11 @@
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/aro3/hallway_bunkrooms)
 "QO" = (
-/obj/machinery/door/airlock/multi_tile/glass{
-	name = "Park"
-	},
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/angled/double/glass{
+	name = "park"
 	},
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/aro3/park)
@@ -5236,9 +5328,11 @@
 /turf/simulated/floor/tiled/eris/dark/gray_platform,
 /area/aro3/hallway_bunkrooms)
 "Rm" = (
-/obj/machinery/door/airlock{
+/obj/machinery/door/airlock/angled/standard{
+	dir = 4;
 	id_tag = "aro3_private1_bed";
-	name = "Private Room 1"
+	name = "bedroom";
+	stripe_color = "#00AA00
 	},
 /turf/simulated/floor/tiled/eris/dark/panels,
 /area/aro3/suite_port)
@@ -5270,7 +5364,7 @@
 /turf/simulated/floor/tiled/eris/cafe,
 /area/aro3/kitchen)
 "Rz" = (
-/obj/effect/low_wall_spawner/eris/rglass,
+/obj/effect/low_wall_spawner/eris/reinforced/rglass,
 /turf/simulated/floor/plating/eris/under,
 /area/aro3/surfluid)
 "RJ" = (
@@ -5355,12 +5449,11 @@
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/aro3/hallway_port)
 "SK" = (
-/obj/machinery/power/apc/alarms_hidden{
-	dir = 4;
-	req_access = list()
-	},
 /obj/structure/cable/cyan,
 /obj/structure/closet/crate,
+/obj/machinery/power/apc/angled/hidden{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/aro3/bunkrooms)
 "SR" = (
@@ -5405,18 +5498,19 @@
 /turf/simulated/wall/eris/r_wall,
 /area/aro3/workshop)
 "Tg" = (
-/obj/machinery/alarm/alarms_hidden{
-	dir = 1;
-	pixel_y = -26
+/obj/machinery/alarm/angled/hidden{
+	dir = 1
 	},
-/turf/simulated/floor/tiled/eris/dark/danger,
-/area/aro3/eva_hall)
+/turf/simulated/floor/outdoors/grass/heavy{
+	outdoors = 0
+	},
+/area/aro3/park)
 "To" = (
-/obj/machinery/door/airlock/multi_tile/glass{
-	dir = 2
-	},
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/angled/double/glass{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/aro3/hallway_port)
@@ -5430,11 +5524,8 @@
 /turf/simulated/floor/tiled/eris/dark,
 /area/aro3/workshop)
 "Tv" = (
-/obj/machinery/power/apc/alarms_hidden{
-	req_access = list()
-	},
 /obj/structure/cable/cyan{
-	icon_state = "0-4"
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/aro3/eva_hall)
@@ -5498,11 +5589,15 @@
 /turf/simulated/floor/tiled/eris/cafe,
 /area/aro3/kitchen)
 "TO" = (
-/obj/machinery/door/airlock/multi_tile/glass{
-	name = "Kitchen"
+/obj/machinery/door/airlock/angled/double/glass{
+	name = "kitchen"
 	},
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/aro3/function)
+"TQ" = (
+/obj/machinery/portable_atmospherics/canister/empty,
+/turf/simulated/floor/plating/eris/under,
+/area/aro3/atmos)
 "TT" = (
 /obj/effect/shuttle_landmark{
 	base_area = /area/space;
@@ -5531,22 +5626,23 @@
 /turf/space,
 /area/space)
 "Ui" = (
-/obj/machinery/door/airlock/multi_tile/glass{
-	name = "Bridge";
-	req_access = list(777);
-	secured_wires = 1
-	},
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/angled/double/glass{
+	name = "bridge";
+	req_one_access = list(777);
+	stripe_color = "#0000AA"
 	},
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/aro3/cockpit)
 "Uj" = (
-/obj/machinery/door/airlock/multi_tile/glass{
-	name = "Bunking Area"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/door/airlock/angled/double/glass{
+	name = "bunkrooms";
+	stripe_color = "#00AA00"
+	},
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/aro3/hallway_bunkrooms)
 "Ul" = (
@@ -5562,7 +5658,6 @@
 /turf/simulated/wall/rpshull,
 /area/aro3/flight_deck)
 "Us" = (
-/obj/machinery/light,
 /obj/structure/bed/chair/sofa/corp/right{
 	dir = 1
 	},
@@ -5576,11 +5671,11 @@
 /turf/space/internal_edge/topleft,
 /area/aro3/function)
 "Uv" = (
-/obj/machinery/door/airlock/multi_tile/glass{
-	dir = 2
-	},
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/angled/double/glass{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/aro3/hallway_starboard)
@@ -5596,6 +5691,13 @@
 /area/shuttle/aroboat3)
 "UN" = (
 /turf/simulated/floor/reinforced/airless,
+/area/aro3/eva_hall)
+"UP" = (
+/obj/machinery/power/apc/angled/hidden,
+/obj/structure/cable/cyan{
+	icon_state = "0-4"
+	},
+/turf/simulated/floor/tiled/eris/dark/danger,
 /area/aro3/eva_hall)
 "UR" = (
 /obj/structure/cable/cyan{
@@ -5650,8 +5752,9 @@
 /turf/simulated/floor/tiled/eris/dark/gray_perforated,
 /area/aro3/engines)
 "Vv" = (
-/obj/machinery/door/airlock{
-	name = "Bunk Room 3"
+/obj/machinery/door/airlock/angled/standard{
+	name = "bunkroom 1";
+	stripe_color = "#00AA00
 	},
 /turf/simulated/floor/tiled/eris/dark/panels,
 /area/aro3/bunkrooms)
@@ -5665,11 +5768,15 @@
 /turf/simulated/wall/eris/r_wall,
 /area/aro3/suite_starboard_wc)
 "VO" = (
-/obj/structure/sink/kitchen{
-	pixel_y = 24
+/obj/structure/fans/hardlight,
+/obj/machinery/door/airlock/angled/double/glass{
+	dir = 8;
+	door_color = "#AA0000";
+	name = "starboard airlock";
+	stripe_color = "#FFFFFF"
 	},
-/turf/simulated/floor/tiled/eris/cafe,
-/area/aro3/kitchen)
+/turf/simulated/floor/tiled/eris/steel/panels,
+/area/aro3/eva_hall)
 "VQ" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
@@ -5721,7 +5828,7 @@
 /turf/simulated/floor/plating/eris/under,
 /area/aro3/atmos)
 "Wy" = (
-/obj/effect/low_wall_spawner/eris/rglass,
+/obj/effect/low_wall_spawner/eris/reinforced/rglass,
 /turf/simulated/floor/plating/eris/under,
 /area/aro3/medical)
 "Wz" = (
@@ -5779,7 +5886,7 @@
 /turf/simulated/floor/tiled/eris/cafe,
 /area/aro3/kitchen)
 "WU" = (
-/obj/effect/low_wall_spawner/eris/rglass,
+/obj/effect/low_wall_spawner/eris/reinforced/rglass,
 /turf/simulated/floor/plating/eris/under,
 /area/aro3/bar)
 "WV" = (
@@ -5905,9 +6012,12 @@
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/aro3/hallway_port)
 "Yh" = (
-/obj/machinery/door/airlock/glass,
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/angled/standard/glass{
+	name = "qpad room";
+	stripe_color = "#AA00AA"
 	},
 /turf/simulated/floor/tiled/eris/dark/panels,
 /area/aro3/hallway_starboard)
@@ -5974,6 +6084,14 @@
 	},
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/aro3/bar)
+"YI" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/aro3/hallway_starboard)
 "YJ" = (
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/aro3/surfluid)
@@ -6047,9 +6165,8 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/alarm/alarms_hidden{
-	dir = 1;
-	pixel_y = -26
+/obj/machinery/alarm/angled/hidden{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/dark/violetcorener,
 /area/aro3/cockpit)
@@ -6072,12 +6189,11 @@
 /obj/structure/sink{
 	pixel_y = 24
 	},
-/obj/machinery/power/apc/alarms_hidden{
-	dir = 8;
-	req_access = list()
-	},
 /obj/structure/cable/cyan{
 	icon_state = "0-2"
+	},
+/obj/machinery/power/apc/angled/hidden{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/white,
 /area/aro3/wc_starboard)
@@ -6115,6 +6231,9 @@
 	dir = 4;
 	pixel_x = 32;
 	pixel_y = 0
+	},
+/obj/machinery/firealarm/angled/hidden{
+	dir = 1
 	},
 /turf/simulated/floor/carpet/turcarpet,
 /area/aro3/suite_starboard)
@@ -13492,7 +13611,7 @@ WN
 Ut
 mE
 kq
-sk
+Vv
 iV
 ug
 lO
@@ -14060,7 +14179,7 @@ WN
 qH
 eS
 kq
-aQ
+qu
 hX
 vQ
 lO
@@ -14628,7 +14747,7 @@ WN
 WN
 Ex
 kq
-Vv
+bv
 Np
 iP
 lO
@@ -14906,7 +15025,7 @@ ap
 bk
 ap
 ap
-Fr
+pm
 qI
 WN
 WN
@@ -15024,7 +15143,7 @@ pc
 Fn
 Fn
 Fn
-oN
+UN
 oN
 Fn
 Fn
@@ -15044,7 +15163,7 @@ Yf
 lI
 Yf
 Yf
-Le
+Yf
 Eh
 Yf
 Yf
@@ -15185,7 +15304,7 @@ vh
 FZ
 NO
 FZ
-FZ
+aG
 FZ
 wE
 Hi
@@ -15611,7 +15730,7 @@ HH
 jh
 cm
 VZ
-AD
+LE
 iL
 mQ
 KC
@@ -15625,9 +15744,9 @@ cH
 qW
 qW
 RJ
-iN
+lC
 Fr
-NC
+ff
 hl
 hl
 IS
@@ -15732,11 +15851,11 @@ Pe
 el
 el
 el
-el
+Tg
 lu
 DM
 XF
-XF
+UP
 cB
 EC
 zu
@@ -15747,7 +15866,7 @@ Hw
 qX
 Fb
 zu
-zu
+oc
 uJ
 uJ
 iJ
@@ -15767,9 +15886,9 @@ zt
 IK
 mL
 RJ
-iN
-vJ
-NC
+Pz
+Fr
+ff
 mO
 hl
 Is
@@ -15870,7 +15989,7 @@ NQ
 kM
 Zm
 lu
-Ml
+oG
 el
 el
 mX
@@ -15895,7 +16014,7 @@ uJ
 rx
 ns
 VZ
-VO
+AD
 AD
 AD
 KC
@@ -16304,7 +16423,7 @@ jr
 lu
 lu
 VQ
-Tg
+XF
 cB
 cB
 Pb
@@ -16446,7 +16565,7 @@ vZ
 lu
 vP
 XF
-XF
+nH
 cB
 EC
 zu
@@ -16457,7 +16576,7 @@ Hw
 qX
 Fb
 zu
-zu
+oc
 uJ
 uJ
 iJ
@@ -16469,7 +16588,7 @@ AD
 KC
 AD
 AD
-AD
+DG
 RJ
 vb
 yk
@@ -16479,7 +16598,7 @@ Kw
 RJ
 df
 CH
-NC
+ff
 zy
 hl
 Is
@@ -16487,7 +16606,7 @@ Is
 Yt
 NC
 Md
-Hz
+Mr
 Iq
 UR
 Ov
@@ -16605,7 +16724,7 @@ PJ
 Ls
 cm
 VZ
-AD
+LE
 AD
 AD
 KC
@@ -16621,12 +16740,12 @@ VA
 RJ
 Mr
 CH
-NC
+ff
 Pi
 hl
 IS
 ZW
-hl
+HO
 NC
 kj
 Mr
@@ -16774,7 +16893,7 @@ KA
 Uv
 Iq
 jU
-Ov
+sx
 kg
 Ov
 Ov
@@ -16871,7 +16990,7 @@ Fn
 Fn
 cB
 qm
-Aa
+VO
 cB
 cB
 ns
@@ -17031,7 +17150,7 @@ zq
 Wc
 YQ
 Wc
-Wc
+YI
 Wc
 Wc
 vp
@@ -17154,7 +17273,7 @@ Lp
 Fn
 Fn
 Fn
-OF
+UN
 OF
 Fn
 Fn
@@ -17174,7 +17293,7 @@ gW
 KU
 Hr
 Hr
-sD
+Hr
 Hr
 Hr
 Hr
@@ -17188,8 +17307,8 @@ Hr
 Hr
 Hr
 Sj
-Hr
-LT
+gW
+En
 Hr
 Ox
 Hr
@@ -17320,7 +17439,7 @@ hM
 jy
 hM
 hM
-CH
+Op
 Mr
 Lb
 Lb
@@ -17331,8 +17450,8 @@ WU
 Lb
 Tc
 Tc
-Tc
-Tc
+Hz
+Hz
 Tc
 Tc
 CH
@@ -17472,9 +17591,9 @@ DH
 Fx
 WJ
 Tc
-aY
+vJ
 ki
-lC
+aY
 aY
 Tc
 lq
@@ -17771,7 +17890,7 @@ wd
 xW
 Gy
 Hh
-Hh
+TQ
 fB
 fB
 Fn
@@ -17898,7 +18017,7 @@ Qv
 YY
 WJ
 Tc
-nm
+yo
 nm
 tl
 kI
@@ -17909,7 +18028,7 @@ tl
 nm
 NF
 fB
-Hh
+LT
 OG
 zj
 Hh
@@ -18468,7 +18587,7 @@ WJ
 Tc
 Wz
 FE
-tl
+DP
 tl
 xI
 PL
@@ -18601,7 +18720,7 @@ IR
 lr
 dH
 Lb
-YY
+yT
 zM
 YY
 YY
@@ -18888,7 +19007,7 @@ Lb
 YY
 zM
 YY
-YY
+MO
 YY
 WJ
 Tc
