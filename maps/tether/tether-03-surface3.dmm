@@ -11092,7 +11092,7 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals9,
-/obj/machinery/vending/cola,
+/obj/machinery/vending/radren,
 /turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/surface_three_hall)
 "arF" = (
@@ -12045,6 +12045,7 @@
 	dir = 1;
 	pixel_y = -24
 	},
+/obj/item/weapon/reagent_containers/food/drinks/bottle/carnoth,
 /turf/simulated/floor/wood,
 /area/crew_quarters/captain)
 "atv" = (

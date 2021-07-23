@@ -13339,7 +13339,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 8
 	},
-/obj/machinery/vending/snack,
+/obj/machinery/vending/snlvend,
 /turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/lowernorthhall)
 "awr" = (
@@ -13566,7 +13566,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 8
 	},
-/obj/machinery/vending/coffee,
+/obj/machinery/vending/radren,
 /turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/lowernorthhall)
 "awG" = (
@@ -38609,7 +38609,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 8
 	},
-/obj/machinery/vending/coffee,
+/obj/machinery/vending/radren,
 /turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/surface_one_hall)
 "yaU" = (

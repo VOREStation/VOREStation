@@ -137,7 +137,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/tonic/Initialize()
 	. = ..()
-	reagents.add_reagent("tonic", 50)
+	reagents.add_reagent("tonic", 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/sodawater
 	name = "soda water"
@@ -147,7 +147,7 @@
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/sodawater/Initialize()
 	. = ..()
-	reagents.add_reagent("sodawater", 50)
+	reagents.add_reagent("sodawater", 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/gingerale
 	name = "\improper Classic Ginger Ale"
@@ -171,7 +171,7 @@
 	. = ..()
 	reagents.add_reagent("rootbeer", 30)
 
-//ADDITIONS BELOW THIS LINE MADE ON 04/03/2021
+/////////////////////////BODA VENDOR DRINKS/////////////////////////
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/kvass
 	name = "\improper Kvass"
@@ -204,3 +204,223 @@
 /obj/item/weapon/reagent_containers/food/drinks/cans/boda/Initialize()
 	. = ..()
 	reagents.add_reagent("sodawater", 30)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/bodaplus
+	name = "\improper Boda-Plyus"
+	desc = "State regulated soda beverage, now with added surplus flavoring. Enjoy comrades."
+	icon_state = "bodaplus"
+	center_of_mass = list("x"=16, "y"=8)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/bodaplus/Initialize()
+	. = ..()
+	reagents.add_reagent("sodawater", 15)
+	reagents.add_reagent(pick(list(
+				"applejuice",
+				"grapejuice",
+				"lemonjuice",
+				"limejuice",
+				"watermelonjuice",
+				"banana",
+				"berryjuice",
+				"pineapplejuice")), 15)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/redarmy
+	name = "\improper Red Army Twist"
+	desc = "A taste of what keeps our glorious nation running! Served as Space Commissariat Stahlin prefers it! Luke warm."
+	icon_state = "red_army"
+	center_of_mass = list("x"=16, "y"=8)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/redarmy/Initialize()
+	. = ..()
+	reagents.add_reagent("potatojuice", 15)
+	reagents.add_reagent("sodawater", 15)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/arstbru
+	name = "\improper Arstotzka Brü"
+	desc = "Just what any bureaucrat needs to get through the day. Keep stamping those papers!"
+	icon_state = "arst_bru"
+	center_of_mass = list("x"=16, "y"=8)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/arstbru/Initialize()
+	. = ..()
+	reagents.add_reagent("turnipjuice", 30)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/terra_cola
+	name = "\improper Terra-Cola"
+	desc = "Made by the people. Served to the people."
+	description_fluff = "A can of the only soft drink state approved for the benefit of the people. Served at room temperature regardless of ambient temperatures thanks to innovative Terran insulation technology."
+	icon_state = "terra_cola"
+	center_of_mass = list("x"=16, "y"=8)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/terra_cola/Initialize()
+	. = ..()
+	reagents.add_reagent("water", 25)
+	reagents.add_reagent("iron", 5)
+
+/////////////////////////MISC VENDOR DRINKS/////////////////////////
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/straw_cola
+	name = "\improper Superior Strawberry"
+	desc = "Feel superior above all with Superior Strawberry!"
+	icon_state = "strawcoke"
+	center_of_mass = list("x"=16, "y"=8)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/straw_cola/Initialize()
+	. = ..()
+	reagents.add_reagent("strawsoda", 30)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/apple_cola
+	name = "\improper Andromeda Apple"
+	desc = "Look to the stars and prepare to explore with Andromeda Apple!"
+	icon_state = "applecoke"
+	center_of_mass = list("x"=16, "y"=8)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/apple_cola/Initialize()
+	. = ..()
+	reagents.add_reagent("applesoda", 30)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/lemon_cola
+	name = "\improper Lunar Lemon"
+	desc = "Feel back at home on the Lunar Colonies with this classic berverage straight from the source!"
+	icon_state = "lemoncoke"
+	center_of_mass = list("x"=16, "y"=8)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/lemon_cola/Initialize()
+	. = ..()
+	reagents.add_reagent("lemonsoda", 30)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/sarsaparilla
+	name = "\improper Starship Sarsaparilla"
+	desc = "Take off and shoot for the stars with this classic cowboy cola!"
+	icon_state = "sarsaparilla"
+	center_of_mass = list("x"=16, "y"=8)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/sarsaparilla/Initialize()
+	. = ..()
+	reagents.add_reagent("sarsaparilla", 30)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/grape_cola
+	name = "\improper Gravity Grape"
+	desc = "Get down with Newton's favorite corbonated science experiment!"
+	icon_state = "grapesoda"
+	center_of_mass = list("x"=16, "y"=8)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/grape_cola/Initialize()
+	. = ..()
+	reagents.add_reagent("grapesoda", 30)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/orange_cola
+	name = "\improper Orion Orange"
+	desc = "Take a taste-tastic trip to Orion's Belt with Orion Orange!"
+	icon_state = "orangesoda"
+	center_of_mass = list("x"=16, "y"=8)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/orange_cola/Initialize()
+	. = ..()
+	reagents.add_reagent("orangesoda", 30)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/baconsoda
+	name = "\improper Bacon Soda"
+	desc = "Taste something out of this world with Bacon Soda!"
+	icon_state = "porkcoke"
+	center_of_mass = list("x"=16, "y"=8)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/baconsoda/Initialize()
+	. = ..()
+	reagents.add_reagent("porksoda", 30)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/bepis
+	name = "\improper Bepis"
+	desc = "It has a smell of 'off-brand' whenever you open it..."
+	description_fluff = "Puts the 'B' in Best Soda! Bepis is the number one competitor to \
+	Space Cola and has vendors scattered across the frontier. While the drink is not as \
+	popular as Space Cola, many people across known space enjoy the sweet beverage."
+	icon = 'icons/obj/drinks_vr.dmi'
+	icon_state = "bepis"
+	center_of_mass = list("x"=16, "y"=10)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/bepis/Initialize()
+	. = ..()
+	reagents.add_reagent("bepis", 30)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/astrodew
+	name = "\improper Astro Dew Spring Water"
+	desc = "A can of refreshing 'spring' water! Or so the can claims."
+	icon = 'icons/obj/drinks_vr.dmi'
+	icon_state = "watercan"
+	center_of_mass = list("x"=16, "y"=10)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/astrodew/Initialize()
+	. = ..()
+	reagents.add_reagent("water", 30)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/icecoffee
+	name = "\improper Café Del Consumir"
+	desc = "A can of deliciously sweet iced coffee that originates from Earth."
+	description_fluff = "Café Del Consumir originates from a small coffee brewery in México \
+	that still opperates to this day. Café Del Consumir prides itself on being true to form \
+	and retaining its original recipe. They've been producing and selling thier product across \
+	the galaxy for decades without fail. NanoTrasen has attempted to by out the small company for \
+	years now, howerver all attempts they've made have failed."
+	icon = 'icons/obj/drinks_vr.dmi'
+	icon_state = "coffeecan"
+	center_of_mass = list("x"=16, "y"=10)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/icecoffee/Initialize()
+	. = ..()
+	reagents.add_reagent("icecoffee", 30)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/buzz
+	name = "\improper Buzz Fuzz"
+	desc = "Uses real honey, making it a sweet tooth's dream drink."
+	icon = 'icons/obj/drinks_vr.dmi'
+	icon_state = "buzzfuzz"
+	center_of_mass = list("x"=16, "y"=10)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/buzz/Initialize()
+	. = ..()
+	reagents.add_reagent("buzz_fuzz", 30)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/shambler
+	name = "\improper Shambler's Juice"
+	desc = "~Shake me up some of that Shambler's Juice!~"
+	icon = 'icons/obj/drinks_vr.dmi'
+	icon_state = "shambler"
+	center_of_mass = list("x"=16, "y"=10)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/shambler/Initialize()
+	. = ..()
+	reagents.add_reagent("shamblers", 30)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/cranberry
+	name = "\improper Sprited Cranberry"
+	desc = "A delicious blend of fresh cranberry juice and various spices, the perfect drink."
+	icon = 'icons/obj/drinks_vr.dmi'
+	icon_state = "cranberry"
+	center_of_mass = list("x"=16, "y"=10)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/cranberry/Initialize()
+	. = ..()
+	reagents.add_reagent("sprited_cranberry", 30)
+
+/////////////////////////CANNED BOOZE DRINKS/////////////////////////
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/beercan
+	name = "\improper Sunshine Brew"
+	desc = "Beat the heat with this refreshing brewed beverage."
+	icon_state = "beercan"
+	center_of_mass = list("x"=16, "y"=8)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/beercan/Initialize()
+	. = ..()
+	reagents.add_reagent("beer", 30)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/alecan
+	name = "\improper Spacecastle Pale Ale"
+	desc = "A delicious IPA that's canned for your pleasure. Drink up!"
+	icon_state = "alecan"
+	center_of_mass = list("x"=16, "y"=8)
+
+/obj/item/weapon/reagent_containers/food/drinks/cans/alecan/Initialize()
+	. = ..()
+	reagents.add_reagent("ale", 30)
