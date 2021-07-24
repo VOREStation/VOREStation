@@ -38,7 +38,7 @@
  */
 
 
-/obj/machinery/door/airlock/angled
+/obj/machinery/door/airlock/angled_bay
 	icon_state = "preview"
 	dir = 2
 
@@ -86,11 +86,11 @@
 	/// Optional: If door_color_icon is not null, this color will be applied to the door color overlay
 	var/door_color
 
-/obj/machinery/door/airlock/angled/Initialize()
+/obj/machinery/door/airlock/angled_bay/Initialize()
 	obtain_icon()
 	. = ..()
 
-/obj/machinery/door/airlock/angled/proc/obtain_icon()
+/obj/machinery/door/airlock/angled_bay/proc/obtain_icon()
 	var/icon/fill_icon
 	switch(fill_type)
 		if(FILL_METAL)
@@ -271,7 +271,7 @@
 	icon = final
 	update_icon()
 
-/obj/machinery/door/airlock/angled/proc/gimme_icon()
+/obj/machinery/door/airlock/angled_bay/proc/gimme_icon()
 	usr << ftp(icon, "[name].dmi")
 
 /**
@@ -282,7 +282,7 @@
 // Fills: Metal, glass, color
 // Supports stripe color
 // Supports door color
-/obj/machinery/door/airlock/angled/standard
+/obj/machinery/door/airlock/angled_bay/standard
 	icon = 'icons/obj/doors/angled/station/door.dmi'
 	fill_type = FILL_METAL
 
@@ -299,16 +299,16 @@
 	lights_emag_icon = 'icons/obj/doors/angled/station/emag.dmi'
 	panel_icon = 'icons/obj/doors/angled/station/panel.dmi'
 	welded_icon = 'icons/obj/doors/angled/station/welded.dmi'
-/obj/machinery/door/airlock/angled/standard/glass
+/obj/machinery/door/airlock/angled_bay/standard/glass
 	icon_state = "preview_glass"
 	fill_type = FILL_GLASS
-/obj/machinery/door/airlock/angled/standard/color
+/obj/machinery/door/airlock/angled_bay/standard/color
 	icon_state = "preview_color"
 	fill_type = FILL_COLOR
 
 // Fills: Metal
 // Supports stripe color
-/obj/machinery/door/airlock/angled/hatch
+/obj/machinery/door/airlock/angled_bay/hatch
 	icon = 'icons/obj/doors/angled/hatch/door.dmi'
 	fill_type = FILL_METAL
 
@@ -324,7 +324,7 @@
 	welded_icon = 'icons/obj/doors/angled/hatch/welded.dmi'
 
 // Fills: None
-/obj/machinery/door/airlock/angled/ascent
+/obj/machinery/door/airlock/angled_bay/ascent
 	icon = 'icons/obj/doors/angled/ascent/door.dmi'
 
 	base_icon = 'icons/obj/doors/angled/ascent/door.dmi'
@@ -339,7 +339,7 @@
 
 // Fills: Metal, glass, color
 // Supports door color
-/obj/machinery/door/airlock/angled/external
+/obj/machinery/door/airlock/angled_bay/external
 	icon = 'icons/obj/doors/angled/external/door.dmi'
 	fill_type = FILL_METAL
 
@@ -352,15 +352,15 @@
 	lights_green_icon = 'icons/obj/doors/angled/external/lights_green.dmi'
 	lights_bolts_icon = 'icons/obj/doors/angled/external/lights_bolts.dmi'
 	lights_emag_icon = 'icons/obj/doors/angled/external/emag.dmi'
-/obj/machinery/door/airlock/angled/external/glass
+/obj/machinery/door/airlock/angled_bay/external/glass
 	icon_state = "preview_glass"
 	fill_type = FILL_GLASS
-/obj/machinery/door/airlock/angled/external/color
+/obj/machinery/door/airlock/angled_bay/external/color
 	icon_state = "preview_color"
 	fill_type = FILL_COLOR
 
 // Fills: Metal, glass
-/obj/machinery/door/airlock/angled/elevator
+/obj/machinery/door/airlock/angled_bay/elevator
 	icon = 'icons/obj/doors/angled/elevator/door.dmi'
 	fill_type = FILL_METAL
 
@@ -371,34 +371,34 @@
 	lights_green_icon = 'icons/obj/doors/angled/elevator/lights_green.dmi'
 	lights_bolts_icon = 'icons/obj/doors/angled/elevator/lights_bolts.dmi'
 	welded_icon = 'icons/obj/doors/angled/elevator/welded.dmi'
-/obj/machinery/door/airlock/angled/elevator/glass
+/obj/machinery/door/airlock/angled_bay/elevator/glass
 	icon_state = "preview_glass"
 	fill_type = FILL_GLASS
 
 
 // Very few options on these, basically just static doors.
-/obj/machinery/door/airlock/angled/hazard // firedoors
+/obj/machinery/door/airlock/angled_bay/hazard // firedoors
 	icon = 'icons/obj/doors/angled/hazard/door.dmi'
 
 	base_icon = 'icons/obj/doors/angled/hazard/door.dmi'
 	panel_icon = 'icons/obj/doors/angled/hazard/panel.dmi'
 	welded_icon = 'icons/obj/doors/angled/hazard/welded.dmi'
 
-/obj/machinery/door/airlock/angled/vault
+/obj/machinery/door/airlock/angled_bay/vault
 	icon = 'icons/obj/doors/angled/vault/door.dmi'
 	fill_type = FILL_METAL // the only option
 
 	base_icon = 'icons/obj/doors/angled/vault/door.dmi'
 	metal_fill_icon = 'icons/obj/doors/angled/vault/fill_steel.dmi'
 
-/obj/machinery/door/airlock/angled/secure
+/obj/machinery/door/airlock/angled_bay/secure
 	icon = 'icons/obj/doors/angled/secure/door.dmi'
 	fill_type = FILL_METAL // the only option
 
 	base_icon = 'icons/obj/doors/angled/secure/door.dmi'
 	metal_fill_icon = 'icons/obj/doors/angled/secure/fill_steel.dmi'
 
-/obj/machinery/door/airlock/angled/centcomm
+/obj/machinery/door/airlock/angled_bay/centcomm
 	icon = 'icons/obj/doors/angled/centcomm/door.dmi'
 	fill_type = FILL_METAL // the only option
 
@@ -409,7 +409,7 @@
 // Fills: Metal, glass, color
 // Supports stripe color
 // Supports door color
-/obj/machinery/door/airlock/angled/double
+/obj/machinery/door/airlock/angled_bay/double
 	width = 2
 	appearance_flags = 0
 	icon = 'icons/obj/doors/angled/double/door.dmi'
@@ -430,33 +430,33 @@
 	welded_icon = 'icons/obj/doors/angled/double/welded.dmi'
 	spark_damaged_icon = 'icons/obj/doors/angled/double/sparks_damaged.dmi'
 	spark_broken_icon = 'icons/obj/doors/angled/double/sparks_broken.dmi'
-/obj/machinery/door/airlock/angled/double/glass
+/obj/machinery/door/airlock/angled_bay/double/glass
 	icon_state = "preview_glass"
 	fill_type = FILL_GLASS
-/obj/machinery/door/airlock/angled/double/color
+/obj/machinery/door/airlock/angled_bay/double/color
 	icon_state = "preview_color"
 	fill_type = FILL_COLOR
 
-/obj/machinery/door/airlock/angled/double/Initialize(mapload)
+/obj/machinery/door/airlock/angled_bay/double/Initialize(mapload)
 	. = ..()
 	SetBounds()
 	apply_opacity_to_my_turfs(opacity)
 
-/obj/machinery/door/airlock/angled/double/set_opacity()
+/obj/machinery/door/airlock/angled_bay/double/set_opacity()
 	. = ..()
 	apply_opacity_to_my_turfs(opacity)
 
-/obj/machinery/door/airlock/angled/double/Moved()
+/obj/machinery/door/airlock/angled_bay/double/Moved()
 	. = ..()
 	SetBounds()
 
-/obj/machinery/door/airlock/angled/double/proc/apply_opacity_to_my_turfs(new_opacity)
+/obj/machinery/door/airlock/angled_bay/double/proc/apply_opacity_to_my_turfs(new_opacity)
 	for(var/turf/T in locs)
 		T.set_opacity(new_opacity)
 	update_nearby_tiles()
 
-/obj/machinery/door/airlock/angled/double/proc/SetBounds()
-	if(dir & 3)
+/obj/machinery/door/airlock/angled_bay/double/proc/SetBounds()
+	if(dir & 3) // weird, but their icons are 'backwards' so whatever
 		bound_width = width * world.icon_size
 		bound_height = world.icon_size
 	else
