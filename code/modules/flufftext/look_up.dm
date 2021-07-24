@@ -12,7 +12,11 @@
 		to_chat(usr, span("warning", "You appear to be in a place without any sort of concept of direction. You have bigger problems to worry about."))
 		return
 
+<<<<<<< HEAD
 	if(!T.outdoors) // They're inside.
+=======
+	if(!T.is_outdoors()) // They're inside.
+>>>>>>> 9f84b65a6ef... Merge pull request #8171 from Neerti/no_more_rain_indoors
 		to_chat(usr, "You see nothing interesting.")
 		return
 

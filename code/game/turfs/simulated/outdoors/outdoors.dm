@@ -1,6 +1,6 @@
 var/list/turf_edge_cache = list()
 
-/turf/
+/turf
 	// If greater than 0, this turf will apply edge overlays on top of other turfs cardinally adjacent to it, if those adjacent turfs are of a different icon_state,
 	// and if those adjacent turfs have a lower edge_blending_priority.
 	var/edge_blending_priority = 0
@@ -21,23 +21,60 @@ var/list/turf_edge_cache = list()
 	var/list/turf_layers = list(/turf/simulated/floor/outdoors/rocks)
 
 /turf/simulated/floor/Initialize(mapload)
+<<<<<<< HEAD
 	if(outdoors)
+=======
+	if(is_outdoors())
+>>>>>>> 9f84b65a6ef... Merge pull request #8171 from Neerti/no_more_rain_indoors
 		SSplanets.addTurf(src)
 	. = ..()
 
 /turf/simulated/floor/Destroy()
+<<<<<<< HEAD
 	if(outdoors)
 		SSplanets.removeTurf(src)
 	return ..()
 
 /turf/simulated/proc/make_outdoors()
 	if(outdoors)
+=======
+	if(is_outdoors())
+		SSplanets.removeTurf(src)
+	return ..()
+
+// Turfs can decide if they should be indoors or outdoors.
+// By default they choose based on their area's setting.
+// This helps cut down on ten billion `/outdoors` subtypes being needed.
+/turf/proc/is_outdoors()
+	return FALSE
+
+/turf/simulated/is_outdoors()
+	switch(outdoors)
+		if(OUTDOORS_YES)
+			return TRUE
+		if(OUTDOORS_NO)
+			return FALSE
+		if(OUTDOORS_AREA)
+			var/area/A = loc
+			if(A.outdoors == OUTDOORS_YES)
+				return TRUE
+	return FALSE
+
+/// Makes the turf explicitly outdoors.
+/turf/simulated/proc/make_outdoors()
+	if(is_outdoors()) // Already outdoors.
+>>>>>>> 9f84b65a6ef... Merge pull request #8171 from Neerti/no_more_rain_indoors
 		return
 	outdoors = TRUE
 	SSplanets.addTurf(src)
 
+/// Makes the turf explicitly indoors.
 /turf/simulated/proc/make_indoors()
+<<<<<<< HEAD
 	if(!outdoors)
+=======
+	if(!is_outdoors()) // Already indoors.
+>>>>>>> 9f84b65a6ef... Merge pull request #8171 from Neerti/no_more_rain_indoors
 		return
 	outdoors = FALSE
 	SSplanets.removeTurf(src)
@@ -45,7 +82,11 @@ var/list/turf_edge_cache = list()
 /turf/simulated/post_change()
 	..()
 	// If it was outdoors and still is, it will not get added twice when the planet controller gets around to putting it in.
+<<<<<<< HEAD
 	if(outdoors)
+=======
+	if(is_outdoors())
+>>>>>>> 9f84b65a6ef... Merge pull request #8171 from Neerti/no_more_rain_indoors
 		make_outdoors()
 	else
 		make_indoors()

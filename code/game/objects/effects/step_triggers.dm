@@ -217,7 +217,11 @@ var/global/list/tele_landmarks = list() // Terrible, but the alternative is loop
 			if(!istype(candidate) || istype(candidate, /turf/simulated/sky))
 				safety--
 				continue
+<<<<<<< HEAD
 			else if(candidate && !candidate.outdoors)
+=======
+			else if(candidate && !candidate.is_outdoors())
+>>>>>>> 9f84b65a6ef... Merge pull request #8171 from Neerti/no_more_rain_indoors
 				safety--
 				continue
 			else

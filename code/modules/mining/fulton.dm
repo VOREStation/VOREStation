@@ -42,7 +42,11 @@ var/global/list/total_extraction_beacons = list()
 		return
 	if(!can_use_indoors)
 		var/turf/T = get_turf(A)
+<<<<<<< HEAD
 		if(T && !T.outdoors)
+=======
+		if(T && !T.is_outdoors())
+>>>>>>> 9f84b65a6ef... Merge pull request #8171 from Neerti/no_more_rain_indoors
 			to_chat(user, "[src] can only be used on things that are outdoors!")
 			return
 	if(!flag)
@@ -145,7 +149,11 @@ var/global/list/total_extraction_beacons = list()
 
 /obj/item/fulton_core/attack_self(mob/user)
 	var/turf/T = get_turf(user)
+<<<<<<< HEAD
 	var/outdoors = T.outdoors
+=======
+	var/outdoors = T.is_outdoors()
+>>>>>>> 9f84b65a6ef... Merge pull request #8171 from Neerti/no_more_rain_indoors
 	if(do_after(user,15,target = user) && !QDELETED(src) && outdoors)
 		new /obj/structure/extraction_point(get_turf(user))
 		qdel(src)
