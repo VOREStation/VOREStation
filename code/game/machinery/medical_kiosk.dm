@@ -76,7 +76,7 @@
 		return
 	
 	// Service begins, delay
-	visible_message("<b>\The [src]</b> scans [user] thoroughly!</b>")
+	visible_message("<b>\The [src]</b> scans [user] thoroughly!")
 	flick("kiosk_active", src)
 	if(!do_after(user, 10 SECONDS, src, exclusive = TASK_ALL_EXCLUSIVE) || inoperable())
 		suspend()
@@ -86,13 +86,13 @@
 	switch(choice)
 		if("Health Scan")
 			var/health_report = tell_health_info(user)
-			to_chat(user, "<span class='notice'><b>Health report results:<b></span>"+health_report)
+			to_chat(user, "<span class='notice'><b>Health report results:</b></span>"+health_report)
 		if("Backup Scan")
 			if(!our_db)
-				to_chat(user, "<span class='notice'><b>Backup scan results:<b></span><br>DATABASE ERROR!")
+				to_chat(user, "<span class='notice'><b>Backup scan results:</b></span><br>DATABASE ERROR!")
 			else
 				var/scan_report = do_backup_scan(user)
-				to_chat(user, "<span class='notice'><b>Backup scan results:<b></span>"+scan_report)
+				to_chat(user, "<span class='notice'><b>Backup scan results:</b></span>"+scan_report)
 	
 	// Standby
 	suspend()
