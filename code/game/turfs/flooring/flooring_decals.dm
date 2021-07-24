@@ -16,8 +16,8 @@ var/list/floor_decals = list()
 		color = newcolour
 	..(newloc)
 
-// TODO: identify what is causing these atoms to be qdeleted in New()/Initialize() 
-// somewhere in this chain. Alternatively repath to /obj/floor_decal or some other 
+// TODO: identify what is causing these atoms to be qdeleted in New()/Initialize()
+// somewhere in this chain. Alternatively repath to /obj/floor_decal or some other
 // abstract handler that explicitly doesn't invoke any obj behavior.
 /obj/effect/floor_decal/Initialize()
 	add_to_turf_decals()
@@ -1217,3 +1217,28 @@ var/list/floor_decals = list()
 /obj/effect/floor_decal/grass_edge/corner
 	name = "grass edge"
 	icon_state = "grass_edge_corner"
+
+//Multi-part Floor Signs
+
+/obj/effect/floor_decal/arrivals
+	name = "arrivals sign"
+	icon_state = "arrivals_1"
+
+/obj/effect/floor_decal/arrivals/right
+	icon_state = "arrivals_2"
+
+/obj/effect/floor_decal/shuttles
+	name = "departures sign"
+	icon_state = "shuttle_1"
+
+/obj/effect/floor_decal/shuttles/right
+	icon_state = "shuttle_2"
+
+/obj/effect/floor_decal/arrow
+	name = "floor arrow"
+	icon_state = "arrow_single"
+
+/obj/effect/floor_decal/arrows
+	name = "floor arrows"
+	icon_state = "arrows"
+
