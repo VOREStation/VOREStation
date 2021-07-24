@@ -1478,7 +1478,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/onionrings
 	name = "onion rings"
 	desc = "Like circular fries but better."
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "onionrings"
 	trash = /obj/item/trash/plate
 	filling_color = "#eddd00"
@@ -1543,7 +1542,6 @@
 	name = "chili cheese fries"
 	gender = PLURAL
 	desc = "A mighty plate of fries, drowned in hot chili and cheese sauce. Because your arteries are overrated."
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "chilicheesefries"
 	trash = /obj/item/trash/plate
 	filling_color = "#EDDD00"
@@ -3101,7 +3099,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/pineapple
 	name = "ham & pineapple pizza"
 	desc = "One of the most debated pizzas in existence."
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "pineapple_pizza"
 	slice_path = /obj/item/weapon/reagent_containers/food/snacks/pineappleslice
 	slices_num = 6
@@ -3119,7 +3116,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/pineappleslice
 	name = "ham & pineapple pizza slice"
 	desc = "A slice of contraband."
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "pineapple_pizza_slice"
 	filling_color = "#BAA14C"
 	bitesize = 2
@@ -3709,7 +3705,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/bellefritter
 	name = "frostbelle fritters"
 	desc = "Frostbelles, prepared traditionally."
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "bellefritter"
 	filling_color = "#5dadcf"
 	center_of_mass = list("x"=16, "y"=12)
@@ -4363,7 +4358,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/mouseburger
 	name = "mouse burger"
 	desc = "Squeaky and a little furry."
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "ratburger"
 	center_of_mass = list("x"=16, "y"=11)
 	bitesize = 2
@@ -4413,7 +4407,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/spreads
 	name = "nutri-spread"
 	desc = "A stick of plant-based nutriments in a semi-solid form. I can't believe it's not margarine!"
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "marge"
 	bitesize = 2
 	center_of_mass = list("x"=16, "y"=16)
@@ -4422,8 +4415,6 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/spreads/butter
 	name = "butter"
-	desc = "A stick of pure butterfat made from milk products."
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "butter"
 	bitesize = 2
 	center_of_mass = list("x"=16, "y"=16)
@@ -4447,7 +4438,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/rawbacon
 	name = "raw bacon"
 	desc = "A very thin piece of raw meat, cut from beef."
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "rawbacon"
 	bitesize = 1
 	center_of_mass = list("x"=16, "y"=16)
@@ -4459,7 +4449,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/bacon
 	name = "bacon"
 	desc = "A tasty meat slice. You don't see any pigs on this station, do you?"
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "bacon"
 	bitesize = 2
 	center_of_mass = list("x"=16, "y"=16)
@@ -4467,7 +4456,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/bacon/microwave
 	name = "microwaved bacon"
 	desc = "A tasty meat slice. You don't see any pigs on this station, do you?"
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "bacon"
 	bitesize = 2
 	center_of_mass = list("x"=16, "y"=16)
@@ -4475,7 +4463,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/bacon/oven
 	name = "oven-cooked bacon"
 	desc = "A tasty meat slice. You don't see any pigs on this station, do you?"
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "bacon"
 	bitesize = 2
 	center_of_mass = list("x"=16, "y"=16)
@@ -4518,7 +4505,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/bacon_and_eggs
 	name = "bacon and eggs"
 	desc = "A piece of bacon and two fried eggs."
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "bacon_and_eggs"
 	trash = /obj/item/trash/plate
 
@@ -4542,7 +4528,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/corn_dog
 	name = "corn dog"
 	desc = "A cornbread covered sausage deepfried in oil."
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "corndog"
 	nutriment_desc = list("corn batter" = 4)
 	nutriment_amt = 4
@@ -4554,8 +4539,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/truffle
 	name = "chocolate truffle"
 	desc = "Rich bite-sized chocolate."
-	icon = 'icons/obj/food_syn.dmi'
-	icon_state = "truffle"
+	icon_state = "chocolatepiece_truffle"
 	nutriment_amt = 0
 	bitesize = 4
 
@@ -4633,7 +4617,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/burger/bacon
 	name = "bacon burger"
 	desc = "The cornerstone of every nutritious breakfast, now with bacon!"
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "baconburger"
 	filling_color = "#D63C3C"
 	center_of_mass = list("x"=16, "y"=11)
@@ -4662,7 +4645,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/soup/onion
 	name = "onion soup"
 	desc = "A soup with layers."
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "onionsoup"
 	trash = /obj/item/trash/snack_bowl
 	filling_color = "#E0C367"
@@ -4674,7 +4656,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/porkbowl
 	name = "pork bowl"
 	desc = "A bowl of fried rice with cuts of meat."
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "porkbowl"
 	trash = /obj/item/trash/snack_bowl
 	filling_color = "#FFFBDB"
@@ -4688,7 +4669,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/mashedpotato
 	name = "mashed potato"
 	desc = "Pillowy mounds of mashed potato."
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "mashedpotato"
 	trash = /obj/item/trash/plate
 	filling_color = "#EDDD00"
@@ -4744,7 +4724,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/croissant
 	name = "croissant"
 	desc = "True french cuisine."
-	icon = 'icons/obj/food_syn.dmi'
 	filling_color = "#E3D796"
 	icon_state = "croissant"
 	nutriment_amt = 4
@@ -4754,7 +4733,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/pancakes
 	name = "pancakes"
 	desc = "Pancakes with berries, delicious."
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "pancakes"
 	trash = /obj/item/trash/plate
 	center_of_mass = list("x"=15, "y"=11)
@@ -4764,7 +4742,6 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/nugget
 	name = "chicken nugget"
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "nugget_lump"
 	bitesize = 3
 
@@ -4778,7 +4755,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/icecreamsandwich
 	name = "ice cream sandwich"
 	desc = "Portable ice cream in its own packaging."
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "icecreamsandwich"
 	filling_color = "#343834"
 	center_of_mass = list("x"=15, "y"=4)
@@ -4847,7 +4823,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/tortilla
 	name = "tortilla"
 	desc = "A thin, flour-based tortilla that can be used in a variety of dishes, or can be served as is."
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "tortilla"
 	bitesize = 3
 	nutriment_desc = list("tortilla" = 1)
@@ -5145,7 +5120,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/breakfast_wrap
 	name = "breakfast wrap"
 	desc = "Bacon, eggs, cheese, and tortilla grilled to perfection."
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "breakfastwrap"
 	bitesize = 4
 	center_of_mass = list("x"=16, "y"=16)
@@ -5164,7 +5138,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/burrito_hell
 	name = "el diablo"
 	desc = "Meat and an insane amount of chillis packed in a flour tortilla. The Chaplain will see you now."
-	icon_state = "hellfireburritoburrito"
+	icon_state = "hellfireburrito"
 	bitesize = 4
 	center_of_mass = list("x"=16, "y"=16)
 	nutriment_desc = list("hellfire" = 6)
@@ -5180,7 +5154,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/hatchling_suprise
 	name = "hatchling suprise"
 	desc = "A poached egg on top of three slices of bacon. A typical breakfast for hungry Unathi children."
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "hatchling_suprise"
 	trash = /obj/item/trash/snack_bowl
 
@@ -5192,7 +5165,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/red_sun_special
 	name = "red sun special"
 	desc = "One lousy piece of sausage sitting on melted cheese curds. A popular utilitarian meal for the Unathi of Moghes."
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "red_sun_special"
 	trash = /obj/item/trash/plate
 
@@ -5203,7 +5175,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/riztizkzi_sea
 	name = "moghesian sea delight"
 	desc = "Three raw eggs floating in a sea of blood. An authentic replication of an ancient Unathi delicacy."
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "riztizkzi_sea"
 	trash = /obj/item/trash/snack_bowl
 
@@ -5320,7 +5291,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/bearburger
 	name = "bearburger"
 	desc = "The solution to your unbearable hunger."
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "bearburger"
 	filling_color = "#5d5260"
 	center_of_mass = list("x"=15, "y"=11)
@@ -5389,7 +5359,6 @@
 	name = "lo mein"
 	gender = PLURAL
 	desc = "A popular Chinese noodle dish. Chopsticks optional."
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "lomein"
 	trash = /obj/item/trash/plate
 	filling_color = "#FCEE81"
@@ -5406,7 +5375,6 @@
 	name = "fried rice"
 	gender = PLURAL
 	desc = "A less-boring dish of less-boring rice!"
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "friedrice"
 	trash = /obj/item/trash/snack_bowl
 	filling_color = "#FFFBDB"
