@@ -46,10 +46,10 @@
 				return
 
 		// Create a ceiling to shield from the weather
-		if(src.outdoors == OUTDOORS_YES)
+		if(src.is_outdoors())
 			for(var/dir in cardinal)
 				var/turf/A = get_step(src, dir)
-				if(A && !A.outdoors == OUTDOORS_YES)
+				if(A && !A.is_outdoors())
 					if(expended_tile || R.use(1))
 						make_indoors()
 						playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)

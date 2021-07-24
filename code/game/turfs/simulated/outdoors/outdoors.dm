@@ -1,6 +1,6 @@
 var/list/turf_edge_cache = list()
 
-/turf/
+/turf
 	// If greater than 0, this turf will apply edge overlays on top of other turfs cardinally adjacent to it, if those adjacent turfs are of a different icon_state,
 	// and if those adjacent turfs have a lower edge_blending_priority.
 	var/edge_blending_priority = 0
@@ -26,19 +26,22 @@ var/list/turf_edge_cache = list()
 	var/list/turf_layers = list(/turf/simulated/floor/outdoors/rocks)
 
 /turf/simulated/floor/Initialize(mapload)
-	if(should_be_outdoors())
+	if(is_outdoors())
 		SSplanets.addTurf(src)
 	. = ..()
 
 /turf/simulated/floor/Destroy()
-	if(should_be_outdoors())
+	if(is_outdoors())
 		SSplanets.removeTurf(src)
 	return ..()
 
 // Turfs can decide if they should be indoors or outdoors.
 // By default they choose based on their area's setting.
 // This helps cut down on ten billion `/outdoors` subtypes being needed.
-/turf/simulated/proc/should_be_outdoors()
+/turf/proc/is_outdoors()
+	return FALSE
+
+/turf/simulated/is_outdoors()
 	switch(outdoors)
 		if(OUTDOORS_YES)
 			return TRUE
@@ -50,14 +53,16 @@ var/list/turf_edge_cache = list()
 				return TRUE
 	return FALSE
 
+/// Makes the turf explicitly outdoors.
 /turf/simulated/proc/make_outdoors()
-	if(outdoors == OUTDOORS_YES)
+	if(is_outdoors()) // Already outdoors.
 		return
 	outdoors = OUTDOORS_YES
 	SSplanets.addTurf(src)
 
+/// Makes the turf explicitly indoors.
 /turf/simulated/proc/make_indoors()
-	if(!outdoors == OUTDOORS_NO)
+	if(!is_outdoors()) // Already indoors.
 		return
 	outdoors = OUTDOORS_NO
 	SSplanets.removeTurf(src)
@@ -65,7 +70,7 @@ var/list/turf_edge_cache = list()
 /turf/simulated/post_change()
 	..()
 	// If it was outdoors and still is, it will not get added twice when the planet controller gets around to putting it in.
-	if(outdoors == OUTDOORS_YES)
+	if(is_outdoors())
 		make_outdoors()
 	else
 		make_indoors()
