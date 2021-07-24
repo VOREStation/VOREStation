@@ -49,7 +49,11 @@ var/global/list/stool_cache = list() //haha stool
 	if(padding_material)
 		var/padding_cache_key = "[base_icon]-padding-[padding_material.name]"
 		if(isnull(stool_cache[padding_cache_key]))
+<<<<<<< HEAD
 			var/image/I =  image(icon, "[base_icon]_padding") //VOREStation Edit
+=======
+			var/image/I =  image(icon, "[base_icon]_padding")
+>>>>>>> daa36c205e7... Merge pull request #8173 from Cerebulon/tgportports
 			I.color = padding_material.icon_colour
 			stool_cache[padding_cache_key] = I
 		add_overlay(stool_cache[padding_cache_key])
@@ -149,3 +153,22 @@ var/global/list/stool_cache = list() //haha stool
 		remove_padding()
 	else
 		..()
+
+/obj/item/weapon/stool/barstool
+	name = "bar stool"
+	desc = "Apply butt."
+	icon = 'icons/obj/furniture.dmi'
+	icon_state = "bar_stool_preview" //set for the map
+	randpixel = 0
+	center_of_mass = null
+	force = 10
+	throwforce = 10
+	w_class = ITEMSIZE_HUGE
+	base_icon = "bar_stool_base"
+	anchored = 1
+
+/obj/item/weapon/stool/barstool/padded
+	icon_state = "bar_stool_padded_preview" //set for the map
+
+/obj/item/weapon/stool/barstool/padded/New(var/newloc, var/new_material)
+	..(newloc, "steel", "carpet")

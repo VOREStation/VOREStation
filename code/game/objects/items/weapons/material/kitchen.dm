@@ -114,6 +114,10 @@
 /obj/item/weapon/material/kitchen/utensil/spork/plastic
 	default_material = "plastic"
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> daa36c205e7... Merge pull request #8173 from Cerebulon/tgportports
 /obj/item/weapon/material/kitchen/utensil/spoon
 	name = "spoon"
 	desc = "It's a spoon. You can see your own upside-down face in it."

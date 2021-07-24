@@ -18,7 +18,7 @@
 	icon_state = "sheet-log"
 	default_type = MAT_LOG
 	no_variants = FALSE
-	color = "#824B28"
+	color = WOOD_COLOR_FURNITURE
 	max_amount = 25
 	w_class = ITEMSIZE_HUGE
 	description_info = "Use inhand to craft things, or use a sharp and edged object on this to convert it into two wooden planks."

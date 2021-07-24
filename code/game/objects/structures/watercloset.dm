@@ -5,8 +5,13 @@
 	desc = "The HT-451, a torque rotation-based, waste disposal unit for small matter. This one seems remarkably clean."
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "toilet"
+<<<<<<< HEAD
 	density = FALSE
 	anchored = TRUE
+=======
+	density = 0
+	anchored = 1
+>>>>>>> daa36c205e7... Merge pull request #8173 from Cerebulon/tgportports
 	var/open = 0			//if the lid is up
 	var/cistern = 0			//if the cistern bit is open
 	var/w_items = 0			//the combined w_class of all the items in the cistern
@@ -41,7 +46,11 @@
 	update_icon()
 
 /obj/structure/toilet/update_icon()
+<<<<<<< HEAD
 	icon_state = "[initial(icon_state)][open][cistern]"
+=======
+	icon_state = "toilet[initial(icon_state)][open][cistern]"
+>>>>>>> daa36c205e7... Merge pull request #8173 from Cerebulon/tgportports
 
 /obj/structure/toilet/attackby(obj/item/I as obj, mob/living/user as mob)
 	if(I.is_crowbar())
@@ -95,12 +104,20 @@
 	name = "prison toilet"
 	icon_state = "toilet2"
 
+<<<<<<< HEAD
+=======
+/obj/structure/toilet/prison
+	name = "prison toilet"
+	icon_state = "toilet2"
+
+>>>>>>> daa36c205e7... Merge pull request #8173 from Cerebulon/tgportports
 /obj/structure/toilet/prison/attack_hand(mob/living/user)
 	return
 
 /obj/structure/toilet/prison/attackby(obj/item/I, mob/living/user)
 	if(istype(I, /obj/item/weapon/grab))
 		user.setClickCooldown(user.get_attack_speed(I))
+<<<<<<< HEAD
 		var/obj/item/weapon/grab/G = I
 
 		if(isliving(G.affecting))
@@ -124,6 +141,32 @@
 			else
 				to_chat(user, "<span class='notice'>You need a tighter grip.</span>")
 	
+=======
+
+	var/obj/item/weapon/grab/G = I
+
+	if(isliving(G.affecting))
+		var/mob/living/GM = G.affecting
+
+		if(G.state>1)
+			if(!GM.loc == get_turf(src))
+				to_chat(user, "<span class='notice'>[GM.name] needs to be on the toilet.</span>")
+				return
+			if(open && !swirlie)
+				user.visible_message("<span class='danger'>[user] starts to give [GM.name] a swirlie!</span>", "<span class='notice'>You start to give [GM.name] a swirlie!</span>")
+				swirlie = GM
+				if(do_after(user, 30, GM))
+					user.visible_message("<span class='danger'>[user] gives [GM.name] a swirlie!</span>", "<span class='notice'>You give [GM.name] a swirlie!</span>", "You hear a toilet flushing.")
+					if(!GM.internal)
+						GM.adjustOxyLoss(5)
+				swirlie = null
+			else
+				user.visible_message("<span class='danger'>[user] slams [GM.name] into the [src]!</span>", "<span class='notice'>You slam [GM.name] into the [src]!</span>")
+				GM.adjustBruteLoss(5)
+		else
+			to_chat(user, "<span class='notice'>You need a tighter grip.</span>")
+
+>>>>>>> daa36c205e7... Merge pull request #8173 from Cerebulon/tgportports
 
 /obj/structure/urinal
 	name = "urinal"
@@ -306,7 +349,7 @@
 	honk_sound = 'sound/voice/quack.ogg' //VOREStation edit
 
 /obj/structure/sink
-	name = "sink"
+	name = "bathroom sink"
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "sink"
 	desc = "A sink used for washing one's hands and face."
@@ -427,6 +470,14 @@
 /obj/structure/sink/countertop
 	name = "countertop sink"
 	icon_state = "sink3"
+
+/obj/structure/sink/countertop
+	name = "countertop sink"
+	icon_state = "sink3"
+
+/obj/structure/sink/generic
+	name = "sink"
+	icon_state = "sink4"
 
 /obj/structure/sink/puddle	//splishy splashy ^_^
 	name = "puddle"

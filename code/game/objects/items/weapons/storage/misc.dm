@@ -33,6 +33,7 @@ var/list/random_weighted_donuts = list(
 	icon_state = "donutbox"
 	name = "donut box"
 	desc = "A box that holds tasty donuts, if you're lucky."
+	description_fluff = "While the slogan on the box claims that these donuts are 'baked fresh locally', there is technically no legal marketing definition for 'fresh', 'local', or indeed 'baked'."
 	center_of_mass = list("x" = 16,"y" = 9)
 	max_storage_space = ITEMSIZE_COST_SMALL * 6
 	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/donut)
@@ -48,7 +49,11 @@ var/list/random_weighted_donuts = list(
 	update_icon()
 
 /obj/item/weapon/storage/box/donut/update_icon()
+<<<<<<< HEAD
 	cut_overlays()
+=======
+	overlays.Cut()
+>>>>>>> daa36c205e7... Merge pull request #8173 from Cerebulon/tgportports
 	var/x_offset = 0
 	for(var/obj/item/weapon/reagent_containers/food/snacks/donut/D in contents)
 		var/mutable_appearance/ma = mutable_appearance(icon = icon, icon_state = D.overlay_state)

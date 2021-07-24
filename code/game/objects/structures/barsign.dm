@@ -3,6 +3,7 @@
 	icon = 'icons/obj/barsigns.dmi'
 	plane = ABOVE_PLANE
 	icon_state = "empty"
+	plane = ABOVE_PLANE
 	appearance_flags = 0
 	anchored = TRUE
 	var/cult = 0

@@ -660,7 +660,19 @@
 				/obj/item/toy/figure/warden,
 				/obj/item/toy/figure/psychologist,
 				/obj/item/toy/figure/paramedic,
-				/obj/item/toy/figure/ert)
+				/obj/item/toy/figure/ert,
+				/obj/item/toy/figure/un,
+				/obj/item/toy/figure/selene,
+				/obj/item/toy/figure/nock,
+				/obj/item/toy/figure/carrion,
+				/obj/item/toy/figure/zaddat,
+				/obj/item/toy/figure/discovery,
+				/obj/item/toy/figure/rooster,
+				/obj/item/toy/figure/barking_dog,
+				/obj/item/toy/figure/tajaran,
+				/obj/item/toy/figure/red_soldier,
+				/obj/item/toy/figure/shitcurity,
+				/obj/item/toy/figure/vir_patrolman)
 
 /obj/random/plushie
 	name = "random plushie"

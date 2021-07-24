@@ -140,6 +140,16 @@
 	force_divisor = 0.25 // 15 when wielded with hardness 60 (steel)
 	attack_verb = list("cleaved", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
+/obj/item/weapon/material/knife/table
+	name = "table knife"
+	icon = 'icons/obj/kitchen.dmi'
+	icon_state = "knife_table"
+	sharp = FALSE // blunted tip
+	force_divisor = 0.1
+
+/obj/item/weapon/material/knife/table/plastic
+	default_material = "plastic"
+
 /obj/item/weapon/material/knife/machete
 	name = "machete"
 	desc = "A sharp machete often found in survival kits."

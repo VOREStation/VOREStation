@@ -409,6 +409,10 @@
 	name = "plain donut"
 	icon_state = "donut"
 	desc = "A plain ol' donut."
+<<<<<<< HEAD
+=======
+
+>>>>>>> daa36c205e7... Merge pull request #8173 from Cerebulon/tgportports
 /obj/item/weapon/reagent_containers/food/snacks/donut/plain/Initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 3, nutriment_desc)
@@ -417,6 +421,7 @@
 	name = "plain jelly donut"
 	icon_state = "jelly"
 	desc = "At least this one has jelly!"
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/snacks/donut/plain/jelly/Initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 3, nutriment_desc)
@@ -458,11 +463,63 @@
 	reagents.add_reagent("nutriment", 3, nutriment_desc)
 	reagents.add_reagent("berryjuice", 5)
 
+=======
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/plain/jelly/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent("berryjuice", 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/pink
+	name = "pink frosted donut"
+	icon_state = "donut_pink"
+	desc = "This one has pink frosting!"
+	overlay_state = "donut_pink_inbox"
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/pink/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 3, nutriment_desc)
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/pink/jelly
+	name = "pink frosted jelly donut"
+	icon_state = "jelly_pink"
+	desc = "This one has pink frosting and a jelly filling!"
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/pink/jelly/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent("berryjuice", 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/purple
+	name = "purple frosted donut"
+	icon_state = "donut_purple"
+	desc = "This one has purple frosting!"
+	overlay_state = "donut_purple_inbox"
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/purple/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 3, nutriment_desc)
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/purple/jelly
+	name = "purple frosted jelly donut"
+	icon_state = "jelly_purple"
+	desc = "This one has purple frosting and a jelly filling!"
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/purple/jelly/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent("berryjuice", 5)
+
+>>>>>>> daa36c205e7... Merge pull request #8173 from Cerebulon/tgportports
 /obj/item/weapon/reagent_containers/food/snacks/donut/green
 	name = "green frosted donut"
 	icon_state = "donut_green"
 	desc = "This one has green frosting!"
 	overlay_state = "donut_green_inbox"
+<<<<<<< HEAD
+=======
+
+>>>>>>> daa36c205e7... Merge pull request #8173 from Cerebulon/tgportports
 /obj/item/weapon/reagent_containers/food/snacks/donut/green/Initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 3, nutriment_desc)
@@ -471,6 +528,10 @@
 	name = "green frosted jelly donut"
 	icon_state = "jelly_green"
 	desc = "This one has green frosting and a jelly filling!"
+<<<<<<< HEAD
+=======
+
+>>>>>>> daa36c205e7... Merge pull request #8173 from Cerebulon/tgportports
 /obj/item/weapon/reagent_containers/food/snacks/donut/green/jelly/Initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 3, nutriment_desc)
@@ -481,6 +542,10 @@
 	icon_state = "donut_beige"
 	desc = "This one has beige frosting!"
 	overlay_state = "donut_beige_inbox"
+<<<<<<< HEAD
+=======
+
+>>>>>>> daa36c205e7... Merge pull request #8173 from Cerebulon/tgportports
 /obj/item/weapon/reagent_containers/food/snacks/donut/beige/Initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 3, nutriment_desc)
@@ -489,6 +554,10 @@
 	name = "beige frosted jelly donut"
 	icon_state = "jelly_beige"
 	desc = "This one has beige frosting and a jelly filling!"
+<<<<<<< HEAD
+=======
+
+>>>>>>> daa36c205e7... Merge pull request #8173 from Cerebulon/tgportports
 /obj/item/weapon/reagent_containers/food/snacks/donut/beige/jelly/Initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 3, nutriment_desc)
@@ -499,6 +568,10 @@
 	icon_state = "donut_choc"
 	desc = "This one has chocolate frosting!"
 	overlay_state = "donut_choc_inbox"
+<<<<<<< HEAD
+=======
+
+>>>>>>> daa36c205e7... Merge pull request #8173 from Cerebulon/tgportports
 /obj/item/weapon/reagent_containers/food/snacks/donut/choc/Initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 3, nutriment_desc)
@@ -507,6 +580,10 @@
 	name = "chocolate frosted jelly donut"
 	icon_state = "jelly_choc"
 	desc = "This one has chocolate frosting and a jelly filling!"
+<<<<<<< HEAD
+=======
+
+>>>>>>> daa36c205e7... Merge pull request #8173 from Cerebulon/tgportports
 /obj/item/weapon/reagent_containers/food/snacks/donut/choc/jelly/Initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 3, nutriment_desc)
@@ -517,6 +594,10 @@
 	icon_state = "donut_blue"
 	desc = "This one has blue frosting!"
 	overlay_state = "donut_blue_inbox"
+<<<<<<< HEAD
+=======
+
+>>>>>>> daa36c205e7... Merge pull request #8173 from Cerebulon/tgportports
 /obj/item/weapon/reagent_containers/food/snacks/donut/blue/Initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 3, nutriment_desc)
@@ -525,6 +606,10 @@
 	name = "blue frosted jelly donut"
 	icon_state = "jelly_blue"
 	desc = "This one has blue frosting and a jelly filling!"
+<<<<<<< HEAD
+=======
+
+>>>>>>> daa36c205e7... Merge pull request #8173 from Cerebulon/tgportports
 /obj/item/weapon/reagent_containers/food/snacks/donut/blue/jelly/Initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 3, nutriment_desc)
@@ -535,6 +620,10 @@
 	icon_state = "donut_yellow"
 	desc = "This one has yellow frosting!"
 	overlay_state = "donut_yellow_inbox"
+<<<<<<< HEAD
+=======
+
+>>>>>>> daa36c205e7... Merge pull request #8173 from Cerebulon/tgportports
 /obj/item/weapon/reagent_containers/food/snacks/donut/yellow/Initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 3, nutriment_desc)
@@ -543,6 +632,10 @@
 	name = "yellow frosted jelly donut"
 	icon_state = "jelly_yellow"
 	desc = "This one has yellow frosting and a jelly filling!"
+<<<<<<< HEAD
+=======
+
+>>>>>>> daa36c205e7... Merge pull request #8173 from Cerebulon/tgportports
 /obj/item/weapon/reagent_containers/food/snacks/donut/yellow/jelly/Initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 3, nutriment_desc)
@@ -553,6 +646,10 @@
 	icon_state = "donut_olive"
 	desc = "This one has olive frosting!"
 	overlay_state = "donut_olive_inbox"
+<<<<<<< HEAD
+=======
+
+>>>>>>> daa36c205e7... Merge pull request #8173 from Cerebulon/tgportports
 /obj/item/weapon/reagent_containers/food/snacks/donut/olive/Initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 3, nutriment_desc)
@@ -561,6 +658,10 @@
 	name = "olive frosted jelly donut"
 	icon_state = "jelly_olive"
 	desc = "This one has olive frosting and a jelly filling!"
+<<<<<<< HEAD
+=======
+
+>>>>>>> daa36c205e7... Merge pull request #8173 from Cerebulon/tgportports
 /obj/item/weapon/reagent_containers/food/snacks/donut/olive/jelly/Initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 3, nutriment_desc)
@@ -571,6 +672,7 @@
 	icon_state = "donut_homer"
 	desc = "It's a d'ohnut!"
 	overlay_state = "donut_homer_inbox"
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/snacks/donut/homer/Initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 3, nutriment_desc)
@@ -604,6 +706,45 @@
 	. = ..()
 	reagents.add_reagent("nutriment", 3, nutriment_desc)
 	reagents.add_reagent("sprinkles", 1)
+=======
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/homer/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent("sprinkles", 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/homer/jelly
+	name = "frosted jelly donut with sprinkles"
+	icon_state = "jelly_homer"
+	desc = "It's a d'ohnut with jelly filling!"
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/homer/jelly/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent("sprinkles", 1)
+	reagents.add_reagent("berryjuice", 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/choc_sprinkles
+	name = "chocolate sprinkles donut"
+	icon_state = "donut_choc_sprinkles"
+	desc = "Mmm, chocolate with sprinkles... approaching maximum donut."
+	overlay_state = "donut_choc_sprinkles_inbox"
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/choc_sprinkles/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent("sprinkles", 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/choc_sprinkles/jelly
+	name = "chocolate sprinkles jelly donut"
+	icon_state = "jelly_choc_sprinkles"
+	desc = "Pretty sure this is the most sugar you can pack into a donut."
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/choc_sprinkles/jelly/Initialize()
+	. = ..()
+	reagents.add_reagent("nutriment", 3, nutriment_desc)
+	reagents.add_reagent("sprinkles", 1)
+>>>>>>> daa36c205e7... Merge pull request #8173 from Cerebulon/tgportports
 	reagents.add_reagent("berryjuice", 5)
 
 /obj/item/weapon/reagent_containers/food/snacks/donut/meat
@@ -611,6 +752,10 @@
 	icon_state = "donut_meat"
 	desc = "This donut has ... meat? Is it made of meat?!"
 	overlay_state = "donut_meat_inbox"
+<<<<<<< HEAD
+=======
+
+>>>>>>> daa36c205e7... Merge pull request #8173 from Cerebulon/tgportports
 /obj/item/weapon/reagent_containers/food/snacks/donut/meat/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 3, nutriment_desc)
@@ -620,6 +765,10 @@
 	icon_state = "donut_laugh"
 	desc = "Try not to laugh."
 	overlay_state = "donut_laugh_inbox"
+<<<<<<< HEAD
+=======
+
+>>>>>>> daa36c205e7... Merge pull request #8173 from Cerebulon/tgportports
 /obj/item/weapon/reagent_containers/food/snacks/donut/laugh/Initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 3, nutriment_desc)
@@ -628,11 +777,18 @@
 	name = "laugh jelly donut"
 	icon_state = "jelly_laugh"
 	desc = "Try not to be jelly."
+<<<<<<< HEAD
+=======
+
+>>>>>>> daa36c205e7... Merge pull request #8173 from Cerebulon/tgportports
 /obj/item/weapon/reagent_containers/food/snacks/donut/laugh/jelly/Initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 3, nutriment_desc)
 	reagents.add_reagent("berryjuice", 5)
+<<<<<<< HEAD
 
+=======
+>>>>>>> daa36c205e7... Merge pull request #8173 from Cerebulon/tgportports
 
 /obj/item/weapon/reagent_containers/food/snacks/donut/chaos
 	name = "Chaos Donut"
@@ -667,6 +823,14 @@
 			reagents.add_reagent("berryjuice", 3)
 		if(10)
 			reagents.add_reagent("tricordrazine", 3)
+<<<<<<< HEAD
+=======
+	if(prob(30))
+		src.icon_state = "donut2"
+		src.overlay_state = "box-donut2"
+		src.name = "Frosted Chaos Donut"
+		reagents.add_reagent("sprinkles", 2)
+>>>>>>> daa36c205e7... Merge pull request #8173 from Cerebulon/tgportports
 
 /obj/item/weapon/reagent_containers/food/snacks/donut/plain/jelly/poisonberry
 	filling_color = "#ED1169"
@@ -688,7 +852,10 @@
 /obj/item/weapon/reagent_containers/food/snacks/donut/plain/jelly/cherryjelly/Initialize()
 	. = ..()
 	reagents.add_reagent("cherryjelly", 5)
+<<<<<<< HEAD
 
+=======
+>>>>>>> daa36c205e7... Merge pull request #8173 from Cerebulon/tgportports
 
 /obj/item/weapon/reagent_containers/food/snacks/egg
 	name = "egg"

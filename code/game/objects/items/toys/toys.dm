@@ -668,6 +668,7 @@
 	icon_state = "ert"
 	toysay = "We're probably the good guys!"
 
+<<<<<<< HEAD
 // Eris
 /obj/item/toy/figure/excelsior
 	name = "\"Excelsior\" figurine"
@@ -736,6 +737,82 @@
 	desc = "The plaque seems flaked with rust residue, \"London Metro\" brand it reads. The man wears some kind of enforcer's uniform, with the acronym \"VPP\" on their left shoulder and cap. \
 	\"Abandoned for Escalation, the patrolman grumbles.\""
 	icon_state = "metro_patrolman"
+=======
+
+// Eris
+/obj/item/toy/figure/un
+	name = "UN soldier figurine"
+	desc = "A FunFig 'History's Heroes and Curios' branded figurine of a United Nations soldier, adorned in their iconic 22nd century armor. There is still a price tag on the back of the base, six-hundred credits, people collect these things?"
+	icon_state = "unitednations"
+	toysay = "For unity!"
+
+/obj/item/toy/figure/selene
+	name = "Selene Federation figurine"
+	desc = "A FunFig 'History's Heroes and Curios' branded figurine, the basic olive drab a popular pick for many in the Selene Federation's rag-tag colonial militia. Farming accessories not included."
+	icon_state = "selene"
+	toysay = "We will not be shackled by Earth!"
+
+/obj/item/toy/figure/nock
+	name = "Nock acolyte figurine"
+	desc = "A FunFig 'Horrors Beyond' branded figurine, depicting a follower of the oft-maligned Nock religion. The sinister design doesn't do much to challenge perceptions of the group as a 'blood cult'."
+	icon_state = "acolyte"
+	toysay = "Praise the Outworlders, and be born anew!"
+
+/obj/item/toy/figure/carrion
+	name = "carrion figurine"
+	desc = "A FunFig 'Horrors Beyond' branded figurine depicting a grotesque head of flesh, the Human features seem almost underdeveloped, its skull bulging outwards, mouth agape with torn flesh. \
+	Whoever made this certainly knew how to thin their paints."
+	icon_state = "carrion"
+	toysay = "Kill me!"
+
+/obj/item/toy/figure/zaddat
+	name = "Zaddat figurine"
+	desc = "A 'History's Heroes and Curios' branded figurine which attempts to depict a Zaddat prior to their species' genetic degradation and confinement to suits. It doesn't seem all that accurate."
+	icon_state = "zaddat"
+	toysay = "Recycle!"
+
+/obj/item/toy/figure/discovery
+	name = "Galactic Survey figurine"
+	desc = "A FunFig 'Discovery' branded figurine showcasing a member of the Galactic Survey Administration, wearing the typical safety-orange uniform of the branch."
+	icon_state = "discovery"
+	toysay = "No star is too far!"
+
+/obj/item/toy/figure/rooster
+	name = "rooster figurine"
+	desc = "A \"Space Vice\" brand figurine, there is no further manufacturer information. It's a man wearing a rooster mask, and a varsity jacket with the letter \"B\" emblazoned on the front."
+	icon_state = "rooster"
+	toysay = "Do you like hurting other people?"
+
+/obj/item/toy/figure/barking_dog
+	name = "barking dog figurine"
+	desc = "A FunFig 'Movie Madness IX'. A metal soldier with the mask of a hound stands upon the base, the plaque seems smeared with caked grime."
+	icon_state = "barking_dog"
+	toysay = "A dog barks on its master's orders, lest its pack runs astray. Whatever the task, the grim dog mask would tell you that your life was done."
+
+/obj/item/toy/figure/red_soldier
+	name = "red soldier figurine"
+	desc = "A curiously unbranded, cheap looking figurine of a red soldier fighting in the tides of war, their humanity hidden by a gas mask."
+	icon_state = "red_soldier"
+	toysay = "Why do we fight? To win the war, of course."
+
+/obj/item/toy/figure/tajaran
+	name = "Tajaran pioneer figurine"
+	desc = "A FunFig 'History's Heroes and Curios' branded figurine depicting a Tajaran in a rudimentary voidsuit typical of early space exploration efforts by the species."
+	icon_state = "tajaran"
+	toysay = "Meow!"
+
+/obj/item/toy/figure/shitcurity
+	name = "NanoTrasen officer figurine"
+	desc = "A figurine of a classic redshirt of 'Nanotrasen's finest' apparently produced by Hedberg-Hammarstrom. Their belly distends out into an obvious beer gut, revealing no form of manufacturer bias what-so-ever."
+	icon_state = "shitcurity"
+	toysay = "I joined just to kill people!"
+
+/obj/item/toy/figure/vir_patrolman
+	name = "SifGuard patrolman figurine"
+	desc = "A figurine depicting a sharply dressed SifGuard law enforcement patrolman with the acronym 'VGA' on their left shoulder and cap. Apparently produced by Hedberg-Hammarstrom."
+	icon_state = "vir_patrolman"
+	toysay = "Trust in us to keep your family safe!"
+>>>>>>> daa36c205e7... Merge pull request #8173 from Cerebulon/tgportports
 
 
 /*
@@ -1258,6 +1335,11 @@
 	icon_state = "therapygreen"
 	item_state = "egg3" // It's the green egg in items_left/righthand
 
+/obj/structure/plushie/fumo
+	name = "Fumo"
+	desc = "A plushie of a....?."
+	icon_state = "fumoplushie"
+	phrase = "I just don't think about losing."
 
 //Toy cult sword
 /obj/item/toy/cultsword

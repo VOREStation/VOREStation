@@ -43,7 +43,7 @@
 
 /obj/structure/table/wooden_reinforced
 	icon_state = "reinf_preview"
-	color = "#824B28"
+	color = WOOD_COLOR_FURNITURE
 
 /obj/structure/table/wooden_reinforced/New()
 	material = get_material_by_name("wood")
@@ -52,15 +52,15 @@
 
 /obj/structure/table/woodentable
 	icon_state = "plain_preview"
-	color = "#824B28"
+	color = WOOD_COLOR_FURNITURE
 
 /obj/structure/table/woodentable/New()
 	material = get_material_by_name("wood")
 	..()
 
-/obj/structure/table/sifwoodentable
+/obj/structure/table/sifwoodentable //Shouldn't these be blue?
 	icon_state = "plain_preview"
-	color = "#824B28"
+	color = WOOD_COLOR_FURNITURE
 
 /obj/structure/table/sifwoodentable/New()
 	material = get_material_by_name("alien wood")
@@ -68,7 +68,7 @@
 
 /obj/structure/table/sifwooden_reinforced
 	icon_state = "reinf_preview"
-	color = "#824B28"
+	color = WOOD_COLOR_FURNITURE
 
 /obj/structure/table/sifwooden_reinforced/New()
 	material = get_material_by_name("alien wood")
@@ -188,7 +188,7 @@
 */
 /obj/structure/table/bench/wooden
 	icon_state = "plain_preview"
-	color = "#824B28"
+	color = WOOD_COLOR_FURNITURE
 
 /obj/structure/table/bench/wooden/New()
 	material = get_material_by_name("wood")
@@ -196,7 +196,7 @@
 
 /obj/structure/table/bench/sifwooden
 	icon_state = "plain_preview"
-	color = "#824B28"
+	color = WOOD_COLOR_FURNITURE
 
 /obj/structure/table/bench/sifwooden/New()
 	material = get_material_by_name("alien wood")

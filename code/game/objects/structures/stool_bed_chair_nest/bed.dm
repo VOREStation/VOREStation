@@ -20,11 +20,10 @@
 	var/datum/material/material
 	var/datum/material/padding_material
 	var/base_icon = "bed"
-	var/applies_material_colour = 1
+	var/applies_material_colour = 1 //Set to 0 whenever defining a custom colour or it will apply additively to the material, or when no colour overlay should be present.
 
 /obj/structure/bed/New(var/newloc, var/new_material, var/new_padding_material)
 	..(newloc)
-	color = null
 	if(!new_material)
 		new_material = MAT_STEEL
 	material = get_material_by_name(new_material)
@@ -47,7 +46,7 @@
 	var/cache_key = "[base_icon]-[material.name]"
 	if(isnull(stool_cache[cache_key]))
 		var/image/I = image(icon, base_icon)
-		if(applies_material_colour) //VOREStation Add - Goes with added var
+		if(applies_material_colour)
 			I.color = material.icon_colour
 		stool_cache[cache_key] = I
 	add_overlay(stool_cache[cache_key])
@@ -290,7 +289,7 @@
 
 /obj/structure/bed/roller/Moved(atom/old_loc, direction, forced = FALSE)
 	. = ..()
-	
+
 	playsound(src, 'sound/effects/roll.ogg', 100, 1)
 
 /obj/structure/bed/roller/post_buckle_mob(mob/living/M as mob)

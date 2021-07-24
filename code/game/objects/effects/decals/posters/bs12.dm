@@ -334,6 +334,7 @@
 	icon_state="bsposter56"
 	name = "Mars appreciation poster"
 	desc = "This is a poster produced by the Visit Space Society. This one suggests you visit historic Mars. Come for the domes, stay for the monuments to hubris!"
+	listing_name = "Tourism - Mars"
 
 /decl/poster/bay_57
 	icon_state="bsposter57"

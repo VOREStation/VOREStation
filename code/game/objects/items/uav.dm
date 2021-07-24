@@ -48,10 +48,10 @@
 
 /obj/item/device/uav/Initialize()
 	. = ..()
-	
+
 	if(!cell && cell_type)
 		cell = new cell_type
-	
+
 	ion_trail = new /datum/effect/effect/system/ion_trail_follow()
 	ion_trail.set_up(src)
 	ion_trail.stop()
@@ -86,7 +86,7 @@
 		"Toggle Power" = radial_power,
 		"Pairing Mode" = radial_pair)
 	var/choice = show_radial_menu(user, src, options, require_near = !issilicon(user))
-	
+
 	switch(choice)
 		// Can pick up when off or packed
 		if("Pick Up")
@@ -117,7 +117,7 @@
 		playsound(src, 'sound/machines/buttonbeep.ogg', 50, 1)
 		visible_message("<span class='notice'>[user] pairs [I] to [nickname]</span>")
 		toggle_pairing()
-	
+
 	else if(I.is_screwdriver() && cell)
 		if(do_after(user, 3 SECONDS, src))
 			to_chat(user, "<span class='notice'>You remove [cell] into [nickname].</span>")
@@ -125,7 +125,7 @@
 			power_down()
 			cell.forceMove(get_turf(src))
 			cell = null
-	
+
 	else if(istype(I, /obj/item/weapon/cell) && !cell)
 		if(do_after(user, 3 SECONDS, src))
 			to_chat(user, "<span class='notice'>You insert [I] into [nickname].</span>")
@@ -185,7 +185,7 @@
 		playsound(src, 'sound/items/drop/metalboots.ogg', 75, 1)
 		power_down()
 		health -= initial(health)*0.25 //Lose 25% of your original health
-	
+
 	if(LAZYLEN(masters))
 		no_masters_time = 0
 	else if(no_masters_time++ > 50)
@@ -251,7 +251,7 @@
 /obj/item/device/uav/proc/power_down()
 	if(state != UAV_ON)
 		return
-	
+
 	state = UAV_OFF
 	update_icon()
 	stop_hover()
