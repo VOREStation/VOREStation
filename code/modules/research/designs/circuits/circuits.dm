@@ -690,3 +690,24 @@ CIRCUITS BELOW
 	req_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 3, TECH_COMBAT = 2)
 	build_path = /obj/item/weapon/circuitboard/pointdefense_control
 	sort_string = "OAABB"
+
+/datum/design/circuit/recycler_crusher
+	name = "recycler - crusher"
+	id = "recycler_crusher"
+	req_tech = list(TECH_MATERIAL = 2)
+	build_path = /obj/item/weapon/circuitboard/recycler_crusher
+	sort_string = "OAABC"
+
+/datum/design/circuit/recycler_sorter
+	name = "recycler - sorter"
+	id = "recycler_sorter"
+	req_tech = list(TECH_MATERIAL = 2)
+	build_path = /obj/item/weapon/circuitboard/recycler_sorter
+	sort_string = "OAABD"
+
+/datum/design/circuit/recycler_stamper
+	name = "recycler - stamper"
+	id = "recycler_stamper"
+	req_tech = list(TECH_MATERIAL = 2)
+	build_path = /obj/item/weapon/circuitboard/recycler_stamper
+	sort_string = "OAABE"
