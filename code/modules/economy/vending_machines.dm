@@ -650,6 +650,7 @@
 					/obj/item/weapon/circuitboard/scanner_console,
 					/obj/item/weapon/circuitboard/sleeper_console,
 					/obj/item/weapon/circuitboard/body_scanner,
+					/obj/item/weapon/circuitboard/medical_kiosk,
 					/obj/item/weapon/circuitboard/sleeper,
 					/obj/item/weapon/circuitboard/dna_analyzer)
 	contraband = list(/obj/item/weapon/cell/potato = 3)
