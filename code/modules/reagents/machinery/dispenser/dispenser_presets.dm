@@ -106,6 +106,7 @@
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/kahlua,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/whiskey,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/redwine,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/whitewine,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/vodka,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/gin,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/rum,
