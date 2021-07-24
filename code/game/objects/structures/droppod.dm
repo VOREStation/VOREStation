@@ -5,6 +5,7 @@
 	icon_state = "pod"
 	density = TRUE
 	anchored = TRUE
+	bound_height = 50
 
 	var/polite = FALSE // polite ones don't violently murder everything
 	var/finished = FALSE
@@ -40,6 +41,7 @@
 	sleep(4 SECONDS)
 
 	// Wheeeeeee
+	plane = ABOVE_PLANE
 	pixel_z = 300
 	alpha = 0
 	forceMove(T)
@@ -50,6 +52,7 @@
 	animate(filters[filters.len], x=0, y=0, size=0, time=3 SECONDS, flags=ANIMATION_PARALLEL, easing=SINE_EASING|EASE_OUT)
 	sleep(2 SECONDS)
 	new /obj/effect/effect/smoke(T)
+	T.hotspot_expose(900)
 	sleep(1 SECOND)
 	filters = null
 	
@@ -72,6 +75,7 @@
 		L.gib()
 
 	// Landed! Simmer
+	plane = initial(plane)
 	icon_state = "[initial(icon_state)]"
 	
 	if(auto_open)
@@ -108,8 +112,8 @@
 			if(do_after(user, 10 SECONDS, src, exclusive = TASK_ALL_EXCLUSIVE))
 				var/obj/item/stack/S = new /obj/item/stack/material/plasteel(loc)
 				S.amount = 10
+				playsound(user, O.usesound, 50, 1)
 				qdel(src)
-				playsound(src, O.usesound, 50, 1)
 		else
 			to_chat(user, "<span class='warning'>\The [src] hasn't been opened yet. Do that first.</span>")
 	return ..()

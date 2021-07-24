@@ -1073,7 +1073,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		qdel(M) //Bye
 
 /client/proc/cmd_admin_droppod_spawn(var/object as text)
-	set name = "Drop Pod Spawn"
+	set name = "Drop Pod Atom"
 	set desc = "Spawn a new atom/movable in a drop pod where you are."
 	set category = "Fun"
 	
@@ -1094,7 +1094,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(matches.len==1)
 		chosen = matches[1]
 	else
-		chosen = tgui_input_list(usr, "Select an atom type", "Spawn Atom", matches)
+		chosen = tgui_input_list(usr, "Select a movable type:", "Spawn in Drop Pod", matches)
 		if(!chosen)
 			return
 	
@@ -1112,7 +1112,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			var/atom/movable/AM = new chosen(usr.loc)
 			new /obj/structure/drop_pod/polite(get_turf(usr), AM, autoopen == "Yes" ? TRUE : FALSE)
 
-	feedback_add_details("admin_verb","DPS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	feedback_add_details("admin_verb","DPA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_admin_droppod_deploy()
 	set name = "Drop Pod Deploy"
@@ -1122,7 +1122,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_SPAWN))
 		return
 
-	var/mob/living/L = tgui_input_list(usr, "Select the mob to drop:", "Drop!", living_mob_list)
+	var/mob/living/L = tgui_input_list(usr, "Select the mob to drop:", "Mob Picker", living_mob_list)
 	if(!L)
 		return
 	
