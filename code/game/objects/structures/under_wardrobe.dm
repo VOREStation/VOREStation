@@ -1,8 +1,8 @@
 /obj/structure/undies_wardrobe
 	name = "underwear wardrobe"
 	desc = "Holds item of clothing you shouldn't be showing off in the hallways."
-	icon = 'icons/obj/closet.dmi'
-	icon_state = "cabinet_closed"
+	icon = 'icons/obj/closets/undies_wardrobe.dmi'
+	icon_state = "wardrobe"
 	density = TRUE
 
 /obj/structure/undies_wardrobe/attack_hand(var/mob/user)
