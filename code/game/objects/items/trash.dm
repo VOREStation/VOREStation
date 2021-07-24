@@ -202,7 +202,7 @@
 	pickup_sound = 'sound/items/pickup/food.ogg'
 
 /obj/item/trash/chipbasket
-	name = "empty basket"
+	name = "empty chip basket"
 	icon_state = "chipbasket_empty"
 	drop_sound = 'sound/items/drop/food.ogg'
 	pickup_sound = 'sound/items/pickup/food.ogg'
