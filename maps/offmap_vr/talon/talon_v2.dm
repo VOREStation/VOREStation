@@ -55,6 +55,7 @@ var/global/list/latejoin_talon = list()
 	skybox_pixel_y = 60
 
 	levels_for_distress = list(1, Z_LEVEL_BEACH, Z_LEVEL_AEROSTAT, Z_LEVEL_DEBRISFIELD, Z_LEVEL_FUELDEPOT)
+	unowned_areas = list(/area/shuttle/talonboat)
 
 // The shuttle's 'shuttle' computer
 /obj/machinery/computer/shuttle_control/explore/talonboat
