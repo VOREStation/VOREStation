@@ -922,6 +922,7 @@
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/segment,
+/obj/effect/floor_decal/shuttles,
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
 "abL" = (
@@ -930,6 +931,7 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment,
+/obj/effect/floor_decal/shuttles/right,
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
 "abM" = (
@@ -1244,6 +1246,9 @@
 /area/hallway/station/docks)
 "acp" = (
 /obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/floor_decal/arrow{
 	dir = 4
 	},
 /turf/simulated/floor/tiled,
@@ -10348,6 +10353,10 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
+/obj/effect/floor_decal/arrow{
+	dir = 1;
+	pixel_y = 9
+	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
 "aAy" = (
@@ -18986,6 +18995,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
 	dir = 5
 	},
+/obj/effect/floor_decal/emblem/nt2,
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/excursion/general)
 "fmg" = (
@@ -19047,12 +19057,13 @@
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
 "frS" = (
-/obj/machinery/atmospherics/binary/pump/fuel{
-	dir = 8
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 8
+	},
+/obj/effect/floor_decal/emblem/nt3,
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/excursion/general)
 "fsA" = (
@@ -19076,10 +19087,10 @@
 	pixel_y = -27
 	},
 /obj/effect/map_helper/airlock/sensor/int_sensor,
-/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+/obj/machinery/atmospherics/pipe/simple/hidden/aux{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/aux{
+/obj/machinery/atmospherics/binary/pump/fuel{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/techmaint,
@@ -20197,6 +20208,10 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tcommsat/computer)
+"gLG" = (
+/obj/effect/floor_decal/emblem/nt1,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/excursion/general)
 "gLJ" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -46821,7 +46836,7 @@ egt
 eBg
 wZB
 eMS
-fkL
+gLG
 fMh
 gjZ
 gJW

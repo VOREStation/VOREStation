@@ -29597,7 +29597,6 @@
 /turf/simulated/floor/wood,
 /area/crew_quarters/captain)
 "aYo" = (
-/obj/machinery/hologram/holopad,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -29614,6 +29613,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/effect/floor_decal/emblem/nt2,
 /turf/simulated/floor/tiled/dark,
 /area/bridge)
 "aYp" = (
@@ -29678,6 +29678,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/dark,
 /area/bridge)
 "aYv" = (
@@ -39252,6 +39253,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
+"hpW" = (
+/obj/effect/floor_decal/emblem/nt1,
+/turf/simulated/floor/tiled/dark,
+/area/bridge)
 "hth" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/light{
@@ -42707,6 +42712,15 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/upperhall)
+"tJk" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/effect/floor_decal/emblem/nt3,
+/turf/simulated/floor/tiled/dark,
+/area/bridge)
 "tJZ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -56492,7 +56506,7 @@ aYR
 aEa
 bad
 aYb
-aYb
+hpW
 aYt
 aYA
 aYH
@@ -56776,7 +56790,7 @@ ayx
 asT
 ajH
 aYf
-bae
+tJk
 aYv
 aYB
 aYJ

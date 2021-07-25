@@ -31947,7 +31947,7 @@
 /turf/simulated/floor/carpet/bcarpet,
 /area/tether/surfacebase/funny/mimeoffice)
 "cWS" = (
-/obj/item/device/radio/beacon,
+/obj/effect/floor_decal/emblem/nt2,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_one_hall)
 "cXW" = (
@@ -33667,6 +33667,10 @@
 "igw" = (
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/lowernorthhall)
+"ikG" = (
+/obj/effect/floor_decal/emblem/nt3,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_one_hall)
 "ilZ" = (
 /obj/structure/cable/green{
 	d1 = 2;
@@ -33723,6 +33727,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 10
 	},
+/obj/item/device/radio/beacon,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_one_hall)
 "iue" = (
@@ -33955,6 +33960,10 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/brig)
+"jAo" = (
+/obj/effect/floor_decal/arrivals/right,
+/turf/simulated/floor/tiled/monotile,
+/area/tether/surfacebase/surface_one_hall)
 "jAq" = (
 /obj/structure/table/standard,
 /obj/effect/floor_decal/borderfloor{
@@ -34415,6 +34424,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_one_hall)
+"kBW" = (
+/obj/effect/floor_decal/arrivals,
+/turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/surface_one_hall)
 "kCz" = (
 /obj/structure/railing{
@@ -36679,6 +36692,10 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/vacant_site)
+"rjh" = (
+/obj/effect/floor_decal/emblem/nt1,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_one_hall)
 "rnt" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 8
@@ -53229,7 +53246,7 @@ awN
 axt
 aym
 azf
-ayG
+rjh
 byn
 uUP
 tVd
@@ -53513,7 +53530,7 @@ awO
 axu
 auR
 azh
-ayG
+ikG
 vDb
 aBY
 aCP
@@ -53939,7 +53956,7 @@ awQ
 axx
 auR
 azk
-ayG
+kBW
 tNJ
 agM
 aCS
@@ -54081,7 +54098,7 @@ auR
 auR
 ayn
 azd
-ayG
+jAo
 vDb
 aAR
 agM

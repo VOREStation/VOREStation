@@ -276,7 +276,7 @@
 /obj/structure/low_wall/bay
 	icon = 'icons/obj/wall_frame_bay.dmi'
 	grille_type = /obj/structure/grille/bay
-	blend_objects = list(/obj/machinery/door, /turf/simulated/wall/bay)
+	blend_objects = list(/obj/machinery/door, /turf/simulated/wall/bay, /turf/simulated/wall/tgmc)
 
 /obj/structure/low_wall/bay/reinforced
 	default_material = MAT_PLASTEEL
@@ -295,7 +295,7 @@
 /obj/structure/low_wall/eris
 	icon = 'icons/obj/wall_frame_eris.dmi'
 	grille_type = null
-	blend_objects = list(/obj/machinery/door, /turf/simulated/wall/eris)
+	blend_objects = list(/obj/machinery/door, /turf/simulated/wall/eris, /turf/simulated/wall/tgmc)
 
 /obj/structure/low_wall/eris/reinforced
 	default_material = MAT_PLASTEEL
