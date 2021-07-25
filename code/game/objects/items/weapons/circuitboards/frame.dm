@@ -204,6 +204,15 @@
 							/obj/item/weapon/stock_parts/scanning_module = 3,
 							/obj/item/stack/material/glass/reinforced = 2)
 
+/obj/item/weapon/circuitboard/medical_kiosk
+	name = T_BOARD("medical kiosk")
+	build_path = /obj/machinery/medical_kiosk
+	board_type = new /datum/frame/frame_types/machine
+	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)
+	req_components = list(
+							/obj/item/weapon/stock_parts/scanning_module = 3,
+							/obj/item/stack/material/glass/reinforced = 2)
+
 /obj/item/weapon/circuitboard/sleeper
 	name = T_BOARD("sleeper")
 	build_path = /obj/machinery/sleeper
