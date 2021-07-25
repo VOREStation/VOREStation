@@ -47,6 +47,8 @@
 
 /obj/machinery/medical_kiosk/attackby(obj/item/O, mob/user)
 	. = ..()
+	if(default_unfasten_wrench(user, O, 40))
+		return
 	if(default_deconstruction_screwdriver(user, O))
 		return
 	if(default_deconstruction_crowbar(user, O))
