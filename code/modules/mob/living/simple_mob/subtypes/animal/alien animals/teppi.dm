@@ -299,7 +299,7 @@
 	speech_verb = "barks"
 	ask_verb = "woofs"
 	exclaim_verb = "howls"
-	key = "n"
+	key = "T"
 	flags = RESTRICTED
 	machine_understands = 0
 	space_chance = 100
