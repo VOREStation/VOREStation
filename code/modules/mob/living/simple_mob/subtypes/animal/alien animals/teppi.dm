@@ -8,14 +8,16 @@
 
 /mob/living/simple_mob/vore/alienanimals/teppi
 	name = "teppi"
-	desc = "It is a relatively ordinary looking canine mutt! It radiates mischief!"
-	tt_desc = "E Canis lupus softus"
+	desc = "Soft should write a description."
+	tt_desc = "Soft should make something up"
 
 	icon_state = "teppi"
-	icon_living = "teppi"
-	icon_dead = "teppi_dead"
-	icon_rest = "teppi_rest"
+	icon_living = "body_base"
+	icon_dead = "body_dead"
+	icon_rest = "body_rest"
 	icon = 'icons/mob/alienanimals_x64.dmi'
+	pixel_x = -16
+	default_pixel_x = -16
 
 	faction = "teppi"
 	maxHealth = 600
@@ -40,9 +42,20 @@
 	max_n2 = 0
 	minbodytemp = 150
 	maxbodytemp = 400
-    unsuitable_atoms_damage = .5 
+	unsuitable_atoms_damage = 0.5 
 
-    var/affinity = list()
+	var/affinity = list()
+	var/allergen_preference
+	var/allergen_unpreference
+	var/body_color
+	var/marking_color
+	var/horn_color
+	var/eye_color
+	var/skin_color
+	var/marking_type
+	var/static/list/overlays_cache = list()
+	var/teppi_grown = FALSE
+
 
 	attacktext = list("nipped", "chomped", "bonked", "stamped on")
 	//attack_sound = 'sound/voice/bork.ogg' // make a better one idiot
@@ -55,44 +68,10 @@
 	has_langs = list("Teppi", "Galactic Common")
 	say_list_type = /datum/say_list/teppi
 
-
-/mob/living/simple_mob/vore/alienanimals/teppi/New()
-	..()
-
-
-/datum/say_list/teppi
-	speak = list("Woof~", "Woof!", "Yip!", "Yap!", "Yip~", "Yap~", "Awoooooo~", "Awoo!", "AwooooooooooOOOOOOoOooOoooOoOOoooo!")
-	emote_hear = list("barks", "woofs", "yaps", "yips","pants", "snoofs")
-	emote_see = list("wags its tail", "stretches", "yawns", "swivels its ears")
-	say_maybe_target = list("Whuff?")
-	say_got_target = list("Grrrr YIP YAP!!!")
-
-/datum/ai_holder/simple_mob/teppi
-
-	hostile = FALSE
-	cooperative = TRUE
-	retaliate = TRUE
-	speak_chance = 1
-	wander = TRUE
-
-/datum/language/teppi
-	name = "Teppi"
-	desc = "The language of the meat things."
-	speech_verb = "barks"
-	ask_verb = "woofs"
-	exclaim_verb = "howls"
-	key = "n"
-	flags = RESTRICTED
-	machine_understands = 0
-	space_chance = 100
-	syllables = list("bark", "woof", "bowwow", "yap", "arf")
-
 /////////////////////////////////////// Vore stuff///////////////////////////////////////////
 
-/mob/living/simple_mob/vore/alienanimals/teppi/init_vore()
-
 	swallowTime = 1 SECONDS
-   	vore_active = 1
+	vore_active = 1
 	vore_capacity = 3
 	vore_bump_chance = 5
 	vore_bump_emote	= "greedily homms at"
@@ -115,7 +94,7 @@
 	B.name = "stomach"
 	B.desc = "Soft should write a tummy message."
 	B.mode_flags = 8
-	B.belly_fullscreen = "a_tumby"
+	B.belly_fullscreen = "yet_another_tumby"
 
 /*  Do custom text for them idiot
 
@@ -170,3 +149,222 @@
 		"Vague shapes swell their %belly.",
 		"It looks like they have something solid in their %belly")
 */
+
+///////////////////////////////////////Other stuff///////////////////////////////////////////
+
+/mob/living/simple_mob/vore/alienanimals/teppi/Initialize()
+	. = ..()
+	
+	if(name == initial(name))
+		name = "[name] ([rand(1, 1000)])"
+		real_name = name
+
+	icon_state = "body"
+	teppi_setup()
+
+/mob/living/simple_mob/vore/alienanimals/teppi/proc/teppi_setup()
+	var/static/list/possibleallergens = list(
+		ALLERGEN_MEAT,
+		ALLERGEN_FISH,
+		ALLERGEN_FRUIT,
+		ALLERGEN_VEGETABLE,
+		ALLERGEN_GRAINS,
+		ALLERGEN_BEANS,
+		ALLERGEN_SEEDS,
+		ALLERGEN_DAIRY, 
+		ALLERGEN_FUNGI,
+		ALLERGEN_COFFEE,
+		ALLERGEN_SUGARS,
+		ALLERGEN_EGGS
+		)
+	
+	var/static/list/possiblebody = list("#fff2d3" = 100, "#ffffc0" = 25, "#c69c85" = 25, "#9b7758" = 25, "#3f4a60" = 10, "#121f24" = 10, "#420824" = 1)
+	var/static/list/possiblemarking = list("#fff2d3" = 100, "#ffffc0" = 50, "#c69c85" = 25, "#9b7758" = 5, "#3f4a60" = 5, "#121f24" = 5, "#6300db" = 1)
+	var/static/list/possiblehorns = list("#454238" = 100, "#a3d5d7" = 10, "#763851" = 10, "#0d0c2f" = 5, "#ffc965" = 1)
+	var/static/list/possibleeyes = list("#4848a7" = 100, "#f346ff" = 25, "#b20005" = 5, "#ff9a06" = 1, "#0cb600" = 50, "#32ffff" = 5, "#272523" = 50, "#ffffff" = 1)
+	var/static/list/possibleskin = list("#584060" = 100, "#272523" = 50, "#ff8a8e" = 25, "#35658d" = 10, "#ffbb00" = 1)
+
+
+	if(!teppi_grown)
+		allergen_preference = pick(possibleallergens) //the good shit
+		allergen_unpreference = pick(possibleallergens - allergen_preference) //I don't want that
+		color = pickweight(possiblebody)
+		marking_color = pickweight(possiblemarking)
+		horn_color = pickweight(possiblehorns)
+		eye_color = pickweight(possibleeyes)
+		skin_color = pickweight(possibleskin)
+	if(!marking_type)
+		marking_type = "[rand(0,9)]" //the babies don't have this set up by default, but they might pick it from their parents
+	
+	update_icon()
+
+/mob/living/simple_mob/vore/alienanimals/teppi/proc/teppi_icon()
+	var/marking_key = "marking-[marking_color]"
+	var/horn_key = "horn-[horn_color]"
+	var/eye_key = "eye-[eye_color]"
+	var/skin_key = "skin-[skin_color]"
+
+	var/our_state = "base"	//For helping the images know what icon state they should be grabbing
+	if(icon_state == icon_living)
+		our_state = "base"
+	if(icon_state == icon_rest)
+		our_state = "rest"
+	if(icon_state == icon_dead)
+		our_state = "dead"
+	var/life_stage = "adult"
+	if(icon != 'icons/mob/alienanimals_x64.dmi')
+		life_stage = "baby"
+
+	var/combine_key = marking_key+our_state+marking_type+life_stage
+	var/image/marking_image = overlays_cache[combine_key]
+	if(!marking_image)
+		marking_image = image(icon,null,"marking_[our_state][marking_type]")
+		marking_image.color = marking_color
+		marking_image.appearance_flags = RESET_COLOR|KEEP_APART
+		overlays_cache[combine_key] = marking_image
+	add_overlay(marking_image)
+
+	var/image/horn_image = overlays_cache[horn_key+our_state+life_stage]
+	if(!horn_image)
+		horn_image = image(icon,null,"horn_[our_state]")
+		horn_image.color = horn_color
+		horn_image.appearance_flags = RESET_COLOR|KEEP_APART
+		overlays_cache[horn_key+our_state+life_stage] = horn_image
+	add_overlay(horn_image)
+
+	var/image/eye_image = overlays_cache[eye_key+our_state+life_stage]
+	if(!eye_image)
+		eye_image = image(icon,null,"eye_[our_state]")
+		eye_image.color = eye_color
+		eye_image.appearance_flags = RESET_COLOR|KEEP_APART
+		overlays_cache[eye_key+our_state+life_stage] = eye_image
+	add_overlay(eye_image)
+
+	var/image/skin_image = overlays_cache[skin_key+our_state+life_stage]
+	if(!skin_image)
+		skin_image = image(icon,null,"skin_[our_state]")
+		skin_image.color = skin_color
+		skin_image.appearance_flags = RESET_COLOR|KEEP_APART
+		overlays_cache[skin_key+our_state+life_stage] = skin_image
+	add_overlay(skin_image)
+
+/mob/living/simple_mob/vore/alienanimals/teppi/attackby(var/obj/item/O as obj, var/mob/user as mob)
+	if(istype(O, /obj/item/weapon/reagent_containers/food))
+		if(nutrition < 5000)
+			var/yum = O.reagents?.get_reagent_amount("nutriment") //does it have nutriment, if so how much?
+			if(yum)
+				yum *= 30
+				for(var/datum/reagent/R as anything in O.reagents?.reagent_list)
+					if(R.allergen_type & allergen_preference)
+						yum *= 2
+						user.visible_message("<font color='blue'>[user] feeds [O] to [name]. It nibbles [O] excitedly.</font>","<font color='blue'>You feed [O] to [name]. It nibbles [O] excitedly.</font>")
+					else if(R.allergen_type & allergen_unpreference)
+						yum *= 0.5
+						user.visible_message("<font color='blue'>[user] feeds [O] to [name]. It nibbles [O] slowly.</font>","<font color='blue'>You feed [O] to [name]. It nibbles [O] slowly.</font>")
+					else
+						user.visible_message("<font color='blue'>[user] feeds [O] to [name]. It nibbles [O].</font>","<font color='blue'>You feed [O] to [name]. It nibbles [O].</font>")
+				adjust_nutrition(yum) //add the nutriment!
+			else
+				user.visible_message("<font color='blue'>[user] feeds [O] to [name]. It nibbles [O] casually.</font>","<font color='blue'>You feed [O] to [name]. It nibbles [O] casually.</font>")
+			user.drop_from_inventory()
+			qdel(O)
+			return
+		else
+			user.visible_message("<font color='blue'>[user] tries to feed [O] to [name]. It snoofs but does not eat.</font>","<font color='blue'>You try to feed [O] to [name], but it only snoofts at it.</font>")
+			return
+	return ..()
+
+/mob/living/simple_mob/vore/alienanimals/teppi/update_icon()
+	..()
+	teppi_icon()	
+
+/datum/say_list/teppi
+	speak = list("Woof~", "Woof!", "Yip!", "Yap!", "Yip~", "Yap~", "Awoooooo~", "Awoo!", "AwooooooooooOOOOOOoOooOoooOoOOoooo!")
+	emote_hear = list("barks", "woofs", "yaps", "yips","pants", "snoofs")
+	emote_see = list("wags its tail", "stretches", "yawns", "swivels its ears")
+	say_maybe_target = list("Whuff?")
+	say_got_target = list("Grrrr YIP YAP!!!")
+
+/datum/ai_holder/simple_mob/teppi
+
+	hostile = FALSE
+	cooperative = TRUE
+	retaliate = TRUE
+	speak_chance = 1
+	wander = TRUE
+
+/datum/language/teppi
+	name = "Teppi"
+	desc = "The language of the meat things."
+	speech_verb = "barks"
+	ask_verb = "woofs"
+	exclaim_verb = "howls"
+	key = "n"
+	flags = RESTRICTED
+	machine_understands = 0
+	space_chance = 100
+	syllables = list("bark", "woof", "bowwow", "yap", "arf")
+
+////////////////// Da babby //////////////
+
+/mob/living/simple_mob/vore/alienanimals/teppi/baby
+	name = "teppi"
+	desc = "Soft should write a description."
+	tt_desc = "Soft should make something up"
+
+	icon_state = "teppi"
+	icon_living = "body_base"
+	icon_dead = "body_dead"
+	icon_rest = "body_rest"
+	icon = 'icons/mob/alienanimals_x32.dmi'
+	pixel_x = 0
+	default_pixel_x = 0
+
+	faction = "teppi"
+	maxHealth = 50
+	health = 50
+	movement_cooldown = 4
+
+	response_help = "pets"
+	response_disarm = "rudely paps"
+	response_harm = "punches"
+
+	harm_intent_damage = 5
+	melee_damage_lower = 1
+	melee_damage_upper = 5
+
+	var/amount_grown = 0
+
+
+/mob/living/simple_mob/vore/alienanimals/teppi/baby/Life()
+	. =..()
+	if(!.)
+		return
+	amount_grown += rand(1,5) //how much to grow
+	if(amount_grown >= 1000) //when do we grow up
+		new /mob/living/simple_mob/vore/alienanimals/teppi(loc, src) //spawn the adult teppi, give it a reference to baby's location and baby
+		qdel(src) // delete baby
+
+/mob/living/simple_mob/vore/alienanimals/teppi/New(newloc, baby) //you want to spawn a new adult teppi?
+	if(baby) //is there a reference from the baby?
+		inherit_from_baby(baby) //okay, take the things we need from be baby before setting up the rest of the adult
+	..() //set up everything else
+
+
+/mob/living/simple_mob/vore/alienanimals/teppi/proc/inherit_from_baby(mob/living/simple_mob/vore/alienanimals/teppi/baby/baby)
+	teppi_grown = TRUE
+	dir = baby.dir
+	name = baby.name
+	real_name = baby.real_name
+	affinity = baby.affinity
+	allergen_preference = baby.allergen_preference
+	allergen_unpreference = baby.allergen_unpreference
+	color = baby.color
+	marking_color = baby.marking_color
+	horn_color = baby.horn_color
+	eye_color = baby.eye_color
+	skin_color = baby.skin_color
+	ghostjoin = 1
+	ghostjoin_icon()
+	active_ghost_pods |= src
+	update_icon()
