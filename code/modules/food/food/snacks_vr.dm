@@ -125,7 +125,7 @@
 	desc = "A soup both spicy and sour from ancient Earth cooking traditions. This one is made with tofu."
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "hotandsoursoup"
-	trash = /obj/item/trash/snack_bowl
+	trash = /obj/item/trash/asian_bowl
 	nutriment_amt = 6
 	nutriment_desc = list("spicyness" = 4, "sourness" = 4, "tofu" = 1)
 
@@ -139,7 +139,7 @@
 	desc = "A purported favorite of kitsunes in ancient japanese myth: udon noodles, fried egg, and tofu."
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "kitsuneudon"
-	trash = /obj/item/trash/snack_bowl
+	trash = /obj/item/trash/asian_bowl
 	nutriment_amt = 6
 	nutriment_desc = list("fried egg" = 2, "egg noodles" = 4)
 
@@ -152,7 +152,7 @@
 	desc = "Sweet, spicy, and fried. General's Chicken has been around for more than five-hundred years now, and still tastes good."
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "generaltso"
-	trash = /obj/item/trash/plate
+	trash = /obj/item/trash/asian_bowl
 	nutriment_amt = 6
 	nutriment_desc = list("sweet and spicy sauce" = 5, "chicken" = 3)
 
@@ -162,9 +162,9 @@
 	bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/grubmeat
-	name = "grubmeat"
+	name = "grub meat"
 	desc = "A slab of grub meat, it gives a gentle shock if you touch it"
-	icon = 'icons/obj/food_vr.dmi'
+	icon = 'icons/obj/food.dmi'
 	icon_state = "grubmeat"
 	center_of_mass = list("x"=16, "y"=10)
 
@@ -388,6 +388,7 @@
 	desc = "Finally, some food for real men."
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "sharkmeat_cooked"
+	trash = /obj/item/trash/small_bowl
 	nutriment_amt = 5
 	trash = /obj/item/trash/plate
 	nutriment_desc = list("manliness" = 1, "fish oil" = 2, "shark" = 2)
@@ -585,6 +586,20 @@
 	reagents.add_reagent("nutriment", 5)
 	reagents.add_reagent("protein", 2)
 	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/milosoup
+	name = "Miso soup"
+	desc = "The universes best soup! Yum!!!"
+	icon_state = "milosoup"
+	trash = /obj/item/trash/snack_bowl
+	center_of_mass = list("x"=16, "y"=7)
+	nutriment_amt = 8
+	nutriment_desc = list("soy" = 8)
+	bitesize = 4
+
+/obj/item/weapon/reagent_containers/food/snacks/milosoup/Initialize()
+	. = ..()
+	reagents.add_reagent("water", 5)
 
 /obj/item/weapon/reagent_containers/food/snacks/onionsoup
 	name = "Onion Soup"

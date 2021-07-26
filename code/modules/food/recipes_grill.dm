@@ -308,7 +308,7 @@
 		/obj/item/weapon/reagent_containers/food/snacks/cheesewedge
 	)
 	reagents = list("spacespice" = 1)
-	result = /obj/item/weapon/reagent_containers/food/snacks/cheese_cracker
+	result = /obj/item/weapon/reagent_containers/food/snacks/cheesetoast
 	result_quantity = 4
 
 /datum/recipe/bacongrill
