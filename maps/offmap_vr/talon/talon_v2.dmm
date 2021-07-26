@@ -3027,9 +3027,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
 /obj/structure/railing/grey,
 /obj/structure/railing/grey{
 	dir = 4
@@ -3041,6 +3038,9 @@
 /obj/structure/cable/green{
 	d2 = 2;
 	icon_state = "0-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/talon_v2/engineering)
@@ -8184,9 +8184,6 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
-	},
 /obj/structure/catwalk,
 /obj/structure/closet/emergsuit_wall{
 	dir = 1;
@@ -10056,9 +10053,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
 /obj/machinery/computer/ship/engines{
 	dir = 1
 	},
@@ -10343,9 +10337,6 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/talonboat)
 "Ii" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
 	},
@@ -12627,9 +12618,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
 /obj/structure/railing/grey,
 /obj/effect/floor_decal/industrial/warning,
 /obj/structure/table/steel,
@@ -13274,6 +13262,7 @@
 	dir = 5
 	},
 /obj/item/weapon/paper/talon_shields,
+/obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/talon_v2/engineering)
 "Ss" = (
