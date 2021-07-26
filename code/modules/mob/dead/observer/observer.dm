@@ -29,6 +29,7 @@
 	var/admin_ghosted = 0
 	var/anonsay = 0
 	var/ghostvision = 1 //is the ghost able to see things humans can't?
+	var/lighting_alpha = 255
 	incorporeal_move = 1
 
 	var/is_manifest = 0 //If set to 1, the ghost is able to whisper. Usually only set if a cultist drags them through the veil.
@@ -860,12 +861,23 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set name = "Toggle Darkness"
 	set desc = "Toggles your ability to see lighting overlays, and the darkness they create."
 	set category = "Ghost"
-	seedarkness = !seedarkness
+	
+	var/static/list/darkness_names = list("normal darkness levels", "30% darkness removed", "70% darkness removed", "no darkness")
+	var/static/list/darkness_levels = list(255, 178, 76, 0)
+
+	var/index = darkness_levels.Find(lighting_alpha)
+	if(!index || index >= darkness_levels.len)
+		index = 1
+	else
+		index++
+	
+	lighting_alpha = darkness_levels[index]
 	updateghostsight()
-	to_chat(src, "You [seedarkness ? "now" : "no longer"] see darkness.")
+	to_chat(src, "Your vision now has [darkness_names[index]].")
 
 /mob/observer/dead/proc/updateghostsight()
-	plane_holder.set_vis(VIS_FULLBRIGHT, !seedarkness) //Inversion, because "not seeing" the darkness is "seeing" the lighting plane master.
+	plane_holder.set_desired_alpha(VIS_LIGHTING, lighting_alpha)
+	plane_holder.set_vis(VIS_LIGHTING, lighting_alpha)
 	plane_holder.set_vis(VIS_GHOSTS, ghostvision)
 
 /mob/observer/dead/MayRespawn(var/feedback = 0)
