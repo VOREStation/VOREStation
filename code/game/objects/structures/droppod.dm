@@ -5,7 +5,6 @@
 	icon_state = "pod"
 	density = TRUE
 	anchored = TRUE
-	bound_height = 50
 
 	var/polite = FALSE // polite ones don't violently murder everything
 	var/finished = FALSE
@@ -42,11 +41,11 @@
 
 	// Wheeeeeee
 	plane = ABOVE_PLANE
-	pixel_z = 300
+	pixel_y = 300
 	alpha = 0
 	forceMove(T)
 	playsound(T, 'sound/effects/droppod.ogg', 50, 1)
-	animate(src, pixel_z = 0, time = 3 SECONDS, easing = SINE_EASING|EASE_OUT)
+	animate(src, pixel_y = 0, time = 3 SECONDS, easing = SINE_EASING|EASE_OUT)
 	animate(src, alpha = 255, time = 1 SECOND, flags = ANIMATION_PARALLEL)
 	filters += filter(type="drop_shadow", x=-64, y=100, size=10)
 	animate(filters[filters.len], x=0, y=0, size=0, time=3 SECONDS, flags=ANIMATION_PARALLEL, easing=SINE_EASING|EASE_OUT)
