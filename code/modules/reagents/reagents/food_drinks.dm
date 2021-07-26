@@ -2675,6 +2675,7 @@
 	glass_desc = "The silky, smokey whiskey goodness inside the glass makes the drink look very classy."
 
 	allergen_type = ALLERGEN_GRAINS //Whiskey is also made from grain.
+
 /datum/reagent/ethanol/redwine
 	name = "Red Wine"
 	id = "redwine"
