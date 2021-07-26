@@ -2027,6 +2027,7 @@
 	name = "Caramel Apple"
 	desc = "An apple coated in rich caramel."
 	icon_state = "candiedapple1"
+	trash = /obj/item/trash/stick
 	filling_color = "#F21873"
 	center_of_mass = list("x"=15, "y"=13)
 	nutriment_amt = 3
@@ -2037,6 +2038,7 @@
 	name = "Candied Apple"
 	desc = "An apple coated in sugary sweetness."
 	icon_state = "candiedapple2"
+	trash = /obj/item/trash/stick
 	filling_color = "#F21873"
 	center_of_mass = list("x"=15, "y"=13)
 	nutriment_amt = 3
@@ -2163,32 +2165,6 @@
 	filling_color = "#F2F2F2"
 	center_of_mass = list("x"=16, "y"=14)
 	bitesize = 1
-
-/obj/item/weapon/reagent_containers/food/snacks/mint/Initialize()
-	. = ..()
-	reagents.add_reagent("mint", 1)
-
-/obj/item/weapon/reagent_containers/food/snacks/mint/admints
-	desc = "Spearmint, peppermint's non-festive cousin."
-	icon = 'icons/obj/food_snacks.dmi'
-	icon_state = "admint"
-
-/obj/item/weapon/storage/box/admints
-	name = "Ad-mints"
-	desc = "A pack of air fresheners for your mouth."
-	description_fluff = "Ad-mints earned their name, and reputation when a Major Bill's senior executive attended a meeting at a large a marketing firm and was so astounded by the quality of their complimentary mints, that he immediately bought the company - the mints company, not the ad agency - and began providing 'Ad-mints' on every MBT flight."
-	icon = 'icons/obj/food_snacks.dmi'
-	icon_state = "admint_pack"
-	item_state = "candy"
-	slot_flags = SLOT_EARS
-	w_class = 1
-	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/mint/admints = 6)
-	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/mint/admints)
-	use_sound = 'sound/items/drop/paper.ogg'
-	drop_sound = 'sound/items/drop/wrapper.ogg'
-	max_storage_space = 6
-	foldable = null
-	trash = /obj/item/trash/admints
 
 /obj/item/weapon/reagent_containers/food/snacks/plumphelmetbiscuit
 	name = "plump helmet biscuit"
@@ -2564,7 +2540,6 @@
 	name = "bear chili"
 	gender = PLURAL
 	desc = "A dark, hearty chili. Can you bear the heat?"
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "bearchili"
 	trash = /obj/item/trash/snack_bowl
 	filling_color = "#702708"
@@ -3223,7 +3198,6 @@
 	name = "brownies"
 	gender = PLURAL
 	desc = "Halfway to fudge, or halfway to cake? Who cares!"
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "brownies"
 	slice_path = /obj/item/weapon/reagent_containers/food/snacks/browniesslice
 	slices_num = 4
@@ -3241,7 +3215,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/browniesslice
 	name = "brownie"
 	desc = "a dense, decadent chocolate brownie."
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "browniesslice"
 	trash = /obj/item/trash/plate
 	filling_color = "#F5B951"
@@ -3260,7 +3233,6 @@
 	name = "cosmic brownies"
 	gender = PLURAL
 	desc = "Like, ultra-trippy. Brownies HAVE no gender, man." //Except I had to add one!
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "cosmicbrownies"
 	slice_path = /obj/item/weapon/reagent_containers/food/snacks/cosmicbrowniesslice
 	slices_num = 4
@@ -3282,7 +3254,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/cosmicbrowniesslice
 	name = "cosmic brownie"
 	desc = "a dense, decadent and fun-looking chocolate brownie."
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "cosmicbrowniesslice"
 	trash = /obj/item/trash/plate
 	filling_color = "#F5B951"
@@ -4700,7 +4671,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/sausage/battered
 	name = "battered sausage"
 	desc = "A piece of mixed, long meat, battered and then deepfried."
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "batteredsausage"
 	filling_color = "#DB0000"
 	center_of_mass = list("x"=16, "y"=16)
@@ -4717,7 +4687,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/jalapeno_poppers
 	name = "jalapeno popper"
 	desc = "A battered, deep-fried chilli pepper."
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "popper"
 	filling_color = "#00AA00"
 	center_of_mass = list("x"=10, "y"=6)
@@ -4745,7 +4714,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/chickenkatsu
 	name = "chicken katsu"
 	desc = "An Earth delicacy consisting of chicken fried in a light beer batter."
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "katsu"
 	trash = /obj/item/trash/plate
 	filling_color = "#E9ADFF"
@@ -4851,8 +4819,8 @@
 /obj/item/weapon/reagent_containers/food/snacks/bacon_stick
 	name = "eggpop"
 	desc = "A bacon wrapped boiled egg, conveniently skewered on a wooden stick."
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "bacon_stick"
+	trash = /obj/item/trash/stick
 
 /obj/item/weapon/reagent_containers/food/snacks/bacon_stick/Initialize()
 	. = ..()
@@ -4897,6 +4865,7 @@
 	name = "corn dog"
 	desc = "A cornbread covered sausage deepfried in oil."
 	icon_state = "corndog"
+	trash = /obj/item/trash/stick
 	nutriment_desc = list("corn batter" = 4)
 	nutriment_amt = 4
 
@@ -4938,7 +4907,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/meat_pocket
 	name = "meat pocket"
 	desc = "Meat and cheese stuffed in a flatbread pocket, grilled to perfection."
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "meat_pocket"
 	nutriment_desc = list("flatbread" = 3)
 	nutriment_amt = 3
@@ -5088,12 +5056,22 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/pancakes
 	name = "pancakes"
-	desc = "Pancakes with berries, delicious."
+	desc = "Pancakes, delicious."
 	icon_state = "pancakes"
 	trash = /obj/item/trash/plate
 	center_of_mass = list("x"=15, "y"=11)
 	nutriment_desc = list("pancake" = 8)
 	nutriment_amt = 8
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/pancakes/berry
+	name = "berry pancakes"
+	desc = "Pancakes with berries, delicious."
+	icon_state = "pancake_berry"
+	trash = /obj/item/trash/plate
+	center_of_mass = list("x"=15, "y"=11)
+	nutriment_desc = list("pancake" = 4, "berry" = 4)
+	nutriment_amt = 10
 	bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/nugget
@@ -5184,65 +5162,84 @@
 	center_of_mass = list("x"=16, "y"=16)
 	nutriment_amt = 6
 
+//Old_Chips Guide//////////////////////////////////////
+
+//doesn't work
+
+///obj/item/weapon/reagent_containers/food/snacks/chip
+//	name = "chip"
+//	desc = "A portion sized chip good for dipping."
+//	icon_state = "chip"
+//	var/bitten_state = "chip_half"
+//	bitesize = 1
+//	center_of_mass = list("x"=16, "y"=16)
+//	nutriment_desc = list("chips" = 1)
+//	nutriment_amt = 2
+//	flags = OPENCONTAINER
+
+///obj/item/weapon/reagent_containers/food/snacks/chip/on_consume(mob/M as mob)
+//	if(reagents && reagents.total_volume)
+//		icon_state = bitten_state
+//	. = ..()
+
 //Chips//////////////////////////////////////
 
 /obj/item/weapon/reagent_containers/food/snacks/chip
 	name = "chip"
 	desc = "A portion sized chip good for dipping."
 	icon_state = "chip"
-	var/bitten_state = "chip_half"
+
 	bitesize = 1
 	center_of_mass = list("x"=16, "y"=16)
 	nutriment_desc = list("chips" = 1)
 	nutriment_amt = 2
+	flags = OPENCONTAINER
 
-/obj/item/weapon/reagent_containers/food/snacks/chip/on_consume(mob/M as mob)
-	if(reagents && reagents.total_volume)
-		icon_state = bitten_state
-	. = ..()
+/obj/item/weapon/reagent_containers/food/snacks/nacho
+	name = "chip"
+	desc = "A portion sized chip good for dipping."
+	icon_state = "chip"
+	bitesize = 1
+	center_of_mass = list("x"=16, "y"=16)
+	nutriment_desc = list("nacho" = 1)
+	nutriment_amt = 2
+	flags = OPENCONTAINER
 
 /obj/item/weapon/reagent_containers/food/snacks/chip/salsa
 	name = "salsa chip"
 	desc = "A portion sized chip good for dipping. This one has salsa on it."
 	icon_state = "chip_salsa"
-	bitten_state = "chip_salsa_half"
 
 /obj/item/weapon/reagent_containers/food/snacks/chip/guac
 	name = "guac chip"
 	desc = "A portion sized chip good for dipping. This one has guac on it."
 	icon_state = "chip_guac"
-	bitten_state = "chip_guac_half"
 
 /obj/item/weapon/reagent_containers/food/snacks/chip/cheese
 	name = "cheese chip"
 	desc = "A portion sized chip good for dipping. This one has cheese sauce on it."
 	icon_state = "chip_cheese"
-	bitten_state = "chip_cheese_half"
 
 /obj/item/weapon/reagent_containers/food/snacks/chip/nacho
 	name = "nacho chip"
 	desc = "A nacho ship stray from a plate of cheesy nachos."
 	icon_state = "nacho"
-	bitten_state = "chip_nacho_half"
 	nutriment_desc = list("nacho chips" = 1)
 
 /obj/item/weapon/reagent_containers/food/snacks/chip/nacho/salsa
 	name = "nacho chip"
 	desc = "A nacho ship stray from a plate of cheesy nachos. This one has salsa on it."
 	icon_state = "nacho_salsa"
-	bitten_state = "nacho_salsa_half"
 
 /obj/item/weapon/reagent_containers/food/snacks/chip/nacho/guac
 	name = "nacho chip"
 	desc = "A nacho ship stray from a plate of cheesy nachos. This one has guac on it."
 	icon_state = "nacho_guac"
-	bitten_state = "nacho_guac_half"
 
 /obj/item/weapon/reagent_containers/food/snacks/chip/nacho/cheese
 	name = "nacho chip"
 	desc = "A nacho ship stray from a plate of cheesy nachos. This one has extra cheese on it."
 	icon_state = "nacho_cheese"
-	bitten_state = "nacho_cheese_half"
 
 //Chip Baskets//////////////////////////////////////
 
@@ -5258,9 +5255,8 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/chipplate/attack_hand(mob/user as mob)
 	var/obj/item/weapon/reagent_containers/food/snacks/returningitem = new vendingobject(loc)
-	returningitem.reagents.clear_reagents()
-//	reagents.trans_to(returningitem, bitesize)
-//	returningitem.bitesize = bitesize/2
+	reagents.trans_to(returningitem, bitesize)
+	returningitem.bitesize = 2
 	user.put_in_hands(returningitem)
 	if (reagents && reagents.total_volume)
 		to_chat(user, "You take a chip from the plate.")
@@ -5282,11 +5278,11 @@
 	name = "basket of nachos"
 	desc = "A very cheesy basket of nacho."
 	icon_state = "nachos"
-	trash = /obj/item/trash/plate
+	trash = /obj/item/trash/chipbasket
 	vendingobject = /obj/item/weapon/reagent_containers/food/snacks/chip/nacho
 	nutriment_desc = list("tortilla chips" = 10)
 	bitesize = 1
-	nutriment_amt = 10
+	nutriment_amt = 14 //slightly better than just plain chips
 
 //Dips//////////////////////////////////////
 
@@ -5562,7 +5558,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/egg_pancake
 	name = "meat pancake"
 	desc = "An omelette baked on top of a giant meat patty. This monstrousity is typically shared between four people during a dinnertime meal."
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "egg_pancake"
 	trash = /obj/item/trash/plate
 
@@ -5571,14 +5566,10 @@
 	reagents.add_reagent("protein", 6)
 	reagents.add_reagent("egg", 2)
 
-
-// SYNNONO MEME FOODS EXPANSION - Credit to Synnono from Aurorastation. Come play here sometime :(
-
 /obj/item/weapon/reagent_containers/food/snacks/redcurry
 	name = "red curry"
 	gender = PLURAL
 	desc = "A bowl of creamy red curry with meat and rice. This one looks savory."
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "redcurry"
 	trash = /obj/item/trash/snack_bowl
 	filling_color = "#f73333"
@@ -5595,7 +5586,6 @@
 	name = "green curry"
 	gender = PLURAL
 	desc = "A bowl of creamy green curry with tofu, hot peppers and rice. This one looks spicy!"
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "greencurry"
 	trash = /obj/item/trash/snack_bowl
 	filling_color = "#58b76c"
@@ -5613,7 +5603,6 @@
 	name = "yellow curry"
 	gender = PLURAL
 	desc = "A bowl of creamy yellow curry with potatoes, peanuts and rice. This one looks mild."
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "yellowcurry"
 	trash = /obj/item/trash/snack_bowl
 	filling_color = "#bc9509"
@@ -5641,7 +5630,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/bibimbap
 	name = "bibimbap bowl"
 	desc = "A traditional Korean meal of meat and mixed vegetables. It's served on a bed of rice, and topped with a fried egg."
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "bibimbap"
 	trash = /obj/item/trash/snack_bowl
 	filling_color = "#4f2100"
@@ -5699,7 +5687,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/friedmushroom
 	name = "fried mushroom"
 	desc = "A tender, beer-battered plump helmet, fried to crispy perfection."
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "friedmushroom"
 	filling_color = "#EDDD00"
 	nutriment_amt = 4
@@ -5891,14 +5878,35 @@
 	nutriment_desc = list("cinnamon sugar" = 4, "frosting" = 4)
 	bitesize = 1
 
-//////////////////////////////////////////////////////////////////////
-//////////////////////////////Sliceables//////////////////////////////
-//////////////////////////////////////////////////////////////////////
-
-
 ////////////////////////////////////////////////////////////////////////////
 //////////////////////////////Candy Vend Items//////////////////////////////
 ////////////////////////////////////////////////////////////////////////////
+
+/obj/item/weapon/reagent_containers/food/snacks/mint/Initialize()
+	. = ..()
+	reagents.add_reagent("mint", 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/mint/admints
+	desc = "Spearmint, peppermint's non-festive cousin."
+	icon = 'icons/obj/food_snacks.dmi'
+	icon_state = "admint"
+
+/obj/item/weapon/storage/box/admints
+	name = "Ad-mints"
+	desc = "A pack of air fresheners for your mouth."
+	description_fluff = "Ad-mints earned their name, and reputation when a Major Bill's senior executive attended a meeting at a large a marketing firm and was so astounded by the quality of their complimentary mints, that he immediately bought the company - the mints company, not the ad agency - and began providing 'Ad-mints' on every MBT flight."
+	icon = 'icons/obj/food_snacks.dmi'
+	icon_state = "admint_pack"
+	item_state = "candy"
+	slot_flags = SLOT_EARS
+	w_class = 1
+	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/mint/admints = 6)
+	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/mint/admints)
+	use_sound = 'sound/items/drop/paper.ogg'
+	drop_sound = 'sound/items/drop/wrapper.ogg'
+	max_storage_space = 6
+	foldable = null
+	trash = /obj/item/trash/admints
 
 /obj/item/weapon/reagent_containers/food/snacks/mint
 	name = "mint"
@@ -5935,7 +5943,7 @@
 	foldable = null
 
 /obj/item/weapon/reagent_containers/food/snacks/candy
-	name = "\improper Grandma Ellen's Hard Candy"
+	name = "\improper Grandma Ellen's Candy Bar"
 	desc = "Now without nuts!"
 	description_fluff = "Hard candies were banned from many early human colony ships due to the tendency for brittle, sticky chunks to find their way inside vital equipment in zero-G conditions. This only made them all the more popular to new arrivees, and the Grandma Ellen's brand was Tau Ceti's answer to that demand."
 	icon = 'icons/obj/food_snacks.dmi'
