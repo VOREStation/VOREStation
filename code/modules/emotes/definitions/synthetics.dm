@@ -28,6 +28,11 @@
 	emote_message_3p = "emits a negative blip."
 	emote_sound = 'sound/machines/synth_no.ogg'
 
+/decl/emote/audible/synth/scary
+	key = "scary"
+	emote_message_3p = "emits a disconcerting tone."
+	emote_sound = 'sound/machines/synth_alert.ogg'
+
 /decl/emote/audible/synth/security
 	key = "law"
 	emote_message_3p = "shows USER_THEIR legal authorization barcode."
