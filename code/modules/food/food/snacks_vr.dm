@@ -587,6 +587,20 @@
 	reagents.add_reagent("protein", 2)
 	bitesize = 2
 
+/obj/item/weapon/reagent_containers/food/snacks/milosoup
+	name = "Miso soup"
+	desc = "The universes best soup! Yum!!!"
+	icon_state = "milosoup"
+	trash = /obj/item/trash/snack_bowl
+	center_of_mass = list("x"=16, "y"=7)
+	nutriment_amt = 8
+	nutriment_desc = list("soy" = 8)
+	bitesize = 4
+
+/obj/item/weapon/reagent_containers/food/snacks/milosoup/Initialize()
+	. = ..()
+	reagents.add_reagent("water", 5)
+
 /obj/item/weapon/reagent_containers/food/snacks/onionsoup
 	name = "Onion Soup"
 	desc = "A soup with layers."
