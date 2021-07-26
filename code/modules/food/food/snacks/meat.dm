@@ -46,12 +46,11 @@
 /obj/item/weapon/reagent_containers/food/snacks/meat/corgi
 	name = "Corgi meat"
 	desc = "Tastes like... well, you know."
-	
+
 /obj/item/weapon/reagent_containers/food/snacks/meat/chicken
 	name = "chicken"
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "chickenbreast"
-	cooked_icon = "chickenbreast_cooked"
+	cooked_icon = "chickensteak"
 	filling_color = "#BBBBAA"
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/chicken/Initialize()
