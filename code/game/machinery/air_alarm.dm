@@ -1,3 +1,7 @@
+#define DECLARE_TLV_VALUES var/red_min; var/yel_min; var/yel_max; var/red_max; var/tlv_comparitor;
+#define LOAD_TLV_VALUES(x, y) red_min = x[1]; yel_min = x[2]; yel_max = x[3]; red_max = x[4]; tlv_comparitor = y;
+#define TEST_TLV_VALUES (((tlv_comparitor >= red_max && red_max > 0) || tlv_comparitor <= red_min) ? 2 : ((tlv_comparitor >= yel_max && yel_max > 0) || tlv_comparitor <= yel_min) ? 1 : 0)
+
 #define AALARM_MODE_SCRUBBING	1
 #define AALARM_MODE_REPLACEMENT	2 //like scrubbing, but faster.
 #define AALARM_MODE_PANIC		3 //constantly sucks all air
@@ -67,16 +71,13 @@
 
 	var/datum/radio_frequency/radio_connection
 
+	/// Keys are things like temperature and certain gasses. Values are lists, which contain, in order:
+	/// red warning minimum value, yellow warning minimum value, yellow warning maximum value, red warning maximum value
 	var/list/TLV = list()
 	var/list/trace_gas = list("nitrous_oxide", "volatile_fuel") //list of other gases that this air alarm is able to detect
 
 	var/danger_level = 0
 	var/pressure_dangerlevel = 0
-	var/oxygen_dangerlevel = 0
-	var/co2_dangerlevel = 0
-	var/phoron_dangerlevel = 0
-	var/temperature_dangerlevel = 0
-	var/other_dangerlevel = 0
 
 	var/report_danger_level = 1
 
@@ -143,7 +144,7 @@
 
 	// breathable air according to human/Life()
 	TLV["oxygen"] =			list(16, 19, 135, 140) // Partial pressure, kpa
-	TLV["nitrogen"] =		list(0, 0,135,140) // Partial pressure, kpa
+	TLV["nitrogen"] =		list(0, 0, 135, 140) // Partial pressure, kpa
 	TLV["carbon dioxide"] = list(-1.0, -1.0, 5, 10) // Partial pressure, kpa
 	TLV["phoron"] =			list(-1.0, -1.0, 0, 0.5) // Partial pressure, kpa
 	TLV["other"] =			list(-1.0, -1.0, 0.5, 1.0) // Partial pressure, kpa
@@ -201,9 +202,11 @@
 	return
 
 /obj/machinery/alarm/proc/handle_heating_cooling(var/datum/gas_mixture/environment)
+	DECLARE_TLV_VALUES
+	LOAD_TLV_VALUES(TLV["temperature"], target_temperature)
 	if(!regulating_temperature)
 		//check for when we should start adjusting temperature
-		if(!get_danger_level(target_temperature, TLV["temperature"]) && abs(environment.temperature - target_temperature) > 2.0 && environment.return_pressure() >= 1)
+		if(!TEST_TLV_VALUES && abs(environment.temperature - target_temperature) > 2.0 && environment.return_pressure() >= 1)
 			update_use_power(USE_POWER_ACTIVE)
 			regulating_temperature = 1
 			audible_message("\The [src] clicks as it starts [environment.temperature > target_temperature ? "cooling" : "heating"] the room.",\
@@ -211,7 +214,7 @@
 			playsound(src, 'sound/machines/click.ogg', 50, 1)
 	else
 		//check for when we should stop adjusting temperature
-		if(get_danger_level(target_temperature, TLV["temperature"]) || abs(environment.temperature - target_temperature) <= 0.5 || environment.return_pressure() < 1)
+		if(TEST_TLV_VALUES || abs(environment.temperature - target_temperature) <= 0.5 || environment.return_pressure() < 1)
 			update_use_power(USE_POWER_IDLE)
 			regulating_temperature = 0
 			audible_message("\The [src] clicks quietly as it stops [environment.temperature > target_temperature ? "cooling" : "heating"] the room.",\
@@ -258,12 +261,19 @@
 	for(var/g in trace_gas)
 		other_moles += environment.gas[g] //this is only going to be used in a partial pressure calc, so we don't need to worry about group_multiplier here.
 
-	pressure_dangerlevel = get_danger_level(environment_pressure, TLV["pressure"])
-	oxygen_dangerlevel = get_danger_level(environment.gas["oxygen"]*partial_pressure, TLV["oxygen"])
-	co2_dangerlevel = get_danger_level(environment.gas["carbon_dioxide"]*partial_pressure, TLV["carbon dioxide"])
-	phoron_dangerlevel = get_danger_level(environment.gas["phoron"]*partial_pressure, TLV["phoron"])
-	temperature_dangerlevel = get_danger_level(environment.temperature, TLV["temperature"])
-	other_dangerlevel = get_danger_level(other_moles*partial_pressure, TLV["other"])
+	DECLARE_TLV_VALUES
+	LOAD_TLV_VALUES(TLV["pressure"], environment_pressure)
+	pressure_dangerlevel = TEST_TLV_VALUES // not local because it's used in process()
+	LOAD_TLV_VALUES(TLV["oxygen"], environment.gas["oxygen"]*partial_pressure)
+	var/oxygen_dangerlevel = TEST_TLV_VALUES
+	LOAD_TLV_VALUES(TLV["carbon dioxide"], environment.gas["carbon_dioxide"]*partial_pressure)
+	var/co2_dangerlevel = TEST_TLV_VALUES
+	LOAD_TLV_VALUES(TLV["phoron"], environment.gas["phoron"]*partial_pressure)
+	var/phoron_dangerlevel = TEST_TLV_VALUES
+	LOAD_TLV_VALUES(TLV["temperature"], environment.temperature)
+	var/temperature_dangerlevel = TEST_TLV_VALUES
+	LOAD_TLV_VALUES(TLV["other"], other_moles*partial_pressure)
+	var/other_dangerlevel = TEST_TLV_VALUES
 
 	return max(
 		pressure_dangerlevel,
@@ -304,13 +314,6 @@
 		if(!(AA.stat & (NOPOWER|BROKEN)))
 			alarm_area.master_air_alarm = AA
 			return 1
-	return 0
-
-/obj/machinery/alarm/proc/get_danger_level(var/current_value, var/list/danger_levels)
-	if((current_value >= danger_levels[4] && danger_levels[4] > 0) || current_value <= danger_levels[1])
-		return 2
-	if((current_value >= danger_levels[3] && danger_levels[3] > 0) || current_value <= danger_levels[2])
-		return 1
 	return 0
 
 /obj/machinery/alarm/update_icon()
@@ -537,20 +540,24 @@
 	var/list/list/environment_data = list()
 	data["environment_data"] = environment_data
 	
+	DECLARE_TLV_VALUES
+	
 	var/pressure = environment.return_pressure()
+	LOAD_TLV_VALUES(TLV["pressure"], pressure)
 	environment_data.Add(list(list(
 		"name" = "Pressure",
 		"value" = pressure,
 		"unit" = "kPa",
-		"danger_level" = get_danger_level(pressure, TLV["pressure"])
+		"danger_level" = TEST_TLV_VALUES
 	)))
 	
 	var/temperature = environment.temperature
+	LOAD_TLV_VALUES(TLV["temperature"], temperature)
 	environment_data.Add(list(list(
 		"name" = "Temperature",
 		"value" = temperature,
 		"unit" = "K ([round(temperature - T0C, 0.1)]C)",
-		"danger_level" = get_danger_level(temperature, TLV["temperature"])
+		"danger_level" = TEST_TLV_VALUES
 	)))
 
 	var/total_moles = environment.total_moles
@@ -558,11 +565,12 @@
 	for(var/gas_id in environment.gas)
 		if(!(gas_id in TLV))
 			continue
+		LOAD_TLV_VALUES(TLV[gas_id], environment.gas[gas_id] * partial_pressure)
 		environment_data.Add(list(list(
 			"name" = gas_id,
 			"value" = environment.gas[gas_id] / total_moles * 100,
 			"unit" = "%",
-			"danger_level" = get_danger_level(environment.gas[gas_id] * partial_pressure, TLV[gas_id])
+			"danger_level" = TEST_TLV_VALUES
 		)))
 	
 	if(!locked || issilicon(user) || data["remoteUser"])
@@ -827,3 +835,6 @@
 	TLV["temperature"] =	list(T0C - 40, T0C - 20, T0C + 40, T0C + 66) // K, Lower Temperature for Freezer Air Alarms (This is because TLV is hardcoded to be generated on first_run, and therefore the only way to modify this without changing TLV generation)
 
 // VOREStation Edit End
+#undef LOAD_TLV_VALUES
+#undef TEST_TLV_VALUES
+#undef DECLARE_TLV_VALUES
