@@ -87,7 +87,7 @@
 	color = "#00aaff" //Bluey
 	vessel_mass = 8000
 	vessel_size = SHIP_SIZE_SMALL
-	initial_generic_waypoints = list("aronai3_fore", "aronai3_aft", "aronai3_port", "aronai3_starboard")
+	initial_generic_waypoints = list("aronai3_foreport", "aronai3_forestbd", "aronai3_aftport", "aronai3_aftstbd")
 	initial_restricted_waypoints = list("Aro's Boat" = list("omship_spawn_aroboat3"))
 	fore_dir = NORTH
 	known = FALSE
