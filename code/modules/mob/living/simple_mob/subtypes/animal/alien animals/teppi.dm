@@ -55,6 +55,10 @@
 	var/marking_type
 	var/static/list/overlays_cache = list()
 	var/teppi_grown = FALSE
+	var/teppi_wool = FALSE
+	var/amount_grown = 0
+	var/teppi_adult = TRUE
+	var/friend_zone //where friends go when we eat them
 
 
 	attacktext = list("nipped", "chomped", "bonked", "stamped on")
@@ -83,7 +87,6 @@
 	vore_default_mode = DM_HOLD
 	vore_icons = SA_ICON_LIVING
 	vore_stomach_name = "Stomach"
-	vore_stomach_flavor = "Soft should write a tummy message."
 	vore_default_contamination_flavor = "Wet"
 	vore_default_contamination_color = "grey"
 	vore_default_item_mode = IM_DIGEST
@@ -93,9 +96,8 @@
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
 	B.desc = "Soft should write a tummy message."
-	B.mode_flags = 8
+	B.mode_flags = 40
 	B.belly_fullscreen = "yet_another_tumby"
-
 /*  Do custom text for them idiot
 
 	B.emote_lists[DM_HOLD] = list(
@@ -150,6 +152,34 @@
 		"It looks like they have something solid in their %belly")
 */
 
+	var/obj/belly/p = new /obj/belly(src)
+	p.immutable = TRUE
+	p.mode_flags = 40
+	p.human_prey_swallow_time = 0.01 SECONDS
+	p.digestchance = 0
+	p.digest_brute = 0
+	p.digest_burn = 0
+	p.absorbchance = 0
+	p.escapable = TRUE
+	p.escapechance = 40
+	p.digest_mode = DM_HEAL
+	p.name = "propeutpericulum" 	//I'm no latin professor I just know that some organs and things are based on latin words 
+									//and google translate says that each of these individually 
+									//"close" "to" "danger" translate to "prope" "ut" "periculum". 
+									//Of course it doesn't translate perfectly, and it's nonsense when squashed together, but
+									//I don't care that much, I just figured that the weird alien animals that store friends in 
+									//their tummy should have a funny name for the organ they do that with. >:I
+	p.desc = "Soft should write a tummy message."
+	p.contaminates = 1
+	p.contamination_flavor = "Wet"
+	p.contamination_color = "grey"
+	p.item_digest_mode = IM_HOLD
+	p.belly_fullscreen = "yet_another_tumby"
+	p.fancy_vore = 1
+	p.vore_verb = "nyomp"
+	friend_zone = p
+
+
 ///////////////////////////////////////Other stuff///////////////////////////////////////////
 
 /mob/living/simple_mob/vore/alienanimals/teppi/Initialize()
@@ -158,8 +188,8 @@
 	if(name == initial(name))
 		name = "[name] ([rand(1, 1000)])"
 		real_name = name
-
-	icon_state = "body"
+	if(!teppi_adult)
+		nutrition = 0
 	teppi_setup()
 
 /mob/living/simple_mob/vore/alienanimals/teppi/proc/teppi_setup()
@@ -187,7 +217,7 @@
 
 	if(!teppi_grown)
 		allergen_preference = pick(possibleallergens) //the good shit
-		allergen_unpreference = pick(possibleallergens - allergen_preference) //I don't want that
+		allergen_unpreference = pick(possibleallergens - allergen_preference) //can't dislike the thing we like, they're not THAT picky
 		color = pickweight(possiblebody)
 		marking_color = pickweight(possiblemarking)
 		horn_color = pickweight(possiblehorns)
@@ -203,6 +233,7 @@
 	var/horn_key = "horn-[horn_color]"
 	var/eye_key = "eye-[eye_color]"
 	var/skin_key = "skin-[skin_color]"
+	var/wool_key = "wool-[marking_color]"
 
 	var/our_state = "base"	//For helping the images know what icon state they should be grabbing
 	if(icon_state == icon_living)
@@ -248,35 +279,101 @@
 		overlays_cache[skin_key+our_state+life_stage] = skin_image
 	add_overlay(skin_image)
 
+	if(teppi_wool)
+		var/image/wool_image = overlays_cache[wool_key+our_state+life_stage]
+		if(!wool_image)
+			wool_image = image(icon,null,"wool_[our_state]")
+			wool_image.color = marking_color
+			wool_image.appearance_flags = RESET_COLOR|KEEP_APART
+			overlays_cache[wool_key+our_state+life_stage] = wool_image
+		add_overlay(wool_image)
+
 /mob/living/simple_mob/vore/alienanimals/teppi/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(istype(O, /obj/item/weapon/reagent_containers/food))
 		if(nutrition < 5000)
 			var/yum = O.reagents?.get_reagent_amount("nutriment") //does it have nutriment, if so how much?
 			if(yum)
-				yum *= 30
+				yum *= 15
+				var/liked = FALSE
+				var/disliked = FALSE
 				for(var/datum/reagent/R as anything in O.reagents?.reagent_list)
 					if(R.allergen_type & allergen_preference)
-						yum *= 2
-						user.visible_message("<font color='blue'>[user] feeds [O] to [name]. It nibbles [O] excitedly.</font>","<font color='blue'>You feed [O] to [name]. It nibbles [O] excitedly.</font>")
-					else if(R.allergen_type & allergen_unpreference)
-						yum *= 0.5
-						user.visible_message("<font color='blue'>[user] feeds [O] to [name]. It nibbles [O] slowly.</font>","<font color='blue'>You feed [O] to [name]. It nibbles [O] slowly.</font>")
-					else
-						user.visible_message("<font color='blue'>[user] feeds [O] to [name]. It nibbles [O].</font>","<font color='blue'>You feed [O] to [name]. It nibbles [O].</font>")
-				adjust_nutrition(yum) //add the nutriment!
+						liked = TRUE
+					if(R.allergen_type & allergen_unpreference)
+						disliked = TRUE
+				if(liked && disliked) //in case a food has both the thing they like and also the thing they don't like in it
+					user.visible_message("<font color='blue'>[user] feeds [O] to [name]. It nibbles [O] and looks confused.</font>","<font color='blue'>You feed [O] to [name]. It nibbles [O] and looks confused.</font>")
+				else if(liked && !disliked)
+					user.visible_message("<font color='blue'>[user] feeds [O] to [name]. It nibbles [O] excitedly.</font>","<font color='blue'>You feed [O] to [name]. It nibbles [O] excitedly.</font>")
+					yum *= 2
+					handle_affinity(user, 5)
+				else if(!liked && disliked)
+					user.visible_message("<font color='blue'>[user] feeds [O] to [name]. It nibbles [O] slowly.</font>","<font color='blue'>You feed [O] to [name]. It nibbles [O] slowly.</font>")
+					yum *= 0.5
+					handle_affinity(user, -5)
+				else
+					user.visible_message("<font color='blue'>[user] feeds [O] to [name]. It nibbles [O].</font>","<font color='blue'>You feed [O] to [name]. It nibbles [O].</font>")
+					handle_affinity(user, 1)
 			else
 				user.visible_message("<font color='blue'>[user] feeds [O] to [name]. It nibbles [O] casually.</font>","<font color='blue'>You feed [O] to [name]. It nibbles [O] casually.</font>")
-			user.drop_from_inventory()
+			adjust_nutrition(yum) //add the nutriment!
+			user.drop_from_inventory(O)
 			qdel(O)
 			return
 		else
 			user.visible_message("<font color='blue'>[user] tries to feed [O] to [name]. It snoofs but does not eat.</font>","<font color='blue'>You try to feed [O] to [name], but it only snoofts at it.</font>")
 			return
+	if(istype(O, /obj/item/weapon/tool/wirecutters))
+		if(teppi_wool)
+			amount_grown = rand(0,250)
+			teppi_wool = FALSE
+			update_icon()
+			handle_affinity(user, 5)
+			return		
 	return ..()
 
 /mob/living/simple_mob/vore/alienanimals/teppi/update_icon()
 	..()
 	teppi_icon()	
+
+/mob/living/simple_mob/vore/alienanimals/teppi/Life()
+	. =..()
+	if(!.)
+		return
+	if(!teppi_wool)
+		amount_grown += rand(1,5)
+	if(amount_grown >= 1000)
+		if(teppi_adult)
+			teppi_wool = TRUE
+			update_icon()
+		else if(nutrition >= 500)
+			new /mob/living/simple_mob/vore/alienanimals/teppi(loc, src)
+			qdel(src)
+		else
+			visible_message("[src] whines pathetically...", runemessage = "whines")
+			amount_grown -= rand(100,250)
+
+/mob/living/simple_mob/vore/alienanimals/teppi/New(newloc, baby)
+	if(baby)
+		inherit_from_baby(baby)
+	..()
+
+/mob/living/simple_mob/vore/alienanimals/teppi/animal_nom(mob/living/T in living_mobs(1))
+	if(!client)
+		var/current_affinity = affinity[T.real_name]
+		if(current_affinity >= 50)
+			var/tumby = vore_selected
+			vore_selected = friend_zone
+			..()
+			vore_selected = tumby
+		else 
+			..()
+	else
+		..()
+
+/mob/living/simple_mob/vore/alienanimals/teppi/proc/handle_affinity(person, amount)
+	var/mob/living/P = person
+	affinity[P.real_name] += amount
 
 /datum/say_list/teppi
 	speak = list("Woof~", "Woof!", "Yip!", "Yap!", "Yip~", "Yap~", "Awoooooo~", "Awoo!", "AwooooooooooOOOOOOoOooOoooOoOOoooo!")
@@ -320,42 +417,24 @@
 	pixel_x = 0
 	default_pixel_x = 0
 
-	faction = "teppi"
+	teppi_adult = FALSE
+
 	maxHealth = 50
 	health = 50
 	movement_cooldown = 4
-
-	response_help = "pets"
-	response_disarm = "rudely paps"
-	response_harm = "punches"
-
 	harm_intent_damage = 5
 	melee_damage_lower = 1
 	melee_damage_upper = 5
-
-	var/amount_grown = 0
-
-
-/mob/living/simple_mob/vore/alienanimals/teppi/baby/Life()
-	. =..()
-	if(!.)
-		return
-	amount_grown += rand(1,5) //how much to grow
-	if(amount_grown >= 1000) //when do we grow up
-		new /mob/living/simple_mob/vore/alienanimals/teppi(loc, src) //spawn the adult teppi, give it a reference to baby's location and baby
-		qdel(src) // delete baby
-
-/mob/living/simple_mob/vore/alienanimals/teppi/New(newloc, baby) //you want to spawn a new adult teppi?
-	if(baby) //is there a reference from the baby?
-		inherit_from_baby(baby) //okay, take the things we need from be baby before setting up the rest of the adult
-	..() //set up everything else
-
+	vore_active = FALSE		//it's a tiny baby :O
+	devourable = FALSE
+	digestable = FALSE
 
 /mob/living/simple_mob/vore/alienanimals/teppi/proc/inherit_from_baby(mob/living/simple_mob/vore/alienanimals/teppi/baby/baby)
 	teppi_grown = TRUE
 	dir = baby.dir
 	name = baby.name
 	real_name = baby.real_name
+	faction = baby.faction
 	affinity = baby.affinity
 	allergen_preference = baby.allergen_preference
 	allergen_unpreference = baby.allergen_unpreference
