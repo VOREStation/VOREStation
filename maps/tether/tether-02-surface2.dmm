@@ -12285,12 +12285,14 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
 "atI" = (
-/obj/machinery/smartfridge,
 /obj/effect/floor_decal/borderfloor{
 	dir = 6
 	},
 /obj/effect/floor_decal/corner/lime/border{
 	dir = 6
+	},
+/obj/machinery/smartfridge{
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
@@ -33296,6 +33298,16 @@
 "jtj" = (
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/readingrooms)
+"jvy" = (
+/obj/effect/floor_decal/techfloor{
+	dir = 1
+	},
+/obj/structure/railing,
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/maintenance/lower/atmos)
 "jxi" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -33764,6 +33776,13 @@
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/techfloor,
 /area/ai_upload)
+"nhf" = (
+/obj/structure/railing,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/atmos)
 "nAh" = (
 /obj/structure/table/standard,
 /obj/item/weapon/aiModule/asimov,
@@ -45694,7 +45713,7 @@ aXB
 bbA
 bbJ
 aVP
-bcr
+nhf
 baW
 baW
 baW
@@ -47114,8 +47133,8 @@ bbA
 bbJ
 bbJ
 aVP
-baz
-baz
+jvy
+aIh
 baz
 bdq
 aLX
@@ -47255,10 +47274,10 @@ aXB
 bbB
 bbJ
 bbJ
-aVP
-adt
-adt
-aLY
+bbI
+baU
+baW
+baz
 bdr
 aLX
 aLY
@@ -47398,9 +47417,9 @@ aVP
 aVP
 aVP
 aVP
-adt
-adt
-aLY
+baz
+baz
+baz
 bdr
 aLX
 aLY

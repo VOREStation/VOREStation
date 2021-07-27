@@ -107,8 +107,8 @@
 
 /decl/chemical_reaction/instant/drinks/wine
 	name = "Wine"
-	id = "wine"
-	result = "wine"
+	id = "redwine"
+	result = "redwine"
 	required_reagents = list("grapejuice" = 10)
 	catalysts = list("enzyme" = 5)
 	result_amount = 10
