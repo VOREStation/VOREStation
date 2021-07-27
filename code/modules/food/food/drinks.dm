@@ -221,7 +221,7 @@
 /obj/item/weapon/reagent_containers/food/drinks/ice
 	name = "cup of ice"
 	desc = "Careful, cold ice, do not chew."
-	icon_state = "coffee"
+	icon_state = "ice"
 	center_of_mass = list("x"=15, "y"=10)
 /obj/item/weapon/reagent_containers/food/drinks/ice/Initialize()
 	. = ..()
@@ -232,7 +232,7 @@
 	desc = "Who needs character traits when you can enjoy a hot mug of cocoa?"
 	description_fluff = "Counselor's Choice brand hot cocoa is made with a blend of hot water and non-dairy milk powder substitute, in a compromise destined to annoy all parties."
 	icon_state = "coffee"
-	item_state = "coffee"
+	item_state = "hot_choc"
 	trash = /obj/item/trash/coffee
 	center_of_mass = list("x"=15, "y"=13)
 	drop_sound = 'sound/items/drop/papercup.ogg'
