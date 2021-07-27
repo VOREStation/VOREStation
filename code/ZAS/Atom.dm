@@ -30,12 +30,6 @@
 		else
 			CRASH("Invalid can_atmos_pass = [can_atmos_pass] on [src] ([type])")
 
-/turf/CanPass(atom/movable/mover, turf/target)
-	if(!target) return FALSE
-
-	if(istype(mover)) // turf/Enter(...) will perform more advanced checks
-		return !density
-
 /turf/CanZASPass(turf/T, is_zone)
 	if(T.blocks_air || src.blocks_air)
 		return FALSE
