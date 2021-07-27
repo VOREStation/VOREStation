@@ -209,9 +209,3 @@
 	desc = "A mundane spyglass, it may prove useful to those who wish to scout ahead, or fight from an extreme range."
 	cost = 100
 	obj_path = /obj/item/device/binoculars/spyglass
-
-/obj/item/device/binoculars/spyglass
-	name = "spyglass"
-	desc = "It's a hand-held telescope, useful for star-gazing, peeping, and recon."
-	icon_state = "spyglass"
-	slot_flags = SLOT_BELT
