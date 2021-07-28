@@ -101,7 +101,7 @@
 	var/obj/belly/B = holder.loc
 	var/mob/living/L = B.owner
 	// Will return false if we decide to not do anything about it.
-	if(!react_to_attack(L))
+	if(!react_to_attack(L, ignore_timers = TRUE))
 		ai_log("handle_eaten() : Deciding to sleep AI.", AI_LOG_TRACE)
 		go_sleep()
 
