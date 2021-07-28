@@ -240,7 +240,7 @@
 	target_last_seen_turf = null
 
 // Responds to a hostile action against its mob.
-/datum/ai_holder/proc/react_to_attack(atom/movable/attacker)
+/datum/ai_holder/proc/react_to_attack(atom/movable/attacker, ignore_timers = FALSE)
 	if(holder.stat) // We're dead.
 		ai_log("react_to_attack() : Was attacked by [attacker], but we are dead/unconscious.", AI_LOG_TRACE)
 		return FALSE
@@ -250,7 +250,7 @@
 	if(holder.IIsAlly(attacker)) // I'll overlook it THIS time...
 		ai_log("react_to_attack() : Was attacked by [attacker], but they were an ally.", AI_LOG_TRACE)
 		return FALSE
-	if(target && world.time < last_target_time + 8 SECONDS) // Already fighting someone. Switching every time we get hit would impact our combat performance.
+	if(target && !ignore_timers && (world.time < last_target_time + 8 SECONDS)) // Already fighting someone. Switching every time we get hit would impact our combat performance.
 		ai_log("react_to_attack() : Was attacked by [attacker], but we switched targets too recently to change.", AI_LOG_TRACE)
 		on_attacked(attacker)
 		return FALSE
