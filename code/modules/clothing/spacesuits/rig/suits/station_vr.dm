@@ -18,25 +18,34 @@
 //Area allowing backpacks to be placed on rigsuits.
 /obj/item/weapon/rig/vox
 	allowed = list(/obj/item/weapon/gun,/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/storage/backpack, /obj/item/device/bluespaceradio, /obj/item/device/defib_kit)
+
 /obj/item/weapon/rig/combat
 	allowed = list(/obj/item/weapon/gun,/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/melee/baton,/obj/item/weapon/storage/backpack,/obj/item/device/bluespaceradio, /obj/item/device/defib_kit)
+
 /obj/item/weapon/rig/ert
 	allowed = list(/obj/item/device/flashlight, /obj/item/weapon/tank, /obj/item/device/t_scanner, /obj/item/weapon/rcd, /obj/item/weapon/tool/crowbar, \
 	/obj/item/weapon/tool/screwdriver, /obj/item/weapon/weldingtool, /obj/item/weapon/tool/wirecutters, /obj/item/weapon/tool/wrench, /obj/item/device/multitool, \
 	/obj/item/device/radio, /obj/item/device/analyzer,/obj/item/weapon/storage/briefcase/inflatable, /obj/item/weapon/melee/baton, /obj/item/weapon/gun, \
 	/obj/item/weapon/storage/firstaid, /obj/item/weapon/reagent_containers/hypospray, /obj/item/roller, /obj/item/weapon/storage/backpack,/obj/item/device/bluespaceradio, /obj/item/device/defib_kit)
+
 /obj/item/weapon/rig/light/ninja
 	allowed = list(/obj/item/weapon/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/cell, /obj/item/weapon/storage/backpack,/obj/item/device/bluespaceradio, /obj/item/device/defib_kit)
+
 /obj/item/weapon/rig/merc
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/melee/energy/sword,/obj/item/weapon/handcuffs, /obj/item/weapon/storage/backpack,/obj/item/device/bluespaceradio, /obj/item/device/defib_kit)
+
 /obj/item/weapon/rig/ce
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/storage/bag/ore,/obj/item/device/t_scanner,/obj/item/weapon/pickaxe, /obj/item/weapon/rcd,/obj/item/weapon/storage/backpack,/obj/item/device/bluespaceradio, /obj/item/device/defib_kit)
+
 /obj/item/weapon/rig/medical
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/storage/firstaid,/obj/item/device/healthanalyzer,/obj/item/stack/medical,/obj/item/roller,/obj/item/weapon/storage/backpack,/obj/item/device/bluespaceradio, /obj/item/device/defib_kit)
+
 /obj/item/weapon/rig/hazmat
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/stack/flag,/obj/item/weapon/storage/excavation,/obj/item/weapon/pickaxe,/obj/item/device/healthanalyzer,/obj/item/device/measuring_tape,/obj/item/device/ano_scanner,/obj/item/device/depth_scanner,/obj/item/device/core_sampler,/obj/item/device/gps,/obj/item/device/beacon_locator,/obj/item/device/radio/beacon,/obj/item/weapon/pickaxe/hand,/obj/item/weapon/storage/bag/fossils,/obj/item/weapon/storage/backpack,/obj/item/device/bluespaceradio, /obj/item/device/defib_kit)
+
 /obj/item/weapon/rig/hazard
 	allowed = list(/obj/item/weapon/gun,/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/melee/baton,/obj/item/weapon/storage/backpack,/obj/item/device/bluespaceradio, /obj/item/device/defib_kit)
+
 /obj/item/weapon/rig/industrial
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/storage/bag/ore,/obj/item/device/t_scanner,/obj/item/weapon/pickaxe, /obj/item/weapon/rcd,/obj/item/weapon/storage/backpack,/obj/item/device/bluespaceradio, /obj/item/device/defib_kit)
 
@@ -45,6 +54,7 @@
 	/obj/item/device/t_scanner, /obj/item/weapon/rcd, /obj/item/weapon/weldingtool, /obj/item/weapon/tool, /obj/item/device/multitool, \
 	/obj/item/device/radio, /obj/item/device/analyzer,/obj/item/weapon/storage/briefcase/inflatable, /obj/item/weapon/melee/baton, /obj/item/weapon/gun, \
 	/obj/item/weapon/storage/firstaid, /obj/item/weapon/reagent_containers/hypospray, /obj/item/roller, /obj/item/device/suit_cooling_unit, /obj/item/weapon/storage/backpack,/obj/item/device/bluespaceradio, /obj/item/device/defib_kit)
+
 /obj/item/weapon/rig/pmc
 	allowed = list(/obj/item/device/flashlight, /obj/item/weapon/tank, /obj/item/device/t_scanner, /obj/item/weapon/rcd, /obj/item/weapon/tool/crowbar, \
 	/obj/item/weapon/tool/screwdriver, /obj/item/weapon/weldingtool, /obj/item/weapon/tool/wirecutters, /obj/item/weapon/tool/wrench, /obj/item/device/multitool, \
@@ -74,10 +84,11 @@
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE // so it's like a rig firesuit
 	armor = list("melee" = 40, "bullet" = 10, "laser" = 30, "energy" = 55, "bomb" = 70, "bio" = 100, "rad" = 100)
+	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/storage/backpack)
 	
 	chest_type = /obj/item/clothing/suit/space/rig/focalpoint
 	helm_type = /obj/item/clothing/head/helmet/space/rig/focalpoint
-	boot_type = /obj/item/clothing/shoes/magboots/rig/focalpoint
+	boot_type = /obj/item/clothing/shoes/magboots/rig/ce/focalpoint
 	glove_type = /obj/item/clothing/gloves/gauntlets/rig/focalpoint
 
 /obj/item/weapon/rig/focalpoint/equipped
@@ -104,7 +115,7 @@
 	species_restricted = list("exclude", SPECIES_TESHARI, SPECIES_VOX, SPECIES_DIONA)
 	sprite_sheets = null
 
-/obj/item/clothing/shoes/magboots/rig/focalpoint
+/obj/item/clothing/shoes/magboots/rig/ce/focalpoint
 	icon = 'icons/inventory/feet/item_vr.dmi'
 	default_worn_icon = 'icons/inventory/feet/mob_vr.dmi'
 	icon_state = "techno_rig"
@@ -131,6 +142,10 @@
 	icon_state = "ihs_rig"
 	suit_type = "\improper Hephaestus hardsuit"
 	cell_type = /obj/item/weapon/cell/super
+	allowed = list(/obj/item/device/flashlight, /obj/item/weapon/tank,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/handcuffs, \
+	/obj/item/device/t_scanner, /obj/item/weapon/rcd, /obj/item/weapon/weldingtool, /obj/item/weapon/tool, /obj/item/device/multitool, \
+	/obj/item/device/radio, /obj/item/device/analyzer,/obj/item/weapon/storage/briefcase/inflatable, /obj/item/weapon/melee/baton, /obj/item/weapon/gun, \
+	/obj/item/weapon/storage/firstaid, /obj/item/weapon/reagent_containers/hypospray, /obj/item/roller, /obj/item/device/suit_cooling_unit, /obj/item/weapon/storage/backpack,/obj/item/device/bluespaceradio, /obj/item/device/defib_kit)
 
 	armor = list("melee" = 70, "bullet" = 70, "laser" = 70, "energy" = 50, "bomb" = 60, "bio" = 100, "rad" = 20)
 	
@@ -194,6 +209,8 @@
 	helm_type = /obj/item/clothing/head/helmet/space/rig/zero
 	boot_type = null
 	glove_type = null
+
+	allowed = list(/obj/item/weapon/gun,/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit,/obj/item/weapon/storage/backpack, /obj/item/device/bluespaceradio, /obj/item/device/defib_kit)
 	
 	slowdown = 0
 	offline_slowdown = 1
@@ -237,15 +254,25 @@
 
 	chest_type = /obj/item/clothing/suit/space/rig/baymed
 	helm_type = /obj/item/clothing/head/helmet/space/rig/baymed
-	boot_type = /obj/item/clothing/shoes/magboots/rig/baymed
+	boot_type = /obj/item/clothing/shoes/magboots/rig/ce/baymed
 	glove_type = /obj/item/clothing/gloves/gauntlets/rig/baymed
+
+	allowed = list(
+		/obj/item/device/flashlight,
+		/obj/item/weapon/tank,
+		/obj/item/device/suit_cooling_unit,
+		/obj/item/device/healthanalyzer,
+		/obj/item/stack/medical,
+		/obj/item/roller,
+		/obj/item/weapon/storage/backpack,
+		/obj/item/device/bluespaceradio,
+		/obj/item/device/defib_kit)
 
 	// speedy paper
 	slowdown = -0.5
 	armor = list("melee" = 10, "bullet" = 5, "laser" = 10, "energy" = 5, "bomb" = 25, "bio" = 100, "rad" = 20)
 
 /obj/item/weapon/rig/baymed/equipped
-	req_access = list(access_medical)
 	
 	initial_modules = list(
 		/obj/item/rig_module/maneuvering_jets,
@@ -261,6 +288,7 @@
 	item_state = null
 	sprite_sheets = ALL_VR_SPRITE_SHEETS_HEAD_MOB
 	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_HEAD_ITEM
+	camera_networks = list(NETWORK_MEDICAL)
 
 /obj/item/clothing/suit/space/rig/baymed
 	icon = 'icons/inventory/suit/item_vr.dmi'
@@ -270,7 +298,7 @@
 	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
 	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
 
-/obj/item/clothing/shoes/magboots/rig/baymed
+/obj/item/clothing/shoes/magboots/rig/ce/baymed
 	icon = 'icons/inventory/feet/item_vr.dmi'
 	default_worn_icon = 'icons/inventory/feet/mob_vr.dmi'
 	icon_state = "medical_rig_bay"
@@ -300,14 +328,26 @@
 
 	chest_type = /obj/item/clothing/suit/space/rig/bayeng
 	helm_type = /obj/item/clothing/head/helmet/space/rig/bayeng
-	boot_type = /obj/item/clothing/shoes/magboots/rig/bayeng
+	boot_type = /obj/item/clothing/shoes/magboots/rig/ce/bayeng
 	glove_type = /obj/item/clothing/gloves/gauntlets/rig/bayeng
 
-	slowdown = 1
+	allowed = list(
+		/obj/item/device/flashlight,
+		/obj/item/weapon/tank,
+		/obj/item/device/suit_cooling_unit,
+		/obj/item/device/t_scanner,
+		/obj/item/weapon/pickaxe,
+		/obj/item/weapon/rcd,
+		/obj/item/weapon/storage/backpack,
+		/obj/item/device/bluespaceradio,
+		/obj/item/device/defib_kit
+		)
+
+	slowdown = 0
 	offline_slowdown = 5 // very bulky
 	armor = list(melee = 60, bullet = 50, laser = 30, energy = 15, bomb = 30, bio = 100, rad = 50)
 
-/obj/item/weapon/rig/bayeng//equipped
+/obj/item/weapon/rig/bayeng/equipped
 	initial_modules = list(
 		/obj/item/rig_module/maneuvering_jets,
 		/obj/item/rig_module/device/rcd,
@@ -323,6 +363,7 @@
 	item_state = null
 	sprite_sheets = ALL_VR_SPRITE_SHEETS_HEAD_MOB
 	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_HEAD_ITEM
+	camera_networks = list(NETWORK_ENGINEERING)
 
 /obj/item/clothing/suit/space/rig/bayeng
 	icon = 'icons/inventory/suit/item_vr.dmi'
@@ -332,7 +373,7 @@
 	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
 	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
 
-/obj/item/clothing/shoes/magboots/rig/bayeng
+/obj/item/clothing/shoes/magboots/rig/ce/bayeng
 	icon = 'icons/inventory/feet/item_vr.dmi'
 	default_worn_icon = 'icons/inventory/feet/mob_vr.dmi'
 	icon_state = "engineering_rig_bay"

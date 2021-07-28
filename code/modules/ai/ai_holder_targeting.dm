@@ -114,6 +114,7 @@
 	return closest_targets
 
 /datum/ai_holder/proc/can_attack(atom/movable/the_target, var/vision_required = TRUE)
+	ai_log("can_attack() : Entering.", AI_LOG_TRACE)
 	if(!can_see_target(the_target) && vision_required)
 		return FALSE
 
@@ -218,6 +219,7 @@
 
 // Updates the last known position of the target.
 /datum/ai_holder/proc/track_target_position()
+	ai_log("track_target_position() : Entering.", AI_LOG_TRACE)
 	if(!target)
 		lose_target_position()
 
@@ -231,13 +233,14 @@
 
 // Resets the last known position to null.
 /datum/ai_holder/proc/lose_target_position()
+	ai_log("lose_target_position() : Entering.", AI_LOG_TRACE)
 	if(last_turf_display && target_last_seen_turf)
 		target_last_seen_turf.cut_overlay(last_turf_overlay)
 	ai_log("lose_target_position() : Last position is being reset.", AI_LOG_INFO)
 	target_last_seen_turf = null
 
 // Responds to a hostile action against its mob.
-/datum/ai_holder/proc/react_to_attack(atom/movable/attacker)
+/datum/ai_holder/proc/react_to_attack(atom/movable/attacker, ignore_timers = FALSE)
 	if(holder.stat) // We're dead.
 		ai_log("react_to_attack() : Was attacked by [attacker], but we are dead/unconscious.", AI_LOG_TRACE)
 		return FALSE
@@ -247,15 +250,10 @@
 	if(holder.IIsAlly(attacker)) // I'll overlook it THIS time...
 		ai_log("react_to_attack() : Was attacked by [attacker], but they were an ally.", AI_LOG_TRACE)
 		return FALSE
-	if(target) // Already fighting someone. Switching every time we get hit would impact our combat performance.
-		if(!retaliate)	// If we don't get to fight back, we don't fight back...
-			ai_log("react_to_attack() : Was attacked by [attacker], but we already have a target.", AI_LOG_TRACE)
-			on_attacked(attacker) // So we attack immediately and not threaten.
-			return FALSE
-		else if(check_attacker(attacker) && world.time > last_target_time + 3 SECONDS)	// Otherwise, let 'er rip
-			ai_log("react_to_attack() : Was attacked by [attacker]. Can retaliate, waited 3 seconds.", AI_LOG_INFO)
-			on_attacked(attacker) // So we attack immediately and not threaten.
-			return give_target(attacker) // Also handles setting the appropiate stance.
+	if(target && !ignore_timers && (world.time < last_target_time + 8 SECONDS)) // Already fighting someone. Switching every time we get hit would impact our combat performance.
+		ai_log("react_to_attack() : Was attacked by [attacker], but we switched targets too recently to change.", AI_LOG_TRACE)
+		on_attacked(attacker)
+		return FALSE
 
 	if(stance == STANCE_SLEEP) // If we're asleep, try waking up if someone's wailing on us.
 		ai_log("react_to_attack() : AI is asleep. Waking up.", AI_LOG_TRACE)

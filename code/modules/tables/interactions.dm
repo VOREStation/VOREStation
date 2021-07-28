@@ -1,11 +1,15 @@
 /obj/structure/table/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover,/obj/item/projectile))
 		return (check_cover(mover,target))
-	if (flipped == 1)
-		if (get_dir(loc, target) == dir)
+	if (flipped)
+		var/move_dir = get_dir(mover, target)
+		// Moving from back to front, gotta climb
+		if(move_dir == dir && target != loc)
 			return !density
-		else
-			return TRUE
+		// Moving from front to back, gotta climb
+		if(move_dir == reverse_dir[dir])
+			return !density
+		return TRUE
 	if(istype(mover) && mover.checkpass(PASSTABLE))
 		return TRUE
 	if(locate(/obj/structure/table/bench) in get_turf(mover))
@@ -14,6 +18,14 @@
 	if(table && !table.flipped)
 		return TRUE
 	return FALSE
+
+/obj/structure/table/climb_to(mob/living/mover)
+	if(flipped && mover.loc == loc)
+		var/turf/T = get_step(src, dir)
+		if(T.Enter(mover))
+			return T
+
+	return ..()
 
 //checks if projectile 'P' from turf 'from' can hit whatever is behind the table. Returns 1 if it can, 0 if bullet stops.
 /obj/structure/table/proc/check_cover(obj/item/projectile/P, turf/from)

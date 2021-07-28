@@ -296,7 +296,7 @@
 	var/turf/simulated/wall/T
 	for(var/direction in get_dirs_to_test())
 		T = get_step(src, direction)
-		if(!istype(T))
+		if(!istype(T) || T.material?.icon_base != "hull")
 			continue
 		
 		name = T.name
