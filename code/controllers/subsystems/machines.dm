@@ -101,6 +101,7 @@ SUBSYSTEM_DEF(machines)
 		current_run.len--
 		if(QDELETED(PN))
 			global.pipe_networks.Remove(PN)
+			DISABLE_BITFIELD(PN?.datum_flags, DF_ISPROCESSING)
 		else
 			PN.process(wait)
 		if(MC_TICK_CHECK)
@@ -117,6 +118,7 @@ SUBSYSTEM_DEF(machines)
 		current_run.len--
 		if(QDELETED(M) || (M.process(wait) == PROCESS_KILL))
 			global.processing_machines.Remove(M)
+			DISABLE_BITFIELD(M?.datum_flags, DF_ISPROCESSING)
 		if(MC_TICK_CHECK)
 			return
 
@@ -131,6 +133,7 @@ SUBSYSTEM_DEF(machines)
 		current_run.len--
 		if(QDELETED(PN))
 			global.powernets.Remove(PN)
+			DISABLE_BITFIELD(PN?.datum_flags, DF_ISPROCESSING)
 		else
 			PN.reset(wait)
 		if(MC_TICK_CHECK)
@@ -147,9 +150,9 @@ SUBSYSTEM_DEF(machines)
 	while(current_run.len)
 		var/obj/item/I = current_run[current_run.len]
 		current_run.len--
-		if(!I.pwr_drain(wait)) // 0 = Process Kill, remove from processing list.
+		if(QDELETED(I) || (I.pwr_drain(wait) == PROCESS_KILL))
 			global.processing_power_items.Remove(I)
-			DISABLE_BITFIELD(I.datum_flags, DF_ISPROCESSING)
+			DISABLE_BITFIELD(I?.datum_flags, DF_ISPROCESSING)
 		if(MC_TICK_CHECK)
 			return
 
