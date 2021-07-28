@@ -140,9 +140,6 @@
 		return flags & INSERT_CONTAINER
 */
 
-/atom/proc/CheckExit()
-	return 1
-
 // Used to be for the PROXMOVE flag, but that was terrible, so instead it's just here as a stub for
 // all the atoms that still have the proc, but get events other ways.
 /atom/proc/HasProximity(turf/T, atom/movable/AM, old_loc)

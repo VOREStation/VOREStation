@@ -260,11 +260,6 @@
 /atom/movable/Crossed(atom/movable/AM, oldloc)
 	return
 
-/atom/movable/Uncross(atom/movable/AM, atom/newloc)
-	. = ..()
-	if(isturf(newloc) && !CheckExit(AM, newloc))
-		return FALSE
-
 /atom/movable/Bump(atom/A)
 	if(!A)
 		CRASH("Bump was called with no argument.")
