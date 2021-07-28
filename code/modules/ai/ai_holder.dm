@@ -353,13 +353,24 @@
 			ai_log("handle_stance_tactical() : Going to handle_resist().", AI_LOG_TRACE)
 			handle_resist()
 
-		else if(istype(holder.loc, /obj/structure/closet))
+		var/atom/holder_loc = holder.loc
+		if(istype(holder_loc, /obj/structure/closet))
 			var/obj/structure/closet/C = holder.loc
 			ai_log("handle_stance_tactical() : Inside a closet. Going to attempt escape.", AI_LOG_TRACE)
 			if(C.sealed)
 				holder.resist()
 			else
 				C.open()
+		else if(isbelly(holder_loc))
+			ai_log("handle_stance_tactical() : Inside a belly, will move out to turf if owner is stat.", AI_LOG_TRACE)
+			var/obj/belly/B = holder_loc
+			var/mob/living/L = B.owner
+			if(B.owner?.stat)
+				var/mob/living/holder = src.holder
+				ai_log("handle_stance_tactical() : Owner was stat, moving.", AI_LOG_TRACE)
+				holder.forceMove(get_turf(L))
+				holder.visible_message("<span class='danger'>[src] climbs out of [L], ready to continue fighting!</span>")
+				playsound(holder, 'sound/effects/splat.ogg')
 
 		// Should we flee?
 		if(should_flee())

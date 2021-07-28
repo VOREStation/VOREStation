@@ -218,7 +218,7 @@
 		vore_fx(M)
 		//Stop AI processing in bellies
 		if(M.ai_holder)
-			M.ai_holder.go_sleep()
+			M.ai_holder.handle_eaten()
 
 // Called whenever an atom leaves this belly
 /obj/belly/Exited(atom/movable/thing, atom/OldLoc)
