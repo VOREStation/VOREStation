@@ -1934,6 +1934,7 @@
 /obj/effect/floor_decal/milspec/color/orange/half{
 	dir = 6
 	},
+/obj/machinery/light,
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/atmos)
 "lI" = (
@@ -1948,6 +1949,13 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/hallway_port)
+"lJ" = (
+/obj/effect/floor_decal/milspec/hatchmarks,
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 5
+	},
+/turf/simulated/floor/tiled/techmaint/airless,
+/area/space)
 "lM" = (
 /obj/effect/floor_decal/milspec/color/white/half,
 /obj/effect/floor_decal/milspec/color/white/corner{
@@ -2314,6 +2322,12 @@
 /obj/effect/floor_decal/milspec_sterile/green/half,
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/aro3/medical)
+"ot" = (
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint/airless,
+/area/space)
 "ou" = (
 /obj/effect/floor_decal/milspec/stripe{
 	dir = 4
@@ -2553,6 +2567,10 @@
 /obj/effect/floor_decal/milspec_sterile/green/corner,
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/aro3/medical)
+"pO" = (
+/obj/effect/floor_decal/milspec/hatchmarks,
+/turf/simulated/floor/tiled/techmaint/airless,
+/area/space)
 "pP" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -3017,6 +3035,14 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/hallway_starboard)
+"sX" = (
+/obj/structure/prop/tgmc_minirockets,
+/obj/effect/floor_decal/milspec/hatchmarks,
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/techmaint/airless,
+/area/space)
 "td" = (
 /obj/effect/floor_decal/milspec_sterile/green/half{
 	dir = 4
@@ -4159,6 +4185,10 @@
 	},
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/aro3/eva_hall)
+"Ab" = (
+/obj/effect/floor_decal/industrial/warning/dust,
+/turf/simulated/floor/tiled/techmaint/airless,
+/area/space)
 "Ac" = (
 /obj/structure/closet/crate/bin{
 	anchored = 1;
@@ -5093,6 +5123,14 @@
 /obj/item/weapon/storage/firstaid/adv,
 /turf/simulated/floor/tiled/techmaint,
 /area/aro3/medical)
+"Hb" = (
+/obj/structure/prop/tgmc_minirockets,
+/obj/effect/floor_decal/milspec/hatchmarks,
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/techmaint/airless,
+/area/space)
 "Hc" = (
 /obj/effect/floor_decal/milspec/color/red/half{
 	dir = 9
@@ -5235,6 +5273,14 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/atmos)
+"Im" = (
+/obj/structure/prop/tgmc_laser/loaded,
+/obj/effect/floor_decal/milspec/hatchmarks,
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/techmaint/airless,
+/area/space)
 "Io" = (
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
@@ -5977,7 +6023,7 @@
 /turf/simulated/wall/tgmc/durawall,
 /area/aro3/repair_bay)
 "NF" = (
-/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/effect/floor_decal/milspec/hatchmarks,
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/workshop)
 "NG" = (
@@ -6172,6 +6218,14 @@
 	},
 /turf/simulated/floor/plating/eris/under,
 /area/aro3/atmos)
+"OM" = (
+/obj/structure/prop/tgmc_laser/loaded,
+/obj/effect/floor_decal/milspec/hatchmarks,
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/techmaint/airless,
+/area/space)
 "ON" = (
 /obj/structure/table/steel,
 /obj/item/weapon/storage/toolbox/electrical,
@@ -6226,6 +6280,13 @@
 /obj/effect/floor_decal/milspec/monotile,
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/surfluid)
+"Pa" = (
+/obj/effect/floor_decal/milspec/color/red/half{
+	dir = 9
+	},
+/obj/structure/prop/tgmc_missile/double,
+/turf/simulated/floor/tiled/milspec,
+/area/aro3/flight_deck)
 "Pb" = (
 /obj/machinery/light{
 	dir = 1
@@ -6359,6 +6420,11 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/power)
+"Qd" = (
+/obj/structure/prop/tgmc_minirockets,
+/obj/effect/floor_decal/milspec/hatchmarks,
+/turf/simulated/floor/tiled/techmaint/airless,
+/area/space)
 "Qe" = (
 /obj/effect/floor_decal/milspec/hatchmarks,
 /turf/simulated/floor/tiled/milspec,
@@ -6392,6 +6458,7 @@
 /obj/effect/floor_decal/milspec/color/red/half{
 	dir = 10
 	},
+/obj/structure/prop/tgmc_missile/fatty,
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/flight_deck)
 "QB" = (
@@ -6805,8 +6872,8 @@
 /turf/space,
 /area/space)
 "TM" = (
-/obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/machinery/light,
+/obj/effect/floor_decal/milspec/hatchmarks,
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/workshop)
 "TN" = (
@@ -6933,6 +7000,13 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/eva_hall)
+"UL" = (
+/obj/effect/floor_decal/milspec/hatchmarks,
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/techmaint/airless,
+/area/space)
 "UM" = (
 /turf/simulated/wall/tgmc/durawall/deco1,
 /area/aro3/atmos)
@@ -11400,8 +11474,8 @@ Ua
 Ua
 Ua
 Ua
-hD
-hD
+pO
+Qd
 tp
 Ua
 Ua
@@ -15499,8 +15573,8 @@ Ua
 Ua
 Ua
 yn
-hD
-hD
+UL
+Hb
 hD
 hD
 hD
@@ -15641,8 +15715,8 @@ Ua
 Ua
 Ua
 yn
-hD
-hD
+ot
+Ab
 hD
 hD
 hD
@@ -15783,8 +15857,8 @@ Ua
 Ua
 Ua
 yn
-hD
-hD
+lJ
+Im
 hD
 hD
 hD
@@ -16961,7 +17035,7 @@ NC
 Ty
 To
 Iq
-Hc
+Pa
 QA
 HE
 HE
@@ -19333,8 +19407,8 @@ Ua
 Ua
 Ua
 yn
-hD
-hD
+UL
+OM
 hD
 hD
 hD
@@ -19475,8 +19549,8 @@ Ua
 Ua
 Ua
 yn
-hD
-hD
+ot
+Ab
 hD
 hD
 hD
@@ -19617,8 +19691,8 @@ Ua
 Ua
 Ua
 yn
-hD
-hD
+lJ
+sX
 hD
 hD
 hD
@@ -23754,8 +23828,8 @@ Ua
 Ua
 Ua
 Ua
-hD
-hD
+pO
+Qd
 AA
 Ua
 Ua
