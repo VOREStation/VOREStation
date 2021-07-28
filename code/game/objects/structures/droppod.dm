@@ -18,7 +18,11 @@
 	if(A)
 		A.forceMove(src) // helo
 		podfall(auto_open)
-		air = new(1000)
+		air = new
+
+/obj/structure/drop_pod/Destroy()
+	. = ..()
+	qdel_null(air)
 
 /obj/structure/drop_pod/proc/podfall(auto_open)
 	set waitfor = FALSE // sleeping in new otherwise
@@ -118,10 +122,16 @@
 	return ..()
 
 /obj/structure/drop_pod/return_air()
-	return return_air_for_internal_lifeform()
+	return air || ..()
 
 /obj/structure/drop_pod/return_air_for_internal_lifeform()
-	return air
+	return air || ..()
+
+/obj/structure/drop_pod/assume_air(datum/gas_mixture/giver)
+	if(air)
+		return air.merge(giver)
+	else
+		return ..()
 
 // This is about 0.896m^3 of atmosphere, which is enough to last for quite a while.
 /datum/gas_mixture/pod_air
