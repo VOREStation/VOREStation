@@ -715,3 +715,11 @@
 
 /atom/proc/interact(mob/user)
 	return
+
+// Purpose: Determines if the object can pass this atom.
+// Called by: Movement.
+// Inputs: The moving atom, target turf.
+// Outputs: Boolean if can pass.
+// Airflow and ZAS zones now uses CanZASPass() instead of this proc.
+/atom/proc/CanPass(atom/movable/mover, turf/target)
+	return !density
