@@ -2,12 +2,7 @@
 	if(istype(mover,/obj/item/projectile))
 		return (check_cover(mover,target))
 	if (flipped)
-		var/move_dir = get_dir(mover, target)
-		// Moving from back to front, gotta climb
-		if(move_dir == dir && target != loc)
-			return !density
-		// Moving from front to back, gotta climb
-		if(move_dir == reverse_dir[dir])
+		if(get_dir(mover, target) == reverse_dir[dir]) // From elsewhere to here, can't move against our dir
 			return !density
 		return TRUE
 	if(istype(mover) && mover.checkpass(PASSTABLE))
@@ -26,6 +21,11 @@
 			return T
 
 	return ..()
+
+/obj/structure/table/Uncross(atom/movable/mover, turf/target)
+	if(flipped && (get_dir(mover, target) == dir)) // From here to elsewhere, can't move in our dir
+		return !density
+	return TRUE
 
 //checks if projectile 'P' from turf 'from' can hit whatever is behind the table. Returns 1 if it can, 0 if bullet stops.
 /obj/structure/table/proc/check_cover(obj/item/projectile/P, turf/from)
@@ -59,17 +59,6 @@
 				break_to_parts()
 				return 1
 	return 1
-
-/obj/structure/table/CheckExit(atom/movable/O as mob|obj, target as turf)
-	if(istype(O) && O.checkpass(PASSTABLE))
-		return 1
-	if (flipped==1)
-		if (get_dir(loc, target) == dir)
-			return !density
-		else
-			return 1
-	return 1
-
 
 /obj/structure/table/MouseDrop_T(obj/O as obj, mob/user as mob)
 

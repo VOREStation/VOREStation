@@ -82,16 +82,10 @@
 	if(!watching_mob && isliving(AM) && AM.loc == loc)
 		startWatching(AM)
 
-// In order to actually get Bumped() we need to block movement.  We're (visually) on a wall, so people
-// couldn't really walk into us anyway.  But in reality we are on the turf in front of the wall, so bumping
-// against where we seem is actually trying to *exit* our real loc
-/obj/machinery/station_map/CheckExit(atom/movable/mover as mob|obj, turf/target as turf)
-	// log_debug("[src] (dir=[dir]) CheckExit([mover], [target])  get_dir() = [get_dir(target, loc)]")
-	if(get_dir(target, loc) == dir) // Opposite of "normal" since we are visually in the next turf over
+/obj/machinery/station_map/Uncross(atom/movable/mover, turf/target)
+	if(get_dir(mover, target) == reverse_dir[dir])
 		return FALSE
-	else
-		return TRUE
-
+	return TRUE
 /obj/machinery/station_map/proc/startWatching(var/mob/user)
 	// Okay, does this belong on a screen thing or what?
 	// One argument is that this is an "in game" object becuase its in the world.

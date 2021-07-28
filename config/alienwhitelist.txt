@@ -1,4 +1,3 @@
-some~user - Species
 admiraldragon - Vox
 aetherelemental - Daemon
 alphaprime1 - Protean
@@ -46,7 +45,7 @@ lizehrd - Xenochimera
 lordlag - Black-Eyed Shadekin
 losstinspess - Xenochimera
 magpiemayhem - Vox
-marco_barko - Protean
+marcobarko - Protean
 mewchild - Diona
 mewchild - Vox
 milu - Xenochimera
