@@ -140,15 +140,21 @@
 /obj/effect/ceiling
 	invisibility = 101 // nope cant see this
 	anchored = 1
+	can_atmos_pass = ATMOS_PASS_PROC
 
-/obj/effect/ceiling/CheckExit(atom/movable/O as mob|obj, turf/target as turf)
-	if(target && target.z > src.z)
-		return FALSE // Block exit from our turf to above
+/obj/effect/ceiling/CanZASPass(turf/T, is_zone)
+	if(T == GetAbove(src))
+		return FALSE // Keep your air up there, buddy
 	return TRUE
 
-/obj/effect/ceiling/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(mover && mover.z > src.z)
-		return FALSE // Block entry from above to our turf
+/obj/effect/ceiling/CanPass(atom/movable/mover, turf/target)
+	if(target == GetAbove(src))
+		return FALSE
+	return TRUE
+
+/obj/effect/ceiling/Uncross(atom/movable/mover, turf/target)
+	if(target == GetAbove(src))
+		return FALSE
 	return TRUE
 
 //

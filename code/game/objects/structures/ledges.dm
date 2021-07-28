@@ -39,16 +39,16 @@
 /obj/structure/ledge/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSTABLE))
 		return TRUE
-	if(solidledge && get_dir(mover, target) == turn(dir, 180))
+	if(solidledge && get_dir(mover, target) == reverse_dir[dir]) // From elsewhere to here, can't move against our dir
 		return !density
 	return TRUE
 
-/obj/structure/ledge/CheckExit(atom/movable/O as mob|obj, target as turf)
-	if(istype(O) && O.checkpass(PASSTABLE))
-		return 1
-	if(solidledge && get_dir(O.loc, target) == dir)
-		return 0
-	return 1
+/obj/structure/ledge/Uncross(atom/movable/mover, turf/target)
+	if(istype(mover) && mover.checkpass(PASSTABLE))
+		return TRUE
+	if(solidledge && get_dir(mover, target) == dir) // From here to elsewhere, can't move in our dir
+		return FALSE
+	return TRUE
 
 /obj/structure/ledge/do_climb(var/mob/living/user)
 	if(!can_climb(user))

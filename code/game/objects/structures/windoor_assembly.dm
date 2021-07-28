@@ -57,17 +57,17 @@
 /obj/structure/windoor_assembly/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSGLASS))
 		return TRUE
-	if(get_dir(loc, target) == dir) //Make sure looking at appropriate border
+	if(get_dir(mover, target) == reverse_dir[dir]) // From elsewhere to here, can't move against our dir
 		return !density
 	return TRUE
 
-/obj/structure/windoor_assembly/CheckExit(atom/movable/mover as mob|obj, turf/target as turf)
+/obj/structure/windoor_assembly/Uncross(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSGLASS))
-		return 1
-	if(get_dir(loc, target) == dir)
+		return TRUE
+	if(get_dir(mover, target) == dir) // From here to elsewhere, can't move in our dir
 		return !density
 	else
-		return 1
+		return TRUE
 
 /obj/structure/windoor_assembly/proc/rename_door(mob/living/user)
 	var/t = sanitizeSafe(input(user, "Enter the name for the windoor.", src.name, src.created_name), MAX_NAME_LEN)

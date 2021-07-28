@@ -138,23 +138,23 @@
 		return TRUE
 	if(is_fulltile())
 		return FALSE	//full tile window, you can't move into it!
-	if((get_dir(loc, target) & dir) || (get_dir(mover, target) == turn(dir, 180)))
+	if(get_dir(mover, target) == reverse_dir[dir]) // From elsewhere to here, can't move against our dir
 		return !density
 	else
 		return TRUE
 
+/obj/structure/window/Uncross(atom/movable/mover, turf/target)
+	if(istype(mover) && mover.checkpass(PASSGLASS))
+		return TRUE
+	if(get_dir(mover, target) == dir) // From here to elsewhere, can't move in our dir
+		return !density
+	else
+		return TRUE
 
 /obj/structure/window/CanZASPass(turf/T, is_zone)
 	if(is_fulltile() || get_dir(T, loc) == turn(dir, 180)) // Make sure we're handling the border correctly.
 		return !anchored // If it's anchored, it'll block air.
 	return TRUE // Don't stop airflow from the other sides.
-
-/obj/structure/window/CheckExit(atom/movable/O as mob|obj, target as turf)
-	if(istype(O) && O.checkpass(PASSGLASS))
-		return 1
-	if(get_dir(O.loc, target) == dir)
-		return 0
-	return 1
 
 /obj/structure/window/hitby(AM as mob|obj)
 	..()
