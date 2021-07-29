@@ -28,7 +28,7 @@
 	else
 		src.poster_decl = get_poster_decl(/decl/poster, FALSE)
 	
-	name += " - No. [src.poster_decl.name]"
+	name += " - [src.poster_decl.name]"
 	return ..()
 
 //Places the poster on a wall
@@ -99,13 +99,14 @@
 
 	var/mob/M = usr
 	var/list/options = list()
-	for(var/decl/poster/posteroption in decls_repository.get_decls_of_type(/decl/poster))
-		options[posteroption.listing_name] = posteroption
+	var/list/decl/poster/posters = decls_repository.get_decls_of_type(/decl/poster)
+	for(var/option in posters)
+		options[posters[option].listing_name] = posters[option]
 
 	var/choice = tgui_input_list(M, "Choose a poster!", "Customize Poster", options)
 	if(src && choice && !M.stat && in_range(M,src))
 		poster_decl = options[choice]
-		name = "rolled-up poly-poster - No.[poster_decl.icon_state]"
+		name = "rolled-up poly-poster - [src.poster_decl.name]"
 		to_chat(M, "The poster is now: [choice].")
 
 
