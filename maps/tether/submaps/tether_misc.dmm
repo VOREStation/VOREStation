@@ -1222,6 +1222,20 @@
 /obj/structure/closet/alien,
 /turf/simulated/shuttle/floor/alien,
 /area/unknown/dorm6)
+"dD" = (
+/obj/effect/step_trigger/teleporter/random{
+	affect_ghosts = 1;
+	name = "escapeshuttle_leave";
+	teleport_x = 25;
+	teleport_x_offset = 245;
+	teleport_y = 25;
+	teleport_y_offset = 245;
+	teleport_z = 4;
+	teleport_z_offset = 4
+	},
+/turf/space,
+/turf/space/transit/north,
+/area/space)
 "dE" = (
 /obj/structure/shuttle/engine/heater,
 /obj/structure/window/reinforced{
@@ -1661,20 +1675,6 @@
 	},
 /turf/simulated/floor/holofloor/tiled,
 /area/holodeck/source_thunderdomecourt)
-"fg" = (
-/obj/effect/step_trigger/teleporter/random{
-	affect_ghosts = 1;
-	name = "escapeshuttle_leave";
-	teleport_x = 25;
-	teleport_x_offset = 245;
-	teleport_y = 25;
-	teleport_y_offset = 245;
-	teleport_z = 4;
-	teleport_z_offset = 4
-	},
-/turf/space,
-/turf/space/transit/north,
-/area/space)
 "fn" = (
 /obj/structure/holostool,
 /obj/effect/floor_decal/carpet{
@@ -15293,10 +15293,10 @@ Jz
 Jz
 Jz
 Jz
-fg
-fg
-fg
-fg
+dD
+dD
+dD
+dD
 iO
 El
 El
@@ -15438,7 +15438,7 @@ jf
 Gs
 Gs
 Gs
-fg
+dD
 iO
 El
 El
@@ -15580,7 +15580,7 @@ jf
 Gs
 Gs
 Gs
-fg
+dD
 iO
 El
 El
@@ -15722,7 +15722,7 @@ jf
 Gs
 Gs
 Gs
-fg
+dD
 iO
 El
 El
@@ -15864,7 +15864,7 @@ jf
 Gs
 Gs
 Gs
-fg
+dD
 iO
 El
 El
@@ -16006,7 +16006,7 @@ jf
 Gs
 Gs
 Gs
-fg
+dD
 iO
 El
 El
@@ -16148,7 +16148,7 @@ jf
 Gs
 Gs
 Gs
-fg
+dD
 iO
 El
 El
@@ -16290,7 +16290,7 @@ jf
 Gs
 Gs
 Gs
-fg
+dD
 iO
 El
 El
@@ -16432,7 +16432,7 @@ jf
 Gs
 Gs
 Gs
-fg
+dD
 iO
 El
 El
@@ -16574,7 +16574,7 @@ jf
 Gs
 Gs
 Gs
-fg
+dD
 iO
 El
 El
@@ -16716,7 +16716,7 @@ jf
 Gs
 Gs
 Gs
-fg
+dD
 iO
 El
 El
@@ -16858,7 +16858,7 @@ jf
 Gs
 Gs
 Gs
-fg
+dD
 iO
 El
 El
@@ -17000,7 +17000,7 @@ jf
 Gs
 Gs
 Gs
-fg
+dD
 iO
 El
 El
@@ -17142,7 +17142,7 @@ jf
 Gs
 Gs
 Gs
-fg
+dD
 iO
 El
 El
@@ -17284,7 +17284,7 @@ jf
 Gs
 Gs
 Gs
-fg
+dD
 iO
 El
 El
@@ -17426,7 +17426,7 @@ jf
 Gs
 Gs
 Gs
-fg
+dD
 iO
 El
 El
@@ -17568,7 +17568,7 @@ jf
 Gs
 Gs
 Gs
-fg
+dD
 iO
 El
 El
@@ -17710,7 +17710,7 @@ jf
 Gs
 Gs
 Gs
-fg
+dD
 iO
 El
 El
@@ -17852,7 +17852,7 @@ jf
 Gs
 Gs
 Gs
-fg
+dD
 iO
 El
 El
@@ -17994,7 +17994,7 @@ jf
 Gs
 Gs
 Gs
-fg
+dD
 iO
 El
 El
@@ -18113,30 +18113,30 @@ ae
 ap
 ap
 ap
-fg
-fg
-fg
-fg
-fg
-fg
-fg
-fg
-fg
-fg
-fg
-fg
-fg
-fg
-fg
-fg
-fg
-fg
-fg
-fg
-fg
-fg
-fg
-fg
+dD
+dD
+dD
+dD
+dD
+dD
+dD
+dD
+dD
+dD
+dD
+dD
+dD
+dD
+dD
+dD
+dD
+dD
+dD
+dD
+dD
+dD
+dD
+dD
 iO
 El
 El
