@@ -2106,6 +2106,7 @@
 #include "code\modules\economy\ATM.dm"
 #include "code\modules\economy\cash.dm"
 #include "code\modules\economy\cash_register.dm"
+#include "code\modules\economy\casinocash.dm"
 #include "code\modules\economy\coins.dm"
 #include "code\modules\economy\coins_vr.dm"
 #include "code\modules\economy\economy_misc.dm"

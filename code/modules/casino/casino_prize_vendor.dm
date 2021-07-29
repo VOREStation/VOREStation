@@ -1,3 +1,7 @@
+
+//Original Casino Code created by Shadowfire117#1269 - Ported from CHOMPstation
+//Modified by GhostActual#2055 for use with VOREstation
+
 // Use this define to register a prize!
 // * n - The proper name of the purchasable
 // * o - The object type path of the purchasable to spawn

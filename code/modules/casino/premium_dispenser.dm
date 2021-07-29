@@ -1,4 +1,6 @@
 
+//Original Casino Code created by Shadowfire117#1269 - Ported from CHOMPstation
+//Modified by GhostActual#2055 for use with VOREstation
 
 /obj/machinery/chemical_dispenser/premium
 	name = "premium drink dispensary"

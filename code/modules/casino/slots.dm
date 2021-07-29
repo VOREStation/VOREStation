@@ -1,3 +1,7 @@
+
+//Original Casino Code created by Shadowfire117#1269 - Ported from CHOMPstation
+//Modified by GhostActual#2055 for use with VOREstation
+
 //
 //The code for Slot Machines
 //

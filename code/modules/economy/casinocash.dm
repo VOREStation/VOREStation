@@ -1,3 +1,7 @@
+
+//Original Casino Code created by Shadowfire117#1269 - Ported from CHOMPstation
+//Modified by GhostActual#2055 for use with VOREstation
+
 /obj/machinery/chipmachine
 	name = "Casino Chip Exchange"
 	desc = "Takes all your cash and gives you chips back! No change and half refund!"
