@@ -294,8 +294,7 @@
 	for(var/obj/effect/alien/weeds/W in orange(node_range, src))
 		nearby_weeds |= W
 
-	for(var/nbw in nearby_weeds)
-		var/obj/effect/alien/weeds/W = nbw
+	for(var/obj/effect/alien/weeds/W as anything in nearby_weeds)
 
 		if(!W.linked_node)
 			W.linked_node = src

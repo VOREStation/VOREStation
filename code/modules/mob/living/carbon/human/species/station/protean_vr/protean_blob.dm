@@ -82,6 +82,12 @@
 		healing.expire()
 	return ..()
 
+/mob/living/simple_mob/protean_blob/say_understands(var/mob/other, var/datum/language/speaking = null)
+	// The parent of this proc and its parent are SHAMS and should be rewritten, but I'm not up to it right now.
+	if(!speaking)
+		return TRUE // can understand common, they're like, a normal person thing
+	return ..()
+
 /mob/living/simple_mob/protean_blob/speech_bubble_appearance()
 	return "synthetic"
 
@@ -90,6 +96,9 @@
 	
 /mob/living/simple_mob/protean_blob/init_vore()
 	return //Don't make a random belly, don't waste your time
+
+/mob/living/simple_mob/protean_blob/isSynthetic()
+	return TRUE // yup
 
 /mob/living/simple_mob/protean_blob/Stat()
 	..()
@@ -385,8 +394,7 @@ var/global/list/disallowed_protean_accessories = list(
 	//Transfer vore organs
 	blob.vore_organs = vore_organs
 	blob.vore_selected = vore_selected
-	for(var/belly in vore_organs)
-		var/obj/belly/B = belly
+	for(var/obj/belly/B as anything in vore_organs)
 		B.forceMove(blob)
 		B.owner = blob
 
@@ -456,8 +464,7 @@ var/global/list/disallowed_protean_accessories = list(
 
 	//Transfer vore organs
 	vore_selected = blob.vore_selected
-	for(var/belly in blob.vore_organs)
-		var/obj/belly/B = belly
+	for(var/obj/belly/B as anything in blob.vore_organs)
 		B.forceMove(src)
 		B.owner = src
 

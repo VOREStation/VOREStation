@@ -3259,30 +3259,20 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/admin)
 "aeN" = (
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 5
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 5
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 4
-	},
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 30
-	},
-/obj/structure/disposalpipe/trunk,
-/obj/machinery/disposal,
-/obj/machinery/camera/network/medbay{
-	dir = 8
 	},
 /obj/item/device/radio/intercom{
 	dir = 4;
 	name = "Station Intercom (General)";
 	pixel_x = 24
+	},
+/obj/machinery/medical_kiosk,
+/obj/effect/floor_decal/corner/paleblue{
+	dir = 6
+	},
+/obj/effect/floor_decal/corner/paleblue{
+	dir = 9
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lobby)
@@ -3806,14 +3796,9 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lobby)
 "afC" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/disposalpipe/junction{
-	dir = 2;
-	icon_state = "pipe-j2"
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lobby)
@@ -5298,6 +5283,9 @@
 	},
 /obj/effect/floor_decal/corner/paleblue/bordercorner2{
 	dir = 9
+	},
+/obj/machinery/camera/network/medbay{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lobby)
@@ -7434,12 +7422,12 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
 "all" = (
-/obj/machinery/shower{
-	pixel_y = 8
+/obj/structure/sink{
+	pixel_y = 20
 	},
-/obj/item/weapon/soap/deluxe,
-/obj/structure/curtain/open/shower,
-/obj/item/weapon/bikehorn/rubberducky,
+/obj/structure/mirror{
+	pixel_y = 38
+	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/captain)
 "alm" = (
@@ -9843,6 +9831,22 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/sign/directions/engineering{
+	dir = 8;
+	pixel_y = -40
+	},
+/obj/structure/sign/directions/security{
+	dir = 8;
+	pixel_y = -34
+	},
+/obj/structure/sign/directions/science{
+	dir = 8;
+	pixel_y = -28
+	},
+/obj/structure/sign/directions/medical{
+	dir = 4;
+	pixel_y = -22
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
 "apE" = (
@@ -11088,7 +11092,7 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals9,
-/obj/machinery/vending/cola,
+/obj/machinery/vending/radren,
 /turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/surface_three_hall)
 "arF" = (
@@ -12041,6 +12045,7 @@
 	dir = 1;
 	pixel_y = -24
 	},
+/obj/item/weapon/reagent_containers/food/drinks/bottle/carnoth,
 /turf/simulated/floor/wood,
 /area/crew_quarters/captain)
 "atv" = (
@@ -13529,16 +13534,13 @@
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/captain)
 "awj" = (
-/obj/structure/sink{
-	dir = 8;
-	pixel_x = -12;
-	pixel_y = -3
-	},
-/obj/structure/mirror{
+/obj/machinery/shower{
 	dir = 4;
-	pixel_x = -25;
-	pixel_y = 5
+	pixel_x = 5
 	},
+/obj/item/weapon/soap/deluxe,
+/obj/structure/curtain/open/shower,
+/obj/item/weapon/bikehorn/rubberducky,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/captain)
 "awk" = (
@@ -15611,11 +15613,17 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/triage)
 "azv" = (
-/obj/structure/sign/double/barsign{
-	dir = 8
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 9
 	},
-/turf/simulated/wall,
-/area/crew_quarters/bar)
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 6
+	},
+/obj/structure/extinguisher_cabinet{
+	pixel_y = -32
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_three_hall)
 "azw" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -16115,9 +16123,6 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
-	},
-/obj/machinery/camera/network/tether{
-	dir = 9
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
@@ -27529,16 +27534,21 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lobby)
 "aUW" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 4
 	},
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 4
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/effect/floor_decal/borderfloorwhite/corner2{
+	dir = 6
 	},
-/obj/structure/disposalpipe/segment,
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 6
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lobby)
 "aUX" = (
@@ -27636,10 +27646,6 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 4
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
-	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lobby)
 "aVf" = (
@@ -27727,6 +27733,9 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lobby)
 "aVl" = (
@@ -27754,14 +27763,15 @@
 /turf/simulated/floor/tiled/eris/dark/golden,
 /area/shuttle/tourbus/general)
 "aVn" = (
-/obj/structure/bed/chair{
-	dir = 1
-	},
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/paleblue/border,
 /obj/machinery/alarm{
 	dir = 1;
 	pixel_y = -25
+	},
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lobby)
@@ -28516,24 +28526,28 @@
 /turf/simulated/wall,
 /area/tether/surfacebase/entertainment/backstage)
 "aWD" = (
-/obj/structure/sign/directions/medical{
-	dir = 4;
-	pixel_y = 8
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
-/obj/structure/sign/directions/science{
-	dir = 8;
-	pixel_y = 3
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
 	},
-/obj/structure/sign/directions/security{
-	dir = 8;
-	pixel_y = -4
+/obj/effect/floor_decal/corner/beige/border{
+	dir = 4
 	},
-/obj/structure/sign/directions/engineering{
-	dir = 8;
-	pixel_y = -10
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 10
 	},
-/turf/simulated/wall,
-/area/tether/surfacebase/entertainment/backstage)
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 9
+	},
+/obj/machinery/camera/network/tether{
+	dir = 9
+	},
+/turf/simulated/floor/tiled,
+/area/hallway/lower/third_south)
 "aWF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -29577,7 +29591,6 @@
 /turf/simulated/floor/wood,
 /area/crew_quarters/captain)
 "aYo" = (
-/obj/machinery/hologram/holopad,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -29594,6 +29607,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/effect/floor_decal/emblem/nt2,
 /turf/simulated/floor/tiled/dark,
 /area/bridge)
 "aYp" = (
@@ -29658,6 +29672,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/dark,
 /area/bridge)
 "aYv" = (
@@ -30717,16 +30732,16 @@
 /obj/machinery/button/windowtint{
 	id = "hop_office";
 	layer = 3.3;
-	pixel_x = 3;
-	pixel_y = -29
+	pixel_x = 31;
+	pixel_y = -24
 	},
 /obj/machinery/button/remote/blast_door{
 	desc = "A remote control-switch for shutters.";
 	id = "hop_office_desk";
 	layer = 3.3;
 	name = "Desk Privacy Shutter";
-	pixel_x = 10;
-	pixel_y = -29
+	pixel_x = 23;
+	pixel_y = -24
 	},
 /obj/structure/cable/green{
 	d1 = 2;
@@ -30789,7 +30804,8 @@
 "bav" = (
 /obj/machinery/photocopier,
 /obj/machinery/firealarm{
-	pixel_x = -30
+	dir = 8;
+	pixel_x = -24
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/hop)
@@ -31196,10 +31212,6 @@
 /turf/simulated/floor/lino,
 /area/tether/surfacebase/entertainment/backstage)
 "bbe" = (
-/obj/machinery/firealarm{
-	layer = 3.3;
-	pixel_y = 26
-	},
 /obj/machinery/vending/loadout/accessory,
 /obj/machinery/alarm{
 	dir = 8;
@@ -32656,9 +32668,6 @@
 	},
 /obj/effect/floor_decal/corner/lightgrey{
 	dir = 6
-	},
-/obj/structure/extinguisher_cabinet{
-	pixel_y = -32
 	},
 /obj/item/device/radio/intercom/entertainment{
 	pixel_y = -23
@@ -38616,6 +38625,9 @@
 /area/tether/surfacebase/public_garden_three)
 "exM" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lobby)
 "eCg" = (
@@ -39238,6 +39250,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
+"hpW" = (
+/obj/effect/floor_decal/emblem/nt1,
+/turf/simulated/floor/tiled/dark,
+/area/bridge)
 "hth" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/light{
@@ -42060,6 +42076,30 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/carpet,
 /area/tether/surfacebase/security/hos)
+"rpJ" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/beige/border{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 9
+	},
+/obj/structure/sign/double/barsign{
+	dir = 8;
+	pixel_x = 32
+	},
+/turf/simulated/floor/tiled,
+/area/hallway/lower/third_south)
 "rrG" = (
 /obj/structure/table/steel,
 /obj/item/weapon/folder/red{
@@ -42669,6 +42709,15 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/upperhall)
+"tJk" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/effect/floor_decal/emblem/nt3,
+/turf/simulated/floor/tiled/dark,
+/area/bridge)
 "tJZ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -43381,6 +43430,15 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
+"wle" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/junction,
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/lobby)
 "wlf" = (
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/breakroom)
@@ -43829,6 +43887,12 @@
 /obj/machinery/camera/network/tether,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
+"xDo" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/lobby)
 "xEb" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -56320,7 +56384,7 @@ aXB
 bbF
 ajM
 apD
-aWD
+aWC
 baZ
 bfI
 bfH
@@ -56432,7 +56496,7 @@ abw
 ahW
 lqJ
 bno
-agX
+afC
 aVn
 aeG
 qIb
@@ -56454,7 +56518,7 @@ aYR
 aEa
 bad
 aYb
-aYb
+hpW
 aYt
 aYA
 aYH
@@ -56716,7 +56780,7 @@ aah
 adE
 aUV
 bnY
-agX
+xDo
 ahL
 aUU
 xIO
@@ -56738,7 +56802,7 @@ ayx
 asT
 ajH
 aYf
-bae
+tJk
 aYv
 aYB
 aYJ
@@ -56999,8 +57063,8 @@ bnG
 uAI
 aOX
 gtn
-afC
 uAI
+wle
 ahN
 aii
 aRW
@@ -57434,7 +57498,7 @@ avG
 akn
 alk
 bbt
-alk
+azv
 ayx
 ayx
 aTy
@@ -58169,8 +58233,8 @@ aKx
 awU
 aCJ
 axw
-axw
-axw
+aWD
+rpJ
 aAf
 aCJ
 axw
@@ -58312,7 +58376,7 @@ aru
 avd
 aru
 arJ
-azv
+arJ
 arJ
 aCS
 avK

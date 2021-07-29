@@ -215,8 +215,7 @@
 		abilities_stat()
 
 /mob/living/simple_mob/shadekin/proc/abilities_stat()
-	for(var/A in shadekin_abilities)
-		var/obj/effect/shadekin_ability/ability = A
+	for(var/obj/effect/shadekin_ability/ability as anything in shadekin_abilities)
 		stat("[ability.ability_name]",ability.atom_button_text())
 
 //They phase back to the dark when killed

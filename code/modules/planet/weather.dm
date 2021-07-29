@@ -202,8 +202,7 @@
 		return
 
 	for(var/z_level in 1 to world.maxz)
-		for(var/a in GLOB.players_by_zlevel[z_level])
-			var/mob/M = a
+		for(var/mob/M as anything in GLOB.players_by_zlevel[z_level])
 
 			// Check if the mob left the z-levels we control. If so, make the sounds stop for them.
 			if(!(z_level in holder.our_planet.expected_z_levels))

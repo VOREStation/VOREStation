@@ -682,12 +682,11 @@
 	for(var/turf/T in oview(world.view, src))
 		seenturfs += T
 
-	for(var/mob in living_mob_list)
-		var/mob/M = mob
+	for(var/mob/M as anything in living_mob_list)
 		if(M.z != z) //Skip
 			continue
 		if(get_turf(M) in seenturfs)
-			assess_and_assign(mob, targets, secondarytargets)
+			assess_and_assign(M, targets, secondarytargets)
 
 	/* This was dumb. Why do this and then check line of sight later?
 	for(var/mob/M in mobs_in_xray_view(world.view, src))

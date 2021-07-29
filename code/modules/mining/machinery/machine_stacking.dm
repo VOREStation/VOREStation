@@ -89,11 +89,10 @@
 /obj/machinery/mineral/stacking_machine/New()
 	..()
 
-	for(var/stacktype in (subtypesof(/obj/item/stack/material) - typesof(/obj/item/stack/material/cyborg)))
-		var/obj/item/stack/material/S = stacktype
+	for(var/obj/item/stack/material/S as anything in (subtypesof(/obj/item/stack/material) - typesof(/obj/item/stack/material/cyborg)))
 		var/s_matname = initial(S.default_type)
 		stack_storage[s_matname] = 0
-		stack_paths[s_matname] = stacktype
+		stack_paths[s_matname] = S
 
 	spawn( 5 )
 		for (var/dir in cardinal)

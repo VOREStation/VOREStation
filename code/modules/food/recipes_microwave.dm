@@ -123,12 +123,12 @@ I said no!
 	items = list(/obj/item/weapon/reagent_containers/food/snacks/cheesewedge)
 	result = /obj/item/weapon/reagent_containers/food/snacks/loadedbakedpotato
 
-/datum/recipe/microchips
+/datum/recipe/microfries
 	appliance = MICROWAVE
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/rawsticks
 	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/microchips
+	result = /obj/item/weapon/reagent_containers/food/snacks/microfries
 
 /datum/recipe/bangersandmash
 	items = list(
@@ -330,8 +330,13 @@ I said no!
 
 /datum/recipe/candiedapple
 	fruit = list("apple" = 1)
-	reagents = list("water" = 5, "sugar" = 5)
+	reagents = list("water" = 5, "sugar" = 5) //Makes sense seeing as how it's just syrup on the exterior
 	result = /obj/item/weapon/reagent_containers/food/snacks/candiedapple
+
+/datum/recipe/caramelapple
+	fruit = list("apple" = 1)
+	reagents = list("milk" = 5, "sugar" = 5) //Since caramel can be made with milk I thought this was appropriate
+	result = /obj/item/weapon/reagent_containers/food/snacks/caramelapple
 
 /datum/recipe/twobread
 	reagents = list("wine" = 5)

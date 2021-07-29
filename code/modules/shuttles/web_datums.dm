@@ -193,7 +193,7 @@
 
 /datum/shuttle_web_master/proc/build_destinations()
 	// First, instantiate all the destination subtypes relevant to this datum.
-	var/list/destination_types = typesof(destination_class) - destination_class
+	var/list/destination_types = subtypesof(destination_class)
 	for(var/new_type in destination_types)
 		var/datum/shuttle_destination/D = new_type
 		if(initial(D.skip_me))

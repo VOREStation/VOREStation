@@ -71,6 +71,8 @@
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/vodka = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/wine = 5,
+					/obj/item/weapon/reagent_containers/food/drinks/bottle/whitewine = 5,
+					/obj/item/weapon/reagent_containers/food/drinks/bottle/grapejuice = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/jager = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/small/ale = 15,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/small/ale/hushedwhisper = 15,
@@ -79,6 +81,8 @@
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer/meteor = 15,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/small/litebeer = 15,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/small/cider = 15,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/beercan = 15,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/alecan = 15,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/orangejuice = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/tomatojuice = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/limejuice = 5,
@@ -89,6 +93,11 @@
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/cola = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/space_up = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/space_mountain_wind = 5,
+					/obj/item/weapon/reagent_containers/food/drinks/bottle/dr_gibb = 5,
+					/obj/item/weapon/reagent_containers/food/drinks/bottle/small/cola = 15,
+					/obj/item/weapon/reagent_containers/food/drinks/bottle/small/space_up = 15,
+					/obj/item/weapon/reagent_containers/food/drinks/bottle/small/space_mountain_wind = 15,
+					/obj/item/weapon/reagent_containers/food/drinks/bottle/small/dr_gibb = 15,
 					/obj/item/weapon/reagent_containers/food/drinks/cans/sodawater = 15,
 					/obj/item/weapon/reagent_containers/food/drinks/cans/tonic = 15,
 					/obj/item/weapon/reagent_containers/food/drinks/cans/gingerale = 15,
@@ -154,13 +163,14 @@
 					/obj/item/weapon/reagent_containers/food/drinks/dry_ramen = 12,
 					/obj/item/weapon/reagent_containers/food/snacks/chips = 12,
 					/obj/item/weapon/reagent_containers/food/snacks/chips/bbq = 12,
+					/obj/item/weapon/reagent_containers/food/snacks/chips/snv = 12,
 					/obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers = 12,
 					/obj/item/weapon/reagent_containers/food/snacks/pistachios = 12,
 					/obj/item/weapon/reagent_containers/food/snacks/semki = 12,
 					/obj/item/weapon/reagent_containers/food/snacks/sosjerky = 12,
-					/obj/item/weapon/reagent_containers/food/snacks/vendor_burger = 12,
-					/obj/item/weapon/reagent_containers/food/snacks/vendor_hotdog = 12,
-					/obj/item/weapon/reagent_containers/food/snacks/vendor_burrito = 12,
+					/obj/item/weapon/reagent_containers/food/snacks/packaged/vendburger = 12,
+					/obj/item/weapon/reagent_containers/food/snacks/packaged/vendhotdog = 12,
+					/obj/item/weapon/reagent_containers/food/snacks/packaged/vendburrito = 12,
 					/obj/item/weapon/reagent_containers/food/snacks/no_raisin = 12,
 					/obj/item/weapon/reagent_containers/food/snacks/packaged/spacetwinkie = 12,
 					/obj/item/weapon/reagent_containers/food/snacks/tastybread = 12,
@@ -187,13 +197,14 @@
 				/obj/item/weapon/reagent_containers/food/drinks/dry_ramen = 5,
 				/obj/item/weapon/reagent_containers/food/snacks/chips = 1,
 				/obj/item/weapon/reagent_containers/food/snacks/chips/bbq = 1,
+				/obj/item/weapon/reagent_containers/food/snacks/chips/snv = 1,
 				/obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers = 1,
 				/obj/item/weapon/reagent_containers/food/snacks/pistachios = 1,
 				/obj/item/weapon/reagent_containers/food/snacks/semki = 1,
 				/obj/item/weapon/reagent_containers/food/snacks/sosjerky = 2,
-				/obj/item/weapon/reagent_containers/food/snacks/vendor_burger = 7,
-				/obj/item/weapon/reagent_containers/food/snacks/vendor_hotdog = 7,
-				/obj/item/weapon/reagent_containers/food/snacks/vendor_burrito = 7,
+				/obj/item/weapon/reagent_containers/food/snacks/packaged/vendburger = 7,
+				/obj/item/weapon/reagent_containers/food/snacks/packaged/vendhotdog = 7,
+				/obj/item/weapon/reagent_containers/food/snacks/packaged/vendburrito = 7,
 				/obj/item/weapon/reagent_containers/food/snacks/no_raisin = 1,
 				/obj/item/weapon/reagent_containers/food/snacks/packaged/spacetwinkie = 1,
 				/obj/item/weapon/reagent_containers/food/snacks/tastybread = 2,
@@ -650,6 +661,7 @@
 					/obj/item/weapon/circuitboard/scanner_console,
 					/obj/item/weapon/circuitboard/sleeper_console,
 					/obj/item/weapon/circuitboard/body_scanner,
+					/obj/item/weapon/circuitboard/medical_kiosk,
 					/obj/item/weapon/circuitboard/sleeper,
 					/obj/item/weapon/circuitboard/dna_analyzer)
 	contraband = list(/obj/item/weapon/cell/potato = 3)
@@ -1016,13 +1028,14 @@
 					/obj/item/weapon/reagent_containers/food/snacks/syndicake = 8,
 					/obj/item/weapon/reagent_containers/food/snacks/no_raisin = 8,
 					/obj/item/weapon/reagent_containers/food/snacks/sosjerky = 8,
-					/obj/item/weapon/reagent_containers/food/snacks/vendor_burger = 8,
-					/obj/item/weapon/reagent_containers/food/snacks/vendor_hotdog = 8,
-					/obj/item/weapon/reagent_containers/food/snacks/vendor_burrito = 8,
+					/obj/item/weapon/reagent_containers/food/snacks/packaged/vendburger = 8,
+					/obj/item/weapon/reagent_containers/food/snacks/packaged/vendhotdog = 8,
+					/obj/item/weapon/reagent_containers/food/snacks/packaged/vendburrito = 8,
 					/obj/item/weapon/reagent_containers/food/snacks/skrellsnacks = 8,
 					/obj/item/weapon/reagent_containers/food/snacks/tastybread = 8,
 					/obj/item/weapon/reagent_containers/food/snacks/chips/bbq = 8,
 					/obj/item/weapon/reagent_containers/food/snacks/chips = 8,
+					/obj/item/weapon/reagent_containers/food/snacks/chips/snv = 8,
 					/obj/item/weapon/reagent_containers/food/snacks/driedfish = 8,
 					/obj/item/weapon/reagent_containers/food/snacks/cookiesnack = 8
 					)
@@ -1037,13 +1050,14 @@
 					/obj/item/weapon/reagent_containers/food/snacks/syndicake = 5,
 					/obj/item/weapon/reagent_containers/food/snacks/no_raisin = 5,
 					/obj/item/weapon/reagent_containers/food/snacks/sosjerky = 5,
-					/obj/item/weapon/reagent_containers/food/snacks/vendor_burger = 5,
-					/obj/item/weapon/reagent_containers/food/snacks/vendor_hotdog = 5,
-					/obj/item/weapon/reagent_containers/food/snacks/vendor_burrito = 5,
+					/obj/item/weapon/reagent_containers/food/snacks/packaged/vendburger = 7,
+					/obj/item/weapon/reagent_containers/food/snacks/packaged/vendhotdog = 7,
+					/obj/item/weapon/reagent_containers/food/snacks/packaged/vendburrito = 7,
 					/obj/item/weapon/reagent_containers/food/snacks/skrellsnacks = 5,
 					/obj/item/weapon/reagent_containers/food/snacks/tastybread = 5,
 					/obj/item/weapon/reagent_containers/food/snacks/chips/bbq = 5,
 					/obj/item/weapon/reagent_containers/food/snacks/chips = 5,
+					/obj/item/weapon/reagent_containers/food/snacks/chips/snv = 5,
 					/obj/item/weapon/reagent_containers/food/snacks/driedfish = 5,
 					/obj/item/weapon/reagent_containers/food/snacks/cookiesnack = 5
 					)
@@ -1052,12 +1066,16 @@
 
 /obj/machinery/vending/sovietsoda
 	name = "BODA"
-	desc = "An old sweet water vending machine,how did this end up here?"
+	desc = "An old sweet water vending machine, how did this end up here?"
 	icon_state = "sovietsoda"
 	product_ads = "For Tsar and Country.;Have you fulfilled your nutrition quota today?;Very nice!;We are simple people, for this is all we eat.;If there is a person, there is a problem. If there is no person, then there is no problem."
-	products = list(/obj/item/weapon/reagent_containers/food/drinks/cans/boda = 30,		//ADDITION 04/03/2021
-					/obj/item/weapon/reagent_containers/food/drinks/cans/kompot = 20)	//ADDITION 04/03/2021
-	contraband = list(/obj/item/weapon/reagent_containers/food/drinks/cans/kvass = 20) 	//ADDITION 04/03/2021
+	products = list(/obj/item/weapon/reagent_containers/food/drinks/cans/boda = 30,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/redarmy = 15,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/arstbru = 15,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/terra_cola = 15,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/kompot = 15)
+	contraband = list(/obj/item/weapon/reagent_containers/food/drinks/cans/kvass = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/bodaplus = 10)
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 	vending_sound = "machines/vending/vending_cans.ogg"
 
@@ -1071,6 +1089,36 @@
 					/obj/item/weapon/reagent_containers/food/snacks/packaged/vegration = 8,
 					/obj/item/weapon/reagent_containers/food/snacks/packaged/meatration = 8)
 	contraband = list(/obj/item/weapon/reagent_containers/food/snacks/packaged/sweetration = 2)
+
+///////////////////////Radical Renard///////////////////////////////////////
+
+/obj/machinery/vending/radren
+	name = "Radical Renard Sodas"
+	desc = "A softdrink vendor owned by a frontier based soda company that's been contracted by NanoTrasen"
+	icon_state = "radren"
+	product_slogans = "Enjoy the rad refreshing taste of Radical Renard brand soda!"
+	product_ads = "Radically Refreshing!;Get Cool!;Have you tried our new Andromeda Apple?;Enjoy a cold one with Renard!"
+	products = list(/obj/item/weapon/reagent_containers/food/drinks/cans/straw_cola = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/apple_cola = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/lemon_cola = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/baconsoda = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/sarsaparilla = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/grape_cola = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/orange_cola = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/gingerale = 10)
+	contraband = list()
+	prices = list(/obj/item/weapon/reagent_containers/food/drinks/cans/straw_cola = 1,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/apple_cola = 1,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/lemon_cola  = 1,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/baconsoda = 1,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle = 2,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/sarsaparilla = 1,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/grape_cola = 1,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/orange_cola = 1,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/gingerale = 1)
+	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
+	vending_sound = "machines/vending/vending_cans.ogg"
 
 /**
  * Department/job vendors to sit in place of lockers taking up space

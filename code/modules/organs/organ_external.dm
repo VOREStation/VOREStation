@@ -105,8 +105,7 @@
 		while(null in owner.organs)
 			owner.organs -= null
 
-	for(var/imp in implants)
-		var/obj/item/weapon/implant/I = imp
+	for(var/obj/item/weapon/implant/I as anything in implants)
 		if(!istype(I))
 			continue
 		I.imp_in = I.part = null

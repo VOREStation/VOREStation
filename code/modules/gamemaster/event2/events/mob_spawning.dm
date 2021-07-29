@@ -66,10 +66,9 @@
 			// In the future, a new AI stance that handles long distance travel using getline() could work.
 			var/max_distance = 8
 			var/turf/spawn_turf = null
-			for(var/P in space_line)
-				var/turf/point = P
+			for(var/turf/point as anything in space_line)
 				if(get_dist(point, edge_of_station) <= max_distance)
-					spawn_turf = P
+					spawn_turf = point
 					break
 
 			if(spawn_turf)
@@ -88,8 +87,7 @@
 // Counts living simple_mobs spawned by this event.
 /datum/event2/event/mob_spawning/proc/count_spawned_mobs()
 	. = 0
-	for(var/I in spawned_mobs)
-		var/mob/living/simple_mob/M = I
+	for(var/mob/living/simple_mob/M as anything in spawned_mobs)
 		if(!QDELETED(M) && M.stat != DEAD)
 			. += 1
 

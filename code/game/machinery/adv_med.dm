@@ -474,9 +474,8 @@
 					infected = "Gangrene Detected:"
 
 			var/unknown_body = 0
-			for(var/thing in e.implants)
-				var/obj/item/weapon/implant/I = thing
-				var/obj/item/device/nif/N = thing //VOREStation Add: NIFs
+			for(var/obj/item/weapon/implant/I as anything in e.implants)
+				var/obj/item/device/nif/N = I //VOREStation Add: NIFs
 				if(istype(I) && I.known_implant)
 					imp += "[I] implanted:"
 				if(istype(N) && N.known_implant) //VOREStation Add: NIFs

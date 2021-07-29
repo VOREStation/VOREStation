@@ -52,7 +52,7 @@
 /obj/machinery/chemical_dispenser/bar_alc
 	dispense_reagents = list(
 		"lemon_lime", "sugar", "orangejuice", "limejuice", "sodawater", "tonic", "beer", "kahlua",
-		"whiskey", "wine", "vodka", "cider", "gin", "rum", "tequilla", "vermouth", "cognac", "ale", "mead", "bitters"
+		"whiskey", "redwine", "whitewine", "vodka", "cider", "gin", "rum", "tequilla", "vermouth", "cognac", "ale", "mead", "bitters"
 		)
 
 /obj/machinery/chemical_dispenser/bar_coffee

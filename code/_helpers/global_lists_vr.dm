@@ -510,7 +510,7 @@ var/global/list/remainless_species = list(SPECIES_PROMETHEAN,
 	var/paths
 
 	// Custom Hair Accessories
-	paths = typesof(/datum/sprite_accessory/hair_accessory) - /datum/sprite_accessory/hair_accessory
+	paths = subtypesof(/datum/sprite_accessory/hair_accessory)
 	for(var/path in paths)
 		var/datum/sprite_accessory/hair_accessory/instance = new path()
 		hair_accesories_list[path] = instance
@@ -544,14 +544,14 @@ var/global/list/remainless_species = list(SPECIES_PROMETHEAN,
 
 
 	// Weaver recipe stuff
-	paths = typesof(/datum/weaver_recipe/structure) - /datum/weaver_recipe/structure
+	paths = subtypesof(/datum/weaver_recipe/structure)
 	for(var/path in paths)
 		var/datum/weaver_recipe/instance = new path()
 		if(!instance.title)
 			continue //A prototype or something
 		weavable_structures[instance.title] = instance
 
-	paths = typesof(/datum/weaver_recipe/item) - /datum/weaver_recipe/item
+	paths = subtypesof(/datum/weaver_recipe/item)
 	for(var/path in paths)
 		var/datum/weaver_recipe/instance = new path()
 		if(!instance.title)

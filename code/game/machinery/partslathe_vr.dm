@@ -265,8 +265,7 @@
 	if(istype(copy_board))
 		data["copyBoard"] = copy_board.name
 		var/list/req_components_ui = list()
-		for(var/CP in (copy_board.req_components || list()))
-			var/obj/comp_path = CP
+		for(var/obj/comp_path as anything in (copy_board.req_components || list()))
 			var/comp_amt = copy_board.req_components[comp_path]
 			if(comp_amt && (comp_path in partslathe_recipies))
 				req_components_ui.Add(list(list("name" = initial(comp_path.name), "qty" = comp_amt)))
@@ -355,7 +354,7 @@
 /obj/machinery/partslathe/proc/update_recipe_list()
 	if(!partslathe_recipies)
 		partslathe_recipies = list()
-		var/list/paths = typesof(/obj/item/weapon/stock_parts)-/obj/item/weapon/stock_parts
+		var/list/paths = subtypesof(/obj/item/weapon/stock_parts)
 		for(var/type in paths)
 			var/obj/item/weapon/stock_parts/I = new type()
 			if(getHighestOriginTechLevel(I) > 1)

@@ -105,6 +105,30 @@
 	icon = 'icons/obj/structures/decor.dmi'
 	icon_state = "stump"
 
+// minirocket pod from TGMC
+/obj/structure/prop/minirocket_pod
+	icon = 'icons/obj/structures/decor.dmi'
+	icon_state = "minirocket_pod"
+
+// warheads from TGMC
+/obj/structure/prop/warhead1
+	icon = 'icons/obj/structures/decor.dmi'
+	icon_state = "ob_warhead_1"
+/obj/structure/prop/warhead2
+	icon = 'icons/obj/structures/decor.dmi'
+	icon_state = "ob_warhead_2"
+/obj/structure/prop/warhead3
+	icon = 'icons/obj/structures/decor.dmi'
+	icon_state = "ob_warhead_3"
+/obj/structure/prop/warhead4
+	icon = 'icons/obj/structures/decor.dmi'
+	icon_state = "ob_warhead_4"
+
+// sentry console from TGMC
+/obj/structure/prop/sentry_control
+	icon = 'icons/obj/structures/decor.dmi'
+	icon_state = "tgmc_sentry"
+
 // vatgrowing thing from /tg/
 /obj/structure/prop/green_egg
 	icon = 'icons/obj/structures/decor.dmi'
@@ -121,6 +145,30 @@
 	icon_state = "bigdice"
 	bound_width = 64
 	bound_height = 64
+
+// various weapons from TGMC
+/obj/structure/prop/tgmc_missile
+	name = "missile"
+	desc = "It seems to be some sort of spacecraft-tier ordinance."
+	icon = 'icons/obj/structures/decor64x64.dmi'
+	icon_state = "single"
+	bound_width = 64
+/obj/structure/prop/tgmc_missile/double
+	icon_state = "widowmaker"
+/obj/structure/prop/tgmc_missile/banshee
+	icon_state = "banshee"
+/obj/structure/prop/tgmc_missile/keeper
+	icon_state = "keeper"
+/obj/structure/prop/tgmc_missile/fatty
+	icon_state = "fatty"
+/obj/structure/prop/tgmc_missile/napalm
+	icon_state = "napalm"
+
+// ship memorial from TGMC
+/obj/structure/prop/memorial
+	icon = 'icons/obj/structures/decor64x64.dmi'
+	icon_state = "ship_memorial"
+	bound_width = 64
 
 // dna vault from /tg/
 /obj/structure/prop/dna_vault
@@ -256,6 +304,118 @@
 	icon_state = "dominator-green"
 /obj/structure/prop/dominator/purple
 	icon_state = "dominator-purple"
+
+/**
+ * Possible 'state' options for change_state(state) are:
+ * empty, single, banshee, keeper, fatty, napalm
+ */
+// ship weapons from TGMC
+/obj/structure/prop/tgmc_missile_rack
+	name = "missile launcher"
+	desc = "Some sort of spacecraft-tier missile weapon."
+	icon = 'icons/obj/structures/decor64x64.dmi'
+	icon_state = "rocket_pod"
+	bound_height = 64
+
+/obj/structure/prop/tgmc_missile_rack/change_state(state)
+	. = ..()
+	switch(state)
+		if("empty")
+			icon_state = "rocket_pod"
+		if("single")
+			icon_state = "rocket_pod_loaded"
+		if("banshee")
+			icon_state = "rocket_pod_loadedb"
+		if("keeper")
+			icon_state = "rocket_pod_loadedk"
+		if("fatty")
+			icon_state = "rocket_pod_loadedf"
+		if("napalm")
+			icon_state = "rocket_pod_loadedn"
+
+/obj/structure/prop/tgmc_missile_rack/single
+	icon_state = "rocket_pod_loaded"
+/obj/structure/prop/tgmc_missile_rack/banshee
+	icon_state = "rocket_pod_loadedb"
+/obj/structure/prop/tgmc_missile_rack/keeper
+	icon_state = "rocket_pod_loadedk"
+/obj/structure/prop/tgmc_missile_rack/fatty
+	icon_state = "rocket_pod_loadedf"
+/obj/structure/prop/tgmc_missile_rack/napalm
+	icon_state = "rocket_pod_loadedn"
+
+/**
+ * Possible 'state' options for change_state(state) are:
+ * empty, loaded
+ */
+// ship weapons from TGMC
+/obj/structure/prop/tgmc_minirockets
+	name = "rocket pod"
+	desc = "Some sort of spacecraft-tier rocket weapon."
+	icon = 'icons/obj/structures/decor64x64.dmi'
+	icon_state = "minirocket_pod"
+	bound_height = 64
+
+/obj/structure/prop/tgmc_minirockets/change_state(state)
+	. = ..()
+	switch(state)
+		if("empty")
+			icon_state = "minirocket_pod"
+		if("loaded")
+			icon_state = "minirocket_pod_loaded"
+
+/obj/structure/prop/tgmc_minirockets/loaded
+	icon_state = "minirocket_pod_loaded"
+
+/**
+ * Possible 'state' options for change_state(state) are:
+ * empty, loaded
+ */
+// ship weapons from TGMC
+/obj/structure/prop/tgmc_laser
+	name = "laser cannon"
+	desc = "Some sort of spacecraft-tier energy weapon."
+	icon = 'icons/obj/structures/decor64x64.dmi'
+	icon_state = "laser_beam"
+	bound_height = 64
+
+/obj/structure/prop/tgmc_laser/change_state(state)
+	. = ..()
+	switch(state)
+		if("empty")
+			icon_state = "laser_beam"
+		if("loaded")
+			icon_state = "laser_beam_loaded"
+
+/obj/structure/prop/tgmc_laser/loaded
+	icon_state = "laser_beam_loaded"
+
+/**
+ * Possible 'state' options for change_state(state) are:
+ * empty, loaded, loadedempty
+ */
+// ship weapons from TGMC
+/obj/structure/prop/tgmc_30mm
+	name = "30mm cannon"
+	desc = "Some sort of spacecraft-tier rotary cannon weapon."
+	icon = 'icons/obj/structures/decor64x64.dmi'
+	icon_state = "30mm_cannon"
+	bound_height = 64
+
+/obj/structure/prop/tgmc_30mm/change_state(state)
+	. = ..()
+	switch(state)
+		if("empty")
+			icon_state = "30mm_cannon"
+		if("loaded")
+			icon_state = "30mm_cannon_loaded1"
+		if("loadedempty")
+			icon_state = "30mm_cannon_loaded0"
+
+/obj/structure/prop/tgmc_30mm/loaded
+	icon_state = "30mm_cannon_loaded1"
+/obj/structure/prop/tgmc_30mm/loadedempty
+	icon_state = "30mm_cannon_loaded0"
 
 /**
  * Possible 'state' options for change_state(state) are:
@@ -595,6 +755,111 @@
 			
 /obj/structure/prop/nt_cruciforge/starts_working
 	icon_state = "nt_cruciforge_work"
+
+/**
+ * Possible 'state' options for change_state(state) are:
+ * off: Default, boring
+ * on: Showing a display/powered up
+ */
+// A console from TGMC
+/obj/structure/prop/tgmc_console1
+	icon = 'icons/obj/structures/decor.dmi'
+	icon_state = "tgmc_console1"
+
+/obj/structure/prop/tgmc_console1/change_state(state)
+	. = ..()
+	switch(state)
+		if("off")
+			icon_state = "tgmc_console1"
+		if("on")
+			icon_state = "tgmc_console1_on"
+
+/obj/structure/prop/tgmc_console1/starts_on
+	icon_state = "tgmc_console1_on"
+
+/**
+ * Possible 'state' options for change_state(state) are:
+ * off: Default, boring
+ * on: Showing a display/powered up
+ */
+// A console from TGMC
+/obj/structure/prop/tgmc_console2
+	icon = 'icons/obj/structures/decor.dmi'
+	icon_state = "tgmc_console2"
+
+/obj/structure/prop/tgmc_console2/change_state(state)
+	. = ..()
+	switch(state)
+		if("off")
+			icon_state = "tgmc_console2"
+		if("on")
+			icon_state = "tgmc_console2_on"
+
+/obj/structure/prop/tgmc_console2/starts_on
+	icon_state = "tgmc_console2_on"
+
+/**
+ * Possible 'state' options for change_state(state) are:
+ * off: Default, boring
+ * on: Showing a display/powered up
+ */
+// A console from TGMC
+/obj/structure/prop/tgmc_console3
+	icon = 'icons/obj/structures/decor.dmi'
+	icon_state = "tgmc_console3"
+
+/obj/structure/prop/tgmc_console3/change_state(state)
+	. = ..()
+	switch(state)
+		if("off")
+			icon_state = "tgmc_console3"
+		if("on")
+			icon_state = "tgmc_console3_on"
+
+/obj/structure/prop/tgmc_console3/starts_on
+	icon_state = "tgmc_console3_on"
+
+/**
+ * Possible 'state' options for change_state(state) are:
+ * off: Default, boring
+ * on: Showing a display/powered up
+ */
+// A console from TGMC
+/obj/structure/prop/tgmc_console4
+	icon = 'icons/obj/structures/decor.dmi'
+	icon_state = "tgmc_console4"
+
+/obj/structure/prop/tgmc_console4/change_state(state)
+	. = ..()
+	switch(state)
+		if("off")
+			icon_state = "tgmc_console4"
+		if("on")
+			icon_state = "tgmc_console4_on"
+
+/obj/structure/prop/tgmc_console4/starts_on
+	icon_state = "tgmc_console4_on"
+
+/**
+ * Possible 'state' options for change_state(state) are:
+ * off: Default, boring
+ * on: Showing a display/powered up
+ */
+// A console from TGMC
+/obj/structure/prop/tgmc_console5
+	icon = 'icons/obj/structures/decor.dmi'
+	icon_state = "tgmc_console5"
+
+/obj/structure/prop/tgmc_console5/change_state(state)
+	. = ..()
+	switch(state)
+		if("off")
+			icon_state = "tgmc_console5"
+		if("on")
+			icon_state = "tgmc_console5_on"
+
+/obj/structure/prop/tgmc_console5/starts_on
+	icon_state = "tgmc_console5_on"
 
 /**
  * This one is a bit more fancy than others. Anything in the contents (PLEASE LIMIT TO ONE THING)

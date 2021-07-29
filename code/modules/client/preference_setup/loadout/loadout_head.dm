@@ -169,8 +169,7 @@
 /datum/gear/head/pin/New()
 	..()
 	var/list/pins = list()
-	for(var/pin in typesof(/obj/item/clothing/head/pin))
-		var/obj/item/clothing/head/pin/pin_type = pin
+	for(var/obj/item/clothing/head/pin/pin_type as anything in typesof(/obj/item/clothing/head/pin))
 		pins[initial(pin_type.name)] = pin_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(pins))
 
@@ -182,8 +181,7 @@
 /datum/gear/head/hardhat/New()
 	..()
 	var/list/hardhats = list()
-	for(var/hardhat in typesof(/obj/item/clothing/head/hardhat))
-		var/obj/item/clothing/head/hardhat/hardhat_type = hardhat
+	for(var/obj/item/clothing/head/hardhat/hardhat_type as anything in typesof(/obj/item/clothing/head/hardhat))
 		hardhats[initial(hardhat_type.name)] = hardhat_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(hardhats))
 
@@ -223,8 +221,7 @@
 /datum/gear/head/santahat/New()
 	..()
 	var/list/santahats = list()
-	for(var/santahat in typesof(/obj/item/clothing/head/santa))
-		var/obj/item/clothing/head/santa/santahat_type = santahat
+	for(var/obj/item/clothing/head/santa/santahat_type as anything in typesof(/obj/item/clothing/head/santa))
 		santahats[initial(santahat_type.name)] = santahat_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(santahats))
 

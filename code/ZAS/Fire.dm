@@ -71,8 +71,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 
 	var/fuel_to_remove = used_liquid_fuel/(fuel_objs.len*LIQUIDFUEL_AMOUNT_TO_MOL) //convert back to liquid volume units
 
-	for(var/O in fuel_objs)
-		var/obj/effect/decal/cleanable/liquid_fuel/fuel = O
+	for(var/obj/effect/decal/cleanable/liquid_fuel/fuel as anything in fuel_objs)
 		if(!istype(fuel))
 			fuel_objs -= fuel
 			continue
@@ -171,7 +170,7 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 					continue
 
 				//Spread the fire.
-				if(prob( 50 + 50 * (firelevel/vsc.fire_firelevel_multiplier) ) && my_tile.CanPass(null, enemy_tile, 0,0) && enemy_tile.CanPass(null, my_tile, 0,0))
+				if(prob( 50 + 50 * (firelevel/vsc.fire_firelevel_multiplier) ) && my_tile.CanPass(src, enemy_tile) && enemy_tile.CanPass(src, my_tile))
 					enemy_tile.create_fire(firelevel)
 
 			else

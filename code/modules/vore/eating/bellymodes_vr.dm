@@ -84,11 +84,11 @@
 
 ///////////////////// Time to actually process mobs /////////////////////
 
-	for(var/target in touchable_mobs)
-		var/mob/living/L = target
+	for(var/mob/living/L as anything in touchable_mobs)
 		if(!istype(L))
+			stack_trace("Touchable mobs had a nonmob: [L]")
 			continue
-		var/list/returns = DM.process_mob(src, target)
+		var/list/returns = DM.process_mob(src, L)
 		if(istype(returns) && returns["to_update"])
 			to_update = TRUE
 		if(istype(returns) && returns["soundToPlay"] && !play_sound)

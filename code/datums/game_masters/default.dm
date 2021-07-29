@@ -17,8 +17,7 @@
 		log_game_master("Got [best_events.len] choice\s for the next event.")
 		var/list/weighted_events = list()
 
-		for(var/E in best_events)
-			var/datum/event2/meta/event = E
+		for(var/datum/event2/meta/event as anything in best_events)
 			var/weight = event.get_weight()
 			if(weight <= 0)
 				continue
@@ -71,8 +70,7 @@
 // If no list is passed, all the events will be returned.
 /datum/game_master/default/proc/filter_events_by_departments(list/departments)
 	. = list()
-	for(var/E in SSgame_master.available_events)
-		var/datum/event2/meta/event = E
+	for(var/datum/event2/meta/event as anything in SSgame_master.available_events)
 		if(!event.enabled)
 			continue
 		if(event.chaotic_threshold && !ignore_round_chaos)

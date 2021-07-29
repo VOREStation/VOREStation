@@ -5,7 +5,6 @@
 	desc = "A shoddy asteroid installation."
 	scanner_desc = @{"[i]Transponder[/i]: Strong Comms Signal
 [b]Notice[/b]: WARNING! KEEP OUT! MEMBERS ONLY!"}
-	icon = 'icons/obj/overmap_vr.dmi'
 	icon_state = "os_fortress_r"
 	known = FALSE
 	initial_generic_waypoints = list("guttersite_lshuttle", "guttersite_sshuttle", "guttersite_mshuttle")

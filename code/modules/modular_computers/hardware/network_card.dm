@@ -106,8 +106,7 @@ var/global/ntnet_card_uid = 1
 		var/list/zlevels_in_range = using_map.get_map_levels(holderz, FALSE)
 		var/list/zlevels_in_long_range = using_map.get_map_levels(holderz, TRUE, om_range = DEFAULT_OVERMAP_RANGE) - zlevels_in_range
 		var/best = 0
-		for(var/relay in ntnet_global.relays)
-			var/obj/machinery/ntnet_relay/R = relay
+		for(var/obj/machinery/ntnet_relay/R as anything in ntnet_global.relays)
 			//Relay is down
 			if(!R.operable())
 				continue

@@ -119,8 +119,7 @@ SUBSYSTEM_DEF(shuttles)
 				landmarks_still_needed[landmark_tag] = given_sector // Landmark isn't registered yet, queue it to be added once it is.
 
 	var/landmarks_to_check = landmarks_awaiting_sector.Copy()
-	for(var/thing in landmarks_to_check)
-		var/obj/effect/shuttle_landmark/automatic/landmark = thing
+	for(var/obj/effect/shuttle_landmark/automatic/landmark as anything in landmarks_to_check)
 		if(landmark.z in given_sector.map_z)
 			given_sector.add_landmark(landmark, landmark.shuttle_restricted)
 			landmarks_awaiting_sector -= landmark
@@ -170,8 +169,7 @@ SUBSYSTEM_DEF(shuttles)
 	if(overmap_halted == new_setting)
 		return
 	overmap_halted = !overmap_halted
-	for(var/ship in ships)
-		var/obj/effect/overmap/visitable/ship/ship_effect = ship
+	for(var/obj/effect/overmap/visitable/ship/ship_effect as anything in ships)
 		overmap_halted ? ship_effect.halt() : ship_effect.unhalt()
 
 /datum/controller/subsystem/shuttles/stat_entry()

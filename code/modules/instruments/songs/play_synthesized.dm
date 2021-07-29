@@ -61,8 +61,7 @@
 	channels_playing[channel_text] = 100
 	last_channel_played = channel_text
 	var/turf/source = get_turf(parent)
-	for(var/i in hearing_mobs)
-		var/mob/M = i
+	for(var/mob/M as anything in hearing_mobs)
 		/* Maybe someday
 		if(user && HAS_TRAIT(user, TRAIT_MUSICIAN) && isliving(M))
 			var/mob/living/L = M
@@ -142,10 +141,8 @@
 		if(dead)
 			channels_playing -= channel
 			channels_idle += channel
-			for(var/i in hearing_mobs)
-				var/mob/M = i
+			for(var/mob/M as anything in hearing_mobs)
 				M.stop_sound_channel(channelnumber)
 		else
-			for(var/i in hearing_mobs)
-				var/mob/M = i
+			for(var/mob/M as anything in hearing_mobs)
 				M.set_sound_channel_volume(channelnumber, (current_volume * 0.01) * volume * using_instrument.volume_multiplier)

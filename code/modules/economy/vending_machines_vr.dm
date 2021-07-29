@@ -3689,7 +3689,7 @@
 					/obj/item/weapon/reagent_containers/food/snacks/cb09 = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/cb10 = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/chawanmushi = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/cheese_cracker = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/cheesetoast = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/cheeseburger = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/cheeseburrito = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/cheesenachos = 10,
@@ -3841,7 +3841,7 @@
 					/obj/item/weapon/reagent_containers/food/snacks/meatcube = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/meatpie = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/meatsteak = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/microchips = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/microfries = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/milosoup = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/mimeburger = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/mint = 10,
@@ -3860,8 +3860,9 @@
 					/obj/item/weapon/reagent_containers/food/snacks/omelette = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/onionrings = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/onionsoup = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/ovenchips = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/ovenfries = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/pancakes = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/pancakes/berry = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/pastatomato = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/pie = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/piginblanket = 10,
@@ -4083,9 +4084,9 @@
 					/obj/item/weapon/reagent_containers/food/snacks/spagetti = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/xenomeat = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/vendor_burger = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/vendor_hotdog = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/vendor_burrito = 10)
+					/obj/item/weapon/reagent_containers/food/snacks/packaged/vendburger = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/packaged/vendhotdog = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/packaged/vendburrito = 10)
 	vend_delay = 15
 
 /obj/machinery/vending/event/food/safe //FOR FACILITATING/OUTFITTING EVENTS, DO NOT PUT THESE ON THE MAP//
@@ -4172,7 +4173,7 @@
 					/obj/item/weapon/reagent_containers/food/snacks/cb09 = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/cb10 = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/chawanmushi = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/cheese_cracker = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/cheesetoast = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/cheeseburger = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/cheeseburrito = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/cheesenachos = 10,
@@ -4324,7 +4325,7 @@
 					/obj/item/weapon/reagent_containers/food/snacks/meatcube = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/meatpie = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/meatsteak = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/microchips = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/microfries = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/milosoup = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/mimeburger = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/mint = 10,
@@ -4343,8 +4344,9 @@
 					/obj/item/weapon/reagent_containers/food/snacks/omelette = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/onionrings = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/onionsoup = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/ovenchips = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/ovenfries = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/pancakes = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/pancakes/berry = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/pastatomato = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/pie = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/piginblanket = 10,
@@ -4477,9 +4479,9 @@
 					/obj/item/weapon/reagent_containers/food/snacks/wishsoup = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/yellowcurry = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/zestfish = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/vendor_burger = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/vendor_hotdog = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/vendor_burrito = 10)
+					/obj/item/weapon/reagent_containers/food/snacks/packaged/vendburger = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/packaged/vendhotdog = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/packaged/vendburrito = 10)
 	vend_delay = 15
 
 /obj/machinery/vending/event/food/ingredients //FOR FACILITATING/OUTFITTING EVENTS, DO NOT PUT THESE ON THE MAP//

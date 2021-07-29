@@ -91,8 +91,7 @@
 		media_start_time = 0
 	update_music()
 	//VOREStation Add
-	for(var/rem in remotes)
-		var/obj/item/device/juke_remote/remote = rem
+	for(var/obj/item/device/juke_remote/remote as anything in remotes)
 		remote.update_music()
 	//VOREStation Add End
 
@@ -179,7 +178,7 @@
 
 /obj/machinery/media/jukebox/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
-	
+
 	data["playing"] = playing
 	data["loop_mode"] = loop_mode
 	data["volume"] = volume
@@ -327,17 +326,23 @@
 		start_stop_song()
 	updateDialog()
 
+//Pre-hacked Jukebox, has the full sond list unlocked
+/obj/machinery/media/jukebox/hacked
+	name = "DRM free space jukebox"
+	desc = "Filled with songs both past and present! Unlocked for your convenience!"
+	hacked = 1
+
 // Ghostly jukebox for adminbuse
 /obj/machinery/media/jukebox/ghost
 	name = "ghost jukebox"
 	desc = "A jukebox from the nether-realms! Spooky."
-	
+
 	plane = PLANE_GHOSTS
 	invisibility = INVISIBILITY_OBSERVER
 	alpha = 127
-	
+
 	icon_state = "jukebox2-virtual"
-	
+
 	density = FALSE
 	hacked = TRUE
 
@@ -348,7 +353,7 @@
 
 // Just junk to make it sneaky - I wish a lot more stuff was on /obj/machinery/media instead of /jukebox so I could use that.
 /obj/machinery/media/jukebox/ghost/is_incorporeal()
-	return TRUE	
+	return TRUE
 /obj/machinery/media/jukebox/ghost/audible_message(message, deaf_message, hearing_distance, radio_message, runemessage)
 	return
 /obj/machinery/media/jukebox/ghost/visible_message(message, blind_message, list/exclude_mobs, range, runemessage)
@@ -360,7 +365,7 @@
 /obj/machinery/media/jukebox/ghost/attack_hand(var/mob/user as mob)
 	return
 /obj/machinery/media/jukebox/ghost/update_use_power(new_use_power)
-	return	
+	return
 /obj/machinery/media/jukebox/ghost/power_change()
 	return
 /obj/machinery/media/jukebox/ghost/emp_act(severity)
@@ -368,7 +373,7 @@
 /obj/machinery/media/jukebox/ghost/emag_act(remaining_charges, mob/user)
 	return
 /obj/machinery/media/jukebox/ghost/explode()
-	return	
+	return
 /obj/machinery/media/jukebox/ghost/update_icon()
 	if(playing)
 		animate(src, alpha = 200, time = 5, loop = -1)
@@ -394,16 +399,16 @@
 	var/client/C = usr.client
 	if(!check_rights(R_FUN|R_ADMIN))
 		return
-	
+
 	// Required
 	var/url = input(C, "REQUIRED: Provide URL for track", "Track URL") as text|null
 	if(!url)
 		return
-	
+
 	var/title = input(C, "REQUIRED: Provide title for track", "Track Title") as text|null
 	if(!title)
 		return
-	
+
 	var/duration = input(C, "REQUIRED: Provide duration for track (in deciseconds, aka seconds*10)", "Track Duration") as num|null
 	if(!duration)
 		return
@@ -412,12 +417,12 @@
 	var/artist = input(C, "Optional: Provide artist for track", "Track Artist") as text|null
 	if(isnull(artist)) // Cancel rather than empty string
 		return
-	
+
 	// So they're obvious and grouped
 	var/genre = "! Admin Loaded !"
-	
+
 	custom_tracks += new /datum/track(url, title, duration, artist, genre)
-	
+
 /obj/machinery/media/jukebox/ghost/proc/manual_track_remove()
 	var/client/C = usr.client
 	if(!check_rights(R_FUN|R_ADMIN))
@@ -426,13 +431,13 @@
 	var/track = input(C, "Input track title or URL to remove (must be exact)", "Remove Track") as text|null
 	if(!track)
 		return
-	
+
 	for(var/datum/track/T in custom_tracks)
 		if(T.title == track || T.url == track)
 			custom_tracks -= T
 			qdel(T)
 			return
-	
+
 	to_chat(C, "<span class='warning>Couldn't find a track matching the specified parameters.</span>")
 
 /obj/machinery/media/jukebox/ghost/vv_get_dropdown()

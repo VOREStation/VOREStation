@@ -89,6 +89,9 @@
 				if(!(L in prey_excludes)) // Unless they're already on it, just to avoid fuckery.
 					prey_excludes += L
 					addtimer(CALLBACK(src, .proc/removeMobFromPreyExcludes, weakref(L)), 5 MINUTES)
+	else if(istype(O, /obj/item/device/healthanalyzer))
+		var/healthpercent = health/maxHealth*100
+		to_chat(user, "<span class='notice'>[src] seems to be [healthpercent]% healthy.</span>")		
 	else
 		..()
 

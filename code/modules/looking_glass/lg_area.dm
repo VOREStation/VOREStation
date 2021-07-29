@@ -38,8 +38,7 @@
 
 /area/looking_glass/proc/begin_program(var/image/newimage)
 	if(!active)
-		for(var/trf in our_turfs)
-			var/turf/simulated/floor/looking_glass/lgt = trf
+		for(var/turf/simulated/floor/looking_glass/lgt as anything in our_turfs)
 			lgt.activate()
 
 	our_landmark.take_image(newimage)
@@ -47,8 +46,7 @@
 
 /area/looking_glass/proc/end_program()
 	if(active)
-		for(var/trf in our_turfs)
-			var/turf/simulated/floor/looking_glass/lgt = trf
+		for(var/turf/simulated/floor/looking_glass/lgt as anything in our_turfs)
 			lgt.deactivate()
 
 	active = FALSE
@@ -57,8 +55,7 @@
 		our_landmark.drop_image()
 
 /area/looking_glass/proc/toggle_optional(var/transparent)
-	for(var/trf in our_optional_turfs)
-		var/turf/simulated/floor/looking_glass/lgt = trf
+	for(var/turf/simulated/floor/looking_glass/lgt as anything in our_optional_turfs)
 		lgt.center = !transparent
 		if(active)
 			lgt.deactivate()

@@ -33,11 +33,11 @@
 				secondary_effect.ToggleActivate(0)
 
 	else
-		var/effecttype = pick(typesof(/datum/artifact_effect) - /datum/artifact_effect)
+		var/effecttype = pick(subtypesof(/datum/artifact_effect))
 		my_effect = new effecttype(src)
 
 		if(prob(75))
-			effecttype = pick(typesof(/datum/artifact_effect) - /datum/artifact_effect)
+			effecttype = pick(subtypesof(/datum/artifact_effect))
 			secondary_effect = new effecttype(src)
 			if(prob(75))
 				secondary_effect.ToggleActivate(0)
@@ -85,11 +85,11 @@
 			secondary_effect.trigger = predefined_trig_secondary
 
 /obj/machinery/artifact/proc/choose_effect()
-	var/effect_type = tgui_input_list(usr, "What type do you want?", "Effect Type", typesof(/datum/artifact_effect) - /datum/artifact_effect)
+	var/effect_type = tgui_input_list(usr, "What type do you want?", "Effect Type", subtypesof(/datum/artifact_effect))
 	if(effect_type)
 		my_effect = new effect_type(src)
 		if(tgui_alert(usr, "Do you want a secondary effect?", "Second Effect", list("No", "Yes")) == "Yes")
-			var/second_effect_type = tgui_input_list(usr, "What type do you want as well?", "Second Effect Type", typesof(/datum/artifact_effect) - list(/datum/artifact_effect, effect_type))
+			var/second_effect_type = tgui_input_list(usr, "What type do you want as well?", "Second Effect Type", subtypesof(/datum/artifact_effect) - effect_type)
 			secondary_effect = new second_effect_type(src)
 		else
 			secondary_effect = null

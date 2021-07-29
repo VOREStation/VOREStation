@@ -46,8 +46,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 	var/things = get_all_of_type(type, subtypes)
 
 	var/i = 0
-	for(var/thing in things)
-		var/datum/D = thing
+	for(var/datum/D as anything in things)
 		i++
 		//try one of 3 methods to shorten the type text:
 		//	fancy type,

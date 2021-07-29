@@ -25,8 +25,7 @@
 	. = ..()
 	if(Adjacent(user) && max_mod_capacity)
 		. += "<b>[get_remaining_mod_capacity()]%</b> mod capacity remaining."
-		for(var/A in get_modkits())
-			var/obj/item/borg/upgrade/modkit/M = A
+		for(var/obj/item/borg/upgrade/modkit/M as anything in get_modkits())
 			. += "<span class='notice'>There is a [M.name] mod installed, using <b>[M.cost]%</b> capacity.</span>"
 
 /obj/item/weapon/gun/energy/kinetic_accelerator/attackby(obj/item/A, mob/user)
@@ -46,8 +45,7 @@
 
 /obj/item/weapon/gun/energy/kinetic_accelerator/proc/get_remaining_mod_capacity()
 	var/current_capacity_used = 0
-	for(var/A in get_modkits())
-		var/obj/item/borg/upgrade/modkit/M = A
+	for(var/obj/item/borg/upgrade/modkit/M as anything in get_modkits())
 		current_capacity_used += M.cost
 	return max_mod_capacity - current_capacity_used
 
@@ -57,8 +55,7 @@
 		. += A
 
 /obj/item/weapon/gun/energy/kinetic_accelerator/proc/modify_projectile(obj/item/projectile/kinetic/K)
-	for(var/A in get_modkits())
-		var/obj/item/borg/upgrade/modkit/M = A
+	for(var/obj/item/borg/upgrade/modkit/M as anything in get_modkits())
 		M.modify_projectile(K)
 
 /obj/item/weapon/gun/energy/kinetic_accelerator/consume_next_projectile()
@@ -185,8 +182,7 @@
 	. = TRUE
 	if(denied_type)
 		var/number_of_denied = 0
-		for(var/A in KA.get_modkits())
-			var/obj/item/borg/upgrade/modkit/M = A
+		for(var/obj/item/borg/upgrade/modkit/M as anything in KA.get_modkits())
 			if(istype(M, denied_type))
 				number_of_denied++
 			if(number_of_denied >= maximum_of_type)

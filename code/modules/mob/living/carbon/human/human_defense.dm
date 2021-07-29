@@ -135,8 +135,7 @@ emp_act
 			siemens_coefficient *= C.siemens_coefficient
 
 	// Modifiers.
-	for(var/thing in modifiers)
-		var/datum/modifier/M = thing
+	for(var/datum/modifier/M as anything in modifiers)
 		if(!isnull(M.siemens_coefficient))
 			siemens_coefficient *= M.siemens_coefficient
 
@@ -181,8 +180,7 @@ emp_act
 	for(var/obj/item/clothing/gear in protective_gear)
 		protection += gear.armor[type]
 
-	for(var/thing in modifiers)
-		var/datum/modifier/M = thing
+	for(var/datum/modifier/M as anything in modifiers)
 		var/modifier_armor = LAZYACCESS(M.armor_percent, type)
 		if(modifier_armor)
 			protection += modifier_armor
@@ -197,8 +195,7 @@ emp_act
 	for(var/obj/item/clothing/gear in protective_gear)
 		soaked += gear.armorsoak[type]
 
-	for(var/thing in modifiers)
-		var/datum/modifier/M = thing
+	for(var/datum/modifier/M as anything in modifiers)
 		var/modifier_armor = LAZYACCESS(M.armor_flat, type)
 		if(modifier_armor)
 			soaked += modifier_armor

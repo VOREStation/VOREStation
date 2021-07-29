@@ -2068,6 +2068,10 @@
 	},
 /turf/simulated/floor/tiled/eris/white/brown_platform,
 /area/gateway/arynthilake/dome)
+"Or" = (
+/obj/effect/landmark/hidden_level,
+/turf/simulated/mineral/ignore_cavegen,
+/area/gateway/arynthilake/caves)
 "OC" = (
 /turf/simulated/floor/carpet/blucarpet{
 	outdoors = 1
@@ -3052,7 +3056,7 @@ Qr
 Qr
 Qr
 Qr
-Qr
+Or
 aa
 "}
 (5,1,1) = {"
