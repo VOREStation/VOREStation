@@ -121,6 +121,10 @@
 	icon_state = "tile-carpet"
 /obj/item/stack/tile/carpet/oracarpet
 	icon_state = "tile-carpet"
+/obj/item/stack/tile/carpet/deco
+	icon_state = "tile-carpet-deco"
+/obj/item/stack/tile/carpet/retro
+	icon_state = "tile-carpet-retro"
 
 /obj/item/stack/tile/floor
 	name = "floor tile"
