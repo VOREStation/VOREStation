@@ -8,7 +8,7 @@
 
 /obj/item/weapon/book/manual/casino
 	name = "A dummy guide to losing your thalers"
-	icon = 'icons/obj/casino_ch.dmi'
+	icon = 'icons/obj/casino.dmi'
 	icon_state ="casinomanual"
 	author = "Sleazy Serpent Saren"
 	w_class = 2 // To allow it to be stuffed away into wallets for easy readings during events
