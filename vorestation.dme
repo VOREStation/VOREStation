@@ -1826,6 +1826,7 @@
 #include "code\modules\busy_space_vr\loremaster.dm"
 #include "code\modules\busy_space_vr\organizations.dm"
 #include "code\modules\casino\casino.dm"
+#include "code\modules\casino\casino_book.dm"
 #include "code\modules\casino\casino_cards.dm"
 #include "code\modules\casino\casino_prize_vendor.dm"
 #include "code\modules\casino\premium_dispenser.dm"

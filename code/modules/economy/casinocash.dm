@@ -18,7 +18,7 @@
 			playsound(loc, 'sound/items/polaroid2.ogg', 50, 1)
 
 		user << "<span class='info'>You insert [I] into [src].</span>"
-		spawn_casinochips(round(I:worth/1), src.loc)
+		spawn_casinochips(round(I:worth/5), src.loc)
 		src.attack_hand(user)
 		qdel(I)
 
@@ -30,7 +30,7 @@
 			playsound(loc, 'sound/items/polaroid2.ogg', 50, 1)
 
 		user << "<span class='info'>You insert [I] into [src].</span>"
-		spawn_money(round(I:worth/2), src.loc)
+		spawn_money(round(I:worth/5), src.loc)
 		src.attack_hand(user)
 		qdel(I)
 
