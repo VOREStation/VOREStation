@@ -329,6 +329,7 @@
 	. = ..()
 	reagents.add_reagent("porksoda", 30)
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/drinks/cans/bepis
 	name = "\improper Bepis"
 	desc = "It has a smell of 'off-brand' whenever you open it..."
@@ -403,6 +404,8 @@
 	. = ..()
 	reagents.add_reagent("sprited_cranberry", 30)
 
+=======
+>>>>>>> d383606a6f3... 2021 Drink Revamp (#8185)
 /////////////////////////CANNED BOOZE DRINKS/////////////////////////
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/beercan

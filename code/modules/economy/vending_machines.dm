@@ -1118,6 +1118,7 @@
 					/obj/item/weapon/reagent_containers/food/drinks/cans/orange_cola = 1,
 					/obj/item/weapon/reagent_containers/food/drinks/cans/gingerale = 1)
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
+<<<<<<< HEAD
 	vending_sound = "machines/vending/vending_cans.ogg"
 
 /**
@@ -1484,3 +1485,6 @@
 	)
 	req_log_access = access_hop
 	has_logs = 1
+=======
+	vending_sound = "machines/vending/vending_cans.ogg"
+>>>>>>> d383606a6f3... 2021 Drink Revamp (#8185)

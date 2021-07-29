@@ -87,7 +87,11 @@
 		if(A.density && usr.Adjacent(A) && !istype(A, /mob))
 			things_to_smash_on += A
 
+<<<<<<< HEAD
 	var/atom/choice = tgui_input_list(usr, "Select what you want to smash the bottle on.", "SMASH!", things_to_smash_on)
+=======
+	var/atom/choice = input(usr, "Select what you want to smash the bottle on.", "SMASH!", things_to_smash_on)
+>>>>>>> d383606a6f3... 2021 Drink Revamp (#8185)
 	if(!choice)
 		return
 	if(!(choice.density && usr.Adjacent(choice)))
