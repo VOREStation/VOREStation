@@ -296,11 +296,7 @@ var/datum/planet/sif/planet_sif = null
 	for(var/mob/living/L as anything in living_mob_list)
 		if(L.z in holder.our_planet.expected_z_levels)
 			var/turf/T = get_turf(L)
-<<<<<<< HEAD
-			if(!T.outdoors)
-=======
 			if(!T.is_outdoors())
->>>>>>> 9f84b65a6ef... Merge pull request #8171 from Neerti/no_more_rain_indoors
 				continue // They're indoors, so no need to rain on them.
 
 			// If they have an open umbrella, it'll guard from rain
