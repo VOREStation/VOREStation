@@ -171,11 +171,7 @@
 				return
 
 		// Create a ceiling to shield from the weather
-<<<<<<< HEAD
-		if(outdoors)
-=======
 		if(is_outdoors())
->>>>>>> 9f84b65a6ef... Merge pull request #8171 from Neerti/no_more_rain_indoors
 			if(expended_tile || R.use(1)) // Don't need to check adjacent turfs for a wall, we're building on one
 				make_indoors()
 				if(!expended_tile) // Would've already played a sound
