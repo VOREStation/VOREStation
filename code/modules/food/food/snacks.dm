@@ -3281,7 +3281,7 @@
 	reagents.add_reagent("protein", 2) //For meaty things.
 
 /obj/item/weapon/reagent_containers/food/snacks/gigapuddi
-	name = "Astro-Pudding"
+	name = "Giga Puddi"
 	desc = "A crème caramel of astronomical size."
 	icon = 'icons/obj/food.dmi'
 	icon_state = "gigapuddi"
@@ -3301,7 +3301,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/buchedenoel
 	name = "\improper Buche de Noel"
-	desc = "Yule love it!"
+	desc = "Merry Christmas!"
 	icon = 'icons/obj/food.dmi'
 	icon_state = "buche"
 	slice_path = /obj/item/weapon/reagent_containers/food/snacks/bucheslice
@@ -3346,7 +3346,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/turkeyslice
 	name = "turkey drumstick"
-	desc = "Forsooth!"
+	desc = "Guaranteed vox-free"
 	icon = 'icons/obj/food.dmi'
 	icon_state = "turkey_drumstick"
 	trash = /obj/item/trash/plate
