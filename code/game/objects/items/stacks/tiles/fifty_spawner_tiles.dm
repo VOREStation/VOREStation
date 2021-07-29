@@ -28,6 +28,14 @@
 	name = "stack of teal carpet"
 	type_to_spawn = /obj/item/stack/tile/carpet/teal
 
+/obj/fiftyspawner/decocarpet
+	name = "stack of deco carpet"
+	type_to_spawn = /obj/item/stack/tile/carpet/deco
+
+/obj/fiftyspawner/retrocarpet
+	name = "stack of retro carpet"
+	type_to_spawn = /obj/item/stack/tile/carpet/retro
+
 /obj/fiftyspawner/floor
 	name = "stack of floor tiles"
 	type_to_spawn = /obj/item/stack/tile/floor
