@@ -21,23 +21,11 @@ var/list/turf_edge_cache = list()
 	var/list/turf_layers = list(/turf/simulated/floor/outdoors/rocks)
 
 /turf/simulated/floor/Initialize(mapload)
-<<<<<<< HEAD
-	if(outdoors)
-=======
 	if(is_outdoors())
->>>>>>> 9f84b65a6ef... Merge pull request #8171 from Neerti/no_more_rain_indoors
 		SSplanets.addTurf(src)
 	. = ..()
 
 /turf/simulated/floor/Destroy()
-<<<<<<< HEAD
-	if(outdoors)
-		SSplanets.removeTurf(src)
-	return ..()
-
-/turf/simulated/proc/make_outdoors()
-	if(outdoors)
-=======
 	if(is_outdoors())
 		SSplanets.removeTurf(src)
 	return ..()
@@ -63,18 +51,13 @@ var/list/turf_edge_cache = list()
 /// Makes the turf explicitly outdoors.
 /turf/simulated/proc/make_outdoors()
 	if(is_outdoors()) // Already outdoors.
->>>>>>> 9f84b65a6ef... Merge pull request #8171 from Neerti/no_more_rain_indoors
 		return
 	outdoors = TRUE
 	SSplanets.addTurf(src)
 
 /// Makes the turf explicitly indoors.
 /turf/simulated/proc/make_indoors()
-<<<<<<< HEAD
-	if(!outdoors)
-=======
 	if(!is_outdoors()) // Already indoors.
->>>>>>> 9f84b65a6ef... Merge pull request #8171 from Neerti/no_more_rain_indoors
 		return
 	outdoors = FALSE
 	SSplanets.removeTurf(src)
@@ -82,11 +65,7 @@ var/list/turf_edge_cache = list()
 /turf/simulated/post_change()
 	..()
 	// If it was outdoors and still is, it will not get added twice when the planet controller gets around to putting it in.
-<<<<<<< HEAD
-	if(outdoors)
-=======
 	if(is_outdoors())
->>>>>>> 9f84b65a6ef... Merge pull request #8171 from Neerti/no_more_rain_indoors
 		make_outdoors()
 	else
 		make_indoors()
