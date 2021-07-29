@@ -40,21 +40,13 @@
 	for(var/obj/machinery/power/thing in range(LIGHTNING_REDIRECT_RANGE, T))
 		if(istype(thing, /obj/machinery/power/tesla_coil))
 			var/turf/simulated/coil_turf = get_turf(thing)
-<<<<<<< HEAD
-			if(istype(coil_turf) && thing.anchored && coil_turf.outdoors)
-=======
 			if(istype(coil_turf) && thing.anchored && coil_turf.is_outdoors())
->>>>>>> 9f84b65a6ef... Merge pull request #8171 from Neerti/no_more_rain_indoors
 				coil = thing
 				break
 
 		if(istype(thing, /obj/machinery/power/grounding_rod))
 			var/turf/simulated/rod_turf = get_turf(thing)
-<<<<<<< HEAD
-			if(istype(rod_turf) && thing.anchored && rod_turf.outdoors)
-=======
 			if(istype(rod_turf) && thing.anchored && rod_turf.is_outdoors())
->>>>>>> 9f84b65a6ef... Merge pull request #8171 from Neerti/no_more_rain_indoors
 				ground = thing
 
 	if(coil) // Coil gets highest priority.
