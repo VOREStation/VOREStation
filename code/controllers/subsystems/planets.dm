@@ -42,11 +42,7 @@ SUBSYSTEM_DEF(planets)
 			return
 		if(istype(T, /turf/unsimulated/wall/planetary))	
 			P.planet_walls += T
-<<<<<<< HEAD
-		else if(istype(T, /turf/simulated) && T.outdoors)
-=======
 		else if(istype(T, /turf/simulated) && T.is_outdoors())
->>>>>>> 9f84b65a6ef... Merge pull request #8171 from Neerti/no_more_rain_indoors
 			P.planet_floors += T
 			P.weather_holder.apply_to_turf(T)
 			P.sun_holder.apply_to_turf(T)
