@@ -215,6 +215,9 @@
 /area/tether/surfacebase/barbackmaintenance
 	name = "\improper Bar Back Maintenance"
 	icon_state = "red"
+/area/tether/surfacebase/arcade
+	name = "\improper Arcade"
+	icon_state = "green"
 
 /area/tether/surfacebase/public_garden_lg
 	name = "\improper Public Garden Looking Glass"
