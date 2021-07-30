@@ -173,7 +173,7 @@
 	desc = "It's worth 1000 credits."
 	worth = 1000
 
-proc/spawn_casinochips(var/sum, spawnloc, mob/living/carbon/human/human_user as mob)
+/proc/spawn_casinochips(var/sum, spawnloc, mob/living/carbon/human/human_user as mob)
 	var/obj/item/weapon/spacecasinocash/SC = new (spawnloc)
 
 	SC.set_worth(sum)
