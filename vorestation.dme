@@ -813,6 +813,7 @@
 #include "code\game\machinery\buttons_vr.dm"
 #include "code\game\machinery\CableLayer.dm"
 #include "code\game\machinery\cell_charger.dm"
+#include "code\game\machinery\clawmachine.dm"
 #include "code\game\machinery\cloning.dm"
 #include "code\game\machinery\cryo.dm"
 #include "code\game\machinery\cryopod.dm"
