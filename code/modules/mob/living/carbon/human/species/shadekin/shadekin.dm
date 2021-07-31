@@ -260,8 +260,23 @@
 /datum/species/shadekin/proc/get_shadekin_eyecolor(var/mob/living/carbon/human/H)
 	var/eyecolor_rgb = rgb(H.r_eyes, H.g_eyes, H.b_eyes)
 
-	var/eyecolor_hue = HueToAngle(ReadHSV(RGBtoHSV(eyecolor_rgb))[1])
+	var/eyecolor_hue = rgb2num(eyecolor_rgb, COLORSPACE_HSV)[1]
+	var/eyecolor_sat = rgb2num(eyecolor_rgb, COLORSPACE_HSV)[2]
+	var/eyecolor_val = rgb2num(eyecolor_rgb, COLORSPACE_HSV)[3]
 
+	//First, clamp the saturation/value to prevent black/grey/white eyes
+	if(eyecolor_sat < 10)
+		eyecolor_sat = 10
+	if(eyecolor_val < 40)
+		eyecolor_val = 40
+
+	eyecolor_rgb = rgb(eyecolor_hue, eyecolor_sat, eyecolor_val, COLORSPACE_HSV)
+
+	H.r_eyes = rgb2num(eyecolor_rgb)[1]
+	H.g_eyes = rgb2num(eyecolor_rgb)[2]
+	H.b_eyes = rgb2num(eyecolor_rgb)[3]
+
+	//Now determine what color we fall into.
 	var/eyecolor_type = BLUE_EYES
 	switch(eyecolor_hue)
 		if(0 to 20)
