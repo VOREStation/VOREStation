@@ -9,7 +9,7 @@
 
 /obj/machinery/power/smes/batteryrack
 	name = "power cell rack PSU"
-	desc = "A rack of power cells working as a PSU."
+	desc = "A rack of power cells working as a PSU. Made from a recycled Breaker Box frame."
 	icon = 'icons/obj/cellrack.dmi'
 	icon_state = "rack"
 	capacity = 0
