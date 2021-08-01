@@ -12,17 +12,10 @@
 	name = "space jukebox"
 	desc = "Filled with songs both past and present!"
 	icon = 'icons/obj/jukebox.dmi'
-<<<<<<< HEAD
-	icon_state = "jukebox2-nopower"
-	var/state_base = "jukebox2"
-	anchored = TRUE
-	density = TRUE
-=======
 	icon_state = "jukebox-nopower"
 	var/state_base = "jukebox"
-	anchored = 1
-	density = 1
->>>>>>> beaa3051ff8... Merge pull request #8190 from GhostActual/Jukeboxes
+	anchored = TRUE
+	density = TRUE
 	power_channel = EQUIP
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
