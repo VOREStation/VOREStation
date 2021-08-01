@@ -22,7 +22,8 @@
 	vorePanel.tgui_interact(src)
 
 /mob/living/proc/updateVRPanel() //Panel popup update call from belly events.
-	SStgui.update_uis(vorePanel)
+	if(vorePanel)
+		SStgui.update_uis(vorePanel)
 
 //
 // Callback Handler for the Inside form
