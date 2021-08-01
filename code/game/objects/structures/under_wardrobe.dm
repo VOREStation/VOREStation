@@ -3,7 +3,11 @@
 	desc = "Holds item of clothing you shouldn't be showing off in the hallways."
 	icon = 'icons/obj/closets/undies_wardrobe.dmi'
 	icon_state = "wardrobe"
+<<<<<<< HEAD
 	density = TRUE
+=======
+	density = 1
+>>>>>>> 15b0a4478eb... Merge pull request #8188 from GhostActual/new_stuff1
 
 /obj/structure/undies_wardrobe/attack_hand(var/mob/user)
 	if(!human_who_can_use_underwear(user))
