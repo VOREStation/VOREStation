@@ -24,7 +24,9 @@
 		//	continue // Not on the right z-level.
 		if(L.stat)
 			continue // Don't want dead people.
-		if(istype(get_turf(L), /turf/simulated/floor/outdoors) && istype(get_area(L),/area/surface/outside/wilderness))
+		var/turf/T = get_turf(L)
+		var/area/A = get_area(L)
+		if(T?.is_outdoors() && istype(A, /area/tether/outpost/exploration_plains)) // VOREStation Edit
 			potential_victims += L
 
 	if(potential_victims.len)
