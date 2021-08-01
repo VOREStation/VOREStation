@@ -1,7 +1,7 @@
 /turf/simulated/floor/tiled/asteroid_steel/outdoors
 	name = "weathered tiles"
 	desc = "Old tiles left out in the elements."
-	outdoors = 1
+	outdoors = OUTDOORS_YES
 	edge_blending_priority = 1
 
 /turf/simulated/floor/outdoors/newdirt
