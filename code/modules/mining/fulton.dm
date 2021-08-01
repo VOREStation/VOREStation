@@ -42,7 +42,7 @@ var/global/list/total_extraction_beacons = list()
 		return
 	if(!can_use_indoors)
 		var/turf/T = get_turf(A)
-		if(T && !T.outdoors)
+		if(T && !T.is_outdoors())
 			to_chat(user, "[src] can only be used on things that are outdoors!")
 			return
 	if(!flag)
@@ -145,7 +145,7 @@ var/global/list/total_extraction_beacons = list()
 
 /obj/item/fulton_core/attack_self(mob/user)
 	var/turf/T = get_turf(user)
-	var/outdoors = T.outdoors
+	var/outdoors = T.is_outdoors()
 	if(do_after(user,15,target = user) && !QDELETED(src) && outdoors)
 		new /obj/structure/extraction_point(get_turf(user))
 		qdel(src)
