@@ -73,7 +73,7 @@
 // Webs target in a web if able to.
 /mob/living/simple_mob/animal/giant_spider/nurse/attack_target(atom/A)
 	if(isturf(A))
-		if(fed)
+		if(fed && can_lay_eggs)
 			if(!laying_eggs)
 				return lay_eggs(A)
 		return web_tile(A)
@@ -184,6 +184,9 @@
 		return FALSE
 
 	if(!fed)
+		return FALSE
+
+	if(!can_lay_eggs)
 		return FALSE
 
 	var/obj/effect/spider/eggcluster/E = locate() in T

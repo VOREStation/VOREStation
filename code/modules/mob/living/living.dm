@@ -1130,3 +1130,53 @@
 // Each mob does vision a bit differently so this is just for inheritence and also so overrided procs can make the vision apply instantly if they call `..()`.
 /mob/living/proc/disable_spoiler_vision()
 	handle_vision()
+
+/**
+ * Small helper component to manage the character setup HUD icon
+ */
+/datum/component/character_setup
+	var/obj/screen/character_setup/screen_icon
+
+/datum/component/character_setup/Initialize()
+	if(!ismob(parent))
+		return COMPONENT_INCOMPATIBLE
+	. = ..()
+
+/datum/component/character_setup/RegisterWithParent()
+	. = ..()
+	RegisterSignal(parent, COMSIG_MOB_CLIENT_LOGIN, .proc/create_mob_button)
+	var/mob/owner = parent
+	if(owner.client)
+		create_mob_button(parent)
+
+/datum/component/character_setup/UnregisterFromParent()
+	. = ..()
+	UnregisterSignal(parent, COMSIG_MOB_CLIENT_LOGIN)
+	var/mob/owner = parent
+	if(screen_icon)
+		owner?.client?.screen -= screen_icon
+		UnregisterSignal(screen_icon, COMSIG_CLICK)
+		qdel_null(screen_icon)
+
+/datum/component/character_setup/proc/create_mob_button(mob/user)
+	var/datum/hud/HUD = user.hud_used
+	if(!screen_icon)
+		screen_icon = new()
+		RegisterSignal(screen_icon, COMSIG_CLICK, .proc/character_setup_click)
+	screen_icon.icon = HUD.ui_style
+	LAZYADD(HUD.other_important, screen_icon)
+	user.client?.screen += screen_icon
+
+/datum/component/character_setup/proc/character_setup_click(source, location, control, params, user)
+	var/mob/owner = user
+	if(owner.client?.prefs)
+		INVOKE_ASYNC(owner.client.prefs, /datum/preferences/proc/ShowChoices, owner)
+
+/**
+ * Screen object for vore panel
+ */
+/obj/screen/character_setup
+	name = "character setup"
+	icon = 'icons/mob/screen/midnight.dmi'
+	icon_state = "character"
+	screen_loc = ui_smallquad
