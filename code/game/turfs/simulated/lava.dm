@@ -21,7 +21,7 @@
 
 // For maximum pedantry.
 /turf/simulated/floor/lava/Initialize()
-	if(!outdoors)
+	if(!is_outdoors())
 		name = "magma"
 	update_icon()
 	update_light()
