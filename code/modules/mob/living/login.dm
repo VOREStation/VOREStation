@@ -12,7 +12,7 @@
 		ai_holder.go_sleep()
 		to_chat(src,"<span class='notice'>Mob AI disabled while you are controlling the mob.</span>")
 
-	
+	AddComponent(/datum/component/character_setup)
 	
 	// Vore stuff
 	verbs |= /mob/living/proc/escapeOOC
