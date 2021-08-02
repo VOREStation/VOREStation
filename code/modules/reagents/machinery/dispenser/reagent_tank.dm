@@ -151,7 +151,7 @@
 /obj/structure/reagent_dispensers/fueltank/barrel
 	name = "hazardous barrel"
 	desc = "An open-topped barrel full of nasty-looking liquid."
-	icon = "icons/obj/objects_vr.dmi"
+	icon = 'icons/obj/objects_vr.dmi'
 	icon_state = "barrel"
 	modded = TRUE
 
