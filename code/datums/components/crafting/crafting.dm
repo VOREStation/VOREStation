@@ -8,8 +8,8 @@
 	var/datum/hud/H = user.hud_used
 	var/obj/screen/craft/C = new()
 	C.icon = H.ui_style
-	C.color = HUD.ui_color
-	C.alpha = HUD.ui_alpha
+	C.color = H.ui_color
+	C.alpha = H.ui_alpha
 	LAZYADD(H.other_important, C)
 	CL.screen += C
 	RegisterSignal(C, COMSIG_CLICK, .proc/component_ui_interact)
