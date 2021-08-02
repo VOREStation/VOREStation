@@ -53,8 +53,11 @@
 	..()
 
 /obj/machinery/power/emitter/update_icon()
-	if (active && powernet && avail(active_power_usage))
-		icon_state = "emitter_+a"
+	if (active && powernet)
+		if(avail(active_power_usage))
+			icon_state = "emitter_+a"
+		else
+			icon_state = "emitter_+u"
 	else
 		icon_state = "emitter"
 

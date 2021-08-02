@@ -385,7 +385,6 @@
 /obj/machinery/power/emitter{
 	anchored = 1;
 	dir = 8;
-	icon_state = "emitter2";
 	id = "EngineEmitter";
 	state = 2
 	},
