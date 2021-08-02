@@ -5,6 +5,7 @@
 /*
  * Space Crane
  */
+
 /obj/machinery/clawmachine
 	name = "Space Crane"
 	desc = "Try your luck at winning a cute plush toy! No refunds, and whining won't win you anything."
@@ -12,6 +13,15 @@
 	icon_state = "clawmachine"
 	anchored = 1
 	density = 1
+	power_channel = EQUIP
+	use_power = USE_POWER_IDLE
+	idle_power_usage = 10
+	active_power_usage = 100
+	light_power = 0.9
+	light_range = 2
+	light_color = "#B1FBBFF"
+	var/isbroken = 0  //1 if someone banged it with something heavy
+	var/ispowered = 1 //starts powered, changes with power_change()
 	var/busy = 0
 	var/symbol1 = null
 	var/symbol2 = null
@@ -53,7 +63,53 @@
 						/obj/item/toy/plushie/otter
 						)
 
+/obj/machinery/clawmachine/update_icon()
+	cut_overlays()
+	if(!ispowered || isbroken)
+		icon_state = "clawmachine_off"
+		if(isbroken) //If the thing is smashed, add crack overlay on top of the unpowered sprite.
+			add_overlay("clawmachine_broken")
+		set_light(0)
+		set_light_on(FALSE)
+		return
+
+	icon_state = "clawmachine"
+	set_light(2)
+	set_light_on(TRUE)
+	return
+
+/obj/machinery/clawmachine/power_change()
+	if(isbroken) //Broken shit can't be powered.
+		return
+	..()
+	if(!(stat & NOPOWER))
+		ispowered = 1
+		update_icon()
+	else
+		spawn(rand(0, 15))
+			ispowered = 0
+			update_icon()
+
 /obj/machinery/clawmachine/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(busy)
+		to_chat(user,"<span class='notice'>The claw machine is currently running.</span> ")
+		return
+	if(W.is_wrench())
+		playsound(src, W.usesound, 100, 1)
+		if(anchored)
+			user.visible_message("[user] begins unsecuring \the [src] from the floor.", "You start unsecuring \the [src] from the floor.")
+		else
+			user.visible_message("[user] begins securing \the [src] to the floor.", "You start securing \the [src] to the floor.")
+
+		if(do_after(user, 20 * W.toolspeed))
+			if(!src) return
+			to_chat(user, "<span class='notice'>You [anchored? "un" : ""]secured \the [src]!</span>")
+			anchored = !anchored
+		return
+
+	if(!anchored)
+		to_chat(user,"<span class='notice'> The machine isn't secured.</span>")
+		return
 
 	var/handled = 0
 	var/paid = 0
@@ -62,12 +118,17 @@
 		var/obj/item/weapon/spacecash/C = W
 		paid = insert_cash(C, user)
 		handled = 1
-
 		if(paid)
 			return
 		if(handled)
 			SStgui.update_uis(src)
 			return // don't smack that machine with your 2 chips
+
+	else if(!(stat & NOPOWER))
+		return
+
+	else if(isbroken)
+		return
 
 /obj/machinery/clawmachine/proc/prizevend()
 	if(LAZYLEN(prizes))
@@ -75,7 +136,11 @@
 		new prizeselect(src.loc)
 
 /obj/machinery/clawmachine/proc/insert_cash(var/obj/item/weapon/spacecash/cashmoney, mob/user)
-	if (busy)
+	if (ispowered == 0)
+		return
+	if (isbroken)
+		return
+	if(busy)
 		to_chat(user,"<span class='notice'>The claw machine is currently running.</span> ")
 		return
 	if(cashmoney.worth < 5)
