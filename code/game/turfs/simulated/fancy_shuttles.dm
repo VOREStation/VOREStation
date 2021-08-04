@@ -1,5 +1,5 @@
 /**
- * To map these, place down a fancy_shuttle_walls on the map and lay down /turf/simulated/wall/fancy_shuttle
+ * To map these, place down a /obj/effect/fancy_shuttle on the map and lay down /turf/simulated/wall/fancy_shuttle
  * everywhere that is included in the sprite. Up to you if you want to make some opacity=FALSE or density=FALSE
  * Set a matching fancy_shuttle_tag on your walls and on the /obj/effect/fancy_shuttle. Make sure it's unique.
  * 
