@@ -210,7 +210,6 @@
 /decl/chemical_reaction/instant/slime_food/on_reaction(var/datum/reagents/holder)
 	var/list/borks = subtypesof(/obj/item/weapon/reagent_containers/food/snacks)
 
-
 	playsound(holder.my_atom, 'sound/effects/phasein.ogg', 100, 1)
 
 	for(var/i = 1, i <= 4 + rand(1,2), i++)
