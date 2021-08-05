@@ -57,7 +57,6 @@
 
 #include "../../submaps/admin_use_vr/ert.dm"
 #include "../../submaps/admin_use_vr/mercship.dm"
-#include "../../submaps/admin_use_vr/guttersite.dm"
 
 /datum/map_template/admin_use/ert
 	name = "Special Area - ERT"
