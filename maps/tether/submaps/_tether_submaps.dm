@@ -98,11 +98,6 @@
 	desc = "Sneaky"
 	mappath = 'maps/submaps/admin_use_vr/dojo.dmm'
 
-/datum/map_template/admin_use/guttersite
-	name = "Special Area - Guttersite"
-	desc = "A space for bad guys to hang out"
-	mappath = 'maps/submaps/admin_use_vr/guttersite.dmm'
-
 //////////////////////////////////////////////////////////////////////////////
 //Rogue Mines Stuff
 
