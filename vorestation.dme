@@ -3514,6 +3514,7 @@
 #include "code\modules\projectiles\guns\projectile\semiauto.dm"
 #include "code\modules\projectiles\guns\projectile\shotgun.dm"
 #include "code\modules\projectiles\guns\projectile\shotgun_vr.dm"
+#include "code\modules\projectiles\guns\projectile\smartgun.dm"
 #include "code\modules\projectiles\guns\projectile\sniper.dm"
 #include "code\modules\projectiles\guns\projectile\sniper\collapsible_sniper.dm"
 #include "code\modules\projectiles\projectile\arc.dm"
