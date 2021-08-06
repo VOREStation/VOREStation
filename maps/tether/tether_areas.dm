@@ -1449,6 +1449,7 @@
 /area/shuttle/tourbus
 	requires_power = 1
 	icon_state = "shuttle2"
+	base_turf = /turf/simulated/floor/reinforced
 
 /area/shuttle/tourbus/general
 	name = "\improper Tour Bus"

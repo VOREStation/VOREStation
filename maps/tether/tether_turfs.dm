@@ -275,3 +275,8 @@ VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor)
 	. = ..()
 	for(var/obj/effect/step_trigger/teleporter/planetary_fall/virgo3b/F in src)
 		qdel(F)
+
+// Tram transit floor
+/turf/simulated/floor/tiled/techfloor/grid/transit
+	icon = 'icons/turf/transit_vr.dmi'
+	initial_flooring = null
