@@ -5752,10 +5752,6 @@
 	center_of_mass = list("x"=16, "y"=11)
 	bitesize = 6
 
-/obj/item/weapon/reagent_containers/food/snacks/custardbun/Initialize()
-	. = ..()
-	reagents.add_reagent("protein", 2)
-
 /obj/item/weapon/reagent_containers/food/snacks/chickenmomo
 	name = "chicken momo"
 	gender = PLURAL

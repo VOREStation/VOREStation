@@ -319,6 +319,8 @@
 			return FALSE
 	// See if something in turf below prevents us from falling into it.
 	for(var/atom/A in landing)
+		if(ismob(A))
+			continue
 		if(!A.CanPass(src, src.loc, 1, 0))
 			return FALSE
 	return TRUE

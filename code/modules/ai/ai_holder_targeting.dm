@@ -118,9 +118,6 @@
 	if(!can_see_target(the_target) && vision_required)
 		return FALSE
 
-	if(istype(the_target, /mob/zshadow))
-		return FALSE // no
-
 	if(isliving(the_target))
 		var/mob/living/L = the_target
 		if(ishuman(L) || issilicon(L))

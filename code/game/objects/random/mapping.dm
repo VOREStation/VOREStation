@@ -1378,7 +1378,7 @@
 	spawn_nothing_percentage = 20
 
 	var/override_outdoors = FALSE	// Do we override our chosen turf's outdoors?
-	var/turf_outdoors = TRUE	// Will our turf be outdoors?
+	var/turf_outdoors = OUTDOORS_AREA	// Will our turf be outdoors?
 
 /obj/random/turf/spawn_item()
 	var/build_path = item_to_spawn()
@@ -1400,7 +1400,7 @@
 	desc = "This is a random lava spawn."
 
 	override_outdoors = TRUE
-	turf_outdoors = FALSE
+	turf_outdoors = OUTDOORS_NO
 
 /obj/random/turf/lava/item_to_spawn()
 	return pick(prob(5);/turf/simulated/floor/lava,

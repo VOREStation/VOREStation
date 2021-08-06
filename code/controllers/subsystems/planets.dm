@@ -34,7 +34,7 @@ SUBSYSTEM_DEF(planets)
 
 // DO NOT CALL THIS DIRECTLY UNLESS IT'S IN INITIALIZE,
 // USE turf/simulated/proc/make_indoors() and
-//     tyrf/simulated/proc/make_outdoors()
+//     turf/simulated/proc/make_outdoors()
 /datum/controller/subsystem/planets/proc/addTurf(var/turf/T)
 	if(z_to_planet.len >= T.z && z_to_planet[T.z])
 		var/datum/planet/P = z_to_planet[T.z]
@@ -42,7 +42,7 @@ SUBSYSTEM_DEF(planets)
 			return
 		if(istype(T, /turf/unsimulated/wall/planetary))	
 			P.planet_walls += T
-		else if(istype(T, /turf/simulated) && T.outdoors)
+		else if(istype(T, /turf/simulated) && T.is_outdoors())
 			P.planet_floors += T
 			P.weather_holder.apply_to_turf(T)
 			P.sun_holder.apply_to_turf(T)

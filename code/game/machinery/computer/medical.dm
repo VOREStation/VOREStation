@@ -499,7 +499,7 @@
 	icon_screen = "pcu_generic"
 	icon_state = "pcu"
 	icon_keyboard = "pcu_key"
-	light_color = "#00b000"
+	light_color = "#59888e8"
 	circuit = /obj/item/weapon/circuitboard/med_data/pcu
 	density = FALSE
 

@@ -137,7 +137,7 @@
 	for(var/mob/M in player_list) // Don't need to care about clientless mobs.
 		if(M.z in our_planet.expected_z_levels)
 			var/turf/T = get_turf(M)
-			if(!T.outdoors)
+			if(!T.is_outdoors())
 				continue
 			to_chat(M, message)
 
@@ -213,7 +213,7 @@
 			// Otherwise they should hear some sounds, depending on if they're inside or not.
 			var/turf/T = get_turf(M)
 			if(istype(T))
-				if(T.outdoors) // Mob is currently outdoors.
+				if(T.is_outdoors()) // Mob is currently outdoors.
 					hear_outdoor_sounds(M, TRUE)
 					hear_indoor_sounds(M, FALSE)
 

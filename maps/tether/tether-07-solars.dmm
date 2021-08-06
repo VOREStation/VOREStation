@@ -1745,8 +1745,7 @@
 /area/rnd/outpost/testing)
 "dV" = (
 /obj/machinery/vending/cola{
-	dir = 8;
-	icon_state = "Soda_Machine"
+	dir = 8
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/breakroom)

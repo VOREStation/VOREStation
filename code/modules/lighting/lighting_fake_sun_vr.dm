@@ -100,7 +100,7 @@
 	var/list/all_turfs = block(locate(1, 1, min), locate(world.maxx, world.maxy, max))
 	var/list/turfs_to_use = list()
 	for(var/turf/T as anything in all_turfs)
-		if(T.outdoors)
+		if(T.is_outdoors())
 			turfs_to_use += T
 	
 	if(!turfs_to_use.len)

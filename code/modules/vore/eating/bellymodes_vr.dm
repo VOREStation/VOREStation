@@ -121,8 +121,8 @@
 				formatted_message = replacetext(raw_message, "%belly", lowertext(name))
 				formatted_message = replacetext(formatted_message, "%pred", owner)
 				formatted_message = replacetext(formatted_message, "%prey", english_list(contents))
-				formatted_message = replacetext(formatted_message, "%count", contents.len)
 				formatted_message = replacetext(formatted_message, "%countprey", living_count)
+				formatted_message = replacetext(formatted_message, "%count", contents.len)
 				to_chat(M, "<span class='notice'>[formatted_message]</span>")
 
 
@@ -243,14 +243,14 @@
 	digest_alert_owner = replacetext(digest_alert_owner, "%pred", owner)
 	digest_alert_owner = replacetext(digest_alert_owner, "%prey", M)
 	digest_alert_owner = replacetext(digest_alert_owner, "%belly", lowertext(name))
-	digest_alert_owner = replacetext(digest_alert_owner, "%count", contents.len)
 	digest_alert_owner = replacetext(digest_alert_owner, "%countprey", living_count)
+	digest_alert_owner = replacetext(digest_alert_owner, "%count", contents.len)
 
 	digest_alert_prey = replacetext(digest_alert_prey, "%pred", owner)
 	digest_alert_prey = replacetext(digest_alert_prey, "%prey", M)
 	digest_alert_prey = replacetext(digest_alert_prey, "%belly", lowertext(name))
-	digest_alert_prey = replacetext(digest_alert_prey, "%count", contents.len)
 	digest_alert_prey = replacetext(digest_alert_prey, "%countprey", living_count)
+	digest_alert_prey = replacetext(digest_alert_prey, "%count", contents.len)
 
 	//Send messages
 	to_chat(owner, "<span class='notice'>[digest_alert_owner]</span>")
