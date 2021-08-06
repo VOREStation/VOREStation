@@ -50,7 +50,7 @@
 "Tb" = (/obj/structure/railing,/turf/simulated/floor/outdoors/dirt,/area/submap/priderock)
 "Td" = (/obj/structure/cliff/automatic{dir = 10},/obj/structure/railing,/obj/structure/railing{dir = 8},/turf/simulated/floor/outdoors/dirt,/area/submap/priderock)
 "Ud" = (/obj/effect/decal/cleanable/dirt,/obj/random/junk,/turf/simulated/floor/outdoors/dirt,/area/submap/priderock)
-"UG" = (/obj/vehicle/train/engine/quadbike/random{desc = "A rideable electric ATV designed for all terrain. Looks very worn down."; locked = 1; name = "Old looking ATV"},/turf/simulated/floor/outdoors/dirt,/area/submap/priderock)
+"UG" = (/obj/vehicle/train/engine/quadbike/random{desc = "A rideable electric ATV designed for all terrain. Looks very worn down."; locked = 0; name = "Old looking ATV"},/turf/simulated/floor/outdoors/dirt,/area/submap/priderock)
 "VF" = (/obj/structure/cliff/automatic{dir = 5},/obj/structure/railing{dir = 1},/obj/structure/railing{dir = 4},/turf/simulated/floor/outdoors/dirt,/area/submap/priderock)
 "VM" = (/obj/structure/loot_pile/maint/trash,/turf/template_noop,/area/submap/priderock)
 "Wk" = (/turf/simulated/floor/outdoors/dirt,/area/submap/priderock)
