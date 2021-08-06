@@ -57,7 +57,6 @@
 
 #include "../../submaps/admin_use_vr/ert.dm"
 #include "../../submaps/admin_use_vr/mercship.dm"
-#include "../../submaps/admin_use_vr/guttersite.dm"
 
 /datum/map_template/admin_use/ert
 	name = "Special Area - ERT"
@@ -98,11 +97,6 @@
 	name = "Special Area - Ninja Dojo"
 	desc = "Sneaky"
 	mappath = 'maps/submaps/admin_use_vr/dojo.dmm'
-
-/datum/map_template/admin_use/guttersite
-	name = "Special Area - Guttersite"
-	desc = "A space for bad guys to hang out"
-	mappath = 'maps/submaps/admin_use_vr/guttersite.dmm'
 
 //////////////////////////////////////////////////////////////////////////////
 //Rogue Mines Stuff

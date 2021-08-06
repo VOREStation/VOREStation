@@ -30,6 +30,13 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 	var/accellimit = 0.001 //manual limiter for acceleration
 	req_one_access = list(access_pilot) //VOREStation Edit
 
+// fancy sprite
+/obj/machinery/computer/ship/helm/adv
+	icon_keyboard = null
+	icon_state = "adv_helm"
+	icon_screen = "adv_helm_screen"
+	light_color = "#70ffa0"
+
 /obj/machinery/computer/ship/helm/Initialize()
 	. = ..()
 	get_known_sectors()

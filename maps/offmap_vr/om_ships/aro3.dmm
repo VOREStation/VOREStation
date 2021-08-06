@@ -99,6 +99,7 @@
 /obj/effect/floor_decal/milspec/color/red/half{
 	dir = 1
 	},
+/obj/effect/floor_decal/milspec/stripe,
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/flight_deck)
 "aB" = (
@@ -233,14 +234,19 @@
 /turf/simulated/wall/tgmc/durawall,
 /area/aro3/cockpit)
 "bs" = (
-/obj/machinery/power/rtg/abductor/hybrid/built,
-/obj/structure/cable/cyan{
-	icon_state = "0-2"
+/obj/structure/bed/chair/shuttle_padded{
+	dir = 1
 	},
-/obj/machinery/light{
-	dir = 4
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "aro3boat"
 	},
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/steel,
 /area/shuttle/aroboat3)
 "bv" = (
 /obj/machinery/door/airlock/angled_tgmc/cell{
@@ -443,12 +449,6 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/cockpit)
-"cE" = (
-/obj/effect/floor_decal/milspec/color/red/half{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/milspec,
-/area/aro3/flight_deck)
 "cH" = (
 /turf/simulated/floor/water/indoors/surfluid,
 /area/aro3/surfluid)
@@ -494,20 +494,26 @@
 /turf/simulated/floor/tiled/eris/cafe,
 /area/aro3/kitchen)
 "cV" = (
+/obj/machinery/door/airlock/angled_tgmc/security_glass{
+	dir = 4;
+	name = "shuttle airlock"
+	},
+/obj/effect/map_helper/airlock/door/simple,
+/obj/structure/cable/cyan{
+	icon_state = "4-8"
+	},
+/obj/structure/fans/hardlight,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 8
 	},
-/obj/structure/cable/cyan{
-	icon_state = "4-8"
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "aro3boat"
 	},
-/obj/effect/floor_decal/milspec/color/black/half{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/milspec,
-/area/aro3/flight_deck)
+/turf/simulated/floor/tiled/steel,
+/area/shuttle/aroboat3)
 "db" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
@@ -804,14 +810,21 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/power)
-"eI" = (
-/obj/structure/bed/chair/bay/comfy/blue{
-	dir = 1
+"eG" = (
+/obj/machinery/embedded_controller/radio/simple_docking_controller{
+	dir = 8;
+	frequency = 1380;
+	id_tag = "aroboat3_docker";
+	pixel_x = 25;
+	req_one_access = list(777)
 	},
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
+/obj/structure/bed/chair/shuttle_padded{
+	dir = 8
 	},
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "aro3boat"
+	},
+/turf/simulated/floor/tiled/steel,
 /area/shuttle/aroboat3)
 "eK" = (
 /obj/structure/table/marble,
@@ -1080,6 +1093,7 @@
 /obj/effect/floor_decal/milspec/color/red/half{
 	dir = 1
 	},
+/obj/effect/floor_decal/milspec/stripe,
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/flight_deck)
 "gK" = (
@@ -1331,6 +1345,13 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/power)
+"ii" = (
+/obj/effect/floor_decal/milspec/stripe,
+/obj/effect/floor_decal/milspec/stripe{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/aro3/flight_deck)
 "ij" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -1350,6 +1371,15 @@
 /obj/effect/floor_decal/milspec/monotile,
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/medical)
+"it" = (
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "aro3boat"
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel,
+/area/shuttle/aroboat3)
 "iw" = (
 /obj/effect/floor_decal/milspec/color/orange/half{
 	dir = 1
@@ -1643,13 +1673,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/aro3/medical)
-"ke" = (
-/obj/structure/fans/hardlight,
-/obj/machinery/door/blast/multi_tile/four_tile_hor_sec{
-	id = "aroshipshutter_ramp"
-	},
-/turf/simulated/floor/reinforced,
-/area/aro3/flight_deck)
 "kg" = (
 /obj/machinery/light{
 	dir = 4
@@ -1976,14 +1999,13 @@
 /turf/simulated/wall/rpshull,
 /area/space)
 "lY" = (
-/obj/structure/bed/chair/bay/comfy/blue{
-	dir = 1
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "aro3boat"
 	},
-/obj/machinery/alarm/alarms_hidden{
-	dir = 4;
-	pixel_x = -26
+/obj/structure/bed/chair/shuttle_padded{
+	dir = 4
 	},
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/turf/simulated/floor/tiled/steel,
 /area/shuttle/aroboat3)
 "lZ" = (
 /obj/structure/cable/cyan{
@@ -2009,14 +2031,14 @@
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/hallway_starboard)
 "md" = (
-/obj/machinery/light{
-	dir = 8
+/obj/effect/fancy_shuttle{
+	dir = 1;
+	fancy_shuttle_tag = "aro3boat"
 	},
-/obj/effect/floor_decal/milspec/color/red/half{
-	dir = 8
+/turf/simulated/wall/fancy_shuttle{
+	fancy_shuttle_tag = "aro3boat"
 	},
-/turf/simulated/floor/tiled/milspec,
-/area/aro3/flight_deck)
+/area/shuttle/aroboat3)
 "mf" = (
 /obj/effect/floor_decal/milspec/color/black/half{
 	dir = 4
@@ -2201,6 +2223,14 @@
 /obj/effect/floor_decal/milspec/monotile,
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/function)
+"nr" = (
+/obj/structure/fans/hardlight,
+/obj/machinery/door/blast/angled{
+	dir = 2;
+	id = "aroshipshutter_ramp"
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/aro3/flight_deck)
 "ns" = (
 /turf/simulated/wall/tgmc/durawall,
 /area/aro3/function)
@@ -2300,11 +2330,10 @@
 /turf/simulated/floor/wood,
 /area/aro3/suite_starboard)
 "oe" = (
-/obj/structure/sign/warning/vacuum{
-	pixel_x = 16;
-	pixel_y = -30
+/obj/effect/floor_decal/milspec/stripe{
+	dir = 1
 	},
-/obj/effect/floor_decal/milspec/color/red/half,
+/obj/effect/floor_decal/milspec/stripe,
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/flight_deck)
 "oh" = (
@@ -2357,6 +2386,9 @@
 	},
 /obj/effect/floor_decal/milspec/color/red/half{
 	dir = 1
+	},
+/obj/effect/floor_decal/milspec/stripe{
+	dir = 5
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/flight_deck)
@@ -2454,12 +2486,6 @@
 	},
 /turf/space,
 /area/space)
-"pg" = (
-/obj/effect/floor_decal/milspec/color/red/corner{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/milspec,
-/area/aro3/flight_deck)
 "pj" = (
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
@@ -2469,6 +2495,16 @@
 	},
 /turf/simulated/floor/wood,
 /area/aro3/suite_port)
+"pk" = (
+/obj/structure/cable/cyan{
+	icon_state = "1-2"
+	},
+/obj/effect/floor_decal/milspec/stripe{
+	dir = 6
+	},
+/obj/effect/floor_decal/milspec/stripe,
+/turf/simulated/floor/tiled/milspec,
+/area/aro3/flight_deck)
 "pl" = (
 /obj/structure/cable/cyan{
 	icon_state = "1-8"
@@ -3111,12 +3147,6 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/function)
-"tz" = (
-/turf/simulated/shuttle/wall/voidcraft/blue{
-	hard_corner = 1;
-	icon_state = "void-hc"
-	},
-/area/shuttle/aroboat3)
 "tB" = (
 /obj/machinery/alarm/angled/hidden{
 	pixel_x = -4;
@@ -3512,6 +3542,7 @@
 /obj/effect/floor_decal/milspec/color/red/half{
 	dir = 1
 	},
+/obj/effect/floor_decal/milspec/stripe,
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/flight_deck)
 "ws" = (
@@ -3724,10 +3755,10 @@
 /obj/structure/sign/vacuum{
 	pixel_x = -32
 	},
-/obj/effect/floor_decal/milspec/color/red/half{
-	dir = 8
-	},
 /obj/effect/floor_decal/milspec/stripe,
+/obj/effect/floor_decal/milspec/stripe{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/flight_deck)
 "xE" = (
@@ -3750,7 +3781,12 @@
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
 	},
-/turf/simulated/wall/rpshull,
+/obj/structure/fans/hardlight,
+/obj/machinery/door/blast/angled{
+	dir = 2;
+	id = "aroshipshutter_ramp"
+	},
+/turf/simulated/floor/reinforced/airless,
 /area/aro3/flight_deck)
 "xI" = (
 /obj/structure/flora/pottedplant/unusual,
@@ -3782,6 +3818,15 @@
 	},
 /turf/simulated/floor/carpet/turcarpet,
 /area/aro3/suite_starboard)
+"xR" = (
+/obj/structure/bed/chair/shuttle_padded{
+	dir = 8
+	},
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "aro3boat"
+	},
+/turf/simulated/floor/tiled/steel,
+/area/shuttle/aroboat3)
 "xS" = (
 /obj/effect/shuttle_landmark{
 	base_area = /area/space;
@@ -3871,6 +3916,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
+	},
+/obj/effect/floor_decal/milspec/stripe{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/flight_deck)
@@ -3990,17 +4038,13 @@
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/aro3/medical)
 "zi" = (
-/obj/machinery/power/apc/alarms_hidden{
-	dir = 8;
-	req_access = list()
+/obj/machinery/light{
+	dir = 8
 	},
-/obj/structure/cable/cyan{
-	icon_state = "0-4"
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "aro3boat"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 6
-	},
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/turf/simulated/floor/tiled/steel,
 /area/shuttle/aroboat3)
 "zj" = (
 /obj/machinery/atmospherics/binary/pump/on{
@@ -4049,6 +4093,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/floor_decal/milspec/stripe{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/flight_deck)
 "zt" = (
@@ -4261,6 +4308,12 @@
 /obj/effect/floor_decal/milspec/monotile,
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/kitchen)
+"Al" = (
+/obj/structure/bed/chair/shuttle_padded{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel,
+/area/shuttle/aroboat3)
 "Am" = (
 /obj/machinery/recharge_station,
 /obj/effect/floor_decal/milspec/color/emerald,
@@ -4397,7 +4450,8 @@
 	name = "hangar shutters";
 	pixel_x = -28
 	},
-/obj/machinery/door/blast/multi_tile/four_tile_hor_sec{
+/obj/machinery/door/blast/angled{
+	dir = 2;
 	id = "aroshipshutter_ramp"
 	},
 /turf/simulated/floor/reinforced,
@@ -4425,12 +4479,6 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/hallway_port)
-"BO" = (
-/obj/effect/floor_decal/milspec/color/red/corner{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/milspec,
-/area/aro3/flight_deck)
 "BQ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -4504,13 +4552,13 @@
 /turf/simulated/floor/plating/eris/under,
 /area/aro3/atmos)
 "Cu" = (
-/obj/structure/bed/chair/bay/comfy/blue{
-	dir = 1
+/obj/structure/bed/chair/shuttle_padded{
+	dir = 4
 	},
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 1
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "aro3boat"
 	},
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/turf/simulated/floor/tiled/steel,
 /area/shuttle/aroboat3)
 "Cv" = (
 /obj/effect/floor_decal/milspec/monotile,
@@ -4576,6 +4624,10 @@
 	pixel_x = 28
 	},
 /obj/structure/fans/hardlight,
+/obj/machinery/door/blast/angled{
+	dir = 2;
+	id = "aroshipshutter_ramp"
+	},
 /turf/simulated/floor/reinforced,
 /area/aro3/flight_deck)
 "CN" = (
@@ -4611,11 +4663,16 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/aro3/hallway_bunkrooms)
 "Di" = (
-/obj/effect/floor_decal/industrial/warning/dust{
+/obj/effect/floor_decal/milspec/color/red/half{
 	dir = 1
 	},
-/turf/simulated/floor/reinforced/airless,
-/area/space)
+/obj/effect/floor_decal/milspec/stripe,
+/obj/machinery/computer/shuttle_control/explore/aroboat3{
+	dir = 4;
+	req_one_access = list(777)
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/aro3/flight_deck)
 "Dk" = (
 /turf/simulated/floor/tiled/milspec/raised,
 /area/aro3/power)
@@ -4645,14 +4702,24 @@
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/hallway_bunkrooms)
 "DA" = (
-/obj/structure/cable/cyan{
-	icon_state = "1-2"
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "aro3boat"
 	},
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 1
+/obj/machinery/power/apc/angled/hidden{
+	dir = 8;
+	req_one_access = list(777)
 	},
-/turf/simulated/floor/reinforced/airless,
-/area/space)
+/obj/structure/cable/cyan,
+/obj/machinery/alarm/angled/hidden{
+	dir = 8;
+	req_one_access = list(777)
+	},
+/obj/structure/closet/autolok_wall{
+	dir = 1;
+	pixel_y = -32
+	},
+/turf/simulated/floor/tiled/steel,
+/area/shuttle/aroboat3)
 "DB" = (
 /obj/structure/cable/cyan{
 	icon_state = "2-8"
@@ -4847,10 +4914,6 @@
 /obj/effect/floor_decal/milspec/monotile,
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/function)
-"EH" = (
-/obj/effect/floor_decal/milspec/color/red/half,
-/turf/simulated/floor/tiled/milspec,
-/area/aro3/flight_deck)
 "EI" = (
 /obj/structure/lattice,
 /obj/structure/hull_corner/long_vert{
@@ -4900,14 +4963,6 @@
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/function)
-"Fc" = (
-/obj/structure/window/plastitanium/full,
-/obj/structure/window/plastitanium{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/plating/eris/under,
-/area/shuttle/aroboat3)
 "Ff" = (
 /obj/structure/table/glass,
 /obj/item/device/defib_kit/loaded,
@@ -5013,6 +5068,14 @@
 /obj/effect/floor_decal/milspec/monotile,
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/workshop)
+"FY" = (
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "aro3boat"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/floor/tiled/steel,
+/area/shuttle/aroboat3)
 "FZ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -5131,12 +5194,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/space)
-"Hc" = (
-/obj/effect/floor_decal/milspec/color/red/half{
-	dir = 9
-	},
-/turf/simulated/floor/tiled/milspec,
-/area/aro3/flight_deck)
 "Hd" = (
 /turf/simulated/wall/tgmc/durawall,
 /area/aro3/hallway_starboard)
@@ -5211,9 +5268,6 @@
 "Hz" = (
 /turf/simulated/wall/tgmc/durawall/deco0,
 /area/aro3/suite_port)
-"HE" = (
-/turf/simulated/shuttle/wall/voidcraft/blue,
-/area/shuttle/aroboat3)
 "HG" = (
 /obj/structure/hull_corner{
 	dir = 8
@@ -5437,6 +5491,9 @@
 	},
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
+	},
+/obj/effect/floor_decal/milspec/stripe{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/flight_deck)
@@ -5868,6 +5925,9 @@
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
 	},
+/obj/effect/floor_decal/milspec/stripe{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/flight_deck)
 "MC" = (
@@ -6281,12 +6341,10 @@
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/surfluid)
 "Pa" = (
-/obj/effect/floor_decal/milspec/color/red/half{
-	dir = 9
+/turf/simulated/wall/fancy_shuttle/window{
+	fancy_shuttle_tag = "aro3boat"
 	},
-/obj/structure/prop/tgmc_missile/double,
-/turf/simulated/floor/tiled/milspec,
-/area/aro3/flight_deck)
+/area/shuttle/aroboat3)
 "Pb" = (
 /obj/machinery/light{
 	dir = 1
@@ -6455,26 +6513,25 @@
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/eva_hall)
 "QA" = (
-/obj/effect/floor_decal/milspec/color/red/half{
-	dir = 10
+/turf/simulated/wall/fancy_shuttle{
+	fancy_shuttle_tag = "aro3boat"
 	},
-/obj/structure/prop/tgmc_missile/fatty,
-/turf/simulated/floor/tiled/milspec,
-/area/aro3/flight_deck)
+/area/shuttle/aroboat3)
 "QB" = (
-/obj/structure/fans/hardlight,
+/obj/effect/shuttle_landmark/shuttle_initializer/aroboat3,
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
-	},
-/obj/effect/map_helper/airlock/door/simple,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/door/airlock/voidcraft,
-/turf/simulated/floor/tiled/eris/steel/panels,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "aro3boat"
+	},
+/turf/simulated/floor/tiled/steel,
 /area/shuttle/aroboat3)
 "QD" = (
 /obj/structure/fans/hardlight,
@@ -6766,20 +6823,19 @@
 /turf/simulated/floor/reinforced/airless,
 /area/space)
 "Tb" = (
-/obj/structure/cable/cyan{
-	icon_state = "1-8"
-	},
-/obj/structure/cable/cyan{
-	icon_state = "1-4"
-	},
-/obj/effect/shuttle_landmark/shuttle_initializer/aroboat3,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
+	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6
+	dir = 5
 	},
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "aro3boat"
+	},
+/obj/structure/cable/cyan{
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/tiled/steel,
 /area/shuttle/aroboat3)
 "Tc" = (
 /turf/simulated/wall/tgmc/durawall,
@@ -6985,8 +7041,13 @@
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/power)
 "UE" = (
-/obj/machinery/computer/shuttle_control/explore/aroboat3,
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "aro3boat"
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel,
 /area/shuttle/aroboat3)
 "UI" = (
 /obj/structure/sign/warning/vacuum{
@@ -7055,6 +7116,10 @@
 /area/space)
 "Vg" = (
 /obj/structure/fans/hardlight,
+/obj/machinery/door/blast/angled{
+	dir = 2;
+	id = "aroshipshutter_ramp"
+	},
 /turf/simulated/floor/reinforced,
 /area/aro3/flight_deck)
 "Vk" = (
@@ -7286,9 +7351,7 @@
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/hallway_port)
 "Xo" = (
-/obj/machinery/ion_engine{
-	dir = 1
-	},
+/obj/machinery/ion_engine,
 /turf/space,
 /area/aro3/engines)
 "Xp" = (
@@ -7356,16 +7419,13 @@
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/atmos)
 "XV" = (
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "aro3boat"
+	},
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
 	},
-/obj/machinery/embedded_controller/radio/simple_docking_controller{
-	dir = 8;
-	frequency = 1380;
-	id_tag = "aroboat3_docker";
-	pixel_x = 25
-	},
-/turf/simulated/floor/tiled/eris/dark/gray_perforated,
+/turf/simulated/floor/tiled/steel,
 /area/shuttle/aroboat3)
 "Yb" = (
 /obj/structure/cable/cyan{
@@ -7423,12 +7483,14 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/aro3/medical)
 "Yq" = (
-/obj/structure/cable/cyan{
-	icon_state = "1-2"
+/obj/machinery/computer/shuttle_control/explore/aroboat3{
+	req_one_access = list(777)
 	},
-/obj/effect/floor_decal/milspec/color/red/half,
-/turf/simulated/floor/tiled/milspec,
-/area/aro3/flight_deck)
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "aro3boat"
+	},
+/turf/simulated/floor/tiled/steel,
+/area/shuttle/aroboat3)
 "Yt" = (
 /obj/structure/closet/crate/bin{
 	anchored = 1;
@@ -7593,6 +7655,9 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 4
 	},
+/obj/effect/floor_decal/milspec/stripe{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/flight_deck)
 "Zv" = (
@@ -7627,6 +7692,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
+	},
+/obj/effect/floor_decal/milspec/stripe{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/flight_deck)
@@ -16182,7 +16250,7 @@ eb
 mI
 tv
 on
-aq
+Uz
 Px
 ps
 xa
@@ -17035,15 +17103,15 @@ NC
 Ty
 To
 Iq
+Di
+QA
+QA
+QA
 Pa
 QA
-HE
-HE
-HE
-HE
-HE
-tz
-Hc
+Pa
+QA
+QA
 md
 xB
 Bw
@@ -17178,16 +17246,16 @@ Rj
 lm
 Iq
 wq
-EH
-Fc
+QA
+QA
 UE
 lY
 zi
 Cu
-HE
-gH
-Ov
-BJ
+Cu
+QA
+QA
+ii
 Vg
 hD
 hD
@@ -17320,16 +17388,16 @@ mF
 lm
 Iq
 aA
-EH
-Fc
+Pa
+Yq
 bs
-XV
+FY
 Tb
-eI
-HE
-gH
-Ov
-BJ
+XV
+XV
+DA
+QA
+ii
 Vg
 hD
 hD
@@ -17462,16 +17530,16 @@ oz
 lm
 Jj
 gH
-EH
-HE
-HE
-HE
+QA
+QA
+it
+Al
 QB
-HE
-tz
-gH
-Ov
-BJ
+xR
+eG
+QA
+QA
+ii
 Vg
 hD
 hD
@@ -17604,18 +17672,18 @@ Ad
 LD
 QD
 gH
-BO
-cE
-cE
-cE
+QA
+QA
+QA
+Pa
 cV
-cE
-cE
-pg
-Ov
+Pa
+QA
+QA
+QA
 oe
-Ur
-Di
+nr
+hD
 hD
 hD
 Au
@@ -17755,9 +17823,9 @@ yy
 MA
 MA
 MA
-Yq
+pk
 xG
-DA
+te
 te
 te
 sV
@@ -17898,7 +17966,7 @@ Ov
 Ov
 Ov
 BJ
-ke
+Vg
 hD
 hD
 hD

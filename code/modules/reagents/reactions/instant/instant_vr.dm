@@ -209,7 +209,6 @@
 
 /decl/chemical_reaction/instant/slime_food/on_reaction(var/datum/reagents/holder)
 	var/list/borks = subtypesof(/obj/item/weapon/reagent_containers/food/snacks)
-	
 
 	playsound(holder.my_atom, 'sound/effects/phasein.ogg', 100, 1)
 
@@ -416,7 +415,6 @@
 	blocked += typesof(/mob/living/simple_mob/construct)					//Should only exist
 	blocked += typesof(/mob/living/simple_mob/vore/demon)					//as player-controlled
 	blocked += typesof(/mob/living/simple_mob/shadekin)						//and/or event things
-	blocked += typesof(/mob/living/simple_mob/horror)
 	var/list/voremobs = typesof(mob_path) - blocked // list of possible hostile mobs
 
 	playsound(holder.my_atom, 'sound/effects/phasein.ogg', 100, 1)

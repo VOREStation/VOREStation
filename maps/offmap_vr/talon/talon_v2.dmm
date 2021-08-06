@@ -165,7 +165,6 @@
 /area/talon_v2/engineering/generators)
 "aq" = (
 /obj/machinery/recharge_station,
-/obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/generators)
 "ar" = (
@@ -5645,12 +5644,18 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/crew_quarters/cap_room)
 "so" = (
-/obj/item/weapon/storage/dicecup/loaded,
+/obj/item/weapon/storage/dicecup/loaded{
+	pixel_x = 7;
+	pixel_y = 11
+	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
 /obj/effect/floor_decal/corner/black/diagonal,
 /obj/structure/table/marble,
+/obj/item/weapon/deck/cards{
+	pixel_x = 3
+	},
 /turf/simulated/floor/tiled/white,
 /area/talon_v2/crew_quarters/bar)
 "ss" = (
@@ -7128,7 +7133,6 @@
 /area/talon_v2/central_hallway/fore)
 "xq" = (
 /obj/effect/floor_decal/corner/black/diagonal,
-/obj/item/weapon/deck/cards,
 /obj/structure/table/marble,
 /turf/simulated/floor/tiled/white,
 /area/talon_v2/crew_quarters/bar)
@@ -8587,9 +8591,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering)
-"Ct" = (
-/turf/simulated/floor/plating,
-/area/talon_v2/crew_quarters/bar)
 "Cw" = (
 /obj/structure/bed/chair/bay/chair{
 	dir = 1
@@ -26215,7 +26216,7 @@ JO
 JO
 qc
 qI
-Ct
+oh
 DU
 Hl
 Hl

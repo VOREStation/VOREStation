@@ -66,6 +66,11 @@ var/list/mob_hat_cache = list()
 
 	can_be_antagged = FALSE
 
+	var/static/list/shell_types = list("Classic" = "repairbot", "Eris" = "maintbot")
+	var/can_pick_shell = TRUE
+	var/list/shell_accessories
+	var/can_blitz = FALSE
+
 /mob/living/silicon/robot/drone/Destroy()
 	if(hat)
 		hat.loc = get_turf(src)
@@ -82,6 +87,8 @@ var/list/mob_hat_cache = list()
 	hat_x_offset = 1
 	hat_y_offset = -12
 	can_pull_mobs = MOB_PULL_SAME
+	can_pick_shell = FALSE
+	shell_accessories = list("eyes-constructiondrone")
 
 /mob/living/silicon/robot/drone/mining
 	icon_state = "miningdrone"
@@ -91,9 +98,10 @@ var/list/mob_hat_cache = list()
 	hat_x_offset = 1
 	hat_y_offset = -12
 	can_pull_mobs = MOB_PULL_SAME
+	can_pick_shell = FALSE
+	shell_accessories = list("eyes-miningdrone")
 
 /mob/living/silicon/robot/drone/New()
-
 	..()
 	verbs += /mob/living/proc/ventcrawl
 	verbs += /mob/living/proc/hide
@@ -115,6 +123,12 @@ var/list/mob_hat_cache = list()
 		C.max_damage = 10
 
 	verbs -= /mob/living/silicon/robot/verb/Namepick
+	
+	if(can_pick_shell)
+		var/random = pick(shell_types)
+		icon_state = shell_types[random]
+		shell_accessories = list("[icon_state]-eyes-blue")
+	
 	updateicon()
 	updatename()
 
@@ -127,6 +141,11 @@ var/list/mob_hat_cache = list()
 
 	flavor_text = "It's a tiny little repair drone. The casing is stamped with an corporate logo and the subscript: '[using_map.company_name] Recursive Repair Systems: Fixing Tomorrow's Problem, Today!'"
 	playsound(src, 'sound/machines/twobeep.ogg', 50, 0)
+
+/mob/living/silicon/robot/drone/Login()
+	. = ..()
+	if(can_pick_shell)
+		to_chat(src, "<b>You can select a shell using the 'Robot Commands' > 'Customize Appearance'</b>")
 
 //Redefining some robot procs...
 /mob/living/silicon/robot/drone/SetName(pickedName as text)
@@ -142,14 +161,46 @@ var/list/mob_hat_cache = list()
 	name = real_name
 
 /mob/living/silicon/robot/drone/updateicon()
-
 	cut_overlays()
-	if(stat == 0)
-		add_overlay("eyes-[icon_state]")
-	else
-		cut_overlay("eyes")
+
+	if(islist(shell_accessories))
+		add_overlay(shell_accessories)
+
 	if(hat) // Let the drones wear hats.
 		add_overlay(get_hat_icon(hat, hat_x_offset, hat_y_offset))
+
+/mob/living/silicon/robot/drone/verb/pick_shell()
+	set name = "Customize Appearance"
+	set category = "Robot Commands"
+
+	if(!can_pick_shell)
+		to_chat(src, "<span class='warning'>You already selected a shell or this drone type isn't customizable.</span>")
+		return
+	
+	var/list/choices = shell_types.Copy()
+	
+	if(can_blitz)
+		choices["Blitz"] = "blitzshell"
+
+	var/shell_choice = tgui_input_list(src, "Select a shell. NOTE: You can only do this once during this drone-lifetime.", "Customize Shell", choices)
+	if(!shell_choice)
+		return
+
+	icon_state = choices[shell_choice]
+
+	// If you add more, datumize these. Having 'basically two' is not enough to make me bother though.
+	shell_accessories = null
+	if(icon_state in list("repairbot", "maintbot"))
+		var/eye_color = tgui_input_list(src, "Select eye color:", "Eye Color", list("blue", "red", "orange", "green", "violet"))
+		if(eye_color)
+			LAZYADD(shell_accessories, "[icon_state]-eyes-[eye_color]")
+		if(icon_state == "maintbot")
+			var/armor_color = tgui_input_list(src, "Select plating color:", "Eye Color", list("blue", "red", "orange", "green", "brown"))
+			if(armor_color)
+				LAZYADD(shell_accessories, "[icon_state]-shell-[armor_color]")
+	
+	can_pick_shell = FALSE
+	updateicon()
 
 /mob/living/silicon/robot/drone/choose_icon()
 	return
