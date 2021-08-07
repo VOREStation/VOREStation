@@ -54,6 +54,10 @@ GLOBAL_LIST_EMPTY(fancy_shuttles)
 	var/mutable_appearance/under_EM
 	var/fancy_shuttle_tag
 
+// Reinforced hull steel
+/turf/simulated/wall/fancy_shuttle/Initialize(mapload, materialtype, rmaterialtype, girdertype)
+	. = ..(mapload,  MAT_STEELHULL, MAT_STEELHULL, MAT_STEELHULL)	
+
 /turf/simulated/wall/fancy_shuttle/window
 	opacity = FALSE
 	icon_state = "hull_transparent"
