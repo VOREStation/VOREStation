@@ -41936,6 +41936,19 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
+"qvs" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
+	},
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/shuttle_pad)
 "qze" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/floor_decal/borderfloor{
@@ -42359,6 +42372,23 @@
 /obj/machinery/vending/cigarette,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/cafeteria)
+"shl" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/alarm{
+	dir = 8;
+	pixel_x = 24
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/shuttle_pad)
 "shx" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -57158,8 +57188,8 @@ hth
 aOv
 aPc
 aLB
-aKi
-aKX
+shl
+qvs
 bgm
 aPM
 ely
