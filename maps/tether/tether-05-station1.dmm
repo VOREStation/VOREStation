@@ -21329,13 +21329,14 @@
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
 "hGr" = (
-/obj/structure/shuttle/engine/heater{
-	dir = 8
+/obj/machinery/light{
+	dir = 1
 	},
-/obj/structure/window/reinforced{
-	dir = 4
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = lifeboat2
 	},
-/turf/simulated/floor/airless,
+/obj/structure/bed/chair/shuttle,
+/turf/simulated/floor/tiled,
 /area/shuttle/large_escape_pod1)
 "hGI" = (
 /obj/structure/handrail{
@@ -21349,23 +21350,13 @@
 /obj/machinery/atmospherics/unary/vent_pump/high_volume,
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/excursion/general)
-"hHc" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/closet/walllocker/emerglocker/north,
-/obj/structure/bed/chair/shuttle,
-/turf/simulated/floor/tiled/eris/white/gray_perforated,
-/area/shuttle/large_escape_pod1)
 "hHo" = (
-/obj/machinery/vending/wallmed1{
-	layer = 3.3;
-	name = "Emergency NanoMed";
-	pixel_x = 28
-	},
 /obj/structure/closet/walllocker/emerglocker/north,
 /obj/structure/bed/chair/shuttle,
-/turf/simulated/floor/tiled/eris/white/gray_perforated,
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = lifeboat2
+	},
+/turf/simulated/floor/tiled,
 /area/shuttle/large_escape_pod1)
 "hHJ" = (
 /obj/structure/cable/yellow{
@@ -21727,12 +21718,6 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/substation/exploration)
-"hWs" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/eris/white/gray_perforated,
-/area/shuttle/large_escape_pod1)
 "hXK" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -21817,19 +21802,6 @@
 /turf/simulated/floor/tiled/dark,
 /area/tether/station/dock_two)
 "hZW" = (
-/obj/machinery/door/firedoor/glass,
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/machinery/door/blast/regular{
-	density = 0;
-	icon_state = "pdoor0";
-	id = "medivac blast";
-	name = "Shuttle Blast Doors";
-	opacity = 0
-	},
 /obj/effect/shuttle_landmark{
 	base_area = /area/hallway/secondary/escape/medical_escape_pod_hallway;
 	base_turf = /turf/simulated/floor/plating;
@@ -21837,7 +21809,9 @@
 	landmark_tag = "escapepod1_station";
 	name = "Tether Station"
 	},
-/turf/simulated/floor/plating/eris/under,
+/turf/simulated/wall/fancy_shuttle/window{
+	fancy_shuttle_tag = lifeboat2
+	},
 /area/shuttle/large_escape_pod1)
 "iaf" = (
 /obj/structure/cable/green{
@@ -22542,16 +22516,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/station/dock_two)
-"iOG" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/closet/walllocker/emerglocker/south,
-/obj/structure/bed/chair/shuttle{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/eris/white/gray_perforated,
-/area/shuttle/large_escape_pod1)
 "iOW" = (
 /obj/structure/extinguisher_cabinet{
 	dir = 8;
@@ -23325,11 +23289,19 @@
 /turf/simulated/floor/tiled/dark,
 /area/tether/station/dock_two)
 "jRT" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_r"
+/obj/effect/fancy_shuttle/lifeboat2{
+	dir = 4;
+	fancy_shuttle_tag = lifeboat2
 	},
-/turf/simulated/shuttle/plating/airless/carry,
+/obj/machinery/atmospherics/unary/engine/fancy_shuttle{
+	dir = 8
+	},
+/obj/effect/fancy_shuttle_floor_preview/lifeboat2{
+	dir = 4
+	},
+/turf/simulated/wall/fancy_shuttle{
+	fancy_shuttle_tag = lifeboat2
+	},
 /area/shuttle/large_escape_pod1)
 "jSj" = (
 /obj/structure/cable/yellow{
@@ -23373,9 +23345,12 @@
 /turf/simulated/floor/tiled/dark,
 /area/tether/station/dock_one)
 "jSR" = (
-/obj/machinery/door/airlock/glass_external,
 /obj/effect/map_helper/airlock/door/simple,
-/turf/simulated/floor/tiled/eris/white/gray_platform,
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = lifeboat2
+	},
+/obj/machinery/door/airlock/glass_external,
+/turf/simulated/floor/tiled,
 /area/shuttle/large_escape_pod1)
 "jTP" = (
 /obj/effect/floor_decal/borderfloor{
@@ -24091,6 +24066,16 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled,
 /area/tether/exploration/crew)
+"kxK" = (
+/obj/machinery/light,
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = lifeboat2
+	},
+/obj/structure/bed/chair/shuttle{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/large_escape_pod1)
 "kxL" = (
 /obj/machinery/computer/shuttle_control/surface_mining_outpost{
 	dir = 8
@@ -25260,6 +25245,15 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/station/dock_one)
+"lwv" = (
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = lifeboat2
+	},
+/obj/machinery/status_display{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/large_escape_pod1)
 "lxf" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -27626,6 +27620,11 @@
 /obj/item/device/paicard,
 /turf/simulated/floor/plating,
 /area/maintenance/station/cargo)
+"nCE" = (
+/turf/simulated/wall/fancy_shuttle/window{
+	fancy_shuttle_tag = lifeboat2
+	},
+/area/shuttle/large_escape_pod1)
 "nCS" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -29541,22 +29540,17 @@
 /obj/random/maintenance/cargo,
 /turf/simulated/floor,
 /area/maintenance/cargo)
-"qaY" = (
-/obj/structure/bed/chair/shuttle{
-	dir = 1
-	},
-/obj/machinery/light,
-/turf/simulated/floor/tiled/eris/white/gray_perforated,
-/area/shuttle/large_escape_pod1)
 "qbk" = (
-/obj/effect/floor_decal/industrial/outline/yellow,
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod{
 	frequency = 1380;
 	id_tag = "large_escape_pod_1";
 	pixel_x = -28;
 	pixel_y = -28
 	},
-/turf/simulated/floor/tiled/eris/white/gray_platform,
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = lifeboat2
+	},
+/turf/simulated/floor/tiled,
 /area/shuttle/large_escape_pod1)
 "qbm" = (
 /obj/structure/cable/cyan{
@@ -29588,10 +29582,18 @@
 	})
 "qcz" = (
 /obj/structure/bed/chair/shuttle,
-/turf/simulated/floor/tiled/eris/white/gray_perforated,
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = lifeboat2
+	},
+/turf/simulated/floor/tiled,
 /area/shuttle/large_escape_pod1)
 "qdq" = (
-/turf/simulated/floor/tiled/eris/white/gray_perforated,
+/obj/machinery/vending/wallmed1{
+	layer = 3.3;
+	name = "Emergency NanoMed";
+	pixel_y = 30
+	},
+/turf/simulated/floor/tiled,
 /area/shuttle/large_escape_pod1)
 "qdy" = (
 /obj/structure/cable/green{
@@ -29853,15 +29855,10 @@
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
 "qqe" = (
-/obj/effect/floor_decal/industrial/outline/yellow,
-/turf/simulated/floor/tiled/eris/white/gray_platform,
-/area/shuttle/large_escape_pod1)
-"qqq" = (
-/obj/machinery/light,
-/obj/structure/bed/chair/shuttle{
-	dir = 1
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = lifeboat2
 	},
-/turf/simulated/floor/tiled/eris/white/gray_perforated,
+/turf/simulated/floor/tiled,
 /area/shuttle/large_escape_pod1)
 "qqY" = (
 /obj/machinery/alarm{
@@ -29993,14 +29990,13 @@
 /turf/simulated/floor/tiled/eris/white,
 /area/shuttle/medivac/general)
 "qum" = (
-/obj/machinery/status_display{
-	layer = 4;
-	pixel_y = -32
-	},
 /obj/structure/bed/chair/shuttle{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/eris/white/gray_perforated,
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = lifeboat2
+	},
+/turf/simulated/floor/tiled,
 /area/shuttle/large_escape_pod1)
 "qve" = (
 /obj/structure/disposalpipe/segment{
@@ -30020,7 +30016,10 @@
 /obj/structure/bed/chair/shuttle{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/eris/white/gray_perforated,
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = lifeboat2
+	},
+/turf/simulated/floor/tiled,
 /area/shuttle/large_escape_pod1)
 "qvC" = (
 /obj/structure/disposalpipe/segment{
@@ -30035,9 +30034,6 @@
 /obj/item/device/radio/beacon,
 /turf/simulated/floor/tiled,
 /area/hallway/station/docks)
-"qvR" = (
-/turf/simulated/wall/rshull,
-/area/shuttle/large_escape_pod1)
 "qvS" = (
 /obj/machinery/power/terminal{
 	dir = 1
@@ -35289,11 +35285,12 @@
 /turf/simulated/floor/plating,
 /area/maintenance/station/cargo)
 "wTw" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8;
-	icon_state = "propulsion_l"
+/obj/machinery/atmospherics/unary/engine/fancy_shuttle{
+	dir = 8
 	},
-/turf/simulated/shuttle/plating/airless/carry,
+/turf/simulated/wall/fancy_shuttle{
+	fancy_shuttle_tag = lifeboat2
+	},
 /area/shuttle/large_escape_pod1)
 "wUa" = (
 /obj/machinery/door/blast/shutters{
@@ -35904,10 +35901,9 @@
 /turf/simulated/floor/plating,
 /area/maintenance/station/cargo)
 "xIm" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8
+/turf/simulated/wall/fancy_shuttle{
+	fancy_shuttle_tag = lifeboat2
 	},
-/turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/large_escape_pod1)
 "xIp" = (
 /turf/simulated/floor/plating,
@@ -49142,11 +49138,11 @@ aac
 aam
 aaa
 aaa
-qvR
+xIm
 hGr
-hGr
-hGr
-qvR
+qqe
+kxK
+xIm
 fLT
 wMe
 rQq
@@ -49284,11 +49280,11 @@ aac
 aaa
 aaa
 aaa
-qvR
-hHc
-hWs
-iOG
-qvR
+xIm
+hHo
+qqe
+qvg
+xIm
 fLT
 cOV
 rQq
@@ -49426,11 +49422,11 @@ aac
 aaa
 aaa
 aaa
-qvR
+nCE
 qcz
-qdq
+qqe
 qum
-qvR
+nCE
 fLT
 wMe
 rQq
@@ -49568,11 +49564,11 @@ aac
 aaa
 aaa
 aaa
-qvR
+nCE
 qcz
-qdq
-qaY
-qvR
+qqe
+qum
+nCE
 fLT
 qCV
 qOx
@@ -49710,9 +49706,9 @@ aac
 aaa
 aaa
 aaa
-qvR
+xIm
 qdq
-qdq
+qqe
 qbk
 jSR
 tZN
@@ -49852,9 +49848,9 @@ aac
 aam
 aaa
 aaa
-qvR
-qdq
-qdq
+xIm
+lwv
+qqe
 qqe
 jSR
 auX
@@ -49994,11 +49990,11 @@ aac
 aam
 aaa
 aaa
-qvR
+nCE
 qcz
-qdq
-qqq
-qvR
+qqe
+qum
+nCE
 fLT
 klW
 rQq
@@ -50136,11 +50132,11 @@ aam
 aam
 aaa
 aaa
-qvR
+nCE
 qcz
-qdq
+qqe
 qum
-qvR
+nCE
 qBP
 kiB
 etg
@@ -50278,11 +50274,11 @@ aaa
 aaa
 aaa
 aaa
-qvR
+xIm
 hHo
-qdq
+qqe
 qvg
-qvR
+xIm
 qBP
 wMe
 rQq
@@ -50420,11 +50416,11 @@ aaa
 aaa
 aaa
 aaa
-qvR
-qvR
-qdq
-qvR
-qvR
+xIm
+hGr
+qqe
+kxK
+xIm
 qBP
 wMe
 rQq
@@ -50562,11 +50558,11 @@ aaa
 aaa
 aaa
 aaa
-aaa
-qvR
+xIm
+nCE
 hZW
-qvR
-aaa
+nCE
+xIm
 fLT
 cOV
 rQq
