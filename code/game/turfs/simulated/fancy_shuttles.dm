@@ -54,6 +54,20 @@ GLOBAL_LIST_EMPTY(fancy_shuttles)
 	var/mutable_appearance/under_EM
 	var/fancy_shuttle_tag
 
+/turf/simulated/wall/fancy_shuttle/window
+	opacity = FALSE
+	icon_state = "hull_transparent"
+
+/turf/simulated/wall/fancy_shuttle/window/attack_generic(mob/user, damage, attack_message)
+	take_damage(damage)
+	return damage
+
+/turf/simulated/wall/fancy_shuttle/nondense
+	density = FALSE
+	blocks_air = FALSE
+	opacity = FALSE
+	icon_state = "hull_nondense"
+
 /turf/simulated/wall/fancy_shuttle/pre_translate_A(turf/B)
 	. = ..()
 	remove_underlay()
@@ -62,15 +76,21 @@ GLOBAL_LIST_EMPTY(fancy_shuttles)
 	apply_underlay()
 	return ..()
 
-/turf/simulated/wall/fancy_shuttle/window
-	opacity = FALSE
-	icon_state = "hull_transparent"
+// No girders, and Eris plating
+/turf/simulated/wall/fancy_shuttle/dismantle_wall(var/devastated, var/explode, var/no_product)
 
-/turf/simulated/wall/fancy_shuttle/nondense
-	density = FALSE
-	blocks_air = FALSE
-	opacity = FALSE
-	icon_state = "hull_nondense"
+	playsound(src, 'sound/items/Welder.ogg', 100, 1)
+	if(!no_product && !devastated)
+		material.place_dismantled_product(src)
+		if (!reinf_material)
+			material.place_dismantled_product(src)
+
+	clear_plants()
+	material = get_material_by_name("placeholder")
+	reinf_material = null
+	girder_material = null
+
+	ChangeTurf(/turf/simulated/floor/plating/eris/under)
 
 /turf/simulated/wall/fancy_shuttle/proc/remove_underlay()
 	if(under_MA)
@@ -216,6 +236,36 @@ GLOBAL_LIST_EMPTY(fancy_shuttles)
 	split_file = 'icons/turf/fancy_shuttles/dropship.dmi'
 /obj/effect/fancy_shuttle_floor_preview/dropship
 	icon = 'icons/turf/fancy_shuttles/dropship_preview.dmi'
+
+/**
+ * Explo shuttle
+ * North facing: W:13, H:18
+ */
+/obj/effect/fancy_shuttle/exploration
+	icon = 'icons/turf/fancy_shuttles/exploration_preview.dmi'
+	split_file = 'icons/turf/fancy_shuttles/exploration.dmi'
+/obj/effect/fancy_shuttle_floor_preview/exploration
+	icon = 'icons/turf/fancy_shuttles/exploration_preview.dmi'
+
+/**
+ * Sec shuttle
+ * North facing: W:13, H:18
+ */
+/obj/effect/fancy_shuttle/security
+	icon = 'icons/turf/fancy_shuttles/security_preview.dmi'
+	split_file = 'icons/turf/fancy_shuttles/security.dmi'
+/obj/effect/fancy_shuttle_floor_preview/security
+	icon = 'icons/turf/fancy_shuttles/security_preview.dmi'
+
+/**
+ * Med shuttle
+ * North facing: W:13, H:18
+ */
+/obj/effect/fancy_shuttle/medical
+	icon = 'icons/turf/fancy_shuttles/medical_preview.dmi'
+	split_file = 'icons/turf/fancy_shuttles/medical.dmi'
+/obj/effect/fancy_shuttle_floor_preview/medical
+	icon = 'icons/turf/fancy_shuttles/medical_preview.dmi'
 
 /**
  * Orange line tram
