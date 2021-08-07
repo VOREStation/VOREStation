@@ -16156,6 +16156,9 @@
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "explo"
 	},
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/steel,
 /area/shuttle/excursion/cockpit)
 "cCL" = (
@@ -16378,6 +16381,18 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/shuttle/excursion/cockpit)
+"cND" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "explo"
+	},
+/obj/structure/handrail{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel,
+/area/shuttle/excursion/cargo)
 "cNJ" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -17068,6 +17083,9 @@
 	},
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "explo"
+	},
+/obj/structure/handrail{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/steel,
 /area/shuttle/excursion/general)
@@ -20972,6 +20990,15 @@
 /area/tether/outpost/solars_outside{
 	name = "\improper Telecomms Solar Field"
 	})
+"hFK" = (
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "explo"
+	},
+/obj/structure/handrail{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel,
+/area/shuttle/excursion/general)
 "hFV" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 10
@@ -25376,6 +25403,26 @@
 	},
 /turf/simulated/floor/wood,
 /area/quartermaster/qm)
+"lJZ" = (
+/obj/structure/cable/cyan{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "explo"
+	},
+/obj/structure/handrail{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel,
+/area/shuttle/excursion/general)
 "lKl" = (
 /obj/structure/handrail{
 	dir = 1
@@ -25990,6 +26037,18 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
+"mos" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "explo"
+	},
+/obj/structure/handrail{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel,
+/area/shuttle/excursion/cargo)
 "mou" = (
 /obj/machinery/door/airlock/glass_external,
 /obj/structure/cable/green{
@@ -46695,7 +46754,7 @@ bZF
 cys
 isS
 cRa
-dkV
+lJZ
 wZB
 wZB
 eBg
@@ -46704,7 +46763,7 @@ wZB
 gLG
 fMh
 gjZ
-gMr
+mos
 igN
 eWv
 aeL
@@ -46988,7 +47047,7 @@ wZB
 frS
 fNB
 bvH
-gMr
+cND
 pPa
 eWv
 nDX
@@ -47260,8 +47319,8 @@ aTA
 isS
 wZB
 aos
-aos
-aos
+hFK
+hFK
 dbF
 agR
 wZB
