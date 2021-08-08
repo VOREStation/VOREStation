@@ -23297,10 +23297,6 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/robotics/surgeryroom2)
-"aMA" = (
-/mob/living/simple_mob/animal/passive/chicken,
-/turf/simulated/floor/grass,
-/area/hydroponics/cafegarden)
 "aMB" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable/orange{
@@ -60983,7 +60979,7 @@ aop
 asN
 awq
 aJw
-aMA
+asu
 aoJ
 aHi
 aTl
