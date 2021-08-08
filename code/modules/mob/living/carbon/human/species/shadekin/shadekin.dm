@@ -268,7 +268,7 @@
 	if(eyecolor_val < 40)
 		eyecolor_val = 40
 
-	eyecolor_rgb = rgb(eyecolor_hue, eyecolor_sat, eyecolor_val, COLORSPACE_HSV)
+	eyecolor_rgb = rgb(eyecolor_hue, eyecolor_sat, eyecolor_val, space=COLORSPACE_HSV)
 
 	H.r_eyes = rgb2num(eyecolor_rgb)[1]
 	H.g_eyes = rgb2num(eyecolor_rgb)[2]
