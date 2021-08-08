@@ -66,13 +66,14 @@
 	name = "Aronai - Ship's Boat"
 	requires_power = 1
 	dynamic_lighting = 1
+	base_turf = /turf/simulated/floor/reinforced
 
 /turf/simulated/floor/water/indoors/surfluid
 	name = "surfluid pool"
 	desc = "A pool of inky-black fluid that shimmers oddly in the light if hit just right."
 	description_info = "Surfluid is KHI's main method of production, using swarms of nanites to process raw materials into finished products at the cost of immense amounts of energy."
 	color = "#222222"
-	outdoors = FALSE
+	outdoors = OUTDOORS_NO
 	reagent_type = "liquid_protean"
 
 // The 'ship'
@@ -108,7 +109,7 @@
 /obj/effect/shuttle_landmark/shuttle_initializer/aroboat3
 	name = "Aronai's Boat Bay"
 	base_area = /area/aro3/flight_deck
-	base_turf = /turf/simulated/floor/tiled/eris/dark/techfloor_grid
+	base_turf = /turf/simulated/floor/reinforced
 	landmark_tag = "omship_spawn_aroboat3"
 	docking_controller = "aroship3_boatbay"
 	shuttle_type = /datum/shuttle/autodock/overmap/aroboat3

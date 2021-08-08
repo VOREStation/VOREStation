@@ -82,7 +82,7 @@
 		return "<span class='notice'>It has [mat_storage] out of [max_mat_storage] units of [ammo_material] loaded.</span>"
 	else
 		return "<span class='warning'>It\'s out of [ammo_material]!</span>"
-	
+
 
 /obj/item/weapon/gun/magnetic/matfed/attackby(var/obj/item/thing, var/mob/user)
 	if(removable_components)
@@ -165,6 +165,7 @@
 	item_state = "bore"
 	wielded_item_state = "bore-wielded"
 	one_handed_penalty = 5
+	fire_delay = 20
 
 	projectile_type = /obj/item/projectile/bullet/magnetic/bore
 

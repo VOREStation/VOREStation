@@ -46,15 +46,15 @@
 					target.bloodstr.add_reagent("numbenzyme",attack_damage)
 
 /datum/unarmed_attack/claws/shadekin
-	var/energy_gain = 3
 
-/datum/unarmed_attack/claws/shadekin/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
+/datum/unarmed_attack/claws/shadekin/apply_effects(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
 	..()
-	user.shadekin_adjust_energy(energy_gain)
+	if(!(target == user))
+		user.shadekin_adjust_energy(attack_damage)
 
 /datum/unarmed_attack/bite/sharp/shadekin
-	var/energy_gain = 3
 
-/datum/unarmed_attack/bite/sharp/shadekin/show_attack(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
+/datum/unarmed_attack/bite/sharp/shadekin/apply_effects(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/zone, var/attack_damage)
 	..()
-	user.shadekin_adjust_energy(energy_gain)
+	if(!(target == user))
+		user.shadekin_adjust_energy(attack_damage)

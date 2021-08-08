@@ -191,7 +191,7 @@
 	warmup_time = 0
 	current_location = "tether_excursion_hangar"
 	docking_controller_tag = "expshuttle_docker"
-	shuttle_area = list(/area/shuttle/excursion/cockpit, /area/shuttle/excursion/general, /area/shuttle/excursion/cargo)
+	shuttle_area = list(/area/shuttle/excursion/cockpit, /area/shuttle/excursion/general, /area/shuttle/excursion/cargo, /area/shuttle/excursion/power)
 	fuel_consumption = 3
 	move_direction = NORTH
 

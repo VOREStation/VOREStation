@@ -136,7 +136,8 @@
 	if(stat != DEAD && cell)
 
 		// TODO generalize solar occlusion to charge from the actual sun.
-		var/new_recharge_state = istype(loc, /turf/simulated/floor/outdoors) || /*, /turf/exterior) */ istype(loc, /turf/space)
+		var/turf/T = get_turf(src)
+		var/new_recharge_state = T?.is_outdoors() || isspace(T)
 		if(new_recharge_state != last_recharge_state)
 			last_recharge_state = new_recharge_state
 			if(last_recharge_state)

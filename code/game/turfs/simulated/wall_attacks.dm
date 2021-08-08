@@ -171,7 +171,7 @@
 				return
 
 		// Create a ceiling to shield from the weather
-		if(outdoors)
+		if(is_outdoors())
 			if(expended_tile || R.use(1)) // Don't need to check adjacent turfs for a wall, we're building on one
 				make_indoors()
 				if(!expended_tile) // Would've already played a sound

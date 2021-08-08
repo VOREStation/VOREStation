@@ -164,7 +164,7 @@
 	)
 	gear_tweaks += new/datum/gear_tweak/path(labcoats)
 
-/datum/gear/suit/labcoat/emt
+/datum/gear/suit/labcoat_emt
 	display_name = "labcoat, EMT"
 	path = /obj/item/clothing/suit/storage/toggle/labcoat/emt
 	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist")

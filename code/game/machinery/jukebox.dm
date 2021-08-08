@@ -12,8 +12,8 @@
 	name = "space jukebox"
 	desc = "Filled with songs both past and present!"
 	icon = 'icons/obj/jukebox.dmi'
-	icon_state = "jukebox2-nopower"
-	var/state_base = "jukebox2"
+	icon_state = "jukebox-nopower"
+	var/state_base = "jukebox"
 	anchored = TRUE
 	density = TRUE
 	power_channel = EQUIP

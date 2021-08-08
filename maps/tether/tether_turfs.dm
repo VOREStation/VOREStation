@@ -4,7 +4,7 @@ VIRGO3B_TURF_CREATE(/turf/simulated/open)
 	edge_blending_priority = 0.5 //Turfs which also have e_b_p and higher than this will plop decorative edges onto this turf
 /turf/simulated/open/virgo3b/Initialize(mapload)
 	. = ..()
-	if(outdoors)
+	if(is_outdoors())
 		SSplanets.addTurf(src)
 
 VIRGO3B_TURF_CREATE(/turf/simulated/floor)
@@ -275,3 +275,8 @@ VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor)
 	. = ..()
 	for(var/obj/effect/step_trigger/teleporter/planetary_fall/virgo3b/F in src)
 		qdel(F)
+
+// Tram transit floor
+/turf/simulated/floor/tiled/techfloor/grid/transit
+	icon = 'icons/turf/transit_vr.dmi'
+	initial_flooring = null

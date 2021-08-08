@@ -49,7 +49,7 @@
 	desc = "A pool of inky-black fluid that shimmers oddly in the light if hit just right."
 	description_info = "Surfluid is KHI's main method of production, using swarms of nanites to process raw materials into finished products at the cost of immense amounts of energy."
 	color = "#222222"
-	outdoors = FALSE
+	outdoors = OUTDOORS_NO
 	reagent_type = "liquid_protean"
 
 // The 'ship'

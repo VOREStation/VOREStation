@@ -87,7 +87,7 @@ var/image/no_ceiling_image = null
 
 	// Show 'ceilingless' overlay.
 	var/turf/above = GetAbove(src)
-	if(above && isopenspace(above) && !istype(src, /turf/simulated/floor/outdoors)) // This won't apply to outdoor turfs since its assumed they don't have a ceiling anyways.
+	if(!is_outdoors() && above && isopenspace(above)) // This won't apply to outdoor turfs since its assumed they don't have a ceiling anyways.
 		add_overlay(no_ceiling_image)
 
 	// Update our 'them-to-us' edges, aka edges from external turfs we feel should spill onto us

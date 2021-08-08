@@ -1137,6 +1137,7 @@
 	products = list(
 		/obj/item/clothing/under/rank/bartender = 5,
 		/obj/item/clothing/under/rank/bartender/skirt = 5,
+		/obj/item/clothing/under/waiter = 5,
 		/obj/item/clothing/head/that = 5,
 		/obj/item/clothing/head/flatcap = 5,
 		/obj/item/clothing/shoes/brown = 5,
@@ -1180,7 +1181,9 @@
 		/obj/item/clothing/suit/storage/apron/white = 5,
 		/obj/item/clothing/suit/chef = 5,
 		/obj/item/clothing/suit/chef/classic = 5,
-		/obj/item/clothing/head/chefhat = 5
+		/obj/item/clothing/head/chefhat = 5,
+		/obj/item/clothing/under/waiter = 5,
+		/obj/item/clothing/under/sundress = 1
 	)
 	req_log_access = access_hop
 	has_logs = 1
@@ -1431,16 +1434,16 @@
 	icon_state = "janidrobe"
 	req_access = list(access_janitor)
 	products = list(
-		/obj/item/clothing/under/rank/janitor = 5,
-		/obj/item/clothing/under/dress/maid/janitor = 5,
-		/obj/item/device/radio/headset/headset_service = 5,
-		/obj/item/weapon/cartridge/janitor = 5,
-		/obj/item/clothing/gloves/black = 5,
 		/obj/item/clothing/head/soft/purple = 5,
 		/obj/item/clothing/head/beret/purple = 5,
-		/obj/item/clothing/suit/caution = 20,
+		/obj/item/clothing/head/headband/maid = 5,
+		/obj/item/device/radio/headset/headset_service = 5,
+		/obj/item/clothing/under/rank/janitor = 5,
+		/obj/item/clothing/under/dress/maid/janitor = 5,
+		/obj/item/clothing/gloves/black = 5,
 		/obj/item/weapon/storage/belt/janitor = 5,
-		/obj/item/clothing/shoes/galoshes = 5
+		/obj/item/clothing/shoes/galoshes = 5,
+		/obj/item/weapon/cartridge/janitor = 5
 	)
 	req_log_access = access_hop
 	has_logs = 1
