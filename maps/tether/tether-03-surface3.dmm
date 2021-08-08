@@ -23336,12 +23336,12 @@
 /area/tether/surfacebase/shuttle_pad)
 "aME" = (
 /turf/simulated/wall/fancy_shuttle{
-	fancy_shuttle_tag = lifeboat1
+	fancy_shuttle_tag = "lifeboat1"
 	},
 /area/shuttle/tether)
 "aMF" = (
 /turf/simulated/wall/fancy_shuttle/window{
-	fancy_shuttle_tag = lifeboat1
+	fancy_shuttle_tag = "lifeboat1"
 	},
 /area/shuttle/tether)
 "aMG" = (
@@ -23550,13 +23550,13 @@
 	req_one_access = list()
 	},
 /obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = lifeboat1
+	fancy_shuttle_tag = "lifeboat1"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/tether)
 "aNb" = (
 /obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = lifeboat1
+	fancy_shuttle_tag = "lifeboat1"
 	},
 /obj/structure/closet/emcloset,
 /turf/simulated/floor/tiled,
@@ -23644,7 +23644,7 @@
 	dir = 8
 	},
 /obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = lifeboat1
+	fancy_shuttle_tag = "lifeboat1"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/tether)
@@ -23772,7 +23772,7 @@
 /area/tether/surfacebase/medical/uppersouthstairwell)
 "aNz" = (
 /obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = lifeboat1
+	fancy_shuttle_tag = "lifeboat1"
 	},
 /obj/machinery/door/airlock/glass_external{
 	frequency = 1380;
@@ -23889,13 +23889,13 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = lifeboat1
+	fancy_shuttle_tag = "lifeboat1"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/tether)
 "aNK" = (
 /obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = lifeboat1
+	fancy_shuttle_tag = "lifeboat1"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/tether)
@@ -23936,7 +23936,7 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = lifeboat1
+	fancy_shuttle_tag = "lifeboat1"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/tether)
@@ -31421,7 +31421,7 @@
 "bbJ" = (
 /turf/space,
 /turf/simulated/wall/fancy_shuttle{
-	fancy_shuttle_tag = lifeboat1
+	fancy_shuttle_tag = "lifeboat1"
 	},
 /area/shuttle/tether)
 "bbK" = (
@@ -38350,14 +38350,14 @@
 "dAg" = (
 /obj/effect/fancy_shuttle/lifeboat1{
 	dir = 1;
-	fancy_shuttle_tag = lifeboat1
+	fancy_shuttle_tag = "lifeboat1"
 	},
 /obj/effect/fancy_shuttle_floor_preview/lifeboat1{
 	dir = 1
 	},
 /obj/machinery/atmospherics/unary/engine/fancy_shuttle,
 /turf/simulated/wall/fancy_shuttle{
-	fancy_shuttle_tag = lifeboat1
+	fancy_shuttle_tag = "lifeboat1"
 	},
 /area/shuttle/tether)
 "dDQ" = (
@@ -42844,7 +42844,7 @@
 	tag_door = "tether_shuttle_hatch"
 	},
 /obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = lifeboat1
+	fancy_shuttle_tag = "lifeboat1"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/tether)
@@ -43124,7 +43124,7 @@
 	name = "Surface Hangar"
 	},
 /obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = lifeboat1
+	fancy_shuttle_tag = "lifeboat1"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/tether)
@@ -44115,7 +44115,7 @@
 "xYh" = (
 /obj/machinery/atmospherics/unary/engine/fancy_shuttle,
 /turf/simulated/wall/fancy_shuttle{
-	fancy_shuttle_tag = lifeboat1
+	fancy_shuttle_tag = "lifeboat1"
 	},
 /area/shuttle/tether)
 "xZw" = (

@@ -1249,7 +1249,8 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/arrow{
-	dir = 4
+	dir = 4;
+	pixel_x = 1
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
@@ -21333,7 +21334,7 @@
 	dir = 1
 	},
 /obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = lifeboat2
+	fancy_shuttle_tag = "lifeboat2"
 	},
 /obj/structure/bed/chair/shuttle,
 /turf/simulated/floor/tiled,
@@ -21354,7 +21355,7 @@
 /obj/structure/closet/walllocker/emerglocker/north,
 /obj/structure/bed/chair/shuttle,
 /obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = lifeboat2
+	fancy_shuttle_tag = "lifeboat2"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/large_escape_pod1)
@@ -21810,7 +21811,7 @@
 	name = "Tether Station"
 	},
 /turf/simulated/wall/fancy_shuttle/window{
-	fancy_shuttle_tag = lifeboat2
+	fancy_shuttle_tag = "lifeboat2"
 	},
 /area/shuttle/large_escape_pod1)
 "iaf" = (
@@ -23291,7 +23292,7 @@
 "jRT" = (
 /obj/effect/fancy_shuttle/lifeboat2{
 	dir = 4;
-	fancy_shuttle_tag = lifeboat2
+	fancy_shuttle_tag = "lifeboat2"
 	},
 /obj/machinery/atmospherics/unary/engine/fancy_shuttle{
 	dir = 8
@@ -23300,7 +23301,7 @@
 	dir = 4
 	},
 /turf/simulated/wall/fancy_shuttle{
-	fancy_shuttle_tag = lifeboat2
+	fancy_shuttle_tag = "lifeboat2"
 	},
 /area/shuttle/large_escape_pod1)
 "jSj" = (
@@ -23347,7 +23348,7 @@
 "jSR" = (
 /obj/effect/map_helper/airlock/door/simple,
 /obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = lifeboat2
+	fancy_shuttle_tag = "lifeboat2"
 	},
 /obj/machinery/door/airlock/glass_external,
 /turf/simulated/floor/tiled,
@@ -24069,7 +24070,7 @@
 "kxK" = (
 /obj/machinery/light,
 /obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = lifeboat2
+	fancy_shuttle_tag = "lifeboat2"
 	},
 /obj/structure/bed/chair/shuttle{
 	dir = 1
@@ -25247,7 +25248,7 @@
 /area/tether/station/dock_one)
 "lwv" = (
 /obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = lifeboat2
+	fancy_shuttle_tag = "lifeboat2"
 	},
 /obj/machinery/status_display{
 	pixel_y = 32
@@ -27622,7 +27623,7 @@
 /area/maintenance/station/cargo)
 "nCE" = (
 /turf/simulated/wall/fancy_shuttle/window{
-	fancy_shuttle_tag = lifeboat2
+	fancy_shuttle_tag = "lifeboat2"
 	},
 /area/shuttle/large_escape_pod1)
 "nCS" = (
@@ -29548,7 +29549,7 @@
 	pixel_y = -28
 	},
 /obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = lifeboat2
+	fancy_shuttle_tag = "lifeboat2"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/large_escape_pod1)
@@ -29583,7 +29584,7 @@
 "qcz" = (
 /obj/structure/bed/chair/shuttle,
 /obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = lifeboat2
+	fancy_shuttle_tag = "lifeboat2"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/large_escape_pod1)
@@ -29856,7 +29857,7 @@
 /area/hallway/station/atrium)
 "qqe" = (
 /obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = lifeboat2
+	fancy_shuttle_tag = "lifeboat2"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/large_escape_pod1)
@@ -29994,7 +29995,7 @@
 	dir = 1
 	},
 /obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = lifeboat2
+	fancy_shuttle_tag = "lifeboat2"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/large_escape_pod1)
@@ -30017,7 +30018,7 @@
 	dir = 1
 	},
 /obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = lifeboat2
+	fancy_shuttle_tag = "lifeboat2"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/large_escape_pod1)
@@ -35289,7 +35290,7 @@
 	dir = 8
 	},
 /turf/simulated/wall/fancy_shuttle{
-	fancy_shuttle_tag = lifeboat2
+	fancy_shuttle_tag = "lifeboat2"
 	},
 /area/shuttle/large_escape_pod1)
 "wUa" = (
@@ -35902,7 +35903,7 @@
 /area/maintenance/station/cargo)
 "xIm" = (
 /turf/simulated/wall/fancy_shuttle{
-	fancy_shuttle_tag = lifeboat2
+	fancy_shuttle_tag = "lifeboat2"
 	},
 /area/shuttle/large_escape_pod1)
 "xIp" = (
