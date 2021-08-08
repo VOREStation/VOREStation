@@ -10,6 +10,7 @@
 	anchored = TRUE
 	store_mobs = 0
 	wall_mounted = 1
+	door_anim_time = 0 // Unsupported
 
 //spawns 2 sets of breathmask, emergency oxy tank and crowbar
 
