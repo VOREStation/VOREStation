@@ -33125,6 +33125,13 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/lowernorthhall)
+"gQH" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor,
+/obj/structure/window/reinforced,
+/turf/simulated/floor/plating,
+/area/crew_quarters/visitor_laundry)
 "gVe" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -39200,11 +39207,11 @@ aah
 aah
 yiS
 aHo
+aHL
+aHL
 aad
-aad
-aad
-aad
-aad
+aHL
+aHL
 aad
 aad
 aad
@@ -39342,13 +39349,13 @@ aah
 aah
 yiS
 aah
+aHL
 aad
 aad
+aHL
 aad
 aad
-aad
-aad
-aad
+aHL
 aad
 aad
 aad
@@ -39484,7 +39491,7 @@ aah
 aah
 yiS
 aah
-aad
+aHL
 aad
 aad
 aad
@@ -39628,10 +39635,10 @@ yiS
 aah
 aah
 aad
+aHL
 aad
 aad
-aad
-aad
+aHL
 aad
 aad
 aad
@@ -39772,8 +39779,8 @@ aah
 aad
 aad
 aad
-aad
-aad
+aHL
+aHL
 aad
 aad
 aad
@@ -39917,7 +39924,7 @@ aad
 aad
 aad
 aad
-aad
+aHL
 aad
 aad
 aad
@@ -40055,11 +40062,11 @@ aah
 baU
 baU
 aad
+aHL
 aad
 aad
 aad
-aad
-aad
+aHL
 aad
 aHL
 aad
@@ -40199,7 +40206,7 @@ baU
 aad
 aad
 aad
-aad
+aHL
 aad
 aad
 aad
@@ -40486,7 +40493,7 @@ aad
 aad
 aad
 aad
-aad
+aHL
 aad
 aad
 aad
@@ -40625,7 +40632,7 @@ baU
 aad
 aad
 aad
-aad
+aHL
 aad
 aad
 aad
@@ -54990,7 +54997,7 @@ rnt
 aUP
 aUP
 sch
-aWn
+gQH
 baU
 baU
 baU
