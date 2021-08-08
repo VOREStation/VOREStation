@@ -318,6 +318,11 @@
 			if(D.density)
 				ai_log("destroy_surroundings() : Attacking closed door.", AI_LOG_INFO)
 				return melee_attack(D)
+		
+		// Should always be last thing attempted
+		if(!problem_turf.opacity)
+			ai_log("destroy_surroundings() : Attacking a transparent (window?) turf.", AI_LOG_INFO)
+			return melee_attack(problem_turf)
 
 	ai_log("destroy_surroundings() : Exiting due to nothing to attack.", AI_LOG_INFO)
 	return ATTACK_FAILED // Nothing to attack.
