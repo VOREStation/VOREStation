@@ -5,7 +5,7 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 /obj/singularity/
 	name = "gravitational singularity"
 	desc = "A gravitational singularity."
-	icon = 'icons/obj/singularity.dmi'
+	icon = 'icons/effects/effects.dmi'
 	icon_state = "singularity_s1"
 	anchored = TRUE
 	density = TRUE
