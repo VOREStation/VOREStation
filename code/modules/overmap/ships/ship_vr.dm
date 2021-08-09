@@ -17,6 +17,7 @@
 			L.visible_message("<span class='warning'>[L] is trying to stuff \the [src] into [L.gender == MALE ? "his" : L.gender == FEMALE ? "her" : "their"] [bellychoice]!</span>","<span class='notice'>You begin putting \the [src] into your [bellychoice]!</span>")
 			if(do_after(L, 5 SECONDS, src, exclusive = TASK_ALL_EXCLUSIVE))
 				forceMove(bellychoice)
+				SSskybox.rebuild_skyboxes(map_z)
 				L.visible_message("<span class='warning'>[L] eats a spaceship! This is totally normal.</span>","You eat the the spaceship! Yum, metal.")
 
 /obj/effect/overmap/visitable/ship/hear_talk(mob/talker, list/message_pieces, verb)
