@@ -20,13 +20,29 @@
 				SSskybox.rebuild_skyboxes(map_z)
 				L.visible_message("<span class='warning'>[L] eats a spaceship! This is totally normal.</span>","You eat the the spaceship! Yum, metal.")
 
+/obj/effect/overmap/visitable/ship/proc/get_people_in_ship()
+	. = list()
+	for(var/mapz in map_z)
+		var/list/thatz = GLOB.players_by_zlevel[mapz]
+		. += thatz
+
 /obj/effect/overmap/visitable/ship/hear_talk(mob/talker, list/message_pieces, verb)
 	. = ..()
 	
-	var/list/listeners = list()
-	for(var/mapz in map_z)
-		var/list/thatz = GLOB.players_by_zlevel[mapz]
-		listeners += thatz
-	
+	var/list/listeners = get_people_in_ship()
 	for(var/mob/M as anything in listeners)
 		M.hear_say(message_pieces, verb, FALSE, talker)
+
+/obj/effect/overmap/visitable/ship/show_message(msg, type, alt, alt_type)
+	. = ..()
+	
+	var/list/listeners = get_people_in_ship()
+	for(var/mob/M as anything in listeners)
+		M.show_message(msg, type, alt, alt_type)
+
+/obj/effect/overmap/visitable/ship/see_emote(source, message, m_type)
+	. = ..()
+
+	var/list/listeners = get_people_in_ship()	
+	for(var/mob/M as anything in listeners)
+		M.show_message(message, m_type)
