@@ -558,6 +558,7 @@
 	var/list/jacket = list(
 		"grey light jacket" = /obj/item/clothing/suit/storage/toggle/light_jacket,
 		"dark blue light jacket" = /obj/item/clothing/suit/storage/toggle/light_jacket/blue
+	)
 	gear_tweaks += new/datum/gear_tweak/path(jacket)
 
 /datum/gear/suit/miscellaneous/peacoat
