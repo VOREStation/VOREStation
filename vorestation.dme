@@ -3300,6 +3300,7 @@
 #include "code\modules\overmap\ships\landable.dm"
 #include "code\modules\overmap\ships\panicbutton.dm"
 #include "code\modules\overmap\ships\ship.dm"
+#include "code\modules\overmap\ships\ship_vr.dm"
 #include "code\modules\overmap\ships\computers\computer_shims.dm"
 #include "code\modules\overmap\ships\computers\engine_control.dm"
 #include "code\modules\overmap\ships\computers\helm.dm"

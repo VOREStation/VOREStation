@@ -28,4 +28,4 @@
 		listeners += thatz
 	
 	for(var/mob/M as anything in listeners)
-		M.hear_say(message_pieces, verb, talker)
+		M.hear_say(message_pieces, verb, FALSE, talker)
