@@ -65,6 +65,7 @@
 	closet_appearance = null
 	catalogue_data = list(/datum/category_item/catalogue/information/objects/oldreactor)
 	climbable = FALSE
+	door_anim_time = 0 //Unsupported
 
 	starts_with = list(
 		/obj/item/weapon/fuel_assembly/deuterium = 6)
