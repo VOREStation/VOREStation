@@ -2201,12 +2201,11 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/bed/chair/sofa/bench/left{
-	padding_color = "#99AAFF"
-	},
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "tram"
 	},
+/obj/structure/table/standard,
+/obj/random/forgotten_tram,
 /turf/simulated/floor/tiled,
 /area/shuttle/escape{
 	base_turf = /turf/simulated/floor/tiled/techfloor/grid
@@ -2349,10 +2348,18 @@
 	pixel_x = 0;
 	pixel_y = -32
 	},
-/obj/structure/bed/chair/sofa/bench/right{
-	dir = 1;
-	padding_color = "#99AAFF"
+/obj/structure/bed/chair/shuttle_padded{
+	dir = 8
 	},
+/turf/simulated/floor/tiled,
+/area/shuttle/escape{
+	base_turf = /turf/simulated/floor/tiled/techfloor/grid
+	})
+"nB" = (
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "tram"
+	},
+/obj/machinery/vending/snack,
 /turf/simulated/floor/tiled,
 /area/shuttle/escape{
 	base_turf = /turf/simulated/floor/tiled/techfloor/grid
@@ -2373,8 +2380,8 @@
 	pixel_x = 0;
 	pixel_y = 32
 	},
-/obj/structure/bed/chair/sofa/bench/right{
-	padding_color = "#99AAFF"
+/obj/structure/bed/chair/shuttle_padded{
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/escape{
@@ -2514,8 +2521,8 @@
 	pixel_x = 0;
 	pixel_y = 32
 	},
-/obj/structure/bed/chair/sofa/bench/left{
-	padding_color = "#99AAFF"
+/obj/structure/bed/chair/shuttle_padded{
+	dir = 8
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/escape{
@@ -2635,22 +2642,22 @@
 	dir = 1
 	},
 /obj/random/forgotten_tram,
-/obj/structure/bed/chair/sofa/bench/right{
-	padding_color = "#99AAFF"
-	},
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "tram"
 	},
+/obj/structure/table/standard,
+/obj/item/weapon/storage/firstaid/toxin,
+/obj/item/weapon/storage/firstaid/o2,
 /turf/simulated/floor/tiled,
 /area/shuttle/escape{
 	base_turf = /turf/simulated/floor/tiled/techfloor/grid
 	})
 "tL" = (
-/obj/structure/table/standard,
-/obj/item/weapon/storage/firstaid/o2,
-/obj/item/weapon/storage/firstaid/toxin,
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "tram"
+	},
+/obj/structure/bed/chair/shuttle_padded{
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/escape{
@@ -2811,13 +2818,11 @@
 "xm" = (
 /obj/machinery/light,
 /obj/random/forgotten_tram,
-/obj/structure/bed/chair/sofa/bench/right{
-	dir = 1;
-	padding_color = "#99AAFF"
-	},
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "tram"
 	},
+/obj/random/forgotten_tram,
+/obj/structure/table/standard,
 /turf/simulated/floor/tiled,
 /area/shuttle/escape{
 	base_turf = /turf/simulated/floor/tiled/techfloor/grid
@@ -3115,9 +3120,8 @@
 	pixel_x = 0;
 	pixel_y = -32
 	},
-/obj/structure/bed/chair/sofa/bench/left{
-	dir = 1;
-	padding_color = "#99AAFF"
+/obj/structure/bed/chair/shuttle_padded{
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/escape{
@@ -3447,6 +3451,17 @@
 /obj/item/toy/chess/bishop_white,
 /turf/simulated/floor/holofloor/wmarble,
 /area/holodeck/source_chess)
+"Mm" = (
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "tram"
+	},
+/obj/structure/bed/chair/shuttle_padded{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/escape{
+	base_turf = /turf/simulated/floor/tiled/techfloor/grid
+	})
 "MB" = (
 /obj/machinery/sleeper{
 	dir = 4
@@ -3528,6 +3543,17 @@
 /obj/structure/bed/chair/sofa/bench/left{
 	dir = 8;
 	padding_color = "#99AAFF"
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/escape{
+	base_turf = /turf/simulated/floor/tiled/techfloor/grid
+	})
+"ND" = (
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "tram"
+	},
+/obj/machinery/vending/cola/soft{
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/escape{
@@ -3741,13 +3767,12 @@
 /area/centcom/simulated/medical)
 "RA" = (
 /obj/machinery/light,
-/obj/structure/bed/chair/sofa/bench/left{
-	dir = 1;
-	padding_color = "#99AAFF"
-	},
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "tram"
 	},
+/obj/structure/table/standard,
+/obj/item/weapon/storage/firstaid/toxin,
+/obj/item/weapon/storage/firstaid/o2,
 /turf/simulated/floor/tiled,
 /area/shuttle/escape{
 	base_turf = /turf/simulated/floor/tiled/techfloor/grid
@@ -17792,7 +17817,7 @@ ET
 ET
 ET
 ZE
-IN
+nB
 IN
 IN
 IN
@@ -17805,7 +17830,7 @@ Pn
 IN
 IN
 IN
-IN
+ND
 ZE
 ET
 ET
@@ -18218,7 +18243,7 @@ sN
 sN
 sN
 ZE
-tV
+Mm
 IN
 ZE
 Lu
@@ -18231,7 +18256,7 @@ Fz
 TO
 ZE
 IN
-tV
+Mm
 ZE
 sN
 sN
