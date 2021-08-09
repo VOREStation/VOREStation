@@ -6373,6 +6373,13 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
+"aju" = (
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/mob/living/simple_mob/animal/passive/cow,
+/turf/simulated/floor/grass,
+/area/hydroponics/cafegarden)
 "ajv" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /obj/effect/floor_decal/industrial/warning{
@@ -11432,6 +11439,11 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/grass,
 /area/hydroponics)
+"asj" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/reinforced,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/tether)
 "ask" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -11569,6 +11581,20 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
+"asx" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/obj/structure/cable/orange{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/shuttle_pad)
 "asy" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -14033,6 +14059,21 @@
 /obj/machinery/door/airlock/glass,
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
+"awV" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/structure/cable/orange{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/shuttle_pad)
 "awW" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/alarm{
@@ -14277,13 +14318,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/bar_backroom)
-"axv" = (
-/mob/living/simple_mob/animal/passive/cow,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/turf/simulated/floor/grass,
-/area/hydroponics/cafegarden)
 "axw" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -23737,15 +23771,6 @@
 	},
 /turf/simulated/floor/bluegrid,
 /area/rnd/robotics/mechbay)
-"aNx" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 5
-	},
-/turf/simulated/floor/tiled,
-/area/tether/surfacebase/shuttle_pad)
 "aNy" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 8
@@ -24513,16 +24538,6 @@
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced,
 /turf/simulated/floor/plating,
-/area/tether/surfacebase/shuttle_pad)
-"aPc" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10
-	},
-/obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
-	},
-/turf/simulated/floor/tiled,
 /area/tether/surfacebase/shuttle_pad)
 "aPd" = (
 /obj/structure/disposalpipe/segment{
@@ -31404,11 +31419,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hydroponics)
-"bbJ" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/tether)
 "bbK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/wood,
@@ -57040,7 +57050,7 @@ sFW
 aMW
 sFW
 aOu
-aNx
+asx
 aKf
 aKh
 aKW
@@ -57182,7 +57192,7 @@ vLM
 aOd
 hth
 aOv
-aPc
+awV
 aLB
 shl
 qvs
@@ -58029,7 +58039,7 @@ aNk
 uSA
 aNJ
 aNP
-bbJ
+asj
 aKU
 abg
 aOk
@@ -58171,7 +58181,7 @@ aNl
 aNl
 aNK
 aNP
-bbJ
+asj
 aKU
 abg
 aOk
@@ -58313,7 +58323,7 @@ aNm
 aNl
 aNK
 aNP
-bbJ
+asj
 aKU
 abg
 aOk
@@ -61119,7 +61129,7 @@ aJJ
 aOg
 whm
 asY
-axv
+aju
 bcF
 bdI
 aoJ
