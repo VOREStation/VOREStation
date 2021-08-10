@@ -255,7 +255,7 @@ var/global/list/virusDB = list()
 		"species" = jointext(affected_species, ", "),
 		"ref" = "\ref[src]",
 	)
-	
+
 	var/list/symptoms = list()
 	for(var/datum/disease2/effectholder/E in effects)
 		symptoms.Add(list(list(
