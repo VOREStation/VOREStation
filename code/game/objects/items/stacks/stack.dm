@@ -79,7 +79,7 @@
 
 /obj/item/stack/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
-	
+
 	data["amount"] = get_amount()
 
 	return data
@@ -123,7 +123,7 @@
 			if(get_amount() < 1)
 				qdel(src)
 				return
-			
+
 			var/datum/stack_recipe/R = locate(params["ref"])
 			if(!is_valid_recipe(R, recipes)) //href exploit protection
 				return FALSE
@@ -354,6 +354,7 @@
 /obj/item/stack/attack_hand(mob/user as mob)
 	if (user.get_inactive_hand() == src)
 		var/N = input(usr, "How many stacks of [src] would you like to split off?  There are currently [amount].", "Split stacks", 1) as num|null
+		N = round(N)
 		if(N)
 			var/obj/item/stack/F = src.split(N)
 			if (F)
