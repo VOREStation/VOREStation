@@ -825,29 +825,15 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 //	mom_id = mom.teppi_id
 //	dad_id = dad.teppi_id
 	faction = mom.faction
-	var/choice = rand(1,3)
-	if(choice == 1) //mom dominant
-		color = mom.color
-		marking_color = dad.marking_color
-		horn_color = mom.horn_color
-		eye_color = dad.eye_color
-		skin_color = mom.skin_color
-		marking_type = mom.marking_type
-		horn_type = mom.horn_type
-	if(choice == 2) //dad dominant
-		color = dad.color
-		marking_color = mom.marking_color
-		horn_color = dad.horn_color
-		eye_color = mom.eye_color
-		skin_color = dad.skin_color
-		marking_type = dad.marking_type
-		horn_type = dad.horn_type
-	if(choice == 3) //mix them up!!
-		color = BlendRGB(mom.color, dad.color, 0.5)
-		marking_color = BlendRGB(mom.marking_color, dad.marking_color, 0.5)
-		horn_color = BlendRGB(mom.horn_color, dad.horn_color, 0.5)
-		eye_color = BlendRGB(mom.eye_color, dad.eye_color, 0.5)
-		skin_color = BlendRGB(mom.skin_color, dad.skin_color, 0.5)
+	color = pick(list(mom.color, dad.color, BlendRGB(mom.color, dad.color, 0.5)))
+	marking_color = pick(list(mom.marking_color, dad.marking_color, BlendRGB(mom.marking_color, dad.marking_color, 0.5)))
+	horn_color = pick(list(mom.horn_color, dad.horn_color, BlendRGB(mom.horn_color, dad.horn_color, 0.5)))
+	eye_color =  pick(list(mom.eye_color, dad.eye_color, BlendRGB(mom.eye_color, dad.eye_color, 0.5)))
+	skin_color =  pick(list(mom.skin_color, dad.skin_color, BlendRGB(mom.skin_color, dad.skin_color, 0.5)))
+	marking_type =  pick(list(mom.marking_type, dad.marking_type, null))
+	horn_type =  pick(list(mom.horn_type, dad.horn_type, null))
+
+
 	if(mom.teppi_mutate || dad.teppi_mutate)
 		teppi_mutate = TRUE
 	else if(prob(1))
@@ -984,6 +970,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 /datum/material/fur/teppi
 	name = "fur"
 	icon_colour = "#fff2d3"
+	stack_origin_tech = list(TECH_MATERIAL = 2)
 	display_name = "fur"
 	icon_base = "sheet-fabric"
 	stack_type = /obj/item/stack/material/fur/teppi
@@ -992,9 +979,39 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	supply_conversion_value = 1
 	sheet_singular_name = "bundle"
 	sheet_plural_name = "bundles"
+	ignition_point = T0C+232
+	melting_point = T0C+300
+	protectiveness = 1
+	flags = MATERIAL_PADDING
+	conductive = 0
+	integrity = 40
+	hardness = 5
 
 /datum/material/fur/teppi/generate_recipes()
-	return
+	recipes = list(
+		new /datum/stack_recipe("duster", /obj/item/clothing/suit/storage/duster/craftable, 10, time = 15 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
+		new /datum/stack_recipe("bedsheet", /obj/item/weapon/bedsheet/craftable, 10, time = 30 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
+		new /datum/stack_recipe("uniform", /obj/item/clothing/under/color/white/craftable, 8, time = 15 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
+		new /datum/stack_recipe("foot wraps", /obj/item/clothing/shoes/footwraps/craftable, 2, time = 5 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
+		new /datum/stack_recipe("gloves", /obj/item/clothing/gloves/white/craftable, 2, time = 5 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
+		new /datum/stack_recipe("wig", /obj/item/clothing/head/powdered_wig, 4, time = 10 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
+		new /datum/stack_recipe("philosopher's wig", /obj/item/clothing/head/philosopher_wig, 50, time = 2 MINUTES, pass_stack_color = TRUE, recycle_material = "[name]"),
+		new /datum/stack_recipe("taqiyah", /obj/item/clothing/head/taqiyah/craftable, 3, time = 6 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
+		new /datum/stack_recipe("turban", /obj/item/clothing/head/turban/craftable, 3, time = 6 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
+		new /datum/stack_recipe("hijab", /obj/item/clothing/head/hijab/craftable, 3, time = 6 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
+		new /datum/stack_recipe("kippa", /obj/item/clothing/head/kippa/craftable, 3, time = 6 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
+		new /datum/stack_recipe("scarf", /obj/item/clothing/accessory/scarf/white/craftable, 4, time = 5 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
+		new /datum/stack_recipe("baggy pants", /obj/item/clothing/under/pants/baggy/white/craftable, 8, time = 10 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
+		new /datum/stack_recipe("belt pouch", /obj/item/weapon/storage/belt/fannypack/white/craftable, 25, time = 1 MINUTE, pass_stack_color = TRUE, recycle_material = "[name]"),
+		new /datum/stack_recipe("crude bandage", /obj/item/stack/medical/crude_pack, 1, time = 2 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
+		new /datum/stack_recipe("empty sandbag", /obj/item/stack/emptysandbag, 2, time = 2 SECONDS, pass_stack_color = TRUE, supplied_material = "[name]"),
+		new /datum/stack_recipe("satchel", /obj/item/weapon/storage/backpack/satchel/craftable, 30, time = 1 MINUTE, pass_stack_color = FALSE, recycle_material = "[name]"),
+		new /datum/stack_recipe("backpack", /obj/item/weapon/storage/backpack/craftable, 30, time = 1 MINUTE, pass_stack_color = FALSE, recycle_material = "[name]"),
+		new /datum/stack_recipe("cloak", /obj/item/clothing/accessory/poncho/roles/cloak/custom, 10, time = 15 SECONDS, pass_stack_color = FALSE, recycle_material = "[name]"),
+		new /datum/stack_recipe("teshari cloak", /obj/item/clothing/under/teshari/smock/white/craftable, 10, time = 15 SECONDS, pass_stack_color = FALSE, recycle_material = "[name]"),
+		new /datum/stack_recipe("teshari beltcloak", /obj/item/clothing/suit/storage/teshari/beltcloak/standard/black_white/craftable, 10, time = 15 SECONDS, pass_stack_color = FALSE, recycle_material = "[name]"),
+		new /datum/stack_recipe("bandana", /obj/item/clothing/head/bandana/craftable, 5, time = 15 SECONDS, pass_stack_color = FALSE, recycle_material = "[name]")
+	)
 
 /obj/item/stack/material/fur/teppi
 	name = "fur"
@@ -1009,4 +1026,42 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	apply_colour = TRUE
 
 /obj/item/clothing/suit/storage/duster/craftable
-	name = "fur duster"
+	name = "handmade duster"
+/obj/item/weapon/bedsheet/craftable
+	name = "handmade bedsheet"
+/obj/item/clothing/under/color/white/craftable
+	name = "handmade jumpsuit"
+/obj/item/clothing/shoes/footwraps/craftable
+	name = "handmade footwraps"
+/obj/item/clothing/gloves/white/craftable
+	name = "handmade gloves"
+/obj/item/clothing/head/taqiyah/craftable
+	name = "handmade taqiyah"
+/obj/item/clothing/head/turban/craftable
+	name = "handmade turban"
+/obj/item/clothing/head/hijab/craftable
+	name = "handmade hijab"
+/obj/item/clothing/head/kippa/craftable
+	name = "handmade kippa"
+/obj/item/clothing/accessory/scarf/white/craftable
+	name = "handmade scarf"
+/obj/item/clothing/under/pants/baggy/white/craftable
+	name = "handmade pants"
+/obj/item/weapon/storage/belt/fannypack/white/craftable
+	name = "handmade fannypack"
+/obj/item/weapon/storage/backpack/satchel/craftable
+	name = "handmade satchel"
+	icon_state = "satchel_white"
+	desc = "A handmade satchel, made for holding your things!"
+/obj/item/weapon/storage/backpack/craftable
+	name = "handmade backpack"
+	icon_state = "backpack_white"
+/obj/item/clothing/under/teshari/smock/white/craftable
+	name = "handmade smock"
+/obj/item/clothing/suit/storage/teshari/cloak/standard/white/craftable
+	name = "handmade teshari cloak"
+/obj/item/clothing/suit/storage/teshari/beltcloak/standard/black_white/craftable
+	name = "handmade teshari beltcloak"
+/obj/item/clothing/head/bandana/craftable
+	name = "handmade bandana"
+	icon_state = "bandana-pirate-white"
