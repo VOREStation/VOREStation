@@ -1618,6 +1618,16 @@
 				<td> Gives the patient a headache.
 				</td></tr>
 				<tr>
+				<td> 1 </td>
+				<td> Mlemington's Syndrome </td>
+				<td> Makes the patient 'mlem' uncontrollably.
+				</td></tr>
+				<tr>
+				<td> 1 </td>
+				<td> Spyndrome </td>
+				<td> Makes the patient spin uncontrollably.
+				</td></tr>
+				<tr>
 				<td> 2 </td>
 				<td> Involuntary Vocalization </td>
 				<td> Makes the patient scream.
@@ -1671,6 +1681,11 @@
 				<td> 2 </td>
 				<td> Tinnitus </td>
 				<td> Causes ringing in the patient's ears.
+				</td></tr>
+				<tr>
+				<td> 2 </td>
+				<td> Lingual Dissocation </td>
+				<td> Scrambles the patients language center of their brain.
 				</td></tr>
 				<tr>
 				<td> 3 </td>
@@ -1731,6 +1746,16 @@
 				<td> 3 </td>
 				<td> Genetic Chameleonism </td>
 				<td> Prevents the patient from experiencing organ rejection.
+				</td></tr>
+				<tr>
+				<td> 3 </td>
+				<td> Mass Revectoring </td>
+				<td> Causes the patient to suddenly change size.
+				</td></tr>
+				<tr>
+				<td> 3 </td>
+				<td> Flipponov's Disease </td>
+				<td> Causes the patient to uncontrollably do a flip.
 				</td></tr>
 				<tr>
 				<td> 4 </td>
@@ -1795,4 +1820,4 @@
 				<br>
 				</body>
 			</html>
-			"}
+				"}
