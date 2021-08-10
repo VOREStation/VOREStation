@@ -302,6 +302,7 @@
 	if(uses_charge)
 		return null
 
+	tamount = round(tamount)
 	var/transfer = max(min(tamount, src.amount, initial(max_amount)), 0)
 
 	var/orig_amount = src.amount
@@ -354,7 +355,6 @@
 /obj/item/stack/attack_hand(mob/user as mob)
 	if (user.get_inactive_hand() == src)
 		var/N = input(usr, "How many stacks of [src] would you like to split off?  There are currently [amount].", "Split stacks", 1) as num|null
-		N = round(N)
 		if(N)
 			var/obj/item/stack/F = src.split(N)
 			if (F)
