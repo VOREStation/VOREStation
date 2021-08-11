@@ -11440,9 +11440,8 @@
 /turf/simulated/floor/grass,
 /area/hydroponics)
 "asj" = (
-/obj/structure/shuttle/engine/propulsion,
-/turf/simulated/floor/reinforced,
-/turf/simulated/shuttle/plating/carry,
+/turf/space,
+/turf/simulated/floor/tiled,
 /area/shuttle/tether)
 "ask" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -23362,13 +23361,8 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/shuttle_pad)
-"aME" = (
-/turf/simulated/shuttle/wall,
-/area/shuttle/tether)
 "aMF" = (
-/obj/structure/shuttle/window,
-/obj/structure/grille,
-/turf/simulated/shuttle/plating/airless,
+/turf/simulated/floor/tiled,
 /area/shuttle/tether)
 "aMG" = (
 /obj/structure/railing{
@@ -23571,19 +23565,21 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/shuttle_pad)
-"aMZ" = (
-/obj/structure/closet/firecloset,
-/turf/simulated/shuttle/floor/black,
-/area/shuttle/tether)
 "aNa" = (
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "lifeboat1"
+	},
 /obj/machinery/computer/shuttle_control/tether_backup{
 	req_one_access = list()
 	},
-/turf/simulated/shuttle/floor/black,
+/turf/simulated/floor/tiled,
 /area/shuttle/tether)
 "aNb" = (
-/obj/structure/closet/emcloset,
-/turf/simulated/shuttle/floor/black,
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "lifeboat1"
+	},
+/obj/structure/closet/firecloset,
+/turf/simulated/floor/tiled,
 /area/shuttle/tether)
 "aNc" = (
 /obj/machinery/alarm{
@@ -23663,26 +23659,14 @@
 	},
 /turf/simulated/wall,
 /area/tether/surfacebase/shuttle_pad)
-"aNk" = (
-/obj/structure/bed/chair/shuttle{
-	dir = 4
-	},
-/turf/simulated/shuttle/floor/black,
-/area/shuttle/tether)
-"aNl" = (
-/turf/simulated/shuttle/floor/black,
-/area/shuttle/tether)
 "aNm" = (
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "lifeboat1"
+	},
 /obj/structure/bed/chair/shuttle{
 	dir = 8
 	},
-/obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
-	id_tag = "tether_shuttle";
-	pixel_x = 25;
-	tag_door = "tether_shuttle_hatch"
-	},
-/turf/simulated/shuttle/floor/black,
+/turf/simulated/floor/tiled,
 /area/shuttle/tether)
 "aNn" = (
 /obj/effect/floor_decal/borderfloorblack{
@@ -23790,6 +23774,9 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/uppersouthstairwell)
 "aNz" = (
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "lifeboat1"
+	},
 /obj/machinery/door/airlock/glass_external{
 	frequency = 1380;
 	icon_state = "door_locked";
@@ -23797,7 +23784,7 @@
 	locked = 1;
 	name = "Shuttle Hatch"
 	},
-/turf/simulated/shuttle/floor/black,
+/turf/simulated/floor/tiled,
 /area/shuttle/tether)
 "aNA" = (
 /obj/machinery/power/apc{
@@ -23897,20 +23884,11 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/uppersouthstairwell)
-"aNJ" = (
-/obj/structure/bed/chair/shuttle{
-	dir = 1
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/simulated/shuttle/floor/black,
-/area/shuttle/tether)
 "aNK" = (
-/obj/structure/bed/chair/shuttle{
-	dir = 1
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "lifeboat1"
 	},
-/turf/simulated/shuttle/floor/black,
+/turf/simulated/floor/tiled,
 /area/shuttle/tether)
 "aNL" = (
 /obj/structure/window/basic/full,
@@ -23945,11 +23923,13 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lobby)
 "aNP" = (
-/obj/structure/shuttle/engine/heater,
-/obj/structure/window/reinforced{
-	dir = 1
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "lifeboat1"
 	},
-/turf/simulated/shuttle/plating/airless,
+/obj/structure/bed/chair/shuttle{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
 /area/shuttle/tether)
 "aNQ" = (
 /obj/machinery/firealarm{
@@ -38448,6 +38428,18 @@
 	},
 /turf/simulated/floor/carpet,
 /area/tether/surfacebase/security/hos)
+"dXs" = (
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "lifeboat1"
+	},
+/obj/machinery/embedded_controller/radio/simple_docking_controller{
+	frequency = 1380;
+	id_tag = "tether_shuttle";
+	pixel_x = 23;
+	tag_door = "tether_shuttle_hatch"
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/tether)
 "dXv" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow,
 /obj/structure/bed/chair{
@@ -38808,6 +38800,15 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
+"frR" = (
+/obj/effect/fancy_shuttle/lifeboat1{
+	dir = 1
+	},
+/obj/effect/fancy_shuttle_floor_preview/lifeboat1{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/tether)
 "fxh" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -43104,6 +43105,9 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/storage)
 "uSA" = (
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "lifeboat1"
+	},
 /obj/effect/shuttle_landmark{
 	base_area = /area/tether/surfacebase/shuttle_pad;
 	base_turf = /turf/simulated/floor/reinforced;
@@ -43111,7 +43115,7 @@
 	landmark_tag = "tether_backup_low";
 	name = "Surface Hangar"
 	},
-/turf/simulated/shuttle/floor/black,
+/turf/simulated/floor/tiled,
 /area/shuttle/tether)
 "uWw" = (
 /obj/machinery/door/firedoor/glass,
@@ -57891,13 +57895,13 @@ aAN
 aAN
 aJn
 aKU
-aME
-aME
-aME
+aMF
+aMF
+aMF
 aNz
-aME
-aME
-aME
+aMF
+aMF
+frR
 aNY
 aKj
 aOj
@@ -58034,10 +58038,10 @@ aAN
 aJn
 aKU
 aMF
-aMZ
-aNk
+aNb
+aNP
 uSA
-aNJ
+aNP
 aNP
 asj
 aKU
@@ -58177,10 +58181,10 @@ aJn
 aKU
 aMF
 aNa
-aNl
-aNl
 aNK
-aNP
+aNK
+aNK
+aNK
 asj
 aKU
 abg
@@ -58320,9 +58324,9 @@ aKU
 aMF
 aNb
 aNm
-aNl
-aNK
-aNP
+dXs
+aNm
+aNm
 asj
 aKU
 abg
@@ -58459,13 +58463,13 @@ arJ
 arJ
 arJ
 aKU
-aME
-aME
-aME
-aME
-aME
-aME
-aME
+aMF
+aMF
+aMF
+aMF
+aMF
+aMF
+aMF
 aKU
 abg
 aOk
