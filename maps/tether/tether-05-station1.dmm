@@ -23035,9 +23035,6 @@
 	dir = 4;
 	fancy_shuttle_tag = lifeboat2
 	},
-/obj/machinery/atmospherics/unary/engine/fancy_shuttle{
-	dir = 8
-	},
 /obj/effect/fancy_shuttle_floor_preview/lifeboat2{
 	dir = 4
 	},
@@ -29360,7 +29357,7 @@
 	frequency = 1380;
 	id_tag = "large_escape_pod_1";
 	pixel_x = -28;
-	pixel_y = -28
+	pixel_y = -24
 	},
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = lifeboat2
@@ -35163,14 +35160,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/station/cargo)
-"wTw" = (
-/obj/machinery/atmospherics/unary/engine/fancy_shuttle{
-	dir = 8
-	},
-/turf/simulated/wall/fancy_shuttle{
-	fancy_shuttle_tag = lifeboat2
-	},
-/area/shuttle/large_escape_pod1)
 "wUa" = (
 /obj/machinery/door/blast/shutters{
 	dir = 2;
@@ -48920,7 +48909,7 @@ aac
 aam
 aaa
 aaa
-wTw
+xIm
 xIm
 xIm
 xIm
