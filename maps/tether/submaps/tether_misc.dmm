@@ -2323,17 +2323,6 @@
 	},
 /turf/unsimulated/floor/steel,
 /area/centcom/control)
-"nz" = (
-/obj/structure/bed/chair/shuttle{
-	dir = 8
-	},
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tram"
-	},
-/turf/space,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
 "nV" = (
 /obj/item/toy/chess/rook_black,
 /turf/simulated/floor/holofloor/wmarble,
@@ -3032,17 +3021,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/centcom/simulated/restaurant)
-"Ey" = (
-/obj/structure/bed/chair/shuttle{
-	dir = 4
-	},
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tram"
-	},
-/turf/space,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
 "EO" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -4261,14 +4239,6 @@
 "Ux" = (
 /turf/simulated/shuttle/wall/alien,
 /area/unknown/dorm1)
-"Uy" = (
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tram"
-	},
-/turf/space,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
 "Uz" = (
 /obj/machinery/recharge_station,
 /turf/simulated/shuttle/floor/alienplating,
@@ -17337,14 +17307,14 @@ sN
 sN
 sN
 ZE
-Ey
-Uy
+tz
+VZ
 VZ
 xZ
 ZE
 Mb
 NW
-Uy
+VZ
 GL
 qa
 ZE
@@ -18189,14 +18159,14 @@ sN
 sN
 sN
 ZE
-nz
-Uy
+xm
+VZ
 VZ
 xZ
 ZE
 NC
 Pr
-Uy
+VZ
 JC
 OT
 ZE
