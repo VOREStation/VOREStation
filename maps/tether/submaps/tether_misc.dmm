@@ -2018,18 +2018,6 @@
 /obj/effect/floor_decal/industrial/danger,
 /turf/simulated/floor/tiled/steel,
 /area/centcom/simulated/main_hall)
-"he" = (
-/obj/structure/bed/chair/sofa/bench/left{
-	dir = 4;
-	padding_color = "#99AAFF"
-	},
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tram"
-	},
-/turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
 "hg" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /obj/effect/landmark{
@@ -2206,19 +2194,6 @@
 "jf" = (
 /turf/space/transit/north,
 /area/space)
-"jA" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tram"
-	},
-/obj/structure/table/standard,
-/obj/random/forgotten_tram,
-/turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
 "jL" = (
 /obj/effect/floor_decal/techfloor/orange{
 	dir = 8
@@ -2295,14 +2270,14 @@
 /turf/simulated/floor/tiled/techfloor/grid/transit,
 /area/space)
 "lW" = (
-/obj/random/forgotten_tram,
-/obj/structure/bed/chair/sofa/bench/left{
-	dir = 4;
-	padding_color = "#99AAFF"
-	},
+/obj/structure/table/standard,
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "tram"
 	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/random/forgotten_tram,
 /turf/simulated/floor/tiled,
 /area/shuttle/escape{
 	base_turf = /turf/simulated/floor/tiled/techfloor/grid
@@ -2349,27 +2324,13 @@
 /turf/unsimulated/floor/steel,
 /area/centcom/control)
 "nz" = (
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tram"
-	},
-/obj/structure/closet/walllocker/medical/west{
-	dir = 1;
-	pixel_x = 0;
-	pixel_y = -32
-	},
-/obj/structure/bed/chair/shuttle_padded{
+/obj/structure/bed/chair/shuttle{
 	dir = 8
 	},
-/turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
-"nB" = (
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "tram"
 	},
-/obj/machinery/vending/snack,
-/turf/simulated/floor/tiled,
+/turf/space,
 /area/shuttle/escape{
 	base_turf = /turf/simulated/floor/tiled/techfloor/grid
 	})
@@ -2380,22 +2341,6 @@
 "nW" = (
 /turf/simulated/floor/holofloor/wood,
 /area/holodeck/source_chess)
-"nZ" = (
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tram"
-	},
-/obj/structure/closet/walllocker/emerglocker/east{
-	dir = 2;
-	pixel_x = 0;
-	pixel_y = 32
-	},
-/obj/structure/bed/chair/shuttle_padded{
-	dir = 4
-	},
-/turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
 "oI" = (
 /obj/effect/step_trigger/teleporter/planetary_fall/virgo3b,
 /turf/space/transit/east,
@@ -2483,12 +2428,14 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/centcom/simulated/terminal)
 "qa" = (
-/obj/machinery/light{
-	dir = 8
+/obj/structure/bed/chair/sofa/bench/right{
+	dir = 4;
+	padding_color = "#99AAFF"
 	},
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "tram"
 	},
+/obj/machinery/light,
 /turf/simulated/floor/tiled,
 /area/shuttle/escape{
 	base_turf = /turf/simulated/floor/tiled/techfloor/grid
@@ -2517,30 +2464,32 @@
 /turf/space,
 /turf/space/internal_edge/bottomright,
 /area/space)
-"qV" = (
-/obj/effect/floor_decal/sign/small_6,
-/turf/simulated/floor/holofloor/wood,
-/area/holodeck/source_chess)
-"ra" = (
+"qQ" = (
+/obj/structure/closet/walllocker_double/hydrant/west,
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "tram"
-	},
-/obj/structure/closet/walllocker/emerglocker/east{
-	dir = 2;
-	pixel_x = 0;
-	pixel_y = 32
-	},
-/obj/structure/bed/chair/shuttle_padded{
-	dir = 8
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/escape{
 	base_turf = /turf/simulated/floor/tiled/techfloor/grid
 	})
+"qV" = (
+/obj/effect/floor_decal/sign/small_6,
+/turf/simulated/floor/holofloor/wood,
+/area/holodeck/source_chess)
 "ru" = (
 /obj/item/toy/chess/pawn_black,
 /turf/simulated/floor/holofloor/bmarble,
 /area/holodeck/source_chess)
+"rD" = (
+/obj/structure/closet/walllocker_double/hydrant/east,
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "tram"
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/escape{
+	base_turf = /turf/simulated/floor/tiled/techfloor/grid
+	})
 "rE" = (
 /obj/machinery/telecomms/bus/preset_cent,
 /turf/unsimulated/floor/steel,
@@ -2595,19 +2544,6 @@
 /obj/effect/overmap/bluespace_rift,
 /turf/unsimulated/map,
 /area/overmap)
-"sH" = (
-/obj/structure/closet/walllocker_double/hydrant/south,
-/obj/structure/bed/chair/sofa/bench/right{
-	dir = 4;
-	padding_color = "#99AAFF"
-	},
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tram"
-	},
-/turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
 "sN" = (
 /turf/simulated/floor/maglev,
 /area/centcom/simulated/terminal)
@@ -2638,6 +2574,17 @@
 	},
 /turf/unsimulated/wall,
 /area/space)
+"tz" = (
+/obj/structure/bed/chair/shuttle{
+	dir = 4
+	},
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "tram"
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/escape{
+	base_turf = /turf/simulated/floor/tiled/techfloor/grid
+	})
 "tC" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
@@ -2653,32 +2600,6 @@
 	},
 /turf/space/transit/east,
 /area/space)
-"tH" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/random/forgotten_tram,
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tram"
-	},
-/obj/structure/table/standard,
-/obj/item/weapon/storage/firstaid/toxin,
-/obj/item/weapon/storage/firstaid/o2,
-/turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
-"tL" = (
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tram"
-	},
-/obj/structure/bed/chair/shuttle_padded{
-	dir = 4
-	},
-/turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
 "tV" = (
 /obj/structure/table/standard,
 /obj/random/forgotten_tram,
@@ -2732,15 +2653,13 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/centcom/simulated/terminal)
 "uE" = (
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "escape_shuttle_hatch_station";
-	locked = 1;
-	name = "Shuttle Hatch"
-	},
+/obj/structure/table/standard,
+/obj/random/forgotten_tram,
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "tram"
+	},
+/obj/machinery/light{
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/escape{
@@ -2832,13 +2751,12 @@
 /turf/unsimulated/floor/steel,
 /area/centcom/control)
 "xm" = (
-/obj/machinery/light,
-/obj/random/forgotten_tram,
+/obj/structure/bed/chair/shuttle{
+	dir = 8
+	},
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "tram"
 	},
-/obj/random/forgotten_tram,
-/obj/structure/table/standard,
 /turf/simulated/floor/tiled,
 /area/shuttle/escape{
 	base_turf = /turf/simulated/floor/tiled/techfloor/grid
@@ -2881,6 +2799,15 @@
 	},
 /turf/simulated/floor/wood,
 /area/centcom/simulated/bar)
+"xZ" = (
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "tram"
+	},
+/obj/machinery/light,
+/turf/simulated/floor/tiled,
+/area/shuttle/escape{
+	base_turf = /turf/simulated/floor/tiled/techfloor/grid
+	})
 "ya" = (
 /obj/effect/step_trigger/thrower{
 	affect_ghosts = 1;
@@ -2960,33 +2887,11 @@
 /area/centcom/simulated/security{
 	name = "\improper CentCom Security Arrivals"
 	})
-"zK" = (
-/obj/effect/shuttle_landmark{
-	base_area = /area/centcom/simulated/terminal;
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid;
-	docking_controller = null;
-	landmark_tag = "escape_cc";
-	name = "Escape Centcom"
-	},
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "escape_shuttle_hatch_station";
-	locked = 1;
-	name = "Shuttle Hatch"
-	},
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tram"
-	},
-/turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
 "As" = (
 /obj/machinery/door/airlock/glass_external{
 	frequency = 1380;
 	icon_state = "door_locked";
-	id_tag = "escape_shuttle_hatch_offsite";
+	id_tag = "escape_shuttle_hatch_station";
 	locked = 1;
 	name = "Shuttle Hatch"
 	},
@@ -3128,29 +3033,13 @@
 /turf/simulated/floor/wood,
 /area/centcom/simulated/restaurant)
 "Ey" = (
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tram"
-	},
-/obj/structure/closet/walllocker/medical/west{
-	dir = 1;
-	pixel_x = 0;
-	pixel_y = -32
-	},
-/obj/structure/bed/chair/shuttle_padded{
+/obj/structure/bed/chair/shuttle{
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
-"EC" = (
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "tram"
 	},
-/obj/machinery/status_display{
-	pixel_x = 34
-	},
-/turf/simulated/floor/tiled,
+/turf/space,
 /area/shuttle/escape{
 	base_turf = /turf/simulated/floor/tiled/techfloor/grid
 	})
@@ -3179,18 +3068,6 @@
 	icon_state = "rock"
 	},
 /area/space)
-"Fz" = (
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tram"
-	},
-/obj/structure/bed/chair/sofa/bench/right{
-	dir = 8;
-	padding_color = "#99AAFF"
-	},
-/turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
 "FC" = (
 /turf/simulated/floor/wood,
 /area/centcom/simulated/bar)
@@ -3222,6 +3099,18 @@
 /obj/effect/overlay/palmtree_l,
 /turf/unsimulated/beach/sand,
 /area/beach)
+"GL" = (
+/obj/structure/bed/chair/sofa/bench/left{
+	dir = 4;
+	padding_color = "#99AAFF"
+	},
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "tram"
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/escape{
+	base_turf = /turf/simulated/floor/tiled/techfloor/grid
+	})
 "GU" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -3235,6 +3124,17 @@
 /obj/item/toy/chess/king_white,
 /turf/simulated/floor/holofloor/bmarble,
 /area/holodeck/source_chess)
+"GX" = (
+/obj/machinery/status_display{
+	pixel_x = -32
+	},
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "tram"
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/escape{
+	base_turf = /turf/simulated/floor/tiled/techfloor/grid
+	})
 "Hf" = (
 /obj/effect/shuttle_landmark/transit{
 	base_area = /area/space;
@@ -3298,14 +3198,6 @@
 /obj/machinery/telecomms/hub/preset_cent,
 /turf/unsimulated/floor/steel,
 /area/centcom/control)
-"IN" = (
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tram"
-	},
-/turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
 "IR" = (
 /obj/effect/step_trigger/thrower{
 	affect_ghosts = 1;
@@ -3324,6 +3216,17 @@
 /obj/item/toy/chess/bishop_white,
 /turf/simulated/floor/holofloor/bmarble,
 /area/holodeck/source_chess)
+"Jw" = (
+/obj/machinery/status_display{
+	pixel_x = 32
+	},
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "tram"
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/escape{
+	base_turf = /turf/simulated/floor/tiled/techfloor/grid
+	})
 "Jz" = (
 /obj/effect/step_trigger/teleporter/random{
 	affect_ghosts = 1;
@@ -3341,6 +3244,18 @@
 /obj/machinery/smartfridge/drinks,
 /turf/simulated/floor/wood,
 /area/centcom/simulated/bar)
+"JC" = (
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "tram"
+	},
+/obj/structure/bed/chair/sofa/bench/right{
+	dir = 8;
+	padding_color = "#99AAFF"
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/escape{
+	base_turf = /turf/simulated/floor/tiled/techfloor/grid
+	})
 "JI" = (
 /obj/item/toy/chess/rook_white,
 /turf/simulated/floor/holofloor/bmarble,
@@ -3421,15 +3336,16 @@
 	base_turf = /turf/simulated/floor/tiled/techfloor/grid
 	})
 "Lu" = (
-/obj/structure/closet/walllocker_double/hydrant/north,
-/obj/structure/bed/chair/sofa/bench/right{
-	dir = 8;
-	padding_color = "#99AAFF"
+/obj/effect/shuttle_landmark{
+	base_area = /area/centcom/simulated/terminal;
+	base_turf = /turf/simulated/floor/tiled/techfloor/grid;
+	docking_controller = null;
+	landmark_tag = "escape_cc";
+	name = "Escape Centcom"
 	},
-/obj/effect/floor_decal/fancy_shuttle{
+/turf/simulated/wall/fancy_shuttle{
 	fancy_shuttle_tag = "tram"
 	},
-/turf/simulated/floor/tiled,
 /area/shuttle/escape{
 	base_turf = /turf/simulated/floor/tiled/techfloor/grid
 	})
@@ -3454,12 +3370,15 @@
 /turf/simulated/floor/tiled/white,
 /area/centcom/simulated/medical)
 "Mb" = (
-/obj/structure/bed/chair/sofa/bench/right{
+/obj/structure/bed/chair/sofa/bench/left{
 	dir = 4;
 	padding_color = "#99AAFF"
 	},
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "tram"
+	},
+/obj/machinery/light{
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/escape{
@@ -3472,17 +3391,6 @@
 /obj/item/toy/chess/bishop_white,
 /turf/simulated/floor/holofloor/wmarble,
 /area/holodeck/source_chess)
-"Mm" = (
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tram"
-	},
-/obj/structure/bed/chair/shuttle_padded{
-	dir = 8
-	},
-/turf/simulated/floor/tiled,
-/area/shuttle/escape{
-	base_turf = /turf/simulated/floor/tiled/techfloor/grid
-	})
 "MB" = (
 /obj/machinery/sleeper{
 	dir = 4
@@ -3561,20 +3469,21 @@
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "tram"
 	},
-/obj/structure/bed/chair/sofa/bench/left{
+/obj/structure/bed/chair/sofa/bench/right{
 	dir = 8;
 	padding_color = "#99AAFF"
+	},
+/obj/machinery/light{
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/escape{
 	base_turf = /turf/simulated/floor/tiled/techfloor/grid
 	})
 "ND" = (
+/obj/structure/closet/emcloset,
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "tram"
-	},
-/obj/machinery/vending/cola/soft{
-	dir = 1
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/escape{
@@ -3588,13 +3497,14 @@
 /turf/simulated/floor/wood,
 /area/centcom/simulated/bar)
 "NW" = (
-/obj/machinery/light{
-	dir = 8
+/obj/structure/bed/chair/sofa/bench/right{
+	dir = 4;
+	padding_color = "#99AAFF"
 	},
-/obj/random/forgotten_tram,
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "tram"
 	},
+/obj/random/forgotten_tram,
 /turf/simulated/floor/tiled,
 /area/shuttle/escape{
 	base_turf = /turf/simulated/floor/tiled/techfloor/grid
@@ -3621,6 +3531,20 @@
 /area/centcom/simulated/security{
 	name = "\improper CentCom Security Arrivals"
 	})
+"OT" = (
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "tram"
+	},
+/obj/structure/bed/chair/sofa/bench/left{
+	dir = 8;
+	padding_color = "#99AAFF"
+	},
+/obj/random/forgotten_tram,
+/obj/machinery/light,
+/turf/simulated/floor/tiled,
+/area/shuttle/escape{
+	base_turf = /turf/simulated/floor/tiled/techfloor/grid
+	})
 "OY" = (
 /turf/unsimulated/map,
 /area/overmap)
@@ -3644,13 +3568,13 @@
 /turf/space/transit/west,
 /area/space)
 "Pk" = (
+/obj/effect/fancy_shuttle_floor_preview/orangeline{
+	dir = 1;
+	plane = -45
+	},
 /obj/effect/fancy_shuttle/orangeline{
 	dir = 1;
 	fancy_shuttle_tag = "tram";
-	plane = -50
-	},
-/obj/effect/fancy_shuttle_floor_preview/orangeline{
-	dir = 1;
 	plane = -45
 	},
 /turf/simulated/wall/fancy_shuttle{
@@ -3678,13 +3602,13 @@
 /turf/simulated/floor/wood,
 /area/centcom/simulated/restaurant)
 "Pr" = (
-/obj/machinery/light{
-	dir = 4
-	},
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "tram"
 	},
-/obj/structure/table/standard,
+/obj/structure/bed/chair/sofa/bench/left{
+	dir = 8;
+	padding_color = "#99AAFF"
+	},
 /turf/simulated/floor/tiled,
 /area/shuttle/escape{
 	base_turf = /turf/simulated/floor/tiled/techfloor/grid
@@ -3787,13 +3711,12 @@
 /turf/simulated/floor/tiled/white,
 /area/centcom/simulated/medical)
 "RA" = (
-/obj/machinery/light,
+/obj/structure/table/standard,
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "tram"
 	},
-/obj/structure/table/standard,
-/obj/item/weapon/storage/firstaid/toxin,
-/obj/item/weapon/storage/firstaid/o2,
+/obj/machinery/light,
+/obj/random/forgotten_tram,
 /turf/simulated/floor/tiled,
 /area/shuttle/escape{
 	base_turf = /turf/simulated/floor/tiled/techfloor/grid
@@ -4167,13 +4090,11 @@
 /turf/simulated/shuttle/floor/alienplating,
 /area/unknown/dorm2)
 "TO" = (
-/obj/structure/bed/chair/sofa/bench/left{
-	dir = 8;
-	padding_color = "#99AAFF"
-	},
-/obj/random/forgotten_tram,
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "tram"
+	},
+/obj/machinery/light{
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/escape{
@@ -4344,10 +4265,7 @@
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "tram"
 	},
-/obj/machinery/status_display{
-	pixel_x = -34
-	},
-/turf/simulated/floor/tiled,
+/turf/space,
 /area/shuttle/escape{
 	base_turf = /turf/simulated/floor/tiled/techfloor/grid
 	})
@@ -4718,6 +4636,14 @@
 	},
 /turf/simulated/floor/tiled,
 /area/centcom/simulated/terminal)
+"VZ" = (
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "tram"
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/escape{
+	base_turf = /turf/simulated/floor/tiled/techfloor/grid
+	})
 "Wc" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/multi_tile/glass,
@@ -5407,14 +5333,14 @@
 /turf/simulated/floor/holofloor/wood,
 /area/holodeck/source_chess)
 "YZ" = (
-/obj/effect/floor_decal/techfloor/orange{
-	dir = 4
-	},
 /obj/structure/railing{
 	dir = 4
 	},
 /obj/structure/railing{
 	dir = 1
+	},
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 5
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/centcom/simulated/terminal)
@@ -17268,21 +17194,21 @@ ET
 ET
 ET
 ET
-ET
 ZE
 ZE
-zK
+Lu
+As
+As
+ZE
 ZE
 RN
 RN
-ZE
-RN
 RN
 ZE
-RN
-RN
 ZE
-uE
+As
+As
+ZE
 ZE
 Pk
 ET
@@ -17410,22 +17336,22 @@ sN
 sN
 sN
 sN
-sN
 ZE
-tL
-IN
+Ey
+Uy
+VZ
+xZ
 ZE
-lW
 Mb
 NW
-he
-Mb
+Uy
+GL
 qa
-he
-sH
 ZE
-IN
-tL
+TO
+VZ
+VZ
+tz
 ZE
 sN
 sN
@@ -17552,21 +17478,21 @@ ET
 ET
 ET
 ET
-ET
 ZE
-tH
-IN
-ZE
-IN
-IN
-IN
-IN
-IN
-IN
-IN
-IN
-ZE
-IN
+lW
+VZ
+VZ
+VZ
+qQ
+VZ
+VZ
+VZ
+VZ
+VZ
+GX
+VZ
+VZ
+VZ
 RA
 ZE
 ET
@@ -17694,22 +17620,22 @@ ET
 ET
 ET
 ET
-ET
-ZE
-ra
-IN
-Uy
-IN
+RN
+xm
+VZ
+VZ
+VZ
 fi
 tV
 Py
+VZ
 fi
 tV
 Py
-IN
-Uy
-IN
-nz
+VZ
+VZ
+VZ
+xm
 ZE
 ET
 ET
@@ -17836,21 +17762,21 @@ ET
 ET
 ET
 ET
-ET
-ZE
-nB
-IN
-IN
-IN
+RN
+ND
+VZ
+VZ
+VZ
 Lm
 tV
 Pn
+VZ
 Lm
 tV
 Pn
-IN
-IN
-IN
+VZ
+VZ
+VZ
 ND
 ZE
 ET
@@ -17978,22 +17904,22 @@ ET
 ET
 ET
 ET
-ET
-ZE
-nZ
-IN
-EC
-IN
+RN
+tz
+VZ
+VZ
+VZ
 MP
 tV
 PU
+VZ
 MP
 tV
 PU
-IN
-EC
-IN
-Ey
+VZ
+VZ
+VZ
+tz
 ZE
 ET
 ET
@@ -18120,22 +18046,22 @@ ET
 ET
 ET
 ET
-ET
 ZE
-jA
-IN
-ZE
-IN
-IN
-IN
-IN
-IN
-IN
-IN
-IN
-ZE
-IN
-xm
+uE
+VZ
+VZ
+VZ
+Jw
+VZ
+VZ
+VZ
+VZ
+VZ
+rD
+VZ
+VZ
+VZ
+RA
 ZE
 ET
 ET
@@ -18262,22 +18188,22 @@ sN
 sN
 sN
 sN
-sN
 ZE
-Mm
-IN
+nz
+Uy
+VZ
+xZ
 ZE
-Lu
 NC
 Pr
-Fz
-NC
-Pr
-Fz
+Uy
+JC
+OT
+ZE
 TO
-ZE
-IN
-Mm
+VZ
+VZ
+xm
 ZE
 sN
 sN
@@ -18404,21 +18330,21 @@ ET
 ET
 ET
 ET
-ET
+ZE
+ZE
+ZE
+As
+As
+ZE
+ZE
+RN
+RN
+RN
 ZE
 ZE
 As
-ZE
-RN
-RN
-ZE
-RN
-RN
-ZE
-RN
-RN
-ZE
 As
+ZE
 ZE
 ZE
 ET
