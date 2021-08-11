@@ -11870,6 +11870,9 @@
 	landmark_tag = "escape_station";
 	name = "Tether Surface Base"
 	},
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/tether/surfacebase/tram)
 "aub" = (
@@ -19317,13 +19320,13 @@
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_dining)
 "aFU" = (
-/obj/effect/floor_decal/techfloor/orange{
-	dir = 8
-	},
 /obj/structure/railing{
 	dir = 8
 	},
 /obj/structure/railing,
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 10
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/tether/surfacebase/tram)
 "aFV" = (
@@ -32426,6 +32429,12 @@
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/brig/bathroom)
+"eDV" = (
+/obj/effect/floor_decal/techfloor/orange/corner{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/tether/surfacebase/tram)
 "eEn" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
@@ -33103,6 +33112,18 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/carpet/gaycarpet,
 /area/tether/surfacebase/funny/clownoffice)
+"gIa" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/tether/surfacebase/tram)
 "gIt" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
@@ -35089,14 +35110,8 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_one_hall)
 "mtl" = (
-/obj/effect/floor_decal/techfloor/orange{
+/obj/effect/floor_decal/techfloor/orange/corner{
 	dir = 8
-	},
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/structure/railing{
-	dir = 1
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/tether/surfacebase/tram)
@@ -39882,7 +39897,7 @@ aad
 aad
 aad
 aad
-aad
+bcV
 aad
 aad
 aad
@@ -40021,7 +40036,7 @@ aah
 aah
 aah
 aad
-bcV
+aad
 aad
 aad
 aad
@@ -55669,12 +55684,12 @@ aub
 aub
 aub
 aub
+aub
 wXW
 atA
 atA
 atA
-mtl
-auc
+gIa
 auc
 auc
 auc
@@ -55802,21 +55817,21 @@ aud
 aud
 aud
 aud
-aud
+mtl
 aua
-aud
-aud
-aud
-aud
-aud
-aud
-aud
-aud
-aud
-aud
-aud
-aud
-aud
+atz
+atz
+atz
+atz
+atz
+atz
+atz
+atz
+atz
+atz
+atz
+atz
+eDV
 aud
 aud
 aud
