@@ -429,7 +429,7 @@
 							playsound(linked_destroy, 'sound/machines/destructive_analyzer.ogg', 50, 1)
 							qdel(ST)
 							linked_destroy.icon_state = "d_analyzer"
-							return TRUE
+							return
 
 					for(var/T in linked_destroy.loaded_item.origin_tech)
 						files.UpdateTech(T, linked_destroy.loaded_item.origin_tech[T])
