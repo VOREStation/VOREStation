@@ -18810,7 +18810,7 @@
 /area/quartermaster/foyer)
 "fyi" = (
 /turf/simulated/wall/fancy_shuttle/window{
-	fancy_shuttle_tag = lifeboat2
+	fancy_shuttle_tag = "lifeboat2"
 	},
 /area/shuttle/large_escape_pod1)
 "fyF" = (
@@ -21529,7 +21529,7 @@
 	name = "Tether Station"
 	},
 /turf/simulated/wall/fancy_shuttle/window{
-	fancy_shuttle_tag = lifeboat2
+	fancy_shuttle_tag = "lifeboat2"
 	},
 /area/shuttle/large_escape_pod1)
 "iaf" = (
@@ -23033,13 +23033,13 @@
 "jRT" = (
 /obj/effect/fancy_shuttle/lifeboat2{
 	dir = 4;
-	fancy_shuttle_tag = lifeboat2
+	fancy_shuttle_tag = "lifeboat2"
 	},
 /obj/effect/fancy_shuttle_floor_preview/lifeboat2{
 	dir = 4
 	},
 /turf/simulated/wall/fancy_shuttle{
-	fancy_shuttle_tag = lifeboat2
+	fancy_shuttle_tag = "lifeboat2"
 	},
 /area/shuttle/large_escape_pod1)
 "jSj" = (
@@ -35791,7 +35791,7 @@
 /area/maintenance/station/cargo)
 "xIm" = (
 /turf/simulated/wall/fancy_shuttle{
-	fancy_shuttle_tag = lifeboat2
+	fancy_shuttle_tag = "lifeboat2"
 	},
 /area/shuttle/large_escape_pod1)
 "xIp" = (
