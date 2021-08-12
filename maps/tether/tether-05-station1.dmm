@@ -21024,7 +21024,7 @@
 	dir = 1
 	},
 /obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = lifeboat2
+	fancy_shuttle_tag = "lifeboat2"
 	},
 /obj/structure/bed/chair/shuttle,
 /turf/simulated/floor/tiled,
@@ -21049,7 +21049,7 @@
 /obj/structure/closet/walllocker/emerglocker/north,
 /obj/structure/bed/chair/shuttle,
 /obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = lifeboat2
+	fancy_shuttle_tag = "lifeboat2"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/large_escape_pod1)
@@ -21239,7 +21239,7 @@
 "hPw" = (
 /obj/machinery/light,
 /obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = lifeboat2
+	fancy_shuttle_tag = "lifeboat2"
 	},
 /obj/structure/bed/chair/shuttle{
 	dir = 1
@@ -23086,7 +23086,7 @@
 "jSR" = (
 /obj/effect/map_helper/airlock/door/simple,
 /obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = lifeboat2
+	fancy_shuttle_tag = "lifeboat2"
 	},
 /obj/machinery/door/airlock/glass_external,
 /turf/simulated/floor/tiled,
@@ -29360,7 +29360,7 @@
 	pixel_y = -24
 	},
 /obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = lifeboat2
+	fancy_shuttle_tag = "lifeboat2"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/large_escape_pod1)
@@ -29395,7 +29395,7 @@
 "qcz" = (
 /obj/structure/bed/chair/shuttle,
 /obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = lifeboat2
+	fancy_shuttle_tag = "lifeboat2"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/large_escape_pod1)
@@ -29668,7 +29668,7 @@
 /area/hallway/station/atrium)
 "qqe" = (
 /obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = lifeboat2
+	fancy_shuttle_tag = "lifeboat2"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/large_escape_pod1)
@@ -29806,7 +29806,7 @@
 	dir = 1
 	},
 /obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = lifeboat2
+	fancy_shuttle_tag = "lifeboat2"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/large_escape_pod1)
@@ -29829,7 +29829,7 @@
 	dir = 1
 	},
 /obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = lifeboat2
+	fancy_shuttle_tag = "lifeboat2"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/large_escape_pod1)
@@ -35071,7 +35071,7 @@
 /area/tether/exploration/pathfinder_office)
 "wPp" = (
 /obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = lifeboat2
+	fancy_shuttle_tag = "lifeboat2"
 	},
 /obj/machinery/status_display{
 	pixel_y = 32
