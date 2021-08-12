@@ -60,7 +60,7 @@
 //VOREStation Add Start
 /obj/structure/closet/walllocker/medical
 	name = "first-aid closet"
-	desc = "It's wall-mounted storage unit for first aid supplies."
+	desc = "It's a wall-mounted storage unit for first aid supplies."
 	closet_appearance = /decl/closet_appearance/wall/medical
 
 /obj/structure/closet/walllocker/medical/north
@@ -92,6 +92,7 @@
 	wall_mounted = 1
 	plane = TURF_PLANE
 	layer = ABOVE_TURF_LAYER
+	door_anim_time = 0 //Unsupported
 
 /obj/structure/closet/walllocker_double/north
 	pixel_y = 32
