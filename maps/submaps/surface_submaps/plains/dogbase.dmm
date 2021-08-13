@@ -13,12 +13,13 @@
 /mob/living/simple_mob/animal/wolf/direwolf/dog/sec{
 	desc = "The biggest and baddest guard dog around.";
 	faction = "syndicate";
+	max_co2 = 0;
 	max_tox = 0;
 	name = "syndicate guard dog"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/outdoors/dirt/virgo3b,
+/turf/simulated/floor/outdoors/dirt,
 /area/submap/DogBase)
 "ay" = (
 /obj/structure/dogbed,
@@ -26,7 +27,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/remains/tajaran,
 /obj/random/maintenance/medical,
-/turf/simulated/floor/outdoors/dirt/virgo3b,
+/turf/simulated/floor/outdoors/dirt,
 /area/submap/DogBase)
 "aF" = (
 /obj/structure/sign/securearea,
@@ -40,7 +41,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/weapon/bone,
 /obj/random/maintenance/security,
-/turf/simulated/floor/outdoors/dirt/virgo3b,
+/turf/simulated/floor/outdoors/dirt,
 /area/submap/DogBase)
 "bl" = (
 /obj/machinery/light{
@@ -49,7 +50,7 @@
 /obj/effect/floor_decal/industrial/danger{
 	dir = 1
 	},
-/turf/simulated/floor/virgo3b,
+/turf/simulated/floor,
 /area/submap/DogBase)
 "bw" = (
 /obj/item/weapon/storage/belt/janitor,
@@ -103,6 +104,7 @@
 /mob/living/simple_mob/animal/wolf/direwolf/dog/sec{
 	desc = "The biggest and baddest guard dog around.";
 	faction = "syndicate";
+	max_co2 = 0;
 	max_tox = 0;
 	name = "syndicate guard dog"
 	},
@@ -120,7 +122,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/random/maintenance/cargo,
-/turf/simulated/floor/outdoors/dirt/virgo3b,
+/turf/simulated/floor/outdoors/dirt,
 /area/submap/DogBase)
 "hl" = (
 /obj/effect/floor_decal/borderfloor/corner,
@@ -157,7 +159,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/weapon/bone/ribs,
 /obj/random/maintenance/research,
-/turf/simulated/floor/outdoors/dirt/virgo3b,
+/turf/simulated/floor/outdoors/dirt,
 /area/submap/DogBase)
 "jz" = (
 /obj/machinery/vending/cigarette,
@@ -181,14 +183,14 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/random/maintenance/security,
-/turf/simulated/floor/outdoors/dirt/virgo3b,
+/turf/simulated/floor/outdoors/dirt,
 /area/submap/DogBase)
 "kl" = (
 /obj/effect/decal/remains/human,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/random/maintenance/cargo,
-/turf/simulated/floor/outdoors/dirt/virgo3b,
+/turf/simulated/floor/outdoors/dirt,
 /area/submap/DogBase)
 "km" = (
 /obj/effect/decal/remains/human,
@@ -219,7 +221,7 @@
 "lk" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/outdoors/dirt/virgo3b,
+/turf/simulated/floor/outdoors/dirt,
 /area/submap/DogBase)
 "lm" = (
 /obj/structure/table/woodentable,
@@ -232,13 +234,13 @@
 /obj/effect/floor_decal/industrial/danger{
 	dir = 1
 	},
-/turf/simulated/floor/virgo3b,
+/turf/simulated/floor,
 /area/submap/DogBase)
 "lN" = (
 /obj/machinery/porta_turret/poi{
 	faction = "syndicate"
 	},
-/turf/simulated/floor/virgo3b,
+/turf/simulated/floor,
 /area/submap/DogBase)
 "lX" = (
 /obj/effect/floor_decal/borderfloor,
@@ -259,7 +261,7 @@
 "oW" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/outdoors/dirt/virgo3b,
+/turf/simulated/floor/outdoors/dirt,
 /area/template_noop)
 "pR" = (
 /obj/structure/bed,
@@ -293,7 +295,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/weapon/bone,
 /obj/random/maintenance/security,
-/turf/simulated/floor/outdoors/dirt/virgo3b,
+/turf/simulated/floor/outdoors/dirt,
 /area/submap/DogBase)
 "qO" = (
 /obj/structure/bed,
@@ -311,6 +313,7 @@
 /mob/living/simple_mob/animal/wolf/direwolf/dog/sec{
 	desc = "The biggest and baddest guard dog around.";
 	faction = "syndicate";
+	max_co2 = 0;
 	max_tox = 0;
 	name = "syndicate guard dog"
 	},
@@ -333,7 +336,7 @@
 /area/submap/DogBase)
 "tp" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/virgo3b,
+/turf/simulated/floor,
 /area/submap/DogBase)
 "tt" = (
 /obj/machinery/power/smes/buildable/point_of_interest,
@@ -388,6 +391,7 @@
 /mob/living/simple_mob/animal/wolf/direwolf/dog/sec{
 	desc = "The biggest and baddest guard dog around.";
 	faction = "syndicate";
+	max_co2 = 0;
 	max_tox = 0;
 	name = "syndicate guard dog"
 	},
@@ -424,7 +428,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/remains/human,
 /obj/random/contraband/nofail,
-/turf/simulated/floor/outdoors/dirt/virgo3b,
+/turf/simulated/floor/outdoors/dirt,
 /area/submap/DogBase)
 "yl" = (
 /obj/structure/dogbed,
@@ -432,7 +436,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/random/contraband/nofail,
-/turf/simulated/floor/outdoors/dirt/virgo3b,
+/turf/simulated/floor/outdoors/dirt,
 /area/submap/DogBase)
 "yx" = (
 /obj/machinery/door/airlock/external,
@@ -449,7 +453,7 @@
 "Am" = (
 /obj/machinery/door/blast/gate/thin,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/outdoors/dirt/virgo3b,
+/turf/simulated/floor/outdoors/dirt,
 /area/submap/DogBase)
 "AJ" = (
 /obj/machinery/door/airlock/engineering,
@@ -505,7 +509,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/weapon/bone,
 /obj/random/contraband/nofail,
-/turf/simulated/floor/outdoors/dirt/virgo3b,
+/turf/simulated/floor/outdoors/dirt,
 /area/submap/DogBase)
 "Dt" = (
 /obj/effect/floor_decal/borderfloor{
@@ -518,6 +522,7 @@
 /mob/living/simple_mob/animal/wolf/direwolf/dog/sec{
 	desc = "The biggest and baddest guard dog around.";
 	faction = "syndicate";
+	max_co2 = 0;
 	max_tox = 0;
 	name = "syndicate guard dog"
 	},
@@ -537,7 +542,7 @@
 "FD" = (
 /obj/structure/fence,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/outdoors/dirt/virgo3b,
+/turf/simulated/floor/outdoors/dirt,
 /area/submap/DogBase)
 "FO" = (
 /obj/machinery/light{
@@ -562,14 +567,14 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/random/maintenance/cargo,
-/turf/simulated/floor/outdoors/dirt/virgo3b,
+/turf/simulated/floor/outdoors/dirt,
 /area/submap/DogBase)
 "GB" = (
 /obj/structure/fence{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/outdoors/dirt/virgo3b,
+/turf/simulated/floor/outdoors/dirt,
 /area/submap/DogBase)
 "GJ" = (
 /obj/structure/closet/secure_closet/guncabinet,
@@ -582,7 +587,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/submap/DogBase)
 "Hl" = (
-/turf/simulated/floor/virgo3b,
+/turf/simulated/floor,
 /area/submap/DogBase)
 "HF" = (
 /obj/random/mob/merc/all,
@@ -603,7 +608,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/random/maintenance/research,
-/turf/simulated/floor/outdoors/dirt/virgo3b,
+/turf/simulated/floor/outdoors/dirt,
 /area/submap/DogBase)
 "Ki" = (
 /obj/machinery/power/port_gen/pacman,
@@ -682,22 +687,24 @@
 /mob/living/simple_mob/animal/wolf/direwolf/dog/sec{
 	desc = "The biggest and baddest guard dog around.";
 	faction = "syndicate";
+	max_co2 = 0;
 	max_tox = 0;
 	name = "syndicate guard dog"
 	},
-/turf/simulated/floor/outdoors/dirt/virgo3b,
+/turf/simulated/floor/outdoors/dirt,
 /area/submap/DogBase)
 "OR" = (
 /mob/living/simple_mob/animal/wolf/direwolf/dog/sec{
 	desc = "The biggest and baddest guard dog around.";
 	faction = "syndicate";
+	max_co2 = 0;
 	max_tox = 0;
 	name = "syndicate guard dog"
 	},
 /obj/effect/floor_decal/industrial/danger{
 	dir = 1
 	},
-/turf/simulated/floor/virgo3b,
+/turf/simulated/floor,
 /area/submap/DogBase)
 "OS" = (
 /obj/effect/floor_decal/corner/red/border,
@@ -745,12 +752,13 @@
 /mob/living/simple_mob/animal/wolf/direwolf/dog/sec{
 	desc = "The biggest and baddest guard dog around.";
 	faction = "syndicate";
+	max_co2 = 0;
 	max_tox = 0;
 	name = "syndicate guard dog"
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/outdoors/dirt/virgo3b,
+/turf/simulated/floor/outdoors/dirt,
 /area/template_noop)
 "Rz" = (
 /obj/structure/table/woodentable,
@@ -768,14 +776,14 @@
 /turf/simulated/floor/tiled/dark,
 /area/submap/DogBase)
 "SW" = (
-/turf/simulated/floor/outdoors/dirt/virgo3b,
+/turf/simulated/floor/outdoors/dirt,
 /area/template_noop)
 "To" = (
 /obj/structure/fence/corner{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/outdoors/dirt/virgo3b,
+/turf/simulated/floor/outdoors/dirt,
 /area/submap/DogBase)
 "UW" = (
 /obj/effect/floor_decal/borderfloor{
@@ -788,7 +796,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/random/maintenance/security,
-/turf/simulated/floor/outdoors/dirt/virgo3b,
+/turf/simulated/floor/outdoors/dirt,
 /area/submap/DogBase)
 "Vm" = (
 /obj/structure/loot_pile/maint/technical,
@@ -799,7 +807,7 @@
 /obj/effect/decal/remains/unathi,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/outdoors/dirt/virgo3b,
+/turf/simulated/floor/outdoors/dirt,
 /area/submap/DogBase)
 "VG" = (
 /obj/structure/bed/chair,
@@ -840,12 +848,13 @@
 /area/submap/DogBase)
 "Xz" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/outdoors/dirt/virgo3b,
+/turf/simulated/floor/outdoors/dirt,
 /area/template_noop)
 "Ya" = (
 /mob/living/simple_mob/animal/wolf/direwolf/dog/sec{
 	desc = "The biggest and baddest guard dog around.";
 	faction = "syndicate";
+	max_co2 = 0;
 	max_tox = 0;
 	name = "syndicate guard dog"
 	},
@@ -867,7 +876,7 @@
 /area/submap/DogBase)
 "YJ" = (
 /obj/random/mob/merc/all,
-/turf/simulated/floor/virgo3b,
+/turf/simulated/floor,
 /area/submap/DogBase)
 "YX" = (
 /obj/structure/dogbed,
@@ -875,7 +884,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/random/maintenance/medical,
-/turf/simulated/floor/outdoors/dirt/virgo3b,
+/turf/simulated/floor/outdoors/dirt,
 /area/submap/DogBase)
 "ZK" = (
 /obj/machinery/power/apc{

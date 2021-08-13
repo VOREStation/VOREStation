@@ -7,42 +7,48 @@
 /obj/structure/railing/grey{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/dirt/virgo3b,
+/turf/simulated/floor/outdoors/dirt,
 /area/submap/SyndiSniper)
 "c" = (
 /obj/structure/cliff/automatic/corner{
 	dir = 9
 	},
-/turf/simulated/floor/outdoors/dirt/virgo3b,
+/turf/simulated/floor/outdoors/dirt,
 /area/submap/SyndiSniper)
 "d" = (
-/turf/simulated/floor/outdoors/dirt/virgo3b,
+/turf/simulated/floor/outdoors/dirt,
 /area/submap/SyndiSniper)
 "j" = (
-/turf/simulated/floor/outdoors/rocks/virgo3b,
+/turf/simulated/floor/outdoors/rocks,
 /area/submap/SyndiSniper)
 "m" = (
 /obj/structure/cliff/automatic/corner{
 	dir = 6
 	},
-/turf/simulated/floor/outdoors/dirt/virgo3b,
+/turf/simulated/floor/outdoors/dirt,
 /area/submap/SyndiSniper)
 "p" = (
 /obj/structure/cliff/automatic/corner,
-/turf/simulated/floor/outdoors/dirt/virgo3b,
+/turf/simulated/floor/outdoors/dirt,
 /area/submap/SyndiSniper)
 "w" = (
 /obj/structure/table/sifwooden_reinforced,
 /obj/item/weapon/storage/mre/random,
 /obj/item/device/binoculars,
 /obj/item/device/radio/bluespacehandset/linked/talon_prelinked,
-/turf/simulated/floor/outdoors/rocks/virgo3b,
+/turf/simulated/floor/outdoors/rocks,
+/area/submap/SyndiSniper)
+"B" = (
+/obj/structure/ledge/ledge_stairs,
+/turf/simulated/floor/outdoors/rocks,
 /area/submap/SyndiSniper)
 "F" = (
 /mob/living/simple_mob/humanoid/merc/ranged/sniper{
-	max_tox = 0
+	max_co2 = 0;
+	max_tox = 0;
+	min_oxy = 0
 	},
-/turf/simulated/floor/outdoors/rocks/virgo3b,
+/turf/simulated/floor/outdoors/rocks,
 /area/submap/SyndiSniper)
 "J" = (
 /obj/structure/cliff/automatic{
@@ -51,7 +57,7 @@
 /obj/structure/railing/grey{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/dirt/virgo3b,
+/turf/simulated/floor/outdoors/dirt,
 /area/submap/SyndiSniper)
 "L" = (
 /obj/structure/cliff/automatic{
@@ -61,7 +67,7 @@
 	dir = 4
 	},
 /obj/structure/railing/grey,
-/turf/simulated/floor/outdoors/dirt/virgo3b,
+/turf/simulated/floor/outdoors/dirt,
 /area/submap/SyndiSniper)
 "M" = (
 /obj/structure/cliff/automatic/ramp{
@@ -70,7 +76,7 @@
 /obj/structure/railing/grey{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/dirt/virgo3b,
+/turf/simulated/floor/outdoors/dirt,
 /area/submap/SyndiSniper)
 "O" = (
 /obj/structure/cliff/automatic{
@@ -79,31 +85,33 @@
 /obj/structure/railing/grey{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/dirt/virgo3b,
+/turf/simulated/floor/outdoors/dirt,
 /area/submap/SyndiSniper)
 "T" = (
 /obj/structure/bed/chair,
 /mob/living/simple_mob/humanoid/merc/ranged/grenadier/poi{
-	max_tox = 0
+	max_co2 = 0;
+	max_tox = 0;
+	min_oxy = 0
 	},
-/turf/simulated/floor/outdoors/rocks/virgo3b,
+/turf/simulated/floor/outdoors/rocks,
 /area/submap/SyndiSniper)
 "V" = (
 /obj/structure/ledge/ledge_stairs,
-/turf/simulated/floor/outdoors/rocks/virgo3b,
+/turf/simulated/floor/outdoors/dirt,
 /area/submap/SyndiSniper)
 "Y" = (
 /obj/structure/cliff/automatic/ramp,
 /obj/structure/railing/grey{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/dirt/virgo3b,
+/turf/simulated/floor/outdoors/dirt,
 /area/submap/SyndiSniper)
 "Z" = (
 /obj/structure/ledge/ledge_stairs,
 /obj/structure/ledge/ledge_stairs,
 /obj/structure/barricade,
-/turf/simulated/floor/outdoors/rocks/virgo3b,
+/turf/simulated/floor/outdoors/rocks,
 /area/submap/SyndiSniper)
 
 (1,1,1) = {"
@@ -157,7 +165,7 @@ a
 (5,1,1) = {"
 d
 V
-V
+B
 Z
 j
 F
