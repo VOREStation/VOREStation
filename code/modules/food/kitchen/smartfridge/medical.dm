@@ -15,7 +15,7 @@
 /obj/machinery/smartfridge/secure/virology
 	name = "\improper Refrigerated Virus Storage"
 	desc = "A refrigerated storage unit for storing viral material."
-	icon_contents = "drink"
+	icon_contents = "misc"
 	req_access = list(access_virology)
 
 /obj/machinery/smartfridge/secure/virology/accept_check(var/obj/item/O as obj)

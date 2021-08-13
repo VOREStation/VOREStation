@@ -2,7 +2,7 @@
  * To map these, place down a /obj/effect/fancy_shuttle on the map and lay down /turf/simulated/wall/fancy_shuttle
  * everywhere that is included in the sprite. Up to you if you want to make some opacity=FALSE or density=FALSE
  * Set a matching fancy_shuttle_tag on your walls and on the /obj/effect/fancy_shuttle. Make sure it's unique.
- * 
+ *
  * If you want flooring to look like the shuttle flooring, put /obj/effect/floor_decal/fancy_shuttle on all of it.
  * You can add your own decals on top of that. Just make sure to put the fancy_shuttle decal lowest.
  * Also set the same tag as your /obj/effect/fancy_shuttle on the decals.
@@ -56,7 +56,7 @@ GLOBAL_LIST_EMPTY(fancy_shuttles)
 
 // Reinforced hull steel
 /turf/simulated/wall/fancy_shuttle/Initialize(mapload, materialtype, rmaterialtype, girdertype)
-	. = ..(mapload,  MAT_STEELHULL, MAT_STEELHULL, MAT_STEELHULL)	
+	. = ..(mapload,  MAT_STEELHULL, MAT_STEELHULL, MAT_STEELHULL)
 
 /turf/simulated/wall/fancy_shuttle/window
 	opacity = FALSE
@@ -108,14 +108,14 @@ GLOBAL_LIST_EMPTY(fancy_shuttles)
 	remove_underlay()
 
 	var/turf/path = get_base_turf_by_area(src) || /turf/space
-	
+
 	var/do_plane = null
 	var/do_state = initial(path.icon_state)
 	var/do_icon = initial(path.icon)
 	if(ispath(path, /turf/space))
 		do_plane = SPACE_PLANE
 		do_state = "white"
-		
+
 		under_EM = mutable_appearance('icons/turf/space.dmi', "white", plane = PLANE_O_LIGHTING_VISUAL)
 		under_EM.filters = filter(type = "alpha", icon = icon(src.icon, src.icon_state), flags = MASK_INVERSE)
 
@@ -128,7 +128,7 @@ GLOBAL_LIST_EMPTY(fancy_shuttles)
 /turf/simulated/wall/fancy_shuttle/update_icon()
 	if(!damage_overlays[1])
 		generate_overlays()
-	
+
 	cut_overlays()
 	if(fancy_shuttle_tag) // after a shuttle jump it won't be set anymore, but the shuttle jump proc will set our icon and state
 		var/obj/effect/fancy_shuttle/F = GLOB.fancy_shuttles[fancy_shuttle_tag]
@@ -320,6 +320,26 @@ GLOBAL_LIST_EMPTY(fancy_shuttles)
 	split_file = 'icons/turf/fancy_shuttles/lifeboat.dmi'
 /obj/effect/fancy_shuttle_floor_preview/lifeboat
 	icon = 'icons/turf/fancy_shuttles/lifeboat_preview.dmi'
+
+/**
+ * Lifeboat1 (Tether)
+ * North facing: W:5, H:7
+ */
+/obj/effect/fancy_shuttle/lifeboat1
+	icon = 'icons/turf/fancy_shuttles/lifeboat1_preview.dmi'
+	split_file = 'icons/turf/fancy_shuttles/lifeboat1.dmi'
+/obj/effect/fancy_shuttle_floor_preview/lifeboat1
+	icon = 'icons/turf/fancy_shuttles/lifeboat1_preview.dmi'
+
+/**
+ * Lifeboat2 (Tether)
+ * North facing: W:5, H:12
+ */
+/obj/effect/fancy_shuttle/lifeboat2
+	icon = 'icons/turf/fancy_shuttles/lifeboat2_preview.dmi'
+	split_file = 'icons/turf/fancy_shuttles/lifeboat2.dmi'
+/obj/effect/fancy_shuttle_floor_preview/lifeboat2
+	icon = 'icons/turf/fancy_shuttles/lifeboat2_preview.dmi'
 
 /**
  * Pod
