@@ -555,3 +555,35 @@
 	name = "ambrosia deus seeds box"
 	desc = "Contains the seeds you need to get a proper healthy high."
 	starts_with = list(/obj/item/seeds/ambrosiadeusseed = 7)
+
+/*
+ * Candle Boxes
+ */
+
+/obj/item/weapon/storage/box/candle_box
+	name = "candle pack"
+	desc = "A pack of unscented candles in a variety of colours."
+	icon = 'icons/obj/candle.dmi'
+	icon_state = "candlebox"
+	throwforce = 2
+	w_class = ITEMSIZE_SMALL
+	max_w_class = ITEMSIZE_TINY
+	max_storage_space = 7
+	slot_flags = SLOT_BELT
+
+	starts_with = list(/obj/item/weapon/flame/candle = 7)
+
+/obj/item/weapon/storage/box/candle_box/scented
+	name = "scented candle box"
+	desc = "An unbranded pack of scented candles, in a variety of scents."
+	max_storage_space = 5
+
+	starts_with = list(/obj/item/weapon/flame/candle/scented = 5)
+
+/obj/item/weapon/storage/box/candle_box/incense
+	name = "incense box"
+	desc = "A pack of 'Tres' brand incense cones, in a variety of scents."
+	icon_state = "incensebox"
+	max_storage_space = 9
+
+	starts_with = list(/obj/item/weapon/flame/candle/scented/incense = 9)

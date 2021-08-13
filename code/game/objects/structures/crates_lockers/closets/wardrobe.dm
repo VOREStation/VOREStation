@@ -94,9 +94,6 @@
 		/obj/item/clothing/suit/holidaypriest,
 		/obj/item/clothing/under/wedding/bride_white,
 		/obj/item/weapon/storage/backpack/cultpack,
-		/obj/item/weapon/storage/fancy/candle_box = 2,
-		/obj/item/weapon/storage/fancy/whitecandle_box,
-		/obj/item/weapon/storage/fancy/blackcandle_box,
 		/obj/item/godfig = 2,
 		/obj/item/weapon/deck/tarot)
 

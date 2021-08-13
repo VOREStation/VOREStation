@@ -110,8 +110,7 @@
 			/obj/item/clothing/suit/storage/hooded/chaplain_hoodie/whiteout,
 			/obj/item/clothing/suit/holidaypriest,
 			/obj/item/clothing/under/wedding/bride_white,
-			/obj/item/weapon/storage/backpack/cultpack,
-			/obj/item/weapon/storage/fancy/candle_box = 3
+			/obj/item/weapon/storage/backpack/cultpack
 			)
 	cost = 10
 	containertype = /obj/structure/closet/crate/gilthari

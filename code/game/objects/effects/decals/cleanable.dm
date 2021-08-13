@@ -13,6 +13,11 @@ generic_filth = TRUE means when the decal is saved, it will be switched out for 
 	var/age = 0
 	var/list/random_icon_states = list()
 
+	var/cleanable_scent
+	var/scent_intensity = /decl/scent_intensity/normal
+	var/scent_descriptor = SCENT_DESC_SMELL
+	var/scent_range = 2
+
 /obj/effect/decal/cleanable/Initialize(var/mapload, var/_age)
 	if(!isnull(_age))
 		age = _age
@@ -36,3 +41,7 @@ generic_filth = TRUE means when the decal is saved, it will be switched out for 
 	if (random_icon_states && length(src.random_icon_states) > 0)
 		src.icon_state = pick(src.random_icon_states)
 	..()
+
+/obj/effect/decal/cleanable/proc/set_cleanable_scent()
+	if(cleanable_scent)
+		set_extension(src, /datum/scent/custom, cleanable_scent, scent_intensity, scent_descriptor, scent_range)

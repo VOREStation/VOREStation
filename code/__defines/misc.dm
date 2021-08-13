@@ -401,6 +401,8 @@ var/global/list/##LIST_NAME = list();\
 
 #define SPAN_WARNING(X) "<span class='warning'>[X]</span>"
 
+#define SPAN_SUBTLE(X) "<span class='subtle'>[X]</span>"
+
 #define SPAN_DANGER(X) "<span class='danger'>[X]</span>"
 
 #define SPAN_OCCULT(X) "<span class='cult'>[X]</span>"

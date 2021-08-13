@@ -155,3 +155,6 @@
 
 	// Custom Species Name
 	var/custom_species
+
+	// Scent
+	var/last_smelt = 0

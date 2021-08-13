@@ -1326,9 +1326,6 @@
 		/obj/item/clothing/suit/holidaypriest = 5,
 		/obj/item/clothing/under/wedding/bride_white = 5,
 		/obj/item/weapon/storage/backpack/cultpack = 5,
-		/obj/item/weapon/storage/fancy/candle_box = 5,
-		/obj/item/weapon/storage/fancy/whitecandle_box = 5,
-		/obj/item/weapon/storage/fancy/blackcandle_box = 5,
 		/obj/item/godfig = 5,
 		/obj/item/weapon/deck/tarot = 5
 	)
