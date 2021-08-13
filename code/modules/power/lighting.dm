@@ -75,7 +75,7 @@ var/global/list/light_type_cache = list()
 
 /obj/machinery/light_construct/attack_hand(mob/user)
 	. = ..()
-	if(.) 
+	if(.)
 		return . // obj/machinery/attack_hand returns 1 if user can't use the machine
 	if(cell)
 		user.visible_message("[user] removes [cell] from [src]!","<span class='notice'>You remove [cell].</span>")
@@ -294,10 +294,10 @@ var/global/list/light_type_cache = list()
 		start_with_cell = FALSE
 		lamp_shade = 0
 		update_icon()
-	else	
+	else
 		if(start_with_cell && !no_emergency)
 			cell = new/obj/item/weapon/cell/emergency_light(src)
-	
+
 
 /obj/machinery/light/flamp/flicker
 	auto_flicker = TRUE
@@ -411,12 +411,12 @@ var/global/list/light_type_cache = list()
 
 	current_alert = null
 	var/obj/item/weapon/light/L = get_light_type_instance(light_type)
-	
+
 	if(L)
 		update_from_bulb(L)
 	else
 		brightness_color = nightshift_enabled ? initial(brightness_color_ns) : initial(brightness_color)
-	
+
 	update()
 
 //VOREstation Edit End
@@ -718,7 +718,7 @@ var/global/list/light_type_cache = list()
 	update(FALSE)
 	return
 
-// ai alt click - Make light flicker.  Very important for atmosphere.  
+// ai alt click - Make light flicker.  Very important for atmosphere.
 /obj/machinery/light/AIAltClick(mob/user)
 	flicker(1)
 
@@ -894,7 +894,7 @@ var/global/list/light_type_cache = list()
 	throwforce = 5
 	w_class = ITEMSIZE_TINY
 	matter = list(MAT_STEEL = 60)
-	
+
 	///LIGHT_OK, LIGHT_BURNED or LIGHT_BROKEN
 	var/status = LIGHT_OK
 	///Base icon_state name to append suffixes for status
@@ -920,7 +920,7 @@ var/global/list/light_type_cache = list()
 	var/nightshift_power = 0.45
 	///Replaces brightness_color during nightshifts.
 	var/nightshift_color = LIGHT_COLOR_NIGHTSHIFT
-	
+
 	drop_sound = 'sound/items/drop/glass.ogg'
 	pickup_sound = 'sound/items/pickup/glass.ogg'
 
@@ -957,12 +957,28 @@ var/global/list/light_type_cache = list()
 	nightshift_range = 3
 	nightshift_power = 0.5
 
+//Extra Lightbulbs Start VOREStation Addition
+/obj/item/weapon/light/bulb/Whitebulb
+	name = "White light bulb"
+	desc = "A white LED light bulb."
+	icon_state = "lbulb-White"
+	base_state = "lbulb-White"
+	item_state = "contvapour"
+	matter = list(MAT_GLASS = 100)
+	brightness_range = 5
+	brightness_power = 1
+	brightness_color = "#ebf7ff"
+
+	nightshift_range = 3
+	nightshift_power = 0.5
+
+
 // For 'floor lamps' in outdoor use and such
 /obj/item/weapon/light/bulb/large
 	name = "large light bulb"
 	brightness_range = 7
 	brightness_power = 1.5
-	
+
 	nightshift_range = 4
 	nightshift_power = 0.75
 

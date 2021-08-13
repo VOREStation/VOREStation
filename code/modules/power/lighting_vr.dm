@@ -46,7 +46,7 @@
 /obj/item/weapon/light/bulb/large
 	brightness_range = 6
 	brightness_power = 1
-	
+
 	nightshift_range = 6
 	nightshift_power = 0.45
 
@@ -128,3 +128,4 @@
 			icon_state = "big_flamp-construct-stage2"
 		if(3)
 			icon_state = "big_flamp-empty"
+
