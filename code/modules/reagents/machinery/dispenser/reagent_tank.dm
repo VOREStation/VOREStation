@@ -429,7 +429,7 @@
 /obj/structure/reagent_dispensers/virusfood
 	name = "Virus Food Dispenser"
 	desc = "A dispenser of virus food. Yum."
-	icon = 'icons/obj/objects.dmi'
+	icon = 'icons/obj/virology_vr.dmi'
 	icon_state = "virusfoodtank"
 	amount_per_transfer_from_this = 10
 	anchored = TRUE
