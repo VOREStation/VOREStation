@@ -34,19 +34,11 @@
 
 	var/list/starts_with // List of type = count (or just type for 1)
 
-	var/closet_appearance = /decl/closet_appearance // The /decl that defines what decals we end up with, that makes our look unique
+	var/decl/closet_appearance/closet_appearance = /decl/closet_appearance // The /decl that defines what decals we end up with, that makes our look unique
 
 	/// Currently animating the door transform
 	var/is_animating_door = FALSE
-	/// Length of time (ds) to animate the door transform
-	var/door_anim_time = 2.0
-	/// Amount to 'squish' the full width of the door by
-	var/door_anim_squish = 0.30
-	/// Virtual angle at which the door is opened to (136 by default, so not a full 180)
-	var/door_anim_angle = 136
-	/// Offset for the door hinge location from centerline
-	var/door_hinge = -6.5
-	/// Our visual object for the closet door
+	/// Our visual object for the closet door, if we're animating
 	var/obj/effect/overlay/closet_door/door_obj
 
 /obj/structure/closet/Initialize()
@@ -73,15 +65,16 @@
 			storage_capacity = content_size + 5
 
 	if(ispath(closet_appearance))
-		var/decl/closet_appearance/app = GLOB.closet_appearances[closet_appearance]
-		if(app)
-			icon = app.icon
+		closet_appearance = GLOB.closet_appearances[closet_appearance]
+		if(istype(closet_appearance))
+			icon = closet_appearance.icon
 			color = null
 	update_icon()
 
 /obj/structure/closet/Destroy()
-	. = ..()
 	qdel_null(door_obj)
+	closet_appearance = null
+	return ..()
 
 /obj/structure/closet/examine(mob/user)
 	. = ..()
@@ -500,7 +493,7 @@
 	return 1
 
 /obj/structure/closet/proc/animate_door(closing = FALSE)
-	if(!door_anim_time)
+	if(!closet_appearance?.door_anim_time)
 		update_icon()
 		return
 	if(!door_obj)
@@ -511,9 +504,9 @@
 	is_animating_door = TRUE
 	if(!closing)
 		update_icon()
-	var/num_steps = door_anim_time / world.tick_lag
+	var/num_steps = closet_appearance.door_anim_time / world.tick_lag
 	for(var/I in 0 to num_steps)
-		var/angle = door_anim_angle * (closing ? 1 - (I/num_steps) : (I/num_steps))
+		var/angle = closet_appearance.door_anim_angle * (closing ? 1 - (I/num_steps) : (I/num_steps))
 		var/matrix/M = get_door_transform(angle)
 		var/door_state = angle >= 90 ? "door_back" : "door_front"
 		var/door_layer = angle >= 90 ? FLOAT_LAYER : ABOVE_MOB_LAYER
@@ -526,7 +519,7 @@
 			animate(door_obj, transform = M, icon_state = door_state, layer = door_layer, time = world.tick_lag, flags = ANIMATION_END_NOW)
 		else
 			animate(transform = M, icon_state = door_state, layer = door_layer, time = world.tick_lag)
-	addtimer(CALLBACK(src,.proc/end_door_animation,closing),door_anim_time,TIMER_UNIQUE|TIMER_OVERRIDE)
+	addtimer(CALLBACK(src, .proc/end_door_animation,closing), closet_appearance.door_anim_time, TIMER_UNIQUE|TIMER_OVERRIDE)
 
 /obj/structure/closet/proc/end_door_animation(closing = FALSE)
 	is_animating_door = FALSE
@@ -537,7 +530,9 @@
 
 /obj/structure/closet/proc/get_door_transform(angle)
 	var/matrix/M = matrix()
-	M.Translate(-door_hinge, 0)
-	M.Multiply(matrix(cos(angle), 0, 0, -sin(angle) * door_anim_squish, 1, 0))
-	M.Translate(door_hinge, 0)
+	if(!closet_appearance)
+		return M
+	M.Translate(-closet_appearance.door_hinge, 0)
+	M.Multiply(matrix(cos(angle), 0, 0, -sin(angle) * closet_appearance.door_anim_squish, 1, 0))
+	M.Translate(closet_appearance.door_hinge, 0)
 	return M

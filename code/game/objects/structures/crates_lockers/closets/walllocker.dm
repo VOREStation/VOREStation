@@ -10,7 +10,6 @@
 	anchored = TRUE
 	store_mobs = 0
 	wall_mounted = 1
-	door_anim_time = 0 // Unsupported
 
 //spawns 2 sets of breathmask, emergency oxy tank and crowbar
 
@@ -92,7 +91,6 @@
 	wall_mounted = 1
 	plane = TURF_PLANE
 	layer = ABOVE_TURF_LAYER
-	door_anim_time = 0 //Unsupported
 
 /obj/structure/closet/walllocker_double/north
 	pixel_y = 32

@@ -14,6 +14,15 @@
 	var/decal_icon = 'icons/obj/closets/decals/closet.dmi'
 	var/can_lock = FALSE
 
+	/// Length of time (ds) to animate the door transform
+	var/door_anim_time = 2.0
+	/// Amount to 'squish' the full width of the door by
+	var/door_anim_squish = 0.30
+	/// Virtual angle at which the door is opened to (136 by default, so not a full 180)
+	var/door_anim_angle = 136
+	/// Offset for the door hinge location from centerline
+	var/door_hinge = -6.5
+
 /decl/closet_appearance/New()
 	// Build our colour and decal lists.
 	if(LAZYLEN(extra_decals))
@@ -725,6 +734,7 @@
 	base_icon =  'icons/obj/closets/bases/crate.dmi'
 	decal_icon = 'icons/obj/closets/decals/crate.dmi'
 	color = COLOR_GRAY40
+	door_anim_time = 0
 
 /decl/closet_appearance/crate/plastic
 	color = COLOR_GRAY80
@@ -1237,6 +1247,7 @@
 	decal_icon = 'icons/obj/closets/decals/large_crate.dmi'
 	decals = null
 	extra_decals = null
+	door_anim_time = 0
 
 /decl/closet_appearance/large_crate/critter
 	color = COLOR_BEIGE
@@ -1349,6 +1360,7 @@
 	color = WOOD_COLOR_RICH
 	decals = null
 	extra_decals = null
+	door_anim_time = 0
 
 /decl/closet_appearance/cabinet/secure
 	can_lock = TRUE
@@ -1361,6 +1373,7 @@
 		"vent"
 	)
 	extra_decals = null
+	door_anim_time = 0
 
 /decl/closet_appearance/wall/emergency
 	color = COLOR_LIGHT_CYAN
@@ -1402,6 +1415,7 @@
 		"vent"
 	)
 	extra_decals = null
+	door_anim_time = 0
 
 /decl/closet_appearance/wall_double/kitchen
 	decals = null
@@ -1431,6 +1445,7 @@
 	decal_icon = 'icons/obj/closets/decals/cart.dmi'
 	decals = null
 	extra_decals = null
+	door_anim_time = 0
 
 /decl/closet_appearance/cart/trash
 	color = COLOR_BOTTLE_GREEN
