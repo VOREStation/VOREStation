@@ -120,6 +120,9 @@
 "bF" = (
 /turf/simulated/mineral/virgo3b,
 /area/mine/unexplored)
+"uw" = (
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/mine/explored)
 "Al" = (
 /turf/simulated/mineral/virgo3b,
 /area/mine/explored)
@@ -1699,7 +1702,7 @@ ac
 "}
 (12,1,1) = {"
 as
-Al
+uw
 ad
 ab
 ab
@@ -1841,7 +1844,7 @@ ac
 "}
 (13,1,1) = {"
 as
-Al
+uw
 ad
 ab
 ab
@@ -1983,7 +1986,7 @@ ac
 "}
 (14,1,1) = {"
 as
-Al
+uw
 ad
 ab
 ab
@@ -2125,7 +2128,7 @@ ac
 "}
 (15,1,1) = {"
 as
-Al
+uw
 ad
 ab
 ab
@@ -2267,7 +2270,7 @@ ac
 "}
 (16,1,1) = {"
 as
-Al
+uw
 ad
 ab
 ab
@@ -3687,7 +3690,7 @@ ac
 "}
 (26,1,1) = {"
 as
-Al
+uw
 ad
 ab
 ab
@@ -3829,7 +3832,7 @@ ac
 "}
 (27,1,1) = {"
 as
-Al
+uw
 ad
 ab
 ab
@@ -5817,7 +5820,7 @@ ac
 "}
 (41,1,1) = {"
 as
-Al
+uw
 ad
 ab
 ab
@@ -5959,7 +5962,7 @@ ac
 "}
 (42,1,1) = {"
 as
-Al
+uw
 ad
 ab
 ab
@@ -7805,7 +7808,7 @@ ac
 "}
 (55,1,1) = {"
 as
-Al
+uw
 ad
 ab
 ab
@@ -7947,7 +7950,7 @@ ac
 "}
 (56,1,1) = {"
 as
-Al
+uw
 ad
 ab
 ab
@@ -8089,7 +8092,7 @@ ac
 "}
 (57,1,1) = {"
 as
-Al
+uw
 ad
 ab
 ab
@@ -8231,7 +8234,7 @@ ac
 "}
 (58,1,1) = {"
 as
-Al
+uw
 ad
 ab
 ab
@@ -8373,7 +8376,7 @@ ac
 "}
 (59,1,1) = {"
 as
-Al
+uw
 ad
 ab
 ab
@@ -8515,7 +8518,7 @@ ac
 "}
 (60,1,1) = {"
 as
-Al
+uw
 ad
 ab
 ab
@@ -8657,7 +8660,7 @@ ac
 "}
 (61,1,1) = {"
 as
-Al
+uw
 ad
 ab
 ab
@@ -8799,7 +8802,7 @@ ac
 "}
 (62,1,1) = {"
 as
-Al
+uw
 ad
 ab
 ab
@@ -13769,7 +13772,7 @@ ac
 "}
 (97,1,1) = {"
 as
-Al
+uw
 ad
 ab
 ab
@@ -13911,7 +13914,7 @@ ac
 "}
 (98,1,1) = {"
 as
-Al
+uw
 ad
 ab
 ab
@@ -14053,7 +14056,7 @@ ac
 "}
 (99,1,1) = {"
 as
-Al
+uw
 ad
 ab
 ab
@@ -14195,7 +14198,7 @@ ac
 "}
 (100,1,1) = {"
 as
-Al
+uw
 ad
 ab
 ab
@@ -14337,7 +14340,7 @@ ac
 "}
 (101,1,1) = {"
 as
-Al
+uw
 ad
 ab
 ab
@@ -14479,7 +14482,7 @@ ac
 "}
 (102,1,1) = {"
 as
-Al
+uw
 ad
 ab
 ab
@@ -14621,7 +14624,7 @@ ac
 "}
 (103,1,1) = {"
 as
-Al
+uw
 ad
 ab
 ab
@@ -14763,7 +14766,7 @@ ac
 "}
 (104,1,1) = {"
 as
-Al
+uw
 ad
 ab
 ab
@@ -14905,7 +14908,7 @@ ac
 "}
 (105,1,1) = {"
 as
-Al
+uw
 ad
 ab
 ab
@@ -17177,7 +17180,7 @@ ac
 "}
 (121,1,1) = {"
 as
-Al
+uw
 ad
 ab
 ab
@@ -17319,7 +17322,7 @@ ac
 "}
 (122,1,1) = {"
 as
-Al
+uw
 ad
 ab
 ab
@@ -17461,7 +17464,7 @@ ac
 "}
 (123,1,1) = {"
 as
-Al
+uw
 ad
 ab
 ab
@@ -17603,7 +17606,7 @@ ac
 "}
 (124,1,1) = {"
 as
-Al
+uw
 ad
 ab
 Em
@@ -17745,7 +17748,7 @@ ac
 "}
 (125,1,1) = {"
 as
-Al
+uw
 ad
 ab
 ab
@@ -17887,7 +17890,7 @@ ac
 "}
 (126,1,1) = {"
 as
-Al
+uw
 ad
 ab
 ab
@@ -18029,7 +18032,7 @@ ac
 "}
 (127,1,1) = {"
 as
-Al
+uw
 ad
 ab
 ab
@@ -18171,7 +18174,7 @@ ac
 "}
 (128,1,1) = {"
 as
-Al
+uw
 ad
 ab
 ab
@@ -18313,7 +18316,7 @@ ac
 "}
 (129,1,1) = {"
 as
-Al
+uw
 ad
 ab
 ab
@@ -18455,7 +18458,7 @@ ac
 "}
 (130,1,1) = {"
 as
-Al
+uw
 ad
 ab
 ab
