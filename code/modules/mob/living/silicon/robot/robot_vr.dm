@@ -145,7 +145,7 @@
 	if(custom_sprite == TRUE)
 		return
 	if(wideborg == TRUE)
-		if(icontype== "Drake") // Why, Why can't we have normal nice things
+		if(icontype == "Drake") // Why, Why can't we have normal nice things
 			icon = 'icons/mob/drakeborg/drakeborg_vr.dmi'
 		else
 			icon = wideborg_dept
