@@ -311,6 +311,7 @@
 	can_be_pushed = 0
 	sprites = list(
 					"Standard" = "ert",
+					"Classic" = "ertold",
 					"Borgi" = "borgi"
 					)
 
