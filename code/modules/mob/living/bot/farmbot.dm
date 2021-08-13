@@ -89,6 +89,7 @@
 	switch(action)
 		if("power")
 			if(!access_scanner.allowed(usr))
+<<<<<<< HEAD
 				return FALSE
 			if(on)
 				turn_off()
@@ -99,6 +100,8 @@
 	switch(action)
 		if("power")
 			if(!access_scanner.allowed(src))
+=======
+>>>>>>> 66683459664... Merge pull request #8207 from Cerebulon/offswitch2
 				return FALSE
 			if(on)
 				turn_off()
@@ -108,6 +111,10 @@
 
 	if(locked)
 		return TRUE
+<<<<<<< HEAD
+=======
+
+>>>>>>> 66683459664... Merge pull request #8207 from Cerebulon/offswitch2
 	switch(action)
 		if("water")
 			waters_trays = !waters_trays
