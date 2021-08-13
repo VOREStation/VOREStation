@@ -49,7 +49,7 @@
 /area/shuttle/salamander_q2	
 	name = "\improper Salamander Quarters 2"
 	icon = 'icons/turf/areas_vr_talon.dmi'
-	icon_state = "gray-p"
+	icon_state = "gray-s"
 	requires_power = 1
 	has_gravity = 0
 
@@ -98,7 +98,7 @@
 /area/shuttle/salamander_wreck_q2	
 	name = "\improper Wrecked Salamander Quarters 2"
 	icon = 'icons/turf/areas_vr_talon.dmi'
-	icon_state = "gray-p"
+	icon_state = "gray-s"
 	requires_power = 1
 	has_gravity = 0
 
