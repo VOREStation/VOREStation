@@ -46,6 +46,7 @@ var/list/possible_cable_coil_colours = list(
 /obj/structure/cable
 	level = 1
 	anchored =TRUE
+	unacidable = TRUE
 	var/datum/powernet/powernet
 	name = "power cable"
 	desc = "A flexible superconducting cable for heavy-duty power transfer."

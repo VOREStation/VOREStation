@@ -6,6 +6,7 @@
 	icon_state = "grinder"
 	density = TRUE
 	anchored = TRUE
+	unacidable = TRUE
 	req_access = list(access_kitchen,access_morgue)
 
 	var/operating = 0 //Is it on?

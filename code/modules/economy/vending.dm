@@ -13,6 +13,7 @@
 	icon_state = "generic"
 	anchored = TRUE
 	density = TRUE
+	unacidable = TRUE
 	clicksound = "button"
 
 	// Power

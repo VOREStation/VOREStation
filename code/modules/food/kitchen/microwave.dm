@@ -6,6 +6,7 @@
 	layer = 2.9
 	density = TRUE
 	anchored = TRUE
+	unacidable = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 5
 	active_power_usage = 2000

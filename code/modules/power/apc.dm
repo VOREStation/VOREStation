@@ -92,6 +92,7 @@ GLOBAL_LIST_EMPTY(apcs)
 	icon_state = "apc0"
 	layer = ABOVE_WINDOW_LAYER
 	anchored = TRUE
+	unacidable = TRUE
 	use_power = USE_POWER_OFF
 	clicksound = "switch"
 	req_access = list(access_engine_equip)

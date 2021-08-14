@@ -76,6 +76,7 @@
 	icon = 'icons/turf/shuttle_white.dmi'
 	thermal_conductivity = 0.05
 	heat_capacity = 0
+	flags = TURF_ACID_IMMUNE
 
 	var/obj/landed_holder/landed_holder
 	var/interior_corner = 0

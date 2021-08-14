@@ -5,6 +5,7 @@
 	desc = "A machine used for construction of prosthetics."
 	density = TRUE
 	anchored = TRUE
+	unacidable = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 20
 	active_power_usage = 5000

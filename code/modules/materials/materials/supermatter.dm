@@ -16,6 +16,7 @@
 	sheet_plural_name = "crystals"
 	is_fusion_fuel = 1
 	stack_origin_tech = list(TECH_MATERIAL = 8, TECH_PHORON = 5, TECH_BLUESPACE = 4)
+	flags = MATERIAL_UNMELTABLE
 
 /datum/material/supermatter/generate_recipes()
 	recipes = list(

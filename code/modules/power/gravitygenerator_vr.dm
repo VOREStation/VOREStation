@@ -24,6 +24,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 	icon = 'icons/obj/machines/gravity_generator.dmi'
 	anchored = TRUE
 	density = TRUE
+	unacidable = TRUE
 	use_power = USE_POWER_OFF
 	var/sprite_number = 0
 

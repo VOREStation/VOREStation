@@ -1,6 +1,7 @@
 /obj/structure/AIcore
 	density = TRUE
 	anchored = FALSE
+	unacidable = TRUE
 	name = "\improper AI core"
 	icon = 'icons/mob/AI.dmi'
 	icon_state = "0"
