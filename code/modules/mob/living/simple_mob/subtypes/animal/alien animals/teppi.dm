@@ -540,7 +540,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 		playsound(src, 'sound/items/eatfood.ogg', 75, 1)
 		if(!client && lets_eat(user) && prob(1))
 			visible_message("<span class='danger'>\The [src] scromfs \the [user] along with the food!</span>!")
-			playsound(src, bodyfall_sound, 75, 1)
+			playsound(src, pick(bodyfall_sound), 75, 1)
 			teppi_pounce(user)
 		if(yum && nutrition >= 500)
 			to_chat(user, "<span class='notice'>\The [src] seems satisfied.</span>")
@@ -603,6 +603,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 		update_icon()
 		qdel(C)
 		fully_replace_character_name(real_name,C.given_name)
+		log_admin("[key_name_admin(user)] renamed a teppi to [name] - [COORD(src)]")
 		return
 	/////EVERYTHING ELSE/////
 	return ..()
@@ -650,7 +651,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 				to_chat(M, "<span class='notice'>\The [src] grumbles at your touch.</span>")
 		else if(lets_eat(M) && prob(50))
 			visible_message("<span class='danger'>\The [src] scromfs \the [M], before chuffing and settling down again.</span>")
-			playsound(src, bodyfall_sound, 75, 1)
+			playsound(src, pick(bodyfall_sound), 75, 1)
 			teppi_pounce(M)
 			wantpet = 100
 	else
@@ -706,6 +707,8 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 			amount_grown -= rand(100,250)
 	do_breeding(not_hungy)
 	do_healing(not_hungy)
+	if(prob(0.5))
+		teppi_sound()
 
 /mob/living/simple_mob/vore/alienanimals/teppi/proc/do_healing(not_hungy)
 	if(!not_hungy)
@@ -747,6 +750,12 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 				handle_affinity(alltep, 30) //Mom and dad should like eachother when they do their business
 				alltep.handle_affinity(src, 30)
 				return
+/mob/living/simple_mob/vore/alienanimals/teppi/proc/teppi_sound()
+	if(!teppi_adult)
+		return
+	if(resting)
+		return
+	playsound(src, pick(teppi_sound), 75, 1)
 
 //Handles both growing up from a baby and also passing parent details to new babies.
 /mob/living/simple_mob/vore/alienanimals/teppi/New(newloc, teppi1, teppi2)
@@ -803,7 +812,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	ai_holder.busy = FALSE
 
 	
-/mob/living/simple_mob/vore/alienanimals/teppi/perform_the_nom(user, mob/living/prey, user, belly)
+/mob/living/simple_mob/vore/alienanimals/teppi/perform_the_nom(user, mob/living/prey, user, belly, delay)
 	if(client)
 		return ..()
 	var/current_affinity = affinity[prey.real_name]
@@ -845,31 +854,39 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 		affinity[person.real_name] = -100	//Don't hold a grudge though. 
 
 /datum/say_list/teppi
-	speak = list("Woof~", "Woof!", "Yip!", "Yap!", "Yip~", "Yap~", "Awoooooo~", "Awoo!", "AwooooooooooOOOOOOoOooOoooOoOOoooo!")
-	emote_hear = list("barks", "woofs", "yaps", "yips","pants", "snoofs")
-	emote_see = list("wags its tail", "stretches", "yawns", "swivels its ears")
-	say_maybe_target = list("Whuff?")
-	say_got_target = list("Grrrr YIP YAP!!!")
+	speak = list("Gyooh~", "Gyuuuh!", "Gyuh?", "Gyaah...", "Iuuuuhh.", "Uoounh!", "GyoooOOOOoooh!", "Gyoh~", "Gyouh~")
+	emote_hear = list("puffs", "huffs", "rumbles", "gyoohs","pants", "snoofs")
+	emote_see = list("sways its tail", "stretches", "yawns", "turns their head")
+	say_maybe_target = list("Gyuuh?")
+	say_got_target = list("GYOOOHHHH!!!")
+
+/datum/say_list/teppibaby
+	speak = list("Gyooh~", "Gyuuuh!", "Gyuh?", "Gyaah...", "Iuuuuhh.", "Uoounh!", "GyoooOOOOoooh!", "Gyoh~", "Gyouh~", "Yip!")
+	emote_hear = list("puffs", "huffs", "rumbles", "gyoohs","pants", "snoofs", "yips")
+	emote_see = list("sways its tail", "stretches", "yawns", "turns their head")
+	say_maybe_target = list("Gyuuh?")
+	say_got_target = list("GYOOOHHHH!!!")
+
 
 /datum/ai_holder/simple_mob/teppi
 
 	hostile = FALSE
 	cooperative = TRUE
 	retaliate = TRUE
-	speak_chance = 1
+	speak_chance = 0.5
 	wander = TRUE
 
 /datum/language/teppi
 	name = "Teppi"
 	desc = "The language of the meat things."
-	speech_verb = "barks"
-	ask_verb = "woofs"
-	exclaim_verb = "howls"
+	speech_verb = "rumbles"
+	ask_verb = "tilts"
+	exclaim_verb = "roars"
 	key = "i"
 	flags = RESTRICTED
 	machine_understands = 0
 	space_chance = 100
-	syllables = list("bark", "woof", "bowwow", "yap", "arf")
+	syllables = list("gyoh", "snoof", "gyoooooOOOooh", "iuuuuh", "gyuuuuh")
 
 ////////////////// Da babby //////////////
 
@@ -900,6 +917,8 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	vis_height = 32
 	meat_amount = 2
 	loot_list = list()
+	say_list_type = /datum/say_list/teppibaby
+
 
 /mob/living/simple_mob/vore/alienanimals/teppi/baby/init_vore() //shouldn't need all the vore bidness if they aren't using it as babbies. They get their tummies when they grow up.
 	return
@@ -1007,7 +1026,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	else
 		to_chat(src, "<span class='notice'>You enable breeding.</span>")
 		prevent_breeding = FALSE
-
+		
 ///////////////////AI Things////////////////////////
 //Thank you very much Aronai <3
 
@@ -1074,6 +1093,11 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 		return
 	..()
 
+/datum/ai_holder/simple_mob/teppi/baby/handle_idle_speaking()
+	if(holder.resting)
+		return
+	..()
+
 /datum/ai_holder/simple_mob/teppi/on_hear_say(mob/living/speaker, message)
 	var/mob/living/simple_mob/vore/alienanimals/teppi/T = holder
 	if(holder.client)
@@ -1111,20 +1135,3 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 			lose_follow()
 			holder.visible_message("<span class='notice'>\The [holder] stops following \the [speaker]</span>","<span class='notice'>\The [holder] stops following you.</span>")
 			return
-/*
-/obj/item/weapon/reagent_containers/food/snacks
-	var/firecooking = 0
-
-/obj/item/weapon/reagent_containers/food/snacks/fire_act()
-	firecooking += 1
-	if(firecooking == 20)
-		cook()
-		update_icon()
-		name = "cooked [name]"
-		visible_message("<span class='notice'>\The [src] sizzles...</span>")
-
-	if(firecooking == 50)
-		visible_message("<span class='notice'>\The [src] burns away...</span>")
-		new /obj/item/weapon/reagent_containers/food/snacks/badrecipe(loc, src)
-		qdel(src)
-*/
