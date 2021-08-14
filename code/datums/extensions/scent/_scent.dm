@@ -50,40 +50,40 @@ Scent intensity
  Scent extensions
  Usage:
 	To add:
-		set_extension(atom, /datum/scent/PATH/TO/SPECIFIC/SCENT)
+		set_extension(atom, /datum/extension/scent/PATH/TO/SPECIFIC/SCENT)
 		This will set up the extension and will make it begin to emit_scent.
 	To remove:
-		remove_extension(atom, /datum/scent)
+		remove_extension(atom, /datum/extension/scent)
 *****/
 
-/datum/scent
-	base_type = /datum/scent
+/datum/extension/scent
+	base_type = /datum/extension/scent
 	expected_type = /atom
+	flags = EXTENSION_FLAG_IMMEDIATE
 
 	var/scent = "something"
 	var/decl/scent_intensity/intensity = /decl/scent_intensity
 	var/descriptor = SCENT_DESC_SMELL //unambiguous descriptor of smell; food is generally good, sewage is generally bad. how 'nice' the scent is
 	var/range = 1 //range in tiles
 
-/datum/scent/New()
+/datum/extension/scent/New()
 	..()
 	if(ispath(intensity))
 		intensity = decls_repository.get_decl(intensity)
 	START_PROCESSING(SSprocessing, src)
 
-/datum/scent/Destroy()
+/datum/extension/scent/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
-	holder = null
 	. = ..()
 
-/datum/scent/process()
+/datum/extension/scent/process()
 	if(!holder)
 		crash_with("Scent extension with scent '[scent]', intensity '[intensity]', descriptor '[descriptor]' and range of '[range]' attempted to emit_scent() without a holder.")
 		qdel(src)
 		return PROCESS_KILL
 	emit_scent()
 
-/datum/scent/proc/emit_scent()
+/datum/extension/scent/proc/emit_scent()
 	for(var/mob/living/carbon/human/H in all_hearers(holder, range))
 		var/turf/T = get_turf(H.loc)
 		if(!T)
@@ -96,10 +96,10 @@ Scent intensity
 
 /*****
 Custom subtype
-	set_extension(atom, /datum/scent/custom, scent = "scent", intensity = SCENT_INTENSITY_, ... etc)
+	set_extension(atom, /datum/extension/scent/custom, scent = "scent", intensity = SCENT_INTENSITY_, ... etc)
 This will let you set an extension without needing to define it beforehand. Note that all vars are required if generating.
 *****/
-/datum/scent/custom/New(var/datum/holder, var/provided_scent, var/provided_intensity, var/provided_descriptor, var/provided_range)
+/datum/extension/scent/custom/New(var/datum/holder, var/provided_scent, var/provided_intensity, var/provided_descriptor, var/provided_range)
 	..()
 	if(provided_scent && provided_intensity && provided_descriptor && provided_range)
 		scent = provided_scent
@@ -134,4 +134,4 @@ To add a scent extension to an atom using a reagent's info, where R. is the reag
 			smelliest = R
 			scent_intensity = r_scent_intensity
 	if(smelliest)
-		set_extension(smelly_atom, /datum/scent/custom, smelliest.scent, smelliest.scent_intensity, smelliest.scent_descriptor, smelliest.scent_range)
+		set_extension(smelly_atom, /datum/extension/scent/custom, smelliest.scent, smelliest.scent_intensity, smelliest.scent_descriptor, smelliest.scent_range)
