@@ -65,3 +65,7 @@
 	no_variants = FALSE
 	pass_color = TRUE
 	apply_colour = TRUE
+
+/obj/item/stack/material/stick/fivestack
+	amount = 5
+	color = "#824B28"

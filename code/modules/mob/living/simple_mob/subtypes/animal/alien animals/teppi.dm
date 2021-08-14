@@ -17,7 +17,6 @@
 //you know. Feed people to them or whatever, it's cool. People getting eaten has a tangible positive mechanical impact. So do it.
 
 /////////////////TO DO (if I ever learn how/someone ever feels like it)//////////////////////////////
-//>bite people with very low affinity (like, -25 or -50 or something), which resets their affinity value to something more reasonable. (Like -10? We still don't like them, but we got our frustration out)
 //>seek food nearby to eat, including players with the appropriate settings.
 //>give baby teppi a holder thingy so you can pick them up and carry them around
 //>give adult teppi the ability to be ridden at high affinity
@@ -65,6 +64,8 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	maxHealth = 600
 	health = 600
 	movement_cooldown = 2
+	meat_amount = 10
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
 
 	response_help = "pets"
 	response_disarm = "rudely paps"
@@ -96,6 +97,8 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	var/horn_color
 	var/eye_color
 	var/skin_color
+	var/item_type
+	var/item_color
 	var/marking_type
 	var/horn_type
 	var/static/list/overlays_cache = list()
@@ -129,6 +132,19 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	has_langs = list("Teppi", "Galactic Common")
 	say_list_type = /datum/say_list/teppi
 	player_msg = "Teppi are large omnivorous quadrupeds. You have four toes on each paw, a long, strong tail, and are quite tough and powerful. You’re a lot more intimidating than you are actually harmful though. Your kind are ordinarily rather passive, only really rising to violence when someone does violence to you or others like you. You’re not stupid though, you can commiunicate with others of your kind, and form bonds with those who are kind to you, be they Teppi or otherwise."
+	loot_list = list(/obj/item/weapon/bone/horn = 100)
+	internal_organs = list(\
+		/obj/item/organ/internal/brain,\
+		/obj/item/organ/internal/heart,\
+		/obj/item/organ/internal/liver,\
+		/obj/item/organ/internal/stomach,\
+		/obj/item/organ/internal/intestine,\
+		/obj/item/organ/internal/lungs\
+		)
+
+	butchery_loot = list(\
+		/obj/item/stack/animalhide = 3\
+		)
 
 /////////////////////////////////////// Vore stuff///////////////////////////////////////////
 
@@ -177,7 +193,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 		"You find that as you’re rocked and ground amid the gurgling %belly, the ever present thumping drone of %pred’s heartbeat pounds in your ears, the powerful thudding of it pulses through the flesh holding you, throbbing across every wrinkle and fold, every surface presses in at you just that little bit more with each and every throb of that heartbeat. The burbling grumbles of that gut working around you too, fill your ears with a deep gastric symphony as those walls work hard to break you down.",
 		"The gurgling walls press in heavily, overpowering your limbs briefly as the chamber collapses in to grind over you from head to toe!! No part of you is left out as the doughy flesh glides and grinds and jostles you around, smothering you in thick slime here and squeezing you down into a tight little ball there. The satisfied puffing coming from nearby through the flesh all you need to know that %pred is happy to have you.",
 		"The slime bubbles and glorps around you as you’re smothered in those thick walls! The slick surfaces mold to your figure as the throbbing of %pred’s pulse squeezes you that little bit more with each beat of their heart. The tingling caused by that slime spreads all across your body as you’re totally soaked in it, and there’s nowhere within this chamber to get away from it!",
-		"The roaring gurgles of the active gut squeezing and squelching in around you sound out for a few moments as you are smushed and squeezed intensely! This is it! %pred’s %stomach is trying to claim you utterly!!!! But after a few moments the chamber eases off, leaving you sopping wet with thick, stringy slime.",
+		"The roaring gurgles of the active gut squeezing and squelching in around you sound out for a few moments as you are smushed and squeezed intensely! This is it! %pred’s %belly is trying to claim you utterly!!!! But after a few moments the chamber eases off, leaving you sopping wet with thick, stringy slime.",
 		"It’s so hot, sweltering even! The burbling sounds of this organic cacophony swell and ebb all around you as thick slimes gush around you with the motion of %pred’s %belly. It’s hard to move in this tingly embrace even though the squashy walls are absolutely slippery! You can pull your limbs out from between the heavy meaty folds with some effort, and when you do there’s a messy sucking noise in the wake of the motion. Of course, such a disturbance naturally warrants that the chamber would redouble its efforts to subdue you and smother you in those thick tingling slimes.",
 		"The walls around you flex inward briefly, burbling and squelching heavily as everything rushed together, wringing you powerfully for a few moments while, somewhere far above you can hear the bassy rumble of a casual belch, much of the small amount of acrid air available rushing out with the sound. After several long moments held in the tight embrace of that pulsing flesh, things ease up a bit again and resume their insistent, tingly churnings.",
 		"It’s pitch black and completely slimy in here, %pred sways their %belly a bit here and there to toss you from one end to the other, tumbling you end over end as you’re churned in that active %belly. It’s all so slick and squishy, so it is really hard to get any footing or grip on things to stabilize your position, which means that you’re left at the mercy of those gloomy gastric affections and the tingling touch of those sticky syrupy slimes that the walls lather into your body.")
@@ -419,6 +435,16 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 			overlays_cache[combine_key] = marking_image
 		add_overlay(marking_image)
 
+		if(item_type)
+			var/item_key = "[item_type]-[item_color]"
+			var/image/item_image = overlays_cache[item_key+our_state]	//Items! Like collar. Goes under everything but markings because I'll go crazy otherwise
+			if(!item_image)
+				item_image = image(icon,null,"[item_type]_[our_state]")
+				item_image.color = item_color
+				item_image.appearance_flags = RESET_COLOR|KEEP_APART|PIXEL_SCALE
+				overlays_cache[item_key+our_state] = item_image
+			add_overlay(item_image)
+
 		if(teppi_wool)
 			var/image/wool_image = overlays_cache[wool_key+our_state+life_stage]	//Wool comes next, goes over top of the markings, is the same color too
 			if(!wool_image)
@@ -463,6 +489,8 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	if(istype(O, /obj/item/weapon/holder))
 		return ..()
 	if(user.a_intent != I_HELP) //be gentle
+		if(resting)
+			lay_down()
 		handle_affinity(user, -5)
 		user.visible_message(user, "<span class='notice'>\The [user] hits \the [src] with \the [O]. \The [src] grumbles at \the [user].</span>","<span class='notice'>You hits \the [src] with \the [O]. \The [src] grumbles at you.</span>")
 		playsound(src, 'sound/weapons/tap.ogg', 50, 1, -1)
@@ -475,7 +503,10 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 		if(nutrition >= 5000)
 			user.visible_message("<span class='notice'>\The [user] tries to feed \the [O] to \the [src]. It snoofs but does not eat.</span>","<span class='notice'>You try to feed \the [O] to \the [src], but it only snoofts at it.</span>")
 			return
-		var/yum = O.reagents?.get_reagent_amount("nutriment") //does it have nutriment, if so how much?
+		var/nutriment_amount = O.reagents?.get_reagent_amount("nutriment") //does it have nutriment, if so how much?
+		var/protein_amount = O.reagents?.get_reagent_amount("protein") //does it have protein, if so how much?
+		var/glucose_amount = O.reagents?.get_reagent_amount("glucose") //does it have glucose, if so how much?
+		var/yum = nutriment_amount + protein_amount + glucose_amount
 		if(yum)
 			if(!teppi_adult)
 				yum *= 20
@@ -517,42 +548,85 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	/////TOOLS AND WEAPONS/////
 	if(istype(O, /obj/item/weapon/tool/wirecutters))
 		if(teppi_wool)
-			amount_grown = rand(0,250)
-			var/obj/item/stack/material/fur/teppi/F = new(get_turf(user))
-			F.amount = rand(10,15)
-			F.color = marking_color
-			teppi_wool = FALSE
-			update_icon()
-			handle_affinity(user, 5)
-			return		
+			if(do_after(user, 3 SECONDS, exclusive = TASK_USER_EXCLUSIVE, target = src))
+				amount_grown = rand(0,250)
+				var/obj/item/stack/material/fur/F = new(get_turf(user))
+				F.amount = rand(10,15)
+				F.color = marking_color
+				teppi_wool = FALSE
+				update_icon()
+				handle_affinity(user, 5)
+				return		
 	if(istype(O, /obj/item/weapon/material/knife))
+		var/obj/item/weapon/material/knife/K = O
+		if(teppi_wool)
+			var/sheartime = 3 SECONDS
+			if(K.default_material == MAT_PLASTIC || K.default_material == MAT_FLINT)
+				sheartime *= 2
+			if(K.dulled == TRUE)
+				sheartime *= 3
+			user.visible_message("<span class='notice'>\The [user] shears \the [src] with \the [O].</span>","<span class='notice'>You shear \the [src] with \the [O].</span>")
+			if(do_after(user, sheartime, exclusive = TASK_USER_EXCLUSIVE, target = src))
+				amount_grown = rand(0,250)
+				var/obj/item/stack/material/fur/F = new(get_turf(user))
+				F.amount = rand(10,15)
+				F.color = marking_color
+				teppi_wool = FALSE
+				update_icon()
+				handle_affinity(user, 5)
+				return
 		if(client)
 			return ..()
-		if(resting)
+		if(resting && stat != DEAD)
 			user.visible_message("<span class='attack'>\The [user] approaches \the [src]'s neck with \the [O].</span>","<span class='attack'>You approach \the [src]'s neck with \the [O].</span>")
 			if(do_after(user, 5 SECONDS, exclusive = TASK_USER_EXCLUSIVE, target = src))
 				if(resting)
 					death()
+					return
 				else
 					to_chat(user, "<span class='notice'>\The [src] woke up! You think better of slaughtering it while it is awake.</span>")
 					return
 		else
 			return ..()
+	if(istype(O, /obj/item/clothing/accessory/collar/craftable))
+		var/obj/item/clothing/accessory/collar/craftable/C = O
+		if(item_type == "collar")
+			to_chat(user, "<span class='notice'>[src] is already wearing a collar.</span>")
+			return
+		if(!C.given_name)
+			to_chat(user, "<span class='notice'>You didn't put a name on the collar. You can use it in your hand to do that!</span>")
+			return
+		item_type = "collar"
+		item_color = C.color
+		name = C.given_name
+		real_name = C.given_name
+		update_icon()
+		qdel(C)
+		fully_replace_character_name(real_name,C.given_name)
+		return
 	/////EVERYTHING ELSE/////
 	return ..()
 
 //Wake up the teppi if it is resting, which they like to do sometimes.
 /mob/living/simple_mob/vore/alienanimals/teppi/attack_hand(mob/living/carbon/human/M as mob)
+	if(M.a_intent == I_GRAB && item_type)
+		if(affinity[M.real_name] >= 100)
+			M.visible_message("<span class='notice'>\The [M.name] removes \the [src]'s [item_type].</span>","<span class='notice'>You remove \the [src]'s [item_type].</span>")
+			item_type = null
+			update_icon()
+			return
 	if(M.a_intent != I_HELP) //be gentle
 		handle_affinity(M, -5)
 		to_chat(M, "<span class='notice'>\The [src] fusses at your rough treatment!!</span>")
+		if(resting)
+			lay_down()
 		return..()
-	if(resting && M.a_intent == I_HELP)
-		lay_down()
+	if(resting)
 		M.visible_message("<span class='notice'>\The [M.name] shakes \the [src] awake from their nap.</span>","<span class='notice'>You shake \the [src] awake!</span>")
 		playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+		lay_down()
 		return
-	else if(!client && M.a_intent == I_HELP)
+	else if(!client)
 		..()
 		playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 		if(wantpet >= 100) //We want pets sometimes
@@ -584,12 +658,15 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 
 /mob/living/simple_mob/vore/alienanimals/teppi/examine()
 	. = ..()
+	if(item_type)
+		. += "<span class='notice'>They are wearing a [item_type] with [name] written on it.</span>"
 	if(nutrition >= 1000)
 		. += "<span class='notice'>They look well fed.</span>"
 	if(nutrition <= 500)
 		. += "<span class='notice'>They look hungry.</span>"
 	if(health < maxHealth && health / maxHealth * 100 <= 75)
 		. += "<span class='notice'>They look beat up.</span>"
+	
 
 /mob/living/simple_mob/vore/alienanimals/teppi/update_icon()
 	..()
@@ -613,6 +690,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 				nutrition -= rand(250,500)
 				teppi_wool = TRUE
 				breedable = TRUE
+				meat_amount += rand(0,2)
 				update_icon()
 		else if (not_hungy)
 			var/nutrition_cost = 500 + (nutrition / 2)
@@ -683,6 +761,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	GLOB.teppi_count -= 1
 	friend_zone = null
 	active_ghost_pods -= src
+	ai_holder.leader = null
 	return ..()
 
 /mob/living/simple_mob/vore/alienanimals/teppi/Login()
@@ -708,14 +787,37 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	if(client)
 		return ..()
 	var/current_affinity = affinity[T.real_name]
+	ai_holder.busy = TRUE
+	T.stop_pulling()
 	if(current_affinity >= 50)
 		var/tumby = vore_selected
 		vore_selected = friend_zone
 		..()
 		vore_selected = tumby
+		return
+	else if(current_affinity <= -50)
+		vore_selected.digest_mode = DM_DIGEST
 	else 
 		vore_selected.digest_mode = DM_DRAIN
-		..()
+	..()
+	ai_holder.busy = FALSE
+
+	
+/mob/living/simple_mob/vore/alienanimals/teppi/perform_the_nom(user, mob/living/prey, user, belly)
+	if(client)
+		return ..()
+	var/current_affinity = affinity[prey.real_name]
+	ai_holder.busy = TRUE
+	prey.stop_pulling()
+	if(current_affinity >= 50)
+		belly = friend_zone
+		return ..()
+	if(current_affinity <= -50)
+		vore_selected.digest_mode = DM_DIGEST
+	else 
+		vore_selected.digest_mode = DM_DRAIN
+	..()
+	ai_holder.busy = FALSE
 
 //Instead of copying this everywhere let's just make a proc
 /mob/living/simple_mob/vore/alienanimals/teppi/proc/lets_eat(person)
@@ -729,14 +831,18 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	animal_nom(M)
 	M.stop_pulling()
 
-/mob/living/simple_mob/vore/alienanimals/teppi/proc/handle_affinity(person, amount)
-	var/mob/living/P = person
-	affinity[P.real_name] += amount * affection_factor
-	var/current_affinity = affinity[P.real_name]
+/mob/living/simple_mob/vore/alienanimals/teppi/proc/handle_affinity(mob/living/person, amount)
+	affinity[person.real_name] += amount * affection_factor
+	var/current_affinity = affinity[person.real_name]
 	if(!teppi_adult)	//Don't want baby getting killed by parents in case of hostile or growing up with P in their AI
 		return
 	if(current_affinity >= 250)	//At this point the Teppi has joined your team
-		faction = P.faction
+		faction = person.faction
+	if(current_affinity <= -500 && !client)	//You're doing this on purpose or really not paying attention and I'm going to kick your ass.
+		ai_holder.target = person
+		ai_holder.track_target_position()
+		ai_holder.set_stance(STANCE_FIGHT)
+		affinity[person.real_name] = -100	//Don't hold a grudge though. 
 
 /datum/say_list/teppi
 	speak = list("Woof~", "Woof!", "Yip!", "Yap!", "Yip~", "Yap~", "Awoooooo~", "Awoo!", "AwooooooooooOOOOOOoOooOoooOoOOoooo!")
@@ -792,7 +898,8 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	vore_bump_chance = 0
 	vore_pounce_chance = 0
 	vis_height = 32
-
+	meat_amount = 2
+	loot_list = list()
 
 /mob/living/simple_mob/vore/alienanimals/teppi/baby/init_vore() //shouldn't need all the vore bidness if they aren't using it as babbies. They get their tummies when they grow up.
 	return
@@ -967,101 +1074,57 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 		return
 	..()
 
-/datum/material/fur/teppi
-	name = "fur"
-	icon_colour = "#fff2d3"
-	stack_origin_tech = list(TECH_MATERIAL = 2)
-	display_name = "fur"
-	icon_base = "sheet-fabric"
-	stack_type = /obj/item/stack/material/fur/teppi
-	sheet_collective_name = "pile"
-	pass_stack_colors = TRUE
-	supply_conversion_value = 1
-	sheet_singular_name = "bundle"
-	sheet_plural_name = "bundles"
-	ignition_point = T0C+232
-	melting_point = T0C+300
-	protectiveness = 1
-	flags = MATERIAL_PADDING
-	conductive = 0
-	integrity = 40
-	hardness = 5
+/datum/ai_holder/simple_mob/teppi/on_hear_say(mob/living/speaker, message)
+	var/mob/living/simple_mob/vore/alienanimals/teppi/T = holder
+	if(holder.client)
+		return
+	if(!speaker.client)
+		return
+	if(!T.teppi_adult)
+		return
+	var/speaker_affinity = T.affinity[speaker.real_name]
+	if(findtext(message, "lets go") || findtext(message, "come teppi") || findtext(message, "come [holder.name]"))
+		if(speaker == leader)
+			return
+		if(!leader)
+			if(speaker_affinity >= 100)
+				set_follow(speaker, follow_for = 10 MINUTES)
+				holder.visible_message("<span class='notice'>\The [holder] starts following \the [speaker]</span>","<span class='notice'>\The [holder] starts following you.</span>")
+				return
+		else
+			var/mob/living/L = leader
+			if(!can_see_target(L))
+				lose_follow()
+				if(speaker_affinity >= 100)
+					set_follow(speaker, follow_for = 10 MINUTES)
+					holder.visible_message("<span class='notice'>\The [holder] starts following \the [speaker]</span>","<span class='notice'>\The [holder] starts following you.</span>")
+					return
+			else if(speaker_affinity > T.affinity[L.real_name])
+				holder.visible_message("<span class='notice'>\The [holder] starts following \the [speaker]</span>","<span class='notice'>\The [holder] starts following you.</span>")
+				set_follow(speaker, follow_for = 10 MINUTES)
+				return
+			if(speaker_affinity == T.affinity[L.real_name])
+				lose_follow()
+				holder.visible_message("<span class='notice'>\The [holder] gives off an anxious whine.</span>")
+	if(findtext(message, "stop teppi") || findtext(message, "stay here") || findtext(message, "stop [holder.name]"))
+		if(leader == speaker)
+			lose_follow()
+			holder.visible_message("<span class='notice'>\The [holder] stops following \the [speaker]</span>","<span class='notice'>\The [holder] stops following you.</span>")
+			return
+/*
+/obj/item/weapon/reagent_containers/food/snacks
+	var/firecooking = 0
 
-/datum/material/fur/teppi/generate_recipes()
-	recipes = list(
-		new /datum/stack_recipe("duster", /obj/item/clothing/suit/storage/duster/craftable, 10, time = 15 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
-		new /datum/stack_recipe("bedsheet", /obj/item/weapon/bedsheet/craftable, 10, time = 30 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
-		new /datum/stack_recipe("uniform", /obj/item/clothing/under/color/white/craftable, 8, time = 15 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
-		new /datum/stack_recipe("foot wraps", /obj/item/clothing/shoes/footwraps/craftable, 2, time = 5 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
-		new /datum/stack_recipe("gloves", /obj/item/clothing/gloves/white/craftable, 2, time = 5 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
-		new /datum/stack_recipe("wig", /obj/item/clothing/head/powdered_wig, 4, time = 10 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
-		new /datum/stack_recipe("philosopher's wig", /obj/item/clothing/head/philosopher_wig, 50, time = 2 MINUTES, pass_stack_color = TRUE, recycle_material = "[name]"),
-		new /datum/stack_recipe("taqiyah", /obj/item/clothing/head/taqiyah/craftable, 3, time = 6 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
-		new /datum/stack_recipe("turban", /obj/item/clothing/head/turban/craftable, 3, time = 6 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
-		new /datum/stack_recipe("hijab", /obj/item/clothing/head/hijab/craftable, 3, time = 6 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
-		new /datum/stack_recipe("kippa", /obj/item/clothing/head/kippa/craftable, 3, time = 6 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
-		new /datum/stack_recipe("scarf", /obj/item/clothing/accessory/scarf/white/craftable, 4, time = 5 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
-		new /datum/stack_recipe("baggy pants", /obj/item/clothing/under/pants/baggy/white/craftable, 8, time = 10 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
-		new /datum/stack_recipe("belt pouch", /obj/item/weapon/storage/belt/fannypack/white/craftable, 25, time = 1 MINUTE, pass_stack_color = TRUE, recycle_material = "[name]"),
-		new /datum/stack_recipe("crude bandage", /obj/item/stack/medical/crude_pack, 1, time = 2 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
-		new /datum/stack_recipe("empty sandbag", /obj/item/stack/emptysandbag, 2, time = 2 SECONDS, pass_stack_color = TRUE, supplied_material = "[name]"),
-		new /datum/stack_recipe("satchel", /obj/item/weapon/storage/backpack/satchel/craftable, 30, time = 1 MINUTE, pass_stack_color = FALSE, recycle_material = "[name]"),
-		new /datum/stack_recipe("backpack", /obj/item/weapon/storage/backpack/craftable, 30, time = 1 MINUTE, pass_stack_color = FALSE, recycle_material = "[name]"),
-		new /datum/stack_recipe("cloak", /obj/item/clothing/accessory/poncho/roles/cloak/custom, 10, time = 15 SECONDS, pass_stack_color = FALSE, recycle_material = "[name]"),
-		new /datum/stack_recipe("teshari cloak", /obj/item/clothing/under/teshari/smock/white/craftable, 10, time = 15 SECONDS, pass_stack_color = FALSE, recycle_material = "[name]"),
-		new /datum/stack_recipe("teshari beltcloak", /obj/item/clothing/suit/storage/teshari/beltcloak/standard/black_white/craftable, 10, time = 15 SECONDS, pass_stack_color = FALSE, recycle_material = "[name]"),
-		new /datum/stack_recipe("bandana", /obj/item/clothing/head/bandana/craftable, 5, time = 15 SECONDS, pass_stack_color = FALSE, recycle_material = "[name]")
-	)
+/obj/item/weapon/reagent_containers/food/snacks/fire_act()
+	firecooking += 1
+	if(firecooking == 20)
+		cook()
+		update_icon()
+		name = "cooked [name]"
+		visible_message("<span class='notice'>\The [src] sizzles...</span>")
 
-/obj/item/stack/material/fur/teppi
-	name = "fur"
-	icon_state = "sheet-fabric"
-	default_type = "fur"
-	strict_color_stacking = TRUE
-	apply_colour = 1
-	drop_sound = 'sound/items/drop/clothing.ogg'
-	pickup_sound = 'sound/items/pickup/clothing.ogg'
-	no_variants = FALSE
-	pass_color = TRUE
-	apply_colour = TRUE
-
-/obj/item/clothing/suit/storage/duster/craftable
-	name = "handmade duster"
-/obj/item/weapon/bedsheet/craftable
-	name = "handmade bedsheet"
-/obj/item/clothing/under/color/white/craftable
-	name = "handmade jumpsuit"
-/obj/item/clothing/shoes/footwraps/craftable
-	name = "handmade footwraps"
-/obj/item/clothing/gloves/white/craftable
-	name = "handmade gloves"
-/obj/item/clothing/head/taqiyah/craftable
-	name = "handmade taqiyah"
-/obj/item/clothing/head/turban/craftable
-	name = "handmade turban"
-/obj/item/clothing/head/hijab/craftable
-	name = "handmade hijab"
-/obj/item/clothing/head/kippa/craftable
-	name = "handmade kippa"
-/obj/item/clothing/accessory/scarf/white/craftable
-	name = "handmade scarf"
-/obj/item/clothing/under/pants/baggy/white/craftable
-	name = "handmade pants"
-/obj/item/weapon/storage/belt/fannypack/white/craftable
-	name = "handmade fannypack"
-/obj/item/weapon/storage/backpack/satchel/craftable
-	name = "handmade satchel"
-	icon_state = "satchel_white"
-	desc = "A handmade satchel, made for holding your things!"
-/obj/item/weapon/storage/backpack/craftable
-	name = "handmade backpack"
-	icon_state = "backpack_white"
-/obj/item/clothing/under/teshari/smock/white/craftable
-	name = "handmade smock"
-/obj/item/clothing/suit/storage/teshari/cloak/standard/white/craftable
-	name = "handmade teshari cloak"
-/obj/item/clothing/suit/storage/teshari/beltcloak/standard/black_white/craftable
-	name = "handmade teshari beltcloak"
-/obj/item/clothing/head/bandana/craftable
-	name = "handmade bandana"
-	icon_state = "bandana-pirate-white"
+	if(firecooking == 50)
+		visible_message("<span class='notice'>\The [src] burns away...</span>")
+		new /obj/item/weapon/reagent_containers/food/snacks/badrecipe(loc, src)
+		qdel(src)
+*/

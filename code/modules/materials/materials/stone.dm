@@ -37,9 +37,9 @@
 /datum/material/stone/flint
 	name = "flint"
 	icon_colour = "#9e9c99"
-	weight = 26
-	hardness = 30 
-	integrity = 201 
+	weight = 20
+	hardness = 30
+	integrity = 100 
 	stack_type = /obj/item/stack/material/flint
 	supply_conversion_value = 2
 	sheet_singular_name = "piece"
