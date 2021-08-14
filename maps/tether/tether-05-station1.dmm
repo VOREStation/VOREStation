@@ -16879,7 +16879,7 @@
 "dkG" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Satellite Teleporter";
-	req_one_access = list(12,16,17,61)
+	req_one_access = list(17)
 	},
 /obj/structure/cable/green{
 	d1 = 4;
