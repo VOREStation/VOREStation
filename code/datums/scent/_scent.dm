@@ -57,8 +57,8 @@ Scent intensity
 *****/
 
 /datum/scent
-	base_type = /datum/scent
-	expected_type = /atom
+	var/base_type = /datum/scent
+	var/expected_type = /atom
 
 	var/scent = "something"
 	var/decl/scent_intensity/intensity = /decl/scent_intensity
@@ -73,18 +73,17 @@ Scent intensity
 
 /datum/scent/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
-	holder = null
 	. = ..()
 
-/datum/scent/process()
-	if(!holder)
-		crash_with("Scent extension with scent '[scent]', intensity '[intensity]', descriptor '[descriptor]' and range of '[range]' attempted to emit_scent() without a holder.")
-		qdel(src)
-		return PROCESS_KILL
-	emit_scent()
+///datum/scent/process() [causes issues due to undefined code from bay]
+//	if(!holder)
+//		crash_with("Scent extension with scent '[scent]', intensity '[intensity]', descriptor '[descriptor]' and range of '[range]' attempted to emit_scent() without a holder.")
+//		qdel(src)
+//		return PROCESS_KILL
+//	emit_scent()
 
 /datum/scent/proc/emit_scent()
-	for(var/mob/living/carbon/human/H in all_hearers(holder, range))
+	for(var/mob/living/carbon/human/H in range)
 		var/turf/T = get_turf(H.loc)
 		if(!T)
 			continue
