@@ -567,8 +567,8 @@
  */
 // neotheology cloning pod from Eris
 /obj/structure/prop/machine/nt_pod
-	icon = 'icons/obj/structures/decor.dmi'
-	icon = 'icons/obj/structures/decor32x64.dmi'
+	icon = 'icons/obj/props/decor.dmi'
+	icon = 'icons/obj/props/decor32x64.dmi'
 	icon_state = "nt_pod_mappreview"
 	bound_height = 64
 
