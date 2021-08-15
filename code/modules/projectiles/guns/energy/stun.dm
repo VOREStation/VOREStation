@@ -109,5 +109,5 @@
 	within their ranks."
 	icon_state = "snubstunrevolver"
 	item_state = "stunrevolver"
-	w_class = ITEMSIZE_SMALL
+	w_class = ITEMSIZE_SMALL //small pistol is small
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
