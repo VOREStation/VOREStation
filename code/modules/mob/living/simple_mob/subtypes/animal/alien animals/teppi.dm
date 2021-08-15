@@ -1191,5 +1191,5 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	eye_color = "#1d7fb7"
 	skin_color = "#f09ca9"
 	marking_type = "13"
-	horn_type = "1"
+	horn_type = "0"
 	. = ..()
