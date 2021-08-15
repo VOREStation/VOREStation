@@ -100,6 +100,7 @@ I think I covered everything.
 	say_list_type = /datum/say_list/bigdragon
 	devourable = 0	//No
 	universal_understand = 1 //So they can hear synth speach
+	max_tox = 0 // for virgo3b survivability
 
 	special_attack_min_range = 1
 	special_attack_max_range = 10

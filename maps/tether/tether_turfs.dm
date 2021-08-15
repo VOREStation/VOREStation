@@ -1,4 +1,10 @@
 //Simulated
+VIRGO3B_TURF_CREATE(/turf/simulated/floor/reinforced)
+VIRGO3B_TURF_CREATE(/turf/simulated/floor/tiled/steel_dirty)
+VIRGO3B_TURF_CREATE(/turf/simulated/floor/wood/sif)
+VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/rocks)
+VIRGO3B_TURF_CREATE(/turf/simulated/floor/water/indoors)
+
 VIRGO3B_TURF_CREATE(/turf/simulated/open)
 /turf/simulated/open/virgo3b
 	edge_blending_priority = 0.5 //Turfs which also have e_b_p and higher than this will plop decorative edges onto this turf
@@ -14,16 +20,10 @@ VIRGO3B_TURF_CREATE(/turf/simulated/floor)
 /turf/simulated/floor/virgo3b_indoors/update_graphic(list/graphic_add = null, list/graphic_remove = null)
 	return 0
 
-VIRGO3B_TURF_CREATE(/turf/simulated/floor/reinforced)
-
-VIRGO3B_TURF_CREATE(/turf/simulated/floor/tiled/steel_dirty)
-
 VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/dirt)
 /turf/simulated/floor/outdoors/dirt/virgo3b
 	icon = 'icons/turf/flooring/asteroid.dmi'
 	icon_state = "asteroid"
-
-VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/rocks)
 
 VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/grass/sif)
 /turf/simulated/floor/outdoors/grass/sif
