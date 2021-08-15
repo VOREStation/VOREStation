@@ -1979,6 +1979,7 @@
 #include "code\modules\clothing\shoes\magboots.dm"
 #include "code\modules\clothing\shoes\miscellaneous.dm"
 #include "code\modules\clothing\shoes\miscellaneous_vr.dm"
+#include "code\modules\clothing\shoes\xeno\teshari.dm"
 #include "code\modules\clothing\spacesuits\alien.dm"
 #include "code\modules\clothing\spacesuits\breaches.dm"
 #include "code\modules\clothing\spacesuits\miscellaneous.dm"
