@@ -540,6 +540,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 		playsound(src, 'sound/items/eatfood.ogg', 75, 1)
 		if(!client && lets_eat(user) && prob(1))
 			visible_message("<span class='danger'>\The [src] scromfs \the [user] along with the food!</span>!")
+			to_chat(user, "<span class='notice'>\The [src] leans in close, spreading its jaws in front of you. A hot, humid gust of breath blows over you as the weight of \the [src]'s presses you over, knocking you off of your feet as the warm gooey tough of jaws scromf over your figure, rapidly guzzling you away with the [O], leaving you to tumble down into the depths of its body...</span>")
 			playsound(src, pick(bodyfall_sound), 75, 1)
 			teppi_pounce(user)
 		if(yum && nutrition >= 500)
@@ -650,6 +651,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 			if(prob(20))
 				to_chat(M, "<span class='notice'>\The [src] grumbles at your touch.</span>")
 		else if(lets_eat(M) && prob(50))
+			to_chat(M, "<span class='notice'>\The [src] grumbles a bit... and then bowls you over, pressing their weight into yours to knock you off of your feet! In a rush of chaotic presses and schlorps, the gooey touch of Teppi flesh grinds over you as you're guzzled away! Casually swallowed down in retaliation for all of the pettings. Pumped down deep into the grumbling depths of \the [src].</span>")
 			visible_message("<span class='danger'>\The [src] scromfs \the [M], before chuffing and settling down again.</span>")
 			playsound(src, pick(bodyfall_sound), 75, 1)
 			teppi_pounce(M)
@@ -751,7 +753,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 				alltep.handle_affinity(src, 30)
 				return
 /mob/living/simple_mob/vore/alienanimals/teppi/proc/teppi_sound()
-	if(!teppi_adult)
+	if(!teppi_adult || client)
 		return
 	if(resting)
 		return
@@ -1135,3 +1137,59 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 			lose_follow()
 			holder.visible_message("<span class='notice'>\The [holder] stops following \the [speaker]</span>","<span class='notice'>\The [holder] stops following you.</span>")
 			return
+
+/mob/living/simple_mob/vore/alienanimals/teppi/mutant
+
+/mob/living/simple_mob/vore/alienanimals/teppi/mutant/New()
+	teppi_mutate = TRUE
+	. = ..()
+
+//Custom teppi colors! For funzies.
+
+/mob/living/simple_mob/vore/alienanimals/teppi/cass
+/mob/living/simple_mob/vore/alienanimals/teppi/cass/New()
+	inherit_colors = TRUE
+	color = "#c69c85"
+	marking_color = "#eeb698"
+	horn_color = "#272523"
+	eye_color = "#612c08"
+	skin_color = "#272523"
+	marking_type = "2"
+	horn_type =  "0"
+	. = ..()
+
+/mob/living/simple_mob/vore/alienanimals/teppi/baby/cass
+/mob/living/simple_mob/vore/alienanimals/teppi/baby/cass/New()
+	inherit_colors = TRUE
+	color = "#c69c85"
+	marking_color = "#eeb698"
+	horn_color = "#272523"
+	eye_color = "#612c08"
+	skin_color = "#272523"
+	marking_type = "2"
+	horn_type =  "0"
+	. = ..()
+
+/mob/living/simple_mob/vore/alienanimals/teppi/aronai
+/mob/living/simple_mob/vore/alienanimals/teppi/aronai/New()
+	inherit_colors = TRUE
+	color = "#404040"
+	marking_color = "#222222"
+	horn_color = "#141414"
+	eye_color = "#9f522c"
+	skin_color = "#e16f2d"
+	marking_type = "13"  
+	horn_type = "1"
+	. = ..()
+
+/mob/living/simple_mob/vore/alienanimals/teppi/lira
+/mob/living/simple_mob/vore/alienanimals/teppi/lira/New()	
+	inherit_colors = TRUE
+	color = "#fdfae9"
+	marking_color = "#ffffc0"
+	horn_color = "#ffc965"
+	eye_color = "#1d7fb7"
+	skin_color = "#f09ca9"
+	marking_type = "13"
+	horn_type = "1"
+	. = ..()
