@@ -131,7 +131,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 
 	has_langs = list("Teppi", "Galactic Common")
 	say_list_type = /datum/say_list/teppi
-	player_msg = "Teppi are large omnivorous quadrupeds. You have four toes on each paw, a long, strong tail, and are quite tough and powerful. You’re a lot more intimidating than you are actually harmful though. Your kind are ordinarily rather passive, only really rising to violence when someone does violence to you or others like you. You’re not stupid though, you can commiunicate with others of your kind, and form bonds with those who are kind to you, be they Teppi or otherwise."
+	player_msg = "Teppi are large omnivorous quadrupeds. You have four toes on each paw, a long, strong tail, and are quite tough and powerful. You’re a lot more intimidating than you are actually harmful though. Your kind are ordinarily rather passive, only really rising to violence when someone does violence to you or others like you. You’re not stupid though, you can commiunicate with others of your kind, and form bonds with those who are kind to you, be they Teppi or otherwise. <br>- - - - -<br><span class='notice'>While you may have access to galactic common, this is purely meant for making it so you can understand people in an OOC manner, for facilitating roleplay. You almost certainly should not be speaking to people or roleplaying as though you understand everything everyone says perfectly, but it's not unreasonable to be able to intuit intent and such through people's tones when they speak. Teppi are kind of smart, but they are animals, and should be roleplayed as such.</span> <span class='warning'>ADDITIONALLY, you have the ability to produce offspring if you're well fed enough every once in a while, and the ability to disable this from happening to you. These verbs exist for to preserve the mechanical functionality of the mob you are playing. You should be aware of your surroundings when you use this verb, and NEVER use it to prefbreak or be disruptive. If in doubt, don't use it.</span> <span class='notice'>Also, to note, AI Teppi will never initiate breeding with player Teppi.</span>"
 	loot_list = list(/obj/item/weapon/bone/horn = 100)
 	internal_organs = list(\
 		/obj/item/organ/internal/brain,\
@@ -494,7 +494,10 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 		handle_affinity(user, -5)
 		user.visible_message(user, "<span class='notice'>\The [user] hits \the [src] with \the [O]. \The [src] grumbles at \the [user].</span>","<span class='notice'>You hits \the [src] with \the [O]. \The [src] grumbles at you.</span>")
 		playsound(src, 'sound/weapons/tap.ogg', 50, 1, -1)
-		return..()
+		return ..()
+	if(teppi_wool)
+		if(teppi_shear(user, O))
+			return
 	/////FOOD/////
 	if(istype(O, /obj/item/weapon/reagent_containers/food))
 		if(resting)
@@ -546,36 +549,8 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 		if(yum && nutrition >= 500)
 			to_chat(user, "<span class='notice'>\The [src] seems satisfied.</span>")
 		return
-	/////TOOLS AND WEAPONS/////
-	if(istype(O, /obj/item/weapon/tool/wirecutters))
-		if(teppi_wool)
-			if(do_after(user, 3 SECONDS, exclusive = TASK_USER_EXCLUSIVE, target = src))
-				amount_grown = rand(0,250)
-				var/obj/item/stack/material/fur/F = new(get_turf(user))
-				F.amount = rand(10,15)
-				F.color = marking_color
-				teppi_wool = FALSE
-				update_icon()
-				handle_affinity(user, 5)
-				return		
+	/////WEAPONS/////
 	if(istype(O, /obj/item/weapon/material/knife))
-		var/obj/item/weapon/material/knife/K = O
-		if(teppi_wool)
-			var/sheartime = 3 SECONDS
-			if(K.default_material == MAT_PLASTIC || K.default_material == MAT_FLINT)
-				sheartime *= 2
-			if(K.dulled == TRUE)
-				sheartime *= 3
-			user.visible_message("<span class='notice'>\The [user] shears \the [src] with \the [O].</span>","<span class='notice'>You shear \the [src] with \the [O].</span>")
-			if(do_after(user, sheartime, exclusive = TASK_USER_EXCLUSIVE, target = src))
-				amount_grown = rand(0,250)
-				var/obj/item/stack/material/fur/F = new(get_turf(user))
-				F.amount = rand(10,15)
-				F.color = marking_color
-				teppi_wool = FALSE
-				update_icon()
-				handle_affinity(user, 5)
-				return
 		if(client)
 			return ..()
 		if(resting && stat != DEAD)
@@ -707,14 +682,13 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 			else
 				playsound(src, 'sound/voice/teppi/whine2.ogg', 75, 1)
 			amount_grown -= rand(100,250)
-	do_breeding(not_hungy)
-	do_healing(not_hungy)
+	if(not_hungy)
+		do_breeding()
+		do_healing()
 	if(prob(0.5))
 		teppi_sound()
 
-/mob/living/simple_mob/vore/alienanimals/teppi/proc/do_healing(not_hungy)
-	if(!not_hungy)
-		return
+/mob/living/simple_mob/vore/alienanimals/teppi/proc/do_healing()
 	if(health < maxHealth)
 		if(heal_countdown > 0)
 			heal_countdown -= 1
@@ -726,15 +700,15 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 		nutrition -= 5
 		heal_countdown = 5
 
-/mob/living/simple_mob/vore/alienanimals/teppi/proc/do_breeding(not_hungy)
-	if(!breedable || !not_hungy || prevent_breeding)
+/mob/living/simple_mob/vore/alienanimals/teppi/proc/do_breeding()
+	if(!breedable || prevent_breeding)
 		return
 	if(client)	//Player controlled teppi get a verb, so just do the countdown
 		if(baby_countdown > 0)
-			baby_countdown -= 1
+			baby_countdown --
 		return
 	if(baby_countdown > 0)
-		baby_countdown -= 1
+		baby_countdown --
 		return
 	else if(GLOB.teppi_count >= GLOB.max_teppi) //if we can't make more then we shouldn't look for partners, but we can be ready in case a slot opens
 		return
@@ -752,6 +726,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 				handle_affinity(alltep, 30) //Mom and dad should like eachother when they do their business
 				alltep.handle_affinity(src, 30)
 				return
+
 /mob/living/simple_mob/vore/alienanimals/teppi/proc/teppi_sound()
 	if(!teppi_adult || client)
 		return
@@ -759,9 +734,37 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 		return
 	playsound(src, pick(teppi_sound), 75, 1)
 
+/mob/living/simple_mob/vore/alienanimals/teppi/proc/teppi_shear(var/mob/user as mob, tool)
+	var/sheartime = 3 SECONDS
+	if(istype(tool, /obj/item/weapon/material/knife))
+		var/obj/item/weapon/material/knife/K = tool
+		if(K.default_material == MAT_PLASTIC || K.default_material == MAT_FLINT)
+			sheartime *= 2
+		if(K.dulled)
+			sheartime *= 3
+		if(!K.sharp)
+			sheartime *= 2
+		if(K.edge)
+			sheartime *= 0.5		
+	else if(istype(tool, /obj/item/weapon/tool/wirecutters))
+		sheartime *= 2
+	else
+		return FALSE
+	if(do_after(user, sheartime, exclusive = TASK_USER_EXCLUSIVE, target = src))
+		user.visible_message("<span class='notice'>\The [user] shears \the [src] with \the [tool].</span>","<span class='notice'>You shear \the [src] with \the [tool].</span>")
+		amount_grown = rand(0,250)
+		var/obj/item/stack/material/fur/F = new(get_turf(user))
+		F.amount = rand(10,15)
+		F.color = marking_color
+		teppi_wool = FALSE
+		update_icon()
+		handle_affinity(user, 5)
+		teppi_sound()
+		return TRUE
+
 //Handles both growing up from a baby and also passing parent details to new babies.
 /mob/living/simple_mob/vore/alienanimals/teppi/New(newloc, teppi1, teppi2)
-	GLOB.teppi_count += 1
+	GLOB.teppi_count ++
 	if(teppi1 && !teppi2)
 		inherit_from_baby(teppi1)
 	else if (teppi1 && teppi2)
@@ -769,15 +772,11 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	..()
 
 /mob/living/simple_mob/vore/alienanimals/teppi/Destroy()
-	GLOB.teppi_count -= 1
+	GLOB.teppi_count --
 	friend_zone = null
 	active_ghost_pods -= src
 	ai_holder.leader = null
 	return ..()
-
-/mob/living/simple_mob/vore/alienanimals/teppi/Login()
-	..()
-	to_chat(src, "<span class='notice'>While you may have access to galactic common, this is purely meant for making it so you can understand people in an OOC manner, for facilitating roleplay. You almost certainly should not be speaking to people or roleplaying as though you understand everything everyone says perfectly, but it's not unreasonable to be able to intuit intent and such through people's tones when they speak. Teppi are kind of smart, but they are animals, and should be roleplayed as such.</span> <span class='warning'>ADDITIONALLY, you have the ability to produce offspring if you're well fed enough every once in a while, and the ability to disable this from happening to you. These verbs exist for to preserve the mechanical functionality of the mob you are playing. You should be aware of your surroundings when you use this verb, and NEVER use it to prefbreak or be disruptive. If in doubt, don't use it.</span> <span class='notice'>Also, to note, AI Teppi will never initiate breeding with player Teppi.</span>")
 
 /mob/living/simple_mob/vore/alienanimals/teppi/lay_down()
 	..()
@@ -1109,7 +1108,8 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	if(!T.teppi_adult)
 		return
 	var/speaker_affinity = T.affinity[speaker.real_name]
-	if(findtext(message, "lets go") || findtext(message, "come teppi") || findtext(message, "come [holder.name]"))
+	message = html_decode(message)
+	if(findtext(message, "lets go") || findtext(message, "let's go") || findtext(message, "come teppi") || findtext(message, "come [holder.name]"))
 		if(speaker == leader)
 			return
 		if(!leader)
@@ -1138,15 +1138,13 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 			holder.visible_message("<span class='notice'>\The [holder] stops following \the [speaker]</span>","<span class='notice'>\The [holder] stops following you.</span>")
 			return
 
-/mob/living/simple_mob/vore/alienanimals/teppi/mutant
-
+//This a teppi with funny colors will spawn!
 /mob/living/simple_mob/vore/alienanimals/teppi/mutant/New()
 	teppi_mutate = TRUE
 	. = ..()
 
 //Custom teppi colors! For funzies.
 
-/mob/living/simple_mob/vore/alienanimals/teppi/cass
 /mob/living/simple_mob/vore/alienanimals/teppi/cass/New()
 	inherit_colors = TRUE
 	color = "#c69c85"
@@ -1158,7 +1156,6 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	horn_type =  "0"
 	. = ..()
 
-/mob/living/simple_mob/vore/alienanimals/teppi/baby/cass
 /mob/living/simple_mob/vore/alienanimals/teppi/baby/cass/New()
 	inherit_colors = TRUE
 	color = "#c69c85"
@@ -1170,7 +1167,6 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	horn_type =  "0"
 	. = ..()
 
-/mob/living/simple_mob/vore/alienanimals/teppi/aronai
 /mob/living/simple_mob/vore/alienanimals/teppi/aronai/New()
 	inherit_colors = TRUE
 	color = "#404040"
@@ -1182,7 +1178,6 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	horn_type = "1"
 	. = ..()
 
-/mob/living/simple_mob/vore/alienanimals/teppi/lira
 /mob/living/simple_mob/vore/alienanimals/teppi/lira/New()	
 	inherit_colors = TRUE
 	color = "#fdfae9"

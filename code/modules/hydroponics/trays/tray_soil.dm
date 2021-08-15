@@ -21,7 +21,7 @@
 		else
 			to_chat(user, "<span class='notice'>There is something growing here.</span>")
 	else
-		..()
+		return ..()
 
 /obj/machinery/portable_atmospherics/hydroponics/soil/New()
 	..()
