@@ -30,18 +30,6 @@
 	charge_cost = 800
 	recharge_time = 0.5 SECONDS
 
-/obj/item/weapon/gun/energy/stunrevolver
-	name = "stun revolver"
-	desc = "A LAEP20 Aktzin. Designed and produced by Lawson Arms under the wing of Hephaestus, several TSCs have been trying to get a hold of the blueprints for half a decade."
-	description_fluff = "Lawson Arms is Hephaestus Industries’ main personal-energy-weapon branding, often sold alongside MarsTech projectile weapons to security and law enforcement agencies. \
-	The Aktzin's capsule-based stun ammunition is a closely guarded Hephaestus Industries patent, and the company has been particularly litigious towards any attempted imitators."
-	icon = 'icons/obj/guns/energy/stunrevolver.dmi'
-	icon_state = "stunrevolver"
-	item_state = "stunrevolver"
-	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
-	projectile_type = /obj/item/projectile/energy/electrode/strong
-	charge_cost = 300
-
 /obj/item/weapon/gun/energy/crossbow
 	name = "mini energy-crossbow"
 	desc = "A weapon favored by many mercenary stealth specialists."
@@ -82,3 +70,44 @@
 	fire_delay = 20
 	charge_cost = 600
 	projectile_type = /obj/item/projectile/energy/plasmastun
+
+//Stun Revolvers
+
+/obj/item/weapon/gun/energy/stunrevolver
+	name = "stun revolver"
+	desc = "A LAEP20 Aktzin. Designed and produced by Lawson Arms under the wing of Hephaestus, \
+	several TSCs have been trying to get a hold of the blueprints for half a decade."
+	description_fluff = "Lawson Arms is Hephaestus Industries’ main personal-energy-weapon branding, \
+	often sold alongside MarsTech projectile weapons to security and law enforcement agencies. \
+	The Aktzin's capsule-based stun ammunition is a closely guarded Hephaestus Industries patent, \
+	and the company has been particularly litigious towards any attempted imitators."
+	icon_state = "stunrevolver"
+	item_state = "stunrevolver"
+	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
+	projectile_type = /obj/item/projectile/energy/electrode/strong
+	charge_cost = 300
+
+/obj/item/weapon/gun/energy/stunrevolver/vintage
+	name = "vintage stun revolver"
+	desc = "An older model stun revolver that is still in service across the frontier."
+	description_fluff = "The LTX1020 Bolter, a Firefly Co. staple from when the company was in its hayday. \
+	While Firefly Co. has sadly been dissmantled due to bankruptcy, their iconic weapons can still be found \
+	across the frontier as anything from collectors items to surplus equipment. The LTX1020 falls under \
+	the latter category. Several companies have been known to use the base tech within the Bolter to create \
+	their own variants of the Stun Revolver."
+	icon_state = "vinstunrevolver"
+	item_state = "stunrevolver"
+	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
+
+/obj/item/weapon/gun/energy/stunrevolver/snubnose
+	name = "snub stun revolver"
+	desc = "A snub nose stun revolver sporting a rather elegant look."
+	description_fluff = "The LTX1010 Stubby, a Firefly Co. staple from when the company was in its hayday. \
+	While Firefly Co. has sadly been dissmantled due to bankruptcy, their iconic weapons can still be found \
+	across the frontier as anything from collectors items to surplus equipment. The LTX1010 falls under \
+	the latter category. Gangsters and other gentlemanly criminals alike use the Stubby as a means of policing \
+	within their ranks."
+	icon_state = "snubstunrevolver"
+	item_state = "stunrevolver"
+	w_class = ITEMSIZE_SMALL
+	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
