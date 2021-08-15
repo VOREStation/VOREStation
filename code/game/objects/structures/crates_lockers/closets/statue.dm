@@ -7,7 +7,6 @@
 	anchored = TRUE
 	health = 0 //destroying the statue kills the mob within
 	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
-	door_anim_time = 0 // Why is this a closet??
 	var/intialTox = 0 	//these are here to keep the mob from taking damage from things that logically wouldn't affect a rock
 	var/intialFire = 0	//it's a little sloppy I know but it was this or the GODMODE flag. Lesser of two evils.
 	var/intialBrute = 0

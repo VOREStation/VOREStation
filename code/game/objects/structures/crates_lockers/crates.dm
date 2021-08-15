@@ -7,7 +7,6 @@
 	closet_appearance = /decl/closet_appearance/crate
 	climbable = TRUE
 	dir = 4 //Spawn facing 'forward' by default.
-	door_anim_time = 0 //Unsupported until appropriate sprites are available
 	var/points_per_crate = 5
 	var/rigged = 0
 

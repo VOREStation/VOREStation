@@ -13,7 +13,6 @@
 	opened = 0
 	sealed = 0 //Don't touch this.
 	health = 100
-	door_anim_time = 0 //Unsupported
 
 /obj/structure/closet/secure_closet/egg/update_icon()
 	if(opened)
