@@ -9,7 +9,11 @@
 "aT" = (
 /obj/structure/table/bench/sifwooden/padded,
 /mob/living/simple_mob/animal/sif/siffet{
-	faction = "neutral"
+	faction = "neutral";
+	max_co2 = 0;
+	max_tox = 0;
+	min_oxy = 0;
+	minbodytemp = 0
 	},
 /turf/simulated/floor/outdoors/grass/sif/forest{
 	outdoors = 0
@@ -206,7 +210,7 @@
 /turf/simulated/floor/outdoors/grass/sif,
 /area/submap/LeopardmanderDen)
 "qg" = (
-/obj/structure/bed/chair/oldsofa/right{
+/obj/structure/bed/chair/sofa/right{
 	dir = 8
 	},
 /turf/simulated/floor/outdoors/rocks{
@@ -252,13 +256,21 @@
 /area/submap/LeopardmanderDen)
 "sY" = (
 /mob/living/simple_mob/animal/sif/sakimm{
-	faction = "neutral"
+	faction = "neutral";
+	max_co2 = 0;
+	max_tox = 0;
+	min_oxy = 0;
+	minbodytemp = 0
 	},
 /turf/template_noop,
 /area/template_noop)
 "tP" = (
 /mob/living/simple_mob/animal/sif/sakimm{
-	faction = "neutral"
+	faction = "neutral";
+	max_co2 = 0;
+	max_tox = 0;
+	min_oxy = 0;
+	minbodytemp = 0
 	},
 /turf/simulated/floor/outdoors/dirt,
 /area/template_noop)
@@ -278,12 +290,6 @@
 	dir = 8
 	},
 /turf/simulated/floor/outdoors/dirt,
-/area/template_noop)
-"vk" = (
-/mob/living/simple_mob/animal/sif/tymisian{
-	faction = "neutral"
-	},
-/turf/template_noop,
 /area/template_noop)
 "xf" = (
 /turf/simulated/floor/outdoors/grass/sif,
@@ -311,7 +317,11 @@
 /area/submap/LeopardmanderDen)
 "zJ" = (
 /mob/living/simple_mob/animal/sif/siffet{
-	faction = "neutral"
+	faction = "neutral";
+	max_co2 = 0;
+	max_tox = 0;
+	min_oxy = 0;
+	minbodytemp = 0
 	},
 /turf/simulated/floor/outdoors/dirt,
 /area/template_noop)
@@ -331,7 +341,7 @@
 /turf/simulated/floor/water/ocean,
 /area/submap/LeopardmanderDen)
 "AP" = (
-/obj/structure/bed/chair/oldsofa/right{
+/obj/structure/bed/chair/sofa/right{
 	dir = 4
 	},
 /turf/simulated/floor/outdoors/rocks{
@@ -382,7 +392,7 @@
 /turf/simulated/wall/sifwood,
 /area/template_noop)
 "HV" = (
-/obj/structure/bed/chair/oldsofa/left{
+/obj/structure/bed/chair/sofa/left{
 	dir = 4
 	},
 /turf/simulated/floor/outdoors/rocks{
@@ -414,7 +424,7 @@
 /area/template_noop)
 "KT" = (
 /obj/structure/flora/ausbushes/brflowers,
-/obj/structure/flora/tree/winter,
+/obj/structure/flora/tree/bigtree,
 /turf/simulated/floor/outdoors/grass/sif/forest,
 /area/submap/LeopardmanderDen)
 "Lb" = (
@@ -446,9 +456,6 @@
 "Pc" = (
 /obj/item/stack/material/diamond,
 /turf/simulated/floor/outdoors/grass/sif,
-/area/submap/LeopardmanderDen)
-"Pr" = (
-/turf/unsimulated/wall/bronze,
 /area/submap/LeopardmanderDen)
 "PO" = (
 /obj/effect/decal/cleanable/dirt,
@@ -498,7 +505,11 @@
 /area/submap/LeopardmanderDen)
 "Tj" = (
 /mob/living/simple_mob/animal/sif/tymisian{
-	faction = "neutral"
+	faction = "neutral";
+	max_co2 = 0;
+	max_tox = 0;
+	min_oxy = 0;
+	minbodytemp = 0
 	},
 /turf/simulated/floor/outdoors/dirt,
 /area/template_noop)
@@ -510,7 +521,7 @@
 	},
 /area/submap/LeopardmanderDen)
 "TF" = (
-/obj/structure/bed/chair/oldsofa/left{
+/obj/structure/bed/chair/sofa/left{
 	dir = 8
 	},
 /turf/simulated/floor/outdoors/rocks{
@@ -560,7 +571,10 @@
 	},
 /area/submap/LeopardmanderDen)
 "Xt" = (
-/mob/living/simple_mob/vore/leopardmander,
+/mob/living/simple_mob/vore/leopardmander{
+	max_co2 = 0;
+	min_oxy = 0
+	},
 /turf/simulated/floor/outdoors/grass/sif/forest{
 	outdoors = 0
 	},
@@ -664,7 +678,7 @@ bj
 Pc
 xf
 IQ
-Pr
+cu
 IQ
 IQ
 IQ
@@ -745,7 +759,7 @@ gP
 (8,1,1) = {"
 Ls
 IQ
-Pr
+cu
 xf
 mu
 nw
@@ -889,7 +903,7 @@ xf
 cu
 cu
 Qa
-Pr
+cu
 IQ
 IQ
 IQ
@@ -943,7 +957,7 @@ Kv
 (17,1,1) = {"
 rn
 rn
-tP
+Sm
 rn
 Sm
 ll
@@ -977,9 +991,9 @@ eD
 mW
 uw
 Kd
-Sm
-vk
 tP
+rn
+Tj
 rn
 rn
 rn
