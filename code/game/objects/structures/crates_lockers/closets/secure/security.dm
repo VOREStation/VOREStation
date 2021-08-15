@@ -231,12 +231,8 @@
 	starts_with = list(
 		/obj/item/clothing/accessory/badge/holo/detective,
 		/obj/item/clothing/gloves/black,
-<<<<<<< HEAD
-		///obj/item/gunbox, //VOREStation Removal,
-=======
-		/obj/item/gunbox,
-		/obj/item/weapon/gun/energy/stunrevolver/vintage,
->>>>>>> 17ceaedf675... Merge pull request #8178 from GhostActual/Stun-Revolvers
+		///obj/item/gunbox, // VOREStation Removal
+		///obj/item/weapon/gun/energy/stunrevolver/vintage, // VOREStation Removal
 		/obj/item/weapon/storage/belt/detective,
 		/obj/item/weapon/storage/box/evidence,
 		/obj/item/device/radio/headset/headset_sec,

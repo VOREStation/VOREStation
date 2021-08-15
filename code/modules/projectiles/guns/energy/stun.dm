@@ -30,21 +30,6 @@
 	charge_cost = 800
 	recharge_time = 0.5 SECONDS
 
-<<<<<<< HEAD
-/obj/item/weapon/gun/energy/stunrevolver
-	name = "stun revolver"
-	desc = "A LAEP20 Aktzin. Designed and produced by Lawson Arms under the wing of Hephaestus, several TSCs have been trying to get a hold of the blueprints for half a decade."
-	description_fluff = "Lawson Arms is Hephaestus Industries’ main personal-energy-weapon branding, often sold alongside MarsTech projectile weapons to security and law enforcement agencies. \
-	The Aktzin's capsule-based stun ammunition is a closely guarded Hephaestus Industries patent, and the company has been particularly litigious towards any attempted imitators."
-	icon = 'icons/obj/guns/energy/stunrevolver.dmi'
-	icon_state = "stunrevolver"
-	item_state = "stunrevolver"
-	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
-	projectile_type = /obj/item/projectile/energy/electrode/strong
-	charge_cost = 300
-
-=======
->>>>>>> 17ceaedf675... Merge pull request #8178 from GhostActual/Stun-Revolvers
 /obj/item/weapon/gun/energy/crossbow
 	name = "mini energy-crossbow"
 	desc = "A weapon favored by many mercenary stealth specialists."
