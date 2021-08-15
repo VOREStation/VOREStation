@@ -6,6 +6,7 @@
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "nest"
 	var/health = 100
+	unacidable = TRUE
 
 /obj/structure/bed/nest/update_icon()
 	return

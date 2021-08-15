@@ -3,6 +3,7 @@
 	oxygen = MOLES_O2STANDARD
 	nitrogen = MOLES_N2STANDARD
 	var/skip_init = TRUE // Don't call down the chain, apparently for performance when loading maps at runtime.
+	flags = TURF_ACID_IMMUNE
 
 /turf/unsimulated/Initialize(mapload)
 	if(skip_init)

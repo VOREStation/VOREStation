@@ -194,6 +194,7 @@
 	icon_state = "cryopod_0" //VOREStation Edit - New Icon
 	density = TRUE
 	anchored = TRUE
+	unacidable = TRUE
 	dir = WEST
 
 	var/base_icon_state = "cryopod_0" //VOREStation Edit - New Icon

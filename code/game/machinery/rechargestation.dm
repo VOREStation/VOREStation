@@ -5,6 +5,7 @@
 	icon_state = "borgcharger0"
 	density = TRUE
 	anchored = TRUE
+	unacidable = TRUE
 	circuit = /obj/item/weapon/circuitboard/recharge_station
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 50

@@ -752,6 +752,7 @@
 	desc = "An underfloor disposal pipe."
 	anchored = TRUE
 	density = FALSE
+	unacidable = TRUE
 
 	level = 1			// underfloor only
 	var/dpdir = 0		// bitmask of pipe directions

@@ -4,6 +4,7 @@
 	icon = 'icons/mob/alien.dmi'
 	layer = ABOVE_JUNK_LAYER
 	var/health = 50
+	unacidable = TRUE
 
 /obj/structure/alien/proc/healthcheck()
 	if(health <=0)

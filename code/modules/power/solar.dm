@@ -13,6 +13,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 	icon_state = "sp_base"
 	anchored = TRUE
 	density = TRUE
+	unacidable = TRUE
 	use_power = USE_POWER_OFF
 	idle_power_usage = 0
 	active_power_usage = 0

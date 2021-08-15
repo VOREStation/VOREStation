@@ -6,6 +6,7 @@
 	icon = 'icons/obj/power.dmi'
 	icon_state = "circ-unassembled"
 	anchored = FALSE
+	unacidable = TRUE
 	pipe_flags = PIPING_DEFAULT_LAYER_ONLY|PIPING_ONE_PER_TURF
 
 	var/kinetic_efficiency = 0.04 //combined kinetic and kinetic-to-electric efficiency

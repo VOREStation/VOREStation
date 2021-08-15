@@ -5,6 +5,7 @@
 	icon_state = "table2-idle"
 	density = TRUE
 	anchored = TRUE
+	unacidable = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 1
 	active_power_usage = 5

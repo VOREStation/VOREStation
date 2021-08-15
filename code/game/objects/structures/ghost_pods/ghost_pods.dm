@@ -8,6 +8,7 @@
 	var/used = FALSE
 	var/busy = FALSE // Don't spam ghosts by spamclicking.
 	var/needscharger //For drone pods that want their pod to turn into a charger.
+	unacidable = TRUE
 
 // Call this to get a ghost volunteer.
 /obj/structure/ghost_pod/proc/trigger(var/alert, var/adminalert)
