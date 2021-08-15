@@ -5,6 +5,7 @@
 	icon_state = "pipe_d"
 	density = TRUE
 	anchored = TRUE
+	unacidable = TRUE
 	var/unwrenched = 0
 	var/wait = 0
 	var/p_layer = PIPING_LAYER_REGULAR

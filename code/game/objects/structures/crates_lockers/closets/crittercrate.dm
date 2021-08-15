@@ -2,4 +2,3 @@
 	name = "critter crate"
 	desc = "A crate which can sustain life for a while."
 	closet_appearance = /decl/closet_appearance/large_crate/critter
-	door_anim_time = 0 //Unsupported

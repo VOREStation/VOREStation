@@ -6,6 +6,7 @@ GLOBAL_LIST_EMPTY(all_turbines)
 	icon_state = "teg-unassembled"
 	density = TRUE
 	anchored = FALSE
+	unacidable = TRUE
 
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 100 //Watts, I hope.  Just enough to do the computer and display things.

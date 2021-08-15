@@ -38,6 +38,14 @@
 #include "priderock.dmm"
 #include "oldhotel.dmm"
 #include "VRDen.dmm"
+#include "leopardmanderden.dmm"
+#include "greatwolfden.dmm"
+#include "syndisniper.dmm"
+#include "otieshelter.dmm"
+#include "lonewolf.dmm"
+#include "emptycabin.dmm"
+#include "dogbase.dmm"
+#include "drgnplateu.dmm"
 #endif
 
 
@@ -96,7 +104,7 @@
 /datum/map_template/surface/plains/normal/Rocky2
 	name =  "Rocky 2"
 	desc = "More rocks."
-	mappath = 'maps/submaps/surface_submaps/wilderness/Rocky2.dmm'
+	mappath = 'maps/submaps/surface_submaps/plains/Rocky2.dmm'
 	allow_duplicates = TRUE
 	cost = 5
 
@@ -288,3 +296,54 @@
 	desc = "A temporarily abandoned VR den, still functional."
 	mappath = 'maps/submaps/surface_submaps/plains/VRDen.dmm'
 	cost = 10
+
+/datum/map_template/surface/plains/leopardmanderden
+	name = "Leopardmander Den"
+	desc = "Den of a voracious but very rare beast."
+	mappath = 'maps/submaps/surface_submaps/plains/leopardmanderden.dmm'
+	cost = 10
+
+/datum/map_template/surface/plains/greatwolfden
+	name = "Great Wolf Den"
+	desc = "Den hosted by the biggest alpha wolf of the wilderness"
+	mappath = 'maps/submaps/surface_submaps/plains/greatwolfden.dmm'
+	cost = 15
+
+/datum/map_template/surface/plains/dogbase
+	name = "Dog Base"
+	desc = "A highly secured base with hungry trained canines"
+	mappath = 'maps/submaps/surface_submaps/plains/dogbase.dmm'
+	cost = 20
+	allow_duplicates = FALSE
+
+/datum/map_template/surface/wilderness/normal/emptycabin
+	name = "Empty Cabin"
+	desc = "An inconspicuous looking den hosted by a hungry otie"
+	mappath = 'maps/submaps/surface_submaps/plains/emptycabin.dmm'
+	cost = 10
+
+/datum/map_template/surface/plains/lonewolf
+	name = "Lone Wolf"
+	desc = "A large oppressing wolf, supervising from above its cliff"
+	mappath = 'maps/submaps/surface_submaps/plains/lonewolf.dmm'
+	cost = 5
+
+/datum/map_template/surface/plains/otieshelter
+	name = "Otie Shelter"
+	desc = "A experimental lab of various breeds of oties"
+	mappath = 'maps/submaps/surface_submaps/plains/otieshelter.dmm'
+	cost = 15
+
+/datum/map_template/surface/plains/syndisniper
+	name = "Syndi Sniper"
+	desc = "Syndicate watch tower, deadly but secluded"
+	mappath = 'maps/submaps/surface_submaps/plains/syndisniper.dmm'
+	
+	cost = 5
+
+/datum/map_template/surface/plains/drgnplateu
+	name = "Dragon Plateu"
+	desc = "A dangerous plateu of cliffs home to a rampant gold hoarding dragon"
+	mappath = 'maps/submaps/surface_submaps/plains/drgnplateu.dmm'
+	cost = 15
+	allow_duplicates = FALSE

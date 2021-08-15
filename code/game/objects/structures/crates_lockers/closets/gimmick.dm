@@ -3,7 +3,6 @@
 	desc = "Old will forever be in fashion."
 	icon = 'icons/obj/closets/bases/cabinet.dmi'
 	closet_appearance = /decl/closet_appearance/cabinet
-	door_anim_time = 0 //Unsupported
 
 /obj/structure/closet/acloset
 	name = "strange closet"

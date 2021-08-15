@@ -38,6 +38,7 @@
 	can_buckle = TRUE
 	buckle_movable = TRUE
 	buckle_lying = FALSE
+	max_tox = 0 // for virgo3b survivability
 
 /mob/living/simple_mob/vore/greatwolf
 
