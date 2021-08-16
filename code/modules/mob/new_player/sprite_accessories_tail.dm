@@ -909,6 +909,16 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
+/datum/sprite_accessory/tail/foxtail
+	name = "Fox tail, colourable (vwag)"
+	desc = ""
+	icon_state = "foxtail"
+	extra_overlay = "foxtail-tips"
+	do_colouration = TRUE
+	color_blend_mode = ICON_MULTIPLY
+	ani_state = "foxtail_w"
+	extra_overlay_w = "foxtail-tips_w"
+
 /datum/sprite_accessory/tail/triplekitsune_colorable
 	name = "Kitsune 3 tails, colorable"
 	desc = ""
