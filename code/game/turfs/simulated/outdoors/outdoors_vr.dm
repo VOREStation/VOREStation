@@ -33,13 +33,13 @@
 		"dirt0" = 150,
 		"dirt1" = 25,
 		"dirt2" = 25,
-		"dirt3" = 10,
-		"dirt4" = 3,
-		"dirt5" = 3,
-		"dirt6" = 1,
-		"dirt7" = 25,
-		"dirt8" = 10,
-		"dirt9" = 25
+		"dirt3" = 25,
+		"dirt4" = 25,
+		"dirt5" = 10,
+		"dirt6" = 10,
+		"dirt7" = 3,
+		"dirt8" = 3,
+		"dirt9" = 1
 	)
 	flooring_override = pickweight(possibledirts)
 	return ..()	

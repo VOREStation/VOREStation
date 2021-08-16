@@ -189,3 +189,6 @@
 	base_icon = "riding_crop"
 	icon_state = "riding_crop0"
 	attack_verb = list("cropped","spanked","swatted","smacked","peppered")
+
+/obj/item/weapon/material/twohanded/spear/flint
+	default_material = MAT_FLINT
