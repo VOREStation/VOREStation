@@ -106,8 +106,8 @@
 	While Firefly Co. has sadly been dissmantled due to bankruptcy, their iconic weapons can still be found \
 	across the frontier as anything from collectors items to surplus equipment. The LTX1010 falls under \
 	the latter category. Gangsters and other gentlemanly criminals alike use the Stubby as a means of policing \
-	within their ranks."
+	within their ranks. Hard to argue with the boss with 12000 volts shooting through you."
 	icon_state = "snubstunrevolver"
 	item_state = "stunrevolver"
-	w_class = ITEMSIZE_SMALL
+	w_class = ITEMSIZE_SMALL //small pistol is small
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
