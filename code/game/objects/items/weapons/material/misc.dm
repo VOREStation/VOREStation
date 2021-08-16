@@ -217,3 +217,4 @@
 	applies_material_colour = FALSE
 
 /obj/item/weapon/material/knife/machete/hatchet/stone/bone
+	icon_state = "stone_bone_axe"
