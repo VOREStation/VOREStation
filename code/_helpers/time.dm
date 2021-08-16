@@ -124,9 +124,19 @@ GLOBAL_VAR_INIT(round_start_time, 0)
 
 /var/midnight_rollovers = 0
 /var/rollovercheck_last_timeofday = 0
+/var/rollover_safety_date = 0 // set in world/New to the server startup day-of-month
 /proc/update_midnight_rollover()
-	if (world.timeofday < rollovercheck_last_timeofday) //TIME IS GOING BACKWARDS!
-		midnight_rollovers += 1
+	// Day has wrapped (world.timeofday drops to 0 at the start of each real day)
+	if (world.timeofday < rollovercheck_last_timeofday)
+		// Compare the last wrap date (or server startup date) to our current date
+		var/curday = text2num(time2text(world.timeofday, "DD"))
+		// If the date is the same as the startup or last wrap, we should avoid wrapping, may be clock adjustment
+		// note that this won't protect against going from 00:01 to 23:59 and crossing the boundary again
+		if(rollover_safety_date != curday)
+			midnight_rollovers++
+			rollover_safety_date = curday
+		else
+			warning("Time rollover error: world.timeofday decreased from previous check, but date remained the same. System clock?")
 	rollovercheck_last_timeofday = world.timeofday
 	return midnight_rollovers
 
