@@ -292,15 +292,17 @@
 					var/count = CLAMP(round(text2num(arguments["num"]) || 0), 0, MAX_MULTI_AMOUNT)
 					if(!count)
 						return
-
 					if(!length(answer))
 						answer = reagents.get_master_reagent_name()
+					if(findtext(answer, "Keloderm"))
+						answer = replacetext(answer, "Keloderm", "Derkel")
+					else if (findtext(answer, "Derkel"))
+						answer = replacetext(answer, "Derkel", "Keloderm")
 					var/amount_per_pill = CLAMP(reagents.total_volume / count, 0, MAX_UNITS_PER_PILL)
 					while(count--)
 						if(reagents.total_volume <= 0)
 							to_chat(usr, "<span class='notice'>Not enough reagents to create these pills!</span>")
 							return
-
 						var/obj/item/weapon/reagent_containers/pill/P = new(loc)
 						P.name = "[answer] pill"
 						P.pixel_x = rand(-7, 7) // Random position
@@ -330,6 +332,10 @@
 
 					if(!length(answer))
 						answer = reagents.get_master_reagent_name()
+					if(findtext(answer, "Keloderm"))
+						answer = replacetext(answer, "Keloderm", "Derkel")
+					else if (findtext(answer, "Derkel"))
+						answer = replacetext(answer, "Derkel", "Keloderm")
 					var/amount_per_patch = CLAMP(reagents.total_volume / count, 0, MAX_UNITS_PER_PATCH)
 					// var/is_medical_patch = chemical_safety_check(reagents)
 					while(count--)
@@ -358,6 +364,10 @@
 
 					if(!length(answer))
 						answer = reagents.get_master_reagent_name()
+					if(findtext(answer, "Keloderm"))
+						answer = replacetext(answer, "Keloderm", "Derkel")
+					else if (findtext(answer, "Derkel"))
+						answer = replacetext(answer, "Derkel", "Keloderm")
 					var/amount_per_bottle = CLAMP(reagents.total_volume / count, 0, MAX_UNITS_PER_BOTTLE)
 					while(count--)
 						if(reagents.total_volume <= 0)
