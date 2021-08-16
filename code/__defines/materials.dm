@@ -36,6 +36,7 @@
 #define MAT_LEATHER			"leather"
 #define MAT_CHITIN			"chitin"
 #define MAT_CLOTH			"cloth"
+#define MAT_FUR				"fur"
 #define MAT_SYNCLOTH		"syncloth"
 #define MAT_FIBERS			"fibers"
 #define MAT_COPPER			"copper"
@@ -47,6 +48,7 @@
 #define MAT_PAINITE			"painite"
 #define MAT_BOROSILICATE	"borosilicate glass"
 #define MAT_SANDSTONE		"sandstone"
+#define MAT_FLINT           "flint"
 
 #define DEFAULT_TABLE_MATERIAL MAT_PLASTIC
 #define DEFAULT_WALL_MATERIAL MAT_STEEL

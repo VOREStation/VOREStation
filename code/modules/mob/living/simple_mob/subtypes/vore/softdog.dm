@@ -2,7 +2,7 @@
 	name = "Wildlife - Dog"
 	desc = "It's a relatively ordinary looking canine. \
 	It has an ominous aura..."
-	value = CATALOGUER_REWARD_TRIVIAL
+	value = CATALOGUER_REWARD_EASY
 
 /mob/living/simple_mob/vore/woof
 	name = "dog"
@@ -27,6 +27,7 @@
 	harm_intent_damage = 5
 	melee_damage_lower = 5
 	melee_damage_upper = 1
+	catalogue_data = list(/datum/category_item/catalogue/fauna/woof)
 
 	var/knockdown_chance = 20
 
