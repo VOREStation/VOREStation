@@ -483,6 +483,8 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	/////HIGHEST LAYER/////
 
 /mob/living/simple_mob/vore/alienanimals/teppi/attackby(var/obj/item/O as obj, var/mob/user as mob)
+	if(stat == DEAD)
+		return ..()
 	/////GRABS AND HOLDERS/////
 	if(istype(O, /obj/item/weapon/grab))
 		return ..()
@@ -553,7 +555,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	if(istype(O, /obj/item/weapon/material/knife))
 		if(client)
 			return ..()
-		if(resting && stat != DEAD)
+		if(resting)
 			user.visible_message("<span class='attack'>\The [user] approaches \the [src]'s neck with \the [O].</span>","<span class='attack'>You approach \the [src]'s neck with \the [O].</span>")
 			if(do_after(user, 5 SECONDS, exclusive = TASK_USER_EXCLUSIVE, target = src))
 				if(resting)
@@ -586,8 +588,10 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 
 //Wake up the teppi if it is resting, which they like to do sometimes.
 /mob/living/simple_mob/vore/alienanimals/teppi/attack_hand(mob/living/carbon/human/M as mob)
+	if(stat == DEAD)
+		return ..()
 	if(M.a_intent == I_GRAB && item_type)
-		if(affinity[M.real_name] >= 100)
+		if(affinity[M.real_name] >= 30)
 			M.visible_message("<span class='notice'>\The [M.name] removes \the [src]'s [item_type].</span>","<span class='notice'>You remove \the [src]'s [item_type].</span>")
 			item_type = null
 			update_icon()
@@ -716,7 +720,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 		for(var/mob/living/simple_mob/vore/alienanimals/teppi/alltep in oview(1,src))
 			if(!teppi_adult || !alltep.teppi_adult || alltep.prevent_breeding) //Don't have babies if you or your partner is babies
 				continue
-			if(alltep.client) //Don't have babies if your partner is inhabited by a player.
+			if(alltep.client || alltep.stat == DEAD) //Don't have babies if your partner is inhabited by a player, or dead.
 				continue
 			if(alltep)
 				new /mob/living/simple_mob/vore/alienanimals/teppi/baby(loc, src, alltep)
@@ -1003,7 +1007,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 		return
 	. = FALSE
 	for(var/mob/living/simple_mob/vore/alienanimals/teppi/alltep in oview(1,src))
-		if(!alltep.teppi_adult || alltep.nutrition < 250 || alltep.prevent_breeding)
+		if(!alltep.teppi_adult || alltep.nutrition < 250 || alltep.prevent_breeding || alltep.stat == DEAD)
 			continue
 		if(alltep)
 			log_admin("[key_name_admin(src)] produced a baby teppi at [get_area(src)] - [COORD(src)]") //Won't show up in the chat, but makes a log of who's having babies where, for investigative purposes.
