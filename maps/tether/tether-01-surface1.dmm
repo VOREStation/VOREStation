@@ -32767,7 +32767,7 @@
 	},
 /obj/structure/cable/cyan,
 /turf/simulated/floor/plating,
-/area/engineering/atmos/maintenance/airlock)
+/area/maintenance/engineering/atmos/airlock)
 "fVv" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -33191,7 +33191,7 @@
 /area/tether/surfacebase/lowernorthhall)
 "gLZ" = (
 /turf/simulated/floor/tiled/steel_dirty,
-/area/engineering/atmos/maintenance/airlock)
+/area/maintenance/engineering/atmos/airlock)
 "gQH" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -33931,7 +33931,7 @@
 	open_layer = 1
 	},
 /turf/simulated/floor/tiled/steel_dirty,
-/area/engineering/atmos/maintenance/airlock)
+/area/maintenance/engineering/atmos/airlock)
 "iTb" = (
 /obj/effect/map_helper/airlock/door/int_door,
 /obj/machinery/door/airlock/glass_external{
@@ -33942,7 +33942,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan,
 /turf/simulated/floor/tiled/steel_dirty,
-/area/engineering/atmos/maintenance/airlock)
+/area/maintenance/engineering/atmos/airlock)
 "iUF" = (
 /obj/structure/table/steel,
 /obj/machinery/alarm{
@@ -34346,7 +34346,7 @@
 	scrub_id = "atmos_airlock_scrubber"
 	},
 /turf/simulated/floor/plating,
-/area/engineering/atmos/maintenance/airlock)
+/area/maintenance/engineering/atmos/airlock)
 "kdi" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -34731,7 +34731,7 @@
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /turf/simulated/floor/tiled/steel_dirty,
-/area/engineering/atmos/maintenance/airlock)
+/area/maintenance/engineering/atmos/airlock)
 "laI" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -34978,7 +34978,7 @@
 /area/tether/surfacebase/security/brig)
 "lEA" = (
 /turf/simulated/wall,
-/area/engineering/atmos/maintenance/airlock/gas)
+/area/maintenance/engineering/atmos/airlock/gas)
 "lIj" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/dark,
@@ -35285,7 +35285,7 @@
 /area/crew_quarters/visitor_dining)
 "mut" = (
 /turf/simulated/floor/plating,
-/area/engineering/atmos/maintenance/airlock/gas)
+/area/maintenance/engineering/atmos/airlock/gas)
 "mvl" = (
 /obj/machinery/light{
 	dir = 4
@@ -35335,7 +35335,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/plating,
-/area/engineering/atmos/maintenance/airlock/gas)
+/area/maintenance/engineering/atmos/airlock/gas)
 "mxi" = (
 /obj/structure/table/alien/blue{
 	desc = "Is this imported?";
@@ -35593,7 +35593,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/plating,
-/area/engineering/atmos/maintenance/airlock/gas)
+/area/maintenance/engineering/atmos/airlock/gas)
 "ndH" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -35794,7 +35794,7 @@
 /area/tether/surfacebase/security/weaponsrange)
 "nAK" = (
 /turf/simulated/wall/r_wall,
-/area/engineering/atmos/maintenance/airlock/gas)
+/area/maintenance/engineering/atmos/airlock/gas)
 "nBm" = (
 /obj/structure/railing{
 	dir = 4
@@ -36208,14 +36208,14 @@
 /area/tether/surfacebase/security/lowerhall)
 "owW" = (
 /turf/simulated/wall/r_wall,
-/area/engineering/atmos/maintenance/airlock)
+/area/maintenance/engineering/atmos/airlock)
 "oxb" = (
 /obj/structure/sign/fire{
 	pixel_x = 32
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/universal,
 /turf/simulated/floor/plating,
-/area/engineering/atmos/maintenance/airlock)
+/area/maintenance/engineering/atmos/airlock)
 "ozx" = (
 /obj/structure/sink{
 	dir = 4;
@@ -36395,7 +36395,7 @@
 "prr" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/cyan,
 /turf/simulated/floor/plating,
-/area/engineering/atmos/maintenance/airlock/gas)
+/area/maintenance/engineering/atmos/airlock/gas)
 "ptv" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/green{
 	dir = 4
@@ -36490,7 +36490,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/plating,
-/area/engineering/atmos/maintenance/airlock/gas)
+/area/maintenance/engineering/atmos/airlock/gas)
 "pUw" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -36554,7 +36554,7 @@
 	scrub_id = "atmos_airlock_scrubber"
 	},
 /turf/simulated/floor/plating,
-/area/engineering/atmos/maintenance/airlock)
+/area/maintenance/engineering/atmos/airlock)
 "qfJ" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/effect/floor_decal/steeldecal/steel_decals4{
@@ -36569,7 +36569,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/plating,
-/area/engineering/atmos/maintenance/airlock/gas)
+/area/maintenance/engineering/atmos/airlock/gas)
 "qhk" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -36681,7 +36681,7 @@
 	dir = 5
 	},
 /turf/simulated/floor/plating,
-/area/engineering/atmos/maintenance/airlock/gas)
+/area/maintenance/engineering/atmos/airlock/gas)
 "qwm" = (
 /obj/effect/floor_decal/borderfloor/corner{
 	dir = 4
@@ -36992,7 +36992,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/steel_dirty,
-/area/engineering/atmos/maintenance/airlock)
+/area/maintenance/engineering/atmos/airlock)
 "rjh" = (
 /obj/effect/floor_decal/emblem/nt1,
 /turf/simulated/floor/tiled,
@@ -37034,7 +37034,7 @@
 	dir = 10
 	},
 /turf/simulated/floor/plating,
-/area/engineering/atmos/maintenance/airlock/gas)
+/area/maintenance/engineering/atmos/airlock/gas)
 "rxq" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -37583,7 +37583,7 @@
 	dir = 5
 	},
 /turf/simulated/floor/tiled/steel_dirty,
-/area/engineering/atmos/maintenance/airlock)
+/area/maintenance/engineering/atmos/airlock)
 "tvk" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -37620,7 +37620,7 @@
 	scrub_id = "atmos_airlock_scrubber"
 	},
 /turf/simulated/floor/plating,
-/area/engineering/atmos/maintenance/airlock)
+/area/maintenance/engineering/atmos/airlock)
 "txZ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -37721,7 +37721,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/plating,
-/area/engineering/atmos/maintenance/airlock/gas)
+/area/maintenance/engineering/atmos/airlock/gas)
 "tLx" = (
 /obj/effect/floor_decal/industrial/warning,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -37968,7 +37968,7 @@
 	locked = 1
 	},
 /turf/simulated/floor/tiled/steel_dirty,
-/area/engineering/atmos/maintenance/airlock)
+/area/maintenance/engineering/atmos/airlock)
 "uqH" = (
 /obj/structure/railing{
 	dir = 4
@@ -38155,7 +38155,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/plating,
-/area/engineering/atmos/maintenance/airlock/gas)
+/area/maintenance/engineering/atmos/airlock/gas)
 "uUP" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -38437,7 +38437,7 @@
 	pixel_y = -32
 	},
 /turf/simulated/floor/plating,
-/area/engineering/atmos/maintenance/airlock)
+/area/maintenance/engineering/atmos/airlock)
 "wek" = (
 /obj/structure/bed/chair/wood{
 	dir = 4
@@ -38480,7 +38480,7 @@
 	pixel_y = -25
 	},
 /turf/simulated/floor/tiled/steel_dirty,
-/area/engineering/atmos/maintenance/airlock)
+/area/maintenance/engineering/atmos/airlock)
 "wjq" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -38617,7 +38617,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/plating,
-/area/engineering/atmos/maintenance/airlock/gas)
+/area/maintenance/engineering/atmos/airlock/gas)
 "wzA" = (
 /obj/structure/catwalk,
 /obj/machinery/alarm{
@@ -38740,7 +38740,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan,
 /turf/simulated/floor/plating,
-/area/engineering/atmos/maintenance/airlock/gas)
+/area/maintenance/engineering/atmos/airlock/gas)
 "xdD" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -38748,7 +38748,7 @@
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/plating,
-/area/engineering/atmos/maintenance/airlock/gas)
+/area/maintenance/engineering/atmos/airlock/gas)
 "xdV" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -39123,7 +39123,7 @@
 	},
 /obj/machinery/alarm,
 /turf/simulated/floor/plating,
-/area/engineering/atmos/maintenance/airlock/gas)
+/area/maintenance/engineering/atmos/airlock/gas)
 "yey" = (
 /obj/structure/sink{
 	dir = 8;
