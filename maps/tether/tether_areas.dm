@@ -639,13 +639,13 @@
 	name = "Atmospherics Gas Storage"
 	icon_state = "atmos"
 
-/area/engineering/atmos/airlock
+/area/engineering/atmos/maintenance/airlock
 	name = "\improper Atmospherics Airlock"
 	icon_state = "atmos"
-/area/engineering/atmos/airlock/gas
+/area/engineering/atmos/maintenance/airlock/gas
 	name = "\improper Atmospherics Airlock Gas Storage"
 	icon_state = "atmos"
-	
+
 /area/engineering/atmos_intake
 	name = "\improper Atmospherics Intake"
 	icon_state = "atmos"
