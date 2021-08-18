@@ -363,3 +363,9 @@
 		/obj/item/device/radio,
 		/obj/item/weapon/pickaxe
 		)
+
+/obj/item/clothing/suit/storage/hooded/techpriest
+	name = "techpriest robes"
+	desc = "For those who REALLY love their toasters."
+	icon_state = "techpriest"
+	hoodtype = /obj/item/clothing/head/hood/techpriest

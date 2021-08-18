@@ -187,3 +187,9 @@
 	desc = "A hood that looks just like a corgi's head, it won't guarantee dog biscuits."
 	icon_state = "ian"
 	item_state_slots = list(slot_r_hand_str = "ian", slot_l_hand_str = "ian") //Does not exist -S2-
+
+//Techpriest
+/obj/item/clothing/head/hood/techpriest
+	name = "techpriest hood"
+	desc = "A techpriest hood."
+	icon_state = "techpriesthood"
