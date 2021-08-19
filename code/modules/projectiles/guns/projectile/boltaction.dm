@@ -17,14 +17,10 @@
 	action_sound = 'sound/weapons/riflebolt.ogg'
 	pump_animation = "boltaction-cycling"
 
-<<<<<<< HEAD
-/obj/item/weapon/gun/projectile/shotgun/pump/rifle/practice //For target practice
-=======
 ////////Practice Rifle////////
 /obj/item/weapon/gun/projectile/shotgun/pump/rifle/practice // For target practice
 	name = "practice bolt-action rifle"
 	icon_state = "boltaction_practice"
->>>>>>> 17cbd9e7fb4... Merge pull request #8182 from GhostActual/shotgun-code-fix
 	desc = "A bolt-action rifle with a lightweight synthetic wood stock, designed for competitive shooting. Comes shipped with practice rounds pre-loaded into the gun. Popular among professional marksmen. Uses 7.62mm rounds."
 	ammo_type = /obj/item/ammo_casing/a762/practice
 	pump_animation = "boltaction_practice-cycling"
