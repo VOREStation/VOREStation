@@ -169,6 +169,11 @@
 	path = /obj/item/clothing/suit/storage/toggle/labcoat/emt
 	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist")
 
+/datum/gear/suit/labcoat_rd
+	display_name = "labcoat, research director"
+	path = /obj/item/clothing/suit/storage/toggle/labcoat/rd
+	allowed_roles = list("Research Director")
+
 /datum/gear/suit/miscellaneous/labcoat
 	display_name = "plague doctor's coat"
 	path = /obj/item/clothing/suit/storage/toggle/labcoat/plaguedoctor

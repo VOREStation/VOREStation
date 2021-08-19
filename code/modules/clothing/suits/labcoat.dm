@@ -94,6 +94,12 @@
 	icon_state = "labcoat_tox"
 	item_state_slots = list(slot_r_hand_str = "science_labcoat", slot_l_hand_str = "science_labcoat")
 
+/obj/item/clothing/suit/storage/toggle/labcoat/rd
+	name = "research director's labcoat"
+	desc = "A flashy labcoat with purple markings. It belongs to the Research Director."
+	icon_state = "labcoat_rd"
+	item_state_slots = list(slot_r_hand_str = "science_labcoat", slot_l_hand_str = "science_labcoat")
+
 /obj/item/clothing/suit/storage/toggle/labcoat/emt
 	name = "EMT's labcoat"
 	desc = "A dark blue labcoat with reflective strips for emergency medical technicians."
