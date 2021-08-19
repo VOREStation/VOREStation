@@ -48,6 +48,26 @@
 
 	wizard_garb = 1
 
+/obj/item/clothing/shoes/flipflop
+	name = "flip flops"
+	desc = "A pair of foam flip flops. For those not afraid to show a little ankle."
+	icon_state = "thongsandal"
+	addblends = "thongsandal_a"
+
+/obj/item/clothing/shoes/cookflop
+	name = "grilling sandals"
+	desc = "All this talk of antags, greytiding, and griefing... I just wanna grill for god's sake!"
+	icon_state = "cookflops"
+	species_restricted = null
+	body_parts_covered = 0
+
+/obj/item/clothing/shoes/tourist
+	name = "tourist sandals"
+	desc = "Sandals usually worn by tourists. Need I say more?"
+	icon_state = "tourist"
+	species_restricted = null
+	body_parts_covered = 0
+
 /obj/item/clothing/shoes/sandal/clogs
 	name = "plastic clogs"
 	desc = "A pair of plastic clog shoes."
@@ -136,12 +156,6 @@
 	item_flags = NOSLIP
 	slowdown = SHOES_SLOWDOWN+0.5
 	species_restricted = null
-
-/obj/item/clothing/shoes/flipflop
-	name = "flip flops"
-	desc = "A pair of foam flip flops. For those not afraid to show a little ankle."
-	icon_state = "thongsandal"
-	addblends = "thongsandal_a"
 
 /obj/item/clothing/shoes/athletic
 	name = "athletic shoes"
