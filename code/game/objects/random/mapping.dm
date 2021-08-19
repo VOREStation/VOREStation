@@ -64,6 +64,52 @@
 				/obj/structure/closet/crate/engineering,
 				/obj/structure/closet/crate)
 
+/obj/random/vendorall //Fully random selection of consumer vendors
+	name = "random vending machine"
+	desc = "This is a random vending machine"
+	icon = 'icons/obj/vending.dmi'
+	icon_state = "radren-off"
+
+/obj/random/vendorall/item_to_spawn()
+	return pick (/obj/machinery/vending/coffee,
+				/obj/machinery/vending/snack,
+				/obj/machinery/vending/cola,
+				/obj/machinery/vending/fitness,
+				/obj/machinery/vending/cigarette,
+				/obj/machinery/vending/giftvendor,
+				/obj/machinery/vending/hotfood,
+				/obj/machinery/vending/weeb,
+				/obj/machinery/vending/sol,
+				/obj/machinery/vending/snix,
+				/obj/machinery/vending/snlvend,
+				/obj/machinery/vending/sovietsoda,
+				/obj/machinery/vending/sovietvend,
+				/obj/machinery/vending/radren)
+
+/obj/random/vendorfood //Random food vendors for station use
+	name = "random snack vending machine"
+	desc = "This is a random food vending machine"
+	icon = 'icons/obj/vending.dmi'
+	icon_state = "snack"
+
+/obj/random/vendorfood/item_to_spawn()
+	return pick (/obj/machinery/vending/snack,
+				/obj/machinery/vending/weeb,
+				/obj/machinery/vending/sol,
+				/obj/machinery/vending/snix,
+				/obj/machinery/vending/snlvend)
+
+/obj/random/vendordrink //Random drink vendors for station use
+	name = "random drink vending machine"
+	desc = "This is a random drink vending machine"
+	icon = 'icons/obj/vending.dmi'
+	icon_state = "Cola_Machine"
+
+/obj/random/vendordrink/item_to_spawn() //Not including coffee as it's more specific in usage.
+	return pick (/obj/machinery/vending/cola,
+				/obj/machinery/vending/sovietsoda,
+				/obj/machinery/vending/radren)
+
 /obj/random/obstruction //Large objects to block things off in maintenance
 	name = "random obstruction"
 	desc = "This is a random obstruction."

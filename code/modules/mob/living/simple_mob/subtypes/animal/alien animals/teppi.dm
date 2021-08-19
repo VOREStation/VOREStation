@@ -129,7 +129,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 
 	mob_size = MOB_LARGE
 
-	has_langs = list("Teppi", "Galactic Common")
+	has_langs = list("Teppi")
 	say_list_type = /datum/say_list/teppi
 	player_msg = "Teppi are large omnivorous quadrupeds. You have four toes on each paw, a long, strong tail, and are quite tough and powerful. You’re a lot more intimidating than you are actually harmful though. Your kind are ordinarily rather passive, only really rising to violence when someone does violence to you or others like you. You’re not stupid though, you can commiunicate with others of your kind, and form bonds with those who are kind to you, be they Teppi or otherwise. <br>- - - - -<br><span class='notice'>While you may have access to galactic common, this is purely meant for making it so you can understand people in an OOC manner, for facilitating roleplay. You almost certainly should not be speaking to people or roleplaying as though you understand everything everyone says perfectly, but it's not unreasonable to be able to intuit intent and such through people's tones when they speak. Teppi are kind of smart, but they are animals, and should be roleplayed as such.</span> <span class='warning'>ADDITIONALLY, you have the ability to produce offspring if you're well fed enough every once in a while, and the ability to disable this from happening to you. These verbs exist for to preserve the mechanical functionality of the mob you are playing. You should be aware of your surroundings when you use this verb, and NEVER use it to prefbreak or be disruptive. If in doubt, don't use it.</span> <span class='notice'>Also, to note, AI Teppi will never initiate breeding with player Teppi.</span>"
 	loot_list = list(/obj/item/weapon/bone/horn = 100)
@@ -483,6 +483,8 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	/////HIGHEST LAYER/////
 
 /mob/living/simple_mob/vore/alienanimals/teppi/attackby(var/obj/item/O as obj, var/mob/user as mob)
+	if(stat == DEAD)
+		return ..()
 	/////GRABS AND HOLDERS/////
 	if(istype(O, /obj/item/weapon/grab))
 		return ..()
@@ -553,7 +555,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	if(istype(O, /obj/item/weapon/material/knife))
 		if(client)
 			return ..()
-		if(resting && stat != DEAD)
+		if(resting)
 			user.visible_message("<span class='attack'>\The [user] approaches \the [src]'s neck with \the [O].</span>","<span class='attack'>You approach \the [src]'s neck with \the [O].</span>")
 			if(do_after(user, 5 SECONDS, exclusive = TASK_USER_EXCLUSIVE, target = src))
 				if(resting)
@@ -586,8 +588,10 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 
 //Wake up the teppi if it is resting, which they like to do sometimes.
 /mob/living/simple_mob/vore/alienanimals/teppi/attack_hand(mob/living/carbon/human/M as mob)
+	if(stat == DEAD)
+		return ..()
 	if(M.a_intent == I_GRAB && item_type)
-		if(affinity[M.real_name] >= 100)
+		if(affinity[M.real_name] >= 30)
 			M.visible_message("<span class='notice'>\The [M.name] removes \the [src]'s [item_type].</span>","<span class='notice'>You remove \the [src]'s [item_type].</span>")
 			item_type = null
 			update_icon()
@@ -716,7 +720,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 		for(var/mob/living/simple_mob/vore/alienanimals/teppi/alltep in oview(1,src))
 			if(!teppi_adult || !alltep.teppi_adult || alltep.prevent_breeding) //Don't have babies if you or your partner is babies
 				continue
-			if(alltep.client) //Don't have babies if your partner is inhabited by a player.
+			if(alltep.client || alltep.stat == DEAD) //Don't have babies if your partner is inhabited by a player, or dead.
 				continue
 			if(alltep)
 				new /mob/living/simple_mob/vore/alienanimals/teppi/baby(loc, src, alltep)
@@ -1003,7 +1007,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 		return
 	. = FALSE
 	for(var/mob/living/simple_mob/vore/alienanimals/teppi/alltep in oview(1,src))
-		if(!alltep.teppi_adult || alltep.nutrition < 250 || alltep.prevent_breeding)
+		if(!alltep.teppi_adult || alltep.nutrition < 250 || alltep.prevent_breeding || alltep.stat == DEAD)
 			continue
 		if(alltep)
 			log_admin("[key_name_admin(src)] produced a baby teppi at [get_area(src)] - [COORD(src)]") //Won't show up in the chat, but makes a log of who's having babies where, for investigative purposes.
