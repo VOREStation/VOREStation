@@ -1,6 +1,7 @@
 /obj/structure/closet/secure_closet/freezer/kitchen
 	name = "kitchen cabinet"
 	req_access = list(access_kitchen)
+	door_anim_time = 0 //Unsupported
 
 	starts_with = list(
 		/obj/item/weapon/reagent_containers/food/condiment/flour = 7,
@@ -16,6 +17,7 @@
 	name = "meat fridge"
 	icon = 'icons/obj/closets/fridge.dmi'
 	closet_appearance = null
+	door_anim_time = 0 //Unsupported
 
 	starts_with = list(
 		/obj/item/weapon/reagent_containers/food/snacks/meat/monkey = 10)
@@ -25,6 +27,7 @@
 	name = "refrigerator"
 	icon = 'icons/obj/closets/fridge.dmi'
 	closet_appearance = null
+	door_anim_time = 0 //Unsupported
 
 	starts_with = list(
 		/obj/item/weapon/reagent_containers/food/drinks/milk = 6,
@@ -38,6 +41,7 @@
 	icon = 'icons/obj/closets/fridge.dmi'
 	closet_appearance = null
 	req_access = list(access_heads_vault)
+	door_anim_time = 0 //Unsupported
 
 
 	starts_with = list(

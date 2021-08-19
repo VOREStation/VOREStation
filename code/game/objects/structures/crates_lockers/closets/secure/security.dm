@@ -227,6 +227,7 @@
 	name = "detective's cabinet"
 	req_access = list(access_forensics_lockers)
 	closet_appearance = /decl/closet_appearance/cabinet/secure
+	door_anim_time = 0 //Unsupported
 
 	starts_with = list(
 		/obj/item/clothing/accessory/badge/holo/detective,
@@ -298,7 +299,13 @@ GLOBAL_LIST_BOILERPLATE(all_brig_closets, /obj/structure/closet/secure_closet/br
 	name = "wall locker"
 	req_access = list(access_security)
 	closet_appearance = /decl/closet_appearance/wall
+<<<<<<< HEAD
 	density = TRUE
 
 	//too small to put a man in
 	large = 0
+=======
+	density = 1
+	door_anim_time = 0 // Unsupported
+	large = 0 //too small to put a man in
+>>>>>>> 93ce4a49e61... Merge pull request #8205 from Cerebulon/lockeranims

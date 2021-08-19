@@ -10,6 +10,7 @@
 	anchored = TRUE
 	store_mobs = 0
 	wall_mounted = 1
+	door_anim_time = 0 // Unsupported
 
 //spawns 2 sets of breathmask, emergency oxy tank and crowbar
 
@@ -91,6 +92,7 @@
 	wall_mounted = 1
 	plane = TURF_PLANE
 	layer = ABOVE_TURF_LAYER
+	door_anim_time = 0 // Unsupported
 
 /obj/structure/closet/walllocker_double/north
 	pixel_y = 32
@@ -131,7 +133,7 @@
 /obj/structure/closet/walllocker_double/kitchen/east
 	pixel_x = 32
 	dir = EAST
-	
+
 /obj/structure/closet/walllocker_double/medical
 	name = "Medical Cabinet"
 	desc = "A wall mounted medical supply cabinet. Probably full of drugs!"	//not actually full of drugs, sorry!
@@ -152,7 +154,7 @@
 /obj/structure/closet/walllocker_double/medical/east
 	pixel_x = 32
 	dir = EAST
-	
+
 /obj/structure/closet/walllocker_double/hydrant
 	name = "fire-safety closet"
 	desc = "It's a storage cabinet packed with fire-fighting supplies."

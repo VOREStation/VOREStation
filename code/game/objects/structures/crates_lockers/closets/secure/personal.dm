@@ -30,6 +30,7 @@
 
 /obj/structure/closet/secure_closet/personal/cabinet
 	closet_appearance = /decl/closet_appearance/cabinet/secure
+	door_anim_time = 0 //Unsupported
 
 	starts_with = list(
 		/obj/item/weapon/storage/backpack/satchel/withwallet,

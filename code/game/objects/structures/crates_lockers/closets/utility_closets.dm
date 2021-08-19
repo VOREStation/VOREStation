@@ -190,7 +190,11 @@
 	anchored = TRUE
 	density = FALSE
 	wall_mounted = 1
+<<<<<<< HEAD
 	store_mobs = 0
+=======
+	door_anim_time = 0 // Unsupported
+>>>>>>> 93ce4a49e61... Merge pull request #8205 from Cerebulon/lockeranims
 
 	starts_with = list(
 		/obj/item/clothing/suit/fire/firefighter,

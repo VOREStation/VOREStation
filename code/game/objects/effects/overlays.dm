@@ -113,6 +113,7 @@
 	pixel_x = -32
 	pixel_y = -32
 
+<<<<<<< HEAD
 /obj/effect/overlay/vis
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	anchored = TRUE
@@ -183,9 +184,15 @@
 		return QDEL_HINT_LETMELIVE
 	return ..()
 
+=======
+>>>>>>> 93ce4a49e61... Merge pull request #8205 from Cerebulon/lockeranims
 /obj/effect/overlay/closet_door
 	anchored = TRUE
 	plane = FLOAT_PLANE
 	layer = FLOAT_LAYER
 	vis_flags = VIS_INHERIT_ID
+<<<<<<< HEAD
 	appearance_flags = KEEP_TOGETHER | LONG_GLIDE | PIXEL_SCALE
+=======
+	appearance_flags = KEEP_TOGETHER | LONG_GLIDE | PIXEL_SCALE
+>>>>>>> 93ce4a49e61... Merge pull request #8205 from Cerebulon/lockeranims

@@ -64,7 +64,12 @@
 	icon = 'icons/obj/closets/poireactor.dmi'
 	closet_appearance = null
 	catalogue_data = list(/datum/category_item/catalogue/information/objects/oldreactor)
+<<<<<<< HEAD
 	climbable = FALSE
+=======
+	climbable = 0
+	door_anim_time = 0 //Unsupported
+>>>>>>> 93ce4a49e61... Merge pull request #8205 from Cerebulon/lockeranims
 
 	starts_with = list(
 		/obj/item/weapon/fuel_assembly/deuterium = 6)
