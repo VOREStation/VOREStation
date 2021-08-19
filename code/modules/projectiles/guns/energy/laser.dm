@@ -159,6 +159,7 @@
 	force = 5
 	slot_flags = SLOT_BELT
 	w_class = ITEMSIZE_NORMAL
+	unacidable = TRUE
 	projectile_type = /obj/item/projectile/beam
 	origin_tech = null
 	fire_delay = 10		//Old pistol

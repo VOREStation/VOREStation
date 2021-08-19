@@ -13,6 +13,7 @@
 	icon_state = "control_standby"
 	anchored = TRUE
 	density = FALSE
+	unacidable = TRUE
 	var/enabled = FALSE
 	var/lethal = FALSE
 	var/lethal_is_configurable = TRUE

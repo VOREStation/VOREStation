@@ -164,6 +164,7 @@
 	icon_state = "weeds"
 	anchored = TRUE
 	density = FALSE
+	unacidable = TRUE
 	plane = TURF_PLANE
 	layer = ABOVE_TURF_LAYER
 
@@ -402,10 +403,13 @@
 		for(var/mob/O in hearers(src, null))
 			O.show_message("<span class='alium'>[src.target] collapses under its own weight into a puddle of goop and undigested debris!</span>", 1)
 
-		if(istype(target, /turf/simulated/wall)) // I hate turf code.
+		if(iswall(target)) //Gurgs : Spruced up corrosive acid
 			var/turf/simulated/wall/W = target
-			W.dismantle_wall(1)
-		else
+			W.dismantle_wall()
+		else if(isfloor(target))
+			var/turf/simulated/floor/T = target
+			T.ex_act(1)
+		else if(isobj(target))
 			qdel(target)
 		qdel(src)
 		return

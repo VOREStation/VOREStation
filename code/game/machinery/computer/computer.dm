@@ -4,6 +4,7 @@
 	icon_state = "computer"
 	density = TRUE
 	anchored = TRUE
+	unacidable = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 300
 	active_power_usage = 300

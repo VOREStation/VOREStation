@@ -141,3 +141,4 @@
 	stack_origin_tech = list(TECH_MATERIAL = 2)
 	composite_material = list(MAT_STEEL = SHEET_MATERIAL_AMOUNT / 2, "borosilicate glass" = SHEET_MATERIAL_AMOUNT)
 	rod_product = null
+	flags = MATERIAL_UNMELTABLE

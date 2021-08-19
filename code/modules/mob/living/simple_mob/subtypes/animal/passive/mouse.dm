@@ -57,7 +57,8 @@
 	icon_living = "mouse_[body_color]"
 	icon_dead = "mouse_[body_color]_dead"
 	icon_rest = "mouse_[body_color]_sleep"
-	desc = "A small [body_color] rodent, often seen hiding in maintenance areas and making a nuisance of itself."
+	if (body_color != "rat")
+		desc = "A small [body_color] rodent, often seen hiding in maintenance areas and making a nuisance of itself."
 
 /mob/living/simple_mob/animal/passive/mouse/Crossed(atom/movable/AM as mob|obj)
 	if(AM.is_incorporeal())
@@ -106,6 +107,8 @@
 
 /mob/living/simple_mob/animal/passive/mouse/rat
 	name = "rat"
+	tt_desc = "E Rattus rattus"
+	desc = "A large rodent, often seen hiding in maintenance areas and making a nuisance of itself."
 	body_color = "rat"
 	icon_state = "mouse_rat"
 	maxHealth = 20

@@ -31,6 +31,7 @@
 				prob(4);/obj/item/weapon/gun/energy/taser,
 				prob(2);/obj/item/weapon/gun/energy/crossbow/largecrossbow,
 				prob(4);/obj/item/weapon/gun/energy/stunrevolver,
+				prob(2);/obj/item/weapon/gun/energy/stunrevolver/vintage,
 				prob(3);/obj/item/weapon/gun/energy/gun/compact)
 
 /obj/random/energy/sec

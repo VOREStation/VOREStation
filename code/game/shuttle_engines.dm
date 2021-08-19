@@ -1,6 +1,7 @@
 /obj/structure/shuttle
 	name = "shuttle"
 	icon = 'icons/turf/shuttle_parts.dmi'
+	unacidable = TRUE
 
 /obj/structure/shuttle/window
 	name = "shuttle window"

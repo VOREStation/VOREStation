@@ -14,6 +14,7 @@
 	initial_flooring = /decl/flooring/looking_glass
 	appearance_flags = TILE_BOUND
 	dynamic_lighting = FALSE
+	flags = TURF_ACID_IMMUNE
 
 	var/center = FALSE
 	var/optional = FALSE

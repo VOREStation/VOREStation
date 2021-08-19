@@ -4,6 +4,7 @@
 	icon = 'icons/obj/storage_vr.dmi' //VOREStation Edit
 	icon_state = "critteropen"
 	density = TRUE
+	unacidable = TRUE
 
 	var/mob/living/simple_mob/contained
 

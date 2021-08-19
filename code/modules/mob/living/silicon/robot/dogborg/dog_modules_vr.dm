@@ -47,6 +47,58 @@
 			w_class = ITEMSIZE_NORMAL
 		update_icon()
 
+// Baton chompers
+/obj/item/weapon/dogborg/jaws/ert
+	name = "ert jaws"
+	icon = 'icons/mob/dogborg_vr.dmi'
+	icon_state = "ertjaws"
+	desc = "Shockingly chompy!"
+	force = 15
+	throwforce = 0
+	hitsound = 'sound/weapons/bite.ogg'
+	attack_verb = list("chomped", "bit", "ripped", "mauled", "enforced")
+	w_class = ITEMSIZE_NORMAL
+	var/charge_cost = 15
+
+/obj/item/weapon/dogborg/jaws/ert/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+	if(isrobot(target))
+		return ..()
+
+	var/agony = 60 // Copied from stun batons
+	var/stun = 0 // ... same
+	
+	var/obj/item/organ/external/affecting = null
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		affecting = H.get_organ(hit_zone)
+	
+	if(user.a_intent == I_HURT)
+		// Parent handles messages
+		. = ..()
+		//whacking someone causes a much poorer electrical contact than deliberately prodding them.
+		agony *= 0.5
+		stun *= 0.5
+	else
+		if(affecting)
+			target.visible_message("<span class='danger'>[target] has been zap-chomped in the [affecting.name] with [src] by [user]!</span>")
+		else
+			target.visible_message("<span class='danger'>[target] has been zap-chomped with [src] by [user]!</span>")
+		playsound(src, 'sound/weapons/Egloves.ogg', 50, 1, -1)
+
+	// Try to use power
+	var/stunning = FALSE
+	if(isrobot(loc))
+		var/mob/living/silicon/robot/R = loc
+		if(R.cell?.use(charge_cost) == charge_cost)
+			stunning = TRUE
+	
+	if(stunning)
+		target.stun_effect_act(stun, agony, hit_zone, src)
+		msg_admin_attack("[key_name(user)] stunned [key_name(target)] with the [src].")
+		if(ishuman(target))
+			var/mob/living/carbon/human/H = target
+			H.forcesay(hit_appends)
+
 //Boop //New and improved, now a simple reagent sniffer.
 /obj/item/device/dogborg/boop_module
 	name = "boop module"
@@ -314,7 +366,7 @@
 	name = "disabler"
 	desc = "A small and nonlethal gun produced by NT.."
 	icon = 'icons/mob/dogborg_vr.dmi'
-	icon_state = "projgun"
+	icon_state = "ertgunstun"
 	fire_sound = 'sound/weapons/eLuger.ogg'
 	projectile_type = /obj/item/projectile/beam/disable
 	charge_cost = 240 //Normal cost of a taser. It used to be 1000, but after some testing it was found that it would sap a borg's battery to quick

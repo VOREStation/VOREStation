@@ -12,6 +12,7 @@ GLOBAL_LIST_EMPTY(smeses)
 	icon_state = "smes"
 	density = TRUE
 	anchored = TRUE
+	unacidable = TRUE
 	use_power = USE_POWER_OFF
 	circuit = /obj/item/weapon/circuitboard/smes
 	clicksound = "switch"

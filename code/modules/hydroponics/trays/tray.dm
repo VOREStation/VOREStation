@@ -5,6 +5,7 @@
 	icon_state = "hydrotray3"
 	density = TRUE
 	anchored = TRUE
+	unacidable = TRUE
 	flags = OPENCONTAINER
 	volume = 100
 
