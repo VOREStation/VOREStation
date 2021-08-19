@@ -1301,11 +1301,14 @@
 	req_access = list(access_robotics)
 	products = list(
 		/obj/item/clothing/under/rank/roboticist = 5,
-		/obj/item/clothing/suit/storage/toggle/labcoat = 5,
+		/obj/item/clothing/suit/storage/toggle/labcoat/roboticist = 5,
 		/obj/item/clothing/shoes/black = 5,
 		/obj/item/clothing/gloves/black = 5,
 		/obj/item/weapon/storage/backpack/toxins = 5,
 		/obj/item/weapon/storage/backpack/satchel/tox = 5
+	)
+	contraband = list(
+		/obj/item/clothing/suit/storage/hooded/techpriest = 2
 	)
 	req_log_access = access_hop
 	has_logs = 1

@@ -40,3 +40,4 @@
 	pda_type = /obj/item/device/pda/roboticist
 	backpack = /obj/item/weapon/storage/backpack
 	satchel_one = /obj/item/weapon/storage/backpack/satchel/norm
+	suit = /obj/item/clothing/suit/storage/toggle/labcoat/roboticist
