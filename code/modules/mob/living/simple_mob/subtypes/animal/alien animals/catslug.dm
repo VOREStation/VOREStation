@@ -63,7 +63,10 @@
 		/obj/item/weapon/melee,
 		/obj/item/stack/material,
 		/obj/item/weapon/tool,
-		/obj/item/weapon/reagent_containers/food
+		/obj/item/weapon/reagent_containers/food,
+		/obj/item/weapon/coin,
+		/obj/item/weapon/aliencoin,
+		/obj/item/weapon/ore
 		)
 
 	vore_active = 1
