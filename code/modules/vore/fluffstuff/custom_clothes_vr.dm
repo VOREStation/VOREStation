@@ -2305,6 +2305,17 @@ Departamental Swimsuits, for general use
 
 	icon_override = 'icons/vore/custom_onmob_vr.dmi'
 	item_state = "evelyncoat_mob"
+	hoodtype = /obj/item/clothing/head/hood/winter/security/fluff/evelyn
+
+/obj/item/clothing/head/hood/winter/security/fluff/evelyn
+	name = "warden's navy winter hood"
+	desc = "A custom tailored security winter coat's hood in navy blue colors."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "evelynhood"
+
+
+	icon_override = 'icons/vore/custom_onmob_vr.dmi'
+	item_state = "evelynhood_mob"
 
 /obj/item/clothing/suit/storage/hooded/wintercoat/security/fluff/evelyn/ui_action_click()
 	ToggleHood_evelyn()

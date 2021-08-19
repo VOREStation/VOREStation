@@ -677,3 +677,14 @@
 	whitelisted = SPECIES_TESHARI
 	sort_category = "Xenowear"
 	cost = 4
+
+/datum/gear/shoes/teshwrap
+	display_name = "Teshari legwraps"
+	path = /obj/item/clothing/shoes/footwraps/teshari
+	sort_category = "Xenowear"
+	whitelisted = SPECIES_TESHARI
+	cost = 1
+
+/datum/gear/shoes/teshwrap/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice

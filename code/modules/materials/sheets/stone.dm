@@ -13,3 +13,13 @@
 	no_variants = FALSE
 	drop_sound = 'sound/items/drop/boots.ogg'
 	pickup_sound = 'sound/items/pickup/boots.ogg'
+
+/obj/item/stack/material/flint
+	name = "flint piece"
+	icon_state = "sheet-rock"
+	default_type = "flint"
+	no_variants = FALSE
+	drop_sound = 'sound/items/drop/boots.ogg'
+	pickup_sound = 'sound/items/pickup/boots.ogg'
+	pass_color = TRUE
+	apply_colour = TRUE

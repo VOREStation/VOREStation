@@ -7,6 +7,7 @@
 	icon_state = "emitter"
 	anchored = FALSE
 	density = TRUE
+	unacidable = TRUE
 	req_access = list(access_engine_equip)
 	var/id = null
 

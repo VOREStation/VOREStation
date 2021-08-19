@@ -53,3 +53,19 @@
 				to_chat(user, "<span class='notice'>You add the newly-formed wood to the stack. It now contains [existing_wood.amount] planks.</span>")
 	else
 		return ..()
+
+/obj/item/stack/material/stick
+	name = "wooden stick"
+	icon_state = "sheet-stick"
+	default_type = "wooden stick"
+	strict_color_stacking = TRUE
+	apply_colour = 1
+	drop_sound = 'sound/items/drop/wooden.ogg'
+	pickup_sound = 'sound/items/pickup/wooden.ogg'
+	no_variants = FALSE
+	pass_color = TRUE
+	apply_colour = TRUE
+
+/obj/item/stack/material/stick/fivestack
+	amount = 5
+	color = "#824B28"

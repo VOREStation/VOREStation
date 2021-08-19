@@ -14,6 +14,7 @@
 	var/icon_state_off = "bbox_off"
 	density = TRUE
 	anchored = TRUE
+	unacidable = TRUE
 	circuit = /obj/item/weapon/circuitboard/breakerbox
 	var/on = 0
 	var/busy = 0

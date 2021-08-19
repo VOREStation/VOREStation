@@ -137,3 +137,7 @@
     key = "spiderpurr"
     emote_message_3p = "purrs."
     emote_sound = 'sound/voice/spiderpurr.ogg'
+/decl/emote/audible/squeaky
+    key = "squeaky"
+    emote_message_3p = "squeaks."
+    emote_sound = 'sound/items/drop/plushie.ogg'

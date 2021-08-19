@@ -158,21 +158,20 @@
 	// OBJ CHECK
 	var/cannot_melt
 	if(isobj(O))
-		var/obj/I = O
+		var/obj/I = O //Gurgs : Melts pretty much any object that isn't considered unacidable = TRUE
 		if(I.unacidable)
 			cannot_melt = 1
 	else
 		if(istype(O, /turf/simulated/wall))
-			var/turf/simulated/wall/W = O
+			var/turf/simulated/wall/W = O //Gurgs : Walls are deconstructed into girders.
 			if(W.material.flags & MATERIAL_UNMELTABLE)
 				cannot_melt = 1
 		else if(istype(O, /turf/simulated/floor))
-/*			var/turf/simulated/floor/F = O							//Turfs are qdel'd to space (Even asteroid tiles), will need to be touched by someone smarter than myself. -Mech
+			var/turf/simulated/floor/F = O	//Gurgs : Floors are destroyed with ex_act(1), turning them into whatever tile it would be if empty. Z-Level Friendly, does not destroy pipes.
 			if(F.flooring && (F.flooring.flags & TURF_ACID_IMMUNE))
-*/
-			cannot_melt = 1
+				cannot_melt = 1
 		else
-			cannot_melt = 1
+			cannot_melt = 1 //Gurgs : Everything that isn't a object, simulated wall, or simulated floor is assumed to be acid immune. Includes weird things like unsimulated floors and space.
 
 	if(cannot_melt)
 		to_chat(src, "<span class='alium'>You cannot dissolve this object.</span>")

@@ -6,6 +6,7 @@
 	var/obj/machinery/sleeper/sleeper
 	anchored = TRUE //About time someone fixed this.
 	density = TRUE //VOREStation Edit - Big console
+	unacidable = TRUE
 	dir = 8
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 40
@@ -89,6 +90,7 @@
 	icon_state = "sleeper_0"
 	density = TRUE
 	anchored = TRUE
+	unacidable = TRUE
 	circuit = /obj/item/weapon/circuitboard/sleeper
 	var/mob/living/carbon/human/occupant = null
 	var/list/available_chemicals = list()

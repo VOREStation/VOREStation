@@ -8,6 +8,7 @@
 	opacity = 0
 	density = FALSE
 	anchored = TRUE
+	unacidable = TRUE
 	layer = STAIRS_LAYER
 
 /obj/structure/stairs/Initialize()

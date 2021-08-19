@@ -168,17 +168,17 @@ SUBSYSTEM_DEF(throwing)
 			var/atom/A = thing
 			if (A == target)
 				hit = TRUE
-				thrownthing.throw_impact(A, src)
+				thrownthing.throw_impact(A, speed)
 				break
 		if (!hit)
-			thrownthing.throw_impact(get_turf(thrownthing), src)  // we haven't hit something yet and we still must, let's hit the ground.
+			thrownthing.throw_impact(get_turf(thrownthing), speed)  // we haven't hit something yet and we still must, let's hit the ground.
 
 	if(ismob(thrownthing))
 		var/mob/M = thrownthing
 		M.inertia_dir = init_dir
 
 	if(t_target && !QDELETED(thrownthing))
-		thrownthing.throw_impact(t_target, src)
+		thrownthing.throw_impact(t_target, speed)
 
 	if (callback)
 		callback.Invoke()

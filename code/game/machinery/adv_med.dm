@@ -8,6 +8,7 @@
 	icon_state = "body_scanner_0"
 	density = TRUE
 	anchored = TRUE
+	unacidable = TRUE
 	circuit = /obj/item/weapon/circuitboard/body_scanner
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 60
@@ -547,6 +548,7 @@
 	dir = 8
 	density = FALSE
 	anchored = TRUE
+	unacidable = TRUE
 	circuit = /obj/item/weapon/circuitboard/scanner_console
 	var/printing = null
 

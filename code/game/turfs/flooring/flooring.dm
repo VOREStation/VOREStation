@@ -202,7 +202,7 @@ var/list/flooring_types
 	desc = "Gritty and unpleasant."
 	icon = 'icons/turf/flooring/asteroid.dmi'
 	icon_base = "asteroid"
-	flags = TURF_REMOVE_SHOVEL
+	flags = TURF_REMOVE_SHOVEL | TURF_ACID_IMMUNE
 	build_type = null
 	footstep_sounds = list("human" = list(
 		'sound/effects/footstep/asteroid1.ogg',
@@ -543,7 +543,7 @@ var/list/flooring_types
 	icon = 'icons/turf/outdoors.dmi'
 	icon_base = "lava"
 	is_plating = TRUE
-	flags = 0
+	flags = TURF_ACID_IMMUNE
 	footstep_sounds = list("human" = list(
 		'sound/effects/footstep/lava1.ogg',
 		'sound/effects/footstep/lava2.ogg',

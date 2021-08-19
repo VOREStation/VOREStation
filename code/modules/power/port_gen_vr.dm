@@ -247,7 +247,7 @@
 /obj/machinery/power/rtg/kugelblitz
 	name = "kugelblitz generator"
 	desc = "A power source harnessing a small black hole."
-	icon = 'icons/obj/structures/decor64x64.dmi'
+	icon = 'icons/obj/props/decor64x64.dmi'
 	icon_state = "bigdice"
 	bound_width = 64
 	bound_height = 64

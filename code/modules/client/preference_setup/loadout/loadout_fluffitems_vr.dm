@@ -774,7 +774,7 @@
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/security/fluff/evelyn/
 	display_name = "warden's navy winter coat"
 	ckeywhitelist = list("pandora029")
-	character_name = list("Evelyn Tareen")
+	character_name = list("Evelyn Tareen", "Velyn Tareen")
 
 /datum/gear/fluff/lily_medal
 	path = /obj/item/clothing/accessory/medal/silver/unity
@@ -854,7 +854,7 @@
 	display_name = "LUNA's Distinguished Conduct Medal"
 	ckeywhitelist = list("residentcody")
 	character_name = list("LUNA")
-	
+
 /datum/gear/fluff/pathfinder_id
 	path = /obj/item/weapon/card/id/event/polymorphic/itg
 	display_name = "Pathfinder's ITG ID"

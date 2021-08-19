@@ -149,7 +149,7 @@ var/list/_client_preferences_by_type
 	key = "SOUND_AIRPUMP"
 	enabled_description = "Audible"
 	disabled_description = "Silent"
-	
+
 /datum/client_preference/old_door_sounds
 	description ="Old Door Sounds"
 	key = "SOUND_OLDDOORS"
@@ -304,13 +304,13 @@ var/list/_client_preferences_by_type
 	key = "RUNECHAT_BORDER"
 	enabled_description = "Show"
 	disabled_description = "Hide"
-	enabled_by_default = FALSE
+	enabled_by_default = TRUE
 
 /datum/client_preference/runechat_long_messages
 	description = "Runechat Message Length"
 	key = "RUNECHAT_LONG"
-	enabled_description = "ERP KING"
-	disabled_description = "Normie"
+	enabled_description = "Long"
+	disabled_description = "Short"
 	enabled_by_default = FALSE
 
 /datum/client_preference/status_indicators/toggled(mob/preference_mob, enabled)

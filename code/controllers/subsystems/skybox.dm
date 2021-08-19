@@ -122,9 +122,15 @@ SUBSYSTEM_DEF(skybox)
 		if(istype(O))
 			var/image/self_image = O.generate_skybox(z)
 			new_overlays += self_image
-			for(var/obj/effect/overmap/visitable/other in O.loc)
-				if(other != O)
-					new_overlays += other.get_skybox_representation(z)
+			//VOREStation Add
+			if(isbelly(O.loc)) // Teehee
+				base.icon = 'icons/skybox/skybox_vr.dmi'
+				base.icon_state = "flesh"
+			//VOREStation Add End
+			else
+				for(var/obj/effect/overmap/visitable/other in O.loc)
+					if(other != O)
+						new_overlays += other.get_skybox_representation(z)
 
 	// Allow events to apply custom overlays to skybox! (Awesome!)
 	for(var/datum/event/E in SSevents.active_events)
