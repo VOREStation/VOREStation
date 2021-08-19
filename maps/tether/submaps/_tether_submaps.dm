@@ -57,7 +57,7 @@
 
 #include "../../submaps/admin_use_vr/ert.dm"
 #include "../../submaps/admin_use_vr/mercship.dm"
-#include "../../submaps/admin_use_vr/guttersite.dm"
+#include "../../submaps/admin_use_vr/salamander_trader.dm"
 
 /datum/map_template/admin_use/ert
 	name = "Special Area - ERT"
@@ -72,7 +72,7 @@
 /datum/map_template/admin_use/salamander_trader
 	name = "Special Area - Salamander Trader"
 	desc = "Modest trader ship."
-	mappath = 'maps/offmap_vr/om_ships/salamander.dmm'
+	mappath = 'maps/submaps/admin_use_vr/salamander_trader.dmm'
 
 /datum/map_template/admin_use/mercenary
 	name = "Special Area - Merc Ship"
@@ -98,11 +98,6 @@
 	name = "Special Area - Ninja Dojo"
 	desc = "Sneaky"
 	mappath = 'maps/submaps/admin_use_vr/dojo.dmm'
-
-/datum/map_template/admin_use/guttersite
-	name = "Special Area - Guttersite"
-	desc = "A space for bad guys to hang out"
-	mappath = 'maps/submaps/admin_use_vr/guttersite.dmm'
 
 //////////////////////////////////////////////////////////////////////////////
 //Rogue Mines Stuff
