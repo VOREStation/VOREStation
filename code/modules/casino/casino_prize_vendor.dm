@@ -270,8 +270,7 @@
 	SStgui.update_uis(src)
 
 	if(ispath(bi.equipment_path, /obj/item/stack))
-		var/obj/item/stack/S = new bi.equipment_path(loc)
-		S.amount = bi.equipment_amt
+		new bi.equipment_path(loc, bi.equipment_amt)
 		playsound(src, 'sound/machines/vending/vending_drop.ogg', 100, 1)
 		return TRUE
 

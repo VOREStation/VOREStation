@@ -559,7 +559,7 @@ GLOBAL_LIST_EMPTY(apcs)
 							"You start adding cables to the APC frame...")
 		playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 		if(do_after(user, 20))
-			if(C.amount >= 10 && !terminal && opened && has_electronics != APC_HAS_ELECTRONICS_SECURED)
+			if(C.get_amount() >= 10 && !terminal && opened && has_electronics != APC_HAS_ELECTRONICS_SECURED)
 				var/obj/structure/cable/N = T.get_cable_node()
 				if(prob(50) && electrocute_mob(usr, N, N))
 					var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread

@@ -388,9 +388,9 @@
 
 	var/amnt = S.perunit
 	if(stored_material[S.material.name] + amnt <= max_res_amount)
-		if(S && S.amount >= 1)
+		if(S && S.get_amount() >= 1)
 			var/count = 0
-			while(stored_material[S.material.name] + amnt <= max_res_amount && S.amount >= 1)
+			while(stored_material[S.material.name] + amnt <= max_res_amount && S.get_amount() >= 1)
 				stored_material[S.material.name] += amnt
 				S.use(1)
 				count++

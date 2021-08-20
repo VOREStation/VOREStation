@@ -223,7 +223,7 @@
 			if(multiplier > 1)
 				if(istype(I, /obj/item/stack))
 					var/obj/item/stack/S = I
-					S.amount = multiplier
+					S.set_amount(multiplier)
 				else
 					for(multiplier; multiplier > 1; --multiplier) // Create multiple items if it's not a stack.
 						I = new making.path(src.loc)

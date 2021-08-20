@@ -135,7 +135,7 @@
 			LAZYADDASSOCLIST(.["instances"], item.type, item)
 			if(istype(item, /obj/item/stack))
 				var/obj/item/stack/stack = item
-				.["other"][item.type] += stack.amount
+				.["other"][item.type] += stack.get_amount()
 			else if(item.tool_qualities)
 				.["tool_qualities"] |= item.tool_qualities
 				.["other"][item.type] += 1
@@ -297,20 +297,20 @@
 				var/obj/item/stack/SD
 				while(amt > 0)
 					S = locate(path_key) in surroundings
-					if(S.amount >= amt)
+					if(S.get_amount() >= amt)
 						if(!locate(S.type) in Deletion)
 							SD = new S.type()
 							Deletion += SD
 						S.use(amt)
 						SD = locate(S.type) in Deletion
-						SD.amount += amt
+						SD.add(amt)
 						continue main_loop
 					else
-						amt -= S.amount
+						amt -= S.get_amount()
 						if(!locate(S.type) in Deletion)
 							Deletion += S
 						else
-							data = S.amount
+							data = S.get_amount()
 							S = locate(S.type) in Deletion
 							S.add(data)
 						surroundings -= S
@@ -334,8 +334,8 @@
 			continue
 		else if(istype(part, /obj/item/stack))
 			var/obj/item/stack/ST = locate(part) in Deletion
-			if(ST.amount > partlist[part])
-				ST.amount = partlist[part]
+			if(ST.get_amount() > partlist[part])
+				ST.set_amount(partlist[part])
 			. += ST
 			Deletion -= ST
 			continue

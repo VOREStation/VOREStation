@@ -58,7 +58,7 @@
 		return
 	else if(istype(I, /obj/item/stack/cable_coil) && !strung)
 		var/obj/item/stack/cable_coil/C = I
-		if(C.amount < 5)
+		if(C.get_amount() < 5)
 			to_chat(user, "<span class='warning'>You do not have enough length in \the [C] to string this!</span>")
 			return
 		if(do_after(user, rand(10 SECONDS, 20 SECONDS)))

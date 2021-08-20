@@ -90,8 +90,7 @@
 		return TRUE
 
 	if(reinforcing && I.is_crowbar())
-		var/obj/item/stack/material/plasteel/reinforcing_sheet = new /obj/item/stack/material/plasteel(src.loc)
-		reinforcing_sheet.amount = reinforcing
+		var/obj/item/stack/material/plasteel/reinforcing_sheet = new /obj/item/stack/material/plasteel(src.loc, reinforcing)
 		reinforcing = 0
 		to_chat(user, "<span class='notice'>You remove \the [reinforcing_sheet].</span>")
 		playsound(src, I.usesound, 100, 1)

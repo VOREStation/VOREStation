@@ -131,8 +131,7 @@
 	H.synth_color = TRUE
 
 /datum/species/protean/equip_survival_gear(var/mob/living/carbon/human/H)
-	var/obj/item/stack/material/steel/metal_stack = new()
-	metal_stack.amount = 3
+	var/obj/item/stack/material/steel/metal_stack = new(null, 3)
 
 	var/obj/item/clothing/accessory/permit/nanotech/permit = new()
 	permit.set_name(H.real_name)

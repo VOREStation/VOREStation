@@ -13,7 +13,7 @@
 /obj/item/weapon/whetstone/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/stack/material))
 		var/obj/item/stack/material/M = I
-		if(M.amount >= 5)
+		if(M.get_amount() >= 5)
 			to_chat(user, "You begin to refine the [src] with [M]...")
 			if(do_after(user, 70))
 				M.use(5)

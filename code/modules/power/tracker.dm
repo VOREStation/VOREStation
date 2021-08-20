@@ -58,8 +58,7 @@
 			var/obj/item/solar_assembly/S = new(loc)
 			S.tracker = TRUE
 			S.anchored = TRUE
-			var/obj/item/stack/glass = new glass_type(loc)
-			glass.amount = 2
+			new glass_type(loc, 2)
 			playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 			user.visible_message("<span class='notice'>[user] takes the glass off the tracker.</span>")
 			qdel(src)

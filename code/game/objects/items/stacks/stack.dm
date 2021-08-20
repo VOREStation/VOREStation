@@ -17,7 +17,7 @@
 	center_of_mass = null
 	var/list/datum/stack_recipe/recipes
 	var/singular_name
-	var/amount = 1
+	VAR_PROTECTED/amount = 1
 	var/max_amount //also see stack recipes initialisation, param "max_res_amount" must be equal to this max_amount
 	var/stacktype //determines whether different stack types can merge
 	var/build_type = null //used when directly applied to a turf
@@ -33,8 +33,10 @@
 	. = ..()
 	if(!stacktype)
 		stacktype = type
-	if(amount)
-		src.amount = amount
+	if(!isnull(amount)) // Could be 0
+		if(amount < 0)
+			amount = max_amount
+		set_amount(amount, TRUE)
 	update_icon()
 
 /obj/item/stack/Destroy()
@@ -229,12 +231,15 @@
 //Return 1 if an immediate subsequent call to use() would succeed.
 //Ensures that code dealing with stacks uses the same logic
 /obj/item/stack/proc/can_use(var/used)
-	if (get_amount() < used)
+	if(used < 0 || used % 1)
+		stack_trace("Tried to use a bad stack amount: [used]")
+		return 0
+	if(get_amount() < used)
 		return 0
 	return 1
 
 /obj/item/stack/proc/use(var/used)
-	if (!can_use(used))
+	if(!can_use(used))
 		return 0
 	if(!uses_charge)
 		amount -= used
@@ -251,6 +256,9 @@
 		return 1
 
 /obj/item/stack/proc/add(var/extra)
+	if(extra < 0 || extra % 1)
+		stack_trace("Tried to add a bad stack amount: [extra]")
+		return 0
 	if(!uses_charge)
 		if(amount + extra > get_max_amount())
 			return 0
@@ -264,6 +272,27 @@
 		for(var/i = 1 to uses_charge)
 			var/datum/matter_synth/S = synths[i]
 			S.add_charge(charge_costs[i] * extra)
+
+/obj/item/stack/proc/set_amount(var/new_amount, var/no_limits = FALSE)
+	if(new_amount < 0 || new_amount % 1)
+		stack_trace("Tried to set a bad stack amount: [new_amount]")
+		return 0
+	
+	// Clean up the new amount
+	new_amount = max(round(new_amount), 0)
+	
+	// Can exceed max if you really want
+	if(new_amount > max_amount && !no_limits)
+		new_amount = max_amount
+	
+	amount = new_amount
+	
+	// Can set it to 0 without qdel if you really want
+	if(amount == 0 && !no_limits)
+		qdel(src)
+		return FALSE
+
+	return TRUE
 
 /*
 	The transfer and split procs work differently than use() and add().
@@ -282,6 +311,10 @@
 
 	if (isnull(tamount))
 		tamount = src.get_amount()
+	
+	if(tamount < 0 || tamount % 1)
+		stack_trace("Tried to transfer a bad stack amount: [tamount]")
+		return 0
 
 	var/transfer = max(min(tamount, src.get_amount(), (S.get_max_amount() - S.get_amount())), 0)
 
@@ -302,7 +335,10 @@
 	if(uses_charge)
 		return null
 
-	tamount = round(tamount)
+	if(tamount < 0 || tamount % 1)
+		stack_trace("Tried to split a bad stack amount: [tamount]")
+		return null
+	
 	var/transfer = max(min(tamount, src.amount, initial(max_amount)), 0)
 
 	var/orig_amount = src.amount

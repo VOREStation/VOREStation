@@ -59,11 +59,8 @@
 			// This could be done better.
 			var/obj/item/stack/medical/MED = O
 			if(health < getMaxHealth())
-				if(MED.amount >= 1)
+				if(MED.use(1))
 					adjustBruteLoss(-MED.heal_brute)
-					MED.amount -= 1
-					if(MED.amount <= 0)
-						qdel(MED)
 					visible_message("<b>\The [user]</b> applies the [MED] on [src].")
 		else
 			var/datum/gender/T = gender_datums[src.get_visible_gender()]
