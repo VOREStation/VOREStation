@@ -754,13 +754,6 @@ Uniforms and such
 	name = "tan skirt"
 	icon_state = "tan_suit_skirt"
 
-/obj/item/clothing/under/serviceoveralls
-	name = "workman outfit"
-	desc = "The very image of a working man. Not that you're probably doing work."
-	icon_state = "mechanic"
-	item_state_slots = list(slot_r_hand_str = "cargo", slot_l_hand_str = "cargo")
-	rolled_sleeves = 0
-
 /obj/item/clothing/under/cheongsam
 	name = "white cheongsam"
 	desc = "It is a white cheongsam dress."
@@ -1137,3 +1130,52 @@ Uniforms and such
 
 /obj/item/clothing/under/color/ranger/yellow
 	unicolor = "yellow"
+
+/obj/item/clothing/under/tourist
+	name = "tourist outfit"
+	desc = "A pair of shorts and a bright blue shirt that stick out just a bit too much."
+	icon_state = "tourist"
+	worn_state = "tourist"
+
+/obj/item/clothing/under/boater
+	name = "boater outfit"
+	desc = "A classic outfit for those with a nautical inclination."
+	icon_state = "boater"
+	worn_state = "boater"
+
+/obj/item/clothing/under/serviceoveralls
+	name = "workman outfit"
+	desc = "The very image of a working man. Not that you're probably doing work."
+	icon_state = "mechanic"
+	item_state_slots = list(slot_r_hand_str = "cargo", slot_l_hand_str = "cargo")
+	rolled_sleeves = 0
+
+/obj/item/clothing/under/frontier
+	name = "frontier clothes"
+	desc = "A rugged flannel shirt and denim overalls. A popular style among frontier colonists."
+	icon_state = "frontier"
+	worn_state = "frontier"
+
+/obj/item/clothing/under/rustler
+	name = "rustler outfit"
+	desc = "A rugged outfit for rustling cattle out on the frontier."
+	icon_state = "rustler"
+	worn_state = "rustler"
+
+/obj/item/clothing/under/cowboy
+	desc = "Some rugged clothes for hard labor out on the farm."
+
+/obj/item/clothing/under/cowboy/tan
+	name = "tan cowboy clothes"
+	icon_state = "cowboy_tan"
+	worn_state = "cowboy_tan"
+
+/obj/item/clothing/under/cowboy/brown
+	name = "brown cowboy clothes"
+	icon_state = "cowboy_brown"
+	worn_state = "cowboy_brown"
+
+/obj/item/clothing/under/cowboy/grey
+	name = "grey cowboy clothes"
+	icon_state = "cowboy_grey"
+	worn_state = "cowboy_grey"
