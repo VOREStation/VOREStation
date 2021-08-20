@@ -128,15 +128,12 @@ GLOBAL_VAR_INIT(round_start_time, 0)
 /proc/update_midnight_rollover()
 	// Day has wrapped (world.timeofday drops to 0 at the start of each real day)
 	if (world.timeofday < rollovercheck_last_timeofday)
-		// Compare the last wrap date (or server startup date) to our current date
-		var/curday = text2num(time2text(world.timeofday, "DD"))
-		// If the date is the same as the startup or last wrap, we should avoid wrapping, may be clock adjustment
-		// note that this won't protect against going from 00:01 to 23:59 and crossing the boundary again
-		if(rollover_safety_date != curday)
+		// If the day started/last wrap was < 12 hours ago, this is spurious
+		if(rollover_safety_date < world.realtime - (12 HOURS))
 			midnight_rollovers++
-			rollover_safety_date = curday
+			rollover_safety_date = world.realtime
 		else
-			warning("Time rollover error: world.timeofday decreased from previous check, but date remained the same. System clock?")
+			warning("Time rollover error: world.timeofday decreased from previous check, but the day or last rollover is less than 12 hours old. System clock?")
 	rollovercheck_last_timeofday = world.timeofday
 	return midnight_rollovers
 
