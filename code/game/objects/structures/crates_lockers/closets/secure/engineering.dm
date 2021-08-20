@@ -26,6 +26,7 @@
 		/obj/item/device/t_scanner/upgraded,
 		/obj/item/taperoll/engineering,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/engineering,
+		/obj/item/clothing/suit/storage/hooded/wintercoat/engineering/ce,
 		/obj/item/clothing/shoes/boots/winter/engineering,
 		/obj/item/weapon/tank/emergency/oxygen/engi,
 		/obj/item/weapon/reagent_containers/spray/windowsealant) //VOREStation Add

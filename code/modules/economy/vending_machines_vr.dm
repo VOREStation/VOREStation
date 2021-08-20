@@ -1217,6 +1217,7 @@
 					/obj/item/clothing/suit/varsity/blue = 5,
 					/obj/item/clothing/suit/varsity/brown = 5,
 					/obj/item/clothing/suit/storage/hooded/wintercoat = 5,
+					/obj/item/clothing/suit/storage/hooded/wintercoat/aformal = 5,
 					/obj/item/clothing/suit/storage/teshari/cloak/standard/white_grey = 5)
 	prices = list(/obj/item/clothing/suit/storage/apron = 100,
 					/obj/item/clothing/suit/storage/flannel/aqua = 100,
@@ -1304,8 +1305,10 @@
 					/obj/item/clothing/suit/varsity/blue = 100,
 					/obj/item/clothing/suit/varsity/brown = 100,
 					/obj/item/clothing/suit/storage/hooded/wintercoat = 100,
+					/obj/item/clothing/suit/storage/hooded/wintercoat/aformal = 100,
 					/obj/item/clothing/suit/storage/teshari/cloak/standard/white_grey = 100)
-	premium = list(/obj/item/clothing/suit/imperium_monk = 3)
+	premium = list(/obj/item/clothing/suit/imperium_monk = 3,
+					/obj/item/clothing/suit/storage/hooded/wintercoat/cosmic = 1)
 	contraband = list(/obj/item/toy/katana = 1)
 
 /obj/machinery/vending/loadout/costume
@@ -2386,6 +2389,7 @@
 					/obj/item/clothing/suit/varsity/blue = 5,
 					/obj/item/clothing/suit/varsity/brown = 5,
 					/obj/item/clothing/suit/storage/hooded/wintercoat = 5,
+					/obj/item/clothing/suit/storage/hooded/wintercoat/aformal = 5,
 					/obj/item/clothing/suit/storage/teshari/cloak/standard/white_grey = 5)
 	prices = list(/obj/item/clothing/suit/storage/apron = 100,
 					/obj/item/clothing/suit/storage/flannel/aqua = 100,
@@ -2473,8 +2477,10 @@
 					/obj/item/clothing/suit/varsity/blue = 100,
 					/obj/item/clothing/suit/varsity/brown = 100,
 					/obj/item/clothing/suit/storage/hooded/wintercoat = 100,
+					/obj/item/clothing/suit/storage/hooded/wintercoat/aformal = 100,
 					/obj/item/clothing/suit/storage/teshari/cloak/standard/white_grey = 100)
-	premium = list(/obj/item/clothing/suit/imperium_monk = 3)
+	premium = list(/obj/item/clothing/suit/imperium_monk = 3,
+					/obj/item/clothing/suit/storage/hooded/wintercoat/cosmic = 1)
 	contraband = list(/obj/item/toy/katana = 1)
 
 /obj/machinery/vending/loadout/costume
