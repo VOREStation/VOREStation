@@ -41,7 +41,7 @@
 /obj/item/clothing/shoes/boots/cowboy/black
 	name = "black cowboy boots"
 	desc = "You get the feeling that these were red at one point."
-	icon_state = "cowboy_white"
+	icon_state = "cowboy_black"
 
 /obj/item/clothing/shoes/boots/cowboy/white
 	name = "white cowboy boots"

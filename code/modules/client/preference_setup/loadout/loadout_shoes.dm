@@ -5,6 +5,10 @@
 	slot = slot_shoes
 	sort_category = "Shoes and Footwear"
 
+/datum/gear/shoes/tourist
+	display_name = "tourist"
+	path = /obj/item/clothing/shoes/tourist
+
 /datum/gear/shoes/jackboots
 	display_name = "jackboots"
 	path = /obj/item/clothing/shoes/boots/jackboots

@@ -20,7 +20,7 @@
 							/obj/item/toy/cultsword									= 1,
 							/obj/item/toy/bouquet/fake								= 1,
 							/obj/item/clothing/accessory/badge/sheriff				= 2,
-							/obj/item/clothing/head/cowboy_hat/small				= 2,
+							/obj/item/clothing/head/cowboy/small				= 2,
 							/obj/item/toy/stickhorse								= 2
 							)
 	var/list/special_prizes = list() // Holds instanced objects, intended for admins to shove surprises inside or something.

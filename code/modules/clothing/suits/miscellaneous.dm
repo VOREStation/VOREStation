@@ -231,11 +231,8 @@
  */
 
 /obj/item/clothing/suit/hawaiian
-	desc = "This is some holiday attire for sunny beaches."
-	item_state_slots = list(slot_r_hand_str = "labcoat", slot_l_hand_str = "labcoat")
-
-/obj/item/clothing/suit/hawaiian/blue
 	name = "blue hawaiian shirt"
+	desc = "Holiday attire for sunny beaches."
 	icon_state = "hawaiian_blue"
 
 /obj/item/clothing/suit/hawaiian/pink
@@ -302,15 +299,14 @@
  * Cowboy Vests
  */
 
-/obj/item/clothing/suit/cowboy_vest
-	desc = "A rugged looking vest for those that tame the wilds."
-
 /obj/item/clothing/suit/cowboy_vest/brown
 	name = "brown cowboy vest"
+	desc = "A rugged looking vest made from leather. For those that tame the wilds."
 	icon_state = "cowboyvest_brown"
 
 /obj/item/clothing/suit/cowboy_vest/grey
 	name = "grey cowboy vest"
+	desc = "A rugged looking vest made from leather. For those that tame the wilds."
 	icon_state = "cowboyvest_grey"
 
 /*
