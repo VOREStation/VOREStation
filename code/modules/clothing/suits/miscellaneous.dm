@@ -4,6 +4,7 @@
  *		Costume
  *		Hawaiian
  *		Misc
+ *		Department Jackets
  */
 
 // -S2-note- Needs categorizing and sorting.
@@ -296,6 +297,21 @@
 	name = "kamishimo"
 	desc = "Traditional Japanese menswear."
 	icon_state = "kamishimo"
+
+/*
+ * Cowboy Vests
+ */
+
+/obj/item/clothing/suit/cowboy_vest
+	desc = "A rugged looking vest for those that tame the wilds."
+
+/obj/item/clothing/suit/cowboy_vest/brown
+	name = "brown cowboy vest"
+	icon_state = "cowboyvest_brown"
+
+/obj/item/clothing/suit/cowboy_vest/grey
+	name = "grey cowboy vest"
+	icon_state = "cowboyvest_grey"
 
 /*
  * coats
