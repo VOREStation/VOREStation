@@ -96,13 +96,6 @@
 	desc = "A powdered wig."
 	icon_state = "pwig"
 
-/obj/item/clothing/head/that
-	name = "top-hat"
-	desc = "It's an amish looking hat."
-	icon_state = "tophat"
-	siemens_coefficient = 0.9
-	body_parts_covered = 0
-
 /obj/item/clothing/head/redcoat
 	name = "redcoat's hat"
 	icon_state = "redcoat"
@@ -233,84 +226,6 @@
 	desc = "Yarr."
 	icon_state = "bandana"
 	item_state_slots = list(slot_r_hand_str = "redbandana", slot_l_hand_str = "redbandana")
-
-/obj/item/clothing/head/bowler
-	name = "bowler-hat"
-	desc = "Gentleman, elite aboard!"
-	icon_state = "bowler"
-	item_state_slots = list(slot_r_hand_str = "tophat", slot_l_hand_str = "tophat")
-	body_parts_covered = 0
-
-//stylish bs12 hats
-
-/obj/item/clothing/head/bowlerhat
-	name = "bowler hat"
-	icon_state = "bowler_hat"
-	item_state_slots = list(slot_r_hand_str = "tophat", slot_l_hand_str = "tophat")
-	desc = "For the gentleman of distinction."
-	body_parts_covered = 0
-
-/obj/item/clothing/head/beaverhat
-	name = "beaver hat"
-	icon_state = "beaver_hat"
-	item_state_slots = list(slot_r_hand_str = "tophat", slot_l_hand_str = "tophat")
-	desc = "Soft felt makes this hat both comfortable and elegant."
-
-/obj/item/clothing/head/boaterhat
-	name = "boater hat"
-	icon_state = "boater_hat"
-	item_state_slots = list(slot_r_hand_str = "tophat", slot_l_hand_str = "tophat")
-	desc = "The ultimate in summer fashion."
-
-/obj/item/clothing/head/fedora
-	name = "fedora"
-	icon_state = "fedora"
-	item_state_slots = list(slot_r_hand_str = "detective", slot_l_hand_str = "detective")
-	desc = "A sharp, stylish hat."
-
-/obj/item/clothing/head/fedora/brown
-	name = "fedora"
-	desc = "A brown fedora - either the cornerstone of a reporter's style or a poor attempt at looking cool, depending on the person wearing it."
-	icon_state = "detective"
-	allowed = list(/obj/item/weapon/reagent_containers/food/snacks/candy_corn, /obj/item/weapon/pen)
-
-/obj/item/clothing/head/fedora/grey
-	icon_state = "detective2"
-	item_state_slots = list(slot_r_hand_str = "detective", slot_l_hand_str = "detective")
-	desc = "A grey fedora - either the cornerstone of a reporter's style or a poor attempt at looking cool, depending on the person wearing it."
-
-
-/obj/item/clothing/head/feathertrilby
-	name = "feather trilby"
-	icon_state = "feather_trilby"
-	item_state_slots = list(slot_r_hand_str = "detective", slot_l_hand_str = "detective")
-	desc = "A sharp, stylish hat with a feather."
-
-/obj/item/clothing/head/fez
-	name = "fez"
-	icon_state = "fez"
-	desc = "You should wear a fez. Fezzes are cool."
-
-/obj/item/clothing/head/cowboy_hat
-	name = "cowboy hat"
-	desc = "For those that have spurs that go jingle jangle jingle."
-	icon_state = "cowboyhat"
-	body_parts_covered = 0
-
-/obj/item/clothing/head/cowboy_hat/black
-	name = "black cowboy hat"
-	desc = "You can almost hear the old western music."
-	icon_state = "cowboy_black"
-
-/obj/item/clothing/head/cowboy_hat/wide
-	name = "wide-brimmed cowboy hat"
-	desc = "Because justice isn't going to dispense itself."
-	icon_state = "cowboy_wide"
-
-/obj/item/clothing/head/cowboy_hat/small
-	name = "small cowboy hat"
-	desc = "For the tiniest of cowboys."
-	icon_state = "cowboy_small"
 
 /obj/item/clothing/head/witchwig
 	name = "witch costume wig"
@@ -485,3 +400,128 @@
 	name = "\improper Xion beret"
 	desc = "An orange beret denoting employment with Xion Manufacturing. For personnel that are more inclined towards style than safety."
 	icon_state = "beret_orange"
+
+//Stylish Hats
+
+/obj/item/clothing/head/bowler
+	name = "bowler hat"
+	desc = "Gentleman, elite aboard!"
+	icon_state = "bowler"
+	item_state_slots = list(slot_r_hand_str = "tophat", slot_l_hand_str = "tophat")
+	body_parts_covered = 0
+
+/obj/item/clothing/head/that
+	name = "top-hat"
+	desc = "It's an amish looking hat."
+	icon_state = "tophat"
+	siemens_coefficient = 0.9
+	body_parts_covered = 0
+
+/obj/item/clothing/head/beaverhat
+	name = "beaver hat"
+	desc = "Soft felt makes this hat both comfortable and elegant."
+	icon_state = "beaver_hat"
+	item_state_slots = list(slot_r_hand_str = "tophat", slot_l_hand_str = "tophat")
+	siemens_coefficient = 0.9
+	body_parts_covered = 0
+
+/obj/item/clothing/head/boaterhat
+	name = "boater hat"
+	desc = "The ultimate in summer fashion."
+	icon_state = "boater_hat"
+	item_state_slots = list(slot_r_hand_str = "tophat", slot_l_hand_str = "tophat")
+	body_parts_covered = 0
+
+/obj/item/clothing/head/fedora
+	name = "fedora"
+	icon_state = "fedora_grey"
+	desc = "A sharp, stylish hat that's grey in color."
+	item_state_slots = list(slot_r_hand_str = "detective", slot_l_hand_str = "detective")
+	body_parts_covered = 0
+
+/obj/item/clothing/head/fedora/brown
+	desc = "A brown fedora. Perfect for detectives or those trying to pilfer artifacts."
+	icon_state = "fedora_brown"
+	allowed = list(/obj/item/weapon/reagent_containers/food/snacks/candy_corn, /obj/item/weapon/pen)
+
+/obj/item/clothing/head/fedora/white
+	desc = "A white fedora, really cool hat if you're a mobster. A really lame hat if you're not."
+	icon_state = "fedora_white"
+
+/obj/item/clothing/head/fedora/beige
+	desc = "A beige fedora. Either the cornerstone of a reporter's style or a poor attempt at looking cool. Depends on the person wearing it."
+	icon_state = "fedora_beige"
+
+/obj/item/clothing/head/fedora/panama
+	desc = "A fancy, cream colored fedora. Columbian pure."
+	icon_state = "fedora_panama"
+
+/obj/item/clothing/head/trilby
+	name = "trilby"
+	icon_state = "trilby"
+	item_state_slots = list(slot_r_hand_str = "detective", slot_l_hand_str = "detective")
+	desc = "M'lady"
+
+/obj/item/clothing/head/trilby/feather
+	name = "feather trilby"
+	icon_state = "feather_trilby"
+	item_state_slots = list(slot_r_hand_str = "detective", slot_l_hand_str = "detective")
+	desc = "A sharp, stylish hat with a feather."
+
+/obj/item/clothing/head/fez
+	name = "fez"
+	icon_state = "fez"
+	desc = "You should wear a fez. Fezzes are cool."
+
+//Cowboy Hats
+
+/obj/item/clothing/head/cowboy
+	name = "cowboy hat"
+	desc = "For those that have spurs that go jingle jangle jingle."
+	icon_state = "cowboy_1"
+	body_parts_covered = 0
+
+/obj/item/clothing/head/cowboy/rattan
+	name = "rattan cowboy hat"
+	desc = "Made from the same straw harvested from the fields."
+	icon_state = "cowboy_2"
+
+/obj/item/clothing/head/cowboy/dark
+	name = "dark cowboy hat"
+	desc = "Protect yer head in this new frontier."
+	icon_state = "cowboy_3"
+
+/obj/item/clothing/head/cowboy/ranger
+	name = "ranger cowboy hat"
+	desc = "Feel the western vibe from this good ol' classic."
+	icon_state = "cowboy_4"
+
+/obj/item/clothing/head/cowboy/rustler
+	name = "rustler cowboy hat"
+	desc = "Rustle up some of that there cattle bucko."
+	icon_state = "cowboy_5"
+
+/obj/item/clothing/head/cowboy/black
+	name = "black cowboy hat"
+	desc = "Perfect for the budding tram robber."
+	icon_state = "cowboy_7"
+
+/obj/item/clothing/head/cowboy/fancy
+	name = "fancy cowboy hat"
+	desc = "Premium black leather had with a rattlesnake hatband to top the ensemble."
+	icon_state = "cowboy_8"
+
+/obj/item/clothing/head/cowboy/wide
+	name = "wide-brimmed cowboy hat"
+	desc = "Because justice isn't going to dispense itself."
+	icon_state = "cowboy_6"
+
+/obj/item/clothing/head/cowboy/bandit
+	name = "bandit cowboy hat"
+	desc = "You can almost hear the old western music."
+	icon_state = "cowboy_9"
+
+/obj/item/clothing/head/cowboy/small
+	name = "small cowboy hat"
+	desc = "For the tiniest of cowboys."
+	icon_state = "cowboy_small"
