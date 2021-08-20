@@ -2,6 +2,7 @@
  * Contains:
  *		Lasertag
  *		Costume
+ *		Hawaiian
  *		Misc
  */
 
@@ -223,6 +224,30 @@
 	body_parts_covered = FEET|LOWER_TORSO|FEET
 	flags_inv = HIDESHOES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
 	item_state_slots = list(slot_r_hand_str = "red_labcoat", slot_l_hand_str = "red_labcoat")
+
+/*
+ * Hawaiian
+ */
+
+/obj/item/clothing/suit/hawaiian
+	desc = "This is some holiday attire for sunny beaches."
+	item_state_slots = list(slot_r_hand_str = "labcoat", slot_l_hand_str = "labcoat")
+
+/obj/item/clothing/suit/hawaiian/blue
+	name = "blue hawaiian shirt"
+	icon_state = "hawaiian_blue"
+
+/obj/item/clothing/suit/hawaiian/pink
+	name = "pink hawaiian shirt"
+	icon_state = "hawaiian_pink"
+
+/obj/item/clothing/suit/hawaiian/red
+	name = "red hawaiian shirt"
+	icon_state = "hawaiian_red"
+
+/obj/item/clothing/suit/hawaiian/yellow
+	name = "yellow hawaiian shirt"
+	icon_state = "hawaiian_yellow"
 
 /*
  * Misc
