@@ -92,7 +92,7 @@
 			if(can_change(APPEARANCE_RACE) && (params["race"] in valid_species))
 				if(target.change_species(params["race"]))
 					if(params["race"] == "Custom Species")
-						target.custom_species = (usr,"Custom Species name:","Species Name")
+						target.custom_species = input(usr,"Custom Species name:","Species Name")
 					cut_data()
 					generate_data(usr)
 					changed_hook(APPEARANCECHANGER_CHANGED_RACE)
