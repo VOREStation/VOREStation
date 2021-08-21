@@ -61,12 +61,28 @@
 		/atom/movable/emissive_blocker,
 		/obj/item/weapon/material,
 		/obj/item/weapon/melee,
-		/obj/item/stack/material,
+		/obj/item/stack/,
 		/obj/item/weapon/tool,
 		/obj/item/weapon/reagent_containers/food,
 		/obj/item/weapon/coin,
 		/obj/item/weapon/aliencoin,
-		/obj/item/weapon/ore
+		/obj/item/weapon/ore,
+		/obj/item/weapon/disk/nuclear,
+		/obj/item/toy,
+		/obj/item/weapon/card,
+		/obj/item/device/radio,
+		/obj/item/device/perfect_tele_beacon,
+		/obj/item/weapon/clipboard,
+		/obj/item/weapon/paper,
+		/obj/item/weapon/pen,
+		/obj/item/canvas,
+		/obj/item/paint_palette,
+		/obj/item/paint_brush,
+		/obj/item/device/camera,
+		/obj/item/weapon/photo,
+		/obj/item/device/camera_film,
+		/obj/item/device/taperecorder,
+		/obj/item/device/tape
 		)
 
 	vore_active = 1
@@ -138,15 +154,14 @@
 	playsound(src, 'sound/items/eatfood.ogg', 75, 1)
 	
 /mob/living/simple_mob/vore/alienanimals/catslug/attack_hand(mob/living/carbon/human/M as mob)
-	if(stat == DEAD)
-		return ..()
-	if(M.a_intent == I_HELP && resting)
+	if(stat != DEAD && M.a_intent == I_HELP && resting)
 		M.visible_message("<span class='notice'>\The [M.name] shakes \the [src] awake from their nap.</span>","<span class='notice'>You shake \the [src] awake!</span>")
 		playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 		lay_down()
 		ai_holder.go_wake()
 		return
-	return ..()
+	else
+		return ..()
 
 /mob/living/simple_mob/vore/alienanimals/catslug/Life()
 	. = ..()
@@ -206,18 +221,16 @@
 
 
 /datum/ai_holder/simple_mob/melee/evasive/catslug/on_hear_say(mob/living/speaker, message)
-	if(holder.client)
-		return
-	if(!speaker.client)
+	if(holder.client || !speaker.client)
 		return
 	if(findtext(message, "psps") && stance == STANCE_IDLE)
 		set_follow(speaker, follow_for = 5 SECONDS)
 
 /mob/living/simple_mob/vore/alienanimals/catslug/horrible
+	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive/catslug/horrible
+
 /datum/ai_holder/simple_mob/melee/evasive/catslug/horrible/on_hear_say(mob/living/speaker, message)	//this was an accident originally but it was very funny so here you go
-	if(holder.client)
-		return
-	if(!speaker.client)
+	if(holder.client || !speaker.client)
 		return
 	if(findtext(message, "psps") || stance == STANCE_IDLE)
 		set_follow(speaker, follow_for = 5 SECONDS)
