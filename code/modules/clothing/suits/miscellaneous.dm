@@ -2,7 +2,6 @@
  * Contains:
  *		Lasertag
  *		Costume
- *		Hawaiian
  *		Misc
  *		Department Jackets
  */
@@ -12,6 +11,7 @@
 /*
  * Lasertag
  */
+
 /obj/item/clothing/suit/bluetag
 	name = "blue laser tag armour"
 	desc = "Blue Pride, Station Wide."
@@ -35,6 +35,7 @@
 /*
  * Costume
  */
+
 /obj/item/clothing/suit/pirate
 	name = "pirate coat"
 	desc = "Yarr."
@@ -227,29 +228,9 @@
 	item_state_slots = list(slot_r_hand_str = "red_labcoat", slot_l_hand_str = "red_labcoat")
 
 /*
- * Hawaiian
- */
-
-/obj/item/clothing/suit/hawaiian
-	name = "blue hawaiian shirt"
-	desc = "Holiday attire for sunny beaches."
-	icon_state = "hawaiian_blue"
-
-/obj/item/clothing/suit/hawaiian/pink
-	name = "pink hawaiian shirt"
-	icon_state = "hawaiian_pink"
-
-/obj/item/clothing/suit/hawaiian/red
-	name = "red hawaiian shirt"
-	icon_state = "hawaiian_red"
-
-/obj/item/clothing/suit/hawaiian/yellow
-	name = "yellow hawaiian shirt"
-	icon_state = "hawaiian_yellow"
-
-/*
  * Misc
  */
+
 /obj/item/clothing/suit/straight_jacket
 	name = "straight jacket"
 	desc = "A suit that completely restrains the wearer."
@@ -296,22 +277,9 @@
 	icon_state = "kamishimo"
 
 /*
- * Cowboy Vests
+ * Coats
  */
 
-/obj/item/clothing/suit/cowboy_vest/brown
-	name = "brown cowboy vest"
-	desc = "A rugged looking vest made from leather. For those that tame the wilds."
-	icon_state = "cowboyvest_brown"
-
-/obj/item/clothing/suit/cowboy_vest/grey
-	name = "grey cowboy vest"
-	desc = "A rugged looking vest made from leather. For those that tame the wilds."
-	icon_state = "cowboyvest_grey"
-
-/*
- * coats
- */
 /obj/item/clothing/suit/leathercoat
 	name = "leather coat"
 	desc = "A long, thick black leather coat."

@@ -743,6 +743,13 @@ Uniforms and such
 	name = "checkered skirt"
 	icon_state = "checkered_suit_skirt"
 
+/obj/item/clothing/under/suit_jacket/gambler
+	name = "gambling suit"
+	desc = "The suit of a gambler. Lady luck be with you."
+	icon_state = "gambler_suit"
+	item_state_slots = list(slot_r_hand_str = "lawyer_black", slot_l_hand_str = "lawyer_black")
+	starting_accessories = list(/obj/item/clothing/accessory/tie/black, /obj/item/clothing/accessory/jacket/gambler)
+
 /obj/item/clothing/under/suit_jacket/tan
 	name = "tan suit"
 	desc = "A tan suit. Smart, but casual."
@@ -1163,7 +1170,10 @@ Uniforms and such
 	worn_state = "rustler"
 
 /obj/item/clothing/under/cowboy
+	name = "cowboy clothes"
 	desc = "Some rugged clothes for hard labor out on the farm."
+	icon_state = "cowboy"
+	worn_state = "cowboy"
 
 /obj/item/clothing/under/cowboy/tan
 	name = "tan cowboy clothes"

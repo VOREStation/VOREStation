@@ -298,8 +298,8 @@
 			/obj/item/clothing/gloves/botanic_leather,
 			/obj/item/clothing/head/cowboy,
 			/obj/item/clothing/head/cowboy/bandit,
-			/obj/item/clothing/suit/cowboy_vest/brown,
-			/obj/item/clothing/suit/cowboy_vest/grey
+			/obj/item/clothing/accessory/cowboy_vest/brown,
+			/obj/item/clothing/accessory/cowboy_vest/grey
 			)
 	cost = 50
 	containertype = /obj/structure/closet/crate
