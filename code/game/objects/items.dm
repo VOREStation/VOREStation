@@ -221,6 +221,8 @@
 			size = "bulky"
 		if(ITEMSIZE_HUGE)
 			size = "huge"
+		if(ITEMSIZE_NO_CONTAINER)
+			size = "massive"
 	return ..(user, "", "It is a [size] item.")
 
 /obj/item/attack_hand(mob/living/user as mob)

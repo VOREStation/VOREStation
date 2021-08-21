@@ -129,7 +129,7 @@
 
 /obj/item/weapon/kinetic_crusher/attack(mob/living/target, mob/living/carbon/user)
 	if(!wielded && requires_wield)
-		to_chat(user, "<span class='warning'>[src] is too heavy to use with one hand.")
+		to_chat(user, "<span class='warning'>[src] is too heavy to use with one hand.</span>")
 		return
 	var/datum/status_effect/crusher_damage/C = target.has_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
 	var/target_health = target.health
@@ -252,6 +252,7 @@
     - hatterhat
 */
 
+
 /obj/item/weapon/kinetic_crusher/machete
 	name = "proto-kinetic machete"
 	desc = "A scaled down version of a proto-kinetic crusher, used by people who don't want to lug around an axe-hammer."
@@ -260,8 +261,9 @@
 			slot_l_hand_str = 'icons/mob/items/lefthand_melee_vr.dmi',
 			slot_r_hand_str = 'icons/mob/items/righthand_melee_vr.dmi',
 			)
-	item_state = "g-machete"
+	item_state = "c-machete"
 	w_class = ITEMSIZE_SMALL
+	attack_verb = list("cleaved", "chopped", "pulped")
 	force = 24
 	can_cleave = TRUE
 	requires_wield = FALSE
@@ -272,6 +274,79 @@
 	thrown_bonus = 20
 	update_item_state = FALSE
 
+/obj/item/offhand
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "offhand"
+	name = "offhand that shouldn't exist doo dee doo"
+	// var/linked - redefine this wherever
+
+/obj/item/weapon/kinetic_crusher/machete/gauntlets
+	// did someone say single target damage
+	name = "\improper proto-kinetic gear"
+	desc = "A pair of scaled-down proto-kinetic crusher destabilizer modules shoved into gauntlets and greaves, used by those who wish to spit in the eyes of God."
+	icon_state = "crusher-hands"
+	item_icons = list(
+			slot_l_hand_str = 'icons/mob/items/lefthand_melee_vr.dmi',
+			slot_r_hand_str = 'icons/mob/items/righthand_melee_vr.dmi',
+			)
+	item_state = "c-gauntlets"
+	attack_verb = list("bashed", "kicked", "punched", "struck")
+	w_class = ITEMSIZE_HUGE
+	force = 30
+	can_cleave = FALSE
+	requires_wield = TRUE
+	backstab_bonus = 55
+	detonation_damage = 35
+	var/obj/item/offhand/crushergauntlets/offhand
+
+/obj/item/weapon/kinetic_crusher/machete/gauntlets/Initialize(mapload)
+	. = ..()
+	START_PROCESSING(SSprocessing, src)
+
+/obj/item/weapon/kinetic_crusher/machete/gauntlets/Destroy()
+	. = ..()
+	STOP_PROCESSING(SSprocessing, src)
+
+/obj/item/weapon/kinetic_crusher/machete/gauntlets/attack_self(mob/user)
+	ready_toggle()
+
+/obj/item/weapon/kinetic_crusher/machete/gauntlets/process()
+	if(wielded) // are we supposed to be wielded
+		if(!offhand) // does our offhand exist
+			ready_toggle(TRUE) // no? well, shit
+
+/// toggles twohand. if forced is true, forces an unready state
+/obj/item/weapon/kinetic_crusher/machete/gauntlets/proc/ready_toggle(var/forced = 0)
+	var/mob/living/M = loc
+	if(istype(M) && forced == 0)
+		if(M.can_wield_item(src) && src.is_held_twohanded(M))
+			name = initial(name)
+			wielded = TRUE
+			to_chat(M, "<span class ='notice'>You ready [src].</span>")
+			var/obj/item/offhand/crushergauntlets/O = new(M)
+			O.name = "[name] - readied"
+			O.desc = "As much as you'd like to punch things with one hand, [src] is too unwieldy for that."
+			O.linked = src
+			M.put_in_inactive_hand(O)
+			offhand = O
+		else
+			name = "[initial(name)] (unreadied)"
+			wielded = FALSE
+			to_chat(M, "<span class ='notice'>You unready [src].</span>")
+			if(offhand)
+				QDEL_NULL(offhand)
+	else
+		name = "[initial(name)] (unreadied)"
+		wielded = FALSE
+		to_chat(M, "<span class ='notice'>You unready [src].</span>")
+
+/obj/item/offhand/crushergauntlets
+	var/obj/item/weapon/kinetic_crusher/machete/gauntlets/linked
+
+/obj/item/offhand/crushergauntlets/dropped(mob/user as mob)
+	if(linked.wielded)
+		linked.ready_toggle(TRUE)
+
 /obj/item/weapon/kinetic_crusher/machete/dagger
 	name = "proto-kinetic dagger"
 	desc = "A scaled down version of a proto-kinetic machete, usually used in a last ditch scenario."
@@ -280,7 +355,7 @@
 			slot_l_hand_str = 'icons/mob/items/lefthand_melee_vr.dmi',
 			slot_r_hand_str = 'icons/mob/items/righthand_melee_vr.dmi',
 			)
-	item_state = "machete"
+	item_state = "c-machete"
 	w_class = ITEMSIZE_SMALL
 	force = 15
 	requires_wield = FALSE
@@ -289,7 +364,6 @@
 	detonation_damage = 25
 	// woohoo
 	thrown_bonus = 35
-	update_item_state = FALSE
 
 
 //destablizing force
