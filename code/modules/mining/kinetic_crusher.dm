@@ -358,7 +358,7 @@
 			slot_l_hand_str = 'icons/mob/items/lefthand_melee_vr.dmi',
 			slot_r_hand_str = 'icons/mob/items/righthand_melee_vr.dmi',
 			)
-	item_state = "c-machete"
+	item_state = "c-knife"
 	w_class = ITEMSIZE_SMALL
 	force = 15
 	requires_wield = FALSE
