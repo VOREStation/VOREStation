@@ -1026,12 +1026,6 @@ Uniforms and such
 	icon_state = "saare"
 	worn_state = "saare"
 
-/obj/item/clothing/under/frontier
-	name = "frontier clothes"
-	desc = "A rugged flannel shirt and denim overalls. A popular style among frontier colonists."
-	icon_state = "frontier"
-	worn_state = "frontier"
-
 /obj/item/clothing/under/focal
 	name = "\improper Focal Point jumpsuit"
 	desc = "A jumpsuit belonging to Focal Point Energistics, an engineering megacorporation."
@@ -1189,3 +1183,10 @@ Uniforms and such
 	name = "grey cowboy clothes"
 	icon_state = "cowboy_grey"
 	worn_state = "cowboy_grey"
+
+/obj/item/clothing/under/primitive
+	name = "primitive clothes"
+	desc = "Some patched together rags. Better than being naked."
+	force = 0
+	icon_state = "rag"
+	worn_state = "rag"
