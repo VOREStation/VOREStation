@@ -41,6 +41,7 @@
 	has_hands = TRUE
 	mob_size = MOB_MEDIUM
 	friendly = list("hugs")
+	see_in_dark = 8
 
 	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug)
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive/catslug
