@@ -137,6 +137,17 @@
 			to_chat(user, "<span class='notice'>\The [user] feeds \the [O] to you.</span>")
 	playsound(src, 'sound/items/eatfood.ogg', 75, 1)
 	
+/mob/living/simple_mob/vore/alienanimals/catslug/attack_hand(mob/living/carbon/human/M as mob)
+	if(stat == DEAD)
+		return ..()
+	if(M.a_intent == I_HELP && resting)
+		M.visible_message("<span class='notice'>\The [M.name] shakes \the [src] awake from their nap.</span>","<span class='notice'>You shake \the [src] awake!</span>")
+		playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+		lay_down()
+		ai_holder.go_wake()
+		return
+	return ..()
+
 /mob/living/simple_mob/vore/alienanimals/catslug/Life()
 	. = ..()
 	if(nutrition < 150)
@@ -178,19 +189,32 @@
 		color = newcolor
 	picked_color = TRUE
 
-/datum/ai_holder/simple_mob/melee/evasive/catslug/handle_wander_movement()
-	if(holder.client)
-		return
+/datum/ai_holder/simple_mob/melee/evasive/catslug/proc/consider_awakening()
 	if(holder.resting)
-		if(prob(5))
-			holder.lay_down()
-		return
-	if(prob(0.5))
 		holder.lay_down()
+		go_wake()
+
+/datum/ai_holder/simple_mob/melee/evasive/catslug/handle_wander_movement()
+	if(holder.client || holder.resting)
 		return
-	return ..()
+	else if(prob(0.5))
+		holder.lay_down()
+		go_sleep()
+		addtimer(CALLBACK(src, .proc/consider_awakening), rand(1 MINUTE, 5 MINUTES), TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
+	else 
+		return ..()
+
 
 /datum/ai_holder/simple_mob/melee/evasive/catslug/on_hear_say(mob/living/speaker, message)
+	if(holder.client)
+		return
+	if(!speaker.client)
+		return
+	if(findtext(message, "psps") && stance == STANCE_IDLE)
+		set_follow(speaker, follow_for = 5 SECONDS)
+
+/mob/living/simple_mob/vore/alienanimals/catslug/horrible
+/datum/ai_holder/simple_mob/melee/evasive/catslug/horrible/on_hear_say(mob/living/speaker, message)	//this was an accident originally but it was very funny so here you go
 	if(holder.client)
 		return
 	if(!speaker.client)
