@@ -245,7 +245,7 @@
 			)
 	item_state = "c-machete"
 	w_class = ITEMSIZE_SMALL
-	attack_verb = list("cleaved", "chopped", "pulped")
+	attack_verb = list("cleaved", "chopped", "pulped", "stabbed", "skewered")
 	force = 24
 	can_cleave = TRUE
 	requires_wield = FALSE
