@@ -265,7 +265,7 @@
 	embed_chance = 0
 	icon_state = "crusher-hands"
 	item_state = "c-gauntlets"
-	attack_verb = list("bashed", "kicked", "punched", "struck", "axe kicked", "uppercut", "cross-punched", "jabbed", "hammerfisted", "roundhoused")
+	attack_verb = list("bashed", "kicked", "punched", "struck", "axe kicked", "uppercut", "cross-punched", "jabbed", "hammerfisted", "roundhouse kicked")
 	integ_light_icon = FALSE
 	w_class = ITEMSIZE_HUGE
 	force = 30
@@ -337,7 +337,18 @@
 
 /obj/item/weapon/kinetic_crusher/machete/gauntlets/rig/dropped(mob/user)
 	. = ..()
-	src.forceMove(storing_module)
+	if(storing_module)
+		src.forceMove(storing_module)
+		storing_module.stored_gauntlets = src
+		user.visible_message(
+			"<span class='notice'>[user] retracts [src] with a click and a hiss.</span>",
+			"<span class='notice'>You retract [src] with a click and a hiss.</span>",
+			"<span class='notice'>You hear a click and a hiss.</span>"
+			)
+		playsound(src, 'sound/items/helmetdeploy.ogg', 40, 1)
+		storing_module.active = FALSE
+	else
+		QDEL_NULL(src)
 
 /obj/item/weapon/kinetic_crusher/machete/dagger
 	name = "proto-kinetic dagger"

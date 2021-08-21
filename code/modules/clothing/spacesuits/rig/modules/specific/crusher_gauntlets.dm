@@ -13,7 +13,7 @@
 	usable = 0
 	toggleable = 1
 	use_power_cost = 0
-	active_power_cost = 25
+	active_power_cost = 2.5
 	passive_power_cost = 0
 	var/obj/item/weapon/kinetic_crusher/machete/gauntlets/rig/stored_gauntlets
 
@@ -21,15 +21,6 @@
 	. = ..()
 	stored_gauntlets = new /obj/item/weapon/kinetic_crusher/machete/gauntlets/rig(src)
 	stored_gauntlets.storing_module = src
-
-/obj/item/rig_module/gauntlets/process()
-
-	if(holder && holder.wearer)
-		if(!(locate(stored_gauntlets) in holder.wearer))
-			deactivate()
-			return 0
-
-	return ..()
 
 /obj/item/rig_module/gauntlets/activate()
 	..()
@@ -54,3 +45,11 @@
 
 	playsound(src, 'sound/items/helmetdeploy.ogg', 40, 1)
 	M.put_in_hands(stored_gauntlets)
+
+/obj/item/rig_module/gauntlets/deactivate()
+	..()
+	var/mob/living/M = holder.wearer
+	if(!M)
+		return
+	for(var/obj/item/weapon/kinetic_crusher/machete/gauntlets/gaming in M.contents)
+		M.drop_from_inventory(gaming, src)
