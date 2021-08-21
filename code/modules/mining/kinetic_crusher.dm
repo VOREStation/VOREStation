@@ -34,6 +34,9 @@
 	var/charge_time = 15
 	var/detonation_damage = 50
 	var/backstab_bonus = 30
+	/// does it have a light icon
+	var/integ_light_icon = TRUE
+	/// is the light on?
 	var/integ_light_on = FALSE
 	var/brightness_on = 7
 	var/wielded = FALSE // track wielded status on item
@@ -85,6 +88,7 @@
 	if(emagged)
 		return
 	emagged = TRUE
+	desc = desc + " The destabilizer module occasionally sparks and glows a menacing red."
 
 /obj/item/weapon/kinetic_crusher/proc/can_mark(mob/living/victim)
 	if(emagged)
@@ -101,7 +105,7 @@
 
 /obj/item/weapon/kinetic_crusher/examine(mob/living/user)
 	. = ..()
-	. += "<span class='notice'>Mark a large creature with the destabilizing force, then hit them in melee to do <b>[force + detonation_damage]</b> damage.</span>"
+	. += "<span class='notice'>Mark a[emagged ? "nything": " creature"] with the destabilizing force, then hit them in melee to do <b>[force + detonation_damage]</b> damage.</span>"
 	. += "<span class='notice'>Does <b>[force + detonation_damage + backstab_bonus]</b> damage if the target is backstabbed, instead of <b>[force + detonation_damage]</b>.</span>"
 /*
 	for(var/t in trophies)
@@ -131,17 +135,7 @@
 	if(!wielded && requires_wield)
 		to_chat(user, "<span class='warning'>[src] is too heavy to use with one hand.</span>")
 		return
-	var/datum/status_effect/crusher_damage/C = target.has_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
-	var/target_health = target.health
 	..()
-/*
-	for(var/t in trophies)
-		if(!QDELETED(target))
-			var/obj/item/crusher_trophy/T = t
-			T.on_melee_hit(target, user)
-*/
-	if(!QDELETED(C) && !QDELETED(target))
-		C.total_damage += target_health - target.health //we did some damage, but let's not assume how much we did
 
 /obj/item/weapon/kinetic_crusher/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
 	. = ..()
@@ -175,33 +169,21 @@
 		detonate(target, user)
 
 /obj/item/weapon/kinetic_crusher/proc/detonate(mob/living/L, mob/living/user, thrown = FALSE)
-	var/datum/status_effect/crusher_mark/CM = L.has_status_effect(STATUS_EFFECT_CRUSHERMARK)
-	if(!CM || CM.hammer_synced != src || !L.remove_status_effect(STATUS_EFFECT_CRUSHERMARK))
+	var/datum/modifier/crusher_mark/CM = L.get_modifier_of_type(/datum/modifier/crusher_mark)
+	if(!CM || CM.hammer_synced != src)
 		return
-	var/datum/status_effect/crusher_damage/C = L.has_status_effect(STATUS_EFFECT_CRUSHERDAMAGETRACKING)
-	var/target_health = L.health
-/*
-	for(var/t in trophies)
-		var/obj/item/crusher_trophy/T = t
-		T.on_mark_detonation(target, user)
-*/
 	if(!QDELETED(L))
-		if(!QDELETED(C))
-			C.total_damage += target_health - L.health //we did some damage, but let's not assume how much we did
+		L.remove_modifiers_of_type(/datum/modifier/crusher_mark)
 		new /obj/effect/temp_visual/kinetic_blast(get_turf(L))
 		var/backstab_dir = get_dir(user, L)
-		var/def_check = L.getarmor(type = "bomb")
+		var/def_check = L.getarmor(null, "bomb")
 		var/detonation_damage = src.detonation_damage * (!ishuman(L)? 1 : human_damage_nerf)
 		var/backstab_bonus = src.backstab_bonus * (!ishuman(L)? 1 : human_backstab_nerf)
 		var/thrown_bonus = thrown? (src.thrown_bonus * (!ishuman(L)? 1 : human_damage_nerf)) : 0
 		if(thrown? (get_dir(src, L) & L.dir) : ((user.dir & backstab_dir) && (L.dir & backstab_dir)))
-			if(!QDELETED(C))
-				C.total_damage += detonation_damage + backstab_bonus + thrown_bonus //cheat a little and add the total before killing it, so certain mobs don't have much lower chances of giving an item
 			L.apply_damage(detonation_damage + backstab_bonus + thrown_bonus, BRUTE, blocked = def_check)
 			playsound(src, 'sound/weapons/Kenetic_accel.ogg', 100, 1) //Seriously who spelled it wrong
 		else
-			if(!QDELETED(C))
-				C.total_damage += detonation_damage + thrown_bonus
 			L.apply_damage(detonation_damage + thrown_bonus, BRUTE, blocked = def_check)
 
 /obj/item/weapon/kinetic_crusher/throw_impact(atom/hit_atom, speed)
@@ -209,7 +191,7 @@
 	if(!isliving(hit_atom))
 		return
 	var/mob/living/L = hit_atom
-	if(!L.has_status_effect(STATUS_EFFECT_CRUSHERMARK))
+	if(L.has_modifier_of_type(/datum/modifier/crusher_mark))
 		detonate(L, thrower, TRUE)
 
 /obj/item/weapon/kinetic_crusher/proc/Recharge()
@@ -230,16 +212,16 @@
 	else
 		set_light(0)
 
-/obj/item/weapon/kinetic_crusher/update_icon_state()
-	if(update_item_state)
-		item_state = "crusher[wielded]" // this is not icon_state and not supported by 2hcomponent
-
-/obj/item/weapon/kinetic_crusher/update_overlays()
+/obj/item/weapon/kinetic_crusher/update_icon()
 	. = ..()
-	if(!charged && charge_overlay)
-		. += "[icon_state]_uncharged"
-	if(integ_light_on)
-		. += "[icon_state]_lit"
+	cut_overlay("[icon_state]_uncharged")
+	cut_overlay("[icon_state]_lit")
+	if(charge_overlay)
+		if(!charged)
+			add_overlay("[icon_state]_uncharged")
+	if(integ_light_icon)
+		if(integ_light_on)
+			add_overlay("[icon_state]_lit")
 
 /*
 /obj/item/weapon/kinetic_crusher/glaive
@@ -274,23 +256,17 @@
 	thrown_bonus = 20
 	update_item_state = FALSE
 
-/obj/item/offhand
-	icon = 'icons/obj/weapons.dmi'
-	icon_state = "offhand"
-	name = "offhand that shouldn't exist doo dee doo"
-	// var/linked - redefine this wherever
 
 /obj/item/weapon/kinetic_crusher/machete/gauntlets
 	// did someone say single target damage
 	name = "\improper proto-kinetic gear"
 	desc = "A pair of scaled-down proto-kinetic crusher destabilizer modules shoved into gauntlets and greaves, used by those who wish to spit in the eyes of God."
+	hitsound = 'sound/weapons/resonator_blast.ogg'
+	embed_chance = 0
 	icon_state = "crusher-hands"
-	item_icons = list(
-			slot_l_hand_str = 'icons/mob/items/lefthand_melee_vr.dmi',
-			slot_r_hand_str = 'icons/mob/items/righthand_melee_vr.dmi',
-			)
 	item_state = "c-gauntlets"
-	attack_verb = list("bashed", "kicked", "punched", "struck")
+	attack_verb = list("bashed", "kicked", "punched", "struck", "axe kicked", "uppercut", "cross-punched", "jabbed", "hammerfisted", "roundhoused")
+	integ_light_icon = FALSE
 	w_class = ITEMSIZE_HUGE
 	force = 30
 	can_cleave = FALSE
@@ -299,9 +275,14 @@
 	detonation_damage = 35
 	var/obj/item/offhand/crushergauntlets/offhand
 
-/obj/item/weapon/kinetic_crusher/machete/gauntlets/Initialize(mapload)
+/obj/item/weapon/kinetic_crusher/machete/gauntlets/equipped()
 	. = ..()
 	START_PROCESSING(SSprocessing, src)
+
+/obj/item/weapon/kinetic_crusher/machete/gauntlets/dropped(mob/user)
+	ready_toggle(TRUE)
+	STOP_PROCESSING(SSprocessing, src)
+	. = ..()
 
 /obj/item/weapon/kinetic_crusher/machete/gauntlets/Destroy()
 	. = ..()
@@ -325,20 +306,23 @@
 			to_chat(M, "<span class ='notice'>You ready [src].</span>")
 			var/obj/item/offhand/crushergauntlets/O = new(M)
 			O.name = "[name] - readied"
-			O.desc = "As much as you'd like to punch things with one hand, [src] is too unwieldy for that."
+			O.desc = "As much as you'd like to punch things with one hand, [src] is far too unwieldy for that."
 			O.linked = src
 			M.put_in_inactive_hand(O)
 			offhand = O
-		else
-			name = "[initial(name)] (unreadied)"
-			wielded = FALSE
-			to_chat(M, "<span class ='notice'>You unready [src].</span>")
-			if(offhand)
-				QDEL_NULL(offhand)
 	else
 		name = "[initial(name)] (unreadied)"
 		wielded = FALSE
 		to_chat(M, "<span class ='notice'>You unready [src].</span>")
+		if(offhand)
+			QDEL_NULL(offhand)
+
+/obj/item/offhand
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "offhand"
+	name = "offhand that shouldn't exist doo dee doo"
+	w_class = ITEMSIZE_NO_CONTAINER
+	// var/linked - redefine this wherever
 
 /obj/item/offhand/crushergauntlets
 	var/obj/item/weapon/kinetic_crusher/machete/gauntlets/linked
@@ -346,6 +330,14 @@
 /obj/item/offhand/crushergauntlets/dropped(mob/user as mob)
 	if(linked.wielded)
 		linked.ready_toggle(TRUE)
+
+/obj/item/weapon/kinetic_crusher/machete/gauntlets/rig
+	name = "mounted proto-kinetic gear"
+	var/obj/item/rig_module/gauntlets/storing_module
+
+/obj/item/weapon/kinetic_crusher/machete/gauntlets/rig/dropped(mob/user)
+	. = ..()
+	src.forceMove(storing_module)
 
 /obj/item/weapon/kinetic_crusher/machete/dagger
 	name = "proto-kinetic dagger"
@@ -386,15 +378,7 @@
 /obj/item/projectile/destabilizer/on_hit(atom/target, blocked = FALSE)
 	if(isliving(target))
 		var/mob/living/L = target
-		L.apply_status_effect(STATUS_EFFECT_CRUSHERMARK, hammer_synced)
-		// var/had_effect = (L.has_status_effect(STATUS_EFFECT_CRUSHERMARK)) //used as a boolean
-		// var/datum/status_effect/crusher_mark/CM = L.apply_status_effect(STATUS_EFFECT_CRUSHERMARK, hammer_synced)
-/*
-		if(hammer_synced)
-			for(var/t in hammer_synced.trophies)
-				var/obj/item/crusher_trophy/T = t
-				T.on_mark_application(target, CM, had_effect)
-*/
+		L.add_modifier(/datum/modifier/crusher_mark, 30 SECONDS, firer, TRUE)
 	var/target_turf = get_turf(target)
 	if(ismineralturf(target_turf))
 		var/turf/simulated/mineral/M = target_turf

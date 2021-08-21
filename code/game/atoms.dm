@@ -231,9 +231,6 @@
 	SEND_SIGNAL(src, COMSIG_PARENT_EXAMINE, user, output)
 	return output
 
-/// Updates the icon state of the atom
-/atom/proc/update_icon_state()
-
 /// Updates the overlays of the atom
 /atom/proc/update_overlays()
 	SHOULD_CALL_PARENT(TRUE)
