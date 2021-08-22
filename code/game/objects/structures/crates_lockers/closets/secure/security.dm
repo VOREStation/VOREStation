@@ -60,7 +60,8 @@
 		/obj/item/clothing/head/caphat/hop,
 		/obj/item/clothing/under/gimmick/rank/head_of_personnel/suit,
 		/obj/item/clothing/under/gimmick/rank/head_of_personnel/suit/skirt,
-		/obj/item/clothing/glasses/sunglasses)
+		/obj/item/clothing/glasses/sunglasses,
+		/obj/item/clothing/suit/storage/hooded/wintercoat/hop)
 
 
 /obj/structure/closet/secure_closet/hos
@@ -100,6 +101,7 @@
 		/obj/item/weapon/melee/telebaton,
 		/obj/item/clothing/head/beret/sec/corporate/hos,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/security,
+		/obj/item/clothing/suit/storage/hooded/wintercoat/security/hos,
 		/obj/item/clothing/shoes/boots/winter/security,
 		/obj/item/device/flashlight/maglight,
 		/obj/item/clothing/mask/gas/half,
