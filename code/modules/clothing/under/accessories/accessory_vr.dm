@@ -262,6 +262,14 @@
 	item_state = "collar_pnk"
 	overlay_state = "collar_pnk"
 
+/obj/item/clothing/accessory/collar/cowbell
+	name = "cowbell collar"
+	desc = "A collar for your little pets... or the big ones."
+	icon_state = "collar_cowbell"
+	item_state = "collar_cowbell_overlay"
+	overlay_state = "collar_cowbell_overlay"
+
+
 /obj/item/clothing/accessory/collar/holo
 	name = "Holo-collar"
 	desc = "An expensive holo-collar for the modern day pet."
@@ -349,7 +357,7 @@
 	icon_state = "holster_machete"
 	slot = ACCESSORY_SLOT_WEAPON
 	concealed_holster = 0
-	can_hold = list(/obj/item/weapon/material/knife/machete)
+	can_hold = list(/obj/item/weapon/material/knife/machete, /obj/item/weapon/kinetic_crusher/machete)
 	//sound_in = 'sound/effects/holster/sheathin.ogg'
 	//sound_out = 'sound/effects/holster/sheathout.ogg'
 

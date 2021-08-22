@@ -649,3 +649,35 @@
 /datum/gear/uniform/countess
 	display_name = "countess dress"
 	path = /obj/item/clothing/under/dress/countess
+
+/datum/gear/uniform/verglasdress
+	display_name = "verglas dress"
+	path = /obj/item/clothing/under/verglasdress
+
+/datum/gear/uniform/fashionminiskirt
+	display_name = "fashionable miniskirt"
+	path = /obj/item/clothing/under/fashionminiskirt
+
+/datum/gear/uniform/fashionminiskirt/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/uniform/paramedunidark
+	display_name = "paramedic uniform - dark"
+	path = /obj/item/clothing/under/rank/paramedunidark
+	allowed_roles = list("Medical Doctor","Chief Medical Officer","Paramedic")
+
+/datum/gear/uniform/parameduniskirtdark
+	display_name = "paramedic skirt - dark"
+	path = /obj/item/clothing/under/rank/parameduniskirtdark
+	allowed_roles = list("Medical Doctor","Chief Medical Officer","Paramedic")
+
+/datum/gear/uniform/paramedunilight
+	display_name = "paramedic uniform - light"
+	path = /obj/item/clothing/under/rank/paramedunilight
+	allowed_roles = list("Medical Doctor","Chief Medical Officer","Paramedic")
+
+/datum/gear/uniform/parameduniskirtlight
+	display_name = "paramedic skirt - light"
+	path = /obj/item/clothing/under/rank/parameduniskirtlight
+	allowed_roles = list("Medical Doctor","Chief Medical Officer","Paramedic")

@@ -276,20 +276,35 @@ const VoreSelectedBelly = (props, context) => {
               onClick={() => act("set_attribute", { attribute: "b_msgs", msgtype: "ema" })}
               content="Examine Message (with absorbed victims)" />
             <Button
-              onClick={() => act("set_attribute", { attribute: "b_msgs", msgtype: "im_digest" })}
-              content="Idle Messages (Digest)" />
-            <Button
               onClick={() => act("set_attribute", { attribute: "b_msgs", msgtype: "im_hold" })}
               content="Idle Messages (Hold)" />
+            <Button
+              onClick={() => act("set_attribute", { attribute: "b_msgs", msgtype: "im_digest" })}
+              content="Idle Messages (Digest)" />
             <Button
               onClick={() => act("set_attribute", { attribute: "b_msgs", msgtype: "im_absorb" })}
               content="Idle Messages (Absorb)" />
             <Button
-              onClick={() => act("set_attribute", { attribute: "b_msgs", msgtype: "im_heal" })}
-              content="Idle Messages (Heal)" />
+              onClick={() => act("set_attribute", { attribute: "b_msgs", msgtype: "im_unabsorb" })}
+              content="Idle Messages (Unabsorb)" />
             <Button
               onClick={() => act("set_attribute", { attribute: "b_msgs", msgtype: "im_drain" })}
               content="Idle Messages (Drain)" />
+            <Button
+              onClick={() => act("set_attribute", { attribute: "b_msgs", msgtype: "im_heal" })}
+              content="Idle Messages (Heal)" />
+            <Button
+              onClick={() => act("set_attribute", { attribute: "b_msgs", msgtype: "im_steal" })}
+              content="Idle Messages (Size Steal)" />
+            <Button
+              onClick={() => act("set_attribute", { attribute: "b_msgs", msgtype: "im_shrink" })}
+              content="Idle Messages (Shrink)" />
+            <Button
+              onClick={() => act("set_attribute", { attribute: "b_msgs", msgtype: "im_grow" })}
+              content="Idle Messages (Grow)" />
+            <Button
+              onClick={() => act("set_attribute", { attribute: "b_msgs", msgtype: "im_egg" })}
+              content="Idle Messages (Encase In Egg)" />
             <Button
               color="red"
               onClick={() => act("set_attribute", { attribute: "b_msgs", msgtype: "reset" })}

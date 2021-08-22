@@ -34,6 +34,12 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	flags_inv = HIDEHOLSTER
 
+//Command
+/obj/item/clothing/suit/storage/cmddressjacket
+	name = "command dress jacket"
+	desc = "A fancy dress jacket made for command staff. Makes you feel in charge."
+	icon_state = "cmddressjacket"
+
 //Chaplain
 /obj/item/clothing/suit/storage/hooded/chaplain_hoodie
 	name = "chaplain hoodie"

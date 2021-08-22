@@ -47,6 +47,7 @@
 		/obj/item/clothing/glasses/meson,
 		/obj/item/clothing/head/soft,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/cargo,
+		/obj/item/clothing/suit/storage/hooded/wintercoat/cargo/qm,
 		/obj/item/clothing/shoes/boots/winter/supply)
 
 /obj/structure/closet/secure_closet/quartermaster/Initialize()
