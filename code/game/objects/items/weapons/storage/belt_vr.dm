@@ -48,7 +48,8 @@
 		/obj/item/device/ano_scanner,
 		/obj/item/device/cataloguer,
 		/obj/item/device/radio,
-		/obj/item/device/mapping_unit
+		/obj/item/device/mapping_unit,
+		/obj/item/weapon/kinetic_crusher
 		)
 		
 /obj/item/weapon/storage/belt/explorer/pathfinder
