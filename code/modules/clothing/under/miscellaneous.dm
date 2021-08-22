@@ -565,7 +565,7 @@
 	desc = "A red and black dress fit for a countess."
 	icon_state = "countess"
 
-obj/item/clothing/under/verglasdress
+/obj/item/clothing/under/verglasdress
     name = "verglas dress"
     desc = "The modern twist on a forgotten pattern, the Verglas style utilizes comfortable velvet and silver white satin to create an otherworldly effect evocative of winter, or the void."
     icon_state = "verglas_dress"

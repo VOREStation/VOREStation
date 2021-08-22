@@ -650,11 +650,11 @@
 	display_name = "countess dress"
 	path = /obj/item/clothing/under/dress/countess
 
-datum/gear/uniform/verglasdress
+/datum/gear/uniform/verglasdress
 	display_name = "verglas dress"
 	path = /obj/item/clothing/under/verglasdress
 
-datum/gear/uniform/fashionminiskirt
+/datum/gear/uniform/fashionminiskirt
 	display_name = "fashionable miniskirt"
 	path = /obj/item/clothing/under/fashionminiskirt
 
