@@ -565,6 +565,11 @@
 	desc = "A red and black dress fit for a countess."
 	icon_state = "countess"
 
+/obj/item/clothing/under/verglasdress
+    name = "verglas dress"
+    desc = "The modern twist on a forgotten pattern, the Verglas style utilizes comfortable velvet and silver white satin to create an otherworldly effect evocative of winter, or the void."
+    icon_state = "verglas_dress"
+
 /*
  * wedding stuff
  */
@@ -884,6 +889,10 @@ Uniforms and such
 	desc = "A flowery skirt that comes in a variety of colors."
 	icon_state = "flowerskirt"
 
+/obj/item/clothing/under/fashionminiskirt
+    name = "fashionable miniskirt"
+    desc = "An impractically short miniskirt allegedly making waves through the local fashion scene."
+    icon_state = "miniskirt_fashion"
 /*
  * swimsuit
  */
@@ -945,6 +954,12 @@ Uniforms and such
 	name = "mankini"
 	desc = "No honest man would wear this abomination"
 	icon_state = "mankini"
+
+/obj/item/clothing/under/swimsuit/cowbikini
+	name = "cow print bikini"
+	desc = "A rather skimpy cow patterned swimsuit."
+	icon_state = "swim_cow"
+
 
 /*
  * pyjamas
