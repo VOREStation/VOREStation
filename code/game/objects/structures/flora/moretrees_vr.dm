@@ -20,3 +20,4 @@
 	var/image/i = image('icons/obj/flora/moretrees_vr.dmi', "[icon_state]-b")
 	i.plane = ABOVE_MOB_PLANE
 	add_overlay(i)
+	update_transparency()

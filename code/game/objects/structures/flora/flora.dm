@@ -21,6 +21,7 @@
 	var/max_harvests = 0
 	var/min_harvests = -1
 	var/list/harvest_loot = null	// Should be an associative list for things to spawn, and their weights. An example would be a branch from a tree.
+	var/image/transparent
 
 /obj/structure/flora/Initialize()
 	. = ..()
@@ -35,6 +36,61 @@
 
 	if(randomize_harvest_count)
 		max_harvests = max(0, rand(min_harvests, max_harvests)) // Incase you want to weight it more toward 'not harvestable', set min_harvests to a negative value.
+
+	// haha woo blind ports from /vg/station for visiblity's sake, see vgstation-coders/vgstation13/#28377
+	// Trees Z-fight due to being bigger than one tile, so we need to perform serious layer fuckery to hide this obvious defect)
+
+	var/rangevalue = 0.1 //Range over which the values spread. We don't want it to collide with "true" layer differences
+
+	layer += rangevalue * (1 - (y + 0.5 * (x & 1)) / world.maxy)
+
+	update_transparency()
+	if(anchored)
+		for(var/turf/T in circlerange(src,2))
+			if(T.y > y)
+				RegisterSignal(T, COMSIG_ATOM_ENTERED, .proc/give_transparency)
+				RegisterSignal(T, COMSIG_ATOM_EXITED, .proc/remove_transparency)
+				/*
+				T.lazy_register_event(/lazy_event/on_entered, src, .proc/give_transparency)
+				T.lazy_register_event(/lazy_event/on_exited, src, .proc/remove_transparency)
+				*/
+
+
+/obj/structure/flora/Destroy()
+	if(anchored)
+		for(var/turf/T in circlerange(src,2))
+			if(T.y > y)
+				UnregisterSignal(T, COMSIG_ATOM_ENTERED, .proc/give_transparency)
+				UnregisterSignal(T, COMSIG_ATOM_EXITED, .proc/remove_transparency)
+				/*
+				T.lazy_unregister_event(/lazy_event/on_entered, src, .proc/give_transparency)
+				T.lazy_unregister_event(/lazy_event/on_exited, src, .proc/remove_transparency)
+				*/
+	..()
+
+/obj/structure/flora/proc/update_transparency()
+	transparent = image(icon,src,icon_state)
+	transparent.color = "[color ? color : "#FFFFFF"]"+"7F"
+	transparent.override = TRUE
+
+/obj/structure/flora/proc/give_transparency(location, mover, oldloc)
+	if(!ismob(mover))
+		return
+	var/mob/M = mover
+	if(!M.client)
+		return
+	var/client/C = M.client
+	C.images |= transparent
+
+/obj/structure/flora/proc/remove_transparency(location, mover, newloc)
+	to_chat(world, "removing [src] transparency from [mover]")
+	if(!ismob(mover))
+		return
+	var/mob/M = mover
+	if(!M.client)
+		return
+	var/client/C = M.client
+	C.images -= transparent
 
 /obj/structure/flora/examine(mob/user)
 	. = ..()
@@ -91,9 +147,10 @@
 	harvest_loot = list(/obj/item/stack/material/fiber = 1)
 	max_harvests = 1
 
-/obj/structure/flora/bush/New()
+/obj/structure/flora/bush/Initialize()
 	..()
 	icon_state = "snowbush[rand(1, 6)]"
+	update_transparency()
 
 /obj/structure/flora/pottedplant
 	name = "potted plant"
@@ -140,114 +197,129 @@
 		var/choice = pickweight(possibleseeds)
 		new choice(get_turf(user))
 
-/obj/structure/flora/ausbushes/New()
+/obj/structure/flora/ausbushes/Initialize()
 	..()
 	icon_state = "firstbush_[rand(1, 4)]"
+	update_transparency()
 
 /obj/structure/flora/ausbushes/reedbush
 	icon_state = "reedbush_1"
 
-/obj/structure/flora/ausbushes/reedbush/New()
+/obj/structure/flora/ausbushes/reedbush/Initialize()
 	..()
 	icon_state = "reedbush_[rand(1, 4)]"
+	update_transparency()
 
 /obj/structure/flora/ausbushes/leafybush
 	icon_state = "leafybush_1"
 
-/obj/structure/flora/ausbushes/leafybush/New()
+/obj/structure/flora/ausbushes/leafybush/Initialize()
 	..()
 	icon_state = "leafybush_[rand(1, 3)]"
+	update_transparency()
 
 /obj/structure/flora/ausbushes/palebush
 	icon_state = "palebush_1"
 
-/obj/structure/flora/ausbushes/palebush/New()
+/obj/structure/flora/ausbushes/palebush/Initialize()
 	..()
 	icon_state = "palebush_[rand(1, 4)]"
-
+	update_transparency()
 /obj/structure/flora/ausbushes/stalkybush
 	icon_state = "stalkybush_1"
 
-/obj/structure/flora/ausbushes/stalkybush/New()
+/obj/structure/flora/ausbushes/stalkybush/Initialize()
 	..()
 	icon_state = "stalkybush_[rand(1, 3)]"
+	update_transparency()
 
 /obj/structure/flora/ausbushes/grassybush
 	icon_state = "grassybush_1"
 
-/obj/structure/flora/ausbushes/grassybush/New()
+/obj/structure/flora/ausbushes/grassybush/Initialize()
 	..()
 	icon_state = "grassybush_[rand(1, 4)]"
+	update_transparency()
 
 /obj/structure/flora/ausbushes/fernybush
 	icon_state = "fernybush_1"
 
-/obj/structure/flora/ausbushes/fernybush/New()
+/obj/structure/flora/ausbushes/fernybush/Initialize()
 	..()
 	icon_state = "fernybush_[rand(1, 3)]"
+	update_transparency()
 
 /obj/structure/flora/ausbushes/sunnybush
 	icon_state = "sunnybush_1"
 
-/obj/structure/flora/ausbushes/sunnybush/New()
+/obj/structure/flora/ausbushes/sunnybush/Initialize()
 	..()
 	icon_state = "sunnybush_[rand(1, 3)]"
+	update_transparency()
 
 /obj/structure/flora/ausbushes/genericbush
 	icon_state = "genericbush_1"
 
-/obj/structure/flora/ausbushes/genericbush/New()
+/obj/structure/flora/ausbushes/genericbush/Initialize()
 	..()
 	icon_state = "genericbush_[rand(1, 4)]"
+	update_transparency()
 
 /obj/structure/flora/ausbushes/pointybush
 	icon_state = "pointybush_1"
 
-/obj/structure/flora/ausbushes/pointybush/New()
+/obj/structure/flora/ausbushes/pointybush/Initialize()
 	..()
 	icon_state = "pointybush_[rand(1, 4)]"
+	update_transparency()
 
 /obj/structure/flora/ausbushes/lavendergrass
 	icon_state = "lavendergrass_1"
 
-/obj/structure/flora/ausbushes/lavendergrass/New()
+/obj/structure/flora/ausbushes/lavendergrass/Initialize()
 	..()
 	icon_state = "lavendergrass_[rand(1, 4)]"
+	update_transparency()
 
 /obj/structure/flora/ausbushes/ywflowers
 	icon_state = "ywflowers_1"
 
-/obj/structure/flora/ausbushes/ywflowers/New()
+/obj/structure/flora/ausbushes/ywflowers/Initialize()
 	..()
 	icon_state = "ywflowers_[rand(1, 3)]"
+	update_transparency()
 
 /obj/structure/flora/ausbushes/brflowers
 	icon_state = "brflowers_1"
 
-/obj/structure/flora/ausbushes/brflowers/New()
+/obj/structure/flora/ausbushes/brflowers/Initialize()
 	..()
 	icon_state = "brflowers_[rand(1, 3)]"
+	update_transparency()
 
 /obj/structure/flora/ausbushes/ppflowers
 	icon_state = "ppflowers_1"
 
-/obj/structure/flora/ausbushes/ppflowers/New()
+/obj/structure/flora/ausbushes/ppflowers/Initialize()
 	..()
 	icon_state = "ppflowers_[rand(1, 3)]"
+	update_transparency()
 
 /obj/structure/flora/ausbushes/sparsegrass
 	icon_state = "sparsegrass_1"
 
-/obj/structure/flora/ausbushes/sparsegrass/New()
+/obj/structure/flora/ausbushes/sparsegrass/Initialize()
 	..()
 	icon_state = "sparsegrass_[rand(1, 3)]"
+	update_transparency()
 
 /obj/structure/flora/ausbushes/fullgrass
 	icon_state = "fullgrass_1"
 
-/obj/structure/flora/ausbushes/fullgrass/New()
+/obj/structure/flora/ausbushes/fullgrass/Initialize()
 	..()
 	icon_state = "fullgrass_[rand(1, 3)]"
+	update_transparency()
 
 /obj/structure/flora/skeleton
 	name = "hanging skeleton model"
@@ -485,8 +557,8 @@
 	catalogue_data = list(/datum/category_item/catalogue/flora/subterranean_bulbs)
 
 /obj/structure/flora/sif/subterranean/Initialize()
-	icon_state = "[initial(icon_state)][rand(1,2)]"
 	. = ..()
+	icon_state = "[initial(icon_state)][rand(1,2)]"
 
 
 /datum/category_item/catalogue/flora/eyebulbs
@@ -503,8 +575,9 @@
 	catalogue_data = list(/datum/category_item/catalogue/flora/eyebulbs)
 
 /obj/structure/flora/sif/eyes/Initialize()
-	icon_state = "[initial(icon_state)][rand(1,3)]"
 	. = ..()
+	icon_state = "[initial(icon_state)][rand(1,3)]"
+	update_transparency()
 
 /datum/category_item/catalogue/flora/mosstendrils
 	name = "Sivian Flora - Moss Stalks"
@@ -530,8 +603,9 @@
 		)
 
 /obj/structure/flora/sif/tendrils/Initialize()
-	icon_state = "[initial(icon_state)][rand(1,3)]"
 	. = ..()
+	icon_state = "[initial(icon_state)][rand(1,3)]"
+	update_transparency()
 
 /obj/structure/flora/sif/tendrils/get_harvestable_desc()
 	return "<span class='notice'>\The [src] seems to be growing over something.</span>"
@@ -563,10 +637,9 @@
 
 /obj/structure/flora/sif/frostbelle/Initialize()
 	. = ..()
-
 	variantnum = rand(1,3)
-
 	update_icon()
+	update_transparency()
 
 /obj/structure/flora/sif/frostbelle/update_icon()
 	..()
