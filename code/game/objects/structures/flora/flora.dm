@@ -83,7 +83,6 @@
 	C.images |= transparent
 
 /obj/structure/flora/proc/remove_transparency(location, mover, newloc)
-	to_chat(world, "removing [src] transparency from [mover]")
 	if(!ismob(mover))
 		return
 	var/mob/M = mover
