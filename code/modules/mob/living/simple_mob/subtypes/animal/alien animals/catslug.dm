@@ -29,6 +29,7 @@
 	movement_cooldown = 2
 	meat_amount = 2
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	holder_type = /obj/item/weapon/holder/catslug
 
 	response_help = "hugs"
 	response_disarm = "rudely paps"
@@ -39,12 +40,13 @@
 	melee_damage_upper = 5
 
 	has_hands = TRUE
-	mob_size = MOB_MEDIUM
+	mob_size = MOB_SMALL
 	friendly = list("hugs")
 	see_in_dark = 8
 
 	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug)
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive/catslug
+	say_list_type = /datum/say_list/catslug
 	player_msg = "You have escaped the foul weather, into this much more pleasant place. You are an intelligent creature capable of more than most think. You can pick up and use many things, and even carry some of them with you into the vents, which you can use to move around quickly. You're quiet and capable, you speak with your hands and your deeds! <br>- - - - -<br> <span class='notice'>Keep in mind, your goal should generally be to survive. You're expected to follow the same rules as everyone else, so don't go self antagging without permission from the staff team, but you are able and capable of defending yourself from those who would attack you for no reason.</span>"
 	
 	has_langs = list("Sign Language")
@@ -97,6 +99,12 @@
 	vore_default_contamination_color = "grey"
 	vore_default_item_mode = IM_DIGEST
 
+/datum/say_list/catslug	//Quiet quiet, no noise! We speak in sign so only people with sign will understand our questions.
+	speak = list("Have any porl?", "What is that?", "Where is this?", "What are you doing?", "How did you get here?", "Don't go into the rain.")
+	emote_hear = list()
+	emote_see = list("turns their head.", "looks at you.", "watches something unseen.", "sways its tail.", "flicks its ears.", "stares at you.", "gestures an unintelligible message.", "points into the distance!")
+	say_maybe_target = list()
+	say_got_target = list()
 
 /mob/living/simple_mob/vore/alienanimals/catslug/init_vore()
 	..()
@@ -115,7 +123,7 @@
 	hostile = FALSE
 	cooperative = FALSE
 	retaliate = TRUE
-	speak_chance = 0
+	speak_chance = 0.5
 	wander = TRUE
 
 /mob/living/simple_mob/vore/alienanimals/catslug/Initialize()
@@ -227,6 +235,12 @@
 	if(findtext(message, "psps") && stance == STANCE_IDLE)
 		set_follow(speaker, follow_for = 5 SECONDS)
 
+	if(holder.stat || !holder.say_list || !message || speaker == holder)	//Copied from parrots
+		return
+	var/datum/say_list/S = holder.say_list
+	S.speak |= message
+
+
 /mob/living/simple_mob/vore/alienanimals/catslug/horrible
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive/catslug/horrible
 
@@ -235,3 +249,17 @@
 		return
 	if(findtext(message, "psps") || stance == STANCE_IDLE)
 		set_follow(speaker, follow_for = 5 SECONDS)
+
+	if(holder.stat || !holder.say_list || !message || speaker == holder)	//Copied from parrots
+		return
+	var/datum/say_list/S = holder.say_list
+	S.speak |= message
+
+/obj/item/weapon/holder/catslug
+	origin_tech = list(TECH_BIO = 2)
+	icon = 'icons/mob/alienanimals_x32.dmi'
+	item_state = "catslug"
+
+/obj/item/weapon/holder/catslug/Initialize(mapload, mob/held)
+	. = ..()
+	color = held.color
