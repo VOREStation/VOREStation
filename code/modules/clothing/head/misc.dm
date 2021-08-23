@@ -103,6 +103,11 @@
 	siemens_coefficient = 0.9
 	body_parts_covered = 0
 
+/obj/item/clothing/head/panama
+	name = "panama hat"
+	icon_state = "panama"
+	desc = "Columbian Pure."
+
 /obj/item/clothing/head/redcoat
 	name = "redcoat's hat"
 	icon_state = "redcoat"
