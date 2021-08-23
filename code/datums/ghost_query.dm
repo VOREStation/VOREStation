@@ -52,6 +52,11 @@
 
 /// Send async alerts and ask for responses. Expects you to have tested D for client and type already
 /datum/ghost_query/proc/ask_question(var/mob/observer/dead/D)
+	//VOREStation Add Start		Check the ban status before we ask
+	if(jobban_isbanned(D, "GhostRoles"))
+		return
+	//VOREStation Add End
+
 	var/client/C = D.client
 	window_flash(C)
 	
@@ -67,7 +72,7 @@
 		return
 	
 	// Unhandled are "No" and "Nevermind" responses, which should just do nothing
-
+	
 	// This response is always fine, doesn't warrant retesting
 	switch(response)
 		if("Never for this round")

@@ -51,6 +51,9 @@
 	var/finalized = "No"
 
 	while(finalized == "No" && M.client)
+		if(jobban_isbanned(M, "GhostRoles"))
+			to_chat(M, "<font color='red'><B>You cannot inhabit this creature because you are banned from playing ghost roles.</B></font>")
+			return
 		choice = tgui_input_list(M, "What type of predator do you want to play as?", "Maintpred Choice", possible_mobs)
 		if(!choice)
 			randomize = TRUE
