@@ -44,7 +44,7 @@
 	if(!ghostjoin)
 		return ..()
 	if(jobban_isbanned(user, "GhostRoles"))
-		to_chat(user, "<font color='red'><B>You cannot inhabit this creature because you are banned from playing ghost roles.</B></font>")
+		to_chat(user, "<span class='warning'>You cannot inhabit this creature because you are banned from playing ghost roles.</span>")
 		return
 	if(!evaluate_ghost_join(user))
 		return ..()

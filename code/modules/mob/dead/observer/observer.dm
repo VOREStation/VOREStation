@@ -640,7 +640,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	//VOREStation Add Start
 	if(jobban_isbanned(src, "GhostRoles"))
-		to_chat(src, "<font color='red'><B>You cannot become a mouse because you are banned from playing ghost roles.</B></font>")
+		to_chat(src, "<span class='warning'>You cannot become a mouse because you are banned from playing ghost roles.</span>")
 		return
 	//VOREStation Add End
 
