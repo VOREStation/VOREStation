@@ -3151,7 +3151,6 @@
 #include "code\modules\mob\new_player\sprite_accessories_extra_vr.dm"
 #include "code\modules\mob\new_player\sprite_accessories_tail.dm"
 #include "code\modules\mob\new_player\sprite_accessories_tail_vr.dm"
-#include "code\modules\mob\new_player\sprite_accessories_taur.dm"
 #include "code\modules\mob\new_player\sprite_accessories_taur_vr.dm"
 #include "code\modules\mob\new_player\sprite_accessories_vr.dm"
 #include "code\modules\mob\new_player\sprite_accessories_wing.dm"
