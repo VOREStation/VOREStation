@@ -5,7 +5,6 @@
 	cost = 1250
 	p_drain = 0.05
 	a_drain = 0.1 //This is messed with manually below.
-	wear = 2
 	activates = FALSE //It is automatic in emergencies, not manually controllable.
 	tick_flags = NIF_ALWAYSTICK
 	applies_to = NIF_ORGANIC
@@ -16,6 +15,7 @@
 /datum/nifsoft/medichines_org/activate()
 	if((. = ..()))
 		mode = 1
+		nif.wear(1)
 
 /datum/nifsoft/medichines_org/deactivate(var/force = FALSE)
 	if((. = ..()))
@@ -47,6 +47,7 @@
 				var/turf/T = get_turf(H)
 				var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset/heads/captain(null)
 				a.autosay("[H.real_name] has been put in emergency stasis, located at ([T.x],[T.y],[T.z])!", "[H.real_name]'s NIF", "Medical")
+				nif.wear(2)
 				qdel(a)
 
 		//Handle the actions in each mode
@@ -78,7 +79,6 @@
 	cost = 1250
 	p_drain = 0.05
 	a_drain = 0.00 //This is manually drained below.
-	wear = 2
 	activates = FALSE //It is automatic in emergencies, not manually controllable.
 	tick_flags = NIF_ALWAYSTICK
 	applies_to = NIF_SYNTHETIC
@@ -89,6 +89,7 @@
 /datum/nifsoft/medichines_syn/activate()
 	if((. = ..()))
 		mode = 1
+		nif.wear(1)
 
 /datum/nifsoft/medichines_syn/deactivate(var/force = FALSE)
 	if((. = ..()))
@@ -129,13 +130,13 @@
 	cost = 325
 	p_drain = 0.05
 	a_drain = 0.1
-	wear = 2
 	tick_flags = NIF_ALWAYSTICK
 	applies_to = NIF_ORGANIC
 	var/filled = 100 //Tracks the internal tank 'refilling', which still uses power
 	health_flags = (NIF_H_SPAREBREATH)
 
 /datum/nifsoft/spare_breath/activate()
+	nif.wear(1)
 	if(!(filled > 50))
 		nif.notify("Respirocytes not saturated!",TRUE)
 		return FALSE

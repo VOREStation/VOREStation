@@ -3,7 +3,6 @@
 	desc = "A small attachment that allows synthmorphs to recharge themselves from APCs."
 	list_pos = NIF_APCCHARGE
 	cost = 625
-	wear = 2
 	applies_to = NIF_SYNTHETIC
 	tick_flags = NIF_ACTIVETICK
 	var/obj/machinery/power/apc/apc
@@ -22,6 +21,7 @@
 			return FALSE
 
 		H.visible_message("<span class='warning'>Thin snakelike tendrils grow from [H] and connect to \the [apc].</span>","<span class='notice'>Thin snakelike tendrils grow from you and connect to \the [apc].</span>")
+		nif.wear(1)
 
 /datum/nifsoft/apc_recharge/deactivate(var/force = FALSE)
 	if((. = ..()))
@@ -120,10 +120,9 @@
 
 /datum/nifsoft/sizechange
 	name = "Mass Alteration"
-	desc = "A system that allows one to change their size, through drastic mass rearrangement. Causes significant wear when installed."
+	desc = "A system that allows one to change their size, through drastic mass rearrangement. Causes significant wear when used."
 	list_pos = NIF_SIZECHANGE
 	cost = 375
-	wear = 6
 
 /datum/nifsoft/sizechange/activate()
 	if((. = ..()))
@@ -137,6 +136,7 @@
 			if(nif.human.resize(new_size/100, uncapped=nif.human.has_large_resize_bounds(), ignore_prefs = TRUE))
 				to_chat(nif.human,"<span class='notice'>You set the size to [new_size]%</span>")
 				nif.human.visible_message("<span class='warning'>Swirling grey mist envelops [nif.human] as they change size!</span>","<span class='notice'>Swirling streams of nanites wrap around you as you change size!</span>")
+				nif.wear(2)
 		spawn(0)
 			deactivate()
 
