@@ -473,7 +473,7 @@
 
 /obj/item/clothing/head/proc/update_flashlight(var/mob/user = null)
 	set_light_on(!light_on)
-	
+
 	if(light_system == STATIC_LIGHT)
 		update_light()
 
@@ -766,7 +766,7 @@
 	// means that if a taur puts on an already taurized suit without a taur sprite
 	// for their taur type, but the previous taur type had a sprite, it stays
 	// taurized and they end up with that taur style which is funny
-	else 
+	else
 		taurized = FALSE
 
 	if(!taurized)
@@ -1048,3 +1048,10 @@
 /obj/item/clothing/under/rank/New()
 	sensor_mode = pick(0,1,2,3)
 	..()
+
+//Vorestation edit - eject mobs from clothing before deletion
+/obj/item/clothing/Destroy()
+	for(var/mob/living/M in contents)
+		M.forceMove(get_turf(src))
+	return ..()
+//Vorestation edit end
