@@ -251,12 +251,12 @@
 	icon_state = "flashlight_blue"
 
 /obj/item/device/flashlight/color/green
-	name = "red flashlight"
+	name = "green flashlight"
 	desc = "A small flashlight. This one is green."
 	icon_state = "flashlight_green"
 
 /obj/item/device/flashlight/color/purple
-	name = "red flashlight"
+	name = "purple flashlight"
 	desc = "A small flashlight. This one is purple."
 	icon_state = "flashlight_purple"
 
@@ -415,8 +415,8 @@
 	light_range = 4
 	light_power = 0.9
 	light_color = "#49F37C"
-	icon_state = "glowstick"
-	item_state = "glowstick"
+	icon_state = "glowstick_green"
+	item_state = "glowstick_green"
 	var/fuel = 0
 	power_use = 0
 

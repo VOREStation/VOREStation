@@ -8,14 +8,21 @@
 /obj/random/empty_or_lootable_crate/item_to_spawn()
 	return pick(/obj/random/crate,
 			/obj/random/multiple/corp_crate)
-			
+
 /obj/random/forgotten_tram
 	name = "random forgotten tram item"
 	desc = "Spawns a random item that someone might accidentally leave on a tram. Sometimes spawns nothing."
 	spawn_nothing_percentage = 30
 
 /obj/random/forgotten_tram/item_to_spawn()
-	return pick(prob(2);/obj/item/device/flashlight,
+	return pick(
+			prob(2);/obj/item/device/flashlight,
+			prob(2);/obj/item/device/flashlight/color,
+			prob(2);/obj/item/device/flashlight/color/green,
+			prob(2);/obj/item/device/flashlight/color/purple,
+			prob(2);/obj/item/device/flashlight/color/red,
+			prob(2);/obj/item/device/flashlight/color/orange,
+			prob(2);/obj/item/device/flashlight/color/yellow,
 			prob(2);/obj/item/device/flashlight/glowstick,
 			prob(2);/obj/item/device/flashlight/glowstick/blue,
 			prob(1);/obj/item/device/flashlight/glowstick/orange,
