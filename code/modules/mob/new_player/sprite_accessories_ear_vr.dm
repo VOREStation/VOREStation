@@ -22,6 +22,13 @@
 	color_blend_mode = ICON_MULTIPLY
 	species_allowed = list(SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW)
 
+/datum/sprite_accessory/ears/shadekin/round
+	name = "Shadekin Ears Round, colorable"
+	desc = ""
+	icon = 'icons/mob/vore/ears_32x64.dmi'
+	icon_state = "shadekin-round"
+	do_colouration = 1
+
 // Ears avaliable to anyone
 
 /datum/sprite_accessory/ears/taj_ears
@@ -717,4 +724,31 @@
 	desc = ""
 	icon_state = "chorn_chub"
 	do_colouration = 0
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/bnnuy
+	name = "Bnnuy Ears"
+	desc = ""
+	icon = 'icons/mob/vore/ears_32x64.dmi'
+	icon_state = "bnnuy"
+	extra_overlay = "bnnuy-inner"
+	extra_overlay2 = "bnnuy-tips"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/sandfox
+	name = "Sandfox Ears"
+	desc = ""
+	icon = 'icons/mob/vore/ears_32x64.dmi'
+	icon_state = "sandfox"
+	extra_overlay = "sandfox-inner"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/bigpointyears
+	name = "Big Pointy Ears"
+	desc = ""
+	icon_state = "big_pointy_ears"
+	extra_overlay = "big_pointy_ears_inner"
+	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
