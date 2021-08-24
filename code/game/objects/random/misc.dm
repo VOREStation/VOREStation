@@ -988,12 +988,12 @@
 
 /obj/random/flashlight/item_to_spawn()
 	return pick(
-			prob(8);/obj/item/device/flashlight
-			prob(6);/obj/item/device/flashlight/color,
-			prob(6);/obj/item/device/flashlight/color/green,
-			prob(6);/obj/item/device/flashlight/color/purple,
-			prob(6);/obj/item/device/flashlight/color/red,
-			prob(6);/obj/item/device/flashlight/color/orange,
-			prob(6);/obj/item/device/flashlight/color/yellow,
-			prob(2);/obj/item/device/flashlight/maglight
+		prob(8);/obj/item/device/flashlight,
+		prob(6);/obj/item/device/flashlight/color,
+		prob(6);/obj/item/device/flashlight/color/green,
+		prob(6);/obj/item/device/flashlight/color/purple,
+		prob(6);/obj/item/device/flashlight/color/red,
+		prob(6);/obj/item/device/flashlight/color/orange,
+		prob(6);/obj/item/device/flashlight/color/yellow,
+		prob(2);/obj/item/device/flashlight/maglight
 	)
