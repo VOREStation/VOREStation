@@ -1132,17 +1132,39 @@ Uniforms and such
 /obj/item/clothing/under/color/ranger/yellow
 	unicolor = "yellow"
 
-/obj/item/clothing/under/tourist
-	name = "tourist outfit"
-	desc = "A pair of shorts and a bright blue shirt that stick out just a bit too much."
-	icon_state = "tourist"
-	worn_state = "tourist"
-
 /obj/item/clothing/under/boater
 	name = "boater outfit"
 	desc = "A classic outfit for those with a nautical inclination."
 	icon_state = "boater"
 	worn_state = "boater"
+
+/obj/item/clothing/under/tourist_1
+	name = "summer outfit"
+	desc = "The perfect outfit to wear out of town."
+	icon_state = "tourist_1"
+	worn_state = "tourist_1"
+	starting_accessories = list(/obj/item/clothing/accessory/hawaiian)
+
+/obj/item/clothing/under/tourist_2
+	name = "summer outfit"
+	desc = "The perfect outfit to wear out of town."
+	icon_state = "tourist_2"
+	worn_state = "tourist_2"
+	starting_accessories = list(/obj/item/clothing/accessory/hawaiian/red)
+
+/obj/item/clothing/under/relaxwear_1
+	name = "casual outfit"
+	desc = "Something casual to wear out on the town. Pairs well with the holiday season."
+	icon_state = "relaxwear_1"
+	worn_state = "relaxwear_1"
+	starting_accessories = list(/obj/item/clothing/accessory/wcoat/swvest/red)
+
+/obj/item/clothing/under/relaxwear_2
+	name = "relaxing outfit"
+	desc = "A comfy looking set of clothes to relax in, even if the style is a bit dated."
+	icon_state = "relaxwear_2"
+	worn_state = "relaxwear_2"
+	starting_accessories = list(/obj/item/clothing/accessory/wcoat/swvest/green)
 
 /obj/item/clothing/under/serviceoveralls
 	name = "workman outfit"

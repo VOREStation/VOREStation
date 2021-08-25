@@ -279,7 +279,7 @@
 /datum/gear/accessory/hawaiian_shirt/New()
 	..()
 	var/list/hawaiian_shirts = list(
-	"Cyan Hawaiian shirt" = /obj/item/clothing/accessory/hawaiian/cyan,
+	"Cyan Hawaiian shirt" = /obj/item/clothing/accessory/hawaiian,
 	"Blue Hawaiian shirt" = /obj/item/clothing/accessory/hawaiian/blue,
 	"Pink Hawaiian shirt" = /obj/item/clothing/accessory/hawaiian/pink,
 	"Red Hawaiian shirt" = /obj/item/clothing/accessory/hawaiian/red,

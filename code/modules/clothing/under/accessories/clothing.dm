@@ -54,10 +54,6 @@
 	w_class = ITEMSIZE_NORMAL
 	slot = ACCESSORY_SLOT_OVER
 
-/obj/item/clothing/accessory/hawaiian/cyan
-	name = "cyan hawaiian shirt"
-	icon_state = "hawaiian_cyan"
-
 /obj/item/clothing/accessory/hawaiian/blue
 	name = "blue hawaiian shirt"
 	icon_state = "hawaiian_blue"
@@ -320,21 +316,30 @@
 	icon_state = "elegant_waistcoat"
 	item_state = "elegant_waistcoat"
 
+/*
+ * Sweatervests
+ */
+
 /obj/item/clothing/accessory/wcoat/swvest
-	name = "black sweatervest"
+	name = "black sweater vest"
 	desc = "A sleeveless sweater. Wear this if you don't want your arms to be warm, or if you're a nerd."
 	icon_state = "sweatervest"
 	item_state = "sweatervest"
 
 /obj/item/clothing/accessory/wcoat/swvest/blue
-	name = "blue sweatervest"
+	name = "blue sweater vest"
 	icon_state = "sweatervest_blue"
 	item_state = "sweatervest_blue"
 
 /obj/item/clothing/accessory/wcoat/swvest/red
-	name = "red sweatervest"
+	name = "red sweater vest"
 	icon_state = "sweatervest_red"
 	item_state = "sweatervest_red"
+
+/obj/item/clothing/accessory/wcoat/swvest/green
+	name = "green sweater vest"
+	icon_state = "sweatervest_green"
+	item_state = "sweatervest_green"
 
 /*
  * Sweaters

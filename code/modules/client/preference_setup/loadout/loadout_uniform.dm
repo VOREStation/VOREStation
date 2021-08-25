@@ -682,9 +682,13 @@
 	path = /obj/item/clothing/under/rank/parameduniskirtlight
 	allowed_roles = list("Medical Doctor","Chief Medical Officer","Paramedic")
 
-/datum/gear/uniform/tourist
-	display_name = "tourist outfit"
-	path = /obj/item/clothing/under/tourist
+/datum/gear/uniform/tourist_1
+	display_name = "tourist outfit, cyan"
+	path = /obj/item/clothing/under/tourist_1
+
+/datum/gear/uniform/tourist_2
+	display_name = "tourist outfit, red"
+	path = /obj/item/clothing/under/tourist_2
 
 /datum/gear/uniform/cowboy_outfits
 	display_name = "cowboy outfit selection"

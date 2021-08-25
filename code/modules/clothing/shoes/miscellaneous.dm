@@ -61,10 +61,17 @@
 	species_restricted = null
 	body_parts_covered = 0
 
-/obj/item/clothing/shoes/tourist
+/obj/item/clothing/shoes/tourist_1
 	name = "tourist sandals"
-	desc = "Sandals usually worn by tourists. Need I say more?"
-	icon_state = "tourist"
+	desc = "Black sandals usually worn by tourists. Need I say more?"
+	icon_state = "tourist_1"
+	species_restricted = null
+	body_parts_covered = 0
+
+/obj/item/clothing/shoes/tourist_2
+	name = "tourist sandals"
+	desc = "Green sandals usually worn by tourists. Need I say more?"
+	icon_state = "tourist_2"
 	species_restricted = null
 	body_parts_covered = 0
 
