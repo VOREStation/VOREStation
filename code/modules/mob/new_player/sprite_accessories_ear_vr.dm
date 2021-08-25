@@ -28,6 +28,7 @@
 	icon = 'icons/mob/vore/ears_32x64.dmi'
 	icon_state = "shadekin-round"
 	do_colouration = 1
+	extra_overlay = "shadekin-round-inner"
 
 // Ears avaliable to anyone
 
@@ -745,10 +746,29 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
-/datum/sprite_accessory/ears/bigpointyears
-	name = "Big Pointy Ears"
+/datum/sprite_accessory/ears/teppiears
+	name = "Teppi Ears"
 	desc = ""
-	icon_state = "big_pointy_ears"
-	extra_overlay = "big_pointy_ears_inner"
+	icon = 'icons/mob/vore/ears_32x64.dmi'
+	icon_state = "teppi_ears"
+	extra_overlay = "teppi_ears_inner"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/teppihorns
+	name = "Teppi Horns"
+	desc = ""
+	icon = 'icons/mob/vore/ears_32x64.dmi'
+	icon_state = "teppi_horns"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/teppiearshorns
+	name = "Teppi Ears and Horns"
+	desc = ""
+	icon = 'icons/mob/vore/ears_32x64.dmi'
+	icon_state = "teppi_ears"
+	extra_overlay = "teppi_ears_inner"
+	extra_overlay2 = "teppi_horns"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
