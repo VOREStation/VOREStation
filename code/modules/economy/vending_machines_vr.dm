@@ -822,6 +822,7 @@
 					/obj/item/weapon/storage/box/fluff/swimsuit/science = 5,
 					/obj/item/weapon/storage/box/fluff/swimsuit/security = 5,
 					/obj/item/weapon/storage/box/fluff/swimsuit/medical = 5,
+					/obj/item/weapon/storage/box/fluff/swimsuit/cowbikini = 5,
 					/obj/item/clothing/under/utility = 5,
 					/obj/item/clothing/under/utility/grey = 5,
 					/obj/item/clothing/under/utility/blue = 5,
@@ -992,6 +993,7 @@
 					/obj/item/weapon/storage/box/fluff/swimsuit/science = 50,
 					/obj/item/weapon/storage/box/fluff/swimsuit/security = 50,
 					/obj/item/weapon/storage/box/fluff/swimsuit/medical = 50,
+					/obj/item/weapon/storage/box/fluff/swimsuit/cowbikini = 50,
 					/obj/item/clothing/under/utility = 50,
 					/obj/item/clothing/under/utility/grey = 50,
 					/obj/item/clothing/under/utility/blue = 50,
@@ -1217,6 +1219,7 @@
 					/obj/item/clothing/suit/varsity/blue = 5,
 					/obj/item/clothing/suit/varsity/brown = 5,
 					/obj/item/clothing/suit/storage/hooded/wintercoat = 5,
+					/obj/item/clothing/suit/storage/hooded/wintercoat/aformal = 5,
 					/obj/item/clothing/suit/storage/teshari/cloak/standard/white_grey = 5)
 	prices = list(/obj/item/clothing/suit/storage/apron = 100,
 					/obj/item/clothing/suit/storage/flannel/aqua = 100,
@@ -1304,8 +1307,10 @@
 					/obj/item/clothing/suit/varsity/blue = 100,
 					/obj/item/clothing/suit/varsity/brown = 100,
 					/obj/item/clothing/suit/storage/hooded/wintercoat = 100,
+					/obj/item/clothing/suit/storage/hooded/wintercoat/aformal = 100,
 					/obj/item/clothing/suit/storage/teshari/cloak/standard/white_grey = 100)
-	premium = list(/obj/item/clothing/suit/imperium_monk = 3)
+	premium = list(/obj/item/clothing/suit/imperium_monk = 3,
+					/obj/item/clothing/suit/storage/hooded/wintercoat/cosmic = 1)
 	contraband = list(/obj/item/toy/katana = 1)
 
 /obj/machinery/vending/loadout/costume
@@ -2082,6 +2087,7 @@
 					/obj/item/weapon/storage/box/fluff/swimsuit/science = 5,
 					/obj/item/weapon/storage/box/fluff/swimsuit/security = 5,
 					/obj/item/weapon/storage/box/fluff/swimsuit/medical = 5,
+					/obj/item/weapon/storage/box/fluff/swimsuit/cowbikini = 5,
 					/obj/item/clothing/under/utility = 5,
 					/obj/item/clothing/under/utility/grey = 5,
 					/obj/item/clothing/under/utility/blue = 5,
@@ -2252,6 +2258,7 @@
 					/obj/item/weapon/storage/box/fluff/swimsuit/science = 50,
 					/obj/item/weapon/storage/box/fluff/swimsuit/security = 50,
 					/obj/item/weapon/storage/box/fluff/swimsuit/medical = 50,
+					/obj/item/weapon/storage/box/fluff/swimsuit/cowbikini = 50,
 					/obj/item/clothing/under/utility = 50,
 					/obj/item/clothing/under/utility/grey = 50,
 					/obj/item/clothing/under/utility/blue = 50,
@@ -2386,6 +2393,7 @@
 					/obj/item/clothing/suit/varsity/blue = 5,
 					/obj/item/clothing/suit/varsity/brown = 5,
 					/obj/item/clothing/suit/storage/hooded/wintercoat = 5,
+					/obj/item/clothing/suit/storage/hooded/wintercoat/aformal = 5,
 					/obj/item/clothing/suit/storage/teshari/cloak/standard/white_grey = 5)
 	prices = list(/obj/item/clothing/suit/storage/apron = 100,
 					/obj/item/clothing/suit/storage/flannel/aqua = 100,
@@ -2473,8 +2481,10 @@
 					/obj/item/clothing/suit/varsity/blue = 100,
 					/obj/item/clothing/suit/varsity/brown = 100,
 					/obj/item/clothing/suit/storage/hooded/wintercoat = 100,
+					/obj/item/clothing/suit/storage/hooded/wintercoat/aformal = 100,
 					/obj/item/clothing/suit/storage/teshari/cloak/standard/white_grey = 100)
-	premium = list(/obj/item/clothing/suit/imperium_monk = 3)
+	premium = list(/obj/item/clothing/suit/imperium_monk = 3,
+					/obj/item/clothing/suit/storage/hooded/wintercoat/cosmic = 1)
 	contraband = list(/obj/item/toy/katana = 1)
 
 /obj/machinery/vending/loadout/costume
@@ -3097,6 +3107,7 @@
 					/obj/item/weapon/storage/box/fluff/swimsuit/science = 5,
 					/obj/item/weapon/storage/box/fluff/swimsuit/security = 5,
 					/obj/item/weapon/storage/box/fluff/swimsuit/medical = 5,
+					/obj/item/weapon/storage/box/fluff/swimsuit/cowbikini = 5,
 					/obj/item/clothing/under/utility = 5,
 					/obj/item/clothing/under/utility/grey = 5,
 					/obj/item/clothing/under/utility/blue = 5,

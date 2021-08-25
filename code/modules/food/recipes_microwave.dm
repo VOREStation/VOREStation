@@ -339,7 +339,7 @@ I said no!
 	result = /obj/item/weapon/reagent_containers/food/snacks/caramelapple
 
 /datum/recipe/twobread
-	reagents = list("wine" = 5)
+	reagents = list("redwine" = 5)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/slice/bread,
 		/obj/item/weapon/reagent_containers/food/snacks/slice/bread,
@@ -796,7 +796,7 @@ I said no!
 	result = /obj/item/weapon/reagent_containers/food/snacks/chilicheesefries
 
 /datum/recipe/risotto
-	reagents = list("wine" = 5, "rice" = 10, "spacespice" = 1)
+	reagents = list("redwine" = 5, "rice" = 10, "spacespice" = 1)
 	fruit = list("mushroom" = 1)
 	reagent_mix = RECIPE_REAGENT_REPLACE //Get that rice and wine outta here
 	result = /obj/item/weapon/reagent_containers/food/snacks/risotto

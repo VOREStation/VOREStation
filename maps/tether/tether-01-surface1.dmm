@@ -33426,6 +33426,10 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment,
+/obj/structure/reagent_dispensers/virusfood{
+	pixel_x = 32;
+	pixel_y = -2
+	},
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
 "hDd" = (

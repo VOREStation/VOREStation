@@ -25,12 +25,12 @@
 /mob/living/silicon/pai/update_icon() //Some functions cause this to occur, such as resting
 	..()
 	update_fullness_pai()
-	
+
 	if(!people_eaten && !resting)
 		icon_state = "[chassis]" //Using icon_state here resulted in quite a few bugs. Chassis is much less buggy.
 	else if(!people_eaten && resting)
 		icon_state = "[chassis]_rest"
-	
+
 	// Unfortunately not all these states exist, ugh.
 	else if(people_eaten && !resting)
 		if("[chassis]_full" in cached_icon_states(icon))
@@ -81,3 +81,7 @@
 	chassis = possible_chassis[choice]
 	verbs |= /mob/living/proc/hide
 	update_icon()
+// Release belly contents before being gc'd!
+/mob/living/silicon/pai/Destroy()
+	release_vore_contents()
+	return ..()

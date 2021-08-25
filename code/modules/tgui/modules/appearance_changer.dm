@@ -91,6 +91,9 @@
 		if("race")
 			if(can_change(APPEARANCE_RACE) && (params["race"] in valid_species))
 				if(target.change_species(params["race"]))
+					if(params["race"] == "Custom Species")
+						target.custom_species = sanitize(input(usr, "Input custom species name:",
+							"Custom Species Name") as null|text, MAX_NAME_LEN)
 					cut_data()
 					generate_data(usr)
 					changed_hook(APPEARANCECHANGER_CHANGED_RACE)

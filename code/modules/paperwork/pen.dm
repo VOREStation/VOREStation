@@ -44,8 +44,20 @@
 	colour = "red"
 
 /obj/item/weapon/pen/fountain
-	desc = "A well made fountain pen."
+	desc = "A well made fountain pen, with a faux wood body."
 	icon_state = "pen_fountain"
+
+/obj/item/weapon/pen/fountain2
+	desc = "A well made fountain pen, with a faux wood body. This one has golden accents."
+	icon_state = "pen_fountain"
+
+/obj/item/weapon/pen/fountain3
+	desc = "A well made expesive rosewood pen with golden accents. Very pretty."
+	icon_state = "pen_fountain"
+
+/obj/item/weapon/pen/fountain4
+	desc = "command fountain pen"
+	icon_state = "A well made and expensive fountain pen. The nib is quite sharp."
 
 /obj/item/weapon/pen/multi
 	desc = "It's a pen with multiple colors of ink!"
@@ -190,7 +202,7 @@
 	colour = "red"
 
 /obj/item/weapon/pen/blade/fountain
-	desc = "A well made fountain pen."
+	desc = "A well made fountain pen, with a faux wood body."
 	icon_state = "pen_fountain"
 
 /*

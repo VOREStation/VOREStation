@@ -6,6 +6,7 @@ var/list/_human_default_emotes = list(
 	/decl/emote/audible/synth/confirm,
 	/decl/emote/audible/synth/deny,
 	/decl/emote/audible/synth/scary,
+	/decl/emote/audible/synth/dwoop,
 	/decl/emote/visible/nod,
 	/decl/emote/visible/shake,
 	/decl/emote/visible/shiver,
