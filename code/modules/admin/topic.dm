@@ -591,6 +591,12 @@
 			jobs += "<td width='20%'><a href='?src=\ref[src];jobban3=pAI;jobban4=\ref[M]'><font color=red>pAI</font></a></td>"
 		else
 			jobs += "<td width='20%'><a href='?src=\ref[src];jobban3=pAI;jobban4=\ref[M]'>pAI</a></td>"
+		//VOREStation Add Start
+		if(jobban_isbanned(M, "GhostRoles"))
+			jobs += "<td width='20%'><a href='?src=\ref[src];jobban3=GhostRoles;jobban4=\ref[M]'><font color=red>GhostRoles</font></a></td>"
+		else
+			jobs += "<td width='20%'><a href='?src=\ref[src];jobban3=GhostRoles;jobban4=\ref[M]'>GhostRoles</a></td>"
+		//VOREStation Add End
 		if(jobban_isbanned(M, "AntagHUD"))
 			jobs += "<td width='20%'><a href='?src=\ref[src];jobban3=AntagHUD;jobban4=\ref[M]'><font color=red>AntagHUD</font></a></td>"
 		else
