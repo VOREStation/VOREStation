@@ -957,12 +957,12 @@ var/global/list/light_type_cache = list()
 	nightshift_range = 3
 	nightshift_power = 0.5
 
-//Extra Lightbulbs Start VOREStation Addition
-/obj/item/weapon/light/bulb/Whitebulb
+//LEDbulbs Start VOREStation Addition
+/obj/item/weapon/light/bulb/ledbulb
 	name = "White light bulb"
-	desc = "A white LED light bulb."
-	icon_state = "lbulb-White"
-	base_state = "lbulb-White"
+	desc = "A multi-color LED light bulb."
+	icon_state = "lbulb-LED"
+	base_state = "lbulb-LED"
 	item_state = "contvapour"
 	matter = list(MAT_GLASS = 100)
 	brightness_range = 5
