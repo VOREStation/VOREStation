@@ -22195,7 +22195,6 @@
 	dir = 4
 	},
 /obj/structure/extinguisher_cabinet{
-	pixel_x = 0;
 	pixel_y = 30
 	},
 /turf/simulated/floor/tiled,
@@ -22817,8 +22816,7 @@
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/airlock/security{
 	name = "Security Checkpoint";
-	req_access = list(1);
-	req_one_access = list(1)
+	req_access = list(1)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -30036,7 +30034,6 @@
 "beW" = (
 /obj/machinery/computer/security/telescreen{
 	desc = "Big Brother is watching.";
-	layer = 3.4;
 	name = "Brig Monitor";
 	network = list("Prison");
 	pixel_y = 28
@@ -39664,8 +39661,7 @@
 "bvS" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/glass_medical{
-	name = "Medical Hardsuits";
-	req_one_access = list(5)
+	name = "Medical Hardsuits"
 	},
 /turf/simulated/floor/tiled/dark,
 /area/ai_monitored/storage/eva)
@@ -47185,6 +47181,7 @@
 	icon_state = "frame";
 	pixel_y = -32
 	},
+/obj/item/tabloid,
 /turf/simulated/floor/wood,
 /area/rnd/research)
 "bIY" = (
@@ -47583,8 +47580,7 @@
 "bJN" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/glass_engineering{
-	name = "Engineering Hallway";
-	req_one_access = list(10)
+	name = "Engineering Hallway"
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/engineering/hallway/atmos_hallway)
@@ -47598,8 +47594,7 @@
 "bJP" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/glass_engineering{
-	name = "Engineering Hallway";
-	req_one_access = list(10)
+	name = "Engineering Hallway"
 	},
 /obj/structure/cable/green{
 	d1 = 1;
@@ -49546,8 +49541,7 @@
 "bNi" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/glass_engineering{
-	name = "Engineering Hallway";
-	req_one_access = list(10)
+	name = "Engineering Hallway"
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/engineering/hallway/engineer_hallway)
@@ -50504,8 +50498,7 @@
 "bOW" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/glass_engineering{
-	name = "Engineering Hallway";
-	req_one_access = list(10)
+	name = "Engineering Hallway"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -52126,8 +52119,7 @@
 /area/engineering/drone_fabrication)
 "bRT" = (
 /obj/machinery/door/airlock/glass_engineering{
-	name = "Engineering Hallway";
-	req_one_access = list(10)
+	name = "Engineering Hallway"
 	},
 /obj/machinery/door/firedoor/glass,
 /obj/structure/disposalpipe/segment,
@@ -52137,8 +52129,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/door/airlock/glass_engineering{
-	name = "Engineering Hallway";
-	req_one_access = list(10)
+	name = "Engineering Hallway"
 	},
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled/steel_grid,
@@ -54424,6 +54415,7 @@
 "bWj" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/reagent_containers/food/snacks/chips,
+/obj/item/tabloid,
 /turf/simulated/floor/carpet,
 /area/engineering/break_room)
 "bWk" = (
@@ -89784,6 +89776,7 @@
 	layer = 3.1;
 	name = "Cafe Shutters"
 	},
+/obj/item/tabloid,
 /turf/simulated/floor/tiled/yellow,
 /area/library)
 "dkx" = (
