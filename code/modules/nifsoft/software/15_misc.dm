@@ -136,7 +136,7 @@
 			if(nif.human.resize(new_size/100, uncapped=nif.human.has_large_resize_bounds(), ignore_prefs = TRUE))
 				to_chat(nif.human,"<span class='notice'>You set the size to [new_size]%</span>")
 				nif.human.visible_message("<span class='warning'>Swirling grey mist envelops [nif.human] as they change size!</span>","<span class='notice'>Swirling streams of nanites wrap around you as you change size!</span>")
-				nif.wear(2)
+				nif.wear(1)
 		spawn(0)
 			deactivate()
 

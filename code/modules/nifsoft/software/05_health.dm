@@ -47,7 +47,7 @@
 				var/turf/T = get_turf(H)
 				var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset/heads/captain(null)
 				a.autosay("[H.real_name] has been put in emergency stasis, located at ([T.x],[T.y],[T.z])!", "[H.real_name]'s NIF", "Medical")
-				nif.wear(2)
+				nif.wear(1)
 				qdel(a)
 
 		//Handle the actions in each mode
