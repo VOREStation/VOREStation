@@ -1143,14 +1143,12 @@ Uniforms and such
 	desc = "The perfect outfit to wear out of town."
 	icon_state = "tourist_1"
 	worn_state = "tourist_1"
-	starting_accessories = list(/obj/item/clothing/accessory/hawaiian)
 
 /obj/item/clothing/under/tourist_2
 	name = "summer outfit"
 	desc = "The perfect outfit to wear out of town."
 	icon_state = "tourist_2"
 	worn_state = "tourist_2"
-	starting_accessories = list(/obj/item/clothing/accessory/hawaiian/red)
 
 /obj/item/clothing/under/relaxwear_1
 	name = "casual outfit"

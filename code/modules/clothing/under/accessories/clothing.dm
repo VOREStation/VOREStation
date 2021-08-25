@@ -70,6 +70,19 @@
 	name = "yellow hawaiian shirt"
 	icon_state = "hawaiian_yellow"
 
+/obj/item/clothing/accessory/hawaiian_random
+	name = "random hawaiian shirt"
+	desc = "A random set of hawaiian shirts for style."
+
+/obj/item/clothing/accessory/hawaiian_random/New()
+	return pick(
+			prob(2);/obj/item/clothing/accessory/hawaiian,
+			prob(2);/obj/item/clothing/accessory/hawaiian/blue,
+			prob(2);/obj/item/clothing/accessory/hawaiian/pink,
+			prob(2);/obj/item/clothing/accessory/hawaiian/red,
+			prob(2);/obj/item/clothing/accessory/hawaiian/yellow
+			)
+
 /*
  * Chaps
  */

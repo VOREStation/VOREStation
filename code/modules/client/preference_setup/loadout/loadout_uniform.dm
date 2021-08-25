@@ -683,11 +683,11 @@
 	allowed_roles = list("Medical Doctor","Chief Medical Officer","Paramedic")
 
 /datum/gear/uniform/tourist_1
-	display_name = "tourist outfit, cyan"
+	display_name = "tourist outfit, white"
 	path = /obj/item/clothing/under/tourist_1
 
 /datum/gear/uniform/tourist_2
-	display_name = "tourist outfit, red"
+	display_name = "tourist outfit, blue"
 	path = /obj/item/clothing/under/tourist_2
 
 /datum/gear/uniform/cowboy_outfits
