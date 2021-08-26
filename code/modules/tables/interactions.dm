@@ -60,14 +60,45 @@
 				return 1
 	return 1
 
+<<<<<<< HEAD
 /obj/structure/table/MouseDrop_T(obj/O as obj, mob/user as mob)
+=======
+/obj/structure/table/CheckExit(atom/movable/O as mob|obj, target as turf)
+	if(istype(O) && O.checkpass(PASSTABLE))
+		return 1
+	if (flipped==1)
+		if (get_dir(loc, target) == dir)
+			return !density
+		else
+			return 1
+	return 1
 
-	if ((!( istype(O, /obj/item/weapon) ) || user.get_active_hand() != O))
-		return ..()
-	if(isrobot(user))
-		return
-	user.unEquip(O, 0, src.loc)
-	return
+
+/obj/structure/table/MouseDrop_T(obj/O, mob/user, src_location, over_location, src_control, over_control, params)
+	if(ismob(O.loc)) //If placing an item
+		if(!isitem(O) || user.get_active_hand() != O)
+			return ..()
+		if(isrobot(user))
+			return
+		user.drop_item()
+		if(O.loc != src.loc)
+			step(O, get_dir(O, src))
+>>>>>>> 0ff54c0de14... Merge pull request #8233 from Cerebulon/slidebar
+
+	else if(isturf(O.loc) && isitem(O)) //If pushing an item on the tabletop
+		var/obj/item/I = O
+		if(I.anchored)
+			return
+
+		if((isliving(user)) && (Adjacent(user)) && !(user.incapacitated()))
+			if(O.w_class <= user.can_pull_size)
+				O.forceMove(loc)
+				auto_align(I, params, TRUE)
+			else
+				to_chat(user, SPAN_WARNING("\The [I] is too big for you to move!"))
+			return
+
+	return ..()
 
 
 /obj/structure/table/attackby(obj/item/W as obj, mob/user as mob, var/hit_modifier, var/click_parameters)
@@ -143,5 +174,55 @@
 		auto_align(W, click_parameters)
 		return 1
 
+<<<<<<< HEAD
+=======
+#define CELLS 8								//Amount of cells per row/column in grid
+#define CELLSIZE (world.icon_size/CELLS)	//Size of a cell in pixels
+/*
+Automatic alignment of items to an invisible grid, defined by CELLS and CELLSIZE.
+Since the grid will be shifted to own a cell that is perfectly centered on the turf, we end up with two 'cell halves'
+on edges of each row/column.
+Each item defines a center_of_mass, which is the pixel of a sprite where its projected center of mass toward a turf
+surface can be assumed. For a piece of paper, this will be in its center. For a bottle, it will be (near) the bottom
+of the sprite.
+auto_align() will then place the sprite so the defined center_of_mass is at the bottom left corner of the grid cell
+closest to where the cursor has clicked on.
+Note: This proc can be overwritten to allow for different types of auto-alignment.
+*/
+
+/obj/item/var/list/center_of_mass = list("x" = 16,"y" = 16)
+
+/obj/structure/table/proc/auto_align(obj/item/W, click_parameters, var/animate = FALSE)
+	if(!W.center_of_mass)
+		W.randpixel_xy()
+		return
+
+	if(!click_parameters)
+		return
+
+	var/list/mouse_control = params2list(click_parameters)
+
+	var/mouse_x = text2num(mouse_control["icon-x"])
+	var/mouse_y = text2num(mouse_control["icon-y"])
+
+	if(isnum(mouse_x) && isnum(mouse_y))
+		var/cell_x = max(0, min(CELLS-1, round(mouse_x/CELLSIZE)))
+		var/cell_y = max(0, min(CELLS-1, round(mouse_y/CELLSIZE)))
+
+		var/target_x = (CELLSIZE * (cell_x + 0.5)) - W.center_of_mass["x"]
+		var/target_y = (CELLSIZE * (cell_y + 0.5)) - W.center_of_mass["y"]
+		if(animate)
+			var/dist_x = abs(W.pixel_x - target_x)
+			var/dist_y = abs(W.pixel_y - target_y)
+			var/dist = sqrt((dist_x*dist_x)+(dist_y*dist_y))
+			animate(W, pixel_x=target_x, pixel_y=target_y,time=dist*0.5)
+		else
+			W.pixel_x = target_x
+			W.pixel_y = target_y
+
+#undef CELLS
+#undef CELLSIZE
+
+>>>>>>> 0ff54c0de14... Merge pull request #8233 from Cerebulon/slidebar
 /obj/structure/table/attack_tk() // no telehulk sorry
 	return
