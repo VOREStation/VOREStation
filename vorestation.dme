@@ -3290,7 +3290,11 @@
 #include "code\modules\organs\subtypes\slime.dm"
 #include "code\modules\organs\subtypes\slime_vr.dm"
 #include "code\modules\organs\subtypes\standard.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\modules\organs\subtypes\standard_vr.dm"
+=======
+#include "code\modules\organs\subtypes\tajaran.dm"
+>>>>>>> 50e880ce5e9... Merge pull request #8237 from Cerebulon/organic:polaris.dme
 #include "code\modules\organs\subtypes\teshari.dm"
 #include "code\modules\organs\subtypes\unathi.dm"
 #include "code\modules\organs\subtypes\unbreakable.dm"
