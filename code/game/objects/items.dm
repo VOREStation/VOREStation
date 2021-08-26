@@ -966,7 +966,7 @@ Note: This proc can be overwritten to allow for different types of auto-alignmen
 
 /obj/item/var/list/center_of_mass = list("x" = 16,"y" = 16)
 
-/proc/auto_align(obj/item/W, click_parameters)
+/proc/auto_align(obj/item/W, click_parameters, var/animate = FALSE)
 	if(!W.center_of_mass)
 		W.randpixel_xy()
 		return
@@ -983,8 +983,16 @@ Note: This proc can be overwritten to allow for different types of auto-alignmen
 		var/cell_x = max(0, min(CELLS-1, round(mouse_x/CELLSIZE)))
 		var/cell_y = max(0, min(CELLS-1, round(mouse_y/CELLSIZE)))
 
-		W.pixel_x = (CELLSIZE * (0.5 + cell_x)) - W.center_of_mass["x"]
-		W.pixel_y = (CELLSIZE * (0.5 + cell_y)) - W.center_of_mass["y"]
+		var/target_x = (CELLSIZE * (0.5 + cell_x)) - W.center_of_mass["x"]
+		var/target_y = (CELLSIZE * (0.5 + cell_y)) - W.center_of_mass["y"]
+		if(animate)
+			var/dist_x = abs(W.pixel_x - target_x)
+			var/dist_y = abs(W.pixel_y - target_y)
+			var/dist = sqrt((dist_x*dist_x)+(dist_y*dist_y))
+			animate(W, pixel_x=target_x, pixel_y=target_y,time=dist*0.5)
+		else
+			W.pixel_x = target_x
+			W.pixel_y = target_y
 
 #undef CELLS
 #undef CELLSIZE
