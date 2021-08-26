@@ -952,6 +952,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 #define CELLS 8								//Amount of cells per row/column in grid
 #define CELLSIZE (world.icon_size/CELLS)	//Size of a cell in pixels
+
 /*
 Automatic alignment of items to an invisible grid, defined by CELLS and CELLSIZE.
 Since the grid will be shifted to own a cell that is perfectly centered on the turf, we end up with two 'cell halves'
@@ -988,3 +989,7 @@ Note: This proc can be overwritten to allow for different types of auto-alignmen
 
 #undef CELLS
 #undef CELLSIZE
+
+// this gets called when the item gets chucked by the vending machine
+/obj/item/proc/vendor_action(var/obj/machinery/vending/V)
+	return
