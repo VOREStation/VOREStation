@@ -1939,10 +1939,6 @@ shaved
 	name = "Teshari Mushroom"
 	icon_state = "teshari_mushroom"
 
-<<<<<<< HEAD
-//Tesh things ported from Ark Station
-=======
->>>>>>> 9382cd1416f... Merge pull request #8232 from Cerebulon/hairballs
 /datum/sprite_accessory/hair/teshari/twies
 	name = "Teshari Twies"
 	icon_state = "teshari_twies"
