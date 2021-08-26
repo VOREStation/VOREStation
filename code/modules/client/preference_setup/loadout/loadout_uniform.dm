@@ -54,6 +54,22 @@
 		jumpclothes[initial(jumps.name)] = jumps
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(jumpclothes))
 
+/datum/gear/uniform/qipao
+	display_name = "qipao"
+	path = /obj/item/clothing/under/qipao
+
+/datum/gear/uniform/qipao/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/uniform/qipao2
+	display_name = "qipao, slim"
+	path = /obj/item/clothing/under/qipao2
+
+/datum/gear/uniform/qipao2/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
 /datum/gear/uniform/skirt
 	display_name = "skirt selection"
 	path = /obj/item/clothing/under/skirt
