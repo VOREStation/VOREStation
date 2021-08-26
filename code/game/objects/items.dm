@@ -946,6 +946,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/proc/rped_rating()
 	return get_rating()
 
+<<<<<<< HEAD
 /// How are you described if at all when in pockets (or other 'usually not visible' places)
 /obj/item/proc/pocket_description(mob/haver, mob/examiner)
 	return null // most things are hidden
@@ -988,3 +989,8 @@ Note: This proc can be overwritten to allow for different types of auto-alignmen
 
 #undef CELLS
 #undef CELLSIZE
+=======
+// this gets called when the item gets chucked by the vending machine
+/obj/item/proc/vendor_action(var/obj/machinery/vending/V)
+	return
+>>>>>>> 34127628ee1... Merge pull request #8240 from Cerebulon/vendthrow
