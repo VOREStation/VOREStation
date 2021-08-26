@@ -663,21 +663,43 @@
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/uniform/paramedunidark
-	display_name = "paramedic uniform - dark"
+	display_name = "paramedic uniform, dark"
 	path = /obj/item/clothing/under/rank/paramedunidark
 	allowed_roles = list("Medical Doctor","Chief Medical Officer","Paramedic")
 
 /datum/gear/uniform/parameduniskirtdark
-	display_name = "paramedic skirt - dark"
+	display_name = "paramedic skirt, dark"
 	path = /obj/item/clothing/under/rank/parameduniskirtdark
 	allowed_roles = list("Medical Doctor","Chief Medical Officer","Paramedic")
 
 /datum/gear/uniform/paramedunilight
-	display_name = "paramedic uniform - light"
+	display_name = "paramedic uniform, light"
 	path = /obj/item/clothing/under/rank/paramedunilight
 	allowed_roles = list("Medical Doctor","Chief Medical Officer","Paramedic")
 
 /datum/gear/uniform/parameduniskirtlight
-	display_name = "paramedic skirt - light"
+	display_name = "paramedic skirt, light"
 	path = /obj/item/clothing/under/rank/parameduniskirtlight
 	allowed_roles = list("Medical Doctor","Chief Medical Officer","Paramedic")
+
+/datum/gear/uniform/tourist_1
+	display_name = "tourist outfit, white"
+	path = /obj/item/clothing/under/tourist_1
+
+/datum/gear/uniform/tourist_2
+	display_name = "tourist outfit, blue"
+	path = /obj/item/clothing/under/tourist_2
+
+/datum/gear/uniform/cowboy_outfits
+	display_name = "cowboy outfit selection"
+	path = /obj/item/clothing/under/cowboy
+
+/datum/gear/uniform/cowboy_outfits/New()
+	..()
+	var/list/cowboy_outfits = list(
+	"Patterned Cowboy Outfit" = /obj/item/clothing/under/cowboy,
+	"Tan Cowboy Outfit" = /obj/item/clothing/under/cowboy/tan,
+	"Brown Cowboy Outfit" = /obj/item/clothing/under/cowboy/brown,
+	"Grey Cowboy Outfit" = /obj/item/clothing/under/cowboy/grey
+	)
+	gear_tweaks += new/datum/gear_tweak/path(cowboy_outfits)
