@@ -112,6 +112,12 @@
 		/datum/lore/codex/page/about_news,
 		)
 
+	var/newsindex
+
+/datum/lore/codex/category/main_news/New()
+	..()
+	newsindex = LAZYLEN(children)
+
 /datum/lore/codex/page/about_news
 	name = "About the Publisher"
 	data = "The <i>Daedalus Pocket Newscaster</i> is produced and maintained by Occulum Broadcast, the foremost authority on media distribution \
