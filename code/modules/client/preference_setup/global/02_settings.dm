@@ -9,6 +9,7 @@
 /datum/category_item/player_setup_item/player_global/settings/load_preferences(var/savefile/S)
 	S["lastchangelog"]        >> pref.lastchangelog
 	S["lastnews"]             >> pref.lastnews
+	S["lastlorenews"]         >> pref.lastlorenews
 	S["default_slot"]	      >> pref.default_slot
 	S["preferences"]          >> pref.preferences_enabled
 	S["preferences_disabled"] >> pref.preferences_disabled
@@ -16,6 +17,7 @@
 /datum/category_item/player_setup_item/player_global/settings/save_preferences(var/savefile/S)
 	S["lastchangelog"]        << pref.lastchangelog
 	S["lastnews"]             << pref.lastnews
+	S["lastlorenews"]         << pref.lastlorenews
 	S["default_slot"]         << pref.default_slot
 	S["preferences"]          << pref.preferences_enabled
 	S["preferences_disabled"] << pref.preferences_disabled
