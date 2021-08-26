@@ -1258,6 +1258,14 @@
 	icon_state = "therapygreen"
 	item_state = "egg3" // It's the green egg in items_left/righthand
 
+<<<<<<< HEAD
+=======
+/obj/item/toy/plushie/fumo
+	name = "Fumo"
+	desc = "A plushie of a....?."
+	icon_state = "fumoplushie"
+	pokephrase = "I just don't think about losing."
+>>>>>>> ac33af27705... Merge pull request #8239 from Cerebulon/fumo
 
 //Toy cult sword
 /obj/item/toy/cultsword
