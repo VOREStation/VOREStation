@@ -483,6 +483,8 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	var/icon/ears_s = get_ears_overlay()
 	var/image/em_block_ears
 	if(ears_s)
+		if(ears_s.Height() > face_standing.Height()) // Tol ears
+			face_standing.Crop(face_standing.Width(), ears_s.Height())
 		face_standing.Blend(ears_s, ICON_OVERLAY)
 		if(ear_style?.em_block)
 			em_block_ears = em_block_image_generic(image(ears_s))
