@@ -13,7 +13,9 @@ GLOBAL_LIST_BOILERPLATE(all_seed_packs, /obj/item/seeds)
 	var/datum/seed/seed
 	var/modified = 0
 
-/obj/item/seeds/Initialize()
+/obj/item/seeds/Initialize(var/ml, var/_seed_type)
+	if(_seed_type in SSplants.seeds)
+		seed_type = _seed_type
 	update_seed()
 	. = ..()
 

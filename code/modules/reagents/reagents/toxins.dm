@@ -67,7 +67,7 @@
 /datum/reagent/toxin/neurotoxic_protein
 	name = "toxic protein"
 	id = "neurotoxic_protein"
-	description = "A weak neurotoxic chemical commonly found in Sivian fish meat."
+	description = "A weak neurotoxic chemical."
 	taste_description = "fish"
 	reagent_state = LIQUID
 	color = "#005555"

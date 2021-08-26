@@ -842,47 +842,18 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/carpmeat/Initialize()
 	. = ..()
-	reagents.add_reagent("protein", 3)
-	reagents.add_reagent(toxin_type, toxin_amount)
-
-/obj/item/weapon/reagent_containers/food/snacks/crabmeat
-	name = "crab legs"
-	desc = "... Coffee? Is that you?"
-	icon_state = "crabmeat"
-	bitesize = 1
-
-/obj/item/weapon/reagent_containers/food/snacks/crabmeat/Initialize()
-	. = ..()
-	reagents.add_reagent("seafood", 2)
-
-/obj/item/weapon/reagent_containers/food/snacks/crab_legs
-	name = "steamed crab legs"
-	desc = "Crab legs steamed and buttered to perfection. One day when the boss gets hungry..."
-	icon_state = "crablegs"
-	nutriment_amt = 2
-	nutriment_desc = list("savory butter" = 2)
-	bitesize = 2
-	trash = /obj/item/trash/plate
-
-/obj/item/weapon/reagent_containers/food/snacks/crab_legs/Initialize()
-	. = ..()
-	reagents.add_reagent("seafood", 6)
-	reagents.add_reagent("sodiumchloride", 1)
-
-/obj/item/weapon/reagent_containers/food/snacks/carpmeat/sif
-	desc = "A fillet of sivian fish meat."
-	filling_color = "#2c2cff"
-	color = "#2c2cff"
-	toxin_type = "neurotoxic_protein"
-	toxin_amount = 2
-
-/obj/item/weapon/reagent_containers/food/snacks/carpmeat/sif/murkfish
-	toxin_type = "murk_protein"
+	reagents.add_reagent("seafood", 3)
+	if(toxin_type && toxin_amount)
+		reagents.add_reagent(toxin_type, toxin_amount)
 
 /obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish
 	desc = "A fillet of fish meat."
-	toxin_type = "neurotoxic_protein"
-	toxin_amount = 1
+	toxin_type = null
+
+/obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish/sif
+	desc = "A fillet of sivian fish meat."
+	filling_color = "#2c2cff"
+	color = "#2c2cff"
 
 /obj/item/weapon/reagent_containers/food/snacks/fishfingers
 	name = "Fish Fingers"
@@ -894,7 +865,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/fishfingers/Initialize()
 	. = ..()
-	reagents.add_reagent("protein", 4)
+	reagents.add_reagent("seafood", 4)
 
 /obj/item/weapon/reagent_containers/food/snacks/zestfish
 	name = "Zesty Fish"
@@ -906,11 +877,11 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/zestfish/Initialize()
 	. = ..()
-	reagents.add_reagent("protein", 4)
+	reagents.add_reagent("seafood", 4)
 
-/obj/item/weapon/reagent_containers/food/snacks/hugemushroomslice
-	name = "huge mushroom slice"
-	desc = "A slice from a huge mushroom."
+/obj/item/weapon/reagent_containers/food/snacks/mushroomslice
+	name = "mushroom slice"
+	desc = "A slice of mushroom."
 	icon_state = "hugemushroomslice"
 	filling_color = "#E0D7C5"
 	center_of_mass = list("x"=17, "y"=16)
@@ -918,7 +889,7 @@
 	nutriment_desc = list("raw" = 2, "mushroom" = 2)
 	bitesize = 6
 
-/obj/item/weapon/reagent_containers/food/snacks/hugemushroomslice/Initialize()
+/obj/item/weapon/reagent_containers/food/snacks/mushroomslice/Initialize()
 	. = ..()
 	reagents.add_reagent("psilocybin", 3)
 
@@ -3941,7 +3912,8 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/rawcutlet/Initialize()
 	. = ..()
-	reagents.add_reagent("protein", 1)
+	reagents.add_reagent("fishbait", 9)
+	reagents.add_reagent("protein",  3)
 
 /obj/item/weapon/reagent_containers/food/snacks/cutlet
 	name = "cutlet"
@@ -3953,7 +3925,8 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/cutlet/Initialize()
 	. = ..()
-	reagents.add_reagent("protein", 2)
+	reagents.add_reagent("fishbait", 15)
+	reagents.add_reagent("protein",   5)
 
 /obj/item/weapon/reagent_containers/food/snacks/rawmeatball
 	name = "raw meatball"
@@ -3965,7 +3938,8 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/rawmeatball/Initialize()
 	. = ..()
-	reagents.add_reagent("protein", 2)
+	reagents.add_reagent("fishbait", 30)
+	reagents.add_reagent("protein",  10)
 
 /obj/item/weapon/reagent_containers/food/snacks/hotdog
 	name = "hotdog"

@@ -1122,14 +1122,12 @@
 	name = "Neutralize Carpotoxin"
 	id = "carpotoxin_neutral"
 	result = "protein"
-	required_reagents = list("radium" = 1, "carpotoxin" = 1, "sifsap" = 1)
-	catalysts = list("sifsap" = 10)
-	result_amount = 2
+	required_reagents = list("enzyme" = 1, "carpotoxin" = 1, "sifsap" = 1)
+	result_amount = 1
 
 /decl/chemical_reaction/instant/neutralize_spidertoxin
 	name = "Neutralize Spidertoxin"
 	id = "spidertoxin_neutral"
 	result = "protein"
-	required_reagents = list("radium" = 1, "spidertoxin" = 1, "sifsap" = 1)
-	catalysts = list("sifsap" = 10)
-	result_amount = 2
+	required_reagents = list("enzyme" = 1, "spidertoxin" = 1, "sifsap" = 1)
+	result_amount = 1

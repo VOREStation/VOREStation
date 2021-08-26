@@ -309,13 +309,6 @@
 	color = "#FFFFAA"
 	allergen_type = ALLERGEN_EGGS //Eggs contain egg
 
-/datum/reagent/nutriment/protein/murk
-	name = "murkfin protein"
-	id = "murk_protein"
-	taste_description = "mud"
-	color = "#664330"
-	allergen_type = ALLERGEN_FISH //Murkfin is fish
-
 /datum/reagent/nutriment/honey
 	name = "Honey"
 	id = "honey"
