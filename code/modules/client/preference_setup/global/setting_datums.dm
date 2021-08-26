@@ -287,6 +287,12 @@ var/list/_client_preferences_by_type
 	enabled_description = "Show"
 	disabled_description = "Hide"
 
+/datum/client_preference/radio_sounds
+	description = "Radio Sounds"
+	key = "RADIO_SOUNDS"
+	enabled_description = "On"
+	disabled_description = "Off"
+
 /datum/client_preference/runechat_mob
 	description = "Runechat (Mobs)"
 	key = "RUNECHAT_MOB"
