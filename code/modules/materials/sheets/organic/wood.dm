@@ -47,10 +47,9 @@
 					existing_wood = M
 					break
 
-			var/obj/item/stack/material/wood/new_wood = new plank_type(user.loc)
-			new_wood.amount = 2
+			var/obj/item/stack/material/wood/new_wood = new plank_type(user.loc, 2)
 			if(existing_wood && new_wood.transfer_to(existing_wood))
-				to_chat(user, "<span class='notice'>You add the newly-formed wood to the stack. It now contains [existing_wood.amount] planks.</span>")
+				to_chat(user, "<span class='notice'>You add the newly-formed wood to the stack. It now contains [existing_wood.get_amount()] planks.</span>")
 	else
 		return ..()
 

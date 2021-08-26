@@ -145,8 +145,7 @@
 				holder.icon_state = "polecat4"
 			else
 				user.visible_message("[user] removes the wiring from [holder].", "You remove the wiring from [holder].")
-				var/obj/item/stack/cable_coil/coil = new /obj/item/stack/cable_coil(get_turf(holder))
-				coil.amount = 4
+				new /obj/item/stack/cable_coil(get_turf(holder), 4)
 				holder.icon_state = "polecat2"
 		if(16)
 			if(diff==FORWARD)
@@ -241,8 +240,7 @@
 				holder.icon_state = "polecat16"
 			else
 				user.visible_message("[user] pries internal armor layer from [holder].", "You prie internal armor layer from [holder].")
-				var/obj/item/stack/material/steel/MS = new /obj/item/stack/material/steel(get_turf(holder))
-				MS.amount = 3
+				new /obj/item/stack/material/steel(get_turf(holder), 3)
 				holder.icon_state = "polecat14"
 		if(4)
 			if(diff==FORWARD)
@@ -402,8 +400,7 @@
 				holder.icon_state = "gopher4"
 			else
 				user.visible_message("[user] removes the wiring from [holder].", "You remove the wiring from [holder].")
-				var/obj/item/stack/cable_coil/coil = new /obj/item/stack/cable_coil(get_turf(holder))
-				coil.amount = 4
+				new /obj/item/stack/cable_coil(get_turf(holder), 4)
 				holder.icon_state = "gopher2"
 		if(10)
 			if(diff==FORWARD)
@@ -450,8 +447,7 @@
 				holder.icon_state = "gopher10"
 			else
 				user.visible_message("[user] pries internal armor layer from [holder].", "You prie internal armor layer from [holder].")
-				var/obj/item/stack/material/steel/MS = new /obj/item/stack/material/steel(get_turf(holder))
-				MS.amount = 3
+				new /obj/item/stack/material/steel(get_turf(holder), 3)
 				holder.icon_state = "gopher8"
 		if(4)
 			if(diff==FORWARD)
@@ -473,8 +469,7 @@
 				holder.icon_state = "gopher13"
 			else
 				user.visible_message("[user] pries external armor layer from [holder].", "You prie external armor layer from [holder].")
-				var/obj/item/stack/material/plasteel/MS = new /obj/item/stack/material/plasteel(get_turf(holder))
-				MS.amount = 2
+				new /obj/item/stack/material/plasteel(get_turf(holder), 2)
 				holder.icon_state = "gopher11"
 		if(1)
 			if(diff==FORWARD)
@@ -635,8 +630,7 @@
 				holder.icon_state = "weasel4"
 			else
 				user.visible_message("[user] removes the wiring from [holder].", "You remove the wiring from [holder].")
-				var/obj/item/stack/cable_coil/coil = new /obj/item/stack/cable_coil(get_turf(holder))
-				coil.amount = 4
+				new /obj/item/stack/cable_coil(get_turf(holder), 4)
 				holder.icon_state = "weasel2"
 		if(16)
 			if(diff==FORWARD)
@@ -731,8 +725,7 @@
 				holder.icon_state = "weasel16"
 			else
 				user.visible_message("[user] pries internal armor layer from [holder].", "You prie internal armor layer from [holder].")
-				var/obj/item/stack/material/steel/MS = new /obj/item/stack/material/steel(get_turf(holder))
-				MS.amount = 3
+				new /obj/item/stack/material/steel(get_turf(holder), 3)
 				holder.icon_state = "weasel14"
 		if(4)
 			if(diff==FORWARD)
@@ -754,8 +747,7 @@
 				holder.icon_state = "weasel19"
 			else
 				user.visible_message("[user] pries external armor layer from [holder].", "You prie external armor layer from [holder].")
-				var/obj/item/stack/material/plasteel/MS = new /obj/item/stack/material/plasteel(get_turf(holder))
-				MS.amount = 3
+				new /obj/item/stack/material/plasteel(get_turf(holder), 3)
 				holder.icon_state = "weasel17"
 		if(1)
 			if(diff==FORWARD)

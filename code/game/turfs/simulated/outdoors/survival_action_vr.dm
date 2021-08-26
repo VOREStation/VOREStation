@@ -7,8 +7,7 @@
 	if(icon_state in has_rocks)
 		user.visible_message("[user] loosens rocks from \the [src]...", "You loosen rocks from \the [src]...")
 		if(do_after(user, 5 SECONDS, exclusive = TASK_USER_EXCLUSIVE))
-			var/obj/item/stack/material/flint/R = new(get_turf(src))
-			R.amount = rand(1,4)
+			var/obj/item/stack/material/flint/R = new(get_turf(src), rand(1,4))
 			R.pixel_x = rand(-6,6)
 			R.pixel_y = rand(-6,6)
 			icon_state = "dirt0"
@@ -34,9 +33,8 @@
 	user.visible_message("[user] starts digging around in \the [src]...", "You start digging around in \the [src]...")
 	if(do_after(user, 5 SECONDS, exclusive = TASK_USER_EXCLUSIVE))
 		if(prob(rock_chance))
-			var/obj/item/stack/material/flint/R = new(get_turf(src))
+			var/obj/item/stack/material/flint/R = new(get_turf(src), rand(1,4))
 			to_chat(user, "<span class='notice'>You found some [R]</span>")
-			R.amount = rand(1,4)
 			R.pixel_x = rand(-6,6)
 			R.pixel_y = rand(-6,6)
 		else
@@ -73,8 +71,7 @@
 	if(sticks)
 		user.visible_message("[user] searches \the [src] for loose sticks...", "You search \the [src] for loose sticks...")
 		if(do_after(user, 5 SECONDS, exclusive = TASK_USER_EXCLUSIVE))
-			var/obj/item/stack/material/stick/S = new(get_turf(user))
-			S.amount = rand(1,3)
+			var/obj/item/stack/material/stick/S = new(get_turf(user), rand(1,3))
 			S.pixel_x = rand(-6,6)
 			S.pixel_y = rand(-6,6)
 			sticks = FALSE

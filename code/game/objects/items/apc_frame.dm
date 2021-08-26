@@ -29,8 +29,7 @@
 			to_chat(user, "<span class='warning'>There is another network terminal here.</span>")
 			return
 		else
-			var/obj/item/stack/cable_coil/C = new /obj/item/stack/cable_coil(loc)
-			C.amount = 10
+			new /obj/item/stack/cable_coil(loc, 10)
 			to_chat(user, "You cut the cables and disassemble the unused power terminal.")
 			qdel(T)
 	new /obj/machinery/power/apc(loc, ndir, 1)

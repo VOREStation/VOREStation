@@ -296,8 +296,10 @@
 			/obj/item/clothing/accessory/collar/spike,
 			/obj/item/clothing/gloves/fingerless,
 			/obj/item/clothing/gloves/botanic_leather,
-			/obj/item/clothing/head/cowboy_hat,
-			/obj/item/clothing/head/cowboy_hat/black
+			/obj/item/clothing/head/cowboy,
+			/obj/item/clothing/head/cowboy/bandit,
+			/obj/item/clothing/accessory/cowboy_vest/brown,
+			/obj/item/clothing/accessory/cowboy_vest/grey
 			)
 	cost = 50
 	containertype = /obj/structure/closet/crate

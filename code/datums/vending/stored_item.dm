@@ -70,7 +70,7 @@
 	if(.)
 		var/obj/item/stack/S = product
 		if(istype(S))
-			amount += S.amount
+			amount += S.get_amount()
 
 /datum/stored_item/stack/get_product(var/product_location, var/count)
 	if(!LAZYLEN(instances))

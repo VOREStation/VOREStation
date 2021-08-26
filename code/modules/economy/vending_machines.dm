@@ -1179,6 +1179,7 @@
 	products = list(
 		/obj/item/clothing/under/rank/chef = 5,
 		/obj/item/clothing/shoes/black = 5,
+		/obj/item/clothing/shoes/cookflop = 2,
 		/obj/item/clothing/suit/storage/apron/white = 5,
 		/obj/item/clothing/suit/chef = 5,
 		/obj/item/clothing/suit/chef/classic = 5,

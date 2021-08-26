@@ -21,14 +21,14 @@
 	for(var/i in 1 to wateramount)
 		var/obj/item/stack/wetleather/H = null
 		for(var/obj/item/stack/wetleather/HS in get_turf(src)) // Doesn't have a user, can't just use their loc
-			if(HS.amount < HS.max_amount)
+			if(HS.get_amount() < HS.max_amount)
 				H = HS
 				break
 			
 		 // Either we found a valid stack, in which case increment amount,
 		 // Or we need to make a new stack
 		if(istype(H))
-			H.amount++
+			H.add(1)
 		else
 			H = new /obj/item/stack/wetleather(get_turf(src))
 

@@ -60,7 +60,7 @@
 
 		for(var/obj/item/stack/wetleather/WL in I.instances)
 			if(!WL.wetness)
-				if(WL.amount)
+				if(WL.get_amount())
 					WL.forceMove(get_turf(src))
 					WL.dry()
 				I.instances -= WL

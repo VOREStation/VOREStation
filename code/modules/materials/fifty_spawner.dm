@@ -10,8 +10,7 @@
 	..()
 	var/turf/T = get_turf(src)
 	var/obj/structure/closet/C = locate() in T
-	var/obj/item/stack/M = new type_to_spawn(C || T)
-	M.amount = M.max_amount //some stuff spawns with 60, we're still calling it fifty
+	var/obj/item/stack/M = new type_to_spawn(C || T, -1)
 	M.update_icon() // Some stacks have different sprites depending on how full they are.
 	return INITIALIZE_HINT_QDEL //Bye!
 

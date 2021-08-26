@@ -201,12 +201,12 @@
 						var/obj/item/stack/material/wood/NG = new (user.loc)
 						if(flesh_colour) NG.color = flesh_colour
 						for (var/obj/item/stack/material/wood/G in user.loc)
-							if(G==NG)
+							if(G == NG)
 								continue
-							if(G.amount>=G.max_amount)
+							if(G.get_amount() >= G.max_amount)
 								continue
 							G.attackby(NG, user)
-						to_chat(user, "You add the newly-formed wood to the stack. It now contains [NG.amount] planks.")
+						to_chat(user, "You add the newly-formed wood to the stack. It now contains [NG.get_amount()] planks.")
 					qdel(src)
 					return
 				else if(!isnull(seed.chems["potato"]))
@@ -280,12 +280,12 @@
 			var/obj/item/stack/tile/grass/G = new (user.loc)
 			if(flesh_colour) G.color = flesh_colour
 			for (var/obj/item/stack/tile/grass/NG in user.loc)
-				if(G==NG)
+				if(G == NG)
 					continue
-				if(NG.amount>=NG.max_amount)
+				if(NG.get_amount() >= NG.max_amount)
 					continue
 				NG.attackby(G, user)
-			to_chat(user, "You add the newly-formed grass to the stack. It now contains [G.amount] tiles.")
+			to_chat(user, "You add the newly-formed grass to the stack. It now contains [G.get_amount()] tiles.")
 		qdel(src)
 		return
 

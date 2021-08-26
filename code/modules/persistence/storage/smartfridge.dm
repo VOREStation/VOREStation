@@ -57,8 +57,7 @@
 				continue
 		
 		while(count > 0)	
-			inst = new real_path
-			inst.amount = min(count, max_amount)
+			inst = new real_path(null, min(count, max_amount))
 			count -= inst.get_amount()
 			. += inst
 

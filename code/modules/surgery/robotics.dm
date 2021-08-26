@@ -475,11 +475,9 @@
 			if(clean_name)
 				var/okay = tgui_alert(target,"New name will be '[clean_name]', ok?", "Confirmation",list("Cancel","Ok"))
 				if(okay == "Ok")
-					new_name = clean_name
-
-		new_name = sanitizeName(new_name, allow_numbers = TRUE)
-		target.name = new_name
-		target.real_name = target.name
+					target.name = new_name
+					target.real_name = target.name
+					return
 
 /datum/surgery_step/robotics/install_mmi/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message("<span class='warning'>[user]'s hand slips.</span>", \

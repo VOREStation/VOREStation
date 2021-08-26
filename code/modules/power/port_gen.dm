@@ -163,10 +163,8 @@
 //Removes one stack's worth of material from the generator.
 /obj/machinery/power/port_gen/pacman/DropFuel()
 	if(sheets)
-		var/obj/item/stack/material/S = new sheet_path(loc)
-		var/amount = min(sheets, S.max_amount)
-		S.amount = amount
-		sheets -= amount
+		var/obj/item/stack/material/S = new sheet_path(loc, sheets)
+		sheets -= S.get_amount()
 
 /obj/machinery/power/port_gen/pacman/UseFuel()
 
@@ -265,7 +263,7 @@
 /obj/machinery/power/port_gen/pacman/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(istype(O, sheet_path))
 		var/obj/item/stack/addstack = O
-		var/amount = min((max_sheets - sheets), addstack.amount)
+		var/amount = min((max_sheets - sheets), addstack.get_amount())
 		if(amount < 1)
 			to_chat(user, "<span class='warning'>The [src.name] is full!</span>")
 			return

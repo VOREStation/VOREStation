@@ -119,20 +119,21 @@
 /obj/item/clothing/under/ert
 	armor = list(melee = 5, bullet = 10, laser = 10, energy = 5, bomb = 5, bio = 0, rad = 0)
 
-/obj/item/clothing/under/dress/qipao
-	name = "qipao"
+/obj/item/clothing/under/qipao
+	name = "black qipao"
 	desc = "A type of feminine body-hugging dress with distinctive Chinese features of Manchu origin."
 	icon = 'icons/inventory/uniform/item_vr.dmi'
 	icon_override = 'icons/inventory/uniform/mob_vr.dmi'
 	icon_state = "qipao"
 	item_state = "qipao"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 
-/obj/item/clothing/under/dress/qipao/white
+/obj/item/clothing/under/qipao/white
 	name = "white qipao"
 	icon_state = "qipao_white"
 	item_state = "qipao_white"
 
-/obj/item/clothing/under/dress/qipao/red
+/obj/item/clothing/under/qipao/red
 	name = "red qipao"
 	icon_state = "qipao_red"
 	item_state = "qipao_red"

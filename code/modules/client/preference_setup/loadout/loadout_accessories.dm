@@ -190,19 +190,6 @@
 	display_name = "chaps, black"
 	path = /obj/item/clothing/accessory/chaps/black
 
-/datum/gear/accessory/hawaii
-	display_name = "hawaii shirt"
-	path = /obj/item/clothing/accessory/hawaii
-
-/datum/gear/accessory/hawaii/New()
-	..()
-	var/list/shirts = list()
-	shirts["blue hawaii shirt"] = /obj/item/clothing/accessory/hawaii
-	shirts["red hawaii shirt"] = /obj/item/clothing/accessory/hawaii/red
-	shirts["random colored hawaii shirt"] = /obj/item/clothing/accessory/hawaii/random
-	gear_tweaks += new/datum/gear_tweak/path(shirts)
-
-
 /datum/gear/accessory/sweater
 	display_name = "sweater selection"
 	path = /obj/item/clothing/accessory/sweater
@@ -284,3 +271,31 @@
 /datum/gear/accessory/asymovercoat
 	display_name = "orange asymmetrical overcoat"
 	path = /obj/item/clothing/accessory/asymovercoat
+
+/datum/gear/accessory/hawaiian_shirt
+	display_name = "hawaiian shirt selection"
+	path = /obj/item/clothing/accessory/hawaiian
+
+/datum/gear/accessory/hawaiian_shirt/New()
+	..()
+	var/list/hawaiian_shirts = list(
+	"Cyan Hawaiian shirt" = /obj/item/clothing/accessory/hawaiian,
+	"Blue Hawaiian shirt" = /obj/item/clothing/accessory/hawaiian/blue,
+	"Pink Hawaiian shirt" = /obj/item/clothing/accessory/hawaiian/pink,
+	"Red Hawaiian shirt" = /obj/item/clothing/accessory/hawaiian/red,
+	"Yellow Hawaiian shirt" = /obj/item/clothing/accessory/hawaiian/yellow
+	)
+	gear_tweaks += new/datum/gear_tweak/path(hawaiian_shirts)
+
+/datum/gear/accessory/cowboy_vest
+	display_name = "cowboy selection"
+	path = /obj/item/clothing/accessory/cowboy_vest
+
+/datum/gear/accessory/cowboy_vest/New()
+	..()
+	var/list/cowboy_vests = list(
+	"Ranger Vest" = /obj/item/clothing/accessory/cowboy_vest,
+	"Brown Vest" = /obj/item/clothing/accessory/cowboy_vest/brown,
+	"Grey Vest" = /obj/item/clothing/accessory/cowboy_vest/grey
+	)
+	gear_tweaks += new/datum/gear_tweak/path(cowboy_vests)

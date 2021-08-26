@@ -345,13 +345,43 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
+/datum/sprite_accessory/ears/elfs2
+	name = "pointed ears"
+	desc = ""
+	icon_state = "ears_pointy"
+	do_colouration = 1
+	species_allowed = list(SPECIES_HUMAN, SPECIES_HUMAN_VATBORN, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+
 /datum/sprite_accessory/ears/elfs
-	name = "elven ears"
+	name = "pointed ears (tall)"
 	desc = ""
 	icon_state = "elfs"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+	species_allowed = list(SPECIES_HUMAN, SPECIES_HUMAN_VATBORN, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 
+/datum/sprite_accessory/ears/elfs3
+	name = "pointed ears (down)"
+	desc = ""
+	icon_state = "ears_pointy_down"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	species_allowed = list(SPECIES_HUMAN, SPECIES_HUMAN_VATBORN, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+
+/datum/sprite_accessory/ears/elfs4
+	name = "pointed ears (long)"
+	desc = ""
+	icon_state = "ears_pointy_long"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	species_allowed = list(SPECIES_HUMAN, SPECIES_HUMAN_VATBORN, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+
+/datum/sprite_accessory/ears/elfs5
+	name = "pointed ears (long, down)"
+	desc = ""
+	icon_state = "ears_pointy_long_down"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
 	species_allowed = list(SPECIES_HUMAN, SPECIES_HUMAN_VATBORN, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 
 /datum/sprite_accessory/ears/sleek
