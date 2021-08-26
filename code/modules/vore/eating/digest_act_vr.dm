@@ -9,6 +9,8 @@
 			var/obj/item/device/pda/P = src
 			if(P.id)
 				P.id = null
+		for(var/mob/living/M in contents)//Drop mobs from objects(shoes) before deletion
+			M.forceMove(item_storage)
 		for(var/obj/item/O in contents)
 			if(istype(O, /obj/item/weapon/storage/internal)) //Dump contents from dummy pockets.
 				for(var/obj/item/SO in O)
@@ -37,6 +39,8 @@
 			var/obj/item/device/pda/P = src
 			if(P.id)
 				P.id = null
+		for(var/mob/living/M in contents)//Drop mobs from objects(shoes) before deletion
+			M.forceMove(item_storage)
 		for(var/obj/item/O in contents)
 			if(istype(O,/obj/item/weapon/storage/internal)) //Dump contents from dummy pockets.
 				for(var/obj/item/SO in O)
