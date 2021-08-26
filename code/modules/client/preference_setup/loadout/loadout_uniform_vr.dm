@@ -196,17 +196,17 @@ Swimsuits
 /*
 Qipao
 */
-/datum/gear/uniform/qipao
+/datum/gear/uniform/qipao_black
 	display_name = "qipao, black"
-	path = /obj/item/clothing/under/dress/qipao
+	path = /obj/item/clothing/under/qipao
 
 /datum/gear/uniform/qipao_red
 	display_name = "qipao, red"
-	path = /obj/item/clothing/under/dress/qipao/red
+	path = /obj/item/clothing/under/qipao/red
 
 /datum/gear/uniform/qipao_white
 	display_name = "qipao, white"
-	path = /obj/item/clothing/under/dress/qipao/white
+	path = /obj/item/clothing/under/qipao/white
 
 /*
 Bluespace jumpsuit
