@@ -312,9 +312,9 @@ var/list/name_to_material
 	place_sheet(target)
 
 // Debris product. Used ALL THE TIME.
-/datum/material/proc/place_sheet(var/turf/target)
+/datum/material/proc/place_sheet(var/turf/target, amount)
 	if(stack_type)
-		return new stack_type(target)
+		return new stack_type(target, amount)
 
 // As above.
 /datum/material/proc/place_shard(var/turf/target)

@@ -96,7 +96,7 @@
 			if(!use_flooring)
 				return
 			// Do we have enough?
-			if(use_flooring.build_cost && S.amount < use_flooring.build_cost)
+			if(use_flooring.build_cost && S.get_amount() < use_flooring.build_cost)
 				to_chat(user, "<span class='warning'>You require at least [use_flooring.build_cost] [S.name] to complete the [use_flooring.descriptor].</span>")
 				return
 			// Stay still and focus...

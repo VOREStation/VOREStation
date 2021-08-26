@@ -233,7 +233,7 @@
 					new_item.matter[i] = new_item.matter[i] * mat_efficiency
 
 /obj/machinery/r_n_d/protolathe/proc/eject_materials(var/material, var/amount) // 0 amount = 0 means ejecting a full stack; -1 means eject everything
-	var/recursive = amount == -1 ? 1 : 0
+	var/recursive = amount == -1 ? TRUE : FALSE
 	material = lowertext(material)
 	var/obj/item/stack/material/mattype
 	var/datum/material/MAT = get_material_by_name(material)
@@ -250,9 +250,7 @@
 	if(amount <= 0)
 		amount = S.max_amount
 	var/ejected = min(round(materials[material] / S.perunit), amount)
-	S.amount = min(ejected, amount)
-	if(S.amount <= 0)
-		qdel(S)
+	if(!S.set_amount(ejected, amount))
 		return
 	materials[material] -= ejected * S.perunit
 	if(recursive && materials[material] >= S.perunit)

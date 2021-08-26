@@ -232,7 +232,7 @@
 			var/obj/item/stack/stack = O
 			if(istype(stack))
 				var/list/sheet_components = sheet_reagents[stack.type]
-				var/amount_to_take = max(0,min(stack.amount,round(remaining_volume/REAGENTS_PER_SHEET)))
+				var/amount_to_take = max(0,min(stack.get_amount(),round(remaining_volume/REAGENTS_PER_SHEET)))
 				if(amount_to_take)
 					stack.use(amount_to_take)
 					if(QDELETED(stack))

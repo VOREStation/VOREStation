@@ -146,10 +146,9 @@
 	var/amount_ejected = 0
 	while (metal >= 1)
 		var/datum/material/M = get_material_by_name(MAT_STEEL)
-		var/obj/item/stack/material/S = new M.stack_type(get_turf(src))
-		S.amount = min(metal, S.max_amount)
-		metal -= S.amount
-		amount_ejected += S.amount
+		var/obj/item/stack/material/S = new M.stack_type(get_turf(src), metal)
+		metal -= S.get_amount()
+		amount_ejected += S.get_amount()
 	return amount_ejected
 
 /obj/machinery/pipelayer/proc/dismantleFloor(var/turf/new_turf)

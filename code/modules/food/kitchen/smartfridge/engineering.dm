@@ -20,7 +20,7 @@
 
 	while(count > 0)
 		var/obj/item/stack/S = I.get_product(get_turf(src), min(count, amount))
-		count -= S.amount
+		count -= S.get_amount()
 	SStgui.update_uis(src)
 
 /obj/machinery/smartfridge/sheets/find_record(var/obj/item/O)

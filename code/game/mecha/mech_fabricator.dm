@@ -665,7 +665,7 @@
 			visible_message("[bicon(src)] <b>[src]</b> beeps: \"No records in User DB\"")
 
 /obj/machinery/mecha_part_fabricator/proc/eject_materials(var/material, var/amount) // 0 amount = 0 means ejecting a full stack; -1 means eject everything
-	var/recursive = amount == -1 ? 1 : 0
+	var/recursive = amount == -1 ? TRUE : FALSE
 	var/matstring = lowertext(material)
 	var/datum/material/M = get_material_by_name(matstring)
 
@@ -673,9 +673,7 @@
 	if(amount <= 0)
 		amount = S.max_amount
 	var/ejected = min(round(materials[matstring] / S.perunit), amount)
-	S.amount = min(ejected, amount)
-	if(S.amount <= 0)
-		qdel(S)
+	if(!S.set_amount(ejected, amount))
 		return
 	materials[matstring] -= ejected * S.perunit
 	if(recursive && materials[matstring] >= S.perunit)
