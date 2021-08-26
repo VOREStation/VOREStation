@@ -307,7 +307,7 @@
 	if(istype(H.w_uniform, /obj/item/clothing/under))
 		suit = H.w_uniform
 
-	
+
 	var/list/slots = list()
 	for(var/entry in H.species.hud.gear)
 		var/list/slot_ref = H.species.hud.gear[entry]
@@ -322,7 +322,7 @@
 		)))
 	data["slots"] = slots
 
-	
+
 	var/list/specialSlots = list()
 	if(H.species.hud.has_hands)
 		specialSlots.Add(list(list(
