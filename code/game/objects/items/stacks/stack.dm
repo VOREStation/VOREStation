@@ -29,14 +29,19 @@
 	var/pass_color = FALSE // Will the item pass its own color var to the created item? Dyed cloth, wood, etc.
 	var/strict_color_stacking = FALSE // Will the stack merge with other stacks that are different colors? (Dyed cloth, wood, etc)
 
-/obj/item/stack/Initialize(var/ml, var/amount)
+/obj/item/stack/Initialize(var/ml, var/starting_amount)
 	. = ..()
 	if(!stacktype)
 		stacktype = type
-	if(!isnull(amount)) // Could be 0
-		if(amount < 0)
-			amount = max_amount
-		set_amount(amount, TRUE)
+	if(!isnull(starting_amount)) // Could be 0
+		// Negative numbers are 'give full stack', like -1
+		if(starting_amount < 0)
+			// But sometimes a coder forgot to define what that even means
+			if(max_amount)
+				starting_amount = max_amount
+			else
+				starting_amount = 1
+		set_amount(starting_amount, TRUE)
 	update_icon()
 
 /obj/item/stack/Destroy()
