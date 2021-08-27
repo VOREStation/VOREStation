@@ -49,3 +49,31 @@ var/obj/effect/lobby_image = new /obj/effect/lobby_image
 		if(client)
 			handle_privacy_poll()
 			client.playtitlemusic()
+			version_warnings()
+
+/mob/new_player/proc/version_warnings()
+	if(!client)
+		return
+	var/problems
+	switch(client.byond_build)
+		// http://www.byond.com/forum/post/2711510
+		// http://www.byond.com/forum/post/2711506
+		// http://www.byond.com/forum/post/2711626
+		// http://www.byond.com/forum/post/2711748
+		if(1562 to 1563)
+			problems = "frequent known crashes related to animations"			
+		
+		// Don't have a thread, just a lot of player reports.
+		if(1564)
+			if(world.byond_build == 1564)
+				problems = "random network disconnects on this version of BYOND server"
+			else if(world.byond_build < 1564)
+				problems = "crashes related to animations on this version of BYOND server"
+
+	if(problems)
+		var/message = "Your BYOND client version ([client.byond_version].[client.byond_build]) has known issues: [problems]."
+		if(config.suggested_byond_version)
+			message += " We reccomend using version [config.suggested_byond_version]."
+			if(config.suggested_byond_build)
+				message += "[config.suggested_byond_build]."
+		message += " Versions of byond can be downloaded here: <a href='http://www.byond.com/download/build/'>http://www.byond.com/download/build/</a>"
