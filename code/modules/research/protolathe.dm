@@ -234,24 +234,43 @@
 
 /obj/machinery/r_n_d/protolathe/proc/eject_materials(var/material, var/amount) // 0 amount = 0 means ejecting a full stack; -1 means eject everything
 	var/recursive = amount == -1 ? TRUE : FALSE
-	material = lowertext(material)
-	var/obj/item/stack/material/mattype
-	var/datum/material/MAT = get_material_by_name(material)
+	var/matstring = lowertext(material)
 
-	if(!MAT)
+	// 0 or null, nothing to eject
+	if(!materials[matstring])
+		return
+	// Problem, fix problem and abort
+	if(materials[matstring] < 0)
+		warning("[src] tried to eject material '[material]', which it has 'materials[matstring]' of!")
+		materials[matstring] = 0
 		return
 
-	mattype = MAT.stack_type
-
-	if(!mattype)
+	// Find the material datum for our material
+	var/datum/material/M = get_material_by_name(matstring)
+	if(!M)
+		warning("[src] tried to eject material '[matstring]', which didn't match any known material datum!")
+		return
+	// Find what type of sheets it makes
+	var/obj/item/stack/material/S = M.stack_type
+	if(!S)
+		warning("[src] tried to eject material '[matstring]', which didn't have a stack_type!")
 		return
 
-	var/obj/item/stack/material/S = new mattype(loc)
+	// If we were passed -1, then it's recursive ejection and we should eject all we can
 	if(amount <= 0)
-		amount = S.max_amount
-	var/ejected = min(round(materials[material] / S.perunit), amount)
-	if(!S.set_amount(ejected, amount))
+		amount = initial(S.max_amount)
+	// Smaller of what we have left, or the desired amount (note the amount is in sheets, but the array stores perunit values)
+	var/ejected = min(round(materials[matstring] / initial(S.perunit)), amount)
+
+	// Place a sheet
+	S = M.place_sheet(get_turf(src), ejected)
+	if(!istype(S))
+		warning("[src] tried to eject material '[material]', which didn't generate a proper stack when asked!")
 		return
-	materials[material] -= ejected * S.perunit
-	if(recursive && materials[material] >= S.perunit)
-		eject_materials(material, -1)
+
+	// Reduce our amount stored
+	materials[matstring] -= ejected * S.perunit
+	
+	// Recurse if we have enough left for more sheets
+	if(recursive && materials[matstring] >= S.perunit)
+		eject_materials(matstring, -1)
