@@ -21,7 +21,7 @@
 
 	//R&D tech level
 	origin_tech = list(TECH_ENGINEERING = 1)
-	
+
 	tool_qualities = list(TOOL_WELDER)
 
 	//Welding tool specific stuff
@@ -375,7 +375,7 @@
 /obj/item/weapon/weldingtool/hugetank
 	name = "upgraded welding tool"
 	desc = "A much larger welder with a huge tank."
-	icon_state = "indwelder"
+	icon_state = "upindwelder"
 	max_fuel = 80
 	w_class = ITEMSIZE_NORMAL
 	origin_tech = list(TECH_ENGINEERING = 3)
