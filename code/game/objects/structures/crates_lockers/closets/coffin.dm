@@ -7,7 +7,6 @@
 	seal_tool = /obj/item/weapon/tool/screwdriver
 	breakout_sound = 'sound/weapons/tablehit1.ogg'
 	closet_appearance = null // Special icon for us
-	door_anim_time = 0 //Unsupported
 
 /* Graves */
 /obj/structure/closet/grave
@@ -21,7 +20,6 @@
 	max_closets = 1
 	opened = 1
 	closet_appearance = null // Special icon for us
-	door_anim_time = 0 //Unsupported
 
 /obj/structure/closet/grave/attack_hand(mob/user as mob)
 	if(opened)

@@ -48,6 +48,33 @@
 
 	wizard_garb = 1
 
+/obj/item/clothing/shoes/flipflop
+	name = "flip flops"
+	desc = "A pair of foam flip flops. For those not afraid to show a little ankle."
+	icon_state = "thongsandal"
+	addblends = "thongsandal_a"
+
+/obj/item/clothing/shoes/cookflop
+	name = "grilling sandals"
+	desc = "All this talk of antags, greytiding, and griefing... I just wanna grill for god's sake!"
+	icon_state = "cookflops"
+	species_restricted = null
+	body_parts_covered = 0
+
+/obj/item/clothing/shoes/tourist_1
+	name = "tourist sandals"
+	desc = "Black sandals usually worn by tourists. Need I say more?"
+	icon_state = "tourist_1"
+	species_restricted = null
+	body_parts_covered = 0
+
+/obj/item/clothing/shoes/tourist_2
+	name = "tourist sandals"
+	desc = "Green sandals usually worn by tourists. Need I say more?"
+	icon_state = "tourist_2"
+	species_restricted = null
+	body_parts_covered = 0
+
 /obj/item/clothing/shoes/sandal/clogs
 	name = "plastic clogs"
 	desc = "A pair of plastic clog shoes."
@@ -137,12 +164,6 @@
 	slowdown = SHOES_SLOWDOWN+0.5
 	species_restricted = null
 
-/obj/item/clothing/shoes/flipflop
-	name = "flip flops"
-	desc = "A pair of foam flip flops. For those not afraid to show a little ankle."
-	icon_state = "thongsandal"
-	addblends = "thongsandal_a"
-
 /obj/item/clothing/shoes/athletic
 	name = "athletic shoes"
 	desc = "A pair of sleek atheletic shoes. Made by and for the sporty types."
@@ -205,3 +226,11 @@
 
 /obj/item/clothing/shoes/boots/ranger/yellow
 	bootcolor = "yellow"
+
+/obj/item/clothing/shoes/primitive
+	name = "primitive shoes"
+	desc = "Some patched together rags. Better than being barefoot."
+	icon_state = "rag"
+	force = 0
+	drop_sound = 'sound/items/drop/clothing.ogg'
+	pickup_sound = 'sound/items/pickup/clothing.ogg'

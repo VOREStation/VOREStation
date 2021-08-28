@@ -453,8 +453,11 @@
 					/obj/item/weapon/storage/belt/fannypack/white = 5,
 					/obj/item/clothing/accessory/fullcape = 5,
 					/obj/item/clothing/accessory/halfcape = 5,
-					/obj/item/clothing/accessory/hawaii = 5,
-					/obj/item/clothing/accessory/hawaii/random = 5,
+					/obj/item/clothing/accessory/hawaiian = 5,
+					/obj/item/clothing/accessory/hawaiian/blue = 5,
+					/obj/item/clothing/accessory/hawaiian/pink = 5,
+					/obj/item/clothing/accessory/hawaiian/red = 5,
+					/obj/item/clothing/accessory/hawaiian/yellow = 5,
 					/obj/item/clothing/accessory/locket = 5,
 					/obj/item/weapon/storage/backpack/purse = 1,
 					/obj/item/clothing/accessory/sash = 5,
@@ -563,8 +566,11 @@
 					/obj/item/weapon/storage/belt/fannypack/white = 50,
 					/obj/item/clothing/accessory/fullcape = 50,
 					/obj/item/clothing/accessory/halfcape = 50,
-					/obj/item/clothing/accessory/hawaii = 50,
-					/obj/item/clothing/accessory/hawaii/random = 50,
+					/obj/item/clothing/accessory/hawaiian = 50,
+					/obj/item/clothing/accessory/hawaiian/blue = 50,
+					/obj/item/clothing/accessory/hawaiian/pink = 50,
+					/obj/item/clothing/accessory/hawaiian/red = 50,
+					/obj/item/clothing/accessory/hawaiian/yellow = 50,
 					/obj/item/clothing/accessory/locket = 50,
 					/obj/item/weapon/storage/backpack/purse = 50,
 					/obj/item/clothing/accessory/sash = 50,
@@ -759,9 +765,9 @@
 					/obj/item/clothing/under/dress/sailordress = 5,
 					/obj/item/clothing/under/dress/sari = 5,
 					/obj/item/clothing/under/dress/sari/green = 5,
-					/obj/item/clothing/under/dress/qipao = 5,
-					/obj/item/clothing/under/dress/qipao/red = 5,
-					/obj/item/clothing/under/dress/qipao/white = 5,
+					/obj/item/clothing/under/qipao = 5,
+					/obj/item/clothing/under/qipao/red = 5,
+					/obj/item/clothing/under/qipao/white = 5,
 					/obj/item/clothing/under/shorts/red = 5,
 					/obj/item/clothing/under/shorts/green = 5,
 					/obj/item/clothing/under/shorts/blue = 5,
@@ -822,6 +828,7 @@
 					/obj/item/weapon/storage/box/fluff/swimsuit/science = 5,
 					/obj/item/weapon/storage/box/fluff/swimsuit/security = 5,
 					/obj/item/weapon/storage/box/fluff/swimsuit/medical = 5,
+					/obj/item/weapon/storage/box/fluff/swimsuit/cowbikini = 5,
 					/obj/item/clothing/under/utility = 5,
 					/obj/item/clothing/under/utility/grey = 5,
 					/obj/item/clothing/under/utility/blue = 5,
@@ -929,9 +936,9 @@
 					/obj/item/clothing/under/dress/sailordress = 50,
 					/obj/item/clothing/under/dress/sari = 50,
 					/obj/item/clothing/under/dress/sari/green = 50,
-					/obj/item/clothing/under/dress/qipao = 50,
-					/obj/item/clothing/under/dress/qipao/red = 50,
-					/obj/item/clothing/under/dress/qipao/white = 50,
+					/obj/item/clothing/under/qipao = 50,
+					/obj/item/clothing/under/qipao/red = 50,
+					/obj/item/clothing/under/qipao/white = 50,
 					/obj/item/clothing/under/shorts/red = 50,
 					/obj/item/clothing/under/shorts/green = 50,
 					/obj/item/clothing/under/shorts/blue = 50,
@@ -992,6 +999,7 @@
 					/obj/item/weapon/storage/box/fluff/swimsuit/science = 50,
 					/obj/item/weapon/storage/box/fluff/swimsuit/security = 50,
 					/obj/item/weapon/storage/box/fluff/swimsuit/medical = 50,
+					/obj/item/weapon/storage/box/fluff/swimsuit/cowbikini = 50,
 					/obj/item/clothing/under/utility = 50,
 					/obj/item/clothing/under/utility/grey = 50,
 					/obj/item/clothing/under/utility/blue = 50,
@@ -1217,6 +1225,7 @@
 					/obj/item/clothing/suit/varsity/blue = 5,
 					/obj/item/clothing/suit/varsity/brown = 5,
 					/obj/item/clothing/suit/storage/hooded/wintercoat = 5,
+					/obj/item/clothing/suit/storage/hooded/wintercoat/aformal = 5,
 					/obj/item/clothing/suit/storage/teshari/cloak/standard/white_grey = 5)
 	prices = list(/obj/item/clothing/suit/storage/apron = 100,
 					/obj/item/clothing/suit/storage/flannel/aqua = 100,
@@ -1304,8 +1313,10 @@
 					/obj/item/clothing/suit/varsity/blue = 100,
 					/obj/item/clothing/suit/varsity/brown = 100,
 					/obj/item/clothing/suit/storage/hooded/wintercoat = 100,
+					/obj/item/clothing/suit/storage/hooded/wintercoat/aformal = 100,
 					/obj/item/clothing/suit/storage/teshari/cloak/standard/white_grey = 100)
-	premium = list(/obj/item/clothing/suit/imperium_monk = 3)
+	premium = list(/obj/item/clothing/suit/imperium_monk = 3,
+					/obj/item/clothing/suit/storage/hooded/wintercoat/cosmic = 1)
 	contraband = list(/obj/item/toy/katana = 1)
 
 /obj/machinery/vending/loadout/costume
@@ -1506,148 +1517,6 @@
 	products = list(/obj/item/weapon/reagent_containers/glass/bottle/eznutrient = 6,/obj/item/weapon/reagent_containers/glass/bottle/left4zed = 4,/obj/item/weapon/reagent_containers/glass/bottle/robustharvest = 3,/obj/item/weapon/plantspray/pests = 20,
 					/obj/item/weapon/reagent_containers/glass/beaker = 4,/obj/item/weapon/storage/bag/plants = 5)
 	premium = list(/obj/item/weapon/reagent_containers/glass/bottle/ammonia = 10,/obj/item/weapon/reagent_containers/glass/bottle/diethylamine = 5)
-
-/obj/machinery/vending/emergencyfood
-	name = "Food Cube Dispenser"
-	desc = "An ominous machine dispensing food cubes. It will keep you fed, but at what cost?"
-	icon = 'icons/obj/vending_vr.dmi'
-	icon_state = "foodcube"
-	product_ads = "Afraid to starve?;Starvation is not an option!;Add water before consumption.;Let me take care of you.;Dire circumstances call for food cubes, do not let the taste deter you."
-	products = list(/obj/item/weapon/storage/box/wings/tray = 5,
-					/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle = 10)
-	contraband = list(/obj/item/weapon/storage/box/wings/tray = 5)
-
-/obj/machinery/vending/emergencyfood/filled
-	products = list(/obj/item/weapon/storage/box/wings/tray = 40)
-	contraband = list(/obj/item/weapon/storage/box/wings/tray = 20)
-
-/obj/machinery/vending/cola
-	icon_state = "Soda_Machine"
-
-/obj/machinery/vending/cola/soft
-	icon = 'icons/obj/vending_vr.dmi'
-	icon_state = "Cola_Machine"
-
-//Tweaked existing vendors
-/obj/machinery/vending/hydroseeds/New()
-	products += list(/obj/item/seeds/shrinkshroom = 3,/obj/item/seeds/megashroom = 3)
-	..()
-
-/obj/machinery/vending/security/New()
-	products += list(/obj/item/weapon/gun/energy/taser = 8,/obj/item/weapon/gun/energy/stunrevolver = 4,
-					/obj/item/weapon/reagent_containers/spray/pepper = 6,/obj/item/taperoll/police = 6,
-					/obj/item/clothing/glasses/omnihud/sec = 6)
-	..()
-
-/obj/machinery/vending/tool/New()
-	products += list(/obj/item/weapon/reagent_containers/spray/windowsealant = 5)
-	..()
-
-/obj/machinery/vending/engivend/New()
-	products += list(/obj/item/clothing/glasses/omnihud/eng = 6)
-	contraband += list(/obj/item/weapon/rms = 5)
-	..()
-
-/obj/machinery/vending/medical/New()
-	products += list(/obj/item/weapon/storage/box/khcrystal = 4,/obj/item/weapon/backup_implanter = 3,
-					/obj/item/clothing/glasses/omnihud/med = 4, /obj/item/device/glasses_kit = 1,  /obj/item/weapon/storage/quickdraw/syringe_case = 4)
-	..()
-
-//I want this not just as part of the zoo. ;v
-/obj/machinery/vending/food
-	name = "Food-O-Mat"
-	desc = "A technological marvel, supposedly able to cook or mix a large variety of food or drink."
-	icon_state = "hotfood"
-	products = list(/obj/item/weapon/tray = 8,
-					/obj/item/weapon/material/kitchen/utensil/fork = 6,
-					/obj/item/weapon/material/knife/plastic = 6,
-					/obj/item/weapon/material/kitchen/utensil/spoon = 6,
-					/obj/item/weapon/reagent_containers/food/snacks/tomatosoup = 8,
-					/obj/item/weapon/reagent_containers/food/snacks/mushroomsoup = 8,
-					/obj/item/weapon/reagent_containers/food/snacks/jellysandwich = 8,
-					/obj/item/weapon/reagent_containers/food/snacks/taco = 8,
-					/obj/item/weapon/reagent_containers/food/snacks/cheeseburger = 8,
-					/obj/item/weapon/reagent_containers/food/snacks/grilledcheese = 8,
-					/obj/item/weapon/reagent_containers/food/snacks/hotdog = 8,
-					/obj/item/weapon/reagent_containers/food/snacks/loadedbakedpotato = 8,
-					/obj/item/weapon/reagent_containers/food/snacks/omelette = 8,
-					/obj/item/weapon/reagent_containers/food/snacks/pastatomato = 8,
-					/obj/item/weapon/reagent_containers/food/snacks/tofuburger = 8,
-					/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/mushroompizza = 2,
-					/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/vegetablepizza = 2,
-					/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/margherita = 2,
-					/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/meatpizza = 2,
-					/obj/item/weapon/reagent_containers/food/snacks/waffles = 4,
-					/obj/item/weapon/reagent_containers/food/snacks/muffin = 4,
-					/obj/item/weapon/reagent_containers/food/snacks/appletart = 4,
-					/obj/item/weapon/reagent_containers/food/snacks/sliceable/applecake = 2,
-					/obj/item/weapon/reagent_containers/food/snacks/sliceable/bananabread = 2,
-					/obj/item/weapon/reagent_containers/food/snacks/sliceable/creamcheesebread = 2
-					)
-	contraband = list(/obj/item/weapon/reagent_containers/food/snacks/mysterysoup = 10)
-	vend_delay = 15
-
-/obj/machinery/vending/food/arojoan //Fluff vendor for the lewd houseboat.
-	name = "Custom Food-O-Mat"
-	desc = "Do you think Joan cooks? Of course not. Lazy squirrel!"
-	products = list(/obj/item/weapon/tray = 6,
-					/obj/item/weapon/material/kitchen/utensil/fork = 6,
-					/obj/item/weapon/material/knife/plastic = 6,
-					/obj/item/weapon/material/kitchen/utensil/spoon = 6,
-					/obj/item/weapon/reagent_containers/food/snacks/hotandsoursoup = 3,
-					/obj/item/weapon/reagent_containers/food/snacks/kitsuneudon = 3,
-					/obj/item/weapon/reagent_containers/food/snacks/generalschicken = 3,
-					/obj/item/weapon/reagent_containers/food/snacks/sliceable/sushi = 2,
-					/obj/item/weapon/reagent_containers/food/snacks/jellysandwich = 3,
-					/obj/item/weapon/reagent_containers/food/snacks/grilledcheese = 3,
-					/obj/item/weapon/reagent_containers/food/snacks/hotdog = 3,
-					/obj/item/weapon/storage/box/wings = 2,
-					/obj/item/weapon/reagent_containers/food/snacks/loadedbakedpotato = 3,
-					/obj/item/weapon/reagent_containers/food/snacks/omelette = 3,
-					/obj/item/weapon/reagent_containers/food/snacks/waffles = 3,
-					/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/mushroompizza = 1,
-					/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/vegetablepizza = 1,
-					/obj/item/weapon/reagent_containers/food/snacks/appletart = 2,
-					/obj/item/weapon/reagent_containers/food/snacks/sliceable/applecake = 1,
-					/obj/item/weapon/reagent_containers/food/snacks/sliceable/bananabread = 2,
-					/obj/item/weapon/reagent_containers/food/snacks/sliceable/creamcheesebread = 2
-					)
-	contraband = list(/obj/item/weapon/reagent_containers/food/snacks/mysterysoup = 10)
-	vend_delay = 15
-/* For later, then
-/obj/machinery/vending/weapon_machine
-	name = "Frozen Star Guns&Ammo"
-	desc = "A self-defense equipment vending machine. When you need to take care of that clown."
-	product_slogans = "The best defense is good offense!;Buy for your whole family today!;Nobody can outsmart bullet!;God created man - Frozen Star made them EQUAL!;Nobody can outsmart bullet!;Stupidity can be cured! By LEAD.;Dead kids can't bully your children!"
-	product_ads = "Stunning!;Take justice in your own hands!;LEADearship!"
-	icon = 'icons/obj/vending_vr.dmi'
-	icon_state = "weapon"
-	products = list(/obj/item/device/flash = 6,/obj/item/weapon/reagent_containers/spray/pepper = 6, /obj/item/weapon/gun/projectile/olivaw = 5, /obj/item/weapon/gun/projectile/giskard = 5, /obj/item/ammo_magazine/mg/cl32/rubber = 20)
-	contraband = list(/obj/item/weapon/reagent_containers/food/snacks/syndicake = 6)
-	prices = list(/obj/item/device/flash = 600,/obj/item/weapon/reagent_containers/spray/pepper = 800,  /obj/item/weapon/gun/projectile/olivaw = 1600, /obj/item/weapon/gun/projectile/giskard = 1200, /obj/item/ammo_magazine/mg/cl32/rubber = 200)
-*/
-
-/obj/machinery/vending/fitness/New()
-	products += list(/obj/item/weapon/reagent_containers/food/snacks/liquidprotein = 8)
-	prices += list(/obj/item/weapon/reagent_containers/food/snacks/liquidprotein = 5)
-	..()
-
-/obj/machinery/vending/blood
-	name = "Blood-Onator"
-	desc = "Freezer-vendor for storage and quick dispensing of blood packs"
-	product_ads = "The true life juice!;Vampire's choice!;Home-grown blood only!;Donate today, be saved tomorrow!;Approved by Zeng-Hu Pharmaceuticals Incorporated!; Curse you, Vey-Med artificial blood!"
-	icon = 'icons/obj/vending_vr.dmi'
-	icon_state = "blood"
-	vend_delay = 7
-	idle_power_usage = 211
-	req_access = list(access_medical)
-	products = list(/obj/item/weapon/reagent_containers/blood/prelabeled/APlus = 3,/obj/item/weapon/reagent_containers/blood/prelabeled/AMinus = 3,
-					/obj/item/weapon/reagent_containers/blood/prelabeled/BPlus = 3,/obj/item/weapon/reagent_containers/blood/prelabeled/BMinus = 3,
-					/obj/item/weapon/reagent_containers/blood/prelabeled/OPlus = 2,/obj/item/weapon/reagent_containers/blood/prelabeled/OMinus = 5,
-					/obj/item/weapon/reagent_containers/blood/empty = 5)
-	contraband = list(/obj/item/weapon/reagent_containers/glass/bottle/stoxin = 2)
-	req_log_access = access_cmo
-	has_logs = 1
 
 /obj/machinery/vending/abductor
 	name = "Abduct-U"
@@ -1855,8 +1724,11 @@
 					/obj/item/weapon/storage/belt/fannypack/white = 5,
 					/obj/item/clothing/accessory/fullcape = 5,
 					/obj/item/clothing/accessory/halfcape = 5,
-					/obj/item/clothing/accessory/hawaii = 5,
-					/obj/item/clothing/accessory/hawaii/random = 5,
+					/obj/item/clothing/accessory/hawaiian = 5,
+					/obj/item/clothing/accessory/hawaiian/blue = 5,
+					/obj/item/clothing/accessory/hawaiian/pink = 5,
+					/obj/item/clothing/accessory/hawaiian/red = 5,
+					/obj/item/clothing/accessory/hawaiian/yellow = 5,
 					/obj/item/clothing/accessory/locket = 5,
 					/obj/item/weapon/storage/backpack/purse = 1,
 					/obj/item/clothing/accessory/sash = 5,
@@ -1965,8 +1837,11 @@
 					/obj/item/weapon/storage/belt/fannypack/white = 50,
 					/obj/item/clothing/accessory/fullcape = 50,
 					/obj/item/clothing/accessory/halfcape = 50,
-					/obj/item/clothing/accessory/hawaii = 50,
-					/obj/item/clothing/accessory/hawaii/random = 50,
+					/obj/item/clothing/accessory/hawaiian = 5,
+					/obj/item/clothing/accessory/hawaiian/blue = 5,
+					/obj/item/clothing/accessory/hawaiian/pink = 5,
+					/obj/item/clothing/accessory/hawaiian/red = 5,
+					/obj/item/clothing/accessory/hawaiian/yellow = 5,
 					/obj/item/clothing/accessory/locket = 50,
 					/obj/item/weapon/storage/backpack/purse = 50,
 					/obj/item/clothing/accessory/sash = 50,
@@ -2161,9 +2036,9 @@
 					/obj/item/clothing/under/dress/sailordress = 5,
 					/obj/item/clothing/under/dress/sari = 5,
 					/obj/item/clothing/under/dress/sari/green = 5,
-					/obj/item/clothing/under/dress/qipao = 5,
-					/obj/item/clothing/under/dress/qipao/red = 5,
-					/obj/item/clothing/under/dress/qipao/white = 5,
+					/obj/item/clothing/under/qipao = 5,
+					/obj/item/clothing/under/qipao/red = 5,
+					/obj/item/clothing/under/qipao/white = 5,
 					/obj/item/clothing/under/shorts/red = 5,
 					/obj/item/clothing/under/shorts/green = 5,
 					/obj/item/clothing/under/shorts/blue = 5,
@@ -2224,6 +2099,7 @@
 					/obj/item/weapon/storage/box/fluff/swimsuit/science = 5,
 					/obj/item/weapon/storage/box/fluff/swimsuit/security = 5,
 					/obj/item/weapon/storage/box/fluff/swimsuit/medical = 5,
+					/obj/item/weapon/storage/box/fluff/swimsuit/cowbikini = 5,
 					/obj/item/clothing/under/utility = 5,
 					/obj/item/clothing/under/utility/grey = 5,
 					/obj/item/clothing/under/utility/blue = 5,
@@ -2331,9 +2207,9 @@
 					/obj/item/clothing/under/dress/sailordress = 50,
 					/obj/item/clothing/under/dress/sari = 50,
 					/obj/item/clothing/under/dress/sari/green = 50,
-					/obj/item/clothing/under/dress/qipao = 50,
-					/obj/item/clothing/under/dress/qipao/red = 50,
-					/obj/item/clothing/under/dress/qipao/white = 50,
+					/obj/item/clothing/under/qipao = 50,
+					/obj/item/clothing/under/qipao/red = 50,
+					/obj/item/clothing/under/qipao/white = 50,
 					/obj/item/clothing/under/shorts/red = 50,
 					/obj/item/clothing/under/shorts/green = 50,
 					/obj/item/clothing/under/shorts/blue = 50,
@@ -2394,6 +2270,7 @@
 					/obj/item/weapon/storage/box/fluff/swimsuit/science = 50,
 					/obj/item/weapon/storage/box/fluff/swimsuit/security = 50,
 					/obj/item/weapon/storage/box/fluff/swimsuit/medical = 50,
+					/obj/item/weapon/storage/box/fluff/swimsuit/cowbikini = 50,
 					/obj/item/clothing/under/utility = 50,
 					/obj/item/clothing/under/utility/grey = 50,
 					/obj/item/clothing/under/utility/blue = 50,
@@ -2528,6 +2405,7 @@
 					/obj/item/clothing/suit/varsity/blue = 5,
 					/obj/item/clothing/suit/varsity/brown = 5,
 					/obj/item/clothing/suit/storage/hooded/wintercoat = 5,
+					/obj/item/clothing/suit/storage/hooded/wintercoat/aformal = 5,
 					/obj/item/clothing/suit/storage/teshari/cloak/standard/white_grey = 5)
 	prices = list(/obj/item/clothing/suit/storage/apron = 100,
 					/obj/item/clothing/suit/storage/flannel/aqua = 100,
@@ -2615,8 +2493,10 @@
 					/obj/item/clothing/suit/varsity/blue = 100,
 					/obj/item/clothing/suit/varsity/brown = 100,
 					/obj/item/clothing/suit/storage/hooded/wintercoat = 100,
+					/obj/item/clothing/suit/storage/hooded/wintercoat/aformal = 100,
 					/obj/item/clothing/suit/storage/teshari/cloak/standard/white_grey = 100)
-	premium = list(/obj/item/clothing/suit/imperium_monk = 3)
+	premium = list(/obj/item/clothing/suit/imperium_monk = 3,
+					/obj/item/clothing/suit/storage/hooded/wintercoat/cosmic = 1)
 	contraband = list(/obj/item/toy/katana = 1)
 
 /obj/machinery/vending/loadout/costume
@@ -2980,8 +2860,11 @@
 					/obj/item/weapon/storage/belt/fannypack/white = 5,
 					/obj/item/clothing/accessory/fullcape = 5,
 					/obj/item/clothing/accessory/halfcape = 5,
-					/obj/item/clothing/accessory/hawaii = 5,
-					/obj/item/clothing/accessory/hawaii/random = 5,
+					/obj/item/clothing/accessory/hawaiian = 5,
+					/obj/item/clothing/accessory/hawaiian/blue = 5,
+					/obj/item/clothing/accessory/hawaiian/pink = 5,
+					/obj/item/clothing/accessory/hawaiian/red = 5,
+					/obj/item/clothing/accessory/hawaiian/yellow = 5,
 					/obj/item/clothing/accessory/locket = 5,
 					/obj/item/weapon/storage/backpack/purse = 1,
 					/obj/item/clothing/accessory/sash = 5,
@@ -3176,9 +3059,9 @@
 					/obj/item/clothing/under/dress/sailordress = 5,
 					/obj/item/clothing/under/dress/sari = 5,
 					/obj/item/clothing/under/dress/sari/green = 5,
-					/obj/item/clothing/under/dress/qipao = 5,
-					/obj/item/clothing/under/dress/qipao/red = 5,
-					/obj/item/clothing/under/dress/qipao/white = 5,
+					/obj/item/clothing/under/qipao = 5,
+					/obj/item/clothing/under/qipao/red = 5,
+					/obj/item/clothing/under/qipao/white = 5,
 					/obj/item/clothing/under/shorts/red = 5,
 					/obj/item/clothing/under/shorts/green = 5,
 					/obj/item/clothing/under/shorts/blue = 5,
@@ -3239,6 +3122,7 @@
 					/obj/item/weapon/storage/box/fluff/swimsuit/science = 5,
 					/obj/item/weapon/storage/box/fluff/swimsuit/security = 5,
 					/obj/item/weapon/storage/box/fluff/swimsuit/medical = 5,
+					/obj/item/weapon/storage/box/fluff/swimsuit/cowbikini = 5,
 					/obj/item/clothing/under/utility = 5,
 					/obj/item/clothing/under/utility/grey = 5,
 					/obj/item/clothing/under/utility/blue = 5,
@@ -4542,61 +4426,6 @@
 					/obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat = 10)
 	vend_delay = 15
 
-/obj/machinery/seed_storage/brig
-	name = "Prisoners' food seed storage"
-	starting_seeds = list(
-		/obj/item/seeds/appleseed = 3,
-		/obj/item/seeds/bananaseed = 3,
-		/obj/item/seeds/berryseed = 3,
-		/obj/item/seeds/cabbageseed = 3,
-		/obj/item/seeds/carrotseed = 3,
-		/obj/item/seeds/celery = 3,
-		/obj/item/seeds/chantermycelium = 3,
-		/obj/item/seeds/cherryseed = 3,
-		/obj/item/seeds/chiliseed = 3,
-		/obj/item/seeds/cocoapodseed = 3,
-		/obj/item/seeds/cornseed = 3,
-		/obj/item/seeds/durian = 3,
-		/obj/item/seeds/eggplantseed = 3,
-		/obj/item/seeds/grapeseed = 3,
-		/obj/item/seeds/grassseed = 3,
-		/obj/item/seeds/replicapod = 3,
-		/obj/item/seeds/lavenderseed = 3,
-		/obj/item/seeds/lemonseed = 3,
-		/obj/item/seeds/lettuce = 3,
-		/obj/item/seeds/limeseed = 3,
-		/obj/item/seeds/mtearseed = 2,
-		/obj/item/seeds/orangeseed = 3,
-		/obj/item/seeds/onionseed = 3,
-		/obj/item/seeds/peanutseed = 3,
-		/obj/item/seeds/plumpmycelium = 3,
-		/obj/item/seeds/poppyseed = 3,
-		/obj/item/seeds/potatoseed = 3,
-		/obj/item/seeds/pumpkinseed = 3,
-		/obj/item/seeds/rhubarb = 3,
-		/obj/item/seeds/riceseed = 3,
-		/obj/item/seeds/rose = 3,
-		/obj/item/seeds/soyaseed = 3,
-		/obj/item/seeds/pineapple = 3,
-		/obj/item/seeds/sugarcaneseed = 3,
-		/obj/item/seeds/sunflowerseed = 3,
-		/obj/item/seeds/shandseed = 2,
-		/obj/item/seeds/tobaccoseed = 3,
-		/obj/item/seeds/tomatoseed = 3,
-		/obj/item/seeds/towermycelium = 3,
-		/obj/item/seeds/vanilla = 3,
-		/obj/item/seeds/watermelonseed = 3,
-		/obj/item/seeds/wheatseed = 3,
-		/obj/item/seeds/whitebeetseed = 3,
-		/obj/item/seeds/wabback = 2)
-
-/obj/machinery/vending/hydronutrients/brig
-	name = "Brig NutriMax"
-	desc = "A plant nutrients vendor. Seems some items aren't included."
-	products = list(/obj/item/weapon/reagent_containers/glass/bottle/eznutrient = 6,/obj/item/weapon/reagent_containers/glass/bottle/left4zed = 4,/obj/item/weapon/reagent_containers/glass/bottle/robustharvest = 3,/obj/item/weapon/plantspray/pests = 20,
-					/obj/item/weapon/reagent_containers/glass/beaker = 4,/obj/item/weapon/storage/bag/plants = 5)
-	premium = list(/obj/item/weapon/reagent_containers/glass/bottle/ammonia = 10,/obj/item/weapon/reagent_containers/glass/bottle/diethylamine = 5)
-
 /obj/machinery/vending/emergencyfood
 	name = "Food Cube Dispenser"
 	desc = "An ominous machine dispensing food cubes. It will keep you fed, but at what cost?"
@@ -4610,9 +4439,6 @@
 /obj/machinery/vending/emergencyfood/filled
 	products = list(/obj/item/weapon/storage/box/wings/tray = 40)
 	contraband = list(/obj/item/weapon/storage/box/wings/tray = 20)
-
-/obj/machinery/vending/cola
-	icon_state = "Soda_Machine"
 
 /obj/machinery/vending/cola/soft
 	icon = 'icons/obj/vending_vr.dmi'

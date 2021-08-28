@@ -71,8 +71,7 @@
 		to_chat(user, "<span class='notice'>You start to dismantle the IV drip.</span>")
 		if(do_after(user, 15))
 			to_chat(user, "<span class='notice'>You dismantle the IV drip.</span>")
-			var/obj/item/stack/rods/A = new /obj/item/stack/rods(src.loc)
-			A.amount = 6
+			new /obj/item/stack/rods(src.loc, 6)
 			if(beaker)
 				beaker.loc = get_turf(src)
 				beaker = null

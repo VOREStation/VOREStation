@@ -7,6 +7,7 @@ GLOBAL_DATUM_INIT(news_data, /datum/lore/news, new)
 /datum/lore/news
 	var/datum/feed_channel/station_newspaper
 	var/datum/lore/codex/category/main_news/news_codex = new()
+	var/newsindex
 
 /datum/lore/news/New()
 	..()
@@ -17,6 +18,10 @@ GLOBAL_DATUM_INIT(news_data, /datum/lore/news, new)
 				break
 	spawn(300) // Yes, again.
 		fill_codex_news()
+	if (!news_codex.newsindex)
+		return
+	else
+		newsindex = news_codex.newsindex
 
 /datum/lore/news/proc/fill_codex_news()
 	if(!news_network)

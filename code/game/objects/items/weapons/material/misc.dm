@@ -206,3 +206,15 @@
 /obj/item/weapon/material/whip/attack_self(mob/user)
 	user.visible_message("<span class='warning'>\The [user] cracks \the [src]!</span>")
 	playsound(src, 'sound/effects/snap.ogg', 50, 1)
+
+/obj/item/weapon/material/knife/machete/hatchet/stone
+	name = "hatchet"
+	desc = "A very sharp axe blade upon a short fibremetal handle. It has a long history of chopping things, but now it is used for chopping wood."
+	icon = 'icons/obj/weapons_vr.dmi'
+	icon_state = "stone_wood_axe"
+	default_material = MAT_FLINT
+	origin_tech = list()
+	applies_material_colour = FALSE
+
+/obj/item/weapon/material/knife/machete/hatchet/stone/bone
+	icon_state = "stone_bone_axe"

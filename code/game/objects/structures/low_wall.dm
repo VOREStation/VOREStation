@@ -121,19 +121,37 @@
 			return FALSE
 	return TRUE
 
-/obj/structure/low_wall/MouseDrop_T(obj/O as obj, mob/user as mob)
+/obj/structure/low_wall/MouseDrop_T(obj/O, mob/user, src_location, over_location, src_control, over_control, params)
 	if(istype(O, /obj/structure/window))
 		var/obj/structure/window/W = O
 		if(Adjacent(W) && !W.anchored)
 			to_chat("<span class='notice'>You hoist [W] up onto [src].</span>")
 			W.forceMove(loc)
 			return
-	if ((!( istype(O, /obj/item/weapon) ) || user.get_active_hand() != O))
-		return ..()
 	if(isrobot(user))
 		return
 	if(can_place_items())
-		user.unEquip(O, 0, src.loc)
+		if(ismob(O.loc)) //If placing an item
+			if(!isitem(O) || user.get_active_hand() != O)
+				return ..()
+			if(isrobot(user))
+				return
+			user.drop_item()
+			if(O.loc != src.loc)
+				step(O, get_dir(O, src))
+
+		else if(isturf(O.loc) && isitem(O)) //If pushing an item on the tabletop
+			var/obj/item/I = O
+			if(I.anchored)
+				return
+
+			if((isliving(user)) && (Adjacent(user)) && !(user.incapacitated()))
+				if(O.w_class <= user.can_pull_size)
+					O.forceMove(loc)
+					auto_align(I, params, TRUE)
+				else
+					to_chat(user, SPAN_WARNING("\The [I] is too big for you to move!"))
+				return
 
 /obj/structure/low_wall/proc/handle_rod_use(mob/user, obj/item/stack/rods/R)
 	if(!grille_type)

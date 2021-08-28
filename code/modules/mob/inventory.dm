@@ -75,7 +75,7 @@ var/list/slot_equipment_priority = list( \
 /mob/proc/equip_voidsuit_to_slot_or_del_with_refit(obj/item/clothing/suit/space/void/W as obj, slot, species = SPECIES_HUMAN)
 	W.refit_for_species(species)
 	return equip_to_slot_if_possible(W, slot, 1, 1, 0)
-	
+
 /mob/proc/equip_voidhelm_to_slot_or_del_with_refit(obj/item/clothing/head/helmet/space/void/W as obj, slot, species = SPECIES_HUMAN)
 	W.refit_for_species(species)
 	return equip_to_slot_if_possible(W, slot, 1, 1, 0)

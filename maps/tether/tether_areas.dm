@@ -639,6 +639,13 @@
 	name = "Atmospherics Gas Storage"
 	icon_state = "atmos"
 
+/area/maintenance/engineering/atmos/airlock
+	name = "\improper Atmospherics Airlock"
+	icon_state = "atmos"
+/area/maintenance/engineering/atmos/airlock/gas
+	name = "\improper Atmospherics Airlock Gas Storage"
+	icon_state = "atmos"
+
 /area/engineering/atmos_intake
 	name = "\improper Atmospherics Intake"
 	icon_state = "atmos"

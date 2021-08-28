@@ -1141,6 +1141,7 @@
 		/obj/item/clothing/head/that = 5,
 		/obj/item/clothing/head/flatcap = 5,
 		/obj/item/clothing/shoes/brown = 5,
+		/obj/item/clothing/suit/storage/hooded/wintercoat/bar = 5,
 		/obj/item/clothing/accessory/permit/gun/bar = 1
 	)
 	req_log_access = access_hop
@@ -1178,6 +1179,7 @@
 	products = list(
 		/obj/item/clothing/under/rank/chef = 5,
 		/obj/item/clothing/shoes/black = 5,
+		/obj/item/clothing/shoes/cookflop = 2,
 		/obj/item/clothing/suit/storage/apron/white = 5,
 		/obj/item/clothing/suit/chef = 5,
 		/obj/item/clothing/suit/chef/classic = 5,
@@ -1213,6 +1215,7 @@
 		/obj/item/clothing/suit/storage/toggle/labcoat/modern = 5,
 		/obj/item/clothing/mask/surgical = 5,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/medical = 5,
+		/obj/item/clothing/suit/storage/hooded/wintercoat/medical/alt = 5,
 		/obj/item/clothing/shoes/boots/winter/medical = 5
 	)
 	req_log_access = access_hop
@@ -1229,6 +1232,7 @@
 		/obj/item/clothing/under/rank/chemist/skirt = 5,
 		/obj/item/clothing/shoes/white = 5,
 		/obj/item/clothing/suit/storage/toggle/labcoat/chemist = 5,
+		/obj/item/clothing/suit/storage/hooded/wintercoat/medical/chemist = 5,
 		/obj/item/weapon/storage/backpack/chemistry = 5,
 		/obj/item/weapon/storage/backpack/satchel/chem = 5,
 		/obj/item/weapon/storage/bag/chemistry = 5
@@ -1264,6 +1268,7 @@
 		/obj/item/clothing/under/rank/virologist/skirt = 5,
 		/obj/item/clothing/shoes/white = 5,
 		/obj/item/clothing/suit/storage/toggle/labcoat/virologist = 5,
+		/obj/item/clothing/suit/storage/hooded/wintercoat/medical/viro = 5,
 		/obj/item/clothing/mask/surgical = 5,
 		/obj/item/weapon/storage/backpack/virology = 5,
 		/obj/item/weapon/storage/backpack/satchel/vir = 5
@@ -1301,11 +1306,15 @@
 	req_access = list(access_robotics)
 	products = list(
 		/obj/item/clothing/under/rank/roboticist = 5,
-		/obj/item/clothing/suit/storage/toggle/labcoat = 5,
+		/obj/item/clothing/suit/storage/toggle/labcoat/roboticist = 5,
+		/obj/item/clothing/suit/storage/hooded/wintercoat/science/robotics = 5,
 		/obj/item/clothing/shoes/black = 5,
 		/obj/item/clothing/gloves/black = 5,
 		/obj/item/weapon/storage/backpack/toxins = 5,
 		/obj/item/weapon/storage/backpack/satchel/tox = 5
+	)
+	contraband = list(
+		/obj/item/clothing/suit/storage/hooded/techpriest = 2
 	)
 	req_log_access = access_hop
 	has_logs = 1
@@ -1330,7 +1339,9 @@
 		/obj/item/weapon/storage/fancy/whitecandle_box = 5,
 		/obj/item/weapon/storage/fancy/blackcandle_box = 5,
 		/obj/item/godfig = 5,
-		/obj/item/weapon/deck/tarot = 5
+		/obj/item/weapon/deck/tarot = 5,
+		/obj/item/clothing/suit/storage/hooded/wintercoat/ratvar = 1,
+		/obj/item/clothing/suit/storage/hooded/wintercoat/narsie = 1
 	)
 	req_log_access = access_hop
 	has_logs = 1
@@ -1440,6 +1451,7 @@
 		/obj/item/device/radio/headset/headset_service = 5,
 		/obj/item/clothing/under/rank/janitor = 5,
 		/obj/item/clothing/under/dress/maid/janitor = 5,
+		/obj/item/clothing/suit/storage/hooded/wintercoat/janitor = 5,
 		/obj/item/clothing/gloves/black = 5,
 		/obj/item/weapon/storage/belt/janitor = 5,
 		/obj/item/clothing/shoes/galoshes = 5,

@@ -70,6 +70,13 @@
 	build_path = /obj/item/weapon/gun/energy/floragun
 	sort_string = "MAAAG"
 
+/datum/design/item/weapon/energy/vinstunrevolver
+	id = "vinstunrevolver"
+	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
+	materials = list(MAT_STEEL = 4000)
+	build_path = /obj/item/weapon/gun/energy/stunrevolver/vintage
+	sort_string = "MAAAH"
+
 // Ballistic weapons
 
 /datum/design/item/weapon/ballistic/AssembleDesignName()

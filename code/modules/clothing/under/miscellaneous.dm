@@ -565,6 +565,11 @@
 	desc = "A red and black dress fit for a countess."
 	icon_state = "countess"
 
+/obj/item/clothing/under/verglasdress
+    name = "verglas dress"
+    desc = "The modern twist on a forgotten pattern, the Verglas style utilizes comfortable velvet and silver white satin to create an otherworldly effect evocative of winter, or the void."
+    icon_state = "verglas_dress"
+
 /*
  * wedding stuff
  */
@@ -738,6 +743,13 @@ Uniforms and such
 	name = "checkered skirt"
 	icon_state = "checkered_suit_skirt"
 
+/obj/item/clothing/under/suit_jacket/gambler
+	name = "gambling suit"
+	desc = "The suit of a gambler. Lady luck be with you."
+	icon_state = "gambler_suit"
+	item_state_slots = list(slot_r_hand_str = "lawyer_black", slot_l_hand_str = "lawyer_black")
+	starting_accessories = list(/obj/item/clothing/accessory/tie/black, /obj/item/clothing/accessory/jacket/gambler)
+
 /obj/item/clothing/under/suit_jacket/tan
 	name = "tan suit"
 	desc = "A tan suit. Smart, but casual."
@@ -748,13 +760,6 @@ Uniforms and such
 /obj/item/clothing/under/suit_jacket/tan/skirt
 	name = "tan skirt"
 	icon_state = "tan_suit_skirt"
-
-/obj/item/clothing/under/serviceoveralls
-	name = "workman outfit"
-	desc = "The very image of a working man. Not that you're probably doing work."
-	icon_state = "mechanic"
-	item_state_slots = list(slot_r_hand_str = "cargo", slot_l_hand_str = "cargo")
-	rolled_sleeves = 0
 
 /obj/item/clothing/under/cheongsam
 	name = "white cheongsam"
@@ -796,6 +801,18 @@ Uniforms and such
 	name = "dark blue cheongsam"
 	desc = "It is a dark blue cheongsam dress."
 	icon_state = "cheongsam-darkblue"
+
+/obj/item/clothing/under/qipao_colorable
+	name = "qipao"
+	desc = "A traditional Chinese women's garment, typically made from silk."
+	icon_state = "qipao"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+
+/obj/item/clothing/under/qipao2_colorable
+	name = "slim qipao"
+	desc = "A traditional Chinese women's garment, typically made from silk. This one is fairly slim."
+	icon_state = "qipao2"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 
 /obj/item/clothing/under/blazer
 	name = "blue blazer"
@@ -884,6 +901,10 @@ Uniforms and such
 	desc = "A flowery skirt that comes in a variety of colors."
 	icon_state = "flowerskirt"
 
+/obj/item/clothing/under/fashionminiskirt
+    name = "fashionable miniskirt"
+    desc = "An impractically short miniskirt allegedly making waves through the local fashion scene."
+    icon_state = "miniskirt_fashion"
 /*
  * swimsuit
  */
@@ -945,6 +966,12 @@ Uniforms and such
 	name = "mankini"
 	desc = "No honest man would wear this abomination"
 	icon_state = "mankini"
+
+/obj/item/clothing/under/swimsuit/cowbikini
+	name = "cow print bikini"
+	desc = "A rather skimpy cow patterned swimsuit."
+	icon_state = "swim_cow"
+
 
 /*
  * pyjamas
@@ -1010,12 +1037,6 @@ Uniforms and such
 	desc = "A dress uniform belonging to Stealth Assault Enterprises, a minor private military corporation."
 	icon_state = "saare"
 	worn_state = "saare"
-
-/obj/item/clothing/under/frontier
-	name = "frontier clothes"
-	desc = "A rugged flannel shirt and denim overalls. A popular style among frontier colonists."
-	icon_state = "frontier"
-	worn_state = "frontier"
 
 /obj/item/clothing/under/focal
 	name = "\improper Focal Point jumpsuit"
@@ -1122,3 +1143,82 @@ Uniforms and such
 
 /obj/item/clothing/under/color/ranger/yellow
 	unicolor = "yellow"
+
+/obj/item/clothing/under/boater
+	name = "boater outfit"
+	desc = "A classic outfit for those with a nautical inclination."
+	icon_state = "boater"
+	worn_state = "boater"
+
+/obj/item/clothing/under/tourist_1
+	name = "summer outfit"
+	desc = "The perfect outfit to wear out of town."
+	icon_state = "tourist_1"
+	worn_state = "tourist_1"
+
+/obj/item/clothing/under/tourist_2
+	name = "summer outfit"
+	desc = "The perfect outfit to wear out of town."
+	icon_state = "tourist_2"
+	worn_state = "tourist_2"
+
+/obj/item/clothing/under/relaxwear_1
+	name = "casual outfit"
+	desc = "Something casual to wear out on the town. Pairs well with the holiday season."
+	icon_state = "relaxwear_1"
+	worn_state = "relaxwear_1"
+	starting_accessories = list(/obj/item/clothing/accessory/wcoat/swvest/red)
+
+/obj/item/clothing/under/relaxwear_2
+	name = "relaxing outfit"
+	desc = "A comfy looking set of clothes to relax in, even if the style is a bit dated."
+	icon_state = "relaxwear_2"
+	worn_state = "relaxwear_2"
+	starting_accessories = list(/obj/item/clothing/accessory/wcoat/swvest/green)
+
+/obj/item/clothing/under/serviceoveralls
+	name = "workman outfit"
+	desc = "The very image of a working man. Not that you're probably doing work."
+	icon_state = "mechanic"
+	item_state_slots = list(slot_r_hand_str = "cargo", slot_l_hand_str = "cargo")
+	rolled_sleeves = 0
+
+/obj/item/clothing/under/frontier
+	name = "frontier clothes"
+	desc = "A rugged flannel shirt and denim overalls. A popular style among frontier colonists."
+	icon_state = "frontier"
+	worn_state = "frontier"
+
+/obj/item/clothing/under/rustler
+	name = "rustler outfit"
+	desc = "A rugged outfit for rustling cattle out on the frontier."
+	icon_state = "rustler"
+	worn_state = "rustler"
+
+/obj/item/clothing/under/cowboy
+	name = "cowboy clothes"
+	desc = "Some rugged clothes for hard labor out on the farm."
+	icon_state = "cowboy"
+	worn_state = "cowboy"
+
+/obj/item/clothing/under/cowboy/tan
+	name = "tan cowboy clothes"
+	icon_state = "cowboy_tan"
+	worn_state = "cowboy_tan"
+
+/obj/item/clothing/under/cowboy/brown
+	name = "brown cowboy clothes"
+	icon_state = "cowboy_brown"
+	worn_state = "cowboy_brown"
+
+/obj/item/clothing/under/cowboy/grey
+	name = "grey cowboy clothes"
+	icon_state = "cowboy_grey"
+	worn_state = "cowboy_grey"
+
+/obj/item/clothing/under/primitive
+	name = "primitive clothes"
+	desc = "Some patched together rags. Better than being naked."
+	force = 0
+	icon_state = "rag"
+	worn_state = "rag"

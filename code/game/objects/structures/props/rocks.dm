@@ -39,3 +39,14 @@
 
 /obj/structure/prop/rock/small/wateralt
 	icon_state = "waterrocks2"
+
+// bluespace crystal from Eris
+/obj/structure/prop/rock/crystal
+	name = "crystal"
+	icon = 'icons/obj/props/decor.dmi'
+	icon_state = "bsc"
+
+/obj/structure/prop/rock/crystal_dust
+	name = "crystal dust"
+	icon = 'icons/obj/props/decor.dmi'
+	icon_state = "bsc_dust"

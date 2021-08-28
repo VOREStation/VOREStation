@@ -10,11 +10,11 @@
 	name = "mining equipment vendor"
 	desc = "An equipment vendor for miners, points collected at an ore redemption machine can be spent here."
 	icon = 'icons/obj/vending.dmi'
-	icon_state = "adh-tool"
+	icon_state = "minevend"
 	density = TRUE
 	anchored = TRUE
-	var/icon_deny = "adh-tool-deny"
-	var/icon_vend = "adh-tool-vend"
+	var/icon_deny = "minevend-deny"
+	var/icon_vend = "minevend-vend"
 	circuit = /obj/item/weapon/circuitboard/mining_equipment_vendor
 	var/obj/item/weapon/card/id/inserted_id
 	var/list/prize_list = list(
@@ -46,7 +46,8 @@
 		new /datum/data/mining_equipment("Hardsuit - Intelligence Storage",	/obj/item/rig_module/ai_container,								2500),
 		new /datum/data/mining_equipment("Hardsuit - Smoke Bomb Deployer",	/obj/item/rig_module/grenade_launcher/smoke,					2000),
 		new /datum/data/mining_equipment("Industrial Equipment - Phoron Bore",	/obj/item/weapon/gun/magnetic/matfed/phoronbore/loaded,		3000),
-		new /datum/data/mining_equipment("Industrial Equipment - Sheet-Snatcher",/obj/item/weapon/storage/bag/sheetsnatcher,					500),		new /datum/data/mining_equipment("Digital Tablet - Standard",	/obj/item/modular_computer/tablet/preset/custom_loadout/standard,	500),
+		new /datum/data/mining_equipment("Industrial Equipment - Sheet-Snatcher",/obj/item/weapon/storage/bag/sheetsnatcher,				500),
+		new /datum/data/mining_equipment("Digital Tablet - Standard",	/obj/item/modular_computer/tablet/preset/custom_loadout/standard,	500),
 		new /datum/data/mining_equipment("Digital Tablet - Advanced",	/obj/item/modular_computer/tablet/preset/custom_loadout/advanced,	1000),
 		new /datum/data/mining_equipment("Fine Excavation Kit - Chisels",/obj/item/weapon/storage/excavation,								500),
 		new /datum/data/mining_equipment("Fine Excavation Kit - Measuring Tape",/obj/item/device/measuring_tape,							125),
@@ -85,6 +86,8 @@
 		EQUIPMENT("Defense Equipment - Razor Drone Deployer",	/obj/item/weapon/grenade/spawnergrenade/manhacks/station/locked,	1000),
 		EQUIPMENT("Defense Equipment - Sentry Drone Deployer",	/obj/item/weapon/grenade/spawnergrenade/ward,						1500),
 		EQUIPMENT("Defense Equipment - Smoke Bomb",				/obj/item/weapon/grenade/smokebomb,									100),
+		EQUIPMENT("Hybrid Equipment - Proto-Kinetic Dagger",	/obj/item/weapon/kinetic_crusher/machete/dagger,					500),
+		EQUIPMENT("Hybrid Equipment - Proto-Kinetic Machete",	/obj/item/weapon/kinetic_crusher/machete,							1000),
 		EQUIPMENT("Durasteel Fishing Rod",						/obj/item/weapon/material/fishing_rod/modern/strong,				7500),
 		EQUIPMENT("Titanium Fishing Rod",						/obj/item/weapon/material/fishing_rod/modern,						1000),
 		EQUIPMENT("Fishing Net",								/obj/item/weapon/material/fishing_net,								500),
@@ -140,14 +143,15 @@
 		EQUIPMENT("Industrial Equipment - Sheet-Snatcher",	/obj/item/weapon/storage/bag/sheetsnatcher,		500),
 	)
 	prize_list["Hardsuit"] = list(
-		EQUIPMENT("Hardsuit - Control Module",		/obj/item/weapon/rig/industrial/vendor,		2000),
-		EQUIPMENT("Hardsuit - Drill",				/obj/item/rig_module/device/drill,			5000),
-		EQUIPMENT("Hardsuit - Intelligence Storage",/obj/item/rig_module/ai_container,			2500),
-		EQUIPMENT("Hardsuit - Maneuvering Jets",	/obj/item/rig_module/maneuvering_jets,		1250),
-		EQUIPMENT("Hardsuit - Material Scanner",	/obj/item/rig_module/vision/material,		500),
-		EQUIPMENT("Hardsuit - Ore Scanner",			/obj/item/rig_module/device/orescanner,		1000),
-		EQUIPMENT("Hardsuit - Plasma Cutter",		/obj/item/rig_module/device/plasmacutter,	800),
-		EQUIPMENT("Hardsuit - Smoke Bomb Deployer",	/obj/item/rig_module/grenade_launcher/smoke,2000),
+		EQUIPMENT("Hardsuit - Control Module",				/obj/item/weapon/rig/industrial/vendor,			2000),
+		EQUIPMENT("Hardsuit - Drill",						/obj/item/rig_module/device/drill,				5000),
+		EQUIPMENT("Hardsuit - Intelligence Storage",		/obj/item/rig_module/ai_container,				2500),
+		EQUIPMENT("Hardsuit - Maneuvering Jets",			/obj/item/rig_module/maneuvering_jets,			1250),
+		EQUIPMENT("Hardsuit - Material Scanner",			/obj/item/rig_module/vision/material,			500),
+		EQUIPMENT("Hardsuit - Ore Scanner",					/obj/item/rig_module/device/orescanner,			1000),
+		EQUIPMENT("Hardsuit - Plasma Cutter",				/obj/item/rig_module/device/plasmacutter,		800),
+		EQUIPMENT("Hardsuit - Smoke Bomb Deployer",			/obj/item/rig_module/grenade_launcher/smoke,	2000),
+		EQUIPMENT("Hardsuit - Proto-Kinetic Gauntlets",		/obj/item/rig_module/gauntlets,					2000),
 	)
 	prize_list["Miscellaneous"] = list(
 		EQUIPMENT("Absinthe",					/obj/item/weapon/reagent_containers/food/drinks/bottle/absinthe,	125),

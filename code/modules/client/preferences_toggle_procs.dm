@@ -253,7 +253,7 @@
 	SScharacter_setup.queue_preferences_save(prefs)
 
 	feedback_add_details("admin_verb","TAirPumpNoise")
-	
+
 /client/verb/toggle_old_door_sounds()
 	set name = "Toggle Old Door Sounds"
 	set category = "Preferences"
@@ -268,7 +268,7 @@
 	SScharacter_setup.queue_preferences_save(prefs)
 
 	feedback_add_details("admin_verb","TOldDoorSounds")
-	
+
 /client/verb/toggle_department_door_sounds()
 	set name = "Toggle Department Door Sounds"
 	set category = "Preferences"
@@ -392,6 +392,19 @@
 
 	feedback_add_details("admin_verb","TStatusIndicators")
 
+
+/client/verb/toggle_radio_sounds()
+	set name = "Toggle Radio Sounds"
+	set category = "Preferences"
+	set desc = "Enable/Disable hearing a sound when somebody speaks over your headset."
+
+	var/pref_path = /datum/client_preference/radio_sounds
+	toggle_preference(pref_path)
+	SScharacter_setup.queue_preferences_save(prefs)
+
+	to_chat(src, "You will now [(is_preference_enabled(/datum/client_preference/radio_sounds)) ? "hear" : "not hear"] radio sounds.")
+
+	feedback_add_details("admin_verb","TRadioSounds")
 
 // Not attached to a pref datum because those are strict binary toggles
 /client/verb/toggle_examine_mode()

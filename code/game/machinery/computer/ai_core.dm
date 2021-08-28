@@ -86,8 +86,7 @@
 					to_chat(user, "<span class='notice'>You remove the cables.</span>")
 					state = 2
 					icon_state = "2"
-					var/obj/item/stack/cable_coil/A = new /obj/item/stack/cable_coil( loc )
-					A.amount = 5
+					new /obj/item/stack/cable_coil(loc, 5)
 
 			if(istype(P, /obj/item/stack/material) && P.get_material_name() == "rglass")
 				var/obj/item/stack/RG = P

@@ -160,6 +160,7 @@
 	var/limb_icon
 	// Used for if the mob can drop limbs. Overrides the icon cache key, so it doesn't keep remaking the icon needlessly.
 	var/limb_icon_key
+	var/understands_common = TRUE 		//VOREStation Edit - Makes it so that simplemobs can understand galcomm without being able to speak it.
 
 /mob/living/simple_mob/Initialize()
 	verbs -= /mob/verb/observe
@@ -280,3 +281,10 @@
 	hud_list[STATUS_HUD]  = gen_hud_image(buildmode_hud, src, "ai_0", plane = PLANE_BUILDMODE)
 	hud_list[LIFE_HUD]	  = gen_hud_image(buildmode_hud, src, "ais_1", plane = PLANE_BUILDMODE)
 	add_overlay(hud_list)
+
+//VOREStation Add Start		Makes it so that simplemobs can understand galcomm without being able to speak it.
+/mob/living/simple_mob/say_understands(var/mob/other, var/datum/language/speaking = null)
+	if(understands_common && speaking?.name == LANGUAGE_GALCOM)
+		return TRUE
+	return ..()
+//Vorestation Add End

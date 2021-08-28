@@ -43,7 +43,9 @@
 /mob/living/simple_mob/attack_ghost(mob/observer/dead/user as mob)
 	if(!ghostjoin)
 		return ..()
-
+	if(jobban_isbanned(user, "GhostRoles"))
+		to_chat(user, "<span class='warning'>You cannot inhabit this creature because you are banned from playing ghost roles.</span>")
+		return
 	if(!evaluate_ghost_join(user))
 		return ..()
 

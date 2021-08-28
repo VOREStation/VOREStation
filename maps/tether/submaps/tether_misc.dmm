@@ -2432,6 +2432,21 @@
 /area/shuttle/escape{
 	base_turf = /turf/simulated/floor/tiled/techfloor/grid
 	})
+"qb" = (
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "tram"
+	},
+/obj/machinery/door/airlock/glass_external{
+	frequency = 1380;
+	icon_state = "door_locked";
+	id_tag = "escape_shuttle_hatch_offsite";
+	locked = 1;
+	name = "Shuttle Hatch"
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/escape{
+	base_turf = /turf/simulated/floor/tiled/techfloor/grid
+	})
 "qc" = (
 /obj/effect/transit/light{
 	dir = 4
@@ -2467,8 +2482,7 @@
 "qY" = (
 /obj/effect/fancy_shuttle/orangeline{
 	dir = 1;
-	fancy_shuttle_tag = "tram";
-	plane = -45
+	fancy_shuttle_tag = "tram"
 	},
 /obj/effect/fancy_shuttle_floor_preview/orangeline{
 	dir = 1;
@@ -18399,8 +18413,8 @@ RN
 RN
 ZE
 ZE
-As
-As
+qb
+qb
 ZE
 ZE
 RN
@@ -18408,8 +18422,8 @@ RN
 RN
 ZE
 ZE
-As
-As
+qb
+qb
 ZE
 ZE
 RN

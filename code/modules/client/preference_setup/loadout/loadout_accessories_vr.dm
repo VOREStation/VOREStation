@@ -40,6 +40,10 @@
 	display_name = "collar, pink"
 	path = /obj/item/clothing/accessory/collar/pink
 
+/datum/gear/collar/cowbell
+	display_name = "collar, cowbell"
+	path = /obj/item/clothing/accessory/collar/cowbell
+
 /datum/gear/collar/holo
 	display_name = "collar, holo"
 	path = /obj/item/clothing/accessory/collar/holo

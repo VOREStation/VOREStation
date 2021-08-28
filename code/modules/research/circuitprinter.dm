@@ -100,8 +100,7 @@ using metal and glass, it uses glass and reagents (usually sulphuric acid).
 		if(materials[f] >= SHEET_MATERIAL_AMOUNT)
 			var/path = getMaterialType(f)
 			if(path)
-				var/obj/item/stack/S = new path(loc)
-				S.amount = round(materials[f] / SHEET_MATERIAL_AMOUNT)
+				new path(loc, round(materials[f] / SHEET_MATERIAL_AMOUNT))
 	..()
 
 /obj/machinery/r_n_d/circuit_imprinter/attackby(var/obj/item/O as obj, var/mob/user as mob)

@@ -38824,6 +38824,11 @@
 "fzy" = (
 /turf/simulated/wall,
 /area/tether/surfacebase/security/iaa/officecommon)
+"fzG" = (
+/turf/simulated/wall/fancy_shuttle/nondense{
+	fancy_shuttle_tag = "lifeboat1"
+	},
+/area/shuttle/tether)
 "fEX" = (
 /obj/structure/cable{
 	d1 = 2;
@@ -57883,7 +57888,7 @@ aAN
 aAN
 aJn
 aKU
-aME
+fzG
 aME
 aME
 aNz
@@ -58451,7 +58456,7 @@ arJ
 arJ
 arJ
 aKU
-aME
+fzG
 aME
 aME
 aME

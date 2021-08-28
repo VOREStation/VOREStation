@@ -63,8 +63,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 		if(do_after(user, 50))
 			var/obj/item/solar_assembly/S = new(loc)
 			S.anchored = TRUE
-			var/obj/item/stack/glass = new glass_type(loc)
-			glass.amount = 2
+			new glass_type(loc, 2)
 			playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 			user.visible_message("<span class='notice'>[user] takes the glass off the solar panel.</span>")
 			qdel(src)

@@ -100,6 +100,9 @@
 /area/tether_away/beach/jungle)
 "ay" = (
 /obj/structure/table/glass,
+/obj/structure/panic_button{
+	pixel_x = -32
+	},
 /turf/simulated/floor/tiled/kafel_full/white,
 /area/tether_away/beach/resort/lockermed)
 "aA" = (
@@ -224,7 +227,9 @@
 /turf/simulated/floor/wood,
 /area/tether_away/beach/resort/janibar)
 "aX" = (
-/obj/item/weapon/stool/padded,
+/obj/item/weapon/stool/padded{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/asteroid_steel{
 	outdoors = 1
 	},
@@ -357,6 +362,14 @@
 	outdoors = 1
 	},
 /area/tether_away/beach/resort)
+"di" = (
+/obj/item/weapon/stool/padded{
+	dir = 8
+	},
+/turf/simulated/mineral/floor/cave{
+	name = "dirt"
+	},
+/area/tether_away/beach/cavebase)
 "dm" = (
 /obj/machinery/vending/loadout/accessory,
 /turf/simulated/floor/tiled/asteroid_steel,
@@ -382,6 +395,11 @@
 	dir = 8
 	},
 /area/tether_away/beach)
+"ef" = (
+/obj/structure/table/steel_reinforced,
+/obj/machinery/microwave,
+/turf/simulated/floor/tiled/eris/cafe,
+/area/tether_away/beach/resort/kitchen)
 "et" = (
 /obj/machinery/shower{
 	dir = 8;
@@ -517,11 +535,13 @@
 	},
 /area/tether_away/beach/resort)
 "hq" = (
-/obj/item/weapon/stool/padded,
 /obj/structure/cable/cyan{
 	d1 = 1;
 	d2 = 4;
 	icon_state = "1-4"
+	},
+/obj/item/weapon/stool/padded{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/asteroid_steel{
 	outdoors = 1
@@ -624,6 +644,10 @@
 	outdoors = 1
 	},
 /area/tether_away/beach/resort)
+"ka" = (
+/obj/structure/flora/ausbushes/stalkybush,
+/turf/simulated/floor/water/ocean,
+/area/tether_away/beach/cavebase)
 "kd" = (
 /obj/machinery/light/small,
 /turf/simulated/floor/outdoors/grass,
@@ -751,6 +775,10 @@
 "lI" = (
 /turf/simulated/floor/beach/sand/desert/outdoors,
 /area/tether_away/beach/resort)
+"lR" = (
+/obj/random/mob/semirandom_mob_spawner/fish,
+/turf/simulated/floor/water/deep/ocean,
+/area/tether_away/beach/water)
 "mb" = (
 /obj/machinery/power/apc/alarms_hidden{
 	dir = 1;
@@ -866,11 +894,13 @@
 	},
 /area/tether_away/beach/jungle)
 "oF" = (
-/obj/item/weapon/stool/padded,
 /obj/structure/cable/cyan{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/item/weapon/stool/padded{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/asteroid_steel{
 	outdoors = 1
@@ -957,6 +987,14 @@
 	outdoors = 1
 	},
 /area/tether_away/beach/resort)
+"pM" = (
+/obj/item/weapon/stool/padded{
+	dir = 1
+	},
+/turf/simulated/mineral/floor/cave{
+	name = "dirt"
+	},
+/area/tether_away/beach/cavebase)
 "pP" = (
 /obj/effect/overlay/palmtree_l,
 /turf/simulated/floor/beach/sand/desert/outdoors,
@@ -1154,6 +1192,10 @@
 /obj/effect/overlay/coconut,
 /turf/simulated/mineral/ignore_mapgen,
 /area/tether_away/beach/jungle)
+"wJ" = (
+/obj/structure/flora/ausbushes/brflowers,
+/turf/simulated/floor/outdoors/grass,
+/area/tether_away/beach/resort)
 "wM" = (
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -1191,12 +1233,12 @@
 	},
 /area/tether_away/beach/cavebase)
 "xT" = (
-/obj/tether_away_spawner/beach_outside_friendly,
-/turf/simulated/floor/beach/sand/desert/outdoors,
-/area/tether_away/beach/resort)
+/obj/tether_away_spawner/beach_outside,
+/turf/simulated/floor/outdoors/grass/forest,
+/area/tether_away/beach/jungle)
 "xW" = (
-/obj/tether_away_spawner/beach_outside_friendly,
-/turf/simulated/floor/beach/sand/desert/outdoors,
+/obj/structure/flora/tree/jungle_small,
+/turf/simulated/floor/outdoors/grass,
 /area/tether_away/beach/jungle)
 "yf" = (
 /obj/structure/table/reinforced,
@@ -1208,6 +1250,14 @@
 	},
 /turf/simulated/floor/outdoors/grass,
 /area/tether_away/beach/resort/janibar)
+"yz" = (
+/obj/item/weapon/stool/padded{
+	dir = 4
+	},
+/turf/simulated/mineral/floor/cave{
+	name = "dirt"
+	},
+/area/tether_away/beach/cavebase)
 "yF" = (
 /obj/structure/barricade,
 /turf/simulated/mineral/floor/cave{
@@ -1282,6 +1332,10 @@
 /obj/machinery/door/airlock/sandstone,
 /turf/simulated/floor/tiled/asteroid_steel,
 /area/tether_away/beach/resort/kitchen)
+"AV" = (
+/obj/structure/bonfire,
+/turf/simulated/floor/beach/sand/outdoors,
+/area/tether_away/beach/resort)
 "Bk" = (
 /obj/item/weapon/reagent_containers/food/condiment/flour,
 /obj/item/weapon/reagent_containers/food/condiment/flour,
@@ -1321,10 +1375,17 @@
 /obj/item/weapon/reagent_containers/food/condiment/small/saltshaker{
 	pixel_x = -3
 	},
+/obj/item/weapon/reagent_containers/glass/bottle/eznutrient,
+/obj/item/weapon/reagent_containers/glass/bottle/eznutrient,
+/obj/item/weapon/reagent_containers/glass/bottle/eznutrient,
+/obj/item/weapon/reagent_containers/glass/bottle/eznutrient,
+/obj/item/weapon/reagent_containers/glass/bottle/eznutrient,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/tether_away/beach/resort/kitchen)
 "By" = (
-/obj/item/weapon/stool/baystool/padded,
+/obj/item/weapon/stool/baystool/padded{
+	dir = 4
+	},
 /turf/simulated/floor/lino,
 /area/tether_away/beach/resort/kitchen)
 "BF" = (
@@ -1335,6 +1396,10 @@
 	dir = 8
 	},
 /area/tether_away/beach/jungle)
+"BM" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/simulated/floor/water/ocean,
+/area/tether_away/beach/cavebase)
 "BP" = (
 /obj/structure/closet/crate/medical,
 /turf/simulated/floor/tiled/kafel_full/white,
@@ -1378,8 +1443,8 @@
 	},
 /area/tether_away/beach/jungle)
 "Dq" = (
-/obj/tether_away_spawner/beach_outside_friendly,
-/turf/simulated/floor/outdoors/grass,
+/obj/tether_away_spawner/beach_outside,
+/turf/simulated/floor/beach/sand/desert/outdoors,
 /area/tether_away/beach/jungle)
 "Dr" = (
 /obj/effect/shuttle_landmark{
@@ -1461,6 +1526,10 @@
 /obj/machinery/vending/loadout/costume,
 /turf/simulated/floor/tiled/asteroid_steel,
 /area/tether_away/beach/resort/lockermed)
+"EU" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/turf/simulated/floor/outdoors/grass,
+/area/tether_away/beach/resort)
 "Fm" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -1471,6 +1540,12 @@
 	outdoors = 1
 	},
 /area/tether_away/beach/resort)
+"FB" = (
+/obj/tether_away_spawner/beach_outside,
+/turf/simulated/floor/outdoors/grass{
+	outdoors = 0
+	},
+/area/tether_away/beach/cavebase)
 "Gi" = (
 /obj/machinery/door/airlock/sandstone{
 	id_tag = "LoveShack3";
@@ -1598,6 +1673,10 @@
 /obj/structure/table/steel_reinforced,
 /turf/simulated/floor/lino,
 /area/tether_away/beach/resort/kitchen)
+"Ks" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/simulated/floor/outdoors/grass,
+/area/tether_away/beach/resort)
 "Kw" = (
 /turf/simulated/floor/water/beach{
 	dir = 8
@@ -1864,9 +1943,9 @@
 /turf/simulated/floor/tiled/kafel_full/white,
 /area/tether_away/beach/resort/lockermed)
 "RD" = (
-/obj/tether_away_spawner/beach_outside_friendly,
-/turf/simulated/floor/beach/sand/outdoors,
-/area/tether_away/beach/resort)
+/obj/random/mob/semirandom_mob_spawner/bird,
+/turf/simulated/floor/outdoors/grass/forest,
+/area/tether_away/beach/jungle)
 "RH" = (
 /obj/structure/closet/cabinet{
 	density = 0;
@@ -1937,7 +2016,7 @@
 /turf/simulated/floor/tiled/asteroid_steel,
 /area/tether_away/beach/resort/lockermed)
 "Tg" = (
-/mob/living/simple_mob/animal/passive/fish/icebass,
+/obj/random/mob/semirandom_mob_spawner/fish/b,
 /turf/simulated/floor/water/ocean,
 /area/tether_away/beach/cavebase)
 "Tp" = (
@@ -3369,7 +3448,7 @@ au
 ae
 ae
 ae
-Dq
+ae
 ae
 ae
 bq
@@ -3665,7 +3744,7 @@ Le
 xy
 xy
 xy
-Aw
+yz
 xy
 xy
 Xd
@@ -3808,7 +3887,7 @@ xy
 xy
 Aw
 gw
-Aw
+pM
 Xd
 Xd
 Xd
@@ -3924,7 +4003,7 @@ au
 au
 au
 au
-au
+RD
 ae
 ae
 au
@@ -3936,7 +4015,7 @@ au
 au
 au
 ae
-ae
+bl
 ae
 bq
 bq
@@ -3949,10 +4028,10 @@ ZC
 xy
 vg
 xy
-Aw
+di
 xy
 Xd
-Xd
+FB
 Xd
 Xd
 hQ
@@ -4121,18 +4200,18 @@ bq
 bq
 bq
 ae
-Dq
-ae
-au
-ae
-ae
-ae
 ae
 ae
 au
+ae
+ae
+ae
+ae
+ae
 au
+xT
 au
-Dq
+ae
 ae
 ae
 bq
@@ -4265,7 +4344,7 @@ ae
 ae
 ae
 ae
-ae
+bl
 ae
 ae
 ae
@@ -4521,7 +4600,7 @@ LQ
 pw
 pw
 pw
-pw
+ka
 pw
 LQ
 LQ
@@ -4802,7 +4881,7 @@ Xd
 Xd
 LQ
 pw
-pw
+BM
 pw
 pw
 pw
@@ -4903,7 +4982,7 @@ bq
 bq
 ae
 ae
-au
+xT
 au
 au
 ae
@@ -5010,7 +5089,7 @@ am
 am
 am
 am
-am
+lR
 am
 am
 am
@@ -5510,7 +5589,7 @@ ZC
 xy
 xy
 xy
-Xd
+FB
 Xd
 Xd
 xy
@@ -5627,7 +5706,7 @@ aa
 aa
 aa
 aa
-aa
+Dq
 aa
 aa
 aa
@@ -5691,7 +5770,7 @@ aa
 aa
 aa
 aa
-aa
+Dq
 aa
 aa
 aa
@@ -5835,7 +5914,7 @@ aa
 aa
 aa
 aa
-xW
+aa
 aa
 aa
 aa
@@ -5954,7 +6033,7 @@ bq
 bq
 bq
 bq
-xW
+aa
 aa
 aa
 aa
@@ -6008,7 +6087,7 @@ am
 am
 am
 am
-am
+lR
 am
 am
 am
@@ -6061,7 +6140,7 @@ aa
 aa
 aa
 aa
-xW
+aa
 aa
 aa
 aa
@@ -6223,7 +6302,7 @@ ZC
 xy
 xy
 xy
-Aw
+yz
 xy
 ZC
 ZC
@@ -6396,7 +6475,7 @@ aa
 aa
 aa
 aa
-xW
+aa
 aa
 aa
 aa
@@ -6535,7 +6614,7 @@ aa
 aa
 aa
 aa
-aa
+Dq
 aa
 aa
 aa
@@ -7006,7 +7085,7 @@ am
 am
 am
 am
-am
+lR
 am
 am
 am
@@ -8083,7 +8162,7 @@ aa
 aa
 aa
 aa
-xW
+aa
 aa
 aa
 aa
@@ -8120,7 +8199,7 @@ lI
 lI
 lI
 lI
-xT
+lI
 lI
 lI
 lI
@@ -8485,7 +8564,7 @@ aa
 aa
 aa
 aa
-xW
+aa
 aa
 aa
 aa
@@ -8520,7 +8599,7 @@ aa
 aa
 aa
 aa
-xW
+aa
 aa
 aa
 aa
@@ -10655,7 +10734,7 @@ Wf
 Wf
 Wf
 Wf
-Wf
+Ks
 ah
 as
 yf
@@ -10794,7 +10873,7 @@ Nv
 Nv
 Nv
 Wf
-Wf
+EU
 LJ
 Wf
 Wf
@@ -11222,7 +11301,7 @@ Nv
 Wf
 Wf
 LJ
-Wf
+wJ
 Wf
 ah
 ad
@@ -11514,7 +11593,7 @@ Jn
 LB
 fl
 aD
-uk
+ef
 uk
 aD
 XB
@@ -12508,8 +12587,8 @@ zw
 Nv
 Wf
 Wf
-Wf
-Wf
+wJ
+wJ
 Wf
 Nv
 Nv
@@ -12664,7 +12743,7 @@ UN
 zw
 Nv
 Nv
-Nv
+AV
 Nv
 Nv
 Nv
@@ -13794,7 +13873,7 @@ hj
 jQ
 zw
 yg
-Wf
+EU
 Wf
 Nv
 Nv
@@ -13935,7 +14014,7 @@ hj
 hj
 jQ
 zw
-Wf
+Ks
 Wf
 Nv
 Nv
@@ -14184,7 +14263,7 @@ aa
 aa
 aa
 aa
-xW
+aa
 aa
 aa
 aa
@@ -15020,8 +15099,8 @@ lI
 lI
 lI
 lI
-lI
-RD
+TU
+Nv
 Nv
 Nv
 Nv
@@ -15805,7 +15884,7 @@ am
 am
 am
 am
-am
+lR
 am
 am
 am
@@ -15987,7 +16066,7 @@ bq
 bq
 ae
 ae
-ae
+bl
 ae
 ai
 aa
@@ -16370,7 +16449,7 @@ bf
 bf
 am
 am
-am
+lR
 am
 am
 am
@@ -17342,7 +17421,7 @@ KU
 KU
 KU
 Nv
-xT
+lI
 lI
 lI
 lI
@@ -17491,7 +17570,7 @@ lI
 aa
 aa
 aa
-aa
+Dq
 aa
 aa
 aa
@@ -17504,7 +17583,7 @@ bf
 bf
 bf
 am
-am
+lR
 am
 am
 am
@@ -17546,7 +17625,7 @@ bq
 bq
 ae
 ae
-ae
+bl
 ae
 ae
 ae
@@ -17975,7 +18054,7 @@ ae
 au
 ae
 ae
-Dq
+ae
 ae
 ae
 aC
@@ -18413,7 +18492,7 @@ ae
 aa
 aa
 aa
-xW
+aa
 aa
 aa
 aa
@@ -18539,7 +18618,7 @@ bq
 bq
 bq
 ae
-ae
+xW
 ae
 au
 au
@@ -18737,7 +18816,7 @@ aa
 aa
 aa
 aa
-xW
+aa
 aa
 aa
 aa
@@ -18765,7 +18844,7 @@ aa
 aa
 aa
 aa
-aa
+Dq
 aa
 aa
 aa
@@ -19540,7 +19619,7 @@ au
 au
 ae
 ae
-ae
+xW
 ae
 ae
 ae
@@ -19691,7 +19770,7 @@ ae
 ae
 ae
 ae
-ae
+bl
 ae
 ae
 aa
@@ -19960,10 +20039,10 @@ bq
 ae
 ae
 ae
-Dq
 ae
 ae
 ae
+bl
 ae
 ae
 ae
@@ -20978,7 +21057,7 @@ bq
 ae
 ae
 ae
-ae
+bl
 ae
 ae
 ae
@@ -21409,7 +21488,7 @@ ae
 ae
 ae
 ae
-ae
+bl
 ae
 ae
 ae
