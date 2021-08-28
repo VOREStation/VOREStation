@@ -110,7 +110,7 @@
 "cf" = (/obj/item/clothing/mask/facehugger{icon_state = "facehugger_dead"; stat = 2},/turf/simulated/floor,/area/mine/abandoned)
 "cg" = (/obj/effect/alien/weeds{icon_state = "weeds"},/turf/simulated/floor/airless{icon_state = "floorscorched1"},/area/mine/abandoned)
 "ch" = (/obj/effect/decal/remains/human,/turf/simulated/floor{icon_state = "green"; dir = 8},/area/mine/abandoned)
-"ci" = (/obj/effect/alien/resin,/turf/simulated/floor/airless{icon_state = "floorgrime"},/area/mine/abandoned)
+"ci" = (/obj/item/stack/material/resin,/turf/simulated/floor/airless{icon_state = "floorgrime"},/area/mine/abandoned)
 "cj" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 8},/turf/simulated/floor/plating,/area/mine/abandoned)
 "ck" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor/plating,/area/mine/abandoned)
 "cl" = (/obj/effect/alien/weeds{icon_state = "weeds2"},/obj/item/clothing/mask/facehugger{icon_state = "facehugger_dead"; stat = 2},/turf/simulated/floor/airless{icon_state = "damaged5"},/area/mine/abandoned)
