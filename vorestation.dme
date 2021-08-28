@@ -1495,7 +1495,6 @@
 #include "code\game\objects\structures\window_vr.dm"
 #include "code\game\objects\structures\alien\alien egg.dm"
 #include "code\game\objects\structures\alien\alien.dm"
-#include "code\game\objects\structures\alien\resin structures.dm"
 #include "code\game\objects\structures\crates_lockers\__closets.dm"
 #include "code\game\objects\structures\crates_lockers\_closets_appearance_definitions.dm"
 #include "code\game\objects\structures\crates_lockers\_closets_appearance_definitions_vr.dm"

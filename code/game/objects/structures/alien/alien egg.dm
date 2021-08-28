@@ -4,7 +4,8 @@
 	desc = "It looks like a weird egg."
 	name = "egg"
 	icon_state = "egg_growing"
-	density = FALSE
+	density = 0
+	anchored = 1
 	var/progress = 0
 
 /obj/structure/alien/egg/Initialize()

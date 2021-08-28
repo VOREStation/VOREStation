@@ -225,53 +225,36 @@
 		spit_name = "acid"
 		to_chat(src, "<span class='alium'>You prepare to spit acid.</span>")
 
-/mob/living/carbon/human/proc/resin() //Gurgs : Refactored resin ability, big thanks to Jon.
+/mob/living/carbon/human/proc/resin() // -- TLE
 	set name = "Secrete Resin (75)"
 	set desc = "Secrete tough malleable resin."
 	set category = "Abilities"
 
-	var/list/options = list("resin door","resin wall","resin membrane","nest","resin blob")
-	for(var/option in options)
-		LAZYSET(options, option, new /image('icons/mob/alien.dmi', option)) // based off 'icons/effects/thinktank_labels.dmi'
+	var/choice = tgui_input_list(usr, "Choose what you wish to shape.","Resin building", list("resin door","resin wall","resin membrane","resin nest","resin blob")) //would do it through typesof but then the player choice would have the type path and we don't want the internal workings to be exposed ICly - Urist
+	if(!choice)
+		return
 
-	var/choice = show_radial_menu(src, src, options, radius = 42, require_near = TRUE)
+	if(!check_alien_ability(75,1,O_RESIN))
+		return
 
-	if(!choice || QDELETED(src) || src.incapacitated())
-		return FALSE
+	visible_message("<span class='warning'><B>[src] vomits up a thick purple substance and begins to shape it!</B></span>", "<span class='alium'>You shape a [choice].</span>")
 
-	var/targetLoc = get_step(src, dir)
-
-	if(iswall(targetLoc))
-		targetLoc = get_turf(src)
-	
 	var/obj/O
 
 	switch(choice)
 		if("resin door")
-			if(!check_alien_ability(75,1,O_RESIN))
-				return
-			else O = new /obj/structure/simple_door/resin(targetLoc)
+			O = new /obj/structure/simple_door/resin(loc)
 		if("resin wall")
-			if(!check_alien_ability(75,1,O_RESIN))
-				return
-			else O = new /obj/structure/alien/wall(targetLoc)
+			O = new /obj/effect/alien/resin/wall(loc)
 		if("resin membrane")
-			if(!check_alien_ability(75,1,O_RESIN))
-				return
-			else O = new /obj/structure/alien/membrane(targetLoc)
-		if("nest")
-			if(!check_alien_ability(75,1,O_RESIN))
-				return
-			else O = new /obj/structure/bed/nest(targetLoc)
+			O = new /obj/effect/alien/resin/membrane(loc)
+		if("resin nest")
+			O = new /obj/structure/bed/nest(loc)
 		if("resin blob")
-			if(!check_alien_ability(75,1,O_RESIN))
-				return
-			else O = new /obj/item/stack/material/resin(targetLoc)
+			O = new /obj/item/stack/material/resin(loc)
 
 	if(O)
-		visible_message("<span class='warning'><B>[src] vomits up a thick purple substance and begins to shape it!</B></span>", "<span class='alium'>You shape a [choice].</span>")
 		O.color = "#321D37"
-		playsound(src, 'sound/effects/blobattack.ogg', 40, 1)
 
 	return
 
