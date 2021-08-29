@@ -64,7 +64,7 @@ var/obj/effect/lobby_image = new /obj/effect/lobby_image
 			problems = "frequent known crashes related to animations"
 		
 		// Don't have a thread, just a lot of player reports.
-		if(1564)
+		if(1564 to 1565) // Fixed in 1566 which isn't released as of this commit
 			if(world.byond_build == 1564)
 				problems = "random network disconnects on this version of BYOND server"
 			else if(world.byond_build < 1564)
