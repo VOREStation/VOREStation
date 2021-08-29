@@ -297,6 +297,9 @@ var/list/gamemode_cache = list()
 
 	var/static/list/jukebox_track_files
 
+	var/static/suggested_byond_version
+	var/static/suggested_byond_build
+
 /datum/configuration/New()
 	var/list/L = subtypesof(/datum/game_mode)
 	for (var/T in L)
@@ -949,6 +952,12 @@ var/list/gamemode_cache = list()
 
 				if("jukebox_track_files")
 					config.jukebox_track_files = splittext(value, ";")
+
+				if("suggested_byond_version")
+					config.suggested_byond_version = text2num(value)
+				
+				if("suggested_byond_build")
+					config.suggested_byond_build = text2num(value)
 				
 				// VOREStation Edit Start - Can't be in _vr file because it is loaded too late.
 				if("vgs_access_identifier")

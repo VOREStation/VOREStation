@@ -113,8 +113,7 @@
 		if(finished)
 			to_chat(user, "<span class='notice'>You start breaking down \the [src].</span>")
 			if(do_after(user, 10 SECONDS, src, exclusive = TASK_ALL_EXCLUSIVE))
-				var/obj/item/stack/S = new /obj/item/stack/material/plasteel(loc)
-				S.amount = 10
+				new /obj/item/stack/material/plasteel(loc, 10)
 				playsound(user, O.usesound, 50, 1)
 				qdel(src)
 		else

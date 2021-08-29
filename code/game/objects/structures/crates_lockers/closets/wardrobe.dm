@@ -364,8 +364,11 @@
 		/obj/item/clothing/under/pants/khaki,
 		/obj/item/clothing/mask/bandana/blue,
 		/obj/item/clothing/mask/bandana/blue,
-		/obj/item/clothing/accessory/hawaii,
-		/obj/item/clothing/accessory/hawaii/random)
+		/obj/item/clothing/accessory/hawaiian,
+		/obj/item/clothing/accessory/hawaiian/blue,
+		/obj/item/clothing/accessory/hawaiian/pink,
+		/obj/item/clothing/accessory/hawaiian/red,
+		/obj/item/clothing/accessory/hawaiian/yellow)
 
 
 /obj/structure/closet/wardrobe/tactical

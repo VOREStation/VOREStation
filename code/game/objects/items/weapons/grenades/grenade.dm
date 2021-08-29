@@ -112,3 +112,6 @@
 	walk(src, null, null)
 	..()
 	return
+
+/obj/item/weapon/grenade/vendor_action(var/obj/machinery/vending/V)
+	activate(V)

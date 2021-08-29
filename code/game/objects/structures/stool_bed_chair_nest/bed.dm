@@ -127,6 +127,13 @@
 		playsound(src, W.usesound, 100, 1)
 		remove_padding()
 
+	else if(istype(W, /obj/item/weapon/disk) || (istype(W, /obj/item/toy/plushie)))
+		user.drop_from_inventory(W, get_turf(src))
+		W.pixel_x = 10 //make sure they reach the pillow
+		W.pixel_y = -6
+		if(istype(W, /obj/item/weapon/disk))
+			user.visible_message("<span class='notice'>[src] sleeps soundly. Sleep tight, disky.</span>")
+
 	else if(istype(W, /obj/item/weapon/grab))
 		var/obj/item/weapon/grab/G = W
 		var/mob/living/affecting = G.affecting

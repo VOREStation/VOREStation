@@ -52,7 +52,7 @@
 	name = OUTFIT_COSTUME("Cowboy")
 	uniform = /obj/item/clothing/under/pants{ starting_accessories=list(/obj/item/clothing/accessory/holster/hip) }
 	shoes = /obj/item/clothing/shoes/boots/cowboy
-	head = /obj/item/clothing/head/cowboy_hat
+	head = /obj/item/clothing/head/cowboy
 	gloves = /obj/item/clothing/gloves/fingerless
 	suit = /obj/item/clothing/accessory/poncho
 	r_hand = /obj/item/weapon/gun/projectile/revolver/capgun

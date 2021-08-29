@@ -191,6 +191,7 @@ speaking of, if some dumbass does take it and fly off solo then get themselves k
 	name = "somewhat glitchy drone fabricator"
 	desc = "Obtained from a derelict, it seems to work sometimes, not work sometimes, and work TOO good sometimes. Didn't come with a control console either..."
 	drone_type = /mob/living/silicon/robot/drone/talon
+	fabricator_tag = "Talon"
 
 /mob/living/silicon/robot/drone/talon
 	foreign_droid = TRUE
@@ -545,7 +546,7 @@ speaking of, if some dumbass does take it and fly off solo then get themselves k
 /obj/effect/shuttle_landmark/premade/talon_v2_wing_star
 	name = "ITV Talon (Starboard Wingtip)"
 	landmark_tag = "talon_v2_wing_star"
-	
+
 /obj/random/multiple/corp_crate/talon_cargo
 	name = "random corporate crate (talon)"
 	desc = "A random corporate crate with thematic contents. No weapons, no SAARE cashbox, 50% chance to not appear."

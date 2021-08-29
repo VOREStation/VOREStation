@@ -101,8 +101,7 @@
 		return
 
 	if(product && product_amount) // Make wooden logs.
-		var/obj/item/stack/material/M = new product(get_turf(src))
-		M.amount = product_amount
+		var/obj/item/stack/material/M = new product(get_turf(src), product_amount)
 		M.update_icon()
 	visible_message("<span class='danger'>\The [src] is felled!</span>")
 	stump()

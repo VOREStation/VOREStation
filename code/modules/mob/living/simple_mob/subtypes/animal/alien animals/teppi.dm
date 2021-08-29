@@ -757,8 +757,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	if(do_after(user, sheartime, exclusive = TASK_USER_EXCLUSIVE, target = src))
 		user.visible_message("<span class='notice'>\The [user] shears \the [src] with \the [tool].</span>","<span class='notice'>You shear \the [src] with \the [tool].</span>")
 		amount_grown = rand(0,250)
-		var/obj/item/stack/material/fur/F = new(get_turf(user))
-		F.amount = rand(10,15)
+		var/obj/item/stack/material/fur/F = new(get_turf(user), rand(10,15))
 		F.color = marking_color
 		teppi_wool = FALSE
 		update_icon()

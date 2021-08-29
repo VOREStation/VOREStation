@@ -135,24 +135,60 @@
 	path = /obj/item/clothing/head/soft/solgov
 
 /datum/gear/head/cowboy
-	display_name = "cowboy, rodeo"
-	path = /obj/item/clothing/head/cowboy_hat
+	display_name = "cowboy"
+	path = /obj/item/clothing/head/cowboy
+
+/datum/gear/head/cowboy/rattan
+	display_name = "cowboy, rattan"
+	path = /obj/item/clothing/head/cowboy/rattan
+
+/datum/gear/head/cowboy/dark
+	display_name = "cowboy, dark"
+	path = /obj/item/clothing/head/cowboy/dark
+
+/datum/gear/head/cowboy/ranger
+	display_name = "cowboy, ranger"
+	path = /obj/item/clothing/head/cowboy/ranger
 
 /datum/gear/head/cowboy/black
 	display_name = "cowboy, black"
-	path = /obj/item/clothing/head/cowboy_hat/black
+	path = /obj/item/clothing/head/cowboy/black
+
+/datum/gear/head/cowboy/fancy
+	display_name = "cowboy, fancy"
+	path = /obj/item/clothing/head/cowboy/fancy
+
+/datum/gear/head/cowboy/rustler
+	display_name = "cowboy, rustler"
+	path = /obj/item/clothing/head/cowboy/rustler
+
+/datum/gear/head/cowboy/black
+	display_name = "cowboy, bandit"
+	path = /obj/item/clothing/head/cowboy/bandit
 
 /datum/gear/head/cowboy/wide
 	display_name = "cowboy, wide"
-	path = /obj/item/clothing/head/cowboy_hat/wide
-
-/datum/gear/head/fedora
-	display_name = "fedora, brown"
-	path = /obj/item/clothing/head/fedora/brown
+	path = /obj/item/clothing/head/cowboy/wide
 
 /datum/gear/head/fedora/grey
 	display_name = "fedora, grey"
-	path = /obj/item/clothing/head/fedora/grey
+	path = /obj/item/clothing/head/fedora
+
+/datum/gear/head/fedora/brown
+	display_name = "fedora, brown"
+	path = /obj/item/clothing/head/fedora/brown
+
+/datum/gear/head/fedora/white
+	display_name = "fedora, white"
+	path = /obj/item/clothing/head/fedora/white
+
+/datum/gear/head/fedora/beige
+	display_name = "fedora, beige"
+	path = /obj/item/clothing/head/fedora/beige
+
+/datum/gear/head/fedora/panama
+	display_name = "fedora, panama"
+	path = /obj/item/clothing/head/fedora/panama
 
 /datum/gear/head/hairflower
 	display_name = "hair flower pin (colorable)"

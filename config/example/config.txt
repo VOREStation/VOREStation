@@ -589,3 +589,8 @@ DEFIB_TIMER 60
 # OPTIONAL: secret (bool), lobby (bool)
 #JUKEBOX_TRACK_FILES config/jukebox.json;config/jukebox_private.json
 JUKEBOX_TRACK_FILES config/jukebox.json
+
+# Suggested BYOND client version (major component, e.g. 514)
+#SUGGESTED_BYOND_VERSION 514
+# Suggested BYOND client build (minor component, e.g. 1560)
+#SUGGESTED_BYOND_BUILD 1561
