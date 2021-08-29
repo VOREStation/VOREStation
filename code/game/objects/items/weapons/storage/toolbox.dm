@@ -119,6 +119,21 @@
 		/obj/item/weapon/weldingtool/brass
 	)
 
+//Hydro
+/obj/item/weapon/storage/toolbox/hydro
+	name = "hydroponic toolbox"
+	icon = 'icons/obj/storage_vr.dmi'
+	icon_state = "green"
+	item_state_slots = list(slot_r_hand_str = "toolbox_green", slot_l_hand_str = "toolbox_green")
+	starts_with = list(
+		/obj/item/device/analyzer/plant_analyzer,
+		/obj/item/weapon/material/minihoe,
+		/obj/item/weapon/material/knife/machete/hatchet,
+		/obj/item/weapon/tool/wirecutters/clippers/trimmers,
+		/obj/item/weapon/reagent_containers/spray/plantbgone,
+		/obj/item/weapon/reagent_containers/glass/beaker
+	)
+
 /*
  *	Lunchboxes
  */
