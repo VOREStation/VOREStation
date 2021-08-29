@@ -14139,6 +14139,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/research)
+"axb" = (
+/obj/tether_away_spawner/tether_outside,
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/tether/surfacebase/outside/outside3)
 "axc" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/floor_decal/borderfloor{
@@ -46647,7 +46651,7 @@ aac
 aac
 aac
 aac
-aac
+axb
 aac
 aac
 aac
@@ -48763,7 +48767,7 @@ aac
 aac
 aac
 aac
-aac
+axb
 aac
 aac
 aac
@@ -49919,7 +49923,7 @@ aac
 aac
 aac
 aac
-aac
+axb
 aac
 aac
 aac
@@ -51430,7 +51434,7 @@ aac
 aac
 aac
 aac
-aac
+axb
 aac
 aac
 aac
@@ -59606,7 +59610,7 @@ aac
 aac
 aac
 aac
-aac
+axb
 aac
 aac
 aac
