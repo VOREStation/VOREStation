@@ -352,9 +352,9 @@
 	if(user.pulling == src) user.stop_pulling()
 	if((slot_flags & slot))
 		if(equip_sound)
-			playsound(src, equip_sound, 30)
+			playsound(src, equip_sound, 20)
 		else
-			playsound(src, drop_sound, 30)
+			playsound(src, drop_sound, 20)
 	else if(slot == slot_l_hand || slot == slot_r_hand)
 		playsound(src, pickup_sound, 20, preference = /datum/client_preference/pickup_sounds)
 	return
