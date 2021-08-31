@@ -33,7 +33,10 @@
 		/obj/item/clothing/under/rank/research_director/rdalt,
 		/obj/item/clothing/under/rank/research_director/dress_rd,
 		/obj/item/clothing/suit/storage/toggle/labcoat,
+<<<<<<< HEAD
 		/obj/item/clothing/suit/storage/toggle/labcoat/modern,
+=======
+>>>>>>> 29fd66259cd... Merge pull request #8231 from Cerebulon/labcoats
 		/obj/item/clothing/suit/storage/toggle/labcoat/rd,
 		/obj/item/weapon/cartridge/rd,
 		/obj/item/clothing/shoes/white,

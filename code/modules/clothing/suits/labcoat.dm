@@ -69,6 +69,21 @@
 	icon_state = "labcoat_cmoalt"
 	item_state_slots = list(slot_r_hand_str = "cmo_labcoat", slot_l_hand_str = "cmo_labcoat")
 
+<<<<<<< HEAD
+=======
+/obj/item/clothing/suit/storage/toggle/labcoat/rd
+	name = "research director's labcoat"
+	desc = "A retro labcoat suitable for only the most eccentric scientists on the payroll."
+	icon_state = "labcoat_rd"
+	item_state_slots = list(slot_r_hand_str = "genetics_labcoat", slot_l_hand_str = "genetics_labcoat")
+
+/obj/item/clothing/suit/storage/toggle/labcoat/mad
+	name = "The Mad's labcoat"
+	desc = "It makes you look capable of konking someone on the noggin and shooting them into space."
+	icon_state = "labgreen"
+	item_state_slots = list(slot_r_hand_str = "green_labcoat", slot_l_hand_str = "green_labcoat")
+
+>>>>>>> 29fd66259cd... Merge pull request #8231 from Cerebulon/labcoats
 /obj/item/clothing/suit/storage/toggle/labcoat/genetics
 	name = "Geneticist labcoat"
 	desc = "A suit that protects against minor chemical spills. Has a blue stripe on the shoulder."
@@ -100,11 +115,19 @@
 	icon_state = "labcoat_tox"
 	item_state_slots = list(slot_r_hand_str = "science_labcoat", slot_l_hand_str = "science_labcoat")
 
+<<<<<<< HEAD
 /obj/item/clothing/suit/storage/toggle/labcoat/rd
 	name = "research director's labcoat"
 	desc = "A flashy labcoat with purple markings. It belongs to the Research Director."
 	icon_state = "labcoat_rd"
 	item_state_slots = list(slot_r_hand_str = "science_labcoat", slot_l_hand_str = "science_labcoat")
+=======
+/obj/item/clothing/suit/storage/toggle/labcoat/roboticist
+	name = "roboticist labcoat"
+	desc = "More like an eccentric coat than a labcoat. Helps pass off bloodstains as part of the aesthetic. Comes with red shoulder pads."
+	icon_state = "labcoat_robo"
+	item_state_slots = list(slot_r_hand_str = "labcoat", slot_l_hand_str = "labcoat")
+>>>>>>> 29fd66259cd... Merge pull request #8231 from Cerebulon/labcoats
 
 /obj/item/clothing/suit/storage/toggle/labcoat/emt
 	name = "EMT's labcoat"

@@ -164,8 +164,18 @@
 	)
 	gear_tweaks += new/datum/gear_tweak/path(labcoats)
 
+<<<<<<< HEAD
 /datum/gear/suit/labcoat_emt
 	display_name = "labcoat, EMT"
+=======
+/datum/gear/suit/labcoat/rd
+	display_name = "labcoat, research director (RD)"
+	path = /obj/item/clothing/suit/storage/toggle/labcoat/rd
+	allowed_roles = list("Research Director")
+
+/datum/gear/suit/labcoat/emt
+	display_name = "labcoat, EMT (Medical)"
+>>>>>>> 29fd66259cd... Merge pull request #8231 from Cerebulon/labcoats
 	path = /obj/item/clothing/suit/storage/toggle/labcoat/emt
 	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist")
 
