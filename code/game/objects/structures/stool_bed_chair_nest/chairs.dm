@@ -333,6 +333,41 @@
 	base_icon = "corp_sofacorner"
 	corner_piece = TRUE
 
+//Metal benches
+
+/obj/structure/bed/chair/sofa/bench
+	name = "metal bench"
+	desc = "Almost as comfortable as waiting at a shuttle station for hours on end."
+	base_icon = "benchmiddle"
+	icon_state = "benchmiddle"
+	applies_material_colour = FALSE
+	color = null
+	var/padding_color = "#CC0000"
+
+/obj/structure/bed/chair/sofa/bench/Initialize()
+	. = ..()
+	var/mutable_appearance/MA
+	MA = mutable_appearance(icon, icon_state = "o[icon_state]")
+	// If we're north-facing, metal goes above mob, padding overlay goes below mob.
+	if((dir & NORTH) && !corner_piece)
+		plane = MOB_PLANE
+		layer = ABOVE_MOB_LAYER
+	MA.color = padding_color
+	add_overlay(MA)
+
+/obj/structure/bed/chair/sofa/bench/left
+	icon_state = "bench_left"
+	base_icon = "bench_left"
+
+/obj/structure/bed/chair/sofa/bench/right
+	icon_state = "bench_right"
+	base_icon = "bench_right"
+
+/obj/structure/bed/chair/sofa/bench/corner
+	icon_state = "benchcorner"
+	base_icon = "benchcorner"
+
+
 //color variations
 
 /obj/structure/bed/chair/sofa
