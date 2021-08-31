@@ -55,7 +55,7 @@
 	var/allergens = null									// Things that will make this species very sick
 	var/allergen_reaction = AG_TOX_DMG|AG_OXY_DMG|AG_EMOTE|AG_PAIN|AG_WEAKEN		// What type of reactions will you have? These the 'main' options and are intended to approximate anaphylactic shock at high doses.
 	var/allergen_damage_severity = 1.2							// How bad are reactions to the allergen? Touch with extreme caution.
-	var/allergen_disable_severity = 3							// Whilst this determines how long nonlethal effects last and how common emotes are.
+	var/allergen_disable_severity = 2.5							// Whilst this determines how long nonlethal effects last and how common emotes are.
 
 	var/min_age = 17
 	var/max_age = 70
