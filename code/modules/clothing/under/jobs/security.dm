@@ -104,6 +104,11 @@
 	desc = "An immaculate white dress shirt, paired with a pair of dark grey dress pants, a red tie, and a charcoal vest."
 	starting_accessories = list(/obj/item/clothing/accessory/tie/red_long, /obj/item/clothing/accessory/vest)
 
+/obj/item/clothing/under/det/black_alt
+	icon_state = "detective_black"
+	item_state_slots = list(slot_r_hand_str = "sl_suit", slot_l_hand_str = "sl_suit")
+	desc = "An immaculate white dress shirt, paired with a pair of black dress pants, a red tie, and a black vest."
+
 /obj/item/clothing/under/det/corporate
 	name = "detective's jumpsuit"
 	icon_state = "det_corporate"

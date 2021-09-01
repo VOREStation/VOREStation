@@ -133,6 +133,21 @@
 	icon_state = "black_suit_fem"
 	item_state_slots = list(slot_r_hand_str = "lawyer_black", slot_l_hand_str = "lawyer_black")
 
+/obj/item/clothing/under/lawyer/modern
+	name = "black modern suit"
+	icon_state = "modern_suit_m"
+	index = 1
+
+/obj/item/clothing/under/lawyer/modern/skirt
+	name = "black modern skirt"
+	icon_state = "modern_suit_f"
+	index = 1
+
+/obj/item/clothing/under/lawyer/trimskirt
+	name = "blue-trim skirt"
+	icon_state = "trim_skirtsuit"
+	index = 1
+
 /obj/item/clothing/under/lawyer/red
 	name = "red lawyer suit"
 	icon_state = "lawyer_red"

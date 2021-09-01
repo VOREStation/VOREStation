@@ -469,7 +469,7 @@
 	permeability_coefficient = 0.50
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 30, rad = 0)
 
-//Terrans
+//SAARE
 
 /obj/item/clothing/under/saare
 	name = "master SAARE uniform"
@@ -498,3 +498,20 @@
 	desc = "The service uniform of Stealth Assault Enterprises, for high-ranking mercenaries."
 	icon_state = "terranservice_comm"
 	worn_state = "terranservice_comm"
+
+//Galactic Survey
+
+/obj/item/clothing/under/gsa
+	name = "\improper Galactic Survey utility uniform"
+	desc = "A jumpsuit belonging to the Galactic Survey Administration, SolGov's scientific exploration division."
+	icon_state = "gsa"
+	worn_state = "gsa"
+	rolled_sleeves = 0
+
+/obj/item/clothing/under/gsa_work
+	name = "\improper Galactic Survey worksuit"
+	desc = "A padded work suit belonging to the Galactic Survey Administration, SolGov's scientific exploration division. It has minor radiation shielding."
+	icon_state = "gsa_work"
+	worn_state = "gsa_work"
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 10)
+	rolled_sleeves = 0

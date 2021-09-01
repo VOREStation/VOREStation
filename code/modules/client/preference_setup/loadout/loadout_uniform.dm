@@ -31,6 +31,10 @@
 		croptops[initial(croptop_type.name)] = croptop_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(croptops))
 
+/datum/gear/uniform/cropsweater
+	display_name = "cropped sweater"
+	path = /obj/item/clothing/under/wednesday
+
 /datum/gear/uniform/kilt
 	display_name = "kilt"
 	path = /obj/item/clothing/under/kilt
@@ -261,6 +265,11 @@
 	display_name = "suit, white skirt"
 	path = /obj/item/clothing/under/scratch/skirt
 
+/datum/gear/uniform/suit/detectiveblack
+	display_name = "suit, detective black (Detective)"
+	path = /obj/item/clothing/under/det/black_alt
+	allowed_roles = list("Detective")
+
 /datum/gear/uniform/suit/detectiveskirt
 	display_name = "suit, detective skirt (Detective)"
 	path = /obj/item/clothing/under/det/skirt
@@ -421,42 +430,97 @@
 	display_name = "utility, grey"
 	path = /obj/item/clothing/under/utility/grey
 
+/datum/gear/uniform/utility/gsa
+	display_name = "utility, galactic survey"
+	path = /obj/item/clothing/under/gsa
+
+/datum/gear/uniform/utility/gsa_work
+	display_name = "heavy utility, galactic survey"
+	path = /obj/item/clothing/under/gsa_work
+
 /datum/gear/uniform/sweater
 	display_name = "sweater, grey"
 	path = /obj/item/clothing/under/rank/psych/turtleneck/sweater
 
+/datum/gear/uniform/sweaterretro
+	display_name = "sweater, retro"
+	path = /obj/item/clothing/under/retrosweater
+
 /datum/gear/uniform/brandsuit/aether
 	display_name = "jumpsuit, aether"
-	path = /obj/item/clothing/under/aether
+	path = /obj/item/clothing/under/corp/aether
+
+/datum/gear/uniform/brandsuit/centauri
+	display_name = "jumpsuit, centauri provisions"
+	path = /obj/item/clothing/under/corp/centauri
 
 /datum/gear/uniform/brandsuit/focal
-	display_name = "jumpsuit, focal"
-	path = /obj/item/clothing/under/focal
-
-/datum/gear/uniform/mbill
-	display_name = "outfit, major bill's"
-	path = /obj/item/clothing/under/mbill
-
-/datum/gear/uniform/pcrc
-	display_name = "uniform, PCRC (Security)"
-	path = /obj/item/clothing/under/pcrc
-	allowed_roles = list("Security Officer","Head of Security","Warden")
+	display_name = "jumpsuit, focal point"
+	path = /obj/item/clothing/under/corp/focal
 
 /datum/gear/uniform/brandsuit/grayson
 	display_name = "outfit, grayson"
-	path = /obj/item/clothing/under/grayson
+	path = /obj/item/clothing/under/corp/grayson
+
+/datum/gear/uniform/brandsuit/grayson_jump
+	display_name = "jumpsuit, grayson"
+	path = /obj/item/clothing/under/corp/grayson
+
+/datum/gear/uniform/brandsuit/hedberg
+	display_name = "uniform, hedberg officer (Security)"
+	path = 	/obj/item/clothing/under/hedberg
+	allowed_roles = list("Security Officer","Head of Security","Warden")
+
+/datum/gear/uniform/brandsuit/hedbergtech
+	display_name = "jumpsuit, hedberg technician"
+	path = 	/obj/item/clothing/under/hedbergtech
+
+/datum/gear/uniform/brandsuit/hephaestus
+	display_name = "jumpsuit, hephaestus"
+	path = 	/obj/item/clothing/under/corp/hephaestus
+
+/datum/gear/uniform/brandsuit/kaleidoscope
+	display_name = "outfit, kaleidoscope (Science)"
+	path = 	/obj/item/clothing/under/corp/kaleidoscope
+	allowed_roles = list("Research Director","Scientist","Xenobiologist")
+
+/datum/gear/uniform/mbill
+	display_name = "outfit, major bill's"
+	path = /obj/item/clothing/under/corp/mbill
+
+/datum/gear/uniform/mbill_flight
+	display_name = "flight suit, major bill's"
+	path = /obj/item/clothing/under/corp/mbill_flight
+
+/datum/gear/uniform/brandsuit/morpheus
+	display_name = "jumpsuit, morpheus"
+	path = /obj/item/clothing/under/corp/morpheus
+
+/datum/gear/uniform/pcrc
+	display_name = "uniform, PCRC (Security)"
+	path = /obj/item/clothing/under/corp/pcrc
+	allowed_roles = list("Security Officer","Head of Security","Warden")
 
 /datum/gear/uniform/brandsuit/wardt
 	display_name = "jumpsuit, ward-takahashi"
-	path = /obj/item/clothing/under/wardt
+	path = /obj/item/clothing/under/corp/wardt
+
+/datum/gear/uniform/brandsuit/wulf
+	display_name = "jumpsuit, wulf"
+	path = /obj/item/clothing/under/corp/wulf
+
+/datum/gear/uniform/brandsuit/vedmed
+	display_name = "jumpsuit, vey-med (Medical)"
+	path = /obj/item/clothing/under/corp/veymed
+	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic")
+
+/datum/gear/uniform/brandsuit/zenghu
+	display_name = "jumpsuit, zeng-hu"
+	path = /obj/item/clothing/under/corp/zenghu
 
 /datum/gear/uniform/frontier
 	display_name = "outfit, frontier"
 	path = 	/obj/item/clothing/under/frontier
-
-/datum/gear/uniform/brandsuit/hephaestus
-	display_name = "jumpsuit, hephaestus"
-	path = 	/obj/item/clothing/under/hephaestus
 
 /datum/gear/uniform/yogapants
 	display_name = "yoga pants"
@@ -485,6 +549,10 @@
 /datum/gear/uniform/flamenco
 	display_name = "flamenco dress"
 	path = /obj/item/clothing/under/dress/flamenco
+
+/datum/gear/uniform/alpinedress
+	display_name = "alpine dress"
+	path = /obj/item/clothing/under/dress/alpine
 
 /datum/gear/uniform/westernbustle
 	display_name = "western bustle"
@@ -553,6 +621,14 @@
 /datum/gear/uniform/littleblackdress
 	display_name = "little black dress"
 	path = /obj/item/clothing/under/dress/littleblackdress
+
+/datum/gear/uniform/golddress
+	display_name = "golden dress"
+	path =/obj/item/clothing/under/dress/golddress
+
+/datum/gear/uniform/goldwrap
+	display_name = "golden wrap"
+	path =/obj/item/clothing/under/dress/goldwrap
 
 /datum/gear/uniform/pinktutu
 	display_name = "pink tutu"
@@ -666,6 +742,7 @@
 	display_name = "countess dress"
 	path = /obj/item/clothing/under/dress/countess
 
+<<<<<<< HEAD
 /datum/gear/uniform/verglasdress
 	display_name = "verglas dress"
 	path = /obj/item/clothing/under/verglasdress
@@ -719,3 +796,8 @@
 	"Grey Cowboy Outfit" = /obj/item/clothing/under/cowboy/grey
 	)
 	gear_tweaks += new/datum/gear_tweak/path(cowboy_outfits)
+=======
+/datum/gear/uniform/vampire
+	display_name = "high-waisted trousers"
+	path = /obj/item/clothing/under/hightrousers
+>>>>>>> 6425be0fa83... Merge pull request #8260 from Cerebulon/clothes-aug2021

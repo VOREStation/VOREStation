@@ -424,9 +424,22 @@
 	desc = "A comfortable turtleneck in a dark red."
 	icon_state = "turtleneck_red"
 
+<<<<<<< HEAD
 /*
  * Misc
  */
+=======
+/obj/item/clothing/accessory/sweater/virgin
+	name = "virgin killer"
+	desc = "A knit sweater that leaves little to the imagination."
+	icon_state = "virginkiller"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+
+
+//***
+// End of sweaters
+//***
+>>>>>>> 6425be0fa83... Merge pull request #8260 from Cerebulon/clothes-aug2021
 
 /obj/item/clothing/accessory/cowledvest
 	name = "cowled vest"

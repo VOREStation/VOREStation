@@ -436,3 +436,4 @@
 	desc = "A plain, unadorned sash."
 	icon_state = "sash"
 	slot = ACCESSORY_SLOT_OVER
+

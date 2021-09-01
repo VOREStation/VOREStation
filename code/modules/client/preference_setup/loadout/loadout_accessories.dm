@@ -272,6 +272,7 @@
 	display_name = "orange asymmetrical overcoat"
 	path = /obj/item/clothing/accessory/asymovercoat
 
+<<<<<<< HEAD
 /datum/gear/accessory/hawaiian_shirt
 	display_name = "hawaiian shirt selection"
 	path = /obj/item/clothing/accessory/hawaiian
@@ -299,3 +300,12 @@
 	"Grey Vest" = /obj/item/clothing/accessory/cowboy_vest/grey
 	)
 	gear_tweaks += new/datum/gear_tweak/path(cowboy_vests)
+=======
+/datum/gear/accessory/virginkiller
+	display_name = "virgin killer sweater (colorable)"
+	path = /obj/item/clothing/accessory/sweater/virgin
+
+/datum/gear/accessory/virginkiller/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+>>>>>>> 6425be0fa83... Merge pull request #8260 from Cerebulon/clothes-aug2021
