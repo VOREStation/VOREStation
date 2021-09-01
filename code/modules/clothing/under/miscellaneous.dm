@@ -1205,6 +1205,21 @@
  * Corporate Uniforms
  */
 
+/obj/item/clothing/under/mbill
+	name = "\improper Major Bill's uniform"
+	desc = "A uniform belonging to Major Bill's Transportation, a shipping megacorporation."
+	icon_state = "mbill"
+	worn_state = "mbill"
+	catalogue_data = list(/datum/category_item/catalogue/information/organization/major_bills)
+
+/obj/item/clothing/under/mbill_flight
+	name = "\improper Major Bill's flightsuit"
+	desc = "A flightsuit belonging to Major Bill's Transportation, a shipping megacorporation."
+	icon_state = "mbill_flight"
+	worn_state = "mbill_flight"
+	catalogue_data = list(/datum/category_item/catalogue/information/organization/major_bills)
+	rolled_sleeves = 0
+
 /obj/item/clothing/under/corp/aether
 	name = "\improper Aether jumpsuit"
 	desc = "A jumpsuit belonging to Aether Atmospherics and Recycling, a Trans-Stellar that supplies recycling and atmospheric systems to colonies."
@@ -1242,21 +1257,6 @@
 	desc = "A jumpsuit belonging to Ward-Takahashi, a Trans-Stellar in the consumer goods market."
 	icon_state = "robotics2"
 	worn_state = "robotics2"
-
-/obj/item/clothing/under/corp/mbill
-	name = "\improper Major Bill's uniform"
-	desc = "A uniform belonging to Major Bill's Transportation, a shipping megacorporation."
-	icon_state = "mbill"
-	worn_state = "mbill"
-	catalogue_data = list(/datum/category_item/catalogue/information/organization/major_bills)
-
-/obj/item/clothing/under/corp/mbill_flight
-	name = "\improper Major Bill's flightsuit"
-	desc = "A flightsuit belonging to Major Bill's Transportation, a shipping megacorporation."
-	icon_state = "mbill_flight"
-	worn_state = "mbill_flight"
-	catalogue_data = list(/datum/category_item/catalogue/information/organization/major_bills)
-	rolled_sleeves = 0
 
 /obj/item/clothing/under/corp/confederacy
 	name = "\improper Confederacy uniform"

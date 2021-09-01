@@ -703,6 +703,15 @@
  * Branded Uniforms
  */
 
+/datum/gear/uniform/brandsuit/mbill
+	display_name = "outfit, major bill's"
+	path = /obj/item/clothing/under/mbill
+
+/datum/gear/uniform/brandsuit/mbill_flight
+	display_name = "uniform, major bill's (Pilot)"
+	path = /obj/item/clothing/under/mbill_flight
+	allowed_roles = list("Pilot")
+
 /datum/gear/uniform/brandsuit/aether
 	display_name = "jumpsuit, aether"
 	path = /obj/item/clothing/under/corp/aether
@@ -710,15 +719,6 @@
 /datum/gear/uniform/brandsuit/focal
 	display_name = "jumpsuit, focal"
 	path = /obj/item/clothing/under/corp/focal
-
-/datum/gear/uniform/brandsuit/mbill
-	display_name = "outfit, major bill's"
-	path = /obj/item/clothing/under/corp/mbill
-
-/datum/gear/uniform/brandsuit/mbill_flight
-	display_name = "uniform, major bill's (Pilot)"
-	path = /obj/item/clothing/under/corp/mbill_flight
-	allowed_roles = list("Pilot")
 
 /datum/gear/uniform/brandsuit/pcrc
 	display_name = "uniform, PCRC (Security)"
