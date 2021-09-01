@@ -967,11 +967,33 @@ Uniforms and such
 	desc = "No honest man would wear this abomination"
 	icon_state = "mankini"
 
+<<<<<<< HEAD
 /obj/item/clothing/under/swimsuit/cowbikini
 	name = "cow print bikini"
 	desc = "A rather skimpy cow patterned swimsuit."
 	icon_state = "swim_cow"
 
+=======
+/obj/item/clothing/under/wetsuit
+	name = "wetsuit"
+	desc = "For when you need to scuba dive your way into an enemy base."
+	icon_state = "wetsuit"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+
+/obj/item/clothing/under/wetsuit_skimpy
+	name = "tactical wetsuit"
+	desc = "For when you need to scuba dive your way into an enemy base but still want to show off a little skin."
+	icon_state = "wetsuit_skimpy"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+
+/obj/item/clothing/under/wetsuit_rec
+	name = "recreational wetsuit"
+	desc = "For when you need to kayak your way into an enemy base."
+	icon_state = "wetsuit_rec"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	cold_protection = UPPER_TORSO|LOWER_TORSO
+>>>>>>> d0a201e0c38... Merge pull request #8230 from Cerebulon/swimlock
 
 /*
  * pyjamas
