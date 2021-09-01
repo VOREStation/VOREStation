@@ -3034,12 +3034,23 @@
 /datum/reagent/ethanol/cuba_libre
 	name = "Cuba Libre"
 	id = "cubalibre"
-	description = "Rum, mixed with cola. Viva la revolucion."
-	taste_description = "cola"
+	description = "Rum, mixed with cola and a splash of lime. Viva la revolucion."
+	taste_description = "cola with lime"
 	color = "#3E1B00"
 	strength = 30
 
 	glass_name = "Cuba Libre"
+	glass_desc = "A classic mix of rum, cola, and lime."
+
+/datum/reagent/ethanol/rum_and_cola
+	name = "Rum and Cola"
+	id = "rumandcola"
+	description = "A classic mix of sugar with more sugar."
+	taste_description = "cola"
+	color = "#3E1B00"
+	strength = 30
+
+	glass_name = "rum and cola"
 	glass_desc = "A classic mix of rum and cola."
 
 /datum/reagent/ethanol/demonsblood
