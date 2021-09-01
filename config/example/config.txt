@@ -243,6 +243,7 @@ SERVER your.domain:6000
 #CHATURL http://discord.gg/some_tag
 
 ## GitHub address
+<<<<<<< HEAD
 #GITHUBURL https://github.com/owner/repo
 
 ## Discord address
@@ -253,9 +254,15 @@ SERVER your.domain:6000
 
 ## Map URL
 #MAPURL https://map.your.domain/
+=======
+# GITHUBURL https://github.com/example-user/example-repository
+>>>>>>> 069add820dc... Merge pull request #8248 from Cerebulon/howling-moon
 
 ## Ban appeals URL - usually for a forum or wherever people should go to contact your admins.
 #BANAPPEALS http://bans.your.domain/
+
+## Discord address
+#DISCORDURL https://discord.gg/someinvite
 
 ## In-game features
 ## spawns a spellbook which gives object-type spells instead of verb-type spells for the wizard

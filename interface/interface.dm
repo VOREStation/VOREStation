@@ -73,7 +73,11 @@
 	set hidden = 1
 
 	if(config.discordurl)
+<<<<<<< HEAD
 		if(tgui_alert(usr, "This will open the Discord in your browser. Are you sure?","Visit Website",list("Yes","No"))=="No")
+=======
+		if(alert(usr, "This will open the Discord in your browser. Are you sure?","Visit Website",list("Yes","No"))=="No")
+>>>>>>> 069add820dc... Merge pull request #8248 from Cerebulon/howling-moon
 			return
 		src << link(config.discordurl)
 	else

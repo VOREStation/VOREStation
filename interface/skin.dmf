@@ -1285,9 +1285,14 @@ window "rpane"
 		type = BUTTON
 		pos = 428,0
 		size = 60x16
+<<<<<<< HEAD
 		anchor1 = -1,-1
 		anchor2 = -1,-1
 		background-color = none
+=======
+		anchor1 = none
+		anchor2 = none
+>>>>>>> 069add820dc... Merge pull request #8248 from Cerebulon/howling-moon
 		saved-params = "is-checked"
 		text = "Discord"
 		command = "discord"
