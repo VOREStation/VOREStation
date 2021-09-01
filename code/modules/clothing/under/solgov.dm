@@ -71,6 +71,14 @@
 	worn_state = "blackutility_crew"
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 10)
 
+/obj/item/clothing/under/sifcop
+	name = "\improper SifGuard law enforcement uniform"
+	desc = "A sturdy law enforcement uniform typical of Vir's civilian law enforcement officers."
+	icon_state = "sifcop"
+	worn_state = "sifcop"
+	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0) //Equivalent to security officer's jumpsuit
+	rolled_sleeves = 0
+
 /obj/item/clothing/under/solgov/utility/sifguard_skirt
 	name = "\improper SifGuard skirt"
 	desc = "A black turtleneck and skirt, the elusive ladies' uniform of the Sif Defense Force."
@@ -469,7 +477,7 @@
 	permeability_coefficient = 0.50
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 30, rad = 0)
 
-//Terrans
+//SAARE
 
 /obj/item/clothing/under/saare
 	name = "master SAARE uniform"
@@ -498,3 +506,20 @@
 	desc = "The service uniform of Stealth Assault Enterprises, for high-ranking mercenaries."
 	icon_state = "terranservice_comm"
 	worn_state = "terranservice_comm"
+
+//Galactic Survey
+
+/obj/item/clothing/under/gsa
+	name = "\improper Galactic Survey utility uniform"
+	desc = "A jumpsuit belonging to the Galactic Survey Administration, SolGov's scientific exploration division."
+	icon_state = "gsa"
+	worn_state = "gsa"
+	rolled_sleeves = 0
+
+/obj/item/clothing/under/gsa_work
+	name = "\improper Galactic Survey worksuit"
+	desc = "A padded work suit belonging to the Galactic Survey Administration, SolGov's scientific exploration division. It has minor radiation shielding."
+	icon_state = "gsa_work"
+	worn_state = "gsa_work"
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 10)
+	rolled_sleeves = 0

@@ -32,7 +32,7 @@
 
 /decl/hierarchy/outfit/costume/horrorcop
 	name = OUTFIT_COSTUME("Slasher Movie Cop")
-	uniform = /obj/item/clothing/under/pcrc{ starting_accessories=list(/obj/item/clothing/accessory/holster/hip) }
+	uniform = /obj/item/clothing/under/corp/pcrc{ starting_accessories=list(/obj/item/clothing/accessory/holster/hip) }
 	shoes = /obj/item/clothing/shoes/black
 	gloves = /obj/item/clothing/gloves/black
 	glasses = /obj/item/clothing/glasses/fakesunglasses

@@ -35,8 +35,12 @@
 	path = /obj/item/clothing/suit/storage/toggle/bomber
 
 /datum/gear/suit/bomber_alt
-	display_name = "bomber jacket 2"
+	display_name = "bomber jacket, alt"
 	path = /obj/item/clothing/suit/storage/bomber/alt
+
+/datum/gear/suit/bomber_retro
+	display_name = "bomber jacket, retro"
+	path = /obj/item/clothing/suit/storage/toggle/bomber/retro
 
 /datum/gear/suit/leather_jacket
 	display_name = "leather jacket, black"

@@ -204,6 +204,14 @@
 		sweaters[initial(sweater_type.name)] = sweater_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(sweaters))
 
+/datum/gear/accessory/virginkiller
+	display_name = "virgin killer sweater (colorable)"
+	path = /obj/item/clothing/accessory/sweater/virgin
+
+/datum/gear/accessory/virginkiller/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
 /datum/gear/accessory/bracelet/material
 	display_name = "bracelet selection"
 	description = "Choose from a number of bracelets."
