@@ -3070,8 +3070,6 @@
 "ji" = (
 /obj/structure/table/rack/shelf/steel,
 /obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
 /obj/item/weapon/gun/energy/netgun,
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/armory)
@@ -5691,7 +5689,7 @@
 	dir = 8
 	},
 /obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
+/obj/item/weapon/gun/energy/netgun,
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/armory)
 "sw" = (
@@ -8381,12 +8379,6 @@
 /obj/structure/closet/walllocker/medical/south,
 /turf/simulated/floor/tiled/techmaint,
 /area/talon_v2/crew_quarters/restrooms)
-"BI" = (
-/obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/turf/simulated/floor/tiled/techfloor,
-/area/talon_v2/armory)
 "BJ" = (
 /obj/structure/cable/green{
 	d1 = 2;
@@ -12016,11 +12008,9 @@
 	pixel_x = -5;
 	pixel_y = 2
 	},
-/obj/item/weapon/cell/device/weapon,
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/item/weapon/gun/energy/gun,
 /obj/item/weapon/gun/energy/gun,
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/armory)
@@ -24160,7 +24150,7 @@ wh
 Oj
 eS
 Ew
-BI
+RW
 tA
 ji
 Zc
