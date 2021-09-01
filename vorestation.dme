@@ -1613,7 +1613,11 @@
 #include "code\game\turfs\simulated\outdoors\ironsand_vr.dm"
 #include "code\game\turfs\simulated\outdoors\outdoors.dm"
 #include "code\game\turfs\simulated\outdoors\outdoors_attackby.dm"
+<<<<<<< HEAD:vorestation.dme
 #include "code\game\turfs\simulated\outdoors\outdoors_vr.dm"
+=======
+#include "code\game\turfs\simulated\outdoors\sidewalk.dm"
+>>>>>>> 80cce5e84ce... Merge pull request #8245 from Cerebulon/outdoorsprites:polaris.dme
 #include "code\game\turfs\simulated\outdoors\sky.dm"
 #include "code\game\turfs\simulated\outdoors\snow.dm"
 #include "code\game\turfs\simulated\outdoors\survival_action_vr.dm"
