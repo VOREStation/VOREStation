@@ -704,11 +704,11 @@
  */
 
 /datum/gear/uniform/brandsuit/mbill
-	display_name = "outfit, major bill's"
+	display_name = "uniform, major bill's"
 	path = /obj/item/clothing/under/mbill
 
 /datum/gear/uniform/brandsuit/mbill_flight
-	display_name = "uniform, major bill's (Pilot)"
+	display_name = "uniform, major bill's flightsuit (Pilot)"
 	path = /obj/item/clothing/under/mbill_flight
 	allowed_roles = list("Pilot")
 
