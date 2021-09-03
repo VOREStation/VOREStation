@@ -67,3 +67,4 @@
 	materials = list("gold" = 3000, "diamond" = 2000, "titanium" = 500)
 	build_path = /obj/item/weapon/storage/belt/utility/holding
 	sort_string = "QAAAF"
+	
