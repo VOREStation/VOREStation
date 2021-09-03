@@ -1233,6 +1233,7 @@
 	icon_state = "mbill_flight"
 	worn_state = "mbill_flight"
 	catalogue_data = list(/datum/category_item/catalogue/information/organization/major_bills)
+	starting_accessories = list(/obj/item/clothing/accessory/storage/webbing/pilot1)
 	rolled_sleeves = 0
 
 /obj/item/clothing/under/corp/aether
