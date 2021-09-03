@@ -1,3 +1,9 @@
+/obj/item/clothing/under/gimmick //used to fix an error
+	name = "gimmick jumpsuit"
+	desc = "Something about this jumpsuit feels... off..."
+	icon_state = "grey"
+	item_state_slots = list(slot_r_hand_str = "grey", slot_l_hand_str = "grey")
+
 /obj/item/clothing/under/pj/red
 	name = "red pj's"
 	desc = "Sleepwear."
@@ -95,19 +101,6 @@
 	icon_state = "ert_uniform"
 	item_state_slots = list(slot_r_hand_str = "black", slot_l_hand_str = "black")
 
-/obj/item/clothing/under/gov
-	desc = "A neat proper uniform of someone on offical business. The collar is <i>immaculately</i> starched."
-	name = "Green formal uniform"
-	icon_state = "greensuit"
-	item_state_slots = list(slot_r_hand_str = "centcom", slot_l_hand_str = "centcom")
-	rolled_sleeves = 0
-	starting_accessories = list(/obj/item/clothing/accessory/tie/darkgreen)
-
-/obj/item/clothing/under/gov/skirt
-	name = "Green formal skirt uniform"
-	desc = "A neat proper uniform of someone on offical business. The top button is sewn shut."
-	icon_state = "greensuit_skirt"
-
 /obj/item/clothing/under/space
 	name = "\improper NASA jumpsuit"
 	desc = "It has a NASA logo on it and is made of space-proofed materials."
@@ -168,25 +161,6 @@
 	desc = "A silk black blouse with a matching gray skirt. Feels proper."
 	icon_state = "gentlesuit_skirt"
 
-/obj/item/clothing/under/gimmick/rank/captain/suit
-	name = "site manager's suit"
-	desc = "A green suit and yellow necktie. Exemplifies authority."
-	icon_state = "green_suit"
-	item_state_slots = list(slot_r_hand_str = "centcom", slot_l_hand_str = "centcom")
-
-/obj/item/clothing/under/gimmick/rank/captain/suit/skirt
-	name = "site manager's skirt suit"
-	icon_state = "green_suit_skirt"
-
-/obj/item/clothing/under/gimmick/rank/head_of_personnel/suit
-	name = "head of personnel's suit"
-	desc = "A teal suit and yellow necktie. An authoritative yet tacky ensemble."
-	icon_state = "teal_suit"
-	item_state_slots = list(slot_r_hand_str = "green", slot_l_hand_str = "green")
-
-/obj/item/clothing/under/gimmick/rank/head_of_personnel/suit/skirt
-	name = "head of personnel's skirt suit"
-	icon_state = "teal_suit_skirt"
 
 /obj/item/clothing/under/suit_jacket
 	name = "black suit"
@@ -217,17 +191,6 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	icon_state = "black_suit_fem"
 	item_state = "black_formal_skirt"
-
-/obj/item/clothing/under/suit_jacket/red
-	name = "red suit"
-	desc = "A red suit and blue tie. Somewhat formal."
-	icon_state = "red_suit"
-	item_state_slots = list(slot_r_hand_str = "lawyer_red", slot_l_hand_str = "lawyer_red")
-
-/obj/item/clothing/under/suit_jacket/red/skirt
-	name = "red skirt suit"
-	desc = "A red suit and blue necktie. Somewhat formal."
-	icon_state = "red_suit_skirt"
 
 /obj/item/clothing/under/schoolgirl
 	name = "schoolgirl uniform"
@@ -759,6 +722,52 @@
 	name = "burgundy skirt"
 	icon_state = "burgundy_suit_skirt"
 
+/obj/item/clothing/under/suit_jacket/red
+	name = "red suit"
+	desc = "A red suit and blue tie. Somewhat formal."
+	icon_state = "red_suit"
+	item_state_slots = list(slot_r_hand_str = "lawyer_red", slot_l_hand_str = "lawyer_red")
+	starting_accessories = list(/obj/item/clothing/accessory/tie/navy, /obj/item/clothing/accessory/jacket/red)
+
+/obj/item/clothing/under/suit_jacket/red/skirt
+	name = "red skirt"
+	icon_state = "red_suit_skirt"
+
+/obj/item/clothing/under/suit_jacket/teal
+	name = "teal suit"
+	desc = "A teal suit and yellow necktie. An authoritative yet tacky ensemble."
+	icon_state = "teal_suit"
+	item_state_slots = list(slot_r_hand_str = "green", slot_l_hand_str = "green")
+	starting_accessories = list(/obj/item/clothing/accessory/tie/yellow, /obj/item/clothing/accessory/jacket/teal)
+
+/obj/item/clothing/under/suit_jacket/teal/skirt
+	name = "teal skirt suit"
+	icon_state = "teal_suit_skirt"
+
+/obj/item/clothing/under/suit_jacket/green
+	name = "green suit"
+	desc = "A green suit and yellow necktie. Exemplifies authority."
+	icon_state = "green_suit"
+	item_state_slots = list(slot_r_hand_str = "centcom", slot_l_hand_str = "centcom")
+	starting_accessories = list(/obj/item/clothing/accessory/tie/yellow, /obj/item/clothing/accessory/jacket/green)
+
+/obj/item/clothing/under/gov
+	name = "green formal uniform"
+	desc = "A neat proper uniform of someone on offical business. The collar is <i>immaculately</i> starched."
+	icon_state = "greensuit"
+	item_state_slots = list(slot_r_hand_str = "centcom", slot_l_hand_str = "centcom")
+	starting_accessories = list(/obj/item/clothing/accessory/tie/darkgreen)
+	rolled_sleeves = 0
+
+/obj/item/clothing/under/gov/skirt
+	name = "green formal skirt"
+	desc = "A neat proper uniform of someone on offical business. The top button is sewn shut."
+	icon_state = "greensuit_skirt"
+
+/obj/item/clothing/under/suit_jacket/green/skirt
+	name = "green skirt suit"
+	icon_state = "green_suit_skirt"
+
 /obj/item/clothing/under/suit_jacket/checkered
 	name = "checkered suit"
 	desc = "That's a very nice suit you have there. Shame if something were to happen to it, eh?"
@@ -1200,6 +1209,12 @@
 	force = 0
 	icon_state = "rag"
 	worn_state = "rag"
+
+/obj/item/clothing/under/curator
+	name = "curator uniform"
+	desc = "A rugged uniform suitable for treasure hunting."
+	icon_state = "curator"
+	worn_state = "curator"
 
 /*
  * Corporate Uniforms

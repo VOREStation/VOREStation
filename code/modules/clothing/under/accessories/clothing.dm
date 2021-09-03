@@ -14,6 +14,21 @@
 	icon_state = "tan_jacket"
 	slot = ACCESSORY_SLOT_OVER
 
+/obj/item/clothing/accessory/jacket/red
+	name = "red suit jacket"
+	desc = "Relaxing suit jacket."
+	icon_state = "red_jacket"
+
+/obj/item/clothing/accessory/jacket/teal
+	name = "teal suit jacket"
+	desc = "Relaxing suit jacket."
+	icon_state = "teal_jacket"
+
+/obj/item/clothing/accessory/jacket/green
+	name = "green suit jacket"
+	desc = "Relaxing suit jacket."
+	icon_state = "green_jacket"
+
 /obj/item/clothing/accessory/jacket/charcoal
 	name = "charcoal suit jacket"
 	desc = "Strict suit jacket."
