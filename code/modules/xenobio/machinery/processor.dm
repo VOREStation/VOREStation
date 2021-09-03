@@ -70,7 +70,7 @@
 		sleep(1 SECONDS)
 
 	while(monkeys_recycled >= 4)
-		new /obj/item/weapon/reagent_containers/food/snacks/monkeycube(get_turf(src))
+		new /obj/item/weapon/reagent_containers/food/snacks/cube/monkeycube(get_turf(src))
 		playsound(src, 'sound/effects/splat.ogg', 50, 1)
 		monkeys_recycled -= 4
 		sleep(1 SECOND)

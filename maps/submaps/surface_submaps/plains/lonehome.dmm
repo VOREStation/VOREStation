@@ -14,7 +14,7 @@
 "fl" = (/obj/structure/loot_pile/maint/trash,/turf/template_noop,/area/submap/lonehome)
 "gn" = (/obj/structure/window/reinforced{dir = 4; health = 1e+006},/turf/template_noop,/area/submap/lonehome)
 "gI" = (/obj/structure/table/rack,/obj/item/weapon/material/knife/ritual,/obj/structure/curtain/open/bed,/obj/item/clothing/under/suit_jacket/really_black,/obj/item/clothing/under/suit_jacket/navy,/obj/item/clothing/head/soft/solgov/veteranhat,/turf/simulated/floor/wood,/area/submap/lonehome)
-"hh" = (/obj/item/weapon/reagent_containers/food/condiment/small/peppermill,/obj/item/weapon/pen,/turf/simulated/floor/wood,/area/submap/lonehome)
+"hh" = (/obj/item/weapon/reagent_containers/food/condiment/small/peppershaker,/obj/item/weapon/pen,/turf/simulated/floor/wood,/area/submap/lonehome)
 "hq" = (/obj/structure/table/bench/marble,/obj/structure/window/reinforced/polarized{id = "h_master"},/obj/structure/flora/pottedplant/dead{pixel_y = 7},/turf/simulated/floor/wood,/area/submap/lonehome)
 "hH" = (/obj/structure/table/marble,/obj/item/weapon/material/sharpeningkit,/obj/item/weapon/reagent_containers/dropper,/turf/simulated/floor/tiled/white,/area/submap/lonehome)
 "hK" = (/obj/structure/bed/chair/wood{dir = 1},/obj/structure/window/reinforced/polarized{dir = 4; id = "h_kitchen"},/turf/simulated/floor/wood,/area/submap/lonehome)

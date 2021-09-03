@@ -21,6 +21,7 @@
 	var/datum/reagent/nutriment/coating/coating = null
 	var/icon/flat_icon = null //Used to cache a flat icon generated from dipping in batter. This is used again to make the cooked-batter-overlay
 	var/do_coating_prefix = 1 //If 0, we wont do "battered thing" or similar prefixes. Mainly for recipes that include batter but have a special name
+<<<<<<< HEAD
 
 	/// Used for foods that are "cooked" without being made into a specific recipe or combination.
 	/// Generally applied during modification cooking with oven/fryer
@@ -33,6 +34,17 @@
 	var/package_trash
 	/// Packaged meals switch to this state when opened, if set
 	var/package_open_state
+=======
+	var/cooked_icon = null //Used for foods that are "cooked" without being made into a specific recipe or combination.
+	//Generally applied during modification cooking with oven/fryer
+	//Used to stop deepfried meat from looking like slightly tanned raw meat, and make it actually look cooked
+	var/package = FALSE // If this has a wrapper on it. If true, it will print a message and ask you to remove it
+	var/package_trash // Packaged meals drop this trash type item when opened, if set
+	var/package_open_state// Packaged meals switch to this state when opened, if set
+	center_of_mass = list("x"=16, "y"=16)
+	w_class = ITEMSIZE_SMALL
+	force = 0
+>>>>>>> f14907cdb9d... Merge pull request #8203 from Cerebulon/food2021
 
 /obj/item/weapon/reagent_containers/food/snacks/Initialize()
 	. = ..()
@@ -71,7 +83,11 @@
 		return 0
 
 	if(package)
+<<<<<<< HEAD
 		to_chat(M, "<span class='warning'>How do you expect to eat this with the package still on?</span>")
+=======
+		to_chat(M, "<span class='warning'>How do you expect to eat this with the packaging still on?</span>")
+>>>>>>> f14907cdb9d... Merge pull request #8203 from Cerebulon/food2021
 		return FALSE
 
 	if(istype(M, /mob/living/carbon))
@@ -239,11 +255,17 @@
 			something.dropInto(loc)
 	. = ..()
 
+<<<<<<< HEAD
 	return
 
 /obj/item/weapon/reagent_containers/food/snacks/proc/unpackage(mob/user)
 	package = FALSE
 	to_chat(user, "<span class='notice'>You unwrap [src].</span>")
+=======
+/obj/item/weapon/reagent_containers/food/snacks/proc/unpackage(mob/user)
+	package = FALSE
+	to_chat(user, "<span class='notice'>You tear open the plastic on \the [src]</span>")
+>>>>>>> f14907cdb9d... Merge pull request #8203 from Cerebulon/food2021
 	playsound(user,'sound/effects/packagedfoodopen.ogg', 15, 1)
 	if(package_trash)
 		var/obj/item/T = new package_trash
@@ -1689,6 +1711,7 @@
 	if(wrapped)
 		Unwrap(user)
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube/proc/Expand()
 	src.visible_message("<b>\The [src]</b> expands!")
 	var/mob/living/carbon/human/H = new(get_turf(src))
@@ -1698,10 +1721,199 @@
 	if(ismob(loc))
 		var/mob/M = loc
 		M.unEquip(src)
+=======
+/obj/item/weapon/reagent_containers/food/snacks/bloodsoup/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 2)
+	reagents.add_reagent("blood", 10)
+	reagents.add_reagent("water", 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/clownstears
+	name = "Clown's Tears"
+	desc = "Not very funny."
+	icon_state = "clownstears"
+	filling_color = "#C4FBFF"
+	center_of_mass = list("x"=16, "y"=7)
+	nutriment_amt = 4
+	nutriment_desc = list("salt" = 1, "the worst joke" = 3)
+	bitesize = 5
+
+/obj/item/weapon/reagent_containers/food/snacks/clownstears/Initialize()
+	. = ..()
+	reagents.add_reagent("banana", 5)
+	reagents.add_reagent("water", 10)
+
+/obj/item/weapon/reagent_containers/food/snacks/vegetablesoup
+	name = "Vegetable soup"
+	desc = "A true vegan meal" //TODO
+	icon_state = "vegetablesoup"
+	trash = /obj/item/trash/snack_bowl
+	filling_color = "#AFC4B5"
+	center_of_mass = list("x"=16, "y"=8)
+	nutriment_amt = 8
+	nutriment_desc = list("carrot" = 2, "corn" = 2, "eggplant" = 2, "potato" = 2)
+	bitesize = 5
+
+/obj/item/weapon/reagent_containers/food/snacks/vegetablesoup/Initialize()
+	. = ..()
+	reagents.add_reagent("water", 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/nettlesoup
+	name = "Nettle soup"
+	desc = "To think, the botanist would've beat you to death with one of these."
+	icon_state = "nettlesoup"
+	trash = /obj/item/trash/snack_bowl
+	filling_color = "#AFC4B5"
+	center_of_mass = list("x"=16, "y"=7)
+	nutriment_amt = 8
+	nutriment_desc = list("salad" = 4, "egg" = 2, "potato" = 2)
+	bitesize = 5
+
+/obj/item/weapon/reagent_containers/food/snacks/nettlesoup/Initialize()
+	. = ..()
+	reagents.add_reagent("water", 5)
+	reagents.add_reagent("tricordrazine", 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/mysterysoup
+	name = "Mystery soup"
+	desc = "The mystery is, why aren't you eating it?"
+	icon_state = "mysterysoup"
+	trash = /obj/item/trash/snack_bowl
+	filling_color = "#F082FF"
+	center_of_mass = list("x"=16, "y"=6)
+	nutriment_amt = 1
+	nutriment_desc = list("backwash" = 1)
+	bitesize = 5
+
+/obj/item/weapon/reagent_containers/food/snacks/mysterysoup/Initialize()
+	. = ..()
+	var/mysteryselect = pick(1,2,3,4,5,6,7,8,9,10)
+	switch(mysteryselect)
+		if(1)
+			reagents.add_reagent("nutriment", 6, nutriment_desc)
+			reagents.add_reagent("capsaicin", 3)
+			reagents.add_reagent("tomatojuice", 2)
+		if(2)
+			reagents.add_reagent("nutriment", 6, nutriment_desc)
+			reagents.add_reagent("frostoil", 3)
+			reagents.add_reagent("tomatojuice", 2)
+		if(3)
+			reagents.add_reagent("nutriment", 5, nutriment_desc)
+			reagents.add_reagent("water", 5)
+			reagents.add_reagent("tricordrazine", 5)
+		if(4)
+			reagents.add_reagent("nutriment", 5, nutriment_desc)
+			reagents.add_reagent("water", 10)
+		if(5)
+			reagents.add_reagent("nutriment", 2, nutriment_desc)
+			reagents.add_reagent("banana", 10)
+		if(6)
+			reagents.add_reagent("nutriment", 6, nutriment_desc)
+			reagents.add_reagent("blood", 10)
+		if(7)
+			reagents.add_reagent("slimejelly", 10)
+			reagents.add_reagent("water", 10)
+		if(8)
+			reagents.add_reagent("carbon", 10)
+			reagents.add_reagent("toxin", 10)
+		if(9)
+			reagents.add_reagent("nutriment", 5, nutriment_desc)
+			reagents.add_reagent("tomatojuice", 10)
+		if(10)
+			reagents.add_reagent("nutriment", 6, nutriment_desc)
+			reagents.add_reagent("tomatojuice", 5)
+			reagents.add_reagent("imidazoline", 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/wishsoup
+	name = "Wish Soup"
+	desc = "I wish this was soup."
+	icon_state = "wishsoup"
+	trash = /obj/item/trash/snack_bowl
+	filling_color = "#D1F4FF"
+	center_of_mass = list("x"=16, "y"=11)
+	bitesize = 5
+
+/obj/item/weapon/reagent_containers/food/snacks/wishsoup/Initialize()
+	. = ..()
+	reagents.add_reagent("water", 10)
+	if(prob(25))
+		src.desc = "A wish come true!"
+		reagents.add_reagent("nutriment", 8, list("something good" = 8))
+
+/obj/item/weapon/reagent_containers/food/snacks/hotchili
+	name = "Hot Chili"
+	desc = "A five alarm Texan Chili!"
+	icon_state = "hotchili"
+	trash = /obj/item/trash/snack_bowl
+	filling_color = "#FF3C00"
+	center_of_mass = list("x"=15, "y"=9)
+	nutriment_amt = 3
+	nutriment_desc = list("chilli peppers" = 3)
+	bitesize = 5
+
+/obj/item/weapon/reagent_containers/food/snacks/hotchili/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 3)
+	reagents.add_reagent("capsaicin", 3)
+	reagents.add_reagent("tomatojuice", 2)
+
+/obj/item/weapon/reagent_containers/food/snacks/coldchili
+	name = "Cold Chili"
+	desc = "This slush is barely a liquid!"
+	icon_state = "coldchili"
+	filling_color = "#2B00FF"
+	center_of_mass = list("x"=15, "y"=9)
+	trash = /obj/item/trash/snack_bowl
+	nutriment_amt = 3
+	nutriment_desc = list("ice peppers" = 3)
+	bitesize = 5
+
+/obj/item/weapon/reagent_containers/food/snacks/coldchili/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 3)
+	reagents.add_reagent("frostoil", 3)
+	reagents.add_reagent("tomatojuice", 2)
+
+/obj/item/weapon/reagent_containers/food/snacks/cube //Generic version
+	name = "dehydrated matter cube"
+	desc = "Just add water! Warning: Do not swallow!"
+	icon_state = "monkeycube"
+	nutriment_amt = 1
+	nutriment_desc = list("sawdust" = 1)
+	bitesize = 12
+	filling_color = "#ADAC7F"
+	center_of_mass = list("x"=16, "y"=14)
+	w_class = ITEMSIZE_TINY
+	flags = OPENCONTAINER
+	var/wrapped = 0
+	var/contents_type = "item"
+	var/monkey_type = "Monkey"
+	var/item_type = /obj/item/stack/material/steel
+
+/obj/item/weapon/reagent_containers/food/snacks/cube/Initialize()
+	. = ..()
+
+/obj/item/weapon/reagent_containers/food/snacks/cube/proc/Expand()
+	src.visible_message("<span class='notice'>\The [src] expands!</span>")
+	if (contents_type == "mob")
+		var/mob/living/carbon/human/H = new(get_turf(src))
+		H.set_species(monkey_type)
+		H.real_name = H.species.get_random_name()
+		H.name = H.real_name
+		if(ismob(loc))
+			var/mob/M = loc
+			M.unEquip(src)
+	else if (contents_type == "item")
+		new item_type(get_turf(src))
+>>>>>>> f14907cdb9d... Merge pull request #8203 from Cerebulon/food2021
 	qdel(src)
 	return 1
 
-/obj/item/weapon/reagent_containers/food/snacks/monkeycube/proc/Unwrap(mob/user as mob)
+/obj/item/weapon/reagent_containers/food/snacks/cube/attack_self(mob/user as mob)
+	if(wrapped)
+		Unwrap(user)
+
+/obj/item/weapon/reagent_containers/food/snacks/cube/proc/Unwrap(mob/user as mob)
 	icon_state = "monkeycube"
 	desc = "Just add water!"
 	to_chat(user, "You unwrap the cube.")
@@ -1709,47 +1921,158 @@
 	flags |= OPENCONTAINER
 	return
 
-/obj/item/weapon/reagent_containers/food/snacks/monkeycube/On_Consume(var/mob/M)
+/obj/item/weapon/reagent_containers/food/snacks/cube/On_Consume(var/mob/M)
+	var/mob/living/carbon/human/H = M
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		H.visible_message("<span class='warning'>A screeching creature bursts out of [M]'s chest!</span>")
-		var/obj/item/organ/external/organ = H.get_organ(BP_TORSO)
-		organ.take_damage(50, 0, 0, "Animal escaping the ribcage")
+		if (contents_type == "mob")
+			H.visible_message("<span class='warning'>A screeching creature bursts out of [M]'s chest!</span>")
+			var/obj/item/organ/external/organ = H.get_organ(BP_TORSO)
+			organ.take_damage(50, 0, 0, "Animal escaping the ribcage")
+		else if (contents_type == "item")
+			H.visible_message("<span class='warning'>A rapidly expanding mass bursts from [M]'s mouth!</span>")
+			var/obj/item/organ/external/organ = H.get_organ(BP_HEAD)
+			organ.take_damage(25, 0, 0, "Large object exiting the mouth")
 	Expand()
 
-/obj/item/weapon/reagent_containers/food/snacks/monkeycube/on_reagent_change()
+/obj/item/weapon/reagent_containers/food/snacks/cube/on_reagent_change()
 	if(reagents.has_reagent("water"))
 		Expand()
 
-/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped
+//Carbon mob cubes
+
+/obj/item/weapon/reagent_containers/food/snacks/cube/monkeycube
+	name = "monkey cube"
+	center_of_mass = list("x"=16, "y"=14)
+	contents_type = "mob"
+
+/obj/item/weapon/reagent_containers/food/snacks/cube/monkeycube/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 10)
+
+
+/obj/item/weapon/reagent_containers/food/snacks/cube/monkeycube/wrapped
 	desc = "Still wrapped in some paper."
 	icon_state = "monkeycubewrap"
 	flags = 0
 	wrapped = 1
 
-/obj/item/weapon/reagent_containers/food/snacks/monkeycube/farwacube
+/obj/item/weapon/reagent_containers/food/snacks/cube/monkeycube/farwacube
 	name = "farwa cube"
 	monkey_type = "Farwa"
 
-/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/farwacube
+/obj/item/weapon/reagent_containers/food/snacks/cube/monkeycube/wrapped/farwacube
 	name = "farwa cube"
 	monkey_type = "Farwa"
 
-/obj/item/weapon/reagent_containers/food/snacks/monkeycube/stokcube
+/obj/item/weapon/reagent_containers/food/snacks/cube/monkeycube/stokcube
 	name = "stok cube"
 	monkey_type = "Stok"
 
-/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/stokcube
+/obj/item/weapon/reagent_containers/food/snacks/cube/monkeycube/wrapped/stokcube
 	name = "stok cube"
 	monkey_type = "Stok"
 
-/obj/item/weapon/reagent_containers/food/snacks/monkeycube/neaeracube
+/obj/item/weapon/reagent_containers/food/snacks/cube/monkeycube/neaeracube
 	name = "neaera cube"
 	monkey_type = "Neaera"
 
-/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/neaeracube
+/obj/item/weapon/reagent_containers/food/snacks/cube/monkeycube/wrapped/neaeracube
 	name = "neaera cube"
 	monkey_type = "Neaera"
+
+//Food cubes
+
+/obj/item/weapon/reagent_containers/food/snacks/cube/protein
+	name = "protein cube"
+	desc = "A colony of meat cells, just add water! Warning: Do not swallow!"
+	icon = 'icons/obj/food_syn.dmi'
+	icon_state = "proteincube"
+	item_type = /obj/item/weapon/reagent_containers/food/snacks/proteinslab
+
+/obj/item/weapon/reagent_containers/food/snacks/cube/on_reagent_change()
+	if(reagents.has_reagent("water"))
+		Expand()
+
+/obj/item/weapon/reagent_containers/food/snacks/cube/protein
+
+/obj/item/weapon/reagent_containers/food/snacks/cube/protein/Initialize()
+	. = ..()
+	reagents.add_reagent("meatcolony", 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/proteinslab
+	name = "protein slab"
+	desc = "A slab of near pure protein, extremely artificial, and thoroughly disgusting."
+	icon = 'icons/obj/food_syn.dmi'
+	icon_state = "proteinslab"
+	bitesize = 10
+	nutriment_amt = 5
+	nutriment_desc = list("bitter chyme" = 50)
+
+/obj/item/weapon/reagent_containers/food/snacks/proteinslab/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 30)
+
+/obj/item/weapon/reagent_containers/food/snacks/cube/nutriment
+	name = "nutriment cube"
+	desc = "A colony of plant cells, Just add water! Warning: Do not swallow!"
+	icon = 'icons/obj/food_syn.dmi'
+	icon_state = "nutrimentcube"
+	item_type = /obj/item/weapon/reagent_containers/food/snacks/nutrimentslab
+
+/obj/item/weapon/reagent_containers/food/snacks/cube/nutriment/Initialize()
+	. = ..()
+	reagents.add_reagent("plantcolony", 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/nutrimentslab
+	name = "nutriment slab"
+	desc = "A slab of near pure plant-based nutrients, extremely artificial, and thoroughly disgusting."
+	icon = 'icons/obj/food_syn.dmi'
+	icon_state = "nutrimentslab"
+	bitesize = 10
+	nutriment_amt = 20
+	nutriment_desc = list("compost" = 50)
+
+
+/obj/item/weapon/storage/box/wings/tray //Might as well re-use this code.
+	name = "ration cube tray"
+	desc = "A tray of food cubes, the label warns not to consume before adding water or mixing with virusfood."
+	icon_state = "tray8"
+	icon_base = "tray"
+	startswith = 8
+	w_class = ITEMSIZE_SMALL
+	max_storage_space = ITEMSIZE_COST_TINY * 8
+	starts_with = list(
+		/obj/item/weapon/reagent_containers/food/snacks/cube/protein = 4,
+		/obj/item/weapon/reagent_containers/food/snacks/cube/nutriment = 4
+	)
+	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/cube/protein,
+					/obj/item/weapon/reagent_containers/food/snacks/cube/nutriment)
+
+/obj/item/weapon/reagent_containers/food/snacks/locust
+	name = "locust"
+	desc = "A vibrant bug that looks like a wasp, but is in fact a locust. Crunchy."
+	icon = 'icons/obj/food_syn.dmi'
+	icon_state = "locust"
+	nutriment_amt = 4
+	nutriment_desc = list("crunchy" = 1, "goo" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/locust/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 1)
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/locust_cooked
+	name = "fried locust"
+	desc = "A fried locust, extremely crunchy."
+	icon = 'icons/obj/food_syn.dmi'
+	icon_state = "locust_cooked"
+	nutriment_amt = 2
+	nutriment_desc = list("crunchy" = 4)
+
+/obj/item/weapon/reagent_containers/food/snacks/locust_cooked/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 3)
+	bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/spellburger
 	name = "Spell Burger"
@@ -2038,7 +2361,20 @@
 	name = "Candied Apple"
 	desc = "An apple coated in sugary sweetness."
 	icon_state = "candiedapple2"
+<<<<<<< HEAD
 	trash = /obj/item/trash/stick
+=======
+	filling_color = "#F21873"
+	center_of_mass = list("x"=15, "y"=13)
+	nutriment_amt = 3
+	nutriment_desc = list("apple" = 3, "sweetness" = 2)
+	bitesize = 3
+
+/obj/item/weapon/reagent_containers/food/snacks/caramelapple
+	name = "caramel apple"
+	desc = "An apple coated in rich caramel."
+	icon_state = "candiedapple1"
+>>>>>>> f14907cdb9d... Merge pull request #8203 from Cerebulon/food2021
 	filling_color = "#F21873"
 	center_of_mass = list("x"=15, "y"=13)
 	nutriment_amt = 3
@@ -3755,7 +4091,19 @@
 		if( boxes.len > 0 )
 			boxtotagto = boxes[boxes.len]
 
+<<<<<<< HEAD
 		boxtotagto.boxtag = copytext("[boxtotagto.boxtag][t]", 1, 30)
+=======
+/obj/item/weapon/reagent_containers/food/snacks/beans
+	name = "baked beans"
+	desc = "Sweet, savory beans that have a slight tomato taste to them."
+	filling_color = "#FC6F28"
+	icon_state = "bakedbeans"
+	trash = /obj/item/trash/snack_bowl
+	nutriment_amt = 4
+	nutriment_desc = list("beans" = 4)
+	bitesize = 2
+>>>>>>> f14907cdb9d... Merge pull request #8203 from Cerebulon/food2021
 
 		update_icon()
 		return
@@ -4700,6 +5048,7 @@
 	reagents.add_reagent("batter", 2)
 	reagents.add_reagent("oil", 2)
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/snacks/mouseburger
 	name = "mouse burger"
 	desc = "Squeaky and a little furry."
@@ -4708,6 +5057,36 @@
 	bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/mouseburger/Initialize()
+=======
+/obj/item/weapon/reagent_containers/food/snacks/pancakes
+	name = "pancakes"
+	desc = "Do you like them?"
+	icon = 'icons/obj/food_syn.dmi'
+	icon_state = "pancakes"
+	trash = /obj/item/trash/plate
+	center_of_mass = list("x"=15, "y"=11)
+	nutriment_desc = list("pancake" = 8)
+	nutriment_amt = 8
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/pancakes/berry
+	name = "berry pancakes"
+	desc = "These pancakes are berry nice!"
+	icon_state = "pancake_berry"
+	trash = /obj/item/trash/plate
+	center_of_mass = list("x"=15, "y"=11)
+	nutriment_desc = list("pancake" = 4, "berry" = 4)
+	nutriment_amt = 10
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/nugget
+	name = "chicken nugget"
+	icon = 'icons/obj/food_syn.dmi'
+	icon_state = "nugget_lump"
+	bitesize = 3
+
+/obj/item/weapon/reagent_containers/food/snacks/nugget/Initialize()
+>>>>>>> f14907cdb9d... Merge pull request #8203 from Cerebulon/food2021
 	. = ..()
 	reagents.add_reagent("protein", 4)
 
@@ -5439,6 +5818,7 @@
 	nutriment_desc = list("tortilla" = 6)
 	nutriment_amt = 6
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/snacks/burrito_cheese/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 6)
@@ -5451,6 +5831,20 @@
 	center_of_mass = list("x"=16, "y"=16)
 	nutriment_desc = list("tortilla" = 6)
 	nutriment_amt = 6
+=======
+/obj/item/weapon/reagent_containers/food/snacks/chickenmomo
+	name = "chicken momo"
+	gender = PLURAL
+	desc = "A plate of spiced and steamed chicken dumplings. The style originates from south Asia."
+	icon = 'icons/obj/food_syn.dmi'
+	icon_state = "momo"
+	trash = /obj/item/trash/snacktray
+	filling_color = "#edd7d7"
+	nutriment_amt = 9
+	nutriment_desc = list("spiced chicken" = 9)
+	center_of_mass = list("x"=15, "y"=9)
+	bitesize = 3
+>>>>>>> f14907cdb9d... Merge pull request #8203 from Cerebulon/food2021
 
 /obj/item/weapon/reagent_containers/food/snacks/burrito_cheese_spicy/Initialize()
 	. = ..()
@@ -6815,7 +7209,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/canned/spinach
 	name = "spinach"
 	icon_state = "spinach"
-	desc = "Wup-Az! Brand canned spinach. Notably has less iron in it than a watermelon."
+	desc = "I-Yam Brand canned spinach. Toot toot!"
 	trash = /obj/item/trash/spinach
 	filling_color = "#003300"
 	center_of_mass = list("x"=15, "y"=9)
@@ -6832,9 +7226,9 @@
 //////////////////////////////Advanced Canned Food//////////////////////////////
 
 /obj/item/weapon/reagent_containers/food/snacks/canned/caviar
-	name = "\improper Terran Caviar"
+	name = "\improper Soyuz Caviar"
 	icon_state = "fisheggs"
-	desc = "Terran caviar, or space carp eggs. Carefully faked using alginate, artificial flavoring and salt. Skrell approved!"
+	desc = "Soyuz Caviar, or space carp eggs. Carefully treated to eliminate those pesky toxins, though it does lack that delicious signature numbness."
 	trash = /obj/item/trash/fishegg
 	filling_color = "#000000"
 	center_of_mass = list("x"=15, "y"=9)
@@ -6842,14 +7236,14 @@
 	nutriment_amt = 6
 	bitesize = 1
 
-/obj/item/weapon/reagent_containers/food/snacks/caviar/Initialize()
+/obj/item/weapon/reagent_containers/food/snacks/canned/caviar/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 5)
 
 /obj/item/weapon/reagent_containers/food/snacks/canned/caviar/true
-	name = "\improper Classic Terran Caviar"
+	name = "\improper Authentic Soyuz Caviar"
 	icon_state = "carpeggs"
-	desc = "Terran caviar, or space carp eggs. Banned by the Vir Food Health Administration for exceeding the legally set amount of carpotoxins in food stuffs."
+	desc = "Soyuz caviar, or space carp eggs. Banned by the Vir Food Health Administration for exceeding the legally set amount of carpotoxins in food stuffs."
 	trash = /obj/item/trash/carpegg
 	filling_color = "#330066"
 	center_of_mass = list("x"=15, "y"=9)
@@ -6893,6 +7287,10 @@
 	. = ..()
 	reagents.add_reagent("milk", 8)
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> f14907cdb9d... Merge pull request #8203 from Cerebulon/food2021
 /obj/item/weapon/reagent_containers/food/snacks/canned/ntbeans
 	name = "baked beans"
 	icon_state = "ntbeans"
@@ -6907,9 +7305,15 @@
 /obj/item/weapon/reagent_containers/food/snacks/canned/ntbeans/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 2)
+<<<<<<< HEAD
 
 //////////////Packaged Food - break open and eat//////////////
 
+=======
+
+//////////////Packaged Food - break open and eat//////////////
+
+>>>>>>> f14907cdb9d... Merge pull request #8203 from Cerebulon/food2021
 /obj/item/weapon/reagent_containers/food/snacks/packaged
 	icon = 'icons/obj/food_package.dmi'
 	package = TRUE
@@ -6956,6 +7360,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/packaged/spacetwinkie
 	name = "\improper Spacer Snack Cake"
+<<<<<<< HEAD
 	icon_state = "spacercake"
 	desc = "Guaranteed to survive longer than you will."
 	description_fluff = "Despite Spacer advertisements consistently portraying their snack cakes as life-saving, \
@@ -6963,6 +7368,13 @@
 	statistically proven to lower survival rates on all missions where it is present."
 	package_trash = /obj/item/trash/spacercake_wrap
 	package_open_state = "spacercake_open"
+=======
+	icon_state = "spacer_cake"
+	desc = "Guaranteed to survive longer than you will."
+	description_fluff = "Despite Spacer advertisements consistently portraying their snack cakes as life-saving, tear-jerking survival food for spacers in all kinds of dramatic scenarios, the Spacer Snack Cake has been statistically proven to lower survival rates on all missions where it is present."
+	package_trash = /obj/item/trash/spacer_cake_wrap
+	package_open_state = "spacer_cake_open"
+>>>>>>> f14907cdb9d... Merge pull request #8203 from Cerebulon/food2021
 	filling_color = "#FFE591"
 	center_of_mass = list("x"=15, "y"=11)
 	nutriment_amt = 4
@@ -7014,12 +7426,17 @@
 	bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/packaged/sweetration
+<<<<<<< HEAD
 	name = "desert ration"
+=======
+	name = "dessert ration"
+>>>>>>> f14907cdb9d... Merge pull request #8203 from Cerebulon/food2021
 	icon_state = "baseration"
 	desc = "A rare ration from an era gone by filled with a sweet tasty treat that no modern company has been able to recreate."
 	trash = /obj/item/trash/sweetration
 	package_open_state = "baseration_open"
 	filling_color = "#FFFFFF"
+	nutriment_amt = 4
 	center_of_mass = list("x"=15, "y"=11)
 	nutriment_amt = 4
 	nutriment_desc = list("sweetness" = 5, "cake" = 1)
@@ -7067,3 +7484,354 @@
 /obj/item/weapon/reagent_containers/food/snacks/packaged/vendburrito/Initialize()
 	. = ..()
 	reagents.add_reagent("sodiumchloride", 1)
+<<<<<<< HEAD
+=======
+
+//Virgo Stuff
+
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/sushi
+	name = "sushi roll"
+	desc = "A whole sushi roll! Slice it up and enjoy with some soy sauce and wasabi."
+	icon = 'icons/obj/food_syn.dmi'
+	icon_state = "sushi"
+	slice_path = /obj/item/weapon/reagent_containers/food/snacks/slice/sushi/filled
+	slices_num = 5
+	bitesize = 5
+	nutriment_desc = list("rice" = 5, "fish" = 5)
+	nutriment_amt = 15
+
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/sushi/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 10)
+
+/obj/item/weapon/reagent_containers/food/snacks/slice/sushi/filled
+	name = "piece of sushi"
+	desc = "A slice of a larger sushi roll, ready to devour."
+	icon = 'icons/obj/food_syn.dmi'
+	icon_state = "sushi_s"
+	bitesize = 5
+	whole_path = /obj/item/weapon/reagent_containers/food/snacks/sliceable/sushi
+
+/obj/item/weapon/reagent_containers/food/snacks/slice/sushi/filled/filled
+	filled = TRUE
+
+/obj/item/weapon/reagent_containers/food/snacks/goulash
+	name = "goulash"
+	desc = "Hope you're Hungary!"
+	icon = 'icons/obj/food_syn.dmi'
+	icon_state = "goulash"
+	trash = /obj/item/trash/snack_bowl
+	nutriment_amt = 6
+	nutriment_desc = list("meat" = 2, "vegetables" = 2, "seasoning" = 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/goulash/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 3) //For meaty things.
+	reagents.add_reagent("water", 5)
+
+
+/obj/item/weapon/reagent_containers/food/snacks/donerkebab
+	name = "doner kebab"
+	desc = "Traditional food of the very drunk. The meat is typically cooked on a vertical rotisserie."
+	icon = 'icons/obj/food_syn.dmi'
+	icon_state = "doner_kebab"
+	nutriment_amt = 5
+	nutriment_desc = list("vegetables" = 2, "seasoned meat" = 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/donerkebab/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 2) //For meaty things.
+
+
+/obj/item/weapon/reagent_containers/food/snacks/roastbeef
+	name = "roast beef"
+	desc = "It's beef. It's roasted. It's been a staple of dining tradition for centuries."
+	icon = 'icons/obj/food_syn.dmi'
+	icon_state = "roastbeef"
+	trash = /obj/item/trash/plate
+	bitesize = 2
+	nutriment_amt = 8
+	nutriment_desc = list("cooked meat" = 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/roastbeef/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 4) //For meaty things.
+
+
+/obj/item/weapon/reagent_containers/food/snacks/reishicup
+	name = "reishi's cup"
+	desc = "A chocolate treat with an odd flavor."
+	icon = 'icons/obj/food_syn.dmi'
+	icon_state = "reishiscup"
+	bitesize = 6
+	nutriment_amt = 3
+	nutriment_desc = list("chocolate" = 4, "colors" = 2)
+
+/obj/item/weapon/reagent_containers/food/snacks/reishicup/Initialize()
+	. = ..()
+	reagents.add_reagent("psilocybin", 3)
+
+/obj/item/weapon/storage/box/wings //This is kinda like the donut box.
+	name = "wing basket"
+	desc = "A basket of chicken wings! Get some before they're all gone! Or maybe you're too late..."
+	icon = 'icons/obj/food_syn.dmi'
+	icon_state = "wings5"
+	var/icon_base = "wings"
+	var/startswith = 5
+	max_storage_space = ITEMSIZE_COST_SMALL * 5
+	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/chickenwing)
+	starts_with = list(
+		/obj/item/weapon/reagent_containers/food/snacks/chickenwing = 5
+	)
+	foldable = null
+
+/obj/item/weapon/storage/box/wings/Initialize()
+	. = ..()
+	update_icon()
+	return
+
+/obj/item/weapon/storage/box/wings/update_icon()
+	var/i = 0
+	for(var/obj/item/weapon/reagent_containers/food/snacks/W in contents)
+		i++
+	icon_state = "[icon_base][i]"
+
+/obj/item/weapon/reagent_containers/food/snacks/chickenwing
+	name = "chicken wing"
+	desc = "What flavor even is this? Buffalo? Barbecue? Or something more exotic?"
+	icon = 'icons/obj/food_syn.dmi'
+	icon_state = "wing"
+	bitesize = 3
+	nutriment_amt = 2
+	nutriment_desc = list("chicken" = 2, "unplacable flavor sauce" = 4)
+
+/obj/item/weapon/reagent_containers/food/snacks/chickenwing/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/hotandsoursoup
+	name = "hot & sour soup"
+	desc = "A soup both spicy and sour from ancient Chinese cooking traditions. This one is made with tofu."
+	icon = 'icons/obj/food_syn.dmi'
+	icon_state = "hotandsoursoup"
+	trash = /obj/item/trash/asian_bowl
+	bitesize = 2
+	nutriment_amt = 6
+	nutriment_desc = list("spicyness" = 4, "sourness" = 4, "tofu" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/hotandsoursoup/Initialize()
+	. = ..()
+
+
+/obj/item/weapon/reagent_containers/food/snacks/kitsuneudon
+	name = "kitsune udon"
+	desc = "A purported favorite of kitsunes in ancient japanese myth: udon noodles, fried egg, and tofu."
+	icon = 'icons/obj/food_syn.dmi'
+	icon_state = "kitsuneudon"
+	trash = /obj/item/trash/asian_bowl
+	bitesize = 2
+	nutriment_amt = 6
+	nutriment_desc = list("fried egg" = 2, "egg noodles" = 4)
+
+/obj/item/weapon/reagent_containers/food/snacks/kitsuneudon/Initialize()
+	. = ..()
+
+/obj/item/weapon/reagent_containers/food/snacks/generalschicken
+	name = "general's chicken"
+	desc = "Sweet, spicy, and fried. General's Chicken has been around for more than five-hundred years now, and still tastes good."
+	icon = 'icons/obj/food_syn.dmi'
+	icon_state = "generaltso"
+	trash = /obj/item/trash/asian_bowl
+	bitesize = 2
+	nutriment_amt = 6
+	nutriment_desc = list("sweet and spicy sauce" = 5, "chicken" = 3)
+
+/obj/item/weapon/reagent_containers/food/snacks/generalschicken/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 4)
+
+/obj/item/weapon/reagent_containers/food/snacks/mammi
+	name = "mämmi"
+	desc = "Traditional finnish desert, some like it, others don't. It's drifting in some milk, add sugar!"
+	icon = 'icons/obj/food_syn.dmi'
+	icon_state = "mammi"
+	trash = /obj/item/trash/plate
+	bitesize = 3
+	nutriment_amt = 3
+	nutriment_desc = list("brothy sweet goodness" = 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/mammi/Initialize()
+	. = ..()
+
+/obj/item/weapon/reagent_containers/food/snacks/lobster
+	name = "raw lobster"
+	desc = "A shifty lobster. You can try eating it, but its shell is extremely tough."
+	icon = 'icons/obj/food_syn.dmi'
+	bitesize = 0.1
+	icon_state = "lobster_raw"
+	nutriment_amt = 5
+
+/obj/item/weapon/reagent_containers/food/snacks/lobstercooked
+	name = "cooked lobster"
+	desc = "A luxurious plate of cooked lobster, its taste accentuated by lemon juice. Reinvigorating!"
+	icon = 'icons/obj/food_syn.dmi'
+	icon_state = "lobster_cooked"
+	trash = /obj/item/trash/plate
+	nutriment_amt = 20
+	bitesize = 5
+	nutriment_desc = list("lemon" = 2, "lobster" = 5, "salad" = 2)
+
+/obj/item/weapon/reagent_containers/food/snacks/lobstercooked/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 20)
+	reagents.add_reagent("tricordrazine", 5)
+	reagents.add_reagent("iron", 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/cuttlefish
+	name = "raw cuttlefish"
+	desc = "It's an adorable squid! You couldn't possibly be thinking about eating this, right?"
+	icon = 'icons/obj/food_syn.dmi'
+	icon_state = "cuttlefish_raw"
+	bitesize = 10
+	nutriment_amt = 5
+
+/obj/item/weapon/reagent_containers/food/snacks/cuttlefishcooked
+	name = "cooked cuttlefish"
+	desc = "It's a roasted cuttlefish. Rubbery, squishy, an acquired taste."
+	icon = 'icons/obj/food_syn.dmi'
+	icon_state = "cuttlefish_cooked"
+	bitesize = 5
+	nutriment_amt = 20
+	nutriment_desc = list("cuttlefish" = 5, "rubber" = 5, "grease" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/cuttlefishcooked/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 10)
+
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/monkfish
+	name = "extra large monkfish"
+	desc = "It's a huge monkfish. Better clean it first, you can't possibly eat it like this."
+	icon = 'icons/obj/food48x48.dmi'
+	icon_state = "monkfish_raw"
+	bitesize = 2
+	nutriment_amt = 30
+	w_class = ITEMSIZE_HUGE //Is that a monkfish in your pocket, or are you just happy to see me?
+	slice_path = /obj/item/weapon/reagent_containers/food/snacks/monkfishfillet
+	slices_num = 6
+	trash = /obj/item/weapon/reagent_containers/food/snacks/sliceable/monkfishremains
+
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/monkfish/Initialize()
+	. = ..()
+
+/obj/item/weapon/reagent_containers/food/snacks/monkfishfillet
+	name = "monkfish fillet"
+	desc = "It's a fillet sliced from a monkfish."
+	icon = 'icons/obj/food_syn.dmi'
+	icon_state = "monkfish_fillet"
+	bitesize = 3
+	nutriment_amt = 5
+
+/obj/item/weapon/reagent_containers/food/snacks/monkfishfillet/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/monkfishcooked
+	name = "seasoned monkfish"
+	desc = "A delicious slice of monkfish prepared with sweet chili and spring onion."
+	icon = 'icons/obj/food_syn.dmi'
+	icon_state = "monkfish_cooked"
+	bitesize = 4
+	nutriment_amt = 10
+	nutriment_desc = list("fish" = 3, "oil" = 1, "sweet chili" = 3, "spring onion" = 2)
+
+/obj/item/weapon/reagent_containers/food/snacks/monkfishcooked/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/monkfishremains
+	name = "monkfish remains"
+	icon = 'icons/obj/food_syn.dmi'
+	icon_state = "monkfish_remains"
+	desc = "The work of a madman."
+	w_class = ITEMSIZE_LARGE
+	bitesize = 0.01 //impossible to eat
+	nutriment_amt = 10
+	slice_path = /obj/item/clothing/head/fish
+	slices_num = 1
+
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/monkfishremains/Initialize()
+	. = ..()
+	reagents.add_reagent("carbon", 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/sharkchunk
+	name = "chunk of shark meat"
+	desc = "Still rough, needs to be cut into even smaller chunks."
+	icon = 'icons/obj/food_syn.dmi'
+	icon_state = "sharkmeat_chunk"
+	bitesize = 3
+	nutriment_amt = 15
+	w_class = ITEMSIZE_LARGE
+	slice_path = /obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish/sharkmeat
+	slices_num = 5
+
+/obj/item/weapon/reagent_containers/food/snacks/sliceable/sharkchunk/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 20)
+
+/obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish/sharkmeat
+	name = "slice of sharkmeat"
+	desc = "Now it's small enough to cook with."
+	icon = 'icons/obj/food_syn.dmi'
+	icon_state = "sharkmeat"
+	bitesize = 3
+	nutriment_amt = 2
+	toxin_amount = null
+
+/obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish/sharkmeat/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 2)
+
+/obj/item/weapon/reagent_containers/food/snacks/sharkmeatcooked
+	name = "shark steak"
+	desc = "Finally, some food for real men."
+	icon = 'icons/obj/food_syn.dmi'
+	icon_state = "sharkmeat_cooked"
+	trash = /obj/item/trash/small_bowl
+	bitesize = 3
+	nutriment_amt = 5
+	trash = /obj/item/trash/plate
+	nutriment_desc = list("manliness" = 1, "fish oil" = 2, "shark" = 2)
+
+/obj/item/weapon/reagent_containers/food/snacks/sharkmeatcooked/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 8)
+
+/obj/item/weapon/reagent_containers/food/snacks/sharkmeatdip
+	name = "hot shark shank"
+	desc = "A shank of shark meat dipped in hot sauce."
+	icon = 'icons/obj/food_syn.dmi'
+	icon_state = "sharkmeat_dip"
+	bitesize = 3
+	nutriment_amt = 5
+	trash = /obj/item/trash/snack_bowl
+	nutriment_desc = list("salt" = 1, "fish oil" = 2, "spicy shark" = 2)
+
+/obj/item/weapon/reagent_containers/food/snacks/sharkmeatdip/Initialize()
+	. = ..()
+	reagents.add_reagent("capsaicin", 4)
+	reagents.add_reagent("protein", 4)
+
+/obj/item/weapon/reagent_containers/food/snacks/sharkmeatcubes
+	name = "shark cubes"
+	desc = "Foul scented fermented shark cubes, it's said to make men fly, or just make them really fat."
+	icon = 'icons/obj/food_syn.dmi'
+	icon_state = "sharkmeat_cubes"
+	bitesize = 10
+	nutriment_amt = 8
+	trash = /obj/item/trash/plate
+	nutriment_desc = list("viking spirit" = 1, "rot" = 2, "fermented sauce" = 2)
+
+/obj/item/weapon/reagent_containers/food/snacks/sharkmeatcubes/Initialize()
+	. = ..()
+	reagents.add_reagent("potatojuice", 30) // for people who want to get fat, FAST.
+>>>>>>> f14907cdb9d... Merge pull request #8203 from Cerebulon/food2021

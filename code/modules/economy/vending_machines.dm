@@ -890,6 +890,7 @@
 /obj/machinery/vending/hotfood
 	name = "\improper Hot Foods!"
 	desc = "An old vending machine promising 'hot foods'. You doubt any of its contents are still edible."
+	description_fluff = "The Galaksi 'Toasty-Fresh' vendor line was discontinued decades ago after a brief run due to the need for twice-daily restocking."
 	vend_delay = 40
 	icon_state = "hotfood"
 	products = list(/obj/item/weapon/reagent_containers/food/snacks/old/pizza = 3,
@@ -904,10 +905,11 @@
 
 /obj/machinery/vending/weeb
 	name = "\improper Nippon-tan!"
-	desc = "A distressingly ethnic vending machine loaded with high sucrose low calorie for lack of better words snacks."
+	desc = "A distressingly cutesy vending machine loaded with high sucrose low calorie - for lack of a better word - 'snacks'."
+	description_fluff = "Nippon-tan branding remains competitive in the face of its much larger competitors due to their willingness to offer more variety than the absolute most basic faux-corn snacks to the massive 'long shelf life' market."
 	vend_delay = 30
-	vend_reply = "Dōmo arigatō!"
-	product_slogans = "Tanoshī! ;Itadakimasu!"
+	vend_reply = "Domo arigato!"
+	product_slogans = "Tanosho! ;Itadakimasu!"
 	icon_state = "weeb"
 	products = list(/obj/item/weapon/reagent_containers/food/snacks/weebonuts = 8,
 					/obj/item/weapon/reagent_containers/food/snacks/ricecake = 8,
@@ -918,7 +920,8 @@
 					/obj/item/weapon/storage/box/pocky = 6,
 					/obj/item/weapon/reagent_containers/food/snacks/chocobanana = 6,
 					/obj/item/weapon/reagent_containers/food/snacks/dorayaki = 6,
-					/obj/item/weapon/reagent_containers/food/snacks/daifuku = 6
+					/obj/item/weapon/reagent_containers/food/snacks/daifuku = 6,
+					/obj/item/weapon/reagent_containers/food/snacks/packaged/mochicake = 6
 					)
 
 	prices = list(/obj/item/weapon/reagent_containers/food/snacks/weebonuts = 5,
@@ -930,7 +933,8 @@
 					/obj/item/weapon/storage/box/pocky = 8,
 					/obj/item/weapon/reagent_containers/food/snacks/chocobanana = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/dorayaki = 5,
-					/obj/item/weapon/reagent_containers/food/snacks/daifuku = 5
+					/obj/item/weapon/reagent_containers/food/snacks/daifuku = 5,
+					/obj/item/weapon/reagent_containers/food/snacks/packaged/mochicake = 10
 					)
 
 ////////////////////sol_vend (Mars Mart) (ADDED 04/11/2021)////////////////////////////////////////////////////
@@ -938,6 +942,7 @@
 /obj/machinery/vending/sol
 	name = "\improper Sol-Snacks"
 	desc = "A SolCentric vending machine dispensing a number of Sol-themed snacks, along with other foods."
+	description_fluff = "Sol-Snacks is a cash-bloated Catalonian startup convinced that the rest of the galaxy loves Sol as much as Sol does. Their ongoing vending contract with NanoTrasen has annoyed certain multinational factions."
 	vend_delay = 30
 	product_slogans = "A taste of Sol!"
 	icon_state = "solsnack"
@@ -950,6 +955,8 @@
 					/obj/item/weapon/reagent_containers/food/snacks/oort = 8,
 					/obj/item/weapon/reagent_containers/food/snacks/sun_snax = 8,
 					/obj/item/weapon/reagent_containers/food/snacks/canned/appleberry = 6,
+					/obj/item/weapon/reagent_containers/food/snacks/packaged/lunacake = 6,
+					/obj/item/weapon/reagent_containers/food/snacks/packaged/darklunacake = 6,
 					/obj/item/weapon/storage/box/gum = 8,
 					/obj/item/weapon/storage/box/admints = 8
 					)
@@ -963,6 +970,8 @@
 					/obj/item/weapon/reagent_containers/food/snacks/oort = 5,
 					/obj/item/weapon/reagent_containers/food/snacks/sun_snax = 5,
 					/obj/item/weapon/reagent_containers/food/snacks/canned/appleberry = 8,
+					/obj/item/weapon/reagent_containers/food/snacks/packaged/lunacake = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/packaged/darklunacake = 10,
 					/obj/item/weapon/storage/box/gum = 2,
 					/obj/item/weapon/storage/box/admints = 2
 					)
@@ -974,6 +983,7 @@
 /obj/machinery/vending/snix
 	name = "\improper Snix"
 	desc = "A snack vending machine, offering a selection of slavic beer snacks."
+	description_fluff = "Snix is a Centauri Provisions brand marketed directly to the surprisingly widespread population of spacer slavs."
 	vend_delay = 30
 	product_slogans = "Snix!"
 	icon_state = "snix"
@@ -1014,6 +1024,7 @@
 /obj/machinery/vending/snlvend
 	name = "\improper Shop-n-Large Snacks!"
 	desc = "A Shop-n-Large brand vending machine! Enjoy all your favorites!"
+	description_fluff = "Shop-n-Large is Centauri Provisions' own generic low-cost retail brand, rumoured to sell genuinely lower-grade versions of its product line. Efforts to prove this have been widely denied publication on dubious grounds."
 	vend_delay = 30
 	product_slogans = "Shop Shop-n-Large!, Buy! Buy! Buy!, Try our new Bread Tube! Now with 10% less sawdust!"
 	icon = 'icons/obj/vending.dmi'
@@ -1034,6 +1045,7 @@
 					/obj/item/weapon/reagent_containers/food/snacks/skrellsnacks = 8,
 					/obj/item/weapon/reagent_containers/food/snacks/tastybread = 8,
 					/obj/item/weapon/reagent_containers/food/snacks/chips/bbq = 8,
+					/obj/item/weapon/reagent_containers/food/snacks/chips/snv = 8,
 					/obj/item/weapon/reagent_containers/food/snacks/chips = 8,
 					/obj/item/weapon/reagent_containers/food/snacks/chips/snv = 8,
 					/obj/item/weapon/reagent_containers/food/snacks/driedfish = 8,
@@ -1056,6 +1068,7 @@
 					/obj/item/weapon/reagent_containers/food/snacks/skrellsnacks = 5,
 					/obj/item/weapon/reagent_containers/food/snacks/tastybread = 5,
 					/obj/item/weapon/reagent_containers/food/snacks/chips/bbq = 5,
+					/obj/item/weapon/reagent_containers/food/snacks/chips/snv = 5,
 					/obj/item/weapon/reagent_containers/food/snacks/chips = 5,
 					/obj/item/weapon/reagent_containers/food/snacks/chips/snv = 5,
 					/obj/item/weapon/reagent_containers/food/snacks/driedfish = 5,
@@ -1066,7 +1079,12 @@
 
 /obj/machinery/vending/sovietsoda
 	name = "BODA"
+<<<<<<< HEAD
 	desc = "An old sweet water vending machine, how did this end up here?"
+=======
+	desc = "An old sweet water vending machine,how did this end up here?"
+	description_fluff = "Originally the product of a genuine rim-world commune, BODA vendors have been produced by the Gilthari Exports luxury vending division for almost two centuries."
+>>>>>>> f14907cdb9d... Merge pull request #8203 from Cerebulon/food2021
 	icon_state = "sovietsoda"
 	product_ads = "For Tsar and Country.;Have you fulfilled your nutrition quota today?;Very nice!;We are simple people, for this is all we eat.;If there is a person, there is a problem. If there is no person, then there is no problem."
 	products = list(/obj/item/weapon/reagent_containers/food/drinks/cans/boda = 30,
@@ -1081,20 +1099,23 @@
 
 /obj/machinery/vending/sovietvend //ADDITION 04/20/2021
 	name = "Ration Station"
-	desc = "An old ration vendor unit. How it even still functional?"
+	desc = "A corporate ration vendor unit. Extremely functional."
+	description_fluff = "Designed for use on remote, utilitarian corporate facilities. Perfect for extracting a little extra back from indentured miners. Often modified to accept only company scrip."
 	icon = 'icons/obj/vending.dmi'
 	icon_state = "sovietvend"
-	product_ads = "For Tsar and Country.;Have you fulfilled your nutrition quota today?;Very nice!;We are simple people, for this is all we eat.;If there is a person, there is a problem. If there is no person, then there is no problem."
+	product_ads = "Hunger may affect productivity.;Purchase sustinence here.;The company offers only the best for your continued survival.;Remember to obey corporate regulations when purchasing daily rations!;One per customer."
 	products = list(/obj/item/weapon/reagent_containers/food/snacks/packaged/genration = 8,
 					/obj/item/weapon/reagent_containers/food/snacks/packaged/vegration = 8,
 					/obj/item/weapon/reagent_containers/food/snacks/packaged/meatration = 8)
-	contraband = list(/obj/item/weapon/reagent_containers/food/snacks/packaged/sweetration = 2)
+	contraband = list(/obj/item/weapon/reagent_containers/food/snacks/packaged/sweetration = 2,
+					/obj/item/weapon/reagent_containers/food/snacks/canned/ntbeans = 2)
 
 ///////////////////////Radical Renard///////////////////////////////////////
 
 /obj/machinery/vending/radren
 	name = "Radical Renard Sodas"
-	desc = "A softdrink vendor owned by a frontier based soda company that's been contracted by NanoTrasen"
+	desc = "A softdrink vendor owned by a frontier based soda company that's been contracted by NanoTrasen."
+	description_fluff = "New Singapore's most popular chilled drink vending operation has been franchised all over the galaxy at dubiously low prices. How can you hate a mascot like Renard?"
 	icon_state = "radren"
 	product_slogans = "Enjoy the rad refreshing taste of Radical Renard brand soda!"
 	product_ads = "Radically Refreshing!;Get Cool!;Have you tried our new Andromeda Apple?;Enjoy a cold one with Renard!"

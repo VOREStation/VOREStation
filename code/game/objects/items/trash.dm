@@ -95,12 +95,15 @@
 	icon_state = "plate"
 	drop_sound = 'sound/items/drop/food.ogg'
 	pickup_sound = 'sound/items/pickup/food.ogg'
+<<<<<<< HEAD
 
 /obj/item/trash/asian_bowl
 	name = "asian bowl"
 	icon_state	= "asian_bowl"
 	drop_sound = 'sound/items/drop/food.ogg'
 	pickup_sound = 'sound/items/pickup/food.ogg'
+=======
+>>>>>>> f14907cdb9d... Merge pull request #8203 from Cerebulon/food2021
 
 /obj/item/trash/snack_bowl
 	name = "snack bowl"
@@ -113,6 +116,15 @@
 	icon_state	= "small_bowl"
 	drop_sound = 'sound/items/drop/food.ogg'
 	pickup_sound = 'sound/items/pickup/food.ogg'
+<<<<<<< HEAD
+=======
+
+/obj/item/trash/asian_bowl
+	name = "decorated bowl"
+	icon_state	= "asian_bowl"
+	drop_sound = 'sound/items/drop/food.ogg'
+	pickup_sound = 'sound/items/pickup/food.ogg'
+>>>>>>> f14907cdb9d... Merge pull request #8203 from Cerebulon/food2021
 
 /obj/item/trash/pistachios
 	name = "pistachios packet"
@@ -272,7 +284,11 @@
 	drop_sound = 'sound/items/drop/soda.ogg'
 	pickup_sound = 'sound/items/pickup/soda.ogg'
 
+<<<<<<< HEAD
 /obj/item/trash/salo
+=======
+/obj/item/trash/salo //ADDITION 04/11/2021
+>>>>>>> f14907cdb9d... Merge pull request #8203 from Cerebulon/food2021
 	name = "salo pack"
 	icon_state = "pigfat"
 
@@ -393,10 +409,13 @@
 	name = "veggie ration bag"
 	icon_state = "vegration"
 
+<<<<<<< HEAD
 /obj/item/trash/tgmc_mre
 	name = "\improper CRS ration bag"
 	icon_state = "tgmc_mre_trash"
 
+=======
+>>>>>>> f14907cdb9d... Merge pull request #8203 from Cerebulon/food2021
 /obj/item/trash/smolburger
 	name = "burger packaging"
 	icon_state = "smolburger"
@@ -407,5 +426,9 @@
 
 /obj/item/trash/smolburrito
 	name = "burrito packaging"
+<<<<<<< HEAD
 	icon_state = "smolburrito"
 
+=======
+	icon_state = "smolburrito"
+>>>>>>> f14907cdb9d... Merge pull request #8203 from Cerebulon/food2021

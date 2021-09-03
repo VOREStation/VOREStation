@@ -177,7 +177,10 @@
 	result = /obj/item/weapon/reagent_containers/food/snacks/pisanggoreng
 	coating = /datum/reagent/nutriment/coating/batter
 
+<<<<<<< HEAD
 //VOREStation Add Start
+=======
+>>>>>>> f14907cdb9d... Merge pull request #8203 from Cerebulon/food2021
 /datum/recipe/generalschicken
 	appliance = FRYER
 	reagents = list("capsaicin" = 2, "sugar" = 2, "batter" = 10)
@@ -197,4 +200,14 @@
 		/obj/item/weapon/reagent_containers/food/snacks/meat
 	)
 	result = /obj/item/weapon/storage/box/wings //This is kinda like the donut box.
+<<<<<<< HEAD
 //VOREStation Add End
+=======
+
+/datum/recipe/locust
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/locust
+	)
+	coating = /datum/reagent/nutriment/coating/batter
+	result = /obj/item/weapon/reagent_containers/food/snacks/locust_cooked
+>>>>>>> f14907cdb9d... Merge pull request #8203 from Cerebulon/food2021

@@ -97,7 +97,7 @@
 				icon_state = "saltshaker"
 				center_of_mass = list("x"=17, "y"=11)
 			if("blackpepper")
-				name = "Pepper Mill"
+				name = "Pepper Shaker"
 				desc = "Often used to flavor food or make people sneeze."
 				icon_state = "peppermillsmall"
 				center_of_mass = list("x"=17, "y"=11)
@@ -210,8 +210,8 @@
 /obj/item/weapon/reagent_containers/food/condiment/small/on_reagent_change()
 	return
 
-/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker	//Seperate from above since it's a small shaker rather then
-	name = "salt shaker"											//	a large one.
+/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker	//Seperate from above since it's a small shaker rather than a large one
+	name = "salt shaker"
 	desc = "Salt. From space oceans, presumably."
 	icon_state = "saltshakersmall"
 	center_of_mass = list("x"=17, "y"=11)
@@ -220,13 +220,17 @@
 	. = ..()
 	reagents.add_reagent("sodiumchloride", 20)
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/condiment/small/peppermill //Keeping name here to save map based headaches
+=======
+/obj/item/weapon/reagent_containers/food/condiment/small/peppershaker
+>>>>>>> f14907cdb9d... Merge pull request #8203 from Cerebulon/food2021
 	name = "pepper shaker"
 	desc = "Often used to flavor food or make people sneeze."
 	icon_state = "peppershakersmall"
 	center_of_mass = list("x"=17, "y"=11)
 
-/obj/item/weapon/reagent_containers/food/condiment/small/peppermill/Initialize()
+/obj/item/weapon/reagent_containers/food/condiment/small/peppershaker/Initialize()
 	. = ..()
 	reagents.add_reagent("blackpepper", 20)
 
@@ -236,7 +240,11 @@
 	icon_state = "peppermill"
 	center_of_mass = list("x"=17, "y"=11)
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/condiment/small/peppermill/Initialize()
+=======
+/obj/item/weapon/reagent_containers/food/condiment/small/peppergrinder/Initialize()
+>>>>>>> f14907cdb9d... Merge pull request #8203 from Cerebulon/food2021
 	. = ..()
 	reagents.add_reagent("blackpepper", 30)
 
@@ -460,6 +468,10 @@
 /obj/item/weapon/reagent_containers/food/condiment/spacespice
 	name = "space spices"
 	desc = "An exotic blend of spices for cooking. Definitely not worms."
+<<<<<<< HEAD
+=======
+	icon = 'icons/obj/food.dmi'
+>>>>>>> f14907cdb9d... Merge pull request #8203 from Cerebulon/food2021
 	icon_state = "spacespicebottle"
 	possible_transfer_amounts = list(1,40) //for clown turning the lid off
 	amount_per_transfer_from_this = 1

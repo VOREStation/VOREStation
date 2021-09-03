@@ -405,23 +405,23 @@
 	desc = "Drymate brand monkey cubes. Just add water!"
 	icon = 'icons/obj/food.dmi'
 	icon_state = "monkeycubebox"
-	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/monkeycube)
-	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped = 4)
+	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/cube/monkeycube)
+	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/cube/monkeycube/wrapped = 4)
 
 /obj/item/weapon/storage/box/monkeycubes/farwacubes
 	name = "farwa cube box"
 	desc = "Drymate brand farwa cubes, shipped from Meralar. Just add water!"
-	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/farwacube = 4)
+	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/cube/monkeycube/wrapped/farwacube = 4)
 
 /obj/item/weapon/storage/box/monkeycubes/stokcubes
 	name = "stok cube box"
 	desc = "Drymate brand stok cubes, shipped from Moghes. Just add water!"
-	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/stokcube = 4)
+	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/cube/monkeycube/wrapped/stokcube = 4)
 
 /obj/item/weapon/storage/box/monkeycubes/neaeracubes
 	name = "neaera cube box"
 	desc = "Drymate brand neaera cubes, shipped from Qerr'balak. Just add water!"
-	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/neaeracube = 4)
+	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/cube/monkeycube/wrapped/neaeracube = 4)
 
 /obj/item/weapon/storage/box/ids
 	name = "box of spare IDs"

@@ -401,6 +401,7 @@
 	desc = "An orange beret denoting employment with Xion Manufacturing. For personnel that are more inclined towards style than safety."
 	icon_state = "beret_orange"
 
+<<<<<<< HEAD
 //Stylish Hats
 
 /obj/item/clothing/head/bowler
@@ -525,3 +526,10 @@
 	name = "small cowboy hat"
 	desc = "For the tiniest of cowboys."
 	icon_state = "cowboy_small"
+=======
+/obj/item/clothing/head/fish
+	name = "fish skull"
+	desc = "You... you're not actually going to wear that, right?"
+	icon_state = "fishskull"
+	flags_inv = HIDEEARS|BLOCKHAIR
+>>>>>>> f14907cdb9d... Merge pull request #8203 from Cerebulon/food2021

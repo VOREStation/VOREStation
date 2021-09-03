@@ -27,7 +27,7 @@
 "kh" = (/turf/simulated/floor/carpet/blue,/area/submap/oldhotel)
 "kw" = (/obj/structure/lightpost,/turf/template_noop,/area/submap/oldhotel)
 "kI" = (/turf/simulated/floor/carpet/sblucarpet,/area/submap/oldhotel)
-"kW" = (/obj/structure/table/woodentable,/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker,/obj/item/weapon/reagent_containers/food/condiment/small/peppermill{pixel_x = 3},/turf/simulated/floor/wood,/area/submap/oldhotel)
+"kW" = (/obj/structure/table/woodentable,/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker,/obj/item/weapon/reagent_containers/food/condiment/small/peppershaker{pixel_x = 3},/turf/simulated/floor/wood,/area/submap/oldhotel)
 "lj" = (/obj/structure/table/wooden_reinforced,/obj/item/weapon/material/kitchen/rollingpin,/turf/simulated/floor/tiled/asteroid_steel,/area/submap/oldhotel)
 "ly" = (/obj/structure/bed/double/padded,/obj/item/weapon/bedsheet/mimedouble,/turf/simulated/floor/wood,/area/submap/oldhotel)
 "lZ" = (/obj/structure/table/woodentable,/obj/item/trash/tray,/turf/simulated/floor/carpet/blue,/area/submap/oldhotel)

@@ -156,3 +156,13 @@
 	contains = list(/obj/machinery/portable_atmospherics/hydroponics{anchored = FALSE} = 3)
 	access = access_hydroponics
 
+/datum/supply_pack/hydro/fish
+	name = "Seafood supply crate"
+	contains = list(
+			/obj/item/weapon/reagent_containers/food/snacks/lobster = 6,
+			/obj/item/weapon/reagent_containers/food/snacks/cuttlefish = 8,
+			/obj/item/weapon/reagent_containers/food/snacks/sliceable/monkfish = 1
+			)
+	cost = 20
+	containertype = /obj/structure/closet/crate/freezer/centauri
+	containername = "Fresh fish crate"

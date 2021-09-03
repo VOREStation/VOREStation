@@ -1109,6 +1109,21 @@
 	required_reagents = list("protein" = 1, "sugar" = 1, "phoron" = 1)
 	result_amount = 1	// Roughly 20u per phoron sheet
 
+//Cube Food Colonies
+/decl/chemical_reaction/instant/meatcolony
+	name = "protein"
+	id = "meatcolony"
+	result = "protein"
+	required_reagents = list("meatcolony" = 5, "virusfood" = 5)
+	result_amount = 60
+
+/decl/chemical_reaction/instant/plantcolony
+	name = "nutriment"
+	id = "plantcolony"
+	result = "nutriment"
+	required_reagents = list("plantcolony" = 5, "virusfood" = 5)
+	result_amount = 60
+
 // Neutralization.
 
 /decl/chemical_reaction/instant/neutralize_neurotoxic_protein
