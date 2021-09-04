@@ -251,13 +251,6 @@
 	item_state_slots = list(slot_r_hand_str = "yellow", slot_l_hand_str = "yellow")
 	body_parts_covered = LOWER_TORSO
 
-/obj/item/clothing/under/moderncoat
-	name = "modern wrapped coat"
-	desc = "The cutting edge of fashion."
-	icon_state = "moderncoat"
-	item_state_slots = list(slot_r_hand_str = "red", slot_l_hand_str = "red")
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
-
 /obj/item/clothing/under/ascetic
 	name = "plain ascetic garb"
 	desc = "Popular with freshly grown vatborn and new age cultists alike."
@@ -1215,6 +1208,39 @@
 	desc = "A rugged uniform suitable for treasure hunting."
 	icon_state = "curator"
 	worn_state = "curator"
+
+/*
+ * Modern
+ */
+
+/obj/item/clothing/under/moderncoat
+	name = "modern wrapped coat"
+	desc = "The cutting edge of fashion."
+	icon_state = "mod_coat"
+	worn_state = "mod_coat"
+	item_state_slots = list(slot_r_hand_str = "red", slot_l_hand_str = "red")
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
+
+/obj/item/clothing/under/modjump
+	name = "modern jumpsuit"
+	desc = "A stylish jumpsuit of modern culture."
+	icon_state = "mod_jump"
+	worn_state = "mod_jump"
+	item_state_slots = list(slot_r_hand_str = "orange", slot_l_hand_str = "orange")
+
+/obj/item/clothing/under/modjump2
+	name = "modern outfit"
+	desc = "A stylish outfit of modern culture."
+	icon_state = "mod_jump2"
+	worn_state = "mod_jump2"
+	item_state_slots = list(slot_r_hand_str = "black", slot_l_hand_str = "black")
+
+/obj/item/clothing/under/modjump3
+	name = "cyber jumpsuit"
+	desc = "A cool cyberpunk styled jumpsuit. The lights on the back glitched out and don't work."
+	icon_state = "cyber"
+	worn_state = "cyber"
+	item_state_slots = list(slot_r_hand_str = "grey", slot_l_hand_str = "grey")
 
 /*
  * Corporate Uniforms
