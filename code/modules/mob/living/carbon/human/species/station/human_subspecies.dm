@@ -37,8 +37,13 @@
 	name_plural = "Vatborn"
 	blurb = "With cloning on the forefront of human scientific advancement, cheap mass production \
 	of bodies is a very real and rather ethically grey industry. Vat-grown or Vatborn humans tend to be \
-	paler than baseline, with no appendix and fewer inherited genetic disabilities, but a more aggressive metabolism."
+	paler than baseline, with no appendix and fewer inherited genetic disabilities, but a more aggressive metabolism. \
+	Most vatborn are engineered to experience rapid maturation, reaching approximately sixteen years of growth in only five \
+	before slowing to normal growth rates."
 	icobase = 'icons/mob/human_races/subspecies/r_vatgrown.dmi'
+
+	min_age = 6  /// Accounting for rapid growth.
+	max_age = 90
 
 	toxins_mod =   1.1
 	metabolic_rate = 1.15
