@@ -1367,6 +1367,19 @@
 	starting_accessories = list(/obj/item/clothing/accessory/tie/red)
 	rolled_sleeves = 0
 
+/obj/item/clothing/under/corp/morpheus
+	name = "\improper Morpheus jumpsuit"
+	desc = "A uniform belonging to Morpheus Cyberkinetics, a positronic-run cybernetics Trans-Stellar."
+	icon_state = "morpheus"
+	worn_state = "morpheus"
+
+/obj/item/clothing/under/corp/xion
+	name = "\improper Xion jumpsuit"
+	desc = "A jumpsuit belonging to Xion Manufacturing, an industrial equipment Trans-Stellar."
+	icon_state = "xion"
+	worn_state = "xion"
+	rolled_sleeves = 0
+
 /obj/item/clothing/under/corp/hedberg
 	name = "\improper Hedberg law enforcement uniform"
 	desc = "A sturdy civilian law enforcement uniform belonging to the Hedberg-Hammarstrom private security corporation."
@@ -1381,17 +1394,4 @@
 	icon_state = "hedberg_tech"
 	worn_state = "hedberg_tech"
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 10) // Equivalent to engineer's jumpsuit.
-	rolled_sleeves = 0
-
-/obj/item/clothing/under/corp/morpheus
-	name = "\improper Morpheus jumpsuit"
-	desc = "A uniform belonging to Morpheus Cyberkinetics, a positronic-run cybernetics Trans-Stellar."
-	icon_state = "morpheus"
-	worn_state = "morpheus"
-
-/obj/item/clothing/under/corp/xion
-	name = "\improper Xion jumpsuit"
-	desc = "A jumpsuit belonging to Xion Manufacturing, an industrial equipment Trans-Stellar."
-	icon_state = "xion"
-	worn_state = "xion"
 	rolled_sleeves = 0

@@ -733,15 +733,6 @@
 	display_name = "jumpsuit, grayson"
 	path = /obj/item/clothing/under/corp/grayson_jump
 
-/datum/gear/uniform/brandsuit/hedberg
-	display_name = "uniform, hedberg officer (Security)"
-	path = 	/obj/item/clothing/under/corp/hedberg
-	allowed_roles = list("Security Officer","Head of Security","Warden")
-
-/datum/gear/uniform/brandsuit/hedbergtech
-	display_name = "jumpsuit, hedberg technician"
-	path = 	/obj/item/clothing/under/corp/hedbergtech
-
 /datum/gear/uniform/brandsuit/wardt
 	display_name = "jumpsuit, ward-takahashi"
 	path = /obj/item/clothing/under/corp/wardt
