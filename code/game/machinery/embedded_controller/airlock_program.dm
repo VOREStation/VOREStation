@@ -121,6 +121,7 @@
 		if("cycle_ext")
 			//If airlock is already cycled in this direction, just toggle the doors.
 			if(!memory["purge"] && abs(memory["external_sensor_pressure"] - memory["chamber_sensor_pressure"]) <= SKIPCYCLE_MARGIN)
+				toggleDoor(memory["interior_status"], tag_interior_door, memory["secure"], "close")
 				toggleDoor(memory["exterior_status"], tag_exterior_door, memory["secure"], "toggle")
 			//only respond to these commands if the airlock isn't already doing something
 			//prevents the controller from getting confused and doing strange things
@@ -129,6 +130,7 @@
 
 		if("cycle_int")
 			if(!memory["purge"] && abs(memory["internal_sensor_pressure"] - memory["chamber_sensor_pressure"]) <= SKIPCYCLE_MARGIN)
+				toggleDoor(memory["exterior_status"], tag_exterior_door, memory["secure"], "close")
 				toggleDoor(memory["interior_status"], tag_interior_door, memory["secure"], "toggle")
 			else if(state == target_state)
 				begin_cycle_in()

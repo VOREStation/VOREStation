@@ -69,8 +69,11 @@ somewhere on that shuttle. Subtypes of these can be then used to perform ship ov
 	if(linked)
 		apply_visual(user)
 		user.reset_view(linked)
+<<<<<<< HEAD
 		if(linked.real_appearance)
 			user.client?.images += linked.real_appearance
+=======
+>>>>>>> d793a7a0abc... Merge pull request #8277 from Neerti/cynosure_map
 	user.set_machine(src)
 	if(isliving(user))
 		var/mob/living/L = user

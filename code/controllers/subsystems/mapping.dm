@@ -5,6 +5,7 @@ SUBSYSTEM_DEF(mapping)
 	flags = SS_NO_FIRE
 
 	var/list/map_templates = list()
+	var/list/map_template_types = list()
 	var/dmm_suite/maploader = null
 	var/obj/effect/landmark/engine_loader/engine_loader
 	var/list/shelter_templates = list()
@@ -39,6 +40,7 @@ SUBSYSTEM_DEF(mapping)
 			continue
 		template = new template()
 		map_templates[template.name] = template
+		map_template_types[template.type] = template
 	return TRUE
 
 /datum/controller/subsystem/mapping/proc/loadEngine()

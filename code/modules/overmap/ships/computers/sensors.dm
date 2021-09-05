@@ -6,6 +6,7 @@
 	circuit = /obj/item/weapon/circuitboard/sensors
 	extra_view = 4
 	var/obj/machinery/shipsensors/sensors
+<<<<<<< HEAD
 
 // fancy sprite
 /obj/machinery/computer/ship/sensors/adv
@@ -13,6 +14,8 @@
 	icon_state = "adv_sensors"
 	icon_screen = "adv_sensors_screen"
 	light_color = "#05A6A8"
+=======
+>>>>>>> d793a7a0abc... Merge pull request #8277 from Neerti/cynosure_map
 
 /obj/machinery/computer/ship/sensors/attempt_hook_up(obj/effect/overmap/visitable/ship/sector)
 	if(!(. = ..()))

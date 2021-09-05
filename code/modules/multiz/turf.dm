@@ -62,6 +62,7 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 /turf/simulated/open/Initialize()
 	. = ..()
 	ASSERT(HasBelow(z))
+<<<<<<< HEAD
 	add_overlay(GLOB.openspace_backdrop_one_for_all, TRUE) //Special grey square for projecting backdrop darkness filter on it.
 	return INITIALIZE_HINT_LATELOAD
 
@@ -69,6 +70,15 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 	. = ..()
 	AddElement(/datum/element/turf_z_transparency, FALSE)
 	update_icon()
+=======
+	update()
+	var/turf/T = GetBelow(src)
+	if(T)
+		GLOB.turf_entered_event.register(T, src, .proc/BelowOpenUpdated)
+		GLOB.turf_exited_event.register(T, src, .proc/BelowOpenUpdated)
+	if(is_outdoors())
+		SSplanets.addTurf(src)
+>>>>>>> d793a7a0abc... Merge pull request #8277 from Neerti/cynosure_map
 
 /turf/simulated/open/Entered(var/atom/movable/mover, var/atom/oldloc)
 	..()
