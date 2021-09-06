@@ -22,9 +22,14 @@
 	name = "\improper Atmospherics PCU"
 	desc = "A personal computer unit. It seems to have only the Atmosphereics Control program installed."
 	icon_screen = "pcu_atmo"
-	icon_state = "pcu"
+	icon_state = "pcu_engi"
 	icon_keyboard = "pcu_key"
+<<<<<<< HEAD
 	density = FALSE
+=======
+	light_color = "#00cc00"
+	density = 0
+>>>>>>> 48337a1d469... Merge pull request #8275 from GhostActual/PCU_update
 
 /obj/machinery/computer/atmoscontrol/attack_ai(var/mob/user as mob)
 	tgui_interact(user)
