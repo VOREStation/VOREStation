@@ -68,3 +68,6 @@
 	nitrogen = MOLES_N2STANDARD
 	temperature = 310.92 // About 37.7C / 100F
 
+//other set - for map building
+/turf/unsimulated/wall2/planetary
+	icon_state = "riveted2"

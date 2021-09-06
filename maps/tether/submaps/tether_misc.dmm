@@ -2981,15 +2981,6 @@
 /area/shuttle/escape{
 	base_turf = /turf/simulated/floor/tiled/techfloor/grid
 	})
-"Av" = (
-/obj/effect/transit/light{
-	dir = 8
-	},
-/turf/unsimulated/mineral{
-	icon = 'icons/turf/transit_vr.dmi';
-	icon_state = "rock"
-	},
-/area/space)
 "Ax" = (
 /turf/unsimulated/beach/coastline{
 	density = 1;
@@ -3127,15 +3118,6 @@
 /obj/structure/table/standard,
 /turf/unsimulated/beach/sand,
 /area/beach)
-"Fp" = (
-/obj/effect/transit/light{
-	dir = 4
-	},
-/turf/unsimulated/mineral{
-	icon = 'icons/turf/transit_vr.dmi';
-	icon_state = "rock"
-	},
-/area/space)
 "FC" = (
 /turf/simulated/floor/wood,
 /area/centcom/simulated/bar)
@@ -9986,8 +9968,6 @@ OY
 Xl
 "}
 (32,1,1) = {"
-Hy
-Hy
 dg
 dg
 dg
@@ -10030,7 +10010,9 @@ dg
 dg
 dg
 dg
-Hy
+dg
+dg
+dg
 ap
 ap
 ap
@@ -10128,8 +10110,8 @@ OY
 Xl
 "}
 (33,1,1) = {"
-Hy
-Hy
+fi
+fi
 fi
 fi
 hI
@@ -10171,8 +10153,8 @@ fi
 hI
 sp
 fi
-dg
-Av
+fi
+pQ
 ap
 ap
 ap
@@ -10270,8 +10252,8 @@ OY
 Xl
 "}
 (34,1,1) = {"
-Hy
-Hy
+FT
+FT
 FT
 FT
 FT
@@ -10313,8 +10295,8 @@ FT
 FT
 uG
 FT
-dg
-Hy
+FT
+FT
 ap
 ap
 ap
@@ -10412,8 +10394,8 @@ OY
 Xl
 "}
 (35,1,1) = {"
-Hy
-Hy
+FT
+FT
 FT
 FT
 FT
@@ -10455,8 +10437,8 @@ FT
 FT
 uG
 FT
-dg
-Hy
+FT
+FT
 ap
 ap
 ap
@@ -10554,8 +10536,8 @@ OY
 Xl
 "}
 (36,1,1) = {"
-Hy
-Hy
+cq
+cq
 cq
 cq
 cq
@@ -10597,8 +10579,8 @@ cq
 cq
 yk
 cq
-dg
-Hy
+cq
+cq
 ap
 ap
 ap
@@ -10696,8 +10678,8 @@ OY
 Xl
 "}
 (37,1,1) = {"
-Hy
-Hy
+FT
+FT
 FT
 FT
 FT
@@ -10739,8 +10721,8 @@ FT
 FT
 uG
 FT
-dg
-Hy
+FT
+FT
 ap
 ap
 ap
@@ -10838,8 +10820,8 @@ OY
 Xl
 "}
 (38,1,1) = {"
-Hy
-Hy
+FT
+FT
 FT
 FT
 FT
@@ -10881,8 +10863,8 @@ FT
 FT
 uG
 FT
-dg
-Hy
+FT
+FT
 ap
 ap
 ap
@@ -10980,8 +10962,8 @@ OY
 Xl
 "}
 (39,1,1) = {"
-Hy
-Hy
+FT
+FT
 FT
 FT
 FT
@@ -11023,8 +11005,8 @@ FT
 FT
 uG
 FT
-dg
-Hy
+FT
+FT
 ap
 ap
 ap
@@ -11122,8 +11104,8 @@ OY
 Xl
 "}
 (40,1,1) = {"
-Hy
-Hy
+FT
+FT
 FT
 FT
 FT
@@ -11165,8 +11147,8 @@ FT
 FT
 uG
 FT
-dg
-Hy
+FT
+FT
 ap
 ap
 ap
@@ -11264,8 +11246,8 @@ OY
 Xl
 "}
 (41,1,1) = {"
-Hy
-Hy
+FT
+FT
 FT
 FT
 FT
@@ -11307,8 +11289,8 @@ FT
 FT
 uG
 FT
-dg
-Hy
+FT
+FT
 ap
 ap
 ap
@@ -11406,8 +11388,8 @@ OY
 Xl
 "}
 (42,1,1) = {"
-Hy
-Hy
+cq
+cq
 cq
 cq
 cq
@@ -11449,8 +11431,8 @@ cq
 cq
 yk
 cq
-dg
-Hy
+cq
+cq
 ap
 ap
 ap
@@ -11548,8 +11530,8 @@ OY
 Xl
 "}
 (43,1,1) = {"
-Hy
-Hy
+FT
+FT
 FT
 FT
 FT
@@ -11591,8 +11573,8 @@ FT
 FT
 uG
 FT
-dg
-Hy
+FT
+FT
 ap
 ap
 ap
@@ -11690,8 +11672,8 @@ OY
 Xl
 "}
 (44,1,1) = {"
-Hy
-Hy
+FT
+FT
 FT
 FT
 FT
@@ -11733,8 +11715,8 @@ FT
 FT
 uG
 FT
-dg
-Hy
+FT
+FT
 ap
 ap
 ap
@@ -11832,8 +11814,8 @@ OY
 Xl
 "}
 (45,1,1) = {"
-Hy
-Hy
+gv
+gv
 gv
 gv
 ig
@@ -11875,8 +11857,8 @@ gv
 ig
 st
 gv
-dg
-Fp
+gv
+qc
 ap
 ap
 ap
@@ -11974,8 +11956,6 @@ OY
 Xl
 "}
 (46,1,1) = {"
-Hy
-Hy
 dg
 dg
 dg
@@ -12018,7 +11998,9 @@ dg
 dg
 dg
 dg
-Hy
+dg
+dg
+dg
 ap
 ap
 ap
