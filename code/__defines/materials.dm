@@ -48,7 +48,14 @@
 #define MAT_PAINITE			"painite"
 #define MAT_BOROSILICATE	"borosilicate glass"
 #define MAT_SANDSTONE		"sandstone"
+<<<<<<< HEAD
 #define MAT_FLINT           "flint"
+=======
+#define MAT_PLATINUM		"platinum"
+#define MAT_TRITIUM			"tritium"
+#define MAT_DEUTERIUM		"deuterium"
+
+>>>>>>> 3ab6620fc18... Merge pull request #8272 from lbnesquik/Kot-material-rings-loadout
 
 #define DEFAULT_TABLE_MATERIAL MAT_PLASTIC
 #define DEFAULT_WALL_MATERIAL MAT_STEEL
