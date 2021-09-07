@@ -69,5 +69,8 @@
 	temperature = 310.92 // About 37.7C / 100F
 
 //other set - for map building
-/turf/unsimulated/wall2/planetary
+/turf/unsimulated/wall/planetary1
+	icon_state = "riveted1"
+
+/turf/unsimulated/wall/planetary2
 	icon_state = "riveted2"

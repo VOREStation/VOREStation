@@ -7,11 +7,20 @@
 	name = "Tether - Misc"
 	desc = "Misc areas, like some transit areas, holodecks, merc area."
 	mappath = 'tether_misc.dmm'
-
 	associated_map_datum = /datum/map_z_level/tether_lateload/misc
 
 /datum/map_z_level/tether_lateload/misc
 	name = "Misc"
+	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_SEALED|MAP_LEVEL_CONTACT|MAP_LEVEL_XENOARCH_EXEMPT
+
+/datum/map_template/tether_lateload/centcom
+	name = "Tether - CentCom"
+	desc = "End-of-round/Admin area with elevators etc."
+	mappath = 'tether_centcom.dmm'
+	associated_map_datum = /datum/map_z_level/tether_lateload/centcom
+
+/datum/map_z_level/tether_lateload/centcom
+	name = "CentCom"
 	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_SEALED|MAP_LEVEL_CONTACT|MAP_LEVEL_XENOARCH_EXEMPT
 
 #include "underdark_pois/_templates.dm"

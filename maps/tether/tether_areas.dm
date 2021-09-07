@@ -93,44 +93,115 @@
 	name = "\improper Vacant Office"
 	icon_state = "vacant_site"
 
+
+//
+// CENTCOM
+//
+
 /area/centcom/simulated
+	name = "\improper CentCom"
+	icon = 'icons/turf/areas.dmi'
+	icon_state = "centcom"
+	requires_power = 0
 	dynamic_lighting = 0
+	flags = AREA_FLAG_IS_NOT_PERSISTENT
+
+//Shuttles
+/area/centcom/simulated/evac
+	name = "\improper CentCom Emergency Shuttle"
+
+//Docking
+/area/centcom/simulated/emergencydock1
+	name = "\improper Emergency Hangar 1"
+	icon_state = "centcom_dock"
+
+/area/centcom/simulated/emergencydock2
+	name = "\improper Emergency Hangar 2"
+	icon_state = "centcom_dock"
 
 /area/centcom/simulated/terminal
 	name = "\improper Docking Terminal"
 	icon_state = "centcom_dock"
 	ambience = AMBIENCE_ARRIVALS
 
+/area/centcom/simulated/tram
+	name = "\improper Tram Station"
+	icon_state = "centcom_tram"
+	ambience = AMBIENCE_ARRIVALS
+
+//Main
+/area/centcom/simulated/command
+	name = "\improper CentCom Command"
+	icon_state = "centcom_command"
+	ambience = AMBIENCE_HIGHSEC
+
+/area/centcom/simulated/telecomms
+	name = "\improper CentCom Telecomms"
+	icon_state = "centcom_command"
+	ambience = AMBIENCE_HIGHSEC
+
 /area/centcom/simulated/medical
 	name = "\improper CentCom Medical"
 	icon_state = "centcom_medical"
-
-/area/centcom/simulated/restaurant
-	name = "\improper CentCom Restaurant"
-	icon_state = "centcom_crew"
-
-/area/centcom/simulated/bathroom
-	name = "\improper CentCom Bathroom"
-	icon_state = "centcom_crew"
-
-/area/centcom/simulated/living
-	name = "\improper CentCom Living Quarters"
 
 /area/centcom/simulated/main_hall
 	name = "\improper Main Hallway"
 	icon_state = "centcom_hallway1"
 
-/area/centcom/simulated/evac
-	name = "\improper CentCom Emergency Shuttle"
-
-/area/centcom/simulated/bar
-	name = "\improper CentCom Bar"
-	icon_state = "centcom_crew"
-
 /area/centcom/simulated/security
 	name = "\improper CentCom Security"
 	icon_state = "centcom_security"
 
+/area/centcom/simulated/cargo
+	name = "\improper CentCom Cargo"
+	icon_state = "centcom_dock"
+
+//Living Areas
+/area/centcom/simulated/dorm
+	name = "\improper CentCom Dorms"
+	icon_state = "centcom_dorm"
+
+/area/centcom/simulated/living
+	name = "\improper CentCom Living Quarters"
+	icon_state = "centcom_dorm"
+
+/area/centcom/simulated/teleporter
+	name = "\improper CentCom Teleporter"
+	icon_state = "centcom_dorm"
+
+/area/centcom/simulated/cryo
+	name = "\improper CentCom Cryo"
+	icon_state = "centcom_dorm"
+
+/area/centcom/simulated/bar
+	name = "\improper CentCom Bar"
+	icon_state = "centcom_bar"
+
+/area/centcom/simulated/restaurant
+	name = "\improper CentCom Restaurant"
+	icon_state = "centcom_eat"
+
+/area/centcom/simulated/bathroom
+	name = "\improper CentCom Bathroom"
+	icon_state = "centcom_crew"
+	sound_env = SMALL_ENCLOSED
+
+/area/centcom/simulated/janitor
+	name = "\improper CentCom Custodial Closet"
+	icon_state = "centcom_maint"
+
+//Misc
+/area/centcom/simulated/main_hall
+	name = "\improper Main Hallway"
+	icon_state = "centcom_hallway1"
+
+/area/centcom/simulated/maint
+	name = "\improper CentCom Maintenance"
+	icon_state = "centcom_maint"
+	flags = RAD_SHIELDED
+	sound_env = TUNNEL_ENCLOSED
+	turf_initializer = new /datum/turf_initializer/maintenance()
+	ambience = AMBIENCE_MAINTENANCE
 
 //
 // Surface Base Z Levels

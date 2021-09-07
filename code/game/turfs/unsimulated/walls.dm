@@ -7,6 +7,9 @@
 	blocks_air = TRUE
 
 //other set - for map building
+/turf/unsimulated/wall/wall1
+	icon_state = "riveted1"
+
 /turf/unsimulated/wall/wall2
 	icon_state = "riveted2"
 

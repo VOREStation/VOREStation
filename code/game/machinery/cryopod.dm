@@ -95,7 +95,7 @@
 	data["real_name"] = user.real_name
 	data["allow_items"] = allow_items
 	data["crew"] = frozen_crew
-	
+
 	var/list/items = list()
 	if(allow_items)
 		for(var/F in frozen_items)
@@ -250,6 +250,10 @@
 /obj/machinery/cryopod/robot/door/dorms
 	name = "Residential District Elevator"
 	desc = "A small elevator that goes down to the deeper section of the colony."
+	icon = 'icons/obj/Cryogenic2_vr.dmi'
+	icon_state = "lift_closed"
+	base_icon_state = "lift_open"
+	occupied_icon_state = "lift_closed"
 	on_store_message = "has departed for the residential district."
 	on_store_name = "Residential Oversight"
 	on_enter_occupant_message = "The elevator door closes slowly, ready to bring you down to the residential district."
@@ -259,6 +263,10 @@
 /obj/machinery/cryopod/robot/door/travel
 	name = "Passenger Elevator"
 	desc = "A small elevator that goes down to the passenger section of the vessel."
+	icon = 'icons/obj/Cryogenic2_vr.dmi'
+	icon_state = "lift_closed"
+	base_icon_state = "lift_open"
+	occupied_icon_state = "lift_closed"
 	on_store_message = "is slated to depart from the colony."
 	on_store_name = "Travel Oversight"
 	on_enter_occupant_message = "The elevator door closes slowly, ready to bring you down to the hell that is economy class travel."
@@ -491,7 +499,7 @@
 	for(var/datum/data/record/G in data_core.general)
 		if((G.fields["name"] == to_despawn.real_name))
 			qdel(G)
-	
+
 	// Also check the hidden version of each datacore, if they're an offmap role.
 	var/datum/job/J = SSjob.get_job(job)
 	if(J?.offmap_spawn)
@@ -719,3 +727,32 @@
 
 		//Despawning occurs when process() is called with an occupant without a client.
 		add_fingerprint(M)
+
+// More believeable Residential Elevator
+/obj/machinery/cryopod/robot/door/centcom_elevator
+	name = "\improper Residential District Elevator"
+	desc = "An elevator that goes down to the deeper section of the colony."
+	icon = 'icons/obj/Cryogenic2_vr.dmi'
+	icon_state = "lift_closed"
+	base_icon_state = "lift_losed"
+	occupied_icon_state = "lift_closed"
+	can_atmos_pass = ATMOS_PASS_NO
+	on_store_message = "has departed for the residential district."
+	on_store_name = "Residential Oversight"
+	on_enter_occupant_message = "The elevator door closes slowly, ready to bring you down to the residential district."
+	on_store_visible_message_1 = "makes a ding as it moves"
+	on_store_visible_message_2 = "to the residential district."
+	time_till_despawn = 10 SECONDS
+	spawnpoint_type = /datum/spawnpoint/tram
+
+/obj/machinery/cryopod/robot/door/centcom_elevator/Bumped(var/atom/movable/AM)
+	if(!ishuman(AM))
+		return
+
+	var/mob/living/carbon/human/user = AM
+
+	var/choice = tgui_alert(user, "Do you want to take the elevator to the Residential District?","Departure",list("Yes","No"))
+	if(user && Adjacent(user) && choice == "Yes")
+		var/mob/observer/dead/newghost = user.ghostize()
+		newghost.timeofdeath = world.time
+		despawn_occupant(user)

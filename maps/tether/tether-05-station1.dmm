@@ -9835,7 +9835,7 @@
 /obj/machinery/door/firedoor/border_only,
 /obj/machinery/door/airlock/glass_external,
 /obj/machinery/conveyor{
-	dir = 4;
+	dir = 8;
 	id = "QMLoad2"
 	},
 /obj/effect/map_helper/airlock/door/simple,
@@ -31562,7 +31562,7 @@
 /area/quartermaster/office)
 "sBQ" = (
 /obj/machinery/conveyor{
-	dir = 4;
+	dir = 8;
 	id = "QMLoad2"
 	},
 /turf/simulated/floor,
