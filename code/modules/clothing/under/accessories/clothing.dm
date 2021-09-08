@@ -54,6 +54,11 @@
 	desc = "Chairman suit jacket."
 	icon_state = "gambler_jacket"
 
+/obj/item/clothing/accessory/jacket/extravagant
+	name = "extravagant suit jacket"
+	desc = "Luxury suit jacket."
+	icon_state = "extravagant_jacket"
+
 /*
  * Hawaiian
  */

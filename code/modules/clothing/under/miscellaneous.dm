@@ -779,6 +779,13 @@
 	item_state_slots = list(slot_r_hand_str = "lawyer_black", slot_l_hand_str = "lawyer_black")
 	starting_accessories = list(/obj/item/clothing/accessory/tie/black, /obj/item/clothing/accessory/jacket/gambler)
 
+/obj/item/clothing/under/suit_jacket/extravagant
+	name = "extravagant suit"
+	desc = "An extravagant suit. Perfect for being over dramatic."
+	icon_state = "extravagant_suit"
+	item_state_slots = list(slot_r_hand_str = "lawyer_black", slot_l_hand_str = "lawyer_black")
+	starting_accessories = list(/obj/item/clothing/accessory/jacket/extravagant)
+
 /obj/item/clothing/under/suit_jacket/tan
 	name = "tan suit"
 	desc = "A tan suit. Smart, but casual."
