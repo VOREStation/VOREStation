@@ -21,6 +21,7 @@
 //other set - for map building
 /turf/unsimulated/wall/fakeglass2
 	icon_state = "fakewindows2"
+	opacity = 0
 
 /turf/unsimulated/wall/other
 	icon_state = "r_wall"

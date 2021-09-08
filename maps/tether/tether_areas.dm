@@ -106,6 +106,10 @@
 	dynamic_lighting = 0
 	flags = AREA_FLAG_IS_NOT_PERSISTENT
 
+/area/centcom/simulated/maint
+
+
+
 //Shuttles
 /area/centcom/simulated/evac
 	name = "\improper CentCom Emergency Shuttle"
@@ -130,15 +134,14 @@
 	ambience = AMBIENCE_ARRIVALS
 
 //Main
+/area/tcommsat/centcom
+	name = "\improper CentCom Telecommunications"
+	icon_state = "centcom_command"
+	ambience = AMBIENCE_ENGINEERING
+
 /area/centcom/simulated/command
 	name = "\improper CentCom Command"
 	icon_state = "centcom_command"
-	ambience = AMBIENCE_HIGHSEC
-
-/area/centcom/simulated/telecomms
-	name = "\improper CentCom Telecomms"
-	icon_state = "centcom_command"
-	ambience = AMBIENCE_HIGHSEC
 
 /area/centcom/simulated/medical
 	name = "\improper CentCom Medical"
@@ -195,13 +198,9 @@
 	name = "\improper Main Hallway"
 	icon_state = "centcom_hallway1"
 
-/area/centcom/simulated/maint
+/area/maintenance/centcom
 	name = "\improper CentCom Maintenance"
 	icon_state = "centcom_maint"
-	flags = RAD_SHIELDED
-	sound_env = TUNNEL_ENCLOSED
-	turf_initializer = new /datum/turf_initializer/maintenance()
-	ambience = AMBIENCE_MAINTENANCE
 
 //
 // Surface Base Z Levels
