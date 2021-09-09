@@ -218,13 +218,13 @@
 	projectile_type = /obj/item/projectile/beam/sniper
 	slot_flags = SLOT_BACK
 	action_button_name = "Use Scope"
-	battery_lock = 1
-	charge_cost = 600
-	fire_delay = 35
+	battery_lock = 0
+	charge_cost = 300
+	fire_delay = 10
 	force = 10
-	w_class = ITEMSIZE_HUGE // So it can't fit in a backpack.
+	w_class = ITEMSIZE_LARGE // So it can't fit in a backpack. THINK AGAIN
 	accuracy = -45 //shooting at the hip
-	scoped_accuracy = 50
+	scoped_accuracy = 95
 	one_handed_penalty = 60 // The weapon itself is heavy, and the long barrel makes it hard to hold steady with just one hand.
 
 /obj/item/weapon/gun/energy/sniperrifle/ui_action_click()
