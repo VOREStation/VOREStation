@@ -14,9 +14,9 @@
 /obj/item/device/microphone/proc/can_broadcast(var/mob/living/user)
 	var/turf/T = get_turf(src)
 	var/speakers = 0
-	for (var/obj/loudspeaker/S in range(7, T))
-		speakers ++
-	if (!speakers)
+	for(var/obj/loudspeaker/S in range(7, T))
+			speakers ++
+	if(!speakers)
 		to_chat(user, "<span class='warning'>You realise that there's no loudspeaker nearby for this to project to.</span>")
 		return FALSE
 	if(user.client)
@@ -39,7 +39,7 @@
 	. += "It's currently [src.on ? "on" : "off"]."
 
 /obj/item/device/microphone/proc/do_broadcast(var/mob/living/user, var/message)
-	user.audible_message("<B>[user.GetVoice()]</B>[user.GetAltName()] broadcasts, <FONT size=5>\"[message]\"</FONT>", runemessage = "synthesized speech")
+	user.audible_message("<B>[user.GetVoice()]</B>[user.GetAltName()] broadcasts, <FONT size=5>\"[message]\"</FONT>", runemessage = message)
 
 /obj/item/device/microphone/verb/toggle_microphone(var/mob/living/user)
 	set name = "Toggle Microphone"
@@ -52,7 +52,6 @@
 	toggle_microphone(user)
 
 /obj/item/device/microphone/attack_self(var/mob/living/user)
-	var/turf/T = get_turf(src)
 	var/message = sanitize(input(usr, "What is your message?", "Microphone", null)  as text)
 	if(!message)
 		return
@@ -123,3 +122,17 @@
 
 /obj/loudspeaker/small
 	icon_state = "brick-speaker"
+
+/obj/loudspeaker/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(W.is_wrench())
+		playsound(src, W.usesound, 100, 1)
+		if(anchored)
+			user.visible_message("[user] begins unsecuring \the [src] from the floor.", "You start unsecuring \the [src] from the floor.")
+		else
+			user.visible_message("[user] begins securing \the [src] to the floor.", "You start securing \the [src] to the floor.")
+
+		if(do_after(user, 20 * W.toolspeed))
+			if(!src) return
+			to_chat(user, "<span class='notice'>You [anchored? "un" : ""]secured \the [src]!</span>")
+			anchored = !anchored
+		return
