@@ -6128,6 +6128,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/cb06/Initialize()
 	. = ..()
 	reagents.add_reagent("sugar", 1)
+	reagents.add_reagent("coffee", 1)
 
 /obj/item/weapon/reagent_containers/food/snacks/cb07
 	name = "\improper TaroMilk Bar"
@@ -6177,6 +6178,7 @@
 	. = ..()
 	reagents.add_reagent("sugar", 1)
 	reagents.add_reagent("milk", 1)
+	reagents.add_reagent("peanutoil", 1)
 
 /obj/item/weapon/reagent_containers/food/snacks/cb10
 	name = "\improper Shantak Bar"
@@ -6194,6 +6196,7 @@
 	. = ..()
 	reagents.add_reagent("sugar", 1)
 	reagents.add_reagent("protein", 1)
+	reagents.add_reagent("peanutoil", 1)
 
 ////////////////////Misc Vend Items////////////////////////////////////////////////////////////////
 
