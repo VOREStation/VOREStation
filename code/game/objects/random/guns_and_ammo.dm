@@ -161,7 +161,7 @@
 	icon_state = "clusterbang_segment"
 
 /obj/random/grenade/item_to_spawn()
-	return pick(	prob(15);/obj/item/weapon/grenade/concussion,
+	return pick(prob(15);/obj/item/weapon/grenade/concussion,
 			prob(5);/obj/item/weapon/grenade/empgrenade,
 			prob(15);/obj/item/weapon/grenade/empgrenade/low_yield,
 			prob(5);/obj/item/weapon/grenade/chem_grenade/metalfoam,
@@ -179,6 +179,23 @@
 			prob(15);/obj/item/weapon/grenade/smokebomb
 			)
 
+<<<<<<< HEAD
+=======
+/obj/random/grenade/lethal
+	name = "Random Grenade"
+	desc = "This is random thrown grenade that hurts a lot."
+	icon_state = "grenade_3"
+
+/obj/random/grenade/lethal/item_to_spawn()
+	return pick(prob(15);/obj/item/weapon/grenade/concussion,
+			prob(5);/obj/item/weapon/grenade/empgrenade,
+			prob(2);/obj/item/weapon/grenade/chem_grenade/incendiary,
+			prob(5);/obj/item/weapon/grenade/explosive,
+			prob(10);/obj/item/weapon/grenade/explosive/mini,
+			prob(2);/obj/item/weapon/grenade/explosive/frag
+			)
+
+>>>>>>> 2146cd53986... Merge pull request #8281 from Cerebulon/misc-fixes-sept
 /obj/random/grenade/less_lethal
 	name = "Random Security Grenade"
 	desc = "This is a random thrown grenade that shouldn't kill anyone."
@@ -186,7 +203,7 @@
 	icon_state = "clusterbang_segment"
 
 /obj/random/grenade/less_lethal/item_to_spawn()
-	return pick(	prob(20);/obj/item/weapon/grenade/concussion,
+	return pick(prob(20);/obj/item/weapon/grenade/concussion,
 			prob(15);/obj/item/weapon/grenade/empgrenade/low_yield,
 			prob(15);/obj/item/weapon/grenade/chem_grenade/metalfoam,
 			prob(20);/obj/item/weapon/grenade/chem_grenade/teargas,
@@ -203,7 +220,7 @@
 	icon_state = "clusterbang_segment"
 
 /obj/random/grenade/box/item_to_spawn()
-	return pick(	prob(20);/obj/item/weapon/storage/box/flashbangs,
+	return pick(prob(20);/obj/item/weapon/storage/box/flashbangs,
 			prob(10);/obj/item/weapon/storage/box/emps,
 			prob(20);/obj/item/weapon/storage/box/empslite,
 			prob(15);/obj/item/weapon/storage/box/smokes,
