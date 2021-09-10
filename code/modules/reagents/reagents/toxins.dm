@@ -761,7 +761,7 @@
 	taste_mult = 0.4
 	reagent_state = LIQUID
 	color = "#60A584"
-	metabolism = REM * 0.5
+	metabolism = REM * 0.15
 	overdose = REAGENTS_OVERDOSE
 
 /datum/reagent/space_drugs/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
