@@ -15,7 +15,7 @@
 	var/turf/T = get_turf(src)
 	var/speakers = 0
 	for(var/obj/loudspeaker/S in range(7, T))
-			speakers ++
+		speakers ++
 	if(!speakers)
 		to_chat(user, "<span class='warning'>You realise that there's no loudspeaker nearby for this to project to.</span>")
 		return FALSE
