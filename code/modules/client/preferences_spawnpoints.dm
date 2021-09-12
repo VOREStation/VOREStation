@@ -60,7 +60,19 @@ var/list/spawntypes = list()
 /datum/spawnpoint/elevator/New()
 	..()
 	turfs = latejoin_elevator
+<<<<<<< HEAD
 */
+=======
+
+/datum/spawnpoint/checkpoint
+	display_name = "Checkpoint"
+	msg = "has arrived at the exterior checkpoint"
+
+/datum/spawnpoint/checkpoint/New()
+	..()
+	turfs = latejoin_checkpoint
+
+>>>>>>> 72e6aee50ec... Merge pull request #8229 from MistakeNot4892/comeandgo
 /datum/spawnpoint/cryo
 	display_name = "Cryogenic Storage"
 	msg = "has completed cryogenic revival"

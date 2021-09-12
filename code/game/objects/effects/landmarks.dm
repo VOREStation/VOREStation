@@ -35,6 +35,10 @@
 			latejoin_elevator += loc
 			delete_me = 1
 			return
+		if("JoinLateCheckpoint")
+			latejoin_checkpoint += loc
+			delete_me = 1
+			return
 		if("JoinLateCryo")
 			latejoin_cryo += loc
 			delete_me = 1

@@ -79,7 +79,12 @@
 							NETWORK_SUPPLY
 							)
 	usable_email_tlds = list("freemail.nt")
-	allowed_spawns = list("Arrivals Shuttle","Gateway", "Cryogenic Storage", "Cyborg Storage")
+	allowed_spawns = list(
+		"Arrivals Shuttle",
+		"Checkpoint",
+		"Cryogenic Storage",
+		"Cyborg Storage"
+	)
 
 	default_skybox = /datum/skybox_settings/southern_cross
 
