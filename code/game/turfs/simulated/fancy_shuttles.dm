@@ -66,6 +66,11 @@ GLOBAL_LIST_EMPTY(fancy_shuttles)
 	take_damage(damage)
 	return damage
 
+/turf/simulated/wall/fancy_shuttle/low //you can see over it and it doesn't block air
+	blocks_air = FALSE
+	opacity = FALSE
+	icon_state = "hull_low"
+
 /turf/simulated/wall/fancy_shuttle/nondense
 	density = FALSE
 	blocks_air = FALSE
@@ -252,24 +257,24 @@ GLOBAL_LIST_EMPTY(fancy_shuttles)
 	icon = 'icons/turf/fancy_shuttles/exploration_preview.dmi'
 
 /**
- * Sec shuttle
- * North facing: W:13, H:18
+ * Secbus shuttle
+ * North facing: W:11, H:16
  */
-/obj/effect/fancy_shuttle/security
-	icon = 'icons/turf/fancy_shuttles/security_preview.dmi'
-	split_file = 'icons/turf/fancy_shuttles/security.dmi'
-/obj/effect/fancy_shuttle_floor_preview/security
-	icon = 'icons/turf/fancy_shuttles/security_preview.dmi'
+/obj/effect/fancy_shuttle/secbus
+	icon = 'icons/turf/fancy_shuttles/secbus_preview.dmi'
+	split_file = 'icons/turf/fancy_shuttles/secbus.dmi'
+/obj/effect/fancy_shuttle_floor_preview/secbus
+	icon = 'icons/turf/fancy_shuttles/secbus_preview.dmi'
 
 /**
- * Med shuttle
- * North facing: W:13, H:18
+ * Medbus shuttle
+ * North facing: W:11, H:16
  */
-/obj/effect/fancy_shuttle/medical
-	icon = 'icons/turf/fancy_shuttles/medical_preview.dmi'
-	split_file = 'icons/turf/fancy_shuttles/medical.dmi'
-/obj/effect/fancy_shuttle_floor_preview/medical
-	icon = 'icons/turf/fancy_shuttles/medical_preview.dmi'
+/obj/effect/fancy_shuttle/medbus
+	icon = 'icons/turf/fancy_shuttles/medbus_preview.dmi'
+	split_file = 'icons/turf/fancy_shuttles/medbus.dmi'
+/obj/effect/fancy_shuttle_floor_preview/medbus
+	icon = 'icons/turf/fancy_shuttles/medbus_preview.dmi'
 
 /**
  * Orange line tram
@@ -283,7 +288,7 @@ GLOBAL_LIST_EMPTY(fancy_shuttles)
 
 /**
  * Tour bus
- * North facing: W:7, H:13
+ * North facing: W:7, H:12
  */
 /obj/effect/fancy_shuttle/tourbus
 	icon = 'icons/turf/fancy_shuttles/tourbus_preview.dmi'
@@ -350,3 +355,7 @@ GLOBAL_LIST_EMPTY(fancy_shuttles)
 	split_file = 'icons/turf/fancy_shuttles/pod.dmi'
 /obj/effect/fancy_shuttle_floor_preview/escapepod
 	icon = 'icons/turf/fancy_shuttles/pod_preview.dmi'
+
+/*
+ * WRECKED SHUTTLES
+ */
