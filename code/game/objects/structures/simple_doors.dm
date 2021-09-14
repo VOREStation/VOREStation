@@ -12,6 +12,8 @@
 	var/isSwitchingStates = 0
 	var/hardness = 1
 	var/oreAmount = 7
+	var/knock_sound = 'sound/effects/glassknock.ogg'
+	var/knock_hammer_sound = 'sound/weapons/sonic_jackhammer.ogg'
 	
 /obj/structure/simple_door/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	TemperatureAct(exposed_temperature)
@@ -67,6 +69,19 @@
 
 /obj/structure/simple_door/attack_hand(mob/user as mob)
 	return TryToSwitchState(user)
+
+/obj/structure/simple_door/AltClick(mob/user as mob)
+	if(!Adjacent(user))
+		return
+	else if(user.a_intent == I_HURT)
+		src.visible_message("<span class='warning'>[user] hammers on \the [src]!</span>", "<span class='warning'>Someone hammers loudly on \the [src]!</span>")
+		src.add_fingerprint(user)
+		playsound(src, knock_hammer_sound, 50, 0, 3)
+	else
+		src.visible_message("[user] knocks on \the [src].", "Someone knocks on \the [src].")
+		src.add_fingerprint(user)
+		playsound(src, knock_sound, 50, 0, 3)
+	return
 
 /obj/structure/simple_door/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover, /obj/effect/beam))
