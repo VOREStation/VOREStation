@@ -355,7 +355,3 @@ GLOBAL_LIST_EMPTY(fancy_shuttles)
 	split_file = 'icons/turf/fancy_shuttles/pod.dmi'
 /obj/effect/fancy_shuttle_floor_preview/escapepod
 	icon = 'icons/turf/fancy_shuttles/pod_preview.dmi'
-
-/*
- * WRECKED SHUTTLES
- */

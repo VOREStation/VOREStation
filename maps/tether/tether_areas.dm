@@ -1471,6 +1471,9 @@
 /area/shuttle/tourbus/cockpit
 	name = "\improper Tour Bus Cockpit"
 
+/*
+ * Medbus
+ */
 /area/shuttle/medivac
 	requires_power = 1
 	icon_state = "shuttle2"
@@ -1484,6 +1487,9 @@
 /area/shuttle/medivac/engines
 	name = "\improper Medivac Engines"
 
+/*
+ * Secbus
+ */
 /area/shuttle/securiship
 	requires_power = 1
 	icon_state = "shuttle2"
