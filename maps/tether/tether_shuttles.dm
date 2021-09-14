@@ -245,7 +245,7 @@
 	docking_controller_tag = "medivac_docker"
 	shuttle_area = list(/area/shuttle/medivac/cockpit, /area/shuttle/medivac/general, /area/shuttle/medivac/engines)
 	fuel_consumption = 2
-	move_direction = EAST
+	move_direction = NORTH
 
 // The 'ship' of the excursion shuttle
 /obj/effect/overmap/visitable/ship/landable/medivac

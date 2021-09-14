@@ -19011,14 +19011,9 @@
 /obj/machinery/airlock_sensor{
 	dir = 1;
 	pixel_x = 3;
-	pixel_y = -26
+	pixel_y = -23
 	},
 /obj/effect/map_helper/airlock/sensor/int_sensor,
-/obj/effect/map_helper/airlock/door/int_door,
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "medbus";
-	name = "medbus"
-	},
 /turf/simulated/floor/tiled/eris/techmaint_panels,
 /area/shuttle/medivac/general)
 "fwt" = (
@@ -19028,15 +19023,15 @@
 /area/janitor)
 "fwX" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	id_tag = "medbus_starboard_airlock"
+/obj/machinery/door/airlock/glass_external,
+/obj/effect/map_helper/airlock/door/ext_door,
+/obj/machinery/airlock_sensor{
+	dir = 1;
+	pixel_x = 3;
+	pixel_y = -23
 	},
 /obj/effect/map_helper/airlock/door/ext_door,
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "medbus";
-	name = "medbus"
-	},
+/obj/effect/map_helper/airlock/sensor/ext_sensor,
 /turf/simulated/floor/tiled/eris/techmaint_panels,
 /area/shuttle/medivac/general)
 "fwY" = (
@@ -28198,21 +28193,14 @@
 	})
 "nJy" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 4;
-	frequency = 1380;
-	id_tag = "medivac_docker_pump_out_internal"
+	dir = 4
 	},
+/obj/effect/map_helper/airlock/atmos/pump_out_internal,
 /obj/machinery/airlock_sensor{
-	dir = 4;
-	pixel_x = 10;
-	pixel_y = -26
+	dir = 1;
+	pixel_y = -23
 	},
 /obj/effect/map_helper/airlock/sensor/chamber_sensor,
-/obj/effect/map_helper/airlock/atmos/pump_out_internal,
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "medbus";
-	name = "medbus"
-	},
 /turf/simulated/floor/tiled/eris/steel/gray_perforated,
 /area/shuttle/medivac/general)
 "nJP" = (
@@ -31294,39 +31282,8 @@
 /turf/simulated/floor/tiled,
 /area/tether/station/dock_two)
 "rsp" = (
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 8
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 8
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 10
-	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 10
-	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/station/dock_two)
-"rsL" = (
-/obj/effect/floor_decal/borderfloorwhite{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 4
-	},
-/obj/effect/floor_decal/borderfloorwhite/corner2{
-	dir = 5
-	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 5
-	},
-/turf/simulated/floor/tiled/white,
+/obj/structure/sign/warning/docking_area,
+/turf/simulated/wall,
 /area/tether/station/dock_two)
 "rtP" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
@@ -31571,23 +31528,6 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 5
 	},
-/turf/simulated/floor/tiled/white,
-/area/tether/station/dock_two)
-"rIA" = (
-/obj/machinery/door/airlock/glass_external,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/effect/floor_decal/industrial/hatch/yellow,
-/obj/effect/map_helper/airlock/door/simple,
-/turf/simulated/floor/tiled/white,
-/area/tether/station/dock_two)
-"rJe" = (
-/obj/machinery/door/airlock/glass_external,
-/obj/effect/floor_decal/industrial/hatch/yellow,
-/obj/effect/map_helper/airlock/door/simple,
 /turf/simulated/floor/tiled/white,
 /area/tether/station/dock_two)
 "rKK" = (
@@ -33703,7 +33643,7 @@
 /obj/machinery/embedded_controller/radio/docking_port_multi{
 	child_names_txt = ("Port Airlock Control;Starboard Airlock Control");
 	child_tags_txt = ("medbus_starboard_airlock;medbus_port_airlock");
-	id_tag = "medivac_bay";
+	id_tag = "medivac_docker";
 	pixel_x = -27;
 	pixel_y = 25
 	},
@@ -33718,17 +33658,12 @@
 /area/storage/tools)
 "ujC" = (
 /obj/machinery/door/airlock/glass_external,
-/obj/machinery/airlock_sensor/airlock_exterior/shuttle{
-	dir = 5;
-	pixel_x = -7;
-	pixel_y = 25
+/obj/machinery/airlock_sensor{
+	pixel_x = -1;
+	pixel_y = 24
 	},
-/obj/effect/map_helper/airlock/sensor/ext_sensor,
 /obj/effect/map_helper/airlock/door/ext_door,
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "medbus";
-	name = "medbus"
-	},
+/obj/effect/map_helper/airlock/sensor/ext_sensor,
 /turf/simulated/floor/tiled/eris/techmaint_panels,
 /area/shuttle/medivac/general)
 "ujK" = (
@@ -33751,8 +33686,11 @@
 /area/ai_monitored/storage/eva)
 "umD" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 4
+	dir = 4;
+	frequency = 1380;
+	id_tag = "medivac_docker_pump_out_internal"
 	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
 /obj/machinery/embedded_controller/radio/airlock/docking_port_multi{
 	id_tag = "medbus_port_airlock";
 	name = "Port Airlock Control";
@@ -33761,11 +33699,6 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/map_helper/airlock/atmos/chamber_pump,
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "medbus";
-	name = "medbus"
-	},
 /turf/simulated/floor/tiled/eris/steel/gray_perforated,
 /area/shuttle/medivac/general)
 "umF" = (
@@ -33773,11 +33706,6 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/glass_external,
-/obj/effect/map_helper/airlock/door/int_door,
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "medbus";
-	name = "medbus"
-	},
 /turf/simulated/floor/tiled/eris/techmaint_panels,
 /area/shuttle/medivac/general)
 "uno" = (
@@ -33808,18 +33736,13 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	id_tag = "medbus_starboard_airlock"
-	},
-/obj/structure/cable/green{
-	icon_state = "4-8"
-	},
+/obj/machinery/door/airlock/glass_external,
 /obj/effect/map_helper/airlock/door/int_door,
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "medbus";
-	name = "medbus"
+/obj/machinery/airlock_sensor{
+	pixel_x = -1;
+	pixel_y = 24
 	},
+/obj/effect/map_helper/airlock/sensor/int_sensor,
 /turf/simulated/floor/tiled/eris/techmaint_panels,
 /area/shuttle/medivac/general)
 "unR" = (
@@ -33849,32 +33772,17 @@
 "upT" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
-	frequency = 1380
-	},
-/obj/structure/cable/green{
-	icon_state = "4-8"
-	},
-/obj/machinery/embedded_controller/radio/airlock/docking_port_multi{
 	frequency = 1380;
+	id_tag = "medivac_docker_pump_out_internal"
+	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/machinery/embedded_controller/radio/airlock/docking_port_multi{
 	id_tag = "medbus_starboard_airlock";
 	name = "Starboard Airlock Control";
 	pixel_y = 25
 	},
 /obj/machinery/light{
 	dir = 1
-	},
-/obj/effect/shuttle_landmark{
-	base_area = /area/mine/explored/upper_level;
-	base_turf = /turf/simulated/floor/airless;
-	docking_controller = "medivac_bay";
-	landmark_tag = "tether_medivac_dock";
-	name = "Medivac Bay"
-	},
-/obj/effect/overmap/visitable/ship/landable/medivac,
-/obj/effect/map_helper/airlock/atmos/chamber_pump,
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "medbus";
-	name = "medbus"
 	},
 /turf/simulated/floor/tiled/eris/steel/gray_perforated,
 /area/shuttle/medivac/general)
@@ -33903,26 +33811,8 @@
 /area/quartermaster/storage)
 "uqU" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	id_tag = "medbus_starboard_airlock"
-	},
-/obj/structure/cable/green{
-	icon_state = "4-8"
-	},
-/obj/machinery/airlock_sensor/airlock_exterior/shuttle{
-	dir = 5;
-	frequency = 1380;
-	id_tag = "medbus_starboard_airlock";
-	pixel_x = 6;
-	pixel_y = 25
-	},
-/obj/effect/map_helper/airlock/sensor/ext_sensor,
+/obj/machinery/door/airlock/glass_external,
 /obj/effect/map_helper/airlock/door/ext_door,
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "medbus";
-	name = "medbus"
-	},
 /turf/simulated/floor/tiled/eris/techmaint_panels,
 /area/shuttle/medivac/general)
 "usX" = (
@@ -34291,55 +34181,24 @@
 	},
 /turf/simulated/floor/plating,
 /area/quartermaster/belterdock/refinery)
-"uPs" = (
-/obj/machinery/door/airlock/glass_external,
-/obj/effect/map_helper/airlock/door/ext_door,
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "medbus";
-	name = "medbus"
-	},
-/turf/simulated/floor/tiled/eris/techmaint_panels,
-/area/shuttle/medivac/general)
 "uPt" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	id_tag = "medbus_starboard_airlock"
-	},
+/obj/machinery/door/airlock/glass_external,
 /obj/effect/map_helper/airlock/door/int_door,
-/obj/machinery/airlock_sensor{
-	dir = 1;
-	frequency = 1380;
-	id_tag = "medbus_starboard_airlock";
-	pixel_x = -4;
-	pixel_y = -26
-	},
-/obj/effect/map_helper/airlock/sensor/int_sensor,
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "medbus";
-	name = "medbus"
-	},
 /turf/simulated/floor/tiled/eris/techmaint_panels,
 /area/shuttle/medivac/general)
 "uQa" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 8;
-	frequency = 1380;
-	id_tag = "medbus_starboard_airlock"
+	dir = 8
 	},
 /obj/effect/map_helper/airlock/atmos/pump_out_internal,
-/obj/effect/map_helper/airlock/sensor/chamber_sensor,
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "medbus";
-	name = "medbus"
-	},
 /obj/machinery/airlock_sensor{
-	dir = 4;
-	pixel_x = 10;
-	pixel_y = -26
+	dir = 1;
+	pixel_y = -23
 	},
+/obj/effect/map_helper/airlock/sensor/chamber_sensor,
 /turf/simulated/floor/tiled/eris/steel/gray_perforated,
 /area/shuttle/medivac/general)
 "uRY" = (
@@ -50397,8 +50256,8 @@ fLT
 qCV
 qOx
 cjl
-fLT
-fLT
+qBP
+aaa
 aaa
 aaa
 aaa
@@ -50539,8 +50398,8 @@ tZN
 uEv
 kMY
 qWN
-rsp
-rIA
+qBP
+aaa
 aaa
 aaa
 aaa
@@ -50681,8 +50540,8 @@ auX
 uEv
 rQq
 qYR
-rsL
-rJe
+qBP
+aaa
 aaa
 aaa
 aaa
@@ -50824,7 +50683,7 @@ klW
 rQq
 mzV
 fLT
-fLT
+aaa
 aaa
 aaa
 aaa
@@ -50972,7 +50831,7 @@ tKI
 xwd
 tKI
 ujC
-uPs
+scB
 vns
 vns
 gYH
@@ -51967,7 +51826,7 @@ aaa
 fLT
 xIB
 xIB
-fLT
+rsp
 aaa
 dTX
 dTX
