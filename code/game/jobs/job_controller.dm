@@ -54,7 +54,7 @@ var/global/datum/controller/occupations/job_master
 		var/datum/job/job = GetJob(rank)
 		if(!job)
 			return 0
-		if(job.minimum_character_age && (player.client.prefs.age < job.minimum_character_age))
+		if((job.minimum_character_age || job.min_age_by_species) && (player.client.prefs.age < job.get_min_age(player.client.prefs.species, player.client.prefs.organ_data["brain"])))
 			return 0
 		if(jobban_isbanned(player, rank))
 			return 0
@@ -97,9 +97,10 @@ var/global/datum/controller/occupations/job_master
 		if(!job.player_old_enough(player.client))
 			Debug("FOC player not old enough, Player: [player]")
 			continue
-		if(job.minimum_character_age && (player.client.prefs.age < job.minimum_character_age))
+		if(job.minimum_character_age && (player.client.prefs.age < job.get_min_age(player.client.prefs.species, player.client.prefs.organ_data["brain"])))
 			Debug("FOC character not old enough, Player: [player]")
 			continue
+<<<<<<< HEAD
 		//VOREStation Code Start
 		if(!job.player_has_enough_playtime(player.client))
 			Debug("FOC character not enough playtime, Player: [player]")
@@ -108,6 +109,11 @@ var/global/datum/controller/occupations/job_master
 			Debug("FOC is_job_whitelisted failed, Player: [player]")
 			continue
 		//VOREStation Code End
+=======
+		if(job.is_species_banned(player.client.prefs.species, player.client.prefs.organ_data["brain"]) == TRUE)
+			Debug("FOC character species invalid for job, Player: [player]")
+			continue
+>>>>>>> 67849757c8f... Merge pull request #8253 from Schnayy/ageupdates
 		if(flag && !(player.client.prefs.be_special & flag))
 			Debug("FOC flag failed, Player: [player], Flag: [flag], ")
 			continue
@@ -122,7 +128,10 @@ var/global/datum/controller/occupations/job_master
 		if(!job)
 			continue
 
-		if(job.minimum_character_age && (player.client.prefs.age < job.minimum_character_age))
+		if((job.minimum_character_age || job.min_age_by_species) && (player.client.prefs.age < job.get_min_age(player.client.prefs.species, player.client.prefs.organ_data["brain"])))
+			continue
+
+		if(job.is_species_banned(player.client.prefs.species, player.client.prefs.organ_data["brain"]) == TRUE)
 			continue
 
 		if(istype(job, GetJob(USELESS_JOB))) // We don't want to give him assistant, that's boring! //VOREStation Edit - Visitor not Assistant
@@ -180,20 +189,18 @@ var/global/datum/controller/occupations/job_master
 				if(!V.client) continue
 				var/age = V.client.prefs.age
 
-				if(age < job.minimum_character_age) // Nope.
+				if(age < job.get_min_age(V.client.prefs.species, V.client.prefs.organ_data["brain"])) // Nope.
 					continue
 
-				switch(age)
-					if(job.minimum_character_age to (job.minimum_character_age+10))
-						weightedCandidates[V] = 3 // Still a bit young.
-					if((job.minimum_character_age+10) to (job.ideal_character_age-10))
-						weightedCandidates[V] = 6 // Better.
-					if((job.ideal_character_age-10) to (job.ideal_character_age+10))
-						weightedCandidates[V] = 10 // Great.
-					if((job.ideal_character_age+10) to (job.ideal_character_age+20))
-						weightedCandidates[V] = 6 // Still good.
-					if((job.ideal_character_age+20) to INFINITY)
-						weightedCandidates[V] = 3 // Geezer.
+				var/idealage = job.get_ideal_age(V.client.prefs.species, V.client.prefs.organ_data["brain"])
+				var/agediff = abs(idealage - age) // Compute the absolute difference in age from target
+				switch(agediff) /// If the math sucks, it's because I almost failed algebra in high school.
+					if(20 to INFINITY)
+						weightedCandidates[V] = 3 // Too far off
+					if(10 to 20)
+						weightedCandidates[V] = 6 // Nearer the mark, but not quite
+					if(0 to 10)
+						weightedCandidates[V] = 10 // On the mark
 					else
 						// If there's ABSOLUTELY NOBODY ELSE
 						if(candidates.len == 1) weightedCandidates[V] = 1
