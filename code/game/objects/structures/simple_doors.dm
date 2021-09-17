@@ -12,7 +12,7 @@
 	var/isSwitchingStates = 0
 	var/hardness = 1
 	var/oreAmount = 7
-	var/knock_sound = 'sound/effects/glassknock.ogg'
+	var/knock_sound = 'sound/machines/door/knock_glass.ogg'
 	var/knock_hammer_sound = 'sound/weapons/sonic_jackhammer.ogg'
 	
 /obj/structure/simple_door/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
@@ -71,6 +71,7 @@
 	return TryToSwitchState(user)
 
 /obj/structure/simple_door/AltClick(mob/user as mob)
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(!Adjacent(user))
 		return
 	else if(user.a_intent == I_HURT)
@@ -240,6 +241,7 @@
 
 /obj/structure/simple_door/wood/Initialize(mapload,var/material_name)
 	..(mapload, material_name || MAT_WOOD)
+	knock_sound = 'sound/machines/door/knock_wood.wav'
 
 /obj/structure/simple_door/sifwood/Initialize(mapload,var/material_name)
 	..(mapload, material_name || MAT_SIFWOOD)

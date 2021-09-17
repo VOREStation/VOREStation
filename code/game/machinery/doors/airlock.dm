@@ -57,6 +57,7 @@
 	var/bolt_down_sound = 'sound/machines/door/boltsdown.ogg'
 	var/knock_sound = 'sound/machines/2beeplow.ogg'
 	var/knock_hammer_sound = 'sound/weapons/sonic_jackhammer.ogg'
+	var/knock_unpowered_sound = 'sound/machines/door/knock_glass.ogg'
 
 /obj/machinery/door/airlock/attack_generic(var/mob/living/user, var/damage)
 	if(stat & (BROKEN|NOPOWER))
@@ -978,18 +979,25 @@ About the new airlock wires panel:
 	return
 
 /obj/machinery/door/airlock/AltClick(mob/user as mob)
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(!Adjacent(user))
 		return
 	else if(user.a_intent == I_HURT)
 		src.visible_message("<span class='warning'>[user] hammers on \the [src]!</span>", "<span class='warning'>Someone hammers loudly on \the [src]!</span>")
 		src.add_fingerprint(user)
-		flick("door_deny", src)
+		if(icon_state == "door_closed" && arePowerSystemsOn())
+			flick("door_deny", src)
 		playsound(src, knock_hammer_sound, 50, 0, 3)
-	else
+	else if(arePowerSystemsOn())
 		src.visible_message("[user] presses the door bell on \the [src].", "\The [src]'s bell rings.")
 		src.add_fingerprint(user)
-		flick("door_deny", src)
+		if(icon_state == "door_closed")
+			flick("door_deny", src)
 		playsound(src, knock_sound, 50, 0, 3)
+	else
+		src.visible_message("[user] knocks on \the [src].", "Someone knocks on \the [src].")
+		src.add_fingerprint(user)
+		playsound(src, knock_unpowered_sound, 50, 0, 3)
 	return
 
 /obj/machinery/door/airlock/tgui_act(action, params)
