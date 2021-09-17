@@ -24,6 +24,10 @@
 			            access_research, access_engine, access_mining, access_medical, access_construction, access_mailsorting,
 			            access_heads, access_hos, access_RC_announce, access_keycard_auth, access_gateway, access_external_airlocks)
 	minimum_character_age = 25
+<<<<<<< HEAD
+=======
+	min_age_by_species = list(SPECIES_HUMAN_VATBORN = 14)
+>>>>>>> ac8fc0fad70... Merge pull request #8306 from Schnayy/ageupdate2
 	minimal_player_age = 14
 
 	outfit_type = /decl/hierarchy/outfit/job/security/hos
