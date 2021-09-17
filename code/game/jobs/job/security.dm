@@ -24,7 +24,7 @@
 			            access_research, access_engine, access_mining, access_medical, access_construction, access_mailsorting,
 			            access_heads, access_hos, access_RC_announce, access_keycard_auth, access_gateway, access_external_airlocks)
 	minimum_character_age = 25
-	min_age_by_species = list(SPECIES_HUMAN_VATBORN = 12)
+	min_age_by_species = list(SPECIES_HUMAN_VATBORN = 14)
 	minimal_player_age = 14
 	ideal_character_age = 50
 	ideal_age_by_species = list(SPECIES_HUMAN_VATBORN = 20)
