@@ -23,6 +23,10 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	economic_modifier = 20
 
 	minimum_character_age = 25
+<<<<<<< HEAD
+=======
+	min_age_by_species = list(SPECIES_HUMAN_VATBORN = 14)
+>>>>>>> 2547a009478... Merge pull request #8307 from Schnayy/ageupdateagain
 	ideal_character_age = 70 // Old geezer captains ftw
 
 	outfit_type = /decl/hierarchy/outfit/job/captain
