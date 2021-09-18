@@ -1714,6 +1714,13 @@
 	icon_state = "shuttle"
 	dynamic_lighting = 0
 
+// Misc
+/area/mine/explored/v3b_wilds
+	name = "\improper V3B Wilderness Outer Perimeter"
+	
+/area/mine/unexplored/v3b_wilds
+	name = "\improper V3B Wilderness Inner Perimeter"
+
 // Exclude some more areas from the atmos leak event so people don't get trapped when spawning.
 /datum/event/atmos_leak/setup()
 	excluded |= /area/tether/surfacebase/tram
