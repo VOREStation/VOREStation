@@ -4,6 +4,7 @@
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "ano00"
 	var/icon_num = 0
+<<<<<<< HEAD
 	density = TRUE
 	var/datum/artifact_effect/my_effect
 	var/datum/artifact_effect/secondary_effect
@@ -13,25 +14,25 @@
 
 	var/predefined_primary
 	var/predefined_secondary
+=======
+	density = 1
+>>>>>>> 71e8b0399de... Universal Anomalies (#7914)
 
 	var/predefined_icon_num
 
-	var/predefined_triggers = FALSE
+	var/datum/component/artifact_master/artifact_master = /datum/component/artifact_master
 
-	var/predefined_trig_primary
-	var/predefined_trig_secondary
+	var/being_used = 0
 
 /obj/machinery/artifact/New()
 	..()
 
-	if(predefined_effects && predefined_primary)
-		my_effect = new predefined_primary(src)
+	if(ispath(artifact_master))
+		AddComponent(artifact_master)
 
-		if(predefined_secondary)
-			secondary_effect = new predefined_secondary(src)
-			if(prob(75))
-				secondary_effect.ToggleActivate(0)
+		artifact_master = GetComponent(artifact_master)
 
+<<<<<<< HEAD
 	else
 		var/effecttype = pick(subtypesof(/datum/artifact_effect))
 		my_effect = new effecttype(src)
@@ -41,6 +42,12 @@
 			secondary_effect = new effecttype(src)
 			if(prob(75))
 				secondary_effect.ToggleActivate(0)
+=======
+	if(!istype(artifact_master))
+		return
+
+	var/datum/artifact_effect/my_effect = artifact_master.get_primary()
+>>>>>>> 71e8b0399de... Universal Anomalies (#7914)
 
 	if(!isnull(predefined_icon_num))
 		icon_num = predefined_icon_num
@@ -77,6 +84,7 @@
 		if(prob(60))
 			my_effect.trigger = pick(TRIGGER_TOUCH, TRIGGER_HEAT, TRIGGER_COLD, TRIGGER_PHORON, TRIGGER_OXY, TRIGGER_CO2, TRIGGER_NITRO)
 
+<<<<<<< HEAD
 	if(predefined_triggers)
 		if(predefined_trig_primary && my_effect)
 			my_effect.trigger = predefined_trig_primary
@@ -277,99 +285,12 @@
 			secondary_effect.ToggleActivate(0)
 
 /obj/machinery/artifact/Bumped(M as mob|obj)
-	..()
-	if(istype(M,/obj))
-		if(M:throwforce >= 10)
-			if(my_effect.trigger == TRIGGER_FORCE)
-				my_effect.ToggleActivate()
-			if(secondary_effect && secondary_effect.trigger == TRIGGER_FORCE && prob(25))
-				secondary_effect.ToggleActivate(0)
-	else if(ishuman(M) && !istype(M:gloves,/obj/item/clothing/gloves))
-		var/warn = 0
-
-		if (my_effect.trigger == TRIGGER_TOUCH && prob(50))
-			my_effect.ToggleActivate()
-			warn = 1
-		if(secondary_effect && secondary_effect.trigger == TRIGGER_TOUCH && prob(25))
-			secondary_effect.ToggleActivate(0)
-			warn = 1
-
-		if (my_effect.effect == EFFECT_TOUCH && prob(50))
-			my_effect.DoEffectTouch(M)
-			warn = 1
-		if(secondary_effect && secondary_effect.effect == EFFECT_TOUCH && secondary_effect.activated && prob(50))
-			secondary_effect.DoEffectTouch(M)
-			warn = 1
-
-		if(warn)
-			to_chat(M, "<b>You accidentally touch \the [src].</b>")
+=======
+/obj/machinery/artifact/update_icon()
+>>>>>>> 71e8b0399de... Universal Anomalies (#7914)
 	..()
 
-/obj/machinery/artifact/Bump(var/atom/bumped)
-	if(istype(bumped,/obj))
-		if(bumped:throwforce >= 10)
-			if(my_effect.trigger == TRIGGER_FORCE)
-				my_effect.ToggleActivate()
-			if(secondary_effect && secondary_effect.trigger == TRIGGER_FORCE && prob(25))
-				secondary_effect.ToggleActivate(0)
-	else if(ishuman(bumped) && GetAnomalySusceptibility(bumped) >= 0.5)
-		var/warn = 0
-
-		if (my_effect.trigger == TRIGGER_TOUCH && prob(50))
-			my_effect.ToggleActivate()
-			warn = 1
-		if(secondary_effect && secondary_effect.trigger == TRIGGER_TOUCH && prob(25))
-			secondary_effect.ToggleActivate(0)
-			warn = 1
-
-		if (my_effect.effect == EFFECT_TOUCH && prob(50))
-			my_effect.DoEffectTouch(bumped)
-			warn = 1
-		if(secondary_effect && secondary_effect.effect == EFFECT_TOUCH && secondary_effect.activated && prob(50))
-			secondary_effect.DoEffectTouch(bumped)
-			warn = 1
-
-		if(warn)
-			to_chat(bumped, "<b>You accidentally touch \the [src] as it hits you.</b>")
-
-	..()
-
-/obj/machinery/artifact/bullet_act(var/obj/item/projectile/P)
-	if(istype(P,/obj/item/projectile/bullet))
-		if(my_effect.trigger == TRIGGER_FORCE)
-			my_effect.ToggleActivate()
-		if(secondary_effect && secondary_effect.trigger == TRIGGER_FORCE && prob(25))
-			secondary_effect.ToggleActivate(0)
-
-	else if(istype(P,/obj/item/projectile/beam) ||\
-		istype(P,/obj/item/projectile/ion) ||\
-		istype(P,/obj/item/projectile/energy))
-		if(my_effect.trigger == TRIGGER_ENERGY)
-			my_effect.ToggleActivate()
-		if(secondary_effect && secondary_effect.trigger == TRIGGER_ENERGY && prob(25))
-			secondary_effect.ToggleActivate(0)
-
-/obj/machinery/artifact/ex_act(severity)
-	switch(severity)
-		if(1.0) qdel(src)
-		if(2.0)
-			if (prob(50))
-				qdel(src)
-			else
-				if(my_effect.trigger == TRIGGER_FORCE || my_effect.trigger == TRIGGER_HEAT)
-					my_effect.ToggleActivate()
-				if(secondary_effect && (secondary_effect.trigger == TRIGGER_FORCE || secondary_effect.trigger == TRIGGER_HEAT) && prob(25))
-					secondary_effect.ToggleActivate(0)
-		if(3.0)
-			if (my_effect.trigger == TRIGGER_FORCE || my_effect.trigger == TRIGGER_HEAT)
-				my_effect.ToggleActivate()
-			if(secondary_effect && (secondary_effect.trigger == TRIGGER_FORCE || secondary_effect.trigger == TRIGGER_HEAT) && prob(25))
-				secondary_effect.ToggleActivate(0)
-	return
-
-/obj/machinery/artifact/Moved()
-	. = ..()
-	if(my_effect)
-		my_effect.UpdateMove()
-	if(secondary_effect)
-		secondary_effect.UpdateMove()
+	if(LAZYLEN(artifact_master.get_active_effects()))
+		icon_state = "ano[icon_num]1"
+	else
+		icon_state = "ano[icon_num]0"

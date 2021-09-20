@@ -9,7 +9,11 @@
 	var/charges = 0
 	var/list/nearby_mobs = list()
 
+	effect_state = "gravisphere"
+	effect_color = "#ff0000"
+
 /datum/artifact_effect/vampire/proc/bloodcall(var/mob/living/carbon/human/M)
+	var/atom/holder = master.holder
 	last_bloodcall = world.time
 	if(istype(M))
 		playsound(holder, pick('sound/hallucinations/wail.ogg','sound/hallucinations/veryfar_noise.ogg','sound/hallucinations/far_noise.ogg'), 50, 1, -3)
@@ -23,30 +27,36 @@
 		B.target_turf = pick(range(1, get_turf(holder)))
 		B.blood_DNA = list()
 		B.blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
-		M.vessel.remove_reagent("blood",rand(25,50))
+		M.vessel.remove_reagent("blood",rand(10,30))
 
 /datum/artifact_effect/vampire/DoEffectTouch(var/mob/user)
 	bloodcall(user)
 	DoEffectAura()
 
 /datum/artifact_effect/vampire/DoEffectAura()
+<<<<<<< HEAD
 	nearby_mobs.Cut()
 
 	var/turf/T = get_turf(holder)
+=======
+	var/atom/holder = master.holder
+	if(nearby_mobs.len)
+		nearby_mobs.Cut()
+	var/turf/T = get_turf(master.holder)
+>>>>>>> 71e8b0399de... Universal Anomalies (#7914)
 
 	for(var/mob/living/L in oview(effectrange, T))
 		if(!L.stat && L.mind)
 			nearby_mobs |= L
 
-	if(world.time - last_bloodcall > bloodcall_interval && nearby_mobs.len)
+	if(world.time - bloodcall_interval >= last_bloodcall && LAZYLEN(nearby_mobs))
 		var/mob/living/carbon/human/M = pick(nearby_mobs)
-		if(M in view(effectrange,holder) && M.health > 20)
-			if(prob(50))
-				bloodcall(M)
-				holder.Beam(M, icon_state = "drainbeam", time = 1 SECOND)
+		if(get_dist(M, T) <= effectrange && M.health > 20)
+			bloodcall(M)
+			holder.Beam(M, icon_state = "drainbeam", time = 1 SECOND)
 
-	if(world.time - last_eat > eat_interval)
-		var/obj/effect/decal/cleanable/blood/B = locate() in range(2,holder)
+	if(world.time - last_eat >= eat_interval)
+		var/obj/effect/decal/cleanable/blood/B = locate() in range(2,master.holder)
 		if(B)
 			last_eat = world.time
 			B.loc = null
