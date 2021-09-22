@@ -304,11 +304,6 @@
 	drop_sound = 'sound/items/drop/gloves.ogg'
 	pickup_sound = 'sound/items/pickup/gloves.ogg'
 
-/obj/item/weapon/pen/crayon/suicide_act(mob/user)
-	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
-	to_chat(viewers(user),"<font color='red'><b>[user] is jamming the [src.name] up [TU.his] nose and into [TU.his] brain. It looks like [TU.he] [TU.is] trying to commit suicide.</b></font>")
-	return (BRUTELOSS|OXYLOSS)
-
 /obj/item/weapon/pen/crayon/New()
 	name = "[colourName] crayon"
 

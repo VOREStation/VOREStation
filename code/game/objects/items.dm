@@ -173,27 +173,12 @@
 	switch(severity)
 		if(1.0)
 			qdel(src)
-			return
 		if(2.0)
 			if (prob(50))
 				qdel(src)
-				return
 		if(3.0)
 			if (prob(5))
 				qdel(src)
-				return
-		else
-	return
-
-//user: The mob that is suiciding
-//damagetype: The type of damage the item will inflict on the user
-//BRUTELOSS = 1
-//FIRELOSS = 2
-//TOXLOSS = 4
-//OXYLOSS = 8
-//Output a creative message and then return the damagetype done
-/obj/item/proc/suicide_act(mob/user)
-	return
 
 /obj/item/verb/move_to_top()
 	set name = "Move To Top"

@@ -63,7 +63,6 @@
   * this goes through some of the checks - the toys need to be next to each other to fight!
   * if it's player vs themself: They need to be able to "control" both mechs (either must be adjacent or using TK).
   * if it's player vs player: Both players need to be able to "control" their mechs (either must be adjacent or using TK).
-  * if it's player vs mech (suicide): the mech needs to be in range of the player.
   * if all the checks are TRUE, it does the sleeps, and returns TRUE. Otherwise, it returns FALSE.
   * Arguments:
   * * delay - the amount of time the sleep at the end of the check will sleep for
@@ -196,6 +195,7 @@
 	if(wants_to_battle)
 		wants_to_battle = FALSE
 		to_chat(user, "<span class='notice'>You get the feeling they don't want to battle.</span>")
+<<<<<<< HEAD
 /**
   * Starts a battle, toy mech vs player. Player... doesn't win. Commented out for now as suicide_act is not physically doable.
   */
@@ -238,6 +238,8 @@
 	combat_health = max_combat_health
 	wins++
 	return (BRUTELOSS)
+=======
+>>>>>>> 786c7db60cc... Merge pull request #8311 from Atermonera/remove_suicide_act
 
 /obj/item/toy/mecha/examine()
 	. = ..()

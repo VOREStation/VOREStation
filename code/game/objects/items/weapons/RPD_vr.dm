@@ -64,13 +64,6 @@
 	qdel_null(tool)
 	return ..()
 
-/obj/item/weapon/pipe_dispenser/suicide_act(mob/user)
-	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
-	user.visible_message("<span class='suicide'>[user] points the end of the RPD down [TU.his] throat and presses a button! It looks like [TU.hes] trying to commit suicide...</span>")
-	playsound(src, 'sound/machines/click.ogg', 50, 1)
-	playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
-	return(BRUTELOSS)
-
 /obj/item/weapon/pipe_dispenser/attack_self(mob/user)
 	tgui_interact(user)
 
