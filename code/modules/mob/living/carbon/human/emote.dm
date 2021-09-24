@@ -96,6 +96,7 @@ var/list/_human_default_emotes = list(
 	//VOREStation Add
 	/decl/emote/audible/awoo,
 	/decl/emote/audible/awoo2,
+	/decl/emote/audible/belch,
 	/decl/emote/audible/growl,
 	/decl/emote/audible/woof,
 	/decl/emote/audible/woof2,
@@ -225,6 +226,7 @@ var/list/_simple_mob_default_emotes = list(
 	/decl/emote/visible/flip,
 	/decl/emote/audible/awoo,
 	/decl/emote/audible/awoo2,
+	/decl/emote/audible/belch,
 	/decl/emote/audible/growl,
 	/decl/emote/audible/woof,
 	/decl/emote/audible/woof2,

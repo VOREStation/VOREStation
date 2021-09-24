@@ -2296,6 +2296,15 @@ Departamental Swimsuits, for general use
 
 	colorswap(usr)
 
+//PastelPrinceDan: Masumi Maki
+/obj/item/clothing/under/fluff/masumi_overalls
+	name = "white and blue overalls"
+	desc = "A set of white and blue overalls, paired with a yellow shirt."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "masumioveralls"
+	item_state = "masumioveralls"
+	icon_override = 'icons/vore/custom_onmob_vr.dmi'
+
 //Pandora029 : Evelyn Tareen
 /obj/item/clothing/suit/storage/hooded/wintercoat/security/fluff/evelyn
 	name = "warden's navy winter coat"

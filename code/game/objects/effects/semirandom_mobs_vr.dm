@@ -291,7 +291,8 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 			/mob/living/simple_mob/vore/sect_queen = 1
 			),
 		list(/mob/living/simple_mob/vore/solargrub),
-		list(/mob/living/simple_mob/vore/woof)
+		list(/mob/living/simple_mob/vore/woof),
+		list(/mob/living/simple_mob/vore/alienanimals/teppi)
 		)
 
 /obj/random/mob/semirandom_mob_spawner/item_to_spawn()
@@ -405,8 +406,8 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 			/mob/living/simple_mob/animal/sif/shantak/leader = 1
 			) = 5,
 		list(/mob/living/simple_mob/animal/sif/siffet) = 5,
-		list(/mob/living/simple_mob/animal/sif/tymisian) = 5
-
+		list(/mob/living/simple_mob/animal/sif/tymisian) = 5,
+		list(/mob/living/simple_mob/vore/alienanimals/teppi) = 10
 	)
 
 /obj/random/mob/semirandom_mob_spawner/monster
@@ -499,7 +500,8 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 		list(
 			/mob/living/simple_mob/vore/oregrub = 5,
 			/mob/living/simple_mob/vore/oregrub/lava = 1
-			) = 15
+			) = 15,
+		list(/mob/living/simple_mob/vore/alienanimals/teppi) = 15
 		)
 
 /obj/random/mob/semirandom_mob_spawner/humanoid
@@ -738,7 +740,8 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 			/mob/living/simple_mob/vore/sect_queen = 1
 			) = 50,
 		list(/mob/living/simple_mob/vore/solargrub) = 100,
-		list(/mob/living/simple_mob/vore/woof) = 1
+		list(/mob/living/simple_mob/vore/woof) = 1,
+		list(/mob/living/simple_mob/vore/alienanimals/teppi) = 25
 		)
 
 /obj/random/mob/semirandom_mob_spawner/sus

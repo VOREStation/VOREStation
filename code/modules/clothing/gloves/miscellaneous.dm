@@ -36,8 +36,8 @@
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 
 /obj/item/clothing/gloves/combat //Combined effect of SWAT gloves and insulated gloves
-	desc = "These tactical gloves are somewhat fire and impact resistant."
-	name = "combat gloves"
+	desc = "These tactical gloves are somewhat fire and impact resistant in addition to being shock absorbant." //Clarified its description compared to swat gloves
+	name = "Combat gloves"
 	icon_state = "swat"
 	item_state = "swat"
 	siemens_coefficient = 0

@@ -15,7 +15,7 @@
 /obj/item/weapon/ore/coal,
 /obj/item/weapon/ore/coal,
 /obj/item/weapon/ore/coal,
-/turf/simulated/floor/outdoors/dirt{
+/turf/simulated/floor/outdoors/dirt/virgo3b{
 	outdoors = 0
 	},
 /area/submap/Thiefc)
@@ -24,13 +24,13 @@
 /obj/item/weapon/extinguisher,
 /obj/item/weapon/extinguisher,
 /obj/item/weapon/extinguisher,
-/turf/simulated/floor/outdoors/dirt{
+/turf/simulated/floor/outdoors/dirt/virgo3b{
 	outdoors = 0
 	},
 /area/submap/Thiefc)
 "f" = (
 /obj/structure/reagent_dispensers/watertank,
-/turf/simulated/floor/outdoors/dirt{
+/turf/simulated/floor/outdoors/dirt/virgo3b{
 	outdoors = 0
 	},
 /area/submap/Thiefc)
@@ -43,12 +43,12 @@
 /obj/item/weapon/ore/coal,
 /obj/item/weapon/ore/coal,
 /obj/item/weapon/ore/coal,
-/turf/simulated/floor/outdoors/dirt{
+/turf/simulated/floor/outdoors/dirt/virgo3b{
 	outdoors = 0
 	},
 /area/submap/Thiefc)
 "h" = (
-/turf/simulated/floor/outdoors/dirt{
+/turf/simulated/floor/outdoors/dirt/virgo3b{
 	outdoors = 0
 	},
 /area/submap/Thiefc)
@@ -57,7 +57,7 @@
 /obj/item/weapon/lipstick,
 /obj/item/weapon/lipstick/black,
 /obj/item/weapon/lipstick/random,
-/turf/simulated/floor/outdoors/dirt{
+/turf/simulated/floor/outdoors/dirt/virgo3b{
 	outdoors = 0
 	},
 /area/submap/Thiefc)
@@ -65,7 +65,7 @@
 /obj/structure/table/steel,
 /obj/item/weapon/beartrap,
 /obj/item/device/survivalcapsule,
-/turf/simulated/floor/outdoors/dirt{
+/turf/simulated/floor/outdoors/dirt/virgo3b{
 	outdoors = 0
 	},
 /area/submap/Thiefc)
@@ -75,7 +75,7 @@
 /obj/random/firstaid,
 /obj/random/firstaid,
 /obj/random/firstaid,
-/turf/simulated/floor/outdoors/dirt{
+/turf/simulated/floor/outdoors/dirt/virgo3b{
 	outdoors = 0
 	},
 /area/submap/Thiefc)
@@ -84,7 +84,7 @@
 /obj/item/device/nif,
 /obj/item/device/nif/bad,
 /obj/item/device/nif/bad,
-/turf/simulated/floor/outdoors/dirt{
+/turf/simulated/floor/outdoors/dirt/virgo3b{
 	outdoors = 0
 	},
 /area/submap/Thiefc)
@@ -94,7 +94,7 @@
 	desc = "This is some bullshit. First chance we got to knick something that looks half decent turns out to be mostly junk. And now we're getting calls that the other stash we've got has got a spider problem. Fuck this, Between the shitty weather, The pissed of bugs, And now apparently some NT goon running around in the area there's hardly enough reason to stick around. I'm telling Carl I'm out tommorow.";
 	name = "Note"
 	},
-/turf/simulated/floor/outdoors/dirt{
+/turf/simulated/floor/outdoors/dirt/virgo3b{
 	outdoors = 0
 	},
 /area/submap/Thiefc)
@@ -102,7 +102,7 @@
 /obj/vehicle/train/trolley,
 /obj/random/multiple/voidsuit,
 /obj/random/multiple/voidsuit,
-/turf/simulated/floor/outdoors/dirt{
+/turf/simulated/floor/outdoors/dirt/virgo3b{
 	outdoors = 0
 	},
 /area/submap/Thiefc)
@@ -113,26 +113,26 @@
 /obj/item/weapon/cell/device/weapon,
 /obj/item/weapon/cell/device/weapon,
 /obj/item/device/perfect_tele/one_beacon,
-/turf/simulated/floor/outdoors/dirt{
+/turf/simulated/floor/outdoors/dirt/virgo3b{
 	outdoors = 0
 	},
 /area/submap/Thiefc)
 "p" = (
 /obj/structure/closet/crate,
 /obj/item/weapon/storage/box/practiceshells,
-/turf/simulated/floor/outdoors/dirt{
+/turf/simulated/floor/outdoors/dirt/virgo3b{
 	outdoors = 0
 	},
 /area/submap/Thiefc)
 "B" = (
 /mob/living/simple_mob/animal/giant_spider/phorogenic,
-/turf/simulated/floor/outdoors/dirt{
+/turf/simulated/floor/outdoors/dirt/virgo3b{
 	outdoors = 0
 	},
 /area/submap/Thiefc)
 "P" = (
 /obj/machinery/door/airlock,
-/turf/simulated/floor/outdoors/dirt{
+/turf/simulated/floor/outdoors/dirt/virgo3b{
 	outdoors = 0
 	},
 /area/submap/Thiefc)

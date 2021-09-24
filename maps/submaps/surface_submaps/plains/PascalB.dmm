@@ -1,15 +1,81 @@
-"a" = (/turf/template_noop,/area/template_noop)
-"b" = (/turf/template_noop,/area/submap/PascalB)
-"c" = (/turf/simulated/floor/outdoors/dirt,/area/submap/PascalB)
-"d" = (/turf/simulated/floor/outdoors/rocks,/area/submap/PascalB)
-"e" = (/obj/item/poi/pascalb,/turf/simulated/floor/outdoors/rocks,/area/submap/PascalB)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/turf/template_noop,
+/area/submap/PascalB)
+"c" = (
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/PascalB)
+"d" = (
+/turf/simulated/floor/outdoors/rocks/virgo3b,
+/area/submap/PascalB)
+"e" = (
+/obj/item/poi/pascalb,
+/turf/simulated/floor/outdoors/rocks/virgo3b,
+/area/submap/PascalB)
 
 (1,1,1) = {"
-aaaaaaa
-abbcbca
-accdcca
-acdedca
-accdcca
-abccbca
-aaaaaaa
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+b
+c
+c
+c
+b
+a
+"}
+(3,1,1) = {"
+a
+b
+c
+d
+c
+c
+a
+"}
+(4,1,1) = {"
+a
+c
+d
+e
+d
+c
+a
+"}
+(5,1,1) = {"
+a
+b
+c
+d
+c
+b
+a
+"}
+(6,1,1) = {"
+a
+c
+c
+c
+c
+c
+a
+"}
+(7,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
 "}

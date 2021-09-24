@@ -35,7 +35,9 @@
 	new /datum/random_map/automata/cave_system/no_cracks(null, 3, 3, Z_LEVEL_UNDERDARK, world.maxx - 4, world.maxy - 4) // Create the mining Z-level.
 	new /datum/random_map/noise/ore(null, 1, 1, Z_LEVEL_UNDERDARK, 64, 64)         // Create the mining ore distribution map.
 
-
+#include "../../submaps/surface_submaps/plains/plains.dm"
+#include "../../submaps/surface_submaps/plains/plains_areas.dm"
+#include "../../submaps/surface_submaps/plains/plains_turfs.dm"
 /datum/map_template/tether_lateload/tether_plains
 	name = "Tether - Plains"
 	desc = "The Virgo 3B away mission."
