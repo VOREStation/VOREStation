@@ -49,3 +49,22 @@
 	build_path = /obj/item/weapon/storage/pouch/holding
 	sort_string = "QAAAD"
 	
+
+/datum/design/item/boh/belt_holding_med
+	name = "Medical Belt of Holding"
+	desc = "A belt that uses localized bluespace pockets to hold more items than expected!"
+	id = "belt_holding_med"
+	req_tech = list(TECH_BLUESPACE = 4, TECH_MATERIAL = 6)
+	materials = list("gold" = 3000, "diamond" = 2000, "titanium" = 500)
+	build_path = /obj/item/weapon/storage/belt/medical/holding
+	sort_string = "QAAAE"
+
+/datum/design/item/boh/belt_holding_utility
+	name = "Tool-Belt of Holding"
+	desc = "A belt that uses localized bluespace pockets to hold more items than expected!"
+	id = "belt_holding_utility"
+	req_tech = list(TECH_BLUESPACE = 4, TECH_MATERIAL = 6)
+	materials = list("gold" = 3000, "diamond" = 2000, "titanium" = 500)
+	build_path = /obj/item/weapon/storage/belt/utility/holding
+	sort_string = "QAAAF"
+	

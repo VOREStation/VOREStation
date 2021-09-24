@@ -14,6 +14,7 @@ bothnevarbackwards - Diona
 bricker98 - Protean
 camanis - Protean
 cgr - Protean
+chaosdoomsday - Black-Eyed Shadekin
 chargae - Protean
 chemlight - Xenochimera
 chillyfang - Black-Eyed Shadekin
@@ -41,6 +42,7 @@ khanivore - Protean
 killjaden - Protean
 ktccd - Diona
 liache - Black-Eyed Shadekin
+lillianfyre - Xenochimera
 lizehrd - Xenochimera
 lordlag - Black-Eyed Shadekin
 losstinspess - Xenochimera

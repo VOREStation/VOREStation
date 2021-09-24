@@ -113,6 +113,10 @@
 "at" = (
 /turf/unsimulated/wall/planetary/virgo3b,
 /area/tether/outpost/exploration_shed)
+"au" = (
+/obj/tether_away_spawner/tether_outside,
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/tether/outpost/exploration_plains)
 "bj" = (
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
@@ -126,14 +130,6 @@
 "Al" = (
 /turf/simulated/mineral/virgo3b,
 /area/mine/explored)
-"BE" = (
-/mob/living/simple_mob/animal/space/goose/virgo3b,
-/turf/simulated/floor/outdoors/grass/sif/virgo3b,
-/area/tether/outpost/exploration_plains)
-"Em" = (
-/mob/living/simple_mob/animal/passive/gaslamp,
-/turf/simulated/floor/outdoors/grass/sif/virgo3b,
-/area/tether/outpost/exploration_plains)
 "ID" = (
 /turf/simulated/mineral/virgo3b,
 /area/tether/outpost/exploration_shed)
@@ -1827,7 +1823,7 @@ ab
 ab
 ab
 ab
-BE
+au
 ab
 ab
 ab
@@ -2672,7 +2668,7 @@ ab
 ab
 ab
 ab
-Em
+au
 ab
 ab
 ab
@@ -2770,7 +2766,7 @@ ab
 ab
 ab
 ab
-BE
+au
 ab
 ab
 ab
@@ -3009,7 +3005,7 @@ ab
 ab
 ab
 ab
-BE
+au
 ab
 ab
 ab
@@ -3031,7 +3027,7 @@ ab
 ab
 ab
 ab
-Em
+au
 ab
 ab
 ab
@@ -3269,7 +3265,7 @@ uw
 ab
 ab
 ab
-BE
+au
 ab
 ab
 ab
@@ -3353,7 +3349,7 @@ ab
 ab
 ab
 ab
-BE
+au
 ab
 ab
 ab
@@ -5256,7 +5252,7 @@ Al
 uw
 ab
 ab
-Em
+au
 ab
 ab
 ab
@@ -7356,7 +7352,7 @@ ab
 ab
 ab
 ab
-BE
+au
 ab
 ab
 ab
@@ -7389,7 +7385,7 @@ ab
 ab
 ab
 ab
-BE
+au
 ab
 ab
 ab
@@ -8438,7 +8434,7 @@ ab
 ab
 ab
 ab
-BE
+au
 ab
 ab
 ab
@@ -9245,7 +9241,7 @@ ab
 ab
 ab
 ab
-BE
+au
 ab
 ab
 ab
@@ -9416,7 +9412,7 @@ ab
 ab
 ab
 ab
-BE
+au
 ab
 ab
 ab
@@ -10802,7 +10798,7 @@ ab
 ab
 ab
 ab
-Em
+au
 ab
 ab
 ab
@@ -11725,7 +11721,7 @@ ab
 ab
 ab
 ab
-Em
+au
 ab
 ab
 ab
@@ -14132,7 +14128,7 @@ ab
 ab
 ab
 ab
-BE
+au
 ab
 ab
 ab
@@ -14647,7 +14643,7 @@ ab
 ab
 ab
 ab
-BE
+au
 ab
 ab
 ab
@@ -14875,7 +14871,7 @@ ab
 ab
 ab
 ab
-BE
+au
 ab
 ab
 ab
@@ -15904,7 +15900,7 @@ ac
 as
 Al
 uw
-BE
+au
 ab
 ab
 ab
@@ -15927,7 +15923,7 @@ ab
 ab
 ab
 ab
-Em
+au
 ab
 ab
 ab
@@ -16251,7 +16247,7 @@ ab
 ab
 ab
 ab
-BE
+au
 ab
 ab
 ab
@@ -17590,7 +17586,7 @@ ab
 ab
 ab
 ab
-Em
+au
 ab
 ab
 ab
@@ -17609,7 +17605,7 @@ as
 uw
 uw
 ab
-Em
+au
 ab
 ab
 ab
