@@ -1,11 +1,11 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "ag" = (
 /obj/structure/outcrop/gold,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)
 "be" = (
 /mob/living/simple_mob/vore/bigdragon,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)
 "bN" = (
 /turf/simulated/floor/outdoors/grass/sif/forest,
@@ -14,7 +14,7 @@
 /obj/structure/cliff/automatic{
 	dir = 10
 	},
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)
 "cV" = (
 /obj/item/weapon/digestion_remains/skull/tajaran,
@@ -28,7 +28,7 @@
 	},
 /obj/item/weapon/digestion_remains,
 /obj/item/clothing/accessory/collar/holo/indigestible,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)
 "dO" = (
 /obj/structure/flora/grass/brown{
@@ -56,7 +56,7 @@
 	pixel_y = 1
 	},
 /obj/effect/decal/cleanable/filth,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)
 "fj" = (
 /obj/item/weapon/digestion_remains/ribcage,
@@ -65,19 +65,19 @@
 	pixel_y = 7
 	},
 /obj/effect/decal/cleanable/filth,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)
 "fk" = (
 /obj/structure/cliff/automatic/corner{
 	dir = 9
 	},
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)
 "ga" = (
 /obj/structure/cliff/automatic{
 	dir = 6
 	},
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)
 "gy" = (
 /obj/structure/flora/grass/brown{
@@ -106,12 +106,12 @@
 /obj/structure/cliff/automatic/corner{
 	dir = 10
 	},
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)
 "js" = (
 /obj/effect/decal/cleanable/molten_item,
 /obj/effect/decal/cleanable/filth,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)
 "mn" = (
 /obj/structure/flora/grass/brown{
@@ -131,7 +131,7 @@
 /area/submap/drgnplateu)
 "mw" = (
 /obj/effect/decal/cleanable/blood,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)
 "mB" = (
 /obj/item/weapon/material/twohanded/baseballbat/gold,
@@ -156,35 +156,35 @@
 	pixel_y = 1
 	},
 /obj/effect/decal/cleanable/blood,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)
 "nh" = (
 /obj/item/clothing/accessory/collar/fluff/goldenstring,
 /obj/effect/decal/cleanable/liquid_fuel,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)
 "ni" = (
 /obj/item/weapon/digestion_remains/skull/unknown/anthro,
 /obj/item/weapon/digestion_remains/ribcage,
 /obj/effect/decal/cleanable/liquid_fuel,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)
 "no" = (
 /obj/effect/decal/cleanable/ash,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)
 "oy" = (
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/template_noop)
 "pk" = (
 /obj/structure/cliff/automatic/corner{
 	dir = 6
 	},
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)
 "rV" = (
 /obj/structure/cliff/automatic,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)
 "vx" = (
 /obj/effect/gibspawner/human,
@@ -194,35 +194,35 @@
 "xd" = (
 /obj/item/weapon/digestion_remains/skull/nevrean,
 /obj/effect/decal/cleanable/filth,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)
 "yx" = (
 /obj/structure/cliff/automatic{
 	dir = 2
 	},
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)
 "zl" = (
 /obj/item/weapon/digestion_remains/skull/akula,
 /obj/effect/decal/cleanable/liquid_fuel,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)
 "zm" = (
 /obj/item/weapon/digestion_remains,
 /obj/effect/decal/cleanable/filth,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)
 "Ab" = (
 /obj/structure/cliff/automatic/ramp{
 	dir = 9
 	},
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)
 "BA" = (
 /obj/effect/decal/remains,
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/ash,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)
 "Cu" = (
 /obj/item/weapon/digestion_remains{
@@ -237,7 +237,7 @@
 	pixel_y = 1
 	},
 /obj/effect/decal/cleanable/filth,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)
 "FT" = (
 /obj/item/weapon/digestion_remains/ribcage,
@@ -245,26 +245,26 @@
 	pixel_x = 9;
 	pixel_y = 14
 	},
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)
 "Gp" = (
 /obj/effect/landmark/loot_spawn,
 /obj/effect/decal/cleanable/blood,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)
 "IL" = (
 /obj/effect/decal/remains,
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/filth,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)
 "IS" = (
 /obj/effect/decal/cleanable/filth,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)
 "Jz" = (
 /obj/item/weapon/digestion_remains/skull/unknown/anthro,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)
 "JJ" = (
 /obj/structure/flora/grass/brown{
@@ -282,21 +282,21 @@
 /area/submap/drgnplateu)
 "LN" = (
 /obj/effect/decal/cleanable/liquid_fuel,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)
 "Mf" = (
 /obj/effect/landmark/loot_spawn,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)
 "MU" = (
 /obj/structure/cliff/automatic/ramp,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)
 "Na" = (
 /obj/structure/cliff/automatic{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)
 "Nj" = (
 /obj/item/weapon/digestion_remains/skull/unathi,
@@ -306,42 +306,42 @@
 	pixel_y = 7
 	},
 /obj/effect/decal/cleanable/filth,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)
 "Of" = (
 /obj/structure/cliff/automatic{
 	dir = 9
 	},
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)
 "Ok" = (
 /obj/effect/landmark/loot_spawn/low,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)
 "Qc" = (
 /obj/structure/cliff/automatic/corner,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)
 "Ra" = (
 /obj/item/weapon/digestion_remains/skull/zorren,
 /obj/item/clothing/accessory/collar/holo/indigestible,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)
 "Rl" = (
 /obj/structure/cliff/automatic{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)
 "SC" = (
 /obj/structure/table/gold,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)
 "SI" = (
 /obj/structure/cliff/automatic{
 	dir = 5
 	},
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)
 "Vj" = (
 /turf/template_noop,
@@ -355,7 +355,7 @@
 	icon = 'icons/effects/blood.dmi';
 	icon_state = "tracks"
 	},
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)
 "Wr" = (
 /obj/effect/decal/cleanable/blood,
@@ -366,10 +366,10 @@
 /area/submap/drgnplateu)
 "Ze" = (
 /obj/effect/gibspawner/human,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)
 "ZD" = (
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/drgnplateu)
 
 (1,1,1) = {"

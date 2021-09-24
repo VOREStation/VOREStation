@@ -6,19 +6,19 @@
 /obj/effect/decal/cleanable/filth,
 /obj/item/weapon/bone/arm,
 /obj/item/weapon/bone/skull/unathi,
-/turf/simulated/floor/wood/sif,
+/turf/simulated/floor/wood/sif/virgo3b,
 /area/submap/EmptyCabin)
 "c" = (
 /obj/structure/curtain/black,
 /obj/structure/simple_door/sifwood,
-/turf/simulated/floor/wood/sif,
+/turf/simulated/floor/wood/sif/virgo3b,
 /area/submap/EmptyCabin)
 "d" = (
 /obj/structure/closet/wardrobe,
 /obj/item/weapon/material/fishing_rod/modern,
 /obj/item/weapon/storage/toolbox/mechanical,
 /obj/item/weapon/storage/toolbox/lunchbox/nymph/filled,
-/turf/simulated/floor/wood/sif,
+/turf/simulated/floor/wood/sif/virgo3b,
 /area/submap/EmptyCabin)
 "e" = (
 /turf/simulated/wall/sifwood,
@@ -27,18 +27,18 @@
 /obj/structure/railing/grey{
 	dir = 1
 	},
-/turf/simulated/floor/wood/sif,
+/turf/simulated/floor/wood/sif/virgo3b,
 /area/submap/EmptyCabin)
 "g" = (
 /obj/structure/bed/double/padded,
 /obj/item/weapon/bedsheet/purpledouble,
-/turf/simulated/floor/wood/sif,
+/turf/simulated/floor/wood/sif/virgo3b,
 /area/submap/EmptyCabin)
 "i" = (
 /obj/structure/bed/chair/sofa/blue/left{
 	dir = 1
 	},
-/turf/simulated/floor/wood/sif,
+/turf/simulated/floor/wood/sif/virgo3b,
 /area/submap/EmptyCabin)
 "k" = (
 /obj/structure/railing/grey{
@@ -47,7 +47,7 @@
 /obj/structure/bed/chair/sofa/left{
 	dir = 8
 	},
-/turf/simulated/floor/wood/sif,
+/turf/simulated/floor/wood/sif/virgo3b,
 /area/submap/EmptyCabin)
 "l" = (
 /obj/structure/railing/grey{
@@ -56,7 +56,7 @@
 /obj/structure/bed/chair/sofa{
 	dir = 8
 	},
-/turf/simulated/floor/wood/sif,
+/turf/simulated/floor/wood/sif/virgo3b,
 /area/submap/EmptyCabin)
 "n" = (
 /obj/structure/table/sifwoodentable,
@@ -64,7 +64,7 @@
 /obj/item/weapon/paper/crumpled/bloody{
 	info = "I found an otie while picking flowers today. He's so cute! I took him back home, and he seemed quite happy to share food with me. He really likes fish. Though, he never really seems to not be hungry..."
 	},
-/turf/simulated/floor/wood/sif,
+/turf/simulated/floor/wood/sif/virgo3b,
 /area/submap/EmptyCabin)
 "q" = (
 /obj/structure/railing/grey{
@@ -74,11 +74,11 @@
 /area/submap/EmptyCabin)
 "r" = (
 /obj/effect/landmark/loot_spawn/low,
-/turf/simulated/floor/wood/sif,
+/turf/simulated/floor/wood/sif/virgo3b,
 /area/submap/EmptyCabin)
 "t" = (
 /obj/structure/railing/grey,
-/turf/simulated/floor/wood/sif,
+/turf/simulated/floor/wood/sif/virgo3b,
 /area/submap/EmptyCabin)
 "y" = (
 /obj/structure/window/reinforced{
@@ -86,20 +86,20 @@
 	},
 /obj/structure/curtain/black,
 /obj/structure/grille/rustic,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/wood/sif/virgo3b,
 /area/submap/EmptyCabin)
 "z" = (
 /obj/effect/decal/cleanable/blood/drip{
 	icon_state = "4"
 	},
-/turf/simulated/floor/wood/sif,
+/turf/simulated/floor/wood/sif/virgo3b,
 /area/submap/EmptyCabin)
 "A" = (
 /obj/structure/bonfire/permanent/sifwood,
 /obj/structure/railing/grey{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/eris/steel/techfloor,
+/turf/simulated/floor/virgo3b_indoors,
 /area/submap/EmptyCabin)
 "B" = (
 /turf/template_noop,
@@ -108,10 +108,10 @@
 /obj/structure/railing/grey{
 	dir = 8
 	},
-/turf/simulated/floor/wood/sif,
+/turf/simulated/floor/wood/sif/virgo3b,
 /area/submap/EmptyCabin)
 "D" = (
-/turf/simulated/floor/wood/sif,
+/turf/simulated/floor/wood/sif/virgo3b,
 /area/submap/EmptyCabin)
 "F" = (
 /mob/living/simple_mob/otie/friendly/chubby{
@@ -121,33 +121,33 @@
 	max_tox = 0
 	},
 /obj/effect/decal/cleanable/blood,
-/turf/simulated/floor/wood/sif,
+/turf/simulated/floor/wood/sif/virgo3b,
 /area/submap/EmptyCabin)
 "G" = (
 /obj/structure/bed/chair/sofa/blue{
 	dir = 1
 	},
-/turf/simulated/floor/wood/sif,
+/turf/simulated/floor/wood/sif/virgo3b,
 /area/submap/EmptyCabin)
 "I" = (
 /obj/structure/table/sifwoodentable,
 /obj/item/pizzabox/meat,
-/turf/simulated/floor/wood/sif,
+/turf/simulated/floor/wood/sif/virgo3b,
 /area/submap/EmptyCabin)
 "J" = (
 /obj/structure/bed/chair/sofa/blue/right{
 	dir = 1
 	},
-/turf/simulated/floor/wood/sif,
+/turf/simulated/floor/wood/sif/virgo3b,
 /area/submap/EmptyCabin)
 "L" = (
 /obj/structure/table/sifwoodentable,
 /obj/item/weapon/flame/candle/candelabra,
-/turf/simulated/floor/wood/sif,
+/turf/simulated/floor/wood/sif/virgo3b,
 /area/submap/EmptyCabin)
 "M" = (
 /obj/item/weapon/bone/leg,
-/turf/simulated/floor/wood/sif,
+/turf/simulated/floor/wood/sif/virgo3b,
 /area/submap/EmptyCabin)
 "O" = (
 /obj/structure/railing/grey{
@@ -156,7 +156,7 @@
 /obj/structure/bed/chair/sofa/right{
 	dir = 8
 	},
-/turf/simulated/floor/wood/sif,
+/turf/simulated/floor/wood/sif/virgo3b,
 /area/submap/EmptyCabin)
 "Q" = (
 /obj/effect/decal/cleanable/blood/drip{
@@ -170,7 +170,7 @@
 	icon_state = "3"
 	},
 /obj/effect/decal/cleanable/blood,
-/turf/simulated/floor/wood/sif,
+/turf/simulated/floor/wood/sif/virgo3b,
 /area/submap/EmptyCabin)
 "R" = (
 /obj/structure/loot_pile/surface,
@@ -186,24 +186,24 @@
 /obj/effect/decal/cleanable/blood/drip{
 	icon_state = "5"
 	},
-/turf/simulated/floor/wood/sif,
+/turf/simulated/floor/wood/sif/virgo3b,
 /area/submap/EmptyCabin)
 "W" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/decal/cleanable/blood/drip{
 	icon_state = "2"
 	},
-/turf/simulated/floor/wood/sif,
+/turf/simulated/floor/wood/sif/virgo3b,
 /area/submap/EmptyCabin)
 "X" = (
 /obj/item/weapon/bone,
-/turf/simulated/floor/wood/sif,
+/turf/simulated/floor/wood/sif/virgo3b,
 /area/submap/EmptyCabin)
 "Z" = (
 /obj/effect/decal/cleanable/blood/drip{
 	icon_state = "3"
 	},
-/turf/simulated/floor/wood/sif,
+/turf/simulated/floor/wood/sif/virgo3b,
 /area/submap/EmptyCabin)
 
 (1,1,1) = {"
