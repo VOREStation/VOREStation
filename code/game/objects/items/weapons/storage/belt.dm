@@ -111,6 +111,46 @@
 		/obj/item/device/analyzer
 	)
 
+/obj/item/weapon/storage/belt/utility/holding
+	name = "tool-belt of holding" 
+	desc = "A belt that uses localized bluespace pockets to hold more items than expected!"
+	icon_state = "utility_holding"
+	storage_slots = 14 //twice the amount as a normal belt
+	max_storage_space = ITEMSIZE_COST_NORMAL * 14 
+	can_hold = list(
+	/obj/item/weapon/tool/crowbar,
+		/obj/item/weapon/tool/screwdriver,
+		/obj/item/weapon/weldingtool,
+		/obj/item/weapon/tool/wirecutters,
+		/obj/item/weapon/tool/wrench,
+		/obj/item/device/multitool,
+		/obj/item/device/flashlight,
+		/obj/item/weapon/cell/device,
+		/obj/item/stack/cable_coil,
+		/obj/item/device/t_scanner,
+		/obj/item/device/analyzer,
+		/obj/item/clothing/glasses,
+		/obj/item/clothing/gloves,
+		/obj/item/device/pda,
+		/obj/item/device/megaphone,
+		/obj/item/taperoll,
+		/obj/item/device/radio/headset,
+		/obj/item/device/robotanalyzer,
+		/obj/item/weapon/material/minihoe,
+		/obj/item/weapon/material/knife/machete/hatchet,
+		/obj/item/device/analyzer/plant_analyzer,
+		/obj/item/weapon/extinguisher/mini,
+		/obj/item/weapon/tape_roll,
+		/obj/item/device/integrated_electronics/wirer,
+		/obj/item/device/integrated_electronics/debugger,
+		/obj/item/weapon/shovel/spade,
+		/obj/item/stack/nanopaste,
+		/obj/item/weapon/cell, //this is a bigger belt, might as well make it hold bigger cells too
+		/obj/item/weapon/pipe_dispenser, //bigger belt for bigger tools
+		/obj/item/weapon/rcd //see above
+	)
+
+
 /obj/item/weapon/storage/belt/medical
 	name = "medical belt"
 	desc = "Can hold various medical equipment."
@@ -148,6 +188,13 @@
 	name = "EMT utility belt"
 	desc = "A sturdy black webbing belt with attached pouches."
 	icon_state = "ems"
+
+/obj/item/weapon/storage/belt/medical/holding
+	name = "medical belt of holding" 
+	desc = "A belt that uses localized bluespace pockets to hold more items than expected!"
+	icon_state = "med_holding"
+	storage_slots = 14 //twice the amount as a normal belt
+	max_storage_space = ITEMSIZE_COST_NORMAL * 14 
 
 /obj/item/weapon/storage/belt/security
 	name = "security belt"
