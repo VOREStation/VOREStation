@@ -1,5 +1,5 @@
 "a" = (/turf/template_noop,/area/template_noop)
-"b" = (/obj/effect/alien/resin/wall,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/vault4)
+"b" = (/obj/structure/alien/wall,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/vault4)
 "c" = (/obj/structure/simple_door/resin,/obj/effect/alien/weeds,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/vault4)
 "d" = (/obj/effect/alien/weeds,/obj/structure/bed/nest,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/vault4)
 "e" = (/obj/effect/alien/weeds,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/vault4)
