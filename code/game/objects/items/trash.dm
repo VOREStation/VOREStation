@@ -8,6 +8,7 @@
 	desc = "This is rubbish."
 	drop_sound = 'sound/items/drop/wrapper.ogg'
 	pickup_sound = 'sound/items/pickup/wrapper.ogg'
+	matter = list(MAT_STEEL = 30)
 	var/age = 0
 
 /obj/item/trash/New(var/newloc, var/_age)
