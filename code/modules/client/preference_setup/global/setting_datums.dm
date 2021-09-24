@@ -101,7 +101,6 @@ var/list/_client_preferences_by_type
 	key = "BELCH_NOISES"
 	enabled_description = "Noisy"
 	disabled_description = "Silent"
-	enabled_by_default = FALSE
 
 /datum/client_preference/emote_noises
 	description = "Emote Noises" //MERP
