@@ -2141,6 +2141,7 @@
 #include "code\modules\emotes\definitions\_mob.dm"
 #include "code\modules\emotes\definitions\_species.dm"
 #include "code\modules\emotes\definitions\audible.dm"
+#include "code\modules\emotes\definitions\audible_belch.dm"
 #include "code\modules\emotes\definitions\audible_cough.dm"
 #include "code\modules\emotes\definitions\audible_furry_vr.dm"
 #include "code\modules\emotes\definitions\audible_scream.dm"
