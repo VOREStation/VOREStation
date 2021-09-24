@@ -1,4 +1,4 @@
-/**
+/*
  * The gun itself
  */
 /obj/item/weapon/gun/projectile/smartgun
@@ -34,7 +34,7 @@
 	var/image/I = ..()
 	if(I)
 		I.pixel_x = -16
-	return I	
+	return I
 
 /obj/item/weapon/gun/projectile/smartgun/loaded
 	magazine_type = /obj/item/ammo_magazine/smartgun
@@ -68,7 +68,7 @@
 			return
 
 		cycling = TRUE
-		
+
 		if(closed)
 			icon_state = "[initial(icon_state)]_open"
 			playsound(src, 'sound/weapons/smartgunopen.ogg', 75, 0)
@@ -89,7 +89,7 @@
 	if(ammo_magazine)
 		underlays += mag_underlay
 
-/**
+/*
  * The bullet that flies through the air
  */
 /obj/item/projectile/bullet/smartgun
@@ -114,7 +114,7 @@
 		Beam(get_turf(target), icon_state = "sniper_beam", time = 0.25 SECONDS, maxdistance = 15)
 		set_homing_target(target)
 
-/**
+/*
  * The item of ammo that holds the bullet
  */
 /obj/item/ammo_casing/smartgun
@@ -130,7 +130,7 @@
 	caliber = "smartgun"
 	projectile_type = /obj/item/projectile/bullet/smartgun
 
-/**
+/*
  * The magazine that holds the items of ammo
  */
 /obj/item/ammo_magazine/smartgun

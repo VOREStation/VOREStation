@@ -1,3 +1,6 @@
+/*
+ * Shotgun
+ */
 /obj/item/weapon/gun/projectile/shotgun/pump
 	name = "shotgun"
 	desc = "The mass-produced MarsTech Meteor 29 shotgun is a favourite of police and security forces on many worlds. Uses 12g rounds."
@@ -32,17 +35,22 @@
 /obj/item/weapon/gun/projectile/shotgun/pump/proc/pump(mob/M as mob)
 	playsound(src, action_sound, 60, 1)
 
-	if(chambered)//We have a shell in the chamber
-		chambered.loc = get_turf(src)//Eject casing
+	// We have a shell in the chamber
+	if(chambered)
+		if(chambered.caseless)
+			qdel(chambered) // Delete casing
+		else
+			chambered.loc = get_turf(src) // Eject casing
 		chambered = null
 
+	// Load next shell
 	if(loaded.len)
-		var/obj/item/ammo_casing/AC = loaded[1] //load next casing.
-		loaded -= AC //Remove casing from loaded list.
+		var/obj/item/ammo_casing/AC = loaded[1] // load next casing.
+		loaded -= AC // Remove casing from loaded list.
 		chambered = AC
 
-	if(pump_animation)//This affects all bolt action and shotguns.
-		flick("[pump_animation]", src)//This plays any pumping
+	if(pump_animation) // This affects all bolt action and shotguns.
+		flick("[pump_animation]", src) // This plays any pumping
 
 	update_icon()
 
@@ -62,6 +70,9 @@
 	ammo_type = /obj/item/ammo_casing/a12g
 	pump_animation = null
 
+/*
+ * Combat Shotgun
+ */
 /obj/item/weapon/gun/projectile/shotgun/pump/combat
 	name = "combat shotgun"
 	desc = "Built for close quarters combat, the Hephaestus Industries KS-40 is widely regarded as a weapon of choice for repelling boarders. Uses 12g rounds."
@@ -77,6 +88,9 @@
 /obj/item/weapon/gun/projectile/shotgun/pump/combat/empty
 	ammo_type = null
 
+/*
+ * Double-Barreled Shotgun
+ */
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel
 	name = "double-barreled shotgun"
 	desc = "A truely classic weapon. No need to change what works. Uses 12g rounds."
@@ -135,6 +149,9 @@
 	else
 		..()
 
+/*
+ * Sawn-Off Shotgun
+ */
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn
 	name = "sawn-off shotgun"
 	desc = "Omar's coming!" // I'm not gonna add "Uses 12g rounds." to this one. I'll just let this reference go undisturbed.

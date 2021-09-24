@@ -17,3 +17,9 @@
 	name = "flechette magazine (small)"
 	desc = "A magazine containing smaller steel flechettes, intended for a pistol."
 	icon_state = "caseless-mag-short"
+
+/obj/item/weapon/magnetic_ammo/pistol/khi
+	name = "flechette magazine (small, khi)"
+	desc = "A magazine containing smaller carbyne flechettes, intended for a pistol."
+	icon_state = "caseless-mag-short-alt"
+	remaining = 12

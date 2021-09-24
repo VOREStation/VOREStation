@@ -69,7 +69,7 @@
 				prob(3);/obj/item/weapon/gun/projectile/automatic/mini_uzi,
 				prob(3);/obj/item/weapon/gun/projectile/automatic/tommygun,
 				prob(2);/obj/item/weapon/gun/projectile/automatic/c20r,
-				prob(2);/obj/item/weapon/gun/projectile/automatic/sts35,
+				prob(2);/obj/item/weapon/gun/projectile/automatic/sts15,
 				prob(2);/obj/item/weapon/gun/projectile/automatic/z8,
 				prob(2);/obj/item/weapon/gun/projectile/automatic/combatsmg,
 				prob(4);/obj/item/weapon/gun/projectile/colt,
@@ -294,7 +294,7 @@
 /obj/random/multiple/gun/projectile/rifle/item_to_spawn()
 	return pick(
 			prob(2);list(
-				/obj/item/weapon/gun/projectile/automatic/sts35,
+				/obj/item/weapon/gun/projectile/automatic/sts15,
 				/obj/item/ammo_magazine/m545,
 				/obj/item/ammo_magazine/m545
 			),
@@ -315,8 +315,8 @@
 			),
 			prob(1);list(
 				/obj/item/weapon/gun/projectile/garand,
-				/obj/item/ammo_magazine/m762garand,
-				/obj/item/ammo_magazine/m762garand
+				/obj/item/ammo_magazine/c762garand,
+				/obj/item/ammo_magazine/c762garand
 			),
 			prob(1);list(
 				/obj/item/weapon/gun/projectile/revolvingrifle,
@@ -459,11 +459,6 @@
 				/obj/item/ammo_magazine/s44,
 				/obj/item/ammo_magazine/s44
 			),
-			prob(1);list(
-				/obj/item/weapon/gun/projectile/revolver/webley/auto,
-				/obj/item/ammo_magazine/s44,
-				/obj/item/ammo_magazine/s44
-			)
 		)
 
 /obj/random/multiple/gun/projectile/shotgun

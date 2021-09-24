@@ -692,3 +692,27 @@
 	starts_with = list(
 		/obj/item/weapon/reagent_containers/spray/plantbgone = 2,
 		/obj/item/weapon/material/minihoe)
+
+//Laundry Cart
+
+/obj/structure/closet/crate/laundry
+	name = "Laundry Cart"
+	desc = "A cart with a large fabric bin on it used for transporting large amounts of clothes."
+	icon = 'icons/obj/closets/laundry.dmi'
+	closet_appearance = null
+
+//Wooden Crates
+
+/obj/structure/closet/crate/wooden
+	name = "wooden crate"
+	desc = "A crate made from wood and lined with straw. Cheapest form of storage."
+	icon = 'icons/obj/closets/wooden.dmi'
+	closet_appearance = null
+
+/obj/structure/closet/crate/wooden/surplus
+	name = "surplus rifle crate"
+	desc = "A crate filled with surplus rifles and ammunition."
+	starts_with = list(
+		/obj/item/weapon/gun/projectile/shotgun/pump/surplus = 4,
+		/obj/item/ammo_magazine/ammo_box/b762/surplus = 4
+		)

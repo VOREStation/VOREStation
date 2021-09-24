@@ -61,6 +61,7 @@ var/global/list/datum/supply_drop_loot/supply_drop
 		/obj/item/weapon/shield/riot/tele,
 		/obj/item/weapon/storage/box/emps,
 		/obj/item/weapon/storage/box/flashbangs,
+		/obj/item/weapon/gun/projectile/automatic/sts15,
 		/obj/item/weapon/gun/projectile/automatic/sts35,
 		/obj/item/ammo_magazine/m762/ap,
 		/obj/item/ammo_magazine/m762/ap,

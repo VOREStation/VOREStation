@@ -8,21 +8,6 @@
 
 /datum/supply_pack/randomised/munitions
 	group = "Munitions"
-/* VOREStation Removal - What? This crate costs 40... the crate with just two eguns costs 50... what??? This crate is also like "the armory" and has OFFICER access?
-/datum/supply_pack/munitions/weapons
-	name = "Weapons - Security basic equipment"
-	contains = list(
-			/obj/item/device/flash = 2,
-			/obj/item/weapon/reagent_containers/spray/pepper = 2,
-			/obj/item/weapon/melee/baton/loaded = 2,
-			/obj/item/weapon/gun/energy/taser = 2,
-			/obj/item/weapon/gun/projectile/colt/detective = 2,
-			/obj/item/weapon/storage/box/flashbangs = 2
-			)
-	cost = 40
-	containertype = /obj/structure/closet/crate/secure/lawson
-	containername = "Security equipment crate"
-	access = access_security*/
 
 /datum/supply_pack/munitions/egunpistol
 	name = "Weapons - Energy sidearms"

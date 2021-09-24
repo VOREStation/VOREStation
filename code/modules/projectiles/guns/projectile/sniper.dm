@@ -78,9 +78,9 @@
 /obj/item/weapon/gun/projectile/SVD
 	name = "sniper rifle"
 	desc = "The PCA S19 Jalgarr, also known by its translated name the 'Dragon', is mass produced with an Optical Sniper Sight so simple that even a Tajaran can use it. Too bad for you that the inscriptions are written in Siik. Uses 7.62mm rounds."
-	icon_state = "SVD"
-	item_state = "SVD"
-	wielded_item_state = "heavysniper-wielded" //Placeholder
+	icon_state = "svd"
+	item_state = "svd"
+	wielded_item_state = "svd-wielded" //Placeholder
 	w_class = ITEMSIZE_HUGE // So it can't fit in a backpack.
 	force = 10
 	slot_flags = SLOT_BACK // Needs a sprite.
@@ -100,12 +100,45 @@
 	if(ammo_magazine)
 		icon_state = "SVD"
 	else
-		icon_state = "SVD-empty"
+		icon_state = "SVD-e"
 
 /obj/item/weapon/gun/projectile/SVD/ui_action_click()
 	scope()
 
 /obj/item/weapon/gun/projectile/SVD/verb/scope()
+	set category = "Object"
+	set name = "Use Scope"
+	set popup_menu = 1
+
+	toggle_scope(2.0)
+
+////////////// Scoped Rifle //////////////
+
+/obj/item/weapon/gun/projectile/shotgun/pump/rifle/scoped
+	name = "scoped bolt-action rifle"
+	desc = "The Weissen Company Type-19 is a modern interpretation of an almost ancient weapon design. \
+	The model is popular among hunters and collectors due to its reliability. Uses 7.62mm rounds."
+	description_fluff = "The frontier’s largest home-grown firearms manufacturer, \
+	the APEX Arms Company offers a range of high-quality, high-cost hunting rifles \
+	and shotguns designed with the wild frontier wilderness - and its wildlife - in mind. \
+	The company operates just one production plant in the Mytis system, but their weapons \
+	have found popularity on garden worlds as far afield as the Tajaran homeworld due to \
+	their excellent build quality, precision, and stopping power."
+	item_state = "boltaction_scoped"
+	icon_state = "scoped-boltaction"
+	fire_sound = 'sound/weapons/Gunshot_generic_rifle.ogg'
+	max_shells = 5
+	caliber = "7.62mm"
+	origin_tech = list(TECH_COMBAT = 2)// Old as shit rifle doesn't have very good tech, but it does have a scope.
+	ammo_type = /obj/item/ammo_casing/a762
+	load_method = SINGLE_CASING|SPEEDLOADER
+	action_sound = 'sound/weapons/riflebolt.ogg'
+	pump_animation = "scoped-boltaction-cycling"
+
+/obj/item/weapon/gun/projectile/shotgun/pump/rifle/ui_action_click()
+	scope()
+
+/obj/item/weapon/gun/projectile/shotgun/pump/rifle/verb/scope()
 	set category = "Object"
 	set name = "Use Scope"
 	set popup_menu = 1

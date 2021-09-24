@@ -128,7 +128,7 @@
 
 /obj/item/weapon/storage/box/syndie_kit/imp_aug/sprinter
 	case_type = /obj/item/weapon/implantcase/sprinter
-	
+
 /obj/item/weapon/storage/box/syndie_kit/imp_aug/armblade
 	case_type = /obj/item/weapon/implantcase/armblade
 
@@ -307,8 +307,8 @@
 	name = "secure briefcase"
 	starts_with = list(
 		/obj/item/sniper_rifle_part/barrel,
-		/obj/item/sniper_rifle_part/stock,
-		/obj/item/sniper_rifle_part/trigger_group,
+		/obj/item/sniper_rifle_part/scope,
+		/obj/item/sniper_rifle_part/body,
 		/obj/item/ammo_casing/a145 = 4
 	)
 

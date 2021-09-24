@@ -150,7 +150,7 @@
 					prob(7);/obj/item/weapon/gun/energy/sniperrifle,\
 					prob(7);/obj/item/weapon/gun/projectile/automatic/p90,\
 					prob(7);/obj/item/weapon/gun/projectile/automatic/as24,\
-					prob(7);/obj/item/weapon/gun/projectile/automatic/sts35,\
+					prob(7);/obj/item/weapon/gun/projectile/automatic/sts15,\
 					prob(7);/obj/item/weapon/gun/projectile/automatic/z8,\
 					prob(7);/obj/item/weapon/gun/energy/gun/burst,\
 					prob(7);/obj/item/weapon/gun/projectile/shotgun/pump/USDF,\
@@ -196,13 +196,13 @@
 					prob(4);/obj/item/ammo_magazine/m9mmt,\
 					prob(4);/obj/item/ammo_magazine/m9mmt/rubber,\
 					prob(4);/obj/item/ammo_magazine/m10mm,\
+					prob(4);/obj/item/ammo_magazine/m10mm/pistol,\
 					prob(4);/obj/item/ammo_magazine/m9mmp90,\
 				/*	prob(4);/obj/item/ammo_magazine/m14,\
 					prob(4);/obj/item/ammo_magazine/m14/large,\*/
 					prob(4);/obj/item/ammo_magazine/m545/ext,
 					prob(4);/obj/item/ammo_magazine/m762,\
 					prob(4);/obj/item/ammo_magazine/m545/ext,\
-					prob(3);/obj/item/ammo_magazine/clip/c10mm,\
 					prob(3);/obj/item/ammo_magazine/clip/c44,\
 					prob(3);/obj/item/ammo_magazine/m545,\
 					prob(2);/obj/item/ammo_magazine/m44,\
@@ -286,7 +286,7 @@
 			else if(prob(50))
 				if(live_cargo) // Something else very much alive and angry.
 					var/spawn_type = pick(/mob/living/simple_mob/animal/space/alien, /mob/living/simple_mob/animal/space/alien/drone, /mob/living/simple_mob/animal/space/alien/sentinel)
-					new spawn_type(C) 
+					new spawn_type(C)
 				else // Just a costume.
 					new /obj/item/clothing/head/xenos(C)
 					new /obj/item/clothing/suit/xenos(C)

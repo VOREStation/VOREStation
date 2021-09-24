@@ -1,7 +1,7 @@
 /*
-*	Here is where any supply packs
-*	related to sc weapons live.
-*/
+ *	Here is where any supply packs
+ *	related to sc weapons live.
+ */
 
 /datum/supply_pack/munitions/bolt_rifles_explorer
  	name = "Weapons - Surplus Hunting Rifles"

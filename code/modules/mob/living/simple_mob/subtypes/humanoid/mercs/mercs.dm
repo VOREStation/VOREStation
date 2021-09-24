@@ -284,8 +284,8 @@
 	ranged_attack_delay = 2.5 SECONDS
 
 	loot_list = list(/obj/item/sniper_rifle_part/barrel = 50,
-		/obj/item/sniper_rifle_part/stock = 50,
-		/obj/item/sniper_rifle_part/trigger_group = 50,
+		/obj/item/sniper_rifle_part/scope = 50,
+		/obj/item/sniper_rifle_part/body = 50,
 		/obj/item/weapon/grenade/spawnergrenade/manhacks/mercenary = 90
 		)
 

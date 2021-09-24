@@ -15,9 +15,29 @@
 #    Likewise, when creating new rounds, the caliber variable should match whatever
 #    the name says.
 #
-#    This comment is copied in magazines.dm as well.
+#    This comment is copied in magazines.dm and ammo_boxes.dm as well.
 */
 /************************************************************************/
+
+/*
+ * Foam
+ */
+
+/obj/item/ammo_casing/afoam_dart
+	name = "foam dart"
+	desc = "It's Donk or Don't! Ages 8 and up."
+	projectile_type = /obj/item/projectile/bullet/foam_dart
+	matter = list(MAT_PLASTIC = 60)
+	caliber = "foam"
+	icon = 'icons/obj/gun_toy.dmi'
+	icon_state = "foamdart"
+	caseless = 1
+
+/obj/item/ammo_casing/afoam_dart/riot
+	name = "riot foam dart"
+	desc = "Whose smart idea was it to use toys as crowd control? Ages 18 and up."
+	matter = list(MAT_STEEL = 210, MAT_PLASTIC = 60)
+	icon_state = "foamdart_riot"
 
 /*
  * .357
@@ -28,6 +48,24 @@
 	caliber = ".357"
 	projectile_type = /obj/item/projectile/bullet/pistol/strong
 	matter = list(MAT_STEEL = 210)
+
+/obj/item/ammo_casing/a357/rubber
+	desc = "A .357 rubber bullet casing."
+	caliber = ".357"
+	icon_state = "r-casing"
+	projectile_type = /obj/item/projectile/bullet/pistol/rubber/strong
+
+/obj/item/ammo_casing/a357/flash
+	desc = "A .357 flash bullet casing."
+	caliber = ".357"
+	icon_state = "r-casing"
+	projectile_type = /obj/item/projectile/energy/flash/strong
+
+/obj/item/ammo_casing/a357/stun
+	desc = "A .357 stun bullet casing."
+	caliber = ".357"
+	icon_state = "w-casing"
+	projectile_type = /obj/item/projectile/energy/electrode/stunshot/strong
 
 /obj/item/ammo_casing/a357/bb
 	desc = "A .357 BB."
@@ -119,6 +157,7 @@
 	desc = "A 9mm hollow-point bullet casing."
 	projectile_type = /obj/item/projectile/bullet/pistol/hp
 
+
 /obj/item/ammo_casing/a9mm/flash
 	desc = "A 9mm flash shell casing."
 	icon_state = "r-casing"
@@ -201,6 +240,18 @@
 	caliber = "10mm"
 	projectile_type = /obj/item/projectile/bullet/pistol/medium
 	matter = list(MAT_STEEL = 75)
+
+/obj/item/ammo_casing/a10mm/practice
+	desc = "A 10mm practice bullet casing."
+	icon_state = "r-casing"
+	projectile_type = /obj/item/projectile/bullet/practice
+	matter = list(MAT_STEEL = 60)
+
+/obj/item/ammo_casing/a10mm/rubber
+	desc = "A 10mm rubber bullet casing."
+	projectile_type = /obj/item/projectile/bullet/pistol/rubber
+	icon_state = "r-casing"
+	matter = list(MAT_STEEL = 60)
 
 /obj/item/ammo_casing/a10mm/emp
 	name = "10mm haywire round"
@@ -292,9 +343,11 @@
 	matter = list(MAT_STEEL = 360, MAT_PLASTEEL = 100)
 
 /obj/item/ammo_casing/a12g/bb
-	desc = "A shotgun BB shell."
-	projectile_type = /obj/item/projectile/bullet/pellet/shotgun/bb // Shotgun
-	matter = list(MAT_PLASTIC = 120) // 6 pellets
+	name = "BB shell"
+	desc = "A 12 gauge shell filled with plastic BBs."
+	icon_state = "bbshell"
+	projectile_type = /obj/item/projectile/bullet/pellet/shotgun/bb
+	matter = list(MAT_PLASTIC = 120) //6 pellets
 
 /*
  * 7.62mm
@@ -427,12 +480,13 @@
 
 /obj/item/ammo_casing/cap
 	name = "cap"
-	desc = "A cap for children toys."
+	desc = "A cap for children toys. Ages 8 and up."
 	caliber = "caps"
-	icon_state = "r-casing"
-	color = "#FF0000"
-	projectile_type = /obj/item/projectile/bullet/pistol/cap
+	icon = 'icons/obj/gun_toy.dmi'
+	icon_state = "cap"
+	projectile_type = /obj/item/projectile/bullet/cap
 	matter = list(MAT_STEEL = 85)
+	caseless = 1
 
 /obj/item/ammo_casing/spent // For simple hostile mobs only, so they don't cough up usable bullets when firing. This is for literally nothing else.
 	icon_state = "s-casing-spent"

@@ -1,3 +1,6 @@
+/*
+ * Particle Gun
+ */
 /obj/item/weapon/gun/energy/particle //base gun, similar stats to an egun
 	name = "Anti-particle projector pistol"
 	icon = 'icons/obj/gun_vr.dmi'
@@ -24,7 +27,9 @@
 	var/safetycatch = 0 //if 1, won't let you fire in pressurised environment, rather than malfunctioning
 	var/obj/item/pressurelock/attached_safety
 
-
+/*
+ * Particle Rifle
+ */
 /obj/item/weapon/gun/energy/particle/advanced //particle equivalent of AEG
 	name = "Advanced anti-particle rifle"
 	icon_state = "particle"
@@ -41,6 +46,9 @@
 	recharge_time = 6 // every 6 ticks, recharge 2 shots. Slightly slower than AEG.
 	charge_delay = 10 //Starts recharging faster after firing than an AEG though.
 
+/*
+ * Particle Cannon
+ */
 /obj/item/weapon/gun/energy/particle/cannon //particle version of laser cannon
 	name = "Anti-particle cannon"
 	desc = "A giant beast of an antimatter gun, packed with an internal reactor to allow for extreme longevity on remote mining expeditions."
@@ -61,8 +69,9 @@
 	charge_delay = 15 //won't start charging until it's ready to fire again
 	recharge_time = 8 //40 ticks after that to refill the whole thing.
 
-//special behaviours for particle guns below
-
+/*
+ * Particle Gun Behaviours
+ */
 /obj/item/weapon/gun/energy/particle/special_check(var/mob/user)
 	if (..())
 		var/turf/T = get_turf(src)
@@ -154,9 +163,9 @@
 			return
 	..()
 
-
-// accessory
-
+/*
+ * Particle Gun Pressure Lock
+ */
 /obj/item/pressurelock
 	name = "Pressure interlock"
 	icon = 'icons/obj/gun_vr.dmi'
@@ -165,8 +174,9 @@
 	w_class = ITEMSIZE_TINY
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
 
-// projectiles below
-
+/*
+ * Particle Gun Projectiles
+ */
 /obj/item/projectile/bullet/particle
 	name = "antimatter pellet"
 	icon = 'icons/obj/projectiles_vr.dmi'

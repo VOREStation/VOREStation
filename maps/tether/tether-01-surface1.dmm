@@ -31714,7 +31714,7 @@
 /area/maintenance/lowmedbaymaint)
 "bWg" = (
 /obj/machinery/vending/loadout/costume{
-	dir = 4
+	dir = 8
 	},
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/funny/hideyhole)
@@ -33290,7 +33290,8 @@
 "gWO" = (
 /obj/structure/table/rack,
 /obj/effect/floor_decal/rust,
-/obj/item/toy/crossbow,
+/obj/item/ammo_magazine/ammo_box/foam,
+/obj/item/weapon/gun/projectile/revolver/toy/crossbow,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/funny/hideyhole)
 "gYx" = (
@@ -36719,8 +36720,9 @@
 /area/maintenance/lower/trash_pit)
 "qhs" = (
 /obj/structure/table/rack,
-/obj/item/toy/crossbow,
 /obj/item/weapon/coin/silver,
+/obj/item/ammo_magazine/ammo_box/foam,
+/obj/item/weapon/gun/projectile/revolver/toy/crossbow,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/funny/hideyhole)
 "qjE" = (

@@ -5,7 +5,7 @@
 /obj/item/weapon/gun/energy/hooklauncher
 	name = "gravity whip"
 	desc = "A large, strange gauntlet."
-	icon = 'icons/obj/gun2.dmi'
+	icon = 'icons/obj/gun.dmi'
 	icon_state = "gravwhip"
 	item_state = "gravwhip"
 	fire_sound_text = "laser blast"

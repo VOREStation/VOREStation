@@ -65,6 +65,57 @@
 
 	return 0
 
+/* toy projectiles */
+
+/obj/item/projectile/bullet/cap
+	name = "cap"
+	desc = "SNAP!"
+	damage = 0 // It's a damn toy.
+	embed_chance = 0
+	nodamage = TRUE
+	sharp = FALSE
+	damage_type = HALLOSS
+	impact_effect_type = null
+	fire_sound = 'sound/effects/snap.ogg'
+	combustion = FALSE
+
+/obj/item/projectile/bullet/cap/process()
+	loc = null
+	qdel(src)
+
+/obj/item/projectile/bullet/foam_dart
+	name = "foam dart"
+	desc = "I hope you're wearing eye protection."
+	damage = 0 // It's a damn toy.
+	embed_chance = 0
+	nodamage = TRUE
+	sharp = FALSE
+	damage_type = HALLOSS
+	impact_effect_type = null
+	fire_sound = 'sound/items/syringeproj.ogg'
+	combustion = FALSE
+	icon = 'icons/obj/gun_toy.dmi'
+	icon_state = "foamdart_proj"
+	range = 15
+
+/obj/item/projectile/bullet/foam_dart/on_impact(var/atom/A)
+	. = ..()
+	var/turf/T = get_turf(loc)
+	if(istype(T))
+		new /obj/item/ammo_casing/afoam_dart(get_turf(loc))
+
+/obj/item/projectile/bullet/foam_dart/on_range(var/atom/A)
+	. = ..()
+	var/turf/T = get_turf(loc)
+	if(istype(T))
+		new /obj/item/ammo_casing/afoam_dart(get_turf(loc))
+
+/obj/item/projectile/bullet/foam_dart/riot
+	name = "riot foam dart"
+	desc = "Whose smart idea was it to use toys as crowd control? Ages 18 and up."
+	agony = 50
+	icon_state = "foamdart_riot_proj"
+
 /* short-casing projectiles, like the kind used in pistols or SMGs */
 
 /obj/item/projectile/bullet/pistol // 9mm pistols and most SMGs. Sacrifice power for capacity.
@@ -292,25 +343,31 @@
 	range = 6
 	agony = 0
 
+/* BB Rounds */
+
+/obj/item/projectile/bullet/bb // Generic Single BB
+	name = "BB"
+	damage = 0
+	agony = 0
+	embed_chance = 0
+	sharp = FALSE
+	silenced = TRUE
+
+/obj/item/projectile/bullet/pellet/shotgun/bb // Shotgun
+	name = "BB"
+	damage = 0
+	agony = 0
+	embed_chance = 0
+	sharp = FALSE
+	pellets = 6
+	range_step = 1
+	spread_step = 10
+	silenced = TRUE
+
 /* Practice rounds and blanks */
 
 /obj/item/projectile/bullet/practice
 	damage = 5
-
-/obj/item/projectile/bullet/pistol/cap // Just the primer, such as a cap gun.
-	name = "cap"
-	damage_type = HALLOSS
-	fire_sound = 'sound/effects/snap.ogg'
-	damage = 0
-	nodamage = 1
-	embed_chance = 0
-	sharp = FALSE
-
-	combustion = FALSE
-
-/obj/item/projectile/bullet/pistol/cap/process()
-	loc = null
-	qdel(src)
 
 /obj/item/projectile/bullet/blank
 	name = "blank"
@@ -325,22 +382,27 @@
 	loc = null
 	qdel(src)
 
-/* BB Rounds */
-/obj/item/projectile/bullet/bb // Generic single BB
-	name = "BB"
-	damage = 0
-	agony = 0
-	embed_chance = 0
-	sharp = FALSE
-	silenced = TRUE	
+/* Misc (VORESTATION) */
 
-/obj/item/projectile/bullet/pellet/shotgun/bb // Shotgun
-	name = "BB"
-	damage = 0
-	agony = 0
-	embed_chance = 0
-	sharp = FALSE
-	pellets = 6
-	range_step = 1
-	spread_step = 10
-	silenced = TRUE
+/obj/item/projectile/energy/flash/strong
+	name = "chemical shell"
+	icon_state = "bullet"
+	damage = 10
+	range = 15 //if the shell hasn't hit anything after travelling this far it just explodes.
+	flash_strength = 15
+	brightness = 15
+
+/obj/item/projectile/energy/electrode/stunshot/strong
+	name = "stunshot"
+	icon_state = "bullet"
+	damage = 10
+	taser_effect = 1
+	agony = 100
+
+/obj/item/projectile/bullet/magnetic/flechette/small/khi
+	name = "small carbyne flechette"
+	icon_state = "flechette"
+	fire_sound = 'sound/weapons/rapidslice.ogg'
+	damage = 18
+	armor_penetration = 100
+	penetrating = 10

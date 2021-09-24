@@ -1,13 +1,12 @@
-//
-// Size Gun
-//
-
+/*
+ * Size Gun
+ */
 /obj/item/weapon/gun/energy/sizegun
 	name = "size gun" //I have no idea why this was called shrink ray when this increased and decreased size.
 	desc = "A highly advanced ray gun with a knob on the side to adjust the size you desire. Warning: Do not insert into mouth."
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_override = 'icons/obj/gun_vr.dmi'
-	icon_state = "sizegun100"
+	icon_state = "sizegun-shrink"
 	item_state = "sizegun"
 	fire_sound = 'sound/weapons/wave.ogg'
 	charge_cost = 240
@@ -56,21 +55,19 @@
 	. = ..()
 	. += "<span class='info'>It is currently set at [size_set_to*100]%</span>"
 
+/*
+ * Admin Size Gun
+ */
 /obj/item/weapon/gun/energy/sizegun/admin
 	name = "modified size gun"
-	desc = "Sizegun, without limits on minimum/maximum size, and with unlimited charge. Time to show 'em that size does matter."
+	desc = "Size gun, without limits on minimum/maximum size, and with unlimited charge. Time to show 'em that size does matter."
+	description_fluff = "A standard size gun that has been modified with a distabilized bluespace element that has allowed the gun \
+	to break the normal laws of physics and create a 'weapon' capable of sizing any creature well beyond any conceivable size. \
+	Only a handfull of these exist in the known universe and they are exclusively owned by NanoTrasen for research purposes."
+	icon_state = "sizegun_admin"
+	item_state = "sizegun_admin"
 	charge_cost = 0
 	projectile_type = /obj/item/projectile/beam/sizelaser/admin
-
-/obj/item/weapon/gun/energy/sizegun/abductor
-	name = "alien size gun"
-	icon_state = "sizegun-abductor"
-	item_state = "laser"
-	charge_cost = 0
-	projectile_type = /obj/item/projectile/beam/sizelaser/admin
-
-/obj/item/weapon/gun/energy/sizegun/abductor/update_icon(ignore_inhands)
-	item_state = initial(item_state)
 
 /obj/item/weapon/gun/energy/sizegun/admin/select_size()
 	set name = "Select Size"
@@ -83,10 +80,22 @@
 	size_set_to = clamp((size_select/100), 0, 1000) //eheh
 	to_chat(usr, "<span class='notice'>You set the size to [size_select]%</span>")
 
-//
-// Beams for size gun
-//
+/*
+ * Alien Size Gun
+ */
+/obj/item/weapon/gun/energy/sizegun/abductor
+	name = "alien size gun"
+	icon_state = "sizegun-abductor"
+	item_state = "laser"
+	charge_cost = 0
+	projectile_type = /obj/item/projectile/beam/sizelaser/admin
 
+/obj/item/weapon/gun/energy/sizegun/abductor/update_icon(ignore_inhands)
+	item_state = initial(item_state)
+
+/*
+ * Size Gun Beams
+ */
 /obj/item/projectile/beam/sizelaser
 	name = "size beam"
 	icon_state = "xray"

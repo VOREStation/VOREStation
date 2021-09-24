@@ -43,8 +43,10 @@
 				prob(7);/obj/item/weapon/material/butterfly,\
 				prob(7);/obj/item/weapon/material/butterfly/switchblade,\
 				prob(7);/obj/item/weapon/gun/projectile/giskard,\
+				prob(7);/obj/item/weapon/gun/projectile/giskard/olivaw,\
+				prob(7);/obj/item/weapon/gun/projectile/makarov,\
 				prob(7);/obj/item/weapon/gun/projectile/automatic/p90,\
-				prob(7);/obj/item/weapon/gun/projectile/automatic/sts35,\
+				prob(7);/obj/item/weapon/gun/projectile/automatic/sts15,\
 				prob(7);/obj/item/weapon/gun/projectile/shotgun/pump/combat,\
 				prob(6);/obj/item/weapon/gun/energy/sniperrifle,\
 				prob(6);/obj/item/weapon/gun/projectile/automatic/z8,\
@@ -99,7 +101,10 @@
 	return pick(prob(5);/obj/item/weapon/storage/box/shotgunammo,\
 				prob(5);/obj/item/weapon/storage/box/shotgunshells,\
 				prob(5);/obj/item/ammo_magazine/clip/c762,\
-				prob(5);/obj/item/ammo_magazine/m380,\
+				prob(5);/obj/item/ammo_magazine/m38/makarov,\
+				prob(5);/obj/item/ammo_magazine/m38/makarov/rubber,\
+				prob(5);/obj/item/ammo_magazine/m38/giskard,\
+				prob(5);/obj/item/ammo_magazine/m38/giskard/rubber,\
 				prob(5);/obj/item/ammo_magazine/m45,\
 				prob(5);/obj/item/ammo_magazine/m9mm,\
 				prob(5);/obj/item/ammo_magazine/s38,\
@@ -110,8 +115,8 @@
 				prob(4);/obj/item/ammo_magazine/m9mmt,\
 				prob(4);/obj/item/ammo_magazine/m9mmp90,\
 				prob(4);/obj/item/ammo_magazine/m10mm,\
+				prob(4);/obj/item/ammo_magazine/m10mm/pistol,\
 				prob(4);/obj/item/ammo_magazine/m545/small,\
-				prob(3);/obj/item/ammo_magazine/clip/c10mm,\
 				prob(3);/obj/item/ammo_magazine/clip/c44,\
 				prob(3);/obj/item/ammo_magazine/s44,\
 				prob(3);/obj/item/ammo_magazine/m762,\
@@ -119,7 +124,7 @@
 				prob(3);/obj/item/weapon/cell/device/weapon,\
 				prob(2);/obj/item/ammo_magazine/m44,\
 				prob(2);/obj/item/ammo_magazine/s357,\
-				prob(2);/obj/item/ammo_magazine/m762m,\
+				prob(2);/obj/item/ammo_magazine/m762/ext,\
 				prob(2);/obj/item/ammo_magazine/clip/c12g,
 				prob(2);/obj/item/ammo_magazine/clip/c12g/pellet,\
 				prob(1);/obj/item/ammo_magazine/m45tommy,\

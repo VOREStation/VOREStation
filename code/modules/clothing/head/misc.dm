@@ -171,6 +171,14 @@
 	drop_sound = 'sound/items/drop/cardboardbox.ogg'
 	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
+//Ruin Marine (Doom Marine)
+/obj/item/clothing/head/marine
+	name = "marine helmet"
+	desc = "A marine helmet prop from the popular game 'Ruin'."
+	icon_state = "marine"
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHAIR
+	body_parts_covered = HEAD|FACE|EYES
+
 /obj/item/clothing/head/justice
 	name = "justice hat"
 	desc = "fight for what's righteous!"

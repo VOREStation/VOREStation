@@ -22,9 +22,9 @@
 			to_chat(user, "<span class='warning'>You remove \the [src]'s barrel.</span>")
 			qdel(src)
 			var/obj/item/barrel = new /obj/item/sniper_rifle_part/barrel(user)
-			var/obj/item/sniper_rifle_part/assembly = new /obj/item/sniper_rifle_part/trigger_group(user)
-			var/obj/item/sniper_rifle_part/stock/stock = new(assembly)
-			assembly.stock = stock
+			var/obj/item/sniper_rifle_part/assembly = new /obj/item/sniper_rifle_part/body(user)
+			var/obj/item/sniper_rifle_part/scope/scope = new(assembly)
+			assembly.scope = scope
 			assembly.part_count = 2
 			assembly.update_build()
 			user.put_in_any_hand_if_possible(assembly) || assembly.dropInto(user.loc)
@@ -40,8 +40,8 @@
 	icon = 'icons/obj/gun.dmi'
 
 	var/obj/item/sniper_rifle_part/barrel = null
-	var/obj/item/sniper_rifle_part/stock = null
-	var/obj/item/sniper_rifle_part/trigger_group = null
+	var/obj/item/sniper_rifle_part/scope = null
+	var/obj/item/sniper_rifle_part/body = null
 	var/part_count = 1
 
 
@@ -53,21 +53,21 @@
 	..()
 	barrel = src
 
-/obj/item/sniper_rifle_part/stock
-	name = "AM rifle stock"
-	icon_state = "heavysniper-stock"
+/obj/item/sniper_rifle_part/scope
+	name = "AM rifle scope"
+	icon_state = "heavysniper-scope"
 
-/obj/item/sniper_rifle_part/stock/New()
+/obj/item/sniper_rifle_part/scope/New()
 	..()
-	stock = src
+	scope = src
 
-/obj/item/sniper_rifle_part/trigger_group
+/obj/item/sniper_rifle_part/body
 	name = "AM rifle trigger assembly"
-	icon_state = "heavysniper-trig"
+	icon_state = "heavysniper-body"
 
-/obj/item/sniper_rifle_part/trigger_group/New()
+/obj/item/sniper_rifle_part/body/New()
 	..()
-	trigger_group = src
+	body = src
 
 /obj/item/sniper_rifle_part/attack_self(mob/user as mob)
 	if(part_count == 1)
@@ -79,13 +79,13 @@
 		return
 
 	to_chat(user, "<span class='notice'>You disassemble \the [src].</span>")
-	for(var/obj/item/sniper_rifle_part/P in list(barrel, stock, trigger_group))
+	for(var/obj/item/sniper_rifle_part/P in list(barrel, scope, body))
 		if(P.barrel != P)
 			P.barrel = null
-		if(P.stock != P)
-			P.stock = null
-		if(P.trigger_group != P)
-			P.trigger_group = null
+		if(P.scope != P)
+			P.scope = null
+		if(P.body != P)
+			P.body = null
 		if(P != src)
 			user.put_in_any_hand_if_possible(P) || P.dropInto(loc)
 		P.part_count = 1
@@ -100,14 +100,14 @@
 
 
 
-	if(istype(A, /obj/item/sniper_rifle_part/trigger_group))
+	if(istype(A, /obj/item/sniper_rifle_part/body))
 		if(A.part_count > 1 && src.part_count > 1)
 			to_chat(user, "<span class='warning'>Disassemble one of these parts first!</span>")
 			return
 
-		if(!trigger_group)
+		if(!body)
 			if(user.unEquip(A, force=1))
-				trigger_group = A
+				body = A
 		else
 			to_chat(user, "<span class='warning'>There's already a trigger group!</span>")
 			return
@@ -120,12 +120,12 @@
 			to_chat(user, "<span class='warning'>There's already a barrel!</span>")
 			return
 
-	else if(istype(A, /obj/item/sniper_rifle_part/stock))
-		if(!stock)
+	else if(istype(A, /obj/item/sniper_rifle_part/scope))
+		if(!scope)
 			if(user.unEquip(A, force=1))
-				stock = A
+				scope = A
 		else
-			to_chat(user, "<span class='warning'>There's already a stock!</span>")
+			to_chat(user, "<span class='warning'>There's already a scope!</span>")
 			return
 
 	A.forceMove(src)
@@ -133,10 +133,10 @@
 
 	if(A.barrel && !src.barrel)
 		src.barrel = A.barrel
-	if(A.stock && !src.stock)
-		src.stock = A.stock
-	if(A.trigger_group && !src.trigger_group)
-		src.trigger_group = A.trigger_group
+	if(A.scope && !src.scope)
+		src.scope = A.scope
+	if(A.body && !src.body)
+		src.body = A.body
 
 
 	part_count = A.part_count + src.part_count
@@ -150,15 +150,15 @@
 			w_class = ITEMSIZE_NORMAL
 			icon_state = initial(icon_state)
 		if(2)
-			if(barrel && trigger_group)
-				name = "AM rifle barrel-trigger assembly"
-				icon_state = "heavysniper-trigbar"
-			else if(stock && trigger_group)
-				name = "AM rifle stock-trigger assembly"
-				icon_state = "heavysniper-trigstock"
-			else if(stock && barrel)
-				name = "AM rifle stock-barrel assembly"
-				icon_state = "heavysniper-barstock"
+			if(barrel && body)
+				name = "AM rifle scope-body assembly"
+				icon_state = "heavysniper-scopebody"
+			else if(scope && body)
+				name = "AM rifle barrel-body assembly"
+				icon_state = "heavysniper-bodybarrel"
+			else if(scope && barrel)
+				name = "AM rifle scope and barrel"
+				icon_state = "heavysniper-scopebarrel"
 			w_class = ITEMSIZE_LARGE
 
 		if(3)

@@ -136,6 +136,19 @@
 	name = "largebolt"
 	damage = 20
 
+/obj/item/projectile/energy/bow
+	name = "engergy bolt"
+	icon_state = "cbbolt"
+	damage = 20
+
+/obj/item/projectile/energy/bow/heavy
+	damage = 30
+	icon_state = "cbbolt"
+
+/obj/item/projectile/energy/bow/stun
+	name = "stun bolt"
+	agony = 30
+
 /obj/item/projectile/energy/acid //Slightly up-gunned (Read: The thing does agony and checks bio resist) variant of the simple alien mob's projectile, for queens and sentinels.
 	name = "acidic spit"
 	icon_state = "neurotoxin"
@@ -260,3 +273,15 @@
 	range = 10
 	damage = 15
 	SA_bonus_damage = 60	// 75 total on animals
+
+/obj/item/projectile/energy/electrode/strong
+	agony = 70
+
+/obj/item/projectile/energy
+	flash_strength = 10
+
+/obj/item/projectile/energy/flash
+	flash_range = 1
+
+/obj/item/projectile/energy/flash/flare
+	flash_range = 2
