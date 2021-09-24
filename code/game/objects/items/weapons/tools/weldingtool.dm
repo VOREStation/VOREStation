@@ -392,6 +392,9 @@
 	toolspeed = 2
 	eye_safety_modifier = 1 // Safer on eyes.
 
+/obj/item/weapon/weldingtool/mini/two
+	icon_state = "miniwelder2"
+
 /datum/category_item/catalogue/anomalous/precursor_a/alien_welder
 	name = "Precursor Alpha Object - Self Refueling Exothermic Tool"
 	desc = "An unwieldly tool which somewhat resembles a weapon, due to \
