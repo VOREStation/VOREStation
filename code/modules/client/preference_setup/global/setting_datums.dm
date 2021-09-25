@@ -95,6 +95,12 @@ var/list/_client_preferences_by_type
 	key = "DIGEST_NOISES"
 	enabled_description = "Noisy"
 	disabled_description = "Silent"
+	
+/datum/client_preference/belch_noises // Belching noises - pref toggle for 'em
+	description = "Burping"
+	key = "BELCH_NOISES"
+	enabled_description = "Noisy"
+	disabled_description = "Silent"
 
 /datum/client_preference/emote_noises
 	description = "Emote Noises" //MERP
