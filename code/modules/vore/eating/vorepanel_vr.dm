@@ -51,6 +51,7 @@
 	if(!ui)
 		ui = new(user, src, "VorePanel", "Vore Panel")
 		ui.open()
+		ui.set_autoupdate(FALSE)
 
 // This looks weird, but all tgui_host is used for is state checking
 // So this allows us to use the self_state just fine.

@@ -42,6 +42,8 @@ var/global/list/emotes_by_key
 	var/check_range                                     // falsy, or a range outside which the emote will not work
 	var/conscious = TRUE                                // Do we need to be awake to emote this?
 	var/emote_range = 0                                 // If >0, restricts emote visibility to viewers within range.
+	
+	var/sound_preferences = list(/datum/client_preference/emote_noises) // Default emote sound_preferences is just emote_noises. Belch emote overrides this list for pref-checks.
 
 /decl/emote/Initialize()
 	. = ..()
@@ -176,7 +178,7 @@ var/global/list/emotes_by_key
 		if(islist(sound_to_play) && length(sound_to_play))
 			sound_to_play = pick(sound_to_play)
 	if(sound_to_play)
-		playsound(user.loc, sound_to_play, use_sound["vol"], 0, preference = /datum/client_preference/emote_noises) //VOREStation Add - Preference
+		playsound(user.loc, sound_to_play, use_sound["vol"], 0, preference = sound_preferences) //VOREStation Add - Preference
 
 /decl/emote/proc/mob_can_use(var/mob/user)
 	return istype(user) && user.stat != DEAD && (type in user.get_available_emotes())
