@@ -2,6 +2,7 @@
 	name = "mecha weapon"
 	range = RANGED
 	origin_tech = list(TECH_MATERIAL = 3, TECH_COMBAT = 3)
+	matter = list(MAT_STEEL = 6000, MAT_GLASS = 3000)
 	var/projectile //Type of projectile fired.
 	var/projectiles = 1 //Amount of projectiles loaded.
 	var/projectiles_per_shot = 1 //Amount of projectiles fired per single shot.

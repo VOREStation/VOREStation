@@ -172,7 +172,7 @@ GLOBAL_LIST_INIT(digest_modes, list())
 				B.ownegg.update_transform()
 				egg_contents -= I
 				B.ownegg = null
-				return
+				return list("to_update" = TRUE)
 			if(isliving(C))
 				var/mob/living/M = C
 				var/mob_holder_type = M.holder_type || /obj/item/weapon/holder
@@ -186,7 +186,7 @@ GLOBAL_LIST_INIT(digest_modes, list())
 				if(B.ownegg.w_class > 4)
 					B.ownegg.slowdown = B.ownegg.w_class - 4
 				B.ownegg = null
-				return
+				return list("to_update" = TRUE)
 			C.forceMove(B.ownegg)
 			if(isitem(C))
 				var/obj/item/I = C
@@ -200,4 +200,5 @@ GLOBAL_LIST_INIT(digest_modes, list())
 		if(B.ownegg.w_class > 4)
 			B.ownegg.slowdown = B.ownegg.w_class - 4
 		B.ownegg = null
+		return list("to_update" = TRUE)
 	return

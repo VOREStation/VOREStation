@@ -6,7 +6,7 @@
 /obj/effect/decal/cleanable/blood/drip{
 	icon_state = "5"
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/virgo3b,
 /area/submap/OtieShelter)
 "aj" = (
 /obj/effect/decal/cleanable/blood/drip{
@@ -15,20 +15,20 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating/external/virgo3b,
 /area/submap/OtieShelter)
 "ar" = (
 /obj/structure/closet/secure_closet/medical_wall/anesthetics,
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/virgo3b,
 /area/submap/OtieShelter)
 "cq" = (
 /obj/structure/bed/chair/office/light{
 	dir = 1
 	},
-/turf/simulated/floor/carpet/turcarpet,
+/turf/simulated/floor/carpet/turcarpet/virgo3b,
 /area/submap/OtieShelter)
 "cU" = (
 /obj/machinery/power/port_gen/pacman,
@@ -57,7 +57,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating/external/virgo3b,
 /area/submap/OtieShelter)
 "gN" = (
 /obj/structure/undies_wardrobe,
@@ -84,12 +84,12 @@
 /area/submap/OtieShelter)
 "hD" = (
 /obj/effect/decal/cleanable/filth,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/virgo3b,
 /area/submap/OtieShelter)
 "iv" = (
 /obj/structure/table/glass,
 /obj/item/weapon/storage/firstaid/surgery,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/virgo3b,
 /area/submap/OtieShelter)
 "iC" = (
 /obj/effect/decal/cleanable/blood,
@@ -103,21 +103,21 @@
 	dir = 1
 	},
 /obj/item/trash/bowl,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/virgo3b,
 /area/submap/OtieShelter)
 "jc" = (
 /obj/machinery/optable,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/virgo3b,
 /area/submap/OtieShelter)
 "jo" = (
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/virgo3b,
 /area/submap/OtieShelter)
 "jy" = (
 /obj/effect/decal/cleanable/blood/drip,
-/turf/simulated/floor/carpet/turcarpet,
+/turf/simulated/floor/carpet/turcarpet/virgo3b,
 /area/submap/OtieShelter)
 "jI" = (
 /obj/item/weapon/material/shard{
@@ -130,7 +130,7 @@
 	icon = 'icons/effects/blood.dmi';
 	icon_state = "tracks"
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/virgo3b,
 /area/submap/OtieShelter)
 "kF" = (
 /obj/structure/window/phoronreinforced{
@@ -143,11 +143,11 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/virgo3b,
 /area/submap/OtieShelter)
 "lv" = (
 /obj/structure/door_assembly,
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/tiled/virgo3b,
 /area/submap/OtieShelter)
 "lP" = (
 /obj/effect/decal/cleanable/blood/drip{
@@ -157,7 +157,7 @@
 	icon_state = "2"
 	},
 /obj/effect/decal/cleanable/blood,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/virgo3b,
 /area/submap/OtieShelter)
 "lQ" = (
 /obj/structure/window/phoronreinforced{
@@ -170,7 +170,7 @@
 /obj/effect/decal/cleanable/blood/drip{
 	icon_state = "4"
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/virgo3b,
 /area/submap/OtieShelter)
 "mu" = (
 /obj/structure/window/phoronreinforced{
@@ -188,7 +188,7 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_x = -28
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/virgo3b,
 /area/submap/OtieShelter)
 "mJ" = (
 /obj/structure/sign/warning/secure_area,
@@ -201,13 +201,13 @@
 /obj/effect/decal/cleanable/blood/drip{
 	icon_state = "4"
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/virgo3b,
 /area/submap/OtieShelter)
 "nR" = (
 /obj/structure/table/marble,
 /obj/item/weapon/newspaper,
 /obj/item/weapon/paper/card/heart,
-/turf/simulated/floor/carpet/turcarpet,
+/turf/simulated/floor/carpet/turcarpet/virgo3b,
 /area/submap/OtieShelter)
 "ob" = (
 /obj/structure/grille/rustic,
@@ -226,7 +226,7 @@
 /obj/effect/decal/cleanable/blood/drip{
 	icon_state = "4"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating/external/virgo3b,
 /area/submap/OtieShelter)
 "pa" = (
 /obj/structure/loot_pile/surface/bones,
@@ -234,13 +234,13 @@
 /obj/effect/decal/cleanable/filth,
 /obj/effect/decal/cleanable/filth,
 /obj/random/handgun/sec,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/virgo3b,
 /area/submap/OtieShelter)
 "pd" = (
 /obj/effect/decal/cleanable/blood/drip{
 	icon_state = "5"
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/virgo3b,
 /area/submap/OtieShelter)
 "rb" = (
 /obj/machinery/light{
@@ -249,7 +249,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating/external/virgo3b,
 /area/submap/OtieShelter)
 "sJ" = (
 /obj/structure/grille/rustic,
@@ -273,7 +273,7 @@
 /obj/effect/decal/cleanable/blood/drip{
 	icon_state = "2"
 	},
-/turf/simulated/floor/carpet/turcarpet,
+/turf/simulated/floor/carpet/turcarpet/virgo3b,
 /area/submap/OtieShelter)
 "tP" = (
 /obj/structure/window/phoronreinforced{
@@ -286,9 +286,16 @@
 /obj/item/weapon/reagent_containers/food/snacks/meat/human,
 /turf/simulated/floor/tiled,
 /area/submap/OtieShelter)
+"uw" = (
+/obj/structure/window/phoronreinforced{
+	dir = 1
+	},
+/obj/structure/dogbed,
+/turf/simulated/floor/tiled/virgo3b,
+/area/submap/OtieShelter)
 "uD" = (
 /obj/machinery/light,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/virgo3b,
 /area/submap/OtieShelter)
 "uS" = (
 /obj/machinery/light{
@@ -298,7 +305,7 @@
 /area/submap/OtieShelter)
 "vA" = (
 /obj/item/weapon/bone,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/virgo3b,
 /area/submap/OtieShelter)
 "vB" = (
 /obj/machinery/door/window{
@@ -310,6 +317,9 @@
 "vV" = (
 /obj/structure/table/woodentable,
 /turf/simulated/floor/carpet/turcarpet,
+/area/submap/OtieShelter)
+"wg" = (
+/turf/simulated/floor/carpet/turcarpet/virgo3b,
 /area/submap/OtieShelter)
 "wO" = (
 /obj/structure/dogbed,
@@ -323,12 +333,12 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/virgo3b,
 /area/submap/OtieShelter)
 "xj" = (
 /obj/structure/table/marble,
 /obj/item/modular_computer/laptop/preset/custom_loadout/cheap,
-/turf/simulated/floor/carpet/turcarpet,
+/turf/simulated/floor/carpet/turcarpet/virgo3b,
 /area/submap/OtieShelter)
 "xI" = (
 /obj/structure/window/phoronreinforced{
@@ -341,7 +351,7 @@
 "yD" = (
 /obj/structure/table/glass,
 /obj/item/weapon/storage/firstaid/adv,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/virgo3b,
 /area/submap/OtieShelter)
 "Aa" = (
 /obj/structure/window/phoronreinforced{
@@ -354,11 +364,14 @@
 /obj/structure/table/marble,
 /obj/item/weapon/paper_bin,
 /obj/item/weapon/pen,
-/turf/simulated/floor/carpet/turcarpet,
+/turf/simulated/floor/carpet/turcarpet/virgo3b,
 /area/submap/OtieShelter)
 "AO" = (
 /obj/structure/table/glass,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/virgo3b,
+/area/submap/OtieShelter)
+"AQ" = (
+/turf/simulated/floor/tiled/virgo3b,
 /area/submap/OtieShelter)
 "BM" = (
 /obj/item/weapon/melee/baton/cattleprod,
@@ -373,12 +386,12 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/virgo3b,
 /area/submap/OtieShelter)
 "Cw" = (
 /obj/structure/table/glass,
 /obj/item/weapon/storage/firstaid,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/virgo3b,
 /area/submap/OtieShelter)
 "CM" = (
 /obj/structure/closet/wardrobe,
@@ -393,7 +406,7 @@
 	icon_state = "2"
 	},
 /obj/effect/decal/cleanable/blood/drip,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/virgo3b,
 /area/submap/OtieShelter)
 "Hk" = (
 /obj/machinery/door/window,
@@ -403,7 +416,7 @@
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 30
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/virgo3b,
 /area/submap/OtieShelter)
 "Ih" = (
 /obj/item/weapon/reagent_containers/food/snacks/meat/human,
@@ -420,7 +433,7 @@
 /turf/simulated/floor/tiled,
 /area/submap/OtieShelter)
 "JY" = (
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating/external/virgo3b,
 /area/submap/OtieShelter)
 "KJ" = (
 /obj/structure/window/phoronreinforced{
@@ -430,24 +443,24 @@
 	dir = 1
 	},
 /obj/structure/closet/secure_closet/freezer/meat,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/virgo3b,
 /area/submap/OtieShelter)
 "Lr" = (
 /obj/structure/door_assembly,
-/turf/simulated/floor/plating,
+/turf/simulated/floor/plating/external/virgo3b,
 /area/submap/OtieShelter)
 "LF" = (
 /obj/structure/ghost_pod/manual/lost_drone/dogborg,
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/virgo3b,
 /area/submap/OtieShelter)
 "Mc" = (
 /obj/structure/fireaxecabinet{
 	pixel_y = 29
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/virgo3b,
 /area/submap/OtieShelter)
 "Mg" = (
 /obj/structure/window/phoronreinforced{
@@ -456,7 +469,7 @@
 /obj/structure/window/phoronreinforced{
 	dir = 8
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/virgo3b,
 /area/submap/OtieShelter)
 "Mn" = (
 /mob/living/simple_mob/otie/red/chubby,
@@ -475,7 +488,7 @@
 /obj/structure/table/marble,
 /obj/structure/table/marble,
 /obj/item/device/radio/phone,
-/turf/simulated/floor/carpet/turcarpet,
+/turf/simulated/floor/carpet/turcarpet/virgo3b,
 /area/submap/OtieShelter)
 "Nh" = (
 /obj/item/weapon/bedsheet/browndouble,
@@ -515,7 +528,7 @@
 	icon_state = "paw1"
 	},
 /obj/item/ammo_casing/spent,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/virgo3b,
 /area/submap/OtieShelter)
 "Pn" = (
 /obj/structure/window/phoronreinforced{
@@ -532,7 +545,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/virgo3b,
 /area/submap/OtieShelter)
 "Qr" = (
 /turf/template_noop,
@@ -552,6 +565,18 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/submap/OtieShelter)
+"Sn" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/carpet/turcarpet/virgo3b,
+/area/submap/OtieShelter)
+"SD" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/virgo3b,
+/area/submap/OtieShelter)
 "TP" = (
 /obj/machinery/power/smes/buildable/point_of_interest,
 /obj/structure/cable/green{
@@ -564,7 +589,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/virgo3b,
 /area/submap/OtieShelter)
 "UH" = (
 /obj/structure/window/phoronreinforced{
@@ -581,7 +606,7 @@
 /obj/effect/decal/cleanable/blood/tracks/paw{
 	icon_state = "paw1"
 	},
-/turf/simulated/floor/carpet/turcarpet,
+/turf/simulated/floor/carpet/turcarpet/virgo3b,
 /area/submap/OtieShelter)
 "VL" = (
 /obj/structure/extinguisher_cabinet{
@@ -591,7 +616,7 @@
 	icon_state = "2"
 	},
 /obj/effect/decal/cleanable/blood/drip,
-/turf/simulated/floor/carpet/turcarpet,
+/turf/simulated/floor/carpet/turcarpet/virgo3b,
 /area/submap/OtieShelter)
 "VY" = (
 /mob/living/simple_mob/otie/cotie/chubby,
@@ -603,11 +628,11 @@
 /obj/structure/windoor_assembly{
 	dir = 2
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/virgo3b_indoors,
 /area/submap/OtieShelter)
 "WY" = (
 /obj/machinery/oxygen_pump/mobile/anesthetic,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/virgo3b,
 /area/submap/OtieShelter)
 "XB" = (
 /obj/structure/window/phoronreinforced{
@@ -618,7 +643,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/virgo3b,
 /area/submap/OtieShelter)
 "XG" = (
 /obj/structure/window/phoronreinforced{
@@ -786,20 +811,20 @@ Qr
 Qr
 Mz
 jo
-IF
-IF
-IF
-IF
-IF
-IF
-IF
-IF
-IF
+AQ
+AQ
+AQ
+AQ
+AQ
+AQ
+AQ
+AQ
+AQ
 fw
 mC
 nK
 ag
-IF
+AQ
 aj
 op
 iC
@@ -808,14 +833,14 @@ iC
 Qr
 Mz
 Mc
-IF
-IF
+AQ
+AQ
 AO
 Cw
 yD
 AO
-IF
-IF
+AQ
+AQ
 uD
 Mz
 Mz
@@ -838,11 +863,11 @@ AO
 AO
 vA
 hD
-IF
+AQ
 sJ
-MK
+Sn
 tz
-Ro
+wg
 Mz
 gr
 Qr
@@ -852,15 +877,15 @@ Qr
 Qr
 Mz
 jo
-IF
-IF
-IF
-IF
-IF
+AQ
+AQ
+AQ
+AQ
+AQ
 hD
 pa
 OJ
-IF
+AQ
 ob
 jy
 Nd
@@ -884,7 +909,7 @@ BM
 kX
 EI
 hk
-Ro
+wg
 xj
 cq
 Mz
@@ -908,7 +933,7 @@ lY
 Mz
 VL
 At
-Ro
+wg
 Mz
 Qr
 Qr
@@ -929,8 +954,8 @@ XB
 pd
 Wl
 VE
-Ro
-Ro
+wg
+wg
 Mz
 Qr
 Qr
@@ -945,14 +970,14 @@ kF
 uS
 kF
 uS
-kF
-uS
+uw
+SD
 KJ
-IF
+AQ
 Mz
-Ro
-Ro
-Ro
+wg
+wg
+wg
 Mz
 Qr
 Qr

@@ -7,8 +7,8 @@
 	desc = "A highly advanced ray gun with a knob on the side to adjust the size you desire. Warning: Do not insert into mouth."
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_override = 'icons/obj/gun_vr.dmi'
-	icon_state = "sizegun-shrink100"
-	item_state = "sizegun-shrink"
+	icon_state = "sizegun100"
+	item_state = "sizegun"
 	fire_sound = 'sound/weapons/wave.ogg'
 	charge_cost = 240
 	projectile_type = /obj/item/projectile/beam/sizelaser
@@ -42,7 +42,6 @@
 	set category = "Object"
 	set src in view(1)
 
-	var/prev_size = size_set_to
 	var/size_select = input(usr, "Put the desired size (25-200%), (1-600%) in dormitory areas.", "Set Size", size_set_to * 100) as num|null
 	if(!size_select)
 		return //cancelled
@@ -52,14 +51,6 @@
 	to_chat(usr, "<span class='notice'>You set the size to [size_select]%</span>")
 	if(size_set_to < RESIZE_MINIMUM || size_set_to > RESIZE_MAXIMUM)
 		to_chat(usr, "<span class='notice'>Note: Resizing limited to 25-200% automatically while outside dormatory areas.</span>") //hint that we clamp it in resize
-	
-	if(size_set_to >= 1 && prev_size < 1)
-		item_state = modifystate = "sizegun-grow"
-		update_icon()
-		
-	else if(size_set_to < 1 && prev_size >= 1)
-		item_state = modifystate = "sizegun-shrink"
-		update_icon()
 
 /obj/item/weapon/gun/energy/sizegun/examine(mob/user)
 	. = ..()
@@ -111,7 +102,7 @@
 /obj/item/projectile/beam/sizelaser/on_hit(var/atom/target)
 	var/mob/living/M = target
 	var/ignoring_prefs = (target == firer ? TRUE : FALSE) // Resizing yourself
-	
+
 	if(istype(M))
 		if(!M.resize(set_size, uncapped = M.has_large_resize_bounds(), ignore_prefs = ignoring_prefs))
 			to_chat(M, "<font color='blue'>The beam fires into your body, changing your size!</font>")
@@ -121,7 +112,7 @@
 
 /obj/item/projectile/beam/sizelaser/admin/on_hit(var/atom/target)
 	var/mob/living/M = target
-	
+
 	if(istype(M))
 
 		var/can_be_big = M.has_large_resize_bounds()
@@ -131,7 +122,7 @@
 			to_chat(firer, "<span class='warning'>[M] will lose this size upon moving into an area where this size is not allowed.</span>")
 		else if(very_big) // made an extreme size in an area that doesn't allow it, assume adminbuse
 			to_chat(firer, "<span class='warning'>[M] will retain this normally unallowed size outside this area.</span>")
-		
+
 		M.resize(set_size, uncapped = TRUE, ignore_prefs = TRUE) // Always ignores prefs, caution is advisable
 
 		to_chat(M, "<font color='blue'>The beam fires into your body, changing your size!</font>")

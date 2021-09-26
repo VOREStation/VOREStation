@@ -19,7 +19,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/DogBase)
 "ay" = (
 /obj/structure/dogbed,
@@ -27,7 +27,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/remains/tajaran,
 /obj/random/maintenance/medical,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/DogBase)
 "aF" = (
 /obj/structure/sign/securearea,
@@ -41,7 +41,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/weapon/bone,
 /obj/random/maintenance/security,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/DogBase)
 "bl" = (
 /obj/machinery/light{
@@ -50,7 +50,7 @@
 /obj/effect/floor_decal/industrial/danger{
 	dir = 1
 	},
-/turf/simulated/floor,
+/turf/simulated/floor/plating/external/virgo3b,
 /area/submap/DogBase)
 "bw" = (
 /obj/item/weapon/storage/belt/janitor,
@@ -86,13 +86,12 @@
 /obj/effect/floor_decal/borderfloor{
 	dir = 5
 	},
+/obj/machinery/vending/cola,
 /turf/simulated/floor/tiled/dark,
 /area/submap/DogBase)
 "eA" = (
-/obj/machinery/vending/cola,
-/obj/effect/floor_decal/borderfloor{
-	dir = 10
-	},
+/obj/machinery/light,
+/obj/effect/floor_decal/borderfloor,
 /turf/simulated/floor/tiled/dark,
 /area/submap/DogBase)
 "eI" = (
@@ -122,7 +121,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/random/maintenance/cargo,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/DogBase)
 "hl" = (
 /obj/effect/floor_decal/borderfloor/corner,
@@ -159,13 +158,10 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/weapon/bone/ribs,
 /obj/random/maintenance/research,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/DogBase)
 "jz" = (
-/obj/machinery/vending/cigarette,
-/obj/effect/floor_decal/borderfloor{
-	dir = 6
-	},
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/phoronlock,
 /turf/simulated/floor/tiled/dark,
 /area/submap/DogBase)
 "jD" = (
@@ -183,14 +179,14 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/random/maintenance/security,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/DogBase)
 "kl" = (
 /obj/effect/decal/remains/human,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/random/maintenance/cargo,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/DogBase)
 "km" = (
 /obj/effect/decal/remains/human,
@@ -221,7 +217,7 @@
 "lk" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/DogBase)
 "lm" = (
 /obj/structure/table/woodentable,
@@ -234,13 +230,13 @@
 /obj/effect/floor_decal/industrial/danger{
 	dir = 1
 	},
-/turf/simulated/floor,
+/turf/simulated/floor/plating/external/virgo3b,
 /area/submap/DogBase)
 "lN" = (
 /obj/machinery/porta_turret/poi{
 	faction = "syndicate"
 	},
-/turf/simulated/floor,
+/turf/simulated/floor/plating/external/virgo3b,
 /area/submap/DogBase)
 "lX" = (
 /obj/effect/floor_decal/borderfloor,
@@ -261,7 +257,7 @@
 "oW" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/template_noop)
 "pR" = (
 /obj/structure/bed,
@@ -295,7 +291,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/weapon/bone,
 /obj/random/maintenance/security,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/DogBase)
 "qO" = (
 /obj/structure/bed,
@@ -336,7 +332,7 @@
 /area/submap/DogBase)
 "tp" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor,
+/turf/simulated/floor/plating/external/virgo3b,
 /area/submap/DogBase)
 "tt" = (
 /obj/machinery/power/smes/buildable/point_of_interest,
@@ -428,7 +424,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/remains/human,
 /obj/random/contraband/nofail,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/DogBase)
 "yl" = (
 /obj/structure/dogbed,
@@ -436,7 +432,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/random/contraband/nofail,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/DogBase)
 "yx" = (
 /obj/machinery/door/airlock/external,
@@ -453,7 +449,7 @@
 "Am" = (
 /obj/machinery/door/blast/gate/thin,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/DogBase)
 "AJ" = (
 /obj/machinery/door/airlock/engineering,
@@ -486,11 +482,6 @@
 /obj/random/cash/big,
 /turf/simulated/floor/tiled/dark,
 /area/submap/DogBase)
-"BY" = (
-/obj/machinery/light,
-/obj/effect/floor_decal/borderfloor,
-/turf/simulated/floor/tiled/dark,
-/area/submap/DogBase)
 "Ce" = (
 /obj/structure/janitorialcart,
 /obj/item/weapon/storage/bag/trash,
@@ -509,7 +500,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/item/weapon/bone,
 /obj/random/contraband/nofail,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/DogBase)
 "Dt" = (
 /obj/effect/floor_decal/borderfloor{
@@ -542,7 +533,7 @@
 "FD" = (
 /obj/structure/fence,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/DogBase)
 "FO" = (
 /obj/machinery/light{
@@ -567,14 +558,14 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/random/maintenance/cargo,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/DogBase)
 "GB" = (
 /obj/structure/fence{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/DogBase)
 "GJ" = (
 /obj/structure/closet/secure_closet/guncabinet,
@@ -587,7 +578,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/submap/DogBase)
 "Hl" = (
-/turf/simulated/floor,
+/turf/simulated/floor/plating/external/virgo3b,
 /area/submap/DogBase)
 "HF" = (
 /obj/random/mob/merc/all,
@@ -608,7 +599,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/random/maintenance/research,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/DogBase)
 "Ki" = (
 /obj/machinery/power/port_gen/pacman,
@@ -691,7 +682,7 @@
 	max_tox = 0;
 	name = "syndicate guard dog"
 	},
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/DogBase)
 "OR" = (
 /mob/living/simple_mob/animal/wolf/direwolf/dog/sec{
@@ -704,7 +695,7 @@
 /obj/effect/floor_decal/industrial/danger{
 	dir = 1
 	},
-/turf/simulated/floor,
+/turf/simulated/floor/plating/external/virgo3b,
 /area/submap/DogBase)
 "OS" = (
 /obj/effect/floor_decal/corner/red/border,
@@ -714,6 +705,7 @@
 /obj/effect/floor_decal/borderfloor{
 	dir = 9
 	},
+/obj/machinery/vending/cigarette,
 /turf/simulated/floor/tiled/dark,
 /area/submap/DogBase)
 "PB" = (
@@ -758,7 +750,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/template_noop)
 "Rz" = (
 /obj/structure/table/woodentable,
@@ -776,14 +768,14 @@
 /turf/simulated/floor/tiled/dark,
 /area/submap/DogBase)
 "SW" = (
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/template_noop)
 "To" = (
 /obj/structure/fence/corner{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/DogBase)
 "UW" = (
 /obj/effect/floor_decal/borderfloor{
@@ -796,7 +788,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/random/maintenance/security,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/DogBase)
 "Vm" = (
 /obj/structure/loot_pile/maint/technical,
@@ -807,7 +799,7 @@
 /obj/effect/decal/remains/unathi,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/DogBase)
 "VG" = (
 /obj/structure/bed/chair,
@@ -848,7 +840,7 @@
 /area/submap/DogBase)
 "Xz" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/template_noop)
 "Ya" = (
 /mob/living/simple_mob/animal/wolf/direwolf/dog/sec{
@@ -876,7 +868,7 @@
 /area/submap/DogBase)
 "YJ" = (
 /obj/random/mob/merc/all,
-/turf/simulated/floor,
+/turf/simulated/floor/plating/external/virgo3b,
 /area/submap/DogBase)
 "YX" = (
 /obj/structure/dogbed,
@@ -884,7 +876,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/random/maintenance/medical,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/DogBase)
 "ZK" = (
 /obj/machinery/power/apc{
@@ -1275,9 +1267,9 @@ Wq
 lX
 Bk
 eZ
-Wq
-Wq
-lX
+hl
+se
+UW
 Bk
 lr
 Hl
@@ -1307,9 +1299,9 @@ Wq
 Ni
 RW
 PB
-hl
-se
-jz
+eA
+Bk
+Bk
 Bk
 OR
 Hl
@@ -1339,9 +1331,9 @@ Wq
 hl
 se
 WH
-BY
+lX
 Bk
-Bk
+jz
 aF
 bl
 Hl
@@ -1403,9 +1395,9 @@ Wq
 Ni
 tN
 PB
-BY
+lX
 Bk
-Bk
+jz
 aF
 bl
 Hl
@@ -1435,9 +1427,9 @@ lb
 hl
 jD
 WH
-Ni
-tN
 eA
+Bk
+Bk
 Bk
 OR
 Hl
@@ -1467,9 +1459,9 @@ Wq
 lX
 Bk
 Yr
-Wq
-Wq
-lX
+Ni
+tN
+vq
 Bk
 lr
 Hl
