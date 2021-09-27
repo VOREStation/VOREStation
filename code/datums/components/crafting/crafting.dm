@@ -272,111 +272,6 @@
 			requirements += L
 	if(R.machinery)
 		requirements += R.machinery
-<<<<<<< HEAD
-	main_loop:
-		for(var/path_key in requirements)
-			amt = R.reqs[path_key] || R.machinery[path_key]
-			if(!amt)//since machinery can have 0 aka CRAFTING_MACHINERY_USE - i.e. use it, don't consume it!
-				continue main_loop
-			surroundings = get_environment(a, R.blacklist)
-			surroundings -= Deletion
-			if(ispath(path_key, /datum/reagent))
-				var/datum/reagent/RG = new path_key
-				var/datum/reagent/RGNT
-				while(amt > 0)
-					var/obj/item/weapon/reagent_containers/RC = locate() in surroundings
-					RG = RC.reagents.get_reagent(path_key)
-					if(RG)
-						if(!locate(RG.type) in Deletion)
-							Deletion += new RG.type()
-						if(RG.volume > amt)
-							RG.volume -= amt
-							data = RG.data
-							RC.reagents.conditional_update(RC)
-							RG = locate(RG.type) in Deletion
-							RG.volume = amt
-							RG.data += data
-							continue main_loop
-						else
-							surroundings -= RC
-							amt -= RG.volume
-							RC.reagents.reagent_list -= RG
-							RC.reagents.conditional_update(RC)
-							RGNT = locate(RG.type) in Deletion
-							RGNT.volume += RG.volume
-							RGNT.data += RG.data
-							qdel(RG)
-						SEND_SIGNAL(RC.reagents, COMSIG_REAGENTS_CRAFTING_PING) // - [] TODO: Make this entire thing less spaghetti
-					else
-						surroundings -= RC
-			else if(ispath(path_key, /obj/item/stack))
-				var/obj/item/stack/S
-				var/obj/item/stack/SD
-				while(amt > 0)
-					S = locate(path_key) in surroundings
-					if(S.get_amount() >= amt)
-						if(!locate(S.type) in Deletion)
-							SD = new S.type()
-							Deletion += SD
-						S.use(amt)
-						SD = locate(S.type) in Deletion
-						SD.add(amt)
-						continue main_loop
-					else
-						amt -= S.get_amount()
-						if(!locate(S.type) in Deletion)
-							Deletion += S
-						else
-							data = S.get_amount()
-							S = locate(S.type) in Deletion
-							S.add(data)
-						surroundings -= S
-			else
-				var/atom/movable/I
-				while(amt > 0)
-					I = locate(path_key) in surroundings
-					Deletion += I
-					surroundings -= I
-					amt--
-	var/list/partlist = list(R.parts.len)
-	for(var/M in R.parts)
-		partlist[M] = R.parts[M]
-	for(var/part in R.parts)
-		if(istype(part, /datum/reagent))
-			var/datum/reagent/RG = locate(part) in Deletion
-			if(RG.volume > partlist[part])
-				RG.volume = partlist[part]
-			. += RG
-			Deletion -= RG
-			continue
-		else if(istype(part, /obj/item/stack))
-			var/obj/item/stack/ST = locate(part) in Deletion
-			if(ST.get_amount() > partlist[part])
-				ST.set_amount(partlist[part])
-			. += ST
-			Deletion -= ST
-			continue
-		else
-			while(partlist[part] > 0)
-				var/atom/movable/AM = locate(part) in Deletion
-				. += AM
-				Deletion -= AM
-				partlist[part] -= 1
-	while(Deletion.len)
-		var/DL = Deletion[Deletion.len]
-		Deletion.Cut(Deletion.len)
-		// Snowflake handling of reagent containers and storage atoms.
-		// If we consumed them in our crafting, we should dump their contents out before qdeling them.
-		if(istype(DL, /obj/item/weapon/reagent_containers))
-			var/obj/item/weapon/reagent_containers/container = DL
-			container.reagents.clear_reagents()
-			// container.reagents.expose(container.loc, TOUCH)
-		else if(istype(DL, /obj/item/weapon/storage))
-			var/obj/item/weapon/storage/container = DL
-			container.spill()
-			container.close_all()
-		qdel(DL)
-=======
 
 	// Try to find everything that was actually used to craft
 	for(var/path_key in requirements)
@@ -469,7 +364,6 @@
 					container.close_all()
 				qdel(I)
 	return parts
->>>>>>> 5a261195eab... Refactors crafting to support requirement alternatives (#8184)
 
 /datum/component/personal_crafting/proc/component_ui_interact(source, location, control, params, user)
 	// SIGNAL_HANDLER
