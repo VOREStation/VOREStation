@@ -69,9 +69,5 @@
 			else if(map[current_cell] == EMPTY_CHAR)
 				T.make_ore(1)
 		get_additional_spawns(map[current_cell],T,get_spawn_dir(x, y))
-<<<<<<< HEAD
 	//VOREStation Edit End
 	return T
-=======
-	return T
->>>>>>> f8718ae0bcf... Merge pull request #8299 from MistakeNot4892/automata
