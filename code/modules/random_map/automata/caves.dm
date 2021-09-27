@@ -18,28 +18,36 @@
 			return "X"
 	return ..(value)
 
-/datum/random_map/automata/cave_system/revive_cell(var/target_cell, var/list/use_next_map, var/final_iter)
-	..()
-	if(final_iter)
-		ore_turfs |= target_cell
-
-/datum/random_map/automata/cave_system/kill_cell(var/target_cell, var/list/use_next_map, var/final_iter)
-	..()
-	if(final_iter)
-		ore_turfs -= target_cell
-
 // Create ore turfs.
 /datum/random_map/automata/cave_system/cleanup()
+	var/tmp_cell
+	for (var/x = 1 to limit_x)
+		for (var/y = 1 to limit_y)
+			tmp_cell = TRANSLATE_COORD(x, y)
+			if (CELL_ALIVE(map[tmp_cell]))
+				ore_turfs += tmp_cell
+
+	testing("ASGEN: Found [ore_turfs.len] ore turfs.")
 	var/ore_count = round(map.len/20)
+	var/door_count = 0
+	var/empty_count = 0
 	while((ore_count>0) && (ore_turfs.len>0))
-		if(!priority_process) sleep(-1)
+
+		if(!priority_process)
+			CHECK_TICK
+
 		var/check_cell = pick(ore_turfs)
 		ore_turfs -= check_cell
 		if(prob(75))
 			map[check_cell] = DOOR_CHAR  // Mineral block
+			door_count += 1
 		else
 			map[check_cell] = EMPTY_CHAR // Rare mineral block.
+			empty_count += 1
 		ore_count--
+
+	testing("ASGEN: Set [door_count] turfs to random minerals.")
+	testing("ASGEN: Set [empty_count] turfs to high-chance random minerals.")
 	return 1
 
 /datum/random_map/automata/cave_system/apply_to_turf(var/x,var/y)
