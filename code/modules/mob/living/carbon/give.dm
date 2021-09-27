@@ -18,17 +18,10 @@
 		to_chat(src, SPAN_WARNING("You don't have anything in your hands to give to \the [target]."))
 		return
 
-<<<<<<< HEAD
-	if(tgui_alert(target,"[src] wants to give you \a [I]. Will you accept it?","Item Offer",list("Yes","No")) == "No") //VOREStation Edit - make yes on the left to be consistent with other dialogs
-		target.visible_message("<span class='notice'>\The [src] tried to hand \the [I] to \the [target], \
-		but \the [target] didn't want it.</span>")
-=======
 	usr.visible_message(SPAN_NOTICE("\The [usr] holds out \the [I] to \the [target]."), SPAN_NOTICE("You hold out \the [I] to \the [target], waiting for them to accept it."))
 
-	if(alert(target,"[src] wants to give you \a [I]. Will you accept it?",,"No","Yes") == "No")
-		target.visible_message(SPAN_NOTICE("\The [src] tried to hand \the [I] to \the [target], \
-		but \the [target] didn't want it."))
->>>>>>> 46994bc0f4f... Merge pull request #8247 from Cerebulon/throwmode
+	if(tgui_alert(target,"[src] wants to give you \a [I]. Will you accept it?","Item Offer",list("No","Yes")) == "No")
+		target.visible_message(SPAN_NOTICE("\The [src] tried to hand \the [I] to \the [target], but \the [target] didn't want it."))
 		return
 
 	if(!I) return

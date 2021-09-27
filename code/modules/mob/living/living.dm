@@ -847,11 +847,7 @@
 			canmove = !incapacitated(INCAPACITATION_DISABLED)
 
 	if(lying)
-<<<<<<< HEAD
 		density = FALSE
-=======
-		density = 0
->>>>>>> 46994bc0f4f... Merge pull request #8247 from Cerebulon/throwmode
 		if(l_hand)
 			unEquip(l_hand)
 		if(r_hand)
