@@ -586,6 +586,9 @@
 /mob/proc/get_gender()
 	return gender
 
+/mob/proc/name_gender()
+	return gender
+
 /mob/proc/see(message)
 	if(!is_active())
 		return 0
