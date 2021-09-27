@@ -212,12 +212,9 @@
 		for(var/path in starting_equipment)
 			var/obj/item/mecha_parts/mecha_equipment/ME = new path(src)
 			ME.attach(src)
-<<<<<<< HEAD
-=======
 
 	START_PROCESSING(SSobj, src)
 
->>>>>>> 73929910166... Merge pull request #8269 from Mechoid/MechaProcessing
 	update_transform()
 
 /obj/mecha/drain_power(var/drain_check)
@@ -933,19 +930,11 @@
 	else if(istype(obstacle, /obj))//Then we check for regular obstacles.
 		var/obj/O = obstacle
 		if(istype(O, /obj/effect/portal))	//derpfix
-<<<<<<< HEAD
-			src.anchored = FALSE				//I have no idea what this really fix.
-			O.Crossed(src)
-			spawn(0)//countering portal teleport spawn(0), hurr
-				src.anchored = TRUE
-		else if(O.anchored)
-=======
 			src.anchored = 0				// Portals can only move unanchored objects.
 			O.Crossed(src)
 			spawn(0)//countering portal teleport spawn(0), hurr
 				src.anchored = 1
 		if(O.anchored)
->>>>>>> 73929910166... Merge pull request #8269 from Mechoid/MechaProcessing
 			obstacle.Bumped(src)
 		else
 			step(obstacle,src.dir)
