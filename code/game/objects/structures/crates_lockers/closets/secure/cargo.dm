@@ -41,7 +41,6 @@
 		/obj/item/device/radio/headset/headset_qm/alt, //VOREStation Edit,
 		/obj/item/clothing/gloves/black,
 		/obj/item/clothing/gloves/fingerless,
-		/obj/item/clothing/suit/fire/firefighter,
 		/obj/item/weapon/tank/emergency/oxygen,
 		/obj/item/clothing/mask/gas,
 		/obj/item/clothing/glasses/meson,

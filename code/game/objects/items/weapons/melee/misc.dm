@@ -8,13 +8,27 @@
 	w_class = ITEMSIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 4)
 	attack_verb = list("flogged", "whipped", "lashed", "disciplined")
-
+	hitsound = 'sound/weapons/whip.ogg'
 	reach = 2
 
 /obj/item/weapon/melee/chainofcommand/suicide_act(mob/user)
 	var/datum/gender/T = gender_datums[user.get_visible_gender()]
 	user.visible_message(span("danger", "\The [user] [T.is] strangling [T.himself] with \the [src]! It looks like [T.he] [T.is] trying to commit suicide."), span("danger", "You start to strangle yourself with \the [src]!"), span("danger", "You hear the sound of someone choking!"))
 	return (OXYLOSS)
+
+/obj/item/weapon/melee/chainofcommand/curator_whip
+	name = "leather whip"
+	desc = "A fine weapon for some treasure hunting."
+	icon_state = "curator_whip"
+	force = 5
+	throwforce = 5
+	origin_tech = list(TECH_COMBAT = 2)
+
+/obj/item/weapon/melee/chainofcommand/curator_whip/toy
+	name = "toy whip"
+	desc = "A fake whip. Perfect for fake treasure hunting"
+	force = 2
+	throwforce = 2
 
 /obj/item/weapon/melee/umbrella
 	name = "umbrella"

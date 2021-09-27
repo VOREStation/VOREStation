@@ -372,10 +372,28 @@
 	max_w_class = ITEMSIZE_NORMAL
 	max_storage_space = ITEMSIZE_COST_NORMAL * 7
 
+/obj/item/weapon/storage/belt/bandolier
+	name = "shotgun bandolier"
+	desc = "Designed to hold shotgun shells. Can't really hold more than that."
+	icon_state = "bandolier1"
+	storage_slots = 8
+	max_w_class = ITEMSIZE_TINY
+	can_hold = list(
+		/obj/item/ammo_casing/a12g,
+		/obj/item/ammo_casing/a12g/pellet,
+		/obj/item/ammo_casing/a12g/blank,
+		/obj/item/ammo_casing/a12g/practice,
+		/obj/item/ammo_casing/a12g/beanbag,
+		/obj/item/ammo_casing/a12g/stunshell,
+		/obj/item/ammo_casing/a12g/flash,
+		/obj/item/ammo_casing/a12g/emp,
+		/obj/item/ammo_casing/a12g/flechette
+		)
+
 /obj/item/weapon/storage/belt/security/tactical/bandolier
-	name = "combat belt"
+	name = "combat bandolier"
 	desc = "Can hold security gear like handcuffs and flashes, with more pouches for more storage."
-	icon_state = "bandolier"
+	icon_state = "bandolier2"
 
 /obj/item/weapon/storage/belt/janitor
 	name = "janitorial belt"

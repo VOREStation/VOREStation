@@ -58,8 +58,8 @@
 		/obj/item/clothing/shoes/white,
 		/obj/item/clothing/under/rank/head_of_personnel_whimsy,
 		/obj/item/clothing/head/caphat/hop,
-		/obj/item/clothing/under/gimmick/rank/head_of_personnel/suit,
-		/obj/item/clothing/under/gimmick/rank/head_of_personnel/suit/skirt,
+		/obj/item/clothing/under/suit_jacket/teal,
+		/obj/item/clothing/under/suit_jacket/teal/skirt,
 		/obj/item/clothing/glasses/sunglasses,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/hop)
 

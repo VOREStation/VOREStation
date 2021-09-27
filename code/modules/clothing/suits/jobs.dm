@@ -183,12 +183,12 @@
 
 /obj/item/clothing/suit/storage/hazardvest/green
 	name = "green hazard vest"
-	desc = "A high-visibility vest used by emergency responders. This one is green!"
+	desc = "A high-visibility vest used by emergency responders."
 	icon_state = "hazard_g"
 
 /obj/item/clothing/suit/storage/hazardvest/white
 	name = "white hazard vest"
-	desc = "A high-visibility vest used in work zones. This one has a red cross!"
+	desc = "A high-visibility vest used in work zones. This one bears the symbol of a disaster relief team!"
 	icon_state = "hazard_w"
 
 //Lawyer
@@ -246,9 +246,17 @@
 
 //Mime
 /obj/item/clothing/suit/suspenders
-	name = "suspenders"
+	name = "red suspenders"
 	desc = "They suspend the illusion of the mime's play."
 	icon = 'icons/inventory/belt/item.dmi'
 	icon_state = "suspenders"
 	blood_overlay_type = "armor" //it's the less thing that I can put here
 	body_parts_covered = 0
+
+/obj/item/clothing/suit/suspenders/blue
+	name = "blue suspenders"
+	icon_state = "suspenders_blue"
+
+/obj/item/clothing/suit/suspenders/grey
+	name = "grey suspenders"
+	icon_state = "suspenders_grey"
