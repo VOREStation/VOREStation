@@ -14,6 +14,21 @@
 	icon_state = "tan_jacket"
 	slot = ACCESSORY_SLOT_OVER
 
+/obj/item/clothing/accessory/jacket/red
+	name = "red suit jacket"
+	desc = "Relaxing suit jacket."
+	icon_state = "red_jacket"
+
+/obj/item/clothing/accessory/jacket/teal
+	name = "teal suit jacket"
+	desc = "Relaxing suit jacket."
+	icon_state = "teal_jacket"
+
+/obj/item/clothing/accessory/jacket/green
+	name = "green suit jacket"
+	desc = "Relaxing suit jacket."
+	icon_state = "green_jacket"
+
 /obj/item/clothing/accessory/jacket/charcoal
 	name = "charcoal suit jacket"
 	desc = "Strict suit jacket."
@@ -38,6 +53,11 @@
 	name = "gambler suit jacket"
 	desc = "Chairman suit jacket."
 	icon_state = "gambler_jacket"
+
+/obj/item/clothing/accessory/jacket/extravagant
+	name = "extravagant suit jacket"
+	desc = "Luxury suit jacket."
+	icon_state = "extravagant_jacket"
 
 /*
  * Hawaiian
@@ -423,6 +443,12 @@
 	name = "red turtleneck"
 	desc = "A comfortable turtleneck in a dark red."
 	icon_state = "turtleneck_red"
+
+/obj/item/clothing/accessory/sweater/virgin
+	name = "virgin killer"
+	desc = "A knit sweater that leaves little to the imagination."
+	icon_state = "virginkiller"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 
 /*
  * Misc

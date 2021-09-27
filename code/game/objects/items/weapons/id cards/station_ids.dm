@@ -73,6 +73,7 @@
 /mob/living/carbon/human/set_id_info(var/obj/item/weapon/card/id/id_card)
 	..()
 	id_card.age = age
+	id_card.sex = capitalize(name_gender())
 
 /obj/item/weapon/card/id/tgui_data(mob/user)
 	var/list/data = list()

@@ -51,7 +51,7 @@
 	open_icon.Blend(icon(base_icon, "open"), ICON_OVERLAY)
 	open_icon.Blend(color, BLEND_ADD)
 	open_icon.Blend(icon(base_icon, "interior"), ICON_OVERLAY)
-	
+
 	door_back_icon = icon(base_icon, "door_back")
 	door_back_icon.Blend(color, BLEND_ADD)
 
@@ -74,7 +74,7 @@
 			this_decal_icon.Blend(decals[thing], BLEND_ADD)
 			closed_emagged_icon.Blend(this_decal_icon, ICON_OVERLAY)
 			door_front_icon.Blend(this_decal_icon, ICON_OVERLAY)
-	
+
 	door_front_icon.AddAlphaMask(icon(base_icon, "door_front")) // Remove pesky 'more than just door' decals
 
 	closed_locked_icon =   icon(closed_emagged_icon)
@@ -620,6 +620,13 @@
 	extra_decals = list(
 		"extinguisher" = COLOR_OFF_WHITE,
 		"vertical_stripe_simple" = COLOR_OFF_WHITE,
+	)
+
+/decl/closet_appearance/oxygen/fire/atmos
+	color = COLOR_YELLOW_GRAY
+	extra_decals = list(
+		"extinguisher" = COLOR_TEAL,
+		"vertical_stripe_simple" = COLOR_TEAL,
 	)
 
 /decl/closet_appearance/alien

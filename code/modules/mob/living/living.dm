@@ -1004,14 +1004,13 @@
 		swap_hand()
 
 /mob/living/throw_item(atom/target)
-	src.throw_mode_off()
-	if(usr.stat || !target)
-		return
-	if(target.type == /obj/screen) return
+	if(incapacitated() || !target || istype(target, /obj/screen))
+		return FALSE
 
 	var/atom/movable/item = src.get_active_hand()
 
-	if(!item) return
+	if(!item)
+		return FALSE
 
 	var/throw_range = item.throw_range
 	if (istype(item, /obj/item/weapon/grab))
@@ -1031,10 +1030,32 @@
 				if((N.health + N.halloss) < config.health_threshold_crit || N.stat == DEAD)
 					N.adjustBruteLoss(rand(10,30))
 			src.drop_from_inventory(G)
+			return TRUE
+		else
+			return FALSE
 
-	src.drop_from_inventory(item)
-	if(!item || !isturf(item.loc))
-		return
+	if(!item)
+		return FALSE //Grab processing has a chance of returning null
+
+	if(a_intent == I_HELP && Adjacent(target) && isitem(item))
+		var/obj/item/I = item
+		if(ishuman(target))
+			var/mob/living/carbon/human/H = target
+			if(H.in_throw_mode && H.a_intent == I_HELP && unEquip(I))
+				H.put_in_hands(I) // If this fails it will just end up on the floor, but that's fitting for things like dionaea.
+				visible_message("<b>[src]</b> hands \the [H] \a [I].", SPAN_NOTICE("You give \the [target] \a [I]."))
+			else
+				to_chat(src, SPAN_NOTICE("You offer \the [I] to \the [target]."))
+				do_give(H)
+			return TRUE
+		make_item_drop_sound(I)
+		I.forceMove(get_turf(target))
+		return TRUE
+
+	drop_from_inventory(item)
+
+	if(!item || QDELETED(item))
+		return TRUE //It may not have thrown, but it sure as hell left your hand successfully.
 
 	//actually throw it!
 	src.visible_message("<span class='warning'>[src] has thrown [item].</span>")
@@ -1055,6 +1076,7 @@
 
 
 	item.throw_at(target, throw_range, item.throw_speed, src)
+	return TRUE
 
 /mob/living/get_sound_env(var/pressure_factor)
 	if (hallucination)
