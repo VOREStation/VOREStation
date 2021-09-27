@@ -47,8 +47,6 @@
 
 /datum/crafting_recipe/proc/on_craft_completion(mob/user, atom/result)
 	return
-<<<<<<< HEAD
-=======
 
 // Computes the total reagents volume 
 /datum/crafting_recipe/proc/get_parts_reagents_volume()
@@ -57,30 +55,6 @@
 		for(var/path in L)
 			if(ispath(path, /datum/reagent))
 				. += L[path]
-
-/datum/crafting_recipe/stunprod
-	name = "Stunprod"
-	result = /obj/item/weapon/melee/baton/cattleprod
-	reqs = list(list(/obj/item/weapon/handcuffs/cable = 1),
-				list(/obj/item/stack/rods = 1),
-				list(/obj/item/weapon/tool/wirecutters = 1))
-	time = 40
-	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
-
-/datum/crafting_recipe/spear
-	name = "Spear"
-	result = /obj/item/weapon/material/twohanded/spear
-	reqs = list(list(/obj/item/weapon/handcuffs/cable = 1),
-				list(/obj/item/stack/rods = 1),
-				list(/obj/item/weapon/material/shard = 1,
-					 /obj/item/weapon/material/butterflyblade = 1)
-				)
-	parts = list(/obj/item/weapon/material/shard = 1,
-				 /obj/item/weapon/material/butterflyblade = 1)
-	time = 40
-	category = CAT_WEAPONRY
-	subcategory = CAT_WEAPON
 
 // Locate one of the things that set the material type, and update it from the default (glass)
 /datum/crafting_recipe/spear/on_craft_completion(mob/user, atom/result)
@@ -98,4 +72,3 @@
 	var/obj/item/weapon/material/twohanded/spear/S = result
 	S.set_material(M.material.name)
 	qdel(M)
->>>>>>> 5a261195eab... Refactors crafting to support requirement alternatives (#8184)
