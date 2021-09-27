@@ -67,13 +67,7 @@
 			"points" = inserted_id.mining_points,
 		)
 	else
-<<<<<<< HEAD
 		data["has_id"] = FALSE
-=======
-		dat += "No ID inserted.  <A href='?src=\ref[src];choice=insert'>Insert ID.</A><br>"
-	dat += "High-speed processing is <A href='?src=\ref[src];toggle_speed=1'>[(machine.speed_process ? "<font color='green'>active</font>" : "<font color='red'>inactive</font>")]</A>."
-	dat += "<hr><table>"
->>>>>>> 0f574bd2a48... Merge pull request #8292 from Schnayy/bugfixes-9-11-21
 
 	
 	var/list/ores = list()
