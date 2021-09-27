@@ -100,7 +100,6 @@ var/global/datum/controller/occupations/job_master
 		if(job.minimum_character_age && (player.client.prefs.age < job.get_min_age(player.client.prefs.species, player.client.prefs.organ_data["brain"])))
 			Debug("FOC character not old enough, Player: [player]")
 			continue
-<<<<<<< HEAD
 		//VOREStation Code Start
 		if(!job.player_has_enough_playtime(player.client))
 			Debug("FOC character not enough playtime, Player: [player]")
@@ -109,11 +108,9 @@ var/global/datum/controller/occupations/job_master
 			Debug("FOC is_job_whitelisted failed, Player: [player]")
 			continue
 		//VOREStation Code End
-=======
 		if(job.is_species_banned(player.client.prefs.species, player.client.prefs.organ_data["brain"]) == TRUE)
 			Debug("FOC character species invalid for job, Player: [player]")
 			continue
->>>>>>> 67849757c8f... Merge pull request #8253 from Schnayy/ageupdates
 		if(flag && !(player.client.prefs.be_special & flag))
 			Debug("FOC flag failed, Player: [player], Flag: [flag], ")
 			continue
