@@ -123,6 +123,7 @@ GLOBAL_LIST_INIT(digest_modes, list())
 	noise_chance = 50 //Wet heals! The secret is you can leave this on for gurgle noises for fun.
 
 /datum/digest_mode/heal/process_mob(obj/belly/B, mob/living/L)
+	var/oldstat = L.stat
 	if(L.stat == DEAD)
 		return null // Can't heal the dead with healbelly
 	if(B.owner.nutrition > 90 && (L.health < L.maxHealth))
@@ -137,6 +138,8 @@ GLOBAL_LIST_INIT(digest_modes, list())
 	else if(B.owner.nutrition > 90 && (L.nutrition <= 400))
 		B.owner.adjust_nutrition(-1)
 		L.adjust_nutrition(1)
+	if(L.stat != oldstat)
+		return list("to_update" = TRUE)
 
 // E G G
 /datum/digest_mode/egg
