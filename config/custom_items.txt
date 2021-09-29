@@ -1,0 +1,560 @@
+##
+# --------------
+# Legacy/Defunct
+# --------------
+#
+# Custom items go here. They are modifications of existing paths; look at the example for details.
+# Item will spawn if the target has one of the req_titles and if their on-spawn ID has the required access level.
+# req_access is going to be a shit to maintain since the config file can't grab constants and has to use integers, use it minimally.
+# Separate titles with a single comma and a space (', ') or they'll bork.
+#
+# EX:
+# {
+# ckey: zuhayr
+# character_name: Jane Doe
+# item_path: /obj/item/toy/plushie
+# item_name: ugly plush toy
+# item_icon: flagmask
+# item_defsc: It's truly hideous.
+# req_titles: Assistant, Security Officer
+# req_access: 1
+# }
+#
+# {
+# ckey: zuhayr
+# character_name: Jane Doe
+# item_path: /obj/item/device/kit/paint
+# item_name: APLU customisation kit
+# item_desc: A customisation kit with all the parts needed to turn an APLU into a "Titan's Fist" model.
+# kit_name: APLU "Titan's Fist"
+# kit_desc: Looks like an overworked, under-maintained Ripley with some horrific damage.
+# kit_icon: titan
+# additional_data: ripley, firefighter
+# }
+#
+# {
+# ckey: zuhayr
+# character_name: Jane Doe
+# item_path: /obj/item/device/kit/suit
+# item_name: salvage suit customisation kit
+# item_desc: A customisation kit with all the parts needed to convert a suit.
+# kit_name: salvage
+# kit_desc: An orange voidsuit. Reinforced!
+# kit_icon: salvage
+# }
+##
+
+# ######## 0-9 CKEYS
+# ######## A CKEYS
+{
+ckey: admiraldragon
+character_name: Tikorak Korgask
+item_path: /obj/item/weapon/storage/box/fluff/tikorak
+}
+
+# ######## B CKEYS
+{
+ckey: blackangelsace
+character_name: Madoka Koto
+item_path: /obj/item/weapon/storage/box/fluff/madoka
+}
+
+{
+ckey: blackangelsace
+character_name: Wolfgang Jaeger
+item_path: /obj/item/weapon/storage/box/fluff/mauser
+}
+
+{
+ckey: blackangelsace
+character_name: Aurora Goldtail
+item_path: /obj/item/clothing/glasses/omnihud/prescription/aurora
+}
+
+{
+ckey: blackangelsace
+character_name: Strix Hades
+item_path: /obj/item/clothing/suit/storage/seromi/cloak/fluff/strix
+}
+
+{
+ckey: blackangelsace
+character_name: Strix Hades
+item_path: /obj/item/clothing/under/seromi/undercoat/fluff/strix
+}
+
+{
+ckey: blackangelsace
+character_name: Strix Hades
+item_path: /obj/item/toy/bosunwhistle/fluff/strix
+}
+
+{
+ckey: blackangelsace
+character_name: Strix Hades
+item_path: /obj/item/device/radio/headset/fluff/strix
+}
+
+{
+ckey: benl8561
+character_name: M.I.S.S.Y
+item_path: /obj/item/weapon/storage/box/fluff/missy
+}
+
+{
+ckey: benl8561
+character_name: Quanah Hastings
+item_path: /obj/item/weapon/storage/box/fluff/quanah
+}
+# ######## C CKEYS
+{
+ckey: captmatt4
+character_name: Payton Joghs
+item_path: /obj/item/weapon/material/hatchet/unathiknife/fluff/payton_joghs_1
+}
+
+{
+ckey: captmatt4
+character_name: Eliana Noya
+item_path: /obj/item/clothing/under/fluff/eliana_noya_1
+}
+
+{
+ckey: captmatt4
+character_name: Korei Laskor
+item_path: /obj/item/clothing/head/helmet/fluff/korei_laskor_1
+}
+
+{
+ckey: cynicaltester
+character_name: Zeta Blackwell
+item_path: /obj/item/clothing/accessory/fluff/zeta_blackwell_1
+}
+
+{
+ckey: championfire
+character_name: Anoki Windroar
+item_path: /obj/item/weapon/storage/box/fluff/anoki
+}
+
+{
+ckey: championfire
+character_name: Ivy Kaeire
+item_path: /obj/item/weapon/storage/box/fluff/ivy
+}
+
+{
+ckey: championfire
+character_name: Kita
+item_path: /obj/item/clothing/suit/storage/seromi/cloak/fluff/kita
+}
+# ######## D CKEYS
+{
+ckey: dameonowen
+character_name: Dameon Owen
+item_path: /obj/item/weapon/reagent_containers/food/snacks/cookie/mysterious
+}
+{
+ckey: dameonowen
+character_name: Amber Owen
+item_path: /obj/item/weapon/reagent_containers/food/snacks/cookie/mysterious
+}
+{
+ckey: dawidoe
+character_name: Melissa Krutz
+item_path: /obj/item/weapon/storage/box/fluff/melissa
+}
+
+{
+ckey: dwaggy90
+character_name: Saur Darastrix
+item_path: /obj/item/weapon/storage/box/fluff/saur
+}
+
+{
+ckey: dushka
+character_name: Saroth
+item_path: /obj/item/weapon/storage/box/fluff/saroth
+}
+
+{
+ckey: dushka
+character_name: Jaree-Kur
+item_path: /obj/item/clothing/accessory/poncho/cloak/fluff/Jaree
+}
+
+{
+ckey: dushka
+character_name: Jaree-Kur
+item_path: /obj/item/clothing/head/ushanka/alt/fluff/Jaree
+}
+
+{
+ckey: deepindigo
+character_name: Amina Dae-Kouri
+item_path: /obj/item/weapon/storage/bible/fluff/amina
+}
+# ######## E CKEYS
+{
+ckey: esperkin
+character_name: Sheri Calen
+item_path: /obj/item/device/modkit_conversion/fluff/sheri_rig_kit
+}
+# ######## F CKEYS
+{
+ckey: frenziedvorcha
+character_name: Philip Smirnov
+item_path: /obj/item/weapon/storage/box/fluff/philipsmirnov
+}
+# ######## G CKEYS
+{
+ckey: generalpantsu
+character_name: Amara Faell
+item_path: /obj/item/weapon/storage/box/fluff/amara
+}
+
+{
+ckey: generalpantsu
+character_name: Zara Venlee
+item_path: /obj/item/weapon/storage/box/fluff/zara
+}
+
+{
+ckey: generalpantsu
+character_name: Samantha Quzix
+item_path: /obj/item/weapon/storage/box/fluff/samantha
+}
+
+{
+ckey: generalpantsu
+character_name: Nika Domashev
+item_path: /obj/item/weapon/storage/box/fluff/nika
+}
+# ######## H CKEYS
+{
+ckey: harpsong
+character_name: Harpsong
+item_path: /obj/item/clothing/suit/armor/vest/harpsong
+}
+# ######## I CKEYS
+{
+ckey: izac112
+character_name: Ally Faell
+item_path: /obj/item/weapon/storage/box/fluff/ally
+}
+
+{
+ckey: izac112
+character_name: Raja Bastet
+item_path: /obj/item/weapon/storage/box/fluff/raja
+}
+
+{
+ckey: izac112
+character_name: Shel Nargol
+item_path: /obj/item/weapon/storage/box/fluff/shel
+}
+
+{
+ckey: izac112
+character_name: Alva Karlholm
+item_path: /obj/item/weapon/storage/box/fluff/alva
+}
+
+{
+ckey: interrolouis
+character_name: Kai Highlands
+/obj/item/borg/upgrade/modkit/chassis_mod/kai
+}
+
+{
+ckey: ivymoomoo
+character_name: Ivy Baladeva
+item_path: /obj/item/weapon/storage/backpack/messenger/sec/fluff/ivymoomoo
+}
+
+{
+ckey: VanesaFancyFin
+character_name: Ire
+item_path: /obj/item/weapon/bikehorn/fluff/chew_ire
+}
+
+# ######## J CKEYS
+{
+ckey: johnwolf135
+character_name: Rosetta Neton
+item_path: /obj/item/clothing/under/fluff/rosetta
+}
+
+{
+ckey: johnwolf135
+character_name: John Wolf
+item_path: /obj/item/weapon/storage/box/fluff/John
+}
+
+{
+ckey: jwguy
+character_name: Koyo Akimomi
+item_path: /obj/item/weapon/storage/box/fluff/koyoakimomi
+}
+
+# ######## K CKEYS
+# ######## L CKEYS
+{
+ckey: lukevale
+character_name: Mira Rezus
+item_path: /obj/item/weapon/storage/box/fluff/mira
+}
+
+{
+ckey: lukevale
+character_name: Natalya Vospit
+item_path: /obj/item/weapon/storage/box/fluff/natalya
+}
+
+{
+ckey: lukevale
+character_name: Lena Hastings
+item_path: /obj/item/weapon/storage/box/fluff/lena
+}
+
+{
+ckey: lukevale
+character_name: Eryn Wolfe
+item_path: /obj/item/weapon/storage/box/fluff/eryn
+}
+
+{
+ckey: lukevale
+character_name: Mitsuko Jiao
+item_path: /obj/item/weapon/storage/box/fluff/jiao
+}
+
+# ######## M CKEYS
+{
+ckey: masmc
+character_name: Kettek Ollarch
+item_path: /obj/item/weapon/storage/box/fluff/kettek
+}
+
+{
+ckey: maxiefoxie
+character_name: Maxie Drake
+item_path: /obj/item/weapon.storage/box/fluff/maxie
+}
+
+{
+ckey: mr_signmeup
+character_name: Reshskakskakss Seekiseekis
+item_path: /obj/item/clothing/suit/security/navyhos
+req_access: 58
+}
+
+{
+ckey: mr_signmeup
+character_name: Daniel Fisher
+item_path: /obj/item/clothing/accessory/medal/conduct
+}
+
+# ######## N CKEYS
+# ######## O CKEYS
+# ######## P CKEYS
+{
+ckey: paintitred
+character_name: Noel Walsh
+item_path: /obj/item/weapon/storage/box/fluff/noel
+}
+
+# ######## Q CKEYS
+# ######## R CKEYS
+{
+ckey: radiantflash
+character_name: Vasharr Zahirn
+item_path: /obj/item/weapon/storage/box/fluff/vasharr
+}
+
+{
+ckey: randysavage205
+character_name: Alex Wolf
+item_path: /obj/item/clothing/accessory/fluff/alex_wolf_1
+}
+
+{
+ckey: roguenoob
+character_name: Basir Fahim
+item_path: /obj/item/clothing/gloves/ring/fluff/basir
+}
+
+# ######## S CKEYS
+{
+ckey: shaper
+character_name: Natene
+item_path: /obj/item/clothing/accessory/medal/silver/valor
+}
+
+{
+ckey: sempt
+character_name: Kayla Endsley
+item_path: /obj/item/clothing/under/rank/roboticist/skirt
+}
+
+{
+ckey: SASoperative
+character_name: Joseph Skinner
+item_path: /obj/item/weapon/storage/box/fluff/skinner
+}
+
+# ######## T CKEYS
+# ######## U CKEYS
+{
+ckey: unleashedmana
+character_name: Eviriik Vin'cir
+item_path: /obj/item/clothing/suit/storage/hoodie/fluff/eviriik_4
+}
+
+{
+ckey: unleashedmana
+character_name: Ike Eio'ni
+item_path: /obj/item/clothing/suit/storage/labcoat/fluff/eioni_1
+}
+
+{
+ckey: unleashedmana
+character_name: Ike Eio'ni
+item_path: /obj/item/clothing/under/fluff/eioni_2
+}
+
+{
+ckey: unleashedmana
+character_name: R.E.D.A.X.
+item_path: /obj/item/clothing/suit/storage/hoodie/fluff/redax_1
+}
+
+{
+ckey: unleashedmana
+character_name: R.E.D.A.X.
+item_path: /obj/item/clothing/under/fluff/redax_2
+}
+
+{
+ckey: unleashedmana
+character_name: Eviriik Vin'cir
+item_path: /obj/item/clothing/accessory/fluff/eviriik_1
+}
+
+{
+ckey: unleashedmana
+character_name: Eviriik Vin'cir
+item_path: /obj/item/clothing/under/fluff/eviriik_2
+}
+
+{
+ckey: unleashedmana
+character_name: Eviriik Vin'cir
+item_path: /obj/item/clothing/suit/storage/fluff/eviriik_3
+}
+
+{
+ckey: unleashedmana
+character_name: Eravik Vessi
+item_path: /obj/item/weapon/kitchenknife/tacknife/unathiknife/fluff/eravik_vessi_1
+}
+
+{
+ckey: unleashedmana
+character_name: Eravik Vessi
+item_path: /obj/item/clothing/suit/storage/fluff/eravik_vessi_2
+}
+
+{
+ckey: unleashedmana
+character_name: Eravik Vessi
+item_path: /obj/item/clothing/under/fluff/eravik_vessi_3
+}
+
+{
+ckey: unleashedmana
+character_name: David
+item_path: /obj/item/clothing/under/fluff/david_1
+}
+
+{
+ckey: unleashedmana
+character_name: David
+item_path: /obj/item/clothing/suit/storage/fluff/david_2
+}
+
+{
+ckey: unleashedmana
+character_name: David
+item_path: /obj/item/weapon/reagent_containers/food/drinks/flask/fluff/david_3
+}
+
+{
+ckey: unleashedmana
+character_name: Zeke Vin'cir
+item_path: /obj/item/weapon/fluff/zekewatch
+}
+
+{
+ckey: unleashedmana
+character_name: Zeke Vin'cir
+item_path: /obj/item/clothing/accessory/fluff/zeke_vincir_1
+}
+
+{
+ckey: unleashedmana
+character_name: Zeke Vin'cir
+item_path: /obj/item/clothing/under/fluff/zeke_vincir_2
+}
+
+{
+ckey: unleashedmana
+character_name: Zeke Vin'cir
+item_path: /obj/item/clothing/under/fluff/zeke_vincir_3
+}
+
+{
+ckey: unleashedmana
+character_name: Lucerna
+item_path: /obj/item/clothing/mask/fluff/lucerna_1
+}
+
+{
+ckey: unleashedmana
+character_name: Ragna Carvel
+item_path: /obj/item/weapon/material/kitchen/utensil/fork/fluff/ragna_1
+}
+
+# ######## V CKEYS
+{
+ckey: valhallaviking01
+character_name: Wolf Erikson
+item_path: /obj/item/clothing/accessory/fluff/wolf_erikson_1
+}
+
+{
+ckey: valhallaviking01
+character_name: Hans Jaeger
+item_path: /obj/item/weapon/storage/box/fluff/mauser
+}
+
+{
+ckey: vanesafancyfin
+character_name: Vanesa FancyFin
+item_path: /obj/item/weapon/storage/box/fluff/vanesaf
+}
+
+{
+ckey: vitorhks
+character_name: Jessica Mayer
+item_path: /obj/item/weapon/storage/box/fluff/jessica
+}
+
+
+
+# ######## W CKEYS
+# ######## X CKEYS
+# ######## Y CKEYS
+
+# ######## Z CKEYS
