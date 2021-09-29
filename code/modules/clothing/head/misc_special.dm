@@ -6,8 +6,8 @@
  *		Pumpkin head
  *		Kitty ears
  *		Holiday hats
- 		Crown of Wrath
- 		Warning cone
+ *		Crown of Wrath
+ *		Warning cone
  */
 
 /*
@@ -146,7 +146,7 @@
  */
 /obj/item/clothing/head/ushanka
 	name = "ushanka"
-	desc = "Perfect for winter in Siberia, da?"
+	desc = "Perfect for those cold winter nights."
 	icon_state = "ushankadown"
 	flags_inv = HIDEEARS
 
@@ -157,6 +157,19 @@
 	else
 		src.icon_state = initial(icon_state)
 		to_chat(user, "You lower the ear flaps on the ushanka.")
+
+/obj/item/clothing/head/ushanka/black
+	icon_state = "blkushankadown"
+
+/obj/item/clothing/head/ushanka/soviet
+	name = "soviet ushanka"
+	desc = "Perfect for winter in Siberia, da?"
+	icon_state = "sovushankadown"
+
+/obj/item/clothing/head/ushanka/hedberg
+	name = "\improper Hedberg-Hammarstrom fur hat"
+	desc = "An Hedberg-Hammarstrom private security ushanka."
+	icon_state = "hedbergushankadown"
 
 /*
  * Pumpkin head

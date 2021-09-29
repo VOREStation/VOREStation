@@ -5,7 +5,8 @@
 	known = FALSE
 	in_space = TRUE
 
-/obj/effect/overmap/visitable/sector/temporary/New(var/nx, var/ny)
+/obj/effect/overmap/visitable/sector/temporary/Initialize(var/nx, var/ny)
+	. = ..()
 	loc = locate(nx, ny, global.using_map.overmap_z)
 	x = nx
 	y = ny
@@ -20,16 +21,19 @@
 	testing("Temporary sector at [x],[y] was destroyed, returning empty zlevel [map_z[1]] to map datum.")
 	return ..()
 
-/obj/effect/overmap/visitable/sector/temporary/proc/can_die(var/mob/observer)
-	testing("Checking if sector at [map_z[1]] can die.")
+/obj/effect/overmap/visitable/sector/temporary/proc/is_empty(var/mob/observer)
+	if(!LAZYLEN(map_z))
+		log_and_message_admins("CANARY: [src] tried to check is_empty, but map_z is `[map_z || "null"]`")
+		return TRUE
+	testing("Checking if sector at [map_z[1]] has no players.")
 	for(var/mob/M in global.player_list)
 		if(M != observer && (M.z in map_z))
 			testing("There are people on it.")
-			return 0
-	return 1
+			return FALSE
+	return TRUE
 
 /obj/effect/overmap/visitable/sector/temporary/cleanup()
-	if(can_die())
+	if(is_empty())
 		qdel(src)
 
 /proc/get_deepspace(x,y)

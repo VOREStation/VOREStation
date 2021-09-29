@@ -32,7 +32,7 @@
 
 /decl/hierarchy/outfit/costume/horrorcop
 	name = OUTFIT_COSTUME("Slasher Movie Cop")
-	uniform = /obj/item/clothing/under/pcrc{ starting_accessories=list(/obj/item/clothing/accessory/holster/hip) }
+	uniform = /obj/item/clothing/under/corp/pcrc{ starting_accessories=list(/obj/item/clothing/accessory/holster/hip) }
 	shoes = /obj/item/clothing/shoes/black
 	gloves = /obj/item/clothing/gloves/black
 	glasses = /obj/item/clothing/glasses/fakesunglasses
@@ -78,10 +78,9 @@
 	name = OUTFIT_COSTUME("Firefighter")
 	uniform = /obj/item/clothing/under/pants
 	shoes = /obj/item/clothing/shoes/boots/workboots
-	head = /obj/item/clothing/head/hardhat/red
+	head = /obj/item/clothing/head/hardhat/firefighter
 	gloves = /obj/item/clothing/gloves/black
 	suit = /obj/item/clothing/suit/fire/firefighter
-	mask = /obj/item/clothing/mask/gas
 
 /decl/hierarchy/outfit/costume/highlander
 	name = OUTFIT_COSTUME("Highlander")

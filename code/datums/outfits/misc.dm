@@ -21,7 +21,7 @@
 	name = "Soviet soldier"
 	uniform = /obj/item/clothing/under/soviet
 	shoes = /obj/item/clothing/shoes/boots/combat
-	head = /obj/item/clothing/head/ushanka
+	head = /obj/item/clothing/head/ushanka/soviet
 	gloves = /obj/item/clothing/gloves/combat
 	back = /obj/item/weapon/storage/backpack/satchel
 	belt = /obj/item/weapon/gun/projectile/revolver/mateba
