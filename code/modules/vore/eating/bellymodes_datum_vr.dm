@@ -22,6 +22,7 @@ GLOBAL_LIST_INIT(digest_modes, list())
 	noise_chance = 50
 
 /datum/digest_mode/digest/process_mob(obj/belly/B, mob/living/L)
+	var/oldstat = L.stat
 	//Pref protection!
 	if(!L.digestable || L.absorbed)
 		return null
@@ -59,6 +60,8 @@ GLOBAL_LIST_INIT(digest_modes, list())
 		B.owner.adjust_nutrition(offset*(4.5 * (damage_gain) / difference)) //4.5 nutrition points per health point. Normal same size 100+100 health prey with average weight would give 900 points if the digestion was instant. With all the size/weight offset taxes plus over time oxyloss+hunger taxes deducted with non-instant digestion, this should be enough to not leave the pred starved.
 	else
 		B.owner.adjust_nutrition(4.5 * (damage_gain) / difference)
+	if(L.stat != oldstat)
+		return list("to_update" = TRUE)
 
 /datum/digest_mode/absorb
 	id = DM_ABSORB
@@ -120,6 +123,7 @@ GLOBAL_LIST_INIT(digest_modes, list())
 	noise_chance = 50 //Wet heals! The secret is you can leave this on for gurgle noises for fun.
 
 /datum/digest_mode/heal/process_mob(obj/belly/B, mob/living/L)
+	var/oldstat = L.stat
 	if(L.stat == DEAD)
 		return null // Can't heal the dead with healbelly
 	if(B.owner.nutrition > 90 && (L.health < L.maxHealth))
@@ -134,6 +138,8 @@ GLOBAL_LIST_INIT(digest_modes, list())
 	else if(B.owner.nutrition > 90 && (L.nutrition <= 400))
 		B.owner.adjust_nutrition(-1)
 		L.adjust_nutrition(1)
+	if(L.stat != oldstat)
+		return list("to_update" = TRUE)
 
 // E G G
 /datum/digest_mode/egg
