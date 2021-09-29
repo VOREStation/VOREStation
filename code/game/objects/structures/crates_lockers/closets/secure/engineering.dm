@@ -101,10 +101,10 @@
 
 	starts_with = list(
 		/obj/item/clothing/accessory/storage/brown_vest,
-		/obj/item/clothing/suit/fire/firefighter,
-		/obj/item/clothing/head/hardhat/red,
+		/obj/item/clothing/suit/fire/heavy,
+		/obj/item/clothing/head/hardhat/firefighter/atmos,
 		/obj/item/device/flashlight,
-		/obj/item/weapon/extinguisher,
+		/obj/item/weapon/extinguisher/atmo,
 		///obj/item/clamp,	//VOREStation Removal: without leaks those are pointless,
 		/obj/item/device/radio/headset/headset_eng,
 		/obj/item/device/radio/headset/headset_eng/alt,
