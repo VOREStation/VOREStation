@@ -350,7 +350,7 @@
 /obj/item/clothing/mask/emotions/attackby(obj/item/I as obj, mob/living/user as mob, proximity)
 	if(!proximity) return
 	if(istype(I, /obj/item/weapon/pen))
-		var/drawtype = tgui_alert(user, "Choose what emotions you'd like to display.", list("joy","pensive","angry","flushed"))
+		var/drawtype = tgui_alert(user, "Choose what emotions you'd like to display.", "Emotions", list("joy","pensive","angry","flushed" ))
 		switch(drawtype)
 			if("joy")
 				src.icon_state = "joy"
