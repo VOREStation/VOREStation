@@ -34,3 +34,7 @@
 /datum/gear/mask/papermask
 	display_name = "paper mask"
 	path = /obj/item/clothing/mask/paper
+
+/datum/gear/mask/emotionalmask
+	display_name = "emotional mask"
+	path = /obj/item/clothing/mask/emotions

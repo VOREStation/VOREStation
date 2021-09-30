@@ -339,3 +339,25 @@
 			if("mark")
 				src.icon_state = "markmask"
 	return
+
+/obj/item/clothing/mask/emotions
+	name = "emotional mask"
+	desc = "Express your happiness or hide your sorrows with this modular cutout. Draw your current emotions onto it with a pen!"
+	w_class = ITEMSIZE_SMALL
+	body_parts_covered = FACE
+	icon_state = "joy"
+
+/obj/item/clothing/mask/emotions/attackby(obj/item/I as obj, mob/living/user as mob, proximity)
+	if(!proximity) return
+	if(istype(I, /obj/item/weapon/pen))
+		var/drawtype = tgui_alert(user, "Choose what emotions you'd like to display.", list("joy","pensive","angry","flushed"))
+		switch(drawtype)
+			if("joy")
+				src.icon_state = "joy"
+			if("pensive")
+				src.icon_state = "pensive"
+			if("angry")
+				src.icon_state = "angry"
+			if("flushed")
+				src.icon_state = "flushed"
+	return
