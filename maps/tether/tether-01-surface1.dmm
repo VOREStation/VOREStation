@@ -32713,6 +32713,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/pie,
 /obj/item/weapon/pen/crayon/marker/rainbow,
 /obj/item/weapon/pen/crayon/rainbow,
+/obj/item/clothing/mask/emotions,
 /obj/structure/closet/secure_closet{
 	desc = "Where the Clown keeps their hooliganisms.";
 	name = "funny locker";
