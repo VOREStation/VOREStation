@@ -30,3 +30,7 @@
 	display_name = "golden plague doctor's mask"
 	path = /obj/item/clothing/mask/gas/plaguedoctor/gold
 	cost = 3 ///Because it functions as a gas mask, and therefore has a mechanical advantage.
+
+/datum/gear/mask/papermask
+	display_name = "paper mask"
+	path = /obj/item/clothing/mask/paper
