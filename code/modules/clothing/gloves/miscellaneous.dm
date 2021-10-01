@@ -9,7 +9,7 @@
 	name = "cyborg gloves"
 	icon_state = "black"
 	item_state = "r_hands"
-	siemens_coefficient = 1.0
+	siemens_coefficient = 0
 
 /obj/item/clothing/gloves/forensic
 	desc = "Specially made gloves for forensic technicians. The luminescent threads woven into the material stand out under scrutiny."
@@ -28,7 +28,7 @@
 	name = "\improper SWAT Gloves"
 	icon_state = "swat"
 	item_state = "swat"
-	siemens_coefficient = 0.50
+	siemens_coefficient = 0
 	permeability_coefficient = 0.05
 	cold_protection = HANDS
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
@@ -82,7 +82,7 @@
 	icon_state = "leather"
 	item_state_slots = list(slot_r_hand_str = "lightbrown", slot_l_hand_str = "lightbrown")
 	permeability_coefficient = 0.05
-	siemens_coefficient = 0.75 //thick work gloves
+	siemens_coefficient = 0.5 //thick work gloves
 	drop_sound = 'sound/items/drop/leather.ogg'
 	pickup_sound = 'sound/items/pickup/leather.ogg'
 
@@ -100,7 +100,7 @@
 	item_state = "wgloves"
 	force = 5
 	punch_force = 3
-	siemens_coefficient = 0.75
+	siemens_coefficient = 0
 	permeability_coefficient = 0.05
 	armor = list(melee = 30, bullet = 10, laser = 10, energy = 15, bomb = 20, bio = 0, rad = 0)
 
