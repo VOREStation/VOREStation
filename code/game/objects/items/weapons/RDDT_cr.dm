@@ -1,6 +1,6 @@
 /obj/item/weapon/RDDT
 	name = "RDDT"
-	desc = "A Research and Development Debug Tool (RDDT), some lazy most likely spawned this in!
+	desc = "A Research and Development Debug Tool, some lazy most likely spawned this in!
 	icon = 'icons/obj/tools_vr.dmi'
 	icon_state = "prybar"
 	item_state = "crowbar"
