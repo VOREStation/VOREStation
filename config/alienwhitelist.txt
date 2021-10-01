@@ -176,4 +176,10 @@ Urigami - Protean
 Urigami - Vox
 Urigami - Xenochimera
 Urigami - Diona
+TheSilvertail - Shadekin
+TheSilvertail - Protean
+TheSilvertail - Vox
+TheSilvertail - Xenochimera
+TheSilvertail - Diona
+
 
