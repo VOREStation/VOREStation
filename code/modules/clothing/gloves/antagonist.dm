@@ -12,7 +12,7 @@
 	Disarm intent will swap the items in your LEFT pockets. Grab will swap RIGHT pockets."
 	icon_state = "latex"
 	item_state_slots = list(slot_r_hand_str = "white", slot_l_hand_str = "white")
-	siemens_coefficient = 0.5 // Not perfect, but slightly more protective than nothing.
+	siemens_coefficient = 0 // Not perfect, but slightly more protective than nothing.
 	permeability_coefficient = 0.01
 	germ_level = 0
 	fingerprint_chance = 10 // They're thieves' gloves. What do you think?

@@ -440,7 +440,7 @@ GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/device/perfect_tele_beac
 
 	cell_type = /obj/item/weapon/cell/device/weapon/recharge/alien
 	charge_cost = 400
-	beacons_left = 6
+	beacons_left = 12
 	failure_chance = 0 //Percent
 	longrange = 1
 	abductor = 1

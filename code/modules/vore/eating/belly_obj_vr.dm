@@ -215,6 +215,7 @@
 	//Messages if it's a mob
 	if(isliving(thing))
 		var/mob/living/M = thing
+		M.updateVRPanel()
 		if(desc)
 			to_chat(M, "<span class='notice'><B>[desc]</B></span>")
 		var/taste

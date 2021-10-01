@@ -638,6 +638,7 @@
 				return FALSE
 
 			host.vore_selected.digest_mode = new_mode
+			host.vore_selected.updateVRPanels()
 			. = TRUE
 		if("b_addons")
 			var/list/menu_list = host.vore_selected.mode_flag_list.Copy()
