@@ -38,7 +38,7 @@
 	use_overmap = TRUE
 	overmap_z = Z_LEVEL_OVERMAP
 	overmap_size = 140
-	overmap_event_areas = 50
+	overmap_event_areas = 100
 	usable_email_tlds = list("virgo.nt")
 
 	zlevel_datum_type = /datum/map_z_level/stellar_delight
@@ -391,3 +391,6 @@ var/global/list/latejoin_tram   = list()
 
 /obj/machinery/vending/wallmed1/public
 	products = list(/obj/item/stack/medical/bruise_pack = 8,/obj/item/stack/medical/ointment = 8,/obj/item/weapon/reagent_containers/hypospray/autoinjector = 16,/obj/item/device/healthanalyzer = 4)
+
+/turf/unsimulated/mineral/virgo3b
+	blocks_air = TRUE
