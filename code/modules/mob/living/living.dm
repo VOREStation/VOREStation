@@ -1049,6 +1049,7 @@
 				do_give(H)
 			return TRUE
 		make_item_drop_sound(I)
+		drop_from_inventory(item)
 		I.forceMove(get_turf(target))
 		return TRUE
 
