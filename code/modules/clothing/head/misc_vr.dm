@@ -98,8 +98,8 @@
 //////////TALON HATS//////////
 
 /obj/item/clothing/head/soft/talon
-	name = "ITV baseball cap"
-	desc = "It's a ballcap bearing the colors of ITV."
+	name = "Talon baseball cap"
+	desc = "It's a ballcap bearing the colors of ITV Talon."
 	icon = 'icons/inventory/head/item_vr.dmi'
 	icon_override = 'icons/inventory/head/mob_vr.dmi'
 	icon_state = "talonsoft"
@@ -107,24 +107,24 @@
 	item_state_slots = list(slot_r_hand_str = "blacksoft", slot_l_hand_str = "blacksoft")
 
 /obj/item/clothing/head/caphat/talon
-	name = "ITV nautical hat"
-	desc = "It's a classic nautical hat bearing the colors of ITV. Perfect for commanding the Talon."
+	name = "Talon nautical hat"
+	desc = "It's a classic nautical hat bearing the colors of ITV Talon. Perfect for commanding the ship."
 	icon = 'icons/inventory/head/item_vr.dmi'
 	icon_override = 'icons/inventory/head/mob_vr.dmi'
 	icon_state = "talon_captain_cap"
 	item_state = "taloncaptaincap"
 
 /obj/item/clothing/head/beret/talon
-	name = "ITV beret"
-	desc = "It's a basic baret colored to match ITV's uniforms."
+	name = "Talon beret"
+	desc = "It's a basic baret colored to match ITV Talon's uniforms."
 	icon = 'icons/inventory/head/item_vr.dmi'
 	icon_override = 'icons/inventory/head/mob_vr.dmi'
 	icon_state = "beret_talon"
 	item_state = "baret_talon"
 
 /obj/item/clothing/head/beret/talon/command
-	name = "ITV officer beret"
-	desc = "It's a basic baret colored to match ITV's uniforms with a badge pinned on the front. Perfect for commanders."
+	name = "Talon officer beret"
+	desc = "It's a basic baret colored to match ITV Talon's uniforms with a badge pinned on the front. Perfect for commanders."
 	icon = 'icons/inventory/head/item_vr.dmi'
 	icon_override = 'icons/inventory/head/mob_vr.dmi'
 	icon_state = "beret_talon_officer"

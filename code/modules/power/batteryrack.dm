@@ -9,7 +9,7 @@
 
 /obj/machinery/power/smes/batteryrack
 	name = "power cell rack PSU"
-	desc = "A rack of power cells working as a PSU."
+	desc = "A rack of power cells working as a PSU. Made from a recycled Breaker Box frame."
 	icon = 'icons/obj/cellrack.dmi'
 	icon_state = "rack"
 	capacity = 0
@@ -36,10 +36,10 @@
 /obj/machinery/power/smes/batteryrack/proc/add_parts()
 	component_parts = list()
 	component_parts += new /obj/item/weapon/circuitboard/batteryrack
-	component_parts += new /obj/item/weapon/stock_parts/capacitor/				// Capacitors: Maximal I/O
-	component_parts += new /obj/item/weapon/stock_parts/capacitor/
-	component_parts += new /obj/item/weapon/stock_parts/capacitor/
-	component_parts += new /obj/item/weapon/stock_parts/matter_bin/				// Matter Bin: Max. amount of cells.
+	component_parts += new /obj/item/weapon/stock_parts/capacitor				// Capacitors: Maximal I/O
+	component_parts += new /obj/item/weapon/stock_parts/capacitor
+	component_parts += new /obj/item/weapon/stock_parts/capacitor
+	component_parts += new /obj/item/weapon/stock_parts/matter_bin				// Matter Bin: Max. amount of cells.
 
 /obj/machinery/power/smes/batteryrack/RefreshParts()
 	var/capacitor_efficiency = 0
@@ -60,6 +60,9 @@
 		qdel(C)
 	internal_cells = null
 	return ..()
+
+/obj/machinery/power/smes/batteryrack/check_terminals()
+	return TRUE // we don't necessarily need terminals
 
 /obj/machinery/power/smes/batteryrack/update_icon()
 	cut_overlays()

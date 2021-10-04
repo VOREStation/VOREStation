@@ -93,6 +93,7 @@
 	H.update_inv_w_uniform(1)
 	to_chat(H, "<span class='notice'>You roll the sleeves of your shirt [unrolled ? "up" : "down"]</span>")
 */
+
 /obj/item/clothing/under/det/grey
 	icon_state = "detective2"
 	desc = "A serious-looking tan dress shirt paired with freshly-pressed black slacks."
@@ -118,6 +119,11 @@
 /obj/item/clothing/under/det/grey/waistcoat
 	icon_state = "detective2"
 	desc = "A serious-looking tan dress shirt paired with freshly-pressed black slacks, complete with a red striped tie and waistcoat."
+	starting_accessories = list(/obj/item/clothing/accessory/tie/red_long, /obj/item/clothing/accessory/wcoat)
+
+/obj/item/clothing/under/det/black/waistcoat
+	icon_state = "detective3"
+	desc = "A serious-looking tan dress shirt paired with freshly-pressed black slacks, a red tie, and a charcoal vest."
 	starting_accessories = list(/obj/item/clothing/accessory/tie/red_long, /obj/item/clothing/accessory/wcoat)
 
 /obj/item/clothing/under/det/skirt

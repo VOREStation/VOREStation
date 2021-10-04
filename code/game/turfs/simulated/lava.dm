@@ -15,13 +15,14 @@
 	can_build_into_floor = TRUE
 	can_dirty = FALSE
 	initial_flooring = /decl/flooring/lava // Defining this in case someone DOES step on lava and survive. Somehow.
+	flags = TURF_ACID_IMMUNE
 
 /turf/simulated/floor/lava/outdoors
-	outdoors = TRUE
+	outdoors = OUTDOORS_YES
 
 // For maximum pedantry.
 /turf/simulated/floor/lava/Initialize()
-	if(!outdoors)
+	if(!is_outdoors())
 		name = "magma"
 	update_icon()
 	update_light()

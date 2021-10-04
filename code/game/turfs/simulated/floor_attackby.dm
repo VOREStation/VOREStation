@@ -46,10 +46,10 @@
 				return
 
 		// Create a ceiling to shield from the weather
-		if(src.outdoors)
+		if(src.is_outdoors())
 			for(var/dir in cardinal)
 				var/turf/A = get_step(src, dir)
-				if(A && !A.outdoors)
+				if(A && !A.is_outdoors())
 					if(expended_tile || R.use(1))
 						make_indoors()
 						playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
@@ -96,7 +96,7 @@
 			if(!use_flooring)
 				return
 			// Do we have enough?
-			if(use_flooring.build_cost && S.amount < use_flooring.build_cost)
+			if(use_flooring.build_cost && S.get_amount() < use_flooring.build_cost)
 				to_chat(user, "<span class='warning'>You require at least [use_flooring.build_cost] [S.name] to complete the [use_flooring.descriptor].</span>")
 				return
 			// Stay still and focus...

@@ -215,8 +215,8 @@
 		to_chat(src,"<span class='warning'>You can't process [substance]!</span>")
 		return //Only a few things matter, the rest are best not cluttering the lists.
 
-	var/howmuch = input(src,"How much do you want to store? (0-[matstack.amount])","Select amount") as null|num
-	if(!howmuch || matstack != get_active_hand() || howmuch > matstack.amount)
+	var/howmuch = input(src,"How much do you want to store? (0-[matstack.get_amount()])","Select amount") as null|num
+	if(!howmuch || matstack != get_active_hand() || howmuch > matstack.get_amount())
 		return //Quietly fail
 
 	var/actually_added = refactory.add_stored_material(substance,howmuch*matstack.perunit)

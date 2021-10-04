@@ -167,7 +167,7 @@
 	// I don't like that so I'm commenting it out :)
 	// VOREstation Edit Start 
 /*
-	if(T.outdoors && (T.z <= SSplanets.z_to_planet.len))
+	if((T.is_outdoors()) && (T.z <= SSplanets.z_to_planet.len))
 		var/datum/planet/P = SSplanets.z_to_planet[z]
 		if(P)
 			var/datum/weather_holder/WH = P.weather_holder

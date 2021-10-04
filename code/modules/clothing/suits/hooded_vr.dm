@@ -71,8 +71,8 @@
 
 // Talon Winter Coat
 /obj/item/clothing/suit/storage/hooded/wintercoat/talon
-	name = "ITV winter coat"
-	desc = "A cozy winter coat, covered in thick fur and baring the colors of ITV."
+	name = "Talon winter coat"
+	desc = "A cozy winter coat, covered in thick fur and baring the colors of ITV Talon."
 	icon = 'icons/inventory/suit/item_vr.dmi'
 	icon_override = 'icons/inventory/suit/mob_vr.dmi'
 	icon_state = "taloncoat"

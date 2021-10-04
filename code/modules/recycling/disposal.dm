@@ -523,6 +523,15 @@
 		H.vent_gas(loc)
 		qdel(H)
 
+/obj/machinery/disposal/hitby(atom/movable/AM)
+	. = ..()
+	if(istype(AM, /obj/item) && !istype(AM, /obj/item/projectile))
+		if(prob(75))
+			AM.forceMove(src)
+			visible_message("\The [AM] lands in \the [src].")
+		else
+			visible_message("\The [AM] bounces off of \the [src]'s rim!")
+
 /obj/machinery/disposal/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover, /obj/item/projectile))
 		return 1
@@ -743,6 +752,7 @@
 	desc = "An underfloor disposal pipe."
 	anchored = TRUE
 	density = FALSE
+	unacidable = TRUE
 
 	level = 1			// underfloor only
 	var/dpdir = 0		// bitmask of pipe directions

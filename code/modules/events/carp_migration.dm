@@ -76,8 +76,7 @@
 // Counts living carp spawned by this event.
 /datum/event/carp_migration/proc/count_spawned_carps()
 	. = 0
-	for(var/I in spawned_carp)
-		var/mob/living/simple_mob/animal/M = I
+	for(var/mob/living/simple_mob/animal/M as anything in spawned_carp)
 		if(!QDELETED(M) && M.stat != DEAD)
 			. += 1
 

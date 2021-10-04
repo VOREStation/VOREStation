@@ -40,6 +40,10 @@
 	display_name = "collar, pink"
 	path = /obj/item/clothing/accessory/collar/pink
 
+/datum/gear/collar/cowbell
+	display_name = "collar, cowbell"
+	path = /obj/item/clothing/accessory/collar/cowbell
+
 /datum/gear/collar/holo
 	display_name = "collar, holo"
 	path = /obj/item/clothing/accessory/collar/holo
@@ -117,6 +121,6 @@
 Talon pin
 */
 /datum/gear/accessory/talonpin
-	display_name = "ITV pin"
-	description = "A small enamel pin of the ITV logo."
+	display_name = "Talon pin"
+	description = "A small enamel pin of the Talon logo."
 	path = /obj/item/clothing/accessory/talon

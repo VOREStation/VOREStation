@@ -375,8 +375,7 @@
 
 /datum/asset/spritesheet/vending/register()
 	populate_vending_products()
-	for(var/k in GLOB.vending_products)
-		var/atom/item = k
+	for(var/atom/item as anything in GLOB.vending_products)
 		if(!ispath(item, /atom))
 			continue
 

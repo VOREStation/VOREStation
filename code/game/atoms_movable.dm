@@ -134,8 +134,7 @@
 					oldarea.Exited(src, newloc)
 
 				// Multi-tile objects can't reach here, otherwise you'd need to avoid uncrossing yourself
-				for(var/i in oldloc)
-					var/atom/movable/thing = i
+				for(var/atom/movable/thing as anything in oldloc)
 					// We don't call parent so we are calling this for byond
 					thing.Uncrossed(src)
 
@@ -145,8 +144,7 @@
 					newarea.Entered(src, oldloc)
 
 				// Multi-tile objects can't reach here, otherwise you'd need to avoid uncrossing yourself
-				for(var/i in loc)
-					var/atom/movable/thing = i
+				for(var/atom/movable/thing as anything in loc)
 					// We don't call parent so we are calling this for byond
 					thing.Crossed(src, oldloc)
 
@@ -258,15 +256,6 @@
 			. = TRUE
 	return .
 
-//oldloc = old location on atom, inserted when forceMove is called and ONLY when forceMove is called!
-/atom/movable/Crossed(atom/movable/AM, oldloc)
-	return
-
-/atom/movable/Uncross(atom/movable/AM, atom/newloc)
-	. = ..()
-	if(isturf(newloc) && !CheckExit(AM, newloc))
-		return FALSE
-
 /atom/movable/Bump(atom/A)
 	if(!A)
 		CRASH("Bump was called with no argument.")
@@ -315,8 +304,7 @@
 					old_area.Exited(src, destination)
 
 			// Uncross everything where we left
-			for(var/i in oldloc)
-				var/atom/movable/AM = i
+			for(var/atom/movable/AM as anything in oldloc)
 				if(AM == src)
 					continue
 				AM.Uncrossed(src)
@@ -341,8 +329,7 @@
 				destarea.Entered(src, oldloc)
 
 			// We ignore ourselves because if we're multi-tile we might be in both old and new locs
-			for(var/i in destination)
-				var/atom/movable/AM = i
+			for(var/atom/movable/AM as anything in destination)
 				if(AM == src)
 					continue
 				AM.Crossed(src, oldloc)
@@ -364,8 +351,7 @@
 		loc = null
 
 		// Uncross everything where we left (no multitile safety like above because we are definitely not still there)
-		for(var/i in oldloc)
-			var/atom/movable/AM = i
+		for(var/atom/movable/AM as anything in oldloc)
 			AM.Uncrossed(src)
 
 		// Exited() our loc and area
@@ -379,8 +365,7 @@
 /atom/movable/proc/onTransitZ(old_z,new_z)
 	GLOB.z_moved_event.raise_event(src, old_z, new_z)
 	SEND_SIGNAL(src, COMSIG_MOVABLE_Z_CHANGED, old_z, new_z)
-	for(var/item in src) // Notify contents of Z-transition. This can be overridden IF we know the items contents do not care.
-		var/atom/movable/AM = item
+	for(var/atom/movable/AM as anything in src) // Notify contents of Z-transition. This can be overridden IF we know the items contents do not care.
 		AM.onTransitZ(old_z,new_z)
 
 /atom/movable/proc/glide_for(movetime)
@@ -433,92 +418,24 @@
 					continue
 				src.throw_impact(A,speed)
 
-/atom/movable/proc/throw_at(atom/target, range, speed, thrower)
-	if(!target || !src)
-		return 0
-	if(target.z != src.z)
-		return 0
-	//use a modified version of Bresenham's algorithm to get from the atom's current position to that of the target
-	src.throwing = 1
-	src.thrower = thrower
-	src.throw_source = get_turf(src)	//store the origin turf
-	src.pixel_z = 0
-	if(usr)
-		if(HULK in usr.mutations)
-			src.throwing = 2 // really strong throw!
+/atom/movable/proc/throw_at(atom/target, range, speed, mob/thrower, spin = TRUE, datum/callback/callback) //If this returns FALSE then callback will not be called.
+	. = TRUE
+	if (!target || speed <= 0 || QDELETED(src) || (target.z != src.z))
+		return FALSE
 
-	var/dist_travelled = 0
-	var/dist_since_sleep = 0
-	var/area/a = get_area(src.loc)
+	if (pulledby)
+		pulledby.stop_pulling()
 
-	var/dist_x = abs(target.x - src.x)
-	var/dist_y = abs(target.y - src.y)
+	var/datum/thrownthing/TT = new(src, target, range, speed, thrower, callback)
+	throwing = TT
 
-	var/dx
-	if (target.x > src.x)
-		dx = EAST
-	else
-		dx = WEST
+	pixel_z = 0
+	if(spin && does_spin)
+		SpinAnimation(4,1)
 
-	var/dy
-	if (target.y > src.y)
-		dy = NORTH
-	else
-		dy = SOUTH
-
-	var/error
-	var/major_dir
-	var/major_dist
-	var/minor_dir
-	var/minor_dist
-	if(dist_x > dist_y)
-		error = dist_x/2 - dist_y
-		major_dir = dx
-		major_dist = dist_x
-		minor_dir = dy
-		minor_dist = dist_y
-	else
-		error = dist_y/2 - dist_x
-		major_dir = dy
-		major_dist = dist_y
-		minor_dir = dx
-		minor_dist = dist_x
-
-	range = min(dist_x + dist_y, range)
-
-	while(src && target && src.throwing && istype(src.loc, /turf) \
-		  && ((abs(target.x - src.x)+abs(target.y - src.y) > 0 && dist_travelled < range) \
-		  	   || (a && a.has_gravity == 0) \
-			   || istype(src.loc, /turf/space)))
-		// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
-		var/atom/step
-		if(error >= 0)
-			step = get_step(src, major_dir)
-			error -= minor_dist
-		else
-			step = get_step(src, minor_dir)
-			error += major_dist
-		if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
-			break
-		src.Move(step)
-		hit_check(speed)
-		dist_travelled++
-		dist_since_sleep++
-		if(dist_since_sleep >= speed)
-			dist_since_sleep = 0
-			sleep(1)
-		a = get_area(src.loc)
-		// and yet it moves
-		if(src.does_spin)
-			src.SpinAnimation(speed = 4, loops = 1)
-
-	//done throwing, either because it hit something or it finished moving
-	if(isobj(src)) src.throw_impact(get_turf(src),speed)
-	src.throwing = 0
-	src.thrower = null
-	src.throw_source = null
-	fall()
-
+	SSthrowing.processing[src] = TT
+	if (SSthrowing.state == SS_PAUSED && length(SSthrowing.currentrun))
+		SSthrowing.currentrun[src] = TT
 
 //Overlays
 /atom/movable/overlay

@@ -52,12 +52,12 @@ GLOBAL_LIST_INIT(design_datums, list())
 
 /datum/research/New()		//Insert techs into possible_tech here. Known_tech automatically updated.
 	if(!LAZYLEN(GLOB.design_datums))
-		for(var/T in typesof(/datum/design) - /datum/design)
+		for(var/T in subtypesof(/datum/design))
 			GLOB.design_datums += new T
 	possible_designs = GLOB.design_datums
 
 	if(!LAZYLEN(known_tech))
-		for(var/T in typesof(/datum/tech) - /datum/tech)
+		for(var/T in subtypesof(/datum/tech))
 			known_tech += new T
 	RefreshResearch()
 
@@ -120,8 +120,7 @@ GLOBAL_LIST_INIT(design_datums, list())
 
 // A simple helper proc to find the name of a tech with a given ID.
 /proc/CallTechName(var/ID)
-	for(var/T in subtypesof(/datum/tech))
-		var/datum/tech/check_tech = T
+	for(var/datum/tech/check_tech as anything in subtypesof(/datum/tech))
 		if(initial(check_tech.id) == ID)
 			return  initial(check_tech.name)
 
@@ -182,8 +181,8 @@ GLOBAL_LIST_INIT(design_datums, list())
 	id = TECH_DATA
 
 /datum/tech/syndicate
-	name = "Illegal Technologies Research"
-	desc = "The study of technologies that violate standard government regulations."
+	name = "Transgressive Technologies Research"
+	desc = "The study of technologies that sit on the very boundaries of legality and ethics."
 	id = TECH_ILLEGAL
 	level = 0
 

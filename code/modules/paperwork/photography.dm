@@ -207,8 +207,8 @@ var/global/photo_count = 0
 				var/xoff = (A.x - center.x) * 32 + center_offset
 				var/yoff = (A.y - center.y) * 32 + center_offset
 				if (istype(A,/atom/movable))
-					xoff+=A:step_x
-					yoff+=A:step_y
+					xoff+=A:pixel_x
+					yoff+=A:pixel_y
 				res.Blend(img, blendMode2iconMode(A.blend_mode),  A.pixel_x + xoff, A.pixel_y + yoff)
 
 	// Lastly, render any contained effects on top.

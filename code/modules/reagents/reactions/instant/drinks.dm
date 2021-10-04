@@ -107,8 +107,8 @@
 
 /decl/chemical_reaction/instant/drinks/wine
 	name = "Wine"
-	id = "wine"
-	result = "wine"
+	id = "redwine"
+	result = "redwine"
 	required_reagents = list("grapejuice" = 10)
 	catalysts = list("enzyme" = 5)
 	result_amount = 10
@@ -399,7 +399,7 @@
 	name = "Singulo"
 	id = "singulo"
 	result = "singulo"
-	required_reagents = list("vodka" = 5, "radium" = 1, "wine" = 5)
+	required_reagents = list("vodka" = 5, "radium" = 1, "redwine" = 5)
 	result_amount = 10
 
 /decl/chemical_reaction/instant/drinks/alliescocktail
@@ -505,14 +505,14 @@
 	name = "Acid Spit"
 	id = "acidspit"
 	result = "acidspit"
-	required_reagents = list("sacid" = 1, "wine" = 5)
+	required_reagents = list("sacid" = 1, "redwine" = 5)
 	result_amount = 6
 
 /decl/chemical_reaction/instant/drinks/amasec
 	name = "Amasec"
 	id = "amasec"
 	result = "amasec"
-	required_reagents = list("iron" = 1, "wine" = 5, "vodka" = 5)
+	required_reagents = list("iron" = 1, "redwine" = 5, "vodka" = 5)
 	result_amount = 10
 
 /decl/chemical_reaction/instant/drinks/changelingsting
@@ -661,7 +661,7 @@
 	name = "Melon Spritzer"
 	id = "melonspritzer"
 	result = "melonspritzer"
-	required_reagents = list("watermelonjuice" = 2, "wine" = 2, "applejuice" = 1, "limejuice" = 1)
+	required_reagents = list("watermelonjuice" = 2, "redwine" = 2, "applejuice" = 1, "limejuice" = 1)
 	result_amount = 6
 
 /decl/chemical_reaction/instant/drinks/fauxfizz
@@ -915,7 +915,7 @@
     name = "Wine brandy"
     id = "winebrandy"
     result = "winebrandy"
-    required_reagents = list("wine" = 10)
+    required_reagents = list("redwine" = 10)
     catalysts = list("enzyme" = 10) //10u enzyme so it requires more than is usually added. Stops overlap with wine recipe
     result_amount = 5
 
@@ -937,7 +937,7 @@
 	name = "Vesper"
 	id = "vesper"
 	result = "vesper"
-	required_reagents = list("gin" = 3, "vodka" = 1, "wine" = 1)
+	required_reagents = list("gin" = 3, "vodka" = 1, "redwine" = 1)
 	result_amount = 4
 
 /decl/chemical_reaction/instant/drinks/rotgut

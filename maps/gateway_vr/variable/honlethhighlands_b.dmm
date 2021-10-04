@@ -2048,6 +2048,12 @@
 	},
 /turf/simulated/floor/wood,
 /area/gateway/honlethhighlands)
+"Gm" = (
+/obj/effect/landmark/hidden_level,
+/turf/simulated/floor/water/deep{
+	temperature = 253.15
+	},
+/area/gateway/honlethhighlands/beach)
 "Gn" = (
 /obj/structure/cable/pink{
 	d1 = 2;
@@ -3543,7 +3549,7 @@ bm
 bm
 bm
 bm
-bm
+Gm
 aa
 "}
 (5,1,1) = {"

@@ -26,6 +26,7 @@
 		/obj/item/device/t_scanner/upgraded,
 		/obj/item/taperoll/engineering,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/engineering,
+		/obj/item/clothing/suit/storage/hooded/wintercoat/engineering/ce,
 		/obj/item/clothing/shoes/boots/winter/engineering,
 		/obj/item/weapon/tank/emergency/oxygen/engi,
 		/obj/item/weapon/reagent_containers/spray/windowsealant) //VOREStation Add
@@ -81,6 +82,7 @@
 		/obj/item/clothing/suit/storage/hooded/wintercoat/engineering,
 		/obj/item/clothing/shoes/boots/winter/engineering,
 		/obj/item/weapon/tank/emergency/oxygen/engi,
+		/obj/item/weapon/storage/belt/utility,	//VOREStation Add
 		/obj/item/weapon/reagent_containers/spray/windowsealant) //VOREStation Add
 
 /obj/structure/closet/secure_closet/engineering_personal/Initialize()
@@ -100,10 +102,10 @@
 
 	starts_with = list(
 		/obj/item/clothing/accessory/storage/brown_vest,
-		/obj/item/clothing/suit/fire/firefighter,
-		/obj/item/clothing/head/hardhat/red,
+		/obj/item/clothing/suit/fire/heavy,
+		/obj/item/clothing/head/hardhat/firefighter/atmos,
 		/obj/item/device/flashlight,
-		/obj/item/weapon/extinguisher,
+		/obj/item/weapon/extinguisher/atmo,
 		///obj/item/clamp,	//VOREStation Removal: without leaks those are pointless,
 		/obj/item/device/radio/headset/headset_eng,
 		/obj/item/device/radio/headset/headset_eng/alt,
@@ -113,7 +115,8 @@
 		/obj/item/taperoll/atmos,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/engineering/atmos,
 		/obj/item/clothing/shoes/boots/winter/atmos,
-		/obj/item/weapon/tank/emergency/oxygen/engi)
+		/obj/item/weapon/tank/emergency/oxygen/engi,
+		/obj/item/weapon/storage/belt/utility) //VOREStation Add
 
 /obj/structure/closet/secure_closet/atmos_personal/Initialize()
 	if(prob(50))

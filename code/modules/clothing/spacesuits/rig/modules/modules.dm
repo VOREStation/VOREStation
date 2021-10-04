@@ -95,7 +95,7 @@
 				return
 
 		var/obj/item/stack/cable_coil/cable = W
-		if(!cable.amount >= 5)
+		if(!cable.get_amount() >= 5)
 			to_chat(user, "You need five units of cable to repair \the [src].")
 			return
 

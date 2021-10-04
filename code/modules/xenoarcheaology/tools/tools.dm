@@ -58,8 +58,7 @@
 		var/turf/cur_turf = get_turf(src)
 
 		if(SSxenoarch) //Sanity check due to runtimes ~Z
-			for(var/A in SSxenoarch.artifact_spawning_turfs)
-				var/turf/simulated/mineral/T = A
+			for(var/turf/simulated/mineral/T as anything in SSxenoarch.artifact_spawning_turfs)
 				if(T.density && T.artifact_find)
 					if(T.z == cur_turf.z)
 						var/cur_dist = get_dist(cur_turf, T) * 2
@@ -69,8 +68,7 @@
 				else
 					SSxenoarch.artifact_spawning_turfs.Remove(T)
 
-			for(var/A in SSxenoarch.digsite_spawning_turfs)
-				var/turf/simulated/mineral/T = A
+			for(var/turf/simulated/mineral/T as anything in SSxenoarch.digsite_spawning_turfs)
 				if(T.density && T.finds && T.finds.len)
 					if(T.z == cur_turf.z)
 						var/cur_dist = get_dist(cur_turf, T) * 2

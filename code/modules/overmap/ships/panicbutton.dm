@@ -66,8 +66,7 @@
 	var/turf/us = get_turf(src)
 	
 	for(var/hz in hear_z)
-		for(var/m in GLOB.players_by_zlevel[hz])
-			var/mob/M = m
+		for(var/mob/M as anything in GLOB.players_by_zlevel[hz])
 			var/sound/SND = sound('sound/misc/emergency_beacon_launched.ogg') // Inside the loop because playsound_local modifies it for each person, so, need separate instances
 			var/turf/them = get_turf(M)
 			var/volume = max(0.20, 1-(get_dist(us,them) / mapsize*0.8))*100

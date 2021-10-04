@@ -6,7 +6,7 @@
 /mob/living/bot/farmbot
 	name = "Farmbot"
 	desc = "The botanist's best friend."
-	icon = 'icons/obj/aibots.dmi'
+	icon = 'icons/obj/chemical_tanks.dmi'
 	icon_state = "farmbot0"
 	health = 50
 	maxHealth = 50
@@ -38,7 +38,7 @@
 
 /mob/living/bot/farmbot/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
-	
+
 	data["on"] = on
 	data["tank"] = !!tank
 	if(tank)
@@ -96,18 +96,9 @@
 				turn_on()
 			. = TRUE
 
-	switch(action)
-		if("power")
-			if(!access_scanner.allowed(src))
-				return FALSE
-			if(on)
-				turn_off()
-			else
-				turn_on()
-			. = TRUE
-	
 	if(locked)
 		return TRUE
+
 	switch(action)
 		if("water")
 			waters_trays = !waters_trays

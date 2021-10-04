@@ -63,8 +63,7 @@
 	..()
 	update_layer()
 	if(has_buckled_mobs())
-		for(var/A in buckled_mobs)
-			var/mob/living/L = A
+		for(var/mob/living/L as anything in buckled_mobs)
 			L.set_dir(dir)
 
 /obj/structure/bed/chair/verb/rotate_clockwise()
@@ -151,8 +150,7 @@
 	playsound(src, 'sound/effects/roll.ogg', 100, 1)
 
 /obj/structure/bed/chair/office/handle_buckled_mob_movement(atom/new_loc, direction, movetime)
-	for(var/A in buckled_mobs)
-		var/mob/living/occupant = A
+	for(var/mob/living/occupant as anything in buckled_mobs)
 		occupant.buckled = null
 		occupant.Move(loc, direction, movetime)
 		occupant.buckled = src
@@ -276,6 +274,43 @@
 /obj/structure/bed/chair/sofa/pew/right
 	icon_state = "pewend_right"
 	base_icon = "pewend_right"
+
+// Metal benches from Skyrat
+/obj/structure/bed/chair/sofa/bench
+	name = "metal bench"
+	desc = "Almost as comfortable as waiting at a bus station for hours on end."
+	base_icon = "benchmiddle"
+	icon_state = "benchmiddle"
+	applies_material_colour = FALSE
+	color = null
+	var/padding_color = "#CC0000"
+
+/obj/structure/bed/chair/sofa/bench/Initialize()
+	. = ..()
+	var/mutable_appearance/MA
+	// If we're north-facing, metal goes above mob, padding overlay goes below mob.
+	if((dir & NORTH) && !corner_piece)
+		plane = MOB_PLANE
+		layer = ABOVE_MOB_LAYER
+		MA = mutable_appearance(icon, icon_state = "o[icon_state]", layer = BELOW_MOB_LAYER, plane = MOB_PLANE, appearance_flags = KEEP_APART|RESET_COLOR)
+	// Else just normal plane and layer for everything, which will be below mobs.
+	else
+		MA = mutable_appearance(icon, icon_state = "o[icon_state]", appearance_flags = KEEP_APART|RESET_COLOR)
+	MA.color = padding_color
+	add_overlay(MA)
+
+/obj/structure/bed/chair/sofa/bench/left
+	icon_state = "bench_left"
+	base_icon = "bench_left"
+
+/obj/structure/bed/chair/sofa/bench/right
+	icon_state = "bench_right"
+	base_icon = "bench_right"
+
+/obj/structure/bed/chair/sofa/bench/corner
+	icon_state = "benchcorner"
+	base_icon = "benchcorner"
+	//corner_piece = TRUE // These sprites work fine without the parent doing layer shenanigans
 
 // Corporate sofa - one color fits all
 /obj/structure/bed/chair/sofa/corp

@@ -9,6 +9,7 @@
 	thermal_conductivity = WALL_HEAT_TRANSFER_COEFFICIENT
 	heat_capacity = 312500 //a little over 5 cm thick , 312500 for 1 m by 2.5 m by 0.25 m plasteel wall
 
+	var/icon/wall_masks = 'icons/turf/wall_masks.dmi'
 	var/damage = 0
 	var/damage_overlay = 0
 	var/global/damage_overlays[16]
@@ -20,6 +21,7 @@
 	var/last_state
 	var/construction_stage
 
+	// There's basically always going to be wall connections, making this lazy doesn't seem like it'd help much unless you wanted to make it bitflags instead.
 	var/list/wall_connections = list("0", "0", "0", "0")
 
 // Walls always hide the stuff below them.

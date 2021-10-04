@@ -40,8 +40,7 @@
 		var/obj/singularity/energy_ball/EB = orbiting.orbiting
 		EB.orbiting_balls -= src
 
-	for(var/ball in orbiting_balls)
-		var/obj/singularity/energy_ball/EB = ball
+	for(var/obj/singularity/energy_ball/EB as anything in orbiting_balls)
 		qdel(EB)
 
 	. = ..()

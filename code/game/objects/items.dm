@@ -4,6 +4,8 @@
 	w_class = ITEMSIZE_NORMAL
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 
+	matter = list(MAT_STEEL = 1)
+
 	var/image/blood_overlay = null //this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite
 	var/randpixel = 6
 	var/abstract = 0
@@ -221,6 +223,8 @@
 			size = "bulky"
 		if(ITEMSIZE_HUGE)
 			size = "huge"
+		if(ITEMSIZE_NO_CONTAINER)
+			size = "massive"
 	return ..(user, "", "It is a [size] item.")
 
 /obj/item/attack_hand(mob/living/user as mob)
@@ -350,9 +354,9 @@
 	if(user.pulling == src) user.stop_pulling()
 	if((slot_flags & slot))
 		if(equip_sound)
-			playsound(src, equip_sound, 30)
+			playsound(src, equip_sound, 20)
 		else
-			playsound(src, drop_sound, 30)
+			playsound(src, drop_sound, 20)
 	else if(slot == slot_l_hand || slot == slot_r_hand)
 		playsound(src, pickup_sound, 20, preference = /datum/client_preference/pickup_sounds)
 	return
@@ -947,4 +951,55 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /// How are you described if at all when in pockets (or other 'usually not visible' places)
 /obj/item/proc/pocket_description(mob/haver, mob/examiner)
 	return null // most things are hidden
-	
+
+#define CELLS 8								//Amount of cells per row/column in grid
+#define CELLSIZE (world.icon_size/CELLS)	//Size of a cell in pixels
+
+/*
+Automatic alignment of items to an invisible grid, defined by CELLS and CELLSIZE.
+Since the grid will be shifted to own a cell that is perfectly centered on the turf, we end up with two 'cell halves'
+on edges of each row/column.
+Each item defines a center_of_mass, which is the pixel of a sprite where its projected center of mass toward a turf
+surface can be assumed. For a piece of paper, this will be in its center. For a bottle, it will be (near) the bottom
+of the sprite.
+auto_align() will then place the sprite so the defined center_of_mass is at the bottom left corner of the grid cell
+closest to where the cursor has clicked on.
+Note: This proc can be overwritten to allow for different types of auto-alignment.
+*/
+
+/obj/item/var/list/center_of_mass = list("x" = 16,"y" = 16)
+
+/proc/auto_align(obj/item/W, click_parameters, var/animate = FALSE)
+	if(!W.center_of_mass)
+		W.randpixel_xy()
+		return
+
+	if(!click_parameters)
+		return
+
+	var/list/mouse_control = params2list(click_parameters)
+
+	var/mouse_x = text2num(mouse_control["icon-x"])
+	var/mouse_y = text2num(mouse_control["icon-y"])
+
+	if(isnum(mouse_x) && isnum(mouse_y))
+		var/cell_x = max(0, min(CELLS-1, round(mouse_x/CELLSIZE)))
+		var/cell_y = max(0, min(CELLS-1, round(mouse_y/CELLSIZE)))
+
+		var/target_x = (CELLSIZE * (0.5 + cell_x)) - W.center_of_mass["x"]
+		var/target_y = (CELLSIZE * (0.5 + cell_y)) - W.center_of_mass["y"]
+		if(animate)
+			var/dist_x = abs(W.pixel_x - target_x)
+			var/dist_y = abs(W.pixel_y - target_y)
+			var/dist = sqrt((dist_x*dist_x)+(dist_y*dist_y))
+			animate(W, pixel_x=target_x, pixel_y=target_y,time=dist*0.5)
+		else
+			W.pixel_x = target_x
+			W.pixel_y = target_y
+
+#undef CELLS
+#undef CELLSIZE
+
+// this gets called when the item gets chucked by the vending machine
+/obj/item/proc/vendor_action(var/obj/machinery/vending/V)
+	return

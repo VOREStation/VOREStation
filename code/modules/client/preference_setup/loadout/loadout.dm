@@ -12,9 +12,8 @@ var/list/gear_datums = list()
 /hook/startup/proc/populate_gear_list()
 
 	//create a list of gear datums to sort
-	for(var/geartype in typesof(/datum/gear)-/datum/gear)
-		var/datum/gear/G = geartype
-		if(initial(G.type_category) == geartype)
+	for(var/datum/gear/G as anything in subtypesof(/datum/gear))
+		if(initial(G.type_category) == G)
 			continue
 		var/use_name = initial(G.display_name)
 		var/use_category = initial(G.sort_category)
@@ -32,7 +31,7 @@ var/list/gear_datums = list()
 		if(!loadout_categories[use_category])
 			loadout_categories[use_category] = new /datum/loadout_category(use_category)
 		var/datum/loadout_category/LC = loadout_categories[use_category]
-		gear_datums[use_name] = new geartype
+		gear_datums[use_name] = new G
 		LC.gear[use_name] = gear_datums[use_name]
 
 	loadout_categories = sortAssoc(loadout_categories)

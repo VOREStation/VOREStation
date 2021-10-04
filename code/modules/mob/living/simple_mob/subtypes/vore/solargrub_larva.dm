@@ -205,8 +205,7 @@ var/global/list/grub_machine_overlays = list()
 	var/static/potential_targets = typecacheof(list(/obj/machinery))
 	var/list/actual_targets = list()
 
-	for(var/AT in typecache_filter_list(range(vision_range, holder), potential_targets))
-		var/obj/machinery/M = AT
+	for(var/obj/machinery/M as anything in typecache_filter_list(range(vision_range, holder), potential_targets))
 		if(istype(M, /obj/machinery/atmospherics/unary/vent_pump))
 			var/obj/machinery/atmospherics/unary/vent_pump/V = M
 			if(!V.welded && prob(50))

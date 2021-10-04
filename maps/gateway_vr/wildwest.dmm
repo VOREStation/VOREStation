@@ -1983,6 +1983,10 @@
 /obj/effect/floor_decal/corner/paleblue/diagonal,
 /turf/simulated/floor/tiled/white,
 /area/awaymission/wwmines)
+"RC" = (
+/obj/effect/landmark/hidden_level,
+/turf/space,
+/area/space)
 "RP" = (
 /obj/structure/bed/padded,
 /obj/item/weapon/bedsheet/blue,
@@ -2468,7 +2472,7 @@ ia
 ia
 ia
 ia
-ia
+RC
 aa
 "}
 (3,1,1) = {"

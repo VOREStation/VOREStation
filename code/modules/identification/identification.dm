@@ -97,8 +97,7 @@
 		return "unidentified object"
 
 	var/list/new_name = list()
-	for(var/i in naming_lists)
-		var/list/current_list = i
+	for(var/list/current_list as anything in naming_lists)
 		new_name += pick(current_list)
 	return new_name.Join(" ")
 

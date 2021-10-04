@@ -18,7 +18,7 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/mortar/action_checks(atom/target)
 	var/turf/MT = get_turf(chassis)
 	var/turf/TT = get_turf(target)
-	if(!MT.outdoors || !TT.outdoors)
+	if(!MT.is_outdoors() || !TT.is_outdoors())
 		to_chat(chassis.occupant, "<span class='notice'>\The [src]'s control system prevents you from firing due to a blocked firing arc.</span>")
 		return 0
 	return ..()

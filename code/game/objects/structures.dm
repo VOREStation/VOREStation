@@ -89,7 +89,9 @@
 /obj/structure/proc/turf_is_crowded()
 	var/turf/T = get_turf(src)
 	if(!T || !istype(T))
-		return 0
+		return "empty void"
+	if(T.density)
+		return T
 	for(var/obj/O in T.contents)
 		if(istype(O,/obj/structure))
 			var/obj/structure/S = O
@@ -113,11 +115,14 @@
 		LAZYREMOVE(climbers, user)
 		return
 
-	usr.forceMove(get_turf(src))
+	usr.forceMove(climb_to(user))
 
 	if (get_turf(user) == get_turf(src))
 		usr.visible_message("<span class='warning'>[user] climbs onto \the [src]!</span>")
 	LAZYREMOVE(climbers, user)
+
+/obj/structure/proc/climb_to(var/mob/living/user)
+	return get_turf(src)
 
 /obj/structure/proc/structure_shaken()
 	for(var/mob/living/M in climbers)
@@ -252,6 +257,5 @@
 	return TRUE
 
 /obj/structure/proc/refresh_neighbors()
-	for(var/thing in RANGE_TURFS(1, src))
-		var/turf/T = thing
+	for(var/turf/T as anything in RANGE_TURFS(1, src))
 		T.update_icon()

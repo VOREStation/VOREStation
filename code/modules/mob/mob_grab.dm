@@ -34,6 +34,7 @@
 	abstract = 1
 	item_state = "nothing"
 	w_class = ITEMSIZE_HUGE
+	destroy_on_drop = TRUE	//VOREStation Edit
 
 
 /obj/item/weapon/grab/New(mob/user, mob/victim)

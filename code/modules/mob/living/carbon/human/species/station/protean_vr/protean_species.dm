@@ -131,8 +131,7 @@
 	H.synth_color = TRUE
 
 /datum/species/protean/equip_survival_gear(var/mob/living/carbon/human/H)
-	var/obj/item/stack/material/steel/metal_stack = new()
-	metal_stack.amount = 3
+	var/obj/item/stack/material/steel/metal_stack = new(null, 3)
 
 	var/obj/item/clothing/accessory/permit/nanotech/permit = new()
 	permit.set_name(H.real_name)
@@ -223,8 +222,7 @@
 			stat(null, "- -- --- REFACTORY ERROR! --- -- -")
 
 		stat(null, "- -- --- Abilities (Shift+LMB Examines) --- -- -")
-		for(var/ability in abilities)
-			var/obj/effect/protean_ability/A = ability
+		for(var/obj/effect/protean_ability/A as anything in abilities)
 			stat("[A.ability_name]",A.atom_button_text())
 
 // Various modifiers
@@ -315,8 +313,7 @@
 	holder.adjustBruteLoss(-1,include_robo = TRUE) //Modified by species resistances
 	holder.adjustFireLoss(-0.5,include_robo = TRUE) //Modified by species resistances
 	var/mob/living/carbon/human/H = holder
-	for(var/organ in H.internal_organs)
-		var/obj/item/organ/O = organ
+	for(var/obj/item/organ/O as anything in H.internal_organs)
 		// Fix internal damage
 		if(O.damage > 0)
 			O.damage = max(0,O.damage-0.1)

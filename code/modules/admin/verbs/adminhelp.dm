@@ -63,8 +63,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		return
 	var/list/dat = list("<html><head><title>[title]</title></head>")
 	dat += "<A HREF='?_src_=holder;ahelp_tickets=[state]'>Refresh</A><br><br>"
-	for(var/I in l2b)
-		var/datum/admin_help/AH = I
+	for(var/datum/admin_help/AH as anything in l2b)
 		dat += "<span class='adminnotice'><span class='adminhelp'>Ticket #[AH.id]</span>: <A HREF='?_src_=holder;ahelp=\ref[AH];ahelp_action=ticket'>[AH.initiator_key_name]: [AH.name]</A></span><br>"
 
 	usr << browse(dat.Join(), "window=ahelp_list[state];size=600x480")
@@ -73,8 +72,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /datum/admin_help_tickets/proc/stat_entry()
 	var/num_disconnected = 0
 	stat("Active Tickets:", astatclick.update("[active_tickets.len]"))
-	for(var/I in active_tickets)
-		var/datum/admin_help/AH = I
+	for(var/datum/admin_help/AH as anything in active_tickets)
 		if(AH.initiator)
 			stat("#[AH.id]. [AH.initiator_key_name]:", AH.statclick.update())
 		else
@@ -100,8 +98,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 //Get a ticket given a ckey
 /datum/admin_help_tickets/proc/CKey2ActiveTicket(ckey)
-	for(var/I in active_tickets)
-		var/datum/admin_help/AH = I
+	for(var/datum/admin_help/AH as anything in active_tickets)
 		if(AH.initiator_ckey == ckey)
 			return AH
 
@@ -637,8 +634,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /proc/ircadminwho()
 	var/list/message = list("Admins: ")
 	var/list/admin_keys = list()
-	for(var/adm in GLOB.admins)
-		var/client/C = adm
+	for(var/client/C as anything in GLOB.admins)
 		admin_keys += "[C][C.holder.fakekey ? "(Stealth)" : ""][C.is_afk() ? "(AFK)" : ""]"
 
 	for(var/admin in admin_keys)

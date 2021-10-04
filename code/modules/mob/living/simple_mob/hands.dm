@@ -135,13 +135,6 @@
 		to_chat(src, "<span class='danger'>Your [hand_form] are not fit for use of \the [display_name].</span>")
 	return humanoid_hands
 
-/mob/living/simple_mob/drop_from_inventory(var/obj/item/W, var/atom/target = null)
-	. = ..(W, target)
-	if(!target)
-		target = src.loc
-	if(.)
-		W.forceMove(src.loc)
-
 /mob/living/simple_mob/is_holding_item_of_type(typepath)
 	for(var/obj/item/I in list(l_hand, r_hand))
 		if(istype(I, typepath))

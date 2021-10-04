@@ -37,7 +37,6 @@
 	var/spiderling_count = 0
 	var/spiderling_type = /obj/effect/spider/spiderling
 	var/swarmling_type = /mob/living/simple_mob/animal/giant_spider/hunter
-	var/swarmling_faction = "spiders"
 	var/swarmling_prob = 10 // Odds that a spiderling will be a swarmling instead.
 
 /mob/living/simple_mob/animal/giant_spider/carrier/Initialize()
@@ -60,7 +59,7 @@
 				swarmling.health = swarm_health
 				swarmling.melee_damage_lower = swarm_dam_lower
 				swarmling.melee_damage_upper = swarm_dam_upper
-				swarmling.faction = swarmling_faction
+				swarmling.faction = faction
 				swarmling.adjust_scale(0.75)
 				new_spiders += swarmling
 			else if(src)

@@ -611,7 +611,7 @@
 		wearer.update_inv_back()
 	return
 
-/obj/item/weapon/rig/proc/check_suit_access(var/mob/living/carbon/human/user)
+/obj/item/weapon/rig/proc/check_suit_access(var/mob/living/carbon/human/user, var/do_message = TRUE)
 
 	if(!security_check_enabled)
 		return 1
@@ -624,11 +624,13 @@
 		if(user.back != src && user.belt != src)
 			return 0
 		else if(!src.allowed(user))
-			to_chat(user, "<span class='danger'>Unauthorized user. Access denied.</span>")
+			if(do_message)
+				to_chat(user, "<span class='danger'>Unauthorized user. Access denied.</span>")
 			return 0
 
 	else if(!ai_override_enabled)
-		to_chat(user, "<span class='danger'>Synthetic access disabled. Please consult hardware provider.</span>")
+		if(do_message)
+			to_chat(user, "<span class='danger'>Synthetic access disabled. Please consult hardware provider.</span>")
 		return 0
 
 	return 1

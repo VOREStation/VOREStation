@@ -61,6 +61,11 @@
 				desc = "You feel more American already."
 				icon_state = "ketchup"
 				center_of_mass = list("x"=16, "y"=6)
+			if("mustard")
+				name = "Mustard"
+				desc = "A somewhat bitter topping."
+				icon_state = "mustard"
+				center_of_mass = list("x"=16, "y"=6)
 			if("capsaicin")
 				name = "Hotsauce"
 				desc = "You can almost TASTE the stomach ulcers now!"
@@ -75,6 +80,11 @@
 				name = "Soy Sauce"
 				desc = "A salty soy-based flavoring."
 				icon_state = "soysauce"
+				center_of_mass = list("x"=16, "y"=6)
+			if("vinegar")
+				name = "Vinegar"
+				desc = "An acetic acid used in various dishes."
+				icon_state = "vinegar"
 				center_of_mass = list("x"=16, "y"=6)
 			if("frostoil")
 				name = "Coldsauce"
@@ -118,7 +128,6 @@
 			if("spacespice")
 				name = "bottle of space spice"
 				desc = "An exotic blend of spices for cooking. Definitely not worms."
-				icon = 'icons/obj/food_syn.dmi'
 				icon_state = "spacespicebottle"
 				center_of_mass = list("x"=16, "y"=6)
 			if("barbecue")
@@ -158,6 +167,10 @@
 	. = ..()
 	reagents.add_reagent("ketchup", 50)
 
+/obj/item/weapon/reagent_containers/food/condiment/mustard/Initialize()
+	. = ..()
+	reagents.add_reagent("mustard", 50)
+
 /obj/item/weapon/reagent_containers/food/condiment/hotsauce/Initialize()
 	. = ..()
 	reagents.add_reagent("capsaicin", 50)
@@ -176,6 +189,10 @@
 /obj/item/weapon/reagent_containers/food/condiment/soysauce/Initialize()
 	. = ..()
 	reagents.add_reagent("soysauce", 50)
+
+/obj/item/weapon/reagent_containers/food/condiment/vinegar/Initialize()
+	. = ..()
+	reagents.add_reagent("vinegar", 50)
 
 /obj/item/weapon/reagent_containers/food/condiment/yeast
 	name = "Yeast"
@@ -203,15 +220,25 @@
 	. = ..()
 	reagents.add_reagent("sodiumchloride", 20)
 
-/obj/item/weapon/reagent_containers/food/condiment/small/peppermill
-	name = "pepper mill"
+/obj/item/weapon/reagent_containers/food/condiment/small/peppermill //Keeping name here to save map based headaches
+	name = "pepper shaker"
 	desc = "Often used to flavor food or make people sneeze."
-	icon_state = "peppermillsmall"
+	icon_state = "peppershakersmall"
 	center_of_mass = list("x"=17, "y"=11)
 
 /obj/item/weapon/reagent_containers/food/condiment/small/peppermill/Initialize()
 	. = ..()
 	reagents.add_reagent("blackpepper", 20)
+
+/obj/item/weapon/reagent_containers/food/condiment/small/peppergrinder
+	name = "pepper mill"
+	desc = "Fancy way to season a dish or make people sneeze."
+	icon_state = "peppermill"
+	center_of_mass = list("x"=17, "y"=11)
+
+/obj/item/weapon/reagent_containers/food/condiment/small/peppermill/Initialize()
+	. = ..()
+	reagents.add_reagent("blackpepper", 30)
 
 /obj/item/weapon/reagent_containers/food/condiment/small/sugar
 	name = "sugar"
@@ -429,11 +456,10 @@
 	. = ..()
 	reagents.add_reagent("flour", 200)
 	randpixel_xy()
-	
+
 /obj/item/weapon/reagent_containers/food/condiment/spacespice
 	name = "space spices"
 	desc = "An exotic blend of spices for cooking. Definitely not worms."
-	icon = 'icons/obj/food_syn.dmi'
 	icon_state = "spacespicebottle"
 	possible_transfer_amounts = list(1,40) //for clown turning the lid off
 	amount_per_transfer_from_this = 1

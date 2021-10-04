@@ -275,7 +275,7 @@
 	newsign.data["vmask"] = 0
 	newsign.data["level"] = list()
 
-	var/pass = S.relay_information(newsign, "/obj/machinery/telecomms/hub")
+	var/pass = S.relay_information(newsign, /obj/machinery/telecomms/hub)
 	if(!pass)
-		S.relay_information(newsign, "/obj/machinery/telecomms/broadcaster") // send this simple message to broadcasters
+		S.relay_information(newsign, /obj/machinery/telecomms/broadcaster) // send this simple message to broadcasters
 

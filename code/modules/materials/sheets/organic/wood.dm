@@ -47,9 +47,24 @@
 					existing_wood = M
 					break
 
-			var/obj/item/stack/material/wood/new_wood = new plank_type(user.loc)
-			new_wood.amount = 2
+			var/obj/item/stack/material/wood/new_wood = new plank_type(user.loc, 2)
 			if(existing_wood && new_wood.transfer_to(existing_wood))
-				to_chat(user, "<span class='notice'>You add the newly-formed wood to the stack. It now contains [existing_wood.amount] planks.</span>")
+				to_chat(user, "<span class='notice'>You add the newly-formed wood to the stack. It now contains [existing_wood.get_amount()] planks.</span>")
 	else
 		return ..()
+
+/obj/item/stack/material/stick
+	name = "wooden stick"
+	icon_state = "sheet-stick"
+	default_type = "wooden stick"
+	strict_color_stacking = TRUE
+	apply_colour = 1
+	drop_sound = 'sound/items/drop/wooden.ogg'
+	pickup_sound = 'sound/items/pickup/wooden.ogg'
+	no_variants = FALSE
+	pass_color = TRUE
+	apply_colour = TRUE
+
+/obj/item/stack/material/stick/fivestack
+	amount = 5
+	color = "#824B28"

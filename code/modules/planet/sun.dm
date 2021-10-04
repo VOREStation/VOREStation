@@ -117,15 +117,15 @@
 	// Test for corners
 	for(var/direction in cornerdirs)
 		var/turf/dirturf = get_step(T, direction)
-		if(dirturf && !dirturf.outdoors)
+		if(dirturf && !dirturf.is_outdoors())
 			var/turf/TL = get_step(T, turn(direction, -45))
 			var/turf/TR = get_step(T, turn(direction, 45))
 			
 			// If outdoors at 45 degrees are the same, then this is a corner
-			if(TL && TR && TL.outdoors == TR.outdoors)
+			if(TL && TR && TL.is_outdoors() == TR.is_outdoors())
 				var/atom/movable/sun_visuals_overlap/OL
 				// Outer corner
-				if(TL.outdoors)
+				if(TL.is_outdoors())
 					OL = spreads["o[direction]"]
 				// Inner corner
 				else
@@ -139,11 +139,11 @@
 	// Take all orthagonals
 	for(var/direction in cardinal)
 		var/turf/dirturf = get_step(T, direction)
-		if(dirturf && !dirturf.outdoors)
+		if(dirturf && !dirturf.is_outdoors())
 			var/turf/TL = get_step(T, turn(direction, -45))
 			var/turf/TR = get_step(T, turn(direction, 45))
 			// End of a wall, the corner will handle it
-			if(TL && TR && TL.outdoors != TR.outdoors)
+			if(TL && TR && TL.is_outdoors() != TR.is_outdoors())
 				continue
 			var/atom/movable/sun_visuals_overlap/OL = spreads["[direction]"]
 			dirturf.vis_contents += OL

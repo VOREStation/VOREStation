@@ -119,20 +119,21 @@
 /obj/item/clothing/under/ert
 	armor = list(melee = 5, bullet = 10, laser = 10, energy = 5, bomb = 5, bio = 0, rad = 0)
 
-/obj/item/clothing/under/dress/qipao
-	name = "qipao"
+/obj/item/clothing/under/qipao
+	name = "black qipao"
 	desc = "A type of feminine body-hugging dress with distinctive Chinese features of Manchu origin."
 	icon = 'icons/inventory/uniform/item_vr.dmi'
 	icon_override = 'icons/inventory/uniform/mob_vr.dmi'
 	icon_state = "qipao"
 	item_state = "qipao"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 
-/obj/item/clothing/under/dress/qipao/white
+/obj/item/clothing/under/qipao/white
 	name = "white qipao"
 	icon_state = "qipao_white"
 	item_state = "qipao_white"
 
-/obj/item/clothing/under/dress/qipao/red
+/obj/item/clothing/under/qipao/red
 	name = "red qipao"
 	icon_state = "qipao_red"
 	item_state = "qipao_red"
@@ -149,8 +150,8 @@
 //////////////////////TALON JUMPSUITS//////////////////////
 
 /obj/item/clothing/under/rank/talon/basic
-	name = "ITV jumpsuit"
-	desc = "A basic jumpsuit that bares the ITV logo on the breast."
+	name = "Talon jumpsuit"
+	desc = "A basic jumpsuit that bares the ITV Talon logo on the breast."
 	icon = 'icons/inventory/uniform/item_vr.dmi'
 	rolled_down_icon = 'icons/inventory/uniform/mob_vr_rolled_down.dmi'
 	icon_override = 'icons/inventory/uniform/mob_vr.dmi'
@@ -159,8 +160,8 @@
 	rolled_sleeves = 0
 
 /obj/item/clothing/under/rank/talon/proper
-	name = "ITV proper jumpsuit"
-	desc = "A neat and proper uniform for a proper company."
+	name = "Talon proper jumpsuit"
+	desc = "A neat and proper uniform for a proper private ship."
 	icon = 'icons/inventory/uniform/item_vr.dmi'
 	rolled_down_icon = 'icons/inventory/uniform/mob_vr_rolled_down.dmi'
 	icon_override = 'icons/inventory/uniform/mob_vr.dmi'
@@ -169,8 +170,8 @@
 	rolled_sleeves = 0
 
 /obj/item/clothing/under/rank/talon/security
-	name = "ITV security jumpsuit"
-	desc = "A sleek, streamlined version of ITV's standard jumpsuit that bares security markings."
+	name = "Talon security jumpsuit"
+	desc = "A sleek, streamlined version of ITV Talon's standard jumpsuit that bares security markings."
 	icon = 'icons/inventory/uniform/item_vr.dmi'
 	rolled_down_icon = 'icons/inventory/uniform/mob_vr_rolled_down.dmi'
 	icon_override = 'icons/inventory/uniform/mob_vr.dmi'
@@ -179,8 +180,8 @@
 	rolled_sleeves = 0
 
 /obj/item/clothing/under/rank/talon/pilot
-	name = "ITV pilot jumpsuit"
-	desc = "A sleek, streamlined version of ITV's standard jumpsuit. Made from cushioned fabric to handle intense flight."
+	name = "Talon pilot jumpsuit"
+	desc = "A sleek, streamlined version of ITV Talon's standard jumpsuit. Made from cushioned fabric to handle intense flight."
 	icon = 'icons/inventory/uniform/item_vr.dmi'
 	rolled_down_icon = 'icons/inventory/uniform/mob_vr_rolled_down.dmi'
 	icon_override = 'icons/inventory/uniform/mob_vr.dmi'
@@ -189,7 +190,7 @@
 	rolled_sleeves = 0
 
 /obj/item/clothing/under/rank/talon/command
-	name = "ITV command jumpsuit"
+	name = "Talon command jumpsuit"
 	desc = "A commanding jumpsuit fit for a commanding officer."
 	icon = 'icons/inventory/uniform/item_vr.dmi'
 	rolled_down_icon = 'icons/inventory/uniform/mob_vr_rolled_down.dmi'
@@ -202,7 +203,7 @@
 /obj/item/clothing/under/excelsior
 	name = "\improper Excelsior uniform"
 	desc = "A uniform from a particular spaceship: Excelsior."
-	
+
 	icon = 'icons/inventory/uniform/item_vr.dmi'
 	default_worn_icon = 'icons/inventory/uniform/mob_vr.dmi'
 	icon_state = "excelsior_white"
@@ -216,7 +217,7 @@
 /obj/item/clothing/under/summerdress
 	name = "summer dress"
 	desc = "A nice summer dress."
-	
+
 	icon = 'icons/inventory/uniform/item_vr.dmi'
 	default_worn_icon = 'icons/inventory/uniform/mob_vr.dmi'
 	icon_state = "summerdress"

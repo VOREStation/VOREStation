@@ -59,6 +59,15 @@
 					/obj/fiftyspawner/tealcarpet
 					)
 
+/datum/supply_pack/materials/arcade_carpet
+	name = "Retro carpets"
+	containertype = /obj/structure/closet/crate/grayson
+	containername = "Retro carpets crate"
+	cost = 15
+	contains = list(
+					/obj/fiftyspawner/decocarpet,
+					/obj/fiftyspawner/retrocarpet
+					)
 
 /datum/supply_pack/misc/linoleum
 	name = "Linoleum"

@@ -113,8 +113,7 @@ when portals are shortly lived, or when portals are made to be obvious with spec
 	var/lowest_y = 0
 
 	// First pass is for finding the top right corner.
-	for(var/thing in vis_contents)
-		var/turf/T = thing
+	for(var/turf/T as anything in vis_contents)
 		if(T.x > highest_x)
 			highest_x = T.x
 		if(T.y > highest_y)
@@ -124,8 +123,7 @@ when portals are shortly lived, or when portals are made to be obvious with spec
 	lowest_y = highest_y
 
 	// Second one is for the bottom left corner.
-	for(var/thing in vis_contents)
-		var/turf/T = thing
+	for(var/turf/T as anything in vis_contents)
 		if(T.x < lowest_x)
 			lowest_x = T.x
 		if(T.y < lowest_y)
@@ -182,8 +180,7 @@ when portals are shortly lived, or when portals are made to be obvious with spec
 
 // Connects both sides of a portal together.
 /obj/effect/map_effect/portal/master/proc/find_counterparts()
-	for(var/thing in GLOB.all_portal_masters)
-		var/obj/effect/map_effect/portal/master/M = thing
+	for(var/obj/effect/map_effect/portal/master/M as anything in GLOB.all_portal_masters)
 		if(M == src)
 			continue
 		if(M.counterpart)
@@ -205,8 +202,7 @@ when portals are shortly lived, or when portals are made to be obvious with spec
 
 /obj/effect/map_effect/portal/master/proc/make_visuals()
 	var/list/observed_turfs = list()
-	for(var/thing in portal_lines + src)
-		var/obj/effect/map_effect/portal/P = thing
+	for(var/obj/effect/map_effect/portal/P as anything in portal_lines + src)
 		P.name = null
 		P.icon_state = null
 
@@ -230,8 +226,7 @@ when portals are shortly lived, or when portals are made to be obvious with spec
 // Shifts the portal's pixels in order to line up properly, as BYOND offsets the sprite when it holds multiple turfs inside `vis_contents`.
 // This undos the shift that BYOND did.
 /obj/effect/map_effect/portal/master/proc/apply_offset()
-	for(var/thing in portal_lines + src)
-		var/obj/effect/map_effect/portal/P = thing
+	for(var/obj/effect/map_effect/portal/P as anything in portal_lines + src)
 
 		P.pixel_x = WORLD_ICON_SIZE * P.portal_distance_x
 		P.pixel_y = WORLD_ICON_SIZE * P.portal_distance_y
@@ -245,8 +240,7 @@ when portals are shortly lived, or when portals are made to be obvious with spec
 	var/list/in_range = get_mobs_and_objs_in_view_fast(T, world.view, 0)
 	var/list/mobs_to_relay = in_range["mobs"]
 
-	for(var/thing in mobs_to_relay)
-		var/mob/mob = thing
+	for(var/mob/mob as anything in mobs_to_relay)
 		var/rendered = "<span class='message'>[text]</span>"
 		mob.show_message(rendered)
 
@@ -261,8 +255,7 @@ when portals are shortly lived, or when portals are made to be obvious with spec
 	var/list/in_range = get_mobs_and_objs_in_view_fast(T, world.view, 0)
 	var/list/mobs_to_relay = in_range["mobs"]
 
-	for(var/thing in mobs_to_relay)
-		var/mob/mob = thing
+	for(var/mob/mob as anything in mobs_to_relay)
 		mob.show_message(rendered)
 
 	..()
@@ -275,8 +268,7 @@ when portals are shortly lived, or when portals are made to be obvious with spec
 	var/list/in_range = get_mobs_and_objs_in_view_fast(T, world.view, 0)
 	var/list/mobs_to_relay = in_range["mobs"]
 
-	for(var/thing in mobs_to_relay)
-		var/mob/mob = thing
+	for(var/mob/mob as anything in mobs_to_relay)
 		var/list/combined = mob.combine_message(message_pieces, verb, M)
 		var/message = combined["formatted"]
 		var/name_used = M.GetVoice()
@@ -296,8 +288,7 @@ when portals are shortly lived, or when portals are made to be obvious with spec
 	var/obj/effect/map_effect/portal/master/other_master = counterpart
 
 	var/in_vis_contents = FALSE
-	for(var/thing in other_master.portal_lines + other_master)
-		var/obj/effect/map_effect/portal/P = thing
+	for(var/obj/effect/map_effect/portal/P as anything in other_master.portal_lines + other_master)
 		if(P in true_turf.vis_locs)
 			in_vis_contents = TRUE
 			break

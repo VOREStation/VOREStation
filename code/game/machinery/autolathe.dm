@@ -183,9 +183,8 @@
 			//Check if we still have the materials.
 			var/coeff = (making.no_scale ? 1 : mat_efficiency) //stacks are unaffected by production coefficient
 			
-			for(var/MAT in making.resources)
-				var/datum/material/used_material = MAT
-				var/amount_needed = making.resources[MAT] * coeff * multiplier
+			for(var/datum/material/used_material as anything in making.resources)
+				var/amount_needed = making.resources[used_material] * coeff * multiplier
 				materials_used[used_material] = amount_needed
 
 			if(LAZYLEN(materials_used))
@@ -224,7 +223,7 @@
 			if(multiplier > 1)
 				if(istype(I, /obj/item/stack))
 					var/obj/item/stack/S = I
-					S.amount = multiplier
+					S.set_amount(multiplier)
 				else
 					for(multiplier; multiplier > 1; --multiplier) // Create multiple items if it's not a stack.
 						I = new making.path(src.loc)

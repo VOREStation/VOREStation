@@ -814,13 +814,6 @@
 	name = "void carp plushie"
 	icon_state = "voidcarp"
 
-// Eris
-/obj/structure/plushie/fumo
-	name = "Fumo"
-	desc = "A plushie of a....?."
-	icon_state = "fumoplushie"
-	phrase = "I just don't think about losing."
-
 //Large plushies.
 /obj/structure/plushie
 	name = "generic plush"
@@ -1258,6 +1251,11 @@
 	icon_state = "therapygreen"
 	item_state = "egg3" // It's the green egg in items_left/righthand
 
+/obj/item/toy/plushie/fumo
+	name = "Fumo"
+	desc = "A plushie of a....?"
+	icon_state = "fumoplushie"
+	pokephrase = "I just don't think about losing."
 
 //Toy cult sword
 /obj/item/toy/cultsword

@@ -264,7 +264,7 @@
 /obj/item/weapon/storage/box/nifsofts_security
 	name = "security nifsoft uploaders"
 	desc = "A box of free nifsofts for security employees."
-	icon = 'icons/obj/storage_vr.dmi'
+	icon = 'icons/obj/boxes.dmi'
 	icon_state = "nifsoft_kit_sec"
 
 /obj/item/weapon/storage/box/nifsofts_security/New()
@@ -289,7 +289,7 @@
 /obj/item/weapon/storage/box/nifsofts_engineering
 	name = "engineering nifsoft uploaders"
 	desc = "A box of free nifsofts for engineering employees."
-	icon = 'icons/obj/storage_vr.dmi'
+	icon = 'icons/obj/boxes.dmi'
 	icon_state = "nifsoft_kit_eng"
 
 /obj/item/weapon/storage/box/nifsofts_engineering/New()
@@ -313,7 +313,7 @@
 /obj/item/weapon/storage/box/nifsofts_medical
 	name = "medical nifsoft uploaders"
 	desc = "A box of free nifsofts for medical employees."
-	icon = 'icons/obj/storage_vr.dmi'
+	icon = 'icons/obj/boxes.dmi'
 	icon_state = "nifsoft_kit_med"
 
 /obj/item/weapon/storage/box/nifsofts_medical/New()
@@ -338,7 +338,7 @@
 /obj/item/weapon/storage/box/nifsofts_mining
 	name = "mining nifsoft uploaders"
 	desc = "A box of free nifsofts for mining employees."
-	icon = 'icons/obj/storage_vr.dmi'
+	icon = 'icons/obj/boxes.dmi'
 	icon_state = "nifsoft_kit_mining"
 
 /obj/item/weapon/storage/box/nifsofts_mining/New()

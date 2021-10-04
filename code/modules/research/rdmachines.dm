@@ -38,6 +38,5 @@
 	eject = amount == -1 ? eject : min(eject, amount)
 	if(eject < 1)
 		return
-	var/obj/item/stack/material/S = new sheetType(loc)
-	S.amount = eject
+	new sheetType(loc, eject)
 	materials[material] -= eject * perUnit

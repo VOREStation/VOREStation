@@ -846,8 +846,7 @@
 	. = 1 - . // Invert from 1 = immunity to 0 = immunity.
 
 	// Doing it this way makes multiplicative stacking not get out of hand, so two modifiers that give 0.5 protection will be combined to 0.75 in the end.
-	for(var/thing in modifiers)
-		var/datum/modifier/M = thing
+	for(var/datum/modifier/M as anything in modifiers)
 		if(!isnull(M.heat_protection))
 			. *= 1 - M.heat_protection
 
@@ -866,8 +865,7 @@
 	. = 1 - . // Invert from 1 = immunity to 0 = immunity.
 
 	// Doing it this way makes multiplicative stacking not get out of hand, so two modifiers that give 0.5 protection will be combined to 0.75 in the end.
-	for(var/thing in modifiers)
-		var/datum/modifier/M = thing
+	for(var/datum/modifier/M as anything in modifiers)
 		if(!isnull(M.cold_protection))
 			// Invert the modifier values so they align with the current working value.
 			. *= 1 - M.cold_protection

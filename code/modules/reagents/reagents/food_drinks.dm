@@ -452,6 +452,14 @@
 	color = "#792300"
 	allergen_type = ALLERGEN_BEANS //Soy (beans)
 
+/datum/reagent/nutriment/vinegar
+	name = "Vinegar"
+	id = "vinegar"
+	description = "vinegar, great for fish and pickles."
+	taste_description = "vinegar"
+	reagent_state = LIQUID
+	nutriment_factor = 5
+	color = "#54410C"
 
 /datum/reagent/nutriment/ketchup
 	name = "Ketchup"
@@ -462,6 +470,15 @@
 	nutriment_factor = 5
 	color = "#731008"
 	allergen_type = ALLERGEN_FRUIT 	//Tomatoes are a fruit.
+
+/datum/reagent/nutriment/mustard
+	name = "Mustard"
+	id = "mustard"
+	description = "Delicious mustard. Good on Hot Dogs."
+	taste_description = "mustard"
+	reagent_state = LIQUID
+	nutriment_factor = 5
+	color = "#E3BD00"
 
 /datum/reagent/nutriment/barbecue
 	name = "Barbeque Sauce"
@@ -648,7 +665,7 @@
 /datum/reagent/frostoil/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
-	M.bodytemperature = max(M.bodytemperature - 10 * TEMPERATURE_DAMAGE_COEFFICIENT, 215)
+	M.bodytemperature = min(M.bodytemperature, max(M.bodytemperature - 10 * TEMPERATURE_DAMAGE_COEFFICIENT, 215))
 	if(prob(1))
 		M.emote("shiver")
 	holder.remove_reagent("capsaicin", 5)
@@ -673,7 +690,7 @@
 		M.bodytemperature -= rand(1, 5) * M.species.spice_mod // Really fucks you up, cause it makes you cold.
 		if(prob(5))
 			M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>", pick("<span class='danger'>You feel like your insides are freezing!</span>", "<span class='danger'>Your insides feel like they're turning to ice!</span>"))
-	// holder.remove_reagent("capsaicin", 5) // VOREStation Edit: Nop, we don't instadelete spices for free. 
+	// holder.remove_reagent("capsaicin", 5) // VOREStation Edit: Nop, we don't instadelete spices for free.
 
 /datum/reagent/frostoil/cryotoxin //A longer lasting version of frost oil.
 	name = "Cryotoxin"
@@ -719,7 +736,7 @@
 		M.bodytemperature += rand(1, 5) * M.species.spice_mod // Really fucks you up, cause it makes you overheat, too.
 		if(prob(5))
 			M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>", pick("<span class='danger'>You feel like your insides are burning!</span>", "<span class='danger'>You feel like your insides are on fire!</span>", "<span class='danger'>You feel like your belly is full of lava!</span>"))
-	// holder.remove_reagent("frostoil", 5)  // VOREStation Edit: Nop, we don't instadelete spices for free. 
+	// holder.remove_reagent("frostoil", 5)  // VOREStation Edit: Nop, we don't instadelete spices for free.
 
 /datum/reagent/condensedcapsaicin
 	name = "Condensed Capsaicin"
@@ -863,7 +880,7 @@
 		M.apply_effect(4, AGONY, 0)
 		if(prob(5))
 			M.visible_message("<span class='warning'>[M] [pick("dry heaves!","coughs!","splutters!")]</span>", "<span class='danger'>You feel like your insides are burning!</span>")
-	// holder.remove_reagent("frostoil", 5) // VOREStation Edit: Nop, we don't instadelete spices for free. 
+	// holder.remove_reagent("frostoil", 5) // VOREStation Edit: Nop, we don't instadelete spices for free.
 
 /* Drinks */
 
@@ -1073,6 +1090,19 @@
 	glass_name = "potato juice"
 	glass_desc = "Juice from a potato. Bleh."
 	allergen_type = ALLERGEN_VEGETABLE //Potatoes are vegetables
+
+/datum/reagent/drink/juice/turnip
+	name = "Turnip Juice"
+	id = "turnipjuice"
+	description = "Juice of the turnip. A step below the potato."
+	taste_description = "turnips"
+	nutrition = 2
+	color = "#251e2e"
+	sugary = FALSE
+
+	glass_name = "turnip juice"
+	glass_desc = "Juice of the turnip. A step below the potato."
+	allergen_type = ALLERGEN_VEGETABLE //Turnips are vegetables
 
 /datum/reagent/drink/juice/tomato
 	name = "Tomato Juice"
@@ -1750,6 +1780,110 @@
 
 	glass_name = "Space Cola"
 	glass_desc = "A glass of refreshing Space Cola"
+	glass_special = list(DRINK_FIZZ)
+
+/datum/reagent/drink/soda/lemon_soda
+	name = "Lemon Soda"
+	id = "lemonsoda"
+	description = "Soda made using lemon concentrate. Sour."
+	taste_description = "strong sourness"
+	reagent_state = LIQUID
+	color = "#ffe658"
+	adj_drowsy = -3
+	adj_temp = -5
+
+	glass_name = "lemon Soda"
+	glass_desc = "A glass of refreshing Lemon Soda. So sour!"
+	glass_special = list(DRINK_FIZZ)
+	allergen_type = ALLERGEN_FRUIT
+
+/datum/reagent/drink/soda/apple_soda
+	name = "Apple Soda"
+	id = "applesoda"
+	description = "Soda made using fresh apples."
+	taste_description = "crisp juiciness"
+	reagent_state = LIQUID
+	color = "#c73737"
+	adj_drowsy = -3
+	adj_temp = -5
+
+	glass_name = "Apple Soda"
+	glass_desc = "A glass of refreshing Apple Soda. Crisp!"
+	glass_special = list(DRINK_FIZZ)
+	allergen_type = ALLERGEN_FRUIT
+
+
+/datum/reagent/drink/soda/straw_soda
+	name = "Strawberry Soda"
+	id = "strawsoda"
+	description = "Soda made using sweet berries."
+	taste_description = "oddly bland"
+	reagent_state = LIQUID
+	color = "#ffa3a3"
+	adj_drowsy = -3
+	adj_temp = -5
+
+	glass_name = "Strawberry Soda"
+	glass_desc = "A glass of refreshing Strawberry Soda"
+	glass_special = list(DRINK_FIZZ)
+	allergen_type = ALLERGEN_FRUIT
+
+/datum/reagent/drink/soda/orangesoda
+	name = "Orange Soda"
+	id = "orangesoda"
+	description = "Soda made using fresh picked oranges."
+	taste_description = "sweet and citrusy"
+	reagent_state = LIQUID
+	color = "#ff992c"
+	adj_drowsy = -3
+	adj_temp = -5
+
+	glass_name = "Orange Soda"
+	glass_desc = "A glass of refreshing Orange Soda. Delicious!"
+	glass_special = list(DRINK_FIZZ)
+	allergen_type = ALLERGEN_FRUIT
+
+/datum/reagent/drink/soda/grapesoda
+	name = "Grape Soda"
+	id = "grapesoda"
+	description = "Soda made of carbonated grapejuice."
+	taste_description = "tangy goodness"
+	reagent_state = LIQUID
+	color = "#9862d2"
+	adj_drowsy = -3
+	adj_temp = -5
+
+	glass_name = "Grape Soda"
+	glass_desc = "A glass of refreshing Grape Soda. Tangy!"
+	glass_special = list(DRINK_FIZZ)
+	allergen_type = ALLERGEN_FRUIT
+
+/datum/reagent/drink/soda/sarsaparilla
+	name = "Sarsaparilla"
+	id = "sarsaparilla"
+	description = "Soda made from genetically modified Mexican sarsaparilla plants."
+	taste_description = "licorice and caramel"
+	reagent_state = LIQUID
+	color = "#e1bb59"
+	adj_drowsy = -3
+	adj_temp = -5
+
+	glass_name = "Sarsaparilla"
+	glass_desc = "A glass of refreshing Sarsaparilla. Delicious!"
+	glass_special = list(DRINK_FIZZ)
+
+/datum/reagent/drink/soda/pork_soda
+	name = "Bacon Soda"
+	id = "porksoda"
+	description = "Soda made using pork like flavoring."
+	taste_description = "sugar coated bacon"
+	reagent_state = LIQUID
+	color = "ff8080"
+	adj_drowsy = -3
+	adj_temp = -5
+
+	glass_name = "Bacon Soda"
+	glass_desc = "A glass of Bacon Soda, very odd..."
 	glass_special = list(DRINK_FIZZ)
 
 /datum/reagent/drink/soda/spacemountainwind
@@ -2542,18 +2676,70 @@
 
 	allergen_type = ALLERGEN_GRAINS //Whiskey is also made from grain.
 
-/datum/reagent/ethanol/wine
-	name = "Wine"
-	id = "wine"
+/datum/reagent/ethanol/redwine
+	name = "Red Wine"
+	id = "redwine"
 	description = "An premium alchoholic beverage made from distilled grape juice."
 	taste_description = "bitter sweetness"
 	color = "#7E4043" // rgb: 126, 64, 67
 	strength = 15
 
-	glass_name = "wine"
+	glass_name = "red wine"
 	glass_desc = "A very classy looking drink."
 
 	allergen_type = ALLERGEN_FRUIT //Wine is made from grapes (fruit)
+
+/datum/reagent/ethanol/whitewine
+	name = "White Wine"
+	id = "whitewine"
+	description = "An premium alchoholic beverage made from fermenting of the non-coloured pulp of grapes."
+	taste_description = "light fruity flavor"
+	color = "#F4EFB0" // rgb: 244, 239, 176
+	strength = 15
+
+	glass_name = "white wine"
+	glass_desc = "A very classy looking drink."
+
+	allergen_type = ALLERGEN_FRUIT //Wine is made from grapes (fruit)
+
+/datum/reagent/ethanol/carnoth
+	name = "Carnoth"
+	id = "carnoth"
+	description = "An premium alchoholic beverage made with multiple hybridized species of grapes that give it a dark maroon coloration."
+	taste_description = "alcoholic sweet flavor"
+	color = "#5B0000" // rgb: 0, 100, 35
+	strength = 20
+
+	glass_name = "carnoth"
+	glass_desc = "A very classy looking drink."
+
+	allergen_type = ALLERGEN_FRUIT //Wine is made from grapes (fruit)
+
+/datum/reagent/ethanol/pwine
+	name = "Poison Wine"
+	id = "pwine"
+	description = "Is this even wine? Toxic! Hallucinogenic! Probably consumed in boatloads by your superiors!"
+	color = "#000000"
+	strength = 10
+	druggy = 50
+	halluci = 10
+
+	glass_name = "???"
+	glass_desc = "A black ichor with an oily purple sheer on top. Are you sure you should drink this?"
+	allergen_type = ALLERGEN_FRUIT //Made from berries which are fruit
+
+/datum/reagent/ethanol/pwine/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	if(dose > 30)
+		M.adjustToxLoss(2 * removed)
+	if(dose > 60 && ishuman(M) && prob(5))
+		var/mob/living/carbon/human/H = M
+		var/obj/item/organ/internal/heart/L = H.internal_organs_by_name[O_HEART]
+		if (L && istype(L))
+			if(dose < 120)
+				L.take_damage(10 * removed, 0)
+			else
+				L.take_damage(100, 0)
 
 /datum/reagent/ethanol/wine/champagne
 	name = "Champagne"
@@ -3177,32 +3363,6 @@
 
 	glass_name = "Patron"
 	glass_desc = "Drinking patron in the bar, with all the subpar ladies."
-
-/datum/reagent/ethanol/pwine
-	name = "Poison Wine"
-	id = "pwine"
-	description = "Is this even wine? Toxic! Hallucinogenic! Probably consumed in boatloads by your superiors!"
-	color = "#000000"
-	strength = 10
-	druggy = 50
-	halluci = 10
-
-	glass_name = "???"
-	glass_desc = "A black ichor with an oily purple sheer on top. Are you sure you should drink this?"
-	allergen_type = ALLERGEN_FRUIT //Made from berries which are fruit
-
-/datum/reagent/ethanol/pwine/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
-	..()
-	if(dose > 30)
-		M.adjustToxLoss(2 * removed)
-	if(dose > 60 && ishuman(M) && prob(5))
-		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/internal/heart/L = H.internal_organs_by_name[O_HEART]
-		if (L && istype(L))
-			if(dose < 120)
-				L.take_damage(10 * removed, 0)
-			else
-				L.take_damage(100, 0)
 
 /datum/reagent/ethanol/red_mead
 	name = "Red Mead"

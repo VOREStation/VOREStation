@@ -185,11 +185,7 @@ Thus, the two variables affect pump operation are set in New():
 		update_use_power(!use_power)
 
 	if(signal.data["set_output_pressure"])
-		target_pressure = between(
-			0,
-			text2num(signal.data["set_output_pressure"]),
-			ONE_ATMOSPHERE*50
-		)
+		target_pressure = between(0, text2num(signal.data["set_output_pressure"]), ONE_ATMOSPHERE*50)
 
 	if(signal.data["status"])
 		spawn(2)

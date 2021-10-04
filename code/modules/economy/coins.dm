@@ -21,42 +21,52 @@
 /obj/item/weapon/coin/gold
 	name = "gold coin"
 	icon_state = "coin_gold"
+	matter = list(MAT_GOLD = 250)
 
 /obj/item/weapon/coin/silver
 	name = "silver coin"
 	icon_state = "coin_silver"
+	matter = list(MAT_SILVER = 250)
 
 /obj/item/weapon/coin/diamond
 	name = "diamond coin"
 	icon_state = "coin_diamond"
+	matter = list(MAT_DIAMOND = 250)
 
 /obj/item/weapon/coin/iron
 	name = "iron coin"
 	icon_state = "coin_iron"
+	matter = list(MAT_IRON = 250)
 
 /obj/item/weapon/coin/phoron
 	name = "solid phoron coin"
 	icon_state = "coin_phoron"
+	matter = list(MAT_PHORON = 250)
 
 /obj/item/weapon/coin/uranium
 	name = "uranium coin"
 	icon_state = "coin_uranium"
+	matter = list(MAT_URANIUM = 250)
 
 /obj/item/weapon/coin/platinum
 	name = "platinum coin"
 	icon_state = "coin_adamantine"
+	matter = list(MAT_GOLD = 250)
 
 /obj/item/weapon/coin/morphium
 	name = "morphium coin"
 	icon_state = "coin_morphium"
+	matter = list(MAT_MORPHIUM = 250)
 
 /obj/item/weapon/coin/aluminium
 	name = "aluminium coin"
 	icon_state = "coin_aluminium"
+	matter = list(MAT_ALUMINIUM = 250)
 
 /obj/item/weapon/coin/verdantium
 	name = "verdantium coin"
 	icon_state = "coin_verdantium"
+	matter = list(MAT_VERDANTIUM = 250)
 
 /obj/item/weapon/coin/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/stack/cable_coil))
@@ -76,8 +86,7 @@
 			..()
 			return
 
-		var/obj/item/stack/cable_coil/CC = new/obj/item/stack/cable_coil(user.loc)
-		CC.amount = 1
+		var/obj/item/stack/cable_coil/CC = new (user.loc)
 		CC.update_icon()
 		cut_overlays()
 		string_attached = null

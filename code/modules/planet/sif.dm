@@ -296,7 +296,7 @@ var/datum/planet/sif/planet_sif = null
 	for(var/mob/living/L as anything in living_mob_list)
 		if(L.z in holder.our_planet.expected_z_levels)
 			var/turf/T = get_turf(L)
-			if(!T.outdoors)
+			if(!T.is_outdoors())
 				continue // They're indoors, so no need to rain on them.
 
 			// If they have an open umbrella, it'll guard from rain
@@ -349,7 +349,7 @@ var/datum/planet/sif/planet_sif = null
 	for(var/mob/living/L as anything in living_mob_list)
 		if(L.z in holder.our_planet.expected_z_levels)
 			var/turf/T = get_turf(L)
-			if(!T.outdoors)
+			if(!T.is_outdoors())
 				continue // They're indoors, so no need to rain on them.
 
 			// If they have an open umbrella, it'll guard from rain
@@ -407,7 +407,7 @@ var/datum/planet/sif/planet_sif = null
 	for(var/mob/living/carbon/H as anything in human_mob_list)
 		if(H.z in holder.our_planet.expected_z_levels)
 			var/turf/T = get_turf(H)
-			if(!T.outdoors)
+			if(!T.is_outdoors())
 				continue // They're indoors, so no need to pelt them with ice.
 
 			// If they have an open umbrella, it'll guard from hail
@@ -499,11 +499,10 @@ var/datum/planet/sif/planet_sif = null
 
 /datum/weather/sif/ash_storm/process_effects()
 	..()
-	for(var/thing in living_mob_list)
-		var/mob/living/L = thing
+	for(var/mob/living/L as anything in living_mob_list)
 		if(L.z in holder.our_planet.expected_z_levels)
 			var/turf/T = get_turf(L)
-			if(!T.outdoors)
+			if(!T.is_outdoors())
 				continue // They're indoors, so no need to burn them with ash.
 
 			L.inflict_heat_damage(rand(1, 3))
@@ -536,12 +535,11 @@ var/datum/planet/sif/planet_sif = null
 
 /datum/weather/sif/fallout/process_effects()
 	..()
-	for(var/thing in living_mob_list)
-		var/mob/living/L = thing
+	for(var/mob/living/L as anything in living_mob_list)
 		if(L.z in holder.our_planet.expected_z_levels)
 			irradiate_nearby_turf(L)
 			var/turf/T = get_turf(L)
-			if(!T.outdoors)
+			if(!T.is_outdoors())
 				continue // They're indoors, so no need to irradiate them with fallout.
 
 			L.rad_act(rand(direct_rad_low, direct_rad_high))
@@ -555,5 +553,5 @@ var/datum/planet/sif/planet_sif = null
 	var/turf/T = pick(turfs) // We get one try per tick.
 	if(!istype(T))
 		return
-	if(T.outdoors)
+	if(T.is_outdoors())
 		SSradiation.radiate(T, rand(fallout_rad_low, fallout_rad_high))

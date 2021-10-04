@@ -41,6 +41,7 @@
 	var/old_directional_opacity = directional_opacity
 	var/old_outdoors = outdoors
 	var/old_dangerous_objects = dangerous_objects
+	var/old_dynamic_lumcount = dynamic_lumcount
 
 	var/turf/Ab = GetAbove(src)
 	if(Ab)
@@ -110,6 +111,8 @@
 	lighting_corner_SE = old_lighting_corner_SE
 	lighting_corner_SW = old_lighting_corner_SW
 	lighting_corner_NW = old_lighting_corner_NW
+
+	dynamic_lumcount = old_dynamic_lumcount
 
 	if(SSlighting.subsystem_initialized)
 		lighting_object = old_lighting_object

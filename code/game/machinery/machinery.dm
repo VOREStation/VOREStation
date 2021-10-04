@@ -548,8 +548,7 @@ Class Procs:
 			surviving_parts += new /obj/item/stack/cable_coil(null, 1)
 			surviving_parts += new /obj/item/stack/cable_coil(null, 1)
 
-	for(var/a in surviving_parts)
-		var/atom/movable/A = a
+	for(var/atom/movable/A as anything in surviving_parts)
 		A.forceMove(droploc)
 		if(scatter && isturf(droploc))
 			var/turf/T = droploc

@@ -20,7 +20,7 @@
 							/obj/item/toy/cultsword									= 1,
 							/obj/item/toy/bouquet/fake								= 1,
 							/obj/item/clothing/accessory/badge/sheriff				= 2,
-							/obj/item/clothing/head/cowboy_hat/small				= 2,
+							/obj/item/clothing/head/cowboy/small				= 2,
 							/obj/item/toy/stickhorse								= 2
 							)
 	var/list/special_prizes = list() // Holds instanced objects, intended for admins to shove surprises inside or something.
@@ -40,7 +40,7 @@
 		var/atom/movable/AM = pick_n_take(special_prizes)
 		AM.forceMove(get_turf(src))
 		special_prizes -= AM
-	
+
 	else if(LAZYLEN(prizes))
 		var/prizeselect = pickweight(prizes)
 		new prizeselect(src.loc)
@@ -1322,7 +1322,7 @@
 		gameStatus = "CLAWMACHINE_NEW"
 		emagged = 1
 		return 1
-		
+
 /obj/machinery/computer/arcade/attackby(obj/item/O, mob/user, params)
 	if(istype(O, /obj/item/stack/arcadeticket))
 		var/obj/item/stack/arcadeticket/T = O

@@ -8,6 +8,8 @@
 	var/datum/hud/H = user.hud_used
 	var/obj/screen/craft/C = new()
 	C.icon = H.ui_style
+	C.color = H.ui_color
+	C.alpha = H.ui_alpha
 	LAZYADD(H.other_important, C)
 	CL.screen += C
 	RegisterSignal(C, COMSIG_CLICK, .proc/component_ui_interact)
@@ -133,7 +135,7 @@
 			LAZYADDASSOCLIST(.["instances"], item.type, item)
 			if(istype(item, /obj/item/stack))
 				var/obj/item/stack/stack = item
-				.["other"][item.type] += stack.amount
+				.["other"][item.type] += stack.get_amount()
 			else if(item.tool_qualities)
 				.["tool_qualities"] |= item.tool_qualities
 				.["other"][item.type] += 1
@@ -295,20 +297,20 @@
 				var/obj/item/stack/SD
 				while(amt > 0)
 					S = locate(path_key) in surroundings
-					if(S.amount >= amt)
+					if(S.get_amount() >= amt)
 						if(!locate(S.type) in Deletion)
 							SD = new S.type()
 							Deletion += SD
 						S.use(amt)
 						SD = locate(S.type) in Deletion
-						SD.amount += amt
+						SD.add(amt)
 						continue main_loop
 					else
-						amt -= S.amount
+						amt -= S.get_amount()
 						if(!locate(S.type) in Deletion)
 							Deletion += S
 						else
-							data = S.amount
+							data = S.get_amount()
 							S = locate(S.type) in Deletion
 							S.add(data)
 						surroundings -= S
@@ -332,8 +334,8 @@
 			continue
 		else if(istype(part, /obj/item/stack))
 			var/obj/item/stack/ST = locate(part) in Deletion
-			if(ST.amount > partlist[part])
-				ST.amount = partlist[part]
+			if(ST.get_amount() > partlist[part])
+				ST.set_amount(partlist[part])
 			. += ST
 			Deletion -= ST
 			continue
@@ -392,7 +394,7 @@
 			cur_subcategory = subcats[1]
 		else
 			cur_subcategory = CAT_NONE
-	
+
 	var/list/data = list()
 	data["busy"] = busy
 	data["category"] = cur_category
@@ -402,8 +404,7 @@
 
 	var/list/surroundings = get_surroundings(user)
 	var/list/craftability = list()
-	for(var/rec in GLOB.crafting_recipes)
-		var/datum/crafting_recipe/R = rec
+	for(var/datum/crafting_recipe/R as anything in GLOB.crafting_recipes)
 
 		if(!R.always_available && !(R.type in user?.mind?.learned_recipes)) //User doesn't actually know how to make this.
 			continue
@@ -420,11 +421,10 @@
 	var/list/data = list()
 
 	var/list/crafting_recipes = list()
-	for(var/rec in GLOB.crafting_recipes)
-		var/datum/crafting_recipe/R = rec
+	for(var/datum/crafting_recipe/R as anything in GLOB.crafting_recipes)
 
 		if(R.name == "") //This is one of the invalid parents that sneaks in
-			GLOB.crafting_recipes -= rec
+			GLOB.crafting_recipes -= R
 			continue
 
 		if(!R.always_available && !(R.type in user?.mind?.learned_recipes)) //User doesn't actually know how to make this.

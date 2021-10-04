@@ -28,7 +28,7 @@
 
 	var/rads = radiation/25
 	radiation -= rads
-	adjust_nutrition(rads)
+	//adjust_nutrition(rads) //Commented out to prevent alien obesity.
 	heal_overall_damage(rads,rads)
 	adjustOxyLoss(-(rads))
 	adjustToxLoss(-(rads))

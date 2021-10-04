@@ -252,7 +252,7 @@
 //
 
 /datum/event/supply_demand/proc/choose_food_items(var/differentTypes)
-	var/list/types = typesof(/datum/recipe) - /datum/recipe
+	var/list/types = subtypesof(/datum/recipe)
 	for(var/i in 1 to differentTypes)
 		var/datum/recipe/R = pick(types)
 		types -= R // Don't pick the same thing twice
@@ -262,7 +262,7 @@
 	return
 
 /datum/event/supply_demand/proc/choose_research_items(var/differentTypes)
-	var/list/types = typesof(/datum/design) - /datum/design
+	var/list/types = subtypesof(/datum/design)
 	for(var/i in 1 to differentTypes)
 		var/datum/design/D = pick(types)
 		types -= D // Don't pick the same thing twice
@@ -327,7 +327,7 @@
 	return
 
 /datum/event/supply_demand/proc/choose_alloy_items(var/differentTypes)
-	var/list/types = typesof(/datum/alloy) - /datum/alloy
+	var/list/types = subtypesof(/datum/alloy)
 	for(var/i in 1 to differentTypes)
 		var/datum/alloy/A = pick(types)
 		types -= A // Don't pick the same thing twice

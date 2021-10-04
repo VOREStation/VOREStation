@@ -197,8 +197,7 @@ var/list/blob_cores = list()
 	if(!difficulty_threshold)
 		return
 	var/list/valid_types = list()
-	for(var/thing in subtypesof(/datum/blob_type))
-		var/datum/blob_type/BT = thing
+	for(var/datum/blob_type/BT as anything in subtypesof(/datum/blob_type))
 		if(initial(BT.difficulty) > difficulty_threshold) // Too hard.
 			continue
 		if(initial(BT.difficulty) < difficulty_floor) // Too easy.

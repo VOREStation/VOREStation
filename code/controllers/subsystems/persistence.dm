@@ -12,11 +12,10 @@ SUBSYSTEM_DEF(persistence)
 
 /datum/controller/subsystem/persistence/Initialize()
 	. = ..()
-	for(var/thing in subtypesof(/datum/persistent))
-		var/datum/persistent/P = thing
+	for(var/datum/persistent/P as anything in subtypesof(/datum/persistent))
 		if(initial(P.name))
 			P = new P
-			persistence_datums[thing] = P
+			persistence_datums[P.type] = P
 			P.Initialize()
 
 /datum/controller/subsystem/persistence/Shutdown()

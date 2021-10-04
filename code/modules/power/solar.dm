@@ -13,6 +13,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 	icon_state = "sp_base"
 	anchored = TRUE
 	density = TRUE
+	unacidable = TRUE
 	use_power = USE_POWER_OFF
 	idle_power_usage = 0
 	active_power_usage = 0
@@ -38,10 +39,11 @@ GLOBAL_LIST_EMPTY(solars_list)
 
 /obj/machinery/power/solar/Destroy()
 	unset_control() //remove from control computer
-	..()
+	. = ..()
 
 //set the control of the panel to a given computer if closer than SOLAR_MAX_DIST
 /obj/machinery/power/solar/proc/set_control(var/obj/machinery/power/solar_control/SC)
+	ASSERT(!control)
 	if(SC && (get_dist(src, SC) > SOLAR_MAX_DIST))
 		return 0
 	control = SC
@@ -50,7 +52,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 //set the control of the panel to null and removes it from the control list of the previous control computer if needed
 /obj/machinery/power/solar/proc/unset_control()
 	if(control)
-		control.connected_panels.Remove(src)
+		control.remove_panel(src)
 	control = null
 
 /obj/machinery/power/solar/attackby(obj/item/weapon/W, mob/user)
@@ -61,8 +63,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 		if(do_after(user, 50))
 			var/obj/item/solar_assembly/S = new(loc)
 			S.anchored = TRUE
-			var/obj/item/stack/glass = new glass_type(loc)
-			glass.amount = 2
+			new glass_type(loc, 2)
 			playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 			user.visible_message("<span class='notice'>[user] takes the glass off the solar panel.</span>")
 			qdel(src)
@@ -114,21 +115,16 @@ GLOBAL_LIST_EMPTY(solars_list)
 	sunfrac = cos(p_angle) ** 2
 	//isn't the power recieved from the incoming light proportionnal to cos(p_angle) (Lambert's cosine law) rather than cos(p_angle)^2 ?
 
-/obj/machinery/power/solar/process()//TODO: remove/add this from machines to save on processing as needed ~Carn PRIORITY
+/obj/machinery/power/solar/proc/get_power_supplied()
 	if(stat & BROKEN)
-		return
-	if(!SSsun.sun || !control) //if there's no SSsun.sun or the panel is not linked to a solar control computer, no need to proceed
-		return
-
-	if(powernet)
-		if(powernet == control.powernet)//check if the panel is still connected to the computer
-			if(obscured) //get no light from the SSsun.sun, so don't generate power
-				return
-			var/sgen = GLOB.solar_gen_rate * sunfrac
-			add_avail(sgen)
-			control.gen += sgen
-		else //if we're no longer on the same powernet, remove from control computer
-			unset_control()
+		return 0
+	if(!SSsun.sun || !control)
+		return 0  //if there's no SSsun.sun or the panel is not linked to a solar control computer, no need to proceed
+	if(!powernet || powernet != control.powernet)
+		return 0 // We aren't connected to the controller
+	if(obscured) 
+		return 0 //get no light from the SSsun.sun, so don't generate power
+	return GLOB.solar_gen_rate * sunfrac
 
 /obj/machinery/power/solar/proc/broken()
 	stat |= BROKEN
@@ -159,14 +155,6 @@ GLOBAL_LIST_EMPTY(solars_list)
 				broken()
 	return
 
-
-/obj/machinery/power/solar/fake/New(var/turf/loc, var/glass_type)
-	..(loc, glass_type, 0)
-
-/obj/machinery/power/solar/fake/process()
-	. = PROCESS_KILL
-	return
-
 //trace towards SSsun.sun to see if we're in shadow
 /obj/machinery/power/solar/proc/occlusion()
 
@@ -190,6 +178,11 @@ GLOBAL_LIST_EMPTY(solars_list)
 	obscured = 0		// if hit the edge or stepped 20 times, not obscured
 	update_solar_exposure()
 
+/// Looks nice but doesn't generate power.
+/obj/machinery/power/solar/fake
+
+/obj/machinery/power/solar/fake/get_power_supplied()
+	return 0
 
 //
 // Solar Assembly - For construction of solar arrays.
@@ -271,13 +264,13 @@ GLOBAL_LIST_EMPTY(solars_list)
 	var/id = 0
 	var/cdir = 0
 	var/targetdir = 0		// target angle in manual tracking (since it updates every game minute)
-	var/gen = 0
-	var/lastgen = 0
 	var/track = 0			// 0= off  1=timed  2=auto (tracker)
 	var/trackrate = 600		// 300-900 seconds
 	var/nexttime = 0		// time for a panel to rotate of 1� in manual tracking
 	var/obj/machinery/power/tracker/connected_tracker = null
-	var/list/connected_panels = list()
+	var/needs_panel_check	// Powernet has been updated, need to check if panels are still connected.
+	var/connected_power		// Sum of power supplied by connected panels.
+	VAR_PRIVATE/list/connected_panels = list()
 	var/auto_start = SOLAR_AUTO_START_NO
 
 // Used for mapping in solar arrays which automatically start itself.
@@ -314,22 +307,33 @@ GLOBAL_LIST_EMPTY(solars_list)
 
 // This would use LateInitialize(), however the powernet does not appear to exist during that time.
 /hook/roundstart/proc/auto_start_solars()
-	for(var/a in GLOB.solars_list)
-		var/obj/machinery/power/solar_control/SC = a
+	for(var/obj/machinery/power/solar_control/SC as anything in GLOB.solars_list)
 		SC.auto_start()
 	return TRUE
+
+/obj/machinery/power/solar_control/proc/add_panel(var/obj/machinery/power/solar/P)
+	var/sgen = P.get_power_supplied()
+	connected_power -= connected_panels[P] // Just in case it was already in there
+	connected_panels[P] = sgen
+	connected_power += sgen
+
+/obj/machinery/power/solar_control/proc/remove_panel(var/obj/machinery/power/solar/P)
+	connected_power -= connected_panels[P]
+	connected_panels.Remove(P)
 
 /obj/machinery/power/solar_control/drain_power()
 	return -1
 
 /obj/machinery/power/solar_control/disconnect_from_network()
-	..()
+	. = ..()
 	GLOB.solars_list.Remove(src)
+	needs_panel_check = TRUE
 
 /obj/machinery/power/solar_control/connect_to_network()
 	var/to_return = ..()
 	if(powernet) //if connected and not already in solar_list...
 		GLOB.solars_list |= src //... add it
+		needs_panel_check = TRUE
 	return to_return
 
 //search for unconnected panels and trackers in the computer powernet and connect them
@@ -338,9 +342,8 @@ GLOBAL_LIST_EMPTY(solars_list)
 		for(var/obj/machinery/power/M in powernet.nodes)
 			if(istype(M, /obj/machinery/power/solar))
 				var/obj/machinery/power/solar/S = M
-				if(!S.control) //i.e unconnected
-					S.set_control(src)
-					connected_panels |= S
+				if(!S.control && S.set_control(src)) //i.e unconnected
+					add_panel(S)
 			else if(istype(M, /obj/machinery/power/tracker))
 				if(!connected_tracker) //if there's already a tracker connected to the computer don't add another
 					var/obj/machinery/power/tracker/T = M
@@ -393,7 +396,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 /obj/machinery/power/solar_control/tgui_data()
 	var/data = list()
 
-	data["generated"] = round(lastgen)
+	data["generated"] = round(connected_power)
 	data["generated_ratio"] = data["generated"] / round(max(connected_panels.len, 1) * GLOB.solar_gen_rate)
 
 	data["sun_angle"] = SSsun.sun.angle
@@ -439,9 +442,6 @@ GLOBAL_LIST_EMPTY(solars_list)
 	return
 
 /obj/machinery/power/solar_control/process()
-	lastgen = gen
-	gen = 0
-
 	if(stat & (NOPOWER | BROKEN))
 		return
 
@@ -453,6 +453,13 @@ GLOBAL_LIST_EMPTY(solars_list)
 		if(nexttime <= world.time) //every time we need to increase/decrease the angle by 1�...
 			targetdir = (targetdir + trackrate/abs(trackrate) + 360) % 360 	//... do it
 			nexttime += 36000/abs(trackrate) //reset the counter for the next 1�
+
+	if(needs_panel_check)
+		for(var/obj/machinery/power/solar/S in connected_panels)
+			if (S.powernet != powernet)
+				S.unset_control()
+	if(powernet)
+		add_avail(connected_power)
 
 	updateDialog()
 
@@ -502,17 +509,20 @@ GLOBAL_LIST_EMPTY(solars_list)
 
 //rotates the panel to the passed angle
 /obj/machinery/power/solar_control/proc/set_panels(var/cdir)
+	var/sum = 0
 	for(var/obj/machinery/power/solar/S in connected_panels)
 		S.adir = cdir //instantly rotates the panel
 		S.occlusion()//and
 		S.update_icon() //update it
-
+		var/sgen = S.get_power_supplied()
+		connected_panels[S] = sgen
+		sum += sgen
+	connected_power = sum
 	update_icon()
-
 
 /obj/machinery/power/solar_control/power_change()
-	..()
-	update_icon()
+	if((. = ..()))
+		update_icon()
 
 
 /obj/machinery/power/solar_control/proc/broken()

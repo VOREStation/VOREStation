@@ -238,19 +238,17 @@
 
 /turf/proc/AdjacentTurfs(var/check_blockage = TRUE)
 	. = list()
-	for(var/t in (trange(1,src) - src))
-		var/turf/T = t
+	for(var/turf/T as anything in (trange(1,src) - src))
 		if(check_blockage)
 			if(!T.density)
 				if(!LinkBlocked(src, T) && !TurfBlockedNonWindow(T))
-					. += t
+					. += T
 		else
-			. += t
+			. += T
 
 /turf/proc/CardinalTurfs(var/check_blockage = TRUE)
 	. = list()
-	for(var/ad in AdjacentTurfs(check_blockage))
-		var/turf/T = ad
+	for(var/turf/T as anything in AdjacentTurfs(check_blockage))
 		if(T.x == src.x || T.y == src.y)
 			. += T
 
@@ -396,3 +394,17 @@
 		ChangeTurf(/turf/simulated/floor/airless, preserve_outdoors = TRUE)
 		return TRUE
 	return FALSE
+
+
+// We're about to be the A-side in a turf translation
+/turf/proc/pre_translate_A(var/turf/B)
+	return
+// We're about to be the B-side in a turf translation
+/turf/proc/pre_translate_B(var/turf/A)
+	return
+// We were the the A-side in a turf translation
+/turf/proc/post_translate_A(var/turf/B)
+	return
+// We were the the B-side in a turf translation
+/turf/proc/post_translate_B(var/turf/A)
+	return

@@ -63,10 +63,9 @@
 				SEND_SOUND(M, prey_digest)
 		play_sound = pred_digest
 
-	if(to_update)
-		updateVRPanels()
-
 	if(!LAZYLEN(touchable_mobs))
+		if(to_update)
+			updateVRPanels()
 		if(play_sound)
 			for(var/mob/M in hearers(VORE_SOUND_RANGE, get_turf(owner))) //so we don't fill the whole room with the sound effect
 				if(!M.is_preference_enabled(/datum/client_preference/digestion_noises))
@@ -84,11 +83,11 @@
 
 ///////////////////// Time to actually process mobs /////////////////////
 
-	for(var/target in touchable_mobs)
-		var/mob/living/L = target
+	for(var/mob/living/L as anything in touchable_mobs)
 		if(!istype(L))
+			stack_trace("Touchable mobs had a nonmob: [L]")
 			continue
-		var/list/returns = DM.process_mob(src, target)
+		var/list/returns = DM.process_mob(src, L)
 		if(istype(returns) && returns["to_update"])
 			to_update = TRUE
 		if(istype(returns) && returns["soundToPlay"] && !play_sound)
@@ -121,9 +120,12 @@
 				formatted_message = replacetext(raw_message, "%belly", lowertext(name))
 				formatted_message = replacetext(formatted_message, "%pred", owner)
 				formatted_message = replacetext(formatted_message, "%prey", english_list(contents))
-				formatted_message = replacetext(formatted_message, "%count", contents.len)
 				formatted_message = replacetext(formatted_message, "%countprey", living_count)
+				formatted_message = replacetext(formatted_message, "%count", contents.len)
 				to_chat(M, "<span class='notice'>[formatted_message]</span>")
+	
+	if(to_update)
+		updateVRPanels()
 
 
 /obj/belly/proc/handle_touchable_atoms(list/touchable_atoms)
@@ -243,14 +245,14 @@
 	digest_alert_owner = replacetext(digest_alert_owner, "%pred", owner)
 	digest_alert_owner = replacetext(digest_alert_owner, "%prey", M)
 	digest_alert_owner = replacetext(digest_alert_owner, "%belly", lowertext(name))
-	digest_alert_owner = replacetext(digest_alert_owner, "%count", contents.len)
 	digest_alert_owner = replacetext(digest_alert_owner, "%countprey", living_count)
+	digest_alert_owner = replacetext(digest_alert_owner, "%count", contents.len)
 
 	digest_alert_prey = replacetext(digest_alert_prey, "%pred", owner)
 	digest_alert_prey = replacetext(digest_alert_prey, "%prey", M)
 	digest_alert_prey = replacetext(digest_alert_prey, "%belly", lowertext(name))
-	digest_alert_prey = replacetext(digest_alert_prey, "%count", contents.len)
 	digest_alert_prey = replacetext(digest_alert_prey, "%countprey", living_count)
+	digest_alert_prey = replacetext(digest_alert_prey, "%count", contents.len)
 
 	//Send messages
 	to_chat(owner, "<span class='notice'>[digest_alert_owner]</span>")

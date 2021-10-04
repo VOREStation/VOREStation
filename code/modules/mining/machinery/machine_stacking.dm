@@ -62,10 +62,8 @@
 			var/stack = params["stack"]
 			if(machine.stack_storage[stack] > 0)
 				var/stacktype = machine.stack_paths[stack]
-				var/obj/item/stack/material/S = new stacktype(get_turf(machine.output))
-				S.amount = machine.stack_storage[stack]
+				new stacktype(get_turf(machine.output), machine.stack_storage[stack])
 				machine.stack_storage[stack] = 0
-				S.update_icon()
 			. = TRUE
 
 	add_fingerprint(usr)
@@ -89,11 +87,10 @@
 /obj/machinery/mineral/stacking_machine/New()
 	..()
 
-	for(var/stacktype in (subtypesof(/obj/item/stack/material) - typesof(/obj/item/stack/material/cyborg)))
-		var/obj/item/stack/material/S = stacktype
+	for(var/obj/item/stack/material/S as anything in (subtypesof(/obj/item/stack/material) - typesof(/obj/item/stack/material/cyborg)))
 		var/s_matname = initial(S.default_type)
 		stack_storage[s_matname] = 0
-		stack_paths[s_matname] = stacktype
+		stack_paths[s_matname] = S
 
 	spawn( 5 )
 		for (var/dir in cardinal)
@@ -126,7 +123,7 @@
 				var/obj/item/stack/material/S = O
 				var/matname = S.material.name
 				if(!isnull(stack_storage[matname]))
-					stack_storage[matname] += S.amount
+					stack_storage[matname] += S.get_amount()
 					qdel(S)
 				else
 					O.loc = output.loc
@@ -137,10 +134,8 @@
 	for(var/sheet in stack_storage)
 		if(stack_storage[sheet] >= stack_amt)
 			var/stacktype = stack_paths[sheet]
-			var/obj/item/stack/material/S = new stacktype (get_turf(output))
-			S.amount = stack_amt
+			new stacktype (get_turf(output), stack_amt)
 			stack_storage[sheet] -= stack_amt
-			S.update_icon()
 	
 	if(console)
 		console.updateUsrDialog()

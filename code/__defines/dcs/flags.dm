@@ -42,3 +42,7 @@
 //Ouch my toes!
 #define CALTROP_BYPASS_SHOES 1
 #define CALTROP_IGNORE_WALKERS 2
+
+// Conflict element IDs
+#define CONFLICT_ELEMENT_CRUSHER			"crusher"
+#define CONFLICT_ELEMENT_KA					"kinetic_accelerator"

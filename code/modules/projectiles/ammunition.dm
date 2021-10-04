@@ -226,7 +226,7 @@
 /var/global/list/magazine_icondata_states = list()
 
 /proc/initialize_magazine_icondata(var/obj/item/ammo_magazine/M)
-	var/typestr = "[M.type]"
+	var/typestr = M.type
 	if(!(typestr in magazine_icondata_keys) || !(typestr in magazine_icondata_states))
 		magazine_icondata_cache_add(M)
 
@@ -243,6 +243,6 @@
 			icon_keys += i
 			ammo_states += ammo_state
 
-	magazine_icondata_keys["[M.type]"] = icon_keys
-	magazine_icondata_states["[M.type]"] = ammo_states
+	magazine_icondata_keys[M.type] = icon_keys
+	magazine_icondata_states[M.type] = ammo_states
 

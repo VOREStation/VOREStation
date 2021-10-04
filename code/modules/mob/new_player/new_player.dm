@@ -76,12 +76,20 @@
 		output += "<p>[href(src, list("give_feedback" = 1), "Give Feedback")]</p>"
 
 	if(GLOB.news_data.station_newspaper)
-		output += "<a href='byond://?src=\ref[src];open_station_news=1'>Show [using_map.station_name] News</A>"
+		if(client.prefs.lastlorenews == GLOB.news_data.newsindex)
+			output += "<p><a href='byond://?src=\ref[src];open_station_news=1'>Show [using_map.station_name] News</A></p>"
+		else
+			output += "<p><b><a href='byond://?src=\ref[src];open_station_news=1'>Show [using_map.station_name] News (NEW!)</A></b></p>"
 
 	output += "</div>"
 
-	if(GLOB.news_data.station_newspaper && !client.seen_news)
+	if (client.prefs.lastlorenews == GLOB.news_data.newsindex)
+		client.seen_news = 1
+
+	if(GLOB.news_data.station_newspaper && !client.seen_news && client.is_preference_enabled(/datum/client_preference/show_lore_news))
 		show_latest_news(GLOB.news_data.station_newspaper)
+		client.prefs.lastlorenews = GLOB.news_data.newsindex
+		SScharacter_setup.queue_preferences_save(client.prefs)
 
 	panel = new(src, "Welcome","Welcome", 210, 300, src) // VOREStation Edit
 	panel.set_window_options("can_close=0")

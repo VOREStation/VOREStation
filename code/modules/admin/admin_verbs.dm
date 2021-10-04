@@ -302,7 +302,7 @@
 		to_chat(usr, "<span class='warning'>Looks like you didn't select a mob.</span>")
 		return
 
-	var/list/possible_modifiers = typesof(/datum/modifier) - /datum/modifier
+	var/list/possible_modifiers = subtypesof(/datum/modifier)
 
 	var/new_modifier_type = tgui_input_list(usr, "What modifier should we add to [L]?", "Modifier Type", possible_modifiers)
 	if(!new_modifier_type)

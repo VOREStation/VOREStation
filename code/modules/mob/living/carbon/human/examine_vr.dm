@@ -110,7 +110,7 @@
 		if(1000 to 1399)
 			message = "[t_He] [t_has] a rotund, thick gut. It bulges from their body obscenely, close to sagging under its own weight."
 		if(1400 to 1934) // One person fully digested.
-			message = "<span class='warning'>[t_He] [t_is] sporting a large, round, sagging stomach. It's contains at least their body weight worth of glorping slush.</span>"
+			message = "<span class='warning'>[t_He] [t_is] sporting a large, round, sagging stomach. It contains at least their body weight worth of glorping slush.</span>"
 		if(1935 to 3004) // Two people.
 			message = "<span class='warning'>[t_He] [t_is] engorged with a huge stomach that sags and wobbles as they move. [t_He] must have consumed at least twice their body weight. It looks incredibly soft.</span>"
 		if(3005 to 4074) // Three people.

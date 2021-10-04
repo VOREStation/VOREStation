@@ -16,13 +16,6 @@
 	var/list/enables_planes		//Enables these planes in the wearing mob's plane_holder
 	var/list/plane_slots		//But only if it's equipped into this specific slot
 
-	/*
-		Sprites used when the clothing item is refit. This is done by setting icon_override.
-		For best results, if this is set then sprite_sheets should be null and vice versa, but that is by no means necessary.
-		Ideally, sprite_sheets_refit should be used for "hard" clothing items that can't change shape very well to fit the wearer (e.g. helmets, hardsuits),
-		while sprite_sheets should be used for "flexible" clothing items that do not need to be refitted (e.g. aliens wearing jumpsuits).
-	*/
-	var/list/sprite_sheets_refit = null
 	var/ear_protection = 0
 	var/blood_sprite_state
 
@@ -163,9 +156,6 @@
 			species_restricted = list(target_species)
 
 	//Set icon
-	if (sprite_sheets_refit && (target_species in sprite_sheets_refit))
-		LAZYSET(sprite_sheets, target_species, sprite_sheets_refit[target_species])
-
 	if (sprite_sheets_obj && (target_species in sprite_sheets_obj))
 		icon = sprite_sheets_obj[target_species]
 	else
@@ -211,9 +201,6 @@
 			species_restricted = list(target_species)
 
 	//Set icon
-	if (sprite_sheets_refit && (target_species in sprite_sheets_refit))
-		LAZYSET(sprite_sheets, target_species, sprite_sheets_refit[target_species])
-
 	if (sprite_sheets_obj && (target_species in sprite_sheets_obj))
 		icon = sprite_sheets_obj[target_species]
 	else
@@ -486,7 +473,7 @@
 
 /obj/item/clothing/head/proc/update_flashlight(var/mob/user = null)
 	set_light_on(!light_on)
-	
+
 	if(light_system == STATIC_LIGHT)
 		update_light()
 
@@ -764,17 +751,23 @@
 /obj/item/clothing/suit/equipped(var/mob/user, var/slot)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if((taurized && !istaurtail(H.tail_style)) || (!taurized && istaurtail(H.tail_style)))
-			taurize(user)
+		var/taurtail = istaurtail(H.tail_style)
+		if((taurized && !taurtail) || (!taurized && taurtail))
+			taurize(user, taurtail)
 
 	return ..()
 
-/obj/item/clothing/suit/proc/taurize(var/mob/living/carbon/human/Taur)
-	if(istaurtail(Taur.tail_style))
+/obj/item/clothing/suit/proc/taurize(var/mob/living/carbon/human/Taur, has_taur_tail = FALSE)
+	if(has_taur_tail)
 		var/datum/sprite_accessory/tail/taur/taurtail = Taur.tail_style
 		if(taurtail.suit_sprites && (get_worn_icon_state(slot_wear_suit_str) in cached_icon_states(taurtail.suit_sprites)))
 			icon_override = taurtail.suit_sprites
 			taurized = TRUE
+	// means that if a taur puts on an already taurized suit without a taur sprite
+	// for their taur type, but the previous taur type had a sprite, it stays
+	// taurized and they end up with that taur style which is funny
+	else
+		taurized = FALSE
 
 	if(!taurized)
 		icon_override = initial(icon_override)
@@ -1055,3 +1048,10 @@
 /obj/item/clothing/under/rank/New()
 	sensor_mode = pick(0,1,2,3)
 	..()
+
+//Vorestation edit - eject mobs from clothing before deletion
+/obj/item/clothing/Destroy()
+	for(var/mob/living/M in contents)
+		M.forceMove(get_turf(src))
+	return ..()
+//Vorestation edit end

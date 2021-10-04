@@ -2,7 +2,7 @@
 
 //Ling power's evolution menu entry datum should be contained alongside the mob proc for the actual power, in their own file.
 
-var/list/powers = typesof(/datum/power/changeling) - /datum/power/changeling	//needed for the badmin verb for now
+var/list/powers = subtypesof(/datum/power/changeling) //needed for the badmin verb for now
 var/list/datum/power/changeling/powerinstances = list()
 
 /datum/power			//Could be used by other antags too

@@ -35,7 +35,9 @@
 	new /datum/random_map/automata/cave_system/no_cracks(null, 3, 3, Z_LEVEL_UNDERDARK, world.maxx - 4, world.maxy - 4) // Create the mining Z-level.
 	new /datum/random_map/noise/ore(null, 1, 1, Z_LEVEL_UNDERDARK, 64, 64)         // Create the mining ore distribution map.
 
-
+#include "../../submaps/surface_submaps/plains/plains.dm"
+#include "../../submaps/surface_submaps/plains/plains_areas.dm"
+#include "../../submaps/surface_submaps/plains/plains_turfs.dm"
 /datum/map_template/tether_lateload/tether_plains
 	name = "Tether - Plains"
 	desc = "The Virgo 3B away mission."
@@ -57,7 +59,7 @@
 
 #include "../../submaps/admin_use_vr/ert.dm"
 #include "../../submaps/admin_use_vr/mercship.dm"
-#include "../../submaps/admin_use_vr/guttersite.dm"
+#include "../../submaps/admin_use_vr/salamander_trader.dm"
 
 /datum/map_template/admin_use/ert
 	name = "Special Area - ERT"
@@ -72,7 +74,7 @@
 /datum/map_template/admin_use/salamander_trader
 	name = "Special Area - Salamander Trader"
 	desc = "Modest trader ship."
-	mappath = 'maps/offmap_vr/om_ships/salamander.dmm'
+	mappath = 'maps/submaps/admin_use_vr/salamander_trader.dmm'
 
 /datum/map_template/admin_use/mercenary
 	name = "Special Area - Merc Ship"
@@ -98,11 +100,6 @@
 	name = "Special Area - Ninja Dojo"
 	desc = "Sneaky"
 	mappath = 'maps/submaps/admin_use_vr/dojo.dmm'
-
-/datum/map_template/admin_use/guttersite
-	name = "Special Area - Guttersite"
-	desc = "A space for bad guys to hang out"
-	mappath = 'maps/submaps/admin_use_vr/guttersite.dmm'
 
 //////////////////////////////////////////////////////////////////////////////
 //Rogue Mines Stuff

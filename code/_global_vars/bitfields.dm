@@ -14,6 +14,8 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"RESET_COLOR"		= RESET_COLOR,
 		"RESET_TRANSFORM"	= RESET_TRANSFORM,
 		"TILE_BOUND"		= TILE_BOUND,
+		"PASS_MOUSE"		= PASS_MOUSE,
+		"TILE_MOVER"		= TILE_MOVER
 	),
 	"vis_flags" = list(
 		"VIS_HIDE"					= VIS_HIDE,

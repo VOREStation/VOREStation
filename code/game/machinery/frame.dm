@@ -5,7 +5,7 @@
 	//Create global frame type list if it hasn't been made already.
 	construction_frame_wall = list()
 	construction_frame_floor = list()
-	for(var/R in typesof(/datum/frame/frame_types) - /datum/frame/frame_types)
+	for(var/R in subtypesof(/datum/frame/frame_types))
 		var/datum/frame/frame_types/type = new R
 		if(type.frame_style == FRAME_STYLE_WALL)
 			construction_frame_wall += type
@@ -272,9 +272,8 @@
 	for(var/A in circuit.req_components)
 		req_components[A] = circuit.req_components[A]
 	req_component_names = circuit.req_components.Copy()
-	for(var/A in req_components)
-		var/obj/ct = A
-		req_component_names[A] = initial(ct.name)
+	for(var/obj/ct as anything in req_components)
+		req_component_names[ct] = initial(ct.name)
 
 /obj/structure/frame/New(var/loc, var/dir, var/building = 0, var/datum/frame/frame_types/type, mob/user as mob)
 	..()
@@ -515,9 +514,8 @@
 						if(istype(P, /obj/item/stack/cable_coil))
 							var/obj/item/stack/cable_coil/CP = P
 							if(CP.get_amount() > 1)
-								var/camt = min(CP.amount, req_components[I]) // amount of cable to take, idealy amount required, but limited by amount provided
-								var/obj/item/stack/cable_coil/CC = new /obj/item/stack/cable_coil(src)
-								CC.amount = camt
+								var/camt = min(CP.get_amount(), req_components[I]) // amount of cable to take, idealy amount required, but limited by amount provided
+								var/obj/item/stack/cable_coil/CC = new /obj/item/stack/cable_coil(src, camt)
 								CC.update_icon()
 								CP.use(camt)
 								components += CC
@@ -588,9 +586,8 @@
 						if(istype(P, /obj/item/stack))
 							var/obj/item/stack/ST = P
 							if(ST.get_amount() > 1)
-								var/camt = min(ST.amount, req_components[I]) // amount of stack to take, idealy amount required, but limited by amount provided
-								var/obj/item/stack/NS = new ST.stacktype(src)
-								NS.amount = camt
+								var/camt = min(ST.get_amount(), req_components[I]) // amount of stack to take, idealy amount required, but limited by amount provided
+								var/obj/item/stack/NS = new ST.stacktype(src, camt)
 								NS.update_icon()
 								ST.use(camt)
 								components += NS

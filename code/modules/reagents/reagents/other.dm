@@ -306,6 +306,10 @@
 /datum/reagent/supermatter
 	name = "Supermatter"
 	id = "supermatter"
+	color = "#fffd6b"
+	reagent_state = SOLID
+	affects_dead = TRUE
+	affects_robots = TRUE
 	description = "The immense power of a supermatter crystal, in liquid form. You're not entirely sure how that's possible, but it's probably best handled with care."
 	taste_description = "taffy" // 0. The supermatter is tasty, tasty taffy.
 
