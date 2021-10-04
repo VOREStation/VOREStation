@@ -91,7 +91,7 @@ var/list/gamemode_cache = list()
 	var/static/cult_ghostwriter = 1               //Allows ghosts to write in blood in cult rounds...
 	var/static/cult_ghostwriter_req_cultists = 10 //...so long as this many cultists are active.
 
-	var/static/character_slots = 10				// The number of available character slots
+	var/static/character_slots = 16				// The number of available character slots
 	var/static/loadout_slots = 3					// The number of loadout slots per character
 
 	var/static/max_maint_drones = 5				//This many drones can spawn,
@@ -278,8 +278,8 @@ var/list/gamemode_cache = list()
 	var/static/sqlite_feedback_cooldown = 0 // How long one must wait, in days, to submit another feedback form. Used to help prevent spam, especially with privacy active. 0 = No limit.
 	var/static/sqlite_feedback_min_age = 0 // Used to block new people from giving feedback. This metric is very bad but it can help slow down spammers.
 
-	var/static/defib_timer = 10 // How long until someone can't be defibbed anymore, in minutes.
-	var/static/defib_braindamage_timer = 2 // How long until someone will get brain damage when defibbed, in minutes. The closer to the end of the above timer, the more brain damage they get.
+	var/static/defib_timer = 0 // How long until someone can't be defibbed anymore, in minutes.
+	var/static/defib_braindamage_timer = 20 // How long until someone will get brain damage when defibbed, in minutes. The closer to the end of the above timer, the more brain damage they get.
 
 	// disables the annoying "You have already logged in this round, disconnect or be banned" popup for multikeying, because it annoys the shit out of me when testing.
 	var/static/disable_cid_warn_popup = FALSE
