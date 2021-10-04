@@ -181,5 +181,10 @@ TheSilvertail - Protean
 TheSilvertail - Vox
 TheSilvertail - Xenochimera
 TheSilvertail - Diona
+CrimsonQuiver - Shadekin
+CrimsonQuiver - Protean
+CrimsonQuiver - Vox
+CrimsonQuiver - Xenochimera
+CrimsonQuiver - Diona
 
 
