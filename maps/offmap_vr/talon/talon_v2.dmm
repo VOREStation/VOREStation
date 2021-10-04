@@ -2562,7 +2562,7 @@
 /obj/machinery/camera/network/talon{
 	dir = 1
 	},
-/obj/random/multiple/corp_crate/talon_cargo,
+/obj/structure/vehiclecage/quadbike,
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/maintenance/wing_starboard)
 "hc" = (
@@ -9564,7 +9564,7 @@
 /obj/machinery/camera/network/talon{
 	dir = 1
 	},
-/obj/random/multiple/corp_crate/talon_cargo,
+/obj/structure/vehiclecage/quadbike,
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/maintenance/wing_port)
 "FO" = (
