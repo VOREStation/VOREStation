@@ -401,6 +401,7 @@
 	desc = "An orange beret denoting employment with Xion Manufacturing. For personnel that are more inclined towards style than safety."
 	icon_state = "beret_orange"
 
+<<<<<<< HEAD
 //Stylish Hats
 
 /obj/item/clothing/head/bowler
@@ -525,3 +526,17 @@
 	name = "small cowboy hat"
 	desc = "For the tiniest of cowboys."
 	icon_state = "cowboy_small"
+=======
+/obj/item/clothing/head/fish
+	name = "fish skull"
+	desc = "You... you're not actually going to wear that, right?"
+	icon_state = "fishskull"
+	flags_inv = HIDEEARS|BLOCKHAIR
+
+/obj/item/clothing/head/marine
+	name = "marine helmet"
+	desc = "A marine helmet prop from the popular game 'Ruin'."
+	icon_state = "marine"
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHAIR
+	body_parts_covered = HEAD|FACE|EYES
+>>>>>>> 12b1a29efec... Donk-Soft! (#8305)

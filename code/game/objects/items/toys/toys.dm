@@ -4,7 +4,6 @@
  *		Fake telebeacon
  *		Fake singularity
  *		Toy gun
- *		Toy crossbow
  *		Toy swords
  *		Toy bosun's whistle
  *		Snap pops
@@ -16,7 +15,7 @@
  *		Plushies
  *		Toy cult sword
  *		Bouquets
- 		Stick Horse
+ *		Stick Horse
  */
 
 
@@ -146,6 +145,7 @@
 	icon_state = "singularity_s1"
 
 /*
+<<<<<<< HEAD
  * Toy crossbow
  */
 
@@ -267,6 +267,8 @@
 	density = FALSE
 
 /*
+=======
+>>>>>>> 12b1a29efec... Donk-Soft! (#8305)
  * Toy swords
  */
 /obj/item/toy/sword

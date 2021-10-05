@@ -65,6 +65,32 @@
 
 	return 0
 
+/* foam dart projectiles */
+
+/obj/item/projectile/bullet/foam_dart
+	name = "foam dart"
+	desc = "I hope you're wearing eye protection."
+	damage = 0 // It's a damn toy.
+	damage_type = OXY
+	nodamage = TRUE
+	icon = 'icons/obj/gun_toy.dmi'
+	icon_state = "foamdart_proj"
+	range = 15
+	impact_effect_type = null
+	fire_sound = 'sound/items/syringeproj.ogg'
+
+/obj/item/projectile/bullet/foam_dart/on_impact(var/atom/A)
+	. = ..()
+	var/turf/T = get_turf(loc)
+	if(istype(T))
+		new /obj/item/ammo_casing/afoam_dart(get_turf(loc))
+
+/obj/item/projectile/bullet/foam_dart/on_range(var/atom/A)
+	. = ..()
+	var/turf/T = get_turf(loc)
+	if(istype(T))
+		new /obj/item/ammo_casing/afoam_dart(get_turf(loc))
+
 /* short-casing projectiles, like the kind used in pistols or SMGs */
 
 /obj/item/projectile/bullet/pistol // 9mm pistols and most SMGs. Sacrifice power for capacity.
