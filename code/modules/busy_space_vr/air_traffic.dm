@@ -71,7 +71,7 @@ var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
 	var/datum/lore/organization/secondary = loremaster.organizations[two] //repurposed for new fun stuff
 
 	//Let's get some mission parameters, pick our first ship
-	var/name = source.name					//get the name - not needed any more
+	var/name = source.name					//get the name
 	var/owner = source.short_name				//Use the short name
 	var/prefix = pick(source.ship_prefixes)			//Pick a random prefix
 	var/mission = source.ship_prefixes[prefix]		//The value of the prefix is the mission type that prefix does
