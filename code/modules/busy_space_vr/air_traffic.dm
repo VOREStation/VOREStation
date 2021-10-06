@@ -99,7 +99,7 @@ var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
 	var/requests = list(
 				"special flight rules" = list("authorizing special flight rules", "denying special flight rules, not allowed for your traffic class"),
 				"current solar weather info" = list("sending you the relevant information via tightbeam", "your request has been queued, stand by"),
-				"aerospace priority" = list("affirmative, aerospace priority is yours", "negative, another vessel has priority right now"),
+				"sector aerospace priority" = list("affirmative, sector aerospace priority is yours", "negative, another vessel in your sector has priority right now"),
 				"system traffic info" = list("sending you current traffic info", "request queued, please hold"),
 				"refueling information" = list("sending refueling information now", "depots currently experiencing fuel shortages, advise you move on"),
 				"a current system time sync" = list("sending time sync ping to you now", "your ship isn't compatible with our time sync, set time manually"),
@@ -287,7 +287,7 @@ var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
 		if("dockingrequestdenied")
 			var/reason = pick("we don't have any landing pads large enough for your vessel","we don't have the necessary facilities for your vessel type or class")
 			var/disappointed = pick("That's unfortunate. [combined_first_name], out.","Damn shame. We'll just have to keep moving. [combined_first_name], out.","[combined_first_name], out.")
-			msg("[callname], this is [combined_first_name], [pick("stopping by","passing through")] on our way to [destname], requesting permission to [landing_move].","[prefix] [shipname]")
+			msg("[callname], this is [combined_first_name], [pick("stopping by","passing through")] on our way to [destname], requesting permission to [landing_short].","[prefix] [shipname]")
 			sleep(5 SECONDS)
 			msg("[combined_first_name], this is [using_map.dock_name] Control. Request denied, [reason].")
 			sleep(5 SECONDS)
