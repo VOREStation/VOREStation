@@ -6,33 +6,33 @@
 	icon_living = "maid"
 	icon_dead = "maid_dead"
 	vore_icons = "maid"
-	icon_gib = "syndicate_gib"
 	icon_rest = "maid_sleep"
-	has_hands = TRUE
 	faction = "neutral"
-	universal_understand = TRUE
-	movement_cooldown = 2.1
-	mob_class = MOB_CLASS_ABERRATION
-	response_help = "pokes"
-	response_disarm = "shoves"
-	response_harm = "hits"
-	pass_flags = PASSTABLE
-
 	maxHealth = 350
 	health = 350
-
+	has_hands = TRUE
+	pass_flags = PASSTABLE
+	movement_cooldown = 2
+	universal_understand = TRUE
+	universal_speak = TRUE
+	mob_class = MOB_CLASS_ABERRATION
+	
+	response_help = "pets"
+	response_disarm = "rudely nudges"
+	response_harm = "smacks"
 	harm_intent_damage = 5
 	melee_damage_lower = 5
 	melee_damage_upper = 25
 	attack_sharp = TRUE
 	attack_edge = TRUE
-
+	
 	attacktext = list("slashed")
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 
+	meat_amount = 4
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/xenomeat
 
-/mob/living/simple_mob/animal/space/alien/maid/Initialize()
+/mob/living/simple_mob/animal/space/alien/maid/Initialize()  
 	..()
 
 	verbs += /mob/living/proc/ventcrawl
@@ -43,7 +43,33 @@
 	verbs += /mob/living/simple_mob/proc/leap
 	verbs += /mob/living/proc/eat_trash
 
-	can_enter_vent_with += /obj/item/device/radio
+	can_enter_vent_with = list(
+		/obj/item/weapon/holder,
+		/obj/machinery/camera,
+		/obj/belly,
+		/obj/screen,
+		/atom/movable/emissive_blocker,
+		/obj/item/weapon/storage,
+		/obj/item/weapon/material,
+		/obj/item/weapon/melee,
+		/obj/item/stack/,
+		/obj/item/weapon/tool,
+		/obj/item/weapon/reagent_containers/food,
+		/obj/item/toy,
+		/obj/item/weapon/card,
+		/obj/item/device/radio,
+		/obj/item/device/lightreplacer,
+		/obj/item/weapon/soap,
+		/obj/item/weapon/mop,
+		/obj/item/weapon/reagent_containers/glass/bucket,
+		/obj/item/weapon/reagent_containers/glass/rag,
+		/obj/item/device/perfect_tele_beacon,
+		/obj/item/device/camera,
+		/obj/item/weapon/photo,
+		/obj/item/device/camera_film,
+		/obj/item/device/taperecorder,
+		/obj/item/device/tape
+		)
 
 	var/obj/item/device/radio/headset/mob_headset/R = new
 	R.forceMove(src)
