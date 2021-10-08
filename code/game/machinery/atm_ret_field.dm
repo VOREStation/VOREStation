@@ -88,20 +88,41 @@
 	anchored = TRUE
 	density = FALSE
 	opacity = 0
-	plane = TURF_PLANE
+	plane = MOB_PLANE
 	layer = ABOVE_MOB_LAYER
+	//mouse_opacity = 0
 	can_atmos_pass = ATMOS_PASS_NO
+	var/basestate = "arfg_field"
 
 	light_range = 3
 	light_power = 1
 	light_color = "#FFFFFF"
 	light_on = TRUE
 
+/obj/structure/atmospheric_retention_field/update_icon()
+	var/list/dirs = list()
+	for(var/obj/structure/atmospheric_retention_field/F in orange(src,1))
+		dirs += get_dir(src, F)
+
+	var/list/connections = dirs_to_corner_states(dirs)
+
+	icon_state = ""
+	for(var/i = 1 to 4)
+		var/image/I = image(icon, "[basestate][connections[i]]", dir = 1<<(i-1))
+		add_overlay(I)
+	
+	return
+
 /obj/structure/atmospheric_retention_field/Initialize()
 	. = ..()	
 	update_nearby_tiles() //Force ZAS update
+	update_connections()
+	update_icon()
 
 /obj/structure/atmospheric_retention_field/Destroy()
+	for(var/obj/structure/atmospheric_retention_field/W in orange(1, src.loc))
+		W.update_connections()
+		W.update_icon()
 	update_nearby_tiles() //Force ZAS update
 	. = ..()
 
