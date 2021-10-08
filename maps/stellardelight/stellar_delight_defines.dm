@@ -2,16 +2,17 @@
 #define Z_LEVEL_SHIP_LOW					1
 #define Z_LEVEL_SHIP_MID					2
 #define Z_LEVEL_SHIP_HIGH					3
-#define Z_LEVEL_MISC						4
-#define Z_LEVEL_BEACH						5
-#define Z_LEVEL_BEACH_CAVE					6
-#define Z_LEVEL_AEROSTAT					7
-#define Z_LEVEL_AEROSTAT_SURFACE			8
-#define Z_LEVEL_DEBRISFIELD					9
-#define Z_LEVEL_FUELDEPOT					10
-#define Z_LEVEL_OVERMAP						11
-#define Z_LEVEL_OFFMAP1						12
-#define Z_LEVEL_GATEWAY						13
+#define Z_LEVEL_CENTCOM						4
+#define Z_LEVEL_MISC						5
+#define Z_LEVEL_BEACH						6
+#define Z_LEVEL_BEACH_CAVE					7
+#define Z_LEVEL_AEROSTAT					8
+#define Z_LEVEL_AEROSTAT_SURFACE			9
+#define Z_LEVEL_DEBRISFIELD					10
+#define Z_LEVEL_FUELDEPOT					11
+#define Z_LEVEL_OVERMAP						12
+#define Z_LEVEL_OFFMAP1						13
+#define Z_LEVEL_GATEWAY						14
 
 //Camera networks
 #define NETWORK_HALLS "Halls"
@@ -37,8 +38,8 @@
 
 	use_overmap = TRUE
 	overmap_z = Z_LEVEL_OVERMAP
-	overmap_size = 140
-	overmap_event_areas = 100
+	overmap_size = 99
+	overmap_event_areas = 200
 	usable_email_tlds = list("virgo.nt")
 
 	zlevel_datum_type = /datum/map_z_level/stellar_delight
@@ -63,15 +64,15 @@
 	company_short = "NT"
 	starsys_name  = "Virgo-Erigone"
 
-	shuttle_docked_message = "The scheduled Orange Line tram to the %dock_name% has arrived. It will depart in approximately %ETD%."
-	shuttle_leaving_dock = "The Orange Line tram has left the station. Estimate %ETA% until the tram arrives at %dock_name%."
-	shuttle_called_message = "A scheduled crew transfer to the %dock_name% is occuring. The tram will be arriving shortly. Those departing should proceed to the Orange Line tram station within %ETA%."
+	shuttle_docked_message = "The scheduled shuttle to the %dock_name% has arrived. It will depart in approximately %ETD%."
+	shuttle_leaving_dock = "The shuttle has left the station. Estimate %ETA% until arrival at %dock_name%."
+	shuttle_called_message = "A scheduled crew transfer to the %dock_name% is occuring. The shuttle will be arriving shortly. Those departing should proceed to deck three, aft within %ETA%."
 	shuttle_recall_message = "The scheduled crew transfer has been cancelled."
 	shuttle_name = "Evacuation Shuttle"
-	emergency_shuttle_docked_message = "The evacuation tram has arrived at the tram station. You have approximately %ETD% to board the tram."
-	emergency_shuttle_leaving_dock = "The emergency tram has left the station. Estimate %ETA% until the tram arrives at %dock_name%."
-	emergency_shuttle_called_message = "An emergency evacuation has begun, and an off-schedule tram has been called. It will arrive at the tram station in approximately %ETA%."
-	emergency_shuttle_recall_message = "The evacuation tram has been recalled."
+	emergency_shuttle_docked_message = "The evacuation shuttle has arrived. You have approximately %ETD% to board the shuttle."
+	emergency_shuttle_leaving_dock = "The emergency shuttle has departed. Estimate %ETA% until arrival at %dock_name%."
+	emergency_shuttle_called_message = "An emergency evacuation has begun, and an off-schedule shuttle has been called. It will arrive at deck three, aft in approximately %ETA%."
+	emergency_shuttle_recall_message = "The evacuation shuttle has been recalled."
 
 	station_networks = list(
 							NETWORK_CARGO,
@@ -123,7 +124,8 @@
 
 
 	lateload_z_levels = list(
-		list("Ship - Misc"), //Stock Tether lateload maps
+		list("Ship - Central Command"),
+		list("Ship - Misc"), //Shuttle transit zones, holodeck templates, etc
 		list("Desert Planet - Z1 Beach","Desert Planet - Z2 Cave"),
 		list("Remmi Aerostat - Z1 Aerostat","Remmi Aerostat - Z2 Surface"),
 		list("Debris Field - Z1 Space"),
@@ -197,8 +199,8 @@
 		Z_LEVEL_BEACH
 	)
 
-// Overmap represetation of tether
-/obj/effect/overmap/visitable/visitable/stellar_delight
+// Overmap represetation of ship
+/obj/effect/overmap/visitable/stellar_delight
 	name = "Stellar Delight"
 	desc = "It's a ship!"
 	scanner_desc = @{"[i]Registration[/i]: NSB Adephagia
@@ -250,6 +252,36 @@
 #define SHIP_HOLOMAP_MARGIN_X ((HOLOMAP_ICON_SIZE - (2*TETHER_MAP_SIZE) - TETHER_HOLOMAP_CENTER_GUTTER) / 2) // 80
 #define SHIP_HOLOMAP_MARGIN_Y ((HOLOMAP_ICON_SIZE - (2*TETHER_MAP_SIZE)) / 2) // 30
 
+/obj/effect/landmark/map_data/stellar_delight
+    height = 3
+
+/obj/effect/overmap/visitable/ship/stellar_delight
+	name = "NRV Stellar Delight"
+	icon = 'icons/obj/overmap.dmi'
+	icon_state = "serb_destroyer_g"
+	desc = "Spacefaring vessel. Friendly IFF detected."
+	scanner_desc = @{"[i]Registration[/i]: NRV Stellar Delight
+[i]Class[/i]: Nanotrasen Research Frigate
+[i]Transponder[/i]: Transmitting (CIV), non-hostile"
+[b]Notice[/b]: A research vessel registered to Nanotrasen."}
+	vessel_mass = 20000
+	vessel_size = SHIP_SIZE_LARGE
+	initial_generic_waypoints = list()
+	initial_restricted_waypoints = list("Exploration Shuttle" = list("sd_explo"), "Mining Shuttle" = list("sd_mining"))
+	fore_dir = NORTH
+
+	skybox_icon = 'stelardelightskybox.dmi'
+	skybox_icon_state = "skybox"
+	skybox_pixel_x = 270
+	skybox_pixel_y = 60
+
+/obj/effect/overmap/visitable/ship/stellar_delight/build_skybox_representation()
+	..()
+	if(!cached_skybox_image)
+		return
+	cached_skybox_image.add_overlay("glow")
+
+
 // We have a bunch of stuff common to the station z levels
 /datum/map_z_level/stellar_delight
 	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_XENOARCH_EXEMPT|MAP_LEVEL_PERSIST
@@ -282,6 +314,18 @@
 
 	new associated_map_datum(using_map, z)
 
+/datum/map_template/ship_lateload/ship_centcom
+	name = "Ship - Central Command"
+	desc = "Central Command lives here!"
+	mappath = 'ship_centcom.dmm'
+
+	associated_map_datum = /datum/map_z_level/ship_lateload/ship_centcom
+
+/datum/map_z_level/ship_lateload/ship_centcom
+	name = "Centcom"
+	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_SEALED|MAP_LEVEL_CONTACT|MAP_LEVEL_XENOARCH_EXEMPT
+
+
 /datum/map_template/ship_lateload/ship_misc
 	name = "Ship - Misc"
 	desc = "Misc areas, like some transit areas, holodecks, merc area."
@@ -303,6 +347,90 @@
 /datum/map_z_level/ship_lateload/overmap
 	name = "Overmap"
 	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_SEALED|MAP_LEVEL_CONTACT|MAP_LEVEL_XENOARCH_EXEMPT
+
+
+////////////////SHUTTLE TIME///////////////////
+
+//////////////////////////////////////////////////////////////
+// Escape shuttle and pods
+/datum/shuttle/autodock/ferry/emergency/escape
+	name = "Escape"
+	location = FERRY_LOCATION_OFFSITE
+	shuttle_area = /area/shuttle/escape
+	warmup_time = 10
+	landmark_offsite = "escape_cc"
+	landmark_station = "escape_station"
+	landmark_transition = "escape_transit"
+	move_time = SHUTTLE_TRANSIT_DURATION_RETURN
+	move_direction = SOUTH
+	docking_controller_tag = "escape_shuttle"
+
+//////////////////////////////////////////////////////////////
+// Supply shuttle
+/datum/shuttle/autodock/ferry/supply/cargo
+	name = "Supply"
+	location = FERRY_LOCATION_OFFSITE
+	shuttle_area = /area/shuttle/supply
+	warmup_time = 10
+	landmark_offsite = "supply_cc"
+	landmark_station = "supply_station"
+	docking_controller_tag = "supply_shuttle"
+	flags = SHUTTLE_FLAGS_PROCESS|SHUTTLE_FLAGS_SUPPLY
+	move_direction = WEST
+
+/////EXPLORATION SHUTTLE
+// The shuttle's 'shuttle' computer
+/obj/machinery/computer/shuttle_control/explore/stellardelight/exploration
+	name = "boat control console"
+	shuttle_tag = "Exploration Shuttle"
+	req_one_access = null
+
+// A shuttle lateloader landmark
+/obj/effect/shuttle_landmark/shuttle_initializer/exploration
+	name = "Exploration Shuttle Landing Pad"
+	base_area = /area/stellardelight/deck1/shuttlebay
+	base_turf = /turf/simulated/floor/reinforced
+	landmark_tag = "sd_explo"
+	docking_controller = "explodocker_bay"
+	shuttle_type = /datum/shuttle/autodock/overmap/exboat
+
+// The 'shuttle'
+/datum/shuttle/autodock/overmap/exboat
+	name = "Exploration Shuttle"
+	current_location = "sd_explo"
+	docking_controller_tag = "explodocker"
+	shuttle_area = /area/stellardelight/deck1/exploshuttle
+	fuel_consumption = 0
+	defer_initialisation = TRUE
+	range = 1
+
+/////MINING SHUTTLE
+// The shuttle's 'shuttle' computer
+/obj/machinery/computer/shuttle_control/explore/stellardelight/mining
+	name = "boat control console"
+	shuttle_tag = "Mining Shuttle"
+	req_one_access = null
+
+// A shuttle lateloader landmark
+/obj/effect/shuttle_landmark/shuttle_initializer/mining
+	name = "Mining Shuttle Landing Pad"
+	base_area = /area/stellardelight/deck1/shuttlebay
+	base_turf = /turf/simulated/floor/reinforced
+	landmark_tag = "sd_mining"
+	docking_controller = "miningdocker_bay"
+	shuttle_type = /datum/shuttle/autodock/overmap/mineboat
+
+// The 'shuttle'
+/datum/shuttle/autodock/overmap/mineboat
+	name = "Mining Shuttle"
+	current_location = "sd_mining"
+	docking_controller_tag = "miningdocker"
+	shuttle_area = /area/stellardelight/deck1/miningshuttle
+	fuel_consumption = 0
+	defer_initialisation = TRUE
+	range = 1
+
+
 
 ///////////////////////////////////////////////////////////
 /////Misc stuff from the tether that's likely to get used in one way or another!/////`
@@ -394,3 +522,64 @@ var/global/list/latejoin_tram   = list()
 
 /turf/unsimulated/mineral/virgo3b
 	blocks_air = TRUE
+
+/area/tether/surfacebase/tram
+	name = "\improper Tram Station"
+	icon_state = "dk_yellow"
+
+/turf/simulated/floor/maglev
+	name = "maglev track"
+	desc = "Magnetic levitation tram tracks. Caution! Electrified!"
+	icon = 'icons/turf/flooring/maglevs.dmi'
+	icon_state = "maglevup"
+
+	var/area/shock_area = /area/tether/surfacebase/tram
+
+/turf/simulated/floor/maglev/Initialize()
+	. = ..()
+	shock_area = locate(shock_area)
+
+// Walking on maglev tracks will shock you! Horray!
+/turf/simulated/floor/maglev/Entered(var/atom/movable/AM, var/atom/old_loc)
+	if(isliving(AM) && !(AM.is_incorporeal()) && prob(50))
+		track_zap(AM)
+/turf/simulated/floor/maglev/attack_hand(var/mob/user)
+	if(prob(75))
+		track_zap(user)
+/turf/simulated/floor/maglev/proc/track_zap(var/mob/living/user)
+	if (!istype(user)) return
+	if (electrocute_mob(user, shock_area, src))
+		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+		s.set_up(5, 1, src)
+		s.start()
+
+/turf/unsimulated/floor/steel
+	icon = 'icons/turf/flooring/tiles_vr.dmi'
+	icon_state = "steel"
+
+// Some turfs to make floors look better in centcom tram station.
+
+/turf/unsimulated/floor/techfloor_grid
+	name = "floor"
+	icon = 'icons/turf/flooring/techfloor.dmi'
+	icon_state = "techfloor_grid"
+
+/turf/unsimulated/floor/maglev
+	name = "maglev track"
+	desc = "Magnetic levitation tram tracks. Caution! Electrified!"
+	icon = 'icons/turf/flooring/maglevs.dmi'
+	icon_state = "maglevup"
+
+/turf/unsimulated/wall/transit
+	icon = 'icons/turf/transit_vr.dmi'
+
+/turf/unsimulated/floor/transit
+	icon = 'icons/turf/transit_vr.dmi'
+
+/obj/effect/floor_decal/transit/orange
+	icon = 'icons/turf/transit_vr.dmi'
+	icon_state = "transit_techfloororange_edges"
+
+/obj/effect/transit/light
+	icon = 'icons/turf/transit_128.dmi'
+	icon_state = "tube1-2"

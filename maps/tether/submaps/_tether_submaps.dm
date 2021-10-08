@@ -3,6 +3,18 @@
 
 //////////////////////////////////////////////////////////////////////////////
 /// Static Load
+
+/datum/map_template/tether_lateload/tether_centcom
+	name = "Tether - Centcom"
+	desc = "Central Command lives here!"
+	mappath = 'tether_centcom.dmm'
+
+	associated_map_datum = /datum/map_z_level/tether_lateload/centcom
+
+/datum/map_z_level/tether_lateload/centcom
+	name = "Centcom"
+	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_SEALED|MAP_LEVEL_CONTACT|MAP_LEVEL_XENOARCH_EXEMPT
+
 /datum/map_template/tether_lateload/tether_misc
 	name = "Tether - Misc"
 	desc = "Misc areas, like some transit areas, holodecks, merc area."
