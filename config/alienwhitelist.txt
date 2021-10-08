@@ -186,5 +186,9 @@ CrimsonQuiver - Protean
 CrimsonQuiver - Vox
 CrimsonQuiver - Xenochimera
 CrimsonQuiver - Diona
-
+Aroliacue - Shadekin
+Aroliacue - Protean
+Aroliacue - Vox
+Aroliacue - Xenochimera
+Aroliacue - Diona
 
