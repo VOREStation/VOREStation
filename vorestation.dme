@@ -805,6 +805,7 @@
 #include "code\game\machinery\ai_slipper.dm"
 #include "code\game\machinery\air_alarm.dm"
 #include "code\game\machinery\airconditioner_vr.dm"
+#include "code\game\machinery\atm_ret_field.dm"
 #include "code\game\machinery\atmo_control.dm"
 #include "code\game\machinery\autolathe.dm"
 #include "code\game\machinery\Beacon.dm"
