@@ -69,6 +69,20 @@
 			disable_field()
 		update_icon()
 		return
+	if(stat & BROKEN && istype(W,/obj/item/weapon/weldingtool))
+		if(!src) return
+		var/obj/item/weapon/weldingtool/WT = W
+		if(!WT.isOn()) return
+		if(WT.get_fuel() < 5) // uses up 5 fuel.
+			to_chat(user, "<span class='warning'>You need more fuel to complete this task.</span>")
+			return
+		user.visible_message("[user] starts to disassemble the broken-down field generator.", "You start to disassemble the broken-down field generator.")
+		playsound(src, WT.usesound, 50, 1)
+		if(do_after(user,15 * W.toolspeed))
+			if(!src || !user || !WT.remove_fuel(5, user)) return
+			to_chat(user, "<span class='notice'>You fully disassemble the broken-down field generator. There were no salvageable parts.</span>")
+			qdel(src)
+		return
 
 /obj/machinery/atmospheric_field_generator/perma/Initialize()
 	generate_field()
@@ -105,8 +119,19 @@
 		spawn(rand(reboot_delay_min,reboot_delay_max))
 			generate_field()
 
-//for now, do nothing, we'll fix this up later
-/obj/machinery/atmospheric_field/generator/ex_act()
+/obj/machinery/atmospheric_field_generator/ex_act(severity)
+	switch(severity)
+		if(1)
+			disable_field()
+			qdel(src)
+			return
+		if(2)
+			stat |= BROKEN
+			update_icon()
+			src.visible_message("The ARF-G cracks and shatters!","You hear an uncomfortable metallic crunch.")
+			disable_field()
+		if(3)
+			emp_act()
 	return
 
 /obj/machinery/atmospheric_field_generator/proc/generate_field()
