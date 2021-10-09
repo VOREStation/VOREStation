@@ -12,12 +12,18 @@
 	active_power_usage = 2500
 	var/ispowered = TRUE
 	var/isactive = FALSE
-	var/wasactive = FALSE
+	var/wasactive = FALSE		//controls automatic reboot after power-loss
 	var/alwaysactive = FALSE	//for a special subtype
+	
+	//how long it takes us to reboot if we're shut down by an EMP
+	var/reboot_delay_min = 50
+	var/reboot_delay_max = 75
+	
 	var/hatch_open = FALSE
 	var/wires_intact = TRUE
 	var/list/areas_added
 	var/field_type = /obj/structure/atmospheric_retention_field
+	circuit = /obj/item/weapon/circuitboard/arf_generator
 
 /obj/machinery/atmospheric_field_generator/impassable
 	desc = "An older model of ARF-G that generates an impassable retention field. Works just as well as the modern variety, but is slightly more energy-efficient.<br><br>Note: prolonged immersion in active atmospheric retention fields may have negative long-term health consequences."
@@ -27,11 +33,19 @@
 /obj/machinery/atmospheric_field_generator/perma
 	name = "static atmospheric retention field generator"
 	desc = "A floor-mounted piece of equipment that generates an atmosphere-retaining energy field when powered and activated. This model is designed to always be active, though the field will still drop from loss of power or electromagnetic interference.<br><br>Note: prolonged immersion in active atmospheric retention fields may have negative long-term health consequences."
-	alwaysactive = TRUE		//
-	active_power_usage = 2000	//lowest of the lot
+	alwaysactive = TRUE
+	active_power_usage = 2000
+
+/obj/machinery/atmospheric_field_generator/perma/impassable
+	active_power_usage = 1500
+	field_type = /obj/structure/atmospheric_retention_field/impassable
 
 /obj/machinery/atmospheric_field_generator/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.is_crowbar())
+	if(W.is_crowbar() && isactive)
+		if(!src) return
+		to_chat(user, "<span class='warning'>You can't open the ARF-G whilst it's running!</span>")
+		return
+	if(W.is_crowbar() && !isactive)
 		if(!src) return
 		to_chat(user, "<span class='notice'>You [hatch_open? "close" : "open"] \the [src]'s access hatch.</span>")
 		hatch_open = !hatch_open
@@ -45,6 +59,7 @@
 			generate_field()
 		else if(!alwaysactive)
 			disable_field()
+		update_icon()
 		return
 	if(hatch_open && W.is_wirecutter())
 		if(!src) return
@@ -52,11 +67,24 @@
 		wires_intact = !wires_intact
 		if(!wires_intact)
 			disable_field()
+		update_icon()
 		return
 
 /obj/machinery/atmospheric_field_generator/perma/Initialize()
 	generate_field()
-	
+
+/obj/machinery/atmospheric_field_generator/update_icon()
+	if(stat & BROKEN)
+		icon_state = "arfg_broken"
+	else if(hatch_open && wires_intact)
+		icon_state = "arfg_open_wires"
+	else if(hatch_open && !wires_intact)
+		icon_state = "arfg_open_wirescut"
+	else if(isactive)
+		icon_state = "arfg_on"
+	else
+		icon_state = "arfg_off"
+
 /obj/machinery/atmospheric_field_generator/power_change()
 	var/oldstat
 	..()
@@ -74,7 +102,7 @@
 	. = ..()
 	disable_field() //shutting dowwwwwwn
 	if(alwaysactive || wasactive) //reboot after a short delay if we were online before
-		spawn(rand(50,75))
+		spawn(rand(reboot_delay_min,reboot_delay_max))
 			generate_field()
 
 //for now, do nothing, we'll fix this up later
@@ -82,7 +110,7 @@
 	return
 
 /obj/machinery/atmospheric_field_generator/proc/generate_field()
-	if(!ispowered || !wires_intact || isactive) //if it's not powered, the wires are busted, or it's already on, don't do anything
+	if(!ispowered || hatch_open || !wires_intact || isactive) //if it's not powered, the hatch is open, the wires are busted, or it's already on, don't do anything
 		return
 	else
 		isactive = 1
