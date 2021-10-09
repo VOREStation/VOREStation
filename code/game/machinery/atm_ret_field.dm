@@ -50,37 +50,33 @@
 		to_chat(user, "<span class='notice'>You [hatch_open? "close" : "open"] \the [src]'s access hatch.</span>")
 		hatch_open = !hatch_open
 		update_icon()
+		if(alwaysactive && wires_intact)
+			generate_field()
 		return
 	if(hatch_open && W.is_multitool())
 		if(!src) return
 		to_chat(user, "<span class='notice'>You toggle \the [src]'s activation behavior to [alwaysactive? "emergency" : "always-on"].</span>")
 		alwaysactive = !alwaysactive
-		if(alwaysactive)
-			generate_field()
-		else if(!alwaysactive)
-			disable_field()
 		update_icon()
 		return
 	if(hatch_open && W.is_wirecutter())
 		if(!src) return
 		to_chat(user, "<span class='warning'>You [wires_intact? "cut" : "mend"] \the [src]'s wires!</span>")
 		wires_intact = !wires_intact
-		if(!wires_intact)
-			disable_field()
 		update_icon()
 		return
-	if(stat & BROKEN && istype(W,/obj/item/weapon/weldingtool))
+	if(hatch_open && istype(W,/obj/item/weapon/weldingtool))
 		if(!src) return
 		var/obj/item/weapon/weldingtool/WT = W
 		if(!WT.isOn()) return
 		if(WT.get_fuel() < 5) // uses up 5 fuel.
 			to_chat(user, "<span class='warning'>You need more fuel to complete this task.</span>")
 			return
-		user.visible_message("[user] starts to disassemble the broken-down field generator.", "You start to disassemble the broken-down field generator.")
+		user.visible_message("[user] starts to disassemble \the [src].", "You start to disassemble \the [src].")
 		playsound(src, WT.usesound, 50, 1)
 		if(do_after(user,15 * W.toolspeed))
 			if(!src || !user || !WT.remove_fuel(5, user)) return
-			to_chat(user, "<span class='notice'>You fully disassemble the broken-down field generator. There were no salvageable parts.</span>")
+			to_chat(user, "<span class='notice'>You fully disassemble \the [src]. There were no salvageable parts.</span>")
 			qdel(src)
 		return
 
