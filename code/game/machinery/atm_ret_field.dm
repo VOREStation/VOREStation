@@ -1,46 +1,88 @@
 /obj/machinery/atmospheric_field_generator
 	name = "atmospheric retention field generator"
-	desc = "A floor-mounted piece of equipment that generates an atmosphere-retaining energy field when powered and activated.  Linked to environmental alarm systems and will automatically activate when hazardous conditions are detected.<br><br>Note: prolonged immersion in active atmospheric retention fields may have negative long-term health consequences."
+	desc = "A floor-mounted piece of equipment that generates an atmosphere-retaining energy field when powered and activated. Linked to environmental alarm systems and will automatically activate when hazardous conditions are detected.<br><br>Note: prolonged immersion in active atmospheric retention fields may have negative long-term health consequences."
 	icon = 'icons/obj/atm_fieldgen.dmi'
 	icon_state = "arfg_off"
 	anchored = TRUE
-	opacity = 0
-	density = 0 //we can be walked over
+	opacity = FALSE
+	density = FALSE
 	power_channel = ENVIRON	//so they shut off last
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
-	active_power_usage = 3500
-	var/ispowered = 1
-	var/isactive = 0
+	active_power_usage = 2500
+	var/ispowered = TRUE
+	var/isactive = FALSE
+	var/wasactive = FALSE
+	var/alwaysactive = FALSE	//for a special subtype
+	var/hatch_open = FALSE
+	var/wires_intact = TRUE
 	var/list/areas_added
 	var/field_type = /obj/structure/atmospheric_retention_field
 
 /obj/machinery/atmospheric_field_generator/impassable
 	desc = "An older model of ARF-G that generates an impassable retention field. Works just as well as the modern variety, but is slightly more energy-efficient.<br><br>Note: prolonged immersion in active atmospheric retention fields may have negative long-term health consequences."
-	active_power_usage = 3000
+	active_power_usage = 2000
 	field_type = /obj/structure/atmospheric_retention_field/impassable
 
+/obj/machinery/atmospheric_field_generator/perma
+	name = "static atmospheric retention field generator"
+	desc = "A floor-mounted piece of equipment that generates an atmosphere-retaining energy field when powered and activated. This model is designed to always be active, though the field will still drop from loss of power or electromagnetic interference.<br><br>Note: prolonged immersion in active atmospheric retention fields may have negative long-term health consequences."
+	alwaysactive = TRUE		//
+	active_power_usage = 2000	//lowest of the lot
+
+/obj/machinery/atmospheric_field_generator/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(W.is_crowbar())
+		if(!src) return
+		to_chat(user, "<span class='notice'>You [hatch_open? "close" : "open"] \the [src]'s access hatch.</span>")
+		hatch_open = !hatch_open
+		update_icon()
+		return
+	if(hatch_open && W.is_multitool())
+		if(!src) return
+		to_chat(user, "<span class='notice'>You toggle \the [src]'s activation behavior to [alwaysactive? "emergency" : "always-on"].</span>")
+		alwaysactive = !alwaysactive
+		if(alwaysactive)
+			generate_field()
+		else if(!alwaysactive)
+			disable_field()
+		return
+	if(hatch_open && W.is_wirecutter())
+		if(!src) return
+		to_chat(user, "<span class='warning'>You [wires_intact? "cut" : "mend"] \the [src]'s wires!</span>")
+		wires_intact = !wires_intact
+		if(!wires_intact)
+			disable_field()
+		return
+
+/obj/machinery/atmospheric_field_generator/perma/Initialize()
+	generate_field()
+	
 /obj/machinery/atmospheric_field_generator/power_change()
 	var/oldstat
 	..()
 	if(!(stat & NOPOWER))
 		ispowered = 1
 		update_icon()
+		if(alwaysactive || wasactive)	//reboot our field if we were on or are supposed to be always-on
+			generate_field()
 	if(stat != oldstat && isactive && (stat & NOPOWER))
 		ispowered = 0
 		disable_field()
 		update_icon()
 
 /obj/machinery/atmospheric_field_generator/emp_act()
-	disable_field()
 	. = ..()
+	disable_field() //shutting dowwwwwwn
+	if(alwaysactive || wasactive) //reboot after a short delay if we were online before
+		spawn(rand(50,75))
+			generate_field()
 
 //for now, do nothing, we'll fix this up later
 /obj/machinery/atmospheric_field/generator/ex_act()
 	return
 
 /obj/machinery/atmospheric_field_generator/proc/generate_field()
-	if(!ispowered || isactive) //if it's not powered or it's already on, don't do anything
+	if(!ispowered || !wires_intact || isactive) //if it's not powered, the wires are busted, or it's already on, don't do anything
 		return
 	else
 		isactive = 1
@@ -100,6 +142,7 @@
 	light_on = TRUE
 
 /obj/structure/atmospheric_retention_field/update_icon()
+	cut_overlays() //overlays.Cut()
 	var/list/dirs = list()
 	for(var/obj/structure/atmospheric_retention_field/F in orange(src,1))
 		dirs += get_dir(src, F)
@@ -116,13 +159,12 @@
 /obj/structure/atmospheric_retention_field/Initialize()
 	. = ..()	
 	update_nearby_tiles() //Force ZAS update
-	update_connections()
+	update_connections(1)
 	update_icon()
 
 /obj/structure/atmospheric_retention_field/Destroy()
 	for(var/obj/structure/atmospheric_retention_field/W in orange(1, src.loc))
-		W.update_connections()
-		W.update_icon()
+		W.update_connections(1)
 	update_nearby_tiles() //Force ZAS update
 	. = ..()
 

@@ -187,6 +187,7 @@
 			return
 		for(var/obj/machinery/atmospheric_field_generator/E in all_arfgs)
 			E.generate_field() //don't need to check powered state like doors, the arfgs handles it on its end
+			E.wasactive = TRUE
 
 // Deactivate retention fields!
 /area/proc/arfgs_deactivate()
@@ -196,6 +197,7 @@
 			return
 		for(var/obj/machinery/atmospheric_field_generator/E in all_arfgs)
 			E.disable_field()
+			E.wasactive = FALSE
 
 /area/proc/fire_alert()
 	if(!fire)
