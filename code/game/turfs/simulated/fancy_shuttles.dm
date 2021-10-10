@@ -302,6 +302,16 @@ GLOBAL_LIST_EMPTY(fancy_shuttles)
 	icon = 'icons/turf/fancy_shuttles/delivery_preview.dmi'
 
 /**
+ * Tether Cargo shuttle
+ * North facing: W:8, H:12
+ */
+/obj/effect/fancy_shuttle/tether_cargo
+	icon = 'icons/turf/fancy_shuttles/tether_cargo_preview.dmi'
+	split_file = 'icons/turf/fancy_shuttles/tether_cargo.dmi'
+/obj/effect/fancy_shuttle_floor_preview/tether_cargo
+	icon = 'icons/turf/fancy_shuttles/tether_cargo_preview.dmi'
+
+/**
  * Wagon
  * North facing: W:5, H:13
  */
