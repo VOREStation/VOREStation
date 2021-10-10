@@ -58,35 +58,6 @@
 	for(var/ore in stored_ore)
 		. += "- [stored_ore[ore]] [ore]"
 
-/obj/structure/ore_box/verb/empty_box()
-	set name = "Empty Ore Box"
-	set category = "Object"
-	set src in view(1)
-
-	if(!ishuman(usr) && !isrobot(usr)) //Only living, intelligent creatures with gripping aparatti can empty ore boxes.
-		to_chat(usr, "<span class='warning'>You are physically incapable of emptying the ore box.</span>")
-		return
-
-	if(usr.stat || usr.restrained())
-		return
-
-	if(!Adjacent(usr)) //You can only empty the box if you can physically reach it
-		to_chat(usr, "You cannot reach the ore box.")
-		return
-
-	add_fingerprint(usr)
-
-	if(contents.len < 1)
-		to_chat(usr, "<span class='warning'>The ore box is empty.</span>")
-		return
-
-	for (var/obj/item/weapon/ore/O in contents)
-		contents -= O
-		O.loc = src.loc
-	to_chat(usr, "<span class='notice'>You empty the ore box.</span>")
-
-	return
-
 /obj/structure/ore_box/ex_act(severity)
 	if(severity == 1.0 || (severity < 3.0 && prob(50)))
 		for (var/obj/item/weapon/ore/O in contents)
