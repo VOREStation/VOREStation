@@ -94,7 +94,7 @@ List of things solar grubs should be able to do:
 	vore_bump_emote = "applies minimal effort to try and slurp up"
 	vore_active = 1
 	vore_capacity = 1
-	vore_pounce_chance = 0 //grubs only eat incapacitated targets
+	vore_pounce_chance = 10 //grubs only eat incapacitated targets
 	vore_default_mode = DM_DIGEST
 
 /mob/living/simple_mob/vore/solargrub/apply_melee_effects(var/atom/A)
@@ -142,6 +142,12 @@ List of things solar grubs should be able to do:
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
 	B.desc = "Through either grave error, overwhelming willingness, or some other factor, you find yourself lodged halfway past the solargrub's mandibles. While it had initially hissed and chittered in glee at the prospect of a new meal, it is clearly more versed in suckling on power cables; inch by inch, bit by bit, it undulates forth to slowly, noisily gulp you down its short esophagus... and right into its extra-cramped, surprisingly hot stomach. As the rest of you spills out into the plush-walled chamber, the grub's soft body bulges outwards here and there with your compressed figure. Before long, a thick slime oozes out from the surrounding stomach walls; only time will tell how effective it is on something solid like you..."
+	B.vore_sound = "Tauric Swallow"
+	B.release_sound = "Pred Escape"
+	B.fancy_vore = 1
+	B.contamination_color = "yellow"
+	B.contamination_flavor = "Arcid"
+	B.belly_fullscreen = "anim_belly"
 
 	B.emote_lists[DM_HOLD] = list(
 		"The air trapped within the solargrub is hot, humid, and tinged with ozone, but otherwise mercifully harmless to you aside from being heavy on the lungs.",
