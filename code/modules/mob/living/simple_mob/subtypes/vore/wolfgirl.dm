@@ -29,6 +29,17 @@
 	vore_active = 1
 	vore_pounce_chance = 40
 	vore_icons = SA_ICON_LIVING
+	
+/mob/living/simple_mob/animal/wolfgirl/init_vore()
+	. = ..()
+	var/obj/belly/B = vore_selected
+	B.vore_sound = "Tauric Swallow"
+	B.release_sound = "Pred Escape"
+	B.fancy_vore = 1
+	B.vore_verb = "slurp"
+	B.contamination_color = "yellow"
+	B.contamination_flavor = "Arcid"
+	B.belly_fullscreen = "yet_another_tumby"
 
 /datum/ai_holder/simple_mob/retaliate/cooperative/wolfgirl/on_hear_say(mob/living/speaker, message)
 
@@ -64,6 +75,9 @@
 
 	if(findtext(message, "Fuyu"))
 		delayed_say(pick("You know my sister?!", "Is she causing problems again?"), speaker)
+	
+	if(findtext(message, "Ree"))
+		delayed_say(pick("Fucking normies get off my board REEE!!"), speaker)
 
 
 /datum/say_list/wolfgirl
