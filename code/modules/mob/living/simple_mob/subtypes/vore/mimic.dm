@@ -121,6 +121,17 @@
 	vore_capacity = 1
 	vore_default_mode = DM_DIGEST
 
+/mob/living/simple_mob/vore/aggressive/mimic/init_vore()
+	. = ..()
+	var/obj/belly/B = vore_selected
+	B.vore_sound = "Tauric Swallow"
+	B.release_sound = "Pred Escape"
+	B.fancy_vore = 1
+	B.vore_verb = "greedly devour"
+	B.contamination_color = "red"
+	B.contamination_flavor = "Arcid"
+	B.belly_fullscreen = "yet_another_tumby"
+
 /datum/ai_holder/mimic
 	wander = FALSE
 	hostile = TRUE
