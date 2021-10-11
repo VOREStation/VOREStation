@@ -57,6 +57,12 @@
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
 	B.desc = "With a final few gulps, the sheep finishes swallowing you down into its hot, dark guts… The wool on the outside is doing you no favors with its insulation. The toasty organic flesh kneads and grinds around you with the stank of wet grass. The sheep seems to have already forgotten about you as it lets out a soft BAAH like belch and carries on doing nothing. "
+	B.vore_sound = "Tauric Swallow"
+	B.release_sound = "Pred Escape"
+	B.fancy_vore = 1
+	B.contamination_color = "white"
+	B.contamination_flavor = "Smelly"
+	B.belly_fullscreen = "yet_another_tumby"
 	B.emote_lists[DM_HOLD] = list(
 	"The sheep's idle trotting helps its stomach gently churn around you, slimily squelching against your figure.",
 	"The equine predator lazily pauses for a moment and flops down encapsulating you in a strange fleshy hug; Before quickly jumping back up in confusion before trotting off.",
