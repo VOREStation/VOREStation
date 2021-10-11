@@ -127,6 +127,7 @@
 	B.vore_verb = "slurp"
 	B.contamination_color = "grey"
 	B.contamination_flavor = "Wet"
+	B.belly_fullscreen = "anim_belly"
 
 	B.emote_lists[DM_HOLD] = list(
 		"The wolf's idle wandering helps its stomach gently churn around you, slimily squelching against your figure.",
