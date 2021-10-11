@@ -40,6 +40,17 @@
 	vore_default_mode = DM_HOLD
 	vore_icons = SA_ICON_LIVING
 
+/mob/living/simple_mob/vore/weretiger/init_vore()
+	. = ..()
+	var/obj/belly/B = vore_selected
+	B.vore_sound = "Tauric Swallow"
+	B.release_sound = "Pred Escape"
+	B.fancy_vore = 1
+	B.vore_verb = "slurp"
+	B.contamination_color = "yellow"
+	B.contamination_flavor = "Arcid"
+	B.belly_fullscreen = "yet_another_tumby"
+
 /datum/say_list/weretiger
 	speak = list("Gruff.","ROAR!","Growl.")
 	emote_hear = list("growls!","grunts.")
