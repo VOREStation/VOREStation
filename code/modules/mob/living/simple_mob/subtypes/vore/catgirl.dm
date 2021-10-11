@@ -54,7 +54,7 @@
 	vore_digest_chance = 20 // But squirming might make them gurgle...
 	vore_icons = SA_ICON_LIVING | SA_ICON_REST
 	
-/mob/living/simple_mob/animal/catgirl/init_vore()
+/mob/living/simple_mob/vore/catgirl/init_vore()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.vore_sound = "Tauric Swallow"
