@@ -48,14 +48,15 @@
 	vore_active = 1
 	vore_pounce_chance = 40
 	vore_icons = SA_ICON_LIVING
+
 /mob/living/simple_mob/vore/aggressive/frog/init_vore()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.vore_sound = "Tauric Swallow"
 	B.release_sound = "Pred Escape"
 	B.fancy_vore = 1
-	B.contamination_color = "yellow"
-	B.contamination_flavor = "Arcid"
+	B.contamination_color = "lime"
+	B.contamination_flavor = "Smelly"
 	B.belly_fullscreen = "a_tumby"
 
 /mob/living/simple_mob/vore/aggressive/frog/space
