@@ -52,6 +52,8 @@
 
 	attacktext = list("bit", "buffeted", "slashed")
 
+	organ_names = /decl/mob_organ_names/smallflying
+
 	tame_items = list(
 	/obj/item/weapon/reagent_containers/food/snacks/grown = 90,
 	/obj/item/weapon/reagent_containers/food/snacks/meat/crab = 10,
@@ -123,3 +125,6 @@
 			return
 	else if(prob(1))
 		hostile = initial(hostile)
+
+/decl/mob_organ_names/smallflying
+	hit_zones = list("body", "left wing", "right wing") //For flying things too tiny to be granular
