@@ -30,7 +30,7 @@
 	vore_pounce_chance = 40
 	vore_icons = SA_ICON_LIVING
 	
-/mob/living/simple_mob/animal/wolfgirl/init_vore()
+/mob/living/simple_mob/vore/wolfgirl/init_vore()
 	. = ..()
 	var/obj/belly/B = vore_selected
 	B.vore_sound = "Tauric Swallow"
