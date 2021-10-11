@@ -35,6 +35,16 @@
 	vore_active = 1
 	vore_icons = SA_ICON_LIVING
 
+/mob/living/simple_mob/animal/wolf/init_vore()
+	. = ..()
+	var/obj/belly/B = vore_selected
+	B.vore_sound = "Tauric Swallow"
+	B.release_sound = "Pred Escape"
+	B.fancy_vore = 1
+	B.contamination_color = "yellow"
+	B.contamination_flavor = "Arcid"
+	B.belly_fullscreen = "anim_belly"
+
 // Space edition, stronger and bitier
 /mob/living/simple_mob/animal/wolf/space
 	name = "space wolf"
