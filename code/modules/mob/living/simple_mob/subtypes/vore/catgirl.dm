@@ -53,6 +53,17 @@
 	vore_default_mode = DM_HOLD // Chance that catgirls just wanna bellycuddle yoouuuu!
 	vore_digest_chance = 20 // But squirming might make them gurgle...
 	vore_icons = SA_ICON_LIVING | SA_ICON_REST
+	
+/mob/living/simple_mob/animal/catgirl/init_vore()
+	. = ..()
+	var/obj/belly/B = vore_selected
+	B.vore_sound = "Tauric Swallow"
+	B.release_sound = "Pred Escape"
+	B.fancy_vore = 1
+	B.vore_verb = "greedly devour"
+	B.contamination_color = "yellow"
+	B.contamination_flavor = "Arcid"
+	B.belly_fullscreen = "a_tumby"
 
 /datum/say_list/catgirl
 	speak = list("Meow!","Esp!","Purr!","HSSSSS","Mew?","Nya~")
