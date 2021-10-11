@@ -83,6 +83,7 @@
 	B.vore_verb = "slurp"
 	B.contamination_color = "grey"
 	B.contamination_flavor = "Wet"
+	B.belly_fullscreen = "anim_belly"
 	B.emote_lists[DM_HEAL] = list(
 		"The drake's idle movement helps its stomach gently churn around you, slimily squelching against your figure.",
 		"The draconic predator takes a moment to intentionally clench its gut around you, encapsulating you in a strange, fleshy hug.",
@@ -150,6 +151,7 @@
 	B.vore_verb = "slurp"
 	B.contamination_color = "pink"
 	B.contamination_flavor = "Wet"
+	B.belly_fullscreen = "anim_belly"
 	B.emote_lists[DM_HEAL] = list(
 		"The drake's idle movement helps its stomach gently churn around you, slimily squelching against your figure.",
 		"The draconic predator takes a moment to intentionally clench its gut around you, encapsulating you in a strange, fleshy hug.",
