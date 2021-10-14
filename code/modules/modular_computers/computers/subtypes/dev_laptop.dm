@@ -25,14 +25,6 @@
 	if(!istype(loc, /turf/))
 		to_chat(usr, "\The [src] has to be on a stable surface first!")
 		return
-	//VOREStation Addition Begin
-	var/supported = FALSE
-	for(var/obj/structure/table/S in loc)
-		supported = TRUE
-	if(!supported && !anchored)
-		to_chat(usr, "You will need a better supporting surface before opening \the [src]!")
-		return
-	//VOREStation Addition End
 	anchored = !anchored
 	screen_on = anchored
 	update_icon()
