@@ -4,6 +4,11 @@
 	region. Each is labeled by date of publication and title. This list is self-updating, and from time to time the publisher will push new \
 	articles. You are encouraged to check back frequently."
 	children = list(
+		/datum/lore/codex/page/article108,
+		/datum/lore/codex/page/article107,
+		/datum/lore/codex/page/article106,
+		/datum/lore/codex/page/article105,
+		/datum/lore/codex/page/article104,
 		/datum/lore/codex/page/article103,
 		/datum/lore/codex/page/article102,
 		/datum/lore/codex/page/article101,
@@ -1161,3 +1166,49 @@
 	Additionally, each ship has been identified as having undergone some degree of material alteration, with elements ranging from hull plating to crew belongings having taken on a crystaline form dubbed 'Magmellite' after the ship most thoroughly 'reconstructed'. It is unclear whether the mineral is somehow secreted by the alien species, or merely a product of the same environment.\
 	<br><br>\
 	GSA sources have stated that there is no current evidence that the insectoid creatures - identified only from scattered descriptions left from missing EDD personnel - are in any way sapient or malicious, and the lost vessels are thought to have merely disturbed a scattered array of endemic populations far from the galactic plane. Precisely why the species has only been encountered in the past year, and now all at once, is not yet known."
+
+/datum/lore/codex/page/article104
+	name = "05/24/65 - Oculum Apologizes for Interstellar Relay Outages"
+	data = "Week-long difficulties with interstellar transmissions in several central star systems due to an 'unexpected behaviour' in bluespace relays 'should be resolved soon' according to telecoms giant Oculum Broadcast. The company has apologized to customers for connection speed drops as much as 80% which have rendered certain live systems near impossible for many customers, including disruption of telecast Colonial Assembly meetings on Luna which have been temporarily put on hold in order to allow representatives time to attend in person.\
+	<br><br>\
+	Customers may experience reduced speeds compared to prior service, but have been promised a two-year price freeze on exonet service packages for home and business users on most major providers in participating areas. In-system communications remain unaffected.\
+	<br><br>\
+	Initial reports that the finale broadcast of Game of Drones was 'rendered unwatchable' by connection issues proved to be unfounded as severe lag and audio distortion were confirmed as 'part of the creator's artistic vision for the story's end'."
+
+/datum/lore/codex/page/article105
+	name = "06/07/65 - 104 Feared Dead In Oasis Tourist Shuttle Incident"
+	data = "The Vir Governmental Authority has confirmed the destruction of a small interstellar tourist vessel departing the Vir system. The ITV Relaxation IX operated by Thousand Palms Hotels, was bound for a popular resort in Oasis and reportedly 'split in two' shortly after confirming system bluespace departure with Vir space traffic control, exposing all passenger compartments to space and killing at least 94 of the 108 people onboard.\
+	<br><br>\
+	Four crew members recovered from forward sections are being treated for 'non-life-threatening' pressure injuries at a nearby medical facility, and ten individuals believed to have been situated at the rear of the ship remain unaccounted for. The exact cause of the break-up is yet to be determined, but initial accounts from surviving crew members describe the bluespace drive of the ship as having 'taken off by itself' at such speed that the rear of the fuselage was 'cut clean off' with no regard for structural elements. Foul play is not currently suspected.\
+	<br><br>\
+	The VGA believes that the chances of finding further survivors are 'extremely slim', though efforts to recover the rear section, which was 'sling-shot' into interstellar space, are underway. Gilthari Exports, Thousand Palms' parent company have temporarily suspended operation of all vessels fitted with similar bluespace drives, and Major Bill's Transportation is expected to follow suit. Wulf Aeronautics was unavailable for comment at this time."
+
+/datum/lore/codex/page/article106
+	name = "07/09/65 - 'Bluespace Bugs' Linked To Almach Tech"
+	data = "Initial public reports on the extraplanar species commonly known as 'Bluespace Bugs' has proposed that the first recognizable signs of their activity within observable space, coincide precisely with the development - and particularly the test-firing - of the Whythe Superweapon, and that there may be a direct link between the two. The report, released by the Galactic Survey Administration this afternoon hypothesizes that the newly developed bluespace manipulation techniques used in Whythe may have acted as a signal to the deep-space dwelling creatures in a manner similar to moths attracted to artificial light. The GSA is currently collaborating with the Almach Protectorate Government to investigate the potential link further.\
+	<br><br>\
+	Additionally, findings from analysis of both inorganic and biological samples collected from the three recovered Extraplanar Discovery ships believed to belong to the 'Bugs' has excited much of the scientific community, with news that the insect-like aliens and their apparent dietary waste-product Magmellite may be composed in a manner completely unlike any life previously encountered in the known galaxy. The findings may rewrite our understanding of biology and material science, though a full specimen is desired to confirm these early findings.\
+	<br><br>\
+	The creatures have been given a tentative scientific name X Extraneus Tarlevi, after Captain Volmer Tarlev of the SCG-E Ketumati whose recorded descriptions were instrumental in establishing a basic understanding of the species' behavior. Researchers currently believe that the Bluespace Bugs are merely a form of bulk-feeding omnivore attracted to the EDD vessels in deep space by their bluespace drives, and that the loss of the ships was merely unfortunate happenstance rather than deliberate, malicious attack. Studies are already underway to determine methods that might prevent further incidents of this types before any further extraplanar missions are approved."
+
+/datum/lore/codex/page/article107
+	name = "08/15/65 - Enigmatic Arkship Sighted After 200 Year Voyage"
+	data = "Recent reports from the New Singapore-based Exoplanar Traffic Observation Committee, have claimed historic extraplanar arkship, the VHS Rodnakya, has changed trajectory and may be approaching the galactic plane once more.\
+	<br><br>\
+	The ETOC, comprised of mostly exoplanar and shuttlecraft enthusiasts in the Bowl, have been tracking both government and private survey expeditions since the 2450's, reporting the approximate locations and assumed status of vessels for public record. The VHS Rodnakya has been a major point of interest among ETOC members since its formation, sometimes dominating discussions entirely, and the focus for numerous unverified theories.\
+	<br><br>\
+	The Arkship and its support fleet, known as 'Vystholm' was constructed in the early 2300's by Stanislava Dalibor, and left the galactic plane in response to the abolition of the SCG's First Contact Policy that demanded the capture and interrogation of unknown sapient aliens. It has not had any official contact with the galactic community since. Largely known for radical and since-outdated views on non-human intelligent life, their original crew was known to include a number of early Icarus Front extremists which may have fermented into a dangerous ideology after 200 years of isolation.\
+	<br><br>\
+	This alleged trajectory change has sparked excitement among the committee, including a flurry of completely unsupported reports of spies infiltrating Solar society, from the corporate workforce to major government bodies.\
+	<br><br>\
+	The Vir News Network does not endorse the unverified claims of the Exoplanar Traffic Observation Committee."
+
+/datum/lore/codex/page/article108
+	name = "09/12/65 - Gateway Transport Suspended Amidst Safety Concerns"
+	data = "Nine of the galaxy's top trans-stellars have announced immediate suspension of bluespace gateway transit services following a report by Wulf Aeronautics indicating that some of the same tachyon instabilities affecting their faster-than-light engine technology may have even more severe reprecussions for rapid point-to-point teleportation that could result in 'significant decrease in matter' during rematerialization that could result in customer death, disfigurement, or loss of luggage.\
+	<br><br>\
+	Dismissing accusations that this was a move to bolster a weakened spacecraft travel industry, Focal Point Energistics, the original developers of modern gateway technology were first to announce their suspension of service on all first-party operated access points. Major contract operators, including NanoTrasen, Ward-Takahashi, and Gilthari Exports have followed suit citing a desire for caution when dealing with premium employee transport.\
+	<br><br>\
+	NanoTrasen are the Vir system's leading operator of gateway transport, offering 'luxury, near-instant interplanetary commutes' between most major company facilities, and the Vir Interstellar Spaceport. The company says it will be removing many smaller gate installations for 'full examination and required enhancements' and expects the service to return 'within a few weeks'.\
+	<br><br>\
+	Major Bill's Transportation have announced an increased frequency of service to affected NanoTrasen locations for the duration of the gateway suspension."
