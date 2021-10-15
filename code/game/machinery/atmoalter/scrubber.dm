@@ -109,7 +109,7 @@
 	data["on"] = on ? 1 : 0
 	data["connected"] = connected_port ? 1 : 0
 	data["pressure"] = round(air_contents.return_pressure() > 0 ? air_contents.return_pressure() : 0)
-	
+
 	data["rate"] = round(volume_rate)
 	data["minrate"] = round(minrate)
 	data["maxrate"] = round(maxrate)
@@ -150,7 +150,7 @@
 /obj/machinery/portable_atmospherics/powered/scrubber/huge
 	name = "Huge Air Scrubber"
 	desc = "A larger variation of the portable scrubber, for industrial scrubbing of air. Must be turned on from a remote terminal."
-	icon = 'icons/obj/atmos_vr.dmi' //VOREStation Edit - New Sprite
+	icon = 'icons/obj/atmos.dmi' //VOREStation Edit - New Sprite
 	icon_state = "scrubber:0"
 	anchored = TRUE
 	volume = 500000
@@ -201,7 +201,7 @@
 		update_use_power(new_use_power)
 	if(!on)
 		return
-	
+
 	var/power_draw = -1
 
 	var/datum/gas_mixture/environment = loc.return_air()
