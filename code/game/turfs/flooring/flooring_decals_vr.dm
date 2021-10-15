@@ -136,6 +136,8 @@
 
 /obj/effect/floor_decal/emblem/stellardelight
 	icon_state = "stellar_delight"
+/obj/effect/floor_decal/emblem/stellardelight/center
+	icon_state = "stellar_delight_center"
 
 /obj/effect/floor_decal/emblem/orangeline
 	icon_state = "orange_line"

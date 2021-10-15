@@ -199,29 +199,6 @@
 		Z_LEVEL_BEACH
 	)
 
-// Overmap represetation of ship
-/obj/effect/overmap/visitable/stellar_delight
-	name = "Stellar Delight"
-	desc = "It's a ship!"
-	scanner_desc = @{"[i]Registration[/i]: NSB Adephagia
-[i]Class[/i]: Installation
-[i]Transponder[/i]: Transmitting (CIV), NanoTrasen IFF
-[b]Notice[/b]: NanoTrasen Base, authorized personnel only"}
-	base = 1
-	
-	icon = 'icons/obj/overmap_vr.dmi' //Overmap icon
-	icon_state = "virgo3b"
-
-	skybox_icon = 'icons/skybox/virgo3b.dmi' //Skybox icon
-	skybox_icon_state = "small"
-	skybox_pixel_x = 0
-	skybox_pixel_y = 0
-
-	initial_generic_waypoints = list()
-	//Despite not being in the multi-z complex, these levels are part of the overmap sector
-
-	levels_for_distress = list(Z_LEVEL_OFFMAP1, Z_LEVEL_BEACH, Z_LEVEL_AEROSTAT, Z_LEVEL_DEBRISFIELD, Z_LEVEL_FUELDEPOT)
-
 /*
 /obj/effect/overmap/visitable/sector/virgo3b/Crossed(var/atom/movable/AM)
 	. = ..()
@@ -266,8 +243,12 @@
 [b]Notice[/b]: A research vessel registered to Nanotrasen."}
 	vessel_mass = 20000
 	vessel_size = SHIP_SIZE_LARGE
-	initial_generic_waypoints = list()
+	initial_generic_waypoints = list("starboard_shuttlepad","port_shuttlepad","sd-1-23-54","sd-1-67-15","sd-1-70-130","sd-1-115-85","sd-2-25-98","sd-2-117-98","sd-3-22-78","sd-3-36-33","sd-3-104-33","sd-3-120-78")
 	initial_restricted_waypoints = list("Exploration Shuttle" = list("sd_explo"), "Mining Shuttle" = list("sd_mining"))
+	levels_for_distress = list(Z_LEVEL_OFFMAP1, Z_LEVEL_BEACH, Z_LEVEL_AEROSTAT, Z_LEVEL_DEBRISFIELD, Z_LEVEL_FUELDEPOT)
+	unowned_areas = list(/area/shuttle/sdboat)
+	known = TRUE
+
 	fore_dir = NORTH
 
 	skybox_icon = 'stelardelightskybox.dmi'
@@ -365,6 +346,31 @@
 	move_direction = SOUTH
 	docking_controller_tag = "escape_shuttle"
 
+/datum/shuttle/autodock/ferry/escape_pod/portescape
+	name = "Port Escape Pod"
+	location = FERRY_LOCATION_STATION
+	shuttle_area = /area/stellardelight/deck2/portescape
+	warmup_time = 0
+	landmark_station = "port_ship_berth"
+	landmark_offsite = "port_escape_cc"
+	landmark_transition = "port_escape_transit"
+	docking_controller_tag = "port_escape_pod"
+	move_time = SHUTTLE_TRANSIT_DURATION_RETURN
+	move_direction = EAST
+
+/datum/shuttle/autodock/ferry/escape_pod/starboardescape
+	name = "Starboard Escape Pod"
+	location = FERRY_LOCATION_STATION
+	shuttle_area = /area/stellardelight/deck2/starboardescape
+	warmup_time = 0
+	landmark_station = "starboard_ship_berth"
+	landmark_offsite = "starboard_escape_cc"
+	landmark_transition = "starboard_escape_transit"
+	docking_controller_tag = "starboard_escape_pod"
+	move_time = SHUTTLE_TRANSIT_DURATION_RETURN
+	move_direction = WEST
+
+
 //////////////////////////////////////////////////////////////
 // Supply shuttle
 /datum/shuttle/autodock/ferry/supply/cargo
@@ -430,7 +436,77 @@
 	defer_initialisation = TRUE
 	range = 1
 
+/////STARSTUFF/////
+// The shuttle's 'shuttle' computer
+/obj/machinery/computer/shuttle_control/explore/sdboat
+	name = "Star Stuff control console"
+	shuttle_tag = "Starstuff"
+	req_one_access = list(access_pilot)
 
+/obj/effect/overmap/visitable/ship/landable/sd_boat
+	name = "NTV Starstuff"
+	desc = "A small shuttle from the NRV Stellar Delight."
+	vessel_mass = 1000
+	vessel_size = SHIP_SIZE_TINY
+	shuttle = "Starstuff"
+	known = TRUE
+
+// A shuttle lateloader landmark
+/obj/effect/shuttle_landmark/shuttle_initializer/sdboat
+	name = "Port Shuttlepad"
+	base_area = /area/stellardelight/deck3/exterior
+	base_turf = /turf/simulated/floor/reinforced/airless
+	landmark_tag = "port_shuttlepad"
+	docking_controller = "sd_port_landing"
+	shuttle_type = /datum/shuttle/autodock/overmap/sdboat
+
+/datum/shuttle/autodock/overmap/sdboat
+	name = "Starstuff"
+	current_location = "port_shuttlepad"
+	docking_controller_tag = "sd_bittyshuttle" 
+	shuttle_area = /area/shuttle/sdboat
+	fuel_consumption = 2
+	defer_initialisation = TRUE
+
+/area/shuttle/sdboat
+	icon = 'icons/turf/areas_vr.dmi'
+	icon_state = "yelwhitri"
+	name = "Starstuff"
+	requires_power = 1
+
+/////LANDING LANDMARKS/////
+/obj/effect/shuttle_landmark/premade/sd/deck1/portairlock
+	name = "Near Deck 1 Port Airlock"
+	landmark_tag = "sd-1-23-54"
+/obj/effect/shuttle_landmark/premade/sd/deck1/aft
+	name = "Near Deck 1 Aft"
+	landmark_tag = "sd-1-67-15"
+/obj/effect/shuttle_landmark/premade/sd/deck1/fore
+	name = "Near Deck 1 Fore"
+	landmark_tag = "sd-1-70-130"
+/obj/effect/shuttle_landmark/premade/sd/deck1/starboard
+	name = "Near Deck 1 Starboard"
+	landmark_tag = "sd-1-115-85"
+
+/obj/effect/shuttle_landmark/premade/sd/deck2/port
+	name = "Near Deck 2 Port"
+	landmark_tag = "sd-2-25-98"
+/obj/effect/shuttle_landmark/premade/sd/deck2/starboard
+	name = "Near Deck 2 Starboard"
+	landmark_tag = "sd-2-117-98"
+
+/obj/effect/shuttle_landmark/premade/sd/deck3/portairlock
+	name = "Near Deck 3 Port Airlock"
+	landmark_tag = "sd-3-22-78"
+/obj/effect/shuttle_landmark/premade/sd/deck3/portlanding
+	name = "Near Deck 3 Port Landing Pad"
+	landmark_tag = "sd-3-36-33"
+/obj/effect/shuttle_landmark/premade/sd/deck3/starboardlanding
+	name = "Near Deck 3 Starboard Landing Pad"
+	landmark_tag = "sd-3-104-33"
+/obj/effect/shuttle_landmark/premade/sd/deck3/starboardairlock
+	name = "Near Deck 3 Starboard Airlock"
+	landmark_tag = "sd-3-120-78"
 
 ///////////////////////////////////////////////////////////
 /////Misc stuff from the tether that's likely to get used in one way or another!/////`
@@ -495,6 +571,8 @@ var/global/list/latejoin_tram   = list()
 	..()
 	turfs = latejoin_tram
 
+/obj/machinery/camera/network/halls
+	network = list(NETWORK_HALLS)
 
 /obj/machinery/camera/network/exploration
 	network = list(NETWORK_EXPLORATION)

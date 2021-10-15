@@ -5,69 +5,88 @@
 	requires_power = TRUE
 	dynamic_lighting = TRUE
 
-/area/stellardelight/maintenance
+/area/maintenance/stellardelight
 	name = "maintenance"
+	icon = 'icons/turf/areas_vr.dmi'
 	icon_state = "purblasqu"
 	flags = RAD_SHIELDED
 	ambience = AMBIENCE_MAINTENANCE
 
-/area/stellardelight/maintenance/substation/atmospherics
+/area/maintenance/stellardelight/substation/atmospherics
 	name = "Atmospherics Substation"
-/area/stellardelight/maintenance/substation/cargo
+/area/maintenance/stellardelight/substation/cargo
 	name = "Cargo Substation"
-/area/stellardelight/maintenance/substation/civilian
+/area/maintenance/stellardelight/substation/civilian
 	name = "Civilian Substation"
-/area/stellardelight/maintenance/substation/command
+/area/maintenance/stellardelight/substation/command
 	name = "Command Substation"
-/area/stellardelight/maintenance/substation/engineering
+/area/maintenance/stellardelight/substation/engineering
 	name = "Engineering Substation"
-/area/stellardelight/maintenance/substation/exploration
+/area/maintenance/stellardelight/substation/exploration
 	name = "Exploration Substation"
-/area/stellardelight/maintenance/substation/medical
+/area/maintenance/stellardelight/substation/medical
 	name = "Medical Substation"
-/area/stellardelight/maintenance/substation/research
+/area/maintenance/stellardelight/substation/research
 	name = "Research Substation"
-/area/stellardelight/maintenance/substation/security
+/area/maintenance/stellardelight/substation/security
 	name = "Security Substation"
 
-/area/stellardelight/maintenance/deck1
+/area/maintenance/stellardelight/deck1
 	icon_state = "deckmaint1"
 
-/area/stellardelight/maintenance/deck1/portfore
+/area/maintenance/stellardelight/deck1/portfore
 	name = "deck one port forward maintenance"
-/area/stellardelight/maintenance/deck1/starboardfore
+/area/maintenance/stellardelight/deck1/starboardfore
 	name = "deck one starboard forward maintenance"
-/area/stellardelight/maintenance/deck1/portaft
+/area/maintenance/stellardelight/deck1/portaft
 	name = "deck one port aft maintenance"
-/area/stellardelight/maintenance/deck1/starboardaft
+/area/maintenance/stellardelight/deck1/starboardaft
 	name = "deck one starboard aft maintenance"
 
-/area/stellardelight/maintenance/deck2
+/area/maintenance/stellardelight/deck2
 	icon_state = "deckmaint2"
 
-/area/stellardelight/maintenance/deck2/portfore
+/area/maintenance/stellardelight/deck2/portfore
 	name = "deck two port forward maintenance"
-/area/stellardelight/maintenance/deck2/starboardfore
+/area/maintenance/stellardelight/deck2/starboardfore
 	name = "deck one starboard forward maintenance"
-/area/stellardelight/maintenance/deck2/portaft
+/area/maintenance/stellardelight/deck2/portaft
 	name = "deck two port aft maintenance"
-/area/stellardelight/maintenance/deck2/starboardaft
+/area/maintenance/stellardelight/deck2/starboardaft
 	name = "deck one starboard aft maintenance"
 
-/area/stellardelight/maintenance/deck3
+/area/maintenance/stellardelight/deck3
 	icon_state = "deckmaint3"
 
-/area/stellardelight/maintenance/deck3/portfore
-	name = "deck two port forward maintenance"
-/area/stellardelight/maintenance/deck3/starboardfore
-	name = "deck one starboard forward maintenance"
-/area/stellardelight/maintenance/deck3/portaft
-	name = "deck two port aft maintenance"
-/area/stellardelight/maintenance/deck3/starboardaft
-	name = "deck one starboard aft maintenance"
+/area/maintenance/stellardelight/deck3/portfore
+	name = "deck three port forward maintenance"
+/area/maintenance/stellardelight/deck3/starboardfore
+	name = "deck three starboard forward maintenance"
+/area/maintenance/stellardelight/deck3/portcent
+	name = "deck three port central maintenance"
+/area/maintenance/stellardelight/deck3/starboardcent
+	name = "deck three starboard central maintenance"
+/area/maintenance/stellardelight/deck3/portaft
+	name = "deck three port aft maintenance"
+/area/maintenance/stellardelight/deck3/starboardaft
+	name = "deck three starboard aft maintenance"
 
-/area/stellardelight/maintenance/deck3/portfore
-/area/stellardelight/maintenance/deck3/starboardfore
+/area/maintenance/stellardelight/deck3/foreportrooma
+	name = "deck three forward port construction a"
+/area/maintenance/stellardelight/deck3/foreportroomb
+	name = "deck three forward port construction b"
+/area/maintenance/stellardelight/deck3/forestarrooma
+	name = "deck three forward starboard construction a"
+/area/maintenance/stellardelight/deck3/forestarroomb
+	name = "deck three forward starboard construction b"
+/area/maintenance/stellardelight/deck3/forestarroomc
+	name = "deck three forward starboard construction c"
+/area/maintenance/stellardelight/deck3/aftstarroom
+	name = "deck three aft starboard construction "
+
+
+/area/maintenance/stellardelight/deck3/portfore
+/area/maintenance/stellardelight/deck3/starboardfore
 
 
 /area/stellardelight/deck1
@@ -203,8 +222,10 @@
 
 /area/stellardelight/deck2/portescape
 	name = "Port Escape Pod"
+	requires_power = FALSE
 /area/stellardelight/deck2/starboardescape
 	name = "Starboard Escape Pod"
+	requires_power = FALSE
 
 /area/stellardelight/deck2/o2production
 	name = "O2 Production"
@@ -239,6 +260,10 @@
 	name = "Transit Gateway"
 /area/stellardelight/deck3/cryo
 	name = "Cryogenic Storage"
+
+/area/stellardelight/deck3/readingroom
+	name = "Reading Rooms"
+	sound_env = SMALL_SOFTFLOOR
 
 /area/stellardelight/deck3/portdock
 	name = "Port Dock"

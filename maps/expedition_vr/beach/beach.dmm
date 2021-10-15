@@ -562,9 +562,6 @@
 /obj/machinery/reagentgrinder,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/tether_away/beach/resort/kitchen)
-"hN" = (
-/turf/simulated/floor/holofloor/beach/sand,
-/area/tether_away/beach/jungle)
 "hQ" = (
 /obj/structure/flora/sif/subterranean,
 /turf/simulated/floor/outdoors/grass{
@@ -19277,7 +19274,7 @@ aa
 aa
 aa
 aa
-hN
+aa
 aa
 tr
 aj

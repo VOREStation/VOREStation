@@ -884,6 +884,12 @@
 /obj/effect/floor_decal/industrial/outline,
 /turf/simulated/floor/tiled,
 /area/centcom/living)
+"cU" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white,
+/area/centcom/control)
 "cZ" = (
 /obj/structure/table/rack,
 /obj/structure/window/reinforced{
@@ -1298,6 +1304,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/centcom/main_hall)
+"et" = (
+/obj/structure/bed/chair/shuttle,
+/turf/simulated/shuttle/floor{
+	icon_state = "floor_red"
+	},
+/area/shuttle/escape)
 "ev" = (
 /obj/machinery/vending/nifsoft_shop{
 	categories = 111;
@@ -1370,6 +1382,9 @@
 /area/centcom/main_hall)
 "eK" = (
 /obj/machinery/light,
+/obj/structure/bed/chair/shuttle{
+	dir = 8
+	},
 /turf/simulated/shuttle/floor/white,
 /area/shuttle/escape)
 "eP" = (
@@ -1568,6 +1583,16 @@
 	},
 /turf/unsimulated/floor/steel,
 /area/tdome/tdomeobserve)
+"fG" = (
+/obj/effect/shuttle_landmark/transit{
+	base_area = /area/centcom;
+	base_turf = /turf/simulated/floor/reinforced;
+	docking_controller = "centcom_port_dock";
+	landmark_tag = "port_escape_cc";
+	name = "Port Escape Centcom"
+	},
+/turf/simulated/floor/reinforced,
+/area/centcom)
 "fH" = (
 /obj/structure/table/rack,
 /obj/item/clothing/glasses/night,
@@ -1841,6 +1866,15 @@
 	},
 /turf/unsimulated/floor/techfloor_grid,
 /area/tdome/tdome1)
+"gv" = (
+/obj/machinery/status_display{
+	pixel_y = 32
+	},
+/obj/structure/bed/chair/shuttle{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor,
+/area/shuttle/escape)
 "gw" = (
 /obj/machinery/vending/assist,
 /turf/simulated/floor/tiled{
@@ -1987,6 +2021,12 @@
 	name = "reinforced floor"
 	},
 /area/centcom)
+"gN" = (
+/obj/effect/floor_decal/emblem/stellardelight{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/white,
+/area/shuttle/escape)
 "gP" = (
 /obj/structure/table/rack,
 /obj/item/clothing/under/color/green,
@@ -2281,6 +2321,12 @@
 /obj/random/forgotten_tram,
 /turf/simulated/floor/tiled,
 /area/centcom/terminal)
+"hS" = (
+/obj/machinery/computer/med_data{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor,
+/area/shuttle/escape)
 "hT" = (
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "tram"
@@ -2328,7 +2374,7 @@
 /area/centcom/security)
 "hY" = (
 /obj/effect/floor_decal/emblem/stellardelight{
-	dir = 9
+	dir = 8
 	},
 /turf/simulated/shuttle/floor/white,
 /area/shuttle/escape)
@@ -2491,9 +2537,7 @@
 /obj/effect/floor_decal/corner/purple/border{
 	dir = 8
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "iC" = (
 /turf/unsimulated/floor/techfloor_grid,
@@ -2510,24 +2554,18 @@
 /area/centcom/command)
 "iH" = (
 /obj/effect/floor_decal/industrial/warning/corner,
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "iJ" = (
 /obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "iK" = (
 /obj/structure/bed/chair/office/light{
 	dir = 1
 	},
 /obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "iL" = (
 /obj/item/weapon/storage/firstaid/regular,
@@ -2594,20 +2632,18 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "iW" = (
 /obj/machinery/r_n_d/destructive_analyzer,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "iX" = (
 /turf/simulated/floor/tiled/dark,
 /area/centcom/living)
 "iZ" = (
 /obj/machinery/r_n_d/protolathe,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "ja" = (
 /obj/structure/table/reinforced,
@@ -2637,9 +2673,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "jc" = (
 /obj/structure/closet/secure_closet/bar,
@@ -2721,16 +2755,16 @@
 /obj/machinery/computer/rdconsole/core{
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "jr" = (
 /obj/machinery/hologram/holopad,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "ju" = (
 /obj/machinery/r_n_d/circuit_imprinter,
 /obj/item/weapon/reagent_containers/glass/beaker/sulphuric,
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "jw" = (
 /obj/structure/grille,
@@ -2804,6 +2838,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/structure/bed/chair/shuttle,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_red"
 	},
@@ -2867,9 +2902,7 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 4
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "kj" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -2883,9 +2916,7 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 1
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "kl" = (
 /obj/structure/closet/secure_closet/freezer/meat,
@@ -2925,9 +2956,7 @@
 /obj/effect/floor_decal/corner/purple/border{
 	dir = 10
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "kq" = (
 /obj/machinery/shield_capacitor,
@@ -2948,9 +2977,7 @@
 /obj/machinery/cell_charger,
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/purple/border,
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "ks" = (
 /obj/effect/floor_decal/corner/grey/diagonal{
@@ -2983,9 +3010,7 @@
 /turf/simulated/floor/tiled/white,
 /area/centcom/medical)
 "kD" = (
-/obj/effect/floor_decal/emblem/stellardelight{
-	dir = 1
-	},
+/obj/effect/floor_decal/emblem/stellardelight/center,
 /turf/simulated/shuttle/floor/white,
 /area/shuttle/escape)
 "kH" = (
@@ -3026,9 +3051,7 @@
 	},
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/purple/border,
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "kM" = (
 /obj/effect/floor_decal/borderfloorwhite,
@@ -3039,9 +3062,7 @@
 /obj/effect/floor_decal/corner/purple/bordercorner2{
 	dir = 9
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "kN" = (
 /obj/structure/closet/crate,
@@ -3101,6 +3122,12 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/centcom/medical)
+"kQ" = (
+/obj/structure/sign/painting/public{
+	pixel_y = 30
+	},
+/turf/simulated/floor/tiled,
+/area/centcom/main_hall)
 "kS" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/blue/border,
@@ -3191,18 +3218,14 @@
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 8
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/bathroom)
 "lm" = (
 /obj/machinery/door/airlock/glass_research{
 	name = "Research and Development";
 	req_access = list(7)
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "ln" = (
 /obj/effect/floor_decal/borderfloorblack{
@@ -3234,10 +3257,18 @@
 /turf/simulated/floor/tiled,
 /area/centcom/control)
 "lx" = (
-/obj/machinery/light,
-/obj/structure/table/reinforced,
-/turf/simulated/shuttle/floor/white,
-/area/shuttle/escape)
+/obj/machinery/door/airlock/angled_bay/external/glass{
+	door_color = "#822a1e";
+	frequency = 1380;
+	id_tag = "supply_shuttle_hatch";
+	locked = 1;
+	name = "Shuttle Hatch"
+	},
+/obj/machinery/conveyor{
+	id = "cargoload"
+	},
+/turf/simulated/shuttle/floor,
+/area/shuttle/supply)
 "ly" = (
 /obj/machinery/camera/network/crescent,
 /turf/simulated/floor/tiled,
@@ -3253,9 +3284,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "lB" = (
 /obj/structure/bed/chair{
@@ -3272,9 +3301,7 @@
 	name = "Station Intercom (General)";
 	pixel_y = 27
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "lD" = (
 /obj/structure/bed/chair/office/dark,
@@ -3295,9 +3322,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "lF" = (
 /obj/effect/floor_decal/borderfloorblack{
@@ -3366,9 +3391,7 @@
 /obj/effect/floor_decal/corner/purple/bordercorner2{
 	dir = 1
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "lW" = (
 /obj/structure/filingcabinet/chestdrawer,
@@ -3380,6 +3403,12 @@
 	},
 /turf/simulated/floor/tiled/freezer,
 /area/centcom/security)
+"lZ" = (
+/obj/structure/sign/painting/public{
+	pixel_x = 30
+	},
+/turf/simulated/floor/carpet,
+/area/centcom/restaurant)
 "md" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -3409,9 +3438,7 @@
 	name = "Research Division Access";
 	req_access = list(47)
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "mi" = (
 /obj/machinery/door/blast/regular{
@@ -3425,9 +3452,7 @@
 	name = "Robotics Lab";
 	req_access = list(29,47)
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "mk" = (
 /obj/structure/table/reinforced,
@@ -3452,9 +3477,7 @@
 "mr" = (
 /obj/structure/closet/l3closet/scientist,
 /obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "ms" = (
 /obj/structure/closet/emcloset,
@@ -3462,9 +3485,7 @@
 /obj/machinery/camera/network/crescent{
 	dir = 10
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "mt" = (
 /obj/structure/curtain/open/shower,
@@ -3472,9 +3493,7 @@
 	dir = 1
 	},
 /obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "mu" = (
 /obj/structure/closet/wardrobe/robotics_black,
@@ -3576,9 +3595,7 @@
 /obj/effect/floor_decal/corner/purple/border{
 	dir = 9
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "mP" = (
 /obj/structure/table/standard,
@@ -3590,9 +3607,7 @@
 /obj/effect/floor_decal/corner/purple/border{
 	dir = 1
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "mQ" = (
 /obj/structure/table/standard,
@@ -3628,6 +3643,17 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/centcom/living)
+"na" = (
+/obj/machinery/embedded_controller/radio/simple_docking_controller{
+	dir = 8;
+	frequency = 1380;
+	id_tag = "centcom_port_dock";
+	name = "docking port controller";
+	pixel_x = 24;
+	req_one_access = list(13)
+	},
+/turf/simulated/floor/reinforced,
+/area/centcom)
 "nd" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 1
@@ -3635,9 +3661,7 @@
 /obj/effect/floor_decal/corner/purple/border{
 	dir = 1
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "ne" = (
 /obj/machinery/camera/network/crescent,
@@ -3647,9 +3671,7 @@
 /obj/effect/floor_decal/corner/purple/border{
 	dir = 1
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "nf" = (
 /obj/structure/table/standard,
@@ -3747,9 +3769,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "nG" = (
 /obj/effect/floor_decal/steeldecal/steel_decals9{
@@ -3778,9 +3798,7 @@
 /area/centcom/control)
 "nL" = (
 /obj/machinery/computer/rdconsole/robotics,
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "nM" = (
 /obj/effect/floor_decal/steeldecal/steel_decals9{
@@ -3811,7 +3829,7 @@
 	layer = 3.3;
 	name = "Kitchen Shutters"
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "nZ" = (
 /obj/effect/floor_decal/corner/grey/diagonal{
@@ -3900,9 +3918,7 @@
 	name = "Kitchen";
 	req_access = list(28)
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "op" = (
 /obj/machinery/transhuman/synthprinter,
@@ -4046,9 +4062,7 @@
 	pixel_x = 2;
 	pixel_y = 5
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "oN" = (
 /obj/structure/flora/pottedplant{
@@ -4076,6 +4090,12 @@
 /obj/machinery/light,
 /turf/simulated/shuttle/floor,
 /area/shuttle/supply)
+"oU" = (
+/obj/machinery/computer/secure_data{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor,
+/area/shuttle/escape)
 "oX" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 9
@@ -4116,7 +4136,7 @@
 /area/centcom)
 "pl" = (
 /obj/effect/floor_decal/emblem/stellardelight{
-	dir = 5
+	dir = 4
 	},
 /turf/simulated/shuttle/floor/white,
 /area/shuttle/escape)
@@ -4227,16 +4247,31 @@
 	},
 /turf/simulated/floor/tiled,
 /area/centcom/command)
+"pI" = (
+/obj/structure/bed/chair/shuttle{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor{
+	icon_state = "floor_red"
+	},
+/area/shuttle/escape)
 "pJ" = (
 /obj/machinery/camera/network/crescent,
 /turf/simulated/floor/tiled/dark,
 /area/centcom/control)
 "pN" = (
 /obj/structure/closet/crate/freezer,
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
+"pZ" = (
+/obj/structure/bed/chair/shuttle{
+	dir = 1
+	},
+/obj/effect/floor_decal/emblem/stellardelight{
+	dir = 5
+	},
+/turf/simulated/shuttle/floor/white,
+/area/shuttle/escape)
 "qc" = (
 /obj/effect/floor_decal/steeldecal/steel_decals10,
 /turf/simulated/floor/tiled/white,
@@ -4376,6 +4411,12 @@
 /obj/machinery/door/airlock/glass,
 /turf/simulated/floor/tiled,
 /area/centcom/main_hall)
+"qZ" = (
+/obj/machinery/body_scanconsole{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/white,
+/area/shuttle/escape)
 "rc" = (
 /obj/structure/table/standard,
 /obj/effect/floor_decal/borderfloor,
@@ -4442,15 +4483,11 @@
 	name = "Kitchen cold room";
 	req_access = list(28)
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "rz" = (
 /obj/structure/kitchenspike,
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "rI" = (
 /obj/effect/floor_decal/industrial/warning/corner{
@@ -4462,13 +4499,26 @@
 	name = "reinforced floor"
 	},
 /area/centcom)
+"rM" = (
+/obj/structure/bed/chair/shuttle,
+/turf/simulated/shuttle/floor,
+/area/shuttle/escape)
 "rQ" = (
+/obj/structure/bed/chair/shuttle{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor,
+/area/shuttle/escape)
+"rU" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	frequency = 1380;
 	id_tag = "escape_shuttle";
 	pixel_y = 25;
 	req_one_access = list(13);
 	tag_door = "escape_shuttle_hatch"
+	},
+/obj/structure/bed/chair/shuttle{
+	dir = 4
 	},
 /turf/simulated/shuttle/floor,
 /area/shuttle/escape)
@@ -4616,6 +4666,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/centcom/command)
+"sI" = (
+/obj/machinery/computer/communications{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor,
+/area/shuttle/escape)
 "sO" = (
 /obj/structure/reagent_dispensers/water_cooler/full,
 /obj/effect/floor_decal/borderfloorwhite{
@@ -4634,6 +4690,16 @@
 /obj/machinery/scale,
 /turf/simulated/floor/tiled/freezer,
 /area/centcom/bathroom)
+"sS" = (
+/obj/effect/shuttle_landmark/transit{
+	base_area = /area/centcom;
+	base_turf = /turf/simulated/floor/reinforced;
+	docking_controller = "centcom_starboard_dock";
+	landmark_tag = "starboard_escape_cc";
+	name = "Starboard Escape Centcom"
+	},
+/turf/simulated/floor/reinforced,
+/area/centcom)
 "sW" = (
 /obj/structure/table/rack,
 /obj/item/weapon/gun/projectile/automatic/pdw,
@@ -4663,9 +4729,7 @@
 	dir = 4
 	},
 /obj/machinery/appliance/mixer/cereal,
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "tp" = (
 /obj/structure/table/glass,
@@ -4729,9 +4793,7 @@
 	},
 /obj/structure/table/marble,
 /obj/machinery/reagentgrinder,
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "tM" = (
 /obj/effect/floor_decal/borderfloorwhite,
@@ -4754,18 +4816,14 @@
 /obj/machinery/camera/network/crescent{
 	dir = 10
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "tQ" = (
 /obj/effect/floor_decal/corner/grey/diagonal{
 	dir = 4
 	},
 /obj/machinery/appliance/cooker/grill,
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "tU" = (
 /turf/simulated/floor/tiled,
@@ -4906,6 +4964,10 @@
 /area/centcom/security{
 	name = "\improper CentCom Residential Security"
 	})
+"uQ" = (
+/obj/structure/AIcore/deactivated,
+/turf/simulated/shuttle/floor,
+/area/shuttle/escape)
 "uV" = (
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "tram"
@@ -5015,6 +5077,12 @@
 /area/centcom/security{
 	name = "\improper CentCom Residential Security"
 	})
+"vq" = (
+/obj/structure/sign/painting/public{
+	pixel_x = 30
+	},
+/turf/simulated/floor/wood,
+/area/centcom/restaurant)
 "vs" = (
 /obj/machinery/vending/cigarette,
 /turf/simulated/floor/carpet,
@@ -5059,15 +5127,15 @@
 /area/centcom/main_hall)
 "vS" = (
 /obj/machinery/camera/network/crescent,
-/turf/simulated/floor/tiled{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/simulated/floor/wood,
 /area/centcom/restaurant)
 "vU" = (
-/obj/structure/AIcore/deactivated,
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "cargounload"
+	},
 /turf/simulated/shuttle/floor,
-/area/shuttle/escape)
+/area/shuttle/supply)
 "vV" = (
 /obj/effect/floor_decal/corner/yellow/diagonal,
 /obj/effect/floor_decal/corner/blue/diagonal{
@@ -5200,10 +5268,7 @@
 /obj/machinery/newscaster{
 	pixel_y = 30
 	},
-/turf/simulated/floor/tiled{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/simulated/floor/wood,
 /area/centcom/restaurant)
 "wu" = (
 /obj/machinery/computer/robotics{
@@ -5215,10 +5280,16 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 8
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
+"wz" = (
+/obj/structure/table/reinforced,
+/obj/item/weapon/storage/firstaid/adv,
+/obj/item/weapon/storage/firstaid/fire,
+/obj/item/weapon/storage/firstaid/o2,
+/obj/item/weapon/storage/firstaid/toxin,
+/turf/simulated/shuttle/floor/white,
+/area/shuttle/escape)
 "wA" = (
 /obj/machinery/cryopod/robot/door/gateway,
 /turf/simulated/floor/tiled/dark,
@@ -5257,10 +5328,7 @@
 	pixel_y = 3
 	},
 /obj/item/weapon/reagent_containers/food/snacks/cheeseburger,
-/turf/simulated/floor/tiled{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/simulated/floor/wood,
 /area/centcom/restaurant)
 "wT" = (
 /obj/structure/table/standard,
@@ -5282,9 +5350,7 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 10
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "wX" = (
 /obj/structure/table/reinforced,
@@ -5349,17 +5415,13 @@
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 8
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/bathroom)
 "xi" = (
 /obj/machinery/door/airlock{
 	name = "Unit 1"
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/bathroom)
 "xt" = (
 /obj/structure/table/rack,
@@ -5419,18 +5481,13 @@
 /area/centcom/security)
 "xF" = (
 /obj/machinery/media/jukebox/hacked,
-/turf/simulated/floor/tiled{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/simulated/floor/wood,
 /area/centcom/restaurant)
 "xG" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 6
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "xH" = (
 /turf/simulated/floor/tiled/steel,
@@ -5472,10 +5529,7 @@
 /obj/structure/bed/chair/wood/wings{
 	dir = 4
 	},
-/turf/simulated/floor/tiled{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/simulated/floor/wood,
 /area/centcom/restaurant)
 "xS" = (
 /obj/structure/table/standard,
@@ -5511,6 +5565,14 @@
 /area/centcom/security{
 	name = "\improper CentCom Security Arrivals"
 	})
+"yb" = (
+/obj/structure/bed/chair/shuttle{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor{
+	icon_state = "floor_red"
+	},
+/area/shuttle/escape)
 "ye" = (
 /obj/effect/floor_decal/sign/dock/one,
 /obj/effect/floor_decal/industrial/warning/dust{
@@ -5549,10 +5611,7 @@
 "yB" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/reagent_containers/food/snacks/fries,
-/turf/simulated/floor/tiled{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/simulated/floor/wood,
 /area/centcom/restaurant)
 "yC" = (
 /obj/structure/table/rack,
@@ -5617,10 +5676,7 @@
 /obj/structure/bed/chair/wood/wings{
 	dir = 8
 	},
-/turf/simulated/floor/tiled{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/simulated/floor/wood,
 /area/centcom/restaurant)
 "yT" = (
 /obj/effect/floor_decal/borderfloorwhite{
@@ -5656,19 +5712,13 @@
 	pixel_x = -8;
 	pixel_y = 4
 	},
-/turf/simulated/floor/tiled{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/simulated/floor/wood,
 /area/centcom/restaurant)
 "yV" = (
 /obj/machinery/status_display{
 	pixel_y = 29
 	},
-/turf/simulated/floor/tiled{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/simulated/floor/wood,
 /area/centcom/restaurant)
 "yX" = (
 /obj/structure/bed/padded,
@@ -5718,6 +5768,21 @@
 /obj/machinery/light/flamp/noshade,
 /turf/simulated/floor/tiled,
 /area/centcom/evac)
+"zn" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/bodyscanner{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/white,
+/area/shuttle/escape)
+"zo" = (
+/obj/structure/sign/painting/public{
+	pixel_x = -30
+	},
+/turf/simulated/floor/tiled,
+/area/centcom/main_hall)
 "zq" = (
 /obj/structure/table/rack{
 	dir = 4
@@ -5774,10 +5839,7 @@
 /area/centcom)
 "zG" = (
 /obj/structure/bed/chair/wood/wings,
-/turf/simulated/floor/tiled{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/simulated/floor/wood,
 /area/centcom/restaurant)
 "zH" = (
 /obj/effect/floor_decal/fancy_shuttle{
@@ -5898,16 +5960,10 @@
 /area/centcom/command)
 "Ak" = (
 /obj/structure/table/woodentable,
-/turf/simulated/floor/tiled{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/simulated/floor/wood,
 /area/centcom/restaurant)
 "Am" = (
-/turf/simulated/floor/tiled{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/simulated/floor/wood,
 /area/centcom/restaurant)
 "An" = (
 /obj/structure/grille,
@@ -5938,10 +5994,7 @@
 /obj/structure/bed/chair/wood/wings{
 	dir = 1
 	},
-/turf/simulated/floor/tiled{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/simulated/floor/wood,
 /area/centcom/restaurant)
 "AE" = (
 /obj/structure/table/rack,
@@ -6034,6 +6087,13 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/structure/bed/chair/shuttle,
+/turf/simulated/shuttle/floor,
+/area/shuttle/escape)
+"AU" = (
+/obj/machinery/computer/station_alert{
+	dir = 1
+	},
 /turf/simulated/shuttle/floor,
 /area/shuttle/escape)
 "Bb" = (
@@ -6053,6 +6113,18 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/centcom/bar)
+"Bz" = (
+/obj/machinery/embedded_controller/radio/simple_docking_controller{
+	dir = 8;
+	frequency = 1380;
+	id_tag = "centcom_starboard_dock";
+	name = "docking port controller";
+	pixel_x = 24;
+	req_one_access = list(13);
+	tag_door = null
+	},
+/turf/simulated/floor/reinforced,
+/area/centcom)
 "BD" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/structure/dispenser/oxygen,
@@ -6065,6 +6137,10 @@
 	id_tag = "supply_shuttle_hatch";
 	locked = 1;
 	name = "Shuttle Hatch"
+	},
+/obj/machinery/conveyor{
+	dir = 1;
+	id = "cargounload"
 	},
 /turf/simulated/shuttle/floor,
 /area/shuttle/supply)
@@ -6126,6 +6202,12 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/centcom/command)
+"CB" = (
+/obj/structure/table/reinforced,
+/turf/simulated/shuttle/floor{
+	icon_state = "floor_red"
+	},
+/area/shuttle/escape)
 "CD" = (
 /obj/machinery/flasher/portable,
 /obj/effect/floor_decal/industrial/hatch/yellow,
@@ -6168,9 +6250,7 @@
 	},
 /obj/effect/floor_decal/borderfloorwhite/corner2,
 /obj/effect/floor_decal/corner/purple/bordercorner2,
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "CL" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -6363,9 +6443,7 @@
 	pixel_x = -26;
 	pixel_y = 23
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "Dw" = (
 /obj/structure/bed/chair/comfy/black,
@@ -6544,9 +6622,7 @@
 /obj/effect/floor_decal/corner/purple/bordercorner2{
 	dir = 8
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "DS" = (
 /obj/effect/floor_decal/borderfloorblack{
@@ -6656,9 +6732,7 @@
 	dir = 4
 	},
 /obj/machinery/vending/dinnerware,
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "Ei" = (
 /obj/structure/bed/padded,
@@ -6794,9 +6868,7 @@
 "EG" = (
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/purple/border,
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "EH" = (
 /obj/structure/toilet,
@@ -7010,11 +7082,14 @@
 "Fv" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/reagent_containers/food/snacks/meatballsoup,
-/turf/simulated/floor/tiled{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/simulated/floor/wood,
 /area/centcom/restaurant)
+"Fx" = (
+/obj/structure/sign/painting/public{
+	pixel_x = 30
+	},
+/turf/simulated/floor/tiled,
+/area/centcom/main_hall)
 "Fy" = (
 /obj/structure/closet/l3closet/virology,
 /obj/item/clothing/mask/gas,
@@ -7180,9 +7255,7 @@
 /area/centcom/security)
 "FV" = (
 /obj/machinery/recharge_station,
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/bathroom)
 "FW" = (
 /obj/structure/table/reinforced,
@@ -7466,9 +7539,7 @@
 /area/centcom)
 "GD" = (
 /obj/structure/closet/secure_closet/freezer/meat,
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "GH" = (
 /obj/machinery/door/blast/regular{
@@ -8328,6 +8399,12 @@
 /obj/machinery/vending/medical,
 /turf/simulated/floor/tiled/white,
 /area/centcom/medical)
+"IZ" = (
+/obj/machinery/computer/shuttle_control/emergency{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor,
+/area/shuttle/escape)
 "Ja" = (
 /obj/structure/table/rack,
 /obj/effect/floor_decal/industrial/outline/yellow,
@@ -8431,6 +8508,12 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/centcom/medical)
+"Jn" = (
+/obj/machinery/sleeper{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/white,
+/area/shuttle/escape)
 "Jo" = (
 /obj/structure/table/standard,
 /obj/effect/floor_decal/borderfloor{
@@ -8520,9 +8603,7 @@
 /obj/effect/floor_decal/corner/grey/diagonal{
 	dir = 4
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "JB" = (
 /obj/structure/table/woodentable{
@@ -8570,9 +8651,7 @@
 	dir = 4
 	},
 /obj/machinery/appliance/cooker/fryer,
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "JI" = (
 /obj/machinery/door_timer/cell_3{
@@ -8655,9 +8734,7 @@
 /turf/simulated/floor/tiled,
 /area/centcom/security)
 "JS" = (
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "JT" = (
 /obj/structure/table/reinforced{
@@ -9080,6 +9157,9 @@
 /area/centcom/control)
 "KO" = (
 /obj/machinery/light,
+/obj/structure/bed/chair/shuttle{
+	dir = 4
+	},
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_red"
 	},
@@ -9363,10 +9443,7 @@
 /obj/structure/flora/pottedplant{
 	icon_state = "plant-22"
 	},
-/turf/simulated/floor/tiled{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/simulated/floor/wood,
 /area/centcom/restaurant)
 "Lw" = (
 /obj/structure/table/reinforced,
@@ -9385,9 +9462,7 @@
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 9
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/bathroom)
 "Ly" = (
 /obj/machinery/door/airlock/multi_tile/glass{
@@ -9470,9 +9545,7 @@
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 8
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/bathroom)
 "LG" = (
 /obj/effect/floor_decal/industrial/outline,
@@ -9495,9 +9568,7 @@
 /obj/effect/floor_decal/borderfloorwhite/corner2{
 	dir = 6
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/bathroom)
 "LK" = (
 /obj/effect/floor_decal/borderfloorwhite{
@@ -9595,9 +9666,7 @@
 /obj/machinery/door/airlock{
 	name = "Unit 2"
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/bathroom)
 "LX" = (
 /obj/effect/landmark{
@@ -9621,8 +9690,8 @@
 	name = "\improper CentCom Residential Security"
 	})
 "LZ" = (
-/obj/machinery/status_display{
-	pixel_y = 32
+/obj/structure/bed/chair/shuttle{
+	dir = 8
 	},
 /turf/simulated/shuttle/floor,
 /area/shuttle/escape)
@@ -9741,10 +9810,7 @@
 "Mr" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/reagent_containers/food/snacks/grilledcheese,
-/turf/simulated/floor/tiled{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/simulated/floor/wood,
 /area/centcom/restaurant)
 "Ms" = (
 /obj/structure/bed/chair/comfy/teal{
@@ -9783,9 +9849,7 @@
 /area/centcom/security)
 "Mx" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "My" = (
 /obj/structure/table/rack,
@@ -9829,9 +9893,7 @@
 /obj/effect/floor_decal/corner/grey/diagonal{
 	dir = 4
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "MB" = (
 /obj/machinery/vending/snack,
@@ -9851,9 +9913,7 @@
 /area/centcom/security)
 "MF" = (
 /obj/machinery/gibber,
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "MG" = (
 /obj/structure/extinguisher_cabinet{
@@ -9879,9 +9939,7 @@
 /obj/effect/floor_decal/borderfloorwhite/corner2{
 	dir = 10
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/bathroom)
 "MI" = (
 /obj/structure/table/glass,
@@ -10074,17 +10132,13 @@
 	dir = 8
 	},
 /obj/structure/closet/crate/bin,
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/bathroom)
 "Nj" = (
 /obj/machinery/door/airlock{
 	name = "Unit 3"
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/bathroom)
 "Nk" = (
 /obj/structure/table/glass,
@@ -10360,26 +10414,20 @@
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 10
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/bathroom)
 "NQ" = (
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/borderfloorwhite/corner2{
 	dir = 9
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/bathroom)
 "NR" = (
 /obj/machinery/door/airlock{
 	name = "Unit 4"
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/bathroom)
 "NS" = (
 /obj/item/device/radio/intercom{
@@ -10589,9 +10637,7 @@
 /obj/effect/floor_decal/borderfloorwhite/corner2{
 	dir = 1
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/bathroom)
 "Os" = (
 /obj/machinery/computer/security{
@@ -10827,10 +10873,7 @@
 "Pf" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/reagent_containers/food/snacks/meatsteak,
-/turf/simulated/floor/tiled{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/simulated/floor/wood,
 /area/centcom/restaurant)
 "Pg" = (
 /obj/machinery/newscaster{
@@ -11310,6 +11353,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/structure/bed/chair/shuttle,
 /turf/simulated/shuttle/floor,
 /area/shuttle/escape)
 "Qj" = (
@@ -11447,9 +11491,7 @@
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 9
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/bathroom)
 "QH" = (
 /obj/effect/floor_decal/borderfloor,
@@ -11463,10 +11505,7 @@
 /area/centcom/main_hall)
 "QJ" = (
 /obj/machinery/vending/cigarette,
-/turf/simulated/floor/tiled{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/simulated/floor/wood,
 /area/centcom/restaurant)
 "QL" = (
 /obj/structure/grille,
@@ -11485,10 +11524,7 @@
 /area/centcom/evac)
 "QR" = (
 /obj/structure/closet/crate/bin,
-/turf/simulated/floor/tiled{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/simulated/floor/wood,
 /area/centcom/restaurant)
 "QS" = (
 /obj/machinery/camera/network/crescent,
@@ -11499,19 +11535,13 @@
 /area/centcom/medical)
 "QU" = (
 /obj/machinery/vending/nifsoft_shop,
-/turf/simulated/floor/tiled{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/simulated/floor/wood,
 /area/centcom/restaurant)
 "QV" = (
 /obj/structure/sign/double/barsign{
 	dir = 1
 	},
-/turf/simulated/floor/tiled{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/simulated/floor/wood,
 /area/centcom/restaurant)
 "QW" = (
 /obj/structure/table/woodentable,
@@ -11893,7 +11923,7 @@
 "RR" = (
 /obj/effect/shuttle_landmark{
 	base_area = /area/space;
-	base_turf = /turf/space;
+	base_turf = /turf/unsimulated/floor;
 	landmark_tag = "supply_cc";
 	name = "Centcom Supply Depot"
 	},
@@ -11965,9 +11995,7 @@
 /obj/effect/floor_decal/corner/purple/bordercorner2{
 	dir = 5
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "RY" = (
 /obj/item/weapon/reagent_containers/food/condiment/small/saltshaker{
@@ -12371,18 +12399,12 @@
 	pixel_x = -5;
 	pixel_y = -3
 	},
-/turf/simulated/floor/tiled{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/simulated/floor/wood,
 /area/centcom/restaurant)
 "Ta" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/reagent_containers/food/snacks/bigbiteburger,
-/turf/simulated/floor/tiled{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/simulated/floor/wood,
 /area/centcom/restaurant)
 "Tb" = (
 /obj/effect/floor_decal/borderfloorwhite{
@@ -12392,9 +12414,7 @@
 	dir = 10
 	},
 /obj/structure/closet/crate/bin,
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/bathroom)
 "Td" = (
 /obj/structure/table/standard,
@@ -12434,6 +12454,15 @@
 	},
 /turf/simulated/floor/carpet,
 /area/centcom/restaurant)
+"Th" = (
+/obj/structure/bed/chair/shuttle{
+	dir = 1
+	},
+/obj/effect/floor_decal/emblem/stellardelight{
+	dir = 9
+	},
+/turf/simulated/shuttle/floor/white,
+/area/shuttle/escape)
 "Ti" = (
 /obj/machinery/door/airlock/security{
 	name = "Security"
@@ -12480,6 +12509,12 @@
 /area/centcom/security)
 "To" = (
 /obj/structure/bed/chair/shuttle,
+/turf/simulated/shuttle/floor/white,
+/area/shuttle/escape)
+"Tp" = (
+/obj/machinery/sleep_console{
+	dir = 4
+	},
 /turf/simulated/shuttle/floor/white,
 /area/shuttle/escape)
 "Tq" = (
@@ -12849,9 +12884,7 @@
 /turf/simulated/floor/tiled,
 /area/centcom/security)
 "Ul" = (
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/bathroom)
 "Um" = (
 /obj/structure/sink{
@@ -12865,9 +12898,7 @@
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 10
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/bathroom)
 "Un" = (
 /obj/effect/floor_decal/borderfloorblack{
@@ -12927,9 +12958,7 @@
 /obj/effect/floor_decal/borderfloorwhite/corner2{
 	dir = 8
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/bathroom)
 "Ur" = (
 /obj/effect/floor_decal/borderfloorblack{
@@ -13003,9 +13032,7 @@
 /obj/structure/toilet{
 	dir = 8
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/bathroom)
 "Uz" = (
 /obj/effect/floor_decal/borderfloorblack,
@@ -13111,10 +13138,7 @@
 "UK" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/reagent_containers/food/snacks/roastbeef,
-/turf/simulated/floor/tiled{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/simulated/floor/wood,
 /area/centcom/restaurant)
 "UL" = (
 /obj/structure/table/rack,
@@ -13150,26 +13174,17 @@
 /obj/machinery/camera/network/crescent{
 	dir = 4
 	},
-/turf/simulated/floor/tiled{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/simulated/floor/wood,
 /area/centcom/restaurant)
 "UQ" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/reagent_containers/food/snacks/pastatomato,
-/turf/simulated/floor/tiled{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/simulated/floor/wood,
 /area/centcom/restaurant)
 "UR" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/reagent_containers/food/snacks/meatballspagetti,
-/turf/simulated/floor/tiled{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/simulated/floor/wood,
 /area/centcom/restaurant)
 "US" = (
 /obj/structure/shuttle/engine/propulsion{
@@ -13191,10 +13206,7 @@
 /obj/machinery/computer/guestpass{
 	pixel_y = 26
 	},
-/turf/simulated/floor/tiled{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/simulated/floor/wood,
 /area/centcom/restaurant)
 "UY" = (
 /obj/structure/table/standard,
@@ -13234,19 +13246,13 @@
 	pixel_x = -4;
 	pixel_y = 12
 	},
-/turf/simulated/floor/tiled{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/simulated/floor/wood,
 /area/centcom/restaurant)
 "Va" = (
 /obj/structure/table/marble,
 /obj/machinery/chemical_dispenser/bar_coffee/full,
 /obj/machinery/camera/network/crescent,
-/turf/simulated/floor/tiled{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/simulated/floor/wood,
 /area/centcom/restaurant)
 "Vb" = (
 /obj/structure/bed/chair/office/dark,
@@ -13425,18 +13431,12 @@
 "Vx" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/reagent_containers/food/snacks/kitsuneudon,
-/turf/simulated/floor/tiled{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/simulated/floor/wood,
 /area/centcom/restaurant)
 "Vy" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/reagent_containers/food/snacks/lasagna,
-/turf/simulated/floor/tiled{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/simulated/floor/wood,
 /area/centcom/restaurant)
 "Vz" = (
 /obj/machinery/door/firedoor,
@@ -14466,9 +14466,7 @@
 /obj/machinery/camera/network/crescent{
 	dir = 10
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "XZ" = (
 /obj/effect/floor_decal/fancy_shuttle{
@@ -14483,20 +14481,6 @@
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /turf/simulated/floor/tiled,
 /area/centcom/living)
-"Yb" = (
-/obj/machinery/conveyor{
-	dir = 1;
-	id = "cargounload"
-	},
-/obj/machinery/door/airlock/angled_bay/external/glass{
-	door_color = "#822a1e";
-	frequency = 1380;
-	id_tag = "supply_shuttle_hatch";
-	locked = 1;
-	name = "Shuttle Hatch"
-	},
-/turf/simulated/shuttle/floor,
-/area/shuttle/supply)
 "Yc" = (
 /obj/structure/flora/pottedplant{
 	icon_state = "plant-21"
@@ -14528,9 +14512,6 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/shuttle/escape)
 "Yf" = (
-/obj/machinery/conveyor{
-	id = "cargoload"
-	},
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	door_color = "#822a1e";
 	frequency = 1380;
@@ -14555,16 +14536,11 @@
 /obj/effect/floor_decal/corner/purple/bordercorner2{
 	dir = 6
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "Yj" = (
 /obj/machinery/vending/coffee,
-/turf/simulated/floor/tiled{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/simulated/floor/wood,
 /area/centcom/restaurant)
 "Yn" = (
 /obj/effect/floor_decal/borderfloor{
@@ -14576,24 +14552,15 @@
 /area/centcom/command)
 "Yo" = (
 /obj/machinery/vending/sovietsoda,
-/turf/simulated/floor/tiled{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/simulated/floor/wood,
 /area/centcom/restaurant)
 "Yp" = (
 /obj/machinery/vending/snack,
-/turf/simulated/floor/tiled{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/simulated/floor/wood,
 /area/centcom/restaurant)
 "Yq" = (
 /obj/machinery/vending/cola,
-/turf/simulated/floor/tiled{
-	icon = 'icons/turf/floors_vr.dmi';
-	icon_state = "wood"
-	},
+/turf/simulated/floor/wood,
 /area/centcom/restaurant)
 "Ys" = (
 /obj/structure/table/rack,
@@ -14727,12 +14694,10 @@
 /turf/simulated/shuttle/floor/white,
 /area/shuttle/escape)
 "YD" = (
-/obj/machinery/conveyor{
-	dir = 1;
-	id = "cargounload"
-	},
-/turf/simulated/shuttle/floor,
-/area/shuttle/supply)
+/obj/structure/table/reinforced,
+/obj/machinery/light,
+/turf/simulated/shuttle/floor/white,
+/area/shuttle/escape)
 "YE" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 4
@@ -14740,9 +14705,7 @@
 /obj/effect/floor_decal/corner/purple/border{
 	dir = 4
 	},
-/turf/simulated/floor/tiled{
-	icon_state = "white"
-	},
+/turf/simulated/floor/tiled/white,
 /area/centcom/control)
 "YF" = (
 /obj/machinery/light{
@@ -18596,9 +18559,9 @@ Bf
 Bc
 US
 YT
-fW
-fW
-fW
+yb
+yb
+yb
 KO
 Ot
 Ey
@@ -18883,7 +18846,7 @@ Ey
 jN
 fW
 fW
-fW
+pI
 ey
 gm
 Bc
@@ -19022,10 +18985,10 @@ Xk
 Xk
 YC
 Ey
+et
 fW
 fW
-fW
-fW
+pI
 Ot
 Ey
 Ey
@@ -19168,8 +19131,8 @@ fW
 fW
 TN
 fW
-fW
-fW
+CB
+Ey
 Ey
 Bf
 zZ
@@ -19307,8 +19270,8 @@ FY
 RU
 Ot
 PR
-PR
 Ot
+Ey
 Ey
 Ey
 Ey
@@ -19449,11 +19412,11 @@ FY
 RU
 Xk
 Xk
-Xk
 Ey
+rU
 rQ
 Qi
-bn
+hS
 PR
 Bf
 zZ
@@ -19587,15 +19550,15 @@ RU
 RU
 To
 Nz
-FY
+Th
 hY
 GQ
-RU
 RU
 ZC
 bn
 bn
 bn
+sI
 PR
 Bf
 zZ
@@ -19729,15 +19692,15 @@ Nz
 RU
 RU
 RU
-RU
+gN
 kD
 KS
-Nz
-lx
+YD
 Ey
-vU
+uQ
 bn
-bn
+rM
+IZ
 PR
 Bf
 zZ
@@ -19871,15 +19834,15 @@ RU
 RU
 To
 Nz
-FY
+pZ
 pl
 wn
-RU
 RU
 ZC
 bn
 bn
 bn
+AU
 PR
 Bf
 zZ
@@ -19989,7 +19952,7 @@ Vq
 Vq
 Vq
 ah
-vu
+kQ
 vu
 vu
 vu
@@ -20017,11 +19980,11 @@ FY
 RU
 Xl
 Xl
-Xl
 Ey
+gv
 LZ
 AS
-bn
+oU
 PR
 Bf
 zZ
@@ -20159,8 +20122,8 @@ FY
 RU
 Ot
 PR
-PR
 Ot
+Ey
 Ey
 Ey
 Ey
@@ -20304,8 +20267,8 @@ RU
 RU
 lu
 RU
-RU
-RU
+wz
+Ey
 Ey
 Bf
 zZ
@@ -20442,10 +20405,10 @@ Xl
 Xl
 EB
 Ey
+qZ
 RU
 RU
-RU
-RU
+Tp
 Ot
 Ey
 Ey
@@ -20584,10 +20547,10 @@ PR
 PR
 Ey
 Ey
-zR
+zn
 RU
 RU
-RU
+Jn
 ey
 gm
 Bc
@@ -20686,7 +20649,7 @@ aH
 Bf
 zZ
 Bf
-Bf
+fG
 Bf
 Bf
 Qr
@@ -20868,9 +20831,9 @@ Bf
 Bc
 US
 YT
-RU
-RU
-RU
+Xl
+Xl
+Xl
 eK
 Ot
 Ey
@@ -21403,7 +21366,7 @@ Qr
 Bf
 zZ
 Bf
-Bf
+sS
 Bf
 Bf
 Qr
@@ -21680,14 +21643,14 @@ aH
 Bf
 Bf
 Bf
+na
 Bf
 Bf
 Bf
 Bf
 Bf
 Bf
-Bf
-Bf
+Bz
 Bf
 Bf
 Bf
@@ -21977,7 +21940,7 @@ ZQ
 ZQ
 ZQ
 ah
-vu
+kQ
 vu
 vu
 vu
@@ -22403,7 +22366,7 @@ aM
 aM
 aM
 aM
-vu
+kQ
 vu
 vu
 vu
@@ -22564,12 +22527,12 @@ wj
 MS
 MS
 MS
-Yb
-YD
-YD
-YD
-YD
-YD
+Yf
+Cj
+Cj
+Cj
+Cj
+Cj
 Cv
 MS
 MS
@@ -22707,10 +22670,10 @@ MS
 MS
 MS
 BJ
-Cj
-Cj
-Cj
-Cj
+vU
+vU
+vU
+vU
 Cj
 Cv
 MS
@@ -23416,11 +23379,11 @@ wj
 MS
 MS
 MS
-BJ
-Cj
-Cj
-Cj
-Cj
+lx
+Oz
+Oz
+Oz
+Oz
 Cj
 Cv
 MS
@@ -23559,11 +23522,11 @@ MS
 MS
 MS
 Yf
-Oz
-Oz
-Oz
-Oz
-Oz
+Cj
+Cj
+Cj
+Cj
+Cj
 Cv
 MS
 MS
@@ -27953,7 +27916,7 @@ Am
 Am
 Am
 Am
-Am
+vq
 Am
 Am
 Am
@@ -28349,7 +28312,7 @@ Dp
 em
 EE
 aj
-vu
+kQ
 vu
 vu
 aI
@@ -29361,7 +29324,7 @@ tY
 tY
 On
 aM
-vu
+kQ
 vu
 vu
 vu
@@ -29645,7 +29608,7 @@ tY
 tx
 Sy
 aM
-vu
+kQ
 vu
 vu
 vu
@@ -29929,7 +29892,7 @@ tY
 tx
 Sy
 aM
-vu
+kQ
 vu
 vu
 vu
@@ -30080,7 +30043,7 @@ QW
 RH
 xK
 xK
-xK
+lZ
 xK
 xK
 xK
@@ -30344,11 +30307,11 @@ Xp
 vu
 kf
 vu
+zo
 vu
 vu
 vu
-vu
-vu
+zo
 vu
 vu
 kf
@@ -30628,7 +30591,7 @@ Xp
 vu
 vu
 vu
-vu
+Fx
 vu
 vu
 vu
@@ -30646,7 +30609,7 @@ vu
 Xp
 vu
 vu
-vu
+Fx
 vu
 vu
 vu
@@ -32444,7 +32407,7 @@ nd
 iJ
 iW
 jp
-kj
+cU
 kK
 aj
 lE
@@ -32584,9 +32547,9 @@ ZQ
 uL
 ne
 iJ
-em
+JS
 jr
-kj
+cU
 EG
 aj
 aj
@@ -32728,7 +32691,7 @@ im
 iJ
 iZ
 ju
-kj
+cU
 kM
 md
 lV
