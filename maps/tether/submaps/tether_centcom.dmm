@@ -13211,7 +13211,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/centcom/command)
 "Vq" = (
-/turf/simulated/floor/outdoors/grass/sif,
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/centcom)
 "Vr" = (
 /obj/machinery/fitness/heavy/lifter,

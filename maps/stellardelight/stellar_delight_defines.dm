@@ -234,14 +234,14 @@
 
 /obj/effect/overmap/visitable/ship/stellar_delight
 	name = "NRV Stellar Delight"
-	icon = 'icons/obj/overmap.dmi'
-	icon_state = "serb_destroyer_g"
+	icon = 'icons/obj/overmap_vr.dmi'
+	icon_state = "stellar_delight_g"
 	desc = "Spacefaring vessel. Friendly IFF detected."
 	scanner_desc = @{"[i]Registration[/i]: NRV Stellar Delight
-[i]Class[/i]: Nanotrasen Research Frigate
+[i]Class[/i]: Nanotrasen Response Frigate
 [i]Transponder[/i]: Transmitting (CIV), non-hostile"
-[b]Notice[/b]: A research vessel registered to Nanotrasen."}
-	vessel_mass = 20000
+[b]Notice[/b]: A response vessel registered to Nanotrasen."}
+	vessel_mass = 30000
 	vessel_size = SHIP_SIZE_LARGE
 	initial_generic_waypoints = list("starboard_shuttlepad","port_shuttlepad","sd-1-23-54","sd-1-67-15","sd-1-70-130","sd-1-115-85","sd-2-25-98","sd-2-117-98","sd-3-22-78","sd-3-36-33","sd-3-104-33","sd-3-120-78")
 	initial_restricted_waypoints = list("Exploration Shuttle" = list("sd_explo"), "Mining Shuttle" = list("sd_mining"))
@@ -253,8 +253,8 @@
 
 	skybox_icon = 'stelardelightskybox.dmi'
 	skybox_icon_state = "skybox"
-	skybox_pixel_x = 270
-	skybox_pixel_y = 60
+	skybox_pixel_x = 450
+	skybox_pixel_y = 200
 
 /obj/effect/overmap/visitable/ship/stellar_delight/build_skybox_representation()
 	..()
@@ -661,3 +661,17 @@ var/global/list/latejoin_tram   = list()
 /obj/effect/transit/light
 	icon = 'icons/turf/transit_128.dmi'
 	icon_state = "tube1-2"
+
+VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/grass/sif)
+/turf/simulated/floor/outdoors/grass/sif
+	turf_layers = list(
+		/turf/simulated/floor/outdoors/rocks/virgo3b,
+		/turf/simulated/floor/outdoors/dirt/virgo3b
+		)
+
+VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/dirt)
+/turf/simulated/floor/outdoors/dirt/virgo3b
+	icon = 'icons/turf/flooring/asteroid.dmi'
+	icon_state = "asteroid"
+
+VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/rocks)

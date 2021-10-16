@@ -49,3 +49,15 @@
 		else
 			add_overlay("open")
 
+//VOREStation Add Start
+/obj/structure/closet/secure_closet/guncabinet/excursion
+	name = "expedition weaponry cabinet"
+	req_one_access = list(access_explorer,access_armory)
+
+/obj/structure/closet/secure_closet/guncabinet/excursion/New()
+	..()
+	for(var/i = 1 to 2)
+		new /obj/item/weapon/gun/energy/locked/frontier(src)
+	for(var/i = 1 to 2)
+		new /obj/item/weapon/gun/energy/locked/frontier/holdout(src)
+//VOREStation Add End

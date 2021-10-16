@@ -38,8 +38,14 @@
 	name = "deck one port forward maintenance"
 /area/maintenance/stellardelight/deck1/starboardfore
 	name = "deck one starboard forward maintenance"
+/area/maintenance/stellardelight/deck1/portcent
+	name = "deck one port center maintenance"
+/area/maintenance/stellardelight/deck1/starboardcent
+	name = "deck one starboard center maintenance"
 /area/maintenance/stellardelight/deck1/portaft
 	name = "deck one port aft maintenance"
+/area/maintenance/stellardelight/deck1/exploration
+	name = "exploration maintenance"
 /area/maintenance/stellardelight/deck1/starboardaft
 	name = "deck one starboard aft maintenance"
 
@@ -54,6 +60,13 @@
 	name = "deck two port aft maintenance"
 /area/maintenance/stellardelight/deck2/starboardaft
 	name = "deck one starboard aft maintenance"
+/area/maintenance/stellardelight/deck2/portsolars
+	name = "deck two port solar array"
+/area/maintenance/stellardelight/deck2/starboardsolars
+	name = "deck one starboard solar array"
+/area/maintenance/stellardelight/deck2/atmos
+	name = "atmospherics maintenance"
+
 
 /area/maintenance/stellardelight/deck3
 	icon_state = "deckmaint3"
