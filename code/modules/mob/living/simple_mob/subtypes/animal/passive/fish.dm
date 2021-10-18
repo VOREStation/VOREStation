@@ -18,6 +18,8 @@
 	plane = TURF_PLANE
 	layer = UNDERWATER_LAYER
 
+	organ_names = /decl/mob_organ_names/fish
+
 	holder_type = /obj/item/weapon/holder/fish
 
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish
@@ -319,4 +321,11 @@
 
 	catalogue_data = list(/datum/category_item/catalogue/fauna/murkin)
 
+<<<<<<< HEAD
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat/sif/murkfish
+=======
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish/sif
+
+/decl/mob_organ_names/fish
+	hit_zones = list("head", "body", "dorsal fin", "left pectoral fin", "right pectoral fin", "tail fin")
+>>>>>>> a0b1094b9af... Merge pull request #8342 from PolarisSS13/master

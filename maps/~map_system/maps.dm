@@ -216,6 +216,7 @@ var/list/all_maps = list()
 // Get a list of 'nearby' or 'connected' zlevels.
 // You should at least return a list with the given z if nothing else.
 /datum/map/proc/get_map_levels(var/srcz, var/long_range = FALSE, var/om_range = -1)
+<<<<<<< HEAD
 	//Overmap behavior
 	if(use_overmap)
 		//Get what sector we're in
@@ -224,6 +225,11 @@ var/list/all_maps = list()
 			//Anything in multiz then (or just themselves)
 			return GetConnectedZlevels(srcz)
 
+=======
+	//Get what sector we're in
+	var/obj/effect/overmap/visitable/O = get_overmap_sector(srcz)
+	if(istype(O))
+>>>>>>> a0b1094b9af... Merge pull request #8342 from PolarisSS13/master
 		//Just the sector we're in
 		if(om_range == -1)
 			return O.map_z.Copy()
@@ -236,7 +242,7 @@ var/list/all_maps = list()
 			connections += V.map_z // Adding list to list adds contents
 		return connections
 
-	//Traditional behavior
+	//Traditional behavior, if not in an overmap sector
 	else
 		//If long range, and they're at least in contact levels, return contact levels.
 		if (long_range && (srcz in contact_levels))

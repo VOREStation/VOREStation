@@ -332,6 +332,7 @@
 			. += RG
 			Deletion -= RG
 			continue
+<<<<<<< HEAD
 		else if(istype(part, /obj/item/stack))
 			var/obj/item/stack/ST = locate(part) in Deletion
 			if(ST.get_amount() > partlist[part])
@@ -359,6 +360,94 @@
 			container.spill()
 			container.close_all()
 		qdel(DL)
+=======
+
+		// If the path is in R.parts, we want to grab those to stuff into the product		
+		var/amt_to_transfer = 0
+		if(is_path_in_list(path_key, R.parts))
+			amt_to_transfer = R.parts[path_key]
+
+		
+		// Reagent: gotta go sniffing in all the beakers
+		if(ispath(path_key, /datum/reagent))
+			var/datum/reagent/reagent = path_key
+			var/id = initial(reagent.id)
+
+			for(var/obj/item/weapon/reagent_containers/RC in surroundings)				
+				// Found everything we need
+				if(amt <= 0 && amt_to_transfer <= 0)
+					break	
+
+				// If we need to keep any to put in the new object, pull it out
+				if(amt_to_transfer > 0)
+					var/A = RC.reagents.trans_id_to(parts["reagents"], id, amt_to_transfer)
+					amt_to_transfer -= A
+					amt -= A
+				
+				// If we need to consume some amount of it
+				if(amt > 0)
+					var/datum/reagent/RG = RC.reagents.get_reagent(id)
+					var/A = min(RG.volume, amt)
+					RC.reagents.remove_reagent(id, A)
+					amt -= A
+					SEND_SIGNAL(RC.reagents, COMSIG_REAGENTS_CRAFTING_PING)
+
+		// Material stacks may have to accumulate across multiple stacks
+		else if(ispath(path_key, /obj/item/stack))
+			for(var/obj/item/stack/S in surroundings)
+				if(amt <= 0 && amt_to_transfer <= 0)
+					break
+
+				// This could put 50 stacks in an object but frankly so long as the amount's right we don't care
+				if(amt_to_transfer > 0)
+					var/obj/item/stack/split = S.split(amt_to_transfer)
+					if(istype(split))
+						parts["items"] += split
+						amt_to_transfer -= split.get_amount()
+						amt -= split.get_amount()
+				
+				if(amt > 0)
+					var/A = min(amt, S.get_amount())
+					if(S.use(A))
+						amt -= A
+				
+
+		else // Just a regular item. Find them all and delete them
+			for(var/atom/movable/I in surroundings)
+				if(amt <= 0 && amt_to_transfer <= 0)
+					break
+				
+				if(!istype(I, path_key))
+					continue
+				
+				// Special case: the reagents may be needed for other recipes
+				if(istype(I, /obj/item/weapon/reagent_containers))
+					var/obj/item/weapon/reagent_containers/RC = I
+					if(RC.reagents.total_volume > 0)
+						continue
+				
+				// We're using it for something
+				amt--
+
+				// Prepare to stuff inside product, don't delete it
+				if(is_path_in_list(path_key, R.parts))
+					parts["items"] += I
+					amt_to_transfer--
+					continue
+					
+				// Snowflake handling of reagent containers and storage atoms.
+				// If we consumed them in our crafting, we should dump their contents out before qdeling them.
+				if(istype(I, /obj/item/weapon/reagent_containers))
+					var/obj/item/weapon/reagent_containers/container = I
+					container.reagents.clear_reagents()
+					// container.reagents.expose(container.loc, TOUCH)
+				else if(istype(I, /obj/item/weapon/storage))
+					var/obj/item/weapon/storage/container = I
+					container.spill()
+					container.close_all()
+				qdel(I)
+	return parts
+>>>>>>> a0b1094b9af... Merge pull request #8342 from PolarisSS13/master
 
 /datum/component/personal_crafting/proc/component_ui_interact(source, location, control, params, user)
 	// SIGNAL_HANDLER

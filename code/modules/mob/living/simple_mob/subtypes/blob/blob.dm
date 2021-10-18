@@ -7,6 +7,8 @@
 	pass_flags = PASSBLOB | PASSTABLE
 	faction = "blob"
 
+	organ_names = /decl/mob_organ_names/blob
+
 	heat_damage_per_tick = 0
 	cold_damage_per_tick = 0
 	min_oxy = 0
@@ -82,3 +84,6 @@
 				break
 
 	return ally
+
+/decl/mob_organ_names/blob
+	hit_zones = list("mass")

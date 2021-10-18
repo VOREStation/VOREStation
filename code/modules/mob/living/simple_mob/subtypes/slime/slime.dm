@@ -40,6 +40,8 @@ var/list/_slime_default_emotes = list(
 
 	response_help = "pets"
 
+	organ_names = /decl/mob_organ_names/slime
+
 	// Atmos stuff.
 	minbodytemp = T0C-30
 	heat_damage_per_tick = 0
@@ -242,3 +244,6 @@ var/list/_slime_default_emotes = list(
 /mob/living/simple_mob/slime/proc/squish()
 	playsound(src, 'sound/effects/slime_squish.ogg', 50, 0)
 	visible_message("<b>\The [src]</b> squishes!")
+
+/decl/mob_organ_names/slime
+	hit_zones = list("cytoplasmic membrane")

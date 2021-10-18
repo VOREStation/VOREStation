@@ -85,13 +85,24 @@
 		/obj/item/stack/cable_coil/random_belt
 	)
 
-/obj/item/weapon/storage/belt/utility/atmostech
+/obj/item/weapon/storage/belt/utility/full/multitool
 	starts_with = list(
 		/obj/item/weapon/tool/screwdriver,
 		/obj/item/weapon/tool/wrench,
 		/obj/item/weapon/weldingtool,
 		/obj/item/weapon/tool/crowbar,
 		/obj/item/weapon/tool/wirecutters,
+		/obj/item/stack/cable_coil/random_belt,
+		/obj/item/device/multitool
+	)
+
+/obj/item/weapon/storage/belt/utility/atmostech
+	starts_with = list(
+		/obj/item/weapon/tool/screwdriver,
+		/obj/item/weapon/tool/wrench,
+		/obj/item/weapon/weldingtool,
+		/obj/item/weapon/tool/crowbar,
+		/obj/item/weapon/tool/wirecutters
 	)
 
 /obj/item/weapon/storage/belt/utility/chief
@@ -513,3 +524,12 @@
 	desc = "The fancy utility-belt holding the tools, cuffs and gadgets of the Go Go ERT-Rangers. The belt buckle is not real phoron, but it is still surprisingly comfortable to wear."
 	icon = 'icons/obj/clothing/ranger.dmi'
 	icon_state = "ranger_belt"
+
+/obj/item/weapon/storage/belt/dbandolier
+	name = "\improper Donk-Soft bandolier"
+	desc = "A Donk-Soft bandolier! Carry your spare darts anywhere! Ages 8 and up."
+	icon_state = "dbandolier"
+	storage_slots = 8
+	can_hold = list(
+		/obj/item/ammo_casing/afoam_dart
+		)

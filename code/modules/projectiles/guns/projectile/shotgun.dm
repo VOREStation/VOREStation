@@ -29,20 +29,25 @@
 		pump(user)
 		recentpump = world.time
 
-/obj/item/weapon/gun/projectile/shotgun/pump/proc/pump(mob/M as mob)
+/obj/item/weapon/gun/projectile/shotgun/pump/proc/pump(mob/M)
 	playsound(src, action_sound, 60, 1)
 
-	if(chambered)//We have a shell in the chamber
-		chambered.loc = get_turf(src)//Eject casing
+	// We have a shell in the chamber
+	if(chambered)
+		if(chambered.caseless)
+			qdel(chambered) // Delete casing
+		else
+			chambered.loc = get_turf(src) // Eject casing
 		chambered = null
 
+	// Load next shell
 	if(loaded.len)
-		var/obj/item/ammo_casing/AC = loaded[1] //load next casing.
-		loaded -= AC //Remove casing from loaded list.
+		var/obj/item/ammo_casing/AC = loaded[1] // load next casing.
+		loaded -= AC // Remove casing from loaded list.
 		chambered = AC
 
-	if(pump_animation)//This affects all bolt action and shotguns.
-		flick("[pump_animation]", src)//This plays any pumping
+	if(pump_animation) // This affects all bolt action and shotguns.
+		flick("[pump_animation]", src) // This plays any pumping
 
 	update_icon()
 

@@ -19,6 +19,7 @@
 	attack_edge = 1
 	attacktext = list("slashed")
 	friendly = list("pinches")
+	organ_names = /decl/mob_organ_names/wraith
 	movement_cooldown = 0
 	attack_sound = 'sound/weapons/rapidslice.ogg'
 	construct_spells = list(/spell/targeted/ethereal_jaunt/shift,
@@ -31,3 +32,6 @@
 	if(isliving(A))
 		var/mob/living/L = A
 		L.add_modifier(/datum/modifier/deep_wounds, 30 SECONDS)
+
+/decl/mob_organ_names/wraith
+	hit_zones = list("body", "eye", "crystaline spike", "left claw", "right claw")

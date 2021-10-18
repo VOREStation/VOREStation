@@ -20,6 +20,20 @@
 /************************************************************************/
 
 /*
+ * Foam
+ */
+
+/obj/item/ammo_casing/afoam_dart
+	name = "foam dart"
+	desc = "It's Donk or Don't! Ages 8 and up."
+	projectile_type = /obj/item/projectile/bullet/foam_dart
+	matter = list(MAT_PLASTIC = 60)
+	caliber = "foam"
+	icon = 'icons/obj/gun_toy.dmi'
+	icon_state = "foamdart"
+	caseless = 1
+
+/*
  * .357
  */
 

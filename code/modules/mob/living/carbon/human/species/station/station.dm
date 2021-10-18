@@ -235,7 +235,7 @@
 	base_color = "#333333"
 
 	reagent_tag = IS_TAJARA
-	allergens = ALLERGEN_COFFEE
+	allergens = ALLERGEN_STIMULANT
 
 	move_trail = /obj/effect/decal/cleanable/blood/tracks/paw
 

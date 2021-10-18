@@ -14,6 +14,8 @@
 	maxHealth = 300
 	mob_size = MOB_LARGE
 
+	organ_names = /decl/mob_organ_names/mecha
+
 	// Very close to the base 'damage_absorption' var on the base mecha class.
 	armor = list(
 				"melee"		= 20,
@@ -139,3 +141,9 @@
 		severity++ // This somewhat misleadingly makes it less severe.
 		deflect_sprite()
 	..(severity)
+<<<<<<< HEAD
+=======
+
+/decl/mob_organ_names/mecha
+	hit_zones = list("central chassis", "control module", "hydraulics", "left arm", "right arm", "left leg", "right leg", "sensor suite", "radiator", "power supply", "left equipment mount", "right equipment mount")
+>>>>>>> a0b1094b9af... Merge pull request #8342 from PolarisSS13/master

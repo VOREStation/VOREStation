@@ -69,6 +69,8 @@
 	attack_sharp = TRUE
 	attacktext = list("nipped", "bit", "pinched")
 
+	organ_names = /decl/mob_organ_names/leech
+
 	armor = list(
 		"melee" = 10,
 		"bullet" = 15,
@@ -497,3 +499,6 @@
 			holder.a_intent = I_HURT
 	else
 		holder.a_intent = I_HURT
+
+/decl/mob_organ_names/leech
+	hit_zones = list("mouthparts", "central segment", "tail segment")

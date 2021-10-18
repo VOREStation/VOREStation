@@ -568,3 +568,14 @@
 	name = "ambrosia deus seeds box"
 	desc = "Contains the seeds you need to get a proper healthy high."
 	starts_with = list(/obj/item/seeds/ambrosiadeusseed = 7)
+
+/obj/item/weapon/storage/box/foam_darts
+	name = "\improper Donk-Soft ammo box"
+	desc = "Contains Donk-Soft foam darts. It's Donk or Don't! Ages 8 and up."
+	icon = 'icons/obj/gun_toy.dmi'
+	icon_state = "foambox"
+	starts_with = list(/obj/item/ammo_casing/afoam_dart = 15)
+	max_w_class = ITEMSIZE_TINY
+	max_storage_space = ITEMSIZE_COST_TINY * 15
+	drop_sound = 'sound/items/drop/ammobox.ogg'
+	pickup_sound = 'sound/items/pickup/ammobox.ogg'

@@ -16,6 +16,8 @@
 	harm_intent_damage = 3
 	friendly = "hugs"
 
+	organ_names = /decl/mob_organ_names/golem
+
 	melee_damage_lower = 30 // It has a built in esword.
 	melee_damage_upper = 30
 	attack_armor_pen = 20
@@ -151,3 +153,9 @@
 /mob/living/simple_mob/mechanical/technomancer_golem/special_post_animation(atom/A)
 	casting = FALSE
 	ranged_post_animation(A)
+<<<<<<< HEAD
+=======
+
+/decl/mob_organ_names/golem
+	hit_zones = list("helmet", "cuirass", "left tasset", "right tasset", "left gauntlet", "right gauntlet", "weapon")
+>>>>>>> a0b1094b9af... Merge pull request #8342 from PolarisSS13/master

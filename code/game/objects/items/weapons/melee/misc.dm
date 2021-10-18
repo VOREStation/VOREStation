@@ -11,6 +11,7 @@
 	hitsound = 'sound/weapons/whip.ogg'
 	reach = 2
 
+<<<<<<< HEAD
 /obj/item/weapon/melee/chainofcommand/suicide_act(mob/user)
 	var/datum/gender/T = gender_datums[user.get_visible_gender()]
 	user.visible_message(span("danger", "\The [user] [T.is] strangling [T.himself] with \the [src]! It looks like [T.he] [T.is] trying to commit suicide."), span("danger", "You start to strangle yourself with \the [src]!"), span("danger", "You hear the sound of someone choking!"))
@@ -30,6 +31,8 @@
 	force = 2
 	throwforce = 2
 
+=======
+>>>>>>> a0b1094b9af... Merge pull request #8342 from PolarisSS13/master
 /obj/item/weapon/melee/umbrella
 	name = "umbrella"
 	desc = "To keep the rain off you. Use with caution on windy days."

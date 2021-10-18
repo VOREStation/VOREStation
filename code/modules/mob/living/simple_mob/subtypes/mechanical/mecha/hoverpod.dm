@@ -28,6 +28,8 @@
 	projectiletype = /obj/item/projectile/beam
 	base_attack_cooldown = 2 SECONDS
 
+	organ_names = /decl/mob_organ_names/hoverpod
+
 	var/datum/effect/effect/system/ion_trail_follow/ion_trail
 
 /mob/living/simple_mob/mechanical/mecha/hoverpod/manned
@@ -39,5 +41,13 @@
 	ion_trail.start()
 	return ..()
 
+<<<<<<< HEAD
 /mob/living/simple_mob/mechanical/mecha/hoverpod/Process_Spacemove(var/check_drift = 0)
 	return TRUE
+=======
+/mob/living/simple_mob/mechanical/mecha/hoverpod/Process_Spacemove(var/check_drift = 0)
+	return TRUE
+
+/decl/mob_organ_names/hoverpod
+	hit_zones = list("central chassis", "control module", "hydraulics", "left manipulator", "right manipulator", "left landing strut", "right landing strut", "maneuvering thruster", "sensor suite", "radiator", "power supply")
+>>>>>>> a0b1094b9af... Merge pull request #8342 from PolarisSS13/master

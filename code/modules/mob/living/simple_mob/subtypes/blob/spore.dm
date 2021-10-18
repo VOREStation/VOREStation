@@ -24,6 +24,8 @@
 	attack_sound = 'sound/effects/slime_squish.ogg'
 	say_list_type = /datum/say_list/spore
 
+	organ_names = /decl/mob_organ_names/spore
+
 	var/mob/living/carbon/human/infested = null // The human this thing is totally not making into a zombie.
 	var/can_infest = FALSE
 	var/is_infesting = FALSE
@@ -151,3 +153,9 @@
 	if(helpers)
 		to_chat(src, span("notice", "Your attack is assisted by [helpers] other spore\s."))
 	return damage_to_do
+<<<<<<< HEAD
+=======
+
+/decl/mob_organ_names/spore
+	hit_zones = list("sporangium", "stolon", "sporangiophore")
+>>>>>>> a0b1094b9af... Merge pull request #8342 from PolarisSS13/master

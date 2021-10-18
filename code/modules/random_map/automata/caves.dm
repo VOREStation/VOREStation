@@ -69,5 +69,8 @@
 			else if(map[current_cell] == EMPTY_CHAR)
 				T.make_ore(1)
 		get_additional_spawns(map[current_cell],T,get_spawn_dir(x, y))
+<<<<<<< HEAD
 	//VOREStation Edit End
+=======
+>>>>>>> a0b1094b9af... Merge pull request #8342 from PolarisSS13/master
 	return T

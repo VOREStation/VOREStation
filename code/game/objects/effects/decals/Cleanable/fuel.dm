@@ -38,7 +38,11 @@
 	for(var/d in cardinal)
 		var/turf/simulated/target = get_step(src,d)
 		var/turf/simulated/origin = get_turf(src)
+<<<<<<< HEAD
 		if(origin.CanPass(src, target) && target.CanPass(src, origin))
+=======
+		if(origin.CanPass(src, target, 0, 0) && target.CanPass(src, origin, 0, 0))
+>>>>>>> a0b1094b9af... Merge pull request #8342 from PolarisSS13/master
 			var/obj/effect/decal/cleanable/liquid_fuel/other_fuel = locate() in target
 			if(other_fuel)
 				other_fuel.amount += amount*0.25
@@ -73,7 +77,11 @@
 		var/turf/simulated/O = get_step(S,d)
 		if(locate(/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel) in O)
 			continue
+<<<<<<< HEAD
 		if(O.CanPass(src, S) && S.CanPass(src, O))
+=======
+		if(O.CanPass(src, S, 0, 0) && S.CanPass(src, O, 0, 0))
+>>>>>>> a0b1094b9af... Merge pull request #8342 from PolarisSS13/master
 			var/new_pool_amount = amount * 0.25
 			if(new_pool_amount > 0.1)
 				var/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel/F = new(O, new_pool_amount, d)

@@ -74,10 +74,10 @@
 
 /datum/ai_holder/simple_mob/passive/possum/poppy
 	var/static/list/aaa_words = list(
-		"delaminat", 
-		"meteor", 
-		"fire", 
-		"breach", 
+		"delaminat",
+		"meteor",
+		"fire",
+		"breach",
 		"loose",
 		"level 7",
 		"level seven",
@@ -126,7 +126,12 @@
 	response_help = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm = "stamps on"
+<<<<<<< HEAD
 	density = FALSE
+=======
+	organ_names = /decl/mob_organ_names/possum
+	density = 0
+>>>>>>> a0b1094b9af... Merge pull request #8342 from PolarisSS13/master
 	minbodytemp = 223
 	maxbodytemp = 323
 	universal_speak = FALSE
@@ -195,5 +200,12 @@
 	icon_dead = "poppy_dead"
 	icon_rest = "poppy_dead"
 	tt_desc = "Didelphis astrum salutem"
+	organ_names = /decl/mob_organ_names/poppy
 	holder_type = /obj/item/weapon/holder/possum/poppy
 	ai_holder_type = /datum/ai_holder/simple_mob/passive/possum/poppy
+
+/decl/mob_organ_names/possum
+	hit_zones = list("head", "body", "left foreleg", "right foreleg", "left hind leg", "right hind leg", "pouch")
+
+/decl/mob_organ_names/poppy
+	hit_zones = list("head", "body", "left foreleg", "right foreleg", "left hind leg", "right hind leg", "pouch", "cute little jacket")
