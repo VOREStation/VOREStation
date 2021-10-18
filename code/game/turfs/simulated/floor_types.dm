@@ -21,6 +21,7 @@
 /obj/landed_holder/proc/land_on(var/turf/T)
 	//Gather destination information
 	var/obj/landed_holder/new_holder = new(null)
+	T.lighting_clear_overlay()
 	new_holder.turf_type = T.type
 	new_holder.dir = T.dir
 	new_holder.icon = T.icon
@@ -32,11 +33,12 @@
 	//Set the destination to be like us
 	T.Destroy()
 	var/turf/simulated/shuttle/new_dest = T.ChangeTurf(my_turf.type,,1)
+	my_turf.lighting_clear_overlay()
 	new_dest.set_dir(my_turf.dir)
 	new_dest.icon_state = my_turf.icon_state
 	new_dest.icon = my_turf.icon
 	new_dest.copy_overlays(my_turf, TRUE)
-	new_dest.underlays = my_turf.underlays
+	new_dest.underlays = my_turf.underlays.Copy()
 	new_dest.decals = my_turf.decals
 	//Shuttle specific stuff
 	new_dest.interior_corner = my_turf.interior_corner
@@ -44,6 +46,7 @@
 	new_dest.under_turf = my_turf.under_turf
 	new_dest.join_flags = my_turf.join_flags
 	new_dest.join_group = my_turf.join_group
+	new_dest.lighting_build_overlay()
 
 	// Associate the holder with the new turf.
 	new_holder.my_turf = new_dest
@@ -60,12 +63,14 @@
 	//Change our source to whatever it was before
 	if(turf_type)
 		new_source = my_turf.ChangeTurf(turf_type,,1)
+		new_source.lighting_clear_overlay()
 		new_source.set_dir(dir)
 		new_source.icon_state = icon_state
 		new_source.icon = icon
 		new_source.copy_overlays(src, TRUE)
-		new_source.underlays = underlays
+		new_source.underlays = underlays.Copy()
 		new_source.decals = decals
+		new_source.lighting_build_overlay()
 	else
 		new_source = my_turf.ChangeTurf(base_turf ? base_turf : get_base_turf_by_area(my_turf),,1)
 
