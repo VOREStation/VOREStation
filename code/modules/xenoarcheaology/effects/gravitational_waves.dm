@@ -9,6 +9,10 @@
 	gravwave(user, effectrange, STAGE_TWO)
 
 /datum/artifact_effect/gravity_wave/DoEffectAura()
+<<<<<<< HEAD
+=======
+	var/atom/holder = get_master_holder()
+>>>>>>> a186da160f9... Merge pull request #8339 from Mechoid/AnomBattery
 	var/seconds_since_last_pull = max(0, round((last_wave_pull - world.time) / 10))
 
 	if(prob(10 + seconds_since_last_pull))
@@ -17,6 +21,10 @@
 		gravwave(get_turf(holder), effectrange, STAGE_TWO)
 
 /datum/artifact_effect/gravity_wave/DoEffectPulse()
+<<<<<<< HEAD
+=======
+	var/atom/holder = get_master_holder()
+>>>>>>> a186da160f9... Merge pull request #8339 from Mechoid/AnomBattery
 	holder.visible_message("<span class='alien'>\The [holder] distorts as local gravity intensifies, and shifts toward it.</span>")
 	gravwave(get_turf(holder), effectrange, STAGE_TWO)
 

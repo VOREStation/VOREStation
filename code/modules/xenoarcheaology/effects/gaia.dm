@@ -30,6 +30,10 @@
 			P.update_icon()
 
 /datum/artifact_effect/gaia/DoEffectTouch(var/mob/user)
+<<<<<<< HEAD
+=======
+	var/atom/holder = get_master_holder()
+>>>>>>> a186da160f9... Merge pull request #8339 from Mechoid/AnomBattery
 	to_chat(user, "<span class='alien'>You feel the presence of something long forgotten.</span>")
 	for(var/obj/machinery/portable_atmospherics/hydroponics/Tray in view(world.view,get_turf(holder)))
 		age_plantlife(Tray)
@@ -44,6 +48,10 @@
 		age_plantlife(P)
 
 /datum/artifact_effect/gaia/DoEffectAura()
+<<<<<<< HEAD
+=======
+	var/atom/holder = get_master_holder()
+>>>>>>> a186da160f9... Merge pull request #8339 from Mechoid/AnomBattery
 	for(var/obj/machinery/portable_atmospherics/hydroponics/Tray in view(effectrange,holder))
 		age_plantlife(Tray)
 		if(prob(2))
@@ -57,6 +65,10 @@
 		age_plantlife(P)
 
 /datum/artifact_effect/gaia/DoEffectPulse()
+<<<<<<< HEAD
+=======
+	var/atom/holder = get_master_holder()
+>>>>>>> a186da160f9... Merge pull request #8339 from Mechoid/AnomBattery
 	for(var/obj/machinery/portable_atmospherics/hydroponics/Tray in view(effectrange,holder))
 		age_plantlife(Tray)
 		if(prob(10))
@@ -70,6 +82,10 @@
 		age_plantlife(P)
 
 /datum/artifact_effect/gaia/process()
+<<<<<<< HEAD
+=======
+	var/atom/holder = get_master_holder()
+>>>>>>> a186da160f9... Merge pull request #8339 from Mechoid/AnomBattery
 	..()
 
 	listclearnulls(my_glitterflies)

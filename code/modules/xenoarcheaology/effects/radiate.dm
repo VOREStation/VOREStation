@@ -14,11 +14,19 @@
 		return 1
 
 /datum/artifact_effect/radiate/DoEffectAura()
+<<<<<<< HEAD
+=======
+	var/atom/holder = get_master_holder()
+>>>>>>> a186da160f9... Merge pull request #8339 from Mechoid/AnomBattery
 	if(holder)
 		SSradiation.flat_radiate(holder, radiation_amount, src.effectrange)
 		return 1
 
 /datum/artifact_effect/radiate/DoEffectPulse()
+<<<<<<< HEAD
+=======
+	var/atom/holder = get_master_holder()
+>>>>>>> a186da160f9... Merge pull request #8339 from Mechoid/AnomBattery
 	if(holder)
 		SSradiation.radiate(holder, ((radiation_amount * 3) * (sqrt(src.effectrange)))) //Need to get feedback on this //VOREStation Edit - Was too crazy-strong.
 		return 1

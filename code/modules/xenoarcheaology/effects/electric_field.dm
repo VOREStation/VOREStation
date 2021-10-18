@@ -4,6 +4,10 @@
 	effect_type = EFFECT_ENERGY
 
 /datum/artifact_effect/electric_field/DoEffectTouch(var/mob/user)
+<<<<<<< HEAD
+=======
+	var/atom/holder = get_master_holder()
+>>>>>>> a186da160f9... Merge pull request #8339 from Mechoid/AnomBattery
 	var/list/nearby_mobs = list()
 	for(var/mob/living/L in oview(effectrange, get_turf(holder)))
 		if(L == user)	// You're "grounded" when you contact the artifact.
@@ -27,6 +31,10 @@
 			L.electrocute_act(rand(25, 40), holder, 0.75, BP_TORSO)
 
 /datum/artifact_effect/electric_field/DoEffectAura()
+<<<<<<< HEAD
+=======
+	var/atom/holder = get_master_holder()
+>>>>>>> a186da160f9... Merge pull request #8339 from Mechoid/AnomBattery
 	var/list/nearby_mobs = list()
 	for(var/mob/living/L in oview(effectrange, get_turf(holder)))
 		if(!L.stat)
@@ -48,6 +56,10 @@
 			L.electrocute_act(rand(1, 10), holder, 0.75, BP_TORSO)
 
 /datum/artifact_effect/electric_field/DoEffectPulse()
+<<<<<<< HEAD
+=======
+	var/atom/holder = get_master_holder()
+>>>>>>> a186da160f9... Merge pull request #8339 from Mechoid/AnomBattery
 	var/list/nearby_mobs = list()
 	for(var/mob/living/L in oview(effectrange, get_turf(holder)))
 		if(!L.stat)

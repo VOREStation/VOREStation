@@ -20,6 +20,10 @@
 			C.weakened += 6 * weakness
 
 /datum/artifact_effect/hurt/DoEffectAura()
+<<<<<<< HEAD
+=======
+	var/atom/holder = get_master_holder()
+>>>>>>> a186da160f9... Merge pull request #8339 from Mechoid/AnomBattery
 	if(holder)
 		var/turf/T = get_turf(holder)
 		for (var/mob/living/carbon/C in range(src.effectrange,T))
@@ -35,6 +39,10 @@
 				C.updatehealth()
 
 /datum/artifact_effect/hurt/DoEffectPulse()
+<<<<<<< HEAD
+=======
+	var/atom/holder = get_master_holder()
+>>>>>>> a186da160f9... Merge pull request #8339 from Mechoid/AnomBattery
 	if(holder)
 		var/turf/T = get_turf(holder)
 		for (var/mob/living/carbon/C in range(effectrange, T))

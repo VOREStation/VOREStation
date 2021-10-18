@@ -10,6 +10,10 @@
 	var/list/nearby_mobs = list()
 
 /datum/artifact_effect/vampire/proc/bloodcall(var/mob/living/carbon/human/M)
+<<<<<<< HEAD
+=======
+	var/atom/holder = get_master_holder()
+>>>>>>> a186da160f9... Merge pull request #8339 from Mechoid/AnomBattery
 	last_bloodcall = world.time
 	if(istype(M))
 		playsound(holder, pick('sound/hallucinations/wail.ogg','sound/hallucinations/veryfar_noise.ogg','sound/hallucinations/far_noise.ogg'), 50, 1, -3)
@@ -30,8 +34,14 @@
 	DoEffectAura()
 
 /datum/artifact_effect/vampire/DoEffectAura()
+<<<<<<< HEAD
 	nearby_mobs.Cut()
 
+=======
+	var/atom/holder = get_master_holder()
+	if(nearby_mobs.len)
+		nearby_mobs.Cut()
+>>>>>>> a186da160f9... Merge pull request #8339 from Mechoid/AnomBattery
 	var/turf/T = get_turf(holder)
 
 	for(var/mob/living/L in oview(effectrange, T))
@@ -45,7 +55,11 @@
 				bloodcall(M)
 				holder.Beam(M, icon_state = "drainbeam", time = 1 SECOND)
 
+<<<<<<< HEAD
 	if(world.time - last_eat > eat_interval)
+=======
+	if(world.time - last_eat >= eat_interval)
+>>>>>>> a186da160f9... Merge pull request #8339 from Mechoid/AnomBattery
 		var/obj/effect/decal/cleanable/blood/B = locate() in range(2,holder)
 		if(B)
 			last_eat = world.time

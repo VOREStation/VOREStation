@@ -14,6 +14,10 @@
 			return 1
 
 /datum/artifact_effect/cellcharge/DoEffectAura()
+<<<<<<< HEAD
+=======
+	var/atom/holder = get_master_holder()
+>>>>>>> a186da160f9... Merge pull request #8339 from Mechoid/AnomBattery
 	if(holder)
 		var/turf/T = get_turf(holder)
 		for (var/obj/machinery/power/apc/C in GLOB.apcs)
@@ -42,6 +46,10 @@
 		return 1
 
 /datum/artifact_effect/cellcharge/DoEffectPulse()
+<<<<<<< HEAD
+=======
+	var/atom/holder = get_master_holder()
+>>>>>>> a186da160f9... Merge pull request #8339 from Mechoid/AnomBattery
 	if(holder)
 		var/turf/T = get_turf(holder)
 		for (var/obj/machinery/power/apc/C in GLOB.apcs)

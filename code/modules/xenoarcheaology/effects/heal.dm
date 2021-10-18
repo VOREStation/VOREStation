@@ -33,6 +33,10 @@
 			return 1
 
 /datum/artifact_effect/heal/DoEffectAura()
+<<<<<<< HEAD
+=======
+	var/atom/holder = get_master_holder()
+>>>>>>> a186da160f9... Merge pull request #8339 from Mechoid/AnomBattery
 	//todo: check over this properly
 	if(holder)
 		var/turf/T = get_turf(holder)
@@ -49,6 +53,10 @@
 				C.updatehealth()
 
 /datum/artifact_effect/heal/DoEffectPulse()
+<<<<<<< HEAD
+=======
+	var/atom/holder = get_master_holder()
+>>>>>>> a186da160f9... Merge pull request #8339 from Mechoid/AnomBattery
 	//todo: check over this properly
 	if(holder)
 		var/turf/T = get_turf(holder)

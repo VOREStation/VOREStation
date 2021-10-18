@@ -19,6 +19,10 @@
 	throw_at_mob(user, rand(10, 30))
 
 /datum/artifact_effect/poltergeist/DoEffectAura()
+<<<<<<< HEAD
+=======
+	var/atom/holder = get_master_holder()
+>>>>>>> a186da160f9... Merge pull request #8339 from Mechoid/AnomBattery
 	var/mob/living/target = null
 	for(var/mob/living/L in oview(get_turf(holder), effectrange))
 		if(L.stat || !L.mind)
@@ -33,6 +37,10 @@
 		throw_at_mob(target, rand(15, 30))
 
 /datum/artifact_effect/poltergeist/DoEffectPulse()
+<<<<<<< HEAD
+=======
+	var/atom/holder = get_master_holder()
+>>>>>>> a186da160f9... Merge pull request #8339 from Mechoid/AnomBattery
 	var/mob/living/target = null
 	for(var/mob/living/L in oview(get_turf(holder), effectrange))
 		if(L.stat || !L.mind)

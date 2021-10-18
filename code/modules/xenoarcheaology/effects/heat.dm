@@ -10,6 +10,10 @@
 	target_temp = rand(300, 600)
 
 /datum/artifact_effect/heat/DoEffectTouch(var/mob/user)
+<<<<<<< HEAD
+=======
+	var/atom/holder = get_master_holder()
+>>>>>>> a186da160f9... Merge pull request #8339 from Mechoid/AnomBattery
 	if(holder)
 		to_chat(user, "<font color='red'> You feel a wave of heat travel up your spine!</font>")
 		var/datum/gas_mixture/env = holder.loc.return_air()
@@ -17,6 +21,10 @@
 			env.temperature += rand(5,50)
 
 /datum/artifact_effect/heat/DoEffectAura()
+<<<<<<< HEAD
+=======
+	var/atom/holder = get_master_holder()
+>>>>>>> a186da160f9... Merge pull request #8339 from Mechoid/AnomBattery
 	if(holder)
 		var/datum/gas_mixture/env = holder.loc.return_air()
 		if(env && env.temperature < target_temp)

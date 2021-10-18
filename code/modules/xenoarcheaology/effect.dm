@@ -10,7 +10,33 @@
 	var/artifact_id = ""
 	var/effect_type = 0
 
+<<<<<<< HEAD
 /datum/artifact_effect/New(var/atom/location)
+=======
+	var/req_type = /atom/movable
+
+	var/image/active_effect
+	var/effect_icon = 'icons/effects/effects.dmi'
+	var/effect_state = "sparkles"
+	var/effect_color = "#ffffff"
+
+// The last time the effect was toggled.
+	var/last_activation = 0
+
+/datum/artifact_effect/Destroy()
+	if(master)
+		master = null
+
+	..()
+
+/datum/artifact_effect/proc/get_master_holder()	// Return the effectmaster's holder, if it is set to an effectmaster. Otherwise, master is the target object.
+	if(istype(master))
+		return master.holder
+	else
+		return master
+
+/datum/artifact_effect/New(var/datum/component/artifact_master/newmaster)
+>>>>>>> a186da160f9... Merge pull request #8339 from Mechoid/AnomBattery
 	..()
 	holder = location
 	effect = rand(0, MAX_EFFECT)
@@ -36,21 +62,47 @@
 
 /datum/artifact_effect/proc/ToggleActivate(var/reveal_toggle = 1)
 	//so that other stuff happens first
+<<<<<<< HEAD
 	spawn(0)
+=======
+	set waitfor = FALSE
+
+	var/atom/target = get_master_holder()
+
+	if(world.time - last_activation > 1 SECOND)
+		last_activation = world.time
+>>>>>>> a186da160f9... Merge pull request #8339 from Mechoid/AnomBattery
 		if(activated)
 			activated = 0
 		else
 			activated = 1
+<<<<<<< HEAD
 		if(reveal_toggle && holder)
 			if(istype(holder, /obj/machinery/artifact))
 				var/obj/machinery/artifact/A = holder
 				A.icon_state = "ano[A.icon_num][activated]"
+=======
+		if(reveal_toggle && target)
+			if(!isliving(target))
+				target.update_icon()
+>>>>>>> a186da160f9... Merge pull request #8339 from Mechoid/AnomBattery
 			var/display_msg
 			if(activated)
 				display_msg = pick("momentarily glows brightly!","distorts slightly for a moment!","flickers slightly!","vibrates!","shimmers slightly for a moment!")
 			else
 				display_msg = pick("grows dull!","fades in intensity!","suddenly becomes very still!","suddenly becomes very quiet!")
+<<<<<<< HEAD
 			var/atom/toplevelholder = holder
+=======
+
+			if(active_effect)
+				if(activated)
+					target.underlays.Add(active_effect)
+				else
+					target.underlays.Remove(active_effect)
+
+			var/atom/toplevelholder = target
+>>>>>>> a186da160f9... Merge pull request #8339 from Mechoid/AnomBattery
 			while(!istype(toplevelholder.loc, /turf))
 				toplevelholder = toplevelholder.loc
 			toplevelholder.visible_message("<font color='red'>[bicon(toplevelholder)] [toplevelholder] [display_msg]</font>")

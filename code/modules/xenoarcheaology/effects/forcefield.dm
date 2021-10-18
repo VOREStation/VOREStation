@@ -8,6 +8,10 @@
 	trigger = TRIGGER_TOUCH
 
 /datum/artifact_effect/forcefield/ToggleActivate()
+<<<<<<< HEAD
+=======
+	var/atom/holder = get_master_holder()
+>>>>>>> a186da160f9... Merge pull request #8339 from Mechoid/AnomBattery
 	..()
 	if(created_field.len)
 		for(var/obj/effect/energy_field/F in created_field)
@@ -35,6 +39,10 @@
 			E.adjust_strength(0.25, 0)
 
 /datum/artifact_effect/forcefield/UpdateMove()
+<<<<<<< HEAD
+=======
+	var/atom/holder = get_master_holder()
+>>>>>>> a186da160f9... Merge pull request #8339 from Mechoid/AnomBattery
 	if(created_field.len && holder)
 		var/turf/T = get_turf(holder)
 		while(created_field.len < 16)
