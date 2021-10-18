@@ -93,12 +93,12 @@
 		affected_turf.underlays -= current_underlay
 		current_underlay.icon_state = "transparent"
 		current_underlay.color = null
-		affected_turf.underlays += current_underlay
+		affected_turf.underlays |= current_underlay
 	else if(!set_luminosity)
 		affected_turf.underlays -= current_underlay
 		current_underlay.icon_state = "dark"
 		current_underlay.color = null
-		affected_turf.underlays += current_underlay
+		affected_turf.underlays |= current_underlay
 	else
 		affected_turf.underlays -= current_underlay
 		current_underlay.icon_state = "gradient"
@@ -110,7 +110,7 @@
 			00, 00, 00, 01
 		)
 
-		affected_turf.underlays += current_underlay
+		affected_turf.underlays |= current_underlay
 
 	affected_turf.set_luminosity(set_luminosity)
 
@@ -118,4 +118,4 @@
 	affected_turf.underlays -= current_underlay
 
 /datum/lighting_object/proc/addtoturf()
-	affected_turf.underlays += current_underlay
+	affected_turf.underlays |= current_underlay
