@@ -525,3 +525,8 @@
 	name = "small cowboy hat"
 	desc = "For the tiniest of cowboys."
 	icon_state = "cowboy_small"
+
+/obj/item/clothing/head/wheat
+	name = "straw hat"
+	desc = "It's a hat made from synthetic straw. Brought to you by \"Country Girls LLC.\" the choice brand for the galaxy's working class."
+	icon_state = "wheat"

@@ -16,6 +16,10 @@
 	display_name = "beret, red"
 	path = /obj/item/clothing/head/beret
 
+/datum/gear/head/wheat
+	display_name = "straw hat"
+	path = /obj/item/clothing/head/wheat
+
 /datum/gear/head/beret/bsec
 	display_name = "beret, navy (officer)"
 	path = /obj/item/clothing/head/beret/sec/navy/officer
