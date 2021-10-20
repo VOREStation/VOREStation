@@ -177,7 +177,7 @@
 	return 1
 */
 
-/obj/effect/overmap/visitable/sector/tether_gateway/wildwest
+/obj/effect/overmap/visitable/sector/common_gateway/wildwest
 	name = "redspace shimmer"
 	desc = "The shimmering reflection of some sort of redspace phenomena."
 	scanner_desc = @{"It is difficult to tell just what is beyond this strange shimmering shape. The air beyond seems breathable."}

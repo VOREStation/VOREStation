@@ -1,4 +1,4 @@
-/obj/effect/overmap/visitable/sector/tether_gateway/arynthilake
+/obj/effect/overmap/visitable/sector/common_gateway/arynthilake
 	name = "bluespace shimmer"
 	desc = "The shimmering reflection of some sort of bluespace phenomena."
 	scanner_desc = @{"It is difficult to tell just what is beyond this strange shimmering shape. The air beyond seems breathable."}

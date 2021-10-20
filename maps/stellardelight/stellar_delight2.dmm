@@ -8734,6 +8734,12 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/stellardelight/deck2/o2production)
+"uu" = (
+/obj/structure/cable/orange{
+	icon_state = "1-8"
+	},
+/turf/simulated/wall/bay/r_wall/steel,
+/area/stellardelight/deck2/combustionworkshop)
 "uv" = (
 /obj/structure/table/standard,
 /obj/item/weapon/storage/firstaid/surgery,
@@ -18965,10 +18971,10 @@
 	},
 /obj/effect/floor_decal/industrial/warning/full,
 /obj/structure/cable/orange{
-	icon_state = "0-2"
+	icon_state = "2-4"
 	},
 /obj/structure/cable/orange{
-	icon_state = "1-2"
+	icon_state = "0-4"
 	},
 /turf/simulated/floor/airless,
 /area/stellardelight/deck2/exterior)
@@ -27564,7 +27570,7 @@ Jh
 Jh
 Jh
 Jh
-Ds
+Jh
 Sk
 Le
 Le
@@ -27706,8 +27712,8 @@ Jh
 Jh
 Jh
 Jh
-ZG
-ov
+Ds
+uu
 oy
 ov
 ov

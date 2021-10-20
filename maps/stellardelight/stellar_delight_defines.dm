@@ -48,6 +48,14 @@
 	lobby_screens = list("tether2_night")
 	id_hud_icons = 'icons/mob/hud_jobs_vr.dmi'
 
+	accessible_z_levels = list(
+		Z_LEVEL_SHIP_LOW = 100,
+		Z_LEVEL_SHIP_MID = 100,
+		Z_LEVEL_SHIP_HIGH = 100
+		)
+
+	admin_levels = list(Z_LEVEL_CENTCOM, Z_LEVEL_MISC)
+
 /*
 	holomap_smoosh = list(list(
 		Z_LEVEL_SURFACE_LOW,
@@ -82,7 +90,6 @@
 							NETWORK_ENGINE,
 							NETWORK_ENGINEERING,
 							NETWORK_EXPLORATION,
-							//NETWORK_DEFAULT,  //Is this even used for anything? Robots show up here, but they show up in ROBOTS network too,
 							NETWORK_MEDICAL,
 							NETWORK_MINE,
 							NETWORK_OUTSIDE,
@@ -107,9 +114,9 @@
 
 	bot_patrolling = FALSE
 
-	allowed_spawns = list("Tram Station","Gateway","Cryogenic Storage","Cyborg Storage","ITV Talon Cryo")
+	allowed_spawns = list("Gateway","Cryogenic Storage","Cyborg Storage","ITV Talon Cryo")
 	spawnpoint_died = /datum/spawnpoint/cryo
-	spawnpoint_left = /datum/spawnpoint/cryo
+	spawnpoint_left = /datum/spawnpoint/gateway
 	spawnpoint_stayed = /datum/spawnpoint/cryo
 
 	/*
@@ -151,7 +158,8 @@
 		Z_LEVEL_SHIP_MID,
 		Z_LEVEL_SHIP_HIGH,
 		Z_LEVEL_MISC,
-		Z_LEVEL_BEACH
+		Z_LEVEL_BEACH,
+		Z_LEVEL_AEROSTAT
 		)
 
 /*
@@ -193,7 +201,7 @@
 	use_stars = FALSE
 
 /datum/planet/virgo3b
-	expected_z_levels = list()
+	expected_z_levels = list(Z_LEVEL_CENTCOM)
 /datum/planet/virgo4
 	expected_z_levels = list(
 		Z_LEVEL_BEACH
@@ -230,7 +238,7 @@
 #define SHIP_HOLOMAP_MARGIN_Y ((HOLOMAP_ICON_SIZE - (2*TETHER_MAP_SIZE)) / 2) // 30
 
 /obj/effect/landmark/map_data/stellar_delight
-    height = 3
+	height = 3
 
 /obj/effect/overmap/visitable/ship/stellar_delight
 	name = "NRV Stellar Delight"
@@ -241,13 +249,15 @@
 [i]Class[/i]: Nanotrasen Response Frigate
 [i]Transponder[/i]: Transmitting (CIV), non-hostile"
 [b]Notice[/b]: A response vessel registered to Nanotrasen."}
-	vessel_mass = 30000
+	vessel_mass = 25000
 	vessel_size = SHIP_SIZE_LARGE
 	initial_generic_waypoints = list("starboard_shuttlepad","port_shuttlepad","sd-1-23-54","sd-1-67-15","sd-1-70-130","sd-1-115-85","sd-2-25-98","sd-2-117-98","sd-3-22-78","sd-3-36-33","sd-3-104-33","sd-3-120-78")
 	initial_restricted_waypoints = list("Exploration Shuttle" = list("sd_explo"), "Mining Shuttle" = list("sd_mining"))
 	levels_for_distress = list(Z_LEVEL_OFFMAP1, Z_LEVEL_BEACH, Z_LEVEL_AEROSTAT, Z_LEVEL_DEBRISFIELD, Z_LEVEL_FUELDEPOT)
 	unowned_areas = list(/area/shuttle/sdboat)
 	known = TRUE
+	start_x = 2
+	start_y = 2
 
 	fore_dir = NORTH
 
@@ -328,6 +338,14 @@
 /datum/map_z_level/ship_lateload/overmap
 	name = "Overmap"
 	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_SEALED|MAP_LEVEL_CONTACT|MAP_LEVEL_XENOARCH_EXEMPT
+
+#include "../expedition_vr/aerostat/_aerostat_science_outpost.dm"
+/datum/map_template/common_lateload/away_aerostat
+	name = "Remmi Aerostat - Z1 Aerostat"
+	desc = "The Virgo 2 Aerostat away mission."
+	mappath = 'maps/expedition_vr/aerostat/aerostat_science_outpost.dmm'
+	associated_map_datum = /datum/map_z_level/common_lateload/away_aerostat
+
 
 
 ////////////////SHUTTLE TIME///////////////////
@@ -675,3 +693,48 @@ VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/dirt)
 	icon_state = "asteroid"
 
 VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/rocks)
+
+/datum/map_z_level/sd/ship/deck1
+	z = Z_LEVEL_SHIP_LOW
+	name = "Deck 1"
+	base_turf = /turf/space
+	transit_chance = 100
+
+/datum/map_z_level/sd/ship/deck2
+	z = Z_LEVEL_SHIP_MID
+	name = "Deck 2"
+	base_turf = /turf/simulated/open
+	transit_chance = 100
+
+/datum/map_z_level/sd/ship/deck3
+	z = Z_LEVEL_SHIP_HIGH
+	name = "Deck 3"
+	base_turf = /turf/simulated/open
+	transit_chance = 100
+
+/////FOR CENTCOMM (at least)/////
+/obj/effect/overmap/visitable/sector/virgo3b
+	name = "Virgo 3B"
+	desc = "Full of phoron, and home to the NSB Adephagia."
+	scanner_desc = @{"[i]Registration[/i]: NSB Adephagia
+[i]Class[/i]: Installation
+[i]Transponder[/i]: Transmitting (CIV), NanoTrasen IFF
+[b]Notice[/b]: NanoTrasen Base, authorized personnel only"}
+	known = TRUE
+	
+	icon = 'icons/obj/overmap_vr.dmi'
+	icon_state = "virgo3b"
+
+	skybox_icon = 'icons/skybox/virgo3b.dmi'
+	skybox_icon_state = "small"
+	skybox_pixel_x = 0
+	skybox_pixel_y = 0
+
+	initial_restricted_waypoints = list()
+
+/obj/effect/overmap/visitable/sector/virgo3b/Initialize()
+	. = ..()
+	for(var/obj/effect/overmap/visitable/ship/stellar_delight/sd in world)
+		sd.forceMove(loc, SOUTH)
+		return
+		

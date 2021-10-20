@@ -230,7 +230,8 @@
 		Z_LEVEL_SURFACE_HIGH,
 		Z_LEVEL_SURFACE_MINE,
 		Z_LEVEL_SOLARS,
-		Z_LEVEL_PLAINS
+		Z_LEVEL_PLAINS,
+		Z_LEVEL_CENTCOM
 		)
 /datum/planet/virgo4
 	expected_z_levels = list(

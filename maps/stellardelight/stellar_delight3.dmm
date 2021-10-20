@@ -657,7 +657,7 @@
 	},
 /area/tcommsat/chamber)
 "cY" = (
-/obj/machinery/telecomms/broadcaster/preset_right/tether,
+/obj/machinery/telecomms/broadcaster/preset_right/sd,
 /turf/simulated/floor/tiled/dark{
 	nitrogen = 100;
 	oxygen = 0;
@@ -1065,7 +1065,7 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/starboardfore)
 "eC" = (
-/obj/machinery/telecomms/receiver/preset_right/tether,
+/obj/machinery/telecomms/receiver/preset_right/sd,
 /turf/simulated/floor/tiled/dark{
 	nitrogen = 100;
 	oxygen = 0;
@@ -1197,8 +1197,6 @@
 /area/crew_quarters/bar)
 "eX" = (
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/airless,
@@ -1480,6 +1478,15 @@
 	},
 /turf/simulated/floor/carpet/purcarpet,
 /area/crew_quarters/heads/hor)
+"gw" = (
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/structure/cable/green{
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/airless,
+/area/stellardelight/deck3/exterior)
 "gy" = (
 /obj/structure/closet/secure_closet/engineering_chief,
 /obj/item/device/radio/intercom{
@@ -1604,7 +1611,6 @@
 	dir = 4
 	},
 /obj/structure/cable/cyan{
-	d2 = 4;
 	icon_state = "0-4"
 	},
 /obj/machinery/light{
@@ -1624,8 +1630,6 @@
 /area/stellardelight/deck3/transitgateway)
 "gS" = (
 /obj/structure/cable/cyan{
-	d1 = 2;
-	d2 = 8;
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -2052,8 +2056,6 @@
 /area/stellardelight/deck2/fore)
 "iR" = (
 /obj/structure/cable/cyan{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -2595,7 +2597,7 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/maintenance/stellardelight/deck3/foreportroomb)
 "li" = (
-/obj/machinery/telecomms/hub/preset/tether,
+/obj/machinery/telecomms/hub/preset/sd,
 /turf/simulated/floor/tiled/dark{
 	nitrogen = 100;
 	oxygen = 0;
@@ -2731,7 +2733,7 @@
 /turf/simulated/floor/lino,
 /area/stellardelight/deck3/cafe)
 "lE" = (
-/obj/machinery/telecomms/bus/preset_two/tether,
+/obj/machinery/telecomms/bus/preset_two/sd,
 /turf/simulated/floor/tiled/dark{
 	nitrogen = 100;
 	oxygen = 0;
@@ -2741,14 +2743,12 @@
 "lF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/universal,
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/portaft)
 "lH" = (
-/obj/machinery/telecomms/server/presets/service/tether,
+/obj/machinery/telecomms/server/presets/service/sd,
 /turf/simulated/floor/tiled/dark{
 	nitrogen = 100;
 	oxygen = 0;
@@ -2913,8 +2913,6 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /turf/simulated/floor,
@@ -3291,8 +3289,6 @@
 	icon_state = "0-8"
 	},
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/structure/table/rack,
@@ -4067,8 +4063,6 @@
 /area/maintenance/stellardelight/deck3/forestarrooma)
 "qv" = (
 /obj/structure/cable/cyan{
-	d1 = 4;
-	d2 = 8;
 	icon_state = "4-8"
 	},
 /obj/machinery/door/airlock/angled_bay/hatch{
@@ -4113,8 +4107,6 @@
 	},
 /obj/machinery/hologram/holopad,
 /obj/structure/cable/cyan{
-	d1 = 2;
-	d2 = 8;
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/bluegrid,
@@ -4586,7 +4578,6 @@
 	pixel_y = 32;
 	req_one_access = list(13)
 	},
-/obj/effect/map_helper/airlock/sensor/ext_sensor,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/stellardelight/deck3/portdock)
 "st" = (
@@ -6995,8 +6986,6 @@
 /area/maintenance/stellardelight/substation/command)
 "BG" = (
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /obj/structure/table/rack,
@@ -8124,8 +8113,6 @@
 	dir = 10
 	},
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor,
@@ -9192,6 +9179,9 @@
 /obj/structure/bed/chair/sofa/corp/left{
 	dir = 4
 	},
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/portfore)
 "Kj" = (
@@ -9347,6 +9337,12 @@
 	},
 /turf/simulated/floor/carpet/turcarpet,
 /area/ai)
+"KQ" = (
+/obj/structure/cable/green{
+	icon_state = "2-8"
+	},
+/turf/simulated/floor,
+/area/maintenance/stellardelight/deck3/portfore)
 "KS" = (
 /obj/structure/cable/blue{
 	icon_state = "4-8"
@@ -9487,8 +9483,6 @@
 /area/maintenance/stellardelight/deck3/portaft)
 "Lz" = (
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor,
@@ -9912,8 +9906,6 @@
 	icon_state = "2-8"
 	},
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor,
@@ -10238,6 +10230,12 @@
 /obj/random/mre,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/stellardelight/deck3/forestarroomc)
+"Oa" = (
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/airless,
+/area/space)
 "Ob" = (
 /obj/effect/floor_decal/techfloor/orange{
 	dir = 10
@@ -10705,8 +10703,6 @@
 	req_access = list(57)
 	},
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 8;
 	icon_state = "1-8"
 	},
 /obj/machinery/door/blast/shutters{
@@ -10999,12 +10995,6 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/stellardelight/deck3/commandhall)
-"QU" = (
-/obj/structure/cable/blue{
-	icon_state = "4-8"
-	},
-/turf/simulated/floor,
-/area/stellardelight/deck3/exterior)
 "QV" = (
 /obj/structure/cable/blue{
 	icon_state = "2-8"
@@ -12333,8 +12323,6 @@
 	dir = 4
 	},
 /obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
 	icon_state = "1-2"
 	},
 /turf/simulated/floor,
@@ -19868,7 +19856,7 @@ Jh
 Jh
 Jh
 FH
-af
+gw
 af
 af
 af
@@ -20010,7 +19998,7 @@ Jh
 Jh
 Jh
 Jh
-SK
+Oa
 SK
 Jh
 Jh
@@ -20152,7 +20140,7 @@ Jh
 Jh
 kP
 mQ
-kP
+Va
 kP
 mQ
 mQ
@@ -20294,8 +20282,8 @@ Jh
 kP
 kP
 Dp
-Ns
-Ns
+KQ
+XT
 Kg
 iz
 Ws
@@ -26258,7 +26246,7 @@ Jh
 Jh
 Jh
 Jh
-QU
+qy
 SK
 Jh
 Jh

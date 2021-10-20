@@ -2543,6 +2543,7 @@
 /obj/structure/closet/secure_closet/pathfinder{
 	req_access = list(62,43,67)
 	},
+/obj/item/device/bluespaceradio/sd_prelinked,
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/stellardelight/deck1/pathfinder)
 "fE" = (
@@ -3717,6 +3718,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
 	},
+/obj/structure/closet/bombcloset,
 /turf/simulated/floor/tiled/dark,
 /area/rnd/xenobiology)
 "ib" = (
@@ -5735,6 +5737,10 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/item/clothing/suit/caution,
+/obj/item/clothing/suit/caution,
+/obj/item/clothing/suit/caution,
+/obj/item/clothing/suit/caution,
 /turf/simulated/floor/tiled/monotile,
 /area/janitor)
 "mw" = (
@@ -13747,7 +13753,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/item/clothing/suit/caution,
 /turf/simulated/floor/tiled/monotile,
 /area/janitor)
 "Ep" = (
@@ -14492,7 +14497,7 @@
 	pixel_y = -4
 	},
 /obj/item/weapon/hand_labeler,
-/obj/item/device/multitool/tether_buffered{
+/obj/item/device/multitool/sd_buffered{
 	pixel_y = 2
 	},
 /obj/item/weapon/hand_labeler,
@@ -18762,6 +18767,10 @@
 /obj/structure/cable/green{
 	icon_state = "0-2"
 	},
+/obj/item/clothing/suit/caution,
+/obj/item/clothing/suit/caution,
+/obj/item/clothing/suit/caution,
+/obj/item/clothing/suit/caution,
 /turf/simulated/floor/tiled/monotile,
 /area/janitor)
 "PI" = (
@@ -19504,6 +19513,10 @@
 /obj/machinery/requests_console/preset/janitor{
 	pixel_y = 30
 	},
+/obj/item/clothing/suit/caution,
+/obj/item/clothing/suit/caution,
+/obj/item/clothing/suit/caution,
+/obj/item/clothing/suit/caution,
 /turf/simulated/floor/tiled/monotile,
 /area/janitor)
 "Rr" = (
