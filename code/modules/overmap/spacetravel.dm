@@ -5,15 +5,16 @@
 	known = FALSE
 	in_space = TRUE
 
-/obj/effect/overmap/visitable/sector/temporary/Initialize(var/nx, var/ny)
+/obj/effect/overmap/visitable/sector/temporary/Initialize()
+	if(!istype(loc, /turf/unsimulated/map))
+		CRASH("Attempt to create deepspace which is not on overmap: [log_info_line(loc)]")
+	// Tell sector initializer where are is where we want to be.
+	start_x = loc.x
+	start_y = loc.y
+	// But pick an empty z level to use
+	map_z += global.using_map.get_empty_zlevel()
 	. = ..()
-	loc = locate(nx, ny, global.using_map.overmap_z)
-	x = nx
-	y = ny
-	var/emptyz = global.using_map.get_empty_zlevel()
-	map_z += emptyz
-	map_sectors["[emptyz]"] = src
-	testing("Temporary sector at [x],[y] was created, corresponding zlevel is [emptyz].")
+	testing("Temporary sector at [x],[y],[z] was created, corresponding zlevel is [english_list(map_z)].")
 
 /obj/effect/overmap/visitable/sector/temporary/Destroy()
 	for(var/zlevel in map_z)
@@ -43,7 +44,7 @@
 	var/obj/effect/overmap/visitable/sector/temporary/res = locate() in overmap_turf
 	if(istype(res))
 		return res
-	return new /obj/effect/overmap/visitable/sector/temporary(x, y)
+	return new /obj/effect/overmap/visitable/sector/temporary(overmap_turf)
 
 /atom/movable/proc/lost_in_space()
 	for(var/atom/movable/AM in contents)
@@ -132,6 +133,8 @@
 	if(!TM)
 		TM = get_deepspace(M.x,M.y)
 	nz = pick(TM.get_space_zlevels())
+
+	testing("spacetravel chose [nz],[ny],[nz] in sector [TM] @ ([TM.x],[TM.y],[TM.z])")
 
 	var/turf/dest = locate(nx,ny,nz)
 	if(istype(dest))
