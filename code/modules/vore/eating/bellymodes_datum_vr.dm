@@ -200,8 +200,8 @@ GLOBAL_LIST_INIT(digest_modes, list())
 		B.ownegg.calibrate_size()
 		B.ownegg.orient2hud()
 		B.ownegg.w_class = clamp(B.ownegg.w_class * 0.25, 1, 8) //A total w_class of 16 will result in a backpack sized egg.
-		B.ownegg.icon_scale_x = 0.25 * B.ownegg.w_class
-		B.ownegg.icon_scale_y = 0.25 * B.ownegg.w_class
+		B.ownegg.icon_scale_x = clamp(0.25 * B.ownegg.w_class, 0.25, 1)
+		B.ownegg.icon_scale_y = clamp(0.25 * B.ownegg.w_class, 0.25, 1)
 		B.ownegg.update_transform()
 		if(B.ownegg.w_class > 4)
 			B.ownegg.slowdown = B.ownegg.w_class - 4
