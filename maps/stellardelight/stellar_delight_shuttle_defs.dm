@@ -131,7 +131,7 @@
 /datum/shuttle/autodock/overmap/sdboat
 	name = "Starstuff"
 	current_location = "port_shuttlepad"
-	docking_controller_tag = "sd_bittyshuttle"
+	docking_controller_tag = "sdboat_docker"
 	shuttle_area = list(/area/shuttle/sdboat/fore,/area/shuttle/sdboat/aft)
 	fuel_consumption = 2
 	defer_initialisation = TRUE

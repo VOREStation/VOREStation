@@ -319,6 +319,23 @@
 	density = FALSE
 	opacity = 0
 
+
+// SUBTYPE: Shuttle
+// Slightly weaker, intergrated shutters - open state is hidden from view. Found on fancy_shuttles
+/obj/machinery/door/blast/shuttle
+	name = "shuttle blast doors"
+	icon_state_open = "spdoor0"
+	icon_state_opening = "spdoorc0"
+	icon_state_closed = "spdoor1"
+	icon_state_closing = "spdoorc1"
+	icon_state = "spdoor1"
+	maxhealth = 400
+
+/obj/machinery/door/blast/shuttle/open
+	icon_state = "spdoor0"
+	density = FALSE
+	opacity = 0
+
 // SUBTYPE: Shutters
 // Nicer looking, and also weaker, shutters. Found in kitchen and similar areas.
 /obj/machinery/door/blast/shutters
