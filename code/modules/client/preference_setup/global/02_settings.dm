@@ -83,9 +83,17 @@
 
 	return ..()
 
+/**
+ * This can take either a single preference datum or a list of preferences, and will return true if *all* preferences in the arguments are enabled.
+ */
 /client/proc/is_preference_enabled(var/preference)
-	var/datum/client_preference/cp = get_client_preference(preference)
-	return cp && (cp.key in prefs.preferences_enabled)
+	if(!islist(preference))
+		preference = list(preference)
+	for(var/p in preference)
+		var/datum/client_preference/cp = get_client_preference(p)
+		if(!cp || !(cp.key in prefs.preferences_enabled))
+			return FALSE
+	return TRUE
 
 /client/proc/set_preference(var/preference, var/set_preference)
 	var/datum/client_preference/cp = get_client_preference(preference)

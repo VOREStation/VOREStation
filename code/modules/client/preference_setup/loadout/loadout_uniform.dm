@@ -425,38 +425,9 @@
 	display_name = "sweater, grey"
 	path = /obj/item/clothing/under/rank/psych/turtleneck/sweater
 
-/datum/gear/uniform/brandsuit/aether
-	display_name = "jumpsuit, aether"
-	path = /obj/item/clothing/under/aether
-
-/datum/gear/uniform/brandsuit/focal
-	display_name = "jumpsuit, focal"
-	path = /obj/item/clothing/under/focal
-
-/datum/gear/uniform/mbill
-	display_name = "outfit, major bill's"
-	path = /obj/item/clothing/under/mbill
-
-/datum/gear/uniform/pcrc
-	display_name = "uniform, PCRC (Security)"
-	path = /obj/item/clothing/under/pcrc
-	allowed_roles = list("Security Officer","Head of Security","Warden")
-
-/datum/gear/uniform/brandsuit/grayson
-	display_name = "outfit, grayson"
-	path = /obj/item/clothing/under/grayson
-
-/datum/gear/uniform/brandsuit/wardt
-	display_name = "jumpsuit, ward-takahashi"
-	path = /obj/item/clothing/under/wardt
-
 /datum/gear/uniform/frontier
 	display_name = "outfit, frontier"
 	path = 	/obj/item/clothing/under/frontier
-
-/datum/gear/uniform/brandsuit/hephaestus
-	display_name = "jumpsuit, hephaestus"
-	path = 	/obj/item/clothing/under/hephaestus
 
 /datum/gear/uniform/yogapants
 	display_name = "yoga pants"
@@ -668,7 +639,7 @@
 
 /datum/gear/uniform/verglasdress
 	display_name = "verglas dress"
-	path = /obj/item/clothing/under/verglasdress
+	path = /obj/item/clothing/under/dress/verglasdress
 
 /datum/gear/uniform/fashionminiskirt
 	display_name = "fashionable miniskirt"
@@ -719,3 +690,83 @@
 	"Grey Cowboy Outfit" = /obj/item/clothing/under/cowboy/grey
 	)
 	gear_tweaks += new/datum/gear_tweak/path(cowboy_outfits)
+
+/datum/gear/uniform/utility/gsa
+	display_name = "utility, galactic survey"
+	path = /obj/item/clothing/under/gsa
+
+/datum/gear/uniform/utility/gsa_work
+	display_name = "heavy utility, galactic survey"
+	path = /obj/item/clothing/under/gsa_work
+
+/*
+ * Branded Uniforms
+ */
+
+/datum/gear/uniform/brandsuit/mbill
+	display_name = "uniform, major bill's"
+	path = /obj/item/clothing/under/mbill
+
+/datum/gear/uniform/brandsuit/mbill_flight
+	display_name = "uniform, major bill's flightsuit (Pilot)"
+	path = /obj/item/clothing/under/mbill_flight
+	allowed_roles = list("Pilot")
+
+/datum/gear/uniform/brandsuit/aether
+	display_name = "jumpsuit, aether"
+	path = /obj/item/clothing/under/corp/aether
+
+/datum/gear/uniform/brandsuit/focal
+	display_name = "jumpsuit, focal"
+	path = /obj/item/clothing/under/corp/focal
+
+/datum/gear/uniform/brandsuit/pcrc
+	display_name = "uniform, PCRC (Security)"
+	path = /obj/item/clothing/under/corp/pcrc
+	allowed_roles = list("Security Officer","Head of Security","Warden")
+
+/datum/gear/uniform/brandsuit/grayson
+	display_name = "outfit, grayson"
+	path = /obj/item/clothing/under/corp/grayson
+
+/datum/gear/uniform/brandsuit/grayson_jump
+	display_name = "jumpsuit, grayson"
+	path = /obj/item/clothing/under/corp/grayson_jump
+
+/datum/gear/uniform/brandsuit/wardt
+	display_name = "jumpsuit, ward-takahashi"
+	path = /obj/item/clothing/under/corp/wardt
+
+/datum/gear/uniform/brandsuit/hephaestus
+	display_name = "jumpsuit, hephaestus"
+	path = 	/obj/item/clothing/under/corp/hephaestus
+
+/datum/gear/uniform/brandsuit/centauri
+	display_name = "jumpsuit, centauri provisions"
+	path = /obj/item/clothing/under/corp/centauri
+
+/datum/gear/uniform/brandsuit/morpheus
+	display_name = "jumpsuit, morpheus"
+	path = /obj/item/clothing/under/corp/morpheus
+
+/datum/gear/uniform/brandsuit/wulf
+	display_name = "jumpsuit, wulf"
+	path = /obj/item/clothing/under/corp/wulf
+
+/datum/gear/uniform/brandsuit/zenghu
+	display_name = "jumpsuit, zeng-hu"
+	path = /obj/item/clothing/under/corp/zenghu
+
+/datum/gear/uniform/brandsuit/xion
+	display_name = "jumpsuit, xion"
+	path = /obj/item/clothing/under/corp/xion
+
+/datum/gear/uniform/brandsuit/vedmed
+	display_name = "jumpsuit, vey-med (Medical)"
+	path = /obj/item/clothing/under/corp/veymed
+	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic")
+
+/datum/gear/uniform/brandsuit/kaleidoscope
+	display_name = "outfit, kaleidoscope (Science)"
+	path = 	/obj/item/clothing/under/corp/kaleidoscope
+	allowed_roles = list("Research Director","Scientist","Xenobiologist")

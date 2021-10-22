@@ -63,10 +63,9 @@
 				SEND_SOUND(M, prey_digest)
 		play_sound = pred_digest
 
-	if(to_update)
-		updateVRPanels()
-
 	if(!LAZYLEN(touchable_mobs))
+		if(to_update)
+			updateVRPanels()
 		if(play_sound)
 			for(var/mob/M in hearers(VORE_SOUND_RANGE, get_turf(owner))) //so we don't fill the whole room with the sound effect
 				if(!M.is_preference_enabled(/datum/client_preference/digestion_noises))
@@ -124,6 +123,9 @@
 				formatted_message = replacetext(formatted_message, "%countprey", living_count)
 				formatted_message = replacetext(formatted_message, "%count", contents.len)
 				to_chat(M, "<span class='notice'>[formatted_message]</span>")
+	
+	if(to_update)
+		updateVRPanels()
 
 
 /obj/belly/proc/handle_touchable_atoms(list/touchable_atoms)

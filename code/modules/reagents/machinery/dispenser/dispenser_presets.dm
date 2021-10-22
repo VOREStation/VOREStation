@@ -133,6 +133,7 @@
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/hot_coco,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/milk,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/cream,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/sugar,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/tea,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/ice,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/mint,

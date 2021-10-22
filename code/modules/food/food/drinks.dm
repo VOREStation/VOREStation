@@ -38,6 +38,9 @@
 			qdel(src)
 	return
 
+/obj/item/weapon/reagent_containers/food/drinks/on_rag_wipe(var/obj/item/weapon/reagent_containers/glass/rag/R)
+	clean_blood()
+
 /obj/item/weapon/reagent_containers/food/drinks/attack_self(mob/user as mob)
 	if(!is_open_container())
 		open(user)

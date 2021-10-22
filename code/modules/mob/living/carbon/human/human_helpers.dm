@@ -95,6 +95,14 @@
 /mob/living/carbon/human/get_gender()
 	return identifying_gender ? identifying_gender : gender
 
+/mob/living/carbon/human/name_gender() /// Returns proper names for gender identites
+	if(identifying_gender == "plural")
+		return "other"
+	if(identifying_gender == "neuter")
+		return "none"
+	else
+		return get_gender()
+
 // This is the 'mechanical' check for synthetic-ness, not appearance
 // Returns the company that made the synthetic
 /mob/living/carbon/human/isSynthetic()
