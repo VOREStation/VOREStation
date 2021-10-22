@@ -3861,7 +3861,7 @@
 /area/awaymission/zoo)
 "kl" = (
 /obj/structure/table/rack,
-/obj/item/clothing/suit/storage/hooded/carp_costume,
+/obj/item/clothing/suit/storage/hooded/costume/carp,
 /turf/simulated/floor/holofloor/carpet,
 /area/awaymission/zoo)
 "km" = (
