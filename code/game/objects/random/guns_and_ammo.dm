@@ -179,8 +179,6 @@
 			prob(15);/obj/item/weapon/grenade/smokebomb
 			)
 
-<<<<<<< HEAD
-=======
 /obj/random/grenade/lethal
 	name = "Random Grenade"
 	desc = "This is random thrown grenade that hurts a lot."
@@ -195,7 +193,6 @@
 			prob(2);/obj/item/weapon/grenade/explosive/frag
 			)
 
->>>>>>> 2146cd53986... Merge pull request #8281 from Cerebulon/misc-fixes-sept
 /obj/random/grenade/less_lethal
 	name = "Random Security Grenade"
 	desc = "This is a random thrown grenade that shouldn't kill anyone."
