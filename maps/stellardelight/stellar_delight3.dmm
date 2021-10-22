@@ -561,9 +561,7 @@
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/aft)
 "cy" = (
-/obj/structure/bed/chair{
-	dir = 8
-	},
+/obj/machinery/recharge_station,
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/starboarddock)
 "cA" = (
@@ -1508,6 +1506,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
+/obj/item/weapon/paper/dockingcodes/aerostat,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/chief)
 "gA" = (
@@ -2484,6 +2483,8 @@
 	},
 /obj/structure/closet/secure_closet/hop,
 /obj/item/clothing/glasses/omnihud,
+/obj/item/weapon/paper/dockingcodes/aerostat,
+/obj/item/weapon/paper/dockingcodes/sd,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/hop)
 "kO" = (
@@ -7772,6 +7773,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
+/obj/item/weapon/paper/dockingcodes/aerostat,
 /turf/simulated/floor/tiled/dark,
 /area/crew_quarters/heads/hos)
 "Ev" = (
@@ -9821,7 +9823,6 @@
 	pixel_y = 7
 	},
 /obj/item/weapon/pen/multi,
-/obj/item/weapon/paper/dockingcodes,
 /obj/item/device/flashlight/lamp/green{
 	pixel_x = 3;
 	pixel_y = 18
@@ -10376,9 +10377,7 @@
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/aft)
 "Og" = (
-/obj/structure/bed/chair{
-	dir = 4
-	},
+/obj/machinery/recharge_station,
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/portdock)
 "Oj" = (
@@ -12664,6 +12663,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
+/obj/item/weapon/paper/dockingcodes/aerostat,
 /turf/simulated/floor/tiled/eris/white/cargo,
 /area/crew_quarters/heads/cmo)
 "Xb" = (
@@ -13102,6 +13102,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
+/obj/item/weapon/paper/dockingcodes/aerostat,
 /turf/simulated/floor/tiled/techfloor,
 /area/crew_quarters/heads/hor)
 "YD" = (

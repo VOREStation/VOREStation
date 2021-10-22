@@ -4493,11 +4493,12 @@
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck2/port)
 "kJ" = (
-/obj/machinery/light{
-	dir = 8
-	},
 /obj/machinery/computer/card{
 	dir = 4
+	},
+/obj/machinery/light/floortube{
+	dir = 8;
+	pixel_x = -6
 	},
 /turf/simulated/floor/tiled/eris/dark/monofloor,
 /area/bridge)
@@ -4716,6 +4717,8 @@
 /obj/structure/closet/secure_closet/captains,
 /obj/item/clothing/glasses/omnihud/all,
 /obj/item/weapon/disk/nuclear,
+/obj/item/weapon/paper/dockingcodes/aerostat,
+/obj/item/weapon/paper/dockingcodes/sd,
 /turf/simulated/floor/wood,
 /area/crew_quarters/captain)
 "lh" = (
@@ -11475,7 +11478,6 @@
 /obj/machinery/computer/skills{
 	pixel_y = 7
 	},
-/obj/item/weapon/paper/dockingcodes,
 /obj/machinery/button/remote/blast_door{
 	id = "captaindoor";
 	name = "Door Remote";
@@ -13424,9 +13426,6 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck2/portsolars)
 "Fp" = (
-/obj/machinery/light{
-	dir = 4
-	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
@@ -13434,6 +13433,17 @@
 /obj/machinery/photocopier/faxmachine{
 	department = "Bridge"
 	},
+/obj/machinery/light/floortube{
+	dir = 4;
+	pixel_x = 6
+	},
+/obj/structure/closet/walllocker_double/north{
+	dir = 4;
+	pixel_x = 32;
+	pixel_y = 0
+	},
+/obj/item/weapon/paper/dockingcodes/aerostat,
+/obj/item/weapon/paper/dockingcodes,
 /turf/simulated/floor/tiled/eris/dark/monofloor,
 /area/bridge)
 "Fq" = (

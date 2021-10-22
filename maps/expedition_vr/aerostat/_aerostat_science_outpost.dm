@@ -314,3 +314,7 @@ VIRGO2_TURF_CREATE(/turf/simulated/floor/hull)
 	icon_state = "crew_quarters"
 	base_turf = /turf/unsimulated/floor/sky/virgo2_sky
 	dynamic_lighting = FALSE
+
+/obj/item/weapon/paper/dockingcodes/aerostat
+	name = "Aerostat Docking Codes"
+	codes_from_z = Z_LEVEL_AEROSTAT

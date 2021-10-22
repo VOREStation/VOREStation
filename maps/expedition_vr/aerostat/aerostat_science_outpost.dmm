@@ -203,6 +203,7 @@
 /area/offmap/aerostat/inside/toxins)
 "aJ" = (
 /obj/effect/decal/cleanable/cobweb,
+/obj/machinery/telecomms/relay/preset/sd,
 /turf/simulated/floor/bluegrid,
 /area/offmap/aerostat/inside/powercontrol)
 "aK" = (
@@ -339,6 +340,9 @@
 "bf" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/simulated/floor/plating/virgo2,
 /area/offmap/aerostat/inside/arm/nw)
 "bg" = (
@@ -433,6 +437,9 @@
 /obj/structure/grille,
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
 /turf/simulated/floor/plating/virgo2,
 /area/offmap/aerostat/inside/arm/nw)
 "bp" = (
@@ -528,6 +535,10 @@
 "bA" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/green{
 	dir = 5
+	},
+/obj/machinery/light/floortube{
+	dir = 8;
+	pixel_x = -6
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/offmap/aerostat/inside/atmos)
@@ -791,6 +802,14 @@
 /obj/effect/map_helper/airlock/door/ext_door,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/offmap/aerostat/inside/xenoarch)
+"ct" = (
+/obj/machinery/door/airlock/external{
+	frequency = 1380;
+	id_tag = "aerostat_s_w_exterior";
+	locked = 1
+	},
+/turf/simulated/floor/tiled/steel_ridged,
+/area/offmap/aerostat/inside/airlock/south)
 "cv" = (
 /obj/effect/shuttle_landmark{
 	base_area = /area/offmap/aerostat;
@@ -909,6 +928,9 @@
 "cO" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/simulated/floor/plating/virgo2,
 /area/offmap/aerostat/inside/airlock/north)
 "cP" = (
@@ -1452,16 +1474,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/offmap/aerostat/inside/south/b)
-"eh" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden{
-	dir = 8
-	},
-/obj/machinery/light/floortube{
-	dir = 8;
-	pixel_x = -6
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/offmap/aerostat/inside/airlock/south)
 "ei" = (
 /obj/effect/floor_decal/rust,
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
@@ -1595,6 +1607,12 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 4;
+	frequency = 1380;
+	id_tag = null
+	},
+/obj/effect/map_helper/airlock/atmos/pump_out_internal,
 /turf/simulated/floor,
 /area/offmap/aerostat/inside/arm/nw)
 "fg" = (
@@ -1621,6 +1639,16 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/xenoarch)
+"fj" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden{
+	dir = 4
+	},
+/obj/machinery/light/floortube{
+	dir = 4;
+	pixel_x = 5
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/offmap/aerostat/inside/airlock/north)
 "fn" = (
 /obj/structure/bed/chair/office/light{
 	dir = 8
@@ -1715,6 +1743,9 @@
 "fS" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/simulated/floor/plating/virgo2,
 /area/offmap/aerostat/inside/airlock/south)
 "fT" = (
@@ -1730,6 +1761,15 @@
 	},
 /turf/simulated/wall,
 /area/offmap/aerostat/inside/atmos)
+"fW" = (
+/obj/structure/grille,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/plating/virgo2,
+/area/offmap/aerostat/inside/airlock/north)
 "fY" = (
 /obj/structure/cable/heavyduty{
 	icon_state = "1-2"
@@ -1824,13 +1864,18 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/toxins)
-"gP" = (
+"gN" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
+/turf/simulated/floor/plating/virgo2,
+/area/offmap/aerostat/inside/airlock/north)
+"gP" = (
 /obj/machinery/light/floortube{
-	dir = 8;
-	pixel_x = -6
+	dir = 4;
+	pixel_x = 5
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/offmap/aerostat/inside/south)
@@ -1843,6 +1888,14 @@
 	},
 /turf/simulated/wall,
 /area/offmap/aerostat/inside/toxins)
+"gS" = (
+/obj/machinery/door/airlock/external{
+	frequency = 1380;
+	id_tag = "aerostat_s_e_exterior";
+	locked = 1
+	},
+/turf/simulated/floor/tiled/steel_ridged,
+/area/offmap/aerostat/inside/airlock/south)
 "gT" = (
 /obj/effect/floor_decal/rust,
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
@@ -2003,6 +2056,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/aux,
 /turf/simulated/floor,
 /area/offmap/aerostat/inside/arm/nw)
+"hF" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/yellow,
+/area/shuttle/aerostat)
 "hG" = (
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary{
 	scrub_id = "science_outpost"
@@ -2036,6 +2095,11 @@
 	},
 /turf/simulated/shuttle/floor/yellow,
 /area/shuttle/aerostat)
+"hQ" = (
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/machinery/mech_recharger,
+/turf/simulated/floor/tiled,
+/area/offmap/aerostat/inside/genetics)
 "hX" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/white,
@@ -2177,6 +2241,17 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/toxins)
+"iW" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/plating/virgo2,
+/area/offmap/aerostat/inside/atmos)
 "iX" = (
 /turf/simulated/wall,
 /area/offmap/aerostat/inside/firingrange)
@@ -2352,6 +2427,9 @@
 "jU" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/simulated/floor/plating/virgo2,
 /area/offmap/aerostat/inside/arm/se)
 "jV" = (
@@ -2434,14 +2512,27 @@
 /turf/simulated/shuttle/wall/voidcraft/green/virgo2/nocol,
 /area/offmap/aerostat/inside/airlock/east)
 "kk" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
-	dir = 4
+	dir = 1
 	},
-/turf/simulated/floor/tiled/techfloor,
-/area/offmap/aerostat/inside/south)
+/turf/simulated/floor/plating/virgo2,
+/area/offmap/aerostat/inside/atmos)
 "km" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/wall,
+/area/offmap/aerostat/inside/atmos)
+"ko" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/plating/virgo2,
 /area/offmap/aerostat/inside/atmos)
 "kp" = (
 /obj/effect/floor_decal/rust,
@@ -2541,6 +2632,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 10
 	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/simulated/floor/plating/virgo2,
 /area/offmap/aerostat/inside/arm/se)
 "kN" = (
@@ -2571,6 +2665,14 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/xenoarch)
+"la" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/floor/plating/virgo2,
+/area/offmap/aerostat/inside/atmos)
 "lb" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
@@ -2663,8 +2765,19 @@
 /obj/structure/grille,
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
 /turf/simulated/floor/plating/virgo2,
 /area/offmap/aerostat/inside/arm/ne)
+"lu" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/plating/virgo2,
+/area/offmap/aerostat/inside/atmos)
 "lv" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 1
@@ -2674,6 +2787,11 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/toxins)
+"lA" = (
+/obj/machinery/mining/drill,
+/obj/effect/floor_decal/industrial/outline/yellow,
+/turf/simulated/floor/tiled,
+/area/offmap/aerostat/inside/genetics)
 "lD" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
@@ -2863,6 +2981,9 @@
 /obj/structure/table/standard,
 /obj/item/weapon/folder/white,
 /obj/item/weapon/pen/fountain,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/toxins)
 "mM" = (
@@ -2910,8 +3031,8 @@
 /turf/unsimulated/floor/sky/virgo2_sky,
 /area/offmap/aerostat)
 "mT" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 6
+/obj/machinery/atmospherics/pipe/manifold/hidden{
+	dir = 8
 	},
 /turf/simulated/shuttle/wall/voidcraft/green/virgo2,
 /area/offmap/aerostat/inside/arm/ne)
@@ -2984,11 +3105,11 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/offmap/aerostat/inside/atmos)
 "np" = (
-/obj/machinery/atmospherics/pipe/simple/visible/universal{
-	name = "Distro Loop Drain"
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 10
 	},
-/turf/simulated/floor/tiled/techfloor,
-/area/offmap/aerostat/inside/atmos)
+/turf/simulated/shuttle/wall/voidcraft/green/virgo2,
+/area/offmap/aerostat/inside/arm/nw)
 "nr" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8
@@ -3021,6 +3142,20 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/offmap/aerostat/inside/toxins)
+"nw" = (
+/obj/machinery/door/airlock/external{
+	frequency = 1380;
+	id_tag = "aerostat_s_s_exterior";
+	locked = 1
+	},
+/obj/machinery/access_button{
+	command = "cycle_exterior";
+	frequency = 1380;
+	master_tag = "aerostat_s_s_airlock";
+	pixel_x = 32
+	},
+/turf/simulated/floor/tiled/steel_ridged,
+/area/offmap/aerostat/inside/airlock/south)
 "nx" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/black{
 	dir = 8
@@ -3125,15 +3260,13 @@
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/toxins)
 "nW" = (
-/obj/effect/floor_decal/industrial/warning/dust{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 6
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/offmap/aerostat/inside/atmos)
+/turf/simulated/shuttle/wall/voidcraft/green/virgo2,
+/area/offmap/aerostat/inside/arm/ne)
 "nY" = (
+/obj/structure/table/rack,
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
@@ -3141,6 +3274,16 @@
 	dir = 4;
 	pixel_x = -23
 	},
+/obj/item/device/suit_cooling_unit,
+/obj/item/weapon/storage/belt/archaeology,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/suit/space/anomaly/heat,
+/obj/item/clothing/head/helmet/space/anomaly/heat,
+/obj/item/weapon/pickaxe,
+/obj/item/weapon/storage/excavation,
+/obj/item/stack/flag/yellow,
+/obj/item/weapon/tool/wrench,
+/obj/item/device/measuring_tape,
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/xenoarch)
 "oc" = (
@@ -3517,12 +3660,9 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/offmap/aerostat/inside/toxins)
 "pY" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
 /obj/machinery/light/floortube{
-	dir = 4;
-	pixel_x = 5
+	dir = 8;
+	pixel_x = -6
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/offmap/aerostat/inside/south)
@@ -3659,6 +3799,9 @@
 /obj/structure/grille,
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/simulated/floor/plating/virgo2,
 /area/offmap/aerostat/inside/airlock/north)
 "qN" = (
@@ -3847,6 +3990,11 @@
 	},
 /turf/simulated/shuttle/wall/voidcraft/green,
 /area/offmap/aerostat/inside/airlock/east)
+"sb" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/closet/excavation,
+/turf/simulated/floor/tiled/white,
+/area/offmap/aerostat/inside/xenoarch)
 "sc" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 8
@@ -3894,11 +4042,9 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/offmap/aerostat/inside/atmos)
 "sn" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/offmap/aerostat/inside/atmos)
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/turf/simulated/shuttle/wall/voidcraft/green/virgo2,
+/area/offmap/aerostat/inside/arm/nw)
 "so" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/red,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -3972,6 +4118,14 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/south)
+"sN" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/portable_atmospherics/canister/empty,
+/turf/simulated/floor/tiled/techfloor,
+/area/offmap/aerostat/inside/atmos)
 "sO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/techfloor,
@@ -3988,12 +4142,13 @@
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/telesci)
 "sQ" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
-	dir = 8;
-	health = 1e+006
+	dir = 4
 	},
-/turf/simulated/floor/tiled/techfloor,
-/area/offmap/aerostat/inside/south)
+/turf/simulated/floor/plating/virgo2,
+/area/offmap/aerostat/inside/arm/nw)
 "sT" = (
 /obj/machinery/computer/shuttle_control/aerostat_shuttle,
 /turf/simulated/shuttle/floor/yellow,
@@ -4025,8 +4180,8 @@
 /area/offmap/aerostat/inside/airlock/south)
 "sZ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
-/turf/simulated/shuttle/wall/hard_corner,
-/area/shuttle/aerostat)
+/turf/simulated/shuttle/wall/voidcraft/green/virgo2,
+/area/offmap/aerostat/inside/arm/ne)
 "tg" = (
 /obj/effect/shuttle_landmark{
 	base_area = /area/offmap/aerostat;
@@ -4193,6 +4348,14 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/offmap/aerostat/inside/toxins)
+"tM" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/floor/plating/virgo2,
+/area/offmap/aerostat/inside/arm/ne)
 "tP" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/blue{
 	dir = 4
@@ -4209,6 +4372,15 @@
 /obj/effect/floor_decal/industrial/warning/dust,
 /turf/simulated/shuttle/floor/yellow,
 /area/shuttle/aerostat)
+"tV" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/dispenser{
+	phorontanks = 0
+	},
+/turf/simulated/floor/tiled/white,
+/area/offmap/aerostat/inside/xenoarch)
 "tY" = (
 /turf/simulated/shuttle/wall/voidcraft/green,
 /area/offmap/aerostat/inside/airlock/east)
@@ -4232,10 +4404,9 @@
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/telesci)
 "um" = (
-/obj/structure/window/reinforced{
-	dir = 8
+/turf/simulated/shuttle/wall/voidcraft/hard_corner{
+	stripe_color = "#00FF00"
 	},
-/turf/simulated/floor/tiled/techfloor,
 /area/offmap/aerostat/inside/south)
 "un" = (
 /obj/structure/cable/heavyduty{
@@ -4389,20 +4560,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/offmap/aerostat/inside/south)
-"vp" = (
-/obj/machinery/door/airlock/external{
-	frequency = 1380;
-	id_tag = "aerostat_s_s_exterior";
-	locked = 1
-	},
-/obj/machinery/access_button{
-	command = "cycle_exterior";
-	frequency = 1380;
-	master_tag = "aerostat_s_s_airlock";
-	pixel_x = 32
-	},
-/turf/simulated/floor/tiled/steel_ridged,
-/area/offmap/aerostat/inside/airlock/south)
 "vq" = (
 /obj/effect/floor_decal/rust,
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
@@ -4671,7 +4828,6 @@
 /turf/simulated/floor/reinforced/airless,
 /area/offmap/aerostat/inside/toxins)
 "xa" = (
-/obj/machinery/door/airlock/glass_research,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/cable{
@@ -4679,6 +4835,9 @@
 	},
 /obj/structure/cable{
 	icon_state = "1-8"
+	},
+/obj/machinery/door/airlock/glass_mining{
+	name = "Drilling Equipment"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/offmap/aerostat/inside/genetics)
@@ -4743,6 +4902,14 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/toxins)
+"xw" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/plating/virgo2,
+/area/offmap/aerostat/inside/arm/sw)
 "xx" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4
@@ -4768,6 +4935,9 @@
 	name = "Toximate 2556";
 	products = list(/obj/item/device/transfer_valve = 3, /obj/item/device/assembly/timer = 6, /obj/item/device/assembly/signaler = 6, /obj/item/device/assembly/prox_sensor = 6, /obj/item/device/assembly/igniter = 12)
 	},
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/toxins)
 "xD" = (
@@ -4776,6 +4946,14 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/south)
+"xF" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/plating/virgo2,
+/area/offmap/aerostat/inside/arm/se)
 "xG" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
@@ -5085,6 +5263,10 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 8
+	},
+/obj/effect/map_helper/airlock/atmos/pump_out_internal,
 /turf/simulated/floor,
 /area/offmap/aerostat/inside/arm/ne)
 "zr" = (
@@ -5148,6 +5330,14 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/south)
+"zF" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/green,
+/obj/machinery/light/floortube{
+	dir = 4;
+	pixel_x = 5
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/offmap/aerostat/inside/atmos)
 "zG" = (
 /obj/machinery/light{
 	dir = 8
@@ -5185,6 +5375,9 @@
 /obj/structure/window/reinforced/full,
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 9
+	},
+/obj/structure/window/reinforced{
+	dir = 8
 	},
 /turf/simulated/floor/plating/virgo2,
 /area/offmap/aerostat/inside/arm/ne)
@@ -5268,6 +5461,20 @@
 	},
 /turf/simulated/floor,
 /area/offmap/aerostat/inside/arm/se)
+"Ae" = (
+/obj/structure/table/rack,
+/obj/item/device/suit_cooling_unit,
+/obj/item/weapon/storage/belt/archaeology,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/suit/space/anomaly/heat,
+/obj/item/clothing/head/helmet/space/anomaly/heat,
+/obj/item/weapon/pickaxe,
+/obj/item/weapon/storage/excavation,
+/obj/item/stack/flag/yellow,
+/obj/item/weapon/tool/wrench,
+/obj/item/device/measuring_tape,
+/turf/simulated/floor/tiled/white,
+/area/offmap/aerostat/inside/xenoarch)
 "Ah" = (
 /turf/simulated/floor/tiled/dark,
 /area/offmap/aerostat/inside/xenoarch)
@@ -5281,6 +5488,14 @@
 /obj/structure/filingcabinet/chestdrawer,
 /turf/simulated/floor/tiled,
 /area/offmap/aerostat/inside/xenoarch)
+"Ao" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/floor/plating/virgo2,
+/area/offmap/aerostat/inside/south)
 "Aq" = (
 /obj/machinery/door/airlock/glass_research,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -5314,6 +5529,14 @@
 /obj/fiftyspawner/steel,
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/toxins)
+"Au" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/plating/virgo2,
+/area/offmap/aerostat/inside/south)
 "Aw" = (
 /obj/machinery/air_sensor{
 	frequency = 1445;
@@ -5432,14 +5655,13 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/offmap/aerostat/inside/south)
-"Bg" = (
-/obj/machinery/door/airlock/external{
-	frequency = 1380;
-	id_tag = "aerostat_s_w_exterior";
-	locked = 1
+"Be" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 6
 	},
-/turf/simulated/floor/tiled/steel_ridged,
-/area/offmap/aerostat/inside/airlock/south)
+/turf/simulated/floor/tiled/techfloor,
+/area/offmap/aerostat/inside/south)
 "Bh" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 9
@@ -5469,6 +5691,12 @@
 	},
 /turf/simulated/wall,
 /area/offmap/aerostat/inside/south)
+"Bq" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/offmap/aerostat/inside/south)
 "Br" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
@@ -5489,16 +5717,6 @@
 /obj/machinery/dna_scannernew,
 /turf/simulated/floor/tiled,
 /area/offmap/aerostat/inside/south/b)
-"By" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/light/floortube{
-	dir = 4;
-	pixel_x = 5
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/offmap/aerostat/inside/airlock/south)
 "Bz" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -5562,6 +5780,12 @@
 	},
 /turf/simulated/floor,
 /area/offmap/aerostat/inside/xenoarch)
+"BP" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/offmap/aerostat/inside/south)
 "BR" = (
 /obj/structure/cable/heavyduty{
 	icon_state = "1-2"
@@ -5594,21 +5818,25 @@
 /obj/structure/grille,
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
 /turf/simulated/floor/plating/virgo2,
 /area/offmap/aerostat/inside/arm/se)
 "BW" = (
-/obj/structure/bed/chair/shuttle{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/visible/universal{
+	name = "Distro Loop Drain"
 	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/simulated/shuttle/floor/yellow,
-/area/shuttle/aerostat)
+/turf/simulated/floor/tiled/techfloor,
+/area/offmap/aerostat/inside/atmos)
 "BZ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
 	},
+/obj/machinery/atmospherics/portables_connector{
+	dir = 1
+	},
+/obj/machinery/portable_atmospherics/canister/air,
 /turf/simulated/floor/tiled/techfloor,
 /area/offmap/aerostat/inside/south)
 "Ca" = (
@@ -5639,14 +5867,12 @@
 "Ce" = (
 /turf/simulated/wall,
 /area/offmap/aerostat/inside/atmos)
-"Cg" = (
-/obj/machinery/door/airlock/external{
-	frequency = 1380;
-	id_tag = "aerostat_s_e_exterior";
-	locked = 1
+"Cj" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 10
 	},
-/turf/simulated/floor/tiled/steel_ridged,
-/area/offmap/aerostat/inside/airlock/south)
+/turf/simulated/floor/tiled/techfloor,
+/area/offmap/aerostat/inside/south)
 "Ck" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 1
@@ -5976,6 +6202,16 @@
 	},
 /turf/simulated/floor/tiled,
 /area/offmap/aerostat/inside/xenoarch)
+"Eh" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/portables_connector{
+	dir = 1
+	},
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/simulated/floor/tiled/techfloor,
+/area/offmap/aerostat/inside/south)
 "Ek" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -6004,7 +6240,9 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/offmap/aerostat/inside/airlock/north)
 "Er" = (
-/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/machinery/atmospherics/pipe/manifold/hidden{
+	dir = 4
+	},
 /turf/simulated/shuttle/wall/voidcraft/green/virgo2,
 /area/offmap/aerostat/inside/arm/sw)
 "Eu" = (
@@ -6019,6 +6257,9 @@
 /obj/structure/window/reinforced/full,
 /obj/machinery/atmospherics/pipe/manifold/hidden{
 	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
 	},
 /turf/simulated/floor/plating/virgo2,
 /area/offmap/aerostat/inside/arm/sw)
@@ -6123,6 +6364,10 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
+/obj/effect/map_helper/airlock/atmos/pump_out_internal,
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 8
+	},
 /turf/simulated/floor,
 /area/offmap/aerostat/inside/arm/se)
 "Fm" = (
@@ -6140,6 +6385,11 @@
 	},
 /obj/effect/map_helper/airlock/atmos/pump_out_internal,
 /obj/effect/floor_decal/rust,
+/obj/machinery/airlock_sensor{
+	dir = 8;
+	pixel_x = 30
+	},
+/obj/effect/map_helper/airlock/sensor/chamber_sensor,
 /turf/simulated/floor,
 /area/offmap/aerostat/inside/arm/sw)
 "Fr" = (
@@ -6335,6 +6585,13 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/toxins)
+"Gu" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/turf/simulated/floor/tiled/techfloor,
+/area/offmap/aerostat/inside/south)
 "Gv" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /turf/simulated/floor/tiled/white,
@@ -6439,6 +6696,8 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/machinery/mining/drill,
+/obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled,
 /area/offmap/aerostat/inside/genetics)
 "GW" = (
@@ -6526,6 +6785,15 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/offmap/aerostat/inside/xenoarch)
+"Hv" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/floor/plating/virgo2,
+/area/offmap/aerostat/inside/south)
 "Hw" = (
 /obj/structure/cable/heavyduty{
 	icon_state = "1-2"
@@ -6602,6 +6870,12 @@
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/xenoarch)
+"HQ" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/turf/simulated/floor/plating/virgo2,
+/area/offmap/aerostat/inside/south)
 "HT" = (
 /obj/machinery/door/airlock/external,
 /obj/structure/cable{
@@ -6621,6 +6895,14 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/toxins)
+"HY" = (
+/obj/machinery/door/airlock/glass_external{
+	locked = 1
+	},
+/obj/effect/map_helper/airlock/door/ext_door,
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/turf/simulated/floor/tiled/steel_ridged,
+/area/shuttle/aerostat)
 "Id" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/red,
 /obj/machinery/meter,
@@ -6670,13 +6952,14 @@
 /turf/simulated/floor/plating/virgo2,
 /area/offmap/aerostat/solars)
 "In" = (
-/obj/machinery/door/airlock/glass_external{
-	locked = 1
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 8
 	},
-/obj/effect/map_helper/airlock/door/ext_door,
-/obj/machinery/atmospherics/pipe/simple/hidden,
-/turf/simulated/floor/tiled/steel_ridged,
-/area/shuttle/aerostat)
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/offmap/aerostat/inside/atmos)
 "Ip" = (
 /obj/structure/table/standard,
 /obj/machinery/atmospherics/unary/vent_pump/on,
@@ -6733,6 +7016,9 @@
 /obj/structure/grille,
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/simulated/floor/plating/virgo2,
 /area/offmap/aerostat/inside/airlock/south)
 "ID" = (
@@ -6759,11 +7045,22 @@
 	name = "east bump";
 	pixel_x = -22
 	},
+/obj/machinery/mining/drill,
+/obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled,
 /area/offmap/aerostat/inside/genetics)
 "IK" = (
 /obj/machinery/light,
 /turf/simulated/floor/tiled/white,
+/area/offmap/aerostat/inside/south)
+"IM" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced,
+/turf/simulated/floor/plating/virgo2,
 /area/offmap/aerostat/inside/south)
 "IN" = (
 /obj/machinery/atmospherics/binary/pump/on{
@@ -6803,6 +7100,9 @@
 "IZ" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/simulated/floor/plating/virgo2,
 /area/offmap/aerostat/inside/arm/sw)
 "Jb" = (
@@ -6821,6 +7121,15 @@
 	},
 /turf/simulated/floor/tiled,
 /area/offmap/aerostat/inside/genetics)
+"Jd" = (
+/obj/structure/grille,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/plating/virgo2,
+/area/offmap/aerostat/inside/airlock/south)
 "Ji" = (
 /obj/structure/cable/heavyduty{
 	icon_state = "1-2"
@@ -6860,6 +7169,14 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/toxins)
+"Jz" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/plating/virgo2,
+/area/offmap/aerostat/inside/airlock/south)
 "JA" = (
 /obj/machinery/light{
 	dir = 8
@@ -7085,15 +7402,11 @@
 	},
 /area/offmap/aerostat/inside/xenoarch)
 "KP" = (
-/obj/machinery/door/airlock/glass_external{
-	locked = 1
-	},
-/obj/effect/map_helper/airlock/door/int_door,
-/obj/machinery/atmospherics/pipe/simple/hidden{
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
 	},
-/turf/simulated/floor/tiled/steel_ridged,
-/area/shuttle/aerostat)
+/turf/simulated/floor/tiled/techfloor,
+/area/offmap/aerostat/inside/atmos)
 "KS" = (
 /obj/machinery/atmospherics/pipe/manifold/visible{
 	dir = 4
@@ -7395,8 +7708,8 @@
 /turf/simulated/floor,
 /area/offmap/aerostat/inside/arm/sw)
 "Mz" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 10
+/obj/machinery/atmospherics/pipe/manifold/hidden{
+	dir = 4
 	},
 /turf/simulated/shuttle/wall/voidcraft/green/virgo2,
 /area/offmap/aerostat/inside/arm/nw)
@@ -7503,10 +7816,8 @@
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/firingrange)
 "No" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/simulated/shuttle/floor/yellow,
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/turf/simulated/shuttle/wall/hard_corner,
 /area/shuttle/aerostat)
 "Nq" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
@@ -8006,6 +8317,16 @@
 	},
 /turf/simulated/floor/plating/virgo2,
 /area/offmap/aerostat/solars)
+"Qy" = (
+/obj/machinery/door/airlock/glass_external{
+	locked = 1
+	},
+/obj/effect/map_helper/airlock/door/int_door,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/steel_ridged,
+/area/shuttle/aerostat)
 "Qz" = (
 /obj/item/weapon/storage/box/monkeycubes,
 /obj/item/weapon/storage/pill_bottle/dylovene,
@@ -8035,7 +8356,6 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/offmap/aerostat/inside/atmos)
 "QH" = (
-/obj/structure/table/standard,
 /obj/effect/floor_decal/spline/plain{
 	dir = 5
 	},
@@ -8130,6 +8450,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 5
 	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
 /turf/simulated/floor/plating/virgo2,
 /area/offmap/aerostat/inside/arm/nw)
 "Rb" = (
@@ -8190,6 +8513,10 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 5
 	},
+/obj/machinery/light/floortube{
+	dir = 8;
+	pixel_x = -6
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/offmap/aerostat/inside/airlock/north)
 "Rp" = (
@@ -8217,6 +8544,16 @@
 "Rr" = (
 /turf/simulated/shuttle/wall/voidcraft/green,
 /area/offmap/aerostat/inside/toxins)
+"Rs" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/light/floortube{
+	dir = 4;
+	pixel_x = 5
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/offmap/aerostat/inside/airlock/south)
 "Rt" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 9
@@ -8284,7 +8621,9 @@
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/firingrange)
 "RN" = (
-/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/machinery/atmospherics/pipe/manifold/hidden{
+	dir = 8
+	},
 /turf/simulated/shuttle/wall/voidcraft/green/virgo2,
 /area/offmap/aerostat/inside/arm/se)
 "RO" = (
@@ -8306,6 +8645,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/offmap/aerostat/inside/xenoarch)
+"RV" = (
+/obj/machinery/portable_atmospherics/canister/oxygen,
+/turf/simulated/shuttle/floor/yellow,
+/area/shuttle/aerostat)
 "RW" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
@@ -8390,6 +8733,10 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 4
+	},
+/obj/effect/map_helper/airlock/atmos/pump_out_internal,
 /turf/simulated/floor,
 /area/offmap/aerostat/inside/arm/sw)
 "SJ" = (
@@ -8401,6 +8748,7 @@
 /area/offmap/aerostat/inside/xenoarch)
 "SN" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/machinery/suspension_gen,
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/xenoarch)
 "SO" = (
@@ -8432,11 +8780,22 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/offmap/aerostat/inside/toxins)
+"SR" = (
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/machinery/light/floortube{
+	dir = 8;
+	pixel_x = -6
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/offmap/aerostat/inside/airlock/south)
 "SS" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/machinery/atmospherics/pipe/manifold/hidden{
 	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
 	},
 /turf/simulated/floor/plating/virgo2,
 /area/offmap/aerostat/inside/arm/nw)
@@ -8561,10 +8920,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/xenoarch)
-"TK" = (
-/obj/structure/window/reinforced,
-/turf/simulated/floor/tiled/techfloor,
-/area/offmap/aerostat/inside/south)
 "TO" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 1;
@@ -8619,13 +8974,14 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/offmap/aerostat/inside/airlock/south)
 "TU" = (
-/obj/machinery/atmospherics/pipe/simple/hidden,
-/obj/machinery/light/floortube{
-	dir = 8;
-	pixel_x = -6
+/obj/structure/bed/chair/shuttle{
+	dir = 4
 	},
-/turf/simulated/floor/tiled/techfloor,
-/area/offmap/aerostat/inside/airlock/south)
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/yellow,
+/area/shuttle/aerostat)
 "TV" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/techfloor,
@@ -8637,6 +8993,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/green{
 	dir = 4
 	},
+/obj/machinery/light,
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/toxins)
 "TX" = (
@@ -8713,6 +9070,9 @@
 "Up" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
 /turf/simulated/floor/plating/virgo2,
 /area/offmap/aerostat/inside/arm/ne)
 "Uq" = (
@@ -8742,12 +9102,6 @@
 	stripe_color = "#00FF00"
 	},
 /area/offmap/aerostat/inside/arm/nw)
-"Uw" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/offmap/aerostat/inside/south)
 "Uy" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
@@ -8790,6 +9144,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 6
 	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
 /turf/simulated/floor/plating/virgo2,
 /area/offmap/aerostat/inside/arm/sw)
 "UG" = (
@@ -8800,6 +9157,10 @@
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/firingrange)
+"UH" = (
+/obj/structure/closet/excavation,
+/turf/simulated/floor/tiled/white,
+/area/offmap/aerostat/inside/xenoarch)
 "UL" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -8846,6 +9207,7 @@
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
+/obj/machinery/portable_atmospherics/canister/empty,
 /turf/simulated/floor/tiled/techfloor,
 /area/offmap/aerostat/inside/atmos)
 "Va" = (
@@ -8909,6 +9271,11 @@
 	},
 /turf/simulated/floor/plating/virgo2,
 /area/offmap/aerostat/solars)
+"Vt" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/suspension_gen,
+/turf/simulated/floor/tiled/white,
+/area/offmap/aerostat/inside/xenoarch)
 "Vx" = (
 /obj/machinery/atmospherics/pipe/manifold/visible{
 	dir = 1
@@ -8986,6 +9353,9 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden{
 	dir = 4
 	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/simulated/floor/plating/virgo2,
 /area/offmap/aerostat/inside/arm/se)
 "VR" = (
@@ -9025,6 +9395,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/machinery/portable_atmospherics/canister/empty,
 /turf/simulated/floor/tiled/techfloor,
 /area/offmap/aerostat/inside/atmos)
 "Wd" = (
@@ -9052,7 +9423,7 @@
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/toxins)
 "Wk" = (
-/obj/random/drinkbottle,
+/obj/machinery/portable_atmospherics/canister/empty,
 /turf/simulated/floor/tiled/techfloor,
 /area/offmap/aerostat/inside/atmos)
 "Wn" = (
@@ -9282,6 +9653,9 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden{
 	dir = 4
 	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/simulated/floor/plating/virgo2,
 /area/offmap/aerostat/inside/arm/ne)
 "XL" = (
@@ -9334,6 +9708,11 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/toxins)
+"Yc" = (
+/obj/machinery/mining/brace,
+/obj/effect/floor_decal/industrial/outline/yellow,
+/turf/simulated/floor/tiled,
+/area/offmap/aerostat/inside/genetics)
 "Yg" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 8
@@ -9417,6 +9796,13 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/toxins)
+"Yq" = (
+/obj/machinery/light/floortube{
+	dir = 4;
+	pixel_x = 5
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/offmap/aerostat/inside/airlock/south)
 "Yt" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red,
 /turf/simulated/floor/tiled/white,
@@ -9462,13 +9848,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/toxins)
-"YM" = (
-/obj/machinery/light/floortube{
-	dir = 4;
-	pixel_x = 5
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/offmap/aerostat/inside/airlock/south)
 "YN" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
@@ -9628,6 +10007,16 @@
 	},
 /turf/simulated/floor,
 /area/offmap/aerostat/inside/firingrange)
+"ZM" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden{
+	dir = 8
+	},
+/obj/machinery/light/floortube{
+	dir = 8;
+	pixel_x = -6
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/offmap/aerostat/inside/airlock/south)
 "ZN" = (
 /obj/effect/floor_decal/industrial/warning/dust/corner{
 	dir = 8
@@ -17246,12 +17635,12 @@ SS
 QZ
 ac
 ac
-bf
-bf
+sQ
+sQ
 ac
 ac
 bo
-bf
+sQ
 ac
 ac
 mN
@@ -17379,9 +17768,9 @@ aw
 aw
 aw
 ac
-ac
-ac
-ac
+np
+sn
+sn
 Mz
 Ut
 fM
@@ -17435,12 +17824,12 @@ oA
 uS
 cU
 cU
-IZ
-IZ
+xw
+xw
 cU
 cU
-IZ
-IZ
+xw
+xw
 cU
 cU
 UD
@@ -17574,7 +17963,7 @@ ZL
 ZL
 ID
 ID
-vg
+um
 vg
 aw
 aw
@@ -17717,7 +18106,7 @@ AP
 ID
 ID
 ID
-vg
+um
 vg
 aw
 aw
@@ -17860,7 +18249,7 @@ ID
 ID
 ID
 ID
-vg
+um
 vg
 aw
 aw
@@ -18003,7 +18392,7 @@ ID
 ID
 ID
 ID
-vg
+um
 vg
 aw
 aw
@@ -18862,10 +19251,10 @@ Ya
 Ya
 zG
 qc
-qc
-qc
-qc
-qc
+Ao
+Ao
+Ao
+Hv
 aw
 aw
 aw
@@ -18943,10 +19332,10 @@ aw
 aw
 aw
 aw
-BA
-BA
-BA
-BA
+iW
+la
+la
+la
 BA
 KD
 sm
@@ -19005,9 +19394,9 @@ sO
 sO
 sO
 sO
-sO
+Be
 BZ
-qc
+HQ
 aw
 aw
 aw
@@ -19085,11 +19474,11 @@ aw
 aw
 aw
 aw
-BA
+kk
 Wk
 UZ
 Wb
-vt
+sN
 vt
 vt
 vt
@@ -19143,13 +19532,13 @@ ie
 Ya
 Ya
 Ya
-kk
-kk
-kk
 Ya
 Ya
-CM
-qc
+Ya
+Ya
+Bq
+Eh
+HQ
 Qg
 aw
 aw
@@ -19160,7 +19549,7 @@ aw
 aw
 DC
 zC
-Bg
+ct
 DC
 aw
 aw
@@ -19227,8 +19616,8 @@ aw
 aw
 aw
 aw
-BA
-pZ
+kk
+Wk
 Te
 pZ
 pZ
@@ -19284,12 +19673,12 @@ Ya
 ie
 Ya
 Ya
-TK
-VG
-VG
-VG
-Uw
 Ya
+VG
+VG
+VG
+Ya
+BP
 it
 vg
 Qg
@@ -19427,11 +19816,11 @@ ie
 Ya
 Ya
 Ya
-um
+Ya
 pY
-um
 Ya
 Ya
+BP
 CM
 vg
 DC
@@ -19573,18 +19962,18 @@ Ya
 Ya
 Ya
 Ya
-Ya
-CM
+Cj
+Gu
 tE
 vc
 Th
-TU
+SR
 Th
 kI
-TU
+SR
 Th
 mn
-eh
+ZM
 Fy
 sk
 pD
@@ -19645,7 +20034,7 @@ kD
 ri
 Bb
 PD
-Lo
+fj
 Si
 TV
 Yl
@@ -19720,10 +20109,10 @@ hf
 er
 zM
 uy
-By
+Rs
 uy
 qw
-YM
+Yq
 XM
 Rk
 GA
@@ -19731,7 +20120,7 @@ YT
 sk
 oS
 DU
-vp
+nw
 aw
 aw
 aw
@@ -19789,17 +20178,17 @@ QT
 bp
 Wd
 cn
-qM
-cO
+fW
+gN
 cn
 cn
-qM
-cO
+fW
+gN
 cn
 qj
 Ze
 wb
-nW
+In
 dY
 dY
 lH
@@ -19853,20 +20242,20 @@ ie
 Ya
 Zs
 Ya
-kk
+Ya
 gP
-kk
+Ya
 Ya
 Ya
 CM
 vg
 DC
-IB
-fS
+Jd
+Jz
 DC
 DC
-IB
-IB
+Jd
+Jd
 DC
 DP
 yD
@@ -19937,11 +20326,11 @@ aw
 aw
 aw
 aw
-BA
+kk
 Us
 hk
-np
-sn
+BW
+KP
 pZ
 pZ
 Fh
@@ -19994,11 +20383,11 @@ Ya
 ie
 Ya
 Zs
-TK
+Ya
 VG
 VG
 VG
-Uw
+Ya
 Ya
 it
 vg
@@ -20079,7 +20468,7 @@ aw
 aw
 aw
 aw
-BA
+kk
 Us
 gG
 Aa
@@ -20094,7 +20483,7 @@ cF
 so
 ca
 Vl
-cA
+zF
 QE
 ez
 VU
@@ -20137,13 +20526,13 @@ ie
 Ya
 Zs
 Ya
-sQ
-sQ
-sQ
+Ya
+Ya
+Ya
 Ya
 Ya
 CM
-qc
+HQ
 Qg
 aw
 aw
@@ -20154,7 +20543,7 @@ aw
 aw
 DC
 TT
-Cg
+gS
 DC
 aw
 aw
@@ -20221,10 +20610,10 @@ aw
 aw
 aw
 aw
-BA
-BA
-BA
-BA
+ko
+lu
+lu
+lu
 BA
 nm
 bL
@@ -20285,7 +20674,7 @@ NX
 NX
 NX
 vo
-qc
+HQ
 aw
 aw
 aw
@@ -20424,10 +20813,10 @@ Ya
 Ya
 Bc
 qc
-qc
-qc
-qc
-qc
+Au
+Au
+Au
+IM
 aw
 aw
 aw
@@ -20813,7 +21202,7 @@ Lf
 jF
 UA
 Gi
-Mn
+tV
 Mn
 nY
 QA
@@ -20957,7 +21346,7 @@ Jq
 kV
 Jq
 Jq
-Jq
+Ae
 oY
 fn
 gx
@@ -21099,7 +21488,7 @@ Ul
 ML
 Ul
 Ul
-Ul
+sb
 Cw
 qQ
 ZA
@@ -21241,7 +21630,7 @@ zI
 VX
 Zc
 ti
-Jq
+UH
 QH
 Gb
 Eb
@@ -21781,9 +22170,9 @@ aw
 aw
 aw
 fb
-fb
-fb
-fb
+nW
+sZ
+sZ
 mT
 FV
 xx
@@ -21932,18 +22321,18 @@ XK
 zR
 fb
 fb
-Up
-Up
+tM
+tM
 fb
 fb
-Up
-Up
+tM
+tM
 fb
 fb
 LK
 KN
 SN
-Ul
+Vt
 Ul
 Ul
 Ul
@@ -22121,16 +22510,16 @@ Ht
 aY
 aY
 aY
-jU
-jU
+xF
+xF
 aY
 aY
-jU
-jU
+xF
+xF
 aY
 aY
 BV
-jU
+xF
 aY
 aY
 aY
@@ -22815,8 +23204,8 @@ ty
 Kv
 yG
 Go
-Go
-Go
+Yc
+Yc
 Go
 Go
 Go
@@ -22954,11 +23343,11 @@ ry
 Va
 XA
 ty
-Go
+lA
 if
 Go
-Go
-Go
+Yc
+Yc
 Go
 Go
 Bz
@@ -23096,11 +23485,11 @@ ry
 Va
 XA
 ty
-Go
+lA
 if
 Go
-Go
-Go
+Yc
+Yc
 ed
 UW
 NZ
@@ -23238,11 +23627,11 @@ ry
 Va
 XA
 ty
-Go
+hQ
 if
 Go
-Go
-Go
+Yc
+Yc
 Bz
 Qq
 aw
@@ -23380,7 +23769,7 @@ ry
 Rp
 XA
 ty
-Go
+hQ
 if
 Go
 Go
@@ -24510,11 +24899,11 @@ aw
 aw
 aw
 iN
-sZ
+No
 EL
 wc
 bh
-In
+HY
 wm
 bI
 bd
@@ -24653,7 +25042,7 @@ aw
 bd
 bI
 bd
-BW
+TU
 vX
 pd
 tS
@@ -24940,9 +25329,9 @@ bg
 bg
 VE
 Ki
-KP
+Qy
 bd
-No
+hF
 bg
 Jb
 bd
@@ -25219,7 +25608,7 @@ aw
 aw
 aw
 bI
-FS
+RV
 bg
 bg
 hO
@@ -25646,7 +26035,7 @@ aw
 aw
 aw
 iN
-sZ
+No
 EL
 ts
 bI

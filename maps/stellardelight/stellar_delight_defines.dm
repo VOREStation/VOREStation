@@ -535,6 +535,11 @@
 	name = "Near Deck 3 Starboard Airlock"
 	landmark_tag = "sd-3-120-78"
 
+/obj/item/weapon/paper/dockingcodes/sd
+	name = "Stellar Delight Docking Codes"
+	codes_from_z = Z_LEVEL_SHIP_LOW
+
+
 ///////////////////////////////////////////////////////////
 /////Misc stuff from the tether that's likely to get used in one way or another!/////`
 
