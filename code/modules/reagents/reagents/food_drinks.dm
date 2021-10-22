@@ -384,12 +384,22 @@
 	taste_mult = 1.3
 	nutriment_factor = 1
 	color = "#482000"
-	allergen_type = ALLERGEN_COFFEE //Again, coffee contains coffee
+	allergen_type = ALLERGEN_COFFEE | ALLERGEN_STIMULANT //Again, coffee contains coffee
 
 /datum/reagent/nutriment/tea
 	name = "Tea Powder"
 	id = "teapowder"
 	description = "A dark, tart powder made from black tea leaves."
+	taste_description = "tartness"
+	taste_mult = 1.3
+	nutriment_factor = 1
+	color = "#101000"
+	allergen_type = ALLERGEN_STIMULANT //Strong enough to contain caffeine
+
+/datum/reagent/nutriment/decaf_tea
+	name = "Decaf Tea Powder"
+	id = "decafteapowder"
+	description = "A dark, tart powder made from black tea leaves, treated to remove caffeine content."
 	taste_description = "tartness"
 	taste_mult = 1.3
 	nutriment_factor = 1
@@ -635,8 +645,6 @@
 	reagent_state = LIQUID
 	color = "#365E30"
 	overdose = REAGENTS_OVERDOSE
-
-//SYNNONO MEME FOODS EXPANSION - Credit to Synnono
 
 /datum/reagent/spacespice
 	name = "Wurmwoad"
@@ -1228,12 +1236,30 @@
 	cup_icon_state = "cup_tea"
 	cup_name = "cup of tea"
 	cup_desc = "Tasty black tea, it has antioxidants, it's good for you!"
+	allergen_type = ALLERGEN_STIMULANT //Black tea strong enough to have significant caffeine content
 
 /datum/reagent/drink/tea/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 	if(alien == IS_DIONA)
 		return
 	M.adjustToxLoss(-0.5 * removed)
+
+/datum/reagent/drink/tea/decaf
+	name = "Decaf Tea"
+	id = "teadecaf"
+	description = "Tasty black tea, it has antioxidants, it's good for you, and won't keep you up at night!"
+	color = "#832700"
+	adj_dizzy = 0
+	adj_drowsy = 0 //Decaf won't help you here.
+	adj_sleepy = 0
+
+	glass_name = "cup of decaf tea"
+	glass_desc = "Tasty black tea, it has antioxidants, it's good for you, and won't keep you up at night!"
+
+	cup_name = "cup of decaf tea"
+	cup_desc = "Tasty black tea, it has antioxidants, it's good for you, and won't keep you up at night!"
+	allergen_type = null //Certified cat-safe!
+
 
 /datum/reagent/drink/tea/icetea
 	name = "Iced Tea"
@@ -1269,6 +1295,16 @@
 			M.bodytemperature += 0.5
 		//M.adjustToxLoss(5 * removed) //VOREStation Removal
 
+/datum/reagent/drink/tea/icetea/decaf
+	name = "Decaf Iced Tea"
+	glass_name = "decaf iced tea"
+	cup_name = "cup of decaf iced tea"
+	id = "iceteadecaf"
+	adj_dizzy = 0
+	adj_drowsy = 0
+	adj_sleepy = 0
+	allergen_type = null
+
 /datum/reagent/drink/tea/minttea
 	name = "Mint Tea"
 	id = "minttea"
@@ -1282,6 +1318,16 @@
 	cup_name = "cup of mint tea"
 	cup_desc = "A tasty mixture of mint and tea. It's apparently good for you!"
 
+/datum/reagent/drink/tea/minttea/decaf
+	name = "Decaf Mint Tea"
+	glass_name = "decaf mint tea"
+	cup_name = "cup of decaf mint tea"
+	id = "mintteadecaf"
+	adj_dizzy = 0
+	adj_drowsy = 0
+	adj_sleepy = 0
+	allergen_type = null
+
 /datum/reagent/drink/tea/lemontea
 	name = "Lemon Tea"
 	id = "lemontea"
@@ -1294,7 +1340,17 @@
 
 	cup_name = "cup of lemon tea"
 	cup_desc = "A tasty mixture of lemon and tea. It's apparently good for you!"
-	allergen_type = ALLERGEN_FRUIT //Made with lemon juice
+	allergen_type = ALLERGEN_FRUIT | ALLERGEN_STIMULANT //Made with lemon juice, still tea
+
+/datum/reagent/drink/tea/lemontea/decaf
+	name = "Decaf Lemon Tea"
+	glass_name = "decaf lemon tea"
+	cup_name = "cup of decaf lemon tea"
+	id = "lemonteadecaf"
+	adj_dizzy = 0
+	adj_drowsy = 0
+	adj_sleepy = 0
+	allergen_type = ALLERGEN_FRUIT //No caffine, still lemon.
 
 /datum/reagent/drink/tea/limetea
 	name = "Lime Tea"
@@ -1308,7 +1364,17 @@
 
 	cup_name = "cup of lime tea"
 	cup_desc = "A tasty mixture of lime and tea. It's apparently good for you!"
-	allergen_type = ALLERGEN_FRUIT //Made with lime juice
+	allergen_type = ALLERGEN_FRUIT | ALLERGEN_STIMULANT //Made with lime juice, still tea
+
+/datum/reagent/drink/tea/limetea/decaf
+	name = "Decaf Lime Tea"
+	glass_name = "decaf lime tea"
+	cup_name = "cup of decaf lime tea"
+	id = "limeteadecaf"
+	adj_dizzy = 0
+	adj_drowsy = 0
+	adj_sleepy = 0
+	allergen_type = ALLERGEN_FRUIT //No caffine, still lime.
 
 /datum/reagent/drink/tea/orangetea
 	name = "Orange Tea"
@@ -1322,7 +1388,17 @@
 
 	cup_name = "cup of orange tea"
 	cup_desc = "A tasty mixture of orange and tea. It's apparently good for you!"
-	allergen_type = ALLERGEN_FRUIT //Made with orange juice
+	allergen_type = ALLERGEN_FRUIT | ALLERGEN_STIMULANT //Made with orange juice, still tea
+
+/datum/reagent/drink/tea/orangetea/decaf
+	name = "Decaf orange Tea"
+	glass_name = "decaf orange tea"
+	cup_name = "cup of decaf orange tea"
+	id = "orangeteadecaf"
+	adj_dizzy = 0
+	adj_drowsy = 0
+	adj_sleepy = 0
+	allergen_type = ALLERGEN_FRUIT //No caffine, still orange.
 
 /datum/reagent/drink/tea/berrytea
 	name = "Berry Tea"
@@ -1336,7 +1412,17 @@
 
 	cup_name = "cup of berry tea"
 	cup_desc = "A tasty mixture of berries and tea. It's apparently good for you!"
-	allergen_type = ALLERGEN_FRUIT //Made with berry juice
+	allergen_type = ALLERGEN_FRUIT | ALLERGEN_STIMULANT //Made with berry juice, still tea
+
+/datum/reagent/drink/tea/berrytea/decaf
+	name = "Decaf Berry Tea"
+	glass_name = "decaf berry tea"
+	cup_name = "cup of decaf berry tea"
+	id = "berryteadecaf"
+	adj_dizzy = 0
+	adj_drowsy = 0
+	adj_sleepy = 0
+	allergen_type = ALLERGEN_FRUIT //No caffine, still berries.
 
 /datum/reagent/drink/greentea
 	name = "Green Tea"
@@ -1351,18 +1437,29 @@
 	cup_name = "cup of green tea"
 	cup_desc = "A subtle blend of green tea. It's apparently good for you!"
 
-/datum/reagent/drink/chaitea
+/datum/reagent/drink/tea/chaitea
 	name = "Chai Tea"
 	id = "chaitea"
-	description = "A tea spiced with cinnamon and cloves."
+	description = "A milky tea spiced with cinnamon and cloves."
 	color = "#A8442C"
 	taste_description = "creamy cinnamon and spice"
 
 	glass_name = "chai tea"
-	glass_desc = "A tea spiced with cinnamon and cloves."
+	glass_desc = "A milky tea spiced with cinnamon and cloves."
 
 	cup_name = "cup of chai tea"
-	cup_desc = "A tea spiced with cinnamon and cloves."
+	cup_desc = "A milky tea spiced with cinnamon and cloves."
+	allergen_type = ALLERGEN_STIMULANT|ALLERGEN_DAIRY //Made with milk and tea.
+
+/datum/reagent/drink/tea/chaitea/decaf
+	name = "Decaf Chai Tea"
+	glass_name = "decaf chai tea"
+	cup_name = "cup of decaf chai tea"
+	id = "chaiteadecaf"
+	adj_dizzy = 0
+	adj_drowsy = 0
+	adj_sleepy = 0
+	allergen_type = ALLERGEN_DAIRY //No caffeine, still milk.
 
 /datum/reagent/drink/coffee
 	name = "Coffee"
@@ -1383,7 +1480,7 @@
 
 	glass_name = "coffee"
 	glass_desc = "Don't drop it, or you'll send scalding liquid and glass shards everywhere."
-	allergen_type = ALLERGEN_COFFEE //Apparently coffee contains coffee
+	allergen_type = ALLERGEN_COFFEE | ALLERGEN_STIMULANT //Apparently coffee contains coffee
 
 /datum/reagent/drink/coffee/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
@@ -1496,7 +1593,7 @@
 
 	glass_name = "decaf coffee"
 	glass_desc = "Basically just brown, bitter water."
-	allergen_type = ALLERGEN_COFFEE //Decaf coffee would still likely trigger allergy symptoms.
+	allergen_type = ALLERGEN_COFFEE //Decaf coffee is still coffee, just less stimulating.
 
 /datum/reagent/drink/hot_coco
 	name = "Hot Chocolate"
@@ -1632,7 +1729,18 @@
 
 	glass_name = "Brown Star"
 	glass_desc = "It's not what it sounds like..."
-	allergen_type = ALLERGEN_FRUIT //Made with orangejuice and cola
+	allergen_type = ALLERGEN_FRUIT | ALLERGEN_STIMULANT //Made with orangejuice and cola
+
+/datum/reagent/drink/soda/brownstar_decaf //For decaf starkist
+	name = "Decaf Brown Star"
+	id = "brownstar_decaf"
+	description = "It's not what it sounds like..."
+	taste_description = "orange and cola soda"
+	color = "#9F3400"
+	adj_temp = -2
+
+	glass_name = "Brown Star"
+	glass_desc = "It's not what it sounds like..."
 
 /datum/reagent/drink/milkshake
 	name = "Milkshake"
@@ -1730,7 +1838,7 @@
 
 	glass_name = "Rewriter"
 	glass_desc = "The secret of the sanctuary of the Libarian..."
-	allergen_type = ALLERGEN_FRUIT|ALLERGEN_COFFEE //Made with space mountain wind (Fruit)
+	allergen_type = ALLERGEN_FRUIT|ALLERGEN_COFFEE|ALLERGEN_STIMULANT //Made with space mountain wind (Fruit, caffeine)
 
 /datum/reagent/drink/rewriter/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -1748,6 +1856,7 @@
 	glass_name = "Nuka-Cola"
 	glass_desc = "Don't cry, Don't raise your eye, It's only nuclear wasteland"
 	glass_special = list(DRINK_FIZZ)
+	allergen_type = ALLERGEN_STIMULANT
 
 /datum/reagent/drink/soda/nuka_cola/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -1780,6 +1889,20 @@
 
 	glass_name = "Space Cola"
 	glass_desc = "A glass of refreshing Space Cola"
+	glass_special = list(DRINK_FIZZ)
+	allergen_type = ALLERGEN_STIMULANT //Cola is typically caffeinated.
+
+/datum/reagent/drink/soda/decaf_cola
+	name = "Space Cola Free"
+	id = "decafcola"
+	description = "A refreshing beverage with none of the jitters."
+	taste_description = "cola"
+	reagent_state = LIQUID
+	color = "#100800"
+	adj_temp = -5
+
+	glass_name = "Space Cola Free"
+	glass_desc = "A glass of refreshing Space Cola Free"
 	glass_special = list(DRINK_FIZZ)
 
 /datum/reagent/drink/soda/lemon_soda
@@ -1899,12 +2022,12 @@
 	glass_name = "Space Mountain Wind"
 	glass_desc = "Space Mountain Wind. As you know, there are no mountains in space, only wind."
 	glass_special = list(DRINK_FIZZ)
-	allergen_type = ALLERGEN_FRUIT //Fruit allergens because citrus is implied to come from limes/lemons
+	allergen_type = ALLERGEN_FRUIT|ALLERGEN_STIMULANT //Citrus, and caffeination
 
 /datum/reagent/drink/soda/dr_gibb
 	name = "Dr. Gibb"
 	id = "dr_gibb"
-	description = "A delicious blend of 42 different flavors"
+	description = "A delicious blend of 42 different flavors."
 	taste_description = "cherry soda"
 	color = "#102000"
 	adj_drowsy = -6
@@ -1912,6 +2035,7 @@
 
 	glass_name = "Dr. Gibb"
 	glass_desc = "Dr. Gibb. Not as dangerous as the name might imply."
+	allergen_type = ALLERGEN_STIMULANT
 
 /datum/reagent/drink/soda/space_up
 	name = "Space-Up"
@@ -1965,7 +2089,7 @@
 	name = "Diet Dr. Gibb"
 	id = "diet_dr_gibb"
 	color = "#102000"
-	taste_description = "watered down cherry soda"
+	taste_description = "chemically sweetened cherry soda"
 
 	glass_name = "glass of Diet Dr. Gibb"
 	glass_desc = "Regular Dr.Gibb is probably healthier than this cocktail of artificial flavors."
@@ -1994,7 +2118,7 @@
 	glass_name = "roy rogers"
 	glass_desc = "I'm a cowboy, on a steel horse I ride"
 	glass_special = list(DRINK_FIZZ)
-	allergen_type = ALLERGEN_FRUIT //Made with lemon lime
+	allergen_type = ALLERGEN_FRUIT | ALLERGEN_STIMULANT //Made with lemon lime and cola
 
 /datum/reagent/drink/collins_mix
 	name = "Collins Mix"
@@ -2020,7 +2144,7 @@
 	glass_name = "arnold palmer"
 	glass_desc = "Tastes just like the old man."
 	glass_special = list(DRINK_FIZZ)
-	allergen_type = ALLERGEN_FRUIT //Made with lemonade
+	allergen_type = ALLERGEN_FRUIT | ALLERGEN_STIMULANT //Made with lemonade and tea
 
 /datum/reagent/drink/doctor_delight
 	name = "The Doctor's Delight"
@@ -2154,7 +2278,7 @@
 	glass_name = "Vile Lemon"
 	glass_desc = "A sour, fizzy drink with lemonade and lemonlime."
 	glass_special = list(DRINK_FIZZ)
-	allergen_type = ALLERGEN_FRUIT //Made from lemonade
+	allergen_type = ALLERGEN_FRUIT|ALLERGEN_STIMULANT //Made from lemonade and mtn wind(caffeine)
 
 /datum/reagent/drink/entdraught
 	name = "Ent's Draught"
@@ -2495,7 +2619,7 @@
 //Base type for alchoholic drinks containing coffee
 /datum/reagent/ethanol/coffee
 	overdose = 45
-	allergen_type = ALLERGEN_COFFEE //Contains coffee or is made from coffee
+	allergen_type = ALLERGEN_COFFEE|ALLERGEN_STIMULANT //Contains coffee or is made from coffee
 
 /datum/reagent/ethanol/coffee/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
@@ -2623,6 +2747,7 @@
 
 	glass_name = "Thirteen Loko"
 	glass_desc = "This is a glass of Thirteen Loko, it appears to be of the highest quality. The drink, not the glass."
+	allergen_type = ALLERGEN_STIMULANT //Holy shit dude.
 
 /datum/reagent/ethanol/thirteenloko/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
@@ -2865,7 +2990,7 @@
 	glass_name = "Atomic Bomb"
 	glass_desc = "We cannot take legal responsibility for your actions after imbibing."
 
-	allergen_type = ALLERGEN_COFFEE|ALLERGEN_DAIRY|ALLERGEN_FRUIT|ALLERGEN_GRAINS //Made from b52 which contains kahlua(coffee), cognac(fruit), and irish cream(Whiskey(grains),cream(dairy))
+	allergen_type = ALLERGEN_COFFEE|ALLERGEN_DAIRY|ALLERGEN_FRUIT|ALLERGEN_GRAINS|ALLERGEN_STIMULANT //Made from b52 which contains kahlua(coffee/caffeine), cognac(fruit), and irish cream(Whiskey(grains),cream(dairy))
 
 /datum/reagent/ethanol/coffee/b52
 	name = "B-52"
@@ -2879,7 +3004,7 @@
 	glass_name = "B-52"
 	glass_desc = "Kahlua, Irish cream, and cognac. You will get bombed."
 
-	allergen_type = ALLERGEN_COFFEE|ALLERGEN_DAIRY|ALLERGEN_FRUIT|ALLERGEN_GRAINS //Made from kahlua(coffee), cognac(fruit), and irish cream(Whiskey(grains),cream(dairy))
+	allergen_type = ALLERGEN_COFFEE|ALLERGEN_DAIRY|ALLERGEN_FRUIT|ALLERGEN_GRAINS|ALLERGEN_STIMULANT //Made from kahlua(coffee/caffeine), cognac(fruit), and irish cream(Whiskey(grains),cream(dairy))
 
 /datum/reagent/ethanol/bahama_mama
 	name = "Bahama mama"
@@ -2965,7 +3090,7 @@
 	glass_name = "Black Russian"
 	glass_desc = "For the lactose-intolerant. Still as classy as a White Russian."
 
-	allergen_type = ALLERGEN_COFFEE|ALLERGEN_GRAINS //Made from vodka(grains) and kahlua(coffee)
+	allergen_type = ALLERGEN_COFFEE|ALLERGEN_GRAINS|ALLERGEN_STIMULANT //Made from vodka(grains) and kahlua(coffee/caffeine)
 
 /datum/reagent/ethanol/bloody_mary
 	name = "Bloody Mary"
@@ -2993,7 +3118,7 @@
 
 	allergen_type = ALLERGEN_DAIRY|ALLERGEN_FRUIT //Made from cream(dairy), banana juice(fruit), and watermelon juice(fruit)
 
-/datum/reagent/ethanol/coffee/brave_bull //Since it's under the /coffee subtype, it already has coffee allergens.
+/datum/reagent/ethanol/coffee/brave_bull //Since it's under the /coffee subtype, it already has coffee and caffeine allergens.
 	name = "Brave Bull"
 	id = "bravebull"
 	description = "It's just as effective as Dutch-Courage!"
@@ -3041,6 +3166,18 @@
 
 	glass_name = "Cuba Libre"
 	glass_desc = "A classic mix of rum, cola, and lime."
+	allergen_type = ALLERGEN_STIMULANT //Cola
+
+/datum/reagent/ethanol/rum_and_cola
+	name = "Rum and Cola"
+	id = "rumandcola"
+	description = "A classic mix of sugar with more sugar."
+	taste_description = "cola"
+	color = "#3E1B00"
+	strength = 30
+
+	glass_name = "Cuba Libre"
+	glass_desc = "A classic mix of rum, cola, and lime."
 
 /datum/reagent/ethanol/rum_and_cola
 	name = "Rum and Cola"
@@ -3052,6 +3189,7 @@
 
 	glass_name = "rum and cola"
 	glass_desc = "A classic mix of rum and cola."
+	allergen_type = ALLERGEN_STIMULANT // Cola
 
 /datum/reagent/ethanol/demonsblood
 	name = "Demons Blood"
@@ -3064,7 +3202,7 @@
 
 	glass_name = "Demons' Blood"
 	glass_desc = "Just looking at this thing makes the hair on the back of your neck stand up."
-	allergen_type = ALLERGEN_FRUIT //Made from space mountain wind(fruit)
+	allergen_type = ALLERGEN_FRUIT|ALLERGEN_STIMULANT //Made from space mountain wind(fruit) and dr.gibb(caffeine)
 
 /datum/reagent/ethanol/devilskiss
 	name = "Devils Kiss"
@@ -3076,7 +3214,7 @@
 
 	glass_name = "Devil's Kiss"
 	glass_desc = "Creepy time!"
-	allergen_type = ALLERGEN_COFFEE //Made from kahlua (Coffee)
+	allergen_type = ALLERGEN_COFFEE|ALLERGEN_STIMULANT //Made from kahlua (Coffee)
 
 /datum/reagent/ethanol/driestmartini
 	name = "Driest Martini"
@@ -3239,7 +3377,7 @@
 	glass_name = "Irish coffee"
 	glass_desc = "Coffee and alcohol. More fun than a Mimosa to drink in the morning."
 
-	allergen_type = ALLERGEN_COFFEE|ALLERGEN_DAIRY|ALLERGEN_GRAINS //Made from Coffee(coffee) and irish cream(whiskey(grains), cream(dairy))
+	allergen_type = ALLERGEN_COFFEE|ALLERGEN_DAIRY|ALLERGEN_GRAINS|ALLERGEN_STIMULANT //Made from Coffee(coffee/caffeine) and irish cream(whiskey(grains), cream(dairy))
 
 /datum/reagent/ethanol/irish_cream
 	name = "Irish Cream"
@@ -3265,7 +3403,7 @@
 	glass_name = "Long Island iced tea"
 	glass_desc = "The liquor cabinet, brought together in a delicious mix. Intended for middle-aged alcoholic women only."
 
-	allergen_type = ALLERGEN_GRAINS|ALLERGEN_FRUIT //Made from vodka(grains) and gin(fruit)
+	allergen_type = ALLERGEN_GRAINS|ALLERGEN_FRUIT|ALLERGEN_STIMULANT //Made from vodka(grains), cola(caffeine) and gin(fruit)
 
 /datum/reagent/ethanol/manhattan
 	name = "Manhattan"
@@ -3452,7 +3590,7 @@
 	glass_name = "Snow White"
 	glass_desc = "A cold refreshment."
 
-	allergen_type = ALLERGEN_COFFEE|ALLERGEN_FRUIT //made from Pineapple juice(fruit), lemon_lime(fruit), and kahlua(coffee)
+	allergen_type = ALLERGEN_COFFEE|ALLERGEN_FRUIT|ALLERGEN_STIMULANT //made from Pineapple juice(fruit), lemon_lime(fruit), and kahlua(coffee/caffine)
 
 /datum/reagent/ethanol/suidream
 	name = "Sui Dream"
@@ -3478,7 +3616,7 @@
 	glass_name = "Syndicate Bomb"
 	glass_desc = "Tastes like terrorism!"
 
-	allergen_type = ALLERGEN_GRAINS //Made from beer(grain) and whiskeycola(whiskey(grain))
+	allergen_type = ALLERGEN_GRAINS|ALLERGEN_STIMULANT //Made from beer(grain) and whiskeycola(whiskey(grain) and cola(caffeine))
 
 /datum/reagent/ethanol/tequilla_sunrise
 	name = "Tequila Sunrise"
@@ -3558,7 +3696,7 @@
 	glass_name = "White Russian"
 	glass_desc = "A very nice looking drink. But that's just, like, your opinion, man."
 
-	allergen_type = ALLERGEN_COFFEE|ALLERGEN_GRAINS|ALLERGEN_DAIRY //Made from black russian(vodka(grains), kahlua(coffee)) and cream(dairy)
+	allergen_type = ALLERGEN_COFFEE|ALLERGEN_GRAINS|ALLERGEN_DAIRY|ALLERGEN_STIMULANT //Made from black russian(vodka(grains), kahlua(coffee/caffeine)) and cream(dairy)
 
 /datum/reagent/ethanol/whiskey_cola
 	name = "Whiskey Cola"
@@ -3571,7 +3709,7 @@
 	glass_name = "whiskey cola"
 	glass_desc = "An innocent-looking mixture of cola and Whiskey. Delicious."
 
-	allergen_type = ALLERGEN_GRAINS //Made from whiskey(grains)
+	allergen_type = ALLERGEN_GRAINS|ALLERGEN_STIMULANT //Made from whiskey(grains) and cola(caffeine)
 
 /datum/reagent/ethanol/whiskeysoda
 	name = "Whiskey Soda"
@@ -3700,7 +3838,7 @@
 	glass_name = "Elysium Facepunch"
 	glass_desc = "A loathesome cocktail favored by Heaven's skeleton shift workers."
 
-	allergen_type = ALLERGEN_COFFEE|ALLERGEN_FRUIT //Made from kahlua(Coffee) and lemonjuice(fruit)
+	allergen_type = ALLERGEN_COFFEE|ALLERGEN_FRUIT|ALLERGEN_STIMULANT //Made from kahlua(Coffee/caffeine) and lemonjuice(fruit)
 
 /datum/reagent/ethanol/erebusmoonrise
 	name = "Erebus Moonrise"
@@ -3766,7 +3904,7 @@
 	glass_name = "Xanadu Cannon"
 	glass_desc = "Common in the entertainment districts of Titan."
 
-	allergen_type = ALLERGEN_GRAINS //Made from ale(grain)
+	allergen_type = ALLERGEN_GRAINS|ALLERGEN_STIMULANT //Made from ale(grain) and dr.gibb(caffeine)
 
 /datum/reagent/ethanol/debugger
 	name = "Debugger"
@@ -3791,7 +3929,7 @@
 	glass_name = "Spacer's Brew"
 	glass_desc = "Ethanol and orange soda. A common emergency drink on frontier colonies."
 
-	allergen_type = ALLERGEN_FRUIT //Made from brownstar(orange juice(fruit))
+	allergen_type = ALLERGEN_FRUIT|ALLERGEN_STIMULANT //Made from brownstar(orange juice(fruit) + cola(caffeine)
 
 /datum/reagent/ethanol/binmanbliss
 	name = "Binman Bliss"
@@ -3871,7 +4009,7 @@
 	glass_name = "Morning After"
 	glass_desc = "The finest hair of the dog, coming up!"
 
-	allergen_type = ALLERGEN_GRAINS|ALLERGEN_COFFEE //Made from sbiten(vodka(grain)) and coffee(coffee)
+	allergen_type = ALLERGEN_GRAINS|ALLERGEN_COFFEE|ALLERGEN_STIMULANT //Made from sbiten(vodka(grain)) and coffee(coffee/caffine)
 
 /datum/reagent/ethanol/vesper
 	name = "Vesper"
@@ -3897,7 +4035,7 @@
 	glass_name = "Rotgut Fever Dream"
 	glass_desc = "Why are you doing this to yourself?"
 
-	allergen_type = ALLERGEN_GRAINS //Made from whiskey(grains) and vodka(grains)
+	allergen_type = ALLERGEN_GRAINS|ALLERGEN_STIMULANT //Made from whiskey(grains), cola (caffeine) and vodka(grains)
 
 /datum/reagent/ethanol/voxdelight
 	name = "Vox's Delight"
@@ -4109,7 +4247,7 @@
 	glass_name = "Cold Front"
 	glass_desc = "Minty, rich, and painfully cold. It's a blizzard in a cup."
 
-	allergen_type = ALLERGEN_COFFEE //Made from iced coffee(coffee)
+	allergen_type = ALLERGEN_COFFEE|ALLERGEN_STIMULANT //Made from iced coffee(coffee)
 
 /datum/reagent/ethanol/mintjulep
 	name = "Mint Julep"
@@ -4205,7 +4343,7 @@
 	glass_icon = DRINK_ICON_NOISY
 	glass_special = list(DRINK_FIZZ)
 
-	allergen_type = ALLERGEN_FRUIT //Made from space mountain wind(fruit), and holy wine(fruit)
+	allergen_type = ALLERGEN_FRUIT|ALLERGEN_STIMULANT //Made from space mountain wind(fruit), dr.gibb(caffine) and holy wine(fruit)
 
 /datum/reagent/ethanol/angelskiss
 	name = "Angels Kiss"
@@ -4218,7 +4356,7 @@
 	glass_name = "Angel's Kiss"
 	glass_desc = "Miracle time!"
 
-	allergen_type = ALLERGEN_FRUIT|ALLERGEN_COFFEE //Made from holy wine(fruit), and kahlua(coffee)
+	allergen_type = ALLERGEN_FRUIT|ALLERGEN_COFFEE|ALLERGEN_STIMULANT //Made from holy wine(fruit), and kahlua(coffee)
 
 /datum/reagent/ethanol/ichor_mead
 	name = "Ichor Mead"
