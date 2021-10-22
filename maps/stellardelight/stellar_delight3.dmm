@@ -59,6 +59,10 @@
 /obj/machinery/computer/HolodeckControl{
 	dir = 4
 	},
+/obj/item/device/radio/intercom{
+	dir = 8;
+	pixel_x = -24
+	},
 /turf/simulated/floor/tiled,
 /area/holodeck_control)
 "at" = (
@@ -665,11 +669,11 @@
 	},
 /area/tcommsat/chamber)
 "cZ" = (
-/obj/structure/cable/green{
-	icon_state = "1-8"
+/obj/machinery/light/small{
+	dir = 8
 	},
-/turf/simulated/floor/airless,
-/area/stellardelight/deck3/exterior)
+/turf/simulated/floor,
+/area/maintenance/stellardelight/deck3/foreportrooma)
 "db" = (
 /obj/structure/lattice,
 /obj/structure/disposalpipe/segment,
@@ -718,6 +722,13 @@
 /obj/machinery/camera/network/civilian,
 /turf/simulated/floor/airless,
 /area/maintenance/stellardelight/deck3/starboardcent)
+"dn" = (
+/obj/item/device/radio/intercom{
+	dir = 8;
+	pixel_x = -24
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/ai_server_room)
 "do" = (
 /obj/machinery/papershredder,
 /turf/simulated/floor/tiled,
@@ -1812,6 +1823,9 @@
 /turf/simulated/floor/bluegrid,
 /area/ai_cyborg_station)
 "hG" = (
+/obj/structure/sign/poster{
+	dir = 4
+	},
 /turf/simulated/floor,
 /area/stellardelight/deck2/port)
 "hK" = (
@@ -2027,6 +2041,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
+	},
+/obj/item/device/radio/intercom{
+	dir = 8;
+	pixel_x = -24
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai)
@@ -3304,6 +3322,10 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
+/obj/item/device/radio/intercom{
+	dir = 8;
+	pixel_x = -24
+	},
 /turf/simulated/floor/wood,
 /area/stellardelight/deck3/cafe)
 "nH" = (
@@ -3324,6 +3346,16 @@
 	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/aft)
+"nM" = (
+/obj/structure/cable/blue{
+	icon_state = "1-2"
+	},
+/obj/item/device/radio/intercom{
+	dir = 8;
+	pixel_x = -24
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/ai)
 "nN" = (
 /obj/machinery/cryopod/robot,
 /turf/simulated/floor/bluegrid,
@@ -3627,6 +3659,10 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 4
 	},
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai_cyborg_station)
 "oU" = (
@@ -3722,6 +3758,16 @@
 /obj/random/drinkbottle,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/stellardelight/deck3/foreportrooma)
+"pl" = (
+/obj/effect/floor_decal/steeldecal/steel_decals5{
+	dir = 4
+	},
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
+	},
+/turf/simulated/floor/tiled,
+/area/stellardelight/deck3/starboarddock)
 "pm" = (
 /obj/structure/table/darkglass,
 /obj/item/device/radio/intercom{
@@ -3815,6 +3861,10 @@
 /obj/structure/bed/chair,
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 1
+	},
+/obj/item/device/radio/intercom{
+	dir = 1;
+	pixel_y = 24
 	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/aft)
@@ -4304,7 +4354,12 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /obj/machinery/computer/cryopod{
+	pixel_x = 32;
 	pixel_y = 32
+	},
+/obj/item/device/radio/intercom{
+	dir = 1;
+	pixel_y = 24
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/stellardelight/deck3/cryo)
@@ -4998,6 +5053,16 @@
 "uj" = (
 /turf/simulated/wall/bay/r_wall/blue,
 /area/crew_quarters/heads/hor)
+"uk" = (
+/obj/effect/floor_decal/steeldecal/steel_decals5{
+	dir = 8
+	},
+/obj/item/device/radio/intercom{
+	dir = 8;
+	pixel_x = -24
+	},
+/turf/simulated/floor/tiled,
+/area/stellardelight/deck3/portdock)
 "ul" = (
 /obj/structure/cable/blue{
 	icon_state = "2-8"
@@ -5563,6 +5628,16 @@
 /obj/structure/low_wall/bay/reinforced/blue,
 /turf/simulated/floor,
 /area/tcommsat/chamber)
+"wK" = (
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 1
+	},
+/obj/item/device/radio/intercom{
+	dir = 1;
+	pixel_y = 24
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/stellardelight/deck3/transitgateway)
 "wM" = (
 /turf/simulated/floor/airless,
 /area/maintenance/stellardelight/deck3/starboardcent)
@@ -6772,6 +6847,14 @@
 /obj/item/weapon/book/manual/security_space_law,
 /turf/simulated/floor/tiled/dark,
 /area/crew_quarters/heads/hos)
+"Bb" = (
+/obj/item/device/radio/intercom{
+	dir = 1;
+	pixel_x = -32;
+	pixel_y = 24
+	},
+/turf/simulated/floor/tiled/eris/dark/cargo,
+/area/shuttle/sdboat)
 "Bd" = (
 /obj/machinery/alarm/angled{
 	dir = 8
@@ -7548,7 +7631,9 @@
 /obj/structure/closet/hydrant{
 	pixel_y = 28
 	},
-/obj/structure/dogbed,
+/obj/structure/dogbed{
+	name = "catslug bed"
+	},
 /mob/living/simple_mob/vore/alienanimals/catslug,
 /turf/simulated/floor/wood,
 /area/stellardelight/deck3/readingroom)
@@ -8261,6 +8346,13 @@
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/airless,
 /area/maintenance/stellardelight/deck3/portcent)
+"GH" = (
+/obj/item/device/radio/intercom{
+	dir = 8;
+	pixel_x = -24
+	},
+/turf/simulated/floor/wood,
+/area/stellardelight/deck3/readingroom)
 "GJ" = (
 /obj/structure/cable/blue{
 	icon_state = "1-4"
@@ -8397,6 +8489,10 @@
 "Hi" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
+	},
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
 	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/aft)
@@ -9482,11 +9578,11 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/portaft)
 "Lz" = (
-/obj/structure/cable/green{
-	icon_state = "1-2"
+/obj/machinery/newscaster{
+	pixel_x = 30
 	},
-/turf/simulated/floor,
-/area/maintenance/stellardelight/deck3/portaft)
+/turf/simulated/floor/tiled/eris/dark/gray_platform,
+/area/stellardelight/deck3/commandhall)
 "LC" = (
 /obj/machinery/holoplant,
 /obj/structure/sign/warning/secure_area{
@@ -9788,6 +9884,13 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/stellardelight/deck3/aft)
+"ME" = (
+/obj/machinery/vending/nifsoft_shop,
+/obj/structure/sign/poster{
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/aft)
@@ -10231,11 +10334,12 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/stellardelight/deck3/forestarroomc)
 "Oa" = (
-/obj/structure/cable/green{
-	icon_state = "4-8"
+/obj/machinery/door/firedoor/glass,
+/obj/structure/sign/poster{
+	dir = 8
 	},
-/turf/simulated/floor/airless,
-/area/space)
+/turf/simulated/floor,
+/area/stellardelight/deck2/fore)
 "Ob" = (
 /obj/effect/floor_decal/techfloor/orange{
 	dir = 10
@@ -10318,6 +10422,7 @@
 /obj/structure/cable/green{
 	icon_state = "1-2"
 	},
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/portdock)
 "Ot" = (
@@ -10564,6 +10669,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/aft)
 "Pd" = (
@@ -10912,6 +11018,10 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai)
 "QI" = (
+/obj/item/device/radio/intercom{
+	dir = 8;
+	pixel_x = -24
+	},
 /turf/simulated/floor/bluegrid,
 /area/ai_cyborg_station)
 "QJ" = (
@@ -11396,6 +11506,10 @@
 "SF" = (
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 1
+	},
+/obj/item/device/radio/intercom{
+	dir = 1;
+	pixel_y = 24
 	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/aft)
@@ -11904,11 +12018,12 @@
 /turf/simulated/floor/carpet,
 /area/crew_quarters/heads/hos)
 "UI" = (
-/obj/structure/sign/poster{
-	dir = 4
-	},
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 4
+	},
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
 	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/aft)
@@ -11934,6 +12049,14 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/portfore)
+"UO" = (
+/obj/machinery/recharge_station,
+/obj/item/device/radio/intercom{
+	dir = 8;
+	pixel_x = -24
+	},
+/turf/simulated/floor/bluegrid,
+/area/ai_upload)
 "UQ" = (
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor,
@@ -12198,6 +12321,10 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai)
 "VK" = (
@@ -12304,6 +12431,16 @@
 /area/ai)
 "Wj" = (
 /obj/machinery/computer/ship/helm/adv,
+/turf/simulated/floor/tiled/eris/dark/cargo,
+/area/shuttle/sdboat)
+"Wn" = (
+/obj/structure/bed/chair/shuttle{
+	dir = 4
+	},
+/obj/item/device/radio/intercom{
+	dir = 8;
+	pixel_x = -24
+	},
 /turf/simulated/floor/tiled/eris/dark/cargo,
 /area/shuttle/sdboat)
 "Wp" = (
@@ -13200,6 +13337,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/aft)
 "ZF" = (
@@ -13216,6 +13354,7 @@
 /obj/structure/cable/green{
 	icon_state = "1-2"
 	},
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/starboarddock)
 "ZJ" = (
@@ -13246,6 +13385,13 @@
 	},
 /turf/simulated/open,
 /area/stellardelight/deck2/starboard)
+"ZN" = (
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/ai)
 "ZQ" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/bay/reinforced,
@@ -19085,7 +19231,7 @@ af
 af
 af
 af
-cZ
+eX
 NL
 Jh
 Jh
@@ -19722,7 +19868,7 @@ NL
 NL
 NL
 Uw
-cZ
+eX
 NL
 NL
 NL
@@ -19929,7 +20075,7 @@ eJ
 eJ
 Qq
 Qq
-Qq
+Wn
 BW
 lc
 ui
@@ -19998,7 +20144,7 @@ Jh
 Jh
 Jh
 Jh
-Oa
+Ae
 SK
 Jh
 Jh
@@ -20207,7 +20353,7 @@ Ii
 Iz
 Ab
 wr
-Ex
+Bb
 SJ
 eJ
 Rb
@@ -20700,7 +20846,7 @@ NL
 NL
 Uw
 af
-cZ
+eX
 Jh
 Jh
 hD
@@ -20791,7 +20937,7 @@ sM
 Di
 af
 af
-cZ
+eX
 NL
 Jh
 Jh
@@ -20846,7 +20992,7 @@ Jh
 Jh
 hD
 hD
-il
+cZ
 il
 il
 Sp
@@ -21124,7 +21270,7 @@ un
 VM
 NL
 un
-cZ
+eX
 SK
 SK
 hD
@@ -21149,7 +21295,7 @@ pN
 yZ
 KI
 KI
-KI
+GH
 KI
 oE
 KI
@@ -21265,7 +21411,7 @@ Jh
 Go
 af
 af
-cZ
+eX
 Jh
 Jh
 Jh
@@ -21489,7 +21635,7 @@ mX
 XC
 IR
 KT
-IR
+uk
 KL
 IR
 Sn
@@ -22037,7 +22183,7 @@ zn
 yE
 pW
 qq
-qX
+ME
 UI
 aX
 ei
@@ -22326,7 +22472,7 @@ RZ
 uZ
 TY
 Xo
-Fh
+dn
 CG
 XK
 cx
@@ -22400,7 +22546,7 @@ Jh
 un
 af
 Hx
-cZ
+eX
 Jh
 Jh
 CA
@@ -22743,7 +22889,7 @@ eg
 QG
 QG
 np
-QG
+nM
 uI
 wS
 sc
@@ -23037,7 +23183,7 @@ VC
 wA
 cw
 ZX
-tz
+UO
 VC
 TJ
 dF
@@ -23275,7 +23421,7 @@ xU
 aQ
 aQ
 Aw
-aQ
+Lz
 aQ
 BK
 aQ
@@ -23393,7 +23539,7 @@ NL
 NL
 FH
 Rx
-cZ
+eX
 NL
 SK
 SK
@@ -23595,7 +23741,7 @@ IQ
 wG
 Vs
 tq
-Vs
+ZN
 TL
 wS
 sc
@@ -24413,7 +24559,7 @@ qF
 qF
 qF
 qF
-Cp
+Oa
 qF
 qF
 qF
@@ -24671,7 +24817,7 @@ Jh
 Jh
 NL
 un
-cZ
+eX
 NL
 Jh
 Jh
@@ -24897,7 +25043,7 @@ vJ
 oU
 Dn
 xC
-Dn
+pl
 lC
 Dn
 tb
@@ -25305,7 +25451,7 @@ ow
 ok
 ow
 aA
-ej
+wK
 za
 fz
 jd
@@ -26006,9 +26152,9 @@ dE
 HF
 nD
 BG
-Lz
-Lz
-Lz
+LY
+LY
+LY
 Gc
 lF
 Wr
@@ -27415,7 +27561,7 @@ FH
 af
 af
 af
-cZ
+eX
 NL
 NL
 NL

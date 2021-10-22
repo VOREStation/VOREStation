@@ -1302,12 +1302,19 @@
 	dir = 1
 	},
 /mob/living/simple_mob/vore/fennec/bridgette,
+/obj/machinery/newscaster/security_unit{
+	pixel_y = 28
+	},
 /turf/simulated/floor/tiled/dark,
 /area/security/security_cell_hallway)
 "cQ" = (
 /obj/machinery/mineral/unloading_machine,
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/stellardelight/deck1/oreprocessing)
+"cS" = (
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled/steel_grid,
+/area/assembly/robotics)
 "cT" = (
 /obj/machinery/smartfridge/drying_rack,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -1435,6 +1442,7 @@
 /obj/effect/landmark{
 	name = "lightsout"
 	},
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/fore)
 "dg" = (
@@ -1833,6 +1841,10 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
+	},
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
 	},
 /turf/simulated/floor/tiled/dark,
 /area/security/security_equiptment_storage)
@@ -2280,6 +2292,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 1
 	},
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/dark,
 /area/security/tactical)
 "eY" = (
@@ -2513,6 +2526,9 @@
 	},
 /obj/item/weapon/pen,
 /obj/structure/table/steel_reinforced,
+/obj/item/device/radio/intercom{
+	pixel_y = -24
+	},
 /turf/simulated/floor/tiled/dark,
 /area/security/warden)
 "fz" = (
@@ -2556,15 +2572,20 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/exploration)
 "fF" = (
-/obj/machinery/button/remote/blast_door{
-	dir = 8;
-	id = "chapelmassdriver";
-	name = "Window Lockdown";
-	pixel_x = 25;
-	req_one_access = list(6,27)
+/obj/structure/cable/pink{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/camera/network/security{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
-/area/chapel/chapel_morgue)
+/area/security/security_cell_hallway)
 "fG" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/device/gps/security{
@@ -2634,6 +2655,9 @@
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/machinery/newscaster{
+	pixel_y = 28
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/starboard)
@@ -2980,6 +3004,10 @@
 	pixel_y = 7
 	},
 /obj/machinery/alarm/angled,
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/medical/morgue)
 "gD" = (
@@ -3322,8 +3350,11 @@
 /turf/simulated/floor/tiled/milspec,
 /area/stellardelight/deck1/exploration)
 "hp" = (
-/obj/machinery/door/firedoor/glass/hidden/steel,
-/turf/simulated/floor/tiled/techmaint,
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/angled_bay/double/glass{
+	name = "glass airlock"
+	},
+/turf/simulated/floor/tiled/steel_ridged,
 /area/stellardelight/deck1/port)
 "hq" = (
 /obj/structure/cable/green{
@@ -3655,6 +3686,10 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
+/obj/structure/sign/department/biblio{
+	pixel_x = 32;
+	plane = -34
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/fore)
 "hT" = (
@@ -3974,6 +4009,13 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/starboardcent)
+"iB" = (
+/obj/item/device/radio/intercom{
+	dir = 8;
+	pixel_x = -24
+	},
+/turf/simulated/floor/tiled/eris/white/cargo,
+/area/stellardelight/deck1/lowermed)
 "iC" = (
 /obj/structure/cable/green{
 	color = "#42038a";
@@ -4396,6 +4438,10 @@
 	maxcharge = 15000
 	},
 /obj/effect/floor_decal/milspec/color/red,
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
+	},
 /turf/simulated/floor/tiled/dark,
 /area/security/tactical)
 "ju" = (
@@ -4532,8 +4578,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/alarm/angled{
-	dir = 8
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/rnd/workshop)
@@ -4689,6 +4736,7 @@
 /area/maintenance/stellardelight/substation/civilian)
 "kd" = (
 /obj/structure/flora/pottedplant/stoutbush,
+/obj/machinery/alarm/angled,
 /turf/simulated/floor/tiled/techfloor,
 /area/rnd/workshop)
 "ke" = (
@@ -4775,9 +4823,8 @@
 /turf/simulated/floor/carpet/bcarpet,
 /area/stellardelight/deck1/starboard)
 "ko" = (
-/obj/structure/morgue/crematorium{
-	dir = 8;
-	id = "crematorium"
+/obj/machinery/alarm/angled{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
 /area/chapel/chapel_morgue)
@@ -4854,6 +4901,10 @@
 "kz" = (
 /obj/machinery/computer/message_monitor{
 	dir = 4
+	},
+/obj/item/device/radio/intercom{
+	dir = 8;
+	pixel_x = -24
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/stellardelight/deck1/researchserver)
@@ -5222,6 +5273,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
+/obj/machinery/newscaster{
+	pixel_y = 28
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/aft)
 "lu" = (
@@ -5248,6 +5302,16 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /turf/simulated/floor/carpet/bcarpet,
 /area/stellardelight/deck1/port)
+"lw" = (
+/obj/structure/bed/chair/backed_red{
+	dir = 8
+	},
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/stellardelight/deck1/exploration)
 "lx" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -5398,6 +5462,10 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/sign/department/biblio{
+	pixel_x = 32;
+	plane = -34
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/fore)
 "lN" = (
@@ -5492,6 +5560,7 @@
 	dir = 8
 	},
 /obj/structure/closet/emcloset,
+/obj/machinery/alarm/angled,
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/stellardelight/deck1/shuttlebay)
 "lW" = (
@@ -5971,11 +6040,14 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/medical/patient_wing)
 "mS" = (
-/obj/machinery/door/firedoor/glass/hidden/steel,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/techmaint,
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/angled_bay/double/glass{
+	name = "glass airlock"
+	},
+/turf/simulated/floor/tiled/steel_ridged,
 /area/stellardelight/deck1/starboard)
 "mU" = (
 /obj/structure/closet/emcloset,
@@ -6174,6 +6246,10 @@
 /area/stellardelight/deck1/researchserver)
 "nu" = (
 /obj/machinery/transhuman/synthprinter,
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
+	},
 /turf/simulated/floor/tiled/dark,
 /area/assembly/robotics)
 "nv" = (
@@ -6787,6 +6863,19 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/security/security_lockerroom)
+"oJ" = (
+/obj/structure/table/rack,
+/obj/item/clothing/suit/space/void/mining,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/head/helmet/space/void/mining,
+/obj/item/weapon/mining_scanner,
+/obj/item/device/radio/intercom{
+	dir = 1;
+	pixel_y = 24
+	},
+/turf/simulated/floor/tiled/eris/steel/cargo,
+/area/stellardelight/deck1/miningequipment)
 "oK" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
@@ -6794,6 +6883,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
 	},
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/wood,
 /area/library)
 "oL" = (
@@ -7162,10 +7252,11 @@
 /obj/structure/table/woodentable,
 /obj/item/device/tvcamera,
 /obj/structure/sign/painting/library_private{
-	pixel_x = 32
-	},
-/obj/structure/sign/painting/library_private{
 	pixel_y = -32
+	},
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
 	},
 /turf/simulated/floor/wood,
 /area/library)
@@ -7508,6 +7599,10 @@
 /obj/effect/floor_decal/milspec/color/red/half{
 	dir = 8
 	},
+/obj/item/device/radio/intercom{
+	dir = 8;
+	pixel_x = -24
+	},
 /turf/simulated/floor/tiled/dark,
 /area/security/lobby)
 "qq" = (
@@ -7535,6 +7630,7 @@
 /obj/effect/landmark{
 	name = "lightsout"
 	},
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/starboard)
 "qv" = (
@@ -7743,6 +7839,7 @@
 	pixel_y = 32
 	},
 /obj/effect/catwalk_plated/dark,
+/obj/item/device/radio/beacon,
 /turf/simulated/floor,
 /area/stellardelight/deck1/aft)
 "qU" = (
@@ -7791,6 +7888,10 @@
 	dir = 8
 	},
 /obj/effect/floor_decal/milspec/color/red,
+/obj/item/device/radio/intercom{
+	dir = 1;
+	pixel_y = 24
+	},
 /turf/simulated/floor/tiled/dark,
 /area/security/security_lockerroom)
 "ra" = (
@@ -8350,6 +8451,10 @@
 	pixel_x = -6
 	},
 /obj/machinery/alarm/angled,
+/obj/item/device/radio/intercom{
+	dir = 8;
+	pixel_x = -24
+	},
 /turf/simulated/floor/tiled/eris/white/cargo,
 /area/medical/virology)
 "sg" = (
@@ -8838,6 +8943,10 @@
 /obj/item/clothing/head/helmet/riot,
 /obj/item/weapon/shield/riot,
 /obj/effect/floor_decal/milspec/color/black,
+/obj/item/device/radio/intercom{
+	dir = 8;
+	pixel_x = -24
+	},
 /turf/simulated/floor/tiled/dark,
 /area/security/armoury)
 "ti" = (
@@ -8861,6 +8970,10 @@
 	icon_state = "1-2"
 	},
 /mob/living/simple_mob/animal/passive/mimepet/gregory,
+/obj/structure/cable/green{
+	color = "#42038a";
+	icon_state = "2-8"
+	},
 /turf/simulated/floor/tiled/eris,
 /area/rnd/xenobiology/xenoflora)
 "tm" = (
@@ -9003,8 +9116,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/alarm/angled{
-	dir = 8
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
 	},
 /turf/simulated/floor/tiled/eris,
 /area/stellardelight/deck1/researchhall)
@@ -9109,9 +9223,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/sign/department/biblio{
-	pixel_x = 32
-	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/fore)
 "tS" = (
@@ -10006,8 +10117,9 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/starboardcent)
 "vQ" = (
-/obj/machinery/light{
-	dir = 8
+/obj/item/device/radio/intercom{
+	dir = 8;
+	pixel_x = -24
 	},
 /turf/simulated/floor/tiled/eris/white/gray_platform,
 /area/gateway)
@@ -10270,6 +10382,7 @@
 /obj/structure/cable/pink{
 	icon_state = "1-2"
 	},
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/dark,
 /area/security/security_equiptment_storage)
 "wy" = (
@@ -10444,6 +10557,13 @@
 /obj/random/maintenance/research,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/exploration)
+"wV" = (
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
+	},
+/turf/simulated/floor/tiled/dark,
+/area/chapel/main)
 "wW" = (
 /obj/structure/cable/green{
 	icon_state = "1-4"
@@ -10576,6 +10696,17 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/medical/morgue)
+"xj" = (
+/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/power/apc/angled{
+	dir = 1
+	},
+/obj/structure/cable/green{
+	color = "#42038a";
+	icon_state = "0-2"
+	},
+/turf/simulated/floor/tiled/eris,
+/area/rnd/xenobiology/xenoflora)
 "xk" = (
 /obj/machinery/suit_cycler/exploration,
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -10900,6 +11031,22 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/fore)
+"ya" = (
+/obj/structure/cable/pink{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled/dark,
+/area/security/lobby)
 "yb" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -10949,6 +11096,10 @@
 "yf" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
+	},
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
 	},
 /turf/simulated/floor/tiled/dark,
 /area/rnd/xenobiology)
@@ -11703,16 +11854,14 @@
 /turf/simulated/floor/tiled/milspec,
 /area/stellardelight/deck1/exploration)
 "zM" = (
-/obj/machinery/door/firedoor/glass/hidden/steel{
-	dir = 8
-	},
 /obj/structure/cable/green{
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/techmaint,
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/tiled/steel_ridged,
 /area/stellardelight/deck1/port)
 "zN" = (
 /obj/structure/table/rack/shelf/steel,
@@ -12029,10 +12178,6 @@
 "As" = (
 /obj/structure/cable/green{
 	color = "#42038a";
-	icon_state = "1-8"
-	},
-/obj/structure/cable/green{
-	color = "#42038a";
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
@@ -12286,6 +12431,10 @@
 /obj/item/weapon/bedsheet/medical,
 /obj/structure/curtain/open/privacy,
 /obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/item/device/radio/intercom{
+	dir = 1;
+	pixel_y = 24
+	},
 /turf/simulated/floor/tiled/white,
 /area/medical/patient_wing)
 "AT" = (
@@ -12322,11 +12471,11 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/starboardfore)
 "AX" = (
-/obj/machinery/door/firedoor/glass/hidden/steel{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/techmaint,
-/area/stellardelight/deck1/starboard)
+/obj/machinery/atmospherics/pipe/simple/hidden/cyan,
+/obj/effect/floor_decal/milspec/color/black,
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled/dark,
+/area/security/armoury)
 "AY" = (
 /turf/simulated/wall/bay/r_wall/black,
 /area/chapel/main)
@@ -12495,6 +12644,10 @@
 /obj/effect/floor_decal/milspec/color/red/half{
 	dir = 4
 	},
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
+	},
 /turf/simulated/floor/tiled/dark,
 /area/security/lobby)
 "Bu" = (
@@ -12514,6 +12667,10 @@
 /obj/item/device/mass_spectrometer/adv,
 /obj/effect/floor_decal/milspec/color/red/half{
 	dir = 6
+	},
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
 	},
 /turf/simulated/floor/tiled/white,
 /area/security/detectives_office)
@@ -12604,16 +12761,13 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/stellardelight/deck1/exploration)
 "BE" = (
-/obj/machinery/power/apc/angled{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	color = "#42038a";
-	icon_state = "0-2"
-	},
 /obj/machinery/light/floortube{
 	dir = 8;
 	pixel_x = -6
+	},
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
 	},
 /turf/simulated/floor/tiled/eris,
 /area/rnd/xenobiology/xenoflora)
@@ -13433,6 +13587,12 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/fore)
+"Dq" = (
+/obj/machinery/newscaster{
+	pixel_x = -29
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/stellardelight/deck1/port)
 "Ds" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/angled_bay/standard/color{
@@ -13542,6 +13702,16 @@
 "DH" = (
 /turf/simulated/wall/bay/r_wall/purple,
 /area/rnd/xenobiology/xenoflora_storage)
+"DI" = (
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled/dark,
+/area/chapel/main)
 "DJ" = (
 /obj/structure/cable/green{
 	icon_state = "1-2"
@@ -13749,6 +13919,10 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/starboardcent)
+"En" = (
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled/eris/white/gray_platform,
+/area/gateway)
 "Eo" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -13949,8 +14123,9 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/light{
-	dir = 4
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
 	},
 /turf/simulated/floor/tiled/eris/white/gray_platform,
 /area/gateway)
@@ -14402,6 +14577,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/dark,
 /area/security/security_processing)
 "FI" = (
@@ -14632,6 +14808,10 @@
 /obj/item/weapon/storage/briefcase/crimekit,
 /obj/effect/floor_decal/milspec/color/red/half{
 	dir = 5
+	},
+/obj/item/device/radio/intercom{
+	dir = 1;
+	pixel_y = 24
 	},
 /turf/simulated/floor/tiled/white,
 /area/security/detectives_office)
@@ -14923,6 +15103,7 @@
 /obj/machinery/vending/wardrobe/robodrobe,
 /obj/effect/floor_decal/industrial/outline,
 /obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/machinery/alarm/angled,
 /turf/simulated/floor/tiled/dark,
 /area/stellardelight/deck1/researchequip)
 "GV" = (
@@ -15155,9 +15336,6 @@
 /obj/structure/cable/green{
 	icon_state = "1-2"
 	},
-/obj/structure/sign/department/chapel{
-	pixel_x = -32
-	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/fore)
 "Hy" = (
@@ -15348,6 +15526,10 @@
 /obj/machinery/microwave{
 	pixel_y = 7
 	},
+/obj/item/device/radio/intercom{
+	dir = 1;
+	pixel_y = 24
+	},
 /turf/simulated/floor/tiled/milspec,
 /area/stellardelight/deck1/explobriefing)
 "HT" = (
@@ -15534,6 +15716,16 @@
 /obj/effect/floor_decal/milspec/color/black,
 /turf/simulated/floor/tiled/dark,
 /area/security/armoury)
+"Ij" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/obj/item/device/radio/intercom{
+	dir = 8;
+	pixel_x = -24
+	},
+/turf/simulated/floor/tiled/eris/white/cargo,
+/area/stellardelight/deck1/resleeving)
 "Ik" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -15693,6 +15885,10 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
+/obj/item/device/radio/intercom{
+	dir = 8;
+	pixel_x = -24
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/stellardelight/deck1/port)
 "IB" = (
@@ -15826,6 +16022,10 @@
 "IP" = (
 /obj/machinery/r_n_d/protolathe{
 	dir = 1
+	},
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
 	},
 /turf/simulated/floor/tiled/dark,
 /area/rnd/research)
@@ -16181,6 +16381,9 @@
 /obj/machinery/door/window/brigdoor{
 	req_access = list(11,24)
 	},
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/eris/white/gray_platform,
 /area/gateway)
 "JD" = (
@@ -16383,6 +16586,10 @@
 "Kc" = (
 /obj/machinery/washing_machine,
 /obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/item/device/radio/intercom{
+	dir = 1;
+	pixel_y = 24
+	},
 /turf/simulated/floor/tiled/dark,
 /area/stellardelight/deck1/resleeving)
 "Kd" = (
@@ -16478,8 +16685,8 @@
 /obj/structure/sign/painting/library_private{
 	pixel_y = 32
 	},
-/obj/structure/sign/painting/library_private{
-	pixel_x = 32
+/obj/machinery/newscaster{
+	pixel_x = 29
 	},
 /turf/simulated/floor/wood,
 /area/library)
@@ -16627,6 +16834,7 @@
 	id = "torpedolauncher";
 	pixel_y = 27
 	},
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/dark,
 /area/chapel/chapel_morgue)
 "KJ" = (
@@ -17017,6 +17225,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 8
 	},
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/dark,
 /area/security/security_lockerroom)
 "LB" = (
@@ -17372,6 +17581,12 @@
 "Mk" = (
 /obj/machinery/light{
 	dir = 8
+	},
+/obj/machinery/button/remote/blast_door{
+	id = "chapelmassdriver";
+	name = "Window Lockdown";
+	pixel_y = 27;
+	req_one_access = list(6,27)
 	},
 /turf/simulated/floor/tiled/dark,
 /area/chapel/chapel_morgue)
@@ -17951,6 +18166,16 @@
 /obj/structure/closet/coffin,
 /turf/simulated/floor/tiled/dark,
 /area/chapel/main)
+"NC" = (
+/obj/structure/mopbucket,
+/obj/item/weapon/mop,
+/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/item/device/radio/intercom{
+	dir = 8;
+	pixel_x = -24
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/janitor)
 "ND" = (
 /obj/machinery/power/pointdefense{
 	id_tag = "sd_pd"
@@ -18275,8 +18500,9 @@
 /area/rnd/xenobiology)
 "Or" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/alarm/angled{
-	dir = 8
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
 	},
 /turf/simulated/floor/tiled/dark,
 /area/chapel/chapel_morgue)
@@ -18327,8 +18553,9 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/portfore)
 "Oy" = (
-/obj/structure/morgue{
-	dir = 2
+/obj/structure/morgue/crematorium{
+	dir = 2;
+	id = "crematorium"
 	},
 /turf/simulated/floor/tiled/dark,
 /area/chapel/chapel_morgue)
@@ -18491,6 +18718,10 @@
 	phorontanks = 0
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
+	},
 /turf/simulated/floor/tiled/eris/white/cargo,
 /area/stellardelight/deck1/paramedic)
 "OV" = (
@@ -18561,6 +18792,15 @@
 /obj/structure/closet/l3closet/janitor,
 /turf/simulated/floor/tiled/monotile,
 /area/janitor)
+"Pg" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/item/device/radio/intercom{
+	pixel_y = -24
+	},
+/turf/simulated/floor/lino,
+/area/chapel/office)
 "Ph" = (
 /obj/structure/cable/pink{
 	icon_state = "1-4"
@@ -18814,6 +19054,10 @@
 /area/security/security_cell_hallway)
 "PP" = (
 /obj/structure/closet/crate,
+/obj/item/device/radio/intercom{
+	dir = 1;
+	pixel_y = 24
+	},
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/stellardelight/deck1/oreprocessing)
 "PQ" = (
@@ -18969,6 +19213,10 @@
 	name = "Window Lockdown";
 	pixel_x = -5;
 	req_access = list(1)
+	},
+/obj/item/device/radio/intercom{
+	dir = 1;
+	pixel_y = 24
 	},
 /turf/simulated/floor/tiled/dark,
 /area/security/security_processing)
@@ -19631,10 +19879,10 @@
 /area/stellardelight/deck1/explobriefing)
 "RA" = (
 /obj/structure/disposalpipe/segment,
-/obj/item/device/radio/beacon,
 /obj/effect/floor_decal/milspec/color/emerald/half{
 	dir = 4
 	},
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/aft)
 "RB" = (
@@ -19748,6 +19996,10 @@
 "RQ" = (
 /obj/structure/cable/green{
 	icon_state = "2-4"
+	},
+/obj/structure/sign/department/chapel{
+	pixel_x = -32;
+	plane = -34
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/fore)
@@ -19956,6 +20208,10 @@
 	color = "#42038a";
 	icon_state = "0-2"
 	},
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
+	},
 /turf/simulated/floor/tiled/eris,
 /area/rnd/storage)
 "Sl" = (
@@ -20006,6 +20262,10 @@
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 8
 	},
+/obj/item/device/radio/intercom{
+	dir = 8;
+	pixel_x = -24
+	},
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/stellardelight/deck1/mining)
 "Sv" = (
@@ -20017,6 +20277,13 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/security/security_lockerroom)
+"Sx" = (
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
+	},
+/turf/simulated/floor/wood,
+/area/library)
 "Sy" = (
 /obj/structure/cable/pink{
 	icon_state = "2-8"
@@ -20137,6 +20404,7 @@
 /obj/effect/landmark{
 	name = "lightsout"
 	},
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/port)
 "SM" = (
@@ -20227,6 +20495,7 @@
 /obj/effect/landmark{
 	name = "lightsout"
 	},
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/techfloor,
 /area/rnd/workshop)
 "SU" = (
@@ -20375,6 +20644,10 @@
 /area/rnd/research)
 "Tk" = (
 /obj/structure/bed/chair/comfy/black,
+/obj/item/device/radio/intercom{
+	dir = 1;
+	pixel_y = 24
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/starboard)
 "Tl" = (
@@ -20807,6 +21080,11 @@
 	pixel_x = 32
 	},
 /obj/structure/table/bench/sifwooden/padded,
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24;
+	pixel_y = -32
+	},
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/stellardelight/deck1/pilot)
 "Ud" = (
@@ -20828,6 +21106,12 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/security/lobby)
+"Uf" = (
+/obj/machinery/newscaster{
+	pixel_x = 29
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/stellardelight/deck1/starboard)
 "Ug" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/bay/reinforced,
@@ -20943,6 +21227,9 @@
 /obj/structure/bed/chair/comfy/brown,
 /obj/effect/landmark/start{
 	name = "Librarian"
+	},
+/obj/machinery/newscaster{
+	pixel_y = 28
 	},
 /turf/simulated/floor/wood,
 /area/library)
@@ -21153,6 +21440,10 @@
 /area/maintenance/stellardelight/deck1/exploration)
 "UR" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
+	},
 /turf/simulated/floor/tiled/milspec,
 /area/stellardelight/deck1/exploequipment)
 "US" = (
@@ -21294,6 +21585,13 @@
 "Ve" = (
 /turf/simulated/wall/bay/r_wall/steel,
 /area/prison/cell_block)
+"Vf" = (
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/stellardelight/deck1/starboard)
 "Vg" = (
 /obj/structure/cable/green{
 	color = "#42038a";
@@ -21479,6 +21777,10 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/effect/floor_decal/steeldecal/steel_decals6{
 	dir = 6
+	},
+/obj/item/device/radio/intercom{
+	dir = 8;
+	pixel_x = -24
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/starboard)
@@ -21762,6 +22064,13 @@
 /obj/structure/ore_box,
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/stellardelight/deck1/shuttlebay)
+"We" = (
+/obj/structure/cable/green{
+	color = "#42038a";
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/tiled/eris,
+/area/rnd/xenobiology/xenoflora)
 "Wf" = (
 /obj/structure/table/woodentable,
 /obj/structure/disposalpipe/segment{
@@ -22052,7 +22361,10 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/alarm/angled,
+/obj/item/device/radio/intercom{
+	dir = 1;
+	pixel_y = 24
+	},
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/stellardelight/deck1/shuttlebay)
 "WR" = (
@@ -22450,6 +22762,9 @@
 "XE" = (
 /obj/structure/table/reinforced,
 /obj/item/roller,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/eris/white/gray_platform,
 /area/gateway)
 "XF" = (
@@ -22516,8 +22831,9 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/exploration)
 "XN" = (
-/obj/machinery/alarm/angled{
-	dir = 8
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
 	},
 /turf/simulated/floor/tiled/eris,
 /area/stellardelight/deck1/researchequip)
@@ -22667,6 +22983,9 @@
 	color = "#42038a";
 	icon_state = "1-2"
 	},
+/obj/machinery/alarm/angled{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/eris,
 /area/stellardelight/deck1/researchhall)
 "Yf" = (
@@ -22743,9 +23062,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
-	},
-/obj/machinery/camera/network/security{
-	dir = 1
 	},
 /obj/effect/floor_decal/milspec/color/red/half,
 /turf/simulated/floor/tiled/dark,
@@ -23528,6 +23844,10 @@
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/segment,
+/obj/structure/sign/department/chapel{
+	pixel_x = -32;
+	plane = -34
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/fore)
 "ZW" = (
@@ -30983,7 +31303,7 @@ yE
 Lg
 VM
 Oy
-fF
+fk
 jo
 ko
 Ak
@@ -31019,7 +31339,7 @@ gY
 PM
 KA
 Lj
-Ki
+NC
 IY
 CA
 IY
@@ -31427,7 +31747,7 @@ Yv
 gm
 Un
 rN
-rN
+DI
 rN
 vD
 yo
@@ -31694,7 +32014,7 @@ rH
 pK
 NG
 Fa
-Pv
+AX
 Pv
 VN
 lp
@@ -31854,7 +32174,7 @@ wA
 Xf
 gi
 UH
-UH
+wV
 sB
 Nh
 BU
@@ -31863,7 +32183,7 @@ uA
 HW
 IA
 Hi
-YT
+Dq
 aN
 hp
 YT
@@ -32053,7 +32373,7 @@ iQ
 KU
 zh
 zh
-zh
+lw
 zh
 Ty
 uB
@@ -32130,7 +32450,7 @@ TS
 Bf
 Yv
 Sg
-Hw
+Pg
 Yv
 Mm
 RQ
@@ -32470,7 +32790,7 @@ dl
 NS
 zz
 xf
-MF
+oJ
 MG
 vC
 Zg
@@ -32888,7 +33208,7 @@ dH
 oW
 vb
 pA
-hv
+Ij
 CG
 nT
 hg
@@ -33405,7 +33725,7 @@ cy
 oB
 QC
 GT
-hT
+ya
 mu
 NN
 jy
@@ -33418,7 +33738,7 @@ ME
 Qx
 gL
 zy
-nD
+En
 hz
 YM
 am
@@ -33454,7 +33774,7 @@ dw
 Ng
 ec
 ik
-ep
+iB
 QJ
 Od
 ta
@@ -33679,7 +33999,7 @@ CM
 CM
 Qk
 wT
-xU
+fF
 TH
 Qg
 vs
@@ -34984,12 +35304,12 @@ mo
 FT
 kM
 lc
-aE
+Vf
 vL
 eP
-ei
+Uf
 LE
-AX
+xx
 id
 yx
 ei
@@ -35425,7 +35745,7 @@ ei
 aD
 mN
 sc
-hV
+cS
 hV
 LK
 IQ
@@ -35829,7 +36149,7 @@ eI
 CO
 Uz
 Vp
-iq
+Sx
 aG
 iq
 dx
@@ -36308,8 +36628,8 @@ Wi
 bL
 sH
 Dx
-XT
-sj
+xj
+We
 XT
 XT
 XT

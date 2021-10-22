@@ -54,8 +54,6 @@
 		Z_LEVEL_SHIP_HIGH = 100
 		)
 
-	admin_levels = list(Z_LEVEL_CENTCOM, Z_LEVEL_MISC)
-
 /*
 	holomap_smoosh = list(list(
 		Z_LEVEL_SURFACE_LOW,
@@ -283,20 +281,25 @@
 	z = Z_LEVEL_SHIP_LOW
 	name = "Deck 1"
 	base_turf = /turf/space
+	transit_chance = 100
 
 /datum/map_z_level/stellar_delight/deck_two
 	z = Z_LEVEL_SHIP_MID
 	name = "Deck 2"
 	base_turf = /turf/simulated/open
+	transit_chance = 100
 
 /datum/map_z_level/stellar_delight/deck_three
 	z = Z_LEVEL_SHIP_HIGH
 	name = "Deck 3"
 	base_turf = /turf/simulated/open
+	transit_chance = 100
 
 /datum/map_template/ship_lateload
 	allow_duplicates = FALSE
 	var/associated_map_datum
+
+/////STATIC LATELOAD/////
 
 /datum/map_template/ship_lateload/on_map_loaded(z)
 	if(!associated_map_datum || !ispath(associated_map_datum))
@@ -313,9 +316,13 @@
 	associated_map_datum = /datum/map_z_level/ship_lateload/ship_centcom
 
 /datum/map_z_level/ship_lateload/ship_centcom
+	z = Z_LEVEL_CENTCOM
 	name = "Centcom"
 	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_SEALED|MAP_LEVEL_CONTACT|MAP_LEVEL_XENOARCH_EXEMPT
+	base_turf = /turf/simulated/floor/outdoors/rocks
 
+/area/centcom //Just to try to make sure there's not space!!!
+	base_turf = /turf/simulated/floor/outdoors/rocks
 
 /datum/map_template/ship_lateload/ship_misc
 	name = "Ship - Misc"
@@ -325,6 +332,7 @@
 	associated_map_datum = /datum/map_z_level/ship_lateload/misc
 
 /datum/map_z_level/ship_lateload/misc
+	z = Z_LEVEL_MISC
 	name = "Misc"
 	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_SEALED|MAP_LEVEL_CONTACT|MAP_LEVEL_XENOARCH_EXEMPT
 
@@ -336,6 +344,7 @@
 	associated_map_datum = /datum/map_z_level/ship_lateload/overmap
 
 /datum/map_z_level/ship_lateload/overmap
+	z = Z_LEVEL_OVERMAP
 	name = "Overmap"
 	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_SEALED|MAP_LEVEL_CONTACT|MAP_LEVEL_XENOARCH_EXEMPT
 
@@ -694,24 +703,6 @@ VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/dirt)
 
 VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/rocks)
 
-/datum/map_z_level/sd/ship/deck1
-	z = Z_LEVEL_SHIP_LOW
-	name = "Deck 1"
-	base_turf = /turf/space
-	transit_chance = 100
-
-/datum/map_z_level/sd/ship/deck2
-	z = Z_LEVEL_SHIP_MID
-	name = "Deck 2"
-	base_turf = /turf/simulated/open
-	transit_chance = 100
-
-/datum/map_z_level/sd/ship/deck3
-	z = Z_LEVEL_SHIP_HIGH
-	name = "Deck 3"
-	base_turf = /turf/simulated/open
-	transit_chance = 100
-
 /////FOR CENTCOMM (at least)/////
 /obj/effect/overmap/visitable/sector/virgo3b
 	name = "Virgo 3B"
@@ -732,6 +723,7 @@ VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/rocks)
 
 	initial_restricted_waypoints = list()
 
+/////SD Starts at V3b to pick up crew refuel and repair (And to make sure it doesn't spawn on hazards)
 /obj/effect/overmap/visitable/sector/virgo3b/Initialize()
 	. = ..()
 	for(var/obj/effect/overmap/visitable/ship/stellar_delight/sd in world)

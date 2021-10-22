@@ -12,10 +12,12 @@
 	associated_map_datum = /datum/map_z_level/tether_lateload/centcom
 
 /datum/map_z_level/tether_lateload/centcom
+	z = Z_LEVEL_CENTCOM
 	name = "Centcom"
 	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_SEALED|MAP_LEVEL_CONTACT|MAP_LEVEL_XENOARCH_EXEMPT
 
 /datum/map_template/tether_lateload/tether_misc
+	z = Z_LEVEL_MISC
 	name = "Tether - Misc"
 	desc = "Misc areas, like some transit areas, holodecks, merc area."
 	mappath = 'tether_misc.dmm'

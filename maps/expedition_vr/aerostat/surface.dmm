@@ -170,7 +170,7 @@
 /turf/simulated/floor/plating/eris/under,
 /area/offmap/aerostat/surface/outpost/hallway)
 "fs" = (
-/obj/offmap_spawner/aerostat_surface,
+/obj/tether_away_spawner/aerostat_surface,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/offmap/aerostat/surface/explored)
 "fx" = (
@@ -505,8 +505,10 @@
 /turf/simulated/floor/plating/eris/under,
 /area/offmap/aerostat/surface/outpost/powerroom)
 "ql" = (
-/obj/structure/salvageable/personal,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
+/obj/machinery/computer/shuttle_control/aerostat_shuttle,
+/obj/effect/floor_decal/rust,
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/tiled/techfloor/virgo2,
 /area/offmap/aerostat/surface/explored)
 "qs" = (
 /obj/machinery/door/airlock/command{
@@ -1021,8 +1023,7 @@
 /area/offmap/aerostat/surface/outpost/hallway)
 "DW" = (
 /obj/structure/railing{
-	dir = 1;
-	icon_state = "railing0"
+	dir = 1
 	},
 /obj/structure/metal_edge,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
@@ -1035,13 +1036,10 @@
 /turf/simulated/wall/r_wall,
 /area/offmap/aerostat/surface/outpost/powerroom)
 "EQ" = (
-/obj/effect/floor_decal/rust,
-/obj/effect/shuttle_landmark{
-	base_area = /area/offmap/aerostat/surface/explored;
-	base_turf = /turf/simulated/floor/tiled/techfloor/virgo2;
-	landmark_tag = "aerostat_surface";
-	name = "Virgo 2 Surface"
+/obj/structure/railing{
+	dir = 4
 	},
+/obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/offmap/aerostat/surface/explored)
 "ET" = (
@@ -1285,8 +1283,7 @@
 /area/offmap/aerostat/surface/outpost/guardpost)
 "LN" = (
 /obj/structure/railing{
-	dir = 4;
-	icon_state = "railing0"
+	dir = 4
 	},
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/offmap/aerostat/surface/explored)
@@ -1439,6 +1436,16 @@
 	},
 /turf/simulated/floor/tiled/eris/steel,
 /area/offmap/aerostat/surface/outpost/hallway)
+"Pq" = (
+/obj/effect/floor_decal/rust,
+/obj/effect/shuttle_landmark{
+	base_area = /area/offmap/aerostat/surface/explored;
+	base_turf = /turf/simulated/floor/tiled/techfloor/virgo2;
+	landmark_tag = "aerostat_surface";
+	name = "Virgo 2 Surface"
+	},
+/turf/simulated/floor/tiled/techfloor/virgo2,
+/area/offmap/aerostat/surface/explored)
 "Px" = (
 /obj/structure/table/bench/wooden,
 /obj/machinery/alarm/alarms_hidden{
@@ -1534,8 +1541,7 @@
 /area/offmap/aerostat/surface/outpost/cafe)
 "Sx" = (
 /obj/structure/railing{
-	dir = 8;
-	icon_state = "railing0"
+	dir = 8
 	},
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/offmap/aerostat/surface/explored)
@@ -10240,7 +10246,7 @@ SS
 SS
 SS
 SS
-SS
+wf
 SS
 SS
 SS
@@ -10381,9 +10387,9 @@ SS
 SS
 SS
 SS
-SS
+wf
 ql
-SS
+wf
 SS
 SS
 SS
@@ -10524,7 +10530,7 @@ LN
 LN
 LN
 LN
-LN
+EQ
 LN
 wf
 wf
@@ -10953,7 +10959,7 @@ wf
 wf
 wf
 wf
-wf
+Pq
 wf
 wf
 wf
@@ -11379,7 +11385,7 @@ wf
 wf
 wf
 wf
-EQ
+wf
 wf
 wf
 wf
