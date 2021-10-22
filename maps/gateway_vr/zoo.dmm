@@ -3856,7 +3856,7 @@
 /area/awaymission/zoo)
 "kk" = (
 /obj/structure/table/rack,
-/obj/item/clothing/suit/storage/hooded/ian_costume,
+/obj/item/clothing/suit/storage/hooded/costume/ian,
 /turf/simulated/floor/holofloor/carpet,
 /area/awaymission/zoo)
 "kl" = (
