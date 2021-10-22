@@ -3161,8 +3161,6 @@
 	id = "cubalibre"
 	description = "Rum, mixed with cola and a splash of lime. Viva la revolucion."
 	taste_description = "cola with lime"
-	description = "Rum, mixed with cola and a splash of lime. Viva la revolucion."
-	taste_description = "cola with lime"
 	color = "#3E1B00"
 	strength = 30
 
