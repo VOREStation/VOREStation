@@ -68,12 +68,8 @@
 /obj/random/powercell
 	name = "random powercell"
 	desc = "This is a random powercell."
-<<<<<<< HEAD
 	icon = 'icons/obj/power_cells.dmi'
 	icon_state = "random"
-=======
-	icon_state = "cell"
->>>>>>> 007c93288b2... Merge pull request #8246 from Cerebulon/randomloot
 
 /obj/random/powercell/item_to_spawn()
 	return pick(prob(40);/obj/item/weapon/cell,
@@ -130,12 +126,8 @@
 /obj/random/tech_supply
 	name = "random tech supply"
 	desc = "This is a random piece of technology supplies."
-<<<<<<< HEAD
 	icon = 'icons/obj/power_cells.dmi'
 	icon_state = "random"
-=======
-	icon_state = "tech"
->>>>>>> 007c93288b2... Merge pull request #8246 from Cerebulon/randomloot
 	spawn_nothing_percentage = 25
 
 /obj/random/tech_supply/item_to_spawn()
@@ -947,7 +939,6 @@
 				prob(3);/obj/item/clothing/accessory/poncho/thermal/purple,
 				prob(3);/obj/item/clothing/accessory/poncho/thermal/blue)
 
-<<<<<<< HEAD
 /obj/random/pouch
 	name = "Random Storage Pouch"
 	desc = "This is a random storage pouch."
@@ -970,5 +961,3 @@
 		prob(5);/obj/item/weapon/storage/pouch/baton/full,
 		prob(1);/obj/item/weapon/storage/pouch/holding
 	)
-=======
->>>>>>> 007c93288b2... Merge pull request #8246 from Cerebulon/randomloot
