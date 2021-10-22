@@ -499,11 +499,7 @@
 	icon_screen = "pcu_generic"
 	icon_state = "pcu_med"
 	icon_keyboard = "pcu_key"
-<<<<<<< HEAD
-	light_color = "#59888e8"
-=======
 	light_color = "#5284e7"
->>>>>>> 48337a1d469... Merge pull request #8275 from GhostActual/PCU_update
 	circuit = /obj/item/weapon/circuitboard/med_data/pcu
 	density = FALSE
 
