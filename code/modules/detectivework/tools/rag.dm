@@ -101,17 +101,8 @@
 		user.visible_message("[user] starts to wipe [A] with [src].")
 		update_name()
 		if(do_after(user,30))
-<<<<<<< HEAD
-			user.visible_message("\The [user] finishes wiping off the [A]!")
-			A.clean_blood()
-			if(istype(A, /turf) || istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/overlay) || istype(A, /obj/effect/rune))  //VOREStation Edit - "Allows rags to clean dirt from turfs"
-				var/turf/T = get_turf(A)
-				if(T)
-					T.clean(src, user) //VOREStation Edit End
-=======
 			user.visible_message("[user] finishes wiping [A]!")
 			A.on_rag_wipe(src)
->>>>>>> aa25456fcb8... Merge pull request #8236 from Cerebulon/wipedown
 
 /obj/item/weapon/reagent_containers/glass/rag/attack(atom/target as obj|turf|area, mob/user as mob , flag)
 	if(isliving(target)) //Leaving this as isliving.
