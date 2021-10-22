@@ -193,3 +193,9 @@
 	name = "techpriest hood"
 	desc = "A techpriest hood."
 	icon_state = "techpriesthood"
+	
+/obj/item/clothing/head/hood/siffet_hood
+	name = "siffet hood"
+	desc = "A hood that looks vaguely like a siffet's head. Guaranteed to traumatize your Promethean coworkers."
+	icon_state = "siffet"
+	item_state_slots = list(slot_r_hand_str = "siffet", slot_l_hand_str = "siffet")
