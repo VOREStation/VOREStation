@@ -72,7 +72,7 @@
 	reqs = list(
 		list(/obj/item/weapon/material/knife/stone = 1),
 		list(/obj/item/stack/material/flint = 1),
-		list(/obj/item/stack/material/stick = 1)0,
+		list(/obj/item/stack/material/stick = 1),
 		list(/obj/item/stack/material/fiber = 3)
 	)
 	time = 120
