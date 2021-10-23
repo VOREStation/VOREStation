@@ -316,6 +316,13 @@
 	color = "#664330"
 	allergen_type = ALLERGEN_FISH //Murkfin is fish
 
+/datum/reagent/nutriment/protein/bean
+	name = "beans"
+	id = "bean_protein"
+	taste_description = "beans"
+	color = "#562e0b"
+	allergen_type = ALLERGEN_BEANS //Made from soy beans
+
 /datum/reagent/nutriment/honey
 	name = "Honey"
 	id = "honey"
