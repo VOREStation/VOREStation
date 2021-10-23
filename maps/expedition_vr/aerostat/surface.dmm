@@ -1036,10 +1036,13 @@
 /turf/simulated/wall/r_wall,
 /area/offmap/aerostat/surface/outpost/powerroom)
 "EQ" = (
-/obj/structure/railing{
-	dir = 4
-	},
 /obj/effect/floor_decal/rust,
+/obj/effect/shuttle_landmark{
+	base_area = /area/offmap/aerostat/surface/explored;
+	base_turf = /turf/simulated/floor/tiled/techfloor/virgo2;
+	landmark_tag = "aerostat_surface";
+	name = "Virgo 2 Surface"
+	},
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/offmap/aerostat/surface/explored)
 "ET" = (
@@ -1436,16 +1439,6 @@
 	},
 /turf/simulated/floor/tiled/eris/steel,
 /area/offmap/aerostat/surface/outpost/hallway)
-"Pq" = (
-/obj/effect/floor_decal/rust,
-/obj/effect/shuttle_landmark{
-	base_area = /area/offmap/aerostat/surface/explored;
-	base_turf = /turf/simulated/floor/tiled/techfloor/virgo2;
-	landmark_tag = "aerostat_surface";
-	name = "Virgo 2 Surface"
-	},
-/turf/simulated/floor/tiled/techfloor/virgo2,
-/area/offmap/aerostat/surface/explored)
 "Px" = (
 /obj/structure/table/bench/wooden,
 /obj/machinery/alarm/alarms_hidden{
@@ -10530,14 +10523,14 @@ LN
 LN
 LN
 LN
-EQ
-LN
+wf
+SS
 wf
 wf
-LN
-LN
-LN
-LN
+wf
+SS
+SS
+SS
 LN
 LN
 LN
@@ -10959,7 +10952,7 @@ wf
 wf
 wf
 wf
-Pq
+wf
 wf
 wf
 wf
@@ -11101,7 +11094,7 @@ wf
 wf
 wf
 wf
-wf
+EQ
 wf
 wf
 wf
@@ -12519,11 +12512,11 @@ Sx
 Sx
 Sx
 Sx
-Sx
+SS
 wf
 wf
-Sx
-Sx
+wf
+SS
 Sx
 Sx
 Sx

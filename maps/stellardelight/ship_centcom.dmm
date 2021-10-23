@@ -10845,11 +10845,12 @@
 /turf/simulated/floor/tiled,
 /area/centcom/control)
 "OW" = (
-/obj/structure/sign/department/medbay,
-/turf/simulated/floor/tiled{
-	icon_state = "plating";
-	name = "plating"
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/sign/department/medbay{
+	plane = -34
 	},
+/turf/simulated/floor,
 /area/centcom/medical)
 "OY" = (
 /obj/effect/floor_decal/industrial/outline/yellow,

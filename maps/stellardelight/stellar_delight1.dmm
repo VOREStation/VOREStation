@@ -184,6 +184,9 @@
 /obj/effect/floor_decal/steeldecal/steel_decals10{
 	dir = 5
 	},
+/obj/machinery/shower{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/white,
 /area/stellardelight/deck1/shower)
 "ay" = (
@@ -773,7 +776,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/lowermed)
 "bH" = (
 /obj/machinery/light/small,
@@ -1720,7 +1723,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/resleeving)
 "dI" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -1910,7 +1913,7 @@
 /obj/machinery/camera/network/medbay{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/lowermed)
 "ed" = (
 /obj/structure/cable/pink{
@@ -2033,10 +2036,13 @@
 	dir = 8
 	},
 /obj/structure/low_wall/bay/reinforced/purple,
+/obj/structure/sign/xenobio{
+	plane = -34
+	},
 /turf/simulated/floor,
 /area/rnd/xenobiology)
 "ep" = (
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/lowermed)
 "eq" = (
 /turf/simulated/floor/carpet,
@@ -2088,7 +2094,7 @@
 /obj/machinery/computer/transhuman/resleeving{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/resleeving)
 "ew" = (
 /obj/structure/cable/green{
@@ -2413,7 +2419,7 @@
 	pixel_x = 6
 	},
 /obj/machinery/firealarm/angled,
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/virology)
 "fn" = (
 /obj/structure/table/rack{
@@ -2600,7 +2606,7 @@
 "fH" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/hologram/holopad,
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/resleeving)
 "fI" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -2629,7 +2635,7 @@
 /area/stellardelight/deck1/oreprocessing)
 "fL" = (
 /obj/machinery/firealarm/angled,
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/resleeving)
 "fM" = (
 /obj/structure/closet/l3closet/scientist,
@@ -3015,7 +3021,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/resleeving)
 "gE" = (
 /obj/structure/closet/wardrobe/chaplain_black,
@@ -3150,7 +3156,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 6
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/virology)
 "gU" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
@@ -3400,7 +3406,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/resleeving)
 "ht" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -3424,7 +3430,7 @@
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/resleeving)
 "hw" = (
 /obj/machinery/power/pointdefense{
@@ -3855,7 +3861,7 @@
 	name = "night shift APC";
 	nightshift_setting = 2
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/lowermed)
 "il" = (
 /obj/structure/cable/green{
@@ -3920,7 +3926,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/resleeving)
 "iq" = (
 /turf/simulated/floor/wood,
@@ -3933,7 +3939,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/resleeving)
 "is" = (
 /obj/structure/cable/pink{
@@ -4014,7 +4020,7 @@
 	dir = 8;
 	pixel_x = -24
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/lowermed)
 "iC" = (
 /obj/structure/cable/green{
@@ -4270,6 +4276,9 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals10{
 	dir = 9
+	},
+/obj/machinery/alarm/angled{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
 /area/stellardelight/deck1/shower)
@@ -5617,7 +5626,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/virology)
 "ma" = (
 /obj/structure/table/steel,
@@ -5962,7 +5971,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/lowermed)
 "mK" = (
 /obj/structure/table/sifwooden_reinforced,
@@ -6843,7 +6852,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 9
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/lowermed)
 "oI" = (
 /obj/structure/cable/pink{
@@ -6896,7 +6905,7 @@
 /obj/structure/sign/painting/library_secure{
 	pixel_x = 30
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/resleeving)
 "oO" = (
 /obj/structure/cable/pink{
@@ -6971,7 +6980,7 @@
 /obj/structure/cable/white{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/resleeving)
 "oX" = (
 /turf/simulated/wall/bay/r_wall/purple,
@@ -6981,7 +6990,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/resleeving)
 "oZ" = (
 /obj/structure/table/woodentable,
@@ -7243,7 +7252,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/resleeving)
 "pC" = (
 /turf/simulated/wall/bay/r_wall/purple,
@@ -8455,7 +8464,7 @@
 	dir = 8;
 	pixel_x = -24
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/virology)
 "sg" = (
 /obj/structure/cable/green{
@@ -9747,7 +9756,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/virology)
 "va" = (
 /obj/structure/closet/secure_closet/miner,
@@ -9766,7 +9775,7 @@
 /obj/machinery/camera/network/medbay{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/resleeving)
 "vc" = (
 /obj/machinery/vending/security,
@@ -10526,7 +10535,7 @@
 /obj/machinery/computer/diseasesplicer{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/virology)
 "wS" = (
 /obj/machinery/door/firedoor/glass,
@@ -10672,7 +10681,7 @@
 /obj/machinery/status_display{
 	pixel_y = 32
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/resleeving)
 "xh" = (
 /obj/structure/table/woodentable,
@@ -10708,10 +10717,10 @@
 /turf/simulated/floor/tiled/eris,
 /area/rnd/xenobiology/xenoflora)
 "xk" = (
-/obj/machinery/suit_cycler/exploration,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
+/obj/structure/dispenser/oxygen,
 /turf/simulated/floor/tiled/milspec,
 /area/stellardelight/deck1/exploequipment)
 "xl" = (
@@ -11583,7 +11592,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/virology)
 "zg" = (
 /obj/structure/bed/chair/comfy/black,
@@ -12919,7 +12928,7 @@
 	pixel_y = 27
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on,
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/virology)
 "BW" = (
 /obj/structure/cable{
@@ -13286,7 +13295,7 @@
 /obj/machinery/disposal/wall{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/virology)
 "CK" = (
 /obj/machinery/button/remote/blast_door{
@@ -13353,11 +13362,11 @@
 /turf/simulated/wall/bay/r_wall/purple,
 /area/rnd/xenobiology)
 "CT" = (
-/obj/machinery/suit_cycler/exploration,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/machinery/status_display{
 	pixel_y = 32
 	},
+/obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/simulated/floor/tiled/milspec,
 /area/stellardelight/deck1/exploequipment)
 "CU" = (
@@ -13666,7 +13675,7 @@
 	dir = 10
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals4,
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/resleeving)
 "DC" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -13986,7 +13995,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/lowermed)
 "Ev" = (
 /obj/structure/cable/pink{
@@ -14856,7 +14865,7 @@
 	dir = 8;
 	pixel_x = -6
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/virology)
 "Go" = (
 /obj/structure/reagent_dispensers/watertank,
@@ -15342,7 +15351,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/resleeving)
 "Hz" = (
 /obj/structure/table/rack/shelf/steel,
@@ -15724,7 +15733,7 @@
 	dir = 8;
 	pixel_x = -24
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/resleeving)
 "Ik" = (
 /obj/structure/cable{
@@ -16341,7 +16350,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/lowermed)
 "Jz" = (
 /obj/machinery/newscaster{
@@ -17618,8 +17627,14 @@
 /turf/simulated/floor/bluegrid,
 /area/assembly/robotics)
 "Ms" = (
-/obj/machinery/alarm/angled{
-	dir = 4
+/obj/machinery/door/window{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 10
 	},
 /turf/simulated/floor/tiled/white,
 /area/stellardelight/deck1/shower)
@@ -17774,7 +17789,7 @@
 	dir = 10
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals4,
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/lowermed)
 "MN" = (
 /obj/machinery/door/firedoor/glass,
@@ -17898,7 +17913,7 @@
 /obj/structure/closet/crate/bin{
 	anchored = 1
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/resleeving)
 "MZ" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -18141,7 +18156,7 @@
 	dir = 10
 	},
 /obj/machinery/firealarm/angled,
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/lowermed)
 "Nw" = (
 /obj/structure/closet/walllocker_double/medical/north,
@@ -18361,7 +18376,7 @@
 /obj/machinery/status_display{
 	pixel_x = 32
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/lowermed)
 "Od" = (
 /obj/machinery/light,
@@ -18369,7 +18384,7 @@
 	name = "RESLEEVING";
 	pixel_x = -32
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/lowermed)
 "Oe" = (
 /obj/structure/table/woodentable,
@@ -18412,7 +18427,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/virology)
 "Ok" = (
 /obj/machinery/light,
@@ -18891,7 +18906,7 @@
 /obj/machinery/camera/network/medbay{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/lowermed)
 "Pr" = (
 /obj/structure/cable/green{
@@ -19085,7 +19100,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/virology)
 "PR" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -19386,7 +19401,7 @@
 /obj/machinery/alarm/angled{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/lowermed)
 "QB" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -19444,7 +19459,7 @@
 	dir = 8
 	},
 /obj/machinery/hologram/holopad,
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/virology)
 "QJ" = (
 /obj/structure/cable/white{
@@ -19462,7 +19477,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/lowermed)
 "QK" = (
 /obj/structure/railing/grey{
@@ -19480,7 +19495,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/lowermed)
 "QP" = (
 /obj/structure/table/rack/shelf/steel,
@@ -19912,7 +19927,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/virology)
 "RF" = (
 /turf/simulated/floor/airless,
@@ -20863,7 +20878,7 @@
 /area/stellardelight/deck1/fore)
 "TK" = (
 /obj/machinery/clonepod/transhuman,
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/resleeving)
 "TL" = (
 /obj/machinery/alarm/angled,
@@ -21690,7 +21705,7 @@
 /obj/machinery/camera/network/medbay{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/virology)
 "Vr" = (
 /obj/machinery/camera/network/security{
@@ -21711,7 +21726,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 9
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/resleeving)
 "Vt" = (
 /obj/structure/cable/white{
@@ -21820,7 +21835,7 @@
 /obj/structure/cable/white{
 	icon_state = "0-4"
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/resleeving)
 "VD" = (
 /obj/structure/railing/grey{
@@ -22491,6 +22506,9 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/universal,
+/obj/structure/sign/vacuum{
+	pixel_x = -32
+	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/exploration)
 "Xh" = (
@@ -23015,7 +23033,7 @@
 	dir = 10
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals4,
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/lowermed)
 "Yh" = (
 /obj/machinery/camera/network/mining{
@@ -23171,6 +23189,9 @@
 "Yy" = (
 /obj/structure/table/steel_reinforced,
 /obj/machinery/recharger,
+/obj/structure/sign/vacuum{
+	pixel_y = 32
+	},
 /turf/simulated/floor/tiled/dark,
 /area/security/tactical)
 "Yz" = (
@@ -31497,8 +31518,8 @@ PF
 NH
 cu
 kW
-kW
-Dy
+NH
+NH
 NH
 mf
 oR
@@ -31639,7 +31660,7 @@ zP
 NH
 cu
 SV
-kW
+Ms
 Dy
 NH
 ml
@@ -31781,8 +31802,8 @@ Ew
 NH
 cu
 kW
-kW
-Dy
+NH
+NH
 NH
 ct
 ri
@@ -31923,7 +31944,7 @@ DZ
 MZ
 OM
 kK
-kW
+Ms
 ax
 NH
 nF

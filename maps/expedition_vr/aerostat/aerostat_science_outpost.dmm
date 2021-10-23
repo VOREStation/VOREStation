@@ -40,13 +40,6 @@
 	},
 /turf/simulated/floor/plating/virgo2,
 /area/offmap/aerostat/solars)
-"ah" = (
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	frequency = 1452
-	},
-/obj/effect/map_helper/airlock/atmos/pump_out_external,
-/turf/simulated/floor/plating/virgo2,
-/area/offmap/aerostat/inside/xenoarch)
 "aj" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	id_tag = "anomaly_airlock_pump";
@@ -556,8 +549,8 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/offmap/aerostat/inside/toxins)
 "bE" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 4
+/obj/machinery/atmospherics/pipe/manifold/hidden{
+	dir = 1
 	},
 /turf/simulated/wall/r_wall,
 /area/offmap/aerostat/inside/xenoarch)
@@ -800,6 +793,7 @@
 	req_one_access = list(47)
 	},
 /obj/effect/map_helper/airlock/door/ext_door,
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/offmap/aerostat/inside/xenoarch)
 "ct" = (
@@ -2313,6 +2307,11 @@
 /turf/simulated/floor/tiled,
 /area/offmap/aerostat/inside/south/b)
 "jl" = (
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	frequency = 1452
+	},
+/obj/effect/map_helper/airlock/atmos/pump_out_external,
+/obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating/virgo2,
 /area/offmap/aerostat/inside/xenoarch)
 "ju" = (
@@ -3118,6 +3117,13 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating/virgo2,
 /area/offmap/aerostat/inside/arm/sw)
+"ns" = (
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 4
+	},
+/obj/effect/map_helper/airlock/atmos/pump_out_internal,
+/turf/simulated/floor/tiled/dark,
+/area/offmap/aerostat/inside/xenoarch)
 "nu" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -4153,6 +4159,12 @@
 /obj/machinery/computer/shuttle_control/aerostat_shuttle,
 /turf/simulated/shuttle/floor/yellow,
 /area/shuttle/aerostat)
+"sU" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 9
+	},
+/turf/simulated/wall/r_wall,
+/area/offmap/aerostat/inside/xenoarch)
 "sW" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
@@ -7314,6 +7326,7 @@
 	id = "atmos_out";
 	use_power = 1
 	},
+/obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating/virgo2,
 /area/offmap/aerostat/inside/atmos)
 "Kn" = (
@@ -9864,9 +9877,7 @@
 	id = "anomaly_testing_v";
 	name = "Anomaly Testing Vent"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 4
-	},
+/obj/machinery/atmospherics/pipe/manifold/hidden,
 /turf/simulated/floor,
 /area/offmap/aerostat/inside/xenoarch)
 "YT" = (
@@ -21477,7 +21488,7 @@ QE
 jF
 az
 Ah
-Ah
+ns
 op
 WW
 Hx
@@ -21619,7 +21630,7 @@ NN
 jF
 bE
 cr
-op
+sU
 op
 op
 op
@@ -21900,7 +21911,7 @@ aw
 aw
 aw
 aw
-ah
+jl
 jW
 Ah
 Ob
@@ -21939,7 +21950,7 @@ Vz
 Vz
 Vz
 Vz
-uk
+Vz
 Ht
 Ht
 aw
@@ -22080,7 +22091,7 @@ Vz
 Vz
 Vz
 Vz
-Vz
+rJ
 Ht
 Ht
 aw

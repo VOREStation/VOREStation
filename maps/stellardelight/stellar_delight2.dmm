@@ -615,7 +615,7 @@
 /obj/structure/cable/white{
 	icon_state = "0-4"
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
 "bw" = (
 /obj/machinery/power/pointdefense{
@@ -661,6 +661,11 @@
 	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck2/port)
+"bB" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled/eris/steel/brown_platform,
+/area/quartermaster/storage)
 "bC" = (
 /obj/structure/bed/chair/bay/shuttle{
 	dir = 4
@@ -716,7 +721,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
 "bK" = (
 /obj/structure/table/rack/steel,
@@ -835,7 +840,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/eris/steel/cargo,
+/turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/quartermaster/storage)
 "bX" = (
 /obj/structure/cable{
@@ -1416,11 +1421,17 @@
 	},
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/quartermaster/storage)
+"dr" = (
+/obj/structure/cable/white{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/eris/white/bluecorner,
+/area/stellardelight/deck2/triage)
 "ds" = (
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 9
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
 "dt" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
@@ -1792,6 +1803,13 @@
 /obj/machinery/shieldwallgen,
 /turf/simulated/floor/plating,
 /area/engineering/storage)
+"em" = (
+/obj/effect/floor_decal/milspec/color/blue/half{
+	dir = 1
+	},
+/obj/item/device/radio/beacon,
+/turf/simulated/floor/tiled,
+/area/stellardelight/deck2/central)
 "en" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -1925,6 +1943,14 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 4
+	},
+/obj/structure/sign/directions/stairs_up{
+	pixel_x = 32
+	},
+/obj/structure/sign/directions/stairs_down{
+	dir = 1;
+	pixel_x = 32;
+	pixel_y = 6
 	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck2/aftport)
@@ -2328,7 +2354,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/eris/steel/cargo,
+/turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/quartermaster/storage)
 "fA" = (
 /obj/structure/cable/orange{
@@ -2417,7 +2443,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
 "fP" = (
 /obj/structure/closet/crate/bin{
@@ -2889,7 +2915,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 9
 	},
-/turf/simulated/floor/tiled/eris/steel/cargo,
+/turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/quartermaster/storage)
 "gO" = (
 /obj/structure/table/standard,
@@ -2898,7 +2924,7 @@
 	pixel_y = 3
 	},
 /obj/item/weapon/packageWrap,
-/turf/simulated/floor/tiled/eris/steel/cargo,
+/turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/quartermaster/storage)
 "gP" = (
 /obj/structure/cable/green{
@@ -3031,7 +3057,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
 "hk" = (
 /obj/structure/cable/green{
@@ -3131,6 +3157,9 @@
 /obj/machinery/alarm/angled,
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery)
+"hx" = (
+/turf/simulated/floor/tiled/eris/white/bluecorner,
+/area/stellardelight/deck2/triage)
 "hy" = (
 /obj/machinery/door/firedoor/glass/hidden/steel{
 	dir = 1
@@ -3272,7 +3301,7 @@
 /area/stellardelight/deck2/triage)
 "hS" = (
 /obj/effect/floor_decal/milspec/cargo,
-/turf/simulated/floor/tiled/eris/steel/cargo,
+/turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/quartermaster/storage)
 "hT" = (
 /obj/structure/railing/grey{
@@ -3439,7 +3468,7 @@
 /obj/structure/closet/hydrant{
 	pixel_x = 32
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
 "ir" = (
 /obj/structure/cable/green{
@@ -3508,7 +3537,7 @@
 /obj/machinery/requests_console/preset/cargo{
 	pixel_y = 30
 	},
-/turf/simulated/floor/tiled/eris/steel/cargo,
+/turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/quartermaster/storage)
 "iC" = (
 /obj/structure/sink/kitchen{
@@ -3719,7 +3748,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
 "iX" = (
 /obj/machinery/door/firedoor/glass,
@@ -3970,7 +3999,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
 	},
-/turf/simulated/floor/tiled/eris/steel/cargo,
+/turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/quartermaster/storage)
 "jE" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -4013,7 +4042,7 @@
 /obj/machinery/camera/network/medbay{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
 "jL" = (
 /obj/structure/cable/orange{
@@ -4425,7 +4454,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
 "kD" = (
 /obj/machinery/door/airlock/angled_bay/standard/color{
@@ -5062,7 +5091,7 @@
 	dir = 8
 	},
 /obj/machinery/recharger,
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
 "lQ" = (
 /obj/structure/sign/directions/chapel{
@@ -5373,7 +5402,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/eris/steel/cargo,
+/turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/quartermaster/storage)
 "mx" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -5819,7 +5848,7 @@
 /obj/effect/landmark{
 	name = "lightsout"
 	},
-/turf/simulated/floor/tiled/eris/steel/cargo,
+/turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/quartermaster/storage)
 "nA" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -5839,6 +5868,7 @@
 "nC" = (
 /obj/machinery/appliance/cooker/grill,
 /obj/machinery/requests_console{
+	department = "Service";
 	pixel_y = 26
 	},
 /turf/simulated/floor/tiled/eris/cafe,
@@ -5951,6 +5981,7 @@
 	dir = 1
 	},
 /obj/machinery/requests_console{
+	department = "Service";
 	dir = 1;
 	pixel_y = -26
 	},
@@ -5988,7 +6019,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
 "nU" = (
 /obj/structure/table/steel_reinforced,
@@ -6221,7 +6252,7 @@
 	name = "Station Intercom (General)";
 	pixel_y = 24
 	},
-/turf/simulated/floor/tiled/eris/steel/cargo,
+/turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/quartermaster/storage)
 "ov" = (
 /turf/simulated/wall/bay/r_wall/steel,
@@ -6268,7 +6299,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/eris/steel/cargo,
+/turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/quartermaster/storage)
 "oD" = (
 /obj/machinery/door/firedoor/glass,
@@ -6568,7 +6599,7 @@
 /obj/machinery/photocopier/faxmachine{
 	department = "Cargo"
 	},
-/turf/simulated/floor/tiled/eris/steel/cargo,
+/turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/quartermaster/storage)
 "pm" = (
 /obj/structure/closet/hydrant{
@@ -6953,6 +6984,9 @@
 	},
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/crew_quarters/bar)
+"qf" = (
+/turf/simulated/wall/bay/r_wall/white,
+/area/medical/surgery2)
 "qg" = (
 /obj/machinery/atmospherics/binary/pump/high_power/on,
 /turf/simulated/floor/tiled/techmaint,
@@ -7378,7 +7412,7 @@
 	pixel_x = -32;
 	pixel_y = 6
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
 "ra" = (
 /obj/structure/closet/emcloset,
@@ -7485,7 +7519,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
 "rn" = (
 /obj/machinery/appliance/cooker/fryer,
@@ -7741,6 +7775,10 @@
 	},
 /obj/effect/floor_decal/milspec/color/green/half{
 	dir = 9
+	},
+/obj/machinery/requests_console{
+	department = "Service";
+	pixel_y = 26
 	},
 /turf/simulated/floor/tiled,
 /area/hydroponics)
@@ -8580,7 +8618,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
 "tU" = (
 /obj/structure/disposalpipe/segment,
@@ -8711,7 +8749,7 @@
 	dir = 10
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals4,
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
 "ui" = (
 /obj/structure/lattice,
@@ -8725,7 +8763,7 @@
 	dir = 8;
 	pixel_x = -27
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
 "uk" = (
 /turf/simulated/wall/bay/r_wall/steel,
@@ -9093,7 +9131,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
 	},
-/turf/simulated/floor/tiled/eris/steel/cargo,
+/turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/quartermaster/storage)
 "uZ" = (
 /obj/machinery/button/remote/blast_door{
@@ -9171,7 +9209,7 @@
 	pixel_x = 7;
 	pixel_y = 1
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
 "vg" = (
 /obj/machinery/power/apc/angled{
@@ -9255,6 +9293,12 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/stellardelight/deck2/starboard)
+"vq" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/eris/steel/brown_platform,
+/area/quartermaster/storage)
 "vt" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /obj/structure/table/rack,
@@ -9287,7 +9331,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
 	},
-/turf/simulated/floor/tiled/eris/steel/cargo,
+/turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/quartermaster/storage)
 "vz" = (
 /obj/machinery/alarm/angled,
@@ -9373,7 +9417,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
 "vJ" = (
 /obj/structure/cable/orange{
@@ -9661,7 +9705,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
 "wy" = (
 /obj/structure/cable/green{
@@ -9732,6 +9776,14 @@
 /obj/structure/table/woodentable,
 /obj/machinery/computer/security/telescreen/entertainment{
 	pixel_y = 30
+	},
+/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker{
+	pixel_x = -3;
+	pixel_y = 4
+	},
+/obj/item/weapon/reagent_containers/food/condiment/small/peppermill{
+	pixel_x = 2;
+	pixel_y = 7
 	},
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/crew_quarters/bar)
@@ -10429,7 +10481,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
 "yl" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan,
@@ -10790,7 +10842,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 6
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
 "zd" = (
 /obj/machinery/atmospherics/portables_connector{
@@ -11122,7 +11174,7 @@
 /obj/machinery/alarm/angled{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
 "zY" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/fuel,
@@ -11298,6 +11350,11 @@
 	pixel_x = -32;
 	pixel_y = -6
 	},
+/obj/structure/sign/directions/medical{
+	dir = 1;
+	pixel_x = -32;
+	pixel_y = 6
+	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/stellardelight/deck2/aftstarboard)
 "Ax" = (
@@ -11312,6 +11369,12 @@
 	},
 /turf/simulated/floor/lino,
 /area/crew_quarters/bar)
+"Ay" = (
+/obj/structure/cable/white{
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/tiled/eris/white/bluecorner,
+/area/stellardelight/deck2/triage)
 "Az" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/bay/reinforced,
@@ -11452,6 +11515,11 @@
 /obj/structure/sign/directions/cargo{
 	dir = 6;
 	pixel_x = 32
+	},
+/obj/structure/sign/directions/medical{
+	dir = 1;
+	pixel_x = 32;
+	pixel_y = 6
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/stellardelight/deck2/aftport)
@@ -11881,7 +11949,7 @@
 	pixel_y = 6
 	},
 /obj/machinery/camera/network/cargo,
-/turf/simulated/floor/tiled/eris/steel/cargo,
+/turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/quartermaster/storage)
 "BN" = (
 /turf/simulated/wall/bay/r_wall/steel,
@@ -12000,7 +12068,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
 "Ce" = (
 /obj/machinery/door/firedoor/glass,
@@ -12352,7 +12420,7 @@
 /obj/effect/landmark/start{
 	name = "Cargo Technician"
 	},
-/turf/simulated/floor/tiled/eris/steel/cargo,
+/turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/quartermaster/storage)
 "CT" = (
 /obj/machinery/atmospherics/pipe/tank/nitrogen,
@@ -12721,7 +12789,7 @@
 	dir = 2;
 	icon_state = "pipe-c"
 	},
-/turf/simulated/floor/tiled/eris/steel/cargo,
+/turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/quartermaster/storage)
 "DN" = (
 /obj/structure/window/reinforced{
@@ -12790,7 +12858,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/item/device/radio/beacon,
 /obj/effect/landmark{
 	name = "lightsout"
 	},
@@ -12921,6 +12988,14 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 8
+	},
+/obj/structure/sign/directions/stairs_down{
+	dir = 1;
+	pixel_x = -32;
+	pixel_y = 6
+	},
+/obj/structure/sign/directions/stairs_up{
+	pixel_x = -32
 	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck2/aftstarboard)
@@ -13174,7 +13249,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/eris/steel/cargo,
+/turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/quartermaster/storage)
 "EN" = (
 /obj/effect/floor_decal/emblem/stellardelight{
@@ -13235,7 +13310,7 @@
 	pixel_x = -4;
 	pixel_y = 5
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
 "EV" = (
 /obj/item/weapon/stool/padded{
@@ -13323,6 +13398,9 @@
 	},
 /obj/structure/cable{
 	icon_state = "4-8"
+	},
+/obj/structure/sign/vacuum{
+	pixel_x = -32
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck2/portsolars)
@@ -13603,7 +13681,7 @@
 /area/stellardelight/deck2/triage)
 "FH" = (
 /obj/structure/medical_stand,
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
 "FJ" = (
 /obj/machinery/door/firedoor/glass,
@@ -14237,7 +14315,7 @@
 	dir = 10
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals4,
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
 "GU" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -14509,6 +14587,7 @@
 	},
 /obj/structure/table/glass,
 /obj/machinery/recharger,
+/obj/item/weapon/tool/screwdriver,
 /turf/simulated/floor/tiled/eris/white/cargo,
 /area/stellardelight/deck2/triage)
 "HB" = (
@@ -14595,7 +14674,7 @@
 /obj/structure/sign/poster{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
 "HN" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -14799,7 +14878,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
 "Ii" = (
 /obj/structure/cable/orange{
@@ -14959,7 +15038,7 @@
 	dir = 1
 	},
 /obj/machinery/recharger,
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
 "Iw" = (
 /obj/structure/cable/green{
@@ -15395,7 +15474,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
 "JB" = (
 /obj/machinery/door/firedoor/glass,
@@ -15482,6 +15561,14 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/eris/dark/monofloor,
 /area/bridge)
+"JL" = (
+/obj/effect/floor_decal/milspec/color/black/corner,
+/obj/effect/floor_decal/milspec/color/silver/corner{
+	dir = 8
+	},
+/obj/item/device/radio/beacon,
+/turf/simulated/floor/tiled,
+/area/stellardelight/deck2/fore)
 "JM" = (
 /obj/machinery/power/apc/angled{
 	dir = 1
@@ -15503,7 +15590,7 @@
 	dir = 8;
 	icon_state = "pipe-c"
 	},
-/turf/simulated/floor/tiled/eris/steel/cargo,
+/turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/quartermaster/storage)
 "JP" = (
 /obj/structure/cable/green{
@@ -16014,7 +16101,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
 "KW" = (
 /obj/machinery/alarm/angled{
@@ -16133,7 +16220,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
 "Lm" = (
 /obj/structure/disposalpipe/segment{
@@ -16297,7 +16384,7 @@
 /obj/item/weapon/packageWrap,
 /obj/fiftyspawner/cardboard,
 /obj/machinery/atmospherics/unary/vent_pump/on,
-/turf/simulated/floor/tiled/eris/steel/cargo,
+/turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/quartermaster/storage)
 "LG" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
@@ -16385,6 +16472,14 @@
 	pixel_y = 6
 	},
 /obj/machinery/camera/network/civilian,
+/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker{
+	pixel_x = -3;
+	pixel_y = 4
+	},
+/obj/item/weapon/reagent_containers/food/condiment/small/peppermill{
+	pixel_x = 2;
+	pixel_y = 7
+	},
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/crew_quarters/bar)
 "LQ" = (
@@ -16436,7 +16531,9 @@
 /obj/structure/sign/department/operational{
 	pixel_x = 32
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/obj/random/medical,
+/obj/random/medical,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
 "LW" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -16465,7 +16562,7 @@
 /obj/structure/cable/white{
 	icon_state = "1-4"
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
 "Ma" = (
 /obj/structure/table/standard,
@@ -16487,7 +16584,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
 "Mc" = (
 /obj/structure/closet/emergsuit_wall{
@@ -16804,7 +16901,7 @@
 /obj/machinery/light/floortube{
 	pixel_y = -4
 	},
-/turf/simulated/floor/tiled/eris/steel/cargo,
+/turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/quartermaster/storage)
 "MN" = (
 /obj/structure/cable{
@@ -17295,7 +17392,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
 "NQ" = (
 /obj/machinery/door/firedoor/glass,
@@ -17430,13 +17527,10 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
-/obj/structure/table/glass,
-/obj/random/medical,
-/obj/random/medical,
-/obj/item/weapon/tool/screwdriver,
 /obj/machinery/status_display{
 	pixel_y = 32
 	},
+/obj/structure/filingcabinet/medical,
 /turf/simulated/floor/tiled/eris/white/cargo,
 /area/stellardelight/deck2/triage)
 "Om" = (
@@ -17556,7 +17650,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
 "Oz" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
@@ -17607,7 +17701,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
 "OF" = (
 /turf/simulated/wall/bay/r_wall/orange,
@@ -18143,7 +18237,6 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
 	},
-/obj/item/device/radio/beacon,
 /obj/effect/landmark{
 	name = "lightsout"
 	},
@@ -18433,7 +18526,7 @@
 /obj/structure/sign/department/operational{
 	pixel_x = -32
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
 "Qq" = (
 /obj/structure/bed/chair,
@@ -18817,7 +18910,7 @@
 	pixel_x = 4;
 	pixel_y = 4
 	},
-/turf/simulated/floor/tiled/eris/steel/cargo,
+/turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/quartermaster/storage)
 "Ri" = (
 /obj/structure/table/bench/steel,
@@ -19051,7 +19144,7 @@
 	icon_state = "4-8"
 	},
 /mob/living/simple_mob/animal/passive/mouse/jerboa/leggy,
-/turf/simulated/floor/tiled/eris/steel/cargo,
+/turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/quartermaster/storage)
 "RP" = (
 /obj/structure/table/reinforced,
@@ -19633,7 +19726,7 @@
 /obj/machinery/status_display/supply_display{
 	pixel_y = 32
 	},
-/turf/simulated/floor/tiled/eris/steel/cargo,
+/turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/quartermaster/storage)
 "Tj" = (
 /obj/machinery/vending/loadout/costume,
@@ -20088,7 +20181,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/eris/steel/cargo,
+/turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/quartermaster/storage)
 "Un" = (
 /obj/machinery/atmospherics/binary/pump/on{
@@ -20819,6 +20912,9 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
+/obj/structure/sign/vacuum{
+	pixel_x = 32
+	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck2/starboardsolars)
 "VY" = (
@@ -21252,7 +21348,7 @@
 /obj/machinery/camera/network/medbay{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
 "WZ" = (
 /obj/machinery/firealarm/angled{
@@ -21265,7 +21361,7 @@
 /turf/simulated/floor/tiled,
 /area/crew_quarters/locker)
 "Xa" = (
-/turf/simulated/wall/bay/white,
+/turf/simulated/wall/bay/r_wall/white,
 /area/medical/chemistry)
 "Xb" = (
 /obj/structure/cable/white{
@@ -21544,7 +21640,7 @@
 /area/engineering/atmos/monitoring)
 "XJ" = (
 /obj/machinery/autolathe,
-/turf/simulated/floor/tiled/eris/steel/cargo,
+/turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/quartermaster/storage)
 "XK" = (
 /obj/machinery/atmospherics/pipe/simple/visible/green,
@@ -22377,7 +22473,7 @@
 /obj/item/roller{
 	pixel_y = 16
 	},
-/turf/simulated/floor/tiled/eris/white/cargo,
+/turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
 "ZE" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
@@ -31609,13 +31705,13 @@ Xb
 hp
 Dk
 ds
-Ze
-Ze
-MH
+hx
+hx
+Ay
 LZ
 bJ
 Ll
-Ze
+hx
 EU
 QP
 QN
@@ -31922,7 +32018,7 @@ DM
 JN
 hS
 hS
-Ui
+zj
 dN
 pD
 jQ
@@ -32064,7 +32160,7 @@ vy
 mw
 mw
 jD
-Ui
+zj
 PS
 cU
 jQ
@@ -32202,10 +32298,10 @@ zj
 We
 Lu
 CS
-BO
+vq
 Rh
 gO
-BO
+vq
 hS
 dN
 LX
@@ -32422,7 +32518,7 @@ ku
 Sx
 Je
 DW
-zz
+JL
 nt
 BS
 Dl
@@ -32452,7 +32548,7 @@ uQ
 xy
 Hg
 os
-Mj
+em
 PO
 wl
 Ci
@@ -32469,7 +32565,7 @@ Ze
 Kl
 Ze
 Ze
-MH
+Ay
 qZ
 hT
 bf
@@ -32486,7 +32582,7 @@ zj
 GE
 do
 iB
-BO
+vq
 XJ
 MM
 nz
@@ -32611,7 +32707,7 @@ ZK
 Ze
 ZK
 Ze
-Ze
+hx
 Vb
 Vb
 Vb
@@ -32629,10 +32725,10 @@ Sv
 sk
 gN
 Um
-SZ
-SZ
+bB
+bB
 fz
-SZ
+bB
 OR
 fY
 jQ
@@ -32774,7 +32870,7 @@ uY
 hS
 hS
 bW
-Ui
+zj
 ZY
 ET
 jQ
@@ -33174,9 +33270,9 @@ Xa
 zc
 uj
 Ll
-wz
-Ze
-Ze
+dr
+hx
+hx
 tT
 Iu
 QP
@@ -33597,7 +33693,7 @@ jc
 dg
 Sh
 Xa
-nd
+qf
 nd
 nd
 nd
@@ -33739,7 +33835,7 @@ Xg
 Ky
 Ft
 vO
-nd
+qf
 xY
 oh
 bs
@@ -33881,7 +33977,7 @@ Ft
 Ky
 RI
 Ys
-nd
+qf
 hM
 Xh
 vL
@@ -34023,7 +34119,7 @@ ck
 Ky
 ad
 mW
-nd
+qf
 OG
 ho
 Lh
@@ -34165,7 +34261,7 @@ Ft
 Ky
 Ft
 vY
-nd
+qf
 VK
 Op
 Bv
@@ -34307,7 +34403,7 @@ jc
 Bb
 UH
 hL
-nd
+qf
 oK
 hQ
 Ss
@@ -34449,7 +34545,7 @@ sq
 sq
 sq
 Xa
-nd
+qf
 nd
 nd
 nd
