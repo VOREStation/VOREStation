@@ -89,6 +89,23 @@ var/list/whitelist = list()
 
 	return FALSE
 
+/proc/is_borg_whitelisted(mob/M, var/module)
+	//They are admin or the whitelist isn't in use
+	if(whitelist_overrides(M))
+		return 1
+
+	//You did something wrong
+	if(!M || !module)
+		return 0
+
+	//If we have a loaded file, search it
+	if(alien_whitelist)
+		for (var/s in alien_whitelist)
+			if(findtext(s,"[M.ckey] - [module]"))
+				return 1
+			if(findtext(s,"[M.ckey] - All"))
+				return 1
+
 /proc/whitelist_overrides(mob/M)
 	if(!config.usealienwhitelist)
 		return TRUE
