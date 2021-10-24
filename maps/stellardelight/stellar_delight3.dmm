@@ -79,6 +79,9 @@
 /obj/item/modular_computer/console/preset/civilian{
 	dir = 8
 	},
+/obj/machinery/alarm/angled{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/eris/dark/cargo,
 /area/shuttle/sdboat)
 "aA" = (
@@ -338,9 +341,6 @@
 "bQ" = (
 /obj/structure/cable/blue{
 	icon_state = "4-8"
-	},
-/obj/effect/landmark/start{
-	name = "Cyborg"
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
@@ -1510,6 +1510,7 @@
 	dir = 8
 	},
 /obj/item/weapon/paper/dockingcodes/aerostat,
+/obj/item/device/retail_scanner/engineering,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/chief)
 "gA" = (
@@ -1578,7 +1579,10 @@
 "gL" = (
 /obj/item/weapon/bedsheet/hosdouble,
 /obj/structure/bed/double/padded,
-/obj/structure/curtain/black,
+/obj/structure/curtain/black{
+	color = "#631915"
+	},
+/obj/effect/landmark/start/hos,
 /turf/simulated/floor/carpet,
 /area/crew_quarters/heads/hos)
 "gM" = (
@@ -2239,6 +2243,10 @@
 /obj/structure/bed/double/padded,
 /obj/item/weapon/bedsheet/hopdouble,
 /obj/structure/curtain/black,
+/obj/machinery/newscaster{
+	pixel_y = 28
+	},
+/obj/effect/landmark/start/hop,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/hop)
 "jE" = (
@@ -2276,6 +2284,9 @@
 /obj/item/modular_computer/console/preset/command,
 /obj/structure/sign/poster{
 	dir = 4
+	},
+/obj/machinery/newscaster{
+	pixel_y = 28
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/crew_quarters/heads/hor)
@@ -2501,6 +2512,7 @@
 /obj/item/clothing/glasses/omnihud,
 /obj/item/weapon/paper/dockingcodes/aerostat,
 /obj/item/weapon/paper/dockingcodes/sd,
+/obj/item/device/retail_scanner/command,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/hop)
 "kO" = (
@@ -2762,9 +2774,7 @@
 /obj/structure/cable/green{
 	icon_state = "1-2"
 	},
-/obj/effect/landmark/start{
-	name = "Bartender"
-	},
+/obj/effect/landmark/start/bartender,
 /turf/simulated/floor/lino,
 /area/stellardelight/deck3/cafe)
 "lE" = (
@@ -2996,6 +3006,7 @@
 /area/stellardelight/deck3/starboarddock)
 "mr" = (
 /obj/structure/table/bench/padded,
+/obj/effect/landmark/start/visitor,
 /turf/simulated/floor/wood,
 /area/stellardelight/deck3/cafe)
 "mv" = (
@@ -3193,6 +3204,7 @@
 "nk" = (
 /obj/machinery/light,
 /obj/structure/table/bench/padded,
+/obj/effect/landmark/start/visitor,
 /turf/simulated/floor/wood,
 /area/stellardelight/deck3/cafe)
 "nm" = (
@@ -3352,6 +3364,7 @@
 	pixel_y = 12
 	},
 /obj/item/weapon/stamp/hos,
+/obj/item/weapon/book/manual/sd_guide,
 /turf/simulated/floor/carpet,
 /area/crew_quarters/heads/hos)
 "nL" = (
@@ -3475,6 +3488,7 @@
 	name = "fancy table"
 	},
 /obj/item/weapon/stamp/rd,
+/obj/item/weapon/book/manual/sd_guide,
 /turf/simulated/floor/carpet/purcarpet,
 /area/crew_quarters/heads/hor)
 "op" = (
@@ -3536,6 +3550,12 @@
 /obj/effect/map_helper/airlock/sensor/chamber_sensor,
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/aft)
+"ov" = (
+/obj/structure/closet/crate/bin{
+	anchored = 1
+	},
+/turf/simulated/floor,
+/area/maintenance/stellardelight/deck3/forestarroomb)
 "ow" = (
 /turf/simulated/open,
 /area/stellardelight/deck2/starboard)
@@ -3586,6 +3606,9 @@
 /obj/structure/sign/poster{
 	dir = 4
 	},
+/obj/machinery/newscaster{
+	pixel_y = 28
+	},
 /turf/simulated/floor/tiled/eris/white/cargo,
 /area/crew_quarters/heads/cmo)
 "oE" = (
@@ -3630,9 +3653,6 @@
 /turf/simulated/open,
 /area/crew_quarters/bar)
 "oR" = (
-/obj/effect/landmark/start{
-	name = "AI"
-	},
 /obj/machinery/newscaster/security_unit{
 	pixel_x = -32;
 	pixel_y = 32
@@ -3656,6 +3676,7 @@
 	pixel_x = 32;
 	pixel_y = 32
 	},
+/obj/effect/landmark/start/ai,
 /turf/simulated/floor/bluegrid,
 /area/ai)
 "oS" = (
@@ -4045,6 +4066,7 @@
 /obj/effect/landmark{
 	name = "JoinLateCyborg"
 	},
+/obj/effect/landmark/start/cyborg,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai_cyborg_station)
 "qe" = (
@@ -5050,6 +5072,9 @@
 /obj/structure/sign/poster{
 	dir = 8
 	},
+/obj/machinery/newscaster/security_unit{
+	pixel_y = 28
+	},
 /turf/simulated/floor/tiled/dark,
 /area/crew_quarters/heads/hos)
 "uc" = (
@@ -5217,6 +5242,9 @@
 /area/maintenance/stellardelight/deck3/forestarroomc)
 "uQ" = (
 /obj/machinery/alarm/angled{
+	dir = 8
+	},
+/obj/machinery/computer/shuttle_control/explore/sdboat{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -5985,9 +6013,7 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 4
 	},
-/obj/effect/landmark/start{
-	name = "Internal Affairs Agent"
-	},
+/obj/effect/landmark/start/iaa,
 /turf/simulated/floor/tiled/dark,
 /area/lawoffice)
 "xN" = (
@@ -6016,9 +6042,7 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 4
 	},
-/obj/effect/landmark/start{
-	name = "Head of Security"
-	},
+/obj/effect/landmark/start/hos,
 /turf/simulated/floor/carpet,
 /area/crew_quarters/heads/hos)
 "xT" = (
@@ -6442,7 +6466,10 @@
 "zv" = (
 /obj/item/weapon/bedsheet/rddouble,
 /obj/structure/bed/double/padded,
-/obj/structure/curtain/black,
+/obj/structure/curtain/black{
+	color = "#361447"
+	},
+/obj/effect/landmark/start/rd,
 /turf/simulated/floor/carpet/purcarpet,
 /area/crew_quarters/heads/hor)
 "zw" = (
@@ -6508,6 +6535,11 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai_server_room)
+"zE" = (
+/obj/structure/table/bench/padded,
+/obj/effect/landmark/start/commandsecretary,
+/turf/simulated/floor/wood,
+/area/stellardelight/deck3/cafe)
 "zF" = (
 /obj/machinery/power/apc/angled{
 	dir = 8;
@@ -6593,6 +6625,7 @@
 	name = "JoinLateCyborg"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/landmark/start/cyborg,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai_cyborg_station)
 "zN" = (
@@ -6976,8 +7009,19 @@
 "Bl" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
-	frequency = 1381;
-	id_tag = "server_access_pump"
+	id_tag = null
+	},
+/obj/machinery/embedded_controller/radio/airlock/airlock_controller{
+	frequency = 1380;
+	id_tag = "tcommsairlock";
+	pixel_y = 24;
+	req_one_access = list(61)
+	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/effect/map_helper/airlock/sensor/chamber_sensor,
+/obj/machinery/airlock_sensor{
+	dir = 8;
+	pixel_x = 25
 	},
 /turf/simulated/floor,
 /area/tcommsat/computer)
@@ -7828,7 +7872,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
-/obj/item/weapon/paper/dockingcodes/aerostat,
 /turf/simulated/floor/tiled/dark,
 /area/crew_quarters/heads/hos)
 "Ev" = (
@@ -7896,8 +7939,8 @@
 /area/crew_quarters/heads/cmo)
 "EL" = (
 /obj/machinery/door/airlock/angled_bay/hatch{
-	frequency = 1381;
-	id_tag = "server_access_inner";
+	frequency = null;
+	id_tag = null;
 	locked = 1;
 	name = "Telecoms Server Access";
 	req_access = list(61);
@@ -7907,6 +7950,15 @@
 /obj/structure/cable/blue{
 	icon_state = "1-2"
 	},
+/obj/machinery/access_button{
+	command = "cycle_exterior";
+	dir = 1;
+	frequency = 1380;
+	master_tag = "tcommsairlock";
+	pixel_x = -32;
+	req_one_access = list(61)
+	},
+/obj/effect/map_helper/airlock/door/ext_door,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/tcommsat/chamber)
 "EM" = (
@@ -8212,9 +8264,6 @@
 /obj/structure/cable/blue{
 	icon_state = "4-8"
 	},
-/obj/effect/landmark/start{
-	name = "Cyborg"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
@@ -8312,9 +8361,7 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
-/obj/effect/landmark/start{
-	name = "Chief Medical Officer"
-	},
+/obj/effect/landmark/start/cmo,
 /turf/simulated/floor/carpet/tealcarpet,
 /area/crew_quarters/heads/cmo)
 "Gm" = (
@@ -8490,7 +8537,10 @@
 "Ha" = (
 /obj/structure/bed/double/padded,
 /obj/item/weapon/bedsheet/cedouble,
-/obj/structure/curtain/black,
+/obj/structure/curtain/black{
+	color = "#945112"
+	},
+/obj/effect/landmark/start/ce,
 /turf/simulated/floor/carpet/oracarpet,
 /area/crew_quarters/heads/chief)
 "Hc" = (
@@ -9056,6 +9106,9 @@
 /obj/structure/closet/lawcloset,
 /obj/structure/sign/poster{
 	dir = 8
+	},
+/obj/machinery/newscaster{
+	pixel_y = 28
 	},
 /turf/simulated/floor/tiled/dark,
 /area/lawoffice)
@@ -9632,6 +9685,7 @@
 /obj/machinery/camera/network/command{
 	dir = 10
 	},
+/obj/effect/landmark/start/cyborg,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai_cyborg_station)
 "Ly" = (
@@ -9900,6 +9954,7 @@
 	pixel_x = 3;
 	pixel_y = 18
 	},
+/obj/item/weapon/book/manual/sd_guide,
 /turf/simulated/floor/carpet,
 /area/crew_quarters/heads/hop)
 "Mu" = (
@@ -10018,6 +10073,8 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
+/obj/item/device/retail_scanner/security,
+/obj/item/weapon/paper/dockingcodes/aerostat,
 /turf/simulated/floor/tiled/dark,
 /area/crew_quarters/heads/hos)
 "MO" = (
@@ -10516,9 +10573,7 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
-/obj/effect/landmark/start{
-	name = "Research Director"
-	},
+/obj/effect/landmark/start/rd,
 /turf/simulated/floor/carpet/purcarpet,
 /area/crew_quarters/heads/hor)
 "Ou" = (
@@ -10578,8 +10633,8 @@
 "OC" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /obj/machinery/door/airlock/angled_bay/hatch{
-	frequency = 1381;
-	id_tag = "server_access_outer";
+	frequency = null;
+	id_tag = null;
 	locked = 1;
 	name = "Telecoms Server Access";
 	req_access = list(61);
@@ -10589,6 +10644,14 @@
 /obj/structure/cable/blue{
 	icon_state = "1-2"
 	},
+/obj/machinery/access_button{
+	command = "cycle_interior";
+	frequency = 1380;
+	master_tag = "tcommsairlock";
+	pixel_x = 32;
+	req_one_access = list(61)
+	},
+/obj/effect/map_helper/airlock/door/int_door,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/tcommsat/computer)
 "OD" = (
@@ -10659,6 +10722,9 @@
 /obj/structure/closet/lawcloset,
 /obj/structure/sign/poster{
 	dir = 4
+	},
+/obj/machinery/newscaster{
+	pixel_y = 28
 	},
 /turf/simulated/floor/tiled/dark,
 /area/lawoffice)
@@ -10922,6 +10988,7 @@
 	pixel_y = 12
 	},
 /obj/item/weapon/stamp/cmo,
+/obj/item/weapon/book/manual/sd_guide,
 /turf/simulated/floor/carpet/tealcarpet,
 /area/crew_quarters/heads/cmo)
 "PT" = (
@@ -10961,6 +11028,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
+/obj/effect/landmark/start/cyborg,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai_cyborg_station)
 "PX" = (
@@ -10992,9 +11060,7 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 4
 	},
-/obj/effect/landmark/start{
-	name = "Chief Engineer"
-	},
+/obj/effect/landmark/start/ce,
 /turf/simulated/floor/carpet/oracarpet,
 /area/crew_quarters/heads/chief)
 "Qi" = (
@@ -11510,6 +11576,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/aft)
+"Sh" = (
+/obj/structure/closet/crate/bin{
+	anchored = 1
+	},
+/turf/simulated/floor,
+/area/maintenance/stellardelight/deck3/foreportrooma)
 "Sk" = (
 /obj/structure/table/standard,
 /obj/item/weapon/phone{
@@ -11783,14 +11855,12 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
-/obj/effect/landmark/start{
-	name = "Head of Personnel"
-	},
 /obj/item/device/radio/intercom{
 	dir = 1;
 	name = "Station Intercom (General)";
 	pixel_y = 24
 	},
+/obj/effect/landmark/start/hop,
 /turf/simulated/floor/carpet,
 /area/crew_quarters/heads/hop)
 "Tm" = (
@@ -12016,6 +12086,7 @@
 "Ud" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/stamp/ce,
+/obj/item/weapon/book/manual/sd_guide,
 /turf/simulated/floor/carpet/oracarpet,
 /area/crew_quarters/heads/chief)
 "Ue" = (
@@ -12390,7 +12461,10 @@
 "VB" = (
 /obj/item/weapon/bedsheet/double,
 /obj/structure/bed/double/padded,
-/obj/structure/curtain/black,
+/obj/structure/curtain/black{
+	color = "#156363"
+	},
+/obj/effect/landmark/start/cmo,
 /turf/simulated/floor/carpet/tealcarpet,
 /area/crew_quarters/heads/cmo)
 "VC" = (
@@ -12737,9 +12811,7 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
-/obj/effect/landmark/start{
-	name = "Internal Affairs Agent"
-	},
+/obj/effect/landmark/start/iaa,
 /turf/simulated/floor/tiled/dark,
 /area/lawoffice)
 "WX" = (
@@ -12774,6 +12846,7 @@
 	dir = 8
 	},
 /obj/item/weapon/paper/dockingcodes/aerostat,
+/obj/item/device/retail_scanner/medical,
 /turf/simulated/floor/tiled/eris/white/cargo,
 /area/crew_quarters/heads/cmo)
 "Xb" = (
@@ -13214,6 +13287,7 @@
 	dir = 8
 	},
 /obj/item/weapon/paper/dockingcodes/aerostat,
+/obj/item/device/retail_scanner/science,
 /turf/simulated/floor/tiled/techfloor,
 /area/crew_quarters/heads/hor)
 "YD" = (
@@ -13238,6 +13312,9 @@
 /obj/item/modular_computer/console/preset/command,
 /obj/structure/sign/poster{
 	dir = 8
+	},
+/obj/machinery/newscaster{
+	pixel_y = 28
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/chief)
@@ -13309,6 +13386,13 @@
 /obj/structure/lattice,
 /turf/simulated/open,
 /area/crew_quarters/bar)
+"Zd" = (
+/obj/structure/bed/chair/shuttle{
+	dir = 4
+	},
+/obj/machinery/alarm/angled,
+/turf/simulated/floor/tiled/eris/dark/cargo,
+/area/shuttle/sdboat)
 "Ze" = (
 /turf/simulated/floor/bluegrid{
 	name = "Mainframe Base";
@@ -20185,7 +20269,7 @@ WK
 eJ
 eJ
 eJ
-Qq
+Zd
 Qq
 Wn
 BW
@@ -21812,7 +21896,7 @@ Jh
 Jh
 SK
 SR
-il
+Sh
 Zn
 zQ
 DM
@@ -22559,7 +22643,7 @@ Bt
 xZ
 mr
 gk
-mr
+zE
 Oz
 nx
 mg
@@ -22983,7 +23067,7 @@ eU
 Lw
 Xi
 xZ
-mr
+zE
 WD
 nk
 nW
@@ -25805,7 +25889,7 @@ lA
 Ef
 FE
 FE
-FE
+ov
 dx
 Du
 Xb

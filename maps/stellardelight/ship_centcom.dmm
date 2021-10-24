@@ -3084,6 +3084,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/centcom/main_hall)
+"kR" = (
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/centcom/medical)
 "kS" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/blue/border,
@@ -3871,6 +3877,7 @@
 	dir = 1
 	},
 /obj/machinery/camera/network/crescent,
+/obj/item/weapon/reagent_containers/glass/beaker/large,
 /obj/item/weapon/reagent_containers/glass/beaker/large,
 /turf/simulated/floor/tiled/white,
 /area/centcom/medical)
@@ -5678,6 +5685,15 @@
 	},
 /turf/simulated/floor/wood,
 /area/centcom/restaurant)
+"yR" = (
+/obj/machinery/sleeper{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner_steel_grid{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/white,
+/area/centcom/medical)
 "yT" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 1
@@ -8375,6 +8391,13 @@
 /turf/simulated/floor/tiled/white,
 /area/centcom/medical)
 "IU" = (
+/obj/effect/floor_decal/steeldecal/steel_decals10,
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/centcom/medical)
+"IV" = (
 /obj/machinery/bodyscanner{
 	dir = 8
 	},
@@ -8383,16 +8406,10 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/centcom/medical)
-"IV" = (
+"IW" = (
 /obj/machinery/body_scanconsole,
 /obj/effect/floor_decal/corner_steel_grid{
 	dir = 10
-	},
-/turf/simulated/floor/tiled/white,
-/area/centcom/medical)
-"IW" = (
-/obj/effect/floor_decal/steeldecal/steel_decals10{
-	dir = 8
 	},
 /turf/simulated/floor/tiled/white,
 /area/centcom/medical)
@@ -14045,8 +14062,12 @@
 /turf/simulated/floor/tiled,
 /area/centcom/bathroom)
 "WO" = (
-/obj/structure/table/glass,
-/obj/item/weapon/reagent_containers/glass/beaker/large,
+/obj/machinery/sleep_console{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner_steel_grid{
+	dir = 10
+	},
 /turf/simulated/floor/tiled/white,
 /area/centcom/medical)
 "WP" = (
@@ -22500,8 +22521,8 @@ wj
 MS
 MS
 MS
-Yf
-Cj
+Cv
+YF
 Cj
 Cj
 Cj
@@ -22784,8 +22805,8 @@ wj
 MS
 MS
 MS
-Cv
-YF
+Yf
+Cj
 Cj
 Cj
 Cj
@@ -23210,8 +23231,8 @@ wj
 MS
 MS
 MS
-Cv
-YF
+Yf
+Cj
 Cj
 Cj
 Cj
@@ -23494,8 +23515,8 @@ wj
 MS
 MS
 MS
-Yf
-Cj
+Cv
+YF
 Cj
 Cj
 Cj
@@ -24457,8 +24478,8 @@ Gj
 aw
 kP
 QT
-WO
 QT
+qc
 QT
 KJ
 aw
@@ -24600,7 +24621,7 @@ EV
 QT
 QT
 QT
-QT
+WO
 QT
 KL
 WI
@@ -24742,8 +24763,8 @@ aw
 Hs
 KP
 QT
-qc
-EL
+yR
+QT
 KR
 WI
 LN
@@ -24885,7 +24906,7 @@ op
 Wt
 QT
 IU
-KP
+QT
 QT
 Ly
 QT
@@ -25027,7 +25048,7 @@ oq
 KP
 QT
 IV
-KP
+QT
 QT
 QT
 QT
@@ -25169,7 +25190,7 @@ Wf
 KP
 QT
 IW
-IT
+QT
 WD
 aw
 sb
@@ -25310,7 +25331,7 @@ aw
 Hw
 KP
 QT
-QT
+kR
 QT
 Ec
 aw

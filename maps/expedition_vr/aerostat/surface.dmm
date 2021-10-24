@@ -456,7 +456,9 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/grass/heavy,
+/turf/simulated/floor/outdoors/grass/heavy{
+	outdoors = 0
+	},
 /area/offmap/aerostat/surface/outpost/park)
 "oK" = (
 /obj/structure/table/bench/wooden,
@@ -467,7 +469,9 @@
 /obj/structure/cable/cyan{
 	icon_state = "0-2"
 	},
-/turf/simulated/floor/outdoors/grass/heavy,
+/turf/simulated/floor/outdoors/grass/heavy{
+	outdoors = 0
+	},
 /area/offmap/aerostat/surface/outpost/park)
 "oW" = (
 /obj/machinery/atmospherics/pipe/simple/visible/universal{
@@ -492,7 +496,9 @@
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
 /area/offmap/aerostat/surface/outpost/hallway)
 "pD" = (
-/turf/simulated/floor/outdoors/grass/heavy,
+/turf/simulated/floor/outdoors/grass/heavy{
+	outdoors = 0
+	},
 /area/offmap/aerostat/surface/outpost/park)
 "pK" = (
 /turf/simulated/floor/tiled/eris/bcircuit,
@@ -542,6 +548,7 @@
 /obj/effect/map_helper/airlock/sensor/chamber_sensor,
 /obj/machinery/embedded_controller/radio/airlock/airlock_controller{
 	cycle_to_external_air = 1;
+	frequency = 1380;
 	id_tag = "v2outpost_airlock";
 	pixel_y = 25
 	},
@@ -1071,6 +1078,9 @@
 	id = "v2outpost";
 	pixel_y = 27
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/aux{
+	dir = 4
+	},
 /turf/simulated/floor/hull/virgo2,
 /area/offmap/aerostat/surface/outpost/airlock)
 "FO" = (
@@ -1205,7 +1215,9 @@
 /area/offmap/aerostat/surface/outpost/cafe)
 "Js" = (
 /obj/structure/table/bench/wooden,
-/turf/simulated/floor/outdoors/grass/heavy,
+/turf/simulated/floor/outdoors/grass/heavy{
+	outdoors = 0
+	},
 /area/offmap/aerostat/surface/outpost/park)
 "JS" = (
 /obj/structure/cable/cyan{
@@ -1267,6 +1279,14 @@
 /area/offmap/aerostat/surface/outpost/powerroom)
 "Lz" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/aux,
+/obj/machinery/access_button{
+	command = "cycle_exterior";
+	dir = 4;
+	frequency = 1380;
+	master_tag = "v2outpost_airlock";
+	name = "exterior access button";
+	pixel_x = -24
+	},
 /turf/simulated/floor/hull/virgo2,
 /area/offmap/aerostat/surface/outpost/airlock)
 "LA" = (
@@ -1343,8 +1363,8 @@
 	id = "v2outpost";
 	pixel_y = 27
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/aux{
-	dir = 10
+/obj/machinery/atmospherics/pipe/manifold/hidden/aux{
+	dir = 1
 	},
 /turf/simulated/floor/hull/virgo2,
 /area/offmap/aerostat/surface/outpost/airlock)
@@ -1444,12 +1464,18 @@
 /obj/machinery/alarm/alarms_hidden{
 	pixel_y = 28
 	},
-/turf/simulated/floor/outdoors/grass/heavy,
+/turf/simulated/floor/outdoors/grass/heavy{
+	outdoors = 0
+	},
 /area/offmap/aerostat/surface/outpost/park)
 "PE" = (
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/atmospherics/unary/vent_pump/high_volume/aux{
+	dir = 8
+	},
+/obj/effect/map_helper/airlock/atmos/pump_out_external,
 /turf/simulated/floor/hull/virgo2,
 /area/offmap/aerostat/surface/outpost/airlock)
 "PH" = (
@@ -1478,6 +1504,18 @@
 "QJ" = (
 /turf/simulated/wall/r_wall,
 /area/offmap/aerostat/surface/outpost/backroom)
+"QZ" = (
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/machinery/access_button{
+	command = "cycle_interior";
+	dir = 8;
+	frequency = 1380;
+	master_tag = "v2outpost_airlock";
+	name = "interior access button";
+	pixel_x = 24
+	},
+/turf/simulated/floor/tiled/eris/steel,
+/area/offmap/aerostat/surface/outpost/hallway)
 "Ra" = (
 /obj/structure/table/woodentable,
 /turf/simulated/floor/tiled/eris/dark,
@@ -5324,7 +5362,7 @@ cB
 LL
 jj
 dE
-bT
+QZ
 bc
 eD
 gq
@@ -6318,7 +6356,7 @@ ZQ
 ZQ
 ZQ
 rS
-Rw
+Lq
 Rw
 Rw
 Bs

@@ -251,6 +251,8 @@ VIRGO2_TURF_CREATE(/turf/simulated/floor/hull)
 /area/offmap/aerostat/inside/xenoarch
 	name = "Xenoarchaeolegy Lab"
 	icon_state = "yelwhisqu"
+/area/offmap/aerostat/inside/xenoarch/chamber
+	name = "Xenoarchaeolegy Vent Chamber"
 
 /area/offmap/aerostat/inside/genetics
 	name = "Genetics Lab"
@@ -286,6 +288,28 @@ VIRGO2_TURF_CREATE(/turf/simulated/floor/hull)
 	icon_state = "orablacir"
 /area/offmap/aerostat/inside/easthall
 	name = "East Hall"
+	icon_state = "orablacir"
+
+/area/offmap/aerostat/inside/northchamb
+	name = "North Chamber"
+	icon_state = "orablacir"
+/area/offmap/aerostat/inside/southchamb
+	name = "South Chamber"
+	icon_state = "orablacir"
+
+/area/offmap/aerostat/inside/drillstorage
+	name = "Drill Storage"
+	icon_state = "orablacir"
+
+/area/offmap/aerostat/inside/zorrenoffice
+	name = "Zorren Reception"
+	icon_state = "orablacir"
+
+/area/offmap/aerostat/inside/lobby
+	name = "Lobby"
+	icon_state = "orablacir"
+/area/offmap/aerostat/inside/misclab
+	name = "Miscellaneous Lab"
 	icon_state = "orablacir"
 
 /area/offmap/aerostat/inside/airlock
