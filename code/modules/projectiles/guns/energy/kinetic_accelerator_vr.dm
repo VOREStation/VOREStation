@@ -1,4 +1,6 @@
 #define LAVALAND_EQUIPMENT_EFFECT_PRESSURE 50 //what pressure you have to be under to increase the effect of equipment meant for lavaland
+#define HEATMODE_ATMOSPHERE		312.1 //kPa. basically virgo 2's
+#define HEATMODE_TEMP			612 //kelvin. basically virgo 2's
 /**
  * This is here for now
  */
@@ -13,6 +15,19 @@
 	if(pressure > LAVALAND_EQUIPMENT_EFFECT_PRESSURE)
 		. = FALSE
 	if(environment.temperature < (T20C - 30))
+		. = TRUE
+
+/proc/virgotwo_environment_check(turf/simulated/T)
+	. = TRUE
+	if(!istype(T))
+		return
+	var/datum/gas_mixture/environment = T.return_air()
+	if(!istype(environment))
+		return
+	var/pressure = environment.return_pressure()
+	if(pressure < HEATMODE_ATMOSPHERE - 20)
+		. = FALSE
+	if(environment.temperature > HEATMODE_TEMP - 30)
 		. = TRUE
 
 /obj/item/weapon/gun/energy/kinetic_accelerator
@@ -204,6 +219,9 @@
 	if(overheat || (power_supply.charge == 0))
 		add_overlay(emptystate)
 
+#define KA_ENVIRO_TYPE_COLD 0
+#define KA_ENVIRO_TYPE_HOT 1
+
 //Projectiles
 /obj/item/projectile/kinetic
 	name = "kinetic force"
@@ -216,6 +234,7 @@
 
 	var/pressure_decrease_active = FALSE
 	var/pressure_decrease = 1/3
+	var/environment = KA_ENVIRO_TYPE_COLD
 	var/obj/item/weapon/gun/energy/kinetic_accelerator/kinetic_gun
 
 /obj/item/projectile/kinetic/premium
@@ -232,17 +251,31 @@
 		var/list/mods = kinetic_gun.get_modkits()
 		for(var/obj/item/borg/upgrade/modkit/M in mods)
 			M.projectile_prehit(src, target, kinetic_gun)
-	if(!pressure_decrease_active && !lavaland_environment_check(get_turf(src)))
-		name = "weakened [name]"
-		damage = damage * pressure_decrease
-		pressure_decrease_active = TRUE
+	if(!pressure_decrease_active)
+		if(environment == KA_ENVIRO_TYPE_COLD)
+			if(!lavaland_environment_check(get_turf(src)))
+				name = "weakened [name]"
+				damage = damage * pressure_decrease
+				pressure_decrease_active = TRUE
+		else if(environment == KA_ENVIRO_TYPE_HOT)
+			if(!virgotwo_environment_check(get_turf(src)))
+				name = "weakened [name]"
+				damage = damage * pressure_decrease
+				pressure_decrease_active = TRUE
 	return ..()
 
 /obj/item/projectile/kinetic/attack_mob(mob/living/target_mob, distance, miss_modifier)
-	if(!pressure_decrease_active && !lavaland_environment_check(get_turf(src)))
-		name = "weakened [name]"
-		damage = damage * pressure_decrease
-		pressure_decrease_active = TRUE
+	if(!pressure_decrease_active)
+		if(environment == KA_ENVIRO_TYPE_COLD)
+			if(!lavaland_environment_check(get_turf(src)))
+				name = "weakened [name]"
+				damage = damage * pressure_decrease
+				pressure_decrease_active = TRUE
+		else if(environment == KA_ENVIRO_TYPE_HOT)
+			if(!virgotwo_environment_check(get_turf(src)))
+				name = "weakened [name]"
+				damage = damage * pressure_decrease
+				pressure_decrease_active = TRUE
 	return ..()
 
 /obj/item/projectile/kinetic/on_range()
@@ -258,10 +291,17 @@
 	strike_thing(A)
 
 /obj/item/projectile/kinetic/proc/strike_thing(atom/target)
-	if(!pressure_decrease_active && !lavaland_environment_check(get_turf(src)))
-		name = "weakened [name]"
-		damage = damage * pressure_decrease
-		pressure_decrease_active = TRUE
+	if(!pressure_decrease_active)
+		if(environment == KA_ENVIRO_TYPE_COLD)
+			if(!lavaland_environment_check(get_turf(src)))
+				name = "weakened [name]"
+				damage = damage * pressure_decrease
+				pressure_decrease_active = TRUE
+		else if(environment == KA_ENVIRO_TYPE_HOT)
+			if(!virgotwo_environment_check(get_turf(src)))
+				name = "weakened [name]"
+				damage = damage * pressure_decrease
+				pressure_decrease_active = TRUE
 	var/turf/target_turf = get_turf(target)
 	if(!target_turf)
 		target_turf = get_turf(src)
@@ -578,7 +618,7 @@
 //Indoors
 /obj/item/borg/upgrade/modkit/indoors
 	name = "decrease pressure penalty"
-	desc = "A syndicate modification kit that increases the damage a kinetic accelerator does in high pressure environments."
+	desc = "A remarkably illegal modification kit that increases the damage a kinetic accelerator does in pressurized environments."
 	modifier = 2
 	denied_type = /obj/item/borg/upgrade/modkit/indoors
 	maximum_of_type = 2
@@ -587,6 +627,17 @@
 /obj/item/borg/upgrade/modkit/indoors/modify_projectile(obj/item/projectile/kinetic/K)
 	K.pressure_decrease *= modifier
 
+// Atmospheric
+/obj/item/borg/upgrade/modkit/heater
+	name = "temperature modulator"
+	desc = "A remarkably unusual modification kit that makes kinetic accelerators more usable in hot, overpressurized environments, \
+	in exchange for making them weak elsewhere, like the cold or in space."
+	denied_type = /obj/item/borg/upgrade/modkit/indoors
+	maximum_of_type = 1
+	cost = 30
+
+/obj/item/borg/upgrade/modkit/heater/modify_projectile(obj/item/projectile/kinetic/K)
+	K.environment = KA_ENVIRO_TYPE_HOT
 
 //Trigger Guard
 
