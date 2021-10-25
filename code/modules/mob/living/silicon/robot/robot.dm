@@ -282,8 +282,6 @@
 		return
 	if(!(modtype in robot_modules))
 		return
-	if(!is_borg_whitelisted(src, modtype))
-		return
 
 	var/module_type = robot_modules[modtype]
 	transform_with_anim()	//VOREStation edit: sprite animation
