@@ -97,11 +97,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/prison/cell_block)
-"al" = (
-/obj/structure/table/glass,
-/obj/machinery/reagentgrinder,
-/turf/simulated/floor/tiled/eris,
-/area/rnd/xenobiology/xenoflora)
 "am" = (
 /obj/machinery/door/firedoor/glass/hidden/steel{
 	dir = 2
@@ -460,7 +455,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
-/obj/machinery/botany/extractor,
+/obj/machinery/botany/editor,
 /turf/simulated/floor/tiled/eris,
 /area/rnd/xenobiology/xenoflora)
 "bc" = (
@@ -5603,10 +5598,11 @@
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/stellardelight/deck1/shuttlebay)
 "lW" = (
-/obj/machinery/chem_master,
 /obj/machinery/camera/network/research{
 	dir = 1
 	},
+/obj/structure/table/glass,
+/obj/machinery/chemical_dispenser/xenoflora/full,
 /turf/simulated/floor/tiled/eris,
 /area/rnd/xenobiology/xenoflora)
 "lX" = (
@@ -6236,7 +6232,7 @@
 /area/security/tactical)
 "nj" = (
 /obj/structure/table/sifwooden_reinforced,
-/mob/living/simple_mob/animal/passive/bird/azure_tit/berdly,
+/mob/living/simple_mob/animal/passive/bird/azure_tit/iceman,
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/stellardelight/deck1/pilot)
 "nk" = (
@@ -8025,8 +8021,8 @@
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/stellardelight/deck1/pilot)
 "rj" = (
-/obj/machinery/seed_storage/xenobotany,
 /obj/machinery/camera/network/research,
+/obj/machinery/vending/hydronutrients,
 /turf/simulated/floor/tiled/eris,
 /area/rnd/xenobiology/xenoflora)
 "rk" = (
@@ -9735,8 +9731,8 @@
 /turf/simulated/floor/tiled/monotile,
 /area/rnd/research)
 "uT" = (
-/obj/structure/bed/chair/office/light,
-/obj/effect/landmark/start/xenobot,
+/obj/structure/table/glass,
+/obj/machinery/reagentgrinder,
 /turf/simulated/floor/tiled/eris,
 /area/rnd/xenobiology/xenoflora)
 "uU" = (
@@ -10518,8 +10514,8 @@
 /turf/simulated/wall/bay/r_wall/steel,
 /area/maintenance/stellardelight/deck1/starboardfore)
 "wI" = (
-/obj/machinery/vending/hydronutrients,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/machinery/seed_storage/xenobotany,
 /turf/simulated/floor/tiled/eris,
 /area/rnd/xenobiology/xenoflora)
 "wJ" = (
@@ -12325,10 +12321,6 @@
 /obj/machinery/light/small,
 /turf/simulated/floor/carpet/purcarpet,
 /area/stellardelight/deck1/dorms/dorm2)
-"AA" = (
-/obj/structure/reagent_dispensers/watertank,
-/turf/simulated/floor/tiled/eris,
-/area/rnd/xenobiology/xenoflora)
 "AB" = (
 /obj/structure/cable/green{
 	icon_state = "2-8"
@@ -13612,9 +13604,6 @@
 	dir = 8;
 	id = "bodieshitthefloor"
 	},
-/obj/structure/fans/tiny{
-	alpha = 0
-	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/chapel/chapel_morgue)
 "Di" = (
@@ -13805,7 +13794,8 @@
 /turf/simulated/floor,
 /area/prison/cell_block/C)
 "DG" = (
-/obj/machinery/botany/editor,
+/obj/structure/bed/chair/office/light,
+/obj/effect/landmark/start/xenobot,
 /turf/simulated/floor/tiled/eris,
 /area/rnd/xenobiology/xenoflora)
 "DH" = (
@@ -14368,10 +14358,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/chapel/main)
-"EZ" = (
-/obj/machinery/botany/extractor,
-/turf/simulated/floor/tiled/eris,
-/area/rnd/xenobiology/xenoflora)
 "Fa" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 10
@@ -16425,7 +16411,7 @@
 /area/stellardelight/deck1/port)
 "Jw" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/botany/editor,
+/obj/structure/reagent_dispensers/watertank,
 /turf/simulated/floor/tiled/eris,
 /area/rnd/xenobiology/xenoflora)
 "Jx" = (
@@ -17299,7 +17285,6 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/exploration)
 "Lz" = (
-/obj/structure/table/glass,
 /obj/structure/closet/walllocker_double/east{
 	dir = 8;
 	pixel_x = -32
@@ -18591,7 +18576,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/security_cell_hallway)
 "Oo" = (
-/obj/machinery/chem_master,
+/obj/machinery/botany/extractor,
 /turf/simulated/floor/tiled/eris,
 /area/rnd/xenobiology/xenoflora)
 "Op" = (
@@ -19103,8 +19088,7 @@
 /turf/simulated/floor,
 /area/stellardelight/deck1/dorms/dorm4)
 "PB" = (
-/obj/structure/table/glass,
-/obj/machinery/chemical_dispenser/xenoflora/full,
+/obj/machinery/chem_master,
 /turf/simulated/floor/tiled/eris,
 /area/rnd/xenobiology/xenoflora)
 "PC" = (
@@ -20168,7 +20152,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
-/obj/structure/table/glass,
+/obj/machinery/botany/editor,
 /turf/simulated/floor/tiled/eris,
 /area/rnd/xenobiology/xenoflora)
 "RS" = (
@@ -22251,6 +22235,10 @@
 	},
 /turf/simulated/floor/airless,
 /area/stellardelight/deck1/exterior)
+"Wc" = (
+/obj/machinery/smartfridge/produce,
+/turf/simulated/wall/bay/r_wall/purple,
+/area/rnd/xenobiology/xenoflora_storage)
 "Wd" = (
 /obj/machinery/power/apc/angled{
 	dir = 1
@@ -36577,7 +36565,7 @@ ox
 cT
 NV
 sj
-AA
+Oo
 iV
 uq
 vF
@@ -36719,7 +36707,7 @@ pj
 Qy
 wB
 DG
-EZ
+PB
 iV
 bD
 vF
@@ -37002,7 +36990,7 @@ KN
 Yw
 FA
 IR
-al
+DG
 PB
 iV
 bD
@@ -37144,7 +37132,7 @@ XT
 XT
 XT
 kC
-uT
+sj
 Oo
 iV
 uq
@@ -37428,7 +37416,7 @@ Ry
 DH
 DH
 MR
-DH
+Wc
 DH
 pQ
 RF

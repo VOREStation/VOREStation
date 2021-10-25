@@ -15,6 +15,11 @@
 	known = TRUE
 	icon_state = "chlorine"
 
+/obj/effect/overmap/visitable/sector/virgo2/Initialize()
+	for(var/obj/effect/overmap/visitable/ship/stellar_delight/sd in world)
+		docking_codes = sd.docking_codes
+	. = ..()
+
 // -- Datums -- //
 
 /datum/shuttle/autodock/ferry/aerostat
@@ -338,7 +343,3 @@ VIRGO2_TURF_CREATE(/turf/simulated/floor/hull)
 	icon_state = "crew_quarters"
 	base_turf = /turf/unsimulated/floor/sky/virgo2_sky
 	dynamic_lighting = FALSE
-
-/obj/item/weapon/paper/dockingcodes/aerostat
-	name = "Aerostat Docking Codes"
-	codes_from_z = Z_LEVEL_AEROSTAT

@@ -10,7 +10,7 @@
 	#include "tether_telecomms.dm"
 	#include "tether_jobs.dm"
 	#include "../offmap_vr/common_offmaps.dm"
-	#include "../expedition_vr/aerostat/aerostat.dm"
+	#include "../expedition_vr/aerostat/_aerostat.dm"
 
 
 	#if !AWAY_MISSION_TEST //Don't include these for just testing away missions

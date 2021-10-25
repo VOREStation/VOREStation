@@ -1,5 +1,5 @@
 #include "../../submaps/pois_vr/aerostat/virgo2.dm"
-#include "../expedition_vr/aerostat/aerostat.dmm"
+#include "aerostat.dmm"
 
 
 /obj/effect/overmap/visitable/sector/virgo2

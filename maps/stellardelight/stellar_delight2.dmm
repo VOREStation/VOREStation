@@ -4791,7 +4791,6 @@
 /obj/structure/closet/secure_closet/captains,
 /obj/item/clothing/glasses/omnihud/all,
 /obj/item/weapon/disk/nuclear,
-/obj/item/weapon/paper/dockingcodes/aerostat,
 /obj/item/weapon/paper/dockingcodes/sd,
 /obj/item/device/retail_scanner/command,
 /turf/simulated/floor/wood,
@@ -13645,7 +13644,6 @@
 	pixel_x = 32;
 	pixel_y = 0
 	},
-/obj/item/weapon/paper/dockingcodes/aerostat,
 /obj/item/weapon/paper/dockingcodes,
 /turf/simulated/floor/tiled/eris/dark/monofloor,
 /area/bridge)

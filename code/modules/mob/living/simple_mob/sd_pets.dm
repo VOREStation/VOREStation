@@ -47,9 +47,9 @@
 	devourable = 0
 	digestable = 0
 
-/mob/living/simple_mob/animal/passive/bird/azure_tit/berdly
-	name = "Berdly"
-	desc = "Despite its plain appearance this bird gives off an air of superiority."
+/mob/living/simple_mob/animal/passive/bird/azure_tit/iceman
+	name = "Iceman"
+	desc = "You wanna know who the best is? That's him. Iceman. Ice cold, no mistakes."
 	devourable = 0
 	digestable = 0
 
@@ -65,17 +65,27 @@
 	devourable = 0
 	digestable = 0
 
+/datum/category_item/catalogue/fauna/otie/cocoa		//Only different so that explo doesn't get tons of points for scanning normal pets
+	name = "Creature - Otie"
+	desc = "A bioengineered longdog, the otie is very long, and very cute, depending on if you like dogs, \
+	especially long ones. They are black-and-grey furred, typically, and tanky, hard to kill. \
+	They seem hostile at first, but are also tame-able if you can approach one. Nipnipnip-ACK \
+	**the catalogue entry ends here.**"
+	value = CATALOGUER_REWARD_TRIVIAL
+
+
 /mob/living/simple_mob/otie/red/chubby/cocoa
 	name = "Cocoa"
 	desc = "A good boi, eats the scraps when you're not looking."
 	devourable = 0
 	digestable = 0
 	faction = "bar"
-	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive/otie/barpet
+	mob_bump_flag = 32
+	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive/otie/cocoa
+	catalogue_data = list(/datum/category_item/catalogue/fauna/otie/cocoa)
+	
 
-
-/datum/ai_holder/simple_mob/melee/evasive/otie/barpet
+/datum/ai_holder/simple_mob/melee/evasive/otie/cocoa
 	hostile = 0
 	retaliate = 0
 	violent_breakthrough = 0
-	

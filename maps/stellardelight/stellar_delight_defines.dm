@@ -46,7 +46,7 @@
 	zlevel_datum_type = /datum/map_z_level/stellar_delight
 
 	lobby_icon = 'icons/misc/title_vr.dmi'
-	lobby_screens = list("tether2_night")
+	lobby_screens = list("youcanttaketheskyfromme")
 	id_hud_icons = 'icons/mob/hud_jobs_vr.dmi'
 
 	accessible_z_levels = list(
@@ -72,8 +72,8 @@
 	starsys_name  = "Virgo-Erigone"
 
 	shuttle_docked_message = "The scheduled shuttle to the %dock_name% has arrived. It will depart in approximately %ETD%."
-	shuttle_leaving_dock = "The shuttle has left the station. Estimate %ETA% until arrival at %dock_name%."
-	shuttle_called_message = "A scheduled crew transfer to the %dock_name% is occuring. The shuttle will be arriving shortly. Those departing should proceed to deck three, aft within %ETA%."
+	shuttle_leaving_dock = "The shuttle has departed. Estimate %ETA% until arrival at %dock_name%."
+	shuttle_called_message = "A scheduled crew transfer to the %dock_name% is occuring. The shuttle will arrive shortly. Those departing should proceed to deck three, aft within %ETA%."
 	shuttle_recall_message = "The scheduled crew transfer has been cancelled."
 	shuttle_name = "Evacuation Shuttle"
 	emergency_shuttle_docked_message = "The evacuation shuttle has arrived. You have approximately %ETD% to board the shuttle."
@@ -177,7 +177,7 @@
 
 /datum/map/stellar_delight/get_map_info()
 	. = list()
-	. +=  "The [full_name] is an ancient ruin turned workplace in the Virgo-Erigone System, deep in the midst of the Coreward Periphery.<br>"
+	. +=  "The [full_name] is a recently commissioned multi-role starship assigned to patrol the Virgo-Erigone system. Its mission is flexible, being a response vessel, the [station_short] is assigned to respond to emergencies in the system, and to investigate anomalous activities where a more specialized vessel is unavailable.<br>"
 	. +=  "Humanity has spread across the stars and has met many species on similar or even more advanced terms than them - it's a brave new world and many try to find their place in it . <br>"
 	. +=  "Though Virgo-Erigone is not important for the great movers and shakers, it sees itself in the midst of the interests of a reviving alien species of the Zorren, corporate and subversive interests and other exciting dangers the Periphery has to face.<br>"
 	. +=  "As an employee or contractor of NanoTrasen, operators of the Adephagia and one of the galaxy's largest corporations, you're probably just here to do a job."
@@ -221,7 +221,7 @@
 	icon_state = "stellar_delight_g"
 	desc = "Spacefaring vessel. Friendly IFF detected."
 	scanner_desc = @{"[i]Registration[/i]: NRV Stellar Delight
-[i]Class[/i]: Nanotrasen Response Frigate
+[i]Class[/i]: Nanotrasen Response Vessel
 [i]Transponder[/i]: Transmitting (CIV), non-hostile"
 [b]Notice[/b]: A response vessel registered to Nanotrasen."}
 	vessel_mass = 25000
@@ -443,7 +443,7 @@
 /////STARSTUFF/////
 // The shuttle's 'shuttle' computer
 /obj/machinery/computer/shuttle_control/explore/sdboat
-	name = "Star Stuff control console"
+	name = "Starstuff control console"
 	shuttle_tag = "Starstuff"
 	req_one_access = list(access_pilot)
 
@@ -468,15 +468,66 @@
 	name = "Starstuff"
 	current_location = "port_shuttlepad"
 	docking_controller_tag = "sd_bittyshuttle" 
-	shuttle_area = /area/shuttle/sdboat
+	shuttle_area = list(/area/shuttle/sdboat,/area/shuttle/sdboat/aft)
 	fuel_consumption = 2
 	defer_initialisation = TRUE
 
 /area/shuttle/sdboat
 	icon = 'icons/turf/areas_vr.dmi'
 	icon_state = "yelwhitri"
-	name = "Starstuff"
+	name = "Starstuff Cockpit"
 	requires_power = 1
+
+/area/shuttle/sdboat/aft
+	icon = 'icons/turf/areas_vr.dmi'
+	icon_state = "yelwhitri"
+	name = "Starstuff Crew Compartment"
+	requires_power = 1
+
+/////Virgo Flyer/////
+// The shuttle's 'shuttle' computer
+/obj/machinery/computer/shuttle_control/explore/ccboat
+	name = "Virgo Flyer control console"
+	shuttle_tag = "Virgo Flyer"
+	req_one_access = list(access_pilot)
+
+/obj/effect/overmap/visitable/ship/landable/ccboat
+	name = "NTV Virgo Flyer"
+	desc = "A small shuttle from Central Command."
+	vessel_mass = 1000
+	vessel_size = SHIP_SIZE_TINY
+	shuttle = "Virgo Flyer"
+	known = TRUE
+
+// A shuttle lateloader landmark
+/obj/effect/shuttle_landmark/shuttle_initializer/ccboat
+	name = "Central Command Shuttlepad"
+	base_area = /area/shuttle/centcom/ccbay
+	base_turf = /turf/simulated/floor/reinforced
+	landmark_tag = "cc_shuttlepad"
+	docking_controller = "cc_landing_pad"
+	shuttle_type = /datum/shuttle/autodock/overmap/ccboat
+
+/datum/shuttle/autodock/overmap/ccboat
+	name = "Virgo Flyer"
+	current_location = "cc_shuttlepad"
+	docking_controller_tag = "ccboat" 
+	shuttle_area = /area/shuttle/ccboat
+	fuel_consumption = 0
+	defer_initialisation = TRUE
+
+/area/shuttle/ccboat
+	icon = 'icons/turf/areas_vr.dmi'
+	icon_state = "yelwhitri"
+	name = "Virgo Flyer"
+	requires_power = 0
+
+/area/shuttle/centcom/ccbay
+	icon = 'icons/turf/areas_vr.dmi'
+	icon_state = "bluwhisqu"
+	name = "Central Command Shuttle Bay"
+	requires_power = 0
+	dynamic_lighting = 0
 
 /////LANDING LANDMARKS/////
 /obj/effect/shuttle_landmark/premade/sd/deck1/portairlock
@@ -516,175 +567,6 @@
 	name = "Stellar Delight Docking Codes"
 	codes_from_z = Z_LEVEL_SHIP_LOW
 
-
-///////////////////////////////////////////////////////////
-/////Misc stuff from the tether that's likely to get used in one way or another!/////`
-
-// Tram departure cryo doors that turn into ordinary airlock doors at round end
-/obj/machinery/cryopod/robot/door/tram
-	name = "\improper Tram Station"
-	icon = 'icons/obj/doors/Doorextglass.dmi'
-	icon_state = "door_closed"
-	can_atmos_pass = ATMOS_PASS_NO
-	base_icon_state = "door_closed"
-	occupied_icon_state = "door_locked"
-	desc = "The tram station you might've came in from.  You could leave the base easily using this."
-	on_store_message = "has departed on the tram."
-	on_store_name = "Travel Oversight"
-	on_enter_occupant_message = "The tram arrives at the platform; you step inside and take a seat."
-	on_store_visible_message_1 = "'s speakers chime, anouncing a tram has arrived to take"
-	on_store_visible_message_2 = "to the colony"
-	time_till_despawn = 10 SECONDS
-	spawnpoint_type = /datum/spawnpoint/tram
-/obj/machinery/cryopod/robot/door/tram/process()
-	if(emergency_shuttle.online() || emergency_shuttle.returned())
-		// Transform into a door!  But first despawn anyone inside
-		time_till_despawn = 0
-		..()
-		var/turf/T = get_turf(src)
-		var/obj/machinery/door/airlock/glass_external/door = new(T)
-		door.req_access = null
-		door.req_one_access = null
-		qdel(src)
-	// Otherwise just operate normally
-	return ..()
-
-/obj/machinery/cryopod/robot/door/tram/Bumped(var/atom/movable/AM)
-	if(!ishuman(AM))
-		return
-
-	var/mob/living/carbon/human/user = AM
-
-	var/choice = tgui_alert(user, "Do you want to depart via the tram? Your character will leave the round.","Departure",list("Yes","No"))
-	if(user && Adjacent(user) && choice == "Yes")
-		var/mob/observer/dead/newghost = user.ghostize()
-		newghost.timeofdeath = world.time
-		despawn_occupant(user)
-
-var/global/list/latejoin_tram   = list()
-
-/obj/effect/landmark/tram
-	name = "JoinLateTram"
-	delete_me = 1
-
-/obj/effect/landmark/tram/New()
-	latejoin_tram += loc // Register this turf as tram latejoin.
-	latejoin += loc // Also register this turf as fallback latejoin, since we won't have any arrivals shuttle landmarks.
-	..()
-
-/datum/spawnpoint/tram
-	display_name = "Tram Station"
-	msg = "has arrived on the tram"
-
-/datum/spawnpoint/tram/New()
-	..()
-	turfs = latejoin_tram
-
-/obj/machinery/camera/network/halls
-	network = list(NETWORK_HALLS)
-
-/obj/machinery/camera/network/exploration
-	network = list(NETWORK_EXPLORATION)
-
-/obj/machinery/camera/network/research/xenobio
-	network = list(NETWORK_RESEARCH, NETWORK_XENOBIO)
-
-/obj/machinery/computer/security/xenobio
-	name = "xenobiology camera monitor"
-	desc = "Used to access the xenobiology cell cameras."
-	icon_keyboard = "mining_key"
-	icon_screen = "mining"
-	network = list(NETWORK_XENOBIO)
-	circuit = /obj/item/weapon/circuitboard/security/xenobio
-	light_color = "#F9BBFC"
-
-/obj/item/weapon/circuitboard/security/xenobio
-	name = T_BOARD("xenobiology camera monitor")
-	build_path = /obj/machinery/computer/security/xenobio
-	network = list(NETWORK_XENOBIO)
-	req_access = list()
-
-/obj/machinery/vending/wallmed1/public
-	products = list(/obj/item/stack/medical/bruise_pack = 8,/obj/item/stack/medical/ointment = 8,/obj/item/weapon/reagent_containers/hypospray/autoinjector = 16,/obj/item/device/healthanalyzer = 4)
-
-/turf/unsimulated/mineral/virgo3b
-	blocks_air = TRUE
-
-/area/tether/surfacebase/tram
-	name = "\improper Tram Station"
-	icon_state = "dk_yellow"
-
-/turf/simulated/floor/maglev
-	name = "maglev track"
-	desc = "Magnetic levitation tram tracks. Caution! Electrified!"
-	icon = 'icons/turf/flooring/maglevs.dmi'
-	icon_state = "maglevup"
-
-	var/area/shock_area = /area/tether/surfacebase/tram
-
-/turf/simulated/floor/maglev/Initialize()
-	. = ..()
-	shock_area = locate(shock_area)
-
-// Walking on maglev tracks will shock you! Horray!
-/turf/simulated/floor/maglev/Entered(var/atom/movable/AM, var/atom/old_loc)
-	if(isliving(AM) && !(AM.is_incorporeal()) && prob(50))
-		track_zap(AM)
-/turf/simulated/floor/maglev/attack_hand(var/mob/user)
-	if(prob(75))
-		track_zap(user)
-/turf/simulated/floor/maglev/proc/track_zap(var/mob/living/user)
-	if (!istype(user)) return
-	if (electrocute_mob(user, shock_area, src))
-		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
-		s.set_up(5, 1, src)
-		s.start()
-
-/turf/unsimulated/floor/steel
-	icon = 'icons/turf/flooring/tiles_vr.dmi'
-	icon_state = "steel"
-
-// Some turfs to make floors look better in centcom tram station.
-
-/turf/unsimulated/floor/techfloor_grid
-	name = "floor"
-	icon = 'icons/turf/flooring/techfloor.dmi'
-	icon_state = "techfloor_grid"
-
-/turf/unsimulated/floor/maglev
-	name = "maglev track"
-	desc = "Magnetic levitation tram tracks. Caution! Electrified!"
-	icon = 'icons/turf/flooring/maglevs.dmi'
-	icon_state = "maglevup"
-
-/turf/unsimulated/wall/transit
-	icon = 'icons/turf/transit_vr.dmi'
-
-/turf/unsimulated/floor/transit
-	icon = 'icons/turf/transit_vr.dmi'
-
-/obj/effect/floor_decal/transit/orange
-	icon = 'icons/turf/transit_vr.dmi'
-	icon_state = "transit_techfloororange_edges"
-
-/obj/effect/transit/light
-	icon = 'icons/turf/transit_128.dmi'
-	icon_state = "tube1-2"
-
-VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/grass/sif)
-/turf/simulated/floor/outdoors/grass/sif
-	turf_layers = list(
-		/turf/simulated/floor/outdoors/rocks/virgo3b,
-		/turf/simulated/floor/outdoors/dirt/virgo3b
-		)
-
-VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/dirt)
-/turf/simulated/floor/outdoors/dirt/virgo3b
-	icon = 'icons/turf/flooring/asteroid.dmi'
-	icon_state = "asteroid"
-
-VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/rocks)
-
 /////FOR CENTCOMM (at least)/////
 /obj/effect/overmap/visitable/sector/virgo3b
 	name = "Virgo 3B"
@@ -703,7 +585,7 @@ VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/rocks)
 	skybox_pixel_x = 0
 	skybox_pixel_y = 0
 
-	initial_restricted_waypoints = list()
+	initial_restricted_waypoints = list("Central Command Shuttlepad" = list("cc_shuttlepad"))
 
 /////SD Starts at V3b to pick up crew refuel and repair (And to make sure it doesn't spawn on hazards)
 /obj/effect/overmap/visitable/sector/virgo3b/Initialize()
@@ -804,3 +686,9 @@ VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/rocks)
 				All that said, have a safe trip. - Central Command Officer <i>Alyssa Trems</i>				</body>
 			</html>
 			"}
+
+//The pathfinder doesn't have a OM shuttle that they are in charge of, and so, doesn't need pilot access. 
+//Mostly to prevent explo from just commandeering the Starstuff as the explo shuttle without involving a pilot every round.
+/datum/job/pathfinder
+	access = list(access_eva, access_maint_tunnels, access_external_airlocks, access_explorer, access_gateway, access_pathfinder)
+	minimal_access = list(access_eva, access_maint_tunnels, access_external_airlocks, access_explorer, access_gateway, access_pathfinder)

@@ -151,7 +151,7 @@
 	icon_state = "2-4"
 	},
 /turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat)
+/area/shuttle/sdboat/aft)
 "aQ" = (
 /turf/simulated/floor/tiled/eris/dark/gray_platform,
 /area/stellardelight/deck3/commandhall)
@@ -638,7 +638,7 @@
 /obj/machinery/portable_atmospherics/canister/air/airlock,
 /obj/machinery/atmospherics/portables_connector,
 /turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat)
+/area/shuttle/sdboat/aft)
 "cS" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
@@ -1297,7 +1297,7 @@
 	dir = 6
 	},
 /turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat)
+/area/shuttle/sdboat/aft)
 "fh" = (
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -1315,6 +1315,9 @@
 	temperature = 80
 	},
 /area/tcommsat/chamber)
+"fn" = (
+/turf/simulated/wall/rshull,
+/area/shuttle/sdboat/aft)
 "fs" = (
 /obj/structure/cable/green{
 	icon_state = "2-8"
@@ -1509,7 +1512,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
-/obj/item/weapon/paper/dockingcodes/aerostat,
 /obj/item/device/retail_scanner/engineering,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/chief)
@@ -1685,7 +1687,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat)
+/area/shuttle/sdboat/aft)
 "hb" = (
 /obj/structure/cable/green{
 	icon_state = "1-8"
@@ -1880,7 +1882,7 @@
 	},
 /obj/effect/map_helper/airlock/sensor/int_sensor,
 /turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat)
+/area/shuttle/sdboat/aft)
 "hT" = (
 /obj/structure/cable/blue{
 	icon_state = "4-8"
@@ -2007,7 +2009,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat)
+/area/shuttle/sdboat/aft)
 "iy" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -2041,6 +2043,19 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/stellardelight/deck3/cryo)
+"iD" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/angled/open{
+	id = "shuttleshutter"
+	},
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor,
+/area/shuttle/sdboat/aft)
 "iJ" = (
 /obj/machinery/cryopod/robot,
 /obj/machinery/light{
@@ -2068,6 +2083,22 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/tcommsat/computer)
+"iM" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/angled/open{
+	dir = 4;
+	id = "shuttleshutter"
+	},
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/floor,
+/area/shuttle/sdboat/aft)
 "iN" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -2490,7 +2521,7 @@
 	},
 /obj/effect/map_helper/airlock/sensor/ext_sensor,
 /turf/simulated/floor/tiled/steel_ridged,
-/area/shuttle/sdboat)
+/area/shuttle/sdboat/aft)
 "kB" = (
 /obj/machinery/porta_turret/ai_defense,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -2510,7 +2541,6 @@
 	},
 /obj/structure/closet/secure_closet/hop,
 /obj/item/clothing/glasses/omnihud,
-/obj/item/weapon/paper/dockingcodes/aerostat,
 /obj/item/weapon/paper/dockingcodes/sd,
 /obj/item/device/retail_scanner/command,
 /turf/simulated/floor/tiled,
@@ -2603,7 +2633,7 @@
 	dir = 10
 	},
 /turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat)
+/area/shuttle/sdboat/aft)
 "la" = (
 /obj/structure/cable/green{
 	icon_state = "1-2"
@@ -2623,7 +2653,7 @@
 /obj/machinery/power/terminal,
 /obj/structure/cable/green,
 /turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat)
+/area/shuttle/sdboat/aft)
 "le" = (
 /obj/structure/railing/grey{
 	dir = 8
@@ -2758,6 +2788,9 @@
 /obj/random/maintenance/engineering,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/stellardelight/deck3/forestarroomb)
+"lB" = (
+/turf/simulated/floor/tiled/eris/dark/cargo,
+/area/shuttle/sdboat/aft)
 "lC" = (
 /obj/machinery/power/apc/angled{
 	dir = 4
@@ -3014,13 +3047,16 @@
 	dir = 1
 	},
 /turf/simulated/floor/airless,
-/area/shuttle/sdboat)
+/area/shuttle/sdboat/aft)
 "mw" = (
 /obj/machinery/door/airlock/angled_bay/standard/glass{
 	door_color = "#9fccc7";
 	name = "Cockpit";
 	req_access = list(67);
 	stripe_color = "#ffffff"
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/shuttle/sdboat)
@@ -3500,6 +3536,10 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/portcent)
+"oq" = (
+/obj/effect/landmark/arrivals,
+/turf/simulated/floor/glass/reinforced,
+/area/stellardelight/deck3/aft)
 "os" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden{
@@ -3626,6 +3666,15 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/open,
 /area/maintenance/stellardelight/deck3/portcent)
+"oJ" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/tiled/eris/dark/cargo,
+/area/shuttle/sdboat/aft)
 "oM" = (
 /obj/structure/cable/green{
 	icon_state = "1-2"
@@ -4373,7 +4422,7 @@
 "ri" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/wall/rshull,
-/area/shuttle/sdboat)
+/area/shuttle/sdboat/aft)
 "rj" = (
 /obj/structure/cable/green{
 	icon_state = "1-2"
@@ -4388,7 +4437,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat)
+/area/shuttle/sdboat/aft)
 "rl" = (
 /obj/structure/sign/painting/library_secure{
 	pixel_x = -30
@@ -4568,7 +4617,7 @@
 	},
 /obj/effect/map_helper/airlock/door/int_door,
 /turf/simulated/floor/tiled/steel_ridged,
-/area/shuttle/sdboat)
+/area/shuttle/sdboat/aft)
 "sb" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/blue{
@@ -5089,7 +5138,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat)
+/area/shuttle/sdboat/aft)
 "uf" = (
 /obj/structure/lattice,
 /obj/structure/disposalpipe/segment,
@@ -5109,7 +5158,7 @@
 	req_one_access = list(11,67)
 	},
 /turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat)
+/area/shuttle/sdboat/aft)
 "uj" = (
 /turf/simulated/wall/bay/r_wall/blue,
 /area/crew_quarters/heads/hor)
@@ -5566,7 +5615,7 @@
 /obj/effect/map_helper/airlock/atmos/pump_out_internal,
 /obj/structure/handrail,
 /turf/simulated/floor/tiled/eris/dark/monofloor,
-/area/shuttle/sdboat)
+/area/shuttle/sdboat/aft)
 "wa" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/bay/reinforced,
@@ -5791,6 +5840,14 @@
 /obj/machinery/computer/shuttle_control/explore/sdboat{
 	dir = 4
 	},
+/obj/machinery/power/apc/angled{
+	dir = 8;
+	name = "night shift APC";
+	nightshift_setting = 2
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
 /turf/simulated/floor/tiled/eris/dark/cargo,
 /area/shuttle/sdboat)
 "wY" = (
@@ -5803,7 +5860,7 @@
 "wZ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel,
 /turf/simulated/wall/rshull,
-/area/shuttle/sdboat)
+/area/shuttle/sdboat/aft)
 "xb" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -5855,7 +5912,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark/monofloor,
-/area/shuttle/sdboat)
+/area/shuttle/sdboat/aft)
 "xg" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/bay/reinforced,
@@ -6258,7 +6315,7 @@
 	},
 /obj/effect/floor_decal/industrial/outline/red,
 /turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat)
+/area/shuttle/sdboat/aft)
 "yI" = (
 /obj/item/weapon/folder{
 	pixel_x = -4
@@ -6644,7 +6701,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat)
+/area/shuttle/sdboat/aft)
 "zV" = (
 /obj/structure/cable/green{
 	icon_state = "1-4"
@@ -7278,7 +7335,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat)
+/area/shuttle/sdboat/aft)
 "BY" = (
 /obj/machinery/newscaster{
 	layer = 3.3;
@@ -7895,7 +7952,7 @@
 	dir = 4
 	},
 /turf/simulated/wall/rshull,
-/area/shuttle/sdboat)
+/area/shuttle/sdboat/aft)
 "EE" = (
 /obj/structure/table/rack{
 	dir = 8;
@@ -7971,7 +8028,7 @@
 	nightshift_setting = 2
 	},
 /turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat)
+/area/shuttle/sdboat/aft)
 "EN" = (
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -8847,6 +8904,22 @@
 	},
 /turf/simulated/open,
 /area/stellardelight/deck2/central)
+"Ia" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/angled/open{
+	dir = 4;
+	id = "shuttleshutter"
+	},
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor,
+/area/shuttle/sdboat/aft)
 "Ib" = (
 /obj/machinery/alarm/angled{
 	dir = 4
@@ -8914,7 +8987,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat)
+/area/shuttle/sdboat/aft)
 "It" = (
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 5
@@ -9330,7 +9403,6 @@
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/portdock)
 "JS" = (
-/obj/effect/landmark/tram,
 /obj/machinery/embedded_controller/radio/docking_port_multi{
 	child_names_txt = "Port;Center Left;Center Right;Starboard";
 	child_tags_txt = "sd_escape_port;sd_escape_center_left;sd_escape_center_right;sd_escape_starboard";
@@ -9340,6 +9412,7 @@
 	pixel_y = -18;
 	req_one_access = list(13)
 	},
+/obj/effect/landmark/arrivals,
 /turf/simulated/floor/glass/reinforced,
 /area/stellardelight/deck3/aft)
 "JU" = (
@@ -9413,7 +9486,7 @@
 	dir = 9
 	},
 /turf/simulated/wall/rshull,
-/area/shuttle/sdboat)
+/area/shuttle/sdboat/aft)
 "Kk" = (
 /obj/structure/table/steel,
 /obj/random/maintenance/clean,
@@ -9771,7 +9844,7 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat)
+/area/shuttle/sdboat/aft)
 "LP" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -10074,7 +10147,6 @@
 	dir = 1
 	},
 /obj/item/device/retail_scanner/security,
-/obj/item/weapon/paper/dockingcodes/aerostat,
 /turf/simulated/floor/tiled/dark,
 /area/crew_quarters/heads/hos)
 "MO" = (
@@ -10148,7 +10220,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat)
+/area/shuttle/sdboat/aft)
 "MZ" = (
 /obj/machinery/alarm/angled{
 	dir = 8
@@ -10867,6 +10939,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai_upload)
+"Pl" = (
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/tiled/eris/dark/cargo,
+/area/shuttle/sdboat)
 "Pm" = (
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -11055,7 +11133,7 @@
 /obj/effect/shuttle_landmark/shuttle_initializer/sdboat,
 /obj/effect/overmap/visitable/ship/landable/sd_boat,
 /turf/simulated/floor/tiled/eris/dark/monofloor,
-/area/shuttle/sdboat)
+/area/shuttle/sdboat/aft)
 "Qf" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -11106,7 +11184,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat)
+/area/shuttle/sdboat/aft)
 "Qs" = (
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
@@ -11297,7 +11375,7 @@
 "Rb" = (
 /obj/structure/bed/chair/shuttle,
 /turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat)
+/area/shuttle/sdboat/aft)
 "Rc" = (
 /obj/machinery/porta_turret/ai_defense,
 /obj/structure/cable/cyan{
@@ -11421,7 +11499,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat)
+/area/shuttle/sdboat/aft)
 "Rx" = (
 /obj/structure/cable/green{
 	icon_state = "1-2"
@@ -11537,7 +11615,7 @@
 	},
 /obj/machinery/light,
 /turf/simulated/floor/tiled/eris/dark/monofloor,
-/area/shuttle/sdboat)
+/area/shuttle/sdboat/aft)
 "RX" = (
 /turf/simulated/wall/bay/steel,
 /area/stellardelight/deck2/central)
@@ -11547,7 +11625,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat)
+/area/shuttle/sdboat/aft)
 "RZ" = (
 /obj/structure/cable/blue{
 	icon_state = "1-2"
@@ -11691,6 +11769,9 @@
 	dir = 8
 	},
 /obj/machinery/light,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled/eris/dark/cargo,
 /area/shuttle/sdboat)
 "SK" = (
@@ -12435,7 +12516,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat)
+/area/shuttle/sdboat/aft)
 "Vx" = (
 /obj/structure/cable/blue{
 	icon_state = "1-4"
@@ -12599,7 +12680,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat)
+/area/shuttle/sdboat/aft)
 "Wi" = (
 /obj/structure/closet/secure_closet/personal,
 /turf/simulated/floor/bluegrid,
@@ -12617,7 +12698,7 @@
 	pixel_x = -24
 	},
 /turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat)
+/area/shuttle/sdboat/aft)
 "Wp" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/open,
@@ -12672,7 +12753,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark/monofloor,
-/area/shuttle/sdboat)
+/area/shuttle/sdboat/aft)
 "Wx" = (
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 4
@@ -12845,7 +12926,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
-/obj/item/weapon/paper/dockingcodes/aerostat,
 /obj/item/device/retail_scanner/medical,
 /turf/simulated/floor/tiled/eris/white/cargo,
 /area/crew_quarters/heads/cmo)
@@ -13286,7 +13366,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
-/obj/item/weapon/paper/dockingcodes/aerostat,
 /obj/item/device/retail_scanner/science,
 /turf/simulated/floor/tiled/techfloor,
 /area/crew_quarters/heads/hor)
@@ -13392,7 +13471,7 @@
 	},
 /obj/machinery/alarm/angled,
 /turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat)
+/area/shuttle/sdboat/aft)
 "Ze" = (
 /turf/simulated/floor/bluegrid{
 	name = "Mainframe Base";
@@ -20126,14 +20205,14 @@ sM
 sM
 sM
 be
-eJ
-WK
-eJ
-eJ
-eJ
-WK
-eJ
-eJ
+fn
+Ia
+fn
+fn
+fn
+Ia
+fn
+fn
 sM
 sM
 IK
@@ -20268,14 +20347,14 @@ eJ
 WK
 eJ
 eJ
-eJ
+fn
 Zd
 Qq
 Wn
 BW
 lc
 ui
-eJ
+fn
 sM
 sM
 IK
@@ -20417,7 +20496,7 @@ LO
 rk
 fg
 yG
-Ab
+iD
 sM
 sM
 IK
@@ -20558,8 +20637,8 @@ Rw
 Rw
 iw
 zS
-eJ
-eJ
+fn
+fn
 sM
 sM
 IK
@@ -20692,11 +20771,11 @@ Iz
 Ab
 Wj
 ya
-Ex
+Pl
 mw
-Ex
-Vw
-Ex
+LO
+oJ
+lB
 hR
 MX
 kZ
@@ -20839,11 +20918,11 @@ eJ
 Rb
 Vw
 gY
-eJ
+fn
 sa
-eJ
-eJ
-eJ
+fn
+fn
+fn
 sM
 sM
 IK
@@ -20985,7 +21064,7 @@ ri
 vX
 Ww
 Ww
-Ab
+iD
 sM
 sM
 IK
@@ -21127,7 +21206,7 @@ ri
 Qe
 xf
 RW
-eJ
+fn
 sM
 sM
 Di
@@ -21263,13 +21342,13 @@ sM
 sM
 mi
 Kj
-wT
-eJ
-eJ
+iM
+fn
+fn
 kz
-eJ
-eJ
-eJ
+fn
+fn
+fn
 sM
 sM
 IK
@@ -23384,9 +23463,9 @@ VC
 TJ
 dF
 Mx
-Im
-Im
-Im
+oq
+oq
+oq
 XZ
 BR
 JA
@@ -23526,8 +23605,8 @@ is
 dj
 vv
 Ou
-Im
-Im
+oq
+oq
 JS
 Ed
 Ed
@@ -23668,9 +23747,9 @@ VC
 PE
 MC
 Mx
-Im
-Im
-Im
+oq
+oq
+oq
 os
 ou
 QJ
