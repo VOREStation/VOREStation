@@ -347,7 +347,7 @@
 				amt--
 
 				// Prepare to stuff inside product, don't delete it
-				if(is_path_in_list(path_key, parts))
+				if(is_path_in_list(path_key, R.parts))
 					parts["items"] += I
 					amt_to_transfer--
 					continue
