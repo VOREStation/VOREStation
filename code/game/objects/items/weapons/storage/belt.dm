@@ -85,13 +85,24 @@
 		/obj/item/stack/cable_coil/random_belt
 	)
 
-/obj/item/weapon/storage/belt/utility/atmostech
+/obj/item/weapon/storage/belt/utility/full/multitool
 	starts_with = list(
 		/obj/item/weapon/tool/screwdriver,
 		/obj/item/weapon/tool/wrench,
 		/obj/item/weapon/weldingtool,
 		/obj/item/weapon/tool/crowbar,
 		/obj/item/weapon/tool/wirecutters,
+		/obj/item/stack/cable_coil/random_belt,
+		/obj/item/device/multitool
+	)
+
+/obj/item/weapon/storage/belt/utility/atmostech
+	starts_with = list(
+		/obj/item/weapon/tool/screwdriver,
+		/obj/item/weapon/tool/wrench,
+		/obj/item/weapon/weldingtool,
+		/obj/item/weapon/tool/crowbar,
+		/obj/item/weapon/tool/wirecutters
 	)
 
 /obj/item/weapon/storage/belt/utility/chief
