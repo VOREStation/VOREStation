@@ -358,7 +358,7 @@
 //BASKETBALL OBJECTS
 
 /obj/item/weapon/beach_ball/holoball
-	icon = 'icons/obj/basketball.dmi'
+	icon = 'icons/obj/balls_vr.dmi'
 	icon_state = "basketball"
 	name = "basketball"
 	desc = "Here's your chance, do your dance at the Space Jam."
@@ -370,7 +370,7 @@
 /obj/structure/holohoop
 	name = "basketball hoop"
 	desc = "Boom, Shakalaka!"
-	icon = 'icons/obj/basketball.dmi'
+	icon = 'icons/obj/32x64.dmi'
 	icon_state = "hoop"
 	anchored = TRUE
 	density = TRUE
@@ -406,6 +406,21 @@
 		return FALSE
 	return ..()
 
+//DODGEBALL OBJECTS
+
+/obj/item/weapon/beach_ball/holododgeball
+	icon = 'icons/obj/balls_vr.dmi'
+	icon_state = "dodgeball"
+	name = "dodgeball"
+	desc = "Think fast, chucklenuts!"
+	w_class = ITEMSIZE_LARGE //Stops people from hiding it in their bags/pockets
+	unacidable = TRUE
+	drop_sound = 'sound/items/drop/basketball.ogg'
+	pickup_sound = 'sound/items/pickup/basketball.ogg'
+	hitsound = 'sound/weapons/dodgeball.ogg'
+
+/obj/item/weapon/beach_ball/holododgeball/apply_hit_effect(var/mob/living/carbon/M, var/alien)
+	M.Weaken(10)
 
 /obj/machinery/readybutton
 	name = "Ready Declaration Device"
