@@ -143,11 +143,64 @@
 	flags = MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER
 	z = Z_LEVEL_ROGUEMINE_2
 
-//////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
 // Code Shenanigans for Tether lateload maps
 /datum/map_template/tether_lateload
 	allow_duplicates = FALSE
 	var/associated_map_datum
+
+/datum/map_template/tether_lateload/on_map_loaded(z)
+	if(!associated_map_datum || !ispath(associated_map_datum))
+		log_game("Extra z-level [src] has no associated map datum")
+		return
+
+	new associated_map_datum(using_map, z)
+
+/datum/map_z_level/tether_lateload
+	z = 0
+
+/datum/map_z_level/tether_lateload/New(var/datum/map/map, mapZ)
+	if(mapZ && !z)
+		z = mapZ
+	return ..(map)
+
+/obj/effect/step_trigger/zlevel_fall //Don't ever use this, only use subtypes.Define a new var/static/target_z on each
+	affect_ghosts = 1
+
+/obj/effect/step_trigger/zlevel_fall/Initialize()
+	. = ..()
+
+	if(istype(get_turf(src), /turf/simulated/floor))
+		src:target_z = z
+		return INITIALIZE_HINT_QDEL
+
+/obj/effect/step_trigger/zlevel_fall/Trigger(var/atom/movable/A) //mostly from /obj/effect/step_trigger/teleporter/planetary_fall, step_triggers.dm L160
+	if(!src:target_z)
+		return
+
+	var/attempts = 100
+	var/turf/simulated/T
+	while(attempts && !T)
+		var/turf/simulated/candidate = locate(rand(5,world.maxx-5),rand(5,world.maxy-5),src:target_z)
+		if(candidate.density)
+			attempts--
+			continue
+
+		T = candidate
+		break
+
+	if(!T)
+		return
+
+	if(isobserver(A))
+		A.forceMove(T) // Harmlessly move ghosts.
+		return
+
+	A.forceMove(T)
+	if(isliving(A)) // Someday, implement parachutes.  For now, just turbomurder whoever falls.
+		message_admins("\The [A] fell out of the sky.")
+		var/mob/living/L = A
+		L.fall_impact(T, 42, 90, FALSE, TRUE)	//You will not be defibbed from this.
 
 #include "../../expedition_vr/aerostat/_aerostat.dm"
 /datum/map_template/tether_lateload/away_aerostat

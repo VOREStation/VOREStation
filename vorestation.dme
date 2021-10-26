@@ -4074,6 +4074,7 @@
 #include "maps\southern_cross\loadout\loadout_suit.dm"
 #include "maps\southern_cross\loadout\loadout_uniform.dm"
 #include "maps\southern_cross\loadout\loadout_vr.dm"
+#include "maps\stellardelight\stellar_delight.dm"
 #include "maps\submaps\_helpers.dm"
 #include "maps\submaps\_readme.dm"
 #include "maps\submaps\engine_submaps\engine.dm"
@@ -4086,6 +4087,5 @@
 #include "maps\submaps\surface_submaps\mountains\mountains_areas_vr.dm"
 #include "maps\submaps\surface_submaps\wilderness\wilderness.dm"
 #include "maps\submaps\surface_submaps\wilderness\wilderness_areas.dm"
-#include "maps\tether\tether.dm"
 #include "maps\~map_system\maps.dm"
 // END_INCLUDE

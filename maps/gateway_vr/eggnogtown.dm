@@ -7,19 +7,19 @@
 	color = "#171DFF" //bloo
 	in_space = 0
 
-/datum/map_template/tether_lateload/gateway/eggnogtown/on_map_loaded(z)
-    . = ..()
-    new /datum/random_map/automata/cave_system/no_cracks(null, 3, 3, z, world.maxx - 4, world.maxy - 4) // Create the mining Z-level.
-    new /datum/random_map/noise/ore(null, 1, 1, z, 64, 64)         // Create the mining ore distribution map.
+/datum/map_template/common_lateload/gateway/eggnogtown/on_map_loaded(z)
+	. = ..()
+	new /datum/random_map/automata/cave_system/no_cracks(null, 3, 3, z, world.maxx - 4, world.maxy - 4) // Create the mining Z-level.
+	new /datum/random_map/noise/ore(null, 1, 1, z, 64, 64)		// Create the mining ore distribution map.
 
-/datum/map_template/tether_lateload/gateway/eggnogtownunderground/on_map_loaded(z)
-    . = ..()
-    new /datum/random_map/automata/cave_system/no_cracks(null, 3, 3, z, world.maxx - 4, world.maxy - 4) // Create the mining Z-level.
-    new /datum/random_map/noise/ore(null, 1, 1, z, 64, 64)         // Create the mining ore distribution map.
+/datum/map_template/common_lateload/gateway/eggnogtownunderground/on_map_loaded(z)
+	. = ..()
+	new /datum/random_map/automata/cave_system/no_cracks(null, 3, 3, z, world.maxx - 4, world.maxy - 4) // Create the mining Z-level.
+	new /datum/random_map/noise/ore(null, 1, 1, z, 64, 64)		// Create the mining ore distribution map.
 
 
 /obj/effect/landmark/map_data/eggnogtown
-    height = 2
+	height = 2
 
 //Areas//
 

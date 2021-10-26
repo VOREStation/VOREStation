@@ -2056,6 +2056,16 @@
 	},
 /turf/simulated/floor,
 /area/shuttle/sdboat/aft)
+"iE" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/angled_bay/hatch{
+	door_color = "#e6ab22";
+	name = "Shield Generator";
+	req_access = list(11,24);
+	stripe_color = "#e6ab22"
+	},
+/turf/simulated/floor/tiled/steel_ridged,
+/area/stellardelight/deck3/commandhall)
 "iJ" = (
 /obj/machinery/cryopod/robot,
 /obj/machinery/light{
@@ -5476,10 +5486,8 @@
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/aft)
 "vw" = (
-/obj/machinery/door/firedoor/glass,
-/obj/structure/window/bay/reinforced,
-/obj/structure/low_wall/bay/reinforced/steel,
-/turf/simulated/floor,
+/obj/structure/sign/department/shield,
+/turf/simulated/wall/bay/r_wall/blue,
 /area/stellardelight/deck3/commandhall)
 "vy" = (
 /obj/machinery/atmospherics/portables_connector{
@@ -23434,7 +23442,7 @@ QB
 QB
 QB
 QB
-vw
+rc
 aM
 Wy
 sc
@@ -23718,7 +23726,7 @@ TO
 Vq
 WH
 yb
-vw
+iE
 vt
 Ki
 sc
