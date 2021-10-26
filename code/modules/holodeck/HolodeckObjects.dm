@@ -406,22 +406,6 @@
 		return FALSE
 	return ..()
 
-//DODGEBALL OBJECTS
-
-/obj/item/weapon/beach_ball/holododgeball
-	icon = 'icons/obj/balls_vr.dmi'
-	icon_state = "dodgeball"
-	name = "dodgeball"
-	desc = "Think fast, chucklenuts!"
-	w_class = ITEMSIZE_LARGE //Stops people from hiding it in their bags/pockets
-	unacidable = TRUE
-	drop_sound = 'sound/items/drop/basketball.ogg'
-	pickup_sound = 'sound/items/pickup/basketball.ogg'
-	hitsound = 'sound/weapons/dodgeball.ogg'
-
-/obj/item/weapon/beach_ball/holododgeball/apply_hit_effect(var/mob/living/carbon/M, var/alien)
-	M.Weaken(10)
-
 /obj/machinery/readybutton
 	name = "Ready Declaration Device"
 	desc = "This device is used to declare ready. If all devices in an area are ready, the event will begin!"
