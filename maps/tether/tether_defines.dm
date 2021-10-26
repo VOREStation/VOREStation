@@ -271,6 +271,7 @@
 		"tether_medivac_dock", //Medical shuttle dock,
 		"tourbus_dock" //Surface large hangar
 		)
+	initial_restricted_waypoints = list("Central Command Shuttlepad" = list("cc_shuttlepad"))
 	//Despite not being in the multi-z complex, these levels are part of the overmap sector
 	extra_z_levels = list(
 		Z_LEVEL_SURFACE_MINE,

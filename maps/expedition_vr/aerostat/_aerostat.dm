@@ -1,6 +1,4 @@
 #include "../../submaps/pois_vr/aerostat/virgo2.dm"
-#include "aerostat.dmm"
-
 
 /obj/effect/overmap/visitable/sector/virgo2
 	name = "Virgo 2"
@@ -184,10 +182,18 @@ VIRGO2_TURF_CREATE(/turf/simulated/mineral/floor/ignore_mapgen)
 /area/offmap/aerostat/surface/explored
 	name = "Away Mission - Aerostat Surface (E)"
 	icon_state = "explored"
+	dynamic_lighting = FALSE
+
+/area/offmap/aerostat/surface/shuttleconsole
+	name = "Away Mission - Aerostat Surface Console"
+	icon_state = "explored"
+	dynamic_lighting = FALSE
+	requires_power = FALSE
 
 /area/offmap/aerostat/surface/unexplored
 	name = "Away Mission - Aerostat Surface (UE)"
 	icon_state = "unexplored"
+	dynamic_lighting = FALSE
 
 VIRGO2_TURF_CREATE(/turf/simulated/floor/hull)
 /area/offmap/aerostat/surface/outpost

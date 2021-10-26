@@ -1367,6 +1367,10 @@
 	},
 /turf/simulated/shuttle/plating/airless,
 /area/shuttle/escape)
+"ez" = (
+/obj/structure/closet/emcloset,
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/shuttle/ccboat)
 "eB" = (
 /obj/structure/sign/securearea{
 	name = "\improper ARMORY";
@@ -13534,7 +13538,9 @@
 /turf/simulated/floor/tiled/dark,
 /area/centcom/security)
 "UE" = (
-/obj/machinery/computer/teleporter,
+/obj/machinery/computer/teleporter{
+	dir = 2
+	},
 /turf/simulated/floor/tiled,
 /area/centcom/main_hall)
 "UF" = (
@@ -26890,8 +26896,8 @@ kX
 TF
 TF
 SA
-vh
-vh
+ez
+ez
 kX
 mp
 kX

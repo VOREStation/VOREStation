@@ -4,10 +4,31 @@
 	devourable = 0
 	digestable = 0
 
-/mob/living/simple_mob/vore/alienanimals/catslug/readingrooms
-	name = "RENAME ME"
-	desc = "REWRITE ME"
+/datum/category_item/catalogue/fauna/catslug/tulidaan
+	name = "Alien Wildlife - Catslug - Tulidaan"
+	desc = "A resident of the Stellar Delight. Tulidaan usually\
+	inhabits the reading rooms. - \
+	The Catslug is an omnivorous terrestrial creature.\
+	Exhibiting properties of both a cat and a slug (hence its name)\
+	it moves somewhat awkwardly. However, the unique qualities of\
+	its body make it exceedingly flexible and smooth, allowing it to\
+	wiggle into and move effectively in even extremely tight spaces.\
+	Additionally, it has surprisingly capable hands, and moves quite\
+	well on two legs or four. Caution is advised when interacting\
+	with these creatures, they are quite intelligent, and proficient\
+	tool users."
+	value = CATALOGUER_REWARD_TRIVIAL	//Worth less points since it lives on the ship
+
+/mob/living/simple_mob/vore/alienanimals/catslug/tulidaan
+	name = "Tulidaan"
+	desc = "Watcher of the Seven. Thinker, knower."
+	icon_state = "tulidaan"
 	digestable = 0
+	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug/tulidaan)
+	holder_type = /obj/item/weapon/holder/catslug/tulidaan
+
+/obj/item/weapon/holder/catslug/tulidaan
+	item_state = "tulidaan"
 
 /mob/living/simple_mob/animal/passive/mouse/jerboa/leggy
 	name = "Leggy"
@@ -34,6 +55,11 @@
 	desc = "A polite, well groomed patchy colored feline. Doesn't like his cat carrier."
 	devourable = 0
 	digestable = 0
+	holder_type = /obj/item/weapon/holder/cat/jones
+
+/obj/item/weapon/holder/cat/jones
+	item_state = "cat2"
+
 
 /mob/living/simple_mob/animal/passive/dog/void_puppy/nulle
 	name = "Nulle"
@@ -65,13 +91,14 @@
 	devourable = 0
 	digestable = 0
 
-/datum/category_item/catalogue/fauna/otie/cocoa		//Only different so that explo doesn't get tons of points for scanning normal pets
-	name = "Creature - Otie"
-	desc = "A bioengineered longdog, the otie is very long, and very cute, depending on if you like dogs, \
+/datum/category_item/catalogue/fauna/otie/cocoa
+	name = "Creature - Otie - Cocoa"
+	desc = "A resident of the Stellar Delight. Cocoa usually inhabits the bar, and is very friendly. - \
+	A bioengineered longdog, the otie is very long, and very cute, depending on if you like dogs, \
 	especially long ones. They are black-and-grey furred, typically, and tanky, hard to kill. \
 	They seem hostile at first, but are also tame-able if you can approach one. Nipnipnip-ACK \
 	**the catalogue entry ends here.**"
-	value = CATALOGUER_REWARD_TRIVIAL
+	value = CATALOGUER_REWARD_TRIVIAL	//Worth less points since it lives on the ship
 
 
 /mob/living/simple_mob/otie/red/chubby/cocoa

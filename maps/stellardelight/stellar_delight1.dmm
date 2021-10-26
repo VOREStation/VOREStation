@@ -2572,9 +2572,7 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/starboardfore)
 "fD" = (
-/obj/structure/closet/secure_closet/pathfinder{
-	req_access = list(62,43,67)
-	},
+/obj/structure/closet/secure_closet/pathfinder,
 /obj/item/device/bluespaceradio/sd_prelinked,
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/stellardelight/deck1/pathfinder)

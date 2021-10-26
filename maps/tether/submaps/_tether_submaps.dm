@@ -15,6 +15,7 @@
 	z = Z_LEVEL_CENTCOM
 	name = "Centcom"
 	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_SEALED|MAP_LEVEL_CONTACT|MAP_LEVEL_XENOARCH_EXEMPT
+	base_turf = /turf/simulated/floor/outdoors/rocks
 
 /datum/map_template/tether_lateload/tether_misc
 	name = "Tether - Misc"
@@ -67,13 +68,6 @@
 /datum/map_template/tether_lateload/tether_plains/on_map_loaded(z)
 	. = ..()
 	seed_submaps(list(Z_LEVEL_PLAINS), 120, /area/tether/outpost/exploration_plains, /datum/map_template/surface/plains)
-
-#include "../../expedition_vr/aerostat/_aerostat.dm"
-/datum/map_template/common_lateload/away_aerostat
-	name = "Remmi Aerostat - Z1 Aerostat"
-	desc = "The Virgo 2 Aerostat away mission."
-	mappath = 'maps/expedition_vr/aerostat/aerostat.dmm'
-	associated_map_datum = /datum/map_z_level/common_lateload/away_aerostat
 
 //////////////////////////////////////////////////////////////////////////////
 //Antag/Event/ERT Areas
@@ -154,3 +148,32 @@
 /datum/map_template/tether_lateload
 	allow_duplicates = FALSE
 	var/associated_map_datum
+
+#include "../../expedition_vr/aerostat/_aerostat.dm"
+/datum/map_template/tether_lateload/away_aerostat
+	name = "Remmi Aerostat - Z1 Aerostat"
+	desc = "The Virgo 2 Aerostat away mission."
+	mappath = 'maps/expedition_vr/aerostat/aerostat.dmm'
+	associated_map_datum = /datum/map_z_level/tether_lateload/away_aerostat
+
+/datum/map_z_level/tether_lateload/away_aerostat
+	name = "Away Mission - Aerostat"
+	z = Z_LEVEL_AEROSTAT
+	base_turf = /turf/unsimulated/floor/sky/virgo2_sky
+
+/datum/map_template/tether_lateload/away_aerostat_surface
+	name = "Remmi Aerostat - Z2 Surface"
+	desc = "The surface from the Virgo 2 Aerostat."
+	mappath = 'maps/expedition_vr/aerostat/surface.dmm'
+	associated_map_datum = /datum/map_z_level/tether_lateload/away_aerostat_surface
+
+/datum/map_template/tether_lateload/away_aerostat_surface/on_map_loaded(z)
+	. = ..()
+	seed_submaps(list(Z_LEVEL_AEROSTAT_SURFACE), 120, /area/offmap/aerostat/surface/unexplored, /datum/map_template/virgo2)
+	new /datum/random_map/automata/cave_system/no_cracks(null, 3, 3, Z_LEVEL_AEROSTAT_SURFACE, world.maxx - 4, world.maxy - 4)
+	new /datum/random_map/noise/ore/virgo2(null, 1, 1, Z_LEVEL_AEROSTAT_SURFACE, 64, 64)
+
+/datum/map_z_level/tether_lateload/away_aerostat_surface
+	name = "Away Mission - Aerostat Surface"
+	z = Z_LEVEL_AEROSTAT_SURFACE
+	base_turf = /turf/simulated/mineral/floor/ignore_mapgen/virgo2

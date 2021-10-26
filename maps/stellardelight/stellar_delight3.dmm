@@ -7791,7 +7791,7 @@
 /obj/structure/dogbed{
 	name = "catslug bed"
 	},
-/mob/living/simple_mob/vore/alienanimals/catslug,
+/mob/living/simple_mob/vore/alienanimals/catslug/tulidaan,
 /turf/simulated/floor/wood,
 /area/stellardelight/deck3/readingroom)
 "DP" = (
