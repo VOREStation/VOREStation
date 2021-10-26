@@ -250,8 +250,8 @@
 	for(var/obj/item/weapon/stock_parts/P in component_parts)
 		if(istype(P, /obj/item/weapon/stock_parts/micro_laser))
 			harvest_speed = P.rating
-				if(P.rating >= 5)
-					harvest_speed *= 2
+			if(P.rating >= 5)
+				harvest_speed *= 2
 			exotic_drilling = P.rating - 1
 			if(exotic_drilling >= 1)
 				ore_types |= ore_types_uncommon
