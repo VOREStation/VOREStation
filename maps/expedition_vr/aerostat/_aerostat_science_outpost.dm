@@ -343,3 +343,9 @@ VIRGO2_TURF_CREATE(/turf/simulated/floor/hull)
 	icon_state = "crew_quarters"
 	base_turf = /turf/unsimulated/floor/sky/virgo2_sky
 	dynamic_lighting = FALSE
+
+/area/offmap/aerostat/surface/shuttleconsole
+	name = "Away Mission - Aerostat Surface Console"
+	icon_state = "explored"
+	dynamic_lighting = FALSE
+	requires_power = FALSE
