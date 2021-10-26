@@ -124,7 +124,11 @@
 
 	default_skybox = /datum/skybox_settings/stellar_delight
 
-	unit_test_exempt_areas = list()
+	unit_test_exempt_areas = list(
+		/area/stellardelight/deck1/exterior,
+		/area/stellardelight/deck1/exploshuttle,
+		/area/stellardelight/deck1/miningshuttle
+		)
 
 	unit_test_exempt_from_atmos = list() //it maint
 
