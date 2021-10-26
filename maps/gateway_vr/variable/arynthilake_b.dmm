@@ -308,7 +308,7 @@
 	},
 /area/gateway/arynthilake/dome)
 "fC" = (
-/obj/effect/overmap/visitable/sector/tether_gateway/arynthilake,
+/obj/effect/overmap/visitable/sector/common_gateway/arynthilake,
 /turf/simulated/mineral/ignore_cavegen,
 /area/gateway/arynthilake/caves)
 "fX" = (
