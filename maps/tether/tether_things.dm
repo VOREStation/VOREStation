@@ -364,17 +364,6 @@ var/global/list/latejoin_tram   = list()
 
 	return ..(user)
 
-/obj/structure/closet/secure_closet/guncabinet/excursion
-	name = "expedition weaponry cabinet"
-	req_one_access = list(access_explorer,access_armory)
-
-/obj/structure/closet/secure_closet/guncabinet/excursion/New()
-	..()
-	for(var/i = 1 to 2)
-		new /obj/item/weapon/gun/energy/locked/frontier(src)
-	for(var/i = 1 to 2)
-		new /obj/item/weapon/gun/energy/locked/frontier/holdout(src)
-
 // Used at centcomm for the elevator
 /obj/machinery/cryopod/robot/door/dorms
 	spawnpoint_type = /datum/spawnpoint/tram

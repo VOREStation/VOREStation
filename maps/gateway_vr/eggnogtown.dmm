@@ -1395,7 +1395,7 @@
 /turf/simulated/floor/tiled,
 /area/gateway/eggnogtown/stokeswashere/bathroom)
 "ma" = (
-/obj/effect/overmap/visitable/sector/tether_gateway/eggnogtown,
+/obj/effect/overmap/visitable/sector/common_gateway/eggnogtown,
 /turf/simulated/mineral/ignore_cavegen{
 	temperature = 258.15
 	},
