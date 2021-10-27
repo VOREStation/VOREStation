@@ -124,7 +124,11 @@
 
 	default_skybox = /datum/skybox_settings/stellar_delight
 
-	unit_test_exempt_areas = list()
+	unit_test_exempt_areas = list(
+		/area/stellardelight/deck1/exterior,
+		/area/stellardelight/deck1/exploshuttle,
+		/area/stellardelight/deck1/miningshuttle
+		)
 
 	unit_test_exempt_from_atmos = list() //it maint
 
@@ -468,11 +472,11 @@
 	name = "Starstuff"
 	current_location = "port_shuttlepad"
 	docking_controller_tag = "sd_bittyshuttle" 
-	shuttle_area = list(/area/shuttle/sdboat,/area/shuttle/sdboat/aft)
+	shuttle_area = list(/area/shuttle/sdboat/fore,/area/shuttle/sdboat/aft)
 	fuel_consumption = 2
 	defer_initialisation = TRUE
 
-/area/shuttle/sdboat
+/area/shuttle/sdboat/fore
 	icon = 'icons/turf/areas_vr.dmi'
 	icon_state = "yelwhitri"
 	name = "Starstuff Cockpit"

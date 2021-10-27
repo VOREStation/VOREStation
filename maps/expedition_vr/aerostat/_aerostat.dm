@@ -14,6 +14,11 @@
 	known = TRUE
 	icon_state = "chlorine"
 
+	skybox_icon = 'icons/skybox/virgo2.dmi'
+	skybox_icon_state = "v2"
+	skybox_pixel_x = 0
+	skybox_pixel_y = 0
+
 // -- Datums -- //
 
 /datum/shuttle/autodock/ferry/aerostat

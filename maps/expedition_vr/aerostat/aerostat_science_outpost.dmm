@@ -3960,7 +3960,7 @@
 	landmark_tag = "aerostat_east";
 	name = "Virgo 2 Aerostat (E)"
 	},
-/turf/simulated/shuttle/floor/yellow,
+/turf/simulated/shuttle/floor/yellow/airless,
 /area/shuttle/aerostat)
 "pe" = (
 /obj/structure/cable/heavyduty{
@@ -4990,7 +4990,7 @@
 /obj/machinery/light/small,
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /obj/effect/floor_decal/industrial/warning/dust,
-/turf/simulated/shuttle/floor/yellow,
+/turf/simulated/shuttle/floor/yellow/airless,
 /area/shuttle/aerostat)
 "tU" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -7874,7 +7874,7 @@
 	id_tag = "aerostat_shuttle_airlock";
 	pixel_y = 29
 	},
-/turf/simulated/shuttle/floor/yellow,
+/turf/simulated/shuttle/floor/yellow/airless,
 /area/shuttle/aerostat)
 "Hq" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
@@ -9163,7 +9163,7 @@
 	},
 /obj/effect/map_helper/airlock/atmos/pump_out_internal,
 /obj/effect/floor_decal/industrial/warning/dust,
-/turf/simulated/shuttle/floor/yellow,
+/turf/simulated/shuttle/floor/yellow/airless,
 /area/shuttle/aerostat)
 "Nu" = (
 /obj/machinery/atmospherics/pipe/simple/visible/blue{
@@ -26873,7 +26873,7 @@ aw
 aw
 aw
 bd
-bI
+bd
 bd
 TU
 vX
@@ -27725,7 +27725,7 @@ aw
 aw
 aw
 bd
-bI
+bd
 bd
 Kq
 nS

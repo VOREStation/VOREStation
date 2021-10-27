@@ -511,9 +511,9 @@
 /turf/simulated/floor/plating/eris/under,
 /area/offmap/aerostat/surface/outpost/powerroom)
 "ql" = (
+/obj/effect/floor_decal/rust,
+/obj/effect/floor_decal/rust,
 /obj/machinery/computer/shuttle_control/aerostat_shuttle,
-/obj/effect/floor_decal/rust,
-/obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/techfloor/virgo2,
 /area/offmap/aerostat/surface/shuttleconsole)
 "qs" = (
