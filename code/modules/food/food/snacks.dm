@@ -34,6 +34,11 @@
 	/// Packaged meals switch to this state when opened, if set
 	var/package_open_state
 
+	/// If this is canned. If true, it will print a message and ask you to open it
+	var/canned = FALSE
+	/// Canned food switch to this state when opened, if set
+	var/canned_open_state
+
 /obj/item/weapon/reagent_containers/food/snacks/Initialize()
 	. = ..()
 	if(nutriment_amt)
@@ -63,6 +68,9 @@
 	if(package && !user.incapacitated())
 		unpackage(user)
 
+	if(canned && !user.incapacitated())
+		uncan(user)
+
 /obj/item/weapon/reagent_containers/food/snacks/attack(mob/living/M as mob, mob/user as mob, def_zone)
 	if(reagents && !reagents.total_volume)
 		to_chat(user, "<span class='danger'>None of [src] left!</span>")
@@ -72,6 +80,10 @@
 
 	if(package)
 		to_chat(M, "<span class='warning'>How do you expect to eat this with the package still on?</span>")
+		return FALSE
+
+	if(canned)
+		to_chat(M, "<span class='warning'>How do you expect to eat this without opening it?</span>")
 		return FALSE
 
 	if(istype(M, /mob/living/carbon))
@@ -250,6 +262,13 @@
 		user.put_in_hands(T)
 	if(package_open_state)
 		icon_state = package_open_state
+
+/obj/item/weapon/reagent_containers/food/snacks/proc/uncan(mob/user)
+	canned = FALSE
+	to_chat(user, "<span class='notice'>You unseal \the [src] with a crack of metal.</span>")
+	playsound(loc,'sound/effects/tincanopen.ogg', rand(10,50), 1)
+	if(canned_open_state)
+		icon_state = canned_open_state
 
 ////////////////////////////////////////////////////////////////////////////////
 /// FOOD END
@@ -4218,9 +4237,11 @@
 	desc = "Musical fruit in a slightly less musical container."
 	filling_color = "#FC6F28"
 	icon_state = "bakedbeans"
-	nutriment_amt = 4
-	nutriment_desc = list("beans" = 4)
 	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/berrymuffin/berry/Initialize()
+	. = ..()
+	reagents.add_reagent("bean_protein", 6)
 
 /obj/item/weapon/reagent_containers/food/snacks/sugarcookie
 	name = "sugar cookie"
@@ -6739,34 +6760,8 @@
 //////////////////////Canned Foods - crack open and eat (ADDED 04/11/2021)//////////////////////
 
 /obj/item/weapon/reagent_containers/food/snacks/canned
-	name = "void can"
 	icon = 'icons/obj/food_canned.dmi'
-	flags = 0
-	var/sealed = TRUE
-
-/obj/item/weapon/reagent_containers/food/snacks/canned/Initialize()
-	. = ..()
-	if(!sealed)
-		unseal()
-
-/obj/item/weapon/reagent_containers/food/snacks/canned/examine(mob/user)
-	. = ..()
-	to_chat(user, "It is [sealed ? "" : "un"]sealed.")
-
-/obj/item/weapon/reagent_containers/food/snacks/canned/proc/unseal()
-	flags |= OPENCONTAINER
-	sealed = FALSE
-	update_icon()
-
-/obj/item/weapon/reagent_containers/food/snacks/canned/attack_self(var/mob/user)
-	if(sealed)
-		playsound(loc,'sound/effects/tincanopen.ogg', rand(10,50), 1)
-		to_chat(user, "<span class='notice'>You unseal \the [src] with a crack of metal.</span>")
-		unseal()
-
-/obj/item/weapon/reagent_containers/food/snacks/canned/update_icon()
-	if(!sealed)
-		icon_state = "[initial(icon_state)]-open"
+	canned = TRUE
 
 //////////Just a short line of Canned Consumables, great for treasure in faraway abandoned outposts//////////
 
@@ -6775,6 +6770,7 @@
 	icon_state = "beef"
 	desc = "A can of premium preserved vat-grown holstein beef. Now 99.9% bone free!"
 	trash = /obj/item/trash/beef
+	canned_open_state = "beef-open"
 	filling_color = "#663300"
 	center_of_mass = list("x"=15, "y"=9)
 	nutriment_desc = list("beef" = 1)
@@ -6783,54 +6779,54 @@
 /obj/item/weapon/reagent_containers/food/snacks/canned/beef/Initialize()
 	.=..()
 	reagents.add_reagent("protein", 4)
-	reagents.add_reagent("sodiumchloride", 1)
+	reagents.add_reagent("sodiumchloride", 2)
 
 /obj/item/weapon/reagent_containers/food/snacks/canned/beans
 	name = "baked beans"
 	icon_state = "beans"
 	desc = "Luna Colony beans. Carefully synthethized from soy."
 	trash = /obj/item/trash/beans
+	canned_open_state = "beans-open"
 	filling_color = "#ff6633"
 	center_of_mass = list("x"=15, "y"=9)
 	nutriment_desc = list("beans" = 1, "tomato sauce" = 1)
-	nutriment_amt = 15
 	bitesize = 2
 
-///obj/item/weapon/reagent_containers/food/snacks/canned/tomato (NEED TO SEE HOW TO CHANGE EATING SOUND)
-//	name = "tomato soup"
-//	icon_state = "tomato"
-//	desc = "Plain old unseasoned tomato soup. This can has no use-by date."
-//	trash = "/obj/item/trash/tomato"
-//	filling_color = "#ae0000"
-//	center_of_mass = list("x"=15, "y"=9)
-//	nutriment_desc = list("tomato" = 1)
-//	bitesize = 3
-//	eat_sound = 'sound/items/drink.ogg'
-//
-///obj/item/weapon/reagent_containers/food/snacks/canned/tomato/Initialize()
-//	.=..()
-//	reagents.add_reagent(/datum/reagent/drink/juice/tomato, 12)
-//
-//
-///obj/item/weapon/reagent_containers/food/snacks/canned/tomato/feed_sound(var/mob/user)
-//	playsound(user.loc, 'sound/items/drink.ogg', rand(10, 50), 1)
+/obj/item/weapon/reagent_containers/food/snacks/canned/beans/Initialize()
+	.=..()
+	reagents.add_reagent("bean_protein", 5)
+	reagents.add_reagent("tomatojuice", 5)
+
+/obj/item/weapon/reagent_containers/food/snacks/canned/tomato
+	name = "tomato soup"
+	icon_state = "tomato"
+	desc = "Plain old unseasoned tomato soup. This can has no use-by date."
+	trash = /obj/item/trash/tomato
+	package_open_state = "tomato-open"
+	filling_color = "#ae0000"
+	center_of_mass = list("x"=15, "y"=9)
+	bitesize = 3
+
+/obj/item/weapon/reagent_containers/food/snacks/canned/tomato/Initialize()
+	.=..()
+	reagents.add_reagent("tomatojuice", 12)
 
 /obj/item/weapon/reagent_containers/food/snacks/canned/spinach
 	name = "spinach"
 	icon_state = "spinach"
 	desc = "Wup-Az! Brand canned spinach. Notably has less iron in it than a watermelon."
 	trash = /obj/item/trash/spinach
+	canned_open_state = "spinach-open"
 	filling_color = "#003300"
 	center_of_mass = list("x"=15, "y"=9)
-	nutriment_amt = 5
 	nutriment_desc = list("soggy" = 1, "vegetable" = 1)
-	bitesize = 5
+	bitesize = 3
 
 /obj/item/weapon/reagent_containers/food/snacks/canned/spinach/Initialize()
 	.=..()
-	reagents.add_reagent("adrenaline", 5)
-	reagents.add_reagent("hyperzine", 5)
-	reagents.add_reagent("iron", 5)
+	reagents.add_reagent("adrenaline", 4)
+	reagents.add_reagent("hyperzine", 4)
+	reagents.add_reagent("iron", 4)
 
 //////////////////////////////Advanced Canned Food//////////////////////////////
 
@@ -6839,30 +6835,30 @@
 	icon_state = "fisheggs"
 	desc = "Terran caviar, or space carp eggs. Carefully faked using alginate, artificial flavoring and salt. Skrell approved!"
 	trash = /obj/item/trash/fishegg
+	canned_open_state = "fisheggs-open"
 	filling_color = "#000000"
 	center_of_mass = list("x"=15, "y"=9)
-	nutriment_desc = list("fish" = 1, "salt" = 1)
-	nutriment_amt = 6
+	nutriment_desc = list("salt" = 1)
 	bitesize = 1
 
-/obj/item/weapon/reagent_containers/food/snacks/caviar/Initialize()
+/obj/item/weapon/reagent_containers/food/snacks/canned/caviar/Initialize()
 	. = ..()
-	reagents.add_reagent("protein", 5)
+	reagents.add_reagent("seafood", 5)
 
 /obj/item/weapon/reagent_containers/food/snacks/canned/caviar/true
 	name = "\improper Classic Terran Caviar"
 	icon_state = "carpeggs"
 	desc = "Terran caviar, or space carp eggs. Banned by the Vir Food Health Administration for exceeding the legally set amount of carpotoxins in food stuffs."
 	trash = /obj/item/trash/carpegg
+	canned_open_state = "carpeggs-open"
 	filling_color = "#330066"
 	center_of_mass = list("x"=15, "y"=9)
-	nutriment_desc = list("fish" = 1, "salt" = 1, "a numbing sensation" = 1)
-	nutriment_amt = 6
+	nutriment_desc = list("salt" = 1, "a numbing sensation" = 1)
 	bitesize = 1
 
-/obj/item/weapon/reagent_containers/food/snacks/caviar/true/Initialize()
+/obj/item/weapon/reagent_containers/food/snacks/canned/caviar/true/Initialize()
 	. = ..()
-	reagents.add_reagent("protein", 4)
+	reagents.add_reagent("seafood", 4)
 	reagents.add_reagent("carpotoxin", 1)
 
 /obj/item/weapon/reagent_containers/food/snacks/canned/maps
@@ -6870,13 +6866,12 @@
 	icon_state = "maps"
 	desc = "A re-branding of a classic Terran snack! Contains mostly edible ingredients."
 	trash = /obj/item/trash/maps
+	canned_open_state = "maps-open"
 	filling_color = "#330066"
 	center_of_mass = list("x"=15, "y"=9)
-	nutriment_desc = list("meat" = 1, "salt" = 1)
-	nutriment_amt = 8
 	bitesize = 2
 
-/obj/item/weapon/reagent_containers/food/snacks/maps/Initialize()
+/obj/item/weapon/reagent_containers/food/snacks/canned/maps/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 6)
 	reagents.add_reagent("sodiumchloride", 2)
@@ -6886,10 +6881,10 @@
 	icon_state = "appleberry"
 	desc = "A classic snack favored by Sol astronauts. Made from dried apple-hybidized berries grown on the lunar colonies."
 	trash = /obj/item/trash/appleberry
+	canned_open_state = "appleberry-open"
 	filling_color = "#FFFFFF"
 	center_of_mass = list("x"=15, "y"=9)
 	nutriment_desc = list("apple" = 1, "sweetness" = 1)
-	nutriment_amt = 8
 	bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/appleberry/Initialize()
@@ -6901,15 +6896,49 @@
 	icon_state = "ntbeans"
 	desc = "Musical fruit in a slightly less musical container. Now with bacon!"
 	trash = /obj/item/trash/ntbeans
+	canned_open_state = "ntbeans-open"
 	filling_color = "#FC6F28"
 	center_of_mass = list("x"=15, "y"=9)
-	nutriment_desc = list("beans" = 4)
-	nutriment_amt = 6
 	bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/canned/ntbeans/Initialize()
 	. = ..()
+	reagents.add_reagent("bean_protein", 6)
 	reagents.add_reagent("protein", 2)
+
+/obj/item/weapon/reagent_containers/food/snacks/canned/brainzsnax
+	name = "\improper BrainzSnax"
+	icon_state = "brainzsnax"
+	desc = "A can of grey matter marketed for xenochimeras."
+	description_fluff = "As the cartoon brain with limbs proudly proclaims, \"It's meat. Eat it!\" On the can is printed \"Rich in limbic system\" and \
+	under that in infinitely small letters, \"Warning, product must be eaten within two hours of opening. May contain prion disease. \
+	GrubCo LTD is not liable for any brain damage occuring after consumption of product.\""
+	trash = /obj/item/trash/brainzsnax
+	canned_open_state = "brainzsnax-open"
+	filling_color = "#caa3c9"
+	center_of_mass = list("x"=15, "y"=9)
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/canned/brainzsnax/Initialize()
+	. = ..()
+	reagents.add_reagent("brain_protein", 10)
+
+/obj/item/weapon/reagent_containers/food/snacks/canned/brainzsnax/red
+	name = "\improper BrainzSnax RED"
+	icon_state = "brainzsnaxred"
+	desc = "A can of grey matter marketed for xenochimeras. This one has added tomato sauce."
+	description_fluff = "As the cartoonish brain with limbs proudly proclaims, \"It's meat. Eat it!\" On the can is printed \"Yummy red stuff!\" and \
+	under that in infinitely small letters, \"Warning, product must be eaten within two hours of opening. May contain prion disease. \
+	GrubCo LTD is not liable for any brain damage occuring after consumption of product.\""
+	trash = /obj/item/trash/brainzsnaxred
+	canned_open_state = "brainzsnaxred-open"
+	filling_color = "#a6898d"
+	center_of_mass = list("x"=15, "y"=9)
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/canned/brainzsnax/red/Initialize()
+	. = ..()
+	reagents.add_reagent("red_brain_protein", 10)
 
 //////////////Packaged Food - break open and eat//////////////
 
@@ -7002,7 +7031,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/packaged/meatration/Initialize()
 	. = ..()
-	reagents.add_reagent("protein", 3)
+	reagents.add_reagent("protein", 4)
 
 /obj/item/weapon/reagent_containers/food/snacks/packaged/vegration
 	name = "veggie ration"
