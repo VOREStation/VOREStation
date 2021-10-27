@@ -112,12 +112,17 @@
 	else if(!pref.custom_base || !(pref.custom_base in GLOB.custom_species_bases))
 		pref.custom_base = SPECIES_HUMAN
 
+	pref.custom_say = lowertext(trim(pref.custom_say))
+	pref.custom_whisper = lowertext(trim(pref.custom_whisper))
+	pref.custom_ask = lowertext(trim(pref.custom_ask))
+	pref.custom_exclaim = lowertext(trim(pref.custom_exclaim))
+
 /datum/category_item/player_setup_item/vore/traits/copy_to_mob(var/mob/living/carbon/human/character)
 	character.custom_species	= pref.custom_species
-	character.custom_say		= pref.custom_say
-	character.custom_ask		= pref.custom_ask
-	character.custom_whisper	= pref.custom_whisper
-	character.custom_exclaim	= pref.custom_exclaim
+	character.custom_say		= lowertext(trim(pref.custom_say))
+	character.custom_ask		= lowertext(trim(pref.custom_ask))
+	character.custom_whisper	= lowertext(trim(pref.custom_whisper))
+	character.custom_exclaim	= lowertext(trim(pref.custom_exclaim))
 
 	if(character.isSynthetic())	//Checking if we have a synth on our hands, boys.
 		pref.dirty_synth = 1

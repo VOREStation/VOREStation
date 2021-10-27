@@ -1,3 +1,16 @@
+/*
+ * Contains:
+ *		Flashlights
+ *		Lamps
+ *		Flares
+ *		Chemlights
+ *		Slime Extract
+ */
+
+/*
+ * Flashlights
+ */
+
 /obj/item/device/flashlight
 	name = "flashlight"
 	desc = "A hand-held emergency light."
@@ -7,15 +20,15 @@
 	slot_flags = SLOT_BELT
 	matter = list(MAT_STEEL = 50,MAT_GLASS = 20)
 	action_button_name = "Toggle Flashlight"
-	
+
 	light_system = MOVABLE_LIGHT_DIRECTIONAL
 	light_range = 4 //luminosity when on
 	light_power = 0.8	//lighting power when on
 	light_color = "#FFFFFF" //LIGHT_COLOR_INCANDESCENT_FLASHLIGHT	//lighting colour when on
 	light_cone_y_offset = -7
-	
+
 	var/on = 0
-	
+
 	var/obj/item/weapon/cell/cell
 	var/cell_type = /obj/item/weapon/cell/device
 	var/power_usage = 1
@@ -26,7 +39,7 @@
 
 	if(power_use && cell_type)
 		cell = new cell_type(src)
-	
+
 	update_brightness()
 
 /obj/item/device/flashlight/Destroy()
@@ -232,24 +245,34 @@
 	w_class = ITEMSIZE_TINY
 	power_use = 0
 
-/obj/item/device/flashlight/color	//Default color is blue, just roll with it.
+/obj/item/device/flashlight/color	//Default color is blue
 	name = "blue flashlight"
-	desc = "A hand-held emergency light. This one is blue."
+	desc = "A small flashlight. This one is blue."
 	icon_state = "flashlight_blue"
+
+/obj/item/device/flashlight/color/green
+	name = "green flashlight"
+	desc = "A small flashlight. This one is green."
+	icon_state = "flashlight_green"
+
+/obj/item/device/flashlight/color/purple
+	name = "purple flashlight"
+	desc = "A small flashlight. This one is purple."
+	icon_state = "flashlight_purple"
 
 /obj/item/device/flashlight/color/red
 	name = "red flashlight"
-	desc = "A hand-held emergency light. This one is red."
+	desc = "A small flashlight. This one is red."
 	icon_state = "flashlight_red"
 
 /obj/item/device/flashlight/color/orange
 	name = "orange flashlight"
-	desc = "A hand-held emergency light. This one is orange."
+	desc = "A small flashlight. This one is orange."
 	icon_state = "flashlight_orange"
 
 /obj/item/device/flashlight/color/yellow
 	name = "yellow flashlight"
-	desc = "A hand-held emergency light. This one is yellow."
+	desc = "A small flashlight. This one is yellow."
 	icon_state = "flashlight_yellow"
 
 /obj/item/device/flashlight/maglight
@@ -273,7 +296,11 @@
 	w_class = ITEMSIZE_TINY
 	power_use = 0
 
-// the desk lamps are a bit special
+/*
+ * Lamps
+ */
+
+// pixar desk lamp
 /obj/item/device/flashlight/lamp
 	name = "desk lamp"
 	desc = "A desk lamp with an adjustable mount."
@@ -286,14 +313,6 @@
 	on = 1
 	light_system = STATIC_LIGHT
 
-
-// green-shaded desk lamp
-/obj/item/device/flashlight/lamp/green
-	desc = "A classic green-shaded desk lamp."
-	icon_state = "lampgreen"
-	center_of_mass = list("x" = 15,"y" = 11)
-	light_color = "#FFC58F"
-
 /obj/item/device/flashlight/lamp/verb/toggle_light()
 	set name = "Toggle light"
 	set category = "Object"
@@ -302,7 +321,23 @@
 	if(!usr.stat)
 		attack_self(usr)
 
-// FLARES
+// green-shaded desk lamp
+/obj/item/device/flashlight/lamp/green
+	desc = "A classic green-shaded desk lamp."
+	icon_state = "lampgreen"
+	center_of_mass = list("x" = 15,"y" = 11)
+	light_color = "#FFC58F"
+
+// clown lamp
+/obj/item/device/flashlight/lamp/clown
+	desc = "A whacky banana peel shaped lamp."
+	icon_state = "bananalamp"
+	center_of_mass = list("x" = 15,"y" = 11)
+
+
+/*
+ * Flares
+ */
 
 /obj/item/device/flashlight/flare
 	name = "flare"
@@ -368,18 +403,20 @@
 	START_PROCESSING(SSobj, src)
 	return 1
 
-//Glowsticks
+/*
+ * Chemlights
+ */
 
 /obj/item/device/flashlight/glowstick
 	name = "green glowstick"
-	desc = "A green military-grade glowstick."
+	desc = "A green military-grade chemical light."
 	w_class = ITEMSIZE_SMALL
 	light_system = MOVABLE_LIGHT
 	light_range = 4
 	light_power = 0.9
 	light_color = "#49F37C"
-	icon_state = "glowstick"
-	item_state = "glowstick"
+	icon_state = "glowstick_green"
+	item_state = "glowstick_green"
 	var/fuel = 0
 	power_use = 0
 
@@ -414,32 +451,45 @@
 
 /obj/item/device/flashlight/glowstick/red
 	name = "red glowstick"
-	desc = "A red military-grade glowstick."
+	desc = "A red military-grade chemical light."
 	light_color = "#FC0F29"
 	icon_state = "glowstick_red"
 	item_state = "glowstick_red"
 
 /obj/item/device/flashlight/glowstick/blue
 	name = "blue glowstick"
-	desc = "A blue military-grade glowstick."
+	desc = "A blue military-grade chemical light."
 	light_color = "#599DFF"
 	icon_state = "glowstick_blue"
 	item_state = "glowstick_blue"
 
 /obj/item/device/flashlight/glowstick/orange
 	name = "orange glowstick"
-	desc = "A orange military-grade glowstick."
+	desc = "A orange military-grade chemical light."
 	light_color = "#FA7C0B"
 	icon_state = "glowstick_orange"
 	item_state = "glowstick_orange"
 
 /obj/item/device/flashlight/glowstick/yellow
 	name = "yellow glowstick"
-	desc = "A yellow military-grade glowstick."
+	desc = "A yellow military-grade chemical light."
 	light_color = "#FEF923"
 	icon_state = "glowstick_yellow"
 	item_state = "glowstick_yellow"
 
+/obj/item/device/flashlight/glowstick/radioisotope
+	name = "radioisotope glowstick"
+	desc = "A radioisotope powered chemical light. Escaping particles light up the area far brighter on similar levels to flares and for longer"
+	icon_state = "glowstick_isotope"
+	item_state = "glowstick_isotope"
+
+	light_range = 8
+	light_power = 0.1
+	light_color = "#49F37C"
+
+/*
+ * Slime Extract
+ */
 
 /obj/item/device/flashlight/slime
 	gender = PLURAL

@@ -120,7 +120,7 @@
 		EQUIPMENT("Kinetic Accelerator",		/obj/item/weapon/gun/energy/kinetic_accelerator,				900),
 		EQUIPMENT("KA AoE Damage",				/obj/item/borg/upgrade/modkit/aoe/mobs,							2000),
 		EQUIPMENT("KA Damage Increase",			/obj/item/borg/upgrade/modkit/damage,							1000),
-		EQUIPMENT("KA Efficiency Increase",		/obj/item/borg/upgrade/modkit/efficiency,						1200),
+		EQUIPMENT("KA Cooldown Decrease",		/obj/item/borg/upgrade/modkit/cooldown,							1200),
 		EQUIPMENT("KA Range Increase",			/obj/item/borg/upgrade/modkit/range,							1000),
 		EQUIPMENT("KA Holster",					/obj/item/clothing/accessory/holster/waist/kinetic_accelerator,	350),
 		EQUIPMENT("KA Super Chassis",			/obj/item/borg/upgrade/modkit/chassis_mod,						250),

@@ -249,6 +249,12 @@
 	drop_sound = 'sound/items/drop/soda.ogg'
 	pickup_sound = 'sound/items/pickup/soda.ogg'
 
+/obj/item/trash/tomato
+	name = "empty tomato soup can"
+	icon_state = "tomato"
+	drop_sound = 'sound/items/drop/soda.ogg'
+	pickup_sound = 'sound/items/pickup/soda.ogg'
+
 /obj/item/trash/spinach
 	name = "empty spinach can"
 	icon_state = "spinach"
@@ -410,3 +416,14 @@
 	name = "burrito packaging"
 	icon_state = "smolburrito"
 
+/obj/item/trash/brainzsnax
+	name = "\improper BrainzSnax can"
+	icon_state = "brainzsnax"
+	drop_sound = 'sound/items/drop/soda.ogg'
+	pickup_sound = 'sound/items/pickup/soda.ogg'
+
+/obj/item/trash/brainzsnaxred
+	name = "\improper BrainzSnax RED can"
+	icon_state = "brainzsnaxred"
+	drop_sound = 'sound/items/drop/soda.ogg'
+	pickup_sound = 'sound/items/pickup/soda.ogg'

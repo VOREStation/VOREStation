@@ -45,7 +45,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 	female_cough_sounds = list('sound/effects/slime_squish.ogg')
 
 	min_age =		1
-	max_age =		10
+	max_age =		16
 
 	economic_modifier = 3
 

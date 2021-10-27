@@ -221,6 +221,11 @@
 	frame_style = FRAME_STYLE_WALL
 	x_offset = 28
 	y_offset = 28
+	
+/datum/frame/frame_types/arfgs
+	name = "ARF Generator"
+	frame_class = FRAME_CLASS_MACHINE
+	frame_size = 3
 
 //////////////////////////////
 // Frame Object (Structure)
