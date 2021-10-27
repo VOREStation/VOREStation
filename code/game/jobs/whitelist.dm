@@ -98,6 +98,10 @@ var/list/whitelist = list()
 	if(!M || !module)
 		return 0
 
+	//Module is not even whitelisted
+	if(!(module in whitelisted_module_types))
+		return 1
+
 	//If we have a loaded file, search it
 	if(alien_whitelist)
 		for (var/s in alien_whitelist)
