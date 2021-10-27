@@ -8,6 +8,12 @@
 	in_space = 0
 	unknown_state = "field"
 
+	skybox_icon = 'icons/skybox/anomaly.dmi'
+	skybox_icon_state = "shimmer_b"
+	skybox_pixel_x = 0
+	skybox_pixel_y = 0
+
+
 /datum/map_template/common_lateload/gateway/honlethhighlands_a/on_map_loaded(z)
     . = ..()
     new /datum/random_map/automata/cave_system/no_cracks(null, 3, 3, z, world.maxx - 4, world.maxy - 4) // Create the mining Z-level.

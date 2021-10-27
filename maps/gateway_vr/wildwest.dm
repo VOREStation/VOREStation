@@ -188,3 +188,7 @@
 	unknown_state = "field"
 	known = FALSE
 	
+	skybox_icon = 'icons/skybox/anomaly.dmi'
+	skybox_icon_state = "shimmer_r"
+	skybox_pixel_x = 0
+	skybox_pixel_y = 0
