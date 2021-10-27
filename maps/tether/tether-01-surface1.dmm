@@ -2812,6 +2812,18 @@
 	dir = 10
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals4,
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 4
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 5
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/lowernorthhall)
 "aeE" = (
@@ -3325,9 +3337,6 @@
 	dir = 5
 	},
 /obj/effect/floor_decal/borderfloor/corner2{
-	dir = 5
-	},
-/obj/effect/floor_decal/borderfloor/corner2{
 	dir = 4
 	},
 /obj/effect/floor_decal/corner/paleblue/bordercorner2{
@@ -3545,6 +3554,11 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/lowernorthhall)
 "afN" = (
@@ -3556,6 +3570,11 @@
 	},
 /obj/machinery/door/firedoor/glass/hidden/steel{
 	dir = 8
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/lowernorthhall)
@@ -17217,20 +17236,8 @@
 /turf/simulated/floor/tiled,
 /area/rnd/hallway)
 "aCg" = (
-/obj/effect/floor_decal/borderfloor{
-	dir = 4
-	},
-/obj/effect/floor_decal/corner/paleblue/border{
-	dir = 4
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
-	},
-/obj/effect/floor_decal/borderfloor/corner2{
-	dir = 6
-	},
-/obj/effect/floor_decal/corner/paleblue/bordercorner2{
-	dir = 6
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 9
@@ -31826,6 +31833,16 @@
 /obj/effect/floor_decal/corner/red/border,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/lowerhall)
+"ctE" = (
+/obj/structure/table/rack,
+/obj/item/weapon/tank/emergency,
+/obj/item/weapon/tank/emergency,
+/obj/item/weapon/tank/emergency,
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/maintenance/lowmedbaymaint)
 "cwS" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -32103,6 +32120,20 @@
 	},
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/funny/hideyhole)
+"dvU" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/lowernorthhall)
 "dxY" = (
 /obj/structure/table/rack,
 /obj/item/clothing/mask/gas,
@@ -32210,6 +32241,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/lowerhall)
+"dNE" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/maintenance/lowmedbaymaint)
 "dNP" = (
 /obj/machinery/door/airlock/silver{
 	name = "Clown's Office";
@@ -32500,6 +32537,10 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/weaponsrange)
+"eJc" = (
+/obj/item/weapon/storage/toolbox/brass,
+/turf/simulated/floor/plating,
+/area/maintenance/lowmedbaymaint)
 "eJQ" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/regular{
@@ -34022,6 +34063,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/hallway)
+"jkI" = (
+/obj/structure/table/rack/shelf,
+/obj/random/maintenance/cargo,
+/obj/random/maintenance/cargo,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/maintenance/lowmedbaymaint)
 "jnj" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/lightgrey/border,
@@ -34984,6 +35031,14 @@
 "lEA" = (
 /turf/simulated/wall,
 /area/maintenance/engineering/atmos/airlock/gas)
+"lEB" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/maintenance/lowmedbaymaint)
 "lIj" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/dark,
@@ -35399,6 +35454,12 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 10
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 6
+	},
+/obj/effect/floor_decal/corner/paleblue/bordercorner2{
+	dir = 6
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/lowernorthhall)
@@ -36681,6 +36742,24 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/lowerhall)
+"qtC" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/lowernorthhall)
 "qtU" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 5
@@ -36730,6 +36809,16 @@
 	},
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/funny/clownoffice)
+"qJe" = (
+/obj/structure/table/rack/shelf,
+/obj/random/maintenance/cargo,
+/obj/random/maintenance/cargo,
+/obj/random/maintenance/cargo,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/maintenance/lowmedbaymaint)
 "qJl" = (
 /obj/machinery/door/airlock/maintenance/common,
 /obj/machinery/door/firedoor/glass,
@@ -37020,6 +37109,13 @@
 /obj/item/weapon/bedsheet/mimedouble,
 /turf/simulated/floor/carpet/bcarpet,
 /area/tether/surfacebase/funny/mimeoffice)
+"rtV" = (
+/obj/random/maintenance/medical,
+/obj/structure/table/rack,
+/obj/random/maintenance/cargo,
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/maintenance/lowmedbaymaint)
 "ruj" = (
 /obj/machinery/door/airlock/silver{
 	name = "Mime's Office";
@@ -37364,6 +37460,10 @@
 	},
 /turf/simulated/floor/lino,
 /area/crew_quarters/visitor_dining)
+"syt" = (
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/maintenance/lowmedbaymaint)
 "szT" = (
 /obj/effect/floor_decal/borderfloor/corner{
 	dir = 1
@@ -37422,6 +37522,13 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_one_hall)
+"sGh" = (
+/obj/structure/table/rack/shelf,
+/obj/random/maintenance/medical,
+/obj/random/maintenance/medical,
+/obj/random/maintenance/cargo,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/maintenance/lowmedbaymaint)
 "sHK" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -37532,6 +37639,10 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/brig/storage)
+"sYi" = (
+/obj/effect/decal/remains/human,
+/turf/simulated/floor/plating,
+/area/maintenance/lowmedbaymaint)
 "tak" = (
 /obj/structure/table/steel,
 /obj/structure/cable/green{
@@ -37548,6 +37659,10 @@
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/brig)
+"tcK" = (
+/obj/item/clothing/suit/storage/hooded/wintercoat/ratvar,
+/turf/simulated/floor/plating,
+/area/maintenance/lowmedbaymaint)
 "tdg" = (
 /turf/simulated/mineral,
 /area/maintenance/lowmedbaymaint)
@@ -37649,6 +37764,20 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/lowerhall)
+"tAo" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/lowernorthhall)
 "tAT" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 9
@@ -37910,6 +38039,16 @@
 	},
 /turf/simulated/floor,
 /area/tether/surfacebase/security/gasstorage)
+"ucq" = (
+/obj/machinery/door/airlock/maintenance/common,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/tether/surfacebase/lowernorthhall)
 "ucv" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/glass_security{
@@ -37927,6 +38066,10 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/lowerhall)
+"udU" = (
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/plating,
+/area/maintenance/lowmedbaymaint)
 "uge" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
@@ -38461,6 +38604,18 @@
 	},
 /turf/simulated/wall,
 /area/maintenance/substation/surfaceservicesubstation)
+"wjd" = (
+/obj/effect/floor_decal/rust,
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	pixel_x = 28
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/maintenance/lowmedbaymaint)
 "wjo" = (
 /obj/effect/map_helper/airlock/door/ext_door,
 /obj/machinery/door/blast/regular{
@@ -38768,6 +38923,9 @@
 	},
 /turf/simulated/floor/tiled/freezer,
 /area/tether/surfacebase/security/brig/bathroom)
+"xfm" = (
+/turf/simulated/floor/tiled/steel_dirty,
+/area/maintenance/lowmedbaymaint)
 "xgQ" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -50426,9 +50584,9 @@ aAD
 aAD
 aAD
 aAD
-aAI
-aAI
-aAI
+sGh
+qJe
+jkI
 aef
 aeZ
 afN
@@ -50565,15 +50723,15 @@ aaf
 aaf
 aaf
 aAD
-aAI
-aAI
-aAI
-aAI
-aAI
-aAI
+udU
+sYi
+aAD
+xfm
+syt
+xfm
 aef
 aeS
-afO
+tAo
 aBB
 aCr
 aDa
@@ -50707,15 +50865,15 @@ aaf
 aaf
 aaf
 aAD
+tcK
 aAI
-aAI
-aAI
-aAI
-aAI
-aAI
-aef
-aeS
-afO
+aAD
+rtV
+ctE
+lEB
+ucq
+qtC
+dvU
 aBC
 aCr
 aDb
@@ -50849,12 +51007,12 @@ aag
 aaf
 aaf
 aAD
-aAI
-aAI
-aAI
-aAI
-aAI
-aAI
+eJc
+udU
+aAD
+syt
+dNE
+wjd
 aef
 afi
 afQ
@@ -52707,7 +52865,7 @@ aeD
 aCg
 mGH
 aDH
-mGH
+adx
 aEX
 aFv
 aGw
