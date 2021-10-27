@@ -155,15 +155,11 @@
 		if(alien == IS_SLIME || alien == IS_CHIMERA) //slimes and chimera can get nutrition from injected nutriment and protein
 			M.adjust_nutrition(alt_nutriment_factor * removed)
 
-
-
 /datum/reagent/nutriment/magicdust/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 	playsound(M, 'sound/items/hooh.ogg', 50, 1, -1)
 	if(prob(5))
 		to_chat(M, "<span class='warning'>You feel like you've been gnomed...</span>")
-
-
 
 /datum/reagent/ethanol/galacticpanic
 	name = "Galactic Panic Attack"
@@ -517,3 +513,33 @@
 	glass_name = "Shambler's Juice"
 	glass_desc = "A glass of something shambly"
 	glass_special = list(DRINK_FIZZ)
+
+////////////////START BrainzSnax Reagents////////////////
+
+/datum/reagent/nutriment/protein/brainzsnax
+	name = "grey matter"
+	id = "brain_protein"
+	taste_description = "fatty, mushy meat and allspice"
+	color = "#caa3c9"
+
+/datum/reagent/nutriment/protein/brainzsnax/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+	if(prob(5) && !(alien == IS_CHIMERA || alien == IS_SLIME || alien == IS_PLANT || alien == IS_DIONA || alien == IS_SHADEKIN && !M.isSynthetic()))
+		M.adjustBrainLoss(removed) //Any other species risks prion disease.
+		M.Confuse(5)
+		M.hallucination = max(M.hallucination, 25)
+
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(H.feral > 0 && H.nutrition > 100 && H.traumatic_shock < min(60, H.nutrition/10) && H.jitteriness < 100) //Same check as feral triggers to stop them immediately re-feralling
+			H.feral -= removed * 3 //Should calm them down quick, provided they're actually in a state to STAY calm.
+			if(H.feral <=0) //Check if they're unferalled
+				H.feral = 0
+				to_chat(H, "<span class='info'>Your mind starts to clear, soothed into a state of clarity as your senses return.</span>")
+				log_and_message_admins("is no longer feral.", H)
+
+/datum/reagent/nutriment/protein/brainzsnax/red
+	id = "red_brain_protein"
+	taste_description = "fatty, mushy meat and cheap tomato sauce"
+	color = "#a6898d"
+
+////////////////END BrainzSnax Reagents////////////////

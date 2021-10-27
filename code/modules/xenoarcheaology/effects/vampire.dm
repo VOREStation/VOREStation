@@ -34,16 +34,10 @@
 	DoEffectAura()
 
 /datum/artifact_effect/vampire/DoEffectAura()
-<<<<<<< HEAD
-	nearby_mobs.Cut()
-
-	var/turf/T = get_turf(holder)
-=======
 	var/atom/holder = master.holder
 	if(nearby_mobs.len)
 		nearby_mobs.Cut()
 	var/turf/T = get_turf(master.holder)
->>>>>>> 71e8b0399de... Universal Anomalies (#7914)
 
 	for(var/mob/living/L in oview(effectrange, T))
 		if(!L.stat && L.mind)

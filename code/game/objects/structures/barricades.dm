@@ -104,6 +104,12 @@
 		return TRUE
 	return FALSE
 
+/obj/structure/barricade/planks
+	name = "crude barricade"
+	icon_state = "barricade_planks"
+	health = 50
+	maxhealth = 50
+
 /obj/structure/barricade/sandbag
 	name = "sandbags"
 	desc = "Bags. Bags of sand. It's rough and coarse and somehow stays in the bag."

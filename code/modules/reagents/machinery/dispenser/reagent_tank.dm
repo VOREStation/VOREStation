@@ -271,6 +271,31 @@
 	. = ..()
 	reagents.add_reagent("condensedcapsaicin",1000)
 
+/obj/structure/reagent_dispensers/virusfood
+	name = "Virus Food Dispenser"
+	desc = "A dispenser of virus food. Yum."
+	icon = 'icons/obj/virology_vr.dmi'
+	icon_state = "virusfoodtank"
+	anchored = TRUE
+	density = FALSE
+	amount_per_transfer_from_this = 10
+
+/obj/structure/reagent_dispensers/virusfood/Initialize()
+	. = ..()
+	reagents.add_reagent("virusfood", 1000)
+
+/obj/structure/reagent_dispensers/acid
+	name = "Sulphuric Acid Dispenser"
+	desc = "A dispenser of acid for industrial processes."
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "acidtank"
+	anchored = TRUE
+	density = FALSE
+	amount_per_transfer_from_this = 10
+
+/obj/structure/reagent_dispensers/acid/Initialize()
+	. = ..()
+	reagents.add_reagent("sacid", 1000)
 
 /obj/structure/reagent_dispensers/water_cooler
 	name = "Water-Cooler"
@@ -425,30 +450,6 @@
 	desc = "A beer keg in the form of a nuclear bomb! An absolute blast at parties!"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "nuclearbomb0"
-
-/obj/structure/reagent_dispensers/virusfood
-	name = "Virus Food Dispenser"
-	desc = "A dispenser of virus food. Yum."
-	icon = 'icons/obj/virology_vr.dmi'
-	icon_state = "virusfoodtank"
-	amount_per_transfer_from_this = 10
-	anchored = TRUE
-
-/obj/structure/reagent_dispensers/virusfood/Initialize()
-	. = ..()
-	reagents.add_reagent("virusfood", 1000)
-
-/obj/structure/reagent_dispensers/acid
-	name = "Sulphuric Acid Dispenser"
-	desc = "A dispenser of acid for industrial processes."
-	icon = 'icons/obj/objects.dmi'
-	icon_state = "acidtank"
-	amount_per_transfer_from_this = 10
-	anchored = TRUE
-
-/obj/structure/reagent_dispensers/acid/Initialize()
-	. = ..()
-	reagents.add_reagent("sacid", 1000)
 
 //Cooking oil refill tank
 /obj/structure/reagent_dispensers/cookingoil

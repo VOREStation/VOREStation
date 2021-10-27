@@ -246,7 +246,7 @@
 			slot_r_hand_str = 'icons/mob/items/righthand_melee_vr.dmi',
 			)
 	item_state = "c-machete"
-	w_class = ITEMSIZE_SMALL
+	w_class = ITEMSIZE_NORMAL
 	attack_verb = list("cleaved", "chopped", "pulped", "stabbed", "skewered")
 	can_cleave = TRUE
 	requires_wield = FALSE

@@ -26,8 +26,8 @@
 //Hoooo boy.
 /datum/riding/taur/get_offsets(pass_index) // list(dir = x, y, layer)
 	var/mob/living/L = ridden
-	var/scale_x = L.icon_scale_x
-	var/scale_y = L.icon_scale_y
+	var/scale_x = L.icon_scale_x * L.size_multiplier //VOREStation Edit
+	var/scale_y = L.icon_scale_y * L.size_multiplier //VOREStation Edit
 
 	var/list/values = list(
 		"[NORTH]" = list(0, 8*scale_y, ABOVE_MOB_LAYER),

@@ -16,6 +16,10 @@
 	allow_quick_empty = TRUE
 	use_sound = 'sound/items/drop/flesh.ogg'
 
+/obj/item/weapon/storage/vore_egg/Initialize()
+	. = ..()
+	randpixel_xy()
+
 /obj/item/weapon/storage/vore_egg/open(mob/user as mob)
 	if(isobserver(user))
 		return

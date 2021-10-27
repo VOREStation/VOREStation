@@ -4,6 +4,8 @@
 	w_class = ITEMSIZE_NORMAL
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 
+	//matter = list(MAT_STEEL = 1)
+
 	var/image/blood_overlay = null //this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite
 	var/randpixel = 6
 	var/abstract = 0
@@ -247,7 +249,7 @@
 		var/obj/item/weapon/storage/S = src.loc
 		if(!S.remove_from_storage(src))
 			return
-	
+
 	src.pickup(user)
 	src.throwing = 0
 	if (src.loc == user)
@@ -256,7 +258,7 @@
 	else
 		if(isliving(src.loc))
 			return
-			
+
 	if(user.put_in_active_hand(src))
 		if(isturf(old_loc))
 			var/obj/effect/temporary_effect/item_pickup_ghost/ghost = new(old_loc)
@@ -352,9 +354,9 @@
 	if(user.pulling == src) user.stop_pulling()
 	if((slot_flags & slot))
 		if(equip_sound)
-			playsound(src, equip_sound, 30)
+			playsound(src, equip_sound, 20)
 		else
-			playsound(src, drop_sound, 30)
+			playsound(src, drop_sound, 20)
 	else if(slot == slot_l_hand || slot == slot_r_hand)
 		playsound(src, pickup_sound, 20, preference = /datum/client_preference/pickup_sounds)
 	return
@@ -830,7 +832,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	if(!inhands)
 		apply_blood(standing)			//Some items show blood when bloodied
 		apply_accessories(standing)		//Some items sport accessories like webbing
-	
+
 	//Apply overlays to our...overlay
 	apply_overlays(standing)
 

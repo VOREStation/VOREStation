@@ -17,7 +17,7 @@
 		pixel_y = (dir & 3)? (dir ==1 ? -27 : 27) : 0
 	else
 		has_extinguisher = new/obj/item/weapon/extinguisher(src)
-	
+
 	update_icon()
 
 /obj/structure/extinguisher_cabinet/attackby(obj/item/O, mob/user)
@@ -80,9 +80,11 @@
 	if(has_extinguisher)
 		if(istype(has_extinguisher, /obj/item/weapon/extinguisher/mini))
 			suffix = "mini"
+		if(istype(has_extinguisher, /obj/item/weapon/extinguisher/atmo))
+			suffix = "advanced"
 		else
 			suffix = "standard"
-	
+
 	icon_state = "[initial(icon_state)][opened ? "" : "_closed"]_[suffix]"
 
 /obj/structure/extinguisher_cabinet/old

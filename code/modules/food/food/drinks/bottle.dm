@@ -466,9 +466,9 @@
 
 //////////////////////////JUICES AND STUFF///////////////////////
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/cola //MODIFIED ON 04/21/2021
+/obj/item/weapon/reagent_containers/food/drinks/bottle/cola
 	name = "\improper two-liter Space Cola"
-	desc = "Cola. In space."
+	desc = "Cola. In space. Contains caffeine."
 	icon_state = "colabottle"
 	center_of_mass = list("x"=16, "y"=6)
 
@@ -476,7 +476,17 @@
 	. = ..()
 	reagents.add_reagent("cola", 100)
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/space_up //MODIFIED ON 04/21/2021
+/obj/item/weapon/reagent_containers/food/drinks/bottle/decaf_cola
+	name = "\improper two-liter Space Cola Free"
+	desc = "Cola. In space. Caffeine free."
+	icon_state = "decafcolabottle"
+	center_of_mass = list("x"=16, "y"=6)
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/decaf_cola/Initialize()
+	. = ..()
+	reagents.add_reagent("decafcola", 100)
+
+/obj/item/weapon/reagent_containers/food/drinks/bottle/space_up
 	name = "\improper two-liter Space-Up"
 	desc = "Tastes like a hull breach in your mouth."
 	icon_state = "space-up_bottle"
@@ -486,9 +496,9 @@
 	. = ..()
 	reagents.add_reagent("space_up", 100)
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/space_mountain_wind //MODIFIED ON 04/21/2021
+/obj/item/weapon/reagent_containers/food/drinks/bottle/space_mountain_wind
 	name = "\improper two-liter Space Mountain Wind"
-	desc = "Blows right through you like a space wind."
+	desc = "Blows right through you like a space wind. Contains caffeine."
 	icon_state = "space_mountain_wind_bottle"
 	center_of_mass = list("x"=16, "y"=6)
 
@@ -496,9 +506,9 @@
 	. = ..()
 	reagents.add_reagent("spacemountainwind", 100)
 
-/obj/item/weapon/reagent_containers/food/drinks/bottle/dr_gibb //ADDED ON 04/21/2021
+/obj/item/weapon/reagent_containers/food/drinks/bottle/dr_gibb
 	name = "\improper two-liter Dr. Gibb"
-	desc = "A delicious mixture of 42 different flavors."
+	desc = "A delicious mixture of 42 different flavors. Contains caffeine."
 	icon_state = "dr_gibb_bottle"
 	center_of_mass = list("x"=16, "y"=6)
 

@@ -800,11 +800,12 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	if(client)
 		return ..()
 	var/current_affinity = affinity[T.real_name]
-	ai_holder.busy = TRUE
+	ai_holder.set_busy(TRUE)
 	T.stop_pulling()
 	if(current_affinity >= 50)
 		var/tumby = vore_selected
 		vore_selected = friend_zone
+		ai_holder.set_busy(FALSE)
 		..()
 		vore_selected = tumby
 		return
@@ -813,24 +814,26 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	else 
 		vore_selected.digest_mode = DM_DRAIN
 	..()
-	ai_holder.busy = FALSE
+	ai_holder.set_busy(FALSE)
 
 	
 /mob/living/simple_mob/vore/alienanimals/teppi/perform_the_nom(user, mob/living/prey, user, belly, delay)
 	if(client)
 		return ..()
 	var/current_affinity = affinity[prey.real_name]
-	ai_holder.busy = TRUE
+	ai_holder.set_busy(TRUE)
 	prey.stop_pulling()
 	if(current_affinity >= 50)
 		belly = friend_zone
-		return ..()
+		..()
+		ai_holder.set_busy(FALSE)
+		return
 	if(current_affinity <= -50)
 		vore_selected.digest_mode = DM_DIGEST
 	else 
 		vore_selected.digest_mode = DM_DRAIN
 	..()
-	ai_holder.busy = FALSE
+	ai_holder.set_busy(FALSE)
 
 //Instead of copying this everywhere let's just make a proc
 /mob/living/simple_mob/vore/alienanimals/teppi/proc/lets_eat(person)

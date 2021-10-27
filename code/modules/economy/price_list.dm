@@ -216,6 +216,9 @@
 /datum/reagent/ethanol/cuba_libre
 	price_tag = 4
 
+/datum/reagent/ethanol/rum_and_cola
+	price_tag = 4
+
 /datum/reagent/ethanol/demonsblood
 	price_tag = 4
 

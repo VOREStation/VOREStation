@@ -1120,7 +1120,7 @@
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/outpost/mining_main/drill_equipment)
 "cu" = (
-/mob/living/simple_mob/animal/passive/gaslamp,
+/obj/tether_away_spawner/tether_outside,
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/mine/explored)
 "cv" = (

@@ -295,3 +295,96 @@
 	w_class = ITEMSIZE_TINY
 	body_parts_covered = FACE
 	icon_state = "veil"
+
+/obj/item/clothing/mask/paper
+	name = "paper mask"
+	desc = "A neat, circular mask made out of paper. Perhaps you could try drawing on it with a pen!"
+	w_class = ITEMSIZE_SMALL
+	body_parts_covered = FACE
+	icon_state = "papermask"
+
+/obj/item/clothing/mask/paper/attackby(obj/item/I as obj, mob/living/user as mob, proximity)
+	if(!proximity) return
+	if(istype(I, /obj/item/weapon/pen))
+		var/drawtype = tgui_alert(user, "Choose what you'd like to draw.", "Faces", list("blank","neutral","eyes","sleeping", "heart", "core", "plus", "square", "bullseye", "vertical", "horizontal", "X", "bug eyes", "double", "mark" ))
+		switch(drawtype)
+			if("blank")
+				src.icon_state = "papermask"
+			if("neutral")
+				src.icon_state = "neutralmask"
+			if("eyes")
+				src.icon_state = "eyemask"
+			if("sleeping")
+				src.icon_state = "sleepingmask"
+			if("heart")
+				src.icon_state = "heartmask"
+			if("core")
+				src.icon_state = "coremask"
+			if("plus")
+				src.icon_state = "plusmask"
+			if("square")
+				src.icon_state = "squaremask"
+			if("bullseye")
+				src.icon_state = "bullseyemask"
+			if("vertical")
+				src.icon_state = "verticalmask"
+			if("horizontal")
+				src.icon_state = "horizontalmask"
+			if("X")
+				src.icon_state = "xmask"
+			if("bug eyes")
+				src.icon_state = "bugmask"
+			if("double")
+				src.icon_state = "doublemask"
+			if("mark")
+				src.icon_state = "markmask"
+	return
+
+/obj/item/clothing/mask/emotions
+	name = "emotional mask"
+	desc = "Express your happiness or hide your sorrows with this modular cutout. Draw your current emotions onto it with a pen!"
+	w_class = ITEMSIZE_SMALL
+	body_parts_covered = FACE
+	icon_state = "joy"
+
+/obj/item/clothing/mask/emotions/attackby(obj/item/I as obj, mob/living/user as mob, proximity)
+	if(!proximity) return
+	if(istype(I, /obj/item/weapon/pen))
+		var/drawtype = tgui_alert(user, "Choose what emotions you'd like to display.", "Emotions", list("joy","pensive","angry","flushed" ))
+		switch(drawtype)
+			if("joy")
+				src.icon_state = "joy"
+			if("pensive")
+				src.icon_state = "pensive"
+			if("angry")
+				src.icon_state = "angry"
+			if("flushed")
+				src.icon_state = "flushed"
+	return
+
+//Gaiter scarves
+/obj/item/clothing/mask/gaiter
+	name = "red neck gaiter"
+	desc = "A slightly worn neck gaiter, it's loose enough to be worn comfortably like a scarf. Commonly used by outdoorsmen and mercenaries, both to keep warm and keep debris away from the face."
+	icon_state = "gaiter_red"
+
+/obj/item/clothing/mask/gaiter/attack_self(mob/user as mob)
+	if(src.icon_state == initial(icon_state))
+		src.icon_state = "[icon_state]_up"
+		to_chat(user, "You pull the gaiter up over your nose.")
+	else
+		src.icon_state = initial(icon_state)
+		to_chat(user, "You tug the gaiter down around your neck.")
+	update_clothing_icon()	//so our mob-overlays update
+
+/obj/item/clothing/mask/gaiter/tan
+	name = "tan neck gaiter"
+	icon_state = "gaiter_tan"
+
+/obj/item/clothing/mask/gaiter/gray
+	name = "gray neck gaiter"
+	icon_state = "gaiter_gray"
+
+/obj/item/clothing/mask/gaiter/green
+	name = "green neck gaiter"
+	icon_state = "gaiter_green"

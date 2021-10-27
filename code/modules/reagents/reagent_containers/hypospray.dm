@@ -181,6 +181,7 @@
 	else
 		. += "<span class='notice'>It is spent.</span>"
 
+
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/detox
 	name = "autoinjector (antitox)"
 	icon_state = "green"
@@ -206,6 +207,11 @@
 	volume = 15
 	origin_tech = list(TECH_BIO = 4)
 	filled_reagents = list("inaprovaline" = 15)
+
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/empty //for the autolathe
+	name = "large autoinjector"
+	filled = 0
+	filled_reagents = list()
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/brute
 	name = "trauma hypo"

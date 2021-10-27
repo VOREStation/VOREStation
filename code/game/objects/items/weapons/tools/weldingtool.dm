@@ -21,7 +21,7 @@
 
 	//R&D tech level
 	origin_tech = list(TECH_ENGINEERING = 1)
-	
+
 	tool_qualities = list(TOOL_WELDER)
 
 	//Welding tool specific stuff
@@ -375,7 +375,7 @@
 /obj/item/weapon/weldingtool/hugetank
 	name = "upgraded welding tool"
 	desc = "A much larger welder with a huge tank."
-	icon_state = "indwelder"
+	icon_state = "upindwelder"
 	max_fuel = 80
 	w_class = ITEMSIZE_NORMAL
 	origin_tech = list(TECH_ENGINEERING = 3)
@@ -391,6 +391,9 @@
 	change_icons = 0
 	toolspeed = 2
 	eye_safety_modifier = 1 // Safer on eyes.
+
+/obj/item/weapon/weldingtool/mini/two
+	icon_state = "miniwelder2"
 
 /datum/category_item/catalogue/anomalous/precursor_a/alien_welder
 	name = "Precursor Alpha Object - Self Refueling Exothermic Tool"

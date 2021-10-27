@@ -115,7 +115,7 @@
 	if((. = ..()))
 		if(isbelly(item_storage))
 			var/obj/belly/B = item_storage
-			. += 2 * (B.digest_brute + B.digest_burn + (B.digest_oxy)/2)
+			. *= 3
 		else
 			. += 30 //Organs give a little more
 

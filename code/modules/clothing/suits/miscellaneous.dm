@@ -265,16 +265,57 @@
 	body_parts_covered = UPPER_TORSO|ARMS
 	flags_inv = HIDETIE|HIDEHOLSTER
 
+/*
+ * Kimonos
+ */
+
 /obj/item/clothing/suit/kimono
-	name = "kimono"
+	name = "traditional kimono"
 	desc = "A traditional Japanese kimono."
 	icon_state = "kimono"
 	addblends = "kimono_a"
 
 /obj/item/clothing/suit/kamishimo
-	name = "kamishimo"
+	name = "traditional kamishimo"
 	desc = "Traditional Japanese menswear."
 	icon_state = "kamishimo"
+	addblends = "kamishimo_a"
+
+/obj/item/clothing/suit/kimono/red
+	name = "red kimono"
+	icon_state = "kimono_red"
+
+/obj/item/clothing/suit/kimono/orange
+	name = "orange kimono"
+	icon_state = "kimono_orange"
+
+/obj/item/clothing/suit/kimono/yellow
+	name = "yellow kimono"
+	icon_state = "kimono_yellow"
+
+/obj/item/clothing/suit/kimono/green
+	name = "green kimono"
+	icon_state = "kimono_green"
+
+/obj/item/clothing/suit/kimono/blue
+	name = "blue kimono"
+	icon_state = "kimono_blue"
+
+/obj/item/clothing/suit/kimono/purple
+	name = "purple kimono"
+	icon_state = "kimono_purple"
+
+/obj/item/clothing/suit/kimono/violet
+	name = "violet kimono"
+	icon_state = "kimono_violet"
+
+/obj/item/clothing/suit/kimono/pink
+	name = "pink kimono"
+	icon_state = "kimono_pink"
+
+/obj/item/clothing/suit/kimono/earth
+	name = "earth kimono"
+	icon_state = "kimono_earth"
 
 /*
  * Coats
@@ -473,6 +514,11 @@
 	cold_protection = UPPER_TORSO|ARMS
 	min_cold_protection_temperature = T0C - 20
 	siemens_coefficient = 0.7
+
+/obj/item/clothing/suit/storage/toggle/bomber/retro
+	name = "retro bomber jacket"
+	desc = "A retro style, fur-lined leather bomber jacket that invokes the early days of space exploration when spacemen were spacemen, and laser guns had funny little antennae on them."
+	icon_state = "retrojacket"
 
 /obj/item/clothing/suit/storage/bomber/alt
 	name = "bomber jacket"

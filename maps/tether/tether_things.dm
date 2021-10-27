@@ -466,3 +466,12 @@ var/global/list/latejoin_tram   = list()
 	layer = ABOVE_WINDOW_LAYER
 /obj/structure/noticeboard
 	layer = ABOVE_WINDOW_LAYER
+
+/obj/tether_away_spawner/tether_outside
+	name = "Tether Outside Spawner"
+	prob_spawn = 75
+	prob_fall = 50
+	mobs_to_pick_from = list(
+		/mob/living/simple_mob/animal/passive/gaslamp = 300,
+		/mob/living/simple_mob/vore/alienanimals/teppi = 4
+		)
