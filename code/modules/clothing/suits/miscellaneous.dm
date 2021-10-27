@@ -518,7 +518,7 @@
 /obj/item/clothing/suit/storage/toggle/bomber/retro
 	name = "retro bomber jacket"
 	desc = "A retro style, fur-lined leather bomber jacket that invokes the early days of space exploration when spacemen were spacemen, and laser guns had funny little antennae on them."
-	icon_state = "retro_bomber"
+	icon_state = "retrojacket"
 
 /obj/item/clothing/suit/storage/bomber/alt
 	name = "bomber jacket"
