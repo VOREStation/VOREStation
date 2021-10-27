@@ -178,7 +178,7 @@
 		//VOREStation Edit
 		if(BP_HEAD)
 			if(force_down)
-				if(user.a_intent != I_GRAB || user.a_intent != I_HURT)
+				if(user.a_intent == I_HELP)
 					if(announce)
 						assailant.visible_message("<span class='warning'>[assailant] sits on [target]'s face!</span>")
 		//VOREStation Edit End
