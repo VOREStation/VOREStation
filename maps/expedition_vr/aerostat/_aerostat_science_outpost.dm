@@ -15,6 +15,11 @@
 	known = TRUE
 	icon_state = "chlorine"
 
+	skybox_icon = 'icons/skybox/virgo2.dmi'
+	skybox_icon_state = "v2"
+	skybox_pixel_x = 0
+	skybox_pixel_y = 0
+
 /obj/effect/overmap/visitable/sector/virgo2/Initialize()
 	for(var/obj/effect/overmap/visitable/ship/stellar_delight/sd in world)
 		docking_codes = sd.docking_codes
