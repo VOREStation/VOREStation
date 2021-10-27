@@ -388,3 +388,10 @@
 /obj/item/clothing/mask/gaiter/green
 	name = "green neck gaiter"
 	icon_state = "gaiter_green"
+
+/obj/item/clothing/mask/mouthwheat
+	name = "mouth wheat"
+	desc = "100% synthetic \"Country Girls LLC.\" brand mouth wheat. Warning: not for actual consumption."
+	icon_state = "mouthwheat"
+	w_class = ITEMSIZE_SMALL
+	body_parts_covered = 0
