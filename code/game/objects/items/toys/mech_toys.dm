@@ -195,51 +195,6 @@
 	if(wants_to_battle)
 		wants_to_battle = FALSE
 		to_chat(user, "<span class='notice'>You get the feeling they don't want to battle.</span>")
-<<<<<<< HEAD
-/**
-  * Starts a battle, toy mech vs player. Player... doesn't win. Commented out for now as suicide_act is not physically doable.
-  */
-/obj/item/toy/mecha/suicide_act(mob/living/carbon/user)
-	if(in_combat)
-		to_chat(user, "<span class='notice'>[src] is in battle, let it finish first.</span>")
-		return
-	
-	var/datum/gender/T = gender_datums[user.get_visible_gender()]
-	user.visible_message("<span class='suicide'>[user] begins a fight [T.His] can't win with [src]! It looks like [T.His] trying to commit suicide!</span>")
-
-	in_combat = TRUE
-	sleep(1.5 SECONDS)
-	for(var/i in 1 to 4)
-		switch(i)
-			if(1, 3) 
-				SpinAnimation(5, 0)
-				playsound(src, 'sound/mecha/mechstep.ogg', 30, TRUE)
-				user.adjustBruteLoss(25)
-			if(2)
-				user.SpinAnimation(5, 0)
-				playsound(user, 'sound/weapons/smash.ogg', 20, TRUE)
-				combat_health-- //we scratched it!
-			if(4)
-				visible_message(special_attack_cry + "!!")
-
-		if(!combat_sleep(1 SECONDS, null, user))
-			visible_message("PATHETIC.")
-			combat_health = max_combat_health
-			in_combat = FALSE
-			return (BRUTELOSS)
-
-	sleep(0.5 SECONDS)
-	user.adjustBruteLoss(450)
-
-	in_combat = FALSE
-	visible_message("AN EASY WIN. MY POWER INCREASES.") // steal a soul, become swole
-	color= "#ff7373"
-	max_combat_health = round(max_combat_health*1.5 + 0.1)
-	combat_health = max_combat_health
-	wins++
-	return (BRUTELOSS)
-=======
->>>>>>> 786c7db60cc... Merge pull request #8311 from Atermonera/remove_suicide_act
 
 /obj/item/toy/mecha/examine()
 	. = ..()
