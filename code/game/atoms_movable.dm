@@ -233,14 +233,11 @@
 	if(riding_datum)
 		riding_datum.handle_vehicle_layer()
 		riding_datum.handle_vehicle_offsets()
-<<<<<<< HEAD
 	for (var/datum/light_source/light as anything in light_sources) // Cycle through the light sources on this atom and tell them to update.
 		light.source_atom.update_light()
-=======
 
 	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, old_loc, direction)
 
->>>>>>> 71e8b0399de... Universal Anomalies (#7914)
 	return TRUE
 
 /atom/movable/set_dir(newdir)

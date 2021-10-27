@@ -738,7 +738,6 @@
 
 #define COMSIG_REAGENTS_CRAFTING_PING "reagents_crafting_ping"
 
-<<<<<<< HEAD
 // Lighting:
 ///from base of [atom/proc/set_light]: (l_range, l_power, l_color, l_on)
 #define COMSIG_ATOM_SET_LIGHT "atom_set_light"
@@ -780,7 +779,5 @@
 #define COMSIG_CONFLICT_ELEMENT_CHECK "conflict_element_check"
 	/// A conflict was found
 	#define ELEMENT_CONFLICT_FOUND	(1<<0)
-=======
 //From reagents touch_x.
 #define COMSIG_REAGENTS_TOUCH "reagent_touch"
->>>>>>> 71e8b0399de... Universal Anomalies (#7914)

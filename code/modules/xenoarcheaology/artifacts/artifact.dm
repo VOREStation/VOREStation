@@ -4,19 +4,7 @@
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "ano00"
 	var/icon_num = 0
-<<<<<<< HEAD
 	density = TRUE
-	var/datum/artifact_effect/my_effect
-	var/datum/artifact_effect/secondary_effect
-	var/being_used = 0
-
-	var/predefined_effects = FALSE
-
-	var/predefined_primary
-	var/predefined_secondary
-=======
-	density = 1
->>>>>>> 71e8b0399de... Universal Anomalies (#7914)
 
 	var/predefined_icon_num
 
@@ -32,22 +20,10 @@
 
 		artifact_master = GetComponent(artifact_master)
 
-<<<<<<< HEAD
-	else
-		var/effecttype = pick(subtypesof(/datum/artifact_effect))
-		my_effect = new effecttype(src)
-
-		if(prob(75))
-			effecttype = pick(subtypesof(/datum/artifact_effect))
-			secondary_effect = new effecttype(src)
-			if(prob(75))
-				secondary_effect.ToggleActivate(0)
-=======
 	if(!istype(artifact_master))
 		return
 
 	var/datum/artifact_effect/my_effect = artifact_master.get_primary()
->>>>>>> 71e8b0399de... Universal Anomalies (#7914)
 
 	if(!isnull(predefined_icon_num))
 		icon_num = predefined_icon_num
@@ -84,210 +60,7 @@
 		if(prob(60))
 			my_effect.trigger = pick(TRIGGER_TOUCH, TRIGGER_HEAT, TRIGGER_COLD, TRIGGER_PHORON, TRIGGER_OXY, TRIGGER_CO2, TRIGGER_NITRO)
 
-<<<<<<< HEAD
-	if(predefined_triggers)
-		if(predefined_trig_primary && my_effect)
-			my_effect.trigger = predefined_trig_primary
-
-		if(predefined_trig_secondary && secondary_effect)
-			secondary_effect.trigger = predefined_trig_secondary
-
-/obj/machinery/artifact/proc/choose_effect()
-	var/effect_type = tgui_input_list(usr, "What type do you want?", "Effect Type", subtypesof(/datum/artifact_effect))
-	if(effect_type)
-		my_effect = new effect_type(src)
-		if(tgui_alert(usr, "Do you want a secondary effect?", "Second Effect", list("No", "Yes")) == "Yes")
-			var/second_effect_type = tgui_input_list(usr, "What type do you want as well?", "Second Effect Type", subtypesof(/datum/artifact_effect) - effect_type)
-			secondary_effect = new second_effect_type(src)
-		else
-			secondary_effect = null
-
-
-/obj/machinery/artifact/process()
-	var/turf/L = loc
-	if(!istype(L)) 	// We're inside a container or on null turf, either way stop processing effects
-		return
-
-	if(my_effect)
-		my_effect.process()
-	if(secondary_effect)
-		secondary_effect.process()
-
-	if(pulledby)
-		Bumped(pulledby)
-
-	//if either of our effects rely on environmental factors, work that out
-	var/trigger_cold = 0
-	var/trigger_hot = 0
-	var/trigger_phoron = 0
-	var/trigger_oxy = 0
-	var/trigger_co2 = 0
-	var/trigger_nitro = 0
-	if( (my_effect.trigger >= TRIGGER_HEAT && my_effect.trigger <= TRIGGER_NITRO) || (my_effect.trigger >= TRIGGER_HEAT && my_effect.trigger <= TRIGGER_NITRO) )
-		var/turf/T = get_turf(src)
-		var/datum/gas_mixture/env = T.return_air()
-		if(env)
-			if(env.temperature < 225)
-				trigger_cold = 1
-			else if(env.temperature > 375)
-				trigger_hot = 1
-
-			if(env.gas["phoron"] >= 10)
-				trigger_phoron = 1
-			if(env.gas["oxygen"] >= 10)
-				trigger_oxy = 1
-			if(env.gas["carbon_dioxide"] >= 10)
-				trigger_co2 = 1
-			if(env.gas["nitrogen"] >= 10)
-				trigger_nitro = 1
-
-	//COLD ACTIVATION
-	if(trigger_cold)
-		if(my_effect.trigger == TRIGGER_COLD && !my_effect.activated)
-			my_effect.ToggleActivate()
-		if(secondary_effect && secondary_effect.trigger == TRIGGER_COLD && !secondary_effect.activated)
-			secondary_effect.ToggleActivate(0)
-	else
-		if(my_effect.trigger == TRIGGER_COLD && my_effect.activated)
-			my_effect.ToggleActivate()
-		if(secondary_effect && secondary_effect.trigger == TRIGGER_COLD && !secondary_effect.activated)
-			secondary_effect.ToggleActivate(0)
-
-	//HEAT ACTIVATION
-	if(trigger_hot)
-		if(my_effect.trigger == TRIGGER_HEAT && !my_effect.activated)
-			my_effect.ToggleActivate()
-		if(secondary_effect && secondary_effect.trigger == TRIGGER_HEAT && !secondary_effect.activated)
-			secondary_effect.ToggleActivate(0)
-	else
-		if(my_effect.trigger == TRIGGER_HEAT && my_effect.activated)
-			my_effect.ToggleActivate()
-		if(secondary_effect && secondary_effect.trigger == TRIGGER_HEAT && !secondary_effect.activated)
-			secondary_effect.ToggleActivate(0)
-
-	//PHORON GAS ACTIVATION
-	if(trigger_phoron)
-		if(my_effect.trigger == TRIGGER_PHORON && !my_effect.activated)
-			my_effect.ToggleActivate()
-		if(secondary_effect && secondary_effect.trigger == TRIGGER_PHORON && !secondary_effect.activated)
-			secondary_effect.ToggleActivate(0)
-	else
-		if(my_effect.trigger == TRIGGER_PHORON && my_effect.activated)
-			my_effect.ToggleActivate()
-		if(secondary_effect && secondary_effect.trigger == TRIGGER_PHORON && !secondary_effect.activated)
-			secondary_effect.ToggleActivate(0)
-
-	//OXYGEN GAS ACTIVATION
-	if(trigger_oxy)
-		if(my_effect.trigger == TRIGGER_OXY && !my_effect.activated)
-			my_effect.ToggleActivate()
-		if(secondary_effect && secondary_effect.trigger == TRIGGER_OXY && !secondary_effect.activated)
-			secondary_effect.ToggleActivate(0)
-	else
-		if(my_effect.trigger == TRIGGER_OXY && my_effect.activated)
-			my_effect.ToggleActivate()
-		if(secondary_effect && secondary_effect.trigger == TRIGGER_OXY && !secondary_effect.activated)
-			secondary_effect.ToggleActivate(0)
-
-	//CO2 GAS ACTIVATION
-	if(trigger_co2)
-		if(my_effect.trigger == TRIGGER_CO2 && !my_effect.activated)
-			my_effect.ToggleActivate()
-		if(secondary_effect && secondary_effect.trigger == TRIGGER_CO2 && !secondary_effect.activated)
-			secondary_effect.ToggleActivate(0)
-	else
-		if(my_effect.trigger == TRIGGER_CO2 && my_effect.activated)
-			my_effect.ToggleActivate()
-		if(secondary_effect && secondary_effect.trigger == TRIGGER_CO2 && !secondary_effect.activated)
-			secondary_effect.ToggleActivate(0)
-
-	//NITROGEN GAS ACTIVATION
-	if(trigger_nitro)
-		if(my_effect.trigger == TRIGGER_NITRO && !my_effect.activated)
-			my_effect.ToggleActivate()
-		if(secondary_effect && secondary_effect.trigger == TRIGGER_NITRO && !secondary_effect.activated)
-			secondary_effect.ToggleActivate(0)
-	else
-		if(my_effect.trigger == TRIGGER_NITRO && my_effect.activated)
-			my_effect.ToggleActivate()
-		if(secondary_effect && secondary_effect.trigger == TRIGGER_NITRO && !secondary_effect.activated)
-			secondary_effect.ToggleActivate(0)
-
-/obj/machinery/artifact/attack_hand(var/mob/user as mob)
-	if (get_dist(user, src) > 1)
-		to_chat(user, "<font color='red'>You can't reach [src] from here.</font>")
-		return
-	if(ishuman(user) && user:gloves)
-		to_chat(user, "<b>You touch [src]</b> with your gloved hands, [pick("but nothing of note happens","but nothing happens","but nothing interesting happens","but you notice nothing different","but nothing seems to have happened")].")
-		return
-
-	src.add_fingerprint(user)
-
-	if(my_effect.trigger == TRIGGER_TOUCH)
-		to_chat(user, "<b>You touch [src].</b>")
-		my_effect.ToggleActivate()
-	else
-		to_chat(user, "<b>You touch [src],</b> [pick("but nothing of note happens","but nothing happens","but nothing interesting happens","but you notice nothing different","but nothing seems to have happened")].")
-
-	if(prob(25) && secondary_effect && secondary_effect.trigger == TRIGGER_TOUCH)
-		secondary_effect.ToggleActivate(0)
-
-	if (my_effect.effect == EFFECT_TOUCH)
-		my_effect.DoEffectTouch(user)
-
-	if(secondary_effect && secondary_effect.effect == EFFECT_TOUCH && secondary_effect.activated)
-		secondary_effect.DoEffectTouch(user)
-
-/obj/machinery/artifact/attackby(obj/item/weapon/W as obj, mob/living/user as mob)
-
-	if (istype(W, /obj/item/weapon/reagent_containers/))
-		if(W.reagents.has_reagent("hydrogen", 1) || W.reagents.has_reagent("water", 1))
-			if(my_effect.trigger == TRIGGER_WATER)
-				my_effect.ToggleActivate()
-			if(secondary_effect && secondary_effect.trigger == TRIGGER_WATER && prob(25))
-				secondary_effect.ToggleActivate(0)
-		else if(W.reagents.has_reagent("sacid", 1) || W.reagents.has_reagent("pacid", 1) || W.reagents.has_reagent("diethylamine", 1))
-			if(my_effect.trigger == TRIGGER_ACID)
-				my_effect.ToggleActivate()
-			if(secondary_effect && secondary_effect.trigger == TRIGGER_ACID && prob(25))
-				secondary_effect.ToggleActivate(0)
-		else if(W.reagents.has_reagent("phoron", 1) || W.reagents.has_reagent("thermite", 1))
-			if(my_effect.trigger == TRIGGER_VOLATILE)
-				my_effect.ToggleActivate()
-			if(secondary_effect && secondary_effect.trigger == TRIGGER_VOLATILE && prob(25))
-				secondary_effect.ToggleActivate(0)
-		else if(W.reagents.has_reagent("toxin", 1) || W.reagents.has_reagent("cyanide", 1) || W.reagents.has_reagent("amatoxin", 1) || W.reagents.has_reagent("neurotoxin", 1))
-			if(my_effect.trigger == TRIGGER_TOXIN)
-				my_effect.ToggleActivate()
-			if(secondary_effect && secondary_effect.trigger == TRIGGER_TOXIN && prob(25))
-				secondary_effect.ToggleActivate(0)
-	else if(istype(W,/obj/item/weapon/melee/baton) && W:status ||\
-			istype(W,/obj/item/weapon/melee/energy) ||\
-			istype(W,/obj/item/weapon/melee/cultblade) ||\
-			istype(W,/obj/item/weapon/card/emag) ||\
-			istype(W,/obj/item/device/multitool))
-		if (my_effect.trigger == TRIGGER_ENERGY)
-			my_effect.ToggleActivate()
-		if(secondary_effect && secondary_effect.trigger == TRIGGER_ENERGY && prob(25))
-			secondary_effect.ToggleActivate(0)
-
-	else if (istype(W,/obj/item/weapon/flame) && W:lit ||\
-			istype(W,/obj/item/weapon/weldingtool) && W:welding)
-		if(my_effect.trigger == TRIGGER_HEAT)
-			my_effect.ToggleActivate()
-		if(secondary_effect && secondary_effect.trigger == TRIGGER_HEAT && prob(25))
-			secondary_effect.ToggleActivate(0)
-	else
-		..()
-		if (my_effect.trigger == TRIGGER_FORCE && W.force >= 10)
-			my_effect.ToggleActivate()
-		if(secondary_effect && secondary_effect.trigger == TRIGGER_FORCE && prob(25))
-			secondary_effect.ToggleActivate(0)
-
-/obj/machinery/artifact/Bumped(M as mob|obj)
-=======
 /obj/machinery/artifact/update_icon()
->>>>>>> 71e8b0399de... Universal Anomalies (#7914)
 	..()
 
 	if(LAZYLEN(artifact_master.get_active_effects()))

@@ -251,7 +251,6 @@
 	. = new_dir != dir
 	dir = new_dir
 
-<<<<<<< HEAD
 // Called to set the atom's density and used to add behavior to density changes.
 /atom/proc/set_density(var/new_density)
 	if(density == new_density)
@@ -266,12 +265,8 @@
 	invisibility = new_invisibility
 	return TRUE
 
-/atom/proc/ex_act()
-	return
-=======
 /atom/proc/ex_act(var/strength = 3)
 	return (SEND_SIGNAL(src, COMSIG_ATOM_EX_ACT, strength, src) & COMPONENT_IGNORE_EXPLOSION)
->>>>>>> 71e8b0399de... Universal Anomalies (#7914)
 
 /atom/proc/emag_act(var/remaining_charges, var/mob/user, var/emag_source)
 	return -1

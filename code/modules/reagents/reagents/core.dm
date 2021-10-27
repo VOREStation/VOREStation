@@ -195,14 +195,9 @@
 		T.wet_floor(1)
 
 /datum/reagent/water/touch_obj(var/obj/O, var/amount)
-<<<<<<< HEAD
-	if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/monkeycube))
-		var/obj/item/weapon/reagent_containers/food/snacks/monkeycube/cube = O
-=======
 	..()
 	if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/cube))
 		var/obj/item/weapon/reagent_containers/food/snacks/cube/cube = O
->>>>>>> 71e8b0399de... Universal Anomalies (#7914)
 		if(!cube.wrapped)
 			cube.Expand()
 	else

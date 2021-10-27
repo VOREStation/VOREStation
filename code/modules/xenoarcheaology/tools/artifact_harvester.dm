@@ -258,8 +258,6 @@
 				inserted_battery.battery_effect.ToggleActivate()
 			src.visible_message("<b>[name]</b> states, \"Battery dump completed.\"")
 			icon_state = "incubator"
-<<<<<<< HEAD
-=======
 
 /obj/machinery/artifact_harvester/Topic(href, href_list)
 
@@ -391,4 +389,3 @@
 		usr.unset_machine(src)
 
 	updateDialog()
->>>>>>> 71e8b0399de... Universal Anomalies (#7914)

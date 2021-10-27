@@ -63,13 +63,10 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		return FALSE
 
 	if(can_operate(src, user) && I.do_surgery(src,user))
-<<<<<<< HEAD
-		return 1
-	if(attempt_vr(src,"vore_attackby",args)) return //VOREStation Add - The vore, of course.
-=======
 		return TRUE
 
->>>>>>> 71e8b0399de... Universal Anomalies (#7914)
+	if(attempt_vr(src,"vore_attackby",args)) return //VOREStation Add - The vore, of course.
+
 	return I.attack(src, user, user.zone_sel.selecting, attack_modifier)
 
 // Used to get how fast a mob should attack, and influences click delay.
