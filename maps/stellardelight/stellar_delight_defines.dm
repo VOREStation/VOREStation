@@ -472,11 +472,11 @@
 	name = "Starstuff"
 	current_location = "port_shuttlepad"
 	docking_controller_tag = "sd_bittyshuttle" 
-	shuttle_area = list(/area/shuttle/sdboat,/area/shuttle/sdboat/aft)
+	shuttle_area = list(/area/shuttle/sdboat/fore,/area/shuttle/sdboat/aft)
 	fuel_consumption = 2
 	defer_initialisation = TRUE
 
-/area/shuttle/sdboat
+/area/shuttle/sdboat/fore
 	icon = 'icons/turf/areas_vr.dmi'
 	icon_state = "yelwhitri"
 	name = "Starstuff Cockpit"
