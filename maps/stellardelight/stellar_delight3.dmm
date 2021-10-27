@@ -5757,12 +5757,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai)
-"wJ" = (
-/obj/machinery/door/firedoor/glass,
-/obj/structure/window/bay/reinforced,
-/obj/structure/low_wall/bay/reinforced/blue,
-/turf/simulated/floor,
-/area/tcommsat/chamber)
 "wK" = (
 /obj/effect/floor_decal/techfloor/orange{
 	dir = 1
@@ -8025,7 +8019,7 @@
 	},
 /obj/effect/map_helper/airlock/door/ext_door,
 /turf/simulated/floor/tiled/steel_ridged,
-/area/tcommsat/chamber)
+/area/tcommsat/computer)
 "EM" = (
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -8202,13 +8196,6 @@
 /obj/machinery/camera/network/civilian,
 /turf/simulated/floor/airless,
 /area/maintenance/stellardelight/deck3/portcent)
-"Fq" = (
-/obj/machinery/door/firedoor/glass,
-/obj/structure/window/bay/reinforced,
-/obj/machinery/atmospherics/pipe/simple/hidden/black,
-/obj/structure/low_wall/bay/reinforced/blue,
-/turf/simulated/floor,
-/area/tcommsat/chamber)
 "Fr" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -21608,7 +21595,7 @@ ad
 ad
 ad
 ad
-ad
+qq
 qq
 qq
 qq
@@ -21750,7 +21737,7 @@ kw
 lx
 Oj
 Ht
-Fq
+uB
 Oe
 HX
 su
@@ -21892,7 +21879,7 @@ Ze
 lE
 hw
 sK
-wJ
+zn
 kF
 Fv
 Uf
@@ -22034,7 +22021,7 @@ qn
 Ze
 Ze
 Ee
-Fq
+uB
 uB
 uB
 xz
@@ -22176,7 +22163,7 @@ gU
 lH
 qn
 sK
-wJ
+zn
 tW
 zn
 xB
@@ -22460,7 +22447,7 @@ ib
 nm
 qn
 kb
-wJ
+zn
 Bl
 zn
 yE
@@ -22602,7 +22589,7 @@ qQ
 Sm
 Sm
 tL
-wJ
+zn
 zn
 zn
 zY
@@ -22744,7 +22731,7 @@ MO
 nC
 px
 sK
-wJ
+zn
 cc
 iL
 Aq
@@ -22886,7 +22873,7 @@ qU
 oA
 pY
 sl
-wJ
+zn
 cO
 vN
 AS
