@@ -71,7 +71,7 @@
 
 /obj/item/clothing/mask/gas/plaguedoctor/gold
 	name = "gold plague doctor mask"
-	desc = "A modern version of the age old classic, this mask is both capable of filtering air, and connecting to an air supply. This one is gold."
+	desc = "A modernised version of the classic design, this mask will not only filter out phoron but it can also be connected to an air supply. This one is gold."
 	icon_state = "plaguedoctor2"
 
 /obj/item/clothing/mask/gas/swat
