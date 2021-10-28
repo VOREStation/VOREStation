@@ -16,6 +16,8 @@
 	response_harm   = "stomps"
 	friendly = "pinches"
 
+	organ_names = /decl/mob_organ_names/crab
+
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/crab
 
 	say_list_type = /datum/say_list/crab
@@ -55,3 +57,6 @@
 	name = "meat"
 	desc = "A chunk of meat."
 	icon_state = "crustacean-meat"
+
+/decl/mob_organ_names/crab
+	hit_zones = list("cephalothorax", "abdomen", "left walking legs", "right walking legs", "left swimming legs", "right swimming legs", "left pincer", "right pincer")

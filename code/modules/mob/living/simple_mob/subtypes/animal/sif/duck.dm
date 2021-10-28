@@ -38,6 +38,8 @@
 	attack_edge = 1		// Razor-edged wings, and 'claws' made for digging through ice.
 	attacktext = list("nipped", "bit", "cut", "clawed")
 
+	organ_names = /decl/mob_organ_names/bird
+
 	tame_items = list(
 	/obj/item/weapon/reagent_containers/food/snacks/sliceable/bread = 90,
 	/obj/item/weapon/reagent_containers/food/snacks/slice/bread = 25
