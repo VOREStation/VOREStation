@@ -3353,6 +3353,15 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/maintenance/wing_starboard)
+"kv" = (
+/obj/effect/map_helper/airlock/atmos/pump_out_external,
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/warning/cee,
+/obj/structure/handrail,
+/turf/simulated/floor/reinforced,
+/area/shuttle/talonboat)
 "kx" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -4748,6 +4757,7 @@
 /area/talon_v2/maintenance/wing_starboard)
 "pk" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/fuel,
+/obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/wall/rshull,
 /area/shuttle/talonboat)
 "pl" = (
@@ -5258,10 +5268,8 @@
 /obj/item/stack/cable_coil/green,
 /obj/item/stack/cable_coil/green,
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel,
-/obj/machinery/atmospherics/unary/vent_pump/high_volume/aux{
-	dir = 8
-	},
-/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/effect/map_helper/airlock/atmos/pump_out_internal,
+/obj/machinery/atmospherics/unary/vent_pump/high_volume,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/talonboat)
 "qN" = (
@@ -6474,7 +6482,9 @@
 	dir = 1
 	},
 /obj/item/weapon/storage/toolbox/emergency,
-/obj/machinery/atmospherics/pipe/manifold/hidden/aux,
+/obj/machinery/atmospherics/pipe/simple/hidden/aux{
+	dir = 9
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/talonboat)
 "uW" = (
@@ -25441,7 +25451,7 @@ kI
 LM
 qL
 pk
-Tt
+kv
 Wc
 fV
 sJ
