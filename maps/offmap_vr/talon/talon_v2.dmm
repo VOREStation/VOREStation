@@ -2617,9 +2617,6 @@
 /turf/simulated/floor/carpet,
 /area/talon_v2/crew_quarters/eng_room)
 "ho" = (
-/obj/structure/bed/chair/bay/shuttle{
-	dir = 1
-	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
@@ -6637,10 +6634,10 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
 	},
-/obj/structure/handrail,
 /obj/structure/closet/autolok_wall{
 	pixel_y = 32
 	},
+/obj/structure/bed/chair/bay/shuttle,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/talonboat)
 "vz" = (
@@ -6659,13 +6656,13 @@
 /obj/structure/bed/chair/bay/chair{
 	dir = 1
 	},
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
-	},
 /obj/machinery/light,
 /obj/machinery/alarm/talon{
 	dir = 1;
 	pixel_y = -25
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/talonboat)
@@ -7246,14 +7243,11 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/structure/handrail,
 /obj/machinery/firealarm{
 	layer = 3.3;
 	pixel_y = 26
 	},
-/obj/effect/floor_decal/industrial/warning{
-	dir = 4
-	},
+/obj/structure/bed/chair/bay/shuttle,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/talonboat)
 "xH" = (
@@ -8618,9 +8612,6 @@
 /obj/structure/bed/chair/bay/chair{
 	dir = 1
 	},
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 4
-	},
 /obj/machinery/light,
 /obj/machinery/light_switch{
 	dir = 1;
@@ -8631,6 +8622,9 @@
 	dir = 1;
 	pixel_x = -6;
 	pixel_y = -24
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/talonboat)
@@ -10984,6 +10978,9 @@
 	dir = 1;
 	pixel_y = -32
 	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/talonboat)
 "Kd" = (
@@ -11183,16 +11180,10 @@
 /turf/simulated/wall/rshull,
 /area/talon_v2/engineering/port_store)
 "KN" = (
-/obj/structure/bed/chair/bay/shuttle{
-	dir = 1
-	},
 /obj/structure/closet/walllocker/medical/east,
 /obj/item/weapon/storage/firstaid/regular,
 /obj/item/weapon/storage/firstaid/o2,
 /obj/item/weapon/extinguisher/mini,
-/obj/effect/floor_decal/industrial/warning/corner{
-	dir = 4
-	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/talonboat)
 "KO" = (
@@ -12432,17 +12423,15 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/armory)
 "Po" = (
-/obj/effect/map_helper/airlock/door/simple,
-/obj/machinery/door/airlock/glass_external{
-	req_one_access = list(301)
+/obj/structure/table/steel,
+/obj/structure/closet/autolok_wall{
+	dir = 1;
+	pixel_y = -32
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/techfloor/grid,
+/turf/simulated/floor/tiled/techfloor,
 /area/shuttle/talonboat)
 "Pr" = (
 /obj/machinery/shower,
@@ -25019,7 +25008,7 @@ cK
 cK
 Tt
 cK
-cK
+Tt
 cK
 Tt
 Jm
@@ -25726,7 +25715,7 @@ sf
 Tt
 Tt
 vY
-Kc
+Po
 Tt
 xE
 KN
@@ -25870,7 +25859,7 @@ Tt
 DC
 DC
 Tt
-Po
+DC
 Tt
 DC
 Tt
