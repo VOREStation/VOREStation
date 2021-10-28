@@ -63,26 +63,32 @@
 	else
 		RemoveHood()
 
-/obj/item/clothing/suit/storage/hooded/carp_costume
+/obj/item/clothing/suit/storage/hooded/costume
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
+	flags_inv = HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
+	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS
+	action_button_name = "Toggle Hood"
+
+/obj/item/clothing/suit/storage/hooded/costume/siffet
+	name = "siffet costume"
+	desc = "A costume made from 'synthetic' siffet fur, it smells like a weasel nest."
+	icon_state = "siffet"
+	item_state_slots = list(slot_r_hand_str = "siffet", slot_l_hand_str = "siffet")
+	hoodtype = /obj/item/clothing/head/hood/siffet_hood
+
+/obj/item/clothing/suit/storage/hooded/costume/carp
 	name = "carp costume"
 	desc = "A costume made from 'synthetic' carp scales, it smells."
 	icon_state = "carp_casual"
 	item_state_slots = list(slot_r_hand_str = "carp_casual", slot_l_hand_str = "carp_casual") //Does not exist -S2-
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	flags_inv = HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
-	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS
-	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE	//Space carp like space, so you should too
-	action_button_name = "Toggle Carp Hood"
 	hoodtype = /obj/item/clothing/head/hood/carp_hood
+	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE	//Space carp like space, so you should too
 
-/obj/item/clothing/suit/storage/hooded/ian_costume	//It's Ian, rub his bell- oh god what happened to his inside parts?
+/obj/item/clothing/suit/storage/hooded/costume/ian	//It's Ian, rub his bell- oh god what happened to his inside parts?
 	name = "corgi costume"
 	desc = "A costume that looks like someone made a human-like corgi, it won't guarantee belly rubs."
 	icon_state = "ian"
 	item_state_slots = list(slot_r_hand_str = "ian", slot_l_hand_str = "ian") //Does not exist -S2-
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
-	flags_inv = HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
-	action_button_name = "Toggle Ian Hood"
 	hoodtype = /obj/item/clothing/head/hood/ian_hood
 
 // winter coats go here

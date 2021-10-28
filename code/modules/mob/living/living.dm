@@ -1030,6 +1030,13 @@
 				if((N.health + N.halloss) < config.health_threshold_crit || N.stat == DEAD)
 					N.adjustBruteLoss(rand(10,30))
 			src.drop_from_inventory(G)
+
+			src.visible_message("<span class='warning'>[src] has thrown [item].</span>")
+
+			if((isspace(src.loc)) || (src.lastarea?.has_gravity == 0))
+				src.inertia_dir = get_dir(target, src)
+				step(src, inertia_dir)
+			item.throw_at(target, throw_range, item.throw_speed, src)
 			return TRUE
 		else
 			return FALSE
@@ -1037,19 +1044,15 @@
 	if(!item)
 		return FALSE //Grab processing has a chance of returning null
 
-	if(a_intent == I_HELP && Adjacent(target) && isitem(item))
+	if(a_intent == I_HELP && Adjacent(target) && isitem(item) && ishuman(target))
 		var/obj/item/I = item
-		if(ishuman(target))
-			var/mob/living/carbon/human/H = target
-			if(H.in_throw_mode && H.a_intent == I_HELP && unEquip(I))
-				H.put_in_hands(I) // If this fails it will just end up on the floor, but that's fitting for things like dionaea.
-				visible_message("<b>[src]</b> hands \the [H] \a [I].", SPAN_NOTICE("You give \the [target] \a [I]."))
-			else
-				to_chat(src, SPAN_NOTICE("You offer \the [I] to \the [target]."))
-				do_give(H)
-			return TRUE
-		make_item_drop_sound(I)
-		I.forceMove(get_turf(target))
+		var/mob/living/carbon/human/H = target
+		if(H.in_throw_mode && H.a_intent == I_HELP && unEquip(I))
+			H.put_in_hands(I) // If this fails it will just end up on the floor, but that's fitting for things like dionaea.
+			visible_message("<b>[src]</b> hands \the [H] \a [I].", SPAN_NOTICE("You give \the [target] \a [I]."))
+		else
+			to_chat(src, SPAN_NOTICE("You offer \the [I] to \the [target]."))
+			do_give(H)
 		return TRUE
 
 	drop_from_inventory(item)

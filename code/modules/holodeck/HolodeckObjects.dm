@@ -358,7 +358,7 @@
 //BASKETBALL OBJECTS
 
 /obj/item/weapon/beach_ball/holoball
-	icon = 'icons/obj/basketball.dmi'
+	icon = 'icons/obj/balls_vr.dmi'
 	icon_state = "basketball"
 	name = "basketball"
 	desc = "Here's your chance, do your dance at the Space Jam."
@@ -370,7 +370,7 @@
 /obj/structure/holohoop
 	name = "basketball hoop"
 	desc = "Boom, Shakalaka!"
-	icon = 'icons/obj/basketball.dmi'
+	icon = 'icons/obj/32x64.dmi'
 	icon_state = "hoop"
 	anchored = TRUE
 	density = TRUE
@@ -405,7 +405,6 @@
 			visible_message(span("warning", "\The [I] bounces off of \the [src]'s rim!"), 3)
 		return FALSE
 	return ..()
-
 
 /obj/machinery/readybutton
 	name = "Ready Declaration Device"

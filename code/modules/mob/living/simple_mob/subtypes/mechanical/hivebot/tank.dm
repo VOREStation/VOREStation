@@ -9,6 +9,8 @@
 	melee_damage_lower = 3
 	melee_damage_upper = 3
 	attack_sound = 'sound/weapons/Egloves.ogg'
+	organ_names = /decl/mob_organ_names/hivebottank
+
 
 // All tank hivebots apply a modifier to their target, and force them to attack them if they're AI controlled.
 /mob/living/simple_mob/mechanical/hivebot/tank/apply_melee_effects(atom/A)
@@ -166,3 +168,6 @@
 			return -1 // complete projectile permutation
 
 	return (..(P))
+
+/decl/mob_organ_names/hivebottank
+	hit_zones = list("central chassis", "armor plating", "component shielding", "positioning servo", "head", "sensor suite", "heavy manipulator arm", "shoulder weapon mount", "weapons array", "front right leg", "front left leg", "rear left leg", "rear right leg")

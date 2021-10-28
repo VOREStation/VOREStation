@@ -72,6 +72,10 @@ var/obj/effect/lobby_image = new /obj/effect/lobby_image
 			else
 				problems = "potential network disconnects. If you experience some, try another version"
 
+		if(1566 to 1568)
+			if(world.byond_build == 1569)
+				problems = "frequent crashes, usually when transitioning between z-levels"
+
 	if(problems)
 		// To get attention
 		var/message = "Your BYOND client version ([client.byond_version].[client.byond_build]) has known issues: [problems]. See the chat window for other version options."

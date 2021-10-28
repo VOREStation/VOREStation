@@ -22,11 +22,37 @@
 	path = /obj/item/clothing/mask/surgical
 	cost = 2
 
-/datum/gear/mask/veil
-	display_name = "black veil"
-	path = /obj/item/clothing/mask/veil
+/datum/gear/mask/plaguedoctor
+	display_name = "plague doctor's mask"
+	path = /obj/item/clothing/mask/gas/plaguedoctor
+	cost = 3 ///Because it functions as a gas mask, and therefore has a mechanical advantage.
 
 /datum/gear/mask/plaguedoctor2
 	display_name = "golden plague doctor's mask"
 	path = /obj/item/clothing/mask/gas/plaguedoctor/gold
 	cost = 3 ///Because it functions as a gas mask, and therefore has a mechanical advantage.
+
+/datum/gear/mask/mouthwheat
+	display_name = "mouth wheat"
+	path = /obj/item/clothing/mask/mouthwheat
+
+/datum/gear/mask/papermask
+	display_name = "paper mask"
+	path = /obj/item/clothing/mask/paper
+
+/datum/gear/mask/emotionalmask
+	display_name = "emotional mask"
+	path = /obj/item/clothing/mask/emotions
+
+/datum/gear/mask/gaiter
+	display_name = "neck gaiter selection"
+	path = /obj/item/clothing/mask/gaiter
+	cost = 1
+
+/datum/gear/mask/gaiter/New()
+	..()
+	var/list/gaiters = list()
+	for(var/gaiter in typesof(/obj/item/clothing/mask/gaiter))
+		var/obj/item/clothing/mask/gaiter_type = gaiter
+		gaiters[initial(gaiter_type.name)] = gaiter_type
+	gear_tweaks += new/datum/gear_tweak/path(sortTim(gaiters, /proc/cmp_text_asc))

@@ -228,6 +228,8 @@
 	return ..()
 
 /obj/item/mecha_parts/mecha_equipment/proc/detach(atom/moveto=null)
+	if(!chassis)
+		return
 	moveto = moveto || get_turf(chassis)
 	forceMove(moveto)
 	chassis.equipment -= src

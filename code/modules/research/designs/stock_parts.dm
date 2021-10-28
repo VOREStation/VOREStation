@@ -200,6 +200,42 @@
 	sort_string = "AAAEE"
 
 
+// part bundles, because i HATE queues and i don't want to rewrite it for stack-printing
+/datum/design/item/stock_part/bundle/t1
+	id = "parts_bundle_t1"
+	req_tech = list(TECH_MATERIAL = 1, TECH_DATA = 1, TECH_POWER = 1, TECH_MAGNET = 1)
+	materials = list(MAT_STEEL = 1100, MAT_GLASS = 450)
+	build_path = /obj/effect/spawner/parts/t1
+	sort_string = "AAAFA"
+
+/datum/design/item/stock_part/bundle/t2
+	id = "parts_bundle_t2"
+	req_tech = list(TECH_MATERIAL = 3, TECH_DATA = 2, TECH_POWER = 3, TECH_MAGNET = 3)
+	materials = list(MAT_STEEL = 1100, MAT_GLASS = 450)
+	build_path = /obj/effect/spawner/parts/t2
+	sort_string = "AAAFB"
+
+/datum/design/item/stock_part/bundle/t3
+	id = "parts_bundle_t3"
+	req_tech = list(TECH_MATERIAL = 5, TECH_DATA = 2, TECH_POWER = 5, TECH_MAGNET = 5)
+	materials = list(MAT_STEEL = 1100, MAT_GLASS = 450, MAT_SILVER = 50, MAT_GOLD = 100, MAT_URANIUM = 50)
+	build_path = /obj/effect/spawner/parts/t3
+	sort_string = "AAAFC"
+
+/datum/design/item/stock_part/bundle/t4
+	id = "parts_bundle_t4"
+	req_tech = list(TECH_MATERIAL = 6, TECH_DATA = 3, TECH_POWER = 6, TECH_MAGNET = 6, TECH_ARCANE = 2)
+	materials = list(MAT_STEEL = 4250, MAT_GLASS = 700, MAT_SILVER = 250, MAT_URANIUM = 150, MAT_DURASTEEL = 1450, MAT_VERDANTIUM = 900)
+	build_path = /obj/effect/spawner/parts/t4
+	sort_string = "AAAFD"
+
+/datum/design/item/stock_part/bundle/t5
+	id = "parts_bundle_t5"
+	req_tech = list(TECH_MATERIAL = 7, TECH_DATA = 4, TECH_POWER = 7, TECH_MAGNET = 7, TECH_PRECURSOR = 2)
+	materials = list(MAT_STEEL = 45000, MAT_PLASTEEL = 5500, MAT_GLASS = 11250, MAT_SILVER = 2500, MAT_URANIUM = 10000, MAT_DIAMOND = 5000, MAT_DURASTEEL = 2500, MAT_MORPHIUM = 2050)
+	build_path = /obj/effect/spawner/parts/t5
+	sort_string = "AAAFE"
+
 // RPEDs
 
 /datum/design/item/stock_part/RPED
@@ -213,9 +249,20 @@
 
 /datum/design/item/stock_part/ARPED
 	name = "Advanced Rapid Part Exchange Device"
-	desc = "Special mechanical module made to store, sort, and apply standard machine parts.  This one has a greatly upgraded storage capacity."
+	desc = "Special mechanical module made to store, sort, and apply standard machine parts.  This one has a greatly upgraded storage capacity, \
+	and the ability to manipulate beakers."
 	id = "arped"
 	req_tech = list(TECH_ENGINEERING = 5, TECH_MATERIAL = 5)
 	materials = list(MAT_STEEL = 30000, MAT_GLASS = 10000)
 	build_path = /obj/item/weapon/storage/part_replacer/adv
+	sort_string = "ABAAB"
+
+/datum/design/item/stock_part/PBRPED
+	name = "Prototype Bluespace Rapid Part Exchange Device"
+	desc = "Special mechanical module made to store, sort, and apply standard machine parts.  This one has a remarkably upgraded storage capacity, \
+	and the ability to manipulate beakers."
+	id = "pbrped"
+	req_tech = list(TECH_ENGINEERING = 7, TECH_MATERIAL = 7, TECH_BLUESPACE = 5)
+	materials = list(MAT_STEEL = 30000, MAT_GLASS = 10000, MAT_SILVER = 5000, MAT_GOLD = 5000, MAT_DIAMOND = 1000)
+	build_path = /obj/item/weapon/storage/part_replacer/adv/discount_bluespace
 	sort_string = "ABAAB"

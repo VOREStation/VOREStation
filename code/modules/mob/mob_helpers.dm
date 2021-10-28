@@ -685,3 +685,6 @@ var/global/image/backplane
 		return
 
 	item.screen_loc = screen_place
+
+/mob/proc/can_feed()
+	return TRUE

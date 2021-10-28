@@ -100,5 +100,21 @@
 	user.drop_item()
 	src.throw_at(target, throw_range, throw_speed, user)
 
+/obj/item/weapon/beach_ball/dodgeball
+	icon = 'icons/obj/balls_vr.dmi'
+	icon_state = "dodgeball"
+	item_state = "dodgeball"
+	item_icons = list(slot_l_hand_str = 'icons/mob/items/lefthand_balls_vr.dmi', slot_r_hand_str = 'icons/mob/items/righthand_balls_vr.dmi')
+	name = "dodgeball"
+	desc = "Think fast, chucklenuts!"
+	w_class = ITEMSIZE_LARGE //Stops people from hiding it in their bags/pockets
+	force = 0.1
+	throwforce = 0.1
+	throw_speed = 5
+	throw_range = 15
+	drop_sound = 'sound/items/drop/rubber.ogg'
+	pickup_sound = 'sound/items/pickup/rubber.ogg'
+	hitsound = 'sound/weapons/dodgeball.ogg'
+
 /obj/effect/spawner
 	name = "object spawner"

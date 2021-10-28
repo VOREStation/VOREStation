@@ -121,19 +121,6 @@
 		var/mob/living/carbon/human/h = mob
 		h.monkeyize()
 
-/datum/disease2/effect/suicide
-	name = "Windpipe Contraction"
-	stage = 4
-	badness = 3
-
-/datum/disease2/effect/suicide/activate(var/mob/living/carbon/mob,var/multiplier)
-	var/datum/gender/TM = gender_datums[mob.get_visible_gender()]
-	mob.suiciding = 30
-	//instead of killing them instantly, just put them at -175 health and let 'em gasp for a while
-	to_chat(viewers(mob),"<font color='red'><b>[mob.name] is holding [TM.his] breath. It looks like [TM.he] [TM.is] trying to commit suicide.</b></font>")
-	mob.adjustOxyLoss(175 - mob.getToxLoss() - mob.getFireLoss() - mob.getBruteLoss() - mob.getOxyLoss())
-	mob.updatehealth()
-
 /datum/disease2/effect/killertoxins
 	name = "Autoimmune Response"
 	stage = 4
