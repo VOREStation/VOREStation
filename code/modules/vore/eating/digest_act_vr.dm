@@ -114,7 +114,6 @@
 /obj/item/organ/digest_act(atom/movable/item_storage = null)
 	if((. = ..()))
 		if(isbelly(item_storage))
-			var/obj/belly/B = item_storage
 			. *= 3
 		else
 			. += 30 //Organs give a little more
