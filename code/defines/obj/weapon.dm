@@ -301,7 +301,7 @@
 	icon = 'icons/obj/storage_vr.dmi'
 	icon_state = "RPED"
 	item_state = "RPED"
-	w_class = ITEMSIZE_HUGE
+	w_class = ITEMSIZE_NORMAL
 	can_hold = list(/obj/item/weapon/stock_parts)
 	storage_slots = 50
 	use_to_pickup = TRUE
@@ -341,8 +341,8 @@
 	item_state = "DBRPED"
 	desc = "A special mechanical module made to store, sort, and apply standard machine parts. This one has a further increased storage capacity, \
 	and the ability to work on machines with closed maintenance panels."
-	storage_slots = 400
-	max_storage_space = 800
+	storage_slots = 600
+	max_storage_space = 1200
 	panel_req = FALSE
 	pshoom_or_beepboopblorpzingshadashwoosh = 'sound/items/pshoom.ogg'
 	unique_reskin = list("Soulless" = "DBRPED",
