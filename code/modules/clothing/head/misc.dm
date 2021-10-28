@@ -112,7 +112,7 @@
 
 /obj/item/clothing/head/plaguedoctorhat
 	name = "plague doctor's hat"
-	desc = "These were once used by Plague doctors. They're pretty much useless."
+	desc = "These were once used by Plague doctors, allegedly. They're pretty much useless."
 	icon_state = "plaguedoctor"
 	item_state_slots = list(slot_r_hand_str = "tophat", slot_l_hand_str = "tophat")
 	permeability_coefficient = 0.01
@@ -525,3 +525,8 @@
 	name = "small cowboy hat"
 	desc = "For the tiniest of cowboys."
 	icon_state = "cowboy_small"
+
+/obj/item/clothing/head/wheat
+	name = "straw hat"
+	desc = "It's a hat made from synthetic straw. Brought to you by \"Country Girls LLC.\" the choice brand for the galaxy's working class."
+	icon_state = "wheat"

@@ -298,7 +298,9 @@
 /obj/item/weapon/storage/part_replacer
 	name = "rapid part exchange device"
 	desc = "A special mechanical module made to store, sort, and apply standard machine parts."
+	icon = 'icons/obj/storage_vr.dmi'
 	icon_state = "RPED"
+	item_state = "RPED"
 	w_class = ITEMSIZE_HUGE
 	can_hold = list(/obj/item/weapon/stock_parts)
 	storage_slots = 50
@@ -312,29 +314,69 @@
 	drop_sound = 'sound/items/drop/device.ogg'
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	var/panel_req = TRUE
+	var/pshoom_or_beepboopblorpzingshadashwoosh = 'sound/items/rped.ogg'
+	var/reskin_ran = FALSE
+	var/unique_reskin = list("Soulless" = "RPED",
+							"Soulful" = "RPED_old")
+
+/obj/item/weapon/storage/part_replacer/proc/play_rped_sound()
+	//Plays the sound for RPED exhanging or installing parts.
+/*	if(alt_sound && prob(1))
+		playsound(src, alt_sound, 40, 1)
+	else
+*/
+	playsound(src, pshoom_or_beepboopblorpzingshadashwoosh, 40, 1)
 
 /obj/item/weapon/storage/part_replacer/adv
 	name = "advanced rapid part exchange device"
-	desc = "A special mechanical module made to store, sort, and apply standard machine parts.  This one has a greatly upgraded storage capacity."
-	icon_state = "RPED"
-	w_class = ITEMSIZE_HUGE
-	can_hold = list(/obj/item/weapon/stock_parts)
+	desc = "A special mechanical module made to store, sort, and apply standard machine parts. This one has a greatly upgraded storage capacity, \
+	and the ability to hold beakers."
+	can_hold = list(/obj/item/weapon/stock_parts, /obj/item/weapon/reagent_containers/glass/beaker)
 	storage_slots = 200
-	use_to_pickup = TRUE
-	allow_quick_gather = 1
-	allow_quick_empty = 1
-	collection_mode = 1
-	display_contents_with_number = 1
-	max_w_class = ITEMSIZE_NORMAL
 	max_storage_space = 400
 
 /obj/item/weapon/storage/part_replacer/adv/discount_bluespace
-	name = "discount bluespace rapid part exchange device"
-	desc = "A special mechanical module made to store, sort, and apply standard machine parts.  This one has a further increased storage capacity, \
+	name = "prototype bluespace rapid part exchange device"
+	icon_state = "DBRPED"
+	item_state = "DBRPED"
+	desc = "A special mechanical module made to store, sort, and apply standard machine parts. This one has a further increased storage capacity, \
 	and the ability to work on machines with closed maintenance panels."
 	storage_slots = 400
 	max_storage_space = 800
 	panel_req = FALSE
+	pshoom_or_beepboopblorpzingshadashwoosh = 'sound/items/pshoom.ogg'
+	unique_reskin = list("Soulless" = "DBRPED",
+						"Soulful" = "DBRPED_old")
+
+/obj/item/weapon/storage/part_replacer/examine(mob/user)
+	. = ..()
+	if(!reskin_ran)
+		. += "<span class='notice'>[src]'s external casing can be modified via alt-click.</span>"
+
+/obj/item/weapon/storage/part_replacer/AltClick(mob/user)
+	. = ..()
+	if(!reskin_ran)
+		reskin_radial(user)
+
+/obj/item/weapon/storage/part_replacer/proc/reskin_radial(mob/M)
+	if(!LAZYLEN(unique_reskin))
+		return
+
+	var/list/items = list()
+	for(var/reskin_option in unique_reskin)
+		var/image/item_image = image(icon = src.icon, icon_state = unique_reskin[reskin_option])
+		items += list("[reskin_option]" = item_image)
+	sortList(items)
+
+	var/pick = show_radial_menu(M, src, items, radius = 38, require_near = TRUE)
+	if(!pick)
+		return
+	if(!unique_reskin[pick])
+		return
+	icon_state = unique_reskin[pick]
+	item_state = unique_reskin[pick]
+	reskin_ran = TRUE
+	to_chat(M, "[src] is now '[pick].'")
 
 /obj/item/weapon/storage/part_replacer/drop_contents() // hacky-feeling tier-based drop system
 	hide_from(usr)
@@ -344,6 +386,7 @@
 	* Why not just use the stock part's rating variable?
 	* Future-proofing for a potential future where stock parts aren't the only thing that can fit in an RPED.
 	* see: /tg/ and /vg/'s RPEDs fitting power cells, beakers, etc.
+	* 10/8/21 edit - It's Time.
 	*/
 	for(var/obj/item/B in contents)
 		if(B.rped_rating() < lowest_rating)
@@ -352,7 +395,7 @@
 		if(B.rped_rating() > lowest_rating)
 			continue
 		remove_from_storage(B, T)
-	
+
 /obj/item/weapon/stock_parts
 	name = "stock part"
 	desc = "What?"
@@ -378,6 +421,7 @@
 	desc = "Used in the construction of computers and other devices with a interactive console."
 	icon_state = "screen"
 	origin_tech = list(TECH_MATERIAL = 1)
+	rating = 5 // these are actually Really Important for some things??
 	matter = list(MAT_GLASS = 200)
 
 /obj/item/weapon/stock_parts/capacitor
@@ -692,3 +736,72 @@
 	icon_state = "spring"
 	origin_tech = list(TECH_ENGINEERING = 1)
 	matter = list(MAT_STEEL = 40)
+
+/obj/effect/spawner/parts
+	name = "nondescript parts bundle that shouldn't exist"
+	desc = "this qdels itself lol! if you're reading this you're codediving or Someone fucked up"
+	var/list/items
+
+/obj/effect/spawner/parts/Initialize(mapload)
+	..()
+	if(items && items.len)
+		var/turf/T = get_turf(src)
+		for(var/path in items)
+			for(var/i in 1 to 5)
+				new path(T)
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/spawner/parts/t1
+	name = "basic parts bundle"
+	desc = "5 of each T1 part, no more and no less."
+	items = list(
+		/obj/item/weapon/stock_parts/matter_bin,
+		/obj/item/weapon/stock_parts/manipulator,
+		/obj/item/weapon/stock_parts/capacitor,
+		/obj/item/weapon/stock_parts/scanning_module,
+		/obj/item/weapon/stock_parts/micro_laser
+	)
+
+/obj/effect/spawner/parts/t2
+	name = "advanced parts bundle"
+	desc = "5 of each T2 part, no more and no less."
+	items = list(
+		/obj/item/weapon/stock_parts/matter_bin/adv,
+		/obj/item/weapon/stock_parts/manipulator/nano,
+		/obj/item/weapon/stock_parts/capacitor/adv,
+		/obj/item/weapon/stock_parts/scanning_module/adv,
+		/obj/item/weapon/stock_parts/micro_laser/high
+	)
+
+/obj/effect/spawner/parts/t3
+	name = "super parts bundle"
+	desc = "5 of each T3 part, no more and no less."
+	items = list(
+		/obj/item/weapon/stock_parts/matter_bin/super,
+		/obj/item/weapon/stock_parts/manipulator/pico,
+		/obj/item/weapon/stock_parts/capacitor/super,
+		/obj/item/weapon/stock_parts/scanning_module/phasic,
+		/obj/item/weapon/stock_parts/micro_laser/ultra
+	)
+
+/obj/effect/spawner/parts/t4
+	name = "hyper parts bundle"
+	desc = "5 of each T4 part, no more and no less."
+	items = list(
+		/obj/item/weapon/stock_parts/matter_bin/hyper,
+		/obj/item/weapon/stock_parts/manipulator/hyper,
+		/obj/item/weapon/stock_parts/capacitor/hyper,
+		/obj/item/weapon/stock_parts/scanning_module/hyper,
+		/obj/item/weapon/stock_parts/micro_laser/hyper
+	)
+
+/obj/effect/spawner/parts/t5
+	name = "omni parts bundle"
+	desc = "5 of each T5 part, no more and no less."
+	items = list(
+		/obj/item/weapon/stock_parts/matter_bin/omni,
+		/obj/item/weapon/stock_parts/manipulator/omni,
+		/obj/item/weapon/stock_parts/capacitor/omni,
+		/obj/item/weapon/stock_parts/scanning_module/omni,
+		/obj/item/weapon/stock_parts/micro_laser/omni
+	)

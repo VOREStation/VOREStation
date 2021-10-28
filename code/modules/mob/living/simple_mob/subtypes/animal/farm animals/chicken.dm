@@ -20,6 +20,8 @@ GLOBAL_VAR_INIT(chicken_count, 0)	// How mant chickens DO we have?
 	response_harm   = "kicks"
 	attacktext = list("pecked")
 
+	organ_names = /decl/mob_organ_names/chicken
+
 	has_langs = list("Bird")
 
 	say_list_type = /datum/say_list/chicken
@@ -159,3 +161,6 @@ GLOBAL_VAR_INIT(chicken_count, 0)	// How mant chickens DO we have?
 	speak = list("Cherp.","Cherp?","Chirrup.","Cheep!")
 	emote_hear = list("cheeps")
 	emote_see = list("pecks at the ground","flaps its tiny wings")
+
+/decl/mob_organ_names/chicken
+	hit_zones = list("head", "body", "left wing", "right wing", "left leg", "right leg", "tendies")

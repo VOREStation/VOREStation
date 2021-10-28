@@ -6,6 +6,7 @@
 	desc = "This cuts wires."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "cutters"
+	item_state = "cutters"
 	center_of_mass = list("x" = 18,"y" = 10)
 	slot_flags = SLOT_BELT
 	force = 6
@@ -26,9 +27,20 @@
 	var/random_color = TRUE
 
 /obj/item/weapon/tool/wirecutters/New()
-	if(random_color && prob(50))
-		icon_state = "cutters-y"
-		item_state = "cutters_yellow"
+	if(random_color)
+		switch(pick("red","blue","yellow"))
+			if ("red")
+				icon_state = "cutters"
+				item_state = "cutters"
+			if ("blue")
+				icon_state = "cutters-b"
+				item_state = "cutters_blue"
+			if ("yellow")
+				icon_state = "cutters-y"
+				item_state = "cutters_yellow"
+
+	if (prob(75))
+		src.pixel_y = rand(0, 16)
 	..()
 
 /obj/item/weapon/tool/wirecutters/attack(mob/living/carbon/C as mob, mob/user as mob)

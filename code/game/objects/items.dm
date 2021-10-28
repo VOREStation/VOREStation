@@ -4,7 +4,7 @@
 	w_class = ITEMSIZE_NORMAL
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 
-	matter = list(MAT_STEEL = 1)
+	//matter = list(MAT_STEEL = 1)
 
 	var/image/blood_overlay = null //this saves our blood splatter overlay, which will be processed not to go over the edges of the sprite
 	var/randpixel = 6
@@ -173,27 +173,12 @@
 	switch(severity)
 		if(1.0)
 			qdel(src)
-			return
 		if(2.0)
 			if (prob(50))
 				qdel(src)
-				return
 		if(3.0)
 			if (prob(5))
 				qdel(src)
-				return
-		else
-	return
-
-//user: The mob that is suiciding
-//damagetype: The type of damage the item will inflict on the user
-//BRUTELOSS = 1
-//FIRELOSS = 2
-//TOXLOSS = 4
-//OXYLOSS = 8
-//Output a creative message and then return the damagetype done
-/obj/item/proc/suicide_act(mob/user)
-	return
 
 /obj/item/verb/move_to_top()
 	set name = "Move To Top"
@@ -249,7 +234,7 @@
 		var/obj/item/weapon/storage/S = src.loc
 		if(!S.remove_from_storage(src))
 			return
-	
+
 	src.pickup(user)
 	src.throwing = 0
 	if (src.loc == user)
@@ -258,7 +243,7 @@
 	else
 		if(isliving(src.loc))
 			return
-			
+
 	if(user.put_in_active_hand(src))
 		if(isturf(old_loc))
 			var/obj/effect/temporary_effect/item_pickup_ghost/ghost = new(old_loc)
@@ -832,7 +817,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	if(!inhands)
 		apply_blood(standing)			//Some items show blood when bloodied
 		apply_accessories(standing)		//Some items sport accessories like webbing
-	
+
 	//Apply overlays to our...overlay
 	apply_overlays(standing)
 

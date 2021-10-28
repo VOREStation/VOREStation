@@ -12,13 +12,13 @@
 		var/sayselect = tgui_alert(src, "Which say-verb do you wish to customize?", "Select Verb", list("Say","Whisper","Ask (?)","Exclaim/Shout/Yell (!)","Cancel"))
 
 		if(sayselect == "Say")
-			custom_say =  sanitize(input(usr, "This word or phrase will appear instead of 'says': [src] says, \"Hi.\"", "Custom Say", null)  as text)
+			custom_say =  lowertext(sanitize(input(usr, "This word or phrase will appear instead of 'says': [src] says, \"Hi.\"", "Custom Say", null)  as text))
 		else if(sayselect == "Whisper")
-			custom_whisper =  sanitize(input(usr, "This word or phrase will appear instead of 'whispers': [src] whispers, \"Hi...\"", "Custom Whisper", null)  as text)
+			custom_whisper =  lowertext(sanitize(input(usr, "This word or phrase will appear instead of 'whispers': [src] whispers, \"Hi...\"", "Custom Whisper", null)  as text))
 		else if(sayselect == "Ask (?)")
-			custom_ask =  sanitize(input(usr, "This word or phrase will appear instead of 'asks': [src] asks, \"Hi?\"", "Custom Ask", null)  as text)
+			custom_ask =  lowertext(sanitize(input(usr, "This word or phrase will appear instead of 'asks': [src] asks, \"Hi?\"", "Custom Ask", null)  as text))
 		else if(sayselect == "Exclaim/Shout/Yell (!)")
-			custom_exclaim =  sanitize(input(usr, "This word or phrase will appear instead of 'exclaims', 'shouts' or 'yells': [src] exclaims, \"Hi!\"", "Custom Exclaim", null)  as text)
+			custom_exclaim =  lowertext(sanitize(input(usr, "This word or phrase will appear instead of 'exclaims', 'shouts' or 'yells': [src] exclaims, \"Hi!\"", "Custom Exclaim", null)  as text))
 		else
 			return
 

@@ -1,7 +1,6 @@
 /*
  * Crowbar
  */
-
 /obj/item/weapon/tool/crowbar
 	name = "crowbar"
 	desc = "Used to remove floors and to pry open doors."
@@ -27,6 +26,10 @@
 	icon_state = "red_crowbar"
 	item_state = "crowbar_red"
 
+/obj/item/weapon/tool/crowbar/old
+	icon = 'icons/obj/tools.dmi'
+	icon_state = "old_crowbar"
+	item_state = "crowbar"
 
 /datum/category_item/catalogue/anomalous/precursor_a/alien_crowbar
 	name = "Precursor Alpha Object - Hard Light Pry Tool"

@@ -473,6 +473,5 @@ var/global/list/latejoin_tram   = list()
 	prob_fall = 50
 	mobs_to_pick_from = list(
 		/mob/living/simple_mob/animal/passive/gaslamp = 300,
-		/mob/living/simple_mob/animal/space/goose/virgo3b = 100,
-		/mob/living/simple_mob/vore/alienanimals/teppi = 5
+		/mob/living/simple_mob/vore/alienanimals/teppi = 4
 		)

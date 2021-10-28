@@ -196,7 +196,7 @@
 	name = "Cuba Libre"
 	id = "cubalibre"
 	result = "cubalibre"
-	required_reagents = list("rumcola" = 3, "limejuice" = 1)
+	required_reagents = list("rumandcola" = 3, "limejuice" = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/martini
@@ -336,14 +336,7 @@
 	name = "Long Island Iced Tea"
 	id = "longislandicedtea"
 	result = "longislandicedtea"
-	required_reagents = list("vodka" = 1, "gin" = 1, "tequilla" = 1, "rumcoke" = 3)
-	result_amount = 6
-
-/decl/chemical_reaction/instant/drinks/icedtea
-	name = "Long Island Iced Tea"
-	id = "longislandicedtea"
-	result = "longislandicedtea"
-	required_reagents = list("vodka" = 1, "gin" = 1, "tequilla" = 1, "rumcoke" = 3)
+	required_reagents = list("vodka" = 1, "gin" = 1, "tequilla" = 1, "rumandcola" = 3)
 	result_amount = 6
 
 /decl/chemical_reaction/instant/drinks/threemileisland
@@ -1113,7 +1106,7 @@
 	id = "daiquiri"
 	result = "daiquiri"
 	required_reagents = list("rum" = 3, "limejuice" = 2, "sugar" = 1)
-	result_amount = 5
+	result_amount = 6
 
 /decl/chemical_reaction/instant/drinks/mintjulep
 	name = "Mint Julep"
@@ -1126,7 +1119,7 @@
 	name = "Paloma"
 	id = "paloma"
 	result = "paloma"
-	required_reagents = list("orangejuice" = 1, "sodawater" = 1, "tequilla" = 1)
+	required_reagents = list("sodawater" = 1, "tequillasunrise" = 2)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/mojito

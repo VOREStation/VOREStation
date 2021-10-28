@@ -69,6 +69,7 @@
 	throwforce = 2
 	slot_flags = SLOT_BELT
 	max_storage_space = ITEMSIZE_COST_SMALL * 5
+	can_hold = list(/obj/item/weapon/flame/candle)
 	starts_with = list(/obj/item/weapon/flame/candle = 5)
 
 /obj/item/weapon/storage/fancy/whitecandle_box
@@ -81,6 +82,7 @@
 	throwforce = 2
 	slot_flags = SLOT_BELT
 	max_storage_space = ITEMSIZE_COST_SMALL * 5
+	can_hold = list(/obj/item/weapon/flame/candle)
 	starts_with = list(/obj/item/weapon/flame/candle/white = 5)
 
 /obj/item/weapon/storage/fancy/blackcandle_box
@@ -93,6 +95,7 @@
 	throwforce = 2
 	slot_flags = SLOT_BELT
 	max_storage_space = ITEMSIZE_COST_SMALL * 5
+	can_hold = list(/obj/item/weapon/flame/candle)
 	starts_with = list(/obj/item/weapon/flame/candle/black = 5)
 
 

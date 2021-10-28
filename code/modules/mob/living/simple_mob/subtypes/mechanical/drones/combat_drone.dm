@@ -54,6 +54,8 @@
 	response_disarm = "gently pushes aside"
 	response_harm = "hits"
 
+	organ_names = /decl/mob_organ_names/combatdrone
+
 	ai_holder_type = /datum/ai_holder/simple_mob/ranged/kiting/threatening
 	say_list_type = /datum/say_list/malf_drone
 
@@ -107,3 +109,6 @@
 // It won't wander away from its spawn point
 /mob/living/simple_mob/mechanical/combat_drone/event
 	ai_holder_type = /datum/ai_holder/simple_mob/ranged/kiting/threatening/event
+
+/decl/mob_organ_names/combatdrone
+	hit_zones = list("chassis", "comms array", "sensor suite", "left weapons module", "right weapons module", "maneuvering thruster")

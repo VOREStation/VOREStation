@@ -18,6 +18,8 @@
 	plane = TURF_PLANE
 	layer = UNDERWATER_LAYER
 
+	organ_names = /decl/mob_organ_names/fish
+
 	holder_type = /obj/item/weapon/holder/fish
 
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish
@@ -320,3 +322,6 @@
 	catalogue_data = list(/datum/category_item/catalogue/fauna/murkin)
 
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat/sif/murkfish
+
+/decl/mob_organ_names/fish
+	hit_zones = list("head", "body", "dorsal fin", "left pectoral fin", "right pectoral fin", "tail fin")

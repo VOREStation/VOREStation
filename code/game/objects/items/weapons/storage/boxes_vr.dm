@@ -25,3 +25,14 @@
 
 /obj/item/weapon/storage/secure/briefcase/trashmoney
 	starts_with = list(/obj/item/weapon/spacecash/c200 = 10)
+
+/obj/item/weapon/storage/box/brainzsnax
+	name = "\improper BrainzSnax box"
+	icon_state = "brainzsnax_box"
+	desc = "A box designed to hold canned food. This one has BrainzSnax branding printed on it."
+	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/canned)
+	max_storage_space = ITEMSIZE_COST_NORMAL * 6
+	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/canned/brainzsnax = 6)
+
+/obj/item/weapon/storage/box/brainzsnax/red
+	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/canned/brainzsnax/red = 6)
