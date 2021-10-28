@@ -203,7 +203,6 @@
 				return "Docked with \the [location.name]. Use secondary thrust to get clear before activating primary engines."
 			else
 				return "Landed on \the [location.name]. Use secondary thrust to get clear before activating primary engines."
-			return "Docked with an unknown object."
 		if(SHIP_STATUS_TRANSIT)
 			return "Maneuvering under secondary thrust."
 		if(SHIP_STATUS_OVERMAP)
