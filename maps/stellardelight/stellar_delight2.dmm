@@ -6083,7 +6083,7 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/door/blast/shutters{
+/obj/machinery/door/blast/angled_shutter{
 	dir = 4;
 	id = "kitchen";
 	layer = 3.3;
@@ -7628,8 +7628,8 @@
 	},
 /obj/machinery/light_switch{
 	dir = 1;
-	pixel_x = 10;
-	pixel_y = -34
+	pixel_x = -1;
+	pixel_y = -42
 	},
 /obj/item/weapon/reagent_containers/food/condiment/flour,
 /obj/item/weapon/reagent_containers/food/condiment/flour,
@@ -7647,6 +7647,13 @@
 /obj/item/weapon/reagent_containers/food/condiment/small/saltshaker,
 /obj/item/weapon/reagent_containers/food/condiment/small/peppermill,
 /obj/item/weapon/reagent_containers/food/condiment/small/peppermill,
+/obj/machinery/button/remote/blast_door{
+	dir = 1;
+	id = "kitchenhallway";
+	name = "Kitchen shutters";
+	pixel_x = 9;
+	pixel_y = -36
+	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/crew_quarters/kitchen)
 "rs" = (
@@ -9189,17 +9196,6 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
 /area/engineering/workshop)
-"uV" = (
-/obj/structure/table/steel_reinforced,
-/obj/machinery/door/blast/shutters{
-	dir = 2;
-	id = "kitchen";
-	layer = 3.3;
-	name = "Kitchen Shutters"
-	},
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/tiled/eris/cafe,
-/area/crew_quarters/kitchen)
 "uW" = (
 /obj/machinery/appliance/mixer/candy,
 /obj/machinery/light,
@@ -14252,9 +14248,8 @@
 "Gy" = (
 /obj/structure/table/steel_reinforced,
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/door/blast/shutters{
-	dir = 2;
-	id = "kitchen";
+/obj/machinery/door/blast/angled_shutter{
+	id = "kitchenhallway";
 	layer = 3.3;
 	name = "Kitchen Shutters"
 	},
@@ -17242,9 +17237,8 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/table/steel_reinforced,
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/door/blast/shutters{
-	dir = 2;
-	id = "kitchen";
+/obj/machinery/door/blast/angled_shutter{
+	id = "kitchenhallway";
 	layer = 3.3;
 	name = "Kitchen Shutters"
 	},
@@ -18166,13 +18160,13 @@
 /area/stellardelight/deck2/o2production)
 "Pn" = (
 /obj/structure/table/steel_reinforced,
-/obj/machinery/door/blast/shutters{
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/angled_shutter{
 	dir = 4;
 	id = "kitchen";
 	layer = 3.3;
 	name = "Kitchen Shutters"
 	},
-/obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/crew_quarters/kitchen)
 "Po" = (
@@ -20183,8 +20177,11 @@
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/quartermaster/storage)
 "TU" = (
-/obj/structure/lattice,
-/turf/space,
+/obj/machinery/door/blast/angled/open{
+	dir = 2;
+	id = "barlockdown"
+	},
+/turf/simulated/floor/airless,
 /area/crew_quarters/bar)
 "TV" = (
 /obj/structure/cable/green{
@@ -22146,15 +22143,15 @@
 /area/medical/chemistry)
 "Yu" = (
 /obj/structure/table/steel_reinforced,
-/obj/machinery/door/blast/shutters{
+/obj/machinery/door/firedoor/glass,
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/obj/machinery/door/blast/angled_shutter{
 	dir = 4;
 	id = "kitchen";
 	layer = 3.3;
 	name = "Kitchen Shutters"
-	},
-/obj/machinery/door/firedoor/glass,
-/obj/structure/cable/green{
-	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/crew_quarters/kitchen)
@@ -31137,7 +31134,7 @@ OO
 Vv
 IW
 pI
-uV
+Gy
 Zo
 ND
 ND
