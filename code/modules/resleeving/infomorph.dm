@@ -1,19 +1,19 @@
 var/list/infomorph_emotions = list(
-		"Happy" =              "pai-happy",
-		"Cat" =                "pai-cat",
-		"Extremely Happy" =    "pai-extremely-happy",
-		"Face" =               "pai-face",
-		"Laugh" =              "pai-laugh",
-		"Off" =                "pai-off",
-		"Sad" =                "pai-sad",
-		"Angry" =              "pai-angry",
-		"What" =               "pai-what",
-		"Neutral" =            "pai-neutral",
-		"Silly" =              "pai-silly",
-		"Nose" =               "pai-nose",
-		"Smirk" =              "pai-smirk",
-		"Exclamation Points" = "pai-exclamation",
-		"Question Mark" =      "pai-question"
+		"Happy" = 1,
+		"Cat" = 2,
+		"Extremely Happy" = 3,
+		"Face" = 4,
+		"Laugh" = 5,
+		"Off" = 6,
+		"Sad" = 7,
+		"Angry" = 8,
+		"What" = 9,
+		"Neutral" = 10,
+		"Silly" = 11,
+		"Nose" = 12,
+		"Smirk" = 13,
+		"Exclamation Points" = 14,
+		"Question Mark" = 15
 	)
 
 /mob/living/silicon/infomorph
