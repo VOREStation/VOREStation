@@ -2287,7 +2287,7 @@
 	fill_color = "#858585";
 	id_tag = "cedoor";
 	name = "Chief Engineer";
-	req_access = list(19);
+	req_access = list(56);
 	stripe_color = "#e6ab22"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
