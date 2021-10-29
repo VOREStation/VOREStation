@@ -277,6 +277,13 @@
 	skybox_pixel_x = 0
 	skybox_pixel_y = 0
 
+/obj/effect/overmap/visitable/ship/admin_use/space_dog/Crossed(var/obj/effect/overmap/visitable/ship/enterer)
+	. = ..()
+	if(istype(enterer))
+		for(var/mob/potential_mob as anything in player_list)
+			if(potential_mob.z in enterer.map_z)
+				SEND_SOUND(potential_mob, 'sound/ambience/boy.ogg')
+
 /obj/effect/overmap/visitable/ship/admin_use/space_whale
 	skybox_icon = 'icons/skybox/anomaly.dmi'
 	skybox_icon_state = "space_whale"

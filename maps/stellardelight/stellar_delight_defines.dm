@@ -27,7 +27,8 @@
 		"logo1" = 50,
 		"logo2" = 50,
 		"gateway" = 5,
-		"youcanttaketheskyfromme" = 200
+		"youcanttaketheskyfromme" = 200,
+		"intothedark" = 200
 	))
 	if(choice)
 		lobby_screens = list(choice)
@@ -48,12 +49,6 @@
 	lobby_icon = 'icons/misc/title_vr.dmi'
 	lobby_screens = list("youcanttaketheskyfromme")
 	id_hud_icons = 'icons/mob/hud_jobs_vr.dmi'
-
-	accessible_z_levels = list(
-		Z_LEVEL_SHIP_LOW = 100,
-		Z_LEVEL_SHIP_MID = 100,
-		Z_LEVEL_SHIP_HIGH = 100
-		)
 
 /*
 	holomap_smoosh = list(list(
@@ -262,19 +257,19 @@
 	z = Z_LEVEL_SHIP_LOW
 	name = "Deck 1"
 	base_turf = /turf/space
-	transit_chance = 100
+	transit_chance = 33
 
 /datum/map_z_level/stellar_delight/deck_two
 	z = Z_LEVEL_SHIP_MID
 	name = "Deck 2"
 	base_turf = /turf/simulated/open
-	transit_chance = 100
+	transit_chance = 33
 
 /datum/map_z_level/stellar_delight/deck_three
 	z = Z_LEVEL_SHIP_HIGH
 	name = "Deck 3"
 	base_turf = /turf/simulated/open
-	transit_chance = 100
+	transit_chance = 33
 
 /datum/map_template/ship_lateload
 	allow_duplicates = FALSE
@@ -580,6 +575,7 @@
 [i]Transponder[/i]: Transmitting (CIV), NanoTrasen IFF
 [b]Notice[/b]: NanoTrasen Base, authorized personnel only"}
 	known = TRUE
+	in_space = FALSE
 	
 	icon = 'icons/obj/overmap_vr.dmi'
 	icon_state = "virgo3b"

@@ -23,6 +23,9 @@
 	name = "Tulidaan"
 	desc = "Watcher of the Seven. Thinker, knower."
 	icon_state = "tulidaan"
+	icon_living = "tulidaan"
+	icon_rest = "tulidaan_rest"
+	icon_dead = "tulidaan_dead"
 	digestable = 0
 	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug/tulidaan)
 	holder_type = /obj/item/weapon/holder/catslug/tulidaan

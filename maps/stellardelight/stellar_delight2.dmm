@@ -1544,6 +1544,11 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/surgery)
+"dE" = (
+/obj/effect/floor_decal/steeldecal/steel_decals5,
+/obj/structure/flora/pottedplant/minitree,
+/turf/simulated/floor/tiled,
+/area/stellardelight/deck2/starboard)
 "dF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -5325,7 +5330,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/atmos/storage)
 "mg" = (
-/obj/machinery/vending/cola/soft,
+/obj/random/vendordrink,
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/stellardelight/deck2/port)
@@ -5912,7 +5917,7 @@
 /turf/simulated/floor,
 /area/stellardelight/deck2/combustionworkshop)
 "nB" = (
-/obj/machinery/vending/sol,
+/obj/random/vendorfood,
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck2/aftport)
@@ -8352,6 +8357,14 @@
 	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck2/fore)
+"te" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals5,
+/obj/structure/flora/pottedplant/minitree,
+/turf/simulated/floor/tiled,
+/area/stellardelight/deck2/port)
 "tf" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/window/eastright{
@@ -8997,6 +9010,7 @@
 	dir = 8;
 	pixel_x = -24
 	},
+/obj/structure/flora/pottedplant/decorative,
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck2/aftstarboard)
 "uA" = (
@@ -13332,6 +13346,16 @@
 	},
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/quartermaster/storage)
+"EI" = (
+/obj/effect/floor_decal/steeldecal/steel_decals5{
+	dir = 8
+	},
+/obj/structure/closet/emergsuit_wall{
+	dir = 8;
+	pixel_x = -27
+	},
+/turf/simulated/floor/tiled,
+/area/stellardelight/deck2/port)
 "EJ" = (
 /obj/machinery/computer/crew{
 	dir = 4
@@ -14222,6 +14246,7 @@
 	dir = 4;
 	pixel_x = 24
 	},
+/obj/structure/flora/pottedplant/decorative,
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck2/aftport)
 "Gy" = (
@@ -15043,7 +15068,7 @@
 /obj/structure/cable/green{
 	icon_state = "2-4"
 	},
-/obj/machinery/vending/snack,
+/obj/random/vendordrink,
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck2/aftstarboard)
@@ -15843,10 +15868,10 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/atmos/storage)
 "Kj" = (
-/obj/machinery/recharge_station,
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 4
 	},
+/obj/machinery/vending/event,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/locker)
 "Kk" = (
@@ -17603,6 +17628,11 @@
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/wood,
 /area/quartermaster/qm)
+"Ob" = (
+/obj/structure/table/gamblingtable,
+/obj/random/coin/sometimes,
+/turf/simulated/floor/carpet,
+/area/crew_quarters/recreation_area)
 "Od" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -18426,6 +18456,7 @@
 	icon_state = "4-8"
 	},
 /obj/random/snack,
+/obj/random/coin/sometimes,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck2/starboardsolars)
 "PU" = (
@@ -20168,6 +20199,7 @@
 /obj/effect/floor_decal/milspec/color/orange/half{
 	dir = 10
 	},
+/obj/structure/flora/pottedplant/smalltree,
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck2/aftport)
 "TX" = (
@@ -22301,7 +22333,7 @@
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/quartermaster/storage)
 "YQ" = (
-/obj/machinery/vending/snix,
+/obj/random/vendorfood,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/stellardelight/deck2/port)
@@ -22336,7 +22368,7 @@
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/crew_quarters/bar)
 "YW" = (
-/obj/machinery/vending/radren,
+/obj/random/vendordrink,
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/stellardelight/deck2/starboard)
@@ -30446,7 +30478,7 @@ ti
 ti
 ti
 Es
-Bx
+te
 eq
 Mu
 xu
@@ -31136,7 +31168,7 @@ VP
 MD
 eL
 pA
-MD
+EI
 MD
 WF
 wF
@@ -32534,7 +32566,7 @@ xA
 DS
 UX
 Bp
-UX
+Ob
 ts
 Ut
 Ut
@@ -34990,7 +35022,7 @@ Co
 Co
 Co
 Gp
-Ka
+dE
 QU
 ns
 rq

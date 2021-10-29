@@ -40,6 +40,9 @@
 	var/halted = 0        //admin halt or other stop.
 	var/skill_needed = SKILL_ADEPT  //piloting skill needed to steer it without going in random dir
 	var/operator_skill
+	//VOREStation add
+	var/last_sound = 0 //The last time a ship sound was played		//VOREStation add
+	var/sound_cooldown = 10 SECONDS		//VOREStation add
 
 	/// Vis contents overlay holding the ship's vector when in motion	
 	var/obj/effect/overlay/vis/vector
@@ -124,17 +127,37 @@
 	CHANGE_SPEED_BY(speed[2], n_y)
 	update_icon()
 	var/still = is_still()
+	// If nothing changed
 	if(still == old_still)
 		return
+	// If it is now still, stopped moving
 	else if(still)
 		STOP_PROCESSING(SSprocessing, src)
 		for(var/zz in map_z)
 			toggle_move_stars(zz)
+		if(last_sound + sound_cooldown >= world.time)
+			return
+		//VOREStation Add Start
+		for(var/mob/potential_mob as anything in player_list)
+			if(potential_mob.z in map_z)
+				SEND_SOUND(potential_mob, 'sound/ambience/shutdown.ogg')
+				last_sound = world.time
+		//VOREStation Add End
+
+	// If it started moving
 	else
 		START_PROCESSING(SSprocessing, src)
 		glide_size = WORLD_ICON_SIZE/max(DS2TICKS(SSprocessing.wait), 1) //Down to whatever decimal
 		for(var/zz in map_z)
 			toggle_move_stars(zz, fore_dir)
+		if(last_sound + sound_cooldown >= world.time)
+			return
+		//VOREStation Add Start
+		for(var/mob/potential_mob as anything in player_list)
+			if(potential_mob.z in map_z)
+				SEND_SOUND(potential_mob, 'sound/ambience/startup.ogg')
+				last_sound = world.time
+		//VOREStation Add End
 
 /obj/effect/overmap/visitable/ship/proc/get_brake_path()
 	if(!get_acceleration())

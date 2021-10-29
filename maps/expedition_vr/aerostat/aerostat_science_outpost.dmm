@@ -40,6 +40,22 @@
 	},
 /turf/simulated/floor/plating/virgo2,
 /area/offmap/aerostat/solars)
+"ah" = (
+/obj/structure/table/reinforced,
+/obj/machinery/recharger/wallcharger{
+	pixel_x = 4;
+	pixel_y = 28
+	},
+/obj/machinery/recharger/wallcharger{
+	pixel_x = 4;
+	pixel_y = 20
+	},
+/obj/machinery/recharger/wallcharger{
+	pixel_x = 4;
+	pixel_y = 36
+	},
+/turf/simulated/floor/tiled/white,
+/area/offmap/aerostat/inside/firingrange)
 "aj" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	id_tag = "anomaly_airlock_pump";
@@ -1019,6 +1035,9 @@
 /area/offmap/aerostat/inside/powercontrol)
 "cR" = (
 /obj/structure/bed/chair/sofa/purp/left,
+/obj/structure/sign/painting/public{
+	pixel_y = 30
+	},
 /turf/simulated/floor/tiled/dark,
 /area/offmap/aerostat/inside/lobby)
 "cU" = (
@@ -1602,6 +1621,9 @@
 /area/offmap/aerostat/inside/toxins)
 "eE" = (
 /obj/structure/bed/chair/sofa/purp/right,
+/obj/structure/sign/painting/public{
+	pixel_y = 30
+	},
 /turf/simulated/floor/tiled/dark,
 /area/offmap/aerostat/inside/lobby)
 "eG" = (
@@ -1649,6 +1671,7 @@
 /obj/machinery/camera/network/research_outpost{
 	dir = 4
 	},
+/obj/structure/flora/pottedplant/unusual,
 /turf/simulated/floor/tiled/dark,
 /area/offmap/aerostat/inside/lobby)
 "eR" = (
@@ -1677,6 +1700,12 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/xenoarch)
+"eV" = (
+/obj/structure/sign/painting/public{
+	pixel_x = -30
+	},
+/turf/simulated/floor/tiled/dark,
+/area/offmap/aerostat/inside/lobby)
 "eW" = (
 /turf/simulated/floor/tiled/techfloor,
 /area/offmap/aerostat/inside/southchamb)
@@ -2482,6 +2511,7 @@
 /obj/machinery/alarm{
 	pixel_y = 26
 	},
+/obj/structure/flora/pottedplant/unusual,
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/telesci)
 "iK" = (
@@ -2649,6 +2679,19 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/toxins)
+"jA" = (
+/obj/structure/sign/painting/public{
+	pixel_y = 30
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/offmap/aerostat/inside/easthall)
+"jE" = (
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 8
+	},
+/obj/structure/table/glass,
+/turf/simulated/floor/tiled/dark,
+/area/offmap/aerostat/inside/lobby)
 "jF" = (
 /turf/simulated/wall,
 /area/offmap/aerostat/inside/xenoarch)
@@ -3160,6 +3203,21 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/offmap/aerostat/inside/zorrenoffice)
+"lz" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/sign/poster{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/offmap/aerostat/inside/westhall)
 "lA" = (
 /obj/machinery/mining/drill,
 /obj/effect/floor_decal/industrial/outline/yellow,
@@ -3404,12 +3462,10 @@
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/telesci)
 "mL" = (
-/obj/structure/table/standard,
-/obj/item/weapon/folder/white,
-/obj/item/weapon/pen/fountain,
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/item/modular_computer/console,
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/toxins)
 "mM" = (
@@ -3674,6 +3730,21 @@
 	},
 /turf/simulated/floor/plating/virgo2,
 /area/offmap/aerostat/solars)
+"nR" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/sign/painting/public{
+	pixel_y = 30
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/offmap/aerostat/inside/westhall)
 "nS" = (
 /obj/structure/bed/chair/shuttle{
 	dir = 8
@@ -4030,6 +4101,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
+/obj/structure/flora/pottedplant/overgrown,
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/firingrange)
 "py" = (
@@ -4985,6 +5057,10 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/toxins)
+"tR" = (
+/obj/structure/flora/pottedplant/subterranean,
+/turf/simulated/floor/tiled/techfloor,
+/area/offmap/aerostat/inside/southchamb)
 "tS" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume,
 /obj/machinery/light/small,
@@ -5033,6 +5109,14 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/toxins)
+"ug" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/table/steel_reinforced,
+/obj/structure/sign/painting/public{
+	pixel_x = 30
+	},
+/turf/simulated/floor/tiled/dark,
+/area/offmap/aerostat/inside/lobby)
 "uh" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -5807,6 +5891,13 @@
 	},
 /turf/simulated/floor/plating,
 /area/offmap/aerostat/inside/atmos)
+"ye" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/item/modular_computer/console{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/offmap/aerostat/inside/firingrange)
 "yi" = (
 /obj/machinery/atmospherics/pipe/simple/visible/black{
 	dir = 9
@@ -5928,6 +6019,9 @@
 	dir = 1;
 	pixel_y = 5
 	},
+/obj/structure/sign/painting/public{
+	pixel_y = 30
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/offmap/aerostat/inside/easthall)
 "yI" = (
@@ -6011,6 +6105,14 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/offmap/aerostat/inside/xenoarch)
+"zf" = (
+/obj/structure/table/steel_reinforced,
+/obj/random/maintenance/research,
+/obj/structure/sign/painting/public{
+	pixel_x = -30
+	},
+/turf/simulated/floor/tiled/dark,
+/area/offmap/aerostat/inside/lobby)
 "zg" = (
 /obj/machinery/atmospherics/pipe/simple/insulated,
 /obj/effect/floor_decal/rust,
@@ -6902,6 +7004,13 @@
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/offmap/aerostat/inside/toxins)
+"CI" = (
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 4
+	},
+/obj/structure/table/glass,
+/turf/simulated/floor/tiled/dark,
+/area/offmap/aerostat/inside/lobby)
 "CJ" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 4
@@ -7116,6 +7225,16 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/firingrange)
+"DH" = (
+/obj/structure/cable/heavyduty{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/sign/poster{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/offmap/aerostat/inside/toxins)
 "DI" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden,
 /turf/simulated/floor/tiled/white,
@@ -7357,6 +7476,14 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/offmap/aerostat/inside/easthall)
+"Fa" = (
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 8
+	},
+/obj/structure/table/glass,
+/obj/random/maintenance/research,
+/turf/simulated/floor/tiled/dark,
+/area/offmap/aerostat/inside/lobby)
 "Ff" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -7604,6 +7731,14 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/xenoarch)
+"Gl" = (
+/obj/effect/floor_decal/industrial/warning/dust{
+	dir = 4
+	},
+/obj/structure/table/glass,
+/obj/random/maintenance/research,
+/turf/simulated/floor/tiled/dark,
+/area/offmap/aerostat/inside/lobby)
 "Gm" = (
 /obj/machinery/door/airlock/multi_tile/glass,
 /obj/machinery/door/firedoor/glass,
@@ -7619,6 +7754,21 @@
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/misclab)
+"Gr" = (
+/obj/structure/cable/heavyduty{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/sign/poster{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/offmap/aerostat/inside/easthall)
 "Gs" = (
 /obj/structure/cable/heavyduty{
 	icon_state = "4-8"
@@ -8033,6 +8183,10 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/telesci)
+"HS" = (
+/obj/structure/flora/pottedplant/crystal,
+/turf/simulated/floor/tiled/white,
+/area/offmap/aerostat/inside/firingrange)
 "HT" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -8344,6 +8498,12 @@
 "Jq" = (
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/xenoarch)
+"Jr" = (
+/obj/structure/sign/painting/public{
+	pixel_y = 30
+	},
+/turf/simulated/floor/tiled/white,
+/area/offmap/aerostat/inside/toxins)
 "Ju" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/black{
 	dir = 4
@@ -8455,6 +8615,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/structure/flora/pottedplant/minitree,
 /turf/simulated/floor/tiled/dark,
 /area/offmap/aerostat/inside/lobby)
 "JR" = (
@@ -8719,6 +8880,9 @@
 /obj/structure/table/steel_reinforced,
 /obj/random/firstaid,
 /obj/random/maintenance/research,
+/obj/structure/sign/painting/public{
+	pixel_x = -30
+	},
 /turf/simulated/floor/tiled/dark,
 /area/offmap/aerostat/inside/lobby)
 "Lj" = (
@@ -8811,6 +8975,9 @@
 /area/offmap/aerostat/inside/zorrenoffice)
 "LI" = (
 /obj/structure/closet/firecloset,
+/obj/structure/sign/poster{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/xenoarch)
 "LK" = (
@@ -9420,6 +9587,17 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/universal,
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/toxins)
+"OD" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/recharger,
+/turf/simulated/floor/tiled/white,
+/area/offmap/aerostat/inside/firingrange)
 "OE" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -9640,6 +9818,12 @@
 "PO" = (
 /turf/simulated/shuttle/wall/voidcraft/hard_corner,
 /area/offmap/aerostat/inside/misclab)
+"PP" = (
+/obj/structure/sign/painting/public{
+	pixel_x = 30
+	},
+/turf/simulated/floor/tiled/white,
+/area/offmap/aerostat/inside/toxins)
 "PQ" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden{
 	dir = 4
@@ -10209,6 +10393,9 @@
 /obj/machinery/chem_master,
 /obj/structure/cable{
 	icon_state = "1-2"
+	},
+/obj/structure/sign/poster{
+	dir = 8
 	},
 /turf/simulated/floor/tiled,
 /area/offmap/aerostat/inside/xenoarch)
@@ -10819,6 +11006,15 @@
 	},
 /turf/simulated/floor/bluegrid,
 /area/offmap/aerostat/inside/powercontrol)
+"UO" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/sign/painting/public{
+	pixel_y = 30
+	},
+/turf/simulated/floor/tiled/white,
+/area/offmap/aerostat/inside/misclab)
 "US" = (
 /obj/machinery/door/airlock/glass_research{
 	name = "Atmospherics";
@@ -10900,6 +11096,11 @@
 /obj/structure/table/standard,
 /obj/item/device/assembly_holder/timer_igniter,
 /obj/item/weapon/tool/screwdriver,
+/obj/structure/sign/painting/public{
+	pixel_x = -30
+	},
+/obj/item/weapon/folder/white,
+/obj/item/weapon/pen/fountain,
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/toxins)
 "Vk" = (
@@ -11108,6 +11309,11 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/telesci)
+"Wi" = (
+/obj/structure/table/reinforced,
+/obj/machinery/recharger,
+/turf/simulated/floor/tiled/white,
+/area/offmap/aerostat/inside/firingrange)
 "Wk" = (
 /obj/machinery/portable_atmospherics/canister/empty,
 /turf/simulated/floor/tiled/techfloor,
@@ -11207,6 +11413,14 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/universal,
 /turf/simulated/floor/tiled/techfloor,
 /area/offmap/aerostat/inside/atmos)
+"WH" = (
+/obj/structure/table/steel_reinforced,
+/obj/random/maintenance/research,
+/obj/structure/sign/painting/public{
+	pixel_x = 30
+	},
+/turf/simulated/floor/tiled/dark,
+/area/offmap/aerostat/inside/lobby)
 "WJ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
@@ -11305,6 +11519,16 @@
 /obj/item/modular_computer/console/preset/command,
 /turf/simulated/floor/tiled/techfloor,
 /area/offmap/aerostat/inside/zorrenoffice)
+"Xg" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/flora/pottedplant/subterranean,
+/turf/simulated/floor/tiled/white,
+/area/offmap/aerostat/inside/xenoarch)
 "Xo" = (
 /obj/effect/floor_decal/industrial/danger{
 	dir = 1
@@ -11353,7 +11577,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/structure/table/standard,
+/obj/item/modular_computer/console/preset/research,
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/telesci)
 "XA" = (
@@ -11378,6 +11602,22 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/xenoarch)
+"XH" = (
+/obj/structure/table/reinforced,
+/obj/machinery/recharger/wallcharger{
+	pixel_x = 4;
+	pixel_y = 20
+	},
+/obj/machinery/recharger/wallcharger{
+	pixel_x = 4;
+	pixel_y = 28
+	},
+/obj/machinery/recharger/wallcharger{
+	pixel_x = 4;
+	pixel_y = 36
+	},
+/turf/simulated/floor/tiled/white,
+/area/offmap/aerostat/inside/firingrange)
 "XJ" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /turf/simulated/wall,
@@ -18784,7 +19024,7 @@ oW
 nO
 TY
 ZK
-wF
+nR
 Lt
 Kv
 jS
@@ -19210,7 +19450,7 @@ Qd
 Zv
 CQ
 Qd
-wF
+lz
 Lt
 iX
 pu
@@ -20059,19 +20299,19 @@ Qd
 fh
 YJ
 Qd
-qC
+Jr
 HU
 kf
 ck
 Md
 iX
-Nl
+HS
 Nl
 Nl
 at
 Nl
 Nl
-fJ
+OD
 vM
 sp
 Ld
@@ -20210,7 +20450,7 @@ iX
 DG
 Nl
 Nl
-at
+Wi
 Nl
 Nl
 FT
@@ -20338,9 +20578,9 @@ jy
 GR
 xy
 jy
+DH
 jy
-jy
-jy
+DH
 GR
 jy
 TP
@@ -20349,13 +20589,13 @@ nv
 LF
 Sb
 iX
-at
+ah
 Nl
 Nl
 at
 Nl
 Nl
-fJ
+OD
 vM
 sp
 Ld
@@ -20491,7 +20731,7 @@ Wn
 NW
 jo
 iX
-at
+XH
 fx
 Nl
 Nl
@@ -20624,7 +20864,7 @@ zb
 Ca
 qC
 qC
-qC
+PP
 jM
 hs
 qC
@@ -20635,7 +20875,7 @@ ZH
 iX
 Rm
 bx
-bx
+ye
 Ew
 mA
 Ne
@@ -20653,7 +20893,7 @@ ID
 ID
 iX
 PJ
-eW
+tR
 KK
 KK
 aw
@@ -20925,10 +21165,10 @@ vL
 pf
 wo
 eP
-Ym
+eV
 Ym
 qp
-Jn
+zf
 xD
 Bp
 Mk
@@ -21633,9 +21873,9 @@ Oc
 Kh
 cV
 cV
-cV
-cV
-cV
+Gl
+CI
+CI
 cV
 cV
 WZ
@@ -22059,9 +22299,9 @@ Ym
 ZN
 bU
 bU
-bU
-bU
-bU
+Fa
+jE
+Fa
 bU
 bU
 AK
@@ -22644,7 +22884,7 @@ qR
 eW
 eW
 Rj
-eW
+tR
 qc
 Au
 Au
@@ -22766,7 +23006,7 @@ vg
 cR
 hh
 xl
-Jn
+WH
 FX
 IF
 JQ
@@ -22774,7 +23014,7 @@ kC
 ql
 pf
 qP
-BH
+ug
 CT
 Bp
 QQ
@@ -23067,7 +23307,7 @@ Pa
 jV
 aH
 gC
-eW
+tR
 KK
 KK
 aw
@@ -23186,7 +23426,7 @@ gx
 tD
 lG
 jF
-CK
+Gr
 BS
 Uh
 Xz
@@ -23479,7 +23719,7 @@ uj
 Vz
 Vz
 Yn
-gK
+UO
 By
 By
 By
@@ -24033,12 +24273,12 @@ vz
 RP
 Jq
 Jq
-LS
+Xg
 xs
 xs
 xs
 jF
-CK
+Gr
 BS
 Uh
 JZ
@@ -25173,7 +25413,7 @@ jF
 jF
 jF
 ry
-Va
+jA
 XA
 ty
 lA
