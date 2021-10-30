@@ -13,6 +13,12 @@
 	color = "#0099cc"
 	default_type = MAT_SIFWOOD
 
+/obj/item/stack/material/wood/hard
+	name = "hardwood plank"
+	color = "#42291a"
+	default_type = MAT_HARDWOOD
+	description_info = "Rich, lustrous hardwood, imported from offworld at moderate expense. Mostly used for luxurious furniture, and not very good for weapons or other structures."
+
 /obj/item/stack/material/log
 	name = "log"
 	icon_state = "sheet-log"
@@ -31,6 +37,12 @@
 	default_type = MAT_SIFLOG
 	color = "#0099cc"
 	plank_type = /obj/item/stack/material/wood/sif
+
+/obj/item/stack/material/log/hard
+	name = "hardwood log"
+	default_type = MAT_HARDLOG
+	color = "#6f432a"
+	plank_type = /obj/item/stack/material/wood/hard
 
 /obj/item/stack/material/log/attackby(var/obj/item/W, var/mob/user)
 	if(!istype(W) || W.force <= 0)
