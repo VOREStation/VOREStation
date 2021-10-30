@@ -47,7 +47,7 @@
 		lobby_screens = list(choice)
 
 /datum/map/tether
-	name = "Virgo"
+	name = "Tether"
 	full_name = "NSB Adephagia"
 	path = "tether"
 
