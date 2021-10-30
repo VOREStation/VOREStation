@@ -16,7 +16,7 @@
 	affecting_z -= global.using_map.sealed_levels // Space levels only please!
 	for(var/mob/M in player_list)
 		if(M.z in affecting_z)
-			M.playsound_local(null, 'sound/ambience/space/aurora_caelus.ogg', 40, FALSE, pressure_affected = FALSE)
+			M.playsound_local(null, 'sound/ambience/space/aurora_caelus.ogg', 100, FALSE, pressure_affected = FALSE)
 	..()
 
 /datum/event/aurora_caelus/get_skybox_image()

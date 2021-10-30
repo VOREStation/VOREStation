@@ -9908,10 +9908,6 @@
 "azc" = (
 /turf/simulated/wall,
 /area/quartermaster/office)
-"aze" = (
-/mob/living/simple_mob/animal/passive/opossum/poppy,
-/turf/simulated/floor/tiled/monotile,
-/area/engineering/workshop)
 "azk" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -33810,6 +33806,7 @@
 /obj/effect/floor_decal/corner/green/border{
 	dir = 8
 	},
+/obj/item/device/bluespaceradio/tether_prelinked,
 /turf/simulated/floor/tiled,
 /area/tether/exploration/pathfinder_office)
 "uZb" = (
@@ -42648,7 +42645,7 @@ atB
 asl
 asU
 atS
-aze
+asU
 asU
 asU
 aNb
