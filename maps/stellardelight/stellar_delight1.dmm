@@ -5533,8 +5533,7 @@
 	dir = 4;
 	door_color = "#333333";
 	name = "Exploration Equipment Room";
-	req_access = null;
-	req_one_access = list(19,43,67);
+	req_one_access = list(19,43,67,66);
 	stripe_color = "#5a19a8"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
@@ -6136,7 +6135,7 @@
 	dir = 8;
 	door_color = "#333333";
 	name = "Exploration";
-	req_one_access = list(19,43,67);
+	req_one_access = list(19,43,67,66);
 	stripe_color = "#5a19a8"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
@@ -15981,7 +15980,7 @@
 	dir = 4;
 	door_color = "#525252";
 	name = "Exploration Shuttle";
-	req_one_access = list(19,43,67);
+	req_one_access = list(19,43,67,66);
 	stripe_color = "#408f3b"
 	},
 /obj/structure/cable/green{
@@ -23016,7 +23015,7 @@
 	dir = 4;
 	door_color = "#ffffff";
 	name = "maintenance access";
-	req_one_access = list(19,43,67);
+	req_one_access = list(19,43,67,66);
 	stripe_color = "#5a19a8"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
