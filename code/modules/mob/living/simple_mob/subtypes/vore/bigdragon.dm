@@ -70,8 +70,8 @@ I think I covered everything.
 	response_help = "pats"
 	response_disarm = "shoves"
 	response_harm = "smacks"
-	movement_cooldown = 2
-	maxHealth = 800
+	movement_cooldown = 5 //Fixed from 2, given our slower natural speed any mob at movement cooldown 2 is a nightmare let alone a boss that has a pounce
+	maxHealth = 600 //Still double a Phoron Dragon, if it's gonna be on 3b, it shouldn't have broodmother level health
 	attacktext = list("slashed")
 	see_in_dark = 8
 	minbodytemp = 0
@@ -101,6 +101,7 @@ I think I covered everything.
 	devourable = 0	//No
 	universal_understand = 1 //So they can hear synth speach
 	max_tox = 0 // for virgo3b survivability
+	max_co2 = 0 // Also needed for 3b Survivability otherwise it chokes to death
 
 	special_attack_min_range = 1
 	special_attack_max_range = 10
