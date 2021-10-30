@@ -34,7 +34,7 @@
 		lobby_screens = list(choice)
 
 /datum/map/stellar_delight
-	name = "Virgo"
+	name = "StellarDelight"
 	full_name = "NRV Stellar Delight"
 	path = "stellardelight"
 
