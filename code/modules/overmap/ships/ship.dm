@@ -138,10 +138,10 @@
 		if(last_sound + sound_cooldown >= world.time)
 			return
 		//VOREStation Add Start
+		last_sound = world.time
 		for(var/mob/potential_mob as anything in player_list)
 			if(potential_mob.z in map_z)
 				SEND_SOUND(potential_mob, 'sound/ambience/shutdown.ogg')
-				last_sound = world.time
 		//VOREStation Add End
 
 	// If it started moving
@@ -153,10 +153,10 @@
 		if(last_sound + sound_cooldown >= world.time)
 			return
 		//VOREStation Add Start
+		last_sound = world.time
 		for(var/mob/potential_mob as anything in player_list)
 			if(potential_mob.z in map_z)
 				SEND_SOUND(potential_mob, 'sound/ambience/startup.ogg')
-				last_sound = world.time
 		//VOREStation Add End
 
 /obj/effect/overmap/visitable/ship/proc/get_brake_path()

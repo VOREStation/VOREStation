@@ -3310,7 +3310,7 @@
 #include "code\modules\overmap\bluespace_rift_vr.dm"
 #include "code\modules\overmap\champagne.dm"
 #include "code\modules\overmap\helpers.dm"
-#include "code\modules\overmap\OM sound.dm"
+#include "code\modules\overmap\OM_sound.dm"
 #include "code\modules\overmap\overmap_object.dm"
 #include "code\modules\overmap\overmap_planet.dm"
 #include "code\modules\overmap\overmap_shuttle.dm"
