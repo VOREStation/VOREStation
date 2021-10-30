@@ -105,10 +105,14 @@
 	icon = 'icons/obj/vending.dmi'
 	icon_state = "Cola_Machine"
 
+//VOREStation Edit Start
 /obj/random/vendordrink/item_to_spawn() //Not including coffee as it's more specific in usage.
 	return pick (/obj/machinery/vending/cola,
+				/obj/machinery/vending/cola/soft,
+				/obj/machinery/vending/bepis,	
 				/obj/machinery/vending/sovietsoda,
 				/obj/machinery/vending/radren)
+//VOREStation Edit End
 
 /obj/random/obstruction //Large objects to block things off in maintenance
 	name = "random obstruction"

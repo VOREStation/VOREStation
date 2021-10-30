@@ -61,6 +61,7 @@
 		test_result["result"] = 1
 		test_result["msg"] = "Checked [GM_checked.len] zones"
 	else
+		test_result["result"] = 1 // VOREStation Add - Why MUST we map in every area?
 		test_result["msg"] = "No zones checked."
 
 	return test_result

@@ -718,7 +718,7 @@
 /turf/simulated/floor/plating,
 /area/gateway/honlethhighlands/town/supply)
 "kk" = (
-/obj/effect/overmap/visitable/sector/tether_gateway/honlethhighlands,
+/obj/effect/overmap/visitable/sector/common_gateway/honlethhighlands,
 /turf/simulated/floor/water/deep{
 	temperature = 253.15
 	},

@@ -600,6 +600,12 @@
 				prob(2);/obj/item/weapon/coin/platinum,
 				prob(1);/obj/item/weapon/coin/diamond)
 
+//VOREStation Add Start
+/obj/random/coin/sometimes
+	spawn_nothing_percentage = 66
+
+//VOREStation Add End
+
 /obj/random/action_figure
 	name = "random action figure"
 	desc = "This is a random action figure."

@@ -1,4 +1,4 @@
-/obj/effect/overmap/visitable/sector/tether_gateway/snowfield
+/obj/effect/overmap/visitable/sector/common_gateway/snowfield
 	initial_generic_waypoints = list("tether_excursion_snowfield")
 	in_space = 0
 	name = "Snowy Field"
