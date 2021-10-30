@@ -453,6 +453,9 @@
 	has_logs = 1
 	can_rotate = 0
 
+/obj/machinery/vending/wallmed1/public
+	products = list(/obj/item/stack/medical/bruise_pack = 8,/obj/item/stack/medical/ointment = 8,/obj/item/weapon/reagent_containers/hypospray/autoinjector = 16,/obj/item/device/healthanalyzer = 4)
+
 /obj/machinery/vending/security
 	name = "SecTech"
 	desc = "A security equipment vendor."
