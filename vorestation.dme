@@ -440,7 +440,6 @@
 #include "code\datums\supplypacks\hospitality_vr.dm"
 #include "code\datums\supplypacks\hydroponics.dm"
 #include "code\datums\supplypacks\hydroponics_vr.dm"
-#include "code\datums\supplypacks\joblockers.dm"
 #include "code\datums\supplypacks\materials.dm"
 #include "code\datums\supplypacks\medical.dm"
 #include "code\datums\supplypacks\medical_vr.dm"
