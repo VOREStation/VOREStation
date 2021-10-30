@@ -45,6 +45,12 @@
 /mob/living/carbon/brain/isSynthetic()
 	return istype(loc, /obj/item/device/mmi)
 
+/mob/living/carbon/brain/runechat_holder(datum/chatmessage/CM)
+	if(isturf(loc))
+		return ..()
+		
+	return loc
+
 /mob/living/carbon/brain/set_typing_indicator(var/state)
 	if(isturf(loc))
 		return ..()

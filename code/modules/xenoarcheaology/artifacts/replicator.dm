@@ -3,7 +3,7 @@
 	desc = "It's some kind of pod with strange wires and gadgets all over it."
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "borgcharger0(old)"
-	density = 1
+	density = TRUE
 
 	idle_power_usage = 100
 	active_power_usage = 1000
@@ -178,4 +178,4 @@
 	user.drop_item()
 	W.loc = src
 	stored_materials.Add(W)
-	src.visible_message("<span class='notice'>\The [user] inserts \the [W] into \the [src].</span>")
+	src.visible_message("<b>\The [user]</b> inserts \the [W] into \the [src].")

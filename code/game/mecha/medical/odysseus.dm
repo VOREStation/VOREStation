@@ -49,7 +49,7 @@
 		set name = "Set client perspective."
 		set category = "Exosuit Interface"
 		set src = usr.loc
-		var/perspective = input("Select a perspective type.",
+		var/perspective = input(usr, "Select a perspective type.",
                       "Client perspective",
                       occupant.client.perspective) in list(MOB_PERSPECTIVE,EYE_PERSPECTIVE)
 		to_world("[perspective]")

@@ -25,11 +25,17 @@
 	var/obj/machinery/transhuman/synthprinter/selected_printer
 	var/obj/machinery/transhuman/resleever/selected_sleever
 
+	// Resleeving database this machine interacts with. Blank for default database
+	// Needs a matching /datum/transcore_db with key defined in code
+	var/db_key
+	var/datum/transcore_db/our_db // These persist all round and are never destroyed, just keep a hard ref
+
 /obj/machinery/computer/transhuman/resleeving/Initialize()
 	. = ..()
 	pods = list()
 	spods = list()
 	sleevers = list()
+	our_db = SStranscore.db_by_key(db_key)
 	updatemodules()
 
 /obj/machinery/computer/transhuman/resleeving/Destroy()
@@ -82,7 +88,7 @@
 			P.connected = src
 			P.name = "[initial(P.name)] #[pods.len]"
 			to_chat(user, "<span class='notice'>You connect [P] to [src].</span>")
-	else if(istype(W, /obj/item/weapon/disk/transcore) && SStranscore && !SStranscore.core_dumped)
+	else if(istype(W, /obj/item/weapon/disk/transcore) && !our_db.core_dumped)
 		user.unEquip(W)
 		disk = W
 		disk.forceMove(src)
@@ -156,8 +162,8 @@
 			"spod" = "\ref[spod]",
 			"name" = sanitize(capitalize(spod.name)),
 			"busy" = spod.busy,
-			"steel" = spod.stored_material[DEFAULT_WALL_MATERIAL],
-			"glass" = spod.stored_material["glass"]
+			"steel" = spod.stored_material[MAT_STEEL],
+			"glass" = spod.stored_material[MAT_GLASS]
 		)))
 	data["spods"] = temppods.Copy()
 	temppods.Cut()
@@ -172,7 +178,7 @@
 	data["sleevers"] = temppods.Copy()
 	temppods.Cut()
 
-	data["coredumped"] = SStranscore.core_dumped
+	data["coredumped"] = our_db.core_dumped
 	data["emergency"] = disk
 	data["temp"] = temp
 	data["selected_pod"] = "\ref[selected_pod]"
@@ -180,14 +186,14 @@
 	data["selected_sleever"] = "\ref[selected_sleever]"
 	
 	var/bodyrecords_list_ui[0]
-	for(var/N in SStranscore.body_scans)
-		var/datum/transhuman/body_record/BR = SStranscore.body_scans[N]
+	for(var/N in our_db.body_scans)
+		var/datum/transhuman/body_record/BR = our_db.body_scans[N]
 		bodyrecords_list_ui[++bodyrecords_list_ui.len] = list("name" = N, "recref" = "\ref[BR]")
 	data["bodyrecords"] = bodyrecords_list_ui
 
 	var/mindrecords_list_ui[0]
-	for(var/N in SStranscore.backed_up)
-		var/datum/transhuman/mind_record/MR = SStranscore.backed_up[N]
+	for(var/N in our_db.backed_up)
+		var/datum/transhuman/mind_record/MR = our_db.backed_up[N]
 		mindrecords_list_ui[++mindrecords_list_ui.len] = list("name" = N, "recref" = "\ref[MR]")
 	data["mindrecords"] = mindrecords_list_ui
 
@@ -251,7 +257,7 @@
 				set_temp("Error: Record missing.", "danger")
 		if("coredump")
 			if(disk)
-				SStranscore.core_dump(disk)
+				our_db.core_dump(disk)
 				sleep(5)
 				visible_message("<span class='warning'>\The [src] spits out \the [disk].</span>")
 				disk.forceMove(get_turf(src))
@@ -283,8 +289,8 @@
 							return
 
 						//Not enough steel or glass
-						else if(spod.stored_material[DEFAULT_WALL_MATERIAL] < spod.body_cost)
-							set_temp("Error: Not enough [DEFAULT_WALL_MATERIAL] in SynthFab.", "danger")
+						else if(spod.stored_material[MAT_STEEL] < spod.body_cost)
+							set_temp("Error: Not enough [MAT_STEEL] in SynthFab.", "danger")
 							return
 						else if(spod.stored_material["glass"] < spod.body_cost)
 							set_temp("Error: Not enough glass in SynthFab.", "danger")
@@ -384,7 +390,7 @@
 								subtargets += H
 							if(subtargets.len)
 								var/oc_sanity = sleever.occupant
-								override = input(usr,"Multiple bodies detected. Select target for resleeving of [active_mr.mindname] manually. Sleeving of primary body is unsafe with sub-contents, and is not listed.", "Resleeving Target") as null|anything in subtargets
+								override = tgui_input_list(usr,"Multiple bodies detected. Select target for resleeving of [active_mr.mindname] manually. Sleeving of primary body is unsafe with sub-contents, and is not listed.", "Resleeving Target", subtargets)
 								if(!override || oc_sanity != sleever.occupant || !(override in sleever.occupant))
 									set_temp("Error: Target selection aborted.", "danger")
 									tgui_modal_clear(src)
@@ -398,7 +404,7 @@
 
 					//Body to sleeve into, but mind is in another living body.
 					if(active_mr.mind_ref.current && active_mr.mind_ref.current.stat < DEAD) //Mind is in a body already that's alive
-						var/answer = alert(active_mr.mind_ref.current,"Someone is attempting to restore a backup of your mind. Do you want to abandon this body, and move there? You MAY suffer memory loss! (Same rules as CMD apply)","Resleeving","No","Yes")
+						var/answer = tgui_alert(active_mr.mind_ref.current,"Someone is attempting to restore a backup of your mind. Do you want to abandon this body, and move there? You MAY suffer memory loss! (Same rules as CMD apply)","Resleeving",list("No","Yes"))
 
 						//They declined to be moved.
 						if(answer == "No")
@@ -407,7 +413,7 @@
 							return TRUE
 
 					//They were dead, or otherwise available.
-					sleever.putmind(active_mr,mode,override)
+					sleever.putmind(active_mr,mode,override,db_key = db_key)
 					set_temp("Initiating resleeving...")
 					tgui_modal_clear(src)
 
@@ -469,7 +475,7 @@
 	icon_state = "harddisk"
 	item_state = "card-id"
 	w_class = ITEMSIZE_SMALL
-	var/datum/transhuman/mind_record/list/stored = list()
+	var/list/datum/transhuman/mind_record/stored = list()
 
 /**
   * Sets a temporary message to display to the user

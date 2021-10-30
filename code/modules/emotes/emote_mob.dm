@@ -53,7 +53,7 @@
 			if(!message)
 				return
 			if (!m_type)
-				if(alert(src, "Is this an audible emote?", "Emote", "Yes", "No") == "No")
+				if(tgui_alert(src, "Is this an audible emote?", "Emote", list("Yes", "No")) == "No")
 					m_type = VISIBLE_MESSAGE
 				else
 					m_type = AUDIBLE_MESSAGE
@@ -79,14 +79,15 @@
 		return
 
 	if(!use_emote.mob_can_use(src))
-		to_chat(src, SPAN_WARNING("You cannot use the emote '[act]'. Type <b>say *help</b> for  a list of usable emotes."))
+		to_chat(src, SPAN_WARNING("You cannot use the emote '[act]'. Type <b>say *help</b> for a list of usable emotes."))
 		return
 
 	if(m_type != use_emote.message_type && use_emote.conscious && stat != CONSCIOUS)
 		return
 
 	if(use_emote.message_type == AUDIBLE_MESSAGE && is_muzzled())
-		audible_message("<b>\The [src]</b> [use_emote.emote_message_muffled || "makes a muffled sound."]")
+		var/muffle_message = use_emote.emote_message_muffled || "makes a muffled sound."
+		audible_message("<b>\The [src]</b> [muffle_message]", runemessage = "[muffle_message]")
 		return
 
 	next_emote = world.time + use_emote.emote_delay
@@ -149,7 +150,7 @@
 	subtext = html_encode(subtext)
 	// Store the player's name in a nice bold, naturalement
 	nametext = "<B>[emoter]</B>"
-	return pretext + nametext + subtext
+	return list("pretext" = pretext, "nametext" = nametext, "subtext" = subtext)
 
 /mob/proc/custom_emote(var/m_type = VISIBLE_MESSAGE, var/message, var/range = world.view)
 
@@ -163,8 +164,16 @@
 	else
 		input = message
 
+	var/list/formatted
+	var/runemessage
 	if(input)
-		message = format_emote(src, message)
+		formatted = format_emote(src, message)
+		if(!islist(formatted))
+			return
+		message = formatted["pretext"] + formatted["nametext"] + formatted["subtext"]
+		runemessage = formatted["subtext"]
+		// This is just personal preference (but I'm objectively right) that custom emotes shouldn't have periods at the end in runechat
+		runemessage = replacetext(runemessage,".","",length(runemessage),length(runemessage)+1)
 	else
 		return
 
@@ -185,16 +194,15 @@
 		var/list/m_viewers = in_range["mobs"]
 		var/list/o_viewers = in_range["objs"]
 
-		for(var/mob in m_viewers)
-			var/mob/M = mob
+		for(var/mob/M as anything in m_viewers)
 			spawn(0) // It's possible that it could be deleted in the meantime, or that it runtimes.
 				if(M)
 					if(isobserver(M))
 						message = "<span class='emote'><B>[src]</B> ([ghost_follow_link(src, M)]) [input]</span>"
 					M.show_message(message, m_type)
+					M.create_chat_message(src, "[runemessage]", FALSE, list("emote"), (m_type == AUDIBLE_MESSAGE))
 
-		for(var/obj in o_viewers)
-			var/obj/O = obj
+		for(var/obj/O as anything in o_viewers)
 			spawn(0)
 				if(O)
 					O.see_emote(src, message, m_type)

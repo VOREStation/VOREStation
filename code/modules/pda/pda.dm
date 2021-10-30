@@ -98,7 +98,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		O.show_message(text("[bicon(src)] *[ttone]*"))
 
 /obj/item/device/pda/proc/set_ringtone()
-	var/t = input("Please enter new ringtone", name, ttone) as text
+	var/t = input(usr, "Please enter new ringtone", name, ttone) as text
 	if(in_range(src, usr) && loc == usr)
 		if(t)
 			if(hidden_uplink && hidden_uplink.check_trigger(usr, lowertext(t), lowertext(lock_code)))
@@ -197,8 +197,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	shortcut_cache.Cut()
 
 /obj/item/device/pda/proc/update_programs()
-	for(var/A in programs)
-		var/datum/data/pda/P = A
+	for(var/datum/data/pda/P as anything in programs)
 		P.pda = src
 
 /obj/item/device/pda/proc/detonate_act(var/obj/item/device/pda/P)
@@ -300,7 +299,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 	if(can_use(usr))
 		start_program(find_program(/datum/data/pda/app/main_menu))
 		notifying_programs.Cut()
-		overlays -= image(icon, "pda-r")
+		cut_overlay("pda-r")
 		to_chat(usr, "<span class='notice'>You press the reset button on \the [src].</span>")
 	else
 		to_chat(usr, "<span class='notice'>You cannot do this while restrained.</span>")

@@ -3,9 +3,9 @@
 	icon = 'icons/obj/kitchen_vr.dmi'
 	icon_state = "foodcart-0"
 	desc = "The ultimate in food transport! When opened you notice two compartments with odd blue glows to them. One feels very warm, while the other is very cold."
-	anchored = 0
+	anchored = FALSE
 	opacity = 0
-	density = 1
+	density = TRUE
 
 /obj/structure/foodcart/Initialize()
 	. = ..()
@@ -24,7 +24,7 @@
 
 /obj/structure/foodcart/attack_hand(var/mob/user as mob)
 	if(contents.len)
-		var/obj/item/weapon/reagent_containers/food/choice = input("What would you like to grab from the cart?") as null|obj in contents
+		var/obj/item/weapon/reagent_containers/food/choice = tgui_input_list(usr, "What would you like to grab from the cart?", "Grab Choice", contents)
 		if(choice)
 			if(!usr.canmove || usr.stat || usr.restrained() || !in_range(loc, usr))
 				return

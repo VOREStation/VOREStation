@@ -105,8 +105,7 @@
 		while(null in owner.organs)
 			owner.organs -= null
 
-	for(var/imp in implants)
-		var/obj/item/weapon/implant/I = imp
+	for(var/obj/item/weapon/implant/I as anything in implants)
 		if(!istype(I))
 			continue
 		I.imp_in = I.part = null
@@ -461,9 +460,9 @@
 	if(damage_desc)
 		if(user == src.owner)
 			var/datum/gender/T = gender_datums[user.get_visible_gender()]
-			user.visible_message("<span class='notice'>\The [user] patches [damage_desc] on [T.his] [src.name] with [tool].</span>")
+			user.visible_message("<b>\The [user]</b> patches [damage_desc] on [T.his] [src.name] with [tool].")
 		else
-			user.visible_message("<span class='notice'>\The [user] patches [damage_desc] on [owner]'s [src.name] with [tool].</span>")
+			user.visible_message("<b>\The [user]</b> patches [damage_desc] on [owner]'s [src.name] with [tool].")
 
 	return 1
 
@@ -581,7 +580,7 @@ This function completely restores a damaged organ to perfect condition.
 //external organs handle brokenness a bit differently when it comes to damage. Instead brute_dam is checked inside process()
 //this also ensures that an external organ cannot be "broken" without broken_description being set.
 /obj/item/organ/external/is_broken()
-	return ((status & ORGAN_CUT_AWAY) || (status & ORGAN_BROKEN) && (!splinted || (splinted && splinted in src.contents && prob(30))))
+	return ((status & ORGAN_CUT_AWAY) || (status & ORGAN_BROKEN) && (!splinted || (splinted && (splinted in src.contents) && prob(30))))
 
 //Determines if we even need to process this organ.
 /obj/item/organ/external/proc/need_process()
@@ -988,12 +987,12 @@ Note that amputating the affected organ does in fact remove the infection from t
 		holder = owner
 	if(!holder)
 		return
-	if (holder.handcuffed && body_part in list(ARM_LEFT, ARM_RIGHT, HAND_LEFT, HAND_RIGHT))
+	if (holder.handcuffed && (body_part in list(ARM_LEFT, ARM_RIGHT, HAND_LEFT, HAND_RIGHT)))
 		holder.visible_message(\
 			"\The [holder.handcuffed.name] falls off of [holder.name].",\
 			"\The [holder.handcuffed.name] falls off you.")
 		holder.drop_from_inventory(holder.handcuffed)
-	if (holder.legcuffed && body_part in list(FOOT_LEFT, FOOT_RIGHT, LEG_LEFT, LEG_RIGHT))
+	if (holder.legcuffed && (body_part in list(FOOT_LEFT, FOOT_RIGHT, LEG_LEFT, LEG_RIGHT)))
 		holder.visible_message(\
 			"\The [holder.legcuffed.name] falls off of [holder.name].",\
 			"\The [holder.legcuffed.name] falls off you.")

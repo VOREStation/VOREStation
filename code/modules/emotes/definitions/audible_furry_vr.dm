@@ -129,3 +129,15 @@
     key = "cackle"
     emote_message_3p = "cackles hysterically!"
     emote_sound = 'sound/voice/YeenCackle.ogg'
+/decl/emote/audible/spiderchitter
+    key = "spiderchitter"
+    emote_message_3p = "chitters."
+    emote_sound = 'sound/voice/spiderchitter.ogg'
+/decl/emote/audible/spiderpurr
+    key = "spiderpurr"
+    emote_message_3p = "purrs."
+    emote_sound = 'sound/voice/spiderpurr.ogg'
+/decl/emote/audible/squeaky
+    key = "squeaky"
+    emote_message_3p = "squeaks."
+    emote_sound = 'sound/items/drop/plushie.ogg'

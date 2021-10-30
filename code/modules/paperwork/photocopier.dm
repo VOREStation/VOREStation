@@ -4,8 +4,8 @@
 	icon = 'icons/obj/library.dmi'
 	icon_state = "bigscanner"
 	var/insert_anim = "bigscanner1"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 30
 	active_power_usage = 200
@@ -111,28 +111,28 @@
 			playsound(src, "sound/machines/copier.ogg", 100, 1)
 			sleep(11)
 			copy(copyitem)
-			audible_message("<span class='notice'>You can hear [src] whirring as it finishes printing.</span>")
+			audible_message("<span class='notice'>You can hear [src] whirring as it finishes printing.</span>", runemessage = "whirr")
 			playsound(src, "sound/machines/buzzbeep.ogg", 30)
 		else if (istype(copyitem, /obj/item/weapon/photo))
 			playsound(src, "sound/machines/copier.ogg", 100, 1)
 			sleep(11)
 			photocopy(copyitem)
-			audible_message("<span class='notice'>You can hear [src] whirring as it finishes printing.</span>")
+			audible_message("<span class='notice'>You can hear [src] whirring as it finishes printing.</span>", runemessage = "whirr")
 			playsound(src, "sound/machines/buzzbeep.ogg", 30)
 		else if (istype(copyitem, /obj/item/weapon/paper_bundle))
 			sleep(11)
 			playsound(src, "sound/machines/copier.ogg", 100, 1)
 			var/obj/item/weapon/paper_bundle/B = bundlecopy(copyitem)
 			sleep(11*B.pages.len)
-			audible_message("<span class='notice'>You can hear [src] whirring as it finishes printing.</span>")
+			audible_message("<span class='notice'>You can hear [src] whirring as it finishes printing.</span>", runemessage = "whirr")
 			playsound(src, "sound/machines/buzzbeep.ogg", 30)
 		else if (has_buckled_mobs()) // VOREStation EDIT: For ass-copying.
 			playsound(src, "sound/machines/copier.ogg", 100, 1)
-			audible_message("<span class='notice'>You can hear [src] whirring as it attempts to scan.</span>")
+			audible_message("<span class='notice'>You can hear [src] whirring as it attempts to scan.</span>", runemessage = "whirr")
 			sleep(rand(20,45)) // Sit with your bare ass on the copier for a random time, feel like a fool, get stared at.
 			copyass(user)
 			sleep(15)
-			audible_message("<span class='notice'>You can hear [src] whirring as it finishes printing.</span>")
+			audible_message("<span class='notice'>You can hear [src] whirring as it finishes printing.</span>", runemessage = "whirr")
 			playsound(src, "sound/machines/buzzbeep.ogg", 30)
 		else
 			to_chat(user, "<span class='warning'>\The [copyitem] can't be copied by [src].</span>")
@@ -220,7 +220,7 @@
 			img = image('icons/obj/bureaucracy.dmi', "paper_stamp-dots")
 		img.pixel_x = copy.offset_x[j]
 		img.pixel_y = copy.offset_y[j]
-		c.overlays += img
+		c.add_overlay(img)
 	c.updateinfolinks()
 	if(need_toner)
 		toner--

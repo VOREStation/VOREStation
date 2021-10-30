@@ -2518,7 +2518,7 @@
 /turf/simulated/floor/plating,
 /area/awaymission/zoo/pirateship)
 "hl" = (
-/obj/item/weapon/contraband/poster,
+/obj/item/poster,
 /turf/simulated/floor/plating,
 /area/awaymission/zoo/pirateship)
 "hm" = (
@@ -3856,12 +3856,12 @@
 /area/awaymission/zoo)
 "kk" = (
 /obj/structure/table/rack,
-/obj/item/clothing/suit/storage/hooded/ian_costume,
+/obj/item/clothing/suit/storage/hooded/costume/ian,
 /turf/simulated/floor/holofloor/carpet,
 /area/awaymission/zoo)
 "kl" = (
 /obj/structure/table/rack,
-/obj/item/clothing/suit/storage/hooded/carp_costume,
+/obj/item/clothing/suit/storage/hooded/costume/carp,
 /turf/simulated/floor/holofloor/carpet,
 /area/awaymission/zoo)
 "km" = (

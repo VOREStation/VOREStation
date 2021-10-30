@@ -13,7 +13,7 @@
 	desc = "It looks pretty sciency."
 	icon = 'icons/obj/rig_modules.dmi'
 	icon_state = "module"
-	matter = list(DEFAULT_WALL_MATERIAL = 20000, "plastic" = 30000, "glass" = 5000)
+	matter = list(MAT_STEEL = 20000, MAT_PLASTIC = 30000, MAT_GLASS = 5000)
 
 	var/damage = 0
 	var/obj/item/weapon/rig/holder
@@ -41,6 +41,7 @@
 
 	// Icons.
 	var/suit_overlay
+	var/suit_overlay_icon = 'icons/mob/rig_modules.dmi'
 	var/suit_overlay_active             // If set, drawn over icon and mob when effect is active.
 	var/suit_overlay_inactive           // As above, inactive.
 	var/suit_overlay_used               // As above, when engaged.
@@ -94,7 +95,7 @@
 				return
 
 		var/obj/item/stack/cable_coil/cable = W
-		if(!cable.amount >= 5)
+		if(!cable.get_amount() >= 5)
 			to_chat(user, "You need five units of cable to repair \the [src].")
 			return
 

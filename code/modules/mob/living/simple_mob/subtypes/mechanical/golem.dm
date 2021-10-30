@@ -16,6 +16,8 @@
 	harm_intent_damage = 3
 	friendly = "hugs"
 
+	organ_names = /decl/mob_organ_names/golem
+
 	melee_damage_lower = 30 // It has a built in esword.
 	melee_damage_upper = 30
 	attack_armor_pen = 20
@@ -85,7 +87,7 @@
 	active_spell = new path(src)
 
 /mob/living/simple_mob/mechanical/technomancer_golem/verb/test_giving_spells()
-	var/choice = input(usr, "What spell?", "Give spell") as null|anything in known_spells
+	var/choice = tgui_input_list(usr, "What spell?", "Give spell", known_spells)
 	if(choice)
 		place_spell_in_hand(known_spells[choice])
 	else
@@ -151,3 +153,6 @@
 /mob/living/simple_mob/mechanical/technomancer_golem/special_post_animation(atom/A)
 	casting = FALSE
 	ranged_post_animation(A)
+
+/decl/mob_organ_names/golem
+	hit_zones = list("helmet", "cuirass", "left tasset", "right tasset", "left gauntlet", "right gauntlet", "weapon")

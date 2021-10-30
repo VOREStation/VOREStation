@@ -77,8 +77,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 		return FALSE
 
 	if(!winexists(owner, "htmloutput"))
-		spawn()
-			alert(owner, "Updated chat window does not exist. If you are using a custom skin file please allow the game to update.")
+		tgui_alert_async(owner, "Updated chat window does not exist. If you are using a custom skin file please allow the game to update.")
 		become_broken()
 		return FALSE
 
@@ -161,7 +160,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 	update_vis()
 
 	spawn()
-		alert(owner,"VChat didn't load after some time. Switching to use oldchat as a fallback. Try using 'Reload VChat' verb in OOC verbs, or reconnecting to try again.")
+		tgui_alert_async(owner,"VChat didn't load after some time. Switching to use oldchat as a fallback. Try using 'Reload VChat' verb in OOC verbs, or reconnecting to try again.")
 
 //Provide the JS with who we are
 /datum/chatOutput/proc/send_playerinfo()
@@ -176,7 +175,6 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 /proc/jsEncode(var/list/message) {
 	if(!islist(message))
 		CRASH("Passed a non-list to encode.")
-		return; //Necessary?
 
 	return url_encode(url_encode(json_encode(message)))
 }

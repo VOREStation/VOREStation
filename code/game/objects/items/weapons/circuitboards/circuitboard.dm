@@ -9,21 +9,20 @@
 	icon = 'icons/obj/module.dmi'
 	icon_state = "id_mod"
 	origin_tech = list(TECH_DATA = 2)
-	density = 0
-	anchored = 0
+	density = FALSE
+	anchored = FALSE
 	w_class = ITEMSIZE_SMALL
 	force = 5.0
 	throwforce = 5.0
 	throw_speed = 3
 	throw_range = 15
+	matter = list(MAT_STEEL = 30, MAT_GLASS = 10)
 	var/build_path = null
 	var/board_type = new /datum/frame/frame_types/computer
 	var/list/req_components = null
 	var/contain_parts = 1
 	drop_sound = 'sound/items/drop/device.ogg'
 	pickup_sound = 'sound/items/pickup/device.ogg'
-
-	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50, MAT_COPPER = 100)
 
 //Called when the circuitboard is used to contruct a new machine.
 /obj/item/weapon/circuitboard/proc/construct(var/obj/machinery/M)

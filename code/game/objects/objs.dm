@@ -1,15 +1,16 @@
 /obj
 	layer = OBJ_LAYER
 	plane = OBJ_PLANE
+	vis_flags = VIS_INHERIT_PLANE //when this be added to vis_contents of something it inherit something.plane, important for visualisation of obj in openspace.
 	//Used to store information about the contents of the object.
 	var/list/matter
 	var/w_class // Size of the object.
-	var/unacidable = 0 //universal "unacidabliness" var, here so you can use it in any obj.
+	var/unacidable = FALSE //universal "unacidabliness" var, here so you can use it in any obj.
 	animate_movement = 2
 	var/throwforce = 1
 	var/catchable = 1	// can it be caught on throws/flying?
-	var/sharp = 0		// whether this object cuts
-	var/edge = 0		// whether this object is more likely to dismember
+	var/sharp = FALSE		// whether this object cuts
+	var/edge = FALSE		// whether this object is more likely to dismember
 	var/pry = 0			//Used in attackby() to open doors
 	var/in_use = 0 // If we have a user using us, this will be set on. We will check if the user has stopped using us, and thus stop updating and LAGGING EVERYTHING!
 	var/damtype = "brute"
@@ -119,9 +120,6 @@
 /obj/attack_ghost(mob/user)
 	tgui_interact(user)
 	..()
-
-/obj/proc/interact(mob/user)
-	return
 
 /mob/proc/unset_machine()
 	machine?.remove_visual(src)

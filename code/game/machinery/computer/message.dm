@@ -98,18 +98,19 @@
 		data["linkedServer"]["active"] = linkedServer.active
 		data["linkedServer"]["broke"] = linkedServer.stat & (NOPOWER|BROKEN)
 		
-		data["linkedServer"]["pda_msgs"] = list()
+		var/list/pda_msgs = list()
 		for(var/datum/data_pda_msg/pda in linkedServer.pda_msgs)
-			data["linkedServer"]["pda_msgs"].Add(list(list(
+			pda_msgs.Add(list(list(
 				"ref" = "\ref[pda]",
 				"sender" = pda.sender,
 				"recipient" = pda.recipient,
 				"message" = pda.message,
 			)))
+		data["linkedServer"]["pda_msgs"] = pda_msgs
 		
-		data["linkedServer"]["rc_msgs"] = list()
+		var/list/rc_msgs = list()
 		for(var/datum/data_rc_msg/rc in linkedServer.rc_msgs)
-			data["linkedServer"]["rc_msgs"].Add(list(list(
+			rc_msgs.Add(list(list(
 				"ref" = "\ref[rc]",
 				"sender" = rc.send_dpt,
 				"recipient" = rc.rec_dpt,
@@ -118,15 +119,17 @@
 				"id_auth" = rc.id_auth,
 				"priority" = rc.priority,
 			)))
-		
+		data["linkedServer"]["rc_msgs"] = rc_msgs
+
 		var/spamIndex = 0
-		data["linkedServer"]["spamFilter"] = list()
+		var/list/spamfilter = list()
 		for(var/token in linkedServer.spamfilter)
 			spamIndex++
-			data["linkedServer"]["spamFilter"].Add(list(list(
+			spamfilter.Add(list(list(
 				"index" = spamIndex,
 				"token" = token,
 			)))
+		data["linkedServer"]["spamFilter"] = spamfilter
 
 		//Get out list of viable PDAs
 		var/list/obj/item/device/pda/sendPDAs = list()
@@ -195,7 +198,7 @@
 		//Find a server
 		if("find")
 			if(message_servers && message_servers.len > 1)
-				linkedServer = input(usr,"Please select a server.", "Select a server.", null) as null|anything in message_servers
+				linkedServer = tgui_input_list(usr,"Please select a server.", "Select a server.", message_servers)
 				set_temp("NOTICE: Server selected.", "alert")
 			else if(message_servers && message_servers.len > 0)
 				linkedServer = message_servers[1]

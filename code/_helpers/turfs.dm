@@ -104,6 +104,9 @@
 	//Are we doing shuttlework? Just to save another type check later.
 	var/shuttlework = 0
 
+	T.pre_translate_A(B)
+	B.pre_translate_B(T)
+
 	//Shuttle turfs handle their own fancy moving.
 	if(istype(T,/turf/simulated/shuttle))
 		shuttlework = 1
@@ -116,7 +119,6 @@
 		var/old_dir1 = T.dir
 		var/old_icon_state1 = T.icon_state
 		var/old_icon1 = T.icon
-		var/old_underlays = T.underlays.Copy()
 		var/old_decals = T.decals ? T.decals.Copy() : null
 
 		X = B.ChangeTurf(T.type)
@@ -124,7 +126,6 @@
 		X.icon_state = old_icon_state1
 		X.icon = old_icon1
 		X.copy_overlays(T, TRUE)
-		X.underlays = old_underlays
 		X.decals = old_decals
 
 	//Move the air from source to dest
@@ -156,10 +157,6 @@
 		if(z_level_change) // Same goes for mobs.
 			M.onTransitZ(T.z, X.z)
 
-		if(istype(M, /mob/living))
-			var/mob/living/LM = M
-			LM.check_shadow() // Need to check their Z-shadow, which is normally done in forceMove().
-
 	if(shuttlework)
 		var/turf/simulated/shuttle/SS = T
 		SS.landed_holder.leave_turf(turftoleave)
@@ -167,6 +164,9 @@
 		T.ChangeTurf(turftoleave)
 	else
 		T.ChangeTurf(get_base_turf_by_area(T))
+
+	T.post_translate_A(B)
+	B.post_translate_B(T)
 
 	return TRUE
 

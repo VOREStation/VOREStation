@@ -21,6 +21,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 	icon_state = "randompile"
 	density = FALSE
 	anchored = TRUE
+	unacidable = TRUE
 
 	var/list/icon_states_to_use = list() // List of icon states the pile can choose from on initialization. If empty or null, it will stay the initial icon_state.
 
@@ -253,8 +254,8 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/stack/rods{amount = 5},
 		/obj/item/stack/material/steel{amount = 5},
 		/obj/item/stack/material/cardboard{amount = 5},
-		/obj/item/weapon/contraband/poster,
-		/obj/item/weapon/contraband/poster/custom,
+		/obj/item/poster,
+		/obj/item/poster/custom,
 		/obj/item/weapon/newspaper,
 		/obj/item/weapon/paper/crumpled,
 		/obj/item/weapon/paper/crumpled/bloody

@@ -399,7 +399,7 @@
 /obj/mecha/proc/query_damtype()
 	if(usr!=src.occupant)
 		return
-	var/new_damtype = alert(src.occupant,"Melee Damage Type",null,"Brute","Fire","Toxic")
+	var/new_damtype = tgui_alert(src.occupant,"Melee Damage Type","Damage Type",list("Brute","Fire","Toxic"))
 	switch(new_damtype)
 		if("Brute")
 			damtype = "brute"

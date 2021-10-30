@@ -13,7 +13,7 @@ BLIND     // can't see anything
 
 /obj/item/clothing/glasses
 	name = "glasses"
-	icon = 'icons/obj/clothing/glasses.dmi'
+	icon = 'icons/inventory/eyes/item.dmi'
 	w_class = ITEMSIZE_SMALL
 	slot_flags = SLOT_EYES
 	plane_slots = list(slot_glasses)
@@ -31,8 +31,8 @@ BLIND     // can't see anything
 	pickup_sound = 'sound/items/pickup/accessory.ogg'
 
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/mob/species/teshari/eyes.dmi',
-		SPECIES_VOX = 'icons/mob/species/vox/eyes.dmi'
+		SPECIES_TESHARI = 'icons/inventory/eyes/mob_teshari.dmi',
+		SPECIES_VOX = 'icons/inventory/eyes/mob_vox.dmi'
 		)
 
 /obj/item/clothing/glasses/update_clothing_icon()
@@ -292,6 +292,12 @@ BLIND     // can't see anything
 	item_state_slots = list(slot_r_hand_str = "glasses", slot_l_hand_str = "glasses")
 	body_parts_covered = 0
 
+/obj/item/clothing/glasses/artist
+	name = "4-D Glasses"
+	desc = "You can see in every dimension, and get four times the amount of headache!"
+	icon_state = "artist"
+	item_state = "artist_glasses"
+
 /obj/item/clothing/glasses/gglasses
 	name = "green glasses"
 	desc = "Forest green glasses, like the kind you'd wear when hatching a nasty scheme."
@@ -342,7 +348,7 @@ BLIND     // can't see anything
 	icon_state = "welding-g"
 	item_state_slots = list(slot_r_hand_str = "welding-g", slot_l_hand_str = "welding-g")
 	action_button_name = "Flip Welding Goggles"
-	matter = list(DEFAULT_WALL_MATERIAL = 1500, "glass" = 1000)
+	matter = list(MAT_STEEL = 1500, MAT_GLASS = 1000)
 	item_flags = AIRTIGHT
 	var/up = 0
 	flash_protection = FLASH_PROTECTION_MAJOR
@@ -500,19 +506,19 @@ BLIND     // can't see anything
 	enables_planes = list(VIS_FULLBRIGHT, VIS_CLOAKED)
 	flash_protection = FLASH_PROTECTION_REDUCED
 
-	emp_act(severity)
-		if(istype(src.loc, /mob/living/carbon/human))
-			var/mob/living/carbon/human/M = src.loc
-			to_chat(M, "<font color='red'>The Optical Thermal Scanner overloads and blinds you!</font>")
-			if(M.glasses == src)
-				M.Blind(3)
-				M.eye_blurry = 5
-				// Don't cure being nearsighted
-				if(!(M.disabilities & NEARSIGHTED))
-					M.disabilities |= NEARSIGHTED
-					spawn(100)
-						M.disabilities &= ~NEARSIGHTED
-		..()
+/obj/item/clothing/glasses/thermal/emp_act(severity)
+	if(istype(src.loc, /mob/living/carbon/human))
+		var/mob/living/carbon/human/M = src.loc
+		to_chat(M, "<font color='red'>The Optical Thermal Scanner overloads and blinds you!</font>")
+		if(M.glasses == src)
+			M.Blind(3)
+			M.eye_blurry = 5
+			// Don't cure being nearsighted
+			if(!(M.disabilities & NEARSIGHTED))
+				M.disabilities |= NEARSIGHTED
+				spawn(100)
+					M.disabilities &= ~NEARSIGHTED
+	..()
 
 /obj/item/clothing/glasses/thermal/New()
 	..()
@@ -590,3 +596,4 @@ BLIND     // can't see anything
 			to_chat(usr, "You push \the [src] up from in front of your eyes.")
 		update_clothing_icon()
 		usr.update_action_buttons()
+

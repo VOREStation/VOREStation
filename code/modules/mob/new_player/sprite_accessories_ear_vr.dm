@@ -22,7 +22,21 @@
 	color_blend_mode = ICON_MULTIPLY
 	species_allowed = list(SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW)
 
+/datum/sprite_accessory/ears/shadekin/round
+	name = "Shadekin Ears Round, colorable"
+	desc = ""
+	icon = 'icons/mob/vore/ears_32x64.dmi'
+	icon_state = "shadekin-round"
+	do_colouration = 1
+	extra_overlay = "shadekin-round-inner"
+
 // Ears avaliable to anyone
+
+/datum/sprite_accessory/ears/taj_ears
+	name = "tajaran, colorable (old)"
+
+/datum/sprite_accessory/ears/taj_ears_tall
+	name = "tajaran tall, colorable (old)"
 
 /datum/sprite_accessory/ears/alt_ram_horns
 	name = "Solid ram horns"
@@ -245,6 +259,13 @@
 	name = "squirrel, colorable"
 	desc = ""
 	icon_state = "squirrel"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/tajaran_standard
+	name = "tajaran, colorable"
+	desc = ""
+	icon_state = "ears_tajaran_standard"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
@@ -704,4 +725,50 @@
 	desc = ""
 	icon_state = "chorn_chub"
 	do_colouration = 0
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/bnnuy
+	name = "Bnnuy Ears"
+	desc = ""
+	icon = 'icons/mob/vore/ears_32x64.dmi'
+	icon_state = "bnnuy"
+	extra_overlay = "bnnuy-inner"
+	extra_overlay2 = "bnnuy-tips"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/sandfox
+	name = "Sandfox Ears"
+	desc = ""
+	icon = 'icons/mob/vore/ears_32x64.dmi'
+	icon_state = "sandfox"
+	extra_overlay = "sandfox-inner"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/teppiears
+	name = "Teppi Ears"
+	desc = ""
+	icon = 'icons/mob/vore/ears_32x64.dmi'
+	icon_state = "teppi_ears"
+	extra_overlay = "teppi_ears_inner"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/teppihorns
+	name = "Teppi Horns"
+	desc = ""
+	icon = 'icons/mob/vore/ears_32x64.dmi'
+	icon_state = "teppi_horns"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/teppiearshorns
+	name = "Teppi Ears and Horns"
+	desc = ""
+	icon = 'icons/mob/vore/ears_32x64.dmi'
+	icon_state = "teppi_ears"
+	extra_overlay = "teppi_ears_inner"
+	extra_overlay2 = "teppi_horns"
+	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY

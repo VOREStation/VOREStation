@@ -111,8 +111,7 @@
 	data["id_rank"] = modify && modify.assignment ? modify.assignment : "Unassigned"
 
 	var/list/departments = list()
-	for(var/D in SSjob.get_all_department_datums())
-		var/datum/department/dept = D
+	for(var/datum/department/dept as anything in SSjob.get_all_department_datums())
 		if(!dept.assignable) // No AI ID cards for you.
 			continue
 		if(dept.centcom_only && !is_centcom())
@@ -206,7 +205,7 @@
 			if(is_authenticated() && modify)
 				var/t1 = params["assign_target"]
 				if(t1 == "Custom")
-					var/temp_t = sanitize(input("Enter a custom job assignment.","Assignment"), 45)
+					var/temp_t = sanitize(input(usr, "Enter a custom job assignment.","Assignment"), 45)
 					//let custom jobs function as an impromptu alt title, mainly for sechuds
 					if(temp_t && modify)
 						modify.assignment = temp_t

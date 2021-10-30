@@ -40,7 +40,7 @@
 	var/originhash = md5("[origin]")
 	var/timehash = copytext(md5("[world.time]"),1,10)
 	var/text = null
-	var/logo = alert(usr, "Do you want the header of your fax to have a NanoTrasen, SolGov, or Trader logo?","Fax Logo","NanoTrasen","SolGov","Trader") //VOREStation Add - Trader
+	var/logo = tgui_alert(usr, "Do you want the header of your fax to have a NanoTrasen, SolGov, or Trader logo?","Fax Logo",list("NanoTrasen","SolGov","Trader")) //VOREStation Add - Trader
 	if(logo == "SolGov")
 		logo = "sglogo.png"
 	//VOREStation Edit/Add
@@ -75,7 +75,7 @@
 	generateFooter()
 	updateDisplay()
 
-obj/item/weapon/paper/admin/proc/updateDisplay()
+/obj/item/weapon/paper/admin/proc/updateDisplay()
 	usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[headerOn ? header : ""][info_links][stamps][footerOn ? footer : ""][interactions]</BODY></HTML>", "window=[name];can_close=0")
 
 
@@ -87,8 +87,10 @@ obj/item/weapon/paper/admin/proc/updateDisplay()
 			to_chat(usr, "<span class='info'>There isn't enough space left on \the [src] to write anything.</span>")
 			return
 
-		var/t =  sanitize(input("Enter what you want to write:", "Write", null, null) as message, free_space, extra = 0)
-
+		var/raw_t = tgui_input_message(usr, "Enter what you want to write:", "Write")
+		if(!raw_t)
+			return
+		var/t =  sanitize(raw_t, free_space, extra = 0)
 		if(!t)
 			return
 
@@ -118,7 +120,7 @@ obj/item/weapon/paper/admin/proc/updateDisplay()
 		return
 
 	if(href_list["confirm"])
-		switch(alert("Are you sure you want to send the fax as is?",, "Yes", "No"))
+		switch(tgui_alert(usr, "Are you sure you want to send the fax as is?","Send Fax", list("Yes", "No")))
 			if("Yes")
 				if(headerOn)
 					info = header + info

@@ -8,7 +8,7 @@
 	icon = 'icons/obj/machines/shielding.dmi'
 	icon_state = "capacitor"
 	var/active = 0
-	density = 1
+	density = TRUE
 	var/stored_charge = 0	//not to be confused with power cell charge, this is in Joules
 	var/last_stored_charge = 0
 	var/time_since_fail = 100
@@ -40,7 +40,7 @@
 
 	if(istype(W, /obj/item/weapon/card/id))
 		var/obj/item/weapon/card/id/C = W
-		if(access_captain in C.access || access_security in C.access || access_engine in C.access)
+		if((access_captain in C.access) || (access_security in C.access) || (access_engine in C.access))
 			src.locked = !src.locked
 			to_chat(user, "Controls are now [src.locked ? "locked." : "unlocked."]")
 			updateDialog()
@@ -59,7 +59,7 @@
 						owned_gen.capacitors |= src
 						owned_gen.updateDialog()
 		else
-			if(owned_gen && src in owned_gen.capacitors)
+			if(owned_gen && (src in owned_gen.capacitors))
 				owned_gen.capacitors -= src
 			owned_gen = null
 	else

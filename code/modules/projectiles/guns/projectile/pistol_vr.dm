@@ -28,19 +28,21 @@
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4)
 
 /obj/item/weapon/gun/projectile/lamia/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(!ammo_magazine)
 		return
 	var/ratio = ammo_magazine.stored_ammo.len * 100 / ammo_magazine.max_ammo
 	ratio = round(ratio, 33)
-	overlays += "deagle_[ratio]"
+	add_overlay("deagle_[ratio]")
 
 //Civilian gun
 /obj/item/weapon/gun/projectile/giskard
 	name = "\improper \"Giskard\" holdout pistol"
 	desc = "The FS HG .380 \"Giskard\" can even fit into the pocket! Uses .380 rounds."
 	icon = 'icons/obj/gun_vr.dmi'
+	icon_override = 'icons/obj/gun_vr.dmi'
 	icon_state = "giskardcivil"
+	item_state = "giskardcivil"
 	caliber = ".380"
 	magazine_type = /obj/item/ammo_magazine/m380
 	allowed_magazines = list(/obj/item/ammo_magazine/m380)
@@ -61,6 +63,7 @@
 	name = "\improper \"Olivaw\" holdout burst-pistol"
 	desc = "The FS HG .380 \"Olivaw\" is a more advanced version of the \"Giskard\". This one seems to have a two-round burst-fire mode. Uses .380 rounds."
 	icon_state = "olivawcivil"
+	item_state = "olivawcivil"
 	firemodes = list(
 		list(mode_name="semiauto",       burst=1, fire_delay=1.2,    move_delay=null, burst_accuracy=null, dispersion=null),
 		list(mode_name="2-round bursts", burst=2, fire_delay=0.2, move_delay=4,    burst_accuracy=list(0,-15),       dispersion=list(1.2, 1.8)),

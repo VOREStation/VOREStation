@@ -11,6 +11,7 @@
 	do_colouration = 0 //Set to 1 to enable coloration using the tail color.
 
 	color_blend_mode = ICON_ADD // Only appliciable if do_coloration = 1
+	em_block = TRUE
 	var/extra_overlay // Icon state of an additional overlay to blend in.
 	var/extra_overlay2 //Tertiary.
 	var/show_species_tail = 0 // If false, do not render species' tail.
@@ -557,6 +558,14 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
+/datum/sprite_accessory/tail/special/foxdefault
+	name = "default zorren tail, colorable"
+	desc = ""
+	icon = "icons/mob/human_races/r_fox_vr.dmi"
+	icon_state = "tail_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/tail/special/foxhc
 	name = "highlander zorren tail, colorable"
 	desc = ""
@@ -899,6 +908,16 @@
 	ani_state = "tail_smooth_w"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/foxtail
+	name = "Fox tail, colourable (vwag)"
+	desc = ""
+	icon_state = "foxtail"
+	extra_overlay = "foxtail-tips"
+	do_colouration = TRUE
+	color_blend_mode = ICON_MULTIPLY
+	ani_state = "foxtail_w"
+	extra_overlay_w = "foxtail-tips_w"
 
 /datum/sprite_accessory/tail/triplekitsune_colorable
 	name = "Kitsune 3 tails, colorable"

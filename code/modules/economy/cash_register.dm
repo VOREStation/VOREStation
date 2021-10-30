@@ -5,7 +5,7 @@
 	icon_state = "register_idle"
 	flags = NOBLUDGEON
 	req_access = list(access_heads)
-	anchored = 1
+	anchored = TRUE
 
 	var/locked = 1
 	var/cash_locked = 1
@@ -50,7 +50,7 @@
 		if(cash_stored)
 			spawn_money(cash_stored, loc, user)
 			cash_stored = 0
-			overlays -= "register_cash"
+			cut_overlay("register_cash")
 		else
 			open_cash_box()
 	else
@@ -107,8 +107,8 @@
 			if("toggle_cash_lock")
 				cash_locked = !cash_locked
 			if("link_account")
-				var/attempt_account_num = input("Enter account number", "New account number") as num
-				var/attempt_pin = input("Enter PIN", "Account PIN") as num
+				var/attempt_account_num = input(usr, "Enter account number", "New account number") as num
+				var/attempt_pin = input(usr, "Enter PIN", "Account PIN") as num
 				linked_account = attempt_account_access(attempt_account_num, attempt_pin, 1)
 				if(linked_account)
 					if(linked_account.suspended)
@@ -117,11 +117,11 @@
 				else
 					to_chat(usr, "[bicon(src)]<span class='warning'>Account not found.</span>")
 			if("custom_order")
-				var/t_purpose = sanitize(input("Enter purpose", "New purpose") as text)
+				var/t_purpose = sanitize(input(usr, "Enter purpose", "New purpose") as text)
 				if (!t_purpose || !Adjacent(usr)) return
 				transaction_purpose = t_purpose
 				item_list += t_purpose
-				var/t_amount = round(input("Enter price", "New price") as num)
+				var/t_amount = round(input(usr, "Enter price", "New price") as num)
 				if (!t_amount || !Adjacent(usr) || t_amount < 0) return
 				transaction_amount += t_amount
 				price_list += t_amount
@@ -129,7 +129,7 @@
 				src.visible_message("[bicon(src)][transaction_purpose]: [t_amount] Thaler\s.")
 			if("set_amount")
 				var/item_name = locate(href_list["item"])
-				var/n_amount = round(input("Enter amount", "New amount") as num)
+				var/n_amount = round(input(usr, "Enter amount", "New amount") as num)
 				n_amount = CLAMP(n_amount, 0, 20)
 				if (!item_list[item_name] || !Adjacent(usr)) return
 				transaction_amount += (n_amount - item_list[item_name]) * price_list[item_name]
@@ -181,7 +181,7 @@
 		if(cash_open)
 			to_chat(user, "You neatly sort the cash into the box.")
 			cash_stored += SC.worth
-			overlays |= "register_cash"
+			add_overlay("register_cash")
 			if(ishuman(user))
 				var/mob/living/carbon/human/H = user
 				H.drop_from_inventory(SC)
@@ -234,7 +234,7 @@
 		var/datum/money_account/D = get_account(I.associated_account_number)
 		var/attempt_pin = ""
 		if(D && D.security_level)
-			attempt_pin = input("Enter PIN", "Transaction") as num
+			attempt_pin = input(usr, "Enter PIN", "Transaction") as num
 			D = null
 		D = attempt_account_access(I.associated_account_number, attempt_pin, 2)
 
@@ -468,15 +468,15 @@
 
 	if(cash_open)
 		cash_open = 0
-		overlays -= "register_approve"
-		overlays -= "register_open"
-		overlays -= "register_cash"
+		cut_overlay("register_approve")
+		cut_overlay("register_open")
+		cut_overlay("register_cash")
 	else if(!cash_locked)
 		cash_open = 1
-		overlays += "register_approve"
-		overlays += "register_open"
+		add_overlay("register_approve")
+		add_overlay("register_open")
 		if(cash_stored)
-			overlays += "register_cash"
+			add_overlay("register_cash")
 	else
 		to_chat(usr, "<span class='warning'>The cash box is locked.</span>")
 

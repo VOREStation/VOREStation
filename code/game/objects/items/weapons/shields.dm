@@ -68,7 +68,7 @@
 	throw_range = 4
 	w_class = ITEMSIZE_LARGE
 	origin_tech = list(TECH_MATERIAL = 2)
-	matter = list("glass" = 7500, DEFAULT_WALL_MATERIAL = 1000)
+	matter = list(MAT_GLASS = 7500, MAT_STEEL = 1000)
 	attack_verb = list("shoved", "bashed")
 	var/cooldown = 0 //shield bash cooldown. based on world.time
 
@@ -208,7 +208,7 @@
 	if(user.incapacitated() || !istype(user))
 		to_chat(user, "<span class='warning'>You can't do that right now!</span>")
 		return
-	if(alert("Are you sure you want to recolor your shield?", "Confirm Recolor", "Yes", "No") == "Yes")
+	if(tgui_alert(usr, "Are you sure you want to recolor your shield?", "Confirm Recolor", list("Yes", "No")) == "Yes")
 		var/energy_color_input = input(usr,"","Choose Energy Color",lcolor) as color|null
 		if(energy_color_input)
 			lcolor = sanitize_hexcolor(energy_color_input)

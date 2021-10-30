@@ -85,7 +85,8 @@
 	if(move_result)
 		if(istype(src.loc, /turf/space))
 			if(!src.check_for_support())
-				src.pr_inertial_movement.start(list(src,direction))
+				float_direction = direction
+				start_process(MECHA_PROC_MOVEMENT)
 		can_move = 0
 		spawn(tmp_step_in) can_move = 1
 		use_power(tmp_step_energy_drain)
@@ -166,4 +167,4 @@
 	icon_state = "pzrwreck"
 	plane = MOB_PLANE
 	pixel_x = -16
-	anchored = 1 // It's fucking huge. You aren't moving it.
+	anchored = TRUE // It's fucking huge. You aren't moving it.

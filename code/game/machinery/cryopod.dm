@@ -14,7 +14,7 @@
 	icon = 'icons/obj/Cryogenic2_vr.dmi' //VOREStation Edit - New Icon
 	icon_state = "cellconsole"
 	circuit = /obj/item/weapon/circuitboard/cryopodcontrol
-	density = 0
+	density = FALSE
 	interact_offline = 1
 	var/mode = null
 
@@ -95,17 +95,18 @@
 	data["real_name"] = user.real_name
 	data["allow_items"] = allow_items
 	data["crew"] = frozen_crew
-	
-	data["items"] = list()
+
+	var/list/items = list()
 	if(allow_items)
 		for(var/F in frozen_items)
-			data["items"].Add(F) // VOREStation Edit
+			items.Add(F) // VOREStation Edit
 			/* VOREStation Removal
-			data["items"].Add(list(list(
+			items.Add(list(list(
 				"name" = "[F]",
 				"ref" = REF(F),
 			)))
 			VOREStation Removal End */
+	data["items"] = items
 
 	return data
 
@@ -116,7 +117,7 @@
 	add_fingerprint(usr)
 
 	return FALSE // VOREStation Edit - prevent topic exploits
-
+	/* VOREStation Edit - Unreachable due to above
 	switch(action)
 		if("item")
 			if(!allow_items)
@@ -148,7 +149,7 @@
 			for(var/obj/item/I in frozen_items)
 				I.forceMove(get_turf(src))
 				frozen_items -= I
-
+	*/
 
 /obj/item/weapon/circuitboard/cryopodcontrol
 	name = "Circuit board (Cryogenic Oversight Console)"
@@ -182,7 +183,7 @@
 	desc = "A bewildering tangle of machinery and pipes."
 	icon = 'icons/obj/Cryogenic2_vr.dmi' //VOREStation Edit - New Icon
 	icon_state = "cryo_rear"
-	anchored = 1
+	anchored = TRUE
 	dir = WEST
 
 //Cryopods themselves.
@@ -191,8 +192,9 @@
 	desc = "A man-sized pod for entering suspended animation."
 	icon = 'icons/obj/Cryogenic2_vr.dmi' //VOREStation Edit - New Icon
 	icon_state = "cryopod_0" //VOREStation Edit - New Icon
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
+	unacidable = TRUE
 	dir = WEST
 
 	var/base_icon_state = "cryopod_0" //VOREStation Edit - New Icon
@@ -248,6 +250,10 @@
 /obj/machinery/cryopod/robot/door/dorms
 	name = "Residential District Elevator"
 	desc = "A small elevator that goes down to the deeper section of the colony."
+	icon = 'icons/obj/Cryogenic2_vr.dmi'
+	icon_state = "lift_closed"
+	base_icon_state = "lift_open"
+	occupied_icon_state = "lift_closed"
 	on_store_message = "has departed for the residential district."
 	on_store_name = "Residential Oversight"
 	on_enter_occupant_message = "The elevator door closes slowly, ready to bring you down to the residential district."
@@ -257,6 +263,10 @@
 /obj/machinery/cryopod/robot/door/travel
 	name = "Passenger Elevator"
 	desc = "A small elevator that goes down to the passenger section of the vessel."
+	icon = 'icons/obj/Cryogenic2_vr.dmi'
+	icon_state = "lift_closed"
+	base_icon_state = "lift_open"
+	occupied_icon_state = "lift_closed"
 	on_store_message = "is slated to depart from the colony."
 	on_store_name = "Travel Oversight"
 	on_enter_occupant_message = "The elevator door closes slowly, ready to bring you down to the hell that is economy class travel."
@@ -372,8 +382,7 @@
 	hook_vr("despawn", list(to_despawn, src))
 	if(isliving(to_despawn))
 		var/mob/living/L = to_despawn
-		for(var/belly in L.vore_organs)
-			var/obj/belly/B = belly
+		for(var/obj/belly/B as anything in L.vore_organs)
 			for(var/mob/living/sub_L in B)
 				despawn_occupant(sub_L)
 			for(var/obj/item/W in B)
@@ -460,12 +469,7 @@
 
 	//VOREStation Edit - Resleeving.
 	if(to_despawn.mind)
-		if(to_despawn.mind.name in SStranscore.backed_up)
-			var/datum/transhuman/mind_record/MR = SStranscore.backed_up[to_despawn.mind.name]
-			SStranscore.stop_backup(MR)
-		if(to_despawn.mind.name in SStranscore.body_scans) //This uses mind names to avoid people cryo'ing a printed body to delete body scans.
-			var/datum/transhuman/body_record/BR = SStranscore.body_scans[to_despawn.mind.name]
-			SStranscore.remove_body(BR)
+		SStranscore.leave_round(to_despawn)
 	//VOREStation Edit End - Resleeving.
 
 	//Handle job slot/tater cleanup.
@@ -495,6 +499,19 @@
 	for(var/datum/data/record/G in data_core.general)
 		if((G.fields["name"] == to_despawn.real_name))
 			qdel(G)
+
+	// Also check the hidden version of each datacore, if they're an offmap role.
+	var/datum/job/J = SSjob.get_job(job)
+	if(J?.offmap_spawn)
+		for(var/datum/data/record/R in data_core.hidden_general)
+			if((R.fields["name"] == to_despawn.real_name))
+				qdel(R)
+		for(var/datum/data/record/T in data_core.hidden_security)
+			if((T.fields["name"] == to_despawn.real_name))
+				qdel(T)
+		for(var/datum/data/record/G in data_core.hidden_medical)
+			if((G.fields["name"] == to_despawn.real_name))
+				qdel(G)
 
 	icon_state = base_icon_state
 
@@ -668,7 +685,7 @@
 	var/willing = null //We don't want to allow people to be forced into despawning.
 
 	if(M.client)
-		if(alert(M,"Would you like to enter long-term storage?",,"Yes","No") == "Yes")
+		if(tgui_alert(M,"Would you like to enter long-term storage?","Cryopod",list("Yes","No")) == "Yes")
 			if(!M) return
 			willing = 1
 	else

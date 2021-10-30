@@ -1,7 +1,7 @@
 /obj/machinery/portable_atmospherics/hydroponics/soil
 	name = "soil"
 	icon_state = "soil"
-	density = 0
+	density = FALSE
 	use_power = USE_POWER_OFF
 	mechanical = 0
 	tray_light = 0
@@ -10,8 +10,18 @@
 /obj/machinery/portable_atmospherics/hydroponics/soil/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(istype(O,/obj/item/weapon/tank))
 		return
+	if(istype(O,/obj/item/weapon/shovel))
+		if(!seed)
+			var/choice= tgui_alert(user, "Do you want to destroy the growplot?", "Destroy growplot?" , list("Yes", "No"))
+			if(!choice||choice=="No")
+				return
+			user.visible_message("[user] starts dispersing the [src]...", runemessage = "disperses the [src]")
+			if(do_after(user, 5 SECONDS, exclusive = TASK_USER_EXCLUSIVE))
+				qdel(src)
+		else
+			to_chat(user, "<span class='notice'>There is something growing here.</span>")
 	else
-		..()
+		return ..()
 
 /obj/machinery/portable_atmospherics/hydroponics/soil/New()
 	..()

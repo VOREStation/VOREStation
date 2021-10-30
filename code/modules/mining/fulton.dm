@@ -18,8 +18,7 @@ var/global/list/total_extraction_beacons = list()
 
 /obj/item/extraction_pack/attack_self(mob/user)
 	var/list/possible_beacons = list()
-	for(var/B in global.total_extraction_beacons)
-		var/obj/structure/extraction_point/EP = B
+	for(var/obj/structure/extraction_point/EP as anything in global.total_extraction_beacons)
 		if(EP.beacon_network in beacon_networks)
 			possible_beacons += EP
 
@@ -30,7 +29,7 @@ var/global/list/total_extraction_beacons = list()
 	else
 		var/A
 
-		A = input("Select a beacon to connect to", "Balloon Extraction Pack", A) as null|anything in possible_beacons
+		A = tgui_input_list(usr, "Select a beacon to connect to", "Balloon Extraction Pack", possible_beacons)
 
 		if(!A)
 			return
@@ -43,7 +42,7 @@ var/global/list/total_extraction_beacons = list()
 		return
 	if(!can_use_indoors)
 		var/turf/T = get_turf(A)
-		if(T && !T.outdoors)
+		if(T && !T.is_outdoors())
 			to_chat(user, "[src] can only be used on things that are outdoors!")
 			return
 	if(!flag)
@@ -146,7 +145,7 @@ var/global/list/total_extraction_beacons = list()
 
 /obj/item/fulton_core/attack_self(mob/user)
 	var/turf/T = get_turf(user)
-	var/outdoors = T.outdoors
+	var/outdoors = T.is_outdoors()
 	if(do_after(user,15,target = user) && !QDELETED(src) && outdoors)
 		new /obj/structure/extraction_point(get_turf(user))
 		qdel(src)

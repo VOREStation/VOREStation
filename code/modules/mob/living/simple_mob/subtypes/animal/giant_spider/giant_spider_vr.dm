@@ -52,8 +52,13 @@
 	old_x = -16
 	old_y = 0
 
-/mob/living/simple_mob/animal/giant_spider/nurse/eggless/lay_eggs(turf/T)
-	return FALSE
+	egg_type = /obj/effect/spider/eggcluster/royal
 
-/mob/living/simple_mob/animal/giant_spider/nurse/queen/eggless/lay_eggs(turf/T)
-	return FALSE
+/mob/living/simple_mob/animal/giant_spider/nurse
+	var/can_lay_eggs = TRUE
+
+/mob/living/simple_mob/animal/giant_spider/nurse/eggless
+	can_lay_eggs = FALSE
+
+/mob/living/simple_mob/animal/giant_spider/nurse/queen/eggless
+	can_lay_eggs = FALSE

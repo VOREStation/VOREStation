@@ -3,6 +3,7 @@
  *		Lasertag
  *		Costume
  *		Misc
+ *		Department Jackets
  */
 
 // -S2-note- Needs categorizing and sorting.
@@ -10,6 +11,7 @@
 /*
  * Lasertag
  */
+
 /obj/item/clothing/suit/bluetag
 	name = "blue laser tag armour"
 	desc = "Blue Pride, Station Wide."
@@ -33,6 +35,7 @@
 /*
  * Costume
  */
+
 /obj/item/clothing/suit/pirate
 	name = "pirate coat"
 	desc = "Yarr."
@@ -43,7 +46,7 @@
 /obj/item/clothing/suit/poncho
 	name = "poncho"
 	desc = "A simple, comfortable poncho."
-	icon = 'icons/mob/suit.dmi'
+	icon = 'icons/inventory/suit/mob.dmi'
 	icon_state = "poncho"
 	item_state = "poncho"
 	item_icons = list(
@@ -105,9 +108,7 @@
 
 /obj/item/clothing/suit/syndicatefake
 	name = "red space suit replica"
-	icon = 'icons/obj/clothing/spacesuits.dmi'
 	icon_state = "syndicate"
-	default_worn_icon = 'icons/mob/spacesuit.dmi'
 	desc = "A plastic replica of the syndicate space suit, you'll look just like a real murderous syndicate agent in this! This is a toy, it is not made for use in space!"
 	w_class = ITEMSIZE_NORMAL
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank/emergency/oxygen,/obj/item/toy)
@@ -229,6 +230,7 @@
 /*
  * Misc
  */
+
 /obj/item/clothing/suit/straight_jacket
 	name = "straight jacket"
 	desc = "A suit that completely restrains the wearer."
@@ -263,20 +265,62 @@
 	body_parts_covered = UPPER_TORSO|ARMS
 	flags_inv = HIDETIE|HIDEHOLSTER
 
-obj/item/clothing/suit/kimono
-	name = "kimono"
+/*
+ * Kimonos
+ */
+
+/obj/item/clothing/suit/kimono
+	name = "traditional kimono"
 	desc = "A traditional Japanese kimono."
 	icon_state = "kimono"
 	addblends = "kimono_a"
 
-obj/item/clothing/suit/kamishimo
-	name = "kamishimo"
+/obj/item/clothing/suit/kamishimo
+	name = "traditional kamishimo"
 	desc = "Traditional Japanese menswear."
 	icon_state = "kamishimo"
+	addblends = "kamishimo_a"
+
+/obj/item/clothing/suit/kimono/red
+	name = "red kimono"
+	icon_state = "kimono_red"
+
+/obj/item/clothing/suit/kimono/orange
+	name = "orange kimono"
+	icon_state = "kimono_orange"
+
+/obj/item/clothing/suit/kimono/yellow
+	name = "yellow kimono"
+	icon_state = "kimono_yellow"
+
+/obj/item/clothing/suit/kimono/green
+	name = "green kimono"
+	icon_state = "kimono_green"
+
+/obj/item/clothing/suit/kimono/blue
+	name = "blue kimono"
+	icon_state = "kimono_blue"
+
+/obj/item/clothing/suit/kimono/purple
+	name = "purple kimono"
+	icon_state = "kimono_purple"
+
+/obj/item/clothing/suit/kimono/violet
+	name = "violet kimono"
+	icon_state = "kimono_violet"
+
+/obj/item/clothing/suit/kimono/pink
+	name = "pink kimono"
+	icon_state = "kimono_pink"
+
+/obj/item/clothing/suit/kimono/earth
+	name = "earth kimono"
+	icon_state = "kimono_earth"
 
 /*
- * coats
+ * Coats
  */
+
 /obj/item/clothing/suit/leathercoat
 	name = "leather coat"
 	desc = "A long, thick black leather coat."
@@ -345,8 +389,8 @@ obj/item/clothing/suit/kamishimo
 	flags_inv = HIDEHOLSTER
 
 /obj/item/clothing/suit/storage/duster
-	name = "cowboy duster"
-	desc = "A duster commonly seen on cowboys from Earth's late 1800's."
+	name = "duster"
+	desc = "A duster is a light, loose-fitting long coat. Dusters are meant to protect your clothing from dust and rain."
 	icon_state = "duster"
 	blood_overlay_type = "coat"
 	allowed = list(/obj/item/weapon/tank/emergency/oxygen, /obj/item/device/flashlight,/obj/item/weapon/gun/energy,/obj/item/weapon/gun/projectile,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/melee/baton,/obj/item/weapon/handcuffs,/obj/item/weapon/storage/fancy/cigarettes,/obj/item/weapon/flame/lighter)
@@ -430,7 +474,6 @@ obj/item/clothing/suit/kamishimo
 	icon_state = "militaryjacket_tan"
 	item_state_slots = list(slot_r_hand_str = "suit_orange", slot_l_hand_str = "suit_orange")
 	flags_inv = HIDEHOLSTER
-	index = 1
 
 /obj/item/clothing/suit/storage/miljacket/grey
 	name = "grey military jacket"
@@ -438,7 +481,6 @@ obj/item/clothing/suit/kamishimo
 	icon_state = "militaryjacket_grey"
 	item_state_slots = list(slot_r_hand_str = "suit_grey", slot_l_hand_str = "suit_grey")
 	flags_inv = HIDEHOLSTER
-	index = 1
 
 /obj/item/clothing/suit/storage/miljacket/navy
 	name = "navy military jacket"
@@ -446,7 +488,6 @@ obj/item/clothing/suit/kamishimo
 	icon_state = "militaryjacket_navy"
 	item_state_slots = list(slot_r_hand_str = "suit_navy", slot_l_hand_str = "suit_navy")
 	flags_inv = HIDEHOLSTER
-	index = 1
 
 /obj/item/clothing/suit/storage/miljacket/black
 	name = "black military jacket"
@@ -454,7 +495,6 @@ obj/item/clothing/suit/kamishimo
 	icon_state = "militaryjacket_black"
 	item_state_slots = list(slot_r_hand_str = "suit_black", slot_l_hand_str = "suit_black")
 	flags_inv = HIDEHOLSTER
-	index = 1
 
 /obj/item/clothing/suit/storage/miljacket/white
 	name = "white military jacket"
@@ -462,7 +502,6 @@ obj/item/clothing/suit/kamishimo
 	icon_state = "militaryjacket_white"
 	item_state_slots = list(slot_r_hand_str = "med_dep_jacket", slot_l_hand_str = "med_dep_jacket")
 	flags_inv = HIDEHOLSTER
-	index = 1
 
 /obj/item/clothing/suit/storage/toggle/bomber
 	name = "bomber jacket"
@@ -475,6 +514,11 @@ obj/item/clothing/suit/kamishimo
 	cold_protection = UPPER_TORSO|ARMS
 	min_cold_protection_temperature = T0C - 20
 	siemens_coefficient = 0.7
+
+/obj/item/clothing/suit/storage/toggle/bomber/retro
+	name = "retro bomber jacket"
+	desc = "A retro style, fur-lined leather bomber jacket that invokes the early days of space exploration when spacemen were spacemen, and laser guns had funny little antennae on them."
+	icon_state = "retrojacket"
 
 /obj/item/clothing/suit/storage/bomber/alt
 	name = "bomber jacket"
@@ -726,6 +770,19 @@ obj/item/clothing/suit/kamishimo
 	icon_state = "med_dep_jacket"
 	item_state_slots = list(slot_r_hand_str = "med_dep_jacket", slot_l_hand_str = "med_dep_jacket")
 	flags_inv = HIDEHOLSTER
+
+/obj/item/clothing/suit/storage/toggle/light_jacket
+	name = "grey light jacket"
+	desc = "A light, cozy jacket. Now in grey."
+	icon_state = "grey_dep_jacket"
+	item_state_slots = list(slot_r_hand_str = "grey_dep_jacket", slot_l_hand_str = "grey_dep_jacket")
+	flags_inv = HIDEHOLSTER
+
+/obj/item/clothing/suit/storage/toggle/light_jacket/blue
+	name = "dark blue light jacket"
+	desc = "A light, cozy jacket. Now in dark blue."
+	icon_state = "blue_dep_jacket"
+	item_state_slots = list(slot_r_hand_str = "blue_dep_jacket", slot_l_hand_str = "blue_dep_jacket")
 
 /*
  * Track Jackets

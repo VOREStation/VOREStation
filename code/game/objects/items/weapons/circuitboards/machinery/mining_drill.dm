@@ -17,4 +17,6 @@
 	build_path = /obj/machinery/mining/brace
 	board_type = new /datum/frame/frame_types/machine
 	origin_tech = list(TECH_DATA = 1, TECH_ENGINEERING = 1)
-	req_components = list()
+	req_components = list(
+							/obj/item/weapon/stock_parts/manipulator = 1
+						)

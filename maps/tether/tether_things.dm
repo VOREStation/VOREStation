@@ -140,15 +140,21 @@
 /obj/effect/ceiling
 	invisibility = 101 // nope cant see this
 	anchored = 1
+	can_atmos_pass = ATMOS_PASS_PROC
 
-/obj/effect/ceiling/CheckExit(atom/movable/O as mob|obj, turf/target as turf)
-	if(target && target.z > src.z)
-		return FALSE // Block exit from our turf to above
+/obj/effect/ceiling/CanZASPass(turf/T, is_zone)
+	if(T == GetAbove(src))
+		return FALSE // Keep your air up there, buddy
 	return TRUE
 
-/obj/effect/ceiling/CanPass(atom/movable/mover, turf/target, height=0, air_group=0)
-	if(mover && mover.z > src.z)
-		return FALSE // Block entry from above to our turf
+/obj/effect/ceiling/CanPass(atom/movable/mover, turf/target)
+	if(target == GetAbove(src))
+		return FALSE
+	return TRUE
+
+/obj/effect/ceiling/Uncross(atom/movable/mover, turf/target)
+	if(target == GetAbove(src))
+		return FALSE
 	return TRUE
 
 //
@@ -170,7 +176,7 @@
 
 // Walking on maglev tracks will shock you! Horray!
 /turf/simulated/floor/maglev/Entered(var/atom/movable/AM, var/atom/old_loc)
-	if(isliving(AM) && prob(50))
+	if(isliving(AM) && !(AM.is_incorporeal()) && prob(50))
 		track_zap(AM)
 /turf/simulated/floor/maglev/attack_hand(var/mob/user)
 	if(prob(75))
@@ -249,7 +255,7 @@
 
 	var/mob/living/carbon/human/user = AM
 
-	var/choice = alert("Do you want to depart via the tram? Your character will leave the round.","Departure","Yes","No")
+	var/choice = tgui_alert(user, "Do you want to depart via the tram? Your character will leave the round.","Departure",list("Yes","No"))
 	if(user && Adjacent(user) && choice == "Yes")
 		var/mob/observer/dead/newghost = user.ghostize()
 		newghost.timeofdeath = world.time
@@ -460,3 +466,12 @@ var/global/list/latejoin_tram   = list()
 	layer = ABOVE_WINDOW_LAYER
 /obj/structure/noticeboard
 	layer = ABOVE_WINDOW_LAYER
+
+/obj/tether_away_spawner/tether_outside
+	name = "Tether Outside Spawner"
+	prob_spawn = 75
+	prob_fall = 50
+	mobs_to_pick_from = list(
+		/mob/living/simple_mob/animal/passive/gaslamp = 300,
+		/mob/living/simple_mob/vore/alienanimals/teppi = 4
+		)

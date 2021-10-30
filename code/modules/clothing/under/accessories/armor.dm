@@ -63,7 +63,6 @@
 	desc = "A collection of black pouches that can be attached to a plate carrier. Carries up to four items."
 	icon_state = "lpouches"
 	slots = 4
-	slowdown = 0.25
 
 /obj/item/clothing/accessory/storage/pouches/large/blue
 	desc = "A collection of blue pouches that can be attached to a plate carrier. Carries up to four items."
@@ -134,7 +133,7 @@
 	name = "ballistic armor plate"
 	desc = "A woven armor plate with additional plating, providing good protection against high-velocity trauma. Attaches to a plate carrier."
 	icon_state = "armor_ballistic"
-	slowdown = 0.6
+	slowdown = 0.5
 	armor = list(melee = 10, bullet = 70, laser = 10, energy = 10, bomb = 0, bio = 0, rad = 0)
 	armorsoak = list(melee = 0, bullet = 10, laser = 0, energy = 5, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.7
@@ -143,7 +142,7 @@
 	name = "riot armor plate"
 	desc = "A thick armor plate with additional padding, providing good protection against low-velocity trauma. Attaches to a plate carrier."
 	icon_state = "armor_riot"
-	slowdown = 0.6
+	slowdown = 0.5
 	armor = list(melee = 70, bullet = 10, laser = 10, energy = 10, bomb = 0, bio = 0, rad = 0)
 	armorsoak = list(melee = 10, bullet = 0, laser = 0, energy = 5, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.7
@@ -152,7 +151,7 @@
 	name = "ablative armor plate"
 	desc = "A durasteel-scaled synthetic armor plate, providing good protection against lasers. Attaches to a plate carrier."
 	icon_state = "armor_ablative"
-	slowdown = 0.6
+	slowdown = 0.5
 	armor = list(melee = 10, bullet = 10, laser = 70, energy = 50, bomb = 0, bio = 0, rad = 0)
 	armorsoak = list(melee = 0, bullet = 0, laser = 10, energy = 15, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.1
@@ -395,10 +394,10 @@
 // Helmet Covers
 /////////////////
 
-obj/item/clothing/accessory/armor/helmcover
+/obj/item/clothing/accessory/armor/helmcover
 	name = "helmet cover"
 	desc = "A fabric cover for armored helmets."
-	icon_override = 'icons/mob/ties.dmi'
+	icon_override = 'icons/inventory/accessory/mob.dmi'
 	icon = 'icons/obj/clothing/modular_armor.dmi'
 	icon_state = "helmcover_blue"
 	slot = ACCESSORY_SLOT_HELM_C

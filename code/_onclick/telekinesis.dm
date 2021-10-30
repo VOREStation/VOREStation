@@ -151,8 +151,8 @@ var/const/tk_maxrange = 15
 	if(!focus)	return
 	var/obj/effect/overlay/O = new /obj/effect/overlay(locate(focus.x,focus.y,focus.z))
 	O.name = "sparkles"
-	O.anchored = 1
-	O.density = 0
+	O.anchored = TRUE
+	O.density = FALSE
 	O.layer = FLY_LAYER
 	O.set_dir(pick(GLOB.cardinal))
 	O.icon = 'icons/effects/effects.dmi'
@@ -163,7 +163,7 @@ var/const/tk_maxrange = 15
 	return
 
 /obj/item/tk_grab/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(focus && focus.icon && focus.icon_state)
-		overlays += icon(focus.icon,focus.icon_state)
+		add_overlay(icon(focus.icon, focus.icon_state))
 	return

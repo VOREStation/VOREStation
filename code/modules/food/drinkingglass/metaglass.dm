@@ -4,9 +4,9 @@
 	icon_state = "glass_empty"
 	amount_per_transfer_from_this = 5
 	volume = 30
-	unacidable = 1 //glass
+	unacidable = TRUE //glass
 	center_of_mass = list("x"=16, "y"=10)
-	matter = list("glass" = 500)
+	matter = list(MAT_GLASS = 500)
 	icon = 'icons/obj/drinks.dmi'
 
 /obj/item/weapon/reagent_containers/food/drinks/metaglass/metapint
@@ -23,7 +23,7 @@
 			icon = R.glass_icon_file
 		else
 			icon = initial(icon)
-		
+
 		if(R.glass_icon_state)
 			icon_state = R.glass_icon_state
 		else
@@ -372,6 +372,10 @@ Drinks Data
 /datum/reagent/ethanol/martini
 	glass_icon_state = "martiniglass"
 	glass_center_of_mass = list("x"=17, "y"=8)
+
+/datum/reagent/ethanol/rum_and_cola
+	glass_icon_state = "rumcolaglass"
+	glass_center_of_mass = list("x"=16, "y"=8)
 
 /datum/reagent/ethanol/cuba_libre
 	glass_icon_state = "cubalibreglass"

@@ -112,14 +112,13 @@
 				web_master.process_autopath()
 
 /datum/shuttle/autodock/web_shuttle/proc/update_helmets()
-	for(var/helm in helmets)
-		var/obj/item/clothing/head/pilot/H = helm
+	for(var/obj/item/clothing/head/pilot/H as anything in helmets)
 		if(QDELETED(H))
 			helmets -= H
 			continue
 		if(!H.shuttle_comp || !(get_area(H) in shuttle_area))
 			H.shuttle_comp = null
-			H.audible_message("<span class='warning'>\The [H] pings as it loses it's connection with the ship.</span>")
+			H.audible_message("<span class='warning'>\The [H] pings as it loses it's connection with the ship.</span>", runemessage = "ping")
 			H.update_hud("discon")
 			helmets -= H
 		else
@@ -375,11 +374,11 @@
 	if(MS.skip_docking_checks() || MS.check_undocked())
 		return 1
 
-	var/choice = alert("The shuttle is currently docked! Please undock before continuing.","Error","Cancel","Force Launch")
+	var/choice = tgui_alert(usr, "The shuttle is currently docked! Please undock before continuing.","Error",list("Cancel","Force Launch"))
 	if(choice == "Cancel")
 		return 0
 
-	choice = alert("Forcing a shuttle launch while docked may result in severe injury, death and/or damage to property. Are you sure you wish to continue?", "Force Launch", "Force Launch", "Cancel")
+	choice = tgui_alert(usr, "Forcing a shuttle launch while docked may result in severe injury, death and/or damage to property. Are you sure you wish to continue?", "Force Launch", list("Force Launch", "Cancel"))
 	if(choice == "Cancel")
 		return 0
 

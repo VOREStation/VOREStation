@@ -8,8 +8,8 @@
 	conditions  can cause different byproducts to be produced.<br>\
 	Magma or Lava can be pumped to produce mineralized fluid."
 
-	anchored = 0
-	density = 1
+	anchored = FALSE
+	density = TRUE
 
 	icon = 'icons/obj/machines/reagent.dmi'
 	icon_state = "pump"
@@ -107,7 +107,7 @@
 	if(Output.get_pairing())
 		reagents.trans_to_holder(Output.reagents, Output.reagents.maximum_volume)
 		if(prob(5))
-			visible_message("<span class='notice'>\The [src] gurgles as it exports fluid.</span>")
+			visible_message("<b>\The [src]</b> gurgles as it exports fluid.")
 
 	if(!on)
 		return
@@ -148,7 +148,7 @@
 	on = 1
 	update_icon()
 	if(loud)
-		visible_message("<span class='notice'>\The [src] turns on.</span>")
+		visible_message("<b>\The [src]</b> turns on.")
 	return 1
 
 /obj/machinery/pump/proc/turn_off(var/loud = 0)
@@ -156,7 +156,7 @@
 	set_light(0, 0)
 	update_icon()
 	if(loud)
-		visible_message("<span class='notice'>\The [src] shuts down.</span>")
+		visible_message("<b>\The [src]</b> shuts down.")
 
 	if(!on)
 		return TRUE

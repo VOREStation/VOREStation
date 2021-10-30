@@ -51,7 +51,7 @@
 			/obj/item/weapon/reagent_containers/glass/paint/purple,
 			/obj/item/weapon/reagent_containers/glass/paint/black,
 			/obj/item/weapon/reagent_containers/glass/paint/white,
-			/obj/item/weapon/contraband/poster/custom,
+			/obj/item/poster/custom,
 			/obj/item/weapon/wrapping_paper = 3
 			)
 	cost = 10

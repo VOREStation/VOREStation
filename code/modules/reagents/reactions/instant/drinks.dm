@@ -107,8 +107,8 @@
 
 /decl/chemical_reaction/instant/drinks/wine
 	name = "Wine"
-	id = "wine"
-	result = "wine"
+	id = "redwine"
+	result = "redwine"
 	required_reagents = list("grapejuice" = 10)
 	catalysts = list("enzyme" = 5)
 	result_amount = 10
@@ -185,11 +185,18 @@
 	required_reagents = list("gin" = 2, "tonic" = 1)
 	result_amount = 3
 
+/decl/chemical_reaction/instant/drinks/rum_and_cola
+	name = "Rum and Cola"
+	id = "rumandcola"
+	result = "rumandcola"
+	required_reagents = list("rum" = 2, "cola" = 1)
+	result_amount = 3
+
 /decl/chemical_reaction/instant/drinks/cuba_libre
 	name = "Cuba Libre"
 	id = "cubalibre"
 	result = "cubalibre"
-	required_reagents = list("rum" = 2, "cola" = 1)
+	required_reagents = list("rumandcola" = 3, "limejuice" = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/martini
@@ -329,14 +336,7 @@
 	name = "Long Island Iced Tea"
 	id = "longislandicedtea"
 	result = "longislandicedtea"
-	required_reagents = list("vodka" = 1, "gin" = 1, "tequilla" = 1, "cubalibre" = 3)
-	result_amount = 6
-
-/decl/chemical_reaction/instant/drinks/icedtea
-	name = "Long Island Iced Tea"
-	id = "longislandicedtea"
-	result = "longislandicedtea"
-	required_reagents = list("vodka" = 1, "gin" = 1, "tequilla" = 1, "cubalibre" = 3)
+	required_reagents = list("vodka" = 1, "gin" = 1, "tequilla" = 1, "rumandcola" = 3)
 	result_amount = 6
 
 /decl/chemical_reaction/instant/drinks/threemileisland
@@ -399,7 +399,7 @@
 	name = "Singulo"
 	id = "singulo"
 	result = "singulo"
-	required_reagents = list("vodka" = 5, "radium" = 1, "wine" = 5)
+	required_reagents = list("vodka" = 5, "radium" = 1, "redwine" = 5)
 	result_amount = 10
 
 /decl/chemical_reaction/instant/drinks/alliescocktail
@@ -505,14 +505,14 @@
 	name = "Acid Spit"
 	id = "acidspit"
 	result = "acidspit"
-	required_reagents = list("sacid" = 1, "wine" = 5)
+	required_reagents = list("sacid" = 1, "redwine" = 5)
 	result_amount = 6
 
 /decl/chemical_reaction/instant/drinks/amasec
 	name = "Amasec"
 	id = "amasec"
 	result = "amasec"
-	required_reagents = list("iron" = 1, "wine" = 5, "vodka" = 5)
+	required_reagents = list("iron" = 1, "redwine" = 5, "vodka" = 5)
 	result_amount = 10
 
 /decl/chemical_reaction/instant/drinks/changelingsting
@@ -661,7 +661,7 @@
 	name = "Melon Spritzer"
 	id = "melonspritzer"
 	result = "melonspritzer"
-	required_reagents = list("watermelonjuice" = 2, "wine" = 2, "applejuice" = 1, "limejuice" = 1)
+	required_reagents = list("watermelonjuice" = 2, "redwine" = 2, "applejuice" = 1, "limejuice" = 1)
 	result_amount = 6
 
 /decl/chemical_reaction/instant/drinks/fauxfizz
@@ -691,6 +691,13 @@
 	id = "brownstar"
 	result = "brownstar"
 	required_reagents = list("orangejuice" = 2, "cola" = 1)
+	result_amount = 3
+
+/decl/chemical_reaction/instant/drinks/brownstar_decaf
+	name = "Decaf Brown Star"
+	id = "brownstar_decaf"
+	result = "brownstar_decaf"
+	required_reagents = list("orangejuice" = 2, "decafcola" = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/milkshake
@@ -756,11 +763,25 @@
 	required_reagents = list("tea" = 5, "mint" = 1)
 	result_amount = 6
 
+/decl/chemical_reaction/instant/drinks/minttea_decaf
+	name = "Decaf Mint Tea"
+	id = "decafminttea"
+	result = "decafminttea"
+	required_reagents = list("decaftea" = 5, "mint" = 1)
+	result_amount = 6
+
 /decl/chemical_reaction/instant/drinks/lemontea
 	name = "Lemon Tea"
 	id = "lemontea"
 	result = "lemontea"
 	required_reagents = list("tea" = 5, "lemonjuice" = 1)
+	result_amount = 6
+
+/decl/chemical_reaction/instant/drinks/lemontea_decaf
+	name = "Decaf Lemon Tea"
+	id = "decaflemontea"
+	result = "decaflemontea"
+	required_reagents = list("decaftea" = 5, "lemonjuice" = 1)
 	result_amount = 6
 
 /decl/chemical_reaction/instant/drinks/limetea
@@ -770,6 +791,13 @@
 	required_reagents = list("tea" = 5, "limejuice" = 1)
 	result_amount = 6
 
+/decl/chemical_reaction/instant/drinks/limetea_decaf
+	name = "Decaf Lime Tea"
+	id = "decaflimetea"
+	result = "decaflimetea"
+	required_reagents = list("decaftea" = 5, "limejuice" = 1)
+	result_amount = 6
+
 /decl/chemical_reaction/instant/drinks/orangetea
 	name = "Orange Tea"
 	id = "orangetea"
@@ -777,11 +805,25 @@
 	required_reagents = list("tea" = 5, "orangejuice" = 1)
 	result_amount = 6
 
+/decl/chemical_reaction/instant/drinks/orangetea_decaf
+	name = "Decaf Orange Tea"
+	id = "decaforangetea"
+	result = "decaforangetea"
+	required_reagents = list("decaftea" = 5, "orangejuice" = 1)
+	result_amount = 6
+
 /decl/chemical_reaction/instant/drinks/berrytea
 	name = "Berry Tea"
 	id = "berrytea"
 	result = "berrytea"
 	required_reagents = list("tea" = 5, "berryjuice" = 1)
+	result_amount = 6
+
+/decl/chemical_reaction/instant/drinks/berrytea_decaf
+	name = "Decaf Berry Tea"
+	id = "decafberrytea"
+	result = "decafberrytea"
+	required_reagents = list("decaftea" = 5, "berryjuice" = 1)
 	result_amount = 6
 
 /decl/chemical_reaction/instant/drinks/sakebomb
@@ -915,7 +957,7 @@
     name = "Wine brandy"
     id = "winebrandy"
     result = "winebrandy"
-    required_reagents = list("wine" = 10)
+    required_reagents = list("redwine" = 10)
     catalysts = list("enzyme" = 10) //10u enzyme so it requires more than is usually added. Stops overlap with wine recipe
     result_amount = 5
 
@@ -937,7 +979,7 @@
 	name = "Vesper"
 	id = "vesper"
 	result = "vesper"
-	required_reagents = list("gin" = 3, "vodka" = 1, "wine" = 1)
+	required_reagents = list("gin" = 3, "vodka" = 1, "redwine" = 1)
 	result_amount = 4
 
 /decl/chemical_reaction/instant/drinks/rotgut
@@ -1064,7 +1106,7 @@
 	id = "daiquiri"
 	result = "daiquiri"
 	required_reagents = list("rum" = 3, "limejuice" = 2, "sugar" = 1)
-	result_amount = 5
+	result_amount = 6
 
 /decl/chemical_reaction/instant/drinks/mintjulep
 	name = "Mint Julep"
@@ -1077,7 +1119,7 @@
 	name = "Paloma"
 	id = "paloma"
 	result = "paloma"
-	required_reagents = list("orangejuice" = 1, "sodawater" = 1, "tequilla" = 1)
+	required_reagents = list("sodawater" = 1, "tequillasunrise" = 2)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/mojito

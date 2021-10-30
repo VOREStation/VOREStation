@@ -16,7 +16,7 @@
 	dir = SOUTH
 	initialize_directions = SOUTH
 	pipe_flags = PIPING_DEFAULT_LAYER_ONLY
-	density = 1
+	density = TRUE
 
 /obj/machinery/atmospherics/pipe/tank/New()
 	icon_state = "air"

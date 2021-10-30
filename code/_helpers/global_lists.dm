@@ -8,6 +8,7 @@ var/global/list/silicon_mob_list = list()			//List of all silicon mobs, includin
 var/global/list/ai_list = list()					//List of all AIs, including clientless
 var/global/list/living_mob_list = list()			//List of all alive mobs, including clientless. Excludes /mob/new_player
 var/global/list/dead_mob_list = list()				//List of all dead mobs, including clientless. Excludes /mob/new_player
+var/global/list/observer_mob_list = list()			//List of all /mob/observer/dead, including clientless.
 var/global/list/listening_objects = list()			//List of all objects which care about receiving messages (communicators, radios, etc)
 var/global/list/cleanbot_reserved_turfs = list()	//List of all turfs currently targeted by some cleanbot
 
@@ -25,13 +26,6 @@ var/list/mannequins_
 
 // Times that players are allowed to respawn ("ckey" = world.time)
 GLOBAL_LIST_EMPTY(respawn_timers)
-
-// Closets have magic appearances
-GLOBAL_LIST_EMPTY(closet_appearances)
-
-// Posters
-var/global/list/poster_designs = list()
-var/global/list/NT_poster_designs = list()
 
 // Holomaps
 var/global/list/holomap_markers = list()
@@ -57,7 +51,7 @@ GLOBAL_LIST_INIT(custom_species_bases, new) // Species that can be used for a Cu
 var/datum/category_collection/underwear/global_underwear = new()
 
 	//Backpacks
-var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel", "Satchel Alt", "Messenger Bag")
+var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel", "Satchel Alt", "Messenger Bag", "Sports Bag")
 var/global/list/pdachoicelist = list("Default", "Slim", "Old", "Rugged", "Holographic", "Wrist-Bound")
 var/global/list/exclude_jobs = list(/datum/job/ai,/datum/job/cyborg)
 
@@ -127,7 +121,7 @@ GLOBAL_LIST_EMPTY(mannequins)
 	var/list/paths
 
 	//Hair - Initialise all /datum/sprite_accessory/hair into an list indexed by hair-style name
-	paths = typesof(/datum/sprite_accessory/hair) - /datum/sprite_accessory/hair
+	paths = subtypesof(/datum/sprite_accessory/hair)
 	for(var/path in paths)
 		var/datum/sprite_accessory/hair/H = new path()
 		hair_styles_list[H.name] = H
@@ -139,7 +133,7 @@ GLOBAL_LIST_EMPTY(mannequins)
 				hair_styles_female_list += H.name
 
 	//Facial Hair - Initialise all /datum/sprite_accessory/facial_hair into an list indexed by facialhair-style name
-	paths = typesof(/datum/sprite_accessory/facial_hair) - /datum/sprite_accessory/facial_hair
+	paths = subtypesof(/datum/sprite_accessory/facial_hair)
 	for(var/path in paths)
 		var/datum/sprite_accessory/facial_hair/H = new path()
 		facial_hair_styles_list[H.name] = H
@@ -151,27 +145,27 @@ GLOBAL_LIST_EMPTY(mannequins)
 				facial_hair_styles_female_list += H.name
 
 	//Body markings - Initialise all /datum/sprite_accessory/marking into an list indexed by marking name
-	paths = typesof(/datum/sprite_accessory/marking) - /datum/sprite_accessory/marking
+	paths = subtypesof(/datum/sprite_accessory/marking)
 	for(var/path in paths)
 		var/datum/sprite_accessory/marking/M = new path()
 		body_marking_styles_list[M.name] = M
 
 	//Surgery Steps - Initialize all /datum/surgery_step into a list
-	paths = typesof(/datum/surgery_step)-/datum/surgery_step
+	paths = subtypesof(/datum/surgery_step)
 	for(var/T in paths)
 		var/datum/surgery_step/S = new T
 		surgery_steps += S
 	sort_surgeries()
 
 	//List of job. I can't believe this was calculated multiple times per tick!
-	paths = typesof(/datum/job)-/datum/job
+	paths = subtypesof(/datum/job)
 	paths -= exclude_jobs
 	for(var/T in paths)
 		var/datum/job/J = new T
 		joblist[J.title] = J
 
 	//Languages
-	paths = typesof(/datum/language)-/datum/language
+	paths = subtypesof(/datum/language)
 	for(var/T in paths)
 		var/datum/language/L = new T
 		if (isnull(GLOB.all_languages[L.name]))
@@ -195,7 +189,7 @@ GLOBAL_LIST_EMPTY(mannequins)
 
 	//Species
 	var/rkey = 0
-	paths = typesof(/datum/species)
+	paths = subtypesof(/datum/species)
 	for(var/T in paths)
 
 		rkey++
@@ -208,52 +202,60 @@ GLOBAL_LIST_EMPTY(mannequins)
 		S.race_key = rkey //Used in mob icon caching.
 		GLOB.all_species[S.name] = S
 
+	//Shakey shakey shake
+	sortTim(GLOB.all_species, /proc/cmp_species, associative = TRUE)
+
+	//Split up the rest
+	for(var/speciesname in GLOB.all_species)
+		var/datum/species/S = GLOB.all_species[speciesname]
 		if(!(S.spawn_flags & SPECIES_IS_RESTRICTED))
 			GLOB.playable_species += S.name
 		if(S.spawn_flags & SPECIES_IS_WHITELISTED)
 			GLOB.whitelisted_species += S.name
 
-	//Posters
-	paths = typesof(/datum/poster) - /datum/poster
-	paths -= typesof(/datum/poster/nanotrasen)
-	for(var/T in paths)
-		var/datum/poster/P = new T
-		poster_designs += P
-
-	paths = typesof(/datum/poster/nanotrasen)
-	for(var/T in paths)
-		var/datum/poster/P = new T
-		NT_poster_designs += P
+	// Suit cyclers
+	paths = subtypesof(/datum/suit_cycler_choice/department)
+	for(var/datum/suit_cycler_choice/SCC as anything in paths)
+		if(!initial(SCC.name))
+			continue
+		GLOB.suit_cycler_departments += new SCC()
+	paths = subtypesof(/datum/suit_cycler_choice/species)
+	for(var/datum/suit_cycler_choice/SCC as anything in paths)
+		if(!initial(SCC.name))
+			continue
+		GLOB.suit_cycler_species += new SCC()
+	paths = subtypesof(/datum/suit_cycler_choice/department/emag)
+	for(var/datum/suit_cycler_choice/SCC as anything in paths)
+		if(!initial(SCC.name))
+			continue
+		GLOB.suit_cycler_emagged += new SCC()
 
 	//Ores
-	paths = typesof(/ore)-/ore
+	paths = subtypesof(/ore)
 	for(var/oretype in paths)
 		var/ore/OD = new oretype()
 		GLOB.ore_data[OD.name] = OD
 	
-	paths = typesof(/datum/alloy)-/datum/alloy
+	paths = subtypesof(/datum/alloy)
 	for(var/alloytype in paths)
 		GLOB.alloy_data += new alloytype()
 
 	//Closet appearances
-	paths = typesof(/decl/closet_appearance)
-	for(var/T in paths)
-		var/decl/closet_appearance/app = new T()
-		GLOB.closet_appearances[T] = app
+	GLOB.closet_appearances = decls_repository.get_decls_of_type(/decl/closet_appearance)
 
-	paths = typesof(/datum/sprite_accessory/ears) - /datum/sprite_accessory/ears
+	paths = subtypesof(/datum/sprite_accessory/ears)
 	for(var/path in paths)
 		var/obj/item/clothing/head/instance = new path()
 		ear_styles_list[path] = instance
 
 	// Custom Tails
-	paths = typesof(/datum/sprite_accessory/tail) - /datum/sprite_accessory/tail - /datum/sprite_accessory/tail/taur
+	paths = subtypesof(/datum/sprite_accessory/tail) - /datum/sprite_accessory/tail/taur
 	for(var/path in paths)
 		var/datum/sprite_accessory/tail/instance = new path()
 		tail_styles_list[path] = instance
 
 	// Custom Wings
-	paths = typesof(/datum/sprite_accessory/wing) - /datum/sprite_accessory/wing
+	paths = subtypesof(/datum/sprite_accessory/wing)
 	for(var/path in paths)
 		var/datum/sprite_accessory/wing/instance = new path()
 		wing_styles_list[path] = instance
@@ -268,7 +270,7 @@ GLOBAL_LIST_EMPTY(mannequins)
 
 /*
 	// Custom species traits
-	paths = typesof(/datum/trait) - /datum/trait
+	paths = subtypesof(/datum/trait)
 	for(var/path in paths)
 		var/datum/trait/instance = new path()
 		if(!instance.name)

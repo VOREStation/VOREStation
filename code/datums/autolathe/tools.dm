@@ -56,6 +56,10 @@
 /datum/category_item/autolathe/tools/spraynozzle
 	name = "spray nozzle"
 	path = /obj/item/weapon/reagent_containers/spray
-	resources = list(MAT_PLASTIC = 5000, DEFAULT_WALL_MATERIAL = 2000)
+	resources = list(MAT_PLASTIC = 5000, MAT_STEEL = 2000)
 	hidden = 1
 	man_rating = 2
+
+/datum/category_item/autolathe/tools/rsf
+	name = "rapid service fabricator"
+	path = /obj/item/weapon/rsf

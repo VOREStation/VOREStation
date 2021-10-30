@@ -165,7 +165,7 @@
 	name = "bone repair kit"
 	desc = "Contains chemicals to mend broken bones."
 	max_storage_space = ITEMSIZE_COST_SMALL * 7
-	starts_with = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/bonemed = 8)
+	starts_with = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector/bonemed = 8)
 
 /*
  * Pill Bottles
@@ -182,7 +182,7 @@
 	can_hold = list(/obj/item/weapon/reagent_containers/pill,/obj/item/weapon/dice,/obj/item/weapon/paper)
 	allow_quick_gather = 1
 	allow_quick_empty = 1
-	use_to_pickup = 1
+	use_to_pickup = TRUE
 	use_sound = 'sound/items/storage/pillbottle.ogg'
 	max_storage_space = ITEMSIZE_COST_TINY * 14
 	max_w_class = ITEMSIZE_TINY
@@ -200,11 +200,11 @@
 	update_icon()
 
 /obj/item/weapon/storage/pill_bottle/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(wrapper_color)
 		var/image/I = image(icon, "pillbottle_wrap")
 		I.color = wrapper_color
-		overlays += I
+		add_overlay(I)
 
 /obj/item/weapon/storage/pill_bottle/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/pen) || istype(W, /obj/item/device/flashlight/pen))

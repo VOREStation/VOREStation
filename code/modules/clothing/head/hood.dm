@@ -152,6 +152,7 @@
 	light_range = 3
 	light_power = 1
 	light_color = "#B18B25" //clockwork slab background top color
+	light_on = TRUE
 
 /obj/item/clothing/head/hood/winter/narsie
 	name = "runed winter hood"
@@ -186,3 +187,15 @@
 	desc = "A hood that looks just like a corgi's head, it won't guarantee dog biscuits."
 	icon_state = "ian"
 	item_state_slots = list(slot_r_hand_str = "ian", slot_l_hand_str = "ian") //Does not exist -S2-
+
+//Techpriest
+/obj/item/clothing/head/hood/techpriest
+	name = "techpriest hood"
+	desc = "A techpriest hood."
+	icon_state = "techpriesthood"
+	
+/obj/item/clothing/head/hood/siffet_hood
+	name = "siffet hood"
+	desc = "A hood that looks vaguely like a siffet's head. Guaranteed to traumatize your Promethean coworkers."
+	icon_state = "siffet"
+	item_state_slots = list(slot_r_hand_str = "siffet", slot_l_hand_str = "siffet")

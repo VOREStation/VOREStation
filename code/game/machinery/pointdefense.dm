@@ -22,8 +22,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 	. = ..()
 	if(id_tag)
 		//No more than 1 controller please.
-		for(var/thing in pointdefense_controllers)
-			var/obj/machinery/pointdefense_control/PC = thing
+		for(var/obj/machinery/pointdefense_control/PC as anything in pointdefense_controllers)
 			if(PC != src && PC.id_tag == id_tag)
 				warning("Two [src] with the same id_tag of [id_tag]")
 				id_tag = null
@@ -78,7 +77,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 		var/list/connected_z_levels = GetConnectedZlevels(get_z(src))
 		for(var/i = 1 to LAZYLEN(pointdefense_turrets))
 			var/obj/machinery/power/pointdefense/PD = pointdefense_turrets[i]
-			if(!(PD.id_tag == id_tag && get_z(PD) in connected_z_levels))
+			if(!(PD.id_tag == id_tag && (get_z(PD) in connected_z_levels)))
 				continue
 			var/list/turret = list()
 			turret["id"] =          "#[i]"
@@ -98,8 +97,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 		var/new_ident = input(user, "Enter a new ident tag.", "[src]", id_tag) as null|text
 		if(new_ident && new_ident != id_tag && user.Adjacent(src) && CanInteract(user, GLOB.tgui_physical_state))
 			// Check for duplicate controllers with this ID
-			for(var/thing in pointdefense_controllers)
-				var/obj/machinery/pointdefense_control/PC = thing
+			for(var/obj/machinery/pointdefense_control/PC as anything in pointdefense_controllers)
 				if(PC != src && PC.id_tag == id_tag)
 					to_chat(user, "<span class='warning'>The [new_ident] network already has a controller.</span>")
 					return
@@ -191,21 +189,23 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 		update_icon()
 
 // Decide where to get the power to fire from
-/obj/machinery/power/pointdefense/use_power_oneoff(var/amount, var/chan = -1)
+/obj/machinery/power/pointdefense/use_power_oneoff(var/amount, var/chan = CURRENT_CHANNEL)
 	if(powernet)
 		return draw_power(amount)
-	else if(powered(chan))
-		use_power(amount, chan)
-		return amount
-	return 0
+	// We are not connected to a powernet, so we want APC power.  Reproduce that code here since this is weird.
+	if(chan == CURRENT_CHANNEL)
+		chan = power_channel
+	var/area/A = get_area(src)	// make sure it's in an area
+	if(!A || !A.powered(chan))	// and that the area is powered
+		return 0				// if not, then not powered
+	return A.use_power_oneoff(amount, chan)
 
 // Find controller with the same tag on connected z levels (if any)
 /obj/machinery/power/pointdefense/proc/get_controller()
 	if(!id_tag)
 		return null
 	var/list/connected_z_levels = GetConnectedZlevels(get_z(src))
-	for(var/thing in pointdefense_controllers)
-		var/obj/machinery/pointdefense_control/PDC = thing
+	for(var/obj/machinery/pointdefense_control/PDC as anything in pointdefense_controllers)
 		if(PDC.id_tag == id_tag && (get_z(PDC) in connected_z_levels))
 			return PDC
 

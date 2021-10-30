@@ -6,8 +6,9 @@
 	name = "size gun" //I have no idea why this was called shrink ray when this increased and decreased size.
 	desc = "A highly advanced ray gun with a knob on the side to adjust the size you desire. Warning: Do not insert into mouth."
 	icon = 'icons/obj/gun_vr.dmi'
-	icon_state = "sizegun-shrink100" // Someone can probably do better. -Ace
-	item_state = null	//so the human update icon uses the icon_state instead
+	icon_override = 'icons/obj/gun_vr.dmi'
+	icon_state = "sizegun100"
+	item_state = "sizegun"
 	fire_sound = 'sound/weapons/wave.ogg'
 	charge_cost = 240
 	projectile_type = /obj/item/projectile/beam/sizelaser
@@ -24,10 +25,7 @@
 
 /obj/item/weapon/gun/energy/sizegun/New()
 	..()
-	if(istype(src, /obj/item/weapon/gun/energy/sizegun/admin))
-		verbs += /obj/item/weapon/gun/energy/sizegun/admin/select_size
-	else
-		verbs += /obj/item/weapon/gun/energy/sizegun/proc/select_size
+	verbs += .proc/select_size
 
 /obj/item/weapon/gun/energy/sizegun/attack_self(mob/user)
 	. = ..()
@@ -44,7 +42,7 @@
 	set category = "Object"
 	set src in view(1)
 
-	var/size_select = input("Put the desired size (25-200%), (1-600%) in dormitory areas.", "Set Size", size_set_to * 100) as num|null
+	var/size_select = input(usr, "Put the desired size (25-200%), (1-600%) in dormitory areas.", "Set Size", size_set_to * 100) as num|null
 	if(!size_select)
 		return //cancelled
 	//We do valid resize testing in actual firings because people move after setting these things.
@@ -64,12 +62,22 @@
 	charge_cost = 0
 	projectile_type = /obj/item/projectile/beam/sizelaser/admin
 
+/obj/item/weapon/gun/energy/sizegun/abductor
+	name = "alien size gun"
+	icon_state = "sizegun-abductor"
+	item_state = "laser"
+	charge_cost = 0
+	projectile_type = /obj/item/projectile/beam/sizelaser/admin
+
+/obj/item/weapon/gun/energy/sizegun/abductor/update_icon(ignore_inhands)
+	item_state = initial(item_state)
+
 /obj/item/weapon/gun/energy/sizegun/admin/select_size()
 	set name = "Select Size"
 	set category = "Object"
 	set src in view(1)
 
-	var/size_select = input("Put the desired size (1-600%)", "Set Size", size_set_to * 100) as num|null
+	var/size_select = input(usr, "Put the desired size (1-600%)", "Set Size", size_set_to * 100) as num|null
 	if(!size_select)
 		return //cancelled
 	size_set_to = clamp((size_select/100), 0, 1000) //eheh
@@ -94,7 +102,7 @@
 /obj/item/projectile/beam/sizelaser/on_hit(var/atom/target)
 	var/mob/living/M = target
 	var/ignoring_prefs = (target == firer ? TRUE : FALSE) // Resizing yourself
-	
+
 	if(istype(M))
 		if(!M.resize(set_size, uncapped = M.has_large_resize_bounds(), ignore_prefs = ignoring_prefs))
 			to_chat(M, "<font color='blue'>The beam fires into your body, changing your size!</font>")
@@ -104,7 +112,7 @@
 
 /obj/item/projectile/beam/sizelaser/admin/on_hit(var/atom/target)
 	var/mob/living/M = target
-	
+
 	if(istype(M))
 
 		var/can_be_big = M.has_large_resize_bounds()
@@ -114,7 +122,7 @@
 			to_chat(firer, "<span class='warning'>[M] will lose this size upon moving into an area where this size is not allowed.</span>")
 		else if(very_big) // made an extreme size in an area that doesn't allow it, assume adminbuse
 			to_chat(firer, "<span class='warning'>[M] will retain this normally unallowed size outside this area.</span>")
-		
+
 		M.resize(set_size, uncapped = TRUE, ignore_prefs = TRUE) // Always ignores prefs, caution is advisable
 
 		to_chat(M, "<font color='blue'>The beam fires into your body, changing your size!</font>")

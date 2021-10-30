@@ -25,11 +25,9 @@
 
 	var/mob/M = loc
 	var/was_in_hands = istype(M) && (src == M.get_active_hand() || src == M.get_inactive_hand())
-
-	critter_holder = new(loc)
+	
 	critter = new critter(critter_holder)
-	critter_holder.held_mob = critter
-	critter_holder.sync(critter)
+	critter_holder = new(loc, critter)
 
 	if(istype(M))
 		M.drop_from_inventory(src)
@@ -76,10 +74,10 @@
 
 /datum/ai_holder/simple_mob/passive/possum/poppy
 	var/static/list/aaa_words = list(
-		"delaminat", 
-		"meteor", 
-		"fire", 
-		"breach", 
+		"delaminat",
+		"meteor",
+		"fire",
+		"breach",
 		"loose",
 		"level 7",
 		"level seven",
@@ -113,6 +111,7 @@
 	real_name = "opossum"
 	tt_desc = "Didelphis astrum"
 	desc = "It's an opossum, a small scavenging marsupial."
+	icon = 'icons/mob/pets.dmi'
 	icon_state = "possum"
 	item_state = "possum"
 	icon_living = "possum"
@@ -127,7 +126,8 @@
 	response_help = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm = "stamps on"
-	density = 0
+	density = FALSE
+	organ_names = /decl/mob_organ_names/possum
 	minbodytemp = 223
 	maxbodytemp = 323
 	universal_speak = FALSE
@@ -139,14 +139,14 @@
 	say_list_type = /datum/say_list/possum
 	catalogue_data = list(/datum/category_item/catalogue/fauna/opossum)
 
-/mob/living/simple_mob/animal/passive/opossum/adjustBruteLoss(damage)
+/mob/living/simple_mob/animal/passive/opossum/adjustBruteLoss(var/amount,var/include_robo)
 	. = ..()
-	if(damage >= 3)
+	if(amount >= 3)
 		respond_to_damage()
 
-/mob/living/simple_mob/animal/passive/opossum/adjustFireLoss(damage)
+/mob/living/simple_mob/animal/passive/opossum/adjustFireLoss(var/amount,var/include_robo)
 	. = ..()
-	if(damage >= 3)
+	if(amount >= 3)
 		respond_to_damage()
 
 /mob/living/simple_mob/animal/passive/opossum/lay_down()
@@ -196,5 +196,12 @@
 	icon_dead = "poppy_dead"
 	icon_rest = "poppy_dead"
 	tt_desc = "Didelphis astrum salutem"
+	organ_names = /decl/mob_organ_names/poppy
 	holder_type = /obj/item/weapon/holder/possum/poppy
 	ai_holder_type = /datum/ai_holder/simple_mob/passive/possum/poppy
+
+/decl/mob_organ_names/possum
+	hit_zones = list("head", "body", "left foreleg", "right foreleg", "left hind leg", "right hind leg", "pouch")
+
+/decl/mob_organ_names/poppy
+	hit_zones = list("head", "body", "left foreleg", "right foreleg", "left hind leg", "right hind leg", "pouch", "cute little jacket")

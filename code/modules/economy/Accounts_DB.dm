@@ -4,9 +4,9 @@
 	desc = "Access transaction logs, account data and all kinds of other financial records."
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "account_computer"
-	density = 1
+	density = TRUE
 	req_one_access = list(access_hop, access_captain, access_cent_captain)
-	anchored = 1
+	anchored = TRUE
 	var/receipt_num
 	var/machine_id = ""
 	var/obj/item/weapon/card/id/held_card
@@ -19,7 +19,7 @@
 		return 0
 	if(access_cent_captain in held_card.access)
 		return 2
-	else if(access_hop in held_card.access || access_captain in held_card.access)
+	else if((access_hop in held_card.access) || (access_captain in held_card.access))
 		return 1
 
 /obj/machinery/account_database/proc/create_transation(target, reason, amount)
@@ -127,12 +127,12 @@
 			creating_new_account = 1
 
 		if("add_funds")
-			var/amount = input("Enter the amount you wish to add", "Silently add funds") as num
+			var/amount = input(usr, "Enter the amount you wish to add", "Silently add funds") as num
 			if(detailed_account_view)
 				detailed_account_view.money = min(detailed_account_view.money + amount, fund_cap)
 
 		if("remove_funds")
-			var/amount = input("Enter the amount you wish to remove", "Silently remove funds") as num
+			var/amount = input(usr, "Enter the amount you wish to remove", "Silently remove funds") as num
 			if(detailed_account_view)
 				detailed_account_view.money = max(detailed_account_view.money - amount, -fund_cap)
 

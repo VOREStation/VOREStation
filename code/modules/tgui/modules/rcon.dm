@@ -12,17 +12,9 @@
 	// SMES DATA (simplified view)
 	var/list/smeslist[0]
 	for(var/obj/machinery/power/smes/buildable/SMES in known_SMESs)
-		smeslist.Add(list(list(
-			"capacity" = SMES.capacity,
-			"capacityPercent" = round(100*SMES.charge/SMES.capacity, 0.1),
-			"charge" = SMES.charge,
-			"input_set" = SMES.input_attempt,
-			"input_val" = round(SMES.input_level/1000, 0.1),
-			"output_set" = SMES.output_attempt,
-			"output_val" = round(SMES.output_level/1000, 0.1),
-			"output_load" = round(SMES.output_used/1000, 0.1),
-			"RCON_tag" = SMES.RCon_tag
-		)))
+		var/list/smes_data = SMES.tgui_data()
+		smes_data["RCON_tag"] = SMES.RCon_tag
+		smeslist.Add(list(smes_data))
 
 	data["smes_info"] = sortByKey(smeslist, "RCON_tag")
 
@@ -55,14 +47,16 @@
 		if("smes_in_set")
 			var/obj/machinery/power/smes/buildable/SMES = GetSMESByTag(params["smes"])
 			if(SMES)
-				var/inputset = (input(usr, "Enter new input level (0-[SMES.input_level_max/1000] kW)", "SMES Input Power Control", SMES.input_level/1000) as num) * 1000
-				SMES.set_input(inputset)
+				SMES.tgui_set_io(SMES_TGUI_INPUT, params["target"], text2num(params["adjust"]))
+				// var/inputset = (input(usr, "Enter new input level (0-[SMES.input_level_max/1000] kW)", "SMES Input Power Control", SMES.input_level/1000) as num) * 1000
+				// SMES.set_input(inputset)
 			. = TRUE
 		if("smes_out_set")
 			var/obj/machinery/power/smes/buildable/SMES = GetSMESByTag(params["smes"])
 			if(SMES)
-				var/outputset = (input(usr, "Enter new output level (0-[SMES.output_level_max/1000] kW)", "SMES Output Power Control", SMES.output_level/1000) as num) * 1000
-				SMES.set_output(outputset)
+				SMES.tgui_set_io(SMES_TGUI_OUTPUT, params["target"], text2num(params["adjust"]))
+				// var/outputset = (input(usr, "Enter new output level (0-[SMES.output_level_max/1000] kW)", "SMES Output Power Control", SMES.output_level/1000) as num) * 1000
+				// SMES.set_output(outputset)
 			. = TRUE
 		if("toggle_breaker")
 			var/obj/machinery/power/breakerbox/toggle = null

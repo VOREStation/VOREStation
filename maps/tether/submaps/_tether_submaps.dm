@@ -35,7 +35,9 @@
 	new /datum/random_map/automata/cave_system/no_cracks(null, 3, 3, Z_LEVEL_UNDERDARK, world.maxx - 4, world.maxy - 4) // Create the mining Z-level.
 	new /datum/random_map/noise/ore(null, 1, 1, Z_LEVEL_UNDERDARK, 64, 64)         // Create the mining ore distribution map.
 
-
+#include "../../submaps/surface_submaps/plains/plains.dm"
+#include "../../submaps/surface_submaps/plains/plains_areas.dm"
+#include "../../submaps/surface_submaps/plains/plains_turfs.dm"
 /datum/map_template/tether_lateload/tether_plains
 	name = "Tether - Plains"
 	desc = "The Virgo 3B away mission."
@@ -57,7 +59,7 @@
 
 #include "../../submaps/admin_use_vr/ert.dm"
 #include "../../submaps/admin_use_vr/mercship.dm"
-#include "../../submaps/admin_use_vr/guttersite.dm"
+#include "../../submaps/admin_use_vr/salamander_trader.dm"
 
 /datum/map_template/admin_use/ert
 	name = "Special Area - ERT"
@@ -72,7 +74,7 @@
 /datum/map_template/admin_use/salamander_trader
 	name = "Special Area - Salamander Trader"
 	desc = "Modest trader ship."
-	mappath = 'maps/offmap_vr/om_ships/salamander.dmm'
+	mappath = 'maps/submaps/admin_use_vr/salamander_trader.dmm'
 
 /datum/map_template/admin_use/mercenary
 	name = "Special Area - Merc Ship"
@@ -98,11 +100,6 @@
 	name = "Special Area - Ninja Dojo"
 	desc = "Sneaky"
 	mappath = 'maps/submaps/admin_use_vr/dojo.dmm'
-
-/datum/map_template/admin_use/guttersite
-	name = "Special Area - Guttersite"
-	desc = "A space for bad guys to hang out"
-	mappath = 'maps/submaps/admin_use_vr/guttersite.dmm'
 
 //////////////////////////////////////////////////////////////////////////////
 //Rogue Mines Stuff
@@ -301,6 +298,65 @@
 	name = "Listening Post"
 	desc = "Asteroid-bound mercenary listening post"
 	mappath = 'maps/gateway_vr/listeningpost.dmm'
+	associated_map_datum = /datum/map_z_level/tether_lateload/gateway_destination
+
+#include "../../gateway_vr/variable/honlethhighlands.dm"
+/datum/map_template/tether_lateload/gateway/honlethhighlands_a
+	name = "Honleth Highlands A"
+	desc = "The cold surface of some planet."
+	mappath = 'maps/gateway_vr/variable/honlethhighlands_a.dmm'
+	associated_map_datum = /datum/map_z_level/tether_lateload/gateway_destination
+
+/datum/map_template/tether_lateload/gateway/honlethhighlands_b
+	name = "Honleth Highlands B"
+	desc = "The cold surface of some planet."
+	mappath = 'maps/gateway_vr/variable/honlethhighlands_b.dmm'
+	associated_map_datum = /datum/map_z_level/tether_lateload/gateway_destination
+
+
+#include "../../gateway_vr/variable/arynthilake.dm"
+/datum/map_template/tether_lateload/gateway/arynthilake
+	name = "Arynthi Lake A"
+	desc = "A grassy surface with some abandoned structures."
+	mappath = 'maps/gateway_vr/variable/arynthilake_a.dmm'
+	associated_map_datum = /datum/map_z_level/tether_lateload/gateway_destination
+
+/datum/map_template/tether_lateload/gateway/arynthilakeunderground
+	name = "Arynthi Lake Underground A"
+	desc = "A grassy surface with some abandoned structures."
+	mappath = 'maps/gateway_vr/variable/arynthilakeunderground_a.dmm'
+	associated_map_datum = /datum/map_z_level/tether_lateload/gateway_destination
+
+/datum/map_template/tether_lateload/gateway/arynthilake_b
+	name = "Arynthi Lake B"
+	desc = "A grassy surface with some abandoned structures."
+	mappath = 'maps/gateway_vr/variable/arynthilake_b.dmm'
+	associated_map_datum = /datum/map_z_level/tether_lateload/gateway_destination
+
+/datum/map_template/tether_lateload/gateway/arynthilakeunderground_b
+	name = "Arynthi Lake Underground B"
+	desc = "A grassy surface with some abandoned structures."
+	mappath = 'maps/gateway_vr/variable/arynthilakeunderground_b.dmm'
+	associated_map_datum = /datum/map_z_level/tether_lateload/gateway_destination
+
+#include "../../gateway_vr/eggnogtown.dm"
+/datum/map_template/tether_lateload/gateway/eggnogtown
+	name = "Eggnog Town"
+	desc = "A comfortable snowy town."
+	mappath = 'maps/gateway_vr/eggnogtown.dmm'
+	associated_map_datum = /datum/map_z_level/tether_lateload/gateway_destination
+
+/datum/map_template/tether_lateload/gateway/eggnogtownunderground
+	name = "Eggnog Town Underground"
+	desc = "A comfortable snowy town."
+	mappath = 'maps/gateway_vr/eggnogtownunderground.dmm'
+	associated_map_datum = /datum/map_z_level/tether_lateload/gateway_destination
+
+#include "../../gateway_vr/wildwest.dm"
+/datum/map_template/tether_lateload/gateway/wildwest
+	name = "Wild West"
+	desc = "A classic."
+	mappath = 'maps/gateway_vr/wildwest.dmm'
 	associated_map_datum = /datum/map_z_level/tether_lateload/gateway_destination
 
 //////////////////////////////////////////////////////////////////////////////////////

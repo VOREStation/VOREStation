@@ -77,7 +77,7 @@
 		/obj/item/weapon/lipstick/random,
 		/obj/item/weapon/grenade/smokebomb,
 		/obj/item/weapon/corncob,
-		/obj/item/weapon/contraband/poster/custom,
+		/obj/item/poster/custom,
 		/obj/item/weapon/book/manual/barman_recipes,
 		/obj/item/weapon/book/manual/chef_recipes,
 		/obj/item/weapon/bikehorn,
@@ -104,7 +104,7 @@
 		/obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiadeus,
 		/obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiavulgaris,
 		/obj/item/device/paicard,
-		/obj/item/device/instrument/violin,
+		/obj/item/instrument/violin,
 		/obj/item/weapon/storage/belt/utility/full,
 		/obj/item/clothing/accessory/tie/horrible)
 

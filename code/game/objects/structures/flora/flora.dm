@@ -5,7 +5,7 @@
 
 	anchored = TRUE // Usually, plants don't move. Usually.
 	plane = DECAL_PLANE
-	layer = BELOW_MOB_LAYER
+	layer = DECAL_LAYER
 
 	var/randomize_size = FALSE
 	var/max_x_scale = 1.25
@@ -15,6 +15,7 @@
 
 	var/harvest_tool = null // The type of item used to harvest the plant.
 	var/harvest_count = 0
+	var/destroy_on_harvest = FALSE
 
 	var/randomize_harvest_count = TRUE
 	var/max_harvests = 0
@@ -53,6 +54,8 @@
 
 		else
 			to_chat(user, "<span class='notice'>You harvest \the [AM] from \the [src].</span>")
+			if(harvest_count >= max_harvests && destroy_on_harvest)
+				qdel(src)
 			return
 
 	..(W, user)
@@ -66,11 +69,12 @@
 /obj/structure/flora/proc/spawn_harvest(var/path = null, var/mob/user = null)
 	if(!ispath(path))
 		return 0
-	var/turf/Target = get_turf(src)
+	
+	var/atom/movable/AM = new path()
 	if(user)
-		Target = get_turf(user)
-
-	var/atom/movable/AM = new path(Target)
+		user.put_in_hands(AM)
+	else
+		AM.forceMove(drop_location())
 
 	harvest_count++
 	return AM
@@ -80,6 +84,12 @@
 	name = "bush"
 	icon = 'icons/obj/flora/snowflora.dmi'
 	icon_state = "snowbush1"
+	
+	destroy_on_harvest = TRUE
+	harvest_tool = /obj/item/weapon/material/knife
+	randomize_harvest_count = FALSE
+	harvest_loot = list(/obj/item/stack/material/fiber = 1)
+	max_harvests = 1
 
 /obj/structure/flora/bush/New()
 	..()
@@ -99,6 +109,36 @@
 	name = "bush"
 	icon = 'icons/obj/flora/ausflora.dmi'
 	icon_state = "firstbush_1"
+	
+	destroy_on_harvest = TRUE
+	harvest_tool = /obj/item/weapon/material/knife
+	randomize_harvest_count = TRUE
+	harvest_loot = list(/obj/item/stack/material/fiber = 1)
+	min_harvests = 1
+	max_harvests = 3		
+
+/obj/structure/flora/ausbushes/spawn_harvest(var/path = null, var/mob/user = null)
+	. = ..()
+	if(. && prob(15))
+		var/static/list/possibleseeds = list(
+								/obj/item/seeds/ambrosiavulgarisseed = 1,
+								/obj/item/seeds/carrotseed = 5,
+								/obj/item/seeds/chiliseed = 5,
+								/obj/item/seeds/cornseed = 10,
+								/obj/item/seeds/grapeseed = 5,
+								/obj/item/seeds/grassseed = 1,
+								/obj/item/seeds/lavenderseed = 5,
+								/obj/item/seeds/onionseed = 5,
+								/obj/item/seeds/random = 1,
+								/obj/item/seeds/reishimycelium = 5,
+								/obj/item/seeds/sugarcaneseed = 5,
+								/obj/item/seeds/tomatoseed = 5,
+								/obj/item/seeds/towermycelium = 5,
+								/obj/item/seeds/watermelonseed = 10,
+								/obj/item/seeds/wheatseed = 25,
+								/obj/item/seeds/whitebeetseed = 5)
+		var/choice = pickweight(possibleseeds)
+		new choice(get_turf(user))
 
 /obj/structure/flora/ausbushes/New()
 	..()
@@ -254,8 +294,6 @@
 		to_chat(user, "<span class='notice'>You refrain from putting things into the plant pot.</span>")
 		return
 
-	..()
-
 /obj/structure/flora/pottedplant/attack_hand(mob/user)
 	if(!stored_item)
 		to_chat(user, "<span class='filter_notice'><b>You see nothing of interest in [src]...</b></span>")
@@ -315,6 +353,7 @@
 	light_range = 2
 	light_power = 0.6
 	light_color = "#33CCFF"
+	light_on = TRUE
 	catalogue_data = list(/datum/category_item/catalogue/flora/sif_tree)
 
 /obj/structure/flora/pottedplant/orientaltree
@@ -374,6 +413,7 @@
 	light_range = 2
 	light_power = 0.6
 	light_color = "#FF6633"
+	light_on = TRUE
 
 /obj/structure/flora/pottedplant/minitree
 	name = "potted tree"
@@ -441,6 +481,7 @@
 	light_range = 2
 	light_power = 0.6
 	light_color = "#FF6633"
+	light_on = TRUE
 	catalogue_data = list(/datum/category_item/catalogue/flora/subterranean_bulbs)
 
 /obj/structure/flora/sif/subterranean/Initialize()

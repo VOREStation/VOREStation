@@ -1,5 +1,5 @@
 /datum/material/glass
-	name = "glass"
+	name = MAT_GLASS
 	stack_type = /obj/item/stack/material/glass
 	flags = MATERIAL_BRITTLE
 	icon_colour = "#00E1FF"
@@ -33,8 +33,8 @@
 		to_chat(user, "<span class='warning'>You must be standing on open flooring to build a window.</span>")
 		return 1
 
-	var/title = "Sheet-[used_stack.name] ([used_stack.get_amount()] sheet\s left)"
-	var/choice = input(title, "What would you like to construct?") as null|anything in window_options
+	var/message = "Sheet-[used_stack.name] ([used_stack.get_amount()] sheet\s left)"
+	var/choice = tgui_input_list(user, message, "Window Construction",  window_options)
 
 	if(!choice || !used_stack || !user || used_stack.loc != user || user.stat || user.loc != T)
 		return 1
@@ -94,7 +94,7 @@
 	return (hardness > 35) //todo
 
 /datum/material/glass/reinforced
-	name = "rglass"
+	name = MAT_RGLASS
 	display_name = "reinforced glass"
 	stack_type = /obj/item/stack/material/glass/reinforced
 	flags = MATERIAL_BRITTLE
@@ -106,7 +106,7 @@
 	hardness = 40
 	weight = 30
 	stack_origin_tech = list(TECH_MATERIAL = 2)
-	composite_material = list(DEFAULT_WALL_MATERIAL = SHEET_MATERIAL_AMOUNT / 2, "glass" = SHEET_MATERIAL_AMOUNT)
+	composite_material = list(MAT_STEEL = SHEET_MATERIAL_AMOUNT / 2, MAT_GLASS = SHEET_MATERIAL_AMOUNT)
 	window_options = list("One Direction" = 1, "Full Window" = 4, "Windoor" = 2)
 	created_window = /obj/structure/window/reinforced
 	created_fulltile_window = /obj/structure/window/reinforced/full
@@ -114,7 +114,7 @@
 	rod_product = null
 
 /datum/material/glass/phoron
-	name = "borosilicate glass"
+	name = MAT_PGLASS
 	display_name = "borosilicate glass"
 	stack_type = /obj/item/stack/material/glass/phoronglass
 	flags = MATERIAL_BRITTLE
@@ -128,7 +128,7 @@
 	rod_product = /obj/item/stack/material/glass/phoronrglass
 
 /datum/material/glass/phoron/reinforced
-	name = "reinforced borosilicate glass"
+	name = MAT_RPGLASS
 	display_name = "reinforced borosilicate glass"
 	stack_type = /obj/item/stack/material/glass/phoronrglass
 	stack_origin_tech = list(TECH_MATERIAL = 5)
@@ -139,5 +139,6 @@
 	hardness = 40
 	weight = 30
 	stack_origin_tech = list(TECH_MATERIAL = 2)
-	composite_material = list(DEFAULT_WALL_MATERIAL = SHEET_MATERIAL_AMOUNT / 2, "borosilicate glass" = SHEET_MATERIAL_AMOUNT)
+	composite_material = list(MAT_STEEL = SHEET_MATERIAL_AMOUNT / 2, "borosilicate glass" = SHEET_MATERIAL_AMOUNT)
 	rod_product = null
+	flags = MATERIAL_UNMELTABLE

@@ -238,8 +238,7 @@ Example: USING PROCCALL = BLOCKING, SELECT = FORCE_NULLS, PRIORITY = HIGH SELECT
 	do
 		CHECK_TICK
 		finished = TRUE
-		for(var/i in running)
-			var/datum/SDQL2_query/query = i
+		for(var/datum/SDQL2_query/query as anything in running)
 			if(QDELETED(query))
 				running -= query
 				continue
@@ -562,8 +561,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 		location = list(location)
 
 	if(type == "*")
-		for(var/i in location)
-			var/datum/d = i
+		for(var/datum/d as anything in location)
 			if(d.can_vv_get() || superuser)
 				out += d
 			SDQL2_TICK_CHECK
@@ -634,14 +632,14 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 				if(!is_proper_datum(i))
 					continue
 				world.SDQL_var(i, query_tree["call"][1], null, i, superuser, src)
-				obj_count_finished++
+				obj_count_finished += 1
 				SDQL2_TICK_CHECK
 				SDQL2_HALT_CHECK
 
 		if("delete")
 			for(var/datum/d in found)
 				SDQL_qdel_datum(d)
-				obj_count_finished++
+				obj_count_finished += 1
 				SDQL2_TICK_CHECK
 				SDQL2_HALT_CHECK
 
@@ -663,7 +661,7 @@ GLOBAL_DATUM_INIT(sdql2_vv_statobj, /obj/effect/statclick/SDQL2_VV_all, new(null
 					if(!is_proper_datum(d))
 						continue
 					SDQL_internal_vv(d, set_list)
-					obj_count_finished++
+					obj_count_finished += 1
 					SDQL2_TICK_CHECK
 					SDQL2_HALT_CHECK
 	if(islist(obj_count_finished))

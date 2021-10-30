@@ -4,7 +4,7 @@
 
 // #define EMPDEBUG 10
 
-proc/empulse(turf/epicenter, first_range, second_range, third_range, fourth_range, log=0)
+/proc/empulse(turf/epicenter, first_range, second_range, third_range, fourth_range, log=0)
 	if(!epicenter) return
 
 	if(!istype(epicenter, /turf))
@@ -19,7 +19,7 @@ proc/empulse(turf/epicenter, first_range, second_range, third_range, fourth_rang
 		pulse.icon = 'icons/effects/effects.dmi'
 		pulse.icon_state = "emppulse"
 		pulse.name = "emp pulse"
-		pulse.anchored = 1
+		pulse.anchored = TRUE
 		spawn(20)
 			qdel(pulse)
 

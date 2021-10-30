@@ -1,21 +1,9 @@
-//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
-
-/obj/var/list/req_access = list()
-/obj/var/list/req_one_access = list()
+/obj/var/list/req_access
+/obj/var/list/req_one_access
 
 //returns 1 if this mob has sufficient access to use this object
 /obj/proc/allowed(mob/M)
-	//check if it doesn't require any access at all
-	if(src.check_access(null))
-		return 1
-
-	var/id = M.GetIdCard()
-	if(id)
-		return check_access(id)
-	return 0
-
-///obj/item/proc/GetAccess()
-//	return list()
+	return check_access(M?.GetIdCard())
 
 /atom/movable/proc/GetAccess()
 	var/obj/item/weapon/card/id/id = GetIdCard()
@@ -25,25 +13,36 @@
 	return null
 
 /obj/proc/check_access(obj/item/I)
-	return check_access_list(I ? I.GetAccess() : list())
+	return check_access_list(I ? I.GetAccess() : null)
 
 /obj/proc/check_access_list(var/list/L)
-	if(!req_access)		req_access = list()
-	if(!req_one_access)	req_one_access = list()
-	if(!L)	return 0
-	if(!istype(L, /list))	return 0
+	// We don't require access
+	if(!LAZYLEN(req_access) && !LAZYLEN(req_one_access))
+		return TRUE
+
+	// They passed nothing, but we are something that requires access
+	if(!LAZYLEN(L))
+		return FALSE
+
+	// Run list comparisons
 	return has_access(req_access, req_one_access, L)
 
 /proc/has_access(var/list/req_access, var/list/req_one_access, var/list/accesses)
+	// req_access list has priority if set
+	// Requires at least every access in list
 	for(var/req in req_access)
-		if(!(req in accesses)) //doesn't have this access
-			return 0
-	if(req_one_access.len)
+		if(!(req in accesses))
+			return FALSE
+
+	// req_one_access is secondary if set
+	// Requires at least one access in list
+	if(LAZYLEN(req_one_access))
 		for(var/req in req_one_access)
-			if(req in accesses) //has an access from the single access list
-				return 1
-		return 0
-	return 1
+			if(req in accesses)
+				return TRUE
+		return FALSE
+
+	return TRUE
 
 /proc/get_centcom_access(job)
 	switch(job)
@@ -103,6 +102,7 @@
 
 /var/list/priv_all_access
 /proc/get_all_accesses()
+	RETURN_TYPE(/list)
 	if(!priv_all_access)
 		priv_all_access = get_access_ids()
 
@@ -110,6 +110,7 @@
 
 /var/list/priv_station_access
 /proc/get_all_station_access()
+	RETURN_TYPE(/list)
 	if(!priv_station_access)
 		priv_station_access = get_access_ids(ACCESS_TYPE_STATION)
 
@@ -117,6 +118,7 @@
 
 /var/list/priv_centcom_access
 /proc/get_all_centcom_access()
+	RETURN_TYPE(/list)
 	if(!priv_centcom_access)
 		priv_centcom_access = get_access_ids(ACCESS_TYPE_CENTCOM)
 
@@ -124,6 +126,7 @@
 
 /var/list/priv_syndicate_access
 /proc/get_all_syndicate_access()
+	RETURN_TYPE(/list)
 	if(!priv_syndicate_access)
 		priv_syndicate_access = get_access_ids(ACCESS_TYPE_SYNDICATE)
 
@@ -131,6 +134,7 @@
 
 /var/list/priv_private_access
 /proc/get_all_private_access()
+	RETURN_TYPE(/list)
 	if(!priv_private_access)
 		priv_private_access = get_access_ids(ACCESS_TYPE_PRIVATE)
 
@@ -225,14 +229,14 @@
 /mob/living/silicon/GetIdCard()
 	return idcard
 
-proc/FindNameFromID(var/mob/living/carbon/human/H)
+/proc/FindNameFromID(var/mob/living/carbon/human/H)
 	ASSERT(istype(H))
 	var/obj/item/weapon/card/id/C = H.GetIdCard()
 	if(C)
 		return C.registered_name
 
-proc/get_all_job_icons() //For all existing HUD icons
-	return joblist + list("Prisoner")
+/proc/get_all_job_icons() //For all existing HUD icons
+	return joblist + alt_titles_with_icons + list("Prisoner")
 
 /obj/proc/GetJobName() //Used in secHUD icon generation
 	var/obj/item/weapon/card/id/I = GetID()

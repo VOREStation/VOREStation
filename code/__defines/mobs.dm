@@ -112,24 +112,23 @@
 #define MAX_SUPPLIED_LAW_NUMBER 50
 
 //default item on-mob icons
-#define INV_HEAD_DEF_ICON 'icons/mob/head.dmi'
-#define INV_BACK_DEF_ICON 'icons/mob/back.dmi'
 #define INV_L_HAND_DEF_ICON 'icons/mob/items/lefthand.dmi'
 #define INV_R_HAND_DEF_ICON 'icons/mob/items/righthand.dmi'
-#define INV_W_UNIFORM_DEF_ICON "icons/mob/uniform"
-#define INV_ACCESSORIES_DEF_ICON 'icons/mob/ties.dmi'
-#define INV_TIE_DEF_ICON 'icons/mob/ties.dmi'
-#define INV_SUIT_DEF_ICON "icons/mob/suit"
-#define INV_SPACESUIT_DEF_ICON 'icons/mob/spacesuit.dmi'
 #define INV_WEAR_ID_DEF_ICON 'icons/mob/mob.dmi'
-#define INV_GLOVES_DEF_ICON 'icons/mob/hands.dmi'
-#define INV_EYES_DEF_ICON 'icons/mob/eyes.dmi'
-#define INV_EARS_DEF_ICON 'icons/mob/ears.dmi'
-#define INV_FEET_DEF_ICON 'icons/mob/feet.dmi'
-#define INV_BELT_DEF_ICON 'icons/mob/belt.dmi'
-#define INV_MASK_DEF_ICON 'icons/mob/mask.dmi'
 #define INV_HCUFF_DEF_ICON 'icons/mob/mob.dmi'
 #define INV_LCUFF_DEF_ICON 'icons/mob/mob.dmi'
+
+#define INV_HEAD_DEF_ICON 'icons/inventory/head/mob.dmi'
+#define INV_BACK_DEF_ICON 'icons/inventory/back/mob.dmi'
+#define INV_W_UNIFORM_DEF_ICON 'icons/inventory/uniform/mob.dmi'
+#define INV_ACCESSORIES_DEF_ICON 'icons/inventory/accessory/mob.dmi'
+#define INV_SUIT_DEF_ICON 'icons/inventory/suit/mob.dmi'
+#define INV_GLOVES_DEF_ICON 'icons/inventory/hands/mob.dmi'
+#define INV_EYES_DEF_ICON 'icons/inventory/eyes/mob.dmi'
+#define INV_EARS_DEF_ICON 'icons/inventory/ears/mob.dmi'
+#define INV_FEET_DEF_ICON 'icons/inventory/feet/mob.dmi'
+#define INV_BELT_DEF_ICON 'icons/inventory/belt/mob.dmi'
+#define INV_MASK_DEF_ICON 'icons/inventory/face/mob.dmi'
 
 // Character's economic class
 #define CLASS_UPPER 		"Wealthy"
@@ -377,37 +376,41 @@
 //Vision flags, for dealing with plane visibility
 #define VIS_FULLBRIGHT		1
 #define VIS_LIGHTING		2
-#define VIS_GHOSTS			3
-#define VIS_AI_EYE			4
+#define VIS_O_LIGHT         3
+#define VIS_EMISSIVE        4
+#define VIS_OPENSPACE       5
 
-#define VIS_CH_STATUS		5
-#define VIS_CH_HEALTH		6
-#define VIS_CH_LIFE			7
-#define VIS_CH_ID			8
-#define VIS_CH_WANTED		9
-#define VIS_CH_IMPLOYAL		10
-#define VIS_CH_IMPTRACK		11
-#define VIS_CH_IMPCHEM		12
-#define VIS_CH_SPECIAL		13
-#define VIS_CH_STATUS_OOC	14
+#define VIS_GHOSTS			6
+#define VIS_AI_EYE			7
 
-#define VIS_ADMIN1			15
-#define VIS_ADMIN2			16
-#define VIS_ADMIN3			17
+#define VIS_CH_STATUS		8
+#define VIS_CH_HEALTH		9
+#define VIS_CH_LIFE			10
+#define VIS_CH_ID			11
+#define VIS_CH_WANTED		12
+#define VIS_CH_IMPLOYAL		13
+#define VIS_CH_IMPTRACK		14
+#define VIS_CH_IMPCHEM		15
+#define VIS_CH_SPECIAL		16
+#define VIS_CH_STATUS_OOC	17
 
-#define VIS_MESONS			18
+#define VIS_ADMIN1			18
+#define VIS_ADMIN2			19
+#define VIS_ADMIN3			20
 
-#define VIS_TURFS			19
-#define VIS_OBJS			20
-#define VIS_MOBS			21
+#define VIS_MESONS			21
 
-#define VIS_BUILDMODE		22
+#define VIS_TURFS			22
+#define VIS_OBJS			23
+#define VIS_MOBS		    24
 
-#define VIS_CLOAKED			23
+#define VIS_BUILDMODE		25
 
-#define VIS_STATUS			24
+#define VIS_CLOAKED			26
 
-#define VIS_COUNT			24 //Must be highest number from above.
+#define VIS_STATUS			27
+
+#define VIS_COUNT			27 //Must be highest number from above.
 
 //Some mob icon layering defines
 #define BODY_LAYER		-100

@@ -65,6 +65,7 @@
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/chemist
 	backpack = /obj/item/weapon/storage/backpack/chemistry
 	satchel_one = /obj/item/weapon/storage/backpack/satchel/chem
+	sports_bag = /obj/item/weapon/storage/backpack/sport/chem
 	id_type = /obj/item/weapon/card/id/medical/chemist
 	pda_type = /obj/item/device/pda/chemist
 
@@ -91,7 +92,7 @@
 
 /decl/hierarchy/outfit/job/medical/paramedic
 	name = OUTFIT_JOB_NAME("Paramedic")
-	uniform = /obj/item/clothing/under/rank/medical/scrubs/black
+	uniform = /obj/item/clothing/under/rank/medical/paramedic
 	suit = /obj/item/clothing/suit/storage/toggle/fr_jacket
 	shoes = /obj/item/clothing/shoes/boots/jackboots
 	l_hand = /obj/item/weapon/storage/firstaid/regular
@@ -102,5 +103,5 @@
 
 /decl/hierarchy/outfit/job/medical/paramedic/emt
 	name = OUTFIT_JOB_NAME("Emergency Medical Technician")
-	uniform = /obj/item/clothing/under/rank/medical/paramedic
+	uniform = /obj/item/clothing/under/rank/medical/paramedic_alt
 	suit = /obj/item/clothing/suit/storage/toggle/labcoat/emt

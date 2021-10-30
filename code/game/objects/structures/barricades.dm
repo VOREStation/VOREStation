@@ -4,8 +4,8 @@
 	desc = "This space is blocked off by a barricade."
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "barricade"
-	anchored = 1.0
-	density = 1.0
+	anchored = TRUE
+	density = TRUE
 	var/health = 100
 	var/maxhealth = 100
 	var/datum/material/material
@@ -104,6 +104,12 @@
 		return TRUE
 	return FALSE
 
+/obj/structure/barricade/planks
+	name = "crude barricade"
+	icon_state = "barricade_planks"
+	health = 50
+	maxhealth = 50
+
 /obj/structure/barricade/sandbag
 	name = "sandbags"
 	desc = "Bags. Bags of sand. It's rough and coarse and somehow stays in the bag."
@@ -144,7 +150,8 @@
 	var/image/I
 
 	for(var/i = 1 to 4)
-		I = image('icons/obj/sandbags.dmi', "sandbags[connections[i]]", dir = 1<<(i-1))
+		var/connect = connections?[i] || 0
+		I = image('icons/obj/sandbags.dmi', "sandbags[connect]", dir = 1<<(i-1))
 		I.color = material.icon_colour
 		add_overlay(I)
 

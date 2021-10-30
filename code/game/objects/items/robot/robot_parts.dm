@@ -76,19 +76,19 @@
 	src.updateicon()
 
 /obj/item/robot_parts/robot_suit/proc/updateicon()
-	src.overlays.Cut()
+	cut_overlays()
 	if(src.l_arm)
-		src.overlays += "l_arm+o"
+		add_overlay("l_arm+o")
 	if(src.r_arm)
-		src.overlays += "r_arm+o"
+		add_overlay("r_arm+o")
 	if(src.chest)
-		src.overlays += "chest+o"
+		add_overlay("chest+o")
 	if(src.l_leg)
-		src.overlays += "l_leg+o"
+		add_overlay("l_leg+o")
 	if(src.r_leg)
-		src.overlays += "r_leg+o"
+		add_overlay("r_leg+o")
 	if(src.head)
-		src.overlays += "head+o"
+		add_overlay("head+o")
 
 /obj/item/robot_parts/robot_suit/proc/check_completion()
 	if(src.l_arm && src.r_arm)
@@ -100,7 +100,7 @@
 
 /obj/item/robot_parts/robot_suit/attackby(obj/item/W as obj, mob/user as mob)
 	..()
-	if(istype(W, /obj/item/stack/material) && W.get_material_name() == DEFAULT_WALL_MATERIAL && !l_arm && !r_arm && !l_leg && !r_leg && !chest && !head)
+	if(istype(W, /obj/item/stack/material) && W.get_material_name() == MAT_STEEL && !l_arm && !r_arm && !l_leg && !r_leg && !chest && !head)
 		var/obj/item/stack/material/M = W
 		if (M.use(1))
 			var/obj/item/weapon/secbot_assembly/ed209_assembly/B = new /obj/item/weapon/secbot_assembly/ed209_assembly

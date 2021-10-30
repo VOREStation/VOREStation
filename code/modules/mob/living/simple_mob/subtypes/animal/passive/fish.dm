@@ -18,6 +18,8 @@
 	plane = TURF_PLANE
 	layer = UNDERWATER_LAYER
 
+	organ_names = /decl/mob_organ_names/fish
+
 	holder_type = /obj/item/weapon/holder/fish
 
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish
@@ -43,7 +45,7 @@
 		default_pixel_y = rand(-6, 10)
 
 // Makes the AI unable to willingly go on land.
-/mob/living/simple_mob/animal/passive/fish/IMove(newloc)
+/mob/living/simple_mob/animal/passive/fish/IMove(turf/newloc, safety = TRUE)
 	if(is_type_in_list(newloc, suitable_turf_types))
 		return ..() // Procede as normal.
 	return MOVEMENT_FAILED // Don't leave the water!
@@ -180,7 +182,7 @@
 	update_icon()
 
 /mob/living/simple_mob/animal/passive/fish/icebass/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	..()
 
 	if(!dorsal_image)
@@ -253,7 +255,7 @@
 	update_icon()
 
 /mob/living/simple_mob/animal/passive/fish/rockfish/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	..()
 	if(!head_image)
 		head_image = image(icon, "[icon_state]_mask")
@@ -320,3 +322,6 @@
 	catalogue_data = list(/datum/category_item/catalogue/fauna/murkin)
 
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat/sif/murkfish
+
+/decl/mob_organ_names/fish
+	hit_zones = list("head", "body", "dorsal fin", "left pectoral fin", "right pectoral fin", "tail fin")

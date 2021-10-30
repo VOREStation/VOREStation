@@ -3,8 +3,8 @@
 	desc = "A lightweight support lattice."
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "latticefull"
-	density = 0
-	anchored = 1.0
+	density = FALSE
+	anchored = TRUE
 	w_class = ITEMSIZE_NORMAL
 	plane = PLATING_PLANE
 
@@ -82,7 +82,7 @@
 	//if(!(istype(src.loc, /turf/space)))
 	//	qdel(src)
 	spawn(1)
-		overlays = list()
+		cut_overlays()
 
 		var/dir_sum = 0
 

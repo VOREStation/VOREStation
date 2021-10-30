@@ -6,9 +6,9 @@
 	light_range = 2
 	light_color = "#b5ff5b"
 	desc = "Some blob creature thingy"
-	density = 1
+	density = TRUE
 	opacity = 0
-	anchored = 1
+	anchored = TRUE
 	mouse_opacity = 2
 
 	var/maxHealth = 30
@@ -22,7 +22,7 @@
 	update_icon()
 	return ..(loc)
 
-/obj/effect/blob/CanPass(var/atom/movable/mover, vra/turf/target)
+/obj/effect/blob/CanPass(var/atom/movable/mover, var/turf/target)
 	return FALSE
 
 /obj/effect/blob/ex_act(var/severity)
@@ -193,7 +193,7 @@
 	update_nearby_tiles()
 
 /obj/effect/blob/shield/Destroy()
-	density = 0
+	density = FALSE
 	update_nearby_tiles()
 	..()
 

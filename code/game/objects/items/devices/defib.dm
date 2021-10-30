@@ -13,6 +13,7 @@
 	throwforce = 6
 	preserve_item = 1
 	w_class = ITEMSIZE_LARGE
+	unacidable = TRUE
 	origin_tech = list(TECH_BIO = 4, TECH_POWER = 2)
 	action_button_name = "Remove/Replace Paddles"
 
@@ -43,25 +44,23 @@
 
 
 /obj/item/device/defib_kit/update_icon()
-	var/list/new_overlays = list()
+	cut_overlays()
 
 	if(paddles && paddles.loc == src) //in case paddles got destroyed somehow.
-		new_overlays += "[initial(icon_state)]-paddles"
+		add_overlay("[initial(icon_state)]-paddles")
 	if(bcell && paddles)
 		if(bcell.check_charge(paddles.chargecost))
 			if(paddles.combat)
-				new_overlays += "[initial(icon_state)]-combat"
+				add_overlay("[initial(icon_state)]-combat")
 			else if(!paddles.safety)
-				new_overlays += "[initial(icon_state)]-emagged"
+				add_overlay("[initial(icon_state)]-emagged")
 			else
-				new_overlays += "[initial(icon_state)]-powered"
+				add_overlay("[initial(icon_state)]-powered")
 
 		var/ratio = CEILING(bcell.percent()/25, 1) * 25
-		new_overlays += "[initial(icon_state)]-charge[ratio]"
+		add_overlay("[initial(icon_state)]-charge[ratio]")
 	else
-		new_overlays += "[initial(icon_state)]-nocell"
-
-	overlays = new_overlays
+		add_overlay("[initial(icon_state)]-nocell")
 
 /obj/item/device/defib_kit/ui_action_click()
 	toggle_paddles()
@@ -88,7 +87,7 @@
 		reattach_paddles(user)
 	else if(istype(W, /obj/item/weapon/cell))
 		if(bcell)
-			to_chat(user, "<span class='notice'>\the [src] already has a cell.</span>")
+			to_chat(user, "<span class='notice'>\The [src] already has a cell.</span>")
 		else
 			if(!user.unEquip(W))
 				return
@@ -394,7 +393,7 @@
 	user.visible_message("<span class='warning'>\The [user] begins to place [src] on [H]'s chest.</span>", "<span class='warning'>You begin to place [src] on [H]'s chest...</span>")
 	if(!do_after(user, 30, H))
 		return
-	user.visible_message("<span class='notice'>\The [user] places [src] on [H]'s chest.</span>", "<span class='warning'>You place [src] on [H]'s chest.</span>")
+	user.visible_message("<b>\The [user]</b> places [src] on [H]'s chest.", "<span class='warning'>You place [src] on [H]'s chest.</span>")
 	playsound(src, 'sound/machines/defib_charge.ogg', 50, 0)
 
 	var/error = can_defib(H)
@@ -460,7 +459,7 @@
 		return
 
 	playsound(src, 'sound/machines/defib_charge.ogg', 50, 0)
-	audible_message("<span class='warning'>\The [src] lets out a steadily rising hum...</span>")
+	audible_message("<span class='warning'>\The [src] lets out a steadily rising hum...</span>", runemessage = "whines")
 
 	if(!do_after(user, chargetime, H))
 		return
@@ -527,7 +526,7 @@
 	H.setBrainLoss(brain_damage)
 
 /obj/item/weapon/shockpaddles/proc/make_announcement(var/message, var/msg_class)
-	audible_message("<b>\The [src]</b> [message]", "\The [src] vibrates slightly.")
+	audible_message("<b>\The [src]</b> [message]", "\The [src] vibrates slightly.", runemessage = "buzz")
 
 /obj/item/weapon/shockpaddles/emag_act(mob/user)
 	if(safety)

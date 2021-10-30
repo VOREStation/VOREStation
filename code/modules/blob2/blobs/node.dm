@@ -21,14 +21,14 @@ var/list/blob_nodes = list()
 	return ..()
 
 /obj/structure/blob/node/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	color = null
 	var/mutable_appearance/blob_overlay = mutable_appearance('icons/mob/blob.dmi', "blob")
 	if(overmind)
 		name = "[overmind.blob_type.name] [base_name]"
 		blob_overlay.color = overmind.blob_type.color
-	overlays += blob_overlay
-	overlays += mutable_appearance('icons/mob/blob.dmi', "blob_node_overlay")
+	add_overlay(blob_overlay)
+	add_overlay("blob_node_overlay")
 
 /obj/structure/blob/node/process()
 	set waitfor = FALSE

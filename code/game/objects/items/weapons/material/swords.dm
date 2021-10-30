@@ -5,8 +5,8 @@
 	slot_flags = SLOT_BELT
 	force_divisor = 0.7 // 42 when wielded with hardnes 60 (steel)
 	thrown_force_divisor = 0.5 // 10 when thrown with weight 20 (steel)
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	drop_sound = 'sound/items/drop/sword.ogg'
@@ -19,18 +19,8 @@
 		return 1
 	return 0
 
-/obj/item/weapon/material/sword/suicide_act(mob/user)
-	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
-	to_chat(viewers(user),"<span class='danger'>[user] is falling on the [src.name]! It looks like [TU.he] [TU.is] trying to commit suicide.</span>")
-	return(BRUTELOSS)
-
 /obj/item/weapon/material/sword/katana
 	name = "katana"
 	desc = "Woefully underpowered in D20. This one looks pretty sharp."
 	icon_state = "katana"
 	slot_flags = SLOT_BELT | SLOT_BACK
-
-/obj/item/weapon/material/sword/katana/suicide_act(mob/user)
-	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
-	visible_message(span("danger", "[user] is slitting [TU.his] stomach open with \the [src.name]! It looks like [TU.hes] trying to commit seppuku."), span("danger", "You slit your stomach open with \the [src.name]!"), span("danger", "You hear the sound of flesh tearing open.")) // gory, but it gets the point across
-	return(BRUTELOSS)

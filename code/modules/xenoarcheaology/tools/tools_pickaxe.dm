@@ -125,7 +125,7 @@
 	/obj/item/weapon/pickaxe/hand)
 	max_storage_space = ITEMSIZE_COST_SMALL * 9
 	max_w_class = ITEMSIZE_SMALL
-	use_to_pickup = 1
+	use_to_pickup = TRUE
 
 /obj/item/weapon/storage/excavation/New()
 	..()
@@ -174,7 +174,7 @@
 	attack_verb = list("drilled")
 
 /obj/item/weapon/pickaxe/excavationdrill/attack_self(mob/user as mob)
-	var/depth = input("Put the desired depth (1-30 centimeters).", "Set Depth", 30) as num
+	var/depth = input(usr, "Put the desired depth (1-30 centimeters).", "Set Depth", 30) as num
 	if(depth>30 || depth<1)
 		to_chat(user, "<span class='notice'>Invalid depth.</span>")
 		return

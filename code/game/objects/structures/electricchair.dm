@@ -6,9 +6,9 @@
 	var/obj/item/assembly/shock_kit/part = null
 	var/last_time = 1.0
 
-/obj/structure/bed/chair/e_chair/New()
-	..()
-	overlays += image('icons/obj/objects.dmi', src, "echair_over", MOB_LAYER + 1, dir)
+/obj/structure/bed/chair/e_chair/Initialize()
+	. = ..()
+	add_overlay(image('icons/obj/objects.dmi', src, "echair_over", MOB_LAYER + 1, dir))
 	return
 
 /obj/structure/bed/chair/e_chair/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -39,8 +39,8 @@
 
 /obj/structure/bed/chair/e_chair/rotate_clockwise()
 	..()
-	overlays.Cut()
-	overlays += image('icons/obj/objects.dmi', src, "echair_over", MOB_LAYER + 1, dir)	//there's probably a better way of handling this, but eh. -Pete
+	cut_overlays()
+	add_overlay(image('icons/obj/objects.dmi', src, "echair_over", MOB_LAYER + 1, dir))	//there's probably a better way of handling this, but eh. -Pete
 	return
 
 /obj/structure/bed/chair/e_chair/proc/shock()
@@ -65,8 +65,7 @@
 	s.set_up(12, 1, src)
 	s.start()
 	if(has_buckled_mobs())
-		for(var/a in buckled_mobs)
-			var/mob/living/L = a
+		for(var/mob/living/L as anything in buckled_mobs)
 			L.burn_skin(85)
 			to_chat(L, "<span class='danger'>You feel a deep shock course through your body!</span>")
 			sleep(1)

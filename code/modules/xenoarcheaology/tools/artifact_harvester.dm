@@ -2,8 +2,8 @@
 	name = "Exotic Particle Harvester"
 	icon = 'icons/obj/virology_vr.dmi' //VOREStation Edit
 	icon_state = "incubator"	//incubator_on
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	idle_power_usage = 50
 	active_power_usage = 750
 	use_power = USE_POWER_IDLE
@@ -85,7 +85,7 @@
 				if(harvesting < 0 && inserted_battery.battery_effect && inserted_battery.battery_effect.activated)
 					inserted_battery.battery_effect.ToggleActivate()
 				harvesting = 0
-				cur_artifact.anchored = 0
+				cur_artifact.anchored = FALSE
 				cur_artifact.being_used = 0
 				cur_artifact = null
 				atom_say("Energy harvesting interrupted.")
@@ -101,7 +101,7 @@
 		if("drainbattery")
 			if(inserted_battery)
 				if(inserted_battery.battery_effect && inserted_battery.stored_charge > 0)
-					if(alert("This action will dump all charge, safety gear is recommended before proceeding","Warning","Continue","Cancel"))
+					if(tgui_alert(usr, "This action will dump all charge, safety gear is recommended before proceeding","Warning",list("Continue","Cancel")))
 						if(!inserted_battery.battery_effect.activated)
 							inserted_battery.battery_effect.ToggleActivate(1)
 						last_process = world.time
@@ -196,7 +196,7 @@
 		if(source_effect)
 			harvesting = 1
 			update_use_power(USE_POWER_ACTIVE)
-			cur_artifact.anchored = 1
+			cur_artifact.anchored = TRUE
 			cur_artifact.being_used = 1
 			icon_state = "incubator_on"
 			atom_say("Beginning energy harvesting.")
@@ -228,7 +228,7 @@
 		if(inserted_battery.stored_charge >= inserted_battery.capacity)
 			update_use_power(USE_POWER_IDLE)
 			harvesting = 0
-			cur_artifact.anchored = 0
+			cur_artifact.anchored = FALSE
 			cur_artifact.being_used = 0
 			cur_artifact = null
 			src.visible_message("<b>[name]</b> states, \"Battery is full.\"")

@@ -31,7 +31,7 @@ SUBSYSTEM_DEF(xenoarch)
 
 /datum/controller/subsystem/xenoarch/proc/SetupXenoarch()
 	for(var/turf/simulated/mineral/M in world)
-		if(!M.density || M.z in using_map.xenoarch_exempt_levels)
+		if(!M.density || (M.z in using_map.xenoarch_exempt_levels))
 			continue
 
 		if(isnull(M.geologic_data))
@@ -41,8 +41,7 @@ SUBSYSTEM_DEF(xenoarch)
 			continue
 
 		var/farEnough = 1
-		for(var/A in digsite_spawning_turfs)
-			var/turf/T = A
+		for(var/turf/T as anything in digsite_spawning_turfs)
 			if(T in range(5, M))
 				farEnough = 0
 				break

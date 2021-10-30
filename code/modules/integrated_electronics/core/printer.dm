@@ -36,11 +36,11 @@
 /obj/item/device/integrated_circuit_printer/attackby(var/obj/item/O, var/mob/user)
 	if(istype(O,/obj/item/stack/material))
 		var/obj/item/stack/material/stack = O
-		if(stack.material.name == DEFAULT_WALL_MATERIAL)
+		if(stack.material.name == MAT_STEEL)
 			if(debug)
 				to_chat(user, span("warning", "\The [src] does not need any material."))
 				return
-			var/num = min((max_metal - metal) / metal_per_sheet, stack.amount)
+			var/num = min((max_metal - metal) / metal_per_sheet, stack.get_amount())
 			if(num < 1)
 				to_chat(user, span("warning", "\The [src] is too full to add more metal."))
 				return
@@ -108,12 +108,14 @@
 	for(var/category in SScircuit.circuit_fabricator_recipe_list)
 		var/list/cat_obj = list(
 			"name" = category,
-			"items" = list()
+			"items" = null
 		)
 		var/list/circuit_list = SScircuit.circuit_fabricator_recipe_list[category]
+		var/list/items = list()
 		for(var/path in circuit_list)
 			var/obj/O = path
 			var/can_build = TRUE
+			
 			if(ispath(path, /obj/item/integrated_circuit))
 				var/obj/item/integrated_circuit/IC = path
 				if((initial(IC.spawn_flags) & IC_SPAWN_RESEARCH) && (!(initial(IC.spawn_flags) & IC_SPAWN_DEFAULT)) && !upgraded)
@@ -127,13 +129,15 @@
 				var/obj/item/I = path
 				cost = initial(I.w_class)
 
-			cat_obj["items"].Add(list(list(
+			items.Add(list(list(
 				"name" = initial(O.name),
 				"desc" = initial(O.desc),
 				"can_build" = can_build,
 				"cost" = cost,
 				"path" = path,
 			)))
+		
+		cat_obj["items"] = items
 		categories.Add(list(cat_obj))
 	data["categories"] = categories
 

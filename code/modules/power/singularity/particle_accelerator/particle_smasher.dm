@@ -7,8 +7,8 @@
 	desc = "A strange device used to create exotic matter."
 	icon = 'icons/obj/machines/particle_smasher.dmi'
 	icon_state = "smasher"
-	anchored = 0
-	density = 1
+	anchored = FALSE
+	density = TRUE
 	use_power = USE_POWER_OFF
 
 	var/successful_craft = FALSE	// Are we waiting to be emptied?
@@ -174,7 +174,7 @@
 		recipes = typesof(/datum/particle_smasher_recipe)
 
 	if(!target)	// You are just blasting an empty machine.
-		visible_message("<span class='notice'>\The [src] shudders.</span>")
+		visible_message("<b>\The [src]</b> shudders.")
 		update_icon()
 		return
 

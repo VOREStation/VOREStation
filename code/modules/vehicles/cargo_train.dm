@@ -30,7 +30,7 @@
 	desc = "A large, flat platform made for putting things on. Or people."
 	icon = 'icons/obj/vehicles_vr.dmi'	//VOREStation Edit
 	icon_state = "cargo_trailer"
-	anchored = 0
+	anchored = FALSE
 	passenger_allowed = 0
 	locked = 0
 
@@ -47,7 +47,7 @@
 	cell = new /obj/item/weapon/cell/high(src)
 	key = new key_type(src)
 	var/image/I = new(icon = 'icons/obj/vehicles_vr.dmi', icon_state = "cargo_engine_overlay", layer = src.layer + 0.2) //over mobs		//VOREStation edit
-	overlays += I
+	add_overlay(I)
 	turn_off()	//so engine verbs are correctly set
 
 /obj/vehicle/train/engine/Move(var/turf/destination)
@@ -320,7 +320,7 @@
 		C.pixel_y += load_offset_y
 		C.layer = layer
 
-		overlays += C
+		add_overlay(C)
 
 		//we can set these back now since we have already cloned the icon into the overlay
 		C.pixel_x = initial(C.pixel_x)
@@ -333,7 +333,7 @@
 		load = dummy_load.actual_load
 		dummy_load.actual_load = null
 		qdel(dummy_load)
-		overlays.Cut()
+		cut_overlays()
 	..()
 
 //-------------------------------------------
@@ -385,18 +385,18 @@
 	src.active_engines = active_engines
 
 	if(!lead && !tow)
-		anchored = 0
+		anchored = FALSE
 	else
-		anchored = 1
+		anchored = TRUE
 
 // VOREStation Edit Start - Overlay stuff for the chair-like effect
 /obj/vehicle/train/engine/update_icon()
 	..()
-	overlays = null
+	cut_overlays()
 	var/image/O = image(icon = 'icons/obj/vehicles_vr.dmi', icon_state = "cargo_engine_overlay", dir = src.dir)
 	O.layer = FLY_LAYER
 	O.plane = MOB_PLANE
-	overlays += O
+	add_overlay(O)
 
 /obj/vehicle/train/engine/set_dir()
 	..()

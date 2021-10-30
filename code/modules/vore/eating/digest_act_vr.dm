@@ -9,6 +9,8 @@
 			var/obj/item/device/pda/P = src
 			if(P.id)
 				P.id = null
+		for(var/mob/living/M in contents)//Drop mobs from objects(shoes) before deletion
+			M.forceMove(item_storage)
 		for(var/obj/item/O in contents)
 			if(istype(O, /obj/item/weapon/storage/internal)) //Dump contents from dummy pockets.
 				for(var/obj/item/SO in O)
@@ -26,7 +28,7 @@
 
 	if(isbelly(item_storage))
 		var/obj/belly/B = item_storage
-		g_damage = 0.25 * (B.digest_brute + B.digest_burn + (B.digest_oxy)/2)
+		g_damage = 0.25 * (B.digest_brute + B.digest_burn)
 
 	if(digest_stage > 0)
 		if(g_damage > digest_stage)
@@ -37,6 +39,8 @@
 			var/obj/item/device/pda/P = src
 			if(P.id)
 				P.id = null
+		for(var/mob/living/M in contents)//Drop mobs from objects(shoes) before deletion
+			M.forceMove(item_storage)
 		for(var/obj/item/O in contents)
 			if(istype(O,/obj/item/weapon/storage/internal)) //Dump contents from dummy pockets.
 				for(var/obj/item/SO in O)
@@ -91,7 +95,7 @@
 		var/obj/belly/B = item_storage
 		if(ishuman(B.owner))
 			var/mob/living/carbon/human/H = B.owner
-			reagents.trans_to_holder(H.ingested, (reagents.total_volume * 0.3), 1, 0)
+			reagents.trans_to_holder(H.ingested, (reagents.total_volume * 0.5), 1, 0)
 		else if(isrobot(B.owner))
 			var/mob/living/silicon/robot/R = B.owner
 			R.cell.charge += 150
@@ -110,8 +114,7 @@
 /obj/item/organ/digest_act(atom/movable/item_storage = null)
 	if((. = ..()))
 		if(isbelly(item_storage))
-			var/obj/belly/B = item_storage
-			. += 2 * (B.digest_brute + B.digest_burn + (B.digest_oxy)/2)
+			. *= 3
 		else
 			. += 30 //Organs give a little more
 

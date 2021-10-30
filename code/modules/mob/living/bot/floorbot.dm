@@ -228,7 +228,7 @@
 			return
 		busy = 1
 		update_icons()
-		visible_message("<span class='notice'>\The [src] begins to repair the hole.</span>")
+		visible_message("<b>\The [src]</b> begins to repair the hole.")
 		if(do_after(src, 50))
 			if(A && (locate(/obj/structure/lattice, A) && building == 1 || !locate(/obj/structure/lattice, A) && building == 2)) // Make sure that it still needs repairs
 				var/obj/item/I
@@ -245,7 +245,7 @@
 		if(F.broken || F.burnt)
 			busy = 1
 			update_icons()
-			visible_message("<span class='notice'>\The [src] begins to remove the broken floor.</span>")
+			visible_message("<b>\The [src]</b> begins to remove the broken floor.")
 			if(do_after(src, 50, F))
 				if(F.broken || F.burnt)
 					F.make_plating()
@@ -255,7 +255,7 @@
 		else if(!F.flooring && amount)
 			busy = 1
 			update_icons()
-			visible_message("<span class='notice'>\The [src] begins to improve the floor.</span>")
+			visible_message("<b>\The [src]</b> begins to improve the floor.")
 			if(do_after(src, 50))
 				if(!F.flooring)
 					F.set_flooring(get_flooring_data(floor_build_type))
@@ -265,7 +265,7 @@
 			update_icons()
 	else if(istype(A, /obj/item/stack/tile/floor) && amount < maxAmount)
 		var/obj/item/stack/tile/floor/T = A
-		visible_message("<span class='notice'>\The [src] begins to collect tiles.</span>")
+		visible_message("<b>\The [src]</b> begins to collect tiles.")
 		busy = 1
 		update_icons()
 		if(do_after(src, 20))
@@ -278,8 +278,8 @@
 		update_icons()
 	else if(istype(A, /obj/item/stack/material) && amount + 4 <= maxAmount)
 		var/obj/item/stack/material/M = A
-		if(M.get_material_name() == DEFAULT_WALL_MATERIAL)
-			visible_message("<span class='notice'>\The [src] begins to make tiles.</span>")
+		if(M.get_material_name() == MAT_STEEL)
+			visible_message("<b>\The [src]</b> begins to make tiles.")
 			busy = 1
 			update_icons()
 			if(do_after(50))
@@ -298,8 +298,7 @@
 	new /obj/item/device/assembly/prox_sensor(Tsec)
 	if(prob(50))
 		new /obj/item/robot_parts/l_arm(Tsec)
-	var/obj/item/stack/tile/floor/T = new /obj/item/stack/tile/floor(Tsec)
-	T.amount = amount
+	new /obj/item/stack/tile/floor(Tsec, amount)
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()

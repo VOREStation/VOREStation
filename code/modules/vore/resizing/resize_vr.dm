@@ -1,7 +1,6 @@
 // Adding needed defines to /mob/living
 // Note: Polaris had this on /mob/living/carbon/human We need it higher up for animals and stuff.
 /mob/living
-	var/size_multiplier = 1 //multiplier for the mob's icon size
 	var/holder_default
 	var/step_mechanics_pref = TRUE		// Allow participation in macro-micro step mechanics
 	var/pickup_pref = TRUE				// Allow participation in macro-micro pickup mechanics
@@ -48,7 +47,7 @@
 
 /atom/movable/proc/size_range_check(size_select)		//both objects and mobs needs to have that
 	var/area/A = get_area(src) //Get the atom's area to check for size limit.
-	if((A.limit_mob_size && (size_select > 200 || size_select < 25)) || (size_select > 600 || size_select <1))
+	if((A?.limit_mob_size && (size_select > 200 || size_select < 25)) || (size_select > 600 || size_select <1))
 		return FALSE
 	return TRUE
 
@@ -79,7 +78,7 @@
 			var/datum/component/resize_guard/guard = GetComponent(/datum/component/resize_guard)
 			if(guard)
 				qdel(guard)
-	
+
 	if(size_multiplier == new_size)
 		return 1
 
@@ -144,7 +143,7 @@
 	var/nagmessage = "Adjust your mass to be a size between 25 to 200% (or 1% to 600% in dormitories). (DO NOT ABUSE)"
 	var/new_size = input(nagmessage, "Pick a Size") as num|null
 	if(size_range_check(new_size))
-		resize(new_size/100)
+		resize(new_size/100, uncapped = has_large_resize_bounds(), ignore_prefs = TRUE)
 		// I'm not entirely convinced that `src ? ADMIN_JMP(src) : "null"` here does anything
 		// but just in case it does, I'm leaving the null-src checking
 		message_admins("[key_name(src)] used the resize command in-game to be [new_size]% size. [src ? ADMIN_JMP(src) : "null"]")
@@ -214,7 +213,7 @@
 			var/mob/living/carbon/human/H = src
 			if(H.flying)
 				return TRUE //Silently pass without a message.
-			if(isTaurTail(H.tail_style))
+			if(istaurtail(H.tail_style))
 				var/datum/sprite_accessory/tail/taur/tail = H.tail_style
 				src_message = tail.msg_owner_help_run
 				tmob_message = tail.msg_prey_help_run
@@ -224,7 +223,7 @@
 			src_message = "You run between [tmob]'s legs."
 			tmob_message = "[src] runs between your legs."
 			var/mob/living/carbon/human/H = tmob
-			if(isTaurTail(H.tail_style))
+			if(istaurtail(H.tail_style))
 				var/datum/sprite_accessory/tail/taur/tail = H.tail_style
 				src_message = tail.msg_prey_stepunder
 				tmob_message = tail.msg_owner_stepunder
@@ -305,7 +304,7 @@
 	var/message_pred = null
 	var/message_prey = null
 	var/datum/sprite_accessory/tail/taur/tail = null
-	if(isTaurTail(pred.tail_style))
+	if(istaurtail(pred.tail_style))
 		tail = pred.tail_style
 
 	if(a_intent == I_GRAB)

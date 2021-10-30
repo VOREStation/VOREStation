@@ -2,8 +2,8 @@
 	name = "broken macninery"
 	desc = "Broken beyond repair, but looks like you can still salvage something from this if you had a prying implement."
 	icon = 'icons/obj/salvageable.dmi'
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	var/salvageable_parts = list()
 
 /obj/structure/salvageable/proc/dismantle()
@@ -18,7 +18,7 @@
 		playsound(src, I.usesound, 50, 1)
 		var/actual_time = I.toolspeed * 170
 		user.visible_message( \
-			"<span class='notice'>\The [user] begins salvaging from \the [src].</span>", \
+			"<b>\The [user]</b> begins salvaging from \the [src].", \
 			"<span class='notice'>You start salvaging from \the [src].</span>")
 		if(do_after(user, actual_time, target = src))
 			user.visible_message( \
@@ -80,7 +80,7 @@
 		/obj/item/weapon/stock_parts/capacitor/adv = 30,
 		/obj/item/weapon/computer_hardware/network_card/advanced = 20
 	)
-obj/structure/salvageable/computer/Initialize()
+/obj/structure/salvageable/computer/Initialize()
 	. = ..()
 	icon_state = "computer[rand(0,7)]"
 
@@ -136,7 +136,7 @@ obj/structure/salvageable/computer/Initialize()
 		/obj/item/stack/material/silver{amount = 10} = 30
 	)
 
-obj/structure/salvageable/implant_container/Initialize()
+/obj/structure/salvageable/implant_container/Initialize()
 	. = ..()
 	icon_state = "implant_container[rand(0,1)]"
 
@@ -164,7 +164,7 @@ obj/structure/salvageable/implant_container/Initialize()
 		/obj/item/weapon/computer_hardware/network_card/advanced = 20
 	)
 
-obj/structure/salvageable/data/Initialize()
+/obj/structure/salvageable/data/Initialize()
 	. = ..()
 	icon_state = "data[rand(0,1)]"
 
@@ -194,7 +194,7 @@ obj/structure/salvageable/data/Initialize()
 		/obj/item/weapon/computer_hardware/network_card/advanced = 20
 	)
 
-obj/structure/salvageable/server/Initialize()
+/obj/structure/salvageable/server/Initialize()
 	. = ..()
 	icon_state = "server[rand(0,1)]"
 
@@ -219,7 +219,7 @@ obj/structure/salvageable/server/Initialize()
 		/obj/item/weapon/computer_hardware/hard_drive/advanced = 40
 	)
 
-obj/structure/salvageable/personal/Initialize()
+/obj/structure/salvageable/personal/Initialize()
 	. = ..()
 	icon_state = "personal[rand(0,12)]"
 	new /obj/structure/table/reinforced (loc)
@@ -234,7 +234,7 @@ obj/structure/salvageable/personal/Initialize()
 		/obj/item/weapon/computer_hardware/hard_drive/cluster = 50
 	)
 
-obj/structure/salvageable/bliss/Initialize()
+/obj/structure/salvageable/bliss/Initialize()
 	. = ..()
 	icon_state = "bliss[rand(0,1)]"
 
@@ -362,5 +362,32 @@ obj/structure/salvageable/bliss/Initialize()
 		/obj/item/weapon/computer_hardware/processor_unit/photonic = 40,
 		/obj/item/weapon/computer_hardware/card_slot = 40,
 		/obj/item/weapon/computer_hardware/card_slot = 40,
+		/obj/item/weapon/computer_hardware/network_card/advanced = 40
+	)
+
+
+/obj/structure/salvageable/slotmachine1
+	name = "broken slot machine"
+	icon_state = "slot1"
+	salvageable_parts = list(
+		/obj/item/stack/cable_coil{amount = 5} = 90,
+		/obj/item/weapon/stock_parts/console_screen = 90,
+		/obj/item/stack/cable_coil{amount = 5} = 90,
+		/obj/item/stack/material/glass{amount = 5} = 90,
+		/obj/item/weapon/stock_parts/capacitor = 60,
+		/obj/item/weapon/stock_parts/capacitor = 60,
+		/obj/item/weapon/computer_hardware/network_card/advanced = 40
+	)
+
+/obj/structure/salvageable/slotmachine2
+	name = "broken slot machine"
+	icon_state = "slot2"
+	salvageable_parts = list(
+		/obj/item/stack/cable_coil{amount = 5} = 90,
+		/obj/item/weapon/stock_parts/console_screen = 90,
+		/obj/item/stack/cable_coil{amount = 5} = 90,
+		/obj/item/stack/material/glass{amount = 5} = 90,
+		/obj/item/weapon/stock_parts/capacitor = 60,
+		/obj/item/weapon/stock_parts/capacitor = 60,
 		/obj/item/weapon/computer_hardware/network_card/advanced = 40
 	)

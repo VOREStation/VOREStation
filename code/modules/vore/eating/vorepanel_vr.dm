@@ -4,9 +4,9 @@
 
 #define BELLIES_MAX 40
 #define BELLIES_NAME_MIN 2
-#define BELLIES_NAME_MAX 20
-#define BELLIES_DESC_MAX 2048
-#define FLAVOR_MAX 40
+#define BELLIES_NAME_MAX 40
+#define BELLIES_DESC_MAX 4096
+#define FLAVOR_MAX 400
 
 /mob/living
 	var/datum/vore_look/vorePanel
@@ -22,7 +22,8 @@
 	vorePanel.tgui_interact(src)
 
 /mob/living/proc/updateVRPanel() //Panel popup update call from belly events.
-	SStgui.update_uis(vorePanel)
+	if(vorePanel)
+		SStgui.update_uis(vorePanel)
 
 //
 // Callback Handler for the Inside form
@@ -48,8 +49,9 @@
 /datum/vore_look/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "VorePanel", "Inside!")
+		ui = new(user, src, "VorePanel", "Vore Panel")
 		ui.open()
+		ui.set_autoupdate(FALSE)
 
 // This looks weird, but all tgui_host is used for is state checking
 // So this allows us to use the self_state just fine.
@@ -87,13 +89,13 @@
 	data["unsaved_changes"] = unsaved_changes
 	data["show_pictures"] = show_pictures
 
-	data["inside"] = list()
 	var/atom/hostloc = host.loc
+	var/list/inside = list()
 	if(isbelly(hostloc))
 		var/obj/belly/inside_belly = hostloc
 		var/mob/living/pred = inside_belly.owner
 
-		data["inside"] = list(
+		inside = list(
 			"absorbed" = host.absorbed,
 			"belly_name" = inside_belly.name,
 			"belly_mode" = inside_belly.digest_mode,
@@ -102,7 +104,7 @@
 			"ref" = "\ref[inside_belly]",
 		)
 
-		data["inside"]["contents"] = list()
+		var/list/inside_contents = list()
 		for(var/atom/movable/O in inside_belly)
 			if(O == host)
 				continue
@@ -121,23 +123,25 @@
 				info["stat"] = M.stat
 				if(M.absorbed)
 					info["absorbed"] = TRUE
-			data["inside"]["contents"].Add(list(info))
+			inside_contents.Add(list(info))
+		inside["contents"] = inside_contents
+	data["inside"] = inside
 
-	data["our_bellies"] = list()
-	for(var/belly in host.vore_organs)
-		var/obj/belly/B = belly
-		data["our_bellies"].Add(list(list(
+	var/list/our_bellies = list()
+	for(var/obj/belly/B as anything in host.vore_organs)
+		our_bellies.Add(list(list(
 			"selected" = (B == host.vore_selected),
 			"name" = B.name,
 			"ref" = "\ref[B]",
 			"digest_mode" = B.digest_mode,
 			"contents" = LAZYLEN(B.contents),
 		)))
+	data["our_bellies"] = our_bellies
 
-	data["selected"] = null
+	var/list/selected_list = null
 	if(host.vore_selected)
 		var/obj/belly/selected = host.vore_selected
-		data["selected"] = list(
+		selected_list = list(
 			"belly_name" = selected.name,
 			"is_wet" = selected.is_wet,
 			"wet_loop" = selected.wet_loop,
@@ -156,39 +160,41 @@
 			"digest_burn" = selected.digest_burn,
 			"digest_oxy" = selected.digest_oxy,
 			"bulge_size" = selected.bulge_size,
+			"display_absorbed_examine" = selected.display_absorbed_examine,
 			"shrink_grow_size" = selected.shrink_grow_size,
 			"emote_time" = selected.emote_time,
 			"emote_active" = selected.emote_active,
 			"belly_fullscreen" = selected.belly_fullscreen,
-			"possible_fullscreens" = icon_states('icons/mob/screen_full_vore.dmi'),
 		)
 
-		data["selected"]["addons"] = list()
+		var/list/addons = list()
 		for(var/flag_name in selected.mode_flag_list)
 			if(selected.mode_flags & selected.mode_flag_list[flag_name])
-				data["selected"]["addons"].Add(flag_name)
+				addons.Add(flag_name)
+		selected_list["addons"] = addons
 
-		data["selected"]["egg_type"] = selected.egg_type
-		data["selected"]["contaminates"] = selected.contaminates
-		data["selected"]["contaminate_flavor"] = null
-		data["selected"]["contaminate_color"] = null
+		selected_list["egg_type"] = selected.egg_type
+		selected_list["contaminates"] = selected.contaminates
+		selected_list["contaminate_flavor"] = null
+		selected_list["contaminate_color"] = null
 		if(selected.contaminates)
-			data["selected"]["contaminate_flavor"] = selected.contamination_flavor
-			data["selected"]["contaminate_color"] = selected.contamination_color
+			selected_list["contaminate_flavor"] = selected.contamination_flavor
+			selected_list["contaminate_color"] = selected.contamination_color
 
-		data["selected"]["escapable"] = selected.escapable
-		data["selected"]["interacts"] = list()
+		selected_list["escapable"] = selected.escapable
+		selected_list["interacts"] = list()
 		if(selected.escapable)
-			data["selected"]["interacts"]["escapechance"] = selected.escapechance
-			data["selected"]["interacts"]["escapetime"] = selected.escapetime
-			data["selected"]["interacts"]["transferchance"] = selected.transferchance
-			data["selected"]["interacts"]["transferlocation"] = selected.transferlocation
-			data["selected"]["interacts"]["absorbchance"] = selected.absorbchance
-			data["selected"]["interacts"]["digestchance"] = selected.digestchance
+			selected_list["interacts"]["escapechance"] = selected.escapechance
+			selected_list["interacts"]["escapetime"] = selected.escapetime
+			selected_list["interacts"]["transferchance"] = selected.transferchance
+			selected_list["interacts"]["transferlocation"] = selected.transferlocation
+			selected_list["interacts"]["absorbchance"] = selected.absorbchance
+			selected_list["interacts"]["digestchance"] = selected.digestchance
 
-		data["selected"]["disable_hud"] = selected.disable_hud
+		selected_list["disable_hud"] = selected.disable_hud
+		selected_list["possible_fullscreens"] = icon_states('icons/mob/screen_full_vore.dmi')
 
-		data["selected"]["contents"] = list()
+		var/list/selected_contents = list()
 		for(var/O in selected)
 			var/list/info = list(
 				"name" = "[O]",
@@ -204,8 +210,10 @@
 				info["stat"] = M.stat
 				if(M.absorbed)
 					info["absorbed"] = TRUE
-			data["selected"]["contents"].Add(list(info))
+			selected_contents.Add(list(info))
+		selected_list["contents"] = selected_contents
 
+	data["selected"] = selected_list
 	data["prefs"] = list(
 		"digestable" = host.digestable,
 		"devourable" = host.devourable,
@@ -218,6 +226,7 @@
 		"show_vore_fx" = host.show_vore_fx,
 		"can_be_drop_prey" = host.can_be_drop_prey,
 		"can_be_drop_pred" = host.can_be_drop_pred,
+		"allow_spontaneous_tf" = host.allow_spontaneous_tf,
 		"step_mechanics_active" = host.step_mechanics_pref,
 		"pickup_mechanics_active" = host.pickup_pref,
 		"noisy" = host.noisy,
@@ -234,7 +243,7 @@
 			show_pictures = !show_pictures
 			return TRUE
 		if("int_help")
-			alert("These control how your belly responds to someone using 'resist' while inside you. The percent chance to trigger each is listed below, \
+			tgui_alert(usr, "These control how your belly responds to someone using 'resist' while inside you. The percent chance to trigger each is listed below, \
 					and you can change them to whatever you see fit. Setting them to 0% will disable the possibility of that interaction. \
 					These only function as long as interactions are turned on in general. Keep in mind, the 'belly mode' interactions (digest/absorb) \
 					will affect all prey in that belly, if one resists and triggers digestion/absorption. If multiple trigger at the same time, \
@@ -260,14 +269,13 @@
 				failure_msg = "Entered belly name length invalid (must be longer than [BELLIES_NAME_MIN], no more than than [BELLIES_NAME_MAX])."
 			// else if(whatever) //Next test here.
 			else
-				for(var/belly in host.vore_organs)
-					var/obj/belly/B = belly
+				for(var/obj/belly/B as anything in host.vore_organs)
 					if(lowertext(new_name) == lowertext(B.name))
 						failure_msg = "No duplicate belly names, please."
 						break
 
 			if(failure_msg) //Something went wrong.
-				alert(usr, failure_msg, "Error!")
+				tgui_alert_async(usr, failure_msg, "Error!")
 				return TRUE
 
 			var/obj/belly/NB = new(host)
@@ -296,42 +304,46 @@
 			return set_attr(usr, params)
 
 		if("saveprefs")
+			if(!ishuman(host) && !issilicon(host))
+				var/choice = tgui_alert(usr, "Warning: Saving your vore panel while playing what is very-likely not your normal character will overwrite whatever character you have loaded in character setup. Maybe this is your 'playing a simple mob' slot, though. Are you SURE you want to overwrite your current slot with these vore bellies?", "WARNING!", list("No, abort!", "Yes, save."))
+				if(choice != "Yes, save.")
+					return TRUE
 			if(!host.save_vore_prefs())
-				alert("ERROR: Virgo-specific preferences failed to save!","Error")
+				tgui_alert_async(usr, "ERROR: Virgo-specific preferences failed to save!","Error")
 			else
 				to_chat(usr, "<span class='notice'>Virgo-specific preferences saved!</span>")
 				unsaved_changes = FALSE
 			return TRUE
 		if("reloadprefs")
-			var/alert = alert("Are you sure you want to reload character slot preferences? This will remove your current vore organs and eject their contents.","Confirmation","Reload","Cancel")
+			var/alert = tgui_alert(usr, "Are you sure you want to reload character slot preferences? This will remove your current vore organs and eject their contents.","Confirmation",list("Reload","Cancel"))
 			if(alert != "Reload")
 				return FALSE
 			if(!host.apply_vore_prefs())
-				alert("ERROR: Virgo-specific preferences failed to apply!","Error")
+				tgui_alert_async(usr, "ERROR: Virgo-specific preferences failed to apply!","Error")
 			else
 				to_chat(usr,"<span class='notice'>Virgo-specific preferences applied from active slot!</span>")
 				unsaved_changes = FALSE
 			return TRUE
 		if("setflavor")
-			var/new_flavor = html_encode(input(usr,"What your character tastes like (40ch limit). This text will be printed to the pred after 'X tastes of...' so just put something like 'strawberries and cream':","Character Flavor",host.vore_taste) as text|null)
+			var/new_flavor = html_encode(input(usr,"What your character tastes like (400ch limit). This text will be printed to the pred after 'X tastes of...' so just put something like 'strawberries and cream':","Character Flavor",host.vore_taste) as text|null)
 			if(!new_flavor)
 				return FALSE
 
 			new_flavor = readd_quotes(new_flavor)
 			if(length(new_flavor) > FLAVOR_MAX)
-				alert("Entered flavor/taste text too long. [FLAVOR_MAX] character limit.","Error!")
+				tgui_alert_async(usr, "Entered flavor/taste text too long. [FLAVOR_MAX] character limit.","Error!")
 				return FALSE
 			host.vore_taste = new_flavor
 			unsaved_changes = TRUE
 			return TRUE
 		if("setsmell")
-			var/new_smell = html_encode(input(usr,"What your character smells like (40ch limit). This text will be printed to the pred after 'X smells of...' so just put something like 'strawberries and cream':","Character Smell",host.vore_smell) as text|null)
+			var/new_smell = html_encode(input(usr,"What your character smells like (400ch limit). This text will be printed to the pred after 'X smells of...' so just put something like 'strawberries and cream':","Character Smell",host.vore_smell) as text|null)
 			if(!new_smell)
 				return FALSE
 
 			new_smell = readd_quotes(new_smell)
 			if(length(new_smell) > FLAVOR_MAX)
-				alert("Entered perfume/smell text too long. [FLAVOR_MAX] character limit.","Error!")
+				tgui_alert_async(usr, "Entered perfume/smell text too long. [FLAVOR_MAX] character limit.","Error!")
 				return FALSE
 			host.vore_smell = new_smell
 			unsaved_changes = TRUE
@@ -346,6 +358,12 @@
 			host.can_be_drop_prey = !host.can_be_drop_prey
 			if(host.client.prefs_vr)
 				host.client.prefs_vr.can_be_drop_prey = host.can_be_drop_prey
+			unsaved_changes = TRUE
+			return TRUE
+		if("toggle_allow_spontaneous_tf")
+			host.allow_spontaneous_tf = !host.allow_spontaneous_tf
+			if(host.client.prefs_vr)
+				host.client.prefs_vr.allow_spontaneous_tf = host.allow_spontaneous_tf
 			unsaved_changes = TRUE
 			return TRUE
 		if("toggle_digest")
@@ -432,10 +450,10 @@
 
 	var/intent = "Examine"
 	if(isliving(target))
-		intent = alert("What do you want to do to them?","Query","Examine","Help Out","Devour")
+		intent = tgui_alert(usr, "What do you want to do to them?","Query",list("Examine","Help Out","Devour"))
 
 	else if(istype(target, /obj/item))
-		intent = alert("What do you want to do to that?","Query","Examine","Use Hand")
+		intent = tgui_alert(usr, "What do you want to do to that?","Query",list("Examine","Use Hand"))
 
 	switch(intent)
 		if("Examine") //Examine a mob inside another mob
@@ -465,7 +483,7 @@
 
 			to_chat(user,"<font color='green'>You begin to push [M] to freedom!</font>")
 			to_chat(M,"[host] begins to push you to freedom!")
-			to_chat(M.loc,"<span class='warning'>Someone is trying to escape from inside you!</span>")
+			to_chat(OB.owner,"<span class='warning'>Someone is trying to escape from inside you!</span>")
 			sleep(50)
 			if(prob(33))
 				OB.release_specific_contents(M)
@@ -504,7 +522,7 @@
 
 	//Handle the [All] choice. Ugh inelegant. Someone make this pretty.
 	if(params["pickall"])
-		intent = alert("Eject all, Move all?","Query","Eject all","Cancel","Move all")
+		intent = tgui_alert(usr, "Eject all, Move all?","Query",list("Eject all","Cancel","Move all"))
 		switch(intent)
 			if("Cancel")
 				return TRUE
@@ -522,7 +540,7 @@
 					to_chat(user,"<span class='warning'>You can't do that in your state!</span>")
 					return TRUE
 
-				var/obj/belly/choice = input("Move all where?","Select Belly") as null|anything in host.vore_organs
+				var/obj/belly/choice = tgui_input_list(usr, "Move all where?","Select Belly", host.vore_organs)
 				if(!choice)
 					return FALSE
 
@@ -538,7 +556,7 @@
 	var/list/available_options = list("Examine", "Eject", "Move")
 	if(ishuman(target))
 		available_options += "Transform"
-	intent = input(user, "What would you like to do with [target]?", "Vore Pick", "Examine") as null|anything in available_options
+	intent = tgui_alert(user, "What would you like to do with [target]?", "Vore Pick", available_options)
 	switch(intent)
 		if("Examine")
 			var/list/results = target.examine(host)
@@ -560,7 +578,7 @@
 				to_chat(user,"<span class='warning'>You can't do that in your state!</span>")
 				return TRUE
 
-			var/obj/belly/choice = input("Move [target] where?","Select Belly") as null|anything in host.vore_organs
+			var/obj/belly/choice = tgui_input_list(usr, "Move [target] where?","Select Belly", host.vore_organs)
 			if(!choice || !(target in host.vore_selected))
 				return TRUE
 
@@ -583,7 +601,7 @@
 
 /datum/vore_look/proc/set_attr(mob/user, params)
 	if(!host.vore_selected)
-		alert("No belly selected to modify.")
+		tgui_alert_async(usr, "No belly selected to modify.")
 		return FALSE
 
 	var/attr = params["attribute"]
@@ -596,14 +614,13 @@
 				failure_msg = "Entered belly name length invalid (must be longer than [BELLIES_NAME_MIN], no more than than [BELLIES_NAME_MAX])."
 			// else if(whatever) //Next test here.
 			else
-				for(var/belly in host.vore_organs)
-					var/obj/belly/B = belly
+				for(var/obj/belly/B as anything in host.vore_organs)
 					if(lowertext(new_name) == lowertext(B.name))
 						failure_msg = "No duplicate belly names, please."
 						break
 
 			if(failure_msg) //Something went wrong.
-				alert(user,failure_msg,"Error!")
+				tgui_alert_async(user,failure_msg,"Error!")
 				return FALSE
 
 			host.vore_selected.name = new_name
@@ -616,15 +633,16 @@
 			. = TRUE
 		if("b_mode")
 			var/list/menu_list = host.vore_selected.digest_modes.Copy()
-			var/new_mode = input("Choose Mode (currently [host.vore_selected.digest_mode])") as null|anything in menu_list
+			var/new_mode = tgui_input_list(usr, "Choose Mode (currently [host.vore_selected.digest_mode])", "Mode Choice", menu_list)
 			if(!new_mode)
 				return FALSE
 
 			host.vore_selected.digest_mode = new_mode
+			host.vore_selected.updateVRPanels()
 			. = TRUE
 		if("b_addons")
 			var/list/menu_list = host.vore_selected.mode_flag_list.Copy()
-			var/toggle_addon = input("Toggle Addon") as null|anything in menu_list
+			var/toggle_addon = tgui_input_list(usr, "Toggle Addon", "Addon Choice", menu_list)
 			if(!toggle_addon)
 				return FALSE
 			host.vore_selected.mode_flags ^= host.vore_selected.mode_flag_list[toggle_addon]
@@ -633,7 +651,7 @@
 		if("b_item_mode")
 			var/list/menu_list = host.vore_selected.item_digest_modes.Copy()
 
-			var/new_mode = input("Choose Mode (currently [host.vore_selected.item_digest_mode])") as null|anything in menu_list
+			var/new_mode = tgui_input_list(usr, "Choose Mode (currently [host.vore_selected.item_digest_mode])", "Mode Choice", menu_list)
 			if(!new_mode)
 				return FALSE
 
@@ -645,14 +663,14 @@
 			. = TRUE
 		if("b_contamination_flavor")
 			var/list/menu_list = contamination_flavors.Copy()
-			var/new_flavor = input("Choose Contamination Flavor Text Type (currently [host.vore_selected.contamination_flavor])") as null|anything in menu_list
+			var/new_flavor = tgui_input_list(usr, "Choose Contamination Flavor Text Type (currently [host.vore_selected.contamination_flavor])", "Flavor Choice", menu_list)
 			if(!new_flavor)
 				return FALSE
 			host.vore_selected.contamination_flavor = new_flavor
 			. = TRUE
 		if("b_contamination_color")
 			var/list/menu_list = contamination_colors.Copy()
-			var/new_color = input("Choose Contamination Color (currently [host.vore_selected.contamination_color])") as null|anything in menu_list
+			var/new_color = tgui_input_list(usr, "Choose Contamination Color (currently [host.vore_selected.contamination_color])", "Color Choice", menu_list)
 			if(!new_color)
 				return FALSE
 			host.vore_selected.contamination_color = new_color
@@ -660,7 +678,7 @@
 			. = TRUE
 		if("b_egg_type")
 			var/list/menu_list = global_vore_egg_types.Copy()
-			var/new_egg_type = input("Choose Egg Type (currently [host.vore_selected.egg_type])") as null|anything in menu_list
+			var/new_egg_type = tgui_input_list(usr, "Choose Egg Type (currently [host.vore_selected.egg_type])", "Egg Choice", menu_list)
 			if(!new_egg_type)
 				return FALSE
 			host.vore_selected.egg_type = new_egg_type
@@ -671,13 +689,13 @@
 			if(new_desc)
 				new_desc = readd_quotes(new_desc)
 				if(length(new_desc) > BELLIES_DESC_MAX)
-					alert("Entered belly desc too long. [BELLIES_DESC_MAX] character limit.","Error")
+					tgui_alert_async(usr, "Entered belly desc too long. [BELLIES_DESC_MAX] character limit.","Error")
 					return FALSE
 				host.vore_selected.desc = new_desc
 				. = TRUE
 		if("b_msgs")
-			alert(user,"Setting abusive or deceptive messages will result in a ban. Consider this your warning. Max 150 characters per message (500 for idle messages), max 10 messages per topic.","Really, don't.")
-			var/help = " Press enter twice to separate messages. '%pred' will be replaced with your name. '%prey' will be replaced with the prey's name. '%belly' will be replaced with your belly's name. '%count' will be replaced with the number of anything in your belly. '%countprey' will be replaced with the number of living prey in your belly."
+			tgui_alert(user,"Setting abusive or deceptive messages will result in a ban. Consider this your warning. Max 150 characters per message (500 for idle messages), max 10 messages per topic.","Really, don't.") // Should remain tgui_alert() (blocking)
+			var/help = " Press enter twice to separate messages. '%pred' will be replaced with your name. '%prey' will be replaced with the prey's name. '%belly' will be replaced with your belly's name. '%count' will be replaced with the number of anything in your belly (will not work for absorbed examine). '%countprey' will be replaced with the number of living prey in your belly (or absorbed prey for absorbed examine)."
 			switch(params["msgtype"])
 				if("dmp")
 					var/new_message = input(user,"These are sent to prey when they expire. Write them in 2nd person ('you feel X'). Avoid using %prey in this type."+help,"Digest Message (to prey)",host.vore_selected.get_messages("dmp")) as message
@@ -704,6 +722,11 @@
 					if(new_message)
 						host.vore_selected.set_messages(new_message,"em")
 
+				if("ema")
+					var/new_message = input(user,"These are sent to people who examine you when this belly has absorbed victims. Write them in 3rd person ('Their %belly is larger')."+help,"Examine Message (with absorbed victims)",host.vore_selected.get_messages("ema")) as message
+					if(new_message)
+						host.vore_selected.set_messages(new_message,"ema")
+
 				if("im_digest")
 					var/new_message = input(user,"These are sent to prey every minute when you are on Digest mode. Write them in 2nd person ('%pred's %belly squishes down on you.')."+help,"Idle Message (Digest)",host.vore_selected.get_messages("im_digest")) as message
 					if(new_message)
@@ -729,21 +752,47 @@
 					if(new_message)
 						host.vore_selected.set_messages(new_message,"im_drain")
 
+				if("im_steal")
+					var/new_message = input(user,"These are sent to prey every minute when you are on Size Steal mode. Write them in 2nd person ('%pred's %belly squishes down on you.')"+help,"Idle Message (Size Steal)",host.vore_selected.get_messages("im_steal")) as message
+					if(new_message)
+						host.vore_selected.set_messages(new_message,"im_steal")
+
+				if("im_egg")
+					var/new_message = input(user,"These are sent to prey every minute when you are on Encase In Egg mode. Write them in 2nd person ('%pred's %belly squishes down on you.')"+help,"Idle Message (Encase In Egg)",host.vore_selected.get_messages("im_egg")) as message
+					if(new_message)
+						host.vore_selected.set_messages(new_message,"im_egg")
+
+				if("im_shrink")
+					var/new_message = input(user,"These are sent to prey every minute when you are on Shrink mode. Write them in 2nd person ('%pred's %belly squishes down on you.')"+help,"Idle Message (Shrink)",host.vore_selected.get_messages("im_shrink")) as message
+					if(new_message)
+						host.vore_selected.set_messages(new_message,"im_shrink")
+
+				if("im_grow")
+					var/new_message = input(user,"These are sent to prey every minute when you are on Grow mode. Write them in 2nd person ('%pred's %belly squishes down on you.')"+help,"Idle Message (Grow)",host.vore_selected.get_messages("im_grow")) as message
+					if(new_message)
+						host.vore_selected.set_messages(new_message,"im_grow")
+
+				if("im_unabsorb")
+					var/new_message = input(user,"These are sent to prey every minute when you are on Unabsorb mode. Write them in 2nd person ('%pred's %belly squishes down on you.')"+help,"Idle Message (Unabsorb)",host.vore_selected.get_messages("im_unabsorb")) as message
+					if(new_message)
+						host.vore_selected.set_messages(new_message,"im_unabsorb")
+
 				if("reset")
-					var/confirm = alert(user,"This will delete any custom messages. Are you sure?","Confirmation","DELETE","Cancel")
+					var/confirm = tgui_alert(user,"This will delete any custom messages. Are you sure?","Confirmation",list("Cancel","DELETE"))
 					if(confirm == "DELETE")
 						host.vore_selected.digest_messages_prey = initial(host.vore_selected.digest_messages_prey)
 						host.vore_selected.digest_messages_owner = initial(host.vore_selected.digest_messages_owner)
 						host.vore_selected.struggle_messages_outside = initial(host.vore_selected.struggle_messages_outside)
 						host.vore_selected.struggle_messages_inside = initial(host.vore_selected.struggle_messages_inside)
 						host.vore_selected.examine_messages = initial(host.vore_selected.examine_messages)
+						host.vore_selected.examine_messages_absorbed = initial(host.vore_selected.examine_messages_absorbed)
 						host.vore_selected.emote_lists = initial(host.vore_selected.emote_lists)
 			. = TRUE
 		if("b_verb")
 			var/new_verb = html_encode(input(usr,"New verb when eating (infinitive tense, e.g. nom or swallow):","New Verb") as text|null)
 
 			if(length(new_verb) > BELLIES_NAME_MAX || length(new_verb) < BELLIES_NAME_MIN)
-				alert("Entered verb length invalid (must be longer than [BELLIES_NAME_MIN], no longer than [BELLIES_NAME_MAX]).","Error")
+				tgui_alert_async(usr, "Entered verb length invalid (must be longer than [BELLIES_NAME_MIN], no longer than [BELLIES_NAME_MAX]).","Error")
 				return FALSE
 
 			host.vore_selected.vore_verb = new_verb
@@ -757,9 +806,9 @@
 		if("b_release")
 			var/choice
 			if(host.vore_selected.fancy_vore)
-				choice = input(user,"Currently set to [host.vore_selected.release_sound]","Select Sound") as null|anything in fancy_release_sounds
+				choice = tgui_input_list(user,"Currently set to [host.vore_selected.release_sound]","Select Sound", fancy_release_sounds)
 			else
-				choice = input(user,"Currently set to [host.vore_selected.release_sound]","Select Sound") as null|anything in classic_release_sounds
+				choice = tgui_input_list(user,"Currently set to [host.vore_selected.release_sound]","Select Sound", classic_release_sounds)
 
 			if(!choice)
 				return FALSE
@@ -779,9 +828,9 @@
 		if("b_sound")
 			var/choice
 			if(host.vore_selected.fancy_vore)
-				choice = input(user,"Currently set to [host.vore_selected.vore_sound]","Select Sound") as null|anything in fancy_vore_sounds
+				choice = tgui_input_list(user,"Currently set to [host.vore_selected.vore_sound]","Select Sound", fancy_vore_sounds)
 			else
-				choice = input(user,"Currently set to [host.vore_selected.vore_sound]","Select Sound") as null|anything in classic_vore_sounds
+				choice = tgui_input_list(user,"Currently set to [host.vore_selected.vore_sound]","Select Sound", classic_vore_sounds)
 
 			if(!choice)
 				return FALSE
@@ -812,6 +861,9 @@
 				to_chat(user,"<span class='notice'>Invalid size.</span>")
 			else if(new_bulge)
 				host.vore_selected.bulge_size = (new_bulge/100)
+			. = TRUE
+		if("b_display_absorbed_examine")
+			host.vore_selected.display_absorbed_examine = !host.vore_selected.display_absorbed_examine
 			. = TRUE
 		if("b_grow_shrink")
 			var/new_grow = input(user, "Choose the size that prey will be grown/shrunk to, ranging from 25% to 200%", "Set Growth Shrink Size.", host.vore_selected.shrink_grow_size) as num|null
@@ -868,7 +920,7 @@
 				host.vore_selected.escapable = 0
 				to_chat(usr,"<span class='warning'>Prey will not be able to have special interactions with your [lowertext(host.vore_selected.name)].</span>")
 			else
-				alert("Something went wrong. Your stomach will now not have special interactions. Press the button enable them again and tell a dev.","Error") //If they somehow have a varable that's not 0 or 1
+				tgui_alert_async(usr, "Something went wrong. Your stomach will now not have special interactions. Press the button enable them again and tell a dev.","Error") //If they somehow have a varable that's not 0 or 1
 				host.vore_selected.escapable = 0
 			. = TRUE
 		if("b_escapechance")
@@ -887,7 +939,7 @@
 				host.vore_selected.transferchance = sanitize_integer(transfer_chance_input, 0, 100, initial(host.vore_selected.transferchance))
 			. = TRUE
 		if("b_transferlocation")
-			var/obj/belly/choice = input("Where do you want your [lowertext(host.vore_selected.name)] to lead if prey resists?","Select Belly") as null|anything in (host.vore_organs + "None - Remove" - host.vore_selected)
+			var/obj/belly/choice = tgui_input_list(usr, "Where do you want your [lowertext(host.vore_selected.name)] to lead if prey resists?","Select Belly", (host.vore_organs + "None - Remove" - host.vore_selected))
 
 			if(!choice) //They cancelled, no changes
 				return FALSE
@@ -913,15 +965,14 @@
 			host.vore_selected.disable_hud = !host.vore_selected.disable_hud
 			. = TRUE
 		if("b_del")
-			var/alert = alert("Are you sure you want to delete your [lowertext(host.vore_selected.name)]?","Confirmation","Delete","Cancel")
+			var/alert = tgui_alert(usr, "Are you sure you want to delete your [lowertext(host.vore_selected.name)]?","Confirmation",list("Cancel","Delete"))
 			if(!(alert == "Delete"))
 				return FALSE
 
 			var/failure_msg = ""
 
 			var/dest_for //Check to see if it's the destination of another vore organ.
-			for(var/belly in host.vore_organs)
-				var/obj/belly/B = belly
+			for(var/obj/belly/B as anything in host.vore_organs)
 				if(B.transferlocation == host.vore_selected)
 					dest_for = B.name
 					failure_msg += "This is the destiantion for at least '[dest_for]' belly transfers. Remove it as the destination from any bellies before deleting it. "
@@ -935,7 +986,7 @@
 				failure_msg += "You must have at least one belly. "
 
 			if(failure_msg)
-				alert(user,failure_msg,"Error!")
+				tgui_alert_async(user,failure_msg,"Error!")
 				return FALSE
 
 			qdel(host.vore_selected)

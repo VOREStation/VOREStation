@@ -61,7 +61,7 @@ var/global/list/default_medbay_channels = list(
 	var/bs_tx_preload_id
 	var/bs_rx_preload_id
 
-	matter = list("glass" = 25, DEFAULT_WALL_MATERIAL = 75, MAT_COPPER = 15)
+	matter = list(MAT_GLASS = 25,MAT_STEEL = 75)
 	var/const/FREQ_LISTENING = 1
 	var/list/internal_channels
 
@@ -532,7 +532,7 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 	for(var/obj/machinery/telecomms/receiver/R in telecomms_list)
 		R.receive_signal(signal)
 
-		if(signal.data["done"] && pos_z in signal.data["level"])
+		if(signal.data["done"] && (pos_z in signal.data["level"]))
 			if(adhoc_fallback)
 				to_chat(loc, "<span class='notice'>\The [src] pings as it reestablishes subspace communications.</span>")
 				subspace_transmission = TRUE

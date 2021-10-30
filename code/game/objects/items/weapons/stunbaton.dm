@@ -6,8 +6,8 @@
 	item_state = "baton"
 	slot_flags = SLOT_BELT
 	force = 15
-	sharp = 0
-	edge = 0
+	sharp = FALSE
+	edge = FALSE
 	throwforce = 7
 	flags = NOCONDUCT
 	w_class = ITEMSIZE_NORMAL
@@ -30,11 +30,6 @@
 
 /obj/item/weapon/melee/baton/get_cell()
 	return bcell
-
-/obj/item/weapon/melee/baton/suicide_act(mob/user)
-	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
-	user.visible_message("<span class='suicide'>\The [user] is putting the live [name] in [TU.his] mouth! It looks like [TU.he] [TU.is] trying to commit suicide.</span>")
-	return (FIRELOSS)
 
 /obj/item/weapon/melee/baton/MouseDrop(obj/over_object as obj)
 	if(!canremove)

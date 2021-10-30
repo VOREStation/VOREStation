@@ -23,6 +23,7 @@
 	name = T_BOARD("grounding rod")
 	build_path = /obj/machinery/power/grounding_rod
 	board_type = new /datum/frame/frame_types/machine
+	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
 	req_components = list()
 
 /datum/category_item/autolathe/engineering/grounding_rod

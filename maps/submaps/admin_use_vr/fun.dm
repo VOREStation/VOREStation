@@ -17,6 +17,8 @@
 	power_equip = FALSE
 	power_environ = FALSE
 	power_light = FALSE
+	base_turf = /turf/simulated/mineral/floor/cave
+
 /area/submap/admin_upload/pow
 	name = "\improper Unknown Area AU+P"
 	requires_power = 0
@@ -195,16 +197,15 @@
 
 // This is a stationary overmap sector, you can spawn it in any zlevel and it will pop onto the overmap to represent those zlevels. It always moves to 2,2 on the overmap and you can move it elsewhere.
 /obj/effect/overmap/visitable/admin_use
-	name = "space destination"
+	name = "REPLACE ME"
 	desc = "Some space destination!"
-	scanner_name = "REPLACE ME"
 	scanner_desc = @{"[i]Registration[/i]: REPLACE ME
 [i]Class[/i]: REPLACE ME
 [i]Transponder[/i]: REPLACE ME
 [b]Notice[/b]: REPLACE ME"} //Uses the paper/book syntax
 	start_x = 2
 	start_y = 2
-	known = 0
+	known = FALSE
 
 // It notifies admins when you spawn it and gives you a 'JMP' and 'VV' link in the message so you can find it easily.
 /obj/effect/overmap/visitable/admin_use/Initialize()
@@ -213,9 +214,8 @@
 
 // This is the same, but makes a whole spaceship!
 /obj/effect/overmap/visitable/ship/admin_use
-	name = "spacecraft"
+	name = "REPLACE ME"
 	desc = "Spacefaring vessel."
-	scanner_name = "REPLACE ME"
 	scanner_desc = @{"[i]Registration[/i]: REPLACE ME
 [i]Class[/i]: REPLACE ME
 [i]Transponder[/i]: REPLACE ME
@@ -225,7 +225,7 @@
 	fore_dir = NORTH //You may need to edit this ingame if you want your ship to fly correctly!
 	start_x = 2
 	start_y = 2
-	known = 0
+	known = FALSE
 
 // Similarly notifies you
 /obj/effect/overmap/visitable/ship/admin_use/Initialize()

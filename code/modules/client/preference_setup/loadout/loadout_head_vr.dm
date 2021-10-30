@@ -48,3 +48,15 @@
 /datum/gear/head/tigerpeltpink
 	display_name = "pink tiger pelt"
 	path = /obj/item/clothing/head/pelt/tigerpeltpink
+
+/*
+Talon hats
+*/
+/datum/gear/head/cap/talon
+	display_name = "cap, Talon"
+	path = /obj/item/clothing/head/soft/talon
+
+/datum/gear/head/beret/talon
+	display_name = "beret, Talon"
+	path = /obj/item/clothing/head/beret
+

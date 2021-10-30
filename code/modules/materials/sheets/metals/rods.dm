@@ -10,7 +10,7 @@
 	throw_range = 20
 	drop_sound = 'sound/items/drop/metalweapon.ogg'
 	pickup_sound = 'sound/items/pickup/metalweapon.ogg'
-	matter = list(DEFAULT_WALL_MATERIAL = SHEET_MATERIAL_AMOUNT / 2)
+	matter = list(MAT_STEEL = SHEET_MATERIAL_AMOUNT / 2)
 	max_amount = 60
 	attack_verb = list("hit", "bludgeoned", "whacked")
 
@@ -67,7 +67,7 @@ var/global/list/datum/stack_recipe/rods_recipes = list( \
 		var/obj/item/stack/medical/splint/ghetto/new_splint = new(get_turf(user))
 		new_splint.add_fingerprint(user)
 
-		user.visible_message("<span class='notice'>\The [user] constructs \a [new_splint] out of a [singular_name].</span>", \
+		user.visible_message("<b>\The [user]</b> constructs \a [new_splint] out of a [singular_name].", \
 				"<span class='notice'>You use make \a [new_splint] out of a [singular_name].</span>")
 		src.use(1)
 		return
@@ -84,7 +84,7 @@ var/global/list/datum/stack_recipe/rods_recipes = list( \
 		for(var/obj/structure/grille/G in usr.loc)
 			if (G.destroyed)
 				G.health = 10
-				G.density = 1
+				G.density = TRUE
 				G.destroyed = 0
 				G.icon_state = "grille"
 				use(1)

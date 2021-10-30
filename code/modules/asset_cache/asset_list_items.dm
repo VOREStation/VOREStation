@@ -1,10 +1,17 @@
 //DEFINITIONS FOR ASSET DATUMS START HERE.
+/datum/asset/simple/tgui_common
+	// keep_local_name = TRUE
+	assets = list(
+		"tgui-common.bundle.js" = file("tgui/public/tgui-common.bundle.js"),
+	)
 
 /datum/asset/simple/tgui
+	// keep_local_name = TRUE
 	assets = list(
-		"tgui.bundle.js" = 'tgui/packages/tgui/public/tgui.bundle.js',
-		"tgui.bundle.css" = 'tgui/packages/tgui/public/tgui.bundle.css',
+		"tgui.bundle.js" = file("tgui/public/tgui.bundle.js"),
+		"tgui.bundle.css" = file("tgui/public/tgui.bundle.css"),
 	)
+
 
 /datum/asset/simple/headers
 	assets = list(
@@ -174,6 +181,14 @@
 		"font-awesome.css"    = 'html/font-awesome/css/all.min.css',
 		"v4shim.css"          = 'html/font-awesome/css/v4-shims.min.css'
 	)
+
+/datum/asset/simple/tgfont
+	assets = list(
+		"tgfont.eot" = file("tgui/packages/tgfont/dist/tgfont.eot"),
+		"tgfont.woff2" = file("tgui/packages/tgfont/dist/tgfont.woff2"),
+		"tgfont.css" = file("tgui/packages/tgfont/dist/tgfont.css"),
+	)
+
 
 // /datum/asset/spritesheet/goonchat
 // 	name = "chat"
@@ -360,8 +375,7 @@
 
 /datum/asset/spritesheet/vending/register()
 	populate_vending_products()
-	for(var/k in GLOB.vending_products)
-		var/atom/item = k
+	for(var/atom/item as anything in GLOB.vending_products)
 		if(!ispath(item, /atom))
 			continue
 
@@ -373,14 +387,6 @@
 		if(ispath(item, /obj/item/weapon/reagent_containers/food/drinks/glass2) && !ispath(item, /obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask))
 			var/obj/item/weapon/reagent_containers/food/drinks/glass2/G = item
 			icon_state = initial(G.base_icon)
-		if(ispath(item, /obj/item/clothing/suit))
-			var/obj/item/clothing/suit/U = item
-			if(initial(U.index))
-				icon_file = "icons/obj/clothing/suits_[initial(U.index)].dmi"
-		if(ispath(item, /obj/item/clothing/under))
-			var/obj/item/clothing/under/U = item
-			if(initial(U.index))
-				icon_file = "icons/obj/clothing/uniforms_[initial(U.index)].dmi"
 		if(ispath(item, /obj/item/weapon/reagent_containers/hypospray/autoinjector))
 			icon_state += "0"
 

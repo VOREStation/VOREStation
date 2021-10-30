@@ -32,11 +32,10 @@
 	if(shifted_out)
 		shifted_out = FALSE
 		name = real_name
-		for(var/belly in vore_organs)
-			var/obj/belly/B = belly
+		for(var/obj/belly/B as anything in vore_organs)
 			B.escapable = initial(B.escapable)
 
-		overlays.Cut()
+		cut_overlays()
 		alpha = initial(alpha)
 		invisibility = initial(invisibility)
 		see_invisible = initial(see_invisible)
@@ -89,11 +88,10 @@
 		name = "Something"
 		health = maxHealth	//Fullheal
 
-		for(var/belly in vore_organs)
-			var/obj/belly/B = belly
+		for(var/obj/belly/B as anything in vore_organs)
 			B.escapable = FALSE
 
-		overlays.Cut()
+		cut_overlays()
 		flick("phaseout",src)
 		sleep(30)
 		invisibility = INVISIBILITY_LEVEL_TWO
@@ -145,11 +143,10 @@
 	real_name = name
 	name = "Something"
 
-	for(var/belly in vore_organs)
-		var/obj/belly/B = belly
+	for(var/obj/belly/B as anything in vore_organs)
 		B.escapable = FALSE
 
-	overlays.Cut()
+	cut_overlays()
 	flick("phaseout",src)
 	sleep(30)
 	invisibility = INVISIBILITY_LEVEL_TWO
@@ -166,11 +163,10 @@
 	spawn(300)
 		shifted_out = FALSE
 		name = real_name
-		for(var/belly in vore_organs)
-			var/obj/belly/B = belly
+		for(var/obj/belly/B as anything in vore_organs)
 			B.escapable = initial(B.escapable)
 
-		overlays.Cut()
+		cut_overlays()
 		alpha = initial(alpha)
 		invisibility = initial(invisibility)
 		see_invisible = initial(see_invisible)

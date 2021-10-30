@@ -10,7 +10,7 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "jar"
 	w_class = ITEMSIZE_SMALL
-	matter = list("glass" = 200)
+	matter = list(MAT_GLASS = 200)
 	flags = NOBLUDGEON
 	var/list/accept_mobs = list(/mob/living/simple_mob/animal/passive/lizard, /mob/living/simple_mob/animal/passive/mouse, /mob/living/simple_mob/animal/sif/leech, /mob/living/simple_mob/animal/sif/frostfly, /mob/living/simple_mob/animal/sif/glitterfly)
 	var/contains = 0 // 0 = nothing, 1 = money, 2 = animal, 3 = spiderling
@@ -86,7 +86,7 @@
 
 /obj/item/glass_jar/update_icon() // Also updates name and desc
 	underlays.Cut()
-	overlays.Cut()
+	cut_overlays()
 	switch(contains)
 		if(JAR_NOTHING)
 			name = initial(name)
@@ -134,11 +134,11 @@
 /obj/item/glass_jar/fish/plastic
 	name = "plastic tank"
 	desc = "A large plastic tank."
-	matter = list("plastic" = 4000)
+	matter = list(MAT_PLASTIC = 4000)
 
 /obj/item/glass_jar/fish/update_icon() // Also updates name and desc
 	underlays.Cut()
-	overlays.Cut()
+	cut_overlays()
 
 	if(filled)
 		underlays += image(icon, "[icon_state]_water")

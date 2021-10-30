@@ -3,8 +3,9 @@
 	desc = "A heavy duty rapid charging system, designed to quickly recharge cyborg power reserves."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "borgcharger0"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
+	unacidable = TRUE
 	circuit = /obj/item/weapon/circuitboard/recharge_station
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 50
@@ -197,20 +198,20 @@
 		desc += "<br>It is capable of repairing burn damage."
 
 /obj/machinery/recharge_station/proc/build_overlays()
-	overlays.Cut()
+	cut_overlay()
 	switch(round(chargepercentage()))
 		if(1 to 20)
-			overlays += image('icons/obj/objects.dmi', "statn_c0")
+			add_overlay("statn_c0")
 		if(21 to 40)
-			overlays += image('icons/obj/objects.dmi', "statn_c20")
+			add_overlay("statn_c20")
 		if(41 to 60)
-			overlays += image('icons/obj/objects.dmi', "statn_c40")
+			add_overlay("statn_c40")
 		if(61 to 80)
-			overlays += image('icons/obj/objects.dmi', "statn_c60")
+			add_overlay("statn_c60")
 		if(81 to 98)
-			overlays += image('icons/obj/objects.dmi', "statn_c80")
+			add_overlay("statn_c80")
 		if(99 to 110)
-			overlays += image('icons/obj/objects.dmi', "statn_c100")
+			add_overlay("statn_c100")
 
 /obj/machinery/recharge_station/update_icon()
 	..()

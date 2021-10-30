@@ -10,7 +10,7 @@
 	throw_speed = 2
 	throw_range = 5
 	origin_tech = list(TECH_MATERIAL = 1)
-	matter = list(DEFAULT_WALL_MATERIAL = 500)
+	matter = list(MAT_STEEL = 500)
 	drop_sound = 'sound/items/drop/accessory.ogg'
 	pickup_sound = 'sound/items/pickup/accessory.ogg'
 	var/elastic
@@ -301,7 +301,7 @@ var/last_chew = 0
 		return 1
 
 /obj/item/weapon/handcuffs/legcuffs/bola/dropped()
-	visible_message("<span class='notice'>\The [src] falls apart!</span>")
+	visible_message("<b>\The [src]</b> falls apart!")
 	qdel(src)
 
 /obj/item/weapon/handcuffs/legcuffs/bola/place_legcuffs(var/mob/living/carbon/target, var/mob/user)
@@ -313,7 +313,7 @@ var/last_chew = 0
 		return 0
 
 	if(!H.has_organ_for_slot(slot_legcuffed))
-		H.visible_message("<span class='notice'>\The [src] slams into [H], but slides off!</span>")
+		H.visible_message("<b>\The [src]</b> slams into [H], but slides off!")
 		src.dropped()
 		return 0
 
@@ -329,3 +329,8 @@ var/last_chew = 0
 		if(target.hud_used && user.hud_used.move_intent)
 			target.hud_used.move_intent.icon_state = "walking"
 	return 1
+
+/obj/item/weapon/handcuffs/cable/plantfiber
+	name = "rope bindings"
+	desc = "A length of rope fashioned to hold someone's hands together."
+	color = "#7e6442"

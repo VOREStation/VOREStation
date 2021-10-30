@@ -47,7 +47,7 @@
 /datum/unit_test/research_designs_have_valid_materials/start_test()
 	var/number_of_issues = 0
 
-	for(var/design_type in typesof(/datum/design) - /datum/design)
+	for(var/design_type in subtypesof(/datum/design))
 		var/datum/design/design = design_type
 		if(initial(design.id) == "id")
 			continue

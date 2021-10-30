@@ -79,32 +79,50 @@
 		pref.pos_traits.Cut()
 		pref.neg_traits.Cut()
 	// Clean up positive traits
-	for(var/path in pref.pos_traits)
+	for(var/datum/trait/path as anything in pref.pos_traits)
 		if(!(path in positive_traits))
 			pref.pos_traits -= path
+			continue
+		var/take_flags = initial(path.can_take)
+		if((pref.dirty_synth && !(take_flags & SYNTHETICS)) || (pref.gross_meatbag && !(take_flags & ORGANICS)))
+			pref.pos_traits -= path
 	//Neutral traits
-	for(var/path in pref.neu_traits)
+	for(var/datum/trait/path as anything in pref.neu_traits)
 		if(!(path in neutral_traits))
 			pref.neu_traits -= path
+			continue
 		if(!(pref.species == SPECIES_CUSTOM) && !(path in everyone_traits))
 			pref.neu_traits -= path
+			continue
+		var/take_flags = initial(path.can_take)
+		if((pref.dirty_synth && !(take_flags & SYNTHETICS)) || (pref.gross_meatbag && !(take_flags & ORGANICS)))
+			pref.neu_traits -= path
 	//Negative traits
-	for(var/path in pref.neg_traits)
+	for(var/datum/trait/path as anything in pref.neg_traits)
 		if(!(path in negative_traits))
 			pref.neg_traits -= path
-
+			continue
+		var/take_flags = initial(path.can_take)
+		if((pref.dirty_synth && !(take_flags & SYNTHETICS)) || (pref.gross_meatbag && !(take_flags & ORGANICS)))
+			pref.neg_traits -= path
+	
 	var/datum/species/selected_species = GLOB.all_species[pref.species]
 	if(selected_species.selects_bodytype)
 		// Allowed!
 	else if(!pref.custom_base || !(pref.custom_base in GLOB.custom_species_bases))
 		pref.custom_base = SPECIES_HUMAN
 
+	pref.custom_say = lowertext(trim(pref.custom_say))
+	pref.custom_whisper = lowertext(trim(pref.custom_whisper))
+	pref.custom_ask = lowertext(trim(pref.custom_ask))
+	pref.custom_exclaim = lowertext(trim(pref.custom_exclaim))
+
 /datum/category_item/player_setup_item/vore/traits/copy_to_mob(var/mob/living/carbon/human/character)
 	character.custom_species	= pref.custom_species
-	character.custom_say		= pref.custom_say
-	character.custom_ask		= pref.custom_ask
-	character.custom_whisper	= pref.custom_whisper
-	character.custom_exclaim	= pref.custom_exclaim
+	character.custom_say		= lowertext(trim(pref.custom_say))
+	character.custom_ask		= lowertext(trim(pref.custom_ask))
+	character.custom_whisper	= lowertext(trim(pref.custom_whisper))
+	character.custom_exclaim	= lowertext(trim(pref.custom_exclaim))
 
 	if(character.isSynthetic())	//Checking if we have a synth on our hands, boys.
 		pref.dirty_synth = 1
@@ -186,12 +204,6 @@
 		return TOPIC_NOACTION
 
 	else if(href_list["custom_species"])
-		/*if(pref.species != "Custom Species")
-			alert("You cannot set a custom species name unless you set your character to use the 'Custom Species' \
-			species on the 'General' tab. If you have this set to something, it's because you had it set before the \
-			Trait system was implemented. If you wish to change it, set your species to 'Custom Species' and configure \
-			the species completely.")
-			return TOPIC_REFRESH*/ //There was no reason to have this.
 		var/raw_choice = sanitize(input(user, "Input your custom species name:",
 			"Character Preference", pref.custom_species) as null|text, MAX_NAME_LEN)
 		if (CanUseTopic(user))
@@ -202,40 +214,40 @@
 		var/list/choices = GLOB.custom_species_bases
 		if(pref.species != SPECIES_CUSTOM)
 			choices = (choices | pref.species)
-		var/text_choice = input("Pick an icon set for your species:","Icon Base") in choices
+		var/text_choice = tgui_input_list(usr, "Pick an icon set for your species:","Icon Base", choices)
 		if(text_choice in choices)
 			pref.custom_base = text_choice
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["blood_color"])
-		var/color_choice = input("Pick a blood color (does not apply to synths)","Blood Color",pref.blood_color) as color
+		var/color_choice = input(usr, "Pick a blood color (does not apply to synths)","Blood Color",pref.blood_color) as color
 		if(color_choice)
 			pref.blood_color = sanitize_hexcolor(color_choice, default="#A10808")
 		return TOPIC_REFRESH
 
 	else if(href_list["blood_reset"])
-		var/choice = alert("Reset blood color to human default (#A10808)?","Reset Blood Color","Reset","Cancel")
+		var/choice = tgui_alert(usr, "Reset blood color to human default (#A10808)?","Reset Blood Color",list("Reset","Cancel"))
 		if(choice == "Reset")
 			pref.blood_color = "#A10808"
 		return TOPIC_REFRESH
 
 	else if(href_list["clicked_pos_trait"])
 		var/datum/trait/trait = text2path(href_list["clicked_pos_trait"])
-		var/choice = alert("Remove [initial(trait.name)] and regain [initial(trait.cost)] points?","Remove Trait","Remove","Cancel")
+		var/choice = tgui_alert(usr, "Remove [initial(trait.name)] and regain [initial(trait.cost)] points?","Remove Trait",list("Remove","Cancel"))
 		if(choice == "Remove")
 			pref.pos_traits -= trait
 		return TOPIC_REFRESH
 
 	else if(href_list["clicked_neu_trait"])
 		var/datum/trait/trait = text2path(href_list["clicked_neu_trait"])
-		var/choice = alert("Remove [initial(trait.name)]?","Remove Trait","Remove","Cancel")
+		var/choice = tgui_alert(usr, "Remove [initial(trait.name)]?","Remove Trait",list("Remove","Cancel"))
 		if(choice == "Remove")
 			pref.neu_traits -= trait
 		return TOPIC_REFRESH
 
 	else if(href_list["clicked_neg_trait"])
 		var/datum/trait/trait = text2path(href_list["clicked_neg_trait"])
-		var/choice = alert("Remove [initial(trait.name)] and lose [initial(trait.cost)] points?","Remove Trait","Remove","Cancel")
+		var/choice = tgui_alert(usr, "Remove [initial(trait.name)] and lose [initial(trait.cost)] points?","Remove Trait",list("Remove","Cancel"))
 		if(choice == "Remove")
 			pref.neg_traits -= trait
 		return TOPIC_REFRESH
@@ -301,18 +313,27 @@
 
 		var/traits_left = pref.max_traits - (pref.pos_traits.len + pref.neg_traits.len)
 
+		var/message = "Select a trait to learn more."
+		if(mode != NEUTRAL_MODE)
+			message = "\[Remaining: [points_left] points, [traits_left] traits\]\n" + message
+		var/title = "Traits"
+		switch(mode)
+			if(POSITIVE_MODE)
+				title = "Positive Traits"
+			if(NEUTRAL_MODE)
+				title = "Neutral Traits"
+			if(NEGATIVE_MODE)
+				title = "Negative Traits"
+
 		var/trait_choice
 		var/done = FALSE
 		while(!done)
-			var/message = "\[Remaining: [points_left] points, [traits_left] traits\] Select a trait to read the description and see the cost."
-			trait_choice = input(message,"Trait List") as null|anything in nicelist
+			trait_choice = tgui_input_list(usr, message, title, nicelist)
 			if(!trait_choice)
 				done = TRUE
 			if(trait_choice in nicelist)
 				var/datum/trait/path = nicelist[trait_choice]
-				var/choice = alert("\[Cost:[initial(path.cost)]\] [initial(path.desc)]",initial(path.name),"Take Trait","Cancel","Go Back")
-				if(choice == "Cancel")
-					trait_choice = null
+				var/choice = tgui_alert(usr, "\[Cost:[initial(path.cost)]\] [initial(path.desc)]",initial(path.name), list("Take Trait","Go Back"))
 				if(choice != "Go Back")
 					done = TRUE
 
@@ -325,21 +346,21 @@
 			var/conflict = FALSE
 
 			if(pref.dirty_synth && !(instance.can_take & SYNTHETICS))
-				alert("The trait you've selected can only be taken by organic characters!","Error")
+				tgui_alert_async(usr, "The trait you've selected can only be taken by organic characters!", "Error")
 				pref.dirty_synth = 0	//Just to be sure
 				return TOPIC_REFRESH
 
 			if(pref.gross_meatbag && !(instance.can_take & ORGANICS))
-				alert("The trait you've selected can only be taken by synthetic characters!","Error")
+				tgui_alert_async(usr, "The trait you've selected can only be taken by synthetic characters!", "Error")
 				pref.gross_meatbag = 0	//Just to be sure
 				return TOPIC_REFRESH
 
 			if(pref.species in instance.banned_species)
-				alert("The trait you've selected cannot be taken by the species you've chosen!","Error")
+				tgui_alert_async(usr, "The trait you've selected cannot be taken by the species you've chosen!", "Error")
 				return TOPIC_REFRESH
 
-			if( LAZYLEN(instance.allowed_species) && !(pref.species in instance.allowed_species)) //Adding white list handling -shark
-				alert("The trait you've selected cannot be taken by the species you've chosen!","Error")
+			if( LAZYLEN(instance.allowed_species) && !(pref.species in instance.allowed_species))
+				tgui_alert_async(usr, "The trait you've selected cannot be taken by the species you've chosen!", "Error")
 				return TOPIC_REFRESH
 
 			if(trait_choice in pref.pos_traits + pref.neu_traits + pref.neg_traits)
@@ -358,8 +379,7 @@
 							break varconflict
 
 			if(conflict)
-				alert("You cannot take this trait and [conflict] at the same time. \
-				Please remove that trait, or pick another trait to add.","Error")
+				tgui_alert_async(usr, "You cannot take this trait and [conflict] at the same time. Please remove that trait, or pick another trait to add.", "Error")
 				return TOPIC_REFRESH
 
 			mylist += path

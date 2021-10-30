@@ -7,6 +7,13 @@
 	extra_view = 4
 	var/obj/machinery/shipsensors/sensors
 
+// fancy sprite
+/obj/machinery/computer/ship/sensors/adv
+	icon_keyboard = null
+	icon_state = "adv_sensors"
+	icon_screen = "adv_sensors_screen"
+	light_color = "#05A6A8"
+
 /obj/machinery/computer/ship/sensors/attempt_hook_up(obj/effect/overmap/visitable/ship/sector)
 	if(!(. = ..()))
 		return
@@ -99,7 +106,7 @@
 	if(sensors)
 		switch(action)
 			if("range")
-				var/nrange = input("Set new sensors range", "Sensor range", sensors.range) as num|null
+				var/nrange = input(usr, "Set new sensors range", "Sensor range", sensors.range) as num|null
 				if(tgui_status(usr, state) != STATUS_INTERACTIVE)
 					return FALSE
 				if(nrange)
@@ -118,16 +125,17 @@
 		return
 	if(sensors && sensors.use_power && sensors.powered())
 		var/sensor_range = round(sensors.range*1.5) + 1
-		linked.set_light(sensor_range + 0.5, 4)
+		linked.set_light_range(sensor_range + 0.5)
+		linked.set_light_on(TRUE)
 	else
-		linked.set_light(0)
+		linked.set_light_on(FALSE)
 
 /obj/machinery/shipsensors
 	name = "sensors suite"
 	desc = "Long range gravity scanner with various other sensors, used to detect irregularities in surrounding space. Can only run in vacuum to protect delicate quantum BS elements." //VOREStation Edit
 	icon = 'icons/obj/stationobjs_vr.dmi' //VOREStation Edit
 	icon_state = "sensors"
-	anchored = 1
+	anchored = TRUE
 	var/max_health = 200
 	var/health = 200
 	var/critical_heat = 50 // sparks and takes damage when active & above this heat

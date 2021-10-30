@@ -206,6 +206,7 @@
 		/obj/item/clothing/under/rank/scientist/skirt = 2,
 		/obj/item/clothing/under/rank/scientist/turtleneck = 3,
 		/obj/item/clothing/suit/storage/toggle/labcoat = 3,
+		/obj/item/clothing/suit/storage/toggle/labcoat/modern = 3,
 		/obj/item/clothing/shoes/white = 3,
 		/obj/item/clothing/shoes/slippers = 3,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/science,
@@ -363,8 +364,11 @@
 		/obj/item/clothing/under/pants/khaki,
 		/obj/item/clothing/mask/bandana/blue,
 		/obj/item/clothing/mask/bandana/blue,
-		/obj/item/clothing/accessory/hawaii,
-		/obj/item/clothing/accessory/hawaii/random)
+		/obj/item/clothing/accessory/hawaiian,
+		/obj/item/clothing/accessory/hawaiian/blue,
+		/obj/item/clothing/accessory/hawaiian/pink,
+		/obj/item/clothing/accessory/hawaiian/red,
+		/obj/item/clothing/accessory/hawaiian/yellow)
 
 
 /obj/structure/closet/wardrobe/tactical
@@ -457,7 +461,7 @@
 		/obj/item/clothing/suit/storage/hooded/wintercoat/captain,
 		/obj/item/clothing/shoes/boots/winter/command,
 		/obj/item/clothing/head/beret/centcom/captain,
-		/obj/item/clothing/under/gimmick/rank/captain/suit,
-		/obj/item/clothing/under/gimmick/rank/captain/suit/skirt,
+		/obj/item/clothing/under/suit_jacket/green,
+		/obj/item/clothing/under/suit_jacket/green/skirt,
 		/obj/item/clothing/glasses/sunglasses,
 		/obj/item/clothing/head/caphat)

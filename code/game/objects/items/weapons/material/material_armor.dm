@@ -33,7 +33,7 @@ Protectiveness | Armor %
 	var/default_material = null // Set this to something else if you want material attributes on init.
 	var/material_armor_modifier = 1 // Adjust if you want seperate types of armor made from the same material to have different protectiveness (e.g. makeshift vs real armor)
 	var/material_slowdown_modifier = 0
-	var/material_slowdown_multiplier = 1
+	var/material_slowdown_multiplier = 0.5
 
 /obj/item/clothing/New(var/newloc, var/material_key)
 	..(newloc)
@@ -201,7 +201,7 @@ Protectiveness | Armor %
 
 /obj/item/clothing/suit/armor/material
 	name = "armor"
-	default_material = DEFAULT_WALL_MATERIAL
+	default_material = MAT_STEEL
 
 /obj/item/clothing/suit/armor/material/makeshift
 	name = "sheet armor"
@@ -217,7 +217,7 @@ Protectiveness | Armor %
 	slot = ACCESSORY_SLOT_ARMOR_C
 	material_armor_modifier = 0.8
 	material_slowdown_modifier = 0.5 //Subtracted from total slowdown
-	material_slowdown_multiplier = 0.8 //Multiplied by total slowdown
+	material_slowdown_multiplier = 0.4 //Multiplied by total slowdown
 
 /obj/item/clothing/accessory/material/makeshift/heavy //Craftable with 8 material sheets, more slowdown, more armour
 	name = "heavy armor plate"
@@ -228,7 +228,7 @@ Protectiveness | Armor %
 	slot = ACCESSORY_SLOT_ARMOR_C
 	material_armor_modifier = 1.2
 	material_slowdown_modifier = 0
-	material_slowdown_multiplier = 1
+	material_slowdown_multiplier = 0.5
 
 /obj/item/clothing/accessory/material/custom //Not yet craftable, advanced version made with science!
 	name = "custom armor plate"
@@ -239,7 +239,7 @@ Protectiveness | Armor %
 	slot = ACCESSORY_SLOT_ARMOR_C
 	material_armor_modifier = 1.2
 	material_slowdown_modifier = 0.5
-	material_slowdown_multiplier = 0.8
+	material_slowdown_multiplier = 0.4
 
 /obj/item/clothing/accessory/material/makeshift/armguards
 	name = "arm guards"
@@ -253,7 +253,7 @@ Protectiveness | Armor %
 	slot = ACCESSORY_SLOT_ARMOR_A
 	material_armor_modifier = 0.8
 	material_slowdown_modifier = 0.8
-	material_slowdown_multiplier = 0.8
+	material_slowdown_multiplier = 0.4
 
 /obj/item/clothing/accessory/material/makeshift/legguards
 	name = "leg guards"
@@ -267,7 +267,7 @@ Protectiveness | Armor %
 	slot = ACCESSORY_SLOT_ARMOR_L
 	material_armor_modifier = 0.8
 	material_slowdown_modifier = 0.8
-	material_slowdown_multiplier = 0.8
+	material_slowdown_multiplier = 0.4
 
 /obj/item/clothing/suit/armor/material/makeshift/durasteel
 	default_material = "durasteel"
@@ -288,7 +288,9 @@ Protectiveness | Armor %
 
 /obj/item/weapon/material/armor_plating/insert
 	unbreakable = FALSE
-
+	name = "plate insert"
+	desc = "used to craft armor plates for a plate carrier. Trim with a welder for light armor or add a second for heavy armor"
+	
 /obj/item/weapon/material/armor_plating/attackby(var/obj/O, mob/user)
 	if(istype(O, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/S = O
@@ -399,7 +401,7 @@ Protectiveness | Armor %
 /obj/item/clothing/head/helmet/material
 	name = "helmet"
 	flags_inv = HIDEEARS|HIDEEYES|BLOCKHAIR
-	default_material = DEFAULT_WALL_MATERIAL
+	default_material = MAT_STEEL
 
 /obj/item/clothing/head/helmet/material/makeshift
 	name = "bucket"

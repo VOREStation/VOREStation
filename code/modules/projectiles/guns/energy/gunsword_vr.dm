@@ -7,7 +7,7 @@
 
 	icon_override = 'icons/vore/custom_guns_vr.dmi'
 	item_state = "gbuster"
-	item_icons = list(slot_r_hand_str = 'icons/vore/custom_guns_vr.dmi', slot_l_hand_str = 'icons/vore/custom_guns_vr.dmi', "slot_belt" = 'icons/mob/belt_vr.dmi')
+	item_icons = list(slot_r_hand_str = 'icons/vore/custom_guns_vr.dmi', slot_l_hand_str = 'icons/vore/custom_guns_vr.dmi', "slot_belt" = 'icons/inventory/belt/mob_vr.dmi')
 
 	w_class = ITEMSIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 4)
@@ -48,8 +48,8 @@
 	var/active_throwforce = 20
 	var/active_w_class = ITEMSIZE_LARGE
 	var/active_embed_chance = 0		//In the off chance one of these is supposed to embed, you can just tweak this var
-	sharp = 0
-	edge = 0
+	sharp = FALSE
+	edge = FALSE
 	armor_penetration = 50
 	flags = NOBLOODY
 	var/lrange = 2
@@ -66,8 +66,8 @@
 	embed_chance = active_embed_chance
 	force = active_force
 	throwforce = active_throwforce
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 	w_class = active_w_class
 	playsound(src, 'sound/weapons/saberon.ogg', 50, 1)
 	set_light(lrange, lpower, lcolor)
@@ -89,7 +89,7 @@
 	edge = initial(edge)
 	w_class = initial(w_class)
 	set_light(0,0)
-	attack_verb = list()
+	attack_verb = null
 
 
 /obj/item/weapon/cell/device/weapon/gunsword/attack_self(mob/living/user as mob)
@@ -115,12 +115,5 @@
 	add_fingerprint(user)
 	return
 
-/obj/item/weapon/cell/device/weapon/gunsword/suicide_act(mob/user)
-	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
-	if(active)
-		user.visible_message(pick("<span class='danger'>\The [user] is slitting [TU.his] stomach open with \the [src]! It looks like [TU.he] [TU.is] trying to commit seppuku.</span>",\
-			"<span class='danger'>\The [user] is falling on \the [src]! It looks like [TU.he] [TU.is] trying to commit suicide.</span>"))
-		return (BRUTELOSS|FIRELOSS)
-
 /obj/item/weapon/cell/device/weapon/gunsword/update_icon()
-	overlays.Cut()
+	cut_overlays()

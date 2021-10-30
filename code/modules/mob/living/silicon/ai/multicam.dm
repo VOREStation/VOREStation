@@ -70,7 +70,7 @@
 			M.Scale(x_scale, y_scale)
 			M.Translate(x_off, y_off)
 			dir.transform = M
-			overlays += dir
+			add_overlay(dir)
 
 /obj/screen/movable/pic_in_pic/ai/set_view_size(width, height, do_refresh = TRUE)
 	if(!aiEye) // Exploit fix
@@ -102,7 +102,7 @@
 		qdel(src)
 		return
 	highlighted = TRUE
-	overlays.Cut()
+	cut_overlays()
 	add_background()
 	add_buttons()
 
@@ -113,7 +113,7 @@
 		qdel(src)
 		return
 	highlighted = FALSE
-	overlays.Cut()
+	cut_overlays()
 	add_background()
 	add_buttons()
 
@@ -153,7 +153,7 @@ Whatever you did that made the last camera window disappear-- don't do that agai
 	. = ..()
 
 /area/ai_multicam_room
-	name = "ai_multicam_room"
+	name = "AI Multicam Room"
 	icon_state = "ai_camera_room"
 	dynamic_lighting = FALSE
 	ambience = list()
@@ -202,10 +202,8 @@ GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
 	var/list/obj/machinery/camera/add = list()
 	var/list/obj/machinery/camera/remove = list()
 	var/list/obj/machinery/camera/visible = list()
-	for(var/VV in visibleChunks)
-		var/datum/chunk/camera/CC = VV
-		for(var/V in CC.cameras)
-			var/obj/machinery/camera/C = V
+	for(var/datum/chunk/camera/CC as anything in visibleChunks)
+		for(var/obj/machinery/camera/C as anything in CC.cameras)
 			if (!C.can_use() || (get_dist(C, src) > telegraph_range))
 				continue
 			visible |= C
@@ -213,15 +211,13 @@ GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
 	add = visible - cameras_telegraphed
 	remove = cameras_telegraphed - visible
 
-	for(var/V in remove)
-		var/obj/machinery/camera/C = V
+	for(var/obj/machinery/camera/C as anything in remove)
 		if(QDELETED(C))
 			continue
 		cameras_telegraphed -= C
 		C.in_use_lights--
 		C.update_icon()
-	for(var/V in add)
-		var/obj/machinery/camera/C = V
+	for(var/obj/machinery/camera/C as anything in add)
 		if(QDELETED(C))
 			continue
 		cameras_telegraphed |= C
@@ -230,8 +226,7 @@ GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
 
 /mob/observer/eye/aiEye/pic_in_pic/proc/disable_camera_telegraphing()
 	telegraph_cameras = FALSE
-	for(var/V in cameras_telegraphed)
-		var/obj/machinery/camera/C = V
+	for(var/obj/machinery/camera/C as anything in cameras_telegraphed)
 		if(QDELETED(C))
 			continue
 		C.in_use_lights--
@@ -291,8 +286,7 @@ GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
 /mob/living/silicon/ai/proc/refresh_multicam()
 	reset_view(GLOB.ai_camera_room_landmark)
 	if(client)
-		for(var/V in multicam_screens)
-			var/obj/screen/movable/pic_in_pic/P = V
+		for(var/obj/screen/movable/pic_in_pic/P as anything in multicam_screens)
 			P.show_to(client)
 
 /mob/living/silicon/ai/proc/end_multicam()
@@ -301,8 +295,7 @@ GLOBAL_DATUM(ai_camera_room_landmark, /obj/effect/landmark/ai_multicam_room)
 	multicam_on = FALSE
 	select_main_multicam_window(null)
 	if(client)
-		for(var/V in multicam_screens)
-			var/obj/screen/movable/pic_in_pic/P = V
+		for(var/obj/screen/movable/pic_in_pic/P as anything in multicam_screens)
 			P.unshow_to(client)
 	reset_view()
 	to_chat(src, "<span class='notice'>Multiple-camera viewing mode deactivated.</span>")

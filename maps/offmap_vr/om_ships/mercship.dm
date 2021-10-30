@@ -64,17 +64,18 @@
 // The 'ship'
 /obj/effect/overmap/visitable/ship/mercship
 	name = "Unknown Vessel"
+	icon_state = "moe_destroyer_r"
 	desc = "Spacefaring vessel. No IFF detected."
 	scanner_desc = @{"[i]Registration[/i]: UNKNOWN
 [i]Class[/i]: UNKNOWN
 [i]Transponder[/i]: None Detected
 [b]Notice[/b]: Unregistered vessel"}
-	color = "#f23000" //Red
 	vessel_mass = 8000
 	vessel_size = SHIP_SIZE_SMALL
 	initial_generic_waypoints = list("carrier_fore", "carrier_aft", "carrier_port", "carrier_starboard", "base_dock")
 	initial_restricted_waypoints = list("Carrier's Ship's Boat" = list("omship_spawn_mercboat"))
 
+	unowned_areas = list(/area/shuttle/mercboat)
 
 //The boat's area
 /area/shuttle/mercboat

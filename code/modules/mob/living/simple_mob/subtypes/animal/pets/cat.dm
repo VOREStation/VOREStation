@@ -31,6 +31,7 @@ var/list/_cat_default_emotes = list(
 	name = "cat"
 	desc = "A domesticated, feline pet. Has a tendency to adopt crewmembers."
 	tt_desc = "E Felis silvestris catus"
+	icon = 'icons/mob/pets.dmi'
 	icon_state = "cat2"
 	item_state = "cat2"
 
@@ -151,15 +152,8 @@ var/list/_cat_default_emotes = list(
 	return ..()
 
 /mob/living/simple_mob/animal/passive/cat/black
-	icon_state = "cat"
-	item_state = "cat"
-
-// Leaving this here for now.
-/obj/item/weapon/holder/cat/fluff/bones
-	name = "Bones"
-	desc = "It's Bones! Meow."
-	gender = MALE
 	icon_state = "cat3"
+	item_state = "cat3"
 
 /mob/living/simple_mob/animal/passive/cat/bones
 	name = "Bones"
@@ -170,10 +164,85 @@ var/list/_cat_default_emotes = list(
 	named = TRUE
 	holder_type = /obj/item/weapon/holder/cat/fluff/bones
 
-// VOREStation Edit - Adds generic tactical kittens
-/obj/item/weapon/holder/cat/kitten
-	icon_state = "kitten"
-	w_class = ITEMSIZE_SMALL
+// SPARKLY
+/mob/living/simple_mob/animal/passive/cat/bluespace
+	name = "bluespace cat"
+	desc = "Shiny cat, shiny cat, it's not your fault."
+	tt_desc = "E Felis silvestris argentum"
+	icon_state = "bscat"
+	icon_living = "bscat"
+	icon_rest = null
+	icon_dead = null
+	makes_dirt = 0
+	holder_type = /obj/item/weapon/holder/cat/bluespace
+
+/mob/living/simple_mob/animal/passive/cat/bluespace/death()
+	animate(src, alpha = 0, color = "#0000FF", time = 0.5 SECOND)
+	spawn(0.5 SECOND)
+		qdel(src)
+
+/mob/living/simple_mob/animal/passive/cat/bread
+	name = "bread cat"
+	desc = "Brought lunch to work."
+	tt_desc = "E Felis silvestris breadinum"
+	icon_state = "breadcat"
+	icon_living = "breadcat"
+	icon_rest = "breadcat_rest"
+	icon_dead = "breadcat_dead"
+	//icon_sit = "breadcat_sit"
+	makes_dirt = 0
+	holder_type = /obj/item/weapon/holder/cat/breadcat
+
+/mob/living/simple_mob/animal/passive/cat/original
+	name = "original cat"
+	desc = "Donut steal."
+	tt_desc = "E Felis silvestris originalis"
+	icon_state = "original"
+	icon_living = "original"
+	icon_rest = "original_rest"
+	icon_dead = "original_dead"
+	//icon_sit = "original_sit"
+	makes_dirt = 0
+	holder_type = /obj/item/weapon/holder/cat/original
+
+/mob/living/simple_mob/animal/passive/cat/cak
+	name = "cak"
+	desc = "Optimal combination of things?"
+	tt_desc = "E Felis silvestris dessertus"
+	icon_state = "cak"
+	icon_living = "cak"
+	icon_rest = "cak_rest"
+	icon_dead = "cak_dead"
+	//icon_sit = "cak_sit"
+	makes_dirt = 0
+	holder_type = /obj/item/weapon/holder/cat/cak
+
+/mob/living/simple_mob/animal/passive/cat/space
+	name = "space cat"
+	desc = "Did someone write a song about this cat?"
+	tt_desc = "E Felis silvestris stellaris"
+	icon_state = "spacecat"
+	icon_living = "spacecat"
+	icon_rest = "spacecat_rest"
+	icon_dead = "spacecat_dead"
+	//icon_sit = "spacecat_sit"
+	holder_type = /obj/item/weapon/holder/cat/spacecat
+	makes_dirt = 0
+
+	minbodytemp = 0				// Minimum "okay" temperature in kelvin
+	maxbodytemp = 900			// Maximum of above
+	heat_damage_per_tick = 3	// Amount of damage applied if animal's body temperature is higher than maxbodytemp
+	cold_damage_per_tick = 2	// Same as heat_damage_per_tick, only if the bodytemperature it's lower than minbodytemp
+
+	min_oxy = 0					// Oxygen in moles, minimum, 0 is 'no minimum'
+	max_oxy = 0					// Oxygen in moles, maximum, 0 is 'no maximum'
+	min_tox = 0					// Phoron min
+	max_tox = 0					// Phoron max
+	min_co2 = 0					// CO2 min
+	max_co2 = 0					// CO2 max
+	min_n2 = 0					// N2 min
+	max_n2 = 0					// N2 max
+	unsuitable_atoms_damage = 2	// This damage is taken when atmos doesn't fit all the requirements above
 
 /datum/say_list/cat
 	speak = list("Meow!","Esp!","Purr!","HSSSSS")
@@ -185,7 +254,7 @@ var/list/_cat_default_emotes = list(
 /mob/living/simple_mob/animal/passive/cat/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/weapon/pen) || istype(W, /obj/item/device/flashlight/pen))
 		if(named)
-			to_chat(user, "<span class='notice'>\the [name] already has a name!</span>")
+			to_chat(user, "<span class='notice'>\The [name] already has a name!</span>")
 		else
 			var/tmp_name = sanitizeSafe(input(user, "Give \the [name] a name", "Name"), MAX_NAME_LEN)
 			if(length(tmp_name) > 50)

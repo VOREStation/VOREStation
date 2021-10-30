@@ -47,6 +47,8 @@
 	base_attack_cooldown = 2 SECONDS
 	attacktext = list("gouged", "bit", "cut", "clawed", "whipped")
 
+	organ_names = /decl/mob_organ_names/kururak
+
 	armor = list(
 		"melee" = 30,
 		"bullet" = 15,
@@ -171,7 +173,7 @@
 		if(!choices.len)
 			choices["radial"] = get_turf(src)
 
-		A = input(src,"What do we wish to flash?") in null|choices
+		A = tgui_input_list(src, "What do we wish to flash?", "Target Choice", choices)
 
 
 	visible_message(span("alien","\The [src] flares its tails!"))
@@ -256,7 +258,7 @@
 			to_chat(src, span("warning","There are no viable targets within range..."))
 			return
 
-		A = input(src,"What do we wish to strike?") in null|choices
+		A = tgui_input_list(src, "What do we wish to strike?", "Target Choice", choices)
 
 	if(!A || !src) return
 
@@ -421,3 +423,6 @@
 	evasion = 20
 	bleeding_rate_percent = 0.7
 	attack_speed_percent = 0.8
+
+/decl/mob_organ_names/kururak
+	hit_zones = list("head", "chest", "left foreleg", "right foreleg", "left hind leg", "right hind leg", "far left tail", "far right tail", "left middle tail", "right middle tail")

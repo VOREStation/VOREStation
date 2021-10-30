@@ -30,7 +30,7 @@
 	product = /obj/item/stack/material/plasteel
 
 /datum/alloy/steel
-	metaltag = DEFAULT_WALL_MATERIAL
+	metaltag = MAT_STEEL
 	requires = list(
 		"carbon" = 1,
 		"hematite" = 1
@@ -44,7 +44,7 @@
 		"sand" = 2
 		)
 	product = /obj/item/stack/material/glass/phoronglass
-
+/*
 /datum/alloy/bronze
 	metaltag = "bronze"
 	requires = list(
@@ -52,3 +52,4 @@
 		"tin" = 1
 		)
 	product = /obj/item/stack/material/bronze
+*/

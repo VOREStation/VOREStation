@@ -4,7 +4,7 @@
 
 	// Sanity is mostly handled in chimera_regenerate()
 
-	var/confirm = alert(usr, "Are you sure you want to completely reconstruct your form? This process can take up to twenty minutes, depending on how hungry you are, and you will be unable to move.", "Confirm Regeneration", "Yes", "No")
+	var/confirm = tgui_alert(usr, "Are you sure you want to completely reconstruct your form? This process can take up to twenty minutes, depending on how hungry you are, and you will be unable to move.", "Confirm Regeneration", list("Yes", "No"))
 	if(confirm == "Yes")
 		chimera_regenerate()
 
@@ -91,7 +91,7 @@
 		verbs -= /mob/living/carbon/human/proc/hatch
 		return
 
-	var/confirm = alert(usr, "Are you sure you want to hatch right now? This will be very obvious to anyone in view.", "Confirm Regeneration", "Yes", "No")
+	var/confirm = tgui_alert(usr, "Are you sure you want to hatch right now? This will be very obvious to anyone in view.", "Confirm Regeneration", list("Yes", "No"))
 	if(confirm == "Yes")
 
 		//Dead when hatching
@@ -367,7 +367,7 @@
 			choices += M
 	choices -= src
 
-	var/mob/living/carbon/human/B = input(src,"Who do you wish to bite?") as null|anything in choices
+	var/mob/living/carbon/human/B = tgui_input_list(src, "Who do you wish to bite?", "Suck Blood", choices)
 
 	if(!B || !src || src.stat) return
 
@@ -670,7 +670,7 @@
 		if(!choices.len)
 			to_chat(src,"<span class='warning'>There's nobody nearby to use this on.</span>")
 
-		target = input(src,"Who do you wish to target?","Damage/Remove Prey's Organ") as null|anything in choices
+		target = tgui_input_list(src,"Who do you wish to target?","Damage/Remove Prey's Organ", choices)
 	if(!istype(target))
 		return FALSE
 
@@ -685,7 +685,7 @@
 		if(!choices.len)
 			to_chat(src,"<span class='warning'>There's nobody nearby to use this on.</span>")
 
-		target = input(src,"Who do you wish to target?","Damage/Remove Prey's Organ") as null|anything in choices
+		target = tgui_input_list(src,"Who do you wish to target?","Damage/Remove Prey's Organ", choices)
 	if(!istype(target))
 		return FALSE
 
@@ -700,7 +700,7 @@
 		if(!choices.len)
 			to_chat(src,"<span class='warning'>There's nobody nearby to use this on.</span>")
 
-		target = input(src,"Who do you wish to target?","Damage/Remove Prey's Organ") as null|anything in choices
+		target = tgui_input_list(src,"Who do you wish to target?","Damage/Remove Prey's Organ", choices)
 	if(!istype(target))
 		return FALSE
 
@@ -717,21 +717,21 @@
 		return //Silent, because can_shred does messages.
 
 	//Let them pick any of the target's external organs
-	var/obj/item/organ/external/T_ext = input(src,"What do you wish to severely damage?") as null|anything in T.organs //D for destroy.
+	var/obj/item/organ/external/T_ext = tgui_input_list(src, "What do you wish to severely damage?", "Organ Choice", T.organs) //D for destroy.
 	if(!T_ext) //Picking something here is critical.
 		return
 	if(T_ext.vital)
-		if(alert("Are you sure you wish to severely damage their [T_ext]? It will likely kill [T]...",,"Yes", "No") != "Yes")
+		if(tgui_alert(usr, "Are you sure you wish to severely damage their [T_ext]? It will likely kill [T]...","Shred Limb",list("Yes", "No")) != "Yes")
 			return //If they reconsider, don't continue.
 
 	//Any internal organ, if there are any
-	var/obj/item/organ/internal/T_int = input(src,"Do you wish to severely damage an internal organ, as well? If not, click 'cancel'") as null|anything in T_ext.internal_organs
+	var/obj/item/organ/internal/T_int = tgui_input_list(src,"Do you wish to severely damage an internal organ, as well? If not, click 'cancel'", "Organ Choice", T_ext.internal_organs)
 	if(T_int && T_int.vital)
-		if(alert("Are you sure you wish to severely damage their [T_int]? It will likely kill [T]...",,"Yes", "No") != "Yes")
+		if(tgui_alert(usr, "Are you sure you wish to severely damage their [T_int]? It will likely kill [T]...","Shred Limb",list("Yes", "No")) != "Yes")
 			return //If they reconsider, don't continue.
 
 	//And a belly, if they want
-	var/obj/belly/B = input(src,"Do you wish to swallow the organ if you tear if out? If not, click 'cancel'") as null|anything in vore_organs
+	var/obj/belly/B = tgui_input_list(src,"To where do you wish to swallow the organ if you tear if out? If not at all, click 'cancel'", "Organ Choice", vore_organs)
 
 	if(can_shred(T) != T)
 		to_chat(src,"<span class='warning'>Looks like you lost your chance...</span>")
@@ -835,12 +835,12 @@
 		return
 
 	if(!C.anchored && !C.pulledby) //Not currently anchored, and not pulled by anyone.
-		C.anchored = 1 //This is the only way to stop the inertial_drift.
+		C.anchored = TRUE //This is the only way to stop the inertial_drift.
 		C.adjust_nutrition(-25)
 		update_floating()
 		to_chat(C, "<span class='notice'>You hover in place.</span>")
 		spawn(6) //.6 seconds.
-			C.anchored = 0
+			C.anchored = FALSE
 	else
 		return
 
@@ -883,13 +883,13 @@
 	var/finalized = "No"
 
 	while(finalized == "No" && src.client)
-		choice = input(src,"What would you like to weave?") as null|anything in weavable_structures
+		choice = tgui_input_list(src,"What would you like to weave?", "Weave Choice", weavable_structures)
 		desired_result  = weavable_structures[choice]
 		if(!desired_result || !istype(desired_result))
 			return
 
 		if(choice)
-			finalized = alert(src, "Are you sure you want to weave [desired_result.title]? It will cost you [desired_result.cost] silk.","Confirmation","Yes","No")
+			finalized = tgui_alert(src, "Are you sure you want to weave [desired_result.title]? It will cost you [desired_result.cost] silk.","Confirmation",list("Yes","No"))
 
 	if(!desired_result || !istype(desired_result))
 		return
@@ -910,7 +910,7 @@
 		to_chat(src, "<span class='warning'>You can't weave here!</span>")
 		return
 
-	if(do_after(src, desired_result.time, exclusive = TRUE))
+	if(do_after(src, desired_result.time, exclusive = TASK_USER_EXCLUSIVE))
 		if(desired_result.cost > species.silk_reserve)
 			to_chat(src, "<span class='warning'>You don't have enough silk to weave that!</span>")
 			return
@@ -942,13 +942,13 @@
 	var/finalized = "No"
 
 	while(finalized == "No" && src.client)
-		choice = input(src,"What would you like to weave?") as null|anything in weavable_items
+		choice = tgui_input_list(src,"What would you like to weave?", "Weave Choice", weavable_items)
 		desired_result  = weavable_items[choice]
 		if(!desired_result || !istype(desired_result))
 			return
 
 		if(choice)
-			finalized = alert(src, "Are you sure you want to weave [desired_result.title]? It will cost you [desired_result.cost] silk.","Confirmation","Yes","No")
+			finalized = tgui_alert(src, "Are you sure you want to weave [desired_result.title]? It will cost you [desired_result.cost] silk.","Confirmation",list("Yes","No"))
 
 	if(!desired_result || !istype(desired_result))
 		return
@@ -969,7 +969,7 @@
 		to_chat(src, "<span class='warning'>You can't weave here!</span>")
 		return
 
-	if(do_after(src, desired_result.time, exclusive = TRUE))
+	if(do_after(src, desired_result.time, exclusive = TASK_USER_EXCLUSIVE))
 		if(desired_result.cost > species.silk_reserve)
 			to_chat(src, "<span class='warning'>You don't have enough silk to weave that!</span>")
 			return
@@ -992,7 +992,7 @@
 		to_chat(src, "<span class='warning'>You are not a weaver! How are you doing this? Tell a developer!</span>")
 		return
 
-	var/new_silk_color = input("Pick a color for your woven products:","Silk Color", species.silk_color) as null|color
+	var/new_silk_color = input(usr, "Pick a color for your woven products:","Silk Color", species.silk_color) as null|color
 	if(new_silk_color)
 		species.silk_color = new_silk_color
 

@@ -28,7 +28,7 @@
 	update_type_list()
 	var/datum/frame/frame_types/frame_type
 	if(!build_machine_type)
-		var/datum/frame/frame_types/response = input(user, "What kind of frame would you like to make?", "Frame type request", null) as null|anything in frame_types_floor
+		var/datum/frame/frame_types/response = tgui_input_list(user, "What kind of frame would you like to make?", "Frame type request", frame_types_floor)
 		if(!response)
 			return
 		frame_type = response
@@ -82,7 +82,7 @@
 
 	var/datum/frame/frame_types/frame_type
 	if(!build_machine_type)
-		var/datum/frame/frame_types/response = input(user, "What kind of frame would you like to make?", "Frame type request", null) as null|anything in frame_types_wall
+		var/datum/frame/frame_types/response = tgui_input_list(user, "What kind of frame would you like to make?", "Frame type request", frame_types_wall)
 		if(!response)
 			return
 		frame_type = response

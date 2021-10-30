@@ -3332,7 +3332,7 @@
 /turf/simulated/floor/plating,
 /area/awaymission/BMPship3)
 "iG" = (
-/obj/item/weapon/contraband/poster,
+/obj/item/poster,
 /turf/simulated/floor/plating,
 /area/awaymission/BMPship3)
 "iH" = (

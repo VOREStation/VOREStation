@@ -46,12 +46,14 @@
 	drop_sound = 'sound/items/drop/leather.ogg'
 	pickup_sound = 'sound/items/pickup/leather.ogg'
 
+	var/original_name // Due to loadout customizations and such
+
 /obj/item/weapon/storage/wallet/remove_from_storage(obj/item/W as obj, atom/new_location)
 	. = ..(W, new_location)
 	if(.)
 		if(W == front_id)
 			front_id = null
-			name = initial(name)
+			name = original_name || initial(name)
 			update_icon()
 
 /obj/item/weapon/storage/wallet/handle_item_insertion(obj/item/W as obj, prevent_warning = 0)
@@ -59,18 +61,20 @@
 	if(.)
 		if(!front_id && istype(W, /obj/item/weapon/card/id))
 			front_id = W
-			name = "[name] ([front_id])"
+			if(!original_name)
+				original_name = name
+			name = "[original_name] ([front_id])"
 			update_icon()
 
 /obj/item/weapon/storage/wallet/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(front_id)
 		var/tiny_state = "id-generic"
-		if("id-"+front_id.icon_state in cached_icon_states(icon))
+		if("id-[front_id.icon_state]" in cached_icon_states(icon))
 			tiny_state = "id-"+front_id.icon_state
 		var/image/tiny_image = new/image(icon, icon_state = tiny_state)
 		tiny_image.appearance_flags = RESET_COLOR
-		overlays += tiny_image
+		add_overlay(tiny_image)
 
 /obj/item/weapon/storage/wallet/GetID()
 	return front_id
@@ -135,3 +139,61 @@
 	desc = "A stylish wallet typically used by women."
 	icon_state = "girl_wallet"
 	item_state_slots = list(slot_r_hand_str = "wowallet", slot_l_hand_str = "wowallet")
+
+//Casino Wallet
+
+/obj/item/weapon/storage/wallet/casino
+	name = "casino wallet"
+	desc = "A fancy casino wallet with flashy lights, oooh~"
+	icon = 'icons/obj/casino.dmi'
+	icon_state = "casinowallet_black"
+	can_hold = list(
+		/obj/item/weapon/spacecash,
+		/obj/item/weapon/card,
+		/obj/item/clothing/mask/smokable/cigarette/,
+		/obj/item/device/flashlight/pen,
+		/obj/item/device/tape,
+		/obj/item/weapon/cartridge,
+		/obj/item/device/encryptionkey,
+		/obj/item/seeds,
+		/obj/item/stack/medical,
+		/obj/item/weapon/coin,
+		/obj/item/weapon/dice,
+		/obj/item/weapon/disk,
+		/obj/item/weapon/implanter,
+		/obj/item/weapon/flame/lighter,
+		/obj/item/weapon/flame/match,
+		/obj/item/weapon/forensics,
+		/obj/item/weapon/glass_extra,
+		/obj/item/weapon/haircomb,
+		/obj/item/weapon/hand,
+		/obj/item/weapon/key,
+		/obj/item/weapon/lipstick,
+		/obj/item/weapon/paper,
+		/obj/item/weapon/pen,
+		/obj/item/weapon/photo,
+		/obj/item/weapon/reagent_containers/dropper,
+		/obj/item/weapon/sample,
+		/obj/item/weapon/tool/screwdriver,
+		/obj/item/weapon/stamp,
+		/obj/item/clothing/accessory/permit,
+		/obj/item/clothing/accessory/badge,
+		/obj/item/weapon/makeover,
+		/obj/item/weapon/spacecasinocash,
+		/obj/item/weapon/casino_platinum_chip,
+		/obj/item/weapon/deck
+		)
+
+/obj/item/weapon/storage/wallet/casino/verb/toggle_design()
+	set category = "Object"
+	set name = "Toggle design"
+	set src in usr
+
+	if (icon_state == "casinowallet_black")
+		icon_state = "casinowallet_brown"
+		return
+	if (icon_state == "casinowallet_brown")
+		icon_state = "casinowallet_white"
+		return
+	else
+		icon_state = "casinowallet_black"

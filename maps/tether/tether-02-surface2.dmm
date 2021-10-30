@@ -221,6 +221,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
+/obj/machinery/vending/coffee,
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/medical/centralhall)
 "aat" = (
@@ -383,13 +384,6 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/centralhall)
 "aaG" = (
-/obj/structure/window/reinforced,
-/turf/simulated/floor/wood,
-/area/tether/surfacebase/medical/centralhall)
-"aaH" = (
-/obj/machinery/vending/coffee{
-	dir = 8
-	},
 /obj/structure/window/reinforced,
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/medical/centralhall)
@@ -752,7 +746,7 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals10,
 /obj/structure/sign/poster{
-	pixel_y = 32
+	dir = 1
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/recoveryward)
@@ -1037,10 +1031,6 @@
 "abx" = (
 /obj/structure/bed/chair{
 	dir = 4
-	},
-/obj/structure/cable/green{
-	d2 = 4;
-	icon_state = "0-4"
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -1436,14 +1426,8 @@
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/medical/resleeving)
 "acb" = (
-/obj/structure/table/glass,
-/obj/item/weapon/book/manual/resleeving,
 /obj/structure/sign/nosmoking_1{
 	pixel_x = -32
-	},
-/obj/item/device/sleevemate,
-/obj/machinery/alarm{
-	pixel_y = 28
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
@@ -1454,6 +1438,7 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 9
 	},
+/obj/machinery/vending/loadout/uniform,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/resleeving)
 "acc" = (
@@ -1466,6 +1451,7 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 1
 	},
+/obj/machinery/clonepod/transhuman,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/resleeving)
 "acd" = (
@@ -1481,6 +1467,7 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 1
 	},
+/obj/machinery/transhuman/resleever,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/resleeving)
 "ace" = (
@@ -1493,11 +1480,12 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 1
 	},
-/obj/machinery/transhuman/resleever,
+/obj/structure/table/glass,
+/obj/item/weapon/book/manual/resleeving,
+/obj/item/device/sleevemate,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/resleeving)
 "acf" = (
-/obj/machinery/clonepod/transhuman,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
@@ -1507,6 +1495,7 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 5
 	},
+/obj/machinery/computer/transhuman/resleeving,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/resleeving)
 "acg" = (
@@ -1605,23 +1594,22 @@
 /turf/simulated/open/virgo3b,
 /area/tether/surfacebase/outside/outside2)
 "acq" = (
-/obj/structure/sink{
-	dir = 4;
-	pixel_x = 11
-	},
-/obj/structure/mirror{
-	dir = 4;
-	pixel_x = 25
-	},
 /obj/effect/floor_decal/techfloor{
 	dir = 4
+	},
+/obj/structure/mirror{
+	dir = 8;
+	pixel_x = 26;
+	pixel_y = 5
+	},
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 11;
+	pixel_y = -4
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/medical/resleeving)
 "acr" = (
-/obj/machinery/computer/transhuman/resleeving{
-	dir = 4
-	},
 /obj/machinery/light{
 	dir = 8
 	},
@@ -1634,11 +1622,15 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/resleeving)
 "acs" = (
-/obj/structure/bed/chair/office/light{
-	dir = 8
+/obj/effect/floor_decal/corner/paleblue{
+	dir = 6
 	},
+/obj/effect/floor_decal/corner/paleblue{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/resleeving)
+/area/tether/surfacebase/medical/uppersouthstairwell)
 "act" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -1657,6 +1649,9 @@
 /obj/effect/floor_decal/corner/paleblue/bordercorner2{
 	dir = 5
 	},
+/obj/structure/bed/chair/office/light{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/resleeving)
 "acv" = (
@@ -1673,15 +1668,13 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/middlehall)
 "acx" = (
-/obj/machinery/vending/medical{
-	dir = 8
-	},
 /obj/machinery/camera/network/medbay{
 	dir = 9
 	},
 /obj/structure/window/reinforced{
 	dir = 1
 	},
+/obj/machinery/vending/medical,
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/medical/centralhall)
 "acy" = (
@@ -1777,6 +1770,10 @@
 	dir = 10
 	},
 /obj/structure/flora/pottedplant/decorative,
+/obj/machinery/alarm{
+	dir = 4;
+	pixel_x = -23
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/resleeving)
 "acI" = (
@@ -1961,7 +1958,7 @@
 	dir = 4
 	},
 /obj/structure/sign/poster{
-	pixel_y = 32
+	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/evidence)
@@ -1992,9 +1989,6 @@
 /area/tether/surfacebase/medical/resleeving)
 "acY" = (
 /obj/machinery/door/firedoor/glass,
-/obj/structure/cable/green{
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
@@ -2622,7 +2616,10 @@
 /obj/effect/floor_decal/corner/paleblue/bordercorner2{
 	dir = 8
 	},
-/obj/machinery/vending/loadout/uniform,
+/obj/machinery/organ_printer/flesh,
+/obj/structure/sign/painting/library_secure{
+	pixel_x = -30
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/resleeving)
 "adZ" = (
@@ -2638,15 +2635,7 @@
 /obj/effect/floor_decal/corner/paleblue/bordercorner2{
 	dir = 9
 	},
-/obj/machinery/organ_printer/flesh,
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/resleeving)
-"aea" = (
 /obj/structure/table/glass,
-/obj/item/weapon/reagent_containers/glass/bottle/biomass{
-	pixel_x = 4;
-	pixel_y = 6
-	},
 /obj/item/weapon/reagent_containers/glass/bottle/biomass{
 	pixel_x = -4;
 	pixel_y = 8
@@ -2659,10 +2648,17 @@
 	pixel_x = 6;
 	pixel_y = 8
 	},
+/obj/item/weapon/reagent_containers/glass/bottle/biomass{
+	pixel_x = 4;
+	pixel_y = 6
+	},
 /obj/item/device/flashlight/pen{
 	pixel_x = -3;
 	pixel_y = -3
 	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/resleeving)
+"aea" = (
 /obj/item/device/radio/intercom{
 	pixel_y = -28
 	},
@@ -2673,6 +2669,9 @@
 /obj/effect/floor_decal/corner/paleblue/border,
 /obj/effect/floor_decal/borderfloorwhite/corner2,
 /obj/effect/floor_decal/corner/paleblue/bordercorner2,
+/obj/structure/bed/chair{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/resleeving)
 "aeb" = (
@@ -2786,7 +2785,6 @@
 /turf/simulated/wall,
 /area/tether/surfacebase/medical/patient_a)
 "aen" = (
-/obj/machinery/vending/loadout/uniform,
 /obj/machinery/camera/network/medbay{
 	dir = 10
 	},
@@ -2798,14 +2796,21 @@
 	},
 /obj/machinery/power/apc{
 	name = "south bump";
+	nightshift_setting = 2;
 	pixel_y = -28
 	},
 /obj/structure/cable/green,
+/obj/structure/bed/chair{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/resleeving)
 "aeo" = (
 /obj/structure/bed/psych{
 	name = "couch"
+	},
+/obj/structure/sign/painting/library_secure{
+	pixel_x = -30
 	},
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/medical/cmo)
@@ -3129,6 +3134,7 @@
 /obj/effect/floor_decal/corner/red/bordercorner2{
 	dir = 4
 	},
+/obj/machinery/vending/fitness,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/middlehall)
 "aeS" = (
@@ -3141,9 +3147,7 @@
 /obj/effect/floor_decal/corner/red/border{
 	dir = 5
 	},
-/obj/machinery/vending/coffee{
-	dir = 8
-	},
+/obj/machinery/vending/coffee,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/middlehall)
 "aeT" = (
@@ -3583,6 +3587,7 @@
 "afz" = (
 /obj/machinery/power/apc{
 	name = "south bump";
+	nightshift_setting = 2;
 	pixel_y = -24
 	},
 /obj/structure/cable/green,
@@ -3661,9 +3666,6 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/corner/red/border{
-	dir = 4
-	},
-/obj/machinery/vending/fitness{
 	dir = 4
 	},
 /turf/simulated/floor/tiled,
@@ -3766,7 +3768,6 @@
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/outfitting)
 "afL" = (
-/obj/structure/closet/wardrobe/red,
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 1
 	},
@@ -3778,6 +3779,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/vending/wardrobe/detdrobe,
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/outfitting)
 "afM" = (
@@ -3787,7 +3789,6 @@
 /obj/effect/floor_decal/corner/red/border{
 	dir = 5
 	},
-/obj/structure/closet/wardrobe/red,
 /obj/machinery/camera/network/security,
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /obj/effect/floor_decal/borderfloorblack/corner2{
@@ -3796,6 +3797,7 @@
 /obj/effect/floor_decal/corner/red/bordercorner2{
 	dir = 5
 	},
+/obj/machinery/vending/wardrobe/secdrobe,
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/outfitting)
 "afN" = (
@@ -3832,17 +3834,8 @@
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/outfitting/storage)
 "afP" = (
-/obj/structure/table/rack/shelf/steel,
-/obj/item/clothing/mask/gas{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/clothing/mask/gas,
-/obj/item/clothing/mask/gas{
-	pixel_x = -3;
-	pixel_y = -3
-	},
 /obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/machinery/vending/security,
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/outfitting/storage)
 "afQ" = (
@@ -4198,6 +4191,7 @@
 	},
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/red/border,
+/obj/structure/table/bench/steel,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/middlehall)
 "agy" = (
@@ -4210,9 +4204,7 @@
 /obj/effect/floor_decal/corner/red/border{
 	dir = 6
 	},
-/obj/machinery/vending/snack{
-	dir = 8
-	},
+/obj/structure/table/bench/steel,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/middlehall)
 "agz" = (
@@ -4296,9 +4288,6 @@
 /obj/machinery/door/airlock/security{
 	name = "Equipment Storage";
 	req_access = newlist()
-	},
-/obj/structure/cable/green{
-	icon_state = "4-8"
 	},
 /obj/machinery/door/firedoor,
 /obj/structure/cable/green{
@@ -4659,6 +4648,7 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "west bump";
+	nightshift_setting = 2;
 	pixel_x = -28
 	},
 /obj/structure/cable/green{
@@ -4759,10 +4749,19 @@
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/outfitting/storage)
 "ahw" = (
-/obj/machinery/vending/security,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/light{
 	dir = 4
+	},
+/obj/structure/table/rack/shelf/steel,
+/obj/item/clothing/mask/gas{
+	pixel_x = 3;
+	pixel_y = 3
+	},
+/obj/item/clothing/mask/gas,
+/obj/item/clothing/mask/gas{
+	pixel_x = -3;
+	pixel_y = -3
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/outfitting/storage)
@@ -5655,9 +5654,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 1
-	},
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 8
 	},
@@ -5666,8 +5662,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 8
 	},
-/obj/structure/sign/poster{
-	pixel_y = -32
+/obj/structure/sign/poster,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/centralhall)
@@ -6244,39 +6241,47 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/medical/morgue)
 "ajK" = (
-/obj/structure/window/reinforced{
+/obj/effect/floor_decal/steeldecal/steel_decals9,
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 1
 	},
-/obj/machinery/vending/snack,
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/effect/floor_decal/corner/paleblue{
-	dir = 6
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 8
 	},
-/obj/effect/floor_decal/corner/paleblue{
-	dir = 9
-	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/uppersouthstairwell)
+/obj/machinery/vending/cigarette,
+/turf/simulated/floor/tiled/monotile,
+/area/rnd/research)
 "ajL" = (
-/obj/machinery/vending/cola/soft,
-/obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/effect/floor_decal/corner/paleblue{
-	dir = 6
+/obj/effect/floor_decal/steeldecal/steel_decals9,
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 4
 	},
-/obj/effect/floor_decal/corner/paleblue{
-	dir = 9
-	},
-/obj/structure/window/reinforced{
+/obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/uppersouthstairwell)
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 8
+	},
+/obj/machinery/vending/coffee,
+/turf/simulated/floor/tiled/monotile,
+/area/rnd/research)
 "ajM" = (
-/obj/machinery/door/firedoor/glass,
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/turf/simulated/floor/plating,
-/area/tether/surfacebase/medical/uppersouthstairwell)
+/obj/effect/floor_decal/steeldecal/steel_decals9,
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals9{
+	dir = 8
+	},
+/obj/machinery/vending/weeb,
+/turf/simulated/floor/tiled/monotile,
+/area/rnd/research)
 "ajN" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 8
@@ -6675,7 +6680,7 @@
 	pixel_y = 32
 	},
 /obj/effect/floor_decal/corner/paleblue/diagonal,
-/obj/machinery/vending/cola,
+/obj/machinery/vending/cola/soft,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
 "akx" = (
@@ -6694,18 +6699,32 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
 "akA" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
+/obj/effect/floor_decal/corner/paleblue{
+	dir = 6
 	},
+/obj/effect/floor_decal/corner/paleblue{
+	dir = 9
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/obj/machinery/vending/sol,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/uppersouthstairwell)
 "akB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 5
+/obj/effect/floor_decal/corner/paleblue{
+	dir = 6
 	},
+/obj/effect/floor_decal/corner/paleblue{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/obj/machinery/vending/wardrobe/virodrobe,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/uppersouthstairwell)
 "akC" = (
@@ -6714,6 +6733,13 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
+	},
+/obj/machinery/vending/wardrobe/medidrobe,
+/obj/effect/floor_decal/corner/paleblue{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/paleblue{
+	dir = 6
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/uppersouthstairwell)
@@ -6727,6 +6753,13 @@
 /obj/structure/extinguisher_cabinet{
 	dir = 1;
 	pixel_y = 32
+	},
+/obj/machinery/vending/wardrobe/chemdrobe,
+/obj/effect/floor_decal/corner/paleblue{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/paleblue{
+	dir = 6
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/uppersouthstairwell)
@@ -6754,9 +6787,7 @@
 /obj/effect/floor_decal/corner/paleblue/bordercorner2{
 	dir = 9
 	},
-/obj/structure/sign/poster{
-	pixel_y = -32
-	},
+/obj/structure/sign/poster,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/centralhall)
 "akF" = (
@@ -6822,11 +6853,11 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/recoveryward)
 "akI" = (
-/obj/effect/floor_decal/steeldecal/steel_decals4{
+/obj/effect/floor_decal/corner/paleblue{
 	dir = 6
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals4{
-	dir = 1
+/obj/effect/floor_decal/corner/paleblue{
+	dir = 9
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/uppersouthstairwell)
@@ -6945,21 +6976,23 @@
 	dir = 8
 	},
 /obj/structure/sign/poster{
-	pixel_x = -32
+	dir = 8
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/middlehall)
 "akS" = (
 /obj/structure/window/reinforced,
-/obj/machinery/vending/fitness{
-	dir = 1
-	},
 /obj/effect/floor_decal/corner/paleblue{
 	dir = 9
 	},
 /obj/effect/floor_decal/corner/paleblue{
 	dir = 6
 	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/obj/structure/table/standard,
+/obj/random/medical,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/uppersouthstairwell)
 "akT" = (
@@ -6970,9 +7003,11 @@
 /obj/effect/floor_decal/corner/paleblue{
 	dir = 6
 	},
-/obj/machinery/vending/coffee{
-	dir = 1
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
 	},
+/obj/structure/table/standard,
+/obj/random/tetheraid,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/uppersouthstairwell)
 "akU" = (
@@ -7035,6 +7070,9 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 4
 	},
+/obj/structure/sign/painting/library_secure{
+	pixel_x = -30
+	},
 /turf/simulated/floor/lino,
 /area/tether/surfacebase/security/detective/officea)
 "alc" = (
@@ -7070,6 +7108,9 @@
 "alh" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
+	},
+/obj/structure/sign/painting/library_secure{
+	pixel_x = 30
 	},
 /turf/simulated/floor/lino,
 /area/tether/surfacebase/security/detective/officeb)
@@ -7345,11 +7386,6 @@
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/armory)
 "alv" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/valve/digital{
 	dir = 4;
 	name = "scrubber isolation valve"
@@ -7650,9 +7686,7 @@
 /obj/effect/floor_decal/corner/paleblue{
 	dir = 6
 	},
-/obj/structure/sign/poster{
-	pixel_y = -32
-	},
+/obj/structure/sign/poster,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/uppersouthstairwell)
 "alW" = (
@@ -7750,7 +7784,6 @@
 "ama" = (
 /obj/structure/table/glass,
 /obj/random/mre,
-/obj/random/coin,
 /obj/random/maintenance/medical,
 /obj/random/medical,
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -8130,6 +8163,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "east bump";
+	nightshift_setting = 2;
 	pixel_x = 28
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -8933,6 +8967,9 @@
 /obj/effect/floor_decal/corner/lime/border{
 	dir = 9
 	},
+/obj/structure/sign/painting/public{
+	pixel_x = -30
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
 "aof" = (
@@ -9395,17 +9432,18 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
 "aoK" = (
-/obj/structure/mirror{
-	dir = 4;
-	pixel_x = -25
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
 	},
 /obj/structure/sink{
 	dir = 8;
 	pixel_x = -12;
-	pixel_y = 2
+	pixel_y = -3
 	},
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 4
+/obj/structure/mirror{
+	dir = 4;
+	pixel_x = -26;
+	pixel_y = 5
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/bathroom)
@@ -9992,9 +10030,6 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -10003,6 +10038,9 @@
 	},
 /obj/effect/floor_decal/corner/red/bordercorner{
 	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/middlehall)
@@ -10148,9 +10186,7 @@
 /obj/structure/reagent_dispensers/water_cooler/full{
 	dir = 4
 	},
-/obj/machinery/light{
-	dir = 8
-	},
+/obj/machinery/light,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
 "apY" = (
@@ -10169,6 +10205,9 @@
 /obj/effect/floor_decal/corner/paleblue/diagonal,
 /obj/structure/table/standard,
 /obj/machinery/recharger,
+/obj/structure/sign/painting/library_secure{
+	pixel_y = -30
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
 "aqa" = (
@@ -10210,17 +10249,18 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
 "aqd" = (
-/obj/structure/mirror{
-	dir = 4;
-	pixel_x = -25
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
 	},
 /obj/structure/sink{
 	dir = 8;
 	pixel_x = -12;
-	pixel_y = 2
+	pixel_y = -3
 	},
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 4
+/obj/structure/mirror{
+	dir = 4;
+	pixel_x = -26;
+	pixel_y = 5
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/bathroom)
@@ -10328,10 +10368,6 @@
 /obj/machinery/door/airlock/maintenance/common,
 /turf/simulated/floor/plating,
 /area/maintenance/asmaint2)
-"aqt" = (
-/obj/structure/sign/poster,
-/turf/simulated/wall,
-/area/tether/surfacebase/public_garden_two)
 "aqu" = (
 /obj/structure/table/standard{
 	name = "plastic table frame"
@@ -10341,6 +10377,9 @@
 	},
 /obj/effect/floor_decal/corner/lime/border{
 	dir = 9
+	},
+/obj/structure/sign/poster{
+	dir = 8
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
@@ -10614,6 +10653,7 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "west bump";
+	nightshift_setting = 2;
 	pixel_x = -28
 	},
 /obj/structure/cable/green{
@@ -11085,6 +11125,9 @@
 	frequency = 1442;
 	name = "Riot Control Console"
 	},
+/obj/structure/sign/painting/library_secure{
+	pixel_x = 30
+	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/warden)
 "arJ" = (
@@ -11347,14 +11390,10 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 1
 	},
-/obj/machinery/vending/cigarette{
-	name = "Cigarette machine";
-	prices = list();
-	products = list(/obj/item/weapon/storage/fancy/cigarettes = 10, /obj/item/weapon/storage/box/matches = 10, /obj/item/weapon/flame/lighter/zippo = 4, /obj/item/clothing/mask/smokable/cigarette/cigar/havana = 2)
-	},
 /obj/effect/floor_decal/techfloor/hole{
 	dir = 1
 	},
+/obj/machinery/vending/sovietvend,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/bar)
 "ash" = (
@@ -12246,12 +12285,14 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
 "atI" = (
-/obj/machinery/smartfridge,
 /obj/effect/floor_decal/borderfloor{
 	dir = 6
 	},
 /obj/effect/floor_decal/corner/lime/border{
 	dir = 6
+	},
+/obj/machinery/smartfridge{
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
@@ -12594,6 +12635,10 @@
 /obj/effect/floor_decal/corner/lime/border{
 	dir = 10
 	},
+/obj/structure/sink/kitchen{
+	dir = 8;
+	pixel_x = -11
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
 "auj" = (
@@ -12603,6 +12648,9 @@
 	},
 /obj/effect/floor_decal/corner/lime/border{
 	dir = 6
+	},
+/obj/structure/sign/poster{
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
@@ -12653,10 +12701,13 @@
 	},
 /obj/structure/sink{
 	dir = 4;
-	pixel_x = 11
+	pixel_x = 11;
+	pixel_y = -4
 	},
 /obj/structure/mirror{
-	pixel_x = 25
+	dir = 8;
+	pixel_x = 26;
+	pixel_y = 5
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/security/brig/bathroom)
@@ -13136,6 +13187,7 @@
 /obj/machinery/recharger,
 /obj/item/weapon/storage/toolbox/mechanical,
 /obj/random/drinkbottle,
+/obj/item/device/paicard,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/bar)
 "avg" = (
@@ -14365,11 +14417,11 @@
 /area/tether/surfacebase/surface_two_hall)
 "axu" = (
 /obj/effect/floor_decal/corner/paleblue/diagonal,
-/obj/structure/sign/poster{
-	pixel_x = -32
-	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
+	},
+/obj/structure/sign/poster{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
@@ -15223,8 +15275,8 @@
 /turf/simulated/wall,
 /area/tether/surfacebase/fish_farm)
 "azt" = (
-/obj/structure/closet/hydrant,
-/turf/simulated/wall,
+/obj/machinery/vending/fishing,
+/turf/simulated/floor/tiled,
 /area/tether/surfacebase/fish_farm)
 "azu" = (
 /obj/item/clothing/gloves/boxing/blue,
@@ -15530,7 +15582,12 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/fish_farm)
 "aAd" = (
-/obj/machinery/vending/fishing,
+/obj/structure/closet/hydrant{
+	pixel_y = 32
+	},
+/obj/structure/sign/painting/public{
+	pixel_x = 30
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/fish_farm)
 "aAe" = (
@@ -16209,6 +16266,9 @@
 /obj/effect/floor_decal/corner/lightgrey/border{
 	dir = 1
 	},
+/obj/structure/sign/painting/library_secure{
+	pixel_y = 30
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_two_hall)
 "aBI" = (
@@ -16336,9 +16396,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals_central1{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/monofloor{
-	dir = 1
-	},
+/turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/surface_two_hall)
 "aBS" = (
 /obj/effect/floor_decal/steeldecal/steel_decals6{
@@ -16766,7 +16824,7 @@
 	name = "Atrium Second Floor"
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals_central1,
-/turf/simulated/floor/tiled/monofloor,
+/turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/surface_two_hall)
 "aCF" = (
 /obj/structure/cable{
@@ -16882,6 +16940,9 @@
 	},
 /obj/structure/cable/green{
 	icon_state = "1-8"
+	},
+/obj/structure/sign/painting/library_secure{
+	pixel_x = 30
 	},
 /turf/simulated/floor/tiled/dark,
 /area/bridge_hallway)
@@ -19487,24 +19548,30 @@
 /turf/simulated/floor/tiled/dark,
 /area/chapel/main)
 "aHX" = (
-/obj/structure/table/bench/padded,
 /obj/structure/disposalpipe/segment{
 	dir = 2;
 	icon_state = "pipe-c"
 	},
+/obj/structure/bed/chair/sofa/pew/left{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/dark,
 /area/chapel/main)
 "aHY" = (
-/obj/structure/table/bench/padded,
 /obj/effect/floor_decal/chapel{
+	dir = 1
+	},
+/obj/structure/bed/chair/sofa/pew{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
 /area/chapel/main)
 "aHZ" = (
-/obj/structure/table/bench/padded,
 /obj/effect/floor_decal/chapel{
 	dir = 4
+	},
+/obj/structure/bed/chair/sofa/pew/right{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
 /area/chapel/main)
@@ -19517,11 +19584,13 @@
 /turf/simulated/floor/tiled/dark,
 /area/chapel/main)
 "aIc" = (
-/obj/structure/table/bench/padded,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/cable/green{
 	icon_state = "1-2"
+	},
+/obj/structure/bed/chair/sofa/pew/right{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
 /area/chapel/main)
@@ -19940,6 +20009,9 @@
 /obj/structure/flora/pottedplant/small{
 	pixel_y = 12
 	},
+/obj/structure/sign/painting/library_secure{
+	pixel_x = -30
+	},
 /turf/simulated/floor/wood,
 /area/bridge/meeting_room)
 "aIU" = (
@@ -20003,17 +20075,23 @@
 /turf/simulated/floor/tiled/dark,
 /area/chapel/main)
 "aJb" = (
-/obj/structure/table/bench/padded,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/bed/chair/sofa/pew/left{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/dark,
 /area/chapel/main)
 "aJc" = (
-/obj/structure/table/bench/padded,
+/obj/structure/bed/chair/sofa/pew{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/dark,
 /area/chapel/main)
 "aJd" = (
-/obj/structure/table/bench/padded,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/bed/chair/sofa/pew/right{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/dark,
 /area/chapel/main)
 "aJe" = (
@@ -20215,6 +20293,9 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/asmaint2)
+"aJA" = (
+/turf/simulated/wall/r_wall,
+/area/ai_upload_foyer)
 "aJB" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -20404,21 +20485,28 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
+/obj/structure/sign/painting/chapel_secure{
+	pixel_y = 30
+	},
 /turf/simulated/floor/lino,
 /area/chapel/office)
 "aJU" = (
 /turf/simulated/floor/lino,
 /area/chapel/office)
 "aJV" = (
-/obj/structure/table/bench/padded,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/obj/structure/bed/chair/sofa/pew/left{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
 /area/chapel/main)
 "aJW" = (
-/obj/structure/table/bench/padded,
 /obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/obj/structure/bed/chair/sofa/pew/right{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
@@ -20430,6 +20518,9 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
+"aJY" = (
+/turf/simulated/wall/r_wall,
+/area/ai_upload)
 "aJZ" = (
 /obj/structure/railing{
 	dir = 8
@@ -20540,11 +20631,6 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/public_garden_maintenence/upper)
 "aKk" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/door/airlock/engineering{
 	name = "Science Substation";
 	req_one_access = list(11,24,47)
@@ -20761,9 +20847,17 @@
 /turf/simulated/floor/lino,
 /area/chapel/office)
 "aKG" = (
-/obj/machinery/light/small,
-/turf/simulated/floor/tiled/dark,
-/area/chapel/main)
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/pink/border{
+	dir = 4
+	},
+/obj/structure/sign/painting/library_secure{
+	pixel_x = 30
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/examroom)
 "aKH" = (
 /obj/effect/floor_decal/chapel{
 	dir = 8
@@ -20843,6 +20937,9 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
+/obj/structure/sign/painting/library_secure{
+	pixel_x = -30
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/rdoffice)
 "aKQ" = (
@@ -20921,6 +21018,9 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/substation/research)
+"aKX" = (
+/turf/simulated/wall/r_wall,
+/area/ai_cyborg_station)
 "aKY" = (
 /obj/machinery/atmospherics/pipe/zpipe/up/supply{
 	dir = 1
@@ -21078,6 +21178,14 @@
 	},
 /turf/simulated/floor/lino,
 /area/chapel/office)
+"aLp" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/wall/r_wall,
+/area/ai)
 "aLq" = (
 /obj/machinery/door/morgue{
 	dir = 2;
@@ -21227,11 +21335,6 @@
 /turf/simulated/floor,
 /area/maintenance/substation/research)
 "aLE" = (
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /obj/machinery/door/airlock/engineering{
 	name = "Science Substation";
 	req_one_access = list(11,24,47)
@@ -21404,10 +21507,6 @@
 /obj/structure/catwalk,
 /obj/structure/cable{
 	icon_state = "1-2"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
 	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
@@ -21975,10 +22074,10 @@
 /area/rnd/lockers)
 "aMZ" = (
 /obj/effect/floor_decal/industrial/outline,
-/obj/structure/closet/wardrobe/science_white,
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/vending/wardrobe/robodrobe,
 /turf/simulated/floor/tiled/dark,
 /area/rnd/lockers)
 "aNa" = (
@@ -22002,6 +22101,9 @@
 "aNc" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/structure/closet/firecloset,
+/obj/structure/sign/painting/public{
+	pixel_y = -30
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/surface_two_hall)
 "aNd" = (
@@ -22830,6 +22932,7 @@
 /obj/effect/floor_decal/corner/mauve/bordercorner2,
 /obj/machinery/power/apc{
 	name = "south bump";
+	nightshift_setting = 2;
 	pixel_y = -32
 	},
 /obj/structure/cable/green{
@@ -22852,8 +22955,19 @@
 /turf/simulated/floor/tiled/dark,
 /area/rnd/lockers)
 "aOs" = (
-/turf/simulated/mineral,
-/area/tether/surfacebase/emergency_storage/atmos)
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/effect/landmark/start{
+	name = "Scientist"
+	},
+/obj/machinery/computer/security/telescreen/entertainment{
+	desc = "Looks like it's set to Free-Anur-Entertanment, I wonder what else is on?";
+	icon_state = "frame";
+	pixel_x = 32
+	},
+/turf/simulated/floor/wood,
+/area/rnd/breakroom)
 "aOt" = (
 /obj/machinery/portable_atmospherics/powered/pump/filled,
 /turf/simulated/floor/plating,
@@ -23580,32 +23694,8 @@
 /turf/simulated/floor/wood,
 /area/rnd/breakroom)
 "aPP" = (
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
 /obj/machinery/light{
 	dir = 1
-	},
-/turf/simulated/floor/wood,
-/area/rnd/breakroom)
-"aPQ" = (
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "north bump";
-	pixel_y = 24
-	},
-/obj/structure/cable/green{
-	icon_state = "0-8"
-	},
-/turf/simulated/floor/wood,
-/area/rnd/breakroom)
-"aPR" = (
-/obj/machinery/computer/security/telescreen/entertainment{
-	desc = "Looks like it's set to Free-Anur-Entertanment, I wonder what else is on?";
-	icon_state = "frame";
-	pixel_y = 32
 	},
 /turf/simulated/floor/wood,
 /area/rnd/breakroom)
@@ -23906,38 +23996,9 @@
 	},
 /turf/simulated/floor/wood,
 /area/rnd/breakroom)
-"aQC" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/wood,
-/area/rnd/breakroom)
-"aQD" = (
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/wood,
-/area/rnd/breakroom)
 "aQE" = (
 /obj/structure/bed/chair{
 	dir = 4
-	},
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
 	},
 /obj/effect/landmark/start{
 	name = "Roboticist"
@@ -24280,6 +24341,9 @@
 	},
 /obj/effect/landmark/start{
 	name = "Roboticist"
+	},
+/obj/structure/sign/painting/library_secure{
+	pixel_x = 30
 	},
 /turf/simulated/floor/wood,
 /area/rnd/breakroom)
@@ -24624,8 +24688,8 @@
 /obj/effect/floor_decal/corner/yellow/border{
 	dir = 9
 	},
-/obj/structure/closet/secure_closet/atmos_personal,
 /obj/machinery/camera/network/engineering,
+/obj/machinery/vending/wardrobe/atmosdrobe,
 /turf/simulated/floor/tiled,
 /area/engineering/lower/atmos_lockers)
 "aRV" = (
@@ -24667,6 +24731,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
+	nightshift_setting = 2;
 	pixel_y = 28
 	},
 /obj/effect/floor_decal/borderfloor{
@@ -24889,14 +24954,6 @@
 /obj/random/maintenance/clean,
 /turf/simulated/floor,
 /area/maintenance/lower/south)
-"aSr" = (
-/obj/machinery/door/airlock{
-	id_tag = "bathroomlock7";
-	name = "Restroom"
-	},
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/tiled/white,
-/area/tether/surfacebase/medical/uppersouthstairwell)
 "aSs" = (
 /obj/structure/toilet,
 /obj/machinery/light/small{
@@ -25422,6 +25479,15 @@
 /obj/machinery/camera/network/research{
 	dir = 1
 	},
+/obj/machinery/power/apc{
+	dir = 8;
+	name = "west bump";
+	pixel_x = -28
+	},
+/obj/structure/cable/green{
+	d2 = 4;
+	icon_state = "0-4"
+	},
 /turf/simulated/floor/wood,
 /area/rnd/breakroom)
 "aTx" = (
@@ -25432,6 +25498,11 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
 /turf/simulated/floor/wood,
 /area/rnd/breakroom)
 "aTy" = (
@@ -25477,6 +25548,7 @@
 	cell_type = /obj/item/weapon/cell/super;
 	dir = 8;
 	name = "west bump";
+	nightshift_setting = 2;
 	pixel_x = -30
 	},
 /obj/structure/cable/cyan{
@@ -25812,53 +25884,11 @@
 /obj/structure/bookcase/manuals/research_and_development,
 /turf/simulated/floor/wood,
 /area/rnd/breakroom)
-"aUp" = (
-/obj/effect/floor_decal/steeldecal/steel_decals9,
-/obj/effect/floor_decal/steeldecal/steel_decals9{
-	dir = 4
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals9{
-	dir = 1
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals9{
-	dir = 8
-	},
-/obj/machinery/vending/cigarette{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/rnd/breakroom)
 "aUq" = (
-/obj/effect/floor_decal/steeldecal/steel_decals9,
-/obj/effect/floor_decal/steeldecal/steel_decals9{
-	dir = 4
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals9{
+/obj/machinery/camera/network/research{
 	dir = 1
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals9{
-	dir = 8
-	},
-/obj/machinery/vending/coffee{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/monotile,
-/area/rnd/breakroom)
-"aUr" = (
-/obj/effect/floor_decal/steeldecal/steel_decals9,
-/obj/effect/floor_decal/steeldecal/steel_decals9{
-	dir = 4
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals9{
-	dir = 1
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals9{
-	dir = 8
-	},
-/obj/machinery/vending/snack{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/monotile,
+/turf/simulated/floor/wood,
 /area/rnd/breakroom)
 "aUs" = (
 /obj/effect/floor_decal/borderfloor{
@@ -26055,107 +26085,71 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/east_stairs_two)
 "aUL" = (
-/obj/effect/floor_decal/corner/purple{
-	dir = 5
+/obj/effect/floor_decal/borderfloor{
+	dir = 9
 	},
-/obj/structure/mopbucket,
-/obj/item/weapon/mop,
-/obj/item/weapon/reagent_containers/glass/bucket,
-/obj/effect/floor_decal/borderfloor/shifted{
-	dir = 1
+/obj/effect/floor_decal/corner/purple/border{
+	dir = 9
 	},
-/obj/effect/floor_decal/corner/purple/border/shifted{
-	dir = 1
-	},
-/obj/machinery/camera/network/civilian,
+/obj/machinery/vending/wardrobe/janidrobe,
 /turf/simulated/floor/tiled,
 /area/janitor)
 "aUM" = (
 /obj/machinery/newscaster{
 	pixel_y = 32
 	},
-/obj/effect/floor_decal/borderfloor/shifted{
+/obj/effect/floor_decal/borderfloor{
 	dir = 1
 	},
-/obj/effect/floor_decal/corner/purple/border/shifted{
+/obj/effect/floor_decal/corner/purple/border{
 	dir = 1
 	},
-/obj/effect/floor_decal/corner/purple{
-	dir = 5
-	},
-/obj/structure/mopbucket,
-/obj/item/weapon/mop,
-/obj/item/weapon/reagent_containers/glass/bucket,
 /turf/simulated/floor/tiled,
 /area/janitor)
 "aUN" = (
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "north bump";
-	pixel_y = 24
-	},
-/obj/effect/floor_decal/borderfloor/shifted{
+/obj/effect/floor_decal/borderfloor{
 	dir = 1
 	},
-/obj/effect/floor_decal/corner/purple/border/shifted{
+/obj/effect/floor_decal/corner/purple/border{
 	dir = 1
 	},
-/obj/effect/floor_decal/corner/purple{
-	dir = 5
+/obj/structure/sink/kitchen{
+	pixel_y = 22
 	},
-/obj/structure/mopbucket,
-/obj/item/weapon/mop,
-/obj/item/weapon/reagent_containers/glass/bucket,
 /turf/simulated/floor/tiled,
 /area/janitor)
 "aUO" = (
-/obj/effect/floor_decal/borderfloor/shifted{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/purple/border/shifted{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/purple{
-	dir = 5
-	},
 /obj/structure/janitorialcart,
-/obj/structure/sink/kitchen{
-	pixel_y = 28
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/purple/border{
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
 /area/janitor)
 "aUP" = (
 /obj/structure/janitorialcart,
-/obj/effect/floor_decal/borderfloor/shifted{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/purple/border/shifted{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/purple{
-	dir = 5
-	},
 /obj/machinery/alarm{
 	pixel_y = 22
 	},
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/purple/border{
+	dir = 1
+	},
 /turf/simulated/floor/tiled,
 /area/janitor)
 "aUQ" = (
 /obj/structure/janitorialcart,
-/obj/effect/floor_decal/borderfloor/shifted{
-	dir = 1
+/obj/effect/floor_decal/borderfloor{
+	dir = 5
 	},
-/obj/effect/floor_decal/corner/purple/border/shifted{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/purple{
+/obj/effect/floor_decal/corner/purple/border{
 	dir = 5
 	},
 /turf/simulated/floor/tiled,
@@ -26225,16 +26219,19 @@
 /turf/simulated/floor/tiled/white,
 /area/rnd/breakroom/bathroom)
 "aVh" = (
-/obj/structure/sink{
-	dir = 4;
-	pixel_x = 11
-	},
 /obj/machinery/firealarm{
 	layer = 3.3;
 	pixel_y = 26
 	},
 /obj/structure/mirror{
-	pixel_x = 29
+	dir = 8;
+	pixel_x = 26;
+	pixel_y = 5
+	},
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 11;
+	pixel_y = -4
 	},
 /turf/simulated/floor/tiled/white,
 /area/rnd/breakroom/bathroom)
@@ -26333,34 +26330,26 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/east_stairs_two)
 "aVu" = (
-/obj/machinery/button/remote/blast_door{
-	id = "janitor_blast";
-	name = "Desk Shutters";
-	pixel_x = -22
-	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
 	},
 /obj/effect/floor_decal/corner/purple/border{
 	dir = 8
 	},
+/obj/machinery/power/apc{
+	cell_type = /obj/item/weapon/cell/super;
+	dir = 8;
+	name = "west bump";
+	nightshift_setting = 2;
+	pixel_x = -30
+	},
+/obj/structure/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
 /turf/simulated/floor/tiled,
 /area/janitor)
 "aVv" = (
-/turf/simulated/floor/tiled,
-/area/janitor)
-"aVw" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/turf/simulated/floor/tiled,
-/area/janitor)
-"aVx" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
 /turf/simulated/floor/tiled,
 /area/janitor)
 "aVy" = (
@@ -26471,12 +26460,15 @@
 /turf/simulated/floor/tiled/white,
 /area/rnd/breakroom/bathroom)
 "aVM" = (
+/obj/structure/mirror{
+	dir = 8;
+	pixel_x = 26;
+	pixel_y = 5
+	},
 /obj/structure/sink{
 	dir = 4;
-	pixel_x = 11
-	},
-/obj/structure/mirror{
-	pixel_x = 29
+	pixel_x = 11;
+	pixel_y = -4
 	},
 /turf/simulated/floor/tiled/white,
 /area/rnd/breakroom/bathroom)
@@ -27049,6 +27041,7 @@
 "aWr" = (
 /obj/effect/floor_decal/borderfloor/corner,
 /obj/effect/floor_decal/corner/purple/bordercorner,
+/obj/structure/closet/jequipcloset,
 /turf/simulated/floor/tiled,
 /area/janitor)
 "aWs" = (
@@ -27481,7 +27474,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /obj/machinery/light_switch{
 	dir = 4;
-	pixel_x = -28
+	pixel_x = -31
 	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -27494,6 +27487,11 @@
 	},
 /obj/effect/floor_decal/corner/purple/bordercorner2{
 	dir = 10
+	},
+/obj/machinery/button/remote/blast_door{
+	id = "janitor_blast";
+	name = "Desk Shutters";
+	pixel_x = -22
 	},
 /turf/simulated/floor/tiled,
 /area/janitor)
@@ -27755,9 +27753,6 @@
 	dir = 2;
 	icon_state = "pipe-c"
 	},
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 25
-	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
 	},
@@ -27769,12 +27764,16 @@
 /obj/item/weapon/grenade/chem_grenade/cleaner,
 /obj/item/weapon/grenade/chem_grenade/cleaner,
 /obj/item/weapon/grenade/chem_grenade/cleaner,
-/obj/item/weapon/storage/box/mousetraps,
-/obj/item/weapon/storage/box/lights/mixed,
-/obj/item/weapon/storage/box/lights/mixed,
 /obj/item/weapon/reagent_containers/spray/cleaner,
 /obj/item/weapon/reagent_containers/spray/cleaner,
 /obj/item/weapon/reagent_containers/spray/cleaner,
+/obj/item/weapon/soap/nanotrasen,
+/obj/item/weapon/soap/nanotrasen,
+/obj/item/weapon/soap/nanotrasen,
+/obj/structure/extinguisher_cabinet{
+	dir = 8;
+	pixel_x = 30
+	},
 /turf/simulated/floor/tiled,
 /area/janitor)
 "aXT" = (
@@ -28080,23 +28079,26 @@
 /obj/effect/floor_decal/corner/purple/bordercorner2{
 	dir = 8
 	},
-/obj/structure/closet/jcloset,
-/obj/item/weapon/soap/nanotrasen,
+/obj/structure/mopbucket,
+/obj/item/weapon/mop,
+/obj/item/weapon/reagent_containers/glass/bucket,
 /turf/simulated/floor/tiled,
 /area/janitor)
 "aYA" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/purple/border,
-/obj/structure/closet/jcloset,
-/obj/item/weapon/soap/nanotrasen,
 /obj/machinery/light,
+/obj/structure/mopbucket,
+/obj/item/weapon/mop,
+/obj/item/weapon/reagent_containers/glass/bucket,
 /turf/simulated/floor/tiled,
 /area/janitor)
 "aYB" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/purple/border,
-/obj/structure/closet/jcloset,
-/obj/item/weapon/soap/nanotrasen,
+/obj/structure/mopbucket,
+/obj/item/weapon/mop,
+/obj/item/weapon/reagent_containers/glass/bucket,
 /turf/simulated/floor/tiled,
 /area/janitor)
 "aYC" = (
@@ -29385,11 +29387,10 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/atmos)
 "bda" = (
-/obj/structure/catwalk,
 /obj/structure/cable{
-	icon_state = "2-4"
+	icon_state = "0-4"
 	},
-/turf/simulated/floor/plating,
+/turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/south)
 "bdb" = (
 /obj/structure/cable{
@@ -29600,11 +29601,6 @@
 	dir = 4
 	},
 /obj/random/junk,
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "bdw" = (
@@ -29621,11 +29617,6 @@
 /obj/machinery/atmospherics/pipe/simple/visible/supply{
 	dir = 4
 	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/south)
 "bdx" = (
@@ -29638,11 +29629,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/supply{
 	dir = 4
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/south)
@@ -29669,11 +29655,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/supply{
 	dir = 4
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 8;
-	icon_state = "1-8"
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/south)
@@ -29883,8 +29864,7 @@
 /area/rnd/outpost/xenobiology/outpost_slimepens)
 "bem" = (
 /obj/structure/sink/kitchen{
-	name = "sink";
-	pixel_y = 32
+	pixel_y = 20
 	},
 /turf/simulated/floor/tiled/white,
 /area/rnd/outpost/xenobiology/outpost_slimepens)
@@ -30964,6 +30944,10 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
+/obj/structure/sign/painting/public{
+	pixel_x = -30
+	},
+/obj/item/device/paicard,
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/reading_room)
 "biK" = (
@@ -31092,6 +31076,9 @@
 "bje" = (
 /obj/structure/table/glass,
 /obj/item/device/flashlight/lamp/green,
+/obj/structure/sign/painting/public{
+	pixel_x = -30
+	},
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/reading_room)
 "bjg" = (
@@ -31531,6 +31518,7 @@
 	pixel_x = -23
 	},
 /obj/random/junk,
+/obj/item/device/paicard,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
 "bkE" = (
@@ -31748,6 +31736,9 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
+/obj/structure/sign/painting/public{
+	pixel_x = 30
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/southhall)
 "bll" = (
@@ -31905,6 +31896,7 @@
 	},
 /obj/machinery/power/apc/super{
 	dir = 1;
+	nightshift_setting = 2;
 	pixel_y = 24
 	},
 /obj/machinery/button/remote/airlock{
@@ -32321,6 +32313,9 @@
 /obj/structure/undies_wardrobe,
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/paleblue/border,
+/obj/structure/sign/painting/library_secure{
+	pixel_y = -30
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/recoveryward)
 "boH" = (
@@ -32710,6 +32705,13 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/south)
+"bOU" = (
+/obj/machinery/light/floortube{
+	dir = 8;
+	pixel_x = -3
+	},
+/turf/simulated/floor/tiled/dark,
+/area/chapel/main)
 "bOW" = (
 /obj/structure/railing{
 	dir = 1
@@ -32775,6 +32777,7 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 4
 	},
+/obj/machinery/holoplant,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai)
 "cRq" = (
@@ -32814,6 +32817,15 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai)
+"dzE" = (
+/obj/effect/floor_decal/chapel{
+	dir = 8
+	},
+/obj/structure/sign/painting/chapel_secure{
+	pixel_y = -30
+	},
+/turf/simulated/floor/tiled/dark,
+/area/chapel/main)
 "dAB" = (
 /obj/structure/cable/orange{
 	d1 = 4;
@@ -32929,8 +32941,16 @@
 /turf/simulated/floor/plating,
 /area/maintenance/readingrooms)
 "eTp" = (
-/turf/simulated/wall/durasteel,
-/area/ai_upload_foyer)
+/obj/effect/floor_decal/chapel,
+/obj/structure/sign/painting/chapel_secure{
+	pixel_y = -30
+	},
+/turf/simulated/floor/tiled/dark,
+/area/chapel/main)
+"eZx" = (
+/obj/machinery/holoplant,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/ai)
 "eZG" = (
 /obj/machinery/camera/network/command,
 /obj/effect/floor_decal/techfloor{
@@ -32938,6 +32958,13 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/ai)
+"fhR" = (
+/obj/machinery/light/floortube{
+	dir = 4;
+	pixel_x = 2
+	},
+/turf/simulated/floor/tiled/dark,
+/area/chapel/main)
 "flk" = (
 /obj/structure/catwalk,
 /obj/effect/floor_decal/techfloor{
@@ -32973,9 +33000,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai)
-"fBS" = (
-/turf/simulated/wall/durasteel,
-/area/ai_upload)
 "fIS" = (
 /obj/effect/floor_decal/corner/paleblue/diagonal,
 /obj/structure/table/glass,
@@ -33111,6 +33135,13 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai)
+"gOR" = (
+/obj/machinery/recharge_station,
+/obj/machinery/computer/cryopod/gateway{
+	pixel_y = -30
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/ai_cyborg_station)
 "gXE" = (
 /obj/machinery/light{
 	dir = 8
@@ -33137,6 +33168,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
+	nightshift_setting = 2;
 	pixel_y = 28
 	},
 /obj/structure/cable/cyan{
@@ -33146,6 +33178,15 @@
 /obj/effect/floor_decal/techfloor,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai_upload_foyer)
+"huD" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/sign/painting/chapel_secure{
+	pixel_y = -30
+	},
+/turf/simulated/floor/tiled/dark,
+/area/chapel/chapel_morgue)
 "hxk" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/machinery/light{
@@ -33206,9 +33247,34 @@
 	},
 /turf/simulated/floor/bluegrid,
 /area/ai_upload)
+"jcd" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/structure/sign/painting/public{
+	pixel_x = 30
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/east_stairs_two)
+"jiy" = (
+/obj/structure/sign/painting/library_secure{
+	pixel_x = 30
+	},
+/turf/simulated/floor/wood,
+/area/bridge/meeting_room)
 "jtj" = (
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/readingrooms)
+"jvy" = (
+/obj/effect/floor_decal/techfloor{
+	dir = 1
+	},
+/obj/structure/railing,
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/maintenance/lower/atmos)
 "jxi" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -33255,6 +33321,13 @@
 	},
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/reading_room)
+"jUQ" = (
+/obj/effect/floor_decal/techfloor{
+	dir = 8
+	},
+/obj/machinery/holoplant,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/ai)
 "jWK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/disposalpipe/segment,
@@ -33441,6 +33514,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
+/obj/effect/floor_decal/emblem/nt1,
 /turf/simulated/floor/tiled/techfloor,
 /area/ai_upload)
 "kPR" = (
@@ -33455,6 +33529,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
 	},
+/obj/effect/floor_decal/emblem/nt2,
 /turf/simulated/floor/tiled/techfloor,
 /area/ai_upload)
 "kRb" = (
@@ -33529,6 +33604,23 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
+"lJc" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/sign/painting/public{
+	pixel_y = 30
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/surface_two_hall)
 "lMw" = (
 /obj/item/device/radio/intercom/locked/ai_private{
 	dir = 4;
@@ -33570,6 +33662,12 @@
 "mwQ" = (
 /turf/simulated/floor/bluegrid,
 /area/ai)
+"mBP" = (
+/obj/structure/bed/chair/sofa/pew/right{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark,
+/area/chapel/main)
 "mCl" = (
 /obj/machinery/floodlight,
 /turf/simulated/floor/plating,
@@ -33645,6 +33743,13 @@
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/techfloor,
 /area/ai_upload)
+"nhf" = (
+/obj/structure/railing,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/atmos)
 "nAh" = (
 /obj/structure/table/standard,
 /obj/item/weapon/aiModule/asimov,
@@ -33704,9 +33809,6 @@
 	},
 /turf/simulated/wall/r_wall,
 /area/maintenance/readingrooms)
-"nUP" = (
-/turf/simulated/wall/durasteel,
-/area/ai_cyborg_station)
 "nUS" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -33777,14 +33879,6 @@
 "pBU" = (
 /turf/simulated/wall/r_wall,
 /area/ai)
-"pIJ" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/turf/simulated/wall/durasteel,
-/area/ai)
 "pKA" = (
 /obj/structure/table/standard,
 /obj/item/weapon/phone,
@@ -33792,11 +33886,8 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
+	nightshift_setting = 2;
 	pixel_y = 28
-	},
-/obj/structure/cable/cyan{
-	d2 = 2;
-	icon_state = "0-2"
 	},
 /obj/structure/cable/cyan{
 	d2 = 4;
@@ -33896,6 +33987,9 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 4
 	},
+/obj/structure/sign/painting/library_secure{
+	pixel_x = -30
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai_upload)
 "qzJ" = (
@@ -33946,8 +34040,21 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai_upload)
 "qSJ" = (
+/obj/machinery/media/jukebox/hacked,
 /turf/simulated/floor/tiled/techmaint,
 /area/ai)
+"qUf" = (
+/obj/effect/floor_decal/industrial/outline,
+/obj/machinery/vending/wardrobe/scidrobe,
+/turf/simulated/floor/tiled/dark,
+/area/rnd/lockers)
+"rbq" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/sign/painting/chapel_secure{
+	pixel_x = 30
+	},
+/turf/simulated/floor/tiled/dark,
+/area/chapel/main)
 "rii" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 9
@@ -33996,6 +34103,10 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ai_cyborg_station)
+"rAv" = (
+/obj/machinery/vending/wardrobe/chapdrobe,
+/turf/simulated/floor/lino,
+/area/chapel/office)
 "rJc" = (
 /obj/effect/floor_decal/corner/paleblue/diagonal,
 /obj/effect/landmark/start{
@@ -34047,6 +34158,15 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/ai)
+"rUS" = (
+/obj/effect/floor_decal/chapel{
+	dir = 1
+	},
+/obj/structure/bed/chair/sofa/pew/left{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark,
+/area/chapel/main)
 "rXR" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 8
@@ -34185,8 +34305,7 @@
 /area/ai_cyborg_station)
 "sYS" = (
 /obj/machinery/power/terminal{
-	dir = 1;
-	icon_state = "term"
+	dir = 1
 	},
 /obj/structure/cable{
 	d2 = 4;
@@ -34311,6 +34430,16 @@
 "tPB" = (
 /turf/simulated/floor/grass,
 /area/chapel/main)
+"tVj" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/effect/floor_decal/emblem/nt3,
+/turf/simulated/floor/tiled/techfloor,
+/area/ai_upload)
 "tWV" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -34449,6 +34578,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
+	nightshift_setting = 2;
 	pixel_y = 28
 	},
 /obj/structure/cable/cyan{
@@ -34491,6 +34621,15 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai)
+"vmx" = (
+/obj/effect/floor_decal/chapel{
+	dir = 4
+	},
+/obj/structure/bed/chair/sofa/pew{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark,
+/area/chapel/main)
 "voE" = (
 /obj/effect/floor_decal/corner_techfloor_grid,
 /obj/effect/floor_decal/corner_techfloor_grid{
@@ -34598,6 +34737,7 @@
 /obj/structure/cable/cyan,
 /obj/machinery/power/apc{
 	name = "south bump";
+	nightshift_setting = 2;
 	pixel_y = -32
 	},
 /obj/machinery/button/remote/blast_door{
@@ -34667,14 +34807,14 @@
 /area/ai_upload)
 "xbt" = (
 /obj/effect/floor_decal/corner/paleblue/diagonal,
-/obj/structure/sign/poster{
-	pixel_x = -32
-	},
 /obj/structure/bed/chair{
 	dir = 4
 	},
 /obj/effect/landmark/start{
 	name = "Medical Doctor"
+	},
+/obj/structure/sign/poster{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
@@ -34739,6 +34879,12 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai)
+"xJR" = (
+/obj/structure/bed/chair/sofa/pew/left{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark,
+/area/chapel/main)
 "xKF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 8
@@ -34973,41 +35119,41 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -35116,40 +35262,40 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -35262,36 +35408,36 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -35406,35 +35552,35 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -35532,6 +35678,8 @@ aab
 aab
 aab
 aab
+adt
+adt
 aab
 aab
 aab
@@ -35548,35 +35696,33 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -35671,6 +35817,14 @@ aab
 aab
 aab
 aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -35685,41 +35839,33 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -35813,6 +35959,15 @@ aab
 aab
 aab
 aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -35826,42 +35981,33 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -35954,6 +36100,16 @@ aab
 aab
 aab
 aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -35968,42 +36124,32 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -36096,6 +36242,16 @@ aab
 aab
 aab
 aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -36110,43 +36266,33 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -36238,6 +36384,17 @@ aab
 aab
 aab
 aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -36252,43 +36409,32 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -36380,6 +36526,17 @@ aab
 aab
 aab
 aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -36394,43 +36551,32 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -36522,6 +36668,18 @@ aab
 aab
 aab
 aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -36536,43 +36694,31 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -36664,6 +36810,19 @@ aab
 aab
 aab
 aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -36676,6 +36835,32 @@ aab
 aab
 aab
 aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -36689,52 +36874,13 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -36807,6 +36953,18 @@ aab
 aab
 aab
 aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -36819,6 +36977,33 @@ aab
 aab
 aab
 aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -36829,56 +37014,17 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -36949,79 +37095,79 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+aab
+aab
+aab
+aab
+aab
+adt
+aab
+aab
+aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -37092,79 +37238,79 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+aab
+aab
+aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -37235,78 +37381,78 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
+aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -37383,73 +37529,73 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+aab
+aab
+aab
+aab
+aab
+aab
+aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -37526,37 +37672,10 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
 adt
 adt
-aab
 adt
 adt
-aab
-aab
-aab
-aab
-aab
 adt
 adt
 aab
@@ -37565,34 +37684,61 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -37668,21 +37814,12 @@ arj
 arj
 arj
 aab
-aab
-aab
-aab
-aab
-aab
 adt
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -37703,38 +37840,47 @@ adt
 adt
 adt
 adt
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -37821,11 +37967,6 @@ adt
 adt
 adt
 adt
-aab
-aab
-aab
-aab
-aab
 adt
 adt
 adt
@@ -37847,36 +37988,41 @@ adt
 adt
 adt
 adt
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -37963,7 +38109,6 @@ adt
 adt
 adt
 adt
-aab
 adt
 adt
 adt
@@ -37989,8 +38134,6 @@ adt
 adt
 adt
 adt
-aab
-aab
 adt
 adt
 adt
@@ -37998,27 +38141,30 @@ adt
 adt
 adt
 adt
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -38141,26 +38287,26 @@ adt
 adt
 adt
 adt
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -38286,21 +38432,21 @@ adt
 adt
 adt
 adt
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -38428,21 +38574,21 @@ adt
 adt
 adt
 adt
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -38570,20 +38716,20 @@ adt
 adt
 adt
 adt
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -38712,16 +38858,16 @@ adt
 adt
 adt
 adt
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -38855,14 +39001,14 @@ adt
 adt
 adt
 adt
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -38997,13 +39143,13 @@ adt
 adt
 adt
 adt
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -39068,7 +39214,7 @@ aab
 aab
 aab
 aab
-aab
+adt
 adt
 adt
 adt
@@ -39139,12 +39285,12 @@ adt
 adt
 adt
 adt
-aab
-aab
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -39209,7 +39355,7 @@ aab
 aab
 aab
 aab
-aab
+adt
 adt
 adt
 adt
@@ -39281,12 +39427,12 @@ adt
 adt
 adt
 adt
-aab
-aab
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -39350,8 +39496,8 @@ aab
 aab
 aab
 aab
-aab
-aab
+adt
+adt
 adt
 adt
 adt
@@ -39365,7 +39511,7 @@ adt
 adt
 adt
 akX
-aqt
+akX
 akX
 akX
 adt
@@ -39423,11 +39569,11 @@ adt
 adt
 adt
 adt
-aab
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -39490,10 +39636,10 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
 adt
 adt
 adt
@@ -39565,10 +39711,10 @@ adt
 adt
 adt
 adt
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -39631,11 +39777,11 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-abn
+adt
+adt
+adt
+adt
+adt
 adt
 adt
 adt
@@ -39707,9 +39853,9 @@ adt
 adt
 adt
 adt
-aab
-aab
-aab
+adt
+adt
+adt
 aab
 aab
 aab
@@ -39771,12 +39917,12 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
 abn
+abn
+adt
+adt
+adt
+adt
 adt
 adt
 adt
@@ -39849,8 +39995,8 @@ adt
 adt
 adt
 adt
-aab
-aab
+adt
+adt
 aab
 aab
 aab
@@ -39911,15 +40057,15 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
 abn
 abn
+abn
+adt
+adt
+adt
+adt
+adt
+adt
 adt
 adt
 adt
@@ -39991,7 +40137,7 @@ adt
 adt
 adt
 adt
-aab
+adt
 aab
 aab
 aab
@@ -40052,15 +40198,15 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
 abn
+abn
+abn
+adt
+adt
+adt
+adt
+adt
+adt
 adt
 adt
 adt
@@ -40192,17 +40338,17 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
 abn
+abn
+abn
+abn
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 adt
 adt
 adt
@@ -40333,18 +40479,18 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
 abn
 abn
+abn
+abn
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 adt
 adt
 adt
@@ -40475,19 +40621,19 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
 abn
 abn
 abn
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 adt
 adt
 adt
@@ -40505,7 +40651,7 @@ aqz
 aog
 ars
 atI
-aqt
+akX
 akX
 aPv
 aPD
@@ -40617,19 +40763,19 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
 abn
 abn
 abn
-abn
-abn
-abn
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 adt
 adt
 adt
@@ -40758,20 +40904,20 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
 abn
 abn
-abn
-abn
-abn
-abn
-abn
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 adt
 adt
 adt
@@ -40900,20 +41046,20 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
 abn
 abn
-abn
-abn
-abn
-abn
-abn
-abn
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 adt
 adt
 adt
@@ -40983,7 +41129,7 @@ adt
 adt
 adt
 adt
-aab
+adt
 aab
 aab
 aab
@@ -41042,20 +41188,20 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+adt
+adt
 abn
 abn
 abn
 abn
 abn
-abn
-abn
-abn
+adt
+adt
+adt
+adt
 adt
 adt
 adt
@@ -41125,8 +41271,8 @@ adt
 adt
 adt
 adt
-aab
-aab
+adt
+adt
 aab
 aab
 aab
@@ -41184,12 +41330,6 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
 abn
 abn
 abn
@@ -41197,6 +41337,12 @@ abn
 abn
 abn
 abn
+abn
+abn
+abn
+abn
+adt
+adt
 adt
 adt
 adt
@@ -41267,10 +41413,10 @@ adt
 adt
 adt
 adt
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -41326,12 +41472,6 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
 abn
 abn
 abn
@@ -41339,6 +41479,12 @@ abn
 abn
 abn
 abn
+abn
+abn
+abn
+abn
+abn
+adt
 adt
 adt
 adt
@@ -41410,9 +41556,9 @@ adt
 adt
 adt
 adt
-aab
-aab
-aab
+adt
+adt
+adt
 aab
 aab
 aab
@@ -41468,12 +41614,12 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+abn
+abn
 abn
 abn
 abn
@@ -41553,9 +41699,9 @@ adt
 adt
 adt
 adt
-aab
-aab
-aab
+adt
+adt
+abn
 aab
 aab
 aab
@@ -41611,11 +41757,11 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+abn
 abn
 abn
 abn
@@ -41695,11 +41841,11 @@ adt
 adt
 adt
 adt
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+abn
 aab
 aab
 aab
@@ -41754,10 +41900,10 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
 abn
 abn
 abn
@@ -41837,28 +41983,28 @@ adt
 adt
 adt
 adt
-adt
+abn
+abn
+abn
+abn
+abn
+abn
+abn
 aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
 aab
 aab
 aab
@@ -41896,10 +42042,10 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
 abn
 abn
 abn
@@ -41980,28 +42126,28 @@ aHE
 adt
 abn
 abn
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
 aab
 aab
 aab
@@ -42039,10 +42185,10 @@ aab
 aab
 aab
 aab
+abn
+abn
 aab
-aab
-aab
-aab
+abn
 abn
 abn
 abn
@@ -42123,6 +42269,17 @@ adt
 abn
 abn
 abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
 aab
 aab
 aab
@@ -42130,21 +42287,10 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
 aab
 aab
 aab
@@ -42181,8 +42327,8 @@ aab
 aab
 aab
 aab
-aab
-aab
+abn
+abn
 aab
 aab
 aab
@@ -42265,6 +42411,15 @@ adt
 abn
 abn
 abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
 aab
 aab
 aab
@@ -42275,18 +42430,9 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
 aab
 aab
 aab
@@ -42324,12 +42470,12 @@ aab
 aab
 aab
 aab
+abn
 aab
 aab
 aab
 aab
-aab
-aab
+abn
 abn
 acn
 acQ
@@ -42407,6 +42553,13 @@ adt
 abn
 abn
 abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
 aab
 aab
 aab
@@ -42420,16 +42573,9 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
 aab
 aab
 aab
@@ -42471,8 +42617,8 @@ aab
 aab
 aab
 aab
-aab
-aab
+abn
+abn
 acn
 acR
 adA
@@ -42555,7 +42701,6 @@ aHE
 adt
 adt
 adt
-adt
 aab
 aab
 aab
@@ -42570,9 +42715,10 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
 aab
 aab
 aab
@@ -42614,7 +42760,7 @@ aab
 aab
 aab
 aab
-aab
+abn
 acm
 acm
 acm
@@ -42711,10 +42857,10 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
 aab
 aab
 aab
@@ -42756,7 +42902,7 @@ aab
 aab
 aab
 aab
-aab
+abn
 aco
 acS
 adB
@@ -42854,9 +43000,9 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
+abn
+abn
+abn
 aab
 aab
 aab
@@ -42950,7 +43096,7 @@ aKi
 aKV
 aLC
 aMo
-aMY
+qUf
 aNx
 aOn
 aMo
@@ -42996,9 +43142,9 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
+abn
+abn
+abn
 aab
 aab
 aab
@@ -43137,19 +43283,19 @@ aab
 aab
 aab
 aab
+abn
+abn
+abn
+abn
+abn
 aab
 aab
 aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
 aab
 aab
 aab
@@ -43206,9 +43352,9 @@ ann
 aux
 ahn
 ajE
-awD
-awD
-awD
+aAA
+aAA
+aAA
 awD
 awY
 awY
@@ -43239,7 +43385,7 @@ aNz
 aOp
 aPb
 aPM
-aQC
+aRn
 aRn
 aRO
 aSC
@@ -43278,21 +43424,21 @@ aab
 aab
 aab
 aab
+abn
+abn
+abn
+abn
+abn
+abn
+abn
 aab
 aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
 aab
 aab
 aab
@@ -43349,9 +43495,9 @@ auy
 auA
 ajE
 aAA
-awD
 aAA
-awD
+aAA
+aAA
 awD
 awY
 aAa
@@ -43381,7 +43527,7 @@ aNA
 aOq
 aMo
 aPN
-aQD
+aRm
 aRm
 aPN
 aSD
@@ -43423,20 +43569,20 @@ adt
 adt
 abn
 abn
+abn
+abn
+abn
+abn
 aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+adt
+adt
 aab
 aab
 aab
@@ -43494,7 +43640,7 @@ aAA
 axe
 aAA
 aAA
-awD
+ajE
 azs
 aAb
 aAx
@@ -43523,7 +43669,7 @@ aNB
 aOr
 aMo
 aPO
-aQD
+aRm
 aRm
 aPN
 aSE
@@ -43565,21 +43711,21 @@ adt
 adt
 abn
 abn
+abn
+abn
+abn
+abn
+abn
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -43636,7 +43782,7 @@ aAA
 aAA
 aAA
 aod
-aAA
+ajE
 azt
 aAc
 aAy
@@ -43707,21 +43853,21 @@ adt
 adt
 adt
 abn
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -43778,7 +43924,7 @@ anV
 aAA
 aAA
 aAA
-awD
+ajE
 azs
 aAd
 aAz
@@ -43804,15 +43950,15 @@ aJO
 aJO
 aJO
 aNC
-aOs
-aPc
-aPQ
+aND
+ajK
+aRm
 aQF
 aQF
 aQF
 aQF
 aRm
-aUp
+aRm
 aPJ
 aYd
 aWH
@@ -43850,21 +43996,21 @@ adt
 adt
 abn
 abn
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -43946,9 +44092,9 @@ aKo
 aKo
 aJO
 aNC
-aOs
-aPc
-aPR
+aND
+ajL
+aRm
 aQF
 aQF
 aQF
@@ -43995,18 +44141,18 @@ baz
 bkU
 bkU
 baz
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+abn
+abn
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -44088,15 +44234,15 @@ aKo
 aKo
 aJO
 aNC
-aOs
-aPc
+aND
+ajM
 aPS
 aQG
 aRp
-aQG
+aOs
 aQG
 aTC
-aUr
+aRm
 aQH
 aVQ
 aWJ
@@ -44137,18 +44283,18 @@ aNp
 baW
 blu
 blR
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+abn
+abn
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -44279,19 +44425,19 @@ baW
 baW
 blu
 blR
+abn
+abn
+abn
+abn
+abn
 adt
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -44371,7 +44517,7 @@ aKo
 aKo
 aKo
 aJO
-aND
+aNC
 aOt
 asQ
 aPT
@@ -44421,19 +44567,19 @@ baz
 baW
 aNq
 baz
+abn
+abn
+abn
+abn
 adt
 adt
 adt
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -44513,7 +44659,7 @@ aKo
 aKo
 aMr
 aJO
-aND
+aNC
 aso
 asR
 atc
@@ -44566,16 +44712,16 @@ baz
 adt
 adt
 adt
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -44708,15 +44854,15 @@ baz
 adt
 adt
 adt
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -44851,14 +44997,14 @@ adt
 adt
 adt
 adt
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -44992,14 +45138,14 @@ baz
 adt
 adt
 adt
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -45134,14 +45280,14 @@ baz
 adt
 adt
 adt
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 aab
 aab
 aab
@@ -45170,8 +45316,8 @@ aab
 aab
 aab
 aab
-aac
-aac
+ael
+ael
 aab
 aab
 ael
@@ -45275,8 +45421,8 @@ baW
 baz
 adt
 adt
-aab
-aab
+adt
+adt
 aab
 aab
 aab
@@ -45312,8 +45458,8 @@ aab
 aab
 aab
 aab
-aac
-aac
+ael
+ael
 aab
 aab
 ael
@@ -45417,7 +45563,7 @@ baW
 baz
 adt
 adt
-adt
+aab
 aab
 aab
 aab
@@ -45534,7 +45680,7 @@ aXB
 bbA
 bbJ
 aVP
-bcr
+nhf
 baW
 baW
 baW
@@ -45558,8 +45704,8 @@ bgx
 bgx
 baz
 adt
-adt
-adt
+aab
+aab
 aab
 aab
 aab
@@ -46307,7 +46453,7 @@ aab
 aab
 abN
 acc
-acs
+aiV
 aiV
 adr
 adZ
@@ -46331,7 +46477,7 @@ laD
 aac
 adt
 avD
-axp
+lJc
 ayd
 ayH
 azb
@@ -46954,23 +47100,23 @@ bbA
 bbJ
 bbJ
 aVP
-baz
-baz
+jvy
+aIh
 baz
 bdq
 aLX
 blE
 blE
 blE
-eTp
-eTp
+aJA
+aJA
 kad
-eTp
-nUP
-nUP
-nUP
-nUP
-nUP
+aJA
+aKX
+aKX
+aKX
+aKX
+aKX
 adt
 adt
 adt
@@ -47095,24 +47241,24 @@ aXB
 bbB
 bbJ
 bbJ
-aVP
-adt
-adt
-aLY
+bbI
+baU
+baW
+baz
 bdr
 aLX
 aLY
 adt
 adt
-eTp
+aJA
 hki
 keC
 mDr
-nUP
+aKX
 pKA
 rqo
 sSw
-nUP
+aKX
 adt
 adt
 adt
@@ -47238,23 +47384,23 @@ aVP
 aVP
 aVP
 aVP
-adt
-adt
-aLY
+baz
+baz
+baz
 bdr
 aLX
 aLY
 adt
 adt
-eTp
+aJA
 hxk
 keS
 mKS
-nUP
+aKX
 pLN
 rqU
-sSw
-nUP
+gOR
+aKX
 adt
 adt
 adt
@@ -47343,7 +47489,7 @@ aGg
 aGK
 aHe
 aHv
-aGF
+jiy
 aIu
 aFp
 aFp
@@ -47388,7 +47534,7 @@ aLX
 aLY
 adt
 adt
-eTp
+aJA
 hCO
 klz
 mNZ
@@ -47396,7 +47542,7 @@ nUS
 qia
 rJt
 sWW
-nUP
+aKX
 adt
 adt
 adt
@@ -47530,15 +47676,15 @@ aLX
 aLY
 adt
 adt
-eTp
+aJA
 hHc
 kpg
 nbT
-nUP
+aKX
 qtD
 rKB
 sWW
-nUP
+aKX
 adt
 adt
 adt
@@ -47590,7 +47736,7 @@ aar
 abv
 abC
 acx
-aaH
+aaG
 aaO
 afa
 ahG
@@ -47672,21 +47818,21 @@ aLX
 aLY
 adt
 adt
-eTp
-eTp
+aJA
+aJA
 kqp
-eTp
-nUP
-nUP
-nUP
-nUP
-nUP
-fBS
-fBS
-fBS
-fBS
-fBS
-fBS
+aJA
+aKX
+aKX
+aKX
+aKX
+aKX
+aJY
+aJY
+aJY
+aJY
+aJY
+aJY
 adt
 aab
 aab
@@ -47814,7 +47960,7 @@ aLX
 aLY
 adt
 adt
-fBS
+aJY
 hIk
 kPg
 hJu
@@ -47822,13 +47968,13 @@ nXW
 qwb
 gXE
 usS
-fBS
+aJY
 usS
 gXE
 nXW
 fxG
 gOd
-fBS
+aJY
 adt
 aab
 aab
@@ -47956,7 +48102,7 @@ aLX
 aLY
 adt
 adt
-fBS
+aJY
 nKV
 kPR
 ndB
@@ -47970,7 +48116,7 @@ oXH
 wJB
 gnh
 tgC
-fBS
+aJY
 adt
 adt
 adt
@@ -48098,21 +48244,21 @@ aLX
 aLY
 adt
 adt
-fBS
+aJY
 hIk
-kTB
+tVj
 rii
 bDr
 qPo
 wKz
 quu
-fBS
+aJY
 vcT
 efL
 wOp
 jAs
 xBA
-fBS
+aJY
 adt
 adt
 adt
@@ -48235,26 +48381,26 @@ aLY
 adt
 adt
 aLY
-bdy
+awg
 aLY
 aLY
 adt
 adt
-fBS
-fBS
+aJY
+aJY
 lha
-fBS
-fBS
-fBS
-fBS
-fBS
-fBS
+aJY
+aJY
+aJY
+aJY
+aJY
+aJY
 qah
 gaR
 wTg
 jzV
 pUj
-fBS
+aJY
 adt
 adt
 adt
@@ -48349,7 +48495,7 @@ aMs
 aNn
 aNV
 aNV
-aNV
+jcd
 aNV
 aQY
 aRA
@@ -48377,26 +48523,26 @@ aLY
 aLY
 aLY
 aLY
-bdy
+awg
 aLY
 adt
 adt
 adt
-fBS
+aJY
 ilH
 kTB
 nAh
-xGf
+pBU
 qSJ
 rRj
 sYS
-fBS
-fBS
-fBS
+aJY
+aJY
+aJY
 xfa
-fBS
-fBS
-fBS
+aJY
+aJY
+aJY
 adt
 adt
 adt
@@ -48518,17 +48664,17 @@ aLY
 aLY
 bcy
 bcK
-bda
+aLX
 bdz
 aLY
 adt
 adt
 adt
-fBS
+aJY
 ilX
 lnG
 nBC
-xGf
+pBU
 eZG
 rYR
 tfK
@@ -48538,7 +48684,7 @@ wyu
 xld
 kEg
 xMP
-xGf
+pBU
 adt
 adt
 aab
@@ -48660,17 +48806,17 @@ aLX
 baZ
 aLX
 aIl
-bdb
+bda
 bdA
 aLY
 adt
 adt
 adt
-fBS
+aJY
 iol
 lMw
 nJO
-xGf
+pBU
 lfv
 skm
 tlw
@@ -48680,7 +48826,7 @@ uYa
 xKF
 kEg
 tZV
-xGf
+pBU
 adt
 adt
 aab
@@ -48718,10 +48864,10 @@ aab
 aab
 aab
 aab
+aab
+aab
 aeG
 aeG
-aeG
-abn
 adf
 adN
 aev
@@ -48783,7 +48929,7 @@ aLY
 aTe
 aUc
 aUM
-aVv
+aVy
 aWq
 aVv
 aXQ
@@ -48808,11 +48954,11 @@ aLY
 adt
 adt
 adt
-fBS
-fBS
-fBS
-fBS
-xGf
+aJY
+aJY
+aJY
+aJY
+pBU
 rlN
 slS
 tqq
@@ -48822,7 +48968,7 @@ pkt
 xMf
 dmW
 rlN
-xGf
+pBU
 adt
 adt
 aab
@@ -48861,9 +49007,9 @@ aab
 aab
 aab
 aab
+aab
 aeG
-abn
-abn
+aeG
 adf
 adO
 aew
@@ -48925,7 +49071,7 @@ aLY
 aTf
 aUc
 aUN
-aVw
+aVy
 aVv
 aXj
 aXR
@@ -48954,17 +49100,17 @@ adt
 adt
 adt
 adt
-xGf
+pBU
 rlN
 srN
-rlN
+eZx
 kiL
 pAF
 fyj
-rXR
+jUQ
 kEC
 rlN
-xGf
+pBU
 adt
 adt
 adt
@@ -49003,9 +49149,9 @@ aab
 aab
 aab
 aab
+aab
 aeG
-abn
-abn
+aeG
 adf
 adP
 aex
@@ -49067,7 +49213,7 @@ aLY
 aTg
 aUc
 aUO
-aVx
+aVy
 aWr
 aXk
 aXS
@@ -49096,17 +49242,17 @@ adt
 adt
 adt
 adt
-xGf
+pBU
 rlN
 srN
-pBU
-pBU
+xGf
+xGf
 vzk
-pBU
-pBU
+xGf
+xGf
 kmV
 rlN
-xGf
+pBU
 adt
 adt
 adt
@@ -49145,9 +49291,9 @@ aab
 aab
 aab
 aab
+aab
 aeG
 aeG
-abn
 aeZ
 aeZ
 aeZ
@@ -49209,7 +49355,7 @@ aLY
 aTh
 aUc
 aUP
-aVx
+aVy
 aWs
 aUc
 aUc
@@ -49238,17 +49384,17 @@ adt
 adt
 adt
 adt
-xGf
+pBU
 xMP
 srN
-pBU
+xGf
 uwv
 vUD
 wIA
-pBU
+xGf
 kmV
 gOC
-xGf
+pBU
 adt
 adt
 adt
@@ -49287,9 +49433,9 @@ aab
 aab
 aab
 aab
+aab
 aeG
 aeG
-abn
 adg
 adQ
 aey
@@ -49303,7 +49449,7 @@ aar
 aar
 aiK
 aiK
-aSr
+aiK
 aiK
 aiK
 aiK
@@ -49380,17 +49526,17 @@ adt
 adt
 adt
 adt
-xGf
+pBU
 rlN
 srN
-pBU
-pBU
+xGf
+xGf
 vYb
-pBU
-pBU
+xGf
+xGf
 kmV
 rlN
-xGf
+pBU
 adt
 adt
 adt
@@ -49429,9 +49575,9 @@ aab
 aab
 aab
 aab
+abn
 aeG
-abn
-abn
+aeG
 adg
 adR
 aez
@@ -49443,7 +49589,7 @@ ajR
 aar
 abF
 aer
-ajK
+aiK
 akA
 akI
 akS
@@ -49522,7 +49668,7 @@ bax
 bax
 lZx
 lZx
-xGf
+pBU
 pYH
 geH
 cOj
@@ -49532,7 +49678,7 @@ xBj
 cOj
 sLP
 xHO
-xGf
+pBU
 adt
 adt
 aab
@@ -49570,10 +49716,10 @@ aab
 aab
 aab
 aab
-aab
-aeG
-aeG
 abn
+abn
+abn
+aeG
 adg
 adS
 aeA
@@ -49585,9 +49731,9 @@ ajS
 aar
 abF
 aer
-ajL
+aiK
 akB
-akJ
+acs
 akT
 akW
 akJ
@@ -49664,7 +49810,7 @@ gsU
 jtj
 jtj
 lZx
-xGf
+pBU
 kiL
 suL
 tyG
@@ -49674,7 +49820,7 @@ uNq
 xWd
 kdz
 kEg
-xGf
+pBU
 adt
 adt
 aab
@@ -49705,17 +49851,17 @@ aab
 aab
 aab
 aab
+abn
+abn
 aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
 aeG
-abn
-abn
 acC
 acC
 acC
@@ -49727,7 +49873,7 @@ akE
 aar
 abH
 agP
-ajM
+aiK
 akC
 akK
 akJ
@@ -49761,7 +49907,7 @@ sVf
 aIA
 aGR
 aJw
-aJU
+rAv
 aJU
 aLo
 aLV
@@ -49806,7 +49952,7 @@ gus
 jxi
 jxi
 nSl
-pIJ
+aLp
 roB
 sDE
 tHY
@@ -49816,10 +49962,10 @@ rXR
 qKR
 pQO
 kEg
-xGf
+pBU
 adt
 adt
-aab
+adt
 aab
 aab
 aab
@@ -49846,18 +49992,18 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aeG
-aeG
 abn
+abn
+abn
+abn
+abn
+aab
+abn
+abn
+abn
+abn
+abn
+aeG
 adm
 adp
 aec
@@ -49948,7 +50094,7 @@ gzK
 jtj
 mkm
 lZx
-xGf
+pBU
 cjM
 bld
 kEg
@@ -49958,11 +50104,11 @@ rlN
 kiL
 bld
 kAa
-xGf
+pBU
 adt
 adt
-aab
-aab
+adt
+adt
 aab
 aab
 aab
@@ -49988,17 +50134,17 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aeG
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
 aeG
 adm
 adq
@@ -50090,23 +50236,23 @@ gzK
 bax
 lZx
 lZx
-xGf
-xGf
-xGf
-xGf
-xGf
-xGf
-xGf
-xGf
-xGf
-xGf
-xGf
+pBU
+pBU
+pBU
+pBU
+pBU
+pBU
+pBU
+pBU
+pBU
+pBU
+pBU
 adt
 adt
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+abn
 aab
 aab
 aab
@@ -50130,17 +50276,17 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
 aeG
 adm
 adT
@@ -50177,7 +50323,7 @@ apa
 aDO
 aDO
 aDO
-aDO
+rbq
 aFF
 aGr
 aGR
@@ -50188,7 +50334,7 @@ aIC
 aJb
 aIb
 aJV
-aKG
+aGR
 aDP
 aLX
 aLX
@@ -50244,13 +50390,13 @@ blh
 blh
 blh
 blh
+adt
+adt
+adt
 abn
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
 aab
 aab
 aab
@@ -50272,18 +50418,18 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
 adi
 adi
 adi
@@ -50330,7 +50476,7 @@ aID
 aJc
 aGR
 aHY
-aKH
+dzE
 aDP
 aLY
 aLY
@@ -50386,14 +50532,14 @@ blh
 aBU
 aBU
 blh
+adt
+adt
 abn
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+abn
 aab
 aab
 aab
@@ -50414,18 +50560,18 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
 ado
 adU
 aeC
@@ -50469,7 +50615,7 @@ aGT
 aGT
 aHZ
 aIE
-aJc
+mBP
 aGR
 aHZ
 aKI
@@ -50529,14 +50675,14 @@ blG
 blG
 blh
 abn
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
 aab
 aab
 aab
@@ -50558,16 +50704,16 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
 ado
 aav
 aeD
@@ -50611,7 +50757,7 @@ aHj
 aHA
 aIa
 aIF
-aGR
+bOU
 aGR
 aGR
 aGR
@@ -50670,15 +50816,15 @@ bli
 blG
 blG
 bmb
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
 aab
 aab
 aab
@@ -50701,15 +50847,15 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
 ado
 aaw
 aeE
@@ -50812,15 +50958,15 @@ blj
 blH
 blS
 bmb
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
 aab
 aab
 aab
@@ -50843,19 +50989,19 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
 ado
 aak
 aaA
-aaA
+aKG
 aaD
 ahK
 ait
@@ -50895,7 +51041,7 @@ aHl
 aHB
 aIb
 aIH
-aGR
+fhR
 aGR
 aGR
 aGR
@@ -50931,7 +51077,7 @@ adt
 adt
 adt
 adt
-adt
+abn
 abn
 abn
 abn
@@ -50954,16 +51100,16 @@ blk
 blG
 blT
 bmb
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
 aab
 aab
 aab
@@ -50985,15 +51131,15 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+aeG
 adi
 adi
 adi
@@ -51035,11 +51181,11 @@ aDP
 aGS
 aGT
 aGT
-aHY
+rUS
 aID
-aJc
+xJR
 aGR
-aHY
+rUS
 aKH
 aDP
 adt
@@ -51060,9 +51206,8 @@ adt
 adt
 adt
 adt
-adt
-adt
-adt
+abn
+abn
 adt
 adt
 adt
@@ -51076,10 +51221,11 @@ adt
 abn
 abn
 abn
-adt
+abn
+abn
 adt
 abn
-aab
+abn
 abn
 abn
 bgU
@@ -51096,15 +51242,15 @@ blh
 blI
 blh
 blh
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
 aab
 aab
 aab
@@ -51125,22 +51271,22 @@ aab
 aab
 aab
 aab
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+aeG
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-adt
-adt
-adt
-adt
+aeG
+abn
 ahN
 aiD
 ajA
@@ -51177,12 +51323,12 @@ aBz
 aGR
 aGR
 aGR
-aHZ
+vmx
 aIE
 aJc
 aGR
-aHZ
-aKI
+vmx
+eTp
 aDP
 aMc
 aMc
@@ -51203,6 +51349,8 @@ adt
 abn
 abn
 abn
+abn
+abn
 adt
 adt
 adt
@@ -51212,16 +51360,14 @@ adt
 adt
 adt
 adt
-adt
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
 abn
 abn
 bgU
@@ -51237,16 +51383,16 @@ bgU
 abn
 abn
 abn
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
 aab
 aab
 aab
@@ -51267,22 +51413,22 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-adt
-adt
-adt
-adt
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+aeG
+aeG
+aeG
+aeG
+aeG
+abn
 ahN
 aiD
 ajB
@@ -51348,23 +51494,23 @@ abn
 abn
 abn
 abn
-abn
-abn
-abn
-aab
 adt
 adt
 adt
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
+abn
+abn
+abn
+abn
+aeG
+aeG
+aeG
+abn
+abn
+abn
 abn
 bgU
 bhI
@@ -51378,16 +51524,16 @@ bil
 bgU
 abn
 abn
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
 aab
 aab
 aab
@@ -51408,22 +51554,22 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+adt
+adt
+abn
+abn
 adt
 adt
 adt
+adt
+abn
+abn
+abn
+abn
+abn
 adt
 ahN
 alH
@@ -51491,16 +51637,16 @@ aab
 aab
 abn
 abn
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+adt
+adt
+adt
+adt
+adt
+abn
+abn
+abn
+abn
+abn
 aab
 aab
 aab
@@ -51520,16 +51666,16 @@ bjj
 bgU
 abn
 abn
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
 aab
 aab
 aab
@@ -51550,19 +51696,19 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 adt
 adt
 adt
@@ -51585,8 +51731,8 @@ avg
 avP
 awv
 ard
-aab
-aab
+abn
+abn
 abn
 abn
 abn
@@ -51631,17 +51777,17 @@ abn
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+adt
+adt
+abn
+abn
+abn
+abn
+abn
 aab
 aab
 aab
@@ -51661,16 +51807,16 @@ abn
 abn
 abn
 abn
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
 aab
 aab
 aab
@@ -51692,19 +51838,19 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 adt
 adt
 adt
@@ -51727,9 +51873,9 @@ atq
 atq
 ard
 ard
-aab
-aab
-aab
+abn
+abn
+abn
 abn
 abn
 abn
@@ -51740,7 +51886,7 @@ aDh
 aDT
 aEw
 aFd
-aFM
+huD
 aBz
 abn
 abn
@@ -51773,16 +51919,16 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
 aab
 aab
 aab
@@ -51799,17 +51945,17 @@ abn
 abn
 abn
 abn
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
 aab
 aab
 aab
@@ -51833,24 +51979,24 @@ aaa
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
 adt
 adt
 adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 ahN
 ahN
 ahN
@@ -51862,15 +52008,15 @@ ahN
 ahN
 ahN
 ahN
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
 aab
 aab
 aab
@@ -51915,6 +52061,15 @@ aab
 aab
 aab
 aab
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
 aab
 aab
 aab
@@ -51930,25 +52085,16 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
 aab
 aab
 aab
@@ -51975,26 +52121,34 @@ aaa
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
 adt
 adt
 adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 abn
 abn
 abn
@@ -52002,15 +52156,7 @@ abn
 abn
 abn
 abn
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
 aab
 aab
 aab
@@ -52058,6 +52204,14 @@ aab
 aab
 aab
 aab
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
 aab
 aab
 aab
@@ -52073,23 +52227,15 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
 aab
 aab
 aab
@@ -52117,51 +52263,31 @@ aaa
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
 abn
 abn
 abn
-abn
-abn
-abn
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-abn
-abn
-abn
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
 adt
 adt
 adt
@@ -52172,9 +52298,29 @@ abn
 abn
 abn
 abn
+aab
+aab
+aab
+aab
+aab
+aab
+aab
 abn
-aac
-aac
+abn
+abn
+abn
+abn
+aeG
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
 abn
 abn
 abn
@@ -52201,6 +52347,13 @@ aab
 aab
 aab
 aab
+abn
+abn
+abn
+abn
+abn
+abn
+abn
 aab
 aab
 aab
@@ -52216,22 +52369,15 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
 aab
 aab
 aab
@@ -52260,39 +52406,39 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+abn
+abn
+abn
+abn
+abn
+abn
+abn
 aab
 aab
 aab
@@ -52315,8 +52461,8 @@ abn
 abn
 abn
 abn
-aac
-aac
+abn
+abn
 abn
 abn
 abn
@@ -52344,6 +52490,10 @@ aab
 aab
 aab
 aab
+abn
+abn
+abn
+abn
 aab
 aab
 aab
@@ -52362,17 +52512,13 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+abn
+abn
+abn
 aab
 aab
 aab
@@ -52402,37 +52548,37 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+abn
+abn
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+abn
+abn
+abn
+abn
+abn
 aab
 aab
 aab
@@ -52487,6 +52633,10 @@ aab
 aab
 aab
 aab
+abn
+abn
+abn
+abn
 aab
 aab
 aab
@@ -52505,15 +52655,11 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+abn
 aab
 aab
 aab
@@ -52546,34 +52692,34 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+abn
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+abn
+abn
+abn
+abn
+abn
 aab
 aab
 aab
@@ -52630,6 +52776,9 @@ aab
 aab
 aab
 aab
+abn
+abn
+abn
 aab
 aab
 aab
@@ -52650,10 +52799,7 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
+abn
 aab
 aab
 aab
@@ -52691,30 +52837,30 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+abn
+abn
+abn
+abn
+abn
 aab
 aab
 aab
@@ -52773,8 +52919,8 @@ aab
 aab
 aab
 aab
-aab
-aab
+abn
+abn
 aab
 aab
 aab
@@ -52834,28 +52980,28 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+abn
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+adt
+abn
+abn
+abn
+abn
+abn
 aab
 aab
 aab
@@ -52977,26 +53123,26 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+abn
+adt
+adt
+adt
+adt
+adt
+adt
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
 aab
 aab
 aab
@@ -53120,23 +53266,23 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+abn
+adt
+adt
+adt
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
 aab
 aab
 aab
@@ -53263,21 +53409,21 @@ aab
 aab
 aab
 aab
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
 aab
 aab
 aab
@@ -53407,15 +53553,15 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
+abn
 aab
 aab
 aab
@@ -53550,12 +53696,12 @@ aab
 aab
 aab
 aab
-aab
-aab
-aab
-aab
-aab
-aab
+abn
+abn
+abn
+abn
+abn
+abn
 aab
 aab
 aab

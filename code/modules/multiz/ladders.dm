@@ -3,9 +3,9 @@
 	desc = "A ladder. You can climb it up and down."
 	icon_state = "ladder01"
 	icon = 'icons/obj/structures/multiz.dmi'
-	density = 0
+	density = FALSE
 	opacity = 0
-	anchored = 1
+	anchored = TRUE
 
 	var/allowed_directions = DOWN
 	var/obj/structure/ladder/target_up
@@ -64,7 +64,7 @@
 		to_chat(M, "<span class='notice'>\The [src] is incomplete and can't be climbed.</span>")
 		return
 	if(target_down && target_up)
-		var/direction = alert(M,"Do you want to go up or down?", "Ladder", "Up", "Down", "Cancel")
+		var/direction = tgui_alert(M,"Do you want to go up or down?", "Ladder", list("Up", "Down", "Cancel"))
 
 		if(direction == "Cancel")
 			return
@@ -89,16 +89,16 @@
 		return FALSE
 	return TRUE
 
-/mob/observer/ghost/may_climb_ladders(var/ladder)
+/mob/observer/dead/may_climb_ladders(var/ladder)
 	return TRUE
 
 /obj/structure/ladder/proc/climbLadder(var/mob/M, var/obj/target_ladder)
 	var/direction = (target_ladder == target_up ? "up" : "down")
-	M.visible_message("<span class='notice'>\The [M] begins climbing [direction] \the [src]!</span>",
+	M.visible_message("<b>\The [M]</b> begins climbing [direction] \the [src]!",
 		"You begin climbing [direction] \the [src]!",
 		"You hear the grunting and clanging of a metal ladder being used.")
 
-	target_ladder.audible_message("<span class='notice'>You hear something coming [direction] \the [src]</span>")
+	target_ladder.audible_message("<span class='notice'>You hear something coming [direction] \the [src]</span>", runemessage = "clank clank")
 
 	if(do_after(M, climb_time, src))
 		var/turf/T = get_turf(target_ladder)

@@ -104,6 +104,10 @@
 	name = "stack of cloth"
 	type_to_spawn = /obj/item/stack/material/cloth
 
+/obj/fiftyspawner/fiber
+	name = "stack of plant fibers"
+	type_to_spawn = /obj/item/stack/material/fiber
+
 /obj/fiftyspawner/cardboard
 	name = "stack of cardboard"
 	type_to_spawn = /obj/item/stack/material/cardboard

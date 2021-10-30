@@ -20,7 +20,7 @@
 		to_chat(usr, "Error: you are not an admin!")
 		return
 
-	var/response = input(usr, "Are you sure? This will start up the engine with selected gas as coolant.", "Engine setup") as null|anything in list("N2", "CO2", "PH", "Abort")
+	var/response = tgui_input_list(usr, "Are you sure? This will start up the engine with selected gas as coolant.", "Engine setup", list("N2", "CO2", "PH", "Abort"))
 	if(!response || response == "Abort")
 		return
 
@@ -103,8 +103,8 @@
 	name = "Engine Setup Marker"
 	desc = "You shouldn't see this."
 	invisibility = 101
-	anchored = 1
-	density = 0
+	anchored = TRUE
+	density = FALSE
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x3"
 

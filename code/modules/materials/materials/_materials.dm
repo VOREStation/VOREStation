@@ -49,6 +49,24 @@ var/list/name_to_material
 	if(material)
 		return material.name
 
+
+/**
+ * Returns the material composition of the atom.
+ *
+ * Used when recycling items, specifically to turn alloys back into their component mats.
+ *
+ * Exists because I'd need to add a way to un-alloy alloys or otherwise deal
+ * with people converting the entire stations material supply into alloys.
+ *
+ * Arguments:
+ * - breakdown_flags: A set of flags determining how exactly the materials are broken down. (unused)
+ */
+/obj/proc/get_material_composition(breakdown_flags=NONE)
+	. = list()
+	for(var/mat in matter)
+		var/datum/material/M = GET_MATERIAL_REF(mat)
+		.[M] = matter[mat]
+
 // Builds the datum list above.
 /proc/populate_material_list(force_remake=0)
 	if(name_to_material && !force_remake) return // Already set up!
@@ -72,6 +90,73 @@ var/list/name_to_material
 		return material.display_name
 	return null
 
+/** Fetches a cached material singleton when passed sufficient arguments.
+ *
+ * Arguments:
+ * - [arguments][/list]: The list of arguments used to fetch the material ref.
+ *   - The first element is a material datum, text string, or material type.
+ *     - [Material datums][/datum/material] are assumed to be references to the cached datum and are returned
+ *     - Text is assumed to be the text ID of a material and the corresponding material is fetched from the cache
+ *     - A material type is checked for bespokeness:
+ *       - If the material type is not bespoke the type is assumed to be the id for a material and the corresponding material is loaded from the cache.
+ *       - If the material type is bespoke a text ID is generated from the arguments list and used to load a material datum from the cache.
+ *   - The following elements are used to generate bespoke IDs
+ */
+/proc/_GetMaterialRef(list/arguments)
+	if(!name_to_material)
+		populate_material_list()
+
+	var/datum/material/key = arguments[1]
+	if(istype(key))
+		return key // we want to convert anything we're given to a material
+	
+	if(istext(key))	// text ID
+		. = name_to_material[key]
+		if(!.)
+			warning("Attempted to fetch material ref with invalid text id '[key]'")
+		return
+
+	if(!ispath(key, /datum/material))
+		CRASH("Attempted to fetch material ref with invalid key [key]")
+
+	key = GetIdFromArguments(arguments)
+	. = name_to_material[key]
+	if(!.)
+		warning("Attempted to fetch nonexistent material with key [key]")
+
+/** I'm not going to lie, this was swiped from [SSdcs][/datum/controller/subsystem/processing/dcs].
+ * Credit does to ninjanomnom
+ *
+ * Generates an id for bespoke ~~elements~~ materials when given the argument list
+ * Generating the id here is a bit complex because we need to support named arguments
+ * Named arguments can appear in any order and we need them to appear after ordered arguments
+ * We assume that no one will pass in a named argument with a value of null
+ **/
+/proc/GetIdFromArguments(list/arguments)
+	var/datum/material/mattype = arguments[1]
+	var/list/fullid = list("[initial(mattype.name) || mattype]")
+	var/list/named_arguments = list()
+	for(var/i in 2 to length(arguments))
+		var/key = arguments[i]
+		var/value
+		if(istext(key))
+			value = arguments[key]
+		if(!(istext(key) || isnum(key)))
+			key = REF(key)
+		key = "[key]" // Key is stringified so numbers dont break things
+		if(!isnull(value))
+			if(!(istext(value) || isnum(value)))
+				value = REF(value)
+			named_arguments["[key]"] = value
+		else
+			fullid += "[key]"
+
+	if(length(named_arguments))
+		named_arguments = sortList(named_arguments)
+		fullid += named_arguments
+	return replacetext(list2params(fullid), "+", " ")
+
+
 // Material definition and procs follow.
 /datum/material
 	var/name	                          // Unique name for use in indexing the list.
@@ -80,6 +165,7 @@ var/list/name_to_material
 	var/flags = 0                         // Various status modifiers.
 	var/sheet_singular_name = "sheet"
 	var/sheet_plural_name = "sheets"
+	var/sheet_collective_name = "stack"
 	var/is_fusion_fuel
 
 	// Shards/tables/structures
@@ -131,7 +217,7 @@ var/list/name_to_material
 	var/tableslam_noise = 'sound/weapons/tablehit1.ogg'
 	// Noise made when a simple door made of this material opens or closes.
 	var/dooropen_noise = 'sound/effects/stonedoor_openclose.ogg'
-	// Path to resulting stacktype. Todo remove need for this.
+	// Path to resulting stacktype.
 	var/stack_type
 	// Wallrot crumble message.
 	var/rotting_touch_message = "crumbles under your touch"
@@ -188,7 +274,7 @@ var/list/name_to_material
 	if(islist(composite_material))
 		for(var/material_string in composite_material)
 			temp_matter[material_string] = composite_material[material_string]
-	else if(SHEET_MATERIAL_AMOUNT)
+	else
 		temp_matter[name] = SHEET_MATERIAL_AMOUNT
 	return temp_matter
 
@@ -226,9 +312,9 @@ var/list/name_to_material
 	place_sheet(target)
 
 // Debris product. Used ALL THE TIME.
-/datum/material/proc/place_sheet(var/turf/target)
+/datum/material/proc/place_sheet(var/turf/target, amount)
 	if(stack_type)
-		return new stack_type(target)
+		return new stack_type(target, amount)
 
 // As above.
 /datum/material/proc/place_shard(var/turf/target)
@@ -272,9 +358,15 @@ var/list/name_to_material
 			new /datum/stack_recipe("[display_name] chair", /obj/structure/bed/chair, one_per_turf = 1, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
 			new /datum/stack_recipe("[display_name] bed", /obj/structure/bed, 2, one_per_turf = 1, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
 			new /datum/stack_recipe("[display_name] double bed", /obj/structure/bed/double, 4, one_per_turf = 1, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
-			new /datum/stack_recipe("[display_name] wall girders", /obj/structure/girder, 2, time = 50, one_per_turf = 1, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE)
+			new /datum/stack_recipe("[display_name] wall girders (standard)", /obj/structure/girder, 2, time = 50, one_per_turf = 1, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
+			new /datum/stack_recipe("[display_name] wall girders (bay)", /obj/structure/girder/bay, 2, time = 50, one_per_turf = 1, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE)
 		)
-
+		if(icon_base == "solid") // few icons
+			recipes += new /datum/stack_recipe("[display_name] wall girders (eris)", /obj/structure/girder/eris, 2, time = 50, one_per_turf = 1, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE)
+		recipes += new /datum/stack_recipe_list("low walls",list(
+			new /datum/stack_recipe("low wall (bay style)", /obj/structure/low_wall/bay, 3, time = 20, one_per_turf = 1, on_floor = 1, supplied_material = "[name]", recycle_material = "[name]"),
+			new /datum/stack_recipe("low wall (eris style)", /obj/structure/low_wall/eris, 3, time = 20, one_per_turf = 1, on_floor = 1, supplied_material = "[name]", recycle_material = "[name]")
+		))
 	if(hardness>50)
 		recipes += list(
 			new /datum/stack_recipe("[display_name] fork", /obj/item/weapon/material/kitchen/utensil/fork/plastic, 1, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),

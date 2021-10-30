@@ -5,8 +5,9 @@
 	desc = "It is a heavy duty industrial laser."
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "emitter"
-	anchored = 0
-	density = 1
+	anchored = FALSE
+	density = TRUE
+	unacidable = TRUE
 	req_access = list(access_engine_equip)
 	var/id = null
 
@@ -158,17 +159,18 @@
 				user.visible_message("[user.name] secures [src] to the floor.", \
 					"You secure the external reinforcing bolts to the floor.", \
 					"You hear a ratchet.")
-				src.anchored = 1
+				src.anchored = TRUE
 			if(1)
 				state = 0
 				playsound(src, W.usesound, 75, 1)
 				user.visible_message("[user.name] unsecures [src] reinforcing bolts from the floor.", \
 					"You undo the external reinforcing bolts.", \
 					"You hear a ratchet.")
-				src.anchored = 0
+				src.anchored = FALSE
 				disconnect_from_network()
 			if(2)
 				to_chat(user, "<span class='warning'>\The [src] needs to be unwelded from the floor.</span>")
+		update_icon() // VOREStation Add
 		return
 
 	if(istype(W, /obj/item/weapon/weldingtool))
@@ -205,15 +207,16 @@
 						disconnect_from_network()
 				else
 					to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
+		update_icon() // VOREStation Add
 		return
 
-	if(istype(W, /obj/item/stack/material) && W.get_material_name() == DEFAULT_WALL_MATERIAL)
+	if(istype(W, /obj/item/stack/material) && W.get_material_name() == MAT_STEEL)
 		var/amt = CEILING(( initial(integrity) - integrity)/10, 1)
 		if(!amt)
 			to_chat(user, "<span class='notice'>\The [src] is already fully repaired.</span>")
 			return
 		var/obj/item/stack/P = W
-		if(P.amount < amt)
+		if(!P.can_use(amt))
 			to_chat(user, "<span class='warning'>You don't have enough sheets to repair this! You need at least [amt] sheets.</span>")
 			return
 		to_chat(user, "<span class='notice'>You begin repairing \the [src]...</span>")
@@ -233,6 +236,7 @@
 		if(src.allowed(user))
 			src.locked = !src.locked
 			to_chat(user, "The controls are now [src.locked ? "locked." : "unlocked."]")
+			update_icon() // VOREStation Add
 		else
 			to_chat(user, "<span class='warning'>Access denied.</span>")
 		return

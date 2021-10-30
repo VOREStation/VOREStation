@@ -3,7 +3,7 @@
 	set name = "Join Into Soulcatcher"
 	set desc = "Select a player with a working NIF + Soulcatcher NIFSoft to join into it."
 
-	var/picked = input("Pick a friend with NIF and Soulcatcher to join into. Harrass strangers, get banned. Not everyone has a NIF w/ Soulcatcher.","Select a player") as null|anything in player_list
+	var/picked = tgui_input_list(usr, "Pick a friend with NIF and Soulcatcher to join into. Harrass strangers, get banned. Not everyone has a NIF w/ Soulcatcher.","Select a player", player_list)
 
 	//Didn't pick anyone or picked a null
 	if(!picked)
@@ -36,7 +36,7 @@
 	var/req_time = world.time
 	nif.notify("Transient mindstate detected, analyzing...")
 	sleep(15) //So if they are typing they get interrupted by sound and message, and don't type over the box
-	var/response = alert(H,"[src] ([src.key]) wants to join into your Soulcatcher.","Soulcatcher Request","Deny","Allow")
+	var/response = tgui_alert(H,"[src] ([src.key]) wants to join into your Soulcatcher.","Soulcatcher Request",list("Deny","Allow"))
 
 	if(response == "Deny")
 		to_chat(src,"<span class='warning'>[H] denied your request.</span>")
@@ -62,18 +62,41 @@
 	set name = "Notify Transcore"
 	set desc = "If your past-due backup notification was missed or ignored, you can use this to send a new one."
 
-	if(src.mind && src.mind.name in SStranscore.backed_up)
-		var/datum/transhuman/mind_record/record = SStranscore.backed_up[src.mind.name]
+	if(!mind)
+		to_chat(src,"<span class='warning'>Your ghost is missing game values that allow this functionality, sorry.</span>")
+		return
+	var/datum/transcore_db/db = SStranscore.db_by_mind_name(mind.name)
+	if(db)
+		var/datum/transhuman/mind_record/record = db.backed_up[src.mind.name]
 		if(!(record.dead_state == MR_DEAD))
 			to_chat(src, "<span class='warning'>Your backup is not past-due yet.</span>")
-		else if((world.time - record.last_notification) < 10 MINUTES)
+		else if((world.time - record.last_notification) < 5 MINUTES)
 			to_chat(src, "<span class='warning'>Too little time has passed since your last notification.</span>")
 		else
-			SStranscore.notify(record.mindname, TRUE)
+			db.notify(record)
 			record.last_notification = world.time
 			to_chat(src, "<span class='notice'>New notification has been sent.</span>")
 	else
-		to_chat(src, "<span class='warning'>No mind record found!</span>")
+		to_chat(src,"<span class='warning'>No backup record could be found, sorry.</span>")
+
+/mob/observer/dead/verb/backup_delay()
+	set category = "Ghost"
+	set name = "Cancel Transcore Notification"
+	set desc = "You can use this to avoid automatic backup notification happening. Manual notification can still be used."
+
+	if(!mind)
+		to_chat(src,"<span class='warning'>Your ghost is missing game values that allow this functionality, sorry.</span>")
+		return
+	var/datum/transcore_db/db = SStranscore.db_by_mind_name(mind.name)
+	if(db)
+		var/datum/transhuman/mind_record/record = db.backed_up[src.mind.name]
+		if(record.dead_state == MR_DEAD || !(record.do_notify))
+			to_chat(src, "<span class='warning'>The notification has already happened or been delayed.</span>")
+		else
+			record.do_notify = FALSE
+			to_chat(src, "<span class='notice'>Overdue mind backup notification delayed successfully.</span>")
+	else
+		to_chat(src,"<span class='warning'>No backup record could be found, sorry.</span>")
 
 /mob/observer/dead/verb/findghostpod() //Moves the ghost instead of just changing the ghosts's eye -Nodrak
 	set category = "Ghost"
@@ -84,7 +107,7 @@
 	if(!istype(usr, /mob/observer/dead)) //Make sure they're an observer!
 		return
 
-	var/input = input(usr, "Select a ghost pod:", "Ghost Jump") as null|anything in observe_list_format(active_ghost_pods)
+	var/input = tgui_input_list(usr, "Select a ghost pod:", "Ghost Jump", observe_list_format(active_ghost_pods))
 	if(!input)
 		to_chat(src, "No active ghost pods detected.")
 		return

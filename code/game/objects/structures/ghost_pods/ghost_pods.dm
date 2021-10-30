@@ -8,6 +8,7 @@
 	var/used = FALSE
 	var/busy = FALSE // Don't spam ghosts by spamclicking.
 	var/needscharger //For drone pods that want their pod to turn into a charger.
+	unacidable = TRUE
 
 // Call this to get a ghost volunteer.
 /obj/structure/ghost_pod/proc/trigger(var/alert, var/adminalert)
@@ -50,7 +51,7 @@
 /obj/structure/ghost_pod/manual/attack_hand(var/mob/living/user)
 	if(!used)
 		if(confirm_before_open)
-			if(alert(user, "Are you sure you want to touch \the [src]?", "Confirm", "No", "Yes") == "No")
+			if(tgui_alert(user, "Are you sure you want to touch \the [src]?", "Confirm", list("No", "Yes")) == "No")
 				return
 		trigger()
 		// VOREStation Addition Start
@@ -83,11 +84,16 @@
 	description_info = "A ghost can click on this to return to the round as whatever is contained inside this object."
 
 /obj/structure/ghost_pod/ghost_activated/attack_ghost(var/mob/observer/dead/user)
+	//VOREStation Add Start
+	if(jobban_isbanned(user, "GhostRoles"))
+		to_chat(user, "<span class='warning'>You cannot inhabit this creature because you are banned from playing ghost roles.</span>")
+		return
+	//VOREStation Add End
 	if(used)
 		to_chat(user, "<span class='warning'>Another spirit appears to have gotten to \the [src] before you.  Sorry.</span>")
 		return
 
-	var/choice = input(user, "Are you certain you wish to activate this pod?", "Control Pod") as null|anything in list("Yes", "No")
+	var/choice = tgui_alert(user, "Are you certain you wish to activate this pod?", "Control Pod", list("Yes", "No"))
 
 	if(!choice || choice == "No")
 		return

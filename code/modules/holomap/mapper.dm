@@ -185,7 +185,7 @@
 		hud_item.off(FALSE)
 
 /obj/item/device/mapping_unit/proc/hide_device()
-	hud_datum.unapply_to_hud()
+	hud_datum?.unapply_to_hud()
 
 /obj/item/device/mapping_unit/proc/last_run()
 	stop_updates()
@@ -265,7 +265,7 @@
 					markerImage.appearance_flags = RESET_COLOR|PIXEL_SCALE
 					markerImage.pixel_x = holomarker.x+holomarker.offset_x
 					markerImage.pixel_y = holomarker.y+holomarker.offset_y
-					map_app.overlays += markerImage
+					map_app.add_overlay(markerImage)
 
 			var/obj/screen/mapper/map/tmp = new()
 			tmp.appearance = map_app
@@ -280,19 +280,15 @@
 	extras_holder.pixel_y = bgmap.pixel_y = -1*T_y + offset_y
 
 	// Populate other mapper icons
-	for(var/hc in mapping_units)
-		var/obj/item/device/mapping_unit/HC = hc
+	for(var/obj/item/device/mapping_unit/HC as anything in mapping_units)
 		if(HC.mapper_filter != mapper_filter)
 			continue
 		var/mob_indicator = HOLOMAP_ERROR
 		var/turf/TU = get_turf(HC)
-		if(TU.z != T_z)
+		// Mapper not on a turf or elsewhere
+		if(!TU || (TU.z != T_z))
 			continue
-		
-		// Marker not on a turf
-		if(!TU)
-			continue
-		
+	
 		// We're the marker
 		if(HC == src)
 			mob_indicator = HOLOMAP_YOU
@@ -342,26 +338,26 @@
 			handle_marker(mark,TU.x,TU.y)
 			extras += mark
 
-		// Marker beacon items
-		for(var/hb in mapping_beacons)
-			var/obj/item/device/holomap_beacon/HB = hb
-			if(HB.mapper_filter != mapper_filter)
-				continue
-			
-			var/turf/TB = get_turf(HB)
-			if(TU.z != T_z)
-				continue
-			
-			var/marker_cache_key = "\ref[HB]_marker"
-			if(!(marker_cache_key in icon_image_cache))
-				var/obj/screen/mapper/marker/mark = new()
-				mark.icon_state = "beacon"
-				mark.layer = 1
-				icon_image_cache[marker_cache_key] = mark
-			
-			var/obj/screen/mapper/marker/mark = icon_image_cache[marker_cache_key]
-			handle_marker(mark,TB.x,TB.y)
-			extras += mark
+	// Marker beacon items
+	for(var/obj/item/device/holomap_beacon/HB as anything in mapping_beacons)
+		if(HB.mapper_filter != mapper_filter)
+			continue
+		
+		var/turf/TB = get_turf(HB)
+		// Marker beacon not on a turf or elsewhere
+		if(!TB || (TB.z != T_z))
+			continue
+		
+		var/marker_cache_key = "\ref[HB]_marker"
+		if(!(marker_cache_key in icon_image_cache))
+			var/obj/screen/mapper/marker/mark = new()
+			mark.icon_state = "beacon"
+			mark.layer = 1
+			icon_image_cache[marker_cache_key] = mark
+		
+		var/obj/screen/mapper/marker/mark = icon_image_cache[marker_cache_key]
+		handle_marker(mark,TB.x,TB.y)
+		extras += mark
 
 	if(badmap)
 		var/obj/O = icon_image_cache["bad"]
@@ -419,7 +415,7 @@
 	else
 		in_list = FALSE
 		mapping_beacons -= src
-	icon_state = initial(icon_state) + in_list ? "_on" : ""
+	icon_state = "[initial(icon_state)][in_list ? "_on" : ""]"
 	to_chat(user,SPAN_NOTICE("The [src] is now [in_list ? "broadcasting" : "disabled"]."))
 
 /obj/item/device/holomap_beacon/Destroy()

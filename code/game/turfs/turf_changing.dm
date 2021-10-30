@@ -32,15 +32,23 @@
 			N = /turf/simulated/open
 
 	var/obj/fire/old_fire = fire
-	var/old_opacity = opacity
 	var/old_dynamic_lighting = dynamic_lighting
-	var/old_affecting_lights = affecting_lights
-	var/old_lighting_overlay = lighting_overlay
-	var/old_corners = corners
+	var/old_lighting_object = lighting_object
+	var/old_lighting_corner_NE = lighting_corner_NE
+	var/old_lighting_corner_SE = lighting_corner_SE
+	var/old_lighting_corner_SW = lighting_corner_SW
+	var/old_lighting_corner_NW = lighting_corner_NW
+	var/old_directional_opacity = directional_opacity
 	var/old_outdoors = outdoors
 	var/old_dangerous_objects = dangerous_objects
+	var/old_dynamic_lumcount = dynamic_lumcount
 
-	//to_world("Replacing [src.type] with [N]")
+	var/turf/Ab = GetAbove(src)
+	if(Ab)
+		Ab.multiz_turf_del(src, DOWN)
+	var/turf/Be = GetBelow(src)
+	if(Be)
+		Be.multiz_turf_del(src, UP)
 
 	if(connections) connections.erase_all()
 
@@ -50,6 +58,9 @@
 		//the zone will only really do heavy lifting once.
 		var/turf/simulated/S = src
 		if(S.zone) S.zone.rebuild()
+
+	cut_overlays(TRUE)
+	RemoveElement(/datum/element/turf_z_transparency)
 
 	if(ispath(N, /turf/simulated/floor))
 		var/turf/simulated/W = new N( locate(src.x, src.y, src.z) )
@@ -94,21 +105,31 @@
 		W.post_change()
 		. =  W
 
-	recalc_atom_opacity()
-
 	dangerous_objects = old_dangerous_objects
 
-	if(lighting_overlays_initialised)
-		lighting_overlay = old_lighting_overlay
-		affecting_lights = old_affecting_lights
-		corners = old_corners
-		if((old_opacity != opacity) || (dynamic_lighting != old_dynamic_lighting))
-			reconsider_lights()
-		if(dynamic_lighting != old_dynamic_lighting)
-			if(dynamic_lighting)
+	lighting_corner_NE = old_lighting_corner_NE
+	lighting_corner_SE = old_lighting_corner_SE
+	lighting_corner_SW = old_lighting_corner_SW
+	lighting_corner_NW = old_lighting_corner_NW
+
+	dynamic_lumcount = old_dynamic_lumcount
+
+	if(SSlighting.subsystem_initialized)
+		lighting_object = old_lighting_object
+
+		directional_opacity = old_directional_opacity
+		recalculate_directional_opacity()
+
+		if (dynamic_lighting != old_dynamic_lighting)
+			if (IS_DYNAMIC_LIGHTING(src))
 				lighting_build_overlay()
 			else
 				lighting_clear_overlay()
+		else if(lighting_object && !lighting_object.needs_update)
+			lighting_object.update()
+
+		for(var/turf/space/space_tile in RANGE_TURFS(1, src))
+			space_tile.update_starlight()
 
 	if(preserve_outdoors)
 		outdoors = old_outdoors

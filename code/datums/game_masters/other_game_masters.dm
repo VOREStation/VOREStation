@@ -3,8 +3,7 @@
 // * Does not react to danger at all.
 /datum/game_master/classic/choose_event()
 	var/list/weighted_events = list()
-	for(var/E in SSgame_master.available_events)
-		var/datum/event2/meta/event = E
+	for(var/datum/event2/meta/event as anything in SSgame_master.available_events)
 		if(!event.enabled)
 			continue
 		weighted_events[event] = event.get_weight()
@@ -31,8 +30,7 @@
 
 /datum/game_master/brutal/choose_event()
 	var/list/weighted_events = list()
-	for(var/E in SSgame_master.available_events)
-		var/datum/event2/meta/event = E
+	for(var/datum/event2/meta/event as anything in SSgame_master.available_events)
 		if(!event.enabled)
 			continue
 		weighted_events[event] = event.get_weight() + (event.chaos * 2)

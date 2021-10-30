@@ -16,6 +16,8 @@
 	attacktext = list("nipped")
 	friendly = list("prods")
 
+	organ_names = /decl/mob_organ_names/borer
+
 	status_flags = CANPUSH
 	pass_flags = PASSTABLE
 	movement_cooldown = 5
@@ -26,24 +28,30 @@
 	holder_type = /obj/item/weapon/holder/borer
 	ai_holder_type = null // This is player-controlled, always.
 
+	var/mob/living/carbon/human/host = null		// The humanoid host for the brain worm.
+	var/mob/living/captive_brain/host_brain		// Used for swapping control of the body back and forth.
+	
+	var/roundstart = FALSE						// If true, spawning won't try to pull a ghost.
+	var/antag = TRUE							// If false, will avoid setting up objectives and events
+
 	var/chemicals = 10							// A resource used for reproduction and powers.
 	var/max_chemicals = 250						// Max of said resource.
-	var/mob/living/carbon/human/host = null		// The humanoid host for the brain worm.
 	var/true_name = null						// String used when speaking among other worms.
-	var/mob/living/captive_brain/host_brain		// Used for swapping control of the body back and forth.
 	var/controlling = FALSE						// Used in human death ceck.
 	var/docile = FALSE							// Sugar can stop borers from acting.
+	
 	var/has_reproduced = FALSE
-	var/roundstart = FALSE						// If true, spawning won't try to pull a ghost.
 	var/used_dominate							// world.time when the dominate power was last used.
-
 
 /mob/living/simple_mob/animal/borer/roundstart
 	roundstart = TRUE
 
+/mob/living/simple_mob/animal/borer/non_antag
+	antag = FALSE
+
 /mob/living/simple_mob/animal/borer/Login()
 	..()
-	if(mind)
+	if(antag && mind)
 		borers.add_antagonist(mind)
 
 /mob/living/simple_mob/animal/borer/Initialize()
@@ -54,7 +62,7 @@
 
 	true_name = "[pick("Primary","Secondary","Tertiary","Quaternary")] [rand(1000,9999)]"
 
-	if(!roundstart)
+	if(!roundstart && antag)
 		request_player()
 
 	return ..()
@@ -241,7 +249,7 @@
 					nearby_mobs += LM
 			var/mob/living/speaker
 			if(nearby_mobs.len)
-				speaker = input("Choose a target speaker.") as null|anything in nearby_mobs
+				speaker = tgui_input_list(usr, "Choose a target speaker:", "Target Choice", nearby_mobs)
 			if(speaker)
 				log_admin("[src.ckey]/([src]) tried to force [speaker] to say: [message]")
 				message_admins("[src.ckey]/([src]) tried to force [speaker] to say: [message]")
@@ -260,3 +268,7 @@
 			continue
 		else if(M.stat == DEAD && M.is_preference_enabled(/datum/client_preference/ghost_ears))
 			to_chat(M, "[src.true_name] whispers to [host], \"[message]\"")
+
+
+/decl/mob_organ_names/borer
+	hit_zones = list("head", "central segment", "tail segment")

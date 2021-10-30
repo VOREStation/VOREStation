@@ -33,7 +33,9 @@ two tiles on initialization, and which way a cliff is facing may change during m
 	opacity = FALSE
 	climbable = TRUE
 	climb_delay = 10 SECONDS
+	unacidable = TRUE
 	block_turf_edges = TRUE // Don't want turf edges popping up from the cliff edge.
+	plane = TURF_PLANE
 
 	var/icon_variant = null // Used to make cliffs less repeative by having a selection of sprites to display.
 	var/corner = FALSE // Used for icon things.
@@ -130,7 +132,7 @@ two tiles on initialization, and which way a cliff is facing may change during m
 
 	var/subtraction_icon_state = "[icon_state]-subtract"
 	var/cache_string = "[icon_state]_[T.icon]_[T.icon_state]"
-	if(T && subtraction_icon_state in cached_icon_states(icon))
+	if(T && (subtraction_icon_state in cached_icon_states(icon)))
 		cut_overlays()
 		// If we've made the same icon before, just recycle it.
 		if(cache_string in GLOB.cliff_icon_cache)

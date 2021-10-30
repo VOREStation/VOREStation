@@ -14,9 +14,9 @@
 	var/image/turf_image
 	var/list/decals
 
-	New(var/location = null, var/turf/simulated/shuttle/turf)
-		..(null)
-		my_turf = turf
+/obj/landed_holder/New(var/location = null, var/turf/simulated/shuttle/turf)
+	..(null)
+	my_turf = turf
 
 /obj/landed_holder/proc/land_on(var/turf/T)
 	//Gather destination information
@@ -76,6 +76,7 @@
 	icon = 'icons/turf/shuttle_white.dmi'
 	thermal_conductivity = 0.05
 	heat_capacity = 0
+	flags = TURF_ACID_IMMUNE
 
 	var/obj/landed_holder/landed_holder
 	var/interior_corner = 0
@@ -214,11 +215,13 @@
 	light_range = 3
 	light_power = 0.6
 	light_color = "#66ffff" // Bright cyan.
+	light_on = TRUE
 	block_tele = TRUE
 
 /turf/simulated/shuttle/floor/alien/Initialize()
 	. = ..()
 	icon_state = "alienpod[rand(1, 9)]"
+	update_light()
 
 /turf/simulated/shuttle/floor/alienplating
 	icon_state = "alienplating"

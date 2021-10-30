@@ -93,8 +93,8 @@
 	if(!ability_prechecks(user, price))
 		return
 
-	var/title = input("Select message title: ")
-	var/text = input("Select message text: ")
+	var/title = input(usr, "Select message title: ")
+	var/text = input(usr, "Select message text: ")
 	if(!title || !text || !ability_pay(user, price))
 		to_chat(user, "Hack Aborted")
 		return
@@ -120,8 +120,8 @@
 	if(!ability_prechecks(user, price))
 		return
 
-	var/alert_target = input("Select new alert level:") in list("green", "yellow", "violet", "orange", "blue", "red", "delta", "CANCEL")
-	if(!alert_target || !ability_pay(user, price) || alert_target == "CANCEL")
+	var/alert_target = tgui_input_list(user, "Select new alert level:", "Alert Level", list("green", "yellow", "violet", "orange", "blue", "red", "delta"))
+	if(!alert_target || !ability_pay(user, price))
 		to_chat(user, "Hack Aborted")
 		return
 
@@ -140,7 +140,7 @@
 	set desc = "500 CPU - Begins hacking station's primary firewall, quickly overtaking remaining APC systems. When completed grants access to station's self-destruct mechanism. Network administrators will probably notice this."
 	var/price = 500
 	var/mob/living/silicon/ai/user = usr
-	if (alert(user, "Begin system override? This cannot be stopped once started. The network administrators will probably notice this.", "System Override:", "Yes", "No") != "Yes")
+	if (tgui_alert(user, "Begin system override? This cannot be stopped once started. The network administrators will probably notice this.", "System Override:", list("Yes", "No")) != "Yes")
 		return
 	if (!ability_prechecks(user, price) || !ability_pay(user, price) || user.system_override)
 		if(user.system_override)
@@ -194,7 +194,7 @@
 	sleep(300)
 	// Hack all APCs, including those built during hack sequence.
 	for(var/obj/machinery/power/apc/A in GLOB.apcs)
-		if((!A.hacker || A.hacker != src) && !A.aidisabled && A.z in using_map.station_levels)
+		if((!A.hacker || A.hacker != src) && !A.aidisabled && (A.z in using_map.station_levels))
 			A.ai_hack(src)
 
 

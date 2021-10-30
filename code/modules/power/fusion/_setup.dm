@@ -21,7 +21,7 @@
 		to_chat(usr, "This map is not appropriate for this verb.")
 		return
 
-	var/response = input(usr, "Are you sure?", "Engine setup") as null|anything in list("No", "Yes")
+	var/response = tgui_alert(usr, "Are you sure?", "Engine setup", list("No", "Yes"))
 	if(!response || response == "No")
 		return
 

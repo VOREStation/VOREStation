@@ -151,7 +151,7 @@
 			cell = thing
 			user.drop_from_inventory(cell, src)
 			playsound(src, 'sound/machines/click.ogg', 10, 1)
-			user.visible_message("<span class='notice'>\The [user] slots \the [cell] into \the [src].</span>")
+			user.visible_message("<b>\The [user]</b> slots \the [cell] into \the [src].")
 			update_icon()
 			return
 
@@ -160,7 +160,7 @@
 				to_chat(user, "<span class='warning'>\The [src] has no capacitor installed.</span>")
 				return
 			user.put_in_hands(capacitor)
-			user.visible_message("<span class='notice'>\The [user] unscrews \the [capacitor] from \the [src].</span>")
+			user.visible_message("<b>\The [user]</b> unscrews \the [capacitor] from \the [src].")
 			playsound(src, thing.usesound, 50, 1)
 			capacitor = null
 			update_icon()
@@ -174,7 +174,7 @@
 			user.drop_from_inventory(capacitor, src)
 			playsound(src, 'sound/machines/click.ogg', 10, 1)
 			power_per_tick = (power_cost*0.15) * capacitor.rating
-			user.visible_message("<span class='notice'>\The [user] slots \the [capacitor] into \the [src].</span>")
+			user.visible_message("<b>\The [user]</b> slots \the [capacitor] into \the [src].")
 			update_icon()
 			return
 
@@ -195,7 +195,7 @@
 			loaded = new load_type(src, 1)
 			ammo.use(1)
 
-		user.visible_message("<span class='notice'>\The [user] loads \the [src] with \the [loaded].</span>")
+		user.visible_message("<b>\The [user]</b> loads \the [src] with \the [loaded].")
 		playsound(src, 'sound/weapons/flipblade.ogg', 50, 1)
 		update_icon()
 		return
@@ -215,7 +215,7 @@
 		if(removing)
 			removing.forceMove(get_turf(src))
 			user.put_in_hands(removing)
-			user.visible_message("<span class='notice'>\The [user] removes \the [removing] from \the [src].</span>")
+			user.visible_message("<b>\The [user]</b> removes \the [removing] from \the [src].")
 			playsound(src, 'sound/machines/click.ogg', 10, 1)
 			update_icon()
 			return
@@ -284,7 +284,7 @@
 					visible_message("<span class='danger'>\The [src] begins to rattle, its acceleration chamber collapsing in on itself!</span>")
 					removable_components = FALSE
 					spawn(15)
-						audible_message("<span class='critical'>\The [src]'s power supply begins to overload as the device crumples!</span>") //Why are you still holding this?
+						audible_message("<span class='critical'>\The [src]'s power supply begins to overload as the device crumples!</span>", runemessage = "VWRRRRRRRR") //Why are you still holding this?
 						playsound(src, 'sound/effects/grillehit.ogg', 10, 1)
 						var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
 						var/turf/T = get_turf(src)

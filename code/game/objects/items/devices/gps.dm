@@ -8,7 +8,7 @@ var/list/GPS_list = list()
 	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_BELT
 	origin_tech = list(TECH_MATERIAL = 2, TECH_BLUESPACE = 2, TECH_MAGNET = 1)
-	matter = list(DEFAULT_WALL_MATERIAL = 500)
+	matter = list(MAT_STEEL = 500)
 
 	var/gps_tag = "GEN0"
 	var/emped = FALSE
@@ -193,9 +193,9 @@ var/list/GPS_list = list()
 	dat["curr_y"] = curr.y
 	dat["curr_z"] = curr.z
 	dat["curr_z_name"] = strip_improper(using_map.get_zlevel_name(curr.z))
-	dat["gps_list"] = list()
 	dat["z_level_detection"] = using_map.get_map_levels(curr.z, long_range)
 	
+	var/list/gps_list = list()
 	for(var/obj/item/device/gps/G in GPS_list - src)
 
 		if(!can_track(G, dat["z_level_detection"]))
@@ -219,7 +219,9 @@ var/list/GPS_list = list()
 		gps_data["x"] = T.x
 		gps_data["y"] = T.y
 
-		dat["gps_list"][++dat["gps_list"].len] = gps_data
+		gps_list[++gps_list.len] = gps_data
+
+	dat["gps_list"] = gps_list
 
 	return dat
 
@@ -241,7 +243,8 @@ var/list/GPS_list = list()
 		dat += "<tr><td colspan = 4>[hide_signal ? "Tagged" : "Broadcasting"] as '[gps_tag]'.</td>"
 		dat += "<td><a href='?src=\ref[src];tag=1'>\[Change Tag\]</a><a href='?src=\ref[src];range=1'>\[Toggle Scan Range\]</a>[can_hide_signal ? "<a href='?src=\ref[src];hide=1'>\[Toggle Signal Visibility\]</a>":""]</td></tr>"
 
-		if(gps_data["gps_list"].len)
+		var/list/gps_list = gps_data["gps_list"]
+		if(gps_list.len)
 			dat += "<tr><td colspan = 6><b>Detected signals</b></td></tr>"
 			for(var/gps in gps_data["gps_list"])
 				dat += "<tr>"
@@ -312,7 +315,7 @@ var/list/GPS_list = list()
 	if(href_list["track_color"])
 		var/obj/item/device/gps/gps = locate(href_list["track_color"])
 		if(istype(gps) && !QDELETED(gps))
-			var/new_colour = input("Enter a new tracking color.", "GPS Waypoint Color") as color|null
+			var/new_colour = input(usr, "Enter a new tracking color.", "GPS Waypoint Color") as color|null
 			if(new_colour && istype(gps) && !QDELETED(gps) && holder == usr && !usr.incapacitated())
 				to_chat(usr, SPAN_NOTICE("You adjust the colour \the [src] is using to highlight [gps.gps_tag]."))
 				LAZYSET(tracking_devices, href_list["track_color"], new_colour)
@@ -320,7 +323,7 @@ var/list/GPS_list = list()
 				. = TRUE
 
 	if(href_list["tag"])
-		var/a = input("Please enter desired tag.", name, gps_tag) as text
+		var/a = input(usr, "Please enter desired tag.", name, gps_tag) as text
 		a = uppertext(copytext(sanitize(a), 1, 11))
 		if(in_range(src, usr))
 			gps_tag = a
@@ -482,7 +485,8 @@ var/list/GPS_list = list()
 		dat += "<tr><td colspan = 4>[hide_signal ? "Tagged" : "Broadcasting"] as '[gps_tag]'.</td>"
 		dat += "<td><a href='?src=\ref[src];tag=1'>\[Change Tag\]</a><a href='?src=\ref[src];range=1'>\[Toggle Scan Range\]</a>[can_hide_signal ? "<a href='?src=\ref[src];hide=1'>\[Toggle Signal Visibility\]</a>":""]</td></tr>"
 
-		if(gps_data["gps_list"].len)
+		var/list/gps_list = gps_data["gps_list"]
+		if(gps_list.len)
 			dat += "<tr><td colspan = 6><b>Detected signals</b></td></tr>"
 			for(var/gps in gps_data["gps_list"])
 				dat += "<tr>"

@@ -38,7 +38,7 @@
 	damage_overlays = 'icons/mob/human_races/masks/dam_teshari.dmi'
 	damage_mask = 'icons/mob/human_races/masks/dam_mask_teshari.dmi'
 	blood_mask = 'icons/mob/human_races/masks/blood_teshari.dmi'
-	suit_storage_icon = 'icons/mob/species/teshari/belt_mirror.dmi'
+	suit_storage_icon = 'icons/inventory/suit_store/mob_teshari.dmi'
 
 	fire_icon_state = "generic" // Humanoid is too big for them and spriting a new one is really annoying.
 
@@ -207,7 +207,7 @@
 	// Handled!
 	if(!silent)
 		to_chat(H, SPAN_NOTICE("You catch the air in your wings and greatly slow your fall."))
-		landing.visible_message(SPAN_NOTICE("\The [H] glides down from above, landing safely."))
+		landing.visible_message("<b>\The [H]</b> glides down from above, landing safely.")
 		H.Stun(1)
 		playsound(H, "rustle", 25, 1)
 	return TRUE

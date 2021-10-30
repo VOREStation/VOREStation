@@ -6,6 +6,7 @@
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "nest"
 	var/health = 100
+	unacidable = TRUE
 
 /obj/structure/bed/nest/update_icon()
 	return
@@ -80,6 +81,6 @@
 
 /obj/structure/bed/nest/proc/healthcheck()
 	if(health <=0)
-		density = 0
+		density = FALSE
 		qdel(src)
 	return

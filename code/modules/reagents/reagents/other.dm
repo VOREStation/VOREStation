@@ -167,7 +167,7 @@
 	taste_description = "bwoink"
 	reagent_state = LIQUID
 	color = "#C8A5DC"
-	affects_dead = 1 //This can even heal dead people.
+	affects_dead = TRUE //This can even heal dead people.
 	metabolism = 0.1
 	mrate_static = TRUE //Just in case
 
@@ -178,11 +178,10 @@
 	affect_blood(M, alien, removed)
 
 /datum/reagent/adminordrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.setCloneLoss(0)
-	M.setOxyLoss(0)
-	M.radiation = 0
-	M.heal_organ_damage(20,20)
-	M.adjustToxLoss(-20)
+	M.heal_organ_damage(40,40)
+	M.adjustCloneLoss(-40)
+	M.adjustToxLoss(-40)
+	M.adjustOxyLoss(-300)
 	M.hallucination = 0
 	M.setBrainLoss(0)
 	M.disabilities = 0
@@ -202,6 +201,10 @@
 	M.radiation = 0
 	M.ExtinguishMob()
 	M.fire_stacks = 0
+	M.add_chemical_effect(CE_ANTIBIOTIC, ANTIBIO_SUPER)
+	M.add_chemical_effect(CE_STABLE, 15)
+	M.add_chemical_effect(CE_PAINKILLER, 200)
+	M.remove_a_modifier_of_type(/datum/modifier/poisoned)
 	if(M.bodytemperature > 310)
 		M.bodytemperature = max(310, M.bodytemperature - (40 * TEMPERATURE_DAMAGE_COEFFICIENT))
 	else if(M.bodytemperature < 311)
@@ -209,6 +212,9 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/wound_heal = 5
+		for(var/obj/item/organ/I in H.internal_organs)
+			if(I.damage > 0) //Adminordrazine heals even robits, it is magic
+				I.damage = max(I.damage - wound_heal, 0)
 		for(var/obj/item/organ/external/O in H.bad_external_organs)
 			if(O.status & ORGAN_BROKEN)
 				O.mend_fracture()		//Only works if the bone won't rebreak, as usual
@@ -300,6 +306,10 @@
 /datum/reagent/supermatter
 	name = "Supermatter"
 	id = "supermatter"
+	color = "#fffd6b"
+	reagent_state = SOLID
+	affects_dead = TRUE
+	affects_robots = TRUE
 	description = "The immense power of a supermatter crystal, in liquid form. You're not entirely sure how that's possible, but it's probably best handled with care."
 	taste_description = "taffy" // 0. The supermatter is tasty, tasty taffy.
 
@@ -402,7 +412,7 @@
 		if(istype(T, /turf/simulated/wall))
 			var/turf/simulated/wall/W = T
 			W.thermite = 1
-			W.overlays += image('icons/effects/effects.dmi',icon_state = "#673910")
+			W.add_overlay(image('icons/effects/effects.dmi',icon_state = "#673910")) // What??
 			remove_self(5)
 	return
 

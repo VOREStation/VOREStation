@@ -44,7 +44,7 @@
 	R.offset_y += 0
 	R.ico += "paper_stamp-cent"
 	R.stamped += /obj/item/weapon/stamp
-	R.overlays += stampoverlay
+	R.add_overlay(stampoverlay)
 	R.stamps += "<HR><i>This paper has been stamped by the EFTPOS device.</i>"
 
 /obj/item/device/eftpos/Destroy()
@@ -64,7 +64,7 @@
 	if(!R.stamped)
 		R.stamped = new
 	R.stamped += /obj/item/weapon/stamp
-	R.overlays += stampoverlay
+	R.add_overlay(stampoverlay)
 	R.stamps += "<HR><i>This paper has been stamped by the EFTPOS device.</i>"
 	var/obj/item/smallDelivery/D = new(R.loc)
 	R.loc = D
@@ -145,26 +145,26 @@
 	if(href_list["choice"])
 		switch(href_list["choice"])
 			if("change_code")
-				var/attempt_code = input("Re-enter the current EFTPOS access code", "Confirm old EFTPOS code") as num
+				var/attempt_code = input(usr, "Re-enter the current EFTPOS access code", "Confirm old EFTPOS code") as num
 				if(attempt_code == access_code)
-					var/trycode = input("Enter a new access code for this device (4-6 digits, numbers only)", "Enter new EFTPOS code") as num
+					var/trycode = input(usr, "Enter a new access code for this device (4-6 digits, numbers only)", "Enter new EFTPOS code") as num
 					if(trycode >= 1000 && trycode <= 999999)
 						access_code = trycode
 					else
-						alert("That is not a valid code!")
+						tgui_alert_async(usr, "That is not a valid code!")
 					print_reference()
 				else
 					to_chat(usr, "[bicon(src)]<span class='warning'>Incorrect code entered.</span>")
 			if("change_id")
-				var/attempt_code = text2num(input("Re-enter the current EFTPOS access code", "Confirm EFTPOS code"))
+				var/attempt_code = text2num(input(usr, "Re-enter the current EFTPOS access code", "Confirm EFTPOS code"))
 				if(attempt_code == access_code)
-					eftpos_name = sanitize(input("Enter a new terminal ID for this device", "Enter new EFTPOS ID"), MAX_NAME_LEN) + " EFTPOS scanner"
+					eftpos_name = sanitize(input(usr, "Enter a new terminal ID for this device", "Enter new EFTPOS ID"), MAX_NAME_LEN) + " EFTPOS scanner"
 					print_reference()
 				else
 					to_chat(usr, "[bicon(src)]<span class='warning'>Incorrect code entered.</span>")
 			if("link_account")
-				var/attempt_account_num = input("Enter account number to pay EFTPOS charges into", "New account number") as num
-				var/attempt_pin = input("Enter pin code", "Account pin") as num
+				var/attempt_account_num = input(usr, "Enter account number to pay EFTPOS charges into", "New account number") as num
+				var/attempt_pin = input(usr, "Enter pin code", "Account pin") as num
 				linked_account = attempt_account_access(attempt_account_num, attempt_pin, 1)
 				if(linked_account)
 					if(linked_account.suspended)
@@ -173,12 +173,12 @@
 				else
 					to_chat(usr, "[bicon(src)]<span class='warning'>Account not found.</span>")
 			if("trans_purpose")
-				var/choice = sanitize(input("Enter reason for EFTPOS transaction", "Transaction purpose"))
+				var/choice = sanitize(input(usr, "Enter reason for EFTPOS transaction", "Transaction purpose"))
 				if(choice) transaction_purpose = choice
 			if("trans_value")
-				var/try_num = input("Enter amount for EFTPOS transaction", "Transaction amount") as num
+				var/try_num = input(usr, "Enter amount for EFTPOS transaction", "Transaction amount") as num
 				if(try_num < 0)
-					alert("That is not a valid amount!")
+					tgui_alert_async(usr, "That is not a valid amount!")
 				else
 					transaction_amount = try_num
 			if("toggle_lock")
@@ -187,7 +187,7 @@
 						transaction_locked = 0
 						transaction_paid = 0
 					else
-						var/attempt_code = input("Enter EFTPOS access code", "Reset Transaction") as num
+						var/attempt_code = input(usr, "Enter EFTPOS access code", "Reset Transaction") as num
 						if(attempt_code == access_code)
 							transaction_locked = 0
 							transaction_paid = 0
@@ -207,7 +207,7 @@
 				var/obj/item/I = usr.get_active_hand()
 				if (istype(I, /obj/item/weapon/card))
 					var/obj/item/weapon/card/id/C = I
-					if(access_cent_captain in C.access || access_hop in C.access || access_captain in C.access)
+					if((access_cent_captain in C.access) || (access_hop in C.access) || (access_captain in C.access))
 						access_code = 0
 						to_chat(usr, "[bicon(src)]<span class='info'>Access code reset to 0.</span>")
 				else if (istype(I, /obj/item/weapon/card/emag))
@@ -229,7 +229,7 @@
 					var/attempt_pin = ""
 					var/datum/money_account/D = get_account(C.associated_account_number)
 					if(D.security_level)
-						attempt_pin = input("Enter pin code", "EFTPOS transaction") as num
+						attempt_pin = input(usr, "Enter pin code", "EFTPOS transaction") as num
 						D = null
 					D = attempt_account_access(C.associated_account_number, attempt_pin, 2)
 					if(D)
@@ -285,7 +285,5 @@
 				playsound(src, 'sound/machines/chime.ogg', 50, 1)
 				src.visible_message("[bicon(src)] \The [src] chimes.")
 				transaction_paid = 1
-	else
-		..()
 
 	//emag?

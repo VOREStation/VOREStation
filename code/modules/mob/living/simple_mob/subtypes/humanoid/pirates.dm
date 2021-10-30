@@ -16,7 +16,7 @@
 	melee_damage_lower = 30
 	melee_damage_upper = 30
 	attack_armor_pen = 30
-	attack_sharp = 1
+	attack_sharp = TRUE
 	attack_edge = 1
 
 	attacktext = list("slashed")

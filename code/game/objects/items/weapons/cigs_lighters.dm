@@ -207,8 +207,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 				to_chat(M, "<span class='notice'>Your [name] goes out.</span>")
 			M.remove_from_mob(src) //un-equip it so the overlays can update
 			M.update_inv_wear_mask(0)
-			M.update_inv_l_hand(0)
-			M.update_inv_r_hand(1)
 		qdel(src)
 	else
 		new /obj/effect/decal/cleanable/ash(T)
@@ -221,8 +219,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			icon_state = initial(icon_state)
 			item_state = initial(item_state)
 			M.update_inv_wear_mask(0)
-			M.update_inv_l_hand(0)
-			M.update_inv_r_hand(1)
 			smoketime = 0
 			reagents.clear_reagents()
 			name = "empty [initial(name)]"
@@ -376,7 +372,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 /obj/item/trash/cigbutt
 	name = "cigarette butt"
 	desc = "A manky old cigarette butt."
-	icon = 'icons/obj/clothing/masks.dmi'
+	icon = 'icons/inventory/face/item.dmi'
 	icon_state = "cigbutt"
 	randpixel = 10
 	w_class = ITEMSIZE_TINY
@@ -578,10 +574,10 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	deactivation_sound = 'sound/items/zippo_off.ogg'
 
 /obj/item/weapon/flame/lighter/random
-	New()
-		icon_state = "lighter-[pick("r","c","y","g")]"
-		item_state = icon_state
-		base_state = icon_state
+/obj/item/weapon/flame/lighter/random/New()
+	icon_state = "lighter-[pick("r","c","y","g")]"
+	item_state = icon_state
+	base_state = icon_state
 
 /obj/item/weapon/flame/lighter/attack_self(mob/living/user)
 	if(!base_state)

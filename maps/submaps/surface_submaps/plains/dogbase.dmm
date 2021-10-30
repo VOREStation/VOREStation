@@ -1,0 +1,1855 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ab" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/vending/coffee,
+/obj/effect/floor_decal/corner/red/border{
+	dir = 5
+	},
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"ae" = (
+/mob/living/simple_mob/animal/wolf/direwolf/dog/sec{
+	desc = "The biggest and baddest guard dog around.";
+	faction = "syndicate";
+	max_co2 = 0;
+	max_tox = 0;
+	name = "syndicate guard dog"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/DogBase)
+"ay" = (
+/obj/structure/dogbed,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/remains/tajaran,
+/obj/random/maintenance/medical,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/DogBase)
+"aF" = (
+/obj/structure/sign/securearea,
+/turf/simulated/wall/r_wall,
+/area/submap/DogBase)
+"aX" = (
+/obj/structure/dogbed,
+/obj/effect/decal/remains/tajaran,
+/obj/effect/decal/cleanable/filth,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/weapon/bone,
+/obj/random/maintenance/security,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/DogBase)
+"bl" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/turf/simulated/floor/plating/external/virgo3b,
+/area/submap/DogBase)
+"bw" = (
+/obj/item/weapon/storage/belt/janitor,
+/obj/effect/floor_decal/corner/purple/diagonal,
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"bx" = (
+/obj/machinery/porta_turret/poi{
+	faction = "syndicate"
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"bT" = (
+/obj/structure/safe,
+/obj/effect/floor_decal/borderfloor{
+	dir = 5
+	},
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"cS" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/mob/living/simple_mob/mechanical/viscerator/mercenary,
+/turf/simulated/floor/plating,
+/area/submap/DogBase)
+"ec" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 5
+	},
+/obj/machinery/vending/cola,
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"eA" = (
+/obj/machinery/light,
+/obj/effect/floor_decal/borderfloor,
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"eI" = (
+/obj/structure/closet/crate/trashcart,
+/obj/effect/floor_decal/corner/purple/diagonal,
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"eZ" = (
+/mob/living/simple_mob/animal/wolf/direwolf/dog/sec{
+	desc = "The biggest and baddest guard dog around.";
+	faction = "syndicate";
+	max_co2 = 0;
+	max_tox = 0;
+	name = "syndicate guard dog"
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"fg" = (
+/obj/structure/closet/l3closet/janitor,
+/obj/effect/floor_decal/corner/purple/diagonal,
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"fI" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/random/maintenance/cargo,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/DogBase)
+"hl" = (
+/obj/effect/floor_decal/borderfloor/corner,
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"hp" = (
+/turf/template_noop,
+/area/template_noop)
+"hA" = (
+/obj/structure/table/woodentable,
+/obj/item/stolenpackage,
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"hZ" = (
+/obj/machinery/power/smes/buildable/point_of_interest,
+/obj/structure/cable/green{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/simulated/floor/plating,
+/area/submap/DogBase)
+"ik" = (
+/obj/random/mob/merc/all,
+/turf/template_noop,
+/area/template_noop)
+"iv" = (
+/obj/structure/dogbed,
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/filth,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/weapon/bone/ribs,
+/obj/random/maintenance/research,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/DogBase)
+"jz" = (
+/obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/phoronlock,
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"jD" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"jO" = (
+/obj/structure/dogbed,
+/obj/effect/decal/remains/unathi,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/random/maintenance/security,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/DogBase)
+"kl" = (
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/random/maintenance/cargo,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/DogBase)
+"km" = (
+/obj/effect/decal/remains/human,
+/turf/template_noop,
+/area/template_noop)
+"lb" = (
+/obj/random/mob/merc/all,
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"lg" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/purple/diagonal,
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"lh" = (
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/obj/structure/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/mob/living/simple_mob/mechanical/viscerator/mercenary,
+/turf/simulated/floor/plating,
+/area/submap/DogBase)
+"lk" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/DogBase)
+"lm" = (
+/obj/structure/table/woodentable,
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"lr" = (
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/turf/simulated/floor/plating/external/virgo3b,
+/area/submap/DogBase)
+"lN" = (
+/obj/machinery/porta_turret/poi{
+	faction = "syndicate"
+	},
+/turf/simulated/floor/plating/external/virgo3b,
+/area/submap/DogBase)
+"lX" = (
+/obj/effect/floor_decal/borderfloor,
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"ng" = (
+/mob/living/bot/cleanbot{
+	faction = "malf_drone"
+	},
+/obj/effect/floor_decal/corner/purple/diagonal,
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"np" = (
+/obj/structure/table/woodentable,
+/obj/item/weapon/gun/projectile/pistol,
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"oW" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/template_noop)
+"pR" = (
+/obj/structure/bed,
+/obj/item/weapon/bedsheet,
+/obj/effect/floor_decal/borderfloor{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"qg" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/red/border{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"qk" = (
+/obj/machinery/porta_turret/poi{
+	faction = "syndicate"
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"qI" = (
+/obj/structure/dogbed,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/weapon/bone,
+/obj/random/maintenance/security,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/DogBase)
+"qO" = (
+/obj/structure/bed,
+/obj/item/weapon/bedsheet,
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"qZ" = (
+/obj/effect/decal/remains/ribcage,
+/turf/template_noop,
+/area/template_noop)
+"re" = (
+/mob/living/simple_mob/animal/wolf/direwolf/dog/sec{
+	desc = "The biggest and baddest guard dog around.";
+	faction = "syndicate";
+	max_co2 = 0;
+	max_tox = 0;
+	name = "syndicate guard dog"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"rH" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"se" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"tp" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/plating/external/virgo3b,
+/area/submap/DogBase)
+"tt" = (
+/obj/machinery/power/smes/buildable/point_of_interest,
+/obj/structure/cable/green,
+/turf/simulated/floor/plating,
+/area/submap/DogBase)
+"tz" = (
+/obj/effect/floor_decal/corner/red/border{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"tN" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"vq" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"vX" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/mob/living/simple_mob/mechanical/viscerator/mercenary,
+/turf/simulated/floor/plating,
+/area/submap/DogBase)
+"wI" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"wQ" = (
+/obj/effect/floor_decal/corner/red/border{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"wS" = (
+/mob/living/simple_mob/animal/wolf/direwolf/dog/sec{
+	desc = "The biggest and baddest guard dog around.";
+	faction = "syndicate";
+	max_co2 = 0;
+	max_tox = 0;
+	name = "syndicate guard dog"
+	},
+/turf/template_noop,
+/area/template_noop)
+"xc" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/mob/living/simple_mob/mechanical/viscerator/mercenary,
+/turf/simulated/floor/plating,
+/area/submap/DogBase)
+"xe" = (
+/obj/structure/closet/secure_closet/guncabinet,
+/obj/random/projectile/scrapped_smg,
+/obj/random/projectile/scrapped_smg,
+/obj/random/projectile/scrapped_smg,
+/obj/random/projectile/scrapped_shotgun,
+/obj/effect/floor_decal/corner/red/border{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"xp" = (
+/obj/structure/dogbed,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/remains/human,
+/obj/random/contraband/nofail,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/DogBase)
+"yl" = (
+/obj/structure/dogbed,
+/obj/effect/decal/remains/deer,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/random/contraband/nofail,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/DogBase)
+"yx" = (
+/obj/machinery/door/airlock/external,
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"yX" = (
+/obj/item/modular_computer/laptop/preset/custom_loadout/cheap,
+/obj/structure/table/woodentable,
+/obj/effect/floor_decal/corner/red/border{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"Am" = (
+/obj/machinery/door/blast/gate/thin,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/DogBase)
+"AJ" = (
+/obj/machinery/door/airlock/engineering,
+/turf/simulated/floor/tiled,
+/area/submap/DogBase)
+"AY" = (
+/obj/structure/closet/secure_closet/guncabinet,
+/obj/random/projectile,
+/obj/random/projectile,
+/obj/effect/floor_decal/corner/red/border{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"Bk" = (
+/turf/simulated/wall/r_wall,
+/area/submap/DogBase)
+"Bx" = (
+/obj/structure/table/woodentable,
+/obj/random/projectile/scrapped_pistol,
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"BA" = (
+/obj/structure/bed,
+/obj/item/weapon/bedsheet,
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"BB" = (
+/obj/structure/table/woodentable,
+/obj/random/cash/big,
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"Ce" = (
+/obj/structure/janitorialcart,
+/obj/item/weapon/storage/bag/trash,
+/obj/effect/floor_decal/corner/purple/diagonal,
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"Cz" = (
+/obj/effect/floor_decal/corner/red/border{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"CQ" = (
+/obj/structure/dogbed,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/weapon/bone,
+/obj/random/contraband/nofail,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/DogBase)
+"Dt" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 9
+	},
+/obj/effect/landmark/loot_spawn,
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"Dv" = (
+/mob/living/simple_mob/animal/wolf/direwolf/dog/sec{
+	desc = "The biggest and baddest guard dog around.";
+	faction = "syndicate";
+	max_co2 = 0;
+	max_tox = 0;
+	name = "syndicate guard dog"
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"Ez" = (
+/mob/living/simple_mob/mechanical/viscerator/mercenary,
+/turf/template_noop,
+/area/template_noop)
+"Fm" = (
+/obj/machinery/door/airlock,
+/turf/simulated/floor/tiled,
+/area/submap/DogBase)
+"FD" = (
+/obj/structure/fence,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/DogBase)
+"FO" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/red/border{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"Ge" = (
+/obj/structure/table/woodentable,
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/obj/random/cash/huge,
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"Gf" = (
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/filth,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/random/maintenance/cargo,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/DogBase)
+"GB" = (
+/obj/structure/fence{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/DogBase)
+"GJ" = (
+/obj/structure/closet/secure_closet/guncabinet,
+/obj/random/projectile,
+/obj/random/projectile,
+/obj/effect/landmark/loot_spawn,
+/obj/effect/floor_decal/corner/red/border{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"Hl" = (
+/turf/simulated/floor/plating/external/virgo3b,
+/area/submap/DogBase)
+"HF" = (
+/obj/random/mob/merc/all,
+/obj/structure/bed/chair,
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"HM" = (
+/obj/structure/table/woodentable,
+/obj/random/contraband/nofail,
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"Iz" = (
+/obj/structure/table/woodentable,
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"Jm" = (
+/obj/structure/dogbed,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/random/maintenance/research,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/DogBase)
+"Ki" = (
+/obj/machinery/power/port_gen/pacman,
+/obj/structure/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/turf/simulated/floor/plating,
+/area/submap/DogBase)
+"Kt" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/mob/living/simple_mob/mechanical/viscerator/mercenary,
+/turf/simulated/floor/plating,
+/area/submap/DogBase)
+"Le" = (
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/mob/living/simple_mob/mechanical/viscerator/mercenary,
+/turf/simulated/floor/plating,
+/area/submap/DogBase)
+"Lm" = (
+/obj/effect/landmark/loot_spawn,
+/obj/effect/floor_decal/borderfloor{
+	dir = 5
+	},
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"LJ" = (
+/obj/effect/decal/remains/tajaran,
+/turf/template_noop,
+/area/template_noop)
+"LP" = (
+/obj/machinery/door/airlock,
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"Ng" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/vending/security,
+/obj/effect/floor_decal/corner/red/border{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"Ni" = (
+/obj/effect/floor_decal/borderfloor/corner{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"Ok" = (
+/obj/structure/table/woodentable,
+/obj/item/device/radio/phone,
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"Ol" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/weapon/bone/leg,
+/mob/living/simple_mob/animal/wolf/direwolf/dog/sec{
+	desc = "The biggest and baddest guard dog around.";
+	faction = "syndicate";
+	max_co2 = 0;
+	max_tox = 0;
+	name = "syndicate guard dog"
+	},
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/DogBase)
+"OR" = (
+/mob/living/simple_mob/animal/wolf/direwolf/dog/sec{
+	desc = "The biggest and baddest guard dog around.";
+	faction = "syndicate";
+	max_co2 = 0;
+	max_tox = 0;
+	name = "syndicate guard dog"
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/turf/simulated/floor/plating/external/virgo3b,
+/area/submap/DogBase)
+"OS" = (
+/obj/effect/floor_decal/corner/red/border,
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"Pi" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 9
+	},
+/obj/machinery/vending/cigarette,
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"PB" = (
+/obj/effect/floor_decal/borderfloor/corner{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"PJ" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/mob/living/simple_mob/mechanical/viscerator/mercenary,
+/obj/structure/table/rack/shelf/steel,
+/obj/item/stack/material/phoron{
+	amount = 10
+	},
+/obj/item/stack/material/phoron{
+	amount = 10;
+	pixel_x = 1;
+	pixel_y = 6
+	},
+/turf/simulated/floor/plating,
+/area/submap/DogBase)
+"Qp" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/template_noop,
+/area/template_noop)
+"Qu" = (
+/obj/effect/floor_decal/corner/purple/diagonal,
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"QB" = (
+/mob/living/simple_mob/animal/wolf/direwolf/dog/sec{
+	desc = "The biggest and baddest guard dog around.";
+	faction = "syndicate";
+	max_co2 = 0;
+	max_tox = 0;
+	name = "syndicate guard dog"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/template_noop)
+"Rz" = (
+/obj/structure/table/woodentable,
+/obj/item/device/radio/phone,
+/obj/random/contraband/nofail,
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"RW" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"SW" = (
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/template_noop)
+"To" = (
+/obj/structure/fence/corner{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/DogBase)
+"UW" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"UY" = (
+/obj/structure/dogbed,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/random/maintenance/security,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/DogBase)
+"Vm" = (
+/obj/structure/loot_pile/maint/technical,
+/obj/effect/floor_decal/corner/purple/diagonal,
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"Vy" = (
+/obj/effect/decal/remains/unathi,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/DogBase)
+"VG" = (
+/obj/structure/bed/chair,
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"Wm" = (
+/obj/structure/table/woodentable,
+/obj/effect/floor_decal/corner/red/border{
+	dir = 1
+	},
+/obj/random/curseditem,
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"Wq" = (
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"Wu" = (
+/obj/structure/bed,
+/obj/item/weapon/bedsheet,
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"WH" = (
+/obj/effect/floor_decal/borderfloor/corner{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"WU" = (
+/obj/structure/table/woodentable,
+/obj/effect/floor_decal/corner/red/border{
+	dir = 1
+	},
+/obj/random/cash/huge,
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"Xz" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/template_noop)
+"Ya" = (
+/mob/living/simple_mob/animal/wolf/direwolf/dog/sec{
+	desc = "The biggest and baddest guard dog around.";
+	faction = "syndicate";
+	max_co2 = 0;
+	max_tox = 0;
+	name = "syndicate guard dog"
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"Yi" = (
+/obj/structure/table/rack/shelf/steel,
+/obj/effect/floor_decal/corner/purple/diagonal,
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"Yr" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark,
+/area/submap/DogBase)
+"YJ" = (
+/obj/random/mob/merc/all,
+/turf/simulated/floor/plating/external/virgo3b,
+/area/submap/DogBase)
+"YX" = (
+/obj/structure/dogbed,
+/obj/effect/decal/remains/deer,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/random/maintenance/medical,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/DogBase)
+"ZK" = (
+/obj/machinery/power/apc{
+	cell_type = /obj/item/weapon/cell/super;
+	dir = 8;
+	name = "Unknown APC";
+	pixel_x = -24
+	},
+/obj/structure/cable/green{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/mob/living/simple_mob/mechanical/viscerator/mercenary,
+/turf/simulated/floor/plating,
+/area/submap/DogBase)
+
+(1,1,1) = {"
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+km
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+km
+hp
+"}
+(2,1,1) = {"
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+"}
+(3,1,1) = {"
+hp
+km
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+Ez
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+"}
+(4,1,1) = {"
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+lN
+Hl
+hp
+hp
+hp
+Hl
+lN
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+"}
+(5,1,1) = {"
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+Hl
+Bk
+Bk
+Bk
+Bk
+Bk
+FD
+FD
+FD
+FD
+FD
+To
+Qp
+hp
+hp
+hp
+hp
+Xz
+hp
+hp
+km
+hp
+hp
+"}
+(6,1,1) = {"
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+Bk
+fg
+ng
+Vm
+Bk
+iv
+yl
+YX
+qI
+jO
+GB
+Qp
+LJ
+hp
+hp
+Xz
+Xz
+Ez
+hp
+SW
+hp
+hp
+"}
+(7,1,1) = {"
+hp
+hp
+hp
+hp
+hp
+ik
+wS
+hp
+Bk
+Yi
+Qu
+Vm
+Bk
+UY
+Gf
+Ol
+Vy
+fI
+Am
+oW
+oW
+oW
+oW
+oW
+hp
+SW
+hp
+hp
+hp
+hp
+"}
+(8,1,1) = {"
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+Bk
+lg
+Qu
+bw
+Bk
+aX
+lk
+ae
+kl
+lk
+Am
+oW
+oW
+QB
+oW
+hp
+hp
+hp
+hp
+SW
+hp
+hp
+"}
+(9,1,1) = {"
+hp
+hp
+lN
+Hl
+hp
+hp
+hp
+hp
+Bk
+eI
+Qu
+Ce
+Bk
+Jm
+xp
+ay
+CQ
+YX
+GB
+LJ
+hp
+hp
+Qp
+Qp
+tp
+lN
+hp
+hp
+hp
+hp
+"}
+(10,1,1) = {"
+hp
+hp
+Hl
+Bk
+Bk
+Bk
+Bk
+Bk
+Bk
+Bk
+Fm
+Bk
+Bk
+Bk
+Bk
+Bk
+Bk
+Bk
+Bk
+Bk
+Bk
+Bk
+Bk
+Bk
+Bk
+Hl
+hp
+km
+hp
+hp
+"}
+(11,1,1) = {"
+hp
+hp
+hp
+Bk
+pR
+RW
+Wu
+vq
+Bk
+Ng
+wQ
+FO
+Bk
+Dt
+tN
+tN
+Dv
+RW
+vq
+Bk
+Pi
+tN
+qk
+vq
+Bk
+Hl
+Hl
+hp
+hp
+hp
+"}
+(12,1,1) = {"
+km
+hp
+Ez
+Bk
+Ge
+Wq
+Bx
+lX
+Bk
+GJ
+lb
+OS
+Bk
+Yr
+VG
+HM
+wI
+Wq
+lX
+Bk
+eZ
+hl
+se
+UW
+Bk
+lr
+Hl
+hp
+hp
+SW
+"}
+(13,1,1) = {"
+hp
+Ez
+hp
+Bk
+qO
+Wq
+BA
+lX
+Bk
+AY
+Wq
+OS
+Bk
+Yr
+HF
+Rz
+wI
+Wq
+Ni
+RW
+PB
+eA
+Bk
+Bk
+Bk
+OR
+Hl
+SW
+SW
+hp
+"}
+(14,1,1) = {"
+hp
+Hl
+Hl
+Bk
+hA
+Wq
+Iz
+lX
+Bk
+xe
+Wq
+OS
+Bk
+rH
+VG
+HM
+wI
+Wq
+hl
+se
+WH
+lX
+Bk
+jz
+aF
+bl
+Hl
+SW
+hp
+hp
+"}
+(15,1,1) = {"
+hp
+lN
+Hl
+Bk
+qO
+lb
+BA
+lX
+LP
+Cz
+Wq
+OS
+LP
+Yr
+VG
+Ok
+wI
+re
+lX
+Bk
+Yr
+lX
+yx
+Wq
+yx
+lr
+YJ
+SW
+SW
+SW
+"}
+(16,1,1) = {"
+hp
+Hl
+Hl
+Bk
+hA
+Wq
+BB
+lX
+Bk
+Wm
+Wq
+OS
+Bk
+rH
+VG
+np
+wI
+Wq
+Ni
+tN
+PB
+lX
+Bk
+jz
+aF
+bl
+Hl
+SW
+SW
+hp
+"}
+(17,1,1) = {"
+hp
+Ez
+hp
+Bk
+qO
+Wq
+BA
+lX
+Bk
+yX
+wI
+OS
+Bk
+Yr
+VG
+HM
+wI
+lb
+hl
+jD
+WH
+eA
+Bk
+Bk
+Bk
+OR
+Hl
+SW
+SW
+hp
+"}
+(18,1,1) = {"
+hp
+hp
+Ez
+Bk
+lm
+Wq
+Iz
+lX
+Bk
+WU
+lb
+OS
+Bk
+Yr
+VG
+HM
+wI
+Wq
+lX
+Bk
+Yr
+Ni
+tN
+vq
+Bk
+lr
+Hl
+hp
+SW
+hp
+"}
+(19,1,1) = {"
+km
+hp
+hp
+Bk
+bT
+jD
+se
+UW
+Bk
+ab
+tz
+qg
+Bk
+Lm
+se
+se
+se
+jD
+Ya
+Bk
+ec
+se
+bx
+UW
+Bk
+Hl
+Hl
+hp
+hp
+hp
+"}
+(20,1,1) = {"
+hp
+hp
+Hl
+Bk
+Bk
+Bk
+Bk
+Bk
+Bk
+Bk
+AJ
+Bk
+Bk
+Bk
+Bk
+Bk
+Bk
+Bk
+Bk
+Bk
+Bk
+Bk
+Bk
+Bk
+Bk
+Hl
+hp
+hp
+hp
+hp
+"}
+(21,1,1) = {"
+hp
+hp
+lN
+Hl
+hp
+hp
+hp
+hp
+Bk
+ZK
+Le
+Ki
+Bk
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+Hl
+lN
+hp
+hp
+hp
+km
+"}
+(22,1,1) = {"
+hp
+hp
+hp
+hp
+hp
+hp
+Ez
+hp
+Bk
+PJ
+xc
+vX
+Bk
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+wS
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+"}
+(23,1,1) = {"
+hp
+hp
+hp
+hp
+hp
+hp
+wS
+hp
+Bk
+lh
+cS
+lh
+Bk
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+Ez
+hp
+hp
+hp
+hp
+"}
+(24,1,1) = {"
+hp
+hp
+hp
+hp
+hp
+ik
+hp
+hp
+Bk
+hZ
+Kt
+tt
+Bk
+hp
+hp
+km
+hp
+hp
+km
+hp
+hp
+hp
+km
+hp
+hp
+hp
+hp
+hp
+km
+hp
+"}
+(25,1,1) = {"
+hp
+hp
+km
+hp
+hp
+hp
+hp
+Hl
+Bk
+Bk
+Bk
+Bk
+Bk
+Hl
+hp
+hp
+hp
+Ez
+hp
+hp
+qZ
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+"}
+(26,1,1) = {"
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+lN
+Hl
+hp
+hp
+hp
+Hl
+lN
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+"}
+(27,1,1) = {"
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+Ez
+hp
+hp
+hp
+km
+hp
+hp
+km
+hp
+hp
+"}
+(28,1,1) = {"
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+km
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+"}
+(29,1,1) = {"
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+km
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+"}
+(30,1,1) = {"
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+km
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+"}

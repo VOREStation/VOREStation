@@ -4,10 +4,11 @@ GLOBAL_LIST_EMPTY(holoposters)
 	desc = "A wall-mounted holographic projector displaying advertisements by all manner of factions. How much do they pay to advertise here?"
 	icon = 'icons/obj/holoposter_vr.dmi'
 	icon_state = "off"
-	anchored = 1
+	anchored = TRUE
 	use_power = 1
 	idle_power_usage = 80
 	power_channel = ENVIRON
+	vis_flags = VIS_HIDE // They have an emissive that looks bad in openspace due to their wall-mounted nature
 	var/icon_forced = FALSE
 	var/examine_addon = "It appears to be powered off."
 	var/mytimer
@@ -84,7 +85,7 @@ GLOBAL_LIST_EMPTY(holoposters)
 		return
 	if (W.is_multitool())
 		playsound(src, 'sound/items/penclick.ogg', 60, 1)
-		icon_state = input("Available Posters", "Holographic Poster") as null|anything in postertypes + "random"
+		icon_state = tgui_input_list(usr, "Available Posters", "Holographic Poster", postertypes + "random")
 		if(!Adjacent(user))
 			return
 		if(icon_state == "random")

@@ -146,8 +146,8 @@ var/list/spells = typesof(/spell) //needed for the badmin verb for now
 			var/obj/effect/overlay/spell = new /obj/effect/overlay(location)
 			spell.icon = overlay_icon
 			spell.icon_state = overlay_icon_state
-			spell.anchored = 1
-			spell.density = 0
+			spell.anchored = TRUE
+			spell.density = FALSE
 			spawn(overlay_lifespan)
 				qdel(spell)
 	return valid_targets
@@ -277,7 +277,7 @@ var/list/spells = typesof(/spell) //needed for the badmin verb for now
 	if(level_max[Sp_TOTAL] <= ( spell_levels[Sp_SPEED] + spell_levels[Sp_POWER] )) //too many levels, can't do it
 		return 0
 
-	if(upgrade_type && upgrade_type in spell_levels && upgrade_type in level_max)
+	if(upgrade_type && (upgrade_type in spell_levels) && (upgrade_type in level_max))
 		if(spell_levels[upgrade_type] >= level_max[upgrade_type])
 			return 0
 

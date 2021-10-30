@@ -33,7 +33,7 @@
 /datum/category_item/player_setup_item/volume_sliders/media/OnTopic(var/href, var/list/href_list, var/mob/user)
 	if(href_list["change_media_volume"])
 		if(CanUseTopic(user))
-			var/value = input("Choose your Jukebox volume (0-100%)", "Jukebox volume", round(pref.media_volume * 100))
+			var/value = input(usr, "Choose your Jukebox volume (0-100%)", "Jukebox volume", round(pref.media_volume * 100))
 			if(isnum(value))
 				value = CLAMP(value, 0, 100)
 				pref.media_volume = value/100.0

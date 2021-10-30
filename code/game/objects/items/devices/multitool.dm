@@ -17,7 +17,7 @@
 	drop_sound = 'sound/items/drop/multitool.ogg'
 	pickup_sound = 'sound/items/pickup/multitool.ogg'
 
-	matter = list(DEFAULT_WALL_MATERIAL = 50,"glass" = 20, MAT_COPPER = 10)
+	matter = list(MAT_STEEL = 50,MAT_GLASS = 20)
 
 	var/mode_index = 1
 	var/toolmode = MULTITOOL_MODE_STANDARD
@@ -32,7 +32,7 @@
 	tool_qualities = list(TOOL_MULTITOOL)
 
 /obj/item/device/multitool/attack_self(mob/living/user)
-	var/choice = alert("What do you want to do with \the [src]?","Multitool Menu", "Switch Mode", "Clear Buffers", "Cancel")
+	var/choice = tgui_alert(usr, "What do you want to do with \the [src]?", "Multitool Menu", list("Switch Mode", "Clear Buffers", "Cancel"))
 	switch(choice)
 		if("Cancel")
 			to_chat(user,"<span class='notice'>You lower \the [src].</span>")
@@ -65,6 +65,9 @@
 	accepting_refs = (toolmode == MULTITOOL_MODE_INTCIRCUITS)
 
 	return
+
+/obj/item/device/multitool/is_multitool()
+	return TRUE
 
 /obj/item/device/multitool/cyborg
 	name = "multitool"

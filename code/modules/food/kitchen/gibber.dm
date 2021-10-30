@@ -4,8 +4,9 @@
 	desc = "The name isn't descriptive enough?"
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "grinder"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
+	unacidable = TRUE
 	req_access = list(access_kitchen,access_morgue)
 
 	var/operating = 0 //Is it on?
@@ -58,20 +59,20 @@
 
 /obj/machinery/gibber/New()
 	..()
-	src.overlays += image('icons/obj/kitchen.dmi', "grjam")
+	add_overlay("grjam")
 
 /obj/machinery/gibber/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if (dirty)
-		src.overlays += image('icons/obj/kitchen.dmi', "grbloody")
+		add_overlay("grbloody")
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if (!occupant)
-		src.overlays += image('icons/obj/kitchen.dmi', "grjam")
+		add_overlay("grjam")
 	else if (operating)
-		src.overlays += image('icons/obj/kitchen.dmi', "gruse")
+		add_overlay("gruse")
 	else
-		src.overlays += image('icons/obj/kitchen.dmi', "gridle")
+		add_overlay("gridle")
 
 /obj/machinery/gibber/relaymove(mob/user as mob)
 	src.go_out()

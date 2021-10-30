@@ -179,7 +179,7 @@
 
 /datum/antagonist/proc/draft_antagonist(var/datum/mind/player)
 	//Check if the player can join in this antag role, or if the player has already been given an antag role.
-	if(!can_become_antag(player) || player.assigned_role in roundstart_restricted)
+	if(!can_become_antag(player) || (player.assigned_role in roundstart_restricted))
 		log_debug("[player.key] was selected for [role_text] by lottery, but is not allowed to be that role.")
 		return 0
 	if(player.special_role)

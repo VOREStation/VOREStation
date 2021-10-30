@@ -2,7 +2,9 @@
 /mob/proc/combine_message(var/list/message_pieces, var/verb, var/mob/speaker, always_stars = FALSE, var/radio = FALSE)
 	var/iteration_count = 0
 	var/msg = "" // This is to make sure that the pieces have actually added something
-	. = "[verb], \""
+	var/raw_msg = ""
+	. = list("formatted" = "[verb], \"", "raw" = "")
+	
 	for(var/datum/multilingual_say_piece/SP in message_pieces)
 		iteration_count++
 		var/piece = SP.message
@@ -11,9 +13,13 @@
 
 		if(SP.speaking && SP.speaking.flags & INNATE) // Snowflake for noise lang
 			if(radio)
-				return SP.speaking.format_message_radio(piece)
+				.["formatted"] = SP.speaking.format_message_radio(piece)
+				.["raw"] = piece
+				return 
 			else
-				return SP.speaking.format_message(piece)
+				.["formatted"] = SP.speaking.format_message(piece)
+				.["raw"] = piece
+				return 
 
 		if(iteration_count == 1)
 			piece = capitalize(piece)
@@ -27,6 +33,9 @@
 				if(istype(S.say_list) && length(S.say_list.speak))
 					piece = pick(S.say_list.speak)
 
+		raw_msg += (piece + " ")
+		
+		//HTML formatting
 		if(!SP.speaking) // Catch the most generic case first
 			piece = "<span class='message body'>[piece]</span>"
 		else if(radio) // SP.speaking == TRUE enforced by previous !SP.speaking
@@ -38,10 +47,11 @@
 	
 	if(msg == "")
 		// There is literally no content left in this message, we need to shut this shit down
-		. = "" // hear_say will suppress it
+		.["formatted"] = "" // hear_say will suppress it
 	else
-		. = trim(. + trim(msg))
-		. += "\""
+		.["formatted"] = trim(.["formatted"] + trim(msg))
+		.["formatted"] += "\""
+		.["raw"] = trim(raw_msg)
 
 /mob/proc/saypiece_scramble(datum/multilingual_say_piece/SP)
 	if(SP.speaking)
@@ -76,7 +86,8 @@
 		var/mob/living/carbon/human/H = speaker
 		speaker_name = H.GetVoice()
 
-	var/message = combine_message(message_pieces, verb, speaker)
+	var/list/combined = combine_message(message_pieces, verb, speaker)
+	var/message = combined["formatted"]
 	if(message == "")
 		return
 	
@@ -109,6 +120,7 @@
 			message_to_send = "<font size='3'><b>[message_to_send]</b></font>"
 
 		on_hear_say(message_to_send)
+		create_chat_message(speaker, combined["raw"], italics, list())
 
 		if(speech_sound && (get_dist(speaker, src) <= world.view && z == speaker.z))
 			var/turf/source = speaker ? get_turf(speaker) : get_turf(src)
@@ -164,7 +176,8 @@
 	if(!client)
 		return
 
-	var/message = combine_message(message_pieces, verb, speaker, always_stars = hard_to_hear, radio = TRUE)
+	var/list/combined = combine_message(message_pieces, verb, speaker, always_stars = hard_to_hear, radio = TRUE)
+	var/message = combined["formatted"]
 	if(sleeping || stat == UNCONSCIOUS) //If unconscious or sleeping
 		hear_sleep(multilingual_to_message(message_pieces))
 		return
@@ -172,7 +185,7 @@
 	var/speaker_name = handle_speaker_name(speaker, vname, hard_to_hear)
 	var/track = handle_track(message, verb, speaker, speaker_name, hard_to_hear)
 
-	message = encode_html_emphasis(message)
+	message = "[encode_html_emphasis(message)][part_c]"
 
 	if((sdisabilities & DEAF) || ear_deaf)
 		if(prob(20))
@@ -272,7 +285,8 @@
 	return
 
 /mob/proc/hear_holopad_talk(list/message_pieces, var/verb = "says", var/mob/speaker = null)
-	var/message = combine_message(message_pieces, verb, speaker)
+	var/list/combined = combine_message(message_pieces, verb, speaker)
+	var/message = combined["formatted"]
 
 	var/name = speaker.name
 	if(!say_understands(speaker))

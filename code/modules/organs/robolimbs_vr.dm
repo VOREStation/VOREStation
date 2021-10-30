@@ -23,6 +23,7 @@ var/const/cyberbeast_monitor_styles = "blank=cyber_blank;\
 	desc = "Nano-y!"
 	lifelike = 1
 	unavailable_to_build = 1
+	unavailable_at_chargen = 1
 
 //////////////// For-specific-character fluff ones /////////////////
 // arokha : Aronai Sieyes
@@ -32,9 +33,10 @@ var/const/cyberbeast_monitor_styles = "blank=cyber_blank;\
 	icon = 'icons/mob/human_races/cyberlimbs/_fluff_vr/aronai.dmi'
 	blood_color = "#5dd4fc"
 	includes_tail = 1
+	includes_ears = 1
 	lifelike = 1
 	unavailable_to_build = 1
-	suggested_species = "Tajara"
+	suggested_species = SPECIES_VULPKANIN
 	whitelisted_to = list("arokha")
 
 /obj/item/weapon/disk/limb/kitsuhana

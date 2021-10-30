@@ -1,0 +1,241 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/submap/lonewolf)
+"e" = (
+/obj/structure/flora/rocks2,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/lonewolf)
+"f" = (
+/obj/effect/decal/remains/ribcage,
+/obj/random/contraband/nofail,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/lonewolf)
+"g" = (
+/obj/structure/flora/rocks1,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/lonewolf)
+"j" = (
+/obj/effect/decal/remains/tajaran,
+/obj/random/contraband/nofail,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/lonewolf)
+"l" = (
+/obj/structure/flora/bboulder2,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/lonewolf)
+"o" = (
+/obj/effect/decal/remains/posi,
+/obj/random/powercell,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/lonewolf)
+"q" = (
+/obj/structure/cliff/automatic{
+	dir = 8
+	},
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/lonewolf)
+"s" = (
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/lonewolf)
+"w" = (
+/mob/living/simple_mob/vore/greatwolf/black{
+	desc = "A massive black wolf with a sandy colored underside, and intimidating amber eyes. Much like a dire wolf, but bigger. Passive, until you give it a reason to not be. It sits in mourning, day and night, only ceasing its vigil to hunt.";
+	icon_state = "blackwolf-rest";
+	max_co2 = 0;
+	resting = 1
+	},
+/turf/simulated/floor/outdoors/rocks,
+/area/submap/lonewolf)
+"y" = (
+/obj/structure/cliff/automatic/ramp,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/lonewolf)
+"z" = (
+/obj/structure/cliff/automatic/corner,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/lonewolf)
+"B" = (
+/obj/structure/closet/grave,
+/obj/structure/gravemarker{
+	dir = 1
+	},
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/lonewolf)
+"F" = (
+/obj/structure/ledge/ledge_stairs,
+/turf/simulated/floor/outdoors/rocks,
+/area/submap/lonewolf)
+"H" = (
+/obj/structure/cliff/automatic/ramp{
+	dir = 9
+	},
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/lonewolf)
+"J" = (
+/obj/effect/decal/remains/deer,
+/obj/random/grenade,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/lonewolf)
+"M" = (
+/obj/structure/bonfire/permanent/sifwood,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/lonewolf)
+"O" = (
+/turf/simulated/mineral/ignore_mapgen,
+/area/submap/lonewolf)
+"P" = (
+/obj/item/weapon/sword/fluff/joanaria{
+	desc = "An ancient sword, belonging to someone of power. Now, it is little more than a relic, damaged beyong use.";
+	force = 10;
+	name = "old greatsword"
+	},
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/lonewolf)
+"Q" = (
+/obj/structure/flora/rocks1,
+/obj/effect/decal/remains/human,
+/obj/random/energy,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/lonewolf)
+"S" = (
+/obj/structure/cliff/automatic/corner{
+	dir = 9
+	},
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/lonewolf)
+"T" = (
+/obj/structure/flora/bboulder1,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/lonewolf)
+"V" = (
+/obj/structure/cliff/automatic,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/lonewolf)
+"Z" = (
+/obj/structure/cliff/automatic{
+	dir = 4
+	},
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/lonewolf)
+
+(1,1,1) = {"
+a
+a
+O
+a
+s
+f
+a
+O
+O
+a
+"}
+(2,1,1) = {"
+a
+O
+O
+e
+s
+s
+J
+O
+O
+O
+"}
+(3,1,1) = {"
+a
+O
+l
+s
+s
+s
+s
+g
+O
+a
+"}
+(4,1,1) = {"
+s
+y
+Z
+z
+s
+s
+s
+s
+s
+o
+"}
+(5,1,1) = {"
+F
+F
+w
+V
+s
+B
+s
+M
+s
+s
+"}
+(6,1,1) = {"
+s
+H
+q
+S
+s
+P
+s
+s
+s
+s
+"}
+(7,1,1) = {"
+a
+s
+s
+s
+s
+s
+s
+j
+T
+a
+"}
+(8,1,1) = {"
+a
+O
+O
+s
+e
+s
+s
+O
+O
+O
+"}
+(9,1,1) = {"
+a
+O
+O
+O
+s
+Q
+a
+O
+O
+a
+"}
+(10,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}

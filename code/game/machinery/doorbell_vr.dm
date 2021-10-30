@@ -7,7 +7,7 @@
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
 	active_power_usage = 200
-	anchored = 1
+	anchored = TRUE
 	var/id_tag = null
 	var/chime_sound = 'sound/machines/doorbell.ogg'
 
@@ -33,9 +33,9 @@
 	update_icon()
 
 /obj/machinery/doorbell_chime/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(panel_open)
-		overlays += "dbchime-open"
+		add_overlay("dbchime-open")
 	if(inoperable())
 		icon_state = "dbchime-off"
 	if(!id_tag)

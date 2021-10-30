@@ -1,5 +1,7 @@
-#define RECOMMENDED_VERSION 501
+#define RECOMMENDED_VERSION 513
 /world/New()
+	world_startup_time = world.timeofday
+	rollover_safety_date = world.realtime - world.timeofday // 00:00 today (ish, since floating point error with world.realtime) of today
 	to_world_log("Map Loading Complete")
 	//logs
 	//VOREStation Edit Start
@@ -227,7 +229,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 				spawn(50)
 					world_topic_spam_protect_time = world.time
-					return "Bad Key (Throttled)"
+					return
 
 			world_topic_spam_protect_time = world.time
 			world_topic_spam_protect_ip = addr
@@ -314,7 +316,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 				spawn(50)
 					world_topic_spam_protect_time = world.time
-					return "Bad Key (Throttled)"
+					return
 
 			world_topic_spam_protect_time = world.time
 			world_topic_spam_protect_ip = addr
@@ -364,7 +366,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 				spawn(50)
 					world_topic_spam_protect_time = world.time
-					return "Bad Key (Throttled)"
+					return
 
 			world_topic_spam_protect_time = world.time
 			world_topic_spam_protect_ip = addr
@@ -378,7 +380,7 @@ var/world_topic_spam_protect_time = world.timeofday
 			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 50)
 				spawn(50)
 					world_topic_spam_protect_time = world.time
-					return "Bad Key (Throttled)"
+					return
 
 			world_topic_spam_protect_time = world.time
 			world_topic_spam_protect_ip = addr
@@ -570,8 +572,7 @@ var/failed_old_db_connections = 0
 		to_world_log("Feedback database connection established.")
 	return 1
 
-proc/setup_database_connection()
-
+/proc/setup_database_connection()
 	if(failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)	//If it failed to establish a connection more than 5 times in a row, don't bother attempting to conenct anymore.
 		return 0
 
@@ -595,7 +596,7 @@ proc/setup_database_connection()
 	return .
 
 //This proc ensures that the connection to the feedback database (global variable dbcon) is established
-proc/establish_db_connection()
+/proc/establish_db_connection()
 	if(failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)
 		return 0
 
@@ -615,7 +616,7 @@ proc/establish_db_connection()
 	return 1
 
 //These two procs are for the old database, while it's being phased out. See the tgstation.sql file in the SQL folder for more information.
-proc/setup_old_database_connection()
+/proc/setup_old_database_connection()
 
 	if(failed_old_db_connections > FAILED_DB_CONNECTION_CUTOFF)	//If it failed to establish a connection more than 5 times in a row, don't bother attempting to conenct anymore.
 		return 0
@@ -640,7 +641,7 @@ proc/setup_old_database_connection()
 	return .
 
 //This proc ensures that the connection to the feedback database (global variable dbcon) is established
-proc/establish_old_db_connection()
+/proc/establish_old_db_connection()
 	if(failed_old_db_connections > FAILED_DB_CONNECTION_CUTOFF)
 		return 0
 
@@ -648,6 +649,32 @@ proc/establish_old_db_connection()
 		return setup_old_database_connection()
 	else
 		return 1
+
+// Cleans up DB connections and recreates them
+/proc/reset_database_connections()
+	var/list/results = list("-- Resetting DB connections --")
+	failed_db_connections = 0
+
+	if(dbcon?.IsConnected())
+		dbcon.Disconnect()
+		results += "dbcon was connected and asked to disconnect"
+	else
+		results += "dbcon was not connected"
+
+	if(dbcon_old?.IsConnected())
+		results += "WARNING: dbcon_old is connected, not touching it, but is this intentional?"
+	
+	if(!config.sql_enabled)
+		results += "stopping because config.sql_enabled = false"
+	else
+		. = setup_database_connection()
+		if(.)
+			results += "SUCCESS: set up a connection successfully with setup_database_connection()"
+		else
+			results += "FAIL: failed to connect to the database with setup_database_connection()"
+		
+	results += "-- DB Reset End --"
+	to_world_log(results.Join("\n"))
 
 // Things to do when a new z-level was just made.
 /world/proc/max_z_changed()
@@ -682,3 +709,39 @@ proc/establish_old_db_connection()
 	SStimer?.reset_buckets()
 
 #undef FAILED_DB_CONNECTION_CUTOFF
+
+/proc/get_world_url()
+	. = "byond://"
+	if(config.serverurl)
+		. += config.serverurl
+	else if(config.server)
+		. += config.server
+	else
+		. += "[world.address]:[world.port]"
+
+var/global/game_id = null
+
+/hook/startup/proc/generate_gameid()
+	if(game_id != null)
+		return
+	game_id = ""
+
+	var/list/c = list(
+		"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", 
+		"n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", 
+		"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", 
+		"N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", 
+		"1", "2", "3", "4", "5", "6", "7", "8", "9", "0"
+		)
+	var/l = c.len
+
+	var/t = world.timeofday
+	for(var/_ = 1 to 4)
+		game_id = "[c[(t % l) + 1]][game_id]"
+		t = round(t / l)
+	game_id = "-[game_id]"
+	t = round(world.realtime / (10 * 60 * 60 * 24))
+	for(var/_ = 1 to 3)
+		game_id = "[c[(t % l) + 1]][game_id]"
+		t = round(t / l)
+	return 1

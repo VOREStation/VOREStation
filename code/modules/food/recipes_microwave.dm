@@ -49,13 +49,15 @@ I said no!
 		/obj/item/weapon/reagent_containers/food/snacks/meatball
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/donkpocket //SPECIAL
-	proc/warm_up(var/obj/item/weapon/reagent_containers/food/snacks/donkpocket/being_cooked)
-		being_cooked.heat()
-	make_food(var/obj/container as obj)
-		. = ..(container)
-		for (var/obj/item/weapon/reagent_containers/food/snacks/donkpocket/D in .)
-			if (!D.warm)
-				warm_up(D)
+
+/datum/recipe/donkpocket/proc/warm_up(var/obj/item/weapon/reagent_containers/food/snacks/donkpocket/being_cooked)
+	being_cooked.heat()
+
+/datum/recipe/donkpocket/make_food(var/obj/container as obj)
+	. = ..(container)
+	for (var/obj/item/weapon/reagent_containers/food/snacks/donkpocket/D in .)
+		if (!D.warm)
+			warm_up(D)
 
 /datum/recipe/donkpocket/warm
 	reagents = list() //This is necessary since this is a child object of the above recipe and we don't want donk pockets to need flour
@@ -121,12 +123,12 @@ I said no!
 	items = list(/obj/item/weapon/reagent_containers/food/snacks/cheesewedge)
 	result = /obj/item/weapon/reagent_containers/food/snacks/loadedbakedpotato
 
-/datum/recipe/microchips
+/datum/recipe/microfries
 	appliance = MICROWAVE
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/rawsticks
 	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/microchips
+	result = /obj/item/weapon/reagent_containers/food/snacks/microfries
 
 /datum/recipe/bangersandmash
 	items = list(
@@ -328,11 +330,16 @@ I said no!
 
 /datum/recipe/candiedapple
 	fruit = list("apple" = 1)
-	reagents = list("water" = 5, "sugar" = 5)
+	reagents = list("water" = 5, "sugar" = 5) //Makes sense seeing as how it's just syrup on the exterior
 	result = /obj/item/weapon/reagent_containers/food/snacks/candiedapple
 
+/datum/recipe/caramelapple
+	fruit = list("apple" = 1)
+	reagents = list("milk" = 5, "sugar" = 5) //Since caramel can be made with milk I thought this was appropriate
+	result = /obj/item/weapon/reagent_containers/food/snacks/caramelapple
+
 /datum/recipe/twobread
-	reagents = list("wine" = 5)
+	reagents = list("redwine" = 5)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/slice/bread,
 		/obj/item/weapon/reagent_containers/food/snacks/slice/bread,
@@ -789,7 +796,7 @@ I said no!
 	result = /obj/item/weapon/reagent_containers/food/snacks/chilicheesefries
 
 /datum/recipe/risotto
-	reagents = list("wine" = 5, "rice" = 10, "spacespice" = 1)
+	reagents = list("redwine" = 5, "rice" = 10, "spacespice" = 1)
 	fruit = list("mushroom" = 1)
 	reagent_mix = RECIPE_REAGENT_REPLACE //Get that rice and wine outta here
 	result = /obj/item/weapon/reagent_containers/food/snacks/risotto

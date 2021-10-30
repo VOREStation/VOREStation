@@ -11,7 +11,7 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = ITEMSIZE_NORMAL
-	matter = list(DEFAULT_WALL_MATERIAL = 3000)
+	matter = list(MAT_STEEL = 3000)
 	var/list/carrying = list() // List of things on the tray. - Doohl
 	var/max_carry = 10
 	drop_sound = 'sound/items/trayhit1.ogg'
@@ -19,7 +19,7 @@
 /obj/item/weapon/tray/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	user.setClickCooldown(user.get_attack_speed(src))
 	// Drop all the things. All of them.
-	overlays.Cut()
+	cut_overlays()
 	for(var/obj/item/I in carrying)
 		I.loc = M.loc
 		carrying.Remove(I)
@@ -193,7 +193,7 @@
 				var/obj/item/weapon/material/O = I
 				if(O.applies_material_colour)
 					Img.color = O.color
-			overlays += Img
+			add_overlay(Img)
 
 /obj/item/weapon/tray/dropped(mob/user)
 	var/noTable = null
@@ -203,7 +203,7 @@
 			noTable = 1
 
 		if(isturf(loc) && !(locate(/mob/living) in src.loc))
-			overlays.Cut()
+			cut_overlays()
 			for(var/obj/item/I in carrying)
 				I.forceMove(src.loc)
 				carrying.Remove(I)

@@ -5,7 +5,7 @@
 	icon_state = "meterX"
 	var/obj/machinery/atmospherics/pipe/target = null
 	var/list/pipes_on_turf = list()
-	anchored = 1.0
+	anchored = TRUE
 	power_channel = ENVIRON
 	var/frequency = 0
 	var/id
@@ -110,7 +110,7 @@
 		to_chat(user, "<span class='notice'>You begin to unfasten \the [src]...</span>")
 		if(do_after(user, 40 * W.toolspeed))
 			user.visible_message( \
-				"<span class='notice'>\The [user] unfastens \the [src].</span>", \
+				"<b>\The [user]</b> unfastens \the [src].", \
 				"<span class='notice'>You have unfastened \the [src].</span>", \
 				"You hear ratchet.")
 			new /obj/item/pipe_meter(get_turf(src))

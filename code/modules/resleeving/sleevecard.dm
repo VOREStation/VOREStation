@@ -23,7 +23,7 @@
 	var/mob/living/silicon/infomorph/infomorph
 	var/current_emotion = 1
 
-	matter = list(DEFAULT_WALL_MATERIAL = 4000, "glass" = 4000)
+	matter = list(MAT_STEEL = 4000, MAT_GLASS = 4000)
 
 /obj/item/device/sleevecard/relaymove(var/mob/user, var/direction)
 	if(user.stat || user.stunned)
@@ -34,7 +34,7 @@
 
 /obj/item/device/sleevecard/New()
 	..()
-	overlays += "pai-off"
+	add_overlay("pai-off")
 	radio = new(src)
 
 /obj/item/device/sleevecard/Destroy()
@@ -53,8 +53,8 @@
 		to_chat(user,"<span class='notice'>\The [src] displays the name '[infomorph]'.</span>")
 
 //This is a 'hard' proc, it does no permission checking, do that on the computer
-/obj/item/device/sleevecard/proc/sleeveInto(var/datum/transhuman/mind_record/MR)
-	infomorph = new(src,MR.mindname)
+/obj/item/device/sleevecard/proc/sleeveInto(var/datum/transhuman/mind_record/MR, var/db_key)
+	infomorph = new(src,MR.mindname,db_key=db_key)
 
 	for(var/datum/language/L in MR.languages)
 		infomorph.add_language(L.name)
@@ -83,13 +83,13 @@
 /obj/item/device/sleevecard/proc/turnOff()
 	if(infomorph)
 		infomorph.close_up()
-	overlays.Cut()
+	cut_overlays()
 	name = "[initial(name)]"
 
 /obj/item/device/sleevecard/proc/setEmotion(var/emotion)
 	if(infomorph && emotion)
-		overlays.Cut()
-		overlays += emotion
+		cut_overlays()
+		add_overlay(emotion)
 		current_emotion = emotion
 
 /obj/item/device/sleevecard/emp_act(severity)

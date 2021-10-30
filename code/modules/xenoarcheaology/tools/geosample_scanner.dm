@@ -1,8 +1,8 @@
 /obj/machinery/radiocarbon_spectrometer
 	name = "radiocarbon spectrometer"
 	desc = "A specialised, complex scanner for gleaning information on all manner of small things."
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	icon = 'icons/obj/virology_vr.dmi' //VOREStation Edit
 	icon_state = "analyser"
 
@@ -64,7 +64,7 @@
 		to_chat(user, "<span class='warning'>You can't do that while [src] is scanning!</span>")
 	else
 		if(istype(I, /obj/item/stack/nanopaste))
-			var/choice = alert("What do you want to do with the nanopaste?","Radiometric Scanner","Scan nanopaste","Fix seal integrity")
+			var/choice = tgui_alert(usr, "What do you want to do with the nanopaste?","Radiometric Scanner",list("Scan nanopaste","Fix seal integrity"))
 			if(choice == "Fix seal integrity")
 				var/obj/item/stack/nanopaste/N = I
 				var/amount_used = min(N.get_amount(), 10 - scanner_seal_integrity / 10)
@@ -75,7 +75,7 @@
 			var/obj/item/weapon/reagent_containers/glass/G = I
 			if(!G.is_open_container())
 				return
-			var/choice = alert("What do you want to do with the container?","Radiometric Scanner","Add coolant","Empty coolant","Scan container")
+			var/choice = tgui_alert(usr, "What do you want to do with the container?","Radiometric Scanner",list("Add coolant","Empty coolant","Scan container"))
 			if(choice == "Add coolant")
 				var/amount_transferred = min(src.reagents.maximum_volume - src.reagents.total_volume, G.reagents.total_volume)
 				var/trans = G.reagents.trans_to_obj(src, amount_transferred)
@@ -303,7 +303,7 @@
 		var/obj/item/weapon/paper/P = new(src)
 		P.name = "[src] report #[++report_num]: [scanned_item.name]"
 		P.stamped = list(/obj/item/weapon/stamp)
-		P.overlays = list("paper_stamped")
+		P.add_overlay("paper_stamped")
 
 		//work out data
 		var/data = " - Mundane object: [scanned_item.desc ? scanned_item.desc : "No information on record."]<br>"

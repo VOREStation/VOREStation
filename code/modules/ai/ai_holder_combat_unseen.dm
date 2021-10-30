@@ -3,21 +3,20 @@
 // Used when a target is out of sight or invisible.
 /datum/ai_holder/proc/engage_unseen_enemy()
 	ai_log("engage_unseen_enemy() : Entering.", AI_LOG_TRACE)
+	
 	// Also handled in strategic updates but handling it here allows for more fine resolution timeouts
-	if((lose_target_time+lose_target_timeout) >= world.time)
-		return remove_target()
+	if((lose_target_time+lose_target_timeout) <= world.time)
+		return find_target()
+		
 	// Lets do some last things before giving up.
 	if(conserve_ammo || !holder.ICheckRangedAttack(target_last_seen_turf))
-		if(get_dist(holder, target_last_seen_turf) > 1) // We last saw them over there.
-			// Go to where you last saw the enemy.
+		// We conserve ammo (or can't shoot) so walk closer
+		if(get_dist(holder, target_last_seen_turf) > 1)
 			return give_destination(target_last_seen_turf, 1, TRUE) // Sets stance as well
-		// We last saw them next to us, so do a blind attack on that tile.
-		else if(melee_on_tile(target_last_seen_turf) != ATTACK_SUCCESSFUL && intelligence_level >= AI_NORMAL)
-			var/obj/O = find_escape_route()
-			if(istype(O))
-				return give_destination(get_turf(O), 0, TRUE)
+		// We're right there, look around?
 		else
 			return find_target()
+	// Shoot in their direction angrily
 	else
 		return shoot_near_turf(target_last_seen_turf)
 

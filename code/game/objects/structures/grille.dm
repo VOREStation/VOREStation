@@ -3,8 +3,8 @@
 	desc = "A flimsy lattice of metal rods, with screws to secure it to the floor."
 	icon = 'icons/obj/structures_vr.dmi' // VOREStation Edit - New icons
 	icon_state = "grille"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	pressure_resistance = 5*ONE_ATMOSPHERE
 	layer = TABLE_LAYER
 	explosion_resistance = 1
@@ -167,7 +167,7 @@
 /obj/structure/grille/proc/healthcheck()
 	if(health <= 0)
 		if(!destroyed)
-			density = 0
+			density = FALSE
 			destroyed = 1
 			update_icon()
 			new /obj/item/stack/rods(get_turf(src))
@@ -223,11 +223,12 @@
 /obj/structure/grille/broken
 	destroyed = 1
 	icon_state = "grille-b"
-	density = 0
-	New()
-		..()
-		health = rand(-5, -1) //In the destroyed but not utterly threshold.
-		healthcheck() //Send this to healthcheck just in case we want to do something else with it.
+	density = FALSE
+
+/obj/structure/grille/broken/New()
+	..()
+	health = rand(-5, -1) //In the destroyed but not utterly threshold.
+	healthcheck() //Send this to healthcheck just in case we want to do something else with it.
 
 /obj/structure/grille/cult
 	name = "cult grille"

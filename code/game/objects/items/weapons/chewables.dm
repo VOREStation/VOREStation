@@ -1,7 +1,7 @@
 /obj/item/clothing/mask/chewable
 	name = "chewable item master"
 	desc = "If you are seeing this, ahelp it."
-	icon = 'icons/obj/clothing/masks.dmi'
+	icon = 'icons/inventory/face/item.dmi'
 	drop_sound = 'sound/items/drop/food.ogg'
 	body_parts_covered = 0
 
@@ -25,7 +25,7 @@
 	if(wrapped)
 		add_overlay("[initial(icon_state)]_wrapper")
 
-obj/item/clothing/mask/chewable/Initialize()
+/obj/item/clothing/mask/chewable/Initialize()
 	. = ..()
 	flags |= NOREACT // so it doesn't react until you light it
 	create_reagents(chem_volume) // making the cigarrete a chemical holder with a maximum volume of 15
@@ -47,7 +47,7 @@ obj/item/clothing/mask/chewable/Initialize()
 	STOP_PROCESSING(SSprocessing, src)
 	..()
 
-obj/item/clothing/mask/chewable/Destroy()
+/obj/item/clothing/mask/chewable/Destroy()
 	. = ..()
 	STOP_PROCESSING(SSprocessing, src)
 
@@ -135,6 +135,9 @@ obj/item/clothing/mask/chewable/Destroy()
 	throwforce = 2
 	slot_flags = SLOT_BELT
 	starts_with = list(/obj/item/clothing/mask/chewable/tobacco = 6)
+
+/obj/item/weapon/storage/chewables/Initialize()
+	. = ..()
 	make_exact_fit()
 
 //Tobacco Tins
@@ -249,7 +252,7 @@ obj/item/clothing/mask/chewable/Destroy()
 /obj/item/clothing/mask/chewable/candy/pocky //ADDITION 04/17/2021
 	name = "chocolate pocky"
 	desc = "A chocolate-coated biscuit stick."
-	icon_state = "pocky"
+	icon_state = "pockystick"
 	item_state = "pocky"
 
 /obj/item/clothing/mask/chewable/candy/pocky/process()
@@ -259,4 +262,4 @@ obj/item/clothing/mask/chewable/Destroy()
 
 /obj/item/clothing/mask/chewable/candy/pocky/Initialize()
 	. = ..()
-	reagents.add_reagent("chocolate" = 10)
+	reagents.add_reagent("chocolate", 10)

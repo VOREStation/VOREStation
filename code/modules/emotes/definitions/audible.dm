@@ -12,7 +12,7 @@
 		emote_message_radio_synthetic = emote_message_synthetic_3p
 
 /decl/emote/audible/deathgasp_alien
-	key = "deathgasp"
+	key = "adeathgasp"
 	emote_message_3p = "lets out a waning guttural screech, green blood bubbling from its maw."
 
 /decl/emote/audible/whimper
@@ -29,7 +29,7 @@
 	emote_message_3p = "scretches."
 
 /decl/emote/audible/choke
-	key ="choke"
+	key = "choke"
 	emote_message_3p = "chokes."
 	conscious = FALSE
 
@@ -63,7 +63,7 @@
 	emote_message_3p = "boops."
 
 /decl/emote/audible/beep
-	key = "beep"
+	key = "bbeep"
 	emote_message_3p = "You beep."
 	emote_message_3p = "beeps."
 	emote_sound = 'sound/machines/twobeep.ogg'
@@ -133,18 +133,18 @@
 	emote_message_3p = "grunts."
 
 /decl/emote/audible/bug_hiss
-	key ="hiss"
+	key = "bhiss"
 	emote_message_3p_target = "hisses at TARGET."
 	emote_message_3p = "hisses."
 	emote_sound = 'sound/voice/BugHiss.ogg'
 
 /decl/emote/audible/bug_buzz
-	key ="buzz"
+	key = "bbuzz"
 	emote_message_3p = "buzzes its wings."
 	emote_sound = 'sound/voice/BugBuzz.ogg'
 
 /decl/emote/audible/bug_chitter
-	key ="chitter"
+	key = "chitter"
 	emote_message_3p = "chitters."
 	emote_sound = 'sound/voice/Bug.ogg'
 
@@ -213,7 +213,7 @@
 	emote_sound = 'sound/voice/teshsqueak.ogg' // Copyright CC BY 3.0 InspectorJ (freesound.org) for the source audio.
 
 /decl/emote/audible/teshchirp
-	key = "tchirp" // VOREStation Edit
+	key = "tchirp"
 	emote_message_1p = "You chirp!"
 	emote_message_3p = "chirps!"
 	emote_message_1p_target = "You chirp at TARGET!"

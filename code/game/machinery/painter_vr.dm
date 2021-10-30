@@ -10,14 +10,15 @@
 	desc = "A machine to give your apparel a fresh new color! Recommended to use with white items for best results."
 	icon = 'icons/obj/vending_vr.dmi'
 	icon_state = "colormate"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	var/list/processing = list()
 	var/activecolor = "#FFFFFF"
 	var/list/allowed_types = list(
 			/obj/item/clothing,
 			/obj/item/weapon/storage/backpack,
-			/obj/item/weapon/storage/belt
+			/obj/item/weapon/storage/belt,
+			/obj/item/device/radio/headset
 			)
 
 /obj/machinery/gear_painter/update_icon()

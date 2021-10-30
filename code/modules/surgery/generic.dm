@@ -257,7 +257,7 @@
 		msg = "<span class='danger'>[user]'s hand slips, damaging several organs in [target]'s lower abdomen with \the [tool]!</span>"
 		self_msg = "<span class='danger'>Your hand slips, damaging several organs in [target]'s lower abdomen with \the [tool]!</span>"
 	user.visible_message(msg, self_msg)
-	target.apply_damage(12, BRUTE, affected, sharp=1)
+	target.apply_damage(12, BRUTE, affected, sharp = TRUE)
 
 ///////////////////////////////////////////////////////////////
 // Cauterize Surgery

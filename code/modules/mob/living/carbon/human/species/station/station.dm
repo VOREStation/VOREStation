@@ -235,7 +235,7 @@
 	base_color = "#333333"
 
 	reagent_tag = IS_TAJARA
-	allergens = COFFEE
+	allergens = ALLERGEN_STIMULANT
 
 	move_trail = /obj/effect/decal/cleanable/blood/tracks/paw
 
@@ -249,13 +249,13 @@
 	cold_discomfort_level = 215
 
 	has_organ = list(    //No appendix.
-		O_HEART =    /obj/item/organ/internal/heart,
+		O_HEART =    /obj/item/organ/internal/heart/tajaran,
 		O_LUNGS =    /obj/item/organ/internal/lungs,
 		O_VOICE = 		/obj/item/organ/internal/voicebox,
 		O_LIVER =    /obj/item/organ/internal/liver,
 		O_KIDNEYS =  /obj/item/organ/internal/kidneys,
 		O_BRAIN =    /obj/item/organ/internal/brain,
-		O_EYES =     /obj/item/organ/internal/eyes,
+		O_EYES =     /obj/item/organ/internal/eyes/tajaran,
 		O_STOMACH =		/obj/item/organ/internal/stomach,
 		O_INTESTINE =	/obj/item/organ/internal/intestine
 		)
@@ -338,7 +338,9 @@
 	breath_heat_level_3 = 1350	//Default 1250
 
 	reagent_tag = IS_SKRELL
-	allergens = MEAT|FISH|DAIRY|EGGS
+	allergens = ALLERGEN_MEAT|ALLERGEN_FISH|ALLERGEN_DAIRY|ALLERGEN_EGGS
+
+	water_breather = TRUE
 
 	has_limbs = list(
 		BP_TORSO =  list("path" = /obj/item/organ/external/chest),
@@ -353,9 +355,6 @@
 		BP_L_FOOT = list("path" = /obj/item/organ/external/foot),
 		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right)
 		)
-
-/datum/species/skrell/can_breathe_water()
-	return TRUE
 
 /datum/species/zaddat
 	name = SPECIES_ZADDAT
@@ -618,7 +617,9 @@
 		if(isturf(H.loc)) //else, there's considered to be no light
 			var/turf/T = H.loc
 			light_amount = T.get_lumcount() * 10
-		H.adjust_nutrition(light_amount)
+		// Don't overfeed, just make them full without going over.
+		if((H.nutrition + light_amount) < initial(H.nutrition))
+			H.adjust_nutrition(light_amount)
 		H.shock_stage -= light_amount
 
 		if(light_amount >= 3) //if there's enough light, heal

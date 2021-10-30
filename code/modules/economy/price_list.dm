@@ -216,6 +216,9 @@
 /datum/reagent/ethanol/cuba_libre
 	price_tag = 4
 
+/datum/reagent/ethanol/rum_and_cola
+	price_tag = 4
+
 /datum/reagent/ethanol/demonsblood
 	price_tag = 4
 
@@ -980,9 +983,8 @@
 /obj/item/weapon/reagent_containers/food/snacks/dionaroast
 	price_tag = 25
 
-/obj/item/pizzabox
-	get_item_cost()
-		return get_item_cost(pizza)
+/obj/item/pizzabox/get_item_cost()
+	return get_item_cost(pizza)
 
 
 //***************//

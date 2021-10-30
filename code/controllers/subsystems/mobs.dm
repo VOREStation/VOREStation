@@ -25,13 +25,10 @@ SUBSYSTEM_DEF(mobs)
 /datum/controller/subsystem/mobs/fire(resumed = 0)
 	if (!resumed)
 		src.currentrun = mob_list.Copy()
-		process_z.Cut()
+		process_z.len = GLOB.living_players_by_zlevel.len
 		slept_mobs = 0
-		var/level = 1
-		while(process_z.len < GLOB.living_players_by_zlevel.len)
-			process_z.len++
+		for(var/level in 1 to process_z.len)
 			process_z[level] = GLOB.living_players_by_zlevel[level].len
-			level++
 
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun

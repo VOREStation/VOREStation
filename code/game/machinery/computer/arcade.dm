@@ -20,9 +20,10 @@
 							/obj/item/toy/cultsword									= 1,
 							/obj/item/toy/bouquet/fake								= 1,
 							/obj/item/clothing/accessory/badge/sheriff				= 2,
-							/obj/item/clothing/head/cowboy_hat/small				= 2,
+							/obj/item/clothing/head/cowboy/small				= 2,
 							/obj/item/toy/stickhorse								= 2
 							)
+	var/list/special_prizes = list() // Holds instanced objects, intended for admins to shove surprises inside or something.
 
 /obj/machinery/computer/arcade/Initialize()
 	. = ..()
@@ -35,16 +36,17 @@
 		return INITIALIZE_HINT_QDEL
 
 /obj/machinery/computer/arcade/proc/prizevend()
-	if(!(contents-circuit).len)
+	if(LAZYLEN(special_prizes)) // Downstream wanted the 'win things inside contents sans circuitboard' feature kept.
+		var/atom/movable/AM = pick_n_take(special_prizes)
+		AM.forceMove(get_turf(src))
+		special_prizes -= AM
+
+	else if(LAZYLEN(prizes))
 		var/prizeselect = pickweight(prizes)
 		new prizeselect(src.loc)
 
 		if(istype(prizeselect, /obj/item/clothing/suit/syndicatefake)) //Helmet is part of the suit
 			new	/obj/item/clothing/head/syndicatefake(src.loc)
-
-	else
-		var/atom/movable/prize = pick(contents-circuit)
-		prize.loc = src.loc
 
 /obj/machinery/computer/arcade/attack_ai(mob/user as mob)
 	return attack_hand(user)
@@ -517,9 +519,9 @@
 						if(electronics)
 							sleep(10)
 							if(oldfuel > fuel && oldfood > food)
-								src.audible_message("\The [src] lets out a somehow reassuring chime.")
+								src.audible_message("\The [src] lets out a somehow reassuring chime.", runemessage = "reassuring chime")
 							else if(oldfuel < fuel || oldfood < food)
-								src.audible_message("\The [src] lets out a somehow ominous chime.")
+								src.audible_message("\The [src] lets out a somehow ominous chime.", runemessage = "ominous chime")
 							food = oldfood
 							fuel = oldfuel
 
@@ -1180,7 +1182,7 @@
 	// Have the customer punch in the PIN before checking if there's enough money. Prevents people from figuring out acct is
 	// empty at high security levels
 	if(customer_account.security_level != 0) //If card requires pin authentication (ie seclevel 1 or 2)
-		var/attempt_pin = input("Enter pin code", "Vendor transaction") as num
+		var/attempt_pin = input(usr, "Enter pin code", "Vendor transaction") as num
 		customer_account = attempt_account_access(I.associated_account_number, attempt_pin, 2)
 
 		if(!customer_account)
@@ -1320,7 +1322,7 @@
 		gameStatus = "CLAWMACHINE_NEW"
 		emagged = 1
 		return 1
-		
+
 /obj/machinery/computer/arcade/attackby(obj/item/O, mob/user, params)
 	if(istype(O, /obj/item/stack/arcadeticket))
 		var/obj/item/stack/arcadeticket/T = O

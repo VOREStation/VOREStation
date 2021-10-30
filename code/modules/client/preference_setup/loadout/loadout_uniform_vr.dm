@@ -171,8 +171,7 @@ Swimsuits
 /datum/gear/uniform/swimsuits/New()
 	..()
 	var/list/swimsuits = list()
-	for(var/swimsuit in typesof(/obj/item/weapon/storage/box/fluff/swimsuit))
-		var/obj/item/weapon/storage/box/fluff/swimsuit/swimsuit_type = swimsuit
+	for(var/obj/item/weapon/storage/box/fluff/swimsuit/swimsuit_type as anything in typesof(/obj/item/weapon/storage/box/fluff/swimsuit))
 		swimsuits[initial(swimsuit_type.name)] = swimsuit_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(swimsuits))
 
@@ -197,17 +196,17 @@ Swimsuits
 /*
 Qipao
 */
-/datum/gear/uniform/qipao
+/datum/gear/uniform/qipao_black
 	display_name = "qipao, black"
-	path = /obj/item/clothing/under/dress/qipao
+	path = /obj/item/clothing/under/qipao
 
 /datum/gear/uniform/qipao_red
 	display_name = "qipao, red"
-	path = /obj/item/clothing/under/dress/qipao/red
+	path = /obj/item/clothing/under/qipao/red
 
 /datum/gear/uniform/qipao_white
 	display_name = "qipao, white"
-	path = /obj/item/clothing/under/dress/qipao/white
+	path = /obj/item/clothing/under/qipao/white
 
 /*
 Bluespace jumpsuit
@@ -216,3 +215,25 @@ Bluespace jumpsuit
 	display_name = "HYPER jumpsuit"
 	path = /obj/item/clothing/under/hyperfiber
 	cost = 2
+
+/*
+Talon jumpsuit
+*/
+/datum/gear/uniform/talonbasic
+	display_name = "Talon Jumpsuit"
+	description = "A jumpsuit that is usually issued to ITV Talon contractors, however others can purchase it to show their support towards the ship."
+	path = /obj/item/clothing/under/rank/talon/basic
+
+// Summer dresses
+/datum/gear/uniform/summerdress
+	display_name = "summer dress selection"
+	path = /obj/item/clothing/under/summerdress
+
+/datum/gear/uniform/summerdress/New()
+	..()
+	var/list/dresses = list(
+		"black and white" = /obj/item/clothing/under/summerdress,
+		"blue and white" = /obj/item/clothing/under/summerdress/blue,
+		"red and white" = /obj/item/clothing/under/summerdress/red
+	)
+	gear_tweaks += new/datum/gear_tweak/path(dresses)

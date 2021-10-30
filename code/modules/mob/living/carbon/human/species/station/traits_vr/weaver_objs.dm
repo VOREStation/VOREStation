@@ -4,8 +4,8 @@
 	name = "weaversilk web"
 	desc = "A thin layer of fiberous webs. It looks like it can be torn down with one strong hit."
 	icon = 'icons/vore/weaver_icons_vr.dmi'
-	anchored = 1
-	density = 0
+	anchored = TRUE
+	density = FALSE
 
 /obj/effect/weaversilk/ex_act(severity)
 	qdel(src)
@@ -15,7 +15,7 @@
 	user.setClickCooldown(user.get_attack_speed(W))
 
 	if(W.force)
-		visible_message("<span class='warning'>\The [src] has been [pick(W.attack_verb)] with \the [W][(user ? " by [user]." : ".")]</span>")
+		visible_message("<span class='warning'>\The [src] has been [LAZYLEN(W.attack_verb) ? pick(W.attack_verb) : "attacked"] with \the [W][(user ? " by [user]." : ".")]</span>")
 		qdel(src)
 
 /obj/effect/weaversilk/bullet_act(var/obj/item/projectile/Proj)
@@ -39,6 +39,7 @@
 /obj/effect/weaversilk/floor
 	var/possible_icon_states = list("floorweb1", "floorweb2", "floorweb3", "floorweb4", "floorweb5", "floorweb6", "floorweb7", "floorweb8")
 	plane = DIRTY_PLANE
+	layer = DIRTY_LAYER
 
 /obj/effect/weaversilk/floor/Initialize()
 	..()
@@ -49,7 +50,7 @@
 	desc = "A thin layer of fiberous webs, but just thick enough to block your way. It looks like it can be torn down with one strong hit."
 	icon_state = "wallweb1"
 	var/possible_icon_states = list("wallweb1", "wallweb2", "wallweb3")
-	density = 1
+	density = TRUE
 
 /obj/effect/weaversilk/wall/Initialize()
 	..()

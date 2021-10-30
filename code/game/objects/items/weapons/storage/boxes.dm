@@ -22,6 +22,7 @@
 /obj/item/weapon/storage/box
 	name = "box"
 	desc = "It's just an ordinary box."
+	icon = 'icons/obj/boxes.dmi'
 	icon_state = "box"
 	item_state = "syringe_kit"
 	center_of_mass = list("x" = 13,"y" = 10)
@@ -72,21 +73,29 @@
 /obj/item/weapon/storage/box/survival
 	name = "emergency supply box"
 	desc = "A survival box issued to crew members for use in emergency situations."
+	icon_state = "survival"
 	starts_with = list(
+		/obj/item/weapon/tool/prybar/red,
+		/obj/item/clothing/glasses/goggles,
 		/obj/item/clothing/mask/breath
 	)
 
 /obj/item/weapon/storage/box/survival/synth
 	name = "synthetic supply box"
 	desc = "A survival box issued to synthetic crew members for use in emergency situations."
+	icon_state = "survival_synth"
 	starts_with = list(
+		/obj/item/weapon/tool/prybar/red,
+		/obj/item/clothing/glasses/goggles
 	)
 
 /obj/item/weapon/storage/box/survival/comp
 	name = "emergency supply box"
 	desc = "A comprehensive survival box issued to crew members for use in emergency situations. Contains additional supplies."
-	icon_state = "survival"
+	icon_state = "survival_comp"
 	starts_with = list(
+		/obj/item/weapon/tool/prybar/red,
+		/obj/item/clothing/glasses/goggles,
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector,
 		/obj/item/stack/medical/bruise_pack,
 		/obj/item/device/flashlight/glowstick,
@@ -115,7 +124,7 @@
 /obj/item/weapon/storage/box/syringegun
 	name = "box of syringe gun cartridges"
 	desc = "A box full of compressed gas cartridges."
-	icon_state = "syringe"
+	icon_state = "syringe2"
 	starts_with = list(/obj/item/weapon/syringe_cartridge = 7)
 
 /obj/item/weapon/storage/box/beakers
@@ -127,6 +136,7 @@
 /obj/item/weapon/storage/box/injectors
 	name = "box of DNA injectors"
 	desc = "This box contains injectors it seems."
+	icon_state = "dna"
 	starts_with = list(
 		/obj/item/weapon/dnainjector/h2m = 3,
 		/obj/item/weapon/dnainjector/m2h = 3
@@ -374,17 +384,19 @@
 /obj/item/weapon/storage/box/condimentbottles
 	name = "box of condiment bottles"
 	desc = "It has a large ketchup smear on it."
+	icon_state = "condiment"
 	starts_with = list(/obj/item/weapon/reagent_containers/food/condiment = 7)
 
 /obj/item/weapon/storage/box/cups
 	name = "box of paper cups"
 	desc = "It has pictures of paper cups on the front."
+	icon_state = "cups"
 	starts_with = list(/obj/item/weapon/reagent_containers/food/drinks/sillycup = 7)
 
 /obj/item/weapon/storage/box/donkpockets
 	name = "box of donk-pockets"
 	desc = "<B>Instructions:</B> <I>Heat in microwave. Product will cool if not eaten within seven minutes.</I>"
-	icon_state = "donk_kit"
+	icon_state = "donkpocketbox"
 	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/donkpocket = 7)
 
 /obj/item/weapon/storage/box/sinpockets
@@ -450,6 +462,7 @@
 /obj/item/weapon/storage/box/pillbottles
 	name = "box of pill bottles"
 	desc = "It has pictures of pill bottles on its front."
+	icon_state = "pillbox"
 	starts_with = list(/obj/item/weapon/storage/pill_bottle = 7)
 
 /obj/item/weapon/storage/box/snappops
@@ -485,19 +498,19 @@
 /obj/item/weapon/storage/box/autoinjectors
 	name = "box of injectors"
 	desc = "Contains autoinjectors."
-	icon_state = "syringe"
+	icon_state = "auto"
 	starts_with = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector = 7)
 
 /obj/item/weapon/storage/box/lights
 	name = "box of replacement bulbs"
-	icon = 'icons/obj/storage.dmi'
+	icon = 'icons/obj/boxes.dmi'
 	icon_state = "light"
 	desc = "This box is shaped on the inside so that only light tubes and bulbs fit."
 	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
 	storage_slots = 24
 	can_hold = list(/obj/item/weapon/light/tube, /obj/item/weapon/light/bulb)
 	max_storage_space = ITEMSIZE_COST_SMALL * 24 //holds 24 items of w_class 2
-	use_to_pickup = 1 // for picking up broken bulbs, not that most people will try
+	use_to_pickup = TRUE // for picking up broken bulbs, not that most people will try
 
 /obj/item/weapon/storage/box/lights/bulbs
 	starts_with = list(/obj/item/weapon/light/bulb = 24)
@@ -525,7 +538,10 @@
 	max_w_class = ITEMSIZE_NORMAL
 	can_hold = list(/obj/item/organ)
 	max_storage_space = ITEMSIZE_COST_NORMAL * 5 // Formally 21.  Odd numbers are bad.
-	use_to_pickup = 1 // for picking up broken bulbs, not that most people will try
+	use_to_pickup = TRUE // for picking up broken bulbs, not that most people will try
+
+/obj/item/weapon/storage/box/freezer/red
+	icon_state = "portafreezer_red"
 
 /obj/item/weapon/storage/box/freezer/Entered(var/atom/movable/AM)
 	if(istype(AM, /obj/item/organ))

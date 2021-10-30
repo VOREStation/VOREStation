@@ -32,8 +32,7 @@ var/list/ai_verbs_default = list(
 /proc/AutoUpdateAI(obj/subject)
 	var/is_in_use = 0
 	if (subject!=null)
-		for(var/A in ai_list)
-			var/mob/living/silicon/ai/M = A
+		for(var/mob/living/silicon/ai/M as anything in ai_list)
 			if ((M.client && M.machine == subject))
 				is_in_use = 1
 				subject.attack_ai(M)
@@ -44,8 +43,8 @@ var/list/ai_verbs_default = list(
 	name = "AI"
 	icon = 'icons/mob/AI.dmi'//
 	icon_state = "ai"
-	anchored = 1 // -- TLE
-	density = 1
+	anchored = TRUE // -- TLE
+	density = TRUE
 	status_flags = CANSTUN|CANPARALYSE|CANPUSH
 	shouldnt_see = list(/mob/observer/eye, /obj/effect/rune)
 	var/list/network = list(NETWORK_DEFAULT)
@@ -124,9 +123,9 @@ var/list/ai_verbs_default = list(
 	if(!is_dummy)
 		aiPDA = new/obj/item/device/pda/ai(src)
 	SetName(pickedName)
-	anchored = 1
+	anchored = TRUE
 	canmove = 0
-	density = 1
+	density = TRUE
 	loc = loc
 
 	if(!is_dummy)
@@ -350,7 +349,7 @@ var/list/ai_verbs_default = list(
 		return
 
 	if (!custom_sprite)
-		var/new_sprite = input("Select an icon!", "AI", selected_sprite) as null|anything in ai_icons
+		var/new_sprite = tgui_input_list(usr, "Select an icon!", "AI", ai_icons)
 		if(new_sprite) selected_sprite = new_sprite
 	updateicon()
 
@@ -382,7 +381,7 @@ var/list/ai_verbs_default = list(
 	if(check_unable(AI_CHECK_WIRELESS))
 		return
 
-	var/confirm = alert("Are you sure you want to call the shuttle?", "Confirm Shuttle Call", "Yes", "No")
+	var/confirm = tgui_alert(usr, "Are you sure you want to call the shuttle?", "Confirm Shuttle Call", list("Yes", "No"))
 
 	if(check_unable(AI_CHECK_WIRELESS))
 		return
@@ -401,7 +400,7 @@ var/list/ai_verbs_default = list(
 	if(check_unable(AI_CHECK_WIRELESS))
 		return
 
-	var/confirm = alert("Are you sure you want to recall the shuttle?", "Confirm Shuttle Recall", "Yes", "No")
+	var/confirm = tgui_alert(usr, "Are you sure you want to recall the shuttle?", "Confirm Shuttle Recall", list("Yes", "No"))
 	if(check_unable(AI_CHECK_WIRELESS))
 		return
 
@@ -597,13 +596,13 @@ var/list/ai_verbs_default = list(
 		return
 
 	var/input
-	var/choice = alert("Would you like to select a hologram based on a (visible) crew member, switch to unique avatar, or load your character from your character slot?",,"Crew Member","Unique","My Character")
+	var/choice = tgui_alert(usr, "Would you like to select a hologram based on a (visible) crew member, switch to unique avatar, or load your character from your character slot?","Hologram Selection",list("Crew Member","Unique","My Character"))
 
 	switch(choice)
 		if("Crew Member") //A seeable crew member (or a dog)
 			var/list/targets = trackable_mobs()
 			if(targets.len)
-				input = input("Select a crew member:") as null|anything in targets //The definition of "crew member" is a little loose...
+				input = tgui_input_list(usr, "Select a crew member:", "Hologram Choice", targets) //The definition of "crew member" is a little loose...
 				//This is torture, I know. If someone knows a better way...
 				if(!input) return
 				var/new_holo = getHologramIcon(getCompoundIcon(targets[input]))
@@ -611,7 +610,7 @@ var/list/ai_verbs_default = list(
 				holo_icon = new_holo
 
 			else
-				alert("No suitable records found. Aborting.")
+				tgui_alert_async(usr, "No suitable records found. Aborting.")
 
 		if("My Character") //Loaded character slot
 			if(!client || !client.prefs) return
@@ -651,7 +650,7 @@ var/list/ai_verbs_default = list(
 				"male skrell",
 				"female skrell"
 			)
-			input = input("Please select a hologram:") as null|anything in icon_list
+			input = tgui_input_list(usr, "Please select a hologram:", "Hologram Choice", icon_list)
 			if(input)
 				qdel(holo_icon)
 				switch(input)
@@ -761,7 +760,7 @@ var/list/ai_verbs_default = list(
 				user.visible_message("<font color='blue'>\The [user] decides not to unbolt \the [src].</font>")
 				return
 			user.visible_message("<font color='blue'>\The [user] finishes unfastening \the [src]!</font>")
-			anchored = 0
+			anchored = FALSE
 			return
 		else
 			playsound(src, W.usesound, 50, 1)
@@ -770,7 +769,7 @@ var/list/ai_verbs_default = list(
 				user.visible_message("<font color='blue'>\The [user] decides not to bolt \the [src].</font>")
 				return
 			user.visible_message("<font color='blue'>\The [user] finishes fastening down \the [src]!</font>")
-			anchored = 1
+			anchored = TRUE
 			return
 	else
 		return ..()
@@ -853,7 +852,7 @@ var/list/ai_verbs_default = list(
 				A = D
 
 		if(istype(A))
-			switch(alert(src, "Do you want to open \the [A] for [target]?", "Doorknob_v2a.exe", "Yes", "No"))
+			switch(tgui_alert(src, "Do you want to open \the [A] for [target]?", "Doorknob_v2a.exe", list("Yes", "No")))
 				if("Yes")
 					A.AIShiftClick()
 					to_chat(src, "<span class='notice'>You open \the [A] for [target].</span>")
@@ -961,7 +960,8 @@ var/list/ai_verbs_default = list(
 	return track // Feed variable back to AI
 
 /mob/living/silicon/ai/proc/relay_speech(mob/living/M, list/message_pieces, verb)
-	var/message = combine_message(message_pieces, verb, M)
+	var/list/combined = combine_message(message_pieces, verb, M)
+	var/message = combined["formatted"]
 	var/name_used = M.GetVoice()
 	//This communication is imperfect because the holopad "filters" voices and is only designed to connect to the master only.
 	var/rendered = "<i><span class='game say'>Relayed Speech: <span class='name'>[name_used]</span> [message]</span></i>"

@@ -112,13 +112,13 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 			update_tgui_static_data(usr, ui)
 			return TRUE
 		if("setTag")
-			var/list/new_tag = input(usr, "Pick a new Vore tag for the character directory", "Character Tag", usr?.client?.prefs?.directory_tag) as null|anything in GLOB.char_directory_tags
+			var/list/new_tag = tgui_input_list(usr, "Pick a new Vore tag for the character directory", "Character Tag", GLOB.char_directory_tags)
 			if(!new_tag)
 				return
 			usr?.client?.prefs?.directory_tag = new_tag
 			return TRUE
 		if("setErpTag")
-			var/list/new_erptag = input(usr, "Pick a new ERP tag for the character directory", "Character ERP Tag", usr?.client?.prefs?.directory_erptag) as null|anything in GLOB.char_directory_erptags
+			var/list/new_erptag = tgui_input_list(usr, "Pick a new ERP tag for the character directory", "Character ERP Tag", GLOB.char_directory_erptags)
 			if(!new_erptag)
 				return
 			usr?.client?.prefs?.directory_erptag = new_erptag

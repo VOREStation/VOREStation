@@ -132,6 +132,8 @@
 	corpseshoes = /obj/item/clothing/shoes/black
 	random_species = TRUE
 
+
+
 /obj/effect/landmark/corpse/chef
 	name = "Chef"
 	corpseuniform = /obj/item/clothing/under/rank/chef
@@ -198,7 +200,7 @@
 	corpseid = 1
 	corpseidjob = "Scientist"
 	corpseidaccess = "Scientist"
-	
+
 /obj/effect/landmark/corpse/security
 	name = "Security Officer"
 	corpseradio = /obj/item/device/radio/headset/headset_sec
@@ -212,18 +214,18 @@
 	corpseid = 1
 	corpseidjob = "Security Officer"
 	corpseidaccess = "Security Officer"
-	
+
 /obj/effect/landmark/corpse/security/rig
 	corpsesuit = /obj/item/clothing/suit/space/void/security
 	corpsemask = /obj/item/clothing/mask/breath
 	corpsehelmet = /obj/item/clothing/head/helmet/space/void/security
 	corpseback = /obj/item/weapon/tank/jetpack/oxygen
-	
+
 /obj/effect/landmark/corpse/security/rig/eva
 	corpsesuit = /obj/item/clothing/suit/space/void/security/alt
 	corpsehelmet = /obj/item/clothing/head/helmet/space/void/security/alt
 	corpseidjob = "Starship Security Officer"
-	
+
 /obj/effect/landmark/corpse/prisoner
 	name = "Unknown Prisoner"
 	corpseuniform = /obj/item/clothing/under/color/prison
@@ -247,7 +249,7 @@
 	corpsemask = /obj/item/clothing/mask/breath
 	corpsehelmet = /obj/item/clothing/head/helmet/space/void/mining
 	corpseback = /obj/item/weapon/tank/oxygen
-	
+
 /////////////////Vintage//////////////////////
 
 //define the basic props at this level and only change specifics for variants, e.z.
@@ -337,3 +339,41 @@
 	corpseid = 1
 	corpseidjob = "Commander"
 	corpseidaccess = "Captain"
+
+/////////////////Lore Factions//////////////////////
+
+/obj/effect/landmark/corpse/sifguard
+	name = "Patrolman"
+	corpseuniform = /obj/item/clothing/under/solgov/utility/sifguard
+	corpsesuit = /obj/item/clothing/suit/storage/hooded/wintercoat/solgov
+	corpsebelt = /obj/item/weapon/storage/belt/security/tactical
+	corpseglasses = /obj/item/clothing/glasses/sunglasses/sechud
+	corpsemask = /obj/item/clothing/mask/balaclava
+	corpsehelmet = /obj/item/clothing/head/beret/solgov/sifguard
+	corpsegloves = /obj/item/clothing/gloves/duty
+	corpseshoes = /obj/item/clothing/shoes/boots/tactical
+	corpsepocket1 = /obj/item/clothing/accessory/armor/tag/sifguard
+	corpseid = 1
+	corpseidjob = "Sif Defense Force Patrolman"
+
+/obj/effect/landmark/corpse/hedberg
+	name = "Hedberg-Hammarstrom Mercenary"
+	corpseuniform = /obj/item/clothing/under/solgov/utility/sifguard
+	corpsesuit = /obj/item/clothing/suit/storage/vest/solgov/hedberg
+	corpsebelt = /obj/item/weapon/storage/belt/security
+	corpseglasses = /obj/item/clothing/glasses/sunglasses/sechud
+	corpsehelmet = /obj/item/clothing/head/beret/corp/hedberg
+	corpseshoes = /obj/item/clothing/shoes/boots/jackboots
+	corpseid = 1
+	corpseidjob = "Hedberg-Hammarstrom Officer"
+
+/obj/effect/landmark/corpse/hedberg/merc
+	name = "Hedberg-Hammarstrom Mercenary"
+	corpsebelt = /obj/item/weapon/storage/belt/security/tactical
+	corpseglasses = /obj/item/clothing/glasses/sunglasses/sechud
+	corpsehelmet = /obj/item/clothing/head/helmet/flexitac
+	corpsegloves = /obj/item/clothing/gloves/combat
+	corpseshoes = /obj/item/clothing/shoes/boots/tactical
+	corpseid = 1
+	corpseidjob = "Hedberg-Hammarstrom Enforcer"
+

@@ -81,6 +81,8 @@
 	attacktext = list("clawed", "pinched", "crushed")
 	speak_emote = list("clicks")
 
+	organ_names = /decl/mob_organ_names/crab
+
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/hooligan
 	say_list_type = /datum/say_list/crab
 
@@ -116,5 +118,5 @@
 		if(prob(10))
 			for(var/mob/living/L in hearers(holder))
 				if(!istype(L, holder)) // Don't follow other hooligan crabs.
-					holder.visible_message("<span class='notice'>\The [holder] starts to follow \the [L].</span>")
+					holder.visible_message("<b>\The [holder]</b> starts to follow \the [L].")
 					set_follow(L, rand(20 SECONDS, 40 SECONDS))

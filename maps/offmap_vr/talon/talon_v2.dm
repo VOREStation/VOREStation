@@ -38,21 +38,24 @@ var/global/list/latejoin_talon = list()
 ///////////////////////////
 //// The Talon
 /obj/effect/overmap/visitable/ship/talon
-	scanner_name = "ITV Talon"
+	name = "ITV Talon"
+	icon_state = "talon_v2"
 	scanner_desc = @{"[i]Registration[/i]: ITV Talon
 [i]Class[/i]: Frigate
 [i]Transponder[/i]: Transmitting (CIV)
 [b]Notice[/b]: Independent trader vessel"}
-	color = "#aacccc"
 	vessel_mass = 10000
 	vessel_size = SHIP_SIZE_LARGE
 	initial_generic_waypoints = list("talon_v2_near_fore_port", "talon_v2_near_fore_star", "talon_v2_near_aft_port", "talon_v2_near_aft_star", "talon_v2_wing_port", "talon_v2_wing_star")
 	initial_restricted_waypoints = list("Talon's Shuttle" = list("offmap_spawn_talonboat"))
 
-	skybox_icon = 'talon.dmi' //Art by Gwyvern, distributed under Creative Commons license
+	skybox_icon = 'talon.dmi'
 	skybox_icon_state = "skybox"
 	skybox_pixel_x = 270
 	skybox_pixel_y = 60
+
+	levels_for_distress = list(1, Z_LEVEL_BEACH, Z_LEVEL_AEROSTAT, Z_LEVEL_DEBRISFIELD, Z_LEVEL_FUELDEPOT)
+	unowned_areas = list(/area/shuttle/talonboat)
 
 // The shuttle's 'shuttle' computer
 /obj/machinery/computer/shuttle_control/explore/talonboat
@@ -188,6 +191,7 @@ speaking of, if some dumbass does take it and fly off solo then get themselves k
 	name = "somewhat glitchy drone fabricator"
 	desc = "Obtained from a derelict, it seems to work sometimes, not work sometimes, and work TOO good sometimes. Didn't come with a control console either..."
 	drone_type = /mob/living/silicon/robot/drone/talon
+	fabricator_tag = "Talon"
 
 /mob/living/silicon/robot/drone/talon
 	foreign_droid = TRUE
@@ -334,7 +338,7 @@ speaking of, if some dumbass does take it and fly off solo then get themselves k
 		/obj/item/clothing/under/rank/medical,
 		/obj/item/clothing/under/rank/nurse,
 		/obj/item/clothing/under/rank/orderly,
-		/obj/item/clothing/suit/storage/toggle/labcoat,
+		/obj/item/clothing/suit/storage/toggle/labcoat/modern,
 		/obj/item/clothing/suit/storage/toggle/fr_jacket,
 		/obj/item/clothing/shoes/white,
 		/obj/item/device/radio/headset/talon,
@@ -542,7 +546,7 @@ speaking of, if some dumbass does take it and fly off solo then get themselves k
 /obj/effect/shuttle_landmark/premade/talon_v2_wing_star
 	name = "ITV Talon (Starboard Wingtip)"
 	landmark_tag = "talon_v2_wing_star"
-	
+
 /obj/random/multiple/corp_crate/talon_cargo
 	name = "random corporate crate (talon)"
 	desc = "A random corporate crate with thematic contents. No weapons, no SAARE cashbox, 50% chance to not appear."

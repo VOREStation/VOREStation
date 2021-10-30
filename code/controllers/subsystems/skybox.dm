@@ -37,7 +37,8 @@ SUBSYSTEM_DEF(skybox)
 		im.alpha = 128 //80
 		im.blend_mode = BLEND_ADD
 		
-		MA.overlays = list(im)
+		MA.cut_overlays()
+		MA.add_overlay(im)
 
 		dust_cache["[i]"] = MA
 	
@@ -48,7 +49,8 @@ SUBSYSTEM_DEF(skybox)
 		var/image/im = image('icons/turf/space_dust_transit.dmi', "speedspace_ns_[i]")
 		im.plane = DUST_PLANE
 		im.blend_mode = BLEND_ADD
-		MA.overlays = list(im)
+		MA.cut_overlays()
+		MA.add_overlay(im)
 		speedspace_cache["NS_[i]"] = MA
 		// EAST/WEST
 		MA = new(normal_space)
@@ -56,7 +58,8 @@ SUBSYSTEM_DEF(skybox)
 		im.plane = DUST_PLANE
 		im.blend_mode = BLEND_ADD
 		
-		MA.overlays = list(im)
+		MA.cut_overlays()
+		MA.add_overlay(im)
 		
 		speedspace_cache["EW_[i]"] = MA
 	
@@ -90,13 +93,17 @@ SUBSYSTEM_DEF(skybox)
 	. = ..()
 
 /datum/controller/subsystem/skybox/proc/get_skybox(z)
+	if(!subsystem_initialized)
+		return // WAIT
 	if(!skybox_cache["[z]"])
 		skybox_cache["[z]"] = generate_skybox(z)
 	return skybox_cache["[z]"]
 
 /datum/controller/subsystem/skybox/proc/generate_skybox(z)
 	var/datum/skybox_settings/settings = global.using_map.get_skybox_datum(z)
-
+	
+	var/new_overlays = list()
+	
 	var/image/res = image(settings.icon)
 	res.appearance_flags = KEEP_TOGETHER
 
@@ -108,23 +115,32 @@ SUBSYSTEM_DEF(skybox)
 		stars.appearance_flags = RESET_COLOR
 		base.overlays += stars
 
-	res.overlays += base
+	new_overlays += base
 
 	if(global.using_map.use_overmap && settings.use_overmap_details)
 		var/obj/effect/overmap/visitable/O = get_overmap_sector(z)
 		if(istype(O))
-			var/image/overmap = image(settings.icon)
-			overmap.overlays += O.generate_skybox()
-			for(var/obj/effect/overmap/visitable/other in O.loc)
-				if(other != O)
-					overmap.overlays += other.get_skybox_representation()
-			overmap.appearance_flags = RESET_COLOR
-			res.overlays += overmap
+			var/image/self_image = O.generate_skybox(z)
+			new_overlays += self_image
+			//VOREStation Add
+			if(isbelly(O.loc)) // Teehee
+				base.icon = 'icons/skybox/skybox_vr.dmi'
+				base.icon_state = "flesh"
+			//VOREStation Add End
+			else
+				for(var/obj/effect/overmap/visitable/other in O.loc)
+					if(other != O)
+						new_overlays += other.get_skybox_representation(z)
 
 	// Allow events to apply custom overlays to skybox! (Awesome!)
 	for(var/datum/event/E in SSevents.active_events)
 		if(E.has_skybox_image && E.isRunning && (z in E.affecting_z))
-			res.overlays += E.get_skybox_image()
+			new_overlays += E.get_skybox_image()
+	
+	for(var/image/I in new_overlays)
+		I.appearance_flags |= RESET_COLOR
+
+	res.overlays = new_overlays
 
 	return res
 

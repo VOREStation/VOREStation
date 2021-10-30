@@ -6,7 +6,7 @@
 	w_class = ITEMSIZE_SMALL
 	item_state = "electronic"
 	action_button_name = "Toggle UV light"
-	matter = list(DEFAULT_WALL_MATERIAL = 150)
+	matter = list(MAT_STEEL = 150)
 	origin_tech = list(TECH_MAGNET = 1, TECH_ENGINEERING = 1)
 
 	var/list/scanned = list()
@@ -42,7 +42,7 @@
 		stored_alpha.Cut()
 	if(reset_objects.len)
 		for(var/obj/item/I in reset_objects)
-			I.overlays -= I.blood_overlay
+			I.cut_overlay(I.blood_overlay)
 			if(I.fluorescent == 2) I.fluorescent = 1
 		reset_objects.Cut()
 
@@ -66,5 +66,5 @@
 					if(istype(A, /obj/item))
 						var/obj/item/O = A
 						if(O.was_bloodied && !(O.blood_overlay in O.overlays))
-							O.overlays |= O.blood_overlay
+							O.add_overlay(O.blood_overlay)
 							reset_objects |= O

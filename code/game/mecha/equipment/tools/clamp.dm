@@ -76,15 +76,15 @@
 
 		occupant_message("You lift [target] and start to load it into cargo compartment.")
 		chassis.visible_message("[chassis] lifts [target] and starts to load it into cargo compartment.")
-		set_ready_state(0)
+		set_ready_state(FALSE)
 		chassis.use_power(energy_drain)
-		O.anchored = 1
+		O.anchored = TRUE
 		var/T = chassis.loc
 		if(do_after_cooldown(target))
 			if(T == chassis.loc && src == chassis.selected)
 				cargo_holder.cargo += O
 				O.loc = chassis
-				O.anchored = 0
+				O.anchored = FALSE
 				occupant_message("<span class='notice'>[target] succesfully loaded.</span>")
 				log_message("Loaded [O]. Cargo compartment capacity: [cargo_holder.cargo_capacity - cargo_holder.cargo.len]")
 			else
@@ -115,7 +115,7 @@
 			step_away(M,chassis)
 			occupant_message("You push [target] out of the way.")
 			chassis.visible_message("[chassis] pushes [target] out of the way.")
-		set_ready_state(0)
+		set_ready_state(FALSE)
 		chassis.use_power(energy_drain)
 		do_after_cooldown()
 	return 1
@@ -137,15 +137,15 @@
 			if(cargo_holder.cargo.len < cargo_holder.cargo_capacity)
 				chassis.occupant_message("You lift [target] and start to load it into cargo compartment.")
 				chassis.visible_message("[chassis] lifts [target] and starts to load it into cargo compartment.")
-				set_ready_state(0)
+				set_ready_state(FALSE)
 				chassis.use_power(energy_drain)
-				O.anchored = 1
+				O.anchored = TRUE
 				var/T = chassis.loc
 				if(do_after_cooldown(target))
 					if(T == chassis.loc && src == chassis.selected)
 						cargo_holder.cargo += O
 						O.loc = chassis
-						O.anchored = 0
+						O.anchored = FALSE
 						chassis.occupant_message("<span class='notice'>[target] succesfully loaded.</span>")
 						chassis.log_message("Loaded [O]. Cargo compartment capacity: [cargo_holder.cargo_capacity - cargo_holder.cargo.len]")
 					else
@@ -169,7 +169,7 @@
 			step_away(M,chassis)
 			chassis.occupant_message("You smash into [target], sending them flying.")
 			chassis.visible_message("[chassis] tosses [target] like a piece of paper.")
-		set_ready_state(0)
+		set_ready_state(FALSE)
 		chassis.use_power(energy_drain)
 		do_after_cooldown()
 	return 1

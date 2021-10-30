@@ -43,7 +43,9 @@
 		new /datum/stack_recipe("crude fishing rod", /obj/item/weapon/material/fishing_rod/built, 8, time = 10 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
 		new /datum/stack_recipe("wooden standup figure", /obj/structure/barricade/cutout, 5, time = 10 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"), //VOREStation Add
 		new /datum/stack_recipe("noticeboard", /obj/structure/noticeboard, 1, recycle_material = "[name]"),
-		new /datum/stack_recipe("tanning rack", /obj/structure/tanning_rack, 3, one_per_turf = TRUE, time = 20, on_floor = TRUE, supplied_material = "[name]")
+		new /datum/stack_recipe("tanning rack", /obj/structure/tanning_rack, 3, one_per_turf = TRUE, time = 20, on_floor = TRUE, supplied_material = "[name]"),
+		new /datum/stack_recipe("painting easel", /obj/structure/easel, 5, one_per_turf = TRUE, time = 20, on_floor = TRUE, supplied_material = "[name]"),
+		new /datum/stack_recipe("painting frame", /obj/item/frame/painting, 5, one_per_turf = TRUE, time = 20, on_floor = TRUE, supplied_material = "[name]")
 	)
 
 /datum/material/wood/sif
@@ -65,10 +67,12 @@
 
 /datum/material/wood/log
 	name = MAT_LOG
+	display_name = "wood" // will lead to "wood log"
 	icon_base = "log"
 	stack_type = /obj/item/stack/material/log
-	sheet_singular_name = null
-	sheet_plural_name = "pile"
+	sheet_singular_name = "log"
+	sheet_plural_name = "logs"
+	sheet_collective_name = "pile"
 	pass_stack_colors = TRUE
 	supply_conversion_value = 1
 
@@ -79,6 +83,24 @@
 
 /datum/material/wood/log/sif
 	name = MAT_SIFLOG
+	display_name = "alien wood"
 	icon_colour = "#0099cc" // Cyan-ish
 	stack_origin_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2)
 	stack_type = /obj/item/stack/material/log/sif
+
+//VOREStation Addition Start
+/datum/material/wood/stick
+	name = "wooden stick"
+	icon_colour = "#824B28"
+	display_name = "wood"
+	icon_base = "stick"
+	stack_type = /obj/item/stack/material/stick
+	sheet_collective_name = "pile"
+	pass_stack_colors = TRUE
+	supply_conversion_value = 1
+	sheet_singular_name = "stick"
+	sheet_plural_name = "sticks"
+
+/datum/material/wood/stick/generate_recipes()
+	return
+//VOREStation Addition End

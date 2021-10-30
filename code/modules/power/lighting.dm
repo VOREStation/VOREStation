@@ -24,7 +24,7 @@ var/global/list/light_type_cache = list()
 	desc = "A light fixture under construction."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "tube-construct-stage1"
-	anchored = 1
+	anchored = TRUE
 	plane = MOB_PLANE
 	layer = ABOVE_MOB_LAYER
 	var/stage = 1
@@ -166,7 +166,7 @@ var/global/list/light_type_cache = list()
 	desc = "A small light fixture under construction."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "bulb-construct-stage1"
-	anchored = 1
+	anchored = TRUE
 	stage = 1
 	fixture_type = /obj/machinery/light/small
 	sheets_refunded = 1
@@ -185,7 +185,7 @@ var/global/list/light_type_cache = list()
 	desc = "A floor light fixture under construction."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "flamp-construct-stage1"
-	anchored = 0
+	anchored = FALSE
 	plane = OBJ_PLANE
 	layer = OBJ_LAYER
 	stage = 1
@@ -208,7 +208,7 @@ var/global/list/light_type_cache = list()
 	var/base_state = "tube"		// base description and icon_state
 	icon_state = "tube1"
 	desc = "A lighting fixture."
-	anchored = 1
+	anchored = TRUE
 	plane = MOB_PLANE
 	layer = ABOVE_MOB_LAYER
 	use_power = USE_POWER_ACTIVE
@@ -283,13 +283,13 @@ var/global/list/light_type_cache = list()
 	plane = OBJ_PLANE
 	layer = OBJ_LAYER
 	desc = "A floor lamp."
-	light_type = /obj/item/weapon/light/bulb
+	light_type = /obj/item/weapon/light/bulb/large
 	construct_type = /obj/machinery/light_construct/flamp
 	shows_alerts = FALSE	//VOREStation Edit
 	var/lamp_shade = 1
 
-/obj/machinery/light/flamp/New(atom/newloc, obj/machinery/light_construct/construct = null)
-	..(newloc, construct)
+/obj/machinery/light/flamp/Initialize(mapload, obj/machinery/light_construct/construct = null)
+	. = ..()
 	if(construct)
 		start_with_cell = FALSE
 		lamp_shade = 0
@@ -317,15 +317,13 @@ var/global/list/light_type_cache = list()
 	auto_flicker = TRUE
 
 //VOREStation Add - Shadeless!
-/obj/machinery/light/flamp/noshade/New()
+/obj/machinery/light/flamp/noshade
 	lamp_shade = 0
-	update(0)
-	..()
 //VOREStation Add End
 
 // create a new lighting fixture
-/obj/machinery/light/New(atom/newloc, obj/machinery/light_construct/construct = null)
-	..(newloc)
+/obj/machinery/light/Initialize(mapload, obj/machinery/light_construct/construct = null)
+	. =..()
 
 	if(construct)
 		start_with_cell = FALSE
@@ -394,25 +392,33 @@ var/global/list/light_type_cache = list()
 		..()
 //VOREStation Edit Start
 /obj/machinery/light/proc/set_alert_atmos()
-	if(shows_alerts)
-		current_alert = "atmos"
-		brightness_color = "#6D6DFC"
-		if(on)
-			update()
+	if(!shows_alerts)
+		return
+	current_alert = "atmos"
+	brightness_color = "#6D6DFC"
+	update()
 
 /obj/machinery/light/proc/set_alert_fire()
-	if(shows_alerts)
-		current_alert = "fire"
-		brightness_color = "#FF3030"
-		if(on)
-			update()
+	if(!shows_alerts)
+		return
+	current_alert = "fire"
+	brightness_color = "#FF3030"
+	update()
 
 /obj/machinery/light/proc/reset_alert()
-	if(shows_alerts)
-		current_alert = null
-		brightness_color = initial(brightness_color) || "" // Workaround for BYOND stupidity. Can't set it to null or it won't clear.
-		if(on)
-			update()
+	if(!shows_alerts)
+		return
+
+	current_alert = null
+	var/obj/item/weapon/light/L = get_light_type_instance(light_type)
+	
+	if(L)
+		update_from_bulb(L)
+	else
+		brightness_color = nightshift_enabled ? initial(brightness_color_ns) : initial(brightness_color)
+	
+	update()
+
 //VOREstation Edit End
 // update lighting
 /obj/machinery/light/proc/update(var/trigger = 1)
@@ -887,20 +893,34 @@ var/global/list/light_type_cache = list()
 	force = 2
 	throwforce = 5
 	w_class = ITEMSIZE_TINY
-	var/status = 0		// LIGHT_OK, LIGHT_BURNED or LIGHT_BROKEN
+	matter = list(MAT_STEEL = 60)
+	
+	///LIGHT_OK, LIGHT_BURNED or LIGHT_BROKEN
+	var/status = LIGHT_OK
+	///Base icon_state name to append suffixes for status
 	var/base_state
-	var/switchcount = 0	// number of times switched
-	matter = list(DEFAULT_WALL_MATERIAL = 60)
-	var/rigged = 0		// true if rigged to explode
+	///Number of times switched on/off
+	var/switchcount = 0
+	///Is this light set to explode
+	var/rigged = 0
+	///The chance (prob()) that this light will be broken at roundstart
 	var/broken_chance = 2
 
-	var/brightness_range = 2 //how much light it gives off
+	///The raidus in turfs this light will reach. It will be at it's most dim this many turfs away.
+	/// This is also used in power draw calculation for machinery/lights.
+	var/brightness_range = 8
+	///The light will fall off over more/less range based on this. The formula is complicated.
 	var/brightness_power = 1
+	///The color of the light emitted.
 	var/brightness_color = LIGHT_COLOR_INCANDESCENT_TUBE
 
+	///Replaces brightness_range during nightshifts.
 	var/nightshift_range = 8
-	var/nightshift_power = 1
+	///Replaces brightness_power during nightshifts.
+	var/nightshift_power = 0.45
+	///Replaces brightness_color during nightshifts.
 	var/nightshift_color = LIGHT_COLOR_NIGHTSHIFT
+	
 	drop_sound = 'sound/items/drop/glass.ogg'
 	pickup_sound = 'sound/items/pickup/glass.ogg'
 
@@ -910,15 +930,15 @@ var/global/list/light_type_cache = list()
 	icon_state = "ltube"
 	base_state = "ltube"
 	item_state = "c_tube"
-	matter = list("glass" = 100)
-	brightness_range = 10	// luminosity when on, also used in power calculation //VOREStation Edit
-	brightness_power = 6
+	matter = list(MAT_GLASS = 100)
+	brightness_range = 7
+	brightness_power = 2
 
 /obj/item/weapon/light/tube/large
 	w_class = ITEMSIZE_SMALL
 	name = "large light tube"
 	brightness_range = 15
-	brightness_power = 9
+	brightness_power = 4
 
 	nightshift_range = 10
 	nightshift_power = 1.5
@@ -929,13 +949,22 @@ var/global/list/light_type_cache = list()
 	icon_state = "lbulb"
 	base_state = "lbulb"
 	item_state = "contvapour"
-	matter = list("glass" = 100)
+	matter = list(MAT_GLASS = 100)
 	brightness_range = 5
-	brightness_power = 4
+	brightness_power = 1
 	brightness_color = LIGHT_COLOR_INCANDESCENT_BULB
 
 	nightshift_range = 3
 	nightshift_power = 0.5
+
+// For 'floor lamps' in outdoor use and such
+/obj/item/weapon/light/bulb/large
+	name = "large light bulb"
+	brightness_range = 7
+	brightness_power = 1.5
+	
+	nightshift_range = 4
+	nightshift_power = 0.75
 
 /obj/item/weapon/light/throw_impact(atom/hit_atom)
 	..()
@@ -952,7 +981,7 @@ var/global/list/light_type_cache = list()
 	icon_state = "fbulb"
 	base_state = "fbulb"
 	item_state = "egg4"
-	matter = list("glass" = 100)
+	matter = list(MAT_GLASS = 100)
 
 // update the icon state and description of the light
 /obj/item/weapon/light/update_icon()
@@ -1022,7 +1051,7 @@ var/global/list/light_type_cache = list()
 		src.visible_message("<font color='red'>[name] shatters.</font>","<font color='red'> You hear a small glass object shatter.</font>")
 		status = LIGHT_BROKEN
 		force = 5
-		sharp = 1
+		sharp = TRUE
 		playsound(src, 'sound/effects/Glasshit.ogg', 75, 1)
 		update_icon()
 

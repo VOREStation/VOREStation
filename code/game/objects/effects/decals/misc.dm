@@ -4,11 +4,11 @@
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "arrow"
 	plane = ABOVE_PLANE
-	anchored = 1
+	anchored = TRUE
 	mouse_opacity = 0
 
 // Used for spray that you spray at walls, tables, hydrovats etc
 /obj/effect/decal/spraystill
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 	plane = ABOVE_PLANE

@@ -1,4 +1,10 @@
 /**
+ * @file
+ * @copyright 2020 Aleksej Komarov
+ * @license MIT
+ */
+
+/**
  * Removes excess whitespace and indentation from the string.
  */
 export const multiline = str => {
@@ -72,13 +78,21 @@ export const createSearch = (searchText, stringifier) => {
   };
 };
 
+export const isUppercase = chr => {
+  return chr.toUpperCase() === chr;
+};
+
 export const capitalize = str => {
   // Handle array
   if (Array.isArray(str)) {
     return str.map(capitalize);
   }
   // Handle string
-  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+  let chr = str.charAt(0);
+  if (isUppercase(chr)) {
+    return str; // Already caps, might be an acronym, so don't mess it up by lowercasing the rest
+  }
+  return chr.toUpperCase() + str.slice(1).toLowerCase();
 };
 
 export const toTitleCase = str => {
@@ -91,7 +105,7 @@ export const toTitleCase = str => {
     return str;
   }
   // Handle string
-  const WORDS_UPPER = ['Id', 'Tv', 'Rcd'];
+  const WORDS_UPPER = ['Id', 'Tv', 'Rcd']; // VOREStation Edit
   const WORDS_LOWER = [
     'A', 'An', 'And', 'As', 'At', 'But', 'By', 'For', 'For', 'From', 'In',
     'Into', 'Near', 'Nor', 'Of', 'On', 'Onto', 'Or', 'The', 'To', 'With',

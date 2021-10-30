@@ -43,7 +43,7 @@
 /obj/item/clothing/ears/skrell
 	name = "skrell tentacle wear"
 	desc = "Some stuff worn by skrell to adorn their head tentacles."
-	icon = 'icons/obj/clothing/ears.dmi'
+	icon = 'icons/inventory/ears/item.dmi'
 	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_EARS
 	species_restricted = list(SPECIES_SKRELL)

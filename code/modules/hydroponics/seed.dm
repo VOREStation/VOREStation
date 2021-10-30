@@ -1,6 +1,6 @@
 /datum/plantgene
 	var/genetype    // Label used when applying trait.
-	var/list/values // Values to copy into the target seed datum.
+	var/list/list/values // Values to copy into the target seed datum.
 
 /datum/seed
 	//Tracking.
@@ -140,7 +140,7 @@
 
 		if(affecting)
 			to_chat(target, "<span class='danger'>\The [fruit]'s thorns pierce your [affecting.name] greedily!</span>")
-			target.apply_damage(damage, BRUTE, target_limb, blocked, soaked, "Thorns", sharp=1, edge=has_edge)
+			target.apply_damage(damage, BRUTE, target_limb, blocked, soaked, "Thorns", sharp = TRUE, edge=has_edge)
 		else
 			to_chat(target, "<span class='danger'>\The [fruit]'s thorns pierce your flesh greedily!</span>")
 			target.adjustBruteLoss(damage)
@@ -149,7 +149,7 @@
 		has_edge = prob(get_trait(TRAIT_POTENCY)/5)
 		if(affecting)
 			to_chat(target, "<span class='danger'>\The [fruit]'s thorns dig deeply into your [affecting.name]!</span>")
-			target.apply_damage(damage, BRUTE, target_limb, blocked, "Thorns", sharp=1, edge=has_edge)
+			target.apply_damage(damage, BRUTE, target_limb, blocked, "Thorns", sharp = TRUE, edge=has_edge)
 		else
 			to_chat(target, "<span class='danger'>\The [fruit]'s thorns dig deeply into your flesh!</span>")
 			target.adjustBruteLoss(damage)
@@ -571,7 +571,7 @@
 
 	if(!degree || get_trait(TRAIT_IMMUTABLE) > 0) return
 
-	source_turf.visible_message("<span class='notice'>\The [display_name] quivers!</span>")
+	source_turf.visible_message("<b>\The [display_name]</b> quivers!")
 
 	//This looks like shit, but it's a lot easier to read/change this way.
 	var/total_mutations = rand(1,1+degree)
@@ -608,7 +608,7 @@
 				if(prob(degree*5))
 					set_trait(TRAIT_CARNIVOROUS,     get_trait(TRAIT_CARNIVOROUS)+rand(-degree,degree),2, 0)
 					if(get_trait(TRAIT_CARNIVOROUS))
-						source_turf.visible_message("<span class='notice'>\The [display_name] shudders hungrily.</span>")
+						source_turf.visible_message("<b>\The [display_name]</b> shudders hungrily.")
 			if(6)
 				set_trait(TRAIT_WEED_TOLERANCE,      get_trait(TRAIT_WEED_TOLERANCE)+(rand(-2,2)*degree),10, 0)
 				if(prob(degree*5))
@@ -629,7 +629,7 @@
 				set_trait(TRAIT_POTENCY,             get_trait(TRAIT_POTENCY)+(rand(-20,20)*degree),200, 0)
 				if(prob(degree*5))
 					set_trait(TRAIT_SPREAD,          get_trait(TRAIT_SPREAD)+rand(-1,1),2, 0)
-					source_turf.visible_message("<span class='notice'>\The [display_name] spasms visibly, shifting in the tray.</span>")
+					source_turf.visible_message("<b>\The [display_name]</b> spasms visibly, shifting in the tray.")
 				if(prob(degree*3))
 					set_trait(TRAIT_SPORING,        !get_trait(TRAIT_SPORING))
 			if(9)
@@ -647,7 +647,7 @@
 				if(prob(degree*2))
 					set_trait(TRAIT_BIOLUM,         !get_trait(TRAIT_BIOLUM))
 					if(get_trait(TRAIT_BIOLUM))
-						source_turf.visible_message("<span class='notice'>\The [display_name] begins to glow!</span>")
+						source_turf.visible_message("<b>\The [display_name]</b> begins to glow!")
 						if(prob(degree*2))
 							set_trait(TRAIT_BIOLUM_COLOUR,"#[get_random_colour(0,75,190)]")
 							source_turf.visible_message("<span class='notice'>\The [display_name]'s glow </span><font color='[get_trait(TRAIT_BIOLUM_COLOUR)]'>changes colour</font>!")

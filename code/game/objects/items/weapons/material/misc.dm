@@ -1,7 +1,7 @@
 /obj/item/weapon/material/harpoon
 	name = "harpoon"
-	sharp = 1
-	edge = 0
+	sharp = TRUE
+	edge = FALSE
 	desc = "Tharr she blows!"
 	icon_state = "harpoon"
 	item_state = "harpoon"
@@ -16,8 +16,8 @@
 	force_divisor = 0.2 // 12 with hardness 60 (steel)
 	thrown_force_divisor = 0.75 // 15 with weight 20 (steel)
 	w_class = ITEMSIZE_SMALL
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 	origin_tech = list(TECH_MATERIAL = 2, TECH_COMBAT = 1)
 	attack_verb = list("chopped", "torn", "cut")
 	applies_material_colour = 0
@@ -142,11 +142,11 @@
 	if(user.a_intent)
 		switch(user.a_intent)
 			if(I_HURT)
-				if(prob(10) && istype(target, /mob/living/carbon/human) && user.zone_sel in list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT, BP_L_ARM, BP_R_ARM, BP_L_HAND, BP_R_HAND))
+				if(prob(10) && istype(target, /mob/living/carbon/human) && (user.zone_sel in list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT, BP_L_ARM, BP_R_ARM, BP_L_HAND, BP_R_HAND)))
 					to_chat(target, "<span class='warning'>\The [src] rips at your hands!</span>")
 					ranged_disarm(target)
 			if(I_DISARM)
-				if(prob(min(90, force * 3)) && istype(target, /mob/living/carbon/human) && user.zone_sel in list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT, BP_L_ARM, BP_R_ARM, BP_L_HAND, BP_R_HAND))
+				if(prob(min(90, force * 3)) && istype(target, /mob/living/carbon/human) && (user.zone_sel in list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT, BP_L_ARM, BP_R_ARM, BP_L_HAND, BP_R_HAND)))
 					ranged_disarm(target)
 				else
 					target.visible_message("<span class='danger'>\The [src] sends \the [target] stumbling away.</span>")
@@ -175,7 +175,7 @@
 						visible_message("<span class='danger'>[H]'s [W] goes off due to \the [src]!</span>")
 						return W.afterattack(target,H)
 
-		if(!(H.species.flags & NO_SLIP) && prob(10) && user.zone_sel in list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT))
+		if(!(H.species.flags & NO_SLIP) && prob(10) && (user.zone_sel in list(BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT)))
 			var/armor_check = H.run_armor_check(user.zone_sel, "melee")
 			H.apply_effect(3, WEAKEN, armor_check)
 			playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
@@ -198,11 +198,18 @@
 						playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 						return
 
-/obj/item/weapon/material/whip/suicide_act(mob/user)
-	var/datum/gender/T = gender_datums[user.get_visible_gender()]
-	user.visible_message(span("danger", "\The [user] [T.is] strangling [T.himself] with \the [src]! It looks like [T.he] [T.is] trying to commit suicide."), span("danger", "You start to strangle yourself with \the [src]!"), span("danger", "You hear the sound of someone choking!"))
-	return (OXYLOSS)
-
 /obj/item/weapon/material/whip/attack_self(mob/user)
 	user.visible_message("<span class='warning'>\The [user] cracks \the [src]!</span>")
 	playsound(src, 'sound/effects/snap.ogg', 50, 1)
+
+/obj/item/weapon/material/knife/machete/hatchet/stone
+	name = "hatchet"
+	desc = "A very sharp axe blade upon a short fibremetal handle. It has a long history of chopping things, but now it is used for chopping wood."
+	icon = 'icons/obj/weapons_vr.dmi'
+	icon_state = "stone_wood_axe"
+	default_material = MAT_FLINT
+	origin_tech = list()
+	applies_material_colour = FALSE
+
+/obj/item/weapon/material/knife/machete/hatchet/stone/bone
+	icon_state = "stone_bone_axe"

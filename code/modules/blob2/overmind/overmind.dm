@@ -57,14 +57,12 @@ var/list/overminds = list()
 	return ..(newloc)
 
 /mob/observer/blob/Destroy()
-	for(var/BL in GLOB.all_blobs)
-		var/obj/structure/blob/B = BL
+	for(var/obj/structure/blob/B as anything in GLOB.all_blobs)
 		if(B && B.overmind == src)
 			B.overmind = null
 			B.update_icon() //reset anything that was ours
 
-	for(var/BLO in blob_mobs)
-		var/mob/living/simple_mob/blob/spore/BM = BLO
+	for(var/mob/living/simple_mob/blob/spore/BM as anything in blob_mobs)
 		if(BM)
 			BM.overmind = null
 			BM.update_icons()

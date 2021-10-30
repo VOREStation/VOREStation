@@ -40,6 +40,10 @@
 	display_name = "collar, pink"
 	path = /obj/item/clothing/accessory/collar/pink
 
+/datum/gear/collar/cowbell
+	display_name = "collar, cowbell"
+	path = /obj/item/clothing/accessory/collar/cowbell
+
 /datum/gear/collar/holo
 	display_name = "collar, holo"
 	path = /obj/item/clothing/accessory/collar/holo
@@ -102,7 +106,7 @@
 	display_name = "pilot qualification pin"
 	description = "An iron pin denoting the qualification to fly SCG spacecraft."
 	path = /obj/item/clothing/accessory/solgov/specialty/pilot
-	allowed_roles = list("Pathfinder","Pilot","Field Medic","Talon Pilot")	
+	allowed_roles = list("Pathfinder","Pilot","Field Medic","Talon Pilot")
 
 /datum/gear/accessory/flops
 	display_name = "drop straps"
@@ -112,3 +116,11 @@
 /datum/gear/accessory/flops/New()
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
+
+/*
+Talon pin
+*/
+/datum/gear/accessory/talonpin
+	display_name = "Talon pin"
+	description = "A small enamel pin of the Talon logo."
+	path = /obj/item/clothing/accessory/talon

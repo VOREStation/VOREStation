@@ -6,8 +6,9 @@
 	name = "Body Scanner"
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "body_scanner_0"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
+	unacidable = TRUE
 	circuit = /obj/item/weapon/circuitboard/body_scanner
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 60
@@ -474,9 +475,8 @@
 					infected = "Gangrene Detected:"
 
 			var/unknown_body = 0
-			for(var/thing in e.implants)
-				var/obj/item/weapon/implant/I = thing
-				var/obj/item/device/nif/N = thing //VOREStation Add: NIFs
+			for(var/obj/item/weapon/implant/I as anything in e.implants)
+				var/obj/item/device/nif/N = I //VOREStation Add: NIFs
 				if(istype(I) && I.known_implant)
 					imp += "[I] implanted:"
 				if(istype(N) && N.known_implant) //VOREStation Add: NIFs
@@ -486,7 +486,7 @@
 
 			if(unknown_body)
 				imp += "Unknown body present:"
-			if(!AN && !open && !infected & !imp)
+			if(!AN && !open && !infected && !imp)
 				AN = "None:"
 			if(!(e.status & ORGAN_DESTROYED))
 				dat += "<td>[e.name]</td><td>[e.burn_dam]</td><td>[e.brute_dam]</td><td>[robot][bled][AN][splint][open][infected][imp][internal_bleeding][lung_ruptured][o_dead]</td>"
@@ -546,8 +546,9 @@
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "body_scannerconsole"
 	dir = 8
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
+	unacidable = TRUE
 	circuit = /obj/item/weapon/circuitboard/scanner_console
 	var/printing = null
 

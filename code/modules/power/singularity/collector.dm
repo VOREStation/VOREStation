@@ -6,8 +6,8 @@ var/global/list/rad_collectors = list()
 	desc = "A device which uses Hawking Radiation and phoron to produce power."
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "ca"
-	anchored = 0
-	density = 1
+	anchored = FALSE
+	density = TRUE
 	req_access = list(access_engine_equip)
 //	use_power = 0
 	var/obj/item/weapon/tank/phoron/P = null
@@ -138,13 +138,13 @@ var/global/list/rad_collectors = list()
 
 
 /obj/machinery/power/rad_collector/proc/update_icons()
-	overlays.Cut()
+	cut_overlays()
 	if(P)
-		overlays += image('icons/obj/singularity.dmi', "ptank")
+		add_overlay("ptank")
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if(active)
-		overlays += image('icons/obj/singularity.dmi', "on")
+		add_overlay("on")
 
 
 /obj/machinery/power/rad_collector/proc/toggle_power()

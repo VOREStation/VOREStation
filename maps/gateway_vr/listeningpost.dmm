@@ -218,28 +218,24 @@
 /area/mine/explored)
 "aN" = (
 /obj/machinery/gateway{
-	icon_state = "off";
 	dir = 9
 	},
 /turf/simulated/floor/greengrid,
 /area/mine/explored)
 "aO" = (
 /obj/machinery/gateway{
-	icon_state = "off";
 	dir = 1
 	},
 /turf/simulated/floor/greengrid,
 /area/mine/explored)
 "aP" = (
 /obj/machinery/gateway{
-	icon_state = "off";
 	dir = 5
 	},
 /turf/simulated/floor/greengrid,
 /area/mine/explored)
 "aQ" = (
 /obj/machinery/gateway{
-	icon_state = "off";
 	dir = 8
 	},
 /turf/simulated/floor/greengrid,
@@ -250,14 +246,12 @@
 /area/mine/explored)
 "aS" = (
 /obj/machinery/gateway{
-	icon_state = "off";
 	dir = 4
 	},
 /turf/simulated/floor/greengrid,
 /area/mine/explored)
 "aT" = (
 /obj/machinery/gateway{
-	icon_state = "off";
 	dir = 10
 	},
 /turf/simulated/floor/greengrid,
@@ -268,7 +262,6 @@
 /area/mine/explored)
 "aV" = (
 /obj/machinery/gateway{
-	icon_state = "off";
 	dir = 6
 	},
 /turf/simulated/floor/greengrid,
@@ -414,8 +407,8 @@
 /area/awaymission/listeningpost)
 "bu" = (
 /obj/structure/toilet{
-	icon_state = "toilet00";
-	dir = 8
+	dir = 8;
+	icon_state = "toilet00"
 	},
 /obj/item/weapon/tool/crowbar,
 /obj/item/weapon/paper/crumpled/listeningpost/fanfiction,
@@ -423,6 +416,10 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/airless,
 /area/awaymission/listeningpost)
+"Hp" = (
+/obj/effect/landmark/hidden_level,
+/turf/space,
+/area/space)
 
 (1,1,1) = {"
 aa
@@ -847,7 +844,7 @@ aa
 aa
 aa
 aa
-aa
+Hp
 aa
 "}
 (4,1,1) = {"

@@ -49,10 +49,13 @@
 /obj/machinery/power/supermatter
 	name = "Supermatter"
 	desc = "A strangely translucent and iridescent crystal. <font color='red'>You get headaches just from looking at it.</font>"
-	icon = 'icons/obj/engine.dmi'
+	icon = 'icons/obj/supermatter.dmi'
 	icon_state = "darkmatter"
-	density = 1
-	anchored = 0
+	plane = MOB_PLANE // So people can walk behind the top part
+	layer = ABOVE_MOB_LAYER // So people can walk behind the top part
+	density = TRUE
+	anchored = FALSE
+	unacidable = TRUE
 	light_range = 4
 
 	var/gasefficency = 0.25
@@ -164,7 +167,7 @@
 
 	message_admins("Supermatter exploded at ([x],[y],[z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
 	log_game("SUPERMATTER([x],[y],[z]) Exploded. Power:[power], Oxygen:[oxygen], Damage:[damage], Integrity:[get_integrity()]")
-	anchored = 1
+	anchored = TRUE
 	grav_pulling = 1
 	exploded = 1
 	sleep(pull_time)
@@ -533,7 +536,7 @@
 /obj/item/broken_sm
 	name = "shattered supermatter plinth"
 	desc = "The shattered remains of a supermatter shard plinth. It doesn't look safe to be around."
-	icon = 'icons/obj/engine.dmi'
+	icon = 'icons/obj/supermatter.dmi'
 	icon_state = "darkmatter_broken"
 
 /obj/item/broken_sm/New()

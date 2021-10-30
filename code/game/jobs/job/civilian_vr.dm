@@ -123,7 +123,7 @@
 	spawn_positions = 2
 	alt_titles = list("Journalist" = /datum/alt_title/journalist, "Reporter" =  /datum/alt_title/reporter, "Writer" = /datum/alt_title/writer,
 					"Historian" = /datum/alt_title/historian, "Archivist" = /datum/alt_title/archivist, "Professor" = /datum/alt_title/professor,
-					"Academic" = /datum/alt_title/academic, "Philosopher" = /datum/alt_title/philosopher)
+					"Academic" = /datum/alt_title/academic, "Philosopher" = /datum/alt_title/philosopher, "Curator" = /datum/alt_title/curator)
 	pto_type = PTO_CIVILIAN
 
 /datum/alt_title/reporter
@@ -150,6 +150,9 @@
 	title = "Philosopher"
 	title_blurb = "The Philosopher uses the Library as a base of operation to ruminate on nature of life and other great questions, and share their opinions with the crew."
 
+/datum/alt_title/curator
+	title = "Curator"
+	title_blurb = "The Curator uses the Library as a base of operation to gather the finest of art for display and preservation."
 
 /datum/job/lawyer
 	disallow_jobhop = TRUE
@@ -216,7 +219,8 @@
 	job_description = "An entertainer does just that, entertains! Put on plays, play music, sing songs, tell stories, or read your favorite fanfic."
 	alt_titles = list("Performer" = /datum/alt_title/performer, "Musician" = /datum/alt_title/musician, "Stagehand" = /datum/alt_title/stagehand,
 						"Actor" = /datum/alt_title/actor, "Dancer" = /datum/alt_title/dancer, "Singer" = /datum/alt_title/singer,
-						"Magician" = /datum/alt_title/magician, "Comedian" = /datum/alt_title/comedian, "Tragedian" = /datum/alt_title/tragedian)
+						"Magician" = /datum/alt_title/magician, "Comedian" = /datum/alt_title/comedian, "Tragedian" = /datum/alt_title/tragedian,
+						"Artist" = /datum/alt_title/artist)
 
 // Entertainer Alt Titles
 /datum/alt_title/actor
@@ -254,3 +258,7 @@
 /datum/alt_title/tragedian
 	title = "Tragedian"
 	title_blurb = "A Tragedian will focus on making people think about life and world around them! Life is a tragedy, and who's better to convey its emotions than you?"
+
+/datum/alt_title/artist
+	title = "Artist"
+	title_blurb = "An Artist's calling is to create beautiful arts! Whatever form may they take, create and have people astonished with your creativity."

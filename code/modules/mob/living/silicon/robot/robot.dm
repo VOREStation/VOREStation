@@ -12,6 +12,8 @@
 	mob_swap_flags = ~HEAVY
 	mob_push_flags = ~HEAVY //trundle trundle
 
+	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
+
 	var/lights_on = 0 // Is our integrated light on?
 	var/used_power_this_tick = 0
 	var/sight_mode = 0
@@ -269,14 +271,18 @@
 		modules.Add(robot_module_types)
 		if(crisis || security_level == SEC_LEVEL_RED || crisis_override)
 			to_chat(src, "<font color='red'>Crisis mode active. Combat module available.</font>")
-			modules+="Combat"
-			modules+="ERT"
+			modules += emergency_module_types
+		for(var/module_name in whitelisted_module_types)
+			if(is_borg_whitelisted(src, module_name))
+				modules += module_name
 	//VOREStatation Edit End: shell restrictions
-	modtype = input("Please, select a module!", "Robot module", null, null) as null|anything in modules
+	modtype = tgui_input_list(usr, "Please, select a module!", "Robot module", modules)
 
 	if(module)
 		return
 	if(!(modtype in robot_modules))
+		return
+	if(!is_borg_whitelisted(src, modtype))
 		return
 
 	var/module_type = robot_modules[modtype]
@@ -401,7 +407,7 @@
 		if(C.installed)
 			installed_components += V
 
-	var/toggle = input(src, "Which component do you want to toggle?", "Toggle Component") as null|anything in installed_components
+	var/toggle = tgui_input_list(src, "Which component do you want to toggle?", "Toggle Component", installed_components)
 	if(!toggle)
 		return
 
@@ -578,7 +584,7 @@
 					if(C.installed == 1 || C.installed == -1)
 						removable_components += V
 
-				var/remove = input(user, "Which component do you want to pry out?", "Remove Component") as null|anything in removable_components
+				var/remove = tgui_input_list(user, "Which component do you want to pry out?", "Remove Component", removable_components)
 				if(!remove)
 					return
 				var/datum/robot_component/C = components[remove]
@@ -1019,7 +1025,7 @@
 		if(!(icontype in module_sprites))
 			icontype = module_sprites[1]
 	else
-		icontype = input("Select an icon! [triesleft ? "You have [triesleft] more chance\s." : "This is your last try."]", "Robot Icon", icontype, null) in module_sprites
+		icontype = tgui_input_list(usr, "Select an icon! [triesleft ? "You have [triesleft] more chance\s." : "This is your last try."]", "Robot Icon", module_sprites)
 		if(notransform)				//VOREStation edit start: sprite animation
 			to_chat(src, "Your current transformation has not finished yet!")
 			choose_icon(icon_selection_tries, module_sprites)
@@ -1036,8 +1042,8 @@
 
 	if (module_sprites.len > 1 && triesleft >= 1 && client)
 		icon_selection_tries--
-		var/choice = input("Look at your icon - is this what you want?") in list("Yes","No")
-		if(choice=="No")
+		var/choice = tgui_alert(usr, "Look at your icon - is this what you want?", "Icon Choice", list("Yes","No"))
+		if(choice == "No")
 			choose_icon(icon_selection_tries, module_sprites)
 			return
 

@@ -7,10 +7,10 @@
 	desc = "A huge pipe segment used for constructing disposal systems."
 	icon = 'icons/obj/pipes/disposal.dmi'
 	icon_state = "conpipe-s"
-	anchored = 0
-	density = 0
+	anchored = FALSE
+	density = FALSE
 	pressure_resistance = 5*ONE_ATMOSPHERE
-	matter = list(DEFAULT_WALL_MATERIAL = 1850)
+	matter = list(MAT_STEEL = 1850)
 	level = 2
 	var/sortType = ""
 	var/ptype = 0
@@ -23,7 +23,7 @@
 	ptype = newtype
 	dir = newdir
 	// Disposals handle "bent"/"corner" strangely, handle this specially.
-	if(ptype == DISPOSAL_PIPE_STRAIGHT && dir in cornerdirs)
+	if(ptype == DISPOSAL_PIPE_STRAIGHT && (dir in cornerdirs))
 		ptype = DISPOSAL_PIPE_CORNER
 		switch(dir)
 			if(NORTHWEST)
@@ -37,7 +37,7 @@
 
 	switch(ptype)
 		if(DISPOSAL_PIPE_BIN, DISPOSAL_PIPE_OUTLET, DISPOSAL_PIPE_CHUTE)
-			density = 1
+			density = TRUE
 		if(DISPOSAL_PIPE_SORTER, DISPOSAL_PIPE_SORTER_FLIPPED)
 			subtype = newsubtype
 
@@ -248,12 +248,12 @@
 	// wrench: (un)anchor
 	if(I.is_wrench())
 		if(anchored)
-			anchored = 0
+			anchored = FALSE
 			if(ispipe)
 				level = 2
-				density = 0
+				density = FALSE
 			else
-				density = 1
+				density = TRUE
 			to_chat(user, "You detach the [nicetype] from the underfloor.")
 		else
 			if(ptype == DISPOSAL_PIPE_BIN || ptype == DISPOSAL_PIPE_OUTLET || ptype == DISPOSAL_PIPE_CHUTE) // Disposal or outlet
@@ -274,12 +274,12 @@
 						to_chat(user, "There is already a [nicetype] at that location.")
 						return
 
-			anchored = 1
+			anchored = TRUE
 			if(ispipe)
 				level = 1 // We don't want disposal bins to disappear under the floors
-				density = 0
+				density = FALSE
 			else
-				density = 1 // We don't want disposal bins or outlets to go density 0
+				density = TRUE // We don't want disposal bins or outlets to go density 0
 			to_chat(user, "You attach the [nicetype] to the underfloor.")
 		playsound(src, I.usesound, 100, 1)
 		update()

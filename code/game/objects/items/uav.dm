@@ -12,10 +12,15 @@
 	var/obj/item/weapon/cell/cell
 	var/cell_type = null //Can put a starting cell here
 
-	density = 1 //Is dense, but not anchored, so you can swap with it
-	slowdown = 3 //Heevvee.
+	density = TRUE //Is dense, but not anchored, so you can swap with it
+	slowdown = 1.5 //Heevvee.
 
 	health = 100
+
+	light_system = MOVABLE_LIGHT_DIRECTIONAL
+	light_cone_y_offset = 5
+	light_range = 4
+	light_power = 4
 	var/power_per_process = 50 // About 6.5 minutes of use on a high-cell (10,000)
 	var/state = UAV_OFF
 
@@ -24,7 +29,7 @@
 	var/list/mob/living/masters
 
 	// So you know which is which
-	var/nickname = "Generic Droan"
+	var/nickname = "Unnamed UAV"
 
 	// Radial menu
 	var/static/image/radial_pickup = image(icon = 'icons/mob/radial.dmi', icon_state = "radial_pickup")
@@ -92,8 +97,10 @@
 				return
 		// Can disasemble or reassemble from packed or off (and this one takes time)
 		if("(Dis)Assemble")
-			if(can_transition_to(state == UAV_PACKED ? UAV_OFF : UAV_PACKED, user) && do_after(user, 10 SECONDS, src))
-				return toggle_packed(user)
+			if(can_transition_to(state == UAV_PACKED ? UAV_OFF : UAV_PACKED, user))
+				user.visible_message("<b>[user]</b> starts [state == UAV_PACKED ? "unpacking" : "packing"] [src].", "You start [state == UAV_PACKED ? "unpacking" : "packing"] [src].")
+				if(do_after(user, 10 SECONDS, src))
+					return toggle_packed(user)
 		// Can toggle power from on and off
 		if("Toggle Power")
 			if(can_transition_to(state == UAV_ON ? UAV_OFF : UAV_ON, user))
@@ -207,20 +214,20 @@
 	return FALSE
 
 /obj/item/device/uav/proc/toggle_packed()
-	if(UAV_ON)
+	if(state == UAV_ON)
 		power_down()
 	switch(state)
 		if(UAV_OFF) //Packing
 			state = UAV_PACKED
 			w_class = ITEMSIZE_LARGE
-			slowdown = 1
+			slowdown = 0.5
 			density = FALSE
 			update_icon()
 			return TRUE
 		if(UAV_PACKED) //Unpacking
 			state = UAV_OFF
 			w_class = ITEMSIZE_HUGE
-			slowdown = 3
+			slowdown = 1.5
 			density = TRUE
 			update_icon()
 			return TRUE
@@ -236,7 +243,7 @@
 	state = UAV_ON
 	update_icon()
 	start_hover()
-	set_light(4, 4, "#FFFFFF")
+	set_light_on(TRUE)
 	START_PROCESSING(SSobj, src)
 	no_masters_time = 0
 	visible_message("<span class='notice'>[nickname] buzzes and lifts into the air.</span>")
@@ -248,7 +255,7 @@
 	state = UAV_OFF
 	update_icon()
 	stop_hover()
-	set_light(0)
+	set_light_on(FALSE)
 	LAZYCLEARLIST(masters)
 	STOP_PROCESSING(SSobj, src)
 	visible_message("<span class='notice'>[nickname] gracefully settles onto the ground.</span>")
@@ -305,7 +312,8 @@
 	for(var/wr_master in masters)
 		var/weakref/wr = wr_master
 		var/mob/master = wr.resolve()
-		var/message = master.combine_message(message_pieces, verb, M)
+		var/list/combined = master.combine_message(message_pieces, verb, M)
+		var/message = combined["formatted"]
 		var/rendered = "<i><span class='game say'>UAV received: <span class='name'>[name_used]</span> [message]</span></i>"
 		master.show_message(rendered, 2)
 

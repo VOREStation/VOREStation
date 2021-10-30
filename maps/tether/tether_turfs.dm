@@ -1,10 +1,16 @@
 //Simulated
+VIRGO3B_TURF_CREATE(/turf/simulated/floor/reinforced)
+VIRGO3B_TURF_CREATE(/turf/simulated/floor/tiled/steel_dirty)
+VIRGO3B_TURF_CREATE(/turf/simulated/floor/wood/sif)
+VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/rocks)
+VIRGO3B_TURF_CREATE(/turf/simulated/floor/water/indoors)
+
 VIRGO3B_TURF_CREATE(/turf/simulated/open)
 /turf/simulated/open/virgo3b
 	edge_blending_priority = 0.5 //Turfs which also have e_b_p and higher than this will plop decorative edges onto this turf
-/turf/simulated/open/virgo3b/New()
-	..()
-	if(outdoors)
+/turf/simulated/open/virgo3b/Initialize(mapload)
+	. = ..()
+	if(is_outdoors())
 		SSplanets.addTurf(src)
 
 VIRGO3B_TURF_CREATE(/turf/simulated/floor)
@@ -14,16 +20,10 @@ VIRGO3B_TURF_CREATE(/turf/simulated/floor)
 /turf/simulated/floor/virgo3b_indoors/update_graphic(list/graphic_add = null, list/graphic_remove = null)
 	return 0
 
-VIRGO3B_TURF_CREATE(/turf/simulated/floor/reinforced)
-
-VIRGO3B_TURF_CREATE(/turf/simulated/floor/tiled/steel_dirty)
-
 VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/dirt)
 /turf/simulated/floor/outdoors/dirt/virgo3b
 	icon = 'icons/turf/flooring/asteroid.dmi'
 	icon_state = "asteroid"
-
-VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/rocks)
 
 VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/grass/sif)
 /turf/simulated/floor/outdoors/grass/sif
@@ -69,10 +69,6 @@ VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor)
 			"uranium" = 10,
 			"platinum" = 10,
 			"hematite" = 20,
-			"copper" = 8,
-			"tin" = 4,
-			"bauxite" = 4,
-			"rutile" = 4,
 			"carbon" = 20,
 			"diamond" = 1,
 			"gold" = 8,
@@ -86,10 +82,6 @@ VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor)
 			"uranium" = 5,
 			"platinum" = 5,
 			"hematite" = 35,
-			"copper" = 15,
-			"tin" = 10,
-			"bauxite" = 10,
-			"rutile" = 10,
 			"carbon" = 35,
 			"gold" = 3,
 			"silver" = 3,
@@ -215,3 +207,76 @@ VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor)
 	dir = EAST
 /turf/simulated/sky/virgo3b/moving/west
 	dir = WEST
+
+/turf/simulated/floor/midpoint_glass
+	name = "glass floor"
+	desc = "Dont jump on it, or do, I'm not your mom."
+	icon = 'icons/turf/flooring/glass.dmi'
+	icon_state = "glass-0"
+	base_icon_state = "glass"
+
+/turf/simulated/floor/midpoint_glass/reinf
+	name = "reinforced glass floor"
+	desc = "Do jump on it, it can take it."
+	icon = 'icons/turf/flooring/reinf_glass.dmi'
+	icon_state = "reinf_glass-0"
+	base_icon_state = "reinf_glass"
+
+/turf/simulated/floor/midpoint_glass/Initialize()
+	. = ..()
+	return INITIALIZE_HINT_LATELOAD
+
+/turf/simulated/floor/midpoint_glass/LateInitialize()
+	do_icons()
+
+/turf/simulated/floor/midpoint_glass/proc/do_icons()
+	var/new_junction = NONE
+
+	for(var/direction in cardinal) //Cardinal case first.
+		var/turf/T = get_step(src, direction)
+		if(istype(T, type))
+			new_junction |= direction
+
+	if(!(new_junction & (NORTH|SOUTH)) || !(new_junction & (EAST|WEST)))
+		icon_state = "[base_icon_state]-[new_junction]"
+		return
+
+	if(new_junction & NORTH)
+		if(new_junction & WEST)
+			var/turf/T = get_step(src, NORTHWEST)
+			if(istype(T, type))
+				new_junction |= (1<<7)
+
+		if(new_junction & EAST)
+			var/turf/T = get_step(src, NORTHEAST)
+			if(istype(T, type))
+				new_junction |= (1<<4)
+
+	if(new_junction & SOUTH)
+		if(new_junction & WEST)
+			var/turf/T = get_step(src, SOUTHWEST)
+			if(istype(T, type))
+				new_junction |= (1<<6)
+
+		if(new_junction & EAST)
+			var/turf/T = get_step(src, SOUTHEAST)
+			if(istype(T, type))
+				new_junction |= (1<<5)
+
+	icon_state = "[base_icon_state]-[new_junction]"
+
+	add_vis_overlay('icons/effects/effects.dmi', "white", plane = SPACE_PLANE, add_vis_flags = VIS_INHERIT_ID|VIS_UNDERLAY)
+
+/turf/space/v3b_midpoint/Initialize()
+	. = ..()
+	new /obj/effect/step_trigger/teleporter/planetary_fall/virgo3b(src)
+
+/turf/space/v3b_midpoint/ChangeTurf(turf/N, tell_universe, force_lighting_update, preserve_outdoors)
+	. = ..()
+	for(var/obj/effect/step_trigger/teleporter/planetary_fall/virgo3b/F in src)
+		qdel(F)
+
+// Tram transit floor
+/turf/simulated/floor/tiled/techfloor/grid/transit
+	icon = 'icons/turf/transit_vr.dmi'
+	initial_flooring = null

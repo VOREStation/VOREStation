@@ -35,17 +35,16 @@
 /obj/item/weapon/gun/energy/imperial
 	name = "imperial energy pistol"
 	desc = "An elegant weapon developed by the Imperium Auream. Their weaponsmiths have cleverly found a way to make a gun that is only about the size of an average energy pistol, yet with the fire power of a laser carbine."
+	icon = 'icons/obj/gun_vr.dmi'
+	icon_override = 'icons/obj/gun_vr.dmi'
 	icon_state = "ge_pistol"
 	item_state = "ge_pistol"
-	fire_sound = 'sound/weapons/mandalorian.ogg'
-	icon = 'icons/obj/gun_vr.dmi'
-	item_icons = list(slot_r_hand_str = 'icons/obj/gun_vr.dmi', slot_l_hand_str = 'icons/obj/gun_vr.dmi') // WORK YOU FUCKING CUNT PIECE OF SHIT BASTARD STUPID BITCH ITEM ICON AAAAHHHH
-	item_state_slots = list(slot_r_hand_str = "ge_pistol_r", slot_l_hand_str = "ge_pistol_l")
 	slot_flags = SLOT_BELT
 	w_class = ITEMSIZE_NORMAL
 	force = 10
 	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 2)
-	matter = list(DEFAULT_WALL_MATERIAL = 2000)
+	matter = list(MAT_STEEL = 2000)
+	fire_sound = 'sound/weapons/mandalorian.ogg'
 	projectile_type = /obj/item/projectile/beam/imperial
 
 // Removed because gun64_vr.dmi guns don't work.
@@ -198,13 +197,13 @@
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "phaserkill"
 	item_state = "phaser"
-	item_icons = list(slot_l_hand_str = 'icons/mob/items/lefthand_guns_vr.dmi', slot_r_hand_str = 'icons/mob/items/righthand_guns_vr.dmi', "slot_belt" = 'icons/mob/belt_vr.dmi')
+	item_icons = list(slot_l_hand_str = 'icons/mob/items/lefthand_guns_vr.dmi', slot_r_hand_str = 'icons/mob/items/righthand_guns_vr.dmi', "slot_belt" = 'icons/inventory/belt/mob_vr.dmi')
 	fire_sound = 'sound/weapons/laser2.ogg'
 	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 2, TECH_POWER = 4)
 	charge_cost = 300
 
 	battery_lock = 1
-	unacidable = 1
+	unacidable = TRUE
 
 	var/recharging = 0
 	var/phase_power = 75
@@ -214,7 +213,7 @@
 	modifystate = "phaserkill"
 	firemodes = list(
 		list(mode_name="lethal", fire_delay=12, projectile_type=/obj/item/projectile/beam/blue, modifystate="phaserkill", charge_cost = 300),
-		list(mode_name="low-power", fire_delay=8, projectile_type=/obj/item/projectile/beam/weaklaser/blue, modifystate="phaserstun", charge_cost = 80),
+		list(mode_name="low-power", fire_delay=8, projectile_type=/obj/item/projectile/beam/weaklaser/blue, modifystate="phaserstun", charge_cost = 100),
 	)
 
 /obj/item/weapon/gun/energy/locked/frontier/unload_ammo(var/mob/user)
@@ -268,7 +267,7 @@
 	modifystate = "carbinekill"
 	firemodes = list(
 		list(mode_name="lethal", fire_delay=8, projectile_type=/obj/item/projectile/beam/blue, modifystate="carbinekill", charge_cost = 300),
-		list(mode_name="low-power", fire_delay=5, projectile_type=/obj/item/projectile/beam/weaklaser/blue, modifystate="carbinestun", charge_cost = 80),
+		list(mode_name="low-power", fire_delay=5, projectile_type=/obj/item/projectile/beam/weaklaser/blue, modifystate="carbinestun", charge_cost = 100),
 	)
 
 /obj/item/weapon/gun/energy/locked/frontier/carbine/update_icon()
@@ -299,7 +298,7 @@
 	modifystate = "holdoutkill"
 	firemodes = list(
 		list(mode_name="lethal", fire_delay=12, projectile_type=/obj/item/projectile/beam/blue, modifystate="holdoutkill", charge_cost = 600),
-		list(mode_name="low-power", fire_delay=8, projectile_type=/obj/item/projectile/beam/weaklaser/blue, modifystate="holdoutstun", charge_cost = 160),
+		list(mode_name="low-power", fire_delay=8, projectile_type=/obj/item/projectile/beam/weaklaser/blue, modifystate="holdoutstun", charge_cost = 200),
 		list(mode_name="stun", fire_delay=12, projectile_type=/obj/item/projectile/beam/stun/med, modifystate="holdoutshock", charge_cost = 300),
 	)
 
@@ -353,6 +352,30 @@
 
 /obj/item/weapon/gun/energy/locked/frontier/rifle/unlocked
 	desc = "A much larger, heavier weapon than the typical frontier-type weapons, this DMR can be fired both from the hip, and in scope. Includes a built-in crank charger for recharging away from civilization."
+	req_access = newlist() //for toggling safety
+	locked = 0
+	lockable = 0
+
+///phaser bow///
+
+/obj/item/weapon/gun/energy/locked/frontier/handbow
+	name = "phaser handbow"
+	desc = "An minaturized weapon that fires a bolt of energy. Includes a built-in crank charger for recharging away from civilization. This one has a safety interlock that prevents firing while in proximity to the facility."
+	icon = 'icons/obj/gun_vr.dmi'
+	icon_state = "handbowkill"
+	item_state = null
+	phase_power = 100
+
+	w_class = ITEMSIZE_SMALL
+	charge_cost = 600
+	modifystate = "handbowkill"
+	firemodes = list(
+		list(mode_name="lethal", fire_delay=12, projectile_type=/obj/item/projectile/energy/bow/heavy, modifystate="handbowkill", charge_cost = 600),
+		list(mode_name="low-power", fire_delay=8, projectile_type=/obj/item/projectile/energy/bow, modifystate="handbowstun", charge_cost = 200),
+	)
+
+/obj/item/weapon/gun/energy/locked/frontier/handbow/unlocked
+	desc = "An minaturized weapon that fires a bolt of energy. Includes a built-in crank charger for recharging away from civilization."
 	req_access = newlist() //for toggling safety
 	locked = 0
 	lockable = 0

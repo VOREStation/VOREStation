@@ -21,7 +21,7 @@
 //	can_pull_size = ITEMSIZE_TINY
 //	can_pull_mobs = MOB_PULL_NONE
 	layer = MOB_LAYER
-	density = 0
+	density = FALSE
 
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
@@ -57,7 +57,8 @@
 	icon_living = "mouse_[body_color]"
 	icon_dead = "mouse_[body_color]_dead"
 	icon_rest = "mouse_[body_color]_sleep"
-	desc = "A small [body_color] rodent, often seen hiding in maintenance areas and making a nuisance of itself."
+	if (body_color != "rat")
+		desc = "A small [body_color] rodent, often seen hiding in maintenance areas and making a nuisance of itself."
 
 /mob/living/simple_mob/animal/passive/mouse/Crossed(atom/movable/AM as mob|obj)
 	if(AM.is_incorporeal())
@@ -106,6 +107,8 @@
 
 /mob/living/simple_mob/animal/passive/mouse/rat
 	name = "rat"
+	tt_desc = "E Rattus rattus"
+	desc = "A large rodent, often seen hiding in maintenance areas and making a nuisance of itself."
 	body_color = "rat"
 	icon_state = "mouse_rat"
 	maxHealth = 20

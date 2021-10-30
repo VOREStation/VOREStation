@@ -79,7 +79,7 @@
 /mob/living/silicon/stun_effect_act(var/stun_amount, var/agony_amount)
 	return	//immune
 
-/mob/living/silicon/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 0.0)
+/mob/living/silicon/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 0.0, var/def_zone = null, var/stun = 1)
 	if(shock_damage > 0)
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		s.set_up(5, 1, loc)
@@ -113,7 +113,7 @@
 	updatehealth()
 	return 2
 
-/mob/living/silicon/apply_effect(var/effect = 0,var/effecttype = STUN, var/blocked = 0)
+/mob/living/silicon/apply_effect(var/effect = 0,var/effecttype = STUN, var/blocked = 0, var/check_protection = 1)
 	return 0//The only effect that can hit them atm is flashes and they still directly edit so this works for now
 
 
@@ -153,8 +153,22 @@
 		show_malf_ai()
 	..()
 
+/* VOREStation Removal
+// this function displays the stations manifest in a separate window
+/mob/living/silicon/proc/show_station_manifest()
+	var/dat = "<div align='center'>"
+	if(!data_core)
+		to_chat(src, "<span class='notice'>There is no data to form a manifest with. Contact your Nanotrasen administrator.</span>")
+		return
+	dat += data_core.get_manifest(1) //The 1 makes it monochrome.
+
+	var/datum/browser/popup = new(src, "Crew Manifest", "Crew Manifest", 370, 420, src)
+	popup.set_content(dat)
+	popup.open()
+*/
+
 //can't inject synths
-/mob/living/silicon/can_inject(var/mob/user, var/error_msg)
+/mob/living/silicon/can_inject(var/mob/user, var/error_msg, var/target_zone, var/ignore_thickness = FALSE)
 	if(error_msg)
 		to_chat(user, "<span class='alert'>The armoured plating is too tough.</span>")
 	return 0
@@ -173,7 +187,7 @@
 	return FALSE
 
 /mob/living/silicon/add_language(var/language, var/can_speak=1)
-	var/var/datum/language/added_language = GLOB.all_languages[language]
+	var/datum/language/added_language = GLOB.all_languages[language]
 	if(!added_language)
 		return
 
@@ -183,7 +197,7 @@
 		return 1
 
 /mob/living/silicon/remove_language(var/rem_language)
-	var/var/datum/language/removed_language = GLOB.all_languages[rem_language]
+	var/datum/language/removed_language = GLOB.all_languages[rem_language]
 	if(!removed_language)
 		return
 
@@ -208,7 +222,7 @@
 			. += "<b>[L.name] ([get_language_prefix()][L.key])</b>[synth ? default_str : null]<br>Speech Synthesizer: <i>[synth ? "YES" : "NOT SUPPORTED"]</i><br>[L.desc]<br><br>"
 
 /mob/living/silicon/proc/toggle_sensor_mode()
-	var/sensor_type = input("Please select sensor type.", "Sensor Integration", null) in list("Security","Medical","Disable")
+	var/sensor_type = tgui_input_list(usr, "Please select sensor type.", "Sensor Integration", list("Security","Medical","Disable"))
 	switch(sensor_type)
 		if ("Security")
 			if(plane_holder)
@@ -405,3 +419,6 @@
 
 /mob/living/silicon/has_vision()
 	return 0 //NOT REAL EYES
+
+/mob/living/silicon/can_feed()
+	return FALSE

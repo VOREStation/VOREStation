@@ -47,7 +47,7 @@
 			qdel_null(screen_icon)
 		if(ishuman(parent))
 			owner.verbs -= /mob/living/carbon/human/proc/nif_menu
-		
+
 
 /datum/component/nif_menu/proc/create_mob_button(mob/user)
 	var/datum/hud/HUD = user.hud_used
@@ -55,12 +55,14 @@
 		screen_icon = new()
 		RegisterSignal(screen_icon, COMSIG_CLICK, .proc/nif_menu_click)
 	screen_icon.icon = HUD.ui_style
-	HUD.other += screen_icon
+	screen_icon.color = HUD.ui_color
+	screen_icon.alpha = HUD.ui_alpha
+	LAZYADD(HUD.other_important, screen_icon)
 	user.client?.screen += screen_icon
-	
+
 	user.verbs |= /mob/living/carbon/human/proc/nif_menu
 
-/datum/component/nif_menu/proc/nif_menu_click(atom/movable/screen/nif/image, location, control, params, user)
+/datum/component/nif_menu/proc/nif_menu_click(source, location, control, params, user)
 	var/mob/living/carbon/human/H = user
 	if(istype(H) && H.nif)
 		INVOKE_ASYNC(H.nif, .proc/tgui_interact, user)
@@ -118,13 +120,14 @@
 	data["nif_percent"] = round((durability/initial(durability))*100)
 	data["nif_stat"] = stat
 
-	data["modules"] = list()
+
+	var/list/modules = list()
 	if(stat == NIF_WORKING)
 		for(var/nifsoft in nifsofts)
 			if(!nifsoft)
 				continue
 			var/datum/nifsoft/NS = nifsoft
-			data["modules"].Add(list(list(
+			modules.Add(list(list(
 				"name" = NS.name,
 				"desc" = NS.desc,
 				"p_drain" = NS.p_drain,
@@ -137,6 +140,7 @@
 				"stat_text" = NS.stat_text(),
 				"ref" = REF(NS),
 			)))
+	data["modules"] = modules
 
 	return data
 

@@ -51,20 +51,13 @@
 
 		// Delete some stacks if we want
 		if(stacks_go_missing)
-			var/fuzzy = rand(-5,5)
-			switch(count / max_amount)
-				if(0 to 1)
-					count -= 10+fuzzy // 1 stack or less, lose 10
-				if(1 to 10)
-					count -= max_amount+fuzzy // 1 to 10 stacks, lose a stack
-				if(10 to INFINITY)
-					count -= max_amount*3+fuzzy // 10+ stacks, lose 3 stacks
+			var/fuzzy = rand(55,65)*0.01 // loss of 35-45% with rounding down
+			count = round(count*fuzzy) 
 			if(count <= 0)
 				continue
 		
 		while(count > 0)	
-			inst = new real_path
-			inst.amount = min(count, max_amount)
+			inst = new real_path(null, min(count, max_amount))
 			count -= inst.get_amount()
 			. += inst
 

@@ -10,19 +10,22 @@
 	light_range = 2
 	light_power = 0.75
 	light_color = LIGHT_COLOR_LAVA
+	light_on = TRUE
 	movement_cost = 2
 	can_build_into_floor = TRUE
 	can_dirty = FALSE
 	initial_flooring = /decl/flooring/lava // Defining this in case someone DOES step on lava and survive. Somehow.
+	flags = TURF_ACID_IMMUNE
 
 /turf/simulated/floor/lava/outdoors
-	outdoors = TRUE
+	outdoors = OUTDOORS_YES
 
 // For maximum pedantry.
 /turf/simulated/floor/lava/Initialize()
-	if(!outdoors)
+	if(!is_outdoors())
 		name = "magma"
 	update_icon()
+	update_light()
 	return ..()
 
 /turf/simulated/floor/lava/make_outdoors()
@@ -75,14 +78,14 @@
 	for(var/thing in thing_to_check)
 		if(isobj(thing))
 			var/obj/O = thing
-			if(O.throwing)
+			if(O.throwing || O.is_incorporeal())
 				continue
 			. = TRUE
 			O.lava_act()
 
 		else if(isliving(thing))
 			var/mob/living/L = thing
-			if(L.hovering || L.throwing) // Flying over the lava. We're just gonna pretend convection doesn't exist.
+			if(L.hovering || L.throwing || L.is_incorporeal()) // Flying over the lava. We're just gonna pretend convection doesn't exist.
 				continue
 			. = TRUE
 			L.lava_act()

@@ -9,7 +9,7 @@
 	slot_flags = SLOT_HOLSTER
 	throw_speed = 7
 	throw_range = 15
-	matter = list(DEFAULT_WALL_MATERIAL = 60)
+	matter = list(MAT_STEEL = 60)
 	pressure_resistance = 2
 	attack_verb = list("stamped")
 	drop_sound = 'sound/items/drop/device.ogg'
@@ -86,9 +86,9 @@
 
 	var/list/show_stamps = list("EXIT" = null) + sortList(stamps) // the list that will be shown to the user to pick from
 
-	var/input_stamp = input(user, "Choose a stamp to disguise as.", "Choose a stamp.") in show_stamps
+	var/input_stamp = tgui_input_list(user, "Choose a stamp to disguise as:", "Stamp Choice", show_stamps)
 
-	if(user && src in user.contents)
+	if(user && (src in user.contents)) // Er, how necessary is this in attack_self?
 
 		var/obj/item/weapon/stamp/chosen_stamp = stamps[capitalize(input_stamp)]
 

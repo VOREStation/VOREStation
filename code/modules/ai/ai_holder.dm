@@ -175,23 +175,21 @@
 		var/list/choices = list()
 		for(var/typechoice in types)
 			var/list/found = list()
-			for(var/mob in searching) // Isnt't there a helper for this, maybe? I forget.
-				var/atom/M = mob
+			for(var/atom/M as anything in searching) // Isnt't there a helper for this, maybe? I forget.
 				if(!(M.z in levels_working))
 					continue
-				if(!istype(mob,typechoice))
+				if(!istype(M,typechoice))
 					continue
 				found += M
 			choices["[typechoice] ([found.len])"] = found // Prettified name for the user input below)
 			searching = found // Now we only search the list we just made, because of the order of our types list, each subsequent list will be a subset of the one we just finished
 		
-		var/choice = input(usr,"Based on your AI holder's mob location, we'll edit mobs on Z [levels_working.Join(",")]. What types do you want to alter?") as null|anything in choices
+		var/choice = tgui_input_list(usr,"Based on your AI holder's mob location, we'll edit mobs on Z [levels_working.Join(",")]. What types do you want to alter?", "Types", choices)
 		if(!choice)
 			href_list["datumrefresh"] = "\ref[src]"
 			return
 		var/list/selected = choices[choice]
-		for(var/mob in selected)
-			var/mob/living/L = mob
+		for(var/mob/living/L as anything in selected)
 			if(!istype(L))
 				to_chat(usr,"<span class='warning'>Skipping incompatible mob: [L] [ADMIN_COORDJMP(L)]</span>")
 				continue
@@ -355,13 +353,24 @@
 			ai_log("handle_stance_tactical() : Going to handle_resist().", AI_LOG_TRACE)
 			handle_resist()
 
-		else if(istype(holder.loc, /obj/structure/closet))
+		var/atom/holder_loc = holder.loc
+		if(istype(holder_loc, /obj/structure/closet))
 			var/obj/structure/closet/C = holder.loc
 			ai_log("handle_stance_tactical() : Inside a closet. Going to attempt escape.", AI_LOG_TRACE)
 			if(C.sealed)
 				holder.resist()
 			else
 				C.open()
+		else if(isbelly(holder_loc))
+			ai_log("handle_stance_tactical() : Inside a belly, will move out to turf if owner is stat.", AI_LOG_TRACE)
+			var/obj/belly/B = holder_loc
+			var/mob/living/L = B.owner
+			if(B.owner?.stat)
+				var/mob/living/holder = src.holder
+				ai_log("handle_stance_tactical() : Owner was stat, moving.", AI_LOG_TRACE)
+				holder.forceMove(get_turf(L))
+				holder.visible_message("<span class='danger'>[src] climbs out of [L], ready to continue fighting!</span>")
+				playsound(holder, 'sound/effects/splat.ogg')
 
 		// Should we flee?
 		if(should_flee())

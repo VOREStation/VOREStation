@@ -8,14 +8,14 @@
 #define JUKEMODE_REPEAT_SONG 3 // Play the same song over and over
 #define JUKEMODE_PLAY_ONCE   4 // Play, then stop.
 
-/obj/machinery/media/jukebox/
+/obj/machinery/media/jukebox
 	name = "space jukebox"
 	desc = "Filled with songs both past and present!"
 	icon = 'icons/obj/jukebox.dmi'
-	icon_state = "jukebox2-nopower"
-	var/state_base = "jukebox2"
-	anchored = 1
-	density = 1
+	icon_state = "jukebox-nopower"
+	var/state_base = "jukebox"
+	anchored = TRUE
+	density = TRUE
 	power_channel = EQUIP
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
@@ -29,55 +29,25 @@
 	var/freq = 0 // Currently no effect, will return in phase II of mediamanager.
 	//VOREStation Add
 	var/loop_mode = JUKEMODE_PLAY_ONCE			// Behavior when finished playing a song
-	var/max_queue_len = 3						// How many songs are we allowed to queue up?
-	var/list/queue = list()
+	var/list/obj/item/device/juke_remote/remotes
 	//VOREStation Add End
 	var/datum/track/current_track
-	var/list/datum/track/tracks = list(
-		new/datum/track("Beyond", 'sound/ambience/ambispace.ogg'),
-		new/datum/track("Clouds of Fire", 'sound/music/clouds.s3m'),
-		new/datum/track("D`Bert", 'sound/music/title2.ogg'),
-		new/datum/track("D`Fort", 'sound/ambience/song_game.ogg'),
-		new/datum/track("Floating", 'sound/music/main.ogg'),
-		new/datum/track("Endless Space", 'sound/music/space.ogg'),
-		new/datum/track("Part A", 'sound/misc/TestLoop1.ogg'),
-		new/datum/track("Scratch", 'sound/music/title1.ogg'),
-		new/datum/track("Trai`Tor", 'sound/music/traitor.ogg'),
-		new/datum/track("Stellar Transit", 'sound/ambience/space/space_serithi.ogg'),
-	)
-
-	// Only visible if hacked
-	var/list/datum/track/secret_tracks = list(
-		new/datum/track("Clown", 'sound/music/clown.ogg'),
-		new/datum/track("Space Asshole", 'sound/music/space_asshole.ogg'),
-		new/datum/track("Thunderdome", 'sound/music/THUNDERDOME.ogg'),
-		new/datum/track("Russkiy rep Diskoteka", 'sound/music/russianrapdisco.ogg')
-	)
 
 /obj/machinery/media/jukebox/Initialize()
 	. = ..()
 	default_apply_parts()
 	wires = new/datum/wires/jukebox(src)
 	update_icon()
+	if(!LAZYLEN(getTracksList()))
+		stat |= BROKEN
 
 /obj/machinery/media/jukebox/Destroy()
 	qdel(wires)
 	wires = null
 	return ..()
 
-// On initialization, copy our tracks from the global list
-/obj/machinery/media/jukebox/Initialize()
-	. = ..()
-	if(LAZYLEN(all_jukebox_tracks)) //Global list has tracks
-		tracks.Cut()
-		secret_tracks.Cut()
-		for(var/datum/track/T in all_jukebox_tracks) //Load them
-			if(T.secret)
-				secret_tracks |= T
-			else
-				tracks |= T
-	else if(!LAZYLEN(tracks)) //We don't even have default tracks
-		stat |= BROKEN // No tracks configured this round!
+/obj/machinery/media/jukebox/proc/getTracksList()
+	return hacked ? SSmedia_tracks.all_tracks : SSmedia_tracks.jukebox_tracks
 
 /obj/machinery/media/jukebox/process()
 	if(!playing)
@@ -89,28 +59,24 @@
 	// If the current track isn't finished playing, let it keep going
 	if(current_track && world.time < media_start_time + current_track.duration)
 		return
-	// Otherwise time to pick a new one!
-	if(queue.len > 0)
-		current_track = queue[1]
-		queue.Cut(1, 2)  // Remove the item we just took off the list
-	else
-		// Oh... nothing in queue? Well then pick next according to our rules
-		switch(loop_mode)
-			if(JUKEMODE_NEXT)
-				var/curTrackIndex = max(1, tracks.Find(current_track))
-				var/newTrackIndex = (curTrackIndex % tracks.len) + 1  // Loop back around if past end
-				current_track = tracks[newTrackIndex]
-			if(JUKEMODE_RANDOM)
-				var/previous_track = current_track
-				do
-					current_track = pick(tracks)
-				while(current_track == previous_track && tracks.len > 1)
-			if(JUKEMODE_REPEAT_SONG)
-				current_track = current_track
-			if(JUKEMODE_PLAY_ONCE)
-				current_track = null
-				playing = 0
-				update_icon()
+	// Oh... nothing in queue? Well then pick next according to our rules
+	var/list/tracks = getTracksList()
+	switch(loop_mode)
+		if(JUKEMODE_NEXT)
+			var/curTrackIndex = max(1, tracks.Find(current_track))
+			var/newTrackIndex = (curTrackIndex % tracks.len) + 1  // Loop back around if past end
+			current_track = tracks[newTrackIndex]
+		if(JUKEMODE_RANDOM)
+			var/previous_track = current_track
+			do
+				current_track = pick(tracks)
+			while(current_track == previous_track && tracks.len > 1)
+		if(JUKEMODE_REPEAT_SONG)
+			current_track = current_track
+		if(JUKEMODE_PLAY_ONCE)
+			current_track = null
+			playing = 0
+			update_icon()
 	updateDialog()
 	start_stop_song()
 
@@ -119,19 +85,20 @@
 	if(current_track && playing)
 		media_url = current_track.url
 		media_start_time = world.time
-		visible_message("<span class='notice'>\The [src] begins to play [current_track.display()].</span>")
+		audible_message("<span class='notice'>\The [src] begins to play [current_track.display()].</span>", runemessage = "[current_track.display()]")
 	else
 		media_url = ""
 		media_start_time = 0
 	update_music()
+	//VOREStation Add
+	for(var/obj/item/device/juke_remote/remote as anything in remotes)
+		remote.update_music()
+	//VOREStation Add End
 
 /obj/machinery/media/jukebox/proc/set_hacked(var/newhacked)
-	if (hacked == newhacked) return
+	if(hacked == newhacked)
+		return
 	hacked = newhacked
-	if (hacked)
-		tracks.Add(secret_tracks)
-	else
-		tracks.Remove(secret_tracks)
 	updateDialog()
 
 /obj/machinery/media/jukebox/attackby(obj/item/W as obj, mob/user as mob)
@@ -172,7 +139,7 @@
 	update_icon()
 
 /obj/machinery/media/jukebox/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(stat & (NOPOWER|BROKEN) || !anchored)
 		if(stat & BROKEN)
 			icon_state = "[state_base]-broken"
@@ -182,11 +149,11 @@
 	icon_state = state_base
 	if(playing)
 		if(emagged)
-			overlays += "[state_base]-emagged"
+			add_overlay("[state_base]-emagged")
 		else
-			overlays += "[state_base]-running"
+			add_overlay("[state_base]-running")
 	if (panel_open)
-		overlays += "panel_open"
+		add_overlay("panel_open")
 
 /obj/machinery/media/jukebox/interact(mob/user)
 	if(inoperable())
@@ -211,19 +178,21 @@
 
 /obj/machinery/media/jukebox/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
-	
+
 	data["playing"] = playing
 	data["loop_mode"] = loop_mode
 	data["volume"] = volume
 	data["current_track_ref"] = null
 	data["current_track"] = null
+	data["current_genre"] = null
 	if(current_track)
 		data["current_track_ref"] = "\ref[current_track]"  // Convenient shortcut
 		data["current_track"] = current_track.toTguiList()
+		data["current_genre"] = current_track.genre
 	data["percent"] = playing ? min(100, round(world.time - media_start_time) / current_track.duration) : 0;
 
 	var/list/tgui_tracks = list()
-	for(var/datum/track/T in tracks)
+	for(var/datum/track/T in getTracksList())
 		tgui_tracks.Add(list(T.toTguiList()))
 	data["tracks"] = tgui_tracks
 
@@ -235,7 +204,7 @@
 
 	switch(action)
 		if("change_track")
-			var/datum/track/T = locate(params["change_track"]) in tracks
+			var/datum/track/T = locate(params["change_track"]) in getTracksList()
 			if(istype(T))
 				current_track = T
 				StartPlaying()
@@ -245,7 +214,8 @@
 			loop_mode = sanitize_inlist(newval, list(JUKEMODE_NEXT, JUKEMODE_RANDOM, JUKEMODE_REPEAT_SONG, JUKEMODE_PLAY_ONCE), loop_mode)
 			return TRUE
 		if("volume")
-			volume = clamp(params["val"], 0, 1)
+			var/newval = text2num(params["val"])
+			volume = clamp(newval, 0, 1)
 			update_music() // To broadcast volume change without restarting song
 			return TRUE
 		if("stop")
@@ -282,7 +252,7 @@
 
 /obj/machinery/media/jukebox/proc/explode()
 	walk_to(src,0)
-	src.visible_message("<span class='danger'>\the [src] blows apart!</span>", 1)
+	src.visible_message("<span class='danger'>\The [src] blows apart!</span>", 1)
 
 	explosion(src.loc, 0, 0, 1, rand(1,2), 1)
 
@@ -336,6 +306,7 @@
 
 // Advance to the next track - Don't start playing it unless we were already playing
 /obj/machinery/media/jukebox/proc/NextTrack()
+	var/list/tracks = getTracksList()
 	if(!tracks.len) return
 	var/curTrackIndex = max(1, tracks.Find(current_track))
 	var/newTrackIndex = (curTrackIndex % tracks.len) + 1  // Loop back around if past end
@@ -346,6 +317,7 @@
 
 // Advance to the next track - Don't start playing it unless we were already playing
 /obj/machinery/media/jukebox/proc/PrevTrack()
+	var/list/tracks = getTracksList()
 	if(!tracks.len) return
 	var/curTrackIndex = max(1, tracks.Find(current_track))
 	var/newTrackIndex = curTrackIndex == 1 ? tracks.len : curTrackIndex - 1
@@ -353,3 +325,132 @@
 	if(playing)
 		start_stop_song()
 	updateDialog()
+
+//Pre-hacked Jukebox, has the full sond list unlocked
+/obj/machinery/media/jukebox/hacked
+	name = "DRM free space jukebox"
+	desc = "Filled with songs both past and present! Unlocked for your convenience!"
+	hacked = 1
+
+// Ghostly jukebox for adminbuse
+/obj/machinery/media/jukebox/ghost
+	name = "ghost jukebox"
+	desc = "A jukebox from the nether-realms! Spooky."
+
+	plane = PLANE_GHOSTS
+	invisibility = INVISIBILITY_OBSERVER
+	alpha = 127
+
+	icon_state = "jukebox2-virtual"
+
+	density = FALSE
+	hacked = TRUE
+
+	use_power = USE_POWER_OFF
+	circuit = null
+
+	var/list/custom_tracks = list()
+
+// Just junk to make it sneaky - I wish a lot more stuff was on /obj/machinery/media instead of /jukebox so I could use that.
+/obj/machinery/media/jukebox/ghost/is_incorporeal()
+	return TRUE
+/obj/machinery/media/jukebox/ghost/audible_message(message, deaf_message, hearing_distance, radio_message, runemessage)
+	return
+/obj/machinery/media/jukebox/ghost/visible_message(message, blind_message, list/exclude_mobs, range, runemessage)
+	return
+/obj/machinery/media/jukebox/ghost/attackby(obj/item/W as obj, mob/user as mob)
+	return
+/obj/machinery/media/jukebox/ghost/attack_ai(mob/user as mob)
+	return
+/obj/machinery/media/jukebox/ghost/attack_hand(var/mob/user as mob)
+	return
+/obj/machinery/media/jukebox/ghost/update_use_power(new_use_power)
+	return
+/obj/machinery/media/jukebox/ghost/power_change()
+	return
+/obj/machinery/media/jukebox/ghost/emp_act(severity)
+	return
+/obj/machinery/media/jukebox/ghost/emag_act(remaining_charges, mob/user)
+	return
+/obj/machinery/media/jukebox/ghost/explode()
+	return
+/obj/machinery/media/jukebox/ghost/update_icon()
+	if(playing)
+		animate(src, alpha = 200, time = 5, loop = -1)
+	else
+		animate(src, alpha = initial(alpha), time = 10)
+// End junk
+
+/obj/machinery/media/jukebox/ghost/attack_ghost(var/mob/observer/dead/M)
+	if(!istype(M))
+		return
+
+	if(check_rights(R_FUN|R_ADMIN, show_msg=0))
+		interact(M)
+	else if(current_track)
+		to_chat(M, "\The [src] is playing [current_track.display()].")
+	else
+		to_chat(M, "\The [src] is not playing any music.")
+
+/obj/machinery/media/jukebox/ghost/getTracksList()
+	return (custom_tracks + ..())
+
+/obj/machinery/media/jukebox/ghost/proc/manual_track_add()
+	var/client/C = usr.client
+	if(!check_rights(R_FUN|R_ADMIN))
+		return
+
+	// Required
+	var/url = input(C, "REQUIRED: Provide URL for track", "Track URL") as text|null
+	if(!url)
+		return
+
+	var/title = input(C, "REQUIRED: Provide title for track", "Track Title") as text|null
+	if(!title)
+		return
+
+	var/duration = input(C, "REQUIRED: Provide duration for track (in deciseconds, aka seconds*10)", "Track Duration") as num|null
+	if(!duration)
+		return
+
+	// Optional
+	var/artist = input(C, "Optional: Provide artist for track", "Track Artist") as text|null
+	if(isnull(artist)) // Cancel rather than empty string
+		return
+
+	// So they're obvious and grouped
+	var/genre = "! Admin Loaded !"
+
+	custom_tracks += new /datum/track(url, title, duration, artist, genre)
+
+/obj/machinery/media/jukebox/ghost/proc/manual_track_remove()
+	var/client/C = usr.client
+	if(!check_rights(R_FUN|R_ADMIN))
+		return
+
+	var/track = input(C, "Input track title or URL to remove (must be exact)", "Remove Track") as text|null
+	if(!track)
+		return
+
+	for(var/datum/track/T in custom_tracks)
+		if(T.title == track || T.url == track)
+			custom_tracks -= T
+			qdel(T)
+			return
+
+	to_chat(C, "<span class='warning>Couldn't find a track matching the specified parameters.</span>")
+
+/obj/machinery/media/jukebox/ghost/vv_get_dropdown()
+	. = ..()
+	VV_DROPDOWN_OPTION("", "---")
+	VV_DROPDOWN_OPTION("add_track", "Add New Track")
+	VV_DROPDOWN_OPTION("remove_track", "Remove Track")
+
+/obj/machinery/media/jukebox/ghost/vv_do_topic(list/href_list)
+	. = ..()
+	IF_VV_OPTION("add_track")
+		manual_track_add()
+		href_list["datumrefresh"] = "\ref[src]"
+	IF_VV_OPTION("remove_track")
+		manual_track_remove()
+		href_list["datumrefresh"] = "\ref[src]"

@@ -104,7 +104,7 @@
 			return TRUE
 
 		if("set_codes")
-			var/newcode = input("Input new docking codes", "Docking codes", shuttle.docking_codes) as text|null
+			var/newcode = input(usr, "Input new docking codes", "Docking codes", shuttle.docking_codes) as text|null
 			if(newcode && !..())
 				shuttle.set_docking_codes(uppertext(newcode))
 			return TRUE
@@ -151,8 +151,7 @@
 
 GLOBAL_LIST_BOILERPLATE(papers_dockingcode, /obj/item/weapon/paper/dockingcodes)
 /hook/roundstart/proc/populate_dockingcodes()
-	for(var/paper in global.papers_dockingcode)
-		var/obj/item/weapon/paper/dockingcodes/dcp = paper
+	for(var/obj/item/weapon/paper/dockingcodes/dcp as anything in global.papers_dockingcode)
 		dcp.populate_info()
 	return TRUE
 

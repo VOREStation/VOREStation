@@ -1,8 +1,8 @@
 /obj/machinery/mining
 	icon = 'icons/obj/mining_drill.dmi'
-	anchored = 0
+	anchored = FALSE
 	use_power = USE_POWER_OFF //The drill takes power directly from a cell.
-	density = 1
+	density = TRUE
 	layer = MOB_LAYER+0.1 //So it draws over mobs in the tile north of it.
 
 /obj/machinery/mining/drill
@@ -11,11 +11,13 @@
 	icon_state = "mining_drill"
 	circuit = /obj/item/weapon/circuitboard/miningdrill
 	var/braces_needed = 2
-	var/list/supports = list()
+	var/list/obj/machinery/mining/brace/supports = list()
 	var/supported = 0
 	var/active = 0
 	var/list/resource_field = list()
-	var/obj/item/device/radio/intercom/faultreporter = new /obj/item/device/radio/intercom{channels=list("Supply")}(null)
+	var/obj/item/device/radio/intercom/faultreporter
+	var/drill_range = 5
+	var/offset = 2
 
 	var/list/ore_types = list(
 		"hematite" = /obj/item/weapon/ore/iron,
@@ -28,9 +30,9 @@
 		"hydrogen" = /obj/item/weapon/ore/hydrogen,
 		"silicates" = /obj/item/weapon/ore/glass,
 		"carbon" = /obj/item/weapon/ore/coal,
-		"copper" = /obj/item/weapon/ore/copper,
+	//	"copper" = /obj/item/weapon/ore/copper,
 	//	"tin" = /obj/item/weapon/ore/tin,
-		"bauxite" = /obj/item/weapon/ore/bauxite,
+	//	"bauxite" = /obj/item/weapon/ore/bauxite,
 		"rutile" = /obj/item/weapon/ore/rutile
 		)
 
@@ -44,14 +46,14 @@
 	// Found with an advanced laser. exotic_drilling >= 1
 	var/list/ore_types_uncommon = list(
 		MAT_MARBLE = /obj/item/weapon/ore/marble,
-		"painite" = /obj/item/weapon/ore/painite,
-		"quartz" = /obj/item/weapon/ore/quartz,
+		//"painite" = /obj/item/weapon/ore/painite,
+		//"quartz" = /obj/item/weapon/ore/quartz,
 		MAT_LEAD = /obj/item/weapon/ore/lead
 		)
 
 	// Found with an ultra laser. exotic_drilling >= 2
 	var/list/ore_types_rare = list(
-		"void opal" = /obj/item/weapon/ore/void_opal,
+		//"void opal" = /obj/item/weapon/ore/void_opal,
 		MAT_VERDANTIUM = /obj/item/weapon/ore/verdantium
 		)
 
@@ -65,6 +67,12 @@
 		cell = new cell(src)
 	default_apply_parts()
 	cell = default_use_hicell()
+	faultreporter = new /obj/item/device/radio/intercom{channels=list("Supply")}(null)
+
+/obj/machinery/mining/drill/Destroy()
+	qdel_null(faultreporter)
+	qdel_null(cell)
+	return ..()
 
 /obj/machinery/mining/drill/get_cell()
 	return cell
@@ -209,10 +217,10 @@
 		if(use_cell_power())
 			active = !active
 			if(active)
-				visible_message("<span class='notice'>\The [src] lurches downwards, grinding noisily.</span>")
+				visible_message("<b>\The [src]</b> lurches downwards, grinding noisily.")
 				need_update_field = 1
 			else
-				visible_message("<span class='notice'>\The [src] shudders to a grinding halt.</span>")
+				visible_message("<b>\The [src]</b> shudders to a grinding halt.")
 		else
 			to_chat(user, "<span class='notice'>The drill is unpowered.</span>")
 	else
@@ -236,10 +244,14 @@
 	harvest_speed = 0
 	capacity = 0
 	charge_use = 50
+	drill_range = 5
+	offset = 2
 
 	for(var/obj/item/weapon/stock_parts/P in component_parts)
 		if(istype(P, /obj/item/weapon/stock_parts/micro_laser))
 			harvest_speed = P.rating
+			if(P.rating >= 5)
+				harvest_speed *= 2
 			exotic_drilling = P.rating - 1
 			if(exotic_drilling >= 1)
 				ore_types |= ore_types_uncommon
@@ -248,6 +260,14 @@
 			else
 				ore_types -= ore_types_uncommon
 				ore_types -= ore_types_rare
+			if(P.rating > 3) // are we t4+?
+				// default drill range 5, offset 2
+				if(P.rating >= 5) // t5
+					drill_range = 9
+					offset = 4
+				else if(P.rating >= 4) // t4
+					drill_range = 7
+					offset = 3
 		if(istype(P, /obj/item/weapon/stock_parts/matter_bin))
 			capacity = 200 * P.rating
 		if(istype(P, /obj/item/weapon/stock_parts/capacitor))
@@ -260,21 +280,25 @@
 
 	if((!supports || !supports.len) && initial(anchored) == 0)
 		icon_state = "mining_drill"
-		anchored = 0
+		anchored = FALSE
 		active = 0
 	else
-		anchored = 1
+		anchored = TRUE
 
-	if(supports && supports.len >= braces_needed)
-		supported = 1
+	if(supports)
+		if(supports.len >= braces_needed)
+			supported = 1
+		else for(var/obj/machinery/mining/brace/check in supports)
+			if(check.brace_tier > 3)
+				supported = 1
 
 	update_icon()
 
 /obj/machinery/mining/drill/proc/system_error(var/error)
 
 	if(error)
-		src.visible_message("<span class='notice'>\The [src] flashes a '[error]' warning.</span>")
-		faultreporter.autosay(error, src.name, "Supply")
+		src.visible_message("<b>\The [src]</b> flashes a '[error]' warning.")
+		faultreporter.autosay(error, src.name, "Supply", using_map.get_map_levels(z))
 	need_player_check = 1
 	active = 0
 	update_icon()
@@ -287,11 +311,11 @@
 	var/turf/T = get_turf(src)
 	if(!istype(T)) return
 
-	var/tx = T.x - 2
-	var/ty = T.y - 2
+	var/tx = T.x - offset
+	var/ty = T.y - offset
 	var/turf/simulated/mine_turf
-	for(var/iy = 0,iy < 5, iy++)
-		for(var/ix = 0, ix < 5, ix++)
+	for(var/iy = 0,iy < drill_range, iy++)
+		for(var/ix = 0, ix < drill_range, ix++)
 			mine_turf = locate(tx + ix, ty + iy, T.z)
 			if(!istype(mine_turf, /turf/space/))
 				if(mine_turf && mine_turf.has_resources)
@@ -328,12 +352,23 @@
 	desc = "A machinery brace for an industrial drill. It looks easily two feet thick."
 	icon_state = "mining_brace"
 	circuit = /obj/item/weapon/circuitboard/miningdrillbrace
+	var/brace_tier = 1
 	var/obj/machinery/mining/drill/connected
 
-/obj/machinery/mining/brace/New()
-	..()
+/obj/machinery/mining/brace/examine(mob/user)
+	. = ..()
+	if(brace_tier > 3)
+		. += SPAN_NOTICE("The internals of the brace look resilient enough to support a drill by itself.")
 
-	component_parts = list()
+/obj/machinery/mining/brace/Initialize()
+	. = ..()
+	default_apply_parts()
+
+/obj/machinery/mining/brace/RefreshParts()
+	..()
+	brace_tier = 0
+	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
+		brace_tier += M.rating
 
 /obj/machinery/mining/brace/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(connected && connected.active)
@@ -343,6 +378,8 @@
 	if(default_deconstruction_screwdriver(user, W))
 		return
 	if(default_deconstruction_crowbar(user, W))
+		return
+	if(default_part_replacement(user,W))
 		return
 
 	if(W.is_wrench())

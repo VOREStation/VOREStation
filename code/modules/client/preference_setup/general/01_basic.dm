@@ -1,8 +1,8 @@
-datum/preferences
+/datum/preferences
 	var/biological_gender = MALE
 	var/identifying_gender = MALE
 
-datum/preferences/proc/set_biological_gender(var/gender)
+/datum/preferences/proc/set_biological_gender(var/gender)
 	biological_gender = gender
 	identifying_gender = gender
 
@@ -100,7 +100,7 @@ datum/preferences/proc/set_biological_gender(var/gender)
 		return TOPIC_REFRESH
 
 	else if(href_list["nickname"])
-		var/raw_nickname = input(user, "Choose your character's nickname:", "Character Nickname")  as text|null
+		var/raw_nickname = tgui_input_text(user, "Choose your character's nickname:", "Character Nickname", pref.nickname)
 		if (!isnull(raw_nickname) && CanUseTopic(user))
 			var/new_nickname = sanitize_name(raw_nickname, pref.species, is_FBP())
 			if(new_nickname)
@@ -111,13 +111,13 @@ datum/preferences/proc/set_biological_gender(var/gender)
 				return TOPIC_NOACTION
 
 	else if(href_list["bio_gender"])
-		var/new_gender = input(user, "Choose your character's biological sex:", "Character Preference", pref.biological_gender) as null|anything in get_genders()
+		var/new_gender = tgui_input_list(user, "Choose your character's biological sex:", "Character Preference", get_genders(), pref.biological_gender)
 		if(new_gender && CanUseTopic(user))
 			pref.set_biological_gender(new_gender)
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["id_gender"])
-		var/new_gender = input(user, "Choose your character's pronouns:", "Character Preference", pref.identifying_gender) as null|anything in all_genders_define_list
+		var/new_gender = tgui_input_list(user, "Choose your character's pronouns:", "Character Preference", all_genders_define_list, pref.identifying_gender)
 		if(new_gender && CanUseTopic(user))
 			pref.identifying_gender = new_gender
 		return TOPIC_REFRESH
@@ -134,13 +134,13 @@ datum/preferences/proc/set_biological_gender(var/gender)
 		var/list/spawnkeys = list()
 		for(var/spawntype in spawntypes)
 			spawnkeys += spawntype
-		var/choice = input(user, "Where would you like to spawn when late-joining?") as null|anything in spawnkeys
+		var/choice = tgui_input_list(user, "Where would you like to spawn when late-joining?", "Late-Join Choice", spawnkeys)
 		if(!choice || !spawntypes[choice] || !CanUseTopic(user))	return TOPIC_NOACTION
 		pref.spawnpoint = choice
 		return TOPIC_REFRESH
 
 	else if(href_list["metadata"])
-		var/new_metadata = sanitize(input(user, "Enter any information you'd like others to see, such as Roleplay-preferences:", "Game Preference" , html_decode(pref.metadata)) as message, extra = 0) //VOREStation Edit
+		var/new_metadata = sanitize(tgui_input_message(user, "Enter any information you'd like others to see, such as Roleplay-preferences:", "Game Preference" , html_decode(pref.metadata)), extra = 0) //VOREStation Edit
 		if(new_metadata && CanUseTopic(user))
 			pref.metadata = new_metadata
 			return TOPIC_REFRESH

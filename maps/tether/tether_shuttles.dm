@@ -94,8 +94,7 @@
 
 /datum/shuttle/ferry/tether_backup/process_longjump(var/area/origin, var/area/intended_destination)
 	var/failures = engines.len
-	for(var/engine in engines)
-		var/obj/structure/shuttle/engine/E = engine
+	for(var/obj/structure/shuttle/engine/E as anything in engines)
 		failures -= E.jump()
 
 	#define MOVE_PER(x) move_time*(x/100) SECONDS
@@ -192,7 +191,7 @@
 	warmup_time = 0
 	current_location = "tether_excursion_hangar"
 	docking_controller_tag = "expshuttle_docker"
-	shuttle_area = list(/area/shuttle/excursion/cockpit, /area/shuttle/excursion/general, /area/shuttle/excursion/cargo)
+	shuttle_area = list(/area/shuttle/excursion/cockpit, /area/shuttle/excursion/general, /area/shuttle/excursion/cargo, /area/shuttle/excursion/power)
 	fuel_consumption = 3
 	move_direction = NORTH
 
@@ -200,6 +199,7 @@
 /obj/effect/overmap/visitable/ship/landable/excursion
 	name = "Excursion Shuttle"
 	desc = "The traditional Excursion Shuttle. NT Approved!"
+	icon_state = "htu_destroyer_g"
 	vessel_mass = 8000
 	vessel_size = SHIP_SIZE_SMALL
 	shuttle = "Excursion Shuttle"
@@ -225,6 +225,7 @@
 /obj/effect/overmap/visitable/ship/landable/tourbus
 	name = "Tour Bus"
 	desc = "A small 'space bus', if you will."
+	icon_state = "htu_frigate_g"
 	vessel_mass = 2000
 	vessel_size = SHIP_SIZE_SMALL
 	shuttle = "Tour Bus"
@@ -250,6 +251,7 @@
 /obj/effect/overmap/visitable/ship/landable/medivac
 	name = "Medivac Shuttle"
 	desc = "A medical evacuation shuttle."
+	icon_state = "htu_frigate_g"
 	vessel_mass = 4000
 	vessel_size = SHIP_SIZE_SMALL
 	shuttle = "Medivac Shuttle"
@@ -275,6 +277,7 @@
 /obj/effect/overmap/visitable/ship/landable/securiship
 	name = "Securiship Shuttle"
 	desc = "A security transport ship."
+	icon_state = "htu_frigate_g"
 	vessel_mass = 4000
 	vessel_size = SHIP_SIZE_SMALL
 	shuttle = "Securiship Shuttle"

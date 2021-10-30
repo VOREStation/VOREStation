@@ -15,7 +15,7 @@
 /obj/machinery/smartfridge/secure/virology
 	name = "\improper Refrigerated Virus Storage"
 	desc = "A refrigerated storage unit for storing viral material."
-	icon_contents = "drink"
+	icon_contents = "misc"
 	req_access = list(access_virology)
 
 /obj/machinery/smartfridge/secure/virology/accept_check(var/obj/item/O as obj)
@@ -28,7 +28,6 @@
 /obj/machinery/smartfridge/chemistry //Is this used anywhere? It's not secure.
 	name = "\improper Smart Chemical Storage"
 	desc = "A refrigerated storage unit for medicine and chemical storage."
-	icon_contents = "chem"
 
 /obj/machinery/smartfridge/chemistry/accept_check(var/obj/item/O as obj)
 	if(istype(O,/obj/item/weapon/storage/pill_bottle) || istype(O,/obj/item/weapon/reagent_containers))

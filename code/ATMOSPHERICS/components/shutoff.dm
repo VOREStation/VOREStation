@@ -66,7 +66,7 @@ GLOBAL_LIST_EMPTY(shutoff_valves)
 
 // Breadth-first search for any leaking pipes that we can directly see
 /obj/machinery/atmospherics/valve/shutoff/proc/find_leaks()
-	var/obj/machinery/atmospherics/list/search = list()
+	var/list/obj/machinery/atmospherics/search = list()
 
 	// We're the leak!
 	if(!node1 || !node2)

@@ -100,13 +100,13 @@
 	name = "Ivy's Courier"
 	desc = "A bag resembling something used by college students. Contains items for ''MooMoo''."
 
-	New()
-		..()
-		new /obj/item/clothing/head/beretg(src)
-		new /obj/item/device/fluff/id_kit_ivy(src)
-		new /obj/item/weapon/storage/fancy/cigarettes/dromedaryco(src)
-		new /obj/item/weapon/storage/box/matches(src)
-		new /obj/item/weapon/reagent_containers/food/snacks/sliceable/plaincake(src)
+/obj/item/weapon/storage/backpack/messenger/sec/fluff/ivymoomoo/New()
+	..()
+	new /obj/item/clothing/head/beretg(src)
+	new /obj/item/device/fluff/id_kit_ivy(src)
+	new /obj/item/weapon/storage/fancy/cigarettes/dromedaryco(src)
+	new /obj/item/weapon/storage/box/matches(src)
+	new /obj/item/weapon/reagent_containers/food/snacks/sliceable/plaincake(src)
 
 // jemli:Cirra Mayhem
 /obj/item/weapon/storage/box/fluff/cirra
@@ -139,16 +139,16 @@
 	item_state = "duffle_med"
 	slowdown = 0
 
-	New()
-		..()
-		new /obj/item/clothing/accessory/holster/hip(src)
-		new /obj/item/clothing/suit/storage/fluff/modernfedcoat(src)
-		new /obj/item/clothing/head/caphat/formal/fedcover(src)
-		new /obj/item/clothing/suit/armor/det_suit(src)
-		new /obj/item/weapon/flame/lighter/zippo/fluff/joan(src)
-		new /obj/item/clothing/under/rank/internalaffairs/fluff/joan(src)
-		new /obj/item/clothing/head/helmet/space/fluff/joan(src)
-		new /obj/item/clothing/suit/space/fluff/joan(src)
+/obj/item/weapon/storage/backpack/dufflebag/sec/fluff/joanrisu/New()
+	..()
+	new /obj/item/clothing/accessory/holster/hip(src)
+	new /obj/item/clothing/suit/storage/fluff/modernfedcoat(src)
+	new /obj/item/clothing/head/caphat/formal/fedcover(src)
+	new /obj/item/clothing/suit/armor/det_suit(src)
+	new /obj/item/weapon/flame/lighter/zippo/fluff/joan(src)
+	new /obj/item/clothing/under/rank/internalaffairs/fluff/joan(src)
+	new /obj/item/clothing/head/helmet/space/fluff/joan(src)
+	new /obj/item/clothing/suit/space/fluff/joan(src)
 
 //joanrisu:Katarina Eine
 /obj/item/weapon/storage/backpack/dufflebag/sec/fluff/katarina
@@ -156,14 +156,14 @@
 	desc = "A duffle bag Katarina uses to carry her tools."
 	slowdown = 0
 
-	New()
-		..()
-		new /obj/item/clothing/accessory/holster/hip(src)
-		new /obj/item/clothing/suit/storage/fluff/fedcoat(src)
-		new /obj/item/clothing/suit/armor/det_suit(src)
-		new /obj/item/clothing/accessory/storage/black_vest(src)
-		new /obj/item/weapon/material/knife/tacknife/combatknife/fluff/katarina(src)
-		new /obj/item/clothing/under/rank/internalaffairs/fluff/joan(src)
+/obj/item/weapon/storage/backpack/dufflebag/sec/fluff/katarina/New()
+	..()
+	new /obj/item/clothing/accessory/holster/hip(src)
+	new /obj/item/clothing/suit/storage/fluff/fedcoat(src)
+	new /obj/item/clothing/suit/armor/det_suit(src)
+	new /obj/item/clothing/accessory/storage/black_vest(src)
+	new /obj/item/weapon/material/knife/tacknife/combatknife/fluff/katarina(src)
+	new /obj/item/clothing/under/rank/internalaffairs/fluff/joan(src)
 
 //Razerwing:Archer Maximus
 /obj/item/weapon/storage/box/fluff/archermaximus
@@ -285,6 +285,10 @@ Swimsuits, for general use, to avoid arriving to work with your swimsuit.
 /obj/item/weapon/storage/box/fluff/swimsuit/medical
 	name = "Medical Swimsuit capsule"
 	has_items = list(/obj/item/clothing/under/swimsuit/fluff/medical)
+
+/obj/item/weapon/storage/box/fluff/swimsuit/cowbikini
+	name = "Cow Bikini Swimsuit capsule"
+	has_items = list(/obj/item/clothing/under/swimsuit/cowbikini)
 
 //Monkey boxes for the new primals we have
 /obj/item/weapon/storage/box/monkeycubes/sobakacubes

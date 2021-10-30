@@ -2,7 +2,7 @@
 	name = "canister"
 	icon = 'icons/obj/atmos.dmi'
 	icon_state = "yellow"
-	density = 1
+	density = TRUE
 	var/health = 100.0
 	w_class = ITEMSIZE_HUGE
 
@@ -141,20 +141,20 @@ update_flag
 	if(check_change()) //Returns 1 if no change needed to icons.
 		return
 
-	src.overlays = 0
+	cut_overlays()
 
 	if(update_flag & 1)
-		overlays += "can-open"
+		add_overlay("can-open")
 	if(update_flag & 2)
-		overlays += "can-connector"
+		add_overlay("can-connector")
 	if(update_flag & 4)
-		overlays += "can-o0"
+		add_overlay("can-o0")
 	if(update_flag & 8)
-		overlays += "can-o1"
+		add_overlay("can-o1")
 	else if(update_flag & 16)
-		overlays += "can-o2"
+		add_overlay("can-o2")
 	else if(update_flag & 32)
-		overlays += "can-o3"
+		add_overlay("can-o3")
 	return
 
 /obj/machinery/portable_atmospherics/canister/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
@@ -172,7 +172,7 @@ update_flag
 
 		src.destroyed = 1
 		playsound(src, 'sound/effects/spray.ogg', 10, 1, -3)
-		src.density = 0
+		src.density = FALSE
 		update_icon()
 
 		if (src.holding)
@@ -315,7 +315,7 @@ update_flag
 					"\[Air\]" = "grey", \
 					"\[CAUTION\]" = "yellow", \
 				)
-				var/label = input("Choose canister label", "Gas canister") as null|anything in colors
+				var/label = tgui_input_list(usr, "Choose canister label", "Gas canister", colors)
 				if(label)
 					canister_color = colors[label]
 					icon_state = colors[label]
@@ -332,7 +332,7 @@ update_flag
 				pressure = 10*ONE_ATMOSPHERE
 				. = TRUE
 			else if(pressure == "input")
-				pressure = input("New release pressure ([ONE_ATMOSPHERE/10]-[10*ONE_ATMOSPHERE] kPa):", name, release_pressure) as num|null
+				pressure = input(usr, "New release pressure ([ONE_ATMOSPHERE/10]-[10*ONE_ATMOSPHERE] kPa):", name, release_pressure) as num|null
 				if(!isnull(pressure) && !..())
 					. = TRUE
 			else if(text2num(pressure) != null)

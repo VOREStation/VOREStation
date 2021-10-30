@@ -384,6 +384,9 @@
 	dir = 4;
 	icon_state = "apc0"
 	},
+/obj/structure/panic_button{
+	pixel_x = 32
+	},
 /turf/simulated/floor/wood,
 /area/shuttle/bearcat/command_captain)
 "aP" = (

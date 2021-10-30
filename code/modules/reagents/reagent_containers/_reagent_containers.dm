@@ -7,12 +7,13 @@
 	var/amount_per_transfer_from_this = 5
 	var/possible_transfer_amounts = list(5,10,15,25,30)
 	var/volume = 30
+	var/list/starts_with
 
 /obj/item/weapon/reagent_containers/verb/set_APTFT() //set amount_per_transfer_from_this
 	set name = "Set transfer amount"
 	set category = "Object"
 	set src in range(0)
-	var/N = input("Amount per transfer from this:","[src]") as null|anything in possible_transfer_amounts
+	var/N = tgui_input_list(usr, "Amount per transfer from this:","[src]", possible_transfer_amounts)
 	if(N)
 		amount_per_transfer_from_this = N
 
@@ -21,6 +22,16 @@
 	if(!possible_transfer_amounts)
 		src.verbs -= /obj/item/weapon/reagent_containers/verb/set_APTFT
 	create_reagents(volume)
+	
+	if(starts_with)
+		var/total_so_far = 0
+		for(var/string in starts_with)
+			var/amt = starts_with[string] || 1
+			total_so_far += amt
+			reagents.add_reagent(string, amt)
+		if(total_so_far > volume)
+			warning("[src]([src.type]) starts with more reagents than it has total volume")
+		starts_with = null // it should gc, since it's just strings and numbers
 
 /obj/item/weapon/reagent_containers/attack_self(mob/user as mob)
 	return
@@ -80,53 +91,41 @@
 	return
 
 /obj/item/weapon/reagent_containers/proc/standard_feed_mob(var/mob/user, var/mob/target) // This goes into attack
-	if(!istype(target))
-		return 0
+	if(!istype(target) || !target.can_feed())
+		return FALSE
 
 	if(!reagents || !reagents.total_volume)
 		to_chat(user, "<span class='notice'>\The [src] is empty.</span>")
-		return 1
+		return TRUE
 
-	if(target == user)
-		if(istype(user, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = user
-			if(!H.check_has_mouth())
-				to_chat(user, "Where do you intend to put \the [src]? You don't have a mouth!")
-				return
-			var/obj/item/blocked = H.check_mouth_coverage()
-			if(blocked)
-				to_chat(user, "<span class='warning'>\The [blocked] is in the way!</span>")
-				return
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		if(!H.check_has_mouth())
+			to_chat(user, "Where do you intend to put \the [src]? [user == target ? "You don't" : "\The [H] doesn't"] have a mouth!")
+			return FALSE
+		var/obj/item/blocked = H.check_mouth_coverage()
+		if(blocked)
+			to_chat(user, "<span class='warning'>\The [blocked] is in the way!</span>")
+			return FALSE
 
-		user.setClickCooldown(user.get_attack_speed(src)) //puts a limit on how fast people can eat/drink things
+	user.setClickCooldown(user.get_attack_speed(src)) //puts a limit on how fast people can eat/drink things
+	if(user == target)	
 		self_feed_message(user)
 		reagents.trans_to_mob(user, issmall(user) ? CEILING(amount_per_transfer_from_this/2, 1) : amount_per_transfer_from_this, CHEM_INGEST)
 		feed_sound(user)
-		return 1
+		return TRUE
+		
 	else
-		if(istype(target, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = target
-			if(!H.check_has_mouth())
-				to_chat(user, "Where do you intend to put \the [src]? \The [H] doesn't have a mouth!")
-				return
-			var/obj/item/blocked = H.check_mouth_coverage()
-			if(blocked)
-				to_chat(user, "<span class='warning'>\The [blocked] is in the way!</span>")
-				return
-
 		other_feed_message_start(user, target)
-
-		user.setClickCooldown(user.get_attack_speed(src))
 		if(!do_mob(user, target))
-			return
-
+			return FALSE
 		other_feed_message_finish(user, target)
 
 		var/contained = reagentlist()
 		add_attack_logs(user,target,"Fed from [src.name] containing [contained]")
 		reagents.trans_to_mob(target, amount_per_transfer_from_this, CHEM_INGEST)
 		feed_sound(user)
-		return 1
+		return TRUE
 
 /obj/item/weapon/reagent_containers/proc/standard_pour_into(var/mob/user, var/atom/target) // This goes into afterattack and yes, it's atom-level
 	if(!target.is_open_container() || !target.reagents)

@@ -97,7 +97,6 @@
 			var/their_slowdown = max(H.calculate_item_encumbrance(), 1)
 			item_tally = max(item_tally, their_slowdown) // If our slowdown is less than theirs, then we become as slow as them (before species modifires).
 
-	item_tally /= 2 //VOREStation Add
 	item_tally *= species.item_slowdown_mod
 
 	. += item_tally
@@ -168,7 +167,7 @@
 	// I don't like that so I'm commenting it out :)
 	// VOREstation Edit Start 
 /*
-	if(T.outdoors && (T.z <= SSplanets.z_to_planet.len))
+	if((T.is_outdoors()) && (T.z <= SSplanets.z_to_planet.len))
 		var/datum/planet/P = SSplanets.z_to_planet[z]
 		if(P)
 			var/datum/weather_holder/WH = P.weather_holder

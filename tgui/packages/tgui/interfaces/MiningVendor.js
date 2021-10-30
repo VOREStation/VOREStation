@@ -124,7 +124,7 @@ const MiningVendorSearch = (props, context) => {
             icon={descending ? "arrow-down" : "arrow-up"}
             height="19px"
             tooltip={descending ? "Descending order" : "Ascending order"}
-            tooltipPosition="bottom-left"
+            tooltipPosition="bottom-end"
             ml="0.5rem"
             onClick={() => setDescending(!descending)}
           />

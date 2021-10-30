@@ -71,23 +71,24 @@
 			data["multitool_buffer"] = list("name" = "[P.buffer]", "id" = "[P.buffer.id]")
 
 		var/i = 0
-		data["linked"] = list()
+		var/list/linked = list()
 		for(var/obj/machinery/telecomms/T in links)
 			i++
-			data["linked"].Add(list(list(
+			linked.Add(list(list(
 				"ref" = "\ref[T]",
 				"name" = "[T]",
 				"id" = T.id,
 				"index" = i,
 			)))
+		data["linked"] = linked
 		
-		data["filter"] = list()
-		if(LAZYLEN(freq_listening))
-			for(var/x in freq_listening)
-				data["filter"].Add(list(list(
-					"name" = "[format_frequency(x)]",
-					"freq" = x,
-				)))
+		var/list/filter = list()
+		for(var/x in freq_listening)
+			filter.Add(list(list(
+				"name" = "[format_frequency(x)]",
+				"freq" = x,
+			)))
+		data["filter"] = filter
 
 	return data
 

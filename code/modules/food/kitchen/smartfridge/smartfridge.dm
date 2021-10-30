@@ -4,16 +4,16 @@
 	name = "\improper SmartFridge"
 	desc = "For storing all sorts of things! This one doesn't accept any of them!"
 	icon = 'icons/obj/vending.dmi'
-	icon_state = "fridge_food"
-	var/icon_base = "fridge_food" //Iconstate to base all the broken/deny/etc on
-	var/icon_contents = "food" //Overlay to put on glass to show contents
-	density = 1
-	anchored = 1
+	icon_state = "smartfridge"
+	var/icon_base = "smartfridge" //Iconstate to base all the broken/deny/etc on
+	var/icon_contents = "misc" //Overlay to put on glass to show contents
+	density = TRUE
+	anchored = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 5
 	active_power_usage = 100
 	flags = NOREACT
-	var/max_n_of_items = 999 // Sorry but the BYOND infinite loop detector doesn't look things over 1000. //VOREStation Edit - Nonglobal so subtypes can override to lower values
+	var/max_n_of_items = 999 // Sorry but the BYOND infinite loop detector doesn't look things over 1000.
 	var/list/item_records = list()
 	var/datum/stored_item/currently_vending = null	//What we're putting out of the machine.
 	var/stored_datum_type = /datum/stored_item
@@ -28,9 +28,6 @@
 
 /obj/machinery/smartfridge/secure
 	is_secure = 1
-	icon_state = "fridge_sci"
-	icon_base = "fridge_sci"
-	icon_contents = "chem"
 
 /obj/machinery/smartfridge/Initialize()
 	. = ..()
@@ -40,6 +37,7 @@
 		wires = new/datum/wires/smartfridge/secure(src)
 	else
 		wires = new/datum/wires/smartfridge(src)
+	update_icon()
 
 /obj/machinery/smartfridge/Destroy()
 	qdel(wires)
@@ -74,35 +72,17 @@
 	else
 		icon_state = icon_base
 
-	if(is_secure)
-		add_overlay("[icon_base]-sidepanel")
-
 	if(panel_open)
 		add_overlay("[icon_base]-panel")
 
-	var/is_off = ""
-	if(inoperable())
-		is_off = "-off"
-
 	// Fridge contents
-	if(contents)
-		switch(contents.len)
-			if(0)
-				add_overlay("empty[is_off]")
-			if(1 to 2)
-				add_overlay("[icon_contents]-1[is_off]")
-			if(3 to 5)
-				add_overlay("[icon_contents]-2[is_off]")
-			if(6 to 8)
-				add_overlay("[icon_contents]-3[is_off]")
-			else
-				add_overlay("[icon_contents]-4[is_off]")
-
-	// Fridge top
-	var/image/top = image(icon, "[icon_base]-top")
-	top.pixel_z = 32
-	top.layer = ABOVE_WINDOW_LAYER
-	add_overlay(top)
+	switch(contents.len)
+		if(1 to 3)
+			add_overlay("[icon_base]-[icon_contents]1")
+		if(3 to 6)
+			add_overlay("[icon_base]-[icon_contents]2")
+		if(6 to INFINITY)
+			add_overlay("[icon_base]-[icon_contents]3")
 
 /*******************
 *   Item Adding
@@ -180,6 +160,7 @@
 		item_records.Add(I)
 	I.add_product(O)
 	SStgui.update_uis(src)
+	update_icon()
 
 /obj/machinery/smartfridge/proc/vend(datum/stored_item/I, var/count)
 	var/amount = I.get_amount()
@@ -190,6 +171,7 @@
 	for(var/i = 1 to min(amount, count))
 		I.get_product(get_turf(src))
 	SStgui.update_uis(src)
+	update_icon()
 
 /obj/machinery/smartfridge/attack_ai(mob/user as mob)
 	attack_hand(user)
@@ -233,7 +215,7 @@
 			if(params["amount"])
 				amount = params["amount"]
 			else
-				amount = input("How many items?", "How many items would you like to take out?", 1) as num|null
+				amount = input(usr, "How many items?", "How many items would you like to take out?", 1) as num|null
 			
 			if(QDELETED(src) || QDELETED(usr) || !usr.Adjacent(src))
 				return FALSE

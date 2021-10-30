@@ -6,8 +6,8 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 	description_info = "You can use alt-click while holding a mop to stow the mop. Alt-click holding a reagent container will empty the contents into the bucket without trying to put the container in any attached trash bag."
 	icon = 'icons/obj/janitor.dmi'
 	icon_state = "cart"
-	anchored = 0
-	density = 1
+	anchored = FALSE
+	density = TRUE
 	flags = OPENCONTAINER
 	climbable = TRUE
 	//copypaste sorry
@@ -288,22 +288,22 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 	return TRUE
 
 /obj/structure/janitorialcart/update_icon()
-	overlays.Cut()
+	cut_overlays()
 
 	if(mybucket)
-		overlays += "cart_bucket"
+		add_overlay("cart_bucket")
 		if(mybucket.reagents.total_volume >= 1)
-			overlays += "water_cart"
+			add_overlay("water_cart")
 	if(mybag)
-		overlays += "cart_garbage"
+		add_overlay("cart_garbage")
 	if(mymop)
-		overlays += "cart_mop"
+		add_overlay("cart_mop")
 	if(myspray)
-		overlays += "cart_spray"
+		add_overlay("cart_spray")
 	if(myreplacer)
-		overlays += "cart_replacer"
+		add_overlay("cart_replacer")
 	if(signs)
-		overlays += "cart_sign[signs]"
+		add_overlay("cart_sign[signs]")
 
 //This is called if the cart is caught in an explosion, or destroyed by weapon fire
 /obj/structure/janitorialcart/proc/spill(var/chance = 100)
@@ -374,8 +374,8 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 	name = "janicart"
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "pussywagon"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	flags = OPENCONTAINER
 	//copypaste sorry
 	var/amount_per_transfer_from_this = 5 //shit I dunno, adding this so syringes stop runtime erroring. --NeoFite
@@ -456,8 +456,7 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 	..()
 	update_layer()
 	if(has_buckled_mobs())
-		for(var/A in buckled_mobs)
-			var/mob/living/L = A
+		for(var/mob/living/L as anything in buckled_mobs)
 			if(L.loc != loc)
 				L.buckled = null //Temporary, so Move() succeeds.
 				L.buckled = src //Restoring
@@ -467,8 +466,7 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 
 /obj/structure/bed/chair/janicart/proc/update_mob()
 	if(has_buckled_mobs())
-		for(var/A in buckled_mobs)
-			var/mob/living/L = A
+		for(var/mob/living/L as anything in buckled_mobs)
 			L.set_dir(dir)
 			switch(dir)
 				if(SOUTH)

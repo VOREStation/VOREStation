@@ -246,7 +246,8 @@
 	..()
 	if(prob(10)) // 1 in 10. This thing's made with welder fuel and fertilizer, what do you expect?
 		var/mob/living/carbon/human/H = M
-		H.internal_organs_by_name[O_HEART].take_damage(1)
+		var/obj/item/organ/internal/heart/ht = H.internal_organs_by_name[O_HEART]
+		ht?.take_damage(1)
 		to_chat(M, "<span class='warning'>Huh... Is this what a heart attack feels like?</span>")
 
 /datum/reagent/toxin/potassium_chloride
@@ -945,7 +946,7 @@
 	metabolism = REM * 0.5
 	overdose = REAGENTS_OVERDOSE
 
-datum/reagent/talum_quem/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/talum_quem/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
 

@@ -6,7 +6,7 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = ITEMSIZE_SMALL
-	matter = list(DEFAULT_WALL_MATERIAL = 1000, "glass" = 1000)
+	matter = list(MAT_STEEL = 1000, MAT_GLASS = 1000)
 	var/obj/item/weapon/implant/imp = null
 	var/active = 1
 

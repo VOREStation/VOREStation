@@ -68,7 +68,7 @@ var/list/marker_beacon_colors = list(
 		return
 	if(!in_range(src, user))
 		return
-	var/input_color = input(user, "Choose a color.", "Beacon Color") as null|anything in marker_beacon_colors
+	var/input_color = tgui_input_list(user, "Choose a color.", "Beacon Color", marker_beacon_colors)
 	if(user.incapacitated() || !istype(user) || !in_range(src, user))
 		return
 	if(input_color)
@@ -127,7 +127,7 @@ var/list/marker_beacon_colors = list(
 	if(istype(I, /obj/item/stack/marker_beacon))
 		var/obj/item/stack/marker_beacon/M = I
 		to_chat(user, "<span class='notice'>You start picking [src] up...</span>")
-		if(do_after(user, remove_speed, target = src) && M.amount + 1 <= M.max_amount)
+		if(do_after(user, remove_speed, target = src) && M.get_amount() + 1 <= M.max_amount)
 			M.add(1)
 			playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
 			qdel(src)
@@ -143,7 +143,7 @@ var/list/marker_beacon_colors = list(
 		return
 	if(!in_range(src, user))
 		return
-	var/input_color = input(user, "Choose a color.", "Beacon Color") as null|anything in marker_beacon_colors
+	var/input_color = tgui_input_list(user, "Choose a color.", "Beacon Color", marker_beacon_colors)
 	if(user.incapacitated() || !istype(user) || !in_range(src, user))
 		return
 	if(input_color)

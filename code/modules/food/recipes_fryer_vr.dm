@@ -29,7 +29,8 @@
 	result = /obj/item/weapon/reagent_containers/food/snacks/generalschicken
 
 /datum/recipe/locust
-	reagents = list("batter" = 5)
+	appliance = FRYER
+	reagents = list("sodiumchloride" = 1)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/locust
 	)

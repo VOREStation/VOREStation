@@ -2,7 +2,7 @@
 	name = "automatic floor layer"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "pipe_d"
-	density = 1
+	density = TRUE
 	var/turf/old_turf
 	var/on = 0
 	var/obj/item/stack/tile/T
@@ -35,7 +35,7 @@
 
 /obj/machinery/floorlayer/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if(W.is_wrench())
-		var/m = input("Choose work mode", "Mode") as null|anything in mode
+		var/m = tgui_input_list(usr, "Choose work mode", "Mode", mode)
 		mode[m] = !mode[m]
 		var/O = mode[m]
 		user.visible_message("<span class='notice'>[usr] has set \the [src] [m] mode [!O?"off":"on"].</span>", "<span class='notice'>You set \the [src] [m] mode [!O?"off":"on"].</span>")
@@ -51,7 +51,7 @@
 		if(!length(contents))
 			to_chat(user, "<span class='notice'>\The [src] is empty.</span>")
 		else
-			var/obj/item/stack/tile/E = input("Choose remove tile type.", "Tiles") as null|anything in contents
+			var/obj/item/stack/tile/E = tgui_input_list(usr, "Choose remove tile type.", "Tiles", contents)
 			if(E)
 				to_chat(user, "<span class='notice'>You remove the [E] from \the [src].</span>")
 				E.loc = src.loc
@@ -59,7 +59,7 @@
 		return
 
 	if(W.is_screwdriver())
-		T = input("Choose tile type.", "Tiles") as null|anything in contents
+		T = tgui_input_list(usr, "Choose tile type.", "Tiles", contents)
 		return
 	..()
 

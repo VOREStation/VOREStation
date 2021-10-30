@@ -16,6 +16,9 @@
 	// 'Utility' planes
 	plane_masters[VIS_FULLBRIGHT] 	= new /obj/screen/plane_master/fullbright						//Lighting system (lighting_overlay objects)
 	plane_masters[VIS_LIGHTING] 	= new /obj/screen/plane_master/lighting							//Lighting system (but different!)
+	plane_masters[VIS_O_LIGHT]		= new /obj/screen/plane_master/o_light_visual					//Object lighting (using masks)
+	plane_masters[VIS_EMISSIVE] 	= new /obj/screen/plane_master/emissive							//Emissive overlays
+	plane_masters[VIS_OPENSPACE]	= new /obj/screen/plane_master/openspace						//Openspace drop shadows mostly
 	plane_masters[VIS_GHOSTS] 		= new /obj/screen/plane_master/ghosts							//Ghosts!
 	plane_masters[VIS_AI_EYE]		= new /obj/screen/plane_master{plane = PLANE_AI_EYE}			//AI Eye!
 
@@ -48,6 +51,9 @@
 
 	..()
 
+	for(var/obj/screen/plane_master/PM as anything in plane_masters)
+		PM.backdrop(my_mob)
+
 /datum/plane_holder/Destroy()
 	my_mob = null
 	QDEL_LIST_NULL(plane_masters) //Goodbye my children, be free
@@ -57,7 +63,7 @@
 	ASSERT(which)
 	var/obj/screen/plane_master/PM = plane_masters[which]
 	if(!PM)
-		crash_with("Tried to alter [which] in plane_holder on [my_mob]!")
+		stack_trace("Tried to alter [which] in plane_holder on [my_mob]!")
 
 	if(my_mob.alpha <= EFFECTIVE_INVIS)
 		state = FALSE
@@ -77,18 +83,18 @@
 	ASSERT(which)
 	var/obj/screen/plane_master/PM = plane_masters[which]
 	if(!PM)
-		crash_with("Tried to alter [which] in plane_holder on [my_mob]!")
+		stack_trace("Tried to alter [which] in plane_holder on [my_mob]!")
 	PM.set_desired_alpha(new_alpha)
 	if(PM.sub_planes)
 		var/list/subplanes = PM.sub_planes
 		for(var/SP in subplanes)
-			set_vis(which = SP, new_alpha = new_alpha)
+			set_vis(which = SP, state = !!new_alpha)
 
 /datum/plane_holder/proc/set_ao(var/which = null, var/enabled = FALSE)
 	ASSERT(which)
 	var/obj/screen/plane_master/PM = plane_masters[which]
 	if(!PM)
-		crash_with("Tried to set_ao [which] in plane_holder on [my_mob]!")
+		stack_trace("Tried to set_ao [which] in plane_holder on [my_mob]!")
 	PM.set_ambient_occlusion(enabled)
 	if(PM.sub_planes)
 		var/list/subplanes = PM.sub_planes
@@ -99,21 +105,25 @@
 	ASSERT(which)
 	var/obj/screen/plane_master/PM = plane_masters[which]
 	if(!PM)
-		crash_with("Tried to alter [which] in plane_holder on [my_mob]!")
+		stack_trace("Tried to alter [which] in plane_holder on [my_mob]!")
 	PM.alter_plane_values(arglist(values))
 	if(PM.sub_planes)
 		var/list/subplanes = PM.sub_planes
 		for(var/SP in subplanes)
 			alter_values(SP, values)
 
+
+	
+
 ////////////////////
 // The Plane Master
 ////////////////////
 /obj/screen/plane_master
-	screen_loc = "1,1"
+	screen_loc = "CENTER"
 	plane = -100 //Dodge just in case someone instantiates one of these accidentally, don't end up on 0 with plane_master
 	appearance_flags = PLANE_MASTER
-	mouse_opacity = 0	//Normally unclickable
+	vis_flags = NONE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT	//Normally unclickable
 	alpha = 0	//Hidden from view
 	var/desired_alpha = 255	//What we go to when we're enabled
 	var/invis_toggle = FALSE
@@ -121,6 +131,8 @@
 
 /obj/screen/plane_master/New()
 	..(null) //Never be in anything ever.
+
+/obj/screen/plane_master/proc/backdrop(mob/mymob)
 
 /obj/screen/plane_master/proc/set_desired_alpha(var/new_alpha)
 	if(new_alpha != alpha && new_alpha > 0 && new_alpha <= 255)
@@ -175,6 +187,58 @@
 	plane = PLANE_LIGHTING
 	blend_mode = BLEND_MULTIPLY
 	alpha = 255
+
+/obj/screen/plane_master/lighting/backdrop(mob/mymob)
+	/* I'm unconvinced.
+	mymob.overlay_fullscreen("lighting_backdrop_lit", /obj/screen/fullscreen/lighting_backdrop/lit)
+	mymob.overlay_fullscreen("lighting_backdrop_unlit", /obj/screen/fullscreen/lighting_backdrop/unlit)
+	*/
+
+/*!
+ * This system works by exploiting BYONDs color matrix filter to use layers to handle emissive blockers.
+ *
+ * Emissive overlays are pasted with an atom color that converts them to be entirely some specific color.
+ * Emissive blockers are pasted with an atom color that converts them to be entirely some different color.
+ * Emissive overlays and emissive blockers are put onto the same plane.
+ * The layers for the emissive overlays and emissive blockers cause them to mask eachother similar to normal BYOND objects.
+ * A color matrix filter is applied to the emissive plane to mask out anything that isn't whatever the emissive color is.
+ * This is then used to alpha mask the lighting plane.
+ */
+
+/obj/screen/plane_master/lighting/Initialize()
+	. = ..()
+	add_filter("emissives", 1, alpha_mask_filter(render_source = EMISSIVE_RENDER_TARGET, flags = MASK_INVERSE))
+	add_filter("object_lighting", 2, alpha_mask_filter(render_source = O_LIGHTING_VISUAL_RENDER_TARGET, flags = MASK_INVERSE))
+
+/obj/screen/plane_master/o_light_visual
+	plane = PLANE_O_LIGHTING_VISUAL
+	render_target = O_LIGHTING_VISUAL_RENDER_TARGET
+	blend_mode = BLEND_MULTIPLY
+	alpha = 255
+	appearance_flags = PLANE_MASTER|NO_CLIENT_COLOR // NO_CLIENT_COLOR because it has some naughty interactions with colorblindness that I can't figure out. Byond bug?
+
+/obj/screen/plane_master/emissive
+	plane = PLANE_EMISSIVE
+	render_target = EMISSIVE_RENDER_TARGET
+	alpha = 255
+
+/obj/screen/plane_master/emissive/Initialize()
+	. = ..()
+	add_filter("em_block_masking", 1, color_matrix_filter(GLOB.em_mask_matrix))
+
+/////////////////
+//Openspace gets some magic filters for layers
+/obj/screen/plane_master/openspace
+	plane = OPENSPACE_BACKDROP_PLANE
+	blend_mode = BLEND_MULTIPLY
+	alpha = 255
+
+/obj/screen/plane_master/openspace/Initialize()
+	. = ..()
+	//add_filter("multiz_lighting_mask", 1, alpha_mask_filter(render_source = O_LIGHTING_VISUAL_RENDER_TARGET, flags = MASK_INVERSE)) // Makes fake planet lights not work right
+	add_filter("first_stage_openspace", 2, drop_shadow_filter(color = "#04080FAA", size = -10))
+	add_filter("second_stage_openspace", 3, drop_shadow_filter(color = "#04080FAA", size = -15))
+	//add_filter("third_stage_openspace", 4, drop_shadow_filter(color = "#04080FAA", size = -20)) // TOO dark
 
 /////////////////
 //Ghosts has a special alpha level

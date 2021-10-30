@@ -24,7 +24,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 
 /obj/item/device/paicard/New()
 	..()
-	overlays += "pai-off"
+	add_overlay("pai-off")
 
 /obj/item/device/paicard/Destroy()
 	//Will stop people throwing friend pAIs into the singularity so they can respawn
@@ -38,7 +38,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 	if(pai != null) //Have a person in them already?
 		return ..()
 
-	var/choice = input(user, "You sure you want to inhabit this PAI?") in list("Yes", "No")
+	var/choice = tgui_alert(user, "You sure you want to inhabit this PAI?", "Confirmation", list("Yes", "No"))
 	if(choice == "No")
 		return ..()
 
@@ -273,7 +273,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 		src.looking_for_personality = 1
 		paiController.findPAI(src, usr)
 	if(href_list["wipe"])
-		var/confirm = input("Are you CERTAIN you wish to delete the current personality? This action cannot be undone.", "Personality Wipe") in list("Yes", "No")
+		var/confirm = tgui_alert(usr, "Are you CERTAIN you wish to delete the current personality? This action cannot be undone.", "Personality Wipe", list("Yes", "No"))
 		if(confirm == "Yes")
 			for(var/mob/M in src)
 				to_chat(M, "<font color = #ff0000><h2>You feel yourself slipping away from reality.</h2></font>")
@@ -290,7 +290,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 			if(2)
 				radio.ToggleReception()
 	if(href_list["setlaws"])
-		var/newlaws = sanitize(input("Enter any additional directives you would like your pAI personality to follow. Note that these directives will not override the personality's allegiance to its imprinted master. Conflicting directives will be ignored.", "pAI Directive Configuration", pai.pai_laws) as message)
+		var/newlaws = sanitize(input(usr, "Enter any additional directives you would like your pAI personality to follow. Note that these directives will not override the personality's allegiance to its imprinted master. Conflicting directives will be ignored.", "pAI Directive Configuration", pai.pai_laws) as message)
 		if(newlaws)
 			pai.pai_laws = newlaws
 			to_chat(pai, "Your supplemental directives have been updated. Your new directives are:")
@@ -304,34 +304,34 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 
 /obj/item/device/paicard/proc/setPersonality(mob/living/silicon/pai/personality)
 	src.pai = personality
-	src.overlays += "pai-happy"
+	add_overlay("pai-happy")
 
 /obj/item/device/paicard/proc/removePersonality()
 	src.pai = null
-	src.overlays.Cut()
-	src.overlays += "pai-off"
+	cut_overlays()
+	add_overlay("pai-off")
 
 /obj/item/device/paicard
 	var/current_emotion = 1
 /obj/item/device/paicard/proc/setEmotion(var/emotion)
 	if(pai)
-		src.overlays.Cut()
+		cut_overlays()
 		switch(emotion)
-			if(1) src.overlays += "pai-happy"
-			if(2) src.overlays += "pai-cat"
-			if(3) src.overlays += "pai-extremely-happy"
-			if(4) src.overlays += "pai-face"
-			if(5) src.overlays += "pai-laugh"
-			if(6) src.overlays += "pai-off"
-			if(7) src.overlays += "pai-sad"
-			if(8) src.overlays += "pai-angry"
-			if(9) src.overlays += "pai-what"
-			if(10) src.overlays += "pai-neutral"
-			if(11) src.overlays += "pai-silly"
-			if(12) src.overlays += "pai-nose"
-			if(13) src.overlays += "pai-smirk"
-			if(14) src.overlays += "pai-exclamation"
-			if(15) src.overlays += "pai-question"
+			if(1) add_overlay("pai-happy")
+			if(2) add_overlay("pai-cat")
+			if(3) add_overlay("pai-extremely-happy")
+			if(4) add_overlay("pai-face")
+			if(5) add_overlay("pai-laugh")
+			if(6) add_overlay("pai-off")
+			if(7) add_overlay("pai-sad")
+			if(8) add_overlay("pai-angry")
+			if(9) add_overlay("pai-what")
+			if(10) add_overlay("pai-neutral")
+			if(11) add_overlay("pai-silly")
+			if(12) add_overlay("pai-nose")
+			if(13) add_overlay("pai-smirk")
+			if(14) add_overlay("pai-exclamation")
+			if(15) add_overlay("pai-question")
 		current_emotion = emotion
 
 /obj/item/device/paicard/proc/alertUpdate()

@@ -13,7 +13,7 @@ SUBSYSTEM_DEF(events)
 	var/datum/event_meta/new_event = new
 
 /datum/controller/subsystem/events/Initialize()
-	allEvents = typesof(/datum/event) - /datum/event
+	allEvents = subtypesof(/datum/event)
 	event_containers = list(
 			EVENT_LEVEL_MUNDANE 	= new/datum/event_container/mundane,
 			EVENT_LEVEL_MODERATE	= new/datum/event_container/moderate,
@@ -38,7 +38,7 @@ SUBSYSTEM_DEF(events)
 			return
 
 	for(var/i = EVENT_LEVEL_MUNDANE to EVENT_LEVEL_MAJOR)
-		var/list/datum/event_container/EC = event_containers[i]
+		var/datum/event_container/EC = event_containers[i]
 		EC.process()
 
 /datum/controller/subsystem/events/stat_entry()

@@ -12,7 +12,7 @@
 	var/display_name	// For displaying in text
 	var/gender = NEUTER
 
-datum/category_group/underwear/dd_SortValue()
+/datum/category_group/underwear/dd_SortValue()
 	return sort_order
 
 /datum/category_group/underwear/top

@@ -232,7 +232,7 @@
 
 	return 1
 
-/obj/machinery/atmospherics/tvalve/return_network_air(datum/network/reference)
+/obj/machinery/atmospherics/tvalve/return_network_air(datum/pipe_network/reference)
 	return null
 
 /obj/machinery/atmospherics/tvalve/disconnect(obj/machinery/atmospherics/reference)
@@ -340,7 +340,7 @@
 	to_chat(user, "<span class='notice'>You begin to unfasten \the [src]...</span>")
 	if (do_after(user, 40 * W.toolspeed))
 		user.visible_message( \
-			"<span class='notice'>\The [user] unfastens \the [src].</span>", \
+			"<b>\The [user]</b> unfastens \the [src].", \
 			"<span class='notice'>You have unfastened \the [src].</span>", \
 			"You hear a ratchet.")
 		deconstruct()

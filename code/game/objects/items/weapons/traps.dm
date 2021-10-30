@@ -17,15 +17,10 @@
 	throwforce = 0
 	w_class = ITEMSIZE_NORMAL
 	origin_tech = list(TECH_MATERIAL = 1)
-	matter = list(DEFAULT_WALL_MATERIAL = 18750)
+	matter = list(MAT_STEEL = 18750)
 	var/deployed = 0
 	var/camo_net = FALSE
 	var/stun_length = 0.25 SECONDS
-
-/obj/item/weapon/beartrap/suicide_act(mob/user)
-	var/datum/gender/T = gender_datums[user.get_visible_gender()]
-	to_chat(viewers(user),"<span class='danger'>[user] is putting the [src.name] on [T.his] head! It looks like [T.hes] trying to commit suicide.</span>")
-	return (BRUTELOSS)
 
 /obj/item/weapon/beartrap/proc/can_use(mob/user)
 	return (user.IsAdvancedToolUser() && !issilicon(user) && !user.stat && !user.restrained())
@@ -50,7 +45,7 @@
 			deployed = 1
 			user.drop_from_inventory(src)
 			update_icon()
-			anchored = 1
+			anchored = TRUE
 
 /obj/item/weapon/beartrap/attack_hand(mob/user as mob)
 	if(has_buckled_mobs() && can_use(user))
@@ -63,7 +58,7 @@
 			user.visible_message("<span class='notice'>[victim] has been freed from \the [src] by [user].</span>")
 			for(var/A in buckled_mobs)
 				unbuckle_mob(A)
-			anchored = 0
+			anchored = FALSE
 	else if(deployed && can_use(user))
 		user.visible_message(
 			"<span class='danger'>[user] starts to disarm \the [src].</span>",
@@ -78,7 +73,7 @@
 				"<span class='notice'>You have disarmed \the [src]!</span>"
 				)
 			deployed = 0
-			anchored = 0
+			anchored = FALSE
 			update_icon()
 	else
 		..()
@@ -116,7 +111,7 @@
 
 	//trap the victim in place
 	set_dir(L.dir)
-	can_buckle = 1
+	can_buckle = TRUE
 	buckle_mob(L)
 	L.Stun(stun_length)
 	to_chat(L, "<span class='danger'>The steel jaws of \the [src] bite into you, trapping you in place!</span>")
@@ -137,7 +132,7 @@
 				)
 			attack_mob(L)
 			if(!has_buckled_mobs())
-				anchored = 0
+				anchored = FALSE
 			deployed = 0
 			update_icon()
 	..()
@@ -210,7 +205,7 @@
 				"<span class='danger'>[user] has collected \the [src].</span>",
 				"<span class='notice'>You have collected \the [src]!</span>"
 				)
-			anchored = 0
+			anchored = FALSE
 			update_icon()
 	else
 		..()
@@ -235,7 +230,7 @@
 				playsound(src, 'sound/items/Wirecutter.ogg',40, 1)
 			user.drop_from_inventory(src)
 			forceMove(get_turf(src))
-			anchored = 1
+			anchored = TRUE
 			update_icon()
 
 /obj/item/weapon/material/barbedwire/attackby(obj/item/W as obj, mob/user as mob)

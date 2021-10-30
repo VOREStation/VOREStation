@@ -29,9 +29,9 @@
 		message_admins("<span class='notice'>Event: Spacevines failed to find a viable turf.</span>")
 
 /obj/effect/dead_plant
-	anchored = 1
+	anchored = TRUE
 	opacity = 0
-	density = 0
+	density = FALSE
 	color = DEAD_PLANT_COLOUR
 
 /obj/effect/dead_plant/attack_hand()
@@ -45,10 +45,10 @@
 
 /obj/effect/plant
 	name = "plant"
-	anchored = 1
-	can_buckle = 1
+	anchored = TRUE
+	can_buckle = TRUE
 	opacity = 0
-	density = 0
+	density = FALSE
 	icon = 'icons/obj/hydroponics_growing.dmi'
 	icon_state = "bush4-1"
 	pass_flags = PASSTABLE
@@ -74,7 +74,7 @@
 /obj/effect/plant/Destroy()
 	neighbors.Cut()
 	if(seed.get_trait(TRAIT_SPREAD)==2)
-		unsense_proximity(callback = .HasProximity, center = get_turf(src))
+		unsense_proximity(callback = /atom/proc/HasProximity, center = get_turf(src))
 	SSplants.remove_plant(src)
 	for(var/obj/effect/plant/neighbor in range(1,src))
 		SSplants.add_plant(neighbor)
@@ -108,7 +108,7 @@
 	name = seed.display_name
 	max_health = round(seed.get_trait(TRAIT_ENDURANCE)/2)
 	if(seed.get_trait(TRAIT_SPREAD)==2)
-		sense_proximity(callback = .HasProximity) // Grabby
+		sense_proximity(callback = /atom/proc/HasProximity) // Grabby
 		max_growth = VINE_GROWTH_STAGES
 		growth_threshold = max_health/VINE_GROWTH_STAGES
 		icon = 'icons/obj/hydroponics_vines.dmi'
@@ -197,10 +197,10 @@
 		plane = ABOVE_PLANE
 		set_opacity(1)
 		if(!isnull(seed.chems["woodpulp"]))
-			density = 1
+			density = TRUE
 	else
 		reset_plane_and_layer()
-		density = 0
+		density = FALSE
 
 /obj/effect/plant/proc/calc_dir()
 	set background = 1

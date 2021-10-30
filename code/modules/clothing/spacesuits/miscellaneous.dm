@@ -22,6 +22,8 @@
 	slowdown = 1.5
 	armor = list(melee = 65, bullet = 50, laser = 50, energy = 25, bomb = 50, bio = 100, rad = 50)
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
+	min_pressure_protection = 0
+	max_pressure_protection = 2 * ONE_ATMOSPHERE
 	cold_protection = UPPER_TORSO | LOWER_TORSO | LEGS | FEET | ARMS | HANDS
 	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.7
@@ -99,4 +101,4 @@
 	name = "Emergency Softsuit"
 	icon_state = "syndicate-orange"
 	desc = "A thin, ungainly softsuit colored in blaze orange for rescuers to easily locate, looks pretty fragile."
-	slowdown = 4
+	slowdown = 2

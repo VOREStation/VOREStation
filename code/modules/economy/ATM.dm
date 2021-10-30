@@ -19,7 +19,7 @@ log transactions
 	desc = "For all your monetary needs!"
 	icon = 'icons/obj/terminals_vr.dmi' //VOREStation Edit
 	icon_state = "atm"
-	anchored = 1
+	anchored = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
 	circuit =  /obj/item/weapon/circuitboard/atm
@@ -229,7 +229,7 @@ log transactions
 					var/transfer_amount = text2num(href_list["funds_amount"])
 					transfer_amount = round(transfer_amount, 0.01)
 					if(transfer_amount <= 0)
-						alert("That is not a valid amount.")
+						tgui_alert_async(usr, "That is not a valid amount.")
 					else if(transfer_amount <= authenticated_account.money)
 						var/target_account_number = text2num(href_list["target_acc_number"])
 						var/transfer_purpose = href_list["purpose"]
@@ -315,7 +315,7 @@ log transactions
 				var/amount = max(text2num(href_list["funds_amount"]),0)
 				amount = round(amount, 0.01)
 				if(amount <= 0)
-					alert("That is not a valid amount.")
+					tgui_alert_async(usr, "That is not a valid amount.")
 				else if(authenticated_account && amount > 0)
 					if(amount <= authenticated_account.money)
 						playsound(src, 'sound/machines/chime.ogg', 50, 1)
@@ -341,7 +341,7 @@ log transactions
 				var/amount = max(text2num(href_list["funds_amount"]),0)
 				amount = round(amount, 0.01)
 				if(amount <= 0)
-					alert("That is not a valid amount.")
+					tgui_alert_async(usr, "That is not a valid amount.")
 				else if(authenticated_account && amount > 0)
 					if(amount <= authenticated_account.money)
 						playsound(src, 'sound/machines/chime.ogg', 50, 1)
@@ -379,7 +379,7 @@ log transactions
 					if(!R.stamped)
 						R.stamped = new
 					R.stamped += /obj/item/weapon/stamp
-					R.overlays += stampoverlay
+					R.add_overlay(stampoverlay)
 					R.stamps += "<HR><i>This paper has been stamped by the Automatic Teller Machine.</i>"
 
 				if(prob(50))
@@ -421,7 +421,7 @@ log transactions
 					if(!R.stamped)
 						R.stamped = new
 					R.stamped += /obj/item/weapon/stamp
-					R.overlays += stampoverlay
+					R.add_overlay(stampoverlay)
 					R.stamps += "<HR><i>This paper has been stamped by the Automatic Teller Machine.</i>"
 
 				if(prob(50))

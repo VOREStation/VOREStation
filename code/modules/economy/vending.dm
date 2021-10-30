@@ -11,8 +11,9 @@
 	desc = "A generic vending machine."
 	icon = 'icons/obj/vending.dmi'
 	icon_state = "generic"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
+	unacidable = TRUE
 	clicksound = "button"
 
 	// Power
@@ -36,7 +37,11 @@
 	var/list/products	= list() // For each, use the following pattern:
 	var/list/contraband	= list() // list(/type/path = amount,/type/path2 = amount2)
 	var/list/premium 	= list() // No specified amount = only one in stock
+	/// Set automatically, allows coin use
+	var/has_premium = FALSE
 	var/list/prices     = list() // Prices for each item, list(/type/path = price), items not in the list don't have a price.
+	/// Set automatically, enables pricing
+	var/has_prices = FALSE
 
 	// List of vending_product items available.
 	var/list/product_records = list()
@@ -60,6 +65,7 @@
 	emagged = 0 //Ignores if somebody doesn't have card access to that machine.
 	var/seconds_electrified = 0 //Shock customers like an airlock.
 	var/shoot_inventory = 0 //Fire items at customers! We're broken!
+	var/shoot_inventory_chance = 1
 
 	var/scan_id = 1
 	var/obj/item/weapon/coin/coin
@@ -115,14 +121,23 @@ GLOBAL_LIST_EMPTY(vending_products)
 			product_records.Add(product)
 			GLOB.vending_products[entry] = 1
 
+	if(LAZYLEN(prices))
+		has_prices = TRUE
+	if(LAZYLEN(premium))
+		has_premium = TRUE
+
+	LAZYCLEARLIST(products)
+	LAZYCLEARLIST(contraband)
+	LAZYCLEARLIST(premium)
+	LAZYCLEARLIST(prices)
+	all_products.Cut()
+
 /obj/machinery/vending/Destroy()
 	qdel(wires)
 	wires = null
 	qdel(coin)
 	coin = null
-	for(var/datum/stored_item/vending_product/R in product_records)
-		qdel(R)
-	product_records = null
+	QDEL_NULL_LIST(product_records)
 	return ..()
 
 /obj/machinery/vending/ex_act(severity)
@@ -171,7 +186,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 		if(panel_open)
 			attack_hand(user)
 		return
-	else if(istype(W, /obj/item/weapon/coin) && premium.len > 0)
+	else if(istype(W, /obj/item/weapon/coin) && has_premium)
 		user.drop_item()
 		W.forceMove(src)
 		coin = W
@@ -266,7 +281,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	// Have the customer punch in the PIN before checking if there's enough money. Prevents people from figuring out acct is
 	// empty at high security levels
 	if(customer_account.security_level != 0) //If card requires pin authentication (ie seclevel 1 or 2)
-		var/attempt_pin = input("Enter pin code", "Vendor transaction") as num
+		var/attempt_pin = input(usr, "Enter pin code", "Vendor transaction") as num
 		customer_account = attempt_account_access(I.associated_account_number, attempt_pin, 2)
 
 		if(!customer_account)
@@ -350,7 +365,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	var/list/data = list()
 	var/list/listed_products = list()
 
-	data["chargesMoney"] = length(prices) > 0 ? TRUE : FALSE
+	data["chargesMoney"] = has_prices ? TRUE : FALSE
 	for(var/key = 1 to product_records.len)
 		var/datum/stored_item/vending_product/I = product_records[key]
 
@@ -567,7 +582,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	if(prob(1))
 		sleep(3)
 		if(R.get_product(get_turf(src)))
-			visible_message("<span class='notice'>\The [src] clunks as it vends an additional item.</span>")
+			visible_message("<b>\The [src]</b> clunks as it vends an additional item.")
 	playsound(src, "sound/[vending_sound]", 100, 1, 1)
 
 	GLOB.items_sold_shift_roundstat++
@@ -663,7 +678,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 		speak(slogan)
 		last_slogan = world.time
 
-	if(shoot_inventory && prob(2))
+	if(shoot_inventory && prob(shoot_inventory_chance))
 		throw_item()
 
 	return
@@ -703,20 +718,20 @@ GLOBAL_LIST_EMPTY(vending_products)
 
 //Somebody cut an important wire and now we're following a new definition of "pitch."
 /obj/machinery/vending/proc/throw_item()
-	var/obj/throw_item = null
+	var/obj/item/throw_item = null
 	var/mob/living/target = locate() in view(7,src)
 	if(!target)
 		return 0
 
-	for(var/datum/stored_item/vending_product/R in product_records)
+	for(var/datum/stored_item/vending_product/R in shuffle(product_records))
 		throw_item = R.get_product(loc)
 		if(!throw_item)
 			continue
 		break
 	if(!throw_item)
-		return 0
-	spawn(0)
-		throw_item.throw_at(target, 16, 3, src)
+		return FALSE
+	throw_item.vendor_action(src)
+	INVOKE_ASYNC(throw_item, /atom/movable.proc/throw_at, target, rand(3, 10), rand(1, 3), src)
 	visible_message("<span class='warning'>\The [src] launches \a [throw_item] at \the [target]!</span>")
 	return 1
 

@@ -142,7 +142,7 @@
 
 /area/tether/surfacebase/outside
 	name = "Outside - Surface"
-	sound_env = MOUNTAINS
+	sound_env = SOUND_ENVIRONMENT_MOUNTAINS
 /area/tether/surfacebase/outside/outside1
 	icon_state = "outside1"
 /area/tether/surfacebase/outside/outside2
@@ -215,6 +215,9 @@
 /area/tether/surfacebase/barbackmaintenance
 	name = "\improper Bar Back Maintenance"
 	icon_state = "red"
+/area/tether/surfacebase/arcade
+	name = "\improper Arcade"
+	icon_state = "green"
 
 /area/tether/surfacebase/public_garden_lg
 	name = "\improper Public Garden Looking Glass"
@@ -541,7 +544,7 @@
 /area/tether/surfacebase/security/solitary
 	name = "\improper Surface Security Solitary Confinement"
 	lightswitch = 0
-	sound_env =PADDED_CELL
+	sound_env = SOUND_ENVIRONMENT_PADDED_CELL
 /area/tether/surfacebase/security/gasstorage
 	name = "\improper Surface Security Gas Storage"
 	lightswitch = 0
@@ -636,10 +639,17 @@
 	name = "Atmospherics Gas Storage"
 	icon_state = "atmos"
 
+/area/maintenance/engineering/atmos/airlock
+	name = "\improper Atmospherics Airlock"
+	icon_state = "atmos"
+/area/maintenance/engineering/atmos/airlock/gas
+	name = "\improper Atmospherics Airlock Gas Storage"
+	icon_state = "atmos"
+
 /area/engineering/atmos_intake
 	name = "\improper Atmospherics Intake"
 	icon_state = "atmos"
-	sound_env = MOUNTAINS
+	sound_env = SOUND_ENVIRONMENT_MOUNTAINS
 
 /area/engineering/atmos/hallway
 	name = "\improper Atmospherics Main Hallway"
@@ -949,6 +959,10 @@
 	icon_state = "dk_yellow"
 /area/tether/station/dock_three
 	name = "\improper Dock Three"
+	icon_state = "dk_yellow"
+
+/area/tether/station/restroom
+	name = "\improper Unisex Restroom"
 	icon_state = "dk_yellow"
 
 /area/maintenance/station/abandonedholodeck
@@ -1360,7 +1374,7 @@
 	name = "\improper Virology Maintenance"
 /area/maintenance/station/ai
 	name = "\improper AI Maintenance"
-	sound_env = SEWER_PIPE
+	sound_env = SOUND_ENVIRONMENT_SEWER_PIPE
 /area/maintenance/station/exploration
 	name = "\improper Exploration Maintenance"
 /area/maintenance/abandonedlibrary
@@ -1372,7 +1386,7 @@
 /area/maintenance/station/spacecommandmaint
 	name = "\improper Secondary Command Maintenance"
 	icon_state = "bridge"
-	sound_env = SEWER_PIPE
+	sound_env = SOUND_ENVIRONMENT_SEWER_PIPE
 /area/maintenance/substation/spacecommand
 	name = "\improper Secondary Command Substation"
 	icon_state = "substation"
@@ -1432,6 +1446,7 @@
 /area/shuttle/excursion
 	requires_power = 1
 	icon_state = "shuttle2"
+	base_turf = /turf/simulated/floor/reinforced
 
 /area/shuttle/excursion/general
 	name = "\improper Excursion Shuttle"
@@ -1442,9 +1457,13 @@
 /area/shuttle/excursion/cargo
 	name = "\improper Excursion Shuttle Cargo"
 
+/area/shuttle/excursion/power
+	name = "\improper Excursion Shuttle Power"
+
 /area/shuttle/tourbus
 	requires_power = 1
 	icon_state = "shuttle2"
+	base_turf = /turf/simulated/floor/reinforced
 
 /area/shuttle/tourbus/general
 	name = "\improper Tour Bus"
@@ -1490,7 +1509,7 @@
 	name = "\improper Mining Outpost Shuttle - Station"
 	ambience = AMBIENCE_HANGAR
 	sound_env = LARGE_ENCLOSED
-area/shuttle/mining_outpost/shuttle
+/area/shuttle/mining_outpost/shuttle
 	name = "\improper Mining Outpost Shuttle"
 	icon_state = "shuttle2"
 // Elevator area //

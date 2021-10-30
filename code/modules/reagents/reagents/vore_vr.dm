@@ -76,8 +76,7 @@
 	M.make_dizzy(1)
 	M.adjustHalLoss(2)
 
-	for(var/belly in M.vore_organs)
-		var/obj/belly/B = belly
+	for(var/obj/belly/B as anything in M.vore_organs)
 		for(var/atom/movable/A in B)
 			if(isliving(A))
 				var/mob/living/P = A
@@ -102,8 +101,7 @@
 	M.confused = max(M.confused, 20)
 	M.hallucination += 15
 
-	for(var/belly in M.vore_organs)
-		var/obj/belly/B = belly
+	for(var/obj/belly/B as anything in M.vore_organs)
 
 		if(B.digest_mode == DM_ABSORB) //Turn off absorbing on bellies
 			B.digest_mode = DM_HOLD
@@ -117,16 +115,74 @@
 				P.absorbed = 0
 				M.visible_message("<font color='green'><b>Something spills into [M]'s [lowertext(B.name)]!</b></font>")
 
-//Special toxins for solargrubs
+////////////////////////// TF Drugs //////////////////////////
 
-/datum/reagent/grubshock
-	name = "200 V" //in other words a painful shock
-	id = "shockchem"
-	description = "A liquid that quickly dissapates to deliver a painful shock."
+/datum/reagent/amorphorovir
+	name = "Amorphorovir"
+	id = "amorphorovir"
+	description = "A base medical concoction, capable of rapidly altering genetic and physical structure of the body. Requires extra processing to allow for a targeted transformation."
 	reagent_state = LIQUID
-	color = "#E4EC2F"
-	metabolism = 2.50
-	var/power = 9
+	color = "#AAAAAA"
 
-/datum/reagent/grubshock/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.take_organ_damage(0, removed * power * 0.2)
+/datum/reagent/androrovir
+	name = "Androrovir"
+	id = "androrovir"
+	description = "A medical concoction, capable of rapidly altering genetic and physical structure of the body. This one seems to realign the target's gender to be male."
+	reagent_state = LIQUID
+	color = "#00BBFF"
+
+/datum/reagent/androrovir/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(!(M.allow_spontaneous_tf))
+		return
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(M.reagents.has_reagent("gynorovir") || M.reagents.has_reagent("androgynorovir"))
+			H.Confuse(1)
+		else
+			if(!(H.gender == MALE))
+				H.set_gender(MALE)
+				H.change_gender_identity(MALE)
+				H.visible_message("<span class='notice'>[H] suddenly twitches as some of their features seem to contort and reshape, adjusting... In the end, it seems they are now male.</span>",
+								"<span class='warning'>Your body suddenly contorts, feeling very different in various ways... By the time the rushing feeling is over it seems you just became male.</span>")
+
+/datum/reagent/gynorovir
+	name = "Gynorovir"
+	id = "gynorovir"
+	description = "A medical concoction, capable of rapidly altering genetic and physical structure of the body. This one seems to realign the target's gender to be female."
+	reagent_state = LIQUID
+	color = "#FF00AA"
+
+/datum/reagent/gynorovir/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(!(M.allow_spontaneous_tf))
+		return
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(M.reagents.has_reagent("androrovir") || M.reagents.has_reagent("androgynorovir"))
+			H.Confuse(1)
+		else
+			if(!(H.gender == FEMALE))
+				H.set_gender(FEMALE)
+				H.change_gender_identity(FEMALE)
+				H.visible_message("<span class='notice'>[H] suddenly twitches as some of their features seem to contort and reshape, adjusting... In the end, it seems they are now female.</span>",
+								"<span class='warning'>Your body suddenly contorts, feeling very different in various ways... By the time the rushing feeling is over it seems you just became female.</span>")
+
+/datum/reagent/androgynorovir
+	name = "Androgynorovir"
+	id = "androgynorovir"
+	description = "A medical concoction, capable of rapidly altering genetic and physical structure of the body. This one seems to realign the target's gender to be mixed."
+	reagent_state = LIQUID
+	color = "#6600FF"
+
+/datum/reagent/androgynorovir/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(!(M.allow_spontaneous_tf))
+		return
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(M.reagents.has_reagent("gynorovir") || M.reagents.has_reagent("androrovir"))
+			H.Confuse(1)
+		else
+			if(!(H.gender == PLURAL))
+				H.set_gender(PLURAL)
+				H.change_gender_identity(PLURAL)
+				H.visible_message("<span class='notice'>[H] suddenly twitches as some of their features seem to contort and reshape, adjusting... In the end, it seems they are now of mixed gender.</span>",
+								"<span class='warning'>Your body suddenly contorts, feeling very different in various ways... By the time the rushing feeling is over it seems you just became of mixed gender.</span>")

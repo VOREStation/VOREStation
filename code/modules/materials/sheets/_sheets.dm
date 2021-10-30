@@ -13,7 +13,7 @@
 		slot_r_hand_str = 'icons/mob/items/righthand_material.dmi',
 		)
 
-	var/default_type = DEFAULT_WALL_MATERIAL
+	var/default_type = MAT_STEEL
 	var/datum/material/material
 	var/perunit = SHEET_MATERIAL_AMOUNT
 	var/apply_colour //temp pending icon rewrite
@@ -26,7 +26,7 @@
 	randpixel_xy()
 
 	if(!default_type)
-		default_type = DEFAULT_WALL_MATERIAL
+		default_type = MAT_STEEL
 	material = get_material_by_name("[default_type]")
 	if(!material)
 		return INITIALIZE_HINT_QDEL
@@ -54,12 +54,17 @@
 
 	if(amount>1)
 		name = "[material.use_name] [material.sheet_plural_name]"
-		desc = "A stack of [material.use_name] [material.sheet_plural_name]."
+		desc = "A [material.sheet_collective_name] of [material.use_name] [material.sheet_plural_name]."
 		gender = PLURAL
 	else
 		name = "[material.use_name] [material.sheet_singular_name]"
 		desc = "A [material.sheet_singular_name] of [material.use_name]."
 		gender = NEUTER
+
+/obj/item/stack/material/get_examine_string()
+	if(!uses_charge)
+		return "There [amount == 1 ? "is" : "are"] [amount] [material.sheet_singular_name]\s in the [material.sheet_collective_name]."
+	return ..()
 
 /obj/item/stack/material/use(var/used)
 	. = ..()

@@ -45,7 +45,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 	female_cough_sounds = list('sound/effects/slime_squish.ogg')
 
 	min_age =		1
-	max_age =		10
+	max_age =		16
 
 	economic_modifier = 3
 
@@ -150,8 +150,11 @@ var/datum/species/shapeshifter/promethean/prometheans
 		H.equip_to_slot_or_del(L, slot_in_backpack)
 
 /datum/species/shapeshifter/promethean/hug(var/mob/living/carbon/human/H, var/mob/living/target)
-
-	if(H.zone_sel.selecting == "head" || H.zone_sel.selecting == "r_hand" || H.zone_sel.selecting == "l_hand") return ..() //VOREStation Edit
+	var/static/list/parent_handles = list("head", "r_hand", "l_hand", "mouth")
+	
+	if(H.zone_sel.selecting in parent_handles)
+		return ..()
+	
 	var/t_him = "them"
 	if(ishuman(target))
 		var/mob/living/carbon/human/T = target
@@ -167,7 +170,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 			if(FEMALE)
 				t_him = "her"
 
-	H.visible_message("<span class='notice'>\The [H] glomps [target] to make [t_him] feel better!</span>", \
+	H.visible_message("<b>\The [H]</b> glomps [target] to make [t_him] feel better!", \
 					"<span class='notice'>You glomp [target] to make [t_him] feel better!</span>")
 	H.apply_stored_shock_to(target)
 

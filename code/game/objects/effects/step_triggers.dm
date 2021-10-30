@@ -5,7 +5,7 @@
 	var/stopper = 1 // stops throwers
 	invisibility = 99 // nope cant see this shit
 	plane = ABOVE_PLANE
-	anchored = 1
+	anchored = TRUE
 	icon = 'icons/mob/screen1.dmi' //VS Edit
 	icon_state = "centermarker" //VS Edit
 
@@ -35,57 +35,57 @@
 	var/nostop = 0 // if 1: will only be stopped by teleporters
 	var/list/affecting = list()
 
-	Trigger(var/atom/A)
-		if(!A || !istype(A, /atom/movable))
+/obj/effect/step_trigger/thrower/Trigger(var/atom/A)
+	if(!A || !istype(A, /atom/movable))
+		return
+	var/atom/movable/AM = A
+	var/curtiles = 0
+	var/stopthrow = 0
+	for(var/obj/effect/step_trigger/thrower/T in orange(2, src))
+		if(AM in T.affecting)
 			return
-		var/atom/movable/AM = A
-		var/curtiles = 0
-		var/stopthrow = 0
-		for(var/obj/effect/step_trigger/thrower/T in orange(2, src))
-			if(AM in T.affecting)
-				return
 
-		if(ismob(AM))
-			var/mob/M = AM
-			if(immobilize)
-				M.canmove = 0
+	if(ismob(AM))
+		var/mob/M = AM
+		if(immobilize)
+			M.canmove = 0
 
-		affecting.Add(AM)
-		while(AM && !stopthrow)
-			if(tiles)
-				if(curtiles >= tiles)
-					break
-			if(AM.z != src.z)
+	affecting.Add(AM)
+	while(AM && !stopthrow)
+		if(tiles)
+			if(curtiles >= tiles)
 				break
+		if(AM.z != src.z)
+			break
 
-			curtiles++
+		curtiles++
 
-			sleep(speed)
+		sleep(speed)
 
-			// Calculate if we should stop the process
-			if(!nostop)
-				for(var/obj/effect/step_trigger/T in get_step(AM, direction))
-					if(T.stopper && T != src)
-						stopthrow = 1
-			else
-				for(var/obj/effect/step_trigger/teleporter/T in get_step(AM, direction))
-					if(T.stopper)
-						stopthrow = 1
+		// Calculate if we should stop the process
+		if(!nostop)
+			for(var/obj/effect/step_trigger/T in get_step(AM, direction))
+				if(T.stopper && T != src)
+					stopthrow = 1
+		else
+			for(var/obj/effect/step_trigger/teleporter/T in get_step(AM, direction))
+				if(T.stopper)
+					stopthrow = 1
 
-			if(AM)
-				var/predir = AM.dir
-				step(AM, direction)
-				if(!facedir)
-					AM.set_dir(predir)
+		if(AM)
+			var/predir = AM.dir
+			step(AM, direction)
+			if(!facedir)
+				AM.set_dir(predir)
 
 
 
-		affecting.Remove(AM)
+	affecting.Remove(AM)
 
-		if(ismob(AM))
-			var/mob/M = AM
-			if(immobilize)
-				M.canmove = 1
+	if(ismob(AM))
+		var/mob/M = AM
+		if(immobilize)
+			M.canmove = 1
 
 /* Stops things thrown by a thrower, doesn't do anything */
 
@@ -105,6 +105,8 @@
 
 
 /obj/effect/step_trigger/teleporter/proc/move_object(atom/movable/AM, turf/T)
+	if(!T)
+		return
 	if(AM.anchored && !istype(AM, /obj/mecha))
 		return
 
@@ -156,10 +158,11 @@
 	var/teleport_y_offset = 0
 	var/teleport_z_offset = 0
 
-	Trigger(var/atom/movable/A)
-		if(teleport_x && teleport_y && teleport_z)
-			if(teleport_x_offset && teleport_y_offset && teleport_z_offset)
-				var/turf/T = locate(rand(teleport_x, teleport_x_offset), rand(teleport_y, teleport_y_offset), rand(teleport_z, teleport_z_offset))
+/obj/effect/step_trigger/teleporter/random/Trigger(var/atom/movable/A)
+	if(teleport_x && teleport_y && teleport_z)
+		if(teleport_x_offset && teleport_y_offset && teleport_z_offset)
+			var/turf/T = locate(rand(teleport_x, teleport_x_offset), rand(teleport_y, teleport_y_offset), rand(teleport_z, teleport_z_offset))
+			if(T)
 				A.forceMove(T)
 
 /* Teleporter that sends objects stepping on it to a specific landmark. */
@@ -217,7 +220,7 @@ var/global/list/tele_landmarks = list() // Terrible, but the alternative is loop
 			if(!istype(candidate) || istype(candidate, /turf/simulated/sky))
 				safety--
 				continue
-			else if(candidate && !candidate.outdoors)
+			else if(candidate && !candidate.is_outdoors())
 				safety--
 				continue
 			else

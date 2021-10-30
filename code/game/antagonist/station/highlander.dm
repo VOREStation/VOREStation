@@ -47,7 +47,7 @@ var/datum/antagonist/highlander/highlanders
 	var/obj/item/weapon/card/id/W = new(player)
 	W.name = "[player.real_name]'s ID Card"
 	W.icon_state = "centcom"
-	W.access = get_all_station_access().Copy
+	W.access = get_all_station_access().Copy()
 	W.access |= get_all_centcom_access()
 	W.assignment = "Highlander"
 	W.registered_name = player.real_name
@@ -56,7 +56,7 @@ var/datum/antagonist/highlander/highlanders
 /proc/only_one()
 
 	if(!ticker)
-		alert("The game hasn't started yet!")
+		tgui_alert_async(usr,"The game hasn't started yet!")
 		return
 
 	for(var/mob/living/carbon/human/H in player_list)

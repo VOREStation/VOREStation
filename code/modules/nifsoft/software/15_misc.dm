@@ -23,7 +23,7 @@
 
 		H.visible_message("<span class='warning'>Thin snakelike tendrils grow from [H] and connect to \the [apc].</span>","<span class='notice'>Thin snakelike tendrils grow from you and connect to \the [apc].</span>")
 
-/datum/nifsoft/apc_recharge/deactivate()
+/datum/nifsoft/apc_recharge/deactivate(var/force = FALSE)
 	if((. = ..()))
 		apc = null
 
@@ -127,7 +127,7 @@
 
 /datum/nifsoft/sizechange/activate()
 	if((. = ..()))
-		var/new_size = input("Put the desired size (25-200%), or (1-600%) in dormitory areas.", "Set Size", 200) as num|null
+		var/new_size = input(usr, "Put the desired size (25-200%), or (1-600%) in dormitory areas.", "Set Size", 200) as num|null
 
 		if (!nif.human.size_range_check(new_size))
 			if(new_size)
@@ -140,7 +140,7 @@
 		spawn(0)
 			deactivate()
 
-/datum/nifsoft/sizechange/deactivate()
+/datum/nifsoft/sizechange/deactivate(var/force = FALSE)
 	if((. = ..()))
 		return TRUE
 
@@ -164,7 +164,7 @@
 			H.display_alt_appearance("animals", justme)
 			alt_farmanimals += nif.human
 
-/datum/nifsoft/worldbend/deactivate()
+/datum/nifsoft/worldbend/deactivate(var/force = FALSE)
 	if((. = ..()))
 		var/list/justme = list(nif.human)
 		for(var/human in human_mob_list)

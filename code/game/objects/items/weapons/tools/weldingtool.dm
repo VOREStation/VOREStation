@@ -17,11 +17,11 @@
 	w_class = ITEMSIZE_SMALL
 
 	//Cost to make in the autolathe
-	matter = list(DEFAULT_WALL_MATERIAL = 70, "glass" = 30)
+	matter = list(MAT_STEEL = 70, MAT_GLASS = 30)
 
 	//R&D tech level
 	origin_tech = list(TECH_ENGINEERING = 1)
-	
+
 	tool_qualities = list(TOOL_WELDER)
 
 	//Welding tool specific stuff
@@ -208,11 +208,10 @@
 
 /obj/item/weapon/weldingtool/update_icon()
 	..()
-	overlays.Cut()
+	cut_overlays()
 	// Welding overlay.
 	if(welding)
-		var/image/I = image(icon, src, "[icon_state]-on")
-		overlays.Add(I)
+		add_overlay("[icon_state]-on")
 		item_state = "[initial(item_state)]1"
 	else
 		item_state = initial(item_state)
@@ -221,8 +220,7 @@
 	if(change_icons && get_max_fuel())
 		var/ratio = get_fuel() / get_max_fuel()
 		ratio = CEILING(ratio * 4, 1) * 25
-		var/image/I = image(icon, src, "[icon_state][ratio]")
-		overlays.Add(I)
+		add_overlay("[icon_state][ratio]")
 
 	// Lights
 	if(welding && flame_intensity)
@@ -367,7 +365,7 @@
 	icon_state = "indwelder"
 	max_fuel = 40
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_PHORON = 2)
-	matter = list(DEFAULT_WALL_MATERIAL = 70, "glass" = 60)
+	matter = list(MAT_STEEL = 70, MAT_GLASS = 60)
 
 /obj/item/weapon/weldingtool/largetank/cyborg
 	name = "integrated welding tool"
@@ -377,11 +375,11 @@
 /obj/item/weapon/weldingtool/hugetank
 	name = "upgraded welding tool"
 	desc = "A much larger welder with a huge tank."
-	icon_state = "indwelder"
+	icon_state = "upindwelder"
 	max_fuel = 80
 	w_class = ITEMSIZE_NORMAL
 	origin_tech = list(TECH_ENGINEERING = 3)
-	matter = list(DEFAULT_WALL_MATERIAL = 70, "glass" = 120)
+	matter = list(MAT_STEEL = 70, MAT_GLASS = 120)
 
 /obj/item/weapon/weldingtool/mini
 	name = "emergency welding tool"
@@ -393,6 +391,9 @@
 	change_icons = 0
 	toolspeed = 2
 	eye_safety_modifier = 1 // Safer on eyes.
+
+/obj/item/weapon/weldingtool/mini/two
+	icon_state = "miniwelder2"
 
 /datum/category_item/catalogue/anomalous/precursor_a/alien_welder
 	name = "Precursor Alpha Object - Self Refueling Exothermic Tool"
@@ -443,7 +444,7 @@
 	max_fuel = 40
 	w_class = ITEMSIZE_NORMAL
 	origin_tech = list(TECH_ENGINEERING = 4, TECH_PHORON = 3)
-	matter = list(DEFAULT_WALL_MATERIAL = 70, "glass" = 120)
+	matter = list(MAT_STEEL = 70, MAT_GLASS = 120)
 	toolspeed = 0.5
 	change_icons = 0
 	flame_intensity = 3
@@ -462,7 +463,6 @@
 	icon_state = "hybwelder"
 	max_fuel = 80 //more max fuel is better! Even if it doesn't actually use fuel.
 	eye_safety_modifier = -2	// Brighter than the sun. Literally, you can look at the sun with a welding mask of proper grade, this will burn through that.
-	slowdown = 0.1
 	toolspeed = 0.25
 	w_class = ITEMSIZE_NORMAL
 	flame_intensity = 5
@@ -511,7 +511,7 @@
 
 	if(mounted_pack.loc != src.loc && src.loc != mounted_pack)
 		mounted_pack.return_nozzle()
-		visible_message("<span class='notice'>\The [src] retracts to its fueltank.</span>")
+		visible_message("<b>\The [src]</b> retracts to its fueltank.")
 
 	if(get_fuel() <= get_max_fuel())
 		mounted_pack.reagents.trans_to_obj(src, 1)

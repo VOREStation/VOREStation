@@ -64,12 +64,12 @@
 
 	//Already full
 	if (hologram.bellied)
-		var/choice = alert("You can only contain one person. [hologram.bellied] is in you.", "Already Full", "Drop Mob", "Cancel")
+		var/choice = tgui_alert(usr, "You can only contain one person. [hologram.bellied] is in you.", "Already Full", list("Drop Mob", "Cancel"))
 		if(choice == "Drop Mob")
 			hologram.drop_prey()
 		return
 
-	var/mob/living/prey = input(src,"Select a mob to eat","Holonoms") as mob in oview(0,eyeobj)|null
+	var/mob/living/prey = tgui_input_list(src,"Select a mob to eat","Holonoms", oview(0,eyeobj))
 	if(!prey)
 		return //Probably cancelled
 

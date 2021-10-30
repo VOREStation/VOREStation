@@ -29,32 +29,32 @@
 	update_icon()
 
 /obj/structure/medical_stand/update_icon()
-	overlays.Cut()
+	cut_overlays()
 
 	if (tank)
 		if (breather)
-			overlays += "tube_active"
+			add_overlay("tube_active")
 		else
-			overlays += "tube"
+			add_overlay("tube")
 		if(istype(tank,/obj/item/weapon/tank/anesthetic))
-			overlays += "tank_anest"
+			add_overlay("tank_anest")
 		else if(istype(tank,/obj/item/weapon/tank/nitrogen))
-			overlays += "tank_nitro"
+			add_overlay("tank_nitro")
 		else if(istype(tank,/obj/item/weapon/tank/oxygen))
-			overlays += "tank_oxyg"
+			add_overlay("tank_oxyg")
 		else if(istype(tank,/obj/item/weapon/tank/phoron))
-			overlays += "tank_plasma"
+			add_overlay("tank_plasma")
 		//else if(istype(tank,/obj/item/weapon/tank/hydrogen))
-		//	overlays += "tank_hydro"
+		//	add_overlay("tank_hydro")
 		else
-			overlays += "tank_other"
+			add_overlay("tank_other")
 
 	if(beaker)
-		overlays += "beaker"
+		add_overlay("beaker")
 		if(attached)
-			overlays += "line_active"
+			add_overlay("line_active")
 		else
-			overlays += "line"
+			add_overlay("line")
 		var/datum/reagents/reagents = beaker.reagents
 		var/percent = round((reagents.total_volume / beaker.volume) * 100)
 		if(reagents.total_volume)
@@ -69,7 +69,7 @@
 				if(91 to INFINITY)	filling.icon_state = "reagent100"
 			if (filling.icon)
 				filling.icon += reagents.get_color()
-				overlays += filling
+				add_overlay(filling)
 
 /obj/structure/medical_stand/Destroy()
 	STOP_PROCESSING(SSobj,src)
@@ -107,7 +107,7 @@
 
 		var/action_type
 		if(available_options.len > 1)
-			action_type = input(usr, "What do you want to attach/detach?") as null|anything in available_options
+			action_type = tgui_input_list(usr, "What do you want to attach/detach?", "Attach/Detach Choice", available_options)
 		else if(available_options.len)
 			action_type = available_options[1]
 		if(usr.stat == DEAD || !CanMouseDrop(target))
@@ -129,10 +129,10 @@
 						qdel(contained)
 						contained = new mask_type(src)
 					breather = null
-					src.visible_message("<span class='notice'>\The [contained] slips to \the [src]!</span>")
+					src.visible_message("<b>\The [contained]</b> slips to \the [src]!")
 					update_icon()
 					return
-				usr.visible_message("<span class='notice'>\The [usr] begins carefully placing the mask onto [target].</span>",
+				usr.visible_message("<b>\The [usr]</b> begins carefully placing the mask onto [target].",
 							"<span class='notice'>You begin carefully placing the mask onto [target].</span>")
 				if(!do_mob(usr, target, 100) || !can_apply_to_target(target, usr))
 					return
@@ -151,14 +151,14 @@
 					visible_message("\The [attached] is taken off \the [src]")
 					attached = null
 				else if(ishuman(target))
-					usr.visible_message("<span class='notice'>\The [usr] begins inserting needle into [target]'s vein.</span>",
+					usr.visible_message("<b>\The [usr]</b> begins inserting needle into [target]'s vein.",
 									"<span class='notice'>You begin inserting needle into [target]'s vein.</span>")
 					if(!do_mob(usr, target, 50))
 						usr.visible_message("<span class='notice'>\The [usr]'s hand slips and pricks \the [target].</span>",
 									"<span class='notice'>Your hand slips and pricks \the [target].</span>")
 						target.apply_damage(3, BRUTE, pick(BP_R_ARM, BP_L_ARM))
 						return
-					usr.visible_message("<span class='notice'>\The [usr] hooks \the [target] up to \the [src].</span>",
+					usr.visible_message("<b>\The [usr]</b> hooks \the [target] up to \the [src].",
 									"<span class='notice'>You hook \the [target] up to \the [src].</span>")
 					attached = target
 					START_PROCESSING(SSobj,src)
@@ -175,7 +175,7 @@
 
 	var/action_type
 	if(available_options.len > 1)
-		action_type = input(user, "What do you want to do?") as null|anything in available_options
+		action_type = tgui_input_list(user, "What do you want to do?", "Stand Choice", available_options)
 	else if(available_options.len)
 		action_type = available_options[1]
 	switch (action_type)
@@ -184,13 +184,13 @@
 				to_chat(user, "<span class='warning'>There is no tank in \the [src]!</span>")
 				return
 			else if (tank && is_loosen)
-				user.visible_message("<span class='notice'>\The [user] removes \the [tank] from \the [src].</span>", "<span class='warning'>You remove \the [tank] from \the [src].</span</span>>")
+				user.visible_message("<b>\The [user]</b> removes \the [tank] from \the [src].", "<span class='warning'>You remove \the [tank] from \the [src].</span</span>>")
 				user.put_in_hands(tank)
 				tank = null
 				update_icon()
 				return
 			else if (!is_loosen)
-				user.visible_message("<span class='notice'>\The [user] tries to removes \the [tank] from \the [src] but it won't budge.</span>", "<span class='warning'>You try to removes \the [tank] from \the [src] but it won't budge.</span</span>>")
+				user.visible_message("<b>\The [user]</b> tries to removes \the [tank] from \the [src] but it won't budge.", "<span class='warning'>You try to removes \the [tank] from \the [src] but it won't budge.</span</span>>")
 				return
 		if ("Toggle valve")
 			if (!tank)
@@ -198,7 +198,7 @@
 				return
 			else
 				if (valve_opened)
-					src.visible_message("<span class='notice'>\The [user] closes valve on \the [src]!</span>",
+					src.visible_message("<b>\The [user]</b> closes valve on \the [src]!",
 						"<span class='notice'>You close valve on \the [src].</span>")
 					if(breather)
 						breather.internals?.icon_state = "internal0"
@@ -206,7 +206,7 @@
 					valve_opened = FALSE
 					update_icon()
 				else
-					src.visible_message("<span class='notice'>\The [user] opens valve on \the [src]!</span>",
+					src.visible_message("<b>\The [user]</b> opens valve on \the [src]!",
 										"<span class='notice'>You open valve on \the [src].</span>")
 					if(breather)
 						breather.internal = tank
@@ -240,7 +240,7 @@
 	set name = "Set IV transfer amount"
 	set category = "Object"
 	set src in range(1)
-	var/N = input("Amount per transfer from this:","[src]") as null|anything in transfer_amounts
+	var/N = tgui_input_list(usr, "Amount per transfer from this:","[src]", transfer_amounts)
 	if(N)
 		transfer_amount = N
 
@@ -319,7 +319,7 @@
 			user.drop_item()
 			W.forceMove(src)
 			tank = W
-			user.visible_message("<span class='notice'>\The [user] attaches \the [tank] to \the [src].</span>", "<span class='notice'>You attach \the [tank] to \the [src].</span>")
+			user.visible_message("<b>\The [user]</b> attaches \the [tank] to \the [src].", "<span class='notice'>You attach \the [tank] to \the [src].</span>")
 			src.add_fingerprint(user)
 			update_icon()
 
@@ -373,7 +373,7 @@
 			else
 				qdel(contained)
 				contained = new mask_type (src)
-			src.visible_message("<span class='notice'>\The [contained] slips to \the [src]!</span>")
+			src.visible_message("<b>\The [contained]</b> slips to \the [src]!")
 			breather = null
 			update_icon()
 			return

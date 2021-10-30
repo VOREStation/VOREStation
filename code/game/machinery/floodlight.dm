@@ -3,7 +3,9 @@
 	desc = "Let there be light!"
 	icon = 'icons/obj/machines/floodlight.dmi'
 	icon_state = "flood00"
-	density = 1
+	density = TRUE
+	light_system = MOVABLE_LIGHT_DIRECTIONAL
+	light_cone_y_offset = 8
 	var/on = 0
 	var/obj/item/weapon/cell/cell = null
 	var/use = 200 // 200W light
@@ -16,7 +18,7 @@
 	..()
 
 /obj/machinery/floodlight/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	icon_state = "flood[open ? "o" : ""][open && cell ? "b" : ""]0[on]"
 
 /obj/machinery/floodlight/process()
@@ -29,10 +31,12 @@
 
 	// If the cell is almost empty rarely "flicker" the light. Aesthetic only.
 	if((cell.percent() < 10) && prob(5))
-		set_light(brightness_on/2, brightness_on/4)
+		set_light_range(brightness_on/2)
+		set_light_power(brightness_on/4)
 		spawn(20)
 			if(on)
-				set_light(brightness_on, brightness_on/2)
+				set_light_range(brightness_on)
+				set_light_power(brightness_on/2)
 
 	cell.use(use*CELLRATE)
 
@@ -45,7 +49,9 @@
 		return 0
 
 	on = 1
-	set_light(brightness_on, brightness_on / 2)
+	set_light_range(brightness_on)
+	set_light_power(brightness_on/2)
+	set_light_on(TRUE)
 	update_icon()
 	if(loud)
 		visible_message("\The [src] turns on.")
@@ -53,7 +59,7 @@
 
 /obj/machinery/floodlight/proc/turn_off(var/loud = 0)
 	on = 0
-	set_light(0, 0)
+	set_light_on(FALSE)
 	update_icon()
 	if(loud)
 		visible_message("\The [src] shuts down.")

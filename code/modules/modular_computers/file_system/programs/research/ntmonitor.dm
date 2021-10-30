@@ -59,7 +59,7 @@
 				ntnet_global.setting_disabled = FALSE
 				return TRUE
 
-			var/response = alert(usr, "Really disable NTNet wireless? If your computer is connected wirelessly you won't be able to turn it back on! This will affect all connected wireless devices.", "NTNet shutdown", "Yes", "No")
+			var/response = tgui_alert(usr, "Really disable NTNet wireless? If your computer is connected wirelessly you won't be able to turn it back on! This will affect all connected wireless devices.", "NTNet shutdown", list("Yes", "No"))
 			if(response == "Yes" && tgui_status(usr, state) == STATUS_INTERACTIVE)
 				ntnet_global.setting_disabled = TRUE
 			return TRUE

@@ -1,4 +1,4 @@
-obj/item/weapon/chainsaw
+/obj/item/weapon/chainsaw
 	name = "chainsaw"
 	desc = "Vroom vroom."
 	icon_state = "chainsaw0"
@@ -12,7 +12,7 @@ obj/item/weapon/chainsaw
 	var/active_force = 55
 	var/inactive_force = 10
 
-obj/item/weapon/chainsaw/New()
+/obj/item/weapon/chainsaw/New()
 	var/datum/reagents/R = new/datum/reagents(max_fuel)
 	reagents = R
 	R.my_atom = src
@@ -20,13 +20,13 @@ obj/item/weapon/chainsaw/New()
 	START_PROCESSING(SSobj, src)
 	..()
 
-obj/item/weapon/chainsaw/Destroy()
+/obj/item/weapon/chainsaw/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	if(reagents)
 		qdel(reagents)
 	..()
 
-obj/item/weapon/chainsaw/proc/turnOn(mob/user as mob)
+/obj/item/weapon/chainsaw/proc/turnOn(mob/user as mob)
 	if(on) return
 
 	visible_message("You start pulling the string on \the [src].", "[usr] starts pulling the string on the [src].")
@@ -42,31 +42,31 @@ obj/item/weapon/chainsaw/proc/turnOn(mob/user as mob)
 			attack_verb = list("shredded", "ripped", "torn")
 			playsound(src, 'sound/weapons/chainsaw_startup.ogg',40,1)
 			force = active_force
-			edge = 1
-			sharp = 1
+			edge = TRUE
+			sharp = TRUE
 			on = 1
 			update_icon()
 		else
 			to_chat(user, "You fumble with the string.")
 
-obj/item/weapon/chainsaw/proc/turnOff(mob/user as mob)
+/obj/item/weapon/chainsaw/proc/turnOff(mob/user as mob)
 	if(!on) return
 	to_chat(user, "You switch the gas nozzle on the chainsaw, turning it off.")
 	attack_verb = list("bluntly hit", "beat", "knocked")
 	playsound(src, 'sound/weapons/chainsaw_turnoff.ogg',40,1)
 	force = inactive_force
-	edge = 0
-	sharp = 0
+	edge = FALSE
+	sharp = FALSE
 	on = 0
 	update_icon()
 
-obj/item/weapon/chainsaw/attack_self(mob/user as mob)
+/obj/item/weapon/chainsaw/attack_self(mob/user as mob)
 	if(!on)
 		turnOn(user)
 	else
 		turnOff(user)
 
-obj/item/weapon/chainsaw/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
+/obj/item/weapon/chainsaw/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
 	if(!proximity) return
 	..()
 	if(on)
@@ -98,7 +98,7 @@ obj/item/weapon/chainsaw/afterattack(atom/A as mob|obj|turf|area, mob/user as mo
 		else
 			to_chat(user, "<span class='notice'>Don't move while you're refilling the chainsaw.</span>")
 
-obj/item/weapon/chainsaw/process()
+/obj/item/weapon/chainsaw/process()
 	if(!on) return
 
 	if(on)
@@ -109,20 +109,15 @@ obj/item/weapon/chainsaw/process()
 			to_chat(usr, "\The [src] sputters to a stop!")
 			turnOff()
 
-obj/item/weapon/chainsaw/proc/get_fuel()
+/obj/item/weapon/chainsaw/proc/get_fuel()
 	return reagents.get_reagent_amount("fuel")
 
-obj/item/weapon/chainsaw/examine(mob/user)
+/obj/item/weapon/chainsaw/examine(mob/user)
 	. = ..()
 	if(max_fuel && get_dist(user, src) == 0)
 		. += "<span class = 'notice'>The [src] feels like it contains roughtly [get_fuel()] units of fuel left.</span>"
 
-obj/item/weapon/chainsaw/suicide_act(mob/user)
-	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
-	to_chat(viewers(user), "<span class='danger'>[user] is lying down and pulling the chainsaw into [TU.him], it looks like [TU.he] [TU.is] trying to commit suicide!</span>")
-	return(BRUTELOSS)
-
-obj/item/weapon/chainsaw/update_icon()
+/obj/item/weapon/chainsaw/update_icon()
 	if(on)
 		icon_state = "chainsaw1"
 		item_state = "chainsaw1"

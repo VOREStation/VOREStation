@@ -1,4 +1,4 @@
-client/proc/ZoneTick()
+/client/proc/ZoneTick()
 	set category = "Debug"
 	set name = "Process Atmos"
 	set desc = "Manually run a single tick of the air subsystem"
@@ -16,7 +16,7 @@ client/proc/ZoneTick()
 		to_chat(src, "Failed to process! ([air_master.tick_progress])")
 	*/
 
-client/proc/Zone_Info(turf/T as null|turf)
+/client/proc/Zone_Info(turf/T as null|turf)
 	set category = "Debug"
 	if(T)
 		if(istype(T,/turf/simulated) && T:zone)
@@ -33,9 +33,9 @@ client/proc/Zone_Info(turf/T as null|turf)
 				images -= zone_debug_images[zone]
 			zone_debug_images = null
 
-client/var/list/zone_debug_images
+/client/var/list/zone_debug_images
 
-client/proc/Test_ZAS_Connection(var/turf/simulated/T as turf)
+/client/proc/Test_ZAS_Connection(var/turf/simulated/T as turf)
 	set category = "Debug"
 	if(!istype(T))
 		return
@@ -50,7 +50,7 @@ client/proc/Test_ZAS_Connection(var/turf/simulated/T as turf)
 	"Down" = DOWN,\
 	#endif
 	"N/A" = null)
-	var/direction = input("What direction do you wish to test?","Set direction") as null|anything in direction_list
+	var/direction = tgui_input_list(usr, "What direction do you wish to test?","Set direction", direction_list)
 	if(!direction)
 		return
 
@@ -94,7 +94,7 @@ client/proc/Test_ZAS_Connection(var/turf/simulated/T as turf)
 		else
 			to_chat(mob, "both turfs can merge.")
 
-client/proc/ZASSettings()
+/client/proc/ZASSettings()
 	set category = "Debug"
 
 	vsc.SetDefault(mob)

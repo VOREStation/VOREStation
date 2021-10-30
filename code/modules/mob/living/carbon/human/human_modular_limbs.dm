@@ -58,8 +58,7 @@
 // Checks the organ list for limbs meeting a predicate. Way overengineered for such a limited use
 // case but I can see it being expanded in the future if meat limbs or doona limbs use it.
 /mob/living/carbon/human/proc/get_modular_limbs(var/return_first_found = FALSE, var/validate_proc)
-	for(var/bp in organs)
-		var/obj/item/organ/external/E = bp
+	for(var/obj/item/organ/external/E as anything in organs)
 		if(!validate_proc || call(E, validate_proc)(src) > MODULAR_BODYPART_INVALID)
 			LAZYADD(., E)
 			if(return_first_found)
@@ -67,8 +66,7 @@
 	// Prune children so we can't remove every individual component of an entire prosthetic arm
 	// piece by piece. Technically a circular dependency here would remove the limb entirely but
 	// if there's a parent whose child is also its parent, there's something wrong regardless.
-	for(var/bp in .)
-		var/obj/item/organ/external/E = bp
+	for(var/obj/item/organ/external/E as anything in .)
 		if(length(E.children))
 			. -= E.children
 
@@ -151,7 +149,6 @@
 	set name = "Attach Limb"
 	set category = "Object"
 	set desc = "Attach a replacement limb."
-	set usr = src
 
 	var/obj/item/organ/external/E = get_active_hand()
 	if(!check_can_attach_modular_limb(E))
@@ -181,13 +178,12 @@
 	set name = "Remove Limb"
 	set category = "Object"
 	set desc = "Detach one of your limbs."
-	set usr = src
 
 	var/list/detachable_limbs = get_modular_limbs(return_first_found = FALSE, validate_proc = /obj/item/organ/external/proc/can_remove_modular_limb)
 	if(!length(detachable_limbs))
 		to_chat(src, SPAN_WARNING("You have no detachable limbs."))
 		return FALSE
-	var/obj/item/organ/external/E = input(usr, "Which limb do you wish to detach?", "Limb Removal") as null|anything in detachable_limbs
+	var/obj/item/organ/external/E = tgui_input_list(usr, "Which limb do you wish to detach?", "Limb Removal", detachable_limbs)
 	if(!check_can_detach_modular_limb(E))
 		return FALSE
 	if(!do_after(src, 2 SECONDS, src))

@@ -2,15 +2,14 @@
 	name = "automatic cable layer"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "pipe_d"
-	density = 1
+	density = TRUE
 	var/obj/structure/cable/last_piece
 	var/obj/item/stack/cable_coil/cable
 	var/max_cable = 100
 	var/on = 0
 
 /obj/machinery/cablelayer/New()
-	cable = new(src)
-	cable.amount = 100
+	cable = new(src, 100)
 	..()
 
 /obj/machinery/cablelayer/Moved(atom/old_loc, direction, forced = FALSE)
@@ -36,32 +35,32 @@
 		return
 
 	if(O.is_wirecutter())
-		if(cable && cable.amount)
-			var/m = round(input(usr,"Please specify the length of cable to cut","Cut cable",min(cable.amount,30)) as num, 1)
-			m = min(m, cable.amount)
+		if(cable && cable.get_amount())
+			var/m = round(input(usr, "Please specify the length of cable to cut", "Cut cable", min(cable.get_amount(), 30)) as num, 1)
+			m = min(m, cable.get_amount())
 			m = min(m, 30)
 			if(m)
 				playsound(src, O.usesound, 50, 1)
 				use_cable(m)
 				var/obj/item/stack/cable_coil/CC = new (get_turf(src))
-				CC.amount = m
+				CC.set_amount(m)
 		else
 			to_chat(usr, "<span class='warning'>There's no more cable on the reel.</span>")
 
 /obj/machinery/cablelayer/examine(mob/user)
 	. = ..()
-	. += "[src]'s cable reel has [cable.amount] length\s left."
+	. += "[src]'s cable reel has [cable.get_amount()] length\s left."
 
 /obj/machinery/cablelayer/proc/load_cable(var/obj/item/stack/cable_coil/CC)
-	if(istype(CC) && CC.amount)
-		var/cur_amount = cable? cable.amount : 0
+	if(istype(CC) && CC.get_amount())
+		var/cur_amount = cable ? cable.get_amount() : 0
 		var/to_load = max(max_cable - cur_amount,0)
 		if(to_load)
-			to_load = min(CC.amount, to_load)
+			to_load = min(CC.get_amount(), to_load)
 			if(!cable)
-				cable = new(src)
-				cable.amount = 0
-			cable.amount += to_load
+				cable = new(src, to_load)
+			else
+				cable.add(to_load)
 			CC.use(to_load)
 			return to_load
 		else
@@ -69,7 +68,7 @@
 	return
 
 /obj/machinery/cablelayer/proc/use_cable(amount)
-	if(!cable || cable.amount<1)
+	if(!cable || cable.get_amount() < 1)
 		visible_message("A red light flashes on \the [src].")
 		return
 	cable.use(amount)

@@ -145,11 +145,11 @@
 	if(ratio < 0.25 && ratio != 0)
 		ratio = 0.25
 	ratio = round(ratio, 0.25) * 100
-	overlays += "smg_[ratio]"
+	add_overlay("smg_[ratio]")
 
 /obj/item/weapon/gun/projectile/automatic/sol/update_icon()
 	icon_state = (ammo_magazine)? "SMG-IS" : "SMG-IS-empty"
-	overlays.Cut()
+	cut_overlays()
 	update_charge()
 
 //--------------- StG-60 ----------------
@@ -201,7 +201,7 @@
 	icon_state = "smg"
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
-	matter = list(DEFAULT_WALL_MATERIAL = 1800)
+	matter = list(MAT_STEEL = 1800)
 	caliber = "9mm"
 	ammo_type = /obj/item/ammo_casing/a9mm
 	max_ammo = 30

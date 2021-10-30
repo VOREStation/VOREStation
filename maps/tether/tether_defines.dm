@@ -36,7 +36,11 @@
 		"tether_night" = 50,
 		"tether2_night" = 50,
 		"tether2_dog" = 1,
-		"tether2_love" = 1
+		"tether2_love" = 1,
+		"tether_future" = 10,
+		"logo1" = 20,
+		"logo2" = 20,
+		"gateway" = 5
 	))
 	if(choice)
 		lobby_screens = list(choice)
@@ -100,7 +104,7 @@
 							NETWORK_RESEARCH_OUTPOST,
 							NETWORK_ROBOTS,
 							NETWORK_SECURITY,
-							NETWORK_TCOMMS,
+							NETWORK_TELECOM,
 							NETWORK_TETHER
 							)
 	secondary_networks = list(
@@ -160,9 +164,14 @@
 		)
 
 	lateload_single_pick = list(
-		//list("Carp Farm"),
-		//list("Snow Field"),
-		//list("Listening Post")
+		list("Carp Farm"),
+		list("Snow Field"),
+		list("Listening Post"),
+		list(list("Honleth Highlands A", "Honleth Highlands B")),
+		list("Arynthi Lake Underground A","Arynthi Lake A"),
+		list("Arynthi Lake Underground B","Arynthi Lake B"),
+		list("Eggnog Town Underground","Eggnog Town"),
+		list("Wild West")
 		)
 
 	ai_shell_restricted = TRUE
@@ -236,8 +245,15 @@
 [i]Transponder[/i]: Transmitting (CIV), NanoTrasen IFF
 [b]Notice[/b]: NanoTrasen Base, authorized personnel only"}
 	base = 1
-	icon_state = "globe"
-	color = "#d35b5b"
+	
+	icon = 'icons/obj/overmap_vr.dmi'
+	icon_state = "virgo3b"
+
+	skybox_icon = 'icons/skybox/virgo3b.dmi'
+	skybox_icon_state = "small"
+	skybox_pixel_x = 0
+	skybox_pixel_y = 0
+
 	initial_generic_waypoints = list(
 		"tether_dockarm_d1a1", //Bottom left,
 		"tether_dockarm_d1a2", //Top left,
@@ -260,6 +276,8 @@
 		Z_LEVEL_PLAINS,
 		Z_LEVEL_UNDERDARK
 	)
+
+	levels_for_distress = list(Z_LEVEL_OFFMAP1, Z_LEVEL_BEACH, Z_LEVEL_AEROSTAT, Z_LEVEL_DEBRISFIELD, Z_LEVEL_FUELDEPOT)
 
 /obj/effect/overmap/visitable/sector/virgo3b/Crossed(var/atom/movable/AM)
 	. = ..()
@@ -284,6 +302,15 @@
 	//For ships, it's safe to assume they're big enough to not be sneaky
 	else if(istype(AM, /obj/effect/overmap/visitable/ship))
 		atc.msg(message)
+
+/obj/effect/overmap/visitable/sector/virgo3b/generate_skybox(zlevel)
+	var/static/image/bigone = image(icon = 'icons/skybox/virgo3b.dmi', icon_state = "large")
+	var/static/image/smallone = image(icon = 'icons/skybox/virgo3b.dmi', icon_state = "small")
+	
+	if(zlevel == Z_LEVEL_TRANSIT)
+		return bigone
+	else
+		return smallone
 
 // For making the 6-in-1 holomap, we calculate some offsets
 #define TETHER_MAP_SIZE 140 // Width and height of compiled in tether z levels.
@@ -318,20 +345,21 @@
 	name = "Surface 3"
 	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_SEALED|MAP_LEVEL_XENOARCH_EXEMPT|MAP_LEVEL_PERSIST
 	base_turf = /turf/simulated/open
-	holomap_offset_x = TETHER_HOLOMAP_MARGIN_X - TETHER_HOLOMAP_MARGIN_X - TETHER_MAP_SIZE
+	holomap_offset_x = TETHER_HOLOMAP_MARGIN_X + TETHER_HOLOMAP_CENTER_GUTTER + TETHER_MAP_SIZE
 	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y
 
 /datum/map_z_level/tether/transit
 	z = Z_LEVEL_TRANSIT
 	name = "Transit"
 	flags = MAP_LEVEL_STATION|MAP_LEVEL_SEALED|MAP_LEVEL_PLAYER|MAP_LEVEL_CONTACT|MAP_LEVEL_XENOARCH_EXEMPT
+	base_turf = /turf/space/v3b_midpoint // Special type that spawns fall triggers
 
 /datum/map_z_level/tether/station/space_low
 	z = Z_LEVEL_SPACE_LOW
 	name = "Asteroid 1"
 	base_turf = /turf/space
 	transit_chance = 33
-	holomap_offset_x = TETHER_HOLOMAP_MARGIN_X - TETHER_HOLOMAP_MARGIN_X - TETHER_MAP_SIZE
+	holomap_offset_x = TETHER_HOLOMAP_MARGIN_X + TETHER_HOLOMAP_CENTER_GUTTER + TETHER_MAP_SIZE
 	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y + TETHER_MAP_SIZE
 
 /datum/map_z_level/tether/mine

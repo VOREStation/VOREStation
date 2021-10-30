@@ -113,7 +113,7 @@
 	for(var/datum/poster/posteroption in poster_designs)
 		options[posteroption.listing_name] = posteroption
 
-	var/choice = input(M,"Choose a poster!","Customize Poster") in options
+	var/choice = tgui_input_list(M, "Choose a poster!", "Customize Poster", options)
 	if(src && choice && !M.stat && in_range(M,src))
 		var serial = poster_designs.Find(options[choice])
 		serial_number = serial
@@ -129,7 +129,7 @@
 	name = "poster"
 	desc = "A large piece of space-resistant printed paper. "
 	icon = 'icons/obj/contraband_vr.dmi' //VOREStation Edit
-	anchored = 1
+	anchored = TRUE
 	var/serial_number	//Will hold the value of src.loc if nobody initialises it
 	var/poster_type		//So mappers can specify a desired poster
 	var/ruined = 0
@@ -195,7 +195,7 @@
 	if(ruined)
 		return
 
-	if(alert("Do I want to rip the poster from the wall?","You think...","Yes","No") == "Yes")
+	if(tgui_alert(usr, "Do I want to rip the poster from the wall?","You think...",list("Yes","No")) == "Yes")
 
 		if(ruined || !user.Adjacent(src))
 			return

@@ -49,6 +49,7 @@
 	robot_modules["Service-Hound"] = /obj/item/weapon/robot_module/robot/clerical/brodog
 	robot_modules["BoozeHound"] = /obj/item/weapon/robot_module/robot/booze
 	robot_modules["KMine"] = /obj/item/weapon/robot_module/robot/kmine
+	robot_modules["Stray"] = /obj/item/weapon/robot_module/robot/stray
 	return 1
 
 //Just add a new proc with the robot_module type if you wish to run some other vore code
@@ -311,13 +312,13 @@
 	can_be_pushed = 0
 	sprites = list(
 					"Standard" = "ert",
+					"Classic" = "ertold",
 					"Borgi" = "borgi"
 					)
 
 /obj/item/weapon/robot_module/robot/ert/New(var/mob/living/silicon/robot/R)
 	src.modules += new /obj/item/weapon/handcuffs/cyborg(src)
-	src.modules += new /obj/item/weapon/dogborg/jaws/big(src)
-	src.modules += new /obj/item/weapon/melee/baton/robot(src)
+	src.modules += new /obj/item/weapon/dogborg/jaws/ert(src)
 	src.modules += new /obj/item/taperoll/police(src)
 	src.modules += new /obj/item/weapon/gun/energy/taser/mounted/cyborg/ertgun(src)
 	src.modules += new /obj/item/weapon/dogborg/swordtail(src)
@@ -333,11 +334,12 @@
 	T.water = water
 	src.modules += T
 
-	var/obj/item/device/dogborg/sleeper/K9/B = new /obj/item/device/dogborg/sleeper/K9(src)
+	var/obj/item/device/dogborg/sleeper/K9/B = new /obj/item/device/dogborg/sleeper/K9/ert(src)
 	B.water = water
 	src.modules += B
 
-	R.icon 		 = 'icons/mob/64x64robot_vr.dmi'
+	R.icon 		 = 'icons/mob/widerobot_ert_vr.dmi'
+	R.wideborg_dept = 'icons/mob/widerobot_ert_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
 	R.ui_style_vr = TRUE
 	R.pixel_x 	 = -16

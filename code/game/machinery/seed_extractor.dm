@@ -3,10 +3,10 @@
 	desc = "Extracts and bags seeds from produce."
 	icon = 'icons/obj/hydroponics_machines_vr.dmi' //VOREStation Edit
 	icon_state = "sextractor"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 
-obj/machinery/seed_extractor/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/seed_extractor/attackby(var/obj/item/O as obj, var/mob/user as mob)
 
 	// Fruits and vegetables.
 	if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/grown) || istype(O, /obj/item/weapon/grown))

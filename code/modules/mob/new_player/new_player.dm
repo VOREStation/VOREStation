@@ -11,11 +11,11 @@
 
 	invisibility = 101
 
-	density = 0
+	density = FALSE
 	stat = 2
 	canmove = 0
 
-	anchored = 1	//  don't get pushed around
+	anchored = TRUE	//  don't get pushed around
 
 	var/created_for
 
@@ -76,12 +76,20 @@
 		output += "<p>[href(src, list("give_feedback" = 1), "Give Feedback")]</p>"
 
 	if(GLOB.news_data.station_newspaper)
-		output += "<a href='byond://?src=\ref[src];open_station_news=1'>Show [using_map.station_name] News</A>"
+		if(client.prefs.lastlorenews == GLOB.news_data.newsindex)
+			output += "<p><a href='byond://?src=\ref[src];open_station_news=1'>Show [using_map.station_name] News</A></p>"
+		else
+			output += "<p><b><a href='byond://?src=\ref[src];open_station_news=1'>Show [using_map.station_name] News (NEW!)</A></b></p>"
 
 	output += "</div>"
 
-	if(GLOB.news_data.station_newspaper && !client.seen_news)
+	if (client.prefs.lastlorenews == GLOB.news_data.newsindex)
+		client.seen_news = 1
+
+	if(GLOB.news_data.station_newspaper && !client.seen_news && client.is_preference_enabled(/datum/client_preference/show_lore_news))
 		show_latest_news(GLOB.news_data.station_newspaper)
+		client.prefs.lastlorenews = GLOB.news_data.newsindex
+		SScharacter_setup.queue_preferences_save(client.prefs)
 
 	panel = new(src, "Welcome","Welcome", 210, 300, src) // VOREStation Edit
 	panel.set_window_options("can_close=0")
@@ -132,9 +140,7 @@
 		new_player_panel_proc()
 
 	if(href_list["observe"])
-		var/alert_time = ticker?.current_state <= GAME_STATE_SETTING_UP ? 1 : round(config.respawn_time/10/60)
-
-		if(alert(src,"Are you sure you wish to observe? You will have to wait up to [alert_time] minute\s before being able to spawn into the game!","Player Setup","Yes","No") == "Yes")
+		if(tgui_alert(src,"Are you sure you wish to observe? If you do, make sure to not use any knowledge gained from observing if you decide to join later.","Player Setup",list("Yes","No")) == "Yes")
 			if(!client)	return 1
 
 			//Make a new mannequin quickly, and allow the observer to take the appearance
@@ -187,7 +193,7 @@
 		if(client.prefs.species != "Human" && !check_rights(R_ADMIN, 0)) //VORESTATION EDITS: THE COMMENTED OUT AREAS FROM LINE 154 TO 178
 			if (config.usealienwhitelist)
 				if(!is_alien_whitelisted(src, client.prefs.species))
-					alert(src, "You are currently not whitelisted to Play [client.prefs.species].")
+					tgui_alert(src, "You are currently not whitelisted to Play [client.prefs.species].")
 					return 0
 */
 		LateChoices()
@@ -214,13 +220,13 @@
 			return
 
 		if(!is_alien_whitelisted(src, GLOB.all_species[client.prefs.species]))
-			alert(src, "You are currently not whitelisted to play [client.prefs.species].")
+			tgui_alert(src, "You are currently not whitelisted to play [client.prefs.species].")
 			return 0
 
 		var/datum/species/S = GLOB.all_species[client.prefs.species]
 		
 		if(!(S.spawn_flags & SPECIES_CAN_JOIN))
-			alert(src,"Your current species, [client.prefs.species], is not available for play on the station.")
+			tgui_alert_async(src,"Your current species, [client.prefs.species], is not available for play on the station.")
 			return 0
 
 		AttemptLateSpawn(href_list["SelectedJob"],client.prefs.spawnpoint)
@@ -403,7 +409,7 @@
 		to_chat(usr, "<span class='notice'>There is an administrative lock on entering the game!</span>")
 		return 0
 	if(!IsJobAvailable(rank))
-		alert(src,"[rank] is not available. Please try another.")
+		tgui_alert_async(src,"[rank] is not available. Please try another.")
 		return 0
 	if(!spawn_checks_vr(rank)) return 0 // VOREStation Insert
 	if(!client)
@@ -507,7 +513,7 @@
 	for(var/datum/job/job in job_master.occupations)
 		if(job && IsJobAvailable(job.title))
 			// Checks for jobs with minimum age requirements
-			if(job.minimum_character_age && (client.prefs.age < job.minimum_character_age))
+			if((job.minimum_character_age || job.min_age_by_species) && (client.prefs.age < job.get_min_age(client.prefs.species, client.prefs.organ_data["brain"])))
 				continue
 			// Checks for jobs set to "Never" in preferences	//TODO: Figure out a better way to check for this
 			if(!(client.prefs.GetJobDepartment(job, 1) & job.flag))

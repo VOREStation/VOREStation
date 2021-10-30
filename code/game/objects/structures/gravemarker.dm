@@ -3,10 +3,10 @@
 	desc = "An object used in marking graves."
 	icon_state = "gravemarker"
 
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	throwpass = 1
-	climbable = 1
+	climbable = TRUE
 
 	layer = ABOVE_JUNK_LAYER
 
@@ -39,16 +39,16 @@
 /obj/structure/gravemarker/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSTABLE))
 		return TRUE
-	if(get_dir(loc, target) & dir)
+	if(get_dir(mover, target) == reverse_dir[dir]) // From elsewhere to here, can't move against our dir
 		return !density
 	return TRUE
 
-/obj/structure/gravemarker/CheckExit(atom/movable/O as mob|obj, target as turf)
-	if(istype(O) && O.checkpass(PASSTABLE))
-		return 1
-	if(get_dir(O.loc, target) == dir)
-		return 0
-	return 1
+/obj/structure/gravemarker/Uncross(atom/movable/mover, turf/target)
+	if(istype(mover) && mover.checkpass(PASSTABLE))
+		return TRUE
+	if(get_dir(mover, target) == dir) // From here to elsewhere, can't move in our dir
+		return !density
+	return TRUE
 
 /obj/structure/gravemarker/attackby(obj/item/weapon/W, mob/user as mob)
 	if(W.is_screwdriver())

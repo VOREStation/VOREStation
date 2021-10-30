@@ -67,7 +67,7 @@
 		force = 15//quite robust
 		attack_verb = list("smacked", "struck", "slapped")
 	else
-		user.visible_message("<span class='notice'>\The [user] collapses their telescopic baton.</span>",\
+		user.visible_message("<b>\The [user]</b> collapses their telescopic baton.",\
 		"<span class='notice'>You collapse the baton.</span>",\
 		"You hear a click.")
 		icon_state = "telebaton0"
@@ -85,14 +85,14 @@
 	add_fingerprint(user)
 
 	if(blood_overlay && blood_DNA && (blood_DNA.len >= 1)) //updates blood overlay, if any
-		overlays.Cut()//this might delete other item overlays as well but eeeeeeeh
+		cut_overlays()
 
 		var/icon/I = new /icon(src.icon, src.icon_state)
 		I.Blend(new /icon('icons/effects/blood.dmi', rgb(255,255,255)),ICON_ADD)
 		I.Blend(new /icon('icons/effects/blood.dmi', "itemblood"),ICON_MULTIPLY)
 		blood_overlay = I
 
-		overlays += blood_overlay
+		add_overlay(blood_overlay)
 
 	return
 

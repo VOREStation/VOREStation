@@ -11,11 +11,11 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 /turf/var/obj/fire/fire = null
 
 //Some legacy definitions so fires can be started.
-atom/proc/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+/atom/proc/temperature_expose(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	return null
 
 
-turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
+/turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 
 
 /turf/simulated/hotspot_expose(exposed_temperature, exposed_volume, soh)
@@ -71,8 +71,7 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 
 	var/fuel_to_remove = used_liquid_fuel/(fuel_objs.len*LIQUIDFUEL_AMOUNT_TO_MOL) //convert back to liquid volume units
 
-	for(var/O in fuel_objs)
-		var/obj/effect/decal/cleanable/liquid_fuel/fuel = O
+	for(var/obj/effect/decal/cleanable/liquid_fuel/fuel as anything in fuel_objs)
 		if(!istype(fuel))
 			fuel_objs -= fuel
 			continue
@@ -108,7 +107,7 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 /obj/fire
 	//Icon for fire on turfs.
 
-	anchored = 1
+	anchored = TRUE
 	mouse_opacity = 0
 
 	blend_mode = BLEND_ADD
@@ -171,7 +170,7 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 					continue
 
 				//Spread the fire.
-				if(prob( 50 + 50 * (firelevel/vsc.fire_firelevel_multiplier) ) && my_tile.CanPass(null, enemy_tile, 0,0) && enemy_tile.CanPass(null, my_tile, 0,0))
+				if(prob( 50 + 50 * (firelevel/vsc.fire_firelevel_multiplier) ) && my_tile.CanPass(src, enemy_tile) && enemy_tile.CanPass(src, my_tile))
 					enemy_tile.create_fire(firelevel)
 
 			else
@@ -320,7 +319,7 @@ turf/proc/hotspot_expose(exposed_temperature, exposed_volume, soh = 0)
 
 		return firelevel
 
-datum/gas_mixture/proc/check_recombustability(list/fuel_objs)
+/datum/gas_mixture/proc/check_recombustability(list/fuel_objs)
 	. = 0
 	for(var/g in gas)
 		if(gas_data.flags[g] & XGM_GAS_OXIDIZER && gas[g] >= 0.1)

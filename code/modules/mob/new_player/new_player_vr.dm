@@ -43,7 +43,9 @@
 		var/list/megalist = client.prefs.pos_traits + client.prefs.neu_traits + client.prefs.neg_traits
 		var/points_left = client.prefs.starting_trait_points
 		var/traits_left = client.prefs.max_traits
-		for(var/T in megalist)
+		var/pref_synth = client.prefs.dirty_synth
+		var/pref_meat = client.prefs.gross_meatbag
+		for(var/datum/trait/T as anything in megalist)
 			var/cost = traits_costs[T]
 
 			if(cost)
@@ -57,6 +59,11 @@
 			else
 				points_left -= traits_costs[T]
 
+			var/take_flags = initial(T.can_take)
+			if((pref_synth && !(take_flags & SYNTHETICS)) || (pref_meat && !(take_flags & ORGANICS)))
+				pass = FALSE
+				to_chat(src, "<span class='warning'>Some of your traits are not usable by your character type (synthetic traits on organic, or vice versa).</span>")
+
 		//Went into negatives
 		if(points_left < 0 || traits_left < 0)
 			pass = FALSE
@@ -64,6 +71,5 @@
 
 	//Final popup notice
 	if (!pass)
-		spawn()
-			alert(src,"There were problems with spawning your character. Check your message log for details.","Error","OK")
+		tgui_alert_async(src,"There were problems with spawning your character. Check your message log for details.","Error")
 	return pass

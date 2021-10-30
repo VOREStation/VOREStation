@@ -128,7 +128,7 @@
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/doughslice
 	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/donut/jelly
+	result = /obj/item/weapon/reagent_containers/food/snacks/donut/plain/jelly
 	result_quantity = 2
 
 /datum/recipe/jellydonut/poisonberry
@@ -136,15 +136,15 @@
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/dough
 	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/donut/poisonberry
+	result = /obj/item/weapon/reagent_containers/food/snacks/donut/plain/jelly/poisonberry
 
 /datum/recipe/jellydonut/slime // Subtypes of jellydonut, appliance inheritance applies.
 	reagents = list("slimejelly" = 5, "sugar" = 5)
-	result = /obj/item/weapon/reagent_containers/food/snacks/donut/slimejelly
+	result = /obj/item/weapon/reagent_containers/food/snacks/donut/plain/jelly/slimejelly
 
 /datum/recipe/jellydonut/cherry // Subtypes of jellydonut, appliance inheritance applies.
 	reagents = list("cherryjelly" = 5, "sugar" = 5)
-	result = /obj/item/weapon/reagent_containers/food/snacks/donut/cherryjelly
+	result = /obj/item/weapon/reagent_containers/food/snacks/donut/plain/jelly/cherryjelly
 
 /datum/recipe/donut
 	appliance = FRYER
@@ -152,7 +152,7 @@
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/doughslice
 	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/donut/normal
+	result = /obj/item/weapon/reagent_containers/food/snacks/donut/plain
 	result_quantity = 2
 
 /datum/recipe/chaosdonut

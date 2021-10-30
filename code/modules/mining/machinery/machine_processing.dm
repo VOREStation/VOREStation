@@ -69,20 +69,21 @@
 	else
 		data["has_id"] = FALSE
 
-	data["ores"] = list()
+	
+	var/list/ores = list()
 	for(var/ore in machine.ores_processing)
 		if(!machine.ores_stored[ore] && !show_all_ores)
 			continue
 		var/ore/O = GLOB.ore_data[ore]
 		if(!O)
 			continue
-		data["ores"].Add(list(list(
+		ores.Add(list(list(
 			"ore" = ore,
 			"name" = O.display_name,
 			"amount" = machine.ores_stored[ore],
 			"processing" = machine.ores_processing[ore] ? machine.ores_processing[ore] : 0,
 		)))
-
+	data["ores"] = ores
 	data["showAllOres"] = show_all_ores
 	data["power"] = machine.active
 	data["speed"] = machine.speed_process
@@ -99,7 +100,7 @@
 			var/ore = params["ore"]
 			var/new_setting = params["set"]
 			if(new_setting == null)
-				new_setting = input("What setting do you wish to use for processing [ore]]?") as null|anything in list("Smelting","Compressing","Alloying","Nothing")
+				new_setting = tgui_input_list(usr, "What setting do you wish to use for processing [ore]]?", "Process Setting", list("Smelting","Compressing","Alloying","Nothing"))
 				if(!new_setting)
 					return
 				switch(new_setting)
@@ -158,8 +159,8 @@
 	var/obj/machinery/mineral/output = null
 	var/obj/machinery/mineral/console = null
 	var/sheets_per_tick = 10
-	var/list/ores_processing[0]
-	var/list/ores_stored[0]
+	var/list/ores_processing = list()
+	var/list/ores_stored = list()
 	var/active = FALSE
 
 	var/points = 0
@@ -329,3 +330,4 @@
 #undef PROCESS_SMELT
 #undef PROCESS_COMPRESS
 #undef PROCESS_ALLOY
+

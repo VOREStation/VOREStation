@@ -3,8 +3,9 @@
 	desc = "A tray usually full of fluid for growing plants."
 	icon = 'icons/obj/hydroponics_machines_vr.dmi' //VOREStation Edit
 	icon_state = "hydrotray3"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
+	unacidable = TRUE
 	flags = OPENCONTAINER
 	volume = 100
 
@@ -148,7 +149,7 @@
 	var/datum/ghosttrap/plant/G = get_ghost_trap("living plant")
 	if(!G.assess_candidate(user))
 		return
-	var/response = alert(user, "Are you sure you want to harvest this [seed.display_name]?", "Living plant request", "Yes", "No")
+	var/response = tgui_alert(user, "Are you sure you want to harvest this [seed.display_name]?", "Living plant request", list("Yes", "No"))
 	if(response == "Yes")
 		harvest()
 	return
@@ -429,7 +430,7 @@
 	if(usr.incapacitated())
 		return
 	if(ishuman(usr) || istype(usr, /mob/living/silicon/robot))
-		var/new_light = input("Specify a light level.") as null|anything in list(0,1,2,3,4,5,6,7,8,9,10)
+		var/new_light = tgui_input_list(usr, "Specify a light level.", "Light Level", list(0,1,2,3,4,5,6,7,8,9,10))
 		if(new_light)
 			tray_light = new_light
 			to_chat(usr, "You set the tray to a light level of [tray_light] lumens.")

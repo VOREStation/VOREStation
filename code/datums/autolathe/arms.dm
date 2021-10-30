@@ -74,13 +74,13 @@
 	name = "pistol magazine (.45 armor piercing)"
 	path =/obj/item/ammo_magazine/m45/ap
 	hidden = 1
-	resources = list(DEFAULT_WALL_MATERIAL = 500, MAT_PLASTEEL = 300)
+	resources = list(MAT_STEEL = 500, MAT_PLASTEEL = 300)
 
 /datum/category_item/autolathe/arms/pistol_45hp
 	name = "pistol magazine (.45 hollowpoint)"
 	path =/obj/item/ammo_magazine/m45/hp
 	hidden = 1
-	resources = list(DEFAULT_WALL_MATERIAL = 500, MAT_PLASTIC = 200)
+	resources = list(MAT_STEEL = 500, MAT_PLASTIC = 200)
 
 /datum/category_item/autolathe/arms/pistol_45uzi
 	name = "uzi magazine (.45)"

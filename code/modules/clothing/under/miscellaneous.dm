@@ -1,3 +1,9 @@
+/obj/item/clothing/under/gimmick //used to fix an error
+	name = "gimmick jumpsuit"
+	desc = "Something about this jumpsuit feels... off..."
+	icon_state = "grey"
+	item_state_slots = list(slot_r_hand_str = "grey", slot_l_hand_str = "grey")
+
 /obj/item/clothing/under/pj/red
 	name = "red pj's"
 	desc = "Sleepwear."
@@ -95,19 +101,6 @@
 	icon_state = "ert_uniform"
 	item_state_slots = list(slot_r_hand_str = "black", slot_l_hand_str = "black")
 
-/obj/item/clothing/under/gov
-	desc = "A neat proper uniform of someone on offical business. The collar is <i>immaculately</i> starched."
-	name = "Green formal uniform"
-	icon_state = "greensuit"
-	item_state_slots = list(slot_r_hand_str = "centcom", slot_l_hand_str = "centcom")
-	rolled_sleeves = 0
-	starting_accessories = list(/obj/item/clothing/accessory/tie/darkgreen)
-
-/obj/item/clothing/under/gov/skirt
-	name = "Green formal skirt uniform"
-	desc = "A neat proper uniform of someone on offical business. The top button is sewn shut."
-	icon_state = "greensuit_skirt"
-
 /obj/item/clothing/under/space
 	name = "\improper NASA jumpsuit"
 	desc = "It has a NASA logo on it and is made of space-proofed materials."
@@ -168,25 +161,6 @@
 	desc = "A silk black blouse with a matching gray skirt. Feels proper."
 	icon_state = "gentlesuit_skirt"
 
-/obj/item/clothing/under/gimmick/rank/captain/suit
-	name = "site manager's suit"
-	desc = "A green suit and yellow necktie. Exemplifies authority."
-	icon_state = "green_suit"
-	item_state_slots = list(slot_r_hand_str = "centcom", slot_l_hand_str = "centcom")
-
-/obj/item/clothing/under/gimmick/rank/captain/suit/skirt
-	name = "site manager's skirt suit"
-	icon_state = "green_suit_skirt"
-
-/obj/item/clothing/under/gimmick/rank/head_of_personnel/suit
-	name = "head of personnel's suit"
-	desc = "A teal suit and yellow necktie. An authoritative yet tacky ensemble."
-	icon_state = "teal_suit"
-	item_state_slots = list(slot_r_hand_str = "green", slot_l_hand_str = "green")
-
-/obj/item/clothing/under/gimmick/rank/head_of_personnel/suit/skirt
-	name = "head of personnel's skirt suit"
-	icon_state = "teal_suit_skirt"
 
 /obj/item/clothing/under/suit_jacket
 	name = "black suit"
@@ -217,17 +191,6 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
 	icon_state = "black_suit_fem"
 	item_state = "black_formal_skirt"
-
-/obj/item/clothing/under/suit_jacket/red
-	name = "red suit"
-	desc = "A red suit and blue tie. Somewhat formal."
-	icon_state = "red_suit"
-	item_state_slots = list(slot_r_hand_str = "lawyer_red", slot_l_hand_str = "lawyer_red")
-
-/obj/item/clothing/under/suit_jacket/red/skirt
-	name = "red skirt suit"
-	desc = "A red suit and blue necktie. Somewhat formal."
-	icon_state = "red_suit_skirt"
 
 /obj/item/clothing/under/schoolgirl
 	name = "schoolgirl uniform"
@@ -288,13 +251,6 @@
 	item_state_slots = list(slot_r_hand_str = "yellow", slot_l_hand_str = "yellow")
 	body_parts_covered = LOWER_TORSO
 
-/obj/item/clothing/under/moderncoat
-	name = "modern wrapped coat"
-	desc = "The cutting edge of fashion."
-	icon_state = "moderncoat"
-	item_state_slots = list(slot_r_hand_str = "red", slot_l_hand_str = "red")
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
-
 /obj/item/clothing/under/ascetic
 	name = "plain ascetic garb"
 	desc = "Popular with freshly grown vatborn and new age cultists alike."
@@ -322,8 +278,9 @@
 	icon_state = "whitegoldrobe"
 
 /*
- * dress
+ * Dress Stuff
  */
+
 /obj/item/clothing/under/dress
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 
@@ -357,7 +314,6 @@
 	name = "maid costume"
 	desc = "Maid in China."
 	icon_state = "maid"
-	index = 1
 
 /obj/item/clothing/under/dress/maid/janitor
 	name = "maid uniform"
@@ -539,42 +495,67 @@
 	name = "revealing dress"
 	desc = "A very revealing black and blue dress. Is this work appropriate?"
 	icon_state = "revealingdress"
-	index = 1
 
 /obj/item/clothing/under/dress/gothic
 	name = "gothic dress"
 	desc = "A black dress with a sheer mesh over it, tastefully old school goth."
 	icon_state = "gothic"
-	index = 1
 
 /obj/item/clothing/under/dress/formalred
 	name = "formal red dress"
 	desc = "A very formal red dress, for those fancy galas."
 	icon_state = "formalred"
 	flags_inv = HIDESHOES
-	index = 1
 
 /obj/item/clothing/under/dress/pentagram
 	name = "pentagram dress"
 	desc = "A black dress with straps over the chest in the shape of a pentagram."
 	icon_state = "pentagram"
-	index = 1
 
 /obj/item/clothing/under/dress/yellowswoop
 	name = "yellow swooped dress"
 	desc = "A yellow dress that swoops to the side."
 	icon_state = "yellowswoop"
-	index = 1
 
 /obj/item/clothing/under/dress/countess
 	name = "countess dress"
 	desc = "A red and black dress fit for a countess."
 	icon_state = "countess"
-	index = 1
+
+/obj/item/clothing/under/dress/verglasdress
+    name = "verglas dress"
+    desc = "The modern twist on a forgotten pattern, the Verglas style utilizes comfortable velvet and silver white satin to create an otherworldly effect evocative of winter, or the void."
+    icon_state = "verglas_dress"
+
+/obj/item/clothing/under/dress/goddess
+	name = "goddess dress"
+	desc = "A blue and orange dress fit for a goddess."
+	icon_state = "goddess"
+
+/obj/item/clothing/under/dress/alpine
+	name = "alpine dress"
+	desc = "A green and white dress that makes you want to yodel."
+	icon_state = "corsetdress"
+
+/obj/item/clothing/under/dress/goldwrap
+	name = "golden dress"
+	desc = "A dress so ostentatious that you feel poorer just looking at it."
+	icon_state = "golddress"
+
+/obj/item/clothing/under/dress/golddress
+	name = "golden wrap"
+	desc = "An outfit so ostentatious that you feel poorer just looking at it."
+	icon_state = "goldwrap"
+
+/obj/item/clothing/under/dress/hightrousers
+	name = "high-waisted trousers"
+	desc = "A waistline this high is just made for ripping bodices, swashing buckles, or - just occasionally - sucking blood."
+	icon_state = "gayvampire"
 
 /*
- * wedding stuff
+ * Wedding Stuff
  */
+
 /obj/item/clothing/under/wedding
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
 
@@ -614,17 +595,15 @@
 	desc = "A lovely floofed out dress for formal occasions. Comes in many colors!"
 	icon_state = "floofdress"
 	flags_inv = HIDESHOES
-	index = 1
 
 /obj/item/clothing/under/wedding/whitegown
 	name = "white gown"
 	desc = "A elegant white gown with accents of sheer mesh."
 	icon_state = "whitegown"
-	index = 1
 
 /*
-Uniforms and such
-*/
+ * Uniforms and such
+ */
 
 /obj/item/clothing/under/sundress
 	name = "sundress"
@@ -643,48 +622,41 @@ Uniforms and such
 	desc = "A cute pink sundress."
 	icon_state = "pinksun"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-	index = 1
 
 /obj/item/clothing/under/dress/sundress_white
 	name = "white sundress"
 	desc = "A white sundress, it's short."
 	icon_state = "whitesun"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-	index = 1
 
 /obj/item/clothing/under/dress/sundress_pinkbow
 	name = "bowed pink sundress"
 	desc = "A cute pink sundress with a bow."
 	icon_state = "bowsun"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-	index = 1
 
 /obj/item/clothing/under/dress/sundress_blue
 	name = "long blue sundress"
 	desc = "A long blue sun dress with white frills towards the bottom."
 	icon_state = "bluesun"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
-	index = 1
 
 /obj/item/clothing/under/dress/sundress_pinkshort
 	name = "short pink sundress"
 	desc = "A very short pink sundress, it's more like a chemise."
 	icon_state = "shortpink"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-	index = 1
 
 /obj/item/clothing/under/dress/twopiece
 	name = "two-piece dress"
 	desc = "A fancy two-piece dress, the pieces are sewn together."
 	icon_state = "twopiece"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-	index = 1
 
 /obj/item/clothing/under/dress/gothic2
 	name = "lacey gothic dress"
 	desc = "An elegant gothic dress with lace decorations."
 	icon_state = "gothic2"
-	index = 1
 
 /obj/item/clothing/under/captainformal
 	name = "site manager's formal uniform"
@@ -743,6 +715,52 @@ Uniforms and such
 	name = "burgundy skirt"
 	icon_state = "burgundy_suit_skirt"
 
+/obj/item/clothing/under/suit_jacket/red
+	name = "red suit"
+	desc = "A red suit and blue tie. Somewhat formal."
+	icon_state = "red_suit"
+	item_state_slots = list(slot_r_hand_str = "lawyer_red", slot_l_hand_str = "lawyer_red")
+	starting_accessories = list(/obj/item/clothing/accessory/tie/navy, /obj/item/clothing/accessory/jacket/red)
+
+/obj/item/clothing/under/suit_jacket/red/skirt
+	name = "red skirt"
+	icon_state = "red_suit_skirt"
+
+/obj/item/clothing/under/suit_jacket/teal
+	name = "teal suit"
+	desc = "A teal suit and yellow necktie. An authoritative yet tacky ensemble."
+	icon_state = "teal_suit"
+	item_state_slots = list(slot_r_hand_str = "green", slot_l_hand_str = "green")
+	starting_accessories = list(/obj/item/clothing/accessory/tie/yellow, /obj/item/clothing/accessory/jacket/teal)
+
+/obj/item/clothing/under/suit_jacket/teal/skirt
+	name = "teal skirt suit"
+	icon_state = "teal_suit_skirt"
+
+/obj/item/clothing/under/suit_jacket/green
+	name = "green suit"
+	desc = "A green suit and yellow necktie. Exemplifies authority."
+	icon_state = "green_suit"
+	item_state_slots = list(slot_r_hand_str = "centcom", slot_l_hand_str = "centcom")
+	starting_accessories = list(/obj/item/clothing/accessory/tie/yellow, /obj/item/clothing/accessory/jacket/green)
+
+/obj/item/clothing/under/gov
+	name = "green formal uniform"
+	desc = "A neat proper uniform of someone on offical business. The collar is <i>immaculately</i> starched."
+	icon_state = "greensuit"
+	item_state_slots = list(slot_r_hand_str = "centcom", slot_l_hand_str = "centcom")
+	starting_accessories = list(/obj/item/clothing/accessory/tie/darkgreen)
+	rolled_sleeves = 0
+
+/obj/item/clothing/under/gov/skirt
+	name = "green formal skirt"
+	desc = "A neat proper uniform of someone on offical business. The top button is sewn shut."
+	icon_state = "greensuit_skirt"
+
+/obj/item/clothing/under/suit_jacket/green/skirt
+	name = "green skirt suit"
+	icon_state = "green_suit_skirt"
+
 /obj/item/clothing/under/suit_jacket/checkered
 	name = "checkered suit"
 	desc = "That's a very nice suit you have there. Shame if something were to happen to it, eh?"
@@ -754,6 +772,20 @@ Uniforms and such
 	name = "checkered skirt"
 	icon_state = "checkered_suit_skirt"
 
+/obj/item/clothing/under/suit_jacket/gambler
+	name = "gambling suit"
+	desc = "The suit of a gambler. Lady luck be with you."
+	icon_state = "gambler_suit"
+	item_state_slots = list(slot_r_hand_str = "lawyer_black", slot_l_hand_str = "lawyer_black")
+	starting_accessories = list(/obj/item/clothing/accessory/tie/black, /obj/item/clothing/accessory/jacket/gambler)
+
+/obj/item/clothing/under/suit_jacket/extravagant
+	name = "extravagant suit"
+	desc = "An extravagant suit. Perfect for being over dramatic."
+	icon_state = "extravagant_suit"
+	item_state_slots = list(slot_r_hand_str = "lawyer_black", slot_l_hand_str = "lawyer_black")
+	starting_accessories = list(/obj/item/clothing/accessory/jacket/extravagant)
+
 /obj/item/clothing/under/suit_jacket/tan
 	name = "tan suit"
 	desc = "A tan suit. Smart, but casual."
@@ -764,13 +796,6 @@ Uniforms and such
 /obj/item/clothing/under/suit_jacket/tan/skirt
 	name = "tan skirt"
 	icon_state = "tan_suit_skirt"
-
-/obj/item/clothing/under/serviceoveralls
-	name = "workman outfit"
-	desc = "The very image of a working man. Not that you're probably doing work."
-	icon_state = "mechanic"
-	item_state_slots = list(slot_r_hand_str = "cargo", slot_l_hand_str = "cargo")
-	rolled_sleeves = 0
 
 /obj/item/clothing/under/cheongsam
 	name = "white cheongsam"
@@ -812,6 +837,18 @@ Uniforms and such
 	name = "dark blue cheongsam"
 	desc = "It is a dark blue cheongsam dress."
 	icon_state = "cheongsam-darkblue"
+
+/obj/item/clothing/under/qipao_colorable
+	name = "qipao"
+	desc = "A traditional Chinese women's garment, typically made from silk."
+	icon_state = "qipao"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+
+/obj/item/clothing/under/qipao2_colorable
+	name = "slim qipao"
+	desc = "A traditional Chinese women's garment, typically made from silk. This one is fairly slim."
+	icon_state = "qipao2"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 
 /obj/item/clothing/under/blazer
 	name = "blue blazer"
@@ -869,47 +906,56 @@ Uniforms and such
 	name = "ripped punk jeans"
 	desc = "Black ripped jeans and a fishnet top. How punk."
 	icon_state = "rippedpunk"
-	index = 1
 
 /obj/item/clothing/under/greenasym
 	name = "green asymmetrical jumpsuit"
 	desc = "A green futuristic uniform with asymmetrical pants. Trendy!"
 	icon_state = "greenasym"
-	index = 1
 
 /obj/item/clothing/under/cyberpunkharness
 	name = "cyberpunk strapped harness"
 	desc = "A cyberpunk styled harness and pants. Perfect for your dystopian future."
 	icon_state = "cyberhell"
-	index = 1
 
 /obj/item/clothing/under/blackngold
 	name = "black and gold gown"
 	desc = "A black and gold gown. You get the impression this is typically worn for religious purposes."
 	icon_state = "blackngold"
-	index = 1
 
 /obj/item/clothing/under/sheerblue
 	name = "sheer blue dress"
 	desc = "An entirely sheer blue dress. Best worn with something underneath!"
 	icon_state = "sheerblue"
-	index = 1
 
 /obj/item/clothing/under/disheveled
 	name = "disheveled suit"
 	desc = "What might pass as well maintained formal attire. If you're blind."
 	icon_state = "disheveled"
-	index = 1
 
 /obj/item/clothing/under/flower_skirt
 	name = "flower skirt"
 	desc = "A flowery skirt that comes in a variety of colors."
 	icon_state = "flowerskirt"
-	index = 1
+
+/obj/item/clothing/under/fashionminiskirt
+	name = "fashionable miniskirt"
+	desc = "An impractically short miniskirt allegedly making waves through the local fashion scene."
+	icon_state = "miniskirt_fashion"
+
+/obj/item/clothing/under/retrosweater
+	name = "retro sweater"
+	desc = "A rugged cableknit sweater and leather pants, fit for a dashing space adventurer."
+	icon_state = "retro_sweater"
+
+/obj/item/clothing/under/wednesday
+	name = "cropped sweater skirt"
+	desc = "A cropped green sweater and matching miniskirt."
+	icon_state = "wednesday"
 
 /*
- * swimsuit
+ * Swimsuit
  */
+
 /obj/item/clothing/under/swimsuit/
 	siemens_coefficient = 1
 	body_parts_covered = 0
@@ -969,9 +1015,35 @@ Uniforms and such
 	desc = "No honest man would wear this abomination"
 	icon_state = "mankini"
 
+/obj/item/clothing/under/swimsuit/cowbikini
+	name = "cow print bikini"
+	desc = "A rather skimpy cow patterned swimsuit."
+	icon_state = "swim_cow"
+
+/obj/item/clothing/under/wetsuit
+	name = "wetsuit"
+	desc = "For when you need to scuba dive your way into an enemy base."
+	icon_state = "wetsuit"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+
+/obj/item/clothing/under/wetsuit_skimpy
+	name = "tactical wetsuit"
+	desc = "For when you need to scuba dive your way into an enemy base but still want to show off a little skin."
+	icon_state = "wetsuit_skimpy"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+
+/obj/item/clothing/under/wetsuit_rec
+	name = "recreational wetsuit"
+	desc = "For when you need to kayak your way into an enemy base."
+	icon_state = "wetsuit_rec"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	cold_protection = UPPER_TORSO|LOWER_TORSO
+
 /*
- * pyjamas
+ * Pyjamas
  */
+
 /obj/item/clothing/under/bluepyjamas
 	name = "blue pyjamas"
 	desc = "Slightly old-fashioned sleepwear."
@@ -986,79 +1058,11 @@ Uniforms and such
 	item_state_slots = list(slot_r_hand_str = "red", slot_l_hand_str = "red")
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 
-/*
- *Misc Uniforms
- */
-
-/obj/item/clothing/under/aether
-	name = "\improper Aether jumpsuit"
-	desc = "A jumpsuit belonging to Aether Atmospherics and Recycling, a Trans-Stellar that supplies recycling and atmospheric systems to colonies."
-	icon_state = "aether"
-	worn_state = "aether"
-
-/obj/item/clothing/under/pcrc
-	name = "\improper PCRC uniform"
-	desc = "A uniform belonging to Proxima Centauri Risk Control, a private security firm."
-	icon_state = "pcrc"
-	item_state = "jensensuit"
-	worn_state = "pcrc"
-
-/obj/item/clothing/under/grayson
-	name = "\improper Grayson overalls"
-	desc = "A set of overalls belonging to Grayson Manufactories, a mining Trans-Stellar."
-	icon_state = "mechanic"
-	worn_state = "mechanic"
-
-/obj/item/clothing/under/wardt
-	name = "\improper Ward-Takahashi jumpsuit"
-	desc = "A jumpsuit belonging to Ward-Takahashi, a Trans-Stellar in the consumer goods market."
-	icon_state = "robotics2"
-	worn_state = "robotics2"
-
-/obj/item/clothing/under/mbill
-	name = "\improper Major Bill's uniform"
-	desc = "A uniform belonging to Major Bill's Transportation, a shipping megacorporation."
-	icon_state = "mbill"
-	worn_state = "mbill"
-	catalogue_data = list(/datum/category_item/catalogue/information/organization/major_bills)
-
-/obj/item/clothing/under/confederacy
-	name = "\improper Confederacy uniform"
-	desc = "A military uniform belonging to the Confederacy of Man, an independent human government."
-	icon_state = "confed"
-	worn_state = "confed"
-
-/obj/item/clothing/under/saare
-	name = "\improper SAARE uniform"
-	desc = "A dress uniform belonging to Stealth Assault Enterprises, a minor private military corporation."
-	icon_state = "saare"
-	worn_state = "saare"
-
-/obj/item/clothing/under/frontier
-	name = "frontier clothes"
-	desc = "A rugged flannel shirt and denim overalls. A popular style among frontier colonists."
-	icon_state = "frontier"
-	worn_state = "frontier"
-
-/obj/item/clothing/under/focal
-	name = "\improper Focal Point jumpsuit"
-	desc = "A jumpsuit belonging to Focal Point Energistics, an engineering megacorporation."
-	icon_state = "focal"
-	worn_state = "focal"
-
-/obj/item/clothing/under/hephaestus
-	name = "\improper Hephaestus jumpsuit"
-	desc = "A jumpsuit belonging to Hephaestus Industries, a Trans-Stellar best known for its arms production."
-	icon_state = "heph"
-	worn_state = "heph"
-
 /obj/item/clothing/under/rank/psych/turtleneck/sweater
 	desc = "A warm looking sweater and a pair of dark blue slacks."
 	name = "sweater"
 	icon_state = "turtleneck"
 	worn_state = "turtleneck"
-
-//Uniforms end above here.
 
 /obj/item/clothing/under/medigown
 	name = "medical gown"
@@ -1145,3 +1149,275 @@ Uniforms and such
 
 /obj/item/clothing/under/color/ranger/yellow
 	unicolor = "yellow"
+
+/obj/item/clothing/under/boater
+	name = "boater outfit"
+	desc = "A classic outfit for those with a nautical inclination."
+	icon_state = "boater"
+	worn_state = "boater"
+
+/obj/item/clothing/under/tourist_1
+	name = "summer outfit"
+	desc = "The perfect outfit to wear out of town."
+	icon_state = "tourist_1"
+	worn_state = "tourist_1"
+
+/obj/item/clothing/under/tourist_2
+	name = "summer outfit"
+	desc = "The perfect outfit to wear out of town."
+	icon_state = "tourist_2"
+	worn_state = "tourist_2"
+
+/obj/item/clothing/under/relaxwear_1
+	name = "casual outfit"
+	desc = "Something casual to wear out on the town. Pairs well with the holiday season."
+	icon_state = "relaxwear_1"
+	worn_state = "relaxwear_1"
+	starting_accessories = list(/obj/item/clothing/accessory/wcoat/swvest/red)
+
+/obj/item/clothing/under/relaxwear_2
+	name = "relaxing outfit"
+	desc = "A comfy looking set of clothes to relax in, even if the style is a bit dated."
+	icon_state = "relaxwear_2"
+	worn_state = "relaxwear_2"
+	starting_accessories = list(/obj/item/clothing/accessory/wcoat/swvest/green)
+
+/obj/item/clothing/under/serviceoveralls
+	name = "workman outfit"
+	desc = "The very image of a working man. Not that you're probably doing work."
+	icon_state = "mechanic"
+	item_state_slots = list(slot_r_hand_str = "cargo", slot_l_hand_str = "cargo")
+	rolled_sleeves = 0
+
+/obj/item/clothing/under/frontier
+	name = "frontier clothes"
+	desc = "A rugged flannel shirt and denim overalls. A popular style among frontier colonists."
+	icon_state = "frontier"
+	worn_state = "frontier"
+
+/obj/item/clothing/under/rustler
+	name = "rustler outfit"
+	desc = "A rugged outfit for rustling cattle out on the frontier."
+	icon_state = "rustler"
+	worn_state = "rustler"
+
+/obj/item/clothing/under/cowboy
+	name = "cowboy clothes"
+	desc = "Some rugged clothes for hard labor out on the farm."
+	icon_state = "cowboy"
+	worn_state = "cowboy"
+
+/obj/item/clothing/under/cowboy/tan
+	name = "tan cowboy clothes"
+	icon_state = "cowboy_tan"
+	worn_state = "cowboy_tan"
+
+/obj/item/clothing/under/cowboy/brown
+	name = "brown cowboy clothes"
+	icon_state = "cowboy_brown"
+	worn_state = "cowboy_brown"
+
+/obj/item/clothing/under/cowboy/grey
+	name = "grey cowboy clothes"
+	icon_state = "cowboy_grey"
+	worn_state = "cowboy_grey"
+
+/obj/item/clothing/under/primitive
+	name = "primitive clothes"
+	desc = "Some patched together rags. Better than being naked."
+	force = 0
+	icon_state = "rag"
+	worn_state = "rag"
+
+/obj/item/clothing/under/curator
+	name = "curator uniform"
+	desc = "A rugged uniform suitable for treasure hunting."
+	icon_state = "curator"
+	worn_state = "curator"
+
+/*
+ * Modern
+ */
+
+/obj/item/clothing/under/moderncoat
+	name = "modern wrapped coat"
+	desc = "The cutting edge of fashion."
+	icon_state = "mod_coat"
+	worn_state = "mod_coat"
+	item_state_slots = list(slot_r_hand_str = "red", slot_l_hand_str = "red")
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
+
+/obj/item/clothing/under/modjump
+	name = "modern jumpsuit"
+	desc = "A stylish jumpsuit of modern culture."
+	icon_state = "mod_jump"
+	worn_state = "mod_jump"
+	item_state_slots = list(slot_r_hand_str = "orange", slot_l_hand_str = "orange")
+
+/obj/item/clothing/under/modjump2
+	name = "modern outfit"
+	desc = "A stylish outfit of modern culture."
+	icon_state = "mod_jump2"
+	worn_state = "mod_jump2"
+	item_state_slots = list(slot_r_hand_str = "black", slot_l_hand_str = "black")
+
+/obj/item/clothing/under/modjump3
+	name = "cyber jumpsuit"
+	desc = "A cool cyberpunk styled jumpsuit. The lights on the back glitched out and don't work."
+	icon_state = "cyber"
+	worn_state = "cyber"
+	item_state_slots = list(slot_r_hand_str = "grey", slot_l_hand_str = "grey")
+
+/*
+ * Corporate Uniforms
+ */
+
+/obj/item/clothing/under/mbill
+	name = "\improper Major Bill's uniform"
+	desc = "A uniform belonging to Major Bill's Transportation, a shipping megacorporation."
+	icon_state = "mbill"
+	worn_state = "mbill"
+	catalogue_data = list(/datum/category_item/catalogue/information/organization/major_bills)
+
+/obj/item/clothing/under/mbill_flight
+	name = "\improper Major Bill's flightsuit"
+	desc = "A flightsuit belonging to Major Bill's Transportation, a shipping megacorporation."
+	icon_state = "mbill_flight"
+	worn_state = "mbill_flight"
+	catalogue_data = list(/datum/category_item/catalogue/information/organization/major_bills)
+	starting_accessories = list(/obj/item/clothing/accessory/storage/webbing/pilot1)
+	rolled_sleeves = 0
+
+/obj/item/clothing/under/corp/aether
+	name = "\improper Aether jumpsuit"
+	desc = "A jumpsuit belonging to Aether Atmospherics and Recycling, a Trans-Stellar that supplies recycling and atmospheric systems to colonies."
+	icon_state = "aether"
+	worn_state = "aether"
+
+/obj/item/clothing/under/corp/pcrc
+	name = "\improper PCRC uniform"
+	desc = "A uniform belonging to Proxima Centauri Risk Control, a private security firm."
+	icon_state = "pcrc"
+	item_state = "jensensuit"
+	worn_state = "pcrc"
+
+/obj/item/clothing/under/corp/centauri
+	name = "\improper Centauri Provisions jumpsuit"
+	desc = "A jumpsuit belonging to Centauri Provisions, a Trans-Stellar best known for its food and drink products."
+	icon_state = "centauri"
+	worn_state = "centauri"
+
+/obj/item/clothing/under/corp/grayson
+	name = "\improper Grayson overalls"
+	desc = "A set of overalls belonging to Grayson Manufactories, a mining Trans-Stellar."
+	icon_state = "grayson_mech"
+	worn_state = "grayson_mech"
+
+/obj/item/clothing/under/corp/grayson_jump
+	name = "\improper Grayson jumpsuit"
+	desc = "A jumpsuit belonging to Grayson Manufactories, a mining Trans-Stellar."
+	icon_state = "grayson"
+	worn_state = "grayson"
+	rolled_sleeves = 0
+
+/obj/item/clothing/under/corp/wardt
+	name = "\improper Ward-Takahashi jumpsuit"
+	desc = "A jumpsuit belonging to Ward-Takahashi, a Trans-Stellar in the consumer goods market."
+	icon_state = "robotics2"
+	worn_state = "robotics2"
+
+/obj/item/clothing/under/corp/confederacy
+	name = "\improper Confederacy uniform"
+	desc = "A military uniform belonging to the Confederacy of Man, an independent human government."
+	icon_state = "confed"
+	worn_state = "confed"
+
+/obj/item/clothing/under/corp/saare
+	name = "\improper SAARE uniform"
+	desc = "A dress uniform belonging to Stealth Assault Enterprises, a minor private military corporation."
+	icon_state = "saare"
+	worn_state = "saare"
+
+/obj/item/clothing/under/corp/focal
+	name = "\improper Focal Point jumpsuit"
+	desc = "A jumpsuit belonging to Focal Point Energistics, an engineering megacorporation."
+	icon_state = "focal"
+	worn_state = "focal"
+
+/obj/item/clothing/under/corp/wulf
+	name = "\improper Wulf jumpsuit"
+	desc = "A jumpsuit belonging to Wulf Aeronautics, a ship-building and propulsion systems Trans-Stellar."
+	icon_state = "wulf"
+	worn_state = "wulf"
+	rolled_sleeves = 0
+
+/obj/item/clothing/under/corp/hephaestus
+	name = "\improper Hephaestus jumpsuit"
+	desc = "A jumpsuit belonging to Hephaestus, a Trans-Stellar best known for high-grade arms manufacturing."
+	icon_state = "heph"
+	worn_state = "heph"
+	rolled_sleeves = 0
+
+/obj/item/clothing/under/corp/kaleidoscope
+	name = "\improper Kaleidoscope uniform"
+	desc = "A science uniform belonging to Kaleidoscope Cosmetics, a cosmetic and gene-modification trans-stellar."
+	icon_state = "kaleido"
+	worn_state = "kaleido"
+	rolled_sleeves = 0
+
+/obj/item/clothing/under/corp/veymed
+	name = "\improper Vey-Med uniform"
+	desc = "A uniform belonging to Vey-Medical, a Skrellian biomedical Trans-Stellar."
+	icon_state = "veymed"
+	worn_state = "veymed"
+	rolled_sleeves = 0
+
+/obj/item/clothing/under/corp/wardt
+	name = "\improper Ward-Takahashi jumpsuit"
+	desc = "A jumpsuit belonging to Ward-Takahashi, a Trans-Stellar in the consumer goods market."
+	icon_state = "robotics2"
+	worn_state = "robotics2"
+
+/obj/item/clothing/under/corp/xion
+	name = "\improper Xion jumpsuit"
+	desc = "A jumpsuit belonging to Xion Manufacturing, an industrial equipment Trans-Stellar."
+	icon_state = "xion"
+	worn_state = "xion"
+	rolled_sleeves = 0
+
+/obj/item/clothing/under/corp/zenghu
+	name = "\improper Zeng-Hu jumpsuit"
+	desc = "A jumpsuit belonging to Zeng-Hu Pharmaceuticals, a Trans-Stellar in the business of exactly what you'd expect.."
+	icon_state = "zenghu"
+	worn_state = "zenghu"
+	starting_accessories = list(/obj/item/clothing/accessory/tie/red)
+	rolled_sleeves = 0
+
+/obj/item/clothing/under/corp/morpheus
+	name = "\improper Morpheus jumpsuit"
+	desc = "A uniform belonging to Morpheus Cyberkinetics, a positronic-run cybernetics Trans-Stellar."
+	icon_state = "morpheus"
+	worn_state = "morpheus"
+
+/obj/item/clothing/under/corp/xion
+	name = "\improper Xion jumpsuit"
+	desc = "A jumpsuit belonging to Xion Manufacturing, an industrial equipment Trans-Stellar."
+	icon_state = "xion"
+	worn_state = "xion"
+	rolled_sleeves = 0
+
+/obj/item/clothing/under/corp/hedberg
+	name = "\improper Hedberg law enforcement uniform"
+	desc = "A sturdy civilian law enforcement uniform belonging to the Hedberg-Hammarstrom private security corporation."
+	icon_state = "hedberg"
+	worn_state = "hedberg"
+	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0) //Equivalent to security officer's jumpsuit
+	rolled_sleeves = 0
+
+/obj/item/clothing/under/corp/hedbergtech
+	name = "\improper Hedberg technician uniform"
+	desc = "A technician's uniform belonging to the Hedberg-Hammarstrom private security corporation. It is lightly shielded against radiation."
+	icon_state = "hedberg_tech"
+	worn_state = "hedberg_tech"
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 10) // Equivalent to engineer's jumpsuit.
+	rolled_sleeves = 0

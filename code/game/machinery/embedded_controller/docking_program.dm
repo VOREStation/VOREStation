@@ -61,7 +61,7 @@
 */
 
 
-/datum/computer/file/embedded_program/docking
+/datum/embedded_program/docking
 	var/tag_target				//the tag of the docking controller that we are trying to dock with
 	var/dock_state = STATE_UNDOCKED
 	var/control_mode = MODE_NONE
@@ -73,18 +73,18 @@
 	var/docking_codes			//would only allow docking when receiving signal with these, if set
 	var/display_name			//Override the name shown on docking monitoring program; defaults to area name + coordinates if unset
 
-/datum/computer/file/embedded_program/docking/New()
+/datum/embedded_program/docking/New()
 	..()
 	if(id_tag)
 		if(SSshuttles.docking_registry[id_tag])
-			crash_with("Docking controller tag [id_tag] had multiple associated programs.")
+			stack_trace("Docking controller tag [id_tag] had multiple associated programs.")
 		SSshuttles.docking_registry[id_tag] = src
 
-/datum/computer/file/embedded_program/docking/Destroy()
+/datum/embedded_program/docking/Destroy()
 	SSshuttles.docking_registry -= id_tag
 	return ..()
 
-/datum/computer/file/embedded_program/docking/receive_signal(datum/signal/signal, receive_method, receive_param)
+/datum/embedded_program/docking/receive_signal(datum/signal/signal, receive_method, receive_param)
 	var/receive_tag = signal.data["tag"]		//for docking signals, this is the sender id
 	var/command = signal.data["command"]
 	var/recipient = signal.data["recipient"]	//the intended recipient of the docking signal
@@ -149,7 +149,7 @@
 			if (receive_tag == tag_target)
 				reset()
 
-/datum/computer/file/embedded_program/docking/process()
+/datum/embedded_program/docking/process()
 	switch(dock_state)
 		if (STATE_DOCKING)	//waiting for our docking port to be ready for docking
 			if (ready_for_docking())
@@ -198,7 +198,7 @@
 		control_mode = MODE_NONE
 
 
-/datum/computer/file/embedded_program/docking/proc/initiate_docking(var/target)
+/datum/embedded_program/docking/proc/initiate_docking(var/target)
 	if (dock_state != STATE_UNDOCKED || control_mode == MODE_SERVER)	//must be undocked and not serving another request to begin a new docking handshake
 		return
 
@@ -207,7 +207,7 @@
 
 	send_docking_command(tag_target, "request_dock")
 
-/datum/computer/file/embedded_program/docking/proc/initiate_undocking()
+/datum/embedded_program/docking/proc/initiate_undocking()
 	if (dock_state != STATE_DOCKED || control_mode != MODE_CLIENT)		//must be docked and must be client to start undocking
 		return
 
@@ -220,36 +220,36 @@
 	send_docking_command(tag_target, "request_undock")
 
 //tell the docking port to start getting ready for docking - e.g. pressurize
-/datum/computer/file/embedded_program/docking/proc/prepare_for_docking()
+/datum/embedded_program/docking/proc/prepare_for_docking()
 	return
 
 //are we ready for docking?
-/datum/computer/file/embedded_program/docking/proc/ready_for_docking()
+/datum/embedded_program/docking/proc/ready_for_docking()
 	return 1
 
 //we are docked, open the doors or whatever.
-/datum/computer/file/embedded_program/docking/proc/finish_docking()
+/datum/embedded_program/docking/proc/finish_docking()
 	return
 
 //tell the docking port to start getting ready for undocking - e.g. close those doors.
-/datum/computer/file/embedded_program/docking/proc/prepare_for_undocking()
+/datum/embedded_program/docking/proc/prepare_for_undocking()
 	return
 
 //we are docked, open the doors or whatever.
-/datum/computer/file/embedded_program/docking/proc/finish_undocking()
+/datum/embedded_program/docking/proc/finish_undocking()
 	return
 
 //are we ready for undocking?
-/datum/computer/file/embedded_program/docking/proc/ready_for_undocking()
+/datum/embedded_program/docking/proc/ready_for_undocking()
 	return 1
 
-/datum/computer/file/embedded_program/docking/proc/enable_override()
+/datum/embedded_program/docking/proc/enable_override()
 	override_enabled = 1
 
-/datum/computer/file/embedded_program/docking/proc/disable_override()
+/datum/embedded_program/docking/proc/disable_override()
 	override_enabled = 0
 
-/datum/computer/file/embedded_program/docking/proc/reset()
+/datum/embedded_program/docking/proc/reset()
 	dock_state = STATE_UNDOCKED
 	broadcast_docking_status()
 
@@ -258,23 +258,23 @@
 	response_sent = 0
 	received_confirm = 0
 
-/datum/computer/file/embedded_program/docking/proc/force_undock()
+/datum/embedded_program/docking/proc/force_undock()
 	//to_world("[id_tag]: forcing undock")
 	if (tag_target)
 		send_docking_command(tag_target, "dock_error")
 	reset()
 
-/datum/computer/file/embedded_program/docking/proc/docked()
+/datum/embedded_program/docking/proc/docked()
 	return (dock_state == STATE_DOCKED)
 
-/datum/computer/file/embedded_program/docking/proc/undocked()
+/datum/embedded_program/docking/proc/undocked()
 	return (dock_state == STATE_UNDOCKED)
 
 //returns 1 if we are saftely undocked (and the shuttle can leave)
-/datum/computer/file/embedded_program/docking/proc/can_launch()
+/datum/embedded_program/docking/proc/can_launch()
 	return undocked()
 
-/datum/computer/file/embedded_program/docking/proc/send_docking_command(var/recipient, var/command)
+/datum/embedded_program/docking/proc/send_docking_command(var/recipient, var/command)
 	var/datum/signal/signal = new
 	signal.data["tag"] = id_tag
 	signal.data["command"] = command
@@ -282,21 +282,21 @@
 	signal.data["code"] = docking_codes
 	post_signal(signal)
 
-/datum/computer/file/embedded_program/docking/proc/broadcast_docking_status()
+/datum/embedded_program/docking/proc/broadcast_docking_status()
 	var/datum/signal/signal = new
 	signal.data["tag"] = id_tag
 	signal.data["dock_status"] = get_docking_status()
 	post_signal(signal)
 
 //this is mostly for NanoUI
-/datum/computer/file/embedded_program/docking/proc/get_docking_status()
+/datum/embedded_program/docking/proc/get_docking_status()
 	switch (dock_state)
 		if (STATE_UNDOCKED) return "undocked"
 		if (STATE_DOCKING) return "docking"
 		if (STATE_UNDOCKING) return "undocking"
 		if (STATE_DOCKED) return "docked"
 
-/datum/computer/file/embedded_program/docking/proc/get_name()
+/datum/embedded_program/docking/proc/get_name()
 	return display_name ? display_name : "[get_area(master)] ([master.x], [master.y])"
 
 #undef STATE_UNDOCKED

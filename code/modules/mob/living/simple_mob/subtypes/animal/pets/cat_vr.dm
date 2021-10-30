@@ -31,13 +31,6 @@
 		"Your form begins to slowly soften and break apart, rounding out Runtime's swollen belly. The carnivorous cat rumbles and purrs happily at the feeling of such a filling meal.")
 
 // Ascian's Tactical Kitten
-/obj/item/weapon/holder/cat/fluff/tabiranth
-	name = "Spirit"
-	desc = "A small, inquisitive feline, who constantly seems to investigate his surroundings."
-	gender = MALE
-	icon_state = "kitten"
-	w_class = ITEMSIZE_SMALL
-
 /mob/living/simple_mob/animal/passive/cat/tabiranth
 	name = "Spirit"
 	desc = "A small, inquisitive feline, who constantly seems to investigate his surroundings."
@@ -74,7 +67,7 @@
 
 //Emergency teleport - Until a spriter makes something better
 /mob/living/simple_mob/animal/passive/cat/tabiranth/death(gibbed, deathmessage = "teleports away!")
-	overlays = list()
+	cut_overlays()
 	icon_state = ""
 	flick("kphaseout",src)
 	spawn(1 SECOND)

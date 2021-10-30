@@ -19,6 +19,16 @@
 	icon_state = "tealcarpet"
 	initial_flooring = /decl/flooring/carpet/tealcarpet
 
+/turf/simulated/floor/carpet/deco
+	name = "deco carpet"
+	icon_state = "decocarpet"
+	initial_flooring = /decl/flooring/carpet/deco
+	
+/turf/simulated/floor/carpet/retro
+	name = "retro carpet"
+	icon_state = "retrocarpet"
+	initial_flooring = /decl/flooring/carpet/retro
+
 // Legacy support for existing paths for blue carpet
 /turf/simulated/floor/carpet/blue
 	name = "blue carpet"
@@ -105,12 +115,6 @@
 	icon = 'icons/turf/flooring/tiles_vr.dmi'
 	icon_state = "techmaint"
 	initial_flooring = /decl/flooring/tiling/new_tile/techmaint
-
-/turf/simulated/floor/tiled/monofloor
-	name = "floor"
-	icon = 'icons/turf/flooring/tiles_vr.dmi'
-	icon_state = "monofloor"
-	initial_flooring = /decl/flooring/tiling/new_tile/monofloor
 
 /turf/simulated/floor/tiled/techfloor
 	name = "floor"
@@ -396,7 +400,7 @@
 //**** Here lives snow ****
 /turf/simulated/floor/snow
 	name = "snow"
-	icon = 'icons/turf/snow_new.dmi'
+	icon = 'icons/turf/outdoors.dmi'
 	icon_state = "snow"
 	initial_flooring = /decl/flooring/snow
 	var/list/crossed_dirs = list()
@@ -421,8 +425,6 @@
 	name = "snowy plating"
 	icon_state = "snowyplayingdrift"
 	initial_flooring = /decl/flooring/snow/plating/drift
-
-#define FOOTSTEP_SPRITE_AMT 2
 
 // TODO: Move foortprints to a datum-component signal so they can actually be applied to other turf types, like sand, or mud
 /turf/simulated/floor/snow/Entered(atom/A)

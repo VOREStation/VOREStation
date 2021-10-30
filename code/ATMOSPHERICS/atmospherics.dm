@@ -10,13 +10,14 @@ Pipelines + Other Objects -> Pipe network
 
 */
 /obj/machinery/atmospherics
-	anchored = 1
+	anchored = TRUE
 	idle_power_usage = 0
 	active_power_usage = 0
 	power_channel = ENVIRON
 	var/nodealert = 0
 	var/power_rating //the maximum amount of power the machine can use to do work, affects how powerful the machine is, in Watts
-
+	
+	unacidable = TRUE
 	layer = ATMOS_LAYER
 	plane = PLATING_PLANE
 
@@ -146,7 +147,7 @@ Pipelines + Other Objects -> Pipe network
 /obj/machinery/atmospherics/proc/reassign_network(datum/pipe_network/old_network, datum/pipe_network/new_network)
 	// Used when two pipe_networks are combining
 
-/obj/machinery/atmospherics/proc/return_network_air(datum/network/reference)
+/obj/machinery/atmospherics/proc/return_network_air(datum/pipe_network/reference)
 	// Return a list of gas_mixture(s) in the object
 	//		associated with reference pipe_network for use in rebuilding the networks gases list
 	// Is permitted to return null

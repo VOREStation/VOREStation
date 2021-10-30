@@ -1,6 +1,6 @@
 
 //Either pass the mob you wish to ban in the 'banned_mob' attribute, or the banckey, banip and bancid variables. If both are passed, the mob takes priority! If a mob is not passed, banckey is the minimum that needs to be passed! banip and bancid are optional.
-datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = -1, var/reason, var/job = "", var/rounds = 0, var/banckey = null, var/banip = null, var/bancid = null)
+/datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = -1, var/reason, var/job = "", var/rounds = 0, var/banckey = null, var/banip = null, var/bancid = null)
 
 	if(!check_rights(R_MOD,0) && !check_rights(R_BAN))	return
 
@@ -51,7 +51,7 @@ datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = 
 		validckey = 1
 	if(!validckey)
 		if(!banned_mob || (banned_mob && !IsGuestKey(banned_mob.key))) //VOREStation Edit Start.
-			var/confirm = alert(usr, "This ckey hasn't been seen, are you sure?", "Confirm Badmin" , "Yes", "No")
+			var/confirm = tgui_alert(usr, "This ckey hasn't been seen, are you sure?", "Confirm Badmin", list("Yes", "No"))
 			if(confirm == "No")
 				return //VOREStation Edit End
 
@@ -88,7 +88,7 @@ datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = 
 
 
 
-datum/admins/proc/DB_ban_unban(var/ckey, var/bantype, var/job = "")
+/datum/admins/proc/DB_ban_unban(var/ckey, var/bantype, var/job = "")
 
 	if(!check_rights(R_BAN))	return
 
@@ -152,7 +152,7 @@ datum/admins/proc/DB_ban_unban(var/ckey, var/bantype, var/job = "")
 
 	DB_ban_unban_by_id(ban_id)
 
-datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
+/datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 
 	if(!check_rights(R_BAN))	return
 
@@ -182,7 +182,7 @@ datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 	switch(param)
 		if("reason")
 			if(!value)
-				value = sanitize(input("Insert the new reason for [pckey]'s ban", "New Reason", "[reason]", null) as null|text)
+				value = sanitize(input(usr, "Insert the new reason for [pckey]'s ban", "New Reason", "[reason]", null) as null|text)
 				value = sql_sanitize_text(value)
 				if(!value)
 					to_chat(usr, "Cancelled")
@@ -193,7 +193,7 @@ datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 			message_admins("[key_name_admin(usr)] has edited a ban for [pckey]'s reason from [reason] to [value]",1)
 		if("duration")
 			if(!value)
-				value = input("Insert the new duration (in minutes) for [pckey]'s ban", "New Duration", "[duration]", null) as null|num
+				value = input(usr, "Insert the new duration (in minutes) for [pckey]'s ban", "New Duration", "[duration]", null) as null|num
 				if(!isnum(value) || !value)
 					to_chat(usr, "Cancelled")
 					return
@@ -202,13 +202,13 @@ datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 			message_admins("[key_name_admin(usr)] has edited a ban for [pckey]'s duration from [duration] to [value]",1)
 			update_query.Execute()
 		if("unban")
-			if(alert("Unban [pckey]?", "Unban?", "Yes", "No") == "Yes")
+			if(tgui_alert(usr, "Unban [pckey]?", "Unban?", list("Yes", "No")) == "Yes")
 				DB_ban_unban_by_id(banid)
 				return
 	to_chat(usr, "<span class='filter_adminlog'>Cancelled</span>")
 	return
 
-datum/admins/proc/DB_ban_unban_by_id(var/id)
+/datum/admins/proc/DB_ban_unban_by_id(var/id)
 
 	if(!check_rights(R_BAN))	return
 

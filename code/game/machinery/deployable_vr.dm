@@ -5,7 +5,7 @@
 	icon_state = "cutout_basic"
 
 	maxhealth = 15 //Weaker than normal barricade
-	anchored = 0
+	anchored = FALSE
 
 	var/fake_name = "unknown"
 	var/fake_desc = "You have to be closer to examine this creature."
@@ -36,7 +36,7 @@
 		return
 	toppled = TRUE
 	icon_state = "cutout_pushed_over"
-	density = 0
+	density = FALSE
 	name = initial(name)
 	desc = initial(desc)
 	visible_message("<span class='warning'>[src] topples over!</span>")
@@ -46,7 +46,7 @@
 		return
 	toppled = FALSE
 	icon_state = initial(icon_state)
-	density = 1
+	density = TRUE
 	name = fake_name
 	desc = fake_desc
 	visible_message("<span class='warning'>[src] is uprighted to their proper position.</span>")
@@ -71,7 +71,7 @@
 
 /obj/structure/barricade/cutout/attackby(var/obj/I, var/mob/user)
 	if(is_type_in_list(I, painters))
-		var/choice = input(user, "What would you like to paint the cutout as?", "Cutout Painting") as null|anything in cutout_types
+		var/choice = tgui_input_list(user, "What would you like to paint the cutout as?", "Cutout Painting", cutout_types)
 		if(!choice || !Adjacent(user, src) || I != user.get_active_hand())
 			return TRUE
 		if(do_after(user, 10 SECONDS, src))

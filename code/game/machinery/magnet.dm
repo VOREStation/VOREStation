@@ -10,7 +10,7 @@
 	name = "Electromagnetic Generator"
 	desc = "A device that uses station power to create points of magnetic energy."
 	plane = PLATING_PLANE
-	anchored = 1
+	anchored = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 50
 
@@ -188,8 +188,8 @@
 	name = "Magnetic Control Console"
 	icon = 'icons/obj/airlock_machines.dmi' // uses an airlock machine icon, THINK GREEN HELP THE ENVIRONMENT - RECYCLING!
 	icon_state = "airlock_control_standby"
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 45
 	var/frequency = 1449
@@ -298,7 +298,7 @@
 
 		// Broadcast the signal
 
-		radio_connection.post_signal(src, signal, filter = RADIO_MAGNETS)
+		radio_connection.post_signal(src, signal, radio_filter = RADIO_MAGNETS)
 
 		spawn(1)
 			updateUsrDialog() // pretty sure this increases responsiveness
@@ -365,7 +365,7 @@
 
 		// Broadcast the signal
 		spawn()
-			radio_connection.post_signal(src, signal, filter = RADIO_MAGNETS)
+			radio_connection.post_signal(src, signal, radio_filter = RADIO_MAGNETS)
 
 		if(speed == 10)
 			sleep(1)

@@ -1,7 +1,8 @@
 /obj/structure/girder
+	name = "girder"
 	icon_state = "girder"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	plane = PLATING_PLANE
 	w_class = ITEMSIZE_HUGE
 	var/state = 0
@@ -10,11 +11,12 @@
 	var/displaced_health = 50
 	var/current_damage = 0
 	var/cover = 50 //how much cover the girder provides against projectiles.
-	var/default_material = DEFAULT_WALL_MATERIAL
+	var/default_material = MAT_STEEL
 	var/datum/material/girder_material
 	var/datum/material/reinf_material
 	var/reinforcing = 0
 	var/applies_material_colour = 1
+	var/wall_type = /turf/simulated/wall
 
 /obj/structure/girder/New(var/newloc, var/material_key)
 	..(newloc)
@@ -68,7 +70,7 @@
 
 /obj/structure/girder/displaced
 	icon_state = "displaced"
-	anchored = 0
+	anchored = FALSE
 	health = 50
 	cover = 25
 
@@ -79,7 +81,7 @@
 /obj/structure/girder/proc/displace()
 	name = "displaced [girder_material.display_name] [initial(name)]"
 	icon_state = "displaced"
-	anchored = 0
+	anchored = FALSE
 	health = (displaced_health - round(current_damage / 4))
 	cover = 25
 
@@ -134,7 +136,7 @@
 
 /obj/structure/girder/proc/reset_girder()
 	name = "[girder_material.display_name] [initial(name)]"
-	anchored = 1
+	anchored = TRUE
 	cover = initial(cover)
 	health = min(max_health - current_damage,max_health)
 	state = 0
@@ -249,7 +251,7 @@
 		wall_fake = 1
 
 	var/turf/Tsrc = get_turf(src)
-	Tsrc.ChangeTurf(/turf/simulated/wall)
+	Tsrc.ChangeTurf(wall_type)
 	var/turf/simulated/wall/T = get_turf(src)
 	T.set_material(M, reinf_material, girder_material)
 	if(wall_fake)
@@ -397,7 +399,7 @@
 		if(RCD_FLOORWALL)
 			to_chat(user, span("notice", "You finish a wall."))
 			// This is mostly the same as using on a floor. The girder's material is preserved, however.
-			T.ChangeTurf(/turf/simulated/wall)
+			T.ChangeTurf(wall_type)
 			var/turf/simulated/wall/new_T = get_turf(src) // Ref to the wall we just built.
 			// Apparently set_material(...) for walls requires refs to the material singletons and not strings.
 			// This is different from how other material objects with their own set_material(...) do it, but whatever.
@@ -412,3 +414,9 @@
 			qdel(src)
 			return TRUE
 
+/obj/structure/girder/bay
+	wall_type = /turf/simulated/wall/bay
+
+/obj/structure/girder/eris
+	wall_type = /turf/simulated/wall/eris
+	

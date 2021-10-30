@@ -134,7 +134,7 @@
 	text = get_pin_data(IC_INPUT, 1)
 	if(!isnull(text))
 		var/obj/O = assembly ? loc : assembly
-		audible_message("[bicon(O)] \The [O.name] states, \"[text]\"")
+		audible_message("[bicon(O)] \The [O.name] states, \"[text]\"", runemessage = text)
 
 /obj/item/integrated_circuit/output/text_to_speech/advanced
 	name = "advanced text-to-speech circuit"

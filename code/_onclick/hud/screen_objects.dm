@@ -12,7 +12,7 @@
 	appearance_flags = TILE_BOUND|PIXEL_SCALE|NO_CLIENT_COLOR
 	layer = LAYER_HUD_BASE
 	plane = PLANE_PLAYER_HUD
-	unacidable = 1
+	unacidable = TRUE
 	var/obj/master = null	//A reference to the object in the slot. Grabs or items, generally.
 	var/datum/hud/hud = null // A reference to the owner HUD, if any.
 
@@ -494,13 +494,13 @@
 		if("Show Camera List")
 			if(isAI(usr))
 				var/mob/living/silicon/ai/AI = usr
-				var/camera = input(AI) in AI.get_camera_list()
+				var/camera = tgui_input_list(AI, "Pick Camera:", "Camera Choice", AI.get_camera_list())
 				AI.ai_camera_list(camera)
 
 		if("Track With Camera")
 			if(isAI(usr))
 				var/mob/living/silicon/ai/AI = usr
-				var/target_name = input(AI) in AI.trackable_mobs()
+				var/target_name = tgui_input_list(AI, "Pick Mob:", "Mob Choice", AI.trackable_mobs())
 				AI.ai_camera_track(target_name)
 
 		if("Toggle Camera Light")
@@ -602,11 +602,11 @@
 	if(!handcuff_overlay)
 		var/state = (hud.l_hand_hud_object == src) ? "l_hand_hud_handcuffs" : "r_hand_hud_handcuffs"
 		handcuff_overlay = image("icon"='icons/mob/screen_gen.dmi', "icon_state"=state)
-	overlays.Cut()
+	cut_overlays()
 	if(hud.mymob && iscarbon(hud.mymob))
 		var/mob/living/carbon/C = hud.mymob
 		if(C.handcuffed)
-			overlays |= handcuff_overlay
+			add_overlay(handcuff_overlay)
 			
 // PIP stuff
 /obj/screen/component_button
@@ -630,6 +630,13 @@
 	return ..()
 
 // Background 'floor'
+/obj/screen/setup_preview/pm_helper
+	icon = null
+	icon_state = null
+	appearance_flags = PLANE_MASTER
+	plane = PLANE_EMISSIVE
+	alpha = 0
+
 /obj/screen/setup_preview/bg
 	mouse_over_pointer = MOUSE_HAND_POINTER
 
@@ -711,7 +718,7 @@
 	var/obj/item/device/mapping_unit/owner
 	var/obj/screen/mapper/extras_holder/extras_holder
 
-/obj/screen/movable/mapper_holder/New(newloc, newowner)
+/obj/screen/movable/mapper_holder/Initialize(mapload, newowner)
 	owner = newowner
 	
 	mask_full = new(src) // Full white square mask
@@ -849,15 +856,15 @@
 
 /obj/screen/mapper/powbutton/Click()
 	if(!usr.checkClickCooldown())
-		return 1
+		return TRUE
 	if(usr.stat || usr.paralysis || usr.stunned || usr.weakened)
-		return 1
+		return TRUE
 	if(istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech
-		return 1
+		return TRUE
 	parent.powerClick()
 	flick("powClick",src)
 	usr << get_sfx("button")
-	return 1
+	return TRUE
 
 /obj/screen/mapper/mapbutton
 	icon = 'icons/effects/gpshud.dmi'
@@ -867,15 +874,15 @@
 
 /obj/screen/mapper/mapbutton/Click()
 	if(!usr.checkClickCooldown())
-		return 1
+		return TRUE
 	if(usr.stat || usr.paralysis || usr.stunned || usr.weakened)
-		return 1
+		return TRUE
 	if(istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech
-		return 1
+		return TRUE
 	parent.mapClick()
 	flick("mapClick",src)
 	usr << get_sfx("button")
-	return 1
+	return TRUE
 
 // Markers are 16x16, people have apparently settled on centering them on the 8,8 pixel
 /obj/screen/mapper/marker

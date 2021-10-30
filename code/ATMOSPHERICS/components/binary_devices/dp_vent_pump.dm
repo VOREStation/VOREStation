@@ -64,7 +64,7 @@
 	if(!check_icon_cache())
 		return
 
-	overlays.Cut()
+	cut_overlays()
 
 	var/vent_icon = "vent"
 
@@ -80,7 +80,7 @@
 	else
 		vent_icon += "[use_power ? "[pump_direction ? "out" : "in"]" : "off"]"
 
-	overlays += icon_manager.get_atmos_icon("device", , , vent_icon)
+	add_overlay(icon_manager.get_atmos_icon("device", , , vent_icon))
 
 /obj/machinery/atmospherics/binary/dp_vent_pump/update_underlays()
 	if(..())
@@ -235,25 +235,13 @@
 		pump_direction = 1
 
 	if(signal.data["set_input_pressure"])
-		input_pressure_min = between(
-			0,
-			text2num(signal.data["set_input_pressure"]),
-			ONE_ATMOSPHERE*50
-		)
+		input_pressure_min = between(0,	text2num(signal.data["set_input_pressure"]), ONE_ATMOSPHERE*50)
 
 	if(signal.data["set_output_pressure"])
-		output_pressure_max = between(
-			0,
-			text2num(signal.data["set_output_pressure"]),
-			ONE_ATMOSPHERE*50
-		)
+		output_pressure_max = between(0, text2num(signal.data["set_output_pressure"]), ONE_ATMOSPHERE*50)
 
 	if(signal.data["set_external_pressure"])
-		external_pressure_bound = between(
-			0,
-			text2num(signal.data["set_external_pressure"]),
-			ONE_ATMOSPHERE*50
-		)
+		external_pressure_bound = between(0, text2num(signal.data["set_external_pressure"]), ONE_ATMOSPHERE*50)
 
 	if(signal.data["status"])
 		spawn(2)

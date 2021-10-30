@@ -246,7 +246,8 @@
 		//VOREStation Edit End
 
 		for(var/mob/mob in mobs_to_relay)
-			var/message = mob.combine_message(message_pieces, verb, M)
+			var/list/combined = mob.combine_message(message_pieces, verb, M)
+			var/message = combined["formatted"]
 			var/name_used = M.GetVoice()
 			var/rendered = null
 			rendered = "<span class='game say'>[bicon(src)] <span class='name'>[name_used]</span> [message]</span>"
@@ -285,8 +286,7 @@
 	if (usr != src)
 		return //something is terribly wrong
 
-	var/confirm = alert(src, "Would you like to talk as [src.client.prefs.real_name], over a communicator?  \
-						This will reset your respawn timer, if someone answers.", "Join as Voice?", "Yes","No")
+	var/confirm = tgui_alert(src, "Would you like to talk as [src.client.prefs.real_name], over a communicator? This will reset your respawn timer, if someone answers.", "Join as Voice?", list("Yes","No"))
 	if(confirm == "No")
 		return
 
@@ -315,7 +315,7 @@
 		to_chat(src , "<span class='danger'>There are no available communicators, sorry.</span>")
 		return
 
-	var/choice = input(src,"Send a voice request to whom?") as null|anything in choices
+	var/choice = tgui_input_list(src,"Send a voice request to whom?", "Recipient Choice", choices)
 	if(choice)
 		var/obj/item/device/communicator/chosen_communicator = choice
 		var/mob/observer/dead/O = src

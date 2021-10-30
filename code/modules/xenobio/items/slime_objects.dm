@@ -29,9 +29,9 @@
 	spawn(0)
 		if(!C)
 			return
-		var/response = alert(C, "Someone is requesting a soul for a promethean. Would you like to play as one?", "Promethean request", "Yes", "No", "Never for this round")
+		var/response = tgui_alert(C, "Someone is requesting a soul for a promethean. Would you like to play as one?", "Promethean request", list("Yes", "No", "Never for this round"))
 		if(response == "Yes")
-			response = alert(C, "Are you sure you want to play as a promethean?", "Promethean request", "Yes", "No")
+			response = tgui_alert(C, "Are you sure you want to play as a promethean?", "Promethean request", list("Yes", "No"))
 		if(!C || 2 == searching)
 			return //handle logouts that happen whilst the alert is waiting for a response, and responses issued after a brain has been located.
 		if(response == "Yes")

@@ -51,7 +51,7 @@
 			return
            
 		else
-			visible_message("<span class='notice'>\The [src] starts licking the wounds on [M]'s [affecting.name] clean.</span>", \
+			visible_message("<b>\The [src]</b> starts licking the wounds on [M]'s [affecting.name] clean.", \
 					             "<span class='notice'>You start licking the wounds on [M]'s [affecting.name] clean.</span>" )
 
 			for (var/datum/wound/W in affecting.wounds)

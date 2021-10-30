@@ -1,7 +1,7 @@
 /obj/effect/fusion_particle_catcher
 	icon = 'icons/effects/effects.dmi'
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	invisibility = 101
 	var/obj/effect/fusion_em_field/parent
 	var/mysize = 0
@@ -26,10 +26,10 @@
 
 /obj/effect/fusion_particle_catcher/proc/UpdateSize()
 	if(parent.size >= mysize)
-		density = 1
+		density = TRUE
 		name = "collector [mysize] ON"
 	else
-		density = 0
+		density = FALSE
 		name = "collector [mysize] OFF"
 
 /obj/effect/fusion_particle_catcher/bullet_act(var/obj/item/projectile/Proj)

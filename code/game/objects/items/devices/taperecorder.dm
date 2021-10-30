@@ -5,7 +5,7 @@
 	item_state = "analyzer"
 	w_class = ITEMSIZE_SMALL
 
-	matter = list(DEFAULT_WALL_MATERIAL = 60,"glass" = 30)
+	matter = list(MAT_STEEL = 60,MAT_GLASS = 30)
 
 	var/emagged = 0.0
 	var/recording = 0.0
@@ -258,13 +258,13 @@
 		var/playedmessage = mytape.storedinfo[i]
 		if (findtextEx(playedmessage,"*",1,2)) //remove marker for action sounds
 			playedmessage = copytext(playedmessage,2)
-		T.audible_message("<font color=Maroon><B>Tape Recorder</B>: [playedmessage]</font>")
+		T.audible_message("<font color=Maroon><B>Tape Recorder</B>: [playedmessage]</font>", runemessage = playedmessage)
 
 		if(mytape.storedinfo.len < i+1)
 			playsleepseconds = 1
 			sleep(10)
 			T = get_turf(src)
-			T.audible_message("<font color=Maroon><B>Tape Recorder</B>: End of recording.</font>")
+			T.audible_message("<font color=Maroon><B>Tape Recorder</B>: End of recording.</font>", runemessage = "click")
 			break
 		else
 			playsleepseconds = mytape.timestamp[i+1] - mytape.timestamp[i]
@@ -272,7 +272,7 @@
 		if(playsleepseconds > 14)
 			sleep(10)
 			T = get_turf(src)
-			T.audible_message("<font color=Maroon><B>Tape Recorder</B>: Skipping [playsleepseconds] seconds of silence</font>")
+			T.audible_message("<font color=Maroon><B>Tape Recorder</B>: Skipping [playsleepseconds] seconds of silence</font>", runemessage = "tape winding")
 			playsleepseconds = 1
 		sleep(10 * playsleepseconds)
 
@@ -282,7 +282,7 @@
 
 	if(emagged)
 		var/turf/T = get_turf(src)
-		T.audible_message("<font color=Maroon><B>Tape Recorder</B>: This tape recorder will self-destruct in... Five.</font>")
+		T.audible_message("<font color=Maroon><B>Tape Recorder</B>: This tape recorder will self-destruct in... Five.</font>", runemessage = "beep beep")
 		sleep(10)
 		T = get_turf(src)
 		T.audible_message("<font color=Maroon><B>Tape Recorder</B>: Four.</font>")
@@ -361,7 +361,7 @@
 	icon_state = "tape_white"
 	item_state = "analyzer"
 	w_class = ITEMSIZE_TINY
-	matter = list(DEFAULT_WALL_MATERIAL=20, "glass"=5)
+	matter = list(MAT_STEEL=20, MAT_GLASS=5)
 	force = 1
 	throwforce = 0
 	var/max_capacity = 1800
@@ -372,9 +372,9 @@
 
 
 /obj/item/device/tape/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(ruined)
-		overlays += "ribbonoverlay"
+		add_overlay("ribbonoverlay")
 
 
 /obj/item/device/tape/fire_act()

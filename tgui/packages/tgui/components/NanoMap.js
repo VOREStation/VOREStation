@@ -160,7 +160,9 @@ const NanoMapMarker = (props, context) => {
 
   const handleOnClick = e => {
     pauseEvent(e);
-    onClick(e);
+    if (onClick) {
+      onClick(e);
+    }
   };
 
   const rx = ((x * 2 * zoom) - zoom) - 3;

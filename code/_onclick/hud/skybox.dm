@@ -6,12 +6,13 @@
 /obj/screen/skybox
 	name = "skybox"
 	icon = null
+	vis_flags = NONE
 	appearance_flags = TILE_BOUND|PIXEL_SCALE
 	mouse_opacity = 0
 	anchored = TRUE
 	simulated = FALSE
 	screen_loc = "CENTER,CENTER"
-	layer = OBJ_LAYER
+	layer = BACKGROUND_LAYER
 	plane = SKYBOX_PLANE
 	blend_mode = BLEND_MULTIPLY // You actually need to do it this way or you see it in occlusion.
 
@@ -62,6 +63,5 @@
 		client.update_skybox()
 		client.skybox?.scale_to_view(client.view)
 
-#undef SKYBOX_BORDER
 #undef SKYBOX_PIXELS
 #undef SKYBOX_TURFS

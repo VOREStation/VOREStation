@@ -176,7 +176,7 @@
 	if(!check_interactivity(M))
 		return
 
-	var/input = sanitizeSafe(input("What do you want to name this?", "Rename", src.name) as null|text, MAX_NAME_LEN)
+	var/input = sanitizeSafe(input(usr, "What do you want to name this?", "Rename", src.name) as null|text, MAX_NAME_LEN)
 	if(src && input)
 		to_chat(M, "<span class='notice'>The machine now has a label reading '[input]'.</span>")
 		name = input
@@ -268,7 +268,7 @@
 			if(S.scan(target))
 				scanned = TRUE
 		if(scanned)
-			visible_message("<span class='notice'>\The [user] waves \the [src] around [target].</span>")
+			visible_message("<b>\The [user]</b> waves \the [src] around [target].")
 
 /obj/item/device/electronic_assembly/attackby(var/obj/item/I, var/mob/user)
 	if(can_anchor && I.is_wrench())
@@ -352,7 +352,7 @@
 
 	var/obj/item/integrated_circuit/input/choice
 	if(available_inputs)
-		var/selection = input(user, "What do you want to interact with?", "Interaction") as null|anything in input_selection
+		var/selection = tgui_input_list(user, "What do you want to interact with?", "Interaction", input_selection)
 		if(selection)
 			var/index = input_selection.Find(selection)
 			choice = available_inputs[index]

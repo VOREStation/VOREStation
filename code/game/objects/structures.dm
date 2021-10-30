@@ -1,16 +1,17 @@
 /obj/structure
 	icon = 'icons/obj/structures.dmi'
 	w_class = ITEMSIZE_NO_CONTAINER
+	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 
 	var/climbable
 	var/climb_delay = 3.5 SECONDS
 	var/breakable
 	var/parts
-	var/list/climbers = list()
+	var/list/climbers
 	var/block_turf_edges = FALSE // If true, turf edge icons will not be made on the turf this occupies.
 	
-	var/list/connections = list("0", "0", "0", "0")
-	var/list/other_connections = list("0", "0", "0", "0")
+	var/list/connections
+	var/list/other_connections
 	var/list/blend_objects = newlist() // Objects which to blend with
 	var/list/noblend_objects = newlist() //Objects to avoid blending with (such as children of listed blend objects.
 
@@ -34,7 +35,7 @@
 			if(H.species.can_shred(user))
 				attack_generic(user,1,"slices")
 
-	if(climbers.len && !(user in climbers))
+	if(LAZYLEN(climbers) && !(user in climbers))
 		user.visible_message("<span class='warning'>[user.name] shakes \the [src].</span>", \
 					"<span class='notice'>You shake \the [src].</span>")
 		structure_shaken()
@@ -88,7 +89,9 @@
 /obj/structure/proc/turf_is_crowded()
 	var/turf/T = get_turf(src)
 	if(!T || !istype(T))
-		return 0
+		return "empty void"
+	if(T.density)
+		return T
 	for(var/obj/O in T.contents)
 		if(istype(O,/obj/structure))
 			var/obj/structure/S = O
@@ -102,21 +105,24 @@
 		return
 
 	usr.visible_message("<span class='warning'>[user] starts climbing onto \the [src]!</span>")
-	climbers |= user
+	LAZYDISTINCTADD(climbers, user)
 
 	if(!do_after(user,(issmall(user) ? climb_delay * 0.6 : climb_delay)))
-		climbers -= user
+		LAZYREMOVE(climbers, user)
 		return
 
 	if (!can_climb(user, post_climb_check=1))
-		climbers -= user
+		LAZYREMOVE(climbers, user)
 		return
 
-	usr.forceMove(get_turf(src))
+	usr.forceMove(climb_to(user))
 
 	if (get_turf(user) == get_turf(src))
 		usr.visible_message("<span class='warning'>[user] climbs onto \the [src]!</span>")
-	climbers -= user
+	LAZYREMOVE(climbers, user)
+
+/obj/structure/proc/climb_to(var/mob/living/user)
+	return get_turf(src)
 
 /obj/structure/proc/structure_shaken()
 	for(var/mob/living/M in climbers)
@@ -203,7 +209,7 @@
 		if(can_visually_connect_to(S))
 			if(S.can_visually_connect())
 				if(propagate)
-					//S.update_connections() //Not here
+					S.update_connections()
 					S.update_icon()
 				dirs += get_dir(src, S)
 
@@ -251,6 +257,5 @@
 	return TRUE
 
 /obj/structure/proc/refresh_neighbors()
-	for(var/thing in RANGE_TURFS(1, src))
-		var/turf/T = thing
+	for(var/turf/T as anything in RANGE_TURFS(1, src))
 		T.update_icon()

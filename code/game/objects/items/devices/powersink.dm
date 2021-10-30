@@ -9,7 +9,7 @@
 	throw_speed = 1
 	throw_range = 2
 
-	matter = list(DEFAULT_WALL_MATERIAL = 750,"waste" = 750)
+	matter = list(MAT_STEEL = 750)
 
 	origin_tech = list(TECH_POWER = 3, TECH_ILLEGAL = 5)
 	var/drain_rate = 1500000		// amount of power to drain per tick
@@ -38,7 +38,7 @@
 					to_chat(user, "No exposed cable here to attach to.")
 					return
 				else
-					anchored = 1
+					anchored = TRUE
 					mode = 1
 					src.visible_message("<span class='notice'>[user] attaches [src] to the cable!</span>")
 					playsound(src, I.usesound, 50, 1)
@@ -50,7 +50,7 @@
 			if (mode == 2)
 				STOP_PROCESSING(SSobj, src) // Now the power sink actually stops draining the station's power if you unhook it. --NeoFite
 				STOP_PROCESSING_POWER_OBJECT(src)
-			anchored = 0
+			anchored = FALSE
 			mode = 0
 			src.visible_message("<span class='notice'>[user] detaches [src] from the cable!</span>")
 			set_light(0)

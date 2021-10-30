@@ -6,6 +6,7 @@
  *		Surgical Drill
  *		Scalpel
  *		Circular Saw
+ *		Bio-Regenerator
  */
 
 /obj/item/weapon/surgical
@@ -23,6 +24,16 @@
 	..()
 
 /*
+ * Bio-Regenerator
+ */
+/obj/item/weapon/surgical/bioregen
+	name="bioregenerator"
+	desc="A special tool used in surgeries which can pull toxins from and restore oxygen to organic tissue as well as recreate missing biological structures to allow otherwise irreperable flesh to be mended."
+	icon='icons/obj/surgery_vr.dmi'
+	icon_state="bioregen"
+	drop_sound = 'sound/items/drop/scrap.ogg'
+
+/*
  * Retractor
  */
 
@@ -30,7 +41,7 @@
 	name = "retractor"
 	desc = "Retracts stuff."
 	icon_state = "retractor"
-	matter = list(DEFAULT_WALL_MATERIAL = 10000, "glass" = 5000)
+	matter = list(MAT_STEEL = 10000, MAT_GLASS = 5000)
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	drop_sound = 'sound/items/drop/scrap.ogg'
 
@@ -41,7 +52,7 @@
 	name = "hemostat"
 	desc = "You think you have seen this before."
 	icon_state = "hemostat"
-	matter = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 2500)
+	matter = list(MAT_STEEL = 5000, MAT_GLASS = 2500)
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	attack_verb = list("attacked", "pinched")
 	drop_sound = 'sound/items/drop/scrap.ogg'
@@ -53,7 +64,7 @@
 	name = "cautery"
 	desc = "This stops bleeding."
 	icon_state = "cautery"
-	matter = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 2500)
+	matter = list(MAT_STEEL = 5000, MAT_GLASS = 2500)
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	attack_verb = list("burnt")
 	drop_sound = 'sound/items/drop/scrap.ogg'
@@ -66,18 +77,12 @@
 	desc = "You can drill using this item. You dig?"
 	icon_state = "drill"
 	hitsound = 'sound/weapons/circsawhit.ogg'
-	matter = list(DEFAULT_WALL_MATERIAL = 15000, "glass" = 10000)
+	matter = list(MAT_STEEL = 15000, MAT_GLASS = 10000)
 	force = 15.0
 	w_class = ITEMSIZE_NORMAL
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	attack_verb = list("drilled")
 	drop_sound = 'sound/items/drop/accessory.ogg'
-
-	suicide_act(mob/user)
-		var/datum/gender/TU = gender_datums[user.get_visible_gender()]
-		to_chat(viewers(user),pick("<span class='danger'>\The [user] is pressing \the [src] to [TU.his] temple and activating it! It looks like [TU.hes] trying to commit suicide.</span>",
-		                       "<span class='danger'>\The [user] is pressing \the [src] to [TU.his] chest and activating it! It looks like [TU.hes] trying to commit suicide.</span>"))
-		return (BRUTELOSS)
 
 /*
  * Scalpel
@@ -87,24 +92,17 @@
 	desc = "Cut, cut, and once more cut."
 	icon_state = "scalpel"
 	force = 10.0
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_EARS
 	throwforce = 5.0
 	throw_speed = 3
 	throw_range = 5
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
-	matter = list(DEFAULT_WALL_MATERIAL = 10000, "glass" = 5000)
+	matter = list(MAT_STEEL = 10000, MAT_GLASS = 5000)
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	drop_sound = 'sound/items/drop/knife.ogg'
-
-	suicide_act(mob/user)
-		var/datum/gender/TU = gender_datums[user.get_visible_gender()]
-		to_chat(viewers(user),pick("<span class='danger'>\The [user] is slitting [TU.his] wrists with the [src.name]! It looks like [TU.hes] trying to commit suicide.</span>", \
-		                      "<span class='danger'>\The [user] is slitting [TU.his] throat with the [src.name]! It looks like [TU.hes] trying to commit suicide.</span>", \
-		                      "<span class='danger'>\The [user] is slitting [TU.his] stomach open with the [src.name]! It looks like [TU.hes] trying to commit seppuku.</span>"))
-		return (BRUTELOSS)
 
 /*
  * Researchable Scalpels
@@ -159,10 +157,10 @@
 	throw_speed = 3
 	throw_range = 5
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
-	matter = list(DEFAULT_WALL_MATERIAL = 20000,"glass" = 10000)
+	matter = list(MAT_STEEL = 20000,MAT_GLASS = 10000)
 	attack_verb = list("attacked", "slashed", "sawed", "cut")
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 
 /obj/item/weapon/surgical/circular_saw/manager
 	name = "energetic bone diverter"
@@ -173,7 +171,7 @@
 	damtype = SEARING
 	w_class = ITEMSIZE_LARGE
 	origin_tech = list(TECH_BIO = 4, TECH_MATERIAL = 6, TECH_MAGNET = 6)
-	matter = list(DEFAULT_WALL_MATERIAL = 12500)
+	matter = list(MAT_STEEL = 12500)
 	attack_verb = list("attacked", "slashed", "seared", "cut")
 	toolspeed = 0.75
 

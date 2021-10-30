@@ -12,7 +12,8 @@
 	desc = "A conveyor belt."
 	plane = TURF_PLANE
 	layer = ABOVE_TURF_LAYER
-	anchored = 1
+	anchored = TRUE
+	active_power_usage = 100
 	circuit = /obj/item/weapon/circuitboard/conveyor
 	var/operating = OFF	// 1 if running forward, -1 if backwards, 0 if off
 	var/operable = 1	// true if can operate (no broken segments in this belt run)
@@ -35,8 +36,7 @@
 	update_dir()
 
 	if(on)
-		operating = FORWARDS
-		setmove()
+		set_operating(FORWARDS)
 
 	default_apply_parts()
 
@@ -46,13 +46,15 @@
 	else
 		speed_process = !speed_process // switching gears
 	if(speed_process) // high gear
-		STOP_MACHINE_PROCESSING(src)
-		START_PROCESSING(SSfastprocess, src)
+		update_active_power_usage(initial(idle_power_usage) * 4)
 	else // low gear
-		STOP_PROCESSING(SSfastprocess, src)
-		START_MACHINE_PROCESSING(src)
+		update_active_power_usage(initial(idle_power_usage))
+	update()
 
-/obj/machinery/conveyor/proc/setmove()
+/obj/machinery/conveyor/proc/set_operating(var/new_operating)
+	if(new_operating == operating)
+		return // No change
+	operating = new_operating
 	if(operating == FORWARDS)
 		movedir = forwards
 	else if(operating == BACKWARDS)
@@ -67,8 +69,8 @@
 
 /obj/machinery/conveyor/proc/update_dir()
 	if(!(dir in cardinal)) // Diagonal. Forwards is *away* from dir, curving to the right.
-		forwards = turn(dir, 135)
-		backwards = turn(dir, 45)
+		forwards = turn(dir, 45)
+		backwards = turn(dir, 135)
 	else
 		forwards = dir
 		backwards = turn(dir, 180)
@@ -77,6 +79,7 @@
 	if(stat & BROKEN)
 		icon_state = "conveyor-broken"
 		operating = OFF
+		update_use_power(USE_POWER_OFF)
 		return
 	if(!operable)
 		operating = OFF
@@ -84,14 +87,25 @@
 		operating = OFF
 	icon_state = "conveyor[operating]"
 
+	if(!operating)
+		update_use_power(USE_POWER_OFF)
+		return
+	if(speed_process) // high gear
+		STOP_MACHINE_PROCESSING(src)
+		START_PROCESSING(SSfastprocess, src)
+		update_use_power(USE_POWER_ACTIVE)
+	else // low gear
+		STOP_PROCESSING(SSfastprocess, src)
+		START_MACHINE_PROCESSING(src)
+		update_use_power(USE_POWER_ACTIVE)
+
 	// machine process
 	// move items to the target location
 /obj/machinery/conveyor/process()
 	if(stat & (BROKEN | NOPOWER))
-		return
+		return PROCESS_KILL
 	if(!operating)
-		return
-	use_power(100)
+		return PROCESS_KILL
 
 	affecting = loc.contents - src		// moved items will be all in loc
 	spawn(1)	// slight delay to prevent infinite propagation due to map order	//TODO: please no spawn() in process(). It's a very bad idea
@@ -177,8 +191,8 @@
 		C.set_operable(stepdir, id, op)
 
 /obj/machinery/conveyor/power_change()
-	..()
-	update()
+	if((. = ..()))
+		update()
 
 // the conveyor control switch
 //
@@ -197,7 +211,7 @@
 	var/id = "" 				// must match conveyor IDs to control them
 
 	var/list/conveyors		// the list of converyors that are controlled by this switch
-	anchored = 1
+	anchored = TRUE
 	var/speed_active = FALSE // are the linked conveyors on SSfastprocess?
 
 
@@ -242,8 +256,7 @@
 	operated = 0
 
 	for(var/obj/machinery/conveyor/C in conveyors)
-		C.operating = position
-		C.setmove()
+		C.set_operating(position)
 
 // attack with hand, switch position
 /obj/machinery/conveyor_switch/attack_hand(mob/user)

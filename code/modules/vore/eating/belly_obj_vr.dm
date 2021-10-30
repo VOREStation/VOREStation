@@ -31,6 +31,7 @@
 	var/transferchance = 0 					// % Chance of prey being
 	var/can_taste = FALSE					// If this belly prints the flavor of prey when it eats someone.
 	var/bulge_size = 0.25					// The minimum size the prey has to be in order to show up on examine.
+	var/display_absorbed_examine = FALSE	// Do we display absorption examine messages for this belly at all?
 	var/shrink_grow_size = 1				// This horribly named variable determines the minimum/maximum size it will shrink/grow prey to.
 	var/transferlocation					// Location that the prey is released if they struggle and get dropped off.
 	var/release_sound = "Splatter"			// Sound for letting someone out. Replaced from True/false
@@ -41,10 +42,15 @@
 	var/obj/item/weapon/storage/vore_egg/ownegg	// Is this belly creating an egg?
 	var/egg_type = "Egg"					// Default egg type and path.
 	var/egg_path = /obj/item/weapon/storage/vore_egg
-	var/list/emote_lists = list()			// Idle emotes that happen on their own, depending on the bellymode. Contains lists of strings indexed by bellymode
+	var/list/list/emote_lists = list()			// Idle emotes that happen on their own, depending on the bellymode. Contains lists of strings indexed by bellymode
 	var/emote_time = 60						// How long between stomach emotes at prey (in seconds)
 	var/emote_active = TRUE					// Are we even giving emotes out at all or not?
 	var/next_emote = 0						// When we're supposed to print our next emote, as a world.time
+
+	// Generally just used by AI
+	var/autotransferchance = 0 				// % Chance of prey being autotransferred to transfer location
+	var/autotransferwait = 10 				// Time between trying to transfer.
+	var/autotransferlocation				// Place to send them
 
 	//I don't think we've ever altered these lists. making them static until someone actually overrides them somewhere.
 	//Actual full digest modes
@@ -111,6 +117,10 @@
 		"They have something solid in their %belly!",
 		"It looks like they have something in their %belly!")
 
+	var/list/examine_messages_absorbed = list(
+		"Their body looks somewhat larger than usual around the area of their %belly.",
+		"Their %belly looks larger than usual.")
+
 	var/item_digest_mode = IM_DIGEST_FOOD	// Current item-related mode from item_digest_modes
 	var/contaminates = TRUE					// Whether the belly will contaminate stuff
 	var/contamination_flavor = "Generic"	// Determines descriptions of contaminated items
@@ -144,12 +154,14 @@
 		"transferchance",
 		"transferlocation",
 		"bulge_size",
+		"display_absorbed_examine",
 		"shrink_grow_size",
 		"struggle_messages_outside",
 		"struggle_messages_inside",
 		"digest_messages_owner",
 		"digest_messages_prey",
 		"examine_messages",
+		"examine_messages_absorbed",
 		"emote_lists",
 		"emote_time",
 		"emote_active",
@@ -203,6 +215,7 @@
 	//Messages if it's a mob
 	if(isliving(thing))
 		var/mob/living/M = thing
+		M.updateVRPanel()
 		if(desc)
 			to_chat(M, "<span class='notice'><B>[desc]</B></span>")
 		var/taste
@@ -211,7 +224,11 @@
 		vore_fx(M)
 		//Stop AI processing in bellies
 		if(M.ai_holder)
-			M.ai_holder.go_sleep()
+			M.ai_holder.handle_eaten()
+
+	// Intended for simple mobs
+	if(!owner.client && autotransferlocation && autotransferchance > 0)
+		addtimer(CALLBACK(src, /obj/belly/.proc/check_autotransfer, thing, autotransferlocation), autotransferwait)
 
 // Called whenever an atom leaves this belly
 /obj/belly/Exited(atom/movable/thing, atom/OldLoc)
@@ -227,6 +244,8 @@
 
 /obj/belly/proc/vore_fx(mob/living/L)
 	if(!istype(L))
+		return
+	if(!L.client)
 		return
 	if(!L.show_vore_fx)
 		L.clear_fullscreen("belly")
@@ -256,8 +275,7 @@
 	var/count = 0
 
 	//Iterate over contents and move them all
-	for(var/thing in contents)
-		var/atom/movable/AM = thing
+	for(var/atom/movable/AM as anything in contents)
 		if(isliving(AM))
 			var/mob/living/L = AM
 			if(L.absorbed && !include_absorbed)
@@ -357,33 +375,61 @@
 // but can easily make the message vary based on how many people are inside, etc.
 // Returns a string which shoul be appended to the Examine output.
 /obj/belly/proc/get_examine_msg()
-	if(contents.len && examine_messages.len)
-		var/formatted_message
-		var/raw_message = pick(examine_messages)
-		var/total_bulge = 0
+	if(!(contents.len) || !(examine_messages.len))
+		return ""
 
-		var/living_count = 0
-		for(var/mob/living/L in contents)
-			living_count++
+	var/formatted_message
+	var/raw_message = pick(examine_messages)
+	var/total_bulge = 0
 
-		formatted_message = replacetext(raw_message, "%belly", lowertext(name))
-		formatted_message = replacetext(formatted_message, "%pred", owner)
-		formatted_message = replacetext(formatted_message, "%prey", english_list(contents))
-		formatted_message = replacetext(formatted_message, "%count", contents.len)
-		formatted_message = replacetext(formatted_message, "%countprey", living_count)
-		for(var/mob/living/P in contents)
-			if(!P.absorbed) //This is required first, in case there's a person absorbed and not absorbed in a stomach.
-				total_bulge += P.size_multiplier
-		if(total_bulge >= bulge_size && bulge_size != 0)
-			return("<span class='warning'>[formatted_message]</span>")
-		else
-			return ""
+	var/living_count = 0
+	for(var/mob/living/L in contents)
+		living_count++
+
+	for(var/mob/living/P in contents)
+		if(!P.absorbed) //This is required first, in case there's a person absorbed and not absorbed in a stomach.
+			total_bulge += P.size_multiplier
+
+	if(total_bulge < bulge_size || bulge_size == 0)
+		return ""
+
+	formatted_message = replacetext(raw_message, "%belly", lowertext(name))
+	formatted_message = replacetext(formatted_message, "%pred", owner)
+	formatted_message = replacetext(formatted_message, "%prey", english_list(contents))
+	formatted_message = replacetext(formatted_message, "%countprey", living_count)
+	formatted_message = replacetext(formatted_message, "%count", contents.len)
+
+	return("<span class='warning'>[formatted_message]</span>")
+
+/obj/belly/proc/get_examine_msg_absorbed()
+	if(!(contents.len) || !(examine_messages_absorbed.len) || !display_absorbed_examine)
+		return ""
+
+	var/formatted_message
+	var/raw_message = pick(examine_messages_absorbed)
+
+	var/absorbed_count = 0
+	var/list/absorbed_victims = list()
+	for(var/mob/living/L in contents)
+		if(L.absorbed)
+			absorbed_victims += L
+			absorbed_count++
+
+	if(!absorbed_count)
+		return ""
+
+	formatted_message = replacetext(raw_message, "%belly", lowertext(name))
+	formatted_message = replacetext(formatted_message, "%pred", owner)
+	formatted_message = replacetext(formatted_message, "%prey", english_list(absorbed_victims))
+	formatted_message = replacetext(formatted_message, "%countprey", absorbed_count)
+
+	return("<span class='warning'>[formatted_message]</span>")
 
 // The next function gets the messages set on the belly, in human-readable format.
 // This is useful in customization boxes and such. The delimiter right now is \n\n so
 // in message boxes, this looks nice and is easily delimited.
 /obj/belly/proc/get_messages(type, delim = "\n\n")
-	ASSERT(type == "smo" || type == "smi" || type == "dmo" || type == "dmp" || type == "em" || type == "im_digest" || type == "im_hold" || type == "im_absorb" || type == "im_heal" || type == "im_drain")
+	ASSERT(type == "smo" || type == "smi" || type == "dmo" || type == "dmp" || type == "em" || type == "ema" || type == "im_digest" || type == "im_hold" || type == "im_absorb" || type == "im_heal" || type == "im_drain" || type == "im_steal" || type == "im_egg" || type == "im_shrink" || type == "im_grow" || type == "im_unabsorb")
 
 	var/list/raw_messages
 	switch(type)
@@ -397,6 +443,8 @@
 			raw_messages = digest_messages_prey
 		if("em")
 			raw_messages = examine_messages
+		if("ema")
+			raw_messages = examine_messages_absorbed
 		if("im_digest")
 			raw_messages = emote_lists[DM_DIGEST]
 		if("im_hold")
@@ -407,28 +455,37 @@
 			raw_messages = emote_lists[DM_HEAL]
 		if("im_drain")
 			raw_messages = emote_lists[DM_DRAIN]
-
+		if("im_steal")
+			raw_messages = emote_lists[DM_SIZE_STEAL]
+		if("im_egg")
+			raw_messages = emote_lists[DM_EGG]
+		if("im_shrink")
+			raw_messages = emote_lists[DM_SHRINK]
+		if("im_grow")
+			raw_messages = emote_lists[DM_GROW]
+		if("im_unabsorb")
+			raw_messages = emote_lists[DM_UNABSORB]
 	var/messages = null
 	if(raw_messages)
-		messages = list2text(raw_messages, delim)
+		messages = raw_messages.Join(delim)
 	return messages
 
 // The next function sets the messages on the belly, from human-readable var
 // replacement strings and linebreaks as delimiters (two \n\n by default).
 // They also sanitize the messages.
 /obj/belly/proc/set_messages(raw_text, type, delim = "\n\n")
-	ASSERT(type == "smo" || type == "smi" || type == "dmo" || type == "dmp" || type == "em" || type == "im_digest" || type == "im_hold" || type == "im_absorb" || type == "im_heal" || type == "im_drain")
+	ASSERT(type == "smo" || type == "smi" || type == "dmo" || type == "dmp" || type == "em" || type == "ema" || type == "im_digest" || type == "im_hold" || type == "im_absorb" || type == "im_heal" || type == "im_drain" || type == "im_steal" || type == "im_egg" || type == "im_shrink" || type == "im_grow" || type == "im_unabsorb")
 
-	var/list/raw_list = text2list(html_encode(raw_text),delim)
+	var/list/raw_list = splittext(html_encode(raw_text),delim)
 	if(raw_list.len > 10)
 		raw_list.Cut(11)
 		log_debug("[owner] tried to set [lowertext(name)] with 11+ messages")
 
 	for(var/i = 1, i <= raw_list.len, i++)
-		if((length(raw_list[i]) > 160 || length(raw_list[i]) < 10) && !(type == "im_digest" || type == "im_hold" || type == "im_absorb" || type == "im_heal" || type == "im_drain")) //160 is fudged value due to htmlencoding increasing the size
+		if((length(raw_list[i]) > 160 || length(raw_list[i]) < 10) && !(type == "im_digest" || type == "im_hold" || type == "im_absorb" || type == "im_heal" || type == "im_drain" || type == "im_steal" || type == "im_egg" || type == "im_shrink" || type == "im_grow" || type == "im_unabsorb")) //160 is fudged value due to htmlencoding increasing the size
 			raw_list.Cut(i,i)
 			log_debug("[owner] tried to set [lowertext(name)] with >121 or <10 char message")
-		else if((type == "im_digest" || type == "im_hold" || type == "im_absorb" || type == "im_heal" || type == "im_drain") && (length(raw_list[i]) > 510 || length(raw_list[i]) < 10))
+		else if((type == "im_digest" || type == "im_hold" || type == "im_absorb" || type == "im_heal" || type == "im_drain" || type == "im_steal" || type == "im_egg" || type == "im_shrink" || type == "im_grow" || type == "im_unabsorb") && (length(raw_list[i]) > 510 || length(raw_list[i]) < 10))
 			raw_list.Cut(i,i)
 			log_debug("[owner] tried to set [lowertext(name)] idle message with >501 or <10 char message")
 		else
@@ -449,6 +506,8 @@
 			digest_messages_prey = raw_list
 		if("em")
 			examine_messages = raw_list
+		if("ema")
+			examine_messages_absorbed = raw_list
 		if("im_digest")
 			emote_lists[DM_DIGEST] = raw_list
 		if("im_hold")
@@ -459,6 +518,16 @@
 			emote_lists[DM_HEAL] = raw_list
 		if("im_drain")
 			emote_lists[DM_DRAIN] = raw_list
+		if("im_steal")
+			emote_lists[DM_SIZE_STEAL] = raw_list
+		if("im_egg")
+			emote_lists[DM_EGG] = raw_list
+		if("im_shrink")
+			emote_lists[DM_SHRINK] = raw_list
+		if("im_grow")
+			emote_lists[DM_GROW] = raw_list
+		if("im_unabsorb")
+			emote_lists[DM_UNABSORB] = raw_list
 
 	return
 
@@ -478,11 +547,9 @@
 		for(var/obj/item/W in M)
 			if(istype(W, /obj/item/organ/internal/mmi_holder/posibrain))
 				var/obj/item/organ/internal/mmi_holder/MMI = W
-				var/atom/movable/brain = MMI.removed()
-				if(brain)
-					M.remove_from_mob(brain,owner)
-					brain.forceMove(src)
-					items_preserved += brain
+				var/obj/item/device/mmi/brainbox = MMI.removed()
+				if(brainbox)
+					items_preserved += brainbox
 			for(var/slot in slots)
 				var/obj/item/I = M.get_equipped_item(slot = slot)
 				if(I)
@@ -539,8 +606,7 @@
 	//This in particular will recurse oddly because if there is absorbed prey of prey of prey...
 	//it will just move them up one belly. This should never happen though since... when they were
 	//absobred, they should have been absorbed as well!
-	for(var/belly in M.vore_organs)
-		var/obj/belly/B = belly
+	for(var/obj/belly/B as anything in M.vore_organs)
 		for(var/mob/living/Mm in B)
 			if(Mm.absorbed)
 				absorb_living(Mm)
@@ -621,14 +687,14 @@
 	struggle_outer_message = replacetext(struggle_outer_message, "%pred", owner)
 	struggle_outer_message = replacetext(struggle_outer_message, "%prey", R)
 	struggle_outer_message = replacetext(struggle_outer_message, "%belly", lowertext(name))
-	struggle_outer_message = replacetext(struggle_outer_message, "%count", contents.len)
 	struggle_outer_message = replacetext(struggle_outer_message, "%countprey", living_count)
+	struggle_outer_message = replacetext(struggle_outer_message, "%count", contents.len)
 
 	struggle_user_message = replacetext(struggle_user_message, "%pred", owner)
 	struggle_user_message = replacetext(struggle_user_message, "%prey", R)
 	struggle_user_message = replacetext(struggle_user_message, "%belly", lowertext(name))
-	struggle_user_message = replacetext(struggle_user_message, "%count", contents.len)
 	struggle_user_message = replacetext(struggle_user_message, "%countprey", living_count)
+	struggle_user_message = replacetext(struggle_user_message, "%count", contents.len)
 
 	struggle_outer_message = "<span class='alert'>[struggle_outer_message]</span>"
 	struggle_user_message = "<span class='alert'>[struggle_user_message]</span>"
@@ -677,8 +743,7 @@
 
 		else if(prob(transferchance) && transferlocation) //Next, let's have it see if they end up getting into an even bigger mess then when they started.
 			var/obj/belly/dest_belly
-			for(var/belly in owner.vore_organs)
-				var/obj/belly/B = belly
+			for(var/obj/belly/B as anything in owner.vore_organs)
 				if(B.name == transferlocation)
 					dest_belly = B
 					break
@@ -745,6 +810,22 @@
 		owner.update_icon()
 	for(var/mob/living/M in contents)
 		M.updateVRPanel()
+
+//Autotransfer callback
+/obj/belly/proc/check_autotransfer(var/prey, var/autotransferlocation)
+	if(autotransferlocation && (autotransferchance > 0) && (prey in contents))
+		if(prob(autotransferchance))
+			var/obj/belly/dest_belly
+			for(var/obj/belly/B in owner.vore_organs)
+				if(B.name == autotransferlocation)
+					dest_belly = B
+					break
+			if(dest_belly)
+				transfer_contents(prey, dest_belly)
+		else
+			// Didn't transfer, so wait before retrying
+			// I feel like there's a way to make this timer looping using the normal looping thing, but pass in the ID and cancel it if we aren't looping again
+			addtimer(CALLBACK(src, .proc/check_autotransfer, prey, autotransferlocation), autotransferwait)
 
 // Belly copies and then returns the copy
 // Needs to be updated for any var changes
@@ -814,6 +895,11 @@
 	dupe.examine_messages.Cut()
 	for(var/I in examine_messages)
 		dupe.examine_messages += I
+
+	//examine_messages - strings
+	dupe.examine_messages_absorbed.Cut()
+	for(var/I in examine_messages_absorbed)
+		dupe.examine_messages_absorbed += I
 
 	//emote_lists - index: digest mode, key: list of strings
 	dupe.emote_lists.Cut()

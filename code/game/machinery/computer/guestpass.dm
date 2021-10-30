@@ -45,10 +45,10 @@
 			to_chat(user, "<span class='warning'>This guest pass is already deactivated!</span>")
 			return
 
-		var/confirm = alert("Do you really want to deactivate this guest pass? (you can't reactivate it)", "Confirm Deactivation", "Yes", "No")
+		var/confirm = tgui_alert(usr, "Do you really want to deactivate this guest pass? (you can't reactivate it)", "Confirm Deactivation", list("Yes", "No"))
 		if(confirm == "Yes")
 			//rip guest pass </3
-			user.visible_message("<span class='notice'>\The [user] deactivates \the [src].</span>")
+			user.visible_message("<b>\The [user]</b> deactivates \the [src].")
 			icon_state = "guest-invalid"
 			update_icon()
 			expiration_time = world.time
@@ -82,9 +82,10 @@
 	desc = "Used to print temporary passes for people. Handy!"
 	icon_state = "guest"
 	layer = ABOVE_WINDOW_LAYER
+	vis_flags = VIS_HIDE // They have an emissive that looks bad in openspace due to their wall-mounted nature
 	icon_keyboard = null
 	icon_screen = "pass"
-	density = 0
+	density = FALSE
 	circuit = /obj/item/weapon/circuitboard/guestpass
 
 	var/obj/item/weapon/card/id/giver
@@ -162,15 +163,15 @@
 			mode = params["mode"]
 
 		if("giv_name")
-			var/nam = sanitizeName(input("Person pass is issued to", "Name", giv_name) as text|null)
+			var/nam = sanitizeName(input(usr, "Person pass is issued to", "Name", giv_name) as text|null)
 			if(nam)
 				giv_name = nam
 		if("reason")
-			var/reas = sanitize(input("Reason why pass is issued", "Reason", reason) as text|null)
+			var/reas = sanitize(input(usr, "Reason why pass is issued", "Reason", reason) as text|null)
 			if(reas)
 				reason = reas
 		if("duration")
-			var/dur = input("Duration (in minutes) during which pass is valid (up to 360 minutes).", "Duration") as num|null //VOREStation Edit
+			var/dur = input(usr, "Duration (in minutes) during which pass is valid (up to 360 minutes).", "Duration") as num|null //VOREStation Edit
 			if(dur)
 				if(dur > 0 && dur <= 360) //VOREStation Edit
 					duration = dur

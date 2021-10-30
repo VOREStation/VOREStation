@@ -10,7 +10,8 @@ var/list/ventcrawl_machinery = list(
 	/obj/item/weapon/holder,
 	/obj/machinery/camera,
 	/obj/belly,
-	/obj/screen
+	/obj/screen,
+	/atom/movable/emissive_blocker
 	)
 	//VOREStation Edit : added /obj/belly, to this list, CI is complaining about this in his indentation check
 	//mob/living/simple_mob/borer, //VORESTATION AI TEMPORARY REMOVAL REPLACE BACK IN LIST WHEN RESOLVED //VOREStation Edit
@@ -103,7 +104,7 @@ var/list/ventcrawl_machinery = list(
 	if(pipes.len == 1)
 		pipe = pipes[1]
 	else
-		pipe = input("Crawl Through Vent", "Pick a pipe") as null|anything in pipes
+		pipe = tgui_input_list(usr, "Crawl Through Vent", "Pick a pipe", pipes)
 	if(canmove && pipe)
 		return pipe
 

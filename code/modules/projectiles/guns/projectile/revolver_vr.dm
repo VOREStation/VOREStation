@@ -12,13 +12,13 @@
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3)
 
 /obj/item/weapon/gun/projectile/revolver/consul/proc/update_charge()
+	cut_overlays()
 	if(loaded.len==0)
-		overlays += "inspector_off"
+		add_overlay("inspector_off")
 	else
-		overlays += "inspector_on"
+		add_overlay("inspector_on")
 
 /obj/item/weapon/gun/projectile/revolver/consul/update_icon()
-	overlays.Cut()
 	update_charge()
 
 //.357 special ammo
@@ -80,7 +80,7 @@
 	icon_state = "9x19p"
 	origin_tech = list(TECH_COMBAT = 2)
 	mag_type = MAGAZINE
-	matter = list(DEFAULT_WALL_MATERIAL = 480)
+	matter = list(MAT_STEEL = 480)
 	caliber = ".380"
 	ammo_type = /obj/item/ammo_casing/a380
 	max_ammo = 8
@@ -103,7 +103,7 @@
 	icon = 'icons/obj/ammo_vr.dmi'
 	icon_state = "s357"
 	caliber = ".44"
-	matter = list(DEFAULT_WALL_MATERIAL = 1260)
+	matter = list(MAT_STEEL = 1260)
 	ammo_type = /obj/item/ammo_casing/a44
 	max_ammo = 6
 	multiple_sprites = 1

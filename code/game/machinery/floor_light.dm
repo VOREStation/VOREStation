@@ -6,12 +6,12 @@ var/list/floor_light_cache = list()
 	icon_state = "base"
 	desc = "A backlit floor panel."
 	layer = TURF_LAYER+0.001
-	anchored = 0
+	anchored = FALSE
 	use_power = USE_POWER_ACTIVE
 	idle_power_usage = 2
 	active_power_usage = 20
 	power_channel = LIGHT
-	matter = list(DEFAULT_WALL_MATERIAL = 2500, "glass" = 2750)
+	matter = list(MAT_STEEL = 2500, MAT_GLASS = 2750)
 
 	var/on
 	var/damaged
@@ -20,7 +20,7 @@ var/list/floor_light_cache = list()
 	var/default_light_colour = LIGHT_COLOR_INCANDESCENT_BULB
 
 /obj/machinery/floor_light/prebuilt
-	anchored = 1
+	anchored = TRUE
 
 /obj/machinery/floor_light/attackby(var/obj/item/W, var/mob/user)
 	if(W.is_screwdriver())
@@ -103,7 +103,7 @@ var/list/floor_light_cache = list()
 	update_icon()
 
 /obj/machinery/floor_light/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(use_power && !broken())
 		if(isnull(damaged))
 			var/cache_key = "floorlight-[default_light_colour]"
@@ -112,7 +112,7 @@ var/list/floor_light_cache = list()
 				I.color = default_light_colour
 				I.layer = layer+0.001
 				floor_light_cache[cache_key] = I
-			overlays |= floor_light_cache[cache_key]
+			add_overlay(floor_light_cache[cache_key])
 		else
 			if(damaged == 0) //Needs init.
 				damaged = rand(1,4)
@@ -122,7 +122,7 @@ var/list/floor_light_cache = list()
 				I.color = default_light_colour
 				I.layer = layer+0.001
 				floor_light_cache[cache_key] = I
-			overlays |= floor_light_cache[cache_key]
+			add_overlay(floor_light_cache[cache_key])
 
 /obj/machinery/floor_light/proc/broken()
 	return (stat & (BROKEN|NOPOWER))

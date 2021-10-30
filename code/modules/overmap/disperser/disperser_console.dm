@@ -61,7 +61,7 @@
 			return TRUE
 	return FALSE
 
-obj/machinery/computer/ship/disperser/proc/is_valid_setup()
+/obj/machinery/computer/ship/disperser/proc/is_valid_setup()
 	if(front && middle && back)
 		var/everything_in_range = (get_dist(src, front) < link_range) && (get_dist(src, middle) < link_range) && (get_dist(src, back) < link_range)
 		var/everything_in_order = (middle.Adjacent(front) && middle.Adjacent(back)) && (front.dir == middle.dir && middle.dir == back.dir)
@@ -177,7 +177,7 @@ obj/machinery/computer/ship/disperser/proc/is_valid_setup()
 			. = TRUE
 
 		if("calibration")
-			var/input = input("0-9", "disperser calibration", 0) as num|null
+			var/input = input(usr, "0-9", "disperser calibration", 0) as num|null
 			if(!isnull(input)) //can be zero so we explicitly check for null
 				var/calnum = sanitize_integer(text2num(params["calibration"]), 0, caldigit)//sanitiiiiize
 				calibration[calnum + 1] = sanitize_integer(input, 0, 9, 0)//must add 1 because js indexes from 0
@@ -189,14 +189,14 @@ obj/machinery/computer/ship/disperser/proc/is_valid_setup()
 			. = TRUE
 
 		if("strength")
-			var/input = input("1-5", "disperser strength", 1) as num|null
+			var/input = input(usr, "1-5", "disperser strength", 1) as num|null
 			if(input && tgui_status(usr, state) == STATUS_INTERACTIVE)
 				strength = sanitize_integer(input, 1, 5, 1)
 				middle.update_idle_power_usage(strength * range * 100)
 			. = TRUE
 
 		if("range")
-			var/input = input("1-5", "disperser radius", 1) as num|null
+			var/input = input(usr, "1-5", "disperser radius", 1) as num|null
 			if(input && tgui_status(usr, state) == STATUS_INTERACTIVE)
 				range = sanitize_integer(input, 1, 5, 1)
 				middle.update_idle_power_usage(strength * range * 100)
