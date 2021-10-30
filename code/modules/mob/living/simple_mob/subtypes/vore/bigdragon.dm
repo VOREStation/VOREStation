@@ -71,7 +71,7 @@ I think I covered everything.
 	response_disarm = "shoves"
 	response_harm = "smacks"
 	movement_cooldown = 4 //Fixed from 2, given our slower natural speed any mob at movement cooldown 2 is a nightmare let alone a boss that has a pounce
-	maxHealth = 800 //Still double a Phoron Dragon, if it's gonna be on 3b, it shouldn't have broodmother level health
+	maxHealth = 800
 	attacktext = list("slashed")
 	see_in_dark = 8
 	minbodytemp = 0
