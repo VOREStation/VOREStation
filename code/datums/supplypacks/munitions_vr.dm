@@ -26,7 +26,7 @@
 			)
 	cost = 35
 	containertype = /obj/structure/closet/crate/large/secure/heph
-	containername = " disperser charge crate"
+	containername = "EMP disperser charge crate"
 	access = access_security
 
 /datum/supply_pack/munitions/ofd_charge_explosive
@@ -36,7 +36,7 @@
 			)
 	cost = 35
 	containertype = /obj/structure/closet/crate/large/secure/heph
-	containername = " disperser charge crate"
+	containername = "Explosive disperser charge crate"
 	access = access_security
 
 /datum/supply_pack/munitions/ofd_charge_incendiary
@@ -46,7 +46,7 @@
 			)
 	cost = 35
 	containertype = /obj/structure/closet/crate/large/secure/heph
-	containername = " disperser charge crate"
+	containername = "Incendiary disperser charge crate"
 	access = access_security
 
 /datum/supply_pack/munitions/ofd_charge_mining
@@ -56,5 +56,5 @@
 			)
 	cost = 35
 	containertype = /obj/structure/closet/crate/large/secure/heph
-	containername = " disperser charge crate"
+	containername = "Mining disperser charge crate"
 	access = access_security
