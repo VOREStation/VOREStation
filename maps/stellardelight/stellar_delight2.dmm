@@ -8246,6 +8246,9 @@
 "sS" = (
 /obj/machinery/door/firedoor/glass/hidden/steel,
 /obj/effect/floor_decal/milspec/color/blue,
+/obj/machinery/camera/network/command{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/monotile,
 /area/stellardelight/deck2/central)
 "sT" = (
@@ -13636,6 +13639,8 @@
 	pixel_y = 0
 	},
 /obj/item/weapon/paper/dockingcodes,
+/obj/item/device/radio,
+/obj/item/device/radio,
 /turf/simulated/floor/tiled/eris/dark/monofloor,
 /area/bridge)
 "Fq" = (
@@ -18112,6 +18117,9 @@
 /obj/structure/flora/pottedplant/smallcactus{
 	pixel_y = 14
 	},
+/obj/structure/fireaxecabinet{
+	pixel_y = 28
+	},
 /turf/simulated/floor/wood,
 /area/stellardelight/deck2/briefingroom)
 "Pm" = (
@@ -20659,9 +20667,6 @@
 /turf/simulated/floor/airless,
 /area/engineering/engine_room)
 "Vg" = (
-/obj/structure/sign/painting/library_secure{
-	pixel_x = 30
-	},
 /obj/machinery/light,
 /turf/simulated/floor/wood,
 /area/stellardelight/deck2/briefingroom)
@@ -20893,6 +20898,17 @@
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/captain)
+"VF" = (
+/obj/machinery/door/airlock/angled_bay/standard/color{
+	dir = 4;
+	door_color = "#323d80";
+	name = "Briefing Room";
+	req_access = list(19);
+	req_one_access = list(19);
+	stripe_color = "#f7d35c"
+	},
+/turf/simulated/floor/tiled/steel_ridged,
+/area/stellardelight/deck2/briefingroom)
 "VG" = (
 /obj/effect/floor_decal/milspec/color/silver/corner{
 	dir = 4
@@ -20950,9 +20966,6 @@
 /turf/simulated/floor/tiled/eris/dark/cargo,
 /area/crew_quarters/recreation_area)
 "VN" = (
-/obj/machinery/camera/network/command{
-	dir = 4
-	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/stellardelight/deck2/central)
 "VO" = (
@@ -32399,7 +32412,7 @@ xd
 xd
 xd
 xd
-xd
+VF
 xd
 rk
 Da
