@@ -55,15 +55,15 @@
 /area/maintenance/stellardelight/deck2/portfore
 	name = "deck two port forward maintenance"
 /area/maintenance/stellardelight/deck2/starboardfore
-	name = "deck one starboard forward maintenance"
+	name = "deck two starboard forward maintenance"
 /area/maintenance/stellardelight/deck2/portaft
 	name = "deck two port aft maintenance"
 /area/maintenance/stellardelight/deck2/starboardaft
-	name = "deck one starboard aft maintenance"
+	name = "deck two starboard aft maintenance"
 /area/maintenance/stellardelight/deck2/portsolars
 	name = "deck two port solar array"
 /area/maintenance/stellardelight/deck2/starboardsolars
-	name = "deck one starboard solar array"
+	name = "deck two starboard solar array"
 /area/maintenance/stellardelight/deck2/atmos
 	name = "atmospherics maintenance"
 
