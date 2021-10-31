@@ -205,13 +205,21 @@ var/list/all_maps = list()
 	return text2num(pickweight(candidates))
 
 /datum/map/proc/get_empty_zlevel()
+	// Try to free up a z level from existing temp sectors
+	if(!empty_levels.len)
+		for(var/Z in map_sectors)
+			var/obj/effect/overmap/visitable/sector/temporary/T = map_sectors[Z]
+			T.cleanup() // If we can release some of these, do that.
+
+	// Else, we need to buy a new one.
 	if(!empty_levels.len)
 		world.increment_max_z()
 		empty_levels += world.maxz
 	return pick_n_take(empty_levels)
 
 /datum/map/proc/cache_empty_zlevel(var/z)
-	empty_levels |= z
+	if(z) // Else, it's not a valid z and we want to expunge it
+		empty_levels |= z
 
 // Get a list of 'nearby' or 'connected' zlevels.
 // You should at least return a list with the given z if nothing else.
