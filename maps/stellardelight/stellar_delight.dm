@@ -5,6 +5,7 @@
 	#include "stellar_delight_misc.dm"
 	#include "stellar_delight_telecomms.dm"
 	#include "..\offmap_vr\common_offmaps.dm"
+	#include "..\tether\tether_jobs.dm"
 
 	#if !AWAY_MISSION_TEST //Don't include these for just testing away missions
 		#include "stellar_delight1.dmm"
