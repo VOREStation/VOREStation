@@ -639,12 +639,12 @@
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/hop)
 "cQ" = (
-/obj/machinery/portable_atmospherics/canister/air/airlock,
 /obj/machinery/atmospherics/portables_connector,
 /obj/structure/closet/emergsuit_wall{
 	dir = 4;
 	pixel_x = 27
 	},
+/obj/machinery/portable_atmospherics/canister/air,
 /turf/simulated/floor/tiled/eris/dark/cargo,
 /area/shuttle/sdboat/aft)
 "cS" = (
@@ -2553,10 +2553,6 @@
 	name = "Docking Port Airlock"
 	},
 /obj/effect/map_helper/airlock/door/ext_door,
-/obj/machinery/airlock_sensor/airlock_exterior/shuttle{
-	pixel_y = 32
-	},
-/obj/effect/map_helper/airlock/sensor/ext_sensor,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/shuttle/sdboat/aft)
 "kB" = (
@@ -10002,6 +9998,13 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/portaft)
+"LZ" = (
+/obj/machinery/airlock_sensor/airlock_exterior/shuttle{
+	dir = 6
+	},
+/obj/effect/map_helper/airlock/sensor/ext_sensor,
+/turf/simulated/wall/rshull,
+/area/shuttle/sdboat/aft)
 "Mc" = (
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -21440,7 +21443,7 @@ mi
 Kj
 iM
 fn
-fn
+LZ
 kz
 fn
 fn
