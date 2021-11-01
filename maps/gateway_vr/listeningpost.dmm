@@ -267,7 +267,7 @@
 /turf/simulated/floor/greengrid,
 /area/mine/explored)
 "aW" = (
-/obj/effect/overmap/visitable/sector/tether_gateway/listeningpost,
+/obj/effect/overmap/visitable/sector/common_gateway/listeningpost,
 /turf/space,
 /area/space)
 "aX" = (

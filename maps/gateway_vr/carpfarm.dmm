@@ -746,7 +746,7 @@
 /turf/space,
 /area/space)
 "Fi" = (
-/obj/effect/overmap/visitable/sector/tether_gateway/carpfarm,
+/obj/effect/overmap/visitable/sector/common_gateway/carpfarm,
 /turf/space,
 /area/space)
 "Ia" = (

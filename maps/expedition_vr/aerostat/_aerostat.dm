@@ -14,6 +14,11 @@
 	known = TRUE
 	icon_state = "chlorine"
 
+	skybox_icon = 'icons/skybox/virgo2.dmi'
+	skybox_icon_state = "v2"
+	skybox_pixel_x = 0
+	skybox_pixel_y = 0
+
 // -- Datums -- //
 
 /datum/shuttle/autodock/ferry/aerostat
@@ -174,42 +179,50 @@ VIRGO2_TURF_CREATE(/turf/simulated/mineral/floor/ignore_mapgen)
 	base_turf = /turf/simulated/floor/plating/virgo2
 	dynamic_lighting = TRUE
 
-/area/tether_away/aerostat/surface
+/area/offmap/aerostat/surface
 	flags = RAD_SHIELDED
 	ambience = list('sound/ambience/ambimine.ogg', 'sound/ambience/song_game.ogg')
 	base_turf = /turf/simulated/mineral/floor/ignore_mapgen/virgo2
 
-/area/tether_away/aerostat/surface/explored
+/area/offmap/aerostat/surface/explored
 	name = "Away Mission - Aerostat Surface (E)"
 	icon_state = "explored"
+	dynamic_lighting = FALSE
 
-/area/tether_away/aerostat/surface/unexplored
+/area/offmap/aerostat/surface/shuttleconsole
+	name = "Away Mission - Aerostat Surface Console"
+	icon_state = "explored"
+	dynamic_lighting = FALSE
+	requires_power = FALSE
+
+/area/offmap/aerostat/surface/unexplored
 	name = "Away Mission - Aerostat Surface (UE)"
 	icon_state = "unexplored"
+	dynamic_lighting = FALSE
 
 VIRGO2_TURF_CREATE(/turf/simulated/floor/hull)
-/area/tether_away/aerostat/surface/outpost
+/area/offmap/aerostat/surface/outpost
 	requires_power = TRUE
 	dynamic_lighting = TRUE
 	ambience = null
 
-/area/tether_away/aerostat/surface/outpost/backroom
+/area/offmap/aerostat/surface/outpost/backroom
 	name = "V4 Outpost - Research Area"
-/area/tether_away/aerostat/surface/outpost/hallway
+/area/offmap/aerostat/surface/outpost/hallway
 	name = "V4 Outpost - Hallway"
-/area/tether_away/aerostat/surface/outpost/cafe
+/area/offmap/aerostat/surface/outpost/cafe
 	name = "V4 Outpost - Cafe"
-/area/tether_away/aerostat/surface/outpost/park
+/area/offmap/aerostat/surface/outpost/park
 	name = "V4 Outpost - Park"
-/area/tether_away/aerostat/surface/outpost/officerone
+/area/offmap/aerostat/surface/outpost/officerone
 	name = "V4 Outpost - Officer's Quarters 1"
-/area/tether_away/aerostat/surface/outpost/officertwo
+/area/offmap/aerostat/surface/outpost/officertwo
 	name = "V4 Outpost - Officer's Quarters 2"
-/area/tether_away/aerostat/surface/outpost/barracks
+/area/offmap/aerostat/surface/outpost/barracks
 	name = "V4 Outpost - Barracks"
-/area/tether_away/aerostat/surface/outpost/airlock
+/area/offmap/aerostat/surface/outpost/airlock
 	name = "V4 Outpost - Airlock"
-/area/tether_away/aerostat/surface/outpost/powerroom
+/area/offmap/aerostat/surface/outpost/powerroom
 	name = "V4 Outpost - Power Room"
-/area/tether_away/aerostat/surface/outpost/guardpost
+/area/offmap/aerostat/surface/outpost/guardpost
 	name = "V4 Outpost - Guard Post"
