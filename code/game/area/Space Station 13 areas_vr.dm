@@ -42,4 +42,11 @@
 /area/holodeck/source_smoleworld
 	name = "\improper Holodeck - Smolworld"
 	
-	
+/area/holodeck/source_gym
+	name = "\improper Holodeck - Gym"
+
+/area/holodeck/source_game_room
+	name = "\improper Holodeck - Game Room"
+
+/area/holodeck/source_patient_ward
+	name = "\improper Holodeck - Patient Ward"
