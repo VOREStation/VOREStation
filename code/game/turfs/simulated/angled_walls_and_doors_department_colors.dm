@@ -94,14 +94,14 @@
 
   <meta name="viewport" content="width=device-width">
   
-  <title>VOREStation/asset_list_items.dm at 0d688f44b5ffcb1f613c87dab624daf60717abf1 · Zeldazackman/VOREStation</title>
-    <meta name="description" content="The codebase used by the VORE SS13 server, based on Polaris SS13. - VOREStation/asset_list_items.dm at 0d688f44b5ffcb1f613c87dab624daf60717abf1 · Zeldazackman/VOREStation">
+  <title>VOREStation/angled_walls_and_doors_department_colors.dm at 0d688f44b5ffcb1f613c87dab624daf60717abf1 · Zeldazackman/VOREStation</title>
+    <meta name="description" content="The codebase used by the VORE SS13 server, based on Polaris SS13. - VOREStation/angled_walls_and_doors_department_colors.dm at 0d688f44b5ffcb1f613c87dab624daf60717abf1 · Zeldazackman/VOREStation">
     <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="GitHub">
   <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub">
   <meta property="fb:app_id" content="1401488693436528">
   <meta name="apple-itunes-app" content="app-id=1477376905" />
-    <meta name="twitter:image:src" content="https://opengraph.githubassets.com/1f28e649526fcdd205e6a96a5f0f8c896106a70c8c890a06a32abda9dcb7a9f5/Zeldazackman/VOREStation" /><meta name="twitter:site" content="@github" /><meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="VOREStation/asset_list_items.dm at 0d688f44b5ffcb1f613c87dab624daf60717abf1 · Zeldazackman/VOREStation" /><meta name="twitter:description" content="The codebase used by the VORE SS13 server, based on Polaris SS13. - VOREStation/asset_list_items.dm at 0d688f44b5ffcb1f613c87dab624daf60717abf1 · Zeldazackman/VOREStation" />
-    <meta property="og:image" content="https://opengraph.githubassets.com/1f28e649526fcdd205e6a96a5f0f8c896106a70c8c890a06a32abda9dcb7a9f5/Zeldazackman/VOREStation" /><meta property="og:image:alt" content="The codebase used by the VORE SS13 server, based on Polaris SS13. - VOREStation/asset_list_items.dm at 0d688f44b5ffcb1f613c87dab624daf60717abf1 · Zeldazackman/VOREStation" /><meta property="og:image:width" content="1200" /><meta property="og:image:height" content="600" /><meta property="og:site_name" content="GitHub" /><meta property="og:type" content="object" /><meta property="og:title" content="VOREStation/asset_list_items.dm at 0d688f44b5ffcb1f613c87dab624daf60717abf1 · Zeldazackman/VOREStation" /><meta property="og:url" content="https://github.com/Zeldazackman/VOREStation" /><meta property="og:description" content="The codebase used by the VORE SS13 server, based on Polaris SS13. - VOREStation/asset_list_items.dm at 0d688f44b5ffcb1f613c87dab624daf60717abf1 · Zeldazackman/VOREStation" />
+    <meta name="twitter:image:src" content="https://opengraph.githubassets.com/1f28e649526fcdd205e6a96a5f0f8c896106a70c8c890a06a32abda9dcb7a9f5/Zeldazackman/VOREStation" /><meta name="twitter:site" content="@github" /><meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="VOREStation/angled_walls_and_doors_department_colors.dm at 0d688f44b5ffcb1f613c87dab624daf60717abf1 · Zeldazackman/VOREStation" /><meta name="twitter:description" content="The codebase used by the VORE SS13 server, based on Polaris SS13. - VOREStation/angled_walls_and_doors_department_colors.dm at 0d688f44b5ffcb1f613c87dab624daf60717abf1 · Zeldazackman/VOREStation" />
+    <meta property="og:image" content="https://opengraph.githubassets.com/1f28e649526fcdd205e6a96a5f0f8c896106a70c8c890a06a32abda9dcb7a9f5/Zeldazackman/VOREStation" /><meta property="og:image:alt" content="The codebase used by the VORE SS13 server, based on Polaris SS13. - VOREStation/angled_walls_and_doors_department_colors.dm at 0d688f44b5ffcb1f613c87dab624daf60717abf1 · Zeldazackman/VOREStation" /><meta property="og:image:width" content="1200" /><meta property="og:image:height" content="600" /><meta property="og:site_name" content="GitHub" /><meta property="og:type" content="object" /><meta property="og:title" content="VOREStation/angled_walls_and_doors_department_colors.dm at 0d688f44b5ffcb1f613c87dab624daf60717abf1 · Zeldazackman/VOREStation" /><meta property="og:url" content="https://github.com/Zeldazackman/VOREStation" /><meta property="og:description" content="The codebase used by the VORE SS13 server, based on Polaris SS13. - VOREStation/angled_walls_and_doors_department_colors.dm at 0d688f44b5ffcb1f613c87dab624daf60717abf1 · Zeldazackman/VOREStation" />
     
 
 
@@ -109,11 +109,11 @@
     
 
   <link rel="assets" href="https://github.githubassets.com/">
-    <link rel="shared-web-socket" href="wss://alive.github.com/_sockets/u/17093432/ws?session=eyJ2IjoiVjMiLCJ1IjoxNzA5MzQzMiwicyI6NjU5MzE4MTY2LCJjIjoxMzc1ODQ3NTA0LCJ0IjoxNjM1NzM2NzYzfQ==--573e2dd5268cbb8e6f4e989691e0592e966a56049a2b527adf384325895c5ff5" data-refresh-url="/_alive" data-session-id="e13069b721484be37310f2c0a8abf47c301564c30b0dd7d07e4449489131943f">
+    <link rel="shared-web-socket" href="wss://alive.github.com/_sockets/u/17093432/ws?session=eyJ2IjoiVjMiLCJ1IjoxNzA5MzQzMiwicyI6NjU5MzE4MTY2LCJjIjozMTU4NjE4MzMxLCJ0IjoxNjM1NzM2Njc3fQ==--8acf2085290724f22fd00394a8e9cd74732612e15b6399b6d4abb0d2b3ee357a" data-refresh-url="/_alive" data-session-id="e13069b721484be37310f2c0a8abf47c301564c30b0dd7d07e4449489131943f">
     <link rel="shared-web-socket-src" href="/assets-cdn/worker/socket-worker-e78eb306.js">
   <link rel="sudo-modal" href="/sessions/sudo_modal">
 
-  <meta name="request-id" content="FFBB:59C9:14161F0:1E72169:617F5CBB" data-pjax-transient="true" /><meta name="html-safe-nonce" content="da13c65c54ec97d1b874ba7f1115eabb8ff63cac5d4ea630e4bfb6ed0b8aa63b" data-pjax-transient="true" /><meta name="visitor-payload" content="eyJyZWZlcnJlciI6Imh0dHBzOi8vZ2l0aHViLmNvbS9aZWxkYXphY2ttYW4vVk9SRVN0YXRpb24vcHVsbC82OS9maWxlcz9hdXRoZW50aWNpdHlfdG9rZW49YXo2ME5wV1pBRE8lMkZSNUZQbVVzY2lTbzhLT3VoJTJGU25lRk16TGIlMkZ4Qzh6ckRDYzVheSUyRjJKRzdFVzNNd21tb3BiZHUydExhQXpjTGxvVWhmQkVlWlRkUSUzRCUzRCZmaWxlLWZpbHRlcnMlNUIlNUQ9LmRtJmZpbGUtZmlsdGVycyU1QiU1RD0uZG1lJmZpbGUtZmlsdGVycyU1QiU1RD0uZG1pJmZpbGUtZmlsdGVycyU1QiU1RD0uZG1tJmZpbGUtZmlsdGVycyU1QiU1RD0ub2dnJmZpbGUtZmlsdGVycyU1QiU1RD0ucG5nJmZpbGUtZmlsdGVycyU1QiU1RD0udHh0IiwicmVxdWVzdF9pZCI6IkZGQkI6NTlDOToxNDE2MUYwOjFFNzIxNjk6NjE3RjVDQkIiLCJ2aXNpdG9yX2lkIjoiMjU5ODc1ODMwNzI0NDMzNDg1OCIsInJlZ2lvbl9lZGdlIjoiaWFkIiwicmVnaW9uX3JlbmRlciI6ImlhZCJ9" data-pjax-transient="true" /><meta name="visitor-hmac" content="2b1fa55b9c9d65d4bc69496cdfe401fc5bd4e98ba5afa233618ecf43f8f1f21a" data-pjax-transient="true" />
+  <meta name="request-id" content="DCCD:4466:929254:12A3EFF:617F5C65" data-pjax-transient="true" /><meta name="html-safe-nonce" content="da13c65c54ec97d1b874ba7f1115eabb8ff63cac5d4ea630e4bfb6ed0b8aa63b" data-pjax-transient="true" /><meta name="visitor-payload" content="eyJyZWZlcnJlciI6Imh0dHBzOi8vZ2l0aHViLmNvbS9aZWxkYXphY2ttYW4vVk9SRVN0YXRpb24vcHVsbC82OS9maWxlcz9hdXRoZW50aWNpdHlfdG9rZW49YXo2ME5wV1pBRE8lMkZSNUZQbVVzY2lTbzhLT3VoJTJGU25lRk16TGIlMkZ4Qzh6ckRDYzVheSUyRjJKRzdFVzNNd21tb3BiZHUydExhQXpjTGxvVWhmQkVlWlRkUSUzRCUzRCZmaWxlLWZpbHRlcnMlNUIlNUQ9LmRtJmZpbGUtZmlsdGVycyU1QiU1RD0uZG1lJmZpbGUtZmlsdGVycyU1QiU1RD0uZG1pJmZpbGUtZmlsdGVycyU1QiU1RD0uZG1tJmZpbGUtZmlsdGVycyU1QiU1RD0ub2dnJmZpbGUtZmlsdGVycyU1QiU1RD0ucG5nJmZpbGUtZmlsdGVycyU1QiU1RD0udHh0IiwicmVxdWVzdF9pZCI6IkRDQ0Q6NDQ2Njo5MjkyNTQ6MTJBM0VGRjo2MTdGNUM2NSIsInZpc2l0b3JfaWQiOiIyNTk4NzU4MzA3MjQ0MzM0ODU4IiwicmVnaW9uX2VkZ2UiOiJpYWQiLCJyZWdpb25fcmVuZGVyIjoiaWFkIn0=" data-pjax-transient="true" /><meta name="visitor-hmac" content="3dda0396ee7195758b27c5af00d61c2f0c418803a70e0f90486f19382b3c22f3" data-pjax-transient="true" />
 
     <meta name="hovercard-subject-tag" content="repository:317690936" data-pjax-transient>
 
@@ -152,7 +152,7 @@
 
       <meta name="expected-hostname" content="github.com">
 
-      <meta name="js-proxy-site-detection-payload" content="ZTA4NjdiN2YwNWY5MzNlZjJiNjQ0YjlkZTU1NWJlOTg2YWY2NWY3Y2Y5YjU1MWJjZmRlMmRlMWRhNTIzYmZiN3x7InJlbW90ZV9hZGRyZXNzIjoiMTczLjc1LjIzOC4yMiIsInJlcXVlc3RfaWQiOiJGRkJCOjU5Qzk6MTQxNjFGMDoxRTcyMTY5OjYxN0Y1Q0JCIiwidGltZXN0YW1wIjoxNjM1NzM2NzYzLCJob3N0IjoiZ2l0aHViLmNvbSJ9">
+      <meta name="js-proxy-site-detection-payload" content="MDFlOTE1Yjg3NDEyODc1ODU4NjRkZDdiMDRlNTE5Zjg1ZWU5ZWY1MDU5ZGVjNDE3ZWUyN2NiNDJmZjcwMzk2OXx7InJlbW90ZV9hZGRyZXNzIjoiMTczLjc1LjIzOC4yMiIsInJlcXVlc3RfaWQiOiJEQ0NEOjQ0NjY6OTI5MjU0OjEyQTNFRkY6NjE3RjVDNjUiLCJ0aW1lc3RhbXAiOjE2MzU3MzY2NzcsImhvc3QiOiJnaXRodWIuY29tIn0=">
       <meta name="keyboard-shortcuts-preference" content="all">
       <script type="application/json" id="memex_keyboard_shortcuts_preference">"all"</script>
 
@@ -171,7 +171,7 @@
 
 
 
-    <link rel="canonical" href="https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/modules/asset_cache/asset_list_items.dm" data-pjax-transient>
+    <link rel="canonical" href="https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/game/turfs/simulated/angled_walls_and_doors_department_colors.dm" data-pjax-transient>
 
 
   <meta name="browser-stats-url" content="https://api.github.com/_private/browser/stats">
@@ -212,7 +212,7 @@
   href="https://github.com/"
   data-hotkey="g d"
   aria-label="Homepage "
-  data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header&quot;,&quot;action&quot;:&quot;go to dashboard&quot;,&quot;label&quot;:&quot;icon:logo&quot;,&quot;originating_url&quot;:&quot;https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/modules/asset_cache/asset_list_items.dm&quot;,&quot;user_id&quot;:17093432}}" data-hydro-click-hmac="7150dc01364746d2a6891f50138321bedd80c11b4a94eb9c0df0e71f33f5717b" data-analytics-event="{&quot;category&quot;:&quot;Header&quot;,&quot;action&quot;:&quot;go to dashboard&quot;,&quot;label&quot;:&quot;icon:logo&quot;}"
+  data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header&quot;,&quot;action&quot;:&quot;go to dashboard&quot;,&quot;label&quot;:&quot;icon:logo&quot;,&quot;originating_url&quot;:&quot;https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/game/turfs/simulated/angled_walls_and_doors_department_colors.dm&quot;,&quot;user_id&quot;:17093432}}" data-hydro-click-hmac="a306c4afb7a1386cf905aab12c330e235a694ecdbf12602c24786447ae702802" data-analytics-event="{&quot;category&quot;:&quot;Header&quot;,&quot;action&quot;:&quot;go to dashboard&quot;,&quot;label&quot;:&quot;icon:logo&quot;}"
 >
   <svg height="32" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="32" data-view-component="true" class="octicon octicon-mark-github v-align-middle">
     <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
@@ -262,7 +262,7 @@
           spellcheck="false"
           autocomplete="off"
         >
-        <input type="hidden" value="djNKSd/UP1kC/eK6hwhQx2QedqfODRMS7nmc4SjHhN18FsbcHg+cHi7TfkEW2MvRFCsuKfk5InzIOI8JlT5D2Q==" data-csrf="true" class="js-data-jump-to-suggestions-path-csrf" />
+        <input type="hidden" value="bBu5xw1wymd9Bcy4OLQ2k1X5JJgSz8qKTPtNkgZtr+9mPjVSzKtpIFErUEOpZK2FJcx8FiX7++Rqul56u5Ro6w==" data-csrf="true" class="js-data-jump-to-suggestions-path-csrf" />
         <input type="hidden" class="js-site-search-type-field" name="type" >
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="20" aria-hidden="true" class="mr-1 header-search-key-slash"><path fill="none" stroke="#979A9C" opacity=".4" d="M3.5.5h12c1.7 0 3 1.3 3 3v13c0 1.7-1.3 3-3 3h-12c-1.7 0-3-1.3-3-3v-13c0-1.7 1.3-3 3-3z"></path><path fill="#979A9C" d="M11.8 6L8 15.1h-.9L10.8 6h1z"></path></svg>
 
@@ -466,7 +466,7 @@
     <a class="js-selected-navigation-item Header-link d-block d-md-none py-2 py-md-3 border-top border-md-top-0 border-white-fade" data-ga-click="Header, click, Nav menu - item:workspaces context:user" data-selected-links="/codespaces /codespaces" href="/codespaces">
       Codespaces
 </a>
-      <a class="js-selected-navigation-item Header-link d-block d-md-none py-2 py-md-3 border-top border-md-top-0 border-white-fade" data-ga-click="Header, click, Nav menu - item:Sponsors" data-hydro-click="{&quot;event_type&quot;:&quot;sponsors.button_click&quot;,&quot;payload&quot;:{&quot;button&quot;:&quot;HEADER_SPONSORS_DASHBOARD&quot;,&quot;sponsorable_login&quot;:&quot;Zeldazackman&quot;,&quot;originating_url&quot;:&quot;https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/modules/asset_cache/asset_list_items.dm&quot;,&quot;user_id&quot;:17093432}}" data-hydro-click-hmac="92f30d7f52c6b001cfe379b836029bc371c0556ffd28b94b32fbded7f6c189cd" data-selected-links=" /sponsors/accounts" href="/sponsors/accounts">Sponsors</a>
+      <a class="js-selected-navigation-item Header-link d-block d-md-none py-2 py-md-3 border-top border-md-top-0 border-white-fade" data-ga-click="Header, click, Nav menu - item:Sponsors" data-hydro-click="{&quot;event_type&quot;:&quot;sponsors.button_click&quot;,&quot;payload&quot;:{&quot;button&quot;:&quot;HEADER_SPONSORS_DASHBOARD&quot;,&quot;sponsorable_login&quot;:&quot;Zeldazackman&quot;,&quot;originating_url&quot;:&quot;https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/game/turfs/simulated/angled_walls_and_doors_department_colors.dm&quot;,&quot;user_id&quot;:17093432}}" data-hydro-click-hmac="2ad766ab035b7e3c0e5b4a9311fefdc436e3cd16ba8d7dd053ec385ad2b00764" data-selected-links=" /sponsors/accounts" href="/sponsors/accounts">Sponsors</a>
 
     <a class="Header-link d-block d-md-none mr-0 mr-md-3 py-2 py-md-3 border-top border-md-top-0 border-white-fade" href="/settings/profile">
       Settings
@@ -475,12 +475,12 @@
       <img class="avatar avatar-user" loading="lazy" decoding="async" src="https://avatars.githubusercontent.com/u/17093432?s=40&amp;v=4" width="20" height="20" alt="@Zeldazackman" />
       Zeldazackman
 </a>
-    <!-- '"` --><!-- </textarea></xmp> --></option></form><form action="/logout" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="CJCL1sKXAbtbHdagp1jBU47tr4TC6eiWg9X8i1rsZyK2Yq38SEoK7MSXZXcXbV4kAQiS/8X0TIHvBJKdxgGtlQ==" />
+    <!-- '"` --><!-- </textarea></xmp> --></option></form><form action="/logout" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="vS2YQ6Fy4YzzUI6+6O/qZqagskp1u2lZ5XLhgrP2j6UD375pK6/q22zaPWlY2nURKUWPMXKmzU6Jo4+ULxtFEg==" />
       <button
         type="submit"
         class="Header-link mr-0 mr-md-3 py-2 py-md-3 border-top border-md-top-0 border-white-fade d-md-none btn-link d-block width-full text-left"
         style="padding-left: 2px;"
-        data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header&quot;,&quot;action&quot;:&quot;sign out&quot;,&quot;label&quot;:&quot;icon:logout&quot;,&quot;originating_url&quot;:&quot;https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/modules/asset_cache/asset_list_items.dm&quot;,&quot;user_id&quot;:17093432}}" data-hydro-click-hmac="aba475e32e51d112948df0f49704b0bcbc916f1e77dd95d39c311abbcf320305" data-analytics-event="{&quot;category&quot;:&quot;Header&quot;,&quot;action&quot;:&quot;sign out&quot;,&quot;label&quot;:&quot;icon:logout&quot;}"
+        data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header&quot;,&quot;action&quot;:&quot;sign out&quot;,&quot;label&quot;:&quot;icon:logout&quot;,&quot;originating_url&quot;:&quot;https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/game/turfs/simulated/angled_walls_and_doors_department_colors.dm&quot;,&quot;user_id&quot;:17093432}}" data-hydro-click-hmac="928058519ffffaccd9b46ac44bc5d708b74d5a5b986bc0776fa89defa47e4181" data-analytics-event="{&quot;category&quot;:&quot;Header&quot;,&quot;action&quot;:&quot;sign out&quot;,&quot;label&quot;:&quot;icon:logout&quot;}"
       >
         <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-sign-out v-align-middle">
     <path fill-rule="evenodd" d="M2 2.75C2 1.784 2.784 1 3.75 1h2.5a.75.75 0 010 1.5h-2.5a.25.25 0 00-.25.25v10.5c0 .138.112.25.25.25h2.5a.75.75 0 010 1.5h-2.5A1.75 1.75 0 012 13.25V2.75zm10.44 4.5H6.75a.75.75 0 000 1.5h5.69l-1.97 1.97a.75.75 0 101.06 1.06l3.25-3.25a.75.75 0 000-1.06l-3.25-3.25a.75.75 0 10-1.06 1.06l1.97 1.97z"></path>
@@ -497,7 +497,7 @@
   href="https://github.com/"
   data-hotkey="g d"
   aria-label="Homepage "
-  data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header&quot;,&quot;action&quot;:&quot;go to dashboard&quot;,&quot;label&quot;:&quot;icon:logo&quot;,&quot;originating_url&quot;:&quot;https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/modules/asset_cache/asset_list_items.dm&quot;,&quot;user_id&quot;:17093432}}" data-hydro-click-hmac="7150dc01364746d2a6891f50138321bedd80c11b4a94eb9c0df0e71f33f5717b" data-analytics-event="{&quot;category&quot;:&quot;Header&quot;,&quot;action&quot;:&quot;go to dashboard&quot;,&quot;label&quot;:&quot;icon:logo&quot;}"
+  data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header&quot;,&quot;action&quot;:&quot;go to dashboard&quot;,&quot;label&quot;:&quot;icon:logo&quot;,&quot;originating_url&quot;:&quot;https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/game/turfs/simulated/angled_walls_and_doors_department_colors.dm&quot;,&quot;user_id&quot;:17093432}}" data-hydro-click-hmac="a306c4afb7a1386cf905aab12c330e235a694ecdbf12602c24786447ae702802" data-analytics-event="{&quot;category&quot;:&quot;Header&quot;,&quot;action&quot;:&quot;go to dashboard&quot;,&quot;label&quot;:&quot;icon:logo&quot;}"
 >
   <svg height="32" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="32" data-view-component="true" class="octicon octicon-mark-github v-align-middle">
     <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
@@ -513,7 +513,7 @@
       <notification-indicator
         class="js-socket-channel"
         data-test-selector="notifications-indicator"
-        data-channel="eyJjIjoibm90aWZpY2F0aW9uLWNoYW5nZWQ6MTcwOTM0MzIiLCJ0IjoxNjM1NzM2NzYzfQ==--0bf03b2b54640c9d1d141fe52ecd8fa1b4c02d357eda8c1a2c94f9f3ef57126c">
+        data-channel="eyJjIjoibm90aWZpY2F0aW9uLWNoYW5nZWQ6MTcwOTM0MzIiLCJ0IjoxNjM1NzM2Njc3fQ==--0d90c51abe851bca203ec4c43240ffc8e4a2143a5efa62f9fa6ca519aa39af44">
         <a href="/notifications"
           class="Header-link notification-indicator position-relative tooltipped tooltipped-sw"
           
@@ -536,7 +536,7 @@
   <summary
     class="Header-link"
     aria-label="Create new…"
-    data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header&quot;,&quot;action&quot;:&quot;create new&quot;,&quot;label&quot;:&quot;icon:add&quot;,&quot;originating_url&quot;:&quot;https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/modules/asset_cache/asset_list_items.dm&quot;,&quot;user_id&quot;:17093432}}" data-hydro-click-hmac="78407e6fa2d5660ac947f55020082c1e9a27917a01c6699b054333b2f09627a6" data-analytics-event="{&quot;category&quot;:&quot;Header&quot;,&quot;action&quot;:&quot;create new&quot;,&quot;label&quot;:&quot;icon:add&quot;}"
+    data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header&quot;,&quot;action&quot;:&quot;create new&quot;,&quot;label&quot;:&quot;icon:add&quot;,&quot;originating_url&quot;:&quot;https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/game/turfs/simulated/angled_walls_and_doors_department_colors.dm&quot;,&quot;user_id&quot;:17093432}}" data-hydro-click-hmac="95c82951fc0dea9bc990706e08c9a646ad3ba243429b3d00d074d817042bbfb7" data-analytics-event="{&quot;category&quot;:&quot;Header&quot;,&quot;action&quot;:&quot;create new&quot;,&quot;label&quot;:&quot;icon:add&quot;}"
   >
       <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-plus">
     <path fill-rule="evenodd" d="M7.75 2a.75.75 0 01.75.75V7h4.25a.75.75 0 110 1.5H8.5v4.25a.75.75 0 11-1.5 0V8.5H2.75a.75.75 0 010-1.5H7V2.75A.75.75 0 017.75 2z"></path>
@@ -574,7 +574,7 @@
   <summary
     class="Header-link"
     aria-label="View profile and more"
-    data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header&quot;,&quot;action&quot;:&quot;show menu&quot;,&quot;label&quot;:&quot;icon:avatar&quot;,&quot;originating_url&quot;:&quot;https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/modules/asset_cache/asset_list_items.dm&quot;,&quot;user_id&quot;:17093432}}" data-hydro-click-hmac="49a113b77e2c42e70eb72a261f9e0f3490d62ec8bb18cb9cf90e58690a3fdda2" data-analytics-event="{&quot;category&quot;:&quot;Header&quot;,&quot;action&quot;:&quot;show menu&quot;,&quot;label&quot;:&quot;icon:avatar&quot;}"
+    data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header&quot;,&quot;action&quot;:&quot;show menu&quot;,&quot;label&quot;:&quot;icon:avatar&quot;,&quot;originating_url&quot;:&quot;https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/game/turfs/simulated/angled_walls_and_doors_department_colors.dm&quot;,&quot;user_id&quot;:17093432}}" data-hydro-click-hmac="d8a10bc7ae21e17f851cbebcec8ac73b2c1a3febd5d282a8616b1488cd3b98ed" data-analytics-event="{&quot;category&quot;:&quot;Header&quot;,&quot;action&quot;:&quot;show menu&quot;,&quot;label&quot;:&quot;icon:avatar&quot;}"
   >
     <img src="https://avatars.githubusercontent.com/u/17093432?s=40&amp;v=4" alt="@Zeldazackman" size="20" height="20" width="20" data-view-component="true" class="avatar-user avatar avatar-small"></img>
       <span class="feature-preview-indicator js-feature-preview-indicator" style="top: 1px;" hidden></span>
@@ -645,14 +645,14 @@
   <details-dialog class="command-palette-details-dialog d-flex flex-column flex-justify-center height-fit">
     <command-palette
       class="command-palette color-bg-primary rounded-3"
-      data-return-to=/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/modules/asset_cache/asset_list_items.dm
+      data-return-to=/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/game/turfs/simulated/angled_walls_and_doors_department_colors.dm
       data-user-id="17093432"
       >
-      <input type="hidden" value="mCPZyCVcmFYQmdBAQ9JcyWwRu3mpGSLw/s8+1zZMCG6lpiMhcm31lAyuaLrLJ2aTB/1Zpu2fGBh655cxRyr50g==" data-csrf="true" class="js-graphql-csrf" />
+      <input type="hidden" value="Y6/tYviqio+tHqZsM9mfKlvN+r5fGM20rJ2iUjnW5oBeKheLr5vnTbEpHpa7LKVwMCEYYRue91wotQu0SLAXPA==" data-csrf="true" class="js-graphql-csrf" />
       <iframe class="d-none js-command-palette-commands" sandbox="allow-scripts allow-same-origin" srcdoc="<script crossorigin=&quot;anonymous&quot; defer=&quot;defer&quot; integrity=&quot;sha512-zecYdhanvMwYJJjBLA1+l34xC2sAJplSzpyPD4bAPb2G33EQOJmQk3iBtcJGAVquUMmDJ4Gura3o9lN/3dGQCw==&quot; type=&quot;application/javascript&quot; src=&quot;https://github.githubassets.com/assets/command-runner-cde71876.js&quot;></script>
 " aria-hidden="true"></iframe>
       <input type="hidden" name="color-mode-path" id="color-mode-path" value="/settings/appearance/color_mode" class="js-color-mode-path" autocomplete="off" />
-      <input type="hidden" value="G5LLg69arWI+Viy7Fju9sPFujbYKekVVGbpn58FTTSZ2K5GNMDmCNtyt9je0IZrlKNRaSGUHvAqxxZdLtTPu9A==" data-csrf="true" class="js-color-mode-csrf" />
+      <input type="hidden" value="0g94QSlaPwDvGY3TszKgP4mJnI1mN+KfmXXBrGlSrXa/tiJPtjkQVA3iV18RKIdqUDNLcwlKG8AxCjEAHTIOpA==" data-csrf="true" class="js-color-mode-csrf" />
 
         <command-palette-mode
           data-char="#"
@@ -1318,7 +1318,7 @@
         data-action="toggle:notifications-list-subscription-form#detailsToggled"
       >
 
-      <summary data-hydro-click="{&quot;event_type&quot;:&quot;repository.click&quot;,&quot;payload&quot;:{&quot;target&quot;:&quot;WATCH_BUTTON&quot;,&quot;repository_id&quot;:317690936,&quot;originating_url&quot;:&quot;https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/modules/asset_cache/asset_list_items.dm&quot;,&quot;user_id&quot;:17093432}}" data-hydro-click-hmac="188012e430a52de1b48203f511e540c2ebc8aec5795f0bb51ac5e6a09a010256" data-ga-click="Repository, click Watch settings, action:blob#show" aria-label="Notification settings" role="button" data-view-component="true" class="rounded-right-0 btn-sm btn">
+      <summary data-hydro-click="{&quot;event_type&quot;:&quot;repository.click&quot;,&quot;payload&quot;:{&quot;target&quot;:&quot;WATCH_BUTTON&quot;,&quot;repository_id&quot;:317690936,&quot;originating_url&quot;:&quot;https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/game/turfs/simulated/angled_walls_and_doors_department_colors.dm&quot;,&quot;user_id&quot;:17093432}}" data-hydro-click-hmac="ed386d353c372b88d993e24ae6d40bfb6b989f7016e8b3f02ff6926285373a7d" data-ga-click="Repository, click Watch settings, action:blob#show" aria-label="Notification settings" role="button" data-view-component="true" class="rounded-right-0 btn-sm btn">
   
   
           <span data-menu-button>
@@ -1375,7 +1375,7 @@
             </header>
 
             <div class="SelectMenu-list">
-              <form data-target="notifications-list-subscription-form.form" data-action="submit:notifications-list-subscription-form#submitForm" action="/notifications/subscribe" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="Gf38IlPDl6o4om72NAhheJVpA510yp45bPtfGJ/ok83xr/Ij82Ff4fLyQT8bR0aftGQYKOsQlctclF0qeW7i5w==" autocomplete="off" />
+              <form data-target="notifications-list-subscription-form.form" data-action="submit:notifications-list-subscription-form#submitForm" action="/notifications/subscribe" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="wXGpv4gftITz3eudHocT1UB5M6r+dubyZntzVcc0iuApI6e+KL18zzmNxFQxyDQyYXQoH2Gs7QBWFHFnIbL7yg==" autocomplete="off" />
 
                 <input type="hidden" name="repository_id" value="317690936">
 
@@ -1498,7 +1498,7 @@
 
         <details-dialog class="notifications-component-dialog " data-target="notifications-list-subscription-form.customDialog" hidden>
           <div class="SelectMenu-modal notifications-component-dialog-modal overflow-visible">
-            <form data-target="notifications-list-subscription-form.customform" data-action="submit:notifications-list-subscription-form#submitCustomForm" action="/notifications/subscribe" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="lhqBmv1FoBQgBibl7ltQVyx4guh8Ha9tWZfQYxli8Ph+SI+bXedoX+pWCSzBFHewDXWZXePHpJ9p+NJR/+SB0g==" autocomplete="off" />
+            <form data-target="notifications-list-subscription-form.customform" data-action="submit:notifications-list-subscription-form#submitCustomForm" action="/notifications/subscribe" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="6Ol+Di1TCJfO8jpLzue83LxfmaWjOVmEahXOI/gFt88Au3APjfHA3ASiFYLhqJs7nVKCEDzjUnZaeswRHoPG5Q==" autocomplete="off" />
 
               <input type="hidden" name="repository_id" value="317690936">
 
@@ -1664,9 +1664,9 @@
 
     <li>
           <div class="js-toggler-container js-social-container starring-container d-block">
-    <form class="starred js-social-form" action="/Zeldazackman/VOREStation/unstar" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="PlK7hzk54WzIYP1Vgnxl9J6oQ/K7bFlNz/HNtlF5vzpKvaAZYQNbrTlvx0jbznmD0WEdag9PEADc2aKdCj1FLQ==" autocomplete="off" />
+    <form class="starred js-social-form" action="/Zeldazackman/VOREStation/unstar" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="BCipSqeGuv0n/2rkWlCyPrnsG2BEIlidHQ6er9tCnetwx7LU/7wAPNbwUPkD4q5J9iVF+PABEdAOJvGEgAZn/A==" autocomplete="off" />
       <input type="hidden" name="context" value="repository">
-      <button data-hydro-click="{&quot;event_type&quot;:&quot;repository.click&quot;,&quot;payload&quot;:{&quot;target&quot;:&quot;UNSTAR_BUTTON&quot;,&quot;repository_id&quot;:317690936,&quot;originating_url&quot;:&quot;https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/modules/asset_cache/asset_list_items.dm&quot;,&quot;user_id&quot;:17093432}}" data-hydro-click-hmac="0990bf05458d9ed43299ef0f1e09cdb80d878a7563151fb6d82810ca4e7e856c" data-ga-click="Repository, click unstar button, action:blob#show; text:Unstar" aria-label="Unstar this repository" type="submit" data-view-component="true" class="js-toggler-target btn-with-count btn-sm btn">
+      <button data-hydro-click="{&quot;event_type&quot;:&quot;repository.click&quot;,&quot;payload&quot;:{&quot;target&quot;:&quot;UNSTAR_BUTTON&quot;,&quot;repository_id&quot;:317690936,&quot;originating_url&quot;:&quot;https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/game/turfs/simulated/angled_walls_and_doors_department_colors.dm&quot;,&quot;user_id&quot;:17093432}}" data-hydro-click-hmac="f83404f9d6d3d1539c284bb1596cd912e36a34ec6340e0ad8a8a075391b71ef6" data-ga-click="Repository, click unstar button, action:blob#show; text:Unstar" aria-label="Unstar this repository" type="submit" data-view-component="true" class="js-toggler-target btn-with-count btn-sm btn">
   <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star-fill mr-1">
     <path fill-rule="evenodd" d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"></path>
 </svg>
@@ -1681,9 +1681,9 @@
            0
         </a>
 </form>
-    <form class="unstarred js-social-form" action="/Zeldazackman/VOREStation/star" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="sTVlBMWb35tfuiRsoW8pIEGRrN0JElad6zIzYSdvUyQ+0+6Fof/qVMn2HhOfmU0PK1CsOPaNejHIWA8uLXut7w==" autocomplete="off" />
+    <form class="unstarred js-social-form" action="/Zeldazackman/VOREStation/star" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="LK9RyI60uz5uUMXju3l3spgKCWLyPeDFNmQGN414TEmjSdpJ6tCO8fgc/5yFjxOd8ssJhw2izGkVDjp4h2yygg==" autocomplete="off" />
       <input type="hidden" name="context" value="repository">
-      <button data-hydro-click="{&quot;event_type&quot;:&quot;repository.click&quot;,&quot;payload&quot;:{&quot;target&quot;:&quot;STAR_BUTTON&quot;,&quot;repository_id&quot;:317690936,&quot;originating_url&quot;:&quot;https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/modules/asset_cache/asset_list_items.dm&quot;,&quot;user_id&quot;:17093432}}" data-hydro-click-hmac="ee07721deeaad94ac35a4a1d558a43e85d360efb3783988f7f4bc509587ece01" data-ga-click="Repository, click star button, action:blob#show; text:Star" aria-label="Star this repository" type="submit" data-view-component="true" class="js-toggler-target btn-with-count btn-sm btn">
+      <button data-hydro-click="{&quot;event_type&quot;:&quot;repository.click&quot;,&quot;payload&quot;:{&quot;target&quot;:&quot;STAR_BUTTON&quot;,&quot;repository_id&quot;:317690936,&quot;originating_url&quot;:&quot;https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/game/turfs/simulated/angled_walls_and_doors_department_colors.dm&quot;,&quot;user_id&quot;:17093432}}" data-hydro-click-hmac="85ebc2ce1f4321297e6cc198b33ec64f6f5d62b843e29e50d8dca4af139aba9c" data-ga-click="Repository, click star button, action:blob#show; text:Star" aria-label="Star this repository" type="submit" data-view-component="true" class="js-toggler-target btn-with-count btn-sm btn">
   <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star mr-1">
     <path fill-rule="evenodd" d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25zm0 2.445L6.615 5.5a.75.75 0 01-.564.41l-3.097.45 2.24 2.184a.75.75 0 01.216.664l-.528 3.084 2.769-1.456a.75.75 0 01.698 0l2.77 1.456-.53-3.084a.75.75 0 01.216-.664l2.24-2.183-3.096-.45a.75.75 0 01-.564-.41L8 2.694v.001z"></path>
 </svg>
@@ -1903,7 +1903,7 @@
   
 
 
-    <a class="d-none js-permalink-shortcut" data-hotkey="y" href="/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/modules/asset_cache/asset_list_items.dm">Permalink</a>
+    <a class="d-none js-permalink-shortcut" data-hotkey="y" href="/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/game/turfs/simulated/angled_walls_and_doors_department_colors.dm">Permalink</a>
 
     <div class="d-flex flex-items-start flex-shrink-0 pb-3 flex-wrap flex-md-nowrap flex-justify-between flex-md-justify-start">
       
@@ -1961,7 +1961,7 @@
             "
             query-endpoint="/Zeldazackman/VOREStation/refs"
             can-create
-            cache-key="v0:1635736740.568406"
+            cache-key="v0:1635736671.855045"
             current-committish="MGQ2ODhmNDRiNWZmY2IxZjYxM2M4N2RhYjYyNGRhZjYwNzE3YWJmMQ=="
             default-branch="bWFzdGVy"
             name-with-owner="WmVsZGF6YWNrbWFuL1ZPUkVTdGF0aW9u"
@@ -1973,10 +1973,10 @@
             </template>
 
               <template data-target="ref-selector.noMatchTemplate">
-    <!-- '"` --><!-- </textarea></xmp> --></option></form><form action="/Zeldazackman/VOREStation/branches" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="baRkrHUqn49I8PVTqMKGcesTqwzQcHcO5v+REmuKjQ15diCGVG5nCD1VIyCb2pSQfpAgXQziYPYmU3nY+1zhxw==" />
+    <!-- '"` --><!-- </textarea></xmp> --></option></form><form action="/Zeldazackman/VOREStation/branches" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="xJv5ABZ4UWhR2l+HkfB/6ZN6Dk3yvV5q6GzQUvwX+dLQSb0qNzyp7yR/ifSi6G0IBvmFHC4vSZIowDiYbMGVGA==" />
       <input type="hidden" name="name" value="{{ refName }}">
       <input type="hidden" name="branch"  value="0d688f44b5ffcb1f613c87dab624daf60717abf1">
-      <input type="hidden" name="path_binary" value="Y29kZS9tb2R1bGVzL2Fzc2V0X2NhY2hlL2Fzc2V0X2xpc3RfaXRlbXMuZG0=">
+      <input type="hidden" name="path_binary" value="Y29kZS9nYW1lL3R1cmZzL3NpbXVsYXRlZC9hbmdsZWRfd2FsbHNfYW5kX2Rvb3JzX2RlcGFydG1lbnRfY29sb3JzLmRt">
 
       <button class="SelectMenu-item wb-break-word" type="submit" role="menuitem" data-index="{{ index }}">
         <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-git-branch SelectMenu-icon flex-self-baseline">
@@ -2001,7 +2001,7 @@
             </div>
 
               <template data-target="ref-selector.itemTemplate">
-  <a href="https://github.com/Zeldazackman/VOREStation/blob/{{ urlEncodedRefName }}/code/modules/asset_cache/asset_list_items.dm" class="SelectMenu-item" role="menuitemradio" rel="nofollow" aria-checked="{{ isCurrent }}" data-index="{{ index }}">
+  <a href="https://github.com/Zeldazackman/VOREStation/blob/{{ urlEncodedRefName }}/code/game/turfs/simulated/angled_walls_and_doors_department_colors.dm" class="SelectMenu-item" role="menuitemradio" rel="nofollow" aria-checked="{{ isCurrent }}" data-index="{{ index }}">
     <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check SelectMenu-icon SelectMenu-icon--check">
     <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
 </svg>
@@ -2026,7 +2026,7 @@
             "
             data-targets="input-demux.sinks"
             query-endpoint="/Zeldazackman/VOREStation/refs"
-            cache-key="v0:1635736740.568406"
+            cache-key="v0:1635736671.855045"
             current-committish="MGQ2ODhmNDRiNWZmY2IxZjYxM2M4N2RhYjYyNGRhZjYwNzE3YWJmMQ=="
             default-branch="bWFzdGVy"
             name-with-owner="WmVsZGF6YWNrbWFuL1ZPUkVTdGF0aW9u"
@@ -2041,7 +2041,7 @@
             </template>
 
               <template data-target="ref-selector.itemTemplate">
-  <a href="https://github.com/Zeldazackman/VOREStation/blob/{{ urlEncodedRefName }}/code/modules/asset_cache/asset_list_items.dm" class="SelectMenu-item" role="menuitemradio" rel="nofollow" aria-checked="{{ isCurrent }}" data-index="{{ index }}">
+  <a href="https://github.com/Zeldazackman/VOREStation/blob/{{ urlEncodedRefName }}/code/game/turfs/simulated/angled_walls_and_doors_department_colors.dm" class="SelectMenu-item" role="menuitemradio" rel="nofollow" aria-checked="{{ isCurrent }}" data-index="{{ index }}">
     <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check SelectMenu-icon SelectMenu-icon--check">
     <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
 </svg>
@@ -2072,7 +2072,7 @@
 </div>
 
       <h2 id="blob-path" class="breadcrumb flex-auto flex-self-center min-width-0 text-normal mx-2 width-full width-md-auto flex-order-1 flex-md-order-none mt-3 mt-md-0">
-        <span class="js-repo-root text-bold"><span class="js-path-segment d-inline-block wb-break-all"><a data-pjax="#repo-content-pjax-container" rel="nofollow" href="/Zeldazackman/VOREStation/tree/0d688f44b5ffcb1f613c87dab624daf60717abf1"><span>VOREStation</span></a></span></span><span class="separator">/</span><span class="js-path-segment d-inline-block wb-break-all"><a data-pjax="#repo-content-pjax-container" rel="nofollow" href="/Zeldazackman/VOREStation/tree/0d688f44b5ffcb1f613c87dab624daf60717abf1/code"><span>code</span></a></span><span class="separator">/</span><span class="js-path-segment d-inline-block wb-break-all"><a data-pjax="#repo-content-pjax-container" rel="nofollow" href="/Zeldazackman/VOREStation/tree/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/modules"><span>modules</span></a></span><span class="separator">/</span><span class="js-path-segment d-inline-block wb-break-all"><a data-pjax="#repo-content-pjax-container" rel="nofollow" href="/Zeldazackman/VOREStation/tree/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/modules/asset_cache"><span>asset_cache</span></a></span><span class="separator">/</span><strong class="final-path">asset_list_items.dm</strong>
+        <span class="js-repo-root text-bold"><span class="js-path-segment d-inline-block wb-break-all"><a data-pjax="#repo-content-pjax-container" rel="nofollow" href="/Zeldazackman/VOREStation/tree/0d688f44b5ffcb1f613c87dab624daf60717abf1"><span>VOREStation</span></a></span></span><span class="separator">/</span><span class="js-path-segment d-inline-block wb-break-all"><a data-pjax="#repo-content-pjax-container" rel="nofollow" href="/Zeldazackman/VOREStation/tree/0d688f44b5ffcb1f613c87dab624daf60717abf1/code"><span>code</span></a></span><span class="separator">/</span><span class="js-path-segment d-inline-block wb-break-all"><a data-pjax="#repo-content-pjax-container" rel="nofollow" href="/Zeldazackman/VOREStation/tree/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/game"><span>game</span></a></span><span class="separator">/</span><span class="js-path-segment d-inline-block wb-break-all"><a data-pjax="#repo-content-pjax-container" rel="nofollow" href="/Zeldazackman/VOREStation/tree/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/game/turfs"><span>turfs</span></a></span><span class="separator">/</span><span class="js-path-segment d-inline-block wb-break-all"><a data-pjax="#repo-content-pjax-container" rel="nofollow" href="/Zeldazackman/VOREStation/tree/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/game/turfs/simulated"><span>simulated</span></a></span><span class="separator">/</span><strong class="final-path">angled_walls_and_doors_department_colors.dm</strong>
       </h2>
       <a href="/Zeldazackman/VOREStation/find/0d688f44b5ffcb1f613c87dab624daf60717abf1"
             class="js-pjax-capture-input btn mr-2 d-none d-md-block"
@@ -2093,7 +2093,7 @@
 </summary>
   <div data-view-component="true">          <ul class="dropdown-menu dropdown-menu-sw">
             <li class="d-block d-md-none">
-              <a class="dropdown-item d-flex flex-items-baseline" data-hydro-click="{&quot;event_type&quot;:&quot;repository.click&quot;,&quot;payload&quot;:{&quot;target&quot;:&quot;FIND_FILE_BUTTON&quot;,&quot;repository_id&quot;:317690936,&quot;originating_url&quot;:&quot;https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/modules/asset_cache/asset_list_items.dm&quot;,&quot;user_id&quot;:17093432}}" data-hydro-click-hmac="b662cd791ea42b983b21457cc013162ce0e3d49a99acb3315f119ecc63d32857" data-ga-click="Repository, find file, location:repo overview" data-hotkey="t" data-pjax="true" href="/Zeldazackman/VOREStation/find/0d688f44b5ffcb1f613c87dab624daf60717abf1">
+              <a class="dropdown-item d-flex flex-items-baseline" data-hydro-click="{&quot;event_type&quot;:&quot;repository.click&quot;,&quot;payload&quot;:{&quot;target&quot;:&quot;FIND_FILE_BUTTON&quot;,&quot;repository_id&quot;:317690936,&quot;originating_url&quot;:&quot;https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/game/turfs/simulated/angled_walls_and_doors_department_colors.dm&quot;,&quot;user_id&quot;:17093432}}" data-hydro-click-hmac="8b38eb8a3da6a39a85def3856e79ab1095caa2f80dfde7e62ce0c281cea66c07" data-ga-click="Repository, find file, location:repo overview" data-hotkey="t" data-pjax="true" href="/Zeldazackman/VOREStation/find/0d688f44b5ffcb1f613c87dab624daf60717abf1">
                 <span class="flex-auto">Go to file</span>
                 <span class="text-small color-text-secondary" aria-hidden="true">T</span>
 </a>            </li>
@@ -2111,13 +2111,13 @@
 </button>            </li>
             <li class="dropdown-divider" role="none"></li>
             <li>
-              <clipboard-copy data-toggle-for="blob-more-options-details" aria-label="Copy path" value="code/modules/asset_cache/asset_list_items.dm" data-view-component="true" class="dropdown-item cursor-pointer">
+              <clipboard-copy data-toggle-for="blob-more-options-details" aria-label="Copy path" value="code/game/turfs/simulated/angled_walls_and_doors_department_colors.dm" data-view-component="true" class="dropdown-item cursor-pointer">
     
                 Copy path
 
 </clipboard-copy>            </li>
             <li>
-              <clipboard-copy data-toggle-for="blob-more-options-details" aria-label="Copy permalink" value="https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/modules/asset_cache/asset_list_items.dm" data-view-component="true" class="dropdown-item cursor-pointer">
+              <clipboard-copy data-toggle-for="blob-more-options-details" aria-label="Copy permalink" value="https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/game/turfs/simulated/angled_walls_and_doors_department_colors.dm" data-view-component="true" class="dropdown-item cursor-pointer">
     
                 <span class="d-flex flex-items-baseline">
                   <span class="flex-auto">Copy permalink</span>
@@ -2132,7 +2132,7 @@
 
 
     <div class="Box d-flex flex-column flex-shrink-0 mb-3">
-      <include-fragment src="/Zeldazackman/VOREStation/contributors/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/modules/asset_cache/asset_list_items.dm" class="commit-loader">
+      <include-fragment src="/Zeldazackman/VOREStation/contributors/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/game/turfs/simulated/angled_walls_and_doors_department_colors.dm" class="commit-loader">
         <div class="Box-header d-flex flex-items-center">
           <div class="Skeleton avatar avatar-user flex-shrink-0 ml-n1 mr-n1 mt-n1 mb-n1" style="width:24px;height:24px;"></div>
           <div class="Skeleton Skeleton--text col-5 ml-2">&nbsp;</div>
@@ -2165,24 +2165,24 @@
 
 
   <div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1">
-      <include-fragment src="/Zeldazackman/VOREStation/codeowners/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/modules/asset_cache/asset_list_items.dm"></include-fragment>
+      <include-fragment src="/Zeldazackman/VOREStation/codeowners/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/game/turfs/simulated/angled_walls_and_doors_department_colors.dm"></include-fragment>
 
-      540 lines (471 sloc)
+      329 lines (317 sloc)
       <span class="file-info-divider"></span>
-    21.4 KB
+    12.2 KB
   </div>
 
   <div class="d-flex py-1 py-md-0 flex-auto flex-order-1 flex-md-order-2 flex-sm-grow-0 flex-justify-between hide-sm hide-md">
       
 
     <div class="BtnGroup">
-      <a href="/Zeldazackman/VOREStation/raw/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/modules/asset_cache/asset_list_items.dm" id="raw-url" role="button" data-view-component="true" class="btn-sm btn BtnGroup-item">
+      <a href="/Zeldazackman/VOREStation/raw/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/game/turfs/simulated/angled_walls_and_doors_department_colors.dm" id="raw-url" role="button" data-view-component="true" class="btn-sm btn BtnGroup-item">
   
   Raw
   
 
 </a>
-        <a href="/Zeldazackman/VOREStation/blame/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/modules/asset_cache/asset_list_items.dm" data-hotkey="b" role="button" data-view-component="true" class="js-update-url-with-hash btn-sm btn BtnGroup-item">
+        <a href="/Zeldazackman/VOREStation/blame/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/game/turfs/simulated/angled_walls_and_doors_department_colors.dm" data-hotkey="b" role="button" data-view-component="true" class="js-update-url-with-hash btn-sm btn BtnGroup-item">
   
   Blame
   
@@ -2199,11 +2199,11 @@
 </svg>
           </button>
 
-        <remote-clipboard-copy class="d-inline-block btn-octicon" style="height: 26px" data-src="/Zeldazackman/VOREStation/raw/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/modules/asset_cache/asset_list_items.dm" data-action="click:remote-clipboard-copy#remoteCopy">
+        <remote-clipboard-copy class="d-inline-block btn-octicon" style="height: 26px" data-src="/Zeldazackman/VOREStation/raw/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/game/turfs/simulated/angled_walls_and_doors_department_colors.dm" data-action="click:remote-clipboard-copy#remoteCopy">
   
 
 
-  <span data-target="remote-clipboard-copy.idle">            <span class="tooltipped tooltipped-nw cursor-pointer" data-hydro-click="{&quot;event_type&quot;:&quot;repository.click&quot;,&quot;payload&quot;:{&quot;target&quot;:&quot;COPY_RAW_CONTENTS_BUTTON&quot;,&quot;repository_id&quot;:317690936,&quot;originating_url&quot;:&quot;https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/modules/asset_cache/asset_list_items.dm&quot;,&quot;user_id&quot;:17093432}}" data-hydro-click-hmac="fd453a609ad7fe7a0183a0b624574e74e0e2f2dfaebb7f954bd8a69981f484a0" aria-label="Copy raw contents">
+  <span data-target="remote-clipboard-copy.idle">            <span class="tooltipped tooltipped-nw cursor-pointer" data-hydro-click="{&quot;event_type&quot;:&quot;repository.click&quot;,&quot;payload&quot;:{&quot;target&quot;:&quot;COPY_RAW_CONTENTS_BUTTON&quot;,&quot;repository_id&quot;:317690936,&quot;originating_url&quot;:&quot;https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/game/turfs/simulated/angled_walls_and_doors_department_colors.dm&quot;,&quot;user_id&quot;:17093432}}" data-hydro-click-hmac="6fcc58753f948e2e8d188c5eaa8c070a357386ff977c7962213982401712b21e" aria-label="Copy raw contents">
               <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy">
     <path fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path><path fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
 </svg>
@@ -2226,13 +2226,13 @@
             </span>
 </span>
 </remote-clipboard-copy>
-          <a href="/login?return_to=https%3A%2F%2Fgithub.com%2FZeldazackman%2FVOREStation%2Fblob%2F0d688f44b5ffcb1f613c87dab624daf60717abf1%2Fcode%2Fmodules%2Fasset_cache%2Fasset_list_items.dm" class="btn-octicon disabled tooltipped tooltipped-nw"
+          <a href="/login?return_to=https%3A%2F%2Fgithub.com%2FZeldazackman%2FVOREStation%2Fblob%2F0d688f44b5ffcb1f613c87dab624daf60717abf1%2Fcode%2Fgame%2Fturfs%2Fsimulated%2Fangled_walls_and_doors_department_colors.dm" class="btn-octicon disabled tooltipped tooltipped-nw"
             aria-label="You must be on a branch to make or propose changes to this file">
             <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-pencil">
     <path fill-rule="evenodd" d="M11.013 1.427a1.75 1.75 0 012.474 0l1.086 1.086a1.75 1.75 0 010 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 01-.927-.928l.929-3.25a1.75 1.75 0 01.445-.758l8.61-8.61zm1.414 1.06a.25.25 0 00-.354 0L10.811 3.75l1.439 1.44 1.263-1.263a.25.25 0 000-.354l-1.086-1.086zM11.189 6.25L9.75 4.81l-6.286 6.287a.25.25 0 00-.064.108l-.558 1.953 1.953-.558a.249.249 0 00.108-.064l6.286-6.286z"></path>
 </svg>
           </a>
-          <a href="/login?return_to=https%3A%2F%2Fgithub.com%2FZeldazackman%2FVOREStation%2Fblob%2F0d688f44b5ffcb1f613c87dab624daf60717abf1%2Fcode%2Fmodules%2Fasset_cache%2Fasset_list_items.dm" class="btn-octicon btn-octicon-danger disabled tooltipped tooltipped-nw"
+          <a href="/login?return_to=https%3A%2F%2Fgithub.com%2FZeldazackman%2FVOREStation%2Fblob%2F0d688f44b5ffcb1f613c87dab624daf60717abf1%2Fcode%2Fgame%2Fturfs%2Fsimulated%2Fangled_walls_and_doors_department_colors.dm" class="btn-octicon btn-octicon-danger disabled tooltipped tooltipped-nw"
             aria-label="You must be on a branch to make or propose changes to this file">
             <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-trash">
     <path fill-rule="evenodd" d="M6.5 1.75a.25.25 0 01.25-.25h2.5a.25.25 0 01.25.25V3h-3V1.75zm4.5 0V3h2.25a.75.75 0 010 1.5H2.75a.75.75 0 010-1.5H5V1.75C5 .784 5.784 0 6.75 0h2.5C10.216 0 11 .784 11 1.75zM4.496 6.675a.75.75 0 10-1.492.15l.66 6.6A1.75 1.75 0 005.405 15h5.19c.9 0 1.652-.681 1.741-1.576l.66-6.6a.75.75 0 00-1.492-.149l-.66 6.6a.25.25 0 01-.249.225h-5.19a.25.25 0 01-.249-.225l-.66-6.6z"></path>
@@ -2253,15 +2253,15 @@
             <li>
             </li>
           <li>
-            <a class="dropdown-item" href="/Zeldazackman/VOREStation/raw/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/modules/asset_cache/asset_list_items.dm">
+            <a class="dropdown-item" href="/Zeldazackman/VOREStation/raw/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/game/turfs/simulated/angled_walls_and_doors_department_colors.dm">
               View raw
             </a>
           </li>
             <li>
-              <remote-clipboard-copy class="dropdown-item" data-src="/Zeldazackman/VOREStation/raw/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/modules/asset_cache/asset_list_items.dm" data-action="click:remote-clipboard-copy#remoteCopy">
+              <remote-clipboard-copy class="dropdown-item" data-src="/Zeldazackman/VOREStation/raw/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/game/turfs/simulated/angled_walls_and_doors_department_colors.dm" data-action="click:remote-clipboard-copy#remoteCopy">
   
 
-  <span data-target="remote-clipboard-copy.idle">                  <span class="cursor-pointer" data-hydro-click="{&quot;event_type&quot;:&quot;repository.click&quot;,&quot;payload&quot;:{&quot;target&quot;:&quot;COPY_RAW_CONTENTS_BUTTON&quot;,&quot;repository_id&quot;:317690936,&quot;originating_url&quot;:&quot;https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/modules/asset_cache/asset_list_items.dm&quot;,&quot;user_id&quot;:17093432}}" data-hydro-click-hmac="fd453a609ad7fe7a0183a0b624574e74e0e2f2dfaebb7f954bd8a69981f484a0">
+  <span data-target="remote-clipboard-copy.idle">                  <span class="cursor-pointer" data-hydro-click="{&quot;event_type&quot;:&quot;repository.click&quot;,&quot;payload&quot;:{&quot;target&quot;:&quot;COPY_RAW_CONTENTS_BUTTON&quot;,&quot;repository_id&quot;:317690936,&quot;originating_url&quot;:&quot;https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/game/turfs/simulated/angled_walls_and_doors_department_colors.dm&quot;,&quot;user_id&quot;:17093432}}" data-hydro-click-hmac="6fcc58753f948e2e8d188c5eaa8c070a357386ff977c7962213982401712b21e">
                     Copy raw contents
 </span></span>
   <span data-target="remote-clipboard-copy.fetching" hidden="hidden">                  Copy raw contents
@@ -2284,7 +2284,7 @@
 </span>
 </remote-clipboard-copy>            </li>
             <li>
-              <a class="dropdown-item" href="/Zeldazackman/VOREStation/blame/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/modules/asset_cache/asset_list_items.dm">
+              <a class="dropdown-item" href="/Zeldazackman/VOREStation/blame/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/game/turfs/simulated/angled_walls_and_doors_department_colors.dm">
                 View blame
               </a>
             </li>
@@ -2313,1064 +2313,1046 @@
   <table class="highlight tab-size js-file-line-container" data-tab-size="8" data-paste-markdown-skip>
         <tr>
           <td id="L1" class="blob-num js-line-number" data-line-number="1"></td>
-          <td id="LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span>DEFINITIONS FOR ASSET DATUMS START HERE.</span></td>
+          <td id="LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">turf</span><span class="pl-k">/</span>simulated<span class="pl-k">/</span>wall<span class="pl-k">/</span>bay<span class="pl-k">/</span>steel</td>
         </tr>
         <tr>
           <td id="L2" class="blob-num js-line-number" data-line-number="2"></td>
-          <td id="LC2" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">datum</span><span class="pl-k">/</span>asset<span class="pl-k">/</span>simple<span class="pl-k">/</span>tgui_common</td>
+          <td id="LC2" class="blob-code blob-code-inner js-file-line">	desc <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>It has a steel stripe! A huge chunk of metal used to seperate rooms.<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L3" class="blob-num js-line-number" data-line-number="3"></td>
-          <td id="LC3" class="blob-code blob-code-inner js-file-line">	<span class="pl-c"><span class="pl-c">//</span> keep_local_name = TRUE</span></td>
+          <td id="LC3" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#3d5e80<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L4" class="blob-num js-line-number" data-line-number="4"></td>
-          <td id="LC4" class="blob-code blob-code-inner js-file-line">	assets <span class="pl-k">=</span> <span class="pl-k">list</span>(</td>
+          <td id="LC4" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">turf</span><span class="pl-k">/</span>simulated<span class="pl-k">/</span>wall<span class="pl-k">/</span>bay<span class="pl-k">/</span>red</td>
         </tr>
         <tr>
           <td id="L5" class="blob-num js-line-number" data-line-number="5"></td>
-          <td id="LC5" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>tgui-common.bundle.js<span class="pl-pds">&quot;</span></span> <span class="pl-k">=</span> file(<span class="pl-s"><span class="pl-pds">&quot;</span>tgui/public/tgui-common.bundle.js<span class="pl-pds">&quot;</span></span>),</td>
+          <td id="LC5" class="blob-code blob-code-inner js-file-line">	desc <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>It has a red stripe! A huge chunk of metal used to seperate rooms.<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L6" class="blob-num js-line-number" data-line-number="6"></td>
-          <td id="LC6" class="blob-code blob-code-inner js-file-line">	)</td>
+          <td id="LC6" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#8c1d11<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L7" class="blob-num js-line-number" data-line-number="7"></td>
-          <td id="LC7" class="blob-code blob-code-inner js-file-line">
-</td>
+          <td id="LC7" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">turf</span><span class="pl-k">/</span>simulated<span class="pl-k">/</span>wall<span class="pl-k">/</span>bay<span class="pl-k">/</span>brown</td>
         </tr>
         <tr>
           <td id="L8" class="blob-num js-line-number" data-line-number="8"></td>
-          <td id="LC8" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">datum</span><span class="pl-k">/</span>asset<span class="pl-k">/</span>simple<span class="pl-k">/</span>tgui</td>
+          <td id="LC8" class="blob-code blob-code-inner js-file-line">	desc <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>It has a brown stripe! A huge chunk of metal used to seperate rooms.<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L9" class="blob-num js-line-number" data-line-number="9"></td>
-          <td id="LC9" class="blob-code blob-code-inner js-file-line">	<span class="pl-c"><span class="pl-c">//</span> keep_local_name = TRUE</span></td>
+          <td id="LC9" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#785134<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L10" class="blob-num js-line-number" data-line-number="10"></td>
-          <td id="LC10" class="blob-code blob-code-inner js-file-line">	assets <span class="pl-k">=</span> <span class="pl-k">list</span>(</td>
+          <td id="LC10" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">turf</span><span class="pl-k">/</span>simulated<span class="pl-k">/</span>wall<span class="pl-k">/</span>bay<span class="pl-k">/</span>purple</td>
         </tr>
         <tr>
           <td id="L11" class="blob-num js-line-number" data-line-number="11"></td>
-          <td id="LC11" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>tgui.bundle.js<span class="pl-pds">&quot;</span></span> <span class="pl-k">=</span> file(<span class="pl-s"><span class="pl-pds">&quot;</span>tgui/public/tgui.bundle.js<span class="pl-pds">&quot;</span></span>),</td>
+          <td id="LC11" class="blob-code blob-code-inner js-file-line">	desc <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>It has a purple stripe! A huge chunk of metal used to seperate rooms.<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L12" class="blob-num js-line-number" data-line-number="12"></td>
-          <td id="LC12" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>tgui.bundle.css<span class="pl-pds">&quot;</span></span> <span class="pl-k">=</span> file(<span class="pl-s"><span class="pl-pds">&quot;</span>tgui/public/tgui.bundle.css<span class="pl-pds">&quot;</span></span>),</td>
+          <td id="LC12" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#5a19a8<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L13" class="blob-num js-line-number" data-line-number="13"></td>
-          <td id="LC13" class="blob-code blob-code-inner js-file-line">	)</td>
+          <td id="LC13" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">turf</span><span class="pl-k">/</span>simulated<span class="pl-k">/</span>wall<span class="pl-k">/</span>bay<span class="pl-k">/</span>blue</td>
         </tr>
         <tr>
           <td id="L14" class="blob-num js-line-number" data-line-number="14"></td>
-          <td id="LC14" class="blob-code blob-code-inner js-file-line">
-</td>
+          <td id="LC14" class="blob-code blob-code-inner js-file-line">	desc <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>It has a blue stripe! A huge chunk of metal used to seperate rooms.<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L15" class="blob-num js-line-number" data-line-number="15"></td>
-          <td id="LC15" class="blob-code blob-code-inner js-file-line">
-</td>
+          <td id="LC15" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#2e2aa1<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L16" class="blob-num js-line-number" data-line-number="16"></td>
-          <td id="LC16" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">datum</span><span class="pl-k">/</span>asset<span class="pl-k">/</span>simple<span class="pl-k">/</span>headers</td>
+          <td id="LC16" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">turf</span><span class="pl-k">/</span>simulated<span class="pl-k">/</span>wall<span class="pl-k">/</span>bay<span class="pl-k">/</span>orange</td>
         </tr>
         <tr>
           <td id="L17" class="blob-num js-line-number" data-line-number="17"></td>
-          <td id="LC17" class="blob-code blob-code-inner js-file-line">	assets <span class="pl-k">=</span> <span class="pl-k">list</span>(</td>
+          <td id="LC17" class="blob-code blob-code-inner js-file-line">	desc <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>It has a orange stripe! A huge chunk of metal used to seperate rooms.<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L18" class="blob-num js-line-number" data-line-number="18"></td>
-          <td id="LC18" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>alarm_green.gif<span class="pl-pds">&quot;</span></span> 			<span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/program_icons/alarm_green.gif<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC18" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#e6ab22<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L19" class="blob-num js-line-number" data-line-number="19"></td>
-          <td id="LC19" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>alarm_red.gif<span class="pl-pds">&quot;</span></span> 			<span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/program_icons/alarm_red.gif<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC19" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">turf</span><span class="pl-k">/</span>simulated<span class="pl-k">/</span>wall<span class="pl-k">/</span>bay<span class="pl-k">/</span>white</td>
         </tr>
         <tr>
           <td id="L20" class="blob-num js-line-number" data-line-number="20"></td>
-          <td id="LC20" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>batt_5.gif<span class="pl-pds">&quot;</span></span> 				<span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/program_icons/batt_5.gif<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC20" class="blob-code blob-code-inner js-file-line">	desc <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>It has a white stripe! A huge chunk of metal used to seperate rooms.<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L21" class="blob-num js-line-number" data-line-number="21"></td>
-          <td id="LC21" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>batt_20.gif<span class="pl-pds">&quot;</span></span> 				<span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/program_icons/batt_20.gif<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC21" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#ffffff<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L22" class="blob-num js-line-number" data-line-number="22"></td>
-          <td id="LC22" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>batt_40.gif<span class="pl-pds">&quot;</span></span> 				<span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/program_icons/batt_40.gif<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC22" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">turf</span><span class="pl-k">/</span>simulated<span class="pl-k">/</span>wall<span class="pl-k">/</span>bay<span class="pl-k">/</span>black</td>
         </tr>
         <tr>
           <td id="L23" class="blob-num js-line-number" data-line-number="23"></td>
-          <td id="LC23" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>batt_60.gif<span class="pl-pds">&quot;</span></span> 				<span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/program_icons/batt_60.gif<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC23" class="blob-code blob-code-inner js-file-line">	desc <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>It has a black stripe! A huge chunk of metal used to seperate rooms.<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L24" class="blob-num js-line-number" data-line-number="24"></td>
-          <td id="LC24" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>batt_80.gif<span class="pl-pds">&quot;</span></span> 				<span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/program_icons/batt_80.gif<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC24" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#2e2e2e<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L25" class="blob-num js-line-number" data-line-number="25"></td>
-          <td id="LC25" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>batt_100.gif<span class="pl-pds">&quot;</span></span> 				<span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/program_icons/batt_100.gif<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC25" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">turf</span><span class="pl-k">/</span>simulated<span class="pl-k">/</span>wall<span class="pl-k">/</span>bay<span class="pl-k">/</span>green</td>
         </tr>
         <tr>
           <td id="L26" class="blob-num js-line-number" data-line-number="26"></td>
-          <td id="LC26" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>charging.gif<span class="pl-pds">&quot;</span></span> 				<span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/program_icons/charging.gif<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC26" class="blob-code blob-code-inner js-file-line">	desc <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>It has a green stripe! A huge chunk of metal used to seperate rooms.<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L27" class="blob-num js-line-number" data-line-number="27"></td>
-          <td id="LC27" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>downloader_finished.gif<span class="pl-pds">&quot;</span></span> 	<span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/program_icons/downloader_finished.gif<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC27" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#00ab03<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L28" class="blob-num js-line-number" data-line-number="28"></td>
-          <td id="LC28" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>downloader_running.gif<span class="pl-pds">&quot;</span></span> 	<span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/program_icons/downloader_running.gif<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC28" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span>///R-Wall</span></td>
         </tr>
         <tr>
           <td id="L29" class="blob-num js-line-number" data-line-number="29"></td>
-          <td id="LC29" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>ntnrc_idle.gif<span class="pl-pds">&quot;</span></span>			<span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/program_icons/ntnrc_idle.gif<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC29" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">turf</span><span class="pl-k">/</span>simulated<span class="pl-k">/</span>wall<span class="pl-k">/</span>bay<span class="pl-k">/</span>r_wall<span class="pl-k">/</span>steel</td>
         </tr>
         <tr>
           <td id="L30" class="blob-num js-line-number" data-line-number="30"></td>
-          <td id="LC30" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>ntnrc_new.gif<span class="pl-pds">&quot;</span></span>				<span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/program_icons/ntnrc_new.gif<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC30" class="blob-code blob-code-inner js-file-line">	desc <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>It has a steel stripe! A huge chunk of metal used to seperate rooms.<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L31" class="blob-num js-line-number" data-line-number="31"></td>
-          <td id="LC31" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>power_norm.gif<span class="pl-pds">&quot;</span></span>			<span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/program_icons/power_norm.gif<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC31" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#3d5e80<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L32" class="blob-num js-line-number" data-line-number="32"></td>
-          <td id="LC32" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>power_warn.gif<span class="pl-pds">&quot;</span></span>			<span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/program_icons/power_warn.gif<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC32" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">turf</span><span class="pl-k">/</span>simulated<span class="pl-k">/</span>wall<span class="pl-k">/</span>bay<span class="pl-k">/</span>r_wall<span class="pl-k">/</span>red</td>
         </tr>
         <tr>
           <td id="L33" class="blob-num js-line-number" data-line-number="33"></td>
-          <td id="LC33" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>sig_high.gif<span class="pl-pds">&quot;</span></span> 				<span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/program_icons/sig_high.gif<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC33" class="blob-code blob-code-inner js-file-line">	desc <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>It has a red stripe! A huge chunk of metal used to seperate rooms.<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L34" class="blob-num js-line-number" data-line-number="34"></td>
-          <td id="LC34" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>sig_low.gif<span class="pl-pds">&quot;</span></span> 				<span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/program_icons/sig_low.gif<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC34" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#8c1d11<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L35" class="blob-num js-line-number" data-line-number="35"></td>
-          <td id="LC35" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>sig_lan.gif<span class="pl-pds">&quot;</span></span> 				<span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/program_icons/sig_lan.gif<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC35" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">turf</span><span class="pl-k">/</span>simulated<span class="pl-k">/</span>wall<span class="pl-k">/</span>bay<span class="pl-k">/</span>r_wall<span class="pl-k">/</span>brown</td>
         </tr>
         <tr>
           <td id="L36" class="blob-num js-line-number" data-line-number="36"></td>
-          <td id="LC36" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>sig_none.gif<span class="pl-pds">&quot;</span></span> 				<span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/program_icons/sig_none.gif<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC36" class="blob-code blob-code-inner js-file-line">	desc <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>It has a brown stripe! A huge chunk of metal used to seperate rooms.<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L37" class="blob-num js-line-number" data-line-number="37"></td>
-          <td id="LC37" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>smmon_0.gif<span class="pl-pds">&quot;</span></span> 				<span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/program_icons/smmon_0.gif<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC37" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#785134<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L38" class="blob-num js-line-number" data-line-number="38"></td>
-          <td id="LC38" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>smmon_1.gif<span class="pl-pds">&quot;</span></span> 				<span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/program_icons/smmon_1.gif<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC38" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">turf</span><span class="pl-k">/</span>simulated<span class="pl-k">/</span>wall<span class="pl-k">/</span>bay<span class="pl-k">/</span>r_wall<span class="pl-k">/</span>purple</td>
         </tr>
         <tr>
           <td id="L39" class="blob-num js-line-number" data-line-number="39"></td>
-          <td id="LC39" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>smmon_2.gif<span class="pl-pds">&quot;</span></span> 				<span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/program_icons/smmon_2.gif<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC39" class="blob-code blob-code-inner js-file-line">	desc <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>It has a purple stripe! A huge chunk of metal used to seperate rooms.<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L40" class="blob-num js-line-number" data-line-number="40"></td>
-          <td id="LC40" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>smmon_3.gif<span class="pl-pds">&quot;</span></span> 				<span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/program_icons/smmon_3.gif<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC40" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#5a19a8<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L41" class="blob-num js-line-number" data-line-number="41"></td>
-          <td id="LC41" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>smmon_4.gif<span class="pl-pds">&quot;</span></span> 				<span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/program_icons/smmon_4.gif<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC41" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">turf</span><span class="pl-k">/</span>simulated<span class="pl-k">/</span>wall<span class="pl-k">/</span>bay<span class="pl-k">/</span>r_wall<span class="pl-k">/</span>blue</td>
         </tr>
         <tr>
           <td id="L42" class="blob-num js-line-number" data-line-number="42"></td>
-          <td id="LC42" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>smmon_5.gif<span class="pl-pds">&quot;</span></span> 				<span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/program_icons/smmon_5.gif<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC42" class="blob-code blob-code-inner js-file-line">	desc <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>It has a blue stripe! A huge chunk of metal used to seperate rooms.<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L43" class="blob-num js-line-number" data-line-number="43"></td>
-          <td id="LC43" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>smmon_6.gif<span class="pl-pds">&quot;</span></span> 				<span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/program_icons/smmon_6.gif<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC43" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#2e2aa1<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L44" class="blob-num js-line-number" data-line-number="44"></td>
-          <td id="LC44" class="blob-code blob-code-inner js-file-line">		<span class="pl-c"><span class="pl-c">//</span> &quot;borg_mon.gif&quot;				= &#39;icons/program_icons/borg_mon.gif&#39;</span></td>
+          <td id="LC44" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">turf</span><span class="pl-k">/</span>simulated<span class="pl-k">/</span>wall<span class="pl-k">/</span>bay<span class="pl-k">/</span>r_wall<span class="pl-k">/</span>orange</td>
         </tr>
         <tr>
           <td id="L45" class="blob-num js-line-number" data-line-number="45"></td>
-          <td id="LC45" class="blob-code blob-code-inner js-file-line">	)</td>
+          <td id="LC45" class="blob-code blob-code-inner js-file-line">	desc <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>It has a orange stripe! A huge chunk of metal used to seperate rooms.<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L46" class="blob-num js-line-number" data-line-number="46"></td>
-          <td id="LC46" class="blob-code blob-code-inner js-file-line">
-</td>
+          <td id="LC46" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#e6ab22<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L47" class="blob-num js-line-number" data-line-number="47"></td>
-          <td id="LC47" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> /datum/asset/simple/radar_assets</span></td>
+          <td id="LC47" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">turf</span><span class="pl-k">/</span>simulated<span class="pl-k">/</span>wall<span class="pl-k">/</span>bay<span class="pl-k">/</span>r_wall<span class="pl-k">/</span>white</td>
         </tr>
         <tr>
           <td id="L48" class="blob-num js-line-number" data-line-number="48"></td>
-          <td id="LC48" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	assets = list(</span></td>
+          <td id="LC48" class="blob-code blob-code-inner js-file-line">	desc <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>It has a white stripe! A huge chunk of metal used to seperate rooms.<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L49" class="blob-num js-line-number" data-line-number="49"></td>
-          <td id="LC49" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;ntosradarbackground.png&quot;	= &#39;icons/UI_Icons/tgui/ntosradar_background.png&#39;,</span></td>
+          <td id="LC49" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#ffffff<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L50" class="blob-num js-line-number" data-line-number="50"></td>
-          <td id="LC50" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;ntosradarpointer.png&quot;		= &#39;icons/UI_Icons/tgui/ntosradar_pointer.png&#39;,</span></td>
+          <td id="LC50" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">turf</span><span class="pl-k">/</span>simulated<span class="pl-k">/</span>wall<span class="pl-k">/</span>bay<span class="pl-k">/</span>r_wall<span class="pl-k">/</span>black</td>
         </tr>
         <tr>
           <td id="L51" class="blob-num js-line-number" data-line-number="51"></td>
-          <td id="LC51" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;ntosradarpointerS.png&quot;		= &#39;icons/UI_Icons/tgui/ntosradar_pointer_S.png&#39;</span></td>
+          <td id="LC51" class="blob-code blob-code-inner js-file-line">	desc <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>It has a black stripe! A huge chunk of metal used to seperate rooms.<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L52" class="blob-num js-line-number" data-line-number="52"></td>
-          <td id="LC52" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	)</span></td>
+          <td id="LC52" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#2e2e2e<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L53" class="blob-num js-line-number" data-line-number="53"></td>
-          <td id="LC53" class="blob-code blob-code-inner js-file-line">
-</td>
+          <td id="LC53" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">turf</span><span class="pl-k">/</span>simulated<span class="pl-k">/</span>wall<span class="pl-k">/</span>bay<span class="pl-k">/</span>r_wall<span class="pl-k">/</span>green</td>
         </tr>
         <tr>
           <td id="L54" class="blob-num js-line-number" data-line-number="54"></td>
-          <td id="LC54" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> /datum/asset/spritesheet/simple/pda</span></td>
+          <td id="LC54" class="blob-code blob-code-inner js-file-line">	desc <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>It has a green stripe! A huge chunk of metal used to seperate rooms.<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L55" class="blob-num js-line-number" data-line-number="55"></td>
-          <td id="LC55" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	name = &quot;pda&quot;</span></td>
+          <td id="LC55" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#00ab03<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L56" class="blob-num js-line-number" data-line-number="56"></td>
-          <td id="LC56" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	assets = list(</span></td>
+          <td id="LC56" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span>///Low wall</span></td>
         </tr>
         <tr>
           <td id="L57" class="blob-num js-line-number" data-line-number="57"></td>
-          <td id="LC57" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;atmos&quot;			= &#39;icons/pda_icons/pda_atmos.png&#39;,</span></td>
+          <td id="LC57" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>structure<span class="pl-k">/</span>low_wall<span class="pl-k">/</span>bay<span class="pl-k">/</span>steel</td>
         </tr>
         <tr>
           <td id="L58" class="blob-num js-line-number" data-line-number="58"></td>
-          <td id="LC58" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;back&quot;			= &#39;icons/pda_icons/pda_back.png&#39;,</span></td>
+          <td id="LC58" class="blob-code blob-code-inner js-file-line">	desc <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>It has a steel stripe! A low wall section which serves as the base of windows, amongst other things.<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L59" class="blob-num js-line-number" data-line-number="59"></td>
-          <td id="LC59" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;bell&quot;			= &#39;icons/pda_icons/pda_bell.png&#39;,</span></td>
+          <td id="LC59" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#3d5e80<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L60" class="blob-num js-line-number" data-line-number="60"></td>
-          <td id="LC60" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;blank&quot;			= &#39;icons/pda_icons/pda_blank.png&#39;,</span></td>
+          <td id="LC60" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>structure<span class="pl-k">/</span>low_wall<span class="pl-k">/</span>bay<span class="pl-k">/</span>red</td>
         </tr>
         <tr>
           <td id="L61" class="blob-num js-line-number" data-line-number="61"></td>
-          <td id="LC61" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;boom&quot;			= &#39;icons/pda_icons/pda_boom.png&#39;,</span></td>
+          <td id="LC61" class="blob-code blob-code-inner js-file-line">	desc <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>It has a red stripe! A low wall section which serves as the base of windows, amongst other things.<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L62" class="blob-num js-line-number" data-line-number="62"></td>
-          <td id="LC62" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;bucket&quot;		= &#39;icons/pda_icons/pda_bucket.png&#39;,</span></td>
+          <td id="LC62" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#8c1d11<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L63" class="blob-num js-line-number" data-line-number="63"></td>
-          <td id="LC63" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;medbot&quot;		= &#39;icons/pda_icons/pda_medbot.png&#39;,</span></td>
+          <td id="LC63" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>structure<span class="pl-k">/</span>low_wall<span class="pl-k">/</span>bay<span class="pl-k">/</span>brown</td>
         </tr>
         <tr>
           <td id="L64" class="blob-num js-line-number" data-line-number="64"></td>
-          <td id="LC64" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;floorbot&quot;		= &#39;icons/pda_icons/pda_floorbot.png&#39;,</span></td>
+          <td id="LC64" class="blob-code blob-code-inner js-file-line">	desc <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>It has a brown stripe! A low wall section which serves as the base of windows, amongst other things.<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L65" class="blob-num js-line-number" data-line-number="65"></td>
-          <td id="LC65" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;cleanbot&quot;		= &#39;icons/pda_icons/pda_cleanbot.png&#39;,</span></td>
+          <td id="LC65" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#785134<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L66" class="blob-num js-line-number" data-line-number="66"></td>
-          <td id="LC66" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;crate&quot;			= &#39;icons/pda_icons/pda_crate.png&#39;,</span></td>
+          <td id="LC66" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>structure<span class="pl-k">/</span>low_wall<span class="pl-k">/</span>bay<span class="pl-k">/</span>purple</td>
         </tr>
         <tr>
           <td id="L67" class="blob-num js-line-number" data-line-number="67"></td>
-          <td id="LC67" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;cuffs&quot;			= &#39;icons/pda_icons/pda_cuffs.png&#39;,</span></td>
+          <td id="LC67" class="blob-code blob-code-inner js-file-line">	desc <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>It has a purple stripe! A low wall section which serves as the base of windows, amongst other things.<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L68" class="blob-num js-line-number" data-line-number="68"></td>
-          <td id="LC68" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;eject&quot;			= &#39;icons/pda_icons/pda_eject.png&#39;,</span></td>
+          <td id="LC68" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#5a19a8<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L69" class="blob-num js-line-number" data-line-number="69"></td>
-          <td id="LC69" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;flashlight&quot;	= &#39;icons/pda_icons/pda_flashlight.png&#39;,</span></td>
+          <td id="LC69" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>structure<span class="pl-k">/</span>low_wall<span class="pl-k">/</span>bay<span class="pl-k">/</span>blue</td>
         </tr>
         <tr>
           <td id="L70" class="blob-num js-line-number" data-line-number="70"></td>
-          <td id="LC70" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;honk&quot;			= &#39;icons/pda_icons/pda_honk.png&#39;,</span></td>
+          <td id="LC70" class="blob-code blob-code-inner js-file-line">	desc <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>It has a blue stripe! A low wall section which serves as the base of windows, amongst other things.<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L71" class="blob-num js-line-number" data-line-number="71"></td>
-          <td id="LC71" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;mail&quot;			= &#39;icons/pda_icons/pda_mail.png&#39;,</span></td>
+          <td id="LC71" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#2e2aa1<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L72" class="blob-num js-line-number" data-line-number="72"></td>
-          <td id="LC72" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;medical&quot;		= &#39;icons/pda_icons/pda_medical.png&#39;,</span></td>
+          <td id="LC72" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>structure<span class="pl-k">/</span>low_wall<span class="pl-k">/</span>bay<span class="pl-k">/</span>orange</td>
         </tr>
         <tr>
           <td id="L73" class="blob-num js-line-number" data-line-number="73"></td>
-          <td id="LC73" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;menu&quot;			= &#39;icons/pda_icons/pda_menu.png&#39;,</span></td>
+          <td id="LC73" class="blob-code blob-code-inner js-file-line">	desc <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>It has a orange stripe! A low wall section which serves as the base of windows, amongst other things.<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L74" class="blob-num js-line-number" data-line-number="74"></td>
-          <td id="LC74" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;mule&quot;			= &#39;icons/pda_icons/pda_mule.png&#39;,</span></td>
+          <td id="LC74" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#e6ab22<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L75" class="blob-num js-line-number" data-line-number="75"></td>
-          <td id="LC75" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;notes&quot;			= &#39;icons/pda_icons/pda_notes.png&#39;,</span></td>
+          <td id="LC75" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>structure<span class="pl-k">/</span>low_wall<span class="pl-k">/</span>bay<span class="pl-k">/</span>white</td>
         </tr>
         <tr>
           <td id="L76" class="blob-num js-line-number" data-line-number="76"></td>
-          <td id="LC76" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;power&quot;			= &#39;icons/pda_icons/pda_power.png&#39;,</span></td>
+          <td id="LC76" class="blob-code blob-code-inner js-file-line">	desc <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>It has a white stripe! A low wall section which serves as the base of windows, amongst other things.<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L77" class="blob-num js-line-number" data-line-number="77"></td>
-          <td id="LC77" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;rdoor&quot;			= &#39;icons/pda_icons/pda_rdoor.png&#39;,</span></td>
+          <td id="LC77" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#ffffff<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L78" class="blob-num js-line-number" data-line-number="78"></td>
-          <td id="LC78" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;reagent&quot;		= &#39;icons/pda_icons/pda_reagent.png&#39;,</span></td>
+          <td id="LC78" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>structure<span class="pl-k">/</span>low_wall<span class="pl-k">/</span>bay<span class="pl-k">/</span>black</td>
         </tr>
         <tr>
           <td id="L79" class="blob-num js-line-number" data-line-number="79"></td>
-          <td id="LC79" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;refresh&quot;		= &#39;icons/pda_icons/pda_refresh.png&#39;,</span></td>
+          <td id="LC79" class="blob-code blob-code-inner js-file-line">	desc <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>It has a black stripe! A low wall section which serves as the base of windows, amongst other things.<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L80" class="blob-num js-line-number" data-line-number="80"></td>
-          <td id="LC80" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;scanner&quot;		= &#39;icons/pda_icons/pda_scanner.png&#39;,</span></td>
+          <td id="LC80" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#2e2e2e<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L81" class="blob-num js-line-number" data-line-number="81"></td>
-          <td id="LC81" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;signaler&quot;		= &#39;icons/pda_icons/pda_signaler.png&#39;,</span></td>
+          <td id="LC81" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>structure<span class="pl-k">/</span>low_wall<span class="pl-k">/</span>bay<span class="pl-k">/</span>green</td>
         </tr>
         <tr>
           <td id="L82" class="blob-num js-line-number" data-line-number="82"></td>
-          <td id="LC82" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;skills&quot;		= &#39;icons/pda_icons/pda_skills.png&#39;,</span></td>
+          <td id="LC82" class="blob-code blob-code-inner js-file-line">	desc <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>It has a green stripe! A low wall section which serves as the base of windows, amongst other things.<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L83" class="blob-num js-line-number" data-line-number="83"></td>
-          <td id="LC83" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;status&quot;		= &#39;icons/pda_icons/pda_status.png&#39;,</span></td>
+          <td id="LC83" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#00ab03<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L84" class="blob-num js-line-number" data-line-number="84"></td>
-          <td id="LC84" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;dronephone&quot;	= &#39;icons/pda_icons/pda_dronephone.png&#39;,</span></td>
+          <td id="LC84" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span>///R-Low wall</span></td>
         </tr>
         <tr>
           <td id="L85" class="blob-num js-line-number" data-line-number="85"></td>
-          <td id="LC85" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;emoji&quot;			= &#39;icons/pda_icons/pda_emoji.png&#39;</span></td>
+          <td id="LC85" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>structure<span class="pl-k">/</span>low_wall<span class="pl-k">/</span>bay<span class="pl-k">/</span>reinforced<span class="pl-k">/</span>steel</td>
         </tr>
         <tr>
           <td id="L86" class="blob-num js-line-number" data-line-number="86"></td>
-          <td id="LC86" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	)</span></td>
+          <td id="LC86" class="blob-code blob-code-inner js-file-line">	desc <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>It has a steel stripe! A low wall section which serves as the base of windows, amongst other things.<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L87" class="blob-num js-line-number" data-line-number="87"></td>
-          <td id="LC87" class="blob-code blob-code-inner js-file-line">
-</td>
+          <td id="LC87" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#3d5e80<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L88" class="blob-num js-line-number" data-line-number="88"></td>
-          <td id="LC88" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> /datum/asset/spritesheet/simple/paper</span></td>
+          <td id="LC88" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>structure<span class="pl-k">/</span>low_wall<span class="pl-k">/</span>bay<span class="pl-k">/</span>reinforced<span class="pl-k">/</span>red</td>
         </tr>
         <tr>
           <td id="L89" class="blob-num js-line-number" data-line-number="89"></td>
-          <td id="LC89" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	name = &quot;paper&quot;</span></td>
+          <td id="LC89" class="blob-code blob-code-inner js-file-line">	desc <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>It has a red stripe! A low wall section which serves as the base of windows, amongst other things.<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L90" class="blob-num js-line-number" data-line-number="90"></td>
-          <td id="LC90" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	assets = list(</span></td>
+          <td id="LC90" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#8c1d11<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L91" class="blob-num js-line-number" data-line-number="91"></td>
-          <td id="LC91" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;stamp-clown&quot; = &#39;icons/stamp_icons/large_stamp-clown.png&#39;,</span></td>
+          <td id="LC91" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>structure<span class="pl-k">/</span>low_wall<span class="pl-k">/</span>bay<span class="pl-k">/</span>reinforced<span class="pl-k">/</span>brown</td>
         </tr>
         <tr>
           <td id="L92" class="blob-num js-line-number" data-line-number="92"></td>
-          <td id="LC92" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;stamp-deny&quot; = &#39;icons/stamp_icons/large_stamp-deny.png&#39;,</span></td>
+          <td id="LC92" class="blob-code blob-code-inner js-file-line">	desc <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>It has a brown stripe! A low wall section which serves as the base of windows, amongst other things.<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L93" class="blob-num js-line-number" data-line-number="93"></td>
-          <td id="LC93" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;stamp-ok&quot; = &#39;icons/stamp_icons/large_stamp-ok.png&#39;,</span></td>
+          <td id="LC93" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#785134<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L94" class="blob-num js-line-number" data-line-number="94"></td>
-          <td id="LC94" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;stamp-hop&quot; = &#39;icons/stamp_icons/large_stamp-hop.png&#39;,</span></td>
+          <td id="LC94" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>structure<span class="pl-k">/</span>low_wall<span class="pl-k">/</span>bay<span class="pl-k">/</span>reinforced<span class="pl-k">/</span>purple</td>
         </tr>
         <tr>
           <td id="L95" class="blob-num js-line-number" data-line-number="95"></td>
-          <td id="LC95" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;stamp-cmo&quot; = &#39;icons/stamp_icons/large_stamp-cmo.png&#39;,</span></td>
+          <td id="LC95" class="blob-code blob-code-inner js-file-line">	desc <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>It has a purple stripe! A low wall section which serves as the base of windows, amongst other things.<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L96" class="blob-num js-line-number" data-line-number="96"></td>
-          <td id="LC96" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;stamp-ce&quot; = &#39;icons/stamp_icons/large_stamp-ce.png&#39;,</span></td>
+          <td id="LC96" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#5a19a8<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L97" class="blob-num js-line-number" data-line-number="97"></td>
-          <td id="LC97" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;stamp-hos&quot; = &#39;icons/stamp_icons/large_stamp-hos.png&#39;,</span></td>
+          <td id="LC97" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>structure<span class="pl-k">/</span>low_wall<span class="pl-k">/</span>bay<span class="pl-k">/</span>reinforced<span class="pl-k">/</span>blue</td>
         </tr>
         <tr>
           <td id="L98" class="blob-num js-line-number" data-line-number="98"></td>
-          <td id="LC98" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;stamp-rd&quot; = &#39;icons/stamp_icons/large_stamp-rd.png&#39;,</span></td>
+          <td id="LC98" class="blob-code blob-code-inner js-file-line">	desc <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>It has a blue stripe! A low wall section which serves as the base of windows, amongst other things.<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L99" class="blob-num js-line-number" data-line-number="99"></td>
-          <td id="LC99" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;stamp-cap&quot; = &#39;icons/stamp_icons/large_stamp-cap.png&#39;,</span></td>
+          <td id="LC99" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#2e2aa1<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L100" class="blob-num js-line-number" data-line-number="100"></td>
-          <td id="LC100" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;stamp-qm&quot; = &#39;icons/stamp_icons/large_stamp-qm.png&#39;,</span></td>
+          <td id="LC100" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>structure<span class="pl-k">/</span>low_wall<span class="pl-k">/</span>bay<span class="pl-k">/</span>reinforced<span class="pl-k">/</span>orange</td>
         </tr>
         <tr>
           <td id="L101" class="blob-num js-line-number" data-line-number="101"></td>
-          <td id="LC101" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;stamp-law&quot; = &#39;icons/stamp_icons/large_stamp-law.png&#39;,</span></td>
+          <td id="LC101" class="blob-code blob-code-inner js-file-line">	desc <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>It has a orange stripe! A low wall section which serves as the base of windows, amongst other things.<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L102" class="blob-num js-line-number" data-line-number="102"></td>
-          <td id="LC102" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;stamp-chap&quot; = &#39;icons/stamp_icons/large_stamp-chap.png&#39;,</span></td>
+          <td id="LC102" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#e6ab22<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L103" class="blob-num js-line-number" data-line-number="103"></td>
-          <td id="LC103" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;stamp-mime&quot; = &#39;icons/stamp_icons/large_stamp-mime.png&#39;,</span></td>
+          <td id="LC103" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>structure<span class="pl-k">/</span>low_wall<span class="pl-k">/</span>bay<span class="pl-k">/</span>reinforced<span class="pl-k">/</span>white</td>
         </tr>
         <tr>
           <td id="L104" class="blob-num js-line-number" data-line-number="104"></td>
-          <td id="LC104" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;stamp-centcom&quot; = &#39;icons/stamp_icons/large_stamp-centcom.png&#39;,</span></td>
+          <td id="LC104" class="blob-code blob-code-inner js-file-line">	desc <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>It has a white stripe! A low wall section which serves as the base of windows, amongst other things.<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L105" class="blob-num js-line-number" data-line-number="105"></td>
-          <td id="LC105" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;stamp-syndicate&quot; = &#39;icons/stamp_icons/large_stamp-syndicate.png&#39;</span></td>
+          <td id="LC105" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#ffffff<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L106" class="blob-num js-line-number" data-line-number="106"></td>
-          <td id="LC106" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	)</span></td>
+          <td id="LC106" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>structure<span class="pl-k">/</span>low_wall<span class="pl-k">/</span>bay<span class="pl-k">/</span>reinforced<span class="pl-k">/</span>black</td>
         </tr>
         <tr>
           <td id="L107" class="blob-num js-line-number" data-line-number="107"></td>
-          <td id="LC107" class="blob-code blob-code-inner js-file-line">
-</td>
+          <td id="LC107" class="blob-code blob-code-inner js-file-line">	desc <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>It has a black stripe! A low wall section which serves as the base of windows, amongst other things.<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L108" class="blob-num js-line-number" data-line-number="108"></td>
-          <td id="LC108" class="blob-code blob-code-inner js-file-line">
-</td>
+          <td id="LC108" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#2e2e2e<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L109" class="blob-num js-line-number" data-line-number="109"></td>
-          <td id="LC109" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> /datum/asset/simple/irv</span></td>
+          <td id="LC109" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>structure<span class="pl-k">/</span>low_wall<span class="pl-k">/</span>bay<span class="pl-k">/</span>reinforced<span class="pl-k">/</span>green</td>
         </tr>
         <tr>
           <td id="L110" class="blob-num js-line-number" data-line-number="110"></td>
-          <td id="LC110" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	assets = list(</span></td>
+          <td id="LC110" class="blob-code blob-code-inner js-file-line">	desc <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>It has a green stripe! A low wall section which serves as the base of windows, amongst other things.<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L111" class="blob-num js-line-number" data-line-number="111"></td>
-          <td id="LC111" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;jquery-ui.custom-core-widgit-mouse-sortable-min.js&quot; = &#39;html/IRV/jquery-ui.custom-core-widgit-mouse-sortable-min.js&#39;,</span></td>
+          <td id="LC111" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#00ab03<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L112" class="blob-num js-line-number" data-line-number="112"></td>
-          <td id="LC112" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	)</span></td>
+          <td id="LC112" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span>///BAY DOORS</span></td>
         </tr>
         <tr>
           <td id="L113" class="blob-num js-line-number" data-line-number="113"></td>
-          <td id="LC113" class="blob-code blob-code-inner js-file-line">
-</td>
+          <td id="LC113" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>machinery<span class="pl-k">/</span>door<span class="pl-k">/</span>airlock<span class="pl-k">/</span>angled_bay<span class="pl-k">/</span>standard<span class="pl-k">/</span>color<span class="pl-k">/</span>common</td>
         </tr>
         <tr>
           <td id="L114" class="blob-num js-line-number" data-line-number="114"></td>
-          <td id="LC114" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> /datum/asset/group/irv</span></td>
+          <td id="LC114" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>Airlock<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L115" class="blob-num js-line-number" data-line-number="115"></td>
-          <td id="LC115" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	children = list(</span></td>
+          <td id="LC115" class="blob-code blob-code-inner js-file-line">	door_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#9c9c9c<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L116" class="blob-num js-line-number" data-line-number="116"></td>
-          <td id="LC116" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		/datum/asset/simple/jquery,</span></td>
+          <td id="LC116" class="blob-code blob-code-inner js-file-line">	fill_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#5c5c5c<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L117" class="blob-num js-line-number" data-line-number="117"></td>
-          <td id="LC117" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		/datum/asset/simple/irv</span></td>
+          <td id="LC117" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#89bd66<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L118" class="blob-num js-line-number" data-line-number="118"></td>
-          <td id="LC118" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	)</span></td>
+          <td id="LC118" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>machinery<span class="pl-k">/</span>door<span class="pl-k">/</span>airlock<span class="pl-k">/</span>angled_bay<span class="pl-k">/</span>standard<span class="pl-k">/</span>glass<span class="pl-k">/</span>common</td>
         </tr>
         <tr>
           <td id="L119" class="blob-num js-line-number" data-line-number="119"></td>
-          <td id="LC119" class="blob-code blob-code-inner js-file-line">
-</td>
+          <td id="LC119" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>Glass Airlock<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L120" class="blob-num js-line-number" data-line-number="120"></td>
-          <td id="LC120" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">datum</span><span class="pl-k">/</span>asset<span class="pl-k">/</span>simple<span class="pl-k">/</span>generic</td>
+          <td id="LC120" class="blob-code blob-code-inner js-file-line">	door_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#9c9c9c<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L121" class="blob-num js-line-number" data-line-number="121"></td>
-          <td id="LC121" class="blob-code blob-code-inner js-file-line">	assets <span class="pl-k">=</span> <span class="pl-k">list</span>(</td>
+          <td id="LC121" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#89bd66<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L122" class="blob-num js-line-number" data-line-number="122"></td>
-          <td id="LC122" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>search.js<span class="pl-pds">&quot;</span></span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>html/search.js<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC122" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>machinery<span class="pl-k">/</span>door<span class="pl-k">/</span>airlock<span class="pl-k">/</span>angled_bay<span class="pl-k">/</span>hatch<span class="pl-k">/</span>common</td>
         </tr>
         <tr>
           <td id="L123" class="blob-num js-line-number" data-line-number="123"></td>
-          <td id="LC123" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>panels.css<span class="pl-pds">&quot;</span></span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>html/panels.css<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC123" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>maintenance access<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L124" class="blob-num js-line-number" data-line-number="124"></td>
-          <td id="LC124" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>loading.gif<span class="pl-pds">&quot;</span></span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>html/images/loading.gif<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC124" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#89bd66<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L125" class="blob-num js-line-number" data-line-number="125"></td>
-          <td id="LC125" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>ntlogo.png<span class="pl-pds">&quot;</span></span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>html/images/ntlogo.png<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC125" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>machinery<span class="pl-k">/</span>door<span class="pl-k">/</span>airlock<span class="pl-k">/</span>angled_bay<span class="pl-k">/</span>double<span class="pl-k">/</span>glass<span class="pl-k">/</span>common</td>
         </tr>
         <tr>
           <td id="L126" class="blob-num js-line-number" data-line-number="126"></td>
-          <td id="LC126" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>sglogo.png<span class="pl-pds">&quot;</span></span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>html/images/sglogo.png<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC126" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>Glass Airlock<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L127" class="blob-num js-line-number" data-line-number="127"></td>
-          <td id="LC127" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>talisman.png<span class="pl-pds">&quot;</span></span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>html/images/talisman.png<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC127" class="blob-code blob-code-inner js-file-line">	door_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#9c9c9c<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L128" class="blob-num js-line-number" data-line-number="128"></td>
-          <td id="LC128" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>paper_bg.png<span class="pl-pds">&quot;</span></span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>html/images/paper_bg.png<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC128" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#89bd66<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L129" class="blob-num js-line-number" data-line-number="129"></td>
-          <td id="LC129" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>no_image32.png<span class="pl-pds">&quot;</span></span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>html/images/no_image32.png<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC129" class="blob-code blob-code-inner js-file-line">
+</td>
         </tr>
         <tr>
           <td id="L130" class="blob-num js-line-number" data-line-number="130"></td>
-          <td id="LC130" class="blob-code blob-code-inner js-file-line">	)</td>
+          <td id="LC130" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>machinery<span class="pl-k">/</span>door<span class="pl-k">/</span>airlock<span class="pl-k">/</span>angled_bay<span class="pl-k">/</span>standard<span class="pl-k">/</span>color<span class="pl-k">/</span>silver</td>
         </tr>
         <tr>
           <td id="L131" class="blob-num js-line-number" data-line-number="131"></td>
-          <td id="LC131" class="blob-code blob-code-inner js-file-line">
-</td>
+          <td id="LC131" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>Airlock<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L132" class="blob-num js-line-number" data-line-number="132"></td>
-          <td id="LC132" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">datum</span><span class="pl-k">/</span>asset<span class="pl-k">/</span>simple<span class="pl-k">/</span>changelog</td>
+          <td id="LC132" class="blob-code blob-code-inner js-file-line">	door_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#9fccc7<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L133" class="blob-num js-line-number" data-line-number="133"></td>
-          <td id="LC133" class="blob-code blob-code-inner js-file-line">	assets <span class="pl-k">=</span> <span class="pl-k">list</span>(</td>
+          <td id="LC133" class="blob-code blob-code-inner js-file-line">	fill_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#333333<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L134" class="blob-num js-line-number" data-line-number="134"></td>
-          <td id="LC134" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>88x31.png<span class="pl-pds">&quot;</span></span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>html/88x31.png<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC134" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#ffffff<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L135" class="blob-num js-line-number" data-line-number="135"></td>
-          <td id="LC135" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>bug-minus.png<span class="pl-pds">&quot;</span></span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>html/bug-minus.png<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC135" class="blob-code blob-code-inner js-file-line">
+</td>
         </tr>
         <tr>
           <td id="L136" class="blob-num js-line-number" data-line-number="136"></td>
-          <td id="LC136" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>cross-circle.png<span class="pl-pds">&quot;</span></span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>html/cross-circle.png<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC136" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>machinery<span class="pl-k">/</span>door<span class="pl-k">/</span>airlock<span class="pl-k">/</span>angled_bay<span class="pl-k">/</span>standard<span class="pl-k">/</span>color<span class="pl-k">/</span>research</td>
         </tr>
         <tr>
           <td id="L137" class="blob-num js-line-number" data-line-number="137"></td>
-          <td id="LC137" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>hard-hat-exclamation.png<span class="pl-pds">&quot;</span></span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>html/hard-hat-exclamation.png<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC137" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>Research Airlock<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L138" class="blob-num js-line-number" data-line-number="138"></td>
-          <td id="LC138" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>image-minus.png<span class="pl-pds">&quot;</span></span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>html/image-minus.png<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC138" class="blob-code blob-code-inner js-file-line">	req_access <span class="pl-k">=</span> <span class="pl-k">list</span>(<span class="pl-c1">47</span>)</td>
         </tr>
         <tr>
           <td id="L139" class="blob-num js-line-number" data-line-number="139"></td>
-          <td id="LC139" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>image-plus.png<span class="pl-pds">&quot;</span></span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>html/image-plus.png<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC139" class="blob-code blob-code-inner js-file-line">	door_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#ffffff<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L140" class="blob-num js-line-number" data-line-number="140"></td>
-          <td id="LC140" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>map-pencil.png<span class="pl-pds">&quot;</span></span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>html/map-pencil.png<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC140" class="blob-code blob-code-inner js-file-line">	fill_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#ead9ff<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L141" class="blob-num js-line-number" data-line-number="141"></td>
-          <td id="LC141" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>music-minus.png<span class="pl-pds">&quot;</span></span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>html/music-minus.png<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC141" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#5a19a8<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L142" class="blob-num js-line-number" data-line-number="142"></td>
-          <td id="LC142" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>music-plus.png<span class="pl-pds">&quot;</span></span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>html/music-plus.png<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC142" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>machinery<span class="pl-k">/</span>door<span class="pl-k">/</span>airlock<span class="pl-k">/</span>angled_bay<span class="pl-k">/</span>standard<span class="pl-k">/</span>glass<span class="pl-k">/</span>research</td>
         </tr>
         <tr>
           <td id="L143" class="blob-num js-line-number" data-line-number="143"></td>
-          <td id="LC143" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>tick-circle.png<span class="pl-pds">&quot;</span></span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>html/tick-circle.png<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC143" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>Glass Research Airlock<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L144" class="blob-num js-line-number" data-line-number="144"></td>
-          <td id="LC144" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>wrench-screwdriver.png<span class="pl-pds">&quot;</span></span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>html/wrench-screwdriver.png<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC144" class="blob-code blob-code-inner js-file-line">	req_access <span class="pl-k">=</span> <span class="pl-k">list</span>(<span class="pl-c1">47</span>)</td>
         </tr>
         <tr>
           <td id="L145" class="blob-num js-line-number" data-line-number="145"></td>
-          <td id="LC145" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>spell-check.png<span class="pl-pds">&quot;</span></span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>html/spell-check.png<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC145" class="blob-code blob-code-inner js-file-line">	door_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#ffffff<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L146" class="blob-num js-line-number" data-line-number="146"></td>
-          <td id="LC146" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>burn-exclamation.png<span class="pl-pds">&quot;</span></span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>html/burn-exclamation.png<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC146" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#5a19a8<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L147" class="blob-num js-line-number" data-line-number="147"></td>
-          <td id="LC147" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>chevron.png<span class="pl-pds">&quot;</span></span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>html/chevron.png<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC147" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>machinery<span class="pl-k">/</span>door<span class="pl-k">/</span>airlock<span class="pl-k">/</span>angled_bay<span class="pl-k">/</span>hatch<span class="pl-k">/</span>research</td>
         </tr>
         <tr>
           <td id="L148" class="blob-num js-line-number" data-line-number="148"></td>
-          <td id="LC148" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>chevron-expand.png<span class="pl-pds">&quot;</span></span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>html/chevron-expand.png<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC148" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>maintenance access<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L149" class="blob-num js-line-number" data-line-number="149"></td>
-          <td id="LC149" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>changelog.css<span class="pl-pds">&quot;</span></span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>html/changelog.css<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC149" class="blob-code blob-code-inner js-file-line">	req_access <span class="pl-k">=</span> <span class="pl-k">list</span>(<span class="pl-c1">47</span>)</td>
         </tr>
         <tr>
           <td id="L150" class="blob-num js-line-number" data-line-number="150"></td>
-          <td id="LC150" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>changelog.js<span class="pl-pds">&quot;</span></span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>html/changelog.js<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC150" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#5a19a8<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L151" class="blob-num js-line-number" data-line-number="151"></td>
-          <td id="LC151" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>changelog.html<span class="pl-pds">&quot;</span></span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>html/changelog.html<span class="pl-pds">&#39;</span></span></td>
+          <td id="LC151" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>machinery<span class="pl-k">/</span>door<span class="pl-k">/</span>airlock<span class="pl-k">/</span>angled_bay<span class="pl-k">/</span>double<span class="pl-k">/</span>glass<span class="pl-k">/</span>research</td>
         </tr>
         <tr>
           <td id="L152" class="blob-num js-line-number" data-line-number="152"></td>
-          <td id="LC152" class="blob-code blob-code-inner js-file-line">	)</td>
+          <td id="LC152" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>Glass Research Airlock<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L153" class="blob-num js-line-number" data-line-number="153"></td>
-          <td id="LC153" class="blob-code blob-code-inner js-file-line">
-</td>
+          <td id="LC153" class="blob-code blob-code-inner js-file-line">	req_access <span class="pl-k">=</span> <span class="pl-k">list</span>(<span class="pl-c1">47</span>)</td>
         </tr>
         <tr>
           <td id="L154" class="blob-num js-line-number" data-line-number="154"></td>
-          <td id="LC154" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> /datum/asset/group/goonchat</span></td>
+          <td id="LC154" class="blob-code blob-code-inner js-file-line">	door_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#ffffff<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L155" class="blob-num js-line-number" data-line-number="155"></td>
-          <td id="LC155" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	children = list(</span></td>
+          <td id="LC155" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#5a19a8<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L156" class="blob-num js-line-number" data-line-number="156"></td>
-          <td id="LC156" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		/datum/asset/simple/jquery,</span></td>
+          <td id="LC156" class="blob-code blob-code-inner js-file-line">
+</td>
         </tr>
         <tr>
           <td id="L157" class="blob-num js-line-number" data-line-number="157"></td>
-          <td id="LC157" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		/datum/asset/simple/goonchat,</span></td>
+          <td id="LC157" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>machinery<span class="pl-k">/</span>door<span class="pl-k">/</span>airlock<span class="pl-k">/</span>angled_bay<span class="pl-k">/</span>standard<span class="pl-k">/</span>color<span class="pl-k">/</span>medical</td>
         </tr>
         <tr>
           <td id="L158" class="blob-num js-line-number" data-line-number="158"></td>
-          <td id="LC158" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		/datum/asset/spritesheet/goonchat,</span></td>
+          <td id="LC158" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>Medical Airlock<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L159" class="blob-num js-line-number" data-line-number="159"></td>
-          <td id="LC159" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		/datum/asset/simple/fontawesome</span></td>
+          <td id="LC159" class="blob-code blob-code-inner js-file-line">	req_access <span class="pl-k">=</span> <span class="pl-k">list</span>(<span class="pl-c1">5</span>)</td>
         </tr>
         <tr>
           <td id="L160" class="blob-num js-line-number" data-line-number="160"></td>
-          <td id="LC160" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	)</span></td>
+          <td id="LC160" class="blob-code blob-code-inner js-file-line">	door_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#ffffff<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L161" class="blob-num js-line-number" data-line-number="161"></td>
-          <td id="LC161" class="blob-code blob-code-inner js-file-line">
-</td>
+          <td id="LC161" class="blob-code blob-code-inner js-file-line">	fill_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#ead9ff<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L162" class="blob-num js-line-number" data-line-number="162"></td>
-          <td id="LC162" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> /datum/asset/simple/jquery</span></td>
+          <td id="LC162" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#5a96bb<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L163" class="blob-num js-line-number" data-line-number="163"></td>
-          <td id="LC163" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	assets = list(</span></td>
+          <td id="LC163" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>machinery<span class="pl-k">/</span>door<span class="pl-k">/</span>airlock<span class="pl-k">/</span>angled_bay<span class="pl-k">/</span>standard<span class="pl-k">/</span>glass<span class="pl-k">/</span>medical</td>
         </tr>
         <tr>
           <td id="L164" class="blob-num js-line-number" data-line-number="164"></td>
-          <td id="LC164" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;jquery.min.js&quot;            = &#39;code/modules/goonchat/browserassets/js/jquery.min.js&#39;,</span></td>
+          <td id="LC164" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>Glass Medical Airlock<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L165" class="blob-num js-line-number" data-line-number="165"></td>
-          <td id="LC165" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	)</span></td>
+          <td id="LC165" class="blob-code blob-code-inner js-file-line">	req_access <span class="pl-k">=</span> <span class="pl-k">list</span>(<span class="pl-c1">5</span>)</td>
         </tr>
         <tr>
           <td id="L166" class="blob-num js-line-number" data-line-number="166"></td>
-          <td id="LC166" class="blob-code blob-code-inner js-file-line">
-</td>
+          <td id="LC166" class="blob-code blob-code-inner js-file-line">	door_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#ffffff<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L167" class="blob-num js-line-number" data-line-number="167"></td>
-          <td id="LC167" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> /datum/asset/simple/goonchat</span></td>
+          <td id="LC167" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#5a96bb<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L168" class="blob-num js-line-number" data-line-number="168"></td>
-          <td id="LC168" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	assets = list(</span></td>
+          <td id="LC168" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>machinery<span class="pl-k">/</span>door<span class="pl-k">/</span>airlock<span class="pl-k">/</span>angled_bay<span class="pl-k">/</span>hatch<span class="pl-k">/</span>medical</td>
         </tr>
         <tr>
           <td id="L169" class="blob-num js-line-number" data-line-number="169"></td>
-          <td id="LC169" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;json2.min.js&quot;             = &#39;code/modules/goonchat/browserassets/js/json2.min.js&#39;,</span></td>
+          <td id="LC169" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>maintenance access<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L170" class="blob-num js-line-number" data-line-number="170"></td>
-          <td id="LC170" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;browserOutput.js&quot;         = &#39;code/modules/goonchat/browserassets/js/browserOutput.js&#39;,</span></td>
+          <td id="LC170" class="blob-code blob-code-inner js-file-line">	req_access <span class="pl-k">=</span> <span class="pl-k">list</span>(<span class="pl-c1">5</span>)</td>
         </tr>
         <tr>
           <td id="L171" class="blob-num js-line-number" data-line-number="171"></td>
-          <td id="LC171" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;browserOutput.css&quot;	       = &#39;code/modules/goonchat/browserassets/css/browserOutput.css&#39;,</span></td>
+          <td id="LC171" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#5a96bb<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L172" class="blob-num js-line-number" data-line-number="172"></td>
-          <td id="LC172" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;browserOutput_white.css&quot;  = &#39;code/modules/goonchat/browserassets/css/browserOutput_white.css&#39;,</span></td>
+          <td id="LC172" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>machinery<span class="pl-k">/</span>door<span class="pl-k">/</span>airlock<span class="pl-k">/</span>angled_bay<span class="pl-k">/</span>double<span class="pl-k">/</span>glass<span class="pl-k">/</span>medical</td>
         </tr>
         <tr>
           <td id="L173" class="blob-num js-line-number" data-line-number="173"></td>
-          <td id="LC173" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	)</span></td>
+          <td id="LC173" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>Glass Medical Airlock<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L174" class="blob-num js-line-number" data-line-number="174"></td>
-          <td id="LC174" class="blob-code blob-code-inner js-file-line">
-</td>
+          <td id="LC174" class="blob-code blob-code-inner js-file-line">	req_access <span class="pl-k">=</span> <span class="pl-k">list</span>(<span class="pl-c1">5</span>)</td>
         </tr>
         <tr>
           <td id="L175" class="blob-num js-line-number" data-line-number="175"></td>
-          <td id="LC175" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">datum</span><span class="pl-k">/</span>asset<span class="pl-k">/</span>simple<span class="pl-k">/</span>fontawesome</td>
+          <td id="LC175" class="blob-code blob-code-inner js-file-line">	door_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#ffffff<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L176" class="blob-num js-line-number" data-line-number="176"></td>
-          <td id="LC176" class="blob-code blob-code-inner js-file-line">	assets <span class="pl-k">=</span> <span class="pl-k">list</span>(</td>
+          <td id="LC176" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#5a96bb<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L177" class="blob-num js-line-number" data-line-number="177"></td>
-          <td id="LC177" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>fa-regular-400.eot<span class="pl-pds">&quot;</span></span>  <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>html/font-awesome/webfonts/fa-regular-400.eot<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC177" class="blob-code blob-code-inner js-file-line">
+</td>
         </tr>
         <tr>
           <td id="L178" class="blob-num js-line-number" data-line-number="178"></td>
-          <td id="LC178" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>fa-regular-400.woff<span class="pl-pds">&quot;</span></span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>html/font-awesome/webfonts/fa-regular-400.woff<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC178" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>machinery<span class="pl-k">/</span>door<span class="pl-k">/</span>airlock<span class="pl-k">/</span>angled_bay<span class="pl-k">/</span>standard<span class="pl-k">/</span>color<span class="pl-k">/</span>explo</td>
         </tr>
         <tr>
           <td id="L179" class="blob-num js-line-number" data-line-number="179"></td>
-          <td id="LC179" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>fa-solid-900.eot<span class="pl-pds">&quot;</span></span>    <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>html/font-awesome/webfonts/fa-solid-900.eot<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC179" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>Exploration Airlock<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L180" class="blob-num js-line-number" data-line-number="180"></td>
-          <td id="LC180" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>fa-solid-900.woff<span class="pl-pds">&quot;</span></span>   <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>html/font-awesome/webfonts/fa-solid-900.woff<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC180" class="blob-code blob-code-inner js-file-line">	req_one_access <span class="pl-k">=</span> <span class="pl-k">list</span>(<span class="pl-c1">19</span>,<span class="pl-c1">43</span>,<span class="pl-c1">67</span>)</td>
         </tr>
         <tr>
           <td id="L181" class="blob-num js-line-number" data-line-number="181"></td>
-          <td id="LC181" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>font-awesome.css<span class="pl-pds">&quot;</span></span>    <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>html/font-awesome/css/all.min.css<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC181" class="blob-code blob-code-inner js-file-line">	door_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#333333<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L182" class="blob-num js-line-number" data-line-number="182"></td>
-          <td id="LC182" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>v4shim.css<span class="pl-pds">&quot;</span></span>          <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>html/font-awesome/css/v4-shims.min.css<span class="pl-pds">&#39;</span></span></td>
+          <td id="LC182" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#5a19a8<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L183" class="blob-num js-line-number" data-line-number="183"></td>
-          <td id="LC183" class="blob-code blob-code-inner js-file-line">	)</td>
+          <td id="LC183" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>machinery<span class="pl-k">/</span>door<span class="pl-k">/</span>airlock<span class="pl-k">/</span>angled_bay<span class="pl-k">/</span>standard<span class="pl-k">/</span>glass<span class="pl-k">/</span>explo</td>
         </tr>
         <tr>
           <td id="L184" class="blob-num js-line-number" data-line-number="184"></td>
-          <td id="LC184" class="blob-code blob-code-inner js-file-line">
-</td>
+          <td id="LC184" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>Glass Exploration Airlock<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L185" class="blob-num js-line-number" data-line-number="185"></td>
-          <td id="LC185" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">datum</span><span class="pl-k">/</span>asset<span class="pl-k">/</span>simple<span class="pl-k">/</span>tgfont</td>
+          <td id="LC185" class="blob-code blob-code-inner js-file-line">	req_one_access <span class="pl-k">=</span> <span class="pl-k">list</span>(<span class="pl-c1">19</span>,<span class="pl-c1">43</span>,<span class="pl-c1">67</span>)</td>
         </tr>
         <tr>
           <td id="L186" class="blob-num js-line-number" data-line-number="186"></td>
-          <td id="LC186" class="blob-code blob-code-inner js-file-line">	assets <span class="pl-k">=</span> <span class="pl-k">list</span>(</td>
+          <td id="LC186" class="blob-code blob-code-inner js-file-line">	door_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#333333<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L187" class="blob-num js-line-number" data-line-number="187"></td>
-          <td id="LC187" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>tgfont.eot<span class="pl-pds">&quot;</span></span> <span class="pl-k">=</span> file(<span class="pl-s"><span class="pl-pds">&quot;</span>tgui/packages/tgfont/dist/tgfont.eot<span class="pl-pds">&quot;</span></span>),</td>
+          <td id="LC187" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#5a19a8<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L188" class="blob-num js-line-number" data-line-number="188"></td>
-          <td id="LC188" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>tgfont.woff2<span class="pl-pds">&quot;</span></span> <span class="pl-k">=</span> file(<span class="pl-s"><span class="pl-pds">&quot;</span>tgui/packages/tgfont/dist/tgfont.woff2<span class="pl-pds">&quot;</span></span>),</td>
+          <td id="LC188" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>machinery<span class="pl-k">/</span>door<span class="pl-k">/</span>airlock<span class="pl-k">/</span>angled_bay<span class="pl-k">/</span>hatch<span class="pl-k">/</span>explo</td>
         </tr>
         <tr>
           <td id="L189" class="blob-num js-line-number" data-line-number="189"></td>
-          <td id="LC189" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>tgfont.css<span class="pl-pds">&quot;</span></span> <span class="pl-k">=</span> file(<span class="pl-s"><span class="pl-pds">&quot;</span>tgui/packages/tgfont/dist/tgfont.css<span class="pl-pds">&quot;</span></span>),</td>
+          <td id="LC189" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>maintenance access<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L190" class="blob-num js-line-number" data-line-number="190"></td>
-          <td id="LC190" class="blob-code blob-code-inner js-file-line">	)</td>
+          <td id="LC190" class="blob-code blob-code-inner js-file-line">	req_one_access <span class="pl-k">=</span> <span class="pl-k">list</span>(<span class="pl-c1">19</span>,<span class="pl-c1">43</span>,<span class="pl-c1">67</span>)</td>
         </tr>
         <tr>
           <td id="L191" class="blob-num js-line-number" data-line-number="191"></td>
-          <td id="LC191" class="blob-code blob-code-inner js-file-line">
-</td>
+          <td id="LC191" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#5a19a8<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L192" class="blob-num js-line-number" data-line-number="192"></td>
-          <td id="LC192" class="blob-code blob-code-inner js-file-line">
-</td>
+          <td id="LC192" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>machinery<span class="pl-k">/</span>door<span class="pl-k">/</span>airlock<span class="pl-k">/</span>angled_bay<span class="pl-k">/</span>double<span class="pl-k">/</span>glass<span class="pl-k">/</span>explo</td>
         </tr>
         <tr>
           <td id="L193" class="blob-num js-line-number" data-line-number="193"></td>
-          <td id="LC193" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> /datum/asset/spritesheet/goonchat</span></td>
+          <td id="LC193" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>Glass Exploration Airlock<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L194" class="blob-num js-line-number" data-line-number="194"></td>
-          <td id="LC194" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	name = &quot;chat&quot;</span></td>
+          <td id="LC194" class="blob-code blob-code-inner js-file-line">	req_one_access <span class="pl-k">=</span> <span class="pl-k">list</span>(<span class="pl-c1">19</span>,<span class="pl-c1">43</span>,<span class="pl-c1">67</span>)</td>
         </tr>
         <tr>
           <td id="L195" class="blob-num js-line-number" data-line-number="195"></td>
-          <td id="LC195" class="blob-code blob-code-inner js-file-line">
-</td>
+          <td id="LC195" class="blob-code blob-code-inner js-file-line">	door_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#333333<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L196" class="blob-num js-line-number" data-line-number="196"></td>
-          <td id="LC196" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> /datum/asset/spritesheet/goonchat/register()</span></td>
+          <td id="LC196" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#5a19a8<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L197" class="blob-num js-line-number" data-line-number="197"></td>
-          <td id="LC197" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	InsertAll(&quot;emoji&quot;, &#39;icons/emoji.dmi&#39;)</span></td>
+          <td id="LC197" class="blob-code blob-code-inner js-file-line">
+</td>
         </tr>
         <tr>
           <td id="L198" class="blob-num js-line-number" data-line-number="198"></td>
-          <td id="LC198" class="blob-code blob-code-inner js-file-line">
-</td>
+          <td id="LC198" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>machinery<span class="pl-k">/</span>door<span class="pl-k">/</span>airlock<span class="pl-k">/</span>angled_bay<span class="pl-k">/</span>standard<span class="pl-k">/</span>color<span class="pl-k">/</span>security</td>
         </tr>
         <tr>
           <td id="L199" class="blob-num js-line-number" data-line-number="199"></td>
-          <td id="LC199" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	// pre-loading all lanugage icons also helps to avoid meta</span></td>
+          <td id="LC199" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>Security Airlock<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L200" class="blob-num js-line-number" data-line-number="200"></td>
-          <td id="LC200" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	InsertAll(&quot;language&quot;, &#39;icons/misc/language.dmi&#39;)</span></td>
+          <td id="LC200" class="blob-code blob-code-inner js-file-line">	req_access <span class="pl-k">=</span> <span class="pl-k">list</span>(<span class="pl-c1">1</span>)</td>
         </tr>
         <tr>
           <td id="L201" class="blob-num js-line-number" data-line-number="201"></td>
-          <td id="LC201" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	// catch languages which are pulling icons from another file</span></td>
+          <td id="LC201" class="blob-code blob-code-inner js-file-line">	door_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#8c1d11<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L202" class="blob-num js-line-number" data-line-number="202"></td>
-          <td id="LC202" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	for(var/path in typesof(/datum/language))</span></td>
+          <td id="LC202" class="blob-code blob-code-inner js-file-line">	fill_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#854a44<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L203" class="blob-num js-line-number" data-line-number="203"></td>
-          <td id="LC203" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		var/datum/language/L = path</span></td>
+          <td id="LC203" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#d27428<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L204" class="blob-num js-line-number" data-line-number="204"></td>
-          <td id="LC204" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		var/icon = initial(L.icon)</span></td>
+          <td id="LC204" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>machinery<span class="pl-k">/</span>door<span class="pl-k">/</span>airlock<span class="pl-k">/</span>angled_bay<span class="pl-k">/</span>standard<span class="pl-k">/</span>glass<span class="pl-k">/</span>security</td>
         </tr>
         <tr>
           <td id="L205" class="blob-num js-line-number" data-line-number="205"></td>
-          <td id="LC205" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		if (icon != &#39;icons/misc/language.dmi&#39;)</span></td>
+          <td id="LC205" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>Glass Security Airlock<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L206" class="blob-num js-line-number" data-line-number="206"></td>
-          <td id="LC206" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 			var/icon_state = initial(L.icon_state)</span></td>
+          <td id="LC206" class="blob-code blob-code-inner js-file-line">	req_access <span class="pl-k">=</span> <span class="pl-k">list</span>(<span class="pl-c1">1</span>)</td>
         </tr>
         <tr>
           <td id="L207" class="blob-num js-line-number" data-line-number="207"></td>
-          <td id="LC207" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 			Insert(&quot;language-[icon_state]&quot;, icon, icon_state=icon_state)</span></td>
+          <td id="LC207" class="blob-code blob-code-inner js-file-line">	door_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#8c1d11<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L208" class="blob-num js-line-number" data-line-number="208"></td>
-          <td id="LC208" class="blob-code blob-code-inner js-file-line">
-</td>
+          <td id="LC208" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#d27428<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L209" class="blob-num js-line-number" data-line-number="209"></td>
-          <td id="LC209" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	..()</span></td>
+          <td id="LC209" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>machinery<span class="pl-k">/</span>door<span class="pl-k">/</span>airlock<span class="pl-k">/</span>angled_bay<span class="pl-k">/</span>hatch<span class="pl-k">/</span>security</td>
         </tr>
         <tr>
           <td id="L210" class="blob-num js-line-number" data-line-number="210"></td>
-          <td id="LC210" class="blob-code blob-code-inner js-file-line">
-</td>
+          <td id="LC210" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>maintenance access<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L211" class="blob-num js-line-number" data-line-number="211"></td>
-          <td id="LC211" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> /datum/asset/simple/permissions</span></td>
+          <td id="LC211" class="blob-code blob-code-inner js-file-line">	req_access <span class="pl-k">=</span> <span class="pl-k">list</span>(<span class="pl-c1">1</span>)</td>
         </tr>
         <tr>
           <td id="L212" class="blob-num js-line-number" data-line-number="212"></td>
-          <td id="LC212" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	assets = list(</span></td>
+          <td id="LC212" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#8c1d11<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L213" class="blob-num js-line-number" data-line-number="213"></td>
-          <td id="LC213" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;padlock.png&quot;	= &#39;html/padlock.png&#39;</span></td>
+          <td id="LC213" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>machinery<span class="pl-k">/</span>door<span class="pl-k">/</span>airlock<span class="pl-k">/</span>angled_bay<span class="pl-k">/</span>double<span class="pl-k">/</span>glass<span class="pl-k">/</span>security</td>
         </tr>
         <tr>
           <td id="L214" class="blob-num js-line-number" data-line-number="214"></td>
-          <td id="LC214" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	)</span></td>
+          <td id="LC214" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>Glass Security Airlock<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L215" class="blob-num js-line-number" data-line-number="215"></td>
-          <td id="LC215" class="blob-code blob-code-inner js-file-line">
-</td>
+          <td id="LC215" class="blob-code blob-code-inner js-file-line">	req_access <span class="pl-k">=</span> <span class="pl-k">list</span>(<span class="pl-c1">1</span>)</td>
         </tr>
         <tr>
           <td id="L216" class="blob-num js-line-number" data-line-number="216"></td>
-          <td id="LC216" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> /datum/asset/simple/notes</span></td>
+          <td id="LC216" class="blob-code blob-code-inner js-file-line">	door_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#8c1d11<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L217" class="blob-num js-line-number" data-line-number="217"></td>
-          <td id="LC217" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	assets = list(</span></td>
+          <td id="LC217" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#d27428<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L218" class="blob-num js-line-number" data-line-number="218"></td>
-          <td id="LC218" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;high_button.png&quot; = &#39;html/high_button.png&#39;,</span></td>
+          <td id="LC218" class="blob-code blob-code-inner js-file-line">
+</td>
         </tr>
         <tr>
           <td id="L219" class="blob-num js-line-number" data-line-number="219"></td>
-          <td id="LC219" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;medium_button.png&quot; = &#39;html/medium_button.png&#39;,</span></td>
+          <td id="LC219" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>machinery<span class="pl-k">/</span>door<span class="pl-k">/</span>airlock<span class="pl-k">/</span>angled_bay<span class="pl-k">/</span>standard<span class="pl-k">/</span>color<span class="pl-k">/</span>engineering</td>
         </tr>
         <tr>
           <td id="L220" class="blob-num js-line-number" data-line-number="220"></td>
-          <td id="LC220" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;minor_button.png&quot; = &#39;html/minor_button.png&#39;,</span></td>
+          <td id="LC220" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>Engineering Airlock<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L221" class="blob-num js-line-number" data-line-number="221"></td>
-          <td id="LC221" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;none_button.png&quot; = &#39;html/none_button.png&#39;,</span></td>
+          <td id="LC221" class="blob-code blob-code-inner js-file-line">	req_access <span class="pl-k">=</span> <span class="pl-k">list</span>(<span class="pl-c1">10</span>)</td>
         </tr>
         <tr>
           <td id="L222" class="blob-num js-line-number" data-line-number="222"></td>
-          <td id="LC222" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	)</span></td>
+          <td id="LC222" class="blob-code blob-code-inner js-file-line">	door_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#e6ab22<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L223" class="blob-num js-line-number" data-line-number="223"></td>
-          <td id="LC223" class="blob-code blob-code-inner js-file-line">
-</td>
+          <td id="LC223" class="blob-code blob-code-inner js-file-line">	fill_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#877242<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L224" class="blob-num js-line-number" data-line-number="224"></td>
-          <td id="LC224" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">datum</span><span class="pl-k">/</span>asset<span class="pl-k">/</span>simple<span class="pl-k">/</span>arcade</td>
+          <td id="LC224" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#913013<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L225" class="blob-num js-line-number" data-line-number="225"></td>
-          <td id="LC225" class="blob-code blob-code-inner js-file-line">	assets <span class="pl-k">=</span> <span class="pl-k">list</span>(</td>
+          <td id="LC225" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>machinery<span class="pl-k">/</span>door<span class="pl-k">/</span>airlock<span class="pl-k">/</span>angled_bay<span class="pl-k">/</span>standard<span class="pl-k">/</span>glass<span class="pl-k">/</span>engineering</td>
         </tr>
         <tr>
           <td id="L226" class="blob-num js-line-number" data-line-number="226"></td>
-          <td id="LC226" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>boss1.gif<span class="pl-pds">&quot;</span></span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/UI_Icons/Arcade/boss1.gif<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC226" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>Glass Engineering Airlock<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L227" class="blob-num js-line-number" data-line-number="227"></td>
-          <td id="LC227" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>boss2.gif<span class="pl-pds">&quot;</span></span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/UI_Icons/Arcade/boss2.gif<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC227" class="blob-code blob-code-inner js-file-line">	req_access <span class="pl-k">=</span> <span class="pl-k">list</span>(<span class="pl-c1">10</span>)</td>
         </tr>
         <tr>
           <td id="L228" class="blob-num js-line-number" data-line-number="228"></td>
-          <td id="LC228" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>boss3.gif<span class="pl-pds">&quot;</span></span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/UI_Icons/Arcade/boss3.gif<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC228" class="blob-code blob-code-inner js-file-line">	door_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#e6ab22<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L229" class="blob-num js-line-number" data-line-number="229"></td>
-          <td id="LC229" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>boss4.gif<span class="pl-pds">&quot;</span></span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/UI_Icons/Arcade/boss4.gif<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC229" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#913013<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L230" class="blob-num js-line-number" data-line-number="230"></td>
-          <td id="LC230" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>boss5.gif<span class="pl-pds">&quot;</span></span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/UI_Icons/Arcade/boss5.gif<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC230" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>machinery<span class="pl-k">/</span>door<span class="pl-k">/</span>airlock<span class="pl-k">/</span>angled_bay<span class="pl-k">/</span>hatch<span class="pl-k">/</span>engineering</td>
         </tr>
         <tr>
           <td id="L231" class="blob-num js-line-number" data-line-number="231"></td>
-          <td id="LC231" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>boss6.gif<span class="pl-pds">&quot;</span></span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/UI_Icons/Arcade/boss6.gif<span class="pl-pds">&#39;</span></span>,</td>
+          <td id="LC231" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>maintenance access<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L232" class="blob-num js-line-number" data-line-number="232"></td>
-          <td id="LC232" class="blob-code blob-code-inner js-file-line">		)</td>
+          <td id="LC232" class="blob-code blob-code-inner js-file-line">	req_access <span class="pl-k">=</span> <span class="pl-k">list</span>(<span class="pl-c1">10</span>)</td>
         </tr>
         <tr>
           <td id="L233" class="blob-num js-line-number" data-line-number="233"></td>
-          <td id="LC233" class="blob-code blob-code-inner js-file-line">
-</td>
+          <td id="LC233" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#e6ab22<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L234" class="blob-num js-line-number" data-line-number="234"></td>
-          <td id="LC234" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> /datum/asset/spritesheet/simple/achievements</span></td>
+          <td id="LC234" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>machinery<span class="pl-k">/</span>door<span class="pl-k">/</span>airlock<span class="pl-k">/</span>angled_bay<span class="pl-k">/</span>double<span class="pl-k">/</span>glass<span class="pl-k">/</span>engineering</td>
         </tr>
         <tr>
           <td id="L235" class="blob-num js-line-number" data-line-number="235"></td>
-          <td id="LC235" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	name =&quot;achievements&quot;</span></td>
+          <td id="LC235" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>Glass Engineering Airlock<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L236" class="blob-num js-line-number" data-line-number="236"></td>
-          <td id="LC236" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	assets = list(</span></td>
+          <td id="LC236" class="blob-code blob-code-inner js-file-line">	req_access <span class="pl-k">=</span> <span class="pl-k">list</span>(<span class="pl-c1">10</span>)</td>
         </tr>
         <tr>
           <td id="L237" class="blob-num js-line-number" data-line-number="237"></td>
-          <td id="LC237" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;default&quot; = &#39;icons/UI_Icons/Achievements/default.png&#39;,</span></td>
+          <td id="LC237" class="blob-code blob-code-inner js-file-line">	door_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#e6ab22<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L238" class="blob-num js-line-number" data-line-number="238"></td>
-          <td id="LC238" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;basemisc&quot; = &#39;icons/UI_Icons/Achievements/basemisc.png&#39;,</span></td>
+          <td id="LC238" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#913013<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L239" class="blob-num js-line-number" data-line-number="239"></td>
-          <td id="LC239" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;baseboss&quot; = &#39;icons/UI_Icons/Achievements/baseboss.png&#39;,</span></td>
+          <td id="LC239" class="blob-code blob-code-inner js-file-line">
+</td>
         </tr>
         <tr>
           <td id="L240" class="blob-num js-line-number" data-line-number="240"></td>
-          <td id="LC240" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;baseskill&quot; = &#39;icons/UI_Icons/Achievements/baseskill.png&#39;,</span></td>
+          <td id="LC240" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>machinery<span class="pl-k">/</span>door<span class="pl-k">/</span>airlock<span class="pl-k">/</span>angled_bay<span class="pl-k">/</span>standard<span class="pl-k">/</span>color<span class="pl-k">/</span>atmos</td>
         </tr>
         <tr>
           <td id="L241" class="blob-num js-line-number" data-line-number="241"></td>
-          <td id="LC241" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;bbgum&quot; = &#39;icons/UI_Icons/Achievements/Boss/bbgum.png&#39;,</span></td>
+          <td id="LC241" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>Atmospherics Airlock<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L242" class="blob-num js-line-number" data-line-number="242"></td>
-          <td id="LC242" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;colossus&quot; = &#39;icons/UI_Icons/Achievements/Boss/colossus.png&#39;,</span></td>
+          <td id="LC242" class="blob-code blob-code-inner js-file-line">	req_access <span class="pl-k">=</span> <span class="pl-k">list</span>(<span class="pl-c1">24</span>)</td>
         </tr>
         <tr>
           <td id="L243" class="blob-num js-line-number" data-line-number="243"></td>
-          <td id="LC243" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;hierophant&quot; = &#39;icons/UI_Icons/Achievements/Boss/hierophant.png&#39;,</span></td>
+          <td id="LC243" class="blob-code blob-code-inner js-file-line">	door_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#e6ab22<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L244" class="blob-num js-line-number" data-line-number="244"></td>
-          <td id="LC244" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;legion&quot; = &#39;icons/UI_Icons/Achievements/Boss/legion.png&#39;,</span></td>
+          <td id="LC244" class="blob-code blob-code-inner js-file-line">	fill_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#877242<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L245" class="blob-num js-line-number" data-line-number="245"></td>
-          <td id="LC245" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;miner&quot; = &#39;icons/UI_Icons/Achievements/Boss/miner.png&#39;,</span></td>
+          <td id="LC245" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#2ebfbd<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L246" class="blob-num js-line-number" data-line-number="246"></td>
-          <td id="LC246" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;swarmer&quot; = &#39;icons/UI_Icons/Achievements/Boss/swarmer.png&#39;,</span></td>
+          <td id="LC246" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>machinery<span class="pl-k">/</span>door<span class="pl-k">/</span>airlock<span class="pl-k">/</span>angled_bay<span class="pl-k">/</span>standard<span class="pl-k">/</span>glass<span class="pl-k">/</span>atmos</td>
         </tr>
         <tr>
           <td id="L247" class="blob-num js-line-number" data-line-number="247"></td>
-          <td id="LC247" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;tendril&quot; = &#39;icons/UI_Icons/Achievements/Boss/tendril.png&#39;,</span></td>
+          <td id="LC247" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>Glass Atmospherics Airlock<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L248" class="blob-num js-line-number" data-line-number="248"></td>
-          <td id="LC248" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;featofstrength&quot; = &#39;icons/UI_Icons/Achievements/Misc/featofstrength.png&#39;,</span></td>
+          <td id="LC248" class="blob-code blob-code-inner js-file-line">	req_access <span class="pl-k">=</span> <span class="pl-k">list</span>(<span class="pl-c1">24</span>)</td>
         </tr>
         <tr>
           <td id="L249" class="blob-num js-line-number" data-line-number="249"></td>
-          <td id="LC249" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;helbital&quot; = &#39;icons/UI_Icons/Achievements/Misc/helbital.png&#39;,</span></td>
+          <td id="LC249" class="blob-code blob-code-inner js-file-line">	door_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#e6ab22<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L250" class="blob-num js-line-number" data-line-number="250"></td>
-          <td id="LC250" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;jackpot&quot; = &#39;icons/UI_Icons/Achievements/Misc/jackpot.png&#39;,</span></td>
+          <td id="LC250" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#2ebfbd<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L251" class="blob-num js-line-number" data-line-number="251"></td>
-          <td id="LC251" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;meteors&quot; = &#39;icons/UI_Icons/Achievements/Misc/meteors.png&#39;,</span></td>
+          <td id="LC251" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>machinery<span class="pl-k">/</span>door<span class="pl-k">/</span>airlock<span class="pl-k">/</span>angled_bay<span class="pl-k">/</span>hatch<span class="pl-k">/</span>atmos</td>
         </tr>
         <tr>
           <td id="L252" class="blob-num js-line-number" data-line-number="252"></td>
-          <td id="LC252" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;timewaste&quot; = &#39;icons/UI_Icons/Achievements/Misc/timewaste.png&#39;,</span></td>
+          <td id="LC252" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>maintenance access<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L253" class="blob-num js-line-number" data-line-number="253"></td>
-          <td id="LC253" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;upgrade&quot; = &#39;icons/UI_Icons/Achievements/Misc/upgrade.png&#39;,</span></td>
+          <td id="LC253" class="blob-code blob-code-inner js-file-line">	req_access <span class="pl-k">=</span> <span class="pl-k">list</span>(<span class="pl-c1">24</span>)</td>
         </tr>
         <tr>
           <td id="L254" class="blob-num js-line-number" data-line-number="254"></td>
-          <td id="LC254" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;clownking&quot; = &#39;icons/UI_Icons/Achievements/Misc/clownking.png&#39;,</span></td>
+          <td id="LC254" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#e6ab22<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L255" class="blob-num js-line-number" data-line-number="255"></td>
-          <td id="LC255" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;clownthanks&quot; = &#39;icons/UI_Icons/Achievements/Misc/clownthanks.png&#39;,</span></td>
+          <td id="LC255" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>machinery<span class="pl-k">/</span>door<span class="pl-k">/</span>airlock<span class="pl-k">/</span>angled_bay<span class="pl-k">/</span>double<span class="pl-k">/</span>glass<span class="pl-k">/</span>atmos</td>
         </tr>
         <tr>
           <td id="L256" class="blob-num js-line-number" data-line-number="256"></td>
-          <td id="LC256" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;rule8&quot; = &#39;icons/UI_Icons/Achievements/Misc/rule8.png&#39;,</span></td>
+          <td id="LC256" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>Glass Atmospherics Airlock<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L257" class="blob-num js-line-number" data-line-number="257"></td>
-          <td id="LC257" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;snail&quot; = &#39;icons/UI_Icons/Achievements/Misc/snail.png&#39;,</span></td>
+          <td id="LC257" class="blob-code blob-code-inner js-file-line">	req_access <span class="pl-k">=</span> <span class="pl-k">list</span>(<span class="pl-c1">24</span>)</td>
         </tr>
         <tr>
           <td id="L258" class="blob-num js-line-number" data-line-number="258"></td>
-          <td id="LC258" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;mining&quot; = &#39;icons/UI_Icons/Achievements/Skills/mining.png&#39;,</span></td>
+          <td id="LC258" class="blob-code blob-code-inner js-file-line">	door_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#e6ab22<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L259" class="blob-num js-line-number" data-line-number="259"></td>
-          <td id="LC259" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	)</span></td>
+          <td id="LC259" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#2ebfbd<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L260" class="blob-num js-line-number" data-line-number="260"></td>
@@ -3379,267 +3361,262 @@
         </tr>
         <tr>
           <td id="L261" class="blob-num js-line-number" data-line-number="261"></td>
-          <td id="LC261" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> /datum/asset/spritesheet/simple/pills</span></td>
+          <td id="LC261" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>machinery<span class="pl-k">/</span>door<span class="pl-k">/</span>airlock<span class="pl-k">/</span>angled_bay<span class="pl-k">/</span>standard<span class="pl-k">/</span>color<span class="pl-k">/</span>cargo</td>
         </tr>
         <tr>
           <td id="L262" class="blob-num js-line-number" data-line-number="262"></td>
-          <td id="LC262" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	name =&quot;pills&quot;</span></td>
+          <td id="LC262" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>Cargo Airlock<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L263" class="blob-num js-line-number" data-line-number="263"></td>
-          <td id="LC263" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	assets = list(</span></td>
+          <td id="LC263" class="blob-code blob-code-inner js-file-line">	req_access <span class="pl-k">=</span> <span class="pl-k">list</span>(<span class="pl-c1">31</span>)</td>
         </tr>
         <tr>
           <td id="L264" class="blob-num js-line-number" data-line-number="264"></td>
-          <td id="LC264" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;pill1&quot; = &#39;icons/UI_Icons/Pills/pill1.png&#39;,</span></td>
+          <td id="LC264" class="blob-code blob-code-inner js-file-line">	door_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#a6753d<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L265" class="blob-num js-line-number" data-line-number="265"></td>
-          <td id="LC265" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;pill2&quot; = &#39;icons/UI_Icons/Pills/pill2.png&#39;,</span></td>
+          <td id="LC265" class="blob-code blob-code-inner js-file-line">	fill_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#75736f<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L266" class="blob-num js-line-number" data-line-number="266"></td>
-          <td id="LC266" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;pill3&quot; = &#39;icons/UI_Icons/Pills/pill3.png&#39;,</span></td>
+          <td id="LC266" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#3b2b1a<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L267" class="blob-num js-line-number" data-line-number="267"></td>
-          <td id="LC267" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;pill4&quot; = &#39;icons/UI_Icons/Pills/pill4.png&#39;,</span></td>
+          <td id="LC267" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>machinery<span class="pl-k">/</span>door<span class="pl-k">/</span>airlock<span class="pl-k">/</span>angled_bay<span class="pl-k">/</span>standard<span class="pl-k">/</span>glass<span class="pl-k">/</span>atmos</td>
         </tr>
         <tr>
           <td id="L268" class="blob-num js-line-number" data-line-number="268"></td>
-          <td id="LC268" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;pill5&quot; = &#39;icons/UI_Icons/Pills/pill5.png&#39;,</span></td>
+          <td id="LC268" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>Glass Cargo Airlock<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L269" class="blob-num js-line-number" data-line-number="269"></td>
-          <td id="LC269" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;pill6&quot; = &#39;icons/UI_Icons/Pills/pill6.png&#39;,</span></td>
+          <td id="LC269" class="blob-code blob-code-inner js-file-line">	req_access <span class="pl-k">=</span> <span class="pl-k">list</span>(<span class="pl-c1">31</span>)</td>
         </tr>
         <tr>
           <td id="L270" class="blob-num js-line-number" data-line-number="270"></td>
-          <td id="LC270" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;pill7&quot; = &#39;icons/UI_Icons/Pills/pill7.png&#39;,</span></td>
+          <td id="LC270" class="blob-code blob-code-inner js-file-line">	door_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#a6753d<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L271" class="blob-num js-line-number" data-line-number="271"></td>
-          <td id="LC271" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;pill8&quot; = &#39;icons/UI_Icons/Pills/pill8.png&#39;,</span></td>
+          <td id="LC271" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#3b2b1a<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L272" class="blob-num js-line-number" data-line-number="272"></td>
-          <td id="LC272" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;pill9&quot; = &#39;icons/UI_Icons/Pills/pill9.png&#39;,</span></td>
+          <td id="LC272" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>machinery<span class="pl-k">/</span>door<span class="pl-k">/</span>airlock<span class="pl-k">/</span>angled_bay<span class="pl-k">/</span>hatch<span class="pl-k">/</span>atmos</td>
         </tr>
         <tr>
           <td id="L273" class="blob-num js-line-number" data-line-number="273"></td>
-          <td id="LC273" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;pill10&quot; = &#39;icons/UI_Icons/Pills/pill10.png&#39;,</span></td>
+          <td id="LC273" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>maintenance access<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L274" class="blob-num js-line-number" data-line-number="274"></td>
-          <td id="LC274" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;pill11&quot; = &#39;icons/UI_Icons/Pills/pill11.png&#39;,</span></td>
+          <td id="LC274" class="blob-code blob-code-inner js-file-line">	req_access <span class="pl-k">=</span> <span class="pl-k">list</span>(<span class="pl-c1">31</span>)</td>
         </tr>
         <tr>
           <td id="L275" class="blob-num js-line-number" data-line-number="275"></td>
-          <td id="LC275" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;pill12&quot; = &#39;icons/UI_Icons/Pills/pill12.png&#39;,</span></td>
+          <td id="LC275" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#3b2b1a<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L276" class="blob-num js-line-number" data-line-number="276"></td>
-          <td id="LC276" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;pill13&quot; = &#39;icons/UI_Icons/Pills/pill13.png&#39;,</span></td>
+          <td id="LC276" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>machinery<span class="pl-k">/</span>door<span class="pl-k">/</span>airlock<span class="pl-k">/</span>angled_bay<span class="pl-k">/</span>double<span class="pl-k">/</span>glass<span class="pl-k">/</span>atmos</td>
         </tr>
         <tr>
           <td id="L277" class="blob-num js-line-number" data-line-number="277"></td>
-          <td id="LC277" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;pill14&quot; = &#39;icons/UI_Icons/Pills/pill14.png&#39;,</span></td>
+          <td id="LC277" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>Glass Cargo Airlock<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L278" class="blob-num js-line-number" data-line-number="278"></td>
-          <td id="LC278" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;pill15&quot; = &#39;icons/UI_Icons/Pills/pill15.png&#39;,</span></td>
+          <td id="LC278" class="blob-code blob-code-inner js-file-line">	req_access <span class="pl-k">=</span> <span class="pl-k">list</span>(<span class="pl-c1">31</span>)</td>
         </tr>
         <tr>
           <td id="L279" class="blob-num js-line-number" data-line-number="279"></td>
-          <td id="LC279" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;pill16&quot; = &#39;icons/UI_Icons/Pills/pill16.png&#39;,</span></td>
+          <td id="LC279" class="blob-code blob-code-inner js-file-line">	door_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#a6753d<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L280" class="blob-num js-line-number" data-line-number="280"></td>
-          <td id="LC280" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;pill17&quot; = &#39;icons/UI_Icons/Pills/pill17.png&#39;,</span></td>
+          <td id="LC280" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#3b2b1a<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L281" class="blob-num js-line-number" data-line-number="281"></td>
-          <td id="LC281" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;pill18&quot; = &#39;icons/UI_Icons/Pills/pill18.png&#39;,</span></td>
+          <td id="LC281" class="blob-code blob-code-inner js-file-line">
+</td>
         </tr>
         <tr>
           <td id="L282" class="blob-num js-line-number" data-line-number="282"></td>
-          <td id="LC282" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;pill19&quot; = &#39;icons/UI_Icons/Pills/pill19.png&#39;,</span></td>
+          <td id="LC282" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>machinery<span class="pl-k">/</span>door<span class="pl-k">/</span>airlock<span class="pl-k">/</span>angled_bay<span class="pl-k">/</span>standard<span class="pl-k">/</span>color<span class="pl-k">/</span>command</td>
         </tr>
         <tr>
           <td id="L283" class="blob-num js-line-number" data-line-number="283"></td>
-          <td id="LC283" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;pill20&quot; = &#39;icons/UI_Icons/Pills/pill20.png&#39;,</span></td>
+          <td id="LC283" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>Command Airlock<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L284" class="blob-num js-line-number" data-line-number="284"></td>
-          <td id="LC284" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;pill21&quot; = &#39;icons/UI_Icons/Pills/pill21.png&#39;,</span></td>
+          <td id="LC284" class="blob-code blob-code-inner js-file-line">	req_access <span class="pl-k">=</span> <span class="pl-k">list</span>(<span class="pl-c1">19</span>)</td>
         </tr>
         <tr>
           <td id="L285" class="blob-num js-line-number" data-line-number="285"></td>
-          <td id="LC285" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;pill22&quot; = &#39;icons/UI_Icons/Pills/pill22.png&#39;,</span></td>
+          <td id="LC285" class="blob-code blob-code-inner js-file-line">	door_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#323d80<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L286" class="blob-num js-line-number" data-line-number="286"></td>
-          <td id="LC286" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	)</span></td>
+          <td id="LC286" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#f7d35c<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L287" class="blob-num js-line-number" data-line-number="287"></td>
-          <td id="LC287" class="blob-code blob-code-inner js-file-line">
-</td>
+          <td id="LC287" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>machinery<span class="pl-k">/</span>door<span class="pl-k">/</span>airlock<span class="pl-k">/</span>angled_bay<span class="pl-k">/</span>standard<span class="pl-k">/</span>glass<span class="pl-k">/</span>command</td>
         </tr>
         <tr>
           <td id="L288" class="blob-num js-line-number" data-line-number="288"></td>
-          <td id="LC288" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> //this exists purely to avoid meta by pre-loading all language icons.</span></td>
+          <td id="LC288" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>Glass Command Airlock<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L289" class="blob-num js-line-number" data-line-number="289"></td>
-          <td id="LC289" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> /datum/asset/language/register()</span></td>
+          <td id="LC289" class="blob-code blob-code-inner js-file-line">	req_access <span class="pl-k">=</span> <span class="pl-k">list</span>(<span class="pl-c1">19</span>)</td>
         </tr>
         <tr>
           <td id="L290" class="blob-num js-line-number" data-line-number="290"></td>
-          <td id="LC290" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	for(var/path in typesof(/datum/language))</span></td>
+          <td id="LC290" class="blob-code blob-code-inner js-file-line">	door_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#323d80<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L291" class="blob-num js-line-number" data-line-number="291"></td>
-          <td id="LC291" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		set waitfor = FALSE</span></td>
+          <td id="LC291" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#f7d35c<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L292" class="blob-num js-line-number" data-line-number="292"></td>
-          <td id="LC292" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		var/datum/language/L = new path ()</span></td>
+          <td id="LC292" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>machinery<span class="pl-k">/</span>door<span class="pl-k">/</span>airlock<span class="pl-k">/</span>angled_bay<span class="pl-k">/</span>hatch<span class="pl-k">/</span>command</td>
         </tr>
         <tr>
           <td id="L293" class="blob-num js-line-number" data-line-number="293"></td>
-          <td id="LC293" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		L.get_icon()</span></td>
+          <td id="LC293" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>maintenance access<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L294" class="blob-num js-line-number" data-line-number="294"></td>
-          <td id="LC294" class="blob-code blob-code-inner js-file-line">
-</td>
+          <td id="LC294" class="blob-code blob-code-inner js-file-line">	req_access <span class="pl-k">=</span> <span class="pl-k">list</span>(<span class="pl-c1">19</span>)</td>
         </tr>
         <tr>
           <td id="L295" class="blob-num js-line-number" data-line-number="295"></td>
-          <td id="LC295" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">datum</span><span class="pl-k">/</span>asset<span class="pl-k">/</span>spritesheet<span class="pl-k">/</span>pipes</td>
+          <td id="LC295" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#323d80<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L296" class="blob-num js-line-number" data-line-number="296"></td>
-          <td id="LC296" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>pipes<span class="pl-pds">&quot;</span></span></td>
+          <td id="LC296" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>machinery<span class="pl-k">/</span>door<span class="pl-k">/</span>airlock<span class="pl-k">/</span>angled_bay<span class="pl-k">/</span>double<span class="pl-k">/</span>glass<span class="pl-k">/</span>command</td>
         </tr>
         <tr>
           <td id="L297" class="blob-num js-line-number" data-line-number="297"></td>
-          <td id="LC297" class="blob-code blob-code-inner js-file-line">
-</td>
+          <td id="LC297" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>Glass Command Airlock<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L298" class="blob-num js-line-number" data-line-number="298"></td>
-          <td id="LC298" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">datum</span><span class="pl-k">/</span>asset<span class="pl-k">/</span>spritesheet<span class="pl-k">/</span>pipes<span class="pl-k">/</span>register()</td>
+          <td id="LC298" class="blob-code blob-code-inner js-file-line">	req_access <span class="pl-k">=</span> <span class="pl-k">list</span>(<span class="pl-c1">19</span>)</td>
         </tr>
         <tr>
           <td id="L299" class="blob-num js-line-number" data-line-number="299"></td>
-          <td id="LC299" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">for</span>(<span class="pl-k">var</span>/<span class="pl-smi">each</span> <span class="pl-k">in</span> <span class="pl-en">list</span>(<span class="pl-s"><span class="pl-pds">&#39;</span>icons/obj/pipe-item.dmi<span class="pl-pds">&#39;</span></span>, <span class="pl-s"><span class="pl-pds">&#39;</span>icons/obj/pipes/disposal.dmi<span class="pl-pds">&#39;</span></span>))</td>
+          <td id="LC299" class="blob-code blob-code-inner js-file-line">	door_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#323d80<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L300" class="blob-num js-line-number" data-line-number="300"></td>
-          <td id="LC300" class="blob-code blob-code-inner js-file-line">		<span class="pl-en">InsertAll</span>(<span class="pl-s"><span class="pl-pds">&quot;</span><span class="pl-pds">&quot;</span></span>, each, <span class="pl-k">global</span><span class="pl-k">.</span>alldirs)</td>
+          <td id="LC300" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#f7d35c<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L301" class="blob-num js-line-number" data-line-number="301"></td>
-          <td id="LC301" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">..</span>()</td>
+          <td id="LC301" class="blob-code blob-code-inner js-file-line">
+</td>
         </tr>
         <tr>
           <td id="L302" class="blob-num js-line-number" data-line-number="302"></td>
-          <td id="LC302" class="blob-code blob-code-inner js-file-line">
-</td>
+          <td id="LC302" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>machinery<span class="pl-k">/</span>door<span class="pl-k">/</span>airlock<span class="pl-k">/</span>angled_bay<span class="pl-k">/</span>standard<span class="pl-k">/</span>color<span class="pl-k">/</span>chaplain</td>
         </tr>
         <tr>
           <td id="L303" class="blob-num js-line-number" data-line-number="303"></td>
-          <td id="LC303" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span>VOREStation Add</span></td>
+          <td id="LC303" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>Chaplain Airlock<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L304" class="blob-num js-line-number" data-line-number="304"></td>
-          <td id="LC304" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">datum</span><span class="pl-k">/</span>asset<span class="pl-k">/</span>spritesheet<span class="pl-k">/</span>vore</td>
+          <td id="LC304" class="blob-code blob-code-inner js-file-line">	req_access <span class="pl-k">=</span> <span class="pl-k">list</span>(<span class="pl-c1">26</span>)</td>
         </tr>
         <tr>
           <td id="L305" class="blob-num js-line-number" data-line-number="305"></td>
-          <td id="LC305" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>vore<span class="pl-pds">&quot;</span></span></td>
+          <td id="LC305" class="blob-code blob-code-inner js-file-line">	door_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#2e2e2e<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L306" class="blob-num js-line-number" data-line-number="306"></td>
-          <td id="LC306" class="blob-code blob-code-inner js-file-line">
-</td>
+          <td id="LC306" class="blob-code blob-code-inner js-file-line">	fill_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#2e2e2e<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L307" class="blob-num js-line-number" data-line-number="307"></td>
-          <td id="LC307" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">datum</span><span class="pl-k">/</span>asset<span class="pl-k">/</span>spritesheet<span class="pl-k">/</span>vore<span class="pl-k">/</span>register()</td>
+          <td id="LC307" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#deaf43<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L308" class="blob-num js-line-number" data-line-number="308"></td>
-          <td id="LC308" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">var</span>/icon/<span class="pl-smi">downscaled</span> <span class="pl-k">=</span> icon(<span class="pl-s"><span class="pl-pds">&#39;</span>icons/mob/screen_full_vore.dmi<span class="pl-pds">&#39;</span></span>)</td>
+          <td id="LC308" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>machinery<span class="pl-k">/</span>door<span class="pl-k">/</span>airlock<span class="pl-k">/</span>angled_bay<span class="pl-k">/</span>standard<span class="pl-k">/</span>glass<span class="pl-k">/</span>chaplain</td>
         </tr>
         <tr>
           <td id="L309" class="blob-num js-line-number" data-line-number="309"></td>
-          <td id="LC309" class="blob-code blob-code-inner js-file-line">	downscaled<span class="pl-k">.</span>Scale(<span class="pl-c1">240</span>, <span class="pl-c1">240</span>)</td>
+          <td id="LC309" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>Glass Chaplain Airlock<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L310" class="blob-num js-line-number" data-line-number="310"></td>
-          <td id="LC310" class="blob-code blob-code-inner js-file-line">	<span class="pl-en">InsertAll</span>(<span class="pl-s"><span class="pl-pds">&quot;</span><span class="pl-pds">&quot;</span></span>, downscaled)</td>
+          <td id="LC310" class="blob-code blob-code-inner js-file-line">	req_access <span class="pl-k">=</span> <span class="pl-k">list</span>(<span class="pl-c1">26</span>)</td>
         </tr>
         <tr>
           <td id="L311" class="blob-num js-line-number" data-line-number="311"></td>
-          <td id="LC311" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">..</span>()</td>
+          <td id="LC311" class="blob-code blob-code-inner js-file-line">	door_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#2e2e2e<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L312" class="blob-num js-line-number" data-line-number="312"></td>
-          <td id="LC312" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span>VOREStation Add End</span></td>
+          <td id="LC312" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#deaf43<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L313" class="blob-num js-line-number" data-line-number="313"></td>
-          <td id="LC313" class="blob-code blob-code-inner js-file-line">
-</td>
+          <td id="LC313" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>machinery<span class="pl-k">/</span>door<span class="pl-k">/</span>airlock<span class="pl-k">/</span>angled_bay<span class="pl-k">/</span>double<span class="pl-k">/</span>glass<span class="pl-k">/</span>chaplain</td>
         </tr>
         <tr>
           <td id="L314" class="blob-num js-line-number" data-line-number="314"></td>
-          <td id="LC314" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> // Representative icons for each research design</span></td>
+          <td id="LC314" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>Glass Chaplain Airlock<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L315" class="blob-num js-line-number" data-line-number="315"></td>
-          <td id="LC315" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> /datum/asset/spritesheet/research_designs</span></td>
+          <td id="LC315" class="blob-code blob-code-inner js-file-line">	req_access <span class="pl-k">=</span> <span class="pl-k">list</span>(<span class="pl-c1">26</span>)</td>
         </tr>
         <tr>
           <td id="L316" class="blob-num js-line-number" data-line-number="316"></td>
-          <td id="LC316" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	name = &quot;design&quot;</span></td>
+          <td id="LC316" class="blob-code blob-code-inner js-file-line">	door_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#2e2e2e<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L317" class="blob-num js-line-number" data-line-number="317"></td>
-          <td id="LC317" class="blob-code blob-code-inner js-file-line">
-</td>
+          <td id="LC317" class="blob-code blob-code-inner js-file-line">	stripe_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#deaf43<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L318" class="blob-num js-line-number" data-line-number="318"></td>
-          <td id="LC318" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> /datum/asset/spritesheet/research_designs/register()</span></td>
-        </tr>
-        <tr>
-          <td id="L319" class="blob-num js-line-number" data-line-number="319"></td>
-          <td id="LC319" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	for (var/path in subtypesof(/datum/design))</span></td>
-        </tr>
-        <tr>
-          <td id="L320" class="blob-num js-line-number" data-line-number="320"></td>
-          <td id="LC320" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		var/datum/design/D = path</span></td>
-        </tr>
-        <tr>
-          <td id="L321" class="blob-num js-line-number" data-line-number="321"></td>
-          <td id="LC321" class="blob-code blob-code-inner js-file-line">
+          <td id="LC318" class="blob-code blob-code-inner js-file-line">
 </td>
         </tr>
         <tr>
+          <td id="L319" class="blob-num js-line-number" data-line-number="319"></td>
+          <td id="LC319" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>machinery<span class="pl-k">/</span>door<span class="pl-k">/</span>airlock<span class="pl-k">/</span>angled_bay<span class="pl-k">/</span>external<span class="pl-k">/</span>red</td>
+        </tr>
+        <tr>
+          <td id="L320" class="blob-num js-line-number" data-line-number="320"></td>
+          <td id="LC320" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>External Airlock<span class="pl-pds">&quot;</span></span></td>
+        </tr>
+        <tr>
+          <td id="L321" class="blob-num js-line-number" data-line-number="321"></td>
+          <td id="LC321" class="blob-code blob-code-inner js-file-line">	door_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#822a1e<span class="pl-pds">&quot;</span></span></td>
+        </tr>
+        <tr>
           <td id="L322" class="blob-num js-line-number" data-line-number="322"></td>
-          <td id="LC322" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		var/icon_file</span></td>
+          <td id="LC322" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>machinery<span class="pl-k">/</span>door<span class="pl-k">/</span>airlock<span class="pl-k">/</span>angled_bay<span class="pl-k">/</span>external<span class="pl-k">/</span>glass<span class="pl-k">/</span>red</td>
         </tr>
         <tr>
           <td id="L323" class="blob-num js-line-number" data-line-number="323"></td>
-          <td id="LC323" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		var/icon_state</span></td>
+          <td id="LC323" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>External Airlock<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L324" class="blob-num js-line-number" data-line-number="324"></td>
-          <td id="LC324" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		var/icon/I</span></td>
+          <td id="LC324" class="blob-code blob-code-inner js-file-line">	door_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#822a1e<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L325" class="blob-num js-line-number" data-line-number="325"></td>
@@ -3648,897 +3625,19 @@
         </tr>
         <tr>
           <td id="L326" class="blob-num js-line-number" data-line-number="326"></td>
-          <td id="LC326" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		if(initial(D.research_icon) &amp;&amp; initial(D.research_icon_state)) //If the design has an icon replacement skip the rest</span></td>
+          <td id="LC326" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>machinery<span class="pl-k">/</span>door<span class="pl-k">/</span>airlock<span class="pl-k">/</span>angled_bay<span class="pl-k">/</span>standard<span class="pl-k">/</span>freezer</td>
         </tr>
         <tr>
           <td id="L327" class="blob-num js-line-number" data-line-number="327"></td>
-          <td id="LC327" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 			icon_file = initial(D.research_icon)</span></td>
+          <td id="LC327" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>Freezer<span class="pl-pds">&quot;</span></span></td>
         </tr>
         <tr>
           <td id="L328" class="blob-num js-line-number" data-line-number="328"></td>
-          <td id="LC328" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 			icon_state = initial(D.research_icon_state)</span></td>
+          <td id="LC328" class="blob-code blob-code-inner js-file-line">	req_access <span class="pl-k">=</span> <span class="pl-k">list</span>(<span class="pl-c1">28</span>)</td>
         </tr>
         <tr>
           <td id="L329" class="blob-num js-line-number" data-line-number="329"></td>
-          <td id="LC329" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 			if(!(icon_state in icon_states(icon_file)))</span></td>
-        </tr>
-        <tr>
-          <td id="L330" class="blob-num js-line-number" data-line-number="330"></td>
-          <td id="LC330" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 				warning(&quot;design [D] with icon &#39;[icon_file]&#39; missing state &#39;[icon_state]&#39;&quot;)</span></td>
-        </tr>
-        <tr>
-          <td id="L331" class="blob-num js-line-number" data-line-number="331"></td>
-          <td id="LC331" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 				continue</span></td>
-        </tr>
-        <tr>
-          <td id="L332" class="blob-num js-line-number" data-line-number="332"></td>
-          <td id="LC332" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 			I = icon(icon_file, icon_state, SOUTH)</span></td>
-        </tr>
-        <tr>
-          <td id="L333" class="blob-num js-line-number" data-line-number="333"></td>
-          <td id="LC333" class="blob-code blob-code-inner js-file-line">
-</td>
-        </tr>
-        <tr>
-          <td id="L334" class="blob-num js-line-number" data-line-number="334"></td>
-          <td id="LC334" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		else</span></td>
-        </tr>
-        <tr>
-          <td id="L335" class="blob-num js-line-number" data-line-number="335"></td>
-          <td id="LC335" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 			// construct the icon and slap it into the resource cache</span></td>
-        </tr>
-        <tr>
-          <td id="L336" class="blob-num js-line-number" data-line-number="336"></td>
-          <td id="LC336" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 			var/atom/item = initial(D.build_path)</span></td>
-        </tr>
-        <tr>
-          <td id="L337" class="blob-num js-line-number" data-line-number="337"></td>
-          <td id="LC337" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 			if (!ispath(item, /atom))</span></td>
-        </tr>
-        <tr>
-          <td id="L338" class="blob-num js-line-number" data-line-number="338"></td>
-          <td id="LC338" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 				// biogenerator outputs to beakers by default</span></td>
-        </tr>
-        <tr>
-          <td id="L339" class="blob-num js-line-number" data-line-number="339"></td>
-          <td id="LC339" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 				if (initial(D.build_type) &amp; BIOGENERATOR)</span></td>
-        </tr>
-        <tr>
-          <td id="L340" class="blob-num js-line-number" data-line-number="340"></td>
-          <td id="LC340" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 					item = /obj/item/reagent_containers/glass/beaker/large</span></td>
-        </tr>
-        <tr>
-          <td id="L341" class="blob-num js-line-number" data-line-number="341"></td>
-          <td id="LC341" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 				else</span></td>
-        </tr>
-        <tr>
-          <td id="L342" class="blob-num js-line-number" data-line-number="342"></td>
-          <td id="LC342" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 					continue  // shouldn&#39;t happen, but just in case</span></td>
-        </tr>
-        <tr>
-          <td id="L343" class="blob-num js-line-number" data-line-number="343"></td>
-          <td id="LC343" class="blob-code blob-code-inner js-file-line">
-</td>
-        </tr>
-        <tr>
-          <td id="L344" class="blob-num js-line-number" data-line-number="344"></td>
-          <td id="LC344" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 			// circuit boards become their resulting machines or computers</span></td>
-        </tr>
-        <tr>
-          <td id="L345" class="blob-num js-line-number" data-line-number="345"></td>
-          <td id="LC345" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 			if (ispath(item, /obj/item/circuitboard))</span></td>
-        </tr>
-        <tr>
-          <td id="L346" class="blob-num js-line-number" data-line-number="346"></td>
-          <td id="LC346" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 				var/obj/item/circuitboard/C = item</span></td>
-        </tr>
-        <tr>
-          <td id="L347" class="blob-num js-line-number" data-line-number="347"></td>
-          <td id="LC347" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 				var/machine = initial(C.build_path)</span></td>
-        </tr>
-        <tr>
-          <td id="L348" class="blob-num js-line-number" data-line-number="348"></td>
-          <td id="LC348" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 				if (machine)</span></td>
-        </tr>
-        <tr>
-          <td id="L349" class="blob-num js-line-number" data-line-number="349"></td>
-          <td id="LC349" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 					item = machine</span></td>
-        </tr>
-        <tr>
-          <td id="L350" class="blob-num js-line-number" data-line-number="350"></td>
-          <td id="LC350" class="blob-code blob-code-inner js-file-line">
-</td>
-        </tr>
-        <tr>
-          <td id="L351" class="blob-num js-line-number" data-line-number="351"></td>
-          <td id="LC351" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 			icon_file = initial(item.icon)</span></td>
-        </tr>
-        <tr>
-          <td id="L352" class="blob-num js-line-number" data-line-number="352"></td>
-          <td id="LC352" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 			icon_state = initial(item.icon_state)</span></td>
-        </tr>
-        <tr>
-          <td id="L353" class="blob-num js-line-number" data-line-number="353"></td>
-          <td id="LC353" class="blob-code blob-code-inner js-file-line">
-</td>
-        </tr>
-        <tr>
-          <td id="L354" class="blob-num js-line-number" data-line-number="354"></td>
-          <td id="LC354" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 			if(!(icon_state in icon_states(icon_file)))</span></td>
-        </tr>
-        <tr>
-          <td id="L355" class="blob-num js-line-number" data-line-number="355"></td>
-          <td id="LC355" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 				warning(&quot;design [D] with icon &#39;[icon_file]&#39; missing state &#39;[icon_state]&#39;&quot;)</span></td>
-        </tr>
-        <tr>
-          <td id="L356" class="blob-num js-line-number" data-line-number="356"></td>
-          <td id="LC356" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 				continue</span></td>
-        </tr>
-        <tr>
-          <td id="L357" class="blob-num js-line-number" data-line-number="357"></td>
-          <td id="LC357" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 			I = icon(icon_file, icon_state, SOUTH)</span></td>
-        </tr>
-        <tr>
-          <td id="L358" class="blob-num js-line-number" data-line-number="358"></td>
-          <td id="LC358" class="blob-code blob-code-inner js-file-line">
-</td>
-        </tr>
-        <tr>
-          <td id="L359" class="blob-num js-line-number" data-line-number="359"></td>
-          <td id="LC359" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 			// computers (and snowflakes) get their screen and keyboard sprites</span></td>
-        </tr>
-        <tr>
-          <td id="L360" class="blob-num js-line-number" data-line-number="360"></td>
-          <td id="LC360" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 			if (ispath(item, /obj/machinery/computer) || ispath(item, /obj/machinery/power/solar_control))</span></td>
-        </tr>
-        <tr>
-          <td id="L361" class="blob-num js-line-number" data-line-number="361"></td>
-          <td id="LC361" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 				var/obj/machinery/computer/C = item</span></td>
-        </tr>
-        <tr>
-          <td id="L362" class="blob-num js-line-number" data-line-number="362"></td>
-          <td id="LC362" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 				var/screen = initial(C.icon_screen)</span></td>
-        </tr>
-        <tr>
-          <td id="L363" class="blob-num js-line-number" data-line-number="363"></td>
-          <td id="LC363" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 				var/keyboard = initial(C.icon_keyboard)</span></td>
-        </tr>
-        <tr>
-          <td id="L364" class="blob-num js-line-number" data-line-number="364"></td>
-          <td id="LC364" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 				var/all_states = icon_states(icon_file)</span></td>
-        </tr>
-        <tr>
-          <td id="L365" class="blob-num js-line-number" data-line-number="365"></td>
-          <td id="LC365" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 				if (screen &amp;&amp; (screen in all_states))</span></td>
-        </tr>
-        <tr>
-          <td id="L366" class="blob-num js-line-number" data-line-number="366"></td>
-          <td id="LC366" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 					I.Blend(icon(icon_file, screen, SOUTH), ICON_OVERLAY)</span></td>
-        </tr>
-        <tr>
-          <td id="L367" class="blob-num js-line-number" data-line-number="367"></td>
-          <td id="LC367" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 				if (keyboard &amp;&amp; (keyboard in all_states))</span></td>
-        </tr>
-        <tr>
-          <td id="L368" class="blob-num js-line-number" data-line-number="368"></td>
-          <td id="LC368" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 					I.Blend(icon(icon_file, keyboard, SOUTH), ICON_OVERLAY)</span></td>
-        </tr>
-        <tr>
-          <td id="L369" class="blob-num js-line-number" data-line-number="369"></td>
-          <td id="LC369" class="blob-code blob-code-inner js-file-line">
-</td>
-        </tr>
-        <tr>
-          <td id="L370" class="blob-num js-line-number" data-line-number="370"></td>
-          <td id="LC370" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		Insert(initial(D.id), I)</span></td>
-        </tr>
-        <tr>
-          <td id="L371" class="blob-num js-line-number" data-line-number="371"></td>
-          <td id="LC371" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	return ..()</span></td>
-        </tr>
-        <tr>
-          <td id="L372" class="blob-num js-line-number" data-line-number="372"></td>
-          <td id="LC372" class="blob-code blob-code-inner js-file-line">
-</td>
-        </tr>
-        <tr>
-          <td id="L373" class="blob-num js-line-number" data-line-number="373"></td>
-          <td id="LC373" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">datum</span><span class="pl-k">/</span>asset<span class="pl-k">/</span>spritesheet<span class="pl-k">/</span>vending</td>
-        </tr>
-        <tr>
-          <td id="L374" class="blob-num js-line-number" data-line-number="374"></td>
-          <td id="LC374" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>vending<span class="pl-pds">&quot;</span></span></td>
-        </tr>
-        <tr>
-          <td id="L375" class="blob-num js-line-number" data-line-number="375"></td>
-          <td id="LC375" class="blob-code blob-code-inner js-file-line">
-</td>
-        </tr>
-        <tr>
-          <td id="L376" class="blob-num js-line-number" data-line-number="376"></td>
-          <td id="LC376" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">datum</span><span class="pl-k">/</span>asset<span class="pl-k">/</span>spritesheet<span class="pl-k">/</span>vending<span class="pl-k">/</span>register()</td>
-        </tr>
-        <tr>
-          <td id="L377" class="blob-num js-line-number" data-line-number="377"></td>
-          <td id="LC377" class="blob-code blob-code-inner js-file-line">	<span class="pl-en">populate_vending_products</span>()</td>
-        </tr>
-        <tr>
-          <td id="L378" class="blob-num js-line-number" data-line-number="378"></td>
-          <td id="LC378" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">for</span>(<span class="pl-k">var</span>/<span class="pl-k">atom</span>/<span class="pl-smi">item</span> <span class="pl-k">as</span> anything <span class="pl-k">in</span> <span class="pl-c1">GLOB</span><span class="pl-k">.</span>vending_products)</td>
-        </tr>
-        <tr>
-          <td id="L379" class="blob-num js-line-number" data-line-number="379"></td>
-          <td id="LC379" class="blob-code blob-code-inner js-file-line">		<span class="pl-k">if</span>(<span class="pl-k">!</span>ispath(item, <span class="pl-k">/</span><span class="pl-k">atom</span>))</td>
-        </tr>
-        <tr>
-          <td id="L380" class="blob-num js-line-number" data-line-number="380"></td>
-          <td id="LC380" class="blob-code blob-code-inner js-file-line">			<span class="pl-k">continue</span></td>
-        </tr>
-        <tr>
-          <td id="L381" class="blob-num js-line-number" data-line-number="381"></td>
-          <td id="LC381" class="blob-code blob-code-inner js-file-line">
-</td>
-        </tr>
-        <tr>
-          <td id="L382" class="blob-num js-line-number" data-line-number="382"></td>
-          <td id="LC382" class="blob-code blob-code-inner js-file-line">		<span class="pl-k">var</span>/<span class="pl-smi">icon_file</span> <span class="pl-k">=</span> initial(item<span class="pl-k">.</span>icon)</td>
-        </tr>
-        <tr>
-          <td id="L383" class="blob-num js-line-number" data-line-number="383"></td>
-          <td id="LC383" class="blob-code blob-code-inner js-file-line">		<span class="pl-k">var</span>/<span class="pl-smi">icon_state</span> <span class="pl-k">=</span> initial(item<span class="pl-k">.</span>icon_state)</td>
-        </tr>
-        <tr>
-          <td id="L384" class="blob-num js-line-number" data-line-number="384"></td>
-          <td id="LC384" class="blob-code blob-code-inner js-file-line">
-</td>
-        </tr>
-        <tr>
-          <td id="L385" class="blob-num js-line-number" data-line-number="385"></td>
-          <td id="LC385" class="blob-code blob-code-inner js-file-line">		<span class="pl-c"><span class="pl-c">//</span> I really don&#39;t like the fact that I have to do this, but what the hell else *can* I do to make all of these</span></td>
-        </tr>
-        <tr>
-          <td id="L386" class="blob-num js-line-number" data-line-number="386"></td>
-          <td id="LC386" class="blob-code blob-code-inner js-file-line">		<span class="pl-c"><span class="pl-c">//</span> random special items work?</span></td>
-        </tr>
-        <tr>
-          <td id="L387" class="blob-num js-line-number" data-line-number="387"></td>
-          <td id="LC387" class="blob-code blob-code-inner js-file-line">		<span class="pl-k">if</span>(ispath(item, <span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>item<span class="pl-k">/</span>weapon<span class="pl-k">/</span>reagent_containers<span class="pl-k">/</span>food<span class="pl-k">/</span>drinks<span class="pl-k">/</span>glass2) <span class="pl-k">&amp;&amp;</span> <span class="pl-k">!</span>ispath(item, <span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>item<span class="pl-k">/</span>weapon<span class="pl-k">/</span>reagent_containers<span class="pl-k">/</span>food<span class="pl-k">/</span>drinks<span class="pl-k">/</span>glass2<span class="pl-k">/</span>fitnessflask))</td>
-        </tr>
-        <tr>
-          <td id="L388" class="blob-num js-line-number" data-line-number="388"></td>
-          <td id="LC388" class="blob-code blob-code-inner js-file-line">			<span class="pl-k">var</span>/<span class="pl-k">obj</span>/item/weapon/reagent_containers/food/drinks/glass2/<span class="pl-smi">G</span> <span class="pl-k">=</span> item</td>
-        </tr>
-        <tr>
-          <td id="L389" class="blob-num js-line-number" data-line-number="389"></td>
-          <td id="LC389" class="blob-code blob-code-inner js-file-line">			icon_state <span class="pl-k">=</span> initial(<span class="pl-c1">G</span><span class="pl-k">.</span>base_icon)</td>
-        </tr>
-        <tr>
-          <td id="L390" class="blob-num js-line-number" data-line-number="390"></td>
-          <td id="LC390" class="blob-code blob-code-inner js-file-line">		<span class="pl-k">if</span>(ispath(item, <span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>item<span class="pl-k">/</span>weapon<span class="pl-k">/</span>reagent_containers<span class="pl-k">/</span>hypospray<span class="pl-k">/</span>autoinjector))</td>
-        </tr>
-        <tr>
-          <td id="L391" class="blob-num js-line-number" data-line-number="391"></td>
-          <td id="LC391" class="blob-code blob-code-inner js-file-line">			icon_state <span class="pl-k">+=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>0<span class="pl-pds">&quot;</span></span></td>
-        </tr>
-        <tr>
-          <td id="L392" class="blob-num js-line-number" data-line-number="392"></td>
-          <td id="LC392" class="blob-code blob-code-inner js-file-line">
-</td>
-        </tr>
-        <tr>
-          <td id="L393" class="blob-num js-line-number" data-line-number="393"></td>
-          <td id="LC393" class="blob-code blob-code-inner js-file-line">		<span class="pl-k">var</span>/icon/<span class="pl-smi">I</span></td>
-        </tr>
-        <tr>
-          <td id="L394" class="blob-num js-line-number" data-line-number="394"></td>
-          <td id="LC394" class="blob-code blob-code-inner js-file-line">
-</td>
-        </tr>
-        <tr>
-          <td id="L395" class="blob-num js-line-number" data-line-number="395"></td>
-          <td id="LC395" class="blob-code blob-code-inner js-file-line">		<span class="pl-k">var</span>/<span class="pl-smi">icon_states_list</span> <span class="pl-k">=</span> icon_states(icon_file)</td>
-        </tr>
-        <tr>
-          <td id="L396" class="blob-num js-line-number" data-line-number="396"></td>
-          <td id="LC396" class="blob-code blob-code-inner js-file-line">		<span class="pl-k">if</span>(icon_state <span class="pl-k">in</span> icon_states_list)</td>
-        </tr>
-        <tr>
-          <td id="L397" class="blob-num js-line-number" data-line-number="397"></td>
-          <td id="LC397" class="blob-code blob-code-inner js-file-line">			<span class="pl-c1">I</span> <span class="pl-k">=</span> icon(icon_file, icon_state, <span class="pl-c1">SOUTH</span>)</td>
-        </tr>
-        <tr>
-          <td id="L398" class="blob-num js-line-number" data-line-number="398"></td>
-          <td id="LC398" class="blob-code blob-code-inner js-file-line">			<span class="pl-k">var</span>/<span class="pl-smi">c</span> <span class="pl-k">=</span> initial(item<span class="pl-k">.</span>color)</td>
-        </tr>
-        <tr>
-          <td id="L399" class="blob-num js-line-number" data-line-number="399"></td>
-          <td id="LC399" class="blob-code blob-code-inner js-file-line">			<span class="pl-k">if</span>(<span class="pl-k">!</span>isnull(c) <span class="pl-k">&amp;&amp;</span> c <span class="pl-k">!=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#FFFFFF<span class="pl-pds">&quot;</span></span>)</td>
-        </tr>
-        <tr>
-          <td id="L400" class="blob-num js-line-number" data-line-number="400"></td>
-          <td id="LC400" class="blob-code blob-code-inner js-file-line">				<span class="pl-c1">I</span><span class="pl-k">.</span>Blend(c, <span class="pl-c1">ICON_MULTIPLY</span>)</td>
-        </tr>
-        <tr>
-          <td id="L401" class="blob-num js-line-number" data-line-number="401"></td>
-          <td id="LC401" class="blob-code blob-code-inner js-file-line">		<span class="pl-k">else</span></td>
-        </tr>
-        <tr>
-          <td id="L402" class="blob-num js-line-number" data-line-number="402"></td>
-          <td id="LC402" class="blob-code blob-code-inner js-file-line">			<span class="pl-k">var</span>/<span class="pl-smi">icon_states_string</span></td>
-        </tr>
-        <tr>
-          <td id="L403" class="blob-num js-line-number" data-line-number="403"></td>
-          <td id="LC403" class="blob-code blob-code-inner js-file-line">			<span class="pl-k">for</span>(<span class="pl-k">var</span>/<span class="pl-smi">an_icon_state</span> <span class="pl-k">in</span> icon_states_list)</td>
-        </tr>
-        <tr>
-          <td id="L404" class="blob-num js-line-number" data-line-number="404"></td>
-          <td id="LC404" class="blob-code blob-code-inner js-file-line">				<span class="pl-k">if</span>(<span class="pl-k">!</span>icon_states_string)</td>
-        </tr>
-        <tr>
-          <td id="L405" class="blob-num js-line-number" data-line-number="405"></td>
-          <td id="LC405" class="blob-code blob-code-inner js-file-line">					icon_states_string <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span><span class="pl-s">[json_encode(an_icon_state)]</span>(<span class="pl-cce">\ref</span><span class="pl-s">[an_icon_state]</span>)<span class="pl-pds">&quot;</span></span></td>
-        </tr>
-        <tr>
-          <td id="L406" class="blob-num js-line-number" data-line-number="406"></td>
-          <td id="LC406" class="blob-code blob-code-inner js-file-line">				<span class="pl-k">else</span></td>
-        </tr>
-        <tr>
-          <td id="L407" class="blob-num js-line-number" data-line-number="407"></td>
-          <td id="LC407" class="blob-code blob-code-inner js-file-line">					icon_states_string <span class="pl-k">+=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>, <span class="pl-s">[json_encode(an_icon_state)]</span>(<span class="pl-cce">\ref</span><span class="pl-s">[an_icon_state]</span>)<span class="pl-pds">&quot;</span></span></td>
-        </tr>
-        <tr>
-          <td id="L408" class="blob-num js-line-number" data-line-number="408"></td>
-          <td id="LC408" class="blob-code blob-code-inner js-file-line">			<span class="pl-en">stack_trace</span>(<span class="pl-s"><span class="pl-pds">&quot;</span><span class="pl-s">[item]</span> does not have a valid icon state, icon=<span class="pl-s">[icon_file]</span>, icon_state=<span class="pl-s">[json_encode(icon_state)]</span>(<span class="pl-cce">\ref</span><span class="pl-s">[icon_state]</span>), icon_states=<span class="pl-s">[icon_states_string]</span><span class="pl-pds">&quot;</span></span>)</td>
-        </tr>
-        <tr>
-          <td id="L409" class="blob-num js-line-number" data-line-number="409"></td>
-          <td id="LC409" class="blob-code blob-code-inner js-file-line">			<span class="pl-c1">I</span> <span class="pl-k">=</span> icon(<span class="pl-s"><span class="pl-pds">&#39;</span>icons/turf/floors.dmi<span class="pl-pds">&#39;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span><span class="pl-pds">&quot;</span></span>, <span class="pl-c1">SOUTH</span>)</td>
-        </tr>
-        <tr>
-          <td id="L410" class="blob-num js-line-number" data-line-number="410"></td>
-          <td id="LC410" class="blob-code blob-code-inner js-file-line">
-</td>
-        </tr>
-        <tr>
-          <td id="L411" class="blob-num js-line-number" data-line-number="411"></td>
-          <td id="LC411" class="blob-code blob-code-inner js-file-line">		<span class="pl-k">var</span>/<span class="pl-smi">imgid</span> <span class="pl-k">=</span> replacetext(replacetext(<span class="pl-s"><span class="pl-pds">&quot;</span><span class="pl-s">[item]</span><span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>/obj/item/<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span><span class="pl-pds">&quot;</span></span>), <span class="pl-s"><span class="pl-pds">&quot;</span>/<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>-<span class="pl-pds">&quot;</span></span>)</td>
-        </tr>
-        <tr>
-          <td id="L412" class="blob-num js-line-number" data-line-number="412"></td>
-          <td id="LC412" class="blob-code blob-code-inner js-file-line">
-</td>
-        </tr>
-        <tr>
-          <td id="L413" class="blob-num js-line-number" data-line-number="413"></td>
-          <td id="LC413" class="blob-code blob-code-inner js-file-line">		<span class="pl-en">Insert</span>(imgid, <span class="pl-c1">I</span>)</td>
-        </tr>
-        <tr>
-          <td id="L414" class="blob-num js-line-number" data-line-number="414"></td>
-          <td id="LC414" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">return</span> <span class="pl-k">..</span>()</td>
-        </tr>
-        <tr>
-          <td id="L415" class="blob-num js-line-number" data-line-number="415"></td>
-          <td id="LC415" class="blob-code blob-code-inner js-file-line">
-</td>
-        </tr>
-        <tr>
-          <td id="L416" class="blob-num js-line-number" data-line-number="416"></td>
-          <td id="LC416" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> this is cursed but necessary or else vending product icons can be missing</span></td>
-        </tr>
-        <tr>
-          <td id="L417" class="blob-num js-line-number" data-line-number="417"></td>
-          <td id="LC417" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> basically, if there&#39;s any vending machines that aren&#39;t already mapped in, our register() will not know</span></td>
-        </tr>
-        <tr>
-          <td id="L418" class="blob-num js-line-number" data-line-number="418"></td>
-          <td id="LC418" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> that they exist, and therefore can&#39;t generate the entries in the spritesheet for them</span></td>
-        </tr>
-        <tr>
-          <td id="L419" class="blob-num js-line-number" data-line-number="419"></td>
-          <td id="LC419" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> and since assets are unique and can&#39;t be reloaded later, we have to make sure that GLOB.vending_products</span></td>
-        </tr>
-        <tr>
-          <td id="L420" class="blob-num js-line-number" data-line-number="420"></td>
-          <td id="LC420" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> is populated with every single type of vending machine</span></td>
-        </tr>
-        <tr>
-          <td id="L421" class="blob-num js-line-number" data-line-number="421"></td>
-          <td id="LC421" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> As this is only done at runtime, we have to create all the vending machines in existence and force them</span></td>
-        </tr>
-        <tr>
-          <td id="L422" class="blob-num js-line-number" data-line-number="422"></td>
-          <td id="LC422" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> to register their products when this asset initializes.</span></td>
-        </tr>
-        <tr>
-          <td id="L423" class="blob-num js-line-number" data-line-number="423"></td>
-          <td id="LC423" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">datum</span><span class="pl-k">/</span>asset<span class="pl-k">/</span>spritesheet<span class="pl-k">/</span>vending<span class="pl-k">/</span><span class="pl-k">proc</span><span class="pl-k">/</span>populate_vending_products()</td>
-        </tr>
-        <tr>
-          <td id="L424" class="blob-num js-line-number" data-line-number="424"></td>
-          <td id="LC424" class="blob-code blob-code-inner js-file-line">	SSatoms<span class="pl-k">.</span>map_loader_begin()</td>
-        </tr>
-        <tr>
-          <td id="L425" class="blob-num js-line-number" data-line-number="425"></td>
-          <td id="LC425" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">for</span>(<span class="pl-k">var</span>/<span class="pl-smi">path</span> <span class="pl-k">in</span> <span class="pl-en">subtypesof</span>(<span class="pl-k">/</span><span class="pl-k">obj</span><span class="pl-k">/</span>machinery<span class="pl-k">/</span>vending))</td>
-        </tr>
-        <tr>
-          <td id="L426" class="blob-num js-line-number" data-line-number="426"></td>
-          <td id="LC426" class="blob-code blob-code-inner js-file-line">		<span class="pl-k">var</span>/<span class="pl-k">obj</span>/machinery/vending/<span class="pl-smi">x</span> <span class="pl-k">=</span> <span class="pl-k">new</span> path(<span class="pl-c1">null</span>)</td>
-        </tr>
-        <tr>
-          <td id="L427" class="blob-num js-line-number" data-line-number="427"></td>
-          <td id="LC427" class="blob-code blob-code-inner js-file-line">		<span class="pl-c"><span class="pl-c">//</span> force an inventory build; with map_loader_begin active, init isn&#39;t called</span></td>
-        </tr>
-        <tr>
-          <td id="L428" class="blob-num js-line-number" data-line-number="428"></td>
-          <td id="LC428" class="blob-code blob-code-inner js-file-line">		x<span class="pl-k">.</span>build_inventory()</td>
-        </tr>
-        <tr>
-          <td id="L429" class="blob-num js-line-number" data-line-number="429"></td>
-          <td id="LC429" class="blob-code blob-code-inner js-file-line">		<span class="pl-en">qdel</span>(x)</td>
-        </tr>
-        <tr>
-          <td id="L430" class="blob-num js-line-number" data-line-number="430"></td>
-          <td id="LC430" class="blob-code blob-code-inner js-file-line">	SSatoms<span class="pl-k">.</span>map_loader_stop()</td>
-        </tr>
-        <tr>
-          <td id="L431" class="blob-num js-line-number" data-line-number="431"></td>
-          <td id="LC431" class="blob-code blob-code-inner js-file-line">
-</td>
-        </tr>
-        <tr>
-          <td id="L432" class="blob-num js-line-number" data-line-number="432"></td>
-          <td id="LC432" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> /datum/asset/simple/genetics</span></td>
-        </tr>
-        <tr>
-          <td id="L433" class="blob-num js-line-number" data-line-number="433"></td>
-          <td id="LC433" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	assets = list(</span></td>
-        </tr>
-        <tr>
-          <td id="L434" class="blob-num js-line-number" data-line-number="434"></td>
-          <td id="LC434" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;dna_discovered.gif&quot;	= &#39;html/dna_discovered.gif&#39;,</span></td>
-        </tr>
-        <tr>
-          <td id="L435" class="blob-num js-line-number" data-line-number="435"></td>
-          <td id="LC435" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;dna_undiscovered.gif&quot;	= &#39;html/dna_undiscovered.gif&#39;,</span></td>
-        </tr>
-        <tr>
-          <td id="L436" class="blob-num js-line-number" data-line-number="436"></td>
-          <td id="LC436" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;dna_extra.gif&quot; 		= &#39;html/dna_extra.gif&#39;</span></td>
-        </tr>
-        <tr>
-          <td id="L437" class="blob-num js-line-number" data-line-number="437"></td>
-          <td id="LC437" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	)</span></td>
-        </tr>
-        <tr>
-          <td id="L438" class="blob-num js-line-number" data-line-number="438"></td>
-          <td id="LC438" class="blob-code blob-code-inner js-file-line">
-</td>
-        </tr>
-        <tr>
-          <td id="L439" class="blob-num js-line-number" data-line-number="439"></td>
-          <td id="LC439" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> /datum/asset/simple/orbit</span></td>
-        </tr>
-        <tr>
-          <td id="L440" class="blob-num js-line-number" data-line-number="440"></td>
-          <td id="LC440" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	assets = list(</span></td>
-        </tr>
-        <tr>
-          <td id="L441" class="blob-num js-line-number" data-line-number="441"></td>
-          <td id="LC441" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;ghost.png&quot;	= &#39;html/ghost.png&#39;</span></td>
-        </tr>
-        <tr>
-          <td id="L442" class="blob-num js-line-number" data-line-number="442"></td>
-          <td id="LC442" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	)</span></td>
-        </tr>
-        <tr>
-          <td id="L443" class="blob-num js-line-number" data-line-number="443"></td>
-          <td id="LC443" class="blob-code blob-code-inner js-file-line">
-</td>
-        </tr>
-        <tr>
-          <td id="L444" class="blob-num js-line-number" data-line-number="444"></td>
-          <td id="LC444" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> /datum/asset/simple/vv</span></td>
-        </tr>
-        <tr>
-          <td id="L445" class="blob-num js-line-number" data-line-number="445"></td>
-          <td id="LC445" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	assets = list(</span></td>
-        </tr>
-        <tr>
-          <td id="L446" class="blob-num js-line-number" data-line-number="446"></td>
-          <td id="LC446" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 		&quot;view_variables.css&quot; = &#39;html/admin/view_variables.css&#39;</span></td>
-        </tr>
-        <tr>
-          <td id="L447" class="blob-num js-line-number" data-line-number="447"></td>
-          <td id="LC447" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	)</span></td>
-        </tr>
-        <tr>
-          <td id="L448" class="blob-num js-line-number" data-line-number="448"></td>
-          <td id="LC448" class="blob-code blob-code-inner js-file-line">
-</td>
-        </tr>
-        <tr>
-          <td id="L449" class="blob-num js-line-number" data-line-number="449"></td>
-          <td id="LC449" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> /datum/asset/spritesheet/sheetmaterials</span></td>
-        </tr>
-        <tr>
-          <td id="L450" class="blob-num js-line-number" data-line-number="450"></td>
-          <td id="LC450" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	name = &quot;sheetmaterials&quot;</span></td>
-        </tr>
-        <tr>
-          <td id="L451" class="blob-num js-line-number" data-line-number="451"></td>
-          <td id="LC451" class="blob-code blob-code-inner js-file-line">
-</td>
-        </tr>
-        <tr>
-          <td id="L452" class="blob-num js-line-number" data-line-number="452"></td>
-          <td id="LC452" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> /datum/asset/spritesheet/sheetmaterials/register()</span></td>
-        </tr>
-        <tr>
-          <td id="L453" class="blob-num js-line-number" data-line-number="453"></td>
-          <td id="LC453" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	InsertAll(&quot;&quot;, &#39;icons/obj/stack_objects.dmi&#39;)</span></td>
-        </tr>
-        <tr>
-          <td id="L454" class="blob-num js-line-number" data-line-number="454"></td>
-          <td id="LC454" class="blob-code blob-code-inner js-file-line">
-</td>
-        </tr>
-        <tr>
-          <td id="L455" class="blob-num js-line-number" data-line-number="455"></td>
-          <td id="LC455" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	// Special case to handle Bluespace Crystals</span></td>
-        </tr>
-        <tr>
-          <td id="L456" class="blob-num js-line-number" data-line-number="456"></td>
-          <td id="LC456" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	Insert(&quot;polycrystal&quot;, &#39;icons/obj/telescience.dmi&#39;, &quot;polycrystal&quot;)</span></td>
-        </tr>
-        <tr>
-          <td id="L457" class="blob-num js-line-number" data-line-number="457"></td>
-          <td id="LC457" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> 	..()</span></td>
-        </tr>
-        <tr>
-          <td id="L458" class="blob-num js-line-number" data-line-number="458"></td>
-          <td id="LC458" class="blob-code blob-code-inner js-file-line">
-</td>
-        </tr>
-        <tr>
-          <td id="L459" class="blob-num js-line-number" data-line-number="459"></td>
-          <td id="LC459" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span>Pill sprites for UIs</span></td>
-        </tr>
-        <tr>
-          <td id="L460" class="blob-num js-line-number" data-line-number="460"></td>
-          <td id="LC460" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">datum</span><span class="pl-k">/</span>asset<span class="pl-k">/</span>chem_master</td>
-        </tr>
-        <tr>
-          <td id="L461" class="blob-num js-line-number" data-line-number="461"></td>
-          <td id="LC461" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">var</span>/<span class="pl-smi">assets</span> <span class="pl-k">=</span> <span class="pl-k">list</span>()</td>
-        </tr>
-        <tr>
-          <td id="L462" class="blob-num js-line-number" data-line-number="462"></td>
-          <td id="LC462" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">var</span>/<span class="pl-smi">verify</span> <span class="pl-k">=</span> <span class="pl-c1">FALSE</span></td>
-        </tr>
-        <tr>
-          <td id="L463" class="blob-num js-line-number" data-line-number="463"></td>
-          <td id="LC463" class="blob-code blob-code-inner js-file-line">
-</td>
-        </tr>
-        <tr>
-          <td id="L464" class="blob-num js-line-number" data-line-number="464"></td>
-          <td id="LC464" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">datum</span><span class="pl-k">/</span>asset<span class="pl-k">/</span>chem_master<span class="pl-k">/</span>register()</td>
-        </tr>
-        <tr>
-          <td id="L465" class="blob-num js-line-number" data-line-number="465"></td>
-          <td id="LC465" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">for</span>(<span class="pl-k">var</span>/<span class="pl-smi">i</span> <span class="pl-k">=</span> <span class="pl-c1">1</span> <span class="pl-k">to</span> <span class="pl-c1">24</span>)</td>
-        </tr>
-        <tr>
-          <td id="L466" class="blob-num js-line-number" data-line-number="466"></td>
-          <td id="LC466" class="blob-code blob-code-inner js-file-line">		assets[<span class="pl-s"><span class="pl-pds">&quot;</span>pill<span class="pl-s">[i]</span>.png<span class="pl-pds">&quot;</span></span>] <span class="pl-k">=</span> icon(<span class="pl-s"><span class="pl-pds">&#39;</span>icons/obj/chemical.dmi<span class="pl-pds">&#39;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>pill<span class="pl-s">[i]</span><span class="pl-pds">&quot;</span></span>)</td>
-        </tr>
-        <tr>
-          <td id="L467" class="blob-num js-line-number" data-line-number="467"></td>
-          <td id="LC467" class="blob-code blob-code-inner js-file-line">
-</td>
-        </tr>
-        <tr>
-          <td id="L468" class="blob-num js-line-number" data-line-number="468"></td>
-          <td id="LC468" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">for</span>(<span class="pl-k">var</span>/<span class="pl-smi">i</span> <span class="pl-k">=</span> <span class="pl-c1">1</span> <span class="pl-k">to</span> <span class="pl-c1">4</span>)</td>
-        </tr>
-        <tr>
-          <td id="L469" class="blob-num js-line-number" data-line-number="469"></td>
-          <td id="LC469" class="blob-code blob-code-inner js-file-line">		assets[<span class="pl-s"><span class="pl-pds">&quot;</span>bottle-<span class="pl-s">[i]</span>.png<span class="pl-pds">&quot;</span></span>] <span class="pl-k">=</span> icon(<span class="pl-s"><span class="pl-pds">&#39;</span>icons/obj/chemical.dmi<span class="pl-pds">&#39;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>bottle-<span class="pl-s">[i]</span><span class="pl-pds">&quot;</span></span>)</td>
-        </tr>
-        <tr>
-          <td id="L470" class="blob-num js-line-number" data-line-number="470"></td>
-          <td id="LC470" class="blob-code blob-code-inner js-file-line">
-</td>
-        </tr>
-        <tr>
-          <td id="L471" class="blob-num js-line-number" data-line-number="471"></td>
-          <td id="LC471" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">for</span>(<span class="pl-k">var</span>/<span class="pl-smi">asset_name</span> <span class="pl-k">in</span> assets)</td>
-        </tr>
-        <tr>
-          <td id="L472" class="blob-num js-line-number" data-line-number="472"></td>
-          <td id="LC472" class="blob-code blob-code-inner js-file-line">		<span class="pl-en">register_asset</span>(asset_name, assets[asset_name])</td>
-        </tr>
-        <tr>
-          <td id="L473" class="blob-num js-line-number" data-line-number="473"></td>
-          <td id="LC473" class="blob-code blob-code-inner js-file-line">
-</td>
-        </tr>
-        <tr>
-          <td id="L474" class="blob-num js-line-number" data-line-number="474"></td>
-          <td id="LC474" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">datum</span><span class="pl-k">/</span>asset<span class="pl-k">/</span>chem_master<span class="pl-k">/</span>send(<span class="pl-k">client</span>)</td>
-        </tr>
-        <tr>
-          <td id="L475" class="blob-num js-line-number" data-line-number="475"></td>
-          <td id="LC475" class="blob-code blob-code-inner js-file-line">	<span class="pl-en">send_asset_list</span>(<span class="pl-k">client</span>, assets, verify)</td>
-        </tr>
-        <tr>
-          <td id="L476" class="blob-num js-line-number" data-line-number="476"></td>
-          <td id="LC476" class="blob-code blob-code-inner js-file-line">
-</td>
-        </tr>
-        <tr>
-          <td id="L477" class="blob-num js-line-number" data-line-number="477"></td>
-          <td id="LC477" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span>Cloning pod sprites for UIs</span></td>
-        </tr>
-        <tr>
-          <td id="L478" class="blob-num js-line-number" data-line-number="478"></td>
-          <td id="LC478" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">datum</span><span class="pl-k">/</span>asset<span class="pl-k">/</span>cloning</td>
-        </tr>
-        <tr>
-          <td id="L479" class="blob-num js-line-number" data-line-number="479"></td>
-          <td id="LC479" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">var</span>/<span class="pl-smi">assets</span> <span class="pl-k">=</span> <span class="pl-k">list</span>()</td>
-        </tr>
-        <tr>
-          <td id="L480" class="blob-num js-line-number" data-line-number="480"></td>
-          <td id="LC480" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">var</span>/<span class="pl-smi">verify</span> <span class="pl-k">=</span> <span class="pl-c1">FALSE</span></td>
-        </tr>
-        <tr>
-          <td id="L481" class="blob-num js-line-number" data-line-number="481"></td>
-          <td id="LC481" class="blob-code blob-code-inner js-file-line">
-</td>
-        </tr>
-        <tr>
-          <td id="L482" class="blob-num js-line-number" data-line-number="482"></td>
-          <td id="LC482" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">datum</span><span class="pl-k">/</span>asset<span class="pl-k">/</span>cloning<span class="pl-k">/</span>register()</td>
-        </tr>
-        <tr>
-          <td id="L483" class="blob-num js-line-number" data-line-number="483"></td>
-          <td id="LC483" class="blob-code blob-code-inner js-file-line">	assets[<span class="pl-s"><span class="pl-pds">&quot;</span>pod_idle.gif<span class="pl-pds">&quot;</span></span>] <span class="pl-k">=</span> icon(<span class="pl-s"><span class="pl-pds">&#39;</span>icons/obj/cloning.dmi<span class="pl-pds">&#39;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>pod_idle<span class="pl-pds">&quot;</span></span>)</td>
-        </tr>
-        <tr>
-          <td id="L484" class="blob-num js-line-number" data-line-number="484"></td>
-          <td id="LC484" class="blob-code blob-code-inner js-file-line">	assets[<span class="pl-s"><span class="pl-pds">&quot;</span>pod_cloning.gif<span class="pl-pds">&quot;</span></span>] <span class="pl-k">=</span> icon(<span class="pl-s"><span class="pl-pds">&#39;</span>icons/obj/cloning.dmi<span class="pl-pds">&#39;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>pod_cloning<span class="pl-pds">&quot;</span></span>)</td>
-        </tr>
-        <tr>
-          <td id="L485" class="blob-num js-line-number" data-line-number="485"></td>
-          <td id="LC485" class="blob-code blob-code-inner js-file-line">	assets[<span class="pl-s"><span class="pl-pds">&quot;</span>pod_mess.gif<span class="pl-pds">&quot;</span></span>] <span class="pl-k">=</span> icon(<span class="pl-s"><span class="pl-pds">&#39;</span>icons/obj/cloning.dmi<span class="pl-pds">&#39;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>pod_mess<span class="pl-pds">&quot;</span></span>)</td>
-        </tr>
-        <tr>
-          <td id="L486" class="blob-num js-line-number" data-line-number="486"></td>
-          <td id="LC486" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">for</span>(<span class="pl-k">var</span>/<span class="pl-smi">asset_name</span> <span class="pl-k">in</span> assets)</td>
-        </tr>
-        <tr>
-          <td id="L487" class="blob-num js-line-number" data-line-number="487"></td>
-          <td id="LC487" class="blob-code blob-code-inner js-file-line">		<span class="pl-en">register_asset</span>(asset_name, assets[asset_name])</td>
-        </tr>
-        <tr>
-          <td id="L488" class="blob-num js-line-number" data-line-number="488"></td>
-          <td id="LC488" class="blob-code blob-code-inner js-file-line">
-</td>
-        </tr>
-        <tr>
-          <td id="L489" class="blob-num js-line-number" data-line-number="489"></td>
-          <td id="LC489" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">datum</span><span class="pl-k">/</span>asset<span class="pl-k">/</span>cloning<span class="pl-k">/</span>send(<span class="pl-k">client</span>)</td>
-        </tr>
-        <tr>
-          <td id="L490" class="blob-num js-line-number" data-line-number="490"></td>
-          <td id="LC490" class="blob-code blob-code-inner js-file-line">	<span class="pl-en">send_asset_list</span>(<span class="pl-k">client</span>, assets, verify)</td>
-        </tr>
-        <tr>
-          <td id="L491" class="blob-num js-line-number" data-line-number="491"></td>
-          <td id="LC491" class="blob-code blob-code-inner js-file-line">
-</td>
-        </tr>
-        <tr>
-          <td id="L492" class="blob-num js-line-number" data-line-number="492"></td>
-          <td id="LC492" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> VOREStation Add</span></td>
-        </tr>
-        <tr>
-          <td id="L493" class="blob-num js-line-number" data-line-number="493"></td>
-          <td id="LC493" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">datum</span><span class="pl-k">/</span>asset<span class="pl-k">/</span>cloning<span class="pl-k">/</span>resleeving</td>
-        </tr>
-        <tr>
-          <td id="L494" class="blob-num js-line-number" data-line-number="494"></td>
-          <td id="LC494" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">datum</span><span class="pl-k">/</span>asset<span class="pl-k">/</span>cloning<span class="pl-k">/</span>resleeving<span class="pl-k">/</span>register()</td>
-        </tr>
-        <tr>
-          <td id="L495" class="blob-num js-line-number" data-line-number="495"></td>
-          <td id="LC495" class="blob-code blob-code-inner js-file-line">	<span class="pl-c"><span class="pl-c">//</span> This intentionally does not call the parent. Duplicate assets are not allowed.</span></td>
-        </tr>
-        <tr>
-          <td id="L496" class="blob-num js-line-number" data-line-number="496"></td>
-          <td id="LC496" class="blob-code blob-code-inner js-file-line">	assets[<span class="pl-s"><span class="pl-pds">&quot;</span>sleeve_empty.gif<span class="pl-pds">&quot;</span></span>] <span class="pl-k">=</span> icon(<span class="pl-s"><span class="pl-pds">&#39;</span>icons/obj/machines/implantchair.dmi<span class="pl-pds">&#39;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>implantchair<span class="pl-pds">&quot;</span></span>)</td>
-        </tr>
-        <tr>
-          <td id="L497" class="blob-num js-line-number" data-line-number="497"></td>
-          <td id="LC497" class="blob-code blob-code-inner js-file-line">	assets[<span class="pl-s"><span class="pl-pds">&quot;</span>sleeve_occupied.gif<span class="pl-pds">&quot;</span></span>] <span class="pl-k">=</span> icon(<span class="pl-s"><span class="pl-pds">&#39;</span>icons/obj/machines/implantchair.dmi<span class="pl-pds">&#39;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>implantchair_on<span class="pl-pds">&quot;</span></span>)</td>
-        </tr>
-        <tr>
-          <td id="L498" class="blob-num js-line-number" data-line-number="498"></td>
-          <td id="LC498" class="blob-code blob-code-inner js-file-line">	assets[<span class="pl-s"><span class="pl-pds">&quot;</span>synthprinter.gif<span class="pl-pds">&quot;</span></span>] <span class="pl-k">=</span> icon(<span class="pl-s"><span class="pl-pds">&#39;</span>icons/obj/machines/synthpod.dmi<span class="pl-pds">&#39;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>pod_0<span class="pl-pds">&quot;</span></span>)</td>
-        </tr>
-        <tr>
-          <td id="L499" class="blob-num js-line-number" data-line-number="499"></td>
-          <td id="LC499" class="blob-code blob-code-inner js-file-line">	assets[<span class="pl-s"><span class="pl-pds">&quot;</span>synthprinter_working.gif<span class="pl-pds">&quot;</span></span>] <span class="pl-k">=</span> icon(<span class="pl-s"><span class="pl-pds">&#39;</span>icons/obj/machines/synthpod.dmi<span class="pl-pds">&#39;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>pod_1<span class="pl-pds">&quot;</span></span>)</td>
-        </tr>
-        <tr>
-          <td id="L500" class="blob-num js-line-number" data-line-number="500"></td>
-          <td id="LC500" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">for</span>(<span class="pl-k">var</span>/<span class="pl-smi">asset_name</span> <span class="pl-k">in</span> assets)</td>
-        </tr>
-        <tr>
-          <td id="L501" class="blob-num js-line-number" data-line-number="501"></td>
-          <td id="LC501" class="blob-code blob-code-inner js-file-line">		<span class="pl-en">register_asset</span>(asset_name, assets[asset_name])</td>
-        </tr>
-        <tr>
-          <td id="L502" class="blob-num js-line-number" data-line-number="502"></td>
-          <td id="LC502" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> VOREStation Add End</span></td>
-        </tr>
-        <tr>
-          <td id="L503" class="blob-num js-line-number" data-line-number="503"></td>
-          <td id="LC503" class="blob-code blob-code-inner js-file-line">
-</td>
-        </tr>
-        <tr>
-          <td id="L504" class="blob-num js-line-number" data-line-number="504"></td>
-          <td id="LC504" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">datum</span><span class="pl-k">/</span>asset<span class="pl-k">/</span>spritesheet<span class="pl-k">/</span>sheetmaterials</td>
-        </tr>
-        <tr>
-          <td id="L505" class="blob-num js-line-number" data-line-number="505"></td>
-          <td id="LC505" class="blob-code blob-code-inner js-file-line">	name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>sheetmaterials<span class="pl-pds">&quot;</span></span></td>
-        </tr>
-        <tr>
-          <td id="L506" class="blob-num js-line-number" data-line-number="506"></td>
-          <td id="LC506" class="blob-code blob-code-inner js-file-line">
-</td>
-        </tr>
-        <tr>
-          <td id="L507" class="blob-num js-line-number" data-line-number="507"></td>
-          <td id="LC507" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">datum</span><span class="pl-k">/</span>asset<span class="pl-k">/</span>spritesheet<span class="pl-k">/</span>sheetmaterials<span class="pl-k">/</span>register()</td>
-        </tr>
-        <tr>
-          <td id="L508" class="blob-num js-line-number" data-line-number="508"></td>
-          <td id="LC508" class="blob-code blob-code-inner js-file-line">	<span class="pl-en">InsertAll</span>(<span class="pl-s"><span class="pl-pds">&quot;</span><span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&#39;</span>icons/obj/stacks.dmi<span class="pl-pds">&#39;</span></span>)</td>
-        </tr>
-        <tr>
-          <td id="L509" class="blob-num js-line-number" data-line-number="509"></td>
-          <td id="LC509" class="blob-code blob-code-inner js-file-line">	<span class="pl-k">..</span>()</td>
-        </tr>
-        <tr>
-          <td id="L510" class="blob-num js-line-number" data-line-number="510"></td>
-          <td id="LC510" class="blob-code blob-code-inner js-file-line">
-</td>
-        </tr>
-        <tr>
-          <td id="L511" class="blob-num js-line-number" data-line-number="511"></td>
-          <td id="LC511" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">//</span> Nanomaps</span></td>
-        </tr>
-        <tr>
-          <td id="L512" class="blob-num js-line-number" data-line-number="512"></td>
-          <td id="LC512" class="blob-code blob-code-inner js-file-line"><span class="pl-k">/</span><span class="pl-k">datum</span><span class="pl-k">/</span>asset<span class="pl-k">/</span>simple<span class="pl-k">/</span>nanomaps</td>
-        </tr>
-        <tr>
-          <td id="L513" class="blob-num js-line-number" data-line-number="513"></td>
-          <td id="LC513" class="blob-code blob-code-inner js-file-line">	<span class="pl-c"><span class="pl-c">//</span> It REALLY doesnt matter too much if these arent up to date</span></td>
-        </tr>
-        <tr>
-          <td id="L514" class="blob-num js-line-number" data-line-number="514"></td>
-          <td id="LC514" class="blob-code blob-code-inner js-file-line">	<span class="pl-c"><span class="pl-c">//</span> They are relatively big</span></td>
-        </tr>
-        <tr>
-          <td id="L515" class="blob-num js-line-number" data-line-number="515"></td>
-          <td id="LC515" class="blob-code blob-code-inner js-file-line">	assets <span class="pl-k">=</span> <span class="pl-k">list</span>(</td>
-        </tr>
-        <tr>
-          <td id="L516" class="blob-num js-line-number" data-line-number="516"></td>
-          <td id="LC516" class="blob-code blob-code-inner js-file-line">		<span class="pl-c"><span class="pl-c">//</span> VOREStation Edit: We don&#39;t need Southern Cross</span></td>
-        </tr>
-        <tr>
-          <td id="L517" class="blob-num js-line-number" data-line-number="517"></td>
-          <td id="LC517" class="blob-code blob-code-inner js-file-line">		<span class="pl-c"><span class="pl-c">//</span> &quot;southern_cross_nanomap_z1.png&quot;		= &#39;icons/_nanomaps/southern_cross_nanomap_z1.png&#39;,</span></td>
-        </tr>
-        <tr>
-          <td id="L518" class="blob-num js-line-number" data-line-number="518"></td>
-          <td id="LC518" class="blob-code blob-code-inner js-file-line">		<span class="pl-c"><span class="pl-c">//</span> &quot;southern_cross_nanomap_z10.png&quot;	= &#39;icons/_nanomaps/southern_cross_nanomap_z10.png&#39;,</span></td>
-        </tr>
-        <tr>
-          <td id="L519" class="blob-num js-line-number" data-line-number="519"></td>
-          <td id="LC519" class="blob-code blob-code-inner js-file-line">		<span class="pl-c"><span class="pl-c">//</span> &quot;southern_cross_nanomap_z2.png&quot;		= &#39;icons/_nanomaps/southern_cross_nanomap_z2.png&#39;,</span></td>
-        </tr>
-        <tr>
-          <td id="L520" class="blob-num js-line-number" data-line-number="520"></td>
-          <td id="LC520" class="blob-code blob-code-inner js-file-line">		<span class="pl-c"><span class="pl-c">//</span> &quot;southern_cross_nanomap_z3.png&quot;		= &#39;icons/_nanomaps/southern_cross_nanomap_z3.png&#39;,</span></td>
-        </tr>
-        <tr>
-          <td id="L521" class="blob-num js-line-number" data-line-number="521"></td>
-          <td id="LC521" class="blob-code blob-code-inner js-file-line">		<span class="pl-c"><span class="pl-c">//</span> &quot;southern_cross_nanomap_z5.png&quot;		= &#39;icons/_nanomaps/southern_cross_nanomap_z5.png&#39;,</span></td>
-        </tr>
-        <tr>
-          <td id="L522" class="blob-num js-line-number" data-line-number="522"></td>
-          <td id="LC522" class="blob-code blob-code-inner js-file-line">		<span class="pl-c"><span class="pl-c">//</span> &quot;southern_cross_nanomap_z6.png&quot;		= &#39;icons/_nanomaps/southern_cross_nanomap_z6.png&#39;,</span></td>
-        </tr>
-        <tr>
-          <td id="L523" class="blob-num js-line-number" data-line-number="523"></td>
-          <td id="LC523" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>tether_nanomap_z1.png<span class="pl-pds">&quot;</span></span>				<span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/_nanomaps/tether_nanomap_z1.png<span class="pl-pds">&#39;</span></span>,</td>
-        </tr>
-        <tr>
-          <td id="L524" class="blob-num js-line-number" data-line-number="524"></td>
-          <td id="LC524" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>tether_nanomap_z2.png<span class="pl-pds">&quot;</span></span>				<span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/_nanomaps/tether_nanomap_z2.png<span class="pl-pds">&#39;</span></span>,</td>
-        </tr>
-        <tr>
-          <td id="L525" class="blob-num js-line-number" data-line-number="525"></td>
-          <td id="LC525" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>tether_nanomap_z3.png<span class="pl-pds">&quot;</span></span>				<span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/_nanomaps/tether_nanomap_z3.png<span class="pl-pds">&#39;</span></span>,</td>
-        </tr>
-        <tr>
-          <td id="L526" class="blob-num js-line-number" data-line-number="526"></td>
-          <td id="LC526" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>tether_nanomap_z4.png<span class="pl-pds">&quot;</span></span>				<span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/_nanomaps/tether_nanomap_z4.png<span class="pl-pds">&#39;</span></span>,</td>
-        </tr>
-        <tr>
-          <td id="L527" class="blob-num js-line-number" data-line-number="527"></td>
-          <td id="LC527" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>tether_nanomap_z5.png<span class="pl-pds">&quot;</span></span>				<span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/_nanomaps/tether_nanomap_z5.png<span class="pl-pds">&#39;</span></span>,</td>
-        </tr>
-        <tr>
-          <td id="L528" class="blob-num js-line-number" data-line-number="528"></td>
-          <td id="LC528" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>tether_nanomap_z6.png<span class="pl-pds">&quot;</span></span>				<span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/_nanomaps/tether_nanomap_z6.png<span class="pl-pds">&#39;</span></span>,</td>
-        </tr>
-        <tr>
-          <td id="L529" class="blob-num js-line-number" data-line-number="529"></td>
-          <td id="LC529" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>tether_nanomap_z7.png<span class="pl-pds">&quot;</span></span>				<span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/_nanomaps/tether_nanomap_z7.png<span class="pl-pds">&#39;</span></span>,</td>
-        </tr>
-        <tr>
-          <td id="L530" class="blob-num js-line-number" data-line-number="530"></td>
-          <td id="LC530" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>tether_nanomap_z8.png<span class="pl-pds">&quot;</span></span>				<span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/_nanomaps/tether_nanomap_z8.png<span class="pl-pds">&#39;</span></span>,</td>
-        </tr>
-        <tr>
-          <td id="L531" class="blob-num js-line-number" data-line-number="531"></td>
-          <td id="LC531" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>tether_nanomap_z9.png<span class="pl-pds">&quot;</span></span>				<span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/_nanomaps/tether_nanomap_z9.png<span class="pl-pds">&#39;</span></span>,</td>
-        </tr>
-        <tr>
-          <td id="L532" class="blob-num js-line-number" data-line-number="532"></td>
-          <td id="LC532" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>tether_nanomap_z10.png<span class="pl-pds">&quot;</span></span>			<span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/_nanomaps/tether_nanomap_z10.png<span class="pl-pds">&#39;</span></span>,</td>
-        </tr>
-        <tr>
-          <td id="L533" class="blob-num js-line-number" data-line-number="533"></td>
-          <td id="LC533" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>tether_nanomap_z13.png<span class="pl-pds">&quot;</span></span>			<span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/_nanomaps/tether_nanomap_z13.png<span class="pl-pds">&#39;</span></span>,</td>
-        </tr>
-        <tr>
-          <td id="L534" class="blob-num js-line-number" data-line-number="534"></td>
-          <td id="LC534" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>tether_nanomap_z14.png<span class="pl-pds">&quot;</span></span>			<span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/_nanomaps/tether_nanomap_z14.png<span class="pl-pds">&#39;</span></span>,</td>
-        </tr>
-        <tr>
-          <td id="L535" class="blob-num js-line-number" data-line-number="535"></td>
-          <td id="LC535" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>stellardelight_nanomap_z1.png<span class="pl-pds">&quot;</span></span>		<span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/_nanomaps/sd_deck1.png<span class="pl-pds">&#39;</span></span>,</td>
-        </tr>
-        <tr>
-          <td id="L536" class="blob-num js-line-number" data-line-number="536"></td>
-          <td id="LC536" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>stellardelight_nanomap_z2.png<span class="pl-pds">&quot;</span></span>		<span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/_nanomaps/sd_deck2.png<span class="pl-pds">&#39;</span></span>,</td>
-        </tr>
-        <tr>
-          <td id="L537" class="blob-num js-line-number" data-line-number="537"></td>
-          <td id="LC537" class="blob-code blob-code-inner js-file-line">		<span class="pl-s"><span class="pl-pds">&quot;</span>stellardelight_nanomap_z3.png<span class="pl-pds">&quot;</span></span>		<span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&#39;</span>icons/_nanomaps/sd_deck3.png<span class="pl-pds">&#39;</span></span>,</td>
-        </tr>
-        <tr>
-          <td id="L538" class="blob-num js-line-number" data-line-number="538"></td>
-          <td id="LC538" class="blob-code blob-code-inner js-file-line">
-</td>
-        </tr>
-        <tr>
-          <td id="L539" class="blob-num js-line-number" data-line-number="539"></td>
-          <td id="LC539" class="blob-code blob-code-inner js-file-line">		<span class="pl-c"><span class="pl-c">//</span> VOREStation Edit End</span></td>
-        </tr>
-        <tr>
-          <td id="L540" class="blob-num js-line-number" data-line-number="540"></td>
-          <td id="LC540" class="blob-code blob-code-inner js-file-line">	)</td>
+          <td id="LC329" class="blob-code blob-code-inner js-file-line">	door_color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>#ffffff<span class="pl-pds">&quot;</span></span></td>
         </tr>
   </table>
 </div>
@@ -4564,7 +3663,7 @@
             Copy permalink
           </clipboard-copy>
         </li>
-        <li><a class="dropdown-item js-update-url-with-hash" id="js-view-git-blame" role="menuitem" href="/Zeldazackman/VOREStation/blame/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/modules/asset_cache/asset_list_items.dm">View git blame</a></li>
+        <li><a class="dropdown-item js-update-url-with-hash" id="js-view-git-blame" role="menuitem" href="/Zeldazackman/VOREStation/blame/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/game/turfs/simulated/angled_walls_and_doors_department_colors.dm">View git blame</a></li>
       </ul>
     </details-menu>
   </details>
@@ -4608,10 +3707,10 @@
   <div class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between pt-6 pb-2 mt-6 f6 color-fg-muted border-top color-border-muted ">
     <ul class="list-style-none d-flex flex-wrap col-12 col-lg-5 flex-justify-center flex-lg-justify-between mb-2 mb-lg-0">
       <li class="mr-3 mr-lg-0">&copy; 2021 GitHub, Inc.</li>
-        <li class="mr-3 mr-lg-0"><a href="https://docs.github.com/en/github/site-policy/github-terms-of-service" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to terms&quot;,&quot;label&quot;:&quot;text:terms&quot;,&quot;originating_url&quot;:&quot;https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/modules/asset_cache/asset_list_items.dm&quot;,&quot;user_id&quot;:17093432}}" data-hydro-click-hmac="ddefbace42752b5448a4046d030b16a5b160206cd9eceb9c5cbc7f1442e4a82f" data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to terms&quot;,&quot;label&quot;:&quot;text:terms&quot;}">Terms</a></li>
-        <li class="mr-3 mr-lg-0"><a href="https://docs.github.com/en/github/site-policy/github-privacy-statement" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to privacy&quot;,&quot;label&quot;:&quot;text:privacy&quot;,&quot;originating_url&quot;:&quot;https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/modules/asset_cache/asset_list_items.dm&quot;,&quot;user_id&quot;:17093432}}" data-hydro-click-hmac="8913b6a402aa1130074485a083fe719985fe6f0e7019f76ed1c30c8ad373083f" data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to privacy&quot;,&quot;label&quot;:&quot;text:privacy&quot;}">Privacy</a></li>
-        <li class="mr-3 mr-lg-0"><a data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to security&quot;,&quot;label&quot;:&quot;text:security&quot;,&quot;originating_url&quot;:&quot;https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/modules/asset_cache/asset_list_items.dm&quot;,&quot;user_id&quot;:17093432}}" data-hydro-click-hmac="0a23871156371b20921835b4e10f975ad21921b50f32f2960831f73c426f4d46" data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to security&quot;,&quot;label&quot;:&quot;text:security&quot;}" href="https://github.com/security">Security</a></li>
-        <li class="mr-3 mr-lg-0"><a href="https://www.githubstatus.com/" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to status&quot;,&quot;label&quot;:&quot;text:status&quot;,&quot;originating_url&quot;:&quot;https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/modules/asset_cache/asset_list_items.dm&quot;,&quot;user_id&quot;:17093432}}" data-hydro-click-hmac="305ac57cb70f95b7a527f132bf83639ae255a9b06cc61f1c95cf0d6bb76532af" data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to status&quot;,&quot;label&quot;:&quot;text:status&quot;}">Status</a></li>
+        <li class="mr-3 mr-lg-0"><a href="https://docs.github.com/en/github/site-policy/github-terms-of-service" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to terms&quot;,&quot;label&quot;:&quot;text:terms&quot;,&quot;originating_url&quot;:&quot;https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/game/turfs/simulated/angled_walls_and_doors_department_colors.dm&quot;,&quot;user_id&quot;:17093432}}" data-hydro-click-hmac="bbc7dff8ca35abd125779ba19782b4a6108586f59b9283c51b02ff70b16bc55d" data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to terms&quot;,&quot;label&quot;:&quot;text:terms&quot;}">Terms</a></li>
+        <li class="mr-3 mr-lg-0"><a href="https://docs.github.com/en/github/site-policy/github-privacy-statement" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to privacy&quot;,&quot;label&quot;:&quot;text:privacy&quot;,&quot;originating_url&quot;:&quot;https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/game/turfs/simulated/angled_walls_and_doors_department_colors.dm&quot;,&quot;user_id&quot;:17093432}}" data-hydro-click-hmac="b1cadf58a2df9be33eaee9520e57dceb202696ae1e46abee5ec87ccf84d905c0" data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to privacy&quot;,&quot;label&quot;:&quot;text:privacy&quot;}">Privacy</a></li>
+        <li class="mr-3 mr-lg-0"><a data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to security&quot;,&quot;label&quot;:&quot;text:security&quot;,&quot;originating_url&quot;:&quot;https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/game/turfs/simulated/angled_walls_and_doors_department_colors.dm&quot;,&quot;user_id&quot;:17093432}}" data-hydro-click-hmac="7fc2a53f5a8bf8e05e6fc9e4a0632c7aca3188fc858459f756f4a68ff07b2c4c" data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to security&quot;,&quot;label&quot;:&quot;text:security&quot;}" href="https://github.com/security">Security</a></li>
+        <li class="mr-3 mr-lg-0"><a href="https://www.githubstatus.com/" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to status&quot;,&quot;label&quot;:&quot;text:status&quot;,&quot;originating_url&quot;:&quot;https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/game/turfs/simulated/angled_walls_and_doors_department_colors.dm&quot;,&quot;user_id&quot;:17093432}}" data-hydro-click-hmac="f22edaf361d14a194420fb9802706d189e1c44132e7b18e78407795dba3d95b7" data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to status&quot;,&quot;label&quot;:&quot;text:status&quot;}">Status</a></li>
         <li><a data-ga-click="Footer, go to help, text:Docs" href="https://docs.github.com">Docs</a></li>
     </ul>
 
@@ -4621,11 +3720,11 @@
 </svg>
 </a>
     <ul class="list-style-none d-flex flex-wrap col-12 col-lg-5 flex-justify-center flex-lg-justify-between mb-2 mb-lg-0">
-        <li class="mr-3 mr-lg-0"><a href="https://support.github.com?tags=dotcom-footer" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to contact&quot;,&quot;label&quot;:&quot;text:contact&quot;,&quot;originating_url&quot;:&quot;https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/modules/asset_cache/asset_list_items.dm&quot;,&quot;user_id&quot;:17093432}}" data-hydro-click-hmac="67b1402f9a4cbb8749fcb4df29d63185650af76475455d4c3f003c2ba6a7f054" data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to contact&quot;,&quot;label&quot;:&quot;text:contact&quot;}">Contact GitHub</a></li>
-        <li class="mr-3 mr-lg-0"><a href="https://github.com/pricing" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to Pricing&quot;,&quot;label&quot;:&quot;text:Pricing&quot;,&quot;originating_url&quot;:&quot;https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/modules/asset_cache/asset_list_items.dm&quot;,&quot;user_id&quot;:17093432}}" data-hydro-click-hmac="652ee66003be9b288febaa49ef92a682e1db03ad5020e5c7b0c42d43b5a5258b" data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to Pricing&quot;,&quot;label&quot;:&quot;text:Pricing&quot;}">Pricing</a></li>
-      <li class="mr-3 mr-lg-0"><a href="https://docs.github.com" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to api&quot;,&quot;label&quot;:&quot;text:api&quot;,&quot;originating_url&quot;:&quot;https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/modules/asset_cache/asset_list_items.dm&quot;,&quot;user_id&quot;:17093432}}" data-hydro-click-hmac="8dbf12cd576a46656bdcb8f759e995fdd311dcba080526286fcfd6e933114507" data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to api&quot;,&quot;label&quot;:&quot;text:api&quot;}">API</a></li>
-      <li class="mr-3 mr-lg-0"><a href="https://services.github.com" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to training&quot;,&quot;label&quot;:&quot;text:training&quot;,&quot;originating_url&quot;:&quot;https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/modules/asset_cache/asset_list_items.dm&quot;,&quot;user_id&quot;:17093432}}" data-hydro-click-hmac="f9f96f636df5e3c5e80c603e7ddb2b36cb7745671cfd2d24fca8def439c8a725" data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to training&quot;,&quot;label&quot;:&quot;text:training&quot;}">Training</a></li>
-        <li class="mr-3 mr-lg-0"><a href="https://github.blog" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to blog&quot;,&quot;label&quot;:&quot;text:blog&quot;,&quot;originating_url&quot;:&quot;https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/modules/asset_cache/asset_list_items.dm&quot;,&quot;user_id&quot;:17093432}}" data-hydro-click-hmac="b6e7e252f26e572ddb1549a2e8e6f2ccee8b00043ee8697fff0ed186e87eb361" data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to blog&quot;,&quot;label&quot;:&quot;text:blog&quot;}">Blog</a></li>
+        <li class="mr-3 mr-lg-0"><a href="https://support.github.com?tags=dotcom-footer" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to contact&quot;,&quot;label&quot;:&quot;text:contact&quot;,&quot;originating_url&quot;:&quot;https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/game/turfs/simulated/angled_walls_and_doors_department_colors.dm&quot;,&quot;user_id&quot;:17093432}}" data-hydro-click-hmac="bb32a4194683953469282ae05a2eb8e755ac6d4116bd9410fce4422a405c44ac" data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to contact&quot;,&quot;label&quot;:&quot;text:contact&quot;}">Contact GitHub</a></li>
+        <li class="mr-3 mr-lg-0"><a href="https://github.com/pricing" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to Pricing&quot;,&quot;label&quot;:&quot;text:Pricing&quot;,&quot;originating_url&quot;:&quot;https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/game/turfs/simulated/angled_walls_and_doors_department_colors.dm&quot;,&quot;user_id&quot;:17093432}}" data-hydro-click-hmac="59e0e593e15d1ce37bafe60f21b793b9a42ff0de6cbf6f7e4ec708ea57ad74eb" data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to Pricing&quot;,&quot;label&quot;:&quot;text:Pricing&quot;}">Pricing</a></li>
+      <li class="mr-3 mr-lg-0"><a href="https://docs.github.com" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to api&quot;,&quot;label&quot;:&quot;text:api&quot;,&quot;originating_url&quot;:&quot;https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/game/turfs/simulated/angled_walls_and_doors_department_colors.dm&quot;,&quot;user_id&quot;:17093432}}" data-hydro-click-hmac="d3f288d8e01b8444103daf11e8605d8ffa7fe110b32c72149147f2bf2cdd39ea" data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to api&quot;,&quot;label&quot;:&quot;text:api&quot;}">API</a></li>
+      <li class="mr-3 mr-lg-0"><a href="https://services.github.com" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to training&quot;,&quot;label&quot;:&quot;text:training&quot;,&quot;originating_url&quot;:&quot;https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/game/turfs/simulated/angled_walls_and_doors_department_colors.dm&quot;,&quot;user_id&quot;:17093432}}" data-hydro-click-hmac="24b470b40b52aab924fa780e999c320ffbe06bebf1a91ce8fb0d3ecaec240eb7" data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to training&quot;,&quot;label&quot;:&quot;text:training&quot;}">Training</a></li>
+        <li class="mr-3 mr-lg-0"><a href="https://github.blog" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to blog&quot;,&quot;label&quot;:&quot;text:blog&quot;,&quot;originating_url&quot;:&quot;https://github.com/Zeldazackman/VOREStation/blob/0d688f44b5ffcb1f613c87dab624daf60717abf1/code/game/turfs/simulated/angled_walls_and_doors_department_colors.dm&quot;,&quot;user_id&quot;:17093432}}" data-hydro-click-hmac="b860100a7d0a1d368dc92145a5a5135252f5d4eb7b35b5f22849246983b1c33d" data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to blog&quot;,&quot;label&quot;:&quot;text:blog&quot;}">Blog</a></li>
         <li><a data-ga-click="Footer, go to about, text:about" href="https://github.com/about">About</a></li>
     </ul>
   </div>
