@@ -19265,7 +19265,6 @@
 	pixel_x = 4;
 	pixel_y = 4
 	},
-/obj/item/weapon/storage/box/monkeycubes,
 /obj/item/weapon/soap/nanotrasen,
 /obj/structure/closet/walllocker_double/medical/east,
 /obj/item/weapon/hand_labeler,
@@ -19274,6 +19273,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
+/obj/item/weapon/storage/box/monkeycubes/wolpincubes,
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/virology)
 "PR" = (
