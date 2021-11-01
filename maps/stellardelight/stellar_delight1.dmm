@@ -791,7 +791,7 @@
 /obj/structure/table/steel,
 /obj/item/weapon/storage/box/lights/mixed,
 /turf/simulated/floor/tiled/monotile,
-/area/crew_quarters/toilet)
+/area/janitor)
 "bK" = (
 /obj/structure/disposalpipe/trunk{
 	dir = 8
@@ -5521,7 +5521,7 @@
 /obj/item/weapon/reagent_containers/spray/cleaner,
 /obj/item/weapon/reagent_containers/spray/cleaner,
 /turf/simulated/floor/tiled/monotile,
-/area/crew_quarters/toilet)
+/area/janitor)
 "lR" = (
 /obj/structure/stairs/spawner/north,
 /obj/structure/railing/grey{
@@ -5648,7 +5648,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/monotile,
-/area/crew_quarters/toilet)
+/area/janitor)
 "md" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -6973,7 +6973,7 @@
 "oT" = (
 /obj/structure/closet/l3closet/janitor,
 /turf/simulated/floor/tiled/monotile,
-/area/crew_quarters/toilet)
+/area/janitor)
 "oU" = (
 /obj/structure/cable/green{
 	icon_state = "1-8"
@@ -8425,7 +8425,7 @@
 	},
 /obj/structure/closet/l3closet/janitor,
 /turf/simulated/floor/tiled/monotile,
-/area/crew_quarters/toilet)
+/area/janitor)
 "sa" = (
 /obj/structure/cable/green{
 	color = "#42038a";
@@ -31499,8 +31499,8 @@ PM
 PM
 PM
 PM
-Xc
-Xc
+PM
+PM
 Xc
 VP
 Ig
@@ -31642,7 +31642,7 @@ KA
 Lj
 NC
 bJ
-IY
+mM
 vd
 IY
 Ki
@@ -31784,7 +31784,7 @@ no
 Eo
 no
 lQ
-IY
+mM
 vM
 IY
 Kz
@@ -31926,7 +31926,7 @@ mv
 pN
 bv
 mc
-IY
+mM
 CA
 IY
 MO
@@ -32068,7 +32068,7 @@ PH
 Bz
 no
 oT
-IY
+mM
 wJ
 IU
 fb
@@ -32210,7 +32210,7 @@ Rq
 Nr
 Fz
 rZ
-IY
+mM
 Ls
 LR
 oC
@@ -32351,8 +32351,8 @@ PM
 mM
 iF
 mM
-IY
-IY
+mM
+mM
 IY
 IY
 Fu

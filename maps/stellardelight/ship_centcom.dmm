@@ -2399,7 +2399,7 @@
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /obj/effect/shuttle_landmark/shuttle_initializer/ccboat,
 /obj/effect/overmap/visitable/ship/landable/ccboat,
-/turf/simulated/floor/tiled/eris/dark/danger,
+/turf/simulated/floor/airless,
 /area/shuttle/ccboat)
 "ih" = (
 /obj/effect/floor_decal/corner/blue{
@@ -4542,7 +4542,7 @@
 	id_tag = "ccboat";
 	pixel_y = 29
 	},
-/turf/simulated/floor/tiled/eris/dark/danger,
+/turf/simulated/floor/airless,
 /area/shuttle/ccboat)
 "qZ" = (
 /obj/machinery/body_scanconsole{
@@ -4655,7 +4655,7 @@
 	id_tag = null
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
-/turf/simulated/floor/tiled/eris/dark/danger,
+/turf/simulated/floor/airless,
 /area/shuttle/ccboat)
 "rU" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
@@ -6077,7 +6077,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/eris/dark/danger,
+/turf/simulated/floor/airless,
 /area/shuttle/ccboat)
 "zy" = (
 /obj/effect/floor_decal/derelict/d11,
