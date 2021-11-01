@@ -64,6 +64,9 @@
 	"Courtroom" 		= new/datum/holodeck_program(/area/holodeck/source_courtroom, list('sound/music/traitor.ogg')),
 	"Chessboard"		= new/datum/holodeck_program(/area/holodeck/source_chess),
 	"Micro Building Area"		= new/datum/holodeck_program(/area/holodeck/source_smoleworld), //VOREStation add
+	"Gym"				= new/datum/holodeck_program(/area/holodeck/source_gym), //VOREStation add
+	"Game Room"			= new/datum/holodeck_program(/area/holodeck/source_game_room), //VOREStation add
+	"Patient Ward"		= new/datum/holodeck_program(/area/holodeck/source_patient_ward), //VOREStation add
 	"Turn Off" 			= new/datum/holodeck_program(/area/holodeck/source_plating, list())
 	)
 
