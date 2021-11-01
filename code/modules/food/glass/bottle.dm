@@ -175,4 +175,4 @@
 	desc = "A bottle of raw biomass! Gross!"
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "bottle-3"
-	prefill = list("biomass" = 60)
+	prefill = list("biomass" = 960)
