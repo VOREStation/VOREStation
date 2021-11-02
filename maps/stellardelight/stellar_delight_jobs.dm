@@ -9,14 +9,6 @@
 	access = list(access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_eva, access_maint_tunnels, access_external_airlocks)
 	minimal_access = list(access_medical, access_medical_equip, access_morgue)
 
-
-
-/datum/job/captain
-	alt_titles = list("Overseer"= /datum/alt_title/overseer, "Facility Director" = /datum/alt_title/facility_director, "Chief Supervisor" = /datum/alt_title/chief_supervisor, "Captain" = /datum/alt_title/captain)
-
-/datum/alt_title/captain
-	title = "Captain"
-
 /datum/job/hop
 	alt_titles = list("Crew Resources Officer" = /datum/alt_title/cro, "Deputy Manager" = /datum/alt_title/deputy_manager, "Staff Manager" = /datum/alt_title/staff_manager,
 						"Facility Steward" = /datum/alt_title/facility_steward, "First Mate" = /datum/alt_title/first_mate)
