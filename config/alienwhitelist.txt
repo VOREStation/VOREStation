@@ -171,6 +171,11 @@ SpyCrrab122 - Protean
 SpyCrrab122 - Vox
 SpyCrrab122 - Xenochimera
 SpyCrrab122 - Diona
+SpyCrrab 122 - Shadekin
+SpyCrrab 122 - Protean
+SpyCrrab 122 - Vox
+SpyCrrab 122 - Xenochimera
+SpyCrrab 122 - Diona
 Urigami - Shadekin
 Urigami - Protean
 Urigami - Vox
