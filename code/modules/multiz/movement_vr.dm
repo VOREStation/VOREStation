@@ -32,7 +32,10 @@
 		return 0
 
 	var/mob/living/pred = hit_atom
-	pred.visible_message("<span class='danger'>\The [hit_atom] falls onto \the [src]!</span>")
+	var/safe_fall = FALSE
+	if(pred.softfall || (istype(pred, /mob/living/simple_mob) && pred.mob_size <= MOB_SMALL))		// TODO: add ability for mob below to be 'soft' and cushion fall
+		safe_fall = TRUE
+
 	pred.Weaken(8)
 	var/mob/living/prey = src
 	var/fallloc = prey.loc
@@ -42,16 +45,20 @@
 	else if(prey.can_be_drop_pred && pred.can_be_drop_prey)
 		prey.feed_grabbed_to_self_falling_nom(prey,pred)
 	else
-		prey.Weaken(8)
 		pred.loc = prey.loc
-		playsound(src, "punch", 25, 1, -1)
-		var/tdamage
-		for(var/i = 1 to 10)
-			tdamage = rand(0, 10)/2
-			pred.adjustBruteLoss(tdamage)
-			prey.adjustBruteLoss(tdamage)
-		pred.updatehealth()
-		prey.updatehealth()
+		if(!safe_fall)
+			prey.Weaken(8)
+			playsound(src, "punch", 25, 1, -1)
+			var/tdamage
+			for(var/i = 1 to 5)			//Twice as less damage because cushioned fall, but both get damaged.
+				tdamage = rand(0, 5)
+				pred.adjustBruteLoss(tdamage)
+				prey.adjustBruteLoss(tdamage)
+			pred.updatehealth()
+			prey.updatehealth()
+			pred.visible_message("<span class='danger'>\The [pred] falls onto \the [src]!</span>")
+		else
+			pred.visible_message("<span class='notice'>\The [pred] safely brushes past \the [src] as they land.</span>")
 	return 1
 
 /mob/observer/dead/CheckFall()
