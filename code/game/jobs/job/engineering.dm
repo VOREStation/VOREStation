@@ -42,7 +42,7 @@
 //			Engineer
 //////////////////////////////////
 /datum/job/engineer
-	title = "Station Engineer"
+	title = "Engineer"
 	flag = ENGINEER
 	departments = list(DEPARTMENT_ENGINEERING)
 	department_flag = ENGSEC

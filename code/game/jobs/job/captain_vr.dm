@@ -2,17 +2,13 @@
 	disallow_jobhop = TRUE
 	pto_type = PTO_CIVILIAN
 	dept_time_required = 80 //Pending something more complicated
-	alt_titles = list("Overseer"= /datum/alt_title/overseer, "Facility Director" = /datum/alt_title/facility_director, "Chief Supervisor" = /datum/alt_title/chief_supervisor, "Captain" = /datum/alt_title/captain)
+	alt_titles = list("Overseer"= /datum/alt_title/overseer, "Facility Director" = /datum/alt_title/facility_director, "Chief Supervisor" = /datum/alt_title/chief_supervisor)
 
 /datum/alt_title/facility_director
 	title = "Facility Director"
 
 /datum/alt_title/chief_supervisor
 	title = "Chief Supervisor"
-
-/datum/alt_title/captain
-	title = "Captain"
-
 
 /datum/job/hop
 	disallow_jobhop = TRUE

@@ -422,7 +422,7 @@
 /datum/gear/suit/wintercoat/engineering
 	display_name = "winter coat, engineering"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/engineering
-	allowed_roles = list("Chief Engineer","Atmospheric Technician", "Station Engineer")
+	allowed_roles = list("Chief Engineer","Atmospheric Technician", "Engineer")
 
 /datum/gear/suit/wintercoat/engineering/atmos
 	display_name = "winter coat, atmospherics"
@@ -597,7 +597,7 @@
 /datum/gear/suit/snowsuit/engineering
 	display_name = "snowsuit, engineering"
 	path = /obj/item/clothing/suit/storage/snowsuit/engineering
-	allowed_roles = list("Chief Engineer","Atmospheric Technician", "Station Engineer")
+	allowed_roles = list("Chief Engineer","Atmospheric Technician", "Engineer")
 
 /datum/gear/suit/snowsuit/cargo
 	display_name = "snowsuit, supply"
