@@ -2314,9 +2314,14 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/security/warden)
 "fb" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/cable/green{
 	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/toilet)
@@ -2729,9 +2734,7 @@
 "fX" = (
 /obj/structure/table/woodentable,
 /obj/machinery/alarm/angled,
-/obj/machinery/photocopier/faxmachine{
-	department = "Library Conference Room"
-	},
+/obj/machinery/librarypubliccomp,
 /turf/simulated/floor/wood,
 /area/library)
 "fZ" = (
@@ -3109,6 +3112,18 @@
 "gQ" = (
 /turf/simulated/wall/bay/brown,
 /area/stellardelight/deck1/oreprocessing)
+"gR" = (
+/obj/structure/table/steel_reinforced,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced,
+/obj/machinery/door/blast/angled/open{
+	dir = 2;
+	id = "securitylockdown"
+	},
+/obj/effect/floor_decal/milspec/color/red,
+/obj/item/device/flashlight/lamp,
+/turf/simulated/floor/tiled/dark,
+/area/security/lobby)
 "gS" = (
 /obj/structure/cable/green{
 	color = "#42038a";
@@ -4892,17 +4907,11 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/portfore)
 "ky" = (
-/obj/structure/cable/green{
-	icon_state = "1-4"
-	},
-/obj/structure/cable/green{
-	icon_state = "2-4"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/obj/machinery/firealarm/angled{
 	dir = 4
+	},
+/obj/structure/cable/green{
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/toilet)
@@ -6820,13 +6829,22 @@
 /area/security/security_cell_hallway)
 "oC" = (
 /obj/structure/cable/green{
-	icon_state = "1-2"
+	icon_state = "2-8"
 	},
-/obj/machinery/firealarm/angled{
+/obj/structure/cable/green{
+	icon_state = "2-4"
+	},
+/obj/structure/cable/green{
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
 /obj/structure/cable/green{
-	icon_state = "2-8"
+	icon_state = "1-8"
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/toilet)
@@ -9487,6 +9505,18 @@
 	},
 /turf/simulated/floor/airless,
 /area/stellardelight/deck1/exterior)
+"up" = (
+/obj/structure/mirror{
+	pixel_y = 38
+	},
+/obj/structure/sink{
+	pixel_y = 20
+	},
+/obj/structure/cable/green{
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/toilet)
 "uq" = (
 /turf/space,
 /area/space)
@@ -12489,6 +12519,10 @@
 /obj/structure/table/woodentable,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/item/weapon/paper_bin{
+	pixel_y = 7
+	},
+/obj/item/weapon/pen,
 /turf/simulated/floor/carpet,
 /area/library)
 "AO" = (
@@ -14258,6 +14292,9 @@
 	},
 /obj/machinery/light{
 	dir = 8
+	},
+/obj/structure/cable/green{
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/toilet)
@@ -18960,14 +18997,18 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/exploration)
 "Pf" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+/obj/effect/floor_decal/milspec/color/red/half{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/white,
-/area/crew_quarters/toilet)
+/obj/structure/closet/walllocker_double/east{
+	dir = 8;
+	name = "Evidence Storage";
+	pixel_x = -32
+	},
+/obj/item/weapon/storage/box/evidence,
+/obj/item/weapon/storage/box/evidence,
+/turf/simulated/floor/tiled/dark,
+/area/security/security_cell_hallway)
 "Pg" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -20743,7 +20784,7 @@
 	dir = 1
 	},
 /obj/structure/cable/green{
-	icon_state = "4-8"
+	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/toilet)
@@ -21395,6 +21436,9 @@
 	},
 /obj/structure/sink{
 	pixel_y = 20
+	},
+/obj/structure/cable/green{
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/toilet)
@@ -22599,13 +22643,11 @@
 "WJ" = (
 /obj/structure/table/woodentable,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/item/weapon/paper_bin{
-	pixel_x = -3;
-	pixel_y = 7
-	},
-/obj/item/weapon/pen,
 /obj/structure/sign/painting/library_secure{
 	pixel_y = 30
+	},
+/obj/machinery/photocopier/faxmachine{
+	department = "Library Conference Room"
 	},
 /turf/simulated/floor/wood,
 /area/library)
@@ -23141,9 +23183,6 @@
 "XP" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
-	},
-/obj/structure/cable/green{
-	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/toilet)
@@ -23818,9 +23857,6 @@
 "Zk" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
-	},
-/obj/structure/cable/green{
-	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/toilet)
@@ -31939,7 +31975,7 @@ MO
 IY
 Ri
 IY
-Um
+up
 SX
 it
 zP
@@ -32078,7 +32114,7 @@ mM
 wJ
 IU
 fb
-Pf
+kQ
 kQ
 kQ
 kQ
@@ -34035,7 +34071,7 @@ GT
 ya
 mu
 NN
-jy
+gR
 mO
 Ha
 df
@@ -34875,7 +34911,7 @@ TE
 CM
 qG
 PO
-QQ
+Pf
 wT
 wT
 wT

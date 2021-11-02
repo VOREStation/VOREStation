@@ -7601,6 +7601,7 @@
 /area/engineering/engineering_monitoring)
 "rr" = (
 /obj/structure/closet/walllocker_double/south{
+	color = "#8da4a6";
 	pixel_x = -5
 	},
 /obj/item/weapon/storage/box/donkpockets{
@@ -9333,7 +9334,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
-/obj/structure/closet/walllocker_double/north,
+/obj/structure/closet/walllocker_double/north{
+	color = "#8da4a6"
+	},
 /obj/item/weapon/circuitboard/tesla_coil,
 /obj/item/weapon/circuitboard/tesla_coil,
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
@@ -13644,6 +13647,7 @@
 	pixel_x = 6
 	},
 /obj/structure/closet/walllocker_double/north{
+	color = "#8da4a6";
 	dir = 4;
 	pixel_x = 32;
 	pixel_y = 0
