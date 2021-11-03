@@ -43,6 +43,7 @@
 	var/old_dangerous_objects = dangerous_objects
 	var/old_dynamic_lumcount = dynamic_lumcount
 
+<<<<<<< HEAD
 	var/turf/Ab = GetAbove(src)
 	if(Ab)
 		Ab.multiz_turf_del(src, DOWN)
@@ -64,46 +65,31 @@
 
 	if(ispath(N, /turf/simulated/floor))
 		var/turf/simulated/W = new N( locate(src.x, src.y, src.z) )
+=======
+	changing_turf = TRUE
+	qdel(src)
+
+	var/turf/W = new N( locate(src.x, src.y, src.z) )
+	if(istype(W, /turf/simulated/floor))
+>>>>>>> a7877d86e50... Merge pull request #8341 from MistakeNot4892/qdel
 		if(old_fire)
-			fire = old_fire
+			W.fire = old_fire
+		W.RemoveLattice()
+	else if(old_fire)
+		old_fire.RemoveFire()
 
-		if (istype(W,/turf/simulated/floor))
-			W.RemoveLattice()
+	if(tell_universe)
+		universe.OnTurfChange(W)
 
-		if(tell_universe)
-			universe.OnTurfChange(W)
+	if(air_master)
+		air_master.mark_for_update(W)
 
-		if(air_master)
-			air_master.mark_for_update(src) //handle the addition of the new turf.
-
-		for(var/turf/space/S in range(W,1))
-			S.update_starlight()
-
-		W.levelupdate()
-		W.update_icon(1)
-		W.post_change()
-		. = W
-
-	else
-
-		var/turf/W = new N( locate(src.x, src.y, src.z) )
-
-		if(old_fire)
-			old_fire.RemoveFire()
-
-		if(tell_universe)
-			universe.OnTurfChange(W)
-
-		if(air_master)
-			air_master.mark_for_update(src)
-
-		for(var/turf/space/S in range(W,1))
-			S.update_starlight()
-
-		W.levelupdate()
-		W.update_icon(1)
-		W.post_change()
-		. =  W
+	for(var/turf/space/S in range(W, 1))
+		S.update_starlight()
+	W.levelupdate()
+	W.update_icon(1)
+	W.post_change()
+	. =  W
 
 	dangerous_objects = old_dangerous_objects
 
