@@ -446,6 +446,7 @@
 	body_parts_covered = FACE
 	w_class = ITEMSIZE_SMALL
 	slot = ACCESSORY_SLOT_INSIGNIA // snowflakey, i know, shut up
+	item_flags = FLEXIBLEMATERIAL
 	var/breath_masked = FALSE
 	var/obj/item/clothing/mask/breath/breathmask
 	action_button_name = "Pull On Gaiter"
