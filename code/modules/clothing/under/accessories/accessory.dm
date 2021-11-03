@@ -464,6 +464,7 @@
 		breath_masked = TRUE
 		user.drop_from_inventory(I, drop_location())
 		I.forceMove(src)
+		item_flags &= ~FLEXIBLEMATERIAL
 	. = ..()
 
 /obj/item/clothing/accessory/gaiter/AltClick(mob/user)
@@ -474,6 +475,7 @@
 		breathmask = null
 		breath_masked = FALSE
 		item_flags &= ~AIRTIGHT
+		item_flags |= FLEXIBLEMATERIAL
 
 /obj/item/clothing/accessory/gaiter/attack_self(mob/user)
 	var/gaiterstring = "You pull [src] "
@@ -485,6 +487,7 @@
 	else
 		src.icon_state = initial(icon_state)
 		gaiterstring += "down around your neck[breath_masked ? " and dislodge the mask tucked underneath." : "."]"
+		body_parts_covered &= ~FACE
 		if(breath_masked)
 			item_flags &= ~AIRTIGHT
 	to_chat(user, SPAN_NOTICE(gaiterstring))
