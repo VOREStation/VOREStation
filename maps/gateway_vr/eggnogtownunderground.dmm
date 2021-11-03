@@ -142,7 +142,7 @@
 	},
 /area/gateway/eggnogtown/vibeout)
 "gA" = (
-/turf/unsimulated/beach/water{
+/turf/simulated/floor/beach/water{
 	name = "hot spring";
 	temperature = 303.15
 	},
@@ -267,7 +267,7 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/turf/unsimulated/beach/water{
+/turf/simulated/floor/beach/water{
 	name = "hot spring";
 	temperature = 303.15
 	},
@@ -345,7 +345,7 @@
 /area/gateway/eggnogtown/vibeout)
 "sc" = (
 /obj/random/mob/semirandom_mob_spawner/vore/passive,
-/turf/unsimulated/beach/water{
+/turf/simulated/floor/beach/water{
 	name = "hot spring";
 	temperature = 303.15
 	},
@@ -702,6 +702,13 @@
 "Qe" = (
 /obj/random/mob/semirandom_mob_spawner/vore/retaliate/b,
 /turf/simulated/mineral/floor/ignore_cavegen{
+	temperature = 303.15
+	},
+/area/gateway/eggnogtown/underground)
+"QL" = (
+/obj/effect/map_effect/interval/effect_emitter/steam,
+/turf/simulated/floor/beach/water{
+	name = "hot spring";
 	temperature = 303.15
 	},
 /area/gateway/eggnogtown/underground)
@@ -1784,7 +1791,7 @@ Da
 ab
 gA
 gA
-gA
+QL
 gA
 gA
 gA
@@ -2078,7 +2085,7 @@ gA
 gA
 gA
 gA
-gA
+QL
 gA
 gA
 gA
@@ -2202,7 +2209,7 @@ Da
 gA
 gA
 gA
-gA
+QL
 gA
 gA
 gA
@@ -11982,7 +11989,7 @@ Da
 Da
 gA
 gA
-gA
+QL
 gA
 gA
 gA
@@ -12460,7 +12467,7 @@ Da
 gA
 gA
 gA
-gA
+QL
 gA
 gA
 gA
@@ -13541,7 +13548,7 @@ Da
 gA
 gA
 gA
-gA
+QL
 gA
 gA
 gA
