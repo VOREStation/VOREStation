@@ -2576,6 +2576,7 @@
 /obj/item/clothing/glasses/omnihud,
 /obj/item/weapon/paper/dockingcodes/sd,
 /obj/item/device/retail_scanner/command,
+/obj/item/weapon/storage/box/PDAs,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/hop)
 "kO" = (
