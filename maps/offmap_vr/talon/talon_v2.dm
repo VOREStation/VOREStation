@@ -47,7 +47,7 @@ var/global/list/latejoin_talon = list()
 	vessel_mass = 10000
 	vessel_size = SHIP_SIZE_LARGE
 	initial_generic_waypoints = list("talon_v2_near_fore_port", "talon_v2_near_fore_star", "talon_v2_near_aft_port", "talon_v2_near_aft_star", "talon_v2_wing_port", "talon_v2_wing_star")
-	initial_restricted_waypoints = list("Talon's Shuttle" = list("offmap_spawn_talonboat"))
+	initial_restricted_waypoints = list("Talon's Shuttle" = list("offmap_spawn_talonboat"), "Talon's Escape Pod" = list("offmap_spawn_talonpod"))
 
 	skybox_icon = 'talon.dmi'
 	skybox_icon_state = "skybox"
@@ -55,7 +55,7 @@ var/global/list/latejoin_talon = list()
 	skybox_pixel_y = 60
 
 	levels_for_distress = list(1, Z_LEVEL_BEACH, Z_LEVEL_AEROSTAT, Z_LEVEL_DEBRISFIELD, Z_LEVEL_FUELDEPOT)
-	unowned_areas = list(/area/shuttle/talonboat)
+	unowned_areas = list(/area/shuttle/talonboat,/area/shuttle/talonpod)
 
 // The shuttle's 'shuttle' computer
 /obj/machinery/computer/shuttle_control/explore/talonboat
@@ -90,6 +90,47 @@ var/global/list/latejoin_talon = list()
 
 /area/shuttle/talonboat
 	name = "Talon's Shuttle"
+	requires_power = 1
+	icon = 'icons/turf/areas_vr_talon.dmi'
+	icon_state = "green"
+
+
+///////////////////////////
+//// The Escape Pod
+
+// The shuttle's 'shuttle' computer
+/obj/machinery/computer/shuttle_control/explore/talon_escape
+	name = "shuttle control console"
+	shuttle_tag = "Talon's Escape Pod"
+	req_one_access = list(access_talon)
+
+/obj/effect/overmap/visitable/ship/landable/talon_pod
+	name = "ITV Talon Escape Pod"
+	desc = "An emergency escape pod from the ITV Talon."
+	vessel_mass = 500
+	vessel_size = SHIP_SIZE_TINY
+	shuttle = "Talon's Escape Pod"
+
+// A shuttle lateloader landmark
+/obj/effect/shuttle_landmark/shuttle_initializer/talonpod
+	name = "Talon's pod bay"
+	base_area = /area/talon_v2/pod_hangar
+	base_turf = /turf/simulated/floor/reinforced
+	landmark_tag = "offmap_spawn_talonpod"
+	docking_controller = "talon_podbay"
+	shuttle_type = /datum/shuttle/autodock/overmap/talonpod
+
+// The talon's boat
+/datum/shuttle/autodock/overmap/talonpod
+	name = "Talon's Escape Pod"
+	current_location = "offmap_spawn_talonpod"
+	docking_controller_tag = "talonpod_docker"
+	shuttle_area = /area/shuttle/talonpod
+	fuel_consumption = 1
+	defer_initialisation = TRUE
+
+/area/shuttle/talonpod
+	name = "Talon's Escape Pod"
 	requires_power = 1
 	icon = 'icons/turf/areas_vr_talon.dmi'
 	icon_state = "green"
@@ -183,6 +224,37 @@ finally, make sure you check the shuttle's APC power level before you head out! 
 I recommend packing a spare battery (there should be a few in engineering you can borrow and charge up) to be safe. don't wanna get stranded!<br>\
 <br>\
 speaking of, if some dumbass does take it and fly off solo then get themselves killed, you can use the remote console in the little spot north of the hangar to initiate basic remote maneuvers. it can't do long-range flight, but the shuttle has some basic autopilot routines for stable orbit and docking that you can ping. this won't help if the shuttle's grounded <b>and</b> out of battery, but better than nothing, right?<br>\
+<br>\
+<i>Harry Townes</i>"}
+
+/obj/item/weapon/paper/talon_cannon
+	name = "ITV Talon OFD Console"
+	info = {"to whoever's got the itchiest trigger finger,<br>\
+as a reward for recent good performance, the lads upstairs have seen fit to have our ship retrofitted with an Obstruction Field Disperser. This fancy bit of hardware can be used to, well, 'disperse' 'obstructions'. asteroids or carp shoals in the way? no problem! load her up and fire! range is pretty short though.<br>\
+<br>\
+they haven't issued very much ammo for it, so if you want more you'll have to trade with those nanotrasen boys and girls. use the blue ones for ion storms and electrical clouds, and the red ones for asteroids and carp. calibration and aiming the thing is a bit of a pain but you'll figure it out. pre-calibrate then mess with the numbers until accuracy hits 100%.<br>\
+<br>\
+aside from that, only thing you really need to keep in mind is that it'll explode pretty spectacularly if you try to fire it whilst it's cooling down *or* if the hatch is closed. hatch is rigged to the bridge shutter controls.<br>\
+<br>\
+oh, and it's not a weapon. don't try to shoot other ships with it or anything, it won't work.<br>\
+<br>\
+<i>Harry Townes</i>"}
+
+/obj/item/weapon/paper/talon_escape_pod
+	name = "ITV Talon Escape Pod"
+	info = {"to whoever's stuck bailing out,<br>\
+after some extensive retrofits to comply with starfaring vessel regulations, our lovely little ship has been outfitted with a proper escape pod, which you are now standing in if you are reading this paper! congratulations!<br>\
+<br>\
+in the untimely event that you actually need to use it and survive long enough to, here's what you need to know;<br>\
+1. the thrusters don't have enough power to really fly around in space very much.<br>\
+2. you probably don't have very much air either.<br>\
+3. on the plus side, plenty of seats and supplies.<br>\
+4. remember to hit the emergency distress signal button.<br>\
+5. you have no sensors, so I hope you wrote down or remember what's around.<br>\
+<br>\
+if you have to punch out, do it whilst the ship is in open space. the pod has <b><u>nothing</u></b> to stop space debris ventilating it! it is rated for reentry though, so if you can bail over a planet it should be able to take you down to a safe landing spot. from there, use the emergency supplies and try to hold out until rescue comes.<br>\
+<br>\
+personally I recommend using the ship's boat if you need to evacuate, but if you're stuck with the pod then... good luck!<br>\
 <br>\
 <i>Harry Townes</i>"}
 
