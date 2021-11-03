@@ -2047,6 +2047,9 @@
 "fW" = (
 /turf/simulated/wall/shull,
 /area/talon_v2/refining)
+"fX" = (
+/turf/simulated/wall/rshull,
+/area/talon_v2/ofd_ops)
 "gb" = (
 /obj/machinery/light{
 	dir = 4
@@ -5983,7 +5986,7 @@
 	icon_state = "0-4"
 	},
 /turf/simulated/floor/reinforced/airless,
-/area/talon_v2/crew_quarters/cap_room)
+/area/space)
 "td" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -6830,11 +6833,6 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/brig)
 "vV" = (
-/obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
-	id_tag = "talonboat_docker";
-	pixel_y = 24
-	},
 /obj/machinery/computer/shuttle_control/explore/talonboat{
 	dir = 4
 	},
@@ -7062,7 +7060,7 @@
 	icon_state = "0-8"
 	},
 /turf/simulated/floor/reinforced/airless,
-/area/talon_v2/crew_quarters/bar)
+/area/space)
 "wI" = (
 /obj/structure/sign/warning/nosmoking_1{
 	pixel_x = 26
@@ -11342,10 +11340,17 @@
 /obj/item/weapon/pickaxe/drill,
 /obj/machinery/button/remote/blast_door{
 	id = "talon_boat_cockpit";
+	pixel_x = 6;
 	pixel_y = 28
 	},
 /obj/item/device/radio/off{
 	channels = list("Talon" = 1)
+	},
+/obj/machinery/embedded_controller/radio/simple_docking_controller{
+	frequency = 1380;
+	id_tag = "talonboat_docker";
+	pixel_x = -6;
+	pixel_y = 24
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/talonboat)
@@ -14364,6 +14369,16 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/atmospherics)
+"Ud" = (
+/obj/structure/bed/chair/bay/chair{
+	dir = 1
+	},
+/obj/structure/panic_button{
+	pixel_x = -32;
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/talonboat)
 "Ue" = (
 /obj/machinery/power/pointdefense{
 	id_tag = "talon_pd"
@@ -24714,7 +24729,7 @@ aa
 XP
 XP
 tc
-Ut
+fX
 uY
 Qe
 wi
@@ -26016,7 +26031,7 @@ Yf
 Po
 JA
 lm
-uU
+Ud
 Xo
 Tt
 RP

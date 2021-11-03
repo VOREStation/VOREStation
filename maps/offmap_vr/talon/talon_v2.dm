@@ -70,6 +70,8 @@ var/global/list/latejoin_talon = list()
 	vessel_size = SHIP_SIZE_TINY
 	shuttle = "Talon's Shuttle"
 
+	levels_for_distress = list(1, Z_LEVEL_BEACH, Z_LEVEL_AEROSTAT, Z_LEVEL_DEBRISFIELD, Z_LEVEL_FUELDEPOT)
+
 // A shuttle lateloader landmark
 /obj/effect/shuttle_landmark/shuttle_initializer/talonboat
 	name = "Talon's shuttle bay"
@@ -110,6 +112,8 @@ var/global/list/latejoin_talon = list()
 	vessel_mass = 500
 	vessel_size = SHIP_SIZE_TINY
 	shuttle = "Talon's Escape Pod"
+
+	levels_for_distress = list(1, Z_LEVEL_BEACH, Z_LEVEL_AEROSTAT, Z_LEVEL_DEBRISFIELD, Z_LEVEL_FUELDEPOT)
 
 // A shuttle lateloader landmark
 /obj/effect/shuttle_landmark/shuttle_initializer/talonpod
