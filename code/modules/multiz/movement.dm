@@ -467,13 +467,16 @@
 // Take damage from falling and hitting the ground
 /mob/living/fall_impact(var/atom/hit_atom, var/damage_min = 0, var/damage_max = 5, var/silent = FALSE, var/planetary = FALSE)
 	var/turf/landing = get_turf(hit_atom)
+	var/safe_fall = FALSE
+	if(src.softfall || (istype(src, /mob/living/simple_mob) && src.mob_size <= MOB_SMALL))
+		safe_fall = TRUE
 	if(planetary && src.CanParachute())
 		if(!silent)
 			visible_message("<span class='warning'>\The [src] glides in from above and lands on \the [landing]!</span>", \
 				"<span class='danger'>You land on \the [landing]!</span>", \
 				"You hear something land \the [landing].")
 		return
-	else if(!planetary && src.softfall) // Falling one floor and falling one atmosphere are very different things
+	else if(!planetary && safe_fall) // Falling one floor and falling one atmosphere are very different things
 		if(!silent)
 			visible_message("<span class='warning'>\The [src] falls from above and lands on \the [landing]!</span>", \
 				"<span class='danger'>You land on \the [landing]!</span>", \

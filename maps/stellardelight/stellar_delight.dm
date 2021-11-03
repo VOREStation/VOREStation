@@ -2,8 +2,11 @@
 
 	#include "stellar_delight_areas.dm"
 	#include "stellar_delight_defines.dm"
-	#include "stellar_delight_misc.dm"
+	#include "stellar_delight_jobs.dm"
+	#include "stellar_delight_shuttle_defs.dm"
 	#include "stellar_delight_telecomms.dm"
+	#include "stellar_delight_things.dm"
+	#include "stellar_delight_turfs.dm"
 	#include "..\offmap_vr\common_offmaps.dm"
 	#include "..\tether\tether_jobs.dm"
 

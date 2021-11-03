@@ -6,7 +6,7 @@
 	dynamic_lighting = TRUE
 
 /area/maintenance/stellardelight
-	name = "maintenance"
+	name = "Maintenance"
 	icon = 'icons/turf/areas_vr.dmi'
 	icon_state = "purblasqu"
 	flags = RAD_SHIELDED
@@ -35,67 +35,67 @@
 	icon_state = "deckmaint1"
 
 /area/maintenance/stellardelight/deck1/portfore
-	name = "deck one port forward maintenance"
+	name = "Deck One Port Forward Maintenance"
 /area/maintenance/stellardelight/deck1/starboardfore
-	name = "deck one starboard forward maintenance"
+	name = "Deck One Starboard Forward Maintenance"
 /area/maintenance/stellardelight/deck1/portcent
-	name = "deck one port center maintenance"
+	name = "Deck One Port Center Maintenance"
 /area/maintenance/stellardelight/deck1/starboardcent
-	name = "deck one starboard center maintenance"
+	name = "Deck One Starboard Center Maintenance"
 /area/maintenance/stellardelight/deck1/portaft
-	name = "deck one port aft maintenance"
+	name = "Deck One Port Aft Maintenance"
 /area/maintenance/stellardelight/deck1/exploration
-	name = "exploration maintenance"
+	name = "Exploration Maintenance"
 /area/maintenance/stellardelight/deck1/starboardaft
-	name = "deck one starboard aft maintenance"
+	name = "Deck One starboard aft Maintenance"
 
 /area/maintenance/stellardelight/deck2
 	icon_state = "deckmaint2"
 
 /area/maintenance/stellardelight/deck2/portfore
-	name = "deck two port forward maintenance"
+	name = "Deck Two Port Forward Maintenance"
 /area/maintenance/stellardelight/deck2/starboardfore
-	name = "deck two starboard forward maintenance"
+	name = "Deck Two Starboard Forward Maintenance"
 /area/maintenance/stellardelight/deck2/portaft
-	name = "deck two port aft maintenance"
+	name = "Deck Two Port Aft Maintenance"
 /area/maintenance/stellardelight/deck2/starboardaft
-	name = "deck two starboard aft maintenance"
+	name = "Deck Two Starboard Aft Maintenance"
 /area/maintenance/stellardelight/deck2/portsolars
-	name = "deck two port solar array"
+	name = "Deck Two Port Solar Array"
 /area/maintenance/stellardelight/deck2/starboardsolars
-	name = "deck two starboard solar array"
+	name = "Deck Two Starboard Solar Array"
 /area/maintenance/stellardelight/deck2/atmos
-	name = "atmospherics maintenance"
+	name = "Atmospherics Maintenance"
 
 
 /area/maintenance/stellardelight/deck3
 	icon_state = "deckmaint3"
 
 /area/maintenance/stellardelight/deck3/portfore
-	name = "deck three port forward maintenance"
+	name = "Deck Three Port Forward Maintenance"
 /area/maintenance/stellardelight/deck3/starboardfore
-	name = "deck three starboard forward maintenance"
+	name = "Deck Three Starboard Forward Maintenance"
 /area/maintenance/stellardelight/deck3/portcent
-	name = "deck three port central maintenance"
+	name = "Deck Three Port Central Maintenance"
 /area/maintenance/stellardelight/deck3/starboardcent
-	name = "deck three starboard central maintenance"
+	name = "Deck Three Starboard Central Maintenance"
 /area/maintenance/stellardelight/deck3/portaft
-	name = "deck three port aft maintenance"
+	name = "Deck Three Port Aft Maintenance"
 /area/maintenance/stellardelight/deck3/starboardaft
-	name = "deck three starboard aft maintenance"
+	name = "Deck Three Starboard Aft Maintenance"
 
 /area/maintenance/stellardelight/deck3/foreportrooma
-	name = "deck three forward port construction a"
+	name = "Deck Three Forward Port Construction A"
 /area/maintenance/stellardelight/deck3/foreportroomb
-	name = "deck three forward port construction b"
+	name = "Deck Three Forward Port Construction B"
 /area/maintenance/stellardelight/deck3/forestarrooma
-	name = "deck three forward starboard construction a"
+	name = "Deck Three Forward Starboard Construction A"
 /area/maintenance/stellardelight/deck3/forestarroomb
-	name = "deck three forward starboard construction b"
+	name = "Deck Three Forward Starboard Construction B"
 /area/maintenance/stellardelight/deck3/forestarroomc
-	name = "deck three forward starboard construction c"
+	name = "Deck Three Forward Starboard Construction C"
 /area/maintenance/stellardelight/deck3/aftstarroom
-	name = "deck three aft starboard construction "
+	name = "Deck Three Aft Starboard Construction"
 
 
 /area/maintenance/stellardelight/deck3/portfore

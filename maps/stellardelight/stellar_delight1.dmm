@@ -183,6 +183,9 @@
 /obj/machinery/shower{
 	dir = 1
 	},
+/obj/machinery/light/small{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/white,
 /area/stellardelight/deck1/shower)
 "ay" = (
@@ -640,29 +643,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/aft)
 "bv" = (
-/obj/item/weapon/soap/nanotrasen,
-/obj/item/weapon/soap/nanotrasen,
-/obj/item/weapon/soap/nanotrasen,
-/obj/item/weapon/grenade/chem_grenade/cleaner,
-/obj/item/weapon/grenade/chem_grenade/cleaner,
-/obj/item/weapon/grenade/chem_grenade/cleaner,
-/obj/item/weapon/reagent_containers/spray/cleaner,
-/obj/item/weapon/reagent_containers/spray/cleaner,
-/obj/item/weapon/reagent_containers/spray/cleaner,
-/obj/structure/table/steel,
-/obj/structure/disposalpipe/trunk{
-	dir = 1
-	},
-/obj/machinery/disposal/wall{
-	dir = 1
-	},
-/obj/item/weapon/storage/bag/trash,
-/obj/item/weapon/storage/bag/trash,
-/obj/item/weapon/storage/bag/trash,
-/obj/item/weapon/storage/bag/trash,
-/obj/item/weapon/storage/bag/trash,
-/obj/item/device/lightreplacer,
-/obj/item/weapon/storage/box/lights/mixed,
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/monotile,
 /area/janitor)
 "bw" = (
@@ -810,23 +791,10 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/armoury)
 "bJ" = (
-/obj/structure/cable/green{
-	icon_state = "0-4"
-	},
-/obj/machinery/power/apc/angled{
-	dir = 1;
-	name = "night shift APC";
-	nightshift_setting = 2
-	},
-/obj/random/soap,
-/obj/random/soap,
-/obj/item/weapon/towel/random,
-/obj/item/weapon/towel/random,
-/obj/item/clothing/under/bathrobe,
-/obj/item/clothing/under/bathrobe,
-/obj/structure/table/standard,
-/turf/simulated/floor/tiled/white,
-/area/stellardelight/deck1/shower)
+/obj/structure/table/steel,
+/obj/item/weapon/storage/box/lights/mixed,
+/turf/simulated/floor/tiled/monotile,
+/area/janitor)
 "bK" = (
 /obj/structure/disposalpipe/trunk{
 	dir = 8
@@ -1158,16 +1126,7 @@
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/stellardelight/deck1/pilot)
 "cu" = (
-/obj/machinery/shower{
-	pixel_y = 15
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals10{
-	dir = 10
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals10{
-	dir = 9
-	},
-/turf/simulated/floor/tiled/white,
+/turf/simulated/floor/tiled/steel_ridged,
 /area/stellardelight/deck1/shower)
 "cv" = (
 /obj/structure/cable/green{
@@ -2231,6 +2190,18 @@
 /obj/machinery/mineral/equipment_vendor/survey,
 /turf/simulated/floor/tiled/milspec,
 /area/stellardelight/deck1/explobriefing)
+"eL" = (
+/obj/structure/mirror{
+	pixel_y = 38
+	},
+/obj/structure/sink{
+	pixel_y = 20
+	},
+/obj/structure/cable/green{
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/toilet)
 "eM" = (
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -2355,6 +2326,9 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/security/warden)
 "fb" = (
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
 	},
@@ -2759,6 +2733,18 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/security/security_cell_hallway)
+"fU" = (
+/obj/structure/table/steel_reinforced,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced,
+/obj/machinery/door/blast/angled/open{
+	dir = 2;
+	id = "securitylockdown"
+	},
+/obj/effect/floor_decal/milspec/color/red,
+/obj/item/device/flashlight/lamp,
+/turf/simulated/floor/tiled/dark,
+/area/security/lobby)
 "fV" = (
 /obj/machinery/light/small,
 /turf/simulated/floor/tiled/dark,
@@ -2772,9 +2758,7 @@
 "fX" = (
 /obj/structure/table/woodentable,
 /obj/machinery/alarm/angled,
-/obj/machinery/photocopier/faxmachine{
-	department = "Library Conference Room"
-	},
+/obj/machinery/librarypubliccomp,
 /turf/simulated/floor/wood,
 /area/library)
 "fZ" = (
@@ -3082,6 +3066,18 @@
 	},
 /turf/simulated/floor/airless,
 /area/stellardelight/deck1/exterior)
+"gI" = (
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/stellardelight/deck1/shower)
 "gK" = (
 /obj/structure/table/woodentable,
 /obj/machinery/alarm/angled{
@@ -3912,18 +3908,21 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/stellardelight/deck1/starboard)
 "in" = (
-/obj/effect/floor_decal/steeldecal/steel_decals10{
-	dir = 5
+/obj/structure/cable/green{
+	icon_state = "0-4"
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals10{
-	dir = 6
+/obj/machinery/power/apc/angled{
+	dir = 1;
+	name = "night shift APC";
+	nightshift_setting = 2
 	},
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 6
-	},
+/obj/random/soap,
+/obj/random/soap,
+/obj/item/weapon/towel/random,
+/obj/item/weapon/towel/random,
+/obj/item/clothing/under/bathrobe,
+/obj/item/clothing/under/bathrobe,
+/obj/structure/table/standard,
 /turf/simulated/floor/tiled/white,
 /area/stellardelight/deck1/shower)
 "io" = (
@@ -3978,12 +3977,16 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/portfore)
 "it" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock{
+	name = "Unisex Showers"
+	},
 /obj/structure/cable/green{
-	icon_state = "1-8"
+	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/white,
+/turf/simulated/floor/tiled/steel_ridged,
 /area/stellardelight/deck1/shower)
 "iv" = (
 /obj/machinery/atmospherics/pipe/simple/visible{
@@ -4297,16 +4300,10 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/security_lockerroom)
 "jd" = (
-/obj/effect/floor_decal/steeldecal/steel_decals10{
-	dir = 10
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals10{
-	dir = 9
-	},
-/obj/machinery/alarm/angled{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/white,
+/turf/simulated/floor/tiled/steel_ridged,
 /area/stellardelight/deck1/shower)
 "jf" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -4756,15 +4753,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/storage)
-"kb" = (
-/obj/structure/cable/green{
-	icon_state = "1-8"
-	},
-/obj/machinery/alarm/angled{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/white,
-/area/crew_quarters/toilet)
 "kc" = (
 /obj/machinery/power/breakerbox/activated{
 	RCon_tag = "Civilian Substation Bypass"
@@ -4931,12 +4919,11 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/portfore)
 "ky" = (
+/obj/machinery/firealarm/angled{
+	dir = 4
+	},
 /obj/structure/cable/green{
 	icon_state = "1-2"
-	},
-/obj/machinery/light_switch{
-	dir = 8;
-	pixel_x = 24
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/toilet)
@@ -5016,8 +5003,11 @@
 /turf/simulated/floor/airless,
 /area/stellardelight/deck1/exterior)
 "kK" = (
-/obj/machinery/light/small{
-	dir = 4
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 10
 	},
 /turf/simulated/floor/tiled/white,
 /area/stellardelight/deck1/shower)
@@ -5030,6 +5020,11 @@
 "kM" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/structure/closet/emcloset,
+/obj/item/device/radio/intercom{
+	dir = 1;
+	name = "Station Intercom (General)";
+	pixel_y = 21
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/stellardelight/deck1/starboard)
 "kN" = (
@@ -5082,9 +5077,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/port)
-"kW" = (
-/turf/simulated/floor/tiled/white,
-/area/stellardelight/deck1/shower)
 "kY" = (
 /obj/structure/cable/pink{
 	icon_state = "1-2"
@@ -5554,14 +5546,11 @@
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/stellardelight/deck1/shuttlebay)
 "lQ" = (
-/obj/structure/mirror{
-	pixel_y = 38
-	},
-/obj/structure/sink{
-	pixel_y = 20
-	},
-/turf/simulated/floor/tiled/white,
-/area/crew_quarters/toilet)
+/obj/structure/table/steel,
+/obj/item/weapon/reagent_containers/spray/cleaner,
+/obj/item/weapon/reagent_containers/spray/cleaner,
+/turf/simulated/floor/tiled/monotile,
+/area/janitor)
 "lR" = (
 /obj/structure/stairs/spawner/north,
 /obj/structure/railing/grey{
@@ -5677,9 +5666,18 @@
 /turf/simulated/floor/reinforced,
 /area/stellardelight/deck1/shuttlebay)
 "mc" = (
-/obj/machinery/atmospherics/unary/vent_pump/on,
-/turf/simulated/floor/tiled/white,
-/area/crew_quarters/toilet)
+/obj/item/weapon/grenade/chem_grenade/cleaner,
+/obj/item/weapon/grenade/chem_grenade/cleaner,
+/obj/item/weapon/grenade/chem_grenade/cleaner,
+/obj/structure/table/steel,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/machinery/disposal/wall{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/janitor)
 "md" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -5840,6 +5838,18 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/aft)
+"ms" = (
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/stellardelight/deck1/port)
 "mt" = (
 /obj/structure/cable/green{
 	color = "#42038a";
@@ -5869,6 +5879,12 @@
 /obj/item/clothing/suit/caution,
 /obj/item/clothing/suit/caution,
 /obj/item/clothing/suit/caution,
+/obj/item/device/lightreplacer,
+/obj/structure/mopbucket,
+/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/item/weapon/mop,
+/obj/item/weapon/storage/bag/trash,
+/obj/item/weapon/soap/nanotrasen,
 /turf/simulated/floor/tiled/monotile,
 /area/janitor)
 "mw" = (
@@ -6384,6 +6400,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
 	},
+/obj/structure/reagent_dispensers/watertank,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/exploration)
 "nC" = (
@@ -6603,21 +6620,6 @@
 /obj/item/weapon/hand_labeler,
 /turf/simulated/floor/tiled/dark,
 /area/security/warden)
-"ob" = (
-/obj/structure/cable/green{
-	icon_state = "2-4"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 1
-	},
-/obj/structure/cable/green{
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/tiled/white,
-/area/crew_quarters/toilet)
 "oc" = (
 /obj/machinery/light{
 	dir = 4
@@ -6856,16 +6858,22 @@
 /area/security/security_cell_hallway)
 "oC" = (
 /obj/structure/cable/green{
-	icon_state = "1-4"
+	icon_state = "2-8"
 	},
 /obj/structure/cable/green{
 	icon_state = "2-4"
+	},
+/obj/structure/cable/green{
+	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
+	},
+/obj/structure/cable/green{
+	icon_state = "1-8"
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/toilet)
@@ -7013,13 +7021,9 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/rnd/workshop)
 "oT" = (
-/obj/structure/closet/secure_closet/personal,
-/obj/item/clothing/under/bathrobe,
-/obj/item/clothing/under/bathrobe,
-/obj/item/weapon/towel/random,
-/obj/item/weapon/towel/random,
-/turf/simulated/floor/tiled/white,
-/area/stellardelight/deck1/shower)
+/obj/structure/closet/l3closet/janitor,
+/turf/simulated/floor/tiled/monotile,
+/area/janitor)
 "oU" = (
 /obj/structure/cable/green{
 	icon_state = "1-8"
@@ -7467,6 +7471,21 @@
 "pR" = (
 /turf/simulated/wall/bay/brown,
 /area/stellardelight/deck1/miningequipment)
+"pS" = (
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/turf/simulated/floor/tiled/white,
+/area/stellardelight/deck1/shower)
 "pT" = (
 /obj/structure/cable/pink{
 	icon_state = "4-8"
@@ -8451,13 +8470,12 @@
 /turf/simulated/floor/lino,
 /area/chapel/office)
 "rZ" = (
-/obj/machinery/door/airlock/angled_bay/standard/color/common{
-	dir = 4;
-	id_tag = "bathroomstall1";
-	name = "Toilet 1"
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
 	},
-/turf/simulated/floor/tiled/steel_ridged,
-/area/crew_quarters/toilet)
+/obj/structure/closet/l3closet/janitor,
+/turf/simulated/floor/tiled/monotile,
+/area/janitor)
 "sa" = (
 /obj/structure/cable/green{
 	color = "#42038a";
@@ -8983,6 +9001,10 @@
 	},
 /turf/simulated/floor/tiled/eris/white/gray_platform,
 /area/gateway)
+"tc" = (
+/obj/structure/reagent_dispensers/fueltank,
+/turf/simulated/floor,
+/area/maintenance/stellardelight/deck1/exploration)
 "td" = (
 /obj/structure/cable/pink{
 	icon_state = "4-8"
@@ -9871,15 +9893,13 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/security_equiptment_storage)
 "vd" = (
-/obj/structure/mirror{
-	pixel_y = 38
+/obj/structure/toilet{
+	dir = 4
 	},
-/obj/structure/sink{
-	pixel_y = 20
+/obj/machinery/alarm/angled{
+	dir = 4
 	},
-/obj/machinery/light{
-	dir = 8
-	},
+/obj/effect/landmark/start/visitor,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/toilet)
 "ve" = (
@@ -9922,9 +9942,12 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/warden)
 "vh" = (
-/obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/junction{
+	dir = 2;
+	icon_state = "pipe-j2"
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/stellardelight/deck1/starboard)
 "vi" = (
@@ -10178,15 +10201,14 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/stellardelight/deck1/starboard)
 "vM" = (
-/obj/structure/cable/green{
-	icon_state = "4-8"
+/obj/machinery/button/remote/airlock{
+	id = "bathroomstall1";
+	name = "Toilet 1 Lock";
+	pixel_x = -10;
+	pixel_y = 22;
+	specialfunctions = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9
-	},
+/obj/machinery/light/small,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/toilet)
 "vN" = (
@@ -10547,7 +10569,7 @@
 /turf/simulated/floor/tiled/eris,
 /area/rnd/xenobiology/xenoflora)
 "wJ" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/toilet)
 "wK" = (
@@ -11089,10 +11111,19 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/tactical)
 "xS" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 1
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 5
 	},
-/turf/simulated/floor/tiled/steel_ridged,
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 6
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/white,
 /area/stellardelight/deck1/shower)
 "xT" = (
 /obj/structure/disposalpipe/segment,
@@ -11244,8 +11275,14 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/armoury)
 "yl" = (
-/obj/machinery/light/small{
-	dir = 8
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 9
+	},
+/obj/machinery/alarm/angled{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
 /area/stellardelight/deck1/shower)
@@ -12002,18 +12039,11 @@
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/stellardelight/deck1/shuttlebay)
 "zP" = (
-/obj/effect/floor_decal/steeldecal/steel_decals10{
-	dir = 5
+/obj/structure/cable/green{
+	icon_state = "1-8"
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals10{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 5
-	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/white,
 /area/stellardelight/deck1/shower)
 "zQ" = (
@@ -12509,6 +12539,10 @@
 /obj/structure/table/woodentable,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/item/weapon/paper_bin{
+	pixel_y = 7
+	},
+/obj/item/weapon/pen,
 /turf/simulated/floor/carpet,
 /area/library)
 "AO" = (
@@ -13272,6 +13306,18 @@
 "Ct" = (
 /turf/simulated/wall/bay/r_wall/purple,
 /area/assembly/robotics)
+"Cu" = (
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 5
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/stellardelight/deck1/shower)
 "Cv" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -13308,14 +13354,12 @@
 /turf/simulated/floor/tiled/white,
 /area/security/detectives_office)
 "CA" = (
-/obj/structure/toilet{
-	dir = 4
+/obj/machinery/door/airlock/angled_bay/standard/color/common{
+	dir = 4;
+	id_tag = "bathroomstall1";
+	name = "Toilet 1"
 	},
-/obj/machinery/alarm/angled{
-	dir = 4
-	},
-/obj/effect/landmark/start/visitor,
-/turf/simulated/floor/tiled/white,
+/turf/simulated/floor/tiled/steel_ridged,
 /area/crew_quarters/toilet)
 "CB" = (
 /obj/structure/cable{
@@ -13763,6 +13807,9 @@
 /obj/effect/floor_decal/steeldecal/steel_decals10{
 	dir = 5
 	},
+/obj/machinery/light/small{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/white,
 /area/stellardelight/deck1/shower)
 "Dz" = (
@@ -13973,21 +14020,6 @@
 	},
 /turf/simulated/floor,
 /area/stellardelight/deck1/fore)
-"DZ" = (
-/obj/effect/floor_decal/steeldecal/steel_decals10{
-	dir = 5
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals10{
-	dir = 6
-	},
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
-	},
-/turf/simulated/floor/tiled/white,
-/area/stellardelight/deck1/shower)
 "Eb" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -14128,15 +14160,11 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/portfore)
 "Ew" = (
-/obj/effect/floor_decal/steeldecal/steel_decals10{
-	dir = 5
-	},
-/obj/effect/floor_decal/steeldecal/steel_decals10{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
+/obj/structure/closet/secure_closet/personal,
+/obj/item/clothing/under/bathrobe,
+/obj/item/clothing/under/bathrobe,
+/obj/item/weapon/towel/random,
+/obj/item/weapon/towel/random,
 /turf/simulated/floor/tiled/white,
 /area/stellardelight/deck1/shower)
 "Ex" = (
@@ -14276,8 +14304,14 @@
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/paramedic)
 "EN" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 4
+/obj/structure/mirror{
+	pixel_y = 38
+	},
+/obj/structure/sink{
+	pixel_y = 20
+	},
+/obj/machinery/light{
+	dir = 8
 	},
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -14639,10 +14673,7 @@
 /turf/simulated/floor/tiled/milspec,
 /area/stellardelight/deck1/explobriefing)
 "Fz" = (
-/obj/structure/closet/l3closet/janitor,
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 1
-	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/monotile,
 /area/janitor)
 "FA" = (
@@ -15334,8 +15365,8 @@
 	},
 /obj/structure/disposalpipe/sortjunction{
 	dir = 4;
-	name = "Bar";
-	sortType = "Bar"
+	name = "Security";
+	sortType = "Security"
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/portcent)
@@ -15757,17 +15788,10 @@
 /area/prison/cell_block/B)
 "Ig" = (
 /obj/structure/cable/green{
-	icon_state = "4-8"
+	icon_state = "1-4"
 	},
-/obj/random/soap,
-/obj/random/soap,
-/obj/item/weapon/towel/random,
-/obj/item/weapon/towel/random,
-/obj/item/clothing/under/bathrobe,
-/obj/item/clothing/under/bathrobe,
-/obj/structure/table/standard,
-/turf/simulated/floor/tiled/white,
-/area/stellardelight/deck1/shower)
+/turf/simulated/wall/bay/r_wall/steel,
+/area/crew_quarters/toilet)
 "Ih" = (
 /obj/structure/closet{
 	name = "robotics equipment"
@@ -16218,9 +16242,6 @@
 /area/maintenance/stellardelight/deck1/portcent)
 "IU" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/cable/green{
-	icon_state = "4-8"
-	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/toilet)
 "IV" = (
@@ -16751,11 +16772,18 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/stellardelight/deck1/dorms/dorm6)
 "Ki" = (
-/obj/structure/mopbucket,
-/obj/item/weapon/mop,
-/obj/item/weapon/reagent_containers/glass/bucket,
-/turf/simulated/floor/tiled/monotile,
-/area/janitor)
+/obj/structure/toilet{
+	dir = 4
+	},
+/obj/machinery/alarm/angled{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/obj/effect/landmark/start/visitor,
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/toilet)
 "Kj" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/simulated/floor/tiled/eris/white/gray_platform,
@@ -16790,6 +16818,18 @@
 /obj/machinery/portable_atmospherics/canister/air/airlock,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/exploration)
+"Ko" = (
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/toilet)
 "Kp" = (
 /obj/structure/bed/chair/comfy/brown{
 	dir = 8
@@ -16865,14 +16905,16 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/fore)
 "Kz" = (
-/obj/machinery/power/apc/angled{
-	dir = 1
+/obj/machinery/button/remote/airlock{
+	id = "bathroomstall2";
+	name = "Toilet 2 Lock";
+	pixel_x = -10;
+	pixel_y = 22;
+	specialfunctions = 4
 	},
+/obj/machinery/light/small,
 /obj/structure/cable/green{
-	icon_state = "0-2"
-	},
-/obj/structure/closet/crate/bin{
-	anchored = 1
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/toilet)
@@ -17253,11 +17295,14 @@
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/exam_room)
 "Ls" = (
-/obj/machinery/light{
-	dir = 4
+/obj/machinery/power/apc/angled{
+	dir = 1
 	},
 /obj/structure/cable/green{
-	icon_state = "1-2"
+	icon_state = "0-2"
+	},
+/obj/structure/closet/crate/bin{
+	anchored = 1
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/toilet)
@@ -17531,14 +17576,11 @@
 /turf/simulated/floor/reinforced,
 /area/rnd/xenobiology)
 "LR" = (
-/obj/structure/cable/green{
-	icon_state = "1-2"
-	},
-/obj/machinery/firealarm/angled{
+/obj/machinery/light{
 	dir = 4
 	},
 /obj/structure/cable/green{
-	icon_state = "2-8"
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/toilet)
@@ -17758,14 +17800,14 @@
 /turf/simulated/floor/bluegrid,
 /area/assembly/robotics)
 "Ms" = (
-/obj/machinery/door/window{
-	dir = 1
-	},
 /obj/effect/floor_decal/steeldecal/steel_decals10{
 	dir = 9
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals10{
 	dir = 10
+	},
+/obj/structure/curtain/open/privacy{
+	name = "shower curtain"
 	},
 /turf/simulated/floor/tiled/white,
 /area/stellardelight/deck1/shower)
@@ -17931,15 +17973,15 @@
 /turf/simulated/floor,
 /area/stellardelight/deck1/dorms/dorm6)
 "MO" = (
-/obj/machinery/button/remote/airlock{
-	id = "bathroomstall1";
-	name = "Toilet 1 Lock";
-	pixel_x = -10;
-	pixel_y = 22;
-	specialfunctions = 4
+/obj/machinery/door/airlock/angled_bay/standard/color/common{
+	dir = 4;
+	id_tag = "bathroomstall2";
+	name = "Toilet 2"
 	},
-/obj/machinery/light/small,
-/turf/simulated/floor/tiled/white,
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/steel_ridged,
 /area/crew_quarters/toilet)
 "MP" = (
 /obj/machinery/power/pointdefense{
@@ -18046,10 +18088,19 @@
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/resleeving)
 "MZ" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 5
 	},
-/turf/simulated/floor/tiled/steel_ridged,
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 6
+	},
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/white,
 /area/stellardelight/deck1/shower)
 "Nb" = (
 /obj/machinery/door/firedoor/glass,
@@ -18323,9 +18374,6 @@
 /turf/simulated/floor/tiled/dark,
 /area/chapel/main)
 "NC" = (
-/obj/structure/mopbucket,
-/obj/item/weapon/mop,
-/obj/item/weapon/reagent_containers/glass/bucket,
 /obj/item/device/radio/intercom{
 	dir = 8;
 	pixel_x = -24
@@ -18666,7 +18714,6 @@
 /obj/structure/cable/green{
 	icon_state = "1-2"
 	},
-/obj/structure/disposalpipe/junction,
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 4
 	},
@@ -18832,13 +18879,10 @@
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/stellardelight/deck1/exploshuttle)
 "OM" = (
-/obj/effect/floor_decal/steeldecal/steel_decals10{
-	dir = 9
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals10{
-	dir = 10
-	},
-/turf/simulated/floor/tiled/white,
+/turf/simulated/floor/tiled/steel_ridged,
 /area/stellardelight/deck1/shower)
 "ON" = (
 /obj/structure/cable/green{
@@ -18972,9 +19016,18 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/exploration)
 "Pf" = (
-/obj/structure/closet/l3closet/janitor,
-/turf/simulated/floor/tiled/monotile,
-/area/janitor)
+/obj/effect/floor_decal/milspec/color/red/half{
+	dir = 8
+	},
+/obj/structure/closet/walllocker_double/east{
+	dir = 8;
+	name = "Evidence Storage";
+	pixel_x = -32
+	},
+/obj/item/weapon/storage/box/evidence,
+/obj/item/weapon/storage/box/evidence,
+/turf/simulated/floor/tiled/dark,
+/area/security/security_cell_hallway)
 "Pg" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -19090,6 +19143,13 @@
 /obj/structure/low_wall/bay/reinforced/brown,
 /turf/simulated/floor,
 /area/stellardelight/deck1/oreprocessing)
+"Pt" = (
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/stellardelight/deck1/port)
 "Pu" = (
 /turf/simulated/floor,
 /area/maintenance/stellardelight/substation/exploration)
@@ -19167,15 +19227,17 @@
 /turf/simulated/floor/tiled/milspec,
 /area/stellardelight/deck1/exploration)
 "PF" = (
-/obj/effect/floor_decal/steeldecal/steel_decals10{
-	dir = 5
+/obj/structure/cable/green{
+	icon_state = "4-8"
 	},
-/obj/effect/floor_decal/steeldecal/steel_decals10{
-	dir = 6
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
-	},
+/obj/random/soap,
+/obj/random/soap,
+/obj/item/weapon/towel/random,
+/obj/item/weapon/towel/random,
+/obj/item/clothing/under/bathrobe,
+/obj/item/clothing/under/bathrobe,
+/obj/structure/table/standard,
+/obj/item/weapon/bikehorn/rubberducky,
 /turf/simulated/floor/tiled/white,
 /area/stellardelight/deck1/shower)
 "PG" = (
@@ -19199,6 +19261,12 @@
 /obj/item/clothing/suit/caution,
 /obj/item/clothing/suit/caution,
 /obj/item/clothing/suit/caution,
+/obj/item/device/lightreplacer,
+/obj/structure/mopbucket,
+/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/item/weapon/mop,
+/obj/item/weapon/storage/bag/trash,
+/obj/item/weapon/soap/nanotrasen,
 /turf/simulated/floor/tiled/monotile,
 /area/janitor)
 "PI" = (
@@ -19264,7 +19332,6 @@
 	pixel_x = 4;
 	pixel_y = 4
 	},
-/obj/item/weapon/storage/box/monkeycubes,
 /obj/item/weapon/soap/nanotrasen,
 /obj/structure/closet/walllocker_double/medical/east,
 /obj/item/weapon/hand_labeler,
@@ -19273,6 +19340,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
+/obj/item/weapon/storage/box/monkeycubes/wolpincubes,
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/virology)
 "PR" = (
@@ -19300,16 +19368,14 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/security_cell_hallway)
 "PU" = (
-/obj/structure/toilet{
-	dir = 4
+/obj/machinery/button/remote/airlock{
+	id = "bathroomstall3";
+	name = "Toilet 3 Lock";
+	pixel_x = -10;
+	pixel_y = 22;
+	specialfunctions = 4
 	},
-/obj/machinery/alarm/angled{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	icon_state = "4-8"
-	},
-/obj/effect/landmark/start/visitor,
+/obj/machinery/light/small,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/toilet)
 "PV" = (
@@ -19700,11 +19766,12 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/maintenance/stellardelight/deck1/starboardaft)
 "QS" = (
-/obj/machinery/vending/wallmed1/public{
-	pixel_x = 29
-	},
 /obj/structure/cable/green{
 	icon_state = "1-2"
+	},
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = 24
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/toilet)
@@ -19775,7 +19842,7 @@
 	door_color = "#2e2e2e";
 	fill_color = "#2e2e2e";
 	name = "Chapel Office";
-	req_access = list(26);
+	req_access = list(22);
 	stripe_color = "#deaf43"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
@@ -19828,15 +19895,12 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/substation/medical)
 "Ri" = (
-/obj/machinery/button/remote/airlock{
-	id = "bathroomstall3";
-	name = "Toilet 3 Lock";
-	pixel_x = -10;
-	pixel_y = 22;
-	specialfunctions = 4
+/obj/machinery/door/airlock/angled_bay/standard/color/common{
+	dir = 4;
+	id_tag = "bathroomstall3";
+	name = "Toilet 3"
 	},
-/obj/machinery/light/small,
-/turf/simulated/floor/tiled/white,
+/turf/simulated/floor/tiled/steel_ridged,
 /area/crew_quarters/toilet)
 "Rj" = (
 /obj/structure/cable/green{
@@ -19960,6 +20024,12 @@
 /obj/item/clothing/suit/caution,
 /obj/item/clothing/suit/caution,
 /obj/item/clothing/suit/caution,
+/obj/item/device/lightreplacer,
+/obj/structure/mopbucket,
+/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/item/weapon/mop,
+/obj/item/weapon/storage/bag/trash,
+/obj/item/weapon/soap/nanotrasen,
 /turf/simulated/floor/tiled/monotile,
 /area/janitor)
 "Rr" = (
@@ -20156,6 +20226,15 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/security/security_cell_hallway)
+"RK" = (
+/obj/structure/cable/green{
+	icon_state = "1-8"
+	},
+/obj/machinery/alarm/angled{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/toilet)
 "RL" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -20544,15 +20623,13 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/lobby)
 "SG" = (
-/obj/machinery/door/airlock/angled_bay/standard/color/common{
-	dir = 4;
-	id_tag = "bathroomstall2";
-	name = "Toilet 2"
+/obj/machinery/vending/wallmed1/public{
+	pixel_x = 29
 	},
 /obj/structure/cable/green{
-	icon_state = "4-8"
+	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/steel_ridged,
+/turf/simulated/floor/tiled/white,
 /area/crew_quarters/toilet)
 "SH" = (
 /obj/structure/cable/green{
@@ -20700,7 +20777,12 @@
 /turf/simulated/floor/carpet/purcarpet,
 /area/stellardelight/deck1/dorms/dorm7)
 "SV" = (
-/obj/item/weapon/bikehorn/rubberducky,
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 9
+	},
 /turf/simulated/floor/tiled/white,
 /area/stellardelight/deck1/shower)
 "SW" = (
@@ -20718,16 +20800,19 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/maintenance/stellardelight/deck1/exploration)
 "SX" = (
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock{
-	name = "Unisex Showers"
+/obj/structure/cable/green{
+	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
 	},
 /obj/structure/cable/green{
-	icon_state = "1-2"
+	icon_state = "1-4"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/steel_ridged,
+/turf/simulated/floor/tiled/white,
 /area/crew_quarters/toilet)
 "SY" = (
 /obj/structure/cable/green{
@@ -20946,6 +21031,16 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/stellardelight/deck1/starboard)
+"Tw" = (
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/machinery/disposal/wall{
+	dir = 4;
+	plane = -34
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/stellardelight/deck1/port)
 "Tx" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/green{
@@ -21372,8 +21467,11 @@
 /turf/simulated/floor/airless,
 /area/stellardelight/deck1/exterior)
 "Um" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
+/obj/structure/mirror{
+	pixel_y = 38
+	},
+/obj/structure/sink{
+	pixel_y = 20
 	},
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -21792,9 +21890,11 @@
 /turf/simulated/wall/bay/r_wall/steel,
 /area/prison/cell_block)
 "Vf" = (
-/obj/item/device/radio/intercom{
-	dir = 4;
-	pixel_x = 24
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/obj/machinery/disposal/wall{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/stellardelight/deck1/starboard)
@@ -21994,6 +22094,9 @@
 /area/stellardelight/deck1/dorms/dorm7)
 "Vw" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/stellardelight/deck1/port)
 "Vx" = (
@@ -22198,7 +22301,7 @@
 /area/rnd/xenobiology/xenoflora_storage)
 "VP" = (
 /obj/structure/cable/green{
-	icon_state = "4-8"
+	icon_state = "2-8"
 	},
 /turf/simulated/wall/bay/r_wall/steel,
 /area/crew_quarters/toilet)
@@ -22258,6 +22361,9 @@
 	dir = 1;
 	name = "night shift APC";
 	nightshift_setting = 2
+	},
+/obj/machinery/recharger{
+	pixel_y = 5
 	},
 /turf/simulated/floor/wood,
 /area/library)
@@ -22562,6 +22668,21 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/carpet,
 /area/stellardelight/deck1/dorms/dorm5)
+"WF" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/disposalpipe/junction{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/stellardelight/deck1/port)
 "WG" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/bay/reinforced,
@@ -22578,13 +22699,11 @@
 "WJ" = (
 /obj/structure/table/woodentable,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/item/weapon/paper_bin{
-	pixel_x = -3;
-	pixel_y = 7
-	},
-/obj/item/weapon/pen,
 /obj/structure/sign/painting/library_secure{
 	pixel_y = 30
+	},
+/obj/machinery/photocopier/faxmachine{
+	department = "Library Conference Room"
 	},
 /turf/simulated/floor/wood,
 /area/library)
@@ -23118,12 +23237,10 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/assembly/robotics)
 "XP" = (
-/obj/machinery/door/airlock/angled_bay/standard/color/common{
-	dir = 4;
-	id_tag = "bathroomstall3";
-	name = "Toilet 3"
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
 	},
-/turf/simulated/floor/tiled/steel_ridged,
+/turf/simulated/floor/tiled/white,
 /area/crew_quarters/toilet)
 "XQ" = (
 /obj/structure/disposalpipe/trunk{
@@ -23794,16 +23911,8 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/prison/cell_block/C)
 "Zk" = (
-/obj/machinery/button/remote/airlock{
-	id = "bathroomstall2";
-	name = "Toilet 2 Lock";
-	pixel_x = -10;
-	pixel_y = 22;
-	specialfunctions = 4
-	},
-/obj/machinery/light/small,
-/obj/structure/cable/green{
-	icon_state = "4-8"
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/toilet)
@@ -31371,7 +31480,7 @@ Om
 BN
 pO
 Uw
-vT
+tc
 Ua
 Jg
 ne
@@ -31488,11 +31597,11 @@ PM
 PM
 PM
 PM
-Xc
-Xc
+PM
+PM
 Xc
 VP
-Xc
+Ig
 Xc
 Xc
 Xc
@@ -31630,17 +31739,17 @@ PM
 KA
 Lj
 NC
+bJ
+mM
+vd
 IY
-CA
-IY
-PU
-IY
-CA
+Ki
 IY
 vd
-EN
 IY
-bJ
+EN
+XP
+NH
 in
 xS
 jd
@@ -31771,22 +31880,22 @@ GV
 Rt
 no
 Eo
-Ki
-IY
-MO
-IY
-Zk
-IY
-Ri
-IY
+no
 lQ
-Um
+mM
+vM
 IY
-Ig
-PF
+Kz
+IY
+PU
+IY
+Um
+Zk
 NH
+PF
+gI
 cu
-kW
+SV
 NH
 NH
 NH
@@ -31914,19 +32023,19 @@ PM
 mv
 pN
 bv
+mc
+mM
+CA
 IY
-rZ
+MO
 IY
-SG
+Ri
 IY
-XP
-IY
-lQ
-ob
+eL
 SX
 it
 zP
-NH
+pS
 cu
 SV
 Ms
@@ -32055,22 +32164,22 @@ GN
 PM
 PH
 Bz
-Pf
-IY
-mc
+no
+oT
+mM
 wJ
 IU
 fb
 kQ
 kQ
 kQ
-vM
-IY
-oT
-Ew
+kQ
+Ko
 NH
+Ew
+Cu
 cu
-kW
+SV
 NH
 NH
 NH
@@ -32198,18 +32307,18 @@ PM
 Rq
 Nr
 Fz
-IY
-Kz
+rZ
+mM
 Ls
 LR
 oC
 ky
 QS
-Ls
-kb
-IY
-oT
-DZ
+SG
+LR
+RK
+NH
+Ew
 MZ
 OM
 kK
@@ -32340,8 +32449,8 @@ PM
 mM
 iF
 mM
-IY
-IY
+mM
+mM
 IY
 IY
 Fu
@@ -32470,7 +32579,7 @@ Nh
 BU
 qo
 uA
-HW
+Tw
 IA
 Hi
 Dq
@@ -32754,7 +32863,7 @@ Ou
 ls
 ew
 AG
-CZ
+ms
 CZ
 CZ
 hk
@@ -32895,8 +33004,8 @@ hL
 rb
 hL
 YT
-Rk
-YT
+WF
+Pt
 SL
 YT
 Je
@@ -34018,7 +34127,7 @@ GT
 ya
 mu
 NN
-jy
+fU
 mO
 Ha
 df
@@ -34858,7 +34967,7 @@ TE
 CM
 qG
 PO
-QQ
+Pf
 wT
 wT
 wT
