@@ -8,6 +8,20 @@
 /obj/item/weapon/gun/energy/lasercannon,
 /turf/simulated/floor/tiled/dark,
 /area/centcom/specops)
+"ac" = (
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 1;
+	frequency = 1380;
+	id_tag = null
+	},
+/obj/effect/map_helper/airlock/atmos/pump_out_internal,
+/obj/machinery/embedded_controller/radio/airlock/docking_port{
+	frequency = 1380;
+	id_tag = "ccboat";
+	pixel_y = 29
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/ccboat)
 "ad" = (
 /obj/structure/table/rack,
 /obj/item/weapon/gun/energy/xray,
@@ -514,6 +528,43 @@
 "bA" = (
 /obj/structure/bed/chair/shuttle,
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/shuttle/ccboat)
+"bB" = (
+/obj/machinery/airlock_sensor{
+	dir = 8;
+	frequency = 1380;
+	id_tag = null;
+	pixel_x = 24
+	},
+/obj/effect/map_helper/airlock/sensor/chamber_sensor,
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 1;
+	frequency = 1380;
+	id_tag = null
+	},
+/obj/effect/map_helper/airlock/atmos/pump_out_internal,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/ccboat)
+"bC" = (
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	frequency = 1380;
+	id_tag = null
+	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/effect/shuttle_landmark/shuttle_initializer/ccboat,
+/obj/effect/overmap/visitable/ship/landable/ccboat,
+/turf/simulated/floor/plating,
+/area/shuttle/ccboat)
+"bD" = (
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	frequency = 1380;
+	id_tag = null
+	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/turf/simulated/floor/plating,
 /area/shuttle/ccboat)
 "bE" = (
 /obj/effect/floor_decal/fancy_shuttle{
@@ -2391,16 +2442,6 @@
 	},
 /turf/simulated/shuttle/floor/white,
 /area/shuttle/escape)
-"id" = (
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	frequency = 1380;
-	id_tag = null
-	},
-/obj/effect/map_helper/airlock/atmos/chamber_pump,
-/obj/effect/shuttle_landmark/shuttle_initializer/ccboat,
-/obj/effect/overmap/visitable/ship/landable/ccboat,
-/turf/simulated/floor/airless,
-/area/shuttle/ccboat)
 "ih" = (
 /obj/effect/floor_decal/corner/blue{
 	dir = 5
@@ -4530,20 +4571,6 @@
 /obj/machinery/door/airlock/glass,
 /turf/simulated/floor/tiled,
 /area/centcom/main_hall)
-"qV" = (
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 1;
-	frequency = 1380;
-	id_tag = null
-	},
-/obj/effect/map_helper/airlock/atmos/pump_out_internal,
-/obj/machinery/embedded_controller/radio/airlock/docking_port{
-	frequency = 1380;
-	id_tag = "ccboat";
-	pixel_y = 29
-	},
-/turf/simulated/floor/airless,
-/area/shuttle/ccboat)
 "qZ" = (
 /obj/machinery/body_scanconsole{
 	dir = 4
@@ -4649,14 +4676,6 @@
 	},
 /turf/simulated/shuttle/floor,
 /area/shuttle/escape)
-"rR" = (
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	frequency = 1380;
-	id_tag = null
-	},
-/obj/effect/map_helper/airlock/atmos/chamber_pump,
-/turf/simulated/floor/airless,
-/area/shuttle/ccboat)
 "rU" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	frequency = 1380;
@@ -6060,25 +6079,6 @@
 	name = "reinforced floor"
 	},
 /area/centcom)
-"zx" = (
-/obj/machinery/airlock_sensor{
-	dir = 8;
-	frequency = 1380;
-	id_tag = null;
-	pixel_x = 24
-	},
-/obj/effect/map_helper/airlock/sensor/chamber_sensor,
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 1;
-	frequency = 1380;
-	id_tag = null
-	},
-/obj/effect/map_helper/airlock/atmos/pump_out_internal,
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/simulated/floor/airless,
-/area/shuttle/ccboat)
 "zy" = (
 /obj/effect/floor_decal/derelict/d11,
 /turf/simulated/floor/tiled,
@@ -25760,8 +25760,8 @@ kX
 TF
 TF
 Cr
-qV
-id
+ac
+bC
 wO
 vT
 kX
@@ -25902,8 +25902,8 @@ bA
 GK
 Vw
 Cr
-zx
-rR
+bB
+bD
 xB
 Bj
 AR

@@ -36,6 +36,11 @@
 	if(pred.softfall || (istype(pred, /mob/living/simple_mob) && pred.mob_size <= MOB_SMALL))		// TODO: add ability for mob below to be 'soft' and cushion fall
 		safe_fall = TRUE
 
+	if(istype(pred, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = pred
+		if(H.species.soft_landing)
+			safe_fall = TRUE
+
 	var/mob/living/prey = src
 	var/fallloc = prey.loc
 	if(pred.can_be_drop_pred && prey.can_be_drop_prey)
