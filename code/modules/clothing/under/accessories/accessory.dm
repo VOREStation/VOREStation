@@ -436,3 +436,72 @@
 	desc = "A plain, unadorned sash."
 	icon_state = "sash"
 	slot = ACCESSORY_SLOT_OVER
+
+//Gaiter scarves
+/obj/item/clothing/accessory/gaiter
+	name = "red neck gaiter"
+	desc = "A slightly worn neck gaiter, it's loose enough to be worn comfortably like a scarf. Commonly used by outdoorsmen and mercenaries, both to keep warm and keep debris away from the face."
+	icon_state = "gaiter_red"
+	slot_flags = SLOT_MASK | SLOT_TIE
+	body_parts_covered = FACE
+	w_class = ITEMSIZE_SMALL
+	slot = ACCESSORY_SLOT_INSIGNIA // snowflakey, i know, shut up
+	item_flags = FLEXIBLEMATERIAL
+	var/breath_masked = FALSE
+	var/obj/item/clothing/mask/breath/breathmask
+	action_button_name = "Pull On Gaiter"
+
+/obj/item/clothing/accessory/gaiter/update_clothing_icon()
+	. = ..()
+	if(ismob(src.loc))
+		var/mob/M = src.loc
+		M.update_inv_wear_mask()
+
+/obj/item/clothing/accessory/gaiter/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/clothing/mask/breath))
+		to_chat(user, SPAN_NOTICE("You tuck [I] behind [src]."))
+		breathmask = I
+		breath_masked = TRUE
+		user.drop_from_inventory(I, drop_location())
+		I.forceMove(src)
+		item_flags &= ~FLEXIBLEMATERIAL
+	. = ..()
+
+/obj/item/clothing/accessory/gaiter/AltClick(mob/user)
+	. = ..()
+	if(breath_masked && breathmask)
+		to_chat(user, SPAN_NOTICE("You pull [breathmask] out from behind [src], and it drops to your feet."))
+		breathmask.forceMove(drop_location())
+		breathmask = null
+		breath_masked = FALSE
+		item_flags &= ~AIRTIGHT
+		item_flags |= FLEXIBLEMATERIAL
+
+/obj/item/clothing/accessory/gaiter/attack_self(mob/user)
+	var/gaiterstring = "You pull [src] "
+	if(src.icon_state == initial(icon_state))
+		src.icon_state = "[icon_state]_up"
+		gaiterstring += "up over your nose[breath_masked ? " and secure the mask tucked underneath." : "."]"
+		if(breath_masked)
+			item_flags |= AIRTIGHT
+	else
+		src.icon_state = initial(icon_state)
+		gaiterstring += "down around your neck[breath_masked ? " and dislodge the mask tucked underneath." : "."]"
+		body_parts_covered &= ~FACE
+		if(breath_masked)
+			item_flags &= ~AIRTIGHT
+	to_chat(user, SPAN_NOTICE(gaiterstring))
+	qdel(mob_overlay) // we're gonna need to refresh these
+	update_clothing_icon()	//so our mob-overlays update
+
+/obj/item/clothing/accessory/gaiter/tan
+	name = "tan neck gaiter"
+	icon_state = "gaiter_tan"
+
+/obj/item/clothing/accessory/gaiter/gray
+	name = "gray neck gaiter"
+	icon_state = "gaiter_gray"
+
+/obj/item/clothing/accessory/gaiter/green
+	name = "green neck gaiter"
+	icon_state = "gaiter_green"
