@@ -1421,3 +1421,24 @@
 	worn_state = "hedberg_tech"
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 10) // Equivalent to engineer's jumpsuit.
 	rolled_sleeves = 0
+
+//christmas stuff
+/obj/item/clothing/under/christmas/red
+	name = "red christmas suit"
+	desc = "A simple red christmas suit that looks close to Santa's!"
+	icon_state = "christmasred"
+
+/obj/item/clothing/under/christmas/green
+	name = "green christmas suit"
+	desc = "A simple green christmas suit. Smells minty!"
+	icon_state = "christmasgreen"
+
+/obj/item/clothing/under/christmas/croptop/red
+	name = "red crop-top christmas suit"
+	desc = "A simple red christmas suit that doesn't quite looks like Mrs Claus'."
+	icon_state = "christmascroppedred"
+
+/obj/item/clothing/under/christmas/croptop/green
+	name = "green crop-top christmas suit"
+	desc = "A simple green christmas suit that doesn't quite looks like Mrs Claus'. Smells minty!"
+	icon_state = "christmascroppedgreen"
