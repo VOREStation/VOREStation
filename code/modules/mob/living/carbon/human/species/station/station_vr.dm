@@ -123,6 +123,7 @@
 	//brute_mod = 1.15
 	//burn_mod =  1.15
 	//gluttonous = 1
+	soft_landing = TRUE
 	num_alternate_languages = 3
 	secondary_langs = list(LANGUAGE_BIRDSONG)
 	name_language = LANGUAGE_BIRDSONG
@@ -361,6 +362,8 @@
 
 	min_age = 18
 	max_age = 80
+
+	soft_landing = TRUE
 
 	base_color = "#EECEB3"
 
