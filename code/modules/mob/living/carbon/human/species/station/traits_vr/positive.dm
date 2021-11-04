@@ -113,6 +113,12 @@
 	H.verbs |= /mob/living/proc/flying_toggle
 	H.verbs |= /mob/living/proc/start_wings_hovering
 
+/datum/trait/positive/soft_landing
+	name = "Soft Landing"
+	desc = "You can fall from certain heights without suffering any injuries, be it via wings, lightness of frame or general dexterity."
+	cost = 0
+	var_changes = list("soft_landing" = TRUE)
+
 /datum/trait/positive/hardfeet
 	name = "Hard Feet"
 	desc = "Makes your nice clawed, scaled, hooved, armored, or otherwise just awfully calloused feet immune to glass shards."
