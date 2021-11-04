@@ -67,7 +67,7 @@
 	tableslam_noise = 'sound/effects/Glasshit.ogg'
 	sheet_singular_name = "gem"
 	sheet_plural_name = "gems"
-	supply_conversion_value = 4
+	supply_conversion_value = 12 //if they take diamond to make via psmasher, they should be worth more than diamond
 
 /datum/material/void_opal
 	name = "void opal"

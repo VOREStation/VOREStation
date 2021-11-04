@@ -379,3 +379,37 @@
 	required_atmos_temp_min = 3000
 	required_atmos_temp_max = 10000
 	probability = 1
+
+/datum/particle_smasher_recipe/sandstone_quartz
+	result = /obj/item/stack/material/quartz
+	required_material = /obj/item/stack/material/sandstone
+
+	required_energy_min = 200
+	required_energy_max = 300
+	probability = 50
+
+/datum/particle_smasher_recipe/diamond_painite
+	reagents = list("uranium" = 10, "iron" = 10)
+
+	result = /obj/item/stack/material/painite
+	required_material = /obj/item/stack/material/diamond
+
+	required_energy_min = 450
+	required_energy_max = 500
+
+	required_atmos_temp_min = 50
+	required_atmos_temp_max = 150
+	probability = 50
+
+/datum/particle_smasher_recipe/painite_void_opal
+	reagents = list("phoron" = 10, "aluminum" = 10, "sacid" = 10)
+	
+	result = /obj/item/stack/material/void_opal
+	required_material = /obj/item/stack/material/painite
+
+	required_energy_min = 500
+	required_energy_max = 550
+
+	required_atmos_temp_min = 1500
+	required_atmos_temp_max = 2000
+	probability = 50
