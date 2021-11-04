@@ -362,33 +362,6 @@
 				src.icon_state = "flushed"
 	return
 
-//Gaiter scarves
-/obj/item/clothing/mask/gaiter
-	name = "red neck gaiter"
-	desc = "A slightly worn neck gaiter, it's loose enough to be worn comfortably like a scarf. Commonly used by outdoorsmen and mercenaries, both to keep warm and keep debris away from the face."
-	icon_state = "gaiter_red"
-
-/obj/item/clothing/mask/gaiter/attack_self(mob/user as mob)
-	if(src.icon_state == initial(icon_state))
-		src.icon_state = "[icon_state]_up"
-		to_chat(user, "You pull the gaiter up over your nose.")
-	else
-		src.icon_state = initial(icon_state)
-		to_chat(user, "You tug the gaiter down around your neck.")
-	update_clothing_icon()	//so our mob-overlays update
-
-/obj/item/clothing/mask/gaiter/tan
-	name = "tan neck gaiter"
-	icon_state = "gaiter_tan"
-
-/obj/item/clothing/mask/gaiter/gray
-	name = "gray neck gaiter"
-	icon_state = "gaiter_gray"
-
-/obj/item/clothing/mask/gaiter/green
-	name = "green neck gaiter"
-	icon_state = "gaiter_green"
-
 /obj/item/clothing/mask/mouthwheat
 	name = "mouth wheat"
 	desc = "100% synthetic \"Country Girls LLC.\" brand mouth wheat. Warning: not for actual consumption."
