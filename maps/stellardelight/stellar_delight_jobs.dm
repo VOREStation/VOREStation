@@ -18,20 +18,13 @@
 
 /datum/job/atmos
 	alt_titles = list("Atmospheric Engineer" = /datum/alt_title/atmos_engi, "Atmospheric Maintainer" = /datum/alt_title/atmos_maint, "Disposals Technician" = /datum/alt_title/disposals_tech,
-						"Refueling Technician" = /datum/alt_title/refuel_tech)
+						"Fuel Technician" = /datum/alt_title/refuel_tech)
 
 /datum/alt_title/refuel_tech
-	title = "Refueling Technician"
+	title = "Fuel Technician"
 
 /datum/job/warden
-	alt_titles = list("Brig Sentry" = /datum/alt_title/brig_sentry, "Armory Superintendent" = /datum/alt_title/armory_superintendent, "Gunner" = /datum/alt_title/gunner)
+	alt_titles = list("Brig Sentry" = /datum/alt_title/brig_sentry, "Armory Superintendent" = /datum/alt_title/armory_superintendent, "Master-at-Arms" = /datum/alt_title/master_at_arms)
 
-/datum/alt_title/gunner
-	title = "Gunner"
-
-/datum/job/officer
-	alt_titles = list("Patrol Officer" = /datum/alt_title/patrol_officer, "Security Guard" = /datum/alt_title/security_guard, "Security Deputy" = /datum/alt_title/security_guard,
-						"Junior Officer" = /datum/alt_title/junior_officer, "Ship Officer" = /datum/alt_title/ship_officer)
-
-/datum/alt_title/ship_officer
-	title = "Ship Officer"
+/datum/alt_title/master_at_arms
+	title = "Master-at-Arms"
