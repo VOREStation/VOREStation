@@ -8,6 +8,8 @@
 /area/gateway/eggnogtown/underground)
 "ab" = (
 /turf/simulated/mineral/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
 	temperature = 258.15
 	},
 /area/gateway/eggnogtown/underground)
@@ -150,6 +152,13 @@
 	temperature = 258.15
 	},
 /area/gateway/eggnogtown/underground)
+"as" = (
+/turf/simulated/mineral/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
+	temperature = 258.15
+	},
+/area/gateway/eggnogtown/vibeout)
 "ba" = (
 /obj/structure/table/wooden_reinforced,
 /obj/machinery/chemical_dispenser/bar_alc/full,
@@ -556,11 +565,6 @@
 	temperature = 258.15
 	},
 /area/gateway/eggnogtown/hotspring)
-"yD" = (
-/turf/simulated/mineral/ignore_cavegen{
-	temperature = 258.15
-	},
-/area/gateway/eggnogtown/vibeout)
 "yM" = (
 /obj/structure/table/bench/wooden,
 /turf/simulated/floor/wood{
@@ -10151,11 +10155,11 @@ ab
 ab
 ab
 ab
-yD
-yD
-yD
-yD
-yD
+as
+as
+as
+as
+as
 ab
 ab
 ab
@@ -10293,11 +10297,11 @@ ab
 ab
 ab
 ab
-yD
+as
 vW
 Hk
 UX
-yD
+as
 ab
 ab
 ab
@@ -10435,11 +10439,11 @@ ab
 ab
 ab
 ab
-yD
+as
 eY
 rj
 UX
-yD
+as
 ab
 ab
 ab
@@ -10577,11 +10581,11 @@ ab
 ab
 ab
 ab
-yD
+as
 AJ
 AJ
 AJ
-yD
+as
 ab
 ab
 ab
@@ -10717,15 +10721,15 @@ ab
 ab
 ab
 ab
-yD
-yD
-yD
+as
+as
+as
 YM
 YM
 YM
-yD
-yD
-yD
+as
+as
+as
 ab
 ab
 ab
@@ -10859,7 +10863,7 @@ ab
 ab
 ab
 ab
-yD
+as
 rj
 rj
 rj
@@ -10867,9 +10871,9 @@ rj
 rj
 rj
 rj
-yD
-yD
-yD
+as
+as
+as
 ab
 ab
 ab
@@ -11011,8 +11015,8 @@ tf
 su
 Gs
 rj
-yD
-yD
+as
+as
 ab
 ab
 ab
@@ -11136,13 +11140,13 @@ lq
 "}
 (73,1,1) = {"
 lq
-yD
-yD
-yD
-yD
-yD
-yD
-yD
+as
+as
+as
+as
+as
+as
+as
 rj
 tf
 TU
@@ -11154,7 +11158,7 @@ su
 Tx
 rj
 Jz
-yD
+as
 ab
 ab
 ab
@@ -11278,7 +11282,7 @@ lq
 "}
 (74,1,1) = {"
 lq
-yD
+as
 Ce
 Ce
 xk
@@ -11296,7 +11300,7 @@ su
 iu
 rj
 ba
-yD
+as
 ab
 ab
 aa
@@ -11420,7 +11424,7 @@ lq
 "}
 (75,1,1) = {"
 lq
-yD
+as
 Ce
 Rv
 rj
@@ -11437,9 +11441,9 @@ AJ
 su
 iu
 rj
-yD
-yD
-yD
+as
+as
+as
 ab
 aa
 aa
@@ -11562,7 +11566,7 @@ lq
 "}
 (76,1,1) = {"
 lq
-yD
+as
 Ce
 Ce
 rj
@@ -11579,7 +11583,7 @@ gf
 tf
 rj
 rj
-yD
+as
 tI
 zz
 aa
@@ -11704,13 +11708,13 @@ lq
 "}
 (77,1,1) = {"
 lq
-yD
-yD
-yD
+as
+as
+as
 hM
 hM
-yD
-yD
+as
+as
 rj
 tf
 TU
@@ -11848,10 +11852,10 @@ lq
 lq
 ab
 ab
-yD
+as
 Pb
 lX
-yD
+as
 ab
 rj
 tf
@@ -11862,7 +11866,7 @@ tf
 tf
 tf
 rj
-yD
+as
 tI
 qr
 up
@@ -11990,12 +11994,12 @@ lq
 lq
 ab
 ab
-yD
-yD
-yD
-yD
+as
+as
+as
+as
 ab
-yD
+as
 rj
 rj
 rj
@@ -12003,8 +12007,8 @@ rj
 rj
 vv
 wu
-yD
-yD
+as
+as
 tI
 qr
 DZ
@@ -12137,16 +12141,16 @@ ab
 ab
 ab
 ab
-yD
-yD
-yD
+as
+as
+as
 YM
 YM
 YM
-yD
-yD
-yD
-yD
+as
+as
+as
+as
 tI
 qr
 up
@@ -12281,14 +12285,14 @@ ab
 ab
 ab
 ab
-yD
+as
 AJ
 AJ
 AJ
-yD
+as
 ab
 ab
-yD
+as
 Ki
 Ki
 ws
@@ -12423,11 +12427,11 @@ ab
 ab
 ab
 ab
-yD
+as
 kS
 Wr
 ZR
-yD
+as
 ab
 ab
 ab
@@ -12565,11 +12569,11 @@ ab
 ab
 ab
 ab
-yD
+as
 nh
 KY
 Aw
-yD
+as
 ab
 ab
 ab
@@ -12707,11 +12711,11 @@ ab
 ab
 ab
 ab
-yD
-yD
-yD
-yD
-yD
+as
+as
+as
+as
+as
 ab
 ab
 aa
