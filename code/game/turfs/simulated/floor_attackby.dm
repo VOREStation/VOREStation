@@ -9,9 +9,6 @@
 			attack_tile(C, L) // Be on help intent if you want to decon something.
 			return
 
-	if(!(C.is_screwdriver() && flooring && (flooring.flags & TURF_REMOVE_SCREWDRIVER)) && try_graffiti(user, C))
-		return
-
 	// Multi-z roof building
 	if(istype(C, /obj/item/stack/tile/roofing))
 		var/expended_tile = FALSE // To track the case. If a ceiling is built in a multiz zlevel, it also necessarily roofs it against weather
