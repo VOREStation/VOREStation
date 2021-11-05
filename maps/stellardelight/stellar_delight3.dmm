@@ -5,6 +5,12 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/aftstarroom)
+"ab" = (
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/stellardelight/deck3/commandhall)
 "ac" = (
 /obj/effect/landmark{
 	name = "morphspawn"
@@ -14,12 +20,39 @@
 "ad" = (
 /turf/simulated/wall/bay/r_wall/blue,
 /area/tcommsat/chamber)
+"ae" = (
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/stellardelight/deck3/commandhall)
 "af" = (
 /obj/structure/cable/green{
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/airless,
 /area/stellardelight/deck3/exterior)
+"ag" = (
+/turf/simulated/floor/tiled/monotile,
+/area/stellardelight/deck3/aft)
+"ah" = (
+/obj/structure/sign/directions/stairs_down{
+	pixel_x = 32;
+	pixel_y = 18
+	},
+/obj/structure/sign/directions/medical{
+	pixel_x = 32;
+	pixel_y = 12
+	},
+/obj/structure/sign/directions/engineering{
+	pixel_x = 32;
+	pixel_y = 6
+	},
+/obj/structure/sign/directions/cargo{
+	pixel_x = 32
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/stellardelight/deck3/aft)
 "ai" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/bay/reinforced,
@@ -29,6 +62,24 @@
 "aj" = (
 /turf/simulated/floor/carpet/turcarpet,
 /area/ai)
+"ak" = (
+/obj/structure/sign/directions/stairs_down{
+	pixel_x = -32;
+	pixel_y = 18
+	},
+/obj/structure/sign/directions/medical{
+	pixel_x = -32;
+	pixel_y = 12
+	},
+/obj/structure/sign/directions/engineering{
+	pixel_x = -32;
+	pixel_y = 6
+	},
+/obj/structure/sign/directions/cargo{
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/stellardelight/deck3/aft)
 "al" = (
 /obj/machinery/power/terminal{
 	dir = 8
@@ -4446,24 +4497,6 @@
 "rc" = (
 /turf/simulated/wall/bay/r_wall/blue,
 /area/stellardelight/deck3/commandhall)
-"re" = (
-/obj/structure/sign/directions/stairs_down{
-	pixel_x = -32;
-	pixel_y = 18
-	},
-/obj/structure/sign/directions/medical{
-	pixel_x = -32;
-	pixel_y = 12
-	},
-/obj/structure/sign/directions/engineering{
-	pixel_x = -32;
-	pixel_y = 6
-	},
-/obj/structure/sign/directions/cargo{
-	pixel_x = -32
-	},
-/turf/simulated/open,
-/area/stellardelight/deck3/aft)
 "rg" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/wood,
@@ -11211,24 +11244,6 @@
 	},
 /turf/simulated/floor/airless,
 /area/stellardelight/deck3/exterior)
-"PU" = (
-/obj/structure/sign/directions/stairs_down{
-	pixel_x = 32;
-	pixel_y = 18
-	},
-/obj/structure/sign/directions/medical{
-	pixel_x = 32;
-	pixel_y = 12
-	},
-/obj/structure/sign/directions/engineering{
-	pixel_x = 32;
-	pixel_y = 6
-	},
-/obj/structure/sign/directions/cargo{
-	pixel_x = 32
-	},
-/turf/simulated/open,
-/area/stellardelight/deck3/aft)
 "PV" = (
 /obj/structure/cable/green{
 	icon_state = "2-8"
@@ -13792,9 +13807,6 @@
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/starboarddock)
-"ZJ" = (
-/turf/simulated/open,
-/area/maintenance/stellardelight/deck3/portaft)
 "ZK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -20894,7 +20906,7 @@ Ae
 NL
 Yg
 vA
-ZJ
+dE
 DT
 dM
 bd
@@ -22480,7 +22492,7 @@ Cu
 pc
 pc
 ER
-RI
+ag
 Qn
 Qn
 Ed
@@ -22622,7 +22634,7 @@ ME
 UI
 aX
 ei
-PU
+ah
 RI
 RI
 Ed
@@ -23590,7 +23602,7 @@ Tm
 Tm
 PL
 Gj
-QB
+ab
 QB
 QB
 QB
@@ -23732,7 +23744,7 @@ Gj
 Fr
 Rl
 Gj
-iV
+ae
 iV
 iV
 iV
@@ -24894,7 +24906,7 @@ qX
 nL
 Gv
 kt
-re
+ak
 RI
 RI
 Ed
@@ -25036,7 +25048,7 @@ SF
 pc
 pc
 ER
-RI
+ag
 YK
 YK
 Ed
@@ -26574,7 +26586,7 @@ qy
 NL
 Yg
 dE
-ZJ
+dE
 le
 ww
 ww
