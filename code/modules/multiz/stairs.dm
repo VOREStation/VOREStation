@@ -206,9 +206,6 @@
 		if(L.grabbed_by.len) // Same as pulledby, whoever's holding you will keep you from going down stairs.
 			return
 
-		if(L.has_buckled_mobs())
-			return
-
 		if(L.buckled)
 			L.buckled.forceMove(get_turf(top))
 
@@ -458,9 +455,6 @@
 		var/mob/living/L = AM
 
 		if(L.grabbed_by.len) // Same as pulledby, whoever's holding you will keep you from going down stairs.
-			return
-
-		if(L.has_buckled_mobs())
 			return
 
 		if(L.buckled)
