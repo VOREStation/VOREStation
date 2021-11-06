@@ -506,8 +506,11 @@
 /mob/living/carbon/human/fall_impact(atom/hit_atom, damage_min, damage_max, silent, planetary)
 	if(!species?.handle_falling(src, hit_atom, damage_min, damage_max, silent, planetary))
 		..()
-		if(weight > 325)
-			explosion(get_turf(hit_atom), 2, 3, 5)
+		if(weight > 325 || size_multiplier > 1.75)
+			explosion(get_turf(hit_atom), -1, 0, 0)
+			var/turf/simulated/floor/hit_turf = get_turf(hit_atom)
+			if(istype(hit_turf))
+				hit_turf.break_tile()
 
 //Using /atom/movable instead of /obj/item because I'm not sure what all humans can pick up or wear
 /atom/movable
