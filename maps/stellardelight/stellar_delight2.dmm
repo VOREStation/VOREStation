@@ -215,6 +215,13 @@
 	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck2/fore)
+"av" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/mob/living/simple_mob/animal/goat{
+	name = "Ted"
+	},
+/turf/simulated/floor/tiled/freezer/cold,
+/area/crew_quarters/kitchen)
 "aw" = (
 /obj/structure/table/standard,
 /obj/random/tech_supply,
@@ -262,6 +269,9 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
 /area/engineering/engine_eva)
+"aA" = (
+/turf/simulated/floor/tiled/monotile,
+/area/stellardelight/deck2/fore)
 "aB" = (
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -330,6 +340,13 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hydroponics)
+"aH" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/mob/living/simple_mob/vore/alienanimals/teppi/baby,
+/turf/simulated/floor/grass,
+/area/hydroponics)
 "aI" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -346,6 +363,14 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck2/starboardsolars)
+"aJ" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment,
+/mob/living/simple_mob/animal/passive/cow,
+/turf/simulated/floor/grass,
+/area/hydroponics)
 "aK" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 4
@@ -381,6 +406,11 @@
 /obj/random/tech_supply,
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
 /area/engineering/engine_eva)
+"aP" = (
+/obj/structure/disposalpipe/segment,
+/mob/living/simple_mob/vore/alienanimals/teppi/baby,
+/turf/simulated/floor/grass,
+/area/hydroponics)
 "aQ" = (
 /obj/structure/grille,
 /turf/simulated/floor/airless,
@@ -417,6 +447,9 @@
 /obj/structure/low_wall/bay/reinforced/steel,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck2/portfore)
+"aU" = (
+/turf/simulated/floor/tiled/monotile,
+/area/stellardelight/deck2/aftport)
 "aV" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/simulated/floor,
@@ -573,6 +606,39 @@
 	},
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/quartermaster/storage)
+"bm" = (
+/obj/structure/sign/directions/science{
+	pixel_x = 32
+	},
+/obj/structure/sign/directions/dorms{
+	pixel_x = 32;
+	pixel_y = 6
+	},
+/obj/structure/sign/directions{
+	desc = "A direction sign, pointing out the way to Exploration.";
+	name = "\improper Exploration Department";
+	pixel_x = 32;
+	pixel_y = -6
+	},
+/obj/structure/sign/directions/security{
+	pixel_x = 32;
+	pixel_y = 12
+	},
+/obj/structure/sign/directions/stairs_down{
+	pixel_x = 32;
+	pixel_y = 18
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/stellardelight/deck2/aftport)
+"bn" = (
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/obj/structure/cable/white{
+	icon_state = "32-1"
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/stellardelight/deck2/triage)
 "bo" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 9
@@ -607,6 +673,30 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled,
 /area/hydroponics)
+"br" = (
+/obj/structure/sign/directions/science{
+	pixel_x = -32
+	},
+/obj/structure/sign/directions/dorms{
+	pixel_x = -32;
+	pixel_y = 6
+	},
+/obj/structure/sign/directions{
+	desc = "A direction sign, pointing out the way to Exploration.";
+	name = "\improper Exploration Department";
+	pixel_x = -32;
+	pixel_y = -6
+	},
+/obj/structure/sign/directions/security{
+	pixel_x = -32;
+	pixel_y = 12
+	},
+/obj/structure/sign/directions/stairs_down{
+	pixel_x = -32;
+	pixel_y = 18
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/stellardelight/deck2/aftstarboard)
 "bs" = (
 /obj/structure/table/standard,
 /obj/item/device/healthanalyzer,
@@ -646,6 +736,9 @@
 	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
+"bv" = (
+/turf/simulated/floor/tiled/monotile,
+/area/stellardelight/deck2/aftstarboard)
 "bw" = (
 /obj/machinery/power/pointdefense{
 	id_tag = "sd_pd"
@@ -722,6 +815,15 @@
 /obj/machinery/atmospherics/pipe/simple/visible/black,
 /turf/simulated/wall/bay/r_wall/orange,
 /area/engineering/atmos/storage)
+"bG" = (
+/obj/structure/cable/yellow{
+	icon_state = "32-8"
+	},
+/obj/structure/sign/department/miner_dock{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/quartermaster/storage)
 "bH" = (
 /obj/structure/cable/orange{
 	icon_state = "4-8"
@@ -788,6 +890,20 @@
 	},
 /turf/simulated/floor,
 /area/stellardelight/deck2/central)
+"bM" = (
+/obj/structure/cable/orange{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
+	},
+/mob/living/simple_mob/animal/passive/opossum/poppy,
+/turf/simulated/floor/tiled/eris/dark/gray_platform,
+/area/engineering/workshop)
 "bN" = (
 /obj/structure/cable/green{
 	icon_state = "1-8"
@@ -846,13 +962,6 @@
 	},
 /turf/simulated/wall/bay/r_wall/steel,
 /area/engineering/storage)
-"bU" = (
-/mob/living/simple_mob/vore/alienanimals/teppi/baby,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/turf/simulated/floor/grass,
-/area/hydroponics)
 "bV" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/book/manual/bar_guide,
@@ -2620,14 +2729,6 @@
 /obj/machinery/smartfridge/sheets/persistent_lossy,
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/quartermaster/storage)
-"gc" = (
-/mob/living/simple_mob/animal/passive/cow,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment,
-/turf/simulated/floor/grass,
-/area/hydroponics)
 "gd" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -3397,15 +3498,6 @@
 /obj/effect/floor_decal/milspec/cargo,
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/quartermaster/storage)
-"hT" = (
-/obj/structure/railing/grey{
-	dir = 8
-	},
-/obj/structure/cable/white{
-	icon_state = "32-1"
-	},
-/turf/simulated/open,
-/area/stellardelight/deck2/triage)
 "hU" = (
 /obj/structure/disposalpipe/tagger/partial{
 	dir = 8;
@@ -5529,13 +5621,6 @@
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /turf/simulated/floor/tiled/techfloor,
 /area/engineering/atmos/monitoring)
-"my" = (
-/mob/living/simple_mob/animal/goat{
-	name = "Ted"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/tiled/freezer/cold,
-/area/crew_quarters/kitchen)
 "mz" = (
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/effect/floor_decal/milspec/color/green/half{
@@ -7809,20 +7894,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/locker)
-"rA" = (
-/mob/living/simple_mob/animal/passive/opossum/poppy,
-/obj/structure/cable/orange{
-	icon_state = "1-2"
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4;
-	icon_state = "pipe-c"
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/eris/dark/gray_platform,
-/area/engineering/workshop)
 "rB" = (
 /obj/structure/particle_accelerator/particle_emitter/right{
 	dir = 4
@@ -9663,9 +9734,6 @@
 	},
 /turf/simulated/floor/carpet,
 /area/crew_quarters/recreation_area)
-"vT" = (
-/turf/simulated/open,
-/area/maintenance/stellardelight/deck2/starboardaft)
 "vU" = (
 /obj/machinery/alarm/angled{
 	dir = 4
@@ -11684,30 +11752,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck2/fore)
-"AJ" = (
-/obj/structure/sign/directions/science{
-	pixel_x = 32
-	},
-/obj/structure/sign/directions/dorms{
-	pixel_x = 32;
-	pixel_y = 6
-	},
-/obj/structure/sign/directions{
-	desc = "A direction sign, pointing out the way to Exploration.";
-	name = "\improper Exploration Department";
-	pixel_x = 32;
-	pixel_y = -6
-	},
-/obj/structure/sign/directions/security{
-	pixel_x = 32;
-	pixel_y = 12
-	},
-/obj/structure/sign/directions/stairs_down{
-	pixel_x = 32;
-	pixel_y = 18
-	},
-/turf/simulated/open,
-/area/stellardelight/deck2/aftport)
 "AK" = (
 /obj/machinery/power/sensor{
 	name = "Powernet Sensor - Master Grid";
@@ -12599,30 +12643,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/engineering/atmos/monitoring)
-"CN" = (
-/obj/structure/sign/directions/science{
-	pixel_x = -32
-	},
-/obj/structure/sign/directions/dorms{
-	pixel_x = -32;
-	pixel_y = 6
-	},
-/obj/structure/sign/directions{
-	desc = "A direction sign, pointing out the way to Exploration.";
-	name = "\improper Exploration Department";
-	pixel_x = -32;
-	pixel_y = -6
-	},
-/obj/structure/sign/directions/security{
-	pixel_x = -32;
-	pixel_y = 12
-	},
-/obj/structure/sign/directions/stairs_down{
-	pixel_x = -32;
-	pixel_y = 18
-	},
-/turf/simulated/open,
-/area/stellardelight/deck2/aftstarboard)
 "CO" = (
 /obj/structure/cable/orange{
 	icon_state = "4-8"
@@ -19589,9 +19609,6 @@
 	},
 /turf/simulated/wall/bay/r_wall/steel,
 /area/engineering/engine_room)
-"RZ" = (
-/turf/simulated/open,
-/area/maintenance/stellardelight/deck2/portaft)
 "Sb" = (
 /turf/simulated/floor/tiled/eris/dark/danger,
 /area/engineering/engine_room)
@@ -21015,11 +21032,6 @@
 "Vm" = (
 /turf/simulated/floor/airless,
 /area/stellardelight/deck2/fuelstorage)
-"Vn" = (
-/mob/living/simple_mob/vore/alienanimals/teppi/baby,
-/obj/structure/disposalpipe/segment,
-/turf/simulated/floor/grass,
-/area/hydroponics)
 "Vo" = (
 /turf/simulated/wall/bay/r_wall/orange,
 /area/engineering/workshop)
@@ -22763,15 +22775,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck2/fore)
-"Zn" = (
-/obj/structure/cable/yellow{
-	icon_state = "32-8"
-	},
-/obj/structure/sign/department/miner_dock{
-	pixel_y = 32
-	},
-/turf/simulated/open,
-/area/quartermaster/storage)
 "Zo" = (
 /obj/machinery/light{
 	dir = 8
@@ -30128,7 +30131,7 @@ um
 iz
 sn
 kg
-RZ
+iz
 dC
 cV
 aV
@@ -30520,7 +30523,7 @@ Gi
 wL
 ch
 DD
-my
+av
 AC
 DP
 BF
@@ -30678,7 +30681,7 @@ sA
 iZ
 ii
 WN
-bU
+aH
 LS
 Jp
 KK
@@ -30820,8 +30823,8 @@ EA
 wP
 JI
 fa
-gc
-Vn
+aJ
+aP
 rP
 hf
 Nw
@@ -31706,7 +31709,7 @@ Hr
 Hr
 Oi
 bY
-Ef
+aU
 kt
 wY
 Ip
@@ -31848,7 +31851,7 @@ Hr
 Hr
 Gx
 DA
-AJ
+bm
 Ef
 wY
 dL
@@ -31955,7 +31958,7 @@ nt
 Rq
 Rq
 Rq
-Rq
+aA
 Jq
 Xi
 RT
@@ -32001,7 +32004,7 @@ ei
 Bt
 eB
 do
-Zn
+bG
 Lm
 YP
 do
@@ -32097,7 +32100,7 @@ nt
 Rq
 Rq
 lQ
-Rq
+aA
 Jq
 Xi
 kF
@@ -32984,7 +32987,7 @@ vi
 Ze
 Ay
 qZ
-hT
+bn
 bf
 Vb
 Zv
@@ -33801,7 +33804,7 @@ nt
 Rq
 Rq
 lY
-Rq
+aA
 Jq
 IK
 kF
@@ -33943,7 +33946,7 @@ nt
 Rq
 Rq
 Rq
-Rq
+aA
 Jq
 IK
 RT
@@ -34120,7 +34123,7 @@ nd
 nd
 uz
 Bg
-CN
+br
 fJ
 yW
 NW
@@ -34262,7 +34265,7 @@ nd
 nd
 jz
 Ml
-fJ
+bv
 en
 yW
 ab
@@ -34844,7 +34847,7 @@ To
 tB
 Eg
 qH
-rA
+bM
 Fd
 jY
 hs
@@ -35808,7 +35811,7 @@ jB
 pJ
 Xp
 Za
-vT
+pJ
 Jf
 zW
 qa
