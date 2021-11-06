@@ -6438,7 +6438,6 @@
 	},
 /obj/item/weapon/folder/yellow,
 /obj/structure/table/darkglass,
-/obj/structure/table/darkglass,
 /obj/machinery/light,
 /turf/simulated/floor/tiled/dark,
 /area/lawoffice)
@@ -9615,7 +9614,9 @@
 /obj/machinery/computer/ship/navigation/telescreen{
 	pixel_x = 32
 	},
-/obj/machinery/power/shield_generator/charged,
+/obj/machinery/power/shield_generator/charged{
+	power_coefficient = 0.33
+	},
 /obj/structure/cable,
 /turf/simulated/floor,
 /area/stellardelight/deck2/central)
