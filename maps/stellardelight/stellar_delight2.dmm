@@ -15489,10 +15489,6 @@
 	},
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/quartermaster/storage)
-"IP" = (
-/obj/machinery/shield_gen/external,
-/turf/simulated/floor/plating,
-/area/engineering/storage)
 "IQ" = (
 /obj/structure/table/glass,
 /obj/machinery/door/window/southright{
@@ -36545,7 +36541,7 @@ By
 oR
 oR
 gV
-IP
+oR
 qr
 Vf
 Vf
