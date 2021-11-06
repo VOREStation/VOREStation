@@ -3534,7 +3534,7 @@
 	dir = 8
 	},
 /obj/effect/landmark/start{
-	name = "Station Engineer"
+	name = "Engineer"
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/engine_monitoring)
@@ -5833,7 +5833,7 @@
 	dir = 8
 	},
 /obj/effect/landmark/start{
-	name = "Station Engineer"
+	name = "Engineer"
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/engineering_monitoring)
@@ -7956,7 +7956,7 @@
 	icon_state = "comfychair_preview"
 	},
 /obj/effect/landmark/start{
-	name = "Station Engineer"
+	name = "Engineer"
 	},
 /turf/simulated/floor/carpet,
 /area/engineering/break_room)
@@ -8402,7 +8402,7 @@
 	icon_state = "comfychair_preview"
 	},
 /obj/effect/landmark/start{
-	name = "Station Engineer"
+	name = "Engineer"
 	},
 /turf/simulated/floor/carpet,
 /area/engineering/break_room)
@@ -8967,7 +8967,7 @@
 	icon_state = "comfychair_preview"
 	},
 /obj/effect/landmark/start{
-	name = "Station Engineer"
+	name = "Engineer"
 	},
 /turf/simulated/floor/carpet,
 /area/engineering/break_room)
@@ -8977,7 +8977,7 @@
 	icon_state = "comfychair_preview"
 	},
 /obj/effect/landmark/start{
-	name = "Station Engineer"
+	name = "Engineer"
 	},
 /turf/simulated/floor/carpet,
 /area/engineering/break_room)
@@ -13080,7 +13080,7 @@
 "aSB" = (
 /obj/structure/bed/chair/office/dark,
 /obj/effect/landmark/start{
-	name = "Station Engineer"
+	name = "Engineer"
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/engineering_monitoring)
@@ -13687,7 +13687,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/start{
-	name = "Station Engineer"
+	name = "Engineer"
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/foyer)

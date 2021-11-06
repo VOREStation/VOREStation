@@ -7,7 +7,7 @@ var/list/dreams = list(
 	"a blue light","an abandoned laboratory","NanoTrasen","mercenaries","blood","healing","power","respect",
 	"riches","space","a crash","happiness","pride","a fall","water","flames","ice","melons","flying","the eggs","money",
 	"the Head of Personnel","the Head of Security","the Chief Engineer","the Research Director","the Chief Medical Officer",
-	"the Detective","the Warden","an Internal Affairs Agent","a Station Engineer","the Janitor","the Atmospheric Technician",
+	"the Detective","the Warden","an Internal Affairs Agent","an Engineer","the Janitor","the Atmospheric Technician",
 	"the Quartermaster","a Cargo Technician","the Botanist","a Shaft Miner","the Psychologist","the Chemist","a Geneticist",
 	"the Virologist","the Roboticist","the Chef","the Bartender","the Chaplain","the Librarian","a mouse","an ERT member",
 	"a beach","the holodeck","a smoky room","a voice","the cold","a mouse","an operating table","the bar","the rain","a Skrell",

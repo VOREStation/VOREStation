@@ -224,7 +224,7 @@
 /datum/gear/uniform/dept/undercoat/engineer
 	display_name = "engineering undercoat (Teshari)"
 	path = /obj/item/clothing/under/teshari/undercoat/jobs/engineer
-	allowed_roles = list("Chief Engineer","Station Engineer")
+	allowed_roles = list("Chief Engineer","Engineer")
 
 /datum/gear/uniform/dept/undercoat/atmos
 	display_name = "atmospherics undercoat (Teshari)"
@@ -397,7 +397,7 @@
 /datum/gear/suit/dept/cloak/engineer
 	display_name = "engineering cloak (Teshari)"
 	path = /obj/item/clothing/suit/storage/teshari/cloak/jobs/engineer
-	allowed_roles = list("Chief Engineer","Station Engineer")
+	allowed_roles = list("Chief Engineer","Engineer")
 
 /datum/gear/suit/dept/cloak/engineer/New()
 	..()

@@ -174,6 +174,16 @@
 	icon_state = "explorer"
 	armor = list(melee = 30, bullet = 10, laser = 10, energy = 15, bomb = 20, bio = 0, rad = 0)
 
+/obj/item/clothing/shoes/boots/winter/christmasred
+	name = "red christmas boots"
+	desc = "A pair of fluffy red christmas boots!"
+	icon_state = "winterboots_christmasr"
+
+/obj/item/clothing/shoes/boots/winter/christmasgreen
+	name = "green christmas boots"
+	desc = "A pair of fluffy green christmas boots!"
+	icon_state = "winterboots_christmasg"
+
 // Allows the wearer to climb cliffs, which could allow for shortcuts or sequence-breaking.
 /obj/item/clothing/shoes/boots/winter/climbing
 	name = "climbing winter boots"

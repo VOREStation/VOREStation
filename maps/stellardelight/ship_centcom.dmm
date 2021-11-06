@@ -573,6 +573,9 @@
 /obj/structure/closet/walllocker/medical/east,
 /turf/simulated/floor/tiled,
 /area/centcom/terminal/tramfluff)
+"bF" = (
+/turf/simulated/floor/reinforced,
+/area/shuttle/centcom/ccbay)
 "bJ" = (
 /obj/structure/table/rack,
 /obj/item/weapon/storage/box/pillbottles,
@@ -12016,9 +12019,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/centcom/security)
-"QZ" = (
-/turf/simulated/floor/reinforced/airless,
-/area/shuttle/centcom/ccbay)
 "Ra" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/blast/regular{
@@ -25610,12 +25610,12 @@ ZQ
 lM
 Bx
 Nv
-QZ
-QZ
-QZ
-QZ
-QZ
-QZ
+bF
+bF
+bF
+bF
+bF
+bF
 Cg
 wO
 DY
@@ -25623,8 +25623,8 @@ HB
 kX
 TF
 kX
-QZ
-QZ
+bF
+bF
 MX
 Bx
 lM
@@ -25752,8 +25752,8 @@ ZQ
 lM
 Bx
 Nv
-QZ
-QZ
+bF
+bF
 lL
 kX
 kX
@@ -26888,9 +26888,9 @@ ZQ
 lM
 Bx
 Nv
-QZ
-QZ
-QZ
+bF
+bF
+bF
 kX
 kX
 TF
@@ -27030,12 +27030,12 @@ ZQ
 lM
 Bx
 Nv
-QZ
-QZ
-QZ
-QZ
-QZ
-QZ
+bF
+bF
+bF
+bF
+bF
+bF
 Cg
 lo
 kX
@@ -27043,8 +27043,8 @@ kX
 kX
 TF
 kX
-QZ
-QZ
+bF
+bF
 MX
 Bx
 nX
