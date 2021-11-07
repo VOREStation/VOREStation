@@ -145,6 +145,10 @@ var/list/robot_module_types = list(
 var/list/emergency_module_types = list(
 	"Combat", "ERT"
 )
+// List of whitelisted modules
+var/list/whitelisted_module_types = list(
+
+)
 
 
 // Some scary sounds.
