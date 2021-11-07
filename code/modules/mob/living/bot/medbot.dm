@@ -24,12 +24,12 @@
 
 	//AI vars
 	var/last_newpatient_speak = 0
-	var/vocal = 1
+	var/vocal = 0
 
 	//Healing vars
 	var/obj/item/weapon/reagent_containers/glass/reagent_glass = null //Can be set to draw from this for reagents.
 	var/injection_amount = 15 //How much reagent do we inject at a time?
-	var/heal_threshold = 10 //Start healing when they have this much damage in a category
+	var/heal_threshold = 0.01 //Start healing when they have this much damage in a category
 	var/use_beaker = 0 //Use reagents in beaker instead of default treatment agents.
 	var/treatment_brute = "tricordrazine"
 	var/treatment_oxy = "tricordrazine"
@@ -37,7 +37,7 @@
 	var/treatment_tox = "tricordrazine"
 	var/treatment_virus = "spaceacillin"
 	var/treatment_emag = "toxin"
-	var/declare_treatment = 0 //When attempting to treat a patient, should it notify everyone wearing medhuds?
+	var/declare_treatment = 1 //When attempting to treat a patient, should it notify everyone wearing medhuds?
 
 	// Are we tipped over?
 	var/is_tipped = FALSE
