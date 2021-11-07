@@ -4282,7 +4282,7 @@
 	id = "xenospace2"
 	},
 /turf/simulated/floor/reinforced,
-/area/rnd/xenobiology)
+/area/rnd/workshop)
 "jc" = (
 /obj/machinery/light_switch{
 	dir = 4;
@@ -5027,7 +5027,7 @@
 	id = "xenospace4"
 	},
 /turf/simulated/floor/reinforced,
-/area/rnd/xenobiology)
+/area/rnd/workshop)
 "kO" = (
 /obj/structure/cable/green{
 	color = "#42038a";
@@ -5072,10 +5072,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/port)
-"kX" = (
-/obj/item/weapon/bikehorn/rubberducky,
-/turf/simulated/floor/tiled/steel_ridged,
-/area/stellardelight/deck1/shower)
 "kY" = (
 /obj/structure/cable/pink{
 	icon_state = "1-2"
@@ -10872,6 +10868,9 @@
 	},
 /turf/simulated/floor/tiled/eris/white/gray_platform,
 /area/gateway)
+"xo" = (
+/turf/simulated/floor/reinforced,
+/area/rnd/workshop)
 "xq" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
@@ -11344,6 +11343,7 @@
 /obj/structure/table/standard,
 /obj/machinery/recharger,
 /obj/item/device/retail_scanner/science,
+/obj/item/device/multitool/scioutpost,
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/research)
 "yr" = (
@@ -17404,6 +17404,8 @@
 /obj/item/weapon/material/minihoe,
 /obj/item/inflatable/door,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/item/weapon/storage/box/botanydisk,
+/obj/item/weapon/storage/box/botanydisk,
 /turf/simulated/floor/tiled/eris,
 /area/rnd/xenobiology/xenoflora)
 "LA" = (
@@ -20757,7 +20759,7 @@
 	id = "xenospace6"
 	},
 /turf/simulated/floor/reinforced,
-/area/rnd/xenobiology)
+/area/rnd/workshop)
 "SS" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -21595,6 +21597,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/storage)
+"Uy" = (
+/obj/item/weapon/bikehorn/rubberducky,
+/turf/simulated/floor/tiled/steel_ridged,
+/area/stellardelight/deck1/shower)
 "Uz" = (
 /obj/structure/bookcase/bookcart,
 /turf/simulated/floor/carpet,
@@ -32051,7 +32057,7 @@ SX
 it
 zP
 pS
-kX
+Uy
 SV
 Ms
 Dy
@@ -38166,16 +38172,16 @@ bD
 bD
 ym
 ym
-RN
-RN
+xo
+xo
 jb
 ym
-RN
-RN
+xo
+xo
 kN
 ym
-RN
-RN
+xo
+xo
 SR
 Vg
 pQ
