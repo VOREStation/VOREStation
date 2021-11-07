@@ -1,0 +1,58 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/template_noop,/area/submap/Cavelake)
+"c" = (/turf/simulated/mineral/ignore_mapgen/cave,/area/submap/Cavelake)
+"d" = (/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/Cavelake)
+"e" = (/obj/effect/decal/cleanable/cobweb2,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/Cavelake)
+"f" = (/turf/simulated/floor/outdoors/rocks,/area/submap/Cavelake)
+"g" = (/mob/living/simple_mob/animal/sif/hooligan_crab,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/Cavelake)
+"h" = (/turf/simulated/floor/water,/area/submap/Cavelake)
+"i" = (/mob/living/simple_mob/animal/passive/fish/perch,/turf/simulated/floor/water,/area/submap/Cavelake)
+"j" = (/obj/machinery/crystal,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/Cavelake)
+"k" = (/mob/living/simple_mob/animal/passive/fish/trout,/turf/simulated/floor/water,/area/submap/Cavelake)
+"l" = (/obj/effect/decal/cleanable/cobweb,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/Cavelake)
+"m" = (/obj/random/mob/sif,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/Cavelake)
+"n" = (/obj/item/clothing/mask/snorkel,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/Cavelake)
+"o" = (/obj/effect/decal/remains/mouse,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/Cavelake)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+abbbbccbbbbbbcccccccbbbbbbbbbbbbbbbbbbba
+abbbcccdddddccccccccbbbbbcccccccccccbbba
+abbcccddddddddddddddbbbbbbbccccccccccbba
+abcccdddddddddddddddddddddddddddddeccbba
+abcccddddddddddddddddddddddddddddddccbba
+acccddddddddddddddddddddddddddddddddcbba
+acccdddddddddddddddddffffffffffdddddcbba
+acccdddddddddddddgdfffhhhhhhhhffddddcbba
+acccdddddddddddddddfhhhhhhhhhhhfddddcbba
+accdddddddddddddddfhhhhhhhhhhhhffdddccba
+accdddddddddddddddfhhhhhhhhhhhhhffffccca
+acddddddddddddddddffhhhhhhihhhhhhfffffca
+acddddcccjddddddddffhhhhhhhhhhhhhhhhhfca
+acdddcccccdddddddddffhhhhhhhhhhhhhhhhfca
+acdddccccccddddddddffhhhhhhhhhhhhhhhhfca
+acdddjcccccddddddddffhhhhhhhhhhhhhhhkfca
+accddddcclmdddddddddfhhhhhhhhhhhhhhhhfca
+accdddddddddddddddddfhhhhhhhhhhhhhhhhfca
+accdddddddddddddddddfhhhhhhhhhhhhhhhhfca
+accdddddddddddddddddffhhhhhhhhhhhhhhhfca
+acddddddddnddddddddddfhhhhhihhhhhhhhhfca
+acddddffffffffffffdddffhhhhhhhhhhhhhhfca
+acdffffhhhhhhhhhffdddfhhhhhhhhhhhhhhffca
+acfhhhhhkhhhhhhhhfdddfhhhhhhhhhhhhffccca
+acffhhhhhhhhhhihhfdddfhhhhhhhhhhfffdccba
+acdffhhhhhhhhhhhhfddddfhhhhhhhhhfdddcbba
+acddffhhhhhkhhhhhffdddfhhhhhhhfffdddccba
+acdddfffhhhhhhhhhhffdddffffffffddddcccba
+acddgdddffffhhhhhhhfdddddffddddddddcccba
+acdddodddddfffffffffdddddddddddddddcccba
+acdddddddddddddddddddddddddddddddddccbba
+accddddddddddddddddddddddddddddddddccbba
+abccdddddddddddddddddddddddddddddddcbbba
+abbcccddddccccddddddddddddcccbbbdddcbbba
+abbbbcccccccccddddcccccccccccbbbbbcbbbba
+abbbbbbbcccccccccccbbbbbccbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbba
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+"}
