@@ -206,9 +206,6 @@
 		if(L.grabbed_by.len) // Same as pulledby, whoever's holding you will keep you from going down stairs.
 			return
 
-		if(L.has_buckled_mobs())
-			return
-
 		if(L.buckled)
 			L.buckled.forceMove(get_turf(top))
 
@@ -460,17 +457,18 @@
 		if(L.grabbed_by.len) // Same as pulledby, whoever's holding you will keep you from going down stairs.
 			return
 
-		if(L.has_buckled_mobs())
-			return
-
 		if(L.buckled)
 			L.buckled.forceMove(get_turf(bottom))
+
+		var/atom/movable/P = null
+		if(L.pulling && !L.pulling.anchored)
+			P = L.pulling
+			P.forceMove(get_turf(L))
 
 		L.forceMove(get_turf(bottom))
 
 		// If the object is pulling or grabbing anything, we'll want to move those too. A grab chain may be disrupted in doing so.
-		if(L.pulling && !L.pulling.anchored)
-			var/atom/movable/P = L.pulling
+		if(P)
 			P.forceMove(get_turf(bottom))
 			L.start_pulling(P)
 

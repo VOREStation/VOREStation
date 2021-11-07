@@ -46,13 +46,13 @@
 
 /datum/gear/mask/gaiter
 	display_name = "neck gaiter selection"
-	path = /obj/item/clothing/mask/gaiter
+	path = /obj/item/clothing/accessory/gaiter
 	cost = 1
 
 /datum/gear/mask/gaiter/New()
 	..()
 	var/list/gaiters = list()
-	for(var/gaiter in typesof(/obj/item/clothing/mask/gaiter))
-		var/obj/item/clothing/mask/gaiter_type = gaiter
+	for(var/gaiter in typesof(/obj/item/clothing/accessory/gaiter))
+		var/obj/item/clothing/accessory/gaiter_type = gaiter
 		gaiters[initial(gaiter_type.name)] = gaiter_type
 	gear_tweaks += new/datum/gear_tweak/path(sortTim(gaiters, /proc/cmp_text_asc))

@@ -233,7 +233,7 @@
 		"Field Medic" = "itg_white",
 		"Talon Doctor" = "itg_white",
 		"Atmospheric Technician" = "itg_orange",
-		"Station Engineer" = "itg_orange",
+		"Engineer" = "itg_orange",
 		"Off-duty Officer" = "itg_red",
 		"Off-duty Engineer" = "itg_orange",
 		"Off-duty Medic" = "itg_white",
