@@ -2519,7 +2519,7 @@
 /turf/simulated/floor/tiled,
 /area/gateway/honlethhighlands/town/engineering)
 "QB" = (
-/obj/machinery/telecomms/relay/preset/tether,
+/obj/machinery/telecomms/relay,
 /turf/simulated/floor/tiled,
 /area/gateway/honlethhighlands/town/engineering)
 "QG" = (

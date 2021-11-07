@@ -159,3 +159,18 @@
 	layer = ABOVE_WINDOW_LAYER
 /obj/structure/noticeboard
 	layer = ABOVE_WINDOW_LAYER
+
+/obj/item/device/multitool/scioutpost
+	name = "science outpost linked multitool"
+	desc = "It has the data for the science outpost's quantum pad pre-loaded... assuming you didn't override it."
+
+/obj/item/device/multitool/scioutpost/Initialize()
+	. = ..()
+	for(var/obj/machinery/power/quantumpad/scioutpost/outpost in world)
+		connectable = outpost
+		if(connectable)
+			icon_state = "multitool_red"
+		return
+
+/obj/machinery/power/quantumpad/scioutpost
+
