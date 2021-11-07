@@ -12879,7 +12879,6 @@
 /turf/simulated/floor/airless,
 /area/stellardelight/deck2/exterior)
 "Du" = (
-/obj/structure/closet/secure_closet/personal,
 /obj/effect/floor_decal/industrial/outline,
 /obj/effect/floor_decal/steeldecal/steel_decals9,
 /obj/effect/floor_decal/steeldecal/steel_decals9{
@@ -12891,11 +12890,10 @@
 /obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 8
 	},
-/obj/item/clothing/shoes/black,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
-/obj/item/device/communicator,
+/obj/structure/undies_wardrobe,
 /turf/simulated/floor/holofloor/tiled/dark,
 /area/crew_quarters/locker)
 "Dv" = (

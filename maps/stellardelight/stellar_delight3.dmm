@@ -2130,6 +2130,13 @@
 	req_access = list(11,24);
 	stripe_color = "#e6ab22"
 	},
+/obj/machinery/door/airlock/angled_bay/hatch{
+	door_color = "#e6ab22";
+	name = "Shield Generator";
+	req_access = null;
+	req_one_access = list(11,24);
+	stripe_color = "#e6ab22"
+	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/stellardelight/deck3/commandhall)
 "iI" = (
@@ -4857,7 +4864,8 @@
 	dir = 4;
 	door_color = "#e6ab22";
 	name = "Shield Generator";
-	req_access = list(11,24);
+	req_access = null;
+	req_one_access = list(11,24);
 	stripe_color = "#e6ab22"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -5946,7 +5954,9 @@
 /obj/machinery/power/apc/angled{
 	dir = 8;
 	name = "night shift APC";
-	nightshift_setting = 2
+	nightshift_setting = 2;
+	req_access = null;
+	req_one_access = list(11,67)
 	},
 /obj/structure/cable{
 	icon_state = "0-4"
@@ -8159,7 +8169,9 @@
 	cell_type = /obj/item/weapon/cell/super;
 	dir = 1;
 	name = "night shift APC";
-	nightshift_setting = 2
+	nightshift_setting = 2;
+	req_access = null;
+	req_one_access = list(11,67)
 	},
 /turf/simulated/floor/tiled/eris/dark/cargo,
 /area/shuttle/sdboat/aft)
@@ -11757,7 +11769,8 @@
 	dir = 4;
 	door_color = "#e6ab22";
 	name = "Shield Generator";
-	req_access = list(11,24);
+	req_access = null;
+	req_one_access = list(11,24);
 	stripe_color = "#e6ab22"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
