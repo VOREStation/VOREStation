@@ -4080,7 +4080,6 @@
 #include "maps\southern_cross\loadout\loadout_uniform.dm"
 #include "maps\southern_cross\loadout\loadout_vr.dm"
 #include "maps\stellardelight\stellar_delight.dm"
-#include "maps\stellardelight\ship_misc.dmm"
 #include "maps\submaps\_helpers.dm"
 #include "maps\submaps\engine_submaps\engine.dm"
 #include "maps\submaps\engine_submaps\engine_areas.dm"
