@@ -4081,6 +4081,7 @@
 #include "maps\southern_cross\loadout\loadout_vr.dm"
 #include "maps\stellardelight\stellar_delight.dm"
 #include "maps\submaps\_helpers.dm"
+#include "maps\submaps\_readme.dm"
 #include "maps\submaps\engine_submaps\engine.dm"
 #include "maps\submaps\engine_submaps\engine_areas.dm"
 #include "maps\submaps\engine_submaps_vr\tether\_engine_submaps.dm"
