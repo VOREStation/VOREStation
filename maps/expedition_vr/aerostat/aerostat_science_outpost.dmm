@@ -3027,6 +3027,9 @@
 /area/offmap/aerostat/inside/arm/se)
 "kN" = (
 /obj/machinery/door/firedoor/glass,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/offmap/aerostat/inside/powercontrol)
 "kO" = (
@@ -3548,6 +3551,14 @@
 /obj/machinery/power/solar,
 /turf/simulated/floor/plating/virgo2,
 /area/offmap/aerostat/solars)
+"na" = (
+/obj/machinery/light/small,
+/obj/machinery/power/quantumpad/scioutpost,
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/bluegrid,
+/area/offmap/aerostat/inside/powercontrol)
 "nb" = (
 /obj/machinery/vending/tool,
 /turf/simulated/floor/tiled/white,
@@ -7597,6 +7608,13 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/offmap/aerostat/inside/airlock/south)
+"FD" = (
+/obj/effect/floor_decal/industrial/warning/dust,
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/offmap/aerostat/inside/lobby)
 "FF" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /obj/machinery/camera/network/research_outpost,
@@ -8654,6 +8672,15 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/offmap/aerostat/inside/toxins)
+"JX" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/offmap/aerostat/inside/lobby)
 "JZ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -12098,6 +12125,9 @@
 "ZN" = (
 /obj/effect/floor_decal/industrial/warning/dust/corner{
 	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/dark,
 /area/offmap/aerostat/inside/lobby)
@@ -22156,10 +22186,10 @@ cP
 dK
 dM
 dN
-Mj
+aQ
 kN
-Ym
-MC
+Ff
+FD
 VG
 VG
 VG
@@ -22298,7 +22328,7 @@ dh
 dL
 dL
 dO
-aR
+na
 GB
 Ym
 ZN
@@ -22443,7 +22473,7 @@ EQ
 yk
 GB
 zE
-Ym
+xl
 Ym
 Ym
 Ym
@@ -22585,7 +22615,7 @@ TB
 GB
 GB
 xl
-Ym
+xl
 Ym
 Ym
 Ym
@@ -22727,7 +22757,7 @@ vg
 eE
 Ym
 BF
-Ff
+JX
 Ff
 Ff
 sK

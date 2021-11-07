@@ -119,7 +119,7 @@
 /datum/gear/uniform/job_skirt/eng
 	display_name = "skirt, engineer"
 	path = /obj/item/clothing/under/rank/engineer/skirt
-	allowed_roles = list("Chief Engineer","Station Engineer")
+	allowed_roles = list("Chief Engineer","Engineer")
 
 /datum/gear/uniform/job_skirt/roboticist
 	display_name = "skirt, roboticist"
@@ -189,7 +189,7 @@
 /datum/gear/uniform/job_turtle/engineering
 	display_name = "turtleneck, engineering"
 	path = /obj/item/clothing/under/rank/engineer/turtleneck
-	allowed_roles = list("Chief Engineer", "Atmospheric Technician", "Station Engineer")
+	allowed_roles = list("Chief Engineer", "Atmospheric Technician", "Engineer")
 
 /datum/gear/uniform/job_turtle/medical
 	display_name = "turtleneck, medical"

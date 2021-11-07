@@ -164,6 +164,16 @@
 	desc = "A starry winter hood."
 	icon_state = "winterhood_cosmic"
 
+/obj/item/clothing/head/hood/winter/christmasred
+	name = "red christmas winter hood"
+	desc = "A red festive winter hood."
+	icon_state = "winterhood_christmasr"
+
+/obj/item/clothing/head/hood/winter/christmasgreen
+	name = "green christmas winter hood"
+	desc = "A green festive winter hood."
+	icon_state = "winterhood_christmasg"
+
 // Explorer gear
 /obj/item/clothing/head/hood/explorer
 	name = "explorer hood"

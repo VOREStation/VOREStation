@@ -1615,31 +1615,6 @@
 /area/bigship/teleporter
 	name = "Bigship Teleporter Room"
 
-//////// Abductor Areas ////////
-/area/unknown
-	requires_power = 0
-	flags = RAD_SHIELDED
-	icon_state = "red2"
-	limit_mob_size = FALSE
-
-/area/unknown/dorm1
-	name = "Unknown Dorm 1"
-
-/area/unknown/dorm2
-	name = "Unknown Dorm 2"
-
-/area/unknown/dorm3
-	name = "Unknown Dorm 3"
-
-/area/unknown/dorm4
-	name = "Unknown Dorm 4"
-
-/area/unknown/dorm5
-	name = "Unknown Dorm 5"
-
-/area/unknown/dorm6
-	name = "Unknown Dorm 6"
-
 // ERT/Deathsquad Shuttle
 /area/shuttle/specialops/centcom
 	name = "Special Operations Shuttle - Centcom"

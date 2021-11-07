@@ -349,7 +349,7 @@
 	display_name = "welding, normal (engineering/robotics)"
 	path = /obj/item/clothing/head/welding
 	cost = 2
-	allowed_roles = list("Chief Engineer","Station Engineer","Atmospheric Technician","Research Director","Roboticist")
+	allowed_roles = list("Chief Engineer","Engineer","Atmospheric Technician","Research Director","Roboticist")
 
 /datum/gear/head/welding/demon
 	display_name = "welding, demon (engineering/robotics)"

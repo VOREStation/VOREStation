@@ -1,0 +1,33 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/simulated/wall/r_wall,/area/submap/cave/prepper1)
+"c" = (/obj/structure/table/steel,/obj/random/maintenance/engineering,/obj/random/maintenance/engineering,/obj/item/stack/rods,/turf/simulated/floor/plating,/area/submap/cave/prepper1)
+"d" = (/obj/structure/table/steel,/obj/random/maintenance/security,/obj/item/stack/cable_coil/random,/turf/simulated/floor/plating,/area/submap/cave/prepper1)
+"e" = (/obj/structure/table/steel,/obj/random/maintenance/engineering,/turf/simulated/floor/plating,/area/submap/cave/prepper1)
+"f" = (/obj/structure/table/steel,/obj/random/maintenance/engineering,/obj/random/maintenance/engineering,/turf/simulated/floor/plating,/area/submap/cave/prepper1)
+"g" = (/obj/structure/table/steel,/obj/item/weapon/storage/box/glasses,/turf/simulated/floor/plating,/area/submap/cave/prepper1)
+"h" = (/obj/structure/table/steel,/obj/random/toolbox,/turf/simulated/floor/plating,/area/submap/cave/prepper1)
+"i" = (/turf/simulated/floor/plating,/area/submap/cave/prepper1)
+"j" = (/obj/structure/table/steel,/obj/item/weapon/tape_roll,/obj/random/maintenance/engineering,/turf/simulated/floor/plating,/area/submap/cave/prepper1)
+"k" = (/obj/structure/table/steel,/obj/random/maintenance/engineering,/obj/random/maintenance/engineering,/obj/item/stack/tile/floor/steel,/turf/simulated/floor/plating,/area/submap/cave/prepper1)
+"l" = (/obj/structure/inflatable/door,/turf/simulated/floor/plating,/area/submap/cave/prepper1)
+"m" = (/obj/structure/closet/wardrobe/grey,/turf/simulated/floor/plating,/area/submap/cave/prepper1)
+"n" = (/obj/structure/closet/crate/freezer/rations,/turf/simulated/floor/plating,/area/submap/cave/prepper1)
+"o" = (/obj/structure/reagent_dispensers/water_cooler/full,/turf/simulated/floor/plating,/area/submap/cave/prepper1)
+"p" = (/obj/structure/loot_pile/maint/technical,/turf/simulated/floor/plating,/area/submap/cave/prepper1)
+"q" = (/obj/structure/table/rack,/obj/item/weapon/tank/emergency/oxygen/engi,/obj/item/weapon/tank/emergency/oxygen/engi,/obj/item/clothing/mask/gas,/obj/item/clothing/suit/armor/material/makeshift,/obj/item/clothing/head/helmet/bucket,/turf/simulated/floor/plating,/area/submap/cave/prepper1)
+"r" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/turf/simulated/floor/plating,/area/submap/cave/prepper1)
+"s" = (/obj/structure/table/steel,/obj/item/device/flashlight/lantern,/turf/simulated/floor/plating,/area/submap/cave/prepper1)
+"t" = (/obj/structure/table/rack,/obj/item/weapon/gun/projectile/shotgun/pump/rifle/lever,/obj/item/ammo_magazine/clip/c762,/obj/item/ammo_magazine/clip/c762,/turf/simulated/floor/plating,/area/submap/cave/prepper1)
+
+(1,1,1) = {"
+aaaaaaaaaa
+aabbbbbbaa
+abbcdefbba
+abghiijkba
+aliiiiimba
+aliiiiinba
+aboiiipnba
+abbqrstbba
+aabbbbbbaa
+aaaaaaaaaa
+"}
