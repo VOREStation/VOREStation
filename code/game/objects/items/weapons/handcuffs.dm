@@ -141,7 +141,7 @@ var/last_chew = 0
 /obj/item/weapon/handcuffs/fuzzy
 	name = "fuzzy cuffs"
 	icon_state = "fuzzycuff"
-	breakouttime = 100 //these are toys like come on
+	breakouttime = 100 //VOREstation edit
 	desc = "Use this to keep... 'prisoners' in line."
 
 /obj/item/weapon/handcuffs/cable
