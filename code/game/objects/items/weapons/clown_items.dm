@@ -19,11 +19,11 @@
  */
 /obj/item/weapon/soap/Initialize()
 	. = ..()
-	create_reagents(5)
+	create_reagents(995)
 	wet()
 
 /obj/item/weapon/soap/proc/wet()
-	reagents.add_reagent("cleaner", 5)
+	reagents.add_reagent("cleaner", 995)
 
 /obj/item/weapon/soap/Crossed(atom/movable/AM as mob|obj)
 	if(AM.is_incorporeal())
