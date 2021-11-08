@@ -326,20 +326,3 @@
 	icon_state = "mermaid_s"
 	can_ride = 0
 	icon_sprite_tag = "mermaid"
-
-/datum/sprite_accessory/tail/taur/shadekin_tail
-	name = "Shadekin Tail"
-	icon_state = "shadekin_s"
-	can_ride = 0
-	hide_body_parts = null
-	clip_mask_icon = null
-	clip_mask_state = null
-	//species_allowed = list(SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW)
-
-/datum/sprite_accessory/tail/taur/shadekin_tail/shadekin_tail_2c
-	name = "Shadekin Tail (dual color)"
-	extra_overlay = "shadekin_markings"
-
-/datum/sprite_accessory/tail/taur/shadekin_tail/shadekin_tail_long
-	name = "Shadekin Long Tail"
-	icon_state = "shadekin_long_s"
