@@ -130,9 +130,10 @@
 /turf/simulated/wall/attackby(var/obj/item/weapon/W, var/mob/user)
 
 	user.setClickCooldown(user.get_attack_speed(W))
-
-	if(!construction_stage && try_graffiti(user, W))
-		return
+	
+	if(!construction_stage && user.a_intent == I_HELP)
+		if(try_graffiti(user,W))
+			return
 
 	if (!user.IsAdvancedToolUser())
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
