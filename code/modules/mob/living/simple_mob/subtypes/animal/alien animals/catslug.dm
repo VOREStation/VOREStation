@@ -51,7 +51,6 @@
 	
 	has_langs = list("Sign Language")
 
-	var/heal_countdown = 0
 	var/picked_color = FALSE
 
 	can_enter_vent_with = list(
@@ -163,38 +162,54 @@
 	playsound(src, 'sound/items/eatfood.ogg', 75, 1)
 	
 /mob/living/simple_mob/vore/alienanimals/catslug/attack_hand(mob/living/carbon/human/M as mob)
-	if(stat != DEAD && M.a_intent == I_HELP && resting)
+	
+	if(stat == DEAD)
+		return ..()
+	if(M.a_intent != I_HELP)
+		return ..()
+	playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+	if(resting)
 		M.visible_message("<span class='notice'>\The [M.name] shakes \the [src] awake from their nap.</span>","<span class='notice'>You shake \the [src] awake!</span>")
-		playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 		lay_down()
 		ai_holder.go_wake()
 		return
+	if(M.zone_sel.selecting == BP_HEAD)
+		M.visible_message( \
+			"<span class='notice'>[M] pats \the [src] on the head.</span>", \
+			"<span class='notice'>You pat \the [src] on the head.</span>", )
+		if(client)
+			return
+		if(prob(10))
+			visible_message("<span class='notice'>\The [src] purrs and leans into [M]'s hand.</span>")
+	else if(M.zone_sel.selecting == BP_R_HAND || M.zone_sel.selecting == BP_L_HAND)
+		M.visible_message( \
+			"<span class='notice'>[M] shakes \the [src]'s hand.</span>", \
+			"<span class='notice'>You shake \the [src]'s hand.</span>", )
+		if(client)
+			return
+		if(prob(10))
+			visible_message("<span class='notice'>\The [src]'s looks a little confused nibbles at [M]'s hand experimentally.</span>")
+	else if(M.zone_sel.selecting == "mouth")
+		M.visible_message( \
+			"<span class='notice'>[M] boops \the [src]'s nose.</span>", \
+			"<span class='notice'>You boop \the [src] on the nose.</span>", )
+		if(client)
+			return
+		if(prob(10))
+			visible_message("<span class='notice'>\The [src]'s eyes widen as they stare at [M]. After a moment they rub their prodded snoot.</span>")
+	else if(M.zone_sel.selecting == BP_GROIN)
+		M.visible_message( \
+			"<span class='notice'>[M] rubs \the [src]'s tummy...</span>", \
+			"<span class='notice'>You rub \the [src]'s tummy... You feel the danger.</span>", )
+		if(client)
+			return
+		visible_message("<span class='notice'>\The [src] pushes [M]'s hand away from their tummy and furrows their brow!</span>")
+		if(prob(5))
+			ai_holder.target = M
+			ai_holder.track_target_position()
+			ai_holder.set_stance(STANCE_FIGHT)
 	else
 		return ..()
-
-/mob/living/simple_mob/vore/alienanimals/catslug/Life()
-	. = ..()
-	if(nutrition < 150)
-		return
-	if(health == maxHealth)
-		return
-	if(heal_countdown > 0)
-		heal_countdown --
-		return
-	if(resting)
-		if(bruteloss > 0)
-			adjustBruteLoss(-10)
-		else if(fireloss > 0)
-			adjustFireLoss(-10)
-		nutrition -= 50
-		heal_countdown = 5
-		return
-	if(bruteloss > 0)
-		adjustBruteLoss(-1)
-	else if(fireloss > 0)
-		adjustFireLoss(-1)
-	nutrition -= 5
-	heal_countdown = 5
 
 /mob/living/simple_mob/vore/alienanimals/catslug/Login()	//If someone plays as us let's just be a passive mob in case accidents happen if the player D/Cs	
 	. = ..()
