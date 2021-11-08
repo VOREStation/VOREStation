@@ -57,7 +57,7 @@
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/bluecuracao = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/cognac = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/grenadine = 5,
-					/obj/item/weapon/reagent_containers/food/condiment/cornoil = 5,
+					/obj/item/weapon/reagent_containers/food/condiment/cookingoil = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/kahlua = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/melonliquor = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/peppermintschnapps = 5,
@@ -587,7 +587,7 @@
 	icon_state = "dinnerware"
 	products = list(
 	/obj/item/weapon/reagent_containers/food/condiment/yeast = 5,
-	/obj/item/weapon/reagent_containers/food/condiment/cornoil = 5,
+	/obj/item/weapon/reagent_containers/food/condiment/cookingoil = 5,
 	/obj/item/weapon/tray = 8,
 	/obj/item/weapon/material/kitchen/utensil/fork = 6,
 	/obj/item/weapon/material/knife/plastic = 6,
