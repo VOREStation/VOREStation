@@ -211,30 +211,6 @@
 	else
 		return ..()
 
-/mob/living/simple_mob/vore/alienanimals/catslug/Life()
-	. = ..()
-	if(nutrition < 150)
-		return
-	if(health == maxHealth)
-		return
-	if(heal_countdown > 0)
-		heal_countdown --
-		return
-	if(resting)
-		if(bruteloss > 0)
-			adjustBruteLoss(-10)
-		else if(fireloss > 0)
-			adjustFireLoss(-10)
-		nutrition -= 50
-		heal_countdown = 5
-		return
-	if(bruteloss > 0)
-		adjustBruteLoss(-1)
-	else if(fireloss > 0)
-		adjustFireLoss(-1)
-	nutrition -= 5
-	heal_countdown = 5
-
 /mob/living/simple_mob/vore/alienanimals/catslug/Login()	//If someone plays as us let's just be a passive mob in case accidents happen if the player D/Cs	
 	. = ..()
 	ai_holder.hostile = FALSE
