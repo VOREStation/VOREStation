@@ -775,8 +775,8 @@
 
 			if(!dest_belly)
 				to_chat(owner, "<span class='warning'>Something went wrong with your belly transfer settings. Your <b>[lowertext(name)]</b> has had it's transfer chance and transfer location cleared as a precaution.</span>")
-				transferchance = 0
-				transferlocation = null
+				transferchance_secondary = 0
+				transferlocation_secondary = null
 				return
 
 			to_chat(R, "<span class='warning'>Your attempt to escape [lowertext(name)] has failed and your struggles only results in you sliding into [owner]'s [transferlocation_secondary]!</span>")
