@@ -188,6 +188,8 @@
 			selected_list["interacts"]["escapetime"] = selected.escapetime
 			selected_list["interacts"]["transferchance"] = selected.transferchance
 			selected_list["interacts"]["transferlocation"] = selected.transferlocation
+			selected_list["interacts"]["transferchance_secondary"] = selected.transferchance_secondary
+			selected_list["interacts"]["transferlocation_secondary"] = selected.transferlocation_secondary
 			selected_list["interacts"]["absorbchance"] = selected.absorbchance
 			selected_list["interacts"]["digestchance"] = selected.digestchance
 
@@ -948,6 +950,21 @@
 			else
 				host.vore_selected.transferlocation = choice.name
 			. = TRUE
+		if("b_transferchance_secondary")
+			var/transfer_secondary_chance_input = input(user, "Set secondary belly transfer chance on resist (as %). You must also set the location for this to have any effect.", "Prey Escape Time") as num|null
+			if(!isnull(transfer_secondary_chance_input))
+				host.vore_selected.transferchance_secondary = sanitize_integer(transfer_secondary_chance_input, 0, 100, initial(host.vore_selected.transferchance_secondary))
+			. = TRUE
+		if("b_transferlocation_secondary")
+			var/obj/belly/choice_secondary = tgui_input_list(usr, "Where do you want your [lowertext(host.vore_selected.name)] to alternately lead if prey resists?","Select Belly", (host.vore_organs + "None - Remove" - host.vore_selected))
+
+			if(!choice_secondary) //They cancelled, no changes
+				return FALSE
+			else if(choice_secondary == "None - Remove")
+				host.vore_selected.transferlocation_secondary = null
+			else
+				host.vore_selected.transferlocation_secondary = choice_secondary.name
+			. = TRUE
 		if("b_absorbchance")
 			var/absorb_chance_input = input(user, "Set belly absorb mode chance on resist (as %)", "Prey Absorb Chance") as num|null
 			if(!isnull(absorb_chance_input))
@@ -976,6 +993,10 @@
 				if(B.transferlocation == host.vore_selected)
 					dest_for = B.name
 					failure_msg += "This is the destiantion for at least '[dest_for]' belly transfers. Remove it as the destination from any bellies before deleting it. "
+					break
+				if(B.transferlocation_secondary == host.vore_selected)
+					dest_for = B.name
+					failure_msg += "This is the destiantion for at least '[dest_for]' secondary belly transfers. Remove it as the destination from any bellies before deleting it. "
 					break
 
 			if(host.vore_selected.contents.len)
