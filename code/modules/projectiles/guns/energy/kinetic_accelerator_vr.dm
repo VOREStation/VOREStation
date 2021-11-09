@@ -654,7 +654,7 @@
 	name = "offsite pressure modulator"
 	desc = "A non-standard modification kit that increases the damage a kinetic accelerator does in pressurized environments, \
 	in exchange for nullifying any projected forces while on or in an associated facility."
-	cost = 10
+	cost = 35
 
 /obj/item/borg/upgrade/modkit/indoors/offsite/modify_projectile(obj/item/projectile/kinetic/K)
 	K.environment = KA_ENVIRO_TYPE_OFFSITE
