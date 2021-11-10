@@ -50,9 +50,6 @@
 /area/talon_v2/hangar
 	name = "\improper Talon - Hangar"
 	icon_state = "red"
-/area/talon_v2/pod_hangar
-	name = "\improper Talon - Pod Hangar"
-	icon_state = "red"
 
 /area/talon_v2/engineering
 	name = "\improper Talon - Engineering"
@@ -92,9 +89,6 @@
 	icon_state = "red"
 /area/talon_v2/secure_storage
 	name = "\improper Talon - Secure Storage"
-	icon_state = "red"
-/area/talon_v2/ofd_ops
-	name = "\improper Talon - OFD Ops"
 	icon_state = "red"
 /area/talon_v2/bridge
 	name = "\improper Talon - Bridge"
