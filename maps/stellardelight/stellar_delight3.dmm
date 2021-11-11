@@ -327,6 +327,14 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/carpet/purcarpet,
 /area/crew_quarters/heads/hor)
+"bB" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor,
+/area/maintenance/stellardelight/deck3/starboardcent)
 "bC" = (
 /obj/structure/closet/crate,
 /obj/random/maintenance,
@@ -481,13 +489,9 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/tcommsat/computer)
 "ch" = (
-/obj/structure/table/rack/shelf,
-/obj/random/contraband,
-/obj/random/maintenance,
-/obj/random/maintenance,
-/obj/random/drinkbottle,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/maintenance/stellardelight/deck3/forestarroomc)
+/obj/machinery/vending/wardrobe/mimedrobe,
+/turf/simulated/floor/carpet/bcarpet,
+/area/stellardelight/deck3/clownmimeoffice)
 "ci" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/blue{
@@ -1369,6 +1373,19 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/stellardelight/deck3/foreportroomb)
+"fj" = (
+/obj/structure/table/woodentable,
+/obj/item/toy/figure/clown,
+/obj/item/weapon/pen/crayon/marker/rainbow,
+/obj/item/weapon/pen/crayon/rainbow,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/turf/simulated/floor/carpet/gaycarpet,
+/area/stellardelight/deck3/clownmimeoffice)
 "fk" = (
 /obj/machinery/telecomms/server/presets/common,
 /turf/simulated/floor/tiled/dark{
@@ -2037,11 +2054,8 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/effect/landmark{
-	name = "morphspawn"
-	},
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/maintenance/stellardelight/deck3/forestarroomc)
+/turf/simulated/floor/carpet/gaycarpet,
+/area/stellardelight/deck3/clownmimeoffice)
 "ir" = (
 /obj/structure/cable/blue{
 	icon_state = "4-8"
@@ -2362,6 +2376,16 @@
 /obj/random/maintenance/cargo,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/aftstarroom)
+"jy" = (
+/obj/structure/window/bay/reinforced,
+/obj/structure/low_wall/bay/reinforced/steel,
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/angled/open{
+	dir = 4;
+	id = "clownmimeoffice"
+	},
+/turf/simulated/floor,
+/area/stellardelight/deck3/clownmimeoffice)
 "jC" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -2574,12 +2598,9 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/stellardelight/deck3/aft)
 "ku" = (
-/obj/structure/table/rack,
-/obj/random/firstaid,
-/obj/random/maintenance,
-/obj/random/maintenance,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/maintenance/stellardelight/deck3/forestarroomc)
+/obj/structure/barricade/cutout/mime,
+/turf/simulated/floor/carpet/bcarpet,
+/area/stellardelight/deck3/clownmimeoffice)
 "kw" = (
 /obj/machinery/light{
 	dir = 8
@@ -2995,6 +3016,12 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/stellardelight/deck3/readingroom)
+"lV" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/stellardelight/deck3/clownmimeoffice)
 "lY" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
@@ -3183,8 +3210,8 @@
 /turf/simulated/floor/tiled/dark,
 /area/crew_quarters/heads/hos)
 "mF" = (
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/maintenance/stellardelight/deck3/forestarroomc)
+/turf/simulated/floor/carpet/bcarpet,
+/area/stellardelight/deck3/clownmimeoffice)
 "mI" = (
 /obj/structure/cable/blue{
 	icon_state = "1-8"
@@ -3744,12 +3771,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
-	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/starboardcent)
 "oD" = (
@@ -4027,6 +4050,12 @@
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/starboardcent)
 "px" = (
@@ -4266,6 +4295,12 @@
 /obj/structure/disposalpipe/segment{
 	dir = 8;
 	icon_state = "pipe-c"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/starboardcent)
@@ -5386,12 +5421,22 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/portcent)
 "uM" = (
-/obj/structure/table/rack,
-/obj/item/device/paicard,
-/obj/random/maintenance,
-/obj/random/maintenance,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/maintenance/stellardelight/deck3/forestarroomc)
+/obj/machinery/alarm/angled,
+/obj/structure/table/woodentable,
+/obj/item/device/flashlight/lamp/clown{
+	pixel_x = -4;
+	pixel_y = 6
+	},
+/obj/item/weapon/bikehorn{
+	pixel_x = -2;
+	pixel_y = 2
+	},
+/obj/item/weapon/stamp/clown{
+	pixel_x = 6;
+	pixel_y = 9
+	},
+/turf/simulated/floor/wood,
+/area/stellardelight/deck3/clownmimeoffice)
 "uQ" = (
 /obj/machinery/alarm/angled{
 	dir = 8
@@ -6076,11 +6121,11 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/effect/landmark{
-	name = "maint_pred"
-	},
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/maintenance/stellardelight/deck3/forestarroomc)
+/turf/simulated/floor/wood,
+/area/stellardelight/deck3/clownmimeoffice)
+"xp" = (
+/turf/simulated/floor/wood,
+/area/stellardelight/deck3/clownmimeoffice)
 "xu" = (
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	dir = 4;
@@ -6703,6 +6748,16 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_platform,
 /area/stellardelight/deck3/commandhall)
+"zC" = (
+/obj/item/toy/figure/mime,
+/obj/item/weapon/pen/crayon/marker/mime,
+/obj/item/weapon/pen/crayon/mime,
+/obj/structure/table/woodentable,
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/stellardelight/deck3/clownmimeoffice)
 "zD" = (
 /obj/structure/cable/blue{
 	icon_state = "1-2"
@@ -6723,23 +6778,14 @@
 /turf/simulated/floor/wood,
 /area/stellardelight/deck3/cafe)
 "zF" = (
-/obj/machinery/power/apc/angled{
-	dir = 8;
-	name = "night shift APC";
-	nightshift_setting = 2
-	},
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
-/obj/structure/closet/crate,
-/obj/random/contraband,
-/obj/random/maintenance,
-/obj/random/maintenance,
-/obj/random/maintenance,
-/obj/random/maintenance,
-/obj/random/maintenance,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/maintenance/stellardelight/deck3/forestarroomc)
+/obj/machinery/power/apc/angled{
+	dir = 8
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/stellardelight/deck3/clownmimeoffice)
 "zH" = (
 /obj/structure/cable/green{
 	icon_state = "2-8"
@@ -7654,7 +7700,7 @@
 /area/crew_quarters/bar)
 "CC" = (
 /turf/simulated/wall/bay/r_wall/steel,
-/area/maintenance/stellardelight/deck3/forestarroomc)
+/area/stellardelight/deck3/clownmimeoffice)
 "CD" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
@@ -7838,13 +7884,9 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai_cyborg_station)
 "Du" = (
-/obj/structure/table/rack/shelf,
-/obj/random/contraband,
-/obj/random/maintenance,
-/obj/random/maintenance,
-/obj/item/weapon/storage/fancy/candle_box,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/maintenance/stellardelight/deck3/forestarroomc)
+/obj/machinery/vending/wardrobe/clowndrobe,
+/turf/simulated/floor/carpet/gaycarpet,
+/area/stellardelight/deck3/clownmimeoffice)
 "Dw" = (
 /obj/machinery/hologram/holopad,
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
@@ -7973,8 +8015,21 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/maintenance/stellardelight/deck3/forestarroomc)
+/obj/machinery/button/remote/blast_door{
+	dir = 8;
+	id = "clownmimeoffice";
+	name = "Window Lockdown";
+	pixel_x = 23;
+	pixel_y = 7
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/turf/simulated/floor/carpet/gaycarpet,
+/area/stellardelight/deck3/clownmimeoffice)
 "DY" = (
 /obj/structure/cable/green{
 	icon_state = "1-2"
@@ -7994,7 +8049,7 @@
 /area/maintenance/stellardelight/deck3/starboardcent)
 "Ec" = (
 /turf/simulated/wall/bay/steel,
-/area/maintenance/stellardelight/deck3/forestarroomc)
+/area/stellardelight/deck3/clownmimeoffice)
 "Ed" = (
 /turf/simulated/wall/bay/r_wall/steel,
 /area/stellardelight/deck3/aft)
@@ -8942,6 +8997,8 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/starboardcent)
 "HN" = (
@@ -9255,14 +9312,18 @@
 /area/stellardelight/deck3/portdock)
 "IS" = (
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock/angled_bay/standard/glass{
-	name = "glass airlock"
-	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/machinery/door/airlock/angled_bay/hatch{
+	name = "Clown and Mime Office";
+	req_one_access = list(138,136);
+	stripe_color = "#454545"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor,
-/area/maintenance/stellardelight/deck3/forestarroomc)
+/area/stellardelight/deck3/clownmimeoffice)
 "IU" = (
 /obj/machinery/hologram/holopad,
 /obj/structure/sign/warning/secure_area{
@@ -9372,6 +9433,13 @@
 	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/transitgateway)
+"Jm" = (
+/obj/structure/barricade/cutout/clown,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/turf/simulated/floor/wood,
+/area/stellardelight/deck3/clownmimeoffice)
 "Jn" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/angled_bay/hatch{
@@ -10184,12 +10252,13 @@
 /turf/simulated/floor,
 /area/ai_cyborg_station)
 "Mr" = (
-/obj/structure/table/rack,
-/obj/random/maintenance,
-/obj/random/maintenance,
-/obj/machinery/chemical_dispenser/bar_coffee/full,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/maintenance/stellardelight/deck3/forestarroomc)
+/obj/structure/bed/double/padded,
+/obj/item/weapon/bedsheet/clowndouble,
+/obj/structure/curtain/black{
+	color = "#361447"
+	},
+/turf/simulated/floor/carpet/gaycarpet,
+/area/stellardelight/deck3/clownmimeoffice)
 "Ms" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/stamp/hop,
@@ -10716,16 +10785,11 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/stellardelight/deck3/starboarddock)
 "NZ" = (
-/obj/structure/closet/crate,
-/obj/random/contraband,
-/obj/random/maintenance,
-/obj/random/maintenance,
-/obj/random/maintenance,
-/obj/random/maintenance,
-/obj/random/maintenance,
-/obj/random/mre,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/maintenance/stellardelight/deck3/forestarroomc)
+/obj/item/weapon/bedsheet/mimedouble,
+/obj/structure/bed/double/padded,
+/obj/structure/curtain/black,
+/turf/simulated/floor/carpet/bcarpet,
+/area/stellardelight/deck3/clownmimeoffice)
 "Oa" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/sign/poster{
@@ -11150,6 +11214,10 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/lawoffice)
+"Pp" = (
+/obj/effect/landmark/start/clown,
+/turf/simulated/floor/carpet/gaycarpet,
+/area/stellardelight/deck3/clownmimeoffice)
 "Pq" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -11525,8 +11593,8 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/maintenance/stellardelight/deck3/forestarroomc)
+/turf/simulated/floor/carpet/gaycarpet,
+/area/stellardelight/deck3/clownmimeoffice)
 "QZ" = (
 /obj/structure/cable/green{
 	icon_state = "1-2"
@@ -12623,8 +12691,9 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/maintenance/stellardelight/deck3/forestarroomc)
+/obj/effect/landmark/start/mime,
+/turf/simulated/floor/carpet/bcarpet,
+/area/stellardelight/deck3/clownmimeoffice)
 "Vm" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -13118,11 +13187,8 @@
 /turf/simulated/floor/tiled/eris/white/cargo,
 /area/crew_quarters/heads/cmo)
 "Xb" = (
-/obj/machinery/alarm/angled{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/maintenance/stellardelight/deck3/forestarroomc)
+/turf/simulated/floor/carpet/gaycarpet,
+/area/stellardelight/deck3/clownmimeoffice)
 "Xc" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
@@ -25589,7 +25655,7 @@ Ps
 eE
 dx
 ch
-mF
+lV
 zF
 NZ
 Ec
@@ -25733,7 +25799,7 @@ dx
 ku
 mF
 Vk
-mF
+zC
 Ec
 hr
 al
@@ -25873,9 +25939,9 @@ FE
 UF
 dx
 uM
-mF
+xp
 xo
-mF
+Jm
 Ec
 kp
 bm
@@ -26015,9 +26081,9 @@ Rg
 FE
 dx
 Mr
-mF
+Pp
 ip
-mF
+fj
 Ec
 RE
 bh
@@ -26161,11 +26227,11 @@ Xb
 QW
 DW
 IS
-hB
+bB
 HL
-hB
-hB
-hB
+bB
+bB
+bB
 pt
 aB
 Mw
@@ -26299,8 +26365,8 @@ FD
 FD
 EZ
 CC
-CC
-CC
+jy
+jy
 CC
 CC
 Vg
@@ -26440,8 +26506,8 @@ DQ
 DQ
 DQ
 DQ
-DQ
 UU
+DQ
 DQ
 DQ
 DQ
