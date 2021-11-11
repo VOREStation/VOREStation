@@ -133,11 +133,10 @@
 				//VOREStation Add Start
 				else if(unconscious_vore && L.allowmobvore)
 					var/mob/living/simple_mob/vore/eater = holder
-					if(eater.prey_excludes[L])
+					if(eater.will_eat(L))
+						return TRUE
+					else
 						return FALSE
-					if(eater.vore_fullness >= eater.vore_capacity)
-						return FALSE
-					return TRUE
 				//VOREStation Add End
 				else
 					return FALSE
