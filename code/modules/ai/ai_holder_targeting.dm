@@ -130,8 +130,15 @@
 			if(L.stat == UNCONSCIOUS)	// Do we have mauling? Yes? Then maul people who are sleeping but not SSD
 				if(mauling)
 					return TRUE
-				else if(unconscious_vore && L.allowmobvore) //VOREStation Add
-					return TRUE								//VOREStation Add
+				//VOREStation Add Start
+				else if(unconscious_vore && L.allowmobvore)
+					var/mob/living/simple_mob/vore/eater = holder
+					if(eater.prey_excludes[L])
+						return FALSE
+					if(eater.vore_fullness >= eater.vore_capacity)
+						return FALSE
+					return TRUE
+				//VOREStation Add End
 				else
 					return FALSE
 		if(holder.IIsAlly(L))
