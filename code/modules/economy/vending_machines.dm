@@ -1227,7 +1227,8 @@
 		/obj/item/clothing/mask/surgical = 5,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/medical = 5,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/medical/alt = 5,
-		/obj/item/clothing/shoes/boots/winter/medical = 5
+		/obj/item/clothing/shoes/boots/winter/medical = 5,
+		/obj/item/clothing/head/beret/medical = 5
 	)
 	req_log_access = access_hop
 	has_logs = 1
@@ -1244,6 +1245,7 @@
 		/obj/item/clothing/shoes/white = 5,
 		/obj/item/clothing/suit/storage/toggle/labcoat/chemist = 5,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/medical/chemist = 5,
+		/obj/item/clothing/head/beret/medical/chem = 5,
 		/obj/item/weapon/storage/backpack/chemistry = 5,
 		/obj/item/weapon/storage/backpack/satchel/chem = 5,
 		/obj/item/weapon/storage/bag/chemistry = 5
@@ -1280,6 +1282,7 @@
 		/obj/item/clothing/shoes/white = 5,
 		/obj/item/clothing/suit/storage/toggle/labcoat/virologist = 5,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/medical/viro = 5,
+		/obj/item/clothing/head/beret/medical/viro = 5,
 		/obj/item/clothing/mask/surgical = 5,
 		/obj/item/weapon/storage/backpack/virology = 5,
 		/obj/item/weapon/storage/backpack/satchel/vir = 5
@@ -1303,6 +1306,7 @@
 		/obj/item/clothing/shoes/slippers = 5,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/science = 5,
 		/obj/item/clothing/shoes/boots/winter/science = 5,
+		/obj/item/clothing/head/beret/science = 5,
 		/obj/item/weapon/storage/backpack/toxins = 5,
 		/obj/item/weapon/storage/backpack/satchel/tox = 5
 	)
@@ -1319,6 +1323,7 @@
 		/obj/item/clothing/under/rank/roboticist = 5,
 		/obj/item/clothing/suit/storage/toggle/labcoat/roboticist = 5,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/science/robotics = 5,
+		/obj/item/clothing/head/beret/science/robotics = 5,
 		/obj/item/clothing/shoes/black = 5,
 		/obj/item/clothing/gloves/black = 5,
 		/obj/item/weapon/storage/backpack/toxins = 5,
