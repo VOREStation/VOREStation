@@ -41,7 +41,8 @@
 								  "Frost Giant Spider" = /mob/living/simple_mob/animal/giant_spider/frost,
 								  "Nurse Giant Spider" = /mob/living/simple_mob/animal/giant_spider/nurse/eggless,
 								  "Giant Spider Queen" = /mob/living/simple_mob/animal/giant_spider/nurse/queen/eggless,
-								  "Weretiger" = /mob/living/simple_mob/vore/weretiger
+								  "Weretiger" = /mob/living/simple_mob/vore/weretiger,
+								  "Catslug" = /mob/living/simple_mob/vore/alienanimals/catslug
 								  )
 
 /obj/structure/ghost_pod/ghost_activated/maintpred/create_occupant(var/mob/M)

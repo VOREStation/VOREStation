@@ -1147,3 +1147,22 @@
 	ani_state = "tentacle_w"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+
+//LONG TAILS ARE NOT TAUR BUTTS >:O
+/datum/sprite_accessory/tail/longtail
+	name = "You should not see this..."
+	icon = 'icons/mob/vore/taurs_vr.dmi'
+	do_colouration = 1 // Yes color, using tail color
+	color_blend_mode = ICON_MULTIPLY  // The sprites for taurs are designed for ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/longtail/shadekin_tail
+	name = "Shadekin Tail"
+	icon_state = "shadekin_s"
+
+/datum/sprite_accessory/tail/longtail/shadekin_tail/shadekin_tail_2c
+	name = "Shadekin Tail (dual color)"
+	extra_overlay = "shadekin_markings"
+
+/datum/sprite_accessory/tail/longtail/shadekin_tail/shadekin_tail_long
+	name = "Shadekin Long Tail"
+	icon_state = "shadekin_long_s"

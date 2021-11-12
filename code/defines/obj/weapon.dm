@@ -376,7 +376,7 @@
 	icon_state = unique_reskin[pick]
 	item_state = unique_reskin[pick]
 	reskin_ran = TRUE
-	to_chat(M, "[src] is now '[pick].'")
+	to_chat(M, "[src] is now '[pick]'.")
 
 /obj/item/weapon/storage/part_replacer/drop_contents() // hacky-feeling tier-based drop system
 	hide_from(usr)

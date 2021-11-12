@@ -1243,9 +1243,9 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 				riding_datum = new /datum/riding/taur(src)
 				verbs |= /mob/living/carbon/human/proc/taur_mount
 				verbs |= /mob/living/proc/toggle_rider_reins
-			return working
-		else
-			return working
+		else if(islongtail(tail_style))
+			working.pixel_x = -16
+		return working
 	return null
 
 // TODO - Move this to where it should go ~Leshana
