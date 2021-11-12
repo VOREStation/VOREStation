@@ -1526,3 +1526,50 @@
 	)
 	req_log_access = access_hop
 	has_logs = 1
+
+/obj/machinery/vending/wardrobe/mimedrobe
+	name = "mime wardrobe vendor"
+	desc = "All the things you need to perform your job! Why didn't you already have them?"
+	product_slogans = "..."
+	icon_state = "mimedrobe"
+	req_access = list(access_mime)
+	products = list(
+		/obj/item/clothing/under/mime = 1,
+		/obj/item/clothing/under/sexymime = 1,
+		/obj/item/clothing/under/sexymime/dress = 1,
+		/obj/item/clothing/mask/gas/mime = 1,
+		/obj/item/clothing/mask/gas/sexymime = 1,
+		/obj/item/clothing/head/soft/mime = 1,
+		/obj/item/clothing/head/collectable/beret = 1,
+		/obj/item/clothing/suit/suspenders = 1,
+		/obj/item/clothing/shoes/mime = 1
+		)
+	req_log_access = access_hop
+	has_logs = 1
+
+/obj/machinery/vending/wardrobe/clowndrobe
+	name = "clown wardrobe vendor"
+	desc = "All the things you need to perform your job! Why didn't you already have them?"
+	product_slogans = "Honk!"
+	icon_state = "clowndrobe"
+	req_access = list(access_clown)
+	products = list(
+		/obj/item/clothing/under/rank/clown = 1,
+		/obj/item/clothing/under/sexyclown = 1,
+		/obj/item/clothing/under/clown/green = 1,
+		/obj/item/clothing/under/clown/purple = 1,
+		/obj/item/clothing/under/clown/yellow = 1,
+		/obj/item/clothing/under/clown/orange = 1,
+		/obj/item/clothing/under/clown/blue = 1,
+		/obj/item/clothing/mask/gas/clown_hat = 1,
+		/obj/item/clothing/mask/gas/sexyclown = 1,
+		/obj/item/clothing/mask/emotions = 1,
+		/obj/item/clothing/shoes/clown_shoes = 1,
+		/obj/item/weapon/reagent_containers/food/snacks/pie = 5,
+		/obj/item/weapon/bananapeel = 5
+		)
+	contraband = list(
+		/obj/item/clothing/under/clown/rainbow = 1
+	)
+	req_log_access = access_hop
+	has_logs = 1

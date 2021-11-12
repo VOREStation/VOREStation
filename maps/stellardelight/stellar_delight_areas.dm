@@ -286,6 +286,9 @@
 	name = "Starboard Dock"
 	ambience = AMBIENCE_ARRIVALS
 
+/area/stellardelight/deck3/clownmimeoffice
+	name = "Clown and Mime Office"
+
 /area/stellardelight/deck1/exterior
 	name = "Deck One Exterior"
 /area/stellardelight/deck2/exterior
