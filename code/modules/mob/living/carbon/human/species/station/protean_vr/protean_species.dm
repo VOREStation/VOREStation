@@ -147,10 +147,10 @@
 		if(!H) //Human could have been deleted in this amount of time. Observing does this, mannequins, etc.
 			return
 		if(!H.nif)
-			var/obj/item/device/nif/bioadap/new_nif = new()
+			var/obj/item/device/nif/protean/new_nif = new()
 			new_nif.quick_implant(H)
 		else
-			H.nif.durability = rand(21,25)
+			H.nif.durability = 25
 
 /datum/species/protean/hug(var/mob/living/carbon/human/H, var/mob/living/target)
 	return ..() //Wut
