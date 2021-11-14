@@ -13,7 +13,7 @@
 //
 /obj/belly
 	name = "belly"							// Name of this location
-	desc = "Warm, wet, and slimy it's a belly and you've found yourself within it!"	// Flavor text description of inside sight/sound/smells/feels.
+	desc = "It's a belly! You're in it!"	// Flavor text description of inside sight/sound/smells/feels.
 	var/vore_sound = "Gulp"					// Sound when ingesting someone
 	var/vore_verb = "ingest"				// Verb for eating with this in messages
 	var/human_prey_swallow_time = 100		// Time in deciseconds to swallow /mob/living/carbon/human
@@ -23,19 +23,21 @@
 	var/digest_burn = 0.5					// Burn damage per tick in digestion mode
 	var/digest_oxy = 0						// Oxy damage per tick in digestion mode
 	var/immutable = FALSE					// Prevents this belly from being deleted
-	var/escapable = TRUE					// Belly can be resisted out of at any time
-	var/escapetime = 30 SECONDS				// Deciseconds, how long to escape this belly
-	var/digestchance = 5					// % Chance of stomach beginning to digest if prey struggles
-	var/absorbchance = 1					// % Chance of stomach beginning to absorb if prey struggles
-	var/escapechance = 15 					// % Chance of prey beginning to escape if prey struggles.
-	var/transferchance = 0 					// % Chance of prey being
+	var/escapable = FALSE					// Belly can be resisted out of at any time
+	var/escapetime = 20 SECONDS				// Deciseconds, how long to escape this belly
+	var/digestchance = 0					// % Chance of stomach beginning to digest if prey struggles
+	var/absorbchance = 0					// % Chance of stomach beginning to absorb if prey struggles
+	var/escapechance = 0 					// % Chance of prey beginning to escape if prey struggles.
+	var/transferchance = 0 					// % Chance of prey being trasnsfered, goes from 0-100%
+	var/transferchance_secondary = 0 		// % Chance of prey being transfered to transferchance_secondary, also goes 0-100%
 	var/can_taste = FALSE					// If this belly prints the flavor of prey when it eats someone.
 	var/bulge_size = 0.25					// The minimum size the prey has to be in order to show up on examine.
 	var/display_absorbed_examine = FALSE	// Do we display absorption examine messages for this belly at all?
 	var/shrink_grow_size = 1				// This horribly named variable determines the minimum/maximum size it will shrink/grow prey to.
 	var/transferlocation					// Location that the prey is released if they struggle and get dropped off.
+	var/transferlocation_secondary			// Secondary location that prey is released to.
 	var/release_sound = "Splatter"			// Sound for letting someone out. Replaced from True/false
-	var/mode_flags = 13						// Stripping, numbing, etc.
+	var/mode_flags = 0						// Stripping, numbing, etc.
 	var/fancy_vore = FALSE					// Using the new sounds?
 	var/is_wet = TRUE						// Is this belly's insides made of slimy parts?
 	var/wet_loop = TRUE						// Does the belly have a fleshy loop playing?
@@ -152,7 +154,9 @@
 		"absorbchance",
 		"escapechance",
 		"transferchance",
+		"transferchance_secondary",
 		"transferlocation",
+		"transferlocation_secondary",
 		"bulge_size",
 		"display_absorbed_examine",
 		"shrink_grow_size",
@@ -762,6 +766,27 @@
 			transfer_contents(R, dest_belly)
 			return
 
+		else if(prob(transferchance_secondary) && transferlocation_secondary) //After the first potential mess getting into, run the secondary one which might be even bigger of a mess.
+			var/obj/belly/dest_belly
+			for(var/obj/belly/B as anything in owner.vore_organs)
+				if(B.name == transferlocation_secondary)
+					dest_belly = B
+					break
+
+			if(!dest_belly)
+				to_chat(owner, "<span class='warning'>Something went wrong with your belly transfer settings. Your <b>[lowertext(name)]</b> has had it's transfer chance and transfer location cleared as a precaution.</span>")
+				transferchance_secondary = 0
+				transferlocation_secondary = null
+				return
+
+			to_chat(R, "<span class='warning'>Your attempt to escape [lowertext(name)] has failed and your struggles only results in you sliding into [owner]'s [transferlocation_secondary]!</span>")
+			to_chat(owner, "<span class='warning'>Someone slid into your [transferlocation_secondary] due to their struggling inside your [lowertext(name)]!</span>")
+			if(C)
+				transfer_contents(C, dest_belly)
+				return
+			transfer_contents(R, dest_belly)
+			return
+
 		else if(prob(absorbchance) && digest_mode != DM_ABSORB) //After that, let's have it run the absorb chance.
 			to_chat(R, "<span class='warning'>In response to your struggling, \the [lowertext(name)] begins to cling more tightly...</span>")
 			to_chat(owner, "<span class='warning'>You feel your [lowertext(name)] start to cling onto its contents...</span>")
@@ -852,7 +877,9 @@
 	dupe.absorbchance = absorbchance
 	dupe.escapechance = escapechance
 	dupe.transferchance = transferchance
+	dupe.transferchance_secondary = transferchance_secondary
 	dupe.transferlocation = transferlocation
+	dupe.transferlocation_secondary = transferlocation_secondary
 	dupe.bulge_size = bulge_size
 	dupe.shrink_grow_size = shrink_grow_size
 	dupe.mode_flags = mode_flags
