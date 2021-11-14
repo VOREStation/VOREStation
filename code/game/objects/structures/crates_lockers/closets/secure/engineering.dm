@@ -28,6 +28,8 @@
 		/obj/item/clothing/suit/storage/hooded/wintercoat/engineering,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/engineering/ce,
 		/obj/item/clothing/shoes/boots/winter/engineering,
+		/obj/item/clothing/head/beret/engineering/ce,
+		/obj/item/clothing/head/beret/engineering/ce/white,
 		/obj/item/weapon/tank/emergency/oxygen/engi,
 		/obj/item/weapon/reagent_containers/spray/windowsealant) //VOREStation Add
 

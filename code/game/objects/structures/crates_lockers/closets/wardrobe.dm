@@ -451,6 +451,7 @@
 		/obj/item/clothing/suit/captunic,
 		/obj/item/clothing/suit/captunic/capjacket,
 		/obj/item/clothing/head/caphat/cap,
+		/obj/item/clothing/head/caphat/beret,
 		/obj/item/clothing/under/rank/captain,
 		/obj/item/clothing/shoes/brown,
 		/obj/item/clothing/gloves/captain,
