@@ -58,13 +58,10 @@ GLOBAL_LIST_EMPTY(fancy_shuttles)
 /turf/simulated/wall/fancy_shuttle/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..(mapload,  MAT_STEELHULL, MAT_STEELHULL, MAT_STEELHULL)
 
-/turf/simulated/wall/fancy_shuttle/window
+/turf/simulated/wall/fancy_shuttle/low //you can see over it and it doesn't block air but you still cant walk over it
+	blocks_air = FALSE
 	opacity = FALSE
-	icon_state = "hull_transparent"
-
-/turf/simulated/wall/fancy_shuttle/window/attack_generic(mob/user, damage, attack_message)
-	take_damage(damage)
-	return damage
+	icon_state = "hull_low"
 
 /turf/simulated/wall/fancy_shuttle/nondense
 	density = FALSE
@@ -181,6 +178,41 @@ GLOBAL_LIST_EMPTY(fancy_shuttles)
 	return "[alpha]-[color]-[dir]-[icon_state]-[T.layer]-[icon_file]"
 
 /**
+ * Shuttle Glass
+ */
+ //OLD GLASS - USE NEW GLASS
+/turf/simulated/wall/fancy_shuttle/window
+	opacity = FALSE
+	icon_state = "hull_transparent"
+
+/turf/simulated/wall/fancy_shuttle/window/attack_generic(mob/user, damage, attack_message)
+	take_damage(damage)
+	return damage
+
+//NEW GLASS
+/obj/structure/window/fancy_shuttle
+	name = "shuttle window"
+	desc = "It looks rather strong. Might take a few good hits to shatter it."
+	icon = 'icons/turf/fancy_shuttles/_fancy_helpers.dmi'
+	icon_state = "hull_window"
+	density = TRUE
+	fulltile = TRUE
+	maxhealth = 60
+	reinf = 1
+	force_threshold = 7
+	var/fancy_shuttle_tag
+
+// Trust me, this is WAY faster than the normal wall overlays shenanigans, don't worry about performance
+/obj/structure/window/fancy_shuttle/update_icon()
+	if(fancy_shuttle_tag) // after a shuttle jump it won't be set anymore, but the shuttle jump proc will set our icon and state
+		var/obj/effect/fancy_shuttle/F = GLOB.fancy_shuttles[fancy_shuttle_tag]
+		if(!F)
+			warning("Fancy shuttle wall at [x],[y],[z] couldn't locate a helper with tag [fancy_shuttle_tag]")
+			return
+		icon = F.split_icon
+		icon_state = "walls [x - F.x],[y - F.y]"
+
+/**
  * Invisible ship equipment (otherwise the same as normal)
  */
 // Gas engine
@@ -252,24 +284,24 @@ GLOBAL_LIST_EMPTY(fancy_shuttles)
 	icon = 'icons/turf/fancy_shuttles/exploration_preview.dmi'
 
 /**
- * Sec shuttle
- * North facing: W:13, H:18
+ * Secbus shuttle
+ * North facing: W:11, H:16
  */
-/obj/effect/fancy_shuttle/security
-	icon = 'icons/turf/fancy_shuttles/security_preview.dmi'
-	split_file = 'icons/turf/fancy_shuttles/security.dmi'
-/obj/effect/fancy_shuttle_floor_preview/security
-	icon = 'icons/turf/fancy_shuttles/security_preview.dmi'
+/obj/effect/fancy_shuttle/secbus
+	icon = 'icons/turf/fancy_shuttles/secbus_preview.dmi'
+	split_file = 'icons/turf/fancy_shuttles/secbus.dmi'
+/obj/effect/fancy_shuttle_floor_preview/secbus
+	icon = 'icons/turf/fancy_shuttles/secbus_preview.dmi'
 
 /**
- * Med shuttle
- * North facing: W:13, H:18
+ * Medbus shuttle
+ * North facing: W:11, H:16
  */
-/obj/effect/fancy_shuttle/medical
-	icon = 'icons/turf/fancy_shuttles/medical_preview.dmi'
-	split_file = 'icons/turf/fancy_shuttles/medical.dmi'
-/obj/effect/fancy_shuttle_floor_preview/medical
-	icon = 'icons/turf/fancy_shuttles/medical_preview.dmi'
+/obj/effect/fancy_shuttle/medbus
+	icon = 'icons/turf/fancy_shuttles/medbus_preview.dmi'
+	split_file = 'icons/turf/fancy_shuttles/medbus.dmi'
+/obj/effect/fancy_shuttle_floor_preview/medbus
+	icon = 'icons/turf/fancy_shuttles/medbus_preview.dmi'
 
 /**
  * Orange line tram
@@ -283,13 +315,23 @@ GLOBAL_LIST_EMPTY(fancy_shuttles)
 
 /**
  * Tour bus
- * North facing: W:7, H:13
+ * North facing: W:7, H:12
  */
 /obj/effect/fancy_shuttle/tourbus
 	icon = 'icons/turf/fancy_shuttles/tourbus_preview.dmi'
 	split_file = 'icons/turf/fancy_shuttles/tourbus.dmi'
 /obj/effect/fancy_shuttle_floor_preview/tourbus
 	icon = 'icons/turf/fancy_shuttles/tourbus_preview.dmi'
+
+/**
+ * Stellar Delight Shuttle
+ * North facing: W:9, H:14
+ */
+/obj/effect/fancy_shuttle/sd_shuttle
+	icon = 'icons/turf/fancy_shuttles/sd_shuttle_preview.dmi'
+	split_file = 'icons/turf/fancy_shuttles/sd_shuttle.dmi'
+/obj/effect/fancy_shuttle_floor_preview/sd_shuttle
+	icon = 'icons/turf/fancy_shuttles/sd_shuttle_preview.dmi'
 
 /**
  * Delivery shuttle
