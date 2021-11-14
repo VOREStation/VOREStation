@@ -196,4 +196,9 @@ Aroliacue - Protean
 Aroliacue - Vox
 Aroliacue - Xenochimera
 Aroliacue - Diona
+Makkinindorn - Shadekin
+Makkinindorn - Protean
+Makkinindorn - Vox
+Makkinindorn - Xenochimera
+Makkinindorn - Diona
 
