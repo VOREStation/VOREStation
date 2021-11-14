@@ -101,9 +101,9 @@
 	START_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/effect/spider/eggcluster/New(var/location, var/atom/parent)
+/obj/effect/spider/eggcluster/Initialize(var/ml, var/atom/parent)
 	get_light_and_color(parent)
-	..()
+	. = ..(ml)
 
 /obj/effect/spider/eggcluster/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -159,6 +159,7 @@
 /obj/effect/spider/spiderling/frost
 	grow_as = list(/mob/living/simple_mob/animal/giant_spider/frost)
 
+<<<<<<< HEAD
 /obj/effect/spider/spiderling/varied
 	grow_as = list(/mob/living/simple_mob/animal/giant_spider, /mob/living/simple_mob/animal/giant_spider/nurse, /mob/living/simple_mob/animal/giant_spider/hunter,
 			/mob/living/simple_mob/animal/giant_spider/frost, /mob/living/simple_mob/animal/giant_spider/electric, /mob/living/simple_mob/animal/giant_spider/lurker,
@@ -167,6 +168,9 @@
 			/mob/living/simple_mob/animal/giant_spider/ion)
 
 /obj/effect/spider/spiderling/New(var/location, var/atom/parent)
+=======
+/obj/effect/spider/spiderling/Initialize(var/ml, var/atom/parent)
+>>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 	pixel_x = rand(6,-6)
 	pixel_y = rand(6,-6)
 	START_PROCESSING(SSobj, src)
@@ -174,7 +178,7 @@
 	if(prob(50))
 		amount_grown = 1
 	get_light_and_color(parent)
-	..()
+	. = ..(ml)
 
 /obj/effect/spider/spiderling/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -310,8 +314,9 @@
 	icon_state = "cocoon1"
 	health = 60
 
-/obj/effect/spider/cocoon/New()
-		icon_state = pick("cocoon1","cocoon2","cocoon3")
+/obj/effect/spider/cocoon/Initialize()
+	. = ..()
+	icon_state = pick("cocoon1","cocoon2","cocoon3")
 
 /obj/effect/spider/cocoon/Destroy()
 	src.visible_message("<span class='warning'>\The [src] splits open.</span>")

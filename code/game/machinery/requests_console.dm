@@ -59,6 +59,21 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 	light_range = 0
 	var/datum/announcement/announcement = new
 
+<<<<<<< HEAD
+=======
+/obj/machinery/requests_console/power_change()
+	..()
+	update_icon()
+
+/obj/machinery/requests_console/update_icon()
+	if(stat & NOPOWER)
+		if(icon_state != "req_comp_off")
+			icon_state = "req_comp_off"
+	else
+		if(icon_state == "req_comp_off")
+			icon_state = "req_comp[newmessagepriority]"
+
+>>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 /obj/machinery/requests_console/Initialize()
 	. = ..()
 

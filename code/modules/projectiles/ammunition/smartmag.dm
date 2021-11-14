@@ -26,13 +26,13 @@
 
 	var/emagged = 0		// If you emag the smart mag, you can get the bullets out by clicking it
 
-/obj/item/ammo_magazine/smart/New()
+/obj/item/ammo_magazine/smart/Initialize()
 	START_PROCESSING(SSobj, src)
-	..()
+	. = ..()
 
 /obj/item/ammo_magazine/smart/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	..()
+	. = ..()
 
 /obj/item/ammo_magazine/smart/process()
 	if(!holding_gun)	// Yes, this is awful, sorry. Don't know a better way to figure out if we've been moved into or out of a gun.

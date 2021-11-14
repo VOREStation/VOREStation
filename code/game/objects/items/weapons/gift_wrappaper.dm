@@ -16,8 +16,8 @@
 	drop_sound = 'sound/items/drop/cardboardbox.ogg'
 	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
-/obj/item/weapon/a_gift/New()
-	..()
+/obj/item/weapon/a_gift/Initialize()
+	. = ..()
 	pixel_x = rand(-10,10)
 	pixel_y = rand(-10,10)
 	if(w_class > 0 && w_class < ITEMSIZE_LARGE)

@@ -83,20 +83,23 @@
 /obj/effect/plant/single
 	spread_chance = 0
 
-/obj/effect/plant/New(var/newloc, var/datum/seed/newseed, var/obj/effect/plant/newparent)
-	..()
+/obj/effect/plant/Initialize(var/ml, var/datum/seed/newseed, var/obj/effect/plant/newparent)
+	. = ..(ml)
 
 	if(!newparent)
 		parent = src
 	else
 		parent = newparent
 
+<<<<<<< HEAD
 	if(!SSplants)
 		sleep(250) // ugly hack, should mean roundstart plants are fine. TODO initialize perhaps?
 	if(!SSplants)
+=======
+	if(!plant_controller)
+>>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 		to_world("<span class='danger'>Plant controller does not exist and [src] requires it. Aborting.</span>")
-		qdel(src)
-		return
+		return INITIALIZE_HINT_QDEL
 
 	if(!istype(newseed))
 		newseed = SSplants.seeds[DEFAULT_SEED]

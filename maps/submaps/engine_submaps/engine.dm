@@ -3,7 +3,7 @@
 	name = "Engine Loader"
 	var/clean_turfs // A list of lists, where each list is (x, )
 
-/obj/effect/landmark/engine_loader/New()
+/obj/effect/landmark/engine_loader/Initialize()
 	if(SSmapping.engine_loader)
 		warning("Duplicate engine_loader landmarks: [log_info_line(src)] and [log_info_line(SSmapping.engine_loader)]")
 		delete_me = TRUE

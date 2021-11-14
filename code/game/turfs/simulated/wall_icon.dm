@@ -1,9 +1,5 @@
 /turf/simulated/wall/proc/update_material()
-
-	if(!material)
-		return
-
-	if(reinf_material)
+	if(istype(reinf_material))
 		construction_stage = 6
 	else
 		construction_stage = null
@@ -14,7 +10,7 @@
 	if(reinf_material && reinf_material.explosion_resistance > explosion_resistance)
 		explosion_resistance = reinf_material.explosion_resistance
 
-	if(reinf_material)
+	if(istype(reinf_material))
 		name = "reinforced [material.display_name] wall"
 		desc = "It seems to be a section of hull reinforced with [reinf_material.display_name] and plated with [material.display_name]."
 	else
@@ -41,7 +37,7 @@
 	update_material()
 
 /turf/simulated/wall/update_icon()
-	if(!material)
+	if(!istype(material))
 		return
 
 	if(!damage_overlays[1]) //list hasn't been populated
@@ -61,7 +57,7 @@
 		I.color = material.icon_colour
 		add_overlay(I)
 
-	if(reinf_material)
+	if(istype(reinf_material))
 		if(construction_stage != null && construction_stage < 6)
 			I = image(wall_masks, "reinf_construct-[construction_stage]")
 			I.color = reinf_material.icon_colour
@@ -88,7 +84,6 @@
 			overlay = damage_overlays.len
 
 		add_overlay(damage_overlays[overlay])
-	return
 
 /turf/simulated/wall/proc/generate_overlays()
 	var/alpha_inc = 256 / damage_overlays.len
@@ -101,12 +96,17 @@
 
 
 /turf/simulated/wall/proc/update_connections(propagate = 0)
-	if(!material)
+	if(!istype(material))
 		return
 	var/list/dirs = list()
+<<<<<<< HEAD
 	var/inrange = orange(src, 1)
 	for(var/turf/simulated/wall/W in inrange)
 		if(!W.material)
+=======
+	for(var/turf/simulated/wall/W in orange(src, 1))
+		if(!istype(W.material))
+>>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 			continue
 		if(propagate)
 			W.update_connections()
@@ -133,6 +133,7 @@
 				if ((additional_dirs & diag_dir) == diag_dir)
 					dirs += diag_dir
 
+<<<<<<< HEAD
 /turf/simulated/wall/proc/can_join_with_wall(var/turf/simulated/wall/W)
 	//No blending if no material
 	if(!material || !W.material)
@@ -142,6 +143,12 @@
 		return 1
 	//Also blend if they have the same iconbase
 	if(material.icon_base == W.material.icon_base)
+=======
+	wall_connections = dirs_to_corner_states(dirs)
+
+/turf/simulated/wall/proc/can_join_with(var/turf/simulated/wall/W)
+	if(istype(material) && istype(W.material) && material.icon_base == W.material.icon_base)
+>>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 		return 1
 	return 0
 

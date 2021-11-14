@@ -383,7 +383,8 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 	var/callme = "pimpin' ride"	//how do people refer to it?
 
 
-/obj/structure/bed/chair/janicart/New()
+/obj/structure/bed/chair/janicart/Initialize()
+	. = ..()
 	create_reagents(300)
 	update_layer()
 

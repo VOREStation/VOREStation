@@ -74,13 +74,17 @@ Also includes Life and New
 
 		return 1	//Everything worked okay.
 
+<<<<<<< HEAD
 /mob/living/simple_mob/xeno/New()
+=======
+/mob/living/simple_animal/xeno/Initialize()
+>>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 
 	traitdat = new()
 
 	ProcessTraits()
 
-	..()
+	. = ..()
 	if(colored)
 		color = traitdat.get_trait(TRAIT_XENO_COLOR)
 	create_reagents(internal_vol)

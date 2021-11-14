@@ -27,24 +27,24 @@
 
 	var/image/fluid
 
-/obj/machinery/atmospherics/unary/cryo_cell/New()
-	..()
+/obj/machinery/atmospherics/unary/cryo_cell/Initialize()
+	. = ..()
 	icon = 'icons/obj/cryogenics_split.dmi'
 	icon_state = "base"
 	initialize_directions = dir
 
-/obj/machinery/atmospherics/unary/cryo_cell/Initialize()
-	. = ..()
 	var/image/tank = image(icon,"tank")
 	tank.alpha = 200
 	tank.pixel_y = 18
 	tank.plane = MOB_PLANE
 	tank.layer = MOB_LAYER+0.2 //Above fluid
+
 	fluid = image(icon, "tube_filler")
 	fluid.pixel_y = 18
 	fluid.alpha = 200
 	fluid.plane = MOB_PLANE
 	fluid.layer = MOB_LAYER+0.1 //Below glass, above mob
+
 	add_overlay(tank)
 	update_icon()
 

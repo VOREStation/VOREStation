@@ -30,8 +30,8 @@
 /obj/item/mecha_parts/chassis/ripley
 	name = "Ripley Chassis"
 
-/obj/item/mecha_parts/chassis/ripley/New()
-	..()
+/obj/item/mecha_parts/chassis/ripley/Initialize()
+	. = ..()
 	construct = new /datum/construction/mecha/ripley_chassis(src)
 
 /obj/item/mecha_parts/part/ripley_torso
@@ -69,8 +69,8 @@
 /obj/item/mecha_parts/chassis/gygax
 	name = "Gygax Chassis"
 
-/obj/item/mecha_parts/chassis/gygax/New()
-	..()
+/obj/item/mecha_parts/chassis/gygax/Initialize()
+	. = ..()
 	construct = new /datum/construction/mecha/gygax_chassis(src)
 
 /obj/item/mecha_parts/part/gygax_torso
@@ -117,8 +117,8 @@
 /obj/item/mecha_parts/chassis/serenity
 	name = "Serenity Chassis"
 
-/obj/item/mecha_parts/chassis/serenity/New()
-	..()
+/obj/item/mecha_parts/chassis/serenity/Initialize()
+	. = ..()
 	construct = new /datum/construction/mecha/serenity_chassis(src)
 
 //////////// Durand
@@ -126,8 +126,8 @@
 /obj/item/mecha_parts/chassis/durand
 	name = "Durand Chassis"
 
-/obj/item/mecha_parts/chassis/durand/New()
-	..()
+/obj/item/mecha_parts/chassis/durand/Initialize()
+	. = ..()
 	construct = new /datum/construction/mecha/durand_chassis(src)
 
 /obj/item/mecha_parts/part/durand_torso
@@ -172,8 +172,8 @@
 /obj/item/mecha_parts/chassis/firefighter
 	name = "Firefighter Chassis"
 
-/obj/item/mecha_parts/chassis/firefighter/New()
-	..()
+/obj/item/mecha_parts/chassis/firefighter/Initialize()
+	. = ..()
 	construct = new /datum/construction/mecha/firefighter_chassis(src)
 /*
 /obj/item/mecha_parts/part/firefighter_torso
@@ -203,8 +203,8 @@
 	name = "Phazon Chassis"
 	origin_tech = list(TECH_MATERIAL = 7)
 
-/obj/item/mecha_parts/chassis/phazon/New()
-	..()
+/obj/item/mecha_parts/chassis/phazon/Initialize()
+	. = ..()
 	construct = new /datum/construction/mecha/phazon_chassis(src)
 
 /obj/item/mecha_parts/part/phazon_torso
@@ -255,8 +255,8 @@
 /obj/item/mecha_parts/chassis/odysseus
 	name = "Odysseus Chassis"
 
-/obj/item/mecha_parts/chassis/odysseus/New()
-	..()
+/obj/item/mecha_parts/chassis/odysseus/Initialize()
+	. = ..()
 	construct = new /datum/construction/mecha/odysseus_chassis(src)
 
 /obj/item/mecha_parts/part/odysseus_head
@@ -307,8 +307,8 @@
 	name = "Janus Chassis"
 	origin_tech = list(TECH_MATERIAL = 7)
 
-/obj/item/mecha_parts/chassis/janus/New()
-	..()
+/obj/item/mecha_parts/chassis/janus/Initialize()
+	. = ..()
 	construct = new /datum/construction/mecha/janus_chassis(src)
 
 /obj/item/mecha_parts/part/janus_torso

@@ -5,6 +5,7 @@
 	///whether we are already in the SSlighting.objects_queue list
 	var/needs_update = FALSE
 
+<<<<<<< HEAD
 	///the turf that our light is applied to
 	var/turf/affected_turf
 
@@ -19,6 +20,17 @@
 	. = ..()
 
 	current_underlay = mutable_appearance(LIGHTING_ICON, "transparent", source.z, PLANE_LIGHTING, 255, RESET_COLOR | RESET_ALPHA | RESET_TRANSFORM)
+=======
+/atom/movable/lighting_overlay/Initialize(var/ml, var/no_update = FALSE)
+	. = ..(ml)
+	verbs.Cut()
+	total_lighting_overlays++
+	var/turf/T = loc //If this runtimes atleast we'll know what's creating overlays outside of turfs.
+	T.lighting_overlay = src
+	T.luminosity = 0
+	if(!no_update)
+		update_overlay()
+>>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 
 	affected_turf = source
 	if (affected_turf.lighting_object)

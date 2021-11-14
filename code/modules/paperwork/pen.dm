@@ -95,8 +95,8 @@
 	flags = OPENCONTAINER
 	origin_tech = list(TECH_MATERIAL = 2, TECH_ILLEGAL = 5)
 
-/obj/item/weapon/pen/reagent/New()
-	..()
+/obj/item/weapon/pen/reagent/Initialize()
+	. = ..()
 	create_reagents(30)
 
 /obj/item/weapon/pen/reagent/attack(mob/living/M as mob, mob/user as mob)
@@ -212,10 +212,16 @@
 	desc = "It's a black ink pen with a sharp point and a carefully engraved \"Waffle Co.\""
 	origin_tech = list(TECH_MATERIAL = 2, TECH_ILLEGAL = 5)
 
+<<<<<<< HEAD
 /obj/item/weapon/pen/reagent/sleepy/New()
 	..()
 	reagents.add_reagent("chloralhydrate", 1)	//VOREStation Edit
 	reagents.add_reagent("stoxin", 14)	//VOREStation Add
+=======
+/obj/item/weapon/pen/reagent/sleepy/Initialize()
+	. = ..()
+	reagents.add_reagent("chloralhydrate", 22)	//Used to be 100 sleep toxin//30 Chloral seems to be fatal, reducing it to 22./N
+>>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 
 
 /*
@@ -224,8 +230,8 @@
 /obj/item/weapon/pen/reagent/paralysis
 	origin_tech = list(TECH_MATERIAL = 2, TECH_ILLEGAL = 5)
 
-/obj/item/weapon/pen/reagent/paralysis/New()
-	..()
+/obj/item/weapon/pen/reagent/paralysis/Initialize()
+	. = ..()
 	reagents.add_reagent("zombiepowder", 5)
 	reagents.add_reagent("cryptobiolin", 10)
 
@@ -304,7 +310,8 @@
 	drop_sound = 'sound/items/drop/gloves.ogg'
 	pickup_sound = 'sound/items/pickup/gloves.ogg'
 
-/obj/item/weapon/pen/crayon/New()
+/obj/item/weapon/pen/crayon/Initialize()
+	. = ..()
 	name = "[colourName] crayon"
 
 /obj/item/weapon/pen/crayon/marker
@@ -312,5 +319,6 @@
 	desc = "A chisel-tip permanent marker. Hopefully non-toxic."
 	icon_state = "markerred"
 
-/obj/item/weapon/pen/crayon/marker/New()
+/obj/item/weapon/pen/crayon/marker/Initialize()
+	. = ..()
 	name = "[colourName] marker"

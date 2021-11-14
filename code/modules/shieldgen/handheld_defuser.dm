@@ -10,8 +10,13 @@
 
 
 /obj/item/weapon/shield_diffuser/Initialize()
+<<<<<<< HEAD
 	. = ..()
 	cell = new(src)
+=======
+	cell = new(src)
+	. = ..()
+>>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 
 /obj/item/weapon/shield_diffuser/Destroy()
 	QDEL_NULL(cell)

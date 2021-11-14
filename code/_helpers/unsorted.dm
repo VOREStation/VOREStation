@@ -720,7 +720,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 					if(istype(T,/turf/simulated/shuttle))
 						shuttlework = 1
 						var/turf/simulated/shuttle/SS = T
-						if(!SS.landed_holder) SS.landed_holder = new(turf = SS)
+						if(!SS.landed_holder) SS.landed_holder = new(SS)
 						X = SS.landed_holder.land_on(B)
 
 					//Generic non-shuttle turf move.
@@ -1192,8 +1192,9 @@ var/mob/dview/dview_mob = new
 		color = origin.color
 		set_light(origin.light_range, origin.light_power, origin.light_color)
 
-/mob/dview/New()
-	..()
+INITIALIZE_IMMEDIATE(/mob/dview)
+/mob/dview/Initialize()
+	. = ..()
 	// We don't want to be in any mob lists; we're a dummy not a mob.
 	mob_list -= src
 	if(stat == DEAD)

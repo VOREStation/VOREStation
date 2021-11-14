@@ -37,6 +37,7 @@
 
 /turf/Initialize(mapload)
 	. = ..()
+	
 	for(var/atom/movable/AM in src)
 		Entered(AM)
 

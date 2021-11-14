@@ -28,8 +28,8 @@
 	updateVisibility(src)
 	return ..()
 
-/obj/structure/New()
-	..()
+/obj/structure/Initialize()
+	. = ..()
 	updateVisibility(src)
 
 // EFFECTS

@@ -251,8 +251,8 @@ var/global/datum/emergency_shuttle_controller/emergency_shuttle = new
 	layer = TURF_LAYER
 	plane = TURF_PLANE
 
-/obj/effect/bgstar/New()
-	..()
+/obj/effect/bgstar/Initialize()
+	. = ..()
 	pixel_x += rand(-2,30)
 	pixel_y += rand(-2,30)
 	var/starnum = pick("1", "1", "1", "2", "3", "4")

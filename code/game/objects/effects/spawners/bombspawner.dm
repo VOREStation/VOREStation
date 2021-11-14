@@ -44,14 +44,14 @@
 	name = "TTV bomb - proximity"
 	assembly_type = /obj/item/device/assembly/prox_sensor
 
-/obj/effect/spawner/newbomb/radio/custom/New(var/newloc, ph, ox, co)
+/obj/effect/spawner/newbomb/radio/custom/Initialize(var/ml, ph, ox, co)
 	if(ph != null) phoron_amt = ph
 	if(ox != null) oxygen_amt = ox
 	if(co != null) carbon_amt = co
-	..()
+	. = ..()
 
-/obj/effect/spawner/newbomb/Initialize(newloc)
-	..(newloc)
+/obj/effect/spawner/newbomb/Initialize()
+	..()
 	var/obj/item/device/transfer_valve/V = new(src.loc)
 	var/obj/item/weapon/tank/phoron/PT = new(V)
 	var/obj/item/weapon/tank/oxygen/OT = new(V)
@@ -100,13 +100,11 @@
 	var/phoron_amt = 0
 	var/oxygen_amt = 0
 
-/obj/effect/spawner/onetankbomb/New(newloc) //just needs an assembly.
-	..(newloc)
-
+/obj/effect/spawner/onetankbomb/Initialize() //just needs an assembly.
+	..()
 	var/type = pick(/obj/item/weapon/tank/phoron/onetankbomb, /obj/item/weapon/tank/oxygen/onetankbomb)
 	new type(src.loc)
-
-	qdel(src)
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/spawner/onetankbomb/full
 	name = "Single-tank bomb"
@@ -116,13 +114,11 @@
 //	var/assembly_type = /obj/item/device/assembly/signaler
 
 	//Note that the maximum amount of gas you can put in a 70L air tank at 1013.25 kPa and 519K is 16.44 mol.
-/obj/effect/spawner/onetankbomb/full/New(newloc) //just needs an assembly.
-	..(newloc)
-
+/obj/effect/spawner/onetankbomb/full/Initialize() //just needs an assembly.
+	. = ..()
 	var/type = pick(/obj/item/weapon/tank/phoron/onetankbomb/full, /obj/item/weapon/tank/oxygen/onetankbomb/full)
 	new type(src.loc)
-
-	qdel(src)
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/spawner/onetankbomb/frag
 	name = "Single-tank bomb"
@@ -132,12 +128,8 @@
 //	var/assembly_type = /obj/item/device/assembly/signaler
 
 	//Note that the maximum amount of gas you can put in a 70L air tank at 1013.25 kPa and 519K is 16.44 mol.
-/obj/effect/spawner/onetankbomb/full/New(newloc) //just needs an assembly.
-	..(newloc)
-
+/obj/effect/spawner/onetankbomb/frag/Initialize() //just needs an assembly.
+	. = ..()
 	var/type = pick(/obj/item/weapon/tank/phoron/onetankbomb/full, /obj/item/weapon/tank/oxygen/onetankbomb/full)
-	new type(src.loc)
-
-	qdel(src)
-
-
+	new type(src.loc)	
+	return INITIALIZE_HINT_QDEL

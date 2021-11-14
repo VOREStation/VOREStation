@@ -1,5 +1,6 @@
 /turf/simulated/wall/r_wall
 	icon_state = "rgeneric"
+<<<<<<< HEAD
 /turf/simulated/wall/r_wall/Initialize(mapload)
 	. = ..(mapload, "plasteel","plasteel") //3strong
 
@@ -35,74 +36,140 @@
 	icon_state = "hull-r_titanium"
 /turf/simulated/wall/rthull/Initialize(mapload)
 	. = ..(mapload,  MAT_TITANIUMHULL, MAT_TITANIUMHULL, MAT_TITANIUMHULL)
+=======
+	material = MAT_PLASTEEL
+	reinf_material = MAT_PLASTEEL
+
+/turf/simulated/wall/shull //Spaaaace ship.
+	material = MAT_STEELHULL
+	girder_material = MAT_STEELHULL
+
+/turf/simulated/wall/rshull
+	material = MAT_STEELHULL
+	reinf_material = MAT_STEELHULL
+	girder_material = MAT_STEELHULL
+
+/turf/simulated/wall/pshull //Spaaaace-er ship.
+	material = MAT_PLASTEELHULL
+	girder_material = MAT_PLASTEELHULL
+
+/turf/simulated/wall/rpshull
+	material = MAT_PLASTEELHULL
+	reinf_material = MAT_PLASTEELHULL
+	girder_material = MAT_PLASTEELHULL
+
+/turf/simulated/wall/dshull //Spaaaace-est ship.
+	material = MAT_DURASTEELHULL
+	girder_material = MAT_DURASTEELHULL
+
+/turf/simulated/wall/rdshull
+	material = MAT_DURASTEELHULL
+	reinf_material = MAT_DURASTEELHULL
+	girder_material = MAT_DURASTEELHULL
+
+/turf/simulated/wall/thull
+	material = MAT_TITANIUMHULL
+	girder_material = MAT_TITANIUMHULL
+
+/turf/simulated/wall/rthull
+	material = MAT_TITANIUMHULL
+	reinf_material = MAT_TITANIUMHULL
+	girder_material = MAT_TITANIUMHULL
+>>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 
 /turf/simulated/wall/cult
-	icon_state = "cult"
-/turf/simulated/wall/cult/Initialize(mapload)
-	. = ..(mapload, "cult","cult2","cult")
-/turf/unsimulated/wall/cult
 	name = "cult wall"
 	desc = "Hideous images dance beneath the surface."
 	icon = 'icons/turf/wall_masks.dmi'
 	icon_state = "cult"
+	material = "cult"
+	reinf_material = "cult2"
+	girder_material = "cult"
 
-/turf/simulated/wall/iron/Initialize(mapload)
-	. = ..(mapload, "iron")
-/turf/simulated/wall/uranium/Initialize(mapload)
-	. = ..(mapload, "uranium")
-/turf/simulated/wall/diamond/Initialize(mapload)
-	. = ..(mapload, "diamond")
-/turf/simulated/wall/gold/Initialize(mapload)
-	. = ..(mapload, "gold")
-/turf/simulated/wall/silver/Initialize(mapload)
-	. = ..(mapload, "silver")
-/turf/simulated/wall/lead/Initialize(mapload)
-	. = ..(mapload, "lead")
-/turf/simulated/wall/r_lead/Initialize(mapload)
-	. = ..(mapload, "lead", "lead")
-/turf/simulated/wall/phoron/Initialize(mapload)
-	. = ..(mapload, "phoron")
-/turf/simulated/wall/sandstone/Initialize(mapload)
-	. = ..(mapload, "sandstone")
-/turf/simulated/wall/ironphoron/Initialize(mapload)
-	. = ..(mapload, "iron","phoron")
-/turf/simulated/wall/golddiamond/Initialize(mapload)
-	. = ..(mapload, "gold","diamond")
-/turf/simulated/wall/silvergold/Initialize(mapload)
-	. = ..(mapload, "silver","gold")
-/turf/simulated/wall/sandstonediamond/Initialize(mapload)
-	. = ..(mapload, "sandstone","diamond")
-/turf/simulated/wall/snowbrick/Initialize(mapload)
-	. = ..(mapload, "packed snow")
+/turf/simulated/wall/iron
+	material = MAT_IRON
 
-/turf/simulated/wall/resin/Initialize(mapload)
-	. = ..(mapload, "resin",null,"resin")
+/turf/simulated/wall/uranium
+	material = MAT_URANIUM
+
+/turf/simulated/wall/diamond
+	material = MAT_DIAMOND
+
+/turf/simulated/wall/gold
+	material = MAT_GOLD
+
+/turf/simulated/wall/silver
+	material = MAT_SILVER
+
+/turf/simulated/wall/lead
+	material = MAT_LEAD
+
+/turf/simulated/wall/r_lead
+	material = MAT_LEAD
+	reinf_material = MAT_LEAD
+
+/turf/simulated/wall/phoron
+	material = MAT_PHORON
+
+/turf/simulated/wall/sandstone
+	material = MAT_SANDSTONE
+
+/turf/simulated/wall/ironphoron
+	material = MAT_IRON
+	reinf_material = MAT_PHORON
+
+/turf/simulated/wall/golddiamond
+	material = MAT_GOLD
+	reinf_material = MAT_DIAMOND
+
+/turf/simulated/wall/silvergold
+	material = MAT_SILVER
+	reinf_material = MAT_GOLD
+
+/turf/simulated/wall/sandstonediamond
+	material = MAT_SANDSTONE
+	reinf_material = MAT_DIAMOND
+
+/turf/simulated/wall/snowbrick
+	material = "packed snow"
+
+/turf/simulated/wall/resin
+	material = "resin"
+	girder_material = "resin"
 
 // Kind of wondering if this is going to bite me in the butt.
-/turf/simulated/wall/skipjack/Initialize(mapload)
-	. = ..(mapload, "alienalloy")
+/turf/simulated/wall/skipjack
+	material = "alienalloy"
+
 /turf/simulated/wall/skipjack/attackby()
 	return
-/turf/simulated/wall/titanium/Initialize(mapload)
-	. = ..(mapload, "titanium")
 
-/turf/simulated/wall/durasteel/Initialize(mapload)
-	. = ..(mapload, "durasteel", "durasteel")
+/turf/simulated/wall/titanium
+	material = MAT_TITANIUM
 
-/turf/simulated/wall/wood/Initialize(mapload)
-	. = ..(mapload,  MAT_WOOD)
+/turf/simulated/wall/durasteel
+	material = MAT_DURASTEEL
+	reinf_material = MAT_DURASTEEL
 
+/turf/simulated/wall/wood
+	material = MAT_WOOD
+
+<<<<<<< HEAD
 /turf/simulated/wall/hardwood/Initialize(mapload)
 	. = ..(mapload,  MAT_HARDWOOD)
 
 /turf/simulated/wall/sifwood/Initialize(mapload)
 	. = ..(mapload,  MAT_SIFWOOD)
+=======
+/turf/simulated/wall/sifwood
+	material = MAT_SIFWOOD
+>>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 
-/turf/simulated/wall/log/Initialize(mapload)
-	. = ..(mapload,  MAT_LOG)
+/turf/simulated/wall/log
+	material = MAT_LOG
 
-/turf/simulated/wall/log_sif/Initialize(mapload)
-	. = ..(mapload,  MAT_SIFLOG)
+/turf/simulated/wall/log_sif
+	material = MAT_SIFLOG
 
 // Shuttle Walls
 /turf/simulated/shuttle/wall
@@ -284,6 +351,7 @@
 	breakable = TRUE
 
 /obj/structure/hull_corner/Initialize()
+	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/structure/hull_corner/LateInitialize()

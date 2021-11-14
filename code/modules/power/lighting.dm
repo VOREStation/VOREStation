@@ -35,8 +35,8 @@ var/global/list/light_type_cache = list()
 
 	var/cell_connectors = TRUE
 
-/obj/machinery/light_construct/New(var/atom/newloc, var/newdir, var/building = 0, var/datum/frame/frame_types/frame_type, var/obj/machinery/light/fixture = null)
-	..(newloc)
+/obj/machinery/light_construct/Initialize(var/ml, var/newdir, var/building = 0, var/datum/frame/frame_types/frame_type, var/obj/machinery/light/fixture = null)
+	. = ..(ml)
 	if(fixture)
 		fixture_type = fixture.type
 		fixture.transfer_fingerprints_to(src)
@@ -288,15 +288,19 @@ var/global/list/light_type_cache = list()
 	shows_alerts = FALSE	//VOREStation Edit
 	var/lamp_shade = 1
 
+<<<<<<< HEAD
 /obj/machinery/light/flamp/Initialize(mapload, obj/machinery/light_construct/construct = null)
 	. = ..()
+=======
+/obj/machinery/light/flamp/Initialize(var/ml, obj/machinery/light_construct/construct = null)
+	. = ..(ml, construct)
+>>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 	if(construct)
 		start_with_cell = FALSE
 		lamp_shade = 0
 		update_icon()
-	else	
-		if(start_with_cell && !no_emergency)
-			cell = new/obj/item/weapon/cell/emergency_light(src)
+	else if(start_with_cell && !no_emergency)
+		cell = new/obj/item/weapon/cell/emergency_light(src)
 	
 
 /obj/machinery/light/flamp/flicker
@@ -322,8 +326,13 @@ var/global/list/light_type_cache = list()
 //VOREStation Add End
 
 // create a new lighting fixture
+<<<<<<< HEAD
 /obj/machinery/light/Initialize(mapload, obj/machinery/light_construct/construct = null)
 	. =..()
+=======
+/obj/machinery/light/Initialize(var/ml, obj/machinery/light_construct/construct = null)
+	. = ..(ml)
+>>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 
 	if(construct)
 		start_with_cell = FALSE
@@ -997,8 +1006,8 @@ var/global/list/light_type_cache = list()
 			desc = "A broken [name]."
 
 
-/obj/item/weapon/light/New(atom/newloc, obj/machinery/light/fixture = null)
-	..()
+/obj/item/weapon/light/Initialize(var/ml, obj/machinery/light/fixture = null)
+	. = ..(ml)
 	if(fixture)
 		status = fixture.status
 		rigged = fixture.rigged

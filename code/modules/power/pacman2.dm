@@ -10,6 +10,11 @@
 	var/obj/item/weapon/tank/phoron/P = null
 	var/emagged = 0
 	var/heat = 0
+
+/obj/machinery/power/port_gen/pacman2/Initialize()
+	. = ..()
+	default_apply_parts()
+
 /*
 	process()
 		if(P)
@@ -29,10 +34,6 @@
 	UseFuel()
 		P.air_contents.phoron -= 0.01
 		return
-
-	Initialize()
-		. = ..()
-		default_apply_parts()
 
 	RefreshParts()
 		var/temp_rating = 0

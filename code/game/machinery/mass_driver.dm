@@ -16,7 +16,7 @@
 	var/id = 1.0
 	var/drive_range = 50 //this is mostly irrelevant since current mass drivers throw into space, but you could make a lower-range mass driver for interstation transport or something I guess.
 
-/obj/machinery/mass_driver/New()
+/obj/machinery/mass_driver/Initialize()
 	. = ..()
 	default_apply_parts()
 

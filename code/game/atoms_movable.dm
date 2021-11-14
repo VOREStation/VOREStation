@@ -418,10 +418,40 @@
 					continue
 				src.throw_impact(A,speed)
 
+<<<<<<< HEAD
 /atom/movable/proc/throw_at(atom/target, range, speed, mob/thrower, spin = TRUE, datum/callback/callback) //If this returns FALSE then callback will not be called.
 	. = TRUE
 	if (!target || speed <= 0 || QDELETED(src) || (target.z != src.z))
 		return FALSE
+=======
+/atom/movable/proc/throw_at(atom/target, range, speed, thrower)
+	set waitfor = FALSE
+	if(!target || !src)
+		return 0
+	if(target.z != src.z)
+		return 0
+	//use a modified version of Bresenham's algorithm to get from the atom's current position to that of the target
+	src.throwing = 1
+	src.thrower = thrower
+	src.throw_source = get_turf(src)	//store the origin turf
+	src.pixel_z = 0
+	if(usr)
+		if(HULK in usr.mutations)
+			src.throwing = 2 // really strong throw!
+
+	var/dist_travelled = 0
+	var/dist_since_sleep = 0
+	var/area/a = get_area(src.loc)
+
+	var/dist_x = abs(target.x - src.x)
+	var/dist_y = abs(target.y - src.y)
+
+	var/dx
+	if (target.x > src.x)
+		dx = EAST
+	else
+		dx = WEST
+>>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 
 	if (pulledby)
 		pulledby.stop_pulling()
@@ -442,10 +472,10 @@
 	var/atom/master = null
 	anchored = TRUE
 
-/atom/movable/overlay/New()
+/atom/movable/overlay/Initialize()
 	for(var/x in src.verbs)
 		src.verbs -= x
-	..()
+	. = ..()
 
 /atom/movable/overlay/attackby(a, b)
 	if (src.master)

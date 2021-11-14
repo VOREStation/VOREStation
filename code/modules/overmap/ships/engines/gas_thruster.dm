@@ -189,11 +189,13 @@
 	light_color = "#ed9200"
 	anchored = TRUE
 
-/obj/effect/engine_exhaust/New(var/turf/nloc, var/ndir, var/flame)
-	..(nloc)
+/obj/effect/engine_exhaust/Initialize(var/ml, var/ndir, var/flame)
+	. = ..(ml)
 	if(flame)
 		icon_state = "exhaust"
-		nloc.hotspot_expose(1000,125)
+		if(isturf(loc))
+			var/turf/T = loc
+			T.hotspot_expose(1000,125)
 		set_light(0.5, 3)
 	set_dir(ndir)
 	QDEL_IN(src, 20)

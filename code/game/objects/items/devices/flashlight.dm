@@ -357,9 +357,9 @@
 	pickup_sound = 'sound/items/pickup/gloves.ogg'
 	light_system = MOVABLE_LIGHT
 
-/obj/item/device/flashlight/flare/New()
+/obj/item/device/flashlight/flare/Initialize()
 	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
-	..()
+	. = ..()
 
 /obj/item/device/flashlight/flare/process()
 	var/turf/pos = get_turf(src)
@@ -420,9 +420,9 @@
 	var/fuel = 0
 	power_use = 0
 
-/obj/item/device/flashlight/glowstick/New()
+/obj/item/device/flashlight/glowstick/Initialize()
 	fuel = rand(1600, 2000)
-	..()
+	. = ..()
 
 /obj/item/device/flashlight/glowstick/process()
 	fuel = max(fuel - 1, 0)
@@ -504,9 +504,15 @@
 	on = 1 //Bio-luminesence has one setting, on.
 	power_use = 0
 
+<<<<<<< HEAD
 /obj/item/device/flashlight/slime/New()
 	..()
 	set_light(light_range, light_power, light_color)
+=======
+/obj/item/device/flashlight/slime/Initialize()
+	. = ..()
+	set_light(brightness_on, flashlight_power, flashlight_colour)
+>>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 
 /obj/item/device/flashlight/slime/update_brightness()
 	return

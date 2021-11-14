@@ -12,9 +12,6 @@
 /obj/item/robot_parts/set_dir()
 	return
 
-/obj/item/robot_parts/New(var/newloc, var/model)
-	..(newloc)
-
 /obj/item/robot_parts/l_arm
 	name = "cyborg left arm"
 	desc = "A skeletal limb wrapped in pseudomuscles, with a low-conductivity case."
@@ -71,8 +68,8 @@
 	var/obj/item/robot_parts/head/head = null
 	var/created_name = ""
 
-/obj/item/robot_parts/robot_suit/New()
-	..()
+/obj/item/robot_parts/robot_suit/Initialize()
+	. = ..()
 	src.updateicon()
 
 /obj/item/robot_parts/robot_suit/proc/updateicon()
@@ -192,7 +189,7 @@
 					to_chat(user, "<span class='warning'>This [W] does not seem to fit.</span>")
 					return
 
-			var/mob/living/silicon/robot/O = new /mob/living/silicon/robot(get_turf(loc), unfinished = 1)
+			var/mob/living/silicon/robot/O = new /mob/living/silicon/robot(get_turf(loc), TRUE)
 			if(!O)	return
 
 			user.drop_item()

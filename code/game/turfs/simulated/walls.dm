@@ -32,14 +32,24 @@
 /turf/simulated/wall/Initialize(mapload, materialtype, rmaterialtype, girdertype)
 	. = ..()
 	icon_state = "blank"
-	if(!materialtype)
-		materialtype = DEFAULT_WALL_MATERIAL
-	material = get_material_by_name(materialtype)
-	if(!girdertype)
-		girdertype = DEFAULT_WALL_MATERIAL
-	girder_material = get_material_by_name(girdertype)
-	if(!isnull(rmaterialtype))
-		reinf_material = get_material_by_name(rmaterialtype)
+
+	if(materialtype && !material)
+		material = materialtype
+	else if(!material)
+		material = DEFAULT_WALL_MATERIAL
+	material = get_material_by_name(material)
+
+	if(girdertype && !girder_material)
+		girder_material = girdertype
+	else if(!girder_material)
+		girder_material = DEFAULT_WALL_MATERIAL
+	girder_material = get_material_by_name(girder_material)
+
+	if(rmaterialtype && !reinf_material)
+		reinf_material = rmaterialtype
+	if(reinf_material)
+		reinf_material = get_material_by_name(reinf_material)
+
 	update_material()
 	START_PROCESSING(SSturfs, src)
 

@@ -21,8 +21,8 @@
 	var/predefined_trig_primary
 	var/predefined_trig_secondary
 
-/obj/machinery/artifact/New()
-	..()
+/obj/machinery/artifact/Initialize()
+	. = ..()
 
 	if(predefined_effects && predefined_primary)
 		my_effect = new predefined_primary(src)

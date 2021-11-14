@@ -40,8 +40,8 @@
 
 	var/body_color //brown, gray and white, leave blank for random
 
-/mob/living/simple_mob/animal/passive/mouse/New()
-	..()
+/mob/living/simple_mob/animal/passive/mouse/Initialize()
+	. = ..()
 
 	verbs += /mob/living/proc/ventcrawl
 	verbs += /mob/living/proc/hide
@@ -121,8 +121,8 @@
 	name = "Tom"
 	desc = "Jerry the cat is not amused."
 
-/mob/living/simple_mob/animal/passive/mouse/brown/Tom/New()
-	..()
+/mob/living/simple_mob/animal/passive/mouse/brown/Tom/Initialize()
+	. = ..()
 	// Change my name back, don't want to be named Tom (666)
 	name = initial(name)
 

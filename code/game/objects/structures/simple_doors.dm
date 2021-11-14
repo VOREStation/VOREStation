@@ -22,6 +22,7 @@
 	hardness -= material.combustion_effect(get_turf(src),temperature, 0.3)
 	CheckHardness()
 
+<<<<<<< HEAD
 /obj/structure/simple_door/Initialize(mapload, var/material_name)
 	. = ..()
 	set_material(material_name)
@@ -39,6 +40,17 @@
 	material = get_material_by_name(material_name)
 	if(!material)
 		return
+=======
+/obj/structure/simple_door/Initialize(var/ml, var/material_name)
+	. = ..()
+	if(material_name && !material)
+		material = material_name
+	else if(!material)
+		material = DEFAULT_WALL_MATERIAL
+	if(!material)
+		return INITIALIZE_HINT_QDEL
+	material = get_material_by_name(material)
+>>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 	hardness = max(1,round(material.integrity/10))
 	icon_state = material.door_icon_base
 	name = "[material.display_name] door"
@@ -211,13 +223,13 @@
 		if(3)
 			hardness -= 0.1
 			CheckHardness()
-	return
 
 /obj/structure/simple_door/process()
 	if(!material.radioactivity)
 		return
 	SSradiation.radiate(src, round(material.radioactivity/3))
 
+<<<<<<< HEAD
 /obj/structure/simple_door/iron/Initialize(mapload,var/material_name)
 	..(mapload, material_name || "iron")
 
@@ -254,6 +266,40 @@
 
 /obj/structure/simple_door/cult/Initialize(mapload,var/material_name)
 	..(mapload, material_name || "cult")
+=======
+/obj/structure/simple_door/iron
+	material = MAT_IRON
+
+/obj/structure/simple_door/silver
+	material = MAT_SILVER
+
+/obj/structure/simple_door/gold
+	material = MAT_GOLD
+
+/obj/structure/simple_door/uranium
+	material = MAT_URANIUM
+
+/obj/structure/simple_door/sandstone
+	material = MAT_SANDSTONE
+
+/obj/structure/simple_door/phoron
+	material = MAT_PHORON
+
+/obj/structure/simple_door/diamond
+	material = MAT_DIAMOND
+
+/obj/structure/simple_door/wood
+	material = MAT_WOOD
+
+/obj/structure/simple_door/sifwood
+	material = MAT_SIFWOOD
+
+/obj/structure/simple_door/resin
+	material = "resin"
+
+/obj/structure/simple_door/cult
+	material = "cult"
+>>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 
 /obj/structure/simple_door/cult/TryToSwitchState(atom/user)
 	if(isliving(user))

@@ -12,12 +12,13 @@
 
 	var/mob/my_mob = null // The mob that possesses this hud object.
 
-/obj/screen/movable/ability_master/New(owner)
+/obj/screen/movable/ability_master/Initialize(ml, owner)
+	. = ..()
 	if(owner)
 		my_mob = owner
 		update_abilities(0, owner)
 	else
-		message_admins("ERROR: ability_master's New() was not given an owner argument.  This is a bug.")
+		message_admins("ERROR: ability_master's Initialize() was not given an owner argument.  This is a bug.")
 
 /obj/screen/movable/ability_master/Destroy()
 	. = ..()
@@ -178,10 +179,16 @@
 		ability_master.toggle_open(1)
 		client.screen -= ability_master
 
+<<<<<<< HEAD
 /mob/New()
 	..()
 	if(!ability_master)	//VOREStation Edit: S H A D E K I N
 		ability_master = new /obj/screen/movable/ability_master(src)
+=======
+/mob/Initialize()
+	. = ..()
+	ability_master = new /obj/screen/movable/ability_master(null, src)
+>>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 
 ///////////ACTUAL ABILITIES////////////
 //This is what you click to do things//

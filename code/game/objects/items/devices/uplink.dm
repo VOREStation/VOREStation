@@ -212,8 +212,8 @@
 //
 // Includes normal radio uplink, multitool uplink,
 // implant uplink (not the implant tool) and a preset headset uplink.
-/obj/item/device/radio/uplink/New()
-	..()
+/obj/item/device/radio/uplink/Initialize()
+	. = ..()
 	hidden_uplink = new(src)
 	icon_state = "radio"
 
@@ -221,8 +221,8 @@
 	if(hidden_uplink)
 		hidden_uplink.trigger(user)
 
-/obj/item/device/multitool/uplink/New()
-	..()
+/obj/item/device/multitool/uplink/Initialize()
+	. = ..()
 	hidden_uplink = new(src)
 
 /obj/item/device/multitool/uplink/attack_self(mob/user as mob)
@@ -232,6 +232,6 @@
 /obj/item/device/radio/headset/uplink
 	traitor_frequency = 1445
 
-/obj/item/device/radio/headset/uplink/New()
-	..()
+/obj/item/device/radio/headset/uplink/Initialize()
+	. = ..()
 	hidden_uplink = new(src)
