@@ -134,8 +134,13 @@
 
 	// Now for the tunnels.
 	new /datum/random_map/automata/cave_system/no_cracks(null, 1, 1, Z_LEVEL_SURFACE_MINE, world.maxx, world.maxy) // Create the mining Z-level.
+	new /datum/random_map/noise/sif/underground(null, 1, 1, Z_LEVEL_SURFACE_MINE, world.maxx, world.maxy)
 	new /datum/random_map/noise/ore(null, 1, 1, Z_LEVEL_SURFACE_MINE, 64, 64)         // Create the mining ore distribution map.
-	// Todo: Forest generation.
+
+	// Forest/wilderness generation.
+	new /datum/random_map/noise/sif(       null, 1, 1, Z_LEVEL_SURFACE,      world.maxx, world.maxy)
+	new /datum/random_map/noise/sif/forest(null, 1, 1, Z_LEVEL_SURFACE_WILD, world.maxx, world.maxy)
+
 	return 1
 
 // Skybox Settings

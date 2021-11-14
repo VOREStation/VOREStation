@@ -107,10 +107,10 @@
 "cc" = (/obj/structure/table/standard,/obj/structure/sign/periodic{pixel_y = -32},/obj/item/weapon/surgical/bonesetter,/obj/item/weapon/surgical/scalpel,/turf/simulated/shuttle/floor/white,/area/submap/CrashedMedShuttle)
 "cd" = (/obj/machinery/optable,/obj/effect/decal/cleanable/blood/splatter,/obj/structure/loot_pile/surface/bones,/turf/simulated/shuttle/floor/white,/area/submap/CrashedMedShuttle)
 "ce" = (/obj/structure/table/standard,/obj/item/weapon/surgical/bonegel,/obj/item/weapon/surgical/FixOVein,/turf/simulated/shuttle/floor/white,/area/submap/CrashedMedShuttle)
-"cf" = (/obj/machinery/embedded_controller/radio/simple_docking_controller{frequency = 1380; id_tag = "admin_shuttle"; pixel_x = -25; pixel_y = 0; req_one_access = list(101); tag_door = "admin_shuttle_hatch"},/obj/random/mob/spider/mutant,/turf/simulated/shuttle/plating,/area/submap/CrashedMedShuttle)
+"cf" = (/obj/machinery/embedded_controller/radio/simple_docking_controller{frequency = 1380; id_tag = "crashed_med_shuttle"; pixel_x = -25; pixel_y = 0; req_one_access = list(101); tag_door = "crashed_med_shuttle_hatch"},/obj/random/mob/spider/mutant,/turf/simulated/shuttle/plating,/area/submap/CrashedMedShuttle)
 "cg" = (/obj/structure/table/standard,/obj/item/weapon/storage/belt/medical/emt,/turf/simulated/shuttle/floor/white,/area/submap/CrashedMedShuttle)
 "ch" = (/obj/structure/table/standard,/obj/item/weapon/storage/box/syringes,/obj/effect/spider/stickyweb,/obj/machinery/light,/turf/simulated/shuttle/floor/white,/area/submap/CrashedMedShuttle)
-"ci" = (/obj/machinery/door/airlock/external{frequency = 1380; icon_state = "door_locked"; id_tag = "admin_shuttle_hatch"; locked = 1; name = "Shuttle Hatch"; req_access = null},/turf/simulated/shuttle/plating,/area/submap/CrashedMedShuttle)
+"ci" = (/obj/machinery/door/airlock/external{frequency = 1380; icon_state = "door_locked"; id_tag = "crashed_med_shuttle_hatch"; locked = 1; name = "Shuttle Hatch"; req_access = null},/turf/simulated/shuttle/plating,/area/submap/CrashedMedShuttle)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
