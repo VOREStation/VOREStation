@@ -25,3 +25,11 @@
 /datum/category_item/autolathe/engineering/candymachine
 	name = "candy machine electronics"
 	path =/obj/item/weapon/circuitboard/candymachine
+
+/datum/category_item/autolathe/engineering/rcd_ammo_large
+	name = "high-capacity matter cartridge"
+	path =/obj/item/weapon/rcd_ammo/large
+
+/datum/category_item/autolathe/engineering/rcd_electric
+	name = "electric rapid construction device"
+	path =/obj/item/weapon/rcd/electric

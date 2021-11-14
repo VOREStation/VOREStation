@@ -60,3 +60,4 @@
 #define ismineralturf(A) istype(A, /turf/simulated/mineral)
 
 #define istaurtail(A)	istype(A, /datum/sprite_accessory/tail/taur)
+#define islongtail(A)	istype(A, /datum/sprite_accessory/tail/longtail)

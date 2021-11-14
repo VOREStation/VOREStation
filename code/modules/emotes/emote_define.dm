@@ -89,15 +89,23 @@ var/global/list/emotes_by_key
 
 	var/atom/target
 	if(can_target() && extra_params)
-		extra_params = lowertext(extra_params)
-		for(var/atom/thing in view(user))
-			if(extra_params == lowertext(thing.name))
-				target = thing
-				break
+		var/target_dist
+		extra_params = trim(lowertext(extra_params))
+		for(var/atom/thing in view((isnull(check_range) ? world.view : check_range), user))
 
-	if(target && target != user && check_range)
-		if (get_dist(user, target) > check_range)
-			to_chat(user, SPAN_WARNING("\The [target] is too far away."))
+			if(!isturf(thing.loc))
+				continue
+
+			var/new_target_dist = get_dist(thing, user)
+			if(!isnull(target_dist) && target_dist > new_target_dist)
+				continue
+
+			if(findtext(lowertext(thing.name), extra_params))
+				target_dist = new_target_dist
+				target = thing
+
+		if(!target)
+			to_chat(user, SPAN_WARNING("You cannot see a '[extra_params]' within range."))
 			return
 
 	var/use_1p = get_emote_message_1p(user, target, extra_params)
