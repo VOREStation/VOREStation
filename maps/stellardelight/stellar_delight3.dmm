@@ -51,6 +51,9 @@
 /obj/structure/sign/directions/cargo{
 	pixel_x = 32
 	},
+/obj/structure/railing/grey{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/monotile,
 /area/stellardelight/deck3/aft)
 "ai" = (
@@ -77,6 +80,9 @@
 	},
 /obj/structure/sign/directions/cargo{
 	pixel_x = -32
+	},
+/obj/structure/railing/grey{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/stellardelight/deck3/aft)
@@ -2191,12 +2197,6 @@
 /obj/machinery/door/airlock/angled_bay/hatch{
 	door_color = "#e6ab22";
 	name = "Shield Generator";
-	req_access = list(11,24);
-	stripe_color = "#e6ab22"
-	},
-/obj/machinery/door/airlock/angled_bay/hatch{
-	door_color = "#e6ab22";
-	name = "Shield Generator";
 	req_access = null;
 	req_one_access = list(11,24);
 	stripe_color = "#e6ab22"
@@ -2483,6 +2483,13 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/crew_quarters/heads/hor)
+"jO" = (
+/obj/machinery/station_map{
+	dir = 4;
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_platform,
+/area/stellardelight/deck3/commandhall)
 "jP" = (
 /obj/machinery/alarm/angled,
 /obj/effect/floor_decal/steeldecal/steel_decals5{
@@ -6021,9 +6028,11 @@
 /area/ai_cyborg_station)
 "wP" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/machinery/camera/network/halls,
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 1
+	},
+/obj/machinery/station_map{
+	pixel_y = 32
 	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/aft)
@@ -9151,6 +9160,9 @@
 "HR" = (
 /obj/structure/table/steel,
 /obj/random/contraband,
+/obj/machinery/chemical_dispenser/bar_coffee/full{
+	pixel_y = 8
+	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/foreportrooma)
 "HS" = (
@@ -9788,6 +9800,9 @@
 	dir = 1
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals5,
+/obj/machinery/camera/network/halls{
+	dir = 1
+	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/aft)
 "Kg" = (
@@ -11394,6 +11409,9 @@
 	dir = 1
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals5,
+/obj/machinery/camera/network/halls{
+	dir = 1
+	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/aft)
 "PB" = (
@@ -12394,6 +12412,7 @@
 	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/power/apc/angled{
+	cell_type = /obj/item/weapon/cell/super;
 	dir = 8;
 	name = "night shift APC";
 	nightshift_setting = 2
@@ -12634,9 +12653,11 @@
 /area/stellardelight/deck3/exterior)
 "Uy" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/machinery/camera/network/halls,
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 1
+	},
+/obj/machinery/station_map{
+	pixel_y = 32
 	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/aft)
@@ -13340,6 +13361,7 @@
 /area/lawoffice)
 "WQ" = (
 /obj/machinery/power/apc/angled{
+	cell_type = /obj/item/weapon/cell/super;
 	dir = 4;
 	name = "night shift APC";
 	nightshift_setting = 2
@@ -23878,7 +23900,7 @@ BK
 aQ
 aQ
 sf
-aQ
+jO
 aQ
 BK
 aQ

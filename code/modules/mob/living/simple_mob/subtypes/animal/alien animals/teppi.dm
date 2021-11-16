@@ -687,7 +687,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 			amount_grown -= rand(100,250)
 	if(not_hungy)
 		do_breeding()
-	if(prob(0.5))
+	if(!client && prob(0.5))
 		teppi_sound()
 
 /mob/living/simple_mob/vore/alienanimals/teppi/proc/do_breeding()
