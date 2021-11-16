@@ -944,8 +944,8 @@
 	destination_names = list()
 
 /datum/lore/organization/tsc/ftu
-	name = "Free Trade Union"
-	short_name = "Trade Union "
+	name = "RAID SHADOW LEGENDS"
+	short_name = "RAID SHADOW LEGENDS "
 	acronym = "FTU"
 	desc = "The Free Trade Union is different from other transtellar companies in that they are not just a company; rather, they are a big conglomerate of various traders and merchants from all over the galaxy. The FTU is also partially responsible for many of the large scale 'freeport' trade stations across the known galaxy, even in non-human space. Generally, they are multi-purpose stations but they always keep areas filled with duty-free shops, where almost anything you can imagine can be found - so long as it's not outrageously illegal or hideously expensive.<br><br>They are the creators of the Tradeband language, created specially for being a lingua franca where every merchant can understand each other independent of language or nationality.<br><br>The Union doesn't maintain a particularly large fleet of its own; most members are card-carrying independents who fly under their own flags. When you do see a Union ship (they usually operate under the names of historic merchants) you can be assured that it's tending to something that the Union sees as being of the utmost importance to its interests."
 	history = ""
@@ -955,39 +955,34 @@
 
 	org_type = "corporate"
 	slogans = list(
-			"The FTU. We look out for the little guy.",
-			"There's no Trade like Free Trade.",
-			"Join the Free Trade Union. Because anything worth doing, is worth doing for money." //rule of acquisition #13
+			"Today's video is sponsored by Raid Shadow Legends, one of the biggest mobile role-playing games of 2019 and it's totally free! Currently almost 10 million users have joined Raid over the last six months, and it's one of the most impressive games in its class with detailed models, environments and smooth 60 frames per second animations! All the champions in the game can be customized with unique gear that changes your strategic buffs and abilities! The dungeon bosses have some ridiculous skills of their own and figuring out the perfect party and strategy to overtake them's a lot of fun! Currently with over 300,000 reviews, Raid has almost a perfect score on the Play Store! The community is growing fast and the highly anticipated new faction wars feature is now live, you might even find my squad out there in the arena! It's easier to start now than ever with rates program for new players you get a new daily login reward for the first 90 days that you play in the game! So what are you waiting for? Go to the video description, click on the special links and you'll get 50,000 silver and a free epic champion as part of the new player program to start your journey! Good luck and I'll see you there!",
+			"Today's video is sponsored by Raid Shadow Legends, one of the biggest mobile role-playing games of 2019 and it's totally free! Currently almost 10 million users have joined Raid over the last six months, and it's one of the most impressive games in its class with detailed models, environments and smooth 60 frames per second animations! All the champions in the game can be customized with unique gear that changes your strategic buffs and abilities! The dungeon bosses have some ridiculous skills of their own and figuring out the perfect party and strategy to overtake them's a lot of fun! Currently with over 300,000 reviews, Raid has almost a perfect score on the Play Store! The community is growing fast and the highly anticipated new faction wars feature is now live, you might even find my squad out there in the arena! It's easier to start now than ever with rates program for new players you get a new daily login reward for the first 90 days that you play in the game! So what are you waiting for? Go to the video description, click on the special links and you'll get 50,000 silver and a free epic champion as part of the new player program to start your journey! Good luck and I'll see you there!",
+			"Today's video is sponsored by Raid Shadow Legends, one of the biggest mobile role-playing games of 2019 and it's totally free! Currently almost 10 million users have joined Raid over the last six months, and it's one of the most impressive games in its class with detailed models, environments and smooth 60 frames per second animations! All the champions in the game can be customized with unique gear that changes your strategic buffs and abilities! The dungeon bosses have some ridiculous skills of their own and figuring out the perfect party and strategy to overtake them's a lot of fun! Currently with over 300,000 reviews, Raid has almost a perfect score on the Play Store! The community is growing fast and the highly anticipated new faction wars feature is now live, you might even find my squad out there in the arena! It's easier to start now than ever with rates program for new players you get a new daily login reward for the first 90 days that you play in the game! So what are you waiting for? Go to the video description, click on the special links and you'll get 50,000 silver and a free epic champion as part of the new player program to start your journey! Good luck and I'll see you there!" //rule of acquisition #13
 			)
 	ship_prefixes = list("FTV" = "a general operations", "FTRP" = "a trade protection", "FTRR" = "a piracy suppression", "FTLV" = "a logistical support", "FTTV" = "a mercantile", "FTDV" = "a market establishment")
 	//famous merchants and traders, taken from Civ6's Great Merchants, plus the TSC's founder
 	ship_names = list(
-			"Isaac Adler",
-			"Colaeus",
-			"Marcus Licinius Crassus",
-			"Zhang Qian",
-			"Irene of Athens",
 			"Marco Polo",
-			"Piero de' Bardi",
-			"Giovanni de' Medici",
-			"Jakob Fugger",
-			"Raja Todar Mal",
-			"Adam Smith",
-			"John Jacob Astor",
-			"John Spilsbury",
-			"John Rockefeller",
+			"Cake Farts",
+			"RAID SHADOW LEGENDS",
+			"Shid Fugger XDDD",
+			"Raja Todar Mal Bog Farseer Mc Cul Bal Better Call Saul Mul Mc Dugan Randgan Baggins Slab Urst Guire the Twelve Son of Poppy Mc Urst Mc Doogal Mc Ronald of House Donald",
+			"RAID SHADOW LEGENDS",
+			"John Jacob Asssores",
+			"John Spilsbury Steak",
+			"RAID SHADOW LEGENDS",
 			"Sarah Breedlove",
-			"Mary Katherine Goddard",
-			"Helena Rubenstein",
-			"Levi Strauss",
-			"Melitta Bentz",
-			"Estee Lauder",
-			"Jamsetji Tata",
-			"Masaru Ibuka",
+			"RAID SHADOW LEGENDS",
+			"RAID SHADOW LEGENDS",
+			"RAID SHADOW LEGENDS",
+			"RAID SHADOW LEGENDS",
+			"RAID SHADOW LEGENDS",
+			"RAID SHADOW LEGENDS",
+			"RAID SHADOW LEGENDS",
 			)
 	destination_names = list(
-			"a Free Trade Union office",
-			"FTU HQ"
+			"RAID SHADOW LEGENDS",
+			"RAID SHADOW LEGENDS"
 			)
 
 /datum/lore/organization/tsc/mbt
