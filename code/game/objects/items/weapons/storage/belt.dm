@@ -158,7 +158,8 @@
 		/obj/item/stack/nanopaste,
 		/obj/item/weapon/cell, //this is a bigger belt, might as well make it hold bigger cells too
 		/obj/item/weapon/pipe_dispenser, //bigger belt for bigger tools
-		/obj/item/weapon/rcd //see above
+		/obj/item/weapon/rcd, //see above
+		/obj/item/device/quantum_pad_booster
 	)
 
 
