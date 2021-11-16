@@ -240,7 +240,7 @@
 [i]Transponder[/i]: Transmitting (CIV), NanoTrasen IFF
 [b]Notice[/b]: NanoTrasen Base, authorized personnel only"}
 	known = TRUE
-	in_space = FALSE
+	in_space = TRUE
 
 	icon = 'icons/obj/overmap_vr.dmi'
 	icon_state = "virgo3b"
@@ -282,3 +282,6 @@
 	//For ships, it's safe to assume they're big enough to not be sneaky
 	else if(istype(AM, /obj/effect/overmap/visitable/ship))
 		atc.msg(message)
+
+/obj/effect/overmap/visitable/sector/virgo3b/get_space_zlevels()
+	return list(Z_LEVEL_SPACE_ROCKS)
