@@ -16103,7 +16103,7 @@
 	color = "#42038a";
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospheric_field_generator/perma,
+/obj/machinery/atmospheric_field_generator/perma/underdoors,
 /obj/machinery/door/firedoor/glass/talon,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/stellardelight/deck1/exploshuttle)
@@ -17767,7 +17767,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospheric_field_generator/perma,
+/obj/machinery/atmospheric_field_generator/perma/underdoors,
 /obj/machinery/door/firedoor/glass/talon,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/stellardelight/deck1/miningshuttle)
