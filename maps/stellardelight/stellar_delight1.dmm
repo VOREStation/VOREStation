@@ -8,6 +8,7 @@
 "ac" = (
 /obj/structure/table/steel_reinforced,
 /obj/machinery/power/apc/angled{
+	cell_type = /obj/item/weapon/cell/super;
 	dir = 1;
 	name = "night shift APC";
 	nightshift_setting = 2
@@ -3113,8 +3114,9 @@
 	dir = 4
 	},
 /obj/machinery/power/apc/angled{
+	cell_type = /obj/item/weapon/cell/super;
 	dir = 8;
-	req_access = list(31)
+	req_access = list(31,5)
 	},
 /obj/structure/cable/yellow,
 /obj/machinery/light/floortube{
@@ -3933,7 +3935,11 @@
 	},
 /obj/machinery/recharger/wallcharger{
 	pixel_x = 4;
-	pixel_y = 28
+	pixel_y = 29
+	},
+/obj/machinery/recharger/wallcharger{
+	pixel_x = 4;
+	pixel_y = 38
 	},
 /turf/simulated/floor/tiled/dark,
 /area/security/security_cell_hallway)
@@ -4212,6 +4218,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
+/obj/machinery/station_map{
+	pixel_y = 32
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/aft)
 "iT" = (
@@ -4251,6 +4260,15 @@
 /obj/structure/flora/pottedplant/stoutbush,
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/starboard)
+"iX" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/stellardelight/deck1/fore)
 "iY" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
@@ -4585,6 +4603,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 6
 	},
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/stellardelight/deck1/mining)
 "jG" = (
@@ -4828,6 +4847,17 @@
 	},
 /turf/simulated/floor/lino,
 /area/chapel/office)
+"kl" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/floor_decal/milspec/color/emerald/half{
+	dir = 4
+	},
+/obj/machinery/station_map{
+	dir = 8;
+	pixel_x = 32
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/stellardelight/deck1/aft)
 "km" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -5971,6 +6001,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
 	},
+/obj/machinery/station_map{
+	pixel_y = 32
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/starboard)
 "mF" = (
@@ -6120,6 +6153,15 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/stellardelight/deck1/starboard)
+"mT" = (
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/obj/structure/cable/green{
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/stellardelight/deck1/fore)
 "mU" = (
 /obj/structure/closet/emcloset,
 /turf/simulated/floor/tiled/dark,
@@ -7958,6 +8000,9 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/stellardelight/deck1/resleeving)
+"qX" = (
+/turf/space/internal_edge/right,
+/area/stellardelight/deck1/starboard)
 "qY" = (
 /obj/effect/floor_decal/milspec/color/orange/half,
 /turf/simulated/floor/tiled/dark,
@@ -8145,6 +8190,11 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/substation/security)
+"rt" = (
+/obj/structure/table/woodentable,
+/obj/item/weapon/folder/blue,
+/turf/simulated/floor/tiled/milspec,
+/area/stellardelight/deck1/explobriefing)
 "ru" = (
 /obj/machinery/light_switch{
 	dir = 4;
@@ -9572,6 +9622,9 @@
 	},
 /turf/simulated/floor/carpet/purcarpet,
 /area/stellardelight/deck1/dorms/dorm2)
+"uw" = (
+/turf/space/internal_edge/left,
+/area/stellardelight/deck1/starboard)
 "ux" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/green{
@@ -9677,6 +9730,10 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals6{
 	dir = 9
+	},
+/obj/structure/closet/emergsuit_wall{
+	dir = 8;
+	pixel_x = -27
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/port)
@@ -10756,6 +10813,9 @@
 /obj/structure/filingcabinet/chestdrawer,
 /turf/simulated/floor/tiled/dark,
 /area/security/security_processing)
+"xe" = (
+/turf/simulated/wall/bay/r_wall/brown,
+/area/stellardelight/deck1/starboard)
 "xf" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/bay/reinforced,
@@ -10975,14 +11035,11 @@
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/stellardelight/deck1/oreprocessing)
 "xE" = (
-/obj/machinery/power/apc/angled{
-	dir = 1
-	},
-/obj/structure/cable/green{
-	icon_state = "0-2"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
+	},
+/obj/machinery/station_map{
+	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/fore)
@@ -11200,8 +11257,9 @@
 	dir = 8
 	},
 /obj/machinery/power/apc/angled{
+	cell_type = /obj/item/weapon/cell/super;
 	dir = 4;
-	req_access = list(19,43,67)
+	req_access = list(19,43,67,66,5)
 	},
 /obj/structure/cable/green{
 	color = "#42038a"
@@ -14042,6 +14100,9 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/security/security_cell_hallway)
+"Ef" = (
+/turf/space/internal_edge/top,
+/area/stellardelight/deck1/starboard)
 "Eg" = (
 /obj/structure/cable/green{
 	icon_state = "1-2"
@@ -14215,6 +14276,18 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/xenobiology)
+"EA" = (
+/obj/effect/floor_decal/milspec/color/red/half{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 10
+	},
+/obj/machinery/firealarm/angled{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/stellardelight/deck1/fore)
 "EB" = (
 /obj/machinery/door/window/eastright{
 	dir = 8;
@@ -14262,6 +14335,18 @@
 /obj/item/device/radio{
 	pixel_x = 4;
 	pixel_y = 5
+	},
+/obj/machinery/recharger/wallcharger{
+	pixel_x = 4;
+	pixel_y = 20
+	},
+/obj/machinery/recharger/wallcharger{
+	pixel_x = 4;
+	pixel_y = 28
+	},
+/obj/machinery/recharger/wallcharger{
+	pixel_x = 4;
+	pixel_y = 36
 	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck1/explobriefing)
@@ -14424,6 +14509,9 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/chapel/main)
+"EZ" = (
+/turf/space/internal_edge/bottomright,
+/area/stellardelight/deck1/starboard)
 "Fa" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan{
 	dir = 10
@@ -16004,18 +16092,19 @@
 /turf/simulated/floor/tiled/dark,
 /area/security/security_lockerroom)
 "Iu" = (
-/obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	dir = 4;
 	door_color = "#525252";
 	name = "Exploration Shuttle";
-	req_one_access = list(19,43,67,66);
+	req_one_access = list(19,43,67,66,5);
 	stripe_color = "#408f3b"
 	},
 /obj/structure/cable/green{
 	color = "#42038a";
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospheric_field_generator/perma,
+/obj/machinery/door/firedoor/glass/talon,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/stellardelight/deck1/exploshuttle)
 "Iw" = (
@@ -16243,6 +16332,9 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/portcent)
+"IT" = (
+/turf/space/internal_edge/bottom,
+/area/stellardelight/deck1/starboard)
 "IU" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/white,
@@ -17664,17 +17756,18 @@
 /turf/simulated/wall/bay/r_wall/steel,
 /area/stellardelight/deck1/exploration)
 "Ma" = (
-/obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	dir = 4;
 	door_color = "#a88860";
 	name = "Mining Shuttle";
-	req_access = list(31);
+	req_access = list(31,5);
 	stripe_color = "#69461a"
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/machinery/atmospheric_field_generator/perma,
+/obj/machinery/door/firedoor/glass/talon,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/stellardelight/deck1/miningshuttle)
 "Mb" = (
@@ -17744,6 +17837,9 @@
 /obj/structure/low_wall/bay/reinforced/purple,
 /turf/simulated/floor,
 /area/rnd/workshop)
+"Mh" = (
+/turf/space/internal_edge/topleft,
+/area/stellardelight/deck1/starboard)
 "Mi" = (
 /obj/structure/table/standard,
 /obj/item/weapon/stock_parts/matter_bin,
@@ -18465,6 +18561,9 @@
 /area/assembly/robotics)
 "NN" = (
 /obj/structure/table/steel_reinforced,
+/obj/machinery/recharger{
+	pixel_y = 5
+	},
 /turf/simulated/floor/tiled/dark,
 /area/security/lobby)
 "NP" = (
@@ -18496,6 +18595,9 @@
 	},
 /turf/simulated/floor,
 /area/stellardelight/deck1/mining)
+"NT" = (
+/turf/space/internal_edge/topright,
+/area/stellardelight/deck1/starboard)
 "NV" = (
 /obj/structure/cable/green{
 	color = "#42038a";
@@ -19556,7 +19658,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/firealarm/angled,
+/obj/machinery/station_map{
+	pixel_y = 32
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/fore)
 "Qp" = (
@@ -20233,6 +20337,9 @@
 	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/exam_room)
+"RI" = (
+/turf/space/internal_edge/bottomleft,
+/area/stellardelight/deck1/starboard)
 "RJ" = (
 /obj/machinery/light{
 	dir = 4
@@ -20332,7 +20439,7 @@
 	},
 /obj/machinery/recharger/wallcharger{
 	pixel_x = 4;
-	pixel_y = 28
+	pixel_y = 29
 	},
 /obj/machinery/recharger/wallcharger{
 	pixel_x = 4;
@@ -20341,14 +20448,24 @@
 /obj/effect/floor_decal/milspec/color/red/half{
 	dir = 4
 	},
+/obj/machinery/recharger/wallcharger{
+	pixel_x = 4;
+	pixel_y = 38
+	},
 /turf/simulated/floor/tiled/dark,
 /area/security/security_lockerroom)
 "RX" = (
-/obj/structure/cable/green{
-	icon_state = "4-8"
+/obj/effect/floor_decal/milspec/color/red/half{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals6{
+	dir = 9
+	},
+/obj/machinery/power/apc/angled{
+	dir = 8
 	},
 /obj/structure/cable/green{
-	icon_state = "1-8"
+	icon_state = "0-2"
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/fore)
@@ -21318,6 +21435,8 @@
 /obj/machinery/alarm/angled{
 	dir = 4
 	},
+/obj/item/paint_palette,
+/obj/item/paint_brush,
 /turf/simulated/floor/wood,
 /area/library)
 "TW" = (
@@ -21613,6 +21732,7 @@
 /area/rnd/research)
 "UB" = (
 /obj/machinery/power/apc/angled{
+	cell_type = /obj/item/weapon/cell/super;
 	dir = 1;
 	name = "night shift APC";
 	nightshift_setting = 2
@@ -22217,7 +22337,10 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
-/obj/structure/ore_box,
+/obj/structure/table/standard,
+/obj/machinery/recharger{
+	pixel_y = 5
+	},
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/stellardelight/deck1/mining)
 "VF" = (
@@ -23424,6 +23547,7 @@
 /obj/machinery/camera/network/mining{
 	dir = 8
 	},
+/obj/structure/ore_box,
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/stellardelight/deck1/mining)
 "Yi" = (
@@ -23573,7 +23697,9 @@
 /area/security/tactical)
 "Yy" = (
 /obj/structure/table/steel_reinforced,
-/obj/machinery/recharger,
+/obj/machinery/recharger{
+	pixel_y = 5
+	},
 /obj/structure/sign/vacuum{
 	pixel_y = 32
 	},
@@ -23911,7 +24037,9 @@
 /area/stellardelight/deck1/miningequipment)
 "Zh" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/folder/blue,
+/obj/machinery/recharger{
+	pixel_y = 5
+	},
 /turf/simulated/floor/tiled/milspec,
 /area/stellardelight/deck1/explobriefing)
 "Zi" = (
@@ -24093,7 +24221,14 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/aft)
 "ZC" = (
-/obj/machinery/firealarm/angled,
+/obj/machinery/recharger/wallcharger{
+	pixel_x = 4;
+	pixel_y = 20
+	},
+/obj/machinery/recharger/wallcharger{
+	pixel_x = 4;
+	pixel_y = 29
+	},
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/stellardelight/deck1/mining)
 "ZD" = (
@@ -24156,6 +24291,9 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 8
 	},
+/obj/machinery/firealarm/angled{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/stellardelight/deck1/mining)
 "ZK" = (
@@ -24189,9 +24327,9 @@
 /obj/structure/cable/white{
 	icon_state = "1-2"
 	},
-/obj/structure/closet/emergsuit_wall{
-	dir = 8;
-	pixel_x = -27
+/obj/machinery/station_map{
+	dir = 4;
+	pixel_x = -32
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/aft)
@@ -31231,7 +31369,7 @@ Rz
 TC
 oZ
 Zh
-zZ
+rt
 OB
 Rz
 ny
@@ -33157,7 +33295,7 @@ Zy
 SQ
 Yv
 xE
-RX
+zW
 xZ
 MA
 Zt
@@ -33439,9 +33577,9 @@ Xk
 OD
 ZR
 QG
-XC
-IF
-zW
+RX
+iX
+mT
 Ku
 Ku
 Ku
@@ -33742,13 +33880,13 @@ rW
 lC
 HT
 ER
-uq
-uq
-uq
-uq
-uq
-uq
-uq
+EZ
+qX
+qX
+qX
+qX
+qX
+NT
 vu
 Br
 AP
@@ -33884,13 +34022,13 @@ SH
 jD
 PI
 IZ
-uq
-uq
-uq
-uq
-uq
-uq
-uq
+IT
+xe
+xe
+xe
+xe
+xe
+Ef
 AT
 Aq
 WE
@@ -34026,13 +34164,13 @@ zg
 aj
 Wl
 IZ
-uq
-uq
-uq
-uq
-uq
-uq
-uq
+IT
+xe
+xe
+xe
+xe
+xe
+Ef
 AT
 Qd
 VH
@@ -34168,13 +34306,13 @@ bi
 bi
 bi
 bi
-uq
-uq
-uq
-uq
-uq
-uq
-uq
+IT
+xe
+xe
+xe
+xe
+xe
+Ef
 IC
 IC
 IC
@@ -34310,13 +34448,13 @@ Si
 gK
 LX
 wE
-uq
-uq
-uq
-uq
-uq
-uq
-uq
+IT
+xe
+xe
+xe
+xe
+xe
+Ef
 PA
 da
 dc
@@ -34452,13 +34590,13 @@ KG
 sn
 kL
 wE
-uq
-uq
-uq
-uq
-uq
-uq
-uq
+IT
+xe
+xe
+xe
+xe
+xe
+Ef
 PA
 Wk
 iT
@@ -34594,13 +34732,13 @@ HX
 Gu
 JB
 bi
-uq
-uq
-uq
-uq
-uq
-uq
-uq
+RI
+uw
+uw
+uw
+uw
+uw
+Mh
 IC
 RM
 De
@@ -34859,7 +34997,7 @@ HN
 Tg
 Vr
 Hs
-zb
+EA
 zc
 zW
 Ku
@@ -35751,7 +35889,7 @@ Wj
 MH
 xx
 xF
-XJ
+kl
 CV
 kv
 jg
