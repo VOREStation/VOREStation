@@ -17,12 +17,12 @@ const digestModeToColor = {
   "Digest": "red",
   "Absorb": "purple",
   "Unabsorb": "purple",
-  "Drain": "purple",
-  "Shrink": "purple",
-  "Grow": "purple",
-  "Size Steal": "purple",
-  "Heal": "purple",
-  "Encase In Egg": "purple",
+  "Drain": "orange",
+  "Shrink": "teal",
+  "Grow": "teal",
+  "Size Steal": "teal",
+  "Heal": "green",
+  "Encase In Egg": "blue",
 };
 
 const digestModeToPreyMode = {
@@ -607,6 +607,17 @@ const VoreSelectedBellyInteractions = (props, context) => {
             <Button
               content={interacts.transferlocation ? interacts.transferlocation : "Disabled"}
               onClick={() => act("set_attribute", { attribute: "b_transferlocation" })} />
+          </LabeledList.Item>
+          <LabeledList.Divider />
+          <LabeledList.Item label="Secondary Transfer Chance">
+            <Button
+              content={interacts.transferchance_secondary + "%"}
+              onClick={() => act("set_attribute", { attribute: "b_transferchance_secondary" })} />
+          </LabeledList.Item>
+          <LabeledList.Item label="Secondary Transfer Location">
+            <Button
+              content={interacts.transferlocation_secondary ? interacts.transferlocation_secondary : "Disabled"}
+              onClick={() => act("set_attribute", { attribute: "b_transferlocation_secondary" })} />
           </LabeledList.Item>
           <LabeledList.Divider />
           <LabeledList.Item label="Absorb Chance">

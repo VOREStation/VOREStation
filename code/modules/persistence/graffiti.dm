@@ -39,7 +39,7 @@
 	. = ..()
 
 /obj/effect/decal/writing/examine(mob/user)
-	..()
+	. = ..()
 	. += "\n It reads \"[message]\"."
 
 /obj/effect/decal/writing/attackby(var/obj/item/thing, var/mob/user)

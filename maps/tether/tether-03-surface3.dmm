@@ -11444,7 +11444,9 @@
 /turf/simulated/wall/fancy_shuttle{
 	fancy_shuttle_tag = "lifeboat1"
 	},
-/area/shuttle/tether)
+/area/shuttle/tether{
+	base_turf = /turf/simulated/floor/reinforced
+	})
 "ask" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -21680,7 +21682,10 @@
 /area/hallway/lower/third_south)
 "aJo" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/glass_external/public,
+/obj/machinery/door/airlock/glass_external/public{
+	frequency = 1380;
+	id_tag = "tourbus_right"
+	},
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
 "aJp" = (
@@ -21692,7 +21697,10 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/glass_external/public,
+/obj/machinery/door/airlock/glass_external/public{
+	frequency = 1380;
+	id_tag = "tourbus_right"
+	},
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
@@ -22823,7 +22831,10 @@
 /area/rnd/robotics/mechbay)
 "aLA" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/glass_external/public,
+/obj/machinery/door/airlock/glass_external/public{
+	frequency = 1380;
+	id_tag = "tourbus_right"
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/shuttle_pad)
 "aLB" = (
@@ -22835,7 +22846,10 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/glass_external/public,
+/obj/machinery/door/airlock/glass_external/public{
+	frequency = 1380;
+	id_tag = "tourbus_right"
+	},
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/shuttle_pad)
@@ -23371,12 +23385,17 @@
 /turf/simulated/wall/fancy_shuttle{
 	fancy_shuttle_tag = "lifeboat1"
 	},
-/area/shuttle/tether)
+/area/shuttle/tether{
+	base_turf = /turf/simulated/floor/reinforced
+	})
 "aMF" = (
-/turf/simulated/wall/fancy_shuttle/window{
-	fancy_shuttle_tag = "lifeboat1"
+/obj/structure/window/fancy_shuttle{
+	fancy_shuttle_tag = "tourbus"
 	},
-/area/shuttle/tether)
+/turf/simulated/floor,
+/area/shuttle/tether{
+	base_turf = /turf/simulated/floor/reinforced
+	})
 "aMG" = (
 /obj/structure/railing{
 	dir = 4
@@ -23582,12 +23601,24 @@
 /obj/machinery/computer/shuttle_control/tether_backup{
 	req_one_access = list()
 	},
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "lifeboat1";
+	name = "lifeboat1"
+	},
 /turf/simulated/floor/tiled,
-/area/shuttle/tether)
+/area/shuttle/tether{
+	base_turf = /turf/simulated/floor/reinforced
+	})
 "aNb" = (
 /obj/structure/closet/emcloset,
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "lifeboat1";
+	name = "lifeboat1"
+	},
 /turf/simulated/floor/tiled,
-/area/shuttle/tether)
+/area/shuttle/tether{
+	base_turf = /turf/simulated/floor/reinforced
+	})
 "aNc" = (
 /obj/machinery/alarm{
 	dir = 8;
@@ -23670,8 +23701,14 @@
 /obj/structure/bed/chair/shuttle{
 	dir = 8
 	},
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "lifeboat1";
+	name = "lifeboat1"
+	},
 /turf/simulated/floor/tiled,
-/area/shuttle/tether)
+/area/shuttle/tether{
+	base_turf = /turf/simulated/floor/reinforced
+	})
 "aNn" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 4
@@ -23785,8 +23822,14 @@
 	locked = 1;
 	name = "Shuttle Hatch"
 	},
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "lifeboat1";
+	name = "lifeboat1"
+	},
 /turf/simulated/floor/tiled,
-/area/shuttle/tether)
+/area/shuttle/tether{
+	base_turf = /turf/simulated/floor/reinforced
+	})
 "aNA" = (
 /obj/machinery/power/apc{
 	dir = 4;
@@ -23886,8 +23929,14 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/uppersouthstairwell)
 "aNK" = (
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "lifeboat1";
+	name = "lifeboat1"
+	},
 /turf/simulated/floor/tiled,
-/area/shuttle/tether)
+/area/shuttle/tether{
+	base_turf = /turf/simulated/floor/reinforced
+	})
 "aNL" = (
 /obj/structure/window/basic/full,
 /obj/structure/grille,
@@ -23924,8 +23973,14 @@
 /obj/structure/bed/chair/shuttle{
 	dir = 4
 	},
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "lifeboat1";
+	name = "lifeboat1"
+	},
 /turf/simulated/floor/tiled,
-/area/shuttle/tether)
+/area/shuttle/tether{
+	base_turf = /turf/simulated/floor/reinforced
+	})
 "aNQ" = (
 /obj/machinery/firealarm{
 	dir = 4;
@@ -27179,13 +27234,6 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/hallway/lower/third_south)
-"aUq" = (
-/obj/machinery/atmospherics/binary/pump,
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tourbus"
-	},
-/turf/simulated/floor/tiled,
-/area/shuttle/tourbus/general)
 "aUr" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -27234,16 +27282,17 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
 "aUx" = (
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "tourbus";
+	name = "tourbus"
+	},
+/obj/structure/bed/chair/shuttle{
+	dir = 8
+	},
 /obj/structure/cable/orange{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
-	},
-/obj/structure/bed/chair/bay/chair{
-	dir = 8
-	},
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tourbus"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/tourbus/general)
@@ -27398,15 +27447,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
-"aUN" = (
-/obj/structure/bed/chair/bay/chair{
-	dir = 4
-	},
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tourbus"
-	},
-/turf/simulated/floor/tiled,
-/area/shuttle/tourbus/general)
 "aUO" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 6
@@ -28621,11 +28661,13 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/upperhall)
 "aXa" = (
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
 /obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tourbus"
+	fancy_shuttle_tag = "tourbus";
+	name = "tourbus"
+	},
+/obj/structure/cable/green{
+	dir = 1;
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/tourbus/general)
@@ -31502,17 +31544,17 @@
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
 "bbX" = (
-/obj/effect/fancy_shuttle_floor_preview/tourbus{
-	dir = 1
-	},
 /obj/effect/fancy_shuttle/tourbus{
 	dir = 1;
 	fancy_shuttle_tag = "tourbus"
 	},
+/obj/effect/fancy_shuttle_floor_preview/tourbus{
+	dir = 1
+	},
 /obj/machinery/atmospherics/unary/engine/fancy_shuttle{
 	dir = 1
 	},
-/turf/simulated/wall/fancy_shuttle/nondense{
+/turf/simulated/wall/fancy_shuttle{
 	fancy_shuttle_tag = "tourbus"
 	},
 /area/shuttle/tourbus/general)
@@ -33400,7 +33442,10 @@
 /area/tether/surfacebase/shuttle_pad)
 "bfj" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/glass_external/public,
+/obj/machinery/door/airlock/glass_external/public{
+	frequency = 1380;
+	id_tag = "tourbus_right"
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/southhall)
 "bfk" = (
@@ -33935,7 +33980,10 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/glass_external/public,
+/obj/machinery/door/airlock/glass_external/public{
+	frequency = 1380;
+	id_tag = "tourbus_right"
+	},
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/southhall)
@@ -37792,40 +37840,29 @@
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/iaa/officea)
 "ccN" = (
-/obj/machinery/button/remote/airlock{
-	desiredstate = 1;
-	id = "tourbus_left";
-	name = "hatch bolt control";
-	pixel_x = 4;
-	pixel_y = 30;
-	req_one_access = list(19,43,67);
-	specialfunctions = 4
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "tourbus";
+	name = "tourbus"
 	},
-/obj/machinery/door/blast/regular{
-	density = 0;
-	icon_state = "pdoor0";
-	id = "tourbus_windows";
-	name = "Shuttle Blast Doors";
-	opacity = 0
-	},
-/obj/machinery/door/airlock/angled_tgmc/security_glass{
-	dir = 4;
+/obj/machinery/door/airlock/glass_external{
 	icon_state = "door_locked";
 	id_tag = "tourbus_left";
 	locked = 1;
-	name = "tourbus airlock"
+	req_one_access = list()
 	},
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tourbus"
-	},
+/obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled,
 /area/shuttle/tourbus/general)
 "cdf" = (
-/turf/simulated/wall/fancy_shuttle{
+/turf/simulated/wall/fancy_shuttle/nondense{
 	fancy_shuttle_tag = "tourbus"
 	},
 /area/shuttle/tourbus/cockpit)
 "cdv" = (
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "tourbus";
+	name = "tourbus"
+	},
 /obj/structure/cable/orange{
 	d1 = 4;
 	d2 = 8;
@@ -37835,20 +37872,11 @@
 	dir = 4
 	},
 /obj/effect/map_helper/airlock/door/simple,
-/obj/machinery/door/blast/regular{
-	density = 0;
-	icon_state = "pdoor0";
-	id = "tourbus_windows";
-	name = "Shuttle Blast Doors";
-	opacity = 0
+/obj/machinery/door/airlock/glass_external/public{
+	frequency = 1380;
+	id_tag = "tourbus_right"
 	},
-/obj/machinery/door/airlock/angled_tgmc/security_glass{
-	dir = 4;
-	name = "tourbus airlock"
-	},
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tourbus"
-	},
+/obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled,
 /area/shuttle/tourbus/general)
 "ceN" = (
@@ -37913,6 +37941,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/briefingroom)
+"cta" = (
+/obj/machinery/shipsensors/fancy_shuttle,
+/turf/simulated/wall/fancy_shuttle/nondense{
+	fancy_shuttle_tag = "tourbus"
+	},
+/area/shuttle/tourbus/cockpit)
 "cun" = (
 /obj/machinery/atm{
 	pixel_x = -32
@@ -38035,16 +38069,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/wood,
 /area/library)
-"cUF" = (
-/obj/machinery/computer/shuttle_control/explore/tourbus,
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tourbus"
-	},
-/turf/simulated/floor/tiled,
-/area/shuttle/tourbus/cockpit)
 "cVg" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -38185,22 +38209,11 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/shuttle_pad)
 "ddn" = (
-/obj/structure/bed/chair/bay/chair{
-	dir = 1
-	},
-/obj/machinery/power/apc{
-	name = "south bump";
-	pixel_y = -28;
-	req_access = list();
-	req_one_access = list(11,67)
-	},
-/obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
-	},
 /obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tourbus"
+	fancy_shuttle_tag = "tourbus";
+	name = "tourbus"
 	},
+/obj/machinery/computer/ship/helm,
 /turf/simulated/floor/tiled,
 /area/shuttle/tourbus/cockpit)
 "dgA" = (
@@ -38388,20 +38401,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_hallway)
-"dVW" = (
-/obj/structure/bed/chair/bay/chair{
-	dir = 4
-	},
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tourbus"
-	},
-/turf/simulated/floor/tiled,
-/area/shuttle/tourbus/general)
 "dVZ" = (
 /obj/structure/table/woodentable,
 /obj/item/clothing/accessory/permit/gun{
@@ -38560,9 +38559,14 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenobiology/outpost_main)
 "eGv" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/yellow,
 /obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tourbus"
+	fancy_shuttle_tag = "tourbus";
+	name = "tourbus"
+	},
+/obj/machinery/atmospherics/binary/pump,
+/obj/structure/cable/green{
+	dir = 1;
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/tourbus/general)
@@ -38635,8 +38639,14 @@
 	pixel_x = 23;
 	tag_door = "tether_shuttle_hatch"
 	},
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "lifeboat1";
+	name = "lifeboat1"
+	},
 /turf/simulated/floor/tiled,
-/area/shuttle/tether)
+/area/shuttle/tether{
+	base_turf = /turf/simulated/floor/reinforced
+	})
 "eMY" = (
 /obj/structure/sink{
 	pixel_y = 20
@@ -38673,29 +38683,19 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/cafeteria)
 "fag" = (
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "tourbus";
+	name = "tourbus"
+	},
+/obj/structure/bed/chair/shuttle{
+	dir = 4
+	},
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow{
 	dir = 4
-	},
-/obj/structure/cable{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/obj/structure/bed/chair/bay/chair{
-	dir = 4
-	},
-/obj/machinery/power/apc{
-	dir = 8;
-	name = "west bump";
-	pixel_x = -28;
-	req_access = list();
-	req_one_access = list(11,67)
 	},
 /obj/structure/closet/emergsuit_wall{
 	dir = 1;
 	pixel_y = -32
-	},
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tourbus"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/tourbus/general)
@@ -38708,6 +38708,10 @@
 /turf/simulated/open,
 /area/tether/surfacebase/southhall)
 "fcg" = (
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "tourbus";
+	name = "tourbus"
+	},
 /obj/effect/shuttle_landmark{
 	base_area = /area/tether/surfacebase/shuttle_pad;
 	base_turf = /turf/simulated/floor/reinforced;
@@ -38723,9 +38727,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow{
 	dir = 4
-	},
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tourbus"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/tourbus/general)
@@ -38829,19 +38830,24 @@
 /turf/simulated/wall,
 /area/tether/surfacebase/security/iaa/officecommon)
 "fzG" = (
-/turf/simulated/wall/fancy_shuttle/nondense{
-	fancy_shuttle_tag = "lifeboat1"
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "lifeboat1";
+	name = "lifeboat1"
 	},
-/area/shuttle/tether)
+/obj/machinery/light/floortube,
+/turf/simulated/floor/tiled,
+/area/shuttle/tether{
+	base_turf = /turf/simulated/floor/reinforced
+	})
 "fEX" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "tourbus";
+	name = "tourbus"
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/yellow,
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tourbus"
+/obj/structure/cable/green{
+	dir = 1;
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/tourbus/general)
@@ -38861,17 +38867,18 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/briefingroom)
 "fJJ" = (
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "tourbus";
+	name = "tourbus"
+	},
+/obj/structure/bed/chair/shuttle{
+	dir = 8
+	},
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow{
 	dir = 4
 	},
 /obj/machinery/power/terminal,
 /obj/structure/cable/orange,
-/obj/structure/bed/chair/bay/chair{
-	dir = 8
-	},
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tourbus"
-	},
 /turf/simulated/floor/tiled,
 /area/shuttle/tourbus/general)
 "fLx" = (
@@ -38900,24 +38907,19 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/processing)
 "fNO" = (
-/obj/machinery/embedded_controller/radio/simple_docking_controller{
-	dir = 8;
-	frequency = 1380;
-	id_tag = "tourbus_docker";
-	pixel_x = 28
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "tourbus";
+	name = "tourbus"
+	},
+/obj/structure/bed/chair/shuttle{
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow{
 	dir = 4
 	},
-/obj/structure/bed/chair/bay/chair{
-	dir = 8
-	},
 /obj/structure/closet/emergsuit_wall{
 	dir = 1;
 	pixel_y = -32
-	},
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tourbus"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/tourbus/general)
@@ -38947,9 +38949,16 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow{
 	dir = 10
 	},
-/turf/simulated/wall/fancy_shuttle{
+/obj/machinery/door/firedoor/glass/hidden/shuttle,
+/obj/machinery/door/blast/shuttle/open{
+	dir = 1;
+	id = "tourbus_windows";
+	name = "Shuttle Blast Doors"
+	},
+/obj/structure/window/fancy_shuttle{
 	fancy_shuttle_tag = "tourbus"
 	},
+/turf/simulated/floor,
 /area/shuttle/tourbus/general)
 "gfg" = (
 /obj/machinery/light{
@@ -39078,16 +39087,18 @@
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
 "gBr" = (
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "tourbus";
+	name = "tourbus"
+	},
+/obj/machinery/door/window/northleft,
 /obj/machinery/atmospherics/portables_connector{
 	dir = 4
 	},
 /obj/machinery/portable_atmospherics/canister/phoron,
-/obj/machinery/door/window/southleft{
+/obj/machinery/alarm{
 	dir = 1;
-	req_one_access = list(19,43,67)
-	},
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tourbus"
+	pixel_y = -28
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/tourbus/general)
@@ -39103,49 +39114,57 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/shuttle_pad)
 "gCZ" = (
-/obj/machinery/light/small,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "tourbus";
+	name = "tourbus"
 	},
+/obj/machinery/door/window/northright,
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow{
 	dir = 9
 	},
-/obj/machinery/door/window/southright{
-	dir = 1;
-	req_one_access = list(19,43,67)
+/obj/machinery/power/terminal{
+	dir = 4
 	},
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tourbus"
+/obj/machinery/light,
+/obj/machinery/power/apc{
+	name = "south bump";
+	pixel_y = -28;
+	req_access = list();
+	req_one_access = list(11,67)
+	},
+/obj/structure/cable/green{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/structure/cable/green{
+	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/tourbus/general)
 "gHc" = (
-/obj/structure/bed/chair/bay/chair{
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "tourbus";
+	name = "tourbus"
+	},
+/obj/structure/bed/chair/shuttle{
 	dir = 4
 	},
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tourbus"
+/obj/machinery/light{
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/tourbus/general)
 "gLd" = (
-/obj/machinery/power/smes/buildable{
-	charge = 500000
-	},
-/obj/structure/cable{
-	d2 = 8;
-	icon_state = "0-8"
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "tourbus";
+	name = "tourbus"
 	},
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tourbus"
+/obj/machinery/power/smes/buildable/point_of_interest,
+/obj/structure/cable/green{
+	icon_state = "0-8"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/tourbus/general)
@@ -39166,11 +39185,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/public_garden_three)
-"gQb" = (
-/turf/simulated/wall/fancy_shuttle/window{
-	fancy_shuttle_tag = "tourbus"
-	},
-/area/shuttle/tourbus/general)
 "gRG" = (
 /obj/structure/closet/hydrant{
 	pixel_x = -32
@@ -39192,6 +39206,10 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
 "gUL" = (
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "tourbus";
+	name = "tourbus"
+	},
 /obj/structure/cable/orange{
 	d1 = 2;
 	d2 = 4;
@@ -39199,9 +39217,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow{
 	dir = 4
-	},
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tourbus"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/tourbus/general)
@@ -39294,10 +39309,30 @@
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_hallway)
 "hjt" = (
-/obj/machinery/shipsensors/fancy_shuttle,
-/turf/simulated/wall/fancy_shuttle/nondense{
-	fancy_shuttle_tag = "tourbus"
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "tourbus";
+	name = "tourbus"
 	},
+/obj/structure/table/standard,
+/obj/machinery/power/apc{
+	alarms_hidden = 1;
+	dir = 1;
+	name = "north bump";
+	pixel_y = 28
+	},
+/obj/structure/cable/green{
+	icon_state = "0-4"
+	},
+/obj/machinery/button/remote/blast_door{
+	dir = 4;
+	id = "tourbus_windows";
+	name = "window blast shields";
+	pixel_y = 1
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
 /area/shuttle/tourbus/cockpit)
 "hoQ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -39314,7 +39349,7 @@
 /obj/machinery/atmospherics/unary/engine/fancy_shuttle{
 	dir = 1
 	},
-/turf/simulated/wall/fancy_shuttle/nondense{
+/turf/simulated/wall/fancy_shuttle{
 	fancy_shuttle_tag = "tourbus"
 	},
 /area/shuttle/tourbus/general)
@@ -39592,18 +39627,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/upperhall)
-"ivq" = (
-/obj/structure/bed/chair/bay/chair{
-	dir = 8
-	},
-/obj/structure/closet/emergsuit_wall{
-	pixel_y = 32
-	},
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tourbus"
-	},
-/turf/simulated/floor/tiled,
-/area/shuttle/tourbus/general)
 "iFr" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled,
@@ -39758,9 +39781,16 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow{
 	dir = 6
 	},
-/turf/simulated/wall/fancy_shuttle{
+/obj/machinery/door/firedoor/glass/hidden/shuttle,
+/obj/machinery/door/blast/shuttle/open{
+	dir = 1;
+	id = "tourbus_windows";
+	name = "Shuttle Blast Doors"
+	},
+/obj/structure/window/fancy_shuttle{
 	fancy_shuttle_tag = "tourbus"
 	},
+/turf/simulated/floor,
 /area/shuttle/tourbus/general)
 "jrn" = (
 /obj/structure/cable/green{
@@ -39787,21 +39817,6 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
-"jvK" = (
-/obj/structure/table/standard,
-/obj/structure/closet/emergsuit_wall{
-	pixel_y = 32
-	},
-/obj/machinery/button/remote/blast_door{
-	dir = 4;
-	id = "tourbus_windows";
-	name = "window blast shields"
-	},
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tourbus"
-	},
-/turf/simulated/floor/tiled,
-/area/shuttle/tourbus/cockpit)
 "jAt" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -39866,9 +39881,17 @@
 /turf/simulated/floor/grass,
 /area/tether/surfacebase/public_garden_three)
 "jER" = (
-/turf/simulated/wall/fancy_shuttle/window{
-	fancy_shuttle_tag = "tourbus"
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "tourbus";
+	name = "tourbus"
 	},
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/obj/structure/bed/chair/bay/comfy/blue{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
 /area/shuttle/tourbus/cockpit)
 "jFq" = (
 /obj/structure/table/reinforced,
@@ -40055,26 +40078,17 @@
 /turf/simulated/floor/grass,
 /area/tether/surfacebase/public_garden_three)
 "kcC" = (
-/obj/structure/fuel_port{
-	pixel_x = 1
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "tourbus";
+	name = "tourbus"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow{
 	dir = 6
 	},
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tourbus"
-	},
-/turf/simulated/floor/tiled,
-/area/shuttle/tourbus/general)
-"kdx" = (
-/obj/structure/bed/chair/bay/chair{
-	dir = 4
-	},
-/obj/structure/closet/emergsuit_wall{
-	pixel_y = 32
-	},
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tourbus"
+/obj/structure/fuel_port,
+/obj/structure/cable/green{
+	dir = 1;
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/tourbus/general)
@@ -40613,7 +40627,9 @@
 /turf/simulated/wall/fancy_shuttle{
 	fancy_shuttle_tag = "lifeboat1"
 	},
-/area/shuttle/tether)
+/area/shuttle/tether{
+	base_turf = /turf/simulated/floor/reinforced
+	})
 "lSv" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -40632,14 +40648,15 @@
 /turf/simulated/floor/tiled,
 /area/rnd/research/testingrange)
 "lVB" = (
-/obj/structure/bed/chair/bay/chair{
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "tourbus";
+	name = "tourbus"
+	},
+/obj/structure/bed/chair/shuttle{
 	dir = 8
 	},
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tourbus"
+/obj/structure/closet/emergsuit_wall{
+	pixel_y = 32
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/tourbus/general)
@@ -40754,15 +40771,6 @@
 	},
 /turf/simulated/floor/carpet/blue,
 /area/tether/surfacebase/security/breakroom)
-"mse" = (
-/obj/structure/bed/chair/bay/chair{
-	dir = 8
-	},
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tourbus"
-	},
-/turf/simulated/floor/tiled,
-/area/shuttle/tourbus/general)
 "mwz" = (
 /obj/effect/floor_decal/corner/red{
 	dir = 9
@@ -40917,14 +40925,11 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
 "ndK" = (
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
 /obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tourbus"
+	fancy_shuttle_tag = "tourbus";
+	name = "tourbus"
 	},
+/obj/machinery/computer/shuttle_control/explore/tourbus,
 /turf/simulated/floor/tiled,
 /area/shuttle/tourbus/cockpit)
 "nfl" = (
@@ -40946,14 +40951,15 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/briefingroom)
 "ngV" = (
-/obj/structure/bed/chair/bay/chair{
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "tourbus";
+	name = "tourbus"
+	},
+/obj/structure/bed/chair/shuttle{
 	dir = 4
 	},
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tourbus"
+/obj/structure/closet/emergsuit_wall{
+	pixel_y = 32
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/tourbus/general)
@@ -40977,15 +40983,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
-"nkq" = (
-/obj/machinery/computer/ship/engines{
-	dir = 8
-	},
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tourbus"
-	},
-/turf/simulated/floor/tiled,
-/area/shuttle/tourbus/cockpit)
 "nlf" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -41011,6 +41008,22 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
+"nnr" = (
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "tourbus";
+	name = "tourbus"
+	},
+/obj/machinery/computer/ship/engines{
+	dir = 8
+	},
+/obj/machinery/alarm{
+	pixel_y = 28
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/tourbus/cockpit)
 "nnY" = (
 /obj/item/device/radio/intercom{
 	dir = 4;
@@ -41035,6 +41048,16 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/barrestroom)
+"nrQ" = (
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "tourbus";
+	name = "tourbus"
+	},
+/obj/structure/bed/chair/shuttle{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/tourbus/general)
 "nsm" = (
 /obj/structure/sign/painting/library_secure{
 	pixel_y = -30
@@ -41260,6 +41283,12 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/recreation_area_restroom)
+"oqz" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/reinforced,
+/area/tether/surfacebase/shuttle_pad)
 "oqI" = (
 /obj/item/weapon/stool/padded{
 	dir = 4
@@ -41424,6 +41453,13 @@
 	},
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/security/iaa/officeb)
+"oPE" = (
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "tourbus";
+	name = "tourbus"
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/tourbus/general)
 "oPG" = (
 /obj/structure/closet/secure_closet/hos,
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -41451,12 +41487,11 @@
 /turf/simulated/floor/wood,
 /area/crew_quarters/recreation_area)
 "oSQ" = (
-/obj/structure/bed/chair/bay/chair{
-	dir = 1
-	},
 /obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tourbus"
+	fancy_shuttle_tag = "tourbus";
+	name = "tourbus"
 	},
+/obj/machinery/computer/ship/sensors,
 /turf/simulated/floor/tiled,
 /area/shuttle/tourbus/cockpit)
 "oTr" = (
@@ -41728,17 +41763,12 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/breakroom)
 "pNk" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/door/airlock/angled_tgmc/prep/prep_delta{
-	name = "cockpit";
-	req_one_access = list(19,43,67)
-	},
 /obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tourbus"
+	fancy_shuttle_tag = "tourbus";
+	name = "tourbus"
+	},
+/obj/structure/cable/green{
+	icon_state = "2-8"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/tourbus/cockpit)
@@ -42138,13 +42168,33 @@
 /turf/simulated/floor/carpet,
 /area/tether/surfacebase/security/hos)
 "rbR" = (
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "tourbus";
+	name = "tourbus"
+	},
 /obj/structure/cable/orange{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/turf/simulated/floor/tiled,
+/area/shuttle/tourbus/general)
+"rdD" = (
 /obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tourbus"
+	fancy_shuttle_tag = "tourbus";
+	name = "tourbus"
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/button/remote/airlock{
+	desiredstate = 1;
+	id = "tourbus_left";
+	name = "hatch bolt control";
+	pixel_x = -28;
+	pixel_y = 4;
+	req_one_access = list(19,43,67);
+	specialfunctions = 4
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/tourbus/general)
@@ -42639,6 +42689,18 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
+"sVC" = (
+/obj/machinery/door/firedoor/glass/hidden/shuttle,
+/obj/machinery/door/blast/shuttle/open{
+	dir = 1;
+	id = "tourbus_windows";
+	name = "Shuttle Blast Doors"
+	},
+/obj/structure/window/fancy_shuttle{
+	fancy_shuttle_tag = "tourbus"
+	},
+/turf/simulated/floor,
+/area/shuttle/tourbus/general)
 "sWs" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 8
@@ -42817,13 +42879,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/iaa/officeb)
-"tOT" = (
-/obj/machinery/computer/ship/helm,
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tourbus"
-	},
-/turf/simulated/floor/tiled,
-/area/shuttle/tourbus/cockpit)
 "tPE" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/book/manual/security_space_law,
@@ -42950,7 +43005,11 @@
 /area/tether/surfacebase/public_garden_three)
 "uhm" = (
 /obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tourbus"
+	fancy_shuttle_tag = "tourbus";
+	name = "tourbus"
+	},
+/obj/structure/bed/chair/shuttle{
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/tourbus/general)
@@ -43054,6 +43113,18 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/briefingroom)
+"uzl" = (
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "lifeboat1";
+	name = "lifeboat1"
+	},
+/obj/machinery/light/floortube{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/tether{
+	base_turf = /turf/simulated/floor/reinforced
+	})
 "uAI" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -43084,11 +43155,16 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
 "uLh" = (
-/obj/machinery/computer/ship/sensors,
-/obj/effect/floor_decal/fancy_shuttle{
+/obj/machinery/door/firedoor/glass/hidden/shuttle,
+/obj/machinery/door/blast/shuttle/open{
+	dir = 4;
+	id = "tourbus_windows";
+	name = "Shuttle Blast Doors"
+	},
+/obj/structure/window/fancy_shuttle{
 	fancy_shuttle_tag = "tourbus"
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor,
 /area/shuttle/tourbus/cockpit)
 "uMD" = (
 /obj/machinery/hologram/holopad,
@@ -43112,8 +43188,14 @@
 	landmark_tag = "tether_backup_low";
 	name = "Surface Hangar"
 	},
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "lifeboat1";
+	name = "lifeboat1"
+	},
 /turf/simulated/floor/tiled,
-/area/shuttle/tether)
+/area/shuttle/tether{
+	base_turf = /turf/simulated/floor/reinforced
+	})
 "uWw" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/grille,
@@ -43521,6 +43603,23 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/upperhall)
+"wnm" = (
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "tourbus";
+	name = "tourbus"
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/embedded_controller/radio/simple_docking_controller{
+	dir = 8;
+	frequency = 1380;
+	id_tag = "tourbus_docker";
+	pixel_x = 27;
+	pixel_y = 4
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/tourbus/general)
 "wob" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/folder{
@@ -43605,7 +43704,7 @@
 /turf/simulated/wall/fancy_shuttle{
 	fancy_shuttle_tag = "tourbus"
 	},
-/area/shuttle/tourbus/general)
+/area/shuttle/tourbus/cockpit)
 "wBv" = (
 /obj/structure/table/reinforced,
 /obj/machinery/door/firedoor/glass,
@@ -43674,22 +43773,15 @@
 /turf/simulated/floor/carpet,
 /area/tether/surfacebase/security/hos)
 "wQf" = (
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "tourbus";
+	name = "tourbus"
+	},
+/obj/structure/bed/chair/shuttle{
+	dir = 4
+	},
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow{
 	dir = 4
-	},
-/obj/structure/cable{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/bed/chair/bay/chair{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tourbus"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/tourbus/general)
@@ -43878,9 +43970,22 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/upperhall)
 "xtq" = (
-/turf/simulated/wall/fancy_shuttle/nondense{
-	fancy_shuttle_tag = "tourbus"
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "tourbus";
+	name = "tourbus"
 	},
+/obj/structure/bed/chair/bay/comfy/blue{
+	dir = 1
+	},
+/obj/structure/closet/emergsuit_wall{
+	dir = 1;
+	pixel_y = -32
+	},
+/obj/structure/panic_button/small{
+	pixel_x = 16;
+	pixel_y = -31
+	},
+/turf/simulated/floor/tiled,
 /area/shuttle/tourbus/cockpit)
 "xud" = (
 /obj/structure/table/rack/shelf,
@@ -44051,16 +44156,22 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
 "xOa" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "tourbus";
+	name = "tourbus"
+	},
+/obj/structure/cable/green{
+	dir = 1;
 	icon_state = "1-2"
 	},
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tourbus"
+/obj/machinery/door/airlock/glass{
+	name = "Tourbus Cockpit";
+	req_access = null;
+	req_one_access = list(67)
 	},
+/obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled,
-/area/shuttle/tourbus/general)
+/area/shuttle/tourbus/cockpit)
 "xQv" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/folder/red_hos,
@@ -44170,6 +44281,11 @@
 	},
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/security/hos)
+"ykY" = (
+/turf/simulated/wall/fancy_shuttle{
+	fancy_shuttle_tag = "tourbus"
+	},
+/area/shuttle/tourbus/general)
 
 (1,1,1) = {"
 aaa
@@ -55191,16 +55307,16 @@ aHR
 awf
 aJn
 aKa
-xtq
-cdf
-cdf
+aKU
 cdf
 wyi
-gQb
-gQb
+wyi
+ykY
+sVC
+sVC
 ccN
-gQb
-gQb
+ykY
+sVC
 jpB
 gjD
 bbX
@@ -55333,19 +55449,19 @@ aHR
 awf
 aJn
 aKa
-cdf
-cdf
-jvK
-cdf
-kdx
+aKU
+wyi
+wyi
+hjt
+wyi
 ngV
 uhm
+oPE
+rdD
 uhm
-uhm
-aUN
 fag
-wyi
-wyi
+ykY
+ykY
 aKU
 aOI
 aPb
@@ -55475,19 +55591,19 @@ aXn
 aIy
 ats
 aKD
-jER
-tOT
+aKU
+uLh
 ddn
-cdf
-aUN
+jER
+wyi
 gHc
-xOa
-xOa
-xOa
-dVW
+uhm
+oPE
+oPE
+uhm
 wQf
 gBr
-wyi
+ykY
 aKU
 avs
 aKj
@@ -55617,19 +55733,19 @@ aXp
 awf
 aJn
 aKa
-jER
-cUF
+aKU
+uLh
 ndK
 pNk
 xOa
 aXa
-uhm
+aXa
 kcC
 eGv
-aUq
+aXa
 fEX
 gCZ
-wyi
+ykY
 aKU
 aOI
 bgW
@@ -55759,19 +55875,19 @@ aXu
 aIz
 aJn
 aKa
-jER
+aKU
 uLh
 oSQ
-cdf
-mse
-mse
-uhm
+xtq
+wyi
+nrQ
+nrQ
 gUL
 rbR
 aUx
 fJJ
 gLd
-wyi
+ykY
 aKU
 aOI
 bgW
@@ -55901,19 +56017,19 @@ aIa
 aOJ
 ats
 ieb
-cdf
-cdf
-nkq
-cdf
-ivq
+aKU
+wyi
+wyi
+nnr
+wyi
 lVB
-uhm
+nrQ
 fcg
-uhm
-mse
+wnm
+nrQ
 fNO
-wyi
-wyi
+ykY
+ykY
 aKU
 aOK
 bgW
@@ -56043,16 +56159,16 @@ aIa
 aIz
 aJn
 aKa
-hjt
-cdf
-cdf
-cdf
+aKU
+cta
 wyi
-gQb
-gQb
+wyi
+ykY
+sVC
+sVC
 cdv
-gQb
-gQb
+ykY
+sVC
 fWR
 gjD
 hpY
@@ -57892,7 +58008,7 @@ aAN
 aAN
 aJn
 aKU
-fzG
+aME
 aME
 aME
 aNz
@@ -58178,10 +58294,10 @@ aJn
 aKU
 aMF
 aNa
+fzG
 aNK
 aNK
-aNK
-aNK
+uzl
 asj
 aKU
 abg
@@ -58460,7 +58576,7 @@ arJ
 arJ
 arJ
 aKU
-fzG
+aME
 aME
 aME
 aME
@@ -58602,13 +58718,13 @@ aKn
 arJ
 arJ
 aKU
-aKU
+oqz
 aKU
 aKU
 aKI
 aKU
 aKU
-aKU
+oqz
 aKU
 aKj
 aOl

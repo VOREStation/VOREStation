@@ -30,6 +30,13 @@
 	if(environment.temperature > HEATMODE_TEMP - 30)
 		. = TRUE
 
+/proc/offsite_environment_check(turf/simulated/T)
+	. = TRUE
+	if(!istype(T))
+		return
+	if(T.z in using_map.station_levels)
+		. = FALSE
+
 /obj/item/weapon/gun/energy/kinetic_accelerator
 	name = "proto-kinetic accelerator"
 	desc = "A self recharging, ranged mining tool that does increased damage in low pressure."
@@ -221,6 +228,7 @@
 
 #define KA_ENVIRO_TYPE_COLD 0
 #define KA_ENVIRO_TYPE_HOT 1
+#define KA_ENVIRO_TYPE_OFFSITE 2
 
 //Projectiles
 /obj/item/projectile/kinetic
@@ -262,6 +270,11 @@
 				name = "weakened [name]"
 				damage = damage * pressure_decrease
 				pressure_decrease_active = TRUE
+		else if(environment == KA_ENVIRO_TYPE_OFFSITE)
+			if(!offsite_environment_check(get_turf(src)))
+				name = "nullified [name]"
+				damage = 0
+				pressure_decrease_active = TRUE
 	return ..()
 
 /obj/item/projectile/kinetic/attack_mob(mob/living/target_mob, distance, miss_modifier)
@@ -275,6 +288,11 @@
 			if(!virgotwo_environment_check(get_turf(src)))
 				name = "weakened [name]"
 				damage = damage * pressure_decrease
+				pressure_decrease_active = TRUE
+		else if(environment == KA_ENVIRO_TYPE_OFFSITE)
+			if(!offsite_environment_check(get_turf(src)))
+				name = "nullified [name]"
+				damage = 0
 				pressure_decrease_active = TRUE
 	return ..()
 
@@ -301,6 +319,11 @@
 			if(!virgotwo_environment_check(get_turf(src)))
 				name = "weakened [name]"
 				damage = damage * pressure_decrease
+				pressure_decrease_active = TRUE
+		else if(environment == KA_ENVIRO_TYPE_OFFSITE)
+			if(!offsite_environment_check(get_turf(src)))
+				name = "nullified [name]"
+				damage = 0
 				pressure_decrease_active = TRUE
 	var/turf/target_turf = get_turf(target)
 	if(!target_turf)
@@ -391,8 +414,8 @@
 	if(forcemove)
 		forceMove(get_turf(KA))
 
+//use this one to modify the projectile itself
 /obj/item/borg/upgrade/modkit/proc/modify_projectile(obj/item/projectile/kinetic/K)
-
 //use this one for effects you want to trigger before any damage is done at all and before damage is decreased by pressure
 /obj/item/borg/upgrade/modkit/proc/projectile_prehit(obj/item/projectile/kinetic/K, atom/target, obj/item/weapon/gun/energy/kinetic_accelerator/KA)
 //use this one for effects you want to trigger before mods that do damage
@@ -617,7 +640,7 @@
 
 //Indoors
 /obj/item/borg/upgrade/modkit/indoors
-	name = "decrease pressure penalty"
+	name = "hacked pressure modulator"
 	desc = "A remarkably illegal modification kit that increases the damage a kinetic accelerator does in pressurized environments."
 	modifier = 2
 	denied_type = /obj/item/borg/upgrade/modkit/indoors
@@ -627,6 +650,15 @@
 /obj/item/borg/upgrade/modkit/indoors/modify_projectile(obj/item/projectile/kinetic/K)
 	K.pressure_decrease *= modifier
 
+/obj/item/borg/upgrade/modkit/offsite
+	name = "offsite pressure modulator"
+	desc = "A non-standard modification kit that increases the damage a kinetic accelerator does in pressurized environments, \
+	in exchange for nullifying any projected forces while on or in an associated facility."
+	cost = 35
+
+/obj/item/borg/upgrade/modkit/indoors/offsite/modify_projectile(obj/item/projectile/kinetic/K)
+	K.environment = KA_ENVIRO_TYPE_OFFSITE
+
 // Atmospheric
 /obj/item/borg/upgrade/modkit/heater
 	name = "temperature modulator"
@@ -634,7 +666,7 @@
 	in exchange for making them weak elsewhere, like the cold or in space."
 	denied_type = /obj/item/borg/upgrade/modkit/indoors
 	maximum_of_type = 1
-	cost = 30
+	cost = 10
 
 /obj/item/borg/upgrade/modkit/heater/modify_projectile(obj/item/projectile/kinetic/K)
 	K.environment = KA_ENVIRO_TYPE_HOT

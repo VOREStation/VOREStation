@@ -67,6 +67,36 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	rolled_sleeves = -1 //Please never
 
+/obj/item/clothing/under/clown //i'm only putting it here to make subtypes of it, since the original suit is under/rank/clown
+	name = "clown suit"
+	desc = "<i><font face='comic sans ms'>Honk!</i></font>"
+	icon_state = "clown"
+	rolled_sleeves = -1
+
+/obj/item/clothing/under/clown/green
+	name = "green clown suit"
+	icon_state = "greenclown"
+
+/obj/item/clothing/under/clown/purple
+	name = "purple clown suit"
+	icon_state = "purpleclown"
+
+/obj/item/clothing/under/clown/yellow
+	name = "yellow clown suit"
+	icon_state = "yellowclown"
+
+/obj/item/clothing/under/clown/orange
+	name = "orange clown suit"
+	icon_state = "orangeclown"
+
+/obj/item/clothing/under/clown/blue
+	name = "blue clown suit"
+	icon_state = "blueclown"
+
+/obj/item/clothing/under/clown/rainbow
+	name = "rainbow clown suit"
+	icon_state = "rainbowclown"
+
 /obj/item/clothing/under/rank/vice
 	name = "vice officer's jumpsuit"
 	desc = "It's the standard issue pretty-boy outfit, as seen on Holo-Vision."
@@ -243,6 +273,11 @@
 	item_state_slots = list(slot_r_hand_str = "mime", slot_l_hand_str = "mime")
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	rolled_sleeves = -1 //Please never
+
+/obj/item/clothing/under/sexymime/dress //another style of dress closer to the jumpsuit than the sexy outfit
+	name = "mime's jumpskirt"
+	desc = "It's not very colourful."
+	icon_state = "mimedress"
 
 /obj/item/clothing/under/gladiator
 	name = "gladiator uniform"

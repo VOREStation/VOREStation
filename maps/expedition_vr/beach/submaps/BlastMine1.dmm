@@ -1,4 +1,4 @@
-"a" = (/turf/simulated/mineral,/area/submap/cave/BlastMine1)
+"a" = (/turf/simulated/mineral/cave,/area/submap/cave/BlastMine1)
 "b" = (/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/cave/BlastMine1)
 "c" = (/obj/structure/sign/warning/bomb_range,/turf/simulated/wall/sandstone,/area/submap/cave/BlastMine1)
 "d" = (/obj/structure/table/rack,/obj/item/weapon/syndie/c4explosive,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/cave/BlastMine1)
