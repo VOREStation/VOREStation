@@ -43,7 +43,7 @@
 	if(!panel_open)
 		. += "<span class='notice'>The panel is <i>screwed</i> in, obstructing the linking device.</span>"
 	else
-		. += "<span class='notice'>The <i>linking</i> device is now able to be <i>scanned<i> with a multitool.</span>"
+		. += "<span class='notice'>The <i>linking</i> device is now able to be <i>scanned</i> with a multitool.</span>"
 
 /obj/machinery/power/quantumpad/RefreshParts()
 	var/E = 0
