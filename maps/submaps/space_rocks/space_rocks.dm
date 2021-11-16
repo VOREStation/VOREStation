@@ -78,11 +78,12 @@
 	prob_fall = 40
 	//guard = 20
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/animal/space/bats = 5, 
-		/mob/living/simple_mob/vore/alienanimals/space_jellyfish = 10, 
-		/mob/living/simple_mob/vore/alienanimals/startreader = 10,
-		/mob/living/simple_mob/vore/alienanimals/space_ghost = 3,
+		/mob/living/simple_mob/animal/space/bats = 10, 
+		/mob/living/simple_mob/vore/alienanimals/space_jellyfish = 15, 
+		/mob/living/simple_mob/vore/alienanimals/startreader = 15,
+		/mob/living/simple_mob/vore/alienanimals/space_ghost = 6,
 		/mob/living/simple_mob/vore/oregrub = 1,
-		/obj/tether_away_spawner/debrisfield/carp = 2,
-		/obj/tether_away_spawner/debrisfield/carp/hard = 1
+		/mob/living/simple_mob/animal/space/carp = 3,
+		/mob/living/simple_mob/animal/space/carp/large = 1,
+		/mob/living/simple_mob/animal/space/carp/large/huge = 1
 	)
