@@ -1,13 +1,13 @@
 #if MAP_TEST
-#include "bittynest1.dmm"
-#include "bittynest2.dmm"
-#include "bittynest3.dmm"
-#include "bittynest4.dmm"
-#include "clearing.dmm"
-#include "seventemple.dmm"
-#include "spacecrystals.dmm"
-#include "tunnel1.dmm"
-#include "tunnel2.dmm"
+#include "pois/bittynest1.dmm"
+#include "pois/bittynest2.dmm"
+#include "pois/bittynest3.dmm"
+#include "pois/bittynest4.dmm"
+#include "pois/clearing.dmm"
+#include "pois/seventemple.dmm"
+#include "pois/spacecrystals.dmm"
+#include "pois/tunnel1.dmm"
+#include "pois/tunnel2.dmm"
 #endif
 
 /area/submap/space_rocks
