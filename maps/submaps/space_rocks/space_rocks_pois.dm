@@ -1,13 +1,13 @@
 #if MAP_TEST
-#include "pois/bittynest1.dmm"
-#include "pois/bittynest2.dmm"
-#include "pois/bittynest3.dmm"
-#include "pois/bittynest4.dmm"
-#include "pois/clearing.dmm"
-#include "pois/seventemple.dmm"
-#include "pois/spacecrystals.dmm"
-#include "pois/tunnel1.dmm"
-#include "pois/tunnel2.dmm"
+#include "bittynest1.dmm"
+#include "bittynest2.dmm"
+#include "bittynest3.dmm"
+#include "bittynest4.dmm"
+#include "clearing.dmm"
+#include "seventemple.dmm"
+#include "spacecrystals.dmm"
+#include "tunnel1.dmm"
+#include "tunnel2.dmm"
 #endif
 
 /area/submap/space_rocks
@@ -20,7 +20,7 @@
 /datum/map_template/space_rocks/bittynest1
 	name = "Bittynest1"
 	desc = "A smol nest for smol badguys"
-	mappath = 'pois/bittynest1.dmm'
+	mappath = 'bittynest1.dmm'
 	cost = 5
 
 /area/submap/space_rocks/bittynest2
@@ -29,7 +29,7 @@
 /datum/map_template/space_rocks/bittynest2
 	name = "Bittynest2"
 	desc = "A smol nest for smol badguys"
-	mappath = 'pois/bittynest2.dmm'
+	mappath = 'bittynest2.dmm'
 	cost = 5
 
 /area/submap/space_rocks/bittynest3
@@ -38,7 +38,7 @@
 /datum/map_template/space_rocks/bittynest3
 	name = "Bittynest3"
 	desc = "A smol nest for smol badguys"
-	mappath = 'pois/bittynest3.dmm'
+	mappath = 'bittynest3.dmm'
 	cost = 5
 
 /area/submap/space_rocks/bittynest4
@@ -47,7 +47,7 @@
 /datum/map_template/space_rocks/bittynest4
 	name = "Bittynest4"
 	desc = "A smol nest for smol badguys"
-	mappath = 'pois/bittynest4.dmm'
+	mappath = 'bittynest4.dmm'
 	cost = 5
 
 /area/submap/space_rocks/tunnel1
@@ -56,7 +56,7 @@
 /datum/map_template/space_rocks/tunnel1
 	name = "Tunnel1"
 	desc = "A tunnel left behind!"
-	mappath = 'pois/tunnel1.dmm'
+	mappath = 'tunnel1.dmm'
 	cost = 10
 
 /area/submap/space_rocks/tunnel2
@@ -65,7 +65,7 @@
 /datum/map_template/space_rocks/tunnel2
 	name = "Tunnel2"
 	desc = "A tunnel left behind!"
-	mappath = 'pois/tunnel2.dmm'
+	mappath = 'tunnel2.dmm'
 	cost = 10
 
 /area/submap/space_rocks/spacecrystals
@@ -74,7 +74,7 @@
 /datum/map_template/space_rocks/tunnel2
 	name = "Space Crystals"
 	desc = "Some crystals living in space!"
-	mappath = 'pois/spacecrystals.dmm'
+	mappath = 'spacecrystals.dmm'
 	cost = 10
 
 /area/submap/space_rocks/clearing
@@ -83,7 +83,7 @@
 /datum/map_template/space_rocks/clearing
 	name = "Clearing"
 	desc = "A clear spot for mischief to happen."
-	mappath = 'pois/clearing.dmm'
+	mappath = 'clearing.dmm'
 	cost = 10
 
 /area/submap/space_rocks/seventemple
@@ -92,5 +92,5 @@
 /datum/map_template/space_rocks/seventemple
 	name = "Temple of the Seven"
 	desc = "A mysterious space!"
-	mappath = 'pois/seventemple.dmm'
+	mappath = 'seventemple.dmm'
 	cost = 25
