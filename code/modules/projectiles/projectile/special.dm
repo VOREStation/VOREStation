@@ -138,7 +138,7 @@
 	light_power = 0.5
 	light_color = "#33CC00"
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/monochrome_laser
-
+	var/lasermod = 0
 	combustion = FALSE
 
 /obj/item/projectile/energy/floramut/on_hit(var/atom/target, var/blocked = 0)
@@ -195,6 +195,7 @@
 	light_power = 0.5
 	light_color = "#FFFFFF"
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/monochrome_laser
+	var/lasermod = 0
 
 /obj/item/projectile/energy/florayield/on_hit(var/atom/target, var/blocked = 0)
 	var/mob/living/M = target

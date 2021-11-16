@@ -120,8 +120,16 @@
 /obj/item/weapon/gun/energy/floragun/consume_next_projectile()
 	. = ..()
 	var/obj/item/projectile/energy/floramut/gene/G = .
+	var/obj/item/projectile/energy/florayield/GY = .
+	var/obj/item/projectile/energy/floramut/GM = .
+
 	if(istype(G))
 		G.gene = gene
+		G.lasermod = emitter.rating
+	else if(istype(GY))
+		GY.lasermod = emitter.rating
+	else if(istype(GM))
+		GM.lasermod = emitter.rating
 
 /obj/item/weapon/gun/energy/meteorgun
 	name = "meteor gun"
