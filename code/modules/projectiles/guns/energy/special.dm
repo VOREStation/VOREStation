@@ -122,7 +122,7 @@
 	var/obj/item/projectile/energy/floramut/gene/G = .
 	var/obj/item/projectile/energy/florayield/GY = .
 	var/obj/item/projectile/energy/floramut/GM = .
-
+	// Inserting the upgrade level of the gun to the projectile as there isn't a better way to do this.
 	if(istype(G))
 		G.gene = gene
 		G.lasermod = emitter.rating

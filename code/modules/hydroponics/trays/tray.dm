@@ -216,7 +216,8 @@
 	if(seed && seed.get_trait(TRAIT_IMMUTABLE) > 0)
 		return
 
-	//Override for somatoray projectiles.
+	// Override for somatoray projectiles.
+	// Change the mutchance var to buff or nerf somatorays, it will be multiplied by the tier of the laser.
 	var/mutchance = 15
 	if(istype(Proj ,/obj/item/projectile/energy/floramut))
 		var/obj/item/projectile/energy/floramut/GM = Proj
