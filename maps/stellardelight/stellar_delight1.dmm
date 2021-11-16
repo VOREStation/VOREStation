@@ -17760,7 +17760,8 @@
 	dir = 4;
 	door_color = "#a88860";
 	name = "Mining Shuttle";
-	req_access = list(31,5);
+	req_access = null;
+	req_one_access = list(31,5);
 	stripe_color = "#69461a"
 	},
 /obj/structure/cable/yellow{
