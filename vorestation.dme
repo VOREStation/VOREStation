@@ -4087,7 +4087,6 @@
 #include "maps\submaps\engine_submaps\engine.dm"
 #include "maps\submaps\engine_submaps\engine_areas.dm"
 #include "maps\submaps\engine_submaps_vr\tether\_engine_submaps.dm"
-#include "maps\submaps\space_rocks\space_rocks_pois.dm"
 #include "maps\submaps\space_submaps\space.dm"
 #include "maps\submaps\space_submaps\debrisfield\debrisfield.dm"
 #include "maps\submaps\surface_submaps\wilderness\wilderness.dm"
