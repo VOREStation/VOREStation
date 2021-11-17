@@ -5,14 +5,14 @@
 	},
 /obj/effect/catwalk_plated,
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/hallway)
+/area/offmap/aerostat/surface/outpost/hallway)
 "au" = (
 /obj/structure/salvageable/server,
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/bcircuit,
-/area/tether_away/aerostat/surface/outpost/backroom)
+/area/offmap/aerostat/surface/outpost/backroom)
 "aA" = (
 /obj/machinery/door/airlock/security,
 /obj/structure/cable/cyan{
@@ -21,7 +21,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/eris/steel,
-/area/tether_away/aerostat/surface/outpost/hallway)
+/area/offmap/aerostat/surface/outpost/hallway)
 "aD" = (
 /obj/structure/cable/cyan{
 	icon_state = "2-4"
@@ -33,24 +33,24 @@
 	dir = 6
 	},
 /turf/simulated/floor/tiled/eris/dark,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "aK" = (
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
 	dir = 4
 	},
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/hallway)
+/area/offmap/aerostat/surface/outpost/hallway)
 "aU" = (
 /turf/simulated/floor/tiled/eris/steel,
-/area/tether_away/aerostat/surface/outpost/backroom)
+/area/offmap/aerostat/surface/outpost/backroom)
 "bc" = (
 /obj/machinery/atmospherics/pipe/simple/visible/supply{
 	dir = 9
 	},
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/hallway)
+/area/offmap/aerostat/surface/outpost/hallway)
 "bm" = (
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
@@ -60,13 +60,13 @@
 	},
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/hallway)
+/area/offmap/aerostat/surface/outpost/hallway)
 "br" = (
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/bcircuit,
-/area/tether_away/aerostat/surface/outpost/hallway)
+/area/offmap/aerostat/surface/outpost/hallway)
 "bt" = (
 /obj/machinery/door/airlock/security,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -76,53 +76,53 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
-/area/tether_away/aerostat/surface/outpost/guardpost)
+/area/offmap/aerostat/surface/outpost/guardpost)
 "bT" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled/eris/steel,
-/area/tether_away/aerostat/surface/outpost/hallway)
+/area/offmap/aerostat/surface/outpost/hallway)
 "bU" = (
 /obj/random/crate,
 /turf/simulated/floor/tiled/eris/dark/monofloor,
-/area/tether_away/aerostat/surface/outpost/officerone)
+/area/offmap/aerostat/surface/outpost/officerone)
 "bZ" = (
 /turf/simulated/floor/tiled/eris/white/techfloor_grid,
-/area/tether_away/aerostat/surface/outpost/backroom)
+/area/offmap/aerostat/surface/outpost/backroom)
 "cq" = (
 /obj/structure/table/woodentable,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/dark,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "cB" = (
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/guardpost)
+/area/offmap/aerostat/surface/outpost/guardpost)
 "cC" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/white/techfloor_grid,
-/area/tether_away/aerostat/surface/outpost/backroom)
+/area/offmap/aerostat/surface/outpost/backroom)
 "dz" = (
 /obj/structure/table/steel,
 /turf/simulated/floor/tiled/eris/steel,
-/area/tether_away/aerostat/surface/outpost/backroom)
+/area/offmap/aerostat/surface/outpost/backroom)
 "dA" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
 	dir = 9
 	},
 /turf/simulated/wall/r_wall,
-/area/tether_away/aerostat/surface/outpost/airlock)
+/area/offmap/aerostat/surface/outpost/airlock)
 "dE" = (
 /turf/simulated/wall/r_wall,
-/area/tether_away/aerostat/surface/outpost/hallway)
+/area/offmap/aerostat/surface/outpost/hallway)
 "dI" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
 /turf/simulated/floor/wood,
-/area/tether_away/aerostat/surface/outpost/barracks)
+/area/offmap/aerostat/surface/outpost/barracks)
 "ex" = (
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
@@ -135,7 +135,7 @@
 	},
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/hallway)
+/area/offmap/aerostat/surface/outpost/hallway)
 "eD" = (
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
@@ -151,7 +151,7 @@
 	},
 /obj/effect/map_helper/airlock/sensor/int_sensor,
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/airlock)
+/area/offmap/aerostat/surface/outpost/airlock)
 "eG" = (
 /obj/structure/cable/cyan{
 	icon_state = "1-4"
@@ -161,84 +161,84 @@
 	},
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/hallway)
+/area/offmap/aerostat/surface/outpost/hallway)
 "fa" = (
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
 	dir = 5
 	},
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/hallway)
+/area/offmap/aerostat/surface/outpost/hallway)
 "fs" = (
 /obj/tether_away_spawner/aerostat_surface,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
-/area/tether_away/aerostat/surface/explored)
+/area/offmap/aerostat/surface/explored)
 "fx" = (
 /turf/simulated/wall/r_wall,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "fK" = (
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/simulated/floor/wood,
-/area/tether_away/aerostat/surface/outpost/barracks)
+/area/offmap/aerostat/surface/outpost/barracks)
 "fS" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
 	dir = 9
 	},
 /turf/simulated/floor/tiled/eris/dark/danger,
-/area/tether_away/aerostat/surface/outpost/airlock)
+/area/offmap/aerostat/surface/outpost/airlock)
 "fZ" = (
 /obj/structure/table/woodentable,
 /obj/item/device/flashlight/lamp/green,
 /turf/simulated/floor/wood,
-/area/tether_away/aerostat/surface/outpost/officerone)
+/area/offmap/aerostat/surface/outpost/officerone)
 "gb" = (
 /turf/simulated/wall/r_wall,
-/area/tether_away/aerostat/surface/outpost/park)
+/area/offmap/aerostat/surface/outpost/park)
 "gd" = (
 /obj/machinery/atmospherics/portables_connector,
 /obj/machinery/portable_atmospherics/canister,
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/guardpost)
+/area/offmap/aerostat/surface/outpost/guardpost)
 "gq" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/steel,
-/area/tether_away/aerostat/surface/outpost/hallway)
+/area/offmap/aerostat/surface/outpost/hallway)
 "gv" = (
 /obj/structure/cable/cyan{
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/tiled/eris/white/techfloor_grid,
-/area/tether_away/aerostat/surface/outpost/backroom)
+/area/offmap/aerostat/surface/outpost/backroom)
 "gx" = (
 /obj/item/weapon/bedsheet/blue,
 /obj/structure/bed/padded,
 /obj/structure/curtain/black,
 /turf/simulated/floor/wood,
-/area/tether_away/aerostat/surface/outpost/barracks)
+/area/offmap/aerostat/surface/outpost/barracks)
 "gy" = (
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
 	dir = 10
 	},
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/guardpost)
+/area/offmap/aerostat/surface/outpost/guardpost)
 "gN" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red,
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/guardpost)
+/area/offmap/aerostat/surface/outpost/guardpost)
 "gU" = (
 /obj/structure/table/woodentable,
 /obj/item/device/flashlight/lamp/green,
 /turf/simulated/floor/wood,
-/area/tether_away/aerostat/surface/outpost/officertwo)
+/area/offmap/aerostat/surface/outpost/officertwo)
 "hi" = (
 /obj/structure/prop/dominator,
 /turf/simulated/floor/tiled/eris/bcircuit,
-/area/tether_away/aerostat/surface/outpost/backroom)
+/area/offmap/aerostat/surface/outpost/backroom)
 "hj" = (
 /obj/structure/cable/cyan{
 	icon_state = "1-8"
@@ -250,31 +250,31 @@
 	dir = 8
 	},
 /turf/simulated/floor/wood,
-/area/tether_away/aerostat/surface/outpost/barracks)
+/area/offmap/aerostat/surface/outpost/barracks)
 "hq" = (
 /obj/random/empty_or_lootable_crate,
 /turf/simulated/floor/tiled/eris/dark/monofloor,
-/area/tether_away/aerostat/surface/outpost/officerone)
+/area/offmap/aerostat/surface/outpost/officerone)
 "hr" = (
 /obj/structure/table/woodentable,
 /obj/item/modular_computer/laptop/preset/custom_loadout/rugged,
 /turf/simulated/floor/wood,
-/area/tether_away/aerostat/surface/outpost/officertwo)
+/area/offmap/aerostat/surface/outpost/officertwo)
 "hB" = (
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
 	},
 /obj/machinery/light,
 /turf/simulated/floor/tiled/eris/dark,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "hI" = (
 /turf/unsimulated/wall/planetary/virgo2,
-/area/tether_away/aerostat/surface)
+/area/offmap/aerostat/surface)
 "hM" = (
 /obj/structure/table/rack/shelf/steel,
 /obj/random/gun/random,
 /turf/simulated/floor/tiled/eris/dark/monofloor,
-/area/tether_away/aerostat/surface/outpost/officerone)
+/area/offmap/aerostat/surface/outpost/officerone)
 "iu" = (
 /obj/machinery/power/apc/alarms_hidden{
 	dir = 4;
@@ -284,7 +284,7 @@
 	icon_state = "0-8"
 	},
 /turf/simulated/floor/tiled/eris/dark,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "jd" = (
 /obj/structure/cable/cyan{
 	icon_state = "4-9"
@@ -294,7 +294,7 @@
 	},
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/hallway)
+/area/offmap/aerostat/surface/outpost/hallway)
 "ji" = (
 /obj/machinery/door/airlock/multi_tile/glass,
 /obj/structure/cable/cyan{
@@ -303,13 +303,13 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/eris/steel,
-/area/tether_away/aerostat/surface/outpost/hallway)
+/area/offmap/aerostat/surface/outpost/hallway)
 "jj" = (
 /obj/machinery/atmospherics/pipe/simple/visible/supply{
 	dir = 5
 	},
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/guardpost)
+/area/offmap/aerostat/surface/outpost/guardpost)
 "js" = (
 /obj/machinery/power/apc/alarms_hidden{
 	dir = 8;
@@ -322,7 +322,7 @@
 	pixel_y = 28
 	},
 /turf/simulated/floor/wood,
-/area/tether_away/aerostat/surface/outpost/officerone)
+/area/offmap/aerostat/surface/outpost/officerone)
 "jz" = (
 /obj/machinery/power/apc/alarms_hidden{
 	dir = 8;
@@ -332,10 +332,10 @@
 	icon_state = "0-4"
 	},
 /turf/simulated/floor/wood,
-/area/tether_away/aerostat/surface/outpost/officertwo)
+/area/offmap/aerostat/surface/outpost/officertwo)
 "jF" = (
 /turf/simulated/wall/r_wall,
-/area/tether_away/aerostat/surface/outpost/officertwo)
+/area/offmap/aerostat/surface/outpost/officertwo)
 "kp" = (
 /obj/structure/cable/yellow{
 	icon_state = "6-8"
@@ -350,7 +350,7 @@
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/powerroom)
+/area/offmap/aerostat/surface/outpost/powerroom)
 "ks" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-6"
@@ -359,13 +359,13 @@
 	icon_state = "5-8"
 	},
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/powerroom)
+/area/offmap/aerostat/surface/outpost/powerroom)
 "kz" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
-/area/tether_away/aerostat/surface/outpost/guardpost)
+/area/offmap/aerostat/surface/outpost/guardpost)
 "ld" = (
 /obj/machinery/door/airlock/multi_tile/metal{
 	icon_state = "door_locked";
@@ -374,21 +374,21 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/eris/white/techfloor_grid,
-/area/tether_away/aerostat/surface/outpost/backroom)
+/area/offmap/aerostat/surface/outpost/backroom)
 "lI" = (
 /obj/structure/closet/crate{
 	dir = 1
 	},
 /turf/simulated/floor/wood,
-/area/tether_away/aerostat/surface/outpost/barracks)
+/area/offmap/aerostat/surface/outpost/barracks)
 "lP" = (
 /obj/structure/closet/walllocker/medical/north,
 /turf/simulated/floor/tiled/eris/steel,
-/area/tether_away/aerostat/surface/outpost/hallway)
+/area/offmap/aerostat/surface/outpost/hallway)
 "lZ" = (
 /obj/machinery/portable_atmospherics/powered/scrubber,
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/guardpost)
+/area/offmap/aerostat/surface/outpost/guardpost)
 "mC" = (
 /obj/machinery/power/apc/alarms_hidden{
 	dir = 1;
@@ -398,7 +398,7 @@
 	icon_state = "0-2"
 	},
 /turf/simulated/floor/tiled/eris/steel,
-/area/tether_away/aerostat/surface/outpost/hallway)
+/area/offmap/aerostat/surface/outpost/hallway)
 "nk" = (
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
@@ -412,7 +412,7 @@
 	},
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/hallway)
+/area/offmap/aerostat/surface/outpost/hallway)
 "nr" = (
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
@@ -420,23 +420,23 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/eris/dark,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "nx" = (
 /obj/structure/sign/painting/away_areas{
 	pixel_x = -32
 	},
 /turf/simulated/floor/tiled/eris/bcircuit,
-/area/tether_away/aerostat/surface/outpost/hallway)
+/area/offmap/aerostat/surface/outpost/hallway)
 "nI" = (
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/eris/white/techfloor_grid,
-/area/tether_away/aerostat/surface/outpost/backroom)
+/area/offmap/aerostat/surface/outpost/backroom)
 "nK" = (
 /obj/structure/table/woodentable,
 /turf/simulated/floor/wood,
-/area/tether_away/aerostat/surface/outpost/barracks)
+/area/offmap/aerostat/surface/outpost/barracks)
 "nQ" = (
 /obj/machinery/door/airlock/external,
 /obj/effect/map_helper/airlock/door/int_door,
@@ -444,20 +444,22 @@
 	icon_state = "6-8"
 	},
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/airlock)
+/area/offmap/aerostat/surface/outpost/airlock)
 "nS" = (
 /turf/simulated/floor/wood,
-/area/tether_away/aerostat/surface/outpost/barracks)
+/area/offmap/aerostat/surface/outpost/barracks)
 "or" = (
 /obj/structure/salvageable/machine,
 /turf/simulated/floor/tiled/eris/bcircuit,
-/area/tether_away/aerostat/surface/outpost/backroom)
+/area/offmap/aerostat/surface/outpost/backroom)
 "oB" = (
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/grass/heavy,
-/area/tether_away/aerostat/surface/outpost/park)
+/turf/simulated/floor/outdoors/grass/heavy{
+	outdoors = 0
+	},
+/area/offmap/aerostat/surface/outpost/park)
 "oK" = (
 /obj/structure/table/bench/wooden,
 /obj/machinery/power/apc/alarms_hidden{
@@ -467,18 +469,20 @@
 /obj/structure/cable/cyan{
 	icon_state = "0-2"
 	},
-/turf/simulated/floor/outdoors/grass/heavy,
-/area/tether_away/aerostat/surface/outpost/park)
+/turf/simulated/floor/outdoors/grass/heavy{
+	outdoors = 0
+	},
+/area/offmap/aerostat/surface/outpost/park)
 "oW" = (
 /obj/machinery/atmospherics/pipe/simple/visible/universal{
 	dir = 4
 	},
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/guardpost)
+/area/offmap/aerostat/surface/outpost/guardpost)
 "pj" = (
 /obj/structure/bed/alien,
 /turf/simulated/floor/tiled/eris/bcircuit,
-/area/tether_away/aerostat/surface/outpost/backroom)
+/area/offmap/aerostat/surface/outpost/backroom)
 "pv" = (
 /obj/structure/cable/cyan{
 	icon_state = "5-8"
@@ -490,47 +494,51 @@
 	dir = 2
 	},
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
-/area/tether_away/aerostat/surface/outpost/hallway)
+/area/offmap/aerostat/surface/outpost/hallway)
 "pD" = (
-/turf/simulated/floor/outdoors/grass/heavy,
-/area/tether_away/aerostat/surface/outpost/park)
+/turf/simulated/floor/outdoors/grass/heavy{
+	outdoors = 0
+	},
+/area/offmap/aerostat/surface/outpost/park)
 "pK" = (
 /turf/simulated/floor/tiled/eris/bcircuit,
-/area/tether_away/aerostat/surface/outpost/backroom)
+/area/offmap/aerostat/surface/outpost/backroom)
 "pS" = (
 /obj/machinery/power/rtg/advanced,
 /obj/structure/cable/yellow{
 	icon_state = "0-9"
 	},
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/powerroom)
+/area/offmap/aerostat/surface/outpost/powerroom)
 "ql" = (
-/obj/structure/salvageable/personal,
-/turf/simulated/mineral/floor/ignore_mapgen/virgo2,
-/area/tether_away/aerostat/surface/explored)
+/obj/effect/floor_decal/rust,
+/obj/effect/floor_decal/rust,
+/obj/machinery/computer/shuttle_control/aerostat_shuttle,
+/turf/simulated/floor/tiled/techfloor/virgo2,
+/area/offmap/aerostat/surface/shuttleconsole)
 "qs" = (
 /obj/machinery/door/airlock/command{
 	icon_state = "door_locked";
 	locked = 1
 	},
 /turf/simulated/floor/tiled/eris/dark,
-/area/tether_away/aerostat/surface/outpost/officerone)
+/area/offmap/aerostat/surface/outpost/officerone)
 "qJ" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
 /turf/simulated/floor/wood,
-/area/tether_away/aerostat/surface/outpost/barracks)
+/area/offmap/aerostat/surface/outpost/barracks)
 "qP" = (
 /obj/machinery/atmospherics/pipe/tank/air,
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/guardpost)
+/area/offmap/aerostat/surface/outpost/guardpost)
 "rm" = (
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/steel,
-/area/tether_away/aerostat/surface/outpost/backroom)
+/area/offmap/aerostat/surface/outpost/backroom)
 "rn" = (
 /obj/machinery/airlock_sensor/airlock_interior{
 	dir = 4;
@@ -540,6 +548,7 @@
 /obj/effect/map_helper/airlock/sensor/chamber_sensor,
 /obj/machinery/embedded_controller/radio/airlock/airlock_controller{
 	cycle_to_external_air = 1;
+	frequency = 1380;
 	id_tag = "v2outpost_airlock";
 	pixel_y = 25
 	},
@@ -548,27 +557,27 @@
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /turf/simulated/floor/tiled/eris/dark/danger,
-/area/tether_away/aerostat/surface/outpost/airlock)
+/area/offmap/aerostat/surface/outpost/airlock)
 "rp" = (
 /obj/machinery/power/rtg/advanced,
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
 	},
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/powerroom)
+/area/offmap/aerostat/surface/outpost/powerroom)
 "ru" = (
 /obj/structure/table/woodentable,
 /obj/structure/sign/painting/away_areas{
 	pixel_x = 32
 	},
 /turf/simulated/floor/tiled/eris/dark,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "rA" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
 	},
 /turf/simulated/floor/tiled/eris/white/techfloor_grid,
-/area/tether_away/aerostat/surface/outpost/backroom)
+/area/offmap/aerostat/surface/outpost/backroom)
 "rC" = (
 /obj/machinery/airlock_sensor/airlock_exterior{
 	dir = 4;
@@ -579,27 +588,27 @@
 	dir = 4
 	},
 /turf/simulated/floor/hull/virgo2,
-/area/tether_away/aerostat/surface/outpost/airlock)
+/area/offmap/aerostat/surface/outpost/airlock)
 "rS" = (
 /turf/simulated/wall/r_wall,
-/area/tether_away/aerostat/surface/outpost/airlock)
+/area/offmap/aerostat/surface/outpost/airlock)
 "sa" = (
 /obj/effect/map_helper/airlock/atmos/pump_out_internal,
 /obj/machinery/atmospherics/unary/vent_pump/high_volume/aux{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark/danger,
-/area/tether_away/aerostat/surface/outpost/airlock)
+/area/offmap/aerostat/surface/outpost/airlock)
 "si" = (
 /obj/structure/table/rack/shelf/steel,
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
-/area/tether_away/aerostat/surface/outpost/guardpost)
+/area/offmap/aerostat/surface/outpost/guardpost)
 "sl" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
 	dir = 4
 	},
 /turf/simulated/wall/r_wall,
-/area/tether_away/aerostat/surface/outpost/airlock)
+/area/offmap/aerostat/surface/outpost/airlock)
 "sm" = (
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
@@ -611,7 +620,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "st" = (
 /obj/structure/closet/crate{
 	dir = 1
@@ -629,10 +638,10 @@
 /obj/item/weapon/material/kitchen/utensil/spoon,
 /obj/item/weapon/material/kitchen/utensil/spoon,
 /turf/simulated/floor/tiled/eris/dark/monofloor,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "sA" = (
 /turf/simulated/wall/r_wall,
-/area/tether_away/aerostat/surface/outpost/barracks)
+/area/offmap/aerostat/surface/outpost/barracks)
 "sC" = (
 /obj/machinery/door/airlock/multi_tile/glass{
 	dir = 2
@@ -641,7 +650,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "sL" = (
 /obj/structure/bed/chair/bay{
 	dir = 1
@@ -650,7 +659,7 @@
 	dir = 10
 	},
 /turf/simulated/floor/wood,
-/area/tether_away/aerostat/surface/outpost/barracks)
+/area/offmap/aerostat/surface/outpost/barracks)
 "sO" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-10"
@@ -659,13 +668,13 @@
 	icon_state = "8-9"
 	},
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/powerroom)
+/area/offmap/aerostat/surface/outpost/powerroom)
 "tm" = (
 /obj/machinery/alarm/alarms_hidden{
 	pixel_y = 28
 	},
 /turf/simulated/floor/wood,
-/area/tether_away/aerostat/surface/outpost/officertwo)
+/area/offmap/aerostat/surface/outpost/officertwo)
 "ts" = (
 /obj/structure/cable/cyan{
 	icon_state = "1-4"
@@ -676,7 +685,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /turf/simulated/floor/tiled/eris/dark,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "ty" = (
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
@@ -685,55 +694,55 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
-/area/tether_away/aerostat/surface/outpost/guardpost)
+/area/offmap/aerostat/surface/outpost/guardpost)
 "tG" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/simulated/floor/wood,
-/area/tether_away/aerostat/surface/outpost/barracks)
+/area/offmap/aerostat/surface/outpost/barracks)
 "tL" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
-/area/tether_away/aerostat/surface/outpost/guardpost)
+/area/offmap/aerostat/surface/outpost/guardpost)
 "tP" = (
 /obj/structure/salvageable/implant_container,
 /turf/simulated/floor/tiled/eris/bcircuit,
-/area/tether_away/aerostat/surface/outpost/backroom)
+/area/offmap/aerostat/surface/outpost/backroom)
 "uc" = (
 /obj/structure/bed/chair/wood,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/eris/dark,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "uD" = (
 /obj/structure/railing,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
-/area/tether_away/aerostat/surface/explored)
+/area/offmap/aerostat/surface/explored)
 "uG" = (
 /obj/item/stack/cable_coil/green,
 /obj/structure/cable/cyan{
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/powerroom)
+/area/offmap/aerostat/surface/outpost/powerroom)
 "uJ" = (
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
 	},
 /obj/machinery/door/airlock/maintenance/engi,
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/powerroom)
+/area/offmap/aerostat/surface/outpost/powerroom)
 "uQ" = (
 /turf/simulated/wall/r_wall,
-/area/tether_away/aerostat/surface/outpost/guardpost)
+/area/offmap/aerostat/surface/outpost/guardpost)
 "uU" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/steel,
-/area/tether_away/aerostat/surface/outpost/hallway)
+/area/offmap/aerostat/surface/outpost/hallway)
 "uW" = (
 /obj/structure/cable/cyan{
 	icon_state = "1-4"
@@ -742,13 +751,13 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
-/area/tether_away/aerostat/surface/outpost/park)
+/area/offmap/aerostat/surface/outpost/park)
 "vl" = (
 /obj/structure/bed/roller/adv,
 /obj/effect/decal/cleanable/blood/splatter,
 /obj/machinery/light,
 /turf/simulated/floor/tiled/eris/steel,
-/area/tether_away/aerostat/surface/outpost/hallway)
+/area/offmap/aerostat/surface/outpost/hallway)
 "vt" = (
 /obj/structure/cable/cyan{
 	icon_state = "2-8"
@@ -757,7 +766,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/powerroom)
+/area/offmap/aerostat/surface/outpost/powerroom)
 "vu" = (
 /obj/structure/cable/cyan{
 	icon_state = "1-4"
@@ -767,7 +776,7 @@
 	},
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/hallway)
+/area/offmap/aerostat/surface/outpost/hallway)
 "vx" = (
 /obj/machinery/door/airlock/command{
 	req_one_access = null
@@ -776,13 +785,13 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/eris/dark,
-/area/tether_away/aerostat/surface/outpost/officerone)
+/area/offmap/aerostat/surface/outpost/officerone)
 "vV" = (
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/eris/dark,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "wb" = (
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
@@ -791,22 +800,22 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "wf" = (
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/techfloor/virgo2,
-/area/tether_away/aerostat/surface/explored)
+/area/offmap/aerostat/surface/explored)
 "wi" = (
 /obj/structure/table/marble,
 /obj/machinery/door/window/brigdoor/southright,
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/hallway)
+/area/offmap/aerostat/surface/outpost/hallway)
 "wN" = (
 /obj/structure/cable/cyan{
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/wood,
-/area/tether_away/aerostat/surface/outpost/officertwo)
+/area/offmap/aerostat/surface/outpost/officertwo)
 "wT" = (
 /obj/structure/cable/cyan{
 	icon_state = "6-8"
@@ -816,7 +825,7 @@
 	},
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/hallway)
+/area/offmap/aerostat/surface/outpost/hallway)
 "xe" = (
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
@@ -824,7 +833,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/eris/white/techfloor_grid,
-/area/tether_away/aerostat/surface/outpost/backroom)
+/area/offmap/aerostat/surface/outpost/backroom)
 "xf" = (
 /obj/machinery/light{
 	dir = 1
@@ -833,7 +842,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark/danger,
-/area/tether_away/aerostat/surface/outpost/airlock)
+/area/offmap/aerostat/surface/outpost/airlock)
 "xv" = (
 /obj/structure/bed/chair/bay/chair/padded/red,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -843,14 +852,14 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
-/area/tether_away/aerostat/surface/outpost/guardpost)
+/area/offmap/aerostat/surface/outpost/guardpost)
 "xQ" = (
 /obj/machinery/atmospherics/pipe/simple/visible/supply{
 	dir = 4
 	},
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/hallway)
+/area/offmap/aerostat/surface/outpost/hallway)
 "yx" = (
 /obj/machinery/power/apc/alarms_hidden{
 	req_access = null
@@ -863,14 +872,14 @@
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /turf/simulated/floor/tiled/eris/dark/danger,
-/area/tether_away/aerostat/surface/outpost/airlock)
+/area/offmap/aerostat/surface/outpost/airlock)
 "yJ" = (
 /obj/structure/table/woodentable,
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/eris/dark,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "yK" = (
 /obj/structure/closet/crate/bin,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -880,7 +889,7 @@
 	dir = 9
 	},
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
-/area/tether_away/aerostat/surface/outpost/guardpost)
+/area/offmap/aerostat/surface/outpost/guardpost)
 "yL" = (
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
@@ -892,36 +901,36 @@
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/hallway)
+/area/offmap/aerostat/surface/outpost/hallway)
 "zl" = (
 /obj/structure/bed/chair/wood,
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/eris/dark,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "zr" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
 /turf/simulated/floor/tiled/eris/steel/techfloor_grid,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "zG" = (
 /obj/item/weapon/stool/baystool/padded{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "zL" = (
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "zN" = (
 /turf/simulated/floor/tiled/eris/bcircuit,
-/area/tether_away/aerostat/surface/outpost/hallway)
+/area/offmap/aerostat/surface/outpost/hallway)
 "Ah" = (
 /turf/simulated/floor/wood,
-/area/tether_away/aerostat/surface/outpost/officertwo)
+/area/offmap/aerostat/surface/outpost/officertwo)
 "Ao" = (
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
@@ -934,12 +943,12 @@
 	dir = 9
 	},
 /turf/simulated/floor/tiled/eris/dark,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "AQ" = (
 /obj/structure/bed/double/padded,
 /obj/item/weapon/bedsheet/hopdouble,
 /turf/simulated/floor/wood,
-/area/tether_away/aerostat/surface/outpost/officertwo)
+/area/offmap/aerostat/surface/outpost/officertwo)
 "Bb" = (
 /obj/machinery/alarm/alarms_hidden{
 	pixel_y = 28
@@ -951,7 +960,7 @@
 	dir = 6
 	},
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
-/area/tether_away/aerostat/surface/outpost/guardpost)
+/area/offmap/aerostat/surface/outpost/guardpost)
 "Bs" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
 	dir = 4
@@ -960,14 +969,14 @@
 	id = "v2outpost"
 	},
 /turf/simulated/floor/hull/virgo2,
-/area/tether_away/aerostat/surface/outpost/airlock)
+/area/offmap/aerostat/surface/outpost/airlock)
 "Cj" = (
 /turf/simulated/floor/tiled/eris/dark,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "Cn" = (
 /obj/structure/table/rack/shelf/steel,
 /turf/simulated/floor/tiled/eris/dark/monofloor,
-/area/tether_away/aerostat/surface/outpost/officerone)
+/area/offmap/aerostat/surface/outpost/officerone)
 "CF" = (
 /obj/structure/cable/cyan{
 	icon_state = "2-8"
@@ -982,26 +991,26 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "CN" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
 	dir = 6
 	},
 /turf/simulated/wall/r_wall,
-/area/tether_away/aerostat/surface/outpost/airlock)
+/area/offmap/aerostat/surface/outpost/airlock)
 "CZ" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/aux{
 	dir = 4
 	},
 /turf/simulated/floor/hull/virgo2,
-/area/tether_away/aerostat/surface/outpost/airlock)
+/area/offmap/aerostat/surface/outpost/airlock)
 "Da" = (
 /obj/structure/table/woodentable,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/dark,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "Do" = (
 /obj/structure/bed/chair/wood{
 	dir = 1
@@ -1010,7 +1019,7 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/eris/dark,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "DN" = (
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
@@ -1018,78 +1027,80 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/eris/steel,
-/area/tether_away/aerostat/surface/outpost/hallway)
+/area/offmap/aerostat/surface/outpost/hallway)
 "DW" = (
 /obj/structure/railing{
-	dir = 1;
-	icon_state = "railing0"
+	dir = 1
 	},
 /obj/structure/metal_edge,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
-/area/tether_away/aerostat/surface/explored)
+/area/offmap/aerostat/surface/explored)
 "Ea" = (
 /obj/structure/salvageable/autolathe,
 /turf/simulated/floor/tiled/eris/bcircuit,
-/area/tether_away/aerostat/surface/outpost/backroom)
+/area/offmap/aerostat/surface/outpost/backroom)
 "EL" = (
 /turf/simulated/wall/r_wall,
-/area/tether_away/aerostat/surface/outpost/powerroom)
+/area/offmap/aerostat/surface/outpost/powerroom)
 "EQ" = (
 /obj/effect/floor_decal/rust,
 /obj/effect/shuttle_landmark{
-	base_area = /area/tether_away/aerostat/surface/explored;
+	base_area = /area/offmap/aerostat/surface/explored;
 	base_turf = /turf/simulated/floor/tiled/techfloor/virgo2;
 	landmark_tag = "aerostat_surface";
 	name = "Virgo 2 Surface"
 	},
 /turf/simulated/floor/tiled/techfloor/virgo2,
-/area/tether_away/aerostat/surface/explored)
+/area/offmap/aerostat/surface/explored)
 "ET" = (
 /obj/structure/bed/double/padded,
 /obj/item/weapon/bedsheet/hopdouble,
 /turf/simulated/floor/wood,
-/area/tether_away/aerostat/surface/outpost/officerone)
+/area/offmap/aerostat/surface/outpost/officerone)
 "EV" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 8
 	},
 /obj/machinery/portable_atmospherics/canister,
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/guardpost)
+/area/offmap/aerostat/surface/outpost/guardpost)
 "Fr" = (
 /obj/effect/catwalk_plated,
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/visible/supply,
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/hallway)
+/area/offmap/aerostat/surface/outpost/hallway)
 "FL" = (
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/powerroom)
+/area/offmap/aerostat/surface/outpost/powerroom)
 "FM" = (
 /obj/machinery/button/remote/blast_door{
 	id = "v2outpost";
 	pixel_y = 27
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/aux{
+	dir = 4
+	},
 /turf/simulated/floor/hull/virgo2,
-/area/tether_away/aerostat/surface/outpost/airlock)
+/area/offmap/aerostat/surface/outpost/airlock)
 "FO" = (
 /obj/structure/closet/crate{
 	dir = 2
 	},
 /turf/simulated/floor/wood,
-/area/tether_away/aerostat/surface/outpost/barracks)
+/area/offmap/aerostat/surface/outpost/barracks)
 "FT" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/eris/white/techfloor_grid,
-/area/tether_away/aerostat/surface/outpost/backroom)
+/area/offmap/aerostat/surface/outpost/backroom)
 "FU" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled/eris/steel,
-/area/tether_away/aerostat/surface/outpost/hallway)
+/area/offmap/aerostat/surface/outpost/hallway)
 "FW" = (
 /obj/structure/cable/yellow{
 	icon_state = "6-8"
@@ -1098,7 +1109,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/powerroom)
+/area/offmap/aerostat/surface/outpost/powerroom)
 "Ge" = (
 /obj/structure/cable/cyan{
 	icon_state = "0-4"
@@ -1108,34 +1119,34 @@
 	req_access = null
 	},
 /turf/simulated/floor/tiled/eris/white/techfloor_grid,
-/area/tether_away/aerostat/surface/outpost/backroom)
+/area/offmap/aerostat/surface/outpost/backroom)
 "Gr" = (
 /obj/machinery/power/rtg/advanced,
 /obj/structure/cable/yellow,
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/powerroom)
+/area/offmap/aerostat/surface/outpost/powerroom)
 "Gv" = (
 /obj/structure/table/woodentable,
 /obj/machinery/alarm/alarms_hidden{
 	pixel_y = 28
 	},
 /turf/simulated/floor/wood,
-/area/tether_away/aerostat/surface/outpost/barracks)
+/area/offmap/aerostat/surface/outpost/barracks)
 "Gy" = (
 /obj/structure/salvageable/server,
 /turf/simulated/floor/tiled/eris/bcircuit,
-/area/tether_away/aerostat/surface/outpost/backroom)
+/area/offmap/aerostat/surface/outpost/backroom)
 "GD" = (
 /obj/structure/medical_stand/anesthetic,
 /turf/simulated/floor/tiled/eris/bcircuit,
-/area/tether_away/aerostat/surface/outpost/backroom)
+/area/offmap/aerostat/surface/outpost/backroom)
 "GH" = (
 /obj/structure/table/woodentable,
 /obj/structure/sign/painting/away_areas{
 	pixel_x = 32
 	},
 /turf/simulated/floor/wood,
-/area/tether_away/aerostat/surface/outpost/barracks)
+/area/offmap/aerostat/surface/outpost/barracks)
 "Ha" = (
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
@@ -1144,7 +1155,7 @@
 	dir = 9
 	},
 /turf/simulated/floor/tiled/eris/dark,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "Hn" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
@@ -1153,46 +1164,46 @@
 	dir = 8
 	},
 /turf/simulated/floor/wood,
-/area/tether_away/aerostat/surface/outpost/barracks)
+/area/offmap/aerostat/surface/outpost/barracks)
 "Hx" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/white/techfloor_grid,
-/area/tether_away/aerostat/surface/outpost/backroom)
+/area/offmap/aerostat/surface/outpost/backroom)
 "HF" = (
 /obj/machinery/light,
 /turf/simulated/floor/tiled/eris/dark,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "HR" = (
 /turf/simulated/mineral/virgo2,
-/area/tether_away/aerostat/surface/unexplored)
+/area/offmap/aerostat/surface/unexplored)
 "HU" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/aux{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark/danger,
-/area/tether_away/aerostat/surface/outpost/airlock)
+/area/offmap/aerostat/surface/outpost/airlock)
 "IB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "II" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/supply,
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/hallway)
+/area/offmap/aerostat/surface/outpost/hallway)
 "IO" = (
 /turf/simulated/floor/wood,
-/area/tether_away/aerostat/surface/outpost/officerone)
+/area/offmap/aerostat/surface/outpost/officerone)
 "Jf" = (
 /obj/structure/bed/chair/wood{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/dark,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "Jp" = (
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
@@ -1201,11 +1212,13 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "Js" = (
 /obj/structure/table/bench/wooden,
-/turf/simulated/floor/outdoors/grass/heavy,
-/area/tether_away/aerostat/surface/outpost/park)
+/turf/simulated/floor/outdoors/grass/heavy{
+	outdoors = 0
+	},
+/area/offmap/aerostat/surface/outpost/park)
 "JS" = (
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
@@ -1217,27 +1230,27 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "JZ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 8
 	},
 /turf/simulated/floor/wood,
-/area/tether_away/aerostat/surface/outpost/barracks)
+/area/offmap/aerostat/surface/outpost/barracks)
 "Kf" = (
 /obj/structure/bed/chair/wood,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/eris/dark,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "Kl" = (
 /obj/structure/table/steel,
 /obj/item/modular_computer/tablet/preset/custom_loadout/elite,
 /turf/simulated/floor/tiled/eris/steel,
-/area/tether_away/aerostat/surface/outpost/backroom)
+/area/offmap/aerostat/surface/outpost/backroom)
 "KB" = (
 /obj/machinery/atmospherics/pipe/simple/visible/universal,
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/guardpost)
+/area/offmap/aerostat/surface/outpost/guardpost)
 "KJ" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume/aux{
 	dir = 8
@@ -1245,35 +1258,43 @@
 /obj/effect/map_helper/airlock/atmos/pump_out_external,
 /obj/machinery/light,
 /turf/simulated/floor/hull/virgo2,
-/area/tether_away/aerostat/surface/outpost/airlock)
+/area/offmap/aerostat/surface/outpost/airlock)
 "Ll" = (
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/white/techfloor_grid,
-/area/tether_away/aerostat/surface/outpost/backroom)
+/area/offmap/aerostat/surface/outpost/backroom)
 "Lq" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
 	dir = 4
 	},
 /turf/simulated/floor/hull/virgo2,
-/area/tether_away/aerostat/surface/outpost/airlock)
+/area/offmap/aerostat/surface/outpost/airlock)
 "Lr" = (
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/powerroom)
+/area/offmap/aerostat/surface/outpost/powerroom)
 "Lz" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/aux,
+/obj/machinery/access_button{
+	command = "cycle_exterior";
+	dir = 4;
+	frequency = 1380;
+	master_tag = "v2outpost_airlock";
+	name = "exterior access button";
+	pixel_x = -24
+	},
 /turf/simulated/floor/hull/virgo2,
-/area/tether_away/aerostat/surface/outpost/airlock)
+/area/offmap/aerostat/surface/outpost/airlock)
 "LA" = (
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
 	dir = 9
 	},
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/guardpost)
+/area/offmap/aerostat/surface/outpost/guardpost)
 "LL" = (
 /obj/machinery/atmospherics/pipe/simple/visible/supply{
 	dir = 10
@@ -1282,14 +1303,13 @@
 	dir = 4
 	},
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/guardpost)
+/area/offmap/aerostat/surface/outpost/guardpost)
 "LN" = (
 /obj/structure/railing{
-	dir = 4;
-	icon_state = "railing0"
+	dir = 4
 	},
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
-/area/tether_away/aerostat/surface/explored)
+/area/offmap/aerostat/surface/explored)
 "LT" = (
 /obj/machinery/power/apc/alarms_hidden{
 	dir = 4;
@@ -1299,7 +1319,7 @@
 	icon_state = "0-8"
 	},
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/powerroom)
+/area/offmap/aerostat/surface/outpost/powerroom)
 "LV" = (
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
@@ -1309,17 +1329,17 @@
 	},
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/hallway)
+/area/offmap/aerostat/surface/outpost/hallway)
 "Mw" = (
 /obj/structure/closet/crate/bin,
 /turf/simulated/floor/tiled/eris/dark,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "Mz" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red{
 	dir = 9
 	},
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/guardpost)
+/area/offmap/aerostat/surface/outpost/guardpost)
 "MJ" = (
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
@@ -1331,30 +1351,30 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
-/area/tether_away/aerostat/surface/outpost/guardpost)
+/area/offmap/aerostat/surface/outpost/guardpost)
 "MR" = (
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/eris/dark,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "MT" = (
 /obj/machinery/button/remote/blast_door{
 	id = "v2outpost";
 	pixel_y = 27
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/aux{
-	dir = 10
+/obj/machinery/atmospherics/pipe/manifold/hidden/aux{
+	dir = 1
 	},
 /turf/simulated/floor/hull/virgo2,
-/area/tether_away/aerostat/surface/outpost/airlock)
+/area/offmap/aerostat/surface/outpost/airlock)
 "MX" = (
 /turf/simulated/floor/tiled/eris/dark/monofloor,
-/area/tether_away/aerostat/surface/outpost/officerone)
+/area/offmap/aerostat/surface/outpost/officerone)
 "Ng" = (
 /obj/machinery/light,
 /turf/simulated/floor/tiled/eris/steel,
-/area/tether_away/aerostat/surface/outpost/hallway)
+/area/offmap/aerostat/surface/outpost/hallway)
 "Nl" = (
 /obj/structure/closet/crate/bin,
 /obj/structure/cable/cyan{
@@ -1365,13 +1385,13 @@
 	req_access = null
 	},
 /turf/simulated/floor/wood,
-/area/tether_away/aerostat/surface/outpost/barracks)
+/area/offmap/aerostat/surface/outpost/barracks)
 "Nm" = (
 /obj/structure/cable/cyan{
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/wood,
-/area/tether_away/aerostat/surface/outpost/officerone)
+/area/offmap/aerostat/surface/outpost/officerone)
 "Nn" = (
 /obj/machinery/power/apc/alarms_hidden{
 	dir = 1;
@@ -1381,18 +1401,18 @@
 	icon_state = "0-8"
 	},
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
-/area/tether_away/aerostat/surface/outpost/guardpost)
+/area/offmap/aerostat/surface/outpost/guardpost)
 "Ny" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
 	},
 /turf/simulated/floor/tiled/eris/white/techfloor_grid,
-/area/tether_away/aerostat/surface/outpost/backroom)
+/area/offmap/aerostat/surface/outpost/backroom)
 "NF" = (
 /obj/structure/closet/crate/bin,
 /turf/simulated/floor/tiled/eris/steel,
-/area/tether_away/aerostat/surface/outpost/backroom)
+/area/offmap/aerostat/surface/outpost/backroom)
 "NU" = (
 /obj/machinery/atmospherics/pipe/simple/visible/supply{
 	dir = 5
@@ -1400,7 +1420,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/hallway)
+/area/offmap/aerostat/surface/outpost/hallway)
 "NW" = (
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
@@ -1410,48 +1430,54 @@
 	},
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/hallway)
+/area/offmap/aerostat/surface/outpost/hallway)
 "Oi" = (
 /turf/simulated/floor/tiled/eris/dark/monofloor,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "Ot" = (
 /obj/structure/window/reinforced/full,
 /obj/structure/grille,
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/hallway)
+/area/offmap/aerostat/surface/outpost/hallway)
 "ON" = (
 /obj/structure/table/rack/shelf/steel,
 /obj/item/weapon/storage/box/glasses,
 /obj/item/paint_brush,
 /obj/item/paint_palette,
 /turf/simulated/floor/tiled/eris/dark/monofloor,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "OT" = (
 /turf/simulated/wall/r_wall,
-/area/tether_away/aerostat/surface/outpost/officerone)
+/area/offmap/aerostat/surface/outpost/officerone)
 "Pe" = (
 /obj/structure/closet/wardrobe/grey,
 /turf/simulated/floor/wood,
-/area/tether_away/aerostat/surface/outpost/barracks)
+/area/offmap/aerostat/surface/outpost/barracks)
 "Pn" = (
 /obj/machinery/alarm/alarms_hidden{
 	pixel_y = 28
 	},
 /turf/simulated/floor/tiled/eris/steel,
-/area/tether_away/aerostat/surface/outpost/hallway)
+/area/offmap/aerostat/surface/outpost/hallway)
 "Px" = (
 /obj/structure/table/bench/wooden,
 /obj/machinery/alarm/alarms_hidden{
 	pixel_y = 28
 	},
-/turf/simulated/floor/outdoors/grass/heavy,
-/area/tether_away/aerostat/surface/outpost/park)
+/turf/simulated/floor/outdoors/grass/heavy{
+	outdoors = 0
+	},
+/area/offmap/aerostat/surface/outpost/park)
 "PE" = (
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/atmospherics/unary/vent_pump/high_volume/aux{
+	dir = 8
+	},
+/obj/effect/map_helper/airlock/atmos/pump_out_external,
 /turf/simulated/floor/hull/virgo2,
-/area/tether_away/aerostat/surface/outpost/airlock)
+/area/offmap/aerostat/surface/outpost/airlock)
 "PH" = (
 /obj/structure/cable/cyan{
 	icon_state = "4-10"
@@ -1461,43 +1487,55 @@
 	},
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/hallway)
+/area/offmap/aerostat/surface/outpost/hallway)
 "PZ" = (
 /turf/simulated/floor/tiled/eris/steel,
-/area/tether_away/aerostat/surface/outpost/hallway)
+/area/offmap/aerostat/surface/outpost/hallway)
 "Qp" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
-/area/tether_away/aerostat/surface/outpost/hallway)
+/area/offmap/aerostat/surface/outpost/hallway)
 "QF" = (
 /obj/machinery/portable_atmospherics/powered/pump/filled,
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/guardpost)
+/area/offmap/aerostat/surface/outpost/guardpost)
 "QJ" = (
 /turf/simulated/wall/r_wall,
-/area/tether_away/aerostat/surface/outpost/backroom)
+/area/offmap/aerostat/surface/outpost/backroom)
+"QZ" = (
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/machinery/access_button{
+	command = "cycle_interior";
+	dir = 8;
+	frequency = 1380;
+	master_tag = "v2outpost_airlock";
+	name = "interior access button";
+	pixel_x = 24
+	},
+/turf/simulated/floor/tiled/eris/steel,
+/area/offmap/aerostat/surface/outpost/hallway)
 "Ra" = (
 /obj/structure/table/woodentable,
 /turf/simulated/floor/tiled/eris/dark,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "Rh" = (
 /obj/structure/railing/grey{
 	dir = 8
 	},
 /obj/structure/salvageable/server,
 /turf/simulated/floor/tiled/eris/bcircuit,
-/area/tether_away/aerostat/surface/outpost/backroom)
+/area/offmap/aerostat/surface/outpost/backroom)
 "Rl" = (
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
 	dir = 4
 	},
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/guardpost)
+/area/offmap/aerostat/surface/outpost/guardpost)
 "Rw" = (
 /turf/simulated/floor/hull/virgo2,
-/area/tether_away/aerostat/surface/outpost/airlock)
+/area/offmap/aerostat/surface/outpost/airlock)
 "RP" = (
 /obj/machinery/door/airlock/command{
 	req_one_access = null
@@ -1506,14 +1544,14 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/eris/dark,
-/area/tether_away/aerostat/surface/outpost/officertwo)
+/area/offmap/aerostat/surface/outpost/officertwo)
 "RQ" = (
 /obj/structure/railing/grey{
 	dir = 8
 	},
 /obj/structure/salvageable/implant_container,
 /turf/simulated/floor/tiled/eris/bcircuit,
-/area/tether_away/aerostat/surface/outpost/backroom)
+/area/offmap/aerostat/surface/outpost/backroom)
 "Sr" = (
 /obj/structure/closet/walllocker_double/kitchen/west,
 /obj/item/weapon/storage/box/tgmc_mre,
@@ -1531,27 +1569,26 @@
 	pixel_y = -4
 	},
 /turf/simulated/floor/tiled/eris/dark,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "Sx" = (
 /obj/structure/railing{
-	dir = 8;
-	icon_state = "railing0"
+	dir = 8
 	},
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
-/area/tether_away/aerostat/surface/explored)
+/area/offmap/aerostat/surface/explored)
 "SI" = (
 /turf/simulated/floor/water/indoors,
-/area/tether_away/aerostat/surface/outpost/park)
+/area/offmap/aerostat/surface/outpost/park)
 "SS" = (
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
-/area/tether_away/aerostat/surface/explored)
+/area/offmap/aerostat/surface/explored)
 "Ta" = (
 /obj/structure/railing/grey{
 	dir = 8
 	},
 /obj/structure/salvageable/machine,
 /turf/simulated/floor/tiled/eris/bcircuit,
-/area/tether_away/aerostat/surface/outpost/backroom)
+/area/offmap/aerostat/surface/outpost/backroom)
 "Tc" = (
 /obj/effect/map_helper/airlock/door/ext_door,
 /obj/machinery/door/airlock/glass_external,
@@ -1559,7 +1596,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/airlock)
+/area/offmap/aerostat/surface/outpost/airlock)
 "TM" = (
 /obj/structure/bed/chair/bay/chair/padded/red{
 	dir = 4
@@ -1568,51 +1605,51 @@
 	pixel_y = 28
 	},
 /turf/simulated/floor/tiled/eris/steel,
-/area/tether_away/aerostat/surface/outpost/backroom)
+/area/offmap/aerostat/surface/outpost/backroom)
 "Ur" = (
 /obj/structure/table/rack/shelf/steel,
 /obj/item/weapon/storage/box/glasses/pint,
 /obj/item/canvas/twentyfour_twentyfour,
 /obj/item/canvas/nineteen_nineteen,
 /turf/simulated/floor/tiled/eris/dark/monofloor,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "UC" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume/aux{
 	dir = 4
 	},
 /obj/effect/map_helper/airlock/atmos/pump_out_internal,
 /turf/simulated/floor/tiled/eris/dark/danger,
-/area/tether_away/aerostat/surface/outpost/airlock)
+/area/offmap/aerostat/surface/outpost/airlock)
 "UE" = (
 /obj/machinery/power/terminal,
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
 	},
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/powerroom)
+/area/offmap/aerostat/surface/outpost/powerroom)
 "UJ" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
-/area/tether_away/aerostat/surface/outpost/park)
+/area/offmap/aerostat/surface/outpost/park)
 "UN" = (
 /obj/machinery/vending/cola,
 /turf/simulated/floor/tiled/eris/steel/techfloor_grid,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "Vb" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/cyan{
 	dir = 8
 	},
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/guardpost)
+/area/offmap/aerostat/surface/outpost/guardpost)
 "Vq" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume/aux{
 	dir = 4
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /turf/simulated/floor/tiled/eris/dark/danger,
-/area/tether_away/aerostat/surface/outpost/airlock)
+/area/offmap/aerostat/surface/outpost/airlock)
 "Vr" = (
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
@@ -1621,13 +1658,13 @@
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled/eris/dark,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "VH" = (
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark/monofloor,
-/area/tether_away/aerostat/surface/outpost/officerone)
+/area/offmap/aerostat/surface/outpost/officerone)
 "VJ" = (
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
@@ -1639,7 +1676,7 @@
 	dir = 10
 	},
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
-/area/tether_away/aerostat/surface/outpost/guardpost)
+/area/offmap/aerostat/surface/outpost/guardpost)
 "VW" = (
 /obj/structure/table/woodentable,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -1649,33 +1686,33 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
-/area/tether_away/aerostat/surface/outpost/guardpost)
+/area/offmap/aerostat/surface/outpost/guardpost)
 "We" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/visible/universal{
 	dir = 4
 	},
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/guardpost)
+/area/offmap/aerostat/surface/outpost/guardpost)
 "Wg" = (
 /obj/machinery/light,
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/powerroom)
+/area/offmap/aerostat/surface/outpost/powerroom)
 "Wy" = (
 /obj/structure/cable/cyan{
 	icon_state = "0-2"
 	},
 /obj/machinery/power/smes/buildable/point_of_interest,
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/powerroom)
+/area/offmap/aerostat/surface/outpost/powerroom)
 "Wz" = (
 /obj/random/coin,
 /obj/structure/closet/crate/large,
 /turf/simulated/floor/tiled/eris/dark/monofloor,
-/area/tether_away/aerostat/surface/outpost/officerone)
+/area/offmap/aerostat/surface/outpost/officerone)
 "WB" = (
 /obj/machinery/door/airlock/glass,
 /obj/structure/cable/cyan{
@@ -1688,7 +1725,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/wood,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "WC" = (
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
@@ -1700,18 +1737,18 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/dark,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "WF" = (
 /obj/machinery/door/airlock/maintenance/engi{
 	req_one_access = null
 	},
 /turf/simulated/floor/tiled/eris/dark,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "WV" = (
 /obj/machinery/door/airlock/external,
 /obj/effect/map_helper/airlock/door/int_door,
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/airlock)
+/area/offmap/aerostat/surface/outpost/airlock)
 "Xh" = (
 /obj/structure/cable/cyan{
 	icon_state = "2-10"
@@ -1719,7 +1756,7 @@
 /obj/machinery/atmospherics/pipe/manifold/visible/supply,
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/hallway)
+/area/offmap/aerostat/surface/outpost/hallway)
 "Xq" = (
 /obj/structure/cable/cyan{
 	icon_state = "5-8"
@@ -1729,24 +1766,24 @@
 	},
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/hallway)
+/area/offmap/aerostat/surface/outpost/hallway)
 "XN" = (
 /obj/structure/bed/chair/wood,
 /turf/simulated/floor/tiled/eris/dark,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "Yk" = (
 /obj/structure/salvageable/machine,
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/bcircuit,
-/area/tether_away/aerostat/surface/outpost/backroom)
+/area/offmap/aerostat/surface/outpost/backroom)
 "Zb" = (
 /obj/machinery/alarm/alarms_hidden{
 	pixel_y = 28
 	},
 /turf/simulated/floor/tiled/eris/bcircuit,
-/area/tether_away/aerostat/surface/outpost/hallway)
+/area/offmap/aerostat/surface/outpost/hallway)
 "Zi" = (
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
@@ -1759,42 +1796,42 @@
 	req_one_access = list(777)
 	},
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
-/area/tether_away/aerostat/surface/outpost/hallway)
+/area/offmap/aerostat/surface/outpost/hallway)
 "Zt" = (
 /obj/structure/table/woodentable,
 /obj/machinery/chemical_dispenser/bar_soft/full,
 /turf/simulated/floor/tiled/eris/steel/techfloor_grid,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "Zu" = (
 /obj/structure/table/rack/shelf/steel,
 /turf/simulated/floor/wood,
-/area/tether_away/aerostat/surface/outpost/officerone)
+/area/offmap/aerostat/surface/outpost/officerone)
 "Zv" = (
 /obj/structure/closet/walllocker/medical/north,
 /obj/machinery/washing_machine,
 /turf/simulated/floor/wood,
-/area/tether_away/aerostat/surface/outpost/barracks)
+/area/offmap/aerostat/surface/outpost/barracks)
 "ZJ" = (
 /obj/machinery/vending/foodfast,
 /turf/simulated/floor/tiled/eris/steel/techfloor_grid,
-/area/tether_away/aerostat/surface/outpost/cafe)
+/area/offmap/aerostat/surface/outpost/cafe)
 "ZL" = (
 /obj/random/crate,
 /obj/machinery/alarm/alarms_hidden{
 	pixel_y = 28
 	},
 /turf/simulated/floor/tiled/eris/dark/monofloor,
-/area/tether_away/aerostat/surface/outpost/officerone)
+/area/offmap/aerostat/surface/outpost/officerone)
 "ZQ" = (
 /turf/simulated/mineral/virgo2,
-/area/tether_away/aerostat/surface/explored)
+/area/offmap/aerostat/surface/explored)
 "ZW" = (
 /obj/machinery/alarm/alarms_hidden{
 	pixel_y = 28
 	},
 /obj/machinery/portable_atmospherics/powered/scrubber,
 /turf/simulated/floor/plating/eris/under,
-/area/tether_away/aerostat/surface/outpost/guardpost)
+/area/offmap/aerostat/surface/outpost/guardpost)
 
 (1,1,1) = {"
 hI
@@ -5325,7 +5362,7 @@ cB
 LL
 jj
 dE
-bT
+QZ
 bc
 eD
 gq
@@ -6319,7 +6356,7 @@ ZQ
 ZQ
 ZQ
 rS
-Rw
+Lq
 Rw
 Rw
 Bs
@@ -10240,7 +10277,7 @@ SS
 SS
 SS
 SS
-SS
+wf
 SS
 SS
 SS
@@ -10381,9 +10418,9 @@ SS
 SS
 SS
 SS
-SS
+wf
 ql
-SS
+wf
 SS
 SS
 SS
@@ -10524,14 +10561,14 @@ LN
 LN
 LN
 LN
-LN
-LN
+wf
+SS
 wf
 wf
-LN
-LN
-LN
-LN
+wf
+SS
+SS
+SS
 LN
 LN
 LN
@@ -11095,7 +11132,7 @@ wf
 wf
 wf
 wf
-wf
+EQ
 wf
 wf
 wf
@@ -11379,7 +11416,7 @@ wf
 wf
 wf
 wf
-EQ
+wf
 wf
 wf
 wf
@@ -12513,11 +12550,11 @@ Sx
 Sx
 Sx
 Sx
-Sx
+SS
 wf
 wf
-Sx
-Sx
+wf
+SS
 Sx
 Sx
 Sx

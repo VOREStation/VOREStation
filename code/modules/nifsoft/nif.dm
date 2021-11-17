@@ -608,6 +608,12 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	durability = 75
 	bioadap = TRUE
 
+/obj/item/device/nif/protean				// Proteans' integrated NIF
+	name = "protean integrated NIF"
+	desc = "A NIF that is part of a protean's body structure. Where did you get that anyway?"
+	durability = 25
+	bioadap = TRUE
+
 ////////////////////////////////
 // Special Promethean """surgery"""
 /obj/item/device/nif/attack(mob/living/M, mob/living/user, var/target_zone)

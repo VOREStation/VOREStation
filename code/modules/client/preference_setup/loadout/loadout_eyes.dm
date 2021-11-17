@@ -104,7 +104,7 @@
 /datum/gear/eyes/meson
 	display_name = "Optical Meson Scanners (Engineering, Science, Mining)"
 	path = /obj/item/clothing/glasses/meson
-	allowed_roles = list("Station Engineer","Chief Engineer","Atmospheric Technician", "Scientist", "Research Director", "Shaft Miner")
+	allowed_roles = list("Engineer","Chief Engineer","Atmospheric Technician", "Scientist", "Research Director", "Shaft Miner")
 
 /datum/gear/eyes/meson/prescription
 	display_name = "Optical Meson Scanners, prescription (Engineering, Science, Mining)"

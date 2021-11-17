@@ -641,7 +641,7 @@
 /obj/item/clothing/under/dress/dress_saloon,
 /obj/item/clothing/under/dress/lilacdress,
 /obj/item/clothing/under/dress/littleblackdress,
-/obj/item/clothing/under/dress/qipao/red,
+/obj/item/clothing/under/qipao/red,
 /obj/item/clothing/under/dress/red_swept_dress,
 /obj/item/clothing/under/dress/redeveninggown,
 /obj/item/clothing/under/dress/sailordress,
@@ -1175,7 +1175,7 @@
 /turf/simulated/floor/tiled/eris,
 /area/gateway/arynthilake/engine)
 "sl" = (
-/obj/effect/overmap/visitable/sector/tether_gateway/arynthilake,
+/obj/effect/overmap/visitable/sector/common_gateway/arynthilake,
 /turf/simulated/mineral/ignore_cavegen,
 /area/gateway/arynthilake/caves)
 "sA" = (
@@ -1258,7 +1258,7 @@
 	},
 /area/gateway/arynthilake/dome)
 "ug" = (
-/obj/machinery/telecomms/relay/preset/tether,
+/obj/machinery/telecomms/relay,
 /turf/simulated/floor/tiled/eris,
 /area/gateway/arynthilake/engine)
 "uo" = (
@@ -2324,7 +2324,7 @@
 /obj/item/clothing/under/dress/wench,
 /obj/item/clothing/under/dress/white,
 /obj/item/clothing/under/haltertop,
-/obj/item/clothing/under/hephaestus,
+/obj/item/clothing/under/corp/hephaestus,
 /obj/item/clothing/under/lawyer/blue,
 /obj/item/clothing/under/lawyer/bluesuit,
 /obj/item/clothing/under/lawyer/bluesuit/skirt,

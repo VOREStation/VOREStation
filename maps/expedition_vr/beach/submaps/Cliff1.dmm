@@ -1,0 +1,25 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/template_noop)
+"c" = (/obj/item/weapon/ore,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/ore_cliff)
+"d" = (/obj/random/outcrop,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/ore_cliff)
+"e" = (/obj/structure/cliff/automatic/corner,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/ore_cliff)
+"f" = (/obj/structure/cliff/automatic{icon_state = "cliffbuilder"; dir = 5},/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/ore_cliff)
+"g" = (/obj/structure/cliff/automatic{icon_state = "cliffbuilder"; dir = 9},/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/ore_cliff)
+"h" = (/obj/structure/cliff/automatic,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/ore_cliff)
+"i" = (/obj/structure/cliff/automatic/corner{icon_state = "cliffbuilder-corner"; dir = 9},/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/ore_cliff)
+"j" = (/obj/random/humanoidremains{spawn_nothing_percentage = 70},/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/ore_cliff)
+"k" = (/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/ore_cliff)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+abbbbabbbbbbbaabbbbbbbbaaabbaa
+aakckkbdbcbbbbbbdbbcdbbkkckkaa
+aakefckkkbbdbbcbbbkkkcghhhikaa
+aakcehhfkkkkkkkkkcghhhikkkckaa
+aaajkkkehfkckghhhhikkkcjbbbaaa
+aaaaabkckehhhikkkkkkcbbbbaaaaa
+aaaaaaackkkjkkcbbcbbbaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+"}
+

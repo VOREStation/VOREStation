@@ -99,6 +99,12 @@ var/global/list/engineering_networks = list(
 /obj/machinery/camera/network/telecom
 	network = list(NETWORK_TELECOM)
 
+/obj/machinery/camera/network/exploration
+	network = list(NETWORK_EXPLORATION)
+
+/obj/machinery/camera/network/research/xenobio
+	network = list(NETWORK_RESEARCH, NETWORK_XENOBIO)
+
 /obj/machinery/camera/network/thunder
 	network = list(NETWORK_THUNDER)
 	invuln = 1
@@ -171,9 +177,9 @@ var/global/list/engineering_networks = list(
 	var/list/my_area = by_area[A.name]
 	my_area += src
 	var/number = my_area.len
-	
+
 	c_tag = "[A.name] #[number]"
-	
+
 /obj/machinery/camera/autoname/Destroy()
 	var/area/A = get_area(src)
 	if(!A || !by_area || !by_area[A.name])

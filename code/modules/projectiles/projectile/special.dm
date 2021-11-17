@@ -87,7 +87,12 @@
 
 		new_temperature = round(new_temperature * temp_factor)
 		L.bodytemperature = new_temperature
-
+	//VOREStation Add Start - The last metroid has escaped from captivity, the galaxy is no longer safe.
+		if(istype(L, /mob/living/simple_mob/vore/alienanimals/space_jellyfish) && target_temperature <= T0C)
+			var/mob/living/simple_mob/vore/alienanimals/space_jellyfish/J = L
+			J.adjustFireLoss(75)
+			J.movement_cooldown *= 2
+	//VOREStation Add End
 	return 1
 
 /obj/item/projectile/temp/hot

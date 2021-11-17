@@ -676,7 +676,7 @@
 	},
 /area/gateway/honlethhighlands)
 "jn" = (
-/obj/effect/overmap/visitable/sector/tether_gateway/honlethhighlands,
+/obj/effect/overmap/visitable/sector/common_gateway/honlethhighlands,
 /turf/simulated/floor/water/deep{
 	temperature = 253.15
 	},
@@ -2519,7 +2519,7 @@
 /turf/simulated/floor/tiled,
 /area/gateway/honlethhighlands/town/engineering)
 "QB" = (
-/obj/machinery/telecomms/relay/preset/tether,
+/obj/machinery/telecomms/relay,
 /turf/simulated/floor/tiled,
 /area/gateway/honlethhighlands/town/engineering)
 "QG" = (

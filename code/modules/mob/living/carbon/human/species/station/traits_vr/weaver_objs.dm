@@ -89,6 +89,7 @@
 	desc = "A silky, yet firm trap. Be careful not to step into it! Or don't..."
 	icon_state = "trap"
 	var/trap_active = TRUE
+	can_buckle = TRUE
 
 /obj/effect/weaversilk/trap/Crossed(atom/movable/AM as mob|obj)
 	if(AM.is_incorporeal())
@@ -106,16 +107,17 @@
 				"<b>You hear a squishy noise!</b>"
 				)
 			set_dir(L.dir)
-			can_buckle = TRUE
 			buckle_mob(L)
 			L.Stun(1)
 			to_chat(L, "<span class='danger'>The sticky fibers of \the [src] ensnare, trapping you in place!</span>")
 			trap_active = FALSE
-			can_buckle = initial(can_buckle)
 			desc += " Actually, it looks like it's been all spent."
 	..()
 
 
+
+/obj/effect/weaversilk/trap/MouseDrop_T(atom/movable/AM,mob/user)
+	return
 
 // Items
 

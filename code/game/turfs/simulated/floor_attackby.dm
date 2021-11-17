@@ -9,8 +9,12 @@
 			attack_tile(C, L) // Be on help intent if you want to decon something.
 			return
 
-	if(!(C.is_screwdriver() && flooring && (flooring.flags & TURF_REMOVE_SCREWDRIVER)) && try_graffiti(user, C))
-		return
+	if(!(C.has_tool_quality(TOOL_SCREWDRIVER) && flooring && (flooring.flags & TURF_REMOVE_SCREWDRIVER)))
+		if(isliving(user))
+			var/mob/living/L = user
+			if(L.a_intent == I_HELP)
+				if(try_graffiti(L, C)) // back by unpopular demand
+					return
 
 	// Multi-z roof building
 	if(istype(C, /obj/item/stack/tile/roofing))

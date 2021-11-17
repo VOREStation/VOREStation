@@ -118,7 +118,6 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	var/wantpet = 0
 	var/affection_factor = 1	//Some Teppi are more happy to be loved on than others.
 	var/teppi_warned = FALSE
-	var/heal_countdown = 5
 	var/teppi_mutate = FALSE	//Allows Teppi to get their children's colors scrambled, and possibly other things later on!
 
 	attacktext = list("nipped", "chomped", "bonked", "stamped on")
@@ -688,21 +687,8 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 			amount_grown -= rand(100,250)
 	if(not_hungy)
 		do_breeding()
-		do_healing()
-	if(prob(0.5))
+	if(!client && prob(0.5))
 		teppi_sound()
-
-/mob/living/simple_mob/vore/alienanimals/teppi/proc/do_healing()
-	if(health < maxHealth)
-		if(heal_countdown > 0)
-			heal_countdown -= 1
-			return
-		if(bruteloss > 0)
-			adjustBruteLoss(-2)
-		else if(fireloss > 0)
-			adjustFireLoss(-0.5)
-		nutrition -= 5
-		heal_countdown = 5
 
 /mob/living/simple_mob/vore/alienanimals/teppi/proc/do_breeding()
 	if(!breedable || prevent_breeding)
