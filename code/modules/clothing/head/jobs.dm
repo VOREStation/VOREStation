@@ -22,11 +22,26 @@
 	desc = "No one in a commanding position should be without a perfect, white hat of ultimate authority."
 	icon_state = "officercap"
 
+/obj/item/clothing/head/caphat/beret
+	name = "captain's beret"
+	desc = "A beret fit for a leader."
+	icon_state = "beretcap"
+
 //HOP
 /obj/item/clothing/head/caphat/hop
 	name = "crew resource's hat"
 	desc = "A stylish hat that both protects you from enraged former-crewmembers and gives you a false sense of authority."
 	icon_state = "hopcap"
+
+/obj/item/clothing/head/caphat/hop/beret
+	name = "head of personnel's beret"
+	desc = "The symbol of true bureaucratic micromanagement, although in a fancy form."
+	icon_state = "berethop"
+
+/obj/item/clothing/head/caphat/hop/beret/white
+	name = "head of personnel's white beret"
+	desc = "The symbol of true bureaucratic micromanagement, although in a fancy form."
+	icon_state = "berethopwhite"
 
 //Chaplain
 /obj/item/clothing/head/chaplain_hood
@@ -207,3 +222,62 @@
 	desc = "A cap surgeons wear during operations. Keeps their hair from tickling your internal organs. This one is navy blue."
 	icon_state = "surgcap_navyblue"
 	item_state_slots = list(slot_r_hand_str = "beret_navy", slot_l_hand_str = "beret_navy")
+
+/obj/item/clothing/head/beret/medical
+	name = "medical officer's beret"
+	desc = "A fancy beret with a blue cross, smells sterile."
+	icon_state = "beretmed"
+
+/obj/item/clothing/head/beret/medical/chem
+	name = "chemist's beret"
+	desc = "A fancy beret with an orange beaker. You're not sure if you should smell it."
+	icon_state = "beretchem"
+
+/obj/item/clothing/head/beret/medical/viro
+	name = "virologist's beret"
+	desc = "A fancy beret with a green cross. Hopefully it's virus free!"
+	icon_state = "beretviro"
+
+/obj/item/clothing/head/beret/medical/cmo
+	name = "chief medical officer's beret"
+	desc = "A fancy beret with a green cross, signifying your status in the station's medbay."
+	icon_state = "beretcmo"
+
+/obj/item/clothing/head/beret/medical/cmo/blue
+	name = "chief medical officer's beret"
+	desc = "A fancy beret with a blue and white cross. Try not to be the chief malpractice officer in it!"
+	icon_state = "beretcmoblue"
+
+//Science
+
+/obj/item/clothing/head/beret/science
+	name = "scientist's beret"
+	desc = "A scientist's beret. Looks like it's covered in slime."
+	icon_state = "beretsci"
+
+/obj/item/clothing/head/beret/science/robotics
+	name = "roboticist's beret"
+	desc = "A roboticist's beret. It strongly smells of oil."
+	icon_state = "beretrobo"
+
+/obj/item/clothing/head/beret/science/rd
+	name = "research director's beret"
+	desc = "A beret worn only by highly intelligent people. Or so its wearers say."
+	icon_state = "beretrd"
+
+//Chief Engineer
+/obj/item/clothing/head/beret/engineering/ce
+	name = "chief engineer's beret"
+	desc = "A beret that will surely make you look way cooler than a hard hat, although lack of protection is the price."
+	icon_state = "beretce"
+
+/obj/item/clothing/head/beret/engineering/ce/white
+	name = "chief engineer's white beret"
+	desc = "A beret that will surely make you look way cooler than a hard hat, although lack of protection is the price."
+	icon_state = "beretcewhite"
+
+//Quartermaster
+/obj/item/clothing/head/beret/qm
+	name = "quartermaster's white beret"
+	desc = "This headwear shows off your Cargonian leadership."
+	icon_state = "beretqm"

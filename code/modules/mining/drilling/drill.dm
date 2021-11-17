@@ -11,6 +11,7 @@
 	icon_state = "mining_drill"
 	circuit = /obj/item/weapon/circuitboard/miningdrill
 	var/braces_needed = 2
+	var/total_brace_tier = 0
 	var/list/obj/machinery/mining/brace/supports = list()
 	var/supported = 0
 	var/active = 0
@@ -176,6 +177,9 @@
 			if(newtag)
 				name = "[initial(name)] #[newtag]"
 				to_chat(user, "<span class='notice'>You changed the drill ID to: [newtag]</span>")
+			else
+				name = "[initial(name)]"
+				to_chat(user, SPAN_NOTICE("You removed the drill's ID and any extraneous labels."))
 			return
 		if(default_deconstruction_screwdriver(user, O))
 			return
@@ -199,6 +203,7 @@
 
 /obj/machinery/mining/drill/attack_hand(mob/user as mob)
 	check_supports()
+	RefreshParts()
 
 	if (panel_open && cell && user.Adjacent(src))
 		to_chat(user, "You take out \the [cell].")
@@ -219,6 +224,8 @@
 			if(active)
 				visible_message("<b>\The [src]</b> lurches downwards, grinding noisily.")
 				need_update_field = 1
+				harvest_speed *= total_brace_tier
+				charge_use *= total_brace_tier
 			else
 				visible_message("<b>\The [src]</b> shudders to a grinding halt.")
 		else
@@ -249,9 +256,7 @@
 
 	for(var/obj/item/weapon/stock_parts/P in component_parts)
 		if(istype(P, /obj/item/weapon/stock_parts/micro_laser))
-			harvest_speed = P.rating
-			if(P.rating >= 5)
-				harvest_speed *= 2
+			harvest_speed = P.rating ** 2 // 1, 4, 9, 16, 25
 			exotic_drilling = P.rating - 1
 			if(exotic_drilling >= 1)
 				ore_types |= ore_types_uncommon
@@ -277,6 +282,7 @@
 /obj/machinery/mining/drill/proc/check_supports()
 
 	supported = 0
+	total_brace_tier = 0
 
 	if((!supports || !supports.len) && initial(anchored) == 0)
 		icon_state = "mining_drill"
@@ -291,6 +297,8 @@
 		else for(var/obj/machinery/mining/brace/check in supports)
 			if(check.brace_tier > 3)
 				supported = 1
+		for(var/obj/machinery/mining/brace/check in supports)
+			total_brace_tier += check.brace_tier
 
 	update_icon()
 
@@ -357,7 +365,7 @@
 
 /obj/machinery/mining/brace/examine(mob/user)
 	. = ..()
-	if(brace_tier > 3)
+	if(brace_tier > 2)
 		. += SPAN_NOTICE("The internals of the brace look resilient enough to support a drill by itself.")
 
 /obj/machinery/mining/brace/Initialize()

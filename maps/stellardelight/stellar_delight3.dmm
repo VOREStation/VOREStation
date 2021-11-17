@@ -51,6 +51,9 @@
 /obj/structure/sign/directions/cargo{
 	pixel_x = 32
 	},
+/obj/structure/railing/grey{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/monotile,
 /area/stellardelight/deck3/aft)
 "ai" = (
@@ -77,6 +80,9 @@
 	},
 /obj/structure/sign/directions/cargo{
 	pixel_x = -32
+	},
+/obj/structure/railing/grey{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/stellardelight/deck3/aft)
@@ -126,15 +132,6 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/aftstarroom)
-"ax" = (
-/obj/item/modular_computer/console/preset/civilian{
-	dir = 8
-	},
-/obj/machinery/alarm/angled{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat/fore)
 "aA" = (
 /turf/simulated/wall/bay/r_wall/steel,
 /area/stellardelight/deck3/transitgateway)
@@ -198,11 +195,24 @@
 /turf/simulated/open,
 /area/stellardelight/deck2/starboard)
 "aP" = (
-/obj/structure/cable{
-	icon_state = "2-4"
+/obj/structure/bed/chair/shuttle{
+	dir = 1
 	},
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat/aft)
+/obj/structure/closet/emergsuit_wall{
+	dir = 1;
+	pixel_y = -32
+	},
+/obj/machinery/alarm{
+	dir = 4;
+	pixel_x = -28
+	},
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "aQ" = (
 /turf/simulated/floor/tiled/eris/dark/gray_platform,
 /area/stellardelight/deck3/commandhall)
@@ -218,6 +228,13 @@
 	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/aft)
+"ba" = (
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/effect/landmark{
+	name = "vinestart"
+	},
+/turf/simulated/open,
+/area/stellardelight/deck2/fore)
 "bb" = (
 /obj/effect/floor_decal/techfloor/orange{
 	dir = 8
@@ -230,11 +247,18 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/portaft)
 "be" = (
-/obj/machinery/shipsensors{
-	dir = 1
+/obj/machinery/door/firedoor/glass/hidden/shuttle,
+/obj/machinery/door/blast/shuttle/open{
+	dir = 4;
+	id = "shuttleshutter"
 	},
-/turf/simulated/floor/airless,
-/area/shuttle/sdboat/fore)
+/obj/structure/window/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/shuttle/sdboat/fore{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "bg" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -327,6 +351,14 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/carpet/purcarpet,
 /area/crew_quarters/heads/hor)
+"bB" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor,
+/area/maintenance/stellardelight/deck3/starboardcent)
 "bC" = (
 /obj/structure/closet/crate,
 /obj/random/maintenance,
@@ -481,13 +513,9 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/tcommsat/computer)
 "ch" = (
-/obj/structure/table/rack/shelf,
-/obj/random/contraband,
-/obj/random/maintenance,
-/obj/random/maintenance,
-/obj/random/drinkbottle,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/maintenance/stellardelight/deck3/forestarroomc)
+/obj/machinery/vending/wardrobe/mimedrobe,
+/turf/simulated/floor/carpet/bcarpet,
+/area/stellardelight/deck3/clownmimeoffice)
 "ci" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/blue{
@@ -541,6 +569,20 @@
 	temperature = 80
 	},
 /area/tcommsat/chamber)
+"cn" = (
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "cp" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
@@ -689,15 +731,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/hop)
-"cQ" = (
-/obj/machinery/atmospherics/portables_connector,
-/obj/structure/closet/emergsuit_wall{
-	dir = 4;
-	pixel_x = 27
-	},
-/obj/machinery/portable_atmospherics/canister/air,
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat/aft)
 "cS" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
@@ -793,13 +826,6 @@
 /obj/machinery/papershredder,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/hop)
-"dq" = (
-/obj/structure/bed/chair/bay/shuttle{
-	dir = 4
-	},
-/obj/machinery/light,
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat/fore)
 "dr" = (
 /obj/machinery/light{
 	dir = 4
@@ -913,6 +939,18 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/crew_quarters/bar)
+"dQ" = (
+/obj/machinery/door/firedoor/glass/hidden/shuttle,
+/obj/machinery/door/blast/shuttle/open{
+	id = "shuttleshutter"
+	},
+/obj/structure/window/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "dS" = (
 /obj/machinery/camera/network/command{
 	dir = 4
@@ -1182,8 +1220,12 @@
 /turf/simulated/wall/bay/r_wall/steel,
 /area/crew_quarters/bar)
 "eJ" = (
-/turf/simulated/wall/rshull,
-/area/shuttle/sdboat/fore)
+/turf/simulated/wall/fancy_shuttle/nondense{
+	fancy_shuttle_tag = "sdboat"
+	},
+/area/shuttle/sdboat/fore{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "eK" = (
 /obj/machinery/atmospherics/unary/vent_pump{
 	external_pressure_bound = 0;
@@ -1352,14 +1394,20 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/maintenance/stellardelight/deck3/portaft)
 "fg" = (
-/obj/structure/cable{
-	icon_state = "1-2"
+/obj/structure/handrail{
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
-	dir = 6
+/obj/machinery/alarm{
+	dir = 1;
+	pixel_y = -28
 	},
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat/aft)
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "fh" = (
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -1369,6 +1417,19 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/stellardelight/deck3/foreportroomb)
+"fj" = (
+/obj/structure/table/woodentable,
+/obj/item/toy/figure/clown,
+/obj/item/weapon/pen/crayon/marker/rainbow,
+/obj/item/weapon/pen/crayon/rainbow,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/turf/simulated/floor/carpet/gaycarpet,
+/area/stellardelight/deck3/clownmimeoffice)
 "fk" = (
 /obj/machinery/telecomms/server/presets/common,
 /turf/simulated/floor/tiled/dark{
@@ -1377,9 +1438,6 @@
 	temperature = 80
 	},
 /area/tcommsat/chamber)
-"fn" = (
-/turf/simulated/wall/rshull,
-/area/shuttle/sdboat/aft)
 "fs" = (
 /obj/structure/cable/green{
 	icon_state = "2-8"
@@ -1512,6 +1570,14 @@
 	temperature = 80
 	},
 /area/tcommsat/chamber)
+"gi" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel,
+/turf/simulated/wall/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "gj" = (
 /obj/structure/table/rack/shelf,
 /obj/item/weapon/disk/nifsoft/compliance,
@@ -1532,11 +1598,19 @@
 /turf/simulated/floor/wood,
 /area/stellardelight/deck3/cafe)
 "gl" = (
-/obj/machinery/door/firedoor/glass,
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/turf/simulated/floor,
-/area/shuttle/sdboat/fore)
+/obj/structure/bed/chair/shuttle{
+	dir = 1
+	},
+/obj/structure/closet/emergsuit_wall{
+	pixel_y = 32
+	},
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "gm" = (
 /obj/structure/lattice,
 /obj/structure/cable/blue{
@@ -1748,12 +1822,6 @@
 	temperature = 80
 	},
 /area/tcommsat/chamber)
-"gY" = (
-/obj/structure/handrail{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat/aft)
 "hb" = (
 /obj/structure/cable/green{
 	icon_state = "1-8"
@@ -1802,6 +1870,20 @@
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/stellardelight/deck3/exterior)
+"hg" = (
+/obj/effect/fancy_shuttle/sd_shuttle{
+	dir = 1;
+	fancy_shuttle_tag = "sdboat"
+	},
+/obj/effect/fancy_shuttle_floor_preview/sd_shuttle{
+	dir = 1
+	},
+/turf/simulated/wall/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "hj" = (
 /obj/machinery/portable_atmospherics/hydroponics,
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -1942,13 +2024,16 @@
 /turf/simulated/wall/bay/r_wall/steel,
 /area/maintenance/stellardelight/deck3/aftstarroom)
 "hR" = (
-/obj/machinery/airlock_sensor{
-	dir = 8;
-	pixel_x = 24
+/obj/structure/cable{
+	icon_state = "1-8"
 	},
-/obj/effect/map_helper/airlock/sensor/int_sensor,
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat/aft)
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "hT" = (
 /obj/structure/cable/blue{
 	icon_state = "4-8"
@@ -2037,11 +2122,8 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/effect/landmark{
-	name = "morphspawn"
-	},
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/maintenance/stellardelight/deck3/forestarroomc)
+/turf/simulated/floor/carpet/gaycarpet,
+/area/stellardelight/deck3/clownmimeoffice)
 "ir" = (
 /obj/structure/cable/blue{
 	icon_state = "4-8"
@@ -2068,14 +2150,22 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/portaft)
 "iw" = (
-/obj/structure/bed/chair/shuttle{
-	dir = 8
-	},
 /obj/structure/cable/green{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat/aft)
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "iy" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -2109,27 +2199,8 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/stellardelight/deck3/cryo)
-"iD" = (
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/blast/angled/open{
-	id = "shuttleshutter"
-	},
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/turf/simulated/floor,
-/area/shuttle/sdboat/aft)
 "iE" = (
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock/angled_bay/hatch{
-	door_color = "#e6ab22";
-	name = "Shield Generator";
-	req_access = list(11,24);
-	stripe_color = "#e6ab22"
-	},
 /obj/machinery/door/airlock/angled_bay/hatch{
 	door_color = "#e6ab22";
 	name = "Shield Generator";
@@ -2182,22 +2253,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/tcommsat/computer)
-"iM" = (
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/blast/angled/open{
-	dir = 4;
-	id = "shuttleshutter"
-	},
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/simulated/floor,
-/area/shuttle/sdboat/aft)
 "iN" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -2278,8 +2333,13 @@
 /area/crew_quarters/bar)
 "jc" = (
 /obj/machinery/computer/ship/sensors/adv,
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat/fore)
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/sdboat/fore{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "jd" = (
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -2362,6 +2422,16 @@
 /obj/random/maintenance/cargo,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/aftstarroom)
+"jy" = (
+/obj/structure/window/bay/reinforced,
+/obj/structure/low_wall/bay/reinforced/steel,
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/angled/open{
+	dir = 4;
+	id = "clownmimeoffice"
+	},
+/turf/simulated/floor,
+/area/stellardelight/deck3/clownmimeoffice)
 "jC" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -2420,6 +2490,13 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/crew_quarters/heads/hor)
+"jO" = (
+/obj/machinery/station_map{
+	dir = 4;
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_platform,
+/area/stellardelight/deck3/commandhall)
 "jP" = (
 /obj/machinery/alarm/angled,
 /obj/effect/floor_decal/steeldecal/steel_decals5{
@@ -2574,12 +2651,9 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/stellardelight/deck3/aft)
 "ku" = (
-/obj/structure/table/rack,
-/obj/random/firstaid,
-/obj/random/maintenance,
-/obj/random/maintenance,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/maintenance/stellardelight/deck3/forestarroomc)
+/obj/structure/barricade/cutout/mime,
+/turf/simulated/floor/carpet/bcarpet,
+/area/stellardelight/deck3/clownmimeoffice)
 "kw" = (
 /obj/machinery/light{
 	dir = 8
@@ -2607,16 +2681,25 @@
 /obj/structure/cable/green{
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/angled_bay/external/glass{
-	dir = 4;
-	frequency = 1380;
-	id_tag = null;
-	locked = 1;
-	name = "Docking Port Airlock"
+/obj/machinery/airlock_sensor/airlock_exterior/shuttle{
+	dir = 6;
+	pixel_x = 7;
+	pixel_y = 26
 	},
+/obj/effect/map_helper/airlock/sensor/ext_sensor,
 /obj/effect/map_helper/airlock/door/ext_door,
-/turf/simulated/floor/tiled/steel_ridged,
-/area/shuttle/sdboat/aft)
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/glass_external,
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 10
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "kB" = (
 /obj/machinery/porta_turret/ai_defense,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -2718,18 +2801,22 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/stellardelight/deck3/cryo)
 "kZ" = (
-/obj/structure/fuel_port{
-	dir = 4;
-	pixel_x = 32
-	},
 /obj/structure/handrail{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
-	dir = 10
+/obj/machinery/airlock_sensor{
+	dir = 8;
+	pixel_x = 29;
+	pixel_y = 2
 	},
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat/aft)
+/obj/effect/map_helper/airlock/sensor/int_sensor,
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "la" = (
 /obj/structure/cable/green{
 	icon_state = "1-2"
@@ -2746,10 +2833,20 @@
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/portdock)
 "lc" = (
-/obj/machinery/power/terminal,
-/obj/structure/cable/green,
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat/aft)
+/obj/structure/fuel_port{
+	dir = 8;
+	pixel_x = -32
+	},
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/obj/machinery/atmospherics/binary/pump/fuel{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "le" = (
 /obj/structure/railing/grey{
 	dir = 8
@@ -2885,8 +2982,18 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/stellardelight/deck3/forestarroomb)
 "lB" = (
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat/aft)
+/obj/machinery/door/firedoor/glass,
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/door/airlock/glass,
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "lC" = (
 /obj/machinery/power/apc/angled{
 	dir = 4
@@ -2995,6 +3102,12 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/stellardelight/deck3/readingroom)
+"lV" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/stellardelight/deck3/clownmimeoffice)
 "lY" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
@@ -3060,14 +3173,38 @@
 	},
 /turf/simulated/open,
 /area/stellardelight/deck2/central)
-"mi" = (
-/obj/machinery/atmospherics/unary/vent_pump/high_volume,
-/obj/effect/map_helper/airlock/atmos/pump_out_external,
-/obj/structure/handrail{
+"mh" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 1;
+	pixel_y = 1
+	},
+/obj/structure/closet/emergsuit_wall{
+	dir = 1;
+	pixel_y = -32
+	},
+/obj/machinery/alarm{
+	pixel_y = 28
+	},
+/obj/machinery/light{
 	dir = 4
 	},
-/turf/simulated/floor/airless,
-/area/shuttle/sdboat/fore)
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/sdboat/fore{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
+"mi" = (
+/obj/machinery/shipsensors/fancy_shuttle,
+/turf/simulated/wall/fancy_shuttle/nondense{
+	fancy_shuttle_tag = "sdboat"
+	},
+/area/shuttle/sdboat/fore{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "mj" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -3143,23 +3280,18 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/portfore)
 "mv" = (
-/obj/machinery/atmospherics/unary/engine{
-	dir = 1
+/obj/effect/map_helper/airlock/atmos/pump_out_external,
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 1;
+	frequency = 1380;
+	id_tag = "sdboat_docker_pump_out_external"
 	},
-/turf/simulated/floor/airless,
-/area/shuttle/sdboat/aft)
-"mw" = (
-/obj/machinery/door/airlock/angled_bay/standard/glass{
-	door_color = "#9fccc7";
-	name = "Cockpit";
-	req_access = list(67);
-	stripe_color = "#ffffff"
+/turf/simulated/wall/fancy_shuttle/low{
+	fancy_shuttle_tag = "sdboat"
 	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/tiled/steel_ridged,
-/area/shuttle/sdboat/fore)
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "mA" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
@@ -3183,8 +3315,8 @@
 /turf/simulated/floor/tiled/dark,
 /area/crew_quarters/heads/hos)
 "mF" = (
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/maintenance/stellardelight/deck3/forestarroomc)
+/turf/simulated/floor/carpet/bcarpet,
+/area/stellardelight/deck3/clownmimeoffice)
 "mI" = (
 /obj/structure/cable/blue{
 	icon_state = "1-8"
@@ -3258,10 +3390,6 @@
 /obj/machinery/space_heater,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/starboardcent)
-"mU" = (
-/obj/structure/table/steel_reinforced,
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat/fore)
 "mX" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -3744,12 +3872,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
-	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/starboardcent)
 "oD" = (
@@ -3777,15 +3901,6 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/open,
 /area/maintenance/stellardelight/deck3/portcent)
-"oJ" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat/aft)
 "oM" = (
 /obj/structure/cable/green{
 	icon_state = "1-2"
@@ -4027,6 +4142,12 @@
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/starboardcent)
 "px" = (
@@ -4266,6 +4387,12 @@
 /obj/structure/disposalpipe/segment{
 	dir = 8;
 	icon_state = "pipe-c"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/starboardcent)
@@ -4521,24 +4648,24 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/stellardelight/deck3/cryo)
 "ri" = (
-/obj/machinery/atmospherics/pipe/simple/hidden,
-/turf/simulated/wall/rshull,
-/area/shuttle/sdboat/aft)
+/obj/structure/handrail,
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "rj" = (
 /obj/structure/cable/green{
 	icon_state = "1-2"
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/foreportroomb)
-"rk" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/cable/green{
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat/aft)
 "rl" = (
 /obj/structure/sign/painting/library_secure{
 	pixel_x = -30
@@ -4696,6 +4823,20 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/open,
 /area/stellardelight/deck2/port)
+"rX" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "rZ" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -4706,19 +4847,19 @@
 /obj/structure/cable/green{
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/angled_bay/external/glass{
-	dir = 4;
-	frequency = 1380;
-	id_tag = null;
-	locked = 1;
-	name = "Docking Port Airlock"
+/obj/effect/map_helper/airlock/door/int_door,
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/glass_external,
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden{
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
 	dir = 4
 	},
-/obj/effect/map_helper/airlock/door/int_door,
-/turf/simulated/floor/tiled/steel_ridged,
-/area/shuttle/sdboat/aft)
+/turf/simulated/floor/tiled,
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "sb" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/cable/blue{
@@ -5235,13 +5376,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai_cyborg_station)
-"ue" = (
-/obj/machinery/atmospherics/pipe/simple/hidden,
-/obj/structure/handrail{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat/aft)
 "uf" = (
 /obj/structure/lattice,
 /obj/structure/disposalpipe/segment,
@@ -5250,18 +5384,21 @@
 /turf/simulated/open,
 /area/stellardelight/deck2/port)
 "ui" = (
-/obj/machinery/power/smes/buildable{
-	charge = 500000
+/obj/machinery/portable_atmospherics/canister/phoron,
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
 	},
-/obj/structure/cable{
-	icon_state = "0-4"
+/obj/machinery/atmospherics/portables_connector/fuel{
+	dir = 1
 	},
 /obj/machinery/door/window/southleft{
 	dir = 1;
 	req_one_access = list(11,67)
 	},
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat/aft)
+/turf/simulated/floor/tiled,
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "uj" = (
 /turf/simulated/wall/bay/r_wall/blue,
 /area/crew_quarters/heads/hor)
@@ -5386,12 +5523,22 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/portcent)
 "uM" = (
-/obj/structure/table/rack,
-/obj/item/device/paicard,
-/obj/random/maintenance,
-/obj/random/maintenance,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/maintenance/stellardelight/deck3/forestarroomc)
+/obj/machinery/alarm/angled,
+/obj/structure/table/woodentable,
+/obj/item/device/flashlight/lamp/clown{
+	pixel_x = -4;
+	pixel_y = 6
+	},
+/obj/item/weapon/bikehorn{
+	pixel_x = -2;
+	pixel_y = 2
+	},
+/obj/item/weapon/stamp/clown{
+	pixel_x = 6;
+	pixel_y = 9
+	},
+/turf/simulated/floor/wood,
+/area/stellardelight/deck3/clownmimeoffice)
 "uQ" = (
 /obj/machinery/alarm/angled{
 	dir = 8
@@ -5551,6 +5698,16 @@
 	},
 /turf/simulated/wall/bay/r_wall/steel,
 /area/maintenance/stellardelight/deck3/portaft)
+"vr" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 9
+	},
+/turf/simulated/wall/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "vt" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -5708,15 +5865,20 @@
 /obj/structure/cable/green{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 1;
-	frequency = 1380;
-	id_tag = null
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
 	},
-/obj/effect/map_helper/airlock/atmos/pump_out_internal,
-/obj/structure/handrail,
-/turf/simulated/floor/tiled/eris/dark/monofloor,
-/area/shuttle/sdboat/aft)
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "wa" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/bay/reinforced,
@@ -5802,8 +5964,13 @@
 /area/crew_quarters/heads/hos)
 "wr" = (
 /obj/machinery/computer/ship/engines/adv,
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat/fore)
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/sdboat/fore{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "wt" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/bay/reinforced,
@@ -5868,9 +6035,11 @@
 /area/ai_cyborg_station)
 "wP" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/machinery/camera/network/halls,
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 1
+	},
+/obj/machinery/station_map{
+	pixel_y = 32
 	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/aft)
@@ -5903,22 +6072,6 @@
 /obj/machinery/holoplant,
 /turf/simulated/floor/bluegrid,
 /area/ai)
-"wT" = (
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/blast/angled/open{
-	dir = 4;
-	id = "shuttleshutter"
-	},
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/simulated/floor,
-/area/shuttle/sdboat/fore)
 "wV" = (
 /obj/structure/cable/blue{
 	icon_state = "4-8"
@@ -5947,22 +6100,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/transitgateway)
-"wX" = (
-/obj/machinery/computer/shuttle_control/explore/sdboat{
-	dir = 4
-	},
-/obj/machinery/power/apc/angled{
-	dir = 8;
-	name = "night shift APC";
-	nightshift_setting = 2;
-	req_access = null;
-	req_one_access = list(11,67)
-	},
-/obj/structure/cable{
-	icon_state = "0-4"
-	},
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat/fore)
 "wY" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -5971,9 +6108,15 @@
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/hop)
 "wZ" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/fuel,
-/turf/simulated/wall/rshull,
-/area/shuttle/sdboat/aft)
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 6
+	},
+/turf/simulated/wall/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "xb" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -6011,21 +6154,17 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai_server_room)
 "xf" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden{
-	dir = 4
-	},
-/obj/machinery/airlock_sensor{
-	dir = 8;
-	frequency = 1380;
-	id_tag = null;
-	pixel_x = 24
-	},
-/obj/effect/map_helper/airlock/sensor/chamber_sensor,
 /obj/structure/handrail{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/eris/dark/monofloor,
-/area/shuttle/sdboat/aft)
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "xg" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/window/bay/reinforced,
@@ -6076,11 +6215,11 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/effect/landmark{
-	name = "maint_pred"
-	},
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/maintenance/stellardelight/deck3/forestarroomc)
+/turf/simulated/floor/wood,
+/area/stellardelight/deck3/clownmimeoffice)
+"xp" = (
+/turf/simulated/floor/wood,
+/area/stellardelight/deck3/clownmimeoffice)
 "xu" = (
 /obj/machinery/door/airlock/angled_bay/external/glass{
 	dir = 4;
@@ -6179,6 +6318,13 @@
 /obj/structure/low_wall/bay/reinforced/steel,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/foreportroomb)
+"xL" = (
+/turf/simulated/wall/fancy_shuttle/low{
+	fancy_shuttle_tag = "sdboat"
+	},
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "xM" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -6246,23 +6392,31 @@
 /turf/simulated/floor/wood,
 /area/stellardelight/deck3/cafe)
 "ya" = (
-/obj/structure/bed/chair/bay/shuttle{
-	dir = 1
-	},
 /obj/machinery/button/remote/blast_door{
 	id = "shuttleshutter";
 	name = "Shutter Control";
 	pixel_x = 17;
 	pixel_y = 27
 	},
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat/fore)
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/sdboat/fore{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "yb" = (
 /obj/structure/sign/deck3{
 	pixel_x = 32
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
+	},
+/obj/effect/landmark{
+	name = "vinestart"
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/stellardelight/deck3/commandhall)
@@ -6421,21 +6575,6 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/stellardelight/deck3/portdock)
-"yG" = (
-/obj/machinery/portable_atmospherics/canister/phoron,
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/obj/machinery/door/window/southright{
-	dir = 1;
-	req_one_access = list(11,67)
-	},
-/obj/machinery/atmospherics/portables_connector/fuel{
-	dir = 1
-	},
-/obj/effect/floor_decal/industrial/outline/red,
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat/aft)
 "yI" = (
 /obj/item/weapon/folder{
 	pixel_x = -4
@@ -6703,6 +6842,16 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/gray_platform,
 /area/stellardelight/deck3/commandhall)
+"zC" = (
+/obj/item/toy/figure/mime,
+/obj/item/weapon/pen/crayon/marker/mime,
+/obj/item/weapon/pen/crayon/mime,
+/obj/structure/table/woodentable,
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/stellardelight/deck3/clownmimeoffice)
 "zD" = (
 /obj/structure/cable/blue{
 	icon_state = "1-2"
@@ -6723,23 +6872,14 @@
 /turf/simulated/floor/wood,
 /area/stellardelight/deck3/cafe)
 "zF" = (
-/obj/machinery/power/apc/angled{
-	dir = 8;
-	name = "night shift APC";
-	nightshift_setting = 2
-	},
 /obj/structure/cable{
 	icon_state = "0-4"
 	},
-/obj/structure/closet/crate,
-/obj/random/contraband,
-/obj/random/maintenance,
-/obj/random/maintenance,
-/obj/random/maintenance,
-/obj/random/maintenance,
-/obj/random/maintenance,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/maintenance/stellardelight/deck3/forestarroomc)
+/obj/machinery/power/apc/angled{
+	dir = 8
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/stellardelight/deck3/clownmimeoffice)
 "zH" = (
 /obj/structure/cable/green{
 	icon_state = "2-8"
@@ -6828,11 +6968,17 @@
 /obj/structure/handrail{
 	dir = 1
 	},
-/obj/machinery/atmospherics/binary/pump/fuel{
-	dir = 4
+/obj/machinery/power/apc{
+	pixel_y = -28
 	},
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat/aft)
+/obj/structure/cable,
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "zV" = (
 /obj/structure/cable/green{
 	icon_state = "1-4"
@@ -6859,19 +7005,6 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/tcommsat/computer)
-"Ab" = (
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/blast/angled/open{
-	id = "shuttleshutter"
-	},
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/turf/simulated/floor,
-/area/shuttle/sdboat/fore)
 "Ae" = (
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -7017,6 +7150,32 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai_cyborg_station)
+"AD" = (
+/obj/structure/handrail,
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 10
+	},
+/obj/machinery/embedded_controller/radio/airlock/docking_port{
+	frequency = 1380;
+	id_tag = "sdboat_docker";
+	pixel_x = 5;
+	pixel_y = 25
+	},
+/obj/machinery/airlock_sensor{
+	dir = 8;
+	frequency = 1380;
+	id_tag = null;
+	pixel_x = 25;
+	pixel_y = 2
+	},
+/obj/effect/map_helper/airlock/sensor/chamber_sensor,
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "AE" = (
 /obj/structure/table/glass,
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -7128,13 +7287,23 @@
 /turf/simulated/floor/tiled/dark,
 /area/crew_quarters/heads/hos)
 "Bb" = (
-/obj/item/device/radio/intercom{
-	dir = 1;
-	pixel_x = -32;
-	pixel_y = 24
+/obj/structure/bed/chair/bay/comfy/blue{
+	dir = 1
 	},
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat/fore)
+/obj/structure/panic_button/small{
+	pixel_x = -29;
+	pixel_y = 30
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/sdboat/fore{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "Bd" = (
 /obj/machinery/alarm/angled{
 	dir = 8
@@ -7459,17 +7628,22 @@
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/portdock)
 "BW" = (
-/obj/structure/bed/chair/shuttle{
-	dir = 4
+/obj/machinery/power/terminal{
+	dir = 1
 	},
 /obj/structure/cable/green{
-	icon_state = "2-4"
+	icon_state = "0-4"
 	},
-/obj/machinery/light{
-	dir = 8
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
 	},
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat/aft)
+/obj/machinery/atmospherics/pipe/manifold/hidden/fuel{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "BY" = (
 /obj/machinery/newscaster{
 	layer = 3.3;
@@ -7654,7 +7828,7 @@
 /area/crew_quarters/bar)
 "CC" = (
 /turf/simulated/wall/bay/r_wall/steel,
-/area/maintenance/stellardelight/deck3/forestarroomc)
+/area/stellardelight/deck3/clownmimeoffice)
 "CD" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
@@ -7838,13 +8012,9 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai_cyborg_station)
 "Du" = (
-/obj/structure/table/rack/shelf,
-/obj/random/contraband,
-/obj/random/maintenance,
-/obj/random/maintenance,
-/obj/item/weapon/storage/fancy/candle_box,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/maintenance/stellardelight/deck3/forestarroomc)
+/obj/machinery/vending/wardrobe/clowndrobe,
+/turf/simulated/floor/carpet/gaycarpet,
+/area/stellardelight/deck3/clownmimeoffice)
 "Dw" = (
 /obj/machinery/hologram/holopad,
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
@@ -7973,8 +8143,21 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/maintenance/stellardelight/deck3/forestarroomc)
+/obj/machinery/button/remote/blast_door{
+	dir = 8;
+	id = "clownmimeoffice";
+	name = "Window Lockdown";
+	pixel_x = 23;
+	pixel_y = 7
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/turf/simulated/floor/carpet/gaycarpet,
+/area/stellardelight/deck3/clownmimeoffice)
 "DY" = (
 /obj/structure/cable/green{
 	icon_state = "1-2"
@@ -7994,7 +8177,7 @@
 /area/maintenance/stellardelight/deck3/starboardcent)
 "Ec" = (
 /turf/simulated/wall/bay/steel,
-/area/maintenance/stellardelight/deck3/forestarroomc)
+/area/stellardelight/deck3/clownmimeoffice)
 "Ed" = (
 /turf/simulated/wall/bay/r_wall/steel,
 /area/stellardelight/deck3/aft)
@@ -8088,14 +8271,16 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/starboardcent)
 "Ex" = (
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat/fore)
-"Ez" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 4
+/obj/structure/bed/chair/bay/comfy/blue{
+	dir = 1
 	},
-/turf/simulated/wall/rshull,
-/area/shuttle/sdboat/aft)
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/sdboat/fore{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "EE" = (
 /obj/structure/table/rack{
 	dir = 8;
@@ -8161,20 +8346,6 @@
 /obj/effect/map_helper/airlock/door/ext_door,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/tcommsat/computer)
-"EM" = (
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
-/obj/machinery/power/apc/angled{
-	cell_type = /obj/item/weapon/cell/super;
-	dir = 1;
-	name = "night shift APC";
-	nightshift_setting = 2;
-	req_access = null;
-	req_one_access = list(11,67)
-	},
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat/aft)
 "EN" = (
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -8244,6 +8415,16 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /turf/simulated/floor/tiled/eris/dark/gray_platform,
 /area/stellardelight/deck3/commandhall)
+"EX" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 10
+	},
+/turf/simulated/wall/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "EY" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/skills{
@@ -8942,6 +9123,8 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/starboardcent)
 "HN" = (
@@ -8987,6 +9170,9 @@
 "HR" = (
 /obj/structure/table/steel,
 /obj/random/contraband,
+/obj/machinery/chemical_dispenser/bar_coffee/full{
+	pixel_y = 8
+	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/foreportrooma)
 "HS" = (
@@ -9053,21 +9239,12 @@
 /turf/simulated/open,
 /area/stellardelight/deck2/central)
 "Ia" = (
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/blast/angled/open{
-	dir = 4;
-	id = "shuttleshutter"
+/turf/simulated/wall/fancy_shuttle/nondense{
+	fancy_shuttle_tag = "sdboat"
 	},
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/turf/simulated/floor,
-/area/shuttle/sdboat/aft)
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "Ib" = (
 /obj/machinery/alarm/angled{
 	dir = 4
@@ -9127,15 +9304,19 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/starboardcent)
 "Ir" = (
-/obj/structure/bed/chair/shuttle,
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 6
+/obj/structure/bed/chair/shuttle{
+	dir = 1
 	},
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat/aft)
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "It" = (
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 5
@@ -9157,6 +9338,15 @@
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/chief)
+"ID" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/obj/effect/landmark{
+	name = "vinestart"
+	},
+/turf/simulated/open,
+/area/stellardelight/deck2/fore)
 "IG" = (
 /obj/structure/cable/blue{
 	icon_state = "4-8"
@@ -9255,14 +9445,18 @@
 /area/stellardelight/deck3/portdock)
 "IS" = (
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock/angled_bay/standard/glass{
-	name = "glass airlock"
-	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/machinery/door/airlock/angled_bay/hatch{
+	name = "Clown and Mime Office";
+	req_one_access = list(138,136);
+	stripe_color = "#454545"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor,
-/area/maintenance/stellardelight/deck3/forestarroomc)
+/area/stellardelight/deck3/clownmimeoffice)
 "IU" = (
 /obj/machinery/hologram/holopad,
 /obj/structure/sign/warning/secure_area{
@@ -9372,6 +9566,13 @@
 	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/transitgateway)
+"Jm" = (
+/obj/structure/barricade/cutout/clown,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/turf/simulated/floor/wood,
+/area/stellardelight/deck3/clownmimeoffice)
 "Jn" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/angled_bay/hatch{
@@ -9603,11 +9804,24 @@
 	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/starboarddock)
+"Ke" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 6
+	},
+/turf/simulated/wall/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "Kf" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals5,
+/obj/machinery/camera/network/halls{
+	dir = 1
+	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/aft)
 "Kg" = (
@@ -9633,11 +9847,25 @@
 /turf/simulated/floor,
 /area/stellardelight/deck2/central)
 "Kj" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 9
+/obj/machinery/computer/shuttle_control/explore/sdboat{
+	dir = 4
 	},
-/turf/simulated/wall/rshull,
-/area/shuttle/sdboat/aft)
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/power/apc{
+	pixel_y = -28
+	},
+/obj/structure/cable{
+	icon_state = "0-4"
+	},
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/sdboat/fore{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "Kk" = (
 /obj/structure/table/steel,
 /obj/random/maintenance/clean,
@@ -10007,8 +10235,13 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat/aft)
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "LP" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -10038,6 +10271,9 @@
 /obj/structure/closet/emergsuit_wall{
 	dir = 4;
 	pixel_x = 27
+	},
+/obj/effect/landmark{
+	name = "vinestart"
 	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/starboarddock)
@@ -10095,13 +10331,6 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/portaft)
-"LZ" = (
-/obj/machinery/airlock_sensor/airlock_exterior/shuttle{
-	dir = 6
-	},
-/obj/effect/map_helper/airlock/sensor/ext_sensor,
-/turf/simulated/wall/rshull,
-/area/shuttle/sdboat/aft)
 "Mc" = (
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -10184,12 +10413,13 @@
 /turf/simulated/floor,
 /area/ai_cyborg_station)
 "Mr" = (
-/obj/structure/table/rack,
-/obj/random/maintenance,
-/obj/random/maintenance,
-/obj/machinery/chemical_dispenser/bar_coffee/full,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/maintenance/stellardelight/deck3/forestarroomc)
+/obj/structure/bed/double/padded,
+/obj/item/weapon/bedsheet/clowndouble,
+/obj/structure/curtain/black{
+	color = "#361447"
+	},
+/turf/simulated/floor/carpet/gaycarpet,
+/area/stellardelight/deck3/clownmimeoffice)
 "Ms" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/stamp/hop,
@@ -10222,6 +10452,15 @@
 /obj/random/maintenance,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/starboardfore)
+"Mv" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/obj/effect/landmark{
+	name = "vinestart"
+	},
+/turf/simulated/open,
+/area/stellardelight/deck2/fore)
 "Mw" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden{
 	dir = 1
@@ -10394,8 +10633,16 @@
 /obj/structure/cable/green{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat/aft)
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "MZ" = (
 /obj/machinery/alarm/angled{
 	dir = 8
@@ -10420,6 +10667,15 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/stellardelight/deck3/cryo)
+"Nd" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/obj/effect/landmark{
+	name = "vinestart"
+	},
+/turf/simulated/open,
+/area/stellardelight/deck2/port)
 "Ne" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -10668,6 +10924,16 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/portaft)
+"NS" = (
+/obj/machinery/atmospherics/unary/engine/fancy_shuttle{
+	dir = 1
+	},
+/turf/simulated/wall/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "NT" = (
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 8
@@ -10716,16 +10982,11 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/stellardelight/deck3/starboarddock)
 "NZ" = (
-/obj/structure/closet/crate,
-/obj/random/contraband,
-/obj/random/maintenance,
-/obj/random/maintenance,
-/obj/random/maintenance,
-/obj/random/maintenance,
-/obj/random/maintenance,
-/obj/random/mre,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/maintenance/stellardelight/deck3/forestarroomc)
+/obj/item/weapon/bedsheet/mimedouble,
+/obj/structure/bed/double/padded,
+/obj/structure/curtain/black,
+/turf/simulated/floor/carpet/bcarpet,
+/area/stellardelight/deck3/clownmimeoffice)
 "Oa" = (
 /obj/machinery/door/firedoor/glass,
 /obj/structure/sign/poster{
@@ -11054,6 +11315,15 @@
 "OX" = (
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/portcent)
+"OY" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/obj/effect/landmark{
+	name = "vinestart"
+	},
+/turf/simulated/open,
+/area/stellardelight/deck2/starboard)
 "Pa" = (
 /obj/structure/lattice,
 /turf/simulated/open,
@@ -11118,11 +11388,21 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai_upload)
 "Pl" = (
+/obj/machinery/door/firedoor/glass,
 /obj/structure/cable{
-	icon_state = "2-8"
+	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat/fore)
+/obj/machinery/door/airlock/glass{
+	name = "Starstuff Cockpit";
+	req_one_access = list(67)
+	},
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/sdboat/fore{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "Pm" = (
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -11150,6 +11430,10 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/lawoffice)
+"Pp" = (
+/obj/effect/landmark/start/clown,
+/turf/simulated/floor/carpet/gaycarpet,
+/area/stellardelight/deck3/clownmimeoffice)
 "Pq" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -11174,8 +11458,21 @@
 	dir = 1
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals5,
+/obj/machinery/camera/network/halls{
+	dir = 1
+	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/aft)
+"PB" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/turf/simulated/wall/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "PC" = (
 /obj/machinery/alarm/angled{
 	dir = 4
@@ -11287,17 +11584,21 @@
 /obj/structure/cable/green{
 	icon_state = "4-8"
 	},
-/obj/machinery/embedded_controller/radio/airlock/docking_port{
-	frequency = 1380;
-	id_tag = "sd_bittyshuttle";
-	pixel_y = 29
+/obj/machinery/atmospherics/pipe/manifold/hidden{
+	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden,
-/obj/structure/handrail,
-/obj/effect/shuttle_landmark/shuttle_initializer/sdboat,
 /obj/effect/overmap/visitable/ship/landable/sd_boat,
-/turf/simulated/floor/tiled/eris/dark/monofloor,
-/area/shuttle/sdboat/aft)
+/obj/effect/shuttle_landmark/shuttle_initializer/sdboat,
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "Qf" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -11305,6 +11606,16 @@
 /obj/effect/landmark/start/ce,
 /turf/simulated/floor/carpet/oracarpet,
 /area/crew_quarters/heads/chief)
+"Qh" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 5
+	},
+/turf/simulated/wall/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "Qi" = (
 /obj/structure/sign/painting/public{
 	pixel_x = -30
@@ -11343,16 +11654,6 @@
 "Qp" = (
 /turf/simulated/wall/bay/r_wall/steel,
 /area/crew_quarters/bar)
-"Qq" = (
-/obj/structure/bed/chair/shuttle{
-	dir = 4
-	},
-/obj/structure/closet/emergsuit_wall{
-	dir = 8;
-	pixel_x = -27
-	},
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat/aft)
 "Qs" = (
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
@@ -11490,13 +11791,6 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/starboardcent)
-"QR" = (
-/obj/structure/table/steel_reinforced,
-/obj/structure/panic_button{
-	pixel_x = -32
-	},
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat/fore)
 "QS" = (
 /obj/structure/cable/green{
 	icon_state = "1-2"
@@ -11525,8 +11819,8 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/maintenance/stellardelight/deck3/forestarroomc)
+/turf/simulated/floor/carpet/gaycarpet,
+/area/stellardelight/deck3/clownmimeoffice)
 "QZ" = (
 /obj/structure/cable/green{
 	icon_state = "1-2"
@@ -11540,13 +11834,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/starboarddock)
-"Rb" = (
-/obj/structure/bed/chair/shuttle,
-/obj/structure/closet/emergsuit_wall{
-	pixel_y = 29
-	},
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat/aft)
 "Rc" = (
 /obj/machinery/porta_turret/ai_defense,
 /obj/structure/cable/cyan{
@@ -11666,11 +11953,14 @@
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/aft)
 "Rw" = (
-/obj/structure/bed/chair/shuttle{
-	dir = 8
+/obj/machinery/door/firedoor/glass/hidden/shuttle,
+/obj/structure/window/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
 	},
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat/aft)
+/turf/simulated/floor/reinforced/airless,
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "Rx" = (
 /obj/structure/cable/green{
 	icon_state = "1-2"
@@ -11779,25 +12069,38 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/stellardelight/deck2/central)
 "RW" = (
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 9
+/obj/machinery/portable_atmospherics/canister/air,
+/obj/machinery/atmospherics/portables_connector{
+	dir = 1
 	},
-/obj/structure/handrail{
-	dir = 8
+/obj/machinery/door/window/southright{
+	dir = 1;
+	req_one_access = list(11,67)
 	},
-/obj/machinery/light,
-/turf/simulated/floor/tiled/eris/dark/monofloor,
-/area/shuttle/sdboat/aft)
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "RX" = (
 /turf/simulated/wall/bay/steel,
 /area/stellardelight/deck2/central)
 "RY" = (
-/obj/structure/bed/chair/shuttle,
+/obj/structure/bed/chair/shuttle{
+	dir = 1
+	},
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat/aft)
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "RZ" = (
 /obj/structure/cable/blue{
 	icon_state = "1-2"
@@ -11938,15 +12241,14 @@
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/aft)
 "SJ" = (
-/obj/structure/bed/chair/bay/shuttle{
-	dir = 8
+/obj/machinery/door/firedoor/glass/hidden/shuttle,
+/obj/structure/window/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
 	},
-/obj/machinery/light,
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat/fore)
+/turf/simulated/floor/reinforced/airless,
+/area/shuttle/sdboat/fore{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "SK" = (
 /obj/structure/lattice,
 /turf/space,
@@ -12159,6 +12461,7 @@
 	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/power/apc/angled{
+	cell_type = /obj/item/weapon/cell/super;
 	dir = 8;
 	name = "night shift APC";
 	nightshift_setting = 2
@@ -12399,9 +12702,11 @@
 /area/stellardelight/deck3/exterior)
 "Uy" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/machinery/camera/network/halls,
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 1
+	},
+/obj/machinery/station_map{
+	pixel_y = 32
 	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/aft)
@@ -12426,6 +12731,16 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/crew_quarters/heads/hos)
+"UD" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 9
+	},
+/turf/simulated/wall/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "UF" = (
 /obj/machinery/light/small,
 /turf/simulated/floor,
@@ -12541,6 +12856,9 @@
 	dir = 8;
 	pixel_x = -27
 	},
+/obj/effect/landmark{
+	name = "vinestart"
+	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/portdock)
 "UX" = (
@@ -12605,6 +12923,21 @@
 /obj/structure/low_wall/bay/reinforced/steel,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/starboardfore)
+"Vh" = (
+/obj/machinery/door/firedoor/glass/hidden/shuttle,
+/obj/machinery/door/blast/shuttle/open{
+	id = "shuttleshutter"
+	},
+/obj/structure/window/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 6
+	},
+/turf/simulated/floor/reinforced/airless,
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "Vi" = (
 /obj/structure/cable/green{
 	icon_state = "2-8"
@@ -12623,8 +12956,9 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/maintenance/stellardelight/deck3/forestarroomc)
+/obj/effect/landmark/start/mime,
+/turf/simulated/floor/carpet/bcarpet,
+/area/stellardelight/deck3/clownmimeoffice)
 "Vm" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -12693,11 +13027,16 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ai_cyborg_station)
 "Vw" = (
-/obj/structure/cable{
-	icon_state = "4-8"
+/obj/structure/bed/chair/shuttle{
+	dir = 1
 	},
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat/aft)
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "Vx" = (
 /obj/structure/cable/blue{
 	icon_state = "1-4"
@@ -12856,20 +13195,37 @@
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/aft)
 "Wg" = (
-/obj/structure/cable{
-	icon_state = "4-8"
+/obj/structure/bed/chair/shuttle{
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden,
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat/aft)
+/obj/structure/closet/emergsuit_wall{
+	dir = 1;
+	pixel_y = -32
+	},
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
+	},
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "Wi" = (
 /obj/structure/closet/secure_closet/personal,
 /turf/simulated/floor/bluegrid,
 /area/ai)
 "Wj" = (
 /obj/machinery/computer/ship/helm/adv,
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat/fore)
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/sdboat/fore{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "Wl" = (
 /obj/structure/sign/warning/falling{
 	pixel_x = -32
@@ -12877,15 +13233,19 @@
 /turf/simulated/open,
 /area/stellardelight/deck2/port)
 "Wn" = (
-/obj/structure/bed/chair/shuttle{
-	dir = 4
+/obj/machinery/power/smes/buildable{
+	charge = 500000
 	},
-/obj/item/device/radio/intercom{
-	dir = 8;
-	pixel_x = -24
+/obj/structure/cable{
+	icon_state = "0-4"
 	},
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat/aft)
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "Wp" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/open,
@@ -12930,17 +13290,22 @@
 /turf/simulated/floor/airless,
 /area/stellardelight/deck3/exterior)
 "Ww" = (
-/obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	dir = 4;
-	frequency = 1380;
-	id_tag = null
-	},
-/obj/effect/map_helper/airlock/atmos/chamber_pump,
 /obj/structure/handrail{
 	dir = 4
 	},
-/turf/simulated/floor/tiled/eris/dark/monofloor,
-/area/shuttle/sdboat/aft)
+/obj/effect/map_helper/airlock/atmos/pump_out_internal,
+/obj/machinery/light,
+/obj/machinery/atmospherics/unary/vent_pump/high_volume{
+	frequency = 1380;
+	id_tag = "sdboat_docker_pump_out_internal"
+	},
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "Wx" = (
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 4
@@ -13011,21 +13376,12 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/stellardelight/deck3/foreportrooma)
 "WK" = (
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/blast/angled/open{
-	dir = 4;
-	id = "shuttleshutter"
+/turf/simulated/wall/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
 	},
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/turf/simulated/floor,
-/area/shuttle/sdboat/fore)
+/area/shuttle/sdboat/fore{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "WL" = (
 /obj/structure/closet/crate,
 /obj/random/contraband,
@@ -13057,6 +13413,7 @@
 /area/lawoffice)
 "WQ" = (
 /obj/machinery/power/apc/angled{
+	cell_type = /obj/item/weapon/cell/super;
 	dir = 4;
 	name = "night shift APC";
 	nightshift_setting = 2
@@ -13118,11 +13475,8 @@
 /turf/simulated/floor/tiled/eris/white/cargo,
 /area/crew_quarters/heads/cmo)
 "Xb" = (
-/obj/machinery/alarm/angled{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/maintenance/stellardelight/deck3/forestarroomc)
+/turf/simulated/floor/carpet/gaycarpet,
+/area/stellardelight/deck3/clownmimeoffice)
 "Xc" = (
 /obj/structure/lattice,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
@@ -13655,12 +14009,12 @@
 /turf/simulated/open,
 /area/crew_quarters/bar)
 "Zd" = (
-/obj/structure/bed/chair/shuttle{
-	dir = 4
+/turf/simulated/wall/fancy_shuttle{
+	fancy_shuttle_tag = "sdboat"
 	},
-/obj/machinery/alarm/angled,
-/turf/simulated/floor/tiled/eris/dark/cargo,
-/area/shuttle/sdboat/aft)
+/area/shuttle/sdboat/aft{
+	base_turf = /turf/simulated/floor/reinforced/airless
+	})
 "Ze" = (
 /turf/simulated/floor/bluegrid{
 	name = "Mainframe Base";
@@ -20390,16 +20744,16 @@ sM
 sM
 sM
 sM
-be
-fn
-Ia
-fn
-fn
-fn
-Ia
-fn
-fn
 sM
+sM
+Ia
+Zd
+Zd
+Vh
+gi
+gi
+Qh
+hg
 sM
 IK
 SK
@@ -20529,19 +20883,19 @@ qz
 Ii
 hk
 eJ
-eJ
 WK
-eJ
-eJ
-fn
+WK
+WK
+dQ
 Zd
-Qq
+Zd
+Zd
 Wn
 BW
 lc
 ui
-fn
-sM
+EX
+NS
 sM
 IK
 Jh
@@ -20670,20 +21024,20 @@ qz
 qz
 Ii
 Iz
-Ab
-QR
-mU
-wX
+WK
+WK
+Kj
+WK
 gl
 RY
 aP
-LO
-LO
-rk
+Zd
+rX
+MX
 fg
-yG
-iD
-sM
+Zd
+Zd
+Zd
 sM
 IK
 Jh
@@ -20812,19 +21166,19 @@ qz
 qz
 Ii
 Iz
-Ab
+be
 wr
 Bb
 SJ
-eJ
-Rb
+Vw
+Vw
 Vw
 Rw
-Rw
+cn
 iw
 zS
-fn
-fn
+Zd
+xL
 sM
 sM
 IK
@@ -20954,13 +21308,13 @@ qz
 qz
 Ii
 Iz
-Ab
+be
 Wj
 ya
 Pl
-mw
 LO
-oJ
+LO
+LO
 lB
 hR
 MX
@@ -21096,19 +21450,19 @@ qz
 qz
 Ii
 Iz
-Ab
+be
 jc
 Ex
-dq
-eJ
-Rb
+SJ
 Vw
-gY
-fn
+Vw
+Vw
+Zd
+Rw
 sa
-fn
-fn
-fn
+Zd
+PB
+xL
 sM
 sM
 IK
@@ -21238,20 +21592,20 @@ qz
 qz
 Ii
 hk
-Ab
-mU
-mU
-ax
+WK
+WK
+mh
+WK
 gl
 Ir
 Wg
-ue
+Zd
 ri
 vX
 Ww
-Ww
-iD
-sM
+UD
+Zd
+Zd
 sM
 IK
 Jh
@@ -21353,7 +21707,7 @@ CS
 oW
 oW
 oW
-QF
+Nd
 oW
 oW
 oW
@@ -21380,20 +21734,20 @@ qz
 qz
 Ii
 Iz
-eJ
-eJ
-wT
-eJ
-eJ
-Ez
-EM
-cQ
-ri
+mi
+WK
+WK
+WK
+dQ
+Zd
+Zd
+Zd
+AD
 Qe
 xf
 RW
-fn
-sM
+Ke
+NS
 sM
 Di
 af
@@ -21526,16 +21880,16 @@ sM
 sM
 sM
 sM
-mi
-Kj
-iM
-fn
-LZ
-kz
-fn
-fn
-fn
 sM
+sM
+Ia
+Zd
+Zd
+kz
+gi
+gi
+vr
+Zd
 sM
 IK
 SK
@@ -22184,7 +22538,7 @@ Cp
 qF
 qF
 qF
-Cb
+Mv
 qF
 qF
 qF
@@ -23162,7 +23516,7 @@ qp
 NF
 qp
 Qp
-Hf
+ba
 Ie
 tV
 cb
@@ -23598,7 +23952,7 @@ BK
 aQ
 aQ
 sf
-aQ
+jO
 aQ
 BK
 aQ
@@ -25299,7 +25653,7 @@ qF
 qF
 qF
 qF
-KF
+ID
 qF
 qF
 qF
@@ -25589,7 +25943,7 @@ Ps
 eE
 dx
 ch
-mF
+lV
 zF
 NZ
 Ec
@@ -25733,7 +26087,7 @@ dx
 ku
 mF
 Vk
-mF
+zC
 Ec
 hr
 al
@@ -25873,9 +26227,9 @@ FE
 UF
 dx
 uM
-mF
+xp
 xo
-mF
+Jm
 Ec
 kp
 bm
@@ -26015,9 +26369,9 @@ Rg
 FE
 dx
 Mr
-mF
+Pp
 ip
-mF
+fj
 Ec
 RE
 bh
@@ -26161,11 +26515,11 @@ Xb
 QW
 DW
 IS
-hB
+bB
 HL
-hB
-hB
-hB
+bB
+bB
+bB
 pt
 aB
 Mw
@@ -26190,7 +26544,7 @@ ow
 ow
 ow
 ow
-ZC
+OY
 yP
 ow
 ZM
@@ -26299,8 +26653,8 @@ FD
 FD
 EZ
 CC
-CC
-CC
+jy
+jy
 CC
 CC
 Vg
@@ -26440,8 +26794,8 @@ DQ
 DQ
 DQ
 DQ
-DQ
 UU
+DQ
 DQ
 DQ
 DQ

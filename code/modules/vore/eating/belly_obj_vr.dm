@@ -28,12 +28,14 @@
 	var/digestchance = 0					// % Chance of stomach beginning to digest if prey struggles
 	var/absorbchance = 0					// % Chance of stomach beginning to absorb if prey struggles
 	var/escapechance = 0 					// % Chance of prey beginning to escape if prey struggles.
-	var/transferchance = 0 					// % Chance of prey being
+	var/transferchance = 0 					// % Chance of prey being trasnsfered, goes from 0-100%
+	var/transferchance_secondary = 0 		// % Chance of prey being transfered to transferchance_secondary, also goes 0-100%
 	var/can_taste = FALSE					// If this belly prints the flavor of prey when it eats someone.
 	var/bulge_size = 0.25					// The minimum size the prey has to be in order to show up on examine.
 	var/display_absorbed_examine = FALSE	// Do we display absorption examine messages for this belly at all?
 	var/shrink_grow_size = 1				// This horribly named variable determines the minimum/maximum size it will shrink/grow prey to.
 	var/transferlocation					// Location that the prey is released if they struggle and get dropped off.
+	var/transferlocation_secondary			// Secondary location that prey is released to.
 	var/release_sound = "Splatter"			// Sound for letting someone out. Replaced from True/false
 	var/mode_flags = 0						// Stripping, numbing, etc.
 	var/fancy_vore = FALSE					// Using the new sounds?
@@ -152,7 +154,9 @@
 		"absorbchance",
 		"escapechance",
 		"transferchance",
+		"transferchance_secondary",
 		"transferlocation",
+		"transferlocation_secondary",
 		"bulge_size",
 		"display_absorbed_examine",
 		"shrink_grow_size",
@@ -762,6 +766,27 @@
 			transfer_contents(R, dest_belly)
 			return
 
+		else if(prob(transferchance_secondary) && transferlocation_secondary) //After the first potential mess getting into, run the secondary one which might be even bigger of a mess.
+			var/obj/belly/dest_belly
+			for(var/obj/belly/B as anything in owner.vore_organs)
+				if(B.name == transferlocation_secondary)
+					dest_belly = B
+					break
+
+			if(!dest_belly)
+				to_chat(owner, "<span class='warning'>Something went wrong with your belly transfer settings. Your <b>[lowertext(name)]</b> has had it's transfer chance and transfer location cleared as a precaution.</span>")
+				transferchance_secondary = 0
+				transferlocation_secondary = null
+				return
+
+			to_chat(R, "<span class='warning'>Your attempt to escape [lowertext(name)] has failed and your struggles only results in you sliding into [owner]'s [transferlocation_secondary]!</span>")
+			to_chat(owner, "<span class='warning'>Someone slid into your [transferlocation_secondary] due to their struggling inside your [lowertext(name)]!</span>")
+			if(C)
+				transfer_contents(C, dest_belly)
+				return
+			transfer_contents(R, dest_belly)
+			return
+
 		else if(prob(absorbchance) && digest_mode != DM_ABSORB) //After that, let's have it run the absorb chance.
 			to_chat(R, "<span class='warning'>In response to your struggling, \the [lowertext(name)] begins to cling more tightly...</span>")
 			to_chat(owner, "<span class='warning'>You feel your [lowertext(name)] start to cling onto its contents...</span>")
@@ -852,7 +877,9 @@
 	dupe.absorbchance = absorbchance
 	dupe.escapechance = escapechance
 	dupe.transferchance = transferchance
+	dupe.transferchance_secondary = transferchance_secondary
 	dupe.transferlocation = transferlocation
+	dupe.transferlocation_secondary = transferlocation_secondary
 	dupe.bulge_size = bulge_size
 	dupe.shrink_grow_size = shrink_grow_size
 	dupe.mode_flags = mode_flags
