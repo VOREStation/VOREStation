@@ -204,6 +204,8 @@
 		/obj/item/device/gps,
 		/obj/item/weapon/material/knife/tacknife/survival,
 		/obj/random/mre,
+		/obj/item/device/flashlight/color/yellow,
+		/obj/item/device/flashlight/flare,
 		/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle)
 
 /obj/structure/closet/walllocker_double/survival/north
