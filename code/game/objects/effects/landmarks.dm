@@ -61,6 +61,10 @@
 			prisonsecuritywarp += loc
 			delete_me = 1
 			return
+		if("blobstart")
+			blobstart += loc
+			delete_me = 1
+			return
 		if("xeno_spawn")
 			xeno_spawn += loc
 			delete_me = 1
