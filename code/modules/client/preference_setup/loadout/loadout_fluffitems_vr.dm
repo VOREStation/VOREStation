@@ -651,12 +651,6 @@
 	ckeywhitelist = list("luminescentring")
 	character_name = list("Briana Moore")
 
-/datum/gear/fluff/entchtut_medal
-	path = /obj/item/clothing/accessory/medal/conduct
-	display_name = "Entchtut's Conduct Medal"
-	ckeywhitelist = list("littlebigkid2000")
-	character_name = list("Entchtut Cenein")
-
 //  M CKEYS
 /datum/gear/fluff/phi_box
 	path = /obj/item/weapon/storage/box/fluff/phi
@@ -825,6 +819,12 @@
 	display_name = "glowing cloak"
 	ckeywhitelist = list("pastelprincedan")
 	character_name = list("Kiyoshi Maki", "Masumi Maki")
+
+/datum/gear/fluff/entchtut_medal
+	path = /obj/item/clothing/accessory/medal/conduct
+	display_name = "Entchtut's Conduct Medal"
+	ckeywhitelist = list("positronicjune")
+	character_name = list("Entchtut Cenein")
 
 //  Q CKEYS
 
