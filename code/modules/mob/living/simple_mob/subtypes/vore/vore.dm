@@ -4,6 +4,7 @@
 
 /mob/living/simple_mob
 	var/nameset
+	var/limit_renames = TRUE
 
 /mob/living/simple_mob/Login()
 	. = ..()
@@ -14,7 +15,7 @@
 	set name = "Set Name"
 	set desc = "Sets your mobs name. You only get to do this once."
 	set category = "Abilities"
-	if(nameset)
+	if(limit_renames && nameset)
 		to_chat(src, "<span class='userdanger'>You've already set your name. Ask an admin to toggle \"nameset\" to 0 if you really must.</span>")
 		return
 	var/newname
