@@ -7,6 +7,7 @@
 	item_state = "mouse_gray"
 	icon_living = "mouse_gray"
 	icon_dead = "mouse_gray_dead"
+	icon_rest = "mouse_gray_sleep"
 	kitchen_tag = "rodent"
 
 	maxHealth = 5
@@ -59,6 +60,13 @@
 	icon_rest = "mouse_[body_color]_sleep"
 	if (body_color != "rat")
 		desc = "A small [body_color] rodent, often seen hiding in maintenance areas and making a nuisance of itself."
+		holder_type = /obj/item/weapon/holder/mouse/rat
+	if (body_color == "brown")
+		holder_type = /obj/item/weapon/holder/mouse/brown
+	if (body_color == "gray")
+		holder_type = /obj/item/weapon/holder/mouse/gray
+	if (body_color == "white")
+		holder_type = /obj/item/weapon/holder/mouse/white
 
 /mob/living/simple_mob/animal/passive/mouse/Crossed(atom/movable/AM as mob|obj)
 	if(AM.is_incorporeal())
@@ -96,14 +104,20 @@
 /mob/living/simple_mob/animal/passive/mouse/white
 	body_color = "white"
 	icon_state = "mouse_white"
+	icon_rest = "mouse_white_sleep"
+	holder_type = /obj/item/weapon/holder/mouse/white
 
 /mob/living/simple_mob/animal/passive/mouse/gray
 	body_color = "gray"
 	icon_state = "mouse_gray"
+	icon_rest = "mouse_gray_sleep"
+	holder_type = /obj/item/weapon/holder/mouse/gray
 
 /mob/living/simple_mob/animal/passive/mouse/brown
 	body_color = "brown"
 	icon_state = "mouse_brown"
+	icon_rest = "mouse_brown_sleep"
+	holder_type = /obj/item/weapon/holder/mouse/brown
 
 /mob/living/simple_mob/animal/passive/mouse/rat
 	name = "rat"
@@ -111,6 +125,8 @@
 	desc = "A large rodent, often seen hiding in maintenance areas and making a nuisance of itself."
 	body_color = "rat"
 	icon_state = "mouse_rat"
+	icon_rest = "mouse_rat_sleep"
+	holder_type = /obj/item/weapon/holder/mouse/rat
 	maxHealth = 20
 	health = 20
 
