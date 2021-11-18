@@ -183,7 +183,7 @@
 		. += "The access panel is [locked? "locked" : "unlocked"]."
 		. += "The maintenance panel is [open ? "open" : "closed"]."
 		. += "Hardsuit systems are [offline ? "<span class='warning'>offline</span>" : "<span class='notice'>online</span>"]."
-		. += "The cooling stystem is [cooling_on ? "active" : "inactive"]."
+		. += "The cooling system is [cooling_on ? "active" : "inactive"]."
 
 		if(open)
 			. += "It's equipped with [english_list(installed_modules)]."
@@ -414,10 +414,10 @@
 	if(!cell)
 		return
 	if(cell.charge <= 0)
-		to_chat(user, "<span class='notice'>\The [src] has no power!.</span>")
+		to_chat(user, "<span class='notice'>\The [src] has no power!</span>")
 		return
 	if(!suit_is_deployed())
-		to_chat(user, "<span class='notice'>The hardsuit needs to be deployed first!.</span>")
+		to_chat(user, "<span class='notice'>The hardsuit needs to be deployed first!</span>")
 		return
 
 	cooling_on = 1
