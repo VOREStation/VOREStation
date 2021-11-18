@@ -55,6 +55,7 @@
 
 	station_name  = "NRV Stellar Delight"
 	station_short = "Stellar Delight"
+	facility_type = "ship"
 	dock_name     = "Virgo-3B Colony"
 	dock_type     = "surface"
 	boss_name     = "Central Command"
