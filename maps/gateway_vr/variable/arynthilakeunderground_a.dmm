@@ -85,7 +85,7 @@
 "lM" = (
 /obj/effect/map_effect/perma_light/gateway{
 	light_color = "#0c6ba6";
-	light_power = .3;
+	light_power = 0.3;
 	light_range = 5
 	},
 /turf/simulated/floor/beach/sand/desert,
