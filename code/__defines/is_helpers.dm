@@ -21,6 +21,8 @@
 
 #define isstorage(A)	istype(A, /obj/item/weapon/storage)
 
+#define ismecha(A)      istype(A, /obj/mecha)
+
 //---------------
 //#define isarea(D)		istype(D, /area)	//Built in
 
