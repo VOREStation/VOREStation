@@ -86,8 +86,6 @@
 		else
 			to_chat(user, "<span class='notice'>There is no micro laser in this [src].</span>")
 			return
-		..()
-	return
 
 /obj/item/weapon/gun/energy/floragun/afterattack(obj/target, mob/user, adjacent_flag)
 	//allow shooting into adjacent hydrotrays regardless of intent
