@@ -129,7 +129,7 @@
 		EQUIPMENT("KA Hyper Chassis",			/obj/item/borg/upgrade/modkit/chassis_mod/orange,				300),
 		EQUIPMENT("KA Adjustable Tracer Rounds",/obj/item/borg/upgrade/modkit/tracer/adjustable,				175),
 		EQUIPMENT("KA White Tracer Rounds",		/obj/item/borg/upgrade/modkit/tracer,							125),
-		EQUIPMENT("Premium Kinetic Accelerator",/obj/item/weapon/gun/energy/kinetic_accelerator/premium,		12000),
+		EQUIPMENT("Premium Kinetic Accelerator",/obj/item/weapon/gun/energy/kinetic_accelerator/premiumka,		12000),
 	)
 	prize_list["Digging Tools"] = list(
 		// EQUIPMENT("Diamond Pickaxe",	/obj/item/weapon/pickaxe/diamond,				2000),
