@@ -19,7 +19,7 @@
 "s" = (/obj/item/weapon/card/emag_broken,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/deadspy)
 "t" = (/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel,/obj/random/landmine,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/deadspy)
 "u" = (/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel,/obj/effect/decal/cleanable/ash,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/deadspy)
-"v" = (/turf/simulated/mineral,/area/submap/deadspy)
+"v" = (/turf/simulated/mineral/cave,/area/submap/deadspy)
 
 (1,1,1) = {"
 abbbbvv

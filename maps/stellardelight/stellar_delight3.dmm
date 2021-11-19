@@ -51,6 +51,9 @@
 /obj/structure/sign/directions/cargo{
 	pixel_x = 32
 	},
+/obj/structure/railing/grey{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/monotile,
 /area/stellardelight/deck3/aft)
 "ai" = (
@@ -77,6 +80,9 @@
 	},
 /obj/structure/sign/directions/cargo{
 	pixel_x = -32
+	},
+/obj/structure/railing/grey{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/stellardelight/deck3/aft)
@@ -222,6 +228,11 @@
 	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/aft)
+"ba" = (
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/effect/landmark/vines,
+/turf/simulated/open,
+/area/stellardelight/deck2/fore)
 "bb" = (
 /obj/effect/floor_decal/techfloor/orange{
 	dir = 8
@@ -488,6 +499,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
+/obj/effect/landmark/vines,
 /turf/simulated/open,
 /area/crew_quarters/bar)
 "cb" = (
@@ -2191,12 +2203,6 @@
 /obj/machinery/door/airlock/angled_bay/hatch{
 	door_color = "#e6ab22";
 	name = "Shield Generator";
-	req_access = list(11,24);
-	stripe_color = "#e6ab22"
-	},
-/obj/machinery/door/airlock/angled_bay/hatch{
-	door_color = "#e6ab22";
-	name = "Shield Generator";
 	req_access = null;
 	req_one_access = list(11,24);
 	stripe_color = "#e6ab22"
@@ -2483,6 +2489,13 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/crew_quarters/heads/hor)
+"jO" = (
+/obj/machinery/station_map{
+	dir = 4;
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/eris/dark/gray_platform,
+/area/stellardelight/deck3/commandhall)
 "jP" = (
 /obj/machinery/alarm/angled,
 /obj/effect/floor_decal/steeldecal/steel_decals5{
@@ -5871,6 +5884,13 @@
 /obj/structure/low_wall/bay/reinforced/steel,
 /turf/simulated/floor,
 /area/stellardelight/deck2/port)
+"wc" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/obj/effect/landmark/vermin,
+/turf/simulated/open,
+/area/stellardelight/deck2/starboard)
 "wd" = (
 /obj/structure/table/standard,
 /obj/item/weapon/aiModule/oxygen,
@@ -6021,9 +6041,11 @@
 /area/ai_cyborg_station)
 "wP" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/machinery/camera/network/halls,
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 1
+	},
+/obj/machinery/station_map{
+	pixel_y = 32
 	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/aft)
@@ -6280,6 +6302,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 4
 	},
+/obj/effect/landmark/vermin,
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/starboarddock)
 "xE" = (
@@ -6713,6 +6736,12 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai_upload)
+"zk" = (
+/obj/effect/landmark{
+	name = "droppod_landing"
+	},
+/turf/space,
+/area/space)
 "zm" = (
 /obj/structure/cable/blue{
 	icon_state = "4-8"
@@ -7645,6 +7674,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
+/obj/effect/landmark/vermin,
 /turf/simulated/open,
 /area/stellardelight/deck2/fore)
 "Cc" = (
@@ -8210,6 +8240,12 @@
 /obj/random/trash_pile,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/portcent)
+"El" = (
+/obj/effect/landmark{
+	name = "carpspawn"
+	},
+/turf/space,
+/area/space)
 "En" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 1
@@ -8456,6 +8492,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 1
 	},
+/obj/effect/landmark/vermin,
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/aft)
 "Fg" = (
@@ -9151,6 +9188,9 @@
 "HR" = (
 /obj/structure/table/steel,
 /obj/random/contraband,
+/obj/machinery/chemical_dispenser/bar_coffee/full{
+	pixel_y = 8
+	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/foreportrooma)
 "HS" = (
@@ -9316,6 +9356,13 @@
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/chief)
+"ID" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/obj/effect/landmark/vines,
+/turf/simulated/open,
+/area/stellardelight/deck2/fore)
 "IG" = (
 /obj/structure/cable/blue{
 	icon_state = "4-8"
@@ -9788,6 +9835,9 @@
 	dir = 1
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals5,
+/obj/machinery/camera/network/halls{
+	dir = 1
+	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/aft)
 "Kg" = (
@@ -10238,6 +10288,7 @@
 	dir = 4;
 	pixel_x = 27
 	},
+/obj/effect/landmark/vines,
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/starboarddock)
 "LR" = (
@@ -10415,6 +10466,13 @@
 /obj/random/maintenance,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/starboardfore)
+"Mv" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/obj/effect/landmark/vines,
+/turf/simulated/open,
+/area/stellardelight/deck2/fore)
 "Mw" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden{
 	dir = 1
@@ -10621,6 +10679,13 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/stellardelight/deck3/cryo)
+"Nd" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/obj/effect/landmark/vines,
+/turf/simulated/open,
+/area/stellardelight/deck2/port)
 "Ne" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -11260,6 +11325,13 @@
 "OX" = (
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/portcent)
+"OY" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/obj/effect/landmark/vines,
+/turf/simulated/open,
+/area/stellardelight/deck2/starboard)
 "Pa" = (
 /obj/structure/lattice,
 /turf/simulated/open,
@@ -11394,6 +11466,9 @@
 	dir = 1
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals5,
+/obj/machinery/camera/network/halls{
+	dir = 1
+	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/aft)
 "PB" = (
@@ -12394,6 +12469,7 @@
 	},
 /obj/structure/disposalpipe/segment,
 /obj/machinery/power/apc/angled{
+	cell_type = /obj/item/weapon/cell/super;
 	dir = 8;
 	name = "night shift APC";
 	nightshift_setting = 2
@@ -12512,6 +12588,7 @@
 /area/ai_server_room)
 "TO" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/effect/landmark/vermin,
 /turf/simulated/floor/tiled/monotile,
 /area/stellardelight/deck3/commandhall)
 "TP" = (
@@ -12634,9 +12711,11 @@
 /area/stellardelight/deck3/exterior)
 "Uy" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/machinery/camera/network/halls,
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 1
+	},
+/obj/machinery/station_map{
+	pixel_y = 32
 	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/aft)
@@ -12786,6 +12865,7 @@
 	dir = 8;
 	pixel_x = -27
 	},
+/obj/effect/landmark/vines,
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/portdock)
 "UX" = (
@@ -13340,6 +13420,7 @@
 /area/lawoffice)
 "WQ" = (
 /obj/machinery/power/apc/angled{
+	cell_type = /obj/item/weapon/cell/super;
 	dir = 4;
 	name = "night shift APC";
 	nightshift_setting = 2
@@ -13409,6 +13490,7 @@
 /obj/structure/cable/green{
 	icon_state = "1-2"
 	},
+/obj/effect/landmark/vermin,
 /turf/simulated/open,
 /area/crew_quarters/bar)
 "Xd" = (
@@ -16844,7 +16926,7 @@ Jh
 Jh
 Jh
 Jh
-Jh
+El
 Jh
 Jh
 Jh
@@ -17377,7 +17459,7 @@ Jh
 Jh
 Jh
 Jh
-Jh
+El
 Jh
 Jh
 Jh
@@ -18248,7 +18330,7 @@ Jh
 Jh
 Jh
 Jh
-Jh
+El
 Jh
 Jh
 Jh
@@ -18312,6 +18394,7 @@ Jh
 Jh
 Jh
 Jh
+El
 Jh
 Jh
 Jh
@@ -18347,8 +18430,7 @@ Jh
 Jh
 Jh
 Jh
-Jh
-Jh
+El
 Jh
 Jh
 Jh
@@ -19086,7 +19168,7 @@ Jh
 Jh
 Jh
 Jh
-Jh
+zk
 Jh
 Jh
 Jh
@@ -19182,7 +19264,7 @@ Jh
 Jh
 Jh
 Jh
-Jh
+El
 Jh
 Jh
 Jh
@@ -19556,7 +19638,7 @@ NL
 NL
 Jh
 Jh
-Jh
+zk
 Jh
 Jh
 Jh
@@ -20342,7 +20424,7 @@ Jh
 Jh
 Jh
 Jh
-Jh
+El
 Jh
 Jh
 Jh
@@ -21399,7 +21481,7 @@ NL
 Jh
 Jh
 Jh
-Jh
+El
 Jh
 Jh
 Jh
@@ -21633,7 +21715,7 @@ CS
 oW
 oW
 oW
-QF
+Nd
 oW
 oW
 oW
@@ -21832,7 +21914,7 @@ Jh
 Jh
 Jh
 Jh
-Jh
+El
 Jh
 Jh
 Jh
@@ -22135,7 +22217,7 @@ Jh
 Jh
 Jh
 Jh
-Jh
+El
 Jh
 Jh
 Jh
@@ -22464,7 +22546,7 @@ Cp
 qF
 qF
 qF
-Cb
+Mv
 qF
 qF
 qF
@@ -23442,7 +23524,7 @@ qp
 NF
 qp
 Qp
-Hf
+ba
 Ie
 tV
 cb
@@ -23878,7 +23960,7 @@ BK
 aQ
 aQ
 sf
-aQ
+jO
 aQ
 BK
 aQ
@@ -25579,7 +25661,7 @@ qF
 qF
 qF
 qF
-KF
+ID
 qF
 qF
 qF
@@ -25595,7 +25677,7 @@ qF
 hC
 aJ
 ow
-ZC
+wc
 ow
 yP
 Ks
@@ -26470,7 +26552,7 @@ ow
 ow
 ow
 ow
-ZC
+OY
 yP
 ow
 ZM
@@ -27079,7 +27161,7 @@ NL
 Jh
 Jh
 Jh
-Jh
+El
 Jh
 Jh
 Jh
@@ -27646,7 +27728,7 @@ NL
 NL
 Jh
 Jh
-Jh
+zk
 Jh
 Jh
 Jh
@@ -27867,7 +27949,7 @@ Jh
 Jh
 Jh
 Jh
-Jh
+El
 Jh
 Jh
 Jh
@@ -28130,7 +28212,7 @@ Jh
 Jh
 Jh
 Jh
-Jh
+zk
 Jh
 Jh
 Jh
@@ -28609,7 +28691,7 @@ Jh
 Jh
 Jh
 Jh
-Jh
+zk
 Jh
 Jh
 Jh
@@ -29118,7 +29200,7 @@ Jh
 Jh
 Jh
 Jh
-Jh
+El
 Jh
 Jh
 Jh
@@ -29852,6 +29934,7 @@ Jh
 Jh
 Jh
 Jh
+El
 Jh
 Jh
 Jh
@@ -29898,8 +29981,7 @@ Jh
 Jh
 Jh
 Jh
-Jh
-Jh
+El
 Jh
 Jh
 Jh
@@ -29948,6 +30030,7 @@ Jh
 Jh
 Jh
 Jh
+El
 Jh
 Jh
 Jh
@@ -30064,8 +30147,7 @@ Jh
 Jh
 Jh
 Jh
-Jh
-Jh
+El
 Jh
 Jh
 Jh
@@ -30596,7 +30678,7 @@ Jh
 Jh
 Jh
 Jh
-Jh
+El
 Jh
 Jh
 Jh

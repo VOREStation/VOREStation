@@ -1,4 +1,4 @@
-"a" = (/turf/simulated/mineral,/area/template_noop)
+"a" = (/turf/simulated/mineral/cave,/area/template_noop)
 "b" = (/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/template_noop)
 "c" = (/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/Excavation)
 "d" = (/obj/structure/cliff/automatic{icon_state = "cliffbuilder"; dir = 9},/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/Excavation)
