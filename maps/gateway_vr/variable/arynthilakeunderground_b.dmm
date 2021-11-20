@@ -18,7 +18,7 @@
 /turf/simulated/floor/tiled/eris/steel/orangecorner,
 /area/gateway/arynthilake/engine)
 "bL" = (
-/turf/simulated/mineral/ignore_cavegen,
+/turf/simulated/mineral/ignore_cavegen/cave,
 /area/gateway/arynthilake/underground)
 "bX" = (
 /turf/unsimulated/mineral,
@@ -50,7 +50,7 @@
 /area/gateway/arynthilake/engine)
 "eQ" = (
 /obj/random/awayloot,
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen/cave,
 /area/gateway/arynthilake/underground)
 "fM" = (
 /turf/simulated/floor/tiled/eris/steel/danger,
@@ -105,7 +105,7 @@
 /area/gateway/arynthilake/engine)
 "jX" = (
 /obj/effect/landmark/hidden_level,
-/turf/simulated/mineral/ignore_cavegen,
+/turf/simulated/mineral/ignore_cavegen/cave,
 /area/gateway/arynthilake/underground)
 "kb" = (
 /turf/simulated/wall/r_wall,
@@ -188,11 +188,11 @@
 "vG" = (
 /obj/random/awayloot,
 /obj/random/mob/semirandom_mob_spawner/monster/f,
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen/cave,
 /area/gateway/arynthilake/underground)
 "wg" = (
 /obj/random/mob/semirandom_mob_spawner/monster/e,
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen/cave,
 /area/gateway/arynthilake/underground)
 "wi" = (
 /turf/simulated/wall/r_wall,
@@ -261,7 +261,7 @@
 /turf/simulated/floor/tiled/eris/techmaint,
 /area/gateway/arynthilake/engine)
 "Ff" = (
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen/cave,
 /area/gateway/arynthilake/underground)
 "Fs" = (
 /obj/structure/table/rack/shelf/steel,
@@ -323,7 +323,7 @@
 /area/gateway/arynthilake/underground/maintenance)
 "LR" = (
 /obj/random/mob/semirandom_mob_spawner/monster/f,
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen/cave,
 /area/gateway/arynthilake/underground)
 "LY" = (
 /obj/structure/table/steel_reinforced,
@@ -362,7 +362,7 @@
 /area/gateway/arynthilake/engine)
 "QA" = (
 /obj/machinery/crystal,
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen/cave,
 /area/gateway/arynthilake/underground)
 "QT" = (
 /obj/structure/table/steel_reinforced,
@@ -408,7 +408,7 @@
 /turf/simulated/floor/plating/eris/under,
 /area/gateway/arynthilake/underground/maintenance)
 "Xt" = (
-/turf/simulated/mineral/ignore_cavegen,
+/turf/simulated/mineral/ignore_cavegen/cave,
 /area/gateway/arynthilake/underground/maintenance)
 "Xx" = (
 /obj/structure/table/rack/shelf/steel,
