@@ -306,9 +306,7 @@
 /turf/simulated/floor/tiled/eris/steel/techfloor,
 /area/gateway/arynthilake/engine)
 "LF" = (
-/turf/simulated/floor/plating/eris/under{
-	temperature = 258.15
-	},
+/turf/simulated/floor/plating/eris/under,
 /area/gateway/arynthilake/underground/maintenance)
 "LY" = (
 /turf/simulated/floor/beach/sand/desert,
