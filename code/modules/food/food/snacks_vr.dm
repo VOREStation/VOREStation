@@ -773,3 +773,17 @@
 	. = ..()
 	reagents.add_reagent("protein", 3)
 	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/donkpocket/ascended
+	name = "Donk-pocket EX"
+	desc = "This donk-pocket has seen things beyond comprehension of mortals. It survived because the fire inside it burned brighter than fire around it."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "donkpocket_ascended"
+	nutriment_amt = 5
+	nutriment_desc = list("burning fires of radioactive hell" = 20)
+	heated_reagents = list("supermatter" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/donkpocket/ascended/Initialize()
+	. = ..()
+	reagents.add_reagent("uranium", 3)
+	reagents.add_reagent("pyrotoxin", 3)
