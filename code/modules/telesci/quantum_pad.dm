@@ -235,7 +235,7 @@
 	// Otherwise we'll need a powernet
 	var/power_to_use = 10000 / power_efficiency
 	if(boosted)
-		power_to_use * 5
+		power_to_use *= 5
 	if(draw_power(power_to_use) != power_to_use)
 		return FALSE
 	return TRUE
