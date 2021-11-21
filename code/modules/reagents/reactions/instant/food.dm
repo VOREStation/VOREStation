@@ -31,6 +31,7 @@
 	id = "chocolate_bar"
 	result = null
 	required_reagents = list("soymilk" = 2, "coco" = 2, "sugar" = 2)
+	catalysts = list("enzyme" = 5)
 	result_amount = 1
 
 /decl/chemical_reaction/instant/food/chocolate_bar/on_reaction(var/datum/reagents/holder, var/created_volume)
@@ -44,6 +45,7 @@
 	id = "chocolate_bar"
 	result = null
 	required_reagents = list("milk" = 2, "coco" = 2, "sugar" = 2)
+	catalysts = list("enzyme" = 5)
 	result_amount = 1
 
 /decl/chemical_reaction/instant/food/chocolate_bar2/on_reaction(var/datum/reagents/holder, var/created_volume)
