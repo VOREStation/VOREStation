@@ -55,7 +55,7 @@
 			healths.icon_state = "health7"
 
 	//Updates the nutrition while we're here
-	var/food_per = (nutrition / initial(nutrition)) * 100
+	var/food_per = (nutrition / max_nutrition) * 100
 	switch(food_per)
 		if(90 to INFINITY)
 			clear_alert("nutrition")
