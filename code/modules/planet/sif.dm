@@ -417,7 +417,19 @@ var/datum/planet/sif/planet_sif = null
 
 			if(istype(U) && U.open)
 				if(show_message)
-					to_chat(H, "<span class='notice'>Hail patters onto your umbrella.</span>")
+					to_chat(H, SPAN_NOTICE("Hail patters against your [U.name]."))
+				continue
+
+			// Being next to a tree will also guard from hail.
+			var/near_tree = FALSE
+			var/nearby_turfs = RANGE_TURFS(1, T)
+			for(var/turf/nearby in nearby_turfs)
+				if(locate(/obj/structure/flora/tree) in nearby)
+					near_tree = TRUE
+					break
+			if(near_tree)
+				if(show_message)
+					to_chat(H, SPAN_NOTICE("Hail patters against the canopy above."))
 				continue
 
 			var/target_zone = pick(BP_ALL)

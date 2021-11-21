@@ -524,10 +524,17 @@
 	max_harvests = 1
 	min_harvests = -4
 	harvest_loot = list(
+<<<<<<< HEAD
 		/obj/item/seeds/wabback = 15,
 		/obj/item/seeds/blackwabback = 1,
 		/obj/item/seeds/wildwabback = 30
 		)
+=======
+		/obj/item/weapon/reagent_containers/food/snacks/grown/sif/whitewabback = 15,
+		/obj/item/weapon/reagent_containers/food/snacks/grown/sif/blackwabback = 1,
+		/obj/item/weapon/reagent_containers/food/snacks/grown/sif/wildwabback = 30
+	)
+>>>>>>> 439c9bf1f7a... Merge pull request #8340 from MistakeNot4892/siffixes
 
 /obj/structure/flora/sif/tendrils/Initialize()
 	icon_state = "[initial(icon_state)][rand(1,3)]"

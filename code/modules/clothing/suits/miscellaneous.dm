@@ -972,6 +972,7 @@
 
 /obj/item/clothing/suit/caution/AltClick()
 	toggle()
+	return TRUE
 
 /obj/item/clothing/suit/caution/proc/toggle()
 	if(!usr || usr.stat || usr.lying || usr.restrained() || !Adjacent(usr))	return

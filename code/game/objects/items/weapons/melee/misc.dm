@@ -34,7 +34,7 @@
 	slot_flags = SLOT_BELT
 	force = 5
 	throwforce = 5
-	w_class = ITEMSIZE_NORMAL
+	w_class = ITEMSIZE_SMALL
 	var/open = FALSE
 
 /obj/item/weapon/melee/umbrella/New()
@@ -50,6 +50,7 @@
 	addblends = icon_state + "_a"
 	item_state = icon_state
 	update_icon()
+	w_class = open ? ITEMSIZE_NORMAL : ITEMSIZE_SMALL
 	if(ishuman(src.loc))
 		var/mob/living/carbon/human/H = src.loc
 		H.update_inv_l_hand(0)
