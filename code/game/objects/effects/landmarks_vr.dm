@@ -7,6 +7,10 @@
 /obj/effect/landmark/vermin
 	name = "verminstart"
 
+/obj/effect/landmark/Containedvines
+	name = "containedvinesspawner"
+
+
 /obj/effect/landmark/late_antag
 	name = "Antag Latespawn"
 	var/antag_id
@@ -46,3 +50,4 @@
 /obj/effect/landmark/late_antag/raider
 	name = "Raider - Lateload"
 	antag_id = MODE_RAIDER
+

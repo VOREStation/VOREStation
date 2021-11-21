@@ -42,6 +42,7 @@
 #include "excavation1.dmm"
 #include "spatial_anomaly.dmm"
 #include "speakeasy_vr.dmm"
+#include "containedvines_vr.dmm"
 #endif
 
 // The 'mountains' is the mining z-level, and has a lot of caves.
@@ -372,3 +373,9 @@
 	cost = 10
 	allow_duplicates = FALSE
 
+/datum/map_template/surface/mountains/normal/Contained_vines //VOREStation add
+	name = "Xenoflora containment pod"
+	desc = "A small cargo pod ejected from a dystroyed ship that is full of spacevines that consumed the ship."
+	mappath = 'maps/expedition_vr/beach/submaps/containedvines_vr.dmm'
+	cost = 10
+	allow_duplicates = FALSE

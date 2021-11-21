@@ -82,6 +82,11 @@
 			vinestart += loc
 			delete_me = 1
 			return
+		if("containedvinesspawner")
+			Containedvines += loc
+			delete_me = 1
+			spacevine_containment()
+			return
 		//VORE Station Add End
 
 	landmarks_list += src

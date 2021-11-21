@@ -168,3 +168,7 @@
 /area/submap/Speakeasy  //VOREStation add
 	name = "POI - Speakeasy"
 	requires_power = FALSE
+
+/area/submap/ContainedVines //VOREStation addition
+	name = "POI - Xenoflora Quarrantine Pod"
+	ambience = AMBIENCE_FOREBODING

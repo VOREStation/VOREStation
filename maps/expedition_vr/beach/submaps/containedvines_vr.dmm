@@ -1,0 +1,25 @@
+"a" = (/turf/simulated/mineral/cave,/area/submap/ContainedVines)
+"b" = (/turf/template_noop,/area/template_noop)
+"c" = (/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/ContainedVines)
+"d" = (/turf/simulated/wall/titanium,/area/submap/ContainedVines)
+"e" = (/obj/structure/droppod_door{dir = 1},/turf/simulated/wall/titanium,/area/submap/ContainedVines)
+"f" = (/turf/simulated/floor/reinforced,/area/submap/ContainedVines)
+"g" = (/obj/structure/droppod_door{dir = 8},/turf/simulated/wall/titanium,/area/submap/ContainedVines)
+"h" = (/obj/effect/landmark/Containedvines,/obj/structure/closet/crate/mimic/dangerous,/turf/simulated/floor/reinforced,/area/submap/ContainedVines)
+"i" = (/obj/structure/droppod_door{dir = 4},/turf/simulated/wall/titanium,/area/submap/ContainedVines)
+"j" = (/obj/structure/droppod_door,/turf/simulated/wall/titanium,/area/submap/ContainedVines)
+"v" = (/obj/random/landmine,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/ContainedVines)
+"G" = (/obj/structure/sign/signnew/biohazard,/turf/simulated/wall/titanium,/area/submap/ContainedVines)
+
+(1,1,1) = {"
+aabbbccccb
+aacccaaccb
+acccccaccb
+accvdedvcb
+cccGdfdGcc
+cccgfhficc
+bccGdfdGac
+bbcvdjdvac
+bbccccccac
+bbcccccccc
+"}

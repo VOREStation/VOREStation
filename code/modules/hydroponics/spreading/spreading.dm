@@ -21,6 +21,25 @@
 			return
 		message_admins("<span class='notice'>Event: Spacevines failed to find a viable turf.</span>")
 
+/proc/spacevine_containment(var/potency_min=90, var/potency_max=100, var/maturation_min=5, var/maturation_max=35) //VOREStation addition: A beefed up version of regular space vines bound to a set landmark (This is NOT a random event)
+	spawn()
+		if(Containedvines.len)
+			var/turf/simulated/floor/T = pick(Containedvines)
+			var/datum/seed/seed = SSplants.create_random_seed(1)
+			seed.set_trait(TRAIT_SPREAD,2)             // So it will function properly as vines.
+			seed.set_trait(TRAIT_POTENCY,rand(potency_min, potency_max)) // 90-100 potency will gaurntee a wide spread and powerful effects.
+			seed.set_trait(TRAIT_MATURATION,rand(maturation_min, maturation_max))
+			seed.display_name = "strange plants" //more thematic for the vine infestation event
+
+			var/obj/effect/plant/vine = new(T,seed)
+			vine.health = vine.max_health
+			vine.mature_time = 0
+			vine.process()
+			
+			return
+
+
+
 /obj/effect/dead_plant
 	anchored = TRUE
 	opacity = 0
