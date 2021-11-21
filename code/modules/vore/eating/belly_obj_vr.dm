@@ -199,6 +199,8 @@
 
 // Called whenever an atom enters this belly
 /obj/belly/Entered(atom/movable/thing, atom/OldLoc)
+	if(istype(thing, /mob/observer))
+		return
 	if(OldLoc in contents)
 		return //Someone dropping something (or being stripdigested)
 
@@ -345,6 +347,8 @@
 		owner.update_icons()
 
 	//Print notifications/sound if necessary
+	if(istype(M, /mob/observer))
+		silent = TRUE
 	if(!silent)
 		owner.visible_message("<font color='green'><b>[owner] expels [M] from their [lowertext(name)]!</b></font>")
 		var/soundfile
@@ -580,7 +584,9 @@
 	//Incase they have the loop going, let's double check to stop it.
 	M.stop_sound_channel(CHANNEL_PREYLOOP)
 	// Delete the digested mob
-	M.ghostize() // Make sure they're out, so we can copy attack logs and such.
+	var/mob/observer/G = M.ghostize()
+	if(G)
+		G.forceMove(src)
 	qdel(M)
 
 // Handle a mob being absorbed
