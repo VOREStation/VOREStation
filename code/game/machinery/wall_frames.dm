@@ -4,6 +4,7 @@
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "frame_bitem"
 	var/build_machine_type
+	var/build_wall_only = FALSE
 	var/refund_amt = 5
 	var/refund_type = /obj/item/stack/material/steel
 	var/reverse = 0 //if resulting object faces opposite its dir (like light fixtures)
@@ -27,7 +28,7 @@
 	..()
 	update_type_list()
 	var/datum/frame/frame_types/frame_type
-	if(!build_machine_type)
+	if(!build_machine_type && !build_wall_only)
 		var/datum/frame/frame_types/response = tgui_input_list(user, "What kind of frame would you like to make?", "Frame type request", frame_types_floor)
 		if(!response)
 			return
