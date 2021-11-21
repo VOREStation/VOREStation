@@ -2098,7 +2098,7 @@
 	check_arrest = 0;
 	check_down = 0;
 	check_records = 0;
-	control_area = /area/gateway/grasslands/underground/maintenance;
+	control_area = /area/gateway/arynthilake/underground/maintenance;
 	desc = "A firewall prevents AIs from interacting with this device.";
 	lethal = 1;
 	locked = 0;

@@ -230,9 +230,7 @@
 /area/stellardelight/deck3/aft)
 "ba" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/effect/landmark{
-	name = "vinestart"
-	},
+/obj/effect/landmark/vines,
 /turf/simulated/open,
 /area/stellardelight/deck2/fore)
 "bb" = (
@@ -501,6 +499,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
+/obj/effect/landmark/vines,
 /turf/simulated/open,
 /area/crew_quarters/bar)
 "cb" = (
@@ -5885,6 +5884,13 @@
 /obj/structure/low_wall/bay/reinforced/steel,
 /turf/simulated/floor,
 /area/stellardelight/deck2/port)
+"wc" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/obj/effect/landmark/vermin,
+/turf/simulated/open,
+/area/stellardelight/deck2/starboard)
 "wd" = (
 /obj/structure/table/standard,
 /obj/item/weapon/aiModule/oxygen,
@@ -6296,6 +6302,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 4
 	},
+/obj/effect/landmark/vermin,
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/starboarddock)
 "xE" = (
@@ -6414,9 +6421,6 @@
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
-	},
-/obj/effect/landmark{
-	name = "vinestart"
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/stellardelight/deck3/commandhall)
@@ -6732,6 +6736,12 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai_upload)
+"zk" = (
+/obj/effect/landmark{
+	name = "droppod_landing"
+	},
+/turf/space,
+/area/space)
 "zm" = (
 /obj/structure/cable/blue{
 	icon_state = "4-8"
@@ -7664,6 +7674,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
+/obj/effect/landmark/vermin,
 /turf/simulated/open,
 /area/stellardelight/deck2/fore)
 "Cc" = (
@@ -8229,6 +8240,12 @@
 /obj/random/trash_pile,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/portcent)
+"El" = (
+/obj/effect/landmark{
+	name = "carpspawn"
+	},
+/turf/space,
+/area/space)
 "En" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 1
@@ -8475,6 +8492,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 1
 	},
+/obj/effect/landmark/vermin,
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/aft)
 "Fg" = (
@@ -9342,9 +9360,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
-/obj/effect/landmark{
-	name = "vinestart"
-	},
+/obj/effect/landmark/vines,
 /turf/simulated/open,
 /area/stellardelight/deck2/fore)
 "IG" = (
@@ -10272,9 +10288,7 @@
 	dir = 4;
 	pixel_x = 27
 	},
-/obj/effect/landmark{
-	name = "vinestart"
-	},
+/obj/effect/landmark/vines,
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/starboarddock)
 "LR" = (
@@ -10456,9 +10470,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
-/obj/effect/landmark{
-	name = "vinestart"
-	},
+/obj/effect/landmark/vines,
 /turf/simulated/open,
 /area/stellardelight/deck2/fore)
 "Mw" = (
@@ -10671,9 +10683,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
-/obj/effect/landmark{
-	name = "vinestart"
-	},
+/obj/effect/landmark/vines,
 /turf/simulated/open,
 /area/stellardelight/deck2/port)
 "Ne" = (
@@ -11319,9 +11329,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
-/obj/effect/landmark{
-	name = "vinestart"
-	},
+/obj/effect/landmark/vines,
 /turf/simulated/open,
 /area/stellardelight/deck2/starboard)
 "Pa" = (
@@ -12580,6 +12588,7 @@
 /area/ai_server_room)
 "TO" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/effect/landmark/vermin,
 /turf/simulated/floor/tiled/monotile,
 /area/stellardelight/deck3/commandhall)
 "TP" = (
@@ -12856,9 +12865,7 @@
 	dir = 8;
 	pixel_x = -27
 	},
-/obj/effect/landmark{
-	name = "vinestart"
-	},
+/obj/effect/landmark/vines,
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/portdock)
 "UX" = (
@@ -13483,6 +13490,7 @@
 /obj/structure/cable/green{
 	icon_state = "1-2"
 	},
+/obj/effect/landmark/vermin,
 /turf/simulated/open,
 /area/crew_quarters/bar)
 "Xd" = (
@@ -16918,7 +16926,7 @@ Jh
 Jh
 Jh
 Jh
-Jh
+El
 Jh
 Jh
 Jh
@@ -17451,7 +17459,7 @@ Jh
 Jh
 Jh
 Jh
-Jh
+El
 Jh
 Jh
 Jh
@@ -18322,7 +18330,7 @@ Jh
 Jh
 Jh
 Jh
-Jh
+El
 Jh
 Jh
 Jh
@@ -18386,6 +18394,7 @@ Jh
 Jh
 Jh
 Jh
+El
 Jh
 Jh
 Jh
@@ -18421,8 +18430,7 @@ Jh
 Jh
 Jh
 Jh
-Jh
-Jh
+El
 Jh
 Jh
 Jh
@@ -19160,7 +19168,7 @@ Jh
 Jh
 Jh
 Jh
-Jh
+zk
 Jh
 Jh
 Jh
@@ -19256,7 +19264,7 @@ Jh
 Jh
 Jh
 Jh
-Jh
+El
 Jh
 Jh
 Jh
@@ -19630,7 +19638,7 @@ NL
 NL
 Jh
 Jh
-Jh
+zk
 Jh
 Jh
 Jh
@@ -20416,7 +20424,7 @@ Jh
 Jh
 Jh
 Jh
-Jh
+El
 Jh
 Jh
 Jh
@@ -21473,7 +21481,7 @@ NL
 Jh
 Jh
 Jh
-Jh
+El
 Jh
 Jh
 Jh
@@ -21906,7 +21914,7 @@ Jh
 Jh
 Jh
 Jh
-Jh
+El
 Jh
 Jh
 Jh
@@ -22209,7 +22217,7 @@ Jh
 Jh
 Jh
 Jh
-Jh
+El
 Jh
 Jh
 Jh
@@ -25669,7 +25677,7 @@ qF
 hC
 aJ
 ow
-ZC
+wc
 ow
 yP
 Ks
@@ -27153,7 +27161,7 @@ NL
 Jh
 Jh
 Jh
-Jh
+El
 Jh
 Jh
 Jh
@@ -27720,7 +27728,7 @@ NL
 NL
 Jh
 Jh
-Jh
+zk
 Jh
 Jh
 Jh
@@ -27941,7 +27949,7 @@ Jh
 Jh
 Jh
 Jh
-Jh
+El
 Jh
 Jh
 Jh
@@ -28204,7 +28212,7 @@ Jh
 Jh
 Jh
 Jh
-Jh
+zk
 Jh
 Jh
 Jh
@@ -28683,7 +28691,7 @@ Jh
 Jh
 Jh
 Jh
-Jh
+zk
 Jh
 Jh
 Jh
@@ -29192,7 +29200,7 @@ Jh
 Jh
 Jh
 Jh
-Jh
+El
 Jh
 Jh
 Jh
@@ -29926,6 +29934,7 @@ Jh
 Jh
 Jh
 Jh
+El
 Jh
 Jh
 Jh
@@ -29972,8 +29981,7 @@ Jh
 Jh
 Jh
 Jh
-Jh
-Jh
+El
 Jh
 Jh
 Jh
@@ -30022,6 +30030,7 @@ Jh
 Jh
 Jh
 Jh
+El
 Jh
 Jh
 Jh
@@ -30138,8 +30147,7 @@ Jh
 Jh
 Jh
 Jh
-Jh
-Jh
+El
 Jh
 Jh
 Jh
@@ -30670,7 +30678,7 @@ Jh
 Jh
 Jh
 Jh
-Jh
+El
 Jh
 Jh
 Jh

@@ -101,9 +101,9 @@
 				desc = "Often used to flavor food or make people sneeze."
 				icon_state = "peppermillsmall"
 				center_of_mass = list("x"=17, "y"=11)
-			if("cornoil")
-				name = "Corn Oil"
-				desc = "A delicious oil used in cooking. Made from corn."
+			if("cookingoil")
+				name = "Cooking Oil"
+				desc = "A delicious oil used in cooking. General purpose."
 				icon_state = "oliveoil"
 				center_of_mass = list("x"=16, "y"=6)
 			if("sugar")
@@ -174,6 +174,13 @@
 /obj/item/weapon/reagent_containers/food/condiment/hotsauce/Initialize()
 	. = ..()
 	reagents.add_reagent("capsaicin", 50)
+
+/obj/item/weapon/reagent_containers/food/condiment/cookingoil
+	name = "Cooking Oil"
+
+/obj/item/weapon/reagent_containers/food/condiment/cookingoil/Initialize()
+	. = ..()
+	reagents.add_reagent("cookingoil", 50)
 
 /obj/item/weapon/reagent_containers/food/condiment/cornoil
 	name = "Corn Oil"
