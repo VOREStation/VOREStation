@@ -71,20 +71,19 @@
 
 	combustion = FALSE
 
-/mob/living/simple_mob/animal/giant_spider/broodmother/death()
-	..()
+/mob/living/simple_mob/animal/giant_spider/broodmother/death(gibbed, deathmessage="falls over and makes its last twitches as its birthing sack bursts!")
+	if(stat != DEAD)
+		new /obj/item/royal_spider_egg(src.loc)
 
-	new /obj/item/royal_spider_egg(src.loc)
+		var/count = 0
+		while(count < death_brood)
+			var/broodling_type = pick(possible_death_brood_types)
+			var/mob/living/simple_mob/animal/giant_spider/broodling = new broodling_type(src.loc)
+			broodling.faction = faction
+			step_away(broodling, src)
+			count++
 
-	var/count = 0
-	while(count < death_brood)
-		var/broodling_type = pick(possible_death_brood_types)
-		var/mob/living/simple_mob/animal/giant_spider/broodling = new broodling_type(src.loc)
-		broodling.faction = faction
-		step_away(broodling, src)
-		count++
-
-	visible_message(span("critical", "\The [src]'s birthing sack bursts!"))
+	return ..()
 
 /mob/living/simple_mob/animal/giant_spider/broodmother/proc/spawn_brood(atom/A)
 	set waitfor = FALSE
