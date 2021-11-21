@@ -14318,6 +14318,12 @@
 /obj/effect/floor_decal/corner/mauve/bordercorner2,
 /turf/simulated/floor/tiled,
 /area/rnd/xenobiology/xenoflora)
+"axt" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/staircase/thirdfloor)
 "axu" = (
 /obj/structure/sink{
 	dir = 8;
@@ -14325,6 +14331,13 @@
 	},
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/bar_backroom)
+"axv" = (
+/obj/structure/railing,
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/simulated/open,
+/area/rnd/staircase/thirdfloor)
 "axw" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -14439,12 +14452,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/research)
-"axF" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/simulated/open,
-/area/rnd/staircase/thirdfloor)
 "axG" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/light{
@@ -51461,7 +51468,7 @@ atV
 ahh
 auu
 auu
-axF
+axt
 ayr
 aBe
 afK
@@ -51603,7 +51610,7 @@ atW
 ahh
 auu
 auu
-auu
+ayB
 ayB
 aBg
 afK
@@ -51745,7 +51752,7 @@ akt
 ahh
 auu
 auu
-axO
+axv
 ayB
 aBh
 aBj
