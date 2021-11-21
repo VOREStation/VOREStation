@@ -71,6 +71,7 @@
 
 	station_name  = "EU Vore Core"
 	station_short = "Tether"
+	facility_type = "station"
 	dock_name     = "Virgo-3B Colony"
 	dock_type     = "surface"
 	boss_name     = "Central Command"

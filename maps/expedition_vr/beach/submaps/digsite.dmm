@@ -1,64 +1,618 @@
-"a" = (/turf/template_noop,/area/template_noop)
-"b" = (/turf/simulated/mineral/ignore_mapgen/cave,/area/submap/cave/digsite)
-"c" = (/turf/simulated/wall/sandstone,/area/submap/cave/digsite)
-"d" = (/obj/structure/boulder,/turf/simulated/floor/plating/external,/area/submap/cave/digsite)
-"e" = (/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/cave/digsite)
-"f" = (/turf/simulated/floor/tiled/kafel_full/yellow,/area/submap/cave/digsite)
-"g" = (/turf/simulated/floor/plating/external,/area/submap/cave/digsite)
-"h" = (/obj/item/weapon/ore,/turf/simulated/floor/plating/external,/area/submap/cave/digsite)
-"i" = (/obj/structure/bed/alien,/turf/simulated/floor/tiled/kafel_full/yellow,/area/submap/cave/digsite)
-"j" = (/obj/structure/cult/talisman,/turf/simulated/floor/tiled/kafel_full/yellow,/area/submap/cave/digsite)
-"k" = (/obj/machinery/artifact,/obj/structure/anomaly_container,/turf/simulated/floor/tiled/kafel_full/yellow,/area/submap/cave/digsite)
-"l" = (/obj/structure/simple_door/sandstone,/turf/simulated/floor/tiled/kafel_full/yellow,/area/submap/cave/digsite)
-"m" = (/obj/structure/loot_pile/surface/alien,/turf/simulated/floor/tiled/kafel_full/yellow,/area/submap/cave/digsite)
-"n" = (/mob/living/simple_mob/animal/passive/tindalos,/turf/simulated/floor/tiled/kafel_full/yellow,/area/submap/cave/digsite)
-"o" = (/obj/structure/closet/crate/secure/loot,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/cave/digsite)
-"p" = (/obj/item/weapon/ore,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/cave/digsite)
-"q" = (/obj/effect/floor_decal/asteroid,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/cave/digsite)
-"r" = (/obj/structure/anomaly_container,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/cave/digsite)
-"s" = (/turf/simulated/wall,/area/submap/cave/digsite)
-"t" = (/obj/item/frame/apc,/obj/item/weapon/module/power_control,/turf/simulated/floor/plating/external,/area/submap/cave/digsite)
-"u" = (/obj/structure/table/steel,/obj/machinery/cell_charger,/obj/random/powercell,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/cave/digsite)
-"v" = (/obj/structure/table/steel,/obj/item/weapon/storage/excavation,/obj/item/device/measuring_tape,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/cave/digsite)
-"w" = (/obj/machinery/power/port_gen/pacman/super,/obj/structure/cable/yellow{d2 = 4; icon_state = "0-4"},/turf/simulated/floor/plating/external,/area/submap/cave/digsite)
-"x" = (/obj/structure/cable/yellow{d2 = 8; icon_state = "0-8"},/turf/simulated/floor/plating/external,/area/submap/cave/digsite)
-"y" = (/obj/structure/bed/chair{dir = 4},/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/cave/digsite)
-"z" = (/obj/structure/table/steel,/obj/item/weapon/folder,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/cave/digsite)
-"A" = (/obj/structure/table/rack,/obj/item/weapon/pickaxe,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/cave/digsite)
-"B" = (/obj/item/mecha_parts/mecha_equipment/tool/drill/diamonddrill,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/cave/digsite)
-"C" = (/obj/structure/loot_pile/maint/technical,/turf/simulated/floor/plating/external,/area/submap/cave/digsite)
-"D" = (/obj/structure/table/steel,/obj/random/tech_supply,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/cave/digsite)
-"E" = (/obj/structure/table/rack,/obj/item/weapon/shovel,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/cave/digsite)
-"F" = (/obj/structure/boulder,/obj/effect/decal/mecha_wreckage/ripley,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/cave/digsite)
-"G" = (/obj/structure/boulder,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/cave/digsite)
-"H" = (/obj/structure/loot_pile/maint/junk,/turf/simulated/floor/plating/external,/area/submap/cave/digsite)
-"I" = (/obj/structure/table/steel,/obj/item/weapon/tool/wrench,/obj/item/weapon/storage/box/samplebags,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/cave/digsite)
-"J" = (/obj/structure/table/steel,/obj/item/stack/flag/yellow,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/cave/digsite)
-"K" = (/obj/random/toolbox,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/cave/digsite)
-"L" = (/obj/structure/closet/crate,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/cave/digsite)
-"M" = (/obj/machinery/floodlight,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/cave/digsite)
-"N" = (/obj/structure/ore_box,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/cave/digsite)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/turf/simulated/mineral/ignore_mapgen/cave,
+/area/submap/cave/digsite)
+"c" = (
+/turf/simulated/wall/sandstone,
+/area/submap/cave/digsite)
+"d" = (
+/obj/structure/boulder,
+/turf/simulated/floor/plating/external,
+/area/submap/cave/digsite)
+"e" = (
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/digsite)
+"f" = (
+/turf/simulated/floor/tiled/kafel_full/yellow,
+/area/submap/cave/digsite)
+"g" = (
+/turf/simulated/floor/plating/external,
+/area/submap/cave/digsite)
+"h" = (
+/obj/item/weapon/ore,
+/turf/simulated/floor/plating/external,
+/area/submap/cave/digsite)
+"i" = (
+/obj/structure/bed/alien,
+/turf/simulated/floor/tiled/kafel_full/yellow,
+/area/submap/cave/digsite)
+"j" = (
+/obj/structure/cult/talisman,
+/turf/simulated/floor/tiled/kafel_full/yellow,
+/area/submap/cave/digsite)
+"k" = (
+/obj/machinery/artifact,
+/obj/structure/anomaly_container,
+/turf/simulated/floor/tiled/kafel_full/yellow,
+/area/submap/cave/digsite)
+"l" = (
+/obj/structure/simple_door/sandstone,
+/turf/simulated/floor/tiled/kafel_full/yellow,
+/area/submap/cave/digsite)
+"m" = (
+/obj/structure/loot_pile/surface/alien,
+/turf/simulated/floor/tiled/kafel_full/yellow,
+/area/submap/cave/digsite)
+"n" = (
+/mob/living/simple_mob/animal/passive/tindalos,
+/turf/simulated/floor/tiled/kafel_full/yellow,
+/area/submap/cave/digsite)
+"o" = (
+/obj/structure/closet/crate/secure/loot,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/digsite)
+"p" = (
+/obj/item/weapon/ore,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/digsite)
+"q" = (
+/obj/effect/floor_decal/asteroid,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/digsite)
+"r" = (
+/obj/structure/anomaly_container,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/digsite)
+"s" = (
+/turf/simulated/wall,
+/area/submap/cave/digsite)
+"t" = (
+/obj/item/frame/apc,
+/obj/item/weapon/module/power_control,
+/turf/simulated/floor/plating/external,
+/area/submap/cave/digsite)
+"u" = (
+/obj/structure/table/steel,
+/obj/machinery/cell_charger,
+/obj/random/powercell,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/digsite)
+"v" = (
+/obj/structure/table/steel,
+/obj/item/weapon/storage/excavation,
+/obj/item/device/measuring_tape,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/digsite)
+"w" = (
+/obj/machinery/power/port_gen/pacman/super,
+/obj/structure/cable/yellow{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/turf/simulated/floor/plating/external,
+/area/submap/cave/digsite)
+"x" = (
+/obj/structure/cable/yellow{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/plating/external,
+/area/submap/cave/digsite)
+"y" = (
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/digsite)
+"z" = (
+/obj/structure/table/steel,
+/obj/item/weapon/folder,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/digsite)
+"A" = (
+/obj/structure/table/rack,
+/obj/item/weapon/pickaxe,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/digsite)
+"B" = (
+/obj/item/mecha_parts/mecha_equipment/tool/drill/diamonddrill,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/digsite)
+"C" = (
+/obj/structure/loot_pile/maint/technical,
+/turf/simulated/floor/plating/external,
+/area/submap/cave/digsite)
+"D" = (
+/obj/structure/table/steel,
+/obj/random/tech_supply,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/digsite)
+"E" = (
+/obj/structure/table/rack,
+/obj/item/weapon/shovel,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/digsite)
+"F" = (
+/obj/structure/boulder,
+/obj/effect/decal/mecha_wreckage/ripley,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/digsite)
+"G" = (
+/obj/structure/boulder,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/digsite)
+"H" = (
+/obj/structure/loot_pile/maint/junk,
+/turf/simulated/floor/plating/external,
+/area/submap/cave/digsite)
+"I" = (
+/obj/structure/table/steel,
+/obj/item/weapon/tool/wrench,
+/obj/item/weapon/storage/box/samplebags,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/digsite)
+"J" = (
+/obj/structure/table/steel,
+/obj/item/stack/flag/yellow,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/digsite)
+"K" = (
+/obj/random/toolbox,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/digsite)
+"L" = (
+/obj/structure/closet/crate,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/digsite)
+"M" = (
+/obj/machinery/floodlight,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/digsite)
+"N" = (
+/obj/structure/ore_box,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/digsite)
 
 (1,1,1) = {"
-aaaaaaaaaaaaaaaaaaaa
-aaabbbbbbbbbbbbbbbaa
-aabccccccccdccccceea
-abccffcfffghgcficcea
-abcfffcffjggfcfffcea
-abcfkflffggfffffmcea
-abcfffcffffffgfffcea
-abccffcffffffgnfccea
-abbccccclccfhccggeea
-abbbbboeffffepqeeeea
-abbbbbbeeeeeeeeeeeea
-abbbbbbpeeeeeqereeea
-abbbbsteeuveeeerbeea
-abbbbwxeyzAeqeBbbbea
-abbbbCgeyDEeeeeFbbba
-abeeGHgeqIJeeeqbbbba
-aeeeKeeeeLMeeeNbbeaa
-aaeeeeeeeeeeeeNeeeaa
-aaaaaeeeeeeeeeeeeaaa
-aaaaaaaaaaaaaaaaaaaa
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
 "}
-
+(2,1,1) = {"
+a
+a
+a
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+e
+a
+a
+a
+"}
+(3,1,1) = {"
+a
+a
+b
+c
+c
+c
+c
+c
+b
+b
+b
+b
+b
+b
+b
+e
+e
+e
+a
+a
+"}
+(4,1,1) = {"
+a
+b
+c
+c
+f
+f
+f
+c
+c
+b
+b
+b
+b
+b
+b
+e
+e
+e
+a
+a
+"}
+(5,1,1) = {"
+a
+b
+c
+f
+f
+k
+f
+f
+c
+b
+b
+b
+b
+b
+b
+G
+K
+e
+a
+a
+"}
+(6,1,1) = {"
+a
+b
+c
+f
+f
+f
+f
+f
+c
+b
+b
+b
+s
+w
+C
+H
+e
+e
+e
+a
+"}
+(7,1,1) = {"
+a
+b
+c
+c
+c
+l
+c
+c
+c
+o
+b
+b
+t
+x
+g
+g
+e
+e
+e
+a
+"}
+(8,1,1) = {"
+a
+b
+c
+f
+f
+f
+f
+f
+c
+e
+e
+p
+e
+e
+e
+e
+e
+e
+e
+a
+"}
+(9,1,1) = {"
+a
+b
+c
+f
+f
+f
+f
+f
+l
+f
+e
+e
+e
+y
+y
+q
+e
+e
+e
+a
+"}
+(10,1,1) = {"
+a
+b
+c
+f
+j
+g
+f
+f
+c
+f
+e
+e
+u
+z
+D
+I
+L
+e
+e
+a
+"}
+(11,1,1) = {"
+a
+b
+c
+g
+g
+g
+f
+f
+c
+f
+e
+e
+v
+A
+E
+J
+M
+e
+e
+a
+"}
+(12,1,1) = {"
+a
+b
+d
+h
+g
+f
+f
+f
+f
+f
+e
+e
+e
+e
+e
+e
+e
+e
+e
+a
+"}
+(13,1,1) = {"
+a
+b
+c
+g
+f
+f
+f
+f
+h
+e
+e
+e
+e
+q
+e
+e
+e
+e
+e
+a
+"}
+(14,1,1) = {"
+a
+b
+c
+c
+c
+f
+g
+g
+c
+p
+e
+q
+e
+e
+e
+e
+e
+e
+e
+a
+"}
+(15,1,1) = {"
+a
+b
+c
+f
+f
+f
+f
+n
+c
+q
+e
+e
+e
+B
+e
+q
+N
+N
+e
+a
+"}
+(16,1,1) = {"
+a
+b
+c
+i
+f
+f
+f
+f
+g
+e
+e
+r
+r
+b
+F
+b
+b
+e
+e
+a
+"}
+(17,1,1) = {"
+a
+b
+c
+c
+f
+m
+f
+c
+g
+e
+e
+e
+b
+b
+b
+b
+b
+e
+e
+a
+"}
+(18,1,1) = {"
+a
+b
+e
+c
+c
+c
+c
+c
+e
+e
+e
+e
+e
+b
+b
+b
+e
+e
+a
+a
+"}
+(19,1,1) = {"
+a
+a
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+e
+b
+b
+a
+a
+a
+a
+"}
+(20,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}

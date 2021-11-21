@@ -3361,7 +3361,7 @@
 	. = ..()
 	reagents.add_reagent("blackpepper", 1)
 	reagents.add_reagent("sodiumchloride", 1)
-	reagents.add_reagent("cornoil", 1)
+	reagents.add_reagent("cookingoil", 1)
 
 /obj/item/weapon/reagent_containers/food/snacks/turkeyslice
 	name = "turkey drumstick"
