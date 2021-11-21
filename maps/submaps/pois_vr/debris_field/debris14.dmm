@@ -32,7 +32,6 @@
 /area/tether_away/debrisfield/shuttle_buffer)
 "h" = (
 /obj/structure/lattice,
-/obj/structure/lattice,
 /turf/space,
 /area/tether_away/debrisfield/shuttle_buffer)
 "i" = (
