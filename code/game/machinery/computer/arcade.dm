@@ -1083,7 +1083,7 @@
 /obj/machinery/computer/arcade/clawmachine
 	name = "AlliCo Grab-a-Gift"
 	desc = "Show off your arcade skills for that special someone!"
-	icon_state = "clawmachine"
+	icon_state = "clawmachine_new"
 	icon_keyboard = null
 	icon_screen = null
 	circuit = /obj/item/weapon/circuitboard/arcade/clawmachine
@@ -1244,10 +1244,10 @@
 
 /// TGUI Stuff
 
-/obj/machinery/computer/arcade/clawmachine/tgui_interact(mob/user, ui_key = "main", datum/tgui/ui = null, force_open = 0, datum/tgui/master_ui = null, datum/tgui_state/state = GLOB.tgui_default_state)
-	ui = SStgui.try_update_ui(user, src, ui_key, ui, force_open)
+/obj/machinery/computer/arcade/clawmachine/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, ui_key, "ClawMachine", name, 300, 400, master_ui, state)
+		ui = new(user, src, "ClawMachine", name, ui_x = 300, ui_y = 400)
 		ui.autoupdate = TRUE
 		ui.open()
 
@@ -1270,7 +1270,7 @@
 
 	if(action == "newgame" && gamepaid == 1)
 		gameStatus = "CLAWMACHINE_ON"
-		icon_state = "clawmachine_move"
+		icon_state = "clawmachine_new_move"
 		instructions = "Guide the claw to the prize you want!"
 		wintick = 0
 
@@ -1307,7 +1307,7 @@
 		winscreen = "Aw, shucks. Try again!"
 	wintick = 0
 	gamepaid = 0
-	icon_state = "clawmachine"
+	icon_state = "clawmachine_new"
 	gameStatus = "CLAWMACHINE_END"
 
 /obj/machinery/computer/arcade/clawmachine/emag_act(mob/user)
