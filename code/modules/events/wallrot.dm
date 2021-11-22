@@ -7,10 +7,13 @@
 
 	// 100 attempts
 	for(var/i=0, i<100, i++)
-		var/turf/candidate = locate(rand(1, world.maxx), rand(1, world.maxy), 1)
+		var/z_level = pick(using_map.station_levels)
+		var/turf/candidate = locate(rand(1, world.maxx), rand(1, world.maxy), z_level)
 		if(istype(candidate, /turf/simulated/wall))
 			center = candidate
-			return 1
+			var/area/A = get_area(candidate)
+			if(!A.forbid_events)
+				return 1
 	return 0
 
 /datum/event/wallrot/announce()
