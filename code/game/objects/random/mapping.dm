@@ -109,7 +109,7 @@
 /obj/random/vendordrink/item_to_spawn() //Not including coffee as it's more specific in usage.
 	return pick (/obj/machinery/vending/cola,
 				/obj/machinery/vending/cola/soft,
-				/obj/machinery/vending/bepis,	
+				/obj/machinery/vending/bepis,
 				/obj/machinery/vending/sovietsoda,
 				/obj/machinery/vending/radren)
 //VOREStation Edit End
@@ -1455,7 +1455,7 @@
 /obj/random/turf/lava/item_to_spawn()
 	return pick(prob(5);/turf/simulated/floor/lava,
 				prob(3);/turf/simulated/floor/outdoors/rocks/caves,
-				prob(1);/turf/simulated/mineral)
+				prob(1);/turf/simulated/mineral/ignore_mapgen/cave)
 
 //VOREStation Add Start - Underdark stuff that would be cool if existed if the underdark doesn't.
 
