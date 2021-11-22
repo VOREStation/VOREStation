@@ -136,6 +136,12 @@ var/list/holder_mob_icon_cache = list()
 /obj/item/weapon/holder/mouse/brown
 	item_state = "mouse_brown"
 
+/obj/item/weapon/holder/mouse/black
+	item_state = "mouse_black"
+
+/obj/item/weapon/holder/mouse/operative
+	item_state = "mouse_operative"
+
 /obj/item/weapon/holder/mouse/rat
 	item_state = "mouse_rat"
 

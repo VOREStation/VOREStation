@@ -61,12 +61,16 @@
 	if (body_color != "rat")
 		desc = "A small [body_color] rodent, often seen hiding in maintenance areas and making a nuisance of itself."
 		holder_type = /obj/item/weapon/holder/mouse/rat
+	if (body_color == "operative")
+		holder_type = /obj/item/weapon/holder/mouse/operative
 	if (body_color == "brown")
 		holder_type = /obj/item/weapon/holder/mouse/brown
 	if (body_color == "gray")
 		holder_type = /obj/item/weapon/holder/mouse/gray
 	if (body_color == "white")
 		holder_type = /obj/item/weapon/holder/mouse/white
+	if (body_color == "black")
+		holder_type = /obj/item/weapon/holder/mouse/black
 
 /mob/living/simple_mob/animal/passive/mouse/Crossed(atom/movable/AM as mob|obj)
 	if(AM.is_incorporeal())
@@ -119,6 +123,22 @@
 	icon_rest = "mouse_brown_sleep"
 	holder_type = /obj/item/weapon/holder/mouse/brown
 
+//TOM IS ALIVE! SQUEEEEEEEE~K :)
+/mob/living/simple_mob/animal/passive/mouse/brown/Tom
+	name = "Tom"
+	desc = "Jerry the cat is not amused."
+
+/mob/living/simple_mob/animal/passive/mouse/brown/Tom/New()
+	..()
+	// Change my name back, don't want to be named Tom (666)
+	name = initial(name)
+
+/mob/living/simple_mob/animal/passive/mouse/black
+	body_color = "black"
+	icon_state = "mouse_black"
+	icon_rest = "mouse_black_sleep"
+	holder_type = /obj/item/weapon/holder/mouse/black
+
 /mob/living/simple_mob/animal/passive/mouse/rat
 	name = "rat"
 	tt_desc = "E Rattus rattus"
@@ -132,16 +152,38 @@
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive
 
-//TOM IS ALIVE! SQUEEEEEEEE~K :)
-/mob/living/simple_mob/animal/passive/mouse/brown/Tom
-	name = "Tom"
-	desc = "Jerry the cat is not amused."
+/mob/living/simple_mob/animal/passive/mouse/operative
+	name = "mouse operative"
+	desc = "A cute mouse fitted with a custom blood red suit. Sneaky."
+	body_color = "operative"
+	icon_state = "mouse_operative"
+	icon_rest = "mouse_operative_sleep"
+	holder_type = /obj/item/weapon/holder/mouse/operative
+	maxHealth = 35
 
-/mob/living/simple_mob/animal/passive/mouse/brown/Tom/New()
+	//It's wearing a void suit, it don't care about atmos
+	health = 35
+	min_oxy = 0
+	max_oxy = 0
+	min_tox = 0
+	max_tox = 0
+	min_co2 = 0
+	max_co2 = 0
+	min_n2 = 0
+	max_n2 = 0
+	maxbodytemp = 700
+
+	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive
+
+//The names Cheese... Agent Cheese
+/mob/living/simple_mob/animal/passive/mouse/operative/agent_cheese
+	name = "Agent Cheese"
+	desc = "I like my cheese Swiss... not American."
+
+/mob/living/simple_mob/animal/passive/mouse/operative/agent_cheese/New()
 	..()
-	// Change my name back, don't want to be named Tom (666)
+	// Change my name back, don't want to be named agent_cheese (666)
 	name = initial(name)
-
 
 // Mouse noises
 /datum/say_list/mouse
