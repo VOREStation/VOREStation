@@ -28,20 +28,29 @@ var/list/holder_mob_icon_cache = list()
 /obj/item/weapon/holder/Initialize(mapload, mob/held)
 	ASSERT(ismob(held))
 	. = ..()
+	held.forceMove(src)
+	START_PROCESSING(SSobj, src)
+
+/obj/item/weapon/holder/Entered(mob/held, atom/OldLoc)
+	if(held_mob)
+		held.forceMove(get_turf(src))
+		return
+	ASSERT(ismob(held))
+	. = ..()
 	held_mob = held
 	original_vis_flags = held.vis_flags
 	held.vis_flags = VIS_INHERIT_ID|VIS_INHERIT_LAYER|VIS_INHERIT_PLANE
-
-	held.forceMove(src)
 	vis_contents += held
 	name = held.name
 	original_transform = held.transform
 	held.transform = null
 
-	// I really hate this, but I'm sleepy and unable to figure out a nice stateful way to do it
-	// Entered and Exited seem ideal but all the inventory procs are trash and put items on
-	// turfs before you when manhandling things in/out of backpacks and inventory slots.
-	START_PROCESSING(SSobj, src)
+/obj/item/weapon/holder/Exited(atom/movable/thing, atom/OldLoc)
+	if(thing == held_mob)
+		held_mob.transform = original_transform
+		held_mob.vis_flags = original_vis_flags
+		held_mob = null
+	..()
 
 /obj/item/weapon/holder/Destroy()
 	STOP_PROCESSING(SSobj, src)
