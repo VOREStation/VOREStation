@@ -112,7 +112,7 @@
 			user.visible_message("[user] smears paint on [src], covering the entire thing in paint.", "You smear paint on [src], changing the color of the entire thing.", runemessage = "smears paint")
 			update_appearance()
 			return
-			
+
 	if(user.a_intent == I_HELP)
 		tgui_interact(user)
 	else
@@ -291,7 +291,7 @@
 	if(new_color)
 		selected_color = new_color
 		color_drop.color = new_color
-		
+
 	cut_overlays()
 	if(hud_level)
 		add_overlay(color_drop)
@@ -316,21 +316,10 @@
 	name = "painting frame"
 	desc = "The perfect showcase for your favorite deathtrap memories."
 	icon = 'icons/obj/decals.dmi'
-	//custom_materials = list(/datum/material/wood = 2000)
-	//flags_1 = NONE
+	refund_amt = 5
+	refund_type = /obj/item/stack/material/wood
 	icon_state = "frame-empty"
-
-/obj/item/frame/painting/try_build(turf/on_wall, mob/user as mob)
-	if(get_dist(on_wall, user) > 1)
-		return
-	var/ndir = get_dir(on_wall, user)
-	if (!(ndir in cardinal))
-		return
-	if(!istype(on_wall, /turf/simulated/wall))
-		to_chat(user, "<span class='warning'>Frame cannot be placed on this spot.</span>")
-		return
-	new /obj/structure/sign/painting(get_turf(user), ndir, TRUE)
-	qdel(src)
+	build_machine_type = /obj/structure/sign/painting
 
 /obj/structure/sign/painting
 	name = "Painting"
@@ -483,12 +472,12 @@
 /obj/structure/sign/painting/proc/load_persistent()
 	if(!persistence_id || !LAZYLEN(SSpersistence.unpicked_paintings))
 		return
-	
+
 	var/list/painting_category = list()
 	for (var/list/P in SSpersistence.unpicked_paintings)
 		if(P["persistence_id"] == persistence_id)
 			painting_category[++painting_category.len] = P
-	
+
 	var/list/painting
 	while(!painting)
 		if(!length(painting_category))
@@ -500,7 +489,7 @@
 			continue //and try again
 		painting = chosen
 		SSpersistence.unpicked_paintings -= list(chosen)
-	
+
 	var/title = painting["title"]
 	var/author_name = painting["author"]
 	var/author_ckey = painting["ckey"]
@@ -509,7 +498,7 @@
 	var/obj/item/canvas/new_canvas
 	var/w = I.Width()
 	var/h = I.Height()
-	
+
 	for(var/T in typesof(/obj/item/canvas))
 		new_canvas = T
 		if(initial(new_canvas.width) == w && initial(new_canvas.height) == h)
@@ -519,7 +508,7 @@
 	if(!new_canvas)
 		warning("Couldn't find a canvas to match [w]x[h] of painting")
 		return
-	
+
 	new_canvas.fill_grid_from_icon(I)
 	new_canvas.generated_icon = I
 	new_canvas.icon_generated = TRUE
@@ -540,7 +529,7 @@
 		return
 	if(!current_canvas.painting_name)
 		current_canvas.painting_name = "Untitled Artwork"
-	
+
 	var/data = current_canvas.get_data_string()
 	var/md5 = md5(lowertext(data))
 	for(var/list/entry in SSpersistence.all_paintings)
@@ -549,10 +538,10 @@
 	var/png_directory = "data/persistent/paintings/[persistence_id]/"
 	var/png_path = png_directory + "[md5].png"
 	var/result = rustg_dmi_create_png(png_path,"[current_canvas.width]","[current_canvas.height]",data)
-	
+
 	if(result)
 		CRASH("Error saving persistent painting: [result]")
-	
+
 	SSpersistence.all_paintings += list(list(
 		"persistence_id" = persistence_id,
 		"title" = current_canvas.painting_name,
