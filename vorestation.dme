@@ -2016,6 +2016,7 @@
 #include "code\modules\clothing\spacesuits\rig\modules\specific\metalfoam_launcher.dm"
 #include "code\modules\clothing\spacesuits\rig\modules\specific\mounted_gun.dm"
 #include "code\modules\clothing\spacesuits\rig\modules\specific\mounted_gun_vr.dm"
+#include "code\modules\clothing\spacesuits\rig\modules\specific\passive_protection.dm"
 #include "code\modules\clothing\spacesuits\rig\modules\specific\pat_module_vr.dm"
 #include "code\modules\clothing\spacesuits\rig\modules\specific\powersink.dm"
 #include "code\modules\clothing\spacesuits\rig\modules\specific\rescue_pharm_vr.dm"
