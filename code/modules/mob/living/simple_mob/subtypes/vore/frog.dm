@@ -1,6 +1,6 @@
 /datum/category_item/catalogue/fauna/frog
 	name = "Wildlife - Giant Frog"
-	desc = "Classification: Anura gigantus\
+	desc = "Classification: Anura Gigantus\
 	<br><br>\
 	A frog is any member of a diverse and largely carnivorous group of short-bodied, tailless amphibians composing \
 	the order Anura. This specific species - Anura gigantus - is a mutated form of Frogs, largely due to exposure to mutagen chemicals. \
@@ -20,7 +20,7 @@
 /mob/living/simple_mob/vore/aggressive/frog
 	name = "giant frog"
 	desc = "You've heard of having a frog in your throat, now get ready for the reverse."
-	tt_desc = "Anura gigantus"
+	tt_desc = "Anura Gigantus"
 	catalogue_data = list(/datum/category_item/catalogue/fauna/frog)
 
 	icon_dead = "frog-dead"
