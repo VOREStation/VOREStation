@@ -75,15 +75,15 @@
 /datum/stored_item/stack/get_product(var/product_location, var/count)
 	if(!LAZYLEN(instances))
 		return null // Shouldn't happen, but will loudly complain if it breaks
-	
+
 	var/obj/item/stack/S = instances[1]
 	count = min(count, S.get_max_amount())
 	src.amount -= count // We won't vend more than one full stack per call
-	
+
 	// Case 1: Draw the full amount from the first instance
 	if(count < S.get_amount())
 		S = S.split(count)
-		
+
 	// Case 2: Amount at least one stack, or have to accumulate
 	else if(count >= S.get_amount())
 		count -= S.get_amount()
@@ -91,6 +91,8 @@
 		for(var/obj/item/stack/T as anything in instances)
 			if(count <= 0)
 				break
+			if(T.get_amount() <= count)
+				instances -=T
 			count -= T.transfer_to(S, count)
 
 	S.forceMove(product_location)
