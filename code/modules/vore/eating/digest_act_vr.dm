@@ -51,10 +51,10 @@
 				O.forceMove(item_storage)
 		if(istype(src,/obj/item/stack))
 			var/obj/item/stack/S = src
-			if(S.amount <= 1)
+			if(S.get_amount() <= 1)
 				qdel(src)
 			else
-				S.amount--
+				S.use(1)
 				digest_stage = w_class
 		else
 			qdel(src)
