@@ -64,7 +64,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	maxHealth = 600
 	health = 600
 	movement_cooldown = 2
-	meat_amount = 10
+	meat_amount = 12
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
 
 	response_help = "pets"

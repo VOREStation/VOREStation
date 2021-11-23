@@ -30,6 +30,9 @@
 
 	movement_cooldown = 4 //fast as fucc boie.
 
+	meat_amount = 4
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+
 	harm_intent_damage = 5
 	melee_damage_lower = 5
 	melee_damage_upper = 12
