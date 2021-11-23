@@ -6,6 +6,7 @@
 	starts_with = list(
 		/obj/item/weapon/storage/bag/plants,
 		/obj/item/clothing/under/rank/hydroponics,
+		/obj/item/clothing/gloves/botanic_leather,
 		/obj/item/device/analyzer/plant_analyzer,
 		/obj/item/device/radio/headset/headset_service,
 		/obj/item/clothing/head/greenbandana,
