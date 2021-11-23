@@ -56,7 +56,8 @@
 			else
 				S.amount--
 				digest_stage = w_class
-		qdel(src)
+		else
+			qdel(src)
 	if(g_damage > w_class)
 		return w_class
 	return g_damage
