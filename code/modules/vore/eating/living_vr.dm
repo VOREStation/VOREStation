@@ -143,9 +143,7 @@
 		if(is_vore_predator(src))
 			for(var/mob/living/M in H.contents)
 				if(attacker.eat_held_mob(attacker, M, src))
-					if(H.held_mob == M)
-						H.held_mob = null
-			return TRUE //return TRUE to exit upper procs
+					return TRUE //return TRUE to exit upper procs
 		else
 			log_debug("[attacker] attempted to feed [H.contents] to [src] ([type]) but it failed.")
 
@@ -518,7 +516,16 @@
 	user.visible_message(success_msg)
 
 	// Actually shove prey into the belly.
-	belly.nom_mob(prey, user)
+	if(istype(prey.loc, /obj/item/weapon/holder))
+		var/obj/item/weapon/holder/H = prey.loc
+		for(var/mob/living/M in H.contents)
+			belly.nom_mob(M, user)
+			if(M.loc == H) // In case nom_mob failed somehow.
+				M.forceMove(get_turf(src))
+		H.held_mob = null
+		qdel(H)
+	else
+		belly.nom_mob(prey, user)
 	if(!ishuman(user))
 		user.update_icons()
 
