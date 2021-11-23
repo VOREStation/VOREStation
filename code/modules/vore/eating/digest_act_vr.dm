@@ -49,6 +49,13 @@
 					qdel(O)
 			else if(item_storage)
 				O.forceMove(item_storage)
+		if(istype(src,/obj/item/stack))
+			var/obj/item/stack/S = src
+			if(S.amount <= 1)
+				qdel(src)
+			else
+				S.amount--
+				digest_stage = w_class
 		qdel(src)
 	if(g_damage > w_class)
 		return w_class
