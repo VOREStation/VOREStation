@@ -35,8 +35,8 @@
 			vine.health = vine.max_health
 			vine.mature_time = 0
 			vine.process()
-			
-			return
+
+			return INITIALIZE_HINT_LATELOAD
 
 
 
