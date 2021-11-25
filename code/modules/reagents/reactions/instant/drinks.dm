@@ -203,6 +203,7 @@
 	name = "Classic Martini"
 	id = "martini"
 	result = "martini"
+	inhibitors = list("bitters" = 1)
 	required_reagents = list("gin" = 2, "vermouth" = 1)
 	result_amount = 3
 

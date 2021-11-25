@@ -110,7 +110,9 @@
 	violent_breakthrough = TRUE
 
 /mob/living/simple_mob/vore/alienanimals/startreader/apply_melee_effects(var/atom/A)
-	if(prob(25))
+	if(weakened) //Don't stun people while they're already stunned! That's SILLY!
+		return
+	if(prob(15))
 		var/mob/living/L = A
 		if(isliving(A))
 			visible_message("<span class='danger'>\The [src] trips \the [L]!</span>!")

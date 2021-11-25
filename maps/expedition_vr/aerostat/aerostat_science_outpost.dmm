@@ -22,6 +22,18 @@
 "ac" = (
 /turf/simulated/shuttle/wall/voidcraft/green/virgo2,
 /area/offmap/aerostat/inside/arm/nw)
+"ad" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/plating/virgo2,
+/area/offmap/aerostat/inside/northchamb)
 "ae" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 9
@@ -40,6 +52,12 @@
 	},
 /turf/simulated/floor/plating/virgo2,
 /area/offmap/aerostat/solars)
+"ag" = (
+/obj/structure/window/reinforced/full,
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor,
+/area/offmap/aerostat/inside/toxins)
 "ah" = (
 /obj/structure/table/reinforced,
 /obj/machinery/recharger/wallcharger{
@@ -56,6 +74,13 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/firingrange)
+"ai" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/full,
+/obj/structure/grille,
+/obj/machinery/atmospherics/pipe/simple/hidden/green,
+/turf/simulated/floor,
+/area/offmap/aerostat/inside/toxins)
 "aj" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	id_tag = "anomaly_airlock_pump";
@@ -86,6 +111,18 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/offmap/aerostat/inside/airlock/south)
+"am" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/shutters{
+	dir = 2;
+	id = "zorrenpartyroom";
+	layer = 3.3;
+	name = "shutter"
+	},
+/turf/simulated/floor/plating/virgo2,
+/area/offmap/aerostat/inside/zorrenoffice)
 "an" = (
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	dir = 5
@@ -2551,19 +2588,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/toxins)
-"iW" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/plating/virgo2,
-/area/offmap/aerostat/inside/northchamb)
 "iX" = (
 /turf/simulated/wall,
 /area/offmap/aerostat/inside/firingrange)
@@ -5435,13 +5459,6 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/offmap/aerostat/inside/firingrange)
-"vR" = (
-/obj/machinery/door/firedoor/glass,
-/obj/structure/window/reinforced/full,
-/obj/structure/grille,
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor,
-/area/offmap/aerostat/inside/toxins)
 "vT" = (
 /obj/structure/cable/heavyduty{
 	icon_state = "1-2"
@@ -8164,19 +8181,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/telesci)
-"HN" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/firedoor/glass,
-/obj/machinery/door/blast/shutters{
-	dir = 2;
-	id = "zorrenpartyroom";
-	layer = 3.3;
-	name = "shutter"
-	},
-/turf/simulated/floor/plating/virgo2,
-/area/offmap/aerostat/inside/zorrenoffice)
 "HO" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled/white,
@@ -11104,14 +11108,6 @@
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/xenoarch)
-"Vd" = (
-/obj/machinery/door/firedoor/glass,
-/obj/structure/window/reinforced/full,
-/obj/structure/grille,
-/obj/machinery/atmospherics/pipe/simple/hidden/green,
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor,
-/area/offmap/aerostat/inside/toxins)
 "Ve" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 1
@@ -20180,7 +20176,7 @@ qU
 MM
 qC
 io
-vR
+ag
 jM
 un
 Dh
@@ -20322,7 +20318,7 @@ xC
 zu
 qC
 mD
-Vd
+ai
 Hb
 nV
 bW
@@ -21440,7 +21436,7 @@ aw
 aw
 aw
 aw
-iW
+ad
 la
 la
 la
@@ -21920,7 +21916,7 @@ hN
 Ya
 Ya
 KI
-HN
+am
 QX
 eW
 eW
@@ -22346,7 +22342,7 @@ KI
 Zs
 Ya
 KI
-HN
+am
 eW
 QX
 eW

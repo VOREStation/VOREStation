@@ -73,8 +73,6 @@
 
 	speak_emote = list("rumbles")
 
-	loot_list = list(/obj/item/weapon/ore/diamond)
-
 	vore_active = 0
 
 	projectiletype = /mob/living/simple_mob/vore/alienanimals/spooky_ghost
@@ -119,6 +117,7 @@
 
 /mob/living/simple_mob/vore/alienanimals/space_ghost/death(gibbed, deathmessage = "fades away!")
 	. = ..()
+	new /obj/item/weapon/ore/diamond(src.loc)
 	qdel(src)
 
 /mob/living/simple_mob/vore/alienanimals/spooky_ghost

@@ -4959,7 +4959,7 @@
 	reagents.add_reagent("protein",5)
 
 /obj/item/weapon/reagent_containers/food/snacks/pineapple_ring
-	name = "pineapple ring"
+	name = "pineapple rings"
 	desc = "So retro."
 	icon_state = "pineapple_ring"
 	nutriment_desc = list("sweetness" = 2)
