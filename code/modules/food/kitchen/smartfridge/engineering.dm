@@ -22,7 +22,11 @@
 
 	while(count > 0)
 		var/obj/item/stack/S = I.get_product(get_turf(src), count)
+<<<<<<< HEAD
 		count -= S.get_amount()
+=======
+		count -= S.amount
+>>>>>>> 0b839fea6ec... Merge pull request #8355 from Atermonera/fix-sheet-dispenser-overflow
 	SStgui.update_uis(src)
 
 /obj/machinery/smartfridge/sheets/find_record(var/obj/item/O)

@@ -92,7 +92,11 @@
 			if(count <= 0)
 				break
 			if(T.get_amount() <= count)
+<<<<<<< HEAD
 				instances -=T
+=======
+				instances -= T
+>>>>>>> 0b839fea6ec... Merge pull request #8355 from Atermonera/fix-sheet-dispenser-overflow
 			count -= T.transfer_to(S, count)
 
 	S.forceMove(product_location)
