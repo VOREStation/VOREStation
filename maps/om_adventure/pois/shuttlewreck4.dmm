@@ -1,0 +1,349 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/simulated/floor/weird_things/dark,
+/area/om_adventure/poi/shuttlewreck4)
+"g" = (
+/obj/item/frame/apc,
+/turf/template_noop,
+/area/template_noop)
+"j" = (
+/turf/template_noop,
+/area/template_noop)
+"p" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/eris/dark/monofloor,
+/area/om_adventure/poi/shuttlewreck4)
+"q" = (
+/turf/simulated/floor/tiled/eris/dark/monofloor,
+/area/om_adventure/poi/shuttlewreck4)
+"t" = (
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/om_adventure/poi/shuttlewreck4)
+"u" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/plating/eris/airless,
+/area/om_adventure/poi/shuttlewreck4)
+"v" = (
+/turf/simulated/wall/eris/r_wall,
+/area/om_adventure/poi/shuttlewreck4)
+"x" = (
+/turf/simulated/floor/plating/eris/airless,
+/area/om_adventure/poi/shuttlewreck4)
+"C" = (
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/om_adventure/poi/shuttlewreck4)
+"I" = (
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/om_adventure/poi/shuttlewreck4)
+"J" = (
+/obj/machinery/door/blast/multi_tile/three_tile_ver{
+	density = 0;
+	icon_state = "open";
+	opacity = 0
+	},
+/turf/simulated/floor/plating/eris/airless,
+/area/om_adventure/poi/shuttlewreck4)
+"M" = (
+/obj/structure/low_wall/eris/reinforced,
+/obj/structure/window/eris,
+/turf/simulated/floor/plating,
+/area/om_adventure/poi/shuttlewreck4)
+"P" = (
+/obj/structure/frame/computer,
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/om_adventure/poi/shuttlewreck4)
+"S" = (
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/om_adventure/poi/shuttlewreck4)
+"V" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/eris/dark/monofloor,
+/area/om_adventure/poi/shuttlewreck4)
+"X" = (
+/obj/structure/bed/chair/bay/shuttle,
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/om_adventure/poi/shuttlewreck4)
+"Y" = (
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/om_adventure/poi/shuttlewreck4)
+
+(1,1,1) = {"
+j
+j
+j
+j
+j
+j
+j
+j
+a
+j
+j
+j
+a
+j
+a
+"}
+(2,1,1) = {"
+j
+a
+a
+j
+j
+a
+j
+j
+j
+j
+j
+j
+j
+a
+j
+"}
+(3,1,1) = {"
+j
+j
+j
+a
+a
+g
+a
+a
+a
+j
+a
+a
+a
+v
+j
+"}
+(4,1,1) = {"
+j
+j
+j
+j
+a
+a
+a
+a
+a
+a
+a
+a
+v
+v
+j
+"}
+(5,1,1) = {"
+j
+j
+j
+v
+v
+x
+x
+J
+v
+v
+a
+v
+v
+u
+j
+"}
+(6,1,1) = {"
+j
+a
+a
+v
+V
+q
+q
+q
+q
+v
+M
+v
+v
+v
+j
+"}
+(7,1,1) = {"
+a
+v
+M
+M
+q
+I
+I
+I
+q
+t
+Y
+Y
+v
+j
+j
+"}
+(8,1,1) = {"
+j
+M
+P
+C
+q
+C
+v
+X
+q
+q
+q
+q
+M
+j
+j
+"}
+(9,1,1) = {"
+a
+v
+M
+M
+q
+Y
+Y
+Y
+q
+S
+I
+I
+v
+j
+j
+"}
+(10,1,1) = {"
+j
+j
+j
+v
+p
+q
+q
+q
+q
+v
+M
+v
+v
+v
+j
+"}
+(11,1,1) = {"
+j
+j
+j
+v
+v
+x
+x
+J
+v
+v
+j
+v
+v
+u
+j
+"}
+(12,1,1) = {"
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+v
+v
+j
+"}
+(13,1,1) = {"
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+v
+j
+"}
+(14,1,1) = {"
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+"}
+(15,1,1) = {"
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+"}

@@ -14,6 +14,7 @@
 #define Z_LEVEL_OVERMAP						13
 #define Z_LEVEL_OFFMAP1						14
 #define Z_LEVEL_GATEWAY						15
+#define Z_LEVEL_OM_ADVENTURE				16
 
 //Camera networks
 #define NETWORK_HALLS "Halls"
@@ -146,6 +147,10 @@
 		list("Arynthi Lake Underground B","Arynthi Lake B"),
 		list("Eggnog Town Underground","Eggnog Town"),
 		list("Wild West")
+		)
+
+	lateload_single_pick_b = list(
+		list("Grass Cave")
 		)
 
 	ai_shell_restricted = TRUE

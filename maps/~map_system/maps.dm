@@ -54,6 +54,7 @@ var/list/all_maps = list()
 
 	//Similar to above, but only pick ONE to load, useful for random away missions and whatnot
 	var/list/lateload_single_pick = list()
+	var/list/lateload_single_pick_b = list() //VOREStation Add - The same thing as gateway, but not
 
 	var/list/allowed_jobs = list() //Job datums to use.
 	                               //Works a lot better so if we get to a point where three-ish maps are used

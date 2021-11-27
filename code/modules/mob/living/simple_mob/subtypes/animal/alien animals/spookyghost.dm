@@ -117,7 +117,7 @@
 
 /mob/living/simple_mob/vore/alienanimals/space_ghost/death(gibbed, deathmessage = "fades away!")
 	. = ..()
-	new /obj/item/weapon/ore/diamond(src.loc)
+	new /obj/item/weapon/ore/diamond(loc, src)
 	qdel(src)
 
 /mob/living/simple_mob/vore/alienanimals/spooky_ghost
