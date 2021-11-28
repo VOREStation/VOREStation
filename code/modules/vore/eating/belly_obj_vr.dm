@@ -199,8 +199,6 @@
 
 // Called whenever an atom enters this belly
 /obj/belly/Entered(atom/movable/thing, atom/OldLoc)
-	if(istype(thing, /mob/observer))
-		return
 	if(OldLoc in contents)
 		return //Someone dropping something (or being stripdigested)
 
@@ -584,9 +582,7 @@
 	//Incase they have the loop going, let's double check to stop it.
 	M.stop_sound_channel(CHANNEL_PREYLOOP)
 	// Delete the digested mob
-	var/mob/observer/G = M.ghostize()
-	if(G)
-		G.forceMove(src)
+	M.ghostize() // Make sure they're out, so we can copy attack logs and such.
 	qdel(M)
 
 // Handle a mob being absorbed
