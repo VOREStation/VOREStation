@@ -1,110 +1,351 @@
 /obj/item/capture_crystal
-	name = "curious crystal"
+	name = "Curious Crystal"
 	desc = "A silent, unassuming crystal in what appears to be some kind of steel housing."
 	icon = 'icons/obj/capture_crystal_vr.dmi'
 	icon_state = "inactive"
 	drop_sound = 'sound/items/drop/ring.ogg'
 	pickup_sound = 'sound/items/pickup/ring.ogg'
-	var/active = FALSE
-	var/owner
-	var/mob/living/bound_mob
-	var/stored_mob = FALSE
-	var/spawn_mob_type
-	var/activate_cooldown = 30 SECONDS
-	var/last_activate
+	throwforce = 0
+	force = 0
+	action_button_name = "Command"
+
+	var/active = FALSE					//Is it set up?
+	var/mob/living/owner				//Reference to the owner
+	var/mob/living/bound_mob			//Reference to our bound mob
+	var/spawn_mob_type					//The kind of mob an inactive crystal will try to spawn when activated
+	var/activate_cooldown = 30 SECONDS	//How long do we wait between unleashing and recalling
+	var/last_activate					//Automatically set by things that try to move the bound mob or capture things
+	var/empty_icon = "empty"
+	var/full_icon = "full"
 
 /obj/item/capture_crystal/Initialize()
 	. = ..()
+	update_icon()
+
+//Let's make sure we clean up our references and things if the crystal goes away (such as when it's digested)
+/obj/item/capture_crystal/Destroy()
+	. = ..()
+	if(bound_mob)
+		if(bound_mob in contents)
+			unleash()
+		to_chat(bound_mob, "<span class='notice'>You feel like yourself again. You are no longer under the influince of \the [src]'s command.</span>")
+		UnregisterSignal(bound_mob, COMSIG_PARENT_QDELETING)
+		bound_mob = null
+	if(owner)
+		UnregisterSignal(owner, COMSIG_PARENT_QDELETING)
+		owner = null
+
+/obj/item/capture_crystal/examine(user)
+	. = ..()
+	if(user == owner)
+		if(bound_mob)
+			. += "<span class = 'notice'>[bound_mob]'s crystal</span>"
+			if(isanimal(bound_mob))
+				. += "<span class = 'notice'>[bound_mob.health / bound_mob.maxHealth * 100]%</span>"
+			if(bound_mob.ooc_notes)
+				. += "<span class = 'deptradio'>OOC Notes:</span> <a href='?src=\ref[bound_mob];ooc_notes=1'>\[View\]</a>"
+			. += "<span class='deptradio'><a href='?src=\ref[bound_mob];vore_prefs=1'>\[Mechanical Vore Preferences\]</a></span>"
+
+//Command! This lets the owner toggle hostile on AI controlled mobs, or send a silent command message to your bound mob, wherever they may be.
+/obj/item/capture_crystal/ui_action_click()
+	if(ismob(loc))
+		var/mob/living/M = src.loc
+		if(M != owner)
+			to_chat(M, "<span class='notice'>\The [src] emits an unpleasant tone... It does not respond to your command.</span>")
+			playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
+			return
+		if(!bound_mob)
+			to_chat(M, "<span class='notice'>\The [src] emits an unpleasant tone... There is nothing to command.</span>")
+			playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
+			return
+		if(isanimal(bound_mob) && !bound_mob.client)
+			if(!isnull(bound_mob.get_AI_stance()))
+				var/datum/ai_holder/AI = bound_mob.ai_holder
+				AI.hostile = !AI.hostile
+				if(!AI.hostile)
+					AI.set_stance(STANCE_IDLE)
+				to_chat(M, span("notice", "\The [bound_mob] is now [AI.hostile ? "hostile" : "passive"]."))
+				return
+		if(bound_mob.client)
+			var/transmit_msg
+			transmit_msg = sanitizeSafe(input(usr, "What is your command?", "Command", null)  as text, MAX_NAME_LEN)
+			if(isnull(transmit_msg))
+				to_chat(M, "<span class='notice'>You decided against it.</span>")
+				return
+			to_chat(bound_mob, "<span class='notice'>\The [owner] commands, '[transmit_msg]'</span>")
+			to_chat(M, "<span class='notice'>Your command has been transmitted, '[transmit_msg]'</span>")
+		else
+			to_chat(M, "<span class='notice'>\The [src] emits an unpleasant tone... \The [bound_mob] is unresponsive.</span>")
+			playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
+	else
+		return
+
+//Lets the owner get AI controlled bound mobs to follow them, or tells player controlled mobs to follow them.
+/obj/item/capture_crystal/verb/follow_owner()
+	set name = "Toggle Follow"
+	set category = "Object"
+	set src in usr
+	if(ismob(loc))
+		var/mob/living/M = src.loc
+		if(M != owner)
+			to_chat(M, "<span class='notice'>\The [src] emits an unpleasant tone... It does not respond to your command.</span>")
+			playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
+			return
+		if(bound_mob.stat != CONSCIOUS)
+			to_chat(M, "<span class='notice'>\The [src] emits an unpleasant tone... \The [bound_mob] is not able to hear your command.</span>")
+			playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
+			return
+		if(bound_mob.client)
+			to_chat(bound_mob, "<span class='notice'>\The [owner] wishes for you to follow them.</span>")
+			return
+		if(bound_mob in contents)
+			var/datum/ai_holder/AI = bound_mob.ai_holder
+			if(AI.leader)
+				to_chat(M, "<span class='notice'>\The [src] chimes~ \The [bound_mob] stopped following [AI.leader].</span>")
+				AI.lose_follow(AI.leader)
+			else
+				AI.set_follow(M)
+				to_chat(M, "<span class='notice'>\The [src] chimes~ \The [bound_mob] started following following [AI.leader].</span>")
+		if(!(bound_mob in view(M)))
+			to_chat(M, "<span class='notice'>\The [src] emits an unpleasant tone... \The [bound_mob] is not able to hear your command.</span>")
+			playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
+			return
+		var/datum/ai_holder/AI = bound_mob.ai_holder
+		if(AI.leader)
+			to_chat(M, "<span class='notice'>\The [src] chimes~ \The [bound_mob] stopped following [AI.leader].</span>")
+			AI.lose_follow(AI.leader)
+		else
+			AI.set_follow(M)
+			to_chat(M, "<span class='notice'>\The [src] chimes~ \The [bound_mob] started following following [AI.leader].</span>")
+
+
+/obj/item/capture_crystal/update_icon()
+	. = ..()
 	if(spawn_mob_type)
 		icon_state = "full"
-
-/obj/item/capture_crystal/attack_self(mob/living/user)
-	if(world.time < last_activate + activate_cooldown)
-		to_chat(user, "<span class='notice'>\The [src] emits an unpleasant tone... It is not ready yet.</span>")
 		return
-	last_activate = world.time
-	if(user == bound_mob)
+	if(!bound_mob)
+		icon_state = "inactive"
+	else if(bound_mob in contents)
+		icon_state = full_icon
+	else
+		icon_state = empty_icon
+	if(!cooldown_check())
+		icon_state = "[icon_state]-busy"
+
+/obj/item/capture_crystal/proc/cooldown_check()
+	if(world.time < last_activate + activate_cooldown)
+		return FALSE
+	else return TRUE
+
+/obj/item/capture_crystal/attack(mob/living/M, mob/living/user)
+	if(bound_mob)	
+		if(!bound_mob.devourable)	//Don't eat if prefs are bad
+			return
+		if(user.zone_sel.selecting == "mouth")	//Click while targetting the mouth and you eat/feed the stored mob to whoever you clicked on
+			if(bound_mob in contents)
+				user.visible_message("\The [user] moves \the [src] to [M]'s [M.vore_selected]...")
+				M.perform_the_nom(M, bound_mob, M, M.vore_selected)
+				return
+	else if(M == user)		//You don't have a mob, you ponder the orb instead of trying to capture yourself
+		user.visible_message("\The [user] ponders \the [src]...", "You ponder \the [src]...")
+		return
+	else	//Try to capture someone without throwing
+		user.visible_message("\The [user] taps \the [M] with \the [src].")
+		activate(user, M)
+
+//Tries to unleash or recall your stored mob
+/obj/item/capture_crystal/attack_self(mob/living/user)
+	if(!cooldown_check())
+		to_chat(user, "<span class='notice'>\The [src] emits an unpleasant tone... It is not ready yet.</span>")
+		playsound(src, 'sound/effects/capture-crystal-problem.ogg', 75, 1, -1)
+		return
+	if(user == bound_mob)	//You can't recall yourself
 		to_chat(user, "<span class='notice'>\The [src] emits an unpleasant tone... It does not activate for you.</span>")
+		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 		return
 	if(!active)
 		activate(user)
 		return
-	if(bound_mob && stored_mob)
-		unleash(user)
-	else if(bound_mob)
-		recall(user)
-	else
-		to_chat(user, "<span class='notice'>\The [src] clicks unsatisfyingly.</span>")
-		active = FALSE
-		icon_state = "inactive"
-		owner = null
+	determine_action(user)
 
+//Make it so the crystal knows if its mob references get deleted to make sure things get cleaned up
 /obj/item/capture_crystal/proc/knowyoursignals(mob/living/M, mob/living/U)
-	RegisterSignal(M, COMSIG_PARENT_QDELETING, .proc/mob_was_deleted)
-	RegisterSignal(U, COMSIG_PARENT_QDELETING, .proc/owner_was_deleted)
+	RegisterSignal(M, COMSIG_PARENT_QDELETING, .proc/mob_was_deleted, TRUE)
+	RegisterSignal(U, COMSIG_PARENT_QDELETING, .proc/owner_was_deleted, TRUE)
 
+//The basic capture command does most of the registration work.
 /obj/item/capture_crystal/proc/capture(mob/living/M, mob/living/U)
+	if(!M.capture_crystal)
+		to_chat(U, "<span class='warning'>This creature is not suitable for capture.</span>")
+		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
+		return
 	knowyoursignals(M, U)
 	owner = U
 	if(!bound_mob)
 		bound_mob = M
+	
+//Determines the capture chance! So you can't capture AI mobs if they're perfectly healthy and all that
+/obj/item/capture_crystal/proc/capture_chance(mob/living/M)
+	var/capture_chance = ((1 - (M.health / M.maxHealth)) * 100)
+	if(M.stat == UNCONSCIOUS)
+		capture_chance += 10
+	else if(M.stat == CONSCIOUS)
+		capture_chance -= 25
+	else
+		capture_chance = 0
+	if(capture_chance <= 0)
+		capture_chance = 0 
+	last_activate = world.time
+	return capture_chance
 
+//Handles checking relevent bans, preferences, and asking the player if they want to be caught
+/obj/item/capture_crystal/proc/capture_player(mob/living/M, mob/living/U)
+	if(jobban_isbanned(M, "GhostRoles"))
+		to_chat(U, "<span class='warning'>This creature is not suitable for capture.</span>")
+		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
+		return
+	if(!M.capture_crystal)
+		to_chat(U, "<span class='warning'>This creature is not suitable for capture.</span>")
+		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
+		return
+	if(tgui_alert(M, "Would you like to be caught by in [src] by [U]? You will be bound to their will.", "Become Caught",list("No","Yes")) == "Yes")
+		if(tgui_alert(M, "Are you really sure? The only way to undo this is to OOC escape while you're in the crystal.", "Become Caught", list("No","Yes")) == "Yes")
+			log_admin("[key_name(M)] has agreed to become caught by [key_name(U)].")
+			capture(M, U)
+			recall(U)
+
+//The clean up procs!
 /obj/item/capture_crystal/proc/mob_was_deleted()
 	UnregisterSignal(bound_mob, COMSIG_PARENT_QDELETING)
 	bound_mob = null
 	owner = null
 	active = FALSE
-	icon_state = "inactive"
+	update_icon()
 
 /obj/item/capture_crystal/proc/owner_was_deleted()
 	UnregisterSignal(owner, COMSIG_PARENT_QDELETING)
 	owner = null
 	active = FALSE
-	icon_state = "inactive"
+	update_icon()
 
-/obj/item/capture_crystal/proc/activate(mob/living/user)
-	if(spawn_mob_type && !bound_mob)
-		bound_mob = new spawn_mob_type(src)
+//If the crystal hasn't been set up, it does this
+/obj/item/capture_crystal/proc/activate(mob/living/user, target)
+	if(!cooldown_check())		//Are we ready to do things yet?
+		to_chat(thrower, "<span class='notice'>\The [src] clicks unsatisfyingly... It is not ready yet.</span>")
+		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
+		return
+	if(spawn_mob_type && !bound_mob)			//We don't already have a mob, but we know what kind of mob we want
+		bound_mob = new spawn_mob_type(src)		//Well let's spawn it then!
 		bound_mob.faction = user.faction
-		stored_mob = TRUE
 		spawn_mob_type = null
 		capture(bound_mob, user)
-	if(bound_mob)
+	if(bound_mob)								//We have a mob! Let's finish setting up.
 		user.visible_message("\The [src] clicks, and then emits a small chime.", "\The [src] grows warm in your hand, something inside is awake.")
 		active = TRUE
-		unleash(user)
-	else
-		to_chat(user, "<span class='notice'>\The [src] clicks unsatisfyingly.</span>")
+		if(!owner)								//Do we have an owner? It's pretty unlikely that this would ever happen! But it happens, let's claim the crystal.
+			owner = user
+		unleash(user, target)
+		return
+	if(isliving(target))						//So we don't have a mob, let's try to claim one! Is the target a mob?
+		var/mob/living/M = target
+		if(M.stat == DEAD)						//Is it dead? We can't influence dead things.
+			playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
+			to_chat(user, "<span class='notice'>\The [src] clicks unsatisfyingly... \The [M] is not in a state to be captured.</span>")
+			return
+		if(M.client)							//Is it player controlled?
+			capture_player(M, user)				//We have to do things a little differently if so.
+			return
+		if(!isanimal(M))						//So it's not player controlled, but it's also not a simplemob?
+			to_chat(user, "<span class='warning'>This creature is not suitable for capture.</span>")
+			playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
+			return
+		var/mob/living/simple_mob/S = M
+		if(!S.ai_holder)						//We don't really want to capture simplemobs that don't have an AI
+			to_chat(user, "<span class='warning'>This creature is not suitable for capture.</span>")
+			playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
+			return
+		if(prob(capture_chance(S)))				//OKAY! So we have an NPC simplemob with an AI, let's calculate its capture chance! It varies based on the mob's condition.
+			capture(S, user)					//We did it! Woo! We capture it!
+			user.visible_message("\The [src] clicks, and then emits a small chime.", "Alright! \The [S] was caught!")
+			recall(user)
+			active = TRUE
+			update_icon()
+			spawn(activate_cooldown)
+			update_icon()
+		else									//Shoot, it didn't work and now it's mad!!!
+			S.ai_holder.go_wake()
+			S.ai_holder.target = user
+			S.ai_holder.track_target_position()
+			S.ai_holder.set_stance(STANCE_FIGHT)
+			visible_message("\The [src] bonks into \the [S], angering it!")
+		update_icon()
+		spawn(activate_cooldown)
+		update_icon()
+		return
+	//The target is not a mob, so let's not do anything.
+	playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
+	to_chat(user, "<span class='notice'>\The [src] clicks unsatisfyingly.</span>")
 
-/obj/item/capture_crystal/proc/recall(mob/living/user)
-	if(bound_mob in view(user))
-		//flick_overlay_view(coolanimation, bound_mob.loc, 11, FALSE)
+//We're using the crystal, but what will it do?
+/obj/item/capture_crystal/proc/determine_action(mob/living/U)
+	if(!cooldown_check())	//Are we ready yet?
+		to_chat(thrower, "<span class='notice'>\The [src] clicks unsatisfyingly... It is not ready yet.</span>")
+		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
+		return				//No
+	if(bound_mob in contents)	//Do we have our mob?
+		unleash(U)				//Yes, let's let it out!
+	else if (bound_mob)			//Do we HAVE a mob?
+		recall(U)				//Yes, let's try to put it back in the crystal
+	else						//No we don't have a mob, let's reset the crystal.
+		to_chat(U, "<span class='notice'>\The [src] clicks unsatisfyingly.</span>")
+		active = FALSE
+		update_icon()
+		owner = null
+		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
+
+//Let's try to call our mob back!
+/obj/item/capture_crystal/proc/recall(mob/living/user, atom/target)
+	if(bound_mob in view(user))		//We can only recall it if we can see it
 		var/turf/turfmemory = get_turf(bound_mob)
 		if(isanimal(bound_mob))
 			var/mob/living/simple_mob/M = bound_mob
-			M.ai_holder.go_sleep()
+			M.ai_holder.go_sleep()	//AI doesn't need to think when it's in the crystal
 		bound_mob.forceMove(src)
-		icon_state = "full"
-		stored_mob = TRUE
+		last_activate = world.time
 		bound_mob.visible_message("\The [user]'s [src] flashes, disappearing [bound_mob] in an instant!!!", "\The [src] pulls you back into confinement in a flash of light!!!")
 		animate_action(turfmemory)
+		playsound(src, 'sound/effects/capture-crystal-in.ogg', 75, 1, -1)
+		update_icon()
+		spawn(activate_cooldown)	//We wait for the cooldown to go by
+		update_icon()
 	else
 		to_chat(user, "<span class='notice'>\The [src] clicks and emits a small, unpleasant tone. \The [bound_mob] cannot be recalled.</span>")
 
+//Let's let our mob out!
 /obj/item/capture_crystal/proc/unleash(mob/living/user, atom/target)
-	if(!target)
+	if(!user && !target)			//We got thrown but we're not sure who did it, let's go to where the crystal is
+		bound_mob.forceMove(src.drop_location())
+		return
+	if(!target)						//We know who wants to let us out, but they didn't say where, so let's drop us on them
 		bound_mob.forceMove(user.drop_location())
-	else
-		bound_mob.forceMove(target)
-	icon_state = "empty"
-	stored_mob = FALSE
-	//flick_overlay_view(coolanimation, bound_mob, 11, FALSE)
+	else							//We got thrown! Let's go where we got thrown
+		bound_mob.forceMove(target.drop_location())
+	last_activate = world.time
 	if(isanimal(bound_mob))
 		var/mob/living/simple_mob/M = bound_mob
-		M.ai_holder.go_wake()
-	bound_mob.visible_message("\The [user]'s [src] flashes, \the [bound_mob] appears in an instant!!!", "The world around you rematerialize as you are unleashed from the [src] next to \the [user].")
+		M.ai_holder.go_wake()		//Okay it's time to do work, let's wake up!
+		if(!M.client && !M.ghostjoin)
+			M.ghostjoin = 1			//Players playing mobs is fun!
+	bound_mob.faction = owner.faction	//Let's make sure we aren't hostile to our owner or their friends
+	bound_mob.visible_message("\The [user]'s [src] flashes, \the [bound_mob] appears in an instant!!!", "The world around you rematerialize as you are unleashed from the [src] next to \the [user]. You feel a strong compulsion to enact \the [owner]'s will.")
 	animate_action(get_turf(bound_mob))
+	playsound(src, 'sound/effects/capture-crystal-out.ogg', 75, 1, -1)
+	update_icon()
+	spawn(activate_cooldown)
+	update_icon()
 
+//Let's make a flashy sparkle when someone appears or disappears!
 /obj/item/capture_crystal/proc/animate_action(atom/thing)
 	var/image/coolanimation = image('icons/obj/capture_crystal_vr.dmi', null, "animation")
 	coolanimation.plane = PLANE_LIGHTING_ABOVE
@@ -112,20 +353,367 @@
 	sleep(11)
 	thing.overlays -= coolanimation
 
+//IF the crystal somehow ends up in a tummy and digesting with a bound mob who doesn't want to be eaten, let's move them to the ground
 /obj/item/capture_crystal/digest_act(var/atom/movable/item_storage = null)
-	if(bound_mob && bound_mob.digestable)
-		return TRUE
-	else
-		return FALSE
+	if(bound_mob in contents && !bound_mob.devourable)
+		bound_mob.forceMove(src.drop_location())
+	return ..()
 
+//We got thrown! Let's figure out what to do
 /obj/item/capture_crystal/throw_at(atom/target, range, speed, mob/thrower, spin = TRUE, datum/callback/callback)
 	. = ..()
-	if(!stored_mob || !bound_mob)
+	if(target == bound_mob && thrower != bound_mob)		//We got thrown at our bound mob (and weren't thrown by the bound mob) let's ignore the cooldown and just put them back in
+		recall(thrower)
 		return
-	sleep(10)
-	unleash(thrower, target)
+	if(!cooldown_check())		//OTHERWISE let's obey the cooldown
+		to_chat(thrower, "<span class='notice'>\The [src] emits an soft tone... It is not ready yet.</span>")
+		playsound(src, 'sound/effects/capture-crystal-problem.ogg', 75, 1, -1)
+		return
+	if(!active)					//The ball isn't set up, let's try to set it up.
+		if(isliving(target))	//We're hitting a mob, let's try to capture it.
+			sleep(10)
+			activate(thrower, target)
+			return
+		sleep(10)
+		activate(thrower, src)
+		return
+	if(!bound_mob)				//We hit something else, and we don't have a mob, so we can't really do anything!
+		to_chat(thrower, "<span class='notice'>\The [src] clicks unpleasantly...</span>")
+		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
+		return
+	if(bound_mob in contents)	//We have our mob! Let's try to let it out.
+		sleep(10)
+		unleash(thrower, src)
+		update_icon()
+	else						//Our mob isn't here, we can't do anything.
+		to_chat(thrower, "<span class='notice'>\The [src] clicks unpleasantly...</span>")
+		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 
-/obj/item/capture_crystal/woof
+
+/obj/item/capture_crystal/cass
 	spawn_mob_type = /mob/living/simple_mob/vore/woof/cass
 /obj/item/capture_crystal/adg
 	spawn_mob_type = /mob/living/simple_mob/mechanical/mecha/combat/gygax/dark/advanced
+/obj/item/capture_crystal/bigdragon
+	spawn_mob_type = /mob/living/simple_mob/vore/bigdragon
+/obj/item/capture_crystal/bigdragon/friendly
+	spawn_mob_type = /mob/living/simple_mob/vore/bigdragon/friendly
+
+/obj/item/capture_crystal/teppi
+	spawn_mob_type = /mob/living/simple_mob/vore/alienanimals/teppi
+/obj/item/capture_crystal/broodmother
+	spawn_mob_type = /mob/living/simple_mob/animal/giant_spider/broodmother
+
+/obj/item/capture_crystal/random
+	var/static/list/possible_mob_types = list(
+		list(/mob/living/simple_mob/animal/goat),
+		list(
+			/mob/living/simple_mob/animal/passive/bird,
+			/mob/living/simple_mob/animal/passive/bird/azure_tit,
+			/mob/living/simple_mob/animal/passive/bird/black_bird,
+			/mob/living/simple_mob/animal/passive/bird/european_robin,
+			/mob/living/simple_mob/animal/passive/bird/goldcrest,
+			/mob/living/simple_mob/animal/passive/bird/ringneck_dove,
+			/mob/living/simple_mob/animal/passive/bird/parrot,
+			/mob/living/simple_mob/animal/passive/bird/parrot/black_headed_caique,
+			/mob/living/simple_mob/animal/passive/bird/parrot/budgerigar,
+			/mob/living/simple_mob/animal/passive/bird/parrot/budgerigar/blue,
+			/mob/living/simple_mob/animal/passive/bird/parrot/budgerigar/bluegreen,
+			/mob/living/simple_mob/animal/passive/bird/parrot/cockatiel,
+			/mob/living/simple_mob/animal/passive/bird/parrot/cockatiel/grey,
+			/mob/living/simple_mob/animal/passive/bird/parrot/cockatiel/white,
+			/mob/living/simple_mob/animal/passive/bird/parrot/cockatiel/yellowish,
+			/mob/living/simple_mob/animal/passive/bird/parrot/eclectus,
+			/mob/living/simple_mob/animal/passive/bird/parrot/grey_parrot,
+			/mob/living/simple_mob/animal/passive/bird/parrot/kea,
+			/mob/living/simple_mob/animal/passive/bird/parrot/pink_cockatoo,
+			/mob/living/simple_mob/animal/passive/bird/parrot/sulphur_cockatoo,
+			/mob/living/simple_mob/animal/passive/bird/parrot/white_caique,
+			/mob/living/simple_mob/animal/passive/bird/parrot/white_cockatoo
+		),
+		list(
+			/mob/living/simple_mob/animal/passive/cat,
+			/mob/living/simple_mob/animal/passive/cat/black
+		),
+		list(/mob/living/simple_mob/animal/passive/chick),
+		list(/mob/living/simple_mob/animal/passive/cow),
+		list(/mob/living/simple_mob/animal/passive/dog/brittany),
+		list(/mob/living/simple_mob/animal/passive/dog/corgi),
+		list(/mob/living/simple_mob/animal/passive/dog/tamaskan),
+		list(/mob/living/simple_mob/animal/passive/fox),
+		list(/mob/living/simple_mob/animal/passive/hare),
+		list(/mob/living/simple_mob/animal/passive/lizard),
+		list(/mob/living/simple_mob/animal/passive/mouse),
+		list(/mob/living/simple_mob/animal/passive/mouse/jerboa),
+		list(/mob/living/simple_mob/animal/passive/opossum),
+		list(/mob/living/simple_mob/animal/passive/pillbug),
+		list(/mob/living/simple_mob/animal/passive/snake),
+		list(/mob/living/simple_mob/animal/passive/tindalos),
+		list(/mob/living/simple_mob/animal/passive/yithian),
+		list(
+			/mob/living/simple_mob/animal/wolf,
+			/mob/living/simple_mob/animal/wolf/direwolf
+			),
+		list(/mob/living/simple_mob/vore/rabbit),
+		list(/mob/living/simple_mob/vore/redpanda),
+		list(/mob/living/simple_mob/vore/woof),
+		list(/mob/living/simple_mob/vore/fennec),
+		list(/mob/living/simple_mob/vore/fennix),
+		list(/mob/living/simple_mob/vore/hippo),
+		list(/mob/living/simple_mob/vore/horse),
+		list(/mob/living/simple_mob/vore/bee),
+		list(
+			/mob/living/simple_mob/animal/space/bear,
+			/mob/living/simple_mob/animal/space/bear/brown
+			),
+		list(
+			/mob/living/simple_mob/otie/feral,
+			/mob/living/simple_mob/otie/feral/chubby,
+			/mob/living/simple_mob/otie/red,
+			/mob/living/simple_mob/otie/red/chubby
+			),
+		list(/mob/living/simple_mob/animal/sif/diyaab),
+		list(/mob/living/simple_mob/animal/sif/duck),
+		list(/mob/living/simple_mob/animal/sif/frostfly),
+		list(
+			/mob/living/simple_mob/animal/sif/glitterfly =50,
+			/mob/living/simple_mob/animal/sif/glitterfly/rare = 1
+			),
+		list(
+			/mob/living/simple_mob/animal/sif/kururak = 10,
+			/mob/living/simple_mob/animal/sif/kururak/leader = 1,
+			/mob/living/simple_mob/animal/sif/kururak/hibernate = 2,
+			),
+		list(
+			/mob/living/simple_mob/animal/sif/sakimm = 10,
+			/mob/living/simple_mob/animal/sif/sakimm/intelligent = 1
+			),
+		list(/mob/living/simple_mob/animal/sif/savik) = 5,
+		list(
+			/mob/living/simple_mob/animal/sif/shantak = 10,
+			/mob/living/simple_mob/animal/sif/shantak/leader = 1
+			),
+		list(/mob/living/simple_mob/animal/sif/siffet),
+		list(/mob/living/simple_mob/animal/sif/tymisian),
+		list(
+			/mob/living/simple_mob/animal/giant_spider/nurse = 10,
+			/mob/living/simple_mob/animal/giant_spider/electric = 5,
+			/mob/living/simple_mob/animal/giant_spider/frost = 5,
+			/mob/living/simple_mob/animal/giant_spider/hunter = 10,
+			/mob/living/simple_mob/animal/giant_spider/ion = 5,
+			/mob/living/simple_mob/animal/giant_spider/lurker = 10,
+			/mob/living/simple_mob/animal/giant_spider/pepper = 10,
+			/mob/living/simple_mob/animal/giant_spider/phorogenic = 10,
+			/mob/living/simple_mob/animal/giant_spider/thermic = 5,
+			/mob/living/simple_mob/animal/giant_spider/tunneler = 10,
+			/mob/living/simple_mob/animal/giant_spider/webslinger = 5
+			),
+		list(
+			/mob/living/simple_mob/animal/wolf = 10,
+			/mob/living/simple_mob/animal/wolf/direwolf = 1
+			),
+		list(/mob/living/simple_mob/creature/strong),
+		list(/mob/living/simple_mob/faithless/strong),
+		list(/mob/living/simple_mob/animal/goat),
+		list(
+			/mob/living/simple_mob/animal/sif/shantak/leader = 1,
+			/mob/living/simple_mob/animal/sif/shantak = 10),
+		list(/mob/living/simple_mob/animal/sif/savik,),
+		list(/mob/living/simple_mob/animal/sif/hooligan_crab),
+		list(
+			/mob/living/simple_mob/animal/space/alien = 50,
+			/mob/living/simple_mob/animal/space/alien/drone = 40,
+			/mob/living/simple_mob/animal/space/alien/sentinel = 25,
+			/mob/living/simple_mob/animal/space/alien/sentinel/praetorian = 15,
+			/mob/living/simple_mob/animal/space/alien/queen = 10,
+			/mob/living/simple_mob/animal/space/alien/queen/empress = 5,
+			/mob/living/simple_mob/animal/space/alien/queen/empress/mother = 1
+			),
+		list(/mob/living/simple_mob/animal/space/bats/cult/strong),
+		list(
+			/mob/living/simple_mob/animal/space/bear,
+			/mob/living/simple_mob/animal/space/bear/brown
+			),
+		list(
+			/mob/living/simple_mob/animal/space/carp = 50,
+			/mob/living/simple_mob/animal/space/carp/large = 10,
+			/mob/living/simple_mob/animal/space/carp/large/huge = 5
+			),
+		list(/mob/living/simple_mob/animal/space/goose),
+		list(/mob/living/simple_mob/animal/space/jelly),
+		list(/mob/living/simple_mob/animal/space/tree),
+		list(
+			/mob/living/simple_mob/vore/aggressive/corrupthound = 10,
+			/mob/living/simple_mob/vore/aggressive/corrupthound/prettyboi = 1,
+			),
+		list(/mob/living/simple_mob/vore/aggressive/deathclaw),
+		list(/mob/living/simple_mob/vore/aggressive/dino),
+		list(/mob/living/simple_mob/vore/aggressive/dragon),
+		list(/mob/living/simple_mob/vore/aggressive/dragon/virgo3b),
+		list(/mob/living/simple_mob/vore/aggressive/frog),
+		list(/mob/living/simple_mob/vore/aggressive/giant_snake),
+		list(/mob/living/simple_mob/vore/aggressive/mimic),
+		list(/mob/living/simple_mob/vore/aggressive/panther),
+		list(/mob/living/simple_mob/vore/aggressive/rat),
+		list(/mob/living/simple_mob/vore/bee),
+		list(
+			/mob/living/simple_mob/vore/sect_drone = 10,
+			/mob/living/simple_mob/vore/sect_queen = 1
+			),
+		list(/mob/living/simple_mob/vore/solargrub),
+		list(
+			/mob/living/simple_mob/vore/oregrub = 5,
+			/mob/living/simple_mob/vore/oregrub/lava = 1
+			),
+		list(/mob/living/simple_mob/vore/catgirl),
+		list(/mob/living/simple_mob/vore/wolfgirl),
+		list(
+			/mob/living/simple_mob/vore/lamia,
+			/mob/living/simple_mob/vore/lamia/albino,
+			/mob/living/simple_mob/vore/lamia/albino/bra,
+			/mob/living/simple_mob/vore/lamia/albino/shirt,
+			/mob/living/simple_mob/vore/lamia/bra,
+			/mob/living/simple_mob/vore/lamia/cobra,
+			/mob/living/simple_mob/vore/lamia/cobra/bra,
+			/mob/living/simple_mob/vore/lamia/cobra/shirt,
+			/mob/living/simple_mob/vore/lamia/copper,
+			/mob/living/simple_mob/vore/lamia/copper/bra,
+			/mob/living/simple_mob/vore/lamia/copper/shirt,
+			/mob/living/simple_mob/vore/lamia/green,
+			/mob/living/simple_mob/vore/lamia/green/bra,
+			/mob/living/simple_mob/vore/lamia/green/shirt,
+			/mob/living/simple_mob/vore/lamia/zebra,
+			/mob/living/simple_mob/vore/lamia/zebra/bra,
+			/mob/living/simple_mob/vore/lamia/zebra/shirt
+			),
+		list(
+			/mob/living/simple_mob/humanoid/merc = 100,
+			/mob/living/simple_mob/humanoid/merc/melee/sword = 50,
+			/mob/living/simple_mob/humanoid/merc/ranged = 25,
+			/mob/living/simple_mob/humanoid/merc/ranged/grenadier = 1,
+			/mob/living/simple_mob/humanoid/merc/ranged/ionrifle = 10,
+			/mob/living/simple_mob/humanoid/merc/ranged/laser = 5,
+			/mob/living/simple_mob/humanoid/merc/ranged/rifle = 5,
+			/mob/living/simple_mob/humanoid/merc/ranged/smg = 5,
+			/mob/living/simple_mob/humanoid/merc/ranged/sniper = 1,
+			/mob/living/simple_mob/humanoid/merc/ranged/space = 10,
+			/mob/living/simple_mob/humanoid/merc/ranged/technician = 5
+			),
+		list(
+			/mob/living/simple_mob/humanoid/pirate = 3,
+			/mob/living/simple_mob/humanoid/pirate/ranged = 1
+			),
+		list(/mob/living/simple_mob/mechanical/combat_drone),
+		list(/mob/living/simple_mob/mechanical/corrupt_maint_drone),
+		list(
+			/mob/living/simple_mob/mechanical/hivebot = 100,
+			/mob/living/simple_mob/mechanical/hivebot/ranged_damage = 20,
+			/mob/living/simple_mob/mechanical/hivebot/ranged_damage/backline = 10,
+			/mob/living/simple_mob/mechanical/hivebot/ranged_damage/basic = 20,
+			/mob/living/simple_mob/mechanical/hivebot/ranged_damage/dot = 5,
+			/mob/living/simple_mob/mechanical/hivebot/ranged_damage/ion = 20,
+			/mob/living/simple_mob/mechanical/hivebot/ranged_damage/laser = 10,
+			/mob/living/simple_mob/mechanical/hivebot/ranged_damage/rapid = 2,
+			/mob/living/simple_mob/mechanical/hivebot/ranged_damage/siege = 1,
+			/mob/living/simple_mob/mechanical/hivebot/ranged_damage/siege/emp = 5,
+			/mob/living/simple_mob/mechanical/hivebot/ranged_damage/siege/fragmentation = 1,
+			/mob/living/simple_mob/mechanical/hivebot/ranged_damage/siege/radiation = 1,
+			/mob/living/simple_mob/mechanical/hivebot/ranged_damage/strong = 3,
+			/mob/living/simple_mob/mechanical/hivebot/ranged_damage/strong/guard = 3,
+			/mob/living/simple_mob/mechanical/hivebot/support = 8,
+			/mob/living/simple_mob/mechanical/hivebot/support/commander = 5,
+			/mob/living/simple_mob/mechanical/hivebot/support/commander/autofollow = 10,
+			/mob/living/simple_mob/mechanical/hivebot/swarm = 20,
+			/mob/living/simple_mob/mechanical/hivebot/tank = 20,
+			/mob/living/simple_mob/mechanical/hivebot/tank/armored = 20,
+			/mob/living/simple_mob/mechanical/hivebot/tank/armored/anti_bullet = 20,
+			/mob/living/simple_mob/mechanical/hivebot/tank/armored/anti_laser = 20,
+			/mob/living/simple_mob/mechanical/hivebot/tank/armored/anti_melee = 20,
+			/mob/living/simple_mob/mechanical/hivebot/tank/meatshield = 20
+			),
+		list(/mob/living/simple_mob/mechanical/infectionbot),
+		list(/mob/living/simple_mob/mechanical/mining_drone),
+		list(/mob/living/simple_mob/mechanical/technomancer_golem),
+		list(
+			/mob/living/simple_mob/mechanical/viscerator,
+			/mob/living/simple_mob/mechanical/viscerator/piercing
+			),
+		list(/mob/living/simple_mob/mechanical/wahlem),
+		list(/mob/living/simple_mob/animal/passive/fox/syndicate),
+		list(/mob/living/simple_mob/animal/passive/fox),
+		list(/mob/living/simple_mob/animal/wolf/direwolf),
+		list(/mob/living/simple_mob/animal/space/jelly),
+		list(
+			/mob/living/simple_mob/otie/feral,
+			/mob/living/simple_mob/otie/feral/chubby,
+			/mob/living/simple_mob/otie/red,
+			/mob/living/simple_mob/otie/red/chubby
+			),
+		list(
+			/mob/living/simple_mob/shadekin/blue/ai = 100,
+			/mob/living/simple_mob/shadekin/green/ai = 50,
+			/mob/living/simple_mob/shadekin/orange/ai = 20,
+			/mob/living/simple_mob/shadekin/purple/ai = 60,
+			/mob/living/simple_mob/shadekin/red/ai = 40,
+			/mob/living/simple_mob/shadekin/yellow/ai = 1
+			),
+		list(
+			/mob/living/simple_mob/vore/aggressive/corrupthound,
+			/mob/living/simple_mob/vore/aggressive/corrupthound/prettyboi
+			),
+		list(/mob/living/simple_mob/vore/aggressive/deathclaw),
+		list(/mob/living/simple_mob/vore/aggressive/dino),
+		list(/mob/living/simple_mob/vore/aggressive/dragon),
+		list(/mob/living/simple_mob/vore/aggressive/dragon/virgo3b),
+		list(/mob/living/simple_mob/vore/aggressive/frog),
+		list(/mob/living/simple_mob/vore/aggressive/giant_snake),
+		list(/mob/living/simple_mob/vore/aggressive/mimic),
+		list(/mob/living/simple_mob/vore/aggressive/panther),
+		list(/mob/living/simple_mob/vore/aggressive/rat),
+		list(/mob/living/simple_mob/vore/bee),
+		list(/mob/living/simple_mob/vore/catgirl),
+		list(/mob/living/simple_mob/vore/cookiegirl),
+		list(/mob/living/simple_mob/vore/fennec),
+		list(/mob/living/simple_mob/vore/fennix),
+		list(/mob/living/simple_mob/vore/hippo),
+		list(/mob/living/simple_mob/vore/horse),
+		list(/mob/living/simple_mob/vore/oregrub),
+		list(/mob/living/simple_mob/vore/rabbit),
+		list(
+			/mob/living/simple_mob/vore/redpanda = 50,
+			/mob/living/simple_mob/vore/redpanda/fae = 1
+			),
+		list(
+			/mob/living/simple_mob/vore/sect_drone = 10,
+			/mob/living/simple_mob/vore/sect_queen = 1
+			),
+		list(/mob/living/simple_mob/vore/solargrub),
+		list(/mob/living/simple_mob/vore/woof),
+		list(/mob/living/simple_mob/vore/alienanimals/teppi),
+		list(/mob/living/simple_mob/vore/alienanimals/space_ghost),
+		list(/mob/living/simple_mob/vore/alienanimals/catslug),
+		list(/mob/living/simple_mob/vore/alienanimals/space_jellyfish),
+		list(/mob/living/simple_mob/vore/alienanimals/startreader),
+		list(/mob/living/simple_mob/vore/bigdragon),
+		list(
+			/mob/living/simple_mob/vore/leopardmander = 50,
+			/mob/living/simple_mob/vore/leopardmander/blue = 10,
+			/mob/living/simple_mob/vore/leopardmander/exotic = 1
+			),
+		list(/mob/living/simple_mob/vore/sheep),
+		list(
+			/mob/living/simple_mob/vore/greatwolf,
+			/mob/living/simple_mob/vore/greatwolf/black,
+			/mob/living/simple_mob/vore/greatwolf/grey
+			),
+		list(/mob/living/simple_mob/vore/weretiger)
+		)
+
+/obj/item/capture_crystal/random/Initialize()
+	var/subchoice = pickweight(possible_mob_types)		//Some of the lists have nested lists, so let's pick one of them
+	var/choice = pickweight(subchoice)					//And then we'll pick something from whatever's left
+	spawn_mob_type = choice								//Now when someone uses this, we'll spawn whatever we picked!
+	return ..()
+
+/mob/living
+	var/capture_crystal = TRUE		//If TRUE, the mob is capturable. Otherwise it isn't.
