@@ -706,10 +706,10 @@
 			to_chat(src, "<span class='notice'>You can taste the submissiveness in the wearer of [I]!</span>")
 		else if(iscapturecrystal(I))
 			var/obj/item/capture_crystal/C = I
-			if(C.bound_mob && C.bound_mob in C.contents)
+			if(C.bound_mob && (C.bound_mob in C.contents))
 				if(isbelly(C.loc))
 					var/obj/belly/B = C.loc
-					to_chat(C.bound_mob, "<span class= 'notice'>Outside of your crystal, you can see; <B>[B.desc]</B>")
+					to_chat(C.bound_mob, "<span class= 'notice'>Outside of your crystal, you can see; <B>[B.desc]</B></span>")
 					to_chat(src, "<span class='notice'>You can taste the the power of command.</span>")
 		else
 			to_chat(src, "<span class='notice'>You can taste the flavor of garbage. Delicious.</span>")
