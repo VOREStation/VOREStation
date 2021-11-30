@@ -131,6 +131,8 @@
 		icon_state = empty_icon
 	if(!cooldown_check())
 		icon_state = "[icon_state]-busy"
+		spawn(activate_cooldown)		//If it's busy then we want to wait a bit to fix the sprite after the cooldown is done.
+		update_icon()
 
 /obj/item/capture_crystal/proc/cooldown_check()
 	if(world.time < last_activate + activate_cooldown)
@@ -193,19 +195,47 @@
 	desc = "A glowing crystal in what appears to be some kind of steel housing."
 	
 //Determines the capture chance! So you can't capture AI mobs if they're perfectly healthy and all that
-/obj/item/capture_crystal/proc/capture_chance(mob/living/M)
-	var/capture_chance = ((1 - (M.health / M.maxHealth)) * 100)
-	if(capture_chance_modifier >= 100)
+/obj/item/capture_crystal/proc/capture_chance(mob/living/M, user)
+	if(capture_chance_modifier >= 100)		//Master crystal always work
 		return 100
-	capture_chance *= capture_chance_modifier
+	var/capture_chance = ((1 - (M.health / M.maxHealth)) * 100)	//Inverted health percent! 100% = 0%
+	//So I don't know how this works but here's a kind of explanation
+	//Basic chance + ((Mob's max health - minimum calculated health) / (Max allowed health - Min allowed health)*(Chance at Max allowed health - Chance at minimum allowed health)
+	capture_chance += 35 + ((M.maxHealth - 5)/ (1000-5)*(-100 - 35))
+	//Basically! Mobs over 1000 max health will be unable to be caught without using status effects.
+	//Thanks Aronai!
+	var/effect_count = 0	//This will give you a smol chance to capture if you have applied status effects, even if the chance would ordinarily be <0
 	if(M.stat == UNCONSCIOUS)
-		capture_chance += 10
+		capture_chance += 0.1
+		effect_count += 1
 	else if(M.stat == CONSCIOUS)
-		capture_chance -= 25
+		capture_chance *= 0.9
 	else
 		capture_chance = 0
+	if(M.weakened)			//Haha you fall down
+		capture_chance += 0.1
+		effect_count += 1
+	if(M.stunned)			//What's the matter???
+		capture_chance += 0.1
+		effect_count += 1
+	if(M.on_fire)			//AAAAAAAA
+		capture_chance += 0.1
+		effect_count += 1
+	if(M.paralysis)			//Oh noooo
+		capture_chance += 0.1
+		effect_count += 1
+	if(M.ai_holder.stance == STANCE_IDLE)	//SNEAK ATTACK???
+		capture_chance += 0.1
+		effect_count += 1
+
+	capture_chance *= capture_chance_modifier
+
 	if(capture_chance <= 0)
-		capture_chance = 0 
+		capture_chance = 0 + effect_count
+		if(capture_chance <= 0)
+			capture_chance = 0
+			to_chat(user, "<span class='notice'>There's no chance... It needs to be weaker.</span>")
+
 	last_activate = world.time
 	return capture_chance
 
@@ -261,29 +291,36 @@
 	if(isliving(target))						//So we don't have a mob, let's try to claim one! Is the target a mob?
 		var/mob/living/M = target
 		last_activate = world.time
+		if(M.capture_caught)					//Can't capture things that were already caught.
+			playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
+			to_chat(user, "<span class='notice'>\The [src] clicks unsatisfyingly... \The [M] is already under someone else's control.</span>")
+			update_icon()
+			return
 		if(M.stat == DEAD)						//Is it dead? We can't influence dead things.
 			playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 			to_chat(user, "<span class='notice'>\The [src] clicks unsatisfyingly... \The [M] is not in a state to be captured.</span>")
+			update_icon()
 			return
 		if(M.client)							//Is it player controlled?
 			capture_player(M, user)				//We have to do things a little differently if so.
+			update_icon()
 			return
 		if(!isanimal(M))						//So it's not player controlled, but it's also not a simplemob?
 			to_chat(user, "<span class='warning'>This creature is not suitable for capture.</span>")
 			playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
+			update_icon()
 			return
 		var/mob/living/simple_mob/S = M
 		if(!S.ai_holder)						//We don't really want to capture simplemobs that don't have an AI
 			to_chat(user, "<span class='warning'>This creature is not suitable for capture.</span>")
 			playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
+			update_icon()
 			return
-		if(prob(capture_chance(S)))				//OKAY! So we have an NPC simplemob with an AI, let's calculate its capture chance! It varies based on the mob's condition.
+		if(prob(capture_chance(S, user)))				//OKAY! So we have an NPC simplemob with an AI, let's calculate its capture chance! It varies based on the mob's condition.
 			capture(S, user)					//We did it! Woo! We capture it!
 			user.visible_message("\The [src] clicks, and then emits a small chime.", "Alright! \The [S] was caught!")
 			recall(user)
 			active = TRUE
-			update_icon()
-			spawn(activate_cooldown)
 			update_icon()
 		else									//Shoot, it didn't work and now it's mad!!!
 			S.ai_holder.go_wake()
@@ -291,8 +328,6 @@
 			S.ai_holder.track_target_position()
 			S.ai_holder.set_stance(STANCE_FIGHT)
 			user.visible_message("\The [src] bonks into \the [S], angering it!")
-		update_icon()
-		spawn(activate_cooldown)
 		update_icon()
 		return
 	//The target is not a mob, so let's not do anything.
@@ -329,8 +364,6 @@
 		animate_action(turfmemory)
 		playsound(src, 'sound/effects/capture-crystal-in.ogg', 75, 1, -1)
 		update_icon()
-		spawn(activate_cooldown)	//We wait for the cooldown to go by
-		update_icon()
 	else
 		to_chat(user, "<span class='notice'>\The [src] clicks and emits a small, unpleasant tone. \The [bound_mob] cannot be recalled.</span>")
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
@@ -355,8 +388,6 @@
 	animate_action(get_turf(bound_mob))
 	playsound(src, 'sound/effects/capture-crystal-out.ogg', 75, 1, -1)
 	update_icon()
-	spawn(activate_cooldown)
-	update_icon()
 
 //Let's make a flashy sparkle when someone appears or disappears!
 /obj/item/capture_crystal/proc/animate_action(atom/thing)
@@ -380,7 +411,10 @@
 		return
 	if(!cooldown_check())		//OTHERWISE let's obey the cooldown
 		to_chat(thrower, "<span class='notice'>\The [src] emits an soft tone... It is not ready yet.</span>")
-		playsound(src, 'sound/effects/capture-crystal-problem.ogg', 75, 1, -1)
+		if(bound_mob)
+			playsound(src, 'sound/effects/capture-crystal-problem.ogg', 75, 1, -1)
+		else
+			playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 		return
 	if(!active)					//The ball isn't set up, let's try to set it up.
 		if(isliving(target))	//We're hitting a mob, let's try to capture it.
@@ -741,4 +775,4 @@
 
 /mob/living
 	var/capture_crystal = TRUE		//If TRUE, the mob is capturable. Otherwise it isn't.
-	var/capture_caught = FALSE
+	var/capture_caught = FALSE		//If TRUE, the mob has already been caught, and so cannot be caught again.

@@ -1,10 +1,10 @@
 /datum/category_item/catalogue/fauna/spacewhale
-	name = "Alien Wildlife - Star Treader"
-	desc = "A hard shelled creature that lives on asteroids.\
-	It is quite durable and very opportunistic in its feeding habits.\
-	It is vulnerable to extreme vibrations, and from the bottom."
+	name = "Alien Wildlife - Space Whale"
+	desc = "A massive space creature! These are typically peaceful to anything smaller than themselves, with exception given to space carp, which it eats.\
+	It is known to ravage and devour other large space dwelling species.\
+	It occasionally gets restless and moves around erratically, which may affect the local space weather.\
+	This creature shows no real interest in or aversion to spacecraft."
 	value = CATALOGUER_REWARD_SUPERHARD
-
 
 /mob/living/simple_mob/vore/overmap/spacewhale
 	name = "space whale"
@@ -19,7 +19,6 @@
 
 	om_child_type = /obj/effect/overmap/visitable/simplemob/spacewhale
 
-	faction = "space whale"
 	maxHealth = 100000
 	health = 100000
 	movement_cooldown = 50
@@ -82,6 +81,7 @@
 	vore_active = 1
 	vore_capacity = 99
 	vore_bump_chance = 99
+	vore_pounce_chance = 99
 	vore_ignores_undigestable = 0
 	vore_default_mode = DM_DIGEST
 	vore_icons = SA_ICON_LIVING
@@ -91,9 +91,7 @@
 	vore_default_item_mode = IM_DIGEST
 
 /datum/say_list/spacewhale
-	emote_see = list("bobs", "digs around","gnashes at something","yawns","snaps at something")
-	emote_hear = list("thrumms","clicks","rattles","groans","burbles")
-
+	emote_see = list("ripples and flows", "flashes rhythmically","glows faintly","investigates something")
 
 /mob/living/simple_mob/vore/overmap/spacewhale/init_vore()
 	..()

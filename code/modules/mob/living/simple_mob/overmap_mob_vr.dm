@@ -84,6 +84,7 @@
 	name = "DONT SPAWN ME"
 	desc = "I'm a bad person I'm sorry"
 
+	faction = "overmap"
 	low_priority = FALSE
 	devourable = FALSE
 	digestable = FALSE
