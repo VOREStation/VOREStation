@@ -2,28 +2,157 @@
 "a" = (
 /turf/template_noop,
 /area/template_noop)
+"c" = (
+/obj/tether_away_spawner/spookyland,
+/turf/simulated/floor/bmarble,
+/area/om_adventure/poi/cabin2)
 "e" = (
+/obj/structure/simple_door/wood,
 /turf/simulated/floor/plating/eris/under,
+/area/om_adventure/poi/cabin2)
+"g" = (
+/obj/structure/table/rack/shelf,
+/obj/random/mre,
+/obj/random/mre,
+/obj/random/mre,
+/obj/random/mre,
+/turf/simulated/floor/bmarble,
+/area/om_adventure/poi/cabin2)
+"i" = (
+/obj/tether_away_spawner/spookyland,
+/turf/simulated/floor/outdoors/sidewalk/side,
 /area/om_adventure/poi/cabin2)
 "k" = (
 /turf/simulated/wall/log,
 /area/om_adventure/poi/cabin2)
+"l" = (
+/obj/structure/table/steel,
+/obj/random/multiple/underdark/treasure,
+/turf/simulated/floor/bmarble,
+/area/om_adventure/poi/cabin2)
+"n" = (
+/obj/tether_away_spawner/spookyland,
+/turf/simulated/floor/wood,
+/area/om_adventure/poi/cabin2)
+"p" = (
+/obj/structure/table/woodentable,
+/obj/random/awayloot/looseloot,
+/turf/simulated/floor/wood,
+/area/om_adventure/poi/cabin2)
+"q" = (
+/obj/structure/table/steel,
+/obj/random/awayloot/looseloot,
+/turf/simulated/floor/bmarble,
+/area/om_adventure/poi/cabin2)
+"r" = (
+/obj/tether_away_spawner/spookyland,
+/turf/simulated/floor/carpet/bcarpet,
+/area/om_adventure/poi/cabin2)
+"s" = (
+/obj/structure/bed/chair/sofa/corp/right,
+/turf/simulated/floor/wood,
+/area/om_adventure/poi/cabin2)
+"t" = (
+/obj/structure/bed/chair/sofa/brown/corner,
+/turf/simulated/floor/carpet/bcarpet,
+/area/om_adventure/poi/cabin2)
+"u" = (
+/obj/structure/toilet/prison{
+	dir = 8
+	},
+/obj/tether_away_spawner/spookyland,
+/turf/simulated/floor/tiled/techmaint,
+/area/om_adventure/poi/cabin2)
+"v" = (
+/obj/structure/bed/chair/sofa/brown/left{
+	dir = 8
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/om_adventure/poi/cabin2)
+"w" = (
+/obj/structure/table/rack,
+/obj/random/maintenance,
+/turf/simulated/floor/carpet/bcarpet,
+/area/om_adventure/poi/cabin2)
+"x" = (
+/obj/structure/bed/double/padded,
+/obj/item/weapon/bedsheet/browndouble,
+/obj/structure/curtain/black,
+/turf/simulated/floor/carpet,
+/area/om_adventure/poi/cabin2)
+"y" = (
+/obj/structure/table/steel,
+/obj/random/material,
+/turf/simulated/floor/bmarble,
+/area/om_adventure/poi/cabin2)
 "z" = (
 /turf/simulated/floor/outdoors/sidewalk/side,
+/area/om_adventure/poi/cabin2)
+"A" = (
+/obj/structure/bed/chair/sofa/brown,
+/turf/simulated/floor/carpet/bcarpet,
+/area/om_adventure/poi/cabin2)
+"B" = (
+/obj/structure/table/rack,
+/obj/random/maintenance,
+/obj/random/awayloot/looseloot,
+/turf/simulated/floor/carpet/bcarpet,
 /area/om_adventure/poi/cabin2)
 "D" = (
 /turf/simulated/floor/wood,
 /area/om_adventure/poi/cabin2)
+"E" = (
+/obj/tether_away_spawner/spookyland,
+/turf/simulated/floor/carpet,
+/area/om_adventure/poi/cabin2)
 "F" = (
 /turf/simulated/floor/outdoors/newdirt,
+/area/om_adventure/poi/cabin2)
+"H" = (
+/obj/structure/table/woodentable,
+/obj/random/snack,
+/turf/simulated/floor/carpet/bcarpet,
+/area/om_adventure/poi/cabin2)
+"I" = (
+/obj/structure/table/woodentable,
+/obj/random/awayloot/looseloot,
+/obj/random/maintenance,
+/turf/simulated/floor/wood,
+/area/om_adventure/poi/cabin2)
+"J" = (
+/obj/structure/table/woodentable,
+/turf/simulated/floor/wood,
+/area/om_adventure/poi/cabin2)
+"K" = (
+/obj/structure/bed/chair/sofa/brown/right{
+	dir = 4
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/om_adventure/poi/cabin2)
+"L" = (
+/obj/structure/table/woodentable,
+/obj/random/maintenance,
+/turf/simulated/floor/wood,
 /area/om_adventure/poi/cabin2)
 "M" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor/plating,
 /area/om_adventure/poi/cabin2)
+"N" = (
+/obj/structure/sink{
+	pixel_y = 18
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/om_adventure/poi/cabin2)
 "O" = (
 /turf/simulated/floor/bmarble,
+/area/om_adventure/poi/cabin2)
+"P" = (
+/obj/structure/bed/chair/sofa/brown/corner{
+	dir = 1
+	},
+/turf/simulated/floor/carpet/bcarpet,
 /area/om_adventure/poi/cabin2)
 "Q" = (
 /turf/simulated/floor/carpet/bcarpet,
@@ -33,6 +162,24 @@
 /area/om_adventure/poi/cabin2)
 "T" = (
 /turf/simulated/floor/carpet,
+/area/om_adventure/poi/cabin2)
+"V" = (
+/obj/structure/table/rack,
+/obj/random/awayloot/looseloot,
+/obj/random/tech_supply,
+/obj/random/tech_supply,
+/turf/simulated/floor/bmarble,
+/area/om_adventure/poi/cabin2)
+"X" = (
+/obj/structure/bed/chair/sofa/corp/left,
+/turf/simulated/floor/wood,
+/area/om_adventure/poi/cabin2)
+"Y" = (
+/obj/structure/table/woodentable,
+/obj/random/awayloot/looseloot,
+/obj/random/maintenance,
+/obj/random/maintenance,
+/turf/simulated/floor/wood,
 /area/om_adventure/poi/cabin2)
 
 (1,1,1) = {"
@@ -78,39 +225,39 @@ a
 (3,1,1) = {"
 a
 k
+P
+K
 Q
-Q
-Q
-Q
+B
 k
 a
-z
+i
 a
 k
+I
 D
-D
 T
 T
-T
+x
 k
 a
 "}
 (4,1,1) = {"
 a
 k
-Q
-Q
-Q
+A
+H
+r
 Q
 M
 a
 z
 a
 M
-D
+L
 D
 T
-T
+E
 T
 M
 a
@@ -118,10 +265,10 @@ a
 (5,1,1) = {"
 a
 k
+t
+v
 Q
-Q
-Q
-Q
+w
 k
 k
 e
@@ -143,28 +290,28 @@ k
 e
 k
 k
+V
 O
-O
-O
+V
 k
 D
 D
-D
-D
-D
+J
+p
+L
 k
 a
 "}
 (7,1,1) = {"
 a
 k
-D
-D
+Y
+L
 D
 D
 k
-O
-O
+g
+c
 O
 k
 D
@@ -178,8 +325,8 @@ a
 (8,1,1) = {"
 a
 M
-D
-D
+s
+n
 D
 D
 e
@@ -198,20 +345,20 @@ a
 (9,1,1) = {"
 a
 k
+X
 D
 D
-D
-D
+p
 k
-O
-O
-O
+y
+q
+l
 k
-D
-D
+p
+L
 k
-S
-S
+N
+u
 k
 a
 "}

@@ -2,6 +2,10 @@
 "a" = (
 /turf/simulated/floor/weird_things/dark,
 /area/om_adventure/poi/darktear2)
+"Q" = (
+/obj/tether_away_spawner/spookyland,
+/turf/simulated/floor/weird_things/dark,
+/area/om_adventure/poi/darktear2)
 "S" = (
 /turf/template_noop,
 /area/template_noop)
@@ -26,7 +30,7 @@ S
 "}
 (3,1,1) = {"
 S
-a
+Q
 a
 S
 S
@@ -65,7 +69,7 @@ S
 S
 a
 a
-a
+Q
 a
 S
 "}

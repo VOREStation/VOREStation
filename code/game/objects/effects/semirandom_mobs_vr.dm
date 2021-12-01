@@ -251,12 +251,12 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 			/mob/living/simple_mob/otie/red/chubby
 			),
 		list(
-			/mob/living/simple_mob/shadekin/blue/ai = 100,
-			/mob/living/simple_mob/shadekin/green/ai = 50,
-			/mob/living/simple_mob/shadekin/orange/ai = 20,
-			/mob/living/simple_mob/shadekin/purple/ai = 60,
-			/mob/living/simple_mob/shadekin/red/ai = 40,
-			/mob/living/simple_mob/shadekin/yellow/ai = 1
+			/mob/living/simple_mob/shadekin/blue = 100,
+			/mob/living/simple_mob/shadekin/green = 50,
+			/mob/living/simple_mob/shadekin/orange = 20,
+			/mob/living/simple_mob/shadekin/purple = 60,
+			/mob/living/simple_mob/shadekin/red = 40,
+			/mob/living/simple_mob/shadekin/yellow = 1
 			),
 		list(
 			/mob/living/simple_mob/vore/aggressive/corrupthound,
@@ -459,9 +459,9 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 			/mob/living/simple_mob/animal/giant_spider/webslinger = 5
 			) = 100,
 		list(
-			/mob/living/simple_mob/shadekin/red/ai = 5,
-			/mob/living/simple_mob/shadekin/orange/ai = 1,
-			/mob/living/simple_mob/shadekin/purple/ai = 10
+			/mob/living/simple_mob/shadekin/red = 5,
+			/mob/living/simple_mob/shadekin/orange = 1,
+			/mob/living/simple_mob/shadekin/purple = 10
 			) = 1,
 		list(
 			/mob/living/simple_mob/animal/wolf = 10,
@@ -552,9 +552,9 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 
 	possible_mob_types = list(
 		list(
-			/mob/living/simple_mob/shadekin/blue/ai = 25,
-			/mob/living/simple_mob/shadekin/green/ai = 10,
-			/mob/living/simple_mob/shadekin/purple/ai = 1,
+			/mob/living/simple_mob/shadekin/blue = 25,
+			/mob/living/simple_mob/shadekin/green = 10,
+			/mob/living/simple_mob/shadekin/purple = 1,
 			) = 1,
 		list(/mob/living/simple_mob/vore/catgirl) = 100,
 		list(/mob/living/simple_mob/vore/wolfgirl) = 100,
@@ -729,12 +729,12 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 			/mob/living/simple_mob/otie/red/chubby
 			) = 50,
 		list(
-			/mob/living/simple_mob/shadekin/blue/ai = 100,
-			/mob/living/simple_mob/shadekin/green/ai = 50,
-			/mob/living/simple_mob/shadekin/orange/ai = 20,
-			/mob/living/simple_mob/shadekin/purple/ai = 60,
-			/mob/living/simple_mob/shadekin/red/ai = 40,
-			/mob/living/simple_mob/shadekin/yellow/ai = 1
+			/mob/living/simple_mob/shadekin/blue = 100,
+			/mob/living/simple_mob/shadekin/green = 50,
+			/mob/living/simple_mob/shadekin/orange = 20,
+			/mob/living/simple_mob/shadekin/purple = 60,
+			/mob/living/simple_mob/shadekin/red = 40,
+			/mob/living/simple_mob/shadekin/yellow = 1
 			) = 1,
 		list(
 			/mob/living/simple_mob/vore/aggressive/corrupthound,

@@ -7,6 +7,8 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/random/tech_supply/component,
+/obj/random/tech_supply,
 /turf/simulated/shuttle/floor/white,
 /area/om_adventure/poi/shuttlewreck2)
 "e" = (
@@ -42,6 +44,7 @@
 /area/om_adventure/poi/shuttlewreck2)
 "n" = (
 /obj/structure/table/steel_reinforced,
+/obj/random/awayloot/looseloot,
 /turf/simulated/shuttle/floor/white,
 /area/om_adventure/poi/shuttlewreck2)
 "o" = (
@@ -53,6 +56,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/random/tech_supply,
+/obj/random/awayloot/looseloot,
 /turf/simulated/shuttle/floor/white,
 /area/om_adventure/poi/shuttlewreck2)
 "q" = (
@@ -76,6 +81,10 @@
 	},
 /turf/simulated/shuttle/floor/white,
 /area/om_adventure/poi/shuttlewreck2)
+"w" = (
+/obj/tether_away_spawner/spookyland,
+/turf/template_noop,
+/area/template_noop)
 "x" = (
 /obj/machinery/power/port_gen/pacman,
 /obj/structure/cable/green{
@@ -89,6 +98,12 @@
 "A" = (
 /turf/simulated/shuttle/wall,
 /area/om_adventure/poi/shuttlewreck2)
+"B" = (
+/obj/structure/table/steel_reinforced,
+/obj/random/tech_supply/component,
+/obj/random/awayloot/looseloot,
+/turf/simulated/shuttle/floor/white,
+/area/om_adventure/poi/shuttlewreck2)
 "D" = (
 /obj/structure/cable/green{
 	icon_state = "2-5"
@@ -97,6 +112,13 @@
 /area/om_adventure/poi/shuttlewreck2)
 "E" = (
 /obj/structure/table/rack/steel,
+/obj/random/tech_supply/component,
+/obj/random/tech_supply/component,
+/obj/random/tech_supply/component,
+/obj/random/tech_supply/component,
+/obj/random/tech_supply/component,
+/obj/random/tech_supply,
+/obj/random/tech_supply,
 /turf/simulated/floor/plating,
 /area/om_adventure/poi/shuttlewreck2)
 "J" = (
@@ -107,6 +129,7 @@
 "K" = (
 /obj/structure/table/rack/steel,
 /obj/item/weapon/tank/phoron,
+/obj/random/awayloot/looseloot,
 /turf/simulated/floor/plating,
 /area/om_adventure/poi/shuttlewreck2)
 "N" = (
@@ -163,7 +186,7 @@ a
 "}
 (2,1,1) = {"
 a
-a
+w
 U
 A
 A
@@ -249,7 +272,7 @@ a
 a
 A
 p
-n
+B
 P
 D
 v
@@ -302,6 +325,6 @@ U
 a
 a
 a
-a
+w
 a
 "}

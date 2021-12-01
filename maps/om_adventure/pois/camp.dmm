@@ -4,11 +4,21 @@
 /area/template_noop)
 "n" = (
 /obj/structure/table/rack/steel,
+/obj/fiftyspawner/log,
+/turf/simulated/floor/outdoors/newdirt,
+/area/om_adventure/poi/camp)
+"x" = (
+/obj/tether_away_spawner/spookyland,
 /turf/simulated/floor/outdoors/newdirt,
 /area/om_adventure/poi/camp)
 "y" = (
 /obj/structure/flora/tree/bigtree,
 /turf/template_noop,
+/area/om_adventure/poi/camp)
+"z" = (
+/obj/structure/table/rack/steel,
+/obj/random/awayloot/looseloot,
+/turf/simulated/floor/outdoors/newdirt,
 /area/om_adventure/poi/camp)
 "A" = (
 /obj/structure/bonfire,
@@ -19,6 +29,11 @@
 /area/om_adventure/poi/camp)
 "M" = (
 /turf/simulated/wall/log,
+/area/om_adventure/poi/camp)
+"U" = (
+/obj/structure/table/rack/steel,
+/obj/item/weapon/storage/box/matches,
+/turf/simulated/floor/outdoors/newdirt,
 /area/om_adventure/poi/camp)
 
 (1,1,1) = {"
@@ -54,8 +69,8 @@ a
 a
 M
 n
-n
-n
+z
+U
 M
 a
 H
@@ -74,7 +89,7 @@ H
 a
 M
 H
-H
+x
 H
 M
 a
@@ -89,7 +104,7 @@ a
 a
 a
 a
-H
+x
 H
 H
 a
@@ -171,7 +186,7 @@ a
 a
 H
 H
-H
+x
 a
 a
 a

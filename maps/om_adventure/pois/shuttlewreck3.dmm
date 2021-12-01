@@ -2,6 +2,14 @@
 "a" = (
 /turf/template_noop,
 /area/template_noop)
+"c" = (
+/obj/random/awayloot/looseloot,
+/turf/simulated/floor/weird_things/dark,
+/area/om_adventure/poi/shuttlewreck3)
+"f" = (
+/obj/random/tech_supply,
+/turf/template_noop,
+/area/template_noop)
 "h" = (
 /turf/simulated/floor/weird_things/dark,
 /area/om_adventure/poi/shuttlewreck3)
@@ -18,6 +26,7 @@
 /area/om_adventure/poi/shuttlewreck3)
 "u" = (
 /obj/item/weapon/material/shard/shrapnel,
+/obj/random/awayloot/looseloot,
 /turf/simulated/shuttle/floor/white,
 /area/om_adventure/poi/shuttlewreck3)
 "x" = (
@@ -25,6 +34,7 @@
 /turf/simulated/floor/plating,
 /area/om_adventure/poi/shuttlewreck3)
 "D" = (
+/obj/random/tech_supply,
 /turf/simulated/floor/plating,
 /area/om_adventure/poi/shuttlewreck3)
 "F" = (
@@ -33,7 +43,7 @@
 /turf/simulated/floor/plating,
 /area/om_adventure/poi/shuttlewreck3)
 "H" = (
-/obj/random/awayloot,
+/obj/random/tech_supply/component,
 /turf/simulated/floor/weird_things/dark,
 /area/om_adventure/poi/shuttlewreck3)
 "I" = (
@@ -59,7 +69,7 @@
 /turf/simulated/floor/weird_things/dark,
 /area/om_adventure/poi/shuttlewreck3)
 "Z" = (
-/mob/living/simple_mob/vore/alienanimals/space_ghost,
+/obj/tether_away_spawner/spookyland,
 /turf/simulated/floor/weird_things/dark,
 /area/om_adventure/poi/shuttlewreck3)
 
@@ -96,7 +106,7 @@ a
 h
 h
 h
-a
+f
 a
 "}
 (5,1,1) = {"
@@ -104,16 +114,16 @@ a
 h
 S
 h
-h
+H
 a
 a
 "}
 (6,1,1) = {"
 a
 a
+c
 h
 h
-H
 a
 a
 "}
@@ -128,7 +138,7 @@ a
 "}
 (8,1,1) = {"
 a
-h
+H
 D
 h
 I
@@ -159,7 +169,7 @@ h
 k
 Q
 k
-h
+H
 m
 "}
 (12,1,1) = {"
@@ -184,7 +194,7 @@ h
 a
 a
 a
-h
+Z
 a
 a
 a

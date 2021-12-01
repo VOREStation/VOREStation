@@ -5,6 +5,10 @@
 "e" = (
 /turf/simulated/floor/weird_things/dark,
 /area/om_adventure/poi/shuttlewreck1)
+"g" = (
+/obj/random/tech_supply/component,
+/turf/simulated/floor/weird_things/dark,
+/area/om_adventure/poi/shuttlewreck1)
 "i" = (
 /obj/machinery/door/airlock/external,
 /turf/simulated/shuttle/floor/white,
@@ -20,6 +24,14 @@
 /obj/structure/grille,
 /turf/simulated/floor/plating,
 /area/om_adventure/poi/shuttlewreck1)
+"t" = (
+/obj/tether_away_spawner/spookyland,
+/turf/simulated/floor/weird_things/dark,
+/area/om_adventure/poi/shuttlewreck1)
+"v" = (
+/obj/random/tech_supply/component,
+/turf/template_noop,
+/area/template_noop)
 "D" = (
 /obj/structure/shuttle/engine/propulsion,
 /turf/simulated/floor/plating,
@@ -27,6 +39,17 @@
 "M" = (
 /turf/simulated/shuttle/wall,
 /area/om_adventure/poi/shuttlewreck1)
+"P" = (
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 1
+	},
+/obj/random/awayloot/looseloot,
+/turf/simulated/shuttle/floor/white,
+/area/om_adventure/poi/shuttlewreck1)
+"W" = (
+/obj/random/tech_supply,
+/turf/template_noop,
+/area/template_noop)
 
 (1,1,1) = {"
 a
@@ -35,7 +58,7 @@ a
 a
 a
 a
-a
+W
 a
 a
 "}
@@ -52,9 +75,9 @@ a
 "}
 (3,1,1) = {"
 e
+t
 e
-e
-e
+g
 a
 e
 a
@@ -69,14 +92,14 @@ M
 M
 M
 D
-e
+g
 a
 "}
 (5,1,1) = {"
 e
 e
 s
-m
+P
 m
 i
 e
@@ -91,7 +114,7 @@ M
 M
 M
 D
-e
+t
 a
 "}
 (7,1,1) = {"
@@ -101,7 +124,7 @@ e
 e
 a
 e
-a
+v
 a
 a
 "}

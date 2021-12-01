@@ -711,12 +711,12 @@
 			/mob/living/simple_mob/otie/red/chubby
 			),
 		list(
-			/mob/living/simple_mob/shadekin/blue/ai = 100,
-			/mob/living/simple_mob/shadekin/green/ai = 50,
-			/mob/living/simple_mob/shadekin/orange/ai = 20,
-			/mob/living/simple_mob/shadekin/purple/ai = 60,
-			/mob/living/simple_mob/shadekin/red/ai = 40,
-			/mob/living/simple_mob/shadekin/yellow/ai = 1
+			/mob/living/simple_mob/shadekin/blue = 100,
+			/mob/living/simple_mob/shadekin/green = 50,
+			/mob/living/simple_mob/shadekin/orange = 20,
+			/mob/living/simple_mob/shadekin/purple = 60,
+			/mob/living/simple_mob/shadekin/red = 40,
+			/mob/living/simple_mob/shadekin/yellow = 1
 			),
 		list(
 			/mob/living/simple_mob/vore/aggressive/corrupthound,

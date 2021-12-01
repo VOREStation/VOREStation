@@ -2,13 +2,25 @@
 "a" = (
 /turf/simulated/floor/weird_things/dark,
 /area/om_adventure/poi/shuttlewreck4)
+"e" = (
+/obj/random/tech_supply/component,
+/turf/simulated/floor/tiled/eris/dark/monofloor,
+/area/om_adventure/poi/shuttlewreck4)
 "g" = (
 /obj/item/frame/apc,
+/turf/template_noop,
+/area/template_noop)
+"h" = (
+/obj/random/tech_supply/component,
 /turf/template_noop,
 /area/template_noop)
 "j" = (
 /turf/template_noop,
 /area/template_noop)
+"o" = (
+/obj/tether_away_spawner/spookyland,
+/turf/simulated/floor/weird_things/dark,
+/area/om_adventure/poi/shuttlewreck4)
 "p" = (
 /obj/machinery/light{
 	dir = 4
@@ -37,11 +49,29 @@
 "x" = (
 /turf/simulated/floor/plating/eris/airless,
 /area/om_adventure/poi/shuttlewreck4)
+"y" = (
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 4
+	},
+/obj/random/tech_supply/component,
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/om_adventure/poi/shuttlewreck4)
 "C" = (
 /obj/structure/bed/chair/bay/shuttle{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/om_adventure/poi/shuttlewreck4)
+"D" = (
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 1
+	},
+/obj/random/tech_supply,
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/om_adventure/poi/shuttlewreck4)
+"H" = (
+/obj/random/tech_supply/component,
+/turf/simulated/floor/weird_things/dark,
 /area/om_adventure/poi/shuttlewreck4)
 "I" = (
 /obj/structure/bed/chair/bay/shuttle{
@@ -57,10 +87,18 @@
 	},
 /turf/simulated/floor/plating/eris/airless,
 /area/om_adventure/poi/shuttlewreck4)
+"K" = (
+/obj/tether_away_spawner/spookyland,
+/turf/template_noop,
+/area/template_noop)
 "M" = (
 /obj/structure/low_wall/eris/reinforced,
 /obj/structure/window/eris,
 /turf/simulated/floor/plating,
+/area/om_adventure/poi/shuttlewreck4)
+"O" = (
+/obj/random/tech_supply,
+/turf/simulated/floor/tiled/eris/dark/monofloor,
 /area/om_adventure/poi/shuttlewreck4)
 "P" = (
 /obj/structure/frame/computer,
@@ -75,10 +113,15 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/techfloor_grid,
 /area/om_adventure/poi/shuttlewreck4)
+"T" = (
+/obj/random/awayloot/looseloot,
+/turf/simulated/floor/tiled/eris/dark/monofloor,
+/area/om_adventure/poi/shuttlewreck4)
 "V" = (
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/random/awayloot/looseloot,
 /turf/simulated/floor/tiled/eris/dark/monofloor,
 /area/om_adventure/poi/shuttlewreck4)
 "X" = (
@@ -105,7 +148,7 @@ a
 j
 j
 j
-a
+H
 j
 a
 "}
@@ -117,7 +160,7 @@ j
 j
 a
 j
-j
+h
 j
 j
 j
@@ -130,14 +173,14 @@ j
 j
 j
 j
-a
+o
 a
 g
 a
 a
 a
 j
-a
+o
 a
 a
 v
@@ -147,15 +190,15 @@ j
 j
 j
 j
-j
+h
 a
 a
 a
 a
 a
 a
-a
-a
+H
+H
 v
 v
 j
@@ -184,9 +227,9 @@ a
 v
 V
 q
+e
 q
-q
-q
+O
 v
 M
 v
@@ -195,7 +238,7 @@ v
 j
 "}
 (7,1,1) = {"
-a
+o
 v
 M
 M
@@ -206,7 +249,7 @@ I
 q
 t
 Y
-Y
+y
 v
 j
 j
@@ -217,12 +260,12 @@ M
 P
 C
 q
-C
+D
 v
 X
 q
 q
-q
+T
 q
 M
 j
@@ -233,7 +276,7 @@ a
 v
 M
 M
-q
+e
 Y
 Y
 Y
@@ -254,7 +297,7 @@ p
 q
 q
 q
-q
+e
 v
 M
 v
@@ -325,7 +368,7 @@ j
 j
 j
 j
-j
+K
 j
 j
 j

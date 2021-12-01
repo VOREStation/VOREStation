@@ -10,6 +10,7 @@
 #include "pois/fleshtear4.dmm"
 #include "pois/cabin1.dmm"
 #include "pois/cabin2.dmm"
+#include "pois/cabin3.dmm"
 #include "pois/camp.dmm"
 #include "pois/shuttlewreck1.dmm"
 #include "pois/shuttlewreck2.dmm"
@@ -193,6 +194,15 @@
 	mappath = 'pois/cabin2.dmm'
 	cost = 20
 
+/area/om_adventure/poi/cabin3
+	name = "POI - Cabin 3"
+
+/datum/map_template/om_adventure/outdoor/cabin3
+	name = "cabin3"
+	desc = "A comfy... home?"
+	mappath = 'pois/cabin3.dmm'
+	cost = 10
+
 /area/om_adventure/poi/camp
 	name = "POI - Camp"
 
@@ -209,7 +219,7 @@
 	name = "Shuttle wreck"
 	desc = "Long abandoned!"
 	mappath = 'pois/shuttlewreck1.dmm'
-	cost = 10
+	cost = 5
 
 /area/om_adventure/poi/shuttlewreck2
 	name = "POI - Shuttlewreck 2"
@@ -227,7 +237,7 @@
 	name = "Shuttle wreck"
 	desc = "Long abandoned!"
 	mappath = 'pois/shuttlewreck3.dmm'
-	cost = 10
+	cost = 5
 
 /area/om_adventure/poi/shuttlewreck4
 	name = "POI - Shuttlewreck 4"
@@ -237,3 +247,85 @@
 	desc = "Long abandoned!"
 	mappath = 'pois/shuttlewreck4.dmm'
 	cost = 10
+
+/area/om_adventure/poi/medicalcenter
+	name = "POI - medical center"
+
+/datum/map_template/om_adventure/outdoor/medicalcenter
+	name = "Medical Center"
+	desc = "Maybe they used to heal people here."
+	mappath = 'pois/medicalcenter.dmm'
+	cost = 10
+
+/area/om_adventure/poi/shippart1
+	name = "POI - ship part 1"
+
+/datum/map_template/om_adventure/outdoor/shippart1
+	name = "Ship Part"
+	desc = "Something bad happened here."
+	mappath = 'pois/shippart1.dmm'
+	cost = 10
+
+/area/om_adventure/poi/woodentemple
+	name = "POI - Wooden Temple"
+
+/datum/map_template/om_adventure/cave/woodentemple
+	name = "Wooden Temple"
+	desc = "A comfy wooden temple."
+	mappath = 'pois/woodentemple.dmm'
+	cost = 10
+
+/area/om_adventure/poi/alienchamber1
+	name = "POI - Alien Chamber 1"
+
+/datum/map_template/om_adventure/cave/alienchamber1
+	name = "Alien Chamber"
+	desc = "A mysterious alien chamber!"
+	mappath = 'pois/alienchamber1.dmm'
+	cost = 10
+
+/area/om_adventure/poi/alienchamber2
+	name = "POI - Alien Chamber 2"
+
+/datum/map_template/om_adventure/cave/alienchamber2
+	name = "Alien Chamber"
+	desc = "A mysterious alien chamber!"
+	mappath = 'pois/alienchamber2.dmm'
+	cost = 10
+
+/area/om_adventure/poi/alienchamber3
+	name = "POI - Alien Chamber 3"
+
+/datum/map_template/om_adventure/cave/alienchamber3
+	name = "Alien Chamber"
+	desc = "A mysterious alien chamber!"
+	mappath = 'pois/alienchamber3.dmm'
+	cost = 10
+
+/area/om_adventure/poi/alienchamber4
+	name = "POI - Alien Chamber 4"
+
+/datum/map_template/om_adventure/cave/alienchamber4
+	name = "Alien Chamber"
+	desc = "A mysterious alien chamber!"
+	mappath = 'pois/alienchamber4.dmm'
+	cost = 10
+
+/obj/tether_away_spawner/spookyland
+	name = "Spookyland Spawner"
+	icon = 'icons/mob/randomlandmarks.dmi'
+	icon_state = "monster"
+
+	faction = "spookyland"
+	prob_spawn = 50
+	prob_fall = 10
+	//guard = 10 //Don't wander too far, to stay alive.
+	mobs_to_pick_from = list(
+		/mob/living/simple_mob/shadekin = 1,
+		/mob/living/simple_mob/vore/alienanimals/space_ghost = 5,
+		/mob/living/simple_mob/vore/alienanimals/space_jellyfish = 5,
+		/mob/living/simple_mob/faithless = 3,
+		/mob/living/simple_mob/mechanical/infectionbot = 1,
+		/mob/living/simple_mob/animal/passive/cat/bluespace = 0.01,
+		/mob/living/simple_mob/animal/passive/dog/void_puppy = 0.01
+		)

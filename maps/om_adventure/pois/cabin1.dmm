@@ -4,25 +4,76 @@
 /area/template_noop)
 "b" = (
 /obj/structure/table/woodentable,
+/obj/random/awayloot/looseloot,
+/obj/random/tech_supply,
 /turf/simulated/floor/carpet,
 /area/om_adventure/poi/cabin1)
 "c" = (
 /obj/structure/table/reinforced,
 /turf/simulated/floor/bmarble,
 /area/om_adventure/poi/cabin1)
+"d" = (
+/obj/structure/table/reinforced,
+/obj/random/awayloot/looseloot,
+/turf/simulated/floor/bmarble,
+/area/om_adventure/poi/cabin1)
+"f" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/random/meat,
+/obj/random/meat,
+/obj/random/meat,
+/obj/random/meat,
+/obj/random/meat,
+/obj/random/snack,
+/obj/random/snack,
+/turf/simulated/floor/bmarble,
+/area/om_adventure/poi/cabin1)
 "g" = (
 /obj/structure/bed/chair/sofa/brown,
+/obj/random/snack,
 /turf/simulated/floor/wood,
+/area/om_adventure/poi/cabin1)
+"i" = (
+/obj/tether_away_spawner/spookyland,
+/turf/simulated/floor/bmarble,
 /area/om_adventure/poi/cabin1)
 "j" = (
 /turf/simulated/floor/carpet,
 /area/om_adventure/poi/cabin1)
+"k" = (
+/obj/structure/table/reinforced,
+/obj/item/weapon/flame/candle,
+/turf/simulated/floor/bmarble,
+/area/om_adventure/poi/cabin1)
+"r" = (
+/obj/structure/bookcase,
+/turf/simulated/floor/wood,
+/area/om_adventure/poi/cabin1)
 "s" = (
+/turf/simulated/floor/wood,
+/area/om_adventure/poi/cabin1)
+"t" = (
+/obj/tether_away_spawner/spookyland,
 /turf/simulated/floor/wood,
 /area/om_adventure/poi/cabin1)
 "u" = (
 /obj/structure/simple_door/wood,
 /turf/simulated/floor/plating,
+/area/om_adventure/poi/cabin1)
+"v" = (
+/obj/item/weapon/bedsheet/browndouble,
+/obj/structure/bed/double/padded,
+/obj/structure/curtain/black,
+/turf/simulated/floor/carpet,
+/area/om_adventure/poi/cabin1)
+"w" = (
+/obj/tether_away_spawner/spookyland,
+/turf/simulated/floor/outdoors/newdirt,
+/area/om_adventure/poi/cabin1)
+"x" = (
+/obj/structure/table/reinforced,
+/obj/random/snack,
+/turf/simulated/floor/bmarble,
 /area/om_adventure/poi/cabin1)
 "z" = (
 /obj/structure/simple_door/wood,
@@ -40,14 +91,25 @@
 /area/om_adventure/poi/cabin1)
 "F" = (
 /obj/structure/table/darkglass,
+/obj/random/awayloot/looseloot,
+/obj/item/weapon/flame/candle,
+/turf/simulated/floor/wood,
+/area/om_adventure/poi/cabin1)
+"H" = (
+/obj/structure/table/woodentable,
+/obj/random/tech_supply,
 /turf/simulated/floor/wood,
 /area/om_adventure/poi/cabin1)
 "I" = (
 /obj/structure/closet,
+/obj/random/awayloot/looseloot,
+/obj/random/awayloot/looseloot,
+/obj/random/tech_supply,
 /turf/simulated/floor/carpet,
 /area/om_adventure/poi/cabin1)
 "L" = (
 /obj/structure/table/woodentable,
+/obj/random/awayloot/looseloot,
 /turf/simulated/floor/wood,
 /area/om_adventure/poi/cabin1)
 "Q" = (
@@ -63,10 +125,19 @@
 /obj/structure/bed/chair/sofa/brown/right,
 /turf/simulated/floor/wood,
 /area/om_adventure/poi/cabin1)
+"T" = (
+/obj/tether_away_spawner/spookyland,
+/turf/simulated/floor/carpet,
+/area/om_adventure/poi/cabin1)
 "X" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor/plating,
+/area/om_adventure/poi/cabin1)
+"Z" = (
+/obj/structure/table/woodentable,
+/obj/random/tech_supply/component,
+/turf/simulated/floor/wood,
 /area/om_adventure/poi/cabin1)
 
 (1,1,1) = {"
@@ -100,22 +171,22 @@ a
 (3,1,1) = {"
 a
 Q
-c
-c
-c
-c
+x
+k
+x
+d
 Q
 b
 j
-j
+v
 Q
 a
 "}
 (4,1,1) = {"
 a
 X
-c
-D
+d
+i
 D
 D
 Q
@@ -134,7 +205,7 @@ D
 D
 z
 j
-j
+T
 j
 X
 a
@@ -142,7 +213,7 @@ a
 (6,1,1) = {"
 a
 Q
-c
+f
 D
 D
 D
@@ -157,7 +228,7 @@ a
 a
 Q
 Q
-c
+k
 D
 Q
 Q
@@ -174,7 +245,7 @@ L
 s
 s
 s
-s
+r
 Q
 a
 a
@@ -188,7 +259,7 @@ S
 s
 s
 s
-s
+H
 Q
 B
 a
@@ -206,7 +277,7 @@ s
 u
 B
 B
-B
+w
 a
 "}
 (11,1,1) = {"
@@ -214,9 +285,9 @@ a
 Q
 C
 R
+t
 s
-s
-s
+Z
 Q
 B
 a

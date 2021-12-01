@@ -5,6 +5,10 @@
 "I" = (
 /turf/template_noop,
 /area/template_noop)
+"Z" = (
+/obj/tether_away_spawner/spookyland,
+/turf/simulated/floor/weird_things/dark,
+/area/om_adventure/poi/darktear1)
 
 (1,1,1) = {"
 I
@@ -46,7 +50,7 @@ I
 I
 I
 a
-a
+Z
 a
 I
 I
