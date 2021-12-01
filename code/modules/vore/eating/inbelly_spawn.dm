@@ -16,7 +16,7 @@ This is not intended to be used for mechanical advantage or providing assistance
 Please do not abuse this ability.
 "},"OOC Warning")			// Warning.
 
-	var/list/legible_targets = list()
+	var/list/eligible_targets = list()
 
 	for(var/mob/living/pred in living_mob_list)
 		if(!istype(pred) || !pred.client)		// Ignore preds that aren't living mobs or player controlled
@@ -29,7 +29,7 @@ Please do not abuse this ability.
 			var/mob/living/carbon/human/H = pred
 			if(!H.allow_inbelly_spawning)
 				continue
-			legible_targets += H
+			eligible_targets += H
 			continue
 		if(issilicon(pred))
 			var/mob/living/silicon/S = pred
@@ -37,7 +37,7 @@ Please do not abuse this ability.
 				continue						// Sorry, AI buddies. Your vore works too differently.
 			if(!S.allow_inbelly_spawning)
 				continue
-			legible_targets += S
+			eligible_targets += S
 			continue
 		if(istype(pred, /mob/living/simple_mob))
 			var/mob/living/simple_mob/SM = pred
@@ -45,16 +45,16 @@ Please do not abuse this ability.
 				continue
 			if(!SM.allow_inbelly_spawning)
 				continue
-			legible_targets += SM
+			eligible_targets += SM
 			continue
 
 		// Only humans, simple_mobs and non-AI silicons are included. Obscure stuff like bots is skipped.
 
-	if(!legible_targets.len)
+	if(!eligible_targets.len)
 		to_chat(src, "<span class=notice>No legible preds were found.</span>")				// :(
 		return
 
-	var/mob/living/target = tgui_input_list(src, "Please specify which character you want to spawn inside of.", "Predator", legible_targets)	// Offer the list of things we gathered.
+	var/mob/living/target = tgui_input_list(src, "Please specify which character you want to spawn inside of.", "Predator", eligible_targets)	// Offer the list of things we gathered.
 
 	if(!target || !client)			// Did out target cease to exist? Or did we?
 		return
