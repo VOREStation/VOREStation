@@ -38,11 +38,17 @@
 	if((character.type == /mob/living/carbon/human) && ispath(pref.nif_path) && pref.nif_durability)
 		new pref.nif_path(character,pref.nif_durability,pref.nif_savedata)
 
+		/*
 		//And now here's the trick. We wipe these so that if they die, they lose the NIF.
 		//Backup implants will start saving this again periodically, and so will cryo'ing out.
 		pref.nif_path = null
 		pref.nif_durability = null
 		pref.nif_savedata = null
+		*/
+		//No we do not, that's lame and admins have to re-NIF them later.
+		//If they leave round or get their NIF extracted, it will save as 'gone' anyway
+		//Let's give a more minor punishment for not properly backing up instead!
+		pref.nif_durability -= rand(10, 15)
 		var/savefile/S = new /savefile(pref.path)
 		if(!S) WARNING ("Couldn't load NIF save savefile? [pref.real_name]")
 		S.cd = "/character[pref.default_slot]"
