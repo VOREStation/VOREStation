@@ -119,7 +119,7 @@ Please do not abuse this ability.
 
 	if(confirmation_prey == "Yes" && potential_prey && src && belly_choice)
 		//Now we finally spawn them in!
-		if(!is_alien_whitelisted(potential_prey, GLOB.all_species[potential_prey.prefs.species]) && !potential_prey.check_rights(R_ADMIN, 0))
+		if(!is_alien_whitelisted(potential_prey, GLOB.all_species[potential_prey.prefs.species]))
 			to_chat(potential_prey, "<span class=notice>You are not whitelisted to play as currently selected character.</span>")
 			to_chat(src, "<span class=notice>Prey accepted the confirmation, but something went wrong with spawning their character.</span>")
 			return
