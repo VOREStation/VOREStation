@@ -321,7 +321,11 @@
 	prob_fall = 10
 	//guard = 10 //Don't wander too far, to stay alive.
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/shadekin = 1,
+		/mob/living/simple_mob/shadekin/blue = 0.05,
+		/mob/living/simple_mob/shadekin/red = 0.05,
+		/mob/living/simple_mob/shadekin/green = 0.5,
+		/mob/living/simple_mob/shadekin/purple = 0.05,
+		/mob/living/simple_mob/shadekin/yellow = 1,
 		/mob/living/simple_mob/vore/alienanimals/space_ghost = 5,
 		/mob/living/simple_mob/vore/alienanimals/space_jellyfish = 5,
 		/mob/living/simple_mob/faithless = 3,
