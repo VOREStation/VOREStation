@@ -65,7 +65,7 @@ var/list/gear_datums = list()
 	for(var/gear_name in gear_datums)
 		var/datum/gear/G = gear_datums[gear_name]
 
-		if(G.whitelisted && config.loadout_whitelist != LOADOUT_WHITELIST_OFF)
+		if(G.whitelisted && config.loadout_whitelist != LOADOUT_WHITELIST_OFF && pref.client) //VOREStation Edit.
 			if(config.loadout_whitelist == LOADOUT_WHITELIST_STRICT && G.whitelisted != pref.species)
 				continue
 			if(config.loadout_whitelist == LOADOUT_WHITELIST_LAX && !is_alien_whitelisted(preference_mob(), GLOB.all_species[G.whitelisted]))
