@@ -279,7 +279,7 @@
 		var/turf/U = GetBelow(O)
 		while(istype(U))
 			hearturfs |= U
-			if(istype(U, /turf/simulated/open))
+			if(isopenspace(U))
 				U = GetBelow(U)
 			else
 				U = null
