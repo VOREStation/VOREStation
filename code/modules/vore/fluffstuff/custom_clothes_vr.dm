@@ -2296,14 +2296,71 @@ Departamental Swimsuits, for general use
 
 	colorswap(usr)
 
-//PastelPrinceDan: Masumi Maki
-/obj/item/clothing/under/fluff/masumi_overalls
-	name = "white and blue overalls"
+//PastelPrinceDan: Masumi Maki & Hatterhat: Harold Robsinson
+/obj/item/clothing/under/fluff/mechanic_overalls
+	name = "mechanic overalls"
 	desc = "A set of white and blue overalls, paired with a yellow shirt."
 	icon = 'icons/vore/custom_clothes_vr.dmi'
-	icon_state = "masumioveralls"
-	item_state = "masumioveralls"
+	icon_state = "mechaoveralls"
+	item_state = "mechaoveralls"
 	icon_override = 'icons/vore/custom_onmob_vr.dmi'
+
+//PastelPrinceDan: Masumi Maki & Hatterhat: Harold Robinson
+/obj/item/clothing/suit/storage/hooded/wintercoat/fluff/mechanic
+	name = "mechanic winter coat"
+	desc = "A blue and yellow winter coat, worn only by overachievers."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "mechacoat"
+
+	icon_override = 'icons/vore/custom_onmob_vr.dmi'
+	item_state = "mechacoat_mob"
+	hoodtype = /obj/item/clothing/head/hood/winter/fluff/mechanic
+
+/obj/item/clothing/head/hood/winter/fluff/mechanic
+	name = "mechanic winter hood"
+	desc = "A blue and yellow winter coat's hood."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "mechahood"
+
+	icon_override = 'icons/vore/custom_onmob_vr.dmi'
+	item_state = "mechahood_mob"
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/fluff/mechanic/ui_action_click()
+	ToggleHood_mechacoat()
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/fluff/mechanic/equipped(mob/user, slot)
+	if(slot != slot_wear_suit)
+		RemoveHood_mechacoat()
+	..()
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/fluff/mechanic/proc/RemoveHood_mechacoat()
+	icon_state = "mechacoat"
+	item_state = "mechacoat_mob"
+	hood_up = 0
+	if(ishuman(hood.loc))
+		var/mob/living/carbon/H = hood.loc
+		H.unEquip(hood, 1)
+		H.update_inv_wear_suit()
+	hood.loc = src
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/fluff/mechanic/proc/ToggleHood_mechacoat()
+	if(!hood_up)
+		if(ishuman(loc))
+			var/mob/living/carbon/human/H = loc
+			if(H.wear_suit != src)
+				to_chat(H, "<span class='warning'>You must be wearing [src] to put up the hood!</span>")
+				return
+			if(H.head)
+				to_chat(H, "<span class='warning'>You're already wearing something on your head!</span>")
+				return
+			else
+				H.equip_to_slot_if_possible(hood,slot_head,0,0,1)
+				hood_up = 1
+				icon_state = "mechacoat_t"
+				item_state = "mechacoat_mob_t"
+				H.update_inv_wear_suit()
+	else
+		RemoveHood_mechacoat()
 
 //Pandora029 : Evelyn Tareen
 /obj/item/clothing/suit/storage/hooded/wintercoat/security/fluff/evelyn

@@ -826,9 +826,15 @@
 	ckeywhitelist = list("pastelprincedan")
 	character_name = list("Kiyoshi Maki", "Masumi Maki")
 
-/datum/gear/fluff/masumi_overalls
-	path = /obj/item/clothing/under/fluff/masumi_overalls
-	display_name = "white and blue overalls"
+/datum/gear/fluff/mechanic_overalls
+	path = /obj/item/clothing/under/fluff/mechanic_overalls
+	display_name = "mechanic overalls"
+	ckeywhitelist = list("pastelprincedan")
+	character_name = list("Masumi Maki")
+
+/datum/gear/fluff/mechanic_coat
+	path = /obj/item/clothing/suit/storage/hooded/wintercoat/fluff/mechanic
+	display_name = "mechanic winter coat"
 	ckeywhitelist = list("pastelprincedan")
 	character_name = list("Masumi Maki")
 
