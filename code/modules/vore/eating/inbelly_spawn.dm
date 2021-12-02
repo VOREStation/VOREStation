@@ -51,7 +51,7 @@ Please do not abuse this ability.
 		// Only humans, simple_mobs and non-AI silicons are included. Obscure stuff like bots is skipped.
 
 	if(!eligible_targets.len)
-		to_chat(src, "<span class=notice>No legible preds were found.</span>")				// :(
+		to_chat(src, "<span class=notice>No eligible preds were found.</span>")				// :(
 		return
 
 	var/mob/living/target = tgui_input_list(src, "Please specify which character you want to spawn inside of.", "Predator", eligible_targets)	// Offer the list of things we gathered.
