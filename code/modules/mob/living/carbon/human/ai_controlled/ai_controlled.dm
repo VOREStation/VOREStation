@@ -39,7 +39,7 @@
 	if(generate_id_gender)
 		identifying_gender = pick(list(MALE, FEMALE, PLURAL, NEUTER))
 
-	..(loc, generate_species)
+	. = ..(loc, generate_species)
 
 	h_style = to_wear_hair
 

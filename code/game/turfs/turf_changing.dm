@@ -3,12 +3,6 @@
 	spawn()
 		new /obj/structure/lattice( locate(src.x, src.y, src.z) )
 
-// Removes all signs of lattice on the pos of the turf -Donkieyo
-/turf/proc/RemoveLattice()
-	var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
-	if(L)
-		qdel(L)
-
 // Called after turf replaces old one
 /turf/proc/post_change()
 	levelupdate()
@@ -50,6 +44,7 @@
 	if(Be)
 		Be.multiz_turf_del(src, UP)
 
+<<<<<<< HEAD
 	if(connections) connections.erase_all()
 
 	if(istype(src,/turf/simulated))
@@ -72,6 +67,14 @@
 
 		if(tell_universe)
 			universe.OnTurfChange(W)
+=======
+	var/turf/W = new N( locate(src.x, src.y, src.z) )
+	if(old_fire)
+		if(istype(W, /turf/simulated/floor))
+			W.fire = old_fire
+		else
+			old_fire.RemoveFire()
+>>>>>>> a6c23c66b58... Merge pull request #8360 from MistakeNot4892/qdel
 
 		if(air_master)
 			air_master.mark_for_update(src) //handle the addition of the new turf.

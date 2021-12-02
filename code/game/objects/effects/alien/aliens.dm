@@ -40,7 +40,7 @@
 
 /obj/effect/alien/weeds/Initialize(var/mapload, var/node, var/newcolor)
 	. = ..()
-	if(isspace(loc))
+	if(isspace(loc) || (locate(/obj/effect/alien/weeds) in loc) != src)
 		return INITIALIZE_HINT_QDEL
 
 	linked_node = node
@@ -54,14 +54,11 @@
 
 /obj/effect/alien/weeds/Destroy()
 	var/turf/T = get_turf(src)
-	// To not mess up the overlay updates.
-	loc = null
-
-	for (var/obj/effect/alien/weeds/W in range(1,T))
-		W.updateWeedOverlays()
-
 	linked_node = null
-	return ..()
+	. = ..()
+	if(T)
+		for (var/obj/effect/alien/weeds/W in range(1,T))
+			W.updateWeedOverlays()
 
 /obj/effect/alien/weeds/node
 	icon_state = "weednode"
@@ -78,10 +75,10 @@
 /obj/effect/alien/weeds/node/Initialize(var/mapload, var/node, var/newcolor)
 	. = ..()
 
-	for(var/obj/effect/alien/weeds/existing in loc)
-		if(existing == src)
-			continue
-		else
+	if(. != INITIALIZE_HINT_QDEL && !mapload)
+		for(var/obj/effect/alien/weeds/existing in loc)
+			if(existing == src)
+				continue
 			qdel(existing)
 
 	linked_node = src
@@ -123,8 +120,6 @@
 /obj/effect/alien/weeds/proc/fullUpdateWeedOverlays()
 	for (var/obj/effect/alien/weeds/W in range(1,src))
 		W.updateWeedOverlays()
-
-	return
 
 // NB: This is not actually called by a processing subsystem, it's called by the node processing
 /obj/effect/alien/weeds/process()
