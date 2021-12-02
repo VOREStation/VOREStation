@@ -138,7 +138,7 @@
 		list("Offmap Ship - Talon V2")
 		)
 
-	lateload_single_pick = list(
+	lateload_overmap = list(
 		list("Carp Farm"),
 		list("Snow Field"),
 		list("Listening Post"),
@@ -149,7 +149,7 @@
 		list("Wild West")
 		)
 
-	lateload_single_pick_b = list(
+	lateload_overmap = list(
 		list("Grass Cave")
 		)
 
@@ -172,7 +172,7 @@
 	mining_station_z =		list(Z_LEVEL_SPACE_LOW)
 	mining_outpost_z =		list(Z_LEVEL_SURFACE_MINE)
 */
-	lateload_single_pick = null //Nothing right now.
+	lateload_gateway = null //Nothing right now.
 
 	planet_datums_to_make = list(/datum/planet/virgo3b,
 								/datum/planet/virgo4)

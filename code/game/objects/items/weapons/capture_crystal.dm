@@ -166,15 +166,13 @@
 			playsound(src, 'sound/effects/capture-crystal-problem.ogg', 75, 1, -1)
 		else
 			playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
-		return
-	if(user == bound_mob)	//You can't recall yourself
+	else if(user == bound_mob)	//You can't recall yourself
 		to_chat(user, "<span class='notice'>\The [src] emits an unpleasant tone... It does not activate for you.</span>")
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
-		return
-	if(!active)
+	else if(!active)
 		activate(user)
-		return
-	determine_action(user)
+	else
+		determine_action(user)
 
 //Make it so the crystal knows if its mob references get deleted to make sure things get cleaned up
 /obj/item/capture_crystal/proc/knowyoursignals(mob/living/M, mob/living/U)
@@ -258,6 +256,7 @@
 //The clean up procs!
 /obj/item/capture_crystal/proc/mob_was_deleted()
 	UnregisterSignal(bound_mob, COMSIG_PARENT_QDELETING)
+	UnregisterSignal(owner, COMSIG_PARENT_QDELETING)
 	bound_mob.capture_caught = FALSE
 	bound_mob = null
 	owner = null

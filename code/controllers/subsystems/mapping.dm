@@ -76,8 +76,8 @@ SUBSYSTEM_DEF(mapping)
 // VOREStation Edit Start: Enable This
 /datum/controller/subsystem/mapping/proc/loadLateMaps()
 	var/list/deffo_load = using_map.lateload_z_levels
-	var/list/maybe_load = using_map.lateload_single_pick
-	var/list/also_load = using_map.lateload_single_pick_b
+	var/list/maybe_load = using_map.lateload_gateway
+	var/list/also_load = using_map.lateload_overmap
 
 
 	for(var/list/maplist in deffo_load)

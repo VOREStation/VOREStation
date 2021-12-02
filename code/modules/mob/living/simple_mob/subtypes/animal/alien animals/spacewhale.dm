@@ -98,7 +98,7 @@
 	var/obj/belly/B = vore_selected
 	B.name = "stomach"
 	B.desc = "It's warm and wet, makes sense, considering it's inside of a space whale. You should take a moment to reflect upon how you got here, and how you might avoid situations like this in the future, while this whale attempts to mercilessly destroy you through various gastric processes."
-	B.mode_flags = 40
+	B.mode_flags = DM_FLAG_THICKBELLY | DM_FLAG_NUMBING
 	B.digest_brute = 50
 	B.digest_burn = 50
 	B.escapechance = 0
@@ -141,8 +141,8 @@
 		restless = FALSE
 		hazard_pickup_chance = initial(hazard_pickup_chance)
 		hazard_drop_chance = initial(hazard_drop_chance)
-		movement_cooldown = 50
-		ai_holder.base_wander_delay = 50
+		movement_cooldown = initial(movement_cooldown)
+		ai_holder.base_wander_delay = initial(ai_holder.base_wander_delay)
 		if(child_om_marker.known == TRUE)
 			child_om_marker.icon_state = "space_whale"
 			visible_message("<span class='notice'>\The [child_om_marker.name] settles down.</span>")

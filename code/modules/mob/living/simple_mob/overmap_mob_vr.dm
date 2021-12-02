@@ -30,7 +30,7 @@
 	var/mob/living/simple_mob/vore/overmap/parent_mob_type
 	var/mob/living/simple_mob/vore/overmap/parent
 
-/obj/effect/overmap/visitable/simplemob/New(mapload, new_parent)
+/obj/effect/overmap/visitable/simplemob/New(newloc, new_parent)
 	if(new_parent)
 		parent = new_parent
 	return ..()
