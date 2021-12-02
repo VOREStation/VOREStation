@@ -412,6 +412,12 @@
 	ckeywhitelist = list("hottokeeki")
 	character_name = list("Belle Day")
 
+/datum/gear/fluff/amaryll_claws
+	path = /obj/item/weapon/surgical/scalpel/amaryll_claws
+	display_name = "Amaryll's Claws"
+	ckeywhitelist = list("hunterbirk")
+	character_name = list("Amaryll")
+
 //  I CKEYS
 /datum/gear/fluff/ruda_badge
 	path = /obj/item/clothing/accessory/badge/holo/detective/ruda
