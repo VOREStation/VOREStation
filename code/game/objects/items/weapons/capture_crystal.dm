@@ -55,20 +55,17 @@
 	if(M != owner)
 		to_chat(M, "<span class='notice'>\The [src] emits an unpleasant tone... It does not respond to your command.</span>")
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
-		return
-	if(!bound_mob)
+	else if(!bound_mob)
 		to_chat(M, "<span class='notice'>\The [src] emits an unpleasant tone... There is nothing to command.</span>")
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
-		return
-	if(isanimal(bound_mob) && !bound_mob.client)
+	else if(isanimal(bound_mob) && !bound_mob.client)
 		if(!isnull(bound_mob.get_AI_stance()))
 			var/datum/ai_holder/AI = bound_mob.ai_holder
 			AI.hostile = !AI.hostile
 			if(!AI.hostile)
 				AI.set_stance(STANCE_IDLE)
 			to_chat(M, span("notice", "\The [bound_mob] is now [AI.hostile ? "hostile" : "passive"]."))
-			return
-	if(bound_mob.client)
+	else if(bound_mob.client)
 		var/transmit_msg
 		transmit_msg = sanitizeSafe(input(usr, "What is your command?", "Command", null)  as text, MAX_NAME_LEN)
 		if(isnull(transmit_msg))
@@ -91,15 +88,12 @@
 	if(M != owner)
 		to_chat(M, "<span class='notice'>\The [src] emits an unpleasant tone... It does not respond to your command.</span>")
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
-		return
-	if(bound_mob.stat != CONSCIOUS)
+	else if(bound_mob.stat != CONSCIOUS)
 		to_chat(M, "<span class='notice'>\The [src] emits an unpleasant tone... \The [bound_mob] is not able to hear your command.</span>")
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
-		return
-	if(bound_mob.client)
+	else if(bound_mob.client)
 		to_chat(bound_mob, "<span class='notice'>\The [owner] wishes for you to follow them.</span>")
-		return
-	if(bound_mob in contents)
+	else if(bound_mob in contents)
 		var/datum/ai_holder/AI = bound_mob.ai_holder
 		if(AI.leader)
 			to_chat(M, "<span class='notice'>\The [src] chimes~ \The [bound_mob] stopped following [AI.leader].</span>")
@@ -107,10 +101,9 @@
 		else
 			AI.set_follow(M)
 			to_chat(M, "<span class='notice'>\The [src] chimes~ \The [bound_mob] started following following [AI.leader].</span>")
-	if(!(bound_mob in view(M)))
+	else if(!(bound_mob in view(M)))
 		to_chat(M, "<span class='notice'>\The [src] emits an unpleasant tone... \The [bound_mob] is not able to hear your command.</span>")
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
-		return
 	var/datum/ai_holder/AI = bound_mob.ai_holder
 	if(AI.leader)
 		to_chat(M, "<span class='notice'>\The [src] chimes~ \The [bound_mob] stopped following [AI.leader].</span>")
@@ -147,10 +140,8 @@
 			if(bound_mob in contents)
 				user.visible_message("\The [user] moves \the [src] to [M]'s [M.vore_selected]...")
 				M.perform_the_nom(M, bound_mob, M, M.vore_selected)
-				return
 	else if(M == user)		//You don't have a mob, you ponder the orb instead of trying to capture yourself
 		user.visible_message("\The [user] ponders \the [src]...", "You ponder \the [src]...")
-		return
 	else if (cooldown_check())	//Try to capture someone without throwing
 		user.visible_message("\The [user] taps \the [M] with \the [src].")
 		activate(user, M)
@@ -235,6 +226,7 @@
 			to_chat(user, "<span class='notice'>There's no chance... It needs to be weaker.</span>")
 
 	last_activate = world.time
+	log_and_message_admins("I got [capture_chance].")
 	return capture_chance
 
 //Handles checking relevent bans, preferences, and asking the player if they want to be caught
@@ -242,12 +234,10 @@
 	if(jobban_isbanned(M, "GhostRoles"))
 		to_chat(U, "<span class='warning'>This creature is not suitable for capture.</span>")
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
-		return
-	if(!M.capture_crystal || M.capture_caught)
+	else if(!M.capture_crystal || M.capture_caught)
 		to_chat(U, "<span class='warning'>This creature is not suitable for capture.</span>")
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
-		return
-	if(tgui_alert(M, "Would you like to be caught by in [src] by [U]? You will be bound to their will.", "Become Caught",list("No","Yes")) == "Yes")
+	else if(tgui_alert(M, "Would you like to be caught by in [src] by [U]? You will be bound to their will.", "Become Caught",list("No","Yes")) == "Yes")
 		if(tgui_alert(M, "Are you really sure? The only way to undo this is to OOC escape while you're in the crystal.", "Become Caught", list("No","Yes")) == "Yes")
 			log_admin("[key_name(M)] has agreed to become caught by [key_name(U)].")
 			capture(M, U)
@@ -274,59 +264,48 @@
 	if(!cooldown_check())		//Are we ready to do things yet?
 		to_chat(thrower, "<span class='notice'>\The [src] clicks unsatisfyingly... It is not ready yet.</span>")
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
-		return
-	if(spawn_mob_type && !bound_mob)			//We don't already have a mob, but we know what kind of mob we want
+	else if(spawn_mob_type && !bound_mob)			//We don't already have a mob, but we know what kind of mob we want
 		bound_mob = new spawn_mob_type(src)		//Well let's spawn it then!
 		bound_mob.faction = user.faction
 		spawn_mob_type = null
 		capture(bound_mob, user)
-	if(bound_mob)								//We have a mob! Let's finish setting up.
+	else if(bound_mob)								//We have a mob! Let's finish setting up.
 		user.visible_message("\The [src] clicks, and then emits a small chime.", "\The [src] grows warm in your hand, something inside is awake.")
 		active = TRUE
 		if(!owner)								//Do we have an owner? It's pretty unlikely that this would ever happen! But it happens, let's claim the crystal.
 			owner = user
 		unleash(user, target)
-		return
-	if(isliving(target))						//So we don't have a mob, let's try to claim one! Is the target a mob?
+	else if(isliving(target))						//So we don't have a mob, let's try to claim one! Is the target a mob?
 		var/mob/living/M = target
 		last_activate = world.time
 		if(M.capture_caught)					//Can't capture things that were already caught.
 			playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 			to_chat(user, "<span class='notice'>\The [src] clicks unsatisfyingly... \The [M] is already under someone else's control.</span>")
-			update_icon()
-			return
-		if(M.stat == DEAD)						//Is it dead? We can't influence dead things.
+		else if(M.stat == DEAD)						//Is it dead? We can't influence dead things.
 			playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 			to_chat(user, "<span class='notice'>\The [src] clicks unsatisfyingly... \The [M] is not in a state to be captured.</span>")
-			update_icon()
-			return
-		if(M.client)							//Is it player controlled?
+		else if(M.client)							//Is it player controlled?
 			capture_player(M, user)				//We have to do things a little differently if so.
-			update_icon()
-			return
-		if(!isanimal(M))						//So it's not player controlled, but it's also not a simplemob?
+		else if(!isanimal(M))						//So it's not player controlled, but it's also not a simplemob?
 			to_chat(user, "<span class='warning'>This creature is not suitable for capture.</span>")
 			playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
-			update_icon()
-			return
 		var/mob/living/simple_mob/S = M
 		if(!S.ai_holder)						//We don't really want to capture simplemobs that don't have an AI
 			to_chat(user, "<span class='warning'>This creature is not suitable for capture.</span>")
 			playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
-			update_icon()
-			return
-		if(prob(capture_chance(S, user)))				//OKAY! So we have an NPC simplemob with an AI, let's calculate its capture chance! It varies based on the mob's condition.
+		else if(prob(capture_chance(S, user)))				//OKAY! So we have an NPC simplemob with an AI, let's calculate its capture chance! It varies based on the mob's condition.
 			capture(S, user)					//We did it! Woo! We capture it!
 			user.visible_message("\The [src] clicks, and then emits a small chime.", "Alright! \The [S] was caught!")
 			recall(user)
 			active = TRUE
-			update_icon()
 		else									//Shoot, it didn't work and now it's mad!!!
 			S.ai_holder.go_wake()
 			S.ai_holder.target = user
 			S.ai_holder.track_target_position()
 			S.ai_holder.set_stance(STANCE_FIGHT)
 			user.visible_message("\The [src] bonks into \the [S], angering it!")
+			playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
+			to_chat(user, "<span class='notice'>\The [src] clicks unsatisfyingly.</span>")
 		update_icon()
 		return
 	//The target is not a mob, so let's not do anything.
@@ -407,27 +386,23 @@
 	. = ..()
 	if(target == bound_mob && thrower != bound_mob)		//We got thrown at our bound mob (and weren't thrown by the bound mob) let's ignore the cooldown and just put them back in
 		recall(thrower)
-		return
-	if(!cooldown_check())		//OTHERWISE let's obey the cooldown
+	else if(!cooldown_check())		//OTHERWISE let's obey the cooldown
 		to_chat(thrower, "<span class='notice'>\The [src] emits an soft tone... It is not ready yet.</span>")
 		if(bound_mob)
 			playsound(src, 'sound/effects/capture-crystal-problem.ogg', 75, 1, -1)
 		else
 			playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
-		return
-	if(!active)					//The ball isn't set up, let's try to set it up.
+	else if(!active)					//The ball isn't set up, let's try to set it up.
 		if(isliving(target))	//We're hitting a mob, let's try to capture it.
 			sleep(10)
 			activate(thrower, target)
 			return
 		sleep(10)
 		activate(thrower, src)
-		return
-	if(!bound_mob)				//We hit something else, and we don't have a mob, so we can't really do anything!
+	else if(!bound_mob)				//We hit something else, and we don't have a mob, so we can't really do anything!
 		to_chat(thrower, "<span class='notice'>\The [src] clicks unpleasantly...</span>")
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
-		return
-	if(bound_mob in contents)	//We have our mob! Let's try to let it out.
+	else if(bound_mob in contents)	//We have our mob! Let's try to let it out.
 		sleep(10)
 		unleash(thrower, src)
 		update_icon()
