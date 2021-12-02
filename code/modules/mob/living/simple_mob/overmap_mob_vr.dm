@@ -39,7 +39,7 @@
 	. = ..()
 	if(!parent_mob_type && !parent)
 		log_and_message_admins("An improperly configured OM mob event tried to spawn, and was deleted.")
-		qdel(src)
+		return INITIALIZE_HINT_QDEL
 	if(!parent)
 		var/mob/living/simple_mob/vore/overmap/P = new parent_mob_type(loc, src)
 		parent = P
