@@ -35,7 +35,8 @@
 	has_langs = list("Mouse")
 
 	holder_type = /obj/item/weapon/holder/mouse
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	meat_amount = 1
+	butchery_loot = list()
 
 	say_list_type = /datum/say_list/mouse
 

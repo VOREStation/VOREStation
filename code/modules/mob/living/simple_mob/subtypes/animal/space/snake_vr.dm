@@ -34,6 +34,9 @@
 	response_disarm = "shoos"
 	response_harm   = "kicks"
 
+	meat_amount = 2
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+
 	melee_damage_lower = 2
 	melee_damage_upper = 3
 	attacktext = list("bitten")

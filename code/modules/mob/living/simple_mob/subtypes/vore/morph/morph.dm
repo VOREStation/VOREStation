@@ -38,8 +38,7 @@
 	attacktext = "glomped"
 	attack_sound = 'sound/effects/blobattack.ogg'
 
-	meat_amount = 2
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	meat_amount = 0
 
 	showvoreprefs = 0
 	vore_active = 1

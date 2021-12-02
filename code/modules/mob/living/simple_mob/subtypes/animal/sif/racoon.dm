@@ -40,6 +40,7 @@
 	melee_damage_upper = 15
 	base_attack_cooldown = 1 SECOND
 	attacktext = list("nipped", "bit", "cut", "clawed")
+	meat_amount = 3
 
 	armor = list(
 		"melee" = 15,
