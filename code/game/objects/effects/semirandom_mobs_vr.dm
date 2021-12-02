@@ -51,6 +51,8 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 		list(/mob/living/simple_mob/animal/passive/opossum),
 		list(/mob/living/simple_mob/animal/passive/pillbug),
 		list(/mob/living/simple_mob/animal/passive/snake),
+		list(/mob/living/simple_mob/animal/passive/snake/red),
+		list(/mob/living/simple_mob/animal/passive/snake/python),
 		list(/mob/living/simple_mob/animal/passive/tindalos),
 		list(/mob/living/simple_mob/animal/passive/yithian),
 		list(
@@ -359,6 +361,8 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 		list(/mob/living/simple_mob/animal/passive/opossum) = 10,
 		list(/mob/living/simple_mob/animal/passive/pillbug) = 10,
 		list(/mob/living/simple_mob/animal/passive/snake) = 10,
+		list(/mob/living/simple_mob/animal/passive/snake/red) = 10,
+		list(/mob/living/simple_mob/animal/passive/snake/python) = 10,
 		list(/mob/living/simple_mob/animal/passive/tindalos) = 10,
 		list(/mob/living/simple_mob/animal/passive/yithian) = 10,
 		list(
@@ -537,7 +541,7 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 			/mob/living/simple_mob/vore/lamia/zebra/bra,
 			/mob/living/simple_mob/vore/lamia/zebra/shirt
 			) = 100,
-// LOOK OKAY MERCS ARE HUMANOIDS SO THEY ARE HERE, but they are also kind of bullshit so they probably shouldn't be able to spawn in the same place as catgirls. 
+// LOOK OKAY MERCS ARE HUMANOIDS SO THEY ARE HERE, but they are also kind of bullshit so they probably shouldn't be able to spawn in the same place as catgirls.
 // I want some better potentially hostile humanoids that aren't stupid to fight. If they become a big issue I'll comment them out.
 // For now they are just rare, and the ranged ones are way more rare than the melee ones, which I think will help balance them out.
 		list(

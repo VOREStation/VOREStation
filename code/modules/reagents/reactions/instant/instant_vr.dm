@@ -400,7 +400,7 @@
 		/mob/living/simple_mob/animal/passive/bird/parrot/poly,
 		/mob/living/simple_mob/animal/sif/fluffy,
 		/mob/living/simple_mob/animal/sif/fluffy/silky,
-		/mob/living/simple_mob/animal/passive/snake/noodle,
+		/mob/living/simple_mob/animal/passive/snake/python/noodle,
 		/mob/living/simple_mob/slime/xenobio/rainbow/kendrick,
 		/mob/living/simple_mob/animal/space/space_worm,						//Space Worm parts that aren't proper heads
 		/mob/living/simple_mob/animal/space/space_worm/head/severed,
