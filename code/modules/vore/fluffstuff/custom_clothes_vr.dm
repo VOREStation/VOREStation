@@ -2296,7 +2296,7 @@ Departamental Swimsuits, for general use
 
 	colorswap(usr)
 
-//PastelPrinceDan: Masumi Maki & Hatterhat: Harold Robsinson
+//PastelPrinceDan: Masumi Maki & Hatterhat: Harold Robinson
 /obj/item/clothing/under/fluff/mechanic_overalls
 	name = "mechanic overalls"
 	desc = "A set of white and blue overalls, paired with a yellow shirt."

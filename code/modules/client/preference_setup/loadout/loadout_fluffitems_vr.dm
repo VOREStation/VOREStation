@@ -394,6 +394,19 @@
 //  G CKEYS
 
 //  H CKEYS
+
+/datum/gear/fluff/mechanic_overalls
+	path = /obj/item/clothing/under/fluff/mechanic_overalls
+	display_name = "mechanic overalls"
+	ckeywhitelist = list("hatterhat")
+	character_name = list("Harold Robinson")
+
+/datum/gear/fluff/mechanic_coat
+	path = /obj/item/clothing/suit/storage/hooded/wintercoat/fluff/mechanic
+	display_name = "mechanic winter coat"
+	ckeywhitelist = list("hatterhat")
+	character_name = list("Harold Robinson")
+
 /datum/gear/fluff/lauren_medal
 	path = /obj/item/clothing/accessory/medal/conduct
 	display_name = "Lauren's Medal"
