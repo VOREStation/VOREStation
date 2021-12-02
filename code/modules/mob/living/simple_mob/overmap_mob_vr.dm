@@ -101,7 +101,7 @@
 	. = ..()
 	if(!om_child_type && !om_child_type)
 		log_and_message_admins("An improperly configured OM mob tried to spawn, and was deleted.")
-		qdel(src)
+		return INITIALIZE_HINT_QDEL
 	if(!child_om_marker)
 		var/obj/effect/overmap/visitable/simplemob/C = new om_child_type(loc, src)
 		child_om_marker = C
