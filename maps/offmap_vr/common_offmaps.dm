@@ -220,6 +220,33 @@
 	mappath = 'maps/gateway_vr/wildwest.dmm'
 	associated_map_datum = /datum/map_z_level/common_lateload/gateway_destination
 
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+/datum/map_template/common_lateload/om_adventure
+	name = "OM Adventure Submap"
+	desc = "Please do not use this."
+	mappath = null
+	associated_map_datum = null
+
+/datum/map_z_level/common_lateload/om_adventure_destination
+	name = "OM Adventure Destination"
+	z = Z_LEVEL_OM_ADVENTURE
+
+#include "../om_adventure/grasscave.dm"
+/datum/map_template/common_lateload/om_adventure/grasscave
+	name = "Grass Cave"
+	desc = "Looks like a cave with some grass in it."
+	mappath = 'maps/om_adventure/grasscave.dmm'
+	associated_map_datum = /datum/map_z_level/common_lateload/om_adventure_destination
+
+/datum/map_template/common_lateload/om_adventure/grasscave/on_map_loaded(z)
+	. = ..()
+	seed_submaps(list(z), 60, /area/om_adventure/grasscave/unexplored, /datum/map_template/om_adventure/outdoor)
+	seed_submaps(list(z), 60, /area/om_adventure/grasscave/rocks, /datum/map_template/om_adventure/cave)
+	new /datum/random_map/automata/cave_system/no_cracks(null, 3, 3, z, world.maxx - 4, world.maxy - 4)
+	new /datum/random_map/noise/ore/grasscave(null, 1, 1, z, 64, 64)
+
 //////////////////////////////////////////////////////////////////////////////////////
 // Admin-use z-levels for loading whenever an admin feels like
 #if AWAY_MISSION_TEST
