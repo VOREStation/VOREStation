@@ -55,7 +55,17 @@
 					   "zoomba-combat",
 					   "zoomba-combat-roll",
 					   "zoomba-combat-shield",
-					   "spiderscience"
+					   "spiderscience",
+					   "uptall-standard",
+					   "uptall-standard2",
+					   "uptall-medical",
+					   "uptall-janitor",
+					   "uptall-crisis",
+					   "uptall-service",
+					   "uptall-engineering",
+					   "uptall-miner",
+					   "uptall-security",
+					   "uptall-science"
 					   )					//List of all used sprites that are in robots_vr.dmi
 
 

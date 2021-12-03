@@ -387,6 +387,15 @@
 /obj/structure/window/reinforced,
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/medical/centralhall)
+"aaH" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/simulated/open,
+/area/rnd/staircase/secondfloor)
 "aaI" = (
 /obj/structure/cable/green{
 	icon_state = "2-4"
@@ -10368,6 +10377,12 @@
 /obj/machinery/door/airlock/maintenance/common,
 /turf/simulated/floor/plating,
 /area/maintenance/asmaint2)
+"aqt" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/staircase/secondfloor)
 "aqu" = (
 /obj/structure/table/standard{
 	name = "plastic table frame"
@@ -23637,19 +23652,7 @@
 	},
 /turf/simulated/open,
 /area/rnd/staircase/secondfloor)
-"aPG" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/turf/simulated/open,
-/area/rnd/staircase/secondfloor)
 "aPH" = (
-/turf/simulated/open,
-/area/rnd/staircase/secondfloor)
-"aPI" = (
-/obj/machinery/light{
-	dir = 4
-	},
 /turf/simulated/open,
 /area/rnd/staircase/secondfloor)
 "aPJ" = (
@@ -42532,7 +42535,7 @@ aMW
 aNv
 aOj
 aOZ
-aPG
+aaH
 aPH
 aPH
 aRM
@@ -42674,7 +42677,7 @@ aMX
 aNv
 aOk
 aOY
-aPH
+aOY
 aPH
 aPH
 aRM
@@ -42816,7 +42819,7 @@ aIP
 aIP
 aOl
 aPa
-aPI
+aqt
 aPH
 aPH
 aRM

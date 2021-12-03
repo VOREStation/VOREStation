@@ -28,20 +28,29 @@ var/list/holder_mob_icon_cache = list()
 /obj/item/weapon/holder/Initialize(mapload, mob/held)
 	ASSERT(ismob(held))
 	. = ..()
+	held.forceMove(src)
+	START_PROCESSING(SSobj, src)
+
+/obj/item/weapon/holder/Entered(mob/held, atom/OldLoc)
+	if(held_mob)
+		held.forceMove(get_turf(src))
+		return
+	ASSERT(ismob(held))
+	. = ..()
 	held_mob = held
 	original_vis_flags = held.vis_flags
 	held.vis_flags = VIS_INHERIT_ID|VIS_INHERIT_LAYER|VIS_INHERIT_PLANE
-
-	held.forceMove(src)
 	vis_contents += held
 	name = held.name
 	original_transform = held.transform
 	held.transform = null
 
-	// I really hate this, but I'm sleepy and unable to figure out a nice stateful way to do it
-	// Entered and Exited seem ideal but all the inventory procs are trash and put items on
-	// turfs before you when manhandling things in/out of backpacks and inventory slots.
-	START_PROCESSING(SSobj, src)
+/obj/item/weapon/holder/Exited(atom/movable/thing, atom/OldLoc)
+	if(thing == held_mob)
+		held_mob.transform = original_transform
+		held_mob.vis_flags = original_vis_flags
+		held_mob = null
+	..()
 
 /obj/item/weapon/holder/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -91,7 +100,7 @@ var/list/holder_mob_icon_cache = list()
 	else if(istype(loc, /obj/item/clothing/accessory/holster))
 		var/obj/item/clothing/accessory/holster/holster = loc
 		if(holster.holstered == src)
-			holster.clear_holster()			
+			holster.clear_holster()
 		to_chat(held, "<span class='warning'>You extricate yourself from [holster].</span>")
 		forceMove(get_turf(src))
 	else if(isitem(loc))
@@ -120,11 +129,30 @@ var/list/holder_mob_icon_cache = list()
 	item_state = held.icon_state
 
 /obj/item/weapon/holder/mouse
+	name = "mouse"
+	desc = "It's a small rodent."
+	item_state = "mouse_gray"
+	slot_flags = SLOT_EARS | SLOT_HEAD | SLOT_ID
+	origin_tech = list(TECH_BIO = 2)
 	w_class = ITEMSIZE_TINY
 
-/obj/item/weapon/holder/pai/Initialize(mapload, mob/held)
-	. = ..()
-	item_state = held.icon_state
+/obj/item/weapon/holder/mouse/white
+	item_state = "mouse_white"
+
+/obj/item/weapon/holder/mouse/gray
+	item_state = "mouse_gray"
+
+/obj/item/weapon/holder/mouse/brown
+	item_state = "mouse_brown"
+
+/obj/item/weapon/holder/mouse/black
+	item_state = "mouse_black"
+
+/obj/item/weapon/holder/mouse/operative
+	item_state = "mouse_operative"
+
+/obj/item/weapon/holder/mouse/rat
+	item_state = "mouse_rat"
 
 /obj/item/weapon/holder/possum
 	origin_tech = list(TECH_BIO = 2)
@@ -259,8 +287,6 @@ var/list/holder_mob_icon_cache = list()
 /mob/living/MouseDrop(var/atom/over_object)
 	var/mob/living/carbon/human/H = over_object
 	if(holder_type && issmall(src) && istype(H) && !H.lying && Adjacent(H) && (src.a_intent == I_HELP && H.a_intent == I_HELP)) //VOREStation Edit
-		if(istype(src, /mob/living/simple_mob/animal/passive/mouse)) //vorestation edit
-			return ..() //vorestation edit
 		if(!issmall(H) || !istype(src, /mob/living/carbon/human))
 			get_scooped(H, (usr == src))
 		return

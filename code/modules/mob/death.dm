@@ -1,7 +1,8 @@
 //This is the proc for gibbing a mob. Cannot gib ghosts.
 //added different sort of gibs and animations. N
 /mob/proc/gib(anim="gibbed-m", do_gibs, gib_file = 'icons/mob/mob.dmi')
-	death(1)
+	if(stat != DEAD)
+		death(1)
 	transforming = 1
 	canmove = 0
 	icon = null
@@ -70,6 +71,7 @@
 
 	if(stat == DEAD)
 		return 0
+	SEND_SIGNAL(src, COMSIG_MOB_DEATH, gibbed)
 	if(src.loc && istype(loc,/obj/belly) || istype(loc,/obj/item/device/dogborg/sleeper)) deathmessage = "no message" //VOREStation Add - Prevents death messages from inside mobs
 	facing_dir = null
 
@@ -100,7 +102,7 @@
 	if(mind) mind.store_memory("Time of death: [stationtime2text()]", 0)
 	living_mob_list -= src
 	dead_mob_list |= src
-	
+
 	set_respawn_timer()
 	updateicon()
 	handle_regular_hud_updates()

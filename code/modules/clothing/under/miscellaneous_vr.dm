@@ -102,7 +102,7 @@
 		if(new_size != H.size_multiplier)
 			if(!original_size)
 				original_size = H.size_multiplier
-			H.resize(new_size/100, ignore_prefs = TRUE) // Ignores prefs because you can only resize yourself
+			H.resize(new_size/100, uncapped = H.has_large_resize_bounds(), ignore_prefs = TRUE) // Ignores prefs because you can only resize yourself
 			H.visible_message("<span class='warning'>The space around [H] distorts as they change size!</span>","<span class='notice'>The space around you distorts as you change size!</span>")
 		else //They chose their current size.
 			return

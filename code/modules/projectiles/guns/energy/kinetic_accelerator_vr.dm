@@ -191,7 +191,7 @@
 /obj/item/weapon/gun/energy/kinetic_accelerator/proc/empty()
 	if(power_supply)
 		power_supply.use(power_supply.charge)
-	update_icon()
+		update_icon()
 
 /obj/item/weapon/gun/energy/kinetic_accelerator/proc/attempt_reload(recharge_time)
 	if(!power_supply)
@@ -223,7 +223,7 @@
 
 /obj/item/weapon/gun/energy/kinetic_accelerator/update_icon()
 	cut_overlays()
-	if(overheat || (power_supply.charge == 0))
+	if(overheat || !power_supply || (power_supply.charge == 0))
 		add_overlay(emptystate)
 
 #define KA_ENVIRO_TYPE_COLD 0
@@ -661,7 +661,7 @@
 	maximum_of_type = 1
 	cost = 35
 
-/obj/item/borg/upgrade/modkit/indoors/offsite/modify_projectile(obj/item/projectile/kinetic/K)
+/obj/item/borg/upgrade/modkit/offsite/modify_projectile(obj/item/projectile/kinetic/K)
 	K.environment = KA_ENVIRO_TYPE_OFFSITE
 
 // Atmospheric

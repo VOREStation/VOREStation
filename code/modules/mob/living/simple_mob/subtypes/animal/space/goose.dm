@@ -25,7 +25,8 @@
 
 	has_langs = list("Bird")
 
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/chicken
+	meat_amount = 3
 
 /datum/say_list/goose
 	speak = list("HONK!")

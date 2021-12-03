@@ -1,0 +1,210 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"c" = (
+/obj/random/awayloot/looseloot,
+/turf/simulated/floor/weird_things/dark,
+/area/om_adventure/poi/shuttlewreck3)
+"f" = (
+/obj/random/tech_supply,
+/turf/template_noop,
+/area/template_noop)
+"h" = (
+/turf/simulated/floor/weird_things/dark,
+/area/om_adventure/poi/shuttlewreck3)
+"k" = (
+/turf/simulated/shuttle/wall,
+/area/om_adventure/poi/shuttlewreck3)
+"m" = (
+/obj/item/weapon/material/shard/shrapnel,
+/turf/template_noop,
+/area/template_noop)
+"p" = (
+/obj/item/weapon/material/shard/shrapnel,
+/turf/simulated/floor/weird_things/dark,
+/area/om_adventure/poi/shuttlewreck3)
+"u" = (
+/obj/item/weapon/material/shard/shrapnel,
+/obj/random/awayloot/looseloot,
+/turf/simulated/shuttle/floor/white,
+/area/om_adventure/poi/shuttlewreck3)
+"x" = (
+/obj/structure/door_assembly/door_assembly_ext,
+/turf/simulated/floor/plating,
+/area/om_adventure/poi/shuttlewreck3)
+"D" = (
+/obj/random/tech_supply,
+/turf/simulated/floor/plating,
+/area/om_adventure/poi/shuttlewreck3)
+"F" = (
+/obj/structure/grille/broken,
+/obj/item/weapon/material/shard,
+/turf/simulated/floor/plating,
+/area/om_adventure/poi/shuttlewreck3)
+"H" = (
+/obj/random/tech_supply/component,
+/turf/simulated/floor/weird_things/dark,
+/area/om_adventure/poi/shuttlewreck3)
+"I" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/om_adventure/poi/shuttlewreck3)
+"K" = (
+/obj/structure/shuttle/engine/propulsion{
+	dir = 1
+	},
+/turf/simulated/floor/weird_things/dark,
+/area/om_adventure/poi/shuttlewreck3)
+"Q" = (
+/obj/item/weapon/material/shard/shrapnel,
+/obj/effect/gibspawner/human,
+/obj/random/contraband/nofail,
+/turf/simulated/shuttle/floor/white,
+/area/om_adventure/poi/shuttlewreck3)
+"S" = (
+/obj/random/contraband/nofail,
+/turf/simulated/floor/weird_things/dark,
+/area/om_adventure/poi/shuttlewreck3)
+"Z" = (
+/obj/tether_away_spawner/spookyland,
+/turf/simulated/floor/weird_things/dark,
+/area/om_adventure/poi/shuttlewreck3)
+
+(1,1,1) = {"
+a
+a
+a
+h
+a
+a
+a
+"}
+(2,1,1) = {"
+h
+a
+a
+h
+a
+a
+h
+"}
+(3,1,1) = {"
+K
+a
+h
+h
+h
+a
+a
+"}
+(4,1,1) = {"
+h
+a
+h
+h
+h
+f
+a
+"}
+(5,1,1) = {"
+a
+h
+S
+h
+H
+a
+a
+"}
+(6,1,1) = {"
+a
+a
+c
+h
+h
+a
+a
+"}
+(7,1,1) = {"
+m
+h
+Z
+h
+h
+h
+a
+"}
+(8,1,1) = {"
+a
+H
+D
+h
+I
+a
+a
+"}
+(9,1,1) = {"
+a
+h
+k
+x
+k
+h
+a
+"}
+(10,1,1) = {"
+a
+h
+k
+u
+k
+h
+a
+"}
+(11,1,1) = {"
+a
+h
+k
+Q
+k
+H
+m
+"}
+(12,1,1) = {"
+a
+h
+k
+F
+k
+h
+a
+"}
+(13,1,1) = {"
+a
+h
+p
+h
+p
+a
+h
+"}
+(14,1,1) = {"
+a
+a
+a
+Z
+a
+a
+a
+"}
+(15,1,1) = {"
+a
+h
+a
+a
+a
+a
+a
+"}

@@ -55,7 +55,7 @@
 			healths.icon_state = "health7"
 
 	//Updates the nutrition while we're here
-	var/food_per = (nutrition / initial(nutrition)) * 100
+	var/food_per = (nutrition / 500) * 100 //VOREStation Edit: Bandaid hardcode number to avoid misleading percentage based hunger alerts with our 6k cap.
 	switch(food_per)
 		if(90 to INFINITY)
 			clear_alert("nutrition")

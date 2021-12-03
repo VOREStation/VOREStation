@@ -4,6 +4,7 @@
 	var/directory_erptag = "Unset"	//ditto, but for non-vore scenes
 	var/directory_ad = ""		//Advertisement stuff to show in character directory.
 	var/sensorpref = 5			//Set character's suit sensor level
+	var/capture_crystal = 1	//Whether or not someone is able to be caught with capture crystals
 
 	var/job_talon_high = 0
 	var/job_talon_med = 0
@@ -72,7 +73,7 @@
 	feedback_add_details("admin_verb","TEmoteNoise") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/verb/toggle_ghost_quiets()
-	set name = "Toggle Whisper/Subtle Vis"
+	set name = "Toggle Ghost Privacy"
 	set category = "Preferences"
 	set desc = "Toggle ghosts viewing your subtles/whispers."
 
@@ -85,3 +86,22 @@
 	SScharacter_setup.queue_preferences_save(prefs)
 
 	feedback_add_details("admin_verb","TWhisubtleVis") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/verb/toggle_capture_crystal()
+	set name = "Toggle Catchable"
+	set category = "Preferences"
+	set desc = "Toggle being catchable with capture crystals."
+	
+	var/mob/living/L = mob
+
+	if(prefs.capture_crystal)
+		to_chat(src, "You are no longer catchable.")
+		prefs.capture_crystal = 0
+	else
+		to_chat(src, "You are now catchable.")
+		prefs.capture_crystal = 1
+	if(L)
+		L.capture_crystal = prefs.capture_crystal
+	SScharacter_setup.queue_preferences_save(prefs)
+
+	feedback_add_details("admin_verb","TCaptureCrystal") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

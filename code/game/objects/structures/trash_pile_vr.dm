@@ -255,7 +255,8 @@
 					prob(1);/obj/item/weapon/storage/box/survival/space,
 					prob(1);/obj/item/weapon/storage/secure/briefcase/trashmoney,
 					prob(1);/obj/item/device/survivalcapsule/popcabin,
-					prob(1);/obj/item/weapon/reagent_containers/syringe/steroid)
+					prob(1);/obj/item/weapon/reagent_containers/syringe/steroid,
+					prob(1);/obj/item/capture_crystal)
 
 	var/obj/item/I = new path()
 	return I

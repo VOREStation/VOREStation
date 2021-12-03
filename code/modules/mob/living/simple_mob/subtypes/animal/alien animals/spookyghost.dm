@@ -71,9 +71,9 @@
 		"rad" = 100
 		)
 
-	speak_emote = list("rumbles")
+	loot_list = list(/obj/item/weapon/ore/diamond = 100)
 
-	loot_list = list(/obj/item/weapon/ore/diamond)
+	speak_emote = list("rumbles")
 
 	vore_active = 0
 

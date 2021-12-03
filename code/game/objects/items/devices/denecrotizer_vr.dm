@@ -95,6 +95,10 @@
 		to_chat(D, "<span class='notice'>Sorry, someone else has already inhabited [src].</span>")
 		return FALSE
 	
+	if(capture_caught && !D.client.prefs.capture_crystal)
+		to_chat(D, "<span class='notice'>Sorry, [src] is participating in capture mechanics, and your preferences do not allow for that.</span>")
+		return FALSE
+
 	// Insert whatever ban checks you want here if we ever add simplemob bans
 
 	return TRUE
