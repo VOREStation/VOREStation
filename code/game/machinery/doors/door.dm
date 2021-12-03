@@ -3,7 +3,7 @@
 
 /obj/machinery/door
 	name = "Door"
-	desc = "It opens and closes."
+	desc = "It opens and closes.  There's a little doorbell on the side that you can ring by holding Alt and Left-clicking the door" //Vorestation edit
 	icon = 'icons/obj/doors/Doorint.dmi'
 	icon_state = "door1"
 	anchored = TRUE
