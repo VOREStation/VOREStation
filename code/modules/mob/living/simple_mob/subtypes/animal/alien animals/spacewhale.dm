@@ -9,7 +9,7 @@
 /mob/living/simple_mob/vore/overmap/spacewhale
 	name = "space whale"
 	desc = "It's a space whale. I don't know what more you expected."
-	scanner_desc = "It's a space whale! Woah!"
+	scanner_desc = "An absolutely massive space-born creature. A layer of radical energy around its body prevents detailed scanning, though, the energy along with its movements seem to be what propels it through space. A series of bio-luminescent lights ripple rhythmically across its surface. It is difficult to spot at range except for the wake of energy that swirls around it."
 	catalogue_data = list(/datum/category_item/catalogue/fauna/spacewhale)
 
 	icon = 'icons/mob/alienanimals_x32.dmi'
@@ -77,6 +77,7 @@
 	var/hazard_drop_chance = 35
 	var/held_hazard
 	var/restless = FALSE
+	var/post_restless_tired = 0
 
 	vore_active = 1
 	vore_capacity = 99
@@ -133,6 +134,9 @@
 
 /mob/living/simple_mob/vore/overmap/spacewhale/Life()
 	. = ..()
+	if(post_restless_tired)
+		post_restless_tired--
+		return
 	if(!restless && prob(0.5))
 		handle_restless()
 
@@ -143,6 +147,8 @@
 		hazard_drop_chance = initial(hazard_drop_chance)
 		movement_cooldown = initial(movement_cooldown)
 		ai_holder.base_wander_delay = initial(ai_holder.base_wander_delay)
+		ai_holder.wander = FALSE
+		post_restless_tired = 250
 		if(child_om_marker.known == TRUE)
 			child_om_marker.icon_state = "space_whale"
 			visible_message("<span class='notice'>\The [child_om_marker.name] settles down.</span>")
@@ -199,3 +205,4 @@
 	skybox_pixel_y = 0
 	glide_size = 0.384
 	parent_mob_type = /mob/living/simple_mob/vore/overmap/spacewhale
+	scanner_desc = "An absolutely massive space-born creature. A layer of radical energy around its body prevents detailed scanning, though, the energy along with its movements seem to be what propels it through space. A series of bio-luminescent lights ripple rhythmically across its surface. It is difficult to spot at range except for the wake of energy that swirls around it."

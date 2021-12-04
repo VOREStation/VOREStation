@@ -139,6 +139,10 @@
 	//Replace this with a VORE setting so all types of posibrains can/can't be digested on a whim
 	return FALSE
 
+/obj/item/organ/internal/nano/digest_act(atom/movable/item_storage = null)
+	//Make proteans recoverable too
+	return FALSE
+
 // Gradual damage measurement
 /obj/item
 	var/digest_stage = null

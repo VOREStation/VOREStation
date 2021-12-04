@@ -296,6 +296,12 @@
 	ckeywhitelist = list("chaleur")
 	character_name = list("Hisako Arato")
 
+/datum/gear/fluff/jade_stamp
+	path = /obj/item/weapon/stamp/fluff/jade_horror
+	display_name = "Official Council of Mid Horror rubber stamp"
+	ckeywhitelist = list("coolcrow420")
+	character_name = list("Jade Davis")
+
 //  D CKEYS
 /datum/gear/fluff/dhaeleena_medal
 	path = /obj/item/clothing/accessory/medal/silver/security/fluff/dhael
