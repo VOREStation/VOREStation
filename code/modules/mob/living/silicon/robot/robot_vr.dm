@@ -56,14 +56,16 @@
 					   "zoomba-combat-roll",
 					   "zoomba-combat-shield",
 					   "spiderscience",
-					   "equidroid-STD",
-					   "equidroid-ENG",
-					   "equidroid-MED",
-					   "equidroid-CRG",
-					   "equidroid-JNI",
-					   "equidroid-SEC",
-					   "equidroid-SCI",
-					   "equidroid-CMB"
+					   "uptall-standard",
+					   "uptall-standard2",
+					   "uptall-medical",
+					   "uptall-janitor",
+					   "uptall-crisis",
+					   "uptall-service",
+					   "uptall-engineering",
+					   "uptall-miner",
+					   "uptall-security",
+					   "uptall-science"
 					   )					//List of all used sprites that are in robots_vr.dmi
 
 
@@ -284,3 +286,10 @@
 		return
 	if(buckle_mob(M))
 		visible_message("<span class='notice'>[M] starts riding [name]!</span>")
+
+/mob/living/silicon/robot/onTransitZ(old_z, new_z)
+	if(shell)
+		if(deployed && using_map.ai_shell_restricted && !(new_z in using_map.ai_shell_allowed_levels))
+			to_chat(src, "<span class='warning'>Your connection with the shell is suddenly interrupted!</span>")
+			undeploy()
+	..()
