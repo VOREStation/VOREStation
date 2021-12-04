@@ -28,6 +28,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 
 	var/durability = 100					// Durability remaining
 	var/bioadap = FALSE						// If it'll work in fancy species
+	var/gib_nodrop = FALSE					// NIF self-destructs when owner is gibbed
 
 	var/tmp/power_usage = 0						// Nifsoft adds to this
 	var/tmp/mob/living/carbon/human/human		// Our owner!
@@ -613,6 +614,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	desc = "A NIF that is part of a protean's body structure. Where did you get that anyway?"
 	durability = 25
 	bioadap = TRUE
+	gib_nodrop = TRUE
 
 ////////////////////////////////
 // Special Promethean """surgery"""
