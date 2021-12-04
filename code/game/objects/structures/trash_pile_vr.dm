@@ -11,13 +11,15 @@
 
 	var/obj/structure/mob_spawner/mouse_nest/mouse_nest = null
 
-	var/chance_alpha	= 79	// Alpha list is junk items and normal random stuff.
-	var/chance_beta		= 20	// Beta list is actually maybe some useful illegal items. If it's not alpha or gamma, it's beta.
-	var/chance_gamma	= 1		// Gamma list is unique items only, and will only spawn one of each. This is a sub-chance of beta chance.
+	var/chance_alpha	= 50	// Alpha list is minor legal stuff. May be useful, but not particularly so.
+	var/chance_beta		= 30	// Beta list is primarily items used to enable scenes in one way or another.
+	var/chance_gamma	= 19	// Gamma list is illegal mechanical items. All the cool gamer loot is stored here.
+	var/chance_delta	= 1		// Delta list is unique items that will be spawned only once per round.
+								// The REAL cool gamer loot is in here. Mixed bag between exceptionally practical items that would fit in Beta or Gamma pools.
 
 	//These are types that can only spawn once, and then will be removed from this list.
 	//Alpha and beta lists are in their respective procs.
-	var/global/list/unique_gamma = list(
+	var/global/list/unique_delta = list(
 		/obj/item/device/perfect_tele,
 		/obj/item/weapon/bluespace_harpoon,
 		/obj/item/clothing/glasses/thermal/syndi,
@@ -27,7 +29,7 @@
 		/obj/item/weapon/gun/projectile/dartgun
 		)
 
-	var/global/list/allocated_gamma = list()
+	var/global/list/allocated_delta = list()
 
 /obj/structure/trash_pile/Initialize()
 	. = ..()
@@ -52,12 +54,12 @@
 
 /obj/structure/trash_pile/attackby(obj/item/W as obj, mob/user as mob)
 	var/w_type = W.type
-	if(w_type in allocated_gamma)
+	if(w_type in allocated_delta)
 		to_chat(user,"<span class='notice'>You feel \the [W] slip from your hand, and disappear into the trash pile.</span>")
 		user.unEquip(W)
 		W.forceMove(src)
-		allocated_gamma -= w_type
-		unique_gamma += w_type
+		allocated_delta -= w_type
+		unique_delta += w_type
 		qdel(W)
 
 	else
@@ -114,166 +116,98 @@
 					I = produce_beta_item()
 				else if(luck <= chance_alpha+chance_beta+chance_gamma)
 					I = produce_gamma_item()
+				else if(luck <= chance_alpha+chance_beta+chance_gamma+chance_delta)
+					I = produce_delta_item()
 
 				//We either have an item to hand over or we don't, at this point!
 				if(I)
 					searchedby += user.ckey
 					I.forceMove(get_turf(src))
-					to_chat(H,"<span class='notice'>You found \a [I]!</span>")
+					to_chat(H,"<span class='notice'>You found \a [I] among the useless trash!</span>")
 
 	else
 		return ..()
 
 //Random lists
 /obj/structure/trash_pile/proc/produce_alpha_item()
-	var/path = pick(prob(5);/obj/item/clothing/gloves/rainbow,
-					prob(5);/obj/item/clothing/gloves/white,
-					prob(5);/obj/item/weapon/storage/backpack,
-					prob(5);/obj/item/weapon/storage/backpack/satchel/norm,
-					prob(5);/obj/item/weapon/storage/box,
-				//	prob(5);/obj/random/cigarettes,
-					prob(4);/obj/item/broken_device/random,
-					prob(4);/obj/item/clothing/head/hardhat,
-					prob(4);/obj/item/clothing/mask/breath,
-					prob(4);/obj/item/clothing/shoes/black,
-					prob(4);/obj/item/clothing/shoes/black,
-					prob(4);/obj/item/clothing/shoes/laceup,
-					prob(4);/obj/item/clothing/shoes/laceup/brown,
-					prob(4);/obj/item/clothing/suit/storage/hazardvest,
-					prob(4);/obj/item/clothing/under/color/grey,
-					prob(4);/obj/item/clothing/suit/caution,
-					prob(4);/obj/item/weapon/cell,
-					prob(4);/obj/item/weapon/cell/device,
-					prob(4);/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-					prob(4);/obj/item/weapon/spacecash/c1,
-					prob(4);/obj/item/weapon/storage/backpack/satchel,
-					prob(4);/obj/item/weapon/storage/briefcase,
-					prob(3);/obj/item/clothing/accessory/storage/webbing,
-					prob(3);/obj/item/clothing/glasses/meson,
-					prob(3);/obj/item/clothing/gloves/botanic_leather,
-					prob(3);/obj/item/clothing/head/hardhat/red,
-					prob(3);/obj/item/clothing/mask/gas,
-					prob(3);/obj/item/clothing/suit/storage/apron,
-					prob(3);/obj/item/clothing/suit/storage/toggle/bomber,
-					prob(3);/obj/item/clothing/suit/storage/toggle/brown_jacket,
-					prob(3);/obj/item/clothing/suit/storage/toggle/hoodie/black,
-					prob(3);/obj/item/clothing/suit/storage/toggle/hoodie/blue,
-					prob(3);/obj/item/clothing/suit/storage/toggle/hoodie/red,
-					prob(3);/obj/item/clothing/suit/storage/toggle/hoodie/yellow,
-					prob(3);/obj/item/clothing/suit/storage/toggle/leather_jacket,
-					prob(3);/obj/item/device/pda,
-					prob(3);/obj/item/device/radio/headset,
-					prob(3);/obj/item/weapon/camera_assembly,
-					prob(3);/obj/item/clothing/head/cone,
+	var/path = pick(prob(4);/obj/item/weapon/cell,
 					prob(3);/obj/item/weapon/cell/high,
-					prob(3);/obj/item/weapon/spacecash/c10,
-					prob(3);/obj/item/weapon/spacecash/c20,
-					prob(3);/obj/item/weapon/storage/backpack/dufflebag,
-					prob(3);/obj/item/weapon/storage/box/donkpockets,
-					prob(3);/obj/item/weapon/storage/box/mousetraps,
-					prob(3);/obj/item/weapon/storage/wallet,
-					prob(2);/obj/item/clothing/glasses/meson/prescription,
-					prob(2);/obj/item/clothing/gloves/fyellow,
-					prob(2);/obj/item/clothing/gloves/sterile/latex,
-					prob(2);/obj/item/clothing/head/welding,
-					prob(2);/obj/item/clothing/mask/gas/half,
-					prob(2);/obj/item/clothing/shoes/galoshes,
-					prob(2);/obj/item/clothing/under/pants/camo,
-					prob(2);/obj/item/clothing/under/syndicate/tacticool,
-					prob(2);/obj/item/clothing/under/hyperfiber,
-					prob(2);/obj/item/device/camera,
-					prob(2);/obj/item/device/flashlight/flare,
-					prob(2);/obj/item/device/flashlight/glowstick,
-					prob(2);/obj/item/device/flashlight/glowstick/blue,
-					prob(2);/obj/item/weapon/card/emag_broken,
 					prob(2);/obj/item/weapon/cell/super,
-					prob(2);/obj/item/poster,
-					prob(2);/obj/item/weapon/reagent_containers/glass/rag,
-					prob(2);/obj/item/weapon/storage/box/sinpockets,
-					prob(2);/obj/item/weapon/storage/secure/briefcase,
-					prob(2);/obj/item/clothing/under/fluff/latexmaid,
-					prob(2);/obj/item/toy/tennis,
-					prob(2);/obj/item/toy/tennis/red,
-					prob(2);/obj/item/toy/tennis/yellow,
-					prob(2);/obj/item/toy/tennis/green,
-					prob(2);/obj/item/toy/tennis/cyan,
-					prob(2);/obj/item/toy/tennis/blue,
-					prob(2);/obj/item/toy/tennis/purple,
-					prob(1);/obj/item/clothing/glasses/sunglasses,
+					prob(1);/obj/item/weapon/cell/hyper,
+					prob(3);/obj/item/clothing/head/welding,
 					prob(1);/obj/item/clothing/glasses/welding,
+					prob(2);/obj/item/clothing/shoes/galoshes,
+					prob(2);/obj/item/clothing/under/syndicate/tacticool,
 					prob(1);/obj/item/clothing/gloves/yellow,
-					prob(1);/obj/item/clothing/head/bio_hood/general,
-					prob(1);/obj/item/clothing/head/ushanka,
-					prob(1);/obj/item/clothing/shoes/syndigaloshes,
-					prob(1);/obj/item/clothing/suit/bio_suit/general,
-					prob(1);/obj/item/clothing/suit/space/emergency,
-					prob(1);/obj/item/clothing/under/harness,
-					prob(1);/obj/item/clothing/under/tactical,
-					prob(1);/obj/item/clothing/suit/armor/material/makeshift,
-					prob(1);/obj/item/device/flashlight/glowstick/orange,
-					prob(1);/obj/item/device/flashlight/glowstick/red,
-					prob(1);/obj/item/device/flashlight/glowstick/yellow,
-					prob(1);/obj/item/device/flashlight/pen,
-					prob(1);/obj/item/device/paicard,
-					prob(1);/obj/item/weapon/card/emag,
-					prob(1);/obj/item/clothing/mask/gas/voice,
-					prob(1);/obj/item/weapon/spacecash/c100,
-					prob(1);/obj/item/weapon/spacecash/c50,
 					prob(1);/obj/item/weapon/storage/backpack/dufflebag/syndie,
-					prob(1);/obj/item/weapon/storage/box/cups,
-					prob(1);/obj/item/pizzavoucher)
+					prob(1);/obj/item/clothing/suit/storage/vest/heavy/merc,
+					prob(1);/obj/item/weapon/storage/box/survival/space,
+					prob(4);/obj/item/device/pda,
+					prob(4);/obj/item/device/radio/headset,
+					prob(2);/obj/item/device/paicard,
+					prob(3);/obj/item/weapon/storage/box/sinpockets,
+					prob(2);/obj/item/weapon/storage/pill_bottle/paracetamol,
+					prob(1);/obj/item/pizzavoucher,
+					prob(2);/obj/item/device/nif/bad,
+					prob(2);/obj/item/weapon/card/emag_broken,
+					prob(1);/obj/item/device/survivalcapsule/popcabin)
 
 	var/obj/item/I = new path()
 	return I
 
 /obj/structure/trash_pile/proc/produce_beta_item()
-	var/path = pick(prob(6);/obj/item/weapon/storage/pill_bottle/paracetamol,
-					prob(4);/obj/item/weapon/storage/pill_bottle/happy,
-					prob(4);/obj/item/weapon/storage/pill_bottle/zoom,
-					prob(4);/obj/item/seeds/ambrosiavulgarisseed,
+	var/path = pick(prob(2);/obj/item/clothing/under/fluff/latexmaid,
+					prob(2);/obj/item/clothing/under/hyperfiber,
 					prob(4);/obj/item/weapon/gun/energy/sizegun,
-					prob(3);/obj/item/weapon/material/butterfly,
-					prob(3);/obj/item/weapon/material/butterfly/switchblade,
-					prob(3);/obj/item/clothing/gloves/knuckledusters,
-					prob(3);/obj/item/weapon/reagent_containers/syringe/drugs,
-					prob(2);/obj/item/weapon/implanter/sizecontrol,
+					prob(2);/obj/item/clothing/under/hyperfiber/bluespace,
+					prob(1);/obj/item/weapon/implanter/sizecontrol,
 					prob(2);/obj/item/weapon/handcuffs/fuzzy,
 					prob(2);/obj/item/weapon/handcuffs/legcuffs/fuzzy,
-					prob(2);/obj/item/weapon/storage/box/syndie_kit/spy,
-					prob(2);/obj/item/weapon/grenade/anti_photon,
-					prob(2);/obj/item/clothing/under/hyperfiber/bluespace,
-					prob(2);/obj/item/weapon/reagent_containers/glass/beaker/vial/amorphorovir,
-					prob(1);/obj/item/clothing/suit/storage/vest/heavy/merc,
-					prob(1);/obj/item/device/nif/bad,
-					prob(1);/obj/item/device/radio_jammer,
-					prob(1);/obj/item/device/sleevemate,
+					prob(1);/obj/item/weapon/reagent_containers/glass/beaker/vial/amorphorovir,
+					prob(2);/obj/item/device/sleevemate,
 					prob(1);/obj/item/device/bodysnatcher,
-					prob(1);/obj/item/weapon/beartrap,
-					prob(1);/obj/item/weapon/cell/hyper/empty,
-					prob(1);/obj/item/weapon/disk/nifsoft/compliance,
-					prob(1);/obj/item/weapon/material/knife/tacknife,
-					prob(1);/obj/item/weapon/storage/box/survival/space,
-					prob(1);/obj/item/weapon/storage/secure/briefcase/trashmoney,
-					prob(1);/obj/item/device/survivalcapsule/popcabin,
-					prob(1);/obj/item/weapon/reagent_containers/syringe/steroid,
 					prob(1);/obj/item/capture_crystal)
 
 	var/obj/item/I = new path()
 	return I
 
 /obj/structure/trash_pile/proc/produce_gamma_item()
-	var/path = pick_n_take(unique_gamma)
+	var/path = pick(prob(4);/obj/item/weapon/material/butterfly,
+					prob(4);/obj/item/weapon/material/butterfly/switchblade,
+					prob(4);/obj/item/clothing/gloves/knuckledusters,
+					prob(2);/obj/item/weapon/material/knife/tacknife,
+					prob(2);/obj/item/clothing/shoes/syndigaloshes,
+					prob(3);/obj/item/clothing/suit/armor/material/makeshift,
+					prob(4);/obj/item/seeds/ambrosiavulgarisseed,
+					prob(4);/obj/item/weapon/storage/pill_bottle/happy,
+					prob(4);/obj/item/weapon/storage/pill_bottle/zoom,
+					prob(3);/obj/item/weapon/reagent_containers/syringe/drugs,
+					prob(2);/obj/item/weapon/reagent_containers/syringe/steroid,
+					prob(3);/obj/item/weapon/storage/box/syndie_kit/spy,
+					prob(3);/obj/item/weapon/grenade/anti_photon,
+					prob(2);/obj/item/device/radio_jammer,
+					prob(1);/obj/item/clothing/mask/gas/voice,
+					prob(1);/obj/item/weapon/card/emag,
+					prob(3);/obj/item/weapon/handcuffs,
+					prob(3);/obj/item/weapon/handcuffs/legcuffs,
+					prob(1);/obj/item/weapon/storage/secure/briefcase/trashmoney)
+
+	var/obj/item/I = new path()
+	return I
+
+/obj/structure/trash_pile/proc/produce_delta_item()
+	var/path = pick_n_take(unique_delta)
 	if(!path) //Tapped out, reallocate?
-		for(var/P in allocated_gamma)
-			var/obj/item/I = allocated_gamma[P]
+		for(var/P in allocated_delta)
+			var/obj/item/I = allocated_delta[P]
 			if(QDELETED(I) || istype(I.loc,/obj/machinery/computer/cryopod))
-				allocated_gamma -= P
+				allocated_delta -= P
 				path = P
 				break
 
 	if(path)
 		var/obj/item/I = new path()
-		allocated_gamma[path] = I
+		allocated_delta[path] = I
 		return I
 	else
 		return produce_beta_item()
