@@ -13,6 +13,9 @@
 	maxHealth = 9030
 	health = 9030
 
+	meat_amount = 2
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+
 	response_help = "pats"
 	response_disarm = "gently pushes aside"
 	response_harm = "hits"

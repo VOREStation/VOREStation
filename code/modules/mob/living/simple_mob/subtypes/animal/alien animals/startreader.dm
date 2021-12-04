@@ -47,7 +47,7 @@
 	minbodytemp = 0
 	maxbodytemp = 900
 
-	loot_list = list(/obj/random/underdark/uncertain)
+	loot_list = list(/obj/random/underdark/uncertain = 25)
 
 	armor = list(
 			"melee" = 100,

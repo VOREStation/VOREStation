@@ -71,6 +71,8 @@
 		"rad" = 100
 		)
 
+	loot_list = list(/obj/item/weapon/ore/diamond = 100)
+
 	speak_emote = list("rumbles")
 
 	vore_active = 0
@@ -117,7 +119,6 @@
 
 /mob/living/simple_mob/vore/alienanimals/space_ghost/death(gibbed, deathmessage = "fades away!")
 	. = ..()
-	new /obj/item/weapon/ore/diamond(src.loc)
 	qdel(src)
 
 /mob/living/simple_mob/vore/alienanimals/spooky_ghost

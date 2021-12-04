@@ -36,6 +36,7 @@ List of things solar grubs should be able to do:
 	movement_cooldown = 8
 
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/grubmeat
+	meat_amount = 6
 
 	response_help = "pokes"
 	response_disarm = "pushes"

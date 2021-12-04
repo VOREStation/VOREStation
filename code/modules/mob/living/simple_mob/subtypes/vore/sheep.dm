@@ -14,6 +14,9 @@
 
 	see_in_dark = 2
 
+	meat_amount = 5
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm   = "kicks"

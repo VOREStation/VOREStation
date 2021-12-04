@@ -772,3 +772,12 @@
 	extra_overlay2 = "teppi_horns"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/jackalope
+	name = "Jackalope Ears and Antlers"
+	desc = ""
+	icon = 'icons/mob/vore/ears_32x64.dmi'
+	icon_state = "jackalope"
+	extra_overlay = "jackalope-antlers"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY

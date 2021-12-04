@@ -1,0 +1,93 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"e" = (
+/turf/simulated/floor/weird_things/dark,
+/area/om_adventure/poi/darkstar)
+"z" = (
+/mob/living/simple_mob/vore/alienanimals/space_ghost,
+/turf/simulated/floor/weird_things/dark,
+/area/om_adventure/poi/darkstar)
+
+(1,1,1) = {"
+a
+a
+a
+e
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+e
+a
+a
+a
+e
+a
+"}
+(3,1,1) = {"
+a
+a
+a
+e
+a
+a
+a
+"}
+(4,1,1) = {"
+a
+a
+e
+e
+e
+a
+a
+"}
+(5,1,1) = {"
+e
+e
+e
+z
+e
+e
+e
+"}
+(6,1,1) = {"
+a
+a
+e
+e
+e
+a
+a
+"}
+(7,1,1) = {"
+a
+a
+a
+e
+a
+a
+a
+"}
+(8,1,1) = {"
+a
+e
+a
+a
+a
+e
+a
+"}
+(9,1,1) = {"
+a
+a
+a
+e
+a
+a
+a
+"}

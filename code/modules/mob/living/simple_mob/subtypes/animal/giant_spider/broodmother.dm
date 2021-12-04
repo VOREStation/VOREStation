@@ -21,6 +21,8 @@
 	old_x = -16
 	old_y = 0
 
+	meat_amount = 20
+
 	projectiletype = /obj/item/projectile/energy/spidertoxin
 	projectilesound = 'sound/weapons/pierce.ogg'
 

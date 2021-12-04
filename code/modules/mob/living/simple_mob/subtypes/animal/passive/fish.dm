@@ -23,6 +23,7 @@
 	holder_type = /obj/item/weapon/holder/fish
 
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish
+	meat_amount = 3
 
 	// By default they can be in any water turf.  Subtypes might restrict to deep/shallow etc
 	var/global/list/suitable_turf_types =  list(

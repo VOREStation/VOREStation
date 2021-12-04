@@ -32,7 +32,7 @@
 	digestable = 1
 	devourable = 1
 
-/mob/living/simple_mob/animal/passive/snake/noodle
+/mob/living/simple_mob/animal/passive/snake/python/noodle
 	digestable = 0
 	devourable = 1
 
