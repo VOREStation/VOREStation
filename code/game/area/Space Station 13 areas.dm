@@ -1311,6 +1311,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	name = "\improper Holodeck"
 	icon_state = "Holodeck"
 	dynamic_lighting = 0
+	requires_power = 0
 	sound_env = LARGE_ENCLOSED
 	forbid_events = TRUE
 	flags = AREA_FLAG_IS_NOT_PERSISTENT
