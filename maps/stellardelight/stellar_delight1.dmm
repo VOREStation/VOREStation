@@ -16028,6 +16028,22 @@
 /obj/structure/cable/pink{
 	icon_state = "4-8"
 	},
+/obj/item/device/radio{
+	pixel_x = -4;
+	pixel_y = -4
+	},
+/obj/item/device/radio{
+	pixel_x = 4;
+	pixel_y = -4
+	},
+/obj/item/device/radio{
+	pixel_x = -4;
+	pixel_y = 5
+	},
+/obj/item/device/radio{
+	pixel_x = 4;
+	pixel_y = 5
+	},
 /turf/simulated/floor/tiled/dark,
 /area/security/tactical)
 "Im" = (
