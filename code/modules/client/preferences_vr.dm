@@ -12,9 +12,9 @@
 
 //Why weren't these in game toggles already?
 /client/verb/toggle_eating_noises()
-	set name = "Eating Noises"
+	set name = "Toggle Eating Noises"
 	set category = "Preferences"
-	set desc = "Toggles Vore Eating noises."
+	set desc = "Toggles hearing Vore Eating noises."
 
 	var/pref_path = /datum/client_preference/eating_noises
 
@@ -28,9 +28,9 @@
 
 
 /client/verb/toggle_digestion_noises()
-	set name = "Digestion Noises"
+	set name = "Toggle Digestion Noises"
 	set category = "Preferences"
-	set desc = "Toggles Vore Digestion noises."
+	set desc = "Toggles hearing Vore Digestion noises."
 
 	var/pref_path = /datum/client_preference/digestion_noises
 
@@ -41,11 +41,11 @@
 	SScharacter_setup.queue_preferences_save(prefs)
 
 	feedback_add_details("admin_verb","TDigestNoise") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	
+
 /client/verb/toggle_belch_noises()
-	set name = "Audible belching"
+	set name = "Toggle Audible Belching"
 	set category = "Preferences"
-	set desc = "Toggles audible belches."
+	set desc = "Toggles hearing audible belches."
 
 	var/pref_path = /datum/client_preference/belch_noises
 
@@ -58,9 +58,9 @@
 	feedback_add_details("admin_verb","TBelchNoise")
 
 /client/verb/toggle_emote_noises()
-	set name = "Emote Noises"
+	set name = "Toggle Emote Noises"
 	set category = "Preferences"
-	set desc = "Toggles emote noises."
+	set desc = "Toggles hearing emote noises."
 
 	var/pref_path = /datum/client_preference/emote_noises
 
@@ -75,7 +75,7 @@
 /client/verb/toggle_ghost_quiets()
 	set name = "Toggle Ghost Privacy"
 	set category = "Preferences"
-	set desc = "Toggle ghosts viewing your subtles/whispers."
+	set desc = "Toggles ghosts being able to see your subtles/whispers."
 
 	var/pref_path = /datum/client_preference/whisubtle_vis
 
@@ -90,8 +90,8 @@
 /client/verb/toggle_capture_crystal()
 	set name = "Toggle Catchable"
 	set category = "Preferences"
-	set desc = "Toggle being catchable with capture crystals."
-	
+	set desc = "Toggles being catchable with capture crystals."
+
 	var/mob/living/L = mob
 
 	if(prefs.capture_crystal)
