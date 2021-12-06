@@ -150,15 +150,15 @@
 	feedback_add_details("admin_verb","TLobMusic") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/verb/toggle_admin_midis()
-	set name = "Toggle Admin MIDIs"
+	set name = "Toggle Admin Music"
 	set category = "Preferences"
-	set desc = "Toggles the ability to hear the music in the lobby."
+	set desc = "Toggles the ability to hear music played by admins."
 
 	var/pref_path = /datum/client_preference/play_admin_midis
 
 	toggle_preference(pref_path)
 
-	to_chat(src,"You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear MIDIs from admins.")
+	to_chat(src,"You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear music from admins.")
 
 	SScharacter_setup.queue_preferences_save(prefs)
 
@@ -382,7 +382,7 @@
 /client/verb/toggle_status_indicators()
 	set name = "Toggle Status Indicators"
 	set category = "Preferences"
-	set desc = "Toggles seeing status indicators over people's heads."
+	set desc = "Toggles seeing status indicators over peoples' heads."
 
 	var/pref_path = /datum/client_preference/status_indicators
 	toggle_preference(pref_path)
