@@ -137,10 +137,10 @@
 					prob(3);/obj/item/clothing/head/welding,
 					prob(1);/obj/item/clothing/glasses/welding,
 					prob(2);/obj/item/clothing/shoes/galoshes,
+					prob(1);/obj/item/clothing/shoes/syndigaloshes,
 					prob(2);/obj/item/clothing/under/syndicate/tacticool,
 					prob(1);/obj/item/clothing/gloves/yellow,
 					prob(1);/obj/item/weapon/storage/backpack/dufflebag/syndie,
-					prob(1);/obj/item/clothing/suit/storage/vest/heavy/merc,
 					prob(1);/obj/item/weapon/storage/box/survival/space,
 					prob(4);/obj/item/device/pda,
 					prob(4);/obj/item/device/radio/headset,
@@ -149,8 +149,7 @@
 					prob(2);/obj/item/weapon/storage/pill_bottle/paracetamol,
 					prob(1);/obj/item/pizzavoucher,
 					prob(2);/obj/item/device/nif/bad,
-					prob(2);/obj/item/weapon/card/emag_broken,
-					prob(1);/obj/item/device/survivalcapsule/popcabin)
+					prob(2);/obj/item/weapon/card/emag_broken)
 
 	var/obj/item/I = new path()
 	return I
@@ -166,7 +165,8 @@
 					prob(1);/obj/item/weapon/reagent_containers/glass/beaker/vial/amorphorovir,
 					prob(2);/obj/item/device/sleevemate,
 					prob(1);/obj/item/device/bodysnatcher,
-					prob(1);/obj/item/capture_crystal)
+					prob(1);/obj/item/capture_crystal,
+					prob(1);/obj/item/device/survivalcapsule/popcabin)
 
 	var/obj/item/I = new path()
 	return I
@@ -176,8 +176,8 @@
 					prob(4);/obj/item/weapon/material/butterfly/switchblade,
 					prob(4);/obj/item/clothing/gloves/knuckledusters,
 					prob(2);/obj/item/weapon/material/knife/tacknife,
-					prob(2);/obj/item/clothing/shoes/syndigaloshes,
 					prob(3);/obj/item/clothing/suit/armor/material/makeshift,
+					prob(2);/obj/item/clothing/suit/storage/vest/heavy/merc,
 					prob(4);/obj/item/seeds/ambrosiavulgarisseed,
 					prob(4);/obj/item/weapon/storage/pill_bottle/happy,
 					prob(4);/obj/item/weapon/storage/pill_bottle/zoom,
