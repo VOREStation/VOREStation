@@ -46,6 +46,8 @@
 	return results
 
 /obj/machinery/door/airlock/get_description_interaction()
+	description_info = "To ring an airlock's doorbell, hold Alt and click on the airlock with the Left Mouse Button." //vorestation edit
+	
 	var/list/results = list()
 
 	if(can_remove_electronics())
