@@ -558,8 +558,10 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
-/obj/machinery/door/airlock/angled_bay/hatch/engineering{
-	dir = 4
+/obj/machinery/door/airlock/angled_bay/hatch{
+	dir = 4;
+	name = "maintenance access";
+	stripe_color = "#454545"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/stellardelight/deck2/port)
@@ -925,6 +927,27 @@
 	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck2/fore)
+"bO" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/door/airlock/angled_bay/hatch{
+	dir = 4;
+	name = "maintenance access";
+	stripe_color = "#454545"
+	},
+/turf/simulated/floor/tiled/steel_ridged,
+/area/stellardelight/deck2/starboard)
 "bP" = (
 /obj/structure/disposalpipe/segment{
 	dir = 2;
@@ -9566,25 +9589,6 @@
 	},
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
 /area/engineering/workshop)
-"vp" = (
-/obj/machinery/door/firedoor/glass,
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/door/airlock/angled_bay/hatch/engineering{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/steel_ridged,
-/area/stellardelight/deck2/starboard)
 "vq" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -35659,7 +35663,7 @@ Hd
 Hd
 Hd
 Hd
-vp
+bO
 Hd
 Hd
 Hd
