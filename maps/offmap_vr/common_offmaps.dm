@@ -432,9 +432,9 @@
 //////////////////////////////////////////////////////////////////////////////
 //Antag/Event/ERT Areas
 
-#include "../../submaps/admin_use_vr/ert.dm"
-#include "../../submaps/admin_use_vr/mercship.dm"
-#include "../../submaps/admin_use_vr/salamander_trader.dm"
+#include "../submaps/admin_use_vr/ert.dm"
+#include "../submaps/admin_use_vr/mercship.dm"
+#include "../submaps/admin_use_vr/salamander_trader.dm"
 
 /datum/map_template/admin_use/ert
 	name = "Special Area - ERT"
