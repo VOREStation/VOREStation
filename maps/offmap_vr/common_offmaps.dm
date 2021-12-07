@@ -430,6 +430,53 @@
 	)
 
 //////////////////////////////////////////////////////////////////////////////
+//Antag/Event/ERT Areas
+
+#include "../submaps/admin_use_vr/ert.dm"
+#include "../submaps/admin_use_vr/mercship.dm"
+#include "../submaps/admin_use_vr/salamander_trader.dm"
+
+/datum/map_template/admin_use/ert
+	name = "Special Area - ERT"
+	desc = "It's the ERT ship! Lorge."
+	mappath = 'maps/submaps/admin_use_vr/ert.dmm'
+
+/datum/map_template/admin_use/trader
+	name = "Special Area - Trader"
+	desc = "Big trader ship."
+	mappath = 'maps/submaps/admin_use_vr/tradeship.dmm'
+
+/datum/map_template/admin_use/salamander_trader
+	name = "Special Area - Salamander Trader"
+	desc = "Modest trader ship."
+	mappath = 'maps/submaps/admin_use_vr/salamander_trader.dmm'
+
+/datum/map_template/admin_use/mercenary
+	name = "Special Area - Merc Ship"
+	desc = "Prepare tae be boarded, arr!"
+	mappath = 'maps/submaps/admin_use_vr/kk_mercship.dmm'
+
+/datum/map_template/admin_use/skipjack
+	name = "Special Area - Skipjack Base"
+	desc = "Stinky!"
+	mappath = 'maps/submaps/admin_use_vr/skipjack.dmm'
+
+/datum/map_template/admin_use/thunderdome
+	name = "Special Area - Thunderdome"
+	desc = "Thunderrrrdomeee"
+	mappath = 'maps/submaps/admin_use_vr/thunderdome.dmm'
+
+/datum/map_template/admin_use/wizardbase
+	name = "Special Area - Wizard Base"
+	desc = "Wingardium Levosia"
+	mappath = 'maps/submaps/admin_use_vr/wizard.dmm'
+
+/datum/map_template/admin_use/dojo
+	name = "Special Area - Ninja Dojo"
+	desc = "Sneaky"
+	mappath = 'maps/submaps/admin_use_vr/dojo.dmm'
+
+//////////////////////////////////////////////////////////////////////////////
 //Overmap ship spawns
 
 #include "../offmap_vr/om_ships/hybridshuttle.dm"

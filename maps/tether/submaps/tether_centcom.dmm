@@ -7255,7 +7255,7 @@
 	},
 /area/centcom/control)
 "EE" = (
-/obj/machinery/telecomms/relay/preset/tether,
+/obj/machinery/telecomms/relay/preset/station,
 /turf/unsimulated/floor/steel,
 /area/centcom/control)
 "EF" = (
