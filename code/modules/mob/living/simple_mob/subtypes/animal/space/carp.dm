@@ -116,6 +116,22 @@
 	icon_expected_height = 64
 
 	meat_amount = 15
+	vore_default_mode = DM_DIGEST
+
+/mob/living/simple_mob/animal/space/carp/large/huge/init_vore()
+	. = ..()
+	var/obj/belly/B = vore_selected
+	B.name = "Stomach"
+	B.desc = "You're trapped in the belly of giant carp, while roomier than one might expect, it is still uncomfortably cramped as you're forced to lay out in some places and bend at other. The rippling walls of flesh cling fast, smearing your form with digestive juices with every pulse and the smell of fish is naturally always present as it works on making a meal out of you."
+	B.vore_sound = "Tauric Swallow"
+	B.release_sound = "Pred Escape"
+	B.fancy_vore = 1
+	B.digest_brute = 1
+	B.digest_burn = 1
+	B.digestchance = 30
+	B.absorbchance = 5
+	B.escapechance = 20
+	B.belly_fullscreen = "enzyme"
 
 
 /mob/living/simple_mob/animal/space/carp/holographic
