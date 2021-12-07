@@ -1,4 +1,3 @@
-some~user - Species
 admiraldragon - Vox
 aetherelemental - Daemon
 alphaprime1 - Protean
@@ -15,6 +14,7 @@ bothnevarbackwards - Diona
 bricker98 - Protean
 camanis - Protean
 cgr - Protean
+chaosdoomsday - Black-Eyed Shadekin
 chargae - Protean
 chemlight - Xenochimera
 chillyfang - Black-Eyed Shadekin
@@ -28,9 +28,13 @@ flaktual - Vox
 flurriee - Protean
 funnyman2003 - Xenochimera
 greennyy - Protean
-hawkerthegreat - Vox
-hollifex - Diona
 h0lysquirr3l - Protean
+hawkerthegreat - Vox
+heroman3003 - Xenochimera
+hollifex - Diona
+huenererschrecker - Xenochimera
+hunterbirk - Protean
+hunterbirk - Xenochimera
 idcaboutaname - Protean
 inuzari - Diona
 jademanique - Black-Eyed Shadekin
@@ -40,11 +44,13 @@ khanivore - Protean
 killjaden - Protean
 ktccd - Diona
 liache - Black-Eyed Shadekin
+lillianfyre - Xenochimera
 lizehrd - Xenochimera
 lordlag - Black-Eyed Shadekin
 losstinspess - Xenochimera
 magpiemayhem - Vox
-marco_barko - Protean
+magpiemayhem - Xenochimera
+marcobarko - Protean
 mewchild - Diona
 mewchild - Vox
 milu - Xenochimera
@@ -66,6 +72,7 @@ qrocakes - Black-Eyed Shadekin
 radiantaurora - Protean
 residentcody - Black-Eyed Shadekin
 residentcody - Protean
+revolvereloise - Protean
 rikaru19xjenkins - Xenochimera
 rixunie - Diona
 rubyflamewing - Protean
@@ -75,22 +82,24 @@ ryumi - Xenochimera
 scoutisafolflol - Xenochimera
 seiga - Vox
 sepulchre - Vox
-stobarico - Protean
 silvertalismen - Diona
 silvertalismen - Vox
 silvertalismen - Xenochimera
 skylarks - Black-Eyed Shadekin
+spirit1299 - Black-Eyed Shadekin
 stackerrobot - Protean
+stobarico - Protean
 storesund97 - Protean
 syzygyrior - Black-Eyed Shadekin
 tastypred - Black-Eyed Shadekin
-tastypred - Xenochimera
 tastypred - Protean
-terrestris - Vox
+tastypred - Xenochimera
 terrestris - Common Skrellian
 terrestris - High Skrellian
-timidvi - Diona
+terrestris - Vox
 thedavestdave - Protean
+timidvi - Diona
+trifireblade - Protean
 trikonei - Protean
 umbrenos - Black-Eyed Shadekin
 varonis - Xenochimera
@@ -101,104 +110,9 @@ voidalynx - Black-Eyed Shadekin
 voidalynx - Protean
 wickedtemp - Shadekin Empathy
 xioen - Diona
+xioen - Protean
 xioen - Xenochimera
 xonkon - Protean
 zalvine - Shadekin Empathy
 zammyman215 - Vox
-hurttoto - Shadekin
-hurttoto - Black-Eyed Shadekin
-hurttoto - Xenochimera
-hurttoto - Protean
-luxyleatherhat - Shadekin
-luxyleatherhat - Black-Eyed Shadekin
-luxyleatherhat - Xenochimera
-luxyleatherhat - Protean
-RockNevada7 - Shadekin
-RockNevada7 - Protean
-RockNevada7 - Shadekin Empathy
-Zeldazackman - Shadekin Empathy
-EvaRaptor225 - Shadekin
-EvaRaptor225 - Protean
-EvaRaptor225 - Diona
-EvaRaptor225 - Xenochimera
-EvaRaptor225 - Xenos
-lizehrd - Shadekin
-lizehrd - Protean
-lizehrd - Diona
-lizehrd - Xenochimera
-Bevjoejoe - Shadekin
-Bevjoejoe - Protean
-Bevjoejoe - Shadekin Empathy
-Bevjoejoe - Xenochimera
-cupofexplodium - Shadekin
-cupofexplodium - Protean
-cupofexplodium - Diona
-cupofexplodium - Xenochimera
-zagarnt - Shadekin
-zagarnt - Protean
-zagarnt - Vox
-zagarnt - Xenochimera
-JustBen201 - Shadekin
-JustBen201 - Protean
-JustBen201 - Vox
-JustBen201 - Xenochimera
-Sabatoc - Shadekin
-Sabatoc - Protean
-Sabatoc - Vox
-Sabatoc - Xenochimera
-Brittus bonkus - Shadekin
-Brittus bonkus - Protean
-Brittus bonkus - Vox
-Brittus bonkus - Xenochimera
-Brittus bonkus - Diona
-Brittusbonkus - Shadekin
-Brittusbonkus - Protean
-Brittusbonkus - Vox
-Brittusbonkus - Xenochimera
-Brittusbonkus - Diona
-PantherPusher - Shadekin
-PantherPusher - Protean
-PantherPusher - Vox
-PantherPusher - Xenochimera
-PantherPusher - Diona
-TheRiverStigs - Shadekin
-TheRiverStigs - Protean
-TheRiverStigs - Vox
-TheRiverStigs - Xenochimera
-TheRiverStigs - Diona
-SpyCrrab122 - Shadekin
-SpyCrrab122 - Protean
-SpyCrrab122 - Vox
-SpyCrrab122 - Xenochimera
-SpyCrrab122 - Diona
-SpyCrrab 122 - Shadekin
-SpyCrrab 122 - Protean
-SpyCrrab 122 - Vox
-SpyCrrab 122 - Xenochimera
-SpyCrrab 122 - Diona
-Urigami - Shadekin
-Urigami - Protean
-Urigami - Vox
-Urigami - Xenochimera
-Urigami - Diona
-TheSilvertail - Shadekin
-TheSilvertail - Protean
-TheSilvertail - Vox
-TheSilvertail - Xenochimera
-TheSilvertail - Diona
-CrimsonQuiver - Shadekin
-CrimsonQuiver - Protean
-CrimsonQuiver - Vox
-CrimsonQuiver - Xenochimera
-CrimsonQuiver - Diona
-Aroliacue - Shadekin
-Aroliacue - Protean
-Aroliacue - Vox
-Aroliacue - Xenochimera
-Aroliacue - Diona
-Makkinindorn - Shadekin
-Makkinindorn - Protean
-Makkinindorn - Vox
-Makkinindorn - Xenochimera
-Makkinindorn - Diona
-
+zeracyfr - Xenochimera
