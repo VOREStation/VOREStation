@@ -51,6 +51,24 @@
 /mob/living/simple_mob/vore/bee
 	vore_active = 1
 	vore_icons = SA_ICON_LIVING
+	vore_default_contamination_flavor = "Slimy"
+	vore_default_contamination_color = "yellow"
+
+/mob/living/simple_mob/vore/bee/init_vore()
+	. = ..()
+	var/obj/belly/B = vore_selected
+	B.name = "Honey pouch"
+	B.desc = "You have been swallowed down by a ravenous bee, the hungry insect pressing you into a tight ball and leaving you surrounded by rippling flesh. It clings fast to your form, slathering you in a sticky substance that strangely smells sweet...It seems these bees have truely adapted to space without flowers, from the feel and smell they can turn creatures into honey, which includes you!"
+	B.mode_flags = DM_FLAG_THICKBELLY | DM_FLAG_NUMBING | DM_FLAG_LEAVEREMAINS | DM_FLAG_AFFECTWORN
+	B.vore_sound = "Tauric Swallow"
+	B.release_sound = "Pred Escape"
+	B.fancy_vore = 1
+	B.digest_brute = 1
+	B.digest_burn = 1
+	B.digestchance = 20
+	B.absorbchance = 5
+	B.escapechance = 15
+	B.belly_fullscreen = "bubbly"
 
 /mob/living/simple_mob/vore/bee/apply_melee_effects(var/atom/A)
 	if(isliving(A))
