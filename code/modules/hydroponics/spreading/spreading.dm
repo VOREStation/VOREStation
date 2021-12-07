@@ -22,7 +22,7 @@
 		message_admins("<span class='notice'>Event: Spacevines failed to find a viable turf.</span>")
 
 /proc/spacevine_containment(var/potency_min=90, var/potency_max=100, var/maturation_min=5, var/maturation_max=35) //VOREStation addition: A beefed up version of regular space vines bound to a set landmark (This is NOT a random event)
-	spawn(INITIALIZE_HINT_LATELOAD)
+	spawn()
 		if(Containedvines.len)
 			var/turf/simulated/floor/T = pick(Containedvines)
 			var/datum/seed/seed = SSplants.create_random_seed(1)
@@ -36,7 +36,7 @@
 			vine.mature_time = 0
 			vine.process()
 
-			return 
+			return INITIALIZE_HINT_LATELOAD
 
 
 
