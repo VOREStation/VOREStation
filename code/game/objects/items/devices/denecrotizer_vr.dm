@@ -1,6 +1,6 @@
 /mob/living/simple_mob //makes it so that any simplemob can potentially be revived by players and joined by ghosts
-	var/ghostjoin = FALSE
-	var/ic_revivable = FALSE
+	var/ghostjoin = TRUE
+	var/ic_revivable = TRUE
 	var/revivedby = "no one"
 
 /mob/living/simple_mob/vv_edit_var(var_name, var_value)
