@@ -250,7 +250,7 @@
 /area/offmap/aerostat/inside/toxins)
 "aJ" = (
 /obj/effect/decal/cleanable/cobweb,
-/obj/machinery/telecomms/relay/preset/sd,
+/obj/machinery/telecomms/relay/preset/station,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/bluegrid,
 /area/offmap/aerostat/inside/powercontrol)
