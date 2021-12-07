@@ -132,7 +132,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/barracks)
 "aq" = (
-/obj/machinery/telecomms/relay/preset/tether,
+/obj/machinery/telecomms/relay/preset/sd,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/ert/atmos)
 "ar" = (
