@@ -70,4 +70,3 @@
 	name = "Mr. Wiggleblob."
 	desc = "Mr. Wiggleblob! The official mascot of the Talon. So huggable. So squishable. Just try not to get eaten!"
 	size_multiplier = 1.2
-	speak_chance = 10
