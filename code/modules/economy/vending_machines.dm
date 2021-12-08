@@ -1245,7 +1245,7 @@
 		/obj/item/clothing/under/rank/chemist/skirt = 5,
 		/obj/item/clothing/shoes/white = 5,
 		/obj/item/clothing/suit/storage/toggle/labcoat/chemist = 5,
-		/obj/item/clothing/suit/storage/toggle/labcoat/old/chemist = 5, //VoreStation edit, pre-fulp labcoat.
+		/obj/item/clothing/suit/storage/toggle/labcoat/old/chem = 5, //VoreStation edit, pre-fulp labcoat.
 		/obj/item/clothing/suit/storage/hooded/wintercoat/medical/chemist = 5,
 		/obj/item/clothing/head/beret/medical/chem = 5,
 		/obj/item/weapon/storage/backpack/chemistry = 5,

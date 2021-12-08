@@ -14,11 +14,17 @@
 	path = /obj/item/clothing/suit/storage/toggle/labcoat/old
 
 /datum/gear/suit/labcoat_cmo_old
-	display_name = "CMO's labcoat, oldschool"
+	display_name = "labcoat, CMO, oldschool"
 	path = /obj/item/clothing/suit/storage/toggle/labcoat/old/cmo
-	allowed_roles = list("Chief Medical officer")
+	allowed_roles = list("Chief Medical Officer")
 
-/datum/gear/suit/roles/labcoat_old/new()
+/datum/gear/suit/roles/labcoat_old
+	display_name = "labcoat selection, department, oldschool"
+	path = /obj/item/clothing/suit/storage/toggle/labcoat/old/tox
+	cost = 2
+
+
+/datum/gear/suit/roles/labcoat_old/New()
 	..()
 	var/list/labcoats = list(
 	"Oldschool Scientist's Labcoat" = /obj/item/clothing/suit/storage/toggle/labcoat/old/tox,

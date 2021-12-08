@@ -26,6 +26,9 @@
 	default_worn_icon = 'icons/inventory/head/mob_vr.dmi'
 	icon_state = "bio_mod"
 
+// Labcoat icons from before the fulpstation labcoats became default
+// denoted "old" to avoid conflict
+
 /obj/item/clothing/suit/storage/toggle/labcoat/old
 	name = "old-school labcoat"
 
