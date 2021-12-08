@@ -24,10 +24,7 @@
 
 //Camera networks
 #define NETWORK_TETHER "Tether"
-#define NETWORK_TCOMMS "Telecommunications" //Using different from Polaris one for better name
 #define NETWORK_OUTSIDE "Outside"
-#define NETWORK_EXPLORATION "Exploration"
-#define NETWORK_XENOBIO "Xenobiology"
 
 /datum/map/tether/New()
 	..()
@@ -69,7 +66,7 @@
 		Z_LEVEL_SURFACE_HIGH,
 		Z_LEVEL_SPACE_LOW))
 
-	station_name  = "EU Vore Core"
+	station_name  = "NSB Adephagia"
 	station_short = "Tether"
 	facility_type = "station"
 	dock_name     = "Virgo-3B Colony"
@@ -176,6 +173,22 @@
 		list("Wild West")
 		)
 
+	lateload_overmap = list(
+		list("Grass Cave")
+		)
+
+	ai_shell_restricted = TRUE
+	ai_shell_allowed_levels = list(
+		Z_LEVEL_SURFACE_LOW,
+		Z_LEVEL_SURFACE_MID,
+		Z_LEVEL_SURFACE_HIGH,
+		Z_LEVEL_TRANSIT,
+		Z_LEVEL_SPACE_LOW,
+		Z_LEVEL_SURFACE_MINE,
+		Z_LEVEL_SOLARS,
+		Z_LEVEL_MISC,
+		Z_LEVEL_BEACH
+		)
 
 	belter_docked_z = 		list(Z_LEVEL_SPACE_LOW)
 	belter_transit_z =	 	list(Z_LEVEL_MISC)
@@ -184,8 +197,6 @@
 
 	mining_station_z =		list(Z_LEVEL_SPACE_LOW)
 	mining_outpost_z =		list(Z_LEVEL_SURFACE_MINE)
-
-	lateload_gateway = null //Nothing right now.
 
 	planet_datums_to_make = list(/datum/planet/virgo3b,
 								/datum/planet/virgo4)
@@ -236,7 +247,7 @@
 [i]Transponder[/i]: Transmitting (CIV), NanoTrasen IFF
 [b]Notice[/b]: NanoTrasen Base, authorized personnel only"}
 	base = 1
-	
+
 	icon = 'icons/obj/overmap_vr.dmi'
 	icon_state = "virgo3b"
 
@@ -298,7 +309,7 @@
 /obj/effect/overmap/visitable/sector/virgo3b/generate_skybox(zlevel)
 	var/static/image/bigone = image(icon = 'icons/skybox/virgo3b.dmi', icon_state = "large")
 	var/static/image/smallone = image(icon = 'icons/skybox/virgo3b.dmi', icon_state = "small")
-	
+
 	if(zlevel == Z_LEVEL_TRANSIT)
 		return bigone
 	else
