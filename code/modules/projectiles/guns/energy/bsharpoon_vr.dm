@@ -138,6 +138,8 @@
 						belly_dest = pick(living_user.vore_organs)
 					if(belly_dest)
 						for(var/mob/living/prey in ToTurf)
+							if(prey == user)	//You can't eat yourself, silly!
+								continue
 							if(prey.can_be_drop_prey)
 								prey.forceMove(belly_dest)
 								vore_happened = TRUE
