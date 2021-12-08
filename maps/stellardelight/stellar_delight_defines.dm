@@ -138,7 +138,7 @@
 		list("Offmap Ship - Talon V2")
 		)
 
-	lateload_overmap = list(
+	lateload_gateway = list(
 		list("Carp Farm"),
 		list("Snow Field"),
 		list("Listening Post"),
@@ -172,8 +172,6 @@
 	mining_station_z =		list(Z_LEVEL_SPACE_LOW)
 	mining_outpost_z =		list(Z_LEVEL_SURFACE_MINE)
 */
-	lateload_gateway = null //Nothing right now.
-
 	planet_datums_to_make = list(/datum/planet/virgo3b,
 								/datum/planet/virgo4)
 

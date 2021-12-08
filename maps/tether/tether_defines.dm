@@ -173,6 +173,10 @@
 		list("Wild West")
 		)
 
+	lateload_overmap = list(
+		list("Grass Cave")
+		)
+
 	ai_shell_restricted = TRUE
 	ai_shell_allowed_levels = list(
 		Z_LEVEL_SURFACE_LOW,
@@ -193,8 +197,6 @@
 
 	mining_station_z =		list(Z_LEVEL_SPACE_LOW)
 	mining_outpost_z =		list(Z_LEVEL_SURFACE_MINE)
-
-	lateload_gateway = null //Nothing right now.
 
 	planet_datums_to_make = list(/datum/planet/virgo3b,
 								/datum/planet/virgo4)
