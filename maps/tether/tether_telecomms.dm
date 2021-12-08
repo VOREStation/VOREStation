@@ -3,7 +3,7 @@
 
 // #### Relays ####
 // Telecomms doesn't know about connected z-levels, so we need relays even for the other surface levels.
-/obj/machinery/telecomms/relay/preset/tether
+/obj/machinery/telecomms/relay/preset/station
 	id = "Tether Relay"
 	autolinkers = list("tether_relay")
 
