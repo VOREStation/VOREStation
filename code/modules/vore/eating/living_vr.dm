@@ -7,7 +7,7 @@
 	var/resizable = TRUE				// Can other people resize you? (Usually ignored for self-resizes)
 	var/digest_leave_remains = TRUE	// Will this mob leave bones/skull/etc after the melty demise?
 	var/allowmobvore = TRUE				// Will simplemobs attempt to eat the mob?
-	var/allow_inbelly_spawning = FALSE	// Will we even bother with attempts of someone to spawn in in one of our bellies?
+	var/allow_inbelly_spawning = TRUE	// Will we even bother with attempts of someone to spawn in in one of our bellies?
 	var/showvoreprefs = TRUE			// Determines if the mechanical vore preferences button will be displayed on the mob or not.
 	var/obj/belly/vore_selected			// Default to no vore capability.
 	var/list/vore_organs = list()		// List of vore containers inside a mob
@@ -29,7 +29,7 @@
 	var/permit_healbelly = TRUE
 	var/can_be_drop_prey = TRUE
 	var/can_be_drop_pred = TRUE			// Mobs are pred by default.
-	var/allow_spontaneous_tf = FALSE	// Obviously.
+	var/allow_spontaneous_tf = TRUE	// Obviously.
 	var/next_preyloop					// For Fancy sound internal loop
 	var/adminbus_trash = TRUE			// For abusing trash eater for event shenanigans.
 	var/adminbus_eat_minerals = FALSE	// This creature subsists on a diet of pure adminium.
