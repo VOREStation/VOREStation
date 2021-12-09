@@ -208,13 +208,13 @@
 				/obj/structure/closet/crate/hydroponics
 			),
 			prob(5);list(
-				/obj/item/weapon/pickaxe/drill,
+				/obj/item/weapon/pickaxe/advdrill,
 				/obj/item/clothing/suit/space/void/mining,
 				/obj/item/clothing/head/helmet/space/void/mining,
 				/obj/structure/closet/crate/engineering
 			),
 			prob(5);list(
-				/obj/item/weapon/pickaxe/drill,
+				/obj/item/weapon/pickaxe/advdrill,
 				/obj/item/clothing/suit/space/void/mining/alt,
 				/obj/item/clothing/head/helmet/space/void/mining/alt,
 				/obj/structure/closet/crate/engineering
@@ -249,7 +249,7 @@
 				/obj/structure/closet/crate/engineering
 			),
 			prob(5);list(
-				/obj/item/weapon/pickaxe/drill,
+				/obj/item/weapon/pickaxe/advdrill,
 				/obj/item/clothing/glasses/material,
 				/obj/structure/ore_box,
 				/obj/structure/closet/crate
@@ -1483,8 +1483,9 @@
 
 /obj/random/multiple/underdark/miningdrills/item_to_spawn()
 	return pick(
+				prob(10);list(/obj/item/weapon/pickaxe),
 				prob(10);list(/obj/item/weapon/pickaxe/silver),
-				prob(8);list(/obj/item/weapon/pickaxe/drill),
+				prob(8);list(/obj/item/weapon/pickaxe/advdrill),
 				prob(6);list(/obj/item/weapon/pickaxe/jackhammer),
 				prob(5);list(/obj/item/weapon/pickaxe/gold),
 				prob(4);list(/obj/item/weapon/pickaxe/plasmacutter),

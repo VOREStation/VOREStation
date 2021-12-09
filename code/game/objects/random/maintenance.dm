@@ -286,7 +286,7 @@ something, make sure it's not in one of the other lists.*/
 /obj/random/maintenance/cargo/item_to_spawn()
 	return pick(prob(320);/obj/random/maintenance/clean,
 				prob(3);/obj/item/device/flashlight/lantern,
-				prob(4);/obj/item/weapon/pickaxe,
+				prob(4);/obj/item/weapon/pickaxe/drill,
 				prob(5);/obj/item/weapon/storage/backpack/industrial,
 				prob(5);/obj/item/weapon/storage/backpack/satchel/norm,
 				prob(3);/obj/item/weapon/storage/backpack/dufflebag,

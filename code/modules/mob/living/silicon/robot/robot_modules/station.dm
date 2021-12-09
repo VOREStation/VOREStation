@@ -422,7 +422,7 @@ var/global/list/robot_modules = list(
 	src.emag = new /obj/item/weapon/melee/baton/robot/arm(src)
 	src.modules += new /obj/item/device/geiger(src)
 	src.modules += new /obj/item/weapon/rcd/electric/mounted/borg(src)
-	src.modules += new /obj/item/weapon/pickaxe/plasmacutter(src)
+	src.modules += new /obj/item/weapon/pickaxe/plasmacutter/borg(src)
 	src.modules += new /obj/item/weapon/gripper/no_use/loader(src)
 
 	var/datum/matter_synth/metal = new /datum/matter_synth/metal(40000)
@@ -740,7 +740,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/storage/bag/sheetsnatcher/borg(src)
 	src.modules += new /obj/item/weapon/gripper/miner(src)
 	src.modules += new /obj/item/weapon/mining_scanner(src)
-	src.emag = new /obj/item/weapon/pickaxe/plasmacutter(src)
+	src.emag = new /obj/item/weapon/pickaxe/plasmacutter/borg(src)
 	src.emag = new /obj/item/weapon/pickaxe/diamonddrill(src)
 
 /obj/item/weapon/robot_module/robot/research
@@ -834,7 +834,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/device/flash(src)
 	//src.modules += new /obj/item/borg/sight/thermal(src) // VOREStation Edit
 	src.modules += new /obj/item/weapon/gun/energy/laser/mounted(src)
-	src.modules += new /obj/item/weapon/pickaxe/plasmacutter(src)
+	src.modules += new /obj/item/weapon/pickaxe/plasmacutter/borg(src)
 	src.modules += new /obj/item/borg/combat/shield(src)
 	src.modules += new /obj/item/borg/combat/mobility(src)
 	src.emag = new /obj/item/weapon/gun/energy/lasercannon/mounted(src)
@@ -869,7 +869,7 @@ var/global/list/robot_modules = list(
 	robot.internals = new/obj/item/weapon/tank/jetpack/carbondioxide(src)
 	src.modules += robot.internals
 
-	src.emag = new /obj/item/weapon/pickaxe/plasmacutter(src)
+	src.emag = new /obj/item/weapon/pickaxe/plasmacutter/borg(src)
 	src.emag.name = "Plasma Cutter"
 
 	var/datum/matter_synth/metal = new /datum/matter_synth/metal(25000)

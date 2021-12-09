@@ -81,7 +81,7 @@
 		/obj/item/device/beacon_locator,
 		/obj/item/device/radio/beacon,
 		/obj/item/clothing/glasses/meson,
-		/obj/item/weapon/pickaxe,
+		/obj/item/weapon/pickaxe/drill,
 		/obj/item/device/measuring_tape,
 		/obj/item/weapon/pickaxe/hand,
 		/obj/item/weapon/storage/bag/fossils,

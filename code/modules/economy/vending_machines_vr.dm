@@ -2151,7 +2151,7 @@
 					/obj/item/weapon/storage/belt/utility/chief/full = 5,
 					/obj/item/weapon/storage/belt/utility/alien/full = 5,
 					/obj/item/weapon/storage/bible = 5,
-					/obj/item/weapon/pickaxe/drill = 5,
+					/obj/item/weapon/pickaxe/advdrill = 5,
 					/obj/item/weapon/pickaxe/diamonddrill = 5,
 					/obj/item/weapon/pickaxe/gold = 5,
 					/obj/item/weapon/pickaxe/diamond = 5,

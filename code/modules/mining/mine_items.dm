@@ -10,8 +10,8 @@
 /*****************************Pickaxe********************************/
 
 /obj/item/weapon/pickaxe
-	name = "mining drill"
-	desc = "The most basic of mining drills, for short excavations and small mineral extractions."
+	name = "pickaxe"
+	desc = "A miner's best friend."
 	icon = 'icons/obj/items.dmi'
 	slot_flags = SLOT_BELT
 	force = 15.0
@@ -22,7 +22,7 @@
 	matter = list(MAT_STEEL = 3750)
 	var/digspeed = 40 //moving the delay to an item var so R&D can make improved picks. --NEO
 	var/sand_dig = FALSE // does this thing dig sand?
-	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
+	origin_tech = list(TECH_MATERIAL = 1)
 	attack_verb = list("hit", "pierced", "sliced", "attacked")
 	var/drill_sound = "pickaxe"
 	var/drill_verb = "drilling"
@@ -39,25 +39,6 @@
 	origin_tech = list(TECH_MATERIAL = 3)
 	desc = "This makes no metallurgic sense."
 
-/obj/item/weapon/pickaxe/drill
-	name = "advanced mining drill" // Can dig sand as well!
-	icon_state = "handdrill"
-	item_state = "jackhammer"
-	digspeed = 30
-	sand_dig = TRUE
-	origin_tech = list(TECH_MATERIAL = 2, TECH_POWER = 3, TECH_ENGINEERING = 2)
-	desc = "Yours is the drill that will pierce through the rock walls."
-	drill_verb = "drilling"
-
-/obj/item/weapon/pickaxe/jackhammer
-	name = "sonic jackhammer"
-	icon_state = "jackhammer"
-	item_state = "jackhammer"
-	digspeed = 20 //faster than drill, but cannot dig
-	origin_tech = list(TECH_MATERIAL = 3, TECH_POWER = 2, TECH_ENGINEERING = 2)
-	desc = "Cracks rocks with sonic blasts, perfect for killing cave lizards."
-	drill_verb = "hammering"
-
 /obj/item/weapon/pickaxe/gold
 	name = "golden pickaxe"
 	icon_state = "gpickaxe"
@@ -67,20 +48,6 @@
 	desc = "This makes no metallurgic sense."
 	drill_verb = "picking"
 
-/obj/item/weapon/pickaxe/plasmacutter
-	name = "plasma cutter"
-	icon_state = "plasmacutter"
-	item_state = "gun"
-	w_class = ITEMSIZE_NORMAL //it is smaller than the pickaxe
-	damtype = "fire"
-	digspeed = 20 //Can slice though normal walls, all girders, or be used in reinforced wall deconstruction/ light thermite on fire
-	origin_tech = list(TECH_MATERIAL = 4, TECH_PHORON = 3, TECH_ENGINEERING = 3)
-	desc = "A rock cutter that uses bursts of hot plasma. You could use it to cut limbs off of xenos! Or, you know, mine stuff."
-	drill_verb = "cutting"
-	drill_sound = 'sound/items/Welder.ogg'
-	sharp = TRUE
-	edge = TRUE
-
 /obj/item/weapon/pickaxe/diamond
 	name = "diamond pickaxe"
 	icon_state = "dpickaxe"
@@ -89,6 +56,28 @@
 	origin_tech = list(TECH_MATERIAL = 6, TECH_ENGINEERING = 4)
 	desc = "A pickaxe with a diamond pick head."
 	drill_verb = "picking"
+
+/*****************************Drill********************************/
+
+/obj/item/weapon/pickaxe/drill
+	name = "mining drill" // Can dig sand as well!
+	icon_state = "drill"
+	item_state = "jackhammer"
+	digspeed = 35 //Only slighty better than a pickaxe
+	sand_dig = TRUE
+	origin_tech = list(TECH_MATERIAL = 1, TECH_POWER = 2, TECH_ENGINEERING = 1)
+	desc = "The most basic of mining drills, for short excavations and small mineral extractions."
+	drill_verb = "drilling"
+
+/obj/item/weapon/pickaxe/advdrill
+	name = "advanced mining drill" // Can dig sand as well!
+	icon_state = "advdrill"
+	item_state = "jackhammer"
+	digspeed = 30
+	sand_dig = TRUE
+	origin_tech = list(TECH_MATERIAL = 2, TECH_POWER = 3, TECH_ENGINEERING = 2)
+	desc = "Yours is the drill that will pierce through the rock walls."
+	drill_verb = "drilling"
 
 /obj/item/weapon/pickaxe/diamonddrill //When people ask about the badass leader of the mining tools, they are talking about ME!
 	name = "diamond mining drill"
@@ -100,14 +89,41 @@
 	desc = "Yours is the drill that will pierce the heavens!"
 	drill_verb = "drilling"
 
-/obj/item/weapon/pickaxe/borgdrill
-	name = "enhanced sonic jackhammer"
+/obj/item/weapon/pickaxe/jackhammer
+	name = "sonic jackhammer"
 	icon_state = "jackhammer"
+	item_state = "jackhammer"
+	digspeed = 20 //faster than drill, but cannot dig
+	origin_tech = list(TECH_MATERIAL = 3, TECH_POWER = 2, TECH_ENGINEERING = 2)
+	desc = "Cracks rocks with sonic blasts, perfect for killing cave lizards."
+	drill_verb = "hammering"
+
+/obj/item/weapon/pickaxe/borgdrill
+	name = "enhanced jackhammer"
+	icon_state = "borg_pick"
 	item_state = "jackhammer"
 	digspeed = 15
 	sand_dig = TRUE
-	desc = "Cracks rocks with sonic blasts. This one seems like an improved design."
+	desc = "Cracks rocks with a hardened pneumatic bit. This one seems like an improved design."
 	drill_verb = "hammering"
+
+/obj/item/weapon/pickaxe/plasmacutter
+	name = "plasma cutter"
+	icon_state = "plasmacutter"
+	item_state = "plasmacutter"
+	w_class = ITEMSIZE_NORMAL //it is smaller than the pickaxe
+	damtype = "fire"
+	digspeed = 20 //Can slice though normal walls, all girders, or be used in reinforced wall deconstruction/light thermite on fire
+	origin_tech = list(TECH_MATERIAL = 4, TECH_PHORON = 3, TECH_ENGINEERING = 3)
+	desc = "A rock cutter that uses bursts of hot plasma. You could use it to cut limbs off of xenos! Or, you know, mine stuff."
+	drill_verb = "cutting"
+	drill_sound = 'sound/items/Welder.ogg'
+	sharp = TRUE
+	edge = TRUE
+
+/obj/item/weapon/pickaxe/plasmacutter/borg
+	name = "mounted plasma cutter"
+	icon_state = "pcutter_borg"
 
 /*****************************Shovel********************************/
 
@@ -168,8 +184,6 @@
 	matter = list(MAT_WOOD = 50)
 	sharp = 0
 	edge = 1
-
-
 
 /**********************Mining car (Crate like thing, not the rail car)**************************/
 
