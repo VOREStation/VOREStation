@@ -28,7 +28,6 @@
 /datum/seed/citrus/lemon/New()
 	..()
 	set_trait(TRAIT_PRODUCES_POWER,1)
-	set_trait(TRAIT_PRODUCT_ICON,"lemon")
 	set_trait(TRAIT_PRODUCT_COLOUR,"#F0E226")
 	set_trait(TRAIT_FLESH_COLOUR,"#F0E226")
 	set_trait(TRAIT_IDEAL_LIGHT, 6)
