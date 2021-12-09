@@ -1,5 +1,5 @@
 /obj/structure/undies_wardrobe
-	name = "underwear wardrobe"
+	name = "underwear dresser"
 	desc = "Holds item of clothing you shouldn't be showing off in the hallways."
 	icon = 'icons/obj/closets/undies_wardrobe.dmi'
 	icon_state = "wardrobe"

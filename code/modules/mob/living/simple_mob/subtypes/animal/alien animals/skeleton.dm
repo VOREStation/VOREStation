@@ -1,7 +1,16 @@
 /datum/category_item/catalogue/fauna/skeleton
 	name = "Alien Wildlife - Space Skeleton"
-	desc = "A creature consisting primarily of what appears to be bones with no apparent connective tissue, muscle, or organs.\
-			It is not clear at all how this creature even operates."
+	desc = "Classification: Sentientis osseous\
+	<br><br>\
+	No one, not scientist or wildlife expert can properly explain these spacial skeletons with any solid \
+	certanty. They are not human, despite the clear simularites to a human's skeleton, nor are they made of \
+	calcium like normal bones. Samples taken from the corpses of these strange creatures have yeiled little \
+	in the form of answers and have only raised more questions with regards to their general existence. \
+	Scientist are still studying these beings, a difficult task as they are difficult to come by in the \
+	vaccum of space. The only information that scientist are able to gather about these so-called 'Space \
+	Skeletons' as people have come to call them is that their structure is comprised of a strange cell \
+	structure that is similar to plants - likely because these creatures are known to feed of the UV \
+	rays of nearby stars."
 	value = CATALOGUER_REWARD_MEDIUM
 
 /mob/living/simple_mob/vore/alienanimals/skeleton

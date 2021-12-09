@@ -72,3 +72,12 @@
 	materials = list(MAT_STEEL = 4000, MAT_GLASS = 2000, MAT_SILVER = 2000)
 	build_path = /obj/item/device/spaceflare
 	sort_string = "TBAAC"
+
+/datum/design/item/general/bsflare
+	name = "advanced mop"
+	desc = "An advanced mop with pressured water jets that break away the toughest stains."
+	id = "advmop"
+	req_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 5, TECH_BIO = 1)
+	materials = list(MAT_STEEL = 5000, MAT_GLASS = 2000, MAT_GOLD = 1000)
+	build_path = /obj/item/weapon/mop/advanced
+	sort_string = "TBAAD"
