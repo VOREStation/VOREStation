@@ -28,6 +28,7 @@
 /datum/seed/citrus/lemon/New()
 	..()
 	set_trait(TRAIT_PRODUCES_POWER,1)
+	set_trait(TRAIT_PRODUCT_ICON,"lemon-lime")
 	set_trait(TRAIT_PRODUCT_COLOUR,"#F0E226")
 	set_trait(TRAIT_FLESH_COLOUR,"#F0E226")
 	set_trait(TRAIT_IDEAL_LIGHT, 6)
@@ -41,5 +42,6 @@
 
 /datum/seed/citrus/orange/New()
 	..()
+	set_trait(TRAIT_PRODUCT_ICON,"lemon-lime")
 	set_trait(TRAIT_PRODUCT_COLOUR,"#FFC20A")
 	set_trait(TRAIT_FLESH_COLOUR,"#FFC20A")
