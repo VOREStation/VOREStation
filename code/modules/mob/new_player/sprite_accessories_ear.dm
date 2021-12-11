@@ -345,19 +345,19 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
-/datum/sprite_accessory/ears/elfs2
-	name = "pointed ears"
-	desc = ""
-	icon_state = "ears_pointy"
-	do_colouration = 1
-	species_allowed = list(SPECIES_HUMAN, SPECIES_HUMAN_VATBORN, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
-
-/datum/sprite_accessory/ears/elfs
+/datum/sprite_accessory/ears/elfs1
 	name = "pointed ears (tall)"
 	desc = ""
 	icon_state = "elfs"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+	species_allowed = list(SPECIES_HUMAN, SPECIES_HUMAN_VATBORN, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+
+/datum/sprite_accessory/ears/elfs2
+	name = "pointed ears"
+	desc = ""
+	icon_state = "ears_pointy"
+	do_colouration = 1
 	species_allowed = list(SPECIES_HUMAN, SPECIES_HUMAN_VATBORN, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 
 /datum/sprite_accessory/ears/elfs3
