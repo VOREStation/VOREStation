@@ -137,6 +137,7 @@
 	name = "Choccy Milk"
 	id = "choccymilk"
 	result = "choccymilk"
+	inhibitors = list("enzyme" = 1)
 	required_reagents = list("milk" = 3, "coco" = 1)
 	result_amount = 4
 
