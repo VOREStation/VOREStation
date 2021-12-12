@@ -215,7 +215,7 @@
 		return canvas_color
 
 /obj/item/canvas/proc/try_rename(mob/user)
-	var/new_name = stripped_input(user,"What do you want to name the painting?")
+	var/new_name = stripped_input(user,"What do you want to name the painting?", max_length = 250)
 	if(new_name != painting_name && new_name && CanUseTopic(user, GLOB.tgui_physical_state))
 		painting_name = new_name
 		SStgui.update_uis(src)

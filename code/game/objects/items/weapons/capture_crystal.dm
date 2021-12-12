@@ -67,8 +67,11 @@
 			to_chat(M, span("notice", "\The [bound_mob] is now [AI.hostile ? "hostile" : "passive"]."))
 			log_admin("[key_name_admin(M)] set [bound_mob] to [AI.hostile].")
 	else if(bound_mob.client)
-		var/transmit_msg
-		transmit_msg = sanitizeSafe(input(usr, "What is your command?", "Command", null)  as text, MAX_NAME_LEN)
+		var/transmit_msg = tgui_input_text(usr, "What is your command?", "Command")
+		if(length(transmit_msg) >= MAX_MESSAGE_LEN)
+			to_chat(M, "<span class='danger'>Your message was TOO LONG!:[transmit_msg]</span>")
+			return
+		transmit_msg = sanitize(transmit_msg, max_length = MAX_MESSAGE_LEN)
 		if(isnull(transmit_msg))
 			to_chat(M, "<span class='notice'>You decided against it.</span>")
 			return
