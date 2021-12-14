@@ -67,11 +67,10 @@
 
 	//Tanning!
 	for(var/obj/item/stack/hairlesshide/HH in washing)
-		var/obj/item/stack/wetleather/WL = new(src)
-		WL.amount = HH.amount
+		var/obj/item/stack/wetleather/WL = new(src, HH.get_amount())
 		washing -= HH
 		HH.forceMove(get_turf(src))
-		HH.use(HH.amount)
+		HH.use(HH.get_amount())
 
 		washing += WL
 

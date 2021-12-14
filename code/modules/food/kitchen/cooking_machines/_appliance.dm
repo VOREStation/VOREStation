@@ -53,14 +53,12 @@
 	if (!available_recipes)
 		available_recipes = new
 
-	for(var/type in subtypesof(/datum/recipe))
-		var/datum/recipe/test = type
+	for(var/datum/recipe/test as anything in subtypesof(/datum/recipe))
 		if((appliancetype & initial(test.appliance)))
 			available_recipes += new test
 
 /obj/machinery/appliance/Destroy()
-	for (var/a in cooking_objs)
-		var/datum/cooking_item/CI = a
+	for(var/datum/cooking_item/CI as anything in cooking_objs)
 		qdel(CI.container)//Food is fragile, it probably doesnt survive the destruction of the machine
 		cooking_objs -= CI
 		qdel(CI)
@@ -74,8 +72,7 @@
 /obj/machinery/appliance/proc/list_contents(var/mob/user)
 	if (cooking_objs.len)
 		var/string = "Contains..."
-		for (var/a in cooking_objs)
-			var/datum/cooking_item/CI = a
+		for(var/datum/cooking_item/CI as anything in cooking_objs)
 			string += "-\a [CI.container.label(null, CI.combine_target)], [report_progress(CI)]</br>"
 		return string
 	else
@@ -343,8 +340,7 @@
 	for (var/obj/item/J in CI.container)
 		cookwork_by_item(J, CI)
 
-	for (var/r in CI.container.reagents.reagent_list)
-		var/datum/reagent/R = r
+	for(var/datum/reagent/R as anything in CI.container.reagents.reagent_list)
 		if (istype(R, /datum/reagent/nutriment))
 			CI.max_cookwork += R.volume *2//Added reagents contribute less than those in food items due to granular form
 
@@ -373,8 +369,7 @@
 	var/work = 0
 	if (istype(S))
 		if (S.reagents)
-			for (var/r in S.reagents.reagent_list)
-				var/datum/reagent/R = r
+			for(var/datum/reagent/R as anything in S.reagents.reagent_list)
 				if (istype(R, /datum/reagent/nutriment))
 					work += R.volume *3//Core nutrients contribute much more than peripheral chemicals
 
@@ -463,8 +458,7 @@
 			results += TR
 
 
-		for (var/r in results)
-			var/obj/item/weapon/reagent_containers/food/snacks/R = r
+		for(var/obj/item/weapon/reagent_containers/food/snacks/R as anything in results)
 			R.forceMove(C) //Move everything from the buffer back to the container
 			R.cooked |= cook_type
 
@@ -608,8 +602,7 @@
 /obj/machinery/appliance/proc/removal_menu(var/mob/user)
 	if (can_remove_items(user))
 		var/list/menuoptions = list()
-		for (var/a in cooking_objs)
-			var/datum/cooking_item/CI = a
+		for(var/datum/cooking_item/CI as anything in cooking_objs)
 			if (CI.container)
 				menuoptions[CI.container.label(menuoptions.len)] = CI
 

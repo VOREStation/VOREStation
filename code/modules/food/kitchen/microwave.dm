@@ -6,6 +6,7 @@
 	layer = 2.9
 	density = TRUE
 	anchored = TRUE
+	unacidable = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 5
 	active_power_usage = 2000
@@ -43,10 +44,9 @@
 
 	if(!available_recipes)
 		available_recipes = new
-		for(var/T in (typesof(/datum/recipe)-/datum/recipe))
-			var/datum/recipe/type = T
-			if((initial(type.appliance) & appliancetype))
-				available_recipes += new type
+		for(var/datum/recipe/typepath as anything in subtypesof(/datum/recipe))
+			if((initial(typepath.appliance) & appliancetype))
+				available_recipes += new typepath
 		
 		acceptable_items = new
 		acceptable_reagents = new
@@ -423,8 +423,7 @@
 			valid = 1
 			sleep(2)
 
-	for(var/r in cooked_items)
-		var/atom/movable/R = r
+	for(var/atom/movable/R as anything in cooked_items)
 		R.forceMove(src) //Move everything from the buffer back to the container
 
 	QDEL_NULL(temp)//Delete buffer object
@@ -511,7 +510,7 @@
 	src.visible_message("<span class='warning'>The microwave gets covered in muck!</span>")
 	src.dirty = 100 // Make it dirty so it can't be used util cleaned
 	src.flags = null //So you can't add condiments
-	src.icon_state = "mwbloody" // Make it look dirty too
+	src.icon_state = "mwbloody0" // Make it look dirty too
 	src.operating = 0 // Turn it off again aferwards
 	SStgui.update_uis(src)
 	soundloop.stop()

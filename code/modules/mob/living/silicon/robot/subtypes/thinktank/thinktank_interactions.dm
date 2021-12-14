@@ -32,7 +32,7 @@
 
 	. = ..()
 
-/mob/living/silicon/robot/platform/attack_ghost(mob/observer/ghost/user)
+/mob/living/silicon/robot/platform/attack_ghost(mob/observer/dead/user)
 
 	if(client || key || stat == DEAD || !ticker || !ticker.mode)
 		return ..()

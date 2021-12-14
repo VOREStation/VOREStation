@@ -167,3 +167,10 @@
 
 /obj/item/clothing/gloves/ranger/yellow
 	glovecolor = "yellow"
+
+/obj/item/clothing/gloves/waterwings
+	name = "water wings"
+	desc = "Swim aids designed to help a wearer float in water and learn to swim."
+	icon_state = "waterwings"
+
+

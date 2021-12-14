@@ -7,6 +7,13 @@
 	extra_view = 4
 	var/obj/machinery/shipsensors/sensors
 
+// fancy sprite
+/obj/machinery/computer/ship/sensors/adv
+	icon_keyboard = null
+	icon_state = "adv_sensors"
+	icon_screen = "adv_sensors_screen"
+	light_color = "#05A6A8"
+
 /obj/machinery/computer/ship/sensors/attempt_hook_up(obj/effect/overmap/visitable/ship/sector)
 	if(!(. = ..()))
 		return
@@ -59,7 +66,7 @@
 		else
 			data["status"] = "OK"
 		var/list/contacts = list()
-		for(var/obj/effect/overmap/O in view(7,linked))
+		for(var/obj/effect/overmap/O in range(7,linked))
 			if(linked == O)
 				continue
 			if(!O.scannable)
@@ -118,10 +125,9 @@
 		return
 	if(sensors && sensors.use_power && sensors.powered())
 		var/sensor_range = round(sensors.range*1.5) + 1
-		linked.set_light_range(sensor_range + 0.5)
-		linked.set_light_on(TRUE)
+		linked.set_light(sensor_range + 0.5)
 	else
-		linked.set_light_on(FALSE)
+		linked.set_light(0)
 
 /obj/machinery/shipsensors
 	name = "sensors suite"

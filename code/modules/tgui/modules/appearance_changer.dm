@@ -45,8 +45,7 @@
 
 	cam_plane_masters = get_tgui_plane_masters()
 
-	for(var/plane in cam_plane_masters)
-		var/obj/screen/instance = plane
+	for(var/obj/screen/instance as anything in cam_plane_masters)
 		instance.assigned_map = map_name
 		instance.del_on_map_removal = FALSE
 		instance.screen_loc = "[map_name]:CENTER"
@@ -92,6 +91,9 @@
 		if("race")
 			if(can_change(APPEARANCE_RACE) && (params["race"] in valid_species))
 				if(target.change_species(params["race"]))
+					if(params["race"] == "Custom Species")
+						target.custom_species = sanitize(input(usr, "Input custom species name:",
+							"Custom Species Name") as null|text, MAX_NAME_LEN)
 					cut_data()
 					generate_data(usr)
 					changed_hook(APPEARANCECHANGER_CHANGED_RACE)

@@ -85,7 +85,7 @@
 /datum/supply_pack/misc/com_medical_rig
 	name = "commonwealth medical hardsuit (loaded)"
 	contains = list(
-			/obj/item/weapon/rig/baymed = 1
+			/obj/item/weapon/rig/baymed/equipped = 1
 			)
 	cost = 250
 	containertype = /obj/structure/closet/crate/secure/gear
@@ -95,12 +95,12 @@
 /datum/supply_pack/misc/com_engineering_rig
 	name = "commonwealth engineering hardsuit (loaded)"
 	contains = list(
-			/obj/item/weapon/rig/bayeng = 1
+			/obj/item/weapon/rig/bayeng/equipped = 1
 			)
 	cost = 250
 	containertype = /obj/structure/closet/crate/secure/gear
-	containername = "Commonwealth medical hardsuit crate"
-	access = access_medical
+	containername = "Commonwealth engineering hardsuit crate"
+	access = access_engine
 
 /datum/supply_pack/misc/zero_rig
 	name = "null hardsuit (jets)"

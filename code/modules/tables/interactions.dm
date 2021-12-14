@@ -1,19 +1,31 @@
 /obj/structure/table/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover,/obj/item/projectile))
 		return (check_cover(mover,target))
-	if (flipped == 1)
-		if (get_dir(loc, target) == dir)
+	if(flipped == 1)
+		if(get_dir(mover, target) == reverse_dir[dir]) // From elsewhere to here, can't move against our dir
 			return !density
-		else
-			return TRUE
+		return TRUE
 	if(istype(mover) && mover.checkpass(PASSTABLE))
 		return TRUE
 	if(locate(/obj/structure/table/bench) in get_turf(mover))
 		return FALSE
 	var/obj/structure/table/table = locate(/obj/structure/table) in get_turf(mover)
-	if(table && !table.flipped)
+	if(table && !(table.flipped == 1))
 		return TRUE
 	return FALSE
+
+/obj/structure/table/climb_to(mob/living/mover)
+	if(flipped == 1 && mover.loc == loc)
+		var/turf/T = get_step(src, dir)
+		if(T.Enter(mover))
+			return T
+
+	return ..()
+
+/obj/structure/table/Uncross(atom/movable/mover, turf/target)
+	if(flipped == 1 && (get_dir(mover, target) == dir)) // From here to elsewhere, can't move in our dir
+		return !density
+	return TRUE
 
 //checks if projectile 'P' from turf 'from' can hit whatever is behind the table. Returns 1 if it can, 0 if bullet stops.
 /obj/structure/table/proc/check_cover(obj/item/projectile/P, turf/from)
@@ -48,25 +60,30 @@
 				return 1
 	return 1
 
-/obj/structure/table/CheckExit(atom/movable/O as mob|obj, target as turf)
-	if(istype(O) && O.checkpass(PASSTABLE))
-		return 1
-	if (flipped==1)
-		if (get_dir(loc, target) == dir)
-			return !density
-		else
-			return 1
-	return 1
+/obj/structure/table/MouseDrop_T(obj/O, mob/user, src_location, over_location, src_control, over_control, params)
+	if(ismob(O.loc)) //If placing an item
+		if(!isitem(O) || user.get_active_hand() != O)
+			return ..()
+		if(isrobot(user))
+			return
+		user.drop_item()
+		if(O.loc != src.loc)
+			step(O, get_dir(O, src))
 
+	else if(isturf(O.loc) && isitem(O)) //If pushing an item on the tabletop
+		var/obj/item/I = O
+		if(I.anchored)
+			return
 
-/obj/structure/table/MouseDrop_T(obj/O as obj, mob/user as mob)
+		if((isliving(user)) && (Adjacent(user)) && !(user.incapacitated()))
+			if(O.w_class <= user.can_pull_size)
+				O.forceMove(loc)
+				auto_align(I, params, TRUE)
+			else
+				to_chat(user, SPAN_WARNING("\The [I] is too big for you to move!"))
+			return
 
-	if ((!( istype(O, /obj/item/weapon) ) || user.get_active_hand() != O))
-		return ..()
-	if(isrobot(user))
-		return
-	user.unEquip(O, 0, src.loc)
-	return
+	return ..()
 
 
 /obj/structure/table/attackby(obj/item/W as obj, mob/user as mob, var/hit_modifier, var/click_parameters)
@@ -141,45 +158,6 @@
 	if(user.unEquip(W, 0, src.loc) && user.is_preference_enabled(/datum/client_preference/precision_placement))
 		auto_align(W, click_parameters)
 		return 1
-
-#define CELLS 8								//Amount of cells per row/column in grid
-#define CELLSIZE (world.icon_size/CELLS)	//Size of a cell in pixels
-/*
-Automatic alignment of items to an invisible grid, defined by CELLS and CELLSIZE.
-Since the grid will be shifted to own a cell that is perfectly centered on the turf, we end up with two 'cell halves'
-on edges of each row/column.
-Each item defines a center_of_mass, which is the pixel of a sprite where its projected center of mass toward a turf
-surface can be assumed. For a piece of paper, this will be in its center. For a bottle, it will be (near) the bottom
-of the sprite.
-auto_align() will then place the sprite so the defined center_of_mass is at the bottom left corner of the grid cell
-closest to where the cursor has clicked on.
-Note: This proc can be overwritten to allow for different types of auto-alignment.
-*/
-
-/obj/item/var/list/center_of_mass = list("x" = 16,"y" = 16)
-
-/obj/structure/table/proc/auto_align(obj/item/W, click_parameters)
-	if(!W.center_of_mass)
-		W.randpixel_xy()
-		return
-
-	if(!click_parameters)
-		return
-
-	var/list/mouse_control = params2list(click_parameters)
-
-	var/mouse_x = text2num(mouse_control["icon-x"])
-	var/mouse_y = text2num(mouse_control["icon-y"])
-
-	if(isnum(mouse_x) && isnum(mouse_y))
-		var/cell_x = max(0, min(CELLS-1, round(mouse_x/CELLSIZE)))
-		var/cell_y = max(0, min(CELLS-1, round(mouse_y/CELLSIZE)))
-
-		W.pixel_x = (CELLSIZE * (0.5 + cell_x)) - W.center_of_mass["x"]
-		W.pixel_y = (CELLSIZE * (0.5 + cell_y)) - W.center_of_mass["y"]
-
-#undef CELLS
-#undef CELLSIZE
 
 /obj/structure/table/attack_tk() // no telehulk sorry
 	return

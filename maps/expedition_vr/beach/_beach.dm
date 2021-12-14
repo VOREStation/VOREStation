@@ -14,6 +14,11 @@
 	known = TRUE
 	icon_state = "desert"
 
+	skybox_icon = 'icons/skybox/virgo4.dmi'
+	skybox_icon_state = "v4"
+	skybox_pixel_x = 0
+	skybox_pixel_y = 0
+
 //This is a special subtype of the thing that generates ores on a map
 //It will generate more rich ores because of the lower numbers than the normal one
 /datum/random_map/noise/ore/beachmine
@@ -75,11 +80,14 @@
 	name = "Beach Outside Spawner" //Just a name
 	faction = "beach_out" //Sets all the mobs to this faction so they don't infight
 	atmos_comp = TRUE //Sets up their atmos tolerances to work in this setting, even if they don't normally (20% up/down tolerance for each gas, and heat)
-	prob_spawn = 50 //Chance of this spawner spawning a mob (once this is missed, the spawner is 'depleted' and won't spawn anymore)
+	prob_spawn = 100 //Chance of this spawner spawning a mob (once this is missed, the spawner is 'depleted' and won't spawn anymore)
 	prob_fall = 25 //Chance goes down by this much each time it spawns one (not defining and prob_spawn 100 means they spawn as soon as one dies)
 	//guard = 40 //They'll stay within this range (not defining this disables them staying nearby and they will wander the map (and through step teleports))
 	mobs_to_pick_from = list(
-		/mob/living/simple_mob/animal/passive/snake
+		/mob/living/simple_mob/vore/fennec = 300,
+		/mob/living/simple_mob/animal/passive/snake/python = 100,
+		/mob/living/simple_mob/vore/alienanimals/teppi = 10,
+		/mob/living/simple_mob/vore/alienanimals/teppi/baby = 1
 	)
 
 /obj/tether_away_spawner/beach_outside_friendly

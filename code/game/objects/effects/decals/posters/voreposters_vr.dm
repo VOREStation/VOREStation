@@ -363,7 +363,7 @@
 	name = "Virgo Orbital Research Establishment"
 	desc = "It features the logo of the local branch of Nanotrasen; Virgo Orbital Research Establishment."
 /decl/poster/vore_95
-	icon_state = "3btetherposter"
+	icon_state = "tetherposter"
 	name = "The Frontier Awaits"
 	desc = "A stunning depiction of Virgo 3b in front of a field of stars, a purple nebula laces in from behind, while the shining tower of NSB Adephagia gleams in the starlight. 'The Frontier Awaits' is printed in silver lettering. It looks like a recruitment ad."
 /decl/poster/vore_96

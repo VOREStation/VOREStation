@@ -183,7 +183,7 @@
 		. += "The access panel is [locked? "locked" : "unlocked"]."
 		. += "The maintenance panel is [open ? "open" : "closed"]."
 		. += "Hardsuit systems are [offline ? "<span class='warning'>offline</span>" : "<span class='notice'>online</span>"]."
-		. += "The cooling stystem is [cooling_on ? "active" : "inactive"]."
+		. += "The cooling system is [cooling_on ? "active" : "inactive"]."
 
 		if(open)
 			. += "It's equipped with [english_list(installed_modules)]."
@@ -414,10 +414,10 @@
 	if(!cell)
 		return
 	if(cell.charge <= 0)
-		to_chat(user, "<span class='notice'>\The [src] has no power!.</span>")
+		to_chat(user, "<span class='notice'>\The [src] has no power!</span>")
 		return
 	if(!suit_is_deployed())
-		to_chat(user, "<span class='notice'>The hardsuit needs to be deployed first!.</span>")
+		to_chat(user, "<span class='notice'>The hardsuit needs to be deployed first!</span>")
 		return
 
 	cooling_on = 1
@@ -611,7 +611,7 @@
 		wearer.update_inv_back()
 	return
 
-/obj/item/weapon/rig/proc/check_suit_access(var/mob/living/carbon/human/user)
+/obj/item/weapon/rig/proc/check_suit_access(var/mob/living/carbon/human/user, var/do_message = TRUE)
 
 	if(!security_check_enabled)
 		return 1
@@ -624,11 +624,13 @@
 		if(user.back != src && user.belt != src)
 			return 0
 		else if(!src.allowed(user))
-			to_chat(user, "<span class='danger'>Unauthorized user. Access denied.</span>")
+			if(do_message)
+				to_chat(user, "<span class='danger'>Unauthorized user. Access denied.</span>")
 			return 0
 
 	else if(!ai_override_enabled)
-		to_chat(user, "<span class='danger'>Synthetic access disabled. Please consult hardware provider.</span>")
+		if(do_message)
+			to_chat(user, "<span class='danger'>Synthetic access disabled. Please consult hardware provider.</span>")
 		return 0
 
 	return 1

@@ -364,3 +364,30 @@
 		/obj/item/weapon/computer_hardware/card_slot = 40,
 		/obj/item/weapon/computer_hardware/network_card/advanced = 40
 	)
+
+
+/obj/structure/salvageable/slotmachine1
+	name = "broken slot machine"
+	icon_state = "slot1"
+	salvageable_parts = list(
+		/obj/item/stack/cable_coil{amount = 5} = 90,
+		/obj/item/weapon/stock_parts/console_screen = 90,
+		/obj/item/stack/cable_coil{amount = 5} = 90,
+		/obj/item/stack/material/glass{amount = 5} = 90,
+		/obj/item/weapon/stock_parts/capacitor = 60,
+		/obj/item/weapon/stock_parts/capacitor = 60,
+		/obj/item/weapon/computer_hardware/network_card/advanced = 40
+	)
+
+/obj/structure/salvageable/slotmachine2
+	name = "broken slot machine"
+	icon_state = "slot2"
+	salvageable_parts = list(
+		/obj/item/stack/cable_coil{amount = 5} = 90,
+		/obj/item/weapon/stock_parts/console_screen = 90,
+		/obj/item/stack/cable_coil{amount = 5} = 90,
+		/obj/item/stack/material/glass{amount = 5} = 90,
+		/obj/item/weapon/stock_parts/capacitor = 60,
+		/obj/item/weapon/stock_parts/capacitor = 60,
+		/obj/item/weapon/computer_hardware/network_card/advanced = 40
+	)

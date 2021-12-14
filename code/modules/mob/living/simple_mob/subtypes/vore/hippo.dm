@@ -38,7 +38,7 @@
 	pixel_x = -16
 	pixel_y = 0
 
-	meat_amount = 10 //Infinite meat!
+	meat_amount = 15 //Infinite meat!
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
 
 	max_buckled_mobs = 1 //Yeehaw

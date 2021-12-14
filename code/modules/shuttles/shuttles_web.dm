@@ -112,8 +112,7 @@
 				web_master.process_autopath()
 
 /datum/shuttle/autodock/web_shuttle/proc/update_helmets()
-	for(var/helm in helmets)
-		var/obj/item/clothing/head/pilot/H = helm
+	for(var/obj/item/clothing/head/pilot/H as anything in helmets)
 		if(QDELETED(H))
 			helmets -= H
 			continue

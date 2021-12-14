@@ -28,8 +28,6 @@ var/list/table_icon_cache = list()
 	var/carpeted = 0
 	var/carpeted_type = /obj/item/stack/tile/carpet
 
-	var/item_place = 1 //allows items to be placed on the table, but not on benches.
-
 /obj/structure/table/examine_icon()
 	return icon(icon=initial(icon), icon_state=initial(icon_state)) //Basically the map preview version
 
@@ -332,6 +330,8 @@ var/list/table_icon_cache = list()
 	if(istype(S,/obj/structure/table/bench) && !istype(src,/obj/structure/table/bench))
 		return FALSE
 	if(istype(src,/obj/structure/table/bench) && !istype(S,/obj/structure/table/bench))
+		return FALSE
+	if(istype(S,/obj/structure/table/rack) && !istype(src,/obj/structure/table/rack))
 		return FALSE
 	if(istype(src,/obj/structure/table/rack) && !istype(S,/obj/structure/table/rack))
 		return FALSE

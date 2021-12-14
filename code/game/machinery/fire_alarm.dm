@@ -15,6 +15,7 @@ FIRE ALARM
 	var/timing = 0.0
 	var/lockdownbyai = 0
 	anchored = TRUE
+	unacidable = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 2
 	active_power_usage = 6
@@ -28,14 +29,31 @@ FIRE ALARM
 /obj/machinery/firealarm/alarms_hidden
 	alarms_hidden = TRUE
 
+/obj/machinery/firealarm/angled
+	icon = 'icons/obj/wall_machines_angled.dmi'
+
+/obj/machinery/firealarm/angled/hidden
+	alarms_hidden = TRUE
+
+/obj/machinery/firealarm/angled/offset_alarm()
+	pixel_x = (dir & 3) ? 0 : (dir == 4 ? 20 : -20)
+	pixel_y = (dir & 3) ? (dir == 1 ? -18 : 21) : 0
+
 /obj/machinery/firealarm/examine()
 	. = ..()
 	. += "Current security level: [seclevel]"
 
 /obj/machinery/firealarm/Initialize()
 	. = ..()
+	if(!pixel_x && !pixel_y)
+		offset_alarm()
+
 	if(z in using_map.contact_levels)
 		set_security_level(security_level ? get_security_level() : "green")
+
+/obj/machinery/firealarm/proc/offset_alarm()
+	pixel_x = (dir & 3) ? 0 : (dir == 4 ? 26 : -26)
+	pixel_y = (dir & 3) ? (dir == 1 ? -26 : 26) : 0
 
 /obj/machinery/firealarm/update_icon()
 	cut_overlays()
@@ -73,8 +91,10 @@ FIRE ALARM
 	
 	. += mutable_appearance(icon, fire_state)
 	. += emissive_appearance(icon, fire_state)
-	. += mutable_appearance(icon, "overlay_[seclevel]")
-	. += emissive_appearance(icon, "overlay_[seclevel]")
+	
+	if(seclevel)
+		. += mutable_appearance(icon, "overlay_[seclevel]")
+		. += emissive_appearance(icon, "overlay_[seclevel]")
 	
 	add_overlay(.)
 

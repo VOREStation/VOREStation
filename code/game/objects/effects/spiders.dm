@@ -93,6 +93,7 @@
 	var/spiders_min = 6
 	var/spiders_max = 24
 	var/spider_type = /obj/effect/spider/spiderling
+	var/faction = "spiders"
 
 /obj/effect/spider/eggcluster/Initialize()
 	pixel_x = rand(3,-3)
@@ -121,9 +122,10 @@
 			O = loc
 
 		for(var/i=0, i<num, i++)
-			var/spiderling = new spider_type(src.loc, src)
+			var/obj/effect/spider/spiderling/spiderling = new spider_type(src.loc, src)
 			if(O)
 				O.implants += spiderling
+			spiderling.faction = faction
 		qdel(src)
 
 /obj/effect/spider/eggcluster/small
@@ -132,6 +134,11 @@
 
 /obj/effect/spider/eggcluster/small/frost
 	spider_type = /obj/effect/spider/spiderling/frost
+
+/obj/effect/spider/eggcluster/royal
+	spiders_min = 2
+	spiders_max = 5
+	spider_type = /obj/effect/spider/spiderling/varied
 
 /obj/effect/spider/spiderling
 	name = "spiderling"
@@ -145,11 +152,19 @@
 	var/obj/machinery/atmospherics/unary/vent_pump/entry_vent
 	var/travelling_in_vent = 0
 	var/list/grow_as = list(/mob/living/simple_mob/animal/giant_spider, /mob/living/simple_mob/animal/giant_spider/nurse, /mob/living/simple_mob/animal/giant_spider/hunter)
+	var/faction = "spiders"
 
 	var/stunted = FALSE
 
 /obj/effect/spider/spiderling/frost
 	grow_as = list(/mob/living/simple_mob/animal/giant_spider/frost)
+
+/obj/effect/spider/spiderling/varied
+	grow_as = list(/mob/living/simple_mob/animal/giant_spider, /mob/living/simple_mob/animal/giant_spider/nurse, /mob/living/simple_mob/animal/giant_spider/hunter,
+			/mob/living/simple_mob/animal/giant_spider/frost, /mob/living/simple_mob/animal/giant_spider/electric, /mob/living/simple_mob/animal/giant_spider/lurker,
+			/mob/living/simple_mob/animal/giant_spider/pepper, /mob/living/simple_mob/animal/giant_spider/thermic, /mob/living/simple_mob/animal/giant_spider/tunneler,
+			/mob/living/simple_mob/animal/giant_spider/webslinger, /mob/living/simple_mob/animal/giant_spider/phorogenic, /mob/living/simple_mob/animal/giant_spider/carrier,
+			/mob/living/simple_mob/animal/giant_spider/ion)
 
 /obj/effect/spider/spiderling/New(var/location, var/atom/parent)
 	pixel_x = rand(6,-6)
@@ -260,6 +275,7 @@
 		if(amount_grown >= 100)
 			var/spawn_type = pick(grow_as)
 			var/mob/living/simple_mob/animal/giant_spider/GS = new spawn_type(src.loc, src)
+			GS.faction = faction
 			if(stunted)
 				spawn(2)
 					GS.make_spiderling()
@@ -272,6 +288,15 @@
 
 /obj/effect/spider/spiderling/non_growing
 	amount_grown = -1
+
+/obj/effect/spider/spiderling/princess
+	name = "royal spiderling"
+	desc = "There's a special aura about this one."
+	grow_as = list(/mob/living/simple_mob/animal/giant_spider/nurse/queen)
+
+/obj/effect/spider/spiderling/princess/New(var/location, var/atom/parent)
+	..()
+	amount_grown = 50
 
 /obj/effect/decal/cleanable/spiderling_remains
 	name = "spiderling remains"

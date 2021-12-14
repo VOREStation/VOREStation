@@ -30,7 +30,8 @@
 	DoEffectAura()
 
 /datum/artifact_effect/vampire/DoEffectAura()
-	nearby_mobs.Cut()
+	if (nearby_mobs.len)
+		nearby_mobs.Cut()
 
 	var/turf/T = get_turf(holder)
 

@@ -182,8 +182,7 @@
 		organ_data[org] = I.robotic
 
 	//Genetic modifiers
-	for(var/modifier in M.modifiers)
-		var/datum/modifier/mod = modifier
+	for(var/datum/modifier/mod as anything in M.modifiers)
 		if(mod.flags & MODIFIER_GENETIC)
 			genetic_modifiers.Add(mod.type)
 

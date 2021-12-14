@@ -112,9 +112,33 @@
 	
 	destroy_on_harvest = TRUE
 	harvest_tool = /obj/item/weapon/material/knife
-	randomize_harvest_count = FALSE
+	randomize_harvest_count = TRUE
 	harvest_loot = list(/obj/item/stack/material/fiber = 1)
-	max_harvests = 1
+	min_harvests = 1
+	max_harvests = 3		
+
+/obj/structure/flora/ausbushes/spawn_harvest(var/path = null, var/mob/user = null)
+	. = ..()
+	if(. && prob(15))
+		var/static/list/possibleseeds = list(
+								/obj/item/seeds/ambrosiavulgarisseed = 1,
+								/obj/item/seeds/carrotseed = 5,
+								/obj/item/seeds/chiliseed = 5,
+								/obj/item/seeds/cornseed = 10,
+								/obj/item/seeds/grapeseed = 5,
+								/obj/item/seeds/grassseed = 1,
+								/obj/item/seeds/lavenderseed = 5,
+								/obj/item/seeds/onionseed = 5,
+								/obj/item/seeds/random = 1,
+								/obj/item/seeds/reishimycelium = 5,
+								/obj/item/seeds/sugarcaneseed = 5,
+								/obj/item/seeds/tomatoseed = 5,
+								/obj/item/seeds/towermycelium = 5,
+								/obj/item/seeds/watermelonseed = 10,
+								/obj/item/seeds/wheatseed = 25,
+								/obj/item/seeds/whitebeetseed = 5)
+		var/choice = pickweight(possibleseeds)
+		new choice(get_turf(user))
 
 /obj/structure/flora/ausbushes/New()
 	..()
@@ -425,6 +449,43 @@
 	name = "small christmas tree"
 	desc = "This is a tiny well lit decorative christmas tree."
 	icon_state = "plant-xmas"
+
+/obj/random/pottedplant
+	name = "random potted plant"
+	desc = "This is a random potted plant."
+
+/obj/random/pottedplant/item_to_spawn()
+	return pick(
+		prob(10);/obj/structure/flora/pottedplant,
+		prob(10);/obj/structure/flora/pottedplant/large,
+		prob(10);/obj/structure/flora/pottedplant/fern,
+		prob(10);/obj/structure/flora/pottedplant/overgrown,
+		prob(10);/obj/structure/flora/pottedplant/bamboo,
+		prob(10);/obj/structure/flora/pottedplant/largebush,
+		prob(10);/obj/structure/flora/pottedplant/thinbush,
+		prob(10);/obj/structure/flora/pottedplant/mysterious,
+		prob(10);/obj/structure/flora/pottedplant/smalltree,
+		prob(10);/obj/structure/flora/pottedplant/unusual,
+		prob(10);/obj/structure/flora/pottedplant/orientaltree,
+		prob(10);/obj/structure/flora/pottedplant/smallcactus,
+		prob(10);/obj/structure/flora/pottedplant/tall,
+		prob(10);/obj/structure/flora/pottedplant/sticky,
+		prob(10);/obj/structure/flora/pottedplant/smelly,
+		prob(10);/obj/structure/flora/pottedplant/small,
+		prob(10);/obj/structure/flora/pottedplant/aquatic,
+		prob(10);/obj/structure/flora/pottedplant/shoot,
+		prob(10);/obj/structure/flora/pottedplant/flower,
+		prob(10);/obj/structure/flora/pottedplant/crystal,
+		prob(10);/obj/structure/flora/pottedplant/subterranean,
+		prob(10);/obj/structure/flora/pottedplant/minitree,
+		prob(10);/obj/structure/flora/pottedplant/stoutbush,
+		prob(10);/obj/structure/flora/pottedplant/drooping,
+		prob(10);/obj/structure/flora/pottedplant/tropical,
+		prob(10);/obj/structure/flora/pottedplant/dead,
+		prob(10);/obj/structure/flora/pottedplant/decorative,
+		prob(1);/obj/structure/flora/pottedplant/xmas
+				)
+
 
 /obj/structure/flora/sif
 	icon = 'icons/obj/flora/sifflora.dmi'

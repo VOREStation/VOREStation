@@ -32,6 +32,9 @@
 	var/block_air_zones = 1 //If set, air zones cannot merge across the door even when it is opened.
 	var/close_door_at = 0 //When to automatically close the door, if possible
 
+	var/anim_length_before_density = 3
+	var/anim_length_before_finalize = 7
+
 	//Multi-tile doors
 	dir = EAST
 	var/width = 1
@@ -274,8 +277,7 @@
 
 		if(repairing && I.is_crowbar())
 			var/datum/material/mat = get_material()
-			var/obj/item/stack/material/repairing_sheet = mat.place_sheet(loc)
-			repairing_sheet.amount += repairing-1
+			var/obj/item/stack/material/repairing_sheet = mat.place_sheet(loc, repairing)
 			repairing = 0
 			to_chat(user, "<span class='notice'>You remove \the [repairing_sheet].</span>")
 			playsound(src, I.usesound, 100, 1)
@@ -428,10 +430,10 @@
 	do_animate("opening")
 	icon_state = "door0"
 	set_opacity(0)
-	sleep(3)
+	sleep(anim_length_before_density)
 	src.density = FALSE
 	update_nearby_tiles()
-	sleep(7)
+	sleep(anim_length_before_finalize)
 	src.layer = open_layer
 	explosion_resistance = 0
 	update_icon()
@@ -453,12 +455,12 @@
 
 	close_door_at = 0
 	do_animate("closing")
-	sleep(3)
+	sleep(anim_length_before_density)
 	src.density = TRUE
 	explosion_resistance = initial(explosion_resistance)
 	src.layer = closed_layer
 	update_nearby_tiles()
-	sleep(7)
+	sleep(anim_length_before_finalize)
 	update_icon()
 	if(visible && !glass)
 		set_opacity(1)	//caaaaarn!

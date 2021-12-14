@@ -130,9 +130,10 @@
 /turf/simulated/wall/attackby(var/obj/item/weapon/W, var/mob/user)
 
 	user.setClickCooldown(user.get_attack_speed(W))
-
-	if(!construction_stage && try_graffiti(user, W))
-		return
+	
+	if(!construction_stage && user.a_intent == I_HELP)
+		if(try_graffiti(user,W))
+			return
 
 	if (!user.IsAdvancedToolUser())
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
@@ -171,7 +172,7 @@
 				return
 
 		// Create a ceiling to shield from the weather
-		if(outdoors)
+		if(is_outdoors())
 			if(expended_tile || R.use(1)) // Don't need to check adjacent turfs for a wall, we're building on one
 				make_indoors()
 				if(!expended_tile) // Would've already played a sound

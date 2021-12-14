@@ -1,6 +1,17 @@
-//SolGov uniform hats
+/*
+ * SolGov Uniform Hats
+ * Contents:
+ *		Utility
+ *		Service
+ *		Dress
+ *		Berets
+ *		Ushanka
+ *		Terran
+ */
 
-//Utility
+/*
+ * Utility
+ */
 /obj/item/clothing/head/soft/solgov
 	name = "\improper SolCom cap"
 	desc = "It's a blue ballcap in Terran Commonwealth Government colors."
@@ -37,7 +48,9 @@
 	name = "urban utility cover"
 	desc = "A grey utility cover bearing the crest of the TCG Marines."
 
-//Service
+/*
+ * Service
+ */
 /obj/item/clothing/head/service/sifguard
 	name = "\improper NDF peaked cap"
 	desc = "A peaked black uniform cap belonging to the Nanotrasen Defense Force Corps."
@@ -74,7 +87,9 @@
 	name = "campaign cover"
 	desc = "A green campaign cover with an TCG Marine crest. Only found on the heads of Drill Sergeants."
 
-//Dress
+/*
+ * Dress
+ */
 /obj/item/clothing/head/dress/fleet/garrison
 	name = "fleet garrison cap"
 	desc = "A white dress uniform cap. The classic sailor's choice."
@@ -95,8 +110,9 @@
 	name = "marine officer's dress wheel cover"
 	desc = "A white dress uniform cover with an TCG Marine crest and gold stripe."
 
-//Berets
-
+/*
+ * Berets
+ */
 /obj/item/clothing/head/beret/solgov
 	name = "peacekeeper beret"
 	desc = "A beret in Terran Commonwealth Government colors. For peacekeepers that are more inclined towards style than safety."
@@ -238,26 +254,29 @@
 	name = "fifth fleet beret"
 	desc = "An TCG Fleet beret carrying insignia of Fifth Fleet, the Quick Reaction Force, recently formed and outfited with last tech. For personnel that are more inclined towards style than safety."
 
-//ushanka
-
+/*
+ * Ushanka
+ */
 /obj/item/clothing/head/ushanka/solgov
 	name = "\improper NDF fur hat"
 	desc = "An Nanotrasen Defense Force synthfur-lined hat for operating in cold environments."
+	icon_state = "ntguardushankadown"
 
 /obj/item/clothing/head/ushanka/solgov/fleet
 	name = "fleet fur hat"
 	desc = "An TCG Fleet synthfur-lined hat for operating in cold environments."
 
-/obj/item/clothing/head/ushanka/solgov/army
+/obj/item/clothing/head/ushanka/solgov/marine
 	name = "marine fur hat"
 	desc = "An TCG Marine synthfur-lined hat for operating in cold environments."
 
-/obj/item/clothing/head/ushanka/solgov/army/green
+/obj/item/clothing/head/ushanka/solgov/marine/green
 	name = "green marine fur hat"
 	desc = "An TCG Marine synthfur-lined hat for operating in cold environments."
 
-//Terran
-
+/*
+ * Terran
+ */
 /obj/item/clothing/head/terran/navy/service
 	name = "Ares service cover"
 	desc = "A service uniform cover, worn by low-ranking crew within the Ares Confederation Navy."

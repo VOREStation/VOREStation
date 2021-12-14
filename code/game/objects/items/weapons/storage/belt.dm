@@ -85,13 +85,24 @@
 		/obj/item/stack/cable_coil/random_belt
 	)
 
-/obj/item/weapon/storage/belt/utility/atmostech
+/obj/item/weapon/storage/belt/utility/full/multitool
 	starts_with = list(
 		/obj/item/weapon/tool/screwdriver,
 		/obj/item/weapon/tool/wrench,
 		/obj/item/weapon/weldingtool,
 		/obj/item/weapon/tool/crowbar,
 		/obj/item/weapon/tool/wirecutters,
+		/obj/item/stack/cable_coil/random_belt,
+		/obj/item/device/multitool
+	)
+
+/obj/item/weapon/storage/belt/utility/atmostech
+	starts_with = list(
+		/obj/item/weapon/tool/screwdriver,
+		/obj/item/weapon/tool/wrench,
+		/obj/item/weapon/weldingtool,
+		/obj/item/weapon/tool/crowbar,
+		/obj/item/weapon/tool/wirecutters
 	)
 
 /obj/item/weapon/storage/belt/utility/chief
@@ -110,6 +121,47 @@
 		/obj/item/weapon/extinguisher/mini,
 		/obj/item/device/analyzer
 	)
+
+/obj/item/weapon/storage/belt/utility/holding
+	name = "tool-belt of holding" 
+	desc = "A belt that uses localized bluespace pockets to hold more items than expected!"
+	icon_state = "utility_holding"
+	storage_slots = 14 //twice the amount as a normal belt
+	max_storage_space = ITEMSIZE_COST_NORMAL * 14 
+	can_hold = list(
+	/obj/item/weapon/tool/crowbar,
+		/obj/item/weapon/tool/screwdriver,
+		/obj/item/weapon/weldingtool,
+		/obj/item/weapon/tool/wirecutters,
+		/obj/item/weapon/tool/wrench,
+		/obj/item/device/multitool,
+		/obj/item/device/flashlight,
+		/obj/item/weapon/cell/device,
+		/obj/item/stack/cable_coil,
+		/obj/item/device/t_scanner,
+		/obj/item/device/analyzer,
+		/obj/item/clothing/glasses,
+		/obj/item/clothing/gloves,
+		/obj/item/device/pda,
+		/obj/item/device/megaphone,
+		/obj/item/taperoll,
+		/obj/item/device/radio/headset,
+		/obj/item/device/robotanalyzer,
+		/obj/item/weapon/material/minihoe,
+		/obj/item/weapon/material/knife/machete/hatchet,
+		/obj/item/device/analyzer/plant_analyzer,
+		/obj/item/weapon/extinguisher/mini,
+		/obj/item/weapon/tape_roll,
+		/obj/item/device/integrated_electronics/wirer,
+		/obj/item/device/integrated_electronics/debugger,
+		/obj/item/weapon/shovel/spade,
+		/obj/item/stack/nanopaste,
+		/obj/item/weapon/cell, //this is a bigger belt, might as well make it hold bigger cells too
+		/obj/item/weapon/pipe_dispenser, //bigger belt for bigger tools
+		/obj/item/weapon/rcd, //see above
+		/obj/item/device/quantum_pad_booster
+	)
+
 
 /obj/item/weapon/storage/belt/medical
 	name = "medical belt"
@@ -149,6 +201,13 @@
 	desc = "A sturdy black webbing belt with attached pouches."
 	icon_state = "ems"
 
+/obj/item/weapon/storage/belt/medical/holding
+	name = "medical belt of holding" 
+	desc = "A belt that uses localized bluespace pockets to hold more items than expected!"
+	icon_state = "med_holding"
+	storage_slots = 14 //twice the amount as a normal belt
+	max_storage_space = ITEMSIZE_COST_NORMAL * 14 
+
 /obj/item/weapon/storage/belt/security
 	name = "security belt"
 	desc = "Can hold security gear like handcuffs and flashes."
@@ -167,6 +226,7 @@
 		/obj/item/weapon/melee/baton,
 		/obj/item/weapon/gun/energy/taser,
 		/obj/item/weapon/gun/energy/stunrevolver,
+		/obj/item/weapon/gun/energy/stunrevolver/vintage,
 		/obj/item/weapon/gun/magnetic/railgun/heater/pistol,
 		/obj/item/weapon/gun/energy/gun,
 		/obj/item/weapon/flame/lighter,
@@ -324,10 +384,28 @@
 	max_w_class = ITEMSIZE_NORMAL
 	max_storage_space = ITEMSIZE_COST_NORMAL * 7
 
+/obj/item/weapon/storage/belt/bandolier
+	name = "shotgun bandolier"
+	desc = "Designed to hold shotgun shells. Can't really hold more than that."
+	icon_state = "bandolier1"
+	storage_slots = 8
+	max_w_class = ITEMSIZE_TINY
+	can_hold = list(
+		/obj/item/ammo_casing/a12g,
+		/obj/item/ammo_casing/a12g/pellet,
+		/obj/item/ammo_casing/a12g/blank,
+		/obj/item/ammo_casing/a12g/practice,
+		/obj/item/ammo_casing/a12g/beanbag,
+		/obj/item/ammo_casing/a12g/stunshell,
+		/obj/item/ammo_casing/a12g/flash,
+		/obj/item/ammo_casing/a12g/emp,
+		/obj/item/ammo_casing/a12g/flechette
+		)
+
 /obj/item/weapon/storage/belt/security/tactical/bandolier
-	name = "combat belt"
+	name = "combat bandolier"
 	desc = "Can hold security gear like handcuffs and flashes, with more pouches for more storage."
-	icon_state = "bandolier"
+	icon_state = "bandolier2"
 
 /obj/item/weapon/storage/belt/janitor
 	name = "janitorial belt"

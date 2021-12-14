@@ -141,6 +141,7 @@ var/last_chew = 0
 /obj/item/weapon/handcuffs/fuzzy
 	name = "fuzzy cuffs"
 	icon_state = "fuzzycuff"
+	breakouttime = 100 //VOREstation edit
 	desc = "Use this to keep... 'prisoners' in line."
 
 /obj/item/weapon/handcuffs/cable
@@ -329,3 +330,8 @@ var/last_chew = 0
 		if(target.hud_used && user.hud_used.move_intent)
 			target.hud_used.move_intent.icon_state = "walking"
 	return 1
+
+/obj/item/weapon/handcuffs/cable/plantfiber
+	name = "rope bindings"
+	desc = "A length of rope fashioned to hold someone's hands together."
+	color = "#7e6442"

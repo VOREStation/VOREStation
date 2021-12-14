@@ -375,8 +375,7 @@
 
 /datum/asset/spritesheet/vending/register()
 	populate_vending_products()
-	for(var/k in GLOB.vending_products)
-		var/atom/item = k
+	for(var/atom/item as anything in GLOB.vending_products)
 		if(!ispath(item, /atom))
 			continue
 
@@ -533,5 +532,9 @@
 		"tether_nanomap_z10.png"			= 'icons/_nanomaps/tether_nanomap_z10.png',
 		"tether_nanomap_z13.png"			= 'icons/_nanomaps/tether_nanomap_z13.png',
 		"tether_nanomap_z14.png"			= 'icons/_nanomaps/tether_nanomap_z14.png',
+		"stellardelight_nanomap_z1.png"		= 'icons/_nanomaps/sd_deck1.png',
+		"stellardelight_nanomap_z2.png"		= 'icons/_nanomaps/sd_deck2.png',
+		"stellardelight_nanomap_z3.png"		= 'icons/_nanomaps/sd_deck3.png',
+
 		// VOREStation Edit End
 	)

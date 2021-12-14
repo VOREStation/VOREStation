@@ -3,7 +3,7 @@
 	desc = "Some sort of wolf, a descendent or otherwise of regular Earth canidae. They look almost exactly like their \
 	Earth counterparts, except for the fact that their fur is a uniform grey. Some do show signs of unique coloration, and they \
 	love to nip and bite at things, as well as sniffing around. They seem to mark their territory by way of scent-marking/urinating on things."
-	value = CATALOGUER_REWARD_MEDIUM
+	value = CATALOGUER_REWARD_EASY
 
 /mob/living/simple_mob/animal/wolf
 	name = "grey wolf"
@@ -25,9 +25,13 @@
 	melee_damage_lower = 5
 	melee_damage_upper = 12
 
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	meat_amount = 5
+
 	minbodytemp = 200
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive
+	catalogue_data = list(/datum/category_item/catalogue/fauna/wolf)
 
 // Activate Noms!
 /mob/living/simple_mob/animal/wolf

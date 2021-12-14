@@ -76,8 +76,7 @@
 	M.make_dizzy(1)
 	M.adjustHalLoss(2)
 
-	for(var/belly in M.vore_organs)
-		var/obj/belly/B = belly
+	for(var/obj/belly/B as anything in M.vore_organs)
 		for(var/atom/movable/A in B)
 			if(isliving(A))
 				var/mob/living/P = A
@@ -102,8 +101,7 @@
 	M.confused = max(M.confused, 20)
 	M.hallucination += 15
 
-	for(var/belly in M.vore_organs)
-		var/obj/belly/B = belly
+	for(var/obj/belly/B as anything in M.vore_organs)
 
 		if(B.digest_mode == DM_ABSORB) //Turn off absorbing on bellies
 			B.digest_mode = DM_HOLD

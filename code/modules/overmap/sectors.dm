@@ -35,6 +35,7 @@
 
 	var/has_distress_beacon
 	var/list/levels_for_distress
+	var/list/unowned_areas // areas we don't own despite them being present on our z
 
 /obj/effect/overmap/visitable/Initialize()
 	. = ..()
@@ -52,7 +53,8 @@
 
 	forceMove(locate(start_x, start_y, global.using_map.overmap_z))
 
-	docking_codes = "[ascii2text(rand(65,90))][ascii2text(rand(65,90))][ascii2text(rand(65,90))][ascii2text(rand(65,90))]"
+	if(!docking_codes)
+		docking_codes = "[ascii2text(rand(65,90))][ascii2text(rand(65,90))][ascii2text(rand(65,90))][ascii2text(rand(65,90))]"
 
 	testing("Located sector \"[name]\" at [start_x],[start_y], containing Z [english_list(map_z)]")
 
@@ -137,7 +139,12 @@
 
 //Helper for init.
 /obj/effect/overmap/visitable/proc/check_ownership(obj/object)
-	if((get_z(object) in map_z) && !(get_area(object) in SSshuttles.shuttle_areas))
+	var/area/A = get_area(object)
+	if(A in SSshuttles.shuttle_areas)
+		return 0
+	if(is_type_in_list(A, unowned_areas))
+		return 0	
+	if(get_z(object) in map_z)
 		return 1
 
 //If shuttle_name is false, will add to generic waypoints; otherwise will add to restricted. Does not do checks.
@@ -240,8 +247,7 @@
 
 	testing("Putting overmap on [global.using_map.overmap_z]")
 	var/area/overmap/A = new
-	for (var/square in block(locate(1,1,global.using_map.overmap_z), locate(global.using_map.overmap_size,global.using_map.overmap_size,global.using_map.overmap_z)))
-		var/turf/T = square
+	for(var/turf/T as anything in block(locate(1,1,global.using_map.overmap_z), locate(global.using_map.overmap_size,global.using_map.overmap_size,global.using_map.overmap_z)))
 		if(T.x == 1 || T.y == 1 || T.x == global.using_map.overmap_size || T.y == global.using_map.overmap_size)
 			T = T.ChangeTurf(/turf/unsimulated/map/edge)
 		else

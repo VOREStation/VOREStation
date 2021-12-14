@@ -387,6 +387,15 @@
 /obj/structure/window/reinforced,
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/medical/centralhall)
+"aaH" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/simulated/open,
+/area/rnd/staircase/secondfloor)
 "aaI" = (
 /obj/structure/cable/green{
 	icon_state = "2-4"
@@ -10368,6 +10377,12 @@
 /obj/machinery/door/airlock/maintenance/common,
 /turf/simulated/floor/plating,
 /area/maintenance/asmaint2)
+"aqt" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/staircase/secondfloor)
 "aqu" = (
 /obj/structure/table/standard{
 	name = "plastic table frame"
@@ -12285,12 +12300,14 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
 "atI" = (
-/obj/machinery/smartfridge,
 /obj/effect/floor_decal/borderfloor{
 	dir = 6
 	},
 /obj/effect/floor_decal/corner/lime/border{
 	dir = 6
+	},
+/obj/machinery/smartfridge{
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
@@ -23635,19 +23652,7 @@
 	},
 /turf/simulated/open,
 /area/rnd/staircase/secondfloor)
-"aPG" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/turf/simulated/open,
-/area/rnd/staircase/secondfloor)
 "aPH" = (
-/turf/simulated/open,
-/area/rnd/staircase/secondfloor)
-"aPI" = (
-/obj/machinery/light{
-	dir = 4
-	},
 /turf/simulated/open,
 /area/rnd/staircase/secondfloor)
 "aPJ" = (
@@ -26083,100 +26088,71 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/east_stairs_two)
 "aUL" = (
-/obj/effect/floor_decal/corner/purple{
-	dir = 5
+/obj/effect/floor_decal/borderfloor{
+	dir = 9
 	},
-/obj/effect/floor_decal/borderfloor/shifted{
-	dir = 1
+/obj/effect/floor_decal/corner/purple/border{
+	dir = 9
 	},
-/obj/effect/floor_decal/corner/purple/border/shifted{
-	dir = 1
-	},
-/obj/machinery/camera/network/civilian,
-/obj/structure/closet/jcloset,
+/obj/machinery/vending/wardrobe/janidrobe,
 /turf/simulated/floor/tiled,
 /area/janitor)
 "aUM" = (
 /obj/machinery/newscaster{
 	pixel_y = 32
 	},
-/obj/effect/floor_decal/borderfloor/shifted{
+/obj/effect/floor_decal/borderfloor{
 	dir = 1
 	},
-/obj/effect/floor_decal/corner/purple/border/shifted{
+/obj/effect/floor_decal/corner/purple/border{
 	dir = 1
 	},
-/obj/effect/floor_decal/corner/purple{
-	dir = 5
-	},
-/obj/machinery/vending/wardrobe/janidrobe,
 /turf/simulated/floor/tiled,
 /area/janitor)
 "aUN" = (
-/obj/structure/cable{
-	d2 = 2;
-	icon_state = "0-2"
-	},
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "north bump";
-	pixel_y = 24
-	},
-/obj/effect/floor_decal/borderfloor/shifted{
+/obj/effect/floor_decal/borderfloor{
 	dir = 1
 	},
-/obj/effect/floor_decal/corner/purple/border/shifted{
+/obj/effect/floor_decal/corner/purple/border{
 	dir = 1
 	},
-/obj/effect/floor_decal/corner/purple{
-	dir = 5
+/obj/structure/sink/kitchen{
+	pixel_y = 22
 	},
 /turf/simulated/floor/tiled,
 /area/janitor)
 "aUO" = (
-/obj/effect/floor_decal/borderfloor/shifted{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/purple/border/shifted{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/purple{
-	dir = 5
-	},
 /obj/structure/janitorialcart,
-/obj/structure/sink/kitchen{
-	pixel_y = 28
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/purple/border{
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
 /area/janitor)
 "aUP" = (
 /obj/structure/janitorialcart,
-/obj/effect/floor_decal/borderfloor/shifted{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/purple/border/shifted{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/purple{
-	dir = 5
-	},
 /obj/machinery/alarm{
 	pixel_y = 22
 	},
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/purple/border{
+	dir = 1
+	},
 /turf/simulated/floor/tiled,
 /area/janitor)
 "aUQ" = (
 /obj/structure/janitorialcart,
-/obj/effect/floor_decal/borderfloor/shifted{
-	dir = 1
+/obj/effect/floor_decal/borderfloor{
+	dir = 5
 	},
-/obj/effect/floor_decal/corner/purple/border/shifted{
-	dir = 1
-	},
-/obj/effect/floor_decal/corner/purple{
+/obj/effect/floor_decal/corner/purple/border{
 	dir = 5
 	},
 /turf/simulated/floor/tiled,
@@ -26357,34 +26333,26 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/east_stairs_two)
 "aVu" = (
-/obj/machinery/button/remote/blast_door{
-	id = "janitor_blast";
-	name = "Desk Shutters";
-	pixel_x = -22
-	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
 	},
 /obj/effect/floor_decal/corner/purple/border{
 	dir = 8
 	},
+/obj/machinery/power/apc{
+	cell_type = /obj/item/weapon/cell/super;
+	dir = 8;
+	name = "west bump";
+	nightshift_setting = 2;
+	pixel_x = -30
+	},
+/obj/structure/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
 /turf/simulated/floor/tiled,
 /area/janitor)
 "aVv" = (
-/turf/simulated/floor/tiled,
-/area/janitor)
-"aVw" = (
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/turf/simulated/floor/tiled,
-/area/janitor)
-"aVx" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
 /turf/simulated/floor/tiled,
 /area/janitor)
 "aVy" = (
@@ -27076,6 +27044,7 @@
 "aWr" = (
 /obj/effect/floor_decal/borderfloor/corner,
 /obj/effect/floor_decal/corner/purple/bordercorner,
+/obj/structure/closet/jequipcloset,
 /turf/simulated/floor/tiled,
 /area/janitor)
 "aWs" = (
@@ -27508,7 +27477,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /obj/machinery/light_switch{
 	dir = 4;
-	pixel_x = -28
+	pixel_x = -31
 	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -27521,6 +27490,11 @@
 	},
 /obj/effect/floor_decal/corner/purple/bordercorner2{
 	dir = 10
+	},
+/obj/machinery/button/remote/blast_door{
+	id = "janitor_blast";
+	name = "Desk Shutters";
+	pixel_x = -22
 	},
 /turf/simulated/floor/tiled,
 /area/janitor)
@@ -27782,9 +27756,6 @@
 	dir = 2;
 	icon_state = "pipe-c"
 	},
-/obj/structure/extinguisher_cabinet{
-	pixel_x = 25
-	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
 	},
@@ -27796,15 +27767,16 @@
 /obj/item/weapon/grenade/chem_grenade/cleaner,
 /obj/item/weapon/grenade/chem_grenade/cleaner,
 /obj/item/weapon/grenade/chem_grenade/cleaner,
-/obj/item/weapon/storage/box/mousetraps,
-/obj/item/weapon/storage/box/lights/mixed,
-/obj/item/weapon/storage/box/lights/mixed,
 /obj/item/weapon/reagent_containers/spray/cleaner,
 /obj/item/weapon/reagent_containers/spray/cleaner,
 /obj/item/weapon/reagent_containers/spray/cleaner,
 /obj/item/weapon/soap/nanotrasen,
 /obj/item/weapon/soap/nanotrasen,
 /obj/item/weapon/soap/nanotrasen,
+/obj/structure/extinguisher_cabinet{
+	dir = 8;
+	pixel_x = 30
+	},
 /turf/simulated/floor/tiled,
 /area/janitor)
 "aXT" = (
@@ -32808,6 +32780,7 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 4
 	},
+/obj/machinery/holoplant,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai)
 "cRq" = (
@@ -32977,6 +32950,10 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/chapel/main)
+"eZx" = (
+/obj/machinery/holoplant,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/ai)
 "eZG" = (
 /obj/machinery/camera/network/command,
 /obj/effect/floor_decal/techfloor{
@@ -33291,6 +33268,16 @@
 "jtj" = (
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/readingrooms)
+"jvy" = (
+/obj/effect/floor_decal/techfloor{
+	dir = 1
+	},
+/obj/structure/railing,
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/maintenance/lower/atmos)
 "jxi" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -33337,6 +33324,13 @@
 	},
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/reading_room)
+"jUQ" = (
+/obj/effect/floor_decal/techfloor{
+	dir = 8
+	},
+/obj/machinery/holoplant,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/ai)
 "jWK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/disposalpipe/segment,
@@ -33523,6 +33517,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
+/obj/effect/floor_decal/emblem/nt1,
 /turf/simulated/floor/tiled/techfloor,
 /area/ai_upload)
 "kPR" = (
@@ -33537,6 +33532,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
 	},
+/obj/effect/floor_decal/emblem/nt2,
 /turf/simulated/floor/tiled/techfloor,
 /area/ai_upload)
 "kRb" = (
@@ -33750,6 +33746,13 @@
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/techfloor,
 /area/ai_upload)
+"nhf" = (
+/obj/structure/railing,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/atmos)
 "nAh" = (
 /obj/structure/table/standard,
 /obj/item/weapon/aiModule/asimov,
@@ -34040,6 +34043,7 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai_upload)
 "qSJ" = (
+/obj/machinery/media/jukebox/hacked,
 /turf/simulated/floor/tiled/techmaint,
 /area/ai)
 "qUf" = (
@@ -34429,6 +34433,16 @@
 "tPB" = (
 /turf/simulated/floor/grass,
 /area/chapel/main)
+"tVj" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/effect/floor_decal/emblem/nt3,
+/turf/simulated/floor/tiled/techfloor,
+/area/ai_upload)
 "tWV" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -42521,7 +42535,7 @@ aMW
 aNv
 aOj
 aOZ
-aPG
+aaH
 aPH
 aPH
 aRM
@@ -42663,7 +42677,7 @@ aMX
 aNv
 aOk
 aOY
-aPH
+aOY
 aPH
 aPH
 aRM
@@ -42805,7 +42819,7 @@ aIP
 aIP
 aOl
 aPa
-aPI
+aqt
 aPH
 aPH
 aRM
@@ -45669,7 +45683,7 @@ aXB
 bbA
 bbJ
 aVP
-bcr
+nhf
 baW
 baW
 baW
@@ -47089,8 +47103,8 @@ bbA
 bbJ
 bbJ
 aVP
-baz
-baz
+jvy
+aIh
 baz
 bdq
 aLX
@@ -47230,10 +47244,10 @@ aXB
 bbB
 bbJ
 bbJ
-aVP
-adt
-adt
-aLY
+bbI
+baU
+baW
+baz
 bdr
 aLX
 aLY
@@ -47373,9 +47387,9 @@ aVP
 aVP
 aVP
 aVP
-adt
-adt
-aLY
+baz
+baz
+baz
 bdr
 aLX
 aLY
@@ -48235,7 +48249,7 @@ adt
 adt
 aJY
 hIk
-kTB
+tVj
 rii
 bDr
 qPo
@@ -48918,7 +48932,7 @@ aLY
 aTe
 aUc
 aUM
-aVv
+aVy
 aWq
 aVv
 aXQ
@@ -49060,7 +49074,7 @@ aLY
 aTf
 aUc
 aUN
-aVw
+aVy
 aVv
 aXj
 aXR
@@ -49092,11 +49106,11 @@ adt
 pBU
 rlN
 srN
-rlN
+eZx
 kiL
 pAF
 fyj
-rXR
+jUQ
 kEC
 rlN
 pBU
@@ -49202,7 +49216,7 @@ aLY
 aTg
 aUc
 aUO
-aVx
+aVy
 aWr
 aXk
 aXS
@@ -49344,7 +49358,7 @@ aLY
 aTh
 aUc
 aUP
-aVx
+aVy
 aWs
 aUc
 aUc

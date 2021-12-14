@@ -9,7 +9,7 @@ SUBSYSTEM_DEF(ticker)
 	flags = SS_NO_TICK_CHECK | SS_KEEP_TIMING
 	runlevels = RUNLEVEL_LOBBY | RUNLEVEL_SETUP | RUNLEVEL_GAME | RUNLEVEL_POSTGAME // Every runlevel!
 
-	var/const/restart_timeout = 3 MINUTES	// Default time to wait before rebooting in desiseconds.
+	var/const/restart_timeout = 4 MINUTES	// Default time to wait before rebooting in desiseconds.
 	var/current_state = GAME_STATE_INIT	// We aren't even at pregame yet // TODO replace with CURRENT_GAME_STATE
 
 	/* Relies upon the following globals (TODO move those in here) */

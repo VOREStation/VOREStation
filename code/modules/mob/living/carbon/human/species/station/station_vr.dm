@@ -104,12 +104,11 @@
 	spawn_flags = SPECIES_CAN_JOIN
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 
+	water_breather = TRUE
+
 	flesh_color = "#AFA59E"
 	base_color = "#777777"
 	blood_color = "#1D2CBF"
-
-/datum/species/akula/can_breathe_water()
-	return TRUE // Surprise, SHERKS.
 
 /datum/species/nevrean
 	name = SPECIES_NEVREAN
@@ -124,6 +123,7 @@
 	//brute_mod = 1.15
 	//burn_mod =  1.15
 	//gluttonous = 1
+	soft_landing = TRUE
 	num_alternate_languages = 3
 	secondary_langs = list(LANGUAGE_BIRDSONG)
 	name_language = LANGUAGE_BIRDSONG
@@ -295,7 +295,7 @@
 /datum/species/zaddat
 	spawn_flags = SPECIES_CAN_JOIN
 	min_age = 18
-	inherent_verbs = list(/mob/living/carbon/human/proc/tie_hair) //I don't even know if Zaddat can HAVE hair, but here we are, I suppose 
+	inherent_verbs = list(/mob/living/carbon/human/proc/tie_hair) //I don't even know if Zaddat can HAVE hair, but here we are, I suppose
 	gluttonous = 0
 	genders = list(MALE, FEMALE, PLURAL, NEUTER)
 	descriptors = list()
@@ -336,7 +336,7 @@
 /datum/species/vox
 	gluttonous = 0
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED | SPECIES_WHITELIST_SELECTABLE
-	min_age = 18	
+	min_age = 18
 	inherent_verbs = list(/mob/living/carbon/human/proc/tie_hair) //Get ya quills done did
 	icobase = 'icons/mob/human_races/r_vox_old.dmi'
 	deform = 'icons/mob/human_races/r_def_vox_old.dmi'
@@ -362,6 +362,8 @@
 
 	min_age = 18
 	max_age = 80
+
+	soft_landing = TRUE
 
 	base_color = "#EECEB3"
 
@@ -456,6 +458,7 @@
 
 	breath_type = null
 	poison_type = null
+	water_breather = TRUE //They do not quite breathe...
 
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_SKIN_COLOR | HAS_UNDERWEAR
 
@@ -486,11 +489,8 @@
 		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right/crewkin)
 		)
 
-/datum/species/shadekin/get_bodytype()
+/datum/species/crew_shadekin/get_bodytype()
 	return SPECIES_SHADEKIN
-
-/datum/species/shadekin/can_breathe_water()
-	return TRUE	//they dont quite breathe
 
 //These species are not really species but are just there for custom species selection
 

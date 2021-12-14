@@ -44,6 +44,7 @@
 //This controller goes on the escape pod itself
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod
 	name = "escape pod controller"
+	unacidable = TRUE
 	program = /datum/embedded_program/docking/simple
 	var/datum/shuttle/autodock/ferry/escape_pod/pod
 	valid_actions = list("toggle_override", "force_door")

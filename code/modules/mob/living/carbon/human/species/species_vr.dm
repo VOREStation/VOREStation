@@ -81,6 +81,8 @@
 	var/list/blacklist = list("type", "loc", "client", "ckey")
 	//Makes thorough copy of species datum.
 	for(var/i in vars)
+		if(!(i in S.vars)) //Don't copy incompatible vars.
+			continue
 		if(S.vars[i] != vars[i] && !islist(vars[i])) //If vars are same, no point in copying.
 			if(i in blacklist)
 				continue

@@ -1,5 +1,5 @@
 /turf/simulated/floor/beach/sand/outdoors
-	outdoors = TRUE
+	outdoors = OUTDOORS_YES
 
 /turf/simulated/floor/beach/sand/desert/outdoors
-	outdoors = TRUE
+	outdoors = OUTDOORS_YES

@@ -37,6 +37,19 @@
 	sprite_name = "miniFE"
 	rand_overlays = 0
 
+/obj/item/weapon/extinguisher/atmo
+	name = "atmospheric fire extinguisher"
+	desc = "A heavy duty fire extinguisher meant to fight large fires."
+	icon_state = "atmos_extinguisher0"
+	item_state = "atmos_extinguisher"
+	throwforce = 12
+	w_class = ITEMSIZE_LARGE
+	force = 3.0
+	max_water = 600
+	spray_particles = 3
+	sprite_name = "atmo_extinguisher"
+	rand_overlays = 0
+
 /obj/item/weapon/extinguisher/Initialize()
 	create_reagents(max_water)
 	reagents.add_reagent("firefoam", max_water)

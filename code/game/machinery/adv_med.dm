@@ -8,6 +8,7 @@
 	icon_state = "body_scanner_0"
 	density = TRUE
 	anchored = TRUE
+	unacidable = TRUE
 	circuit = /obj/item/weapon/circuitboard/body_scanner
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 60
@@ -218,7 +219,7 @@
 		if(H.reagents.reagent_list.len >= 1)
 			for(var/datum/reagent/R in H.reagents.reagent_list)
 				reagentData[++reagentData.len] = list(
-					"name" = R.name, 
+					"name" = R.name,
 					"amount" = R.volume,
 					"overdose" = (R.overdose && R.volume > R.overdose) ? TRUE : FALSE,
 				)
@@ -290,7 +291,7 @@
 
 			if(istype(E, /obj/item/organ/external/chest) && H.is_lung_ruptured())
 				organData["lungRuptured"] = 1
-			
+
 			for(var/datum/wound/W in E.wounds)
 				if(W.internal)
 					organData["internalBleeding"] = 1
@@ -348,10 +349,10 @@
 			var/obj/item/weapon/paper/P = new /obj/item/weapon/paper(get_turf(target))
 			var/name = occupant ? occupant.name : "Unknown"
 			P.info = "<CENTER><B>Body Scan - [name]</B></CENTER><BR>"
-			P.info += "<b>Time of scan:</b> [worldtime2stationtime(world.time)]<br><br>"
+			P.info += "<b>Time of scan:</b> [stationtime2text()]<br><br>"
 			P.info += "[generate_printing_text()]"
 			P.info += "<br><br><b>Notes:</b><br>"
-			P.name = "Body Scan - [name] ([worldtime2stationtime(world.time)]"
+			P.name = "Body Scan - [name] ([stationtime2text()]"
 		else
 			return FALSE
 
@@ -474,12 +475,11 @@
 					infected = "Gangrene Detected:"
 
 			var/unknown_body = 0
-			for(var/thing in e.implants)
-				var/obj/item/weapon/implant/I = thing
-				var/obj/item/device/nif/N = thing //VOREStation Add: NIFs
+			for(var/obj/item/weapon/implant/I as anything in e.implants)
+				var/obj/item/device/nif/N = I //VOREStation Add: NIFs
 				if(istype(I) && I.known_implant)
 					imp += "[I] implanted:"
-				if(istype(N) && N.known_implant) //VOREStation Add: NIFs
+				else if(istype(N) && N.known_implant) //VOREStation Add: NIFs
 					imp += "[N] implanted:"
 				else
 					unknown_body++
@@ -548,6 +548,7 @@
 	dir = 8
 	density = FALSE
 	anchored = TRUE
+	unacidable = TRUE
 	circuit = /obj/item/weapon/circuitboard/scanner_console
 	var/printing = null
 

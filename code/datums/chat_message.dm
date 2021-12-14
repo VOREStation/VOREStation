@@ -172,8 +172,7 @@ var/list/runechat_image_cache = list()
 	if(owned_by.seen_messages)
 		var/idx = 1
 		var/combined_height = approx_lines
-		for(var/msg in owned_by.seen_messages[message_loc])
-			var/datum/chatmessage/m = msg
+		for(var/datum/chatmessage/m as anything in owned_by.seen_messages[message_loc])
 			animate(m.message, pixel_y = m.message.pixel_y + mheight, time = CHAT_MESSAGE_SPAWN_TIME)
 			combined_height += m.approx_lines
 
@@ -336,8 +335,7 @@ var/list/runechat_image_cache = list()
 		var/list/hear = get_mobs_and_objs_in_view_fast(get_turf(src), range, remote_ghosts = FALSE)
 		hearing_mobs = hear["mobs"]
 
-	for(var/mob in hearing_mobs)
-		var/mob/M = mob
+	for(var/mob/M as anything in hearing_mobs)
 		if(!M.client)
 			continue
 		M.create_chat_message(src, message, italics, classes, audible)

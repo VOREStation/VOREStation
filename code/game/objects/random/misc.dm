@@ -6,8 +6,7 @@
 /obj/random/tool
 	name = "random tool"
 	desc = "This is a random tool"
-	icon = 'icons/obj/tools.dmi'
-	icon_state = "welder"
+	icon_state = "tool"
 
 /obj/random/tool/item_to_spawn()
 	return pick(/obj/item/weapon/tool/screwdriver,
@@ -22,7 +21,7 @@
 /obj/random/tool/powermaint
 	name = "random powertool"
 	desc = "This is a random rare powertool for maintenance"
-	icon_state = "jaws_pry"
+	icon_state = "tool_2"
 
 /obj/random/tool/powermaint/item_to_spawn()
 	return pick(prob(320);/obj/random/tool,
@@ -34,7 +33,7 @@
 /obj/random/tool/power
 	name = "random powertool"
 	desc = "This is a random powertool"
-	icon_state = "jaws_pry"
+	icon_state = "tool_2"
 
 /obj/random/tool/power/item_to_spawn()
 	return pick(/obj/item/weapon/tool/screwdriver/power,
@@ -45,8 +44,7 @@
 /obj/random/tool/alien
 	name = "random alien tool"
 	desc = "This is a random tool"
-	icon = 'icons/obj/abductor.dmi'
-	icon_state = "welder"
+	icon_state = "tool_3"
 
 /obj/random/tool/alien/item_to_spawn()
 	return pick(/obj/item/weapon/tool/screwdriver/alien,
@@ -60,8 +58,7 @@
 /obj/random/technology_scanner
 	name = "random scanner"
 	desc = "This is a random technology scanner."
-	icon = 'icons/obj/device.dmi'
-	icon_state = "atmos"
+	icon_state = "tech"
 
 /obj/random/technology_scanner/item_to_spawn()
 	return pick(prob(5);/obj/item/device/t_scanner,
@@ -85,8 +82,7 @@
 /obj/random/bomb_supply
 	name = "bomb supply"
 	desc = "This is a random bomb supply."
-	icon = 'icons/obj/assemblies/new_assemblies.dmi'
-	icon_state = "signaller"
+	icon_state = "tech"
 
 /obj/random/bomb_supply/item_to_spawn()
 	return pick(/obj/item/device/assembly/igniter,
@@ -99,8 +95,7 @@
 /obj/random/toolbox
 	name = "random toolbox"
 	desc = "This is a random toolbox."
-	icon = 'icons/obj/storage.dmi'
-	icon_state = "red"
+	icon_state = "toolbox"
 
 /obj/random/toolbox/item_to_spawn()
 	return pick(prob(6);/obj/item/weapon/storage/toolbox/mechanical,
@@ -111,8 +106,7 @@
 /obj/random/smes_coil
 	name = "random smes coil"
 	desc = "This is a random smes coil."
-	icon = 'icons/obj/power.dmi'
-	icon_state = "smes"
+	icon_state = "cell_2"
 
 /obj/random/smes_coil/item_to_spawn()
 	return pick(prob(4);/obj/item/weapon/smes_coil,
@@ -122,8 +116,7 @@
 /obj/random/pacman
 	name = "random portable generator"
 	desc = "This is a random portable generator."
-	icon = 'icons/obj/power.dmi'
-	icon_state = "portgen0"
+	icon_state = "cell_3"
 
 /obj/random/pacman/item_to_spawn()
 	return pick(prob(6);/obj/machinery/power/port_gen/pacman,
@@ -161,8 +154,7 @@
 /obj/random/tech_supply/component
 	name = "random tech component"
 	desc = "This is a random machine component."
-	icon = 'icons/obj/items.dmi'
-	icon_state = "portable_analyzer"
+	icon_state = "tech"
 
 /obj/random/tech_supply/component/item_to_spawn()
 	return pick(prob(3);/obj/item/weapon/stock_parts/gear,
@@ -188,8 +180,7 @@
 /obj/random/medical
 	name = "Random Medicine"
 	desc = "This is a random medical item."
-	icon = 'icons/obj/stacks.dmi'
-	icon_state = "traumakit"
+	icon_state = "medical"
 
 /obj/random/medical/item_to_spawn()
 	return pick(prob(21);/obj/random/medical/lite,
@@ -208,8 +199,7 @@
 /obj/random/medical/pillbottle
 	name = "Random Pill Bottle"
 	desc = "This is a random pill bottle."
-	icon = 'icons/obj/chemical.dmi'
-	icon_state = "pill_canister"
+	icon_state = "pillbottle"
 
 /obj/random/medical/pillbottle/item_to_spawn()
 	return pick(prob(1);/obj/item/weapon/storage/pill_bottle/spaceacillin,
@@ -221,8 +211,7 @@
 /obj/random/medical/lite
 	name = "Random Medicine"
 	desc = "This is a random simple medical item."
-	icon = 'icons/obj/items.dmi'
-	icon_state = "brutepack"
+	icon_state = "medical"
 	spawn_nothing_percentage = 25
 
 /obj/random/medical/lite/item_to_spawn()
@@ -240,8 +229,7 @@
 /obj/random/firstaid
 	name = "Random First Aid Kit"
 	desc = "This is a random first aid kit."
-	icon = 'icons/obj/storage.dmi'
-	icon_state = "firstaid"
+	icon_state = "medicalkit"
 
 /obj/random/firstaid/item_to_spawn()
 	return pick(prob(10);/obj/item/weapon/storage/firstaid/regular,
@@ -255,8 +243,7 @@
 /obj/random/contraband
 	name = "Random Illegal Item"
 	desc = "Hot Stuff."
-	icon = 'icons/obj/items.dmi'
-	icon_state = "purplecomb"
+	icon_state = "sus"
 	spawn_nothing_percentage = 50
 /obj/random/contraband/item_to_spawn()
 	return pick(prob(6);/obj/item/weapon/storage/pill_bottle/paracetamol, //VOREStation Edit,
@@ -505,8 +492,7 @@
 /obj/random/material //Random materials for building stuff
 	name = "random material"
 	desc = "This is a random material."
-	icon = 'icons/obj/stacks.dmi'
-	icon_state = "sheet-metal_2"
+	icon_state = "material"
 
 /obj/random/material/item_to_spawn()
 	return pick(/obj/item/stack/material/steel{amount = 10},
@@ -524,8 +510,7 @@
 /obj/random/material/refined //Random materials for building stuff
 	name = "random refined material"
 	desc = "This is a random refined metal."
-	icon = 'icons/obj/stacks.dmi'
-	icon_state = "sheet-adamantine_3"
+	icon_state = "material_2"
 
 /obj/random/material/refined/item_to_spawn()
 	return pick(/obj/item/stack/material/steel{amount = 10},
@@ -555,8 +540,7 @@
 /obj/random/material/precious //Precious metals, go figure
 	name = "random precious metal"
 	desc = "This is a small stack of a random precious metal."
-	icon = 'icons/obj/stacks.dmi'
-	icon_state = "sheet-gold_2"
+	icon_state = "material_3"
 
 /obj/random/material/precious/item_to_spawn()
 	return pick(/obj/item/stack/material/gold{amount = 5},
@@ -615,6 +599,12 @@
 				prob(1);/obj/item/weapon/coin/uranium,
 				prob(2);/obj/item/weapon/coin/platinum,
 				prob(1);/obj/item/weapon/coin/diamond)
+
+//VOREStation Add Start
+/obj/random/coin/sometimes
+	spawn_nothing_percentage = 66
+
+//VOREStation Add End
 
 /obj/random/action_figure
 	name = "random action figure"
@@ -779,8 +769,7 @@
 /obj/random/janusmodule
 	name = "random janus circuit"
 	desc = "A random (possibly broken) Janus module."
-	icon = 'icons/obj/abductor.dmi'
-	icon_state = "circuit_damaged"
+	icon_state = "tech_2"
 
 /obj/random/janusmodule/item_to_spawn()
 	return pick(subtypesof(/obj/item/weapon/circuitboard/mecha/imperion))
@@ -977,4 +966,22 @@
 		prob(5);/obj/item/weapon/storage/pouch/holster,
 		prob(5);/obj/item/weapon/storage/pouch/baton/full,
 		prob(1);/obj/item/weapon/storage/pouch/holding
+	)
+
+/obj/random/flashlight
+	name = "Random Flashlight"
+	desc = "This is a random storage pouch."
+	icon = 'icons/obj/lighting.dmi'
+	icon_state = "random_flashlight"
+
+/obj/random/flashlight/item_to_spawn()
+	return pick(
+		prob(8);/obj/item/device/flashlight,
+		prob(6);/obj/item/device/flashlight/color,
+		prob(6);/obj/item/device/flashlight/color/green,
+		prob(6);/obj/item/device/flashlight/color/purple,
+		prob(6);/obj/item/device/flashlight/color/red,
+		prob(6);/obj/item/device/flashlight/color/orange,
+		prob(6);/obj/item/device/flashlight/color/yellow,
+		prob(2);/obj/item/device/flashlight/maglight
 	)

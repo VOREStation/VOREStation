@@ -20,6 +20,7 @@
 	var/obj/structure/m_tray/connected = null
 	var/list/occupants = list()
 	anchored = TRUE
+	unacidable = TRUE
 
 /obj/structure/morgue/Destroy()
 	if(connected)

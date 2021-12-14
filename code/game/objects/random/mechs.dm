@@ -1,8 +1,7 @@
 /obj/random/mech
 	name = "random mech"
 	desc = "This is a random single mech."
-	icon = 'icons/mecha/mecha.dmi'
-	icon_state = "old_durand"
+	icon_state = "mecha"
 	drop_get_turf = FALSE
 
 //This list includes the phazon, gorilla and mauler. You might want to use something else if balance is a concern.
@@ -25,8 +24,6 @@
 /obj/random/mech/weaker
 	name = "random mech"
 	desc = "This is a random single mech. Those are less potent and more common."
-	icon = 'icons/mecha/mecha.dmi'
-	icon_state = "old_durand"
 	drop_get_turf = FALSE
 
 /obj/random/mech/weaker/item_to_spawn()
@@ -42,8 +39,6 @@
 /obj/random/mech/old
 	name = "random mech"
 	desc = "This is a random single old mech."
-	icon = 'icons/mecha/mecha.dmi'
-	icon_state = "old_durand"
 	drop_get_turf = FALSE
 
 //Note that all of those are worn out and have slightly less maximal health than the standard.

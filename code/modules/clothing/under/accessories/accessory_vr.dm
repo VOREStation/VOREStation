@@ -262,6 +262,14 @@
 	item_state = "collar_pnk"
 	overlay_state = "collar_pnk"
 
+/obj/item/clothing/accessory/collar/cowbell
+	name = "cowbell collar"
+	desc = "A collar for your little pets... or the big ones."
+	icon_state = "collar_cowbell"
+	item_state = "collar_cowbell_overlay"
+	overlay_state = "collar_cowbell_overlay"
+
+
 /obj/item/clothing/accessory/collar/holo
 	name = "Holo-collar"
 	desc = "An expensive holo-collar for the modern day pet."
@@ -349,7 +357,7 @@
 	icon_state = "holster_machete"
 	slot = ACCESSORY_SLOT_WEAPON
 	concealed_holster = 0
-	can_hold = list(/obj/item/weapon/material/knife/machete)
+	can_hold = list(/obj/item/weapon/material/knife/machete, /obj/item/weapon/kinetic_crusher/machete)
 	//sound_in = 'sound/effects/holster/sheathin.ogg'
 	//sound_out = 'sound/effects/holster/sheathout.ogg'
 
@@ -368,10 +376,37 @@
 	desc = "A silver medal awarded to a group which has demonstrated exceptional teamwork to achieve a notable feat. This one has three bronze service stars, denoting that it has been awarded four times."
 
 /obj/item/clothing/accessory/talon
-	name = "ITV pin"
-	desc = "A collectable enamel pin that resembles ITV's company logo."
+	name = "Talon pin"
+	desc = "A collectable enamel pin that resembles ITV Talon's ship logo."
 	icon = 'icons/inventory/accessory/item_vr.dmi'
 	icon_override = 'icons/inventory/accessory/mob_vr.dmi'
 	icon_state = "talon_pin"
 	item_state = "talonpin"
 	overlay_state = "talonpin"
+
+//Casino Slave Collar
+
+/obj/item/clothing/accessory/collar/casinoslave
+	name = "a disabled Sentient Prize Collar"
+	desc = "A collar worn by sentient prizes registered to a SPASM. Although the red text on it shows its disconnected and nonfunctional."
+
+	icon_state = "casinoslave"
+	item_state = "casinoslave"
+	overlay_state = "casinoslave"
+
+	var/slavename = null	//Name for system to put on collar description
+	var/ownername = null	//Name for system to put on collar description
+	var/slaveckey = null	//Ckey for system to check who is the person and ensure no abuse of system or errors
+	var/slaveflavor = null	//Description to show on the SPASM
+	var/slaveooc = null		//OOC text to show on the SPASM
+
+/obj/item/clothing/accessory/collar/casinoslave/attack_self(mob/user as mob)
+	//keeping it blank so people don't tag and reset collar status
+
+/obj/item/clothing/accessory/collar/casinoslave_fake
+	name = "a Sentient Prize Collar"
+	desc = "A collar worn by sentient prizes registered to a SPASM. This one has been disconnected from the system and is now an accessory!"
+
+	icon_state = "casinoslave_owned"
+	item_state = "casinoslave_owned"
+	overlay_state = "casinoslave_owned"

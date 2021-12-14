@@ -21,12 +21,14 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 
 	icon = 'icons/obj/device_alt.dmi'
 	icon_state = "nif_0"
+	unacidable = TRUE
 
 	w_class = ITEMSIZE_TINY
 	var/known_implant = TRUE
 
 	var/durability = 100					// Durability remaining
 	var/bioadap = FALSE						// If it'll work in fancy species
+	var/gib_nodrop = FALSE					// NIF self-destructs when owner is gibbed
 
 	var/tmp/power_usage = 0						// Nifsoft adds to this
 	var/tmp/mob/living/carbon/human/human		// Our owner!
@@ -339,8 +341,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 			//nif_hud.process_hud(human,1) //TODO VIS
 
 			//Process all the ones that want that
-			for(var/S in nifsofts_life)
-				var/datum/nifsoft/nifsoft = S
+			for(var/datum/nifsoft/nifsoft as anything in nifsofts_life)
 				nifsoft.life(human)
 
 		if(NIF_POWFAIL)
@@ -607,6 +608,13 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	Will function in species where it normally wouldn't."
 	durability = 75
 	bioadap = TRUE
+
+/obj/item/device/nif/protean				// Proteans' integrated NIF
+	name = "protean integrated NIF"
+	desc = "A NIF that is part of a protean's body structure. Where did you get that anyway?"
+	durability = 25
+	bioadap = TRUE
+	gib_nodrop = TRUE
 
 ////////////////////////////////
 // Special Promethean """surgery"""

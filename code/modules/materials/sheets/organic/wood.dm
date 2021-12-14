@@ -13,6 +13,12 @@
 	color = "#0099cc"
 	default_type = MAT_SIFWOOD
 
+/obj/item/stack/material/wood/hard
+	name = "hardwood plank"
+	color = "#42291a"
+	default_type = MAT_HARDWOOD
+	description_info = "Rich, lustrous hardwood, imported from offworld at moderate expense. Mostly used for luxurious furniture, and not very good for weapons or other structures."
+
 /obj/item/stack/material/log
 	name = "log"
 	icon_state = "sheet-log"
@@ -32,6 +38,12 @@
 	color = "#0099cc"
 	plank_type = /obj/item/stack/material/wood/sif
 
+/obj/item/stack/material/log/hard
+	name = "hardwood log"
+	default_type = MAT_HARDLOG
+	color = "#6f432a"
+	plank_type = /obj/item/stack/material/wood/hard
+
 /obj/item/stack/material/log/attackby(var/obj/item/W, var/mob/user)
 	if(!istype(W) || W.force <= 0)
 		return ..()
@@ -47,9 +59,24 @@
 					existing_wood = M
 					break
 
-			var/obj/item/stack/material/wood/new_wood = new plank_type(user.loc)
-			new_wood.amount = 2
+			var/obj/item/stack/material/wood/new_wood = new plank_type(user.loc, 2)
 			if(existing_wood && new_wood.transfer_to(existing_wood))
-				to_chat(user, "<span class='notice'>You add the newly-formed wood to the stack. It now contains [existing_wood.amount] planks.</span>")
+				to_chat(user, "<span class='notice'>You add the newly-formed wood to the stack. It now contains [existing_wood.get_amount()] planks.</span>")
 	else
 		return ..()
+
+/obj/item/stack/material/stick
+	name = "wooden stick"
+	icon_state = "sheet-stick"
+	default_type = "wooden stick"
+	strict_color_stacking = TRUE
+	apply_colour = 1
+	drop_sound = 'sound/items/drop/wooden.ogg'
+	pickup_sound = 'sound/items/pickup/wooden.ogg'
+	no_variants = FALSE
+	pass_color = TRUE
+	apply_colour = TRUE
+
+/obj/item/stack/material/stick/fivestack
+	amount = 5
+	color = "#824B28"

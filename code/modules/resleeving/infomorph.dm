@@ -1,25 +1,25 @@
 var/list/infomorph_emotions = list(
-		"Happy" =              "pai-happy",
-		"Cat" =                "pai-cat",
-		"Extremely Happy" =    "pai-extremely-happy",
-		"Face" =               "pai-face",
-		"Laugh" =              "pai-laugh",
-		"Off" =                "pai-off",
-		"Sad" =                "pai-sad",
-		"Angry" =              "pai-angry",
-		"What" =               "pai-what",
-		"Neutral" =            "pai-neutral",
-		"Silly" =              "pai-silly",
-		"Nose" =               "pai-nose",
-		"Smirk" =              "pai-smirk",
-		"Exclamation Points" = "pai-exclamation",
-		"Question Mark" =      "pai-question"
+		"Happy" = 1,
+		"Cat" = 2,
+		"Extremely Happy" = 3,
+		"Face" = 4,
+		"Laugh" = 5,
+		"Off" = 6,
+		"Sad" = 7,
+		"Angry" = 8,
+		"What" = 9,
+		"Neutral" = 10,
+		"Silly" = 11,
+		"Nose" = 12,
+		"Smirk" = 13,
+		"Exclamation Points" = 14,
+		"Question Mark" = 15
 	)
 
 /mob/living/silicon/infomorph
 	name = "sleevecard" //Has the same name as the card for consistency, but this is the MOB in the card.
-	icon = 'icons/mob/pai.dmi'
-	icon_state = "repairbot"
+	icon = 'icons/mob/pai_vr.dmi' //Changed to the virgo icon, giving more sprite options.
+	icon_state = "pai-repairbot"
 
 	emote_type = 2		// pAIs emotes are heard, not seen, so they can be seen through a container (eg. person)
 	pass_flags = 1
@@ -39,13 +39,31 @@ var/list/infomorph_emotions = list(
 	var/obj/item/device/sleevecard/card	// The card we inhabit
 	var/obj/item/device/radio/sleevecard/radio		// Our primary radio
 	var/obj/item/device/universal_translator/translator
-
+	// This was ripped from PAI code, this is to fix the broken sprites for sleevecards and to give sleevecards the same options as PAIs for chassis
 	var/chassis = null   // A record of your chosen chassis.
 	var/global/list/possible_chassis = list(
-		"Spiderbot" = "repairbot",
-		"RoboCat" = "cat",
-		"MechaMouse" = "mouse",
-		"CyberMonkey" = "monkey"
+		"Drone" = "pai-repairbot",
+		"Cat" = "pai-cat",
+		"Mouse" = "pai-mouse",
+		"Monkey" = "pai-monkey",
+		"Corgi" = "pai-borgi",
+		"Fox" = "pai-fox",
+		"Parrot" = "pai-parrot",
+		"Rabbit" = "pai-rabbit",
+		//VOREStation Addition Start
+		"Bear" = "pai-bear",
+		"Fennec" = "pai-fen",
+		"Type Zero" = "pai-typezero",
+		"Raccoon" = "pai-raccoon",
+		"Raptor" = "pai-raptor",
+		"Corgi" = "pai-corgi",
+		"Bat" = "pai-bat",
+		"Butterfly" = "pai-butterfly",
+		"Hawk" = "pai-hawk",
+		"Duffel" = "pai-duffel",
+		"Rat" = "rat",
+		"Panther" = "panther"
+		//VOREStation Addition End
 		)
 
 	var/global/list/possible_say_verbs = list(
@@ -53,7 +71,9 @@ var/list/infomorph_emotions = list(
 		"Natural" = list("says","yells","asks"),
 		"Beep" = list("beeps","beeps loudly","boops"),
 		"Chirp" = list("chirps","chirrups","cheeps"),
-		"Feline" = list("purrs","yowls","meows")
+		"Feline" = list("purrs","yowls","meows"),
+		"Canine" = list("yaps","barks","woofs"),
+		"Rodent" = list("squeaks", "SQUEAKS", "sqiks")	//VOREStation Edit
 		)
 
 	var/obj/item/weapon/pai_cable/cable		// The cable we produce and use when door or camera jacking
@@ -447,7 +467,7 @@ var/global/list/infomorph_software_by_key = list()
 var/global/list/default_infomorph_software = list()
 /hook/startup/proc/populate_infomorph_software_list()
 	var/r = 1 // I would use ., but it'd sacrifice runtime detection
-	for(var/type in typesof(/datum/infomorph_software) - /datum/infomorph_software)
+	for(var/type in subtypesof(/datum/infomorph_software))
 		var/datum/infomorph_software/P = new type()
 		if(infomorph_software_by_key[P.id])
 			var/datum/infomorph_software/O = infomorph_software_by_key[P.id]
@@ -476,7 +496,7 @@ var/global/list/default_infomorph_software = list()
 
 /mob/living/silicon/infomorph/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
-	
+
 	// Software we have bought
 	var/list/bought_software = list()
 	// Software we have not bought

@@ -9,8 +9,7 @@
 
 	//Find all consumed slots
 	var/consumed_slots = 0
-	for(var/thing in accessories)
-		var/obj/item/clothing/accessory/AC = thing
+	for(var/obj/item/clothing/accessory/AC as anything in accessories)
 		consumed_slots |= AC.slot
 
 	//Mask to just consumed restricted

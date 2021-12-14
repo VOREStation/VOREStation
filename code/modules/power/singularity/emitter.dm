@@ -7,6 +7,7 @@
 	icon_state = "emitter"
 	anchored = FALSE
 	density = TRUE
+	unacidable = TRUE
 	req_access = list(access_engine_equip)
 	var/id = null
 
@@ -215,7 +216,7 @@
 			to_chat(user, "<span class='notice'>\The [src] is already fully repaired.</span>")
 			return
 		var/obj/item/stack/P = W
-		if(P.amount < amt)
+		if(!P.can_use(amt))
 			to_chat(user, "<span class='warning'>You don't have enough sheets to repair this! You need at least [amt] sheets.</span>")
 			return
 		to_chat(user, "<span class='notice'>You begin repairing \the [src]...</span>")

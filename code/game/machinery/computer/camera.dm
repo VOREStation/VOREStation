@@ -71,7 +71,7 @@
 GLOBAL_LIST_EMPTY(entertainment_screens)
 /obj/machinery/computer/security/telescreen/entertainment
 	name = "entertainment monitor"
-	desc = "Damn, why do they never have anything interesting on these things?"
+	desc = "Damn, why do they never have anything interesting on these things? (Alt-click to toggle the display)"
 	icon = 'icons/obj/entertainment_monitor.dmi'
 	icon_state = "screen"
 	icon_screen = null
@@ -84,6 +84,8 @@ GLOBAL_LIST_EMPTY(entertainment_screens)
 	var/obj/item/device/radio/radio = null
 	var/obj/effect/overlay/vis/pinboard
 	var/weakref/showing
+
+	var/enabled = TRUE // on or off
 
 /obj/machinery/computer/security/telescreen/entertainment/Initialize()
 	GLOB.entertainment_screens += src
@@ -107,7 +109,7 @@ GLOBAL_LIST_EMPTY(entertainment_screens)
 	radio.listening = TRUE
 	radio.broadcasting = FALSE
 	radio.set_frequency(ENT_FREQ)
-	radio.canhear_range = 7 // Same as default sight range.
+	radio.canhear_range = world.view // Same as default sight range.
 	power_change()
 
 /obj/machinery/computer/security/telescreen/entertainment/Destroy()
@@ -118,13 +120,29 @@ GLOBAL_LIST_EMPTY(entertainment_screens)
 	qdel_null(radio)
 	return ..()
 
+/obj/machinery/computer/security/telescreen/entertainment/proc/toggle()
+	enabled = !enabled
+	if(!enabled)
+		stop_showing()
+		radio?.on = FALSE
+	else if(operable())
+		radio?.on = TRUE
+
 /obj/machinery/computer/security/telescreen/entertainment/Click(location, control, params)
-	attack_hand(usr)
+	var/list/modifiers = params2list(params)
+	if(modifiers["alt"])
+		if(isliving(usr) && Adjacent(usr) && !usr.incapacitated())
+			toggle()
+			visible_message("<b>[usr]</b> toggles [src] [enabled ? "on" : "off"].","You toggle [src] [enabled ? "on" : "off"].", runemessage = "click")
+	else
+		attack_hand(usr)
 
 /obj/machinery/computer/security/telescreen/entertainment/update_icon()
 	return // NUH
 
 /obj/machinery/computer/security/telescreen/entertainment/proc/show_thing(atom/thing)
+	if(!enabled)
+		return
 	if(showing)
 		stop_showing()
 	if(stat & NOPOWER)
@@ -146,7 +164,7 @@ GLOBAL_LIST_EMPTY(entertainment_screens)
 	if(stat & NOPOWER)
 		radio?.on = FALSE
 		stop_showing()
-	else
+	else if(enabled)
 		radio?.on = TRUE
 
 /obj/machinery/computer/security/wooden_tv

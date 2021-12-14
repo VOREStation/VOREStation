@@ -59,7 +59,7 @@
 //VOREStation Add Start
 /obj/structure/closet/walllocker/medical
 	name = "first-aid closet"
-	desc = "It's wall-mounted storage unit for first aid supplies."
+	desc = "It's a wall-mounted storage unit for first aid supplies."
 	closet_appearance = /decl/closet_appearance/wall/medical
 
 /obj/structure/closet/walllocker/medical/north
@@ -131,7 +131,7 @@
 /obj/structure/closet/walllocker_double/kitchen/east
 	pixel_x = 32
 	dir = EAST
-	
+
 /obj/structure/closet/walllocker_double/medical
 	name = "Medical Cabinet"
 	desc = "A wall mounted medical supply cabinet. Probably full of drugs!"	//not actually full of drugs, sorry!
@@ -152,7 +152,7 @@
 /obj/structure/closet/walllocker_double/medical/east
 	pixel_x = 32
 	dir = EAST
-	
+
 /obj/structure/closet/walllocker_double/hydrant
 	name = "fire-safety closet"
 	desc = "It's a storage cabinet packed with fire-fighting supplies."
@@ -161,7 +161,7 @@
 	density = FALSE
 
 	starts_with = list(
-		/obj/item/clothing/suit/fire/firefighter,
+		/obj/item/clothing/suit/fire,
 		/obj/item/clothing/mask/gas,
 		/obj/item/device/flashlight,
 		/obj/item/weapon/tank/oxygen/red,

@@ -282,8 +282,7 @@ Ccomp's first proc.
 	GLOB.respawn_timers -= target
 
 	var/found_client = FALSE
-	for(var/c in GLOB.clients)
-		var/client/C = c
+	for(var/client/C as anything in GLOB.clients)
 		if(C.ckey == target)
 			found_client = C
 			to_chat(C, "<span class='notice'><B>You may now respawn. You should roleplay as if you learned nothing about the round during your time with the dead.</B></span>")
@@ -391,7 +390,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(location == "Cancel" || !location)
 		return
 
-	var/announce = tgui_alert(src,"Announce as if they had just arrived?", "Announce", list("Yes", "No", "Cancel"))
+	var/announce = tgui_alert(src,"Announce as if they had just arrived?", "Announce", list("No", "Yes", "Cancel"))
 	if(announce == "Cancel")
 		return
 	else if(announce == "Yes") //Too bad buttons can't just have 1/0 values and different display strings
@@ -421,7 +420,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		else if(samejob == USELESS_JOB) //VOREStation Edit - Visitor not Assistant
 			charjob = USELESS_JOB //VOREStation Edit - Visitor not Assistant
 	else
-		records = tgui_alert(src,"No data core entry detected. Would you like add them to the manifest, and sec/med/HR records?","Records",list("Yes","No","Cancel"))
+		records = tgui_alert(src,"No data core entry detected. Would you like add them to the manifest, and sec/med/HR records?","Records",list("No", "Yes", "Cancel"))
 		if(records == "Cancel")
 			return
 		if(records == "Yes")
@@ -458,17 +457,19 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	var/mob/living/carbon/human/new_character
 	var/spawnloc
-	var/sparks
+	var/showy
 
 	//Where did you want to spawn them?
 	switch(location)
 		if("Right Here") //Spawn them on your turf
 			spawnloc = get_turf(src.mob)
-			sparks = tgui_alert(src,"Sparks like they teleported in?", "Showy", list("Yes", "No", "Cancel"))
-			if(sparks == "Cancel")
+			showy = tgui_alert(src,"Showy entrance?", "Showy", list("No", "Telesparks", "Drop Pod", "Cancel"))
+			if(showy == "Cancel")
 				return
-			if(sparks == "No")
-				sparks = FALSE
+			if(showy == "Drop Pod")
+				showy = tgui_alert(src,"Destructive drop pods cause damage in a 3x3 and may break turfs. Polite drop pods lightly damage the turfs but won't break through.", "Drop Pod", list("Polite", "Destructive", "Cancel")) // reusing var
+				if(showy == "Cancel")
+					return
 
 		if("Arrivals") //Spawn them at a latejoin spawnpoint
 			spawnloc = pick(latejoin)
@@ -484,7 +485,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	new_character = new(spawnloc)
 
-	if(sparks)
+	if(showy == "Telesparks")
 		anim(spawnloc,new_character,'icons/mob/mob.dmi',,"phasein",,new_character.dir)
 		playsound(spawnloc, "sparks", 50, 1)
 		var/datum/effect/effect/system/spark_spread/spk = new(new_character)
@@ -547,9 +548,21 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	log_admin("[admin] has spawned [player_key]'s character [new_character.real_name].")
 	message_admins("[admin] has spawned [player_key]'s character [new_character.real_name].", 1)
 
-	to_chat(new_character, "You have been fully spawned. Enjoy the game.")
+	
 
 	feedback_add_details("admin_verb","RSPCH") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	
+	// Drop pods
+	if(showy == "Polite")
+		var/turf/T = get_turf(new_character)
+		new /obj/structure/drop_pod/polite(T, new_character)
+		to_chat(new_character, "Please wait for your arrival.")
+	else if(showy == "Destructive")
+		var/turf/T = get_turf(new_character)
+		new /obj/structure/drop_pod(T, new_character)
+		to_chat(new_character, "Please wait for your arrival.")
+	else
+		to_chat(new_character, "You have been fully spawned. Enjoy the game.")
 
 	return new_character
 
@@ -886,13 +899,13 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	var/choice
 	if(ticker.mode.auto_recall_shuttle)
-		choice = tgui_input_list(usr, "The shuttle will just return if you call it. Call anyway?", list("Confirm", "Cancel"))
+		choice = tgui_input_list(usr, "The shuttle will just return if you call it. Call anyway?", "Shuttle Call", list("Confirm", "Cancel"))
 		if(choice == "Confirm")
 			emergency_shuttle.auto_recall = 1	//enable auto-recall
 		else
 			return
 
-	choice = tgui_input_list(usr, "Is this an emergency evacuation or a crew transfer?", list("Emergency", "Crew Transfer"))
+	choice = tgui_input_list(usr, "Is this an emergency evacuation or a crew transfer?", "Shuttle Call", list("Emergency", "Crew Transfer"))
 	if (choice == "Emergency")
 		emergency_shuttle.call_evac()
 	else
@@ -1058,3 +1071,73 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	else if(isliving(M))
 		M.ghostize()
 		qdel(M) //Bye
+
+/client/proc/cmd_admin_droppod_spawn(var/object as text)
+	set name = "Drop Pod Atom"
+	set desc = "Spawn a new atom/movable in a drop pod where you are."
+	set category = "Fun"
+	
+	if(!check_rights(R_SPAWN))
+		return
+
+	var/list/types = typesof(/atom/movable)
+	var/list/matches = new()
+
+	for(var/path in types)
+		if(findtext("[path]", object))
+			matches += path
+
+	if(!matches.len)
+		return
+
+	var/chosen
+	if(matches.len==1)
+		chosen = matches[1]
+	else
+		chosen = tgui_input_list(usr, "Select a movable type:", "Spawn in Drop Pod", matches)
+		if(!chosen)
+			return
+	
+	var/podtype = tgui_alert(src,"Destructive drop pods cause damage in a 3x3 and may break turfs. Polite drop pods lightly damage the turfs but won't break through.", "Drop Pod", list("Polite", "Destructive", "Cancel"))
+	if(podtype == "Cancel")
+		return
+	var/autoopen = tgui_alert(src,"Should the pod open automatically?", "Drop Pod", list("Yes", "No", "Cancel"))
+	if(autoopen == "Cancel")
+		return
+	switch(podtype)
+		if("Destructive")
+			var/atom/movable/AM = new chosen(usr.loc)
+			new /obj/structure/drop_pod(get_turf(usr), AM, autoopen == "Yes" ? TRUE : FALSE)
+		if("Polite")
+			var/atom/movable/AM = new chosen(usr.loc)
+			new /obj/structure/drop_pod/polite(get_turf(usr), AM, autoopen == "Yes" ? TRUE : FALSE)
+
+	feedback_add_details("admin_verb","DPA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/proc/cmd_admin_droppod_deploy()
+	set name = "Drop Pod Deploy"
+	set desc = "Drop an existing mob where you are in a drop pod."
+	set category = "Fun"
+	
+	if(!check_rights(R_SPAWN))
+		return
+
+	var/mob/living/L = tgui_input_list(usr, "Select the mob to drop:", "Mob Picker", living_mob_list)
+	if(!L)
+		return
+	
+	var/podtype = tgui_alert(src,"Destructive drop pods cause damage in a 3x3 and may break turfs. Polite drop pods lightly damage the turfs but won't break through.", "Drop Pod", list("Polite", "Destructive", "Cancel"))
+	if(podtype == "Cancel")
+		return
+	var/autoopen = tgui_alert(src,"Should the pod open automatically?", "Drop Pod", list("Yes", "No", "Cancel"))
+	if(autoopen == "Cancel")
+		return
+	if(!L || QDELETED(L))
+		return
+	switch(podtype)
+		if("Destructive")
+			new /obj/structure/drop_pod(get_turf(usr), L, autoopen == "Yes" ? TRUE : FALSE)
+		if("Polite")
+			new /obj/structure/drop_pod/polite(get_turf(usr), L, autoopen == "Yes" ? TRUE : FALSE)
+
+	feedback_add_details("admin_verb","DPD") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

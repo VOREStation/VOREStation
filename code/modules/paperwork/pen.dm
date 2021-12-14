@@ -44,8 +44,20 @@
 	colour = "red"
 
 /obj/item/weapon/pen/fountain
-	desc = "A well made fountain pen."
+	desc = "A well made fountain pen, with a faux wood body."
 	icon_state = "pen_fountain"
+
+/obj/item/weapon/pen/fountain2
+	desc = "A well made fountain pen, with a faux wood body. This one has golden accents."
+	icon_state = "pen_fountain"
+
+/obj/item/weapon/pen/fountain3
+	desc = "A well made expesive rosewood pen with golden accents. Very pretty."
+	icon_state = "pen_fountain"
+
+/obj/item/weapon/pen/fountain4
+	desc = "command fountain pen"
+	icon_state = "A well made and expensive fountain pen. The nib is quite sharp."
 
 /obj/item/weapon/pen/multi
 	desc = "It's a pen with multiple colors of ink!"
@@ -190,7 +202,7 @@
 	colour = "red"
 
 /obj/item/weapon/pen/blade/fountain
-	desc = "A well made fountain pen."
+	desc = "A well made fountain pen, with a faux wood body."
 	icon_state = "pen_fountain"
 
 /*
@@ -291,11 +303,6 @@
 	var/colourName = "red" //for updateIcon purposes
 	drop_sound = 'sound/items/drop/gloves.ogg'
 	pickup_sound = 'sound/items/pickup/gloves.ogg'
-
-/obj/item/weapon/pen/crayon/suicide_act(mob/user)
-	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
-	to_chat(viewers(user),"<font color='red'><b>[user] is jamming the [src.name] up [TU.his] nose and into [TU.his] brain. It looks like [TU.he] [TU.is] trying to commit suicide.</b></font>")
-	return (BRUTELOSS|OXYLOSS)
 
 /obj/item/weapon/pen/crayon/New()
 	name = "[colourName] crayon"

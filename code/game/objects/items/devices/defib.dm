@@ -13,6 +13,7 @@
 	throwforce = 6
 	preserve_item = 1
 	w_class = ITEMSIZE_LARGE
+	unacidable = TRUE
 	origin_tech = list(TECH_BIO = 4, TECH_POWER = 2)
 	action_button_name = "Remove/Replace Paddles"
 

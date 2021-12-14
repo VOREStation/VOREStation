@@ -62,7 +62,7 @@ SUBSYSTEM_DEF(plants)
 				accessible_product_sprites |= base
 
 	// Populate the global seed datum list.
-	for(var/type in typesof(/datum/seed)-/datum/seed)
+	for(var/type in subtypesof(/datum/seed))
 		var/datum/seed/S = new type
 		seeds[S.name] = S
 		S.uid = "[seeds.len]"

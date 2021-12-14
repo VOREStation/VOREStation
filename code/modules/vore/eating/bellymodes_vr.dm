@@ -63,10 +63,9 @@
 				SEND_SOUND(M, prey_digest)
 		play_sound = pred_digest
 
-	if(to_update)
-		updateVRPanels()
-
 	if(!LAZYLEN(touchable_mobs))
+		if(to_update)
+			updateVRPanels()
 		if(play_sound)
 			for(var/mob/M in hearers(VORE_SOUND_RANGE, get_turf(owner))) //so we don't fill the whole room with the sound effect
 				if(!M.is_preference_enabled(/datum/client_preference/digestion_noises))
@@ -84,11 +83,11 @@
 
 ///////////////////// Time to actually process mobs /////////////////////
 
-	for(var/target in touchable_mobs)
-		var/mob/living/L = target
+	for(var/mob/living/L as anything in touchable_mobs)
 		if(!istype(L))
+			stack_trace("Touchable mobs had a nonmob: [L]")
 			continue
-		var/list/returns = DM.process_mob(src, target)
+		var/list/returns = DM.process_mob(src, L)
 		if(istype(returns) && returns["to_update"])
 			to_update = TRUE
 		if(istype(returns) && returns["soundToPlay"] && !play_sound)
@@ -121,9 +120,12 @@
 				formatted_message = replacetext(raw_message, "%belly", lowertext(name))
 				formatted_message = replacetext(formatted_message, "%pred", owner)
 				formatted_message = replacetext(formatted_message, "%prey", english_list(contents))
-				formatted_message = replacetext(formatted_message, "%count", contents.len)
 				formatted_message = replacetext(formatted_message, "%countprey", living_count)
+				formatted_message = replacetext(formatted_message, "%count", contents.len)
 				to_chat(M, "<span class='notice'>[formatted_message]</span>")
+	
+	if(to_update)
+		updateVRPanels()
 
 
 /obj/belly/proc/handle_touchable_atoms(list/touchable_atoms)
@@ -233,7 +235,9 @@
 /obj/belly/proc/handle_digestion_death(mob/living/M)
 	var/digest_alert_owner = pick(digest_messages_owner)
 	var/digest_alert_prey = pick(digest_messages_prey)
-	var/compensation = M.getOxyLoss() //How much of the prey's damage was caused by passive crit oxyloss to compensate the lost nutrition.
+	var/compensation = M.maxHealth / 5 //Dead body bonus.
+	if(ishuman(M))
+		compensation += M.getOxyLoss() //How much of the prey's damage was caused by passive crit oxyloss to compensate the lost nutrition.
 
 	var/living_count = 0
 	for(var/mob/living/L in contents)
@@ -243,14 +247,14 @@
 	digest_alert_owner = replacetext(digest_alert_owner, "%pred", owner)
 	digest_alert_owner = replacetext(digest_alert_owner, "%prey", M)
 	digest_alert_owner = replacetext(digest_alert_owner, "%belly", lowertext(name))
-	digest_alert_owner = replacetext(digest_alert_owner, "%count", contents.len)
 	digest_alert_owner = replacetext(digest_alert_owner, "%countprey", living_count)
+	digest_alert_owner = replacetext(digest_alert_owner, "%count", contents.len)
 
 	digest_alert_prey = replacetext(digest_alert_prey, "%pred", owner)
 	digest_alert_prey = replacetext(digest_alert_prey, "%prey", M)
 	digest_alert_prey = replacetext(digest_alert_prey, "%belly", lowertext(name))
-	digest_alert_prey = replacetext(digest_alert_prey, "%count", contents.len)
 	digest_alert_prey = replacetext(digest_alert_prey, "%countprey", living_count)
+	digest_alert_prey = replacetext(digest_alert_prey, "%count", contents.len)
 
 	//Send messages
 	to_chat(owner, "<span class='notice'>[digest_alert_owner]</span>")
@@ -261,14 +265,11 @@
 	digestion_death(M)
 	if(!ishuman(owner))
 		owner.update_icons()
-	if(compensation == 0) //Slightly sloppy way at making sure certain mobs don't give ZERO nutrition (fish and so on)
-		compensation = 21 //This reads as 20*4.5 due to the calculations afterward, making the backup nutrition value 94.5 per mob. Not op compared to regular prey.
-	if(compensation > 0)
-		if(isrobot(owner))
-			var/mob/living/silicon/robot/R = owner
-			R.cell.charge += 25*compensation*(nutrition_percent / 100)
-		else
-			owner.adjust_nutrition((nutrition_percent / 100)*4.5*compensation)
+	if(isrobot(owner))
+		var/mob/living/silicon/robot/R = owner
+		R.cell.charge += (nutrition_percent / 100) * compensation * 25
+	else
+		owner.adjust_nutrition((nutrition_percent / 100) * compensation * 4.5)
 
 /obj/belly/proc/steal_nutrition(mob/living/L)
 	if(L.nutrition >= 100)

@@ -28,12 +28,14 @@
 	var/digestchance = 0					// % Chance of stomach beginning to digest if prey struggles
 	var/absorbchance = 0					// % Chance of stomach beginning to absorb if prey struggles
 	var/escapechance = 0 					// % Chance of prey beginning to escape if prey struggles.
-	var/transferchance = 0 					// % Chance of prey being
+	var/transferchance = 0 					// % Chance of prey being trasnsfered, goes from 0-100%
+	var/transferchance_secondary = 0 		// % Chance of prey being transfered to transferchance_secondary, also goes 0-100%
 	var/can_taste = FALSE					// If this belly prints the flavor of prey when it eats someone.
 	var/bulge_size = 0.25					// The minimum size the prey has to be in order to show up on examine.
 	var/display_absorbed_examine = FALSE	// Do we display absorption examine messages for this belly at all?
 	var/shrink_grow_size = 1				// This horribly named variable determines the minimum/maximum size it will shrink/grow prey to.
 	var/transferlocation					// Location that the prey is released if they struggle and get dropped off.
+	var/transferlocation_secondary			// Secondary location that prey is released to.
 	var/release_sound = "Splatter"			// Sound for letting someone out. Replaced from True/false
 	var/mode_flags = 0						// Stripping, numbing, etc.
 	var/fancy_vore = FALSE					// Using the new sounds?
@@ -46,6 +48,11 @@
 	var/emote_time = 60						// How long between stomach emotes at prey (in seconds)
 	var/emote_active = TRUE					// Are we even giving emotes out at all or not?
 	var/next_emote = 0						// When we're supposed to print our next emote, as a world.time
+
+	// Generally just used by AI
+	var/autotransferchance = 0 				// % Chance of prey being autotransferred to transfer location
+	var/autotransferwait = 10 				// Time between trying to transfer.
+	var/autotransferlocation				// Place to send them
 
 	//I don't think we've ever altered these lists. making them static until someone actually overrides them somewhere.
 	//Actual full digest modes
@@ -147,7 +154,9 @@
 		"absorbchance",
 		"escapechance",
 		"transferchance",
+		"transferchance_secondary",
 		"transferlocation",
+		"transferlocation_secondary",
 		"bulge_size",
 		"display_absorbed_examine",
 		"shrink_grow_size",
@@ -210,6 +219,7 @@
 	//Messages if it's a mob
 	if(isliving(thing))
 		var/mob/living/M = thing
+		M.updateVRPanel()
 		if(desc)
 			to_chat(M, "<span class='notice'><B>[desc]</B></span>")
 		var/taste
@@ -218,7 +228,11 @@
 		vore_fx(M)
 		//Stop AI processing in bellies
 		if(M.ai_holder)
-			M.ai_holder.go_sleep()
+			M.ai_holder.handle_eaten()
+
+	// Intended for simple mobs
+	if(!owner.client && autotransferlocation && autotransferchance > 0)
+		addtimer(CALLBACK(src, /obj/belly/.proc/check_autotransfer, thing, autotransferlocation), autotransferwait)
 
 // Called whenever an atom leaves this belly
 /obj/belly/Exited(atom/movable/thing, atom/OldLoc)
@@ -234,6 +248,8 @@
 
 /obj/belly/proc/vore_fx(mob/living/L)
 	if(!istype(L))
+		return
+	if(!L.client)
 		return
 	if(!L.show_vore_fx)
 		L.clear_fullscreen("belly")
@@ -263,8 +279,7 @@
 	var/count = 0
 
 	//Iterate over contents and move them all
-	for(var/thing in contents)
-		var/atom/movable/AM = thing
+	for(var/atom/movable/AM as anything in contents)
 		if(isliving(AM))
 			var/mob/living/L = AM
 			if(L.absorbed && !include_absorbed)
@@ -385,8 +400,8 @@
 	formatted_message = replacetext(raw_message, "%belly", lowertext(name))
 	formatted_message = replacetext(formatted_message, "%pred", owner)
 	formatted_message = replacetext(formatted_message, "%prey", english_list(contents))
-	formatted_message = replacetext(formatted_message, "%count", contents.len)
 	formatted_message = replacetext(formatted_message, "%countprey", living_count)
+	formatted_message = replacetext(formatted_message, "%count", contents.len)
 
 	return("<span class='warning'>[formatted_message]</span>")
 
@@ -418,7 +433,7 @@
 // This is useful in customization boxes and such. The delimiter right now is \n\n so
 // in message boxes, this looks nice and is easily delimited.
 /obj/belly/proc/get_messages(type, delim = "\n\n")
-	ASSERT(type == "smo" || type == "smi" || type == "dmo" || type == "dmp" || type == "em" || type == "ema" || type == "im_digest" || type == "im_hold" || type == "im_absorb" || type == "im_heal" || type == "im_drain")
+	ASSERT(type == "smo" || type == "smi" || type == "dmo" || type == "dmp" || type == "em" || type == "ema" || type == "im_digest" || type == "im_hold" || type == "im_absorb" || type == "im_heal" || type == "im_drain" || type == "im_steal" || type == "im_egg" || type == "im_shrink" || type == "im_grow" || type == "im_unabsorb")
 
 	var/list/raw_messages
 	switch(type)
@@ -444,7 +459,16 @@
 			raw_messages = emote_lists[DM_HEAL]
 		if("im_drain")
 			raw_messages = emote_lists[DM_DRAIN]
-
+		if("im_steal")
+			raw_messages = emote_lists[DM_SIZE_STEAL]
+		if("im_egg")
+			raw_messages = emote_lists[DM_EGG]
+		if("im_shrink")
+			raw_messages = emote_lists[DM_SHRINK]
+		if("im_grow")
+			raw_messages = emote_lists[DM_GROW]
+		if("im_unabsorb")
+			raw_messages = emote_lists[DM_UNABSORB]
 	var/messages = null
 	if(raw_messages)
 		messages = raw_messages.Join(delim)
@@ -454,7 +478,7 @@
 // replacement strings and linebreaks as delimiters (two \n\n by default).
 // They also sanitize the messages.
 /obj/belly/proc/set_messages(raw_text, type, delim = "\n\n")
-	ASSERT(type == "smo" || type == "smi" || type == "dmo" || type == "dmp" || type == "em" || type == "ema" || type == "im_digest" || type == "im_hold" || type == "im_absorb" || type == "im_heal" || type == "im_drain")
+	ASSERT(type == "smo" || type == "smi" || type == "dmo" || type == "dmp" || type == "em" || type == "ema" || type == "im_digest" || type == "im_hold" || type == "im_absorb" || type == "im_heal" || type == "im_drain" || type == "im_steal" || type == "im_egg" || type == "im_shrink" || type == "im_grow" || type == "im_unabsorb")
 
 	var/list/raw_list = splittext(html_encode(raw_text),delim)
 	if(raw_list.len > 10)
@@ -462,10 +486,10 @@
 		log_debug("[owner] tried to set [lowertext(name)] with 11+ messages")
 
 	for(var/i = 1, i <= raw_list.len, i++)
-		if((length(raw_list[i]) > 160 || length(raw_list[i]) < 10) && !(type == "im_digest" || type == "im_hold" || type == "im_absorb" || type == "im_heal" || type == "im_drain")) //160 is fudged value due to htmlencoding increasing the size
+		if((length(raw_list[i]) > 160 || length(raw_list[i]) < 10) && !(type == "im_digest" || type == "im_hold" || type == "im_absorb" || type == "im_heal" || type == "im_drain" || type == "im_steal" || type == "im_egg" || type == "im_shrink" || type == "im_grow" || type == "im_unabsorb")) //160 is fudged value due to htmlencoding increasing the size
 			raw_list.Cut(i,i)
 			log_debug("[owner] tried to set [lowertext(name)] with >121 or <10 char message")
-		else if((type == "im_digest" || type == "im_hold" || type == "im_absorb" || type == "im_heal" || type == "im_drain") && (length(raw_list[i]) > 510 || length(raw_list[i]) < 10))
+		else if((type == "im_digest" || type == "im_hold" || type == "im_absorb" || type == "im_heal" || type == "im_drain" || type == "im_steal" || type == "im_egg" || type == "im_shrink" || type == "im_grow" || type == "im_unabsorb") && (length(raw_list[i]) > 510 || length(raw_list[i]) < 10))
 			raw_list.Cut(i,i)
 			log_debug("[owner] tried to set [lowertext(name)] idle message with >501 or <10 char message")
 		else
@@ -498,6 +522,16 @@
 			emote_lists[DM_HEAL] = raw_list
 		if("im_drain")
 			emote_lists[DM_DRAIN] = raw_list
+		if("im_steal")
+			emote_lists[DM_SIZE_STEAL] = raw_list
+		if("im_egg")
+			emote_lists[DM_EGG] = raw_list
+		if("im_shrink")
+			emote_lists[DM_SHRINK] = raw_list
+		if("im_grow")
+			emote_lists[DM_GROW] = raw_list
+		if("im_unabsorb")
+			emote_lists[DM_UNABSORB] = raw_list
 
 	return
 
@@ -576,8 +610,7 @@
 	//This in particular will recurse oddly because if there is absorbed prey of prey of prey...
 	//it will just move them up one belly. This should never happen though since... when they were
 	//absobred, they should have been absorbed as well!
-	for(var/belly in M.vore_organs)
-		var/obj/belly/B = belly
+	for(var/obj/belly/B as anything in M.vore_organs)
 		for(var/mob/living/Mm in B)
 			if(Mm.absorbed)
 				absorb_living(Mm)
@@ -658,14 +691,14 @@
 	struggle_outer_message = replacetext(struggle_outer_message, "%pred", owner)
 	struggle_outer_message = replacetext(struggle_outer_message, "%prey", R)
 	struggle_outer_message = replacetext(struggle_outer_message, "%belly", lowertext(name))
-	struggle_outer_message = replacetext(struggle_outer_message, "%count", contents.len)
 	struggle_outer_message = replacetext(struggle_outer_message, "%countprey", living_count)
+	struggle_outer_message = replacetext(struggle_outer_message, "%count", contents.len)
 
 	struggle_user_message = replacetext(struggle_user_message, "%pred", owner)
 	struggle_user_message = replacetext(struggle_user_message, "%prey", R)
 	struggle_user_message = replacetext(struggle_user_message, "%belly", lowertext(name))
-	struggle_user_message = replacetext(struggle_user_message, "%count", contents.len)
 	struggle_user_message = replacetext(struggle_user_message, "%countprey", living_count)
+	struggle_user_message = replacetext(struggle_user_message, "%count", contents.len)
 
 	struggle_outer_message = "<span class='alert'>[struggle_outer_message]</span>"
 	struggle_user_message = "<span class='alert'>[struggle_user_message]</span>"
@@ -714,8 +747,7 @@
 
 		else if(prob(transferchance) && transferlocation) //Next, let's have it see if they end up getting into an even bigger mess then when they started.
 			var/obj/belly/dest_belly
-			for(var/belly in owner.vore_organs)
-				var/obj/belly/B = belly
+			for(var/obj/belly/B as anything in owner.vore_organs)
 				if(B.name == transferlocation)
 					dest_belly = B
 					break
@@ -728,6 +760,27 @@
 
 			to_chat(R, "<span class='warning'>Your attempt to escape [lowertext(name)] has failed and your struggles only results in you sliding into [owner]'s [transferlocation]!</span>")
 			to_chat(owner, "<span class='warning'>Someone slid into your [transferlocation] due to their struggling inside your [lowertext(name)]!</span>")
+			if(C)
+				transfer_contents(C, dest_belly)
+				return
+			transfer_contents(R, dest_belly)
+			return
+
+		else if(prob(transferchance_secondary) && transferlocation_secondary) //After the first potential mess getting into, run the secondary one which might be even bigger of a mess.
+			var/obj/belly/dest_belly
+			for(var/obj/belly/B as anything in owner.vore_organs)
+				if(B.name == transferlocation_secondary)
+					dest_belly = B
+					break
+
+			if(!dest_belly)
+				to_chat(owner, "<span class='warning'>Something went wrong with your belly transfer settings. Your <b>[lowertext(name)]</b> has had it's transfer chance and transfer location cleared as a precaution.</span>")
+				transferchance_secondary = 0
+				transferlocation_secondary = null
+				return
+
+			to_chat(R, "<span class='warning'>Your attempt to escape [lowertext(name)] has failed and your struggles only results in you sliding into [owner]'s [transferlocation_secondary]!</span>")
+			to_chat(owner, "<span class='warning'>Someone slid into your [transferlocation_secondary] due to their struggling inside your [lowertext(name)]!</span>")
 			if(C)
 				transfer_contents(C, dest_belly)
 				return
@@ -783,6 +836,22 @@
 	for(var/mob/living/M in contents)
 		M.updateVRPanel()
 
+//Autotransfer callback
+/obj/belly/proc/check_autotransfer(var/prey, var/autotransferlocation)
+	if(autotransferlocation && (autotransferchance > 0) && (prey in contents))
+		if(prob(autotransferchance))
+			var/obj/belly/dest_belly
+			for(var/obj/belly/B in owner.vore_organs)
+				if(B.name == autotransferlocation)
+					dest_belly = B
+					break
+			if(dest_belly)
+				transfer_contents(prey, dest_belly)
+		else
+			// Didn't transfer, so wait before retrying
+			// I feel like there's a way to make this timer looping using the normal looping thing, but pass in the ID and cancel it if we aren't looping again
+			addtimer(CALLBACK(src, .proc/check_autotransfer, prey, autotransferlocation), autotransferwait)
+
 // Belly copies and then returns the copy
 // Needs to be updated for any var changes
 /obj/belly/proc/copy(mob/new_owner)
@@ -808,7 +877,9 @@
 	dupe.absorbchance = absorbchance
 	dupe.escapechance = escapechance
 	dupe.transferchance = transferchance
+	dupe.transferchance_secondary = transferchance_secondary
 	dupe.transferlocation = transferlocation
+	dupe.transferlocation_secondary = transferlocation_secondary
 	dupe.bulge_size = bulge_size
 	dupe.shrink_grow_size = shrink_grow_size
 	dupe.mode_flags = mode_flags

@@ -19,8 +19,7 @@
 	data["shuttles"] = shuttles
 
 	var/list/overmap_ships = list()
-	for(var/ship in SSshuttles.ships)
-		var/obj/effect/overmap/visitable/ship/S = ship
+	for(var/obj/effect/overmap/visitable/ship/S as anything in SSshuttles.ships)
 		overmap_ships.Add(list(list(
 			"name" = S.name,
 			"ref" = REF(S),

@@ -54,8 +54,7 @@
 /mob/living/simple_mob/vore/lamia/update_fullness()
 	var/new_fullness = 0
 	// We only want to count our upper_stomach towards capacity
-	for(var/belly in vore_organs)
-		var/obj/belly/B = belly
+	for(var/obj/belly/B as anything in vore_organs)
 		if(B.name == "upper stomach")
 			for(var/mob/living/M in B)
 				new_fullness += M.size_multiplier
@@ -76,8 +75,7 @@
 		var/upper_shows = FALSE
 		var/tail_shows = FALSE
 
-		for(var/belly in vore_organs)
-			var/obj/belly/B = belly
+		for(var/obj/belly/B as anything in vore_organs)
 			if(!(B.name in list("upper stomach", "tail stomach")))
 				continue
 			var/belly_fullness = 0

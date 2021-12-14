@@ -252,7 +252,7 @@
 
 /datum/recipe/omurice/face
 	appliance = GRILL
-	reagents = list("rice" = 5, "ketchup" = 5, "sodiumchloride" = 5, "egg" = 3)
+	reagents = list("rice" = 5, "ketchup" = 5, "sodiumchloride" = 1, "egg" = 3)
 	result = /obj/item/weapon/reagent_containers/food/snacks/omurice/face
 
 /datum/recipe/meatsteak
@@ -308,7 +308,7 @@
 		/obj/item/weapon/reagent_containers/food/snacks/cheesewedge
 	)
 	reagents = list("spacespice" = 1)
-	result = /obj/item/weapon/reagent_containers/food/snacks/cheese_cracker
+	result = /obj/item/weapon/reagent_containers/food/snacks/cheesetoast
 	result_quantity = 4
 
 /datum/recipe/bacongrill

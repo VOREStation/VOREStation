@@ -1,12 +1,26 @@
-//Gun Cabinets
+/*
+ * Closets for Virgo
+ * Contains:
+ *		Gun Cabinets
+ *		Explorer
+ *		Pathfinder
+ *		SAR/Field Medic
+ *		Pilot/Navigator
+ *		Exotic Seeds
+ *		Autolok Suit
+ *		Emergency Suit (Wall)
+ *
+ */
 
+/*
+ * Gun Cabinets
+ */
 /obj/structure/closet/secure_closet/guncabinet/sidearm
 	name = "emergency weapon cabinet"
 	req_one_access = list(access_armory,access_captain)
 
 	starts_with = list(
 		/obj/item/weapon/gun/energy/gun = 4)
-
 
 /obj/structure/closet/secure_closet/guncabinet/rifle
 	name = "rifle cabinet"
@@ -33,8 +47,9 @@
 		/obj/item/weapon/cell/device/weapon = 2,
 		/obj/item/clothing/accessory/permit/gun/planetside)
 
-//Explorer Lockers
-
+/*
+ * Explorer
+ */
 /obj/structure/closet/secure_closet/explorer
 	name = "explorer locker"
 	req_access = list(access_explorer)
@@ -73,8 +88,51 @@
 		starts_with += /obj/item/weapon/storage/backpack/dufflebag/explorer
 	return ..()
 
-//SAR Lockers
+/*
+ * Pathfinder
+ */
+/obj/structure/closet/secure_closet/pathfinder
+	name = "pathfinder locker"
+	req_access = list(access_pathfinder)
+	closet_appearance = /decl/closet_appearance/secure_closet/expedition/pathfinder
 
+	starts_with = list(
+		/obj/item/clothing/under/explorer,
+		/obj/item/clothing/suit/storage/hooded/explorer,
+		/obj/item/clothing/mask/gas/explorer,
+		/obj/item/weapon/storage/belt/explorer/pathfinder,
+		/obj/item/clothing/shoes/boots/winter/explorer,
+		/obj/item/clothing/gloves/black,
+		/obj/item/device/radio/headset/pathfinder,
+		/obj/item/device/radio/headset/pathfinder/alt,
+		/obj/item/weapon/cartridge/explorer,
+		/obj/item/device/flashlight,
+		/obj/item/device/gps/explorer,
+		/obj/item/weapon/storage/box/flare,
+		/obj/item/weapon/storage/box/explorerkeys,
+		/obj/item/device/geiger,
+		/obj/item/weapon/cell/device,
+		/obj/item/device/radio,
+		/obj/item/stack/marker_beacon/thirty,
+		/obj/item/weapon/material/knife/tacknife/survival,
+		/obj/item/weapon/material/knife/machete/deluxe,
+		/obj/item/clothing/accessory/holster/machete,
+		/obj/random/explorer_shield,
+		/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
+		/obj/item/weapon/reagent_containers/food/snacks/liquidprotein,
+		/obj/item/device/cataloguer/compact/pathfinder,
+		/obj/item/device/mapping_unit)
+
+/obj/structure/closet/secure_closet/pathfinder/Initialize()
+	if(prob(50))
+		starts_with += /obj/item/weapon/storage/backpack
+	else
+		starts_with += /obj/item/weapon/storage/backpack/satchel/norm
+	return ..()
+
+/*
+ * SAR/Field Medic
+ */
 /obj/structure/closet/secure_closet/sar
 	name = "field medic locker"
 	desc = "Supplies for a wilderness first responder."
@@ -124,8 +182,9 @@
 		starts_with += /obj/item/weapon/storage/backpack/dufflebag/med
 	return ..()
 
-//Pilot Locker
-
+/*
+ * Pilot/Navigator
+ */
 /obj/structure/closet/secure_closet/pilot
 	name = "pilot locker"
 	req_access = list(access_pilot)
@@ -161,48 +220,9 @@
 		starts_with += /obj/item/weapon/storage/backpack/satchel/norm
 	return ..()
 
-/obj/structure/closet/secure_closet/pathfinder
-	name = "pathfinder locker"
-	req_access = list(access_gateway)
-	closet_appearance = /decl/closet_appearance/secure_closet/expedition/pathfinder
-
-	starts_with = list(
-		/obj/item/clothing/under/explorer,
-		/obj/item/clothing/suit/storage/hooded/explorer,
-		/obj/item/clothing/mask/gas/explorer,
-		/obj/item/weapon/storage/belt/explorer/pathfinder,
-		/obj/item/clothing/shoes/boots/winter/explorer,
-		/obj/item/clothing/gloves/black,
-		/obj/item/device/radio/headset/pathfinder,
-		/obj/item/device/radio/headset/pathfinder/alt,
-		/obj/item/weapon/cartridge/explorer,
-		/obj/item/device/flashlight,
-		/obj/item/device/gps/explorer,
-		/obj/item/weapon/storage/box/flare,
-		/obj/item/weapon/storage/box/explorerkeys,
-		/obj/item/device/geiger,
-		/obj/item/weapon/cell/device,
-		/obj/item/device/radio,
-		/obj/item/device/bluespaceradio/tether_prelinked,
-		/obj/item/stack/marker_beacon/thirty,
-		/obj/item/weapon/material/knife/tacknife/survival,
-		/obj/item/weapon/material/knife/machete/deluxe,
-		/obj/item/clothing/accessory/holster/machete,
-		/obj/random/explorer_shield,
-		/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-		/obj/item/weapon/reagent_containers/food/snacks/liquidprotein,
-		/obj/item/device/cataloguer/compact/pathfinder,
-		/obj/item/device/mapping_unit)
-
-/obj/structure/closet/secure_closet/pathfinder/Initialize()
-	if(prob(50))
-		starts_with += /obj/item/weapon/storage/backpack
-	else
-		starts_with += /obj/item/weapon/storage/backpack/satchel/norm
-	return ..()
-
-//Exotic Seeds Crate
-
+/*
+ * Exotic Seeds
+ */
 /obj/structure/closet/crate/hydroponics/exotic
 	name = "exotic seeds crate"
 	desc = "All you need to destroy that pesky planet."
@@ -215,6 +235,9 @@
 		/obj/item/seeds/libertymycelium,
 		/obj/item/seeds/reishimycelium)
 
+/*
+ * Autolok Suit
+ */
 /obj/structure/closet/autolok_wall
 	name = "autolok suit storage"
 	desc = "It's wall-mounted storage unit for an AutoLok suit."
@@ -231,6 +254,9 @@
 		/obj/item/device/suit_cooling_unit/emergency
 	)
 
+/*
+ * Emergency Suit (Wall)
+ */
 /obj/structure/closet/emergsuit_wall
 	name = "emergency suit storage"
 	desc = "It's wall-mounted storage unit for an emergency suit."

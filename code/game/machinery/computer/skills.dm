@@ -12,7 +12,7 @@
 	icon_screen = "pcu_generic"
 	icon_state = "pcu"
 	icon_keyboard = "pcu_key"
-	light_color = "#00b000"
+	light_color = "#5284e7"
 	req_one_access = list(access_heads)
 	circuit = /obj/item/weapon/circuitboard/skills/pcu
 	density = FALSE

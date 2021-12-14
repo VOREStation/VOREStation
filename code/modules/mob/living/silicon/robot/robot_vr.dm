@@ -55,7 +55,17 @@
 					   "zoomba-combat",
 					   "zoomba-combat-roll",
 					   "zoomba-combat-shield",
-					   "spiderscience"
+					   "spiderscience",
+					   "uptall-standard",
+					   "uptall-standard2",
+					   "uptall-medical",
+					   "uptall-janitor",
+					   "uptall-crisis",
+					   "uptall-service",
+					   "uptall-engineering",
+					   "uptall-miner",
+					   "uptall-security",
+					   "uptall-science"
 					   )					//List of all used sprites that are in robots_vr.dmi
 
 
@@ -145,7 +155,7 @@
 	if(custom_sprite == TRUE)
 		return
 	if(wideborg == TRUE)
-		if(icontype== "Drake") // Why, Why can't we have normal nice things
+		if(icontype == "Drake") // Why, Why can't we have normal nice things
 			icon = 'icons/mob/drakeborg/drakeborg_vr.dmi'
 		else
 			icon = wideborg_dept

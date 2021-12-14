@@ -189,7 +189,7 @@
 			to_chat(user, "<span class='notice'>\The [src] is already fully repaired.</span>")
 			return
 		var/obj/item/stack/P = C
-		if(P.amount < amt)
+		if(P.get_amount() < amt)
 			to_chat(user, "<span class='warning'>You don't have enough sheets to repair this! You need at least [amt] sheets.</span>")
 			return
 		to_chat(user, "<span class='notice'>You begin repairing [src]...</span>")
@@ -316,6 +316,23 @@
 
 /obj/machinery/door/blast/regular/open
 	icon_state = "pdoor0"
+	density = FALSE
+	opacity = 0
+
+
+// SUBTYPE: Shuttle
+// Slightly weaker, intergrated shutters - open state is hidden from view. Found on fancy_shuttles
+/obj/machinery/door/blast/shuttle
+	name = "shuttle blast doors"
+	icon_state_open = "spdoor0"
+	icon_state_opening = "spdoorc0"
+	icon_state_closed = "spdoor1"
+	icon_state_closing = "spdoorc1"
+	icon_state = "spdoor1"
+	maxhealth = 400
+
+/obj/machinery/door/blast/shuttle/open
+	icon_state = "spdoor0"
 	density = FALSE
 	opacity = 0
 

@@ -87,7 +87,12 @@
 
 		new_temperature = round(new_temperature * temp_factor)
 		L.bodytemperature = new_temperature
-
+	//VOREStation Add Start - The last metroid has escaped from captivity, the galaxy is no longer safe.
+		if(istype(L, /mob/living/simple_mob/vore/alienanimals/space_jellyfish) && target_temperature <= T0C)
+			var/mob/living/simple_mob/vore/alienanimals/space_jellyfish/J = L
+			J.adjustFireLoss(75)
+			J.movement_cooldown *= 2
+	//VOREStation Add End
 	return 1
 
 /obj/item/projectile/temp/hot
@@ -138,7 +143,7 @@
 	light_power = 0.5
 	light_color = "#33CC00"
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/monochrome_laser
-
+	var/lasermod = 0
 	combustion = FALSE
 
 /obj/item/projectile/energy/floramut/on_hit(var/atom/target, var/blocked = 0)
@@ -195,6 +200,7 @@
 	light_power = 0.5
 	light_color = "#FFFFFF"
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/monochrome_laser
+	var/lasermod = 0
 
 /obj/item/projectile/energy/florayield/on_hit(var/atom/target, var/blocked = 0)
 	var/mob/living/M = target

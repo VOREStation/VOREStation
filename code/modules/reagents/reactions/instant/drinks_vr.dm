@@ -60,7 +60,7 @@
 	name = "Negroni Sbagliato"
 	id = "sbagliato"
 	result = "sbagliato"
-	required_reagents = list("wine" = 1, "vermouth" = 1, "sodawater" =1)
+	required_reagents = list("redwine" = 1, "vermouth" = 1, "sodawater" =1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/italiancrisis
@@ -137,6 +137,7 @@
 	name = "Choccy Milk"
 	id = "choccymilk"
 	result = "choccymilk"
+	inhibitors = list("enzyme" = 1)
 	required_reagents = list("milk" = 3, "coco" = 1)
 	result_amount = 4
 
@@ -187,7 +188,7 @@
 	name = "New York Sour"
 	id = "newyorksour"
 	result = "newyorksour"
-	required_reagents = list("whiskeysour" = 3, "wine" = 2, "egg" = 1)
+	required_reagents = list("whiskeysour" = 3, "redwine" = 2, "egg" = 1)
 	result_amount = 6
 
 /decl/chemical_reaction/instant/drinks/mudslide

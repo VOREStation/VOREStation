@@ -38,9 +38,8 @@
 			dry()
 
 /obj/item/stack/wetleather/proc/dry()
-	var/obj/item/stack/material/leather/L = new(src.loc)
-	L.amount = amount
-	use(amount)
+	var/obj/item/stack/material/leather/L = new(src.loc, get_amount())
+	use(get_amount())
 	return L
 
 /obj/item/stack/wetleather/transfer_to(obj/item/stack/S, var/tamount=null, var/type_verified)

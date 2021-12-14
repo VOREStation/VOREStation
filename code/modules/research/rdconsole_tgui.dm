@@ -58,7 +58,7 @@
 				"loaded_item" = linked_destroy.loaded_item,
 				"origin_tech" = tgui_GetOriginTechForItem(linked_destroy.loaded_item),
 			)
-		
+
 		data["info"]["linked_lathe"] = list("present" = FALSE)
 		if(linked_lathe)
 			data["info"]["linked_lathe"] = list(
@@ -165,7 +165,7 @@
 				data["info"]["t_disk"]["name"] = t_disk.stored.name
 				data["info"]["t_disk"]["level"] = t_disk.stored.level
 				data["info"]["t_disk"]["desc"] = t_disk.stored.desc
-		
+
 		data["info"]["d_disk"] = list("present" = FALSE)
 		if(d_disk)
 			data["info"]["d_disk"] = list(
@@ -423,6 +423,14 @@
 						to_chat(usr, "<span class='notice'>The destructive analyzer appears to be empty.</span>")
 						return
 
+					if(istype(linked_destroy.loaded_item,/obj/item/stack))//Only deconsturcts one sheet at a time instead of the entire stack
+						var/obj/item/stack/ST = linked_destroy.loaded_item
+						if(ST.get_amount() < 1)
+							playsound(linked_destroy, 'sound/machines/destructive_analyzer.ogg', 50, 1)
+							qdel(ST)
+							linked_destroy.icon_state = "d_analyzer"
+							return
+
 					for(var/T in linked_destroy.loaded_item.origin_tech)
 						files.UpdateTech(T, linked_destroy.loaded_item.origin_tech[T])
 					if(linked_lathe && linked_destroy.loaded_item.matter) // Also sends salvaged materials to a linked protolathe, if any.
@@ -491,7 +499,7 @@
 						if(!istype(S, /obj/machinery/r_n_d/server/centcom) && server_processed)
 							S.produce_heat()
 					busy_msg = null
-					files.RefreshResearch()				
+					files.RefreshResearch()
 					update_tgui_static_data(usr, ui)
 			return TRUE
 
@@ -583,7 +591,7 @@
 
 		if("find_device") //The R&D console looks for devices nearby to link up with.
 			busy_msg = "Updating Database..."
-			
+
 			spawn(10)
 				busy_msg = null
 				SyncRDevices()

@@ -14,6 +14,7 @@
 	attack_verb = list("stamped")
 	drop_sound = 'sound/items/drop/device.ogg'
 	pickup_sound = 'sound/items/pickup/device.ogg'
+	var/stamptext = null
 
 /obj/item/weapon/stamp/captain
 	name = "site manager's rubber stamp"

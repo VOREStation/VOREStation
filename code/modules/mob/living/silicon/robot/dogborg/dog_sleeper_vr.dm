@@ -567,8 +567,7 @@
 						'sound/vore/death10.ogg')
 					playsound(src, deathsound, vol = 100, vary = 1, falloff = 0.1, ignore_walls = TRUE, preference = /datum/client_preference/digestion_noises)
 					if(is_vore_predator(T))
-						for(var/belly in T.vore_organs)
-							var/obj/belly/B = belly
+						for(var/obj/belly/B as anything in T.vore_organs)
 							for(var/atom/movable/thing in B)
 								thing.forceMove(src)
 								if(ismob(thing))
@@ -613,7 +612,6 @@
 						for(var/tech in tech_item.origin_tech)
 							files.UpdateTech(tech, tech_item.origin_tech[tech])
 							synced = FALSE
-						drain(-50 * digested)
 					if(volume)
 						water.add_charge(volume)
 					if(recycles && T.matter)
@@ -631,8 +629,7 @@
 									plastic.add_charge(total_material)
 								if(material == "wood")
 									wood.add_charge(total_material)
-					else
-						drain(-50 * digested)
+					drain(-50 * digested)
 			else if(istype(target,/obj/effect/decal/remains))
 				qdel(target)
 				drain(-100)
@@ -715,11 +712,16 @@
 	max_item_count = 10
 	recycles = FALSE
 
-#undef SLEEPER_INJECT_COST
-
-
 /obj/item/device/dogborg/sleeper/compactor/brewer
 	name = "Brew Belly"
 	desc = "A mounted drunk tank unit with fuel processor."
 	icon_state = "brewer"
 	injection_chems = null
+
+/obj/item/device/dogborg/sleeper/K9/ert
+	name = "ERT Belly"
+	desc = "A mounted 'emergency containment cell'."
+	icon_state = "sleeperert"
+	injection_chems = list("inaprovaline", "paracetamol") // short list
+
+#undef SLEEPER_INJECT_COST

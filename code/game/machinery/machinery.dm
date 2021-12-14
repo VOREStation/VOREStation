@@ -330,6 +330,7 @@ Class Procs:
 		return C
 
 /obj/machinery/proc/default_part_replacement(var/mob/user, var/obj/item/weapon/storage/part_replacer/R)
+	var/parts_replaced = FALSE
 	if(!istype(R))
 		return 0
 	if(!component_parts)
@@ -340,23 +341,26 @@ Class Procs:
 	if(panel_open || !R.panel_req)
 		var/obj/item/weapon/circuitboard/CB = circuit
 		var/P
-		for(var/obj/item/weapon/stock_parts/A in component_parts)
+		for(var/obj/item/A in component_parts)
 			for(var/T in CB.req_components)
 				if(ispath(A.type, T))
 					P = T
 					break
-			for(var/obj/item/weapon/stock_parts/B in R.contents)
+			for(var/obj/item/B in R.contents)
 				if(istype(B, P) && istype(A, P))
-					if(B.rating > A.rating)
+					if(B.get_rating() > A.get_rating())
 						R.remove_from_storage(B, src)
 						R.handle_item_insertion(A, 1)
 						component_parts -= A
 						component_parts += B
 						B.loc = null
 						to_chat(user, "<span class='notice'>[A.name] replaced with [B.name].</span>")
+						parts_replaced = TRUE
 						break
 			update_icon()
 			RefreshParts()
+			if(parts_replaced)
+				R.play_rped_sound()
 	return 1
 
 // Default behavior for wrenching down machines.  Supports both delay and instant modes.
@@ -548,8 +552,7 @@ Class Procs:
 			surviving_parts += new /obj/item/stack/cable_coil(null, 1)
 			surviving_parts += new /obj/item/stack/cable_coil(null, 1)
 
-	for(var/a in surviving_parts)
-		var/atom/movable/A = a
+	for(var/atom/movable/A as anything in surviving_parts)
 		A.forceMove(droploc)
 		if(scatter && isturf(droploc))
 			var/turf/T = droploc

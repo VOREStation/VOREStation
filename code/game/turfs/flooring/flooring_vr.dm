@@ -60,3 +60,58 @@
 	name = "dark pattern"
 	icon = 'icons/turf/flooring/circuit_vr.dmi'
 	icon_base = "rcircuitanim_broken"
+
+/decl/flooring/tiling/milspec
+	name = "milspec floor"
+	desc = "Scuffed from the passage of countless ground pounders."
+	icon = 'icons/turf/flooring/tiles_vr.dmi'
+	icon_base = "milspec"
+	has_damage_range = 2
+	damage_temperature = T0C+1400
+	flags = TURF_REMOVE_CROWBAR | TURF_CAN_BREAK | TURF_CAN_BURN
+	build_type = /obj/item/stack/tile/floor/milspec
+	plating_type = /decl/flooring/eris_plating/under
+	can_paint = 1
+	can_engrave = TRUE
+	footstep_sounds = list("human" = list(
+		'sound/effects/footstep/floor1.ogg',
+		'sound/effects/footstep/floor2.ogg',
+		'sound/effects/footstep/floor3.ogg',
+		'sound/effects/footstep/floor4.ogg',
+		'sound/effects/footstep/floor5.ogg'))
+
+/turf/simulated/floor/tiled/milspec
+	name = "milspec floor"
+	desc = "Scuffed from the passage of countless ground pounders."
+	icon = 'icons/turf/flooring/tiles_vr.dmi'
+	icon_state = "milspec"
+	initial_flooring = /decl/flooring/tiling/milspec
+
+/obj/item/stack/tile/floor/milspec
+	name = "milspec floor tile"
+
+/decl/flooring/tiling/milspec/sterile
+	name = "sterile milspec floor"
+	icon_base = "dark_sterile"
+	build_type = /obj/item/stack/tile/floor/milspec/sterile
+
+/turf/simulated/floor/tiled/milspec/sterile
+	name = "sterile milspec floor"
+	icon_state = "dark_sterile"
+	initial_flooring = /decl/flooring/tiling/milspec/sterile
+
+/obj/item/stack/tile/floor/milspec/sterile
+	name = "sterile milspec floor tile"
+	
+/decl/flooring/tiling/milspec/raised
+	name = "raised milspec floor"
+	icon_base = "milspec_tcomms"
+	build_type = /obj/item/stack/tile/floor/milspec/raised
+
+/turf/simulated/floor/tiled/milspec/raised
+	name = "raised milspec floor"
+	icon_state = "milspec_tcomms"
+	initial_flooring = /decl/flooring/tiling/milspec/raised
+
+/obj/item/stack/tile/floor/milspec/raised
+	name = "raised milspec floor tile"

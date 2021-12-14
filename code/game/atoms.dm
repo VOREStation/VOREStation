@@ -140,9 +140,6 @@
 		return flags & INSERT_CONTAINER
 */
 
-/atom/proc/CheckExit()
-	return 1
-
 // Used to be for the PROXMOVE flag, but that was terrible, so instead it's just here as a stub for
 // all the atoms that still have the proc, but get events other ways.
 /atom/proc/HasProximity(turf/T, atom/movable/AM, old_loc)
@@ -153,8 +150,7 @@
 	ASSERT(callback)
 	ASSERT(isturf(loc))
 	var/list/turfs = trange(range, src)
-	for(var/t in turfs)
-		var/turf/T = t
+	for(var/turf/T as anything in turfs)
 		GLOB.turf_entered_event.register(T, src, callback)
 
 //Unregister from prox listening in a certain range. You should do this BEFORE you move, but if you
@@ -162,8 +158,7 @@
 /atom/proc/unsense_proximity(var/range = 1, var/callback, var/center)
 	ASSERT(isturf(center) || isturf(loc))
 	var/list/turfs = trange(range, center ? center : src)
-	for(var/t in turfs)
-		var/turf/T = t
+	for(var/turf/T as anything in turfs)
 		GLOB.turf_entered_event.unregister(T, src, callback)
 
 
@@ -482,7 +477,11 @@
 	src.germ_level = 0
 	if(istype(blood_DNA, /list))
 		blood_DNA = null
-		return 1
+		return TRUE
+
+/atom/proc/on_rag_wipe(var/obj/item/weapon/reagent_containers/glass/rag/R)
+	clean_blood()
+	R.reagents.splash(src, 1)
 
 /atom/proc/get_global_map_pos()
 	if(!islist(global_map) || isemptylist(global_map)) return
@@ -529,11 +528,9 @@
 	if(LAZYLEN(exclude_mobs))
 		seeing_mobs -= exclude_mobs
 
-	for(var/obj in seeing_objs)
-		var/obj/O = obj
+	for(var/obj/O as anything in seeing_objs)
 		O.show_message(message, VISIBLE_MESSAGE, blind_message, AUDIBLE_MESSAGE)
-	for(var/mob in seeing_mobs)
-		var/mob/M = mob
+	for(var/mob/M as anything in seeing_mobs)
 		if(M.see_invisible >= invisibility && MOB_CAN_SEE_PLANE(M, plane))
 			M.show_message(message, VISIBLE_MESSAGE, blind_message, AUDIBLE_MESSAGE)
 			if(runemessage != -1)
@@ -555,16 +552,13 @@
 	var/list/hearing_objs = hear["objs"]
 
 	if(radio_message)
-		for(var/obj in hearing_objs)
-			var/obj/O = obj
+		for(var/obj/O as anything in hearing_objs)
 			O.hear_talk(src, list(new /datum/multilingual_say_piece(GLOB.all_languages["Noise"], radio_message)), null)
 	else
-		for(var/obj in hearing_objs)
-			var/obj/O = obj
+		for(var/obj/O as anything in hearing_objs)
 			O.show_message(message, AUDIBLE_MESSAGE, deaf_message, VISIBLE_MESSAGE)
 
-	for(var/mob in hearing_mobs)
-		var/mob/M = mob
+	for(var/mob/M as anything in hearing_mobs)
 		var/msg = message
 		M.show_message(msg, AUDIBLE_MESSAGE, deaf_message, VISIBLE_MESSAGE)
 		if(runemessage != -1)
@@ -722,3 +716,11 @@
 
 /atom/proc/interact(mob/user)
 	return
+
+// Purpose: Determines if the object can pass this atom.
+// Called by: Movement.
+// Inputs: The moving atom, target turf.
+// Outputs: Boolean if can pass.
+// Airflow and ZAS zones now uses CanZASPass() instead of this proc.
+/atom/proc/CanPass(atom/movable/mover, turf/target)
+	return !density

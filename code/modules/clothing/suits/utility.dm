@@ -10,9 +10,10 @@
  */
 
 /obj/item/clothing/suit/fire
-	name = "firesuit"
+	name = "emergency firesuit"
 	desc = "A suit that protects against fire and heat."
-	icon_state = "fire"
+	icon_state = "firesuit"
+	item_state_slots = list(slot_r_hand_str = "black_suit", slot_l_hand_str = "black_suit")
 	w_class = ITEMSIZE_LARGE//bulky item
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.50
@@ -27,16 +28,16 @@
 	min_pressure_protection = 0.2 * ONE_ATMOSPHERE
 	max_pressure_protection = 20  * ONE_ATMOSPHERE
 
-
 /obj/item/clothing/suit/fire/firefighter
-	icon_state = "firesuit"
-
-/obj/item/clothing/suit/fire/heavy //Is this even used?? -S2-
 	name = "firesuit"
+	icon_state = "firesuit2"
+	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE+5000
+
+/obj/item/clothing/suit/fire/heavy
+	name = "atmospheric firesuit"
 	desc = "A suit that protects against extreme fire and heat."
-	//icon_state = "thermal"
-	item_state_slots = list(slot_r_hand_str = "black_suit", slot_l_hand_str = "black_suit")
-	w_class = ITEMSIZE_LARGE//bulky item
+	icon_state = "atmos_firesuit"
+	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE+10000
 	slowdown = 1.5
 
 /*

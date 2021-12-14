@@ -9,6 +9,7 @@
 	#include "tether_shuttles.dm"
 	#include "tether_telecomms.dm"
 	#include "tether_jobs.dm"
+	#include "../offmap_vr/common_offmaps.dm"
 
 	#if !AWAY_MISSION_TEST //Don't include these for just testing away missions
 		#include "tether-01-surface1.dmm"

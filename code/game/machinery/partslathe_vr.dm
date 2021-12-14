@@ -125,12 +125,12 @@
 	if(!(S.material.name in materials))
 		to_chat(user, "<span class='warning'>The [src] doesn't accept [S.material]!</span>")
 		return 1
-	if(S.amount < 1)
+	if(S.get_amount() < 1)
 		return 1 // Does this even happen? Sanity check I guess.
 	var/max_res_amount = storage_capacity[S.material.name]
 	if(materials[S.material.name] + S.perunit <= max_res_amount)
 		var/count = 0
-		while(materials[S.material.name] + S.perunit <= max_res_amount && S.amount >= 1)
+		while(materials[S.material.name] + S.perunit <= max_res_amount && S.get_amount() >= 1)
 			materials[S.material.name] += S.perunit
 			S.use(1)
 			count++
@@ -205,7 +205,7 @@
 
 // 0 amount = 0 means ejecting a full stack; -1 means eject everything
 /obj/machinery/partslathe/proc/eject_materials(var/material, var/amount)
-	var/recursive = amount == -1 ? 1 : 0
+	var/recursive = amount == -1 ? TRUE : FALSE
 	material = lowertext(material)
 	var/mattype
 	switch(material)
@@ -219,9 +219,7 @@
 	if(amount <= 0)
 		amount = S.max_amount
 	var/ejected = min(round(materials[material] / S.perunit), amount)
-	S.amount = min(ejected, amount)
-	if(S.amount <= 0)
-		qdel(S)
+	if(!S.set_amount(min(ejected, amount)))
 		return
 	materials[material] -= ejected * S.perunit
 	if(recursive && materials[material] >= S.perunit)
@@ -265,8 +263,7 @@
 	if(istype(copy_board))
 		data["copyBoard"] = copy_board.name
 		var/list/req_components_ui = list()
-		for(var/CP in (copy_board.req_components || list()))
-			var/obj/comp_path = CP
+		for(var/obj/comp_path as anything in (copy_board.req_components || list()))
 			var/comp_amt = copy_board.req_components[comp_path]
 			if(comp_amt && (comp_path in partslathe_recipies))
 				req_components_ui.Add(list(list("name" = initial(comp_path.name), "qty" = comp_amt)))
@@ -355,7 +352,7 @@
 /obj/machinery/partslathe/proc/update_recipe_list()
 	if(!partslathe_recipies)
 		partslathe_recipies = list()
-		var/list/paths = typesof(/obj/item/weapon/stock_parts)-/obj/item/weapon/stock_parts
+		var/list/paths = subtypesof(/obj/item/weapon/stock_parts)
 		for(var/type in paths)
 			var/obj/item/weapon/stock_parts/I = new type()
 			if(getHighestOriginTechLevel(I) > 1)

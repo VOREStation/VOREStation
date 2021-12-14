@@ -80,8 +80,7 @@
 	if((world.time - MUSICIAN_HEARCHECK_MINDELAY) > last_hearcheck)
 		do_hearcheck()
 	var/sound/music_played = sound(soundfile)
-	for(var/i in hearing_mobs)
-		var/mob/M = i
+	for(var/mob/M as anything in hearing_mobs)
 		/* Would be nice
 		if(user && HAS_TRAIT(user, TRAIT_MUSICIAN) && isliving(M))
 			var/mob/living/L = M

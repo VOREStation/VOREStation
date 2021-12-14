@@ -65,6 +65,29 @@
 			recipes -= r_recipe
 			continue
 
+/datum/material/wood/hardwood
+	name = MAT_HARDWOOD
+	stack_type = /obj/item/stack/material/wood/hard
+	icon_colour = "#42291a"
+	icon_base = "stone"
+	icon_reinf = "reinf_stone"
+	integrity = 65	//a bit stronger than regular wood
+	hardness = 20	
+	weight = 20	//likewise, heavier
+
+/datum/material/wood/hardwood/generate_recipes()
+	..()
+	for(var/datum/stack_recipe/r_recipe in recipes)
+		if(r_recipe.title == "wood floor tile")
+			recipes -= r_recipe
+			continue
+		if(r_recipe.title == "wooden chair")
+			recipes -= r_recipe
+			continue
+		if(r_recipe.title == "wooden standup figure")
+			recipes -= r_recipe
+			continue
+
 /datum/material/wood/log
 	name = MAT_LOG
 	display_name = "wood" // will lead to "wood log"
@@ -87,3 +110,25 @@
 	icon_colour = "#0099cc" // Cyan-ish
 	stack_origin_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2)
 	stack_type = /obj/item/stack/material/log/sif
+
+/datum/material/wood/log/hard
+	name = MAT_HARDLOG
+	icon_colour = "#6f432a"
+	stack_type = /obj/item/stack/material/log/hard
+
+//VOREStation Addition Start
+/datum/material/wood/stick
+	name = "wooden stick"
+	icon_colour = "#824B28"
+	display_name = "wood"
+	icon_base = "stick"
+	stack_type = /obj/item/stack/material/stick
+	sheet_collective_name = "pile"
+	pass_stack_colors = TRUE
+	supply_conversion_value = 1
+	sheet_singular_name = "stick"
+	sheet_plural_name = "sticks"
+
+/datum/material/wood/stick/generate_recipes()
+	return
+//VOREStation Addition End

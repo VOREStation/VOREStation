@@ -55,6 +55,7 @@
 	layer = ABOVE_MOB_LAYER // So people can walk behind the top part
 	density = TRUE
 	anchored = FALSE
+	unacidable = TRUE
 	light_range = 4
 
 	var/gasefficency = 0.25

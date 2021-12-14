@@ -1,6 +1,7 @@
 /obj/structure/closet/cabinet
 	name = "cabinet"
 	desc = "Old will forever be in fashion."
+	icon = 'icons/obj/closets/bases/cabinet.dmi'
 	closet_appearance = /decl/closet_appearance/cabinet
 
 /obj/structure/closet/acloset

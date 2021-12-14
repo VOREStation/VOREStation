@@ -208,7 +208,7 @@
 	result_amount = 1
 
 /decl/chemical_reaction/instant/slime_food/on_reaction(var/datum/reagents/holder)
-	var/list/borks = typesof(/obj/item/weapon/reagent_containers/food/snacks) - /obj/item/weapon/reagent_containers/food/snacks // BORK BORK BORK
+	var/list/borks = subtypesof(/obj/item/weapon/reagent_containers/food/snacks)
 
 	playsound(holder.my_atom, 'sound/effects/phasein.ogg', 100, 1)
 
@@ -270,9 +270,7 @@
 	var/chosen = pick(material)
 	if(chosen in rare_types)
 		spawn_amount = rand(1,15)
-	var/obj/item/stack/material/C = new chosen
-	C.amount = spawn_amount
-	C.loc = get_turf(holder.my_atom)
+	new chosen(get_turf(holder.my_atom), spawn_amount)
 
 /decl/chemical_reaction/instant/slimelight
 	name = "Slime Glow"
@@ -296,9 +294,7 @@
 	result_amount = 1
 
 /decl/chemical_reaction/instant/slimephoron/on_reaction(var/datum/reagents/holder)
-	var/obj/item/stack/material/phoron/P = new /obj/item/stack/material/phoron
-	P.amount = 10
-	P.loc = get_turf(holder.my_atom)
+	new /obj/item/stack/material/phoron(get_turf(holder.my_atom), 10)
 
 /decl/chemical_reaction/instant/slimefreeze
 	name = "Slime Freeze"
@@ -404,7 +400,7 @@
 		/mob/living/simple_mob/animal/passive/bird/parrot/poly,
 		/mob/living/simple_mob/animal/sif/fluffy,
 		/mob/living/simple_mob/animal/sif/fluffy/silky,
-		/mob/living/simple_mob/animal/passive/snake/noodle,
+		/mob/living/simple_mob/animal/passive/snake/python/noodle,
 		/mob/living/simple_mob/slime/xenobio/rainbow/kendrick,
 		/mob/living/simple_mob/animal/space/space_worm,						//Space Worm parts that aren't proper heads
 		/mob/living/simple_mob/animal/space/space_worm/head/severed,
@@ -415,7 +411,6 @@
 	blocked += typesof(/mob/living/simple_mob/construct)					//Should only exist
 	blocked += typesof(/mob/living/simple_mob/vore/demon)					//as player-controlled
 	blocked += typesof(/mob/living/simple_mob/shadekin)						//and/or event things
-	blocked += typesof(/mob/living/simple_mob/horror)
 	var/list/voremobs = typesof(mob_path) - blocked // list of possible hostile mobs
 
 	playsound(holder.my_atom, 'sound/effects/phasein.ogg', 100, 1)

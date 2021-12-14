@@ -258,9 +258,9 @@
 
 //VOREStation Add
 /mob/living/carbon/human/proc/force_update_organs()
-	for(var/organ in organs + internal_organs)
-		var/obj/item/organ/O = organ
+	for(var/obj/item/organ/O as anything in organs + internal_organs)
 		O.species = species
+	species.post_spawn_special(src)
 //VOREStation Add End
 
 // Used below, simple injection modifier.

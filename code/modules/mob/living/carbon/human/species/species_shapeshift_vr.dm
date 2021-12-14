@@ -171,8 +171,7 @@
 
 	last_special = world.time + 50
 
-	for(var/limb in src.organs)
-		var/obj/item/organ/external/L = limb
+	for(var/obj/item/organ/external/L as anything in src.organs)
 		L.transparent = !L.transparent
 	visible_message("<span class='notice'>\The [src]'s interal composition seems to change.</span>")
 	update_icons_body()

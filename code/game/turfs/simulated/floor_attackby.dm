@@ -9,8 +9,12 @@
 			attack_tile(C, L) // Be on help intent if you want to decon something.
 			return
 
-	if(!(C.is_screwdriver() && flooring && (flooring.flags & TURF_REMOVE_SCREWDRIVER)) && try_graffiti(user, C))
-		return
+	if(!(C.has_tool_quality(TOOL_SCREWDRIVER) && flooring && (flooring.flags & TURF_REMOVE_SCREWDRIVER)))
+		if(isliving(user))
+			var/mob/living/L = user
+			if(L.a_intent == I_HELP)
+				if(try_graffiti(L, C)) // back by unpopular demand
+					return
 
 	// Multi-z roof building
 	if(istype(C, /obj/item/stack/tile/roofing))
@@ -46,10 +50,10 @@
 				return
 
 		// Create a ceiling to shield from the weather
-		if(src.outdoors)
+		if(src.is_outdoors())
 			for(var/dir in cardinal)
 				var/turf/A = get_step(src, dir)
-				if(A && !A.outdoors)
+				if(A && !A.is_outdoors())
 					if(expended_tile || R.use(1))
 						make_indoors()
 						playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
@@ -96,7 +100,7 @@
 			if(!use_flooring)
 				return
 			// Do we have enough?
-			if(use_flooring.build_cost && S.amount < use_flooring.build_cost)
+			if(use_flooring.build_cost && S.get_amount() < use_flooring.build_cost)
 				to_chat(user, "<span class='warning'>You require at least [use_flooring.build_cost] [S.name] to complete the [use_flooring.descriptor].</span>")
 				return
 			// Stay still and focus...

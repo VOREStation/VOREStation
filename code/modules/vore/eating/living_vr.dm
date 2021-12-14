@@ -7,6 +7,7 @@
 	var/resizable = TRUE				// Can other people resize you? (Usually ignored for self-resizes)
 	var/digest_leave_remains = FALSE	// Will this mob leave bones/skull/etc after the melty demise?
 	var/allowmobvore = TRUE				// Will simplemobs attempt to eat the mob?
+	var/allow_inbelly_spawning = FALSE	// Will we even bother with attempts of someone to spawn in in one of our bellies?
 	var/showvoreprefs = TRUE			// Determines if the mechanical vore preferences button will be displayed on the mob or not.
 	var/obj/belly/vore_selected			// Default to no vore capability.
 	var/list/vore_organs = list()		// List of vore containers inside a mob
@@ -39,16 +40,6 @@
 // Hook for generic creation of stuff on new creatures
 //
 /hook/living_new/proc/vore_setup(mob/living/M)
-	M.verbs += /mob/living/proc/escapeOOC
-	M.verbs += /mob/living/proc/lick
-	M.verbs += /mob/living/proc/smell
-	M.verbs += /mob/living/proc/switch_scaling
-	M.verbs += /mob/living/proc/vorebelly_printout
-	if(M.no_vore) //If the mob isn't supposed to have a stomach, let's not give it an insidepanel so it can make one for itself, or a stomach.
-		return TRUE
-	M.vorePanel = new(M)
-	M.verbs += /mob/living/proc/insidePanel
-
 	//Tries to load prefs if a client is present otherwise gives freebie stomach
 	spawn(2 SECONDS)
 		if(M)
@@ -153,9 +144,7 @@
 		if(is_vore_predator(src))
 			for(var/mob/living/M in H.contents)
 				if(attacker.eat_held_mob(attacker, M, src))
-					if(H.held_mob == M)
-						H.held_mob = null
-			return TRUE //return TRUE to exit upper procs
+					return TRUE //return TRUE to exit upper procs
 		else
 			log_debug("[attacker] attempted to feed [H.contents] to [src] ([type]) but it failed.")
 
@@ -234,13 +223,13 @@
 	P.show_vore_fx = src.show_vore_fx
 	P.can_be_drop_prey = src.can_be_drop_prey
 	P.can_be_drop_pred = src.can_be_drop_pred
+	P.allow_inbelly_spawning = src.allow_inbelly_spawning
 	P.allow_spontaneous_tf = src.allow_spontaneous_tf
 	P.step_mechanics_pref = src.step_mechanics_pref
 	P.pickup_pref = src.pickup_pref
 
 	var/list/serialized = list()
-	for(var/belly in src.vore_organs)
-		var/obj/belly/B = belly
+	for(var/obj/belly/B as anything in src.vore_organs)
 		serialized += list(B.serialize()) //Can't add a list as an object to another list in Byond. Thanks.
 
 	P.belly_prefs = serialized
@@ -270,6 +259,7 @@
 	show_vore_fx = P.show_vore_fx
 	can_be_drop_prey = P.can_be_drop_prey
 	can_be_drop_pred = P.can_be_drop_pred
+	allow_inbelly_spawning = P.allow_inbelly_spawning
 	allow_spontaneous_tf = P.allow_spontaneous_tf
 	step_mechanics_pref = P.step_mechanics_pref
 	pickup_pref = P.pickup_pref
@@ -286,8 +276,7 @@
 // Release everything in every vore organ
 //
 /mob/living/proc/release_vore_contents(var/include_absorbed = TRUE, var/silent = FALSE)
-	for(var/belly in vore_organs)
-		var/obj/belly/B = belly
+	for(var/obj/belly/B as anything in vore_organs)
 		B.release_all_contents(include_absorbed, silent)
 
 //
@@ -298,10 +287,12 @@
 		return list()
 
 	var/list/message_list = list()
-	for (var/belly in vore_organs)
-		var/obj/belly/B = belly
-		message_list += B.get_examine_msg()
-		message_list += B.get_examine_msg_absorbed()
+	for(var/obj/belly/B as anything in vore_organs)
+		var/bellymessage = B.get_examine_msg()
+		if(bellymessage) message_list += bellymessage
+
+		bellymessage = B.get_examine_msg_absorbed()
+		if(bellymessage) message_list += bellymessage
 
 	return message_list
 
@@ -445,6 +436,14 @@
 		holo.drop_prey() //Easiest way
 		log_and_message_admins("[key_name(src)] used the OOC escape button to get out of [key_name(holo.master)] (AI HOLO) ([holo ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[holo.x];Y=[holo.y];Z=[holo.z]'>JMP</a>" : "null"])")
 
+	//You're in a capture crystal! ((It's not vore but close enough!))
+	else if(iscapturecrystal(loc))
+		var/obj/item/capture_crystal/crystal = loc
+		crystal.unleash()
+		crystal.bound_mob = null
+		crystal.bound_mob = capture_crystal = 0
+		log_and_message_admins("[key_name(src)] used the OOC escape button to get out of [crystal] owned by [crystal.owner]. [ADMIN_FLW(src)]")
+
 	//Don't appear to be in a vore situation
 	else
 		to_chat(src,"<span class='alert'>You aren't inside anyone, though, is the thing.</span>")
@@ -519,7 +518,7 @@
 
 	// Their AI should get notified so they can stab us
 	prey.ai_holder?.react_to_attack(user)
-	
+
 	//Timer and progress bar
 	if(!do_after(user, swallow_time, prey, exclusive = TASK_USER_EXCLUSIVE))
 		return FALSE // Prey escpaed (or user disabled) before timer expired.
@@ -528,7 +527,16 @@
 	user.visible_message(success_msg)
 
 	// Actually shove prey into the belly.
-	belly.nom_mob(prey, user)
+	if(istype(prey.loc, /obj/item/weapon/holder))
+		var/obj/item/weapon/holder/H = prey.loc
+		for(var/mob/living/M in H.contents)
+			belly.nom_mob(M, user)
+			if(M.loc == H) // In case nom_mob failed somehow.
+				M.forceMove(get_turf(src))
+		H.held_mob = null
+		qdel(H)
+	else
+		belly.nom_mob(prey, user)
 	if(!ishuman(user))
 		user.update_icons()
 
@@ -641,7 +649,11 @@
 			if(S.holding)
 				to_chat(src, "<span class='warning'>There's something inside!</span>")
 				return
-
+		if(iscapturecrystal(I))
+			var/obj/item/capture_crystal/C = I
+			if(!C.bound_mob.devourable)
+				to_chat(src, "<span class='warning'>That doesn't seem like a good idea. (\The [C.bound_mob]'s prefs don't allow it.)</span>")
+				return
 		drop_item()
 		I.forceMove(vore_selected)
 		updateVRPanel()
@@ -695,6 +707,13 @@
 		else if (istype(I,/obj/item/clothing/accessory/collar))
 			visible_message("<span class='warning'>[src] demonstrates their voracious capabilities by swallowing [I] whole!</span>")
 			to_chat(src, "<span class='notice'>You can taste the submissiveness in the wearer of [I]!</span>")
+		else if(iscapturecrystal(I))
+			var/obj/item/capture_crystal/C = I
+			if(C.bound_mob && (C.bound_mob in C.contents))
+				if(isbelly(C.loc))
+					var/obj/belly/B = C.loc
+					to_chat(C.bound_mob, "<span class= 'notice'>Outside of your crystal, you can see; <B>[B.desc]</B></span>")
+					to_chat(src, "<span class='notice'>You can taste the the power of command.</span>")
 		else
 			to_chat(src, "<span class='notice'>You can taste the flavor of garbage. Delicious.</span>")
 		return
@@ -863,10 +882,11 @@
 	dispvoreprefs += "<b>Healbelly permission:</b> [permit_healbelly ? "Allowed" : "Disallowed"]<br>"
 	dispvoreprefs += "<b>Spontaneous vore prey:</b> [can_be_drop_prey ? "Enabled" : "Disabled"]<br>"
 	dispvoreprefs += "<b>Spontaneous vore pred:</b> [can_be_drop_pred ? "Enabled" : "Disabled"]<br>"
+	dispvoreprefs += "<b>Inbelly Spawning:</b> [allow_inbelly_spawning ? "Allowed" : "Disallowed"]<br>"
 	dispvoreprefs += "<b>Spontaneous transformation:</b> [allow_spontaneous_tf ? "Enabled" : "Disabled"]<br>"
 	dispvoreprefs += "<b>Can be stepped on/over:</b> [step_mechanics_pref ? "Allowed" : "Disallowed"]<br>"
 	dispvoreprefs += "<b>Can be picked up:</b> [pickup_pref ? "Allowed" : "Disallowed"]<br>"
-	user << browse("<html><head><title>Vore prefs: [src]</title></head><body><center>[dispvoreprefs]</center></body></html>", "window=[name]mvp;size=200x300;can_resize=0;can_minimize=0")
+	user << browse("<html><head><title>Vore prefs: [src]</title></head><body><center>[dispvoreprefs]</center></body></html>", "window=[name]mvp;size=300x400;can_resize=1;can_minimize=0")
 	onclose(user, "[name]")
 	return
 
@@ -908,3 +928,59 @@
 				to_chat(src, "<span class='notice'><b>[EL]:</b></span>")
 				for(var/msg in B.emote_lists[EL])
 					to_chat(src, "<span class='notice'>[msg]</span>")
+
+/**
+ * Small helper component to manage the vore panel HUD icon
+ */
+/datum/component/vore_panel
+	var/obj/screen/vore_panel/screen_icon
+
+/datum/component/vore_panel/Initialize()
+	if(!isliving(parent))
+		return COMPONENT_INCOMPATIBLE
+	. = ..()
+
+/datum/component/vore_panel/RegisterWithParent()
+	. = ..()
+	RegisterSignal(parent, COMSIG_MOB_CLIENT_LOGIN, .proc/create_mob_button)
+	var/mob/living/owner = parent
+	if(owner.client)
+		create_mob_button(parent)
+	owner.verbs |= /mob/living/proc/insidePanel
+	owner.vorePanel = new(owner)
+
+/datum/component/vore_panel/UnregisterFromParent()
+	. = ..()
+	UnregisterSignal(parent, COMSIG_MOB_CLIENT_LOGIN)
+	var/mob/living/owner = parent
+	if(screen_icon)
+		owner?.client?.screen -= screen_icon
+		UnregisterSignal(screen_icon, COMSIG_CLICK)
+		qdel_null(screen_icon)
+	owner.verbs -= /mob/living/proc/insidePanel
+	qdel_null(owner.vorePanel)
+
+/datum/component/vore_panel/proc/create_mob_button(mob/user)
+	var/datum/hud/HUD = user.hud_used
+	if(!screen_icon)
+		screen_icon = new()
+		RegisterSignal(screen_icon, COMSIG_CLICK, .proc/vore_panel_click)
+	screen_icon.icon = HUD.ui_style
+	screen_icon.color = HUD.ui_color
+	screen_icon.alpha = HUD.ui_alpha
+	LAZYADD(HUD.other_important, screen_icon)
+	user.client?.screen += screen_icon
+
+/datum/component/vore_panel/proc/vore_panel_click(source, location, control, params, user)
+	var/mob/living/owner = user
+	if(istype(owner) && owner.vorePanel)
+		INVOKE_ASYNC(owner.vorePanel, .proc/tgui_interact, user)
+
+/**
+ * Screen object for vore panel
+ */
+/obj/screen/vore_panel
+	name = "vore panel"
+	icon = 'icons/mob/screen/midnight.dmi'
+	icon_state = "vore"
+	screen_loc = ui_smallquad

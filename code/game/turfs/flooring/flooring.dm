@@ -202,7 +202,7 @@ var/list/flooring_types
 	desc = "Gritty and unpleasant."
 	icon = 'icons/turf/flooring/asteroid.dmi'
 	icon_base = "asteroid"
-	flags = TURF_REMOVE_SHOVEL
+	flags = TURF_REMOVE_SHOVEL | TURF_ACID_IMMUNE
 	build_type = null
 	footstep_sounds = list("human" = list(
 		'sound/effects/footstep/asteroid1.ogg',
@@ -320,6 +320,18 @@ var/list/flooring_types
 	name = "teal carpet"
 	icon_base = "tealcarpet"
 	build_type = /obj/item/stack/tile/carpet/teal
+
+/decl/flooring/carpet/deco
+	name = "deco carpet"
+	icon_base = "decocarpet"
+	build_type = /obj/item/stack/tile/carpet/deco
+	flags = TURF_REMOVE_CROWBAR | TURF_CAN_BURN
+
+/decl/flooring/carpet/retro
+	name = "retro carpet"
+	icon_base = "retrocarpet"
+	build_type = /obj/item/stack/tile/carpet/retro
+	flags = TURF_REMOVE_CROWBAR | TURF_CAN_BURN
 
 /decl/flooring/tiling
 	name = "floor"
@@ -531,7 +543,7 @@ var/list/flooring_types
 	icon = 'icons/turf/outdoors.dmi'
 	icon_base = "lava"
 	is_plating = TRUE
-	flags = 0
+	flags = TURF_ACID_IMMUNE
 	footstep_sounds = list("human" = list(
 		'sound/effects/footstep/lava1.ogg',
 		'sound/effects/footstep/lava2.ogg',

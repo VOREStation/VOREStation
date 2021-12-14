@@ -10,8 +10,7 @@
 
 		var/available_size = initial(assembly.max_components)
 		var/available_complexity = initial(assembly.max_complexity)
-		for(var/ic in prefab.integrated_circuits)
-			var/datum/ic_assembly_integrated_circuits/iaic = ic
+		for(var/datum/ic_assembly_integrated_circuits/iaic as anything in prefab.integrated_circuits)
 			var/obj/item/integrated_circuit/circuit = iaic.circuit_type
 			available_size -= initial(circuit.size)
 			available_complexity -= initial(circuit.complexity)

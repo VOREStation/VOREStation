@@ -33,3 +33,18 @@
 		new /datum/stack_recipe("light marble floor tile", /obj/item/stack/tile/wmarble, 1, 4, 20, recycle_material = "[name]"),
 		new /datum/stack_recipe("dark marble floor tile", /obj/item/stack/tile/bmarble, 1, 4, 20, recycle_material = "[name]")
 	)
+//VOREStation Addition Start
+/datum/material/stone/flint
+	name = "flint"
+	icon_colour = "#9e9c99"
+	weight = 20
+	hardness = 30
+	integrity = 100 
+	stack_type = /obj/item/stack/material/flint
+	supply_conversion_value = 2
+	sheet_singular_name = "piece"
+	sheet_plural_name = "pieces"
+
+/datum/material/stone/flint/generate_recipes()
+	return
+//VOREStation Addition End

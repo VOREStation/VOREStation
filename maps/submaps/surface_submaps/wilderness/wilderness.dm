@@ -42,7 +42,14 @@
 #include "borglab.dmm"
 #include "chasm.dmm"
 #include "deathden.dmm"
-
+#include "leopardmanderden.dmm"
+#include "greatwolfden.dmm"
+#include "syndisniper.dmm"
+#include "otieshelter.dmm"
+#include "lonewolf.dmm"
+#include "emptycabin.dmm"
+#include "dogbase.dmm"
+#include "drgnplateu.dmm"
 #endif
 
 // The 'wilderness' is the endgame for Explorers. Extremely dangerous and far away from help, but with vast shinies.
@@ -343,3 +350,50 @@
 	mappath = 'maps/submaps/surface_submaps/wilderness/deathden.dmm'
 	cost = 15
 
+/datum/map_template/surface/wilderness/deep/leopardmanderden
+	name = "Leopardmander Den"
+	desc = "Den of a voracious but very rare beast."
+	mappath = 'maps/submaps/surface_submaps/wilderness/leopardmanderden.dmm'
+	cost = 10
+
+/datum/map_template/surface/wilderness/deep/greatwolfden
+	name = "Great Wolf Den"
+	desc = "Den hosted by the biggest alpha wolf of the wilderness"
+	mappath = 'maps/submaps/surface_submaps/wilderness/greatwolfden.dmm'
+	cost = 15
+
+/datum/map_template/surface/wilderness/deep/dogbase
+	name = "Dog Base"
+	desc = "A highly secured base with hungry trained canines"
+	mappath = 'maps/submaps/surface_submaps/wilderness/dogbase.dmm'
+	cost = 20
+
+/datum/map_template/surface/wilderness/normal/emptycabin
+	name = "Empty Cabin"
+	desc = "An inconspicuous looking den hosted by a hungry otie"
+	mappath = 'maps/submaps/surface_submaps/wilderness/emptycabin.dmm'
+	cost = 10
+
+/datum/map_template/surface/wilderness/deep/lonewolf
+	name = "Lone Wolf"
+	desc = "A large oppressing wolf, supervising from above its cliff"
+	mappath = 'maps/submaps/surface_submaps/wilderness/lonewolf.dmm'
+	cost = 5
+
+/datum/map_template/surface/wilderness/deep/otieshelter
+	name = "Otie Shelter"
+	desc = "A experimental lab of various breeds of oties"
+	mappath = 'maps/submaps/surface_submaps/wilderness/otieshelter.dmm'
+	cost = 15
+
+/datum/map_template/surface/wilderness/deep/syndisniper
+	name = "Syndi Sniper"
+	desc = "Syndicate watch tower, deadly but secluded"
+	mappath = 'maps/submaps/surface_submaps/wilderness/syndisniper.dmm'
+	cost = 5
+
+/datum/map_template/surface/wilderness/deep/drgnplateu
+	name = "Dragon Plateu"
+	desc = "A dangerous plateu of cliffs home to a rampant gold hoarding dragon"
+	mappath = 'maps/submaps/surface_submaps/wilderness/drgnplateu.dmm'
+	cost = 15

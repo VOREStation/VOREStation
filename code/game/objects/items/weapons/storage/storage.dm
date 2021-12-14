@@ -529,7 +529,10 @@
 		F.update_icon(1)
 
 	for(var/mob/M in is_seeing)
-		M?.client.screen -= W
+		if(!M.client || QDELETED(M))
+			hide_from(M)
+		else
+			M.client.screen -= W
 
 	if(new_location)
 		if(ismob(loc))
@@ -674,6 +677,10 @@
 
 	// Has to be at least adjacent (just for safety, src in view should handle this already)
 	if(!Adjacent(usr))
+		return
+
+	//VOREStation Add: No turf dumping if user is in a belly
+	if(isbelly(usr.loc))
 		return
 
 	drop_contents()

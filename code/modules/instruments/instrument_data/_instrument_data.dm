@@ -70,8 +70,7 @@
 
 /datum/instrument/Destroy()
 	SSinstruments.instrument_data -= id
-	for(var/i in songs_using)
-		var/datum/song/S = i
+	for(var/datum/song/S as anything in songs_using)
 		S.set_instrument(null)
 	real_samples = null
 	samples = null

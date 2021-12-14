@@ -1,0 +1,1597 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/obj/effect/decal/cleanable/blood/drip,
+/mob/living/simple_mob/animal/wolf/direwolf{
+	ai_holder_type = /datum/ai_holder/simple_mob/retaliate;
+	desc = "The biggest and baddest wolf around. Seems pretty chill, for a wolf.";
+	faction = "sif";
+	max_co2 = 0;
+	max_tox = 0;
+	min_oxy = 0
+	},
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"bp" = (
+/obj/structure/cliff/automatic/corner{
+	dir = 6
+	},
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/template_noop)
+"bz" = (
+/obj/structure/flora/bboulder1,
+/turf/simulated/floor/outdoors/dirt/virgo3b{
+	outdoors = 0
+	},
+/area/submap/GreatWolfDen)
+"bI" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/drip,
+/turf/simulated/floor/outdoors/dirt/virgo3b{
+	outdoors = 0
+	},
+/area/submap/GreatWolfDen)
+"bY" = (
+/turf/simulated/floor/outdoors/snow/virgo3b,
+/area/submap/GreatWolfDen)
+"dM" = (
+/obj/structure/flora/bboulder2,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/template_noop)
+"dX" = (
+/obj/structure/cliff/automatic{
+	dir = 4
+	},
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/template_noop)
+"eq" = (
+/obj/structure/flora/ausbushes/ppflowers,
+/turf/simulated/floor/outdoors/snow/virgo3b,
+/area/submap/GreatWolfDen)
+"fh" = (
+/obj/structure/cliff/automatic{
+	dir = 2
+	},
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/template_noop)
+"fX" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/flora/rocks2,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/template_noop)
+"ge" = (
+/obj/structure/flora/sif/subterranean{
+	icon_state = "frostbelle"
+	},
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"hJ" = (
+/obj/structure/cliff/automatic{
+	dir = 9
+	},
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/template_noop)
+"iX" = (
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/blood/drip{
+	icon_state = "2"
+	},
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"jg" = (
+/obj/effect/decal/cleanable/cobweb,
+/obj/item/ammo_casing/a10mm{
+	dir = 8
+	},
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"ju" = (
+/obj/item/weapon/reagent_containers/food/snacks/meat/human,
+/obj/item/weapon/reagent_containers/food/snacks/meat/human,
+/obj/item/weapon/reagent_containers/food/snacks/meat/human,
+/obj/item/weapon/reagent_containers/food/snacks/meat/human,
+/obj/item/weapon/reagent_containers/food/snacks/meat/human,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"kg" = (
+/obj/item/weapon/bone/skull/unathi,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"kk" = (
+/obj/effect/decal/cleanable/blood/gibs{
+	color = "red";
+	icon_state = "gib2_flesh"
+	},
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"kL" = (
+/obj/structure/flora/sif/subterranean{
+	icon_state = "grass3"
+	},
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/submap/GreatWolfDen)
+"lu" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/ammo_casing/a10mm,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"lL" = (
+/obj/structure/loot_pile/surface/bones,
+/obj/effect/landmark/loot_spawn/low,
+/obj/random/projectile/scrapped_gun,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"lQ" = (
+/obj/effect/decal/cleanable/filth,
+/obj/item/weapon/card/emag_broken,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"mk" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/blood/drip{
+	icon_state = "3"
+	},
+/obj/item/ammo_casing/a10mm{
+	dir = 8
+	},
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"mm" = (
+/obj/random/trash_pile,
+/turf/simulated/floor/outdoors/dirt/virgo3b{
+	outdoors = 0
+	},
+/area/submap/GreatWolfDen)
+"nd" = (
+/obj/structure/flora/rocks2,
+/obj/effect/decal/remains/lizard,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"nv" = (
+/mob/living/simple_mob/vore/greatwolf{
+	dir = 8;
+	max_co2 = 0;
+	min_oxy = 0
+	},
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/submap/GreatWolfDen)
+"pS" = (
+/turf/template_noop,
+/area/template_noop)
+"qb" = (
+/obj/effect/decal/cleanable/blood/drip,
+/turf/simulated/floor/outdoors/dirt/virgo3b{
+	outdoors = 0
+	},
+/area/submap/GreatWolfDen)
+"rn" = (
+/obj/structure/loot_pile/mecha/gygax/dark/adv,
+/obj/effect/decal/cleanable/blood/gibs/robot/down,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"rM" = (
+/obj/structure/flora/sif/subterranean{
+	icon_state = "eyeplant2"
+	},
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/submap/GreatWolfDen)
+"tb" = (
+/obj/structure/flora/smallbould,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"tm" = (
+/turf/simulated/mineral/ignore_mapgen,
+/area/submap/GreatWolfDen)
+"tC" = (
+/obj/effect/decal/remains/mouse,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"uz" = (
+/mob/living/simple_mob/animal/wolf/direwolf{
+	ai_holder_type = /datum/ai_holder/simple_mob/retaliate;
+	desc = "The biggest and baddest wolf around. Seems pretty chill, for a wolf.";
+	faction = "sif";
+	max_co2 = 0;
+	max_tox = 0;
+	min_oxy = 0
+	},
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"uY" = (
+/obj/item/ammo_casing/a10mm,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"vu" = (
+/obj/item/weapon/bone/skull/tajaran,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"wc" = (
+/obj/item/weapon/bone/skull/unathi,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"xt" = (
+/obj/effect/landmark/loot_spawn/low,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"xu" = (
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"xK" = (
+/obj/effect/decal/remains/human,
+/obj/item/clothing/under/syndicate,
+/obj/random/projectile/scrapped_gun,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"yi" = (
+/obj/structure/flora/sif/subterranean{
+	icon_state = "frostbelle2"
+	},
+/turf/simulated/floor/outdoors/dirt/virgo3b{
+	outdoors = 0
+	},
+/area/submap/GreatWolfDen)
+"yF" = (
+/obj/structure/flora/smallbould,
+/obj/effect/decal/cleanable/cobweb,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"yG" = (
+/obj/structure/flora/ausbushes/ywflowers,
+/turf/simulated/floor/outdoors/snow/virgo3b,
+/area/submap/GreatWolfDen)
+"yH" = (
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/blood/drip{
+	icon_state = "3"
+	},
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"zl" = (
+/obj/structure/flora/bboulder1,
+/obj/effect/decal/cleanable/cobweb2,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"zs" = (
+/obj/structure/flora/bboulder2,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"zV" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/ledge/ledge_stairs,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/template_noop)
+"AG" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/flora/rocks2,
+/obj/structure/ledge/ledge_stairs,
+/turf/simulated/floor/outdoors/rocks/virgo3b,
+/area/submap/GreatWolfDen)
+"AK" = (
+/obj/structure/cliff/automatic/ramp{
+	dir = 9
+	},
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/template_noop)
+"BR" = (
+/obj/structure/flora/sif/subterranean{
+	icon_state = "frostbelle2"
+	},
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"Cd" = (
+/mob/living/simple_mob/otie/feral/chubby{
+	ai_holder_type = /datum/ai_holder/simple_mob/retaliate;
+	desc = "The classic bioengineered longdog. No pets. Only bite. What an absolute unit.";
+	faction = "sif";
+	minbodytemp = 0
+	},
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"CR" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b{
+	outdoors = 0
+	},
+/area/submap/GreatWolfDen)
+"Dj" = (
+/obj/structure/cliff/automatic/corner,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/template_noop)
+"DV" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/random/outcrop,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"EU" = (
+/obj/structure/flora/rocks1,
+/turf/simulated/floor/outdoors/dirt/virgo3b{
+	outdoors = 0
+	},
+/area/submap/GreatWolfDen)
+"Fy" = (
+/obj/structure/flora/sif/subterranean{
+	icon_state = "eyeplant1"
+	},
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/submap/GreatWolfDen)
+"GZ" = (
+/obj/structure/flora/rocks1,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"Hb" = (
+/obj/structure/closet/crate/secure/loot,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"HC" = (
+/obj/random/outcrop,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/template_noop)
+"Ic" = (
+/obj/effect/decal/remains/deer,
+/obj/effect/decal/cleanable/blood/drip,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"Id" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/template_noop,
+/area/template_noop)
+"If" = (
+/obj/effect/decal/cleanable/blood/gibs/robot/limb,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"Iw" = (
+/obj/effect/decal/remains/deer,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"Kb" = (
+/obj/item/ammo_casing/a10mm{
+	dir = 8
+	},
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"Ko" = (
+/obj/effect/decal/cleanable/blood/gibs{
+	color = "red";
+	icon_state = "gibdown1_flesh"
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b{
+	outdoors = 0
+	},
+/area/submap/GreatWolfDen)
+"Kp" = (
+/obj/structure/flora/ausbushes/brflowers,
+/turf/simulated/floor/outdoors/snow/virgo3b,
+/area/submap/GreatWolfDen)
+"KU" = (
+/obj/structure/flora/sif/subterranean{
+	icon_state = "grass3"
+	},
+/turf/simulated/floor/outdoors/snow/virgo3b,
+/area/submap/GreatWolfDen)
+"Lx" = (
+/obj/structure/cliff/automatic{
+	dir = 8
+	},
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/template_noop)
+"Lz" = (
+/obj/effect/decal/cleanable/blood/gibs{
+	color = "red";
+	icon_state = "gib1_flesh"
+	},
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/submap/GreatWolfDen)
+"LJ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/flora/sif/subterranean{
+	icon_state = "glowplant2"
+	},
+/turf/simulated/floor/outdoors/dirt/virgo3b{
+	outdoors = 0
+	},
+/area/submap/GreatWolfDen)
+"LP" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/flora/rocks2,
+/obj/structure/ledge/ledge_stairs,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/template_noop)
+"LT" = (
+/obj/structure/cliff/automatic/corner{
+	dir = 10
+	},
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/template_noop)
+"Mc" = (
+/obj/effect/decal/cleanable/ash,
+/turf/simulated/floor/outdoors/dirt/virgo3b{
+	outdoors = 0
+	},
+/area/submap/GreatWolfDen)
+"Mv" = (
+/obj/random/outcrop,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"MD" = (
+/obj/structure/flora/tree/sif{
+	icon_state = "tree_sif4"
+	},
+/turf/simulated/floor/outdoors/snow/virgo3b,
+/area/submap/GreatWolfDen)
+"OB" = (
+/obj/item/stack/material/log{
+	amount = 25
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"OL" = (
+/obj/structure/cliff/automatic,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/template_noop)
+"OV" = (
+/obj/structure/cliff/automatic{
+	dir = 6
+	},
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/template_noop)
+"OW" = (
+/obj/structure/cliff/automatic{
+	dir = 5
+	},
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/template_noop)
+"Pa" = (
+/obj/structure/cliff/automatic/ramp,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/template_noop)
+"Pf" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b{
+	outdoors = 0
+	},
+/area/submap/GreatWolfDen)
+"Pl" = (
+/obj/effect/decal/remains/lizard,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b{
+	outdoors = 0
+	},
+/area/submap/GreatWolfDen)
+"PC" = (
+/obj/structure/closet/crate/secure/loot,
+/obj/effect/decal/cleanable/cobweb2,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"PX" = (
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"Qb" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/flora/rocks1,
+/obj/structure/ledge/ledge_stairs,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/template_noop)
+"Qv" = (
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/template_noop)
+"QA" = (
+/obj/structure/flora/sif/subterranean{
+	icon_state = "grass2"
+	},
+/turf/simulated/floor/outdoors/snow/virgo3b,
+/area/submap/GreatWolfDen)
+"QJ" = (
+/turf/simulated/floor/outdoors/dirt/virgo3b{
+	outdoors = 0
+	},
+/area/submap/GreatWolfDen)
+"QM" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/blood/drip{
+	icon_state = "2"
+	},
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"Rb" = (
+/obj/item/weapon/bone/leg,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b{
+	outdoors = 0
+	},
+/area/submap/GreatWolfDen)
+"Rf" = (
+/obj/structure/loot_pile/surface/bones,
+/obj/structure/flora/sif/subterranean{
+	icon_state = "frostbelle"
+	},
+/obj/item/weapon/gun/projectile/pistol,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"Rj" = (
+/obj/structure/flora/grass/both,
+/turf/simulated/floor/outdoors/snow/virgo3b,
+/area/submap/GreatWolfDen)
+"Rx" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/template_noop)
+"RW" = (
+/obj/structure/flora/rocks2,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"SO" = (
+/obj/item/weapon/telecube/mated,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"SQ" = (
+/obj/structure/cliff/automatic/corner{
+	dir = 9
+	},
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/template_noop)
+"Tf" = (
+/obj/item/weapon/paper/card/heart{
+	desc = "A gift card with a heart on the cover. This appears to be a thank-you to the.. wolves??"
+	},
+/obj/item/weapon/paper/crumpled{
+	icon_state = "scrap_bloodied";
+	info = "The wolves dragged me back to their den when they found me incapacitated, and nursed me back to health, instead of eating me. I don't know why. Anyway, they're a bunch of goodboyes. Don't let the bones strewn about their den frighten you. Just be nice to them and they won't hurt you.";
+	name = "survivor's note"
+	},
+/turf/simulated/floor/outdoors/dirt/virgo3b{
+	outdoors = 0
+	},
+/area/submap/GreatWolfDen)
+"Tn" = (
+/obj/structure/bonfire,
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/submap/GreatWolfDen)
+"Ty" = (
+/obj/random/trash_pile,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/template_noop)
+"UV" = (
+/obj/structure/cliff/automatic{
+	dir = 10
+	},
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/template_noop)
+"Vq" = (
+/obj/structure/loot_pile/surface/bones,
+/obj/random/projectile/scrapped_gun,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"WH" = (
+/obj/structure/loot_pile/surface/bones,
+/obj/item/weapon/storage/toolbox/syndicate,
+/obj/random/projectile/scrapped_gun,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"WR" = (
+/obj/structure/flora/sif/subterranean{
+	icon_state = "glowplant1"
+	},
+/obj/effect/decal/cleanable/blood/drip,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"WY" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/flora/rocks1,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/template_noop)
+"Xx" = (
+/obj/structure/flora/sif/subterranean{
+	icon_state = "grass1"
+	},
+/turf/simulated/floor/outdoors/snow/virgo3b,
+/area/submap/GreatWolfDen)
+"Xy" = (
+/obj/item/weapon/bone/ribs,
+/obj/effect/landmark/loot_spawn/low,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"Yw" = (
+/obj/structure/loot_pile/surface/bones,
+/obj/effect/landmark/loot_spawn/low,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"Yy" = (
+/obj/effect/decal/cleanable/blood/drip,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"Zj" = (
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
+/area/submap/GreatWolfDen)
+"Zk" = (
+/obj/structure/flora/sif/subterranean{
+	icon_state = "glowplant2"
+	},
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+"Zu" = (
+/obj/structure/loot_pile/surface/bones,
+/obj/effect/landmark/loot_spawn/low,
+/obj/effect/decal/cleanable/dirt,
+/obj/random/projectile/scrapped_gun,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/GreatWolfDen)
+
+(1,1,1) = {"
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+"}
+(2,1,1) = {"
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+Ty
+pS
+pS
+Qv
+Qv
+Qv
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+"}
+(3,1,1) = {"
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+Qv
+Qv
+Qv
+HC
+Qv
+Qv
+Qv
+Qv
+Qv
+Qv
+Qv
+pS
+pS
+pS
+pS
+pS
+pS
+Qv
+pS
+pS
+"}
+(4,1,1) = {"
+pS
+pS
+pS
+pS
+Qv
+pS
+pS
+Qv
+Qv
+Qv
+bp
+dX
+dX
+dX
+dX
+dX
+dX
+dX
+Dj
+Qv
+HC
+Qv
+pS
+pS
+pS
+pS
+Qv
+Qv
+pS
+pS
+"}
+(5,1,1) = {"
+pS
+pS
+pS
+pS
+pS
+pS
+Qv
+bp
+dX
+dX
+OV
+tm
+tm
+tm
+tm
+tm
+tm
+tm
+OW
+dX
+dX
+Dj
+Qv
+Qv
+Qv
+pS
+pS
+pS
+pS
+pS
+"}
+(6,1,1) = {"
+pS
+pS
+pS
+pS
+pS
+Qv
+Qv
+fh
+tm
+tm
+tm
+tm
+tm
+tm
+tm
+tm
+tm
+tm
+tm
+tm
+tm
+OW
+dX
+Dj
+Qv
+Qv
+pS
+pS
+pS
+pS
+"}
+(7,1,1) = {"
+pS
+pS
+pS
+pS
+Qv
+Qv
+bp
+OV
+tm
+tm
+tm
+tm
+jg
+BR
+Mv
+tm
+tm
+tm
+tm
+tm
+tm
+tm
+tm
+OW
+Dj
+Qv
+pS
+pS
+pS
+pS
+"}
+(8,1,1) = {"
+pS
+pS
+pS
+pS
+pS
+Qv
+fh
+tm
+tm
+tm
+yi
+CR
+xK
+uY
+xu
+Zu
+zs
+xu
+xu
+Mv
+tm
+tm
+tm
+tm
+OW
+Dj
+Qv
+pS
+pS
+pS
+"}
+(9,1,1) = {"
+pS
+pS
+pS
+pS
+pS
+Qv
+fh
+tm
+tm
+Mc
+QJ
+qb
+lu
+mk
+uY
+xu
+xu
+kk
+xu
+xu
+xu
+tb
+tm
+tm
+tm
+OL
+Qv
+Qv
+pS
+pS
+"}
+(10,1,1) = {"
+pS
+pS
+pS
+pS
+Qv
+Qv
+fh
+tm
+tm
+mm
+Rb
+EU
+lQ
+BR
+Kb
+QM
+Iw
+xu
+RW
+Zk
+xu
+xu
+tm
+tm
+tm
+OL
+Qv
+Qv
+Qv
+pS
+"}
+(11,1,1) = {"
+pS
+pS
+pS
+Qv
+Qv
+Qv
+fh
+tm
+tm
+bz
+Pl
+bI
+DV
+tm
+wc
+xu
+xu
+xu
+xu
+xu
+Cd
+xu
+kg
+tm
+tm
+OW
+Dj
+Qv
+Qv
+pS
+"}
+(12,1,1) = {"
+pS
+pS
+pS
+Qv
+HC
+Qv
+LT
+UV
+tm
+tm
+bI
+CR
+tm
+tm
+rn
+PX
+Tn
+Zj
+Zj
+uz
+xu
+xu
+BR
+tm
+tm
+tm
+OL
+Qv
+Qv
+pS
+"}
+(13,1,1) = {"
+pS
+pS
+Id
+pS
+Qv
+Qv
+Qv
+fh
+tm
+tm
+Tf
+Ko
+tm
+tm
+OB
+uz
+Zj
+Xx
+rM
+Zj
+Iw
+xu
+xu
+tm
+tm
+tm
+OL
+Qv
+Qv
+pS
+"}
+(14,1,1) = {"
+pS
+pS
+pS
+pS
+Id
+Qv
+Qv
+fh
+tm
+tm
+CR
+CR
+tm
+yF
+Yy
+Fy
+Zj
+Rj
+Kp
+Lz
+Zj
+xu
+uz
+Xy
+tm
+tm
+OL
+Qv
+Qv
+Qv
+"}
+(15,1,1) = {"
+pS
+Qv
+Id
+fX
+pS
+dM
+Pa
+OV
+tm
+LJ
+Pf
+CR
+tm
+ju
+aa
+Lz
+eq
+bY
+MD
+yG
+Zj
+xu
+If
+xu
+tm
+tm
+OL
+Qv
+HC
+Qv
+"}
+(16,1,1) = {"
+Qv
+pS
+Qv
+Id
+Rx
+zV
+LP
+Qb
+AG
+CR
+CR
+CR
+tm
+SO
+tC
+Zj
+Zj
+bY
+QA
+Zj
+kL
+uz
+xu
+Mv
+tm
+tm
+OL
+Qv
+Qv
+Qv
+"}
+(17,1,1) = {"
+pS
+pS
+Qv
+Rx
+WY
+Rx
+AK
+UV
+tm
+tm
+tm
+tm
+tm
+vu
+WR
+GZ
+nv
+KU
+Rj
+Zj
+xu
+xu
+xu
+xu
+tm
+tm
+OL
+Qv
+Qv
+pS
+"}
+(18,1,1) = {"
+pS
+pS
+pS
+pS
+pS
+pS
+Qv
+LT
+UV
+tm
+tm
+tm
+zs
+xu
+xK
+Ic
+Zj
+Zj
+bY
+Zj
+nd
+xu
+xu
+lL
+tm
+tm
+OL
+Qv
+Qv
+pS
+"}
+(19,1,1) = {"
+pS
+pS
+pS
+pS
+pS
+pS
+Qv
+Qv
+fh
+tm
+tm
+tm
+tm
+Hb
+xu
+uz
+xu
+Zj
+Zj
+Zj
+xu
+uz
+xt
+tm
+tm
+hJ
+SQ
+Qv
+pS
+Qv
+"}
+(20,1,1) = {"
+pS
+pS
+pS
+pS
+pS
+pS
+Qv
+Qv
+fh
+tm
+tm
+tm
+tm
+PC
+xu
+Yy
+kk
+Ic
+uz
+xu
+Vq
+xt
+Rf
+tm
+tm
+OL
+Qv
+Qv
+pS
+pS
+"}
+(21,1,1) = {"
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+Qv
+LT
+UV
+tm
+tm
+tm
+tm
+xu
+WH
+iX
+yH
+Yy
+xu
+Vq
+Yw
+tm
+tm
+tm
+OL
+Qv
+Qv
+Qv
+pS
+"}
+(22,1,1) = {"
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+Qv
+HC
+fh
+tm
+tm
+tm
+tm
+zl
+BR
+xu
+ge
+xu
+Vq
+xt
+tm
+tm
+tm
+hJ
+SQ
+Qv
+Ty
+Qv
+pS
+"}
+(23,1,1) = {"
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+Qv
+LT
+UV
+tm
+tm
+tm
+tm
+tm
+tm
+tm
+tm
+tm
+tm
+tm
+tm
+hJ
+SQ
+Qv
+Qv
+pS
+pS
+pS
+"}
+(24,1,1) = {"
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+Qv
+Qv
+LT
+Lx
+UV
+tm
+tm
+tm
+tm
+tm
+tm
+tm
+tm
+tm
+hJ
+SQ
+Qv
+Qv
+Qv
+pS
+pS
+pS
+"}
+(25,1,1) = {"
+pS
+pS
+pS
+pS
+pS
+Qv
+pS
+pS
+pS
+Qv
+Qv
+Qv
+LT
+Lx
+UV
+tm
+tm
+hJ
+Lx
+Lx
+Lx
+Lx
+SQ
+Qv
+Qv
+pS
+pS
+pS
+pS
+pS
+"}
+(26,1,1) = {"
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+Qv
+Qv
+Qv
+Qv
+Ty
+LT
+Lx
+Lx
+SQ
+Qv
+Qv
+Qv
+Qv
+Qv
+Qv
+pS
+pS
+pS
+pS
+pS
+pS
+"}
+(27,1,1) = {"
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+Qv
+Qv
+Qv
+Qv
+Qv
+Qv
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+"}
+(28,1,1) = {"
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+Qv
+Qv
+HC
+Qv
+Qv
+pS
+pS
+pS
+pS
+pS
+pS
+Qv
+Qv
+pS
+pS
+pS
+"}
+(29,1,1) = {"
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+Qv
+pS
+pS
+pS
+pS
+pS
+pS
+"}
+(30,1,1) = {"
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+pS
+"}

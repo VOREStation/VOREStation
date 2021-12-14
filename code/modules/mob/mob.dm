@@ -114,16 +114,13 @@
 		runemessage = -1 // Symmetry with mob/audible_message, despite the fact this one doesn't call parent. Maybe it should!
 
 	if(radio_message)
-		for(var/obj in hearing_objs)
-			var/obj/O = obj
+		for(var/obj/O as anything in hearing_objs)
 			O.hear_talk(src, list(new /datum/multilingual_say_piece(GLOB.all_languages["Noise"], radio_message)), null)
 	else
-		for(var/obj in hearing_objs)
-			var/obj/O = obj
+		for(var/obj/O as anything in hearing_objs)
 			O.show_message(message, AUDIBLE_MESSAGE, deaf_message, VISIBLE_MESSAGE)
 
-	for(var/mob in hearing_mobs)
-		var/mob/M = mob
+	for(var/mob/M as anything in hearing_mobs)
 		var/msg = message
 		if(self_message && M==src)
 			msg = self_message
@@ -368,6 +365,45 @@
 		var/choice = tgui_alert(usr, "Returning to the menu will prevent your character from being revived in-round. Are you sure?", "Confirmation", list("No, wait", "Yes, leave"))
 		if(choice == "No, wait")
 			return
+		else if(mind.assigned_role)
+			var/extra_check = tgui_alert(usr, "Do you want to Quit This Round before you return to lobby? This will properly remove you from manifest, as well as prevent resleeving.","Quit This Round",list("Quit Round","Cancel"))
+			if(extra_check == "Quit Round")
+				//Update any existing objectives involving this mob.
+				for(var/datum/objective/O in all_objectives)
+					if(O.target == src.mind)
+						if(O.owner && O.owner.current)
+							to_chat(O.owner.current,"<span class='warning'>You get the feeling your target is no longer within your reach...</span>")
+						qdel(O)
+
+				//Resleeving cleanup
+				if(mind)
+					SStranscore.leave_round(src)
+
+				//Job slot cleanup
+				var/job = src.mind.assigned_role
+				job_master.FreeRole(job)
+
+				//Their objectives cleanup
+				if(src.mind.objectives.len)
+					qdel(src.mind.objectives)
+					src.mind.special_role = null
+
+				//Cut the PDA manifest (ugh)
+				if(PDA_Manifest.len)
+					PDA_Manifest.Cut()
+				for(var/datum/data/record/R in data_core.medical)
+					if((R.fields["name"] == src.real_name))
+						qdel(R)
+				for(var/datum/data/record/T in data_core.security)
+					if((T.fields["name"] == src.real_name))
+						qdel(T)
+				for(var/datum/data/record/G in data_core.general)
+					if((G.fields["name"] == src.real_name))
+						qdel(G)
+
+				//This removes them from being 'active' list on join screen
+				src.mind.assigned_role = null
+				to_chat(src,"<span class='notice'>Your job has been free'd up, and you can rejoin as another character or quit. Thanks for properly quitting round, it helps the server!</span>")
 
 	// Beyond this point, you're going to respawn
 	to_chat(usr, config.respawn_message)
@@ -589,6 +625,9 @@
 /mob/proc/get_gender()
 	return gender
 
+/mob/proc/name_gender()
+	return gender
+
 /mob/proc/see(message)
 	if(!is_active())
 		return 0
@@ -652,8 +691,7 @@
 			if(length(GLOB.sdql2_queries))
 				if(statpanel("SDQL2"))
 					stat("Access Global SDQL2 List", GLOB.sdql2_vv_statobj)
-					for(var/i in GLOB.sdql2_queries)
-						var/datum/SDQL2_query/Q = i
+					for(var/datum/SDQL2_query/Q as anything in GLOB.sdql2_queries)
 						Q.generate_stat()
 
 		if(listed_turf && client)
@@ -1151,7 +1189,7 @@
 
 //Throwing stuff
 /mob/proc/throw_item(atom/target)
-	return
+	return FALSE
 
 /mob/proc/will_show_tooltip()
 	if(alpha <= EFFECTIVE_INVIS)

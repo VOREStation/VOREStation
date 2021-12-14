@@ -22,7 +22,8 @@
 	vorePanel.tgui_interact(src)
 
 /mob/living/proc/updateVRPanel() //Panel popup update call from belly events.
-	SStgui.update_uis(vorePanel)
+	if(vorePanel)
+		SStgui.update_uis(vorePanel)
 
 //
 // Callback Handler for the Inside form
@@ -50,6 +51,7 @@
 	if(!ui)
 		ui = new(user, src, "VorePanel", "Vore Panel")
 		ui.open()
+		ui.set_autoupdate(FALSE)
 
 // This looks weird, but all tgui_host is used for is state checking
 // So this allows us to use the self_state just fine.
@@ -126,8 +128,7 @@
 	data["inside"] = inside
 
 	var/list/our_bellies = list()
-	for(var/belly in host.vore_organs)
-		var/obj/belly/B = belly
+	for(var/obj/belly/B as anything in host.vore_organs)
 		our_bellies.Add(list(list(
 			"selected" = (B == host.vore_selected),
 			"name" = B.name,
@@ -187,6 +188,8 @@
 			selected_list["interacts"]["escapetime"] = selected.escapetime
 			selected_list["interacts"]["transferchance"] = selected.transferchance
 			selected_list["interacts"]["transferlocation"] = selected.transferlocation
+			selected_list["interacts"]["transferchance_secondary"] = selected.transferchance_secondary
+			selected_list["interacts"]["transferlocation_secondary"] = selected.transferlocation_secondary
 			selected_list["interacts"]["absorbchance"] = selected.absorbchance
 			selected_list["interacts"]["digestchance"] = selected.digestchance
 
@@ -225,6 +228,7 @@
 		"show_vore_fx" = host.show_vore_fx,
 		"can_be_drop_prey" = host.can_be_drop_prey,
 		"can_be_drop_pred" = host.can_be_drop_pred,
+		"allow_inbelly_spawning" = host.allow_inbelly_spawning,
 		"allow_spontaneous_tf" = host.allow_spontaneous_tf,
 		"step_mechanics_active" = host.step_mechanics_pref,
 		"pickup_mechanics_active" = host.pickup_pref,
@@ -268,8 +272,7 @@
 				failure_msg = "Entered belly name length invalid (must be longer than [BELLIES_NAME_MIN], no more than than [BELLIES_NAME_MAX])."
 			// else if(whatever) //Next test here.
 			else
-				for(var/belly in host.vore_organs)
-					var/obj/belly/B = belly
+				for(var/obj/belly/B as anything in host.vore_organs)
 					if(lowertext(new_name) == lowertext(B.name))
 						failure_msg = "No duplicate belly names, please."
 						break
@@ -304,6 +307,10 @@
 			return set_attr(usr, params)
 
 		if("saveprefs")
+			if(host.real_name != host.client.prefs.real_name || (!ishuman(host) && !issilicon(host)))
+				var/choice = tgui_alert(usr, "Warning: Saving your vore panel while playing what is very-likely not your normal character will overwrite whatever character you have loaded in character setup. Maybe this is your 'playing a simple mob' slot, though. Are you SURE you want to overwrite your current slot with these vore bellies?", "WARNING!", list("No, abort!", "Yes, save."))
+				if(choice != "Yes, save.")
+					return TRUE
 			if(!host.save_vore_prefs())
 				tgui_alert_async(usr, "ERROR: Virgo-specific preferences failed to save!","Error")
 			else
@@ -354,6 +361,12 @@
 			host.can_be_drop_prey = !host.can_be_drop_prey
 			if(host.client.prefs_vr)
 				host.client.prefs_vr.can_be_drop_prey = host.can_be_drop_prey
+			unsaved_changes = TRUE
+			return TRUE
+		if("toggle_allow_inbelly_spawning")
+			host.allow_inbelly_spawning = !host.allow_inbelly_spawning
+			if(host.client.prefs_vr)
+				host.client.prefs_vr.allow_inbelly_spawning = host.allow_inbelly_spawning
 			unsaved_changes = TRUE
 			return TRUE
 		if("toggle_allow_spontaneous_tf")
@@ -610,8 +623,7 @@
 				failure_msg = "Entered belly name length invalid (must be longer than [BELLIES_NAME_MIN], no more than than [BELLIES_NAME_MAX])."
 			// else if(whatever) //Next test here.
 			else
-				for(var/belly in host.vore_organs)
-					var/obj/belly/B = belly
+				for(var/obj/belly/B as anything in host.vore_organs)
 					if(lowertext(new_name) == lowertext(B.name))
 						failure_msg = "No duplicate belly names, please."
 						break
@@ -635,6 +647,7 @@
 				return FALSE
 
 			host.vore_selected.digest_mode = new_mode
+			host.vore_selected.updateVRPanels()
 			. = TRUE
 		if("b_addons")
 			var/list/menu_list = host.vore_selected.mode_flag_list.Copy()
@@ -747,6 +760,31 @@
 					var/new_message = input(user,"These are sent to prey every minute when you are on Drain mode. Write them in 2nd person ('%pred's %belly squishes down on you.')"+help,"Idle Message (Drain)",host.vore_selected.get_messages("im_drain")) as message
 					if(new_message)
 						host.vore_selected.set_messages(new_message,"im_drain")
+
+				if("im_steal")
+					var/new_message = input(user,"These are sent to prey every minute when you are on Size Steal mode. Write them in 2nd person ('%pred's %belly squishes down on you.')"+help,"Idle Message (Size Steal)",host.vore_selected.get_messages("im_steal")) as message
+					if(new_message)
+						host.vore_selected.set_messages(new_message,"im_steal")
+
+				if("im_egg")
+					var/new_message = input(user,"These are sent to prey every minute when you are on Encase In Egg mode. Write them in 2nd person ('%pred's %belly squishes down on you.')"+help,"Idle Message (Encase In Egg)",host.vore_selected.get_messages("im_egg")) as message
+					if(new_message)
+						host.vore_selected.set_messages(new_message,"im_egg")
+
+				if("im_shrink")
+					var/new_message = input(user,"These are sent to prey every minute when you are on Shrink mode. Write them in 2nd person ('%pred's %belly squishes down on you.')"+help,"Idle Message (Shrink)",host.vore_selected.get_messages("im_shrink")) as message
+					if(new_message)
+						host.vore_selected.set_messages(new_message,"im_shrink")
+
+				if("im_grow")
+					var/new_message = input(user,"These are sent to prey every minute when you are on Grow mode. Write them in 2nd person ('%pred's %belly squishes down on you.')"+help,"Idle Message (Grow)",host.vore_selected.get_messages("im_grow")) as message
+					if(new_message)
+						host.vore_selected.set_messages(new_message,"im_grow")
+
+				if("im_unabsorb")
+					var/new_message = input(user,"These are sent to prey every minute when you are on Unabsorb mode. Write them in 2nd person ('%pred's %belly squishes down on you.')"+help,"Idle Message (Unabsorb)",host.vore_selected.get_messages("im_unabsorb")) as message
+					if(new_message)
+						host.vore_selected.set_messages(new_message,"im_unabsorb")
 
 				if("reset")
 					var/confirm = tgui_alert(user,"This will delete any custom messages. Are you sure?","Confirmation",list("Cancel","DELETE"))
@@ -919,6 +957,21 @@
 			else
 				host.vore_selected.transferlocation = choice.name
 			. = TRUE
+		if("b_transferchance_secondary")
+			var/transfer_secondary_chance_input = input(user, "Set secondary belly transfer chance on resist (as %). You must also set the location for this to have any effect.", "Prey Escape Time") as num|null
+			if(!isnull(transfer_secondary_chance_input))
+				host.vore_selected.transferchance_secondary = sanitize_integer(transfer_secondary_chance_input, 0, 100, initial(host.vore_selected.transferchance_secondary))
+			. = TRUE
+		if("b_transferlocation_secondary")
+			var/obj/belly/choice_secondary = tgui_input_list(usr, "Where do you want your [lowertext(host.vore_selected.name)] to alternately lead if prey resists?","Select Belly", (host.vore_organs + "None - Remove" - host.vore_selected))
+
+			if(!choice_secondary) //They cancelled, no changes
+				return FALSE
+			else if(choice_secondary == "None - Remove")
+				host.vore_selected.transferlocation_secondary = null
+			else
+				host.vore_selected.transferlocation_secondary = choice_secondary.name
+			. = TRUE
 		if("b_absorbchance")
 			var/absorb_chance_input = input(user, "Set belly absorb mode chance on resist (as %)", "Prey Absorb Chance") as num|null
 			if(!isnull(absorb_chance_input))
@@ -943,11 +996,14 @@
 			var/failure_msg = ""
 
 			var/dest_for //Check to see if it's the destination of another vore organ.
-			for(var/belly in host.vore_organs)
-				var/obj/belly/B = belly
+			for(var/obj/belly/B as anything in host.vore_organs)
 				if(B.transferlocation == host.vore_selected)
 					dest_for = B.name
 					failure_msg += "This is the destiantion for at least '[dest_for]' belly transfers. Remove it as the destination from any bellies before deleting it. "
+					break
+				if(B.transferlocation_secondary == host.vore_selected)
+					dest_for = B.name
+					failure_msg += "This is the destiantion for at least '[dest_for]' secondary belly transfers. Remove it as the destination from any bellies before deleting it. "
 					break
 
 			if(host.vore_selected.contents.len)

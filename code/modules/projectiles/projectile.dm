@@ -650,7 +650,7 @@
 		return
 
 	//roll to-hit
-	miss_modifier = max(15*(distance-2) - accuracy + miss_modifier + target_mob.get_evasion(), 0)
+	miss_modifier = max(15*(distance-2) - accuracy + miss_modifier + target_mob.get_evasion(), -100)
 	var/hit_zone = get_zone_with_miss_chance(def_zone, target_mob, miss_modifier, ranged_attack=(distance > 1 || original != target_mob)) //if the projectile hits a target we weren't originally aiming at then retain the chance to miss
 
 	var/result = PROJECTILE_FORCE_MISS
@@ -671,17 +671,23 @@
 			playsound(target_mob, "bullet_miss", 75, 1)
 		return FALSE
 
+	var/impacted_organ = parse_zone(def_zone)
+	if(istype(target_mob, /mob/living/simple_mob))
+		var/mob/living/simple_mob/SM = target_mob
+		var/decl/mob_organ_names/organ_plan = SM.organ_names
+		impacted_organ = pick(organ_plan.hit_zones)
+
 	//hit messages
 	if(silenced)
 		playsound(target_mob, hitsound, 5, 1, -1)
-		to_chat(target_mob, span("critical", "You've been hit in the [parse_zone(def_zone)] by \the [src]!"))
+		to_chat(target_mob, span("critical", "You've been hit in the [impacted_organ] by \the [src]!"))
 	else
 		var/volume = vol_by_damage()
 		playsound(target_mob, hitsound, volume, 1, -1)
 		// X has fired Y is now given by the guns so you cant tell who shot you if you could not see the shooter
 		target_mob.visible_message(
-			span("danger", "\The [target_mob] was hit in the [parse_zone(def_zone)] by \the [src]!"),
-			span("critical", "You've been hit in the [parse_zone(def_zone)] by \the [src]!")
+			span("danger", "\The [target_mob] was hit in the [impacted_organ] by \the [src]!"),
+			span("critical", "You've been hit in the [impacted_organ] by \the [src]!")
 		)
 
 	//admin logs

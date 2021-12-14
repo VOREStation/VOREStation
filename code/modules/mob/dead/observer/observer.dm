@@ -29,6 +29,7 @@
 	var/admin_ghosted = 0
 	var/anonsay = 0
 	var/ghostvision = 1 //is the ghost able to see things humans can't?
+	var/lighting_alpha = 255
 	incorporeal_move = 1
 
 	var/is_manifest = 0 //If set to 1, the ghost is able to whisper. Usually only set if a cultist drags them through the veil.
@@ -341,6 +342,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		var/area/A = areas[key]
 		if(A.z in using_map?.secret_levels)
 			areas -= key
+		if(A.z in using_map?.hidden_levels)
+			areas -= key
 
 	return areas
 
@@ -353,10 +356,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		var/mobz = get_z(mobs[key])
 		if(mobz in using_map?.secret_levels)
 			mobs -= key
-	
+		if(mobz in using_map?.hidden_levels)
+			mobs -= key
+
 	return mobs
 
-/mob/observer/dead/verb/dead_tele(areaname as null|anything in jumpable_areas())
+/mob/observer/dead/verb/dead_tele(areaname as anything in jumpable_areas())
 	set name = "Teleport"
 	set category = "Ghost"
 	set desc = "Teleport to a location."
@@ -383,7 +388,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	usr.forceMove(pick(get_area_turfs(A || jumpable_areas()[areaname])))
 	usr.on_mob_jump()
 
-/mob/observer/dead/verb/follow(mobname as null|anything in jumpable_mobs())
+/mob/observer/dead/verb/follow(mobname as anything in jumpable_mobs())
 	set name = "Follow"
 	set category = "Ghost"
 	set desc = "Follow and haunt a mob."
@@ -633,6 +638,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(src, "<span class='warning'>Spawning as a mouse is currently disabled.</span>")
 		return
 
+	//VOREStation Add Start
+	if(jobban_isbanned(src, "GhostRoles"))
+		to_chat(src, "<span class='warning'>You cannot become a mouse because you are banned from playing ghost roles.</span>")
+		return
+	//VOREStation Add End
+
 	if(!MayRespawn(1))
 		return
 
@@ -856,12 +867,23 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set name = "Toggle Darkness"
 	set desc = "Toggles your ability to see lighting overlays, and the darkness they create."
 	set category = "Ghost"
-	seedarkness = !seedarkness
+	
+	var/static/list/darkness_names = list("normal darkness levels", "30% darkness removed", "70% darkness removed", "no darkness")
+	var/static/list/darkness_levels = list(255, 178, 76, 0)
+
+	var/index = darkness_levels.Find(lighting_alpha)
+	if(!index || index >= darkness_levels.len)
+		index = 1
+	else
+		index++
+	
+	lighting_alpha = darkness_levels[index]
 	updateghostsight()
-	to_chat(src, "You [seedarkness ? "now" : "no longer"] see darkness.")
+	to_chat(src, "Your vision now has [darkness_names[index]].")
 
 /mob/observer/dead/proc/updateghostsight()
-	plane_holder.set_vis(VIS_FULLBRIGHT, !seedarkness) //Inversion, because "not seeing" the darkness is "seeing" the lighting plane master.
+	plane_holder.set_desired_alpha(VIS_LIGHTING, lighting_alpha)
+	plane_holder.set_vis(VIS_LIGHTING, lighting_alpha)
 	plane_holder.set_vis(VIS_GHOSTS, ghostvision)
 
 /mob/observer/dead/MayRespawn(var/feedback = 0)

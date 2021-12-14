@@ -18,6 +18,7 @@ AI MODULES
 	throw_range = 15
 	origin_tech = list(TECH_DATA = 3)
 	preserve_item = 1
+	matter = list(MAT_STEEL = 30, MAT_GLASS = 10)
 	var/datum/ai_laws/laws = null
 
 /obj/item/weapon/aiModule/proc/install(var/atom/movable/AM, var/mob/living/user)

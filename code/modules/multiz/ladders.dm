@@ -33,6 +33,13 @@
 		target_up = null
 	return ..()
 
+/obj/structure/ladder/attack_generic(mob/user)
+	//Simple Animal
+	if(isanimal(user))
+		attack_hand(user)
+	else
+		return ..()
+
 /obj/structure/ladder/attackby(obj/item/C as obj, mob/user as mob)
 	attack_hand(user)
 	return
@@ -89,7 +96,7 @@
 		return FALSE
 	return TRUE
 
-/mob/observer/ghost/may_climb_ladders(var/ladder)
+/mob/observer/dead/may_climb_ladders(var/ladder)
 	return TRUE
 
 /obj/structure/ladder/proc/climbLadder(var/mob/M, var/obj/target_ladder)

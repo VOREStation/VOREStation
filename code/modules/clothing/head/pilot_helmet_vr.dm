@@ -48,8 +48,8 @@
 //////////Talon Pilot Headgear//////////
 
 /obj/item/clothing/head/pilot_vr/talon
-	name = "ITV pilot helmet"
-	desc = "An ITV version of the standard pilot helmet. Protects the head from impacts. This one has a retractable visor"
+	name = "Talon pilot helmet"
+	desc = "An ITV Talon version of the standard pilot helmet. Protects the head from impacts. This one has a retractable visor"
 	icon_state = "pilot3"
 	item_icons = list(slot_head_str = 'icons/inventory/head/mob_vr.dmi')
 	sprite_sheets = list(
@@ -57,7 +57,29 @@
 		)
 	action_button_name = "Toggle Visor"
 
-/obj/item/clothing/head/pilot_vr/alt/attack_self(mob/user as mob)
+/obj/item/clothing/head/pilot_vr/talon/attack_self(mob/user as mob)
+	if(src.icon_state == initial(icon_state))
+		src.icon_state = "[icon_state]up"
+		to_chat(user, "You raise the visor on the pilot helmet.")
+	else
+		src.icon_state = initial(icon_state)
+		to_chat(user, "You lower the visor on the pilot helmet.")
+	update_clothing_icon() //so our mob-overlays update
+
+//////////Major Bill's Pilot Headgear//////////
+
+/obj/item/clothing/head/pilot_vr/mbill
+	name = "\improper Major Bill's pilot helmet"
+	desc = "An Major Bill's Transportation version of the standard pilot helmet. Protects the head from impacts. This one has a retractable visor"
+	icon_state = "pilot3"
+	item_icons = list(slot_head_str = 'icons/inventory/head/mob_vr.dmi')
+	catalogue_data = list(/datum/category_item/catalogue/information/organization/major_bills)
+	sprite_sheets = list(
+		SPECIES_TESHARI = 'icons/inventory/head/mob_vr_teshari.dmi'
+		)
+	action_button_name = "Toggle Visor"
+
+/obj/item/clothing/head/pilot_vr/mbill/attack_self(mob/user as mob)
 	if(src.icon_state == initial(icon_state))
 		src.icon_state = "[icon_state]up"
 		to_chat(user, "You raise the visor on the pilot helmet.")

@@ -71,13 +71,6 @@
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	drop_sound = 'sound/items/drop/knife.ogg'
 
-/obj/item/weapon/material/knife/suicide_act(mob/user)
-	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
-	to_chat(viewers(user), pick("<span class='danger'>\The [user] is slitting [TU.his] wrists with \the [src]! It looks like [TU.hes] trying to commit suicide.</span>", \
-	                      "<span class='danger'>\The [user] is slitting [TU.his] throat with \the [src]! It looks like [TU.hes] trying to commit suicide.</span>", \
-	                      "<span class='danger'>\The [user] is slitting [TU.his] stomach open with \the [src]! It looks like [TU.hes] trying to commit seppuku.</span>"))
-	return (BRUTELOSS)
-
 // These no longer inherit from hatchets.
 /obj/item/weapon/material/knife/tacknife
 	name = "tactical knife"
@@ -164,3 +157,29 @@
 	applies_material_colour = FALSE
 	default_material = "plasteel" //VOREStation Edit
 	toolspeed = 2 // Use a real axe if you want to chop logs.
+
+/obj/item/weapon/material/knife/stone
+	name = "stone blade"
+	desc = "A crude blade made by chipping away at a piece of flint."
+	icon = 'icons/obj/weapons_vr.dmi'
+	icon_state = "stone_blade"
+	applies_material_colour = FALSE
+	fragile = TRUE
+	dulled = TRUE
+	edge = TRUE
+	sharp = TRUE
+	default_material = MAT_FLINT
+
+/obj/item/weapon/material/knife/stone/wood
+	name = "stone knife"
+	desc = "A crude blade of flint with a wooden handle, secured with plant fibers twined into sturdy ropes. Useful for cutting, stabbing, slicing, and even shearing."
+	icon_state = "stone_wood_knife"
+	dulled = FALSE
+	fragile = FALSE
+
+/obj/item/weapon/material/knife/stone/bone
+	name = "stone knife"
+	desc = "A crude blade of flint with a bone handle, secured with plant fibers twined into sturdy ropes. Useful for cutting, stabbing, slicing, and even shearing."
+	icon_state = "stone_bone_knife"
+	dulled = FALSE
+	fragile = FALSE

@@ -3,6 +3,9 @@
 #define MAT_STEEL			"steel"
 #define MAT_PLASTIC			"plastic"
 #define MAT_GLASS			"glass"
+#define MAT_RGLASS			"rglass"
+#define MAT_PGLASS			"borosilicate glass"
+#define MAT_RPGLASS         "reinforced borosilicate glass"
 #define MAT_SILVER			"silver"
 #define MAT_GOLD			"gold"
 #define MAT_URANIUM			"uranium"
@@ -15,6 +18,8 @@
 #define MAT_LOG				"log"
 #define MAT_SIFWOOD			"alien wood"
 #define MAT_SIFLOG			"alien log"
+#define MAT_HARDWOOD			"hardwood"
+#define MAT_HARDLOG			"hardwood log"
 #define MAT_STEELHULL		"steel hull"
 #define MAT_PLASTEEL		"plasteel"
 #define MAT_PLASTEELHULL	"plasteel hull"
@@ -33,6 +38,7 @@
 #define MAT_LEATHER			"leather"
 #define MAT_CHITIN			"chitin"
 #define MAT_CLOTH			"cloth"
+#define MAT_FUR				"fur"
 #define MAT_SYNCLOTH		"syncloth"
 #define MAT_FIBERS			"fibers"
 #define MAT_COPPER			"copper"
@@ -44,6 +50,11 @@
 #define MAT_PAINITE			"painite"
 #define MAT_BOROSILICATE	"borosilicate glass"
 #define MAT_SANDSTONE		"sandstone"
+#define MAT_FLINT           "flint"
+#define MAT_PLATINUM		"platinum"
+#define MAT_TRITIUM			"tritium"
+#define MAT_DEUTERIUM		"deuterium"
+
 
 #define DEFAULT_TABLE_MATERIAL MAT_PLASTIC
 #define DEFAULT_WALL_MATERIAL MAT_STEEL

@@ -54,6 +54,10 @@
 	if(!can_buckle_check(M, forced))
 		return FALSE
 
+	if(M == src)
+		stack_trace("Recursive buckle warning: [M] being buckled to self.")
+		return
+
 	M.buckled = src
 	M.facing_dir = null
 	M.set_dir(buckle_dir ? buckle_dir : dir)
@@ -176,8 +180,7 @@
 	return M
 
 /atom/movable/proc/handle_buckled_mob_movement(atom/old_loc, direct, movetime)
-	for(var/A in buckled_mobs)
-		var/mob/living/L = A
+	for(var/mob/living/L as anything in buckled_mobs)
 		if(!L.Move(loc, direct, movetime))
 			L.forceMove(loc, direct, movetime)
 			L.last_move = last_move

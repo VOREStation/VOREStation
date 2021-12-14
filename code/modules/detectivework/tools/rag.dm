@@ -98,16 +98,11 @@
 	if(!reagents.total_volume)
 		to_chat(user, "<span class='warning'>The [initial(name)] is dry!</span>")
 	else
-		user.visible_message("\The [user] starts to wipe down [A] with [src]!")
-		//reagents.splash(A, 1) //get a small amount of liquid on the thing we're wiping.
+		user.visible_message("[user] starts to wipe [A] with [src].")
 		update_name()
 		if(do_after(user,30))
-			user.visible_message("\The [user] finishes wiping off the [A]!")
-			A.clean_blood()
-			if(istype(A, /turf) || istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/overlay) || istype(A, /obj/effect/rune))  //VOREStation Edit - "Allows rags to clean dirt from turfs"
-				var/turf/T = get_turf(A)
-				if(T)
-					T.clean(src, user) //VOREStation Edit End
+			user.visible_message("[user] finishes wiping [A]!")
+			A.on_rag_wipe(src)
 
 /obj/item/weapon/reagent_containers/glass/rag/attack(atom/target as obj|turf|area, mob/user as mob , flag)
 	if(isliving(target)) //Leaving this as isliving.
@@ -121,7 +116,7 @@
 				var/mob/living/carbon/human/H = target
 				if(H.head && (H.head.body_parts_covered & FACE)) //Check human head coverage.
 					to_chat(user, "<span class='warning'>Remove their [H.head] first.</span>")
-					return        
+					return
 				else if(reagents.total_volume) //Final check. If the rag is not on fire and their face is uncovered, smother target.
 					user.do_attack_animation(src)
 					user.visible_message(

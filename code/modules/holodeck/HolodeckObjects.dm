@@ -5,6 +5,7 @@
 
 /turf/simulated/floor/holofloor
 	thermal_conductivity = 0
+	flags = TURF_ACID_IMMUNE
 
 /turf/simulated/floor/holofloor/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	return
@@ -126,15 +127,17 @@
 /obj/structure/holostool
 	name = "stool"
 	desc = "Apply butt."
-	icon = 'icons/obj/furniture.dmi'
+	icon = 'icons/obj/furniture_vr.dmi'
 	icon_state = "stool_padded_preview"
 	anchored = TRUE
+	unacidable = TRUE
 	pressure_resistance = 15
 
 /obj/item/clothing/gloves/boxing/hologlove
 	name = "boxing gloves"
 	desc = "Because you really needed another excuse to punch your crewmates."
 	icon_state = "boxing"
+	unacidable = TRUE
 	item_icons = list(
 			slot_l_hand_str = 'icons/mob/items/lefthand_gloves.dmi',
 			slot_r_hand_str = 'icons/mob/items/righthand_gloves.dmi',
@@ -291,6 +294,7 @@
 	throwforce = 0
 	w_class = ITEMSIZE_SMALL
 	flags = NOBLOODY
+	unacidable = TRUE
 	var/active = 0
 
 /obj/item/weapon/holo/esword/green/New()
@@ -354,21 +358,23 @@
 //BASKETBALL OBJECTS
 
 /obj/item/weapon/beach_ball/holoball
-	icon = 'icons/obj/basketball.dmi'
+	icon = 'icons/obj/balls_vr.dmi'
 	icon_state = "basketball"
 	name = "basketball"
 	desc = "Here's your chance, do your dance at the Space Jam."
 	w_class = ITEMSIZE_LARGE //Stops people from hiding it in their bags/pockets
+	unacidable = TRUE
 	drop_sound = 'sound/items/drop/basketball.ogg'
 	pickup_sound = 'sound/items/pickup/basketball.ogg'
 
 /obj/structure/holohoop
 	name = "basketball hoop"
 	desc = "Boom, Shakalaka!"
-	icon = 'icons/obj/basketball.dmi'
+	icon = 'icons/obj/32x64.dmi'
 	icon_state = "hoop"
 	anchored = TRUE
 	density = TRUE
+	unacidable = TRUE
 	throwpass = 1
 
 /obj/structure/holohoop/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -400,7 +406,6 @@
 		return FALSE
 	return ..()
 
-
 /obj/machinery/readybutton
 	name = "Ready Declaration Device"
 	desc = "This device is used to declare ready. If all devices in an area are ready, the event will begin!"
@@ -411,6 +416,7 @@
 	var/area/currentarea = null
 	var/eventstarted = 0
 
+	unacidable = TRUE
 	anchored = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 2

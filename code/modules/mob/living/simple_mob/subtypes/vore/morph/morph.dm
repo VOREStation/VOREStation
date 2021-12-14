@@ -9,6 +9,7 @@
 	icon_state = "morph"
 	icon_living = "morph"
 	icon_dead = "morph_dead"
+	icon_rest = null
 	movement_cooldown = 1
 	status_flags = CANPUSH
 	pass_flags = PASSTABLE
@@ -37,8 +38,7 @@
 	attacktext = "glomped"
 	attack_sound = 'sound/effects/blobattack.ogg'
 
-	meat_amount = 2
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	meat_amount = 0
 
 	showvoreprefs = 0
 	vore_active = 1
@@ -107,7 +107,7 @@
 	alpha = max(target.alpha, 150)
 	copy_overlays(target, TRUE)
 	our_size_multiplier = size_multiplier
-	
+
 	pixel_x = initial(target.pixel_x)
 	pixel_y = initial(target.pixel_y)
 
@@ -118,7 +118,7 @@
 		icon_scale_x = target.icon_scale_x
 		icon_scale_y = target.icon_scale_y
 		update_transform()
-	
+
 	else if(ismob(target))
 		var/mob/living/M = target
 		resize(M.size_multiplier, ignore_prefs = TRUE)
@@ -137,10 +137,10 @@
 		to_chat(src, "<span class='warning'>You're already in your normal form!</span>")
 		return
 	morphed = FALSE
-	
+
 	if(!silent)
 		visible_message("<span class='warning'>[src] suddenly collapses in on itself, dissolving into a pile of green flesh!</span>")
-	
+
 	form = null
 	name = initial(name)
 	desc = initial(desc)
@@ -161,7 +161,7 @@
 	density = initial(density)
 
 	cut_overlays(TRUE) //ALL of zem
-	
+
 	maptext = null
 
 	size_multiplier = our_size_multiplier
@@ -187,6 +187,14 @@
 	if(morphed && !ismob(form))
 		return
 	return ..()
+
+/mob/living/simple_mob/vore/hostile/morph/lay_down()
+	if(morphed)
+		var/temp_state = icon_state
+		..()
+		icon_state = temp_state
+	else
+		..()
 
 /mob/living/simple_mob/vore/hostile/morph/update_icon()
 	if(morphed)

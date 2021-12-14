@@ -8,6 +8,7 @@
 	opacity = 0
 	density = FALSE
 	anchored = TRUE
+	unacidable = TRUE
 	layer = STAIRS_LAYER
 
 /obj/structure/stairs/Initialize()
@@ -17,13 +18,13 @@
 
 // Returns TRUE if the stairs are a complete and connected unit, FALSE if a piece is missing or obstructed
 // Will attempt to reconnect broken pieces
-// Parameters: 
+// Parameters:
 //  - B1: Loc of bottom stair
 //  - B2: Loc of middle stair
 //  - T1: Openspace over bottom stair
 //  - T2: Loc of top stair, over middle stair
-/obj/structure/stairs/proc/check_integrity(var/obj/structure/stairs/bottom/B = null, 
-										   var/obj/structure/stairs/middle/M = null, 
+/obj/structure/stairs/proc/check_integrity(var/obj/structure/stairs/bottom/B = null,
+										   var/obj/structure/stairs/middle/M = null,
 										   var/obj/structure/stairs/top/T = null,
 										   var/turf/simulated/open/O = null)
 
@@ -90,14 +91,14 @@
 											 var/obj/structure/stairs/middle/M = null,
 											 var/obj/structure/stairs/top/T = null,
 											 var/turf/simulated/open/O = null)
-	
+
 	// In the case where we're provided all the pieces, just try connecting them.
 	// In order: all exist, they are appropriately adjacent, and they can connect
 	if(istype(B) && istype(M) && istype(T) && istype(O) && \
 			B.Adjacent(M) && (GetBelow(O) == get_turf(B)) && T.Adjacent(O) && \
 			..())
 		return TRUE
-	
+
 	// If we're already configured, just check those
 	else if(istype(top) && istype(middle))
 		O = locate(/turf/simulated/open) in GetAbove(src)
@@ -117,7 +118,7 @@
 
 	// If you set the dir, that's the dir it *wants* to connect in. It only chooses the others if that doesn't work
 	// Everything is simply linked in our original direction
-	if(istype(M) && istype(T) && ..(src, M, T, O))	
+	if(istype(M) && istype(T) && ..(src, M, T, O))
 		return TRUE
 
 	// Else, we have to look in other directions
@@ -126,12 +127,12 @@
 		T2 = GetAbove(B2)
 		if(!istype(B2) || !istype(T2))
 			continue
-		
+
 		T = locate(/obj/structure/stairs/top)    in T2
 		M = locate(/obj/structure/stairs/middle) in B2
 		if(..(src, M, T, O))
 			return TRUE
-	
+
 	// Out of the dir check, we have no valid neighbors, and thus are not complete.
 	return FALSE
 
@@ -142,18 +143,18 @@
 			use_stairs(AM, oldloc)
 	..()
 
-/obj/structure/stairs/bottom/use_stairs(var/atom/movable/AM, var/atom/oldloc)	
+/obj/structure/stairs/bottom/use_stairs(var/atom/movable/AM, var/atom/oldloc)
 	// If we're coming from the top of the stairs, don't trap us in an infinite staircase
 	// Or if we fell down the openspace
 	if((top in oldloc) || oldloc == GetAbove(src))
 		return
-	
+
 	if(isobserver(AM)) // Ghosts have their own methods for going up and down
 		return
-	
+
 	if(AM.pulledby) // Animating the movement of pulled things is handled when the puller goes up the stairs
 		return
-	
+
 	if(AM.has_buckled_mobs()) // Similarly, the rider entering the turf will bring along whatever they're buckled to
 		return
 
@@ -172,7 +173,7 @@
 			pulling |= L.pulling
 		for(var/obj/item/weapon/grab/G in list(L.l_hand, L.r_hand))
 			pulling |= G.affecting
-	
+
 	// If the stairs aren't broken, go up.
 	if(check_integrity())
 		AM.dir = src.dir
@@ -184,7 +185,7 @@
 
 		// Move to Top
 		AM.forceMove(get_turf(top))
-		
+
 		// If something is being pulled, bring it along directly to avoid the mob being torn away from it due to movement delays
 		for(var/atom/movable/P in pulling)
 			P.forceMove(get_turf(top)) // Just bring it along directly, no fussing with animation timing
@@ -201,16 +202,15 @@
 
 	if(isliving(AM))
 		var/mob/living/L = AM
-	
+
 		if(L.grabbed_by.len) // Same as pulledby, whoever's holding you will keep you from going down stairs.
-			return
-		
-		if(L.has_buckled_mobs())
 			return
 
 		if(L.buckled)
 			L.buckled.forceMove(get_turf(top))
-		
+
+		L.forceMove(get_turf(top))
+
 		// If the object is pulling or grabbing anything, we'll want to move those too. A grab chain may be disrupted in doing so.
 		if(L.pulling && !L.pulling.anchored)
 			var/atom/movable/P = L.pulling
@@ -219,8 +219,7 @@
 
 		for(var/obj/item/weapon/grab/G in list(L.l_hand, L.r_hand))
 			G.affecting.forceMove(get_turf(top))
-		L.forceMove(get_turf(top))
-		
+
 		if(L.client)
 			L.client.Process_Grab()
 	else
@@ -254,10 +253,10 @@
 
 // These are necessarily fairly similar, but because the positional relations are different, we have to copy-pasta a fair bit
 /obj/structure/stairs/middle/check_integrity(var/obj/structure/stairs/bottom/B = null,
-											 var/obj/structure/stairs/middle/M = null, 
+											 var/obj/structure/stairs/middle/M = null,
 											 var/obj/structure/stairs/top/T = null,
 											 var/turf/simulated/open/O = null)
-	
+
 	// In the  case where we're provided all the pieces, just try connecting them.
 	// In order: all exist, they are appropriately adjacent, and they can connect
 	if(istype(B) && istype(M) && istype(T) && istype(O) && \
@@ -280,7 +279,7 @@
 	// Top is static for Middle stair, if it's invalid we can't do much
 	if(!istype(T))
 		return FALSE
-	
+
 	// If you set the dir, that's the dir it *wants* to connect in. It only chooses the others if that doesn't work
 	// Everything is simply linked in our original direction
 	if(istype(B1) && istype(T2) && istype(O) && ..(B, src, T, O))
@@ -292,11 +291,11 @@
 		O = GetAbove(B1)
 		if(!istype(B1) || !istype(O))
 			continue
-		
+
 		B = locate(/obj/structure/stairs/bottom) in B1
 		if(..(B, src, T, O))
 			return TRUE
-	
+
 	// The middle stair has some further special logic, in that it can be climbed, and so is technically valid if only the top exists
 	// T is enforced by a prior if
 	T.middle = src
@@ -340,7 +339,7 @@
 										  var/obj/structure/stairs/middle/M = null,
 										  var/obj/structure/stairs/top/T = null,
 										  var/turf/simulated/open/O = null)
-	
+
 	// In the  case where we're provided all the pieces, just try connecting them.
 	// In order: all exist, they are appropriately adjacent, and they can connect
 	if(istype(B) && istype(M) && istype(T) && istype(O) && \
@@ -376,11 +375,11 @@
 		B1 = GetBelow(O)
 		if(!istype(B1) || !istype(O))
 			continue
-		
+
 		B = locate(/obj/structure/stairs/bottom) in B1
 		if((. = ..(B, M, src, O)))
 			return
-	
+
 	// Out of the dir check, we have no valid neighbors, and thus are not complete. `.` was set by ..()
 	return
 
@@ -393,7 +392,7 @@
 
 /obj/structure/stairs/top/Uncrossed(var/atom/movable/AM)
 	// Going down stairs from the topstair piece
-	if(AM.dir == turn(dir, 180) && check_integrity())
+	if(AM.dir == turn(dir, 180) && isturf(AM.loc) && check_integrity())
 		use_stairs_instant(AM)
 		return
 
@@ -402,13 +401,13 @@
 	// Or if we climb up the middle
 	if((bottom in oldloc) || oldloc == GetBelow(src))
 		return
-	
+
 	if(isobserver(AM)) // Ghosts have their own methods for going up and down
 		return
-	
+
 	if(AM.pulledby) // Animating the movement of pulled things is handled when the puller goes up the stairs
 		return
-	
+
 	if(AM.has_buckled_mobs()) // Similarly, the rider entering the turf will bring along whatever they're buckled to
 		return
 
@@ -427,7 +426,7 @@
 			pulling |= L.pulling
 		for(var/obj/item/weapon/grab/G in list(L.l_hand, L.r_hand))
 			pulling |= G.affecting
-	
+
 	// If the stairs aren't broken, go up.
 	if(check_integrity())
 		AM.dir = turn(src.dir, 180)
@@ -437,7 +436,7 @@
 
 		// Move to Top
 		AM.forceMove(get_turf(bottom))
-		
+
 		// If something is being pulled, bring it along directly to avoid the mob being torn away from it due to movement delays
 		for(var/atom/movable/P in pulling)
 			P.forceMove(get_turf(bottom)) // Just bring it along directly, no fussing with animation timing
@@ -454,26 +453,27 @@
 
 	if(isliving(AM))
 		var/mob/living/L = AM
-	
+
 		if(L.grabbed_by.len) // Same as pulledby, whoever's holding you will keep you from going down stairs.
-			return
-		
-		if(L.has_buckled_mobs())
 			return
 
 		if(L.buckled)
 			L.buckled.forceMove(get_turf(bottom))
-		
-		// If the object is pulling or grabbing anything, we'll want to move those too. A grab chain may be disrupted in doing so.
+
+		var/atom/movable/P = null
 		if(L.pulling && !L.pulling.anchored)
-			var/atom/movable/P = L.pulling
+			P = L.pulling
+			P.forceMove(get_turf(L))
+
+		L.forceMove(get_turf(bottom))
+
+		// If the object is pulling or grabbing anything, we'll want to move those too. A grab chain may be disrupted in doing so.
+		if(P)
 			P.forceMove(get_turf(bottom))
 			L.start_pulling(P)
 
 		for(var/obj/item/weapon/grab/G in list(L.l_hand, L.r_hand))
 			G.affecting.forceMove(get_turf(bottom))
-		
-		L.forceMove(get_turf(bottom))
 
 		if(L.client)
 			L.client.Process_Grab()
@@ -492,14 +492,14 @@
 	var/turf/B2 = get_turf(src)
 	var/turf/T1 = GetAbove(B1)
 	var/turf/T2 = GetAbove(B2)
-	
+
 	if(!istype(B1) || !istype(B2))
 		warning("Stair created at invalid loc: ([loc.x], [loc.y], [loc.z])")
 		return INITIALIZE_HINT_QDEL
 	if(!istype(T1) || !istype(T2))
 		warning("Stair created without level above: ([loc.x], [loc.y], [loc.z])")
 		return INITIALIZE_HINT_QDEL
-	
+
 	// Spawn the stairs
 	// Railings sold separately
 	var/turf/simulated/open/O = T1
@@ -515,12 +515,12 @@
 	B.check_integrity(B, M, T, O)
 
 	return INITIALIZE_HINT_QDEL
-	
+
 // For ease of spawning. While you *can* spawn the base type and set its dir, this is useful for adminbus and a little bit quicker to map in
 /obj/structure/stairs/spawner/north
 	dir = NORTH
 	bound_height = 64
-	bound_y = -32
+	//bound_y = -32
 	pixel_y = -32
 
 /obj/structure/stairs/spawner/south
@@ -530,7 +530,7 @@
 /obj/structure/stairs/spawner/east
 	dir = EAST
 	bound_width = 64
-	bound_x = -32
+	//bound_x = -32
 	pixel_x = -32
 
 /obj/structure/stairs/spawner/west

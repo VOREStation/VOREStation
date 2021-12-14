@@ -1171,9 +1171,9 @@ var/datum/announcement/minor/admin_min_announcer = new
 	log_admin("[key_name(usr)] spawned [seedtype] vines at ([usr.x],[usr.y],[usr.z])")
 
 /datum/admins/proc/spawn_atom(var/object as text)
+	set name = "Spawn"
 	set category = "Debug"
 	set desc = "(atom path) Spawn an atom"
-	set name = "Spawn"
 
 	if(!check_rights(R_SPAWN))	return
 

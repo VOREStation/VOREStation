@@ -49,7 +49,7 @@
 /datum/gear/utility/dufflebag/eng
 	display_name = "engineering dufflebag"
 	path = /obj/item/weapon/storage/backpack/dufflebag/eng
-	allowed_roles = list("Chief Engineer","Atmospheric Technician","Station Engineer")
+	allowed_roles = list("Chief Engineer","Atmospheric Technician","Engineer")
 
 /datum/gear/utility/dufflebag/sci
 	display_name = "science dufflebag"
@@ -62,7 +62,7 @@
 	allowed_roles = list("Pathfinder","Explorer")
 
 /datum/gear/utility/dufflebag/talon
-	display_name = "ITV dufflebag"
+	display_name = "Talon dufflebag"
 	path = /obj/item/weapon/storage/backpack/dufflebag/explorer
 
 /datum/gear/utility/ID

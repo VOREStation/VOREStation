@@ -41,7 +41,7 @@
 				drying = A
 		else // Drying something, add if possible
 			var/obj/item/stack/wetleather/W = A
-			W.transfer_to(drying, W.amount, TRUE)
+			W.transfer_to(drying, W.get_amount(), TRUE)
 		update_icon()
 		return TRUE
 	return ..()
@@ -50,9 +50,8 @@
 	if(drying)
 		var/obj/item/stack/S = drying
 		if(!drying.wetness) // If it's dry, make a stack of dry leather and prepare to put that in their hands
-			var/obj/item/stack/material/leather/L = new(src)
-			L.amount = drying.amount
-			drying.use(drying.amount)
+			var/obj/item/stack/material/leather/L = new(src, drying.get_amount())
+			drying.set_amount(0)
 			S = L
 
 		if(ishuman(user))

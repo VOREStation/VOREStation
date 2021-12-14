@@ -36,6 +36,7 @@ List of things solar grubs should be able to do:
 	movement_cooldown = 8
 
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/grubmeat
+	meat_amount = 6
 
 	response_help = "pokes"
 	response_disarm = "pushes"
@@ -159,7 +160,7 @@ List of things solar grubs should be able to do:
 		"The solargrub chitters in irritation at your continued solidity, followed by a string of crushingly tight stomach clenches that grind its caustic stomach ooze into your body!",
 		"The deceptively severe heat trapped within the solargrub works in tandem with its inner muscles and your tingling, prickling stomach juice bath to weaken you!")
 
-/datum/ai_holder/simple_mob/retaliate/solargrub/react_to_attack(atom/movable/attacker)
+/datum/ai_holder/simple_mob/retaliate/solargrub/react_to_attack(atom/movable/attacker, ignore_timers = FALSE)
 	holder.anchored = FALSE
 	holder.set_AI_busy(FALSE)
 	..()

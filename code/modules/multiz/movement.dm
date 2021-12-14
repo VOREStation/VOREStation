@@ -59,7 +59,7 @@
 			if(lattice)
 				var/pull_up_time = max(5 SECONDS + (src.movement_delay() * 10), 1)
 				to_chat(src, "<span class='notice'>You grab \the [lattice] and start pulling yourself upward...</span>")
-				destination.audible_message("<span class='notice'>You hear something climbing up \the [lattice].</span>", runemessage = "clank clang")
+				src.audible_message("<span class='notice'>[src] begins climbing up \the [lattice].</span>", runemessage = "clank clang")
 				if(do_after(src, pull_up_time))
 					to_chat(src, "<span class='notice'>You pull yourself up.</span>")
 				else
@@ -74,14 +74,14 @@
 				if(!destination?.Enter(src, old_dest))
 					to_chat(src, "<span class='notice'>There's something in the way up above in that direction, try another.</span>")
 					return 0
-				destination.audible_message("<span class='notice'>You hear something climbing up \the [catwalk].</span>", runemessage = "clank clang")
+				src.audible_message("<span class='notice'>[src] begins climbing up \the [lattice].</span>", runemessage = "clank clang")
 				if(do_after(src, pull_up_time))
 					to_chat(src, "<span class='notice'>You pull yourself up.</span>")
 				else
 					to_chat(src, "<span class='warning'>You gave up on pulling yourself up.</span>")
 					return 0
 
-			else if(ismob(src)) //VOREStation Edit Start. Are they a mob, and are they currently flying??
+			else if(isliving(src)) //VOREStation Edit Start. Are they a mob, and are they currently flying??
 				var/mob/living/H = src
 				if(H.flying)
 					if(H.incapacitated(INCAPACITATION_ALL))
@@ -90,7 +90,6 @@
 						return 0
 					var/fly_time = max(7 SECONDS + (H.movement_delay() * 10), 1) //So it's not too useful for combat. Could make this variable somehow, but that's down the road.
 					to_chat(src, "<span class='notice'>You begin to fly upwards...</span>")
-					destination.audible_message("<span class='notice'>You hear the flapping of wings.</span>", runemessage = "flap flap")
 					H.audible_message("<span class='notice'>[H] begins to flap \his wings, preparing to move upwards!</span>", runemessage = "flap flap")
 					if(do_after(H, fly_time) && H.flying)
 						to_chat(src, "<span class='notice'>You fly upwards.</span>")
@@ -105,19 +104,17 @@
 				to_chat(src, "<span class='warning'>Gravity stops you from moving upward.</span>")
 				return 0
 
-	//VOREStation Addition Start
-	for(var/atom/A in start)
-		if(!A.CheckExit(src, destination))
-			to_chat(src, "<span class='warning'>\The [A] blocks you.</span>")
-			return 0
-	//VOREStation Addition End
-
 	for(var/atom/A in destination)
 		if(!A.CanPass(src, start, 1.5, 0))
 			to_chat(src, "<span class='warning'>\The [A] blocks you.</span>")
 			return 0
 	if(!Move(destination))
 		return 0
+	if(isliving(src))
+		if(direction == UP)
+			src.audible_message("<span class='notice'>[src] moves up.</span>")
+		else if(direction == DOWN)
+			src.audible_message("<span class='notice'>[src] moves down.</span>")
 	return 1
 
 /mob/proc/can_overcome_gravity()
@@ -265,7 +262,7 @@
 			return
 	//VOREStation Edit End
 
-	if(can_fall())
+	if(can_fall() && can_fall_to(below))
 		// We spawn here to let the current move operation complete before we start falling. fall() is normally called from
 		// Entered() which is part of Move(), by spawn()ing we let that complete.  But we want to preserve if we were in client movement
 		// or normal movement so other move behavior can continue.
@@ -318,6 +315,20 @@
 	if(..())
 		return species.can_fall(src)
 
+// Another check that we probably can just merge into can_fall exept for messing up overrides
+/atom/movable/proc/can_fall_to(turf/landing)
+	// Check if there is anything in our turf we are standing on to prevent falling.
+	for(var/obj/O in loc)
+		if(!O.CanFallThru(src, landing))
+			return FALSE
+	// See if something in turf below prevents us from falling into it.
+	for(var/atom/A in landing)
+		if(ismob(A))
+			continue
+		if(!A.CanPass(src, src.loc, 1, 0))
+			return FALSE
+	return TRUE
+
 // Check if this atom prevents things standing on it from falling. Return TRUE to allow the fall.
 /obj/proc/CanFallThru(atom/movable/mover as mob|obj, turf/target as turf)
 	if(!isturf(mover.loc)) // VORESTATION EDIT. We clearly didn't have enough backup checks.
@@ -356,15 +367,6 @@
 // Actually process the falling movement and impacts.
 /atom/movable/proc/handle_fall(var/turf/landing)
 	var/turf/oldloc = loc
-
-	// Check if there is anything in our turf we are standing on to prevent falling.
-	for(var/obj/O in loc)
-		if(!O.CanFallThru(src, landing))
-			return FALSE
-	// See if something in turf below prevents us from falling into it.
-	for(var/atom/A in landing)
-		if(!A.CanPass(src, src.loc, 1, 0))
-			return FALSE
 
 	// Now lets move there!
 	if(!Move(landing))
@@ -469,13 +471,16 @@
 // Take damage from falling and hitting the ground
 /mob/living/fall_impact(var/atom/hit_atom, var/damage_min = 0, var/damage_max = 5, var/silent = FALSE, var/planetary = FALSE)
 	var/turf/landing = get_turf(hit_atom)
+	var/safe_fall = FALSE
+	if(src.softfall || (istype(src, /mob/living/simple_mob) && src.mob_size <= MOB_SMALL))
+		safe_fall = TRUE
 	if(planetary && src.CanParachute())
 		if(!silent)
 			visible_message("<span class='warning'>\The [src] glides in from above and lands on \the [landing]!</span>", \
 				"<span class='danger'>You land on \the [landing]!</span>", \
 				"You hear something land \the [landing].")
 		return
-	else if(!planetary && src.softfall) // Falling one floor and falling one atmosphere are very different things
+	else if(!planetary && safe_fall) // Falling one floor and falling one atmosphere are very different things
 		if(!silent)
 			visible_message("<span class='warning'>\The [src] falls from above and lands on \the [landing]!</span>", \
 				"<span class='danger'>You land on \the [landing]!</span>", \

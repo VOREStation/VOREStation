@@ -23,8 +23,7 @@
 	if(light_range > 0 && light_intensity > 0)
 		var/list/turf/line = getline(starting.return_turf(), ending.return_turf())
 		tracing_line:
-			for(var/i in line)
-				var/turf/T = i
+			for(var/turf/T as anything in line)
 				for(var/obj/effect/projectile_lighting/PL in T)
 					if(PL.owner == instance_key)
 						continue tracing_line
