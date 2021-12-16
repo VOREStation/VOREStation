@@ -201,7 +201,7 @@
 		/obj/item/clothing/head/helmet/space/emergency,
 		/obj/item/clothing/mask/breath,
 		/obj/item/weapon/tank/oxygen,
-		/obj/item/suit_cooling_unit/emergency,
+		/obj/item/device/suit_cooling_unit/emergency,
 		/obj/item/device/gps,
 		/obj/item/weapon/material/knife/tacknife/survival,
 		/obj/random/mre,
