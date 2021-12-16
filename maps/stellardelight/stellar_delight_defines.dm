@@ -14,6 +14,7 @@
 #define Z_LEVEL_OVERMAP						13
 #define Z_LEVEL_OFFMAP1						14
 #define Z_LEVEL_GATEWAY						15
+#define Z_LEVEL_OM_ADVENTURE				16
 
 //Camera networks
 #define NETWORK_HALLS "Halls"
@@ -55,6 +56,7 @@
 
 	station_name  = "NRV Stellar Delight"
 	station_short = "Stellar Delight"
+	facility_type = "ship"
 	dock_name     = "Virgo-3B Colony"
 	dock_type     = "surface"
 	boss_name     = "Central Command"
@@ -136,7 +138,7 @@
 		list("Offmap Ship - Talon V2")
 		)
 
-	lateload_single_pick = list(
+	lateload_gateway = list(
 		list("Carp Farm"),
 		list("Snow Field"),
 		list("Listening Post"),
@@ -145,6 +147,10 @@
 		list("Arynthi Lake Underground B","Arynthi Lake B"),
 		list("Eggnog Town Underground","Eggnog Town"),
 		list("Wild West")
+		)
+
+	lateload_overmap = list(
+		list("Grass Cave")
 		)
 
 	ai_shell_restricted = TRUE
@@ -166,8 +172,6 @@
 	mining_station_z =		list(Z_LEVEL_SPACE_LOW)
 	mining_outpost_z =		list(Z_LEVEL_SURFACE_MINE)
 */
-	lateload_single_pick = null //Nothing right now.
-
 	planet_datums_to_make = list(/datum/planet/virgo3b,
 								/datum/planet/virgo4)
 

@@ -461,7 +461,7 @@
 
 /obj/structure/reagent_dispensers/cookingoil/New()
 		..()
-		reagents.add_reagent("cornoil",5000)
+		reagents.add_reagent("cookingoil",5000)
 
 /obj/structure/reagent_dispensers/cookingoil/bullet_act(var/obj/item/projectile/Proj)
 	if(Proj.get_structure_damage())

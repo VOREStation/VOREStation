@@ -1139,7 +1139,8 @@
 	product_ads = "Dress your best! It's what big D would want.;Overwear for all occasions!;Big D has what you need if what you need is some form of jacket!;Need a new hoodie? Bid D has you covered.;Big D says you need a new suit!;Big D smiles when he sees you in one of his coats!"
 	icon_state = "suit"
 	vend_delay = 16
-	products = list(/obj/item/clothing/suit/storage/apron = 5,
+	products = list(/obj/item/clothing/suit/storage/toggle/labcoat/old = 100,
+					/obj/item/clothing/suit/storage/apron = 5,
 					/obj/item/clothing/suit/storage/flannel/aqua = 5,
 					/obj/item/clothing/suit/storage/toggle/bomber = 5,
 					/obj/item/clothing/suit/storage/bomber/alt = 5,
@@ -3938,7 +3939,7 @@
 					/obj/item/weapon/reagent_containers/food/snacks/meat/grubmeat = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/meat/chicken = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/meat/corgi = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/meat/crab = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/crabmeat = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/meat/fox = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/meat/grubmeat = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/meat/human = 10,
@@ -4394,7 +4395,7 @@
 					/obj/item/weapon/reagent_containers/food/snacks/meat/grubmeat = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/meat/chicken = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/meat/corgi = 10,
-					/obj/item/weapon/reagent_containers/food/snacks/meat/crab = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/crabmeat = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/meat/fox = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/meat/grubmeat = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/meat/human = 10,

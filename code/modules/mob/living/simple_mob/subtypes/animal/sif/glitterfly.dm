@@ -56,7 +56,7 @@
 
 	tame_items = list(
 	/obj/item/weapon/reagent_containers/food/snacks/grown = 90,
-	/obj/item/weapon/reagent_containers/food/snacks/meat/crab = 10,
+	/obj/item/weapon/reagent_containers/food/snacks/crabmeat = 10,
 	/obj/item/weapon/reagent_containers/food/snacks/meat = 5
 	)
 

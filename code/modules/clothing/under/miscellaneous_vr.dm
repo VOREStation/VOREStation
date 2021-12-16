@@ -102,7 +102,7 @@
 		if(new_size != H.size_multiplier)
 			if(!original_size)
 				original_size = H.size_multiplier
-			H.resize(new_size/100, ignore_prefs = TRUE) // Ignores prefs because you can only resize yourself
+			H.resize(new_size/100, uncapped = H.has_large_resize_bounds(), ignore_prefs = TRUE) // Ignores prefs because you can only resize yourself
 			H.visible_message("<span class='warning'>The space around [H] distorts as they change size!</span>","<span class='notice'>The space around you distorts as you change size!</span>")
 		else //They chose their current size.
 			return
@@ -142,7 +142,9 @@
 	name = "pizza delivery uniform"
 	desc = "A dedicated outfit for pizza delivery people, one of most dangerous occupations around these parts. Can be rolled up for extra show of skin."
 	icon = 'icons/inventory/uniform/item_vr.dmi'
+	icon_override = 'icons/inventory/uniform/mob_vr.dmi'
 	rolled_down_icon = 'icons/inventory/uniform/mob_vr_rolled_down.dmi'
+	rolled_down_icon_override = FALSE
 	icon_state = "pizzadelivery"
 	item_state = "pizzadelivery"
 	rolled_down = 0
@@ -158,6 +160,8 @@
 	icon_state = "talon_basic"
 	item_state = "talon_basic"
 	rolled_sleeves = 0
+	rolled_down_icon_override = FALSE
+	rolled_sleeves_icon_override = FALSE
 
 /obj/item/clothing/under/rank/talon/proper
 	name = "Talon proper jumpsuit"
@@ -168,6 +172,8 @@
 	icon_state = "talon_jumpsuit"
 	item_state = "talon_jumpsuit"
 	rolled_sleeves = 0
+	rolled_down_icon_override = FALSE
+	rolled_sleeves_icon_override = FALSE
 
 /obj/item/clothing/under/rank/talon/security
 	name = "Talon security jumpsuit"
@@ -178,6 +184,8 @@
 	icon_state = "talon_security"
 	item_state = "talon_security"
 	rolled_sleeves = 0
+	rolled_down_icon_override = FALSE
+	rolled_sleeves_icon_override = FALSE
 
 /obj/item/clothing/under/rank/talon/pilot
 	name = "Talon pilot jumpsuit"
@@ -188,6 +196,8 @@
 	icon_state = "talon_pilot"
 	item_state = "talon_pilot"
 	rolled_sleeves = 0
+	rolled_down_icon_override = FALSE
+	rolled_sleeves_icon_override = FALSE
 
 /obj/item/clothing/under/rank/talon/command
 	name = "Talon command jumpsuit"
@@ -198,6 +208,8 @@
 	icon_state = "talon_captain"
 	item_state = "talon_captain"
 	rolled_sleeves = 0
+	rolled_down_icon_override = FALSE
+	rolled_sleeves_icon_override = FALSE
 
 // Excelsior uniforms
 /obj/item/clothing/under/excelsior

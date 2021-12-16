@@ -32,10 +32,11 @@ SUBSYSTEM_DEF(ai)
 	while(currentrun.len)
 		var/datum/ai_holder/A = currentrun[currentrun.len]
 		--currentrun.len
-		if(!A || QDELETED(A) || !A.holder?.loc || A.busy) // Doesn't exist or won't exist soon or not doing it this tick
+		var/mob/living/L = A.holder	//VOREStation Edit Start
+		if(!A || QDELETED(A) || !L?.loc || A.busy) // Doesn't exist or won't exist soon or not doing it this tick
 			continue
 		
-		if(process_z[get_z(A.holder)])
+		if(process_z[get_z(L)] || !L.low_priority) //VOREStation Edit End
 			A.handle_strategicals()
 		else
 			slept_mobs++

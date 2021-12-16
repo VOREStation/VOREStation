@@ -37,6 +37,7 @@ var/list/_cat_default_emotes = list(
 
 	movement_cooldown = 0.5 SECONDS
 
+	meat_amount = 1
 	see_in_dark = 6 // Not sure if this actually works.
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"

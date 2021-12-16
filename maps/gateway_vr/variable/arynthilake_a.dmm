@@ -3,7 +3,7 @@
 /turf/unsimulated/mineral,
 /area/gateway/arynthilake)
 "ac" = (
-/turf/simulated/mineral/ignore_cavegen,
+/turf/simulated/mineral/ignore_cavegen/cave,
 /area/gateway/arynthilake)
 "ae" = (
 /obj/effect/floor_decal/techfloor{
@@ -18,7 +18,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/gateway/arynthilake/gateway)
 "af" = (
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen/cave,
 /area/gateway/arynthilake)
 "ag" = (
 /turf/simulated/wall/r_wall,
@@ -147,7 +147,7 @@
 /area/gateway/arynthilake/oldcabin)
 "aV" = (
 /obj/item/weapon/lampshade,
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen/cave,
 /area/gateway/arynthilake/caves)
 "aX" = (
 /turf/simulated/floor/carpet/bcarpet,
@@ -227,13 +227,13 @@
 /area/gateway/arynthilake)
 "bn" = (
 /obj/structure/table/steel,
-/turf/simulated/mineral/floor/ignore_cavegen{
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	outdoors = 1
 	},
 /area/gateway/arynthilake)
 "bo" = (
 /obj/structure/table,
-/turf/simulated/mineral/floor/ignore_cavegen{
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	outdoors = 1
 	},
 /area/gateway/arynthilake)
@@ -345,7 +345,7 @@
 /obj/item/stack/material/steel{
 	amount = 50
 	},
-/turf/simulated/mineral/floor/ignore_cavegen{
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	outdoors = 1
 	},
 /area/gateway/arynthilake)
@@ -540,7 +540,7 @@
 /area/gateway/arynthilake/dome)
 "eV" = (
 /obj/effect/landmark/mcguffin_spawner,
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen/cave,
 /area/gateway/arynthilake/caves)
 "eW" = (
 /obj/item/device/analyzer/plant_analyzer,
@@ -727,7 +727,7 @@
 	},
 /area/gateway/arynthilake/dome)
 "jI" = (
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen/cave,
 /area/gateway/arynthilake/caves)
 "jK" = (
 /obj/structure/table/rack/shelf/steel,
@@ -919,7 +919,7 @@
 /area/gateway/arynthilake)
 "nc" = (
 /obj/random/awayloot,
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen/cave,
 /area/gateway/arynthilake/caves)
 "np" = (
 /obj/random/mob/semirandom_mob_spawner/animal/e,
@@ -927,7 +927,7 @@
 /area/gateway/arynthilake)
 "nr" = (
 /obj/effect/fake_sun,
-/turf/simulated/mineral/ignore_cavegen,
+/turf/simulated/mineral/ignore_cavegen/cave,
 /area/gateway/arynthilake/caves)
 "nx" = (
 /obj/machinery/door/airlock/engineering,
@@ -1176,7 +1176,7 @@
 /area/gateway/arynthilake/engine)
 "sl" = (
 /obj/effect/overmap/visitable/sector/common_gateway/arynthilake,
-/turf/simulated/mineral/ignore_cavegen,
+/turf/simulated/mineral/ignore_cavegen/cave,
 /area/gateway/arynthilake/caves)
 "sA" = (
 /obj/structure/table/rack/steel,
@@ -1754,7 +1754,7 @@
 /area/gateway/arynthilake/engine)
 "Iq" = (
 /obj/random/mob/semirandom_mob_spawner/humanoid/retaliate,
-/turf/simulated/mineral/floor/ignore_cavegen{
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	outdoors = 1
 	},
 /area/gateway/arynthilake)
@@ -1813,7 +1813,7 @@
 /turf/simulated/floor/tiled/eris/techmaint_cargo,
 /area/gateway/arynthilake/dome)
 "JK" = (
-/turf/simulated/mineral/floor/ignore_cavegen{
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	outdoors = 1
 	},
 /area/gateway/arynthilake)
@@ -1936,7 +1936,7 @@
 /turf/simulated/floor/carpet/purcarpet,
 /area/gateway/arynthilake/dome)
 "MD" = (
-/turf/simulated/mineral/floor/ignore_cavegen{
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	outdoors = 1
 	},
 /area/gateway/arynthilake/caves)
@@ -2070,7 +2070,7 @@
 /area/gateway/arynthilake/dome)
 "Or" = (
 /obj/effect/landmark/hidden_level,
-/turf/simulated/mineral/ignore_cavegen,
+/turf/simulated/mineral/ignore_cavegen/cave,
 /area/gateway/arynthilake/caves)
 "OC" = (
 /turf/simulated/floor/carpet/blucarpet{
@@ -2098,7 +2098,7 @@
 	check_arrest = 0;
 	check_down = 0;
 	check_records = 0;
-	control_area = /area/gateway/grasslands/underground/maintenance;
+	control_area = /area/gateway/arynthilake/underground/maintenance;
 	desc = "A firewall prevents AIs from interacting with this device.";
 	lethal = 1;
 	locked = 0;
@@ -2150,7 +2150,7 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/gateway/arynthilake/engine)
 "Qr" = (
-/turf/simulated/mineral/ignore_cavegen,
+/turf/simulated/mineral/ignore_cavegen/cave,
 /area/gateway/arynthilake/caves)
 "Qx" = (
 /obj/random/mob/semirandom_mob_spawner/robot/retaliate,
@@ -2308,7 +2308,7 @@
 /turf/simulated/floor/wood,
 /area/gateway/arynthilake/dome)
 "UZ" = (
-/turf/simulated/mineral/ignore_cavegen,
+/turf/simulated/mineral/ignore_cavegen/cave,
 /area/gateway/arynthilake/caveruins)
 "Vf" = (
 /obj/structure/closet,
@@ -2355,7 +2355,7 @@
 /area/gateway/arynthilake/caveruins)
 "We" = (
 /obj/random/mob/semirandom_mob_spawner/monster/e,
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen/cave,
 /area/gateway/arynthilake/caves)
 "Wj" = (
 /obj/machinery/light{

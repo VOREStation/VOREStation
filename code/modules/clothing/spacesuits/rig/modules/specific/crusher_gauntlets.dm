@@ -13,7 +13,7 @@
 	usable = 0
 	toggleable = 1
 	use_power_cost = 0
-	active_power_cost = 2.5
+	active_power_cost = 0
 	passive_power_cost = 0
 	var/obj/item/weapon/kinetic_crusher/machete/gauntlets/rig/stored_gauntlets
 

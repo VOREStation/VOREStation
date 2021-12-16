@@ -36,14 +36,21 @@ CIRCUITS BELOW
 	id = "oriontrail"
 	req_tech = list(TECH_DATA = 1)
 	build_path = /obj/item/weapon/circuitboard/arcade/orion_trail
-	sort_string = "MAAAZ"		// Duplicate string, really need to redo this whole thing
+	sort_string = "MAAAB"
+
+/datum/design/circuit/clawmachine
+	name = "grab-a-gift arcade machine"
+	id = "clawmachine"
+	req_tech = list(TECH_DATA = 1)
+	build_path = /obj/item/weapon/circuitboard/arcade/clawmachine
+	sort_string = "MAAAC"
 
 /datum/design/circuit/jukebox
 	name = "jukebox"
 	id = "jukebox"
 	req_tech = list(TECH_MAGNET = 2, TECH_DATA = 1)
 	build_path = /obj/item/weapon/circuitboard/jukebox
-	sort_string = "MAAAB"
+	sort_string = "MAAAO"
 
 /datum/design/circuit/seccamera
 	name = "security camera monitor"

@@ -1,0 +1,115 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"M" = (
+/mob/living/simple_mob/creature,
+/turf/simulated/floor/flesh{
+	base_icon = 'icons/turf/stomach_vr.dmi'
+	},
+/area/om_adventure/poi/fleshtear3)
+"Q" = (
+/turf/simulated/floor/flesh{
+	base_icon = 'icons/turf/stomach_vr.dmi'
+	},
+/area/om_adventure/poi/fleshtear3)
+
+(1,1,1) = {"
+a
+a
+Q
+Q
+Q
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+Q
+a
+a
+Q
+Q
+Q
+Q
+a
+"}
+(3,1,1) = {"
+Q
+Q
+Q
+a
+a
+a
+a
+Q
+a
+"}
+(4,1,1) = {"
+Q
+a
+Q
+Q
+Q
+Q
+a
+Q
+Q
+"}
+(5,1,1) = {"
+Q
+a
+Q
+M
+Q
+Q
+a
+Q
+Q
+"}
+(6,1,1) = {"
+Q
+a
+Q
+Q
+Q
+a
+a
+a
+Q
+"}
+(7,1,1) = {"
+Q
+Q
+a
+Q
+Q
+Q
+a
+Q
+Q
+"}
+(8,1,1) = {"
+a
+Q
+Q
+a
+Q
+Q
+Q
+Q
+Q
+"}
+(9,1,1) = {"
+a
+a
+Q
+Q
+a
+Q
+Q
+Q
+a
+"}

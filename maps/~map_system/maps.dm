@@ -53,7 +53,8 @@ var/list/all_maps = list()
 	var/list/lateload_z_levels = list()
 
 	//Similar to above, but only pick ONE to load, useful for random away missions and whatnot
-	var/list/lateload_single_pick = list()
+	var/list/lateload_gateway = list()
+	var/list/lateload_overmap = list() //VOREStation Add - The same thing as gateway, but not
 
 	var/list/allowed_jobs = list() //Job datums to use.
 	                               //Works a lot better so if we get to a point where three-ish maps are used
@@ -81,6 +82,7 @@ var/list/all_maps = list()
 
 	var/station_name  = "BAD Station"
 	var/station_short = "Baddy"
+	var/facility_type = "facility"
 	var/dock_name     = "THE PirateBay"
 	var/dock_type     = "station"	//VOREStation Edit - for a list of valid types see the switch block in air_traffic.dm at line 148
 	var/boss_name     = "Captain Roger"

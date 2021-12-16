@@ -277,13 +277,6 @@
 		return MOVEMENT_FAILED //Mobs aren't that stupid, probably
 	return ..() // Procede as normal.
 
-//Grab = Nomf
-/mob/living/simple_mob/UnarmedAttack(var/atom/A, var/proximity)
-	. = ..()
-
-	if(a_intent == I_GRAB && isliving(A) && !has_hands)
-		animal_nom(A)
-
 // Riding
 /datum/riding/simple_mob
 	keytype = /obj/item/weapon/material/twohanded/riding_crop // Crack!

@@ -848,32 +848,6 @@
 	nutriment_desc = list("dryness" = 2, "bread" = 2)
 	bitesize = 1
 
-/obj/item/weapon/reagent_containers/food/snacks/carpmeat
-	name = "fillet"
-	desc = "A fillet of carp meat"
-	icon_state = "fishfillet"
-	filling_color = "#FFDEFE"
-	center_of_mass = list("x"=17, "y"=13)
-	bitesize = 6
-
-	var/toxin_type = "carpotoxin"
-	var/toxin_amount = 3
-
-/obj/item/weapon/reagent_containers/food/snacks/carpmeat/Initialize()
-	. = ..()
-	reagents.add_reagent("protein", 3)
-	reagents.add_reagent(toxin_type, toxin_amount)
-
-/obj/item/weapon/reagent_containers/food/snacks/crabmeat
-	name = "crab legs"
-	desc = "... Coffee? Is that you?"
-	icon_state = "crabmeat"
-	bitesize = 1
-
-/obj/item/weapon/reagent_containers/food/snacks/crabmeat/Initialize()
-	. = ..()
-	reagents.add_reagent("seafood", 2)
-
 /obj/item/weapon/reagent_containers/food/snacks/crab_legs
 	name = "steamed crab legs"
 	desc = "Crab legs steamed and buttered to perfection. One day when the boss gets hungry..."
@@ -887,21 +861,6 @@
 	. = ..()
 	reagents.add_reagent("seafood", 6)
 	reagents.add_reagent("sodiumchloride", 1)
-
-/obj/item/weapon/reagent_containers/food/snacks/carpmeat/sif
-	desc = "A fillet of sivian fish meat."
-	filling_color = "#2c2cff"
-	color = "#2c2cff"
-	toxin_type = "neurotoxic_protein"
-	toxin_amount = 2
-
-/obj/item/weapon/reagent_containers/food/snacks/carpmeat/sif/murkfish
-	toxin_type = "murk_protein"
-
-/obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish
-	desc = "A fillet of fish meat."
-	toxin_type = "neurotoxic_protein"
-	toxin_amount = 1
 
 /obj/item/weapon/reagent_containers/food/snacks/fishfingers
 	name = "Fish Fingers"
@@ -926,69 +885,6 @@
 /obj/item/weapon/reagent_containers/food/snacks/zestfish/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 4)
-
-/obj/item/weapon/reagent_containers/food/snacks/hugemushroomslice
-	name = "huge mushroom slice"
-	desc = "A slice from a huge mushroom."
-	icon_state = "hugemushroomslice"
-	filling_color = "#E0D7C5"
-	center_of_mass = list("x"=17, "y"=16)
-	nutriment_amt = 3
-	nutriment_desc = list("raw" = 2, "mushroom" = 2)
-	bitesize = 6
-
-/obj/item/weapon/reagent_containers/food/snacks/hugemushroomslice/Initialize()
-	. = ..()
-	reagents.add_reagent("psilocybin", 3)
-
-/obj/item/weapon/reagent_containers/food/snacks/tomatomeat
-	name = "tomato slice"
-	desc = "A slice from a huge tomato"
-	icon_state = "tomatomeat"
-	filling_color = "#DB0000"
-	center_of_mass = list("x"=17, "y"=16)
-	nutriment_amt = 3
-	nutriment_desc = list("raw" = 2, "tomato" = 3)
-	bitesize = 6
-
-/obj/item/weapon/reagent_containers/food/snacks/bearmeat
-	name = "bear meat"
-	desc = "A very manly slab of meat."
-	icon_state = "bearmeat"
-	filling_color = "#DB0000"
-	center_of_mass = list("x"=16, "y"=10)
-	bitesize = 3
-
-/obj/item/weapon/reagent_containers/food/snacks/bearmeat/Initialize()
-	. = ..()
-	reagents.add_reagent("protein", 12)
-	reagents.add_reagent("hyperzine", 5)
-
-/obj/item/weapon/reagent_containers/food/snacks/xenomeat
-	name = "xenomeat"
-	desc = "A slab of green meat. Smells like acid."
-	icon_state = "xenomeat"
-	filling_color = "#43DE18"
-	center_of_mass = list("x"=16, "y"=10)
-	bitesize = 6
-
-/obj/item/weapon/reagent_containers/food/snacks/xenomeat/Initialize()
-	. = ..()
-	reagents.add_reagent("protein", 6)
-	reagents.add_reagent("pacid",6)
-
-/obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat // Substitute for recipes requiring xeno meat.
-	name = "spider meat"
-	desc = "A slab of green meat."
-	icon_state = "xenomeat"
-	filling_color = "#43DE18"
-	center_of_mass = list("x"=16, "y"=10)
-	bitesize = 6
-
-/obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat/Initialize()
-	. = ..()
-	reagents.add_reagent("spidertoxin",6)
-	reagents.remove_reagent("pacid",6)
 
 /obj/item/weapon/reagent_containers/food/snacks/meatball
 	name = "meatball"
@@ -3361,7 +3257,7 @@
 	. = ..()
 	reagents.add_reagent("blackpepper", 1)
 	reagents.add_reagent("sodiumchloride", 1)
-	reagents.add_reagent("cornoil", 1)
+	reagents.add_reagent("cookingoil", 1)
 
 /obj/item/weapon/reagent_containers/food/snacks/turkeyslice
 	name = "turkey drumstick"
@@ -4959,7 +4855,7 @@
 	reagents.add_reagent("protein",5)
 
 /obj/item/weapon/reagent_containers/food/snacks/pineapple_ring
-	name = "pineapple ring"
+	name = "pineapple rings"
 	desc = "So retro."
 	icon_state = "pineapple_ring"
 	nutriment_desc = list("sweetness" = 2)
