@@ -5,4 +5,4 @@
 /datum/category_item/autolathe/medical/autoinjector/biginjector
 	name = "empty large autoinjector"
 	path =/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/empty
-	resources = list(MAT_PLASTIC = 2000)
+	resources = list(MAT_PLASTIC = 500)
