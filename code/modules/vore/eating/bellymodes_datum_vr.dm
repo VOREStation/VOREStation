@@ -208,3 +208,7 @@ GLOBAL_LIST_INIT(digest_modes, list())
 		B.ownegg = null
 		return list("to_update" = TRUE)
 	return
+
+/datum/digest_mode/noisy
+	id = DM_NOISY
+	noise_chance = 50
