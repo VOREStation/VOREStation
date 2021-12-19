@@ -316,6 +316,9 @@ const VoreSelectedBellyControls = (props, context) => {
           onClick={() => act("set_attribute", { attribute: "b_msgs", msgtype: "im_egg" })}
           content="Idle Messages (Encase In Egg)" />
         <Button
+          onClick={() => act("set_attribute", { attribute: "b_msgs", msgtype: "im_noisy" })}
+          content="Idle Messages (Noisy)" />
+        <Button
           color="red"
           onClick={() => act("set_attribute", { attribute: "b_msgs", msgtype: "reset" })}
           content="Reset Messages" />
