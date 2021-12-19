@@ -23,6 +23,7 @@ const digestModeToColor = {
   "Size Steal": "teal",
   "Heal": "green",
   "Encase In Egg": "blue",
+  "Noisy": "pink",
 };
 
 const digestModeToPreyMode = {
@@ -36,6 +37,7 @@ const digestModeToPreyMode = {
   "Size Steal": "having your size stolen.",
   "Heal": "being healed.",
   "Encase In Egg": "being encased in an egg.",
+  "Noisy": "being squished around harmlessly.",
 };
 
 /**
