@@ -19,8 +19,8 @@
 	var/human_prey_swallow_time = 100		// Time in deciseconds to swallow /mob/living/carbon/human
 	var/nonhuman_prey_swallow_time = 30		// Time in deciseconds to swallow anything else
 	var/nutrition_percent = 100				// Nutritional percentage per tick in digestion mode
-	var/digest_brute = 0.5					// Brute damage per tick in digestion mode
-	var/digest_burn = 0.5					// Burn damage per tick in digestion mode
+	var/digest_brute = 1					// Brute damage per tick in digestion mode
+	var/digest_burn = 1.5					// Burn damage per tick in digestion mode
 	var/digest_oxy = 0						// Oxy damage per tick in digestion mode
 	var/immutable = FALSE					// Prevents this belly from being deleted
 	var/escapable = TRUE					// Belly can be resisted out of at any time
