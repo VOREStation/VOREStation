@@ -9,6 +9,7 @@
 #define DM_SIZE_STEAL							"Size Steal"
 #define DM_HEAL									"Heal"
 #define DM_EGG 									"Encase In Egg"
+#define DM_NOISY 									"Noisy"
 
 //#define DM_ITEMWEAK							"Digest (Item Friendly)"
 //#define DM_STRIPDIGEST						"Strip Digest (Items Only)"
