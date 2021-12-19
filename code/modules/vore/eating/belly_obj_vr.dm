@@ -56,7 +56,7 @@
 
 	//I don't think we've ever altered these lists. making them static until someone actually overrides them somewhere.
 	//Actual full digest modes
-	var/tmp/static/list/digest_modes = list(DM_HOLD,DM_DIGEST,DM_ABSORB,DM_DRAIN,DM_UNABSORB,DM_HEAL,DM_SHRINK,DM_GROW,DM_SIZE_STEAL,DM_EGG)
+	var/tmp/static/list/digest_modes = list(DM_HOLD,DM_DIGEST,DM_ABSORB,DM_DRAIN,DM_UNABSORB,DM_HEAL,DM_SHRINK,DM_GROW,DM_SIZE_STEAL,DM_EGG,DM_NOISY)
 	//Digest mode addon flags
 	var/tmp/static/list/mode_flag_list = list("Numbing" = DM_FLAG_NUMBING, "Stripping" = DM_FLAG_STRIPPING, "Leave Remains" = DM_FLAG_LEAVEREMAINS, "Muffles" = DM_FLAG_THICKBELLY, "Affect Worn Items" = DM_FLAG_AFFECTWORN, "Jams Sensors" = DM_FLAG_JAMSENSORS)
 	//Item related modes
@@ -435,7 +435,7 @@
 // This is useful in customization boxes and such. The delimiter right now is \n\n so
 // in message boxes, this looks nice and is easily delimited.
 /obj/belly/proc/get_messages(type, delim = "\n\n")
-	ASSERT(type == "smo" || type == "smi" || type == "dmo" || type == "dmp" || type == "em" || type == "ema" || type == "im_digest" || type == "im_hold" || type == "im_absorb" || type == "im_heal" || type == "im_drain" || type == "im_steal" || type == "im_egg" || type == "im_shrink" || type == "im_grow" || type == "im_unabsorb")
+	ASSERT(type == "smo" || type == "smi" || type == "dmo" || type == "dmp" || type == "em" || type == "ema" || type == "im_digest" || type == "im_hold" || type == "im_absorb" || type == "im_heal" || type == "im_drain" || type == "im_steal" || type == "im_egg" || type == "im_shrink" || type == "im_grow" || type == "im_unabsorb" || type == "im_noisy")
 
 	var/list/raw_messages
 	switch(type)
@@ -471,6 +471,8 @@
 			raw_messages = emote_lists[DM_GROW]
 		if("im_unabsorb")
 			raw_messages = emote_lists[DM_UNABSORB]
+		if("im_noisy")
+			raw_messages = emote_lists[DM_NOISY]
 	var/messages = null
 	if(raw_messages)
 		messages = raw_messages.Join(delim)
