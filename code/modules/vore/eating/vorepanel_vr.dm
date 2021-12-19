@@ -786,6 +786,11 @@
 					if(new_message)
 						host.vore_selected.set_messages(new_message,"im_unabsorb")
 
+				if("im_noisy")
+					var/new_message = input(user,"These are sent to prey every minute when you are on Noisy mode. Write them in 2nd person ('%pred's %belly squishes down on you.')"+help,"Idle Message (Noisy)",host.vore_selected.get_messages("im_noisy")) as message
+					if(new_message)
+						host.vore_selected.set_messages(new_message,"im_noisy")
+
 				if("reset")
 					var/confirm = tgui_alert(user,"This will delete any custom messages. Are you sure?","Confirmation",list("Cancel","DELETE"))
 					if(confirm == "DELETE")
