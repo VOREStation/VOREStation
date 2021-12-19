@@ -86,7 +86,7 @@
 			Containedvines += loc
 			delete_me = 1
 			spacevine_containment()
-			return
+			return INITIALIZE_HINT_LATELOAD
 		//VORE Station Add End
 
 	landmarks_list += src
