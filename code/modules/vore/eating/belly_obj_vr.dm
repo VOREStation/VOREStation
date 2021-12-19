@@ -536,6 +536,8 @@
 			emote_lists[DM_GROW] = raw_list
 		if("im_unabsorb")
 			emote_lists[DM_UNABSORB] = raw_list
+		if("im_noisy")
+			emote_lists[DM_NOISY] = raw_list
 
 	return
 
