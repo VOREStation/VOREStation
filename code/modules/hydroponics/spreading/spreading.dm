@@ -36,7 +36,7 @@
 			vine.mature_time = 0
 			vine.process()
 
-			return INITIALIZE_HINT_LATELOAD
+		return INITIALIZE_HINT_LATELOAD
 
 
 
