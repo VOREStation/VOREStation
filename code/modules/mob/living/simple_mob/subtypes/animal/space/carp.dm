@@ -67,6 +67,21 @@
 			L.Weaken(3)
 			L.visible_message(span("danger", "\The [src] knocks down \the [L]!"))
 
+/mob/living/simple_mob/animal/space/carp/init_vore()
+	. = ..()
+	var/obj/belly/B = vore_selected
+	B.name = "Stomach"
+	B.desc = "In a flash of ravenous teeth, the vicious carp wastes no time devouring you completely, stuffing you deeper and deeper into it's pink throat. The enveloping walls undulate and squeeze on you, drowning you in it's slimy gastric liquids and sounds as the carp enjoys it's new meal."
+	B.vore_sound = "Tauric Swallow"
+	B.release_sound = "Pred Escape"
+	B.fancy_vore = 1
+	B.digest_brute = 0.5
+	B.digest_burn = 1
+	B.digestchance = 20
+	B.absorbchance = 5
+	B.escapechance = 20
+	B.belly_fullscreen = "exotic_squish"
+
 // Subtypes.
 
 // Won't wander away.
