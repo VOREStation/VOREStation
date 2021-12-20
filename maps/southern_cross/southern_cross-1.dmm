@@ -114204,7 +114204,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/hallway/secondary/entry/D3)
 "tZc" = (
-/obj/effect/landmark/engine_loader,
+/obj/effect/landmark/submap_position/random/engine,
 /turf/space,
 /area/space)
 "vTW" = (

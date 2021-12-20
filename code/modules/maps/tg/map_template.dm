@@ -154,6 +154,7 @@
 	var/datum/map_template/template = new(file, name)
 	template.load_new_z(orientation)
 
+<<<<<<< HEAD
 // Very similar to the /tg/ version.
 /proc/seed_submaps(var/list/z_levels, var/budget = 0, var/whitelist = /area/space, var/desired_map_template_type = null)
 	set background = TRUE
@@ -293,3 +294,5 @@
 	else
 		admin_notice("Submaps loaded.", R_DEBUG)
 	admin_notice("Loaded: [english_list(pretty_submap_list)]", R_DEBUG)
+=======
+>>>>>>> 0a3633915d2... Merge pull request #8357 from Neerti/static_poi_loader_fix

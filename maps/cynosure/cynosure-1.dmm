@@ -2557,6 +2557,10 @@
 "fG" = (
 /turf/simulated/wall/r_wall,
 /area/surface/station/construction/genetics)
+"fH" = (
+/obj/effect/landmark/submap_position/random_subtype/cynosure_nine_by_eight_maint,
+/turf/simulated/wall,
+/area/surface/station/construction/bmt/construction2)
 "fI" = (
 /obj/structure/sign/warning/high_voltage,
 /turf/simulated/wall,
@@ -5032,6 +5036,10 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/surface/station/vault)
+"kX" = (
+/obj/effect/landmark/submap_position/random_subtype/cynosure_eight_by_nine_maint,
+/turf/simulated/wall,
+/area/surface/station/construction/bmt/construction1)
 "kZ" = (
 /obj/structure/closet/l3closet/medical,
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -7826,6 +7834,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/bmt/east)
+"qX" = (
+/obj/effect/landmark/submap_position/random_subtype/cynosure_eight_by_five_maint,
+/turf/simulated/wall,
+/area/surface/station/construction/bmt/construction6)
 "qY" = (
 /obj/item/weapon/camera_assembly,
 /turf/simulated/floor/tiled/white,
@@ -9413,6 +9425,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/bmt/south)
+"ui" = (
+/obj/effect/landmark/submap_position/random_subtype/cynosure_nine_by_ten_maint,
+/turf/simulated/wall,
+/area/surface/station/construction/bmt/construction3)
 "uk" = (
 /turf/simulated/floor/tiled,
 /area/surface/station/mining_main/storage)
@@ -19622,6 +19638,10 @@
 	name = "reinforced floor"
 	},
 /area/surface/station/rnd/mixing)
+"Qk" = (
+/obj/effect/landmark/submap_position/random_subtype/cynosure_medical_basement,
+/turf/simulated/wall,
+/area/surface/station/construction/bmt/construction4)
 "Ql" = (
 /obj/machinery/ai_status_display,
 /turf/simulated/wall/r_wall,
@@ -21021,6 +21041,10 @@
 	},
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/incineratormaint)
+"Tj" = (
+/obj/effect/landmark/submap_position/random_subtype/cynosure_sixteen_by_eleven_maint,
+/turf/simulated/mineral/sif,
+/area/surface/cave/unexplored/normal)
 "To" = (
 /turf/simulated/floor/tiled/steel_dirty,
 /area/surface/station/hallway/primary/bmt/east)
@@ -23509,6 +23533,7 @@
 /turf/simulated/floor/plating,
 /area/surface/station/construction/warehouse)
 "YR" = (
+/obj/effect/landmark/submap_position/random_subtype/cynosure_seven_by_seven_maint,
 /turf/simulated/floor/plating,
 /area/surface/station/hallway/primary/bmt/east)
 "YT" = (
@@ -23921,6 +23946,10 @@
 "ZF" = (
 /turf/simulated/wall,
 /area/surface/station/construction/basement)
+"ZG" = (
+/obj/effect/landmark/submap_position/random_subtype/cynosure_ten_by_nine_maint,
+/turf/simulated/wall/r_wall,
+/area/surface/station/construction/warehouse)
 "ZH" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -51545,7 +51574,7 @@ Mv
 Mv
 Mv
 Mv
-Mv
+ZG
 HE
 HE
 vd
@@ -52047,7 +52076,7 @@ cB
 cB
 cB
 cB
-cB
+kX
 Uk
 Fr
 hZ
@@ -54865,7 +54894,7 @@ JA
 XR
 XR
 XR
-XR
+fH
 Ze
 Dt
 fr
@@ -55927,7 +55956,7 @@ KO
 KO
 KO
 KO
-HE
+Tj
 HE
 HE
 HE
@@ -56921,7 +56950,7 @@ VS
 VS
 VS
 VS
-VS
+ui
 yV
 En
 fr
@@ -58693,7 +58722,7 @@ jL
 jL
 jL
 jL
-jL
+Qk
 fg
 xg
 xU
@@ -60284,7 +60313,7 @@ pd
 pd
 pd
 cp
-pd
+qX
 BA
 BA
 BA

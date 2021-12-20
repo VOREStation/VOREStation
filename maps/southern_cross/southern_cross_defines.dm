@@ -123,13 +123,13 @@
 	// First, place a bunch of submaps. This comes before tunnel/forest generation as to not interfere with the submap.
 
 	// Cave submaps are first.
-	seed_submaps(list(Z_LEVEL_SURFACE_MINE), 75, /area/surface/cave/unexplored/normal, /datum/map_template/surface/mountains/normal)
-	seed_submaps(list(Z_LEVEL_SURFACE_MINE), 75, /area/surface/cave/unexplored/deep, /datum/map_template/surface/mountains/deep)
+	SSmapping.seed_area_submaps(list(Z_LEVEL_SURFACE_MINE), 75, /area/surface/cave/unexplored/normal, /datum/map_template/surface/mountains/normal)
+	SSmapping.seed_area_submaps(list(Z_LEVEL_SURFACE_MINE), 75, /area/surface/cave/unexplored/deep, /datum/map_template/surface/mountains/deep)
 	// Plains to make them less plain.
-	seed_submaps(list(Z_LEVEL_SURFACE), 100, /area/surface/outside/plains/normal, /datum/map_template/surface/plains) // Center area is WIP until map editing settles down.
+	SSmapping.seed_area_submaps(list(Z_LEVEL_SURFACE), 100, /area/surface/outside/plains/normal, /datum/map_template/surface/plains) // Center area is WIP until map editing settles down.
 	// Wilderness is next.
-	seed_submaps(list(Z_LEVEL_SURFACE_WILD), 75, /area/surface/outside/wilderness/normal, /datum/map_template/surface/wilderness/normal)
-	seed_submaps(list(Z_LEVEL_SURFACE_WILD), 75, /area/surface/outside/wilderness/deep, /datum/map_template/surface/wilderness/deep)
+	SSmapping.seed_area_submaps(list(Z_LEVEL_SURFACE_WILD), 75, /area/surface/outside/wilderness/normal, /datum/map_template/surface/wilderness/normal)
+	SSmapping.seed_area_submaps(list(Z_LEVEL_SURFACE_WILD), 75, /area/surface/outside/wilderness/deep, /datum/map_template/surface/wilderness/deep)
 	// If Space submaps are made, add a line to make them here as well.
 
 	// Now for the tunnels.
