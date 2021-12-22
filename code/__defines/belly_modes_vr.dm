@@ -1,5 +1,6 @@
 // Normal digestion modes
 #define DM_HOLD									"Hold"
+#define DM_HOLD_ABSORBED						"Hold Absorbed"			// Not a real bellymode, used for handling different idle messages for absorbed prey.
 #define DM_DIGEST								"Digest"
 #define DM_ABSORB								"Absorb"
 #define DM_UNABSORB								"Unabsorb"
@@ -9,10 +10,6 @@
 #define DM_SIZE_STEAL							"Size Steal"
 #define DM_HEAL									"Heal"
 #define DM_EGG 									"Encase In Egg"
-
-//#define DM_ITEMWEAK							"Digest (Item Friendly)"
-//#define DM_STRIPDIGEST						"Strip Digest (Items Only)"
-//#define DM_DIGEST_NUMB						"Digest (Numbing)"
 
 //Addon mode flags
 #define DM_FLAG_NUMBING			0x1

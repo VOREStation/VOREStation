@@ -73,7 +73,7 @@
 
 /obj/item/rig_module/rad_shield/advanced
 	name = "advanced radiation absorption device"
-	desc = "The acronym of this device - R.A.D. - and its full name both convey the application of the module. It has additional quality notices \
+	desc = "The acronym of this device - R.A.D. - and its full name both convey the application of the module. It has a changelog inscribed \
 	on the underside of the casing."
 	use_power_cost = 5
 	active_power_cost = 5
