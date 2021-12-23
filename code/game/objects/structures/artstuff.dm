@@ -416,7 +416,7 @@
 
 /obj/structure/sign/painting/proc/frame_canvas(mob/user,obj/item/canvas/new_canvas)
 	if(!allowed(user))
-		to_chat(user, "<span class='notice'>Access lock prevents you from putting painting into this frame. Ask [curator] for help!</span>")
+		to_chat(user, "<span class='notice'>Access lock prevents you from putting a painting into this frame. Ask [curator] for help!</span>")
 		return
 	if(user.drop_from_inventory(new_canvas, src))
 		current_canvas = new_canvas
@@ -427,7 +427,7 @@
 
 /obj/structure/sign/painting/proc/unframe_canvas(mob/living/user)
 	if(!allowed(user))
-		to_chat(user, "<span class='notice'>Access lock prevents you from removing this painting. Ask [curator] ((or admins)) for help!</span>")
+		to_chat(user, "<span class='notice'>Access lock prevents you from removing paintings from this frame. Ask [curator] ((or admins)) for help!</span>")
 		return
 	if(current_canvas)
 		current_canvas.forceMove(drop_location())
