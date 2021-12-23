@@ -416,7 +416,7 @@
 
 /obj/structure/sign/painting/proc/frame_canvas(mob/user,obj/item/canvas/new_canvas)
 	if(!allowed(user))
-		to_chat(user, "<span class='notice'>Access lock prevents you from putting paintin into this frame. Ask [curator] for help!</span>")
+		to_chat(user, "<span class='notice'>Access lock prevents you from putting painting into this frame. Ask [curator] for help!</span>")
 		return
 	if(user.drop_from_inventory(new_canvas, src))
 		current_canvas = new_canvas
