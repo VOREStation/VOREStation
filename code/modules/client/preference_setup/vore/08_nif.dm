@@ -46,9 +46,8 @@
 		pref.nif_savedata = null
 		*/
 		//No we do not, that's lame and admins have to re-NIF them later.
-		//If they leave round or get their NIF extracted, it will save as 'gone' anyway
-		//Let's give a more minor punishment for not properly backing up instead!
-		pref.nif_durability -= rand(10, 15)
+		//If they leave round after they get their NIF extracted, it will save as 'gone' anyway
+		//The NIF will save automatically every time durability changes too now.
 		var/savefile/S = new /savefile(pref.path)
 		if(!S) WARNING ("Couldn't load NIF save savefile? [pref.real_name]")
 		S.cd = "/character[pref.default_slot]"
