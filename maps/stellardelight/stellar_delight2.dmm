@@ -2289,6 +2289,9 @@
 /area/stellardelight/deck2/aftstarboard)
 "eU" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/structure/fireaxecabinet{
+	pixel_y = 28
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/stellardelight/deck2/o2production)
 "eV" = (
