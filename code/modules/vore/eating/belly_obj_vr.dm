@@ -13,31 +13,32 @@
 //
 /obj/belly
 	name = "belly"							// Name of this location
-	desc = "Warm, wet, and slimy it's a belly and you've found yourself within it!"	// Flavor text description of inside sight/sound/smells/feels.
+	desc = "It's a belly! You're in it!"	// Flavor text description of inside sight/sound/smells/feels.
 	var/vore_sound = "Gulp"					// Sound when ingesting someone
 	var/vore_verb = "ingest"				// Verb for eating with this in messages
 	var/human_prey_swallow_time = 100		// Time in deciseconds to swallow /mob/living/carbon/human
 	var/nonhuman_prey_swallow_time = 30		// Time in deciseconds to swallow anything else
 	var/nutrition_percent = 100				// Nutritional percentage per tick in digestion mode
-	var/digest_brute = 1					// Brute damage per tick in digestion mode
-	var/digest_burn = 1.5					// Burn damage per tick in digestion mode
+	var/digest_brute = 0.5					// Brute damage per tick in digestion mode
+	var/digest_burn = 0.5					// Burn damage per tick in digestion mode
 	var/digest_oxy = 0						// Oxy damage per tick in digestion mode
 	var/immutable = FALSE					// Prevents this belly from being deleted
-	var/escapable = TRUE					// Belly can be resisted out of at any time
-	var/escapetime = 30 SECONDS				// Deciseconds, how long to escape this belly
-	var/digestchance = 5					// % Chance of stomach beginning to digest if prey struggles
-	var/absorbchance = 1					// % Chance of stomach beginning to absorb if prey struggles
-	var/escapechance = 15 					// % Chance of prey beginning to escape if prey struggles.
+	var/escapable = FALSE					// Belly can be resisted out of at any time
+	var/escapetime = 20 SECONDS				// Deciseconds, how long to escape this belly
+	var/digestchance = 0					// % Chance of stomach beginning to digest if prey struggles
+	var/absorbchance = 0					// % Chance of stomach beginning to absorb if prey struggles
+	var/escapechance = 0 					// % Chance of prey beginning to escape if prey struggles.
 	var/transferchance = 0 					// % Chance of prey being trasnsfered, goes from 0-100%
 	var/transferchance_secondary = 0 		// % Chance of prey being transfered to transferchance_secondary, also goes 0-100%
 	var/can_taste = FALSE					// If this belly prints the flavor of prey when it eats someone.
 	var/bulge_size = 0.25					// The minimum size the prey has to be in order to show up on examine.
 	var/display_absorbed_examine = FALSE	// Do we display absorption examine messages for this belly at all?
+	var/absorbed_desc						// Desc shown to absorbed prey. Defaults to regular if left empty.
 	var/shrink_grow_size = 1				// This horribly named variable determines the minimum/maximum size it will shrink/grow prey to.
 	var/transferlocation					// Location that the prey is released if they struggle and get dropped off.
-	var/transferlocation_secondary // Secondary location that prey is released to.
+	var/transferlocation_secondary			// Secondary location that prey is released to.
 	var/release_sound = "Splatter"			// Sound for letting someone out. Replaced from True/false
-	var/mode_flags = 13						// Stripping, numbing, etc.
+	var/mode_flags = 0						// Stripping, numbing, etc.
 	var/fancy_vore = FALSE					// Using the new sounds?
 	var/is_wet = TRUE						// Is this belly's insides made of slimy parts?
 	var/wet_loop = TRUE						// Does the belly have a fleshy loop playing?
@@ -56,7 +57,7 @@
 
 	//I don't think we've ever altered these lists. making them static until someone actually overrides them somewhere.
 	//Actual full digest modes
-	var/tmp/static/list/digest_modes = list(DM_HOLD,DM_DIGEST,DM_ABSORB,DM_DRAIN,DM_UNABSORB,DM_HEAL,DM_SHRINK,DM_GROW,DM_SIZE_STEAL,DM_EGG,DM_NOISY)
+	var/tmp/static/list/digest_modes = list(DM_HOLD,DM_DIGEST,DM_ABSORB,DM_DRAIN,DM_UNABSORB,DM_HEAL,DM_SHRINK,DM_GROW,DM_SIZE_STEAL,DM_EGG)
 	//Digest mode addon flags
 	var/tmp/static/list/mode_flag_list = list("Numbing" = DM_FLAG_NUMBING, "Stripping" = DM_FLAG_STRIPPING, "Leave Remains" = DM_FLAG_LEAVEREMAINS, "Muffles" = DM_FLAG_THICKBELLY, "Affect Worn Items" = DM_FLAG_AFFECTWORN, "Jams Sensors" = DM_FLAG_JAMSENSORS)
 	//Item related modes
@@ -91,6 +92,16 @@
 		"You jostle %pred's %belly with movement.",
 		"You squirm inside of %pred's %belly, making it wobble around.")
 
+	var/list/absorbed_struggle_messages_outside = list(
+		"%pred's %belly wobbles, seemingly on its own.",
+		"%pred's %belly jiggles without apparent cause.",
+		"%pred's %belly seems to shake for a second without an obvious reason.")
+
+	var/list/absorbed_struggle_messages_inside = list(
+		"You try and resist %pred's %belly, but only cause it to jiggle slightly.",
+		"Your fruitless mental struggles only shift %pred's %belly a tiny bit.",
+		"You can't make any progress freeing yourself from %pred's %belly.")
+
 	var/list/digest_messages_owner = list(
 		"You feel %prey's body succumb to your digestive system, which breaks it apart into soft slurry.",
 		"You hear a lewd glorp as your %belly muscles grind %prey into a warm pulp.",
@@ -115,6 +126,18 @@
 		"%pred's %belly kneads on every fiber of your body, softening you down into mush to fuel their next hunt.",
 		"%pred's %belly churns you down into a hot slush. Your nutrient-rich remains course through their digestive track with a series of long, wet glorps.")
 
+	var/list/absorb_messages_owner = list(
+		"You feel %prey becoming part of you.")
+
+	var/list/absorb_messages_prey = list(
+		"Your feel yourself becoming part of %pred's %belly!")
+
+	var/list/unabsorb_messages_owner = list(
+		"You feel %prey reform into a recognizable state again.")
+
+	var/list/unabsorb_messages_prey = list(
+		"You are released from being part of %pred's %belly.")
+
 	var/list/examine_messages = list(
 		"They have something solid in their %belly!",
 		"It looks like they have something in their %belly!")
@@ -137,6 +160,7 @@
 	return ..() + list(
 		"name",
 		"desc",
+		"absorbed_desc",
 		"vore_sound",
 		"vore_verb",
 		"human_prey_swallow_time",
@@ -162,8 +186,14 @@
 		"shrink_grow_size",
 		"struggle_messages_outside",
 		"struggle_messages_inside",
+		"absorbed_struggle_messages_outside",
+		"absorbed_struggle_messages_inside",
 		"digest_messages_owner",
 		"digest_messages_prey",
+		"absorb_messages_owner",
+		"absorb_messages_prey",
+		"unabsorb_messages_owner",
+		"unabsorb_messages_prey",
 		"examine_messages",
 		"examine_messages_absorbed",
 		"emote_lists",
@@ -220,7 +250,9 @@
 	if(isliving(thing))
 		var/mob/living/M = thing
 		M.updateVRPanel()
-		if(desc)
+		if(absorbed_desc && M.absorbed)
+			to_chat(M, "<span class='notice'><B>[absorbed_desc]</B></span>")
+		else if(desc)
 			to_chat(M, "<span class='notice'><B>[desc]</B></span>")
 		var/taste
 		if(can_taste && (taste = M.get_taste_message(FALSE)))
@@ -345,8 +377,6 @@
 		owner.update_icons()
 
 	//Print notifications/sound if necessary
-	if(istype(M, /mob/observer))
-		silent = TRUE
 	if(!silent)
 		owner.visible_message("<font color='green'><b>[owner] expels [M] from their [lowertext(name)]!</b></font>")
 		var/soundfile
@@ -435,7 +465,7 @@
 // This is useful in customization boxes and such. The delimiter right now is \n\n so
 // in message boxes, this looks nice and is easily delimited.
 /obj/belly/proc/get_messages(type, delim = "\n\n")
-	ASSERT(type == "smo" || type == "smi" || type == "dmo" || type == "dmp" || type == "em" || type == "ema" || type == "im_digest" || type == "im_hold" || type == "im_absorb" || type == "im_heal" || type == "im_drain" || type == "im_steal" || type == "im_egg" || type == "im_shrink" || type == "im_grow" || type == "im_unabsorb" || type == "im_noisy")
+	ASSERT(type == "smo" || type == "smi" || type == "asmo" || type == "asmi" || type == "dmo" || type == "dmp" || type == "amo" || type == "amp" || type == "uamo" || type == "uamp" || type == "em" || type == "ema" || type == "im_digest" || type == "im_hold" || type == "im_holdabsorbed" || type == "im_absorb" || type == "im_heal" || type == "im_drain" || type == "im_steal" || type == "im_egg" || type == "im_shrink" || type == "im_grow" || type == "im_unabsorb")
 
 	var/list/raw_messages
 	switch(type)
@@ -443,6 +473,10 @@
 			raw_messages = struggle_messages_outside
 		if("smi")
 			raw_messages = struggle_messages_inside
+		if("asmo")
+			raw_messages = absorbed_struggle_messages_outside
+		if("asmi")
+			raw_messages = absorbed_struggle_messages_inside
 		if("dmo")
 			raw_messages = digest_messages_owner
 		if("dmp")
@@ -451,10 +485,20 @@
 			raw_messages = examine_messages
 		if("ema")
 			raw_messages = examine_messages_absorbed
+		if("amo")
+			raw_messages = absorb_messages_owner
+		if("amp")
+			raw_messages = absorb_messages_prey
+		if("uamo")
+			raw_messages = unabsorb_messages_owner
+		if("uamp")
+			raw_messages = unabsorb_messages_prey
 		if("im_digest")
 			raw_messages = emote_lists[DM_DIGEST]
 		if("im_hold")
 			raw_messages = emote_lists[DM_HOLD]
+		if("im_holdabsorbed")
+			raw_messages = emote_lists[DM_HOLD_ABSORBED]
 		if("im_absorb")
 			raw_messages = emote_lists[DM_ABSORB]
 		if("im_heal")
@@ -471,8 +515,6 @@
 			raw_messages = emote_lists[DM_GROW]
 		if("im_unabsorb")
 			raw_messages = emote_lists[DM_UNABSORB]
-		if("im_noisy")
-			raw_messages = emote_lists[DM_NOISY]
 	var/messages = null
 	if(raw_messages)
 		messages = raw_messages.Join(delim)
@@ -482,7 +524,7 @@
 // replacement strings and linebreaks as delimiters (two \n\n by default).
 // They also sanitize the messages.
 /obj/belly/proc/set_messages(raw_text, type, delim = "\n\n")
-	ASSERT(type == "smo" || type == "smi" || type == "dmo" || type == "dmp" || type == "em" || type == "ema" || type == "im_digest" || type == "im_hold" || type == "im_absorb" || type == "im_heal" || type == "im_drain" || type == "im_steal" || type == "im_egg" || type == "im_shrink" || type == "im_grow" || type == "im_unabsorb")
+	ASSERT(type == "smo" || type == "smi" || type == "asmo" || type == "asmi" || type == "dmo" || type == "dmp" || type == "amo" || type == "amp" || type == "uamo" || type == "uamp" || type == "em" || type == "ema" || type == "im_digest" || type == "im_hold" || type == "im_holdabsorbed" || type == "im_absorb" || type == "im_heal" || type == "im_drain" || type == "im_steal" || type == "im_egg" || type == "im_shrink" || type == "im_grow" || type == "im_unabsorb")
 
 	var/list/raw_list = splittext(html_encode(raw_text),delim)
 	if(raw_list.len > 10)
@@ -490,10 +532,10 @@
 		log_debug("[owner] tried to set [lowertext(name)] with 11+ messages")
 
 	for(var/i = 1, i <= raw_list.len, i++)
-		if((length(raw_list[i]) > 160 || length(raw_list[i]) < 10) && !(type == "im_digest" || type == "im_hold" || type == "im_absorb" || type == "im_heal" || type == "im_drain" || type == "im_steal" || type == "im_egg" || type == "im_shrink" || type == "im_grow" || type == "im_unabsorb")) //160 is fudged value due to htmlencoding increasing the size
+		if((length(raw_list[i]) > 160 || length(raw_list[i]) < 10) && !(type == "im_digest" || type == "im_hold" || type == "im_holdabsorbed" || type == "im_absorb" || type == "im_heal" || type == "im_drain" || type == "im_steal" || type == "im_egg" || type == "im_shrink" || type == "im_grow" || type == "im_unabsorb")) //160 is fudged value due to htmlencoding increasing the size
 			raw_list.Cut(i,i)
 			log_debug("[owner] tried to set [lowertext(name)] with >121 or <10 char message")
-		else if((type == "im_digest" || type == "im_hold" || type == "im_absorb" || type == "im_heal" || type == "im_drain" || type == "im_steal" || type == "im_egg" || type == "im_shrink" || type == "im_grow" || type == "im_unabsorb") && (length(raw_list[i]) > 510 || length(raw_list[i]) < 10))
+		else if((type == "im_digest" || type == "im_hold" || type == "im_holdabsorbed" || type == "im_absorb" || type == "im_heal" || type == "im_drain" || type == "im_steal" || type == "im_egg" || type == "im_shrink" || type == "im_grow" || type == "im_unabsorb") && (length(raw_list[i]) > 510 || length(raw_list[i]) < 10))
 			raw_list.Cut(i,i)
 			log_debug("[owner] tried to set [lowertext(name)] idle message with >501 or <10 char message")
 		else
@@ -508,10 +550,22 @@
 			struggle_messages_outside = raw_list
 		if("smi")
 			struggle_messages_inside = raw_list
+		if("asmo")
+			absorbed_struggle_messages_outside = raw_list
+		if("asmi")
+			absorbed_struggle_messages_inside = raw_list
 		if("dmo")
 			digest_messages_owner = raw_list
 		if("dmp")
 			digest_messages_prey = raw_list
+		if("amo")
+			absorb_messages_owner = raw_list
+		if("amp")
+			absorb_messages_prey = raw_list
+		if("uamo")
+			unabsorb_messages_owner = raw_list
+		if("uamp")
+			unabsorb_messages_prey = raw_list
 		if("em")
 			examine_messages = raw_list
 		if("ema")
@@ -520,6 +574,8 @@
 			emote_lists[DM_DIGEST] = raw_list
 		if("im_hold")
 			emote_lists[DM_HOLD] = raw_list
+		if("im_holdabsorbed")
+			emote_lists[DM_HOLD_ABSORBED] = raw_list
 		if("im_absorb")
 			emote_lists[DM_ABSORB] = raw_list
 		if("im_heal")
@@ -536,8 +592,6 @@
 			emote_lists[DM_GROW] = raw_list
 		if("im_unabsorb")
 			emote_lists[DM_UNABSORB] = raw_list
-		if("im_noisy")
-			emote_lists[DM_NOISY] = raw_list
 
 	return
 
@@ -591,9 +645,28 @@
 
 // Handle a mob being absorbed
 /obj/belly/proc/absorb_living(mob/living/M)
-	M.absorbed = 1
-	to_chat(M, "<span class='notice'>[owner]'s [lowertext(name)] absorbs your body, making you part of them.</span>")
-	to_chat(owner, "<span class='notice'>Your [lowertext(name)] absorbs [M]'s body, making them part of you.</span>")
+	var/absorb_alert_owner = pick(absorb_messages_owner)
+	var/absorb_alert_prey = pick(absorb_messages_prey)
+
+	var/absorbed_count = 0
+	for(var/mob/living/L in contents)
+		if(L.absorbed)
+			absorbed_count++
+
+	//Replace placeholder vars
+	absorb_alert_owner = replacetext(absorb_alert_owner, "%pred", owner)
+	absorb_alert_owner = replacetext(absorb_alert_owner, "%prey", M)
+	absorb_alert_owner = replacetext(absorb_alert_owner, "%belly", lowertext(name))
+	absorb_alert_owner = replacetext(absorb_alert_owner, "%countprey", absorbed_count)
+
+	absorb_alert_prey = replacetext(absorb_alert_prey, "%pred", owner)
+	absorb_alert_prey = replacetext(absorb_alert_prey, "%prey", M)
+	absorb_alert_prey = replacetext(absorb_alert_prey, "%belly", lowertext(name))
+	absorb_alert_prey = replacetext(absorb_alert_prey, "%countprey", absorbed_count)
+
+	M.absorbed = TRUE
+	to_chat(M, "<span class='notice'>[absorb_alert_prey]</span>")
+	to_chat(owner, "<span class='notice'>[absorb_alert_owner]</span>")
 	if(M.noisy) //Mute drained absorbee hunger if enabled.
 		M.noisy = FALSE
 
@@ -620,6 +693,43 @@
 		for(var/mob/living/Mm in B)
 			if(Mm.absorbed)
 				absorb_living(Mm)
+
+
+	if(absorbed_desc)
+		to_chat(M, "<span class='notice'><B>[absorbed_desc]</B></span>")
+
+	//Update owner
+	owner.updateVRPanel()
+	if(isanimal(owner))
+		owner.update_icon()
+
+// Handle a mob being unabsorbed
+/obj/belly/proc/unabsorb_living(mob/living/M)
+	var/unabsorb_alert_owner = pick(unabsorb_messages_owner)
+	var/unabsorb_alert_prey = pick(unabsorb_messages_prey)
+
+	var/absorbed_count = 0
+	for(var/mob/living/L in contents)
+		if(L.absorbed)
+			absorbed_count++
+
+	//Replace placeholder vars
+	unabsorb_alert_owner = replacetext(unabsorb_alert_owner, "%pred", owner)
+	unabsorb_alert_owner = replacetext(unabsorb_alert_owner, "%prey", M)
+	unabsorb_alert_owner = replacetext(unabsorb_alert_owner, "%belly", lowertext(name))
+	unabsorb_alert_owner = replacetext(unabsorb_alert_owner, "%countprey", absorbed_count)
+
+	unabsorb_alert_prey = replacetext(unabsorb_alert_prey, "%pred", owner)
+	unabsorb_alert_prey = replacetext(unabsorb_alert_prey, "%prey", M)
+	unabsorb_alert_prey = replacetext(unabsorb_alert_prey, "%belly", lowertext(name))
+	unabsorb_alert_prey = replacetext(unabsorb_alert_prey, "%countprey", absorbed_count)
+
+	M.absorbed = FALSE
+	to_chat(M, "<span class='notice'>[unabsorb_alert_prey]</span>")
+	to_chat(owner, "<span class='notice'>[unabsorb_alert_owner]</span>")
+
+	if(desc)
+		to_chat(M, "<span class='notice'><B>[desc]</B></span>")
 
 	//Update owner
 	owner.updateVRPanel()
@@ -737,7 +847,7 @@
 					for(var/mob/M in hearers(4, owner))
 						M.show_message("<span class='warning'>[C] suddenly slips out of [owner]'s [lowertext(name)]!</span>", 2)
 					return
-				if((escapable) && (R.loc == src) && !R.absorbed) //Does the owner still have escapable enabled?
+				if(escapable && (R.loc == src) && !R.absorbed) //Does the owner still have escapable enabled?
 					release_specific_contents(R)
 					to_chat(R,"<span class='warning'>You climb out of \the [lowertext(name)].</span>")
 					to_chat(owner,"<span class='warning'>[R] climbs out of your [lowertext(name)]!</span>")
@@ -792,7 +902,7 @@
 				return
 			transfer_contents(R, dest_belly)
 			return
-			
+
 		else if(prob(absorbchance) && digest_mode != DM_ABSORB) //After that, let's have it run the absorb chance.
 			to_chat(R, "<span class='warning'>In response to your struggling, \the [lowertext(name)] begins to cling more tightly...</span>")
 			to_chat(owner, "<span class='warning'>You feel your [lowertext(name)] start to cling onto its contents...</span>")
@@ -809,6 +919,50 @@
 			to_chat(R, "<span class='warning'>You make no progress in escaping [owner]'s [lowertext(name)].</span>")
 			to_chat(owner, "<span class='warning'>Your prey appears to be unable to make any progress in escaping your [lowertext(name)].</span>")
 			return
+
+
+/obj/belly/proc/relay_absorbed_resist(mob/living/R)
+	if (!(R in contents) || !R.absorbed)
+		return  // User is not in this belly or isn't actually absorbed
+
+	R.setClickCooldown(50)
+
+	var/struggle_outer_message = pick(absorbed_struggle_messages_outside)
+	var/struggle_user_message = pick(absorbed_struggle_messages_inside)
+
+	var/absorbed_count = 0
+	for(var/mob/living/L in contents)
+		if(L.absorbed)
+			absorbed_count++
+
+	struggle_outer_message = replacetext(struggle_outer_message, "%pred", owner)
+	struggle_outer_message = replacetext(struggle_outer_message, "%prey", R)
+	struggle_outer_message = replacetext(struggle_outer_message, "%belly", lowertext(name))
+	struggle_outer_message = replacetext(struggle_outer_message, "%countprey", absorbed_count)
+
+	struggle_user_message = replacetext(struggle_user_message, "%pred", owner)
+	struggle_user_message = replacetext(struggle_user_message, "%prey", R)
+	struggle_user_message = replacetext(struggle_user_message, "%belly", lowertext(name))
+	struggle_user_message = replacetext(struggle_user_message, "%countprey", absorbed_count)
+
+	struggle_outer_message = "<span class='alert'>[struggle_outer_message]</span>"
+	struggle_user_message = "<span class='alert'>[struggle_user_message]</span>"
+
+	for(var/mob/M in hearers(4, owner))
+		M.show_message(struggle_outer_message, 2) // hearable
+	to_chat(R, struggle_user_message)
+
+	var/sound/struggle_snuggle
+	var/sound/struggle_rustle = sound(get_sfx("rustle"))
+
+	if(is_wet)
+		if(!fancy_vore)
+			struggle_snuggle = sound(get_sfx("classic_struggle_sounds"))
+		else
+			struggle_snuggle = sound(get_sfx("fancy_prey_struggle"))
+		playsound(src, struggle_snuggle, vary = 1, vol = 75, falloff = VORE_SOUND_FALLOFF, preference = /datum/client_preference/digestion_noises, volume_channel = VOLUME_CHANNEL_VORE)
+	else
+		playsound(src, struggle_rustle, vary = 1, vol = 75, falloff = VORE_SOUND_FALLOFF, preference = /datum/client_preference/digestion_noises, volume_channel = VOLUME_CHANNEL_VORE)
 
 /obj/belly/proc/get_mobs_and_objs_in_belly()
 	var/list/see = list()
@@ -866,6 +1020,7 @@
 	//// Non-object variables
 	dupe.name = name
 	dupe.desc = desc
+	dupe.absorbed_desc = absorbed_desc
 	dupe.vore_sound = vore_sound
 	dupe.vore_verb = vore_verb
 	dupe.human_prey_swallow_time = human_prey_swallow_time
@@ -914,6 +1069,16 @@
 	for(var/I in struggle_messages_inside)
 		dupe.struggle_messages_inside += I
 
+	//absorbed_struggle_messages_outside - strings
+	dupe.absorbed_struggle_messages_outside.Cut()
+	for(var/I in absorbed_struggle_messages_outside)
+		dupe.absorbed_struggle_messages_outside += I
+
+	//absorbed_struggle_messages_inside - strings
+	dupe.absorbed_struggle_messages_inside.Cut()
+	for(var/I in absorbed_struggle_messages_inside)
+		dupe.absorbed_struggle_messages_inside += I
+
 	//digest_messages_owner - strings
 	dupe.digest_messages_owner.Cut()
 	for(var/I in digest_messages_owner)
@@ -924,12 +1089,32 @@
 	for(var/I in digest_messages_prey)
 		dupe.digest_messages_prey += I
 
+	//absorb_messages_owner - strings
+	dupe.absorb_messages_owner.Cut()
+	for(var/I in absorb_messages_owner)
+		dupe.absorb_messages_owner += I
+
+	//absorb_messages_prey - strings
+	dupe.absorb_messages_prey.Cut()
+	for(var/I in absorb_messages_prey)
+		dupe.absorb_messages_prey += I
+
+	//unabsorb_messages_owner - strings
+	dupe.unabsorb_messages_owner.Cut()
+	for(var/I in unabsorb_messages_owner)
+		dupe.unabsorb_messages_owner += I
+
+	//unabsorb_messages_prey - strings
+	dupe.unabsorb_messages_prey.Cut()
+	for(var/I in unabsorb_messages_prey)
+		dupe.unabsorb_messages_prey += I
+
 	//examine_messages - strings
 	dupe.examine_messages.Cut()
 	for(var/I in examine_messages)
 		dupe.examine_messages += I
 
-	//examine_messages - strings
+	//examine_messages_absorbed - strings
 	dupe.examine_messages_absorbed.Cut()
 	for(var/I in examine_messages_absorbed)
 		dupe.examine_messages_absorbed += I
