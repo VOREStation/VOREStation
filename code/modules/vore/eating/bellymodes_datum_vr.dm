@@ -80,10 +80,8 @@ GLOBAL_LIST_INIT(digest_modes, list())
 
 /datum/digest_mode/unabsorb/process_mob(obj/belly/B, mob/living/L)
 	if(L.absorbed && B.owner.nutrition >= 100)
-		L.absorbed = FALSE
-		to_chat(L, "<span class='notice'>You suddenly feel solid again.</span>")
-		to_chat(B.owner,"<span class='notice'>You feel like a part of you is missing.</span>")
 		B.owner.adjust_nutrition(-100)
+		B.unabsorb_living(L)
 		return list("to_update" = TRUE)
 
 /datum/digest_mode/drain

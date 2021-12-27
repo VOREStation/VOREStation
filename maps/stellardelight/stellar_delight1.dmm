@@ -6142,7 +6142,7 @@
 	dir = 8;
 	door_color = "#ffffff";
 	name = "Recovery Room";
-	req_access = list(6);
+	req_access = list(5);
 	stripe_color = "#5a96bb"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
@@ -8377,7 +8377,7 @@
 /obj/machinery/door/airlock/angled_bay/standard/color{
 	door_color = "#ffffff";
 	name = "Morgue";
-	req_access = list(6);
+	req_access = list(5,6);
 	stripe_color = "#5a96bb"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
@@ -14862,7 +14862,7 @@
 /obj/machinery/door/airlock/angled_bay/standard/color{
 	door_color = "#ffffff";
 	name = "Recovery Room";
-	req_access = list(6);
+	req_access = list(5);
 	stripe_color = "#5a96bb"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
@@ -21395,7 +21395,7 @@
 	door_color = "#ffffff";
 	id_tag = "recoveryexit";
 	name = "Recovery Room";
-	req_access = list(6);
+	req_access = list(5);
 	stripe_color = "#5a96bb"
 	},
 /turf/simulated/floor/tiled/steel_ridged,

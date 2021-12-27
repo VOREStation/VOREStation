@@ -631,6 +631,9 @@
 		resist_grab()
 		if(!weakened)
 			process_resist()
+		else if(absorbed && isbelly(loc))			// Allow absorbed resistance
+			var/obj/belly/B = loc
+			B.relay_absorbed_resist(src)
 
 /mob/living/proc/process_resist()
 
