@@ -1,5 +1,5 @@
 /client/proc/fixatmos()
-	set category = "Admin"
+	set category = "Debug" //Moving it here since folks kept accidentally hitting it
 	set name = "Fix Atmospherics Grief"
 
 	if(!check_rights(R_ADMIN|R_DEBUG|R_EVENT)) return
