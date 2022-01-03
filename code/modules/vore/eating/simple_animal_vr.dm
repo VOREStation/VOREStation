@@ -17,9 +17,10 @@
 	if(istype(src, /mob/living/simple_mob/animal/passive/mouse) && !T.ckey)
 		// Mice can't eat logged out players!
 		return
-	if(client && IsAdvancedToolUser())
+	/*if(client && IsAdvancedToolUser())
 		to_chat(src, "<span class='warning'>Put your hands to good use instead!</span>")
 		return
+	*/
 	feed_grabbed_to_self(src,T)
 	update_icon()
 
