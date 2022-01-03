@@ -162,7 +162,7 @@
 /datum/supply_pack/misc/sword
 	name = "sword"
 	contains = list(
-	/obj/item/weapon/material/sword/steel =2
+	/obj/item/weapon/material/sword =2
 	)
 	cost =100
 	access = list(access_explorer,
