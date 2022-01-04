@@ -30,24 +30,4 @@
 		SPECIES_WEREBEAST = 'icons/inventory/suit/mob_vr_werebeast.dmi'
 		)
 
-/obj/item/clothing/suit/explo_crusader
-	name = "explorer low tech suit"
-	desc = "A low tech armoured suit for exploring harsh environments."
-	icon_state = "icons/objects/clothing/knights_vr/crusader_explo"
-	item_state = "icons/objects/clothing/knights_vr/crusader_explo"
-	flags = THICKMATERIAL
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
-	cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	siemens_coefficient = 0.9
-	armor = list(melee = 30, bullet = 20, laser = 20, energy = 20, bomb = 35, bio = 75, rad = 35) // Inferior to sec vests in bullet/laser but better for environmental protection.
-	allowed = list(
-		/obj/item/device/flashlight,
-		/obj/item/weapon/gun,
-		/obj/item/ammo_magazine,
-		/obj/item/weapon/melee,
-		/obj/item/weapon/material/knife,
-		/obj/item/weapon/tank,
-		/obj/item/device/radio,
-		/obj/item/weapon/pickaxe
-		)
+
