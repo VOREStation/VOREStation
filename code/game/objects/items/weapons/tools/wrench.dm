@@ -88,8 +88,8 @@
 	toolspeed = 0.25
 	var/obj/item/weapon/tool/screwdriver/power/counterpart = null
 
-/obj/item/weapon/tool/wrench/power/New(newloc, no_counterpart = TRUE)
-	..(newloc)
+/obj/item/weapon/tool/wrench/power/Initialize(var/ml, no_counterpart = TRUE)
+	. = ..()
 	if(!counterpart && no_counterpart)
 		counterpart = new(src, FALSE)
 		counterpart.counterpart = src

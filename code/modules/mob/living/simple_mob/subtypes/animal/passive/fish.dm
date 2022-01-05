@@ -322,7 +322,14 @@
 
 	catalogue_data = list(/datum/category_item/catalogue/fauna/murkin)
 
+<<<<<<< HEAD
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat/sif/murkfish
 
 /decl/mob_organ_names/fish
 	hit_zones = list("head", "body", "dorsal fin", "left pectoral fin", "right pectoral fin", "tail fin")
+=======
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish/sif
+
+/decl/mob_organ_names/fish
+	hit_zones = list("head", "body", "dorsal fin", "left pectoral fin", "right pectoral fin", "tail fin")
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map

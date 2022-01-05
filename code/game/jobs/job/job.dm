@@ -166,6 +166,7 @@
 ///Assigns minimum age by race & brain type. Code says Positronic = mechanical and Drone = digital because nothing can be simple.
 ///Will first check based on brain type, then based on species.
 /datum/job/proc/get_min_age(species_name, brain_type)
+<<<<<<< HEAD
 	return minimum_character_age // VOREStation Edit - Minimum character age by rules is 18, return default which is standard for all species
     //return (brain_type && LAZYACCESS(min_age_by_species, brain_type)) || LAZYACCESS(min_age_by_species, species_name) || minimum_character_age //VOREStation Removal
 
@@ -176,10 +177,22 @@
 /datum/job/proc/is_species_banned(species_name, brain_type)
 	return FALSE // VOREStation Edit - Any species can be any job.
 	/* VOREStation Removal
+=======
+    return (brain_type && LAZYACCESS(min_age_by_species, brain_type)) || LAZYACCESS(min_age_by_species, species_name) || minimum_character_age
+
+/datum/job/proc/get_ideal_age(species_name, brain_type)
+	return (brain_type && LAZYACCESS(ideal_age_by_species, brain_type)) || LAZYACCESS(ideal_age_by_species, brain_type) || ideal_character_age
+
+/datum/job/proc/is_species_banned(species_name, brain_type)
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map
 	if(banned_job_species == null)
 		return
 	if(species_name in banned_job_species)
 		return TRUE
 	if(brain_type in banned_job_species)
+<<<<<<< HEAD
 		return TRUE
 	*/
+=======
+		return TRUE
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map

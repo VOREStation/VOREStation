@@ -69,7 +69,14 @@
 	name = "gateway oversight console"
 	desc = "An interface between visitors and the gateway oversight systems tasked with keeping track of all visitors who enter or exit from the gateway."
 	circuit = "/obj/item/weapon/circuitboard/robotstoragecontrol"
+	storage_type = "visitors"
+	storage_name = "Travel Oversight Control"
+	allow_items = 1
 
+/obj/machinery/computer/cryopod/checkpoint
+	name = "travel oversight console"
+	desc = "An interface between visitors and the checkpoint systems tasked with keeping track of all visitors who enter or exit from the area."
+	circuit = "/obj/item/weapon/circuitboard/robotstoragecontrol"
 	storage_type = "visitors"
 	storage_name = "Travel Oversight Control"
 	allow_items = 1
@@ -288,20 +295,26 @@
 
 	time_till_despawn = 60 //1 second, because gateway.
 
-/obj/machinery/cryopod/New()
+/obj/machinery/cryopod/robot/door/checkpoint
+	name = "automated checkpoint"
+	desc = "A reinforced, automated checkpoint tracking arrivals and departures from the outpost. Beyond this vault is a small airstrip, then nothing but untamed wilderness."
+	on_store_message = "has departed from the colony."
+	on_store_name = "Travel Oversight"
+	on_enter_occupant_message = "The checkpoint unseals and grinds open, and you step through."
+	on_store_visible_message_1 = "grinds closed after"
+	on_store_visible_message_2 = "passes through it."
+	time_till_despawn = 10 // 1 second, because math
+
+/obj/machinery/cryopod/Initialize()
+	. = ..()
 	announce = new /obj/item/device/radio/intercom(src)
-	..()
+	find_control_computer()
 
 /obj/machinery/cryopod/Destroy()
 	if(occupant)
 		occupant.forceMove(loc)
 		occupant.resting = 1
 	return ..()
-
-/obj/machinery/cryopod/Initialize()
-	. = ..()
-
-	find_control_computer()
 
 /obj/machinery/cryopod/proc/find_control_computer(urgent=0)
 	control_computer = null

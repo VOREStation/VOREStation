@@ -88,7 +88,10 @@
 	icon_state = "corgi"
 	icon_living = "corgi"
 	icon_dead = "corgi_dead"
+<<<<<<< HEAD
 	holder_type = /obj/item/weapon/holder/corgi
+=======
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map
 	organ_names = /decl/mob_organ_names/corgi
 
 /mob/living/simple_mob/animal/passive/dog/corgi/puppy

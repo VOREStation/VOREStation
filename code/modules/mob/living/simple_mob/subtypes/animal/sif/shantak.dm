@@ -102,6 +102,7 @@
 /mob/living/simple_mob/animal/sif/shantak/leader/autofollow/retaliate
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
 
+<<<<<<< HEAD
 //Vorestation Addition
 /mob/living/simple_mob/animal/sif/shantak/scruffy
 	name = "Scruffy"
@@ -111,3 +112,7 @@
 	
 /decl/mob_organ_names/shantak
 	hit_zones = list("head", "torso", "left foreleg", "right foreleg", "left hind leg", "right hind leg", "tail", "mane", "snout")
+=======
+/decl/mob_organ_names/shantak
+	hit_zones = list("head", "torso", "left foreleg", "right foreleg", "left hind leg", "right hind leg", "tail", "mane", "snout")
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map

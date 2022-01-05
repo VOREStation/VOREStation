@@ -10,9 +10,9 @@
 	var/wax = 2000
 	var/icon_type = "candle"
 
-/obj/item/weapon/flame/candle/New()
+/obj/item/weapon/flame/candle/Initialize()
 	wax -= rand(800, 1000) // Enough for 27-33 minutes. 30 minutes on average.
-	..()
+	. = ..()
 
 /obj/item/weapon/flame/candle/update_icon()
 	var/i

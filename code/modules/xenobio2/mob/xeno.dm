@@ -74,13 +74,17 @@ Also includes Life and New
 
 		return 1	//Everything worked okay.
 
+<<<<<<< HEAD
 /mob/living/simple_mob/xeno/New()
+=======
+/mob/living/simple_animal/xeno/Initialize()
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map
 
 	traitdat = new()
 
 	ProcessTraits()
 
-	..()
+	. = ..()
 	if(colored)
 		color = traitdat.get_trait(TRAIT_XENO_COLOR)
 	create_reagents(internal_vol)
@@ -101,7 +105,12 @@ Also includes Life and New
 		stasis += hit.stasisforce
 	..()
 
+<<<<<<< HEAD
 /mob/living/simple_mob/xeno/Destroy()
 	traitdat.Destroy()	//Let's clean up after ourselves.
 	traitdat = null
+=======
+/mob/living/simple_animal/xeno/Destroy()
+	QDEL_NULL(traitdat)
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map
 	..()

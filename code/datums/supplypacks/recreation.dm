@@ -23,6 +23,13 @@
 	containertype = /obj/structure/closet/crate/allico
 	containername = "foam weapon crate"
 
+/datum/supply_pack/recreation/donksoftvend
+	name = "Donk-Soft Vendor Crate"
+	contains = list()
+	cost = 75
+	containertype = /obj/structure/largecrate/donksoftvendor
+	containername = "\improper Donk-Soft vendor crate"
+
 /datum/supply_pack/recreation/lasertag
 	name = "Lasertag equipment"
 	contains = list(

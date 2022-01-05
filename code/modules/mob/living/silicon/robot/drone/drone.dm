@@ -101,8 +101,13 @@ var/list/mob_hat_cache = list()
 	can_pick_shell = FALSE
 	shell_accessories = list("eyes-miningdrone")
 
+<<<<<<< HEAD
 /mob/living/silicon/robot/drone/New()
 	..()
+=======
+/mob/living/silicon/robot/drone/Initialize()
+	. = ..()
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map
 	verbs += /mob/living/proc/ventcrawl
 	verbs += /mob/living/proc/hide
 	remove_language("Robot Talk")

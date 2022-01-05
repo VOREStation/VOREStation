@@ -150,6 +150,7 @@ var/list/blob_cores = list()
 	overmind.blob_type.on_core_process(src)
 
 /obj/structure/blob/core/proc/create_overmind(client/new_overmind, override_delay)
+	set waitfor = FALSE
 	if(overmind_get_delay > world.time && !override_delay)
 		return
 	if(!ai_controlled) // Do we want a bona fide player blob?

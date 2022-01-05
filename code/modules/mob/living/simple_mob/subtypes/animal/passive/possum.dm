@@ -126,8 +126,13 @@
 	response_help = "pets"
 	response_disarm = "gently pushes aside"
 	response_harm = "stamps on"
+<<<<<<< HEAD
 	density = FALSE
 	organ_names = /decl/mob_organ_names/possum
+=======
+	organ_names = /decl/mob_organ_names/possum
+	density = 0
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map
 	minbodytemp = 223
 	maxbodytemp = 323
 	universal_speak = FALSE

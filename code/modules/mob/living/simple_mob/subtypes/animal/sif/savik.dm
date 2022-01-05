@@ -83,4 +83,8 @@
 	add_modifier(/datum/modifier/berserk, 30 SECONDS)
 
 /decl/mob_organ_names/savik
+<<<<<<< HEAD
 	hit_zones = list("head", "torso", "left foreleg", "right foreleg", "left hind leg", "right hind leg", "right bone plate", "left bone plate", "tail", "left claw", "right claw")
+=======
+	hit_zones = list("head", "torso", "left foreleg", "right foreleg", "left hind leg", "right hind leg", "right bone plate", "left bone plate", "tail", "left claw", "right claw")
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map

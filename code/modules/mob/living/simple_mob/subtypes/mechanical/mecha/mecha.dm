@@ -143,4 +143,8 @@
 	..(severity)
 
 /decl/mob_organ_names/mecha
+<<<<<<< HEAD
 	hit_zones = list("central chassis", "control module", "hydraulics", "left arm", "right arm", "left leg", "right leg", "sensor suite", "radiator", "power supply", "left equipment mount", "right equipment mount")
+=======
+	hit_zones = list("central chassis", "control module", "hydraulics", "left arm", "right arm", "left leg", "right leg", "sensor suite", "radiator", "power supply", "left equipment mount", "right equipment mount")
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map

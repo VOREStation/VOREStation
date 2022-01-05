@@ -7,7 +7,22 @@
 	open_sound_powered = 'sound/machines/door/WideOpen.ogg'
 	close_sound_powered = 'sound/machines/door/WideClose.ogg'
 
+<<<<<<< HEAD
 /obj/machinery/door/airlock/multi_tile/Initialize(mapload)
+=======
+/obj/machinery/door/airlock/multi_tile/Initialize()
+	. = ..()
+	SetBounds()
+	if(opacity)
+		create_fillers()
+
+/obj/machinery/door/airlock/multi_tile/Destroy()
+	QDEL_NULL(filler1)
+	QDEL_NULL(filler2)
+	return ..()
+
+/obj/machinery/door/airlock/multi_tile/Moved(atom/old_loc, direction, forced = FALSE)
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map
 	. = ..()
 	SetBounds()
 	RegisterSignal(src, COMSIG_MOVABLE_MOVED, .proc/SetBounds)

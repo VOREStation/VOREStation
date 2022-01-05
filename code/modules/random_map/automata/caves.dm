@@ -69,5 +69,8 @@
 			else if(map[current_cell] == EMPTY_CHAR)
 				T.make_ore(1)
 		get_additional_spawns(map[current_cell],T,get_spawn_dir(x, y))
+<<<<<<< HEAD
 	//VOREStation Edit End
+=======
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map
 	return T

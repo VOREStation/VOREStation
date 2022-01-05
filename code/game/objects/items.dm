@@ -107,8 +107,8 @@
 
 	var/tip_timer // reference to timer id for a tooltip we might open soon
 
-/obj/item/New()
-	..()
+/obj/item/Initialize()
+	. = ..()
 	if(embed_chance < 0)
 		if(sharp)
 			embed_chance = max(5, round(force/w_class))

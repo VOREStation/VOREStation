@@ -155,4 +155,8 @@
 	ranged_post_animation(A)
 
 /decl/mob_organ_names/golem
+<<<<<<< HEAD
 	hit_zones = list("helmet", "cuirass", "left tasset", "right tasset", "left gauntlet", "right gauntlet", "weapon")
+=======
+	hit_zones = list("helmet", "cuirass", "left tasset", "right tasset", "left gauntlet", "right gauntlet", "weapon")
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map

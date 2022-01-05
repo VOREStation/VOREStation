@@ -25,7 +25,7 @@
 "ay" = (/obj/structure/grille,/obj/structure/window/reinforced/full,/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0},/turf/simulated/floor,/area/submap/DJOutpost1)
 "az" = (/obj/effect/overlay/snow/floor,/obj/structure/cable/yellow{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/simulated/floor{outdoors = 1},/area/submap/DJOutpost1)
 "aA" = (/obj/structure/table/steel_reinforced,/obj/item/device/radio/intercom{icon_state = "intercom"; dir = 8},/obj/item/weapon/book/codex/lore/news,/turf/simulated/floor/tiled/techfloor,/area/submap/DJOutpost1)
-"aB" = (/obj/item/clothing/under/pcrc,/obj/random/humanoidremains{spawn_nothing_percentage = 60},/turf/simulated/floor/tiled/techfloor,/area/submap/DJOutpost1)
+"aB" = (/obj/item/clothing/under/corp/pcrc,/obj/random/humanoidremains{spawn_nothing_percentage = 60},/turf/simulated/floor/tiled/techfloor,/area/submap/DJOutpost1)
 "aC" = (/obj/machinery/light{dir = 4; icon_state = "tube1"; pixel_x = 0},/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/structure/cable/yellow,/obj/machinery/power/solar_control/autostart,/turf/simulated/floor/tiled/techfloor,/area/submap/DJOutpost1)
 "aD" = (/obj/effect/overlay/snow/floor,/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/random/landmine,/turf/simulated/floor{outdoors = 1},/area/submap/DJOutpost1)
 "aE" = (/obj/structure/bookcase,/obj/item/weapon/book/codex/lore/robutt,/turf/simulated/floor/tiled/techfloor,/area/submap/DJOutpost1)

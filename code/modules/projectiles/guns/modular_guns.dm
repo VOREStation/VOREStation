@@ -28,8 +28,8 @@
 	//Excessively long because it won't accept subtypes for some reason!
 
 
-/obj/item/weapon/gun/energy/modular/New() //Initialize our components.
-	..()
+/obj/item/weapon/gun/energy/modular/Initialize()
+	. = ..()
 	guncomponents = list()
 	guncomponents += new /obj/item/weapon/stock_parts/capacitor
 	guncomponents += new /obj/item/weapon/stock_parts/micro_laser

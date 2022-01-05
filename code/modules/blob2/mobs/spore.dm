@@ -30,11 +30,15 @@
 	melee_damage_lower = 1
 	melee_damage_upper = 2
 
+<<<<<<< HEAD
 /mob/living/simple_mob/hostile/blob/spore/New(var/newloc, var/obj/structure/blob/factory/my_factory)
+=======
+/mob/living/simple_animal/hostile/blob/spore/Initialize(var/ml, var/obj/structure/blob/factory/my_factory)
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map
 	if(istype(my_factory))
 		factory = my_factory
 		factory.spores += src
-	..(newloc)
+	. = ..(ml)
 
 /mob/living/simple_mob/hostile/blob/spore/Destroy()
 	if(factory)

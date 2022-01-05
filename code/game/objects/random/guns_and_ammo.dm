@@ -194,7 +194,7 @@
 	icon_state = "grenade_3"
 
 /obj/random/grenade/lethal/item_to_spawn()
-	return pick(	prob(15);/obj/item/weapon/grenade/concussion,
+	return pick(prob(15);/obj/item/weapon/grenade/concussion,
 			prob(5);/obj/item/weapon/grenade/empgrenade,
 			prob(2);/obj/item/weapon/grenade/chem_grenade/incendiary,
 			prob(5);/obj/item/weapon/grenade/explosive,

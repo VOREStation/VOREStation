@@ -21,7 +21,7 @@
 
 /turf/unsimulated/wall/supermatter/Destroy()
 	STOP_PROCESSING(SSturfs, src)
-	..()
+	return ..()
 
 /turf/unsimulated/wall/supermatter/process()
 	// Only check infrequently.

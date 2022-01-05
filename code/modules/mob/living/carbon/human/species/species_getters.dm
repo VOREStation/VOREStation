@@ -79,24 +79,39 @@
 
 /datum/species/proc/get_environment_discomfort(var/mob/living/carbon/human/H, var/msg_type)
 
+<<<<<<< HEAD
 	if(!prob(10))
 		return
 
 	/* // Commented out because clothes should not prevent you from feeling cold if your body temperature has already dropped. You can absolutely feel cold through clothing, and feel too warm without clothing. ???
+=======
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map
 	var/covered = 0 // Basic coverage can help.
 	for(var/obj/item/clothing/clothes in H)
 		if(H.item_is_in_hands(clothes))
 			continue
 		if((clothes.body_parts_covered & UPPER_TORSO) && (clothes.body_parts_covered & LOWER_TORSO))
-			covered = 1
+			covered = TRUE
 			break
 	*/
 
+<<<<<<< HEAD
 	switch(msg_type)
 		if("cold")
 			to_chat(H, "<span class='danger'>[pick(cold_discomfort_strings)]</span>")
 		if("heat")
 			to_chat(H, "<span class='danger'>[pick(heat_discomfort_strings)]</span>")
+=======
+	var/discomfort_message
+	if(msg_type == ENVIRONMENT_COMFORT_MARKER_COLD && length(cold_discomfort_strings) && !covered)
+		discomfort_message = pick(cold_discomfort_strings)
+	else if(msg_type == ENVIRONMENT_COMFORT_MARKER_HOT && length(heat_discomfort_strings) && covered)
+		discomfort_message = pick(heat_discomfort_strings)
+
+	if(discomfort_message && prob(5))
+		to_chat(H, SPAN_DANGER(discomfort_message))
+	return !!discomfort_message
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map
 
 /datum/species/proc/get_random_name(var/gender)
 	if(!name_language)

@@ -7,9 +7,16 @@
 	var/max_cable = 1000
 	required_type = list(/obj/mecha/working)
 
+<<<<<<< HEAD
 /obj/item/mecha_parts/mecha_equipment/tool/cable_layer/New()
 	cable = new(src, 0)
 	..()
+=======
+/obj/item/mecha_parts/mecha_equipment/tool/cable_layer/Initialize()
+	cable = new(src)
+	cable.amount = 0
+	. = ..()
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map
 
 /obj/item/mecha_parts/mecha_equipment/tool/cable_layer/MoveAction()
 	layCable()

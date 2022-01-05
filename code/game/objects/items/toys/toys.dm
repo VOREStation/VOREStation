@@ -4,7 +4,6 @@
  *		Fake telebeacon
  *		Fake singularity
  *		Toy gun
- *		Toy crossbow
  *		Toy swords
  *		Toy bosun's whistle
  *		Snap pops
@@ -16,7 +15,7 @@
  *		Plushies
  *		Toy cult sword
  *		Bouquets
- 		Stick Horse
+ *		Stick Horse
  */
 
 
@@ -38,7 +37,8 @@
 	icon_state = "waterballoon-e"
 	drop_sound = 'sound/items/drop/rubber.ogg'
 
-/obj/item/toy/balloon/New()
+/obj/item/toy/balloon/Initialize()
+	. = ..()
 	var/datum/reagents/R = new/datum/reagents(10)
 	reagents = R
 	R.my_atom = src
@@ -146,6 +146,7 @@
 	icon_state = "singularity_s1"
 
 /*
+<<<<<<< HEAD
  * Toy crossbow
  */
 
@@ -267,6 +268,8 @@
 	density = FALSE
 
 /*
+=======
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map
  * Toy swords
  */
 /obj/item/toy/sword
@@ -424,8 +427,8 @@
 	var/toysay = "What the fuck did you do?"
 	drop_sound = 'sound/items/drop/accessory.ogg'
 
-/obj/item/toy/figure/New()
-	..()
+/obj/item/toy/figure/Initialize()
+	. = ..()
 	desc = "A \"Space Life\" brand [name]"
 
 /obj/item/toy/figure/attack_self(mob/user as mob)

@@ -20,8 +20,8 @@
 	icon_scale_x = 1.2
 	icon_scale_y = 1.2
 
-/obj/mecha/medical/odysseus/New()
-	..()
+/obj/mecha/medical/odysseus/Initialize()
+	. = ..()
 	hud = new /obj/item/clothing/glasses/hud/health/mech(src)
 	return
 
@@ -139,8 +139,8 @@
 /obj/mecha/medical/odysseus/old
 	desc = "An aging combat exosuit utilized by many corporations. Originally developed to combat hostile alien lifeforms. This one is particularly worn looking and likely isn't as sturdy."
 
-/obj/mecha/medical/odysseus/old/New()
-	..()
+/obj/mecha/medical/odysseus/old/Initialize()
+	. = ..()
 	health = 25
 	maxhealth = 50	//Just slightly worse.
 	cell.charge = rand(0, (cell.charge/2))

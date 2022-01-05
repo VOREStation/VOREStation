@@ -48,7 +48,10 @@
 	attacktext = list("gouged", "bit", "cut", "clawed", "whipped")
 
 	organ_names = /decl/mob_organ_names/kururak
+<<<<<<< HEAD
 	meat_amount = 5
+=======
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map
 
 	armor = list(
 		"melee" = 30,

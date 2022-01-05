@@ -269,13 +269,13 @@
 		/obj/item/ammo_casing/a545              = "5.45mm"
 		)
 
-/obj/item/weapon/gun/projectile/pirate/New()
+/obj/item/weapon/gun/projectile/pirate/Initialize()
 	ammo_type = pick(ammo_types)
 	desc += " Uses [ammo_types[ammo_type]] rounds."
 
 	var/obj/item/ammo_casing/ammo = ammo_type
 	caliber = initial(ammo.caliber)
-	..()
+	. = ..()
 
 /obj/item/weapon/gun/projectile/derringer
 	name = "derringer"

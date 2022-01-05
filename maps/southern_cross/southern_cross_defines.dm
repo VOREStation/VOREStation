@@ -79,7 +79,12 @@
 							NETWORK_SUPPLY
 							)
 	usable_email_tlds = list("freemail.nt")
-	allowed_spawns = list("Arrivals Shuttle","Gateway", "Cryogenic Storage", "Cyborg Storage")
+	allowed_spawns = list(
+		"Arrivals Shuttle",
+		"Checkpoint",
+		"Cryogenic Storage",
+		"Cyborg Storage"
+	)
 
 	default_skybox = /datum/skybox_settings/southern_cross
 
@@ -134,8 +139,13 @@
 
 	// Now for the tunnels.
 	new /datum/random_map/automata/cave_system/no_cracks(null, 1, 1, Z_LEVEL_SURFACE_MINE, world.maxx, world.maxy) // Create the mining Z-level.
+	new /datum/random_map/noise/sif/underground(null, 1, 1, Z_LEVEL_SURFACE_MINE, world.maxx, world.maxy)
 	new /datum/random_map/noise/ore(null, 1, 1, Z_LEVEL_SURFACE_MINE, 64, 64)         // Create the mining ore distribution map.
-	// Todo: Forest generation.
+
+	// Forest/wilderness generation.
+	new /datum/random_map/noise/sif(       null, 1, 1, Z_LEVEL_SURFACE,      world.maxx, world.maxy)
+	new /datum/random_map/noise/sif/forest(null, 1, 1, Z_LEVEL_SURFACE_WILD, world.maxx, world.maxy)
+
 	return 1
 
 // Skybox Settings
@@ -220,28 +230,28 @@
 
 //Teleport to Mine
 
-/obj/effect/step_trigger/teleporter/mine/to_mining/New()
-	..()
+/obj/effect/step_trigger/teleporter/mine/to_mining/Initialize()
+	. = ..()
 	teleport_x = src.x
 	teleport_y = 2
 	teleport_z = Z_LEVEL_SURFACE_MINE
 
-/obj/effect/step_trigger/teleporter/mine/from_mining/New()
-	..()
+/obj/effect/step_trigger/teleporter/mine/from_mining/Initialize()
+	. = ..()
 	teleport_x = src.x
 	teleport_y = world.maxy - 1
 	teleport_z = Z_LEVEL_SURFACE
 
 //Teleport to Wild
 
-/obj/effect/step_trigger/teleporter/wild/to_wild/New()
-	..()
+/obj/effect/step_trigger/teleporter/wild/to_wild/Initialize()
+	. = ..()
 	teleport_x = src.x
 	teleport_y = 2
 	teleport_z = Z_LEVEL_SURFACE_WILD
 
-/obj/effect/step_trigger/teleporter/wild/from_wild/New()
-	..()
+/obj/effect/step_trigger/teleporter/wild/from_wild/Initialize()
+	. = ..()
 	teleport_x = src.x
 	teleport_y = world.maxy - 1
 	teleport_z = Z_LEVEL_SURFACE_MINE

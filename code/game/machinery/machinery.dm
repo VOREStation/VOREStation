@@ -119,17 +119,20 @@ Class Procs:
 
 	var/speed_process = FALSE			//If false, SSmachines. If true, SSfastprocess.
 
+<<<<<<< HEAD
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 
 /obj/machinery/New(l, d=0)
 	..()
 	if(isnum(d))
+=======
+/obj/machinery/Initialize(var/ml, d=0)
+	. = ..()
+	if(d)
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map
 		set_dir(d)
 	if(ispath(circuit))
 		circuit = new circuit(src)
-
-/obj/machinery/Initialize(var/mapload)
-	. = ..()
 	global.machines += src
 	if(ispath(circuit))
 		circuit = new circuit(src)
@@ -137,7 +140,7 @@ Class Procs:
 		START_MACHINE_PROCESSING(src)
 	else
 		START_PROCESSING(SSfastprocess, src)
-	if(!mapload)
+	if(!ml)
 		power_change()
 
 /obj/machinery/Destroy()

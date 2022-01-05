@@ -170,6 +170,8 @@
 	if(!istype(T))
 		return
 
+	..()
+
 	var/hotspot = (locate(/obj/fire) in T)
 	if(hotspot && !istype(T, /turf/space))
 		var/datum/gas_mixture/lowertemp = T.remove_air(T:air:total_moles)
@@ -386,6 +388,7 @@
 	allergen_type = ALLERGEN_GRAINS //Flour is made from grain
 
 /datum/reagent/nutriment/flour/touch_turf(var/turf/simulated/T)
+	..()
 	if(!istype(T, /turf/space))
 		new /obj/effect/decal/cleanable/flour(T)
 
@@ -565,6 +568,7 @@
 	glass_desc = "Durian paste. It smells horrific."
 
 /datum/reagent/nutriment/durian/touch_mob(var/mob/M, var/amount)
+	..()
 	if(iscarbon(M) && !M.isSynthetic())
 		var/message = pick("Oh god, it smells disgusting here.", "What is that stench?", "That's an awful odor.")
 		to_chat(M, "<span class='alien'>[message]</span>")
@@ -574,6 +578,7 @@
 	return ..()
 
 /datum/reagent/nutriment/durian/touch_turf(var/turf/T, var/amount)
+	..()
 	if(istype(T))
 		var/obj/effect/decal/cleanable/chemcoating/C = new /obj/effect/decal/cleanable/chemcoating(T)
 		C.reagents.add_reagent(id, amount)
@@ -1307,6 +1312,16 @@
 		if(M.bodytemperature < T0C)
 			M.bodytemperature += 0.5
 		//M.adjustToxLoss(5 * removed) //VOREStation Removal
+
+/datum/reagent/drink/tea/icetea/decaf
+	name = "Decaf Iced Tea"
+	glass_name = "decaf iced tea"
+	cup_name = "cup of decaf iced tea"
+	id = "iceteadecaf"
+	adj_dizzy = 0
+	adj_drowsy = 0
+	adj_sleepy = 0
+	allergen_type = null
 
 /datum/reagent/drink/tea/icetea/decaf
 	name = "Decaf Iced Tea"
@@ -3180,6 +3195,7 @@
 	glass_name = "Cuba Libre"
 	glass_desc = "A classic mix of rum, cola, and lime."
 	allergen_type = ALLERGEN_STIMULANT //Cola
+<<<<<<< HEAD
 
 /datum/reagent/ethanol/rum_and_cola
 	name = "Rum and Cola"
@@ -3191,6 +3207,8 @@
 
 	glass_name = "Cuba Libre"
 	glass_desc = "A classic mix of rum, cola, and lime."
+=======
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map
 
 /datum/reagent/ethanol/rum_and_cola
 	name = "Rum and Cola"

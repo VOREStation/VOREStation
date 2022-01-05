@@ -3,9 +3,10 @@ CONTAINS:
 THAT STUPID GAME KIT
 
 */
-/obj/item/weapon/game_kit/New()
+/obj/item/weapon/game_kit/Initialize()
 	src.board_stat = "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
 	src.selected = "CR"
+	. = ..()
 
 /obj/item/weapon/game_kit/attack_paw(mob/user as mob)
 	return src.attack_hand(user)

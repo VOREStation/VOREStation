@@ -25,10 +25,15 @@ var/list/holder_mob_icon_cache = list()
 	var/matrix/original_transform
 	var/original_vis_flags = NONE
 
+<<<<<<< HEAD
 /obj/item/weapon/holder/Initialize(mapload, mob/held)
 	ASSERT(ismob(held))
 	. = ..()
 	held.forceMove(src)
+=======
+/obj/item/weapon/holder/Initialize()
+	. = ..()
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map
 	START_PROCESSING(SSobj, src)
 
 /obj/item/weapon/holder/Entered(mob/held, atom/OldLoc)

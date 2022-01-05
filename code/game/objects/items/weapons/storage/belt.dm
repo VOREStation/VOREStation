@@ -530,3 +530,15 @@
 	desc = "The fancy utility-belt holding the tools, cuffs and gadgets of the Go Go ERT-Rangers. The belt buckle is not real phoron, but it is still surprisingly comfortable to wear."
 	icon = 'icons/obj/clothing/ranger.dmi'
 	icon_state = "ranger_belt"
+<<<<<<< HEAD
+=======
+
+/obj/item/weapon/storage/belt/dbandolier
+	name = "\improper Donk-Soft bandolier"
+	desc = "A Donk-Soft bandolier! Carry your spare darts anywhere! Ages 8 and up."
+	icon_state = "dbandolier"
+	storage_slots = 8
+	can_hold = list(
+		/obj/item/ammo_casing/afoam_dart
+		)
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map

@@ -16,9 +16,12 @@
 
 	organ_names = /decl/mob_organ_names/penguin
 
+<<<<<<< HEAD
 	meat_amount = 3
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/chicken
 
+=======
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map
 	harm_intent_damage = 5
 	melee_damage_lower = 10
 	melee_damage_upper = 15

@@ -459,9 +459,15 @@
 	icon_state = "oiltank"
 	amount_per_transfer_from_this = 120
 
+<<<<<<< HEAD
 /obj/structure/reagent_dispensers/cookingoil/New()
 		..()
 		reagents.add_reagent("cookingoil",5000)
+=======
+/obj/structure/reagent_dispensers/cookingoil/Initialize()
+	. = ..()
+	reagents.add_reagent("cornoil",5000)
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map
 
 /obj/structure/reagent_dispensers/cookingoil/bullet_act(var/obj/item/projectile/Proj)
 	if(Proj.get_structure_damage())

@@ -24,6 +24,45 @@ var/list/turf_edge_cache = list()
 
 	// When a turf gets demoted or promoted, this list gets adjusted.  The top-most layer is the layer on the bottom of the list, due to how pop() works.
 	var/list/turf_layers = list(/turf/simulated/floor/outdoors/rocks)
+<<<<<<< HEAD
+=======
+	var/can_dig = FALSE
+	var/loot_count
+
+/turf/simulated/floor/outdoors/proc/get_loot_type()
+	if(loot_count && prob(60))
+		return pick( \
+			12;/obj/item/weapon/reagent_containers/food/snacks/worm, \
+			1;/obj/item/weapon/material/knife/machete/hatchet/stone  \
+		)
+
+/turf/simulated/floor/outdoors/Initialize(mapload)
+	. = ..()
+	if(can_dig && prob(33))
+		loot_count = rand(1,3)
+
+/turf/simulated/floor/outdoors/attackby(obj/item/C, mob/user)
+
+	if(can_dig && istype(C, /obj/item/weapon/shovel))
+		to_chat(user, SPAN_NOTICE("\The [user] begins digging into \the [src] with \the [C]."))
+		var/delay = (3 SECONDS * C.toolspeed)
+		user.setClickCooldown(delay)
+		if(do_after(user, delay, src))
+			if(!(locate(/obj/machinery/portable_atmospherics/hydroponics/soil) in contents))
+				var/obj/machinery/portable_atmospherics/hydroponics/soil/soil = new(src)
+				user.visible_message(SPAN_NOTICE("\The [user] digs \a [soil] into \the [src]."))
+			else
+				var/loot_type = get_loot_type()
+				if(loot_type)
+					loot_count--
+					var/obj/item/loot = new loot_type(src)
+					to_chat(user, SPAN_NOTICE("You dug up \a [loot]!"))
+				else
+					to_chat(user, SPAN_NOTICE("You didn't find anything of note in \the [src]."))
+			return
+
+	. = ..()
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map
 
 /turf/simulated/floor/Initialize(mapload)
 	if(is_outdoors())

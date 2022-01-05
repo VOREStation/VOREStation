@@ -10,8 +10,13 @@
 
 
 /obj/item/weapon/shield_diffuser/Initialize()
+<<<<<<< HEAD
 	. = ..()
 	cell = new(src)
+=======
+	cell = new(src)
+	. = ..()
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map
 
 /obj/item/weapon/shield_diffuser/Destroy()
 	QDEL_NULL(cell)

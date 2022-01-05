@@ -53,6 +53,19 @@
 	set_trait(TRAIT_WATER_CONSUMPTION, 6)
 	set_trait(TRAIT_NUTRIENT_CONSUMPTION, 0.15)
 
+/datum/seed/flower/sunflower/cavebulbs
+	name = "cavebulbs"
+	seed_name = "cavebulbs"
+	display_name = "cavebulbs"
+	kitchen_tag = null
+
+/datum/seed/flower/sunflower/cavebulbs/New()
+	..()
+	set_trait(TRAIT_BIOLUM,1)
+	set_trait(TRAIT_BIOLUM_COLOUR,"#ff9900")
+	set_trait(TRAIT_PRODUCT_COLOUR,"#c78a30")
+	set_trait(TRAIT_PLANT_COLOUR,"#82602e")
+
 /datum/seed/flower/lavender
 	name = "lavender"
 	seed_name = "lavender"

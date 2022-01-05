@@ -15,16 +15,16 @@
 	var/list/monitored_alarm_ids = null
 	var/datum/tgui_module/atmos_control/atmos_control
 
-/obj/machinery/computer/atmoscontrol/New()
-	..()
-
 /obj/machinery/computer/atmoscontrol/laptop //[TO DO] Change name to PCU and update mapdata to include replacement computers
 	name = "\improper Atmospherics PCU"
 	desc = "A personal computer unit. It seems to have only the Atmosphereics Control program installed."
 	icon_screen = "pcu_atmo"
 	icon_state = "pcu_engi"
 	icon_keyboard = "pcu_key"
+<<<<<<< HEAD
 	density = FALSE
+=======
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map
 	light_color = "#00cc00"
 	density = 0
 
