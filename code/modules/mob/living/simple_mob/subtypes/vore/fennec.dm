@@ -34,8 +34,18 @@
 	icon = 'icons/mob/vore.dmi'
 
 	faction = "fennec"
-	maxHealth = 30
-	health = 30
+	maxHealth = 120
+	health = 120
+	
+	min_oxy = 0	//Fenncs kept dying randomly on virgo four, this should be a coverall
+	max_oxy = 0
+	min_tox = 0
+	max_tox = 0
+	min_co2 = 0
+	max_co2 = 0
+	min_n2 = 0
+	max_n2 = 0
+	minbodytemp = 0
 
 	response_help = "pats"
 	response_disarm = "gently pushes aside"
