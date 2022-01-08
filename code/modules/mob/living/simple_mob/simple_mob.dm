@@ -288,6 +288,7 @@
 	hud_list[LIFE_HUD]	  = gen_hud_image(buildmode_hud, src, "ais_1", plane = PLANE_BUILDMODE)
 	add_overlay(hud_list)
 
+<<<<<<< HEAD
 //VOREStation Add Start		Makes it so that simplemobs can understand galcomm without being able to speak it.
 /mob/living/simple_mob/say_understands(var/mob/other, var/datum/language/speaking = null)
 	if(understands_common && speaking?.name == LANGUAGE_GALCOM)
@@ -297,3 +298,7 @@
 
 /decl/mob_organ_names
 	var/list/hit_zones = list("body") //When in doubt, it's probably got a body.
+=======
+/decl/mob_organ_names
+	var/list/hit_zones = list("body") //When in doubt, it's probably got a body.
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map

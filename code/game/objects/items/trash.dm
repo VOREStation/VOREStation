@@ -11,15 +11,12 @@
 	matter = list(MAT_STEEL = 30)
 	var/age = 0
 
-/obj/item/trash/New(var/newloc, var/_age)
-	..(newloc)
+/obj/item/trash/Initialize(var/ml, var/_age)
+	. = ..()
 	if(!isnull(_age))
 		age = _age
-
-/obj/item/trash/Initialize(mapload)
-	if(!mapload || !config.persistence_ignore_mapload)
+	if(!ml || !config.persistence_ignore_mapload)
 		SSpersistence.track_value(src, /datum/persistent/filth/trash)
-	. = ..()
 
 /obj/item/trash/Destroy()
 	SSpersistence.forget_value(src, /datum/persistent/filth/trash)

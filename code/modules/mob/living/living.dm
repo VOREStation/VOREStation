@@ -1,5 +1,5 @@
-/mob/living/New()
-	..()
+/mob/living/Initialize()
+	. = ..()
 
 	//Prime this list if we need it.
 	if(has_huds)
@@ -719,7 +719,7 @@
 	return FALSE
 
 /mob/living/proc/slip(var/slipped_on,stun_duration=8)
-	return 0
+	return FALSE
 
 /mob/living/carbon/drop_from_inventory(var/obj/item/W, var/atom/Target = null)
 	if(W in internal_organs)
@@ -1041,6 +1041,10 @@
 				src.inertia_dir = get_dir(target, src)
 				step(src, inertia_dir)
 			item.throw_at(target, throw_range, item.throw_speed, src)
+<<<<<<< HEAD
+=======
+
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map
 			return TRUE
 		else
 			return FALSE

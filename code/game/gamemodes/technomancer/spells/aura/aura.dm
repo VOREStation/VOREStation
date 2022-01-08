@@ -6,8 +6,8 @@
 	aspect = null
 	var/glow_color = "#FFFFFF"
 
-/obj/item/weapon/spell/aura/New()
-	..()
+/obj/item/weapon/spell/aura/Initialize()
+	. = ..()
 	set_light(calculate_spell_power(7), calculate_spell_power(4), l_color = glow_color)
 	START_PROCESSING(SSobj, src)
 	log_and_message_admins("has started casting [src].")

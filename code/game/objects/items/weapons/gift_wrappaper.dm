@@ -16,8 +16,8 @@
 	drop_sound = 'sound/items/drop/cardboardbox.ogg'
 	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
-/obj/item/weapon/a_gift/New()
-	..()
+/obj/item/weapon/a_gift/Initialize()
+	. = ..()
 	pixel_x = rand(-10,10)
 	pixel_y = rand(-10,10)
 	if(w_class > 0 && w_class < ITEMSIZE_LARGE)
@@ -85,7 +85,7 @@
 		/obj/item/weapon/beach_ball/holoball,
 		/obj/item/toy/balloon,
 		/obj/item/toy/blink,
-		/obj/item/toy/crossbow,
+		/obj/item/weapon/gun/projectile/revolver/toy/crossbow,
 		/obj/item/weapon/gun/projectile/revolver/capgun,
 		/obj/item/toy/katana,
 		/obj/item/toy/mecha/deathripley,

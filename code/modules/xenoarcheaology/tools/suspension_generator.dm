@@ -12,6 +12,7 @@
 
 /obj/machinery/suspension_gen/Initialize()
 	. = ..()
+<<<<<<< HEAD
 	cell = new /obj/item/weapon/cell/high(src)
 	power_change()
 
@@ -22,6 +23,9 @@
 	else
 		stat |= NOPOWER
 	return (stat != oldstat)
+=======
+	src.cell = new /obj/item/weapon/cell/high(src)
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map
 
 /obj/machinery/suspension_gen/process()
 	if(suspension_field)

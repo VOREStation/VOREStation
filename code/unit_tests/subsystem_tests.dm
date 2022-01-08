@@ -16,7 +16,6 @@
 
 	return 1
 
-/* Uncomment when all atoms init properly
 /datum/unit_test/subsystem_atom_shall_have_no_bad_init_calls
 	name = "SUBSYSTEM - ATOMS: Shall have no bad init calls"
 
@@ -35,12 +34,11 @@
 	set background = TRUE // avoid infinite loop warning; SS will still wait for us.
 	var/fail = FALSE
 	for(var/atom/atom in world)
-		if(!(atom.initialized))
-			log_bad("Uninitialized atom: [atom.log_info_line()]")
+		if(!atom.initialized && !QDELETED(atom)) // Not ideal to skip over qdeleted atoms, but a lot of current code uses pre-init qdels
+			log_bad("Uninitialized atom: [atom.type] - [atom.log_info_line()]")
 			fail = TRUE
 	if(fail)
 		fail("There were uninitialized atoms.")
 	else
 		pass("All atoms were initialized")
 	return 1
-*/

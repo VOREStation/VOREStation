@@ -139,6 +139,7 @@
 			var/available_in_days = job.available_in_days(user.client)
 			. += "<del>[rank]</del></td></a><td> \[IN [(available_in_days)] DAYS]</td></tr>"
 			continue
+<<<<<<< HEAD
 		//VOREStation Add
 		if(!job.player_has_enough_playtime(user.client))
 			var/available_in_hours = job.available_in_playhours(user.client)
@@ -148,6 +149,8 @@
 			. += "<del>[rank]</del></td></a><td><b> \[WHITELIST ONLY]</b></td></tr>"
 			continue
 		//VOREStation Add End
+=======
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map
 		if(job.is_species_banned(user.client.prefs.species, user.client.prefs.organ_data["brain"]) == TRUE)
 			. += "<del>[rank]</del></td></a><td> \[THIS RACE/BRAIN TYPE CANNOT TAKE THIS ROLE.\]</td></tr>"
 			continue

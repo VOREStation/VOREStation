@@ -38,7 +38,8 @@
 // creates the random item
 /obj/random/proc/spawn_item()
 	var/build_path = item_to_spawn()
-	return new build_path(drop_location())
+	if(build_path)
+		return new build_path(drop_location())
 
 var/list/random_junk_
 var/list/random_useful_

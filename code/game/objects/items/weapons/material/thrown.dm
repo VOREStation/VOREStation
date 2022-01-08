@@ -9,8 +9,8 @@
 	sharp = TRUE
 	edge =  TRUE
 
-/obj/item/weapon/material/star/New()
-	..()
+/obj/item/weapon/material/star/Initialize()
+	. = ..()
 	src.pixel_x = rand(-12, 12)
 	src.pixel_y = rand(-12, 12)
 

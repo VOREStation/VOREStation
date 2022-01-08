@@ -563,29 +563,29 @@ var/list/global/tank_gauge_cache = list()
 	add_overlay("bomb_assembly")
 
 
-/obj/item/weapon/tank/phoron/onetankbomb/New()
-	..()
+/obj/item/weapon/tank/phoron/onetankbomb/Initialize()
+	. = ..()
 	src.onetankbomb()
 
-/obj/item/weapon/tank/oxygen/onetankbomb/New()
-	..()
+/obj/item/weapon/tank/oxygen/onetankbomb/Initialize()
+	. = ..()
 	src.onetankbomb()
 
 
-/obj/item/weapon/tank/phoron/onetankbomb/full/New()
-	..()
+/obj/item/weapon/tank/phoron/onetankbomb/full/Initialize()
+	. = ..()
 	src.onetankbomb(2)
 
-/obj/item/weapon/tank/oxygen/onetankbomb/full/New()
-	..()
+/obj/item/weapon/tank/oxygen/onetankbomb/full/Initialize()
+	. = ..()
 	src.onetankbomb(2)
 
-/obj/item/weapon/tank/phoron/onetankbomb/small/New()
-	..()
+/obj/item/weapon/tank/phoron/onetankbomb/small/Initialize()
+	. = ..()
 	src.onetankbomb(0)
 
-/obj/item/weapon/tank/oxygen/onetankbomb/small/New()
-	..()
+/obj/item/weapon/tank/oxygen/onetankbomb/small/Initialize()
+	. = ..()
 	src.onetankbomb(0)
 
 /////////////////////////////////

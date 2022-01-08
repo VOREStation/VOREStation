@@ -812,12 +812,12 @@
 	else
 		icon_state = closed_state
 
-/obj/item/weapon/storage/trinketbox/New()
+/obj/item/weapon/storage/trinketbox/Initialize()
 	if(!open_state)
 		open_state = "[initial(icon_state)]_open"
 	if(!closed_state)
 		closed_state = "[initial(icon_state)]"
-	..()
+	. = ..()
 
 /obj/item/weapon/storage/trinketbox/attack_self()
 	open = !open

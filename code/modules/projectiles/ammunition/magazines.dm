@@ -22,7 +22,33 @@
 */
 /************************************************************************/
 
+///////// Foam /////////
 
+/obj/item/ammo_magazine/mfoam_dart/pistol
+	name = "\improper Donk-Soft pistol magazine"
+	icon_state = "45"
+	mag_type = MAGAZINE
+	ammo_type = /obj/item/ammo_casing/afoam_dart
+	matter = list(MAT_PLASTIC = 250)
+	caliber = "foam"
+	max_ammo = 9
+	multiple_sprites = 1
+
+/obj/item/ammo_magazine/mfoam_dart/pistol/empty
+	initial_ammo = 0
+
+/obj/item/ammo_magazine/mfoam_dart/smg
+	name = "\improper Donk-Soft smg magazine"
+	icon_state = "10mm"
+	mag_type = MAGAZINE
+	ammo_type = /obj/item/ammo_casing/afoam_dart
+	matter = list(MAT_PLASTIC = 250)
+	caliber = "foam"
+	max_ammo = 20
+	multiple_sprites = 1
+
+/obj/item/ammo_magazine/mfoam_dart/pistol/smg
+	initial_ammo = 0
 
 ///////// .357 /////////
 

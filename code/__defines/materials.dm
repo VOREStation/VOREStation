@@ -50,7 +50,10 @@
 #define MAT_PAINITE			"painite"
 #define MAT_BOROSILICATE	"borosilicate glass"
 #define MAT_SANDSTONE		"sandstone"
+<<<<<<< HEAD
 #define MAT_FLINT           "flint"
+=======
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map
 #define MAT_PLATINUM		"platinum"
 #define MAT_TRITIUM			"tritium"
 #define MAT_DEUTERIUM		"deuterium"

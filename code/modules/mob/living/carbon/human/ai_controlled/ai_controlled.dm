@@ -107,7 +107,7 @@
 		equip_to_slot_or_del(W, slot_wear_id)
 
 	if(generate_dead)
-		death()
+		addtimer(CALLBACK(src, .proc/death), 0)
 
 /*
  * Subtypes.

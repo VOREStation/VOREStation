@@ -67,7 +67,13 @@
 			"points" = inserted_id.mining_points,
 		)
 	else
+<<<<<<< HEAD
 		data["has_id"] = FALSE
+=======
+		dat += "No ID inserted.  <A href='?src=\ref[src];choice=insert'>Insert ID.</A><br>"
+	dat += "High-speed processing is <A href='?src=\ref[src];toggle_speed=1'>[(machine.speed_process ? "<font color='green'>active</font>" : "<font color='red'>inactive</font>")]</A>."
+	dat += "<hr><table>"
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map
 
 	
 	var/list/ores = list()

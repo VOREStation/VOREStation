@@ -129,8 +129,10 @@
 	var/invis_toggle = FALSE
 	var/list/sub_planes
 
-/obj/screen/plane_master/New()
-	..(null) //Never be in anything ever.
+/obj/screen/plane_master/Initialize()
+	. = ..()
+	if(loc)
+		moveToNullspace() //Never be in anything ever.
 
 /obj/screen/plane_master/proc/backdrop(mob/mymob)
 

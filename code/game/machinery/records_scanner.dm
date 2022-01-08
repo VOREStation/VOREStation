@@ -8,7 +8,7 @@
 	anchored = TRUE
 	var/lastuser = null
 
-/obj/machinery/scanner/New()
+/obj/machinery/scanner/Initialize()
 	if(!outputdir)
 		switch(dir)
 			if(1)
@@ -21,6 +21,7 @@
 				outputdir = 4
 		if(!outputdir)
 			outputdir = 8
+	. = ..()
 
 /obj/machinery/scanner/process()
 	if(stat & NOPOWER)

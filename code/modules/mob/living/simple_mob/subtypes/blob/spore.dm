@@ -155,4 +155,8 @@
 	return damage_to_do
 
 /decl/mob_organ_names/spore
+<<<<<<< HEAD
 	hit_zones = list("sporangium", "stolon", "sporangiophore")
+=======
+	hit_zones = list("sporangium", "stolon", "sporangiophore")
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map

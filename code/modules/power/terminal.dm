@@ -14,8 +14,8 @@
 	layer = WIRES_LAYER+0.01
 
 
-/obj/machinery/power/terminal/New()
-	..()
+/obj/machinery/power/terminal/Initialize()
+	. = ..()
 	var/turf/T = src.loc
 	if(level==1) hide(!T.is_plating())
 	return

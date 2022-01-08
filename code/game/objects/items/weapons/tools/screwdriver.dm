@@ -24,7 +24,11 @@
 	tool_qualities = list(TOOL_SCREWDRIVER)
 	var/random_color = TRUE
 
+<<<<<<< HEAD
 /obj/item/weapon/tool/screwdriver/New()
+=======
+/obj/item/weapon/tool/screwdriver/Initialize()
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map
 	if(random_color)
 		switch(pick("red","blue","purple","brown","green","cyan","yellow"))
 			if ("red")
@@ -51,7 +55,7 @@
 
 	if (prob(75))
 		src.pixel_y = rand(0, 16)
-	..()
+	. = ..()
 
 /obj/item/weapon/tool/screwdriver/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(!istype(M) || user.a_intent == "help")
@@ -124,8 +128,8 @@
 	random_color = FALSE
 	var/obj/item/weapon/tool/wrench/power/counterpart = null
 
-/obj/item/weapon/tool/screwdriver/power/New(newloc, no_counterpart = TRUE)
-	..(newloc)
+/obj/item/weapon/tool/screwdriver/power/Initialize(var/ml, no_counterpart = TRUE)
+	. = ..()
 	if(!counterpart && no_counterpart)
 		counterpart = new(src, FALSE)
 		counterpart.counterpart = src

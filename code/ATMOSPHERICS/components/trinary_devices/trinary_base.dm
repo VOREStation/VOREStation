@@ -17,8 +17,8 @@
 	var/datum/pipe_network/network2
 	var/datum/pipe_network/network3
 
-/obj/machinery/atmospherics/trinary/New()
-	..()
+/obj/machinery/atmospherics/trinary/Initialize()
+	. = ..()
 
 	air1 = new
 	air2 = new

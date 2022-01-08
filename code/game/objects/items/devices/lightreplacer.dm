@@ -59,9 +59,9 @@
 	// when we get this many shards, we get a free bulb.
 	var/shards_required = 4
 
-/obj/item/device/lightreplacer/New()
+/obj/item/device/lightreplacer/Initialize()
 	failmsg = "The [name]'s refill light blinks red."
-	..()
+	. = ..()
 
 /obj/item/device/lightreplacer/examine(mob/user)
 	. = ..()

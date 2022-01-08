@@ -42,7 +42,7 @@
 
 	var/list/camera_computers_using_this = list()
 
-/obj/machinery/camera/New()
+/obj/machinery/camera/Initialize()
 	wires = new(src)
 	assembly = new(src)
 	assembly.state = 4
@@ -61,12 +61,16 @@
 			error("[src.name] in [get_area(src)]has errored. [src.network?"Empty network list":"Null network list"]")
 		ASSERT(src.network)
 		ASSERT(src.network.len > 0)
+<<<<<<< HEAD
 	// VOREStation Edit Start - Make mapping with cameras easier
 	if(!c_tag)
 		var/area/A = get_area(src)
 		c_tag = "[A ? A.name : "Unknown"] #[rand(111,999)]"
 	..()
 	// VOREStation Edit End
+=======
+	. = ..()
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map
 
 /obj/machinery/camera/Destroy()
 	if(isMotion())
@@ -185,7 +189,7 @@
 				else
 					assembly.state = 1
 					to_chat(user, "<span class='notice'>You cut \the [src] free from the wall.</span>")
-					new /obj/item/stack/cable_coil(src.loc, length=2)
+					new /obj/item/stack/cable_coil(src.loc, 2)
 				assembly = null //so qdel doesn't eat it.
 			qdel(src)
 

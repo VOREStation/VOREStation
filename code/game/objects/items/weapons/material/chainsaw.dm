@@ -12,13 +12,13 @@
 	var/active_force = 55
 	var/inactive_force = 10
 
-/obj/item/weapon/chainsaw/New()
+/obj/item/weapon/chainsaw/Initialize()
 	var/datum/reagents/R = new/datum/reagents(max_fuel)
 	reagents = R
 	R.my_atom = src
 	R.add_reagent("fuel", max_fuel)
 	START_PROCESSING(SSobj, src)
-	..()
+	. = ..()
 
 /obj/item/weapon/chainsaw/Destroy()
 	STOP_PROCESSING(SSobj, src)

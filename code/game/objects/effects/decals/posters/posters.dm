@@ -125,7 +125,7 @@
 	var/ruined = FALSE
 
 // This stuff needs to go in new() for the the flick() to look right while it's being placed
-/obj/structure/sign/poster/New(var/newloc, var/placement_dir = null, var/obj/item/poster/P = null)
+/obj/structure/sign/poster/Initialize(var/ml, var/placement_dir = null, var/obj/item/poster/P = null)
 	if(placement_dir)
 		dir = placement_dir
 
@@ -144,7 +144,7 @@
 			pixel_y = 0
 
 	flick("poster_being_set", src)
-	return ..()
+	. = ..()
 
 
 /obj/structure/sign/poster/Initialize(var/newloc, var/placement_dir = null, var/obj/item/poster/P = null)

@@ -2,14 +2,13 @@
 var/list/z_levels = list()// Each bit re... haha just kidding this is a list of bools now
 
 // If the height is more than 1, we mark all contained levels as connected.
-/obj/effect/landmark/map_data/New()
+INITIALIZE_IMMEDIATE(/obj/effect/landmark/map_data)
+/obj/effect/landmark/map_data/Initialize()
+	..()
 	for(var/i = (z - height + 1) to (z-1))
 		if (z_levels.len <i)
 			z_levels.len = i
 		z_levels[i] = TRUE
-
-/obj/effect/landmark/map_data/Initialize()
-	..()
 	return INITIALIZE_HINT_QDEL
 
 // The storage of connections between adjacent levels means some bitwise magic is needed.

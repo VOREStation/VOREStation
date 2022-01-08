@@ -47,8 +47,12 @@
 		"Explorer" = 1
 	)
 
-/obj/item/weapon/robot_module/robot/platform/explorer/New()
-	..()
+/obj/item/weapon/robot_module/robot/platform/explorer/Initialize()
+
+	. = ..()
+	if(. != INITIALIZE_HINT_NORMAL)
+		return
+
 	modules += new /obj/item/weapon/tool/wrench/cyborg(src)
 	modules += new /obj/item/weapon/weldingtool/electric/mounted/cyborg(src)
 	modules += new /obj/item/weapon/tool/wirecutters/cyborg(src)
@@ -88,8 +92,12 @@
 	channels = list("Supply" = 1)
 	networks = list(NETWORK_MINE)
 
-/obj/item/weapon/robot_module/robot/platform/cargo/New()
-	..()
+/obj/item/weapon/robot_module/robot/platform/cargo/Initialize()
+
+	. = ..()
+	if(. != INITIALIZE_HINT_NORMAL)
+		return
+
 	modules += new /obj/item/weapon/packageWrap(src)
 	modules += new /obj/item/weapon/pen/multi(src)
 	modules += new /obj/item/device/destTagger(src)

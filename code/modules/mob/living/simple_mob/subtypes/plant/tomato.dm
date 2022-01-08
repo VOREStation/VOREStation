@@ -27,7 +27,10 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/tomatomeat
+<<<<<<< HEAD
 	meat_amount = 4
+=======
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map
 
 /decl/mob_organ_names/tomato
 	hit_zones = list("flesh", "leaf", "mouth")

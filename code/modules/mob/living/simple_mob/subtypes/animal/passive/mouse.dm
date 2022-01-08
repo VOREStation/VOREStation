@@ -42,8 +42,8 @@
 
 	var/body_color //brown, gray and white, leave blank for random
 
-/mob/living/simple_mob/animal/passive/mouse/New()
-	..()
+/mob/living/simple_mob/animal/passive/mouse/Initialize()
+	. = ..()
 
 	verbs += /mob/living/proc/ventcrawl
 	verbs += /mob/living/proc/hide
@@ -174,6 +174,7 @@
 	max_n2 = 0
 	maxbodytemp = 700
 
+<<<<<<< HEAD
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive
 
 //The names Cheese... Agent Cheese
@@ -184,6 +185,11 @@
 /mob/living/simple_mob/animal/passive/mouse/operative/agent_cheese/New()
 	..()
 	// Change my name back, don't want to be named agent_cheese (666)
+=======
+/mob/living/simple_mob/animal/passive/mouse/brown/Tom/Initialize()
+	. = ..()
+	// Change my name back, don't want to be named Tom (666)
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map
 	name = initial(name)
 
 // Mouse noises

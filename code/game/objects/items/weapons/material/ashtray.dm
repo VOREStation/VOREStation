@@ -10,15 +10,13 @@ var/global/list/ashtray_cache = list()
 	var/image/base_image
 	var/max_butts = 10
 
-/obj/item/weapon/material/ashtray/New(var/newloc, var/material_name)
-	..(newloc, material_name)
+/obj/item/weapon/material/ashtray/Initialize(var/ml, var/material_name)
+	. = ..(ml, material_name)
 	if(!material)
-		qdel(src)
-		return
+		return INITIALIZE_HINT_QDEL
 	max_butts = round(material.hardness/5) //This is arbitrary but whatever.
 	randpixel_xy()
 	update_icon()
-	return
 
 /obj/item/weapon/material/ashtray/update_icon()
 	color = null
@@ -92,11 +90,11 @@ var/global/list/ashtray_cache = list()
 		update_icon()
 	return ..()
 
-/obj/item/weapon/material/ashtray/plastic/New(var/newloc)
-	..(newloc, "plastic")
+/obj/item/weapon/material/ashtray/plastic/Initialize(var/ml)
+	. = ..(ml, MAT_PLASTIC)
 
-/obj/item/weapon/material/ashtray/bronze/New(var/newloc)
-	..(newloc, "bronze")
+/obj/item/weapon/material/ashtray/bronze/Initialize(var/ml)
+	. = ..(ml, MAT_BRONZE)
 
-/obj/item/weapon/material/ashtray/glass/New(var/newloc)
-	..(newloc, "glass")
+/obj/item/weapon/material/ashtray/glass/Initialize(var/ml)
+	. = ..(ml, MAT_GLASS)

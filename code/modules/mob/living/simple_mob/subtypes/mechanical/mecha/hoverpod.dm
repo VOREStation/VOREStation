@@ -45,4 +45,8 @@
 	return TRUE
 
 /decl/mob_organ_names/hoverpod
+<<<<<<< HEAD
 	hit_zones = list("central chassis", "control module", "hydraulics", "left manipulator", "right manipulator", "left landing strut", "right landing strut", "maneuvering thruster", "sensor suite", "radiator", "power supply")
+=======
+	hit_zones = list("central chassis", "control module", "hydraulics", "left manipulator", "right manipulator", "left landing strut", "right landing strut", "maneuvering thruster", "sensor suite", "radiator", "power supply")
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map

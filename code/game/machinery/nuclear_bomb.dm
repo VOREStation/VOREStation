@@ -25,8 +25,8 @@ var/bomb_set
 	                      // 3 is sealant open, 4 is unwrenched, 5 is removed from bolts.
 	use_power = USE_POWER_OFF
 
-/obj/machinery/nuclearbomb/New()
-	..()
+/obj/machinery/nuclearbomb/Initialize()
+	. = ..()
 	r_code = "[rand(10000, 99999.0)]"//Creates a random code upon object spawn.
 	wires["Red"] = 0
 	wires["Blue"] = 0
@@ -410,8 +410,8 @@ var/bomb_set
 				return
 	return
 
-/obj/item/weapon/disk/nuclear/New()
-	..()
+/obj/item/weapon/disk/nuclear/Initialize()
+	. = ..()
 	nuke_disks |= src
 
 /obj/item/weapon/disk/nuclear/Destroy()

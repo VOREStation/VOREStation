@@ -57,9 +57,15 @@
 			M.gib()
 
 
+<<<<<<< HEAD
 /obj/machinery/gibber/New()
 	..()
 	add_overlay("grjam")
+=======
+/obj/machinery/gibber/Initialize()
+	. = ..()
+	src.overlays += image('icons/obj/kitchen.dmi', "grjam")
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map
 
 /obj/machinery/gibber/update_icon()
 	cut_overlays()

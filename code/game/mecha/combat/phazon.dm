@@ -158,8 +158,8 @@
 /obj/mecha/combat/phazon/old
 	desc = "An exosuit which can only be described as 'WTF?'. This one is particularly worn looking and likely isn't as sturdy."
 
-/obj/mecha/combat/phazon/old/New()
-	..()
+/obj/mecha/combat/phazon/old/Initialize()
+	. = ..()
 	health = 25
 	maxhealth = 150	//Just slightly worse.
 	cell.charge = rand(0, (cell.charge/2))

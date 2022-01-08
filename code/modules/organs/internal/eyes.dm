@@ -15,15 +15,15 @@
 /obj/item/organ/internal/eyes/robot
 	name = "optical sensor"
 
-/obj/item/organ/internal/eyes/robot/New()
-	..()
+/obj/item/organ/internal/eyes/robot/Initialize()
+	. = ..()
 	robotize()
 
 /obj/item/organ/internal/eyes/grey
 	icon_state = "eyes_grey"
 
-/obj/item/organ/internal/eyes/grey/colormatch/New()
-	..()
+/obj/item/organ/internal/eyes/grey/colormatch/Initialize()
+	. = ..()
 	var/mob/living/carbon/human/H = null
 	spawn(15)
 		if(ishuman(owner))

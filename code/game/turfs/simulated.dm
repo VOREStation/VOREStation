@@ -77,6 +77,7 @@
 			dirtoverlay.alpha = min((dirt - 50) * 5, 255)
 
 /turf/simulated/Entered(atom/A, atom/OL)
+
 	if(movement_disabled && usr.ckey != movement_disabled_exception)
 		to_chat(usr, "<span class='danger'>Movement is admin-disabled.</span>") //This is to identify lag problems
 		return
@@ -136,11 +137,7 @@
 					slip_stun = 4
 					slip_dist = 2
 
-			if(M.slip("the [floor_type] floor", slip_stun))
-				for(var/i = 1 to slip_dist)
-					step(M, M.dir)
-					sleep(1)
-			else
+			if(!M.slip("the [floor_type] floor", slip_stun, slip_dist))
 				M.inertia_dir = 0
 		else
 			M.inertia_dir = 0

@@ -53,7 +53,11 @@
 
 	organ_names = /decl/mob_organ_names/fish
 
+<<<<<<< HEAD
 	meat_amount = 5
+=======
+	meat_amount = 1
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee

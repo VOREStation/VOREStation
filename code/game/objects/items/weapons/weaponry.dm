@@ -100,8 +100,8 @@
 
 	var/escape_time = 8 SECONDS
 
-/obj/effect/energy_net/New()
-	..()
+/obj/effect/energy_net/Initialize()
+	. = ..()
 	START_PROCESSING(SSobj, src)
 
 /obj/effect/energy_net/Destroy()

@@ -1,7 +1,3 @@
-var/list/grass_types = list(
-
-)
-
 /turf/simulated/floor/outdoors/grass
 	name = "grass"
 	icon_state = "grass0"
@@ -10,20 +6,22 @@ var/list/grass_types = list(
 	turf_layers = list(
 		/turf/simulated/floor/outdoors/rocks,
 		/turf/simulated/floor/outdoors/dirt
-		)
-	var/grass_chance = 20
-/*
-	var/animal_chance = 1
-
-	// Weighted spawn list.
-	var/list/animal_types = list(
-		/mob/living/simple_mob/animal/passive/tindalos = 1
-		)
-*/
+	)
+	var/grass_chance = 0
+	var/tree_chance =  0
 	var/list/grass_types = list(
 		/obj/structure/flora/ausbushes/sparsegrass,
 		/obj/structure/flora/ausbushes/fullgrass
-		)
+	)
+
+/turf/simulated/floor/outdoors/grass/Initialize()
+	if(!check_density())
+		if(tree_chance && prob(tree_chance))
+			new /obj/structure/flora/tree/sif(src)
+		else if(grass_chance && prob(grass_chance))
+			var/grass_type = pickweight(grass_types)
+			new grass_type(src)
+	. = ..()
 
 /datum/category_item/catalogue/flora/sif_grass
 	name = "Sivian Flora - Moss"
@@ -38,6 +36,7 @@ var/list/grass_types = list(
 	icon_state = "grass_sif0"
 	initial_flooring = /decl/flooring/grass/sif
 	edge_blending_priority = 4
+<<<<<<< HEAD
 	grass_chance = 5
 	var/tree_chance = 2
 /*
@@ -56,30 +55,14 @@ var/list/grass_types = list(
 		/obj/structure/flora/sif/tendrils = 10
 		)
 
+=======
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map
 	catalogue_data = list(/datum/category_item/catalogue/flora/sif_grass)
 	catalogue_delay = 2 SECONDS
-
-/turf/simulated/floor/outdoors/grass/sif/Initialize()
-	if(tree_chance && prob(tree_chance) && !check_density())
-		new /obj/structure/flora/tree/sif(src)
-	. = ..()
-
-/turf/simulated/floor/outdoors/grass/Initialize()
-	if(grass_chance && prob(grass_chance) && !check_density())
-		var/grass_type = pickweight(grass_types)
-		new grass_type(src)
-/*
-	if(animal_chance && prob(animal_chance) && !check_density())
-		var/animal_type = pickweight(animal_types)
-		new animal_type(src)
-*/
-	. = ..()
 
 /turf/simulated/floor/outdoors/grass/forest
 	name = "thick grass"
 	icon_state = "grass-dark0"
-	grass_chance = 80
-	//tree_chance = 20
 	edge_blending_priority = 5
 	initial_flooring = /decl/flooring/grass/outdoors/forest // VOREStation Edit
 
@@ -88,6 +71,7 @@ var/list/grass_types = list(
 	icon_state = "grass_sif_dark0"
 	initial_flooring = /decl/flooring/grass/sif/forest
 	edge_blending_priority = 5
+<<<<<<< HEAD
 	tree_chance = 10
 	grass_chance = 1
 
@@ -97,3 +81,5 @@ var/list/grass_types = list(
 		/obj/structure/flora/sif/tendrils = 30
 		)
 
+=======
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map

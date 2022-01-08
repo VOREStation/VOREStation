@@ -9,26 +9,31 @@
 	generic_filth = TRUE
 	persistent = FALSE
 
-/obj/effect/decal/cleanable/liquid_fuel/New(turf/newLoc,amt=1,nologs=1)
+/obj/effect/decal/cleanable/liquid_fuel/Initialize(var/ml, amt=1, nologs=1)
+	
+	. = ..(ml)
+
+	if(!isturf(loc))
+		return INITIALIZE_HINT_QDEL
+
 	if(!nologs)
-		message_admins("Liquid fuel has spilled in [newLoc.loc.name] ([newLoc.x],[newLoc.y],[newLoc.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[newLoc.x];Y=[newLoc.y];Z=[newLoc.z]'>JMP</a>)")
-		log_game("Liquid fuel has spilled in [newLoc.loc.name] ([newLoc.x],[newLoc.y],[newLoc.z])")
+		message_admins("Liquid fuel has spilled in [loc.name] ([loc.x],[loc.y],[loc.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[loc.x];Y=[loc.y];Z=[loc.z]'>JMP</a>)")
+		log_game("Liquid fuel has spilled in [loc.name] ([loc.x],[loc.y],[loc.z])")
 	src.amount = amt
 
 	var/has_spread = 0
 	//Be absorbed by any other liquid fuel in the tile.
-	for(var/obj/effect/decal/cleanable/liquid_fuel/other in newLoc)
+	for(var/obj/effect/decal/cleanable/liquid_fuel/other in loc)
 		if(other != src)
 			other.amount += src.amount
 			other.Spread()
 			has_spread = 1
 			break
 
-	. = ..()
 	if(!has_spread)
 		Spread()
 	else
-		qdel(src)
+		return INITIALIZE_HINT_QDEL
 
 /obj/effect/decal/cleanable/liquid_fuel/proc/Spread(exclude=list())
 	//Allows liquid fuels to sometimes flow into other tiles.
@@ -38,7 +43,11 @@
 	for(var/d in cardinal)
 		var/turf/simulated/target = get_step(src,d)
 		var/turf/simulated/origin = get_turf(src)
+<<<<<<< HEAD
 		if(origin.CanPass(src, target) && target.CanPass(src, origin))
+=======
+		if(origin.CanPass(src, target, 0, 0) && target.CanPass(src, origin, 0, 0))
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map
 			var/obj/effect/decal/cleanable/liquid_fuel/other_fuel = locate() in target
 			if(other_fuel)
 				other_fuel.amount += amount*0.25
@@ -53,10 +62,10 @@
 	icon_state = "mustard"
 	anchored = FALSE
 
-/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel/New(newLoc, amt = 1, d = 0)
+/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel/Initialize(var/ml, amt = 1, d = 0)
 	set_dir(d) //Setting this direction means you won't get torched by your own flamethrower.
-	if(istype(newLoc, /turf/simulated))
-		var/turf/simulated/T = newLoc
+	if(istype(loc, /turf/simulated))
+		var/turf/simulated/T = loc
 		T.hotspot_expose((T20C*2) + 380,500) //Ignite the fuel.
 	. = ..()
 
@@ -73,7 +82,11 @@
 		var/turf/simulated/O = get_step(S,d)
 		if(locate(/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel) in O)
 			continue
+<<<<<<< HEAD
 		if(O.CanPass(src, S) && S.CanPass(src, O))
+=======
+		if(O.CanPass(src, S, 0, 0) && S.CanPass(src, O, 0, 0))
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map
 			var/new_pool_amount = amount * 0.25
 			if(new_pool_amount > 0.1)
 				var/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel/F = new(O, new_pool_amount, d)

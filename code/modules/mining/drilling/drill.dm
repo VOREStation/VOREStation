@@ -363,10 +363,15 @@
 	var/brace_tier = 1
 	var/obj/machinery/mining/drill/connected
 
+<<<<<<< HEAD
 /obj/machinery/mining/brace/examine(mob/user)
 	. = ..()
 	if(brace_tier > 2)
 		. += SPAN_NOTICE("The internals of the brace look resilient enough to support a drill by itself.")
+=======
+/obj/machinery/mining/brace/Initialize()
+	. = ..()
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map
 
 /obj/machinery/mining/brace/Initialize()
 	. = ..()

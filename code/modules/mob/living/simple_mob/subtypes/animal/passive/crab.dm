@@ -18,8 +18,12 @@
 
 	organ_names = /decl/mob_organ_names/crab
 
+<<<<<<< HEAD
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/crabmeat
 	meat_amount = 3
+=======
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/crab
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map
 
 	say_list_type = /datum/say_list/crab
 
@@ -52,5 +56,15 @@
 	. = ..()
 	adjust_scale(rand(5,12) / 10)
 
+<<<<<<< HEAD
+=======
+// Meat!
+
+/obj/item/weapon/reagent_containers/food/snacks/meat/crab
+	name = "meat"
+	desc = "A chunk of meat."
+	icon_state = "crustacean-meat"
+
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map
 /decl/mob_organ_names/crab
 	hit_zones = list("cephalothorax", "abdomen", "left walking legs", "right walking legs", "left swimming legs", "right swimming legs", "left pincer", "right pincer")

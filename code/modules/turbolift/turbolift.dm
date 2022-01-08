@@ -195,7 +195,11 @@
 			if(istype(AM, /mob/living) && !(AM.is_incorporeal()))
 				var/mob/living/M = AM
 				M.gib()
+<<<<<<< HEAD
 			else if(AM.simulated && !(istype(AM, /mob/observer)) && !(AM.is_incorporeal()))
+=======
+			else if(istype(AM, /mob/zshadow) || (AM.simulated && !(istype(AM, /mob/observer))))
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map
 				qdel(AM)
 
 	origin.move_contents_to(destination)

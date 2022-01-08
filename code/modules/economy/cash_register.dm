@@ -25,11 +25,11 @@
 
 
 // Claim machine ID
-/obj/machinery/cash_register/New()
+/obj/machinery/cash_register/Initialize()
 	machine_id = "[station_name()] RETAIL #[num_financial_terminals++]"
 	cash_stored = rand(10, 70)*10
 	transaction_devices += src // Global reference list to be properly set up by /proc/setup_economy()
-
+	. = ..()
 
 /obj/machinery/cash_register/examine(mob/user as mob)
 	. = ..(user)

@@ -30,4 +30,17 @@
 
 /datum/seed/grapes/green/New()
 	..()
-	set_trait(TRAIT_PRODUCT_COLOUR,"42ed2f")
+	set_trait(TRAIT_PRODUCT_COLOUR,"#42ed2f")
+
+/datum/seed/grapes/eyebulbs
+	name = "eyebulbs"
+	seed_name = "eyebulb"
+	display_name = "eyebulbs"
+	mutants = null
+	chems = list("nutriment" = list(1,3), "imidazoline" = list(3,5))
+
+/datum/seed/grapes/eyebulbs/New()
+	..()
+	set_trait(TRAIT_PLANT_COLOUR,"#471a73")
+	set_trait(TRAIT_PRODUCT_COLOUR,"#131217")
+

@@ -80,9 +80,15 @@ Slime definitions, Life and New live here.
 						"woodpulp" = list("heal" = 0.1, "nutr" = 0.7),
 						"docilitytoxin" = list("nutr" = 0.3)	)
 
+<<<<<<< HEAD
 /mob/living/simple_mob/xeno/slime/New()
 	..()
 	for(var/datum/language/L in subtypesof(/datum/language))
+=======
+/mob/living/simple_animal/xeno/slime/Initialize()
+	. = ..()
+	for(var/datum/language/L in (typesof(/datum/language) - /datum/language))
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map
 		languages += L
 	speak += "[station_name()]?"
 	traitdat.source = "Slime"

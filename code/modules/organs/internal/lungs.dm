@@ -49,8 +49,8 @@
 /obj/item/organ/internal/lungs/grey
 	icon_state = "lungs_grey"
 
-/obj/item/organ/internal/lungs/grey/colormatch/New()
-	..()
+/obj/item/organ/internal/lungs/grey/colormatch/Initialize()
+	. = ..()
 	var/mob/living/carbon/human/H = null
 	spawn(15)
 		if(owner && ishuman(owner))

@@ -223,14 +223,20 @@
 
 /obj/item/organ/external/update_health()
 	damage = min(max_damage, (brute_dam + burn_dam))
+<<<<<<< HEAD
 
 /obj/item/organ/external/New(var/mob/living/carbon/holder)
 	..(holder, 0)
+=======
+	return
+
+/obj/item/organ/external/Initialize(var/ml)
+	. = ..(ml, 0)
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map
 	if(istype(owner))
 		replaced(owner)
 		sync_colour_to_human(owner)
-	spawn(1)
-		get_icon()
+	addtimer(CALLBACK(src, .proc/get_icon), 1)
 
 /obj/item/organ/external/replaced(var/mob/living/carbon/human/target)
 	owner = target

@@ -14,8 +14,13 @@
 
 	consume_range = 6
 
+<<<<<<< HEAD
 /obj/singularity/narsie/large/exit/New()
 	..()
+=======
+/obj/singularity/narsie/large/exit/Initialize()
+	. = ..()
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map
 	START_PROCESSING(SSobj, src)
 
 /obj/singularity/narsie/large/exit/update_icon()

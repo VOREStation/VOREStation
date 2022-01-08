@@ -33,12 +33,10 @@
 	movement_range = 25
 	energy = 50
 
-/obj/effect/accelerated_particle/New(loc, dir = 2)
-	src.loc = loc
-	src.set_dir(dir)
-	spawn(0)
-		move(1)
-
+/obj/effect/accelerated_particle/Initialize(var/ml, newdir = 2)
+	. = ..()
+	set_dir(newdir)
+	addtimer(CALLBACK(src, .proc/move), 1)
 
 /obj/effect/accelerated_particle/Bump(atom/A)
 	if (A)

@@ -160,6 +160,10 @@
 /area/surface/outpost/shelter
 	name = "Wilderness Shelter"
 
+// Checkpoint
+/area/surface/outpost/checkpoint
+	name = "Exterior Checkpoint"
+
 // Main mining outpost
 /area/surface/outpost/mining_main
 	name = "North Mining Outpost"

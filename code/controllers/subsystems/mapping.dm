@@ -20,6 +20,10 @@ SUBSYSTEM_DEF(mapping)
 	maploader = new()
 	load_map_templates()
 
+	#if UNIT_TEST
+	config.generate_map = TRUE
+	#endif
+
 	if(config.generate_map)
 		// Map-gen is still very specific to the map, however putting it here should ensure it loads in the correct order.
 		using_map.perform_map_generation()

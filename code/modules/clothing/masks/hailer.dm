@@ -58,6 +58,7 @@
 
 /obj/item/clothing/mask/gas/sechailer/AltClick(mob/user)
 	selectphrase()
+	return TRUE
 
 /obj/item/clothing/mask/gas/sechailer/verb/selectphrase()
 	set name = "Select gas mask phrase"

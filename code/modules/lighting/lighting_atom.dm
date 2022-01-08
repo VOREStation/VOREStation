@@ -91,6 +91,11 @@
 		else
 			light = new/datum/light_source(src, .)
 
+<<<<<<< HEAD
+=======
+/atom/Initialize()
+	. = ..()
+>>>>>>> 23ea34b68d5... Merge pull request #8347 from Atermonera/cynosure_map
 
 /**
  * Updates the atom's opacity value.
