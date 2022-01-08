@@ -116,6 +116,9 @@ var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
 		chatter_type = pick(5;"emerg",25;"policescan",25;"traveladvisory",30;"pathwarning",30;"dockingrequestgeneric",30;"dockingrequestdenied",30;"dockingrequestdelayed",30;"dockingrequestsupply",30;"dockingrequestrepair",30;"dockingrequestmedical",30;"dockingrequestsecurity",30;"undockingrequest","normal",30;"undockingdenied",30;"undockingdelayed",300;"slogan")
 	else if((org_type == "government" || org_type == "neutral" || org_type == "military"))
 		chatter_type = pick(5;"emerg",25;"policescan",25;"traveladvisory",30;"pathwarning",30;"dockingrequestgeneric",30;"dockingrequestdenied",30;"dockingrequestdelayed",30;"dockingrequestsupply",30;"dockingrequestrepair",30;"dockingrequestmedical",30;"dockingrequestsecurity",30;"undockingrequest","normal",30;"undockingdenied",30;"undockingdelayed")
+	else if(org_type == "spacer")
+		chatter_type = pick(5;"emerg",15;"policescan",15;"traveladvisory",5;"pathwarning",10;"dockingrequestgeneric",30;"dockingrequestdenied",10;"dockingrequestdelayed",30;"dockingrequestsupplly",10;"dockingrequestrepair",20;"dockingrequestmedical",20;"dockingrequestsecurity",30;"undockingrequest","normal",10;"undockingdenied",30;"undockingdelayed")
+
 	//the following filters *always* fire their 'unique' event when they're tripped, simply because the conditions behind them are quite rare to begin with
 	else if(org_type == "smuggler" && org_type2 != "system defense") //just straight up funnel smugglers into always being caught, otherwise we get them asking for traffic info and stuff
 		chatter_type = "policeflee"
@@ -141,7 +144,7 @@ var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
 	//to_world("DEBUG OUTPUT 2: [secondowner], [secondprefix], [secondshipname], [org_type2]")
 	//to_world("DEBUG OUTPUT 3: Chose [chatter_type]")
 	//DEBUG BLOCK ENDS
-	
+
 	var/yes = prob(90) //Chance for them to say yes vs no
 
 	var/request = pick(requests)
