@@ -554,10 +554,19 @@
 /obj/belly/return_air()
 	return return_air_for_internal_lifeform()
 
-/obj/belly/return_air_for_internal_lifeform()
+/obj/belly/return_air_for_internal_lifeform(var/mob/living/lifeform)
 	//Free air until someone wants to code processing it for reals from predbreaths
-	var/datum/gas_mixture/belly_air/air = new(1000)
+	var/air_type = lifeform.get_perfect_belly_air_type()		// Without any overrides/changes, its gonna be /datum/gas_mixture/belly_air
+	var/air = new air_type(1000)
 	return air
+
+/mob/living/proc/get_perfect_belly_air_type()
+	return /datum/gas_mixture/belly_air
+
+/mob/living/carbon/human/get_perfect_belly_air_type()
+	if(species)
+		return species.get_perfect_belly_air_type()
+	return ..()
 
 // This is about 0.896m^3 of atmosphere
 /datum/gas_mixture/belly_air
@@ -570,6 +579,27 @@
     gas = list(
         "oxygen" = 21,
         "nitrogen" = 79)
+
+/datum/gas_mixture/belly_air/vox
+    volume = 2500
+    temperature = 293.150
+    total_moles = 104
+
+/datum/gas_mixture/belly_air/vox/New()
+    . = ..()
+    gas = list(
+        "phoron" = 100)
+
+/datum/gas_mixture/belly_air/zaddat
+    volume = 2500
+    temperature = 293.150
+    total_moles = 300
+
+/datum/gas_mixture/belly_air/zaddat/New()
+    . = ..()
+    gas = list(
+        "oxygen" = 100)
+
 
 /mob/living/proc/feed_grabbed_to_self_falling_nom(var/mob/living/user, var/mob/living/prey)
 	var/belly = user.vore_selected
