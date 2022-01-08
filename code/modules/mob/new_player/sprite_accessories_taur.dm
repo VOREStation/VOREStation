@@ -26,14 +26,15 @@
 //Hoooo boy.
 /datum/riding/taur/get_offsets(pass_index) // list(dir = x, y, layer)
 	var/mob/living/L = ridden
-	var/scale_x = L.icon_scale_x * L.size_multiplier //VOREStation Edit
-	var/scale_y = L.icon_scale_y * L.size_multiplier //VOREStation Edit
+	var/scale_x = L.icon_scale_x * L.size_multiplier //VOREStation Edit Start
+	var/scale_y = L.icon_scale_y * L.size_multiplier
+	var/scale_difference = (L.size_multiplier - rider_size) * 10
 
 	var/list/values = list(
-		"[NORTH]" = list(0, 8*scale_y, ABOVE_MOB_LAYER),
-		"[SOUTH]" = list(0, 8*scale_y, BELOW_MOB_LAYER),
-		"[EAST]" = list(-10*scale_x, 8*scale_y, ABOVE_MOB_LAYER),
-		"[WEST]" = list(10*scale_x, 8*scale_y, ABOVE_MOB_LAYER))
+		"[NORTH]" = list(0, 8*scale_y + scale_difference, ABOVE_MOB_LAYER),
+		"[SOUTH]" = list(0, 8*scale_y + scale_difference, BELOW_MOB_LAYER),
+		"[EAST]" = list(-10*scale_x, 8*scale_y + scale_difference, ABOVE_MOB_LAYER),
+		"[WEST]" = list(10*scale_x, 8*scale_y + scale_difference, ABOVE_MOB_LAYER)) //VOREStation Edit End
 
 	return values
 
@@ -74,6 +75,7 @@
 
 	. = ..()
 	if(.)
+		riding_datum.rider_size = M.size_multiplier
 		buckled_mobs[M] = "riding"
 
 /mob/living/carbon/human/MouseDrop_T(mob/living/M, mob/living/user) //Prevention for forced relocation caused by can_buckle. Base proc has no other use.
