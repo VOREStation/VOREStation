@@ -158,4 +158,14 @@
 	cost = 300
 	containertype = /obj/structure/closet/crate
 	containername = "cordless jukebox speakers crate"
-	
+
+/datum/supply_pack/misc/sword
+	name = "sword"
+	contains = list(
+	/obj/item/weapon/material/sword =2
+	)
+	cost =100
+	access = list(access_explorer,
+				  access_security,)
+
+	one_access = TRUE
