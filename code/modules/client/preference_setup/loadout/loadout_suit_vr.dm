@@ -110,3 +110,7 @@ Talon winter coat
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/talon
 
 
+/datum/gear/suit/armor/combat/crusader_explo
+	display_name = "knight, explo"
+	path = /obj/item/clothing/suit/armor/combat/crusader_explo
+	allowed_roles = list("Explorer","Field Medic","Pathfinder")
