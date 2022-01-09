@@ -165,6 +165,6 @@
 		/obj/item/weapon/pickaxe
 		)
 
-obj/item/clothing/suit/armor/combat/crusader_explo/crusader_FM
-	name = "feild medic low tech suit"
-	icon_state = "crusader_FM"
+obj/item/clothing/suit/armor/combat/crusader_explo/FM
+	name = "field medic low tech suit"
+	icon_state = "crusader_explo/FM"

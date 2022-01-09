@@ -115,7 +115,7 @@ Talon winter coat
 	path = /obj/item/clothing/suit/armor/combat/crusader_explo
 	allowed_roles = list("Explorer","Field Medic","Pathfinder")
 
-/datum/gear/suit/armor/combat/crusader_explo/crusader_FM
+/datum/gear/suit/armor/combat/crusader_explo/FM
 	display_name = "knight, Field Medic"
-	path = /obj/item/clothing/suit/armor/combat/crusader_explo
+	path = /obj/item/clothing/suit/armor/combat/crusader_explo/FM
 	allowed_roles ="Field Medic"
