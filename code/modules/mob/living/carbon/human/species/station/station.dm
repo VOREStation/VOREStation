@@ -467,6 +467,8 @@
 		if(!(K in covered))
 			H.apply_damage(light_amount/4, BURN, K, 0, 0, "Abnormal growths")
 
+/datum/species/zaddat/get_perfect_belly_air_type()
+	return /datum/gas_mixture/belly_air/zaddat
 
 /datum/species/diona
 	name = SPECIES_DIONA

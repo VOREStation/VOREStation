@@ -29,3 +29,5 @@
 		SPECIES_VOX = 'icons/inventory/suit/mob_vox.dmi',
 		SPECIES_WEREBEAST = 'icons/inventory/suit/mob_vr_werebeast.dmi'
 		)
+
+
