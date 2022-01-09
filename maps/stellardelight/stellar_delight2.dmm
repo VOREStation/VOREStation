@@ -19985,7 +19985,7 @@
 /turf/simulated/wall/bay/r_wall/steel,
 /area/maintenance/stellardelight/deck2/portfore)
 "SF" = (
-/obj/machinery/slot_machine,
+/obj/machinery/computer/arcade/clawmachine,
 /turf/simulated/floor/tiled/eris/dark/cargo,
 /area/crew_quarters/recreation_area)
 "SG" = (
