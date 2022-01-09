@@ -164,3 +164,8 @@
 		/obj/item/device/radio,
 		/obj/item/weapon/pickaxe
 		)
+
+obj/item/clothing/suit/armor/combat/crusader_explo/crusader_FM
+	name = "feild medic low tech suit"
+	icon_state = "crusader_FM"
+	icon = 'icons/obj/clothing/knights_vr.dmi'
