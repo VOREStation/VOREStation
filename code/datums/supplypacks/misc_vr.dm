@@ -169,3 +169,4 @@
 				  access_security,)
 
 	one_access = TRUE
+	containername = "sword crate"
