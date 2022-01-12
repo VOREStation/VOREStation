@@ -174,3 +174,17 @@
 
 /obj/machinery/power/quantumpad/scioutpost
 
+
+
+/obj/machinery/power/shield_generator/ship_optimized
+	power_coefficient = 0.33
+	circuit = /obj/item/weapon/circuitboard/shield_generator/ship_optimized
+
+// Starts fully charged
+/obj/machinery/power/shield_generator/ship_optimized/charged/Initialize()
+	. = ..()
+	current_energy = max_energy
+
+/obj/item/weapon/circuitboard/shield_generator/ship_optimized
+	name = T_BOARD("ship-optimized shield generator")
+	build_path = /obj/machinery/power/shield_generator/ship_optimized

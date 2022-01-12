@@ -9856,9 +9856,7 @@
 /obj/machinery/computer/ship/navigation/telescreen{
 	pixel_x = 32
 	},
-/obj/machinery/power/shield_generator/charged{
-	power_coefficient = 0.33
-	},
+/obj/machinery/power/shield_generator/ship_optimized/charged,
 /obj/structure/cable,
 /turf/simulated/floor,
 /area/stellardelight/deck2/central)
