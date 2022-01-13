@@ -54,10 +54,26 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 	dynamic_lighting = 0 // Someday lets do proper lighting z-transfer.  Until then we are leaving this off so it looks nicer.
 	can_build_into_floor = TRUE
 
+<<<<<<< HEAD
 /turf/simulated/open/vacuum
 	oxygen = 0
 	nitrogen = 0
 	temperature = TCMB
+=======
+	var/turf/below
+
+/turf/simulated/open/post_change()
+	..()
+	update()
+
+/turf/simulated/open/ChangeTurf(var/turf/N, var/tell_universe, var/force_lighting_update, var/preserve_outdoors)
+	var/turf/T = GetBelow(src)
+	if(T)
+		GLOB.turf_entered_event.unregister(T, src, .proc/BelowOpenUpdated)
+		GLOB.turf_exited_event.unregister(T, src, .proc/BelowOpenUpdated)
+		turf_changed_event.unregister(T, src, /atom/proc/update_icon)
+	. = ..()
+>>>>>>> 34e6988df23... Merge pull request #8365 from Neerti/crash_fix_attempt
 
 /turf/simulated/open/Initialize()
 	. = ..()
