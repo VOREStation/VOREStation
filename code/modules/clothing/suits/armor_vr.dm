@@ -165,3 +165,7 @@
 		/obj/item/device/radio,
 		/obj/item/weapon/pickaxe
 		)
+
+/obj/item/clothing/suit/armor/combat/crusader_explo/FM
+	name = "field medic low tech suit"
+	icon_state = "crusader_explo/FM"
