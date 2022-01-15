@@ -13027,6 +13027,9 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 8
 	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/portdock)
 "Ve" = (
