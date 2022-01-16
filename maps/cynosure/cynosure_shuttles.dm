@@ -67,6 +67,7 @@
 		"nav_wilderness"
 		)
 	docking_controller_tag = "centcom_shuttle"
+	ceiling_type = /turf/simulated/floor/reinforced
 	announcer = "Automated Traffic Control"
 	arrival_message = "Attention, Transport Shuttle is approaching Cynosure Station."
 	departure_message = "Attention, Transport Shuttle is departing Cynosure Station."
@@ -91,6 +92,7 @@
 		"nav_wilderness"
 		)
 	docking_controller_tag = "admin_shuttle"
+	ceiling_type = /turf/simulated/floor/reinforced
 	announcer = "Automated Traffic Control"
 	arrival_message = "Attention, Administration Shuttle is approaching Cynosure Station."
 	departure_message = "Attention, Administration Shuttle is departing Cynosure Station."
@@ -119,6 +121,7 @@
 		"nav_wilderness"
 		)
 	docking_controller_tag = "response_shuttle"
+	ceiling_type = /turf/simulated/floor/reinforced
 	announcer = "Automated Traffic Control"
 	arrival_message = "Attention, the Emergency Response Team's shuttle is approaching Cynosure Station."
 	departure_message = "Attention, the Emergency Response Team's shuttle is departing Cynosure Station."
@@ -141,6 +144,7 @@
 		"nav_wilderness"
 		)
 	docking_controller_tag = "trade_shuttle"
+	ceiling_type = /turf/simulated/floor/reinforced
 	announcer = "Automated Traffic Control"
 	arrival_message = "Attention, Beruang is approaching Cynosure Station."
 	departure_message = "Attention, Beruang is departing Cynosure Station."
@@ -170,6 +174,7 @@
 		"nav_wilderness"
 		)
 	docking_controller_tag = "ninja_shuttle"
+	ceiling_type = /turf/simulated/floor/reinforced
 	announcer = "Automated Traffic Control"
 	arrival_message = "Attention, unknown shuttle is approaching Cynosure Station."
 	departure_message = "Attention, unknown shuttle is departing Cynosure Station."
@@ -196,6 +201,7 @@
 		"nav_wilderness"
 		)
 	docking_controller_tag = "skipjack_shuttle"
+	ceiling_type = /turf/simulated/floor/reinforced
 	announcer = "Automated Traffic Control"
 	arrival_message = "Attention, unknown shuttle is approaching Cynosure Station."
 	departure_message = "Attention, unknown shuttle is departing Cynosure Station."
@@ -222,6 +228,7 @@
 		"nav_wilderness"
 		)
 	docking_controller_tag = "merc_shuttle"
+	ceiling_type = /turf/simulated/floor/reinforced
 	announcer = "Automated Traffic Control"
 	arrival_message = "Attention, unknown shuttle is approaching Cynosure Station."
 	departure_message = "Attention, unknown shuttle is departing Cynosure Station."
@@ -246,6 +253,7 @@
 		"nav_wilderness"
 		)
 	docking_controller_tag = "merc_elite_shuttle"
+	ceiling_type = /turf/simulated/floor/reinforced
 	announcer = "Automated Traffic Control"
 	arrival_message = "Attention, unknown shuttle is approaching Cynosure Station."
 	departure_message = "Attention, unknown shuttle is departing Cynosure Station."
@@ -424,7 +432,7 @@ ESCAPE_POD(1)
 	docking_controller_tag = "expshuttle_docker"
 	shuttle_area = list(/area/shuttle/exploration/general, /area/shuttle/exploration/cockpit, /area/shuttle/exploration/cargo)
 	fuel_consumption = 3
-	ceiling_type = /turf/simulated/floor/reinforced/airless
+	ceiling_type = /turf/simulated/floor/reinforced
 
 /obj/effect/overmap/visitable/ship/landable/explorer_shuttle
 	name = "Exploration Shuttle"

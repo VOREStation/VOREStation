@@ -14631,10 +14631,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/surface/station/medical/patient_wing)
-"jjp" = (
-/obj/effect/shuttle_landmark/cynosure/large_escape_pod2/station,
-/turf/simulated/shuttle/floor,
-/area/shuttle/large_escape_pod2/station)
 "jjB" = (
 /obj/structure/railing{
 	dir = 4
@@ -23575,6 +23571,7 @@
 	pixel_y = -26;
 	tag_door = "large_escape_pod_2_hatch"
 	},
+/obj/effect/shuttle_landmark/cynosure/large_escape_pod2/station,
 /turf/simulated/shuttle/floor,
 /area/shuttle/large_escape_pod2/station)
 "pwG" = (
@@ -64092,7 +64089,7 @@ bFA
 efC
 nsL
 uxm
-jjp
+uxm
 szd
 cRp
 kRo
