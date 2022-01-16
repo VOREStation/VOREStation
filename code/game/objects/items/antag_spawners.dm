@@ -3,11 +3,17 @@
 	var/used = 0
 	var/ghost_query_type = null
 	var/searching = FALSE
-	var/datum/effect/effect/system/spark_spread/sparks
+	var/datum/effect_system/spark_spread/sparks
 
+<<<<<<< HEAD
 /obj/item/weapon/antag_spawner/New()
 	..()
 	sparks = new /datum/effect/effect/system/spark_spread()
+=======
+/obj/item/weapon/antag_spawner/Initialize()
+	. = ..()
+	sparks = new /datum/effect_system/spark_spread()
+>>>>>>> 0232be9531b... Repaths obj/effect/effect, datum/effect/effect [MDB_IGNORE] (#8312)
 	sparks.set_up(5, 0, src)
 	sparks.attach(loc)
 

@@ -581,7 +581,7 @@
 
 	// Produce nasty smoke.
 	visible_message("<span class='danger'>\The [src] vomits a gout of rancid smoke!</span>")
-	var/datum/effect/effect/system/smoke_spread/bad/burntfood/smoke = new /datum/effect/effect/system/smoke_spread/bad/burntfood
+	var/datum/effect_system/smoke_spread/bad/burntfood/smoke = new /datum/effect_system/smoke_spread/bad/burntfood
 	playsound(src, 'sound/effects/smoke.ogg', 20, 1)
 	smoke.attach(src)
 	smoke.set_up(10, 0, get_turf(src), 300)

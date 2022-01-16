@@ -24,7 +24,7 @@
 	var/power_per_process = 50 // About 6.5 minutes of use on a high-cell (10,000)
 	var/state = UAV_OFF
 
-	var/datum/effect/effect/system/ion_trail_follow/ion_trail
+	var/datum/effect_system/ion_trail_follow/ion_trail
 
 	var/list/mob/living/masters
 
@@ -51,8 +51,13 @@
 	
 	if(!cell && cell_type)
 		cell = new cell_type
+<<<<<<< HEAD
 	
 	ion_trail = new /datum/effect/effect/system/ion_trail_follow()
+=======
+
+	ion_trail = new /datum/effect_system/ion_trail_follow()
+>>>>>>> 0232be9531b... Repaths obj/effect/effect, datum/effect/effect [MDB_IGNORE] (#8312)
 	ion_trail.set_up(src)
 	ion_trail.stop()
 

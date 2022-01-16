@@ -25,7 +25,7 @@
 	var/mob/living/L = locate() in range(world.view, B)
 	if(L && prob(1) && L.mind && !L.stat)	// There's some active living thing nearby, produce offgas.
 		var/turf/T = get_turf(B)
-		var/datum/effect/effect/system/smoke_spread/noxious/BS = new /datum/effect/effect/system/smoke_spread/noxious
+		var/datum/effect_system/smoke_spread/noxious/BS = new /datum/effect_system/smoke_spread/noxious
 		BS.attach(T)
 		BS.set_up(3, 0, T)
 		playsound(T, 'sound/effects/smoke.ogg', 50, 1, -3)
@@ -43,7 +43,7 @@
 	if(prob(5) && !L.stat)	// There's some active living thing nearby, produce offgas.
 		B.visible_message("<span class='alien'>\icon [B] \The [B] disgorches a cloud of noxious gas!</span>")
 		var/turf/T = get_turf(B)
-		var/datum/effect/effect/system/smoke_spread/noxious/BS = new /datum/effect/effect/system/smoke_spread/noxious
+		var/datum/effect_system/smoke_spread/noxious/BS = new /datum/effect_system/smoke_spread/noxious
 		BS.attach(T)
 		BS.set_up(3, 0, T)
 		playsound(T, 'sound/effects/smoke.ogg', 50, 1, -3)

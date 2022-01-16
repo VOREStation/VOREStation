@@ -60,7 +60,7 @@
 		reagents.splash(A, amount_per_transfer_from_this)
 	else
 		spawn(0)
-			var/obj/effect/effect/water/chempuff/D = new/obj/effect/effect/water/chempuff(get_turf(src))
+			var/obj/effect/vfx/water/chempuff/D = new/obj/effect/vfx/water/chempuff(get_turf(src))
 			var/turf/my_target = get_turf(A)
 			D.create_reagents(amount_per_transfer_from_this)
 			if(!src)
@@ -187,7 +187,7 @@
 	for(var/a = 1 to 3)
 		spawn(0)
 			if(reagents.total_volume < 1) break
-			var/obj/effect/effect/water/chempuff/D = new/obj/effect/effect/water/chempuff(get_turf(src))
+			var/obj/effect/vfx/water/chempuff/D = new/obj/effect/vfx/water/chempuff(get_turf(src))
 			var/turf/my_target = the_targets[a]
 			D.create_reagents(amount_per_transfer_from_this)
 			if(!src)
@@ -272,7 +272,7 @@
 			spawn(0)
 				if(reagents.total_volume < 1) break
 				playsound(src, 'sound/effects/spray2.ogg', 50, 1, -6)
-				var/obj/effect/effect/water/chempuff/D = new/obj/effect/effect/water/chempuff(get_turf(src))
+				var/obj/effect/vfx/water/chempuff/D = new/obj/effect/vfx/water/chempuff(get_turf(src))
 				var/turf/my_target = the_targets[a]
 				D.create_reagents(amount_per_transfer_from_this)
 				if(!src)
@@ -289,7 +289,7 @@
 			spawn(0)
 				if(!src || !reagents.total_volume) return
 
-				var/obj/effect/effect/water/W = new /obj/effect/effect/water(get_turf(src))
+				var/obj/effect/vfx/water/W = new /obj/effect/vfx/water(get_turf(src))
 				var/turf/my_target
 				if(a <= the_targets.len)
 					my_target = the_targets[a]

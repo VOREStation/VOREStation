@@ -48,7 +48,7 @@
 		die_off()
 		return 0
 
-	for(var/obj/effect/effect/smoke/chem/smoke in view(1, src))
+	for(var/obj/effect/vfx/smoke/chem/smoke in view(1, src))
 		if(smoke.reagents.has_reagent("plantbgone"))
 			die_off()
 			return

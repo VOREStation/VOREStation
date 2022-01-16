@@ -16,7 +16,7 @@
 	origin_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 2)
 	matter = list(DEFAULT_WALL_MATERIAL = 50000)
 	preserve_item = TRUE // RCDs are pretty important.
-	var/datum/effect/effect/system/spark_spread/spark_system
+	var/datum/effect_system/spark_spread/spark_system
 	var/stored_matter = 0
 	var/max_stored_matter = RCD_MAX_CAPACITY
 	var/ranged = FALSE
@@ -31,8 +31,12 @@
 	var/make_rwalls = FALSE // If true, when building walls, they will be reinforced.
 /* VOREStation Removal - Unused
 /obj/item/weapon/rcd/Initialize()
+<<<<<<< HEAD
 	
 	src.spark_system = new /datum/effect/effect/system/spark_spread
+=======
+	src.spark_system = new /datum/effect_system/spark_spread
+>>>>>>> 0232be9531b... Repaths obj/effect/effect, datum/effect/effect [MDB_IGNORE] (#8312)
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 	return ..()

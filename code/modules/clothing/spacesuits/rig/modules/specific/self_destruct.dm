@@ -6,7 +6,7 @@
 	usable = 1
 	active = 1
 	permanent = 1
-	var/datum/effect/effect/system/smoke_spread/bad/smoke
+	var/datum/effect_system/smoke_spread/bad/smoke
 	var/smoke_strength = 8
 
 	engage_string = "Detonate"
@@ -14,9 +14,15 @@
 	interface_name = "dead man's switch"
 	interface_desc = "An integrated self-destruct module. When the wearer dies, they vanish in smoke. Do not press this button."
 
+<<<<<<< HEAD
 /obj/item/rig_module/self_destruct/New()
 	..()
 	src.smoke = new /datum/effect/effect/system/smoke_spread/bad()
+=======
+/obj/item/rig_module/self_destruct/Initialize()
+	. = ..()
+	src.smoke = new /datum/effect_system/smoke_spread/bad()
+>>>>>>> 0232be9531b... Repaths obj/effect/effect, datum/effect/effect [MDB_IGNORE] (#8312)
 	src.smoke.attach(src)
 
 /obj/item/rig_module/self_destruct/Destroy()

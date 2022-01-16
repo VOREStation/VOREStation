@@ -230,7 +230,7 @@
 	icon_state = "mortar"
 
 /obj/item/projectile/arc/explosive_rocket/on_impact(turf/T)
-	new /obj/effect/explosion(T) // Weak explosions don't produce this on their own, apparently.
+	new /obj/effect/vfx/explosion(T) // Weak explosions don't produce this on their own, apparently.
 	explosion(T, 0, 0, 2, adminlog = FALSE)
 
 /mob/living/simple_mob/mechanical/mecha/combat/gygax/dark/advanced/proc/launch_microsingularity(atom/target)
