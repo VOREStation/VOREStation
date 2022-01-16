@@ -9,6 +9,7 @@
 	chaotic_threshold = EVENT_CHAOS_THRESHOLD_LOW_IMPACT
 	reusable = TRUE
 	event_type = /datum/event2/event/canister_leak
+	regions = list(EVENT_REGION_PLAYER_MAIN_AREA)
 
 /datum/event2/meta/canister_leak/get_weight()
 	return metric.count_people_in_department(DEPARTMENT_ENGINEERING) * 30

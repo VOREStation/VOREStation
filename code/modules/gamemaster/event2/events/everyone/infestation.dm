@@ -1,6 +1,7 @@
 /datum/event2/meta/infestation
 	event_class = "infestation"
 	departments = list(DEPARTMENT_EVERYONE)
+	regions = list(EVENT_REGION_PLAYER_MAIN_AREA)
 
 /datum/event2/meta/infestation/get_weight()
 	return metric.count_people_in_department(DEPARTMENT_EVERYONE) * 10

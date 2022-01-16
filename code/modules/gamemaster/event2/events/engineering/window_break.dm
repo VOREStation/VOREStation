@@ -9,6 +9,7 @@
 	reusable = TRUE
 	chaotic_threshold = EVENT_CHAOS_THRESHOLD_MEDIUM_IMPACT
 	event_type = /datum/event2/event/window_break
+	regions = list(EVENT_REGION_PLAYER_MAIN_AREA)
 
 /datum/event2/meta/window_break/get_weight()
 	return (metric.count_people_in_department(DEPARTMENT_ENGINEERING) * 20) / (times_ran + 1)

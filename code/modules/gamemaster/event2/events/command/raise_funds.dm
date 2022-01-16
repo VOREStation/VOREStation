@@ -4,6 +4,7 @@
 	departments = list(DEPARTMENT_COMMAND, DEPARTMENT_CARGO)
 	chaotic_threshold = EVENT_CHAOS_THRESHOLD_LOW_IMPACT
 	event_type = /datum/event2/event/raise_funds
+	regions = list(EVENT_REGION_UNIVERSAL)
 
 /datum/event2/meta/raise_funds/get_weight()
 	var/command = metric.count_people_in_department(DEPARTMENT_COMMAND)

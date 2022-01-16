@@ -3,6 +3,7 @@
 	departments = list(DEPARTMENT_ENGINEERING)
 	reusable = TRUE
 	event_type = /datum/event2/event/wallrot
+	regions = list(EVENT_REGION_PLAYER_MAIN_AREA)
 
 /datum/event2/meta/wallrot/get_weight()
 	return (10 + metric.count_people_in_department(DEPARTMENT_ENGINEERING) * 10) / (times_ran + 1)

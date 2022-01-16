@@ -2,6 +2,7 @@
 	name = "pda spam"
 	departments = list(DEPARTMENT_EVERYONE)
 	event_type = /datum/event2/event/pda_spam
+	regions = list(EVENT_REGION_UNIVERSAL)
 
 /datum/event2/meta/pda_spam/get_weight()
 	return metric.count_people_in_department(DEPARTMENT_EVERYONE) * 2

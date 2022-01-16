@@ -5,6 +5,7 @@
 	chaos = 30
 	chaotic_threshold = EVENT_CHAOS_THRESHOLD_MEDIUM_IMPACT
 	event_type = /datum/event2/event/spider_infestation
+	regions = list(EVENT_REGION_PLAYER_MAIN_AREA)
 
 /datum/event2/meta/spider_infestation/weak
 	name = "weak spider infestation"

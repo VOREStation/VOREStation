@@ -8,6 +8,7 @@
 	chaos = 10
 	chaotic_threshold = EVENT_CHAOS_THRESHOLD_LOW_IMPACT
 	event_type = /datum/event2/event/electrical_fault
+	regions = list(EVENT_REGION_PLAYER_MAIN_AREA)
 
 /datum/event2/meta/electrical_fault/get_weight()
 	return 10 + (metric.count_people_in_department(DEPARTMENT_EVERYONE) * 5)

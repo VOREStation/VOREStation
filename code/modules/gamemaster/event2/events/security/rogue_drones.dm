@@ -4,6 +4,7 @@
 	chaos = 40
 	chaotic_threshold = EVENT_CHAOS_THRESHOLD_MEDIUM_IMPACT
 	event_type = /datum/event2/event/mob_spawning/rogue_drones
+	regions = list(EVENT_REGION_SPACESTATION, EVENT_REGION_DEEPSPACE)
 
 /datum/event2/meta/rogue_drones/get_weight()
 	. = 10 // Start with a base weight, since this event does provide some value even if no sec is around.

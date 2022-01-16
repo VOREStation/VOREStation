@@ -4,6 +4,7 @@
 	chaos = -10 // A helpful event.
 	reusable = TRUE
 	event_type = /datum/event2/event/shipping_error
+	regions = list(EVENT_REGION_UNIVERSAL)
 
 /datum/event2/meta/shipping_error/get_weight()
 	return (metric.count_people_with_job(/datum/job/cargo_tech) + metric.count_people_with_job(/datum/job/qm)) * 30

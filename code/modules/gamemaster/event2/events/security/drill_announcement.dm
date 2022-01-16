@@ -3,6 +3,7 @@
 	departments = list(DEPARTMENT_SECURITY, DEPARTMENT_EVERYONE)
 	chaotic_threshold = EVENT_CHAOS_THRESHOLD_HIGH_IMPACT // Don't run if we just got hit by meteors.
 	event_type = /datum/event2/event/security_drill
+	regions = list(EVENT_REGION_PLAYER_MAIN_AREA)
 
 /datum/event2/meta/security_drill/get_weight()
 	var/sec = metric.count_people_in_department(DEPARTMENT_SECURITY)

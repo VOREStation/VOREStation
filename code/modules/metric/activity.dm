@@ -91,3 +91,15 @@
 			num++
 	if(num)
 		. = round(. / num, 0.1)
+
+// Computes activity of players on a per-region basis
+/datum/metric/proc/assess_player_regions()
+	. = list()
+	for(var/mob/living/L in player_list)
+		var/activity = assess_player_activity(L)
+		for(var/region in L.get_player_regions())
+			.[region] += activity
+	
+	// To prevent the universal region from being chosen too often, scale it down
+	// If lots of players are active over a wide set of regions, this should prefer events that cover a wider area
+	.[EVENT_REGION_UNIVERSAL] = round(.[EVENT_REGION_UNIVERSAL] / 2, 1)

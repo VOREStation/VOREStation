@@ -5,6 +5,7 @@
 	chaotic_threshold = EVENT_CHAOS_THRESHOLD_MEDIUM_IMPACT
 	event_type = /datum/event2/event/airlock_failure
 	var/needs_medical = FALSE
+	regions = list(EVENT_REGION_PLAYER_MAIN_AREA)
 
 /datum/event2/meta/airlock_failure/emag
 	name = "airlock failure - emag"

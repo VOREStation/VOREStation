@@ -4,6 +4,7 @@
 	chaos = 20
 	chaotic_threshold = EVENT_CHAOS_THRESHOLD_MEDIUM_IMPACT
 	event_type = /datum/event2/event/radiation_storm
+	regions = list(EVENT_REGION_SPACESTATION, EVENT_REGION_DEEPSPACE)
 
 /datum/event2/meta/radiation_storm/get_weight()
 	var/medical_factor = metric.count_people_in_department(DEPARTMENT_MEDICAL) * 10

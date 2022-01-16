@@ -6,6 +6,7 @@
 	chaotic_threshold = EVENT_CHAOS_THRESHOLD_LOW_IMPACT
 	event_type = /datum/event2/event/ghost_pod_spawner/stowaway
 	var/safe_for_extended = FALSE
+	regions = list(EVENT_REGION_PLAYER_MAIN_AREA)
 
 /datum/event2/meta/stowaway/normal
 	name = "stowaway - normal"

@@ -4,6 +4,7 @@
 	chaos = 10
 	chaotic_threshold = EVENT_CHAOS_THRESHOLD_LOW_IMPACT
 	event_type = /datum/event2/event/brand_intelligence
+	regions = list(EVENT_REGION_UNIVERSAL)
 
 /datum/event2/meta/brand_intelligence/get_weight()
 	return 10 + (metric.count_people_in_department(DEPARTMENT_ENGINEERING) * 20)

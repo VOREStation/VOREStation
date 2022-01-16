@@ -10,6 +10,7 @@
 	// the prison area.
 	var/list/relevant_areas = list()
 	var/list/irrelevant_areas = list()
+	regions = list(EVENT_REGION_PLAYER_MAIN_AREA)
 
 /datum/event2/meta/prison_break/get_weight()
 	// First, don't do this if nobody can fix the doors.

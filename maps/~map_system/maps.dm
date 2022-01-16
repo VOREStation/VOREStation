@@ -135,7 +135,7 @@ var/list/all_maps = list()
 	var/list/unit_test_z_levels //To test more than Z1, set your z-levels to test here.
 
 	var/list/planet_datums_to_make = list() // Types of `/datum/planet`s that will be instantiated by SSPlanets.
-
+	
 /datum/map/New()
 	..()
 	if(zlevel_datum_type)
@@ -286,14 +286,18 @@ var/list/all_maps = list()
 	var/turf/base_turf		// Type path of the base turf for this z
 	var/transit_chance = 0	// Percentile chance this z will be chosen for map-edge space transit.
 
-// Holomaps
+	// Holomaps
 	var/holomap_offset_x = -1	// Number of pixels to offset the map right (for centering) for this z
 	var/holomap_offset_y = -1	// Number of pixels to offset the map up (for centering) for this z
 	var/holomap_legend_x = 96	// x position of the holomap legend for this z
 	var/holomap_legend_y = 96	// y position of the holomap legend for this z
 
-// Skybox
+	// Skybox
 	var/datum/skybox_settings/custom_skybox  // Can override skybox type here for this z
+
+	// List of regions for GameMaster events
+	var/list/event_regions = list()
+
 
 // Default constructor applies itself to the parent map datum
 /datum/map_z_level/New(var/datum/map/map)

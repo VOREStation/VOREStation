@@ -8,6 +8,7 @@
 	// In the distant future, if a mechanical skill system were to come into being, these vars could be replaced with skill checks so off duty people could count.
 	var/required_fighters = 2 // Fighters refers to engineering OR security.
 	var/required_support = 1 // Support refers to doctors AND roboticists, depending on fighter composition.
+	regions = list(EVENT_REGION_PLAYER_MAIN_AREA)
 
 /datum/event2/meta/blob/hard
 	name = "harder blob"

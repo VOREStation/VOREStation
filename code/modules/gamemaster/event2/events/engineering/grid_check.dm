@@ -11,6 +11,7 @@
 	chaotic_threshold = EVENT_CHAOS_THRESHOLD_LOW_IMPACT
 	reusable = TRUE
 	event_type = /datum/event2/event/grid_check
+	regions = list(EVENT_REGION_PLAYER_MAIN_AREA)
 
 // Having the turbines be way over their rated limit makes grid checks more likely.
 /datum/event2/meta/grid_check/proc/get_overpower()

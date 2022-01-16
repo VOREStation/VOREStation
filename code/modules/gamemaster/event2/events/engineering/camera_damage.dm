@@ -5,6 +5,7 @@
 	chaotic_threshold = EVENT_CHAOS_THRESHOLD_LOW_IMPACT
 	reusable = TRUE
 	event_type = /datum/event2/event/camera_damage
+	regions = list(EVENT_REGION_PLAYER_MAIN_AREA)
 
 /datum/event2/meta/camera_damage/get_weight()
 	return 30 + (metric.count_people_in_department(DEPARTMENT_ENGINEERING) * 20) + (metric.count_people_in_department(DEPARTMENT_SYNTHETIC) * 40)
