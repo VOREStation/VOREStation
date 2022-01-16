@@ -29,14 +29,15 @@
 	return ..()
 
 /obj/item/weapon/plastique/attackby(var/obj/item/I, var/mob/user)
-	if(I.is_screwdriver())
+	if(I.get_tool_quality(TOOL_SCREWDRIVER))
 		open_panel = !open_panel
 		to_chat(user, "<span class='notice'>You [open_panel ? "open" : "close"] the wire panel.</span>")
 		playsound(src, I.usesound, 50, 1)
-	else if(I.is_wirecutter() || istype(I, /obj/item/device/multitool) || istype(I, /obj/item/device/assembly/signaler ))
+		return TRUE
+	else if(I.get_tool_quality(TOOL_WIRECUTTER) || I.get_tool_quality(TOOL_MULTITOOL) || istype(I, /obj/item/device/assembly/signaler ))
 		wires.Interact(user)
-	else
-		..()
+		return TRUE
+	return ..()
 
 /obj/item/weapon/plastique/attack_self(mob/user as mob)
 	var/newtime = input(usr, "Please set the timer.", "Timer", 10) as num

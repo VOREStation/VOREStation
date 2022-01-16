@@ -327,8 +327,9 @@
 				go_to_side()
 
 /obj/machinery/atmospherics/tvalve/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if (!W.is_wrench())
+	if(!W.get_tool_quality(TOOL_WRENCH))
 		return ..()
+<<<<<<< HEAD
 	if(!can_unwrench())
 		to_chat(user, "<span class='warnng'>You cannot unwrench \the [src], it too exerted due to internal pressure.</span>")
 		add_fingerprint(user)
@@ -341,6 +342,13 @@
 			"<span class='notice'>You have unfastened \the [src].</span>", \
 			"You hear a ratchet.")
 		deconstruct()
+=======
+	if(istype(src, /obj/machinery/atmospherics/tvalve/digital))
+		to_chat(user, "<span class='warning'>You cannot unwrench \the [src], it's too complicated.</span>")
+		return TRUE
+	return default_deconstruction_wrench(user, W)
+
+>>>>>>> 4d8c43f106d... What was supposed to be another straightforward major system overhaul that once again spiraled out of control (#8220)
 
 /obj/machinery/atmospherics/tvalve/mirrored
 	icon_state = "map_tvalvem0"

@@ -439,14 +439,13 @@ emp_act
 
 		var/armor = run_armor_check(affecting, "melee", O.armor_penetration, "Your armor has protected your [hit_area].", "Your armor has softened hit to your [hit_area].") //I guess "melee" is the best fit here
 		if(armor < 100)
-			apply_damage(throw_damage, dtype, zone, armor, soaked, is_sharp(O), has_edge(O), O)
+			apply_damage(throw_damage, dtype, zone, armor, soaked, O.sharp, O.edge, O)
 
 
 		//thrown weapon embedded object code.
 		if(dtype == BRUTE && istype(O,/obj/item))
 			var/obj/item/I = O
 			if (!is_robot_module(I))
-				var/sharp = is_sharp(I)
 				var/damage = throw_damage
 				if (soaked)
 					damage -= soaked
@@ -454,12 +453,11 @@ emp_act
 					damage /= armor+1
 
 				//blunt objects should really not be embedding in things unless a huge amount of force is involved
-				var/embed_chance = sharp? damage/I.w_class : damage/(I.w_class*3)
-				var/embed_threshold = sharp? 5*I.w_class : 15*I.w_class
-
+				var/embed_chance = I.sharp ? damage/I.w_class : damage/(I.w_class*3)
+				var/embed_threshold = I.sharp ? 5*I.w_class : 15*I.w_class
 				//Sharp objects will always embed if they do enough damage.
 				//Thrown sharp objects have some momentum already and have a small chance to embed even if the damage is below the threshold
-				if((sharp && prob(damage/(10*I.w_class)*100)) || (damage > embed_threshold && prob(embed_chance)))
+				if((I.sharp && prob(damage/(10*I.w_class)*100)) || (damage > embed_threshold && prob(embed_chance)))
 					affecting.embed(I)
 
 		// Begin BS12 momentum-transfer code.

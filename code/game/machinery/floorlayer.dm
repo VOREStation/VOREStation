@@ -34,8 +34,13 @@
 	return
 
 /obj/machinery/floorlayer/attackby(var/obj/item/W as obj, var/mob/user as mob)
+<<<<<<< HEAD
 	if(W.is_wrench())
 		var/m = tgui_input_list(usr, "Choose work mode", "Mode", mode)
+=======
+	if(W.get_tool_quality(TOOL_WRENCH))
+		var/m = input("Choose work mode", "Mode") as null|anything in mode
+>>>>>>> 4d8c43f106d... What was supposed to be another straightforward major system overhaul that once again spiraled out of control (#8220)
 		mode[m] = !mode[m]
 		var/O = mode[m]
 		user.visible_message("<span class='notice'>[usr] has set \the [src] [m] mode [!O?"off":"on"].</span>", "<span class='notice'>You set \the [src] [m] mode [!O?"off":"on"].</span>")
@@ -47,7 +52,7 @@
 		TakeTile(T)
 		return
 
-	if(W.is_crowbar())
+	if(W.get_tool_quality(TOOL_CROWBAR))
 		if(!length(contents))
 			to_chat(user, "<span class='notice'>\The [src] is empty.</span>")
 		else
@@ -58,8 +63,13 @@
 				T = null
 		return
 
+<<<<<<< HEAD
 	if(W.is_screwdriver())
 		T = tgui_input_list(usr, "Choose tile type.", "Tiles", contents)
+=======
+	if(W.get_tool_quality(TOOL_SCREWDRIVER))
+		T = input("Choose tile type.", "Tiles") as null|anything in contents
+>>>>>>> 4d8c43f106d... What was supposed to be another straightforward major system overhaul that once again spiraled out of control (#8220)
 		return
 	..()
 

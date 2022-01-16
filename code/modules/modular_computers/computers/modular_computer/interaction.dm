@@ -146,7 +146,7 @@
 			try_install_component(user, C)
 		else
 			to_chat(user, "This component is too large for \the [src].")
-	if(W.is_wrench())
+	if(W.get_tool_quality(TOOL_WRENCH))
 		var/list/components = get_all_components()
 		if(components.len)
 			to_chat(user, "Remove all components from \the [src] before disassembling it.")
@@ -171,7 +171,7 @@
 			to_chat(user, "You repair \the [src].")
 		return
 
-	if(W.is_screwdriver())
+	if(W.get_tool_quality(TOOL_SCREWDRIVER))
 		var/list/all_components = get_all_components()
 		if(!all_components.len)
 			to_chat(user, "This device doesn't have any components installed.")

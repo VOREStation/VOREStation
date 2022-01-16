@@ -14,16 +14,15 @@
 	matter = list(MAT_STEEL = 150)
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
 	usesound = 'sound/items/ratchet.ogg'
-	toolspeed = 1
 	drop_sound = 'sound/items/drop/wrench.ogg'
 	pickup_sound = 'sound/items/pickup/wrench.ogg'
-	tool_qualities = list(TOOL_WRENCH)
+	tool_qualities = list(TOOL_WRENCH =  TOOL_QUALITY_STANDARD)
 
 /obj/item/weapon/tool/wrench/cyborg
 	name = "automatic wrench"
 	desc = "An advanced robotic wrench. Can be found in industrial synthetic shells."
 	usesound = 'sound/items/drill_use.ogg'
-	toolspeed = 0.5
+	tool_qualities = list(TOOL_WRENCH =  TOOL_QUALITY_DECENT)
 
 /obj/item/weapon/tool/wrench/pipe
 	name = "pipe wrench"
@@ -45,7 +44,7 @@
 	origin_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 3, TECH_PHORON = 2)
 	attack_verb = list("bashed", "battered", "bludgeoned", "whacked", "warped", "blasted")
 	usesound = 'sound/effects/stealthoff.ogg'
-	toolspeed = 0.5
+	tool_qualities = list(TOOL_WRENCH =  TOOL_QUALITY_DECENT)
 	reach = 2
 
 /datum/category_item/catalogue/anomalous/precursor_a/alien_wrench
@@ -70,8 +69,9 @@
 	icon = 'icons/obj/abductor.dmi'
 	icon_state = "wrench"
 	usesound = 'sound/effects/empulse.ogg'
-	toolspeed = 0.1
+	tool_qualities = list(TOOL_WRENCH =  TOOL_QUALITY_BEST)
 	origin_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 5)
+<<<<<<< HEAD:code/game/objects/items/weapons/tools/wrench.dm
 
 /obj/item/weapon/tool/wrench/power
 	name = "hand drill"
@@ -107,3 +107,6 @@
 	src.forceMove(counterpart)
 	user.put_in_active_hand(counterpart)
 	to_chat(user, "<span class='notice'>You attach the screw driver bit to [src].</span>")
+=======
+	
+>>>>>>> 4d8c43f106d... What was supposed to be another straightforward major system overhaul that once again spiraled out of control (#8220):code/modules/tools/tools/wrench.dm

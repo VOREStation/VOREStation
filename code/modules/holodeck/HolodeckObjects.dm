@@ -205,11 +205,11 @@
 
 	if(W.flags & NOBLUDGEON) return
 
-	if(W.is_screwdriver())
+	if(W.get_tool_quality(TOOL_SCREWDRIVER))
 		to_chat(user, "<span class='notice'>It's a holowindow, you can't unfasten it!</span>")
-	else if(W.is_crowbar() && reinf && state <= 1)
+	else if(W.get_tool_quality(TOOL_CROWBAR) && reinf && state <= 1)
 		to_chat(user, "<span class='notice'>It's a holowindow, you can't pry it!</span>")
-	else if(W.is_wrench() && !anchored && (!state || !reinf))
+	else if(W.get_tool_quality(TOOL_WRENCH) && !anchored && (!state || !reinf))
 		to_chat(user, "<span class='notice'>It's a holowindow, you can't dismantle it!</span>")
 	else
 		if(W.damtype == BRUTE || W.damtype == BURN)
@@ -266,7 +266,7 @@
 	qdel(src)
 
 /obj/structure/bed/chair/holochair/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.is_wrench())
+	if(W.get_tool_quality(TOOL_WRENCH))
 		to_chat(user, "<span class='notice'>It's a holochair, you can't dismantle it!</span>")
 	return
 //VOREStation Add

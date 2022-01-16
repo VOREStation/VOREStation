@@ -37,13 +37,13 @@
 	power_supply = new cell_type(src)
 
 /obj/item/device/flash/attackby(var/obj/item/W, var/mob/user)
-	if(W.is_screwdriver() && broken)
+	if(W.get_tool_quality(TOOL_SCREWDRIVER) && broken)
 		if(repairing)
 			to_chat(user, "<span class='notice'>\The [src] is already being repaired!</span>")
 			return
 		user.visible_message("<b>\The [user]</b> starts trying to repair \the [src]'s bulb.")
 		repairing = TRUE
-		if(do_after(user, (40 SECONDS + rand(0, 20 SECONDS)) * W.toolspeed) && can_repair)
+		if(do_after(user, (40 SECONDS + rand(0, 20 SECONDS)) * W.get_tool_speed(TOOL_SCREWDRIVER)) && can_repair)
 			if(prob(30))
 				user.visible_message("<span class='notice'>\The [user] successfully repairs \the [src]!</span>")
 				broken = FALSE

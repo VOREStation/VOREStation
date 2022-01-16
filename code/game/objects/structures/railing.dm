@@ -202,7 +202,7 @@
 
 /obj/structure/railing/attackby(obj/item/W as obj, mob/user as mob)
 	// Dismantle
-	if(W.is_wrench() && !anchored)
+	if(W.get_tool_quality(TOOL_WRENCH) && !anchored)
 		playsound(src, W.usesound, 50, 1)
 		if(do_after(user, 20, src))
 			user.visible_message("<b>\The [user]</b> dismantles \the [src].", "<span class='notice'>You dismantle \the [src].</span>")
@@ -221,8 +221,13 @@
 				return
 
 	// Install
+<<<<<<< HEAD
 	if(W.is_screwdriver())
 		user.visible_message(anchored ? "<b>\The [user]</b> begins unscrewing \the [src]." : "<b>\The [user]</b> begins fasten \the [src]." )
+=======
+	if(W.get_tool_quality(TOOL_SCREWDRIVER))
+		user.visible_message(anchored ? "<span class='notice'>\The [user] begins unscrewing \the [src].</span>" : "<span class='notice'>\The [user] begins fasten \the [src].</span>" )
+>>>>>>> 4d8c43f106d... What was supposed to be another straightforward major system overhaul that once again spiraled out of control (#8220)
 		playsound(src, W.usesound, 75, 1)
 		if(do_after(user, 10, src))
 			to_chat(user, (anchored ? "<span class='notice'>You have unfastened \the [src] from the floor.</span>" : "<span class='notice'>You have fastened \the [src] to the floor.</span>"))

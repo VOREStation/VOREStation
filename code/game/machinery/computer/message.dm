@@ -34,7 +34,7 @@
 		return
 	if(!istype(user))
 		return
-	if(O.is_screwdriver() && emag)
+	if(O.get_tool_quality(TOOL_SCREWDRIVER) && emag)
 		//Stops people from just unscrewing the monitor and putting it back to get the console working again.
 		to_chat(user, "<span class='warning'>It is too hot to mess with!</span>")
 		return

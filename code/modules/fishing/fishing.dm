@@ -132,7 +132,7 @@ GLOBAL_LIST_INIT(generic_fishing_chance_list, list(FISHING_RARE = 5, FISHING_UNC
 		to_chat(user,"You cast \the [P.name] into \the [src].")
 		being_fished = TRUE
 		R.cast = TRUE
-		var/fishing_time = rand(min_fishing_time SECONDS,max_fishing_time SECONDS) * R.toolspeed
+		var/fishing_time = rand(min_fishing_time SECONDS,max_fishing_time SECONDS) * R.get_tool_speed(TOOL_FISHING)
 		if(do_after(user,fishing_time,user))
 			playsound(src, 'sound/effects/slosh.ogg', 5, 1, 5)
 			to_chat(user,"<span class='notice'>You feel a tug and begin pulling!</span>")

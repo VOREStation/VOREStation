@@ -56,7 +56,7 @@
 
 	src.add_fingerprint(user)
 	if(mode<=0) // It's off
-		if(I.is_screwdriver())
+		if(I.get_tool_quality(TOOL_SCREWDRIVER))
 			if(contents.len > 0)
 				to_chat(user, "Eject the items first!")
 				return
@@ -70,7 +70,7 @@
 				playsound(src, I.usesound, 50, 1)
 				to_chat(user, "You attach the screws around the power connection.")
 				return
-		else if(istype(I, /obj/item/weapon/weldingtool) && mode==-1)
+		else if(I.get_tool_quality(TOOL_WELDER) && mode==-1)
 			if(contents.len > 0)
 				to_chat(user, "Eject the items first!")
 				return
@@ -79,7 +79,7 @@
 				playsound(src, W.usesound, 100, 1)
 				to_chat(user, "You start slicing the floorweld off the disposal unit.")
 
-				if(do_after(user,20 * W.toolspeed))
+				if(do_after(user,20 * W.get_tool_speed(TOOL_WELDER)))
 					if(!src || !W.isOn()) return
 					to_chat(user, "You sliced the floorweld off the disposal unit.")
 					var/obj/structure/disposalconstruct/C = new (src.loc)
@@ -1563,7 +1563,7 @@
 	if(!I || !user)
 		return
 	src.add_fingerprint(user)
-	if(I.is_screwdriver())
+	if(I.get_tool_quality(TOOL_SCREWDRIVER))
 		if(mode==0)
 			mode=1
 			to_chat(user, "You remove the screws around the power connection.")
@@ -1574,12 +1574,12 @@
 			to_chat(user, "You attach the screws around the power connection.")
 			playsound(src, I.usesound, 50, 1)
 			return
-	else if(istype(I, /obj/item/weapon/weldingtool) && mode==1)
+	else if(I.get_tool_quality(TOOL_WELDER) && mode==1)
 		var/obj/item/weapon/weldingtool/W = I
 		if(W.remove_fuel(0,user))
 			playsound(src, W.usesound, 100, 1)
 			to_chat(user, "You start slicing the floorweld off the disposal outlet.")
-			if(do_after(user,20 * W.toolspeed))
+			if(do_after(user,20 * W.get_tool_speed(TOOL_WELDER)))
 				if(!src || !W.isOn()) return
 				to_chat(user, "You sliced the floorweld off the disposal outlet.")
 				var/obj/structure/disposalconstruct/C = new (src.loc)

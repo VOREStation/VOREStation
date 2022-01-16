@@ -29,8 +29,13 @@ LINEN BINS
 	return
 
 /obj/item/weapon/bedsheet/attackby(obj/item/I, mob/user)
+<<<<<<< HEAD
 	if(is_sharp(I))
 		user.visible_message("<b>\The [user]</b> begins cutting up [src] with [I].", "<span class='notice'>You begin cutting up [src] with [I].</span>")
+=======
+	if(I.sharp)
+		user.visible_message("<span class='notice'>\The [user] begins cutting up [src] with [I].</span>", "<span class='notice'>You begin cutting up [src] with [I].</span>")
+>>>>>>> 4d8c43f106d... What was supposed to be another straightforward major system overhaul that once again spiraled out of control (#8220)
 		if(do_after(user, 50))
 			to_chat(user, "<span class='notice'>You cut [src] into pieces!</span>")
 			for(var/i in 1 to rand(2,5))

@@ -258,7 +258,7 @@
 
 	src.searching = 0
 
-	var/turf/T = get_turf_or_move(src.loc)
+	var/turf/T = get_turf(src.loc)
 	for (var/mob/M in viewers(T))
 		M.show_message("<font color='blue'>\The [src] buzzes quietly, and the golden lights fade away. Perhaps you could try again?</font>")
 
@@ -276,7 +276,7 @@
 //	to_chat(src.brainmob, "<b>Use say #b to speak to other artificial intelligences.</b>")
 	src.brainmob.mind.assigned_role = "Synthetic Brain"
 
-	var/turf/T = get_turf_or_move(src.loc)
+	var/turf/T = get_turf(src.loc)
 	for (var/mob/M in viewers(T))
 		M.show_message("<font color='blue'>\The [src] chimes quietly.</font>")
 

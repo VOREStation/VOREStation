@@ -19,6 +19,7 @@
 	applies_material_colour = TRUE
 	default_material = "wood"
 	can_dull = FALSE
+	tool_qualities = list(TOOL_FISHING = TOOL_QUALITY_MEDIOCRE)
 	var/strung = TRUE
 	var/line_break = TRUE
 
@@ -51,7 +52,7 @@
 	update_icon()
 
 /obj/item/weapon/material/fishing_rod/attackby(obj/item/I as obj, mob/user as mob)
-	if(I.is_wirecutter() && strung)
+	if(I.get_tool_quality(TOOL_WIRECUTTER) && strung)
 		strung = FALSE
 		to_chat(user, "<span class='notice'>You cut \the [src]'s string!</span>")
 		update_icon()
@@ -90,10 +91,10 @@
 			if(re.id == "nutriment" || re.id == "protein" || re.id == "glucose" || re.id == "fishbait")
 				foodvolume += re.volume
 
-		toolspeed = initial(toolspeed) * min(0.75, (0.5 / max(0.5, (foodvolume / Bait.reagents.maximum_volume))))
+		set_tool_quality(TOOL_FISHING, initial(tool_qualities[TOOL_FISHING]) * 2 * max(0.75, (foodvolume / Bait.reagents.maximum_volume)))
 
 	else
-		toolspeed = initial(toolspeed)
+		set_tool_quality(TOOL_FISHING, initial(tool_qualities[TOOL_FISHING]))
 
 /obj/item/weapon/material/fishing_rod/proc/consume_bait()
 	if(Bait)
@@ -118,7 +119,7 @@
 	attackspeed = 2 SECONDS
 	default_material = "titanium"
 
-	toolspeed = 0.75
+	tool_qualities = list(TOOL_FISHING = TOOL_QUALITY_DECENT)
 
 /obj/item/weapon/material/fishing_rod/modern/built
 	strung = FALSE
@@ -128,4 +129,4 @@
 	desc = "Mass produced, but somewhat reliable."
 	default_material = "plastic"
 
-	toolspeed = 0.9
+	tool_qualities = list(TOOL_FISHING = TOOL_QUALITY_STANDARD)

@@ -90,7 +90,7 @@
 		else
 			to_chat(user, "The hatch must be open to insert a power cell.")
 			return
-	else if(I.is_screwdriver())
+	else if(I.get_tool_quality(TOOL_SCREWDRIVER))
 		panel_open = !panel_open
 		playsound(src, I.usesound, 50, 1)
 		user.visible_message("<span class='notice'>[user] [panel_open ? "opens" : "closes"] the hatch on the [src].</span>", "<span class='notice'>You [panel_open ? "open" : "close"] the hatch on the [src].</span>")

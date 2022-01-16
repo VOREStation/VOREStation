@@ -148,7 +148,7 @@
 
 /obj/machinery/power/emitter/attackby(obj/item/W, mob/user)
 
-	if(W.is_wrench())
+	if(W.get_tool_quality(TOOL_WRENCH))
 		if(active)
 			to_chat(user, "Turn off [src] first.")
 			return
@@ -173,7 +173,7 @@
 		update_icon() // VOREStation Add
 		return
 
-	if(istype(W, /obj/item/weapon/weldingtool))
+	if(W.get_tool_quality(TOOL_WELDER))
 		var/obj/item/weapon/weldingtool/WT = W
 		if(active)
 			to_chat(user, "Turn off [src] first.")
@@ -187,7 +187,7 @@
 					user.visible_message("[user.name] starts to weld [src] to the floor.", \
 						"You start to weld [src] to the floor.", \
 						"You hear welding")
-					if (do_after(user,20 * WT.toolspeed))
+					if (do_after(user,20 * WT.get_tool_speed(TOOL_WELDER)))
 						if(!src || !WT.isOn()) return
 						state = 2
 						to_chat(user, "You weld [src] to the floor.")
@@ -200,7 +200,7 @@
 					user.visible_message("[user.name] starts to cut [src] free from the floor.", \
 						"You start to cut [src] free from the floor.", \
 						"You hear welding")
-					if (do_after(user,20 * WT.toolspeed))
+					if (do_after(user,20 * WT.get_tool_speed(TOOL_WELDER)))
 						if(!src || !WT.isOn()) return
 						state = 1
 						to_chat(user, "You cut [src] free from the floor.")

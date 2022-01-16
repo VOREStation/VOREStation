@@ -68,7 +68,7 @@ GLOBAL_LIST_EMPTY(fuel_injectors)
 		cur_assembly = W
 		return
 
-	if(W.is_wrench() || W.is_screwdriver() || W.is_crowbar() || istype(W, /obj/item/weapon/storage/part_replacer))
+	if(W.get_tool_quality(TOOL_WRENCH) || W.get_tool_quality(TOOL_SCREWDRIVER) || W.get_tool_quality(TOOL_CROWBAR) || istype(W, /obj/item/weapon/storage/part_replacer))
 		if(injecting)
 			to_chat(user, "<span class='warning'>Shut \the [src] off first!</span>")
 			return

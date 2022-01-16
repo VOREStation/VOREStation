@@ -61,7 +61,7 @@
 
 /obj/machinery/door/blast/puzzle/attackby(obj/item/weapon/C as obj, mob/user as mob)
 	if(istype(C, /obj/item/weapon))
-		if(C.pry == 1 && (user.a_intent != I_HURT || (stat & BROKEN)))
+		if(C.get_tool_quality(TOOL_CROWBAR) && (user.a_intent != I_HURT || (stat & BROKEN)))
 			if(istype(C,/obj/item/weapon/material/twohanded/fireaxe))
 				var/obj/item/weapon/material/twohanded/fireaxe/F = C
 				if(!F.wielded)

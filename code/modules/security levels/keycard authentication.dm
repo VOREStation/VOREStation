@@ -42,10 +42,10 @@
 				event_triggered_by = usr
 				broadcast_request() //This is the device making the initial event request. It needs to broadcast to other devices
 
-	if(W.is_screwdriver())
+	if(W.get_tool_quality(TOOL_SCREWDRIVER))
 		to_chat(user, "You begin removing the faceplate from the [src]")
 		playsound(src, W.usesound, 50, 1)
-		if(do_after(user, 10 * W.toolspeed))
+		if(do_after(user, 10 * W.get_tool_speed(TOOL_SCREWDRIVER)))
 			to_chat(user, "You remove the faceplate from the [src]")
 			var/obj/structure/frame/A = new /obj/structure/frame(loc)
 			var/obj/item/weapon/circuitboard/M = new circuit(A)

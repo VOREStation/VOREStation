@@ -155,6 +155,7 @@
 	icon_state = "survivalknife"
 	item_state = "knife"
 	applies_material_colour = FALSE
+<<<<<<< HEAD
 	default_material = "plasteel" //VOREStation Edit
 	toolspeed = 2 // Use a real axe if you want to chop logs.
 
@@ -183,3 +184,6 @@
 	icon_state = "stone_bone_knife"
 	dulled = FALSE
 	fragile = FALSE
+=======
+	tool_qualities = list(TOOL_WOODCUT = TOOL_QUALITY_POOR) // Use a real axe if you want to chop logs.
+>>>>>>> 4d8c43f106d... What was supposed to be another straightforward major system overhaul that once again spiraled out of control (#8220)

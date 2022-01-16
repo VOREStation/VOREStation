@@ -31,7 +31,7 @@
 				wired = 1
 				to_chat(user, "<span class='notice'>You wire \the [src].</span>")
 
-	else if(C.is_wirecutter() && wired )
+	else if(C.get_tool_quality(TOOL_WIRECUTTER) && wired )
 		playsound(src, C.usesound, 100, 1)
 		user.visible_message("[user] cuts the wires from \the [src].", "You start to cut the wires from \the [src].")
 
@@ -54,20 +54,20 @@
 			qdel(src)
 		else
 			to_chat(user, "<span class='warning'>You must secure \the [src] first!</span>")
-	else if(C.is_wrench())
+	else if(C.get_tool_quality(TOOL_WRENCH))
 		anchored = !anchored
 		playsound(src, C.usesound, 50, 1)
 		user.visible_message("<span class='warning'>[user] has [anchored ? "" : "un" ]secured \the [src]!</span>",
 							  "You have [anchored ? "" : "un" ]secured \the [src]!")
 		update_icon()
-	else if((glass || !anchored) && istype(C, /obj/item/weapon/weldingtool))
+	else if((glass || !anchored) && C.get_tool_quality(TOOL_WELDER))
 		var/obj/item/weapon/weldingtool/WT = C
 		if(WT.remove_fuel(0, user))
 			playsound(src, WT.usesound, 50, 1)
 			if(glass)
 				user.visible_message("<span class='warning'>[user] welds the glass panel out of \the [src].</span>",
 									"<span class='notice'>You start to weld the glass panel out of \the [src].</span>")
-				if(do_after(user, 40 * WT.toolspeed, src) && WT.isOn())
+				if(do_after(user, 40 * WT.get_tool_speed(TOOL_WELDER), src) && WT.isOn())
 					to_chat(user, "<span class='notice'>You welded the glass panel out!</span>")
 					new /obj/item/stack/material/glass/reinforced(drop_location())
 					glass = FALSE
@@ -75,7 +75,7 @@
 				return
 			if(!anchored)
 				user.visible_message("<span class='warning'>[user] dissassembles \the [src].</span>", "You start to dissassemble \the [src].")
-				if(do_after(user, 40 * WT.toolspeed, src) && WT.isOn())
+				if(do_after(user, 40 * WT.get_tool_speed(TOOL_WELDER), src) && WT.isOn())
 					user.visible_message("<span class='warning'>[user] has dissassembled \the [src].</span>",
 										"You have dissassembled \the [src].")
 					new /obj/item/stack/material/steel(drop_location(), 2)

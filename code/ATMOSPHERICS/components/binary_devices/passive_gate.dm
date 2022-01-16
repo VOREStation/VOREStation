@@ -279,10 +279,11 @@
 	add_fingerprint(usr)
 
 /obj/machinery/atmospherics/binary/passive_gate/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if (!W.is_wrench())
+	if (!W.get_tool_quality(TOOL_WRENCH))
 		return ..()
 	if (unlocked)
 		to_chat(user, "<span class='warning'>You cannot unwrench \the [src], turn it off first.</span>")
+<<<<<<< HEAD
 		return 1
 	if(!can_unwrench())
 		to_chat(user, "<span class='warning'>You cannot unwrench \the [src], it too exerted due to internal pressure.</span>")
@@ -296,6 +297,10 @@
 			"<span class='notice'>You have unfastened \the [src].</span>", \
 			"You hear ratchet.")
 		deconstruct()
+=======
+		return TRUE
+	return default_deconstruction_wrench(user, W)
+>>>>>>> 4d8c43f106d... What was supposed to be another straightforward major system overhaul that once again spiraled out of control (#8220)
 
 #undef REGULATE_NONE
 #undef REGULATE_INPUT

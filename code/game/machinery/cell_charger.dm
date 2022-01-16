@@ -110,7 +110,7 @@
 			insert_item(W, user)
 			user.visible_message("[user] inserts [charging] into [src].", "You insert [charging] into [src].")
 		update_icon()
-	else if(W.is_wrench())
+	else if(W.get_tool_quality(TOOL_WRENCH))
 		if(charging)
 			to_chat(user, "<span class='warning'>Remove [charging] first!</span>")
 			return

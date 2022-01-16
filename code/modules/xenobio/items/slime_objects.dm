@@ -43,7 +43,7 @@
 	icon_state = "slime cube"
 	if(searching == 1)
 		searching = 0
-		var/turf/T = get_turf_or_move(src.loc)
+		var/turf/T = get_turf(src.loc)
 		for (var/mob/M in viewers(T))
 			M.show_message("<span class='warning'>The activity in the cube dies down. Maybe it will spark another time.</span>")
 

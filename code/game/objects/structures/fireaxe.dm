@@ -30,10 +30,10 @@
 	//	hasaxe = 1
 
 	if (isrobot(user) || locked)
-		if(istype(O, /obj/item/device/multitool))
+		if(O.get_tool_quality(TOOL_MULTITOOL))
 			to_chat(user, "<span class='warning'>Resetting circuitry...</span>")
 			playsound(src, 'sound/machines/lockreset.ogg', 50, 1)
-			if(do_after(user, 20 * O.toolspeed))
+			if(do_after(user, 20 * O.get_tool_speed(TOOL_MULTITOOL)))
 				locked = 0
 				to_chat(user, "<span class = 'caution'> You disable the locking modules.</span>")
 				update_icon()
@@ -75,7 +75,7 @@
 	else
 		if(smashed)
 			return
-		if(istype(O, /obj/item/device/multitool))
+		if(O.get_tool_quality(TOOL_MULTITOOL))
 			if(open)
 				open = 0
 				update_icon()
@@ -84,7 +84,7 @@
 			else
 				to_chat(user, "<span class='warning'>Resetting circuitry...</span>")
 				playsound(src, 'sound/machines/lockenable.ogg', 50, 1)
-				if(do_after(user,20 * O.toolspeed))
+				if(do_after(user,20 * O.get_tool_speed(TOOL_MULTITOOL)))
 					locked = 1
 					to_chat(user, "<span class = 'caution'> You re-enable the locking modules.</span>")
 				return

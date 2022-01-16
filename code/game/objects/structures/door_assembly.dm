@@ -170,13 +170,17 @@
 		rename_door(user)
 		return
 
-	if(istype(W, /obj/item/weapon/weldingtool) && ( (istext(glass)) || (glass == 1) || (!anchored) ))
+	if(W.get_tool_quality(TOOL_WELDER) && ( (istext(glass)) || (glass == 1) || (!anchored) ))
 		var/obj/item/weapon/weldingtool/WT = W
 		if (WT.remove_fuel(0, user))
 			playsound(src, WT.usesound, 50, 1)
 			if(istext(glass))
 				user.visible_message("[user] welds the [glass] plating off the airlock assembly.", "You start to weld the [glass] plating off the airlock assembly.")
+<<<<<<< HEAD
 				if(do_after(user, 4 SECONDS * WT.toolspeed, src, exclusive = TASK_ALL_EXCLUSIVE))
+=======
+				if(do_after(user, 40 * WT.get_tool_speed(TOOL_WELDER)))
+>>>>>>> 4d8c43f106d... What was supposed to be another straightforward major system overhaul that once again spiraled out of control (#8220)
 					if(!src || !WT.isOn()) return
 					to_chat(user, "<span class='notice'>You welded the [glass] plating off!</span>")
 					var/M = text2path("/obj/item/stack/material/[glass]")
@@ -184,14 +188,22 @@
 					glass = 0
 			else if(glass == 1)
 				user.visible_message("[user] welds the glass panel out of the airlock assembly.", "You start to weld the glass panel out of the airlock assembly.")
+<<<<<<< HEAD
 				if(do_after(user, 4 SECONDS * WT.toolspeed, src, exclusive = TASK_ALL_EXCLUSIVE))
+=======
+				if(do_after(user, 40 * WT.get_tool_speed(TOOL_WELDER)))
+>>>>>>> 4d8c43f106d... What was supposed to be another straightforward major system overhaul that once again spiraled out of control (#8220)
 					if(!src || !WT.isOn()) return
 					to_chat(user, "<span class='notice'>You welded the glass panel out!</span>")
 					new /obj/item/stack/material/glass/reinforced(src.loc)
 					glass = 0
 			else if(!anchored)
 				user.visible_message("[user] dissassembles the airlock assembly.", "You start to dissassemble the airlock assembly.")
+<<<<<<< HEAD
 				if(do_after(user, 4 SECONDS * WT.toolspeed, src, exclusive = TASK_ALL_EXCLUSIVE))
+=======
+				if(do_after(user, 40 * WT.get_tool_speed(TOOL_WELDER)))
+>>>>>>> 4d8c43f106d... What was supposed to be another straightforward major system overhaul that once again spiraled out of control (#8220)
 					if(!src || !WT.isOn()) return
 					to_chat(user, "<span class='notice'>You dissasembled the airlock assembly!</span>")
 					new /obj/item/stack/material/steel(src.loc, 4)
@@ -200,19 +212,23 @@
 			to_chat(user, "<span class='notice'>You need more welding fuel.</span>")
 			return
 
-	else if(W.is_wrench() && state == 0)
+	else if(W.get_tool_quality(TOOL_WRENCH) && state == 0)
 		playsound(src, W.usesound, 100, 1)
 		if(anchored)
 			user.visible_message("[user] begins unsecuring the airlock assembly from the floor.", "You starts unsecuring the airlock assembly from the floor.")
 		else
 			user.visible_message("[user] begins securing the airlock assembly to the floor.", "You starts securing the airlock assembly to the floor.")
 
+<<<<<<< HEAD
 		if(do_after(user, 4 SECONDS * W.toolspeed, src, exclusive = TASK_ALL_EXCLUSIVE))
+=======
+		if(do_after(user, 40 * W.get_tool_speed(TOOL_WRENCH)))
+>>>>>>> 4d8c43f106d... What was supposed to be another straightforward major system overhaul that once again spiraled out of control (#8220)
 			if(!src) return
 			to_chat(user, "<span class='notice'>You [anchored? "un" : ""]secured the airlock assembly!</span>")
 			anchored = !anchored
 
-	else if(istype(W, /obj/item/stack/cable_coil) && state == 0 && anchored)
+	else if(W.get_tool_quality(TOOL_CABLE_COIL) && state == 0 && anchored)
 		var/obj/item/stack/cable_coil/C = W
 		if (C.get_amount() < 1)
 			to_chat(user, "<span class='warning'>You need one length of coil to wire the airlock assembly.</span>")
@@ -223,11 +239,15 @@
 				src.state = 1
 				to_chat(user, "<span class='notice'>You wire the airlock.</span>")
 
-	else if(W.is_wirecutter() && state == 1 )
+	else if(W.get_tool_quality(TOOL_WIRECUTTER) && state == 1 )
 		playsound(src, W.usesound, 100, 1)
 		user.visible_message("[user] cuts the wires from the airlock assembly.", "You start to cut the wires from airlock assembly.")
 
+<<<<<<< HEAD
 		if(do_after(user, 4 SECONDS * W.toolspeed, src, exclusive = TASK_ALL_EXCLUSIVE))
+=======
+		if(do_after(user, 40 * W.get_tool_speed(TOOL_WIRECUTTER)))
+>>>>>>> 4d8c43f106d... What was supposed to be another straightforward major system overhaul that once again spiraled out of control (#8220)
 			if(!src) return
 			to_chat(user, "<span class='notice'>You cut the airlock wires.!</span>")
 			new/obj/item/stack/cable_coil(src.loc, 1)
@@ -245,7 +265,7 @@
 			src.state = 2
 			src.electronics = W
 
-	else if(W.is_crowbar() && state == 2 )
+	else if(W.get_tool_quality(TOOL_CROWBAR) && state == 2 )
 		//This should never happen, but just in case I guess
 		if (!electronics)
 			to_chat(user, "<span class='notice'>There was nothing to remove.</span>")
@@ -255,7 +275,11 @@
 		playsound(src, W.usesound, 100, 1)
 		user.visible_message("\The [user] starts removing the electronics from the airlock assembly.", "You start removing the electronics from the airlock assembly.")
 
+<<<<<<< HEAD
 		if(do_after(user, 4 SECONDS * W.toolspeed, src, exclusive = TASK_ALL_EXCLUSIVE))
+=======
+		if(do_after(user, 40 * W.get_tool_speed(TOOL_CROWBAR)))
+>>>>>>> 4d8c43f106d... What was supposed to be another straightforward major system overhaul that once again spiraled out of control (#8220)
 			if(!src) return
 			to_chat(user, "<span class='notice'>You removed the airlock electronics!</span>")
 			src.state = 1
@@ -287,11 +311,15 @@
 								to_chat(user, "<span class='notice'>You installed [material_display_name(material_name)] plating into the airlock assembly.</span>")
 								glass = material_name
 
-	else if(W.is_screwdriver() && state == 2 )
+	else if(W.get_tool_quality(TOOL_SCREWDRIVER) && state == 2 )
 		playsound(src, W.usesound, 100, 1)
 		to_chat(user, "<span class='notice'>Now finishing the airlock.</span>")
 
+<<<<<<< HEAD
 		if(do_after(user, 4 SECONDS * W.toolspeed, src, exclusive = TASK_ALL_EXCLUSIVE))
+=======
+		if(do_after(user, 40 * W.get_tool_speed(TOOL_SCREWDRIVER)))
+>>>>>>> 4d8c43f106d... What was supposed to be another straightforward major system overhaul that once again spiraled out of control (#8220)
 			if(!src) return
 			to_chat(user, "<span class='notice'>You finish the airlock!</span>")
 			var/path

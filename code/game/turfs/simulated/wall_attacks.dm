@@ -190,7 +190,7 @@
 				for(var/obj/effect/overlay/wallrot/WR in src)
 					qdel(WR)
 				return
-		else if(!is_sharp(W) && W.force >= 10 || W.force >= 20)
+		else if(!W.sharp && W.force >= 10 || W.force >= 20)
 			to_chat(user, "<span class='notice'>\The [src] crumbles away under the force of your [W.name].</span>")
 			src.dismantle_wall(1)
 			return
@@ -220,7 +220,7 @@
 
 	var/turf/T = user.loc	//get user's location for delay checks
 
-	if(damage && istype(W, /obj/item/weapon/weldingtool))
+	if(damage && W.get_tool_quality(TOOL_WELDER))
 
 		var/obj/item/weapon/weldingtool/WT = W
 
@@ -230,7 +230,7 @@
 		if(WT.remove_fuel(0,user))
 			to_chat(user, "<span class='notice'>You start repairing the damage to [src].</span>")
 			playsound(src, WT.usesound, 100, 1)
-			if(do_after(user, max(5, damage / 5) * WT.toolspeed) && WT && WT.isOn())
+			if(do_after(user, max(5, damage / 5) * WT.get_tool_speed(TOOL_WELDER)) && WT && WT.isOn())
 				to_chat(user, "<span class='notice'>You finish repairing the damage to [src].</span>")
 				take_damage(-damage)
 		else
@@ -240,13 +240,14 @@
 		return
 
 	// Basic dismantling.
+	var/dismantle_toolspeed = 1
 	if(isnull(construction_stage) || !reinf_material)
 
 		var/cut_delay = 60 - material.cut_delay
 		var/dismantle_verb
 		var/dismantle_sound
 
-		if(istype(W,/obj/item/weapon/weldingtool))
+		if(W.get_tool_quality(TOOL_WELDER))
 			var/obj/item/weapon/weldingtool/WT = W
 			if(!WT.isOn())
 				return
@@ -255,18 +256,20 @@
 				return
 			dismantle_verb = "cutting"
 			dismantle_sound = W.usesound
+			dismantle_toolspeed = W.get_tool_speed(TOOL_WELDER)
 		//	cut_delay *= 0.7 // Tools themselves now can shorten the time it takes.
 		else if(istype(W,/obj/item/weapon/melee/energy/blade))
 			dismantle_sound = "sparks"
 			dismantle_verb = "slicing"
 			cut_delay *= 0.5
-		else if(istype(W,/obj/item/weapon/pickaxe))
+		else if(W.get_tool_quality(TOOL_MINING))
 			var/obj/item/weapon/pickaxe/P = W
 			dismantle_verb = P.drill_verb
 			dismantle_sound = P.drill_sound
 			cut_delay -= P.digspeed
+			dismantle_toolspeed = W.get_tool_speed(TOOL_MINING)
 
-		if(dismantle_verb)
+		if(dismantle_toolspeed)
 
 			to_chat(user, "<span class='notice'>You begin [dismantle_verb] through the outer plating.</span>")
 			if(dismantle_sound)
@@ -275,7 +278,7 @@
 			if(cut_delay<0)
 				cut_delay = 0
 
-			if(!do_after(user,cut_delay * W.toolspeed))
+			if(!do_after(user,cut_delay * dismantle_toolspeed))
 				return
 
 			to_chat(user, "<span class='notice'>You remove the outer plating.</span>")
@@ -287,7 +290,7 @@
 	else
 		switch(construction_stage)
 			if(6)
-				if (W.is_wirecutter())
+				if (W.get_tool_quality(TOOL_WIRECUTTER))
 					playsound(src, W.usesound, 100, 1)
 					construction_stage = 5
 					user.update_examine_panel(src)
@@ -295,17 +298,17 @@
 					update_icon()
 					return
 			if(5)
-				if (W.is_screwdriver())
+				if (W.get_tool_quality(TOOL_SCREWDRIVER))
 					to_chat(user, "<span class='notice'>You begin removing the support lines.</span>")
 					playsound(src, W.usesound, 100, 1)
-					if(!do_after(user,40 * W.toolspeed) || !istype(src, /turf/simulated/wall) || construction_stage != 5)
+					if(!do_after(user,40 * W.get_tool_speed(TOOL_SCREWDRIVER)) || !istype(src, /turf/simulated/wall) || construction_stage != 5)
 						return
 					construction_stage = 4
 					user.update_examine_panel(src)
 					update_icon()
 					to_chat(user, "<span class='notice'>You unscrew the support lines.</span>")
 					return
-				else if (W.is_wirecutter())
+				else if (W.get_tool_quality(TOOL_WIRECUTTER))
 					construction_stage = 6
 					user.update_examine_panel(src)
 					to_chat(user, "<span class='notice'>You mend the outer grille.</span>")
@@ -328,17 +331,17 @@
 				if(cut_cover)
 					to_chat(user, "<span class='notice'>You begin slicing through the metal cover.</span>")
 					playsound(src, W.usesound, 100, 1)
-					if(!do_after(user, 60 * W.toolspeed) || !istype(src, /turf/simulated/wall) || construction_stage != 4)
+					if(!do_after(user, 60 * W.get_tool_speed(TOOL_WELDER)) || !istype(src, /turf/simulated/wall) || construction_stage != 4)
 						return
 					construction_stage = 3
 					user.update_examine_panel(src)
 					update_icon()
 					to_chat(user, "<span class='notice'>You press firmly on the cover, dislodging it.</span>")
 					return
-				else if (W.is_screwdriver())
+				else if (W.get_tool_quality(TOOL_SCREWDRIVER))
 					to_chat(user, "<span class='notice'>You begin screwing down the support lines.</span>")
 					playsound(src, W.usesound, 100, 1)
-					if(!do_after(user,40 * W.toolspeed) || !istype(src, /turf/simulated/wall) || construction_stage != 4)
+					if(!do_after(user,40 * W.get_tool_speed(TOOL_SCREWDRIVER)) || !istype(src, /turf/simulated/wall) || construction_stage != 4)
 						return
 					construction_stage = 5
 					user.update_examine_panel(src)
@@ -346,10 +349,10 @@
 					to_chat(user, "<span class='notice'>You screw down the support lines.</span>")
 					return
 			if(3)
-				if (W.is_crowbar())
+				if (W.get_tool_quality(TOOL_CROWBAR))
 					to_chat(user, "<span class='notice'>You struggle to pry off the cover.</span>")
 					playsound(src, W.usesound, 100, 1)
-					if(!do_after(user,100 * W.toolspeed) || !istype(src, /turf/simulated/wall) || construction_stage != 3)
+					if(!do_after(user,100 * W.get_tool_speed(TOOL_CROWBAR)) || !istype(src, /turf/simulated/wall) || construction_stage != 3)
 						return
 					construction_stage = 2
 					user.update_examine_panel(src)
@@ -357,10 +360,10 @@
 					to_chat(user, "<span class='notice'>You pry off the cover.</span>")
 					return
 			if(2)
-				if (W.is_wrench())
+				if (W.get_tool_quality(TOOL_WRENCH))
 					to_chat(user, "<span class='notice'>You start loosening the anchoring bolts which secure the support rods to their frame.</span>")
 					playsound(src, W.usesound, 100, 1)
-					if(!do_after(user,40 * W.toolspeed) || !istype(src, /turf/simulated/wall) || construction_stage != 2)
+					if(!do_after(user,40 * W.get_tool_speed(TOOL_WRENCH)) || !istype(src, /turf/simulated/wall) || construction_stage != 2)
 						return
 					construction_stage = 1
 					user.update_examine_panel(src)
@@ -381,7 +384,7 @@
 				if(cut_cover)
 					to_chat(user, "<span class='notice'>You begin slicing through the support rods.</span>")
 					playsound(src, W.usesound, 100, 1)
-					if(!do_after(user,70 * W.toolspeed) || !istype(src, /turf/simulated/wall) || construction_stage != 1)
+					if(!do_after(user,70 * W.get_tool_speed(TOOL_WELDER)) || !istype(src, /turf/simulated/wall) || construction_stage != 1)
 						return
 					construction_stage = 0
 					user.update_examine_panel(src)
@@ -389,10 +392,10 @@
 					to_chat(user, "<span class='notice'>The slice through the support rods.</span>")
 					return
 			if(0)
-				if(W.is_crowbar())
+				if(W.get_tool_quality(TOOL_CROWBAR))
 					to_chat(user, "<span class='notice'>You struggle to pry off the outer sheath.</span>")
 					playsound(src, W.usesound, 100, 1)
-					if(!do_after(user,100 * W.toolspeed) || !istype(src, /turf/simulated/wall) || !user || !W || !T )
+					if(!do_after(user,100 * W.get_tool_speed(TOOL_CROWBAR)) || !istype(src, /turf/simulated/wall) || !user || !W || !T )
 						return
 					if(user.loc == T && user.get_active_hand() == W )
 						to_chat(user, "<span class='notice'>You pry off the outer sheath.</span>")

@@ -97,9 +97,11 @@
 	icon_state = "fork"
 	sharp = TRUE
 	edge = FALSE
+	tool_qualities = list(TOOL_SCREWDRIVER = TOOL_QUALITY_WORST) // Really bad, but in a pinch...
 
 /obj/item/weapon/material/kitchen/utensil/fork/plastic
 	default_material = "plastic"
+	tool_qualities = list()
 
 /obj/item/weapon/material/kitchen/utensil/foon
 	name = "foon"

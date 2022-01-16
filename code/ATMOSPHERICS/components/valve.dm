@@ -19,7 +19,7 @@
 	var/datum/pipe_network/network_node2
 
 /obj/machinery/atmospherics/valve/open
-	open = 1
+	open = TRUE
 	icon_state = "map_valve1"
 
 /obj/machinery/atmospherics/valve/update_icon(animation)
@@ -61,7 +61,7 @@
 			network_node1 = new_network
 
 	if(new_network.normal_members.Find(src))
-		return 0
+		return FALSE
 
 	new_network.normal_members += src
 
@@ -89,9 +89,10 @@
 	node2 = null
 
 /obj/machinery/atmospherics/valve/proc/open()
-	if(open) return 0
+	if(open)
+		return FALSE
 
-	open = 1
+	open = TRUE
 	update_icon()
 
 	if(network_node1&&network_node2)
@@ -99,17 +100,17 @@
 		network_node2 = network_node1
 
 	if(network_node1)
-		network_node1.update = 1
+		network_node1.update = TRUE
 	else if(network_node2)
-		network_node2.update = 1
+		network_node2.update = TRUE
 
-	return 1
+	return TRUE
 
 /obj/machinery/atmospherics/valve/proc/close()
 	if(!open)
-		return 0
+		return FALSE
 
-	open = 0
+	open = FALSE
 	update_icon()
 
 	if(network_node1)
@@ -119,7 +120,7 @@
 
 	build_network()
 
-	return 1
+	return TRUE
 
 /obj/machinery/atmospherics/valve/proc/normalize_dir()
 	if(dir==3)
@@ -141,9 +142,7 @@
 
 /obj/machinery/atmospherics/valve/process()
 	..()
-	. = PROCESS_KILL
-
-	return
+	return PROCESS_KILL
 
 /obj/machinery/atmospherics/valve/atmos_init()
 	normalize_dir()
@@ -199,7 +198,7 @@
 	if(network_node2 == old_network)
 		network_node2 = new_network
 
-	return 1
+	return TRUE
 
 /obj/machinery/atmospherics/valve/return_network_air(datum/pipe_network/reference)
 	return null
@@ -229,7 +228,7 @@
 
 /obj/machinery/atmospherics/valve/digital/Destroy()
 	unregister_radio(src, frequency)
-	. = ..()
+	return ..()
 
 /obj/machinery/atmospherics/valve/digital/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
@@ -240,20 +239,20 @@
 	if(!src.allowed(user))
 		to_chat(user, "<span class='warning'>Access denied.</span>")
 		return
-	..()
+	return ..()
 
 /obj/machinery/atmospherics/valve/digital/open
-	open = 1
+	open = TRUE
 	icon_state = "map_valve1"
 
 /obj/machinery/atmospherics/valve/digital/power_change()
 	var/old_stat = stat
-	..()
+	. = ..()
 	if(old_stat != stat)
 		update_icon()
 
 /obj/machinery/atmospherics/valve/digital/update_icon()
-	..()
+	. = ..()
 	if(!powered())
 		icon_state = "valve[open]nopower"
 
@@ -270,7 +269,7 @@
 
 /obj/machinery/atmospherics/valve/digital/receive_signal(datum/signal/signal)
 	if(!signal.data["tag"] || (signal.data["tag"] != id))
-		return 0
+		return FALSE
 
 	switch(signal.data["command"])
 		if("valve_open")
@@ -286,12 +285,14 @@
 				close()
 			else
 				open()
+	return TRUE
 
 /obj/machinery/atmospherics/valve/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if (!W.is_wrench())
+	if (!W.get_tool_quality(TOOL_WRENCH))
 		return ..()
 	if (istype(src, /obj/machinery/atmospherics/valve/digital) && !src.allowed(user))
 		to_chat(user, "<span class='warning'>Access denied.</span>")
+<<<<<<< HEAD
 		return 1
 	if(!can_unwrench())
 		to_chat(user, "<span class='warning'>You cannot unwrench \the [src], it is too exerted due to internal pressure.</span>")
@@ -305,6 +306,11 @@
 			"<span class='notice'>You have unfastened \the [src].</span>", \
 			"You hear a ratchet.")
 		deconstruct()
+=======
+		return TRUE
+	return default_deconstruction_wrench(user, W)
+
+>>>>>>> 4d8c43f106d... What was supposed to be another straightforward major system overhaul that once again spiraled out of control (#8220)
 
 /obj/machinery/atmospherics/valve/examine(mob/user)
 	. = ..()

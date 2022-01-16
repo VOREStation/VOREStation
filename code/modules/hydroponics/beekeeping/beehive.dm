@@ -36,12 +36,12 @@
 		. += "The lid is open."
 
 /obj/machinery/beehive/attackby(var/obj/item/I, var/mob/user)
-	if(I.is_crowbar())
+	if(I.get_tool_quality(TOOL_CROWBAR))
 		closed = !closed
 		user.visible_message("<span class='notice'>[user] [closed ? "closes" : "opens"] \the [src].</span>", "<span class='notice'>You [closed ? "close" : "open"] \the [src].</span>")
 		update_icon()
 		return
-	else if(I.is_wrench())
+	else if(I.get_tool_quality(TOOL_WRENCH))
 		anchored = !anchored
 		playsound(src, I.usesound, 50, 1)
 		user.visible_message("<span class='notice'>[user] [anchored ? "wrenches" : "unwrenches"] \the [src].</span>", "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
@@ -107,7 +107,7 @@
 		if(smoked)
 			to_chat(user, "The hive is smoked.")
 		return 1
-	else if(I.is_screwdriver())
+	else if(I.get_tool_quality(TOOL_SCREWDRIVER))
 		if(bee_count)
 			to_chat(user, "<span class='notice'>You can't dismantle \the [src] with these bees inside.</span>")
 			return

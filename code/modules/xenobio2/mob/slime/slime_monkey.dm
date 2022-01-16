@@ -29,7 +29,7 @@ Slime cube lives here.
 	icon_state = "slime cube"
 	if(searching == 1)
 		searching = 0
-		var/turf/T = get_turf_or_move(src.loc)
+		var/turf/T = get_turf(src.loc)
 		for(var/mob/M in viewers(T))
 			M.show_message("<span class='warning'>The activity in the cube dies down. Maybe it will spark another time.</span>")
 
@@ -42,7 +42,7 @@ Slime cube lives here.
 	S.mind.assigned_role = "Promethean"
 	S.set_species("Promethean")
 	S.shapeshifter_set_colour("#05FF9B")
-	for(var/mob/M in viewers(get_turf_or_move(loc)))
+	for(var/mob/M in viewers(get_turf(loc)))
 		M.show_message("<span class='warning'>The monkey cube suddenly takes the shape of a humanoid!</span>")
 	var/newname = sanitize(input(S, "You are a Promethean. Would you like to change your name to something else?", "Name change") as null|text, MAX_NAME_LEN)
 	if(newname)

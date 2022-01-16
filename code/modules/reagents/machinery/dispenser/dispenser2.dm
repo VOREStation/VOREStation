@@ -77,10 +77,10 @@
 	SStgui.update_uis(src)
 
 /obj/machinery/chemical_dispenser/attackby(obj/item/weapon/W, mob/user)
-	if(W.is_wrench())
+	if(W.get_tool_quality(TOOL_WRENCH))
 		playsound(src, W.usesound, 50, 1)
 		to_chat(user, "<span class='notice'>You begin to [anchored ? "un" : ""]fasten \the [src].</span>")
-		if (do_after(user, 20 * W.toolspeed))
+		if (do_after(user, 20 * W.get_tool_speed(TOOL_WRENCH)))
 			user.visible_message(
 				"<span class='notice'>\The [user] [anchored ? "un" : ""]fastens \the [src].</span>",
 				"<span class='notice'>You have [anchored ? "un" : ""]fastened \the [src].</span>",
@@ -92,8 +92,13 @@
 	else if(istype(W, /obj/item/weapon/reagent_containers/chem_disp_cartridge))
 		add_cartridge(W, user)
 
+<<<<<<< HEAD
 	else if(W.is_screwdriver())
 		var/label = tgui_input_list(user, "Which cartridge would you like to remove?", "Chemical Dispenser", cartridges)
+=======
+	else if(W.get_tool_quality(TOOL_SCREWDRIVER))
+		var/label = input(user, "Which cartridge would you like to remove?", "Chemical Dispenser") as null|anything in cartridges
+>>>>>>> 4d8c43f106d... What was supposed to be another straightforward major system overhaul that once again spiraled out of control (#8220)
 		if(!label) return
 		var/obj/item/weapon/reagent_containers/chem_disp_cartridge/C = remove_cartridge(label)
 		if(C)

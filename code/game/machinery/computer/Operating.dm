@@ -273,17 +273,17 @@
 	if(LAZYLEN(good_surgeries))
 		return good_surgeries
 	var/static/list/banned_surgery_steps = list(
-			/datum/surgery_step,
-			/datum/surgery_step/generic,
-			/datum/surgery_step/open_encased,
-			/datum/surgery_step/repairflesh,
-			/datum/surgery_step/face,
-			/datum/surgery_step/cavity,
-			/datum/surgery_step/limb,
-			/datum/surgery_step/brainstem,
+			/decl/surgery_step,
+			/decl/surgery_step/generic,
+			/decl/surgery_step/open_encased,
+			/decl/surgery_step/repairflesh,
+			/decl/surgery_step/face,
+			/decl/surgery_step/cavity,
+			/decl/surgery_step/limb,
+			/decl/surgery_step/brainstem,
 		)
 	good_surgeries = surgery_steps
-	for(var/datum/surgery_step/S in good_surgeries)
+	for(var/decl/surgery_step/S in good_surgeries)
 		if(S.type in banned_surgery_steps)
 			good_surgeries -= S
 		if(!LAZYLEN(S.allowed_tools))
@@ -297,7 +297,7 @@
  */
 /obj/machinery/computer/operating/proc/find_next_steps(mob/user, zone)
 	. = list()
-	for(var/datum/surgery_step/S in get_surgery_steps_without_basetypes())
+	for(var/decl/surgery_step/S in get_surgery_steps_without_basetypes())
 		if(S.can_use(user, victim, zone, null) && S.is_valid_target(victim))
 			var/allowed_tools_by_name = list()
 			for(var/tool in S.allowed_tools)

@@ -1468,7 +1468,7 @@
 				to_chat(user, "<span class='warning'>Invalid ID: Access denied.</span>")
 		else
 			to_chat(user, "<span class='warning'>Maintenance protocols disabled by operator.</span>")
-	else if(W.is_wrench())
+	else if(W.get_tool_quality(TOOL_WRENCH))
 		if(state==MECHA_BOLTS_SECURED)
 			state = MECHA_PANEL_LOOSE
 			to_chat(user, "You undo the securing bolts.")
@@ -1476,7 +1476,7 @@
 			state = MECHA_BOLTS_SECURED
 			to_chat(user, "You tighten the securing bolts.")
 		return
-	else if(W.is_crowbar())
+	else if(W.get_tool_quality(TOOL_CROWBAR))
 		if(state==MECHA_PANEL_LOOSE)
 			state = MECHA_CELL_OPEN
 			to_chat(user, "You open the hatch to the power unit")
@@ -1509,7 +1509,7 @@
 			else
 				to_chat(user, "There's not enough wire to finish the task.")
 		return
-	else if(W.is_screwdriver())
+	else if(W.get_tool_quality(TOOL_SCREWDRIVER))
 		if(hasInternalDamage(MECHA_INT_TEMP_CONTROL))
 			clearInternalDamage(MECHA_INT_TEMP_CONTROL)
 			to_chat(user, "You repair the damaged temperature controller.")

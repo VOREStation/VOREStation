@@ -115,8 +115,8 @@
 	//Armor
 	var/soaked = get_armor_soak(def_zone, P.check_armour, P.armor_penetration)
 	var/absorb = run_armor_check(def_zone, P.check_armour, P.armor_penetration)
-	var/proj_sharp = is_sharp(P)
-	var/proj_edge = has_edge(P)
+	var/proj_sharp = P.sharp
+	var/proj_edge = P.edge
 
 	if ((proj_sharp || proj_edge) && (soaked >= round(P.damage*0.8)))
 		proj_sharp = 0
@@ -246,8 +246,8 @@
 	if(!effective_force || blocked >= 100)
 		return 0
 	//Apply weapon damage
-	var/weapon_sharp = is_sharp(I)
-	var/weapon_edge = has_edge(I)
+	var/weapon_sharp = I.sharp
+	var/weapon_edge = I.edge
 
 	if(getsoak(hit_zone, "melee",) - (I.armor_penetration/5) > round(effective_force*0.8)) //soaking a hit turns sharp attacks into blunt ones
 		weapon_sharp = 0
@@ -282,7 +282,7 @@
 		var/soaked = get_armor_soak(null, "melee")
 
 
-		apply_damage(throw_damage, dtype, null, armor, soaked, is_sharp(O), has_edge(O), O)
+		apply_damage(throw_damage, dtype, null, armor, soaked, O.sharp, O.edge, O)
 
 		O.throwing = 0		//it hit, so stop moving
 

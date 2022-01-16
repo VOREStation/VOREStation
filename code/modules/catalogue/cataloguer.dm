@@ -34,6 +34,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	var/debug = FALSE // If true, can view all catalogue data defined, regardless of unlock status.
 	var/weakref/partial_scanned = null // Weakref of the thing that was last scanned if inturrupted. Used to allow for partial scans to be resumed.
 	var/partial_scan_time = 0 // How much to make the next scan shorter.
+	var/toolspeed = 1
 
 /obj/item/device/cataloguer/advanced
 	name = "advanced cataloguer"

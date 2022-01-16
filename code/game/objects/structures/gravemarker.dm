@@ -51,25 +51,25 @@
 	return TRUE
 
 /obj/structure/gravemarker/attackby(obj/item/weapon/W, mob/user as mob)
-	if(W.is_screwdriver())
+	if(W.get_tool_quality(TOOL_SCREWDRIVER))
 		var/carving_1 = sanitizeSafe(input(user, "Who is \the [src.name] for?", "Gravestone Naming", null)  as text, MAX_NAME_LEN)
 		if(carving_1)
 			user.visible_message("[user] starts carving \the [src.name].", "You start carving \the [src.name].")
-			if(do_after(user, material.hardness * W.toolspeed))
+			if(do_after(user, material.hardness * W.get_tool_speed(TOOL_SCREWDRIVER)))
 				user.visible_message("[user] carves something into \the [src.name].", "You carve your message into \the [src.name].")
 				grave_name += carving_1
 				update_icon()
 		var/carving_2 = sanitizeSafe(input(user, "What message should \the [src.name] have?", "Epitaph Carving", null)  as text, MAX_NAME_LEN)
 		if(carving_2)
 			user.visible_message("[user] starts carving \the [src.name].", "You start carving \the [src.name].")
-			if(do_after(user, material.hardness * W.toolspeed))
+			if(do_after(user, material.hardness * W.get_tool_speed(TOOL_SCREWDRIVER)))
 				user.visible_message("[user] carves something into \the [src.name].", "You carve your message into \the [src.name].")
 				epitaph += carving_2
 				update_icon()
 		return
-	if(W.is_wrench())
+	if(W.get_tool_quality(TOOL_WRENCH))
 		user.visible_message("[user] starts taking down \the [src.name].", "You start taking down \the [src.name].")
-		if(do_after(user, material.hardness * W.toolspeed))
+		if(do_after(user, material.hardness * W.get_tool_speed(TOOL_WRENCH)))
 			user.visible_message("[user] takes down \the [src.name].", "You take down \the [src.name].")
 			dismantle()
 	..()

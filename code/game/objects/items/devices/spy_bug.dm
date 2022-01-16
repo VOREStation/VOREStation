@@ -110,7 +110,7 @@
 		else
 			to_chat(user, "Error: The device is linked to another monitor.")
 
-	else if(W.is_wrench() && user.a_intent != I_HURT)
+	else if(W.get_tool_quality(TOOL_WRENCH) && user.a_intent != I_HURT)
 		if(isturf(loc))
 			anchored = !anchored
 

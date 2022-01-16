@@ -13,8 +13,8 @@
 		return 0
 
 	//Apply weapon damage
-	var/weapon_sharp = is_sharp(I)
-	var/weapon_edge = has_edge(I)
+	var/weapon_sharp = I.sharp
+	var/weapon_edge = I.edge
 	var/hit_embed_chance = I.embed_chance
 	if(prob(getarmor(hit_zone, "melee"))) //melee armour provides a chance to turn sharp/edge weapon attacks into blunt ones
 		weapon_sharp = 0

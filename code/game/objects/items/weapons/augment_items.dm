@@ -31,7 +31,12 @@
 	w_class = ITEMSIZE_HUGE
 	force = 30
 	armor_penetration = 15
+<<<<<<< HEAD
 	edge = TRUE
 	pry = 1
+=======
+	edge = 1
+	tool_qualities = list(TOOL_CROWBAR = TOOL_QUALITY_STANDARD)
+>>>>>>> 4d8c43f106d... What was supposed to be another straightforward major system overhaul that once again spiraled out of control (#8220)
 	defend_chance = 40
 	projectile_parry_chance = 20

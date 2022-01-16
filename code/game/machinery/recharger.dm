@@ -78,7 +78,7 @@
 		update_icon()
 		user.visible_message("[user] inserts [charging] into [src].", "You insert [charging] into [src].")
 
-	else if(portable && G.is_wrench())
+	else if(portable && G.get_tool_quality(TOOL_WRENCH))
 		if(charging)
 			to_chat(user, "<span class='warning'>Remove [charging] first!</span>")
 			return

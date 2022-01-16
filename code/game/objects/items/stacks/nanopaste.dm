@@ -6,7 +6,7 @@
 	icon_state = "nanopaste"
 	origin_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3)
 	amount = 10
-	toolspeed = 0.75 //Used in surgery, shouldn't be the same speed as a normal screwdriver on mechanical organ repair.
+	tool_qualities = list(TOOL_NANOPASTE = TOOL_QUALITY_STANDARD) //Used in surgery, shouldn't be the same speed as a normal screwdriver on mechanical organ repair.
 	w_class = ITEMSIZE_SMALL
 	no_variants = FALSE
 
@@ -16,7 +16,11 @@
 	if (istype(M,/mob/living/silicon/robot))	//Repairing cyborgs
 		var/mob/living/silicon/robot/R = M
 		if (R.getBruteLoss() || R.getFireLoss())
+<<<<<<< HEAD
 			if(do_after(user, 7 * toolspeed, R, exclusive = TASK_ALL_EXCLUSIVE))
+=======
+			if(do_after(user,7 * get_tool_speed(TOOL_NANOPASTE)))
+>>>>>>> 4d8c43f106d... What was supposed to be another straightforward major system overhaul that once again spiraled out of control (#8220)
 				R.adjustBruteLoss(-15)
 				R.adjustFireLoss(-15)
 				R.updatehealth()
@@ -46,6 +50,7 @@
 		if (S && (S.robotic >= ORGAN_ROBOT))
 			if(!S.get_damage())
 				to_chat(user, "<span class='notice'>Nothing to fix here.</span>")
+<<<<<<< HEAD
 			else if((S.open < 2) && (S.brute_dam + S.burn_dam >= S.min_broken_damage) && !repair_external)
 				to_chat(user, "<span class='notice'>The damage is too extensive for this nanite swarm to handle.</span>")
 			else if(can_use(1))
@@ -55,6 +60,15 @@
 						S.heal_damage(restoration_internal, restoration_internal, robo_repair = 1)
 				else if(do_after(user, 5 * toolspeed, S, exclusive = TASK_ALL_EXCLUSIVE))
 					S.heal_damage(restoration_external,restoration_external, robo_repair =1)
+=======
+			else if(can_use(1))
+				user.setClickCooldown(user.get_attack_speed(src))
+				if(S.open >= 2)
+					if(do_after(user,5 * get_tool_speed(TOOL_NANOPASTE)))
+						S.heal_damage(20, 20, robo_repair = 1)
+				else if(do_after(user,5 * get_tool_speed(TOOL_NANOPASTE)))
+					S.heal_damage(10,10, robo_repair =1)
+>>>>>>> 4d8c43f106d... What was supposed to be another straightforward major system overhaul that once again spiraled out of control (#8220)
 				H.updatehealth()
 				use(1)
 				user.visible_message("<span class='notice'>\The [user] applies some nanite paste on [user != M ? "[M]'s [S.name]" : "[S]"] with [src].</span>",\

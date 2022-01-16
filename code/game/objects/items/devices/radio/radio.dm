@@ -603,21 +603,18 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 			. += "<span class='notice'>\The [src] can not be modified or attached!</span>"
 
 /obj/item/device/radio/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	..()
 	user.set_machine(src)
-	if (!W.is_screwdriver())
-		return
-	b_stat = !( b_stat )
-	if(!istype(src, /obj/item/device/radio/beacon))
-		if (b_stat)
-			user.show_message("<span class='notice'>\The [src] can now be attached and modified!</span>")
-		else
-			user.show_message("<span class='notice'>\The [src] can no longer be modified or attached!</span>")
-		updateDialog()
-			//Foreach goto(83)
-		add_fingerprint(user)
-		return
-	else return
+	add_fingerprint(user)
+	if(W.get_tool_quality(TOOL_SCREWDRIVER))
+		b_stat = !b_stat
+		if(!istype(src, /obj/item/device/radio/beacon))
+			updateDialog()
+			if(b_stat)
+				to_chat(user, SPAN_NOTICE("\The [src] can now be attached and modified!"))
+			else
+				to_chat(user, SPAN_NOTICE("\The [src] can no longer be modified or attached!"))
+		return TRUE
+	return ..()
 
 /obj/item/device/radio/emp_act(severity)
 	broadcasting = 0
@@ -655,25 +652,16 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 		R.cell_use_power(C.active_usage)
 
 /obj/item/device/radio/borg/attackby(obj/item/weapon/W as obj, mob/user as mob)
-//	..()
 	user.set_machine(src)
-	if (!(W.is_screwdriver() || istype(W, /obj/item/device/encryptionkey)))
-		return
-
-	if(W.is_screwdriver())
+	if(W.get_tool_quality(TOOL_SCREWDRIVER))
 		if(keyslot)
-
-
 			for(var/ch_name in channels)
 				radio_controller.remove_object(src, radiochannels[ch_name])
 				secure_radio_connections[ch_name] = null
-
-
+			
 			if(keyslot)
-				var/turf/T = get_turf(user)
-				if(T)
-					keyslot.loc = T
-					keyslot = null
+				keyslot.forceMove(get_turf(user))
+				keyslot = null
 
 			recalculateChannels()
 			to_chat(user, "You pop out the encryption key in the radio!")
@@ -682,19 +670,20 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 		else
 			to_chat(user, "This radio doesn't have any encryption keys!")
 
-	if(istype(W, /obj/item/device/encryptionkey/))
+		return TRUE
+
+	else if(istype(W, /obj/item/device/encryptionkey/))
 		if(keyslot)
 			to_chat(user, "The radio can't hold another key!")
-			return
 
-		if(!keyslot)
-			user.drop_item()
-			W.loc = src
+		else
+			user.drop_from_inventory(W, src)
 			keyslot = W
 
 		recalculateChannels()
+		return TRUE
 
-	return
+	return ..()
 
 /obj/item/device/radio/borg/recalculateChannels()
 	src.channels = list()

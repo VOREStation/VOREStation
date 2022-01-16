@@ -16,7 +16,12 @@
 	origin_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 2)
 	matter = list(DEFAULT_WALL_MATERIAL = 50000)
 	preserve_item = TRUE // RCDs are pretty important.
+<<<<<<< HEAD
 	var/datum/effect/effect/system/spark_spread/spark_system
+=======
+	var/datum/effect_system/spark_spread/spark_system
+	var/toolspeed = 1
+>>>>>>> 4d8c43f106d... What was supposed to be another straightforward major system overhaul that once again spiraled out of control (#8220)
 	var/stored_matter = 0
 	var/max_stored_matter = RCD_MAX_CAPACITY
 	var/ranged = FALSE

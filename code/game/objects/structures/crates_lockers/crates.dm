@@ -112,7 +112,7 @@
 			user.drop_item()
 			W.forceMove(src)
 			return
-	else if(W.is_wirecutter())
+	else if(W.get_tool_quality(TOOL_WIRECUTTER))
 		if(rigged)
 			to_chat(user , "<span class='notice'>You cut away the wiring.</span>")
 			playsound(src, W.usesound, 100, 1)

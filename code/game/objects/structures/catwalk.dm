@@ -90,7 +90,7 @@
 		if(WT.isOn() && WT.remove_fuel(0, user))
 			deconstruct(user)
 			return
-	if(C.is_crowbar() && plated_tile)
+	if(C.get_tool_quality(TOOL_CROWBAR) && plated_tile)
 		hatch_open = !hatch_open
 		if(hatch_open)
 			playsound(src, 'sound/items/Crowbar.ogg', 100, 2)

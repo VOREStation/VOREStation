@@ -317,7 +317,7 @@ GLOBAL_LIST_EMPTY(smeses)
 		stat = 0
 		return FALSE
 
-	else if(W.is_wirecutter() && !building_terminal)
+	else if(W.get_tool_quality(TOOL_WIRECUTTER) && !building_terminal)
 		building_terminal = TRUE
 		var/obj/machinery/power/terminal/term
 		for(var/obj/machinery/power/terminal/T in get_turf(user))
@@ -335,7 +335,7 @@ GLOBAL_LIST_EMPTY(smeses)
 			else
 				to_chat(user, "<span class='filter_notice'><span class='notice'>You begin to cut the cables...</span></span>")
 				playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
-				if(do_after(user, 50 * W.toolspeed))
+				if(do_after(user, 50 * W.get_tool_speed(TOOL_WIRECUTTER)))
 					if (prob(50) && electrocute_mob(usr, term.powernet, term))
 						var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 						s.set_up(5, 1, src)

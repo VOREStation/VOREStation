@@ -402,18 +402,23 @@
 		else
 			to_chat(user, "<span class='notice'>There are no seeds in \the [O.name].</span>")
 		return
-	else if(O.is_wrench())
+	else if(O.get_tool_quality(TOOL_WRENCH))
 		playsound(src, O.usesound, 50, 1)
 		anchored = !anchored
 		to_chat(user, "You [anchored ? "wrench" : "unwrench"] \the [src].")
-	else if(O.is_screwdriver())
+	else if(O.get_tool_quality(TOOL_SCREWDRIVER))
 		panel_open = !panel_open
 		to_chat(user, "You [panel_open ? "open" : "close"] the maintenance panel.")
 		playsound(src, O.usesound, 50, 1)
 		cut_overlays()
 		if(panel_open)
+<<<<<<< HEAD
 			add_overlay("[initial(icon_state)]-panel")
 	else if((O.is_wirecutter() || istype(O, /obj/item/device/multitool)) && panel_open)
+=======
+			overlays += image(icon, "[initial(icon_state)]-panel")
+	else if((O.get_tool_quality(TOOL_WIRECUTTER) || O.get_tool_quality(TOOL_MULTITOOL)) && panel_open)
+>>>>>>> 4d8c43f106d... What was supposed to be another straightforward major system overhaul that once again spiraled out of control (#8220)
 		wires.Interact(user)
 
 /obj/machinery/seed_storage/emag_act(var/remaining_charges, var/mob/user)

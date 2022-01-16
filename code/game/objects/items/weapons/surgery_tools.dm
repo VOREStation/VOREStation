@@ -44,6 +44,7 @@
 	matter = list(MAT_STEEL = 10000, MAT_GLASS = 5000)
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	drop_sound = 'sound/items/drop/scrap.ogg'
+	tool_qualities = list(TOOL_RETRACTOR = TOOL_QUALITY_STANDARD)
 
 /*
  * Hemostat
@@ -56,6 +57,7 @@
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	attack_verb = list("attacked", "pinched")
 	drop_sound = 'sound/items/drop/scrap.ogg'
+	tool_qualities = list(TOOL_HEMOSTAT = TOOL_QUALITY_STANDARD)
 
 /*
  * Cautery
@@ -68,6 +70,7 @@
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	attack_verb = list("burnt")
 	drop_sound = 'sound/items/drop/scrap.ogg'
+	tool_qualities = list(TOOL_CAUTERY = TOOL_QUALITY_STANDARD)
 
 /*
  * Surgical Drill
@@ -83,6 +86,7 @@
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	attack_verb = list("drilled")
 	drop_sound = 'sound/items/drop/accessory.ogg'
+	tool_qualities = list(TOOL_SDRILL = TOOL_QUALITY_STANDARD)
 
 /*
  * Scalpel
@@ -103,6 +107,7 @@
 	matter = list(MAT_STEEL = 10000, MAT_GLASS = 5000)
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	drop_sound = 'sound/items/drop/knife.ogg'
+	tool_qualities = list(TOOL_SCALPEL = TOOL_QUALITY_STANDARD)
 
 /*
  * Researchable Scalpels
@@ -112,6 +117,7 @@
 	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field.  This one looks basic and could be improved."
 	icon_state = "scalpel_laser1_on"
 	damtype = "fire"
+	tool_qualities = list(TOOL_SCALPEL = TOOL_QUALITY_DECENT)
 
 /obj/item/weapon/surgical/scalpel/laser2
 	name = "laser scalpel"
@@ -119,6 +125,7 @@
 	icon_state = "scalpel_laser2_on"
 	damtype = "fire"
 	force = 12.0
+	tool_qualities = list(TOOL_SCALPEL = TOOL_QUALITY_GOOD)
 
 /obj/item/weapon/surgical/scalpel/laser3
 	name = "laser scalpel"
@@ -126,12 +133,9 @@
 	icon_state = "scalpel_laser3_on"
 	damtype = "fire"
 	force = 15.0
+	tool_qualities = list(TOOL_SCALPEL = TOOL_QUALITY_BEST)
 
-/obj/item/weapon/surgical/scalpel/manager
-	name = "incision management system"
-	desc = "A true extension of the surgeon's body, this marvel instantly and completely prepares an incision allowing for the immediate commencement of therapeutic steps."
-	icon_state = "scalpel_manager_on"
-	force = 7.5
+
 
 /obj/item/weapon/surgical/scalpel/ripper
 	name = "organ pincers"
@@ -139,8 +143,24 @@
 	icon_state = "organ_ripper"
 	item_state = "bone_setter"
 	force = 15.0
-	toolspeed = 0.75
+	tool_qualities = list(TOOL_SCALPEL = TOOL_QUALITY_DECENT)
 	origin_tech = list(TECH_MATERIAL = 5, TECH_BIO = 3, TECH_ILLEGAL = 2)
+
+/* 
+ * Incision management:
+ * Circ saw, scalpel, retractor, and hemostat
+ */
+/obj/item/weapon/surgical/manager
+	name = "incision management system"
+	desc = "A true extension of the surgeon's body, this marvel instantly and completely prepares an incision allowing for the immediate commencement of therapeutic steps."
+	icon_state = "scalpel_manager_on"
+	force = 7.5
+	tool_qualities = list(
+		TOOL_SCALPEL = TOOL_QUALITY_GOOD,
+		TOOL_CSAW = TOOL_QUALITY_GOOD,
+		TOOL_RETRACTOR = TOOL_QUALITY_GOOD,
+		TOOL_HEMOSTAT = TOOL_QUALITY_GOOD
+		)
 
 /*
  * Circular Saw
@@ -159,8 +179,14 @@
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	matter = list(MAT_STEEL = 20000,MAT_GLASS = 10000)
 	attack_verb = list("attacked", "slashed", "sawed", "cut")
+<<<<<<< HEAD
 	sharp = TRUE
 	edge = TRUE
+=======
+	sharp = 1
+	edge = 1
+	tool_qualities = list(TOOL_CSAW = TOOL_QUALITY_STANDARD)
+>>>>>>> 4d8c43f106d... What was supposed to be another straightforward major system overhaul that once again spiraled out of control (#8220)
 
 /obj/item/weapon/surgical/circular_saw/manager
 	name = "energetic bone diverter"
@@ -173,7 +199,7 @@
 	origin_tech = list(TECH_BIO = 4, TECH_MATERIAL = 6, TECH_MAGNET = 6)
 	matter = list(MAT_STEEL = 12500)
 	attack_verb = list("attacked", "slashed", "seared", "cut")
-	toolspeed = 0.75
+	tool_qualities = list(TOOL_CSAW = TOOL_QUALITY_GOOD)
 
 //misc, formerly from code/defines/weapons.dm
 /obj/item/weapon/surgical/bonegel
@@ -183,6 +209,7 @@
 	force = 0
 	throwforce = 1.0
 	drop_sound = 'sound/items/drop/bottle.ogg'
+	tool_qualities = list(TOOL_BONEGEL = TOOL_QUALITY_STANDARD)
 
 /obj/item/weapon/surgical/FixOVein
 	name = "FixOVein"
@@ -193,6 +220,7 @@
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 3)
 	var/usage_amount = 10
 	drop_sound = 'sound/items/drop/accessory.ogg'
+	tool_qualities = list(TOOL_FIXVEIN = TOOL_QUALITY_STANDARD)
 
 /obj/item/weapon/surgical/bonesetter
 	name = "bone setter"
@@ -204,6 +232,7 @@
 	throw_range = 5
 	attack_verb = list("attacked", "hit", "bludgeoned")
 	drop_sound = 'sound/items/drop/scrap.ogg'
+	tool_qualities = list(TOOL_BONESET = TOOL_QUALITY_STANDARD)
 
 /obj/item/weapon/surgical/bone_clamp
 	name = "bone clamp"
@@ -214,66 +243,68 @@
 	throw_speed = 3
 	throw_range = 5
 	attack_verb = list("attacked", "hit", "bludgeoned")
+	tool_qualities = list(TOOL_BONECLAMP = TOOL_QUALITY_STANDARD)
 
 // Cyborg Tools
 
 /obj/item/weapon/surgical/retractor/cyborg
-	toolspeed = 0.5
+	tool_qualities = list(TOOL_RETRACTOR = TOOL_QUALITY_DECENT)
+
 
 /obj/item/weapon/surgical/hemostat/cyborg
-	toolspeed = 0.5
+	tool_qualities = list(TOOL_HEMOSTAT = TOOL_QUALITY_DECENT)
 
 /obj/item/weapon/surgical/cautery/cyborg
-	toolspeed = 0.5
+	tool_qualities = list(TOOL_CAUTERY = TOOL_QUALITY_DECENT)
 
 /obj/item/weapon/surgical/surgicaldrill/cyborg
-	toolspeed = 0.5
+	tool_qualities = list(TOOL_SDRILL = TOOL_QUALITY_DECENT)
 
 /obj/item/weapon/surgical/scalpel/cyborg
-	toolspeed = 0.5
+	tool_qualities = list(TOOL_SCALPEL = TOOL_QUALITY_DECENT)
 
 /obj/item/weapon/surgical/circular_saw/cyborg
-	toolspeed = 0.5
+	tool_qualities = list(TOOL_CSAW = TOOL_QUALITY_DECENT)
 
 /obj/item/weapon/surgical/bonegel/cyborg
-	toolspeed = 0.5
+	tool_qualities = list(TOOL_BONEGEL = TOOL_QUALITY_DECENT)
 
 /obj/item/weapon/surgical/FixOVein/cyborg
-	toolspeed = 0.5
+	tool_qualities = list(TOOL_FIXVEIN = TOOL_QUALITY_DECENT)
 
 /obj/item/weapon/surgical/bonesetter/cyborg
-	toolspeed = 0.5
+	tool_qualities = list(TOOL_BONESET = TOOL_QUALITY_DECENT)
 
 
 // Alien Tools
 /obj/item/weapon/surgical/retractor/alien
 	icon = 'icons/obj/abductor.dmi'
-	toolspeed = 0.25
+	tool_qualities = list(TOOL_RETRACTOR = TOOL_QUALITY_GOOD)
 
 /obj/item/weapon/surgical/hemostat/alien
 	icon = 'icons/obj/abductor.dmi'
-	toolspeed = 0.25
+	tool_qualities = list(TOOL_HEMOSTAT = TOOL_QUALITY_DECENT)
 
 /obj/item/weapon/surgical/cautery/alien
 	icon = 'icons/obj/abductor.dmi'
-	toolspeed = 0.25
+	tool_qualities = list(TOOL_CAUTERY = TOOL_QUALITY_DECENT)
 
 /obj/item/weapon/surgical/surgicaldrill/alien
 	icon = 'icons/obj/abductor.dmi'
-	toolspeed = 0.25
+	tool_qualities = list(TOOL_SDRILL = TOOL_QUALITY_DECENT)
 
 /obj/item/weapon/surgical/scalpel/alien
 	icon = 'icons/obj/abductor.dmi'
-	toolspeed = 0.25
+	tool_qualities = list(TOOL_SCALPEL = TOOL_QUALITY_DECENT)
 
 /obj/item/weapon/surgical/circular_saw/alien
 	icon = 'icons/obj/abductor.dmi'
-	toolspeed = 0.25
+	tool_qualities = list(TOOL_CSAW = TOOL_QUALITY_DECENT)
 
 /obj/item/weapon/surgical/FixOVein/alien
 	icon = 'icons/obj/abductor.dmi'
-	toolspeed = 0.25
+	tool_qualities = list(TOOL_FIXVEIN = TOOL_QUALITY_DECENT)
 
 /obj/item/weapon/surgical/bone_clamp/alien
 	icon = 'icons/obj/abductor.dmi'
-	toolspeed = 0.75
+	tool_qualities = list(TOOL_BONECLAMP = TOOL_QUALITY_DECENT)

@@ -117,8 +117,13 @@
 		playsound(src, 'sound/machines/buttonbeep.ogg', 50, 1)
 		visible_message("<span class='notice'>[user] pairs [I] to [nickname]</span>")
 		toggle_pairing()
+<<<<<<< HEAD
 	
 	else if(I.is_screwdriver() && cell)
+=======
+
+	else if(I.get_tool_quality(TOOL_SCREWDRIVER) && cell)
+>>>>>>> 4d8c43f106d... What was supposed to be another straightforward major system overhaul that once again spiraled out of control (#8220)
 		if(do_after(user, 3 SECONDS, src))
 			to_chat(user, "<span class='notice'>You remove [cell] into [nickname].</span>")
 			playsound(src, I.usesound, 50, 1)

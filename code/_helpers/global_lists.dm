@@ -150,11 +150,16 @@ GLOBAL_LIST_EMPTY(mannequins)
 		var/datum/sprite_accessory/marking/M = new path()
 		body_marking_styles_list[M.name] = M
 
+<<<<<<< HEAD
 	//Surgery Steps - Initialize all /datum/surgery_step into a list
 	paths = subtypesof(/datum/surgery_step)
+=======
+	//Surgery Steps - Initialize all /decl/surgery_step into a list
+	paths = subtypesof(/decl/surgery_step)
+>>>>>>> 4d8c43f106d... What was supposed to be another straightforward major system overhaul that once again spiraled out of control (#8220)
 	for(var/T in paths)
-		var/datum/surgery_step/S = new T
-		surgery_steps += S
+		var/decl/surgery_step/S = new T
+		surgery_steps += S // TODO: Actually treat this like a decl
 	sort_surgeries()
 
 	//List of job. I can't believe this was calculated multiple times per tick!

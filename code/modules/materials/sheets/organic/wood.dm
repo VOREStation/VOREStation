@@ -47,8 +47,8 @@
 /obj/item/stack/material/log/attackby(var/obj/item/W, var/mob/user)
 	if(!istype(W) || W.force <= 0)
 		return ..()
-	if(W.sharp && W.edge)
-		var/time = (3 SECONDS / max(W.force / 10, 1)) * W.toolspeed
+	if(W.get_tool_quality(TOOL_WOODCUT)) // Not all that is sharp should chop wood
+		var/time = (3 SECONDS / max(W.force / 10, 1)) * W.get_tool_speed(TOOL_WOODCUT)
 		user.setClickCooldown(time)
 		if(do_after(user, time, src) && use(1))
 			to_chat(user, "<span class='notice'>You cut up a log into planks.</span>")

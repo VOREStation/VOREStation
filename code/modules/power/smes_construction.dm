@@ -331,14 +331,14 @@
 			failure_probability = 0
 
 		// Crowbar - Disassemble the SMES.
-		if(W.is_crowbar())
+		if(W.get_tool_quality(TOOL_CROWBAR))
 			if (terminals.len)
 				to_chat(user, "<span class='warning'>You have to disassemble the terminal first!</span>")
 				return
 
 			playsound(src, W.usesound, 50, 1)
 			to_chat(user, "<span class='warning'>You begin to disassemble the [src]!</span>")
-			if (do_after(usr, (100 * cur_coils) * W.toolspeed)) // More coils = takes longer to disassemble. It's complex so largest one with 5 coils will take 50s with a normal crowbar
+			if (do_after(usr, (100 * cur_coils) * W.get_tool_speed(TOOL_CROWBAR))) // More coils = takes longer to disassemble. It's complex so largest one with 5 coils will take 50s with a normal crowbar
 
 				if (failure_probability && prob(failure_probability))
 					total_system_failure(failure_probability, user)

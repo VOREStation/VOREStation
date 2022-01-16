@@ -749,14 +749,14 @@ var/list/ai_verbs_default = list(
 		var/obj/item/device/aicard/card = W
 		card.grab_ai(src, user)
 
-	else if(W.is_wrench())
+	else if(W.get_tool_quality(TOOL_WRENCH))
 		if(user == deployed_shell)
 			to_chat(user, "<span class='notice'>The shell's subsystems resist your efforts to tamper with your bolts.</span>")
 			return
 		if(anchored)
 			playsound(src, W.usesound, 50, 1)
 			user.visible_message("<font color='blue'>\The [user] starts to unbolt \the [src] from the plating...</font>")
-			if(!do_after(user,40 * W.toolspeed))
+			if(!do_after(user,40 * W.get_tool_speed(TOOL_WRENCH)))
 				user.visible_message("<font color='blue'>\The [user] decides not to unbolt \the [src].</font>")
 				return
 			user.visible_message("<font color='blue'>\The [user] finishes unfastening \the [src]!</font>")
@@ -765,7 +765,7 @@ var/list/ai_verbs_default = list(
 		else
 			playsound(src, W.usesound, 50, 1)
 			user.visible_message("<font color='blue'>\The [user] starts to bolt \the [src] to the plating...</font>")
-			if(!do_after(user,40 * W.toolspeed))
+			if(!do_after(user,40 * W.get_tool_speed(TOOL_WRENCH)))
 				user.visible_message("<font color='blue'>\The [user] decides not to bolt \the [src].</font>")
 				return
 			user.visible_message("<font color='blue'>\The [user] finishes fastening down \the [src]!</font>")

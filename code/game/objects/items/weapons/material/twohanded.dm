@@ -105,13 +105,13 @@
 	var/mob/living/M = loc
 	if(istype(M) && !issmall(M) && M.item_is_in_hands(src) && !M.hands_are_full())
 		wielded = 1
-		pry = 1
+		tool_qualities[TOOL_CROWBAR] = TOOL_QUALITY_DECENT
 		force = force_wielded
 		name = "[base_name] (wielded)"
 		update_icon()
 	else
 		wielded = 0
-		pry = 0
+		tool_qualities[TOOL_CROWBAR] = TOOL_QUALITY_NONE
 		force = force_unwielded
 		name = "[base_name]"
 	update_icon()

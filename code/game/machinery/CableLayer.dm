@@ -34,10 +34,17 @@
 			to_chat(user, "You load [result] lengths of cable into [src].")
 		return
 
+<<<<<<< HEAD
 	if(O.is_wirecutter())
 		if(cable && cable.get_amount())
 			var/m = round(input(usr, "Please specify the length of cable to cut", "Cut cable", min(cable.get_amount(), 30)) as num, 1)
 			m = min(m, cable.get_amount())
+=======
+	if(O.get_tool_quality(TOOL_WIRECUTTER))
+		if(cable && cable.amount)
+			var/m = round(input(usr,"Please specify the length of cable to cut","Cut cable",min(cable.amount,30)) as num, 1)
+			m = min(m, cable.amount)
+>>>>>>> 4d8c43f106d... What was supposed to be another straightforward major system overhaul that once again spiraled out of control (#8220)
 			m = min(m, 30)
 			if(m)
 				playsound(src, O.usesound, 50, 1)

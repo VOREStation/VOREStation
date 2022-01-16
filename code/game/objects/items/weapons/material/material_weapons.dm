@@ -119,9 +119,14 @@
 	T.visible_message("<span class='danger'>\The [src] goes dull!</span>")
 	playsound(src, "shatter", 70, 1)
 	dulled = 1
+<<<<<<< HEAD
 	if(is_sharp() || has_edge())
 		sharp = FALSE
 		edge = FALSE
+=======
+	sharp = 0
+	edge = 0
+>>>>>>> 4d8c43f106d... What was supposed to be another straightforward major system overhaul that once again spiraled out of control (#8220)
 
 /obj/item/weapon/material/proc/repair(var/repair_amount, var/repair_time, mob/living/user)
 	if(!fragile)
