@@ -14,7 +14,6 @@
 	health = 200
 	say_list_type = /datum/say_list/protean_blob
 
-	// ai_inactive = TRUE //Always off //VORESTATION AI TEMPORARY REMOVAL
 	show_stat_health = FALSE //We will do it ourselves
 
 	response_help = "pets"
@@ -36,7 +35,7 @@
 	max_n2 = 0
 	minbodytemp = 0
 	maxbodytemp = 900
-	movement_cooldown = 4
+	movement_cooldown = 2
 
 	var/mob/living/carbon/human/humanform
 	var/obj/item/organ/internal/nano/refactory/refactory
@@ -93,7 +92,7 @@
 
 /mob/living/simple_mob/protean_blob/get_available_emotes()
 	return global._robot_default_emotes
-	
+
 /mob/living/simple_mob/protean_blob/init_vore()
 	return //Don't make a random belly, don't waste your time
 
