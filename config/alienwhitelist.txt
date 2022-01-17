@@ -8,6 +8,7 @@ arokha - Protean
 aruis - Diona
 aruis - Protean
 aruis - Xenochimera
+auraribbon - Black-Eyed Shadekin
 azmodan412 - Xenochimera
 beyondmylife - Protean
 bothnevarbackwards - Diona
@@ -24,6 +25,7 @@ detectivegoogle - Protean
 digitalsquirrel95 - Black-Eyed Shadekin
 digitalsquirrel95 - Protean
 draycu - Vox
+falloutdog3 - Black-Eyed Shadekin
 flaktual - Vox
 flurriee - Protean
 funnyman2003 - Xenochimera
@@ -43,10 +45,10 @@ joltze - Black-Eyed Shadekin
 khanivore - Protean
 killjaden - Protean
 ktccd - Diona
-liache - Black-Eyed Shadekin
 lillianfyre - Xenochimera
 lizehrd - Xenochimera
 lordlag - Black-Eyed Shadekin
+lorgenz - Protean
 losstinspess - Xenochimera
 magpiemayhem - Vox
 magpiemayhem - Xenochimera
@@ -65,6 +67,7 @@ owwy - Black-Eyed Shadekin
 oxenfree - Protean
 paradoxspace - Xenochimera
 pastelprincedan - Black-Eyed Shadekin
+pastelprincedan - Protean
 pearlprophet - Protean
 pemdesos - Protean
 phoenixx0 - Vox
@@ -112,6 +115,7 @@ xioen - Diona
 xioen - Protean
 xioen - Xenochimera
 xonkon - Protean
+yeehawguvnah - Protean
 zalvine - Shadekin Empathy
 zammyman215 - Vox
 zeracyfr - Xenochimera

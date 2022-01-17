@@ -10,7 +10,11 @@
 	if(!loc)
 		return
 
-	var/datum/gas_mixture/environment = loc.return_air()
+	var/datum/gas_mixture/environment
+	if(isbelly(loc))
+		environment = loc.return_air_for_internal_lifeform(src)
+	else
+		environment = loc.return_air()
 
 	//handle_modifiers() // Do this early since it might affect other things later. //VOREStation Edit
 
@@ -42,10 +46,10 @@
 
 	//Check if we're on fire
 	handle_fire()
-	
+
 	if(client && !(client.prefs.ambience_freq == 0))	// Handle re-running ambience to mobs if they've remained in an area, AND have an active client assigned to them, and do not have repeating ambience disabled.
 		handle_ambience()
-	
+
 	//stuff in the stomach
 	//handle_stomach() //VOREStation Code
 

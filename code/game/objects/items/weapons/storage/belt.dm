@@ -159,7 +159,12 @@
 		/obj/item/weapon/cell, //this is a bigger belt, might as well make it hold bigger cells too
 		/obj/item/weapon/pipe_dispenser, //bigger belt for bigger tools
 		/obj/item/weapon/rcd, //see above
-		/obj/item/device/quantum_pad_booster
+		/obj/item/device/quantum_pad_booster,
+		/obj/item/weapon/inducer,
+		/obj/item/stack/material/steel,
+		/obj/item/stack/material/glass,
+		/obj/item/device/lightreplacer,
+		/obj/item/weapon/pickaxe/plasmacutter 
 	)
 
 

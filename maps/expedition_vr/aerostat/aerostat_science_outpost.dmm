@@ -268,7 +268,6 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/obj/structure/table/wooden_reinforced,
 /turf/simulated/floor/plating/virgo2,
 /area/offmap/aerostat/solars)
 "aN" = (
@@ -2577,6 +2576,9 @@
 	tag_east = 5;
 	tag_north = 2;
 	tag_west = 1
+	},
+/obj/machinery/camera/network/research_outpost{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/toxins)
@@ -9557,7 +9559,8 @@
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/medical{
 	name = "Virology Isolation Room";
-	req_access = list (39)
+	req_access = list(39);
+	req_one_access = null
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/offmap/aerostat/inside/virology)

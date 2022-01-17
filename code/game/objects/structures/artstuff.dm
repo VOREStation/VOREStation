@@ -335,6 +335,7 @@
 	var/desc_with_canvas
 	var/persistence_id
 	var/loaded = FALSE
+	var/curator = "nobody! Report bug if you see this."
 
 //Presets for art gallery mapping, for paintings to be shared across stations
 /obj/structure/sign/painting/public
@@ -345,10 +346,11 @@
 
 /obj/structure/sign/painting/library_secure
 	name = "\improper Curated Painting Exhibit mounting"
-	desc = "For masterpieces hand-picked by the curator."
-	desc_with_canvas = "A masterpiece hand-picked by the curator, supposedly."
+	desc = "For masterpieces hand-picked by the librarian."
+	desc_with_canvas = "A masterpiece hand-picked by the librarian, supposedly."
 	persistence_id = "library"
 	req_one_access = list(access_library)
+	curator = "Librarian"
 
 /obj/structure/sign/painting/chapel_secure
 	name = "\improper Religious Painting Exhibit mounting"
@@ -356,13 +358,15 @@
 	desc_with_canvas = "A masterpiece hand-picked by the chaplain, supposedly."
 	persistence_id = "chapel"
 	req_one_access = list(access_chapel_office)
+	curator = "Chaplain"
 
 /obj/structure/sign/painting/library_private // keep your smut away from prying eyes, or non-librarians at least
 	name = "\improper Private Painting Exhibit mounting"
-	desc = "For art pieces deemed too subversive or too illegal to be shared outside of curators."
+	desc = "For art pieces deemed too subversive or too illegal to be shared outside of librarians."
 	desc_with_canvas = "A painting hung away from lesser minds."
 	persistence_id = "library_private"
 	req_one_access = list(access_library)
+	curator = "Librarian"
 
 /obj/structure/sign/painting/away_areas // for very hard-to-get-to areas
 	name = "\improper Remote Painting Exhibit mounting"
@@ -412,7 +416,7 @@
 
 /obj/structure/sign/painting/proc/frame_canvas(mob/user,obj/item/canvas/new_canvas)
 	if(!allowed(user))
-		to_chat(user, "<span class='warning'>You're not comfortable framing this canvas in such a prestigious spot!</span>")
+		to_chat(user, "<span class='notice'>Access lock prevents you from putting a painting into this frame. Ask [curator] for help!</span>")
 		return
 	if(user.drop_from_inventory(new_canvas, src))
 		current_canvas = new_canvas
@@ -423,7 +427,7 @@
 
 /obj/structure/sign/painting/proc/unframe_canvas(mob/living/user)
 	if(!allowed(user))
-		to_chat(user, "<span class='warning'>You're not comfortable removing this prestigious canvas!</span>")
+		to_chat(user, "<span class='notice'>Access lock prevents you from removing paintings from this frame. Ask [curator] ((or admins)) for help!</span>")
 		return
 	if(current_canvas)
 		current_canvas.forceMove(drop_location())
