@@ -170,3 +170,4 @@
 
 	one_access = TRUE
 	containername = "sword crate"
+	containertype = /obj/structure/closet/crate/secure/gear
