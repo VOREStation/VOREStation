@@ -40,6 +40,8 @@
 /obj/structure/closet/wardrobe/detective
 	name = "detective wardrobe"
 	closet_appearance = /decl/closet_appearance/cabinet
+	open_sound = 'sound/machines/closet/closet_wood_open.ogg'
+	close_sound = 'sound/machines/closet/closet_wood_close.ogg'
 
 	starts_with = list(
 		/obj/item/clothing/head/det = 2,
@@ -445,6 +447,8 @@
 /obj/structure/closet/wardrobe/captain
 	name = "site manager's wardrobe"
 	closet_appearance = /decl/closet_appearance/cabinet
+	open_sound = 'sound/machines/closet/closet_wood_open.ogg'
+	close_sound = 'sound/machines/closet/closet_wood_close.ogg'
 
 	starts_with = list(
 		/obj/item/weapon/storage/backpack/captain,

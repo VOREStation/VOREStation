@@ -210,6 +210,8 @@
 	desc = "Store psychology tools and medicines in here."
 	req_access = list(access_psychiatrist)
 	closet_appearance = /decl/closet_appearance/cabinet/secure
+	open_sound = 'sound/machines/closet/closet_wood_open.ogg'
+	close_sound = 'sound/machines/closet/closet_wood_close.ogg'
 
 	starts_with = list(
 		/obj/item/clothing/under/rank/psych,

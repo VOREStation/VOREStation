@@ -11,6 +11,7 @@
 	icon_state = "fireball" // WIP
 	movement_type = UNSTOPPABLE
 	plane = ABOVE_PLANE // Since projectiles are 'in the air', they might visually overlap mobs while in flight, so the projectile needs to be above their plane.
+	fire_sound = 'sound/weapons/mech_mortar.ogg'
 	var/fired_dir = null		// Which direction was the projectile fired towards. Needed to invert the projectile turning based on if facing left or right.
 	var/distance_to_fly = null // How far, in pixels, to fly for. Will call on_range() when this is passed.
 	var/visual_y_offset = -16 // Adjusts how high the projectile and its shadow start, visually. This is so the projectile and shadow align with the center of the tile.

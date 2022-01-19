@@ -6,6 +6,8 @@
 	icon_state = "closed_unlocked"
 	seal_tool = /obj/item/weapon/tool/screwdriver
 	breakout_sound = 'sound/weapons/tablehit1.ogg'
+	open_sound = 'sound/machines/closet/crate_open.ogg'
+	close_sound = 'sound/machines/closet/crate_close.ogg'
 	closet_appearance = null // Special icon for us
 
 /* Graves */

@@ -243,6 +243,7 @@
 /obj/item/projectile/energy/phase
 	name = "phase wave"
 	icon_state = "phase"
+	fire_sound = 'sound/weapons/Gunshot_phase.ogg'
 	range = 6
 	damage = 5
 	SA_bonus_damage = 45	// 50 total on animals
