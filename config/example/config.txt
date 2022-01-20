@@ -580,6 +580,7 @@ ALLOW_URL_LINKS
 # Possible values: 0 (Off), 1 (Lax, user must be whitelisted for the species), 2 (Strict, user must be the species)
 LOADOUT_WHITELIST 1
 
+<<<<<<< HEAD
 # Allowed time from death to defib in minutes
 DEFIB_TIMER 60
 
@@ -594,3 +595,8 @@ JUKEBOX_TRACK_FILES config/jukebox.json
 #SUGGESTED_BYOND_VERSION 514
 # Suggested BYOND client build (minor component, e.g. 1560)
 #SUGGESTED_BYOND_BUILD 1561
+=======
+# Enables whitelisting ckeys for ears/tail/etc modifications to players.
+# Uncomment to ENABLE the whitelist
+# GENEMOD_WHITELIST
+>>>>>>> 477f9b66cfb... Merge pull request #8367 from Atermonera/genemod_whitelist

@@ -235,14 +235,21 @@ GLOBAL_LIST_EMPTY(mannequins)
 	for(var/oretype in paths)
 		var/ore/OD = new oretype()
 		GLOB.ore_data[OD.name] = OD
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> 477f9b66cfb... Merge pull request #8367 from Atermonera/genemod_whitelist
 	paths = subtypesof(/datum/alloy)
 	for(var/alloytype in paths)
 		GLOB.alloy_data += new alloytype()
 
+<<<<<<< HEAD
 	//Closet appearances
 	GLOB.closet_appearances = decls_repository.get_decls_of_type(/decl/closet_appearance)
 
+=======
+>>>>>>> 477f9b66cfb... Merge pull request #8367 from Atermonera/genemod_whitelist
 	paths = subtypesof(/datum/sprite_accessory/ears)
 	for(var/path in paths)
 		var/obj/item/clothing/head/instance = new path()

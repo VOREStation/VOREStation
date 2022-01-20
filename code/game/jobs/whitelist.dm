@@ -1,19 +1,17 @@
-#define WHITELISTFILE "data/whitelist.txt"
-
 var/list/whitelist = list()
 
 /hook/startup/proc/loadWhitelist()
 	if(config.usewhitelist)
 		load_whitelist()
-	return 1
+	return TRUE
 
 /proc/load_whitelist()
-	whitelist = file2list(WHITELISTFILE)
+	whitelist = file2list("data/whitelist.txt")
 	if(!whitelist.len)	whitelist = null
 
 /proc/check_whitelist(mob/M /*, var/rank*/)
 	if(!whitelist)
-		return 0
+		return FALSE
 	return ("[M.ckey]" in whitelist)
 
 /var/list/alien_whitelist = list()
@@ -21,7 +19,7 @@ var/list/whitelist = list()
 /hook/startup/proc/loadAlienWhitelist()
 	if(config.usealienwhitelist)
 		load_alienwhitelist()
-	return 1
+	return TRUE
 
 /proc/load_alienwhitelist()
 	var/text = file2text("config/alienwhitelist.txt")
@@ -57,6 +55,7 @@ var/list/whitelist = list()
 	if(!(species.spawn_flags & SPECIES_IS_WHITELISTED))
 		return TRUE
 
+<<<<<<< HEAD
 	//Search the whitelist
 	var/list/our_whitelists = alien_whitelist[M.ckey]
 	if("All" in our_whitelists)
@@ -66,6 +65,15 @@ var/list/whitelist = list()
 
 	// Go apply!
 	return FALSE
+=======
+	//If we have a loaded file, search it
+	if(alien_whitelist)
+		for (var/s in alien_whitelist)
+			if(findtext(s,"[M.ckey] - [species.name]"))
+				return TRUE
+			if(findtext(s,"[M.ckey] - All"))
+				return TRUE
+>>>>>>> 477f9b66cfb... Merge pull request #8367 from Atermonera/genemod_whitelist
 
 /proc/is_lang_whitelisted(mob/M, var/datum/language/language)
 	//They are admin or the whitelist isn't in use
@@ -79,6 +87,7 @@ var/list/whitelist = list()
 	//The language isn't even whitelisted
 	if(!(language.flags & WHITELISTED))
 		return TRUE
+<<<<<<< HEAD
 
 	//Search the whitelist
 	var/list/our_whitelists = alien_whitelist[M.ckey]
@@ -101,21 +110,41 @@ var/list/whitelist = list()
 	//Module is not even whitelisted
 	if(!(module in whitelisted_module_types))
 		return 1
+=======
+>>>>>>> 477f9b66cfb... Merge pull request #8367 from Atermonera/genemod_whitelist
 
 	//If we have a loaded file, search it
 	if(alien_whitelist)
 		for (var/s in alien_whitelist)
+<<<<<<< HEAD
 			if(findtext(s,"[M.ckey] - [module]"))
 				return 1
+=======
+			if(findtext(s,"[M.ckey] - [language.name]"))
+				return TRUE
+>>>>>>> 477f9b66cfb... Merge pull request #8367 from Atermonera/genemod_whitelist
 			if(findtext(s,"[M.ckey] - All"))
-				return 1
+				return TRUE
 
 /proc/whitelist_overrides(mob/M)
+<<<<<<< HEAD
 	if(!config.usealienwhitelist)
 		return TRUE
 	if(check_rights(R_ADMIN|R_EVENT, 0, M))
 		return TRUE
 
 	return FALSE
+=======
+	return !config.usealienwhitelist || check_rights(R_ADMIN|R_EVENT, 0, M)
 
-#undef WHITELISTFILE
+/var/list/genemod_whitelist = list()
+/hook/startup/proc/LoadGenemodWhitelist()
+	global.genemod_whitelist = file2list("config/genemodwhitelist.txt")
+	return TRUE
+
+/proc/is_genemod_whitelisted(mob/M)
+	return M && M.client && M.client.ckey && LAZYLEN(global.genemod_whitelist) && (M.client.ckey in global.genemod_whitelist)
+>>>>>>> 477f9b66cfb... Merge pull request #8367 from Atermonera/genemod_whitelist
+
+/proc/foo()
+	to_world(list2text(global.genemod_whitelist))

@@ -22,6 +22,7 @@
 	var/extra_overlay2_w
 
 	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	whitelist_allowed = list()
 
 /datum/sprite_accessory/wing/featheredlarge //Made by Natje!
 	name = "large feathered wings (colorable)"

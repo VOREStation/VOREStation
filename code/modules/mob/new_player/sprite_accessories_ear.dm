@@ -17,6 +17,7 @@
 	em_block = TRUE
 
 	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	whitelist_allowed = list(SPECIES_HUMAN, SPECIES_HUMAN_VATBORN, SPECIES_PROMETHEAN)
 
 /datum/sprite_accessory/ears/shadekin
 	name = "Shadekin Ears, colorable"
@@ -25,6 +26,7 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	species_allowed = list() // SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW
+	whitelist_allowed = list()
 
 /datum/sprite_accessory/ears/taj_ears
 	name = "Tajaran Ears"
@@ -32,6 +34,7 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	species_allowed = list(SPECIES_TAJ, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	whitelist_allowed = list(SPECIES_PROMETHEAN)
 	extra_overlay = "ears_plain-inner"
 
 /datum/sprite_accessory/ears/taj_ears_tall
@@ -40,6 +43,7 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	species_allowed = list(SPECIES_TAJ, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	whitelist_allowed = list(SPECIES_PROMETHEAN)
 	extra_overlay = "msai_plain-inner"
 
 /datum/sprite_accessory/ears/squirrel_orange
@@ -169,15 +173,18 @@
 	name = "highlander zorren ears"
 	desc = ""
 	icon_state = "foxears"
+	whitelist_allowed = list()
 
 /datum/sprite_accessory/ears/fenears
 	name = "flatland zorren ears"
 	desc = ""
 	icon_state = "fenears"
+	whitelist_allowed = list()
 
 /datum/sprite_accessory/ears/sergal //Redundant
 	name = "Sergal ears"
 	icon_state = "serg_plain_s"
+	whitelist_allowed = list()
 
 /datum/sprite_accessory/ears/foxearshc
 	name = "highlander zorren ears, colorable"
@@ -185,6 +192,7 @@
 	icon_state = "foxearshc"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+	whitelist_allowed = list()
 
 /datum/sprite_accessory/ears/fenearshc
 	name = "flatland zorren ears, colorable"
@@ -193,12 +201,14 @@
 	extra_overlay = "fenears-inner"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+	whitelist_allowed = list()
 
 /datum/sprite_accessory/ears/sergalhc
 	name = "Sergal ears, colorable"
 	icon_state = "serg_plain_s"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+	whitelist_allowed = list()
 
 /datum/sprite_accessory/ears/mousehc
 	name = "mouse, colorable"
@@ -329,6 +339,7 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "otie-inner"
+	whitelist_allowed = list()
 
 /datum/sprite_accessory/ears/donkey
 	name = "donkey, colorable"
@@ -397,6 +408,7 @@
 	icon_state = "drake"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+	whitelist_allowed = list()
 
 /datum/sprite_accessory/ears/vulp
 	name = "vulpkanin, dual-color"
@@ -444,6 +456,7 @@
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "teshariinner"
 	species_allowed = list(SPECIES_TESHARI, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	whitelist_allowed = list()
 
 /datum/sprite_accessory/ears/tesharihigh
 	name = "Teshari upper ears (colorable fluff)"
@@ -453,6 +466,7 @@
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "tesharihighinner"
 	species_allowed = list(SPECIES_TESHARI, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	whitelist_allowed = list()
 
 /datum/sprite_accessory/ears/tesharilow
 	name = "Teshari lower ears (colorable fluff)"
@@ -462,6 +476,7 @@
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "tesharilowinner"
 	species_allowed = list(SPECIES_TESHARI, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	whitelist_allowed = list()
 
 /datum/sprite_accessory/ears/inkling
 	name = "colorable mature inkling hair"
@@ -470,6 +485,7 @@
 	icon_state = "inkling-colorable"
 	color_blend_mode = ICON_MULTIPLY
 	do_colouration = 1
+	whitelist_allowed = list()
 
 /datum/sprite_accessory/ears/large_dragon
 	name = "Large dragon horns"
