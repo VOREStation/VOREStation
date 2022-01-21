@@ -209,6 +209,17 @@
 /datum/species/vulpkanin
 	name = SPECIES_VULPKANIN
 	name_plural = "Vulpkanin"
+	desc = "The Vulpkanin are the remnants of an ancient precursor which resided in the Coreward Periphery \
+	3000 to 4000 years ago, residing on a planet called “Altam”. Vulpkanin diverged from the precursors due \
+	to heavy isolation after the fall, presumably due to being a freshly found colony. A lack of material support \
+	regressed their technology to pre-industrial standards, from which they had to recover from in long and hard years. At the point \
+	of discovery by human explorers, they have formed an early interplanetary society and accession into the Diaspora went over relatively smoothly. \
+	Vulpkanin are the closest successor to the precursors, genetically, although genelocked devices still do not \
+	recognize them due to genetic drift."
+	blurb = "Vulpkanin are a species of sapient canine bipeds, who are the descendants of a lost colony during the waning days of a Precursor species, \
+	from which their distant cousins, the Zorren, also originate from. Independent and iconoclast, they have abandoned the ideals of their forefathers \
+	largely and prefer to look outwards as explorers and scientists to forge their own identity. They speak a guttural language known as 'Canilunzt' \
+	which has a heavy emphasis on utilizing tail positioning and ear twitches to communicate intent."
 	icobase = 'icons/mob/human_races/r_vulpkanin.dmi'
 	deform = 'icons/mob/human_races/r_vulpkanin.dmi'
 //	path = /mob/living/carbon/human/vulpkanin
