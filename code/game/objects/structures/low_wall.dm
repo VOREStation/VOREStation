@@ -99,6 +99,7 @@
 		if(do_after(user, 40, src))
 			to_chat(user, "<span class='notice'>You dissasembled the low wall!</span>")
 			dismantle()
+			return
 
 	// Handle placing things
 	if(isrobot(user))
@@ -121,7 +122,14 @@
 			return FALSE
 	return TRUE
 
-/obj/structure/low_wall/MouseDrop_T(obj/O, mob/user, src_location, over_location, src_control, over_control, params)
+/obj/structure/low_wall/MouseDrop_T(atom/movable/AM, mob/user, src_location, over_location, src_control, over_control, params)
+	if(AM == user)
+		var/mob/living/H = user
+		if(istype(H) && can_climb(H))
+			do_climb(AM)
+	var/obj/O = AM
+	if(!istype(O))
+		return
 	if(istype(O, /obj/structure/window))
 		var/obj/structure/window/W = O
 		if(Adjacent(W) && !W.anchored)
