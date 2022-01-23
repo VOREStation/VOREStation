@@ -92,8 +92,8 @@
 	departments = list(DEPARTMENT_PLANET)
 	department_flag = MEDSCI
 	faction = "Station"
-	total_positions = 3
-	spawn_positions = 3
+	total_positions = 2
+	spawn_positions = 2
 	supervisors = "the Pathfinder and the Head of Personnel"
 	selection_color = "#999440"
 	economic_modifier = 6
@@ -102,10 +102,8 @@
 	minimal_access = list(access_explorer, access_external_airlocks, access_eva)
 	outfit_type = /decl/hierarchy/outfit/job/explorer2
 	job_description = "An Explorer searches for interesting things, and returns them to the station."
-	alt_titles = list("Surveyor" = /datum/alt_title/surveyor, "Offsite Scout" = /datum/alt_title/offsite_scout)
+	alt_titles = list( "Offsite Scout" = /datum/alt_title/offsite_scout)
 
-/datum/alt_title/surveyor
-	title = "Surveyor"
 
 /datum/alt_title/offsite_scout
 	title = "Offsite Scout"
@@ -123,7 +121,7 @@
 	selection_color = "#999440"
 	economic_modifier = 6
 	minimal_player_age = 3
-	pto_type = PTO_EXPLORATION
+	pto_type = PTO_MEDICAL
 	access = list(access_medical, access_medical_equip, access_morgue, access_surgery, access_chemistry, access_eva, access_maint_tunnels, access_external_airlocks, access_pilot)
 	minimal_access = list(access_medical, access_medical_equip, access_morgue, access_pilot)
 	outfit_type = /decl/hierarchy/outfit/job/medical/sar
@@ -135,3 +133,46 @@
 
 /datum/alt_title/offsite_medic
 	title = "Offsite Medic"
+
+
+///explo offsite rework
+/datum/job/Archaeologist
+	title = "Archaeologist"
+	departments = list(DEPARTMENT_PLANET, DEPARTMENT_RESEARCH)
+	department_flag = MEDSCI
+	faction = "Station"
+	supervisors = "the Pathfinder and the Research Director"
+	total_positions = 2
+	spawn_positions = 2
+	pto_type = PTO_SCIENCE
+	access = list(access_tox, access_tox_storage, access_research, access_xenobiology, access_xenoarch, access_xenobotany)
+	minimal_access = list(access_tox, access_tox_storage, access_research, access_xenoarch,access_eva, access_maint_tunnels, access_external_airlocks,)
+	minimal_player_age = 14
+
+/datum/job/offsite_engineer
+	title = "Offsite Engineer"
+	flag = ENGINEER
+	departments = list(DEPARTMENT_ENGINEERING, DEPARTMENT_PLANET)
+	department_flag = ENGSEC
+	faction = "Station"
+	total_positions = 2
+	spawn_positions = 2
+	supervisors = "the Chief Engineer and the Pathfinder"
+	selection_color = "#5B4D20"
+	economic_modifier = 5
+	access = list(access_eva, access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels, access_external_airlocks, access_construction, access_atmospherics)
+	minimal_access = list(access_explorer, access_external_airlocks,access_eva, access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels, access_external_airlocks, access_construction, access_explorer, access_external_airlocks, access_eva)
+
+/datum/job/Surveyor
+	title = "Surveyor"
+	flag= MINER
+	departments = list(DEPARTMENT_CARGO,DEPARTMENT_PLANET)
+	department_flag = CIVILIAN
+	faction = "Station"
+	total_positions = 2
+	spawn_positions = 2
+	supervisors = "the Quartermaster, the Pathfinder, and the Head of Personnel"
+	selection_color = "#7a4f33"
+	economic_modifier = 5
+	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_mining, access_mining_station,access_explorer, access_external_airlocks, access_eva)
+	minimal_access = list(access_mining, access_mining_station, access_mailsorting,access_explorer, access_external_airlocks, access_eva)
