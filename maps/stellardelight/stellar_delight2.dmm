@@ -1057,12 +1057,12 @@
 /area/stellardelight/deck2/briefingroom)
 "cc" = (
 /obj/machinery/power/smes/buildable{
+	RCon_tag = "Engine - Core";
 	charge = 2e+006;
 	input_attempt = 1;
 	input_level = 200000;
 	name = "Engine";
-	output_level = 250000;
-	RCon_tag = "Engine - Core"
+	output_level = 250000
 	},
 /obj/structure/cable/cyan{
 	icon_state = "0-8"
@@ -5419,6 +5419,9 @@
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /obj/machinery/status_display{
 	pixel_y = 32
+	},
+/obj/machinery/light{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/cmostore)
@@ -11224,6 +11227,9 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 6
+	},
+/obj/machinery/light{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
@@ -22879,6 +22885,9 @@
 	pixel_x = -2;
 	pixel_y = -2
 	},
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/cmostore)
 "Zj" = (
@@ -23034,6 +23043,9 @@
 	},
 /obj/item/roller{
 	pixel_y = 16
+	},
+/obj/machinery/light{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck2/triage)
