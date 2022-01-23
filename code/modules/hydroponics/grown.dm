@@ -88,11 +88,11 @@
 			descriptors |= "radioactive"
 		if(reagents.has_reagent("amatoxin") || reagents.has_reagent("toxin"))
 			descriptors |= "poisonous"
-		if(reagents.has_reagent("psilocybin") || reagents.has_reagent("space_drugs"))
+		if(reagents.has_reagent("psilocybin") || reagents.has_reagent("space_drugs") || reagents.has_reagent("earthsblood"))
 			descriptors |= "hallucinogenic"
-		if(reagents.has_reagent("bicaridine"))
+		if(reagents.has_reagent("bicaridine") || reagents.has_reagent("earthsblood"))
 			descriptors |= "medicinal"
-		if(reagents.has_reagent("gold"))
+		if(reagents.has_reagent("gold") || reagents.has_reagent("earthsblood"))
 			descriptors |= "shiny"
 		if(reagents.has_reagent("lube"))
 			descriptors |= "slippery"
