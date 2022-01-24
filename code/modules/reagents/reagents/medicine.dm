@@ -1509,16 +1509,15 @@
 	taste_description = "honey and sunlight"
 	reagent_state = LIQUID
 	color = "#ffb500"
-	overdose = REAGENTS_OVERDOSE * 0.67
+	overdose = REAGENTS_OVERDOSE * 0.50
 	scannable = 1
 
 /datum/reagent/earthsblood/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.adjustBruteLoss (-3 * removed)
-	M.adjustFireLoss (-3 * removed)
+	M.adjustBruteLoss (-4 * removed)
+	M.adjustFireLoss (-4 * removed)
 	M.adjustOxyLoss(-10 * removed)
-	M.adjustToxLoss(-3 * removed)
-	M.adjustCloneLoss(-1 * removed)
+	M.adjustToxLoss(-4 * removed)
+	M.adjustCloneLoss(-2 * removed)
 	M.druggy = max(M.druggy, 20)
-	M.make_jittery (20)
-	M.hallucination = max(M.hallucination, 2)
-	M.adjustBrainLoss(0.5 * removed) //your life for your mind. An exchange made willingly, depending how dire.
+	M.hallucination = max(M.hallucination, 3)
+	M.adjustBrainLoss(1 * removed) //your life for your mind. An exchange made willingly, for better or worse.

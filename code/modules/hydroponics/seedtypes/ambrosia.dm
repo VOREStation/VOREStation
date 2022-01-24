@@ -51,10 +51,13 @@
 	display_name = "ambrosia gaia"
 	kitchen_tag = "ambrosiagaia"
 	mutants = null
-	chems = list ("nutriment" = list(1,3), "earthsblood" = list(1,10))
+	chems = list ("earthsblood" = list(3,5), "nutriment" = list(1,3))
 
 /datum/seed/ambrosia/gaia/New()
 	..()
+	set_trait(TRAIT_MATURATION,10)
+	set_trait(TRAIT_WATER_CONSUMPTION, 6)
+	set_trait(TRAIT_NUTRIENT_CONSUMPTION, 6)
 	set_trait(TRAIT_BIOLUM,1)
 	set_trait(TRAIT_BIOLUM_COLOUR,"#ffb500")
 	set_trait(TRAIT_PRODUCT_COLOUR, "#ffee00")

@@ -44,6 +44,6 @@
 	
 /datum/seed/chili/ghost/New()
 	..()
-	set_trait(TRAIT_MATURATION,4)
-	set_trait(TRAIT_PRODUCTION,4)
+	set_trait(TRAIT_MATURATION,6)
+	set_trait(TRAIT_PRODUCTION,3)
 	set_trait(TRAIT_PRODUCT_COLOUR,"#eaecec")
