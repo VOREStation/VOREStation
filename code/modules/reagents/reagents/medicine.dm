@@ -1505,7 +1505,7 @@
 /datum/reagent/earthsblood
 	name = "Earthsblood"
 	id = "earthsblood"
-	description = "A rare plant extract with immense healing and life giving applications. Induces a potent psychoactive state."
+	description = "A rare plant extract with immense, almost magical healing capabilities. Induces a potent psychoactive state, damaging neurons with prolonged use."
 	taste_description = "honey and sunlight"
 	reagent_state = LIQUID
 	color = "#ffb500"
@@ -1521,7 +1521,4 @@
 	M.druggy = max(M.druggy, 20)
 	M.make_jittery (20)
 	M.hallucination = max(M.hallucination, 2)
-
-/datum/reagent/earthsblood/overdose(var/mob/living/carbon/M, var/alien)
-	..()
-	M.adjustBrainLoss (1.5 * removed) // Your life for your mind...
+	M.adjustBrainLoss = (1 * removed) //your life for your mind. an echange
