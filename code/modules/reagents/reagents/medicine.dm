@@ -1501,3 +1501,27 @@
 	metabolism = REM * 0.002
 	overdose = REAGENTS_OVERDOSE * 0.25
 	scannable = 1
+
+/datum/reagent/earthsblood
+	name = "Earthsblood"
+	id = "earthsblood"
+	description = "A rare plant extract with immense healing and life giving applications. Induces a potent psychoactive state."
+	taste_description = "honey and sunlight"
+	reagent_state = LIQUID
+	color = "#ffb500"
+	overdose = REAGENTS_OVERDOSE * 0.67
+	scannable = 1
+
+/datum/reagent/earthsblood/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	M.adjustBruteLoss (-3 * removed)
+	M.adjustBurnLoss (-3 * removed)
+	M.adjustOxyLoss(-10 * removed)
+	M.adjustToxLoss(-3 * removed)
+	M.adjustCloneLoss(-1 * removed)
+	M.druggy = max(M.druggy, 20)
+	M.make_jittery (20)
+	M.hallucination = max(M.hallucination, 2)
+
+/datum/reagent/earthsblood/overdose(var/mob/living/carbon/M, var/alien)
+	..()
+	M.adjustBrainLoss (1.5 * removed) // Your life for your mind...

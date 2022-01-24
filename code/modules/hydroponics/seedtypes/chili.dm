@@ -40,7 +40,7 @@
 	display_name = "ghost pepper plants"
 	kitchen_tag = "ghostchili"
 	mutants = null
-	chems = list("condensedcapsaicin"list(3,10), "nutriment" = list (1,25))
+	chems = list("condensedcapsaicin" = list (3,10), "nutriment" = list (1,25))
 	
 /datum/seed/chili/ghost/New()
 	..()
