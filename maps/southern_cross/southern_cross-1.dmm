@@ -4207,7 +4207,11 @@
 /area/hangar/three)
 "aiU" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+<<<<<<< HEAD
 /turf/simulated/floor/tiled/monotile{
+=======
+/turf/simulated/floor/tiled/monofloor{
+>>>>>>> b3ba8a32b7d... Merge pull request #8380 from Atermonera/readd_sc_dmm-1
 	dir = 1
 	},
 /area/hangar/one)
@@ -4301,7 +4305,11 @@
 /area/maintenance/firstdeck/forestarboard)
 "ajh" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+<<<<<<< HEAD
 /turf/simulated/floor/tiled/monotile{
+=======
+/turf/simulated/floor/tiled/monofloor{
+>>>>>>> b3ba8a32b7d... Merge pull request #8380 from Atermonera/readd_sc_dmm-1
 	dir = 1
 	},
 /area/hangar/three)
@@ -4322,7 +4330,11 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
+<<<<<<< HEAD
 /turf/simulated/floor/tiled/monotile,
+=======
+/turf/simulated/floor/tiled/monofloor,
+>>>>>>> b3ba8a32b7d... Merge pull request #8380 from Atermonera/readd_sc_dmm-1
 /area/hangar/one)
 "ajk" = (
 /obj/machinery/door/airlock/centcom{
@@ -4335,7 +4347,11 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
 	},
+<<<<<<< HEAD
 /turf/simulated/floor/tiled/monotile,
+=======
+/turf/simulated/floor/tiled/monofloor,
+>>>>>>> b3ba8a32b7d... Merge pull request #8380 from Atermonera/readd_sc_dmm-1
 /area/hangar/one)
 "ajm" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -4478,14 +4494,22 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
+<<<<<<< HEAD
 /turf/simulated/floor/tiled/monotile,
+=======
+/turf/simulated/floor/tiled/monofloor,
+>>>>>>> b3ba8a32b7d... Merge pull request #8380 from Atermonera/readd_sc_dmm-1
 /area/hangar/three)
 "ajC" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
 	},
+<<<<<<< HEAD
 /turf/simulated/floor/tiled/monotile,
+=======
+/turf/simulated/floor/tiled/monofloor,
+>>>>>>> b3ba8a32b7d... Merge pull request #8380 from Atermonera/readd_sc_dmm-1
 /area/hangar/three)
 "ajD" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -18587,7 +18611,11 @@
 	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+<<<<<<< HEAD
 /turf/simulated/floor/tiled/monotile{
+=======
+/turf/simulated/floor/tiled/monofloor{
+>>>>>>> b3ba8a32b7d... Merge pull request #8380 from Atermonera/readd_sc_dmm-1
 	dir = 1
 	},
 /area/hangar/two)
@@ -18602,7 +18630,11 @@
 	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+<<<<<<< HEAD
 /turf/simulated/floor/tiled/monotile{
+=======
+/turf/simulated/floor/tiled/monofloor{
+>>>>>>> b3ba8a32b7d... Merge pull request #8380 from Atermonera/readd_sc_dmm-1
 	dir = 1
 	},
 /area/hangar/two)
@@ -18776,7 +18808,11 @@
 /area/maintenance/firstdeck/aftstarboard)
 "aKY" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+<<<<<<< HEAD
 /turf/simulated/floor/tiled/monotile,
+=======
+/turf/simulated/floor/tiled/monofloor,
+>>>>>>> b3ba8a32b7d... Merge pull request #8380 from Atermonera/readd_sc_dmm-1
 /area/hangar/two)
 "aKZ" = (
 /obj/structure/bed/chair/shuttle,
@@ -83522,7 +83558,11 @@
 /obj/item/weapon/reagent_containers/food/condiment/small/saltshaker{
 	pixel_x = -3
 	},
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/condiment/small/peppermill{
+=======
+/obj/item/weapon/reagent_containers/food/condiment/small/peppershaker{
+>>>>>>> b3ba8a32b7d... Merge pull request #8380 from Atermonera/readd_sc_dmm-1
 	pixel_x = 3
 	},
 /obj/item/weapon/reagent_containers/food/condiment/small/sugar,
@@ -85840,7 +85880,11 @@
 /obj/item/weapon/reagent_containers/food/condiment/small/saltshaker{
 	pixel_x = -3
 	},
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/condiment/small/peppermill{
+=======
+/obj/item/weapon/reagent_containers/food/condiment/small/peppershaker{
+>>>>>>> b3ba8a32b7d... Merge pull request #8380 from Atermonera/readd_sc_dmm-1
 	pixel_x = 3
 	},
 /turf/simulated/floor/tiled/white,
@@ -106149,7 +106193,12 @@
 	dir = 8
 	},
 /obj/structure/closet/secure_closet/guncabinet/sidearm{
+<<<<<<< HEAD
 	anchored = 1
+=======
+	anchored = 1;
+	req_one_access = list(3, 20, 30, 39, 56, 57, 58)
+>>>>>>> b3ba8a32b7d... Merge pull request #8380 from Atermonera/readd_sc_dmm-1
 	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -111650,7 +111699,11 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped,
+=======
+/obj/item/weapon/reagent_containers/food/snacks/cube/monkeycube/wrapped,
+>>>>>>> b3ba8a32b7d... Merge pull request #8380 from Atermonera/readd_sc_dmm-1
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
 	},
