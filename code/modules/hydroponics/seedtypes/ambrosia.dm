@@ -58,4 +58,4 @@
 	set_trait(TRAIT_BIOLUM,1)
 	set_trait(TRAIT_BIOLUM_COLOUR,"#ffb500")
 	set_trait(TRAIT_PRODUCT_COLOUR, "#ffee00")
-	set_trait(TRAIT_PLANT_COLOR,"#f3ba2b")
+	set_trait(TRAIT_PLANT_COLOUR,"#f3ba2b")

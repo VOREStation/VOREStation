@@ -1514,11 +1514,11 @@
 
 /datum/reagent/earthsblood/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.adjustBruteLoss (-3 * removed)
-	M.adjustBurnLoss (-3 * removed)
+	M.adjustFireLoss (-3 * removed)
 	M.adjustOxyLoss(-10 * removed)
 	M.adjustToxLoss(-3 * removed)
 	M.adjustCloneLoss(-1 * removed)
 	M.druggy = max(M.druggy, 20)
 	M.make_jittery (20)
 	M.hallucination = max(M.hallucination, 2)
-	M.adjustBrainLoss = (1 * removed) //your life for your mind. an echange
+	M.adjustBrainLoss(0.5 * removed) //your life for your mind. An exchange made willingly, depending how dire.
