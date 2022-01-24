@@ -340,39 +340,7 @@ var/list/mining_overlay_cache = list()
 		return
 
 	if(!density)
-		var/valid_tool = 0
-		var/digspeed = 40
-
-		if(istype(W, /obj/item/weapon/shovel))
-			var/obj/item/weapon/shovel/S = W
-			valid_tool = 1
-			digspeed = S.digspeed
-
-		if(istype(W, /obj/item/weapon/pickaxe))
-			var/obj/item/weapon/pickaxe/P = W
-			if(P.sand_dig)
-				valid_tool = 1
-				digspeed = P.digspeed
-
-
-		if(valid_tool)
-			if (sand_dug)
-				to_chat(user, "<span class='warning'>This area has already been dug.</span>")
-				return
-
-			var/turf/T = user.loc
-			if (!(istype(T)))
-				return
-
-			to_chat(user, "<span class='notice'>You start digging.</span>")
-			playsound(user, 'sound/effects/rustle1.ogg', 50, 1)
-
-			if(!do_after(user,digspeed)) return
-
-			to_chat(user, "<span class='notice'>You dug a hole.</span>")
-			GetDrilled()
-
-		else if(istype(W,/obj/item/weapon/storage/bag/ore))
+		if(istype(W,/obj/item/weapon/storage/bag/ore))
 			var/obj/item/weapon/storage/bag/ore/S = W
 			if(S.collection_mode)
 				for(var/obj/item/weapon/ore/O in contents)
@@ -411,20 +379,38 @@ var/list/mining_overlay_cache = list()
 				to_chat(user, "<span class='warning'>The plating is going to need some support.</span>")
 				return
 
+		else if(W.get_tool_quality(TOOL_SHOVEL))
+			var/digspeed = 40 / W.get_tool_quality(TOOL_SHOVEL)
+			if(sand_dug)
+				to_chat(user, "<span class='warning'>This area has already been dug.</span>")
+				return
+
+			var/turf/T = user.loc
+			if(!istype(T))
+				return
+
+			to_chat(user, "<span class='notice'>You start digging.</span>")
+			playsound(user, 'sound/effects/rustle1.ogg', 50, 1)
+
+			if(!do_after(user,digspeed))
+				return
+
+			to_chat(user, "<span class='notice'>You dug a hole.</span>")
+			GetDrilled()
 
 	else
-		if (istype(W, /obj/item/device/core_sampler))
+		if(istype(W, /obj/item/device/core_sampler))
 			geologic_data.UpdateNearbyArtifactInfo(src)
 			var/obj/item/device/core_sampler/C = W
 			C.sample_item(src, user)
 			return
 
-		if (istype(W, /obj/item/device/depth_scanner))
+		if(istype(W, /obj/item/device/depth_scanner))
 			var/obj/item/device/depth_scanner/C = W
 			C.scan_atom(user, src)
 			return
 
-		if (istype(W, /obj/item/device/measuring_tape))
+		if(istype(W, /obj/item/device/measuring_tape))
 			var/obj/item/device/measuring_tape/P = W
 			user.visible_message("<b>\The [user]</b> extends \a [P] towards \the [src].","<span class='notice'>You extend \the [P] towards \the [src].</span>")
 			if(do_after(user, 15))
@@ -441,12 +427,13 @@ var/list/mining_overlay_cache = list()
 					to_chat(user, "<span class='notice'>\The [src] has been excavated to a depth of [excavation_level]cm.</span>")
 			return
 
-		if (istype(W, /obj/item/weapon/pickaxe))
-			if(!istype(user.loc, /turf))
+		if(istype(W, /obj/item/weapon/pickaxe))
+			if(!isturf(user.loc))
 				return
 
+			var/digspeed = 40 / W.get_tool_quality(TOOL_MINING)
 			var/obj/item/weapon/pickaxe/P = W
-			if(last_act + P.digspeed > world.time)//prevents message spam
+			if(last_act + digspeed > world.time)//prevents message spam
 				return
 			last_act = world.time
 
@@ -462,7 +449,7 @@ var/list/mining_overlay_cache = list()
 					wreckfinds(P.destroy_artefacts)
 			to_chat(user, "<span class='notice'>You start [P.drill_verb][fail_message].</span>")
 
-			if(do_after(user,P.digspeed))
+			if(do_after(user,digspeed))
 
 				if(finds && finds.len)
 					var/datum/find/F = finds[1]

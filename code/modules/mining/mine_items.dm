@@ -20,8 +20,6 @@
 	item_state = "jackhammer"
 	w_class = ITEMSIZE_LARGE
 	matter = list(MAT_STEEL = 3750)
-	var/digspeed = 40 //moving the delay to an item var so R&D can make improved picks. --NEO
-	var/sand_dig = FALSE // does this thing dig sand?
 	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
 	attack_verb = list("hit", "pierced", "sliced", "attacked")
 	var/drill_sound = "pickaxe"
@@ -30,42 +28,42 @@
 
 	var/excavation_amount = 200
 	var/destroy_artefacts = FALSE // some mining tools will destroy artefacts completely while avoiding side-effects.
+	tool_qualities = list(TOOL_MINING = TOOL_QUALITY_MEDIOCRE)
 
 /obj/item/weapon/pickaxe/silver
 	name = "silver pickaxe"
 	icon_state = "spickaxe"
 	item_state = "spickaxe"
-	digspeed = 30
 	origin_tech = list(TECH_MATERIAL = 3)
 	desc = "This makes no metallurgic sense."
+	tool_qualities = list(TOOL_MINING = TOOL_QUALITY_STANDARD)
 
 /obj/item/weapon/pickaxe/drill
 	name = "advanced mining drill" // Can dig sand as well!
 	icon_state = "handdrill"
 	item_state = "jackhammer"
-	digspeed = 30
-	sand_dig = TRUE
 	origin_tech = list(TECH_MATERIAL = 2, TECH_POWER = 3, TECH_ENGINEERING = 2)
 	desc = "Yours is the drill that will pierce through the rock walls."
 	drill_verb = "drilling"
+	tool_qualities = list(TOOL_MINING = TOOL_QUALITY_STANDARD, TOOL_SHOVEL = TOOL_QUALITY_STANDARD)
 
 /obj/item/weapon/pickaxe/jackhammer
 	name = "sonic jackhammer"
 	icon_state = "jackhammer"
 	item_state = "jackhammer"
-	digspeed = 20 //faster than drill, but cannot dig
 	origin_tech = list(TECH_MATERIAL = 3, TECH_POWER = 2, TECH_ENGINEERING = 2)
 	desc = "Cracks rocks with sonic blasts, perfect for killing cave lizards."
 	drill_verb = "hammering"
+	tool_qualities = list(TOOL_MINING = TOOL_QUALITY_DECENT)
 
 /obj/item/weapon/pickaxe/gold
 	name = "golden pickaxe"
 	icon_state = "gpickaxe"
 	item_state = "gpickaxe"
-	digspeed = 20
 	origin_tech = list(TECH_MATERIAL = 4)
 	desc = "This makes no metallurgic sense."
 	drill_verb = "picking"
+	tool_qualities = list(TOOL_MINING = TOOL_QUALITY_DECENT)
 
 /obj/item/weapon/pickaxe/plasmacutter
 	name = "plasma cutter"
@@ -73,41 +71,44 @@
 	item_state = "gun"
 	w_class = ITEMSIZE_NORMAL //it is smaller than the pickaxe
 	damtype = "fire"
-	digspeed = 20 //Can slice though normal walls, all girders, or be used in reinforced wall deconstruction/ light thermite on fire
 	origin_tech = list(TECH_MATERIAL = 4, TECH_PHORON = 3, TECH_ENGINEERING = 3)
 	desc = "A rock cutter that uses bursts of hot plasma. You could use it to cut limbs off of xenos! Or, you know, mine stuff."
 	drill_verb = "cutting"
 	drill_sound = 'sound/items/Welder.ogg'
+<<<<<<< HEAD
 	sharp = TRUE
 	edge = TRUE
+=======
+	sharp = 1
+	edge = 1
+	tool_qualities = list(TOOL_MINING = TOOL_QUALITY_DECENT)
+>>>>>>> 4a7c8430b82... Merge pull request #8378 from Atermonera/more_mining_tool_qual_fixes
 
 /obj/item/weapon/pickaxe/diamond
 	name = "diamond pickaxe"
 	icon_state = "dpickaxe"
 	item_state = "dpickaxe"
-	digspeed = 10
 	origin_tech = list(TECH_MATERIAL = 6, TECH_ENGINEERING = 4)
 	desc = "A pickaxe with a diamond pick head."
 	drill_verb = "picking"
+	tool_qualities = list(TOOL_MINING = TOOL_QUALITY_GOOD)
 
 /obj/item/weapon/pickaxe/diamonddrill //When people ask about the badass leader of the mining tools, they are talking about ME!
 	name = "diamond mining drill"
 	icon_state = "diamonddrill"
 	item_state = "jackhammer"
-	digspeed = 5 //Digs through walls, girders, and can dig up sand
-	sand_dig = TRUE
 	origin_tech = list(TECH_MATERIAL = 6, TECH_POWER = 4, TECH_ENGINEERING = 5)
 	desc = "Yours is the drill that will pierce the heavens!"
 	drill_verb = "drilling"
+	tool_qualities = list(TOOL_MINING = TOOL_QUALITY_BEST, TOOL_SHOVEL = TOOL_QUALITY_BEST)
 
 /obj/item/weapon/pickaxe/borgdrill
 	name = "enhanced sonic jackhammer"
 	icon_state = "jackhammer"
 	item_state = "jackhammer"
-	digspeed = 15
-	sand_dig = TRUE
 	desc = "Cracks rocks with sonic blasts. This one seems like an improved design."
 	drill_verb = "hammering"
+	tool_qualities = list(TOOL_MINING = TOOL_QUALITY_DECENT, TOOL_SHOVEL = TOOL_QUALITY_DECENT)
 
 /*****************************Shovel********************************/
 
@@ -124,9 +125,14 @@
 	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
 	matter = list(MAT_STEEL = 50)
 	attack_verb = list("bashed", "bludgeoned", "thrashed", "whacked")
+<<<<<<< HEAD
 	sharp = FALSE
 	edge = TRUE
 	var/digspeed = 40
+=======
+	sharp = 0
+	edge = 1
+>>>>>>> 4a7c8430b82... Merge pull request #8378 from Atermonera/more_mining_tool_qual_fixes
 
 /obj/item/weapon/shovel/spade
 	name = "spade"

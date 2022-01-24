@@ -4,7 +4,6 @@
 	icon_state = "pick_brush"
 	item_state = "syringe_0"
 	slot_flags = SLOT_EARS
-	digspeed = 20
 	force = 0
 	throwforce = 0
 	desc = "Thick metallic wires for clearing away dust and loose scree (1 centimetre excavation depth)."
@@ -12,6 +11,7 @@
 	drill_sound = 'sound/weapons/thudswoosh.ogg'
 	drill_verb = "brushing"
 	w_class = ITEMSIZE_SMALL
+	tool_qualities = list(TOOL_MINING = TOOL_QUALITY_DECENT)
 
 /obj/item/weapon/pickaxe/one_pick
 	name = "2cm pick"
@@ -19,12 +19,12 @@
 	icon_state = "pick1"
 	item_state = "syringe_0"
 	force = 2
-	digspeed = 20
 	desc = "A miniature excavation tool for precise digging (2 centimetre excavation depth)."
 	excavation_amount = 2
 	drill_sound = 'sound/items/Screwdriver.ogg'
 	drill_verb = "delicately picking"
 	w_class = ITEMSIZE_SMALL
+	tool_qualities = list(TOOL_MINING = TOOL_QUALITY_DECENT)
 
 /obj/item/weapon/pickaxe/two_pick
 	name = "4cm pick"
@@ -32,12 +32,12 @@
 	icon_state = "pick2"
 	item_state = "syringe_0"
 	force = 2
-	digspeed = 20
 	desc = "A miniature excavation tool for precise digging (4 centimetre excavation depth)."
 	excavation_amount = 4
 	drill_sound = 'sound/items/Screwdriver.ogg'
 	drill_verb = "delicately picking"
 	w_class = ITEMSIZE_SMALL
+	tool_qualities = list(TOOL_MINING = TOOL_QUALITY_DECENT)
 
 /obj/item/weapon/pickaxe/three_pick
 	name = "6cm pick"
@@ -45,12 +45,12 @@
 	icon_state = "pick3"
 	item_state = "syringe_0"
 	force = 3
-	digspeed = 20
 	desc = "A miniature excavation tool for precise digging (6 centimetre excavation depth)."
 	excavation_amount = 6
 	drill_sound = 'sound/items/Screwdriver.ogg'
 	drill_verb = "delicately picking"
 	w_class = ITEMSIZE_SMALL
+	tool_qualities = list(TOOL_MINING = TOOL_QUALITY_DECENT)
 
 /obj/item/weapon/pickaxe/four_pick
 	name = "8cm pick"
@@ -58,12 +58,12 @@
 	icon_state = "pick4"
 	item_state = "syringe_0"
 	force = 3
-	digspeed = 20
 	desc = "A miniature excavation tool for precise digging (8 centimetre excavation depth)."
 	excavation_amount = 8
 	drill_sound = 'sound/items/Screwdriver.ogg'
 	drill_verb = "delicately picking"
 	w_class = ITEMSIZE_SMALL
+	tool_qualities = list(TOOL_MINING = TOOL_QUALITY_DECENT)
 
 /obj/item/weapon/pickaxe/five_pick
 	name = "10cm pick"
@@ -71,12 +71,12 @@
 	icon_state = "pick5"
 	item_state = "syringe_0"
 	force = 5
-	digspeed = 20
 	desc = "A miniature excavation tool for precise digging (10 centimetre excavation depth)."
 	excavation_amount = 10
 	drill_sound = 'sound/items/Screwdriver.ogg'
 	drill_verb = "delicately picking"
 	w_class = ITEMSIZE_SMALL
+	tool_qualities = list(TOOL_MINING = TOOL_QUALITY_DECENT)
 
 /obj/item/weapon/pickaxe/six_pick
 	name = "12cm pick"
@@ -84,12 +84,12 @@
 	icon_state = "pick6"
 	item_state = "syringe_0"
 	force = 5
-	digspeed = 20
 	desc = "A miniature excavation tool for precise digging (12 centimetre excavation depth)."
 	excavation_amount = 12
 	drill_sound = 'sound/items/Screwdriver.ogg'
 	drill_verb = "delicately picking"
 	w_class = ITEMSIZE_SMALL
+	tool_qualities = list(TOOL_MINING = TOOL_QUALITY_DECENT)
 
 /obj/item/weapon/pickaxe/hand
 	name = "hand pickaxe"
@@ -97,12 +97,12 @@
 	icon_state = "pick_hand"
 	item_state = "syringe_0"
 	force = 10
-	digspeed = 30
 	desc = "A smaller, more precise version of the pickaxe (30 centimetre excavation depth)."
 	excavation_amount = 30
 	drill_sound = 'sound/items/Crowbar.ogg'
 	drill_verb = "clearing"
 	w_class = ITEMSIZE_SMALL
+	tool_qualities = list(TOOL_MINING = TOOL_QUALITY_STANDARD)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Pack for holding pickaxes
@@ -165,13 +165,13 @@
 	icon_state = "excavationdrill2"
 	item_state = "syringe_0"
 	excavation_amount = 15
-	digspeed = 30
 	desc = "Advanced archaeological drill combining ultrasonic excitation and bluespace manipulation to provide extreme precision. The tip is adjustable from 1 to 30 cm."
 	drill_sound = 'sound/weapons/thudswoosh.ogg'
 	drill_verb = "drilling"
 	force = 5
 	w_class = 2
 	attack_verb = list("drilled")
+	tool_qualities = list(TOOL_MINING = TOOL_QUALITY_STANDARD)
 
 /obj/item/weapon/pickaxe/excavationdrill/attack_self(mob/user as mob)
 	var/depth = input(usr, "Put the desired depth (1-30 centimeters).", "Set Depth", 30) as num

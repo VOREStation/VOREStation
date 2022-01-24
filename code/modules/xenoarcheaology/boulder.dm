@@ -49,14 +49,15 @@
 
 	if(istype(I, /obj/item/weapon/pickaxe))
 		var/obj/item/weapon/pickaxe/P = I
+		var/digspeed = 40 / P.get_tool_quality(TOOL_MINING)
 
-		if(last_act + P.digspeed > world.time)//prevents message spam
+		if(last_act + digspeed > world.time)//prevents message spam
 			return
 		last_act = world.time
 
 		to_chat(user, "<span class='warning'>You start [P.drill_verb] [src].</span>")
 
-		if(!do_after(user, P.digspeed))
+		if(!do_after(user, digspeed))
 			return
 
 		to_chat(user, "<span class='notice'>You finish [P.drill_verb] [src].</span>")

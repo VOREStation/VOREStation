@@ -264,7 +264,12 @@
 			var/obj/item/weapon/pickaxe/P = W
 			dismantle_verb = P.drill_verb
 			dismantle_sound = P.drill_sound
+<<<<<<< HEAD
 			cut_delay -= P.digspeed
+=======
+			cut_delay -= 40 / P.get_tool_quality(TOOL_MINING)
+			dismantle_toolspeed = W.get_tool_speed(TOOL_MINING)
+>>>>>>> 4a7c8430b82... Merge pull request #8378 from Atermonera/more_mining_tool_qual_fixes
 
 		if(dismantle_verb)
 
