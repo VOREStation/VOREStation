@@ -37,7 +37,7 @@
 /datum/seed/chili/ghost
 	name = "ghostchili"
 	seed_name = "ghost chili"
-	display_name = "ghost pepper plants"
+	display_name = "ghost chili plants"
 	kitchen_tag = "ghostchili"
 	mutants = null
 	chems = list("condensedcapsaicin" = list (3,10), "nutriment" = list (1,25))
