@@ -718,6 +718,13 @@
 	icon_state = "brewer"
 	injection_chems = null
 
+/obj/item/device/dogborg/sleeper/compactor/honkborg
+	name = "Jiggles Von Hungertron"
+	desc = "You've heard of Giggles Von Honkerton for the back, now get ready for Jiggles Von Hungertron for the front."
+	icon = 'icons/mob/dogborg_ch.dmi'
+	icon_state = "clowngut"
+	recycles = FALSE
+
 /obj/item/device/dogborg/sleeper/K9/ert
 	name = "ERT Belly"
 	desc = "A mounted 'emergency containment cell'."
