@@ -150,7 +150,7 @@ var/list/shell_module_types = list(
 	"Standard", "Engineering", "Surgeon",  "Crisis",
 	"Miner",    "Janitor",     "Service",      "Clerical", "Security",
 	"Research", "Medihound", "K9", "Janihound", "Sci-borg", "Pupdozer",
-	"Service-Hound", "BoozeHound", "KMine"
+	"Service-Hound", "BoozeHound", "KMine", "Honk-Hound"
 )
 // List of whitelisted modules
 var/list/whitelisted_module_types = list(
