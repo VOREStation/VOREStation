@@ -108,8 +108,8 @@ var/datum/uplink_random_selection/all_uplink_selection = new/datum/uplink_random
 
 #ifdef DEBUG
 /proc/debug_uplink_purchage_log()
-	for(var/antag_type in all_antag_types)
-		var/datum/antagonist/A = all_antag_types[antag_type]
+	for(var/antag_type in SSantags.antag_datums)
+		var/datum/antagonist/A = SSantags.antag_datums[antag_type]
 		A.print_player_summary()
 
 /proc/debug_uplink_item_assoc_list()

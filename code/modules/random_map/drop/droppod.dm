@@ -191,9 +191,13 @@
 
 		// Equip them, if they are human and it is desirable.
 		if(istype(spawned_mob, /mob/living/carbon/human))
+<<<<<<< HEAD
 			var/antag_type = tgui_input_list(usr, "Select an equipment template to use or cancel for nude.", all_antag_types)
+=======
+			var/antag_type = input("Select an equipment template to use or cancel for nude.", null) as null|anything in SSantags.antag_datums
+>>>>>>> f603223d887... Adds antag subsystem to handle antag datum init (#8383)
 			if(antag_type)
-				var/datum/antagonist/A = all_antag_types[antag_type]
+				var/datum/antagonist/A = SSantags.antag_datums[antag_type]
 				A.equip(spawned_mob)
 
 	if(tgui_alert(usr, "Are you SURE you wish to deploy this drop pod? It will cause a sizable explosion and gib anyone underneath it.","Danger!",list("No","Yes")) == "No")

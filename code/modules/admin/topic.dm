@@ -609,8 +609,8 @@
 		jobs += "<tr bgcolor='ffeeaa'><th colspan='[length(all_antag_types)]'><a href='?src=\ref[src];jobban3=Syndicate;jobban4=\ref[M]'>Antagonist Positions</a></th></tr><tr align='center'>"
 
 		// Antagonists.
-		for(var/antag_type in all_antag_types)
-			var/datum/antagonist/antag = all_antag_types[antag_type]
+		for(var/antag_type in SSantags.antag_datums)
+			var/datum/antagonist/antag = SSantags.antag_datums[antag_type]
 			if(!antag || !antag.bantype)
 				continue
 

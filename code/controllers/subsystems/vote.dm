@@ -161,7 +161,7 @@ SUBSYSTEM_DEF(vote)
 				if(isnull(.) || . == "None")
 					antag_add_failed = 1
 				else
-					additional_antag_types |= antag_names_to_ids[.]
+					additional_antag_types |= SSantags.get_antag_id_from_name(.)
 
 	if(mode == VOTE_GAMEMODE) //fire this even if the vote fails.
 		if(!round_progressing)
@@ -225,8 +225,8 @@ SUBSYSTEM_DEF(vote)
 			if(VOTE_ADD_ANTAGONIST)
 				if(!config.allow_extra_antags || ticker.current_state >= GAME_STATE_SETTING_UP)
 					return 0
-				for(var/antag_type in all_antag_types)
-					var/datum/antagonist/antag = all_antag_types[antag_type]
+				for(var/antag_type in SSantags.antag_datums)
+					var/datum/antagonist/antag = SSantags.antag_datums[antag_type]
 					if(!(antag.id in additional_antag_types) && antag.is_votable())
 						choices.Add(antag.role_text)
 				choices.Add("None")
