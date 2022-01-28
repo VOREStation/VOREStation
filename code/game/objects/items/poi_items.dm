@@ -64,7 +64,14 @@
 	icon = 'icons/obj/closets/poireactor.dmi'
 	closet_appearance = null
 	catalogue_data = list(/datum/category_item/catalogue/information/objects/oldreactor)
+<<<<<<< HEAD
 	climbable = FALSE
+=======
+	climbable = 0
+	door_anim_time = 0 //Unsupported
+	open_sound = 'sound/machines/door/hatchforced.ogg'
+	close_sound = 'sound/machines/door/hatchclose.ogg'
+>>>>>>> d3ef2db8b43... Merge pull request #8384 from Atermonera/cynosure_map
 
 	starts_with = list(
 		/obj/item/weapon/fuel_assembly/deuterium = 6)

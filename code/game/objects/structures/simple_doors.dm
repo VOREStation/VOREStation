@@ -147,9 +147,8 @@
 /obj/structure/simple_door/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(istype(W,/obj/item/weapon/pickaxe))
-		var/obj/item/weapon/pickaxe/digTool = W
 		visible_message("<span class='danger'>[user] starts digging [src]!</span>")
-		if(do_after(user,digTool.digspeed*hardness) && src)
+		if(do_after(user,40 / W.get_tool_quality(TOOL_MINING) * hardness) && src)
 			visible_message("<span class='danger'>[user] finished digging [src]!</span>")
 			Dismantle()
 	else if(istype(W,/obj/item/weapon)) //not sure, can't not just weapons get passed to this proc?

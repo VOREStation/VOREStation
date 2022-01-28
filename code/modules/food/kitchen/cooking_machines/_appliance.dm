@@ -242,7 +242,7 @@
 	else if(istype(check, /obj/item/weapon/disk/nuclear))
 		to_chat(user, "<span class='warning'>You can't cook that.</span>")
 		return 0
-	else if(I.is_crowbar() || I.is_screwdriver() || istype(I, /obj/item/weapon/storage/part_replacer)) // You can't cook tools, dummy.
+	else if(I.get_tool_quality(TOOL_CROWBAR) || I.get_tool_quality(TOOL_SCREWDRIVER) || istype(I, /obj/item/weapon/storage/part_replacer)) // You can't cook tools, dummy.
 		return 0
 	else if(!istype(check) &&  !istype(check, /obj/item/weapon/holder))
 		to_chat(user, "<span class='warning'>That's not edible.</span>")
@@ -581,7 +581,7 @@
 
 	// Produce nasty smoke.
 	visible_message("<span class='danger'>\The [src] vomits a gout of rancid smoke!</span>")
-	var/datum/effect/effect/system/smoke_spread/bad/burntfood/smoke = new /datum/effect/effect/system/smoke_spread/bad/burntfood
+	var/datum/effect_system/smoke_spread/bad/burntfood/smoke = new /datum/effect_system/smoke_spread/bad/burntfood
 	playsound(src, 'sound/effects/smoke.ogg', 20, 1)
 	smoke.attach(src)
 	smoke.set_up(10, 0, get_turf(src), 300)

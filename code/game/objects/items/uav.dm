@@ -24,7 +24,7 @@
 	var/power_per_process = 50 // About 6.5 minutes of use on a high-cell (10,000)
 	var/state = UAV_OFF
 
-	var/datum/effect/effect/system/ion_trail_follow/ion_trail
+	var/datum/effect_system/ion_trail_follow/ion_trail
 
 	var/list/mob/living/masters
 
@@ -51,8 +51,13 @@
 	
 	if(!cell && cell_type)
 		cell = new cell_type
+<<<<<<< HEAD
 	
 	ion_trail = new /datum/effect/effect/system/ion_trail_follow()
+=======
+
+	ion_trail = new /datum/effect_system/ion_trail_follow()
+>>>>>>> d3ef2db8b43... Merge pull request #8384 from Atermonera/cynosure_map
 	ion_trail.set_up(src)
 	ion_trail.stop()
 
@@ -117,8 +122,13 @@
 		playsound(src, 'sound/machines/buttonbeep.ogg', 50, 1)
 		visible_message("<span class='notice'>[user] pairs [I] to [nickname]</span>")
 		toggle_pairing()
+<<<<<<< HEAD
 	
 	else if(I.is_screwdriver() && cell)
+=======
+
+	else if(I.get_tool_quality(TOOL_SCREWDRIVER) && cell)
+>>>>>>> d3ef2db8b43... Merge pull request #8384 from Atermonera/cynosure_map
 		if(do_after(user, 3 SECONDS, src))
 			to_chat(user, "<span class='notice'>You remove [cell] into [nickname].</span>")
 			playsound(src, I.usesound, 50, 1)

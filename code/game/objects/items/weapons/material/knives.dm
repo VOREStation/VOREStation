@@ -70,6 +70,7 @@
 	origin_tech = list(TECH_MATERIAL = 1)
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	drop_sound = 'sound/items/drop/knife.ogg'
+	tool_qualities = list(TOOL_WOODCUT = TOOL_QUALITY_POOR, TOOL_KNIFE = TOOL_QUALITY_STANDARD)
 
 // These no longer inherit from hatchets.
 /obj/item/weapon/material/knife/tacknife
@@ -141,7 +142,12 @@
 	attack_verb = list("slashed", "chopped", "gouged", "ripped", "cut")
 	can_cleave = TRUE //Now hatchets inherit from the machete, and thus knives. Tables turned.
 	slot_flags = SLOT_BELT
+<<<<<<< HEAD
 	default_material = "plasteel" //VOREStation Edit
+=======
+	tool_qualities = list(TOOL_WOODCUT = TOOL_QUALITY_MEDIOCRE, TOOL_KNIFE = TOOL_QUALITY_STANDARD)
+
+>>>>>>> d3ef2db8b43... Merge pull request #8384 from Atermonera/cynosure_map
 
 /obj/item/weapon/material/knife/machete/cyborg
 	name = "integrated machete"
@@ -155,6 +161,7 @@
 	icon_state = "survivalknife"
 	item_state = "knife"
 	applies_material_colour = FALSE
+<<<<<<< HEAD
 	default_material = "plasteel" //VOREStation Edit
 	toolspeed = 2 // Use a real axe if you want to chop logs.
 
@@ -183,3 +190,6 @@
 	icon_state = "stone_bone_knife"
 	dulled = FALSE
 	fragile = FALSE
+=======
+	tool_qualities = list(TOOL_WOODCUT = TOOL_QUALITY_POOR) // Use a real axe if you want to chop logs.
+>>>>>>> d3ef2db8b43... Merge pull request #8384 from Atermonera/cynosure_map

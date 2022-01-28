@@ -47,6 +47,9 @@
 		if(prob(dirty_prob))
 			dirt += rand(50,100)
 			update_dirt() //5% chance to start with dirt on a floor tile- give the janitor something to do
+	if(!mapload)
+		for(var/obj/structure/lattice/L in src)
+			qdel(L)
 
 /turf/simulated/floor/LateInitialize()
 	. = ..()

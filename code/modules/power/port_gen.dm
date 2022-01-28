@@ -273,7 +273,7 @@
 		updateUsrDialog()
 		return
 	else if(!active)
-		if(O.is_wrench())
+		if(O.get_tool_quality(TOOL_WRENCH))
 			if(!anchored)
 				connect_to_network()
 				to_chat(user, "<span class='notice'>You secure the generator to the floor.</span>")

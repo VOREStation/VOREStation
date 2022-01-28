@@ -66,7 +66,7 @@
 	to_chat(src.brainmob, "<b>Use say #b to speak to other artificial intelligences.</b>")
 	src.brainmob.mind.assigned_role = "Positronic Brain"
 
-	var/turf/T = get_turf_or_move(src.loc)
+	var/turf/T = get_turf(src.loc)
 	for (var/mob/M in viewers(T))
 		M.show_message("<font color='blue'>The positronic brain beeps as it loads a personality.</font>")
 	playsound(src, 'sound/misc/boobeebeep.ogg', 50, 1)
@@ -80,7 +80,7 @@
 	src.searching = 0
 	icon_state = "posibrain"
 
-	var/turf/T = get_turf_or_move(src.loc)
+	var/turf/T = get_turf(src.loc)
 	for (var/mob/M in viewers(T))
 		M.show_message("<font color='blue'>The positronic brain buzzes and beeps, and the golden lights fade away. Perhaps you could try again?</font>")
 	playsound(src, 'sound/misc/buzzbeep.ogg', 50, 1)

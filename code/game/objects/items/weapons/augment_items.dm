@@ -31,7 +31,12 @@
 	w_class = ITEMSIZE_HUGE
 	force = 30
 	armor_penetration = 15
+<<<<<<< HEAD
 	edge = TRUE
 	pry = 1
+=======
+	edge = 1
+	tool_qualities = list(TOOL_CROWBAR = TOOL_QUALITY_STANDARD)
+>>>>>>> d3ef2db8b43... Merge pull request #8384 from Atermonera/cynosure_map
 	defend_chance = 40
 	projectile_parry_chance = 20

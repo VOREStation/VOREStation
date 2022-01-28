@@ -244,7 +244,7 @@
 
 		var/inc_damage = W.force
 
-		if(W.is_wirecutter())
+		if(W.get_tool_quality(TOOL_WIRECUTTER))
 			if(!shock(user, 100, pick(BP_L_HAND, BP_R_HAND)))
 				playsound(src, W.usesound, 100, 1)
 				inc_damage *= 3
@@ -317,7 +317,7 @@
 						var/mob/living/L = user
 						L.electrocute_act(PN_damage, src, 0.8)
 
-			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 			s.set_up(3, 1, src)
 			s.start()
 			if(user.stunned)

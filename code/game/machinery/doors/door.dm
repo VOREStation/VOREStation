@@ -259,7 +259,7 @@
 
 			return
 
-		if(repairing && istype(I, /obj/item/weapon/weldingtool))
+		if(repairing && I.get_tool_quality(TOOL_WELDER))
 			if(!density)
 				to_chat(user, "<span class='warning'>\The [src] must be closed before you can repair it.</span>")
 				return
@@ -268,14 +268,14 @@
 			if(welder.remove_fuel(0,user))
 				to_chat(user, "<span class='notice'>You start to fix dents and weld \the [get_material_name()] into place.</span>")
 				playsound(src, welder.usesound, 50, 1)
-				if(do_after(user, (5 * repairing) * welder.toolspeed) && welder && welder.isOn())
+				if(do_after(user, (5 * repairing) * welder.get_tool_speed(TOOL_WELDER)) && welder && welder.isOn())
 					to_chat(user, "<span class='notice'>You finish repairing the damage to \the [src].</span>")
 					health = between(health, health + repairing*DOOR_REPAIR_AMOUNT, maxhealth)
 					update_icon()
 					repairing = 0
 			return
 
-		if(repairing && I.is_crowbar())
+		if(repairing && I.get_tool_quality(TOOL_CROWBAR))
 			var/datum/material/mat = get_material()
 			var/obj/item/stack/material/repairing_sheet = mat.place_sheet(loc, repairing)
 			repairing = 0
@@ -376,7 +376,7 @@
 				take_damage(300)
 		if(3.0)
 			if(prob(80))
-				var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+				var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 				s.set_up(2, 1, src)
 				s.start()
 			else

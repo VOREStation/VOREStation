@@ -39,7 +39,7 @@
 	visible_message("<span class='info'>[user] rests a hand on \the [hit_atom].</span>")
 	busy = 1
 
-	var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
+	var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread()
 	spark_system.set_up(5, 0, our_turf)
 
 	while(i)

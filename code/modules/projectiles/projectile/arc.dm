@@ -11,6 +11,7 @@
 	icon_state = "fireball" // WIP
 	movement_type = UNSTOPPABLE
 	plane = ABOVE_PLANE // Since projectiles are 'in the air', they might visually overlap mobs while in flight, so the projectile needs to be above their plane.
+	fire_sound = 'sound/weapons/mech_mortar.ogg'
 	var/fired_dir = null		// Which direction was the projectile fired towards. Needed to invert the projectile turning based on if facing left or right.
 	var/distance_to_fly = null // How far, in pixels, to fly for. Will call on_range() when this is passed.
 	var/visual_y_offset = -16 // Adjusts how high the projectile and its shadow start, visually. This is so the projectile and shadow align with the center of the tile.
@@ -114,7 +115,7 @@
 // This is a test projectile in the sense that its testing the code to make sure it works,
 // as opposed to a 'can I hit this thing' projectile.
 /obj/item/projectile/arc/test/on_impact(turf/T)
-	new /obj/effect/explosion(T)
+	new /obj/effect/vfx/explosion(T)
 	T.color = "#FF0000"
 
 // Generic, Hivebot related
@@ -187,7 +188,7 @@
 		T.visible_message("<span class='warning'>\The [src] covers \the [T] in a corrosive paste!</span>")
 		for(var/turf/simulated/floor/F in view(2, T))
 			spawn()
-				var/obj/effect/effect/water/splash = new(T)
+				var/obj/effect/vfx/water/splash = new(T)
 				splash.create_reagents(15)
 				splash.reagents.add_reagent("stomacid", 5)
 				splash.reagents.add_reagent("blood", 10,list("blood_colour" = "#ec4940"))

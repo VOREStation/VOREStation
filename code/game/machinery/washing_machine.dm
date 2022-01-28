@@ -99,35 +99,23 @@
 	//VOREStation Edit End
 
 /obj/machinery/washing_machine/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(state == 2 && washing.len < 1)
-		if(default_deconstruction_screwdriver(user, W))
-			return
-		if(default_deconstruction_crowbar(user, W))
-			return
-		if(default_unfasten_wrench(user, W, 40))
-			return
-	/*if(W.is_screwdriver())
-		panel = !panel
-		to_chat(user, "<span class='notice'>You [panel ? "open" : "close"] the [src]'s maintenance panel</span>")*/
-	if(istype(W,/obj/item/weapon/pen/crayon) || istype(W,/obj/item/weapon/stamp))
-		if(state in list(	1, 3, 6))
-			if(!crayon)
-				user.drop_item()
-				crayon = W
-				crayon.loc = src
-			else
-				..()
-		else
-			..()
-	else if(istype(W,/obj/item/weapon/grab))
-		if((state == 1) && hacked)
-			var/obj/item/weapon/grab/G = W
-			if(ishuman(G.assailant) && iscorgi(G.affecting))
-				G.affecting.loc = src
-				qdel(G)
-				state = 3
-		else
-			..()
+	if(state == 2 && washing.len < 1 && ( \
+			default_deconstruction_screwdriver(user, W) || \
+			default_deconstruction_crowbar(user, W) || \
+			default_unfasten_wrench(user, W, 40) ) )
+		return
+	
+	if(!crayon && (state in list(1, 3, 6)) && ( \
+			istype(W,/obj/item/weapon/pen/crayon) || istype(W,/obj/item/weapon/stamp) ) )
+		user.drop_from_inventory(W, src)
+		crayon = W
+
+	else if(istype(W,/obj/item/weapon/grab) && state == 1 && hacked)
+		var/obj/item/weapon/grab/G = W
+		if(ishuman(G.assailant) && iscorgi(G.affecting))
+			G.affecting.loc = src
+			qdel(G)
+			state = 3
 
 	else if(is_type_in_list(W, disallowed_types))
 		to_chat(user, "<span class='warning'>You can't fit \the [W] inside.</span>")

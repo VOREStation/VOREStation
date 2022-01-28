@@ -68,7 +68,7 @@
 	var/maint_access = 1
 	var/dna								//Dna-locking the mech
 	var/list/proc_res = list() 			//Stores proc owners, like proc_res["functionname"] = owner reference
-	var/datum/effect/effect/system/spark_spread/spark_system = new
+	var/datum/effect_system/spark_spread/spark_system = new
 	var/lights = 0
 	var/lights_power = 6
 	var/force = 0
@@ -177,7 +177,7 @@
 	var/smoke_reserve = 5			//How many shots you have. Might make a reload later on. MIGHT.
 	var/smoke_ready = 1				//This is a check for the whether or not the cooldown is ongoing.
 	var/smoke_cooldown = 100		//How long you have between uses.
-	var/datum/effect/effect/system/smoke_spread/smoke_system = new
+	var/datum/effect_system/smoke_spread/smoke_system = new
 
 	var/cloak_possible = FALSE		// Can this exosuit innately cloak?
 
@@ -1468,7 +1468,7 @@
 				to_chat(user, "<span class='warning'>Invalid ID: Access denied.</span>")
 		else
 			to_chat(user, "<span class='warning'>Maintenance protocols disabled by operator.</span>")
-	else if(W.is_wrench())
+	else if(W.get_tool_quality(TOOL_WRENCH))
 		if(state==MECHA_BOLTS_SECURED)
 			state = MECHA_PANEL_LOOSE
 			to_chat(user, "You undo the securing bolts.")
@@ -1476,7 +1476,7 @@
 			state = MECHA_BOLTS_SECURED
 			to_chat(user, "You tighten the securing bolts.")
 		return
-	else if(W.is_crowbar())
+	else if(W.get_tool_quality(TOOL_CROWBAR))
 		if(state==MECHA_PANEL_LOOSE)
 			state = MECHA_CELL_OPEN
 			to_chat(user, "You open the hatch to the power unit")
@@ -1509,7 +1509,7 @@
 			else
 				to_chat(user, "There's not enough wire to finish the task.")
 		return
-	else if(W.is_screwdriver())
+	else if(W.get_tool_quality(TOOL_SCREWDRIVER))
 		if(hasInternalDamage(MECHA_INT_TEMP_CONTROL))
 			clearInternalDamage(MECHA_INT_TEMP_CONTROL)
 			to_chat(user, "You repair the damaged temperature controller.")
@@ -2029,7 +2029,7 @@
 		update_cell_alerts()
 		update_damage_alerts()
 		set_dir(dir_in)
-		playsound(src, 'sound/machines/door/windowdoor.ogg', 50, 1)
+		playsound(src, 'sound/mecha/mech_enter.ogg', 50, 1)
 		if(occupant.client && cloaked_selfimage)
 			occupant.client.images += cloaked_selfimage
 		play_entered_noise(occupant)
@@ -2122,6 +2122,7 @@
 		update_icon()
 		set_dir(dir_in)
 		verbs -= /obj/mecha/verb/eject
+		playsound(src, 'sound/mecha/mech_exit.ogg', 50, 1)
 
 		//src.zoom = 0
 

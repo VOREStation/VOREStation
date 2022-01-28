@@ -5,8 +5,6 @@
 	icon_state = "tape"
 	w_class = ITEMSIZE_SMALL
 
-	toolspeed = 3 //You can use it in surgery. It's stupid, but you can.
-
 	var/turf/start
 	var/turf/end
 	var/tape_type = /obj/item/tape

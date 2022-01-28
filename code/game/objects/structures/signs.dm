@@ -22,7 +22,7 @@
 	return
 
 /obj/structure/sign/attackby(obj/item/tool as obj, mob/user as mob)	//deconstruction
-	if(tool.is_screwdriver() && !istype(src, /obj/structure/sign/scenery) && !istype(src, /obj/structure/sign/double))
+	if(tool.get_tool_quality(TOOL_SCREWDRIVER) && !istype(src, /obj/structure/sign/scenery) && !istype(src, /obj/structure/sign/double))
 		playsound(src, tool.usesound, 50, 1)
 		to_chat(user, "You unfasten the sign with your [tool].")
 		var/obj/item/sign/S = new(src.loc)
@@ -43,8 +43,13 @@
 	var/sign_state = ""
 
 /obj/item/sign/attackby(obj/item/tool as obj, mob/user as mob)	//construction
+<<<<<<< HEAD
 	if(tool.is_screwdriver() && isturf(user.loc))
 		var/direction = tgui_input_list(usr, "In which direction?", "Select direction.", list("North", "East", "South", "West", "Cancel"))
+=======
+	if(tool.get_tool_quality(TOOL_SCREWDRIVER) && isturf(user.loc))
+		var/direction = input("In which direction?", "Select direction.") in list("North", "East", "South", "West", "Cancel")
+>>>>>>> d3ef2db8b43... Merge pull request #8384 from Atermonera/cynosure_map
 		if(direction == "Cancel") return
 		var/obj/structure/sign/S = new(user.loc)
 		switch(direction)

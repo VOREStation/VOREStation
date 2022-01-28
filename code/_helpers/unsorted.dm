@@ -974,32 +974,10 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		loc = loc.loc
 	return null
 
-/proc/get_turf_or_move(turf/location)
-	return get_turf(location)
-
-
-//Quick type checks for some tools
-var/global/list/common_tools = list(
-/obj/item/stack/cable_coil,
-/obj/item/weapon/tool/wrench,
-/obj/item/weapon/weldingtool,
-/obj/item/weapon/tool/screwdriver,
-/obj/item/weapon/tool/wirecutters,
-/obj/item/device/multitool,
-/obj/item/weapon/tool/crowbar)
-
-/proc/istool(O)
-	if(O && is_type_in_list(O, common_tools))
-		return 1
-	return 0
-
-
 /proc/is_wire_tool(obj/item/I)
-	if(istype(I, /obj/item/device/multitool) || I.is_wirecutter())
-		return TRUE
-	if(istype(I, /obj/item/device/assembly/signaler))
-		return TRUE
-	return
+	return I.get_tool_quality(TOOL_MULTITOOL) || \
+		I.get_tool_quality(TOOL_WIRECUTTER) || \
+		istype(I, /obj/item/device/assembly/signaler)
 
 /proc/is_hot(obj/item/W as obj)
 	switch(W.type)
@@ -1031,24 +1009,6 @@ var/global/list/common_tools = list(
 		else
 			return 0
 
-//Whether or not the given item counts as sharp in terms of dealing damage
-/proc/is_sharp(obj/O as obj)
-	if(!O)
-		return FALSE
-	if(O.sharp)
-		return TRUE
-	if(O.edge)
-		return TRUE
-	return FALSE
-
-//Whether or not the given item counts as cutting with an edge in terms of removing limbs
-/proc/has_edge(obj/O as obj)
-	if(!O)
-		return FALSE
-	if(O.edge)
-		return TRUE
-	return FALSE
-
 //Returns 1 if the given item is capable of popping things like balloons, inflatable barriers, or cutting police tape.
 /proc/can_puncture(obj/item/W as obj)		// For the record, WHAT THE HELL IS THIS METHOD OF DOING IT?
 	if(!W)
@@ -1056,7 +1016,7 @@ var/global/list/common_tools = list(
 	if(W.sharp)
 		return TRUE
 	return ( \
-		W.is_screwdriver()		     				              || \
+		W.get_tool_quality(TOOL_SCREWDRIVER)		     				              || \
 		istype(W, /obj/item/weapon/pen)                           || \
 		istype(W, /obj/item/weapon/weldingtool)					  || \
 		istype(W, /obj/item/weapon/flame/lighter/zippo)			  || \
@@ -1068,14 +1028,14 @@ var/global/list/common_tools = list(
 // check if mob is lying down on something we can operate him on.
 // The RNG with table/rollerbeds comes into play in do_surgery() so that fail_step() can be used instead.
 /proc/can_operate(mob/living/carbon/M, mob/living/user)
-	. = M.lying
-
-	if(user && M == user && user.allow_self_surgery && user.a_intent == I_HELP)	// You can, technically, always operate on yourself after standing still. Inadvised, but you can.
-
-		if(!M.isSynthetic())
-			. = TRUE
-
-	return .
+	// You can, technically, always operate on yourself after standing still. Inadvised, but you can.
+	if(istype(user) && \
+			M == user && \
+			user.allow_self_surgery && \
+			user.a_intent == I_HELP && \
+			!M.isSynthetic())
+		return TRUE
+	return M.lying
 
 // Returns an instance of a valid surgery surface.
 /mob/living/proc/get_surgery_surface(mob/living/user)

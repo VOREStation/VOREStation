@@ -114,13 +114,15 @@
 		return ..()
 
 	if(istype(W,/obj/item/device/pipe_painter))
-		return 0
+		return FALSE
 
-	if (!W.is_wrench())
+	if (!W.get_tool_quality(TOOL_WRENCH))
 		return ..()
+	
 	var/turf/T = src.loc
 	if (level==1 && isturf(T) && !T.is_plating())
 		to_chat(user, "<span class='warning'>You must remove the plating first.</span>")
+<<<<<<< HEAD
 		return 1
 	if(!can_unwrench())
 		to_chat(user, "<span class='warning'>You cannot unwrench \the [src], it is too exerted due to internal pressure.</span>")
@@ -134,6 +136,11 @@
 			"<span class='notice'>You have unfastened \the [src].</span>", \
 			"You hear a ratchet.")
 		deconstruct()
+=======
+		return TRUE
+	return default_deconstruction_wrench(W, user)
+
+>>>>>>> d3ef2db8b43... Merge pull request #8384 from Atermonera/cynosure_map
 
 /obj/machinery/atmospherics/pipe/proc/change_color(var/new_color)
 	//only pass valid pipe colors please ~otherwise your pipe will turn invisible

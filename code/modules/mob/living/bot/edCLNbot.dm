@@ -65,7 +65,7 @@
 		else
 			new /obj/item/device/assembly/prox_sensor(Tsec)
 
-	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
 	qdel(src)
@@ -193,7 +193,7 @@
 				qdel(W)
 
 		if(7)
-			if(W.is_screwdriver())
+			if(W.get_tool_quality(TOOL_SCREWDRIVER))
 				playsound(src, W.usesound, 100, 1)
 				var/turf/T = get_turf(user)
 				to_chat(user, "<span class='notice'>Attatching the mop to the frame...</span>")

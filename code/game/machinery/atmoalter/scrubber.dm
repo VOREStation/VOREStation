@@ -218,7 +218,7 @@
 		update_connected_network()
 
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/attackby(var/obj/item/I as obj, var/mob/user as mob)
-	if(I.is_wrench())
+	if(I.get_tool_quality(TOOL_WRENCH))
 		if(on)
 			to_chat(user, "<span class='warning'>Turn \the [src] off first!</span>")
 			return
@@ -232,7 +232,7 @@
 	//doesn't use power cells
 	if(istype(I, /obj/item/weapon/cell))
 		return
-	if(I.is_screwdriver())
+	if(I.get_tool_quality(TOOL_SCREWDRIVER))
 		return
 
 	//doesn't hold tanks
@@ -250,7 +250,7 @@
 	desc += "This one seems to be tightly secured with large bolts."
 
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/attackby(var/obj/item/I as obj, var/mob/user as mob)
-	if(I.is_wrench())
+	if(I.get_tool_quality(TOOL_WRENCH))
 		to_chat(user, "<span class='warning'>The bolts are too tight for you to unscrew!</span>")
 		return
 

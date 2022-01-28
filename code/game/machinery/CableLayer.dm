@@ -34,10 +34,17 @@
 			to_chat(user, "You load [result] lengths of cable into [src].")
 		return
 
+<<<<<<< HEAD
 	if(O.is_wirecutter())
 		if(cable && cable.get_amount())
 			var/m = round(input(usr, "Please specify the length of cable to cut", "Cut cable", min(cable.get_amount(), 30)) as num, 1)
 			m = min(m, cable.get_amount())
+=======
+	if(O.get_tool_quality(TOOL_WIRECUTTER))
+		if(cable && cable.amount)
+			var/m = round(input(usr,"Please specify the length of cable to cut","Cut cable",min(cable.amount,30)) as num, 1)
+			m = min(m, cable.amount)
+>>>>>>> d3ef2db8b43... Merge pull request #8384 from Atermonera/cynosure_map
 			m = min(m, 30)
 			if(m)
 				playsound(src, O.usesound, 50, 1)

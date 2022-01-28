@@ -12,7 +12,7 @@
 	return
 
 /obj/structure/bed/chair/e_chair/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.is_wrench())
+	if(W.get_tool_quality(TOOL_WRENCH))
 		var/obj/structure/bed/chair/C = new /obj/structure/bed/chair(loc)
 		playsound(src, W.usesound, 50, 1)
 		C.set_dir(dir)
@@ -61,7 +61,7 @@
 	A.updateicon()
 
 	flick("echair1", src)
-	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(12, 1, src)
 	s.start()
 	if(has_buckled_mobs())

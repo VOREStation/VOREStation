@@ -4,6 +4,7 @@
 	chaos = 40
 	chaotic_threshold = EVENT_CHAOS_THRESHOLD_MEDIUM_IMPACT
 	event_type = /datum/event2/event/appendicitis
+	regions = list(EVENT_REGION_PLAYER_MAIN_AREA)
 
 /datum/event2/meta/appendicitis/get_weight()
 	var/list/doctors = metric.get_people_with_job(/datum/job/doctor)

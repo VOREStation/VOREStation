@@ -5,6 +5,7 @@
 	chaotic_threshold = EVENT_CHAOS_THRESHOLD_LOW_IMPACT
 	reusable = TRUE
 	event_type = /datum/event2/event/dust
+	regions = list(EVENT_REGION_SPACESTATION)
 
 /datum/event2/meta/dust/get_weight()
 	return metric.count_people_in_department(DEPARTMENT_ENGINEERING) * 20

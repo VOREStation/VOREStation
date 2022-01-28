@@ -53,6 +53,7 @@
 	melee_damage_upper = 15
 	projectile_dispersion = 5
 	projectile_accuracy = -15
+	projectilesound = 'sound/weapons/mech_autocannon.ogg'
 
 // Also beefy, but tries to stay at their 'home', ideal for base defense.
 /mob/living/simple_mob/mechanical/hivebot/ranged_damage/strong/guard
@@ -113,6 +114,7 @@
 	name = "siege engine hivebot"
 	desc = "A large robot capable of delivering long range bombardment."
 	projectiletype = /obj/item/projectile/arc/test
+	projectilesound = 'sound/weapons/mech_mortar.ogg'
 	icon_scale_x = 2
 	icon_scale_y = 2
 	icon_state = "red"

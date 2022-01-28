@@ -4,6 +4,7 @@
 	chaos = 10
 	chaotic_threshold = EVENT_CHAOS_THRESHOLD_LOW_IMPACT
 	event_type = /datum/event2/event/money_hacker
+	regions = list(EVENT_REGION_UNIVERSAL)
 
 /datum/event2/meta/money_hacker/get_weight()
 	var/command = metric.count_people_with_job(/datum/job/hop) + metric.count_people_with_job(/datum/job/captain)

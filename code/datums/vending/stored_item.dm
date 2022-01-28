@@ -92,7 +92,11 @@
 			if(count <= 0)
 				break
 			if(T.get_amount() <= count)
+<<<<<<< HEAD
 				instances -=T
+=======
+				instances -= T
+>>>>>>> d3ef2db8b43... Merge pull request #8384 from Atermonera/cynosure_map
 			count -= T.transfer_to(S, count)
 
 	S.forceMove(product_location)

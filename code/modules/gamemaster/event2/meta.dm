@@ -14,6 +14,11 @@
 	// What departments the event attached might affect.
 	var/list/departments = list(DEPARTMENT_EVERYONE)
 
+	// The region affects by this event
+	// Affects event weight by a similar metric to department population:
+	// If everybody is planetside, then a meteor storm on the station doesn't really add as much
+	var/list/regions = list(EVENT_REGION_UNIVERSAL)
+
 	// A guess on how disruptive to a round the event might be. If the action is chosen, the GM's
 	// 'danger' score is increased by this number.
 	// Negative numbers could be used to signify helpful events.

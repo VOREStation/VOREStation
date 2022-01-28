@@ -5,6 +5,7 @@
 	chaos = 40
 	chaotic_threshold = EVENT_CHAOS_THRESHOLD_HIGH_IMPACT
 	event_type = /datum/event2/event/virus
+	regions = list(EVENT_REGION_PLAYER_MAIN_AREA)
 
 /datum/event2/meta/virus/superbug
 	name = "viral superbug"

@@ -23,16 +23,16 @@ var/list/floor_light_cache = list()
 	anchored = TRUE
 
 /obj/machinery/floor_light/attackby(var/obj/item/W, var/mob/user)
-	if(W.is_screwdriver())
+	if(W.get_tool_quality(TOOL_SCREWDRIVER))
 		anchored = !anchored
 		visible_message("<span class='notice'>\The [user] has [anchored ? "attached" : "detached"] \the [src].</span>")
-	else if(istype(W, /obj/item/weapon/weldingtool) && (damaged || (stat & BROKEN)))
+	else if(W.get_tool_quality(TOOL_WELDER) && (damaged || (stat & BROKEN)))
 		var/obj/item/weapon/weldingtool/WT = W
 		if(!WT.remove_fuel(0, user))
 			to_chat(user, "<span class='warning'>\The [src] must be on to complete this task.</span>")
 			return
 		playsound(src, WT.usesound, 50, 1)
-		if(!do_after(user, 20 * WT.toolspeed))
+		if(!do_after(user, 20 * WT.get_tool_speed(TOOL_WELDER)))
 			return
 		if(!src || !WT.isOn())
 			return

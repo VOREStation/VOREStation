@@ -142,6 +142,7 @@ Proc for attack log creation, because really why not
 	else
 		return pick("chest", "groin")
 
+<<<<<<< HEAD
 /proc/do_mob(mob/user , mob/target, time = 30, target_zone = 0, uninterruptible = FALSE, progress = TRUE, ignore_movement = FALSE, exclusive = FALSE)
 	if(!user || !target)
 		return FALSE
@@ -153,22 +154,35 @@ Proc for attack log creation, because really why not
 	if(target?.flags & IS_BUSY)
 		to_chat(user, "<span class='warning'>Someone is already doing something with \the [target].</span>")
 		return FALSE
+=======
+/proc/do_mob(mob/user , mob/target, delay = 30, target_zone = 0, uninterruptible = FALSE, progress = TRUE, ignore_movement = FALSE)
+	if(delay < 0)
+		return FALSE
+	if(!user || !target)
+		return FALSE
+	if(delay == 0)
+		return TRUE
+	
+>>>>>>> d3ef2db8b43... Merge pull request #8384 from Atermonera/cynosure_map
 	var/user_loc = user.loc
 	var/target_loc = target.loc
 
 	var/holding = user.get_active_hand()
 	var/datum/progressbar/progbar
 	if (progress)
-		progbar = new(user, time, target)
+		progbar = new(user, delay, target)
 
-	var/endtime = world.time+time
 	var/starttime = world.time
+<<<<<<< HEAD
 
 	if(exclusive & TASK_USER_EXCLUSIVE)
 		user.status_flags |= DOING_TASK
 	if(target && exclusive & TASK_TARGET_EXCLUSIVE)
 		target.flags |= IS_BUSY
 
+=======
+	var/endtime = starttime + delay
+>>>>>>> d3ef2db8b43... Merge pull request #8384 from Atermonera/cynosure_map
 	. = TRUE
 	while (world.time < endtime)
 		stoplag(1)
@@ -208,11 +222,18 @@ Proc for attack log creation, because really why not
 	if (progbar)
 		qdel(progbar)
 
+<<<<<<< HEAD
 /proc/do_after(mob/user, delay, atom/target = null, needhand = TRUE, progress = TRUE, incapacitation_flags = INCAPACITATION_DEFAULT, ignore_movement = FALSE, max_distance = null, exclusive = FALSE)
+=======
+/proc/do_after(mob/user, delay, atom/target = null, needhand = TRUE, progress = TRUE, incapacitation_flags = INCAPACITATION_DEFAULT, ignore_movement = FALSE, max_distance = null)
+	if(delay < 0)
+		return FALSE
+>>>>>>> d3ef2db8b43... Merge pull request #8384 from Atermonera/cynosure_map
 	if(!user)
 		return FALSE
 	if(!delay)
 		return TRUE //Okay. Done.
+<<<<<<< HEAD
 	if(user.status_flags & DOING_TASK)
 		to_chat(user, "<span class='warning'>You're in the middle of doing something else already.</span>")
 		return FALSE //Performing an exclusive do_after or do_mob already
@@ -220,6 +241,8 @@ Proc for attack log creation, because really why not
 		to_chat(user, "<span class='warning'>Someone is already doing something with \the [target].</span>")
 		return FALSE
 		
+=======
+>>>>>>> d3ef2db8b43... Merge pull request #8384 from Atermonera/cynosure_map
 	var/atom/target_loc = null
 	if(target)
 		target_loc = target.loc
@@ -238,8 +261,8 @@ Proc for attack log creation, because really why not
 	if (progress)
 		progbar = new(user, delay, target)
 
-	var/endtime = world.time + delay
 	var/starttime = world.time
+<<<<<<< HEAD
 
 	if(exclusive & TASK_USER_EXCLUSIVE)
 		user.status_flags |= DOING_TASK
@@ -247,6 +270,9 @@ Proc for attack log creation, because really why not
 	if(target && (exclusive & TASK_TARGET_EXCLUSIVE))
 		target.flags |= IS_BUSY
 
+=======
+	var/endtime = starttime + delay
+>>>>>>> d3ef2db8b43... Merge pull request #8384 from Atermonera/cynosure_map
 	. = TRUE
 	while (world.time < endtime)
 		stoplag(1)

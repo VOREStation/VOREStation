@@ -115,7 +115,7 @@
 		update_icon()
 		return
 
-	else if (W.is_wrench())
+	else if (W.get_tool_quality(TOOL_WRENCH))
 		if(connected_port)
 			disconnect()
 			to_chat(user, "<span class='notice'>You disconnect \the [src] from the port.</span>")
@@ -171,7 +171,7 @@
 		power_change()
 		return
 
-	if(I.is_screwdriver() && removeable_cell)
+	if(I.get_tool_quality(TOOL_SCREWDRIVER) && removeable_cell)
 		if(!cell)
 			to_chat(user, "<span class='warning'>There is no power cell installed.</span>")
 			return

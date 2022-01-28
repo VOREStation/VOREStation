@@ -80,8 +80,9 @@
 		update_icon()
 
 /obj/machinery/atmospherics/omni/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if(!W.is_wrench())
+	if(!W.get_tool_quality(TOOL_WRENCH))
 		return ..()
+<<<<<<< HEAD
 
 	if(!can_unwrench())
 		to_chat(user, "<span class='warning'>You cannot unwrench \the [src], it is too exerted due to internal pressure.</span>")
@@ -95,6 +96,9 @@
 			"<span class='notice'>You have unfastened \the [src].</span>", \
 			"You hear a ratchet.")
 		deconstruct()
+=======
+	return default_deconstruction_wrench(user, W)
+>>>>>>> d3ef2db8b43... Merge pull request #8384 from Atermonera/cynosure_map
 
 /obj/machinery/atmospherics/omni/attack_hand(user as mob)
 	if(..())

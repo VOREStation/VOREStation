@@ -367,7 +367,7 @@
 
 /obj/item/toy/snappop/throw_impact(atom/hit_atom)
 	..()
-	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
 	new /obj/effect/decal/cleanable/ash(src.loc)
@@ -383,7 +383,7 @@
 		if(M.m_intent == "run")
 			to_chat(M, "<span class='warning'>You step on the snap pop!</span>")
 
-			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 			s.set_up(2, 0, src)
 			s.start()
 			new /obj/effect/decal/cleanable/ash(src.loc)
@@ -865,7 +865,7 @@
 		opened = FALSE
 		return
 
-	if(is_sharp(I) && !opened)
+	if(I.sharp && !opened)
 		to_chat(user, "You open a small incision in [src]. You can place tiny items inside.")
 		opened = TRUE
 		return
@@ -986,7 +986,7 @@
 		opened = FALSE
 		return
 
-	if(is_sharp(I) && !opened)
+	if(I.sharp && !opened)
 		to_chat(user, "You open a small incision in [src]. You can place tiny items inside.")
 		opened = TRUE
 		return

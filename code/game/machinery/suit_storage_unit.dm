@@ -1,5 +1,5 @@
 //////////////////////////////////////
-// SUIT STORAGE UNIT /////////////////
+// suit STORAGE UNIT /////////////////
 //////////////////////////////////////
 
 /obj/machinery/suit_storage_unit
@@ -7,6 +7,7 @@
 	desc = "An industrial U-Stor-It Storage unit designed to accomodate all kinds of space suits. Its on-board equipment also allows the user to decontaminate the contents through a UV-ray purging cycle. There's a warning label dangling from the control pad, reading \"STRICTLY NO BIOLOGICALS IN THE CONFINES OF THE UNIT\"."
 	icon = 'icons/obj/suitstorage.dmi'
 	icon_state = "suitstorage000000100" //order is: [has helmet][has suit][has human][is open][is locked][is UV cycling][is powered][is dirty/broken] [is superUVcycling]
+<<<<<<< HEAD
 	anchored = TRUE
 	density = TRUE
 	var/mob/living/carbon/human/OCCUPANT = null
@@ -15,6 +16,16 @@
 	var/obj/item/clothing/head/helmet/space/HELMET = null
 	var/helmet_type = null
 	var/obj/item/clothing/mask/MASK = null  //All the stuff that's gonna be stored insiiiiiiiiiiiiiiiiiiide, nyoro~n
+=======
+	anchored = 1
+	density = 1
+	var/mob/living/carbon/human/occupant = null
+	var/obj/item/clothing/suit/space/suit = null
+	var/suit_type = null
+	var/obj/item/clothing/head/helmet/space/helmet = null
+	var/helmet_type = null
+	var/obj/item/clothing/mask/mask = null  //All the stuff that's gonna be stored insiiiiiiiiiiiiiiiiiiide, nyoro~n
+>>>>>>> d3ef2db8b43... Merge pull request #8384 from Atermonera/cynosure_map
 	var/mask_type = null //Erro's idea on standarising SSUs whle keeping creation of other SSU types easy: Make a child SSU, name it something then set the TYPE vars to your desired suit output. New() should take it from there by itself.
 	var/isopen = 0
 	var/islocked = 0
@@ -42,16 +53,25 @@
 	if(mask_type)
 		MASK = new mask_type(src)
 	update_icon()
+<<<<<<< HEAD
+=======
+	if(suit_type)
+		suit = new suit_type(src)
+	if(helmet_type)
+		helmet = new helmet_type(src)
+	if(mask_type)
+		mask = new mask_type(src)
+>>>>>>> d3ef2db8b43... Merge pull request #8384 from Atermonera/cynosure_map
 
 /obj/machinery/suit_storage_unit/update_icon()
 	var/hashelmet = 0
 	var/hassuit = 0
 	var/hashuman = 0
-	if(HELMET)
+	if(helmet)
 		hashelmet = 1
-	if(SUIT)
+	if(suit)
 		hassuit = 1
-	if(OCCUPANT)
+	if(occupant)
 		hashuman = 1
 	icon_state = text("suitstorage[][][][][][][][][]", hashelmet, hassuit, hashuman, isopen, islocked, isUV, ispowered, isbroken, issuperUV)
 
@@ -108,20 +128,20 @@
 	data["safeties"] = safetieson
 	data["uv_active"] = isUV
 	data["uv_super"] = issuperUV
-	if(HELMET)
-		data["helmet"] = HELMET.name
+	if(helmet)
+		data["helmet"] = helmet.name
 	else
 		data["helmet"] = null
-	if(SUIT)
-		data["suit"] = SUIT.name
+	if(suit)
+		data["suit"] = suit.name
 	else
 		data["suit"] = null
-	if(MASK)
-		data["mask"] = MASK.name
+	if(mask)
+		data["mask"] = mask.name
 	else
 		data["mask"] = null
 	data["storage"] = null
-	if(OCCUPANT)
+	if(occupant)
 		data["occupied"] = TRUE
 	else
 		data["occupied"] = FALSE
@@ -169,68 +189,72 @@
 
 
 /obj/machinery/suit_storage_unit/proc/toggleUV(mob/user as mob)
+<<<<<<< HEAD
 	if(!panelopen)
 		return
 
 	else  //welp, the guy is protected, we can continue
+=======
+	if(panelopen)
+>>>>>>> d3ef2db8b43... Merge pull request #8384 from Atermonera/cynosure_map
 		if(issuperUV)
 			to_chat(user, "You slide the dial back towards \"185nm\".")
 			issuperUV = 0
 		else
 			to_chat(user, "You crank the dial all the way up to \"15nm\".")
 			issuperUV = 1
-		return
 
 
 /obj/machinery/suit_storage_unit/proc/togglesafeties(mob/user as mob)
+<<<<<<< HEAD
 	if(!panelopen) //Needed check due to bugs
 		return
 
 	else
+=======
+	if(panelopen)
+>>>>>>> d3ef2db8b43... Merge pull request #8384 from Atermonera/cynosure_map
 		to_chat(user, "You push the button. The coloured LED next to it changes.")
 		safetieson = !safetieson
 
 
 /obj/machinery/suit_storage_unit/proc/dispense_helmet(mob/user as mob)
-	if(!HELMET)
-		return //Do I even need this sanity check? Nyoro~n
-	else
-		HELMET.loc = src.loc
-		HELMET = null
-		return
+	if(helmet)
+		helmet.loc = src.loc
+		helmet = null
 
 
 /obj/machinery/suit_storage_unit/proc/dispense_suit(mob/user as mob)
-	if(!SUIT)
+	if(!suit)
 		return
 	else
-		SUIT.loc = src.loc
-		SUIT = null
+		suit.loc = src.loc
+		suit = null
 		return
 
 
 /obj/machinery/suit_storage_unit/proc/dispense_mask(mob/user as mob)
-	if(!MASK)
+	if(!mask)
 		return
 	else
-		MASK.loc = src.loc
-		MASK = null
+		mask.loc = src.loc
+		mask = null
 		return
 
 
 /obj/machinery/suit_storage_unit/proc/dump_everything()
 	islocked = 0 //locks go free
-	if(SUIT)
-		SUIT.loc = src.loc
-		SUIT = null
-	if(HELMET)
-		HELMET.loc = src.loc
-		HELMET = null
-	if(MASK)
-		MASK.loc = src.loc
-		MASK = null
-	if(OCCUPANT)
-		eject_occupant(OCCUPANT)
+	if(suit)
+		suit.loc = src.loc
+		suit = null
+	if(helmet)
+		helmet.loc = src.loc
+		helmet = null
+	if(mask)
+		mask.loc = src.loc
+		mask = null
+	if(occupant)
+		eject_occupant(occupant)
 	return
 
 
@@ -238,7 +262,7 @@
 	if(islocked || isUV)
 		to_chat(user, "<font color='red'>Unable to open unit.</font>")
 		return
-	if(OCCUPANT)
+	if(occupant)
 		eject_occupant(user)
 		return  // eject_occupant opens the door, so we need to return
 	isopen = !isopen
@@ -246,7 +270,7 @@
 
 
 /obj/machinery/suit_storage_unit/proc/toggle_lock(mob/user as mob)
-	if(OCCUPANT && safetieson)
+	if(occupant && safetieson)
 		to_chat(user, "<font color='red'>The Unit's safety protocols disallow locking when a biological form is detected inside its compartments.</font>")
 		return
 	if(isopen)
@@ -258,16 +282,16 @@
 /obj/machinery/suit_storage_unit/proc/start_UV(mob/user as mob)
 	if(isUV || isopen) //I'm bored of all these sanity checks
 		return
-	if(OCCUPANT && safetieson)
+	if(occupant && safetieson)
 		to_chat(user, "<font color='red'><B>WARNING:</B> Biological entity detected in the confines of the Unit's storage. Cannot initiate cycle.</font>")
 		return
-	if(!HELMET && !MASK && !SUIT && !OCCUPANT) //shit's empty yo
+	if(!helmet && !mask && !suit && !occupant) //shit's empty yo
 		to_chat(user, "<font color='red'>Unit storage bays empty. Nothing to disinfect -- Aborting.</font>")
 		return
 	to_chat(user, "You start the Unit's cauterisation cycle.")
 	cycletime_left = 20
 	isUV = 1
-	if(OCCUPANT && !islocked)
+	if(occupant && !islocked)
 		islocked = 1 //Let's lock it for good measure
 	update_icon()
 	updateUsrDialog()
@@ -275,43 +299,70 @@
 	var/i //our counter
 	for(i=0,i<4,i++)
 		sleep(50)
-		if(OCCUPANT)
-			OCCUPANT.apply_effect(50, IRRADIATE)
-			var/obj/item/organ/internal/diona/nutrients/rad_organ = locate() in OCCUPANT.internal_organs
+		if(occupant)
+			occupant.apply_effect(50, IRRADIATE)
+			var/obj/item/organ/internal/diona/nutrients/rad_organ = locate() in occupant.internal_organs
 			if(!rad_organ)
-				if(OCCUPANT.can_feel_pain())
-					OCCUPANT.emote("scream")
+				if(occupant.can_feel_pain())
+					occupant.emote("scream")
 				if(issuperUV)
 					var/burndamage = rand(28,35)
-					OCCUPANT.take_organ_damage(0,burndamage)
+					occupant.take_organ_damage(0,burndamage)
 				else
 					var/burndamage = rand(6,10)
-					OCCUPANT.take_organ_damage(0,burndamage)
+					occupant.take_organ_damage(0,burndamage)
 		if(i==3) //End of the cycle
 			if(!issuperUV)
-				if(HELMET)
-					HELMET.clean_blood()
-				if(SUIT)
-					SUIT.clean_blood()
-				if(MASK)
-					MASK.clean_blood()
+				if(helmet)
+					helmet.clean_blood()
+				if(suit)
+					suit.clean_blood()
+				if(mask)
+					mask.clean_blood()
 			else //It was supercycling, destroy everything
-				if(HELMET)
-					HELMET = null
-				if(SUIT)
-					SUIT = null
-				if(MASK)
-					MASK = null
+				if(helmet)
+					helmet = null
+				if(suit)
+					suit = null
+				if(mask)
+					mask = null
 				visible_message("<font color='red'>With a loud whining noise, the Suit Storage Unit's door grinds open. Puffs of ashen smoke come out of its chamber.</font>", 3)
 				isbroken = 1
 				isopen = 1
 				islocked = 0
-				eject_occupant(OCCUPANT) //Mixing up these two lines causes bug. DO NOT DO IT.
+				eject_occupant(occupant) //Mixing up these two lines causes bug. DO NOT DO IT.
 			isUV = 0 //Cycle ends
 	update_icon()
 	updateUsrDialog()
 	return
 
+<<<<<<< HEAD
+=======
+/*	spawn(200) //Let's clean dat shit after 20 secs  //Eh, this doesn't work
+		if(helmet)
+			helmet.clean_blood()
+		if(suit)
+			suit.clean_blood()
+		if(mask)
+			mask.clean_blood()
+		isUV = 0 //Cycle ends
+		update_icon()
+		updateUsrDialog()
+
+	var/i
+	for(i=0,i<4,i++) //Gradually give the guy inside some damaged based on the intensity
+		spawn(50)
+			if(occupant)
+				if(issuperUV)
+					occupant.take_organ_damage(0,40)
+					to_chat(user, "Test. You gave him 40 damage")
+				else
+					occupant.take_organ_damage(0,8)
+					to_chat(user, "Test. You gave him 8 damage")
+	return*/
+
+
+>>>>>>> d3ef2db8b43... Merge pull request #8384 from Atermonera/cynosure_map
 /obj/machinery/suit_storage_unit/proc/cycletimeleft()
 	if(cycletime_left >= 1)
 		cycletime_left--
@@ -322,19 +373,19 @@
 	if(islocked)
 		return
 
-	if(!OCCUPANT)
+	if(!occupant)
 		return
 
-	if(OCCUPANT.client)
-		if(user != OCCUPANT)
-			to_chat(OCCUPANT, "<font color='blue'>The machine kicks you out!</font>")
+	if(occupant.client)
+		if(user != occupant)
+			to_chat(occupant, "<font color='blue'>The machine kicks you out!</font>")
 		if(user.loc != src.loc)
-			to_chat(OCCUPANT, "<font color='blue'>You leave the not-so-cozy confines of the SSU.</font>")
+			to_chat(occupant, "<font color='blue'>You leave the not-so-cozy confines of the SSU.</font>")
 
-		OCCUPANT.client.eye = OCCUPANT.client.mob
-		OCCUPANT.client.perspective = MOB_PERSPECTIVE
-	OCCUPANT.loc = src.loc
-	OCCUPANT = null
+		occupant.client.eye = occupant.client.mob
+		occupant.client.perspective = MOB_PERSPECTIVE
+	occupant.loc = src.loc
+	occupant = null
 	if(!isopen)
 		isopen = 1
 	update_icon()
@@ -368,7 +419,7 @@
 	if(!ispowered || isbroken)
 		to_chat(usr, "<font color='red'>The unit is not operational.</font>")
 		return
-	if((OCCUPANT) || (HELMET) || (SUIT))
+	if((occupant) || (helmet) || (suit))
 		to_chat(usr, "<font color='red'>It's too cluttered inside for you to fit in!</font>")
 		return
 	visible_message("[usr] starts squeezing into the suit storage unit!", 3)
@@ -377,7 +428,12 @@
 		usr.client.perspective = EYE_PERSPECTIVE
 		usr.client.eye = src
 		usr.loc = src
+<<<<<<< HEAD
 		OCCUPANT = usr
+=======
+//		usr.metabslow = 1
+		occupant = usr
+>>>>>>> d3ef2db8b43... Merge pull request #8384 from Atermonera/cynosure_map
 		isopen = 0 //Close the thing after the guy gets inside
 		update_icon()
 
@@ -385,14 +441,14 @@
 		updateUsrDialog()
 		return
 	else
-		OCCUPANT = null //Testing this as a backup sanity test
+		occupant = null //Testing this as a backup sanity test
 	return
 
 
 /obj/machinery/suit_storage_unit/attackby(obj/item/I as obj, mob/user as mob)
 	if(!ispowered)
 		return
-	if(I.is_screwdriver())
+	if(I.get_tool_quality(TOOL_SCREWDRIVER))
 		panelopen = !panelopen
 		playsound(src, I.usesound, 100, 1)
 		to_chat(user, "<font color='blue'>You [panelopen ? "open up" : "close"] the unit's maintenance panel.</font>")
@@ -408,7 +464,7 @@
 		if(!ispowered || isbroken)
 			to_chat(user, "<font color='red'>The unit is not operational.</font>")
 			return
-		if((OCCUPANT) || (HELMET) || (SUIT)) //Unit needs to be absolutely empty
+		if((occupant) || (helmet) || (suit)) //Unit needs to be absolutely empty
 			to_chat(user, "<font color='red'>The unit's storage area is too cluttered.</font>")
 			return
 		visible_message("[user] starts putting [G.affecting.name] into the Suit Storage Unit.", 3)
@@ -419,7 +475,7 @@
 				M.client.perspective = EYE_PERSPECTIVE
 				M.client.eye = src
 			M.loc = src
-			OCCUPANT = M
+			occupant = M
 			isopen = 0 //close ittt
 
 			add_fingerprint(user)
@@ -432,13 +488,13 @@
 		if(!isopen)
 			return
 		var/obj/item/clothing/suit/space/S = I
-		if(SUIT)
+		if(suit)
 			to_chat(user, "<font color='blue'>The unit already contains a suit.</font>")
 			return
 		to_chat(user, "You load the [S.name] into the storage compartment.")
 		user.drop_item()
 		S.loc = src
-		SUIT = S
+		suit = S
 		update_icon()
 		updateUsrDialog()
 		return
@@ -446,13 +502,13 @@
 		if(!isopen)
 			return
 		var/obj/item/clothing/head/helmet/H = I
-		if(HELMET)
+		if(helmet)
 			to_chat(user, "<font color='blue'>The unit already contains a helmet.</font>")
 			return
 		to_chat(user, "You load the [H.name] into the storage compartment.")
 		user.drop_item()
 		H.loc = src
-		HELMET = H
+		helmet = H
 		update_icon()
 		updateUsrDialog()
 		return
@@ -460,13 +516,13 @@
 		if(!isopen)
 			return
 		var/obj/item/clothing/mask/M = I
-		if(MASK)
+		if(mask)
 			to_chat(user, "<font color='blue'>The unit already contains a mask.</font>")
 			return
 		to_chat(user, "You load the [M.name] into the storage compartment.")
 		user.drop_item()
 		M.loc = src
-		MASK = M
+		mask = M
 		update_icon()
 		updateUsrDialog()
 		return
@@ -729,7 +785,7 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 			return
 
 	//Hacking init.
-	if(istype(I, /obj/item/device/multitool) || I.is_wirecutter())
+	if(I.get_tool_quality(TOOL_MULTITOOL) || I.get_tool_quality(TOOL_WIRECUTTER))
 		if(panel_open)
 			attack_hand(user)
 		return
@@ -765,7 +821,7 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 			updateUsrDialog()
 
 			return
-	else if(I.is_screwdriver())
+	else if(I.get_tool_quality(TOOL_SCREWDRIVER))
 
 		panel_open = !panel_open
 		playsound(src, I.usesound, 50, 1)

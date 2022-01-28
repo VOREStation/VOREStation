@@ -22,7 +22,11 @@
 
 	while(count > 0)
 		var/obj/item/stack/S = I.get_product(get_turf(src), count)
+<<<<<<< HEAD
 		count -= S.get_amount()
+=======
+		count -= S.amount
+>>>>>>> d3ef2db8b43... Merge pull request #8384 from Atermonera/cynosure_map
 	SStgui.update_uis(src)
 
 /obj/machinery/smartfridge/sheets/find_record(var/obj/item/O)

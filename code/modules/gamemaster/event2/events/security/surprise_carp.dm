@@ -6,6 +6,7 @@
 	chaos = 20
 	chaotic_threshold = EVENT_CHAOS_THRESHOLD_MEDIUM_IMPACT
 	event_type = /datum/event2/event/surprise_carp
+	regions = list(EVENT_REGION_SPACESTATION, EVENT_REGION_DEEPSPACE)
 
 /datum/event2/meta/surprise_carp/get_weight()
 	return metric.count_all_space_mobs() * 50

@@ -20,7 +20,7 @@
 
 	for(var/turf/simulated/floor/F in view(2, T))
 		spawn()
-			var/obj/effect/effect/water/splash = new(T)
+			var/obj/effect/vfx/water/splash = new(T)
 			splash.create_reagents(15)
 			splash.reagents.add_reagent("blood", 10,list("blood_colour" = color))
 			splash.set_color()

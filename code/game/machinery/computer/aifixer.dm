@@ -15,7 +15,7 @@
 	var/restoring = FALSE
 
 /obj/machinery/computer/aifixer/attackby(obj/item/I, mob/living/user)
-	if(I.is_screwdriver())
+	if(I.get_tool_quality(TOOL_SCREWDRIVER))
 		if(occupier)
 			if(stat & (NOPOWER|BROKEN))
 				to_chat(user, "<span class='warning'>The screws on [name]'s screen won't budge.</span>")

@@ -5,6 +5,7 @@
 	chaos = 30
 	chaotic_threshold = EVENT_CHAOS_THRESHOLD_MEDIUM_IMPACT
 	event_type = /datum/event2/event/mob_spawning/carp_migration
+	regions = list(EVENT_REGION_SPACESTATION, EVENT_REGION_DEEPSPACE)
 
 /datum/event2/meta/carp_migration/get_weight()
 	return 10 + (metric.count_people_in_department(DEPARTMENT_SECURITY) * 20) + (metric.count_all_space_mobs() * 40)

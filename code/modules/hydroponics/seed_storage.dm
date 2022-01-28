@@ -402,18 +402,23 @@
 		else
 			to_chat(user, "<span class='notice'>There are no seeds in \the [O.name].</span>")
 		return
-	else if(O.is_wrench())
+	else if(O.get_tool_quality(TOOL_WRENCH))
 		playsound(src, O.usesound, 50, 1)
 		anchored = !anchored
 		to_chat(user, "You [anchored ? "wrench" : "unwrench"] \the [src].")
-	else if(O.is_screwdriver())
+	else if(O.get_tool_quality(TOOL_SCREWDRIVER))
 		panel_open = !panel_open
 		to_chat(user, "You [panel_open ? "open" : "close"] the maintenance panel.")
 		playsound(src, O.usesound, 50, 1)
 		cut_overlays()
 		if(panel_open)
+<<<<<<< HEAD
 			add_overlay("[initial(icon_state)]-panel")
 	else if((O.is_wirecutter() || istype(O, /obj/item/device/multitool)) && panel_open)
+=======
+			overlays += image(icon, "[initial(icon_state)]-panel")
+	else if((O.get_tool_quality(TOOL_WIRECUTTER) || O.get_tool_quality(TOOL_MULTITOOL)) && panel_open)
+>>>>>>> d3ef2db8b43... Merge pull request #8384 from Atermonera/cynosure_map
 		wires.Interact(user)
 
 /obj/machinery/seed_storage/emag_act(var/remaining_charges, var/mob/user)
@@ -426,7 +431,7 @@
 			req_access = list()
 			req_one_access = list()
 			to_chat(user, "<span class='warning'>\The [src]'s access mechanism shorts out.</span>")
-			var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
+			var/datum/effect_system/spark_spread/sparks = new /datum/effect_system/spark_spread()
 			sparks.set_up(3, 0, get_turf(src))
 			sparks.start()
 			visible_message("<span class='warning'>\The [src]'s panel sparks!</span>")

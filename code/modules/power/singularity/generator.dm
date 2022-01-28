@@ -17,7 +17,7 @@
 		if(src) qdel(src)
 
 /obj/machinery/the_singularitygen/attackby(obj/item/W, mob/user)
-	if(W.is_wrench())
+	if(W.get_tool_quality(TOOL_WRENCH))
 		anchored = !anchored
 		playsound(src, W.usesound, 75, 1)
 		if(anchored)
@@ -29,13 +29,13 @@
 				"You unsecure the [src.name] from the floor.", \
 				"You hear a ratchet.")
 		return
-	if(W.is_screwdriver())
+	if(W.get_tool_quality(TOOL_SCREWDRIVER))
 		panel_open = !panel_open
 		playsound(src, W.usesound, 50, 1)
 		visible_message("<b>\The [user]</b> adjusts \the [src]'s mechanisms.")
 		if(panel_open && do_after(user, 30))
 			to_chat(user, "<span class='notice'>\The [src] looks like it could be modified.</span>")
-			if(panel_open && do_after(user, 80 * W.toolspeed))	// We don't have skills, so a delayed hint for engineers will have to do for now. (Panel open check for sanity)
+			if(panel_open && do_after(user, 80 * W.get_tool_speed(TOOL_SCREWDRIVER)))	// We don't have skills, so a delayed hint for engineers will have to do for now. (Panel open check for sanity)
 				playsound(src, W.usesound, 50, 1)
 				to_chat(user, "<span class='cult'>\The [src] looks like it could be adapted to forge advanced materials via particle acceleration, somehow..</span>")
 		else

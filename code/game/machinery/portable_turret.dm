@@ -89,7 +89,7 @@
 	var/shot_sound 				//what sound should play when the turret fires
 	var/lethal_shot_sound		//what sound should play when the emagged turret fires
 
-	var/datum/effect/effect/system/spark_spread/spark_system	//the spark system, used for generating... sparks?
+	var/datum/effect_system/spark_spread/spark_system	//the spark system, used for generating... sparks?
 
 	var/wrenching = FALSE
 	var/last_target			//last target fired at, prevents turrets from erratically firing at all valid targets in range
@@ -279,7 +279,7 @@
 
 /obj/machinery/porta_turret/Initialize()
 	//Sets up a spark system
-	spark_system = new /datum/effect/effect/system/spark_spread
+	spark_system = new /datum/effect_system/spark_spread
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 
@@ -487,7 +487,7 @@
 
 /obj/machinery/porta_turret/attackby(obj/item/I, mob/user)
 	if(stat & BROKEN)
-		if(I.is_crowbar())
+		if(I.get_tool_quality(TOOL_CROWBAR))
 			//If the turret is destroyed, you can remove it with a crowbar to
 			//try and salvage its components
 			to_chat(user, "<span class='notice'>You begin prying the metal coverings off.</span>")
@@ -506,7 +506,7 @@
 					to_chat(user, "<span class='notice'>You remove the turret but did not manage to salvage anything.</span>")
 				qdel(src) // qdel
 
-	else if(I.is_wrench())
+	else if(I.get_tool_quality(TOOL_WRENCH))
 		if(enabled || raised)
 			to_chat(user, "<span class='warning'>You cannot unsecure an active turret!</span>")
 			return
@@ -523,18 +523,12 @@
 			)
 
 		wrenching = TRUE
-		if(do_after(user, 50 * I.toolspeed))
+		if(do_after(user, 50 * I.get_tool_speed(TOOL_WRENCH)))
 			//This code handles moving the turret around. After all, it's a portable turret!
-			if(!anchored)
-				playsound(src, I.usesound, 100, 1)
-				anchored = TRUE
-				update_icon()
-				to_chat(user, "<span class='notice'>You secure the exterior bolts on the turret.</span>")
-			else if(anchored)
-				playsound(src, I.usesound, 100, 1)
-				anchored = FALSE
-				to_chat(user, "<span class='notice'>You unsecure the exterior bolts on the turret.</span>")
-				update_icon()
+			playsound(src, I.usesound, 100, 1)
+			update_icon()
+			anchored = !anchored
+			to_chat(user, "<span class='notice'>You [anchored ? "" : "un"]secure the exterior bolts on the turret.</span>")
 		wrenching = FALSE
 
 	else if(istype(I, /obj/item/weapon/card/id)||istype(I, /obj/item/device/pda))
@@ -944,14 +938,14 @@
 	//this is a bit unwieldy but self-explanatory
 	switch(build_step)
 		if(0)	//first step
-			if(I.is_wrench() && !anchored)
+			if(I.get_tool_quality(TOOL_WRENCH) && !anchored)
 				playsound(src, I.usesound, 100, 1)
 				to_chat(user, "<span class='notice'>You secure the external bolts.</span>")
 				anchored = TRUE
 				build_step = 1
 				return
 
-			else if(I.is_crowbar() && !anchored)
+			else if(I.get_tool_quality(TOOL_CROWBAR) && !anchored)
 				playsound(src, I.usesound, 75, 1)
 				to_chat(user, "<span class='notice'>You dismantle the turret construction.</span>")
 				new /obj/item/stack/material/steel(loc, 5)
@@ -969,7 +963,7 @@
 					to_chat(user, "<span class='warning'>You need two sheets of metal to continue construction.</span>")
 				return
 
-			else if(I.is_wrench())
+			else if(I.get_tool_quality(TOOL_WRENCH))
 				playsound(src, I.usesound, 75, 1)
 				to_chat(user, "<span class='notice'>You unfasten the external bolts.</span>")
 				anchored = FALSE
@@ -977,13 +971,13 @@
 				return
 
 		if(2)
-			if(I.is_wrench())
+			if(I.get_tool_quality(TOOL_WRENCH))
 				playsound(src, I.usesound, 100, 1)
 				to_chat(user, "<span class='notice'>You bolt the metal armor into place.</span>")
 				build_step = 3
 				return
 
-			else if(istype(I, /obj/item/weapon/weldingtool))
+			else if(I.get_tool_quality(TOOL_WELDER))
 				var/obj/item/weapon/weldingtool/WT = I
 				if(!WT.isOn())
 					return
@@ -992,7 +986,7 @@
 					return
 
 				playsound(src, I.usesound, 50, 1)
-				if(do_after(user, 20 * I.toolspeed))
+				if(do_after(user, 20 * I.get_tool_speed(TOOL_WELDER)))
 					if(!src || !WT.remove_fuel(5, user)) return
 					build_step = 1
 					to_chat(user, "You remove the turret's interior metal armor.")
@@ -1017,7 +1011,7 @@
 				qdel(I) //delete the gun :(
 				return
 
-			else if(I.is_wrench())
+			else if(I.get_tool_quality(TOOL_WRENCH))
 				playsound(src, I.usesound, 100, 1)
 				to_chat(user, "<span class='notice'>You remove the turret's metal armor bolts.</span>")
 				build_step = 2
@@ -1036,7 +1030,7 @@
 			//attack_hand() removes the gun
 
 		if(5)
-			if(I.is_screwdriver())
+			if(I.get_tool_quality(TOOL_SCREWDRIVER))
 				playsound(src, I.usesound, 100, 1)
 				build_step = 6
 				to_chat(user, "<span class='notice'>You close the internal access hatch.</span>")
@@ -1054,21 +1048,21 @@
 					to_chat(user, "<span class='warning'>You need two sheets of metal to continue construction.</span>")
 				return
 
-			else if(I.is_screwdriver())
+			else if(I.get_tool_quality(TOOL_SCREWDRIVER))
 				playsound(src, I.usesound, 100, 1)
 				build_step = 5
 				to_chat(user, "<span class='notice'>You open the internal access hatch.</span>")
 				return
 
 		if(7)
-			if(istype(I, /obj/item/weapon/weldingtool))
+			if(I.get_tool_quality(TOOL_WELDER))
 				var/obj/item/weapon/weldingtool/WT = I
 				if(!WT.isOn()) return
 				if(WT.get_fuel() < 5)
 					to_chat(user, "<span class='notice'>You need more fuel to complete this task.</span>")
 
 				playsound(src, WT.usesound, 50, 1)
-				if(do_after(user, 30 * WT.toolspeed))
+				if(do_after(user, 30 * WT.get_tool_speed(TOOL_WELDER)))
 					if(!src || !WT.remove_fuel(5, user))
 						return
 					build_step = 8
@@ -1084,7 +1078,7 @@
 
 					qdel(src) // qdel
 
-			else if(I.is_crowbar())
+			else if(I.get_tool_quality(TOOL_CROWBAR))
 				playsound(src, I.usesound, 75, 1)
 				to_chat(user, "<span class='notice'>You pry off the turret's exterior armor.</span>")
 				new /obj/item/stack/material/steel(loc, 2)

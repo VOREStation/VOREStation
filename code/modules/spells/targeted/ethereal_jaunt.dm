@@ -64,7 +64,7 @@
 	flick("reappear",animation)
 
 /spell/targeted/ethereal_jaunt/proc/jaunt_steam(var/mobloc)
-	var/datum/effect/effect/system/steam_spread/steam = new /datum/effect/effect/system/steam_spread()
+	var/datum/effect_system/steam_spread/steam = new /datum/effect_system/steam_spread()
 	steam.set_up(10, 0, mobloc)
 	steam.start()
 

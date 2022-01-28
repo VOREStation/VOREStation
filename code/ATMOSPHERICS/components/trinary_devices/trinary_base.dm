@@ -52,8 +52,9 @@
 		update_icon()
 
 /obj/machinery/atmospherics/trinary/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if (!W.is_wrench())
+	if (!W.get_tool_quality(TOOL_WRENCH))
 		return ..()
+<<<<<<< HEAD
 	if(!can_unwrench())
 		to_chat(user, "<span class='warning'>You cannot unwrench \the [src], it too exerted due to internal pressure.</span>")
 		add_fingerprint(user)
@@ -66,6 +67,9 @@
 			"<span class='notice'>You have unfastened \the [src].</span>", \
 			"You hear a ratchet.")
 		deconstruct()
+=======
+	return default_deconstruction_wrench(user, W)
+>>>>>>> d3ef2db8b43... Merge pull request #8384 from Atermonera/cynosure_map
 
 // Housekeeping and pipe network stuff below
 /obj/machinery/atmospherics/trinary/get_neighbor_nodes_for_init()

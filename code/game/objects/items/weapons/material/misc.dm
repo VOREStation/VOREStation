@@ -23,7 +23,24 @@
 	applies_material_colour = 0
 	drop_sound = 'sound/items/drop/axe.ogg'
 	pickup_sound = 'sound/items/pickup/axe.ogg'
+	tool_qualities = list(TOOL_WOODCUT = TOOL_QUALITY_STANDARD, TOOL_KNIFE = TOOL_QUALITY_STANDARD)
 
+<<<<<<< HEAD
+=======
+/obj/item/weapon/material/knife/machete/hatchet/stone
+	name = "sharp rock"
+	desc = "The secret is to bang the rocks together, guys."
+	force_divisor = 0.2
+	icon_state = "rock"
+	item_state = "rock"
+	attack_verb = list("chopped", "torn", "cut")
+	tool_qualities = list(TOOL_WOODCUT = TOOL_QUALITY_POOR, TOOL_KNIFE = TOOL_QUALITY_POOR)
+
+/obj/item/weapon/material/knife/machete/hatchet/stone/set_material(var/new_material)
+	var/old_name = name
+	. = ..()
+	name = old_name
+>>>>>>> d3ef2db8b43... Merge pull request #8384 from Atermonera/cynosure_map
 /obj/item/weapon/material/knife/machete/hatchet/unathiknife
 	name = "duelling knife"
 	desc = "A length of leather-bound wood studded with razor-sharp teeth. How crude."
@@ -32,6 +49,7 @@
 	attack_verb = list("ripped", "torn", "cut")
 	can_cleave = FALSE
 	var/hits = 0
+	tool_qualities = list(TOOL_WOODCUT = TOOL_QUALITY_POOR, TOOL_KNIFE = TOOL_QUALITY_POOR)
 
 /obj/item/weapon/material/knife/machete/hatchet/unathiknife/attack(mob/M as mob, mob/user as mob)
 	if(hits > 0)

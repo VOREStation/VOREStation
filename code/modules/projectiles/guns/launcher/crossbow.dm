@@ -166,7 +166,7 @@
 		else
 			to_chat(user, "<span class='notice'>[src] already has a cell installed.</span>")
 
-	else if(W.is_screwdriver())
+	else if(W.get_tool_quality(TOOL_SCREWDRIVER))
 		if(cell)
 			var/obj/item/C = cell
 			C.loc = get_turf(user)
@@ -274,7 +274,7 @@
 			else
 				to_chat(user, "<span class='notice'>You need at least three plastic sheets to complete this task.</span>")
 			return
-	else if(W.is_screwdriver())
+	else if(W.get_tool_quality(TOOL_SCREWDRIVER))
 		if(buildstate == 5)
 			to_chat(user, "<span class='notice'>You secure the crossbow's various parts.</span>")
 			playsound(src, W.usesound, 50, 1)

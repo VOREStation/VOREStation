@@ -108,11 +108,11 @@
 		return
 	if(default_deconstruction_crowbar(user, W))
 		return
-	if(W.is_wirecutter())
+	if(W.get_tool_quality(TOOL_WIRECUTTER))
 		return wires.Interact(user)
 	if(istype(W, /obj/item/device/multitool))
 		return wires.Interact(user)
-	if(W.is_wrench())
+	if(W.get_tool_quality(TOOL_WRENCH))
 		if(playing)
 			StopPlaying()
 		user.visible_message("<span class='warning'>[user] has [anchored ? "un" : ""]secured \the [src].</span>", "<span class='notice'>You [anchored ? "un" : ""]secure \the [src].</span>")
@@ -256,7 +256,7 @@
 
 	explosion(src.loc, 0, 0, 1, rand(1,2), 1)
 
-	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
 
@@ -270,7 +270,7 @@
 		return
 	if(default_deconstruction_crowbar(user, W))
 		return
-	if(W.is_wrench())
+	if(W.get_tool_quality(TOOL_WRENCH))
 		if(playing)
 			StopPlaying()
 		user.visible_message("<span class='warning'>[user] has [anchored ? "un" : ""]secured \the [src].</span>", "<span class='notice'>You [anchored ? "un" : ""]secure \the [src].</span>")

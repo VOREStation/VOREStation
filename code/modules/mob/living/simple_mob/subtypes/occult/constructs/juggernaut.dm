@@ -64,7 +64,7 @@
 			if(!(P.damage_type == BRUTE || P.damage_type == BURN))
 				projectile_dam_type = BRUTE
 				incoming_damage = round(incoming_damage / 4) //Damage from strange sources is converted to brute for physical projectiles, though severely decreased.
-			apply_damage(incoming_damage, projectile_dam_type, null, armorcheck, soakedcheck, is_sharp(P), has_edge(P), P)
+			apply_damage(incoming_damage, projectile_dam_type, null, armorcheck, soakedcheck, P.sharp, P.edge, P)
 			return -1 //Doesn't reflect non-beams or non-energy projectiles. They just smack and drop with little to no effect.
 		else
 			visible_message("<span class='danger'>The [P.name] gets reflected by [src]'s shell!</span>", \
@@ -74,7 +74,7 @@
 			if(!(P.damage_type == BRUTE || P.damage_type == BURN))
 				projectile_dam_type = BURN
 				incoming_damage = round(incoming_damage / 4) //Damage from strange sources is converted to burn for energy-type projectiles, though severely decreased.
-			apply_damage(incoming_damage, P.damage_type, null, armorcheck, soakedcheck, is_sharp(P), has_edge(P), P)
+			apply_damage(incoming_damage, P.damage_type, null, armorcheck, soakedcheck, P.sharp, P.edge, P)
 
 		// Find a turf near or on the original location to bounce to
 		if(P.starting)

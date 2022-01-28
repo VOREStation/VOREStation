@@ -59,7 +59,7 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/ranged/kiting/threatening
 	say_list_type = /datum/say_list/malf_drone
 
-	var/datum/effect/effect/system/ion_trail_follow/ion_trail = null
+	var/datum/effect_system/ion_trail_follow/ion_trail = null
 	var/obj/item/shield_projector/shields = null
 
 /mob/living/simple_mob/mechanical/combat_drone/melee

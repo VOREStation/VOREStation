@@ -4,6 +4,7 @@
 	chaos = 10 // There's a really rare chance of vines getting something awful like phoron atmosphere but thats not really controllable.
 	chaotic_threshold = EVENT_CHAOS_THRESHOLD_MEDIUM_IMPACT
 	event_type = /datum/event2/event/spacevine
+	regions = list(EVENT_REGION_PLAYER_MAIN_AREA)
 
 /datum/event2/meta/spacevine/get_weight()
 	return 20 + (metric.count_people_in_department(DEPARTMENT_ENGINEERING) * 10) + (metric.count_people_in_department(DEPARTMENT_EVERYONE) * 5)

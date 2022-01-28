@@ -116,11 +116,11 @@
 		user.drop_item()
 		qdel(W)
 		return
-	else if(W.is_wrench())
+	else if(W.get_tool_quality(TOOL_WRENCH))
 		if (unwrenched==0)
 			playsound(src, W.usesound, 50, 1)
 			to_chat(user, "<span class='notice'>You begin to unfasten \the [src] from the floor...</span>")
-			if (do_after(user, 40 * W.toolspeed))
+			if (do_after(user, 40 * W.get_tool_speed(TOOL_WRENCH)))
 				user.visible_message( \
 					"<span class='notice'>[user] unfastens \the [src].</span>", \
 					"<span class='notice'>You have unfastened \the [src]. Now it can be pulled somewhere else.</span>", \
@@ -133,7 +133,7 @@
 		else /*if (unwrenched==1)*/
 			playsound(src, W.usesound, 50, 1)
 			to_chat(user, "<span class='notice'>You begin to fasten \the [src] to the floor...</span>")
-			if (do_after(user, 20 * W.toolspeed))
+			if (do_after(user, 20 * W.get_tool_speed(TOOL_WRENCH)))
 				user.visible_message( \
 					"<span class='notice'>[user] fastens \the [src].</span>", \
 					"<span class='notice'>You have fastened \the [src]. Now it can dispense pipes.</span>", \

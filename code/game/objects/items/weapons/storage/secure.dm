@@ -36,15 +36,15 @@
 /obj/item/weapon/storage/secure/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(locked)
 		if (istype(W, /obj/item/weapon/melee/energy/blade) && emag_act(INFINITY, user, "You slice through the lock of \the [src]"))
-			var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
+			var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread()
 			spark_system.set_up(5, 0, src.loc)
 			spark_system.start()
 			playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
 			playsound(src, "sparks", 50, 1)
 			return
 
-		if (W.is_screwdriver())
-			if (do_after(user, 20 * W.toolspeed))
+		if (W.get_tool_quality(TOOL_SCREWDRIVER))
+			if (do_after(user, 20 * W.get_tool_speed(TOOL_SCREWDRIVER)))
 				src.open =! src.open
 				playsound(src, W.usesound, 50, 1)
 				user.show_message(text("<span class='notice'>You [] the service panel.</span>", (src.open ? "open" : "close")))

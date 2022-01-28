@@ -132,7 +132,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	return TRUE
 
 /obj/machinery/photocopier/faxmachine/attackby(obj/item/O as obj, mob/user as mob)
-	if(O.is_multitool() && panel_open)
+	if(O.get_tool_quality(TOOL_MULTITOOL) && panel_open)
 		var/input = sanitize(input(usr, "What Department ID would you like to give this fax machine?", "Multitool-Fax Machine Interface", department))
 		if(!input)
 			to_chat(usr, "No input found. Please hang up and try your call again.")

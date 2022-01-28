@@ -22,8 +22,13 @@
 			damage *= B.overmind.blob_type.burn_multiplier
 		B.adjust_integrity(-damage)
 
+<<<<<<< HEAD
 	new/obj/effect/effect/sparks(src.loc)
 	new/obj/effect/effect/smoke/illumination(src.loc, 5, range=30, power=30, color="#FFFFFF")
+=======
+	new /obj/effect/vfx/sparks(src.loc)
+	new /obj/effect/vfx/smoke/illumination(src.loc, 5, 30, 30, "#FFFFFF")
+>>>>>>> d3ef2db8b43... Merge pull request #8384 from Atermonera/cynosure_map
 
 	qdel(src)
 

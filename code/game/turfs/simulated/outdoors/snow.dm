@@ -27,9 +27,9 @@
 		add_overlay(image(icon = 'icons/turf/outdoors.dmi', icon_state = "snow_footprints", dir = text2num(d)))
 
 /turf/simulated/floor/outdoors/snow/attackby(var/obj/item/W, var/mob/user)
-	if(istype(W, /obj/item/weapon/shovel))
+	if(W.get_tool_quality(TOOL_SHOVEL))
 		to_chat(user, "<span class='notice'>You begin to remove \the [src] with your [W].</span>")
-		if(do_after(user, 4 SECONDS * W.toolspeed))
+		if(do_after(user, 4 SECONDS * W.get_tool_speed(TOOL_SHOVEL)))
 			to_chat(user, "<span class='notice'>\The [src] has been dug up, and now lies in a pile nearby.</span>")
 			new /obj/item/stack/material/snow(src, 10)
 			demote()

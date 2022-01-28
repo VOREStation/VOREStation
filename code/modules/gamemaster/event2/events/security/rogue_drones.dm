@@ -4,6 +4,7 @@
 	chaos = 40
 	chaotic_threshold = EVENT_CHAOS_THRESHOLD_MEDIUM_IMPACT
 	event_type = /datum/event2/event/mob_spawning/rogue_drones
+	regions = list(EVENT_REGION_SPACESTATION, EVENT_REGION_DEEPSPACE)
 
 /datum/event2/meta/rogue_drones/get_weight()
 	. = 10 // Start with a base weight, since this event does provide some value even if no sec is around.
@@ -55,7 +56,7 @@
 	if(drones_to_spawn)
 		var/number_recovered = 0
 		for(var/mob/living/simple_mob/mechanical/combat_drone/D in spawned_mobs)
-			var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
+			var/datum/effect_system/spark_spread/sparks = new /datum/effect_system/spark_spread()
 			sparks.set_up(3, 0, D.loc)
 			sparks.start()
 			D.z = using_map.admin_levels[1]

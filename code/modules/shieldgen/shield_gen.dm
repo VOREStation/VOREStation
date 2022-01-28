@@ -53,7 +53,7 @@
 		to_chat(user, "Controls are now [src.locked ? "locked." : "unlocked."]")
 		. = 1
 		updateDialog()
-	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(5, 1, src)
 	s.start()
 
@@ -66,7 +66,7 @@
 			updateDialog()
 		else
 			to_chat(user, "<font color='red'>Access denied.</font>")
-	else if(W.is_wrench())
+	else if(W.get_tool_quality(TOOL_WRENCH))
 		src.anchored = !src.anchored
 		playsound(src, W.usesound, 75, 1)
 		src.visible_message("<font color='blue'>[bicon(src)] [src] has been [anchored?"bolted to the floor":"unbolted from the floor"] by [user].</font>")

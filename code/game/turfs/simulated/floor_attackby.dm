@@ -9,12 +9,17 @@
 			attack_tile(C, L) // Be on help intent if you want to decon something.
 			return
 
+<<<<<<< HEAD
 	if(!(C.has_tool_quality(TOOL_SCREWDRIVER) && flooring && (flooring.flags & TURF_REMOVE_SCREWDRIVER)))
 		if(isliving(user))
 			var/mob/living/L = user
 			if(L.a_intent == I_HELP)
 				if(try_graffiti(L, C)) // back by unpopular demand
 					return
+=======
+	if(!(C.get_tool_quality(TOOL_SCREWDRIVER) && flooring && (flooring.flags & TURF_REMOVE_SCREWDRIVER)) && try_graffiti(user, C))
+		return
+>>>>>>> d3ef2db8b43... Merge pull request #8384 from Atermonera/cynosure_map
 
 	// Multi-z roof building
 	if(istype(C, /obj/item/stack/tile/roofing))
@@ -144,7 +149,7 @@
 						do_remove_plating(C, user, base_type)
 
 /turf/simulated/floor/proc/try_deconstruct_tile(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.is_crowbar())
+	if(W.get_tool_quality(TOOL_CROWBAR))
 		if(broken || burnt)
 			to_chat(user, "<span class='notice'>You remove the broken [flooring.descriptor].</span>")
 			make_plating()
@@ -158,14 +163,14 @@
 			return 0
 		playsound(src, W.usesound, 80, 1)
 		return 1
-	else if(W.is_screwdriver() && (flooring.flags & TURF_REMOVE_SCREWDRIVER))
+	else if(W.get_tool_quality(TOOL_SCREWDRIVER) && (flooring.flags & TURF_REMOVE_SCREWDRIVER))
 		if(broken || burnt)
 			return 0
 		to_chat(user, "<span class='notice'>You unscrew and remove the [flooring.descriptor].</span>")
 		make_plating(1)
 		playsound(src, W.usesound, 80, 1)
 		return 1
-	else if(W.is_wrench() && (flooring.flags & TURF_REMOVE_WRENCH))
+	else if(W.get_tool_quality(TOOL_WRENCH) && (flooring.flags & TURF_REMOVE_WRENCH))
 		to_chat(user, "<span class='notice'>You unwrench and remove the [flooring.descriptor].</span>")
 		make_plating(1)
 		playsound(src, W.usesound, 80, 1)

@@ -10,6 +10,7 @@
 	departments = list(DEPARTMENT_EVERYONE)
 	chaotic_threshold = EVENT_CHAOS_THRESHOLD_MEDIUM_IMPACT
 	event_type = /datum/event2/event/random_antagonist
+	regions = list(EVENT_REGION_UNIVERSAL)
 
 // This has an abnormally high weight due to antags being very important for the round,
 // however the weight will decay with more antags, and more attempts to add antags.

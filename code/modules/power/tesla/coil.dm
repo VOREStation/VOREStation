@@ -53,13 +53,13 @@
 
 	//if(default_deconstruction_screwdriver(user, "coil_open[anchored]", "coil[anchored]", W))
 	if(default_deconstruction_screwdriver(user, W))
-		return
+		return FALSE
 	if(default_part_replacement(user, W))
-		return
+		return FALSE
 	if(default_unfasten_wrench(user, W))
-		return
+		return FALSE
 	if(default_deconstruction_crowbar(user, W))
-		return
+		return FALSE
 	if(is_wire_tool(W))
 		return wires.Interact(user)
 	return ..()

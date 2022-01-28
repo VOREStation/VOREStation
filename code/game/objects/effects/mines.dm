@@ -42,7 +42,7 @@
 			new_turf.register_dangerous_object(src)
 
 /obj/effect/mine/proc/explode(var/mob/living/M)
-	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread()
 	triggered = 1
 	s.set_up(3, 1, src)
 	s.start()
@@ -100,7 +100,7 @@
 			explode(M)
 
 /obj/effect/mine/attackby(obj/item/W as obj, mob/living/user as mob)
-	if(W.is_screwdriver())
+	if(W.get_tool_quality(TOOL_SCREWDRIVER))
 		panel_open = !panel_open
 		user.visible_message("<span class='warning'>[user] very carefully screws the mine's panel [panel_open ? "open" : "closed"].</span>",
 		"<span class='notice'>You very carefully screw the mine's panel [panel_open ? "open" : "closed"].</span>")
@@ -109,16 +109,15 @@
 		// Panel open, stay uncloaked, or uncloak if already cloaked. If you don't cloak on place, ignore it and just be normal alpha.
 		alpha = camo_net ? (panel_open ? 255 : 50) : 255
 
-	else if((W.is_wirecutter() || istype(W, /obj/item/device/multitool)) && panel_open)
+	else if(panel_open && (W.get_tool_quality(TOOL_WIRECUTTER) || W.get_tool_quality(TOOL_MULTITOOL)))
 		interact(user)
 	else
 		..()
 
 /obj/effect/mine/interact(mob/living/user as mob)
-	if(!panel_open || istype(user, /mob/living/silicon/ai))
-		return
-	user.set_machine(src)
-	wires.Interact(user)
+	if(panel_open && !istype(user, /mob/living/silicon/ai))
+		user.set_machine(src)
+		wires.Interact(user)
 
 /obj/effect/mine/camo
 	camo_net = TRUE
@@ -127,7 +126,7 @@
 	mineitemtype = /obj/item/weapon/mine/dnascramble
 
 /obj/effect/mine/dnascramble/explode(var/mob/living/M)
-	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread()
 	triggered = 1
 	s.set_up(3, 1, src)
 	s.start()
@@ -145,7 +144,7 @@
 
 /obj/effect/mine/stun/explode(var/mob/living/M)
 	triggered = 1
-	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread()
 	s.set_up(3, 1, src)
 	s.start()
 	if(istype(M))
@@ -184,7 +183,7 @@
 	mineitemtype = /obj/item/weapon/mine/kick
 
 /obj/effect/mine/kick/explode(var/mob/living/M)
-	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread()
 	triggered = 1
 	s.set_up(3, 1, src)
 	s.start()
@@ -205,7 +204,7 @@
 	var/spread_range = 7
 
 /obj/effect/mine/frag/explode(var/mob/living/M)
-	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread()
 	triggered = 1
 	s.set_up(3, 1, src)
 	s.start()
@@ -234,7 +233,7 @@
 	mineitemtype = /obj/item/weapon/mine/emp
 
 /obj/effect/mine/emp/explode(var/mob/living/M)
-	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread()
 	s.set_up(3, 1, src)
 	s.start()
 	visible_message("\The [src.name] flashes violently before disintegrating!")
@@ -250,7 +249,7 @@
 
 /obj/effect/mine/incendiary/explode(var/mob/living/M)
 	triggered = 1
-	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread()
 	s.set_up(3, 1, src)
 	s.start()
 	if(istype(M))
@@ -264,7 +263,7 @@
 	mineitemtype = /obj/item/weapon/mine/gadget
 
 /obj/effect/mine/gadget/explode(var/mob/living/M)
-	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread()
 	triggered = 1
 	s.set_up(3, 1, src)
 	s.start()
@@ -308,7 +307,7 @@
 	return
 
 /obj/item/weapon/mine/attackby(obj/item/W as obj, mob/living/user as mob)
-	if(W.is_screwdriver() && trap)
+	if(W.get_tool_quality(TOOL_SCREWDRIVER) && trap)
 		to_chat(user, "<span class='notice'>You begin removing \the [trap].</span>")
 		if(do_after(user, 10 SECONDS))
 			to_chat(user, "<span class='notice'>You finish disconnecting the mine's trigger.</span>")

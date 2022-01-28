@@ -24,8 +24,8 @@
 							  //then open it in a populated area to crash clients.
 	var/storage_cost = 40	//How much space this closet takes up if it's stuffed in another closet
 
-	var/open_sound = 'sound/machines/click.ogg'
-	var/close_sound = 'sound/machines/click.ogg'
+	var/open_sound = 'sound/machines/closet/closet_open.ogg'
+	var/close_sound = 'sound/machines/closet/closet_close.ogg'
 
 	var/store_misc = 1		//Chameleon item check
 	var/store_items = 1		//Will the closet store items?
@@ -271,13 +271,13 @@
 	return
 
 /obj/structure/closet/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.is_wrench())
+	if(W.get_tool_quality(TOOL_WRENCH))
 		if(opened)
 			if(anchored)
 				user.visible_message("\The [user] begins unsecuring \the [src] from the floor.", "You start unsecuring \the [src] from the floor.")
 			else
 				user.visible_message("\The [user] begins securing \the [src] to the floor.", "You start securing \the [src] to the floor.")
-			if(do_after(user, 20 * W.toolspeed))
+			if(do_after(user, 20 * W.get_tool_speed(TOOL_WRENCH)))
 				if(!src) return
 				to_chat(user, "<span class='notice'>You [anchored? "un" : ""]secured \the [src]!</span>")
 				anchored = !anchored
@@ -326,7 +326,7 @@
 	else if(seal_tool)
 		if(istype(W, seal_tool))
 			var/obj/item/weapon/S = W
-			if(istype(S, /obj/item/weapon/weldingtool))
+			if(S.get_tool_quality(TOOL_WELDER))
 				var/obj/item/weapon/weldingtool/WT = S
 				if(!WT.remove_fuel(0,user))
 					if(!WT.isOn())
@@ -334,7 +334,7 @@
 					else
 						to_chat(user, "<span class='notice'>You need more welding fuel to complete this task.</span>")
 						return
-			if(do_after(user, 20 * S.toolspeed))
+			if(do_after(user, 20 * S.get_tool_speed(TOOL_WELDER)))
 				playsound(src, S.usesound, 50)
 				sealed = !sealed
 				update_icon()

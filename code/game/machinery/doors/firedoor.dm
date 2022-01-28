@@ -249,7 +249,7 @@
 		return //Don't open the door if we're putting tape on it to tell people 'don't open the door'.
 	if(operating)
 		return//Already doing something.
-	if(istype(C, /obj/item/weapon/weldingtool) && !repairing)
+	if(!repairing && C.get_tool_quality(TOOL_WELDER))
 		if(prying)
 			to_chat(user, "<span class='notice'>Someone's busy prying that [density ? "open" : "closed"]!</span>")
 		var/obj/item/weapon/weldingtool/W = C
@@ -262,7 +262,7 @@
 			update_icon()
 			return
 
-	if(density && C.is_screwdriver())
+	if(density && C.get_tool_quality(TOOL_SCREWDRIVER))
 		hatch_open = !hatch_open
 		playsound(src, C.usesound, 50, 1)
 		user.visible_message("<span class='danger'>[user] has [hatch_open ? "opened" : "closed"] \the [src] maintenance hatch.</span>",
@@ -270,7 +270,7 @@
 		update_icon()
 		return
 
-	if(blocked && C.is_crowbar() && !repairing)
+	if(blocked && C.get_tool_quality(TOOL_CROWBAR) && !repairing)
 		if(!hatch_open)
 			to_chat(user, "<span class='danger'>You must open the maintenance hatch first!</span>")
 		else
@@ -300,20 +300,15 @@
 		to_chat(user, "<span class='danger'>\The [src] is welded shut!</span>")
 		return
 
-	if(C.pry == 1)
+	if(C.get_tool_quality(TOOL_CROWBAR))
 		if(operating)
 			return
 
-		if(blocked && C.is_crowbar())
+		if(blocked)
 			user.visible_message("<span class='danger'>\The [user] pries at \the [src] with \a [C], but \the [src] is welded in place!</span>",\
 			"You try to pry \the [src] [density ? "open" : "closed"], but it is welded in place!",\
 			"You hear someone struggle and metal straining.")
 			return
-
-		if(istype(C,/obj/item/weapon/material/twohanded/fireaxe))
-			var/obj/item/weapon/material/twohanded/fireaxe/F = C
-			if(!F.wielded)
-				return
 
 		if(prying)
 			to_chat(user, "<span class='notice'>Someone's already prying that [density ? "open" : "closed"].</span>")
@@ -325,8 +320,8 @@
 		prying = 1
 		update_icon()
 		playsound(src, C.usesound, 100, 1)
-		if(do_after(user,30 * C.toolspeed))
-			if(C.is_crowbar())
+		if(do_after(user,30 * C.get_tool_speed(TOOL_CROWBAR)))
+			if(C.get_tool_quality(TOOL_CROWBAR))
 				if(stat & (BROKEN|NOPOWER) || !density)
 					user.visible_message("<span class='danger'>\The [user] forces \the [src] [density ? "open" : "closed"] with \a [C]!</span>",\
 					"You force \the [src] [density ? "open" : "closed"] with \the [C]!",\

@@ -21,7 +21,7 @@
 	integrated_object_type = /obj/item/weapon/gun/energy/laser/mounted/augment
 
 /obj/item/organ/internal/augment/armmounted/attackby(obj/item/I as obj, mob/user as mob)
-	if(I.is_screwdriver())
+	if(I.get_tool_quality(TOOL_SCREWDRIVER))
 		switch(organ_tag)
 			if(O_AUG_L_FOREARM)
 				organ_tag = O_AUG_R_FOREARM
@@ -66,7 +66,7 @@
 	integrated_object_type = /obj/item/weapon/portable_scanner
 
 /obj/item/organ/internal/augment/armmounted/hand/attackby(obj/item/I as obj, mob/user as mob)
-	if(I.is_screwdriver())
+	if(I.get_tool_quality(TOOL_SCREWDRIVER))
 		switch(organ_tag)
 			if(O_AUG_L_HAND)
 				organ_tag = O_AUG_R_HAND
@@ -110,7 +110,7 @@
 	integrated_object_type = null
 
 /obj/item/organ/internal/augment/armmounted/shoulder/attackby(obj/item/I as obj, mob/user as mob)
-	if(I.is_screwdriver())
+	if(I.get_tool_quality(TOOL_SCREWDRIVER))
 		switch(organ_tag)
 			if(O_AUG_L_UPPERARM)
 				organ_tag = O_AUG_R_UPPERARM
@@ -166,8 +166,6 @@
 
 	integrated_object_type = null
 
-	toolspeed = 0.8
-
 	var/list/integrated_tools = list(
 		/obj/item/weapon/tool/screwdriver = null,
 		/obj/item/weapon/tool/wrench = null,
@@ -211,7 +209,8 @@
 				integrated_tools[path] = new path(src)
 			var/obj/item/I = integrated_tools[path]
 			I.canremove = FALSE
-			I.toolspeed = toolspeed
+			for(var/quality in I.tool_qualities)
+				I.set_tool_quality(quality, TOOL_QUALITY_MEDIOCRE)
 			I.my_augment = src
 			I.name = "integrated [I.name]"
 

@@ -159,7 +159,7 @@
 /obj/machinery/camera/attackby(obj/item/W as obj, mob/living/user as mob)
 	update_coverage()
 	// DECONSTRUCTION
-	if(W.is_screwdriver())
+	if(W.get_tool_quality(TOOL_SCREWDRIVER))
 		//to_chat(user, "<span class='notice'>You start to [panel_open ? "close" : "open"] the camera's panel.</span>")
 		//if(toggle_panel(user)) // No delay because no one likes screwdrivers trying to be hip and have a duration cooldown
 		panel_open = !panel_open
@@ -167,7 +167,7 @@
 		"<span class='notice'>You screw the camera's panel [panel_open ? "open" : "closed"].</span>")
 		playsound(src, W.usesound, 50, 1)
 
-	else if((W.is_wirecutter() || istype(W, /obj/item/device/multitool)) && panel_open)
+	else if((W.get_tool_quality(TOOL_WIRECUTTER) || istype(W, /obj/item/device/multitool)) && panel_open)
 		interact(user)
 
 	else if(istype(W, /obj/item/weapon/weldingtool) && (wires.CanDeconstruct() || (stat & BROKEN)))
@@ -283,7 +283,7 @@
 	update_coverage()
 
 	//sparks
-	var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
+	var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread()
 	spark_system.set_up(5, 0, loc)
 	spark_system.start()
 	playsound(src, "sparks", 50, 1)
@@ -372,24 +372,20 @@
 	return null
 
 /obj/machinery/camera/proc/weld(var/obj/item/weapon/weldingtool/WT, var/mob/user)
-
-	if(busy)
-		return 0
-	if(!WT.isOn())
-		return 0
+	if(busy || !WT.isOn())
+		return FALSE
 
 	// Do after stuff here
-	to_chat(user, "<span class='notice'>You start to weld [src]..</span>")
+	to_chat(user, "<span class='notice'>You start to weld [src]...</span>")
 	playsound(src, WT.usesound, 50, 1)
 	WT.eyecheck(user)
-	busy = 1
-	if(do_after(user, 100 * WT.toolspeed))
-		busy = 0
-		if(!WT.isOn())
-			return 0
-		return 1
-	busy = 0
-	return 0
+	busy = TRUE
+	if(do_after(user, 100 * WT.get_tool_speed(TOOL_WELDER)))
+		busy = FALSE
+		if(WT.isOn())
+			return TRUE
+	busy = FALSE
+	return FALSE
 
 /obj/machinery/camera/interact(mob/living/user as mob)
 	if(!panel_open || istype(user, /mob/living/silicon/ai))

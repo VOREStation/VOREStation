@@ -476,20 +476,11 @@ var/list/organ_cache = list()
 	return ..()
 
 /obj/item/organ/proc/can_butcher(var/obj/item/O, var/mob/living/user)
-	if(butcherable && meat_type)
-
-		if(istype(O, /obj/machinery/gibber))	// The great equalizer.
-			return TRUE
-
-		if(robotic >= ORGAN_ROBOT)
-			if(O.is_screwdriver())
-				return TRUE
-
-		else
-			if(is_sharp(O) && has_edge(O))
-				return TRUE
-
-	return FALSE
+	return (butcherable && meat_type) && ( \
+		istype(O, /obj/machinery/gibber) || \
+		(robotic >= ORGAN_ROBOT && O.get_tool_quality(TOOL_SCREWDRIVER)) || \
+		(O.sharp && O.edge)
+	)
 
 /obj/item/organ/proc/butcher(var/obj/item/O, var/mob/living/user, var/atom/newtarget)
 	if(robotic >= ORGAN_ROBOT)

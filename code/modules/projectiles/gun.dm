@@ -280,11 +280,11 @@
 		verbs += /obj/item/weapon/gun/verb/allow_dna
 		return
 
-	if(A.is_screwdriver())
+	if(A.get_tool_quality(TOOL_SCREWDRIVER))
 		if(dna_lock && attached_lock && !attached_lock.controller_lock)
 			to_chat(user, "<span class='notice'>You begin removing \the [attached_lock] from \the [src].</span>")
 			playsound(src, A.usesound, 50, 1)
-			if(do_after(user, 25 * A.toolspeed))
+			if(do_after(user, 25 * A.get_tool_speed(TOOL_SCREWDRIVER)))
 				to_chat(user, "<span class='notice'>You remove \the [attached_lock] from \the [src].</span>")
 				user.put_in_hands(attached_lock)
 				dna_lock = 0

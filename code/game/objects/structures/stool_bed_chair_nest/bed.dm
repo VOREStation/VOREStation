@@ -88,7 +88,7 @@
 				return
 
 /obj/structure/bed/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.is_wrench())
+	if(W.get_tool_quality(TOOL_WRENCH))
 		playsound(src, W.usesound, 50, 1)
 		dismantle()
 		qdel(src)
@@ -119,7 +119,7 @@
 		add_padding(padding_type)
 		return
 
-	else if(W.is_wirecutter())
+	else if(W.get_tool_quality(TOOL_WIRECUTTER))
 		if(!padding_material)
 			to_chat(user, "\The [src] has no padding to remove.")
 			return
@@ -219,7 +219,7 @@
 	return
 
 /obj/structure/bed/roller/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.is_wrench() || istype(W,/obj/item/stack) || W.is_wirecutter())
+	if(W.get_tool_quality(TOOL_WRENCH) || istype(W,/obj/item/stack) || W.get_tool_quality(TOOL_WIRECUTTER))
 		return
 	else if(istype(W,/obj/item/roller_holder))
 		if(has_buckled_mobs())

@@ -30,6 +30,12 @@
 
 /obj/structure/closet/secure_closet/personal/cabinet
 	closet_appearance = /decl/closet_appearance/cabinet/secure
+<<<<<<< HEAD
+=======
+	door_anim_time = 0 //Unsupported
+	open_sound = 'sound/machines/closet/closet_wood_open.ogg'
+	close_sound = 'sound/machines/closet/closet_wood_close.ogg'
+>>>>>>> d3ef2db8b43... Merge pull request #8384 from Atermonera/cynosure_map
 
 	starts_with = list(
 		/obj/item/weapon/storage/backpack/satchel/withwallet,
@@ -61,7 +67,7 @@
 			to_chat(user, "<span class='warning'>Access Denied</span>")
 	else if(istype(W, /obj/item/weapon/melee/energy/blade))
 		if(emag_act(INFINITY, user, "The locker has been sliced open by [user] with \an [W]!", "You hear metal being sliced and sparks flying."))
-			var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
+			var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread()
 			spark_system.set_up(5, 0, src.loc)
 			spark_system.start()
 			playsound(src, 'sound/weapons/blade1.ogg', 50, 1)

@@ -7,6 +7,7 @@
 	chaotic_threshold = EVENT_CHAOS_THRESHOLD_HIGH_IMPACT
 	enabled = FALSE // Turns out they are in fact grossly OP.
 	var/safe_for_extended = FALSE
+	regions = list(EVENT_REGION_SPACESTATION, EVENT_REGION_DEEPSPACE)
 
 /datum/event2/meta/swarm_boarder/get_weight()
 	if(istype(ticker.mode, /datum/game_mode/extended) && !safe_for_extended)

@@ -5,6 +5,7 @@
 	chaotic_threshold = EVENT_CHAOS_THRESHOLD_MEDIUM_IMPACT
 	reusable = TRUE
 	event_type = /datum/event2/event/comms_blackout
+	regions = list(EVENT_REGION_UNIVERSAL)
 
 /datum/event2/meta/comms_blackout/get_weight()
 	return 50 + metric.count_people_in_department(DEPARTMENT_EVERYONE) * 5

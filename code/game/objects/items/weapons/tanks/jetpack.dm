@@ -13,15 +13,21 @@
 			)
 	item_state_slots = list(slot_r_hand_str = "jetpack", slot_l_hand_str = "jetpack")
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
-	var/datum/effect/effect/system/ion_trail_follow/ion_trail
+	var/datum/effect_system/ion_trail_follow/ion_trail
 	var/on = 0.0
 	var/stabilization_on = 0
 	var/volume_rate = 500              //Needed for borg jetpack transfer
 	action_button_name = "Toggle Jetpack"
 
+<<<<<<< HEAD
 /obj/item/weapon/tank/jetpack/New()
 	..()
 	ion_trail = new /datum/effect/effect/system/ion_trail_follow()
+=======
+/obj/item/weapon/tank/jetpack/Initialize()
+	. = ..()
+	ion_trail = new /datum/effect_system/ion_trail_follow()
+>>>>>>> d3ef2db8b43... Merge pull request #8384 from Atermonera/cynosure_map
 	ion_trail.set_up(src)
 
 /obj/item/weapon/tank/jetpack/Destroy()

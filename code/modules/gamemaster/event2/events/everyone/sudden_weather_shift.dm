@@ -3,6 +3,7 @@
 	departments = list(DEPARTMENT_EVERYONE)
 	reusable = TRUE
 	event_type = /datum/event2/event/sudden_weather_shift
+	regions = list(EVENT_REGION_PLANETSURFACE)
 
 /datum/event2/meta/sudden_weather_shift/get_weight()
 	// The proc name is a bit misleading, it only counts players outside, not all mobs.

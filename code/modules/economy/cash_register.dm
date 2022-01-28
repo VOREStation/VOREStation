@@ -190,7 +190,7 @@
 			scan_cash(SC)
 	else if(istype(O, /obj/item/weapon/card/emag))
 		return ..()
-	else if(O.is_wrench())
+	else if(O.get_tool_quality(TOOL_WRENCH))
 		var/obj/item/weapon/tool/wrench/W = O
 		toggle_anchors(W, user)
 	// Not paying: Look up price and add it to transaction_amount
@@ -481,8 +481,10 @@
 		to_chat(usr, "<span class='warning'>The cash box is locked.</span>")
 
 
-/obj/machinery/cash_register/proc/toggle_anchors(obj/item/weapon/tool/wrench/W, mob/user)
-	if(manipulating) return
+/obj/machinery/cash_register/proc/toggle_anchors(obj/item/weapon/W, mob/user)
+	if(manipulating || !W.get_tool_quality(TOOL_WRENCH))
+		return
+	
 	manipulating = 1
 	if(!anchored)
 		user.visible_message("\The [user] begins securing \the [src] to the floor.",
@@ -491,7 +493,7 @@
 		user.visible_message("<span class='warning'>\The [user] begins unsecuring \the [src] from the floor.</span>",
 	                         "You begin unsecuring \the [src] from the floor.")
 	playsound(src, W.usesound, 50, 1)
-	if(!do_after(user, 20 * W.toolspeed))
+	if(!do_after(user, 20 * W.get_tool_speed(TOOL_WRENCH)))
 		manipulating = 0
 		return
 	if(!anchored)

@@ -78,8 +78,8 @@
 	var/modtype = "Default"
 	var/lower_mod = 0
 	var/jetpack = 0
-	var/datum/effect/effect/system/ion_trail_follow/ion_trail = null
-	var/datum/effect/effect/system/spark_spread/spark_system//So they can initialize sparks whenever/N
+	var/datum/effect_system/ion_trail_follow/ion_trail = null
+	var/datum/effect_system/spark_spread/spark_system//So they can initialize sparks whenever/N
 	var/jeton = 0
 	var/killswitch = 0
 	var/killswitch_time = 60
@@ -100,8 +100,13 @@
 		/mob/living/silicon/robot/proc/robot_checklaws
 	)
 
+<<<<<<< HEAD
 /mob/living/silicon/robot/New(loc, var/unfinished = 0)
 	spark_system = new /datum/effect/effect/system/spark_spread()
+=======
+/mob/living/silicon/robot/Initialize(var/ml, var/unfinished = 0)
+	spark_system = new /datum/effect_system/spark_spread()
+>>>>>>> d3ef2db8b43... Merge pull request #8384 from Atermonera/cynosure_map
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 
@@ -552,7 +557,7 @@
 			for(var/mob/O in viewers(user, null))
 				O.show_message(text("<font color='red'>[user] has fixed some of the burnt wires on [src]!</font>"), 1)
 
-	else if (W.is_crowbar() && user.a_intent != I_HURT)	// crowbar means open or close the cover
+	else if (W.get_tool_quality(TOOL_CROWBAR) && user.a_intent != I_HURT)	// crowbar means open or close the cover
 		if(opened)
 			if(cell)
 				to_chat(user, "You close the cover.")
@@ -629,26 +634,26 @@
 			C.brute_damage = 0
 			C.electronics_damage = 0
 
-	else if (W.is_wirecutter() || istype(W, /obj/item/device/multitool))
+	else if (W.get_tool_quality(TOOL_WIRECUTTER) || W.get_tool_quality(TOOL_MULTITOOL))
 		if (wiresexposed)
 			wires.Interact(user)
 		else
 			to_chat(user, "You can't reach the wiring.")
 
-	else if(W.is_screwdriver() && opened && !cell)	// haxing
+	else if(W.get_tool_quality(TOOL_SCREWDRIVER) && opened && !cell)	// haxing
 		wiresexposed = !wiresexposed
 		to_chat(user, "The wires have been [wiresexposed ? "exposed" : "unexposed"]")
 		playsound(src, W.usesound, 50, 1)
 		updateicon()
 
-	else if(W.is_screwdriver() && opened && cell)	// radio
+	else if(W.get_tool_quality(TOOL_SCREWDRIVER) && opened && cell)	// radio
 		if(radio)
 			radio.attackby(W,user)//Push it to the radio to let it handle everything
 		else
 			to_chat(user, "Unable to locate a radio.")
 		updateicon()
 
-	else if(W.is_wrench() && opened && !cell)
+	else if(W.get_tool_quality(TOOL_WRENCH) && opened && !cell)
 		if(bolt)
 			to_chat(user,"You begin removing \the [bolt].")
 

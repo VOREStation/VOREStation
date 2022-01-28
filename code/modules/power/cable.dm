@@ -177,7 +177,7 @@ var/list/possible_cable_coil_colours = list(
 	if(!T.is_plating())
 		return
 
-	if(W.is_wirecutter())
+	if(W.get_tool_quality(TOOL_WIRECUTTER))
 		var/obj/item/stack/cable_coil/CC
 		if(d1 == UP || d2 == UP)
 			to_chat(user, "<span class='warning'>You must cut this cable from above.</span>")
@@ -242,7 +242,7 @@ var/list/possible_cable_coil_colours = list(
 	if(!prob(prb))
 		return 0
 	if (electrocute_mob(user, powernet, src, siemens_coeff))
-		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+		var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 		s.set_up(5, 1, src)
 		s.start()
 		if(usr.stunned)
@@ -511,8 +511,12 @@ var/list/possible_cable_coil_colours = list(
 	stacktype = /obj/item/stack/cable_coil
 	drop_sound = 'sound/items/drop/accessory.ogg'
 	pickup_sound = 'sound/items/pickup/accessory.ogg'
+<<<<<<< HEAD
 	tool_qualities = list(TOOL_CABLE_COIL)
 	singular_name = "cable"
+=======
+	tool_qualities = list(TOOL_CABLE_COIL =  TOOL_QUALITY_STANDARD)
+>>>>>>> d3ef2db8b43... Merge pull request #8384 from Atermonera/cynosure_map
 
 /obj/item/stack/cable_coil/cyborg
 	name = "cable coil synthesizer"
@@ -945,7 +949,7 @@ var/list/possible_cable_coil_colours = list(
 	slot_flags = SLOT_BELT
 	attack_verb = list("whipped", "lashed", "disciplined", "flogged")
 	stacktype = null
-	toolspeed = 0.25
+	tool_qualities = list(TOOL_CABLE_COIL =  TOOL_QUALITY_GOOD)
 
 /obj/item/stack/cable_coil/alien/New(loc, length = MAXCOIL, var/param_color = null)		//There has to be a better way to do this.
 	if(embed_chance == -1)		//From /obj/item, don't want to do what the normal cable_coil does

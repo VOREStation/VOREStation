@@ -4,7 +4,7 @@
 	name = "Delete me, nerd!!"
 	desc = "The base type of fightercraft. Don't spawn this one!"
 
-	var/datum/effect/effect/system/ion_trail_follow/ion_trail
+	var/datum/effect_system/ion_trail_follow/ion_trail
 	var/stabilization_enabled = TRUE //If our anti-space-drift is on
 	var/ground_capable = FALSE //If we can fly over normal turfs and not just space
 
@@ -49,7 +49,7 @@
 
 /obj/mecha/combat/fighter/Initialize()
 	. = ..()
-	ion_trail = new /datum/effect/effect/system/ion_trail_follow()
+	ion_trail = new /datum/effect_system/ion_trail_follow()
 	ion_trail.set_up(src)
 	ion_trail.stop()
 

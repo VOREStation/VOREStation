@@ -119,9 +119,14 @@
 	T.visible_message("<span class='danger'>\The [src] goes dull!</span>")
 	playsound(src, "shatter", 70, 1)
 	dulled = 1
+<<<<<<< HEAD
 	if(is_sharp() || has_edge())
 		sharp = FALSE
 		edge = FALSE
+=======
+	sharp = 0
+	edge = 0
+>>>>>>> d3ef2db8b43... Merge pull request #8384 from Atermonera/cynosure_map
 
 /obj/item/weapon/material/proc/repair(var/repair_amount, var/repair_time, mob/living/user)
 	if(!fragile)

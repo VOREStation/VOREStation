@@ -7,6 +7,12 @@
 	closet_appearance = /decl/closet_appearance/crate
 	climbable = TRUE
 	dir = 4 //Spawn facing 'forward' by default.
+<<<<<<< HEAD
+=======
+	door_anim_time = 0 //Unsupported until appropriate sprites are available
+	open_sound = 'sound/machines/closet/crate_open.ogg'
+	close_sound = 'sound/machines/closet/crate_close.ogg'
+>>>>>>> d3ef2db8b43... Merge pull request #8384 from Atermonera/cynosure_map
 	var/points_per_crate = 5
 	var/rigged = 0
 
@@ -26,13 +32,13 @@
 		if(isliving(usr))
 			var/mob/living/L = usr
 			if(L.electrocute_act(17, src))
-				var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+				var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 				s.set_up(5, 1, src)
 				s.start()
 				if(usr.stunned)
 					return 2
 
-	playsound(src, 'sound/machines/click.ogg', 15, 1, -3)
+	playsound(src, open_sound, 15, 1, -3)
 	for(var/obj/O in src)
 		O.forceMove(get_turf(src))
 	src.opened = 1
@@ -48,7 +54,7 @@
 	if(!src.can_close())
 		return 0
 
-	playsound(src, 'sound/machines/click.ogg', 15, 1, -3)
+	playsound(src, close_sound, 15, 1, -3)
 	var/itemcount = 0
 	for(var/obj/O in get_turf(src))
 		if(itemcount >= storage_capacity)
@@ -112,7 +118,7 @@
 			user.drop_item()
 			W.forceMove(src)
 			return
-	else if(W.is_wirecutter())
+	else if(W.get_tool_quality(TOOL_WIRECUTTER))
 		if(rigged)
 			to_chat(user , "<span class='notice'>You cut away the wiring.</span>")
 			playsound(src, W.usesound, 100, 1)

@@ -2,6 +2,7 @@
 	name = "solar storm"
 	reusable = TRUE
 	event_type = /datum/event2/event/solar_storm
+	regions = list(EVENT_REGION_SPACESTATION, EVENT_REGION_DEEPSPACE)
 
 /datum/event2/meta/solar_storm/get_weight()
 	var/population_factor = metric.count_people_in_department(DEPARTMENT_ENGINEERING) * 10

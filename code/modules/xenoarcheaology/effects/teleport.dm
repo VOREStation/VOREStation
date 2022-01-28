@@ -9,13 +9,13 @@
 		if (user.buckled)
 			user.buckled.unbuckle_mob()
 
-		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
+		var/datum/effect_system/spark_spread/sparks = new /datum/effect_system/spark_spread()
 		sparks.set_up(3, 0, get_turf(user))
 		sparks.start()
 
 		user.Move(pick(trange(50, get_turf(holder))))
 
-		sparks = new /datum/effect/effect/system/spark_spread()
+		sparks = new /datum/effect_system/spark_spread()
 		sparks.set_up(3, 0, user.loc)
 		sparks.start()
 
@@ -29,12 +29,12 @@
 				if(M.buckled)
 					M.buckled.unbuckle_mob()
 
-				var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
+				var/datum/effect_system/spark_spread/sparks = new /datum/effect_system/spark_spread()
 				sparks.set_up(3, 0, get_turf(M))
 				sparks.start()
 
 				M.Move(pick(trange(50, T)))
-				sparks = new /datum/effect/effect/system/spark_spread()
+				sparks = new /datum/effect_system/spark_spread()
 				sparks.set_up(3, 0, M.loc)
 				sparks.start()
 
@@ -48,11 +48,11 @@
 				if(M.buckled)
 					M.buckled.unbuckle_mob()
 
-				var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
+				var/datum/effect_system/spark_spread/sparks = new /datum/effect_system/spark_spread()
 				sparks.set_up(3, 0, get_turf(M))
 				sparks.start()
 
 				M.Move(pick(trange(50, T)))
-				sparks = new /datum/effect/effect/system/spark_spread()
+				sparks = new /datum/effect_system/spark_spread()
 				sparks.set_up(3, 0, M.loc)
 				sparks.start()

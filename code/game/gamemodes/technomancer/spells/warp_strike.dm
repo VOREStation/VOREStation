@@ -12,11 +12,17 @@
 	icon_state = "warp_strike"
 	cast_methods = CAST_RANGED
 	aspect = ASPECT_TELE
-	var/datum/effect/effect/system/spark_spread/sparks
+	var/datum/effect_system/spark_spread/sparks
 
+<<<<<<< HEAD
 /obj/item/weapon/spell/warp_strike/New()
 	..()
 	sparks = new /datum/effect/effect/system/spark_spread()
+=======
+/obj/item/weapon/spell/warp_strike/Initialize()
+	. = ..()
+	sparks = new /datum/effect_system/spark_spread()
+>>>>>>> d3ef2db8b43... Merge pull request #8384 from Atermonera/cynosure_map
 	sparks.set_up(5, 0, src)
 	sparks.attach(loc)
 

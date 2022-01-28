@@ -3,6 +3,7 @@
 	departments = list(DEPARTMENT_SECURITY, DEPARTMENT_EVERYONE)
 	chaotic_threshold = EVENT_CHAOS_THRESHOLD_HIGH_IMPACT // So this won't get called in the middle of a crisis.
 	event_type = /datum/event2/event/security_screening
+	regions = list(EVENT_REGION_UNIVERSAL)
 
 /datum/event2/meta/security_screening/get_weight()
 	. = 0

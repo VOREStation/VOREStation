@@ -18,8 +18,13 @@
 	desc = "A simple powered hand drill."
 	id = "handdrill"
 	req_tech = list(TECH_ENGINEERING = 3, TECH_MATERIAL = 2)
+<<<<<<< HEAD
 	materials = list(MAT_STEEL = 300, MAT_SILVER = 100)
 	build_path = /obj/item/weapon/tool/screwdriver/power
+=======
+	materials = list(MAT_STEEL = 300, "silver" = 100)
+	build_path = /obj/item/weapon/tool/powerdrill
+>>>>>>> d3ef2db8b43... Merge pull request #8384 from Atermonera/cynosure_map
 	sort_string = "NAAAB"
 
 /datum/design/item/tool/jaws_life
@@ -27,8 +32,13 @@
 	desc = "A set of jaws of life, compressed through the magic of science."
 	id = "jawslife"
 	req_tech = list(TECH_ENGINEERING = 3, TECH_MATERIAL = 2)
+<<<<<<< HEAD
 	materials = list(MAT_STEEL = 300, MAT_SILVER = 100)
 	build_path = /obj/item/weapon/tool/crowbar/power
+=======
+	materials = list(MAT_STEEL = 300, "silver" = 100)
+	build_path = /obj/item/weapon/tool/hydraulic_cutter
+>>>>>>> d3ef2db8b43... Merge pull request #8384 from Atermonera/cynosure_map
 	sort_string = "NAAAC"
 
 /datum/design/item/tool/rpd

@@ -167,7 +167,7 @@
 	..()
 
 /obj/structure/fuel_port/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.is_crowbar())
+	if(W.get_tool_quality(TOOL_CROWBAR))
 		if(opened)
 			to_chat(user, "<spawn class='notice'>You tightly shut \the [src] door.")
 			playsound(src, 'sound/effects/locker_close.ogg', 25, 0, -3)

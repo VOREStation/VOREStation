@@ -1,4 +1,4 @@
-/obj/effect/graffitispawner
+/obj/effect/spawner/graffiti
 	name = "old scrawling"
 	icon = 'icons/effects/map_effects.dmi'
 	icon_state = "graffiti"
@@ -8,7 +8,7 @@
 	// If the effect's color is not set, it will be chosen at random.
 	var/color_secondary	// The hexcode for the desired secondary color of your graffiti. If blank, it will inherit this effect's color.
 
-/obj/effect/graffitispawner/Initialize()
+/obj/effect/spawner/graffiti/Initialize()
 	..()
 
 	if(!color)

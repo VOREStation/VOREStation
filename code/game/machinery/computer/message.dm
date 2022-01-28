@@ -10,7 +10,7 @@
 	//Server linked to.
 	var/obj/machinery/message_server/linkedServer = null
 	//Sparks effect - For emag
-	var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread
+	var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread
 	//Messages - Saves me time if I want to change something.
 	var/noserver = list("text" = "ALERT: No server detected.", "style" = "alert")
 	var/incorrectkey = list("text" = "ALERT: Incorrect decryption key!", "style" = "warning")
@@ -34,7 +34,7 @@
 		return
 	if(!istype(user))
 		return
-	if(O.is_screwdriver() && emag)
+	if(O.get_tool_quality(TOOL_SCREWDRIVER) && emag)
 		//Stops people from just unscrewing the monitor and putting it back to get the console working again.
 		to_chat(user, "<span class='warning'>It is too hot to mess with!</span>")
 		return
