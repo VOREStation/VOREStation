@@ -4,61 +4,61 @@
 	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
 
 /datum/sprite_accessory/marking/vr/vulp_belly
-	name = "belly fur (Vulp)"
+	name = "belly fur (canine)"
 	icon_state = "vulp_belly"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_TORSO,BP_GROIN)
 
 /datum/sprite_accessory/marking/vr/vulp_fullbelly
-	name = "full belly fur (Vulp)"
+	name = "full belly fur (canine)"
 	icon_state = "vulp_fullbelly"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_TORSO,BP_GROIN)
 
 /datum/sprite_accessory/marking/vr/vulp_crest
-	name = "belly crest (Vulp)"
+	name = "belly crest (canine)"
 	icon_state = "vulp_crest"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_TORSO,BP_GROIN)
 
 /datum/sprite_accessory/marking/vr/vulp_nose
-	name = "nose (Vulp)"
+	name = "nose (canine)"
 	icon_state = "vulp_nose"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_HEAD)
 
 /datum/sprite_accessory/marking/vr/vulp_short_nose
-	name = "nose, short (Vulp)"
+	name = "nose, short (canine)"
 	icon_state = "vulp_short_nose"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_HEAD)
 
 /datum/sprite_accessory/marking/vr/snoutstripe
-	name = "snout stripe (Vulp)"
+	name = "snout stripe (canine)"
 	icon_state = "snoutstripe"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_HEAD)
 
 /datum/sprite_accessory/marking/vr/vulp_face
-	name = "face (Vulp)"
+	name = "face (canine)"
 	icon_state = "vulp_face"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_HEAD)
 
 /datum/sprite_accessory/marking/vr/vulp_facealt
-	name = "face, alt. (Vulp)"
+	name = "face, alt. (canine)"
 	icon_state = "vulp_facealt"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_HEAD)
 
 /datum/sprite_accessory/marking/vr/vulp_earsface
-	name = "ears and face (Vulp)"
+	name = "ears and face (canine)"
 	icon_state = "vulp_earsface"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_HEAD)
 
 /datum/sprite_accessory/marking/vr/vulp_all
-	name = "all head highlights (Vulp)"
+	name = "all head highlights (canine)"
 	icon_state = "vulp_all"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_HEAD)
@@ -479,22 +479,11 @@
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_HEAD)
 
-/datum/sprite_accessory/marking/vr/tentacle_head
-	name = "Squid Head"
-	icon_state = "tentaclehead"
-	color_blend_mode = ICON_MULTIPLY
-	body_parts = list(BP_HEAD)
-
-/datum/sprite_accessory/marking/vr/tentacle_mouth
-	name = "Tentacle Mouth"
-	icon_state = "tentaclemouth"
-	color_blend_mode = ICON_MULTIPLY
-	body_parts = list(BP_HEAD)
-
 /datum/sprite_accessory/marking/vr/rosette
 	name = "Rosettes"
 	icon_state = "rosette"
 	body_parts = list(BP_L_FOOT,BP_R_FOOT,BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_L_HAND,BP_R_HAND,BP_GROIN,BP_TORSO,BP_HEAD)
+<<<<<<< HEAD
 /*
 werewolf_nose
 	name = "Werewolf nose"
@@ -535,6 +524,9 @@ shadekin_snoot
 	body_parts = list(BP_HEAD)
 	species_allowed = list(SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW)
 */
+=======
+
+>>>>>>> de662cd5378... Properly filters the genemod whitelisting (#8381)
 /datum/sprite_accessory/marking/vr/taj_nose_alt
 	name = "Nose Color, alt. (Taj)"
 	icon_state = "taj_nosealt"
