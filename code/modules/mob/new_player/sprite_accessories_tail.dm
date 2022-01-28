@@ -41,7 +41,7 @@
 	icon = null
 	icon_state = null
 
-	species_allowed = list(SPECIES_TAJ, SPECIES_UNATHI, SPECIES_TESHARI, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+//	species_allowed = list(SPECIES_TAJ, SPECIES_UNATHI, SPECIES_TESHARI, SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)	//VOREStation Removal - Why. Let anyone remove their tails
 
 /datum/sprite_accessory/tail/squirrel_orange
 	name = "squirel, orange"
