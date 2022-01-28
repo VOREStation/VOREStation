@@ -1333,6 +1333,7 @@
 #include "code\game\objects\items\weapons\grenades\anti_photon_grenade.dm"
 #include "code\game\objects\items\weapons\grenades\chem_grenade.dm"
 #include "code\game\objects\items\weapons\grenades\concussion.dm"
+#include "code\game\objects\items\weapons\grenades\confetti_grenade_ch.dm"
 #include "code\game\objects\items\weapons\grenades\emgrenade.dm"
 #include "code\game\objects\items\weapons\grenades\explosive.dm"
 #include "code\game\objects\items\weapons\grenades\flashbang.dm"
