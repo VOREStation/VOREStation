@@ -16,7 +16,7 @@
 	var/desc = "You should not see this..."
 	em_block = TRUE
 
-	//species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	//species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)			//Removing Polaris whitelits, ones we need are defined in our files
 
 /datum/sprite_accessory/ears/shadekin
 	name = "Shadekin Ears, colorable"
@@ -24,7 +24,7 @@
 	icon_state = "shadekin"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
-	//species_allowed = list() // SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW
+	//species_allowed = list() // SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW			//Removing Polaris whitelits, ones we need are defined in our files
 
 /datum/sprite_accessory/ears/taj_ears
 	name = "Tajaran Ears"
