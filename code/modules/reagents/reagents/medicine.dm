@@ -1513,7 +1513,7 @@
 	
 
 /datum/reagent/earthsblood/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.heal_organ_damage (4, 4 * removed)
+	M.heal_organ_damage (4 * removed, 4 * removed)
 	M.adjustOxyLoss(-10 * removed)
 	M.adjustToxLoss(-4 * removed)
 	M.adjustCloneLoss(-2 * removed)
