@@ -276,7 +276,7 @@
 		data["trait_info"] += "The fruit is temporal/spatially unstable."
 
 	if(get_trait(TRAIT_SPORING))
-		data["trait_info"] += "This fruit occasionally releases reagent-carrying spores into the atmosphere."
+		data["trait_info"] += "It occasionally releases reagent carrying spores into the atmosphere."
 	
 	if(exude_gasses && exude_gasses.len)
 		for(var/gas in exude_gasses)
