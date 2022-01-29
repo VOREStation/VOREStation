@@ -289,6 +289,20 @@
 		qdel(src)
 		return
 
+	if(seed.kitchen_tag == "carpet")
+		user.show_message("<span class='notice'>You shape some carpet squares out of \the [src]!</span>", 1)
+		for(var/i=0,i<2,i++)
+			var/obj/item/stack/tile/carpet/G = new (user.loc)
+			for (var/obj/item/stack/tile/carpet/NG in user.loc)
+				if(G == NG)
+					continue
+				if(NG.get_amount() >= NG.max_amount)
+					continue
+				NG.attackby(G, user)
+			to_chat(user, "You add the newly-formed carpet to the stack. It now contains [G.get_amount()] tiles.")
+		qdel(src)
+		return
+
 	if(seed.get_trait(TRAIT_SPREAD) > 0)
 		to_chat(user, "<span class='notice'>You plant the [src.name].</span>")
 		new /obj/machinery/portable_atmospherics/hydroponics/soil/invisible(get_turf(user),src.seed)

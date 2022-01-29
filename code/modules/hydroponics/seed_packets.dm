@@ -269,6 +269,9 @@ GLOBAL_LIST_BOILERPLATE(all_seed_packs, /obj/item/seeds)
 /obj/item/seeds/grassseed
 	seed_type = "grass"
 
+/obj/item/seeds/carpetseed
+	seed_type = "carpet"
+
 /obj/item/seeds/cocoapodseed
 	seed_type = "cocoa"
 

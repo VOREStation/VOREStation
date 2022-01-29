@@ -1520,4 +1520,4 @@
 	M.adjustCloneLoss(-2 * removed)
 	M.druggy = max(M.druggy, 20)
 	M.hallucination = max(M.hallucination, 3)
-	M.adjustBrainLoss(1 * removed) //your life for your mind. An exchange made willingly, for better or worse.
+	M.adjustBrainLoss(1 * removed) //your life for your mind. The Earthmother's Tithe.
