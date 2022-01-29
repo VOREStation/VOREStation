@@ -290,7 +290,7 @@
 		return
 
 	if(seed.kitchen_tag == "carpet")
-		user.show_message("<span class='notice'>You shape some carpet squares out of \the [src]!</span>", 1)
+		user.show_message("<span class='notice'>You shape some carpet squares out of \the [src] fibers!</span>", 1)
 		for(var/i=0,i<2,i++)
 			var/obj/item/stack/tile/carpet/G = new (user.loc)
 			for (var/obj/item/stack/tile/carpet/NG in user.loc)
