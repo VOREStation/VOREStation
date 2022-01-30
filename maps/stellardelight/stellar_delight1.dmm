@@ -13030,6 +13030,7 @@
 /obj/machinery/door/airlock/angled_bay/standard/color{
 	dir = 8;
 	door_color = "#ffffff";
+	id_tag = "m-ex-room";
 	name = "Exam Room";
 	req_access = list(5);
 	stripe_color = "#5a96bb"
@@ -16582,6 +16583,14 @@
 /obj/machinery/computer/med_data/laptop,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
+	},
+/obj/machinery/button/remote/airlock{
+	dir = 4;
+	id = "m-ex-room";
+	name = "Exam Room Lock";
+	pixel_x = -30;
+	pixel_y = -8;
+	specialfunctions = 4
 	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/exam_room)
