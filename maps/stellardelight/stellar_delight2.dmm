@@ -2669,7 +2669,7 @@
 "fL" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /obj/effect/landmark/vermin,
-/obj/machinery/slot_machine,
+/obj/machinery/station_slot_machine,
 /turf/simulated/floor/tiled/eris/dark/cargo,
 /area/crew_quarters/recreation_area)
 "fN" = (
