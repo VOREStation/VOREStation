@@ -2669,7 +2669,7 @@
 "fL" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /obj/effect/landmark/vermin,
-/obj/machinery/slot_machine,
+/obj/machinery/station_slot_machine,
 /turf/simulated/floor/tiled/eris/dark/cargo,
 /area/crew_quarters/recreation_area)
 "fN" = (
@@ -6982,6 +6982,10 @@
 /obj/structure/closet/emcloset,
 /turf/simulated/floor/tiled/eris/white/danger,
 /area/stellardelight/deck2/port)
+"ps" = (
+/obj/machinery/slot_machine,
+/turf/simulated/wall/bay/brown,
+/area/crew_quarters/recreation_area)
 "pu" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
@@ -33661,7 +33665,7 @@ rV
 lT
 KH
 Ct
-nt
+ps
 Yl
 mt
 mt
