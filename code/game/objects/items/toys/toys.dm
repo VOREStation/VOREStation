@@ -945,7 +945,7 @@
 		else
 			searching = FALSE
 
-	if(world.time - last_message <= 1 SECOND)
+	if(world.time - last_message <= 15 SECONDS)
 		return
 	if(user.a_intent == I_HELP)
 		user.visible_message("<span class='notice'><b>\The [user]</b> hugs [src]!</span>","<span class='notice'>You hug [src]!</span>")
