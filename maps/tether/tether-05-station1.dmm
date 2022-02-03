@@ -5794,7 +5794,6 @@
 	},
 /obj/machinery/door/firedoor/glass/hidden/shuttle,
 /obj/machinery/door/blast/shuttle/open{
-	dir = 1;
 	id = "medivac blast";
 	name = "Shuttle Blast Doors"
 	},
@@ -14065,7 +14064,9 @@
 /area/engineering/foyer)
 "beU" = (
 /turf/simulated/wall/fancy_shuttle/nondense{
-	fancy_shuttle_tag = "medbus"
+	fancy_shuttle_tag = "medbus";
+	nitrogen = 0;
+	oxygen = 0
 	},
 /area/shuttle/medivac/general)
 "beY" = (
@@ -14573,7 +14574,9 @@
 	dir = 1
 	},
 /turf/simulated/wall/fancy_shuttle/low{
-	fancy_shuttle_tag = "medbus"
+	fancy_shuttle_tag = "medbus";
+	nitrogen = 0;
+	oxygen = 0
 	},
 /area/shuttle/medivac/engines)
 "btr" = (
@@ -15926,7 +15929,9 @@
 	dir = 1
 	},
 /turf/simulated/wall/fancy_shuttle/low{
-	fancy_shuttle_tag = "secbus"
+	fancy_shuttle_tag = "secbus";
+	nitrogen = 0;
+	oxygen = 0
 	},
 /area/shuttle/securiship/engines)
 "cnB" = (
@@ -17393,7 +17398,9 @@
 	dir = 1
 	},
 /turf/simulated/wall/fancy_shuttle/nondense{
-	fancy_shuttle_tag = "secbus"
+	fancy_shuttle_tag = "secbus";
+	nitrogen = 0;
+	oxygen = 0
 	},
 /area/shuttle/securiship/engines)
 "dDo" = (
@@ -18056,7 +18063,9 @@
 /area/shuttle/excursion/general)
 "ewT" = (
 /turf/simulated/wall/fancy_shuttle/low{
-	fancy_shuttle_tag = "medbus"
+	fancy_shuttle_tag = "medbus";
+	nitrogen = 0;
+	oxygen = 0
 	},
 /area/shuttle/medivac/engines)
 "exi" = (
@@ -18466,7 +18475,9 @@
 	dir = 6
 	},
 /turf/simulated/wall/fancy_shuttle/low{
-	fancy_shuttle_tag = "secbus"
+	fancy_shuttle_tag = "secbus";
+	nitrogen = 0;
+	oxygen = 0
 	},
 /area/shuttle/securiship/engines)
 "eVP" = (
@@ -19670,7 +19681,9 @@
 /area/maintenance/station/eng_lower)
 "gio" = (
 /turf/simulated/wall/fancy_shuttle/low{
-	fancy_shuttle_tag = "medbus"
+	fancy_shuttle_tag = "medbus";
+	nitrogen = 0;
+	oxygen = 0
 	},
 /area/shuttle/medivac/general)
 "gjd" = (
@@ -23464,7 +23477,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /obj/machinery/door/firedoor/glass/hidden/shuttle,
 /obj/machinery/door/blast/shuttle/open{
-	dir = 1;
 	id = "medivac blast";
 	name = "Shuttle Blast Doors"
 	},
@@ -24424,7 +24436,6 @@
 	},
 /obj/machinery/door/firedoor/glass/hidden/shuttle,
 /obj/machinery/door/blast/shuttle/open{
-	dir = 1;
 	id = "securiship blast";
 	name = "Shuttle Blast Doors"
 	},
@@ -24730,7 +24741,9 @@
 /area/storage/tools)
 "kKY" = (
 /turf/simulated/wall/fancy_shuttle/nondense{
-	fancy_shuttle_tag = "secbus"
+	fancy_shuttle_tag = "secbus";
+	nitrogen = 0;
+	oxygen = 0
 	},
 /area/shuttle/securiship/engines)
 "kLG" = (
@@ -27351,7 +27364,9 @@
 /area/storage/tools)
 "mRq" = (
 /turf/simulated/wall/fancy_shuttle/low{
-	fancy_shuttle_tag = "secbus"
+	fancy_shuttle_tag = "secbus";
+	nitrogen = 0;
+	oxygen = 0
 	},
 /area/shuttle/securiship/general)
 "mRU" = (
@@ -27948,7 +27963,9 @@
 	},
 /obj/effect/map_helper/airlock/atmos/pump_out_external,
 /turf/simulated/wall/fancy_shuttle/low{
-	fancy_shuttle_tag = "secbus"
+	fancy_shuttle_tag = "secbus";
+	nitrogen = 0;
+	oxygen = 0
 	},
 /area/shuttle/securiship/engines)
 "nvu" = (
@@ -28036,7 +28053,9 @@
 	dir = 10
 	},
 /turf/simulated/wall/fancy_shuttle/low{
-	fancy_shuttle_tag = "secbus"
+	fancy_shuttle_tag = "secbus";
+	nitrogen = 0;
+	oxygen = 0
 	},
 /area/shuttle/securiship/engines)
 "nAx" = (
@@ -29410,7 +29429,9 @@
 /area/tether/station/dock_one)
 "psE" = (
 /turf/simulated/wall/fancy_shuttle/low{
-	fancy_shuttle_tag = "secbus"
+	fancy_shuttle_tag = "secbus";
+	nitrogen = 0;
+	oxygen = 0
 	},
 /area/shuttle/securiship/engines)
 "ptc" = (
@@ -30850,7 +30871,6 @@
 	},
 /obj/machinery/door/firedoor/glass/hidden/shuttle,
 /obj/machinery/door/blast/shuttle/open{
-	dir = 1;
 	id = "medivac blast";
 	name = "Shuttle Blast Doors"
 	},
@@ -31534,7 +31554,6 @@
 	},
 /obj/machinery/door/firedoor/glass/hidden/shuttle,
 /obj/machinery/door/blast/shuttle/open{
-	dir = 1;
 	id = "securiship blast";
 	name = "Shuttle Blast Doors"
 	},
@@ -31665,7 +31684,9 @@
 /area/engineering/hallway)
 "sbe" = (
 /turf/simulated/wall/fancy_shuttle/nondense{
-	fancy_shuttle_tag = "medbus"
+	fancy_shuttle_tag = "medbus";
+	nitrogen = 0;
+	oxygen = 0
 	},
 /area/shuttle/medivac/engines)
 "scu" = (
@@ -32400,7 +32421,9 @@
 	dir = 1
 	},
 /turf/simulated/wall/fancy_shuttle/nondense{
-	fancy_shuttle_tag = "medbus"
+	fancy_shuttle_tag = "medbus";
+	nitrogen = 0;
+	oxygen = 0
 	},
 /area/shuttle/medivac/engines)
 "sUY" = (
@@ -32875,7 +32898,9 @@
 /area/maintenance/cargo)
 "tqu" = (
 /turf/simulated/wall/fancy_shuttle/nondense{
-	fancy_shuttle_tag = "secbus"
+	fancy_shuttle_tag = "secbus";
+	nitrogen = 0;
+	oxygen = 0
 	},
 /area/shuttle/securiship/general)
 "trn" = (
@@ -33694,7 +33719,9 @@
 /area/storage/tools)
 "ujC" = (
 /turf/simulated/wall/fancy_shuttle/nondense{
-	fancy_shuttle_tag = "medbus"
+	fancy_shuttle_tag = "medbus";
+	nitrogen = 0;
+	oxygen = 0
 	},
 /area/shuttle/medivac/cockpit)
 "ujK" = (
@@ -33801,7 +33828,9 @@
 "uqU" = (
 /obj/machinery/shipsensors/fancy_shuttle,
 /turf/simulated/wall/fancy_shuttle/nondense{
-	fancy_shuttle_tag = "medbus"
+	fancy_shuttle_tag = "medbus";
+	nitrogen = 0;
+	oxygen = 0
 	},
 /area/shuttle/medivac/cockpit)
 "usX" = (
@@ -34914,7 +34943,9 @@
 	},
 /obj/effect/map_helper/airlock/atmos/pump_out_external,
 /turf/simulated/wall/fancy_shuttle/low{
-	fancy_shuttle_tag = "medbus"
+	fancy_shuttle_tag = "medbus";
+	nitrogen = 0;
+	oxygen = 0
 	},
 /area/shuttle/medivac/engines)
 "vFn" = (
