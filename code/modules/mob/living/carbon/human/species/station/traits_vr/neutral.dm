@@ -155,6 +155,10 @@
 	custom_only = FALSE
 	var_changes = list("has_glowing_eyes" = 1)
 
+/datum/trait/neutral/glowing_eyes/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..(S,H)
+	H.verbs |= /mob/living/carbon/human/proc/toggle_eye_glow
+
 /datum/trait/neutral/glowing_body
 	name = "Glowing Body"
 	desc = "Your body glows about as much as a PDA light! Settable color and toggle in Abilities tab ingame."

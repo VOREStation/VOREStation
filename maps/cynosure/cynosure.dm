@@ -14,6 +14,7 @@
 	#include "loadout/loadout_uniform.dm"
 
 	#include "datums/supplypacks/munitions.dm"
+	#include "datums/random_map.dm"
 	#include "items/encryptionkey_cyno.dm"
 	#include "items/headset_cyno.dm"
 	#include "items/clothing/cyno_suit.dm"

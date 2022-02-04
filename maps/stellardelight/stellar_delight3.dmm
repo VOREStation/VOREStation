@@ -1276,7 +1276,8 @@
 /area/stellardelight/deck3/aft)
 "eP" = (
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock{
+/obj/machinery/door/airlock/angled_bay/standard/color/common{
+	dir = 4;
 	name = "Holodeck"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
