@@ -134,6 +134,15 @@
 			to_chat(user, "<span class='warning'>You cannot store \the [O]. You already have something stored.</span>")
 			busy_bank = FALSE
 			return
+		var/choice = tgui_alert(user, "If you store \the [O], anything it contains may be lost to \the [src]. Are you sure?", "[src]", list("Store", "Cancel"), timeout = 10 SECONDS)
+		if(!choice || choice == "Cancel" || !Adjacent(user) || inoperable() || panel_open)
+			busy_bank = FALSE
+			return
+		for(var/obj/check in O.contents)
+			if(!check.persist_storable)
+				to_chat(user, "<span class='warning'>\The [src] buzzes. \The [O] contains [check], which cannot be stored. Please remove this item before attempting to store \the [O]. As a reminder, any contents of \the [O] will be lost if you store it with contents.</span>")
+				busy_bank = FALSE
+				return
 		user.visible_message("<span class='notice'>\The [user] begins storing \the [O] in \the [src].</span>","<span class='notice'>You begin storing \the [O] in \the [src].</span>")
 		icon_state = "item_bank_o"
 		if(!do_after(user, 10 SECONDS, src, exclusive = TASK_ALL_EXCLUSIVE) || inoperable())
@@ -216,5 +225,7 @@
 /obj/item/weapon/gun/energy/sizegun/admin
 	persist_storable = FALSE
 /obj/item/weapon/gun/energy/sizegun/abductor
+	persist_storable = FALSE
+/obj/item/stack
 	persist_storable = FALSE
 
