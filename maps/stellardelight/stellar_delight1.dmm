@@ -10108,6 +10108,16 @@
 /obj/item/weapon/pen,
 /turf/simulated/floor/tiled/dark,
 /area/security/security_processing)
+"vt" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/item_bank{
+	dir = 4;
+	pixel_x = -29
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/stellardelight/deck1/starboard)
 "vu" = (
 /turf/simulated/wall/bay/r_wall/brown,
 /area/stellardelight/deck1/dorms/dorm5)
@@ -35808,7 +35818,7 @@ Sj
 Jb
 Sj
 mS
-Sj
+vt
 Sj
 Sj
 pg

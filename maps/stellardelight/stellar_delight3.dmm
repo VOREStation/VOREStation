@@ -3655,11 +3655,12 @@
 /turf/simulated/floor/carpet,
 /area/crew_quarters/heads/hos)
 "nL" = (
-/obj/structure/sign/poster{
-	dir = 8
-	},
 /obj/effect/floor_decal/steeldecal/steel_decals5{
 	dir = 8
+	},
+/obj/machinery/item_bank{
+	dir = 4;
+	pixel_x = -26
 	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck3/aft)
