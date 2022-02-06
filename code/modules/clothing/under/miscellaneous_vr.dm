@@ -238,3 +238,14 @@
 	icon_state = "summerdress3"
 /obj/item/clothing/under/summerdress/blue
 	icon_state = "summerdress2"
+
+/obj/item/clothing/under/dress/dress_cap/femformal // formal in the loosest sense. because it's going to be taken off. or something. funnier in my head i swear 
+	name = "site manager's feminine formalwear"
+	desc = "Essentially a skimpy...dress? Leotard? Whatever it is, it has the coloration and markings suitable for a site manager or rough equivalent."
+	icon = 'icons/inventory/uniform/item_vr.dmi'
+	default_worn_icon = 'icons/inventory/uniform/mob_vr.dmi'
+	icon_state = "lewdcap"
+	item_state = "lewdcap"
+	rolled_sleeves = -1
+	rolled_down = -1
+	body_parts_covered = UPPER_TORSO // frankly this thing's a fucking embarassment
