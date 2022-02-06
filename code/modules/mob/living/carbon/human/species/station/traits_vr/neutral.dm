@@ -248,10 +248,17 @@
 
 /datum/trait/neutral/allergen_reduced_effect
 	name = "Reduced Allergen Reaction"
-	desc = "This trait halves the lethality of allergen reactions. If you don't have any allergens set, it does nothing. It does not apply to nonlethal reactions or special reactions (such as unathi drowsiness from sugars)."
+	desc = "This trait drastically reduces the lethality of allergen reactions. If you don't have any allergens set, it does nothing. It does not apply to nonlethal reactions or special reactions (such as unathi drowsiness from sugars)."
 	cost = 0
 	custom_only = FALSE
-	var_changes = list("allergen_damage_severity" = 0.6)
+	var_changes = list("allergen_damage_severity" = 1.2)
+
+/datum/trait/neutral/allergen_increased_effect
+	name = "Increased Allergen Reaction"
+	desc = "This trait drastically increases the lethality of allergen reactions. If you don't have any allergens set, it does nothing. It does not apply to nonlethal reactions or special reactions (such as unathi drowsiness from sugars)."
+	cost = 0
+	custom_only = FALSE
+	var_changes = list("allergen_damage_severity" = 7.2)
 
 // Spicy Food Traits, from negative to positive.
 /datum/trait/neutral/spice_intolerance_extreme
