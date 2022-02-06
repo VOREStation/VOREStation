@@ -877,7 +877,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	ask_verb = "tilts"
 	exclaim_verb = "roars"
 	key = "i"
-	flags = RESTRICTED
+	flags = WHITELISTED
 	machine_understands = 0
 	space_chance = 100
 	syllables = list("gyoh", "snoof", "gyoooooOOOooh", "iuuuuh", "gyuuuuh")
