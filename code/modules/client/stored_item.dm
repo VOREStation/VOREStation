@@ -71,9 +71,6 @@
 	if(busy_bank)
 		to_chat(user, "<span class='warning'>\The [src] is already in use.</span>")
 		return
-	if(user.ckey in item_takers)
-		to_chat(user, "<span class='warning'>You have already taken something out of \the [src] this shift.</span>")
-		return
 	busy_bank = TRUE
 	var/I = persist_item_savefile_load(user, "type")
 	var/Iname = persist_item_savefile_load(user, "name")
@@ -89,9 +86,13 @@
 			to_chat(user,"<span class='notice'>Your hands are full!</span>")
 			busy_bank = FALSE
 			return
+		if(user.ckey in item_takers)
+			to_chat(user, "<span class='warning'>You have already taken something out of \the [src] this shift.</span>")
+			busy_bank = FALSE
+			return
 		choice = tgui_alert(user, "If you remove this item from the bank, it will be unable to be stored again. Do you still want to remove it?", "[src]", list("No", "Yes"), timeout = 10 SECONDS)
 		icon_state = "item_bank_o"
-		if(!choice || choice == "Cancel" || !Adjacent(user) || inoperable() || panel_open)
+		if(!choice || choice == "No" || !Adjacent(user) || inoperable() || panel_open)
 			busy_bank = FALSE
 			icon_state = "item_bank"
 			return
@@ -100,6 +101,7 @@
 			icon_state = "item_bank"
 			return
 		var/obj/N = new I(get_turf(src))
+		log_admin("[key_name_admin(user)] retrieved [N] from the item bank.")
 		visible_message("<span class='notice'>\The [src] dispenses the [N] to \the [user].</span>")
 		user.put_in_hands(N)
 		N.persist_storable = FALSE
@@ -126,7 +128,12 @@
 		to_chat(user, "<span class='warning'>\The [src] is already in use.</span>")
 		return
 	busy_bank = TRUE
+	var/I = persist_item_savefile_load(user, "type")
 	if(!istool(O) && O.persist_storable)
+		if(ispath(I))
+			to_chat(user, "<span class='warning'>You cannot store \the [O]. You already have something stored.</span>")
+			busy_bank = FALSE
+			return
 		user.visible_message("<span class='notice'>\The [user] begins storing \the [O] in \the [src].</span>","<span class='notice'>You begin storing \the [O] in \the [src].</span>")
 		icon_state = "item_bank_o"
 		if(!do_after(user, 10 SECONDS, src, exclusive = TASK_ALL_EXCLUSIVE) || inoperable())
@@ -210,3 +217,4 @@
 	persist_storable = FALSE
 /obj/item/weapon/gun/energy/sizegun/abductor
 	persist_storable = FALSE
+
