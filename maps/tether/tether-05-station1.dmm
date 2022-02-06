@@ -29301,6 +29301,26 @@
 	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/foyer)
+"pjJ" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 9
+	},
+/obj/machinery/item_bank{
+	dir = 8;
+	pixel_x = 28
+	},
+/turf/simulated/floor/tiled,
+/area/hallway/station/atrium)
 "plm" = (
 /obj/machinery/camera/network/exploration{
 	dir = 1
@@ -47502,7 +47522,7 @@ dPx
 adM
 kts
 vYJ
-vYJ
+pjJ
 aba
 abm
 abO
