@@ -167,6 +167,7 @@
 		EQUIPMENT("Plush Toy",					/obj/random/plushie,												300),
 		EQUIPMENT("Soap",						/obj/item/weapon/soap/nanotrasen,									200),
 		EQUIPMENT("Thalers - 100",				/obj/item/weapon/spacecash/c100,									1000),
+		EQUIPMENT("Thalers - 1000",				/obj/item/weapon/spacecash/c1000,									10000),
 		EQUIPMENT("Umbrella",					/obj/item/weapon/melee/umbrella/random,								200),
 		EQUIPMENT("Whiskey",					/obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey,		125),
 	)
