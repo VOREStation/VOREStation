@@ -1068,6 +1068,7 @@ var/global/list/common_tools = list(
 // check if mob is lying down on something we can operate him on.
 // The RNG with table/rollerbeds comes into play in do_surgery() so that fail_step() can be used instead.
 /proc/can_operate(mob/living/carbon/M, mob/living/user)
+<<<<<<< HEAD
 	. = M.lying
 
 	if(user && M == user && user.allow_self_surgery && user.a_intent == I_HELP)	// You can, technically, always operate on yourself after standing still. Inadvised, but you can.
@@ -1076,6 +1077,16 @@ var/global/list/common_tools = list(
 			. = TRUE
 
 	return .
+=======
+	// You can, technically, always operate on yourself after standing still. Inadvised, but you can.
+	return M.lying || \
+		(
+			M == user && \
+			user.allow_self_surgery && \
+			user.a_intent == I_HELP && \
+			!M.isSynthetic()
+		)
+>>>>>>> f5612dc8a5c... Merge pull request #8389 from Atermonera/tool_fixes_3
 
 // Returns an instance of a valid surgery surface.
 /mob/living/proc/get_surgery_surface(mob/living/user)

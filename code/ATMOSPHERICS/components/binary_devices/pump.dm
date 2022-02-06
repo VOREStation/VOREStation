@@ -243,6 +243,7 @@ Thus, the two variables affect pump operation are set in New():
 		return ..()
 	if (!(stat & NOPOWER) && use_power)
 		to_chat(user, "<span class='warning'>You cannot unwrench this [src], turn it off first.</span>")
+<<<<<<< HEAD
 		return 1
 	if(!can_unwrench())
 		to_chat(user, "<span class='warning'>You cannot unwrench this [src], it too exerted due to internal pressure.</span>")
@@ -256,3 +257,7 @@ Thus, the two variables affect pump operation are set in New():
 			"<span class='notice'>You have unfastened \the [src].</span>", \
 			"You hear ratchet.")
 		deconstruct()
+=======
+		return TRUE
+	return default_deconstruction_wrench(W, user)
+>>>>>>> f5612dc8a5c... Merge pull request #8389 from Atermonera/tool_fixes_3

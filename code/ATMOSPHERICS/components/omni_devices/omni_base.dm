@@ -82,6 +82,7 @@
 /obj/machinery/atmospherics/omni/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
 	if(!W.is_wrench())
 		return ..()
+<<<<<<< HEAD
 
 	if(!can_unwrench())
 		to_chat(user, "<span class='warning'>You cannot unwrench \the [src], it is too exerted due to internal pressure.</span>")
@@ -95,6 +96,9 @@
 			"<span class='notice'>You have unfastened \the [src].</span>", \
 			"You hear a ratchet.")
 		deconstruct()
+=======
+	return default_deconstruction_wrench(W, user)
+>>>>>>> f5612dc8a5c... Merge pull request #8389 from Atermonera/tool_fixes_3
 
 /obj/machinery/atmospherics/omni/attack_hand(user as mob)
 	if(..())

@@ -329,6 +329,7 @@
 /obj/machinery/atmospherics/tvalve/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
 	if (!W.is_wrench())
 		return ..()
+<<<<<<< HEAD
 	if(!can_unwrench())
 		to_chat(user, "<span class='warnng'>You cannot unwrench \the [src], it too exerted due to internal pressure.</span>")
 		add_fingerprint(user)
@@ -341,6 +342,13 @@
 			"<span class='notice'>You have unfastened \the [src].</span>", \
 			"You hear a ratchet.")
 		deconstruct()
+=======
+	if(istype(src, /obj/machinery/atmospherics/tvalve/digital))
+		to_chat(user, "<span class='warning'>You cannot unwrench \the [src], it's too complicated.</span>")
+		return TRUE
+	return default_deconstruction_wrench(W, user)
+
+>>>>>>> f5612dc8a5c... Merge pull request #8389 from Atermonera/tool_fixes_3
 
 /obj/machinery/atmospherics/tvalve/mirrored
 	icon_state = "map_tvalvem0"

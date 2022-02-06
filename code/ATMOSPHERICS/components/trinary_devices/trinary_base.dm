@@ -54,6 +54,7 @@
 /obj/machinery/atmospherics/trinary/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
 	if (!W.is_wrench())
 		return ..()
+<<<<<<< HEAD
 	if(!can_unwrench())
 		to_chat(user, "<span class='warning'>You cannot unwrench \the [src], it too exerted due to internal pressure.</span>")
 		add_fingerprint(user)
@@ -66,6 +67,9 @@
 			"<span class='notice'>You have unfastened \the [src].</span>", \
 			"You hear a ratchet.")
 		deconstruct()
+=======
+	return default_deconstruction_wrench(W, user)
+>>>>>>> f5612dc8a5c... Merge pull request #8389 from Atermonera/tool_fixes_3
 
 // Housekeeping and pipe network stuff below
 /obj/machinery/atmospherics/trinary/get_neighbor_nodes_for_init()

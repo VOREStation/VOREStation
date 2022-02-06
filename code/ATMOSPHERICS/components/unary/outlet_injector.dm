@@ -166,6 +166,10 @@
 /obj/machinery/atmospherics/unary/outlet_injector/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
 	if (!W.is_wrench())
 		return ..()
+<<<<<<< HEAD
+=======
+	return default_deconstruction_wrench(W, user)
+>>>>>>> f5612dc8a5c... Merge pull request #8389 from Atermonera/tool_fixes_3
 
 	playsound(src, W.usesound, 50, 1)
 	to_chat(user, "<span class='notice'>You begin to unfasten \the [src]...</span>")

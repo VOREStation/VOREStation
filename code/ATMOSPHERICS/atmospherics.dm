@@ -229,3 +229,24 @@ Pipelines + Other Objects -> Pipe network
 	// pixel_x = PIPE_PIXEL_OFFSET_X(piping_layer)
 	// pixel_y = PIPE_PIXEL_OFFSET_Y(piping_layer)
 	// layer = initial(layer) + PIPE_LAYER_OFFSET(piping_layer)
+<<<<<<< HEAD
+=======
+
+/obj/machinery/atmospherics/default_deconstruction_wrench(var/obj/item/weapon/W as obj, var/mob/user as mob)
+	if(!W.get_tool_quality(TOOL_WRENCH)) //TRUE, skip
+		return FALSE
+
+	if(!can_unwrench()) // TRUE, skil
+		to_chat(user, "<span class='warning'>You cannot unwrench \the [src], it too exerted due to internal pressure.</span>")
+	else
+		playsound(src, W.usesound, 50, 1, preference = /datum/client_preference/pickup_sounds)
+		to_chat(user, "<span class='notice'>You begin to unfasten \the [src]...</span>")
+		if(do_after(user, 40 * W.get_tool_speed(TOOL_WRENCH)))
+			user.visible_message( \
+				"<span class='notice'>\The [user] unfastens \the [src].</span>", \
+				"<span class='notice'>You have unfastened \the [src].</span>", \
+				"You hear a ratchet.")
+			deconstruct()
+	add_fingerprint(user)
+	return TRUE
+>>>>>>> f5612dc8a5c... Merge pull request #8389 from Atermonera/tool_fixes_3

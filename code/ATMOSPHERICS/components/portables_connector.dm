@@ -151,6 +151,7 @@
 		return ..()
 	if (connected_device)
 		to_chat(user, "<span class='warning'>You cannot unwrench \the [src], dettach \the [connected_device] first.</span>")
+<<<<<<< HEAD
 		return 1
 	if (locate(/obj/machinery/portable_atmospherics, src.loc))
 		return 1
@@ -166,3 +167,9 @@
 			"<span class='notice'>You have unfastened \the [src].</span>", \
 			"You hear a ratchet.")
 		deconstruct()
+=======
+		return TRUE
+	if(locate(/obj/machinery/portable_atmospherics, src.loc))
+		return TRUE
+	return default_deconstruction_wrench(W,user)
+>>>>>>> f5612dc8a5c... Merge pull request #8389 from Atermonera/tool_fixes_3
