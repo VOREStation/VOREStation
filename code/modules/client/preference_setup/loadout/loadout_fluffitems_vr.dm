@@ -1332,3 +1332,9 @@
 	display_name = "Nehi's Radio"
 	ckeywhitelist = list("zodiacshadow")
 	character_name = list("Nehi Maximus")
+
+/datum/gear/fluff/lucky_amour
+	path = /obj/item/device/modkit_conversion/crusader_luck
+	display_name = "Lucky's amour"
+	ckeywhitelist = list ("thedavestdave")
+	character_name = list("Lucky")
