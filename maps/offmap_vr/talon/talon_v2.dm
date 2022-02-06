@@ -11,7 +11,7 @@ var/global/list/latejoin_talon = list()
 
 /datum/spawnpoint/talon
 	display_name = "ITV Talon Cryo"
-	restrict_job = list("Talon Captain", "Talon Pilot", "Talon Engineer", "Talon Doctor", "Talon Guard")
+	restrict_job = list("Talon Captain", "Talon Pilot", "Talon Engineer", "Talon Doctor", "Talon Guard", "Talon Miner")
 	msg = "has come out of cryostasis"
 	announce_channel = "Talon"
 
@@ -349,6 +349,12 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 /obj/item/clothing/suit/space/void/pilot/talon
 	name = "talon pilot's voidsuit"
 
+/obj/item/clothing/head/helmet/space/void/mining/talon
+	name = "talon miner's voidsuit helmet"
+	camera_networks = list(NETWORK_TALON_HELMETS)
+/obj/item/clothing/suit/space/void/mining/talon
+	name = "talon miner's voidsuit"
+
 /obj/item/device/gps/command/taloncap
 	gps_tag = "TALC"
 /obj/item/device/gps/security/talonguard
@@ -359,6 +365,8 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 	gps_tag = "TALE"
 /obj/item/device/gps/explorer/talonpilot
 	gps_tag = "TALP"
+/obj/item/device/gps/mining/talonminer
+	gps_tag = "TALM"
 
 /obj/structure/closet/secure_closet/talon_captain
 	name = "talon captain's locker"
@@ -474,6 +482,29 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 		/obj/item/device/gps/explorer/talonpilot
 	)
 
+/obj/structure/closet/secure_closet/talon_miner
+	name = "talon miner's locker"
+	req_access = list(access_talon)
+	closet_appearance = /decl/closet_appearance/secure_closet/talon/miner
+
+	starts_with = list(
+		/obj/item/device/radio/headset/talon,
+		/obj/item/clothing/head/helmet/space/void/refurb/mining/talon,
+		/obj/item/clothing/suit/space/void/refurb/mining/talon,
+		/obj/item/weapon/tank/oxygen,
+		/obj/item/device/suit_cooling_unit,
+		/obj/item/device/gps/mining/talonminer,
+		/obj/item/clothing/gloves/black,
+		/obj/item/device/analyzer,
+		/obj/item/weapon/storage/bag/ore,
+		/obj/item/device/flashlight/lantern,
+		/obj/item/weapon/shovel,
+		/obj/item/weapon/pickaxe,
+		/obj/item/weapon/mining_scanner,
+		/obj/item/clothing/glasses/material,
+		/obj/item/clothing/glasses/meson
+	)
+
 /obj/machinery/vending/medical_talon //Not a subtype for *reasons*
 	name = "NanoMed Plus"
 	desc = "Medical drug dispenser."
@@ -576,6 +607,13 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 	hard_drive.store_file(new/datum/computer_file/program/suit_sensors/talon())
 	hard_drive.store_file(new/datum/computer_file/program/camera_monitor/talon_helmet())
 	set_autorun("tsensormonitor")
+
+/obj/item/modular_computer/laptop/preset/custom_loadout/standard/talon/miner
+	name = "miner's laptop"
+
+/obj/item/modular_computer/laptop/preset/custom_loadout/standard/talon/miner/install_default_programs()
+	..()
+	hard_drive.store_file(new/datum/computer_file/program/ship_nav())
 
 //Generic modular consoles scattered around
 /obj/item/modular_computer/console/preset/talon

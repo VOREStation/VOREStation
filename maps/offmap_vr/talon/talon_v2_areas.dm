@@ -112,6 +112,9 @@
 /area/talon_v2/crew_quarters/sec_room
 	name = "\improper Talon - Guard's Cabin"
 	icon_state = "red"
+/area/talon_v2/crew_quarters/mine_room
+	name = "\improper Talon - Miner's Cabin"
+	icon_state = "gray"
 /area/talon_v2/crew_quarters/cap_room
 	name = "\improper Talon - Captain's Cabin"
 	icon_state = "blue"
