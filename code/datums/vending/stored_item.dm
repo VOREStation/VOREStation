@@ -42,6 +42,11 @@
 	var/atom/movable/product = instances[instances.len]	// Remove the last added product
 	instances -= product
 	product.forceMove(product_location)
+	//VOREStation Addition Start
+	if(istype(product, /obj))
+		var/obj/item = product
+		item.persist_storable = FALSE
+	//VOREStation Addition End
 	return product
 
 /datum/stored_item/proc/add_product(var/atom/movable/product)

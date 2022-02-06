@@ -287,7 +287,10 @@
 				return
 
 			remove_points(inserted_id, prize.cost)
-			new prize.equipment_path(loc)
+			//VOREStation Edit Start
+			var/obj/I = new prize.equipment_path(loc)
+			I.persist_storable = FALSE
+			//VOREStation Edit End
 			flick(icon_vend, src) //VOREStation Add
 		else
 			flick(icon_deny, src) //VOREStation Add
