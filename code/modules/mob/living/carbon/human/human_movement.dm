@@ -127,13 +127,13 @@
 		. += shoes.slowdown
 
 	// Loop through some slots, and add up their slowdowns.
-	// Includes slots which can provide armor, the back slot, and suit storage.
-	for(var/obj/item/I in list(wear_suit, w_uniform, back, gloves, head, s_store))
+	// Includes slots which can provide armor, the back slot, belt, and suit storage.
+	for(var/obj/item/I in list(wear_suit, w_uniform, back, gloves, head, s_store, belt))
 		. += I.slowdown
 
 	// Hands are also included, to make the 'take off your armor instantly and carry it with you to go faster' trick no longer viable.
 	// This is done seperately to disallow negative numbers (so you can't hold shoes in your hands to go faster).
-	for(var/obj/item/I in list(r_hand, l_hand) )
+	for(var/obj/item/I in list(r_hand, l_hand))
 		. += max(I.slowdown, 0)
 
 // Similar to above, but for turf slowdown.
