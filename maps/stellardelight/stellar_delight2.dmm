@@ -14024,6 +14024,9 @@
 	dir = 4
 	},
 /obj/machinery/vending/nifsoft_shop,
+/obj/machinery/item_bank{
+	pixel_y = 28
+	},
 /turf/simulated/floor/tiled,
 /area/stellardelight/deck2/fore)
 "FB" = (

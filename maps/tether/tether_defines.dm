@@ -21,6 +21,7 @@
 #define Z_LEVEL_DEBRISFIELD					19
 #define Z_LEVEL_FUELDEPOT					20
 #define Z_LEVEL_GATEWAY						21
+#define Z_LEVEL_OM_ADVENTURE				22
 
 //Camera networks
 #define NETWORK_TETHER "Tether"

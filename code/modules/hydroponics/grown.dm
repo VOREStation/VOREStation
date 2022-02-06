@@ -88,11 +88,11 @@
 			descriptors |= "radioactive"
 		if(reagents.has_reagent("amatoxin") || reagents.has_reagent("toxin"))
 			descriptors |= "poisonous"
-		if(reagents.has_reagent("psilocybin") || reagents.has_reagent("space_drugs"))
+		if(reagents.has_reagent("psilocybin") || reagents.has_reagent("space_drugs") || reagents.has_reagent("earthsblood"))
 			descriptors |= "hallucinogenic"
-		if(reagents.has_reagent("bicaridine"))
+		if(reagents.has_reagent("bicaridine") || reagents.has_reagent("earthsblood"))
 			descriptors |= "medicinal"
-		if(reagents.has_reagent("gold"))
+		if(reagents.has_reagent("gold") || reagents.has_reagent("earthsblood"))
 			descriptors |= "shiny"
 		if(reagents.has_reagent("lube"))
 			descriptors |= "slippery"
@@ -181,7 +181,7 @@
 				var/obj/item/weapon/cell/potato/pocell = new /obj/item/weapon/cell/potato(get_turf(user))
 				if(src.loc == user && istype(user,/mob/living/carbon/human))
 					user.put_in_hands(pocell)
-				pocell.maxcharge = src.potency * 10
+				pocell.maxcharge = src.potency * 200
 				pocell.charge = pocell.maxcharge
 				qdel(src)
 				return
@@ -286,6 +286,20 @@
 					continue
 				NG.attackby(G, user)
 			to_chat(user, "You add the newly-formed grass to the stack. It now contains [G.get_amount()] tiles.")
+		qdel(src)
+		return
+
+	if(seed.kitchen_tag == "carpet")
+		user.show_message("<span class='notice'>You shape some carpet squares out of \the [src] fibers!</span>", 1)
+		for(var/i=0,i<2,i++)
+			var/obj/item/stack/tile/carpet/G = new (user.loc)
+			for (var/obj/item/stack/tile/carpet/NG in user.loc)
+				if(G == NG)
+					continue
+				if(NG.get_amount() >= NG.max_amount)
+					continue
+				NG.attackby(G, user)
+			to_chat(user, "You add the newly-formed carpet to the stack. It now contains [G.get_amount()] tiles.")
 		qdel(src)
 		return
 

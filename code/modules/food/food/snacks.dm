@@ -7,6 +7,7 @@
 	center_of_mass = list("x"=16, "y"=16)
 	w_class = ITEMSIZE_SMALL
 	force = 0
+	volume = 80
 
 	var/bitesize = 1
 	var/bitecount = 0

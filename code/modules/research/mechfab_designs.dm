@@ -761,6 +761,22 @@
 	materials = list(MAT_STEEL = 10000, MAT_SILVER = 1000, MAT_GOLD = 1000)
 	build_path = /obj/item/mecha_parts/mecha_equipment/speedboost
 
+/datum/design/item/mecha/auxstorage
+	name = "Auxillary Exosuit Storage Bay"
+	desc = "An auxillary storage compartment, for attaching to exosuits."
+	id = "mech_storage"
+	req_tech = list(TECH_MATERIAL = 4)
+	materials = list(MAT_STEEL = 10000)
+	build_path = /obj/item/mecha_parts/mecha_equipment/storage
+
+/datum/design/item/mecha/bsauxstorage
+	name = "Auxillary Exosuit Storage Wormhole"
+	desc = "An auxillary storage wormhole, for attaching to exosuits."
+	id = "mech_storage_bs"
+	req_tech = list(TECH_MATERIAL = 4)
+	materials = list(MAT_PLASTEEL = 10000, MAT_GRAPHITE = 8000, MAT_OSMIUM = 6000, MAT_PHORON = 6000, MAT_SILVER = 4000, MAT_GOLD = 4000)
+	build_path = /obj/item/mecha_parts/mecha_equipment/storage/bluespace
+
 /datum/design/item/synthetic_flash
 	name = "Synthetic Flash"
 	id = "sflash"

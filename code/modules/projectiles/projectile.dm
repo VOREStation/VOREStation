@@ -83,10 +83,10 @@
 
 	//Misc/Polaris variables
 
-	var/def_zone = ""	//Aiming at
-	var/mob/firer = null//Who shot it
-	var/silenced = 0	//Attack message
-	var/shot_from = "" // name of the object which shot us
+	var/def_zone = ""	 //Aiming at
+	var/mob/firer = null //Who shot it
+	var/silenced = FALSE //Attack message
+	var/shot_from = ""   // name of the object which shot us
 
 	var/accuracy = 0
 	var/dispersion = 0.0
@@ -748,7 +748,7 @@
 /obj/item/projectile/proc/launch_from_gun(atom/target, target_zone, mob/user, params, angle_override, forced_spread, obj/item/weapon/gun/launcher)
 
 	shot_from = launcher.name
-	silenced = launcher.silenced
+	silenced |= launcher.silenced // Silent bullets (e.g., BBs) are always silent
 	if(user)
 		firer = user
 
