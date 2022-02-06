@@ -14563,7 +14563,6 @@
 "axL" = (
 /obj/structure/table/standard,
 /obj/structure/reagent_dispensers/acid{
-	density = 0;
 	pixel_y = -30
 	},
 /obj/item/weapon/hand_labeler,
@@ -20150,7 +20149,6 @@
 	dir = 1
 	},
 /obj/structure/reagent_dispensers/acid{
-	density = 0;
 	pixel_y = -30
 	},
 /obj/effect/floor_decal/borderfloor,
@@ -38800,6 +38798,13 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
+"fsd" = (
+/obj/machinery/item_bank{
+	dir = 4;
+	pixel_x = -28
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/southhall)
 "fxh" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -38958,7 +38963,6 @@
 	},
 /obj/machinery/door/firedoor/glass/hidden/shuttle,
 /obj/machinery/door/blast/shuttle/open{
-	dir = 1;
 	id = "tourbus_windows";
 	name = "Shuttle Blast Doors"
 	},
@@ -39790,7 +39794,6 @@
 	},
 /obj/machinery/door/firedoor/glass/hidden/shuttle,
 /obj/machinery/door/blast/shuttle/open{
-	dir = 1;
 	id = "tourbus_windows";
 	name = "Shuttle Blast Doors"
 	},
@@ -42699,7 +42702,6 @@
 "sVC" = (
 /obj/machinery/door/firedoor/glass/hidden/shuttle,
 /obj/machinery/door/blast/shuttle/open{
-	dir = 1;
 	id = "tourbus_windows";
 	name = "Shuttle Blast Doors"
 	},
@@ -57041,7 +57043,7 @@ aPu
 qbo
 bhi
 bhm
-beU
+fsd
 bhp
 beU
 beU
