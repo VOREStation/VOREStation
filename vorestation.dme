@@ -1032,6 +1032,7 @@
 #include "code\game\mecha\equipment\tools\shield_omni.dm"
 #include "code\game\mecha\equipment\tools\sleeper.dm"
 #include "code\game\mecha\equipment\tools\speedboost.dm"
+#include "code\game\mecha\equipment\tools\storage_compartment.dm"
 #include "code\game\mecha\equipment\tools\syringe_gun.dm"
 #include "code\game\mecha\equipment\tools\teleporter.dm"
 #include "code\game\mecha\equipment\tools\tools.dm"
