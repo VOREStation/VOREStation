@@ -24,11 +24,6 @@
 
 	return 1
 
-// loads the savefile corresponding to the mob's ckey
-// if silent=true, report incompatible savefiles
-// returns 1 if loaded (or file was incompatible)
-// returns 0 if savefile did not exist
-
 /obj/machinery/item_bank/proc/persist_item_savefile_load(mob/user, thing)
 	if (IsGuestKey(user.key))
 		return 0
