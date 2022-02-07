@@ -27,14 +27,9 @@
 			simulated = TRUE
 		//	delete_me = 1
 			return
-		//VOREStation Add end
-		if("Observer-Start") // Ghosts are the only thing that use the latejoin list afaik and it complains if there's nothing in the list. 
-			latejoin += src
-			simulated = TRUE
-			return
-		//VOREStation Add end
 		if("JoinLateGateway")
 			latejoin_gateway += loc
+			latejoin += src				//VOREStation Addition
 			delete_me = 1
 			return
 		if("JoinLateElevator")
