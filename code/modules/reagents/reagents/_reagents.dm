@@ -182,6 +182,8 @@
 			M.eye_blurry = max(M.eye_blurry, disable_severity)
 		if(M.species.allergen_reaction & AG_SLEEPY)
 			M.drowsyness = max(M.drowsyness, disable_severity)
+		if(M.species.allergen_reaction & AG_CONFUSE) //VOREStation Addition
+			M.Confuse(disable_severity/4) //VOREStation Addition
 	remove_self(removed)
 	return
 
