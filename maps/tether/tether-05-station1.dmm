@@ -20079,6 +20079,12 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/gateway)
+"gCZ" = (
+/obj/effect/landmark{
+	name = "maint_pred"
+	},
+/turf/simulated/floor,
+/area/maintenance/station/eng_lower)
 "gDl" = (
 /obj/machinery/light_switch{
 	dir = 1;
@@ -22968,6 +22974,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
 	},
+/obj/effect/landmark/vermin,
 /turf/simulated/floor/tiled,
 /area/quartermaster/office)
 "jiq" = (
@@ -24300,6 +24307,10 @@
 	},
 /turf/simulated/floor/airless,
 /area/ai_monitored/storage/eva)
+"kpK" = (
+/obj/effect/landmark/vermin,
+/turf/simulated/floor/tiled,
+/area/tether/exploration/crew)
 "kqW" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -24867,6 +24878,7 @@
 	dir = 10
 	},
 /obj/item/device/radio/beacon,
+/obj/effect/landmark/vines,
 /turf/simulated/floor/tiled,
 /area/tether/station/dock_two)
 "kOF" = (
@@ -27017,6 +27029,13 @@
 	},
 /turf/simulated/wall/r_wall,
 /area/maintenance/substation/civilian)
+"mBL" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/landmark/vines,
+/turf/simulated/floor/tiled,
+/area/hallway/station/docks)
 "mBY" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -28595,6 +28614,10 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/cargo)
+"ohH" = (
+/obj/effect/landmark/vermin,
+/turf/simulated/floor/tiled,
+/area/quartermaster/storage)
 "ohT" = (
 /obj/structure/closet/emcloset,
 /turf/simulated/floor/tiled,
@@ -29861,6 +29884,16 @@
 /obj/random/maintenance/cargo,
 /turf/simulated/floor,
 /area/maintenance/cargo)
+"qaA" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/obj/effect/landmark/vermin,
+/turf/simulated/floor/tiled/monotile,
+/area/tether/exploration)
 "qbk" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod{
 	frequency = 1380;
@@ -29912,6 +29945,7 @@
 /obj/machinery/door/firedoor/glass/hidden/steel{
 	dir = 1
 	},
+/obj/effect/landmark/vines,
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
 "qdG" = (
@@ -30505,6 +30539,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/foyer)
+"qKp" = (
+/obj/effect/landmark/vermin,
+/turf/simulated/floor/tiled,
+/area/engineering/gravity_gen)
 "qKr" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -33732,6 +33770,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/effect/landmark/vermin,
 /turf/simulated/floor/tiled,
 /area/engineering/foyer)
 "ujB" = (
@@ -36807,6 +36846,13 @@
 /obj/structure/railing,
 /turf/simulated/floor,
 /area/maintenance/station/eng_lower)
+"xRE" = (
+/obj/machinery/atmospherics/pipe/simple/hidden,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/landmark/vines,
+/turf/simulated/floor/tiled,
+/area/tether/station/dock_one)
 "xSF" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -40579,7 +40625,7 @@ gTz
 trn
 gTz
 gTz
-gTz
+xRE
 gTz
 gTz
 trn
@@ -43691,7 +43737,7 @@ alt
 alt
 alv
 tMV
-bVP
+mBL
 pfh
 bgG
 aaa
@@ -44777,7 +44823,7 @@ aEk
 aXR
 bbb
 ahP
-brX
+qKp
 ank
 byy
 byy
@@ -46067,7 +46113,7 @@ dyq
 fca
 hcW
 qHy
-ack
+gCZ
 fgA
 ach
 abC
@@ -47777,7 +47823,7 @@ fMv
 gnc
 gMr
 pPa
-eWv
+qaA
 ops
 pny
 acH
@@ -48544,7 +48590,7 @@ aBW
 aBW
 aBW
 aBW
-aDz
+ohH
 aEc
 gcc
 awN
@@ -48918,7 +48964,7 @@ pXr
 scu
 iiU
 ajj
-ajj
+kpK
 kfa
 alj
 vmt
