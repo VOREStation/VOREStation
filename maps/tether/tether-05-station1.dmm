@@ -25897,6 +25897,9 @@
 	fancy_shuttle_tag = "secbus";
 	name = "secbus"
 	},
+/obj/structure/fuel_port{
+	pixel_y = 32
+	},
 /turf/simulated/floor/tiled,
 /area/shuttle/securiship/engines)
 "lEm" = (
