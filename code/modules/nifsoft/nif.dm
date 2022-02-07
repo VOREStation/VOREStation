@@ -269,7 +269,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 /obj/item/device/nif/proc/handle_install()
 	if(human.stat || !human.mind) //No stuff while KO or not sleeved
 		return FALSE
-
+	persist_storable = FALSE		//VOREStation edit - I am not sure if polaris has nifs, but just in case.
 	//Firsties
 	if(!install_done)
 		if(human.mind.name == owner)
