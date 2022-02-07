@@ -6134,6 +6134,9 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/public_garden_one)
 "aks" = (
+/obj/effect/landmark{
+	name = "maint_pred"
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/public_garden_maintenence)
 "akt" = (
@@ -8439,6 +8442,7 @@
 	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment,
+/obj/effect/landmark/vines,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_one_hall)
 "anZ" = (
@@ -20069,6 +20073,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
+/obj/effect/landmark/vermin,
 /turf/simulated/floor/wood,
 /area/vacant/vacant_bar)
 "aHe" = (
@@ -27719,6 +27724,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 9
 	},
+/obj/effect/landmark/vines,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_lodging)
 "aVd" = (
@@ -31859,6 +31865,10 @@
 "cAR" = (
 /turf/simulated/floor/looking_glass/center,
 /area/looking_glass/lg_1)
+"cCx" = (
+/obj/effect/landmark/vermin,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden_one)
 "cGJ" = (
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining_eva)
@@ -31921,6 +31931,16 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/hallway)
+"cKo" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/grey/border{
+	dir = 1
+	},
+/obj/effect/landmark/vermin,
+/turf/simulated/floor/tiled,
+/area/crew_quarters/visitor_laundry)
 "cKr" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
 /obj/machinery/atmospherics/pipe/simple/hidden/aux,
@@ -32777,6 +32797,16 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/lowerhall)
+"fOk" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/effect/landmark/vermin,
+/turf/simulated/floor/lino,
+/area/crew_quarters/visitor_dining)
 "fOy" = (
 /obj/machinery/shower{
 	pixel_y = 16
@@ -35890,6 +35920,10 @@
 /obj/effect/floor_decal/steeldecal/steel_decals4,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/lowerhall)
+"nBZ" = (
+/obj/effect/landmark/vines,
+/turf/simulated/floor/tiled,
+/area/hallway/lower/first_west)
 "nDD" = (
 /obj/structure/catwalk,
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
@@ -36462,6 +36496,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/brig)
+"ppS" = (
+/obj/effect/landmark/vermin,
+/turf/simulated/floor/tiled,
+/area/storage/primary)
 "prr" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/cyan,
 /turf/simulated/floor/plating,
@@ -36554,6 +36592,10 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/trash_pit)
+"pMd" = (
+/obj/effect/landmark/vermin,
+/turf/simulated/floor/grass,
+/area/tether/surfacebase/surface_one_hall)
 "pPF" = (
 /obj/machinery/atmospherics/pipe/simple/visible/universal,
 /obj/machinery/light/small{
@@ -36902,6 +36944,10 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/locker)
+"qOV" = (
+/obj/effect/landmark/vermin,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/tram)
 "qPs" = (
 /obj/structure/railing{
 	dir = 1
@@ -37195,6 +37241,12 @@
 /obj/item/weapon/material/minihoe,
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/brig/storage)
+"rCj" = (
+/obj/effect/landmark{
+	name = "maint_pred"
+	},
+/turf/simulated/floor/plating,
+/area/vacant/vacant_site/east)
 "rDJ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -38260,6 +38312,10 @@
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/brig/storage)
+"uHq" = (
+/obj/effect/landmark/vines,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/tram)
 "uHS" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 1
@@ -39129,6 +39185,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/effect/landmark/vines,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_one_hall)
 "xFG" = (
@@ -44633,7 +44690,7 @@ akw
 akE
 bdG
 akW
-akN
+cCx
 aly
 alN
 amf
@@ -45780,7 +45837,7 @@ atG
 atH
 atH
 ahM
-anx
+nBZ
 aju
 aoE
 apl
@@ -48046,7 +48103,7 @@ anp
 aeW
 aml
 afT
-afT
+ppS
 afT
 agJ
 anj
@@ -51903,7 +51960,7 @@ aqf
 aqf
 arg
 aoS
-aoj
+pMd
 awI
 axo
 ayh
@@ -52908,7 +52965,7 @@ agM
 aCJ
 aCJ
 aCJ
-aCJ
+rCj
 aCJ
 aCJ
 agM
@@ -54644,7 +54701,7 @@ bcT
 aVf
 aVB
 aVf
-cwS
+cKo
 aUP
 aWY
 aUm
@@ -54760,7 +54817,7 @@ aFS
 aEM
 aHm
 aDu
-aIu
+fOk
 aJo
 aDu
 aKJ
@@ -56024,11 +56081,11 @@ aFW
 auB
 auB
 auB
-auB
+qOV
 auB
 auU
 auB
-auB
+uHq
 auB
 auB
 auB
