@@ -86,22 +86,22 @@
 	flags = RESTRICTED | HIVEMIND
 
 /datum/language/xenocommon
-	name = "Xenomorph"
+	name = "Skathari"
 	colour = "alien"
-	desc = "The common tongue of the xenomorphs."
-	speech_verb = "hisses"
-	ask_verb = "hisses"
-	exclaim_verb = "hisses"
+	desc = "The inscrutable clicking of the Skathari."
+	speech_verb = "clicks"
+	ask_verb = "clicks"
+	exclaim_verb = "clicks"
 	key = "u"
 	flags = RESTRICTED
-	syllables = list("sss","sSs","SSS")
+	syllables = list("ksk","Kks","Krk")
 
 /datum/language/xenos
 	name = "Hivemind"
-	desc = "Xenomorphs have the strange ability to commune over a psychic hivemind."
-	speech_verb = "hisses"
-	ask_verb = "hisses"
-	exclaim_verb = "hisses"
+	desc = "Skathari have the strange ability to communicate by subtle signals transmitted via bluespace."
+	speech_verb = "clicks"
+	ask_verb = "clicks"
+	exclaim_verb = "clicks"
 	colour = "alien"
 	key = "a"
 	flags = RESTRICTED | HIVEMIND

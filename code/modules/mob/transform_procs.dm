@@ -215,13 +215,13 @@
 	for(var/t in organs)
 		qdel(t)
 
-	var/alien_caste = pick("Hunter","Sentinel","Drone")
+	var/alien_caste = pick("Soldier","Guardian","Worker")
 	var/mob/living/carbon/human/new_xeno = create_new_xenomorph(alien_caste,loc)
 
 	new_xeno.a_intent = I_HURT
 	new_xeno.key = key
 
-	to_chat(new_xeno, "<B>You are now an alien.</B>")
+	to_chat(new_xeno, "<B>You are now a Skathari.</B>")
 	qdel(src)
 	return
 

@@ -2,7 +2,7 @@
 
 /obj/structure/bed/nest
 	name = "alien nest"
-	desc = "It's a gruesome pile of thick, sticky resin shaped like a nest."
+	desc = "It's a swirling mass of crystaline material shaped like a nest."
 	icon = 'icons/mob/alien.dmi'
 	icon_state = "nest"
 	var/health = 100
@@ -16,9 +16,9 @@
 		if(buckled_mob.buckled == src)
 			if(buckled_mob != user)
 				buckled_mob.visible_message(\
-					"<span class='notice'>[user.name] pulls [buckled_mob.name] free from the sticky nest!</span>",\
-					"<span class='notice'>[user.name] pulls you free from the gelatinous resin.</span>",\
-					"<span class='notice'>You hear squelching...</span>")
+					"<span class='notice'>[user.name] pulls [buckled_mob.name] free from the ensnaring nest!</span>",\
+					"<span class='notice'>[user.name] pulls you free from the hooked crystals.</span>",\
+					"<span class='notice'>You hear cracking...</span>")
 				buckled_mob.pixel_y = 0
 				buckled_mob.old_y = 0
 				unbuckle_mob(buckled_mob)
@@ -27,9 +27,9 @@
 					return
 				buckled_mob.last_special = world.time
 				buckled_mob.visible_message(\
-					"<span class='warning'>[buckled_mob.name] struggles to break free of the gelatinous resin...</span>",\
-					"<span class='warning'>You struggle to break free from the gelatinous resin...</span>",\
-					"<span class='notice'>You hear squelching...</span>")
+					"<span class='warning'>[buckled_mob.name] struggles to break free of the ensnaring nest...</span>",\
+					"<span class='warning'>You struggle to break free from the hooked crystals...</span>",\
+					"<span class='notice'>You hear cracking...</span>")
 				spawn(NEST_RESIST_TIME)
 					if(user && buckled_mob && user.buckled == src)
 						buckled_mob.last_special = world.time
@@ -58,9 +58,9 @@
 		return
 	else
 		M.visible_message(\
-			"<span class='notice'>[user.name] secretes a thick vile goo, securing [M.name] into [src]!</span>",\
-			"<span class='warning'>[user.name] drenches you in a foul-smelling resin, trapping you in the [src]!</span>",\
-			"<span class='notice'>You hear squelching...</span>")
+			"<span class='notice'>[user.name] secretes a rapidly solidifying liquid, securing [M.name] into [src]!</span>",\
+			"<span class='warning'>[user.name] coats you in a crystaline substance, trapping you in the [src]!</span>",\
+			"<span class='notice'>You hear cracking...</span>")
 	M.buckled = src
 	M.loc = src.loc
 	M.set_dir(src.dir)
@@ -74,7 +74,7 @@
 /obj/structure/bed/nest/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	var/aforce = W.force
 	health = max(0, health - aforce)
-	playsound(src, 'sound/effects/attackblob.ogg', 100, 1)
+	playsound(src, 'sound/effects/glasshit.ogg', 100, 1)
 	for(var/mob/M in viewers(src, 7))
 		M.show_message("<span class='warning'>[user] hits [src] with [W]!</span>", 1)
 	healthcheck()

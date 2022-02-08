@@ -4,6 +4,12 @@
 	icon = 'icons/effects/blood.dmi'
 	basecolor = "#05EE05"
 
+/obj/effect/decal/cleanable/blood/skathari
+	name = "skathari blood"
+	desc = "The unmistakable green ichor of a Skathari invader."
+	icon = 'icons/effects/blood.dmi'
+	basecolor = "#96C24A"
+
 /obj/effect/decal/cleanable/blood/gibs/xeno
 	name = "xeno gibs"
 	desc = "Gnarly..."

@@ -154,10 +154,10 @@ var/global/floorIsLava = 0
 				<b>Rudimentary transformation:</b><font size=2><br>These transformations only create a new mob type and copy stuff over. They do not take into account MMIs and similar mob-specific things. The buttons in 'Transformations' are preferred, when possible.</font><br>
 				<A href='?src=\ref[src];simplemake=observer;mob=\ref[M]'>Observer</A> |
 				\[ Xenos: <A href='?src=\ref[src];simplemake=larva;mob=\ref[M]'>Larva</A>
-				<A href='?src=\ref[src];simplemake=human;species=Xenomorph Drone;mob=\ref[M]'>Drone</A>
-				<A href='?src=\ref[src];simplemake=human;species=Xenomorph Hunter;mob=\ref[M]'>Hunter</A>
-				<A href='?src=\ref[src];simplemake=human;species=Xenomorph Sentinel;mob=\ref[M]'>Sentinel</A>
-				<A href='?src=\ref[src];simplemake=human;species=Xenomorph Queen;mob=\ref[M]'>Queen</A> \] |
+				<A href='?src=\ref[src];simplemake=human;species=Skathari Worker;mob=\ref[M]'>Worker</A>
+				<A href='?src=\ref[src];simplemake=human;species=Skathari Soldier;mob=\ref[M]'>Soldier</A>
+				<A href='?src=\ref[src];simplemake=human;species=Skathari Guardian;mob=\ref[M]'>Gurdian</A>
+				<A href='?src=\ref[src];simplemake=human;species=Skathari Queen;mob=\ref[M]'>Queen</A> \] |
 				\[ Crew: <A href='?src=\ref[src];simplemake=human;mob=\ref[M]'>Human</A>
 				<A href='?src=\ref[src];simplemake=human;species=Unathi;mob=\ref[M]'>Unathi</A>
 				<A href='?src=\ref[src];simplemake=human;species=Tajaran;mob=\ref[M]'>Tajaran</A>
@@ -1630,8 +1630,8 @@ var/datum/announcement/minor/admin_min_announcer = new
 			for(var/client/C in GLOB.admins)
 				if((R_ADMIN | R_MOD | R_EVENT) & C.holder.rights)
 					to_chat(C, "<span class='log_message'><span class='prefix'>FAX LOG:</span>[key_name_admin(src.owner)] has sent a fax message to [destination.department] (<a href='?_src_=holder;AdminFaxView=\ref[rcvdcopy]'>VIEW</a>)</span>")
-		
-		var/plaintext_title = P.sender ? "replied to [key_name(P.sender)]'s fax" : "sent a fax message to [destination.department]" 
+
+		var/plaintext_title = P.sender ? "replied to [key_name(P.sender)]'s fax" : "sent a fax message to [destination.department]"
 		var/fax_text = paper_html_to_plaintext(P.info)
 		log_game(plaintext_title)
 		log_game(fax_text)

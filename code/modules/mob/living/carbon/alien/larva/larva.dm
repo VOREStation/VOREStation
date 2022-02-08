@@ -1,6 +1,6 @@
 /mob/living/carbon/alien/larva
-	name = "alien larva"
-	real_name = "alien larva"
+	name = "skathari larva"
+	real_name = "skathari larva"
 	adult_form = /mob/living/carbon/human
 	speak_emote = list("hisses")
 	icon_state = "larva"
@@ -12,5 +12,5 @@
 
 /mob/living/carbon/alien/larva/Initialize()
 	. = ..()
-	add_language("Xenomorph") //Bonus language.
+	add_language("Skathari") //Bonus language.
 	internal_organs |= new /obj/item/organ/internal/xenos/hivenode(src)

@@ -55,7 +55,7 @@
 // Free abilities.
 /mob/living/carbon/human/proc/transfer_plasma(mob/living/carbon/human/M as mob in oview())
 	set name = "Transfer Plasma"
-	set desc = "Transfer Plasma to another alien"
+	set desc = "Transfer Plasma to another skathari"
 	set category = "Abilities"
 
 	if (get_dist(src,M) <= 1)
@@ -110,7 +110,7 @@
 
 	if(check_alien_ability(500))
 		visible_message("<span class='alium'><B>[src] begins to twist and contort!</B></span>", "<span class='alium'>You begin to evolve!</span>")
-		src.set_species("Xenomorph Queen")
+		src.set_species("Skathari Queen")
 
 	return
 

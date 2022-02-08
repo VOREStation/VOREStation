@@ -24,6 +24,10 @@
 	icon_state = "smoke"
 	duration = 50
 
+/obj/effect/temp_visual/bluespace_tear
+	icon_state = "bs_rift"
+	duration = 4
+
 /obj/effect/temp_visual/impact_effect
 	icon_state = "impact_bullet"
 	plane = PLANE_LIGHTING_ABOVE // So they're visible even in a shootout in maint.
@@ -70,6 +74,7 @@
 /obj/effect/temp_visual/impact_effect/ion
 	icon_state = "shieldsparkles"
 	duration = 6
+<<<<<<< HEAD
 
 // VOREStation Add - Kinetic Accelerator/Medigun
 /obj/effect/temp_visual/kinetic_blast
@@ -100,3 +105,5 @@
 	pixel_x = rand(-12, 12)
 	pixel_y = rand(-9, 0)
 // VOREStation Add End
+=======
+>>>>>>> 34b2b686f80... Merge pull request #8386 from Cerebulon/BuggyCode

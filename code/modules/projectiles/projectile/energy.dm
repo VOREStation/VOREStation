@@ -171,6 +171,21 @@
 	check_armour = "bio"
 	armor_penetration = 25	// It's acid-based
 
+/obj/item/projectile/energy/skathari //Skathari equivalent of above, but less biological more... Blue.
+	name = "bluespace spit"
+	icon_state = "bluespace_small"
+	fire_sound = 'sound/weapons/skath_spit.ogg'
+	hitsound_wall = 'sound/weapons/skath_spit.ogg'
+	hitsound = 'sound/weapons/pierce.ogg'
+	pass_flags = PASSTABLE | PASSGLASS | PASSGRILLE
+	damage = 20
+	damage_type = BIOACID //Still biological weirdness
+	agony = 20
+	armor_penetration = 50	// More normal armour type check (energy) but said armour less effective because bluespace shenanigans.
+	light_range = 2
+	light_power = 0.5
+	light_color = "#16D3F5"
+
 /obj/item/projectile/energy/phoron
 	name = "phoron bolt"
 	icon_state = "energy"

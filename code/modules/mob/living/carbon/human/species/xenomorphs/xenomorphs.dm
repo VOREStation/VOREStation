@@ -4,7 +4,7 @@
 	if(!target || !alien_caste) return
 
 	var/mob/living/carbon/human/new_alien = new(target)
-	new_alien.set_species("Xenomorph [alien_caste]")
+	new_alien.set_species("Skathari [alien_caste]")
 	return new_alien
 
 /mob/living/carbon/human/xdrone/New(var/new_loc)

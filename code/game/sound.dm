@@ -285,6 +285,10 @@
 					'sound/items/pickup/generic1.ogg',
 					'sound/items/pickup/generic2.ogg',
 					'sound/items/pickup/generic3.ogg')
+			if ("skathari_chitter")
+				soundin = pick(
+					'sound/effects/skath_chitter1.ogg',
+					'sound/effects/skath_chitter2.ogg')
 	return soundin
 
 //Are these even used?	//Yes
