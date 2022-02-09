@@ -132,7 +132,7 @@
 			return
 		if(H.size_multiplier != 1)
 			if(!(world.time - last_activated > 10 SECONDS))
-				to_chat(M, "<span class ='warning'>\The [src] flickers. It seems to be recharging.")
+				to_chat(M, "<span class ='warning'>\The [src] flickers. It seems to be recharging.</span>")
 				return
 			last_activated = world.time
 			original_size = H.size_multiplier
@@ -151,7 +151,7 @@
 		original_size = null
 		H.visible_message("<span class='warning'>The space around [H] distorts as they return to their original size!</span>","<span class='notice'>The space around you distorts as you return to your original size!</span>")
 		log_admin("Admin [key_name(M)]'s size was altered by a bluespace bracelet.")
-		to_chat(M, "<span class ='warning'>\The [src] flickers. It is now recharging and will be ready again in thirty seconds.")
+		to_chat(M, "<span class ='warning'>\The [src] flickers. It is now recharging and will be ready again in thirty seconds.</span>")
 
 //Same as Nanotrasen Security Uniforms
 /obj/item/clothing/under/ert
