@@ -346,4 +346,3 @@
 	mappath = 'maps/submaps/surface_submaps/plains/drgnplateu.dmm'
 	cost = 15
 	allow_duplicates = FALSE
-*/
