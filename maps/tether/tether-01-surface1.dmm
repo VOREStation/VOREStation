@@ -31473,7 +31473,14 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_one)
 "biK" = (
-/obj/structure/barricade/cutout/mime,
+/obj/structure/table/alien/blue{
+	desc = "Is this imported?";
+	name = "obscure table"
+	},
+/obj/item/toy/figure/mime,
+/obj/item/weapon/pen/crayon/marker/mime,
+/obj/item/weapon/pen/crayon/mime,
+/obj/item/weapon/cartridge/mime,
 /turf/simulated/floor/carpet/bcarpet,
 /area/tether/surfacebase/funny/mimeoffice)
 "bmK" = (
@@ -32762,29 +32769,8 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/trash_pit)
 "fFb" = (
-/obj/machinery/fitness/punching_bag/clown,
+/obj/machinery/vending/wardrobe/clowndrobe,
 /turf/simulated/floor/plating,
-/area/tether/surfacebase/funny/clownoffice)
-"fFT" = (
-/obj/item/clothing/mask/gas/sexyclown,
-/obj/item/toy/figure/clown,
-/obj/item/clothing/under/sexyclown,
-/obj/item/clothing/shoes/clown_shoes,
-/obj/item/weapon/bedsheet/clown,
-/obj/item/weapon/cartridge/clown,
-/obj/item/weapon/stamp/clown,
-/obj/item/weapon/storage/backpack/clown,
-/obj/item/weapon/bananapeel,
-/obj/item/weapon/reagent_containers/food/snacks/pie,
-/obj/item/weapon/pen/crayon/marker/rainbow,
-/obj/item/weapon/pen/crayon/rainbow,
-/obj/item/clothing/mask/emotions,
-/obj/structure/closet/secure_closet{
-	desc = "Where the Clown keeps their hooliganisms.";
-	name = "funny locker";
-	req_one_access = list(136)
-	},
-/turf/simulated/floor/carpet/gaycarpet,
 /area/tether/surfacebase/funny/clownoffice)
 "fKm" = (
 /obj/random/junk,
@@ -34032,7 +34018,7 @@
 /turf/simulated/floor/tiled/freezer,
 /area/tether/surfacebase/security/brig/bathroom)
 "iWa" = (
-/obj/structure/bed/chair/bar_stool,
+/obj/machinery/vending/wardrobe/mimedrobe,
 /turf/simulated/floor/carpet/bcarpet,
 /area/tether/surfacebase/funny/mimeoffice)
 "iWx" = (
@@ -34145,10 +34131,10 @@
 /obj/structure/table/standard{
 	name = "plastic table frame"
 	},
-/obj/item/device/flashlight/lamp/green,
 /obj/structure/sign/painting/public{
 	pixel_y = 30
 	},
+/obj/item/device/flashlight/lamp/clown,
 /turf/simulated/floor/carpet/gaycarpet,
 /area/tether/surfacebase/funny/clownoffice)
 "jrh" = (
@@ -35039,6 +35025,7 @@
 /obj/machinery/alarm{
 	pixel_y = 25
 	},
+/obj/item/toy/figure/clown,
 /turf/simulated/floor/carpet/gaycarpet,
 /area/tether/surfacebase/funny/clownoffice)
 "lDW" = (
@@ -36135,6 +36122,8 @@
 /obj/structure/sign/painting/public{
 	pixel_y = 30
 	},
+/obj/item/weapon/reagent_containers/food/snacks/pie,
+/obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/funny/clownoffice)
 "okO" = (
@@ -36381,6 +36370,13 @@
 "oMC" = (
 /obj/machinery/light/small{
 	dir = 8
+	},
+/obj/item/weapon/pen/crayon/marker/rainbow,
+/obj/item/weapon/pen/crayon/rainbow,
+/obj/item/weapon/stamp/clown,
+/obj/item/weapon/cartridge/clown,
+/obj/structure/table/standard{
+	name = "plastic table frame"
 	},
 /turf/simulated/floor/carpet/gaycarpet,
 /area/tether/surfacebase/funny/clownoffice)
@@ -38504,20 +38500,7 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining_eva)
 "vCn" = (
-/obj/item/weapon/pen/crayon/mime,
-/obj/item/weapon/pen/crayon/marker/mime,
-/obj/item/weapon/cartridge/mime,
-/obj/item/weapon/bedsheet/mime,
-/obj/item/toy/figure/mime,
-/obj/item/clothing/under/sexymime,
-/obj/item/clothing/shoes/mime,
-/obj/item/clothing/mask/gas/sexymime,
-/obj/item/clothing/head/soft/mime,
-/obj/structure/closet/secure_closet{
-	desc = "...";
-	name = "silent storage";
-	req_one_access = list(138)
-	},
+/obj/structure/barricade/cutout/mime,
 /turf/simulated/floor/carpet/bcarpet,
 /area/tether/surfacebase/funny/mimeoffice)
 "vDb" = (
@@ -54633,7 +54616,7 @@ uVK
 ojM
 cUB
 wOK
-fFT
+ylH
 rxD
 bbj
 agT
