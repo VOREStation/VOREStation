@@ -154,8 +154,8 @@
 	RCon_tag = "Engine - Core";
 	charge = 2e+006;
 	input_attempt = 1;
-	input_level = 100000;
-	output_level = 200000
+	input_level = 200000;
+	output_level = 250000
 	},
 /obj/structure/cable/cyan{
 	d2 = 2;
