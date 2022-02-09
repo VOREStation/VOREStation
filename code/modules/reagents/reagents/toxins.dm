@@ -75,6 +75,8 @@
 	skin_danger = 0.4
 
 /datum/reagent/toxin/neurotoxic_protein/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien == IS_CHIMERA)
+		return
 	..()
 	if(alien != IS_DIONA)
 		if(M.canmove && !M.restrained() && istype(M.loc, /turf/space))
