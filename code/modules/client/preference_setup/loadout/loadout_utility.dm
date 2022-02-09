@@ -141,11 +141,6 @@
 	)
 	gear_tweaks += new/datum/gear_tweak/path(wheelchairs)
 
-/datum/gear/utility/bs_bracelet
-	display_name = "bluespace bracelet"
-	path = /obj/item/clothing/gloves/bluespace
-	cost = 5
-
 /****************
 modular computers
 ****************/
