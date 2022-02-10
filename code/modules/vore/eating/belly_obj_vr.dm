@@ -250,20 +250,21 @@
 	if(isliving(thing))
 		var/mob/living/M = thing
 		M.updateVRPanel()
+		var/raw_desc //Let's use this to avoid needing to write the reformat code twice
 		if(absorbed_desc && M.absorbed)
-			//Replace placeholder vars
-			var/formatted_abs_desc
-			formatted_abs_desc = replacetext(absorbed_desc, "%belly", lowertext(name)) //replace with this belly's name
-			formatted_abs_desc = replacetext(formatted_abs_desc, "%pred", owner) //replace with this belly's owner
-			formatted_abs_desc = replacetext(formatted_abs_desc, "%prey", M) //replace with whatever mob entered into this belly
-			to_chat(M, "<span class='notice'><B>[formatted_abs_desc]</B></span>")
+			raw_desc = absorbed_desc
 		else if(desc)
+			raw_desc = desc
+
+		//Was there a description text? If so, it's time to format it!
+		if(raw_desc)
 			//Replace placeholder vars
 			var/formatted_desc
-			formatted_desc = replacetext(desc, "%belly", lowertext(name)) //replace with this belly's name
+			formatted_desc = replacetext(raw_desc, "%belly", lowertext(name)) //replace with this belly's name
 			formatted_desc = replacetext(formatted_desc, "%pred", owner) //replace with this belly's owner
 			formatted_desc = replacetext(formatted_desc, "%prey", M) //replace with whatever mob entered into this belly
-			to_chat(M, "<span class='notice'><B>[formatted_desc]</B></span>")
+		to_chat(M, "<span class='notice'><B>[formatted_desc]</B></span>")
+
 		var/taste
 		if(can_taste && (taste = M.get_taste_message(FALSE)))
 			to_chat(owner, "<span class='notice'>[M] tastes of [taste].</span>")
