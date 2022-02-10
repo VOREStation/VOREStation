@@ -123,6 +123,8 @@
 	w_class = ITEMSIZE_TINY
 	var/original_size
 	var/last_activated
+	var/emagged = FALSE
+	var/target_size = 1
 
 /obj/item/clothing/gloves/bluespace/mob_can_equip(mob/M, gloves, disable_warning = 0)
 	. = ..()
@@ -130,13 +132,13 @@
 		var/mob/living/carbon/human/H = M
 		if(!H.resizable)
 			return
-		if(H.size_multiplier != 1)
+		if(H.size_multiplier != target_size)
 			if(!(world.time - last_activated > 10 SECONDS))
 				to_chat(M, "<span class ='warning'>\The [src] flickers. It seems to be recharging.</span>")
 				return
 			last_activated = world.time
 			original_size = H.size_multiplier
-			H.resize(1, ignore_prefs = FALSE)		//In case someone else tries to put it on you.
+			H.resize(target_size, uncapped = emagged, ignore_prefs = FALSE)		//In case someone else tries to put it on you.
 			H.visible_message("<span class='warning'>The space around [H] distorts as they change size!</span>","<span class='notice'>The space around you distorts as you change size!</span>")
 			log_admin("Admin [key_name(M)]'s size was altered by a bluespace bracelet.")
 
@@ -147,11 +149,30 @@
 		if(!H.resizable)
 			return
 		last_activated = world.time
-		H.resize(original_size, ignore_prefs = FALSE)
+		H.resize(original_size, uncapped = emagged, ignore_prefs = FALSE)
 		original_size = null
 		H.visible_message("<span class='warning'>The space around [H] distorts as they return to their original size!</span>","<span class='notice'>The space around you distorts as you return to your original size!</span>")
 		log_admin("Admin [key_name(M)]'s size was altered by a bluespace bracelet.")
 		to_chat(M, "<span class ='warning'>\The [src] flickers. It is now recharging and will be ready again in thirty seconds.</span>")
+
+/obj/item/clothing/gloves/bluespace/examine(var/mob/user)
+	. = ..()
+	var/cooldowntime = round((10 SECONDS - (world.time - last_activated)) * 0.1)
+	if(Adjacent(user))
+		if(cooldowntime >= 0)
+			. += "<span class='notice'>It appears to be recharging.</span>"
+		if(emagged)
+			. += "<span class='warning'>The crystal is flickering.</span>"
+
+/obj/item/clothing/gloves/bluespace/emag_act(R_charges, var/mob/user, emag_source)
+	. = ..()
+	if(!emagged)
+		emagged = TRUE
+		target_size = (rand(1,300)) /100
+		if(target_size < 0.1)
+			target_size = 0.1
+		user.visible_message("<span class='notice'>\The [user] swipes the [emag_source] over the \the [src].</span>","<span class='notice'>You swipes the [emag_source] over the \the [src].</span>")
+		return 1
 
 //Same as Nanotrasen Security Uniforms
 /obj/item/clothing/under/ert
