@@ -251,9 +251,19 @@
 		var/mob/living/M = thing
 		M.updateVRPanel()
 		if(absorbed_desc && M.absorbed)
-			to_chat(M, "<span class='notice'><B>[absorbed_desc]</B></span>")
+			//Replace placeholder vars
+			var/formatted_abs_desc
+			formatted_abs_desc = replacetext(absorbed_desc, "%belly", lowertext(name)) //replace with this belly's name
+			formatted_abs_desc = replacetext(formatted_abs_desc, "%pred", owner) //replace with this belly's owner
+			formatted_abs_desc = replacetext(formatted_abs_desc, "%prey", M) //replace with whatever mob entered into this belly
+			to_chat(M, "<span class='notice'><B>[formatted_abs_desc]</B></span>")
 		else if(desc)
-			to_chat(M, "<span class='notice'><B>[desc]</B></span>")
+			//Replace placeholder vars
+			var/formatted_desc
+			formatted_desc = replacetext(desc, "%belly", lowertext(name)) //replace with this belly's name
+			formatted_desc = replacetext(formatted_desc, "%pred", owner) //replace with this belly's owner
+			formatted_desc = replacetext(formatted_desc, "%prey", M) //replace with whatever mob entered into this belly
+			to_chat(M, "<span class='notice'><B>[formatted_desc]</B></span>")
 		var/taste
 		if(can_taste && (taste = M.get_taste_message(FALSE)))
 			to_chat(owner, "<span class='notice'>[M] tastes of [taste].</span>")
@@ -696,7 +706,12 @@
 
 
 	if(absorbed_desc)
-		to_chat(M, "<span class='notice'><B>[absorbed_desc]</B></span>")
+		//Replace placeholder vars
+		var/formatted_abs_desc
+		formatted_abs_desc = replacetext(absorbed_desc, "%belly", lowertext(name)) //replace with this belly's name
+		formatted_abs_desc = replacetext(formatted_abs_desc, "%pred", owner) //replace with this belly's owner
+		formatted_abs_desc = replacetext(formatted_abs_desc, "%prey", M) //replace with whatever mob entered into this belly
+		to_chat(M, "<span class='notice'><B>[formatted_abs_desc]</B></span>")
 
 	//Update owner
 	owner.updateVRPanel()
