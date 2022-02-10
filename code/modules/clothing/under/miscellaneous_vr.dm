@@ -121,6 +121,7 @@
 	icon = 'icons/inventory/accessory/item_vr.dmi'
 	icon_state = "bs_bracelet"
 	w_class = ITEMSIZE_TINY
+	glove_level = 1
 	var/original_size
 	var/last_activated
 	var/emagged = FALSE
