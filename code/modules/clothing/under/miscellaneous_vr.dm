@@ -115,6 +115,66 @@
 		original_size = null
 		H.visible_message("<span class='warning'>The space around [H] distorts as they return to their original size!</span>","<span class='notice'>The space around you distorts as you return to your original size!</span>")
 
+/obj/item/clothing/gloves/bluespace
+	name = "size standardization bracelet"
+	desc = "A somewhat bulky metal bracelet featuring a crystal, glowing blue. The outer side of the bracelet has an elongated case that one might imagine contains electronic components. This bracelet is used to standardize the size of crewmembers who may need a non-permanent size assist."
+	icon = 'icons/inventory/accessory/item_vr.dmi'
+	icon_state = "bs_bracelet"
+	w_class = ITEMSIZE_TINY
+	glove_level = 1
+	var/original_size
+	var/last_activated
+	var/emagged = FALSE
+	var/target_size = 1
+
+/obj/item/clothing/gloves/bluespace/mob_can_equip(mob/M, gloves, disable_warning = 0)
+	. = ..()
+	if(. && ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(!H.resizable)
+			return
+		if(H.size_multiplier != target_size)
+			if(!(world.time - last_activated > 10 SECONDS))
+				to_chat(M, "<span class ='warning'>\The [src] flickers. It seems to be recharging.</span>")
+				return
+			last_activated = world.time
+			original_size = H.size_multiplier
+			H.resize(target_size, uncapped = emagged, ignore_prefs = FALSE)		//In case someone else tries to put it on you.
+			H.visible_message("<span class='warning'>The space around [H] distorts as they change size!</span>","<span class='notice'>The space around you distorts as you change size!</span>")
+			log_admin("Admin [key_name(M)]'s size was altered by a bluespace bracelet.")
+
+/obj/item/clothing/gloves/bluespace/mob_can_unequip(mob/M, gloves, disable_warning = 0)
+	. = ..()
+	if(. && ishuman(M) && original_size)
+		var/mob/living/carbon/human/H = M
+		if(!H.resizable)
+			return
+		last_activated = world.time
+		H.resize(original_size, uncapped = emagged, ignore_prefs = FALSE)
+		original_size = null
+		H.visible_message("<span class='warning'>The space around [H] distorts as they return to their original size!</span>","<span class='notice'>The space around you distorts as you return to your original size!</span>")
+		log_admin("Admin [key_name(M)]'s size was altered by a bluespace bracelet.")
+		to_chat(M, "<span class ='warning'>\The [src] flickers. It is now recharging and will be ready again in thirty seconds.</span>")
+
+/obj/item/clothing/gloves/bluespace/examine(var/mob/user)
+	. = ..()
+	var/cooldowntime = round((10 SECONDS - (world.time - last_activated)) * 0.1)
+	if(Adjacent(user))
+		if(cooldowntime >= 0)
+			. += "<span class='notice'>It appears to be recharging.</span>"
+		if(emagged)
+			. += "<span class='warning'>The crystal is flickering.</span>"
+
+/obj/item/clothing/gloves/bluespace/emag_act(R_charges, var/mob/user, emag_source)
+	. = ..()
+	if(!emagged)
+		emagged = TRUE
+		target_size = (rand(1,300)) /100
+		if(target_size < 0.1)
+			target_size = 0.1
+		user.visible_message("<span class='notice'>\The [user] swipes the [emag_source] over the \the [src].</span>","<span class='notice'>You swipes the [emag_source] over the \the [src].</span>")
+		return 1
+
 //Same as Nanotrasen Security Uniforms
 /obj/item/clothing/under/ert
 	armor = list(melee = 5, bullet = 10, laser = 10, energy = 5, bomb = 5, bio = 0, rad = 0)

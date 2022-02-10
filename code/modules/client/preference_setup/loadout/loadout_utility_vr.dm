@@ -69,3 +69,8 @@
 	display_name = "contractor identification card"
 	path = /obj/item/weapon/card/id/event/polymorphic/altcard
 	cost = 1
+
+/datum/gear/utility/bs_bracelet
+	display_name = "bluespace bracelet"
+	path = /obj/item/clothing/gloves/bluespace
+	cost = 5
