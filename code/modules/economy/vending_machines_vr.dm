@@ -1043,7 +1043,8 @@
 					/obj/item/device/walkpod = 5,
 					/obj/item/device/juke_remote = 1,
 					/obj/item/instrument/piano_synth/headphones = 2, // You're making a subsystem do work, I don't want it TOO busy
-					/obj/item/instrument/piano_synth/headphones/spacepods = 2)
+					/obj/item/instrument/piano_synth/headphones/spacepods = 2,
+					/obj/item/clothing/gloves/bluespace = 5)
 	prices = list(/obj/item/clothing/suit/circuitry = 100,
 					/obj/item/clothing/head/circuitry = 100,
 					/obj/item/clothing/shoes/circuitry = 100,
@@ -1067,7 +1068,8 @@
 					/obj/item/device/walkpod = 300,
 					/obj/item/device/juke_remote = 1000,
 					/obj/item/instrument/piano_synth/headphones = 200,
-					/obj/item/instrument/piano_synth/headphones/spacepods = 600)
+					/obj/item/instrument/piano_synth/headphones/spacepods = 600,
+					/obj/item/clothing/gloves/bluespace = 500)
 	premium = list(/obj/item/device/perfect_tele/one_beacon = 1)
 	contraband = list(/obj/item/weapon/disk/nifsoft/compliance = 1)
 
