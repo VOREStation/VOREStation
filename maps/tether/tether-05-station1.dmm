@@ -64,6 +64,39 @@
 /obj/item/clothing/head/pizzaguy,
 /turf/simulated/floor/tiled,
 /area/quartermaster/warehouse)
+"aai" = (
+/obj/machinery/door/airlock/highsecurity{
+	name = "Messaging Server";
+	req_one_access = list(16,17,61)
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/tiled/dark,
+/area/ai_server_room)
+"aaj" = (
+/obj/machinery/door/airlock/glass{
+	name = "Medbus Cockpit";
+	req_one_access = list(5,67)
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "medbus";
+	name = "medbus"
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/medivac/cockpit)
 "aak" = (
 /obj/machinery/light{
 	dir = 8
@@ -870,6 +903,20 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/engineering/engine_smes)
+"abJ" = (
+/obj/machinery/door/airlock/glass{
+	name = "Secbus Cockpit";
+	req_one_access = list(1,67)
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "secbus";
+	name = "secbus"
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/securiship/cockpit)
 "abK" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -1972,6 +2019,26 @@
 /area/tcommsat/entrance{
 	name = "\improper Telecomms Entrance"
 	})
+"ads" = (
+/obj/machinery/door/airlock/maintenance_hatch{
+	frequency = 1381;
+	icon_state = "door_locked";
+	id_tag = "server_access_inner";
+	locked = 1;
+	name = "Telecoms Server Access";
+	req_access = list(61)
+	},
+/obj/machinery/access_button{
+	command = "cycle_interior";
+	frequency = 1381;
+	master_tag = "server_access_airlock";
+	name = "interior access button";
+	pixel_x = -28;
+	pixel_y = 0;
+	req_one_access = list(61)
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/tcommsat/chamber)
 "adt" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -2256,6 +2323,29 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
+"adN" = (
+/obj/machinery/door/airlock/maintenance_hatch{
+	frequency = 1381;
+	icon_state = "door_locked";
+	id_tag = "server_access_outer";
+	locked = 1;
+	name = "Telecoms Server Access";
+	req_access = list(61)
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/obj/machinery/access_button{
+	command = "cycle_exterior";
+	frequency = 1381;
+	master_tag = "server_access_airlock";
+	name = "exterior access button";
+	pixel_x = 0;
+	pixel_y = 26;
+	req_one_access = list(61)
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/tcommsat/chamber)
 "adQ" = (
 /obj/machinery/computer/power_monitor{
 	dir = 4;
@@ -14437,20 +14527,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled,
 /area/gateway/prep_room)
-"bpd" = (
-/obj/machinery/door/airlock/maintenance_hatch{
-	frequency = 1381;
-	icon_state = "door_locked";
-	id_tag = "server_access_outer";
-	locked = 1;
-	name = "Telecoms Server Access";
-	req_access = list(61)
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/tcommsat/chamber)
 "bpi" = (
 /obj/machinery/camera/network/command,
 /turf/simulated/floor/tiled,
@@ -15413,17 +15489,6 @@
 /obj/machinery/door/airlock/maintenance/common,
 /turf/simulated/floor,
 /area/maintenance/station/exploration)
-"bXn" = (
-/obj/machinery/door/airlock/maintenance_hatch{
-	frequency = 1381;
-	icon_state = "door_locked";
-	id_tag = "server_access_inner";
-	locked = 1;
-	name = "Telecoms Server Access";
-	req_access = list(61)
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/tcommsat/chamber)
 "bXv" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -17014,25 +17079,6 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/shuttle/excursion/general)
-"dls" = (
-/obj/machinery/door/airlock/highsecurity{
-	name = "Messaging Server";
-	req_one_access = list(12,16,17,61)
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 8
-	},
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/tiled/dark,
-/area/ai_server_room)
 "dnU" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -32598,19 +32644,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/securiship/cockpit)
-"tbV" = (
-/obj/machinery/door/airlock/glass{
-	name = "Secbus Cockpit"
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "secbus";
-	name = "secbus"
-	},
-/turf/simulated/floor/tiled,
-/area/shuttle/securiship/cockpit)
 "tcS" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -36409,20 +36442,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/gateway/prep_room)
-"xwd" = (
-/obj/machinery/door/airlock/glass{
-	name = "Medbus Cockpit";
-	req_one_access = null
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "medbus";
-	name = "medbus"
-	},
-/turf/simulated/floor/tiled,
-/area/shuttle/medivac/cockpit)
 "xwg" = (
 /obj/machinery/door/blast/shutters{
 	dir = 8;
@@ -51423,7 +51442,7 @@ aaa
 unH
 rWS
 vkg
-xwd
+aaj
 tgl
 udG
 bnG
@@ -51509,7 +51528,7 @@ aie
 avO
 bYg
 bPX
-bXn
+ads
 cyf
 fck
 otm
@@ -51794,7 +51813,7 @@ avZ
 thI
 acu
 xTB
-bpd
+adN
 xTB
 otm
 vow
@@ -52514,7 +52533,7 @@ woq
 jxP
 acV
 xEG
-dls
+aai
 dTU
 ady
 dyt
@@ -53979,7 +53998,7 @@ pEg
 rsp
 seP
 sJM
-tbV
+abJ
 tOn
 vZG
 kok
