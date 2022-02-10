@@ -263,7 +263,7 @@
 			formatted_desc = replacetext(raw_desc, "%belly", lowertext(name)) //replace with this belly's name
 			formatted_desc = replacetext(formatted_desc, "%pred", owner) //replace with this belly's owner
 			formatted_desc = replacetext(formatted_desc, "%prey", M) //replace with whatever mob entered into this belly
-		to_chat(M, "<span class='notice'><B>[formatted_desc]</B></span>")
+			to_chat(M, "<span class='notice'><B>[formatted_desc]</B></span>")
 
 		var/taste
 		if(can_taste && (taste = M.get_taste_message(FALSE)))
