@@ -799,7 +799,7 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
-	/datum/sprite_accessory/ears_vr/kittyr
+/datum/sprite_accessory/ears_vr/kittyr
 	name = "kitty right only, colourable"
 	desc = ""
 	icon = 'icons/mob/vore/ears_uneven.dmi'
@@ -807,3 +807,4 @@
 	icon_state = "kittyr"
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "kittyinner"
+
