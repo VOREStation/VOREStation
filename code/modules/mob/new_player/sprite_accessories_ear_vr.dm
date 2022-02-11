@@ -806,4 +806,4 @@
 	do_colouration = 1
 	icon_state = "kittyr"
 	color_blend_mode = ICON_MULTIPLY
-	extra_overlay = "kittyinner"
+	extra_overlay = "kittyrinner"
