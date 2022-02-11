@@ -798,3 +798,12 @@
 	extra_overlay = "jackalope-antlers"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears_vr/kittyr
+	name = "kitty right only, colourable"
+	desc = ""
+	icon = 'icons/mob/vore/ears_uneven.dmi'
+	do_colouration = 1
+	icon_state = "kittyr"
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "kittyinner"
