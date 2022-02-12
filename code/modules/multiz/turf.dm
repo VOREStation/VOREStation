@@ -54,10 +54,26 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 	dynamic_lighting = 0 // Someday lets do proper lighting z-transfer.  Until then we are leaving this off so it looks nicer.
 	can_build_into_floor = TRUE
 
+<<<<<<< HEAD
 /turf/simulated/open/vacuum
 	oxygen = 0
 	nitrogen = 0
 	temperature = TCMB
+=======
+	var/turf/below
+
+/turf/simulated/open/post_change()
+	..()
+	update()
+
+/turf/simulated/open/ChangeTurf(var/turf/N, var/tell_universe, var/force_lighting_update, var/preserve_outdoors)
+	var/turf/T = GetBelow(src)
+	if(T)
+		GLOB.turf_entered_event.unregister(T, src, .proc/BelowOpenUpdated)
+		GLOB.turf_exited_event.unregister(T, src, .proc/BelowOpenUpdated)
+		turf_changed_event.unregister(T, src, /atom/proc/update_icon)
+	. = ..()
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 
 /turf/simulated/open/Initialize()
 	. = ..()
@@ -66,9 +82,21 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 	return INITIALIZE_HINT_LATELOAD
 
 /turf/simulated/open/LateInitialize()
+<<<<<<< HEAD
 	. = ..()
 	AddElement(/datum/element/turf_z_transparency, FALSE)
 	update_icon()
+=======
+	..()
+	ASSERT(HasBelow(z))
+	update()
+	var/turf/T = GetBelow(src)
+	if(T)
+		GLOB.turf_entered_event.register(T, src, .proc/BelowOpenUpdated)
+		GLOB.turf_exited_event.register(T, src, .proc/BelowOpenUpdated)
+	if(is_outdoors())
+		SSplanets.addTurf(src)
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 
 /turf/simulated/open/Entered(var/atom/movable/mover, var/atom/oldloc)
 	..()

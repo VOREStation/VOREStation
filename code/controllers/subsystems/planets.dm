@@ -56,8 +56,14 @@ SUBSYSTEM_DEF(planets)
 			P.planet_walls -= T
 		else
 			P.planet_floors -= T
+<<<<<<< HEAD
 			P.weather_holder.remove_from_turf(T)
 			P.sun_holder.remove_from_turf(T)
+=======
+			T.vis_contents -= P.weather_holder.visuals
+			T.vis_contents -= P.weather_holder.special_visuals
+		T.outdoors = OUTDOORS_NO
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 
 
 /datum/controller/subsystem/planets/fire(resumed = 0)

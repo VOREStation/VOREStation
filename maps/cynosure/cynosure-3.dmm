@@ -8771,15 +8771,28 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/surface/station/ai_monitored/storage/eva)
 "fSH" = (
+<<<<<<< HEAD
 /obj/machinery/computer/general_air_control/supermatter_core{
 	dir = 8
 	},
+=======
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
 	},
 /obj/effect/floor_decal/corner/yellow/border{
 	dir = 4
 	},
+<<<<<<< HEAD
+=======
+/obj/machinery/computer/general_air_control/supermatter_core{
+	dir = 8;
+	input_tag = "cooling_in";
+	name = "Engine Cooling Control";
+	output_tag = "cooling_out";
+	sensors = list("engine_sensor" = "Engine Core")
+	},
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 /turf/simulated/floor/tiled,
 /area/surface/station/engineering/reactor_monitoring)
 "fTe" = (
@@ -14632,10 +14645,13 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/surface/station/medical/patient_wing)
+<<<<<<< HEAD
 "jjp" = (
 /obj/effect/shuttle_landmark/cynosure/large_escape_pod2/station,
 /turf/simulated/shuttle/floor,
 /area/shuttle/large_escape_pod2/station)
+=======
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 "jjB" = (
 /obj/structure/railing{
 	dir = 4
@@ -23579,6 +23595,10 @@
 	pixel_y = -26;
 	tag_door = "large_escape_pod_2_hatch"
 	},
+<<<<<<< HEAD
+=======
+/obj/effect/shuttle_landmark/cynosure/large_escape_pod2/station,
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 /turf/simulated/shuttle/floor,
 /area/shuttle/large_escape_pod2/station)
 "pwG" = (
@@ -64096,7 +64116,11 @@ bFA
 efC
 nsL
 uxm
+<<<<<<< HEAD
 jjp
+=======
+uxm
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 szd
 cRp
 kRo

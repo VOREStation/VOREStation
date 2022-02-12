@@ -1,0 +1,16 @@
+# The ckeys of players whitelisted to use general-use sprite accessories.
+# Note that this is in the format of "canonical" ckeys, which according to the byond docs are basically just lower-case:
+#
+# Format:
+#    ckey(Key) 
+# Args:
+#    Key
+#        The player key to convert to canonical form.
+# Returns:
+#    The key in canonical form. To do this, it strips all punctuation and space from the key and converts to lowercase. The result is still unique for each different key. 
+#
+# You can actually fill this file with whatever besides the whitelisted ckeys because the matching is very dumb
+
+some_user
+someotheruser
+text that has spaces and so isn't really a ckey (It does nothing)

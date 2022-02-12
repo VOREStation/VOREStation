@@ -6,6 +6,7 @@
 	scannable = TRUE
 	scanner_desc = "!! No Data Available !!"
 
+<<<<<<< HEAD
 	icon_state = "generic"
 
 	/// Shows up on nav computers automatically
@@ -15,6 +16,8 @@
 	/// Icon_state prior to being scanned if !known
 	var/unknown_state = "field"
 
+=======
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 	var/list/map_z = list()
 	var/list/extra_z_levels //if you need to manually insist that these z-levels are part of this sector, for things like edge-of-map step trigger transitions rather than multi-z complexes
 
@@ -139,12 +142,16 @@
 
 //Helper for init.
 /obj/effect/overmap/visitable/proc/check_ownership(obj/object)
+<<<<<<< HEAD
 	var/area/A = get_area(object)
 	if(A in SSshuttles.shuttle_areas)
 		return 0
 	if(is_type_in_list(A, unowned_areas))
 		return 0	
 	if(get_z(object) in map_z)
+=======
+	if((get_z(object) in map_z) && !(get_area(object) in SSshuttles.shuttle_areas))
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 		return 1
 
 //If shuttle_name is false, will add to generic waypoints; otherwise will add to restricted. Does not do checks.

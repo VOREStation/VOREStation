@@ -21,7 +21,12 @@
 	var/extra_overlay_w // Flapping state for extra overlay
 	var/extra_overlay2_w
 
+<<<<<<< HEAD
 	//species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)			//Removing Polaris whitelits, ones we need are defined in our files
+=======
+	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	whitelist_allowed = list()
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 
 /datum/sprite_accessory/wing/featheredlarge //Made by Natje!
 	name = "large feathered wings (colorable)"

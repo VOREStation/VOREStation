@@ -2557,6 +2557,13 @@
 "fG" = (
 /turf/simulated/wall/r_wall,
 /area/surface/station/construction/genetics)
+<<<<<<< HEAD
+=======
+"fH" = (
+/obj/effect/landmark/submap_position/random_subtype/cynosure_nine_by_eight_maint,
+/turf/simulated/wall,
+/area/surface/station/construction/bmt/construction2)
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 "fI" = (
 /obj/structure/sign/warning/high_voltage,
 /turf/simulated/wall,
@@ -5032,6 +5039,13 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/surface/station/vault)
+<<<<<<< HEAD
+=======
+"kX" = (
+/obj/effect/landmark/submap_position/random_subtype/cynosure_eight_by_nine_maint,
+/turf/simulated/wall,
+/area/surface/station/construction/bmt/construction1)
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 "kZ" = (
 /obj/structure/closet/l3closet/medical,
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -7826,6 +7840,13 @@
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/bmt/east)
+<<<<<<< HEAD
+=======
+"qX" = (
+/obj/effect/landmark/submap_position/random_subtype/cynosure_eight_by_five_maint,
+/turf/simulated/wall,
+/area/surface/station/construction/bmt/construction6)
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 "qY" = (
 /obj/item/weapon/camera_assembly,
 /turf/simulated/floor/tiled/white,
@@ -9413,6 +9434,13 @@
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/bmt/south)
+<<<<<<< HEAD
+=======
+"ui" = (
+/obj/effect/landmark/submap_position/random_subtype/cynosure_nine_by_ten_maint,
+/turf/simulated/wall,
+/area/surface/station/construction/bmt/construction3)
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 "uk" = (
 /turf/simulated/floor/tiled,
 /area/surface/station/mining_main/storage)
@@ -16534,6 +16562,12 @@
 /area/surface/station/hallway/primary/bmt/west/elevator)
 "Kc" = (
 /obj/structure/stairs/spawner/south,
+<<<<<<< HEAD
+=======
+/obj/structure/railing{
+	dir = 4
+	},
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 /turf/simulated/floor/tiled/dark,
 /area/surface/station/medical/hallway/bmt)
 "Kd" = (
@@ -19063,6 +19097,12 @@
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/incineratormaint)
 "Ph" = (
+<<<<<<< HEAD
+=======
+/obj/structure/railing{
+	dir = 4
+	},
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 /turf/simulated/floor/tiled/dark,
 /area/surface/station/medical/hallway/bmt)
 "Pi" = (
@@ -19622,6 +19662,13 @@
 	name = "reinforced floor"
 	},
 /area/surface/station/rnd/mixing)
+<<<<<<< HEAD
+=======
+"Qk" = (
+/obj/effect/landmark/submap_position/random_subtype/cynosure_medical_basement,
+/turf/simulated/wall,
+/area/surface/station/construction/bmt/construction4)
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 "Ql" = (
 /obj/machinery/ai_status_display,
 /turf/simulated/wall/r_wall,
@@ -21021,6 +21068,13 @@
 	},
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/incineratormaint)
+<<<<<<< HEAD
+=======
+"Tj" = (
+/obj/effect/landmark/submap_position/random_subtype/cynosure_sixteen_by_eleven_maint,
+/turf/simulated/mineral/sif,
+/area/surface/cave/unexplored/normal)
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 "To" = (
 /turf/simulated/floor/tiled/steel_dirty,
 /area/surface/station/hallway/primary/bmt/east)
@@ -23509,6 +23563,10 @@
 /turf/simulated/floor/plating,
 /area/surface/station/construction/warehouse)
 "YR" = (
+<<<<<<< HEAD
+=======
+/obj/effect/landmark/submap_position/random_subtype/cynosure_seven_by_seven_maint,
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 /turf/simulated/floor/plating,
 /area/surface/station/hallway/primary/bmt/east)
 "YT" = (
@@ -23921,6 +23979,13 @@
 "ZF" = (
 /turf/simulated/wall,
 /area/surface/station/construction/basement)
+<<<<<<< HEAD
+=======
+"ZG" = (
+/obj/effect/landmark/submap_position/random_subtype/cynosure_ten_by_nine_maint,
+/turf/simulated/wall/r_wall,
+/area/surface/station/construction/warehouse)
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 "ZH" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -51545,7 +51610,11 @@ Mv
 Mv
 Mv
 Mv
+<<<<<<< HEAD
 Mv
+=======
+ZG
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 HE
 HE
 vd
@@ -52047,7 +52116,11 @@ cB
 cB
 cB
 cB
+<<<<<<< HEAD
 cB
+=======
+kX
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 Uk
 Fr
 hZ
@@ -54513,7 +54586,11 @@ RQ
 RQ
 xW
 xW
+<<<<<<< HEAD
 RQ
+=======
+xW
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 RQ
 RQ
 RQ
@@ -54865,7 +54942,11 @@ JA
 XR
 XR
 XR
+<<<<<<< HEAD
 XR
+=======
+fH
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 Ze
 Dt
 fr
@@ -55025,7 +55106,11 @@ RQ
 RQ
 RQ
 RQ
+<<<<<<< HEAD
 xW
+=======
+RQ
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 xW
 xW
 xW
@@ -55927,7 +56012,11 @@ KO
 KO
 KO
 KO
+<<<<<<< HEAD
 HE
+=======
+Tj
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 HE
 HE
 HE
@@ -56327,7 +56416,11 @@ RQ
 RQ
 RQ
 RQ
+<<<<<<< HEAD
 RQ
+=======
+Kj
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 Kj
 Kj
 Kj
@@ -56921,7 +57014,11 @@ VS
 VS
 VS
 VS
+<<<<<<< HEAD
 VS
+=======
+ui
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 yV
 En
 fr
@@ -58693,7 +58790,11 @@ jL
 jL
 jL
 jL
+<<<<<<< HEAD
 jL
+=======
+Qk
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 fg
 xg
 xU
@@ -60284,7 +60385,11 @@ pd
 pd
 pd
 cp
+<<<<<<< HEAD
 pd
+=======
+qX
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 BA
 BA
 BA

@@ -6,6 +6,7 @@
 	density = FALSE
 	anchored = TRUE
 	w_class = ITEMSIZE_NORMAL
+	layer = BELOW_UTILITY
 	plane = PLATING_PLANE
 
 /obj/structure/lattice/Initialize()

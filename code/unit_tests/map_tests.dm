@@ -42,23 +42,27 @@
 	var/list/zs_to_test = using_map.unit_test_z_levels || list(1) //Either you set it, or you just get z1
 
 	for(var/area/A in world)
-		if((A.z in zs_to_test) && !(A.type in exempt_areas))
+		if(is_type_in_list(A.type, exempt_areas))
+			continue
+		if((A.z in zs_to_test)) //is_type_in_list
 			area_test_count++
-			var/area_good = 1
+			var/area_good = TRUE
 			var/bad_msg = "--------------- [A.name]([A.type])"
 
+			if(is_type_in_list(A.type, exempt_from_apc))
+				if(isnull(A.apc))
+					log_unit_test("[bad_msg] lacks an APC.")
+					area_good = FALSE
 
-			if(isnull(A.apc) && !(A.type in exempt_from_apc))
-				log_unit_test("[bad_msg] lacks an APC.")
-				area_good = 0
+			if(is_type_in_list(A.type, exempt_from_atmos))
+				if(!A.air_scrub_info.len)
+					log_unit_test("[bad_msg] lacks an Air scrubber.")
+					area_good = FALSE
 
-			if(!A.air_scrub_info.len && !(A.type in exempt_from_atmos))
-				log_unit_test("[bad_msg] lacks an Air scrubber.")
-				area_good = 0
-
-			if(!A.air_vent_info.len && !(A.type in exempt_from_atmos))
-				log_unit_test("[bad_msg] lacks an Air vent.")
-				area_good = 0
+			if(is_type_in_list(A.type, exempt_from_atmos))
+				if(!A.air_vent_info.len)
+					log_unit_test("[bad_msg] lacks an Air vent.")
+					area_good = FALSE
 
 			if(!area_good)
 				bad_areas.Add(A)

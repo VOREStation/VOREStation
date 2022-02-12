@@ -2056,6 +2056,15 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/surface/station/ai/upload_foyer)
+<<<<<<< HEAD
+=======
+"aZV" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark,
+/area/surface/station/engineering/hallway)
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 "aZZ" = (
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/effect/floor_decal/borderfloorwhite/corner{
@@ -6768,7 +6777,10 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+<<<<<<< HEAD
 /obj/structure/window/reinforced,
+=======
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 /turf/simulated/floor/tiled,
 /area/surface/station/engineering/hallway)
 "dfs" = (
@@ -8592,7 +8604,10 @@
 /obj/machinery/camera/network/medbay{
 	c_tag = "MED - Operating Theatre 2"
 	},
+<<<<<<< HEAD
 /obj/machinery/optable,
+=======
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 /turf/simulated/floor/tiled/white,
 /area/surface/station/medical/surgery2)
 "ecL" = (
@@ -14433,11 +14448,16 @@
 "gEG" = (
 /obj/machinery/power/smes/buildable{
 <<<<<<< HEAD
+<<<<<<< HEAD
 	RCon_tag = "Solar - Northeast";
 =======
 	RCon_tag = "Solar - West";
 	cur_coils = 2;
 >>>>>>> 339281e2f8d... Merge pull request #8382 from PrismaticGynoid/mapfixes8
+=======
+	RCon_tag = "Solar - West";
+	cur_coils = 2;
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 	input_attempt = 1;
 	input_level = 300000;
 	output_level = 200000
@@ -15537,10 +15557,13 @@
 "heM" = (
 /turf/simulated/floor/wood,
 /area/surface/station/crew_quarters/cafeteria)
+<<<<<<< HEAD
 "heS" = (
 /obj/effect/shuttle_landmark/cynosure/large_escape_pod1/station,
 /turf/simulated/shuttle/floor,
 /area/shuttle/large_escape_pod1/station)
+=======
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 "heZ" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 10
@@ -21729,6 +21752,13 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+<<<<<<< HEAD
+=======
+/obj/structure/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 /obj/machinery/power/sensor{
 	name = "Powernet Sensor - Master Grid";
 	name_tag = "Master"
@@ -22531,6 +22561,12 @@
 /area/surface/station/medical/emt_bay)
 "kxM" = (
 /obj/structure/stairs/spawner/east,
+<<<<<<< HEAD
+=======
+/obj/structure/railing{
+	dir = 1
+	},
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 /turf/simulated/floor/tiled/dark,
 /area/surface/station/engineering/hallway)
 "kyJ" = (
@@ -24656,6 +24692,10 @@
 	pixel_y = -26;
 	tag_door = "large_escape_pod_1_hatch"
 	},
+<<<<<<< HEAD
+=======
+/obj/effect/shuttle_landmark/cynosure/large_escape_pod1/station,
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 /turf/simulated/shuttle/floor,
 /area/shuttle/large_escape_pod1/station)
 "lyg" = (
@@ -25996,9 +26036,12 @@
 	dir = 6
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals_central7,
+<<<<<<< HEAD
 /obj/machinery/recharger/wallcharger{
 	pixel_x = 32
 	},
+=======
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 /obj/structure/table/steel_reinforced,
 /obj/item/ammo_magazine/s45/practice,
 /obj/item/ammo_magazine/s45/practice,
@@ -26015,6 +26058,15 @@
 /obj/item/ammo_magazine/m9mmt/practice,
 /obj/item/weapon/storage/box/blanks/large,
 /obj/item/weapon/storage/box/blanks/large,
+<<<<<<< HEAD
+=======
+/obj/machinery/magnetic_controller{
+	autolink = 1;
+	density = 0;
+	dir = 4;
+	pixel_x = 30
+	},
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 /turf/simulated/floor/tiled,
 /area/surface/station/security/range)
 "maD" = (
@@ -31500,6 +31552,13 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/surface/station/medical/reception)
+<<<<<<< HEAD
+=======
+"otX" = (
+/obj/machinery/optable,
+/turf/simulated/floor/tiled/white,
+/area/surface/station/medical/surgery2)
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 "oub" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -37594,7 +37653,10 @@
 /obj/machinery/camera/network/medbay{
 	c_tag = "MED - Operating Theatre 1"
 	},
+<<<<<<< HEAD
 /obj/machinery/optable,
+=======
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 /turf/simulated/floor/tiled/white,
 /area/surface/station/medical/surgery)
 "qVW" = (
@@ -39226,6 +39288,13 @@
 /obj/random/maintenance/clean,
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/surgery)
+<<<<<<< HEAD
+=======
+"rIW" = (
+/obj/machinery/optable,
+/turf/simulated/floor/tiled/white,
+/area/surface/station/medical/surgery)
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 "rJl" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
@@ -42586,6 +42655,13 @@
 /obj/machinery/recharger/wallcharger{
 	pixel_x = 32
 	},
+<<<<<<< HEAD
+=======
+/obj/machinery/recharger/wallcharger{
+	pixel_x = 32;
+	pixel_y = -10
+	},
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 /turf/simulated/floor/tiled,
 /area/surface/station/security/range)
 "toQ" = (
@@ -47994,7 +48070,10 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+<<<<<<< HEAD
 /obj/structure/window/reinforced,
+=======
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 /turf/simulated/floor/tiled,
 /area/surface/station/engineering/hallway)
 "vNz" = (
@@ -81755,7 +81834,11 @@ cei
 nNo
 nUW
 qdT
+<<<<<<< HEAD
 heS
+=======
+qdT
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 itc
 dof
 cHr
@@ -86168,7 +86251,11 @@ dns
 red
 kBa
 kMw
+<<<<<<< HEAD
 psC
+=======
+rIW
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 lVJ
 ykd
 suW
@@ -88738,7 +88825,11 @@ bBP
 vJx
 esD
 dRW
+<<<<<<< HEAD
 ycR
+=======
+otX
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 vVA
 uBt
 toG
@@ -92132,7 +92223,11 @@ ekV
 eJU
 rxO
 dfk
+<<<<<<< HEAD
 lsu
+=======
+aZV
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 dlE
 sUN
 drL

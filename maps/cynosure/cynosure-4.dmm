@@ -1473,7 +1473,15 @@
 /obj/effect/floor_decal/techfloor/corner{
 	dir = 5
 	},
+<<<<<<< HEAD
 /turf/simulated/floor/tiled/techfloor,
+=======
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 100;
+	oxygen = 0;
+	temperature = 73
+	},
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 /area/tcommsat/cynosure/chamber)
 "pq" = (
 /obj/structure/cable/yellow,
@@ -1572,7 +1580,15 @@
 /obj/effect/floor_decal/techfloor/corner{
 	dir = 6
 	},
+<<<<<<< HEAD
 /turf/simulated/floor/tiled/techfloor,
+=======
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 100;
+	oxygen = 0;
+	temperature = 73
+	},
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 /area/tcommsat/cynosure/chamber)
 "qc" = (
 /obj/effect/floor_decal/borderfloor{
@@ -1899,7 +1915,15 @@
 /obj/effect/floor_decal/techfloor/corner{
 	dir = 10
 	},
+<<<<<<< HEAD
 /turf/simulated/floor/tiled/techfloor,
+=======
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 100;
+	oxygen = 0;
+	temperature = 73
+	},
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 /area/tcommsat/cynosure/chamber)
 "ta" = (
 /obj/structure/cable{
@@ -2461,13 +2485,29 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 6
 	},
+<<<<<<< HEAD
 /turf/simulated/floor/tiled/techfloor,
+=======
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 100;
+	oxygen = 0;
+	temperature = 73
+	},
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 /area/tcommsat/cynosure/chamber)
 "zJ" = (
 /obj/effect/floor_decal/techfloor/corner{
 	dir = 6
 	},
+<<<<<<< HEAD
 /turf/simulated/floor/tiled/techfloor,
+=======
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 100;
+	oxygen = 0;
+	temperature = 73
+	},
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 /area/tcommsat/cynosure/chamber)
 "zO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/black,
@@ -2586,7 +2626,15 @@
 /obj/effect/floor_decal/techfloor/corner{
 	dir = 9
 	},
+<<<<<<< HEAD
 /turf/simulated/floor/tiled/techfloor,
+=======
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 100;
+	oxygen = 0;
+	temperature = 73
+	},
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 /area/tcommsat/cynosure/chamber)
 "BD" = (
 /obj/effect/floor_decal/borderfloor{
@@ -2855,7 +2903,15 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 5
 	},
+<<<<<<< HEAD
 /turf/simulated/floor/tiled/techfloor,
+=======
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 100;
+	oxygen = 0;
+	temperature = 73
+	},
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 /area/tcommsat/cynosure/chamber)
 "Eq" = (
 /obj/structure/cable{
@@ -3024,7 +3080,15 @@
 /obj/effect/floor_decal/techfloor/corner{
 	dir = 9
 	},
+<<<<<<< HEAD
 /turf/simulated/floor/tiled/techfloor,
+=======
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 100;
+	oxygen = 0;
+	temperature = 73
+	},
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 /area/tcommsat/cynosure/chamber)
 "Gq" = (
 /obj/structure/bed/chair/shuttle,
@@ -3148,7 +3212,15 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 9
 	},
+<<<<<<< HEAD
 /turf/simulated/floor/tiled/techfloor,
+=======
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 100;
+	oxygen = 0;
+	temperature = 73
+	},
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 /area/tcommsat/cynosure/chamber)
 "Hk" = (
 /obj/effect/floor_decal/techfloor,
@@ -4212,7 +4284,15 @@
 /obj/effect/floor_decal/techfloor/corner{
 	dir = 10
 	},
+<<<<<<< HEAD
 /turf/simulated/floor/tiled/techfloor,
+=======
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 100;
+	oxygen = 0;
+	temperature = 73
+	},
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 /area/tcommsat/cynosure/chamber)
 "QG" = (
 /obj/structure/window/reinforced{
@@ -4733,7 +4813,15 @@
 /obj/effect/floor_decal/techfloor/corner{
 	dir = 5
 	},
+<<<<<<< HEAD
 /turf/simulated/floor/tiled/techfloor,
+=======
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 100;
+	oxygen = 0;
+	temperature = 73
+	},
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 /area/tcommsat/cynosure/chamber)
 "UY" = (
 /obj/structure/window/reinforced,
@@ -5050,7 +5138,15 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 10
 	},
+<<<<<<< HEAD
 /turf/simulated/floor/tiled/techfloor,
+=======
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 100;
+	oxygen = 0;
+	temperature = 73
+	},
+>>>>>>> 9f526f32ea7... Merge pull request #8278 from PolarisSS13/cynosure_map
 /area/tcommsat/cynosure/chamber)
 "Yb" = (
 /obj/effect/floor_decal/industrial/warning{

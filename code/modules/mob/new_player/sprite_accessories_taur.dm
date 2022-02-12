@@ -137,6 +137,7 @@
 	hide_body_parts	= list(BP_L_LEG, BP_L_FOOT, BP_R_LEG, BP_R_FOOT) //Exclude pelvis just in case.
 	clip_mask_icon = 'icons/mob/human_races/sprite_accessories/taurs.dmi'
 	clip_mask_state = "taur_clip_mask_def" //Used to clip off the lower part of suits & uniforms.
+	whitelist_allowed = list()
 
 // Species-unique long tails/taurhalves
 
@@ -149,10 +150,10 @@
 	suit_sprites = 'icons/mob/taursuits_wolf.dmi'
 	icon_sprite_tag = "wolf"
 
-/datum/sprite_accessory/tail/taur/fatwolf
-	name = "Fat Wolf (Taur)"
-	icon_state = "fatwolf_s"
-	icon_sprite_tag = "wolf"	//This could be modified later.
+// /datum/sprite_accessory/tail/taur/fatwolf
+// 	name = "Fat Wolf (Taur)"
+// 	icon_state = "fatwolf_s"
+// 	icon_sprite_tag = "wolf"	//This could be modified later.
 
 /datum/sprite_accessory/tail/taur/wolf/wolf_2c
 	name = "Wolf dual-color (Taur)"
@@ -160,11 +161,11 @@
 	extra_overlay = "wolf_markings"
 	//icon_sprite_tag = "wolf2c"
 
-/datum/sprite_accessory/tail/taur/wolf/fatwolf_2c
-	name = "Fat Wolf dual-color (Taur)"
-	icon_state = "fatwolf_s"
-	extra_overlay = "fatwolf_markings"
-	//icon_sprite_tag = "fatwolf2c"
+// /datum/sprite_accessory/tail/taur/wolf/fatwolf_2c
+// 	name = "Fat Wolf dual-color (Taur)"
+// 	icon_state = "fatwolf_s"
+// 	extra_overlay = "fatwolf_markings"
+// 	//icon_sprite_tag = "fatwolf2c"
 
 /datum/sprite_accessory/tail/taur/wolf/synthwolf
 	name = "SynthWolf dual-color (Taur)"
@@ -246,15 +247,15 @@
 	suit_sprites = 'icons/mob/taursuits_feline.dmi'
 	icon_sprite_tag = "feline"
 
-/datum/sprite_accessory/tail/taur/fatfeline
-	name = "Fat Feline (Taur)"
-	icon_state = "fatfeline_s"
-	//icon_sprite_tag = "fatfeline"
+// /datum/sprite_accessory/tail/taur/fatfeline
+// 	name = "Fat Feline (Taur)"
+// 	icon_state = "fatfeline_s"
+// 	//icon_sprite_tag = "fatfeline"
 
-/datum/sprite_accessory/tail/taur/fatfeline_wag
-	name = "Fat Feline (Taur) (vwag)"
-	icon_state = "fatfeline_s"
-	ani_state = "fatfeline_w"
+// /datum/sprite_accessory/tail/taur/fatfeline_wag
+// 	name = "Fat Feline (Taur) (vwag)"
+// 	icon_state = "fatfeline_s"
+// 	ani_state = "fatfeline_w"
 
 /datum/sprite_accessory/tail/taur/feline/feline_2c
 	name = "Feline dual-color (Taur)"
