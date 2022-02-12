@@ -21,6 +21,9 @@
 			created_name = t
 		return
 
+	else if(istype(get_area(src), /area/shuttle))
+		to_chat(user, "<span class='warning'>\The [src] cannot be constructed on a shuttle.</span>")
+		return
 	if(W.is_wrench())
 		switch(state)
 			if(CONSTRUCTION_UNANCHORED)
