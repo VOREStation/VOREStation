@@ -803,7 +803,7 @@
 	name = "kitty right only, colorable"
 	icon = 'icons/mob/vore/ears_uneven.dmi'
 	desc = ""
-	icon_state = "kittyr"
+	icon_state = "kittyrinner"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
-	extra_overlay = "kittyrinner"
+	extra_overlay = "kittyr"
