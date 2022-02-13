@@ -164,7 +164,7 @@
 	contains = list(
 	/obj/item/weapon/material/sword =2
 	)
-	cost =100
+	cost =75
 	access = list(access_explorer,
 				  access_security,)
 
