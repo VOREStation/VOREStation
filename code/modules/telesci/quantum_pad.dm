@@ -65,6 +65,11 @@
 		return
 
 	if(istype(I, /obj/item/device/multitool))
+		//VOREStation Addition Start
+		if(istype(get_area(src), /area/shuttle))
+			to_chat(user, "<span class='warning'>This is too unstable a platform for \the [src] to operate on!</span>")
+			return
+		//VOREStation Addition End
 		if(panel_open)
 			var/obj/item/device/multitool/M = I
 			M.connectable = src
@@ -128,6 +133,10 @@
 
 	if(istype(get_area(src), /area/shuttle))
 		to_chat(user, "<span class='warning'>This is too unstable a platform for \the [src] to operate on!</span>")
+		//VOREStation Addition Start
+		if(linked_pad)
+			linked_pad.linked_pad = null
+		//VOREStation Addition End
 		return
 
 	if(!powernet)
@@ -175,6 +184,11 @@
 	update_icon()
 	if(!linked_pad)
 		return
+	//VOREStation Addition Start
+	if(istype(get_area(src), /area/shuttle))
+		to_chat(user, "<span class='warning'>This is too unstable a platform for \the [src] to operate on!</span>")
+		return
+	//VOREStation Addition End
 	playsound(src, 'sound/weapons/flash.ogg', 25, 1)
 	teleporting = 1
 
