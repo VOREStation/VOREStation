@@ -12,19 +12,6 @@
 	path = /obj/item/weapon/implant/tracking/weak
 	cost = 0 //VOREStation Edit. Changed cost to 0
 
-// Remove these after generic implant has been in for awhile and everyone has had a reasonable period to copy their old descs.
-/datum/gear/utility/implant/dud1
-	display_name = "implant, head"
-	description = "An implant with no obvious purpose (DEPRECATED, USE GENERIC IMPLANT)."
-	path = /obj/item/weapon/implant/dud
-	cost = 1
-/datum/gear/utility/implant/dud2
-	display_name = "implant, torso"
-	description = "An implant with no obvious purpose (DEPRECATED, USE GENERIC IMPLANT)."
-	path = /obj/item/weapon/implant/dud/torso
-	cost = 1
-// End removal marker.
-
 /datum/gear/utility/implant/generic
 	display_name = "implant, generic, primary"
 	description = "An implant with no obvious purpose."
