@@ -3,12 +3,10 @@
 	name = "Engine Loader"
 	var/clean_turfs // A list of lists, where each list is (x, )
 
-<<<<<<< HEAD
 /obj/effect/landmark/engine_loader/New()
-=======
 INITIALIZE_IMMEDIATE(/obj/effect/landmark/engine_loader)
+
 /obj/effect/landmark/engine_loader/Initialize()
->>>>>>> 2d43d031101... Merge pull request #8354 from Atermonera/fix_engineload
 	if(SSmapping.engine_loader)
 		warning("Duplicate engine_loader landmarks: [log_info_line(src)] and [log_info_line(SSmapping.engine_loader)]")
 		delete_me = TRUE
