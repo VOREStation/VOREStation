@@ -143,6 +143,8 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	new_dna.custom_ask=custom_ask //VOREStaton Edit
 	new_dna.custom_whisper=custom_whisper //VOREStaton Edit
 	new_dna.custom_exclaim=custom_exclaim //VOREStaton Edit
+	var/list/body_markings_genetic = (body_markings - body_marking_nopersist_list)
+	new_dna.body_markings=body_markings_genetic.Copy()
 	for(var/b=1;b<=DNA_SE_LENGTH;b++)
 		new_dna.SE[b]=SE[b]
 		if(b<=DNA_UI_LENGTH)
