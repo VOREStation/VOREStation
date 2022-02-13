@@ -89,6 +89,8 @@
 		if(!T) continue
 		var/obj/structure/ladder_assembly/LA = locate(/obj/structure/ladder_assembly, T)
 		if(!LA) continue
+		if(direction == DOWN && (src.z in using_map.below_blocked_levels)) continue
+		if(direction == UP && (LA.z in using_map.below_blocked_levels)) continue
 		if(LA.state != CONSTRUCTION_WELDED)
 			to_chat(user, "<span class='warning'>\The [LA] [direction == UP ? "above" : "below"] must be secured and welded.</span>")
 			return
