@@ -1,5 +1,5 @@
 /obj/item/capture_crystal
-	name = "Curious Crystal"
+	name = "curious crystal"
 	desc = "A silent, unassuming crystal in what appears to be some kind of steel housing."
 	icon = 'icons/obj/capture_crystal_vr.dmi'
 	icon_state = "inactive"
