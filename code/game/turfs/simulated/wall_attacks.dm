@@ -240,10 +240,7 @@
 		return
 
 	// Basic dismantling.
-<<<<<<< HEAD
-=======
 	var/dismantle_toolspeed = 0
->>>>>>> 6489e47e1a7... Merge pull request #8371 from Atermonera/wall_deconstruction_fix
 	if(isnull(construction_stage) || !reinf_material)
 
 		var/cut_delay = 60 - material.cut_delay
