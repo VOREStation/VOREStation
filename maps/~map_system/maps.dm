@@ -38,6 +38,7 @@ var/list/all_maps = list()
 	var/static/list/hidden_levels = list() // Z-levels who's contents are hidden, but not forbidden (gateways)
 	var/static/list/empty_levels = list()   // Empty Z-levels that may be used for various things
 	var/static/list/mappable_levels = list()// List of levels where mapping or other similar devices might work fully
+	var/static/list/below_blocked_levels = list()// List of levels where mapping or other similar devices might work fully
 	// End Static Lists
 
 	// Z-levels available to various consoles, such as the crew monitor. Defaults to station_levels if unset.
@@ -312,6 +313,9 @@ var/list/all_maps = list()
 	if(flags & MAP_LEVEL_CONSOLES)
 		if (!map.map_levels) map.map_levels = list()
 		map.map_levels += z
+	if(flags & MAP_LEVEL_BELOW_BLOCKED)
+		if (!map.below_blocked_levels) map.below_blocked_levels = list()
+		map.below_blocked_levels += z
 	if(base_turf)
 		map.base_turf_by_z["[z]"] = base_turf
 	if(transit_chance)
