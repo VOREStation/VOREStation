@@ -13,6 +13,7 @@
 	slot_flags = SLOT_BACK
 
 //Predefined materials go here.
+<<<<<<< HEAD
 /obj/item/weapon/material/twohanded/baseballbat/metal/New(var/newloc)
 	..(newloc,"steel")
 
@@ -27,3 +28,19 @@
 
 /obj/item/weapon/material/twohanded/baseballbat/diamond/New(var/newloc)
 	..(newloc,"diamond")
+=======
+/obj/item/weapon/material/twohanded/baseballbat/metal/Initialize(var/ml)
+	. = ..(ml, MAT_STEEL)
+
+/obj/item/weapon/material/twohanded/baseballbat/uranium/Initialize(var/ml)
+	. = ..(ml, MAT_URANIUM)
+
+/obj/item/weapon/material/twohanded/baseballbat/gold/Initialize(var/ml)
+	. = ..(ml, MAT_GOLD)
+
+/obj/item/weapon/material/twohanded/baseballbat/platinum/Initialize(var/ml)
+	. = ..(ml, MAT_PLATINUM)
+
+/obj/item/weapon/material/twohanded/baseballbat/diamond/Initialize(var/ml)
+	. = ..(ml, MAT_DIAMOND)
+>>>>>>> 7428ac95c33... Fixes material bats not returning init hints (#8393)

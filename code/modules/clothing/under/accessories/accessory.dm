@@ -390,6 +390,7 @@
 /obj/item/clothing/accessory/bracelet/material/get_material()
 	return material
 
+<<<<<<< HEAD
 /obj/item/clothing/accessory/bracelet/material/wood/New(var/newloc)
 	..(newloc, "wood")
 
@@ -418,6 +419,34 @@
 	..(newloc, "glass")
 
 	..()
+=======
+/obj/item/clothing/accessory/bracelet/material/wood/Initialize(var/ml)
+	. = ..(ml, MAT_WOOD)
+
+/obj/item/clothing/accessory/bracelet/material/plastic/Initialize(var/ml)
+	. = ..(ml, MAT_PLASTIC)
+
+/obj/item/clothing/accessory/bracelet/material/iron/Initialize(var/ml)
+	. = ..(ml, MAT_IRON)
+
+/obj/item/clothing/accessory/bracelet/material/steel/Initialize(var/ml)
+	. = ..(ml, MAT_STEEL)
+
+/obj/item/clothing/accessory/bracelet/material/silver/Initialize(var/ml)
+	. = ..(ml, MAT_SILVER)
+
+/obj/item/clothing/accessory/bracelet/material/gold/Initialize(var/ml)
+	. = ..(ml, MAT_GOLD)
+
+/obj/item/clothing/accessory/bracelet/material/platinum/Initialize(var/ml)
+	. = ..(ml, MAT_PLATINUM)
+
+/obj/item/clothing/accessory/bracelet/material/phoron/Initialize(var/ml)
+	. = ..(ml, MAT_PHORON)
+
+/obj/item/clothing/accessory/bracelet/material/glass/Initialize(var/ml)
+	. = ..(ml, MAT_GLASS)
+>>>>>>> 7428ac95c33... Fixes material bats not returning init hints (#8393)
 
 /obj/item/clothing/accessory/halfcape
 	name = "half cape"
