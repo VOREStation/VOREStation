@@ -36,6 +36,9 @@
 	qdel(selected_image)
 	QDEL_NULL(vorePanel) //VOREStation Add
 	QDEL_LIST_NULL(vore_organs) //VOREStation Add
+	temp_language_sources = null //VOREStation Add
+	temp_languages = null //VOREStation Add
+
 
 	if(LAZYLEN(organs))
 		organs_by_name.Cut()
