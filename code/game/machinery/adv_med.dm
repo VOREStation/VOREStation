@@ -349,8 +349,13 @@
 			var/obj/item/weapon/paper/P = new /obj/item/weapon/paper(get_turf(target))
 			var/name = occupant ? occupant.name : "Unknown"
 			P.info = "<CENTER><B>Body Scan - [name]</B></CENTER><BR>"
+<<<<<<< HEAD
 			P.info += "<b>Time of scan:</b> [stationtime2text()]<br><br>"
 			P.info += "[generate_printing_text()]"
+=======
+			P.info += "<b>Time of scan:</b> [worldtime2stationtime(world.time)]<br><br>"
+			P.info += generate_printing_text()
+>>>>>>> 9de76932103... Fixes ABS reports getting sanitized by initialize() (#8391)
 			P.info += "<br><br><b>Notes:</b><br>"
 			P.name = "Body Scan - [name] ([stationtime2text()]"
 		else
