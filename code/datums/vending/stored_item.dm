@@ -65,7 +65,12 @@
 		var/new_product = new item_path(stored)
 		instances += new_product
 
-
+/datum/stored_item/proc/refill_products(var/refill_amount)
+	if(!instances)
+		init_products()
+	for(var/i = 1 to refill_amount)
+		var/new_product = new item_path(stored)
+		instances += new_product
 
 /datum/stored_item/stack/get_amount()
 	return amount

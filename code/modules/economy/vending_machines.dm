@@ -152,6 +152,9 @@
 					/obj/item/weapon/reagent_containers/food/drinks/h_chocolate = 2,
 					/obj/item/weapon/reagent_containers/food/drinks/greentea = 10,
 					/obj/item/weapon/reagent_containers/food/drinks/chaitea = 5) // VOREStation Edit - Lowers Coffee/Hot Chocolate/Tea Prices from 3 -> 2.
+	refill = list(/obj/item/weapon/reagent_containers/food/drinks/coffee = 15,
+				  /obj/item/weapon/reagent_containers/food/drinks/tea = 1,
+				  /obj/item/weapon/reagent_containers/food/drinks/ice = 29)
 	vending_sound = "machines/vending/vending_coffee.ogg"
 
 /obj/machinery/vending/snack
