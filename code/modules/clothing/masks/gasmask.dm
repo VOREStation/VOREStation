@@ -60,6 +60,13 @@
 		qdel(src)
 	..()
 
+/obj/item/clothing/mask/gas/bigshot
+	name = "big shot mask"
+	desc = "A funny looking mask that helps you look like a \[BIG SHOT]\ and can be connected to an air supply."
+	icon_state = "bigshot"
+	item_state_slots = list(slot_r_hand_str = "gas", slot_l_hand_str = "gas")
+	body_parts_covered = HEAD|FACE|EYES
+
 //Plague Dr suit can be found in clothing/suits/bio.dm
 /obj/item/clothing/mask/gas/plaguedoctor
 	name = "plague doctor mask"

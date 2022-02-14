@@ -32,6 +32,11 @@
 	path = /obj/item/clothing/mask/gas/plaguedoctor/gold
 	cost = 3 ///Because it functions as a gas mask, and therefore has a mechanical advantage.
 
+/datum/gear/mask/bigshot
+	display_name = "Big Shot's mask"
+	path = /obj/item/clothing/mask/gas/bigshot
+	cost = 3 ///Because it functions as a gas mask, and therefore has a mechanical advantage.
+
 /datum/gear/mask/mouthwheat
 	display_name = "mouth wheat"
 	path = /obj/item/clothing/mask/mouthwheat
