@@ -540,6 +540,9 @@
 				to_chat(user,"<span class='warning'>You manage to [lowertext(TB.vore_verb)] [M] into your [lowertext(TB.name)]!</span>")
 				to_chat(M,"<span class='warning'>[host] manages to [lowertext(TB.vore_verb)] you into their [lowertext(TB.name)]!</span>")
 				to_chat(OB.owner,"<span class='warning'>Someone inside you has eaten someone else!</span>")
+				if(M.absorbed)
+					M.absorbed = FALSE
+					OB.handle_absorb_langs(M, OB.owner)
 				TB.nom_mob(M)
 
 /datum/vore_look/proc/pick_from_outside(mob/user, params)
