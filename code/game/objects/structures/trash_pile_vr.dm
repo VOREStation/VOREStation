@@ -235,6 +235,7 @@
 					prob(3);/obj/item/weapon/material/butterfly,
 					prob(3);/obj/item/weapon/material/butterfly/switchblade,
 					prob(3);/obj/item/clothing/gloves/knuckledusters,
+					prob(3);/obj/item/clothing/gloves/heavy_engineer,
 					prob(3);/obj/item/weapon/reagent_containers/syringe/drugs,
 					prob(2);/obj/item/weapon/implanter/sizecontrol,
 					prob(2);/obj/item/weapon/handcuffs/fuzzy,
