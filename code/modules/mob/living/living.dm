@@ -1017,7 +1017,7 @@
 		return FALSE
 
 	var/throw_range = item.throw_range
-	if (istype(item, /obj/item/weapon/grab))
+	if(istype(item, /obj/item/weapon/grab))
 		var/obj/item/weapon/grab/G = item
 		item = G.throw_held() //throw the person instead of the grab
 		if(ismob(item))
@@ -1042,21 +1042,21 @@
 				step(src, inertia_dir)
 			item.throw_at(target, throw_range, item.throw_speed, src)
 			return TRUE
-		else
-			return FALSE
+		return FALSE
 
-	if(!item)
-		return FALSE //Grab processing has a chance of returning null
+	if(a_intent == I_HELP && Adjacent(target) && isitem(item))
+		if(ishuman(target))
+			var/mob/living/carbon/human/H = target
+			if(H.in_throw_mode && H.a_intent == I_HELP && unEquip(item))
+				H.put_in_hands(item) // If this fails it will just end up on the floor, but that's fitting for things like dionaea.
+				visible_message("<b>[src]</b> hands \the [H] \a [item].", SPAN_NOTICE("You give \the [target] \a [item]."))
+			else
+				to_chat(src, SPAN_NOTICE("You offer \the [item] to \the [target]."))
+				do_give(H)
+			return TRUE
 
-	if(a_intent == I_HELP && Adjacent(target) && isitem(item) && ishuman(target))
-		var/obj/item/I = item
-		var/mob/living/carbon/human/H = target
-		if(H.in_throw_mode && H.a_intent == I_HELP && unEquip(I))
-			H.put_in_hands(I) // If this fails it will just end up on the floor, but that's fitting for things like dionaea.
-			visible_message("<b>[src]</b> hands \the [H] \a [I].", SPAN_NOTICE("You give \the [target] \a [I]."))
-		else
-			to_chat(src, SPAN_NOTICE("You offer \the [I] to \the [target]."))
-			do_give(H)
+		drop_from_inventory(item)
+		item.forceMove(get_turf(target))
 		return TRUE
 
 	drop_from_inventory(item)
