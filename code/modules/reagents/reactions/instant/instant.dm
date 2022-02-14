@@ -1071,6 +1071,14 @@
 	inhibitors = list("nitrogen" = 1) //So it doesn't mess with lexorin
 	result_amount = 2
 
+/decl/chemical_reaction/instant/energized_phoron
+	name = "phoron plasma"
+	id = "inst_energetic_phoron"
+	result = "energetic_phoron"
+	required_reagents = list("phoron" = 1, "hydrophoron" = 3)
+	inhibitors = list("nitrogen" = 1) //So it doesn't mess with hydrophoron
+	result_amount = 3
+
 /decl/chemical_reaction/instant/deuterium
 	name = "Deuterium"
 	id = "deuterium"

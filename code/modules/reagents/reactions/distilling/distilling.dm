@@ -157,7 +157,7 @@
 	id = "distill_brutejuice"
 	result = "berserkmed"
 	required_reagents = list("biomass" = 1, "hyperzine" = 3, "synaptizine" = 2, "phoron" = 1)
-	result_amount = 3
+	result_amount = 5
 
 	temp_range = list(T0C + 600, T0C + 700)
 	temp_shift = 4
@@ -176,7 +176,7 @@
 	result = "cryoslurry"
 	required_reagents = list("frostoil" = 7, "enzyme" = 3, "plasticide" = 3, "foaming_agent" = 2)
 	inhibitors = list("water" = 5)
-	result_amount = 1
+	result_amount = 12
 
 	temp_range = list(0, 15)
 	temp_shift = 20
@@ -214,3 +214,14 @@
 	reaction_rate = HALF_LIFE(20)
 
 	temp_range = list(T0C + 90, T0C + 95)
+
+/decl/chemical_reaction/distilling/phoron_plasma
+	name = "Energizing Phoron"
+	id = "energize_phoron"
+	result = "energetic_phoron"
+	required_reagents = list("phoron" = 5)
+	catalysts = list("hydrophoron" = 10)
+
+	result_amount = 4
+
+	temp_range = list(T0C + 100, T0C + 200)

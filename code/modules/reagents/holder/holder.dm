@@ -66,6 +66,14 @@
 
 	return the_id
 
+/datum/reagents/proc/get_viscosity() // Returns a multiplier for the mixture's viscosity.
+	. = 0
+	if(total_volume <= 0)
+		return
+	for(var/datum/reagent/A in reagent_list)
+		. += A.viscosity * A.volume
+	. = max(0.1, . / total_volume)
+
 /datum/reagents/proc/update_total() // Updates volume.
 	total_volume = 0
 	for(var/datum/reagent/R in reagent_list)
@@ -221,6 +229,12 @@
 		. += "[current.id] ([current.volume])"
 	return english_list(., "EMPTY", "", ", ", ", ")
 
+/datum/reagents/proc/has_liquids()
+	for(var/datum/reagent/current in reagent_list)
+		if(current.reagent_state == LIQUID)
+			return TRUE
+	return FALSE
+
 /* Holder-to-holder and similar procs */
 
 /datum/reagents/proc/remove_any(var/amount = 1) // Removes up to [amount] of reagents from [src]. Returns actual amount removed.
@@ -361,7 +375,16 @@
 		return
 
 	for(var/datum/reagent/current in reagent_list)
-		current.touch_turf(target, amount)
+		if(!has_liquids() || current.no_puddle)
+			current.touch_turf(target, amount)
+
+
+	if(has_liquids())
+		var/obj/effect/decal/cleanable/chempuddle/CP = locate() in target
+		if(!CP)
+			CP = new(target)
+		trans_to_holder(CP.reagents, amount)
+		CP.Spread()
 
 	update_total()
 

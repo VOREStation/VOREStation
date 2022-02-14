@@ -23,6 +23,9 @@
 	var/can_overdose_touch = FALSE	// Can the chemical OD when processing on touch?
 	var/scannable = 0 // Shows up on health analyzers.
 
+	var/viscosity = 1 // Resistance to flow.
+	var/no_puddle = FALSE // Prevent the creation of reagent puddles?
+
 	var/affects_dead = 0	// Does this chem process inside a corpse?
 	var/affects_robots = 0	// Does this chem process inside a Synth?
 	

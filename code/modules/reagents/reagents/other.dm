@@ -431,6 +431,7 @@
 	reagent_state = LIQUID
 	color = "#A5F0EE"
 	touch_met = 50
+	no_puddle = TRUE
 
 /datum/reagent/space_cleaner/touch_mob(var/mob/M)
 	if(iscarbon(M))

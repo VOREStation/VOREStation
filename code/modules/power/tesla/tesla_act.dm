@@ -56,9 +56,9 @@
 	dump_contents()
 	qdel(src)
 
-/obj/structure/reagent_dispensers/fueltank/tesla_act()
+/obj/structure/reagent_dispensers/tesla_act()
 	..() //extend the zap
-	explode()
+	rupture()
 
 /obj/mecha/tesla_act(power)
 	..()
