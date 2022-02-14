@@ -42,6 +42,10 @@
 	var/list/prices     = list() // Prices for each item, list(/type/path = price), items not in the list don't have a price.
 	/// Set automatically, enables pricing
 	var/has_prices = FALSE
+	// This one is used for refill cartridge use.
+	var/list/refill	= list() // For each, use the following pattern:
+	// Enables refilling with appropriate cartridges
+	var/refillable = TRUE
 
 	// List of vending_product items available.
 	var/list/product_records = list()
@@ -126,11 +130,30 @@ GLOBAL_LIST_EMPTY(vending_products)
 	if(LAZYLEN(premium))
 		has_premium = TRUE
 
+
+	if(!LAZYLEN(refill) && refillable)			// Manually setting refill list prevents the automatic population. By default filled with all entries from normal product.
+		refill += products
+
 	LAZYCLEARLIST(products)
 	LAZYCLEARLIST(contraband)
 	LAZYCLEARLIST(premium)
 	LAZYCLEARLIST(prices)
 	all_products.Cut()
+
+/obj/machinery/vending/proc/refill_inventory()
+	if(!(LAZYLEN(refill)))		//This shouldn't happen, but just in case...
+		return
+
+	for(var/entry in refill)
+		var/datum/stored_item/vending_product/current_product
+		for(var/datum/stored_item/vending_product/product in product_records)
+			if(product.item_path == entry)
+				current_product = product
+				break
+		if(!current_product)
+			continue
+		else
+			current_product.refill_products(refill[entry])
 
 /obj/machinery/vending/Destroy()
 	qdel(wires)
@@ -170,6 +193,29 @@ GLOBAL_LIST_EMPTY(vending_products)
 	if(I || istype(W, /obj/item/weapon/spacecash))
 		attack_hand(user)
 		return
+	else if(istype(W, /obj/item/weapon/refill_cartridge))
+		if(stat & (BROKEN|NOPOWER))
+			to_chat(user, "<span class='notice'>You cannot refill [src] while it is not functioning.</span>")
+			return
+		if(!anchored)
+			to_chat(user, "<span class='notice'>You cannot refill [src] while it is not secured.</span>")
+			return
+		if(panel_open)
+			to_chat(user, "<span class='notice'>You cannot refill [src] while it's panel is open.</span>")
+			return
+		if(!refillable)
+			to_chat(user, "<span class='notice'>\the [src] does not have a refill port.</span>")
+			return
+		var/obj/item/weapon/refill_cartridge/RC = W
+		if(RC.can_refill(src))
+			to_chat(user, "<span class='notice'>You refill [src] using [RC].</span>")
+			user.drop_from_inventory(RC)
+			qdel(RC)
+			refill_inventory()
+			return
+		else
+			to_chat(user, "<span class='notice'>You cannot refill [src] with [RC].</span>")
+			return
 	else if(W.is_screwdriver())
 		panel_open = !panel_open
 		to_chat(user, "You [panel_open ? "open" : "close"] the maintenance panel.")
