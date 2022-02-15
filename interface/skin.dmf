@@ -1424,8 +1424,13 @@ window "preferences_window"
 		type = MAIN
 		pos = 281,0
 		size = 1000x800
+<<<<<<< HEAD
 		anchor1 = -1,-1
 		anchor2 = -1,-1
+=======
+		anchor1 = none
+		anchor2 = none
+>>>>>>> 30e35c623e2... Merge pull request #8394 from Mechoid/VirgoSetupPreview
 		is-visible = false
 		saved-params = "pos;size;is-minimized;is-maximized"
 		statusbar = false
@@ -1442,8 +1447,12 @@ window "preferences_window"
 		size = 200x800
 		anchor1 = 80,0
 		anchor2 = 100,100
+<<<<<<< HEAD
 		right-click = true
 		saved-params = "zoom;letterbox;zoom-mode"
+=======
+		right-click = false
+>>>>>>> 30e35c623e2... Merge pull request #8394 from Mechoid/VirgoSetupPreview
 
 window "infowindow"
 	elem "infowindow"

@@ -626,7 +626,7 @@
 	src << browse(null, "window=latechoices") //closes late choices window
 	src << browse(null, "window=preferences_window") //VOREStation Edit?
 	src << browse(null, "window=News") //closes news window
-	//src << browse(null, "window=playersetup") //closes the player setup window
+	src << browse(null, "window=preferences_window") //closes the player setup window
 	panel.close()
 
 /mob/new_player/proc/has_admin_rights()

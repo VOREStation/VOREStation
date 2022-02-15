@@ -82,12 +82,20 @@ var/list/preferences_datums = list()
 		//Mob preview
 	var/list/char_render_holders		//Should only be a key-value list of north/south/east/west = obj/screen.
 	var/static/list/preview_screen_locs = list(
+<<<<<<< HEAD
 		"1" = "character_preview_map:2,7",
 		"2" = "character_preview_map:2,5",
 		"4"  = "character_preview_map:2,3",
 		"8"  = "character_preview_map:2,1",
 		"BG" = "character_preview_map:1,1 to 3,8",
 		"PMH" = "character_preview_map:2,7"
+=======
+		"1" = "character_preview_map:1,5:-12",
+		"2" = "character_preview_map:1,3:15",
+		"4"  = "character_preview_map:1:7,2:10",
+		"8"  = "character_preview_map:1:-7,1:5",
+		"BG" = "character_preview_map:1,1 to 1,5"
+>>>>>>> 30e35c623e2... Merge pull request #8394 from Mechoid/VirgoSetupPreview
 	)
 
 		//Jobs, uses bitflags
@@ -176,6 +184,9 @@ var/list/preferences_datums = list()
 			if(load_preferences())
 				load_character()
 
+/datum/preferences/Destroy()
+	. = ..()
+	QDEL_LIST_ASSOC_VAL(char_render_holders)
 
 /datum/preferences/Destroy()
 	. = ..()
@@ -274,6 +285,7 @@ var/list/preferences_datums = list()
 	if(!client)
 		return
 
+<<<<<<< HEAD
 	var/obj/screen/setup_preview/pm_helper/PMH = LAZYACCESS(char_render_holders, "PMH")
 	if(!PMH)
 		PMH = new
@@ -287,16 +299,29 @@ var/list/preferences_datums = list()
 		BG.plane = TURF_PLANE
 		BG.icon = 'icons/effects/setup_backgrounds_vr.dmi'
 		BG.pref = src
+=======
+	var/obj/screen/BG= LAZYACCESS(char_render_holders, "BG")
+	if(!BG)
+		BG = new
+		BG.plane = TURF_PLANE
+		BG.icon = 'icons/effects/128x48.dmi'
+>>>>>>> 30e35c623e2... Merge pull request #8394 from Mechoid/VirgoSetupPreview
 		LAZYSET(char_render_holders, "BG", BG)
 		client.screen |= BG
 	BG.icon_state = bgstate
 	BG.screen_loc = preview_screen_locs["BG"]
 
 	for(var/D in global.cardinal)
+<<<<<<< HEAD
 		var/obj/screen/setup_preview/O = LAZYACCESS(char_render_holders, "[D]")
 		if(!O)
 			O = new
 			O.pref = src
+=======
+		var/obj/screen/O = LAZYACCESS(char_render_holders, "[D]")
+		if(!O)
+			O = new
+>>>>>>> 30e35c623e2... Merge pull request #8394 from Mechoid/VirgoSetupPreview
 			LAZYSET(char_render_holders, "[D]", O)
 			client.screen |= O
 		O.appearance = MA
@@ -357,6 +382,13 @@ var/list/preferences_datums = list()
 		if(!IsGuestKey(usr.key))
 			open_copy_dialog(usr)
 			return 1
+<<<<<<< HEAD
+=======
+	else if(href_list["overwrite"])
+		overwrite_character(text2num(href_list["overwrite"]))
+		sanitize_preferences()
+		close_load_dialog(usr)
+>>>>>>> 30e35c623e2... Merge pull request #8394 from Mechoid/VirgoSetupPreview
 	else if(href_list["close"])
 		// User closed preferences window, cleanup anything we need to.
 		clear_character_previews()
