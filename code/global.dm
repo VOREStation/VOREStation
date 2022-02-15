@@ -37,7 +37,11 @@ var/href_logfile		= null
 // var/const/starsys_name	= "Vir"
 var/const/game_version	= "VOREStation"
 var/changelog_hash		= ""
+<<<<<<< HEAD
 var/game_year			= (text2num(time2text(world.realtime, "YYYY")) + 300) //VOREStation Edit
+=======
+var/game_year			= (text2num(time2text(world.realtime, "YYYY")) + 552)
+>>>>>>> 0ff62449b3e... Merge pull request #8395 from Cerebulon/cynosure_map_lore_2
 var/round_progressing = 1
 
 var/master_mode       = "extended" // "extended"

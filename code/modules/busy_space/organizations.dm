@@ -22,23 +22,141 @@
 		"Light",
 		"Discovery",
 		"Endeavour",
+		"Columbia",
+		"Atlantis",
+		"Enterprise",
+		"Challenger",
+		"Pathfinder",
+		"Buran",
 		"Explorer",
 		"Swift",
 		"Dragonfly",
 		"Ascendant",
 		"Tenacious",
 		"Pioneer",
+		"Aldrin",
+		"Armstrong",
+		"Tranquility",
+		"Nostrodamus",
+		"Soyuz",
+		"Cosmos",
+		"Sputnik",
+		"Belka",
+		"Strelka",
+		"Gargarin",
+		"Shepard",
+		"Tereshkova",
+		"Leonov",
+		"Vostok",
+		"Apollo",
+		"Mir",
 		"Hawk",
 		"Haste",
 		"Radiant",
 		"Luminous",
+		"Titan",
+		"Serenity",
+		"Andiamo",
+		"Aurora",
+		"Phoenix",
+		"Lucky",
+		"Raven",
+		"Valkyrie",
+		"Halcyon",
+		"Nakatomi",
+		"Cutlass",
+		"Unicorn",
+		"Sheepdog",
+		"Arcadia",
+		"Gigantic",
+		"Goliath",
+		"Pequod",
+		"Poseidon",
+		"Venture",
+		"Evergreen",
+		"Natal",
+		"Maru",
+		"Djinn",
+		"Witch",
+		"Wolf",
+		"Lone Star",
+		"Grey Fox",
+		"Dutchman",
+		"Sultana",
+		"Siren",
+		"Venus",
+		"Anastasia",
+		"Rasputin",
+		"Stride",
+		"Suzaku",
+		"Polaris",
+		"Hathor",
+		"Dream",
+		"Gaia",
+		"Ibis",
+		"Progress",
+		"Olympic",
+		"Venture",
+		"Brazil",
+		"Tiger",
+		"Hedgehog",
+		"Potemkin",
+		"Fountainhead",
+		"Sinbad",
+		"Esteban",
+		"Mumbai",
+		"Shanghai",
+		"Madagascar",
+		"Kampala",
+		"Bangkok",
+		"Emerald",
+		"Guo Hong",
+		"Shun Kai",
+		"Fu Xing",
+		"Zhenyang",
+		"Da Qing",
+		"Rascal",
+		"Flamingo",
+		"Jackal",
+		"Andromeda",
+		"Ferryman",
+		"Panchatantra",
+		"Nunda",
+		"Fortune",
+		"Thaler",
+		"New Dawn",
+		"Fionn MacCool",
+		"Red Bird",
+		"Star Rat",
+		"Cwn Annwn",
+		"Morning Swan",
+		"Black Cat",
 		"Princess of Sol",
+		"Gateway to the Stars",
+		"Rings of Saturn",
 		"King of the Mountain",
+		"Wish Upon A Star",
+		"Galaxy's Bounty",
+		"Man in the Moon",
+		"Memories of Truth",
+		"Arctic Warrior",
+		"Jack Be Nimble",
+		"Binman Hero",
+		"Ocean of the Skies",
+		"Fountain of Youth",
+		"Robe of Feathers",
+		"City of Dreams",
+		"Crystal Heaven",
+		"Elven Maiden",
+		"Remember Baghdad",
 		"Words and Changes",
+		"Beneath the Stars",
 		"Katerina's Silhouette",
+		"Lotus Lantern",
 		"Castle of Water",
 		"Jade Leviathan",
 		"Sword of Destiny",
+		"King of the Unathi",
 		"Ishtar's Grace"
 		)
 	var/list/destination_names = list()	//Names of static holdings that the organization's ships visit regularly.
@@ -50,8 +168,8 @@
 		var/i = rand(6, 10)
 		var/list/star_names = list(
 			"Sol", "Alpha Centauri", "Tau Ceti", "Zhu Que", "Oasis", "Vir", "Gavel", "Ganesha",
-			"Saint Columbia", "Altair", "Sidhe", "New Ohio", "Parvati", "Mahi-Mahi", "Nyx", "New Seoul",
-			"Kess-Gendar", "Raphael", "Phact", "Altair", "El", "Eutopia", "Qerr'valis", "Qerrna-Lakirr", "Rarkajar", "Thoth", "Jahan's Post", "Kauq'xum", "Silk", "New Singapore", "Stove", "Viola", "Love", "Isavau's Gamble" )
+			"Saint Columbia", "Altair", "Sidhe", "New Ohio", "Parvati", "Mahi-Mahi", "Nyx", "New Seoul", "Abel's Rest", "Relan", "Natuna", "Terminus",
+			"Kess-Gendar", "Raphael", "Phact", "Altair", "El", "Eutopia", "Qerr'valis", "Qerrna-Lakirr", "Rarkajar", "Thoth", "Jahan's Post", "Kauq'xum", "Silk", "New Singapore", "Stove", "Viola", "Love")
 		var/list/destination_types = list("dockyard", "station", "vessel", "waystation", "telecommunications satellite", "spaceport", "anomaly", "colony", "outpost")
 		while(i)
 			destination_names.Add("a [pick(destination_types)] in [pick(star_names)]")
@@ -112,14 +230,24 @@
 		"Hubble",
 		"Alcubierre",
 		"Robineau",
-		"Glass"
+		"Glass",
+		"Ghez",
+		"Genzel",
+		"Kip",
+		"Venter",
+		"Coomer",
+		"Goodenough",
+		"Yoshino",
+		"Whittingham",
+		"Schrodinger",
+		"Faraday"
 		)
-	// Note that the current station being used will be pruned from this list upon being instantiated
+
+
 	destination_names = list(
 		"NSS Exodus in Nyx",
 		"NCS Northern Star in Vir",
-		//"NLS Southern Cross in Vir",
-		"NAS Vir Central Command",
+		"NLS Southern Cross in Vir",
 		"a dockyard orbiting Sif",
 		"an asteroid orbiting Kara",
 		"an asteroid orbiting Rota",
@@ -156,7 +284,6 @@
 		"Ares",
 		"Athena",
 		"Grant",
-		"Custer",
 		"Puller",
 		"Nike",
 		"Bellona",
@@ -184,15 +311,29 @@
 		"Ishtar",
 		"Qamaits",
 		"'Oro",
+		"Sun Tzu",
+		"Barca",
+		"Napoleon",
+		"Clausewitz",
+		"Cao Cao",
+		"Lu Bu",
+		"Ghenghis Khan",
+		"Bolivar",
+		"Shivaji",
+		"Yamamoto",
+		"Bismarck"
 		)
 	destination_names = list(
 		"a SolGov dockyard on Luna",
-		"a Fleet outpost in the Almach Rim",
-		"a Fleet outpost on the Moghes border"
+		"a SolGov dockyard in Saint Columbia",
+		"an anti-piracy outpost in The Bowl",
+		"a Fleet outpost on the Almach border",
+		"a Fleet outpost on the Moghes border",
+		"a Five Arrows outpost in the Sagittarius Heights",
 		)
 
 /datum/lore/organization/tsc/vey_med
-	name = "Vey-Medical" //The Wiki displays them as Vey-Medical.
+	name = "Vey-Medical"
 	short_name = "Vey-Med"
 	acronym = "VM"
 	desc = "Vey-Med is one of the newer TSCs on the block and is notable for being largely owned and opperated by Skrell. \
@@ -221,6 +362,9 @@
 		"Fire Blown Out By Wind",
 		"Star That Fades From View",
 		"Eyes Which Turn Inwards",
+		"Still Water Upon An Endless Shore",
+		"Sunlight Glitters Upon Tranquil Sands",
+		"Growth Within The Darkest Abyss",
 		"Joy Without Which The World Would Come Undone",
 		"A Thousand Thousand Planets Dangling From Branches",
 		"Light Streaming Through Interminable Branches",
@@ -290,9 +434,19 @@
 		"Drift",
 		"Stream",
 		"Rift",
-		"Curtain"
+		"Curtain",
+		"Apogee",
+		"Blazar",
+		"Corona",
+		"Dwarf",
+		"Flare",
+		"Ion",
+		"Milky Way",
+		"Trojan"
 		)
-	destination_names = list()
+	destination_names = list(
+		"A manufacturing facility in the Almach Protectorate"
+	)
 
 /datum/lore/organization/tsc/bishop
 	name = "Bishop Cybernetics"
@@ -311,8 +465,8 @@
 
 	ship_prefixes = list("ITV" = "transportation", "ISV" = "research exchange") //Bishop can't afford / doesn't care enough to afford its own prefixes
 	destination_names = list(
-	"A medical facility in Angessa's Pearl"
-	)
+		"a medical facility in Angessa's Pearl"
+		)
 
 /datum/lore/organization/tsc/morpheus
 	name = "Morpheus Cyberkinetics"
@@ -399,7 +553,7 @@
 		"Is This Thing On?",
 		"Make My Day",
 		"No Vox Here",
-		"Savings and Values",
+		"More Savings and Values",
 		"Secret Name",
 		"Can't Find My Keys",
 		"Look Over There!",
@@ -432,7 +586,7 @@
 		"NTV HTV WTV ITV ZTV"
 		)
 	destination_names = list(
-		"a trade outpost in Shelf"
+		"a trade outpost in Terminus"
 		)
 
 /datum/lore/organization/tsc/xion
@@ -477,6 +631,71 @@
 	ship_prefixes = list("IEV" = "prospecting", "IEC" = "prospecting", "IFV" = "bulk freight", "ITV" = "passenger transport", "ITC" = "just-in-time delivery")
 	destination_names = list()
 
+/datum/lore/organization/local_traffic
+	name = "independent traffic"
+	short_name = "local traffic"
+	desc = "Private civilian crafts make up a small portion of Vir's space traffic. While most people use corporate shuttles to get around, luxury transports and local haulers still play an important role in daily life."
+	history = ""
+	work = "trade and transit"
+	headquarters = "N/A"
+	motto = "N/A"
+	autogenerate_destination_names = FALSE
+
+	ship_prefixes = list("ITC" = "local shuttle service", "ITC" = "luxury transit", "ITC" = "pleasure cruise", "ITC" = "private transport", "IFC" = "courier", "IFC" = "local delivery", "IIC" = "maintenance", "IMC" = "medical response")
+	ship_names = list(
+		"Ambition",
+		"Blue Moon",
+		"Calypso",
+		"Draco",
+		"Eclipse",
+		"Fantasy",
+		"Golden Sun",
+		"Happy Hour",
+		"Ice Queen",
+		"Jolly Roger",
+		"Kinky Boots",
+		"License to Chill",
+		"Mojito",
+		"No Regrets",
+		"Orion",
+		"Plus One",
+		"Quality Time",
+		"Rockhopper",
+		"Sivian Sunrise",
+		"Turbo Extreme",
+		"Up To No Good",
+		"Vertigo",
+		"Wanderlust",
+		"Xenophile",
+		"Yesteryear",
+		"Zen",
+		"Sky Siffet",
+		"Savik"
+		)
+
+	destination_names = list(
+						"New Reykjavik",
+						"Kalmar",
+						"Ekmanshalvo",
+						"a settlement on Sif",
+						"a corporate facility on Sif",
+						"the Ullran Expanse",
+						"Kaltsandur",
+						"Amundsen",
+						"Londuneyja",
+						"the Thorvaldsson Plains",
+						"the NCS Northern Star",
+						"a location in the Sivian wilderness",
+						"Sif orbit",
+						"the rings of Kara",
+						"the rings of Rota",
+						"Firnir orbit",
+						"Tyr orbit",
+						"Magni orbit",
+						"a vessel in Vir territory",
+						"a mining outpost"
+						)
+
 // Governments
 
 /datum/lore/organization/gov/virgov
@@ -496,9 +715,40 @@
 	motto = ""
 	autogenerate_destination_names = FALSE
 
-	ship_prefixes = list("VGA" = "hauling", "VGA" = "energy relay")
+	ship_prefixes = list("VGA" = "hauling", "VGA" = "energy relay", "VGA" = "private transport")
+	ship_names = list(
+		"Alfred Nobel",
+		"Anders Celcius",
+		"Leif Erikson",
+		"Carl Linnaeus",
+		"Norge",
+		"Sverige",
+		"Danmark",
+		"Island",
+		"Suomi",
+		"Helsinki",
+		"Oslo",
+		"Stockholm",
+		"Larsson",
+		"Grieg",
+		"Agnetha",
+		"Anni-Frid",
+		"Bjorn",
+		"Benny",
+		"Bluetooth",
+		"Gustav",
+		"Lamarr",
+		"Vasa",
+		"Kronan",
+		"Gullfoss",
+		"Thingvellir"
+		)
+
 	destination_names = list(
 						"New Reykjavik on Sif",
+						"Kalmar on Sif",
+						"Ekmanshalvo on Sif",
+						"a settlement on Sif",
 						"Radiance Energy Chain",
 						"a dockyard orbiting Sif",
 						"a telecommunications satellite",
@@ -527,7 +777,7 @@
 	motto = "Nil Mortalibus Ardui Est" // Latin, because latin.  Says 'Nothing is too steep for mortals'.
 	autogenerate_destination_names = TRUE
 
-	ship_prefixes = list("SCG-T" = "transportation", "SCG-D" = "diplomatic", "SCG-F" = "freight")
+	ship_prefixes = list("SCG-T" = "transportation", "SCG-D" = "diplomatic", "SCG-F" = "freight", "SCG-M" = "medical response")
 	destination_names = list(
 						"Venus",
 						"Earth",
@@ -536,24 +786,57 @@
 						"Titan"
 						)// autogen will add a lot of other places as well.
 
-/*
-// To be expanded upon later, once the military lore gets sorted out.
-
 // Military
 
-/datum/lore/organization/mil/sif_guard
-	name = "Sif Defense Force" // Todo: Get better name from lorepeople.
+/datum/lore/organization/mil/sifguard
+	name = "Sif Defense Force"
 	short_name = "SifGuard"
-	desc = ""
+	desc = "The Sif Defense Force, sometimes colloquially referred to as the SifGuard are the local government military and law enforcement organization of the Vir Governmental Authority.\
+	Their primary role is the security of the Vir system and its planets, including anti-piracy patrols, Sif wilderness patrols, and local law enforcement where private security is not provided. \
+	The organization has been almost wholly run by the Hedberg-Hammarstrom corporation since 2565."
 	history = ""
-	work = "Sif Governmental Authority's military"
+	work = "Vir Governmental Authority's military"
 	headquarters = "New Reykjavik, Sif"
 	motto = ""
 	autogenerate_destination_names = FALSE // Kinda weird if SifGuard goes to Nyx.
 
-	ship_prefixes = list("SGSC" = "military", "SGSC" = "patrol", "SGSC" = "rescue", "SGSC" = "emergency response") // Todo: Replace prefix with better one.
+	ship_names = list(
+			"Halfdane",
+			"Hardrada",
+			"Ironside",
+			"Erik the Red",
+			"Freydis",
+			"Ragnar",
+			"Ivar the Boneless",
+			"Bloodaxe",
+			"Sigurd Snake-in-Eye",
+			"Son of Ragnar",
+			"Thor",
+			"Odin",
+			"Freya",
+			"Valhalla",
+			"Loki",
+			"Hel",
+			"Fenrir",
+			"Mjolnir",
+			"Gungnir",
+			"Gram",
+			"Bergen",
+			"Berserker",
+			"Skold",
+			"Draken",
+			"Gladan",
+			"Falken"
+			)
+
+	ship_prefixes = list("VGA-PV" = "military", "VGA-PV" = "patrol", "VGA-PC" = "rescue", "VGA-PC" = "emergency response")
 	destination_names = list(
-						"a classified location in SolGov territory",
+						"New Reykjavik on Sif",
+						"Kalmar on Sif",
+						"Ekmanshalvo on Sif",
+						"a settlement on Sif",
+						"a location in the Sivian wilderness",
+						"a classified location in Vir",
 						"Sif orbit",
 						"the rings of Kara",
 						"the rings of Rota",
@@ -562,5 +845,8 @@
 						"Magni orbit",
 						"a wreck in VirGov territory",
 						"a military outpost",
+						"an incursion site within Vir",
+						"rendezvous to an incursion site in Oasis",
+						"rendezvous to an incursion site in Gavel"
 						)
-*/
+
