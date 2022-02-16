@@ -3161,6 +3161,19 @@
 /obj/item/weapon/deck/cards,
 /turf/simulated/shuttle/floor/black,
 /area/skipjack_station/start)
+"dNX" = (
+/obj/effect/floor_decal/corner/yellow/diagonal,
+/obj/effect/floor_decal/corner/blue/diagonal{
+	dir = 4
+	},
+/obj/item/weapon/stool/padded{
+	dir = 8
+	},
+/turf/unsimulated/floor{
+	icon = 'icons/turf/flooring/tiles.dmi';
+	icon_state = "steel"
+	},
+/area/centcom/living)
 "dOl" = (
 /obj/structure/table/steel,
 /obj/random/energy,
@@ -13351,7 +13364,9 @@
 /turf/simulated/floor/holofloor/tiled,
 /area/holodeck/source_emptycourt)
 "pte" = (
-/obj/item/weapon/stool/padded,
+/obj/item/weapon/stool/padded{
+	dir = 8
+	},
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -16038,9 +16053,11 @@
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/merchant/home)
 "rZv" = (
-/obj/item/weapon/stool/padded,
 /obj/effect/floor_decal/corner/yellow/diagonal,
 /obj/effect/floor_decal/corner/blue/diagonal{
+	dir = 4
+	},
+/obj/item/weapon/stool/padded{
 	dir = 4
 	},
 /turf/unsimulated/floor{
@@ -19673,6 +19690,14 @@
 	},
 /turf/simulated/shuttle/floor/voidcraft/light,
 /area/syndicate_station/start)
+"wcg" = (
+/obj/item/weapon/stool/padded{
+	dir = 1
+	},
+/turf/unsimulated/floor{
+	icon_state = "dark"
+	},
+/area/wizard_station)
 "wcv" = (
 /obj/effect/step_trigger/thrower{
 	affect_ghosts = 1;
@@ -44916,14 +44941,14 @@ quS
 qTA
 quS
 qDH
-rZv
-rZv
+dNX
+dNX
 cXa
 shY
 cXa
 cXa
-rZv
-rZv
+dNX
+dNX
 qDH
 puk
 puk
@@ -45176,7 +45201,7 @@ qDH
 cXa
 cXa
 cXa
-rZv
+dNX
 cXa
 cXa
 cXa
@@ -81109,7 +81134,7 @@ jeX
 ixy
 uCF
 fBf
-pte
+wcg
 xIh
 xIh
 puk
@@ -81366,7 +81391,7 @@ jeX
 tbt
 cDr
 ofp
-pte
+wcg
 xIh
 puk
 puk

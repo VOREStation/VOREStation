@@ -21,19 +21,19 @@
 "fy" = (
 /obj/structure/cliff/automatic,
 /turf/simulated/floor/outdoors/mask,
-/area/surface/outside/wilderness/normal)
+/area/surface/outside/wilderness/mountains)
 "gl" = (
 /obj/structure/cliff/automatic{
 	dir = 9
 	},
 /turf/simulated/floor/outdoors/mask,
-/area/surface/outside/wilderness/normal)
+/area/surface/outside/wilderness/mountains)
 "hb" = (
 /obj/structure/cliff/automatic{
 	dir = 8
 	},
 /turf/simulated/floor/outdoors/mask,
-/area/surface/outside/wilderness/normal)
+/area/surface/outside/wilderness/mountains)
 "id" = (
 /turf/simulated/wall/sifwood,
 /area/surface/outside/path/wilderness)
@@ -71,7 +71,7 @@
 	dir = 9
 	},
 /turf/simulated/floor/outdoors/mask,
-/area/surface/outside/wilderness/normal)
+/area/surface/outside/wilderness/mountains)
 "ne" = (
 /turf/simulated/floor/outdoors/grass/sif,
 /area/surface/outside/path/wilderness)
@@ -113,12 +113,6 @@
 "tM" = (
 /turf/simulated/floor/water,
 /area/surface/outside/river/gautelfr)
-"tV" = (
-/obj/structure/cliff/automatic{
-	dir = 10
-	},
-/turf/simulated/floor/outdoors/mask,
-/area/surface/outside/wilderness/normal)
 "ub" = (
 /obj/effect/map_effect/portal/line/side_b{
 	dir = 1
@@ -130,12 +124,6 @@
 	tree_chance = 0
 	},
 /area/surface/outside/wilderness/deep)
-"vu" = (
-/obj/structure/cliff/automatic/corner{
-	dir = 10
-	},
-/turf/simulated/floor/outdoors/mask,
-/area/surface/outside/wilderness/normal)
 "vQ" = (
 /obj/structure/prop/rock/small/wateralt,
 /turf/simulated/floor/water,
@@ -147,12 +135,6 @@
 /obj/effect/zone_divider,
 /turf/simulated/floor/outdoors/mask,
 /area/surface/outside/wilderness/mountains)
-"wt" = (
-/obj/structure/cliff/automatic{
-	dir = 6
-	},
-/turf/simulated/floor/outdoors/mask,
-/area/surface/outside/wilderness/normal)
 "wN" = (
 /turf/simulated/floor/outdoors/dirt/sif,
 /area/surface/outside/path/wilderness)
@@ -188,19 +170,13 @@
 	},
 /obj/effect/zone_divider,
 /turf/simulated/floor/outdoors/mask,
-/area/surface/outside/wilderness/normal)
+/area/surface/outside/wilderness/mountains)
 "BR" = (
 /obj/structure/cliff/automatic{
 	dir = 8
 	},
 /turf/simulated/floor/outdoors/grass/sif,
 /area/surface/outside/wilderness/mountains)
-"Cb" = (
-/obj/structure/cliff/automatic/corner{
-	dir = 6
-	},
-/turf/simulated/floor/outdoors/mask,
-/area/surface/outside/wilderness/normal)
 "CR" = (
 /turf/simulated/floor/outdoors/dirt/sif,
 /area/surface/outside/wilderness/mountains)
@@ -272,12 +248,6 @@
 "NP" = (
 /turf/simulated/floor/outdoors/grass/sif,
 /area/surface/outside/wilderness/mountains)
-"Pe" = (
-/obj/structure/cliff/automatic{
-	dir = 4
-	},
-/turf/simulated/floor/outdoors/mask,
-/area/surface/outside/wilderness/normal)
 "PH" = (
 /obj/effect/zone_divider,
 /turf/simulated/floor/outdoors/mask,
@@ -54140,7 +54110,7 @@ hb
 hb
 hb
 hb
-tV
+jE
 Ax
 Ax
 Ax
@@ -54397,8 +54367,8 @@ Ax
 Ax
 Ax
 Ax
-vu
-tV
+UA
+jE
 Ax
 Ax
 Ax
@@ -54655,7 +54625,7 @@ Ax
 Ax
 Ax
 Ax
-vu
+UA
 hb
 hb
 hb
@@ -54665,7 +54635,7 @@ hb
 hb
 hb
 hb
-tV
+jE
 Ax
 Ax
 Aq
@@ -54922,8 +54892,8 @@ Ax
 Ax
 Ax
 Ax
-vu
-tV
+UA
+jE
 Ax
 Aq
 Ax
@@ -55180,7 +55150,7 @@ Ax
 Ax
 Ax
 Ax
-vu
+UA
 hb
 Be
 hb
@@ -55188,7 +55158,7 @@ hb
 hb
 hb
 hb
-tV
+jE
 Ax
 Ax
 Ax
@@ -55445,8 +55415,8 @@ Ax
 Ax
 Ax
 Ax
-vu
-tV
+UA
+jE
 Ax
 Ax
 Ax
@@ -55461,7 +55431,7 @@ hb
 hb
 hb
 hb
-tV
+jE
 Ax
 Ax
 Ax
@@ -55483,7 +55453,7 @@ hb
 hb
 hb
 hb
-tV
+jE
 Ax
 Ax
 Ax
@@ -55703,7 +55673,7 @@ Ax
 Ax
 Ax
 Ax
-vu
+UA
 hb
 hb
 hb
@@ -55718,7 +55688,7 @@ Ax
 Ax
 Ax
 Ax
-vu
+UA
 hb
 hb
 hb
@@ -55727,7 +55697,7 @@ hb
 hb
 hb
 hb
-tV
+jE
 Ax
 Ax
 Ax
@@ -55740,12 +55710,12 @@ Ax
 Ax
 Ax
 Ax
-vu
+UA
 hb
 hb
 hb
 hb
-tV
+jE
 Ax
 Ax
 Ax
@@ -55753,7 +55723,7 @@ gl
 hb
 hb
 hb
-tV
+jE
 Ax
 Ax
 Ax
@@ -55984,7 +55954,7 @@ Ax
 Ax
 Ax
 Ax
-vu
+UA
 hb
 hb
 hb
@@ -56002,7 +55972,7 @@ Ax
 Ax
 Ax
 Ax
-vu
+UA
 hb
 hb
 hb
@@ -56010,7 +55980,7 @@ mZ
 Sl
 kx
 Sl
-vu
+UA
 hb
 hb
 hb
@@ -59347,12 +59317,12 @@ Ax
 Ax
 Ax
 Ax
-Cb
-Pe
-Pe
-Pe
-Pe
-Pe
+Mf
+cv
+cv
+cv
+cv
+cv
 Gf
 cv
 qh
@@ -59598,13 +59568,13 @@ Ax
 Ax
 Ax
 Ax
-Cb
-Pe
-Pe
-Pe
-Pe
-Pe
-wt
+Mf
+cv
+cv
+cv
+cv
+cv
+qh
 Ax
 Ax
 Ax
@@ -59850,12 +59820,12 @@ Ax
 Ax
 Ax
 Ax
-Pe
-Pe
-Pe
-Pe
-Pe
-wt
+cv
+cv
+cv
+cv
+cv
+qh
 Ax
 Ax
 Ax

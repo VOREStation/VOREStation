@@ -17687,7 +17687,7 @@
 	dir = 1
 	},
 /obj/structure/table/reinforced,
-/obj/machinery/chemical_dispenser,
+/obj/machinery/chemical_dispenser/full,
 /turf/simulated/floor/tiled/neutral,
 /area/surface/station/rnd/xenobiology/xenoflora_isolation)
 "imM" = (
@@ -19066,13 +19066,13 @@
 /turf/simulated/floor/outdoors/mask,
 /area/surface/outside/plains/station)
 "iWb" = (
-/obj/machinery/honey_extractor,
 /obj/effect/floor_decal/borderfloor{
 	dir = 10
 	},
 /obj/effect/floor_decal/corner/lime/border{
 	dir = 10
 	},
+/obj/machinery/seed_extractor,
 /turf/simulated/floor/tiled/hydro,
 /area/surface/station/hydroponics)
 "iWu" = (
@@ -19422,10 +19422,10 @@
 /turf/simulated/floor/tiled,
 /area/surface/station/security/hallway/gnd)
 "jgB" = (
-/obj/machinery/seed_extractor,
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/lime/border,
 /obj/machinery/light,
+/obj/machinery/honey_extractor,
 /turf/simulated/floor/tiled/hydro,
 /area/surface/station/hydroponics)
 "jhl" = (

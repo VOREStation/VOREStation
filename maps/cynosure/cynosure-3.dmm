@@ -34256,7 +34256,7 @@
 /obj/item/weapon/clipboard,
 /obj/item/weapon/pen,
 /obj/item/sticky_pad/random,
-/obj/item/weapon/storage/firstaid,
+/obj/item/weapon/storage/firstaid/regular,
 /turf/simulated/floor/wood/sif,
 /area/surface/station/rnd/research)
 "wzs" = (

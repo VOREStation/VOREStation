@@ -6342,8 +6342,8 @@
 /area/surface/outpost/research/xenoarcheology/smes)
 "nN" = (
 /obj/machinery/door/window/westright{
-	name = "EVA Suit";
-	req_one_access = list(43)
+	name = "Sample Preparation";
+	req_one_access = list(65)
 	},
 /turf/simulated/floor/tiled/white,
 /area/surface/outpost/research/xenoarcheology/analysis)
