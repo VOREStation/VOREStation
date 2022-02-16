@@ -395,7 +395,8 @@
 					/obj/item/stack/medical/advanced/bruise_pack = 6,
 					/obj/item/stack/medical/advanced/ointment = 6,
 					/obj/item/stack/medical/splint = 4,
-					/obj/item/weapon/storage/pill_bottle/carbon = 2)
+					/obj/item/weapon/storage/pill_bottle/carbon = 2,
+					/obj/item/clothing/mask/chewable/candy/lolli = 15)
 	contraband = list(/obj/item/weapon/reagent_containers/pill/tox = 3,
 					/obj/item/weapon/reagent_containers/pill/stox = 4,
 					/obj/item/weapon/reagent_containers/pill/antitox = 6)
