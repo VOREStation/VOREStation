@@ -73,7 +73,7 @@
 	build_path = /obj/item/device/spaceflare
 	sort_string = "TBAAC"
 
-/datum/design/item/general/bsflare
+/datum/design/item/general/advmop
 	name = "advanced mop"
 	desc = "An advanced mop with pressured water jets that break away the toughest stains."
 	id = "advmop"
