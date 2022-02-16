@@ -1439,4 +1439,14 @@
     from_suit = /obj/item/clothing/suit/storage/hooded/explorer
     to_suit = /obj/item/clothing/suit/storage/hooded/explorer/lucky
 
-
+//RevolverEloise - Revolver Eloise
+/obj/item/weapon/sword/fluff/revolver
+	name = "Catnip"
+	desc = "A steel claymore with what appears to be a teppi engraved into the hilt and a finely forged metal cuboid for a pommel. The blade is honed and balanced to an unusually high degree and has clearly been meticulously cared for."
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "revclaymore"
+	icon_override = 'icons/vore/custom_items_vr.dmi'
+	item_state = "revclaymoremob"
+	force = 1
+	sharp = TRUE
+	edge = TRUE
