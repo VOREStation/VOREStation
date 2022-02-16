@@ -320,21 +320,18 @@
 	icon_state = "corp_sofamiddle"
 	applies_material_colour = FALSE
 
-/obj/structure/bed/chair/sofa/left/corp
+/obj/structure/bed/chair/sofa/corp/left
 	icon_state = "corp_sofaend_left"
 	base_icon = "corp_sofaend_left"
-	applies_material_colour = FALSE
 
-/obj/structure/bed/chair/sofa/right/corp
+/obj/structure/bed/chair/sofa/corp/right
 	icon_state = "corp_sofaend_right"
 	base_icon = "corp_sofaend_right"
-	applies_material_colour = FALSE
 
-/obj/structure/bed/chair/sofa/corner/corp
+/obj/structure/bed/chair/sofa/corp/corner
 	icon_state = "corp_sofacorner"
 	base_icon = "corp_sofacorner"
-	applies_material_colour = FALSE
-	//corner_piece = TRUE //No need to re-state this, as the parent object already handles corners
+	corner_piece = TRUE
 
 //color variations
 //Middle sofas first
