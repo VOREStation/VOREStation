@@ -260,7 +260,7 @@
 		else if(istype(W,/obj/item/weapon/melee/energy/blade))
 			dismantle_sound = "sparks"
 			dismantle_verb = "slicing"
-			dismantle_toolspeed = 1
+			//dismantle_toolspeed = 1
 			cut_delay *= 0.5
 		else if(istype(W,/obj/item/weapon/pickaxe))
 			var/obj/item/weapon/pickaxe/P = W
