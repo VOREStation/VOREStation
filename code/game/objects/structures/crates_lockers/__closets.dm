@@ -8,10 +8,10 @@
 	w_class = ITEMSIZE_HUGE
 	layer = UNDER_JUNK_LAYER
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
-	
+
 	var/opened = 0
 	var/sealed = 0
-	
+
 	var/seal_tool = /obj/item/weapon/weldingtool	//Tool used to seal the closet, defaults to welder
 	var/wall_mounted = 0 //never solid (You can always pass over it)
 	var/health = 100
@@ -24,8 +24,8 @@
 							  //then open it in a populated area to crash clients.
 	var/storage_cost = 40	//How much space this closet takes up if it's stuffed in another closet
 
-	var/open_sound = 'sound/machines/click.ogg'
-	var/close_sound = 'sound/machines/click.ogg'
+	var/open_sound = 'sound/effects/closet_open.ogg'
+	var/close_sound = 'sound/effects/closet_close.ogg'
 
 	var/store_misc = 1		//Chameleon item check
 	var/store_items = 1		//Will the closet store items?
@@ -141,7 +141,7 @@
 	dump_contents()
 
 	opened = 1
-	playsound(src, open_sound, 15, 1, -3)
+	playsound(src, open_sound, 50, 1, -3)
 	if(initial(density))
 		density = !density
 	animate_door()
@@ -166,7 +166,7 @@
 
 	opened = 0
 
-	playsound(src, close_sound, 15, 1, -3)
+	playsound(src, close_sound, 50, 1, -3)
 	if(initial(density))
 		density = !density
 	animate_door(TRUE)

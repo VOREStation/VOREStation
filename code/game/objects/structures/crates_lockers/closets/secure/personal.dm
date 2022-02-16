@@ -31,6 +31,9 @@
 /obj/structure/closet/secure_closet/personal/cabinet
 	closet_appearance = /decl/closet_appearance/cabinet/secure
 
+	open_sound = 'sound/effects/wooden_closet_open.ogg'
+	close_sound = 'sound/effects/wooden_closet_close.ogg'
+
 	starts_with = list(
 		/obj/item/weapon/storage/backpack/satchel/withwallet,
 		/obj/item/device/radio/headset
