@@ -109,7 +109,7 @@ var/list/name_to_material
 	var/datum/material/key = arguments[1]
 	if(istype(key))
 		return key // we want to convert anything we're given to a material
-	
+
 	if(istext(key))	// text ID
 		. = name_to_material[key]
 		if(!.)
@@ -347,7 +347,8 @@ var/list/name_to_material
 		new /datum/stack_recipe("[display_name] armor plate insert", /obj/item/weapon/material/armor_plating/insert, 2, time = 40, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
 		new /datum/stack_recipe("[display_name] grave marker", /obj/item/weapon/material/gravemarker, 5, time = 50, supplied_material = "[name]", pass_stack_color = TRUE),
 		new /datum/stack_recipe("[display_name] ring", /obj/item/clothing/gloves/ring/material, 1, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
-		new /datum/stack_recipe("[display_name] bracelet", /obj/item/clothing/accessory/bracelet/material, 1, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE)
+		new /datum/stack_recipe("[display_name] bracelet", /obj/item/clothing/accessory/bracelet/material, 1, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
+		new /datum/stack_recipe("[display_name] shield", /obj/item/weapon/material/sword/shield, 30, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
 	)
 
 	if(integrity>=50)
