@@ -2,8 +2,7 @@
 	name = "makeshift shield"
 	desc = "A makeshift shield"
 	icon = 'icons/obj/weapons.dmi'
-	icon_state = "eshield"
-	item_state = "eshield"
+	icon_state = "riot"
 	force_divisor = 0.07
 	sharp = FALSE
 	attack_verb = list ("attacked", "bashed", "smacked", "bonked", "spanked")
