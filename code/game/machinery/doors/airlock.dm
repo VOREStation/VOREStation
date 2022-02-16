@@ -1130,7 +1130,7 @@ About the new airlock wires panel:
 			return
 		else
 			return
-	else if(C.get_tool_quality(TOOL_SCREWDRIVER))
+	else if(C.is_screwdriver())
 		if (src.p_open)
 			if (stat & BROKEN)
 				to_chat(usr, "<span class='warning'>The panel is broken and cannot be closed.</span>")
@@ -1141,7 +1141,7 @@ About the new airlock wires panel:
 			src.p_open = 1
 			playsound(src, C.usesound, 50, 1)
 		src.update_icon()
-	else if(C.get_tool_quality(TOOL_WIRECUTTER))
+	else if(C.is_wirecutter())
 		return src.attack_hand(user)
 	else if(istype(C, /obj/item/device/multitool))
 		return src.attack_hand(user)
@@ -1150,11 +1150,11 @@ About the new airlock wires panel:
 	else if(istype(C, /obj/item/weapon/pai_cable))	// -- TLE
 		var/obj/item/weapon/pai_cable/cable = C
 		cable.plugin(src, user)
-	else if(!repairing && C.get_tool_quality(TOOL_CROWBAR))
+	else if(!repairing && C.is_crowbar())
 		if(can_remove_electronics())
 			playsound(src, C.usesound, 75, 1)
 			user.visible_message("[user] removes the electronics from the airlock assembly.", "You start to remove electronics from the airlock assembly.")
-			if(do_after(user,40 * C.get_tool_speed(TOOL_CROWBAR)))
+			if(do_after(user,40 * C.toolspeed))
 				to_chat(user, "<span class='notice'>You removed the airlock electronics!</span>")
 
 				var/obj/structure/door_assembly/da = new assembly_type(src.loc)
@@ -1195,7 +1195,7 @@ About the new airlock wires panel:
 	// Check if we're using a crowbar or armblade, and if the airlock's unpowered for whatever reason (off, broken, etc).
 	else if(istype(C, /obj/item/weapon))
 		var/obj/item/weapon/W = C
-		if(W.get_tool_quality(TOOL_CROWBAR) && !arePowerSystemsOn())
+		if((W.pry == 1) && !arePowerSystemsOn())
 			if(locked)
 				to_chat(user, "<span class='notice'>The airlock's bolts prevent it from being forced.</span>")
 			else if( !welded && !operating )
