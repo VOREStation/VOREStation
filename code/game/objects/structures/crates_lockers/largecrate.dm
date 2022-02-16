@@ -32,7 +32,7 @@
 			if(AM.simulated)
 				AM.forceMove(T)
 			//VOREStation Add Start
-			if(isanimal(AM)) 
+			if(isanimal(AM))
 				var/mob/living/simple_mob/AMBLINAL = AM
 				if(!AMBLINAL.mind)
 					AMBLINAL.ghostjoin = 1
@@ -64,6 +64,11 @@
 		ME = new /obj/item/mecha_parts/mecha_equipment/tool/passenger
 		ME.attach(H)
 	..()
+
+/obj/structure/largecrate/donksoftvendor
+	name = "\improper Donk-Soft vendor crate"
+	desc = "A hefty wooden crate displaying the logo of Donk-Soft. It's rather heavy."
+	starts_with = list(/obj/machinery/vending/donksoft)
 
 /obj/structure/largecrate/vehicle
 	name = "vehicle crate"

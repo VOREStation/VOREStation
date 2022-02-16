@@ -32172,7 +32172,6 @@
 /obj/item/weapon/soap/nanotrasen,
 /obj/item/weapon/soap/deluxe,
 /obj/item/weapon/staff/gentcane,
-/obj/item/toy/crossbow,
 /obj/item/toy/eight_ball/conch,
 /obj/item/weapon/cell/potato,
 /obj/structure/cable/green{
@@ -32182,6 +32181,7 @@
 	},
 /obj/item/device/megaphone,
 /obj/random/cutout,
+/obj/item/weapon/gun/projectile/revolver/toy/crossbow,
 /turf/simulated/floor/lino,
 /area/tether/surfacebase/entertainment/backstage)
 "bcV" = (

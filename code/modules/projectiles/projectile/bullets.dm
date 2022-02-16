@@ -321,10 +321,6 @@
 	embed_chance = 0
 	sharp = FALSE
 
-/obj/item/projectile/bullet/blank/cap/process()
-	loc = null
-	qdel(src)
-
 /* BB Rounds */
 /obj/item/projectile/bullet/bb // Generic single BB
 	name = "BB"
@@ -332,7 +328,7 @@
 	agony = 0
 	embed_chance = 0
 	sharp = FALSE
-	silenced = TRUE	
+	silenced = TRUE
 
 /obj/item/projectile/bullet/pellet/shotgun/bb // Shotgun
 	name = "BB"
@@ -344,3 +340,53 @@
 	range_step = 1
 	spread_step = 10
 	silenced = TRUE
+
+/* toy projectiles */
+/obj/item/projectile/bullet/cap
+	name = "cap"
+	desc = "SNAP!"
+	damage = 0 // It's a damn toy.
+	embed_chance = 0
+	nodamage = TRUE
+	sharp = FALSE
+	damage_type = HALLOSS
+	impact_effect_type = null
+	fire_sound = 'sound/effects/snap.ogg'
+	combustion = FALSE
+
+/obj/item/projectile/bullet/cap/process()
+	loc = null
+	qdel(src)
+
+/obj/item/projectile/bullet/foam_dart
+	name = "foam dart"
+	desc = "I hope you're wearing eye protection."
+	damage = 0 // It's a damn toy.
+	embed_chance = 0
+	nodamage = TRUE
+	sharp = FALSE
+	damage_type = HALLOSS
+	impact_effect_type = null
+	fire_sound = 'sound/items/syringeproj.ogg'
+	combustion = FALSE
+	icon = 'icons/obj/gun_toy.dmi'
+	icon_state = "foamdart_proj"
+	range = 15
+
+/obj/item/projectile/bullet/foam_dart/on_impact(var/atom/A)
+	. = ..()
+	var/turf/T = get_turf(loc)
+	if(istype(T))
+		new /obj/item/ammo_casing/afoam_dart(get_turf(loc))
+
+/obj/item/projectile/bullet/foam_dart/on_range(var/atom/A)
+	. = ..()
+	var/turf/T = get_turf(loc)
+	if(istype(T))
+		new /obj/item/ammo_casing/afoam_dart(get_turf(loc))
+
+/obj/item/projectile/bullet/foam_dart/riot
+	name = "riot foam dart"
+	desc = "Whose smart idea was it to use toys as crowd control? Ages 18 and up."
+	agony = 50
+	icon_state = "foamdart_riot_proj"
