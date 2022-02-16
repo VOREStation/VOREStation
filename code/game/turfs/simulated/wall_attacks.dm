@@ -130,7 +130,7 @@
 /turf/simulated/wall/attackby(var/obj/item/weapon/W, var/mob/user)
 
 	user.setClickCooldown(user.get_attack_speed(W))
-	
+
 	if(!construction_stage && user.a_intent == I_HELP)
 		if(try_graffiti(user,W))
 			return
@@ -240,7 +240,7 @@
 		return
 
 	// Basic dismantling.
-	var/dismantle_toolspeed = 0
+	//var/dismantle_toolspeed = 0
 	if(isnull(construction_stage) || !reinf_material)
 
 		var/cut_delay = 60 - material.cut_delay
