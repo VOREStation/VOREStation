@@ -1,3 +1,7 @@
+/*
+ * Misc
+ */
+
 /datum/crafting_recipe/cloth
 	name = "Cloth bolt"
 	result = /obj/item/stack/material/cloth
@@ -13,7 +17,7 @@
 	category = CAT_PRIMAL
 
 /*
- * Clothing
+ * Primitive Clothing
  */
 
 /datum/crafting_recipe/primitive_clothes
