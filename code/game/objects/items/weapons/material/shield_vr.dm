@@ -6,6 +6,7 @@
 	force_divisor = 0.07
 	sharp = FALSE
 	attack_verb = list ("attacked", "bashed", "smacked", "bonked", "spanked")
+	w_class = ITEMSIZE_LARGE
 
 /obj/item/weapon/material/sword/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(unique_parry_check((user*10), attacker, damage_source) && prob(50))
