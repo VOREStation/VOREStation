@@ -51,13 +51,7 @@
 	
 	if(!cell && cell_type)
 		cell = new cell_type
-<<<<<<< HEAD
-	
-	ion_trail = new /datum/effect/effect/system/ion_trail_follow()
-=======
-
 	ion_trail = new /datum/effect_system/ion_trail_follow()
->>>>>>> 0232be9531b... Repaths obj/effect/effect, datum/effect/effect [MDB_IGNORE] (#8312)
 	ion_trail.set_up(src)
 	ion_trail.stop()
 

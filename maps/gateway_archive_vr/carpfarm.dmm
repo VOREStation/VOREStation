@@ -112,7 +112,7 @@
 "cj" = (/obj/effect/floor_decal/industrial/warning{dir = 8},/turf/simulated/floor/airless,/area/space)
 "ck" = (/turf/simulated/floor/airless,/area/space)
 "cl" = (/obj/effect/floor_decal/industrial/warning{icon_state = "warning"; dir = 4},/turf/simulated/floor/airless,/area/space)
-"cm" = (/obj/effect/gibspawner/human,/turf/simulated/floor/airless,/area/space)
+"cm" = (/obj/effect/spawner/gibs/human,/turf/simulated/floor/airless,/area/space)
 "cn" = (/obj/effect/floor_decal/industrial/warning{dir = 10},/turf/simulated/floor/airless,/area/space)
 "co" = (/obj/effect/floor_decal/industrial/warning,/turf/simulated/floor/airless,/area/space)
 "cp" = (/obj/effect/floor_decal/industrial/warning{dir = 6},/turf/simulated/floor/airless,/area/space)

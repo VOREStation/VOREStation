@@ -31,13 +31,8 @@
 	process()
 	checkReagents()
 
-<<<<<<< HEAD
-/obj/effect/effect/foam/proc/pre_harden()
-	return //VOREStation Edit
-=======
 /obj/effect/vfx/foam/proc/pre_harden()
-	STOP_PROCESSING(SSobj, src)
->>>>>>> 0232be9531b... Repaths obj/effect/effect, datum/effect/effect [MDB_IGNORE] (#8312)
+	return //VOREStation Edit
 
 /obj/effect/vfx/foam/proc/harden()
 	if(metal)

@@ -1,4 +1,4 @@
-/obj/effect/effect/foam/firefighting
+/obj/effect/vfx/foam/firefighting
 	name = "firefighting foam"
 	icon_state = "mfoam" //Whiter
 	color = "#A6FAFF"
@@ -6,15 +6,15 @@
 	dries = FALSE // We do this ourselves
 	slips = FALSE
 
-/obj/effect/effect/foam/firefighting/Initialize()
+/obj/effect/vfx/foam/firefighting/Initialize()
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
-/obj/effect/effect/foam/firefighting/Destroy()
+/obj/effect/vfx/foam/firefighting/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
 
-/obj/effect/effect/foam/firefighting/process()
+/obj/effect/vfx/foam/firefighting/process()
 	if(lifetime-- <= 0)
 		flick("[icon_state]-disolve", src)
 		QDEL_IN(src, 5)

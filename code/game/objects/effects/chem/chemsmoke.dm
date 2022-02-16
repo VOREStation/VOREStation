@@ -7,13 +7,8 @@
 	time_to_live = 300
 	pass_flags = PASSTABLE | PASSGRILLE | PASSGLASS //PASSGLASS is fine here, it's just so the visual effect can "flow" around glass
 
-<<<<<<< HEAD
-/obj/effect/effect/smoke/chem/New()
-	..()
-=======
 /obj/effect/vfx/smoke/chem/Initialize()
 	. = ..()
->>>>>>> 0232be9531b... Repaths obj/effect/effect, datum/effect/effect [MDB_IGNORE] (#8312)
 	create_reagents(500)
 	return
 

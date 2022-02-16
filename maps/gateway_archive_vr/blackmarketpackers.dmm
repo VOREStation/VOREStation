@@ -319,7 +319,7 @@
 	},
 /area/awaymission/BMPship1)
 "aY" = (
-/obj/effect/gibspawner/generic,
+/obj/effect/spawner/gibs/generic,
 /turf/simulated/floor/plating/airless,
 /area/awaymission/BMPship1)
 "aZ" = (
@@ -1974,7 +1974,7 @@
 /area/awaymission/BMPship2)
 "fc" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/gibspawner/generic,
+/obj/effect/spawner/gibs/generic,
 /turf/simulated/floor/plating,
 /area/awaymission/BMPship2)
 "fd" = (
@@ -2057,7 +2057,7 @@
 /turf/simulated/shuttle/plating,
 /area/awaymission/BMPship1)
 "fn" = (
-/obj/effect/gibspawner/human,
+/obj/effect/spawner/gibs/human,
 /turf/simulated/shuttle/plating,
 /area/awaymission/BMPship1)
 "fo" = (
@@ -2293,7 +2293,7 @@
 	},
 /area/awaymission/BMPship2)
 "fN" = (
-/obj/effect/gibspawner/generic,
+/obj/effect/spawner/gibs/generic,
 /turf/simulated/floor{
 	icon_state = "bar"
 	},
@@ -2351,7 +2351,7 @@
 	},
 /area/awaymission/BMPship1)
 "fS" = (
-/obj/effect/gibspawner/generic,
+/obj/effect/spawner/gibs/generic,
 /turf/simulated/shuttle/plating,
 /area/awaymission/BMPship1)
 "fT" = (
@@ -2415,7 +2415,7 @@
 	},
 /area/awaymission/BMPship3)
 "ga" = (
-/obj/effect/gibspawner/xeno,
+/obj/effect/spawner/gibs/xeno,
 /turf/simulated/floor/plating,
 /area/awaymission/BMPship2)
 "gb" = (
@@ -3082,7 +3082,7 @@
 "hT" = (
 /obj/effect/decal/remains/human,
 /obj/item/clothing/head/helmet/space/syndicate/green/dark,
-/obj/effect/gibspawner/generic,
+/obj/effect/spawner/gibs/generic,
 /turf/simulated/floor/plating/airless/asteroid,
 /area/awaymission)
 "hU" = (
@@ -3100,7 +3100,7 @@
 /turf/simulated,
 /area/awaymission/BMPship3)
 "hW" = (
-/obj/effect/gibspawner/robot,
+/obj/effect/spawner/gibs/robot,
 /turf/simulated,
 /area/awaymission/BMPship3)
 "hX" = (
@@ -3166,7 +3166,7 @@
 /turf/simulated/floor/engine,
 /area/awaymission/BMPship3)
 "ih" = (
-/obj/effect/gibspawner/robot,
+/obj/effect/spawner/gibs/robot,
 /turf/simulated/floor/plating/airless{
 	 icon_state = "platingdmg3"
 	},

@@ -93,7 +93,7 @@
 "bO" = (/obj/machinery/door/window/westright{name = "Storefront"; req_access = list(160)},/obj/structure/table/marble,/turf/simulated/shuttle/floor/black/virgo3b,/area/tether/surfacebase/crash)
 "bP" = (/obj/structure/bed/chair/office/dark{dir = 8},/turf/simulated/shuttle/floor/black/virgo3b,/area/tether/surfacebase/crash)
 "bQ" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced,/turf/simulated/shuttle/floor/black/virgo3b,/area/tether/surfacebase/outside/wilderness)
-"bR" = (/obj/structure/bed/chair{dir = 8},/obj/effect/gibspawner/human,/turf/simulated/shuttle/floor/black/virgo3b,/area/tether/surfacebase/outside/wilderness)
+"bR" = (/obj/structure/bed/chair{dir = 8},/obj/effect/spawner/gibs/human,/turf/simulated/shuttle/floor/black/virgo3b,/area/tether/surfacebase/outside/wilderness)
 "bS" = (/obj/machinery/door/airlock/command,/turf/simulated/shuttle/floor/black/virgo3b,/area/tether/surfacebase/outside/wilderness)
 "bT" = (/obj/structure/noticeboard{pixel_y = 32},/turf/simulated/shuttle/floor/black/virgo3b,/area/tether/surfacebase/outside/wilderness)
 "bU" = (/obj/effect/floor_decal/industrial/warning{dir = 10},/turf/simulated/shuttle/floor/black/virgo3b,/area/tether/surfacebase/crash)

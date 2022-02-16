@@ -24,15 +24,9 @@
 	var/datum/effect_system/spark_spread/spark_system = null
 	var/block_percentage = 75
 
-<<<<<<< HEAD
-/obj/item/clothing/suit/armor/shield/New()
-	..()
-	spark_system = new /datum/effect/effect/system/spark_spread()
-=======
 /obj/item/clothing/suit/armor/shield/Initialize()
 	. = ..()
 	spark_system = new /datum/effect_system/spark_spread()
->>>>>>> 0232be9531b... Repaths obj/effect/effect, datum/effect/effect [MDB_IGNORE] (#8312)
 	spark_system.set_up(5, 0, src)
 
 /obj/item/clothing/suit/armor/shield/Destroy()
