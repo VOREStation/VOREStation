@@ -183,6 +183,7 @@
 	base_turf = /turf/simulated/floor/outdoors/rocks/caves
 	holomap_offset_x = SOUTHERN_CROSS_HOLOMAP_MARGIN_X - 40
 	holomap_offset_y = SOUTHERN_CROSS_HOLOMAP_MARGIN_Y + SOUTHERN_CROSS_MAP_SIZE*0
+	event_regions = list(EVENT_REGION_PLANETSURFACE, EVENT_REGION_PLAYER_MAIN_AREA)
 
 /datum/map_z_level/cynosure/station/station_two
 	z = Z_LEVEL_STATION_TWO
@@ -191,6 +192,7 @@
 	base_turf = /turf/simulated/open
 	holomap_offset_x = SOUTHERN_CROSS_HOLOMAP_MARGIN_X - 40
 	holomap_offset_y = SOUTHERN_CROSS_HOLOMAP_MARGIN_Y + SOUTHERN_CROSS_MAP_SIZE*1
+	event_regions = list(EVENT_REGION_PLANETSURFACE, EVENT_REGION_PLAYER_MAIN_AREA, EVENT_REGION_SUBTERRANEAN)
 
 /datum/map_z_level/cynosure/station/station_three
 	z = Z_LEVEL_STATION_THREE
@@ -199,18 +201,21 @@
 	base_turf = /turf/simulated/open
 	holomap_offset_x = HOLOMAP_ICON_SIZE - SOUTHERN_CROSS_HOLOMAP_MARGIN_X - SOUTHERN_CROSS_MAP_SIZE - 40
 	holomap_offset_y = SOUTHERN_CROSS_HOLOMAP_MARGIN_Y + SOUTHERN_CROSS_MAP_SIZE*1
+	event_regions = list(EVENT_REGION_PLANETSURFACE, EVENT_REGION_PLAYER_MAIN_AREA)
 
 /datum/map_z_level/cynosure/empty_space
 	z = Z_LEVEL_EMPTY_SPACE
 	name = "Empty"
 	flags = MAP_LEVEL_PLAYER
 	transit_chance = 76
+	event_regions = list(EVENT_REGION_DEEPSPACE)
 
 /datum/map_z_level/cynosure/tcomm
 	z = Z_LEVEL_TCOMM
 	name = "Telecommunications Satellite"
 	flags = MAP_LEVEL_PLAYER|MAP_LEVEL_CONTACT
 	transit_chance = 24
+	event_regions = list(EVENT_REGION_SPACESTATION)
 
 /datum/map_z_level/cynosure/centcom
 	z = Z_LEVEL_CENTCOM
@@ -222,6 +227,7 @@
 	name = "Wilderness"
 	flags = MAP_LEVEL_PLAYER|MAP_LEVEL_SEALED|MAP_LEVEL_CONTACT|MAP_LEVEL_CONSOLES
 	base_turf = /turf/simulated/floor/outdoors/rocks/sif/planetuse
+	event_regions = list(EVENT_REGION_PLANETSURFACE)
 
 //Teleport to Mine
 
