@@ -119,3 +119,11 @@
 	suit = /obj/item/clothing/suit/storage/hooded/chaplain_hoodie/whiteout
 	gloves = /obj/item/clothing/gloves/white
 	mask = /obj/item/clothing/mask/surgical
+
+/decl/hierarchy/outfit/costume/marine
+	name = OUTFIT_COSTUME("Ruin Marine")
+	uniform = /obj/item/clothing/under/color/grey
+	shoes = /obj/item/clothing/shoes/brown
+	head = /obj/item/clothing/head/marine
+	suit = /obj/item/clothing/suit/marine
+	r_hand = /obj/item/weapon/gun/projectile/revolver/toy/sawnoff
