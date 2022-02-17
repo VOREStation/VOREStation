@@ -26,6 +26,7 @@
 	for(var/obj/item/briefcase_item in new_briefcase)
 		qdel(briefcase_item)
 	new_briefcase.contents += new /obj/item/weapon/gun/projectile/pistol/toy
+	new_briefcase.contents += new /obj/item/ammo_magazine/mfoam_dart/pistol
 	new_briefcase.contents += new /obj/item/clothing/mask/gas/clown_hat
 	H.equip_to_slot_or_del(new_briefcase, slot_l_hand)
 

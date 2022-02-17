@@ -1156,7 +1156,7 @@
 					/obj/item/weapon/gun/projectile/revolver/toy/crossbow = 5,
 					/obj/item/weapon/gun/projectile/automatic/toy = 5
 					)
-	contraband = list(/obj/item/ammo_magazine/ammo_box/foam/riot = 5)
+	contraband = list()
 	prices = list(/obj/item/ammo_magazine/ammo_box/foam = 50,
 					/obj/item/weapon/storage/belt/dbandolier = 100,
 					/obj/item/ammo_magazine/mfoam_dart/pistol = 25,
