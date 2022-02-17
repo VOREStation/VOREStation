@@ -101,6 +101,15 @@
 		else if(inside_belly.desc)
 			inside_desc = inside_belly.desc
 
+		//I'd rather not copy-paste this code twice into the previous if-statement
+		//Technically we could just format the text anyway, but IDK how demanding unnecessary text-replacements are
+		if((host.absorbed && inside_belly.absorbed_desc) || (inside_belly.desc))
+			var/formatted_desc
+			formatted_desc = replacetext(inside_desc, "%belly", lowertext(inside_belly.name)) //replace with this belly's name
+			formatted_desc = replacetext(formatted_desc, "%pred", pred) //replace with the pred of this belly
+			formatted_desc = replacetext(formatted_desc, "%prey", host) //replace with whoever's reading this
+			inside_desc = formatted_desc
+
 		inside = list(
 			"absorbed" = host.absorbed,
 			"belly_name" = inside_belly.name,
@@ -531,6 +540,9 @@
 				to_chat(user,"<span class='warning'>You manage to [lowertext(TB.vore_verb)] [M] into your [lowertext(TB.name)]!</span>")
 				to_chat(M,"<span class='warning'>[host] manages to [lowertext(TB.vore_verb)] you into their [lowertext(TB.name)]!</span>")
 				to_chat(OB.owner,"<span class='warning'>Someone inside you has eaten someone else!</span>")
+				if(M.absorbed)
+					M.absorbed = FALSE
+					OB.handle_absorb_langs(M, OB.owner)
 				TB.nom_mob(M)
 
 /datum/vore_look/proc/pick_from_outside(mob/user, params)
@@ -700,7 +712,7 @@
 			host.vore_selected.egg_type = new_egg_type
 			. = TRUE
 		if("b_desc")
-			var/new_desc = html_encode(input(usr,"Belly Description ([BELLIES_DESC_MAX] char limit):","New Description",host.vore_selected.desc) as message|null)
+			var/new_desc = html_encode(input(usr,"Belly Description, '%pred' will be replaced with your name. '%prey' will be replaced with the prey's name. '%belly' will be replaced with your belly's name. ([BELLIES_DESC_MAX] char limit):","New Description",host.vore_selected.desc) as message|null)
 
 			if(new_desc)
 				new_desc = readd_quotes(new_desc)
@@ -710,7 +722,7 @@
 				host.vore_selected.desc = new_desc
 				. = TRUE
 		if("b_absorbed_desc")
-			var/new_desc = html_encode(input(usr,"Belly Description for absorbed prey ([BELLIES_DESC_MAX] char limit):","New Description",host.vore_selected.absorbed_desc) as message|null)
+			var/new_desc = html_encode(input(usr,"Belly Description for absorbed prey, '%pred' will be replaced with your name. '%prey' will be replaced with the prey's name. '%belly' will be replaced with your belly's name. ([BELLIES_DESC_MAX] char limit):","New Description",host.vore_selected.absorbed_desc) as message|null)
 
 			if(new_desc)
 				new_desc = readd_quotes(new_desc)

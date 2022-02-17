@@ -185,7 +185,8 @@
 	if(!forced && avatar && tgui_alert(avatar, "Someone wants to remove you from virtual reality. Do you want to leave?", "Leave VR?", list("Yes", "No")) == "No")
 		return
 
-	avatar.exit_vr()
+	if(avatar)
+		avatar.exit_vr()
 	avatar = null
 
 	if(occupant.client)

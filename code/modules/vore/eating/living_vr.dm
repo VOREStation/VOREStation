@@ -12,6 +12,8 @@
 	var/obj/belly/vore_selected			// Default to no vore capability.
 	var/list/vore_organs = list()		// List of vore containers inside a mob
 	var/absorbed = FALSE				// If a mob is absorbed into another
+	var/list/temp_language_sources = list()	//VOREStation Addition - Absorbs add languages to the pred
+	var/list/temp_languages = list()		//VOREStation Addition - Absorbs add languages to the pred
 	var/weight = 137					// Weight for mobs for weightgain system
 	var/weight_gain = 1 				// How fast you gain weight
 	var/weight_loss = 0.5 				// How fast you lose weight
@@ -556,7 +558,10 @@
 
 /obj/belly/return_air_for_internal_lifeform(var/mob/living/lifeform)
 	//Free air until someone wants to code processing it for reals from predbreaths
-	var/air_type = lifeform.get_perfect_belly_air_type()		// Without any overrides/changes, its gonna be /datum/gas_mixture/belly_air
+	var/air_type = /datum/gas_mixture/belly_air
+	if(istype(lifeform))	// If this doesn't succeed, then 'lifeform' is actually a bag or capture crystal with someone inside
+		air_type = lifeform.get_perfect_belly_air_type()		// Without any overrides/changes, its gonna be /datum/gas_mixture/belly_air
+	
 	var/air = new air_type(1000)
 	return air
 

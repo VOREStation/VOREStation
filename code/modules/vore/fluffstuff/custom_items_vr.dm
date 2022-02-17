@@ -1419,3 +1419,24 @@
 	icon_state = "stamp-midhorror"
 	stamptext = "This paper has been certified by The Council of Mid Horror"
 
+//thedavestdave Lucky
+///I know this is pretty bodgey but if it stupid and it works it isn't stupid
+/obj/item/clothing/suit/storage/hooded/explorer/lucky
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "luck"
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "luck"
+	name = "Lucky's armor"
+	desc = "A chain mail suit with a badly drawn one eared cat on the front."
+
+
+/obj/item/device/modkit_conversion/crusader_luck
+    skip_content_check = TRUE
+    name = "Lucky's armor"
+    desc = "A chain mail suit with a badly drawn one eared cat on the front."
+    icon = 'icons/vore/custom_items_vr.dmi'
+    icon_state = "modkit"
+    from_suit = /obj/item/clothing/suit/storage/hooded/explorer
+    to_suit = /obj/item/clothing/suit/storage/hooded/explorer/lucky
+
+

@@ -42,6 +42,11 @@
 	var/atom/movable/product = instances[instances.len]	// Remove the last added product
 	instances -= product
 	product.forceMove(product_location)
+	//VOREStation Addition Start
+	if(istype(product, /obj))
+		var/obj/item = product
+		item.persist_storable = FALSE
+	//VOREStation Addition End
 	return product
 
 /datum/stored_item/proc/add_product(var/atom/movable/product)
@@ -60,7 +65,12 @@
 		var/new_product = new item_path(stored)
 		instances += new_product
 
-
+/datum/stored_item/proc/refill_products(var/refill_amount)
+	if(!instances)
+		init_products()
+	for(var/i = 1 to refill_amount)
+		var/new_product = new item_path(stored)
+		instances += new_product
 
 /datum/stored_item/stack/get_amount()
 	return amount

@@ -1444,6 +1444,13 @@
 		"stripes" = COLOR_OFF_WHITE,
 		"glass" = COLOR_WHITE
 	)
+	
+/decl/closet_appearance/wall_double/survival
+	color = COLOR_CYAN_BLUE
+	decals = null
+	extra_decals = list(
+		"stripe_outer" = COLOR_WHITE
+	)
 
 // Carts
 /decl/closet_appearance/cart

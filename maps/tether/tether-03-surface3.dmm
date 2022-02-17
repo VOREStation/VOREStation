@@ -14563,7 +14563,6 @@
 "axL" = (
 /obj/structure/table/standard,
 /obj/structure/reagent_dispensers/acid{
-	density = 0;
 	pixel_y = -30
 	},
 /obj/item/weapon/hand_labeler,
@@ -19905,6 +19904,7 @@
 	dir = 8;
 	icon_state = "pipe-c"
 	},
+/obj/effect/landmark/vines,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
 "aGw" = (
@@ -20150,7 +20150,6 @@
 	dir = 1
 	},
 /obj/structure/reagent_dispensers/acid{
-	density = 0;
 	pixel_y = -30
 	},
 /obj/effect/floor_decal/borderfloor,
@@ -20172,6 +20171,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
 	},
+/obj/effect/landmark/vines,
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
 "aGW" = (
@@ -37893,6 +37893,7 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/effect/landmark/vines,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
 "cmQ" = (
@@ -38436,6 +38437,16 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/shuttle_pad)
+"eaj" = (
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 6
+	},
+/obj/effect/landmark/vermin,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_three_hall)
 "eeD" = (
 /obj/effect/floor_decal/borderfloor/corner{
 	dir = 4
@@ -38493,6 +38504,12 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/southhall)
+"enD" = (
+/obj/effect/landmark/vermin,
+/turf/simulated/mineral/floor/cave{
+	name = "dirt"
+	},
+/area/tether/surfacebase/public_garden_three)
 "eqZ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -38506,6 +38523,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
+/obj/effect/landmark/vines,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/shuttle_pad)
 "erS" = (
@@ -38546,6 +38564,10 @@
 /obj/effect/floor_decal/corner/red/border,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/briefingroom)
+"eDc" = (
+/obj/effect/landmark/vermin,
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/triage)
 "eEW" = (
 /obj/machinery/door/airlock{
 	name = "Internal Affairs";
@@ -38666,6 +38688,10 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/barrestroom)
+"eOP" = (
+/obj/effect/landmark/vermin,
+/turf/simulated/floor/wood,
+/area/tether/surfacebase/entertainment)
 "eQN" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -38800,6 +38826,13 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
+"fsd" = (
+/obj/machinery/item_bank{
+	dir = 4;
+	pixel_x = -28
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/southhall)
 "fxh" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -38958,7 +38991,6 @@
 	},
 /obj/machinery/door/firedoor/glass/hidden/shuttle,
 /obj/machinery/door/blast/shuttle/open{
-	dir = 1;
 	id = "tourbus_windows";
 	name = "Shuttle Blast Doors"
 	},
@@ -39091,6 +39123,7 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
+/obj/effect/landmark/vines,
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
 "gBr" = (
@@ -39210,6 +39243,7 @@
 	dir = 2;
 	icon_state = "pipe-c"
 	},
+/obj/effect/landmark/vines,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
 "gUL" = (
@@ -39532,6 +39566,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/shuttle_pad)
+"ieh" = (
+/obj/effect/landmark/vermin,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/cafeteria)
 "ieo" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -39737,6 +39775,26 @@
 /obj/structure/window/reinforced,
 /turf/simulated/wall,
 /area/tether/surfacebase/medical/storage)
+"iUz" = (
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/effect/landmark/vermin,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/security/upperhall)
 "iXM" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -39790,7 +39848,6 @@
 	},
 /obj/machinery/door/firedoor/glass/hidden/shuttle,
 /obj/machinery/door/blast/shuttle/open{
-	dir = 1;
 	id = "tourbus_windows";
 	name = "Shuttle Blast Doors"
 	},
@@ -40267,6 +40324,10 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/iaa/officea)
+"kFE" = (
+/obj/effect/landmark/vermin,
+/turf/simulated/floor/wood,
+/area/crew_quarters/bar)
 "kFJ" = (
 /obj/structure/table/steel,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -40418,6 +40479,16 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled,
 /area/rnd/research/testingrange)
+"lli" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/effect/landmark/vermin,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_three_hall)
 "llH" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/lightgrey/border,
@@ -41186,6 +41257,16 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/briefingroom)
+"nSh" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/effect/landmark/vines,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_three_hall)
 "nSq" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -42699,7 +42780,6 @@
 "sVC" = (
 /obj/machinery/door/firedoor/glass/hidden/shuttle,
 /obj/machinery/door/blast/shuttle/open{
-	dir = 1;
 	id = "tourbus_windows";
 	name = "Shuttle Blast Doors"
 	},
@@ -49578,7 +49658,7 @@ aUF
 xFm
 aDn
 hMw
-aDn
+enD
 akm
 aDi
 aDs
@@ -49874,7 +49954,7 @@ aDT
 arW
 arW
 aVE
-aWF
+lli
 akn
 alP
 aac
@@ -50442,7 +50522,7 @@ cAZ
 arW
 agw
 aVG
-aWF
+nSh
 aTO
 akS
 aly
@@ -53844,7 +53924,7 @@ bzK
 agg
 adW
 qAt
-snE
+iUz
 ajJ
 aTX
 aVI
@@ -56962,7 +57042,7 @@ bmr
 acR
 blA
 bmI
-acR
+eDc
 aim
 ake
 aGm
@@ -57041,7 +57121,7 @@ aPu
 qbo
 bhi
 bhm
-beU
+fsd
 bhp
 beU
 beU
@@ -57544,7 +57624,7 @@ aeG
 ajh
 avG
 akn
-alk
+eaj
 alk
 bdD
 ayx
@@ -57716,7 +57796,7 @@ beX
 beX
 bcY
 bdq
-bbk
+eOP
 bbk
 beS
 lHr
@@ -58188,7 +58268,7 @@ biH
 dyV
 bja
 biL
-biL
+ieh
 bju
 biF
 adG
@@ -59565,7 +59645,7 @@ asX
 aLd
 bbU
 baF
-asX
+kFE
 aLd
 bbU
 bdJ

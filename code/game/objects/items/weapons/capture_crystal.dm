@@ -1,5 +1,5 @@
 /obj/item/capture_crystal
-	name = "Curious Crystal"
+	name = "curious crystal"
 	desc = "A silent, unassuming crystal in what appears to be some kind of steel housing."
 	icon = 'icons/obj/capture_crystal_vr.dmi'
 	icon_state = "inactive"
@@ -251,6 +251,7 @@
 	if(!bound_mob)
 		bound_mob = M
 		bound_mob.capture_caught = TRUE
+		persist_storable = FALSE
 	desc = "A glowing crystal in what appears to be some kind of steel housing."
 	
 //Determines the capture chance! So you can't capture AI mobs if they're perfectly healthy and all that
@@ -324,6 +325,7 @@
 	bound_mob = null
 	owner = null
 	active = FALSE
+	persist_storable = TRUE
 	update_icon()
 
 /obj/item/capture_crystal/proc/owner_was_deleted()

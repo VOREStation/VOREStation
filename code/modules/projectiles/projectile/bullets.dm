@@ -324,3 +324,23 @@
 /obj/item/projectile/bullet/blank/cap/process()
 	loc = null
 	qdel(src)
+
+/* BB Rounds */
+/obj/item/projectile/bullet/bb // Generic single BB
+	name = "BB"
+	damage = 0
+	agony = 0
+	embed_chance = 0
+	sharp = FALSE
+	silenced = TRUE	
+
+/obj/item/projectile/bullet/pellet/shotgun/bb // Shotgun
+	name = "BB"
+	damage = 0
+	agony = 0
+	embed_chance = 0
+	sharp = FALSE
+	pellets = 6
+	range_step = 1
+	spread_step = 10
+	silenced = TRUE

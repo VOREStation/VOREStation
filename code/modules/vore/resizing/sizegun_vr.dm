@@ -102,8 +102,12 @@
 /obj/item/projectile/beam/sizelaser/on_hit(var/atom/target)
 	var/mob/living/M = target
 	var/ignoring_prefs = (target == firer ? TRUE : FALSE) // Resizing yourself
-
 	if(istype(M))
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			if(istype(H.gloves, /obj/item/clothing/gloves/bluespace))
+				M.visible_message("<span class='warning'>\The [H]'s bracelet flashes and absorbs the beam!</span>","<span class='notice'>Your bracelet flashes and absorbs the beam!</span>")
+				return
 		if(!M.resize(set_size, uncapped = M.has_large_resize_bounds(), ignore_prefs = ignoring_prefs))
 			to_chat(M, "<font color='blue'>The beam fires into your body, changing your size!</font>")
 		M.updateicon()
