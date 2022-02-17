@@ -4399,6 +4399,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
+	nightshift_setting = 2;
 	pixel_y = 24
 	},
 /obj/machinery/light_switch{
@@ -9749,7 +9750,7 @@
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 1
 	},
-/obj/machinery/light/small,
+/obj/machinery/light/small/no_nightshift,
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
@@ -13130,7 +13131,7 @@
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 10
 	},
-/obj/machinery/light/small{
+/obj/machinery/light/small/no_nightshift{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
@@ -18101,6 +18102,7 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "west bump";
+	nightshift_setting = 2;
 	pixel_x = -24
 	},
 /obj/effect/floor_decal/rust,

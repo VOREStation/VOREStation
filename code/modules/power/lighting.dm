@@ -75,7 +75,7 @@ var/global/list/light_type_cache = list()
 
 /obj/machinery/light_construct/attack_hand(mob/user)
 	. = ..()
-	if(.) 
+	if(.)
 		return . // obj/machinery/attack_hand returns 1 if user can't use the machine
 	if(cell)
 		user.visible_message("[user] removes [cell] from [src]!","<span class='notice'>You remove [cell].</span>")
@@ -267,6 +267,9 @@ var/global/list/light_type_cache = list()
 	construct_type = /obj/machinery/light_construct/small
 	shows_alerts = FALSE	//VOREStation Edit
 
+/obj/machinery/light/small/no_nightshift
+	nightshift_allowed = FALSE
+
 /obj/machinery/light/small/flicker
 	auto_flicker = TRUE
 
@@ -294,10 +297,16 @@ var/global/list/light_type_cache = list()
 		start_with_cell = FALSE
 		lamp_shade = 0
 		update_icon()
+<<<<<<< HEAD
 	else	
 		if(start_with_cell && !no_emergency)
 			cell = new/obj/item/weapon/cell/emergency_light(src)
 	
+=======
+	else if(start_with_cell && !no_emergency)
+		cell = new/obj/item/weapon/cell/emergency_light(src)
+
+>>>>>>> 191fb67f8f7... Merge pull request #8400 from Cerebulon/nightmode
 
 /obj/machinery/light/flamp/flicker
 	auto_flicker = TRUE
@@ -718,7 +727,7 @@ var/global/list/light_type_cache = list()
 	update(FALSE)
 	return
 
-// ai alt click - Make light flicker.  Very important for atmosphere.  
+// ai alt click - Make light flicker.  Very important for atmosphere.
 /obj/machinery/light/AIAltClick(mob/user)
 	flicker(1)
 
@@ -916,9 +925,13 @@ var/global/list/light_type_cache = list()
 
 	///Replaces brightness_range during nightshifts.
 	var/nightshift_range = 8
+<<<<<<< HEAD
 	///Replaces brightness_power during nightshifts.
 	var/nightshift_power = 0.45
 	///Replaces brightness_color during nightshifts.
+=======
+	var/nightshift_power = 0.8
+>>>>>>> 191fb67f8f7... Merge pull request #8400 from Cerebulon/nightmode
 	var/nightshift_color = LIGHT_COLOR_NIGHTSHIFT
 	
 	drop_sound = 'sound/items/drop/glass.ogg'
@@ -941,7 +954,11 @@ var/global/list/light_type_cache = list()
 	brightness_power = 4
 
 	nightshift_range = 10
+<<<<<<< HEAD
 	nightshift_power = 1.5
+=======
+	nightshift_power = 7
+>>>>>>> 191fb67f8f7... Merge pull request #8400 from Cerebulon/nightmode
 
 /obj/item/weapon/light/bulb
 	name = "light bulb"
@@ -955,6 +972,7 @@ var/global/list/light_type_cache = list()
 	brightness_color = LIGHT_COLOR_INCANDESCENT_BULB
 
 	nightshift_range = 3
+<<<<<<< HEAD
 	nightshift_power = 0.5
 
 // For 'floor lamps' in outdoor use and such
@@ -965,6 +983,9 @@ var/global/list/light_type_cache = list()
 	
 	nightshift_range = 4
 	nightshift_power = 0.75
+=======
+	nightshift_power = 2
+>>>>>>> 191fb67f8f7... Merge pull request #8400 from Cerebulon/nightmode
 
 /obj/item/weapon/light/throw_impact(atom/hit_atom)
 	..()

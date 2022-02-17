@@ -1127,6 +1127,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
+	nightshift_setting = 2;
 	pixel_y = 24
 	},
 /obj/machinery/light_switch{
@@ -1220,6 +1221,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
+	nightshift_setting = 2;
 	pixel_y = 24
 	},
 /obj/machinery/light_switch{
@@ -1432,6 +1434,7 @@
 /obj/structure/cable,
 /obj/machinery/power/apc{
 	name = "south bump";
+	nightshift_setting = 2;
 	pixel_y = -24
 	},
 /obj/machinery/light_switch{
@@ -2090,6 +2093,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
+	nightshift_setting = 2;
 	pixel_y = 24
 	},
 /obj/machinery/light_switch{
@@ -2120,6 +2124,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "east bump";
+	nightshift_setting = 2;
 	pixel_x = 24
 	},
 /obj/machinery/light_switch{
@@ -2188,6 +2193,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "east bump";
+	nightshift_setting = 2;
 	pixel_x = 24
 	},
 /obj/machinery/light_switch{
@@ -2744,6 +2750,7 @@
 /obj/machinery/power/apc/super/critical{
 	dir = 1;
 	name = "north bump";
+	nightshift_setting = 2;
 	pixel_y = 24
 	},
 /obj/machinery/light_switch{
@@ -2764,6 +2771,7 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "west bump";
+	nightshift_setting = 2;
 	pixel_x = -24
 	},
 /obj/machinery/light_switch{
@@ -4659,6 +4667,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "east bump";
+	nightshift_setting = 2;
 	pixel_x = 24
 	},
 /obj/machinery/light_switch{

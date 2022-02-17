@@ -4349,7 +4349,7 @@
 /turf/simulated/floor/tiled/white,
 /area/surface/station/medical/etc)
 "cac" = (
-/obj/machinery/light,
+/obj/machinery/light/no_nightshift,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
 	initial_flooring = /decl/flooring/tiling/steel_dirty
@@ -4579,7 +4579,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/surface/station/medical/hallway/gnd)
 "cgV" = (
-/obj/machinery/light,
+/obj/machinery/light/no_nightshift,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
 	initial_flooring = /decl/flooring/tiling/steel_dirty
@@ -6385,6 +6385,7 @@
 	},
 /obj/machinery/power/apc{
 	name = "south bump";
+	nightshift_setting = 2;
 	pixel_y = -24
 	},
 /obj/effect/floor_decal/techfloor/corner{
@@ -6498,6 +6499,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
+	nightshift_setting = 2;
 	pixel_y = 24
 	},
 /obj/machinery/light_switch{
@@ -7422,7 +7424,7 @@
 /turf/simulated/floor/tiled/monofloor,
 /area/surface/station/security/range)
 "dvS" = (
-/obj/machinery/light{
+/obj/machinery/light/no_nightshift{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
@@ -7682,7 +7684,7 @@
 /area/surface/outpost/research/xenoarcheology/surface)
 "dDa" = (
 /obj/effect/floor_decal/corner/green/full,
-/obj/machinery/light/small,
+/obj/machinery/light/small/no_nightshift,
 /turf/simulated/floor/reinforced,
 /area/surface/station/engineering/atmos)
 "dDm" = (
@@ -8056,7 +8058,7 @@
 /turf/simulated/floor/tiled,
 /area/surface/station/engineering/atmos)
 "dLD" = (
-/obj/machinery/light,
+/obj/machinery/light/no_nightshift,
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty";
@@ -11293,7 +11295,7 @@
 /turf/simulated/floor/plating,
 /area/surface/station/medical/etc)
 "fhL" = (
-/obj/machinery/light,
+/obj/machinery/light/no_nightshift,
 /obj/structure/cable/green{
 	d1 = 4;
 	d2 = 8;
@@ -14293,6 +14295,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "east bump";
+	nightshift_setting = 2;
 	pixel_x = 24
 	},
 /obj/machinery/light_switch{
@@ -15670,6 +15673,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
+	nightshift_setting = 2;
 	pixel_y = 24
 	},
 /obj/machinery/light_switch{
@@ -16126,7 +16130,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/surface/station/garage)
 "hvu" = (
-/obj/machinery/light{
+/obj/machinery/light/no_nightshift{
 	dir = 1
 	},
 /obj/effect/floor_decal/rust,
@@ -16523,6 +16527,7 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "west bump";
+	nightshift_setting = 2;
 	pixel_x = -24
 	},
 /obj/structure/cable/cyan{
@@ -17963,7 +17968,7 @@
 /area/surface/station/engineering/reactor_room)
 "itw" = (
 /obj/effect/floor_decal/corner/blue/full,
-/obj/machinery/light/small,
+/obj/machinery/light/small/no_nightshift,
 /turf/simulated/floor/reinforced/oxygen,
 /area/surface/station/engineering/atmos)
 "ity" = (
@@ -19205,6 +19210,7 @@
 /obj/machinery/power/apc/super/critical{
 	dir = 8;
 	name = "west bump";
+	nightshift_setting = 2;
 	pixel_x = -24
 	},
 /turf/simulated/floor/plating,
@@ -19782,7 +19788,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/light{
+/obj/machinery/light/no_nightshift{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
@@ -20816,7 +20822,7 @@
 /obj/effect/floor_decal/corner/orange/diagonal{
 	dir = 4
 	},
-/obj/machinery/light/small{
+/obj/machinery/light/small/no_nightshift{
 	dir = 4
 	},
 /turf/simulated/floor/reinforced/phoron,
@@ -22125,7 +22131,7 @@
 /turf/simulated/floor/plating,
 /area/surface/station/security/hallway/gnd)
 "kmM" = (
-/obj/machinery/light{
+/obj/machinery/light/no_nightshift{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
@@ -22474,7 +22480,7 @@
 /area/surface/station/security/detectives_office/lab)
 "kwF" = (
 /obj/effect/floor_decal/corner/red/full,
-/obj/machinery/light/small,
+/obj/machinery/light/small/no_nightshift,
 /turf/simulated/floor/reinforced/nitrogen,
 /area/surface/station/engineering/atmos)
 "kwY" = (
@@ -25034,6 +25040,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
+	nightshift_setting = 2;
 	pixel_y = 24
 	},
 /obj/machinery/light_switch{
@@ -25075,6 +25082,7 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "west bump";
+	nightshift_setting = 2;
 	pixel_x = -24
 	},
 /obj/machinery/light_switch{
@@ -26536,6 +26544,7 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "west bump";
+	nightshift_setting = 2;
 	pixel_x = -24
 	},
 /obj/machinery/light_switch{
@@ -28747,7 +28756,7 @@
 /obj/effect/floor_decal/corner/black/full{
 	dir = 4
 	},
-/obj/machinery/light/small{
+/obj/machinery/light/small/no_nightshift{
 	dir = 4
 	},
 /turf/simulated/floor/reinforced/carbon_dioxide,
@@ -29237,6 +29246,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
+	nightshift_setting = 2;
 	pixel_y = 24
 	},
 /obj/machinery/light_switch{
@@ -30117,6 +30127,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
+	nightshift_setting = 2;
 	pixel_y = 24
 	},
 /obj/machinery/light_switch{
@@ -35468,6 +35479,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
+	nightshift_setting = 2;
 	pixel_y = 24
 	},
 /obj/structure/cable/cyan{
@@ -35789,6 +35801,7 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "west bump";
+	nightshift_setting = 2;
 	pixel_x = -24
 	},
 /obj/machinery/light_switch{
@@ -37604,6 +37617,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "east bump";
+	nightshift_setting = 2;
 	pixel_x = 24
 	},
 /obj/structure/cable/cyan{
@@ -40034,6 +40048,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
+	nightshift_setting = 2;
 	pixel_y = 24
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -41320,6 +41335,7 @@
 /obj/structure/cable,
 /obj/machinery/power/apc{
 	name = "south bump";
+	nightshift_setting = 2;
 	pixel_y = -24
 	},
 /obj/machinery/light_switch{
@@ -41580,6 +41596,7 @@
 	},
 /obj/machinery/power/apc{
 	name = "south bump";
+	nightshift_setting = 2;
 	pixel_y = -24
 	},
 /obj/structure/cable/cyan{
@@ -42513,7 +42530,7 @@
 /obj/effect/floor_decal/industrial/warning/dust/corner{
 	dir = 8
 	},
-/obj/machinery/light/small,
+/obj/machinery/light/small/no_nightshift,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "asteroidfloor";
 	initial_flooring = /decl/flooring/tiling/asteroidfloor
@@ -42527,6 +42544,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
+	nightshift_setting = 2;
 	pixel_y = 24
 	},
 /obj/machinery/light_switch{
@@ -42688,7 +42706,7 @@
 /obj/effect/floor_decal/corner/white/diagonal{
 	dir = 4
 	},
-/obj/machinery/light/small,
+/obj/machinery/light/small/no_nightshift,
 /turf/simulated/floor/reinforced/airmix,
 /area/surface/station/engineering/atmos)
 "trQ" = (
@@ -45166,6 +45184,7 @@
 	},
 /obj/machinery/power/apc{
 	name = "south bump";
+	nightshift_setting = 2;
 	pixel_y = -24
 	},
 /obj/machinery/light_switch{
@@ -46297,6 +46316,7 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "west bump";
+	nightshift_setting = 2;
 	pixel_x = -24
 	},
 /obj/machinery/light_switch{
@@ -47646,7 +47666,7 @@
 /obj/effect/floor_decal/industrial/warning/dust/corner{
 	dir = 8
 	},
-/obj/machinery/light/small{
+/obj/machinery/light/small/no_nightshift{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
@@ -48935,9 +48955,7 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/corner/red,
-/obj/machinery/light/small{
-	dir = 4
-	},
+/obj/machinery/light/small/no_nightshift,
 /turf/simulated/floor/reinforced/n20,
 /area/surface/station/engineering/atmos)
 "wop" = (
@@ -53243,6 +53261,7 @@
 	},
 /obj/machinery/power/apc{
 	name = "south bump";
+	nightshift_setting = 2;
 	pixel_y = -24
 	},
 /obj/machinery/light_switch{

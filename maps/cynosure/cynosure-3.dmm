@@ -202,7 +202,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/surface/station/security/hallway/cell_hallway)
 "ahf" = (
-/obj/machinery/light{
+/obj/machinery/light/no_nightshift{
 	dir = 1
 	},
 /obj/structure/bed/chair/shuttle,
@@ -3314,6 +3314,7 @@
 	},
 /obj/machinery/power/apc{
 	name = "south bump";
+	nightshift_setting = 2;
 	pixel_y = -24
 	},
 /obj/machinery/light_switch{
@@ -3904,7 +3905,7 @@
 /area/surface/station/construction/office)
 "cBH" = (
 /obj/effect/floor_decal/rust,
-/obj/machinery/light/small{
+/obj/machinery/light/small/no_nightshift{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/steel/sif/planetuse{
@@ -8097,6 +8098,7 @@
 /obj/machinery/power/apc{
 	dir = 8;
 	name = "west bump";
+	nightshift_setting = 2;
 	pixel_x = -24
 	},
 /obj/effect/floor_decal/techfloor/corner{
@@ -27286,6 +27288,7 @@
 	},
 /obj/machinery/power/apc/super/critical{
 	name = "south bump";
+	nightshift_setting = 2;
 	pixel_y = -24
 	},
 /obj/machinery/light_switch{
@@ -27721,7 +27724,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/light/small{
+/obj/machinery/light/small/no_nightshift{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden{
@@ -27814,7 +27817,7 @@
 /obj/effect/floor_decal/corner/orange/border{
 	dir = 6
 	},
-/obj/machinery/light/small{
+/obj/machinery/light/small/no_nightshift{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
@@ -29012,6 +29015,7 @@
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
+	nightshift_setting = 2;
 	pixel_y = 24
 	},
 /obj/machinery/light_switch{
@@ -30798,7 +30802,7 @@
 	},
 /obj/effect/floor_decal/industrial/warning/dust/corner,
 /obj/effect/floor_decal/rust,
-/obj/machinery/light/small,
+/obj/machinery/light/small/no_nightshift,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
 	icon_state = "steel_dirty"
 	},
@@ -34054,7 +34058,7 @@
 /turf/simulated/floor/plating,
 /area/surface/station/security/riot_control)
 "wtg" = (
-/obj/machinery/light/small{
+/obj/machinery/light/small/no_nightshift{
 	dir = 1
 	},
 /obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod_berth{
@@ -34399,6 +34403,13 @@
 	},
 /turf/simulated/floor/wood,
 /area/surface/station/command/meeting_room)
+"wDZ" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/machinery/light/small/no_nightshift,
+/turf/simulated/open,
+/area/surface/station/ai)
 "wEo" = (
 /obj/machinery/door/blast/regular/open{
 	id = "seclockdown";
@@ -35645,7 +35656,7 @@
 /obj/item/weapon/reagent_containers/blood/empty,
 /obj/item/weapon/reagent_containers/blood/empty,
 /obj/item/weapon/reagent_containers/blood/empty,
-/obj/machinery/light,
+/obj/machinery/light/no_nightshift,
 /turf/simulated/shuttle/floor/white,
 /area/shuttle/large_escape_pod2/station)
 "xmF" = (
@@ -35957,6 +35968,7 @@
 	},
 /obj/machinery/power/apc{
 	name = "south bump";
+	nightshift_setting = 2;
 	pixel_y = -24
 	},
 /obj/effect/floor_decal/borderfloor{
@@ -72665,7 +72677,7 @@ jvB
 fOc
 sCn
 uEC
-jbK
+wDZ
 fOc
 sCn
 fXT
