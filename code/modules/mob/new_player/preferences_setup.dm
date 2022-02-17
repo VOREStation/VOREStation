@@ -259,6 +259,7 @@
 	mannequin.update_transform() //VOREStation Edit to update size/shape stuff.
 	mannequin.toggle_tail(setting = TRUE)
 	mannequin.toggle_wing(setting = TRUE)
+	mannequin.update_tail_showing()
 	COMPILE_OVERLAYS(mannequin)
 
 	update_character_previews(new /mutable_appearance(mannequin))
