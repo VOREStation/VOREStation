@@ -190,7 +190,12 @@
 				var/clr
 				if(get_trait(TRAIT_BIOLUM_COLOUR))
 					clr = get_trait(TRAIT_BIOLUM_COLOUR)
-				splat.set_light(get_trait(TRAIT_BIOLUM), l_color = clr)
+				//VOREStation Edit Start - Tons of super bright super long range lights everywhere is annoying and laggy, so let's limit it a bit.
+				var/blight = get_trait(TRAIT_BIOLUM)
+				if(blight >= 5)
+					blight = 5
+				splat.set_light(blight, 0.5, l_color = clr)
+				//VOREStation Edit End
 			var/flesh_colour = get_trait(TRAIT_FLESH_COLOUR)
 			if(!flesh_colour) flesh_colour = get_trait(TRAIT_PRODUCT_COLOUR)
 			if(flesh_colour) splat.color = get_trait(TRAIT_PRODUCT_COLOUR)
@@ -836,8 +841,12 @@
 				var/clr
 				if(get_trait(TRAIT_BIOLUM_COLOUR))
 					clr = get_trait(TRAIT_BIOLUM_COLOUR)
-				product.set_light(get_trait(TRAIT_BIOLUM), l_color = clr)
-
+				//VOREStation Edit Start - Tons of super bright super long range lights everywhere is annoying and laggy, so let's limit it a bit.
+				var/blight = get_trait(TRAIT_BIOLUM)
+				if(blight >= 5)
+					blight = 5
+				product.set_light(blight, 0.5, l_color = clr)
+				//VOREStation Edit End
 			if(get_trait(TRAIT_STINGS))
 				product.force = 1
 
