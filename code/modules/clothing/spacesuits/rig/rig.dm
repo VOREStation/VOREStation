@@ -100,7 +100,7 @@
 	// Action button
 	action_button_name = "Hardsuit Interface"
 
-/obj/item/weapon/rig/New()
+/obj/item/weapon/rig/Initialize()
 	..()
 
 	suit_state = icon_state
