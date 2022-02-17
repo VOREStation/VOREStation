@@ -935,6 +935,16 @@
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "ninekitsune-tips"
 
+/datum/sprite_accessory/tail/hideableninetails
+    name = "Kitsune 9-in-1 tail, colourable (vwag)"
+    desc = ""
+    icon_state = "ninekitsune"
+    extra_overlay = "ninekitsune-tips"
+    do_colouration = TRUE
+    color_blend_mode = ICON_MULTIPLY
+    ani_state = "foxtail_w"
+    extra_overlay_w = "foxtail-tips_w"
+
 /datum/sprite_accessory/tail/shadekin_short
 	name = "Shadekin Short Tail, colorable"
 	desc = ""
