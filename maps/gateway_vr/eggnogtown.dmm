@@ -1502,6 +1502,7 @@
 "nd" = (
 /obj/structure/bed/double,
 /obj/structure/lattice,
+/obj/structure/curtain/black,
 /turf/simulated/open,
 /area/gateway/eggnogtown/houserhomestead)
 "ne" = (
@@ -3111,7 +3112,7 @@
 	},
 /obj/item/weapon/card/id{
 	access = list(777);
-	name = "Houser's secret hidde keycard";
+	name = "Houser's secret hidden keycard";
 	registered_name = "Houser"
 	},
 /obj/machinery/light/small{
