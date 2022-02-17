@@ -139,14 +139,14 @@
 
 	//Visual effects
 	var/T = get_turf(src)
-	new /obj/effect/gibspawner/human/xenochimera(T)
+	new /obj/effect/spawner/gibs/human/xenochimera(T)
 
 	revive_ready = world.time + 1 HOUR //set the cooldown
 
 /mob/living/carbon/human/proc/revivingreset() // keep this as a debug proc or potential future use
 		revive_ready = REVIVING_READY
 
-/obj/effect/gibspawner/human/xenochimera
+/obj/effect/spawner/gibs/human/xenochimera
 	fleshcolor = "#14AD8B"
 	bloodcolor = "#14AD8B"
 

@@ -22,13 +22,8 @@
 			damage *= B.overmind.blob_type.burn_multiplier
 		B.adjust_integrity(-damage)
 
-<<<<<<< HEAD
-	new/obj/effect/effect/sparks(src.loc)
-	new/obj/effect/effect/smoke/illumination(src.loc, 5, range=30, power=30, color="#FFFFFF")
-=======
 	new /obj/effect/vfx/sparks(src.loc)
 	new /obj/effect/vfx/smoke/illumination(src.loc, 5, 30, 30, "#FFFFFF")
->>>>>>> 0232be9531b... Repaths obj/effect/effect, datum/effect/effect [MDB_IGNORE] (#8312)
 
 	qdel(src)
 

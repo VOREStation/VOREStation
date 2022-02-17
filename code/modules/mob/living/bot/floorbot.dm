@@ -298,14 +298,9 @@
 	new /obj/item/device/assembly/prox_sensor(Tsec)
 	if(prob(50))
 		new /obj/item/robot_parts/l_arm(Tsec)
-<<<<<<< HEAD
-	new /obj/item/stack/tile/floor(Tsec, amount)
-	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
-=======
 	var/obj/item/stack/tile/floor/T = new /obj/item/stack/tile/floor(Tsec)
 	T.amount = amount
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
->>>>>>> 0232be9531b... Repaths obj/effect/effect, datum/effect/effect [MDB_IGNORE] (#8312)
 	s.set_up(3, 1, src)
 	s.start()
 	qdel(src)

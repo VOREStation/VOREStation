@@ -59,7 +59,7 @@
 
 /datum/reagent/firefighting_foam/touch_turf(var/turf/T, reac_volume)
 	if(reac_volume >= 1)
-		var/obj/effect/effect/foam/firefighting/F = (locate(/obj/effect/effect/foam/firefighting) in T)
+		var/obj/effect/vfx/foam/firefighting/F = (locate(/obj/effect/vfx/foam/firefighting) in T)
 		if(!F)
 			F = new(T)
 		else if(istype(F))

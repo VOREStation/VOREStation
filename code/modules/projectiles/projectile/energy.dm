@@ -66,11 +66,7 @@
 	..() //initial flash
 
 	//residual illumination
-<<<<<<< HEAD
-	new /obj/effect/effect/smoke/illumination(src.loc, rand(190,240) SECONDS, range=8, power=3, color=light_colour) //same lighting power as flare
-=======
 	new /obj/effect/vfx/smoke/illumination(src.loc, rand(190,240) SECONDS, 8, 3, light_colour) //same lighting power as flare
->>>>>>> 0232be9531b... Repaths obj/effect/effect, datum/effect/effect [MDB_IGNORE] (#8312)
 
 /obj/item/projectile/energy/electrode
 	name = "electrode"

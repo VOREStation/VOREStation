@@ -99,7 +99,7 @@
 "hI" = (
 /obj/effect/decal/remains,
 /obj/effect/decal/cleanable/blood,
-/obj/effect/gibspawner/human,
+/obj/effect/spawner/gibs/human,
 /turf/template_noop,
 /area/template_noop)
 "iy" = (
@@ -187,7 +187,7 @@
 /turf/simulated/floor/outdoors/dirt,
 /area/submap/drgnplateu)
 "vx" = (
-/obj/effect/gibspawner/human,
+/obj/effect/spawner/gibs/human,
 /obj/effect/decal/remains,
 /turf/template_noop,
 /area/template_noop)
@@ -365,7 +365,7 @@
 /turf/simulated/mineral/ignore_mapgen,
 /area/submap/drgnplateu)
 "Ze" = (
-/obj/effect/gibspawner/human,
+/obj/effect/spawner/gibs/human,
 /turf/simulated/floor/outdoors/dirt,
 /area/submap/drgnplateu)
 "ZD" = (

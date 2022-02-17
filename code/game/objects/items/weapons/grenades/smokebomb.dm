@@ -10,15 +10,9 @@
 	var/smoke_color
 	var/smoke_strength = 8
 
-<<<<<<< HEAD
-/obj/item/weapon/grenade/smokebomb/New()
-	..()
-	src.smoke = new /datum/effect/effect/system/smoke_spread/bad()
-=======
 /obj/item/weapon/grenade/smokebomb/Initialize()
 	. = ..()
 	src.smoke = new /datum/effect_system/smoke_spread/bad()
->>>>>>> 0232be9531b... Repaths obj/effect/effect, datum/effect/effect [MDB_IGNORE] (#8312)
 	src.smoke.attach(src)
 
 /obj/item/weapon/grenade/smokebomb/Destroy()

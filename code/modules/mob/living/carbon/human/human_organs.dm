@@ -181,21 +181,12 @@
 			if(!isbelly(loc)) //VOREStation Add
 				custom_emote(VISIBLE_MESSAGE, "drops what they were holding, their [E.name] malfunctioning!")
 
-<<<<<<< HEAD
-				var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
+				var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread()
 				spark_system.set_up(5, 0, src)
 				spark_system.attach(src)
 				spark_system.start()
 				spawn(10)
 					qdel(spark_system)
-=======
-			var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread()
-			spark_system.set_up(5, 0, src)
-			spark_system.attach(src)
-			spark_system.start()
-			spawn(10)
-				qdel(spark_system)
->>>>>>> 0232be9531b... Repaths obj/effect/effect, datum/effect/effect [MDB_IGNORE] (#8312)
 
 //Handles chem traces
 /mob/living/carbon/human/proc/handle_trace_chems()

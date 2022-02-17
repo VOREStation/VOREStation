@@ -100,13 +100,8 @@
 		/mob/living/silicon/robot/proc/robot_checklaws
 	)
 
-<<<<<<< HEAD
-/mob/living/silicon/robot/New(loc, var/unfinished = 0)
-	spark_system = new /datum/effect/effect/system/spark_spread()
-=======
 /mob/living/silicon/robot/Initialize(var/ml, var/unfinished = 0)
 	spark_system = new /datum/effect_system/spark_spread()
->>>>>>> 0232be9531b... Repaths obj/effect/effect, datum/effect/effect [MDB_IGNORE] (#8312)
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 
