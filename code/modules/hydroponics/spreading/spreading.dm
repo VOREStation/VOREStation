@@ -78,8 +78,7 @@
 
 /obj/effect/plant/New(var/newloc, var/datum/seed/newseed, var/obj/effect/plant/newparent)
 	//VOREStation Edit Start
-	var/obj/structure/stairs/s
-	if(istype(loc, /turf/simulated/open) || s in loc)
+	if(istype(loc, /turf/simulated/open))
 		qdel(src)
 	//VOREStation Edit End
 	..()

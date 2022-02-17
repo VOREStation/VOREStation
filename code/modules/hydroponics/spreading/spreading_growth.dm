@@ -5,9 +5,7 @@
 	for(var/check_dir in cardinal)
 		var/turf/simulated/T = get_step(get_turf(src), check_dir)
 		//VOREStation Edit Start - Vines can go up/down stairs, but don't register that they have done this, so do so infinitely, which is annoying and laggy.
-		if(/obj/structure/stairs in check_dir)
-			continue
-		else if(istype(T) && !istype(check_dir, /turf/simulated/open)) //Let's not have them go on open space where you can't really get to them.
+		if(istype(T) && !istype(check_dir, /turf/simulated/open)) //Let's not have them go on open space where you can't really get to them.
 			cardinal_neighbors |= T
 		//VOREStation Edit End
 	return cardinal_neighbors
@@ -119,9 +117,6 @@
 //Instead, they are created at their parent and then move to their destination.
 /obj/effect/plant/proc/spread_to(turf/target_turf)
 	//VOREStation Edit Start - Vines can go up/down stairs, but don't register that they have done this, so do so infinitely, which is annoying and laggy.
-	var/obj/structure/stairs/s
-	if(s in target_turf.contents)
-		return
 	if(istype(target_turf, /turf/simulated/open))
 		return			
 	//VOREStation Edit End
