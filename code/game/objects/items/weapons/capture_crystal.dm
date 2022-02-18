@@ -99,6 +99,10 @@
 	else if(bound_mob.client)
 		to_chat(bound_mob, "<span class='notice'>\The [owner] wishes for you to follow them.</span>")
 	else if(bound_mob in contents)
+		if(!bound_mob.ai_holder)
+			to_chat(M, "<span class='notice'>\The [src] emits an unpleasant tone... \The [bound_mob] is not able to follow your command.</span>")
+			playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
+			return
 		var/datum/ai_holder/AI = bound_mob.ai_holder
 		if(AI.leader)
 			to_chat(M, "<span class='notice'>\The [src] chimes~ \The [bound_mob] stopped following [AI.leader].</span>")
@@ -109,13 +113,17 @@
 	else if(!(bound_mob in view(M)))
 		to_chat(M, "<span class='notice'>\The [src] emits an unpleasant tone... \The [bound_mob] is not able to hear your command.</span>")
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
-	var/datum/ai_holder/AI = bound_mob.ai_holder
-	if(AI.leader)
-		to_chat(M, "<span class='notice'>\The [src] chimes~ \The [bound_mob] stopped following [AI.leader].</span>")
-		AI.lose_follow(AI.leader)
-	else
-		AI.set_follow(M)
-		to_chat(M, "<span class='notice'>\The [src] chimes~ \The [bound_mob] started following following [AI.leader].</span>")
+		if(!bound_mob.ai_holder)
+			to_chat(M, "<span class='notice'>\The [src] emits an unpleasant tone... \The [bound_mob] is not able to follow your command.</span>")
+			playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
+			return
+		var/datum/ai_holder/AI = bound_mob.ai_holder
+		if(AI.leader)
+			to_chat(M, "<span class='notice'>\The [src] chimes~ \The [bound_mob] stopped following [AI.leader].</span>")
+			AI.lose_follow(AI.leader)
+		else
+			AI.set_follow(M)
+			to_chat(M, "<span class='notice'>\The [src] chimes~ \The [bound_mob] started following following [AI.leader].</span>")
 
 //Don't really want people 'haha funny' capturing and releasing one another willy nilly. So! If you wanna release someone, you gotta destroy the thingy.
 //(Which is consistent with how it works with digestion anyway.)
