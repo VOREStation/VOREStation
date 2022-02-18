@@ -226,7 +226,7 @@
 	<br>Offers full protection against bright flashes/welders and full access to system alarm monitoring."
 	mode = "best"
 	flash_protection = FLASH_PROTECTION_MAJOR
-	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_STATUS_R,VIS_CH_BACKUP,VIS_CH_WANTED)
+	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_STATUS_R,VIS_CH_BACKUP,VIS_CH_WANTED,VIS_AUGMENTED)
 	action_button_name = "AR Console (All Alerts)"
 	tgarscreen_path = /datum/tgui_module/alarm_monitor/all/glasses
 
