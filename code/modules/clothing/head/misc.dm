@@ -538,3 +538,18 @@
 	icon_state = "marine"
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHAIR
 	body_parts_covered = HEAD|FACE|EYES
+
+//Laser Tag Helmets
+/obj/item/clothing/head/bluetag
+	name = "blue laser tag helmet"
+	desc = "Blue Pride, Station Wide."
+	icon_state = "bluetag"
+	flags_inv = HIDEEARS|BLOCKHEADHAIR
+	body_parts_covered = HEAD|EYES
+
+/obj/item/clothing/head/redtag
+	name = "red laser tag helmet"
+	desc = "Reputed to go faster."
+	icon_state = "redtag"
+	flags_inv = HIDEEARS|BLOCKHEADHAIR
+	body_parts_covered = HEAD|EYES
