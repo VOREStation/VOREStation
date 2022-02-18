@@ -6,10 +6,11 @@
 	desc = "A revolting, pulsating pile of flesh."
 	tt_desc = "morphus shapeshiftus"
 	icon = 'icons/mob/animal_vr.dmi'
-	icon_state = "morph"
-	icon_living = "morph"
-	icon_dead = "morph_dead"
+	icon_state = "new_morph"
+	icon_living = "new_morph"
+	icon_dead = "new_morph_dead"
 	icon_rest = null
+	color = "#658a62"
 	movement_cooldown = 1
 	status_flags = CANPUSH
 	pass_flags = PASSTABLE
@@ -25,8 +26,8 @@
 	max_n2 = 0
 
 	minbodytemp = 0
-	maxHealth = 250
-	health = 250
+	maxHealth = 50
+	health = 50
 	taser_kill = FALSE
 	melee_damage_lower = 15
 	melee_damage_upper = 20
@@ -53,7 +54,7 @@
 	var/morph_time = 0
 	var/our_size_multiplier = 1
 	var/original_ckey
-	var/prey_ckey
+	var/chosen_color
 	var/static/list/blacklist_typecache = typecacheof(list(
 	/obj/screen,
 	/obj/singularity,
@@ -63,6 +64,9 @@
 /mob/living/simple_mob/vore/hostile/morph/Initialize()
 	verbs += /mob/living/proc/ventcrawl
 	verbs += /mob/living/simple_mob/vore/hostile/morph/proc/take_over_prey
+	if(!istype(src, /mob/living/simple_mob/vore/hostile/morph/dominated_prey))
+		verbs += /mob/living/simple_mob/vore/hostile/morph/proc/morph_color
+
 	return ..()
 
 /mob/living/simple_mob/vore/hostile/morph/Destroy()
@@ -105,6 +109,7 @@
 	form = target
 
 	visible_message("<span class='warning'>[src] suddenly twists and changes shape, becoming a copy of [target]!</span>")
+	color = null
 	name = target.name
 	desc = target.desc
 	icon = target.icon
@@ -151,6 +156,8 @@
 	desc = initial(desc)
 
 	icon = initial(icon)
+	if(chosen_color)
+		color = chosen_color
 	icon_state = initial(icon_state)
 
 	alpha = initial(alpha)
@@ -237,6 +244,16 @@
 	else
 		..()
 
+/mob/living/simple_mob/vore/hostile/morph/proc/morph_color()
+	set name = "Pick Color"
+	set category = "Abilities"
+	set desc = "You can set your color!"
+	var/newcolor = input(usr, "Choose a color.", "", color) as color|null
+	if(newcolor)
+		color = newcolor
+		chosen_color = newcolor
+
+
 /mob/living/simple_mob/vore/hostile/morph/proc/take_over_prey()
 	set name = "Take Over Prey"
 	set category = "Abilities"
@@ -280,6 +297,7 @@
 	devourable = 0
 	var/mob/living/simple_mob/vore/hostile/morph/parent_morph
 	var/mob/living/carbon/human/prey_body
+	var/prey_ckey
 
 
 /mob/living/simple_mob/vore/hostile/morph/dominated_prey/New(loc, pckey, parent, prey)
