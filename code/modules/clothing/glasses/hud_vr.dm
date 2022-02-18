@@ -90,10 +90,12 @@
 		if(icon_state == "glasses")
 			to_chat(usr, "You darken the electrochromic lenses of \the [src] to one-way transparency.")
 			name = "[initial(name)] (shaded, pr)"
+			flags_inv |= HIDEEYES
 			icon_state = "sun"
 		else if(icon_state == "sun")
 			to_chat(usr, "You restore the electrochromic lenses of \the [src] to standard two-way transparency.")
 			name = "[initial(name)] (pr)"
+			flags_inv &= ~HIDEEYES
 			icon_state = "glasses"
 		else
 			to_chat(usr, "The [src] don't seem to support this functionality.")
@@ -101,10 +103,12 @@
 		if(icon_state == "glasses")
 			to_chat(usr, "You darken the electrochromic lenses of \the [src] to one-way transparency.")
 			name = "[initial(name)] (shaded)"
+			flags_inv |= HIDEEYES
 			icon_state = "sun"
 		else if(icon_state == "sun")
 			to_chat(usr, "You restore the electrochromic lenses of \the [src] to standard two-way transparency.")
 			name = "[initial(name)]"
+			flags_inv &= ~HIDEEYES
 			icon_state = "glasses"
 		else
 			to_chat(usr, "The [src] don't seem to support this functionality.")
