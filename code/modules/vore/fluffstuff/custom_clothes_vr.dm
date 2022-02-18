@@ -2419,3 +2419,11 @@ Departamental Swimsuits, for general use
 				H.update_inv_wear_suit()
 	else
 		RemoveHood_evelyn()
+
+//Uncle_Fruit_VEVO - Bradley Khatibi
+/obj/item/clothing/shoes/fluff/airjordans
+    name = "A pair of Air Jordan 1 Mid 'Black Gym Red's"
+    desc = "Appearing in a classic Jordan Brand colorway, the Air Jordan 1 Mid 'Black Gym Red' released in May 2021. Built with leather, the shoe's upper sports a white base, contrasted by black on the overlays and highlighted by Gym Red on the padded collar, 'Wings' logo and Swoosh branding. A breathable nylon tongue and perforated toe box support the fit, while underfoot, a standard rubber cupsole with Air in the heel anchors the build."
+    icon_state = "airjordans"
+    icon = 'icons/vore/custom_clothes_vr.dmi'
+    icon_override = 'icons/vore/custom_onmob_vr.dmi'
