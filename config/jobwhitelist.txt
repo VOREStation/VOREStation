@@ -1,5 +1,6 @@
 # Job whitelist in format ckey - jobname
 # Like arokha - clown
+auraribbon - clown
 awkwarddryad - mime
 akram - clown
 amshaegaar - mime

@@ -203,7 +203,7 @@
 	check_arrest = 0;
 	check_down = 0;
 	check_records = 0;
-	control_area = /area/submap/admin_upload/lo/pow;
+	control_area = /area/gateway/eggnogtown/houserhomestead/basement;
 	desc = "A firewall prevents AIs from interacting with this device.";
 	lethal_is_configurable = 0;
 	name = "DEATH RAY CONTROL";

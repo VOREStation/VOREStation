@@ -77,6 +77,10 @@
 	spread_chance = 0
 
 /obj/effect/plant/New(var/newloc, var/datum/seed/newseed, var/obj/effect/plant/newparent)
+	//VOREStation Edit Start
+	if(istype(loc, /turf/simulated/open))
+		qdel(src)
+	//VOREStation Edit End
 	..()
 
 	if(!newparent)
@@ -159,7 +163,12 @@
 		var/clr
 		if(seed.get_trait(TRAIT_BIOLUM_COLOUR))
 			clr = seed.get_trait(TRAIT_BIOLUM_COLOUR)
-		set_light(1+round(seed.get_trait(TRAIT_POTENCY)/20), l_color = clr)
+		//VOREStation Edit Start - Tons of super bright super long range lights everywhere is annoying and laggy, so let's limit it a bit.
+		var/blight = 1+round(seed.get_trait(TRAIT_POTENCY)/20)
+		if(blight >= 5)
+			blight = 5
+		set_light(blight, 0.5, l_color = clr)
+		//VOREStation Edit End
 		return
 	else
 		set_light(0)

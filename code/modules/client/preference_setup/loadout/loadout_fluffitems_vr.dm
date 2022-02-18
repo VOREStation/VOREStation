@@ -886,6 +886,12 @@
 	ckeywhitelist = list("residentcody")
 	character_name = list("Pathfinder")
 
+/datum/gear/fluff/revolver_claymore
+	path = /obj/item/weapon/sword/fluff/revolver
+	display_name = "Catnip"
+	ckeywhitelist = list("revolvereloise")
+	character_name = list("Revolver Eloise")
+
 /datum/gear/fluff/nikki_dorky_outfit
 	path = /obj/item/weapon/storage/box/fluff
 	display_name = "Nikki's Witchy Outfit"
