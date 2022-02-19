@@ -44,3 +44,4 @@
 	icon_state = "book1"
 	drop_sound = 'sound/bureaucracy/bookclose.ogg'
 	w_class = ITEMSIZE_NORMAL
+	var/max_storage_space = ITEMSIZE_COST_SMALL * 4
