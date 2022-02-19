@@ -20,7 +20,7 @@
 		//visible message on mobs is defined as visible_message(var/message, var/self_message, var/blind_message)
 		user.visible_message("<b>\The [user]</b> starts cutting hair off \the [src]", "<span class='notice'>You start cutting the hair off \the [src]</span>", "You hear the sound of a knife rubbing against flesh")
 		var/scraped = 0
-		while(amount > 0 && do_after(user, 2.5 SECONDS)) // 2.5s per hide
+		while(amount > 0 && do_after(user, 2.5 SECONDS, user))
 			//Try locating an exisitng stack on the tile and add to there if possible
 			var/obj/item/stack/hairlesshide/H = null
 			for(var/obj/item/stack/hairlesshide/HS in user.loc) // Could be scraping something inside a locker, hence the .loc, not get_turf

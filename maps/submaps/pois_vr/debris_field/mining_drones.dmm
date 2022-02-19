@@ -95,13 +95,6 @@
 	},
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_outpost)
-"r" = (
-/obj/random/multiple/underdark/ores,
-/obj/structure/closet/syndicate/resources{
-	name = "storage locker"
-	},
-/turf/simulated/floor/tiled/airless,
-/area/submap/debrisfield/mining_outpost)
 "s" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -303,7 +296,7 @@ d
 h
 m
 z
-r
+H
 g
 S
 g

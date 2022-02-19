@@ -231,3 +231,10 @@
 	icon = 'icons/obj/atm_fieldgen.dmi'
 	icon_state = "arfg_field"
 	density = TRUE
+
+/obj/machinery/atmospheric_field_generator/perma/underdoors
+	field_type = /obj/structure/atmospheric_retention_field/underdoors
+
+/obj/structure/atmospheric_retention_field/underdoors
+	plane = OBJ_PLANE
+	layer = UNDER_JUNK_LAYER

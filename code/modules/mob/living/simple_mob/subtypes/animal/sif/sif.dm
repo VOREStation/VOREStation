@@ -5,6 +5,6 @@
 	heat_resist = -0.5
 
 	tame_items = list(
-	/obj/item/weapon/reagent_containers/food/snacks/meat/crab = 20,
+	/obj/item/weapon/reagent_containers/food/snacks/crabmeat = 20,
 	/obj/item/weapon/reagent_containers/food/snacks/meat = 10
 	)

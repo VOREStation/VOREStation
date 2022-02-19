@@ -135,28 +135,6 @@
 /obj/effect/step_trigger/lost_in_space/tram
 	deathmessage = "You fly down the tunnel of the tram at high speed for a few moments before impact kills you with sheer concussive force."
 
-
-// Invisible object that blocks z transfer to/from its turf and the turf above.
-/obj/effect/ceiling
-	invisibility = 101 // nope cant see this
-	anchored = 1
-	can_atmos_pass = ATMOS_PASS_PROC
-
-/obj/effect/ceiling/CanZASPass(turf/T, is_zone)
-	if(T == GetAbove(src))
-		return FALSE // Keep your air up there, buddy
-	return TRUE
-
-/obj/effect/ceiling/CanPass(atom/movable/mover, turf/target)
-	if(target == GetAbove(src))
-		return FALSE
-	return TRUE
-
-/obj/effect/ceiling/Uncross(atom/movable/mover, turf/target)
-	if(target == GetAbove(src))
-		return FALSE
-	return TRUE
-
 //
 // TRAM STATION
 //
@@ -197,29 +175,6 @@
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/tram/powered()
 	return TRUE // Always be powered
 
-//Chemistry 'chemavator'
-/obj/machinery/smartfridge/chemistry/chemvator
-	name = "\improper Smart Chemavator - Upper"
-	desc = "A refrigerated storage unit for medicine and chemical storage. Now sporting a fancy system of pulleys to lift bottles up and down."
-	var/obj/machinery/smartfridge/chemistry/chemvator/attached
-
-/obj/machinery/smartfridge/chemistry/chemvator/down/Destroy()
-	attached = null
-	return ..()
-
-/obj/machinery/smartfridge/chemistry/chemvator/down
-	name = "\improper Smart Chemavator - Lower"
-
-/obj/machinery/smartfridge/chemistry/chemvator/down/Initialize()
-	. = ..()
-	var/obj/machinery/smartfridge/chemistry/chemvator/above = locate(/obj/machinery/smartfridge/chemistry/chemvator,get_zstep(src,UP))
-	if(istype(above))
-		above.attached = src
-		attached = above
-		item_records = attached.item_records
-	else
-		to_chat(world,"<span class='danger'>[src] at [x],[y],[z] cannot find the unit above it!</span>")
-
 // Tram departure cryo doors that turn into ordinary airlock doors at round end
 /obj/machinery/cryopod/robot/door/tram
 	name = "\improper Tram Station"
@@ -236,6 +191,7 @@
 	on_store_visible_message_2 = "to the colony"
 	time_till_despawn = 10 SECONDS
 	spawnpoint_type = /datum/spawnpoint/tram
+
 /obj/machinery/cryopod/robot/door/tram/process()
 	if(emergency_shuttle.online() || emergency_shuttle.returned())
 		// Transform into a door!  But first despawn anyone inside
@@ -260,27 +216,6 @@
 		var/mob/observer/dead/newghost = user.ghostize()
 		newghost.timeofdeath = world.time
 		despawn_occupant(user)
-
-// Tram arrival point landmarks and datum
-var/global/list/latejoin_tram   = list()
-
-/obj/effect/landmark/tram
-	name = "JoinLateTram"
-	delete_me = 1
-
-/obj/effect/landmark/tram/New()
-	latejoin_tram += loc // Register this turf as tram latejoin.
-	latejoin += loc // Also register this turf as fallback latejoin, since we won't have any arrivals shuttle landmarks.
-	..()
-
-/datum/spawnpoint/tram
-	display_name = "Tram Station"
-	msg = "has arrived on the tram"
-
-/datum/spawnpoint/tram/New()
-	..()
-	turfs = latejoin_tram
-
 //
 // Holodorms
 //
@@ -329,30 +264,6 @@ var/global/list/latejoin_tram   = list()
 /obj/machinery/power/supermatter/touch_map_edge()
 	qdel(src)
 
-//Airlock antitox vendor
-/obj/machinery/vending/wallmed_airlock
-	name = "Airlock NanoMed"
-	desc = "Wall-mounted Medical Equipment dispenser. This limited-use version dispenses antitoxins with mild painkillers for surface EVAs."
-	icon_state = "wallmed"
-	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
-	products = list(/obj/item/weapon/reagent_containers/pill/airlock = 20)
-	contraband = list(/obj/item/weapon/reagent_containers/pill/tox = 2)
-	req_log_access = access_cmo
-	has_logs = 1
-
-/obj/machinery/vending/wallmed1/public
-	products = list(/obj/item/stack/medical/bruise_pack = 8,/obj/item/stack/medical/ointment = 8,/obj/item/weapon/reagent_containers/hypospray/autoinjector = 16,/obj/item/device/healthanalyzer = 4)
-
-/obj/item/weapon/reagent_containers/pill/airlock
-	name = "\'Airlock\' Pill"
-	desc = "Neutralizes toxins and provides a mild analgesic effect."
-	icon_state = "pill2"
-
-/obj/item/weapon/reagent_containers/pill/airlock/New()
-	..()
-	reagents.add_reagent("anti_toxin", 15)
-	reagents.add_reagent("paracetamol", 5)
-
 //"Red" Armory Door
 /obj/machinery/door/airlock/security/armory
 	name = "Red Armory"
@@ -364,41 +275,12 @@ var/global/list/latejoin_tram   = list()
 
 	return ..(user)
 
-// Used at centcomm for the elevator
-/obj/machinery/cryopod/robot/door/dorms
-	spawnpoint_type = /datum/spawnpoint/tram
-
 //Tether-unique network cameras
 /obj/machinery/camera/network/tether
 	network = list(NETWORK_TETHER)
 
-/obj/machinery/camera/network/tcomms
-	network = list(NETWORK_TCOMMS)
-
 /obj/machinery/camera/network/outside
 	network = list(NETWORK_OUTSIDE)
-
-/obj/machinery/camera/network/exploration
-	network = list(NETWORK_EXPLORATION)
-
-/obj/machinery/camera/network/research/xenobio
-	network = list(NETWORK_RESEARCH, NETWORK_XENOBIO)
-
-//Camera monitors
-/obj/machinery/computer/security/xenobio
-	name = "xenobiology camera monitor"
-	desc = "Used to access the xenobiology cell cameras."
-	icon_keyboard = "mining_key"
-	icon_screen = "mining"
-	network = list(NETWORK_XENOBIO)
-	circuit = /obj/item/weapon/circuitboard/security/xenobio
-	light_color = "#F9BBFC"
-
-/obj/item/weapon/circuitboard/security/xenobio
-	name = T_BOARD("xenobiology camera monitor")
-	build_path = /obj/machinery/computer/security/xenobio
-	network = list(NETWORK_XENOBIO)
-	req_access = list()
 //
 // ### Wall Machines On Full Windows ###
 // To make sure wall-mounted machines placed on full-tile windows are clickable they must be above the window

@@ -84,6 +84,9 @@
  * Ranger Hats
  */
 
+	//Missing onmob sprites.
+
+/*
 /obj/item/clothing/head/hardhat/ranger
 	var/hatcolor = "white"
 	name = "ranger helmet"
@@ -117,3 +120,4 @@
 
 /obj/item/clothing/head/hardhat/ranger/yellow
 	hatcolor = "yellow"
+*/

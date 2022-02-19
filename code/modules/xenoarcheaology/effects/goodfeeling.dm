@@ -23,6 +23,9 @@
 		"You're so happy suddenly, you almost want to dance and sing.",
 		"You feel like the world is out to help you.")
 
+	effect_state = "summoning"
+	effect_color = "#009118"
+
 /datum/artifact_effect/goodfeeling/DoEffectTouch(var/mob/user)
 	if(user)
 		if (istype(user, /mob/living/carbon/human))
@@ -37,6 +40,7 @@
 				H.dizziness += rand(3,5)
 
 /datum/artifact_effect/goodfeeling/DoEffectAura()
+	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/T = get_turf(holder)
 		for (var/mob/living/carbon/human/H in range(src.effectrange,T))
@@ -51,6 +55,7 @@
 		return 1
 
 /datum/artifact_effect/goodfeeling/DoEffectPulse()
+	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/T = get_turf(holder)
 		for (var/mob/living/carbon/human/H in range(src.effectrange,T))

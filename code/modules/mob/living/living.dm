@@ -19,8 +19,9 @@
 	selected_image = image(icon = buildmode_hud, loc = src, icon_state = "ai_sel")
 
 /mob/living/Destroy()
-	dsoverlay.loc = null //I'll take my coat with me
-	dsoverlay = null
+	if(dsoverlay)
+		dsoverlay.loc = null //I'll take my coat with me
+		dsoverlay = null
 	if(nest) //Ew.
 		if(istype(nest, /obj/structure/prop/nest))
 			var/obj/structure/prop/nest/N = nest
@@ -35,6 +36,9 @@
 	qdel(selected_image)
 	QDEL_NULL(vorePanel) //VOREStation Add
 	QDEL_LIST_NULL(vore_organs) //VOREStation Add
+	temp_language_sources = null //VOREStation Add
+	temp_languages = null //VOREStation Add
+
 
 	if(LAZYLEN(organs))
 		organs_by_name.Cut()
@@ -630,6 +634,9 @@
 		resist_grab()
 		if(!weakened)
 			process_resist()
+		else if(absorbed && isbelly(loc))			// Allow absorbed resistance
+			var/obj/belly/B = loc
+			B.relay_absorbed_resist(src)
 
 /mob/living/proc/process_resist()
 

@@ -95,3 +95,6 @@
 ///Species have sort_hint they self-generate to hint themselves into groups. After that, alphabetical.
 /proc/cmp_species(datum/species/A, datum/species/B)
 	return A.sort_hint == B.sort_hint ? sorttext("[B.name]","[A.name]") : A.sort_hint - B.sort_hint
+
+/proc/cmp_stored_item_name(datum/stored_item/A, datum/stored_item/B)
+	return sorttext(B.item_name, A.item_name)

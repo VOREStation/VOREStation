@@ -478,24 +478,6 @@
 	msg_prey_stepunder = "You jump over %prey's thick tail."
 	msg_owner_stepunder = "%owner bounds over your tail."
 
-/datum/sprite_accessory/tail/taur/shadekin_tail
-	name = "Shadekin Tail"
-	icon_state = "shadekin_s"
-	can_ride = 0
-	hide_body_parts = null
-	clip_mask_icon = null
-	clip_mask_state = null
-	//apply_restrictions = TRUE
-	//species_allowed = list(SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW)
-
-/datum/sprite_accessory/tail/taur/shadekin_tail/shadekin_tail_2c
-	name = "Shadekin Tail (dual color)"
-	extra_overlay = "shadekin_markings"
-
-/datum/sprite_accessory/tail/taur/shadekin_tail/shadekin_tail_long
-	name = "Shadekin Long Tail"
-	icon_state = "shadekin_long_s"
-
 /datum/sprite_accessory/tail/taur/pawcow // this grabs suit sprites from the normal cow, the outline is the same
 	name = "Cow w/ paws (Taur)"
 	icon_state = "pawcow_s"
@@ -595,3 +577,10 @@
 
 	msg_owner_grab_fail = "You step down onto %prey with one of your vines, forcing them onto the ground!"
 	msg_prey_grab_fail = "%owner steps down onto you with one of their vines, squishing you and forcing you onto the ground!"
+
+/datum/sprite_accessory/tail/taur/rat
+	name = "Rat (dual color)"
+	icon_state = "rat_s"
+	extra_overlay = "rat_markings"
+	clip_mask_state = "taur_clip_mask_rat"
+	icon_sprite_tag = "rat"

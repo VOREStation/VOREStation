@@ -183,3 +183,44 @@
 /obj/structure/closet/walllocker_double/hydrant/east
 	pixel_x = 32
 	dir = EAST
+
+/obj/structure/closet/walllocker_double/survival
+	desc = "A wall mounted storage cabinet. It contains a small amount of emergency supplies for wilderness survival, but they probably won't last very long."
+	name = "Emergency Survival Wall Cabinet"
+	icon = 'icons/obj/closets/bases/wall_double.dmi'
+	closet_appearance = /decl/closet_appearance/wall_double/survival
+	density = FALSE
+	anchored = TRUE
+	store_mobs = 0
+	wall_mounted = 1
+	plane = TURF_PLANE
+	layer = ABOVE_TURF_LAYER
+
+	starts_with = list(
+		/obj/item/clothing/suit/space/emergency,
+		/obj/item/clothing/head/helmet/space/emergency,
+		/obj/item/clothing/mask/breath,
+		/obj/item/weapon/tank/oxygen,
+		/obj/item/device/suit_cooling_unit/emergency,
+		/obj/item/device/gps,
+		/obj/item/weapon/material/knife/tacknife/survival,
+		/obj/random/mre,
+		/obj/item/device/flashlight/color/yellow,
+		/obj/item/device/flashlight/flare,
+		/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle)
+
+/obj/structure/closet/walllocker_double/survival/north
+	pixel_y = 32
+	dir = SOUTH
+
+/obj/structure/closet/walllocker_double/survival/south
+	pixel_y = -32
+	dir = NORTH
+
+/obj/structure/closet/walllocker_double/survival/west
+	pixel_x = -32
+	dir = WEST
+
+/obj/structure/closet/walllocker_double/survival/east
+	pixel_x = 32
+	dir = EAST
