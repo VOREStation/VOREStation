@@ -8771,14 +8771,18 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/surface/station/ai_monitored/storage/eva)
 "fSH" = (
-/obj/machinery/computer/general_air_control/supermatter_core{
-	dir = 8
-	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
 	},
 /obj/effect/floor_decal/corner/yellow/border{
 	dir = 4
+	},
+/obj/machinery/computer/general_air_control/supermatter_core{
+	dir = 8;
+	input_tag = "cooling_in";
+	name = "Engine Cooling Control";
+	output_tag = "cooling_out";
+	sensors = list("engine_sensor" = "Engine Core")
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/engineering/reactor_monitoring)

@@ -94,7 +94,7 @@
 	},
 /obj/machinery/access_button{
 	command = "cycle_interior";
-	frequency = 1331;
+	frequency = 1380;
 	master_tag = "ninja_shuttle";
 	name = "interior access button";
 	pixel_x = -25;
@@ -530,7 +530,7 @@
 /obj/machinery/atmospherics/pipe/manifold4w/visible,
 /obj/machinery/access_button{
 	command = "cycle_interior";
-	frequency = 1331;
+	frequency = 1380;
 	master_tag = "merc_shuttle";
 	name = "interior access button";
 	pixel_x = 25;
@@ -797,7 +797,7 @@
 "aTS" = (
 /obj/machinery/access_button{
 	command = "cycle_exterior";
-	frequency = 1331;
+	frequency = 1380;
 	master_tag = "vox_west_control";
 	req_one_access = list(150)
 	},
@@ -1267,7 +1267,7 @@
 	opacity = 0
 	},
 /obj/machinery/door/airlock/voidcraft{
-	frequency = 1331;
+	frequency = 1380;
 	id_tag = "merc_shuttle_outer";
 	name = "Ship External Access";
 	req_access = list(150)
@@ -1786,7 +1786,7 @@
 /area/holodeck/source_courtroom)
 "ccc" = (
 /obj/machinery/airlock_sensor{
-	frequency = 1331;
+	frequency = 1380;
 	id_tag = "ninja_shuttle_sensor";
 	pixel_y = 28
 	},
@@ -2055,7 +2055,7 @@
 /area/syndicate_station)
 "ctM" = (
 /obj/machinery/door/airlock/hatch{
-	frequency = 1331;
+	frequency = 1380;
 	id_tag = "vox_southwest_lock";
 	req_access = list(150)
 	},
@@ -2292,7 +2292,7 @@
 /area/shuttle/supply)
 "cKC" = (
 /obj/machinery/airlock_sensor{
-	frequency = 1331;
+	frequency = 1380;
 	id_tag = "vox_east_sensor";
 	pixel_x = -25
 	},
@@ -2789,8 +2789,8 @@
 "dqX" = (
 /obj/machinery/access_button{
 	command = "cycle_exterior";
-	frequency = 1331;
-	master_tag = "vox_east_control";
+	frequency = 1380;
+	master_tag = "skipjack_shuttle";
 	req_access = list(150)
 	},
 /turf/simulated/wall/skipjack,
@@ -4011,7 +4011,7 @@
 /area/ninja_dojo/start)
 "eOt" = (
 /obj/machinery/door/airlock/voidcraft/vertical{
-	frequency = 1331;
+	frequency = 1380;
 	id_tag = "ninja_shuttle_outer";
 	name = "Ship External Hatch";
 	req_access = list(150)
@@ -4327,8 +4327,8 @@
 /obj/machinery/atmospherics/pipe/simple/visible,
 /obj/machinery/access_button{
 	command = "cycle_interior";
-	frequency = 1331;
-	master_tag = "vox_east_control";
+	frequency = 1380;
+	master_tag = "skipjack_shuttle";
 	pixel_x = 22;
 	req_access = list(150)
 	},
@@ -4344,6 +4344,15 @@
 	name = "plating"
 	},
 /area/skipjack_station)
+"fgd" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/darkred,
+/area/shuttle/syndicate_elite/mothership)
 "fhd" = (
 /obj/structure/table/rack,
 /obj/item/weapon/gun/projectile/automatic/wt550,
@@ -4979,13 +4988,12 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/obj/machinery/embedded_controller/radio/airlock/docking_port{
-	frequency = 1331;
+/obj/machinery/embedded_controller/radio/simple_docking_controller{
+	frequency = 1380;
 	id_tag = "merc_elite_shuttle";
-	pixel_x = -24;
-	pixel_y = -2;
-	req_access = list(150);
-	tag_exterior_door = "merc_elite_shuttle_hatch"
+	pixel_x = -25;
+	req_one_access = list(150);
+	tag_door = "merc_elite_shuttle_hatch"
 	},
 /turf/simulated/shuttle/floor/darkred,
 /area/shuttle/syndicate_elite/mothership)
@@ -6931,7 +6939,7 @@
 /area/syndicate_station/start)
 "idR" = (
 /obj/machinery/embedded_controller/radio/airlock/airlock_controller{
-	frequency = 1331;
+	frequency = 1380;
 	id_tag = "vox_west_control";
 	pixel_x = 24;
 	req_access = list(150);
@@ -6942,7 +6950,7 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
-	frequency = 1331;
+	frequency = 1380;
 	id_tag = "vox_west_vent"
 	},
 /obj/machinery/light/small,
@@ -8983,7 +8991,7 @@
 "kqh" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
-	frequency = 1331;
+	frequency = 1380;
 	id_tag = "merc_shuttle_pump"
 	},
 /obj/machinery/light/small,
@@ -8994,7 +9002,7 @@
 /area/skipjack_station/start)
 "kqS" = (
 /obj/machinery/airlock_sensor{
-	frequency = 1331;
+	frequency = 1380;
 	id_tag = "vox_west_sensor";
 	pixel_x = 25
 	},
@@ -10883,7 +10891,7 @@
 /area/holodeck/source_picnicarea)
 "mrF" = (
 /obj/machinery/door/airlock/hatch{
-	frequency = 1331;
+	frequency = 1380;
 	id_tag = "vox_southeast_lock";
 	req_access = list(150)
 	},
@@ -11582,6 +11590,9 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/simulated/shuttle/floor/darkred,
 /area/shuttle/syndicate_elite/mothership)
 "ngK" = (
@@ -11761,7 +11772,7 @@
 /area/centcom/specops)
 "nsa" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	frequency = 1331;
+	frequency = 1380;
 	id_tag = "vox_west_vent"
 	},
 /turf/simulated/shuttle/plating,
@@ -12228,7 +12239,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/voidcraft/vertical{
-	frequency = 1331;
+	frequency = 1380;
 	id_tag = "ninja_shuttle_inner";
 	name = "Ship Internal Hatch";
 	req_access = list(150)
@@ -12601,7 +12612,7 @@
 /area/syndicate_station/start)
 "otk" = (
 /obj/machinery/door/airlock/hatch{
-	frequency = 1331;
+	frequency = 1380;
 	id_tag = "vox_northeast_lock";
 	req_access = list(150)
 	},
@@ -13651,7 +13662,7 @@
 "pFK" = (
 /obj/machinery/access_button{
 	command = "cycle_interior";
-	frequency = 1331;
+	frequency = 1380;
 	master_tag = "merc_shuttle";
 	name = "interior access button";
 	pixel_x = -25;
@@ -14779,7 +14790,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible,
 /obj/machinery/access_button{
 	command = "cycle_interior";
-	frequency = 1331;
+	frequency = 1380;
 	master_tag = "vox_west_control";
 	pixel_x = -22;
 	req_one_access = list(150)
@@ -15526,7 +15537,7 @@
 "rzx" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
-	frequency = 1331;
+	frequency = 1380;
 	id_tag = "merc_shuttle_pump"
 	},
 /obj/effect/shuttle_landmark{
@@ -15676,7 +15687,7 @@
 /area/syndicate_station/start)
 "rGU" = (
 /obj/machinery/door/airlock/voidcraft/vertical{
-	frequency = 1331;
+	frequency = 1380;
 	id_tag = "merc_shuttle_inner";
 	name = "Ship External Access";
 	req_access = list(150)
@@ -15688,7 +15699,7 @@
 /area/syndicate_station/start)
 "rHT" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
-	frequency = 1331;
+	frequency = 1380;
 	id_tag = "vox_east_vent"
 	},
 /turf/simulated/shuttle/plating,
@@ -15731,7 +15742,7 @@
 "rKS" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 8;
-	frequency = 1331;
+	frequency = 1380;
 	id_tag = "merc_shuttle_pump"
 	},
 /turf/simulated/shuttle/floor/voidcraft/dark,
@@ -15837,10 +15848,10 @@
 /area/centcom/main_hall)
 "rOP" = (
 /obj/machinery/atmospherics/pipe/manifold/visible{
-	dir = 8
+	dir = 4
 	},
 /obj/machinery/door/airlock/voidcraft/vertical{
-	frequency = 1331;
+	frequency = 1380;
 	id_tag = "merc_shuttle_inner";
 	name = "Ship External Access";
 	req_access = list(150)
@@ -17084,18 +17095,18 @@
 "teW" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
-	frequency = 1331;
+	frequency = 1380;
 	id_tag = "merc_shuttle_pump"
 	},
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
-	frequency = 1331;
+	frequency = 1380;
 	id_tag = "merc_shuttle";
 	pixel_x = 24;
 	pixel_y = -2;
 	req_access = list(150)
 	},
 /obj/machinery/airlock_sensor{
-	frequency = 1331;
+	frequency = 1380;
 	id_tag = "merc_shuttle_sensor";
 	pixel_x = 28;
 	pixel_y = 8
@@ -17213,10 +17224,7 @@
 	},
 /area/skipjack_station)
 "tnL" = (
-/turf/simulated/shuttle/wall/dark{
-	hard_corner = 1;
-	join_group = "shuttle_ert"
-	},
+/turf/simulated/shuttle/wall/dark/hard_corner,
 /area/shuttle/response_ship/start)
 "tos" = (
 /obj/machinery/light{
@@ -20354,7 +20362,7 @@
 /area/syndicate_station/start)
 "wJs" = (
 /obj/machinery/door/airlock/hatch{
-	frequency = 1331;
+	frequency = 1380;
 	id_tag = "vox_northwest_lock";
 	req_access = list(150)
 	},
@@ -20402,12 +20410,12 @@
 "wNk" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
-	frequency = 1331;
+	frequency = 1380;
 	id_tag = "vox_east_vent"
 	},
 /obj/machinery/light/small,
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
-	frequency = 1331;
+	frequency = 1380;
 	id_tag = "skipjack_shuttle";
 	pixel_x = -24;
 	req_access = list(150);
@@ -21809,14 +21817,14 @@
 /area/shuttle/escape/centcom)
 "ymb" = (
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
-	frequency = 1331;
+	frequency = 1380;
 	id_tag = "ninja_shuttle";
 	pixel_y = -25;
 	req_access = list(150)
 	},
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4;
-	frequency = 1331;
+	frequency = 1380;
 	id_tag = "ninja_shuttle_pump"
 	},
 /obj/machinery/button/remote/blast_door{
@@ -85785,7 +85793,7 @@ dFI
 eUF
 eUF
 fSe
-fSe
+fgd
 hht
 iai
 iSX

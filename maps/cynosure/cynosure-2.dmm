@@ -2056,6 +2056,12 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/surface/station/ai/upload_foyer)
+"aZV" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark,
+/area/surface/station/engineering/hallway)
 "aZZ" = (
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/effect/floor_decal/borderfloorwhite/corner{
@@ -6768,7 +6774,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/window/reinforced,
 /turf/simulated/floor/tiled,
 /area/surface/station/engineering/hallway)
 "dfs" = (
@@ -8592,7 +8597,6 @@
 /obj/machinery/camera/network/medbay{
 	c_tag = "MED - Operating Theatre 2"
 	},
-/obj/machinery/optable,
 /turf/simulated/floor/tiled/white,
 /area/surface/station/medical/surgery2)
 "ecL" = (
@@ -14432,12 +14436,8 @@
 /area/surface/station/crew_quarters/heads/hop)
 "gEG" = (
 /obj/machinery/power/smes/buildable{
-<<<<<<< HEAD
-	RCon_tag = "Solar - Northeast";
-=======
 	RCon_tag = "Solar - West";
 	cur_coils = 2;
->>>>>>> 339281e2f8d... Merge pull request #8382 from PrismaticGynoid/mapfixes8
 	input_attempt = 1;
 	input_level = 300000;
 	output_level = 200000
@@ -21729,6 +21729,10 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/structure/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
 /obj/machinery/power/sensor{
 	name = "Powernet Sensor - Master Grid";
 	name_tag = "Master"
@@ -22531,6 +22535,9 @@
 /area/surface/station/medical/emt_bay)
 "kxM" = (
 /obj/structure/stairs/spawner/east,
+/obj/structure/railing{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/dark,
 /area/surface/station/engineering/hallway)
 "kyJ" = (
@@ -25996,9 +26003,6 @@
 	dir = 6
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals_central7,
-/obj/machinery/recharger/wallcharger{
-	pixel_x = 32
-	},
 /obj/structure/table/steel_reinforced,
 /obj/item/ammo_magazine/s45/practice,
 /obj/item/ammo_magazine/s45/practice,
@@ -26015,6 +26019,12 @@
 /obj/item/ammo_magazine/m9mmt/practice,
 /obj/item/weapon/storage/box/blanks/large,
 /obj/item/weapon/storage/box/blanks/large,
+/obj/machinery/magnetic_controller{
+	autolink = 1;
+	density = 0;
+	dir = 4;
+	pixel_x = 30
+	},
 /turf/simulated/floor/tiled,
 /area/surface/station/security/range)
 "maD" = (
@@ -31500,6 +31510,10 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/surface/station/medical/reception)
+"otX" = (
+/obj/machinery/optable,
+/turf/simulated/floor/tiled/white,
+/area/surface/station/medical/surgery2)
 "oub" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -37594,7 +37608,6 @@
 /obj/machinery/camera/network/medbay{
 	c_tag = "MED - Operating Theatre 1"
 	},
-/obj/machinery/optable,
 /turf/simulated/floor/tiled/white,
 /area/surface/station/medical/surgery)
 "qVW" = (
@@ -39226,6 +39239,10 @@
 /obj/random/maintenance/clean,
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/surgery)
+"rIW" = (
+/obj/machinery/optable,
+/turf/simulated/floor/tiled/white,
+/area/surface/station/medical/surgery)
 "rJl" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
@@ -42585,6 +42602,10 @@
 	},
 /obj/machinery/recharger/wallcharger{
 	pixel_x = 32
+	},
+/obj/machinery/recharger/wallcharger{
+	pixel_x = 32;
+	pixel_y = -10
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/security/range)
@@ -47994,7 +48015,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/window/reinforced,
 /turf/simulated/floor/tiled,
 /area/surface/station/engineering/hallway)
 "vNz" = (
@@ -86168,7 +86188,7 @@ dns
 red
 kBa
 kMw
-psC
+rIW
 lVJ
 ykd
 suW
@@ -88738,7 +88758,7 @@ bBP
 vJx
 esD
 dRW
-ycR
+otX
 vVA
 uBt
 toG
@@ -92132,7 +92152,7 @@ ekV
 eJU
 rxO
 dfk
-lsu
+aZV
 dlE
 sUN
 drL
