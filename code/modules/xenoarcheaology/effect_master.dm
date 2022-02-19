@@ -346,6 +346,12 @@
 			my_effect.UpdateMove()
 
 /datum/component/artifact_master/process()
+	if(!holder)	// Some instances can be created and rapidly lose their holder, if they are destroyed rapidly on creation. IE, during excavation.
+		STOP_PROCESSING(SSobj, src)
+		if(!QDELETED(src))
+			qdel(src)
+			return
+
 	var/turf/L = holder.loc
 	if(!istype(L) && !isliving(L)) 	// We're inside a non-mob container or on null turf, either way stop processing effects
 		return

@@ -65,13 +65,13 @@
 	if(charges >= 10)
 		charges -= 10
 		var/manifestation = pick(/obj/item/device/soulstone, /mob/living/simple_mob/faithless/cult/strong, /mob/living/simple_mob/creature/cult/strong, /mob/living/simple_mob/animal/space/bats/cult/strong)
-		new manifestation(get_turf(pick(view(1,T))))
+		new manifestation(pick(RANGE_TURFS(1,T)))
 
 	if(charges >= 3)
 		if(prob(5))
 			charges -= 1
 			var/spawn_type = pick(/mob/living/simple_mob/animal/space/bats, /mob/living/simple_mob/creature, /mob/living/simple_mob/faithless)
-			new spawn_type(get_turf(pick(view(1,T))))
+			new spawn_type(pick(RANGE_TURFS(1,T)))
 			playsound(holder, pick('sound/hallucinations/growl1.ogg','sound/hallucinations/growl2.ogg','sound/hallucinations/growl3.ogg'), 50, 1, -3)
 
 	if(charges >= 1 && nearby_mobs.len && prob(15 * nearby_mobs.len))
