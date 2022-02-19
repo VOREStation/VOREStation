@@ -36,3 +36,11 @@
 
 /obj/item/weapon/storage/box/brainzsnax/red
 	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/canned/brainzsnax/red = 6)
+
+/obj/item/weapon/storage/box/book
+	name = "storage box"
+	desc = "a hollow box for storage"
+	icon = 'icons/obj/library.dmi'
+	icon_state = "book1"
+	drop_sound = 'sound/bureaucracy/bookclose.ogg'
+	w_class = ITEMSIZE_NORMAL

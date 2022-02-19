@@ -81,3 +81,8 @@
 	path = /obj/item/weapon/storage/backpack/satchel/strapless
 	slot = slot_back
 	cost = 1
+
+/datum/gear/utility/storage/box/book
+	display_name = "storage book"
+	path = /obj/item/weapon/storage/box/book
+	cost = 3
