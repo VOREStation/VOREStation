@@ -58,37 +58,6 @@
 	reagents.remove_reagent("triglyceride", INFINITY)
 	//Chicken is low fat. Less total calories than other meats
 
-/obj/item/weapon/reagent_containers/food/snacks/carpmeat
-	name = "fillet"
-	desc = "A fillet of carp meat"
-	icon_state = "fishfillet"
-	filling_color = "#FFDEFE"
-	center_of_mass = list("x"=17, "y"=13)
-	bitesize = 6
-
-	var/toxin_type = "carpotoxin"
-	var/toxin_amount = 3
-
-/obj/item/weapon/reagent_containers/food/snacks/carpmeat/Initialize()
-	. = ..()
-	reagents.add_reagent("protein", 3)
-	reagents.add_reagent(toxin_type, toxin_amount)
-
-/obj/item/weapon/reagent_containers/food/snacks/carpmeat/sif
-	desc = "A fillet of sivian fish meat."
-	filling_color = "#2c2cff"
-	color = "#2c2cff"
-	toxin_type = "neurotoxic_protein"
-	toxin_amount = 2
-
-/obj/item/weapon/reagent_containers/food/snacks/carpmeat/sif/murkfish
-	toxin_type = "murk_protein"
-
-/obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish
-	desc = "A fillet of fish meat."
-	toxin_type = "neurotoxic_protein"
-	toxin_amount = 1
-
 /obj/item/weapon/reagent_containers/food/snacks/crabmeat
 	name = "crustacean legs"
 	desc = "... Coffee? Is that you?"
