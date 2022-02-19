@@ -26,6 +26,10 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/tether_midpoint)
+"cC" = (
+/obj/effect/landmark/vermin,
+/turf/simulated/floor/wood,
+/area/tether/midpoint)
 "cH" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -370,6 +374,10 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/turf/simulated/floor/wood,
+/area/tether/midpoint)
+"zr" = (
+/obj/effect/landmark/vines,
 /turf/simulated/floor/wood,
 /area/tether/midpoint)
 "zG" = (
@@ -8916,7 +8924,7 @@ kz
 Et
 zi
 pK
-pK
+zr
 pK
 pK
 pK
@@ -10762,7 +10770,7 @@ kz
 Et
 Pz
 Or
-pK
+cC
 pK
 pK
 Tz

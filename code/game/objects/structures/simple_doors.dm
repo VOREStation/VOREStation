@@ -71,6 +71,7 @@
 	return TryToSwitchState(user)
 
 /obj/structure/simple_door/AltClick(mob/user as mob)
+	. = ..()
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(!Adjacent(user))
 		return
@@ -78,7 +79,7 @@
 		src.visible_message("<span class='warning'>[user] hammers on \the [src]!</span>", "<span class='warning'>Someone hammers loudly on \the [src]!</span>")
 		src.add_fingerprint(user)
 		playsound(src, knock_hammer_sound, 50, 0, 3)
-	else
+	else if(user.a_intent == I_HELP)
 		src.visible_message("[user] knocks on \the [src].", "Someone knocks on \the [src].")
 		src.add_fingerprint(user)
 		playsound(src, knock_sound, 50, 0, 3)
@@ -156,7 +157,7 @@
 		visible_message("<span class='danger'>[user] hits [src] with [W]!</span>")
 		if(material == get_material_by_name("resin"))
 			playsound(src, 'sound/effects/attackblob.ogg', 100, 1)
-		else if(material == (get_material_by_name(MAT_WOOD) || get_material_by_name(MAT_SIFWOOD)))
+		else if(material == (get_material_by_name(MAT_WOOD) || get_material_by_name(MAT_SIFWOOD) || get_material_by_name(MAT_HARDWOOD)))
 			playsound(src, 'sound/effects/woodcutting.ogg', 100, 1)
 		else
 			playsound(src, 'sound/weapons/smash.ogg', 50, 1)
@@ -181,7 +182,7 @@
 	visible_message("<span class='danger'>[user] [attack_verb] the [src]!</span>")
 	if(material == get_material_by_name("resin"))
 		playsound(src, 'sound/effects/attackblob.ogg', 100, 1)
-	else if(material == (get_material_by_name(MAT_WOOD) || get_material_by_name(MAT_SIFWOOD)))
+	else if(material == (get_material_by_name(MAT_WOOD) || get_material_by_name(MAT_SIFWOOD) || get_material_by_name(MAT_HARDWOOD)))
 		playsound(src, 'sound/effects/woodcutting.ogg', 100, 1)
 	else
 		playsound(src, 'sound/weapons/smash.ogg', 50, 1)
@@ -242,6 +243,9 @@
 /obj/structure/simple_door/wood/Initialize(mapload,var/material_name)
 	..(mapload, material_name || MAT_WOOD)
 	knock_sound = 'sound/machines/door/knock_wood.wav'
+
+/obj/structure/simple_door/hardwood/Initialize(mapload,var/material_name)
+	..(mapload, material_name || MAT_HARDWOOD)
 
 /obj/structure/simple_door/sifwood/Initialize(mapload,var/material_name)
 	..(mapload, material_name || MAT_SIFWOOD)

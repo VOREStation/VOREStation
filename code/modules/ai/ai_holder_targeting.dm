@@ -4,7 +4,8 @@
 	var/hostile = FALSE						// Do we try to hurt others?
 	var/retaliate = FALSE					// Attacks whatever struck it first. Mobs will still attack back if this is false but hostile is true.
 	var/mauling = FALSE						// Attacks unconscious mobs
-	var/handle_corpse = FALSE					// Allows AI to acknowledge corpses (e.g. nurse spiders)
+	var/unconscious_vore = FALSE			//VOREStation Add - allows a mob to go for unconcious targets IF their vore prefs align
+	var/handle_corpse = FALSE				// Allows AI to acknowledge corpses (e.g. nurse spiders)
 
 	var/atom/movable/target = null			// The thing (mob or object) we're trying to kill.
 	var/atom/movable/preferred_target = null// If set, and if given the chance, we will always prefer to target this over other options.
@@ -129,6 +130,14 @@
 			if(L.stat == UNCONSCIOUS)	// Do we have mauling? Yes? Then maul people who are sleeping but not SSD
 				if(mauling)
 					return TRUE
+				//VOREStation Add Start
+				else if(unconscious_vore && L.allowmobvore)
+					var/mob/living/simple_mob/vore/eater = holder
+					if(eater.will_eat(L))
+						return TRUE
+					else
+						return FALSE
+				//VOREStation Add End
 				else
 					return FALSE
 		if(holder.IIsAlly(L))

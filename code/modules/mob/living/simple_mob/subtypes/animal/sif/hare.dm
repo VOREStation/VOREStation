@@ -58,7 +58,10 @@
 	response_disarm = "nudges"
 	response_harm   = "kicks"
 
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	organ_names = /decl/mob_organ_names/hare
+
+
+	meat_amount = 1
 
 	say_list_type = /datum/say_list/hare
 
@@ -66,3 +69,6 @@
 	speak = list("Snrf...","Crk!")
 	emote_hear = list("crackles","sniffles")
 	emote_see = list("stomps the ground", "sniffs the air", "chews on something")
+
+/decl/mob_organ_names/hare
+	hit_zones = list("head", "chest", "left foreleg", "right foreleg", "left hind leg", "right hind leg", "left head spike", "right head spike")

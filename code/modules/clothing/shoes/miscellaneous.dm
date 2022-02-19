@@ -166,7 +166,7 @@
 
 /obj/item/clothing/shoes/athletic
 	name = "athletic shoes"
-	desc = "A pair of sleek atheletic shoes. Made by and for the sporty types."
+	desc = "A pair of sleek athletic shoes. Made by and for the sporty types."
 	icon_state = "sportshoe"
 	addblends = "sportshoe_a"
 	item_state_slots = list(slot_r_hand_str = "sportheld", slot_l_hand_str = "sportheld")

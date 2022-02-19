@@ -190,3 +190,14 @@
 	icon_override = 'icons/inventory/back/mob_vr.dmi'
 	item_state = "kr_rucksack"
 	icon_state = "kr_rucksack"
+
+
+//strapless
+/obj/item/weapon/storage/backpack/satchel/strapless
+	name = "strapless satchel"
+	desc = "A satchel for carrying a large number of supplies easily. Without Straps"
+	icon = 'icons/inventory/back/item_vr.dmi'
+	icon_override = 'icons/inventory/back/mob_vr.dmi'
+	icon_state = "satchel_strapless"
+	item_state_slots = null
+

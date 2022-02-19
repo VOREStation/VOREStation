@@ -235,7 +235,7 @@
 	base_color = "#333333"
 
 	reagent_tag = IS_TAJARA
-	allergens = ALLERGEN_COFFEE
+	allergens = ALLERGEN_STIMULANT
 
 	move_trail = /obj/effect/decal/cleanable/blood/tracks/paw
 
@@ -467,6 +467,8 @@
 		if(!(K in covered))
 			H.apply_damage(light_amount/4, BURN, K, 0, 0, "Abnormal growths")
 
+/datum/species/zaddat/get_perfect_belly_air_type()
+	return /datum/gas_mixture/belly_air/zaddat
 
 /datum/species/diona
 	name = SPECIES_DIONA

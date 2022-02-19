@@ -268,6 +268,13 @@
 	time = 15
 	materials = list(MAT_STEEL = 2000, MAT_GLASS = 750, MAT_PLASTIC = 500)
 
+/datum/design/item/prosfab/pros/internal/stomach
+	name = "Prosthetic Stomach"
+	id = "pros_stomach"
+	build_path = /obj/item/organ/internal/stomach
+	time = 15
+	materials = list(MAT_STEEL = 5625, MAT_GLASS = 1000)
+
 //////////////////// Cyborg Parts ////////////////////
 /datum/design/item/prosfab/cyborg
 	category = list("Cyborg Parts")

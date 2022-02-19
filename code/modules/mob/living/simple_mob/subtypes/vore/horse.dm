@@ -23,7 +23,7 @@
 	melee_damage_upper = 5
 	attacktext = list("kicked")
 
-	meat_amount = 4
+	meat_amount = 6
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
 
 	max_buckled_mobs = 1 //Yeehaw
@@ -49,7 +49,7 @@
 	melee_damage_upper = 15
 	attacktext = list("kicked")
 
-	meat_amount = 6
+	meat_amount = 10
 
 	old_x = -16
 	old_y = 0

@@ -679,6 +679,10 @@
 	if(!Adjacent(usr))
 		return
 
+	//VOREStation Add: No turf dumping if user is in a belly
+	if(isbelly(usr.loc))
+		return
+
 	drop_contents()
 
 /obj/item/weapon/storage/proc/drop_contents() // why is this a proc? literally just for RPEDs

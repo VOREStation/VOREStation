@@ -4,6 +4,10 @@
 /datum/persistent/filth/trash/CheckTurfContents(var/turf/T, var/list/tokens)
 	var/too_much_trash = 0
 	for(var/obj/item/trash/trash in T)
+		//VOREStation Addition Start
+		if(istype(T, /obj/item/trash/spitwad) || istype(T, /obj/item/trash/spitgum))
+			return FALSE
+		//VOREStation Addition End
 		too_much_trash++
 		if(too_much_trash >= 5)
 			return FALSE

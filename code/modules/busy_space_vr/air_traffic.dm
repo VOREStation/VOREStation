@@ -4,12 +4,12 @@
 var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
 
 /datum/lore/atc_controller
-	var/delay_min = 25 MINUTES			//How long between ATC traffic
-	var/delay_max = 35 MINUTES			//Adjusted to give approx 2 per hour, will work out to 10-14 over a full shift
+	var/delay_min = 20 MINUTES			//How long between ATC traffic, minimum
+	var/delay_max = 30 MINUTES			//Ditto, maximum
 							//Shorter delays means more traffic, which gives the impression of a busier system, but also means a lot more radio noise
 	var/backoff_delay = 5 MINUTES			//How long to back off if we can't talk and want to.  Default is 5 mins.
 	var/initial_delay = 2 MINUTES			//How long to wait before sending the first message of the shift.
-	var/next_message = 30 MINUTES			//When the next message should happen in world.time - Making it default to min value
+	var/next_message = 20 MINUTES			//When the next message should happen in world.time - Making it default to min value
 	var/force_chatter_type				//Force a specific type of messages
 
 	var/squelched = 0				//If ATC is squelched currently
@@ -77,18 +77,15 @@ var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
 	var/mission = source.ship_prefixes[prefix]		//The value of the prefix is the mission type that prefix does
 	var/shipname = pick(source.ship_names)			//Pick a random ship name
 	var/destname = pick(source.destination_names)		//destination is where?
-	var/law_abiding = source.lawful				//do we fully observe system law (or are we otherwise favored by the system owners, i.e. NT)?
-	var/law_breaker = source.hostile			//or are we part of a pirate group
-	var/system_defense = source.sysdef			//are we actually system law/SDF? unlocks the SDF-specific events
+	var/slogan = pick(source.slogans)			//god help you all
+	var/org_type = source.org_type				//which group do we belong to?
 
 	//pick our second ship
 	//var/secondname = secondary.name			//not used atm, commented out to suppress errors
 	var/secondowner = secondary.short_name
 	var/secondprefix = pick(secondary.ship_prefixes)	//Pick a random prefix
 	var/secondshipname = pick(secondary.ship_names)		//Pick a random ship name
-	var/law_abiding2 = secondary.lawful
-	var/law_breaker2 = secondary.hostile
-	var/system_defense2 = secondary.sysdef			//mostly here as a secondary check to ensure SDF don't interrogate other SDF
+	var/org_type2 = secondary.org_type
 
 	var/combined_first_name = "[owner][prefix] |[shipname]|"
 	var/combined_second_name = "[secondowner][secondprefix] |[secondshipname]|"
@@ -102,7 +99,7 @@ var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
 	var/requests = list(
 				"special flight rules" = list("authorizing special flight rules", "denying special flight rules, not allowed for your traffic class"),
 				"current solar weather info" = list("sending you the relevant information via tightbeam", "your request has been queued, stand by"),
-				"aerospace priority" = list("affirmative, aerospace priority is yours", "negative, another vessel has priority right now"),
+				"sector aerospace priority" = list("affirmative, sector aerospace priority is yours", "negative, another vessel in your sector has priority right now"),
 				"system traffic info" = list("sending you current traffic info", "request queued, please hold"),
 				"refueling information" = list("sending refueling information now", "depots currently experiencing fuel shortages, advise you move on"),
 				"a current system time sync" = list("sending time sync ping to you now", "your ship isn't compatible with our time sync, set time manually"),
@@ -113,29 +110,40 @@ var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
 	var/chatter_type = "normal"
 	if(force_chatter_type)
 		chatter_type = force_chatter_type
-	else if(law_abiding && !system_defense) //I have to offload this from the chatter_type switch below and do it here, otherwise BYOND throws a shitfit for no discernable reason
-		chatter_type = pick(5;"emerg",25;"policescan",25;"traveladvisory",30;"pathwarning",30;"dockingrequestgeneric",30;"dockingrequestdenied",30;"dockingrequestdelayed",30;"dockingrequestsupply",30;"dockingrequestrepair",30;"dockingrequestmedical",30;"dockingrequestsecurity",30;"undockingrequest","normal",30;"undockingdenied",30;"undockingdelayed")
-	//the following filters *always* fire their 'unique' event when they're tripped, simply because the conditions behind them are quite rare to begin with
-	else if(name == "Smugglers" && !system_defense2) //just straight up funnel smugglers into always being caught, otherwise we get them asking for traffic info and stuff
-		chatter_type = "policeflee"
-	else if(name == "Smugglers" && system_defense2) //ditto, if an SDF ship catches them
-		chatter_type = "policeshipflee"
-	else if(law_abiding && law_breaker2) //on the offchance that we manage to roll a goodguy and a badguy, run a new distress event - it's like emerg but better
+	else if((org_type == "government" || org_type == "neutral" || org_type == "military" || org_type == "corporate" || org_type == "system defense") && org_type2 == "pirate") //this is ugly but when I tried to do it with !='s it fired for pirate-v-pirate, still not sure why. might as well stick it up here so it takes priority over other combos.
 		chatter_type = "distress"
-	else if(law_breaker && system_defense2) //if we roll this combo instead, time for the SDF to do their fucking job
+	else if(org_type == "corporate") //corporate-specific subset for the slogan event. despite the relatively high weight it was still quite rare in tests.
+		chatter_type = pick(5;"emerg",25;"policescan",25;"traveladvisory",30;"pathwarning",30;"dockingrequestgeneric",30;"dockingrequestdenied",30;"dockingrequestdelayed",30;"dockingrequestsupply",30;"dockingrequestrepair",30;"dockingrequestmedical",30;"dockingrequestsecurity",30;"undockingrequest","normal",30;"undockingdenied",30;"undockingdelayed",300;"slogan")
+	else if((org_type == "government" || org_type == "neutral" || org_type == "military"))
+		chatter_type = pick(5;"emerg",25;"policescan",25;"traveladvisory",30;"pathwarning",30;"dockingrequestgeneric",30;"dockingrequestdenied",30;"dockingrequestdelayed",30;"dockingrequestsupply",30;"dockingrequestrepair",30;"dockingrequestmedical",30;"dockingrequestsecurity",30;"undockingrequest","normal",30;"undockingdenied",30;"undockingdelayed")
+	else if(org_type == "spacer")
+		chatter_type = pick(5;"emerg",15;"policescan",15;"traveladvisory",5;"pathwarning",10;"dockingrequestgeneric",30;"dockingrequestdenied",10;"dockingrequestdelayed",30;"dockingrequestsupplly",10;"dockingrequestrepair",20;"dockingrequestmedical",20;"dockingrequestsecurity",30;"undockingrequest","normal",10;"undockingdenied",30;"undockingdelayed")
+
+	//the following filters *always* fire their 'unique' event when they're tripped, simply because the conditions behind them are quite rare to begin with
+	else if(org_type == "smuggler" && org_type2 != "system defense") //just straight up funnel smugglers into always being caught, otherwise we get them asking for traffic info and stuff
+		chatter_type = "policeflee"
+	else if(org_type == "smuggler" && org_type2 == "system defense") //ditto, if an SDF ship catches them
+		chatter_type = "policeshipflee"
+	else if((org_type == "smuggler" || org_type == "pirate") && org_type2 == "system defense") //if we roll this combo instead, time for the SDF to do their fucking job
 		chatter_type = "policeshipcombat"
-	else if(law_breaker && !system_defense2) //but if we roll THIS combo, time to alert the SDF to get off their asses
+	else if((org_type == "smuggler" || org_type == "pirate") && org_type2 != "system defense") //but if we roll THIS combo, time to alert the SDF to get off their asses
 		chatter_type = "hostiledetected"
 	//SDF-specific events that need to filter based on the second party (basically just the following SDF-unique list with the soft-result ship scan thrown in)
-	else if(system_defense && law_abiding2 && !system_defense2) //let's see if we can narrow this down, I didn't see many ship-to-ship scans
+	else if(org_type == "system defense" && (org_type == "government" || org_type == "neutral" || org_type == "military" || org_type == "corporate")) //let's see if we can narrow this down, I didn't see many ship-to-ship scans
 		chatter_type = pick(75;"policeshipscan","sdfpatrolupdate",75;"sdfendingpatrol",30;"dockingrequestgeneric",30;"dockingrequestdelayed",30;"dockingrequestsupply",30;"dockingrequestrepair",30;"dockingrequestmedical",30;"dockingrequestsecurity",20;"undockingrequest",75;"sdfbeginpatrol",50;"normal")
 	//SDF-specific events that don't require the secondary at all, in the event that we manage to roll SDF + hostile/smuggler or something
-	else if(system_defense)
+	else if(org_type == "system defense")
 		chatter_type = pick("sdfpatrolupdate",60;"sdfendingpatrol",30;"dockingrequestgeneric",30;"dockingrequestdelayed",30;"dockingrequestsupply",30;"dockingrequestrepair",30;"dockingrequestmedical",30;"dockingrequestsecurity",20;"undockingrequest",80;"sdfbeginpatrol","normal")
 	//if we somehow don't match any of the other existing filters once we've run through all of them
 	else
 		chatter_type = pick(5;"emerg",25;"policescan",25;"traveladvisory",30;"pathwarning",30;"dockingrequestgeneric",30;"dockingrequestdelayed",30;"dockingrequestdenied",30;"dockingrequestsupply",30;"dockingrequestrepair",30;"dockingrequestmedical",30;"dockingrequestsecurity",30;"undockingrequest",30;"undockingdenied",30;"undockingdelayed","normal")
 	//I probably should do some kind of pass here to work through all the possible combinations of major factors and see if the filtering list needs reordering or modifying, but I really can't be arsed
+
+	//DEBUG BLOCK
+	//to_world("DEBUG OUTPUT 1: [name], [owner], [prefix], [mission], [shipname], [org_type], [destname]")
+	//to_world("DEBUG OUTPUT 2: [secondowner], [secondprefix], [secondshipname], [org_type2]")
+	//to_world("DEBUG OUTPUT 3: Chose [chatter_type]")
+	//DEBUG BLOCK ENDS
 
 	var/yes = prob(90) //Chance for them to say yes vs no
 
@@ -167,7 +175,7 @@ var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
 	switch(chatter_type)
 		//mayday call
 		if("emerg")
-			var/problem = pick("We have hull breaches on multiple decks","We have unknown hostile life forms on board","Our primary drive is failing","We have asteroids impacting the hull","We're experiencing a total loss of engine power","We have hostile ships closing fast","There's smoke in the cockpit","We have unidentified boarders","Our life support has failed")
+			var/problem = pick("We have hull breaches on multiple decks","We have unknown hostile life forms on board","Our primary drive is failing","We have [pick("asteroids","space debris")] impacting the hull","We're experiencing a total loss of engine power","We have hostile ships closing fast","There's smoke in the cockpit","We have unidentified boarders","Our RCS are malfunctioning and we're losing stability","Our life support [pick("is failing","has failed")]")
 			msg("+Mayday, mayday, mayday!+ This is [combined_first_name] declaring an emergency! [problem]!","[prefix] [shipname]")
 			sleep(5 SECONDS)
 			msg("[combined_first_name], this is [using_map.dock_name] Control, copy. Switch to emergency responder channel [ertchannel].")
@@ -175,7 +183,7 @@ var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
 			msg("Understood [using_map.dock_name] Control, switching now.","[prefix] [shipname]")
 		//Control scan event: soft outcome
 		if("policescan")
-			var/confirm = pick("Understood","Roger that","Affirmative")
+			var/confirm = pick("Understood","Roger that","Affirmative","Very well","Copy that")
 			var/complain = pick("I hope this doesn't take too long.","Can we hurry this up?","Make it quick.","This better not take too long.","Is this really necessary?")
 			var/completed = pick("You're free to proceed.","Everything looks fine, carry on.","You're clear, move along.","Apologies for the delay, you're clear.","Switch to channel [sdfchannel] and await further instruction.")
 			msg("[combined_first_name], this is [using_map.dock_name] Control, your [pick("ship","vessel","starship")] has been flagged for routine inspection. Hold position and prepare to be scanned.")
@@ -190,7 +198,7 @@ var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
 		//Control scan event: hard outcome
 		if("policeflee")
 			var/uhoh = pick("No can do chief, we got places to be.","Sorry but we've got places to be.","Not happening.","Ah fuck, who ratted us out this time?!","You'll never take me alive!","Hey, I have a cloaking device! You can't see me!","I'm going to need to ask for a refund on that stealth drive...","I'm afraid I can't do that, Control.","Ah |hell|.","Fuck!","This isn't the ship you're looking for.","Well. This is awkward.","Uh oh.","I surrender!")
-			msg("Unknown [pick("ship","vessel","starship")], this is [using_map.dock_name] Control, identify yourself and submit to a full inspection. Flying without an active transponder is a violation of system regulations.")
+			msg("Unknown [pick("ship","vessel","starship")], this is [using_map.dock_name] Control, identify yourself and submit to a full inspection. Flying without an active transponder is a violation of interstellar shipping regulations.")
 			sleep(5 SECONDS)
 			msg("[uhoh]","[shipname]")
 			sleep(5 SECONDS)
@@ -212,11 +220,11 @@ var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
 		//SDF scan event: hard outcome
 		if("policeshipflee")
 			var/uhoh = pick("No can do chief, we got places to be.","Sorry but we've got places to be.","Not happening.","Ah fuck, who ratted us out this time?!","You'll never take me alive!","Hey, I have a cloaking device! You can't see me!","I'm going to need to ask for a refund on that stealth drive...","I'm afraid I can't do that, |[shipname]|.","Ah |hell|.","Fuck!","This isn't the ship you're looking for.","Well. This is awkward.","Uh oh.","I surrender!")
-			msg("Unknown [pick("ship","vessel","starship")], this is [combined_second_name], identify yourself and submit to a full inspection. Flying without an active transponder is a violation of system regulations.","[secondprefix] [secondshipname]")
+			msg("Unknown [pick("ship","vessel","starship")], this is [combined_second_name], identify yourself and submit to a full inspection. Flying without an active transponder is a violation of interstellar shipping regulations.","[secondprefix] [secondshipname]")
 			sleep(5 SECONDS)
 			msg("[uhoh]","[shipname]")
 			sleep(5 SECONDS)
-			msg("[using_map.starsys_name] Defense Control, this is [combined_second_name], we have a situation here, please advise.","[secondprefix] [secondshipname]")
+			msg("[using_map.starsys_name] Defense Control, this is [combined_second_name]. We have a situation here, please advise.","[secondprefix] [secondshipname]")
 			sleep(5 SECONDS)
 			msg("Defense Control copies, [combined_second_name], reinforcements are en route. Switch further communications to encrypted band [sdfchannel].","[using_map.starsys_name] Defense Control")
 		//SDF scan event: engage primary in combat! fairly rare since it needs a pirate/vox + SDF roll
@@ -282,7 +290,7 @@ var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
 		if("dockingrequestdenied")
 			var/reason = pick("we don't have any landing pads large enough for your vessel","we don't have the necessary facilities for your vessel type or class")
 			var/disappointed = pick("That's unfortunate. [combined_first_name], out.","Damn shame. We'll just have to keep moving. [combined_first_name], out.","[combined_first_name], out.")
-			msg("[callname], this is [combined_first_name], [pick("stopping by","passing through")] on our way to [destname], requesting permission to [landing_move].","[prefix] [shipname]")
+			msg("[callname], this is [combined_first_name], [pick("stopping by","passing through")] on our way to [destname], requesting permission to [landing_short].","[prefix] [shipname]")
 			sleep(5 SECONDS)
 			msg("[combined_first_name], this is [using_map.dock_name] Control. Request denied, [reason].")
 			sleep(5 SECONDS)
@@ -388,6 +396,10 @@ var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
 			msg("[combined_first_name], this is [using_map.dock_name] Control. Everything appears to be in order now, permission granted. Docking clamps released. [safetravels].")
 			sleep(5 SECONDS)
 			msg("[thanks], [using_map.dock_name] Control. This is [combined_first_name] setting course for [destname], out.","[prefix] [shipname]")
+		if("slogan")
+			msg("The following is a sponsored message from [name].","Facility PA")
+			sleep (5 SECONDS)
+			msg("[slogan]","Facility PA")
 		else //time for generic message
 			msg("[callname], this is [combined_first_name] on [mission] [pick(mission_noun)] to [destname], requesting [request].","[prefix] [shipname]")
 			sleep(5 SECONDS)

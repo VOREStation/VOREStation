@@ -141,7 +141,7 @@
 	name = "Space Beer"
 	id = "spacebeer"
 	result = "beer"
-	required_reagents = list("cornoil" = 10)
+	required_reagents = list("cornoil" = 5, "flour" = 5)
 	catalysts = list("enzyme" = 5)
 	result_amount = 10
 
@@ -185,17 +185,25 @@
 	required_reagents = list("gin" = 2, "tonic" = 1)
 	result_amount = 3
 
+/decl/chemical_reaction/instant/drinks/rum_and_cola
+	name = "Rum and Cola"
+	id = "rumandcola"
+	result = "rumandcola"
+	required_reagents = list("rum" = 2, "cola" = 1)
+	result_amount = 3
+
 /decl/chemical_reaction/instant/drinks/cuba_libre
 	name = "Cuba Libre"
 	id = "cubalibre"
 	result = "cubalibre"
-	required_reagents = list("rum" = 2, "cola" = 1)
+	required_reagents = list("rumandcola" = 3, "limejuice" = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/martini
 	name = "Classic Martini"
 	id = "martini"
 	result = "martini"
+	inhibitors = list("bitters" = 1)
 	required_reagents = list("gin" = 2, "vermouth" = 1)
 	result_amount = 3
 
@@ -329,14 +337,7 @@
 	name = "Long Island Iced Tea"
 	id = "longislandicedtea"
 	result = "longislandicedtea"
-	required_reagents = list("vodka" = 1, "gin" = 1, "tequilla" = 1, "cubalibre" = 3)
-	result_amount = 6
-
-/decl/chemical_reaction/instant/drinks/icedtea
-	name = "Long Island Iced Tea"
-	id = "longislandicedtea"
-	result = "longislandicedtea"
-	required_reagents = list("vodka" = 1, "gin" = 1, "tequilla" = 1, "cubalibre" = 3)
+	required_reagents = list("vodka" = 1, "gin" = 1, "tequilla" = 1, "rumandcola" = 3)
 	result_amount = 6
 
 /decl/chemical_reaction/instant/drinks/threemileisland
@@ -693,6 +694,13 @@
 	required_reagents = list("orangejuice" = 2, "cola" = 1)
 	result_amount = 3
 
+/decl/chemical_reaction/instant/drinks/brownstar_decaf
+	name = "Decaf Brown Star"
+	id = "brownstar_decaf"
+	result = "brownstar_decaf"
+	required_reagents = list("orangejuice" = 2, "decafcola" = 1)
+	result_amount = 3
+
 /decl/chemical_reaction/instant/drinks/milkshake
 	name = "Milkshake"
 	id = "milkshake"
@@ -756,11 +764,25 @@
 	required_reagents = list("tea" = 5, "mint" = 1)
 	result_amount = 6
 
+/decl/chemical_reaction/instant/drinks/minttea_decaf
+	name = "Decaf Mint Tea"
+	id = "decafminttea"
+	result = "decafminttea"
+	required_reagents = list("decaftea" = 5, "mint" = 1)
+	result_amount = 6
+
 /decl/chemical_reaction/instant/drinks/lemontea
 	name = "Lemon Tea"
 	id = "lemontea"
 	result = "lemontea"
 	required_reagents = list("tea" = 5, "lemonjuice" = 1)
+	result_amount = 6
+
+/decl/chemical_reaction/instant/drinks/lemontea_decaf
+	name = "Decaf Lemon Tea"
+	id = "decaflemontea"
+	result = "decaflemontea"
+	required_reagents = list("decaftea" = 5, "lemonjuice" = 1)
 	result_amount = 6
 
 /decl/chemical_reaction/instant/drinks/limetea
@@ -770,6 +792,13 @@
 	required_reagents = list("tea" = 5, "limejuice" = 1)
 	result_amount = 6
 
+/decl/chemical_reaction/instant/drinks/limetea_decaf
+	name = "Decaf Lime Tea"
+	id = "decaflimetea"
+	result = "decaflimetea"
+	required_reagents = list("decaftea" = 5, "limejuice" = 1)
+	result_amount = 6
+
 /decl/chemical_reaction/instant/drinks/orangetea
 	name = "Orange Tea"
 	id = "orangetea"
@@ -777,11 +806,25 @@
 	required_reagents = list("tea" = 5, "orangejuice" = 1)
 	result_amount = 6
 
+/decl/chemical_reaction/instant/drinks/orangetea_decaf
+	name = "Decaf Orange Tea"
+	id = "decaforangetea"
+	result = "decaforangetea"
+	required_reagents = list("decaftea" = 5, "orangejuice" = 1)
+	result_amount = 6
+
 /decl/chemical_reaction/instant/drinks/berrytea
 	name = "Berry Tea"
 	id = "berrytea"
 	result = "berrytea"
 	required_reagents = list("tea" = 5, "berryjuice" = 1)
+	result_amount = 6
+
+/decl/chemical_reaction/instant/drinks/berrytea_decaf
+	name = "Decaf Berry Tea"
+	id = "decafberrytea"
+	result = "decafberrytea"
+	required_reagents = list("decaftea" = 5, "berryjuice" = 1)
 	result_amount = 6
 
 /decl/chemical_reaction/instant/drinks/sakebomb
@@ -865,7 +908,7 @@
 	name = "Debugger"
 	id = "debugger"
 	result = "debugger"
-	required_reagents = list("fuel" = 1, "sugar" = 2, "cornoil" = 2)
+	required_reagents = list("fuel" = 1, "sugar" = 2, "cookingoil" = 2)
 	result_amount = 5
 
 /decl/chemical_reaction/instant/drinks/spacersbrew
@@ -1064,7 +1107,7 @@
 	id = "daiquiri"
 	result = "daiquiri"
 	required_reagents = list("rum" = 3, "limejuice" = 2, "sugar" = 1)
-	result_amount = 5
+	result_amount = 6
 
 /decl/chemical_reaction/instant/drinks/mintjulep
 	name = "Mint Julep"
@@ -1077,7 +1120,7 @@
 	name = "Paloma"
 	id = "paloma"
 	result = "paloma"
-	required_reagents = list("orangejuice" = 1, "sodawater" = 1, "tequilla" = 1)
+	required_reagents = list("sodawater" = 1, "tequillasunrise" = 2)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/mojito
@@ -1163,14 +1206,14 @@
 	name = "Oil Slick"
 	id = "oilslick"
 	result = "oilslick"
-	required_reagents = list("cornoil" = 2, "honey" = 1)
+	required_reagents = list("cookingoil" = 2, "honey" = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/slimeslam
 	name = "Slick Slime Slammer"
 	id = "slimeslammer"
 	result = "slimeslammer"
-	required_reagents = list("cornoil" = 2, "peanutbutter" = 1)
+	required_reagents = list("cookingoil" = 2, "peanutbutter" = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/virginsexonthebeach
@@ -1212,7 +1255,7 @@
 	name = "Soda Oil"
 	id = "sodaoil"
 	result = "sodaoil"
-	required_reagents = list("cornoil" = 4, "sodawater" = 1, "carbon" = 1, "tricordrazine" = 1)
+	required_reagents = list("cookingoil" = 4, "sodawater" = 1, "carbon" = 1, "tricordrazine" = 1)
 	result_amount = 6
 
 /decl/chemical_reaction/instant/drinks/fusionnaire

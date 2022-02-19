@@ -17,6 +17,7 @@
 	attack_sharp = TRUE
 	attacktext = list("violently stabbed")
 	friendly = list("caresses")
+	organ_names = /decl/mob_organ_names/harvester
 	movement_cooldown = 0
 
 	//	environment_smash = 1	// Whatever this gets renamed to, Harvesters need to break things
@@ -38,3 +39,6 @@
 			/spell/targeted/construct_advanced/agonizing_sphere,
 			/spell/rune_write
 		)
+
+/decl/mob_organ_names/harvester
+	hit_zones = list("cephalothorax", "eye", "carapace", "energy crystal", "mandible")

@@ -38,6 +38,9 @@
 			qdel(src)
 	return
 
+/obj/item/weapon/reagent_containers/food/drinks/on_rag_wipe(var/obj/item/weapon/reagent_containers/glass/rag/R)
+	clean_blood()
+
 /obj/item/weapon/reagent_containers/food/drinks/attack_self(mob/user as mob)
 	if(!is_open_container())
 		open(user)
@@ -217,6 +220,21 @@
 /obj/item/weapon/reagent_containers/food/drinks/tea/Initialize()
 	. = ..()
 	reagents.add_reagent("tea", 30)
+
+/obj/item/weapon/reagent_containers/food/drinks/decaf_tea
+	name = "cup of Count Mauve decaffeinated tea"
+	desc = "Why should bedtime stop you from enjoying a nice cuppa?"
+	description_fluff = "Count Mauve is a milder strain of NanoPasture's proprietary black tea, noted for its strong but otherwise completely non-distinctive flavour and total lack of caffeination."
+	icon_state = "chai_vended"
+	item_state = "coffee"
+	trash = /obj/item/trash/coffee
+	center_of_mass = list("x"=16, "y"=14)
+	drop_sound = 'sound/items/drop/papercup.ogg'
+	pickup_sound = 'sound/items/pickup/papercup.ogg'
+
+/obj/item/weapon/reagent_containers/food/drinks/decaf_tea/Initialize()
+	. = ..()
+	reagents.add_reagent("teadecaf", 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/ice
 	name = "cup of ice"

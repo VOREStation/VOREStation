@@ -271,14 +271,18 @@
 		modules.Add(robot_module_types)
 		if(crisis || security_level == SEC_LEVEL_RED || crisis_override)
 			to_chat(src, "<font color='red'>Crisis mode active. Combat module available.</font>")
-			modules+="Combat"
-			modules+="ERT"
+			modules += emergency_module_types
+		for(var/module_name in whitelisted_module_types)
+			if(is_borg_whitelisted(src, module_name))
+				modules += module_name
 	//VOREStatation Edit End: shell restrictions
 	modtype = tgui_input_list(usr, "Please, select a module!", "Robot module", modules)
 
 	if(module)
 		return
 	if(!(modtype in robot_modules))
+		return
+	if(!is_borg_whitelisted(src, modtype))
 		return
 
 	var/module_type = robot_modules[modtype]
@@ -1022,6 +1026,8 @@
 			icontype = module_sprites[1]
 	else
 		icontype = tgui_input_list(usr, "Select an icon! [triesleft ? "You have [triesleft] more chance\s." : "This is your last try."]", "Robot Icon", module_sprites)
+		if(!icontype)
+			icontype = module_sprites[1]
 		if(notransform)				//VOREStation edit start: sprite animation
 			to_chat(src, "Your current transformation has not finished yet!")
 			choose_icon(icon_selection_tries, module_sprites)

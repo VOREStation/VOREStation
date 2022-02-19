@@ -16,7 +16,7 @@
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/items/lefthand_vr.dmi',
 		slot_r_hand_str = 'icons/mob/items/righthand_vr.dmi',
-	)	
+	)
 	flags = NOBLUDGEON
 	force = 10
 	throwforce = 10
@@ -63,13 +63,6 @@
 	qdel_null(spark_system)
 	qdel_null(tool)
 	return ..()
-
-/obj/item/weapon/pipe_dispenser/suicide_act(mob/user)
-	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
-	user.visible_message("<span class='suicide'>[user] points the end of the RPD down [TU.his] throat and presses a button! It looks like [TU.hes] trying to commit suicide...</span>")
-	playsound(src, 'sound/machines/click.ogg', 50, 1)
-	playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
-	return(BRUTELOSS)
 
 /obj/item/weapon/pipe_dispenser/attack_self(mob/user)
 	tgui_interact(user)
@@ -191,9 +184,9 @@
 			activate()
 			animate_deletion(A)
 		return
-	
+
 	if((mode & PAINT_MODE)) //Paint pipes
-		if(istype(A, /obj/machinery/atmospherics/pipe))
+		if(!istype(A, /obj/machinery/atmospherics/pipe/simple/heat_exchanging) && istype(A, /obj/machinery/atmospherics/pipe))
 			var/obj/machinery/atmospherics/pipe/P = A
 			playsound(src, 'sound/machines/click.ogg', 50, 1)
 			P.change_color(pipe_colors[paint_color])

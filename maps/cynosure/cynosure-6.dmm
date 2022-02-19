@@ -1052,6 +1052,7 @@
 /obj/structure/undies_wardrobe,
 /obj/item/device/radio/intercom{
 	desc = "Talk through this. Evilly";
+	dir = 4;
 	frequency = 1213;
 	name = "Subversive Intercom";
 	pixel_x = 32;
@@ -2127,16 +2128,17 @@
 	},
 /area/centcom/command)
 "cxc" = (
+/obj/machinery/computer/station_alert/all{
+	dir = 1
+	},
 /obj/item/device/radio/intercom{
 	desc = "Talk through this. Evilly";
+	dir = 4;
 	frequency = 1213;
 	name = "Subversive Intercom";
 	pixel_x = 32;
 	subspace_transmission = 1;
 	syndie = 1
-	},
-/obj/machinery/computer/station_alert/all{
-	dir = 1
 	},
 /turf/unsimulated/floor{
 	dir = 5;
@@ -2423,7 +2425,7 @@
 	},
 /area/tdome)
 "cTw" = (
-/obj/effect/landmark/start{
+/obj/effect/landmark{
 	name = "wizard"
 	},
 /turf/unsimulated/floor{
@@ -2907,6 +2909,7 @@
 /obj/item/weapon/book/manual/engineering_hacking,
 /obj/item/device/radio/intercom{
 	desc = "Talk through this. Evilly";
+	dir = 4;
 	frequency = 1213;
 	name = "Subversive Intercom";
 	pixel_x = 32;
@@ -5184,7 +5187,7 @@
 	desc = "Talk through this. Evilly";
 	dir = 4;
 	frequency = 1213;
-	name = "Syndicate Intercom";
+	name = "Subversive Intercom";
 	pixel_x = 32;
 	subspace_transmission = 1;
 	syndie = 1
@@ -5920,6 +5923,7 @@
 	},
 /obj/item/device/radio/intercom{
 	desc = "Talk through this. Evilly";
+	dir = 8;
 	frequency = 1213;
 	name = "Subversive Intercom";
 	pixel_x = -32;
@@ -6126,22 +6130,13 @@
 /obj/item/device/radio/intercom{
 	desc = "Talk through this. Evilly";
 	frequency = 1213;
-	name = "Syndicate Intercom";
-	pixel_x = 32;
-	subspace_transmission = 1;
-	syndie = 1
-	},
-/obj/item/device/radio/intercom{
-	desc = "Talk through this. Evilly";
-	frequency = 1213;
-	name = "Syndicate Intercom";
+	name = "Subversive Intercom";
 	pixel_y = -32;
 	subspace_transmission = 1;
 	syndie = 1
 	},
 /turf/unsimulated/floor{
-	dir = 5;
-	icon_state = "vault"
+	icon_state = "dark"
 	},
 /area/wizard_station)
 "hkh" = (
@@ -8294,7 +8289,7 @@
 	desc = "Talk through this. Evilly";
 	dir = 8;
 	frequency = 1213;
-	name = "Syndicate Intercom";
+	name = "Subversive Intercom";
 	pixel_x = -32;
 	subspace_transmission = 1;
 	syndie = 1
@@ -12818,7 +12813,7 @@
 	desc = "Talk through this. Evilly";
 	dir = 8;
 	frequency = 1213;
-	name = "Syndicate Intercom";
+	name = "Subversive Intercom";
 	pixel_x = -32;
 	subspace_transmission = 1;
 	syndie = 1
@@ -16868,7 +16863,7 @@
 	desc = "Talk through this. Evilly";
 	dir = 8;
 	frequency = 1213;
-	name = "Syndicate Intercom";
+	name = "Subversive Intercom";
 	pixel_x = -32;
 	subspace_transmission = 1;
 	syndie = 1
@@ -18501,6 +18496,7 @@
 /obj/item/weapon/pen,
 /obj/item/device/radio/intercom{
 	desc = "Talk through this. Evilly";
+	dir = 8;
 	frequency = 1213;
 	name = "Subversive Intercom";
 	pixel_x = -32;
@@ -19529,6 +19525,15 @@
 "vTt" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/clothing/head/philosopher_wig,
+/obj/item/device/radio/intercom{
+	desc = "Talk through this. Evilly";
+	dir = 4;
+	frequency = 1213;
+	name = "Subversive Intercom";
+	pixel_x = 32;
+	subspace_transmission = 1;
+	syndie = 1
+	},
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -19669,7 +19674,7 @@
 	desc = "Talk through this. Evilly";
 	dir = 8;
 	frequency = 1213;
-	name = "Syndicate Intercom";
+	name = "Subversive Intercom";
 	pixel_x = -32;
 	subspace_transmission = 1;
 	syndie = 1
@@ -21460,7 +21465,7 @@
 /obj/item/device/radio/intercom{
 	desc = "Talk through this. Evilly";
 	frequency = 1213;
-	name = "Syndicate Intercom";
+	name = "Subversive Intercom";
 	pixel_y = -32;
 	subspace_transmission = 1;
 	syndie = 1
@@ -21553,16 +21558,17 @@
 	},
 /area/skipjack_station)
 "xWw" = (
+/obj/item/target,
+/obj/effect/floor_decal/industrial/outline/yellow,
 /obj/item/device/radio/intercom{
 	desc = "Talk through this. Evilly";
+	dir = 8;
 	frequency = 1213;
 	name = "Subversive Intercom";
 	pixel_x = -32;
 	subspace_transmission = 1;
 	syndie = 1
 	},
-/obj/item/target,
-/obj/effect/floor_decal/industrial/outline/yellow,
 /turf/unsimulated/floor{
 	dir = 5;
 	icon_state = "vault"
@@ -79817,7 +79823,7 @@ jeX
 jeX
 lXr
 bXF
-jeX
+hkb
 xIh
 jeX
 bXF
@@ -80074,7 +80080,7 @@ wMD
 sqm
 xIh
 rhp
-hkb
+bXF
 jeX
 bXF
 kRO

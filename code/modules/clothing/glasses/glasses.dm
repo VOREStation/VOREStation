@@ -292,6 +292,12 @@ BLIND     // can't see anything
 	item_state_slots = list(slot_r_hand_str = "glasses", slot_l_hand_str = "glasses")
 	body_parts_covered = 0
 
+/obj/item/clothing/glasses/artist
+	name = "4-D Glasses"
+	desc = "You can see in every dimension, and get four times the amount of headache!"
+	icon_state = "artist"
+	item_state = "artist_glasses"
+
 /obj/item/clothing/glasses/gglasses
 	name = "green glasses"
 	desc = "Forest green glasses, like the kind you'd wear when hatching a nasty scheme."
@@ -335,6 +341,11 @@ BLIND     // can't see anything
 	name = "aviators"
 	desc = "A pair of designer sunglasses."
 	icon_state = "aviator"
+
+/obj/item/clothing/glasses/sunglasses/bigshot
+	name = "big shot's glasses"
+	desc = "A pair of glasses to help you feel more like a \[BIG SHOT]."
+	icon_state = "bigshot"
 
 /obj/item/clothing/glasses/welding
 	name = "welding goggles"
@@ -590,3 +601,4 @@ BLIND     // can't see anything
 			to_chat(usr, "You push \the [src] up from in front of your eyes.")
 		update_clothing_icon()
 		usr.update_action_buttons()
+

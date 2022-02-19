@@ -23,12 +23,16 @@
 	softfall = TRUE
 	parachuting = TRUE
 
+	meat_amount = 1
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/chicken
+
 	attacktext = list("clawed", "pecked")
 	speak_emote = list("chirps", "caws")
 	has_langs = list("Bird")
 	response_help  = "pets"
 	response_disarm = "gently moves aside"
 	response_harm   = "swats"
+	organ_names = /decl/mob_organ_names/bird
 
 	say_list_type = /datum/say_list/bird
 	holder_type = /obj/item/weapon/holder/bird
@@ -84,3 +88,6 @@
 	tt_desc = "E Streptopelia risoria" // This is actually disputed IRL but since we can't tell the future it'll stay the same for 500+ years.
 	icon_scale_x = 0.5
 	icon_scale_y = 0.5
+
+/decl/mob_organ_names/bird
+	hit_zones = list("head", "chest", "left leg", "right leg", "left wing", "right wing")

@@ -53,7 +53,8 @@
 
 	forceMove(locate(start_x, start_y, global.using_map.overmap_z))
 
-	docking_codes = "[ascii2text(rand(65,90))][ascii2text(rand(65,90))][ascii2text(rand(65,90))][ascii2text(rand(65,90))]"
+	if(!docking_codes)
+		docking_codes = "[ascii2text(rand(65,90))][ascii2text(rand(65,90))][ascii2text(rand(65,90))][ascii2text(rand(65,90))]"
 
 	testing("Located sector \"[name]\" at [start_x],[start_y], containing Z [english_list(map_z)]")
 

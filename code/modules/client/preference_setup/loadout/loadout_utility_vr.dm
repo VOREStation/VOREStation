@@ -49,7 +49,7 @@
 /datum/gear/utility/dufflebag/eng
 	display_name = "engineering dufflebag"
 	path = /obj/item/weapon/storage/backpack/dufflebag/eng
-	allowed_roles = list("Chief Engineer","Atmospheric Technician","Station Engineer")
+	allowed_roles = list("Chief Engineer","Atmospheric Technician","Engineer")
 
 /datum/gear/utility/dufflebag/sci
 	display_name = "science dufflebag"
@@ -68,4 +68,16 @@
 /datum/gear/utility/ID
 	display_name = "contractor identification card"
 	path = /obj/item/weapon/card/id/event/polymorphic/altcard
+	cost = 1
+
+/datum/gear/utility/bs_bracelet
+	display_name = "bluespace bracelet"
+	path = /obj/item/clothing/gloves/bluespace
+	cost = 5
+
+
+/datum/gear/utility/satchel_strapless
+	display_name = "satchel strapless"
+	path = /obj/item/weapon/storage/backpack/satchel/strapless
+	slot = slot_back
 	cost = 1

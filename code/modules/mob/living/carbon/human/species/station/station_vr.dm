@@ -123,6 +123,7 @@
 	//brute_mod = 1.15
 	//burn_mod =  1.15
 	//gluttonous = 1
+	soft_landing = TRUE
 	num_alternate_languages = 3
 	secondary_langs = list(LANGUAGE_BIRDSONG)
 	name_language = LANGUAGE_BIRDSONG
@@ -208,6 +209,10 @@
 /datum/species/vulpkanin
 	name = SPECIES_VULPKANIN
 	name_plural = "Vulpkanin"
+	blurb = "Vulpkanin are a species of sapient canine bipeds, who are the descendants of a lost colony during the waning days of a Precursor species, \
+	from which their distant cousins, the Zorren, also originate from. Independent and iconoclast, they have abandoned the ideals of their forefathers \
+	largely and prefer to look outwards as explorers and scientists to forge their own identity. They speak a guttural language known as 'Canilunzt' \
+	which has a heavy emphasis on utilizing tail positioning and ear twitches to communicate intent."
 	icobase = 'icons/mob/human_races/r_vulpkanin.dmi'
 	deform = 'icons/mob/human_races/r_vulpkanin.dmi'
 //	path = /mob/living/carbon/human/vulpkanin
@@ -224,12 +229,6 @@
 	color_mult = 1
 	inherent_verbs = list(/mob/living/carbon/human/proc/lick_wounds,
 		/mob/living/carbon/human/proc/tie_hair)
-
-	blurb = "Vulpkanin are a species of sharp-witted canine-pideds residing on the planet Altam just barely within the \
-	dual-star Vazzend system. Their politically de-centralized society and independent natures have led them to become a species and \
-	culture both feared and respected for their scientific breakthroughs. Discovery, loyalty, and utilitarianism dominates their lifestyles \
-	to the degree it can cause conflict with more rigorous and strict authorities. They speak a guttural language known as 'Canilunzt' \
-	which has a heavy emphasis on utilizing tail positioning and ear twitches to communicate intent."
 
 	wikilink="https://wiki.vore-station.net/Backstory#Vulpkanin"
 
@@ -361,6 +360,8 @@
 
 	min_age = 18
 	max_age = 80
+
+	soft_landing = TRUE
 
 	base_color = "#EECEB3"
 

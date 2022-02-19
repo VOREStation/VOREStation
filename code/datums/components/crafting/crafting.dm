@@ -62,55 +62,7 @@
 	del_reqs - takes recipe and a user, loops over the recipes reqs var and tries to find everything in the list make by get_environment and delete it/add to parts list, then returns the said list
 */
 
-/**
- * Check that the contents of the recipe meet the requirements.
- *
- * user: The /mob that initated the crafting.
- * R: The /datum/crafting_recipe being attempted.
- * contents: List of items to search for R's reqs.
- */
-/datum/component/personal_crafting/proc/check_contents(atom/a, datum/crafting_recipe/R, list/contents)
-	var/list/item_instances = contents["instances"]
-	var/list/machines = contents["machinery"]
-	contents = contents["other"]
-
-
-	var/list/requirements_list = list()
-
-	// Process all requirements
-	for(var/requirement_path in R.reqs)
-		// Check we have the appropriate amount available in the contents list
-		var/needed_amount = R.reqs[requirement_path]
-		for(var/content_item_path in contents)
-			// Right path and not blacklisted
-			if(!ispath(content_item_path, requirement_path) || R.blacklist.Find(content_item_path))
-				continue
-
-			needed_amount -= contents[content_item_path]
-			if(needed_amount <= 0)
-				break
-
-		if(needed_amount > 0)
-			return FALSE
-
-		// Store the instances of what we will use for R.check_requirements() for requirement_path
-		var/list/instances_list = list()
-		for(var/instance_path in item_instances)
-			if(ispath(instance_path, requirement_path))
-				instances_list += item_instances[instance_path]
-
-		requirements_list[requirement_path] = instances_list
-
-	for(var/requirement_path in R.chem_catalysts)
-		if(contents[requirement_path] < R.chem_catalysts[requirement_path])
-			return FALSE
-
-	for(var/machinery_path in R.machinery)
-		if(!machines[machinery_path])//We don't care for volume with machines, just if one is there or not
-			return FALSE
-
-	return R.check_requirements(a, requirements_list)
-
+// Returns a list of objects available
 /datum/component/personal_crafting/proc/get_environment(atom/a, list/blacklist = null, radius_range = 1)
 	. = list()
 
@@ -122,13 +74,13 @@
 			continue
 		. += AM
 
-
+// Returns an associative list containing the types of tools available, and the paths of objects available
 /datum/component/personal_crafting/proc/get_surroundings(atom/a, list/blacklist=null)
 	. = list()
-	.["tool_qualities"] = list()
-	.["other"] = list()
-	.["instances"] = list()
-	.["machinery"] = list()
+	.["tool_qualities"] = list() // List of tool types available
+	.["other"] = list()          // List of reagents/material stacks available
+	.["instances"] = list()      // List of /obj/items available, maybe?
+	.["machinery"] = list()      // List of /obj/machinery available
 	for(var/obj/object in get_environment(a, blacklist))
 		if(isitem(object))
 			var/obj/item/item = object
@@ -150,11 +102,55 @@
 		else if (istype(object, /obj/machinery))
 			LAZYADDASSOCLIST(.["machinery"], object.type, object)
 
+/**
+ * Check that the contents of the recipe meet the requirements.
+ *
+ * user: The /mob that initated the crafting.
+ * R: The /datum/crafting_recipe being attempted.
+ * contents: List of items to search for R's reqs.
+ */
+/datum/component/personal_crafting/proc/check_contents(atom/a, datum/crafting_recipe/R, list/contents)
+	var/list/item_instances = contents["instances"]
+	contents = contents["other"]
 
+
+	var/list/requirements_list = list()
+
+	// Process all requirements
+	for(var/list/requirement in R.reqs)
+		var/satisfied = FALSE
+		for(var/requirement_path in requirement)
+			// Check we have the appropriate amount available in the contents list
+			var/needed_amount = requirement[requirement_path]
+			for(var/content_item_path in contents)
+				// Right path and not blacklisted
+				if(!ispath(content_item_path, requirement_path) || R.blacklist.Find(content_item_path))
+					continue
+
+				needed_amount -= contents[content_item_path]
+				if(needed_amount <= 0)
+					break
+
+			if(needed_amount > 0)
+				continue
+
+			// Store the instances of what we will use for R.check_requirements() for requirement_path
+			var/list/instances_list = list()
+			for(var/instance_path in item_instances)
+				if(ispath(instance_path, requirement_path))
+					instances_list += item_instances[instance_path]
+
+			requirements_list[requirement_path] = instances_list
+			satisfied = TRUE
+			break
+		if(!satisfied)
+			return FALSE
+
+	return R.check_requirements(a, requirements_list)
 
 /// Returns a boolean on whether the tool requirements of the input recipe are satisfied by the input source and surroundings.
-/datum/component/personal_crafting/proc/check_tools(atom/source, datum/crafting_recipe/recipe, list/surroundings)
-	if(!length(recipe.tool_behaviors) && !length(recipe.tool_paths))
+/datum/component/personal_crafting/proc/check_tools(atom/source, datum/crafting_recipe/R, list/surroundings)
+	if(!length(R.tool_behaviors) && !length(R.tool_paths))
 		return TRUE
 	var/list/available_tools = list()
 	var/list/present_qualities = list()
@@ -176,50 +172,70 @@
 	for(var/path in surroundings["other"])
 		available_tools[path] = TRUE
 
-	for(var/required_quality in recipe.tool_behaviors)
+	for(var/required_quality in R.tool_behaviors)
 		if(present_qualities[required_quality])
 			continue
 		return FALSE
 
-	for(var/required_path in recipe.tool_paths)
-		var/found_this_tool = FALSE
-		for(var/tool_path in available_tools)
-			if(!ispath(required_path, tool_path))
-				continue
-			found_this_tool = TRUE
-			break
-		if(found_this_tool)
+	for(var/required_path in R.tool_paths)
+		if(is_path_in_list(required_path, available_tools))
 			continue
 		return FALSE
 
 	return TRUE
 
+/datum/component/personal_crafting/proc/check_reagents(atom/source, datum/crafting_recipe/R, list/surroundings)
+	var/list/reagents = surroundings["other"]
+	for(var/requirement_path in R.chem_catalysts)
+		if(reagents[requirement_path] < R.chem_catalysts[requirement_path])
+			return FALSE
+	return TRUE
+
+/datum/component/personal_crafting/proc/check_machinery(atom/source, datum/crafting_recipe/R, list/surroundings)
+	var/list/machines = surroundings["machinery"]
+	for(var/machinery_path in R.machinery)
+		if(!machines[machinery_path])//We don't care for volume with machines, just if one is there or not
+			return FALSE
+	return TRUE
+
+/datum/component/personal_crafting/proc/check_requirements(atom/source, datum/crafting_recipe/R, list/surroundings)
+	if(!check_contents(source, R, surroundings))
+		return ", missing component."
+	if(!check_tools(source, R, surroundings))
+		return ", missing tool."
+	if(!check_reagents(source, R, surroundings))
+		return ", missing reagents."
+	if(!check_machinery(source, R, surroundings))
+		return  ", missing machinery."
+	return
 
 /datum/component/personal_crafting/proc/construct_item(atom/a, datum/crafting_recipe/R)
-	var/list/contents = get_surroundings(a,R.blacklist)
+	var/list/surroundings = get_surroundings(a,R.blacklist)
 	// var/send_feedback = 1
-	if(check_contents(a, R, contents))
-		if(check_tools(a, R, contents))
-			if(R.one_per_turf)
-				for(var/content in get_turf(a))
-					if(istype(content, R.result))
-						return ", object already present."
-			//If we're a mob we'll try a do_after; non mobs will instead instantly construct the item
-			if(ismob(a) && !do_after(a, R.time, target = a))
-				return "."
-			contents = get_surroundings(a,R.blacklist)
-			if(!check_contents(a, R, contents))
-				return ", missing component."
-			if(!check_tools(a, R, contents))
-				return ", missing tool."
-			var/list/parts = del_reqs(R, a)
-			var/atom/movable/I = new R.result (get_turf(a.loc))
-			I.CheckParts(parts, R)
-			// if(send_feedback)
-				// SSblackbox.record_feedback("tally", "object_crafted", 1, I.type)
-			return I //Send the item back to whatever called this proc so it can handle whatever it wants to do with the new item
-		return ", missing tool."
-	return ", missing component."
+	. = check_requirements(a, R, surroundings)
+	if(.)
+		return
+
+	if(R.one_per_turf)
+		for(var/content in get_turf(a))
+			if(istype(content, R.result))
+				return ", object already present."
+
+	//If we're a mob we'll try a do_after; non mobs will instead instantly construct the item
+	if(ismob(a) && !do_after(a, R.time, target = a))
+		return "."
+
+	surroundings = get_surroundings(a, R.blacklist)
+	. = check_requirements(a, R, surroundings)
+	if(.)
+		return
+
+	var/list/parts = del_reqs(R, a)
+	var/atom/movable/I = new R.result (get_turf(a.loc))
+	I.CheckParts(parts, R)
+	// if(send_feedback)
+		// SSblackbox.record_feedback("tally", "object_crafted", 1, I.type)
+	return I //Send the item back to whatever called this proc so it can handle whatever it wants to do with the new item
 
 /*Del reqs works like this:
 
@@ -246,119 +262,108 @@
 */
 
 /datum/component/personal_crafting/proc/del_reqs(datum/crafting_recipe/R, atom/a)
-	var/list/surroundings
-	var/list/Deletion = list()
-	. = list()
-	var/data
-	var/amt
+	var/list/surroundings = get_environment(a)
+	var/list/parts = list("items" = list())
+	if(R.get_parts_reagents_volume())
+		parts["reagents"] = new /datum/reagents(R.get_parts_reagents_volume()) // Datums don't have create_reagents()
 	var/list/requirements = list()
 	if(R.reqs)
-		requirements += R.reqs
+		for(var/list/L in R.reqs)
+			requirements += L
 	if(R.machinery)
 		requirements += R.machinery
-	main_loop:
-		for(var/path_key in requirements)
-			amt = R.reqs[path_key] || R.machinery[path_key]
-			if(!amt)//since machinery can have 0 aka CRAFTING_MACHINERY_USE - i.e. use it, don't consume it!
-				continue main_loop
-			surroundings = get_environment(a, R.blacklist)
-			surroundings -= Deletion
-			if(ispath(path_key, /datum/reagent))
-				var/datum/reagent/RG = new path_key
-				var/datum/reagent/RGNT
-				while(amt > 0)
-					var/obj/item/weapon/reagent_containers/RC = locate() in surroundings
-					RG = RC.reagents.get_reagent(path_key)
-					if(RG)
-						if(!locate(RG.type) in Deletion)
-							Deletion += new RG.type()
-						if(RG.volume > amt)
-							RG.volume -= amt
-							data = RG.data
-							RC.reagents.conditional_update(RC)
-							RG = locate(RG.type) in Deletion
-							RG.volume = amt
-							RG.data += data
-							continue main_loop
-						else
-							surroundings -= RC
-							amt -= RG.volume
-							RC.reagents.reagent_list -= RG
-							RC.reagents.conditional_update(RC)
-							RGNT = locate(RG.type) in Deletion
-							RGNT.volume += RG.volume
-							RGNT.data += RG.data
-							qdel(RG)
-						SEND_SIGNAL(RC.reagents, COMSIG_REAGENTS_CRAFTING_PING) // - [] TODO: Make this entire thing less spaghetti
-					else
-						surroundings -= RC
-			else if(ispath(path_key, /obj/item/stack))
-				var/obj/item/stack/S
-				var/obj/item/stack/SD
-				while(amt > 0)
-					S = locate(path_key) in surroundings
-					if(S.get_amount() >= amt)
-						if(!locate(S.type) in Deletion)
-							SD = new S.type()
-							Deletion += SD
-						S.use(amt)
-						SD = locate(S.type) in Deletion
-						SD.add(amt)
-						continue main_loop
-					else
-						amt -= S.get_amount()
-						if(!locate(S.type) in Deletion)
-							Deletion += S
-						else
-							data = S.get_amount()
-							S = locate(S.type) in Deletion
-							S.add(data)
-						surroundings -= S
-			else
-				var/atom/movable/I
-				while(amt > 0)
-					I = locate(path_key) in surroundings
-					Deletion += I
-					surroundings -= I
-					amt--
-	var/list/partlist = list(R.parts.len)
-	for(var/M in R.parts)
-		partlist[M] = R.parts[M]
-	for(var/part in R.parts)
-		if(istype(part, /datum/reagent))
-			var/datum/reagent/RG = locate(part) in Deletion
-			if(RG.volume > partlist[part])
-				RG.volume = partlist[part]
-			. += RG
-			Deletion -= RG
+
+	// Try to find everything that was actually used to craft
+	for(var/path_key in requirements)
+		var/amt = requirements[path_key]
+		if(amt <= 0)//since machinery can have 0 aka CRAFTING_MACHINERY_USE - i.e. use it, don't consume it!
 			continue
-		else if(istype(part, /obj/item/stack))
-			var/obj/item/stack/ST = locate(part) in Deletion
-			if(ST.get_amount() > partlist[part])
-				ST.set_amount(partlist[part])
-			. += ST
-			Deletion -= ST
-			continue
-		else
-			while(partlist[part] > 0)
-				var/atom/movable/AM = locate(part) in Deletion
-				. += AM
-				Deletion -= AM
-				partlist[part] -= 1
-	while(Deletion.len)
-		var/DL = Deletion[Deletion.len]
-		Deletion.Cut(Deletion.len)
-		// Snowflake handling of reagent containers and storage atoms.
-		// If we consumed them in our crafting, we should dump their contents out before qdeling them.
-		if(istype(DL, /obj/item/weapon/reagent_containers))
-			var/obj/item/weapon/reagent_containers/container = DL
-			container.reagents.clear_reagents()
-			// container.reagents.expose(container.loc, TOUCH)
-		else if(istype(DL, /obj/item/weapon/storage))
-			var/obj/item/weapon/storage/container = DL
-			container.spill()
-			container.close_all()
-		qdel(DL)
+
+		// If the path is in R.parts, we want to grab those to stuff into the product		
+		var/amt_to_transfer = 0
+		if(is_path_in_list(path_key, R.parts))
+			amt_to_transfer = R.parts[path_key]
+
+		
+		// Reagent: gotta go sniffing in all the beakers
+		if(ispath(path_key, /datum/reagent))
+			var/datum/reagent/reagent = path_key
+			var/id = initial(reagent.id)
+
+			for(var/obj/item/weapon/reagent_containers/RC in surroundings)				
+				// Found everything we need
+				if(amt <= 0 && amt_to_transfer <= 0)
+					break	
+
+				// If we need to keep any to put in the new object, pull it out
+				if(amt_to_transfer > 0)
+					var/A = RC.reagents.trans_id_to(parts["reagents"], id, amt_to_transfer)
+					amt_to_transfer -= A
+					amt -= A
+				
+				// If we need to consume some amount of it
+				if(amt > 0)
+					var/datum/reagent/RG = RC.reagents.get_reagent(id)
+					var/A = min(RG.volume, amt)
+					RC.reagents.remove_reagent(id, A)
+					amt -= A
+					SEND_SIGNAL(RC.reagents, COMSIG_REAGENTS_CRAFTING_PING)
+
+		// Material stacks may have to accumulate across multiple stacks
+		else if(ispath(path_key, /obj/item/stack))
+			for(var/obj/item/stack/S in surroundings)
+				if(amt <= 0 && amt_to_transfer <= 0)
+					break
+
+				// This could put 50 stacks in an object but frankly so long as the amount's right we don't care
+				if(amt_to_transfer > 0)
+					var/obj/item/stack/split = S.split(amt_to_transfer)
+					if(istype(split))
+						parts["items"] += split
+						amt_to_transfer -= split.get_amount()
+						amt -= split.get_amount()
+				
+				if(amt > 0)
+					var/A = min(amt, S.get_amount())
+					if(S.use(A))
+						amt -= A
+				
+
+		else // Just a regular item. Find them all and delete them
+			for(var/atom/movable/I in surroundings)
+				if(amt <= 0 && amt_to_transfer <= 0)
+					break
+				
+				if(!istype(I, path_key))
+					continue
+				
+				// Special case: the reagents may be needed for other recipes
+				if(istype(I, /obj/item/weapon/reagent_containers))
+					var/obj/item/weapon/reagent_containers/RC = I
+					if(RC.reagents.total_volume > 0)
+						continue
+				
+				// We're using it for something
+				amt--
+
+				// Prepare to stuff inside product, don't delete it
+				if(is_path_in_list(path_key, R.parts))
+					parts["items"] += I
+					amt_to_transfer--
+					continue
+					
+				// Snowflake handling of reagent containers and storage atoms.
+				// If we consumed them in our crafting, we should dump their contents out before qdeling them.
+				if(istype(I, /obj/item/weapon/reagent_containers))
+					var/obj/item/weapon/reagent_containers/container = I
+					container.reagents.clear_reagents()
+					// container.reagents.expose(container.loc, TOUCH)
+				else if(istype(I, /obj/item/weapon/storage))
+					var/obj/item/weapon/storage/container = I
+					container.spill()
+					container.close_all()
+				qdel(I)
+	return parts
 
 /datum/component/personal_crafting/proc/component_ui_interact(source, location, control, params, user)
 	// SIGNAL_HANDLER
@@ -487,10 +492,14 @@
 	var/list/tool_list = list()
 	var/list/catalyst_text = list()
 
-	for(var/atom/req_atom as anything in R.reqs)
-		//We just need the name, so cheat-typecast to /atom for speed (even tho Reagents are /datum they DO have a "name" var)
-		//Also these are typepaths so sadly we can't just do "[a]"
-		req_text += "[R.reqs[req_atom]] [initial(req_atom.name)]"
+	for(var/list/req in R.reqs)
+		var/list/L = list()
+		for(var/atom/req_atom as anything in req)
+			//We just need the name, so cheat-typecast to /atom for speed (even tho Reagents are /datum they DO have a "name" var)
+			//Also these are typepaths so sadly we can't just do "[a]"
+			L += "[req[req_atom]] [initial(req_atom.name)]"
+		req_text += L.Join(" OR ")
+		
 	for(var/obj/machinery/content as anything in R.machinery)
 		req_text += "[R.reqs[content]] [initial(content.name)]"
 	if(R.additional_req_text)

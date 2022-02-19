@@ -25,6 +25,8 @@
 	attacktext = list("gripped")
 	attack_sound = 'sound/hallucinations/growl1.ogg'
 
+	organ_names = /decl/mob_organ_names/faithless
+
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 
 
@@ -75,3 +77,6 @@
 	harm_intent_damage = 5
 	melee_damage_lower = 13
 	melee_damage_upper = 28
+
+/decl/mob_organ_names/faithless
+	hit_zones = list("body", "left appendage", "right appendage", "shadowy tendrils", "head", "right stump", "left stump", "infernal eye")

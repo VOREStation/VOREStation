@@ -21,6 +21,7 @@
 	var/recharge_time = 4
 	var/charge_tick = 0
 	var/charge_delay = 75	//delay between firing and charging
+	var/shot_counter = TRUE // does this gun tell you how many shots it has?
 
 	var/battery_lock = 0	//If set, weapon cannot switch batteries
 
@@ -175,14 +176,15 @@
 
 /obj/item/weapon/gun/energy/examine(mob/user)
 	. = ..()
-	if(power_supply)
-		if(charge_cost)
-			var/shots_remaining = round(power_supply.charge / max(1, charge_cost))	// Paranoia
-			. += "Has [shots_remaining] shot\s remaining."
+	if(shot_counter)
+		if(power_supply)
+			if(charge_cost)
+				var/shots_remaining = round(power_supply.charge / max(1, charge_cost))	// Paranoia
+				. += "Has [shots_remaining] shot\s remaining."
+			else
+				. += "Has infinite shots remaining."
 		else
-			. += "Has infinite shots remaining."
-	else
-		. += "Does not have a power cell."
+			. += "Does not have a power cell."
 
 /obj/item/weapon/gun/energy/update_icon(var/ignore_inhands)
 	if(power_supply == null)

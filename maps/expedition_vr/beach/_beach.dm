@@ -14,6 +14,11 @@
 	known = TRUE
 	icon_state = "desert"
 
+	skybox_icon = 'icons/skybox/virgo4.dmi'
+	skybox_icon_state = "v4"
+	skybox_pixel_x = 0
+	skybox_pixel_y = 0
+
 //This is a special subtype of the thing that generates ores on a map
 //It will generate more rich ores because of the lower numbers than the normal one
 /datum/random_map/noise/ore/beachmine
@@ -80,7 +85,7 @@
 	//guard = 40 //They'll stay within this range (not defining this disables them staying nearby and they will wander the map (and through step teleports))
 	mobs_to_pick_from = list(
 		/mob/living/simple_mob/vore/fennec = 300,
-		/mob/living/simple_mob/animal/passive/snake = 100,
+		/mob/living/simple_mob/animal/passive/snake/python = 100,
 		/mob/living/simple_mob/vore/alienanimals/teppi = 10,
 		/mob/living/simple_mob/vore/alienanimals/teppi/baby = 1
 	)

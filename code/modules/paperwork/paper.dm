@@ -329,6 +329,7 @@
 	t = replacetext(t, "\[/u\]", "</U>")
 	t = replacetext(t, "\[time\]", "[stationtime2text()]")
 	t = replacetext(t, "\[date\]", "[stationdate2text()]")
+	t = replacetext(t, "\[station\]", "[station_name()]")
 	t = replacetext(t, "\[large\]", "<font size=\"4\">")
 	t = replacetext(t, "\[/large\]", "</font>")
 	if(findtext(t, "\[sign\]"))
@@ -585,11 +586,20 @@
 		return
 
 	else if(istype(P, /obj/item/weapon/stamp) || istype(P, /obj/item/clothing/gloves/ring/seal))
+		if(istype(P, /obj/item/weapon/stamp))
+			var/obj/item/weapon/stamp/the_stamp = P
+			if(the_stamp.stamptext)
+				stamps += (stamps=="" ? "<HR>" : "<BR>") + "<i>[the_stamp.stamptext]</i>"
+			else
+				stamps += (stamps=="" ? "<HR>" : "<BR>") + "<i>This paper has been stamped with the [the_stamp.name].</i>"
+		else
+			var/obj/item/clothing/gloves/ring/seal/the_stamp = P
+			if(the_stamp.stamptext)
+				stamps += (stamps=="" ? "<HR>" : "<BR>") + "<i>[the_stamp.stamptext]</i>"
+			else
+				stamps += (stamps=="" ? "<HR>" : "<BR>") + "<i>This paper has been stamped with the [the_stamp.name].</i>"
 		if((!in_range(src, usr) && loc != user && !( istype(loc, /obj/item/weapon/clipboard) ) && loc.loc != user && user.get_active_hand() != P))
 			return
-
-		stamps += (stamps=="" ? "<HR>" : "<BR>") + "<i>This paper has been stamped with the [P.name].</i>"
-
 		var/image/stampoverlay = image('icons/obj/bureaucracy.dmi')
 		var/x, y
 		if(istype(P, /obj/item/weapon/stamp/captain) || istype(P, /obj/item/weapon/stamp/centcomm))

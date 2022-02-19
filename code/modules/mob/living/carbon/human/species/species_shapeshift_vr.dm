@@ -173,6 +173,6 @@
 
 	for(var/obj/item/organ/external/L as anything in src.organs)
 		L.transparent = !L.transparent
-	visible_message("<span class='notice'>\The [src]'s interal composition seems to change.</span>")
+	visible_message("<span class='notice'>\The [src]'s internal composition seems to change.</span>")
 	update_icons_body()
 	update_hair()

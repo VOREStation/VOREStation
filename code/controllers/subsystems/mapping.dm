@@ -76,7 +76,9 @@ SUBSYSTEM_DEF(mapping)
 // VOREStation Edit Start: Enable This
 /datum/controller/subsystem/mapping/proc/loadLateMaps()
 	var/list/deffo_load = using_map.lateload_z_levels
-	var/list/maybe_load = using_map.lateload_single_pick
+	var/list/maybe_load = using_map.lateload_gateway
+	var/list/also_load = using_map.lateload_overmap
+
 
 	for(var/list/maplist in deffo_load)
 		if(!islist(maplist))
@@ -110,6 +112,28 @@ SUBSYSTEM_DEF(mapping)
 				error("Randompick Z level \"[map]\" is not a valid map!")
 			else
 				MT.load_new_z(centered = FALSE)
+	
+	if(LAZYLEN(also_load)) //Just copied from gateway picking, this is so we can have a kind of OM map version of the same concept.
+		var/picklist = pick(also_load)
+
+		if(!picklist) //No lateload maps at all
+			return
+
+		if(!islist(picklist)) //So you can have a 'chain' of z-levels that make up one away mission
+			error("Randompick Z level [picklist] is not a list! Must be in a list!")
+			return
+
+		for(var/map in picklist)
+			if(islist(map))
+				// TRIPLE NEST. In this situation we pick one at random from the choices in the list.
+				//This allows a sort of a1,a2,a3,b1,b2,b3,c1,c2,c3 setup where it picks one 'a', one 'b', one 'c'
+				map = pick(map)
+			var/datum/map_template/MT = map_templates[map]
+			if(!istype(MT))
+				error("Randompick Z level \"[map]\" is not a valid map!")
+			else
+				MT.load_new_z(centered = FALSE)
+
 
 /datum/controller/subsystem/mapping/proc/preloadShelterTemplates()
 	for(var/datum/map_template/shelter/shelter_type as anything in subtypesof(/datum/map_template/shelter))
