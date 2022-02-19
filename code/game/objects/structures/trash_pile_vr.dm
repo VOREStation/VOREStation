@@ -232,7 +232,7 @@
 					prob(4);/obj/item/weapon/storage/pill_bottle/happy,
 					prob(4);/obj/item/weapon/storage/pill_bottle/zoom,
 					prob(4);/obj/item/seeds/ambrosiavulgarisseed,
-					prob(4);/obj/item/weapon/gun/energy/sizegun,
+					prob(4);/obj/item/weapon/gun/energy/sizegun/old,
 					prob(3);/obj/item/weapon/material/butterfly,
 					prob(3);/obj/item/weapon/material/butterfly/switchblade,
 					prob(3);/obj/item/clothing/gloves/knuckledusters,

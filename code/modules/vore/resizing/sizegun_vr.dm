@@ -7,7 +7,7 @@
 	desc = "A highly advanced ray gun with a knob on the side to adjust the size you desire. Warning: Do not insert into mouth."
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_override = 'icons/obj/gun_vr.dmi'
-	icon_state = "sizegun100"
+	icon_state = "sizegun"
 	item_state = "sizegun"
 	fire_sound = 'sound/weapons/wave.ogg'
 	charge_cost = 240
@@ -52,13 +52,38 @@
 	if(size_set_to < RESIZE_MINIMUM || size_set_to > RESIZE_MAXIMUM)
 		to_chat(usr, "<span class='notice'>Note: Resizing limited to 25-200% automatically while outside dormatory areas.</span>") //hint that we clamp it in resize
 
+/obj/item/weapon/gun/energy/sizegun/update_icon(var/ignore_inhands)
+	var/grow_mode = "shrink"
+	if(size_set_to > 1)
+		grow_mode = "grow"
+	if(charge_meter)
+		var/ratio = power_supply.charge / power_supply.maxcharge
+
+		//make sure that rounding down will not give us the empty state even if we have charge for a shot left.
+		if(power_supply.charge < charge_cost)
+			ratio = 0
+		else
+			ratio = max(round(ratio, 0.25) * 100, 25)
+
+		icon_state = "[initial(icon_state)]-[grow_mode][ratio]"
+		item_state = "[initial(icon_state)]-[grow_mode]"
+
+	if(!ignore_inhands) update_held_icon()
+
 /obj/item/weapon/gun/energy/sizegun/examine(mob/user)
 	. = ..()
 	. += "<span class='info'>It is currently set at [size_set_to*100]%</span>"
 
+/obj/item/weapon/gun/energy/sizegun/old
+	desc = "A highly advanced ray gun with a knob on the side to adjust the size you desire. This one seems to be an older model, but still functional. Warning: Do not insert into mouth."
+	icon_state = "sizegun-old"
+	item_state = "sizegun-old"
+
 /obj/item/weapon/gun/energy/sizegun/admin
 	name = "modified size gun"
-	desc = "Sizegun, without limits on minimum/maximum size, and with unlimited charge. Time to show 'em that size does matter."
+	desc = "An older model sizegun, modified to be without limits on minimum/maximum size, and have an unlimited charge. Time to show 'em that size does matter."
+	icon_state = "sizegun_admin"
+	item_state = "sizegun_admin"
 	charge_cost = 0
 	projectile_type = /obj/item/projectile/beam/sizelaser/admin
 
