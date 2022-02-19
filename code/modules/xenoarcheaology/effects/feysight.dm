@@ -2,6 +2,9 @@
 	name = "feysight"
 	effect_type = EFFECT_PSIONIC
 
+	effect_state = "pulsing"
+	effect_color = "#00c763"
+
 /datum/artifact_effect/feysight/proc/apply_modifier(var/mob/living/L)
 	if(!istype(L))
 		return FALSE
@@ -28,6 +31,7 @@
 		return TRUE
 
 /datum/artifact_effect/feysight/DoEffectAura()
+	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/T = get_turf(holder)
 		for(var/mob/living/L in range(src.effectrange,T))
@@ -36,6 +40,7 @@
 		return TRUE
 
 /datum/artifact_effect/feysight/DoEffectPulse()
+	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/T = get_turf(holder)
 		for(var/mob/living/L in range(src.effectrange,T))

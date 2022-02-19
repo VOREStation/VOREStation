@@ -3981,6 +3981,7 @@
 #include "code\modules\xenoarcheaology\anomaly_container.dm"
 #include "code\modules\xenoarcheaology\boulder.dm"
 #include "code\modules\xenoarcheaology\effect.dm"
+#include "code\modules\xenoarcheaology\effect_master.dm"
 #include "code\modules\xenoarcheaology\manuals.dm"
 #include "code\modules\xenoarcheaology\misc.dm"
 #include "code\modules\xenoarcheaology\sampling.dm"
