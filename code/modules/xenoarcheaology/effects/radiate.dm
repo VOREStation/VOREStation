@@ -16,13 +16,13 @@
 		return 1
 
 /datum/artifact_effect/radiate/DoEffectAura()
-	var/atom/holder = master.holder
+	var/atom/holder = get_master_holder()
 	if(holder)
 		SSradiation.flat_radiate(holder, radiation_amount, src.effectrange)
 		return 1
 
 /datum/artifact_effect/radiate/DoEffectPulse()
-	var/atom/holder = master.holder
+	var/atom/holder = get_master_holder()
 	if(holder)
 		SSradiation.radiate(holder, ((radiation_amount * 3) * (sqrt(src.effectrange)))) //Need to get feedback on this //VOREStation Edit - Was too crazy-strong.
 		return 1

@@ -40,7 +40,7 @@
 				H.dizziness += rand(3,5)
 
 /datum/artifact_effect/goodfeeling/DoEffectAura()
-	var/atom/holder = master.holder
+	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/T = get_turf(holder)
 		for (var/mob/living/carbon/human/H in range(src.effectrange,T))
@@ -55,7 +55,7 @@
 		return 1
 
 /datum/artifact_effect/goodfeeling/DoEffectPulse()
-	var/atom/holder = master.holder
+	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/T = get_turf(holder)
 		for (var/mob/living/carbon/human/H in range(src.effectrange,T))

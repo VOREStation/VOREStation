@@ -13,7 +13,7 @@
 	effect_color = "#ff0000"
 
 /datum/artifact_effect/vampire/proc/bloodcall(var/mob/living/carbon/human/M)
-	var/atom/holder = master.holder
+	var/atom/holder = get_master_holder()
 	last_bloodcall = world.time
 	if(istype(M))
 		playsound(holder, pick('sound/hallucinations/wail.ogg','sound/hallucinations/veryfar_noise.ogg','sound/hallucinations/far_noise.ogg'), 50, 1, -3)
@@ -34,10 +34,10 @@
 	DoEffectAura()
 
 /datum/artifact_effect/vampire/DoEffectAura()
-	var/atom/holder = master.holder
+	var/atom/holder = get_master_holder()
 	if(nearby_mobs.len)
 		nearby_mobs.Cut()
-	var/turf/T = get_turf(master.holder)
+	var/turf/T = get_turf(holder)
 
 	for(var/mob/living/L in oview(effectrange, T))
 		if(!L.stat && L.mind)
@@ -50,7 +50,7 @@
 			holder.Beam(M, icon_state = "drainbeam", time = 1 SECOND)
 
 	if(world.time - last_eat >= eat_interval)
-		var/obj/effect/decal/cleanable/blood/B = locate() in range(2,master.holder)
+		var/obj/effect/decal/cleanable/blood/B = locate() in range(2,holder)
 		if(B)
 			last_eat = world.time
 			B.loc = null

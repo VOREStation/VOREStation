@@ -31,7 +31,7 @@
 	return 1
 
 /datum/artifact_effect/dnaswitch/DoEffectAura()
-	var/atom/holder = master.holder
+	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/T = get_turf(holder)
 		for(var/mob/living/carbon/human/H in range(src.effectrange,T))
@@ -51,7 +51,7 @@
 					scramble(0, H, weakness * severity)
 
 /datum/artifact_effect/dnaswitch/DoEffectPulse()
-	var/atom/holder = master.holder
+	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/T = get_turf(holder)
 		for(var/mob/living/carbon/human/H in range(200, T))

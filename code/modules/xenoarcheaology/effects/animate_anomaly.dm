@@ -16,22 +16,24 @@
 	effectrange = max(3, effectrange)
 
 /datum/artifact_effect/animate_anomaly/proc/find_target()
-	if(!target || target.z != master.holder.z || get_dist(target, master.holder) > effectrange)
+	var/atom/masterholder = get_master_holder()
+
+	if(!target || target.z != masterholder.z || get_dist(target, masterholder) > effectrange)
 		var/mob/living/ClosestMob = null
-		for(var/mob/living/L in range(effectrange, get_turf(master.holder)))
+		for(var/mob/living/L in range(effectrange, get_turf(masterholder)))
 			if(!L.mind)
 				continue
 			if(!ClosestMob)
 				ClosestMob = L
 				continue
 			if(!L.stat)
-				if(get_dist(master.holder, L) < get_dist(master.holder, ClosestMob))
+				if(get_dist(masterholder, L) < get_dist(masterholder, ClosestMob))
 					ClosestMob = L
 
 		target = ClosestMob
 
 /datum/artifact_effect/animate_anomaly/DoEffectTouch(var/mob/living/user)
-	var/atom/holder = master.holder
+	var/atom/holder = get_master_holder()
 	var/obj/O = holder
 	var/turf/T = get_step_away(O, user)
 
@@ -40,8 +42,13 @@
 		O.visible_message("<span class='alien'>\The [holder] lurches away from [user]</span>")
 
 /datum/artifact_effect/animate_anomaly/DoEffectAura()
-	var/obj/O = master.holder
+	var/obj/O = get_master_holder()
 	find_target()
+
+	if(!target || !istype(O))
+		return
+
+	O.dir = get_dir(O, target)
 
 	if(!target || !istype(O))
 		return

@@ -16,7 +16,7 @@
 			return 1
 
 /datum/artifact_effect/cellcharge/DoEffectAura()
-	var/atom/holder = master.holder
+	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/T = get_turf(holder)
 		for (var/obj/machinery/power/apc/C in GLOB.apcs)
@@ -45,7 +45,7 @@
 		return 1
 
 /datum/artifact_effect/cellcharge/DoEffectPulse()
-	var/atom/holder = master.holder
+	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/T = get_turf(holder)
 		for (var/obj/machinery/power/apc/C in GLOB.apcs)
