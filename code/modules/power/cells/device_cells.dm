@@ -25,6 +25,9 @@
 	charge = 0
 	update_icon()
 
+/obj/item/weapon/cell/device/weapon/empproof
+	emp_proof = TRUE
+
 /obj/item/weapon/cell/device/weapon/recharge
 	name = "self-charging weapon power cell"
 	desc = "A small power cell designed to power handheld weaponry. This one recharges itself."

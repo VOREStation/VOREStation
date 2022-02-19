@@ -9,6 +9,9 @@
 	var/glass = TRUE
 	var/launched = FALSE
 
+/obj/structure/panic_button/small
+	icon_state = "smallpanicbutton"
+
 // In case we're annihilated by a meteor
 /obj/structure/panic_button/Destroy()
 	if(!launched)
@@ -26,10 +29,10 @@
 /obj/structure/panic_button/attack_hand(mob/living/user)
 	if(!istype(user))
 		return ..()
-	
+
 	if(user.incapacitated())
 		return
-	
+
 	// Already launched
 	if(launched)
 		to_chat(user, "<span class='warning'>The button is already depressed; the beacon has been launched already.</span>")
@@ -61,10 +64,10 @@
 	S.distress(user)
 	//Kind of pricey, but this is a one-time thing that can't be reused, so I'm not too worried.
 	var/list/hear_z = GetConnectedZlevels(z) // multiz 'physical' connections only, not crazy overmap connections
-	
+
 	var/mapsize = (world.maxx+world.maxy)*0.5
 	var/turf/us = get_turf(src)
-	
+
 	for(var/hz in hear_z)
 		for(var/mob/M as anything in GLOB.players_by_zlevel[hz])
 			var/sound/SND = sound('sound/misc/emergency_beacon_launched.ogg') // Inside the loop because playsound_local modifies it for each person, so, need separate instances

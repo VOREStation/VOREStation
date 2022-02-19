@@ -227,3 +227,11 @@
 	emote_message_1p_target = "You trill at TARGET."
 	emote_message_3p_target = "trills at TARGET."
 	emote_sound = 'sound/voice/teshtrill.ogg' // Copyright CC BY-NC 3.0 Arnaud Coutancier (freesound.org) for the source audio.
+
+/decl/emote/audible/prbt
+	key = "prbt"
+	emote_message_1p = "You prbt."
+	emote_message_3p = "prbts."
+	emote_message_1p_target = "You prbt at TARGET."
+	emote_message_3p_target = "prbts at TARGET."
+	emote_sound = 'sound/voice/prbt.ogg'

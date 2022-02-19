@@ -24,14 +24,14 @@
 			//Try locating an exisitng stack on the tile and add to there if possible
 			var/obj/item/stack/hairlesshide/H = null
 			for(var/obj/item/stack/hairlesshide/HS in user.loc) // Could be scraping something inside a locker, hence the .loc, not get_turf
-				if(HS.amount < HS.max_amount)
+				if(HS.get_amount() < HS.max_amount)
 					H = HS
 					break
 			
 			 // Either we found a valid stack, in which case increment amount,
 			 // Or we need to make a new stack
 			if(istype(H))
-				H.amount++
+				H.add(1)
 			else
 				H = new /obj/item/stack/hairlesshide(user.loc)
 

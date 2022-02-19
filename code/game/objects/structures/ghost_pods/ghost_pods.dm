@@ -84,6 +84,11 @@
 	description_info = "A ghost can click on this to return to the round as whatever is contained inside this object."
 
 /obj/structure/ghost_pod/ghost_activated/attack_ghost(var/mob/observer/dead/user)
+	//VOREStation Add Start
+	if(jobban_isbanned(user, "GhostRoles"))
+		to_chat(user, "<span class='warning'>You cannot inhabit this creature because you are banned from playing ghost roles.</span>")
+		return
+	//VOREStation Add End
 	if(used)
 		to_chat(user, "<span class='warning'>Another spirit appears to have gotten to \the [src] before you.  Sorry.</span>")
 		return

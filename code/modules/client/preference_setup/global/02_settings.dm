@@ -9,6 +9,7 @@
 /datum/category_item/player_setup_item/player_global/settings/load_preferences(var/savefile/S)
 	S["lastchangelog"]        >> pref.lastchangelog
 	S["lastnews"]             >> pref.lastnews
+	S["lastlorenews"]         >> pref.lastlorenews
 	S["default_slot"]	      >> pref.default_slot
 	S["preferences"]          >> pref.preferences_enabled
 	S["preferences_disabled"] >> pref.preferences_disabled
@@ -16,6 +17,7 @@
 /datum/category_item/player_setup_item/player_global/settings/save_preferences(var/savefile/S)
 	S["lastchangelog"]        << pref.lastchangelog
 	S["lastnews"]             << pref.lastnews
+	S["lastlorenews"]         << pref.lastlorenews
 	S["default_slot"]         << pref.default_slot
 	S["preferences"]          << pref.preferences_enabled
 	S["preferences_disabled"] << pref.preferences_disabled
@@ -81,9 +83,17 @@
 
 	return ..()
 
+/**
+ * This can take either a single preference datum or a list of preferences, and will return true if *all* preferences in the arguments are enabled.
+ */
 /client/proc/is_preference_enabled(var/preference)
-	var/datum/client_preference/cp = get_client_preference(preference)
-	return cp && (cp.key in prefs.preferences_enabled)
+	if(!islist(preference))
+		preference = list(preference)
+	for(var/p in preference)
+		var/datum/client_preference/cp = get_client_preference(p)
+		if(!cp || !(cp.key in prefs.preferences_enabled))
+			return FALSE
+	return TRUE
 
 /client/proc/set_preference(var/preference, var/set_preference)
 	var/datum/client_preference/cp = get_client_preference(preference)

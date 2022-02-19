@@ -270,9 +270,7 @@
 	var/chosen = pick(material)
 	if(chosen in rare_types)
 		spawn_amount = rand(1,15)
-	var/obj/item/stack/material/C = new chosen
-	C.amount = spawn_amount
-	C.loc = get_turf(holder.my_atom)
+	new chosen(get_turf(holder.my_atom), spawn_amount)
 
 /decl/chemical_reaction/instant/slimelight
 	name = "Slime Glow"
@@ -296,9 +294,7 @@
 	result_amount = 1
 
 /decl/chemical_reaction/instant/slimephoron/on_reaction(var/datum/reagents/holder)
-	var/obj/item/stack/material/phoron/P = new /obj/item/stack/material/phoron
-	P.amount = 10
-	P.loc = get_turf(holder.my_atom)
+	new /obj/item/stack/material/phoron(get_turf(holder.my_atom), 10)
 
 /decl/chemical_reaction/instant/slimefreeze
 	name = "Slime Freeze"
@@ -404,7 +400,7 @@
 		/mob/living/simple_mob/animal/passive/bird/parrot/poly,
 		/mob/living/simple_mob/animal/sif/fluffy,
 		/mob/living/simple_mob/animal/sif/fluffy/silky,
-		/mob/living/simple_mob/animal/passive/snake/noodle,
+		/mob/living/simple_mob/animal/passive/snake/python/noodle,
 		/mob/living/simple_mob/slime/xenobio/rainbow/kendrick,
 		/mob/living/simple_mob/animal/space/space_worm,						//Space Worm parts that aren't proper heads
 		/mob/living/simple_mob/animal/space/space_worm/head/severed,

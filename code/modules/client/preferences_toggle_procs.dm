@@ -1,8 +1,8 @@
 //Toggles for preferences, normal clients
 /client/verb/toggle_ghost_ears()
-	set name = "Show/Hide Ghost Ears"
+	set name = "Toggle Ghost Ears"
 	set category = "Preferences"
-	set desc = "Toggles between seeing all mob speech and nearby mob speech."
+	set desc = "Toggles between seeing all mob speech and only nearby mob speech as an observer."
 
 	var/pref_path = /datum/client_preference/ghost_ears
 
@@ -15,9 +15,9 @@
 	feedback_add_details("admin_verb","TGEars") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/verb/toggle_ghost_vision()
-	set name = "Show/Hide Ghost Vision"
+	set name = "Toggle Ghost Sight"
 	set category = "Preferences"
-	set desc = "Toggles between seeing all mob emotes and nearby mob emotes."
+	set desc = "Toggles between seeing all mob emotes and only nearby mob emotes as an observer."
 
 	var/pref_path = /datum/client_preference/ghost_sight
 
@@ -30,9 +30,9 @@
 	feedback_add_details("admin_verb","TGVision") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/verb/toggle_ghost_radio()
-	set name = "Show/Hide Radio Chatter"
+	set name = "Toggle Ghost Radio"
 	set category = "Preferences"
-	set desc = "Toggles between seeing all radio chat and nearby radio chatter."
+	set desc = "Toggles between seeing all radio chat and only nearby radio chatter as an observer."
 
 	var/pref_path = /datum/client_preference/ghost_radio
 
@@ -45,9 +45,9 @@
 	feedback_add_details("admin_verb","TGRadio") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/verb/toggle_deadchat()
-	set name = "Show/Hide Deadchat"
+	set name = "Toggle Deadchat"
 	set category = "Preferences"
-	set desc = "Toggles the dead chat channel."
+	set desc = "Toggles visibility of dead chat."
 
 	var/pref_path = /datum/client_preference/show_dsay
 
@@ -60,9 +60,9 @@
 	feedback_add_details("admin_verb","TDeadChat") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/verb/toggle_ooc()
-	set name = "Show/Hide OOC"
+	set name = "Toggle OOC"
 	set category = "Preferences"
-	set desc = "Toggles global out of character chat."
+	set desc = "Toggles visibility of global out of character chat."
 
 	var/pref_path = /datum/client_preference/show_ooc
 
@@ -75,9 +75,9 @@
 	feedback_add_details("admin_verb","TOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/verb/toggle_looc()
-	set name = "Show/Hide LOOC"
+	set name = "Toggle LOOC"
 	set category = "Preferences"
-	set desc = "Toggles local out of character chat."
+	set desc = "Toggles visibility of local out of character chat."
 
 	var/pref_path = /datum/client_preference/show_looc
 
@@ -90,9 +90,9 @@
 	feedback_add_details("admin_verb","TLOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/verb/toggle_precision_placement()
-	set name = "Enable/Disable Precision Placement"
+	set name = "Toggle Precision Placement"
 	set category = "Preferences"
-	set desc = "Toggles precise placement of objects on tables."
+	set desc = "Toggles whether objects placed on table will be on cursor position or centered."
 
 	var/pref_path = /datum/client_preference/precision_placement
 
@@ -105,9 +105,9 @@
 	feedback_add_details("admin_verb","TPIP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/verb/toggle_typing()
-	set name = "Show/Hide Typing Indicator"
+	set name = "Toggle Typing Indicator"
 	set category = "Preferences"
-	set desc = "Toggles the speech bubble typing indicator."
+	set desc = "Toggles you having the speech bubble typing indicator."
 
 	var/pref_path = /datum/client_preference/show_typing_indicator
 
@@ -137,7 +137,7 @@
 /client/verb/toggle_lobby_music()
 	set name = "Toggle Lobby Music"
 	set category = "Preferences"
-	set desc = "Toggles the music in the lobby."
+	set desc = "Toggles the ability to hear the music in the lobby."
 
 	var/pref_path = /datum/client_preference/play_lobby_music
 
@@ -150,15 +150,15 @@
 	feedback_add_details("admin_verb","TLobMusic") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/verb/toggle_admin_midis()
-	set name = "Toggle Admin MIDIs"
+	set name = "Toggle Admin Music"
 	set category = "Preferences"
-	set desc = "Toggles the music in the lobby."
+	set desc = "Toggles the ability to hear music played by admins."
 
 	var/pref_path = /datum/client_preference/play_admin_midis
 
 	toggle_preference(pref_path)
 
-	to_chat(src,"You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear MIDIs from admins.")
+	to_chat(src,"You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear music from admins.")
 
 	SScharacter_setup.queue_preferences_save(prefs)
 
@@ -167,7 +167,7 @@
 /client/verb/toggle_ambience()
 	set name = "Toggle Ambience"
 	set category = "Preferences"
-	set desc = "Toggles the playing of ambience."
+	set desc = "Toggles the ability to hear local ambience."
 
 	var/pref_path = /datum/client_preference/play_ambiance
 
@@ -212,7 +212,7 @@
 /client/verb/toggle_jukebox()
 	set name = "Toggle Jukebox"
 	set category = "Preferences"
-	set desc = "Toggles the playing of jukebox music."
+	set desc = "Toggles the ability to hear jukebox music."
 
 	var/pref_path = /datum/client_preference/play_jukebox
 
@@ -225,7 +225,7 @@
 	feedback_add_details("admin_verb","TJukebox") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/verb/toggle_be_special(role in be_special_flags)
-	set name = "Toggle SpecialRole Candidacy"
+	set name = "Toggle Special Role Candidacy"
 	set category = "Preferences"
 	set desc = "Toggles which special roles you would like to be a candidate for, during events."
 
@@ -240,24 +240,24 @@
 	feedback_add_details("admin_verb","TBeSpecial") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/verb/toggle_air_pump_hum()
-	set name = "Toggle Air Pump Noise"
+	set name = "Toggle Air Vent Noise"
 	set category = "Preferences"
-	set desc = "Toggles Air Pumps humming"
+	set desc = "Toggles the ability to hear air vent humming."
 
 	var/pref_path = /datum/client_preference/air_pump_noise
 
 	toggle_preference(pref_path)
 
-	to_chat(src, "You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear air pumps hum, start, and stop.")
+	to_chat(src, "You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear air vents hum, start, and stop.")
 
 	SScharacter_setup.queue_preferences_save(prefs)
 
 	feedback_add_details("admin_verb","TAirPumpNoise")
-	
+
 /client/verb/toggle_old_door_sounds()
 	set name = "Toggle Old Door Sounds"
 	set category = "Preferences"
-	set desc = "Toggles New/Old Door Sounds"
+	set desc = "Toggles door sounds between old and new."
 
 	var/pref_path = /datum/client_preference/old_door_sounds
 
@@ -268,11 +268,11 @@
 	SScharacter_setup.queue_preferences_save(prefs)
 
 	feedback_add_details("admin_verb","TOldDoorSounds")
-	
+
 /client/verb/toggle_department_door_sounds()
 	set name = "Toggle Department Door Sounds"
 	set category = "Preferences"
-	set desc = "Toggles Department-Specific Door Sounds"
+	set desc = "Toggles hearing of department-specific door sounds."
 
 	var/pref_path = /datum/client_preference/department_door_sounds
 
@@ -287,13 +287,13 @@
 /client/verb/toggle_pickup_sounds()
 	set name = "Toggle Picked Up Item Sounds"
 	set category = "Preferences"
-	set desc = "Toggles sounds when items are picked up or thrown."
+	set desc = "Toggles the ability to hear sounds when items are picked up."
 
 	var/pref_path = /datum/client_preference/pickup_sounds
 
 	toggle_preference(pref_path)
 
-	to_chat(src, "You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear sounds when items are picked up or thrown.")
+	to_chat(src, "You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear sounds when items are picked up.")
 
 	SScharacter_setup.queue_preferences_save(prefs)
 
@@ -302,7 +302,7 @@
 /client/verb/toggle_drop_sounds()
 	set name = "Toggle Dropped Item Sounds"
 	set category = "Preferences"
-	set desc = "Toggles sounds when items are dropped or thrown."
+	set desc = "Toggles the ability to hear sounds when items are dropped or thrown."
 
 	var/pref_path = /datum/client_preference/drop_sounds
 
@@ -330,7 +330,7 @@
 /client/verb/toggle_mob_tooltips()
 	set name = "Toggle Mob Tooltips"
 	set category = "Preferences"
-	set desc = "Toggles displaying name/species over mobs when moused over."
+	set desc = "Toggles displaying name/species over mobs when they are moused over."
 
 	var/pref_path = /datum/client_preference/mob_tooltips
 	toggle_preference(pref_path)
@@ -343,7 +343,7 @@
 /client/verb/toggle_inv_tooltips()
 	set name = "Toggle Item Tooltips"
 	set category = "Preferences"
-	set desc = "Toggles displaying name/desc over items when moused over (only applies in inventory)."
+	set desc = "Toggles displaying name/desc over items when they are moused over (only applies in inventory)."
 
 	var/pref_path = /datum/client_preference/inv_tooltips
 	toggle_preference(pref_path)
@@ -356,7 +356,7 @@
 /client/verb/toggle_hear_instruments()
 	set name = "Toggle Hear/Ignore Instruments"
 	set category = "Preferences"
-	set desc = "Hear In-game Instruments"
+	set desc = "Toggles the ability to hear instruments playing."
 
 	var/pref_path = /datum/client_preference/instrument_toggle
 	toggle_preference(pref_path)
@@ -369,7 +369,7 @@
 /client/verb/toggle_vchat()
 	set name = "Toggle VChat"
 	set category = "Preferences"
-	set desc = "Enable/Disable VChat. Reloading VChat and/or reconnecting required to affect changes."
+	set desc = "Toggles VChat. Reloading VChat and/or reconnecting required to affect changes."
 
 	var/pref_path = /datum/client_preference/vchat_enable
 	toggle_preference(pref_path)
@@ -382,7 +382,7 @@
 /client/verb/toggle_status_indicators()
 	set name = "Toggle Status Indicators"
 	set category = "Preferences"
-	set desc = "Enable/Disable seeing status indicators over peoples' heads."
+	set desc = "Toggles seeing status indicators over peoples' heads."
 
 	var/pref_path = /datum/client_preference/status_indicators
 	toggle_preference(pref_path)
@@ -393,11 +393,24 @@
 	feedback_add_details("admin_verb","TStatusIndicators")
 
 
+/client/verb/toggle_radio_sounds()
+	set name = "Toggle Radio Sounds"
+	set category = "Preferences"
+	set desc = "Toggle hearing a sound when somebody speaks over your headset."
+
+	var/pref_path = /datum/client_preference/radio_sounds
+	toggle_preference(pref_path)
+	SScharacter_setup.queue_preferences_save(prefs)
+
+	to_chat(src, "You will now [(is_preference_enabled(/datum/client_preference/radio_sounds)) ? "hear" : "not hear"] radio sounds.")
+
+	feedback_add_details("admin_verb","TRadioSounds")
+
 // Not attached to a pref datum because those are strict binary toggles
 /client/verb/toggle_examine_mode()
 	set name = "Toggle Examine Mode"
 	set category = "Preferences"
-	set desc = "Control the additional behaviour of examining things"
+	set desc = "Toggle the additional behaviour of examining things."
 
 	prefs.examine_text_mode++
 	prefs.examine_text_mode %= EXAMINE_MODE_MAX // This cycles through them because if you're already specifically being routed to the examine panel, you probably don't need to have the extra text printed to chat
@@ -414,7 +427,7 @@
 /client/verb/toggle_multilingual_mode()
 	set name = "Toggle Multilingual Mode"
 	set category = "Preferences"
-	set desc = "Control the behaviour of multilingual speech parsing"
+	set desc = "Toggle the behaviour of multilingual speech parsing."
 
 	prefs.multilingual_mode++
 	prefs.multilingual_mode %= MULTILINGUAL_MODE_MAX // Cycles through the various options
@@ -435,7 +448,7 @@
 /client/proc/toggle_debug_logs()
 	set name = "Toggle Debug Logs"
 	set category = "Preferences"
-	set desc = "Toggles debug logs."
+	set desc = "Toggles seeing debug logs."
 
 	var/pref_path = /datum/client_preference/debug/show_debug_logs
 
@@ -450,7 +463,7 @@
 /client/proc/toggle_attack_logs()
 	set name = "Toggle Attack Logs"
 	set category = "Preferences"
-	set desc = "Toggles attack logs."
+	set desc = "Toggles seeing attack logs."
 
 	var/pref_path = /datum/client_preference/mod/show_attack_logs
 

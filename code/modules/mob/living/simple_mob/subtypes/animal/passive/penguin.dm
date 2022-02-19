@@ -14,6 +14,11 @@
 	response_disarm = "pushes aside"
 	response_harm   = "hits"
 
+	organ_names = /decl/mob_organ_names/penguin
+
+	meat_amount = 3
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/chicken
+
 	harm_intent_damage = 5
 	melee_damage_lower = 10
 	melee_damage_upper = 15
@@ -25,3 +30,6 @@
 	name = "Tux"
 	desc = "A penguin that has been known to associate with gnus."
 	speak_emote = list("interjects")
+
+/decl/mob_organ_names/penguin
+	hit_zones = list("chest", "left leg", "right leg", "left flipper", "right flipper", "head")

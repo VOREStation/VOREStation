@@ -40,7 +40,7 @@
 			if(debug)
 				to_chat(user, span("warning", "\The [src] does not need any material."))
 				return
-			var/num = min((max_metal - metal) / metal_per_sheet, stack.amount)
+			var/num = min((max_metal - metal) / metal_per_sheet, stack.get_amount())
 			if(num < 1)
 				to_chat(user, span("warning", "\The [src] is too full to add more metal."))
 				return

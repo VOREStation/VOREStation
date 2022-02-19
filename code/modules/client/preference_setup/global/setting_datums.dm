@@ -95,6 +95,12 @@ var/list/_client_preferences_by_type
 	key = "DIGEST_NOISES"
 	enabled_description = "Noisy"
 	disabled_description = "Silent"
+	
+/datum/client_preference/belch_noises // Belching noises - pref toggle for 'em
+	description = "Burping"
+	key = "BELCH_NOISES"
+	enabled_description = "Noisy"
+	disabled_description = "Silent"
 
 /datum/client_preference/emote_noises
 	description = "Emote Noises" //MERP
@@ -287,6 +293,12 @@ var/list/_client_preferences_by_type
 	enabled_description = "Show"
 	disabled_description = "Hide"
 
+/datum/client_preference/radio_sounds
+	description = "Radio Sounds"
+	key = "RADIO_SOUNDS"
+	enabled_description = "On"
+	disabled_description = "Off"
+
 /datum/client_preference/runechat_mob
 	description = "Runechat (Mobs)"
 	key = "RUNECHAT_MOB"
@@ -318,6 +330,13 @@ var/list/_client_preferences_by_type
 	if(preference_mob && preference_mob.plane_holder)
 		var/datum/plane_holder/PH = preference_mob.plane_holder
 		PH.set_vis(VIS_STATUS, enabled)
+
+/datum/client_preference/show_lore_news
+	description = "Lore News Popup"
+	key = "NEWS_POPUP"
+	enabled_by_default = TRUE
+	enabled_description = "Popup New On Login"
+	disabled_description = "Do Nothing"
 
 /********************
 * Staff Preferences *

@@ -419,3 +419,6 @@
 
 /mob/living/silicon/has_vision()
 	return 0 //NOT REAL EYES
+
+/mob/living/silicon/can_feed()
+	return FALSE

@@ -7,8 +7,8 @@
 	desc = "A highly advanced ray gun with a knob on the side to adjust the size you desire. Warning: Do not insert into mouth."
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_override = 'icons/obj/gun_vr.dmi'
-	icon_state = "sizegun-shrink100"
-	item_state = "sizegun-shrink"
+	icon_state = "sizegun"
+	item_state = "sizegun"
 	fire_sound = 'sound/weapons/wave.ogg'
 	charge_cost = 240
 	projectile_type = /obj/item/projectile/beam/sizelaser
@@ -42,7 +42,6 @@
 	set category = "Object"
 	set src in view(1)
 
-	var/prev_size = size_set_to
 	var/size_select = input(usr, "Put the desired size (25-200%), (1-600%) in dormitory areas.", "Set Size", size_set_to * 100) as num|null
 	if(!size_select)
 		return //cancelled
@@ -52,22 +51,39 @@
 	to_chat(usr, "<span class='notice'>You set the size to [size_select]%</span>")
 	if(size_set_to < RESIZE_MINIMUM || size_set_to > RESIZE_MAXIMUM)
 		to_chat(usr, "<span class='notice'>Note: Resizing limited to 25-200% automatically while outside dormatory areas.</span>") //hint that we clamp it in resize
-	
-	if(size_set_to >= 1 && prev_size < 1)
-		item_state = modifystate = "sizegun-grow"
-		update_icon()
-		
-	else if(size_set_to < 1 && prev_size >= 1)
-		item_state = modifystate = "sizegun-shrink"
-		update_icon()
+
+/obj/item/weapon/gun/energy/sizegun/update_icon(var/ignore_inhands)
+	var/grow_mode = "shrink"
+	if(size_set_to > 1)
+		grow_mode = "grow"
+	if(charge_meter)
+		var/ratio = power_supply.charge / power_supply.maxcharge
+
+		//make sure that rounding down will not give us the empty state even if we have charge for a shot left.
+		if(power_supply.charge < charge_cost)
+			ratio = 0
+		else
+			ratio = max(round(ratio, 0.25) * 100, 25)
+
+		icon_state = "[initial(icon_state)]-[grow_mode][ratio]"
+		item_state = "[initial(icon_state)]-[grow_mode]"
+
+	if(!ignore_inhands) update_held_icon()
 
 /obj/item/weapon/gun/energy/sizegun/examine(mob/user)
 	. = ..()
 	. += "<span class='info'>It is currently set at [size_set_to*100]%</span>"
 
+/obj/item/weapon/gun/energy/sizegun/old
+	desc = "A highly advanced ray gun with a knob on the side to adjust the size you desire. This one seems to be an older model, but still functional. Warning: Do not insert into mouth."
+	icon_state = "sizegun-old"
+	item_state = "sizegun-old"
+
 /obj/item/weapon/gun/energy/sizegun/admin
 	name = "modified size gun"
-	desc = "Sizegun, without limits on minimum/maximum size, and with unlimited charge. Time to show 'em that size does matter."
+	desc = "An older model sizegun, modified to be without limits on minimum/maximum size, and have an unlimited charge. Time to show 'em that size does matter."
+	icon_state = "sizegun_admin"
+	item_state = "sizegun_admin"
 	charge_cost = 0
 	projectile_type = /obj/item/projectile/beam/sizelaser/admin
 
@@ -111,8 +127,12 @@
 /obj/item/projectile/beam/sizelaser/on_hit(var/atom/target)
 	var/mob/living/M = target
 	var/ignoring_prefs = (target == firer ? TRUE : FALSE) // Resizing yourself
-	
 	if(istype(M))
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			if(istype(H.gloves, /obj/item/clothing/gloves/bluespace))
+				M.visible_message("<span class='warning'>\The [H]'s bracelet flashes and absorbs the beam!</span>","<span class='notice'>Your bracelet flashes and absorbs the beam!</span>")
+				return
 		if(!M.resize(set_size, uncapped = M.has_large_resize_bounds(), ignore_prefs = ignoring_prefs))
 			to_chat(M, "<font color='blue'>The beam fires into your body, changing your size!</font>")
 		M.updateicon()
@@ -121,7 +141,7 @@
 
 /obj/item/projectile/beam/sizelaser/admin/on_hit(var/atom/target)
 	var/mob/living/M = target
-	
+
 	if(istype(M))
 
 		var/can_be_big = M.has_large_resize_bounds()
@@ -131,7 +151,7 @@
 			to_chat(firer, "<span class='warning'>[M] will lose this size upon moving into an area where this size is not allowed.</span>")
 		else if(very_big) // made an extreme size in an area that doesn't allow it, assume adminbuse
 			to_chat(firer, "<span class='warning'>[M] will retain this normally unallowed size outside this area.</span>")
-		
+
 		M.resize(set_size, uncapped = TRUE, ignore_prefs = TRUE) // Always ignores prefs, caution is advisable
 
 		to_chat(M, "<font color='blue'>The beam fires into your body, changing your size!</font>")

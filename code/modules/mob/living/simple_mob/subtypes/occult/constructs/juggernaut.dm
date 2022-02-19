@@ -19,6 +19,7 @@
 	attack_armor_pen = 60 //Being punched by a living, floating statue.
 	attacktext = list("smashed their armoured gauntlet into")
 	friendly = list("pats")
+	organ_names = /decl/mob_organ_names/juggernaut
 	mob_size = MOB_HUGE
 
 
@@ -142,3 +143,6 @@
 		return -1 // complete projectile permutation
 
 	return (..(P))
+
+/decl/mob_organ_names/juggernaut
+	hit_zones = list("body", "left pauldron", "right pauldron", "left arm", "right arm", "eye", "head", "crystaline spike")

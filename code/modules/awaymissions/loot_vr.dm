@@ -57,8 +57,7 @@
 
 				var/bar_type = pick(possible_spawns)
 				for(var/i=0,i<amount,i++)
-					var/obj/item/stack/material/M = new bar_type(C)
-					M.amount = quantity
+					new bar_type(C, quantity)
 			else
 				//credits
 				var/amount = rand(2,6)
@@ -283,7 +282,7 @@
 					for(var/i=0,i<num,i++)
 						new /mob/living/simple_mob/animal/space/carp(C)
 				else // Just a costume.
-					new /obj/item/clothing/suit/storage/hooded/carp_costume(C)
+					new /obj/item/clothing/suit/storage/hooded/costume/carp(C)
 			else if(prob(50))
 				if(live_cargo) // Something else very much alive and angry.
 					var/spawn_type = pick(/mob/living/simple_mob/animal/space/alien, /mob/living/simple_mob/animal/space/alien/drone, /mob/living/simple_mob/animal/space/alien/sentinel)

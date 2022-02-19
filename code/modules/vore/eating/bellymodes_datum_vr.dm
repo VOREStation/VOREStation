@@ -22,6 +22,7 @@ GLOBAL_LIST_INIT(digest_modes, list())
 	noise_chance = 50
 
 /datum/digest_mode/digest/process_mob(obj/belly/B, mob/living/L)
+	var/oldstat = L.stat
 	//Pref protection!
 	if(!L.digestable || L.absorbed)
 		return null
@@ -59,6 +60,8 @@ GLOBAL_LIST_INIT(digest_modes, list())
 		B.owner.adjust_nutrition(offset*(4.5 * (damage_gain) / difference)) //4.5 nutrition points per health point. Normal same size 100+100 health prey with average weight would give 900 points if the digestion was instant. With all the size/weight offset taxes plus over time oxyloss+hunger taxes deducted with non-instant digestion, this should be enough to not leave the pred starved.
 	else
 		B.owner.adjust_nutrition(4.5 * (damage_gain) / difference)
+	if(L.stat != oldstat)
+		return list("to_update" = TRUE)
 
 /datum/digest_mode/absorb
 	id = DM_ABSORB
@@ -77,10 +80,8 @@ GLOBAL_LIST_INIT(digest_modes, list())
 
 /datum/digest_mode/unabsorb/process_mob(obj/belly/B, mob/living/L)
 	if(L.absorbed && B.owner.nutrition >= 100)
-		L.absorbed = FALSE
-		to_chat(L, "<span class='notice'>You suddenly feel solid again.</span>")
-		to_chat(B.owner,"<span class='notice'>You feel like a part of you is missing.</span>")
 		B.owner.adjust_nutrition(-100)
+		B.unabsorb_living(L)
 		return list("to_update" = TRUE)
 
 /datum/digest_mode/drain
@@ -120,6 +121,7 @@ GLOBAL_LIST_INIT(digest_modes, list())
 	noise_chance = 50 //Wet heals! The secret is you can leave this on for gurgle noises for fun.
 
 /datum/digest_mode/heal/process_mob(obj/belly/B, mob/living/L)
+	var/oldstat = L.stat
 	if(L.stat == DEAD)
 		return null // Can't heal the dead with healbelly
 	if(B.owner.nutrition > 90 && (L.health < L.maxHealth))
@@ -134,6 +136,8 @@ GLOBAL_LIST_INIT(digest_modes, list())
 	else if(B.owner.nutrition > 90 && (L.nutrition <= 400))
 		B.owner.adjust_nutrition(-1)
 		L.adjust_nutrition(1)
+	if(L.stat != oldstat)
+		return list("to_update" = TRUE)
 
 // E G G
 /datum/digest_mode/egg
@@ -172,7 +176,7 @@ GLOBAL_LIST_INIT(digest_modes, list())
 				B.ownegg.update_transform()
 				egg_contents -= I
 				B.ownegg = null
-				return
+				return list("to_update" = TRUE)
 			if(isliving(C))
 				var/mob/living/M = C
 				var/mob_holder_type = M.holder_type || /obj/item/weapon/holder
@@ -186,7 +190,7 @@ GLOBAL_LIST_INIT(digest_modes, list())
 				if(B.ownegg.w_class > 4)
 					B.ownegg.slowdown = B.ownegg.w_class - 4
 				B.ownegg = null
-				return
+				return list("to_update" = TRUE)
 			C.forceMove(B.ownegg)
 			if(isitem(C))
 				var/obj/item/I = C
@@ -194,10 +198,11 @@ GLOBAL_LIST_INIT(digest_modes, list())
 		B.ownegg.calibrate_size()
 		B.ownegg.orient2hud()
 		B.ownegg.w_class = clamp(B.ownegg.w_class * 0.25, 1, 8) //A total w_class of 16 will result in a backpack sized egg.
-		B.ownegg.icon_scale_x = 0.25 * B.ownegg.w_class
-		B.ownegg.icon_scale_y = 0.25 * B.ownegg.w_class
+		B.ownegg.icon_scale_x = clamp(0.25 * B.ownegg.w_class, 0.25, 1)
+		B.ownegg.icon_scale_y = clamp(0.25 * B.ownegg.w_class, 0.25, 1)
 		B.ownegg.update_transform()
 		if(B.ownegg.w_class > 4)
 			B.ownegg.slowdown = B.ownegg.w_class - 4
 		B.ownegg = null
+		return list("to_update" = TRUE)
 	return

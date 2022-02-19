@@ -133,6 +133,7 @@
 	icon_state = "neckfur"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "neckfur_markings"
 
 /datum/sprite_accessory/wing/feathered
 	name = "feathered wings, colorable"

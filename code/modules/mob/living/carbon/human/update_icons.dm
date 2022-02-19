@@ -483,6 +483,8 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	var/icon/ears_s = get_ears_overlay()
 	var/image/em_block_ears
 	if(ears_s)
+		if(ears_s.Height() > face_standing.Height()) // Tol ears
+			face_standing.Crop(1, 1, face_standing.Width(), ears_s.Height())
 		face_standing.Blend(ears_s, ICON_OVERLAY)
 		if(ear_style?.em_block)
 			em_block_ears = em_block_image_generic(image(ears_s))
@@ -1241,9 +1243,9 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 				riding_datum = new /datum/riding/taur(src)
 				verbs |= /mob/living/carbon/human/proc/taur_mount
 				verbs |= /mob/living/proc/toggle_rider_reins
-			return working
-		else
-			return working
+		else if(islongtail(tail_style))
+			working.pixel_x = -16
+		return working
 	return null
 
 // TODO - Move this to where it should go ~Leshana

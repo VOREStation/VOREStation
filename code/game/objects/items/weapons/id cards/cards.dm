@@ -116,7 +116,6 @@
 	else
 		log_and_message_admins("attempted to emag \an [A].")
 	// Vorestation Edit: End of Edit
-	log_and_message_admins("emagged \an [A].")
 
 	if(uses<1)
 		user.visible_message("<span class='warning'>\The [src] fizzles and sparks - it seems it's been used once too often, and is now spent.</span>")
@@ -130,10 +129,10 @@
 /obj/item/weapon/card/emag/attackby(obj/item/O as obj, mob/user as mob)
 	if(istype(O, /obj/item/stack/telecrystal))
 		var/obj/item/stack/telecrystal/T = O
-		if(T.amount < 1)
+		if(T.get_amount() < 1)
 			to_chat(usr, "<span class='notice'>You are not adding enough telecrystals to fuel \the [src].</span>")
 			return
-		uses += T.amount/2 //Gives 5 uses per 10 TC
+		uses += T.get_amount()*0.5 //Gives 5 uses per 10 TC
 		uses = CEILING(uses, 1) //Ensures no decimal uses nonsense, rounds up to be nice
 		to_chat(usr, "<span class='notice'>You add \the [O] to \the [src]. Increasing the uses of \the [src] to [uses].</span>")
 		qdel(O)

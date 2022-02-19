@@ -88,8 +88,8 @@
 		CASINO_PRIZE("Dolphin mask", /obj/item/clothing/mask/dolphin, 1, 50, "clothing"),
 		CASINO_PRIZE("Demon mask", /obj/item/clothing/mask/demon, 1, 50, "clothing"),
 		CASINO_PRIZE("Chameleon mask", /obj/item/clothing/under/chameleon, 1, 250, "clothing"),
-		CASINO_PRIZE("Ian costume", /obj/item/clothing/suit/storage/hooded/ian_costume, 1, 50, "clothing"),
-		CASINO_PRIZE("Carp costume", /obj/item/clothing/suit/storage/hooded/carp_costume, 1, 50, "clothing"),
+		CASINO_PRIZE("Ian costume", /obj/item/clothing/suit/storage/hooded/costume/ian, 1, 50, "clothing"),
+		CASINO_PRIZE("Carp costume", /obj/item/clothing/suit/storage/hooded/costume/carp, 1, 50, "clothing"),
 	)
 	item_list["Miscellaneous"] = list(
 		CASINO_PRIZE("Toy sword", /obj/item/toy/sword, 1, 50, "misc"),
@@ -270,8 +270,7 @@
 	SStgui.update_uis(src)
 
 	if(ispath(bi.equipment_path, /obj/item/stack))
-		var/obj/item/stack/S = new bi.equipment_path(loc)
-		S.amount = bi.equipment_amt
+		new bi.equipment_path(loc, bi.equipment_amt)
 		playsound(src, 'sound/machines/vending/vending_drop.ogg', 100, 1)
 		return TRUE
 

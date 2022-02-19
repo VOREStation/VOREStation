@@ -101,7 +101,7 @@
 	var/list/equipment = new		//This lists holds what stuff you bolted onto your baby ride
 	var/obj/item/mecha_parts/mecha_equipment/selected
 	var/max_equip = 2
-	
+
 	// What direction to float in, if inertial movement is active.
 	var/float_direction = 0
 	// Process() iterator count.
@@ -212,6 +212,9 @@
 		for(var/path in starting_equipment)
 			var/obj/item/mecha_parts/mecha_equipment/ME = new path(src)
 			ME.attach(src)
+
+	START_PROCESSING(SSobj, src)
+
 	update_transform()
 
 /obj/mecha/drain_power(var/drain_check)
@@ -327,6 +330,8 @@
 
 	QDEL_NULL(spark_system)
 	QDEL_NULL(minihud)
+
+	STOP_PROCESSING(SSobj, src)
 
 	mechas_list -= src //global mech list
 	. = ..()
@@ -828,7 +833,7 @@
 	if(hasInternalDamage(MECHA_INT_CONTROL_LOST))
 		move_result = mechsteprand()
 	//Up/down zmove
-	else if(direction & UP || direction & DOWN)
+	else if(direction == UP || direction == DOWN)
 		if(!can_ztravel())
 			occupant_message("<span class='warning'>Your vehicle lacks the capacity to move in that direction!</span>")
 			return FALSE
@@ -841,7 +846,7 @@
 				occupant_message("<span class='warning'>You can't move that direction from here!</span>")
 				result = FALSE
 				break
-			var/turf/dest = direction & UP ? GetAbove(T) : GetBelow(T)
+			var/turf/dest = (direction == UP) ? GetAbove(src) : GetBelow(src)
 			if(!dest)
 				occupant_message("<span class='notice'>There is nothing of interest in this direction.</span>")
 				result = FALSE
@@ -917,27 +922,19 @@
 	if(istype(obstacle, /mob))//First we check if it is a mob. Mechs mostly shouln't go through them, even while phasing.
 		var/mob/M = obstacle
 		M.Move(get_step(obstacle,src.dir))
+	else if(phasing && get_charge()>=phasing_energy_drain)//Phazon check. This could use an improvement elsewhere.
+		src.use_power(phasing_energy_drain)
+		phase()
+		. = ..(obstacle)
+		return
 	else if(istype(obstacle, /obj))//Then we check for regular obstacles.
 		var/obj/O = obstacle
-
-		if(phasing && get_charge()>=phasing_energy_drain)//Phazon check. This could use an improvement elsewhere.
-			spawn()
-				if(can_phase)
-					can_phase = FALSE
-					flick("[initial_icon]-phase", src)
-					src.loc = get_step(src,src.dir)
-					src.use_power(phasing_energy_drain)
-					sleep(get_step_delay() * 3)
-					can_phase = TRUE
-					occupant_message("Phazed.")
-			. = ..(obstacle)
-			return
 		if(istype(O, /obj/effect/portal))	//derpfix
-			src.anchored = FALSE				//I have no idea what this really fix.
+			src.anchored = 0				// Portals can only move unanchored objects.
 			O.Crossed(src)
 			spawn(0)//countering portal teleport spawn(0), hurr
-				src.anchored = TRUE
-		else if(O.anchored)
+				src.anchored = 1
+		if(O.anchored)
 			obstacle.Bumped(src)
 		else
 			step(obstacle,src.dir)
@@ -945,6 +942,18 @@
 	else//No idea when this triggers, so i won't touch it.
 		. = ..(obstacle)
 	return
+
+/obj/mecha/proc/phase()	// Force the mecha to move forward by phasing.
+	set waitfor = FALSE
+	if(can_phase)
+		can_phase = FALSE
+		flick("[initial_icon]-phase", src)
+		forceMove(get_step(src,src.dir))
+		sleep(get_step_delay() * 3)
+		can_phase = TRUE
+		occupant_message("Phazed.")
+		return TRUE	// In the event this is sequenced
+	return FALSE
 
 ///////////////////////////////////
 ////////  Internal damage  ////////
@@ -1704,8 +1713,7 @@
 	return
 
 /obj/mecha/remove_air(amount)
-	var/obj/item/mecha_parts/component/gas/GC = internal_components[MECH_GAS]
-	if(use_internal_tank && (GC && prob(GC.get_efficiency() * 100)))
+	if(use_internal_tank)
 		return cabin_air.remove(amount)
 	else
 		var/turf/T = get_turf(src)
@@ -1714,7 +1722,8 @@
 	return
 
 /obj/mecha/return_air()
-	if(use_internal_tank)
+	var/obj/item/mecha_parts/component/gas/GC = internal_components[MECH_GAS]
+	if(use_internal_tank && (GC && prob(GC.get_efficiency() * 100)))
 		return cabin_air
 	return get_turf_air()
 
@@ -2474,8 +2483,8 @@
 		var/obj/item/mecha_parts/mecha_equipment/equip = top_filter.getObj("select_equip")
 		if(equip)
 			src.selected = equip
-			src.occupant_message("You switch to [equip]")
-			src.visible_message("[src] raises [equip]")
+			src.occupant_message("You switch to [equip].")
+			src.visible_message("[src] raises [equip].")
 			send_byjax(src.occupant,"exosuit.browser","eq_list",src.get_equipment_list())
 		return
 	if(href_list["eject"])

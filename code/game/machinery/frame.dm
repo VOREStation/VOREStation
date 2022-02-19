@@ -221,6 +221,11 @@
 	frame_style = FRAME_STYLE_WALL
 	x_offset = 28
 	y_offset = 28
+	
+/datum/frame/frame_types/arfgs
+	name = "ARF Generator"
+	frame_class = FRAME_CLASS_MACHINE
+	frame_size = 3
 
 //////////////////////////////
 // Frame Object (Structure)
@@ -514,9 +519,8 @@
 						if(istype(P, /obj/item/stack/cable_coil))
 							var/obj/item/stack/cable_coil/CP = P
 							if(CP.get_amount() > 1)
-								var/camt = min(CP.amount, req_components[I]) // amount of cable to take, idealy amount required, but limited by amount provided
-								var/obj/item/stack/cable_coil/CC = new /obj/item/stack/cable_coil(src)
-								CC.amount = camt
+								var/camt = min(CP.get_amount(), req_components[I]) // amount of cable to take, idealy amount required, but limited by amount provided
+								var/obj/item/stack/cable_coil/CC = new /obj/item/stack/cable_coil(src, camt)
 								CC.update_icon()
 								CP.use(camt)
 								components += CC
@@ -587,9 +591,8 @@
 						if(istype(P, /obj/item/stack))
 							var/obj/item/stack/ST = P
 							if(ST.get_amount() > 1)
-								var/camt = min(ST.amount, req_components[I]) // amount of stack to take, idealy amount required, but limited by amount provided
-								var/obj/item/stack/NS = new ST.stacktype(src)
-								NS.amount = camt
+								var/camt = min(ST.get_amount(), req_components[I]) // amount of stack to take, idealy amount required, but limited by amount provided
+								var/obj/item/stack/NS = new ST.stacktype(src, camt)
 								NS.update_icon()
 								ST.use(camt)
 								components += NS

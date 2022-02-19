@@ -99,8 +99,8 @@
 			)
 	cost = 250
 	containertype = /obj/structure/closet/crate/secure/gear
-	containername = "Commonwealth medical hardsuit crate"
-	access = access_medical
+	containername = "Commonwealth engineering hardsuit crate"
+	access = access_engine
 
 /datum/supply_pack/misc/zero_rig
 	name = "null hardsuit (jets)"
@@ -158,4 +158,3 @@
 	cost = 300
 	containertype = /obj/structure/closet/crate
 	containername = "cordless jukebox speakers crate"
-	

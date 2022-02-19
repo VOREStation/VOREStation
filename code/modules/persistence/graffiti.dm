@@ -40,7 +40,7 @@
 
 /obj/effect/decal/writing/examine(mob/user)
 	. = ..()
-	to_chat(user,  "It reads \"[message]\".")
+	. += "\n It reads \"[message]\"."
 
 /obj/effect/decal/writing/attackby(var/obj/item/thing, var/mob/user)
 	if(istype(thing, /obj/item/weapon/weldingtool))

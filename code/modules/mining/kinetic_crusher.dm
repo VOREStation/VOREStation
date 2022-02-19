@@ -237,6 +237,7 @@
 
 
 /obj/item/weapon/kinetic_crusher/machete
+	// general purpose. cleaves though
 	name = "proto-kinetic machete"
 	desc = "A scaled down version of a proto-kinetic crusher, used by people who don't want to lug around an axe-hammer."
 	icon_state = "glaive-machete"
@@ -245,16 +246,15 @@
 			slot_r_hand_str = 'icons/mob/items/righthand_melee_vr.dmi',
 			)
 	item_state = "c-machete"
-	w_class = ITEMSIZE_SMALL
+	w_class = ITEMSIZE_NORMAL
 	attack_verb = list("cleaved", "chopped", "pulped", "stabbed", "skewered")
-	force = 24
 	can_cleave = TRUE
 	requires_wield = FALSE
 	// yeah yeah buff but polaris mobs are meatwalls.
-	backstab_bonus = 40
-	detonation_damage = 26
-	// meme option
-	thrown_bonus = 20
+	force = 24
+	detonation_damage = 36 // 60
+	backstab_bonus = 40 // 100
+	thrown_bonus = 20 // 120
 	update_item_state = FALSE
 
 
@@ -269,11 +269,11 @@
 	attack_verb = list("bashed", "kicked", "punched", "struck", "axe kicked", "uppercut", "cross-punched", "jabbed", "hammerfisted", "roundhouse kicked")
 	integ_light_icon = FALSE
 	w_class = ITEMSIZE_HUGE
-	force = 30
 	can_cleave = FALSE
 	requires_wield = TRUE
-	backstab_bonus = 55
-	detonation_damage = 35
+	force = 28
+	detonation_damage = 37 // 75
+	backstab_bonus = 55 // 130
 	var/obj/item/offhand/crushergauntlets/offhand
 
 /obj/item/weapon/kinetic_crusher/machete/gauntlets/equipped()
@@ -302,21 +302,29 @@
 	var/mob/living/M = loc
 	if(istype(M) && forced == 0)
 		if(M.can_wield_item(src) && src.is_held_twohanded(M))
-			name = initial(name)
-			wielded = TRUE
-			to_chat(M, "<span class ='notice'>You ready [src].</span>")
-			var/obj/item/offhand/crushergauntlets/O = new(M)
-			O.name = "[name] - readied"
-			O.desc = "As much as you'd like to punch things with one hand, [src] is far too unwieldy for that."
-			O.linked = src
-			M.put_in_inactive_hand(O)
-			offhand = O
+			wield(M)
+		else
+			unwield(M)
 	else
-		name = "[initial(name)] (unreadied)"
-		wielded = FALSE
-		to_chat(M, "<span class ='notice'>You unready [src].</span>")
-		if(offhand)
-			QDEL_NULL(offhand)
+		unwield(M)
+
+/obj/item/weapon/kinetic_crusher/machete/gauntlets/proc/wield(var/mob/living/M)
+	name = initial(name)
+	wielded = TRUE
+	to_chat(M, "<span class ='notice'>You ready [src].</span>")
+	var/obj/item/offhand/crushergauntlets/O = new(M)
+	O.name = "[name] - readied"
+	O.desc = "As much as you'd like to punch things with one hand, [src] is far too unwieldy for that."
+	O.linked = src
+	M.put_in_inactive_hand(O)
+	offhand = O
+
+/obj/item/weapon/kinetic_crusher/machete/gauntlets/proc/unwield(var/mob/living/M)
+	to_chat(M, "<span class ='notice'>You unready [src].</span>")
+	name = "[initial(name)] (unreadied)"
+	wielded = FALSE
+	if(offhand)
+		QDEL_NULL(offhand)
 
 /obj/item/offhand
 	icon = 'icons/obj/weapons.dmi'
@@ -324,6 +332,7 @@
 	name = "offhand that shouldn't exist doo dee doo"
 	w_class = ITEMSIZE_NO_CONTAINER
 	// var/linked - redefine this wherever
+	// man i really should try porting the twohand component this is hacky and Sucks
 
 /obj/item/offhand/crushergauntlets
 	var/obj/item/weapon/kinetic_crusher/machete/gauntlets/linked
@@ -333,7 +342,7 @@
 		linked.ready_toggle(TRUE)
 
 /obj/item/weapon/kinetic_crusher/machete/gauntlets/rig
-	name = "mounted proto-kinetic gear"
+	name = "\improper mounted proto-kinetic gear"
 	var/obj/item/rig_module/gauntlets/storing_module
 
 /obj/item/weapon/kinetic_crusher/machete/gauntlets/rig/dropped(mob/user)
@@ -351,6 +360,7 @@
 	else
 		QDEL_NULL(src)
 
+// gimmicky backup for throwing
 /obj/item/weapon/kinetic_crusher/machete/dagger
 	name = "proto-kinetic dagger"
 	desc = "A scaled down version of a proto-kinetic machete, usually used in a last ditch scenario."
@@ -361,13 +371,14 @@
 			)
 	item_state = "c-knife"
 	w_class = ITEMSIZE_SMALL
-	force = 15
 	requires_wield = FALSE
 	charge_overlay = FALSE
-	backstab_bonus = 35
-	detonation_damage = 25
-	// woohoo
-	thrown_bonus = 35
+	charge_time = 10 // lowered charge in return for lowered damage
+	force = 18
+	detonation_damage = 27 // 45
+	backstab_bonus = 40 // 85
+	// gimmick mode
+	thrown_bonus = 50 // 135 but you drop your knife because you threw it
 
 
 //destablizing force
@@ -387,15 +398,18 @@
 	hammer_synced = null
 	return ..()
 
+/obj/item/projectile/destabilizer/on_impact(var/atom/A)
+	if(ismineralturf(A))
+		var/turf/simulated/mineral/M = A
+		new /obj/effect/temp_visual/kinetic_blast(M)
+		M.GetDrilled(firer)
+	. = ..()
+
 /obj/item/projectile/destabilizer/on_hit(atom/target, blocked = FALSE)
 	if(isliving(target))
 		var/mob/living/L = target
-		L.add_modifier(/datum/modifier/crusher_mark, 30 SECONDS, firer, TRUE)
-	var/target_turf = get_turf(target)
-	if(ismineralturf(target_turf))
-		var/turf/simulated/mineral/M = target_turf
-		new /obj/effect/temp_visual/kinetic_blast(M)
-		M.GetDrilled(firer)
+		if(hammer_synced.can_mark(L))
+			L.add_modifier(/datum/modifier/crusher_mark, 30 SECONDS, firer, TRUE)
 	..()
 
 /*
@@ -404,5 +418,6 @@
 there would be any if we had some
 but alas
 - hatterhat
+
 */
 

@@ -173,7 +173,8 @@ This saves us from having to call add_fingerprint() any time something is put in
 			if(I.flags_inv & (BLOCKHAIR|BLOCKHEADHAIR))
 				update_hair(0)	//rebuild hair
 				update_inv_ears(0)
-		if(internal)
+		// If this is how the internals are connected, disable them
+		if(internal && !(head?.item_flags & AIRTIGHT))
 			if(internals)
 				internals.icon_state = "internal0"
 			internal = null

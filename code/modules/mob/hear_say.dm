@@ -185,7 +185,7 @@
 	var/speaker_name = handle_speaker_name(speaker, vname, hard_to_hear)
 	var/track = handle_track(message, verb, speaker, speaker_name, hard_to_hear)
 
-	message = encode_html_emphasis(message)
+	message = "[encode_html_emphasis(message)][part_c]"
 
 	if((sdisabilities & DEAF) || ear_deaf)
 		if(prob(20))

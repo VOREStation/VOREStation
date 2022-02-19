@@ -20,6 +20,8 @@
 	response_disarm = "gently pushes aside the"
 	response_harm = "hits the"
 
+	organ_names = /decl/mob_organ_names/smallflying
+
 	harm_intent_damage = 10
 
 	melee_damage_lower = 5
@@ -31,6 +33,7 @@
 	has_langs = list("Mouse")
 
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	meat_amount = 2
 
 	say_list_type = /datum/say_list/mouse	// Close enough
 

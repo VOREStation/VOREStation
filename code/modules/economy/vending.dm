@@ -42,6 +42,10 @@
 	var/list/prices     = list() // Prices for each item, list(/type/path = price), items not in the list don't have a price.
 	/// Set automatically, enables pricing
 	var/has_prices = FALSE
+	// This one is used for refill cartridge use.
+	var/list/refill	= list() // For each, use the following pattern:
+	// Enables refilling with appropriate cartridges
+	var/refillable = TRUE
 
 	// List of vending_product items available.
 	var/list/product_records = list()
@@ -65,6 +69,7 @@
 	emagged = 0 //Ignores if somebody doesn't have card access to that machine.
 	var/seconds_electrified = 0 //Shock customers like an airlock.
 	var/shoot_inventory = 0 //Fire items at customers! We're broken!
+	var/shoot_inventory_chance = 1
 
 	var/scan_id = 1
 	var/obj/item/weapon/coin/coin
@@ -125,11 +130,30 @@ GLOBAL_LIST_EMPTY(vending_products)
 	if(LAZYLEN(premium))
 		has_premium = TRUE
 
+
+	if(!LAZYLEN(refill) && refillable)			// Manually setting refill list prevents the automatic population. By default filled with all entries from normal product.
+		refill += products
+
 	LAZYCLEARLIST(products)
 	LAZYCLEARLIST(contraband)
 	LAZYCLEARLIST(premium)
 	LAZYCLEARLIST(prices)
 	all_products.Cut()
+
+/obj/machinery/vending/proc/refill_inventory()
+	if(!(LAZYLEN(refill)))		//This shouldn't happen, but just in case...
+		return
+
+	for(var/entry in refill)
+		var/datum/stored_item/vending_product/current_product
+		for(var/datum/stored_item/vending_product/product in product_records)
+			if(product.item_path == entry)
+				current_product = product
+				break
+		if(!current_product)
+			continue
+		else
+			current_product.refill_products(refill[entry])
 
 /obj/machinery/vending/Destroy()
 	qdel(wires)
@@ -169,6 +193,29 @@ GLOBAL_LIST_EMPTY(vending_products)
 	if(I || istype(W, /obj/item/weapon/spacecash))
 		attack_hand(user)
 		return
+	else if(istype(W, /obj/item/weapon/refill_cartridge))
+		if(stat & (BROKEN|NOPOWER))
+			to_chat(user, "<span class='notice'>You cannot refill [src] while it is not functioning.</span>")
+			return
+		if(!anchored)
+			to_chat(user, "<span class='notice'>You cannot refill [src] while it is not secured.</span>")
+			return
+		if(panel_open)
+			to_chat(user, "<span class='notice'>You cannot refill [src] while it's panel is open.</span>")
+			return
+		if(!refillable)
+			to_chat(user, "<span class='notice'>\the [src] does not have a refill port.</span>")
+			return
+		var/obj/item/weapon/refill_cartridge/RC = W
+		if(RC.can_refill(src))
+			to_chat(user, "<span class='notice'>You refill [src] using [RC].</span>")
+			user.drop_from_inventory(RC)
+			qdel(RC)
+			refill_inventory()
+			return
+		else
+			to_chat(user, "<span class='notice'>You cannot refill [src] with [RC].</span>")
+			return
 	else if(W.is_screwdriver())
 		panel_open = !panel_open
 		to_chat(user, "You [panel_open ? "open" : "close"] the maintenance panel.")
@@ -677,7 +724,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 		speak(slogan)
 		last_slogan = world.time
 
-	if(shoot_inventory && prob(2))
+	if(shoot_inventory && prob(shoot_inventory_chance))
 		throw_item()
 
 	return
@@ -717,20 +764,20 @@ GLOBAL_LIST_EMPTY(vending_products)
 
 //Somebody cut an important wire and now we're following a new definition of "pitch."
 /obj/machinery/vending/proc/throw_item()
-	var/obj/throw_item = null
+	var/obj/item/throw_item = null
 	var/mob/living/target = locate() in view(7,src)
 	if(!target)
 		return 0
 
-	for(var/datum/stored_item/vending_product/R in product_records)
+	for(var/datum/stored_item/vending_product/R in shuffle(product_records))
 		throw_item = R.get_product(loc)
 		if(!throw_item)
 			continue
 		break
 	if(!throw_item)
-		return 0
-	spawn(0)
-		throw_item.throw_at(target, 16, 3, src)
+		return FALSE
+	throw_item.vendor_action(src)
+	INVOKE_ASYNC(throw_item, /atom/movable.proc/throw_at, target, rand(3, 10), rand(1, 3), src)
 	visible_message("<span class='warning'>\The [src] launches \a [throw_item] at \the [target]!</span>")
 	return 1
 

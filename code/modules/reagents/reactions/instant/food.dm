@@ -31,6 +31,7 @@
 	id = "chocolate_bar"
 	result = null
 	required_reagents = list("soymilk" = 2, "coco" = 2, "sugar" = 2)
+	catalysts = list("enzyme" = 5)
 	result_amount = 1
 
 /decl/chemical_reaction/instant/food/chocolate_bar/on_reaction(var/datum/reagents/holder, var/created_volume)
@@ -44,6 +45,7 @@
 	id = "chocolate_bar"
 	result = null
 	required_reagents = list("milk" = 2, "coco" = 2, "sugar" = 2)
+	catalysts = list("enzyme" = 5)
 	result_amount = 1
 
 /decl/chemical_reaction/instant/food/chocolate_bar2/on_reaction(var/datum/reagents/holder, var/created_volume)
@@ -51,6 +53,22 @@
 	for(var/i = 1, i <= created_volume, i++)
 		new /obj/item/weapon/reagent_containers/food/snacks/chocolatebar(location)
 	return
+
+/decl/chemical_reaction/instant/food/cookingoilcorn
+	name = "Cooking Oil"
+	id = "cookingoilcorn"
+	result = "cookingoil"
+	required_reagents = list("cornoil" = 10)
+	catalysts = list("enzyme" = 5)
+	result_amount = 10
+
+/decl/chemical_reaction/instant/food/cookingoilpeanut
+	name = "Cooking Oil"
+	id = "cookingoilpeanut"
+	result = "cookingoil"
+	required_reagents = list("peanutoil" = 10)
+	catalysts = list("enzyme" = 5)
+	result_amount = 10
 
 /decl/chemical_reaction/instant/food/soysauce
 	name = "Soy Sauce"
@@ -85,7 +103,7 @@
 	name = "mayonnaise"
 	id = "mayo"
 	result = "mayo"
-	required_reagents = list("egg" = 9, "cornoil" = 5, "lemonjuice" = 5, "sodiumchloride" = 1)
+	required_reagents = list("egg" = 9, "cookingoil" = 5, "lemonjuice" = 5, "sodiumchloride" = 1)
 	result_amount = 15
 
 /decl/chemical_reaction/instant/food/cheesewheel
@@ -107,6 +125,7 @@
 	id = "meatball"
 	result = null
 	required_reagents = list("protein" = 3, "flour" = 5)
+	catalysts = list("enzyme" = 5)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/food/meatball/on_reaction(var/datum/reagents/holder, var/created_volume)

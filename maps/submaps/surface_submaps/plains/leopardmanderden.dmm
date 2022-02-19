@@ -2,7 +2,7 @@
 "aK" = (
 /obj/item/weapon/ore/silver,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/outdoors/grass/sif/forest{
+/turf/simulated/floor/outdoors/grass/sif/forest/virgo3b{
 	outdoors = 0
 	},
 /area/submap/LeopardmanderDen)
@@ -15,27 +15,31 @@
 	min_oxy = 0;
 	minbodytemp = 0
 	},
-/turf/simulated/floor/outdoors/grass/sif/forest{
+/turf/simulated/floor/outdoors/grass/sif/forest/virgo3b{
 	outdoors = 0
 	},
 /area/submap/LeopardmanderDen)
 "bj" = (
 /obj/item/weapon/ore/bluespace_crystal,
-/turf/simulated/floor/outdoors/grass/sif,
+/turf/simulated/floor/outdoors/grass/sif/virgo3b{
+	outdoors = 0
+	},
 /area/submap/LeopardmanderDen)
 "bO" = (
 /obj/item/stack/material/gold,
-/turf/simulated/floor/outdoors/grass/sif,
+/turf/simulated/floor/outdoors/grass/sif/virgo3b{
+	outdoors = 0
+	},
 /area/submap/LeopardmanderDen)
 "cu" = (
-/turf/simulated/floor/outdoors/rocks{
+/turf/simulated/floor/outdoors/rocks/virgo3b{
 	outdoors = 0
 	},
 /area/submap/LeopardmanderDen)
 "dA" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/simple_door/sifwood,
-/turf/simulated/floor/outdoors/rocks{
+/turf/simulated/floor/outdoors/rocks/virgo3b{
 	outdoors = 0
 	},
 /area/submap/LeopardmanderDen)
@@ -43,51 +47,49 @@
 /obj/structure/railing/grey{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/template_noop)
 "eF" = (
 /obj/structure/ledge/ledge_stairs,
-/turf/simulated/floor/outdoors/rocks{
-	outdoors = 0
-	},
+/turf/simulated/floor/outdoors/rocks/virgo3b,
 /area/template_noop)
 "fe" = (
 /obj/item/weapon/coin/diamond,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/outdoors/grass/sif/forest{
+/turf/simulated/floor/outdoors/grass/sif/forest/virgo3b{
 	outdoors = 0
 	},
 /area/submap/LeopardmanderDen)
 "fQ" = (
 /obj/effect/landmark/loot_spawn/low,
 /obj/item/weapon/ore/gold,
-/turf/simulated/floor/outdoors/grass/sif/forest{
+/turf/simulated/floor/outdoors/grass/sif/forest/virgo3b{
 	outdoors = 0
 	},
 /area/submap/LeopardmanderDen)
 "gg" = (
 /obj/random/obstruction,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/template_noop)
 "gC" = (
 /obj/item/weapon/flame/lighter/zippo/gold,
-/turf/simulated/floor/outdoors/grass/sif/forest{
+/turf/simulated/floor/outdoors/grass/sif/forest/virgo3b{
 	outdoors = 0
 	},
 /area/submap/LeopardmanderDen)
 "gD" = (
 /obj/structure/flora/smallbould,
-/turf/simulated/floor/outdoors/rocks{
+/turf/simulated/floor/outdoors/rocks/virgo3b{
 	outdoors = 0
 	},
 /area/submap/LeopardmanderDen)
 "gP" = (
 /obj/structure/cliff/automatic,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/template_noop)
 "gU" = (
 /obj/item/weapon/coin/gold,
-/turf/simulated/floor/outdoors/grass/sif/forest{
+/turf/simulated/floor/outdoors/grass/sif/forest/virgo3b{
 	outdoors = 0
 	},
 /area/submap/LeopardmanderDen)
@@ -97,7 +99,7 @@
 /area/submap/LeopardmanderDen)
 "hr" = (
 /obj/structure/flora/rocks1,
-/turf/simulated/floor/outdoors/grass/sif/forest{
+/turf/simulated/floor/outdoors/grass/sif/forest/virgo3b{
 	outdoors = 0
 	},
 /area/submap/LeopardmanderDen)
@@ -108,13 +110,13 @@
 /obj/structure/railing/grey{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/template_noop)
 "iV" = (
 /obj/structure/cliff/automatic/corner{
 	dir = 6
 	},
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/template_noop)
 "jb" = (
 /obj/machinery/crystal/ice,
@@ -124,18 +126,18 @@
 /obj/structure/cliff/automatic{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/template_noop)
 "ki" = (
 /obj/structure/table/bench/sifwooden/padded,
 /obj/item/clothing/head/pin/flower/violet,
-/turf/simulated/floor/outdoors/grass/sif/forest{
+/turf/simulated/floor/outdoors/grass/sif/forest/virgo3b{
 	outdoors = 0
 	},
 /area/submap/LeopardmanderDen)
 "kx" = (
 /obj/item/stack/material/gold,
-/turf/simulated/floor/outdoors/grass/sif/forest{
+/turf/simulated/floor/outdoors/grass/sif/forest/virgo3b{
 	outdoors = 0
 	},
 /area/submap/LeopardmanderDen)
@@ -143,19 +145,19 @@
 /obj/structure/cliff/automatic{
 	dir = 6
 	},
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/template_noop)
 "lb" = (
 /obj/structure/cliff/automatic{
 	dir = 10
 	},
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/template_noop)
 "ll" = (
 /obj/structure/cliff/automatic/corner{
 	dir = 10
 	},
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/template_noop)
 "mi" = (
 /obj/structure/cliff/automatic/ramp{
@@ -164,11 +166,11 @@
 /obj/structure/railing/grey{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/template_noop)
 "mu" = (
 /obj/structure/flora/rocks2,
-/turf/simulated/floor/outdoors/grass/sif/forest{
+/turf/simulated/floor/outdoors/grass/sif/forest/virgo3b{
 	outdoors = 0
 	},
 /area/submap/LeopardmanderDen)
@@ -177,43 +179,42 @@
 /obj/structure/railing/grey{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/template_noop)
-"nw" = (
-/turf/simulated/floor/water/ocean{
-	outdoors = 0
-	},
-/area/submap/LeopardmanderDen)
 "nG" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/outdoors/grass/sif/forest{
+/turf/simulated/floor/outdoors/grass/sif/forest/virgo3b{
 	outdoors = 0
 	},
 /area/submap/LeopardmanderDen)
 "nR" = (
 /mob/living/simple_mob/animal/sif/sakimm,
-/turf/simulated/floor/outdoors/grass/sif/forest{
+/turf/simulated/floor/outdoors/grass/sif/forest/virgo3b{
 	outdoors = 0
 	},
 /area/submap/LeopardmanderDen)
 "oD" = (
 /obj/fiftyspawner/silver,
-/turf/simulated/floor/outdoors/grass/sif,
+/turf/simulated/floor/outdoors/grass/sif/virgo3b{
+	outdoors = 0
+	},
 /area/submap/LeopardmanderDen)
 "pQ" = (
 /obj/structure/cliff/automatic/corner,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/template_noop)
 "qa" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/outdoors/grass/sif,
+/turf/simulated/floor/outdoors/grass/sif/virgo3b{
+	outdoors = 0
+	},
 /area/submap/LeopardmanderDen)
 "qg" = (
 /obj/structure/bed/chair/sofa/right{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/rocks{
+/turf/simulated/floor/outdoors/rocks/virgo3b{
 	outdoors = 0
 	},
 /area/submap/LeopardmanderDen)
@@ -222,19 +223,19 @@
 /area/template_noop)
 "ro" = (
 /obj/structure/flora/lily3,
-/turf/simulated/floor/water/ocean{
+/turf/simulated/floor/water/virgo3b{
 	outdoors = 0
 	},
 /area/submap/LeopardmanderDen)
 "rD" = (
 /obj/structure/flora/ausbushes/brflowers,
-/turf/simulated/floor/outdoors/grass/sif/forest{
+/turf/simulated/floor/outdoors/grass/sif/forest/virgo3b{
 	outdoors = 0
 	},
 /area/submap/LeopardmanderDen)
 "rG" = (
 /obj/structure/flora/pottedplant/flower,
-/turf/simulated/floor/outdoors/grass/sif/forest{
+/turf/simulated/floor/outdoors/grass/sif/forest/virgo3b{
 	outdoors = 0
 	},
 /area/submap/LeopardmanderDen)
@@ -243,14 +244,14 @@
 /obj/structure/railing/grey{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/template_noop)
 "sN" = (
 /mob/living/simple_mob/otie/red/chubby{
 	desc = "Seems this ominous looking longdog has been infused with wicked infernal forces. What an absolute unit. It has a collar around one of its ankles that reads 'Tawny'.";
 	name = "Tawny"
 	},
-/turf/simulated/floor/outdoors/grass/sif/forest{
+/turf/simulated/floor/outdoors/grass/sif/forest/virgo3b{
 	outdoors = 0
 	},
 /area/submap/LeopardmanderDen)
@@ -264,6 +265,12 @@
 	},
 /turf/template_noop,
 /area/template_noop)
+"tC" = (
+/obj/item/weapon/ore/diamond,
+/turf/simulated/floor/outdoors/grass/sif/forest/virgo3b{
+	outdoors = 0
+	},
+/area/submap/LeopardmanderDen)
 "tP" = (
 /mob/living/simple_mob/animal/sif/sakimm{
 	faction = "neutral";
@@ -272,15 +279,13 @@
 	min_oxy = 0;
 	minbodytemp = 0
 	},
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/template_noop)
 "uw" = (
 /obj/structure/ledge/ledge_stairs{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/rocks{
-	outdoors = 0
-	},
+/turf/simulated/floor/outdoors/rocks/virgo3b,
 /area/template_noop)
 "uz" = (
 /obj/structure/cliff/automatic{
@@ -289,31 +294,27 @@
 /obj/structure/railing/grey{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/template_noop)
 "xf" = (
-/turf/simulated/floor/outdoors/grass/sif,
+/turf/simulated/floor/outdoors/grass/sif/virgo3b{
+	outdoors = 0
+	},
 /area/submap/LeopardmanderDen)
 "xg" = (
 /obj/item/weapon/ore/silver,
-/turf/simulated/floor/outdoors/grass/sif/forest{
+/turf/simulated/floor/outdoors/grass/sif/forest/virgo3b{
 	outdoors = 0
 	},
 /area/submap/LeopardmanderDen)
 "xL" = (
 /obj/random/outcrop,
-/turf/simulated/floor/outdoors/rocks{
+/turf/simulated/floor/outdoors/rocks/virgo3b{
 	outdoors = 0
 	},
 /area/submap/LeopardmanderDen)
 "yl" = (
 /turf/simulated/wall/golddiamond,
-/area/submap/LeopardmanderDen)
-"yz" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/water/ocean{
-	outdoors = 0
-	},
 /area/submap/LeopardmanderDen)
 "zJ" = (
 /mob/living/simple_mob/animal/sif/siffet{
@@ -323,67 +324,71 @@
 	min_oxy = 0;
 	minbodytemp = 0
 	},
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/template_noop)
 "zW" = (
 /obj/structure/cliff/automatic/corner{
 	dir = 9
 	},
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/template_noop)
 "Ah" = (
 /obj/structure/flora/grass/green,
-/turf/simulated/floor/outdoors/grass/sif/forest{
+/turf/simulated/floor/outdoors/grass/sif/forest/virgo3b{
 	outdoors = 0
 	},
 /area/submap/LeopardmanderDen)
 "AF" = (
-/turf/simulated/floor/water/ocean,
+/turf/simulated/floor/water/virgo3b{
+	outdoors = 0
+	},
 /area/submap/LeopardmanderDen)
 "AP" = (
 /obj/structure/bed/chair/sofa/right{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/rocks{
+/turf/simulated/floor/outdoors/rocks/virgo3b{
 	outdoors = 0
 	},
 /area/submap/LeopardmanderDen)
 "BE" = (
 /obj/item/stack/material/diamond,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/outdoors/grass/sif,
+/turf/simulated/floor/outdoors/grass/sif/virgo3b{
+	outdoors = 0
+	},
 /area/submap/LeopardmanderDen)
 "DI" = (
-/turf/simulated/floor/outdoors/grass/sif/forest{
+/turf/simulated/floor/outdoors/grass/sif/forest/virgo3b{
 	outdoors = 0
 	},
 /area/submap/LeopardmanderDen)
 "DJ" = (
 /obj/structure/flora/log1,
-/turf/simulated/floor/water/ocean{
+/turf/simulated/floor/water/virgo3b{
 	outdoors = 0
 	},
 /area/submap/LeopardmanderDen)
 "Ez" = (
 /obj/structure/flora/bboulder2,
-/turf/simulated/floor/outdoors/grass/sif/forest{
+/turf/simulated/floor/outdoors/grass/sif/forest/virgo3b{
 	outdoors = 0
 	},
 /area/submap/LeopardmanderDen)
 "EH" = (
 /obj/structure/ledge/ledge_stairs,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/template_noop)
 "Gl" = (
 /obj/structure/cliff/automatic{
 	dir = 9
 	},
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/template_noop)
 "Gw" = (
 /obj/item/weapon/ore/gold,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/outdoors/grass/sif/forest{
+/turf/simulated/floor/outdoors/grass/sif/forest/virgo3b{
 	outdoors = 0
 	},
 /area/submap/LeopardmanderDen)
@@ -395,7 +400,7 @@
 /obj/structure/bed/chair/sofa/left{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/rocks{
+/turf/simulated/floor/outdoors/rocks/virgo3b{
 	outdoors = 0
 	},
 /area/submap/LeopardmanderDen)
@@ -407,16 +412,14 @@
 /turf/simulated/mineral/ignore_mapgen,
 /area/submap/LeopardmanderDen)
 "Jk" = (
-/turf/simulated/floor/outdoors/rocks{
-	outdoors = 0
-	},
+/turf/simulated/floor/outdoors/rocks/virgo3b,
 /area/template_noop)
 "Kd" = (
 /obj/structure/cliff/automatic,
 /obj/structure/railing/grey{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/template_noop)
 "Kv" = (
 /obj/random/outcrop,
@@ -425,81 +428,87 @@
 "KT" = (
 /obj/structure/flora/ausbushes/brflowers,
 /obj/structure/flora/tree/bigtree,
-/turf/simulated/floor/outdoors/grass/sif/forest,
+/turf/simulated/floor/outdoors/grass/sif/forest/virgo3b{
+	outdoors = 0
+	},
 /area/submap/LeopardmanderDen)
 "Lb" = (
 /obj/structure/cliff/automatic{
 	dir = 5
 	},
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/template_noop)
 "Ls" = (
 /obj/structure/cliff/automatic{
 	dir = 2
 	},
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/template_noop)
 "MQ" = (
 /obj/machinery/crystal/ice,
 /obj/structure/railing/grey{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/template_noop)
 "NS" = (
 /obj/structure/cliff/automatic{
 	dir = 10
 	},
 /obj/structure/railing/grey,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/template_noop)
 "Pc" = (
 /obj/item/stack/material/diamond,
-/turf/simulated/floor/outdoors/grass/sif,
+/turf/simulated/floor/outdoors/grass/sif/virgo3b{
+	outdoors = 0
+	},
 /area/submap/LeopardmanderDen)
 "PO" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/flora/rocks2,
-/turf/simulated/floor/outdoors/grass/sif/forest{
+/turf/simulated/floor/outdoors/grass/sif/forest/virgo3b{
 	outdoors = 0
 	},
 /area/submap/LeopardmanderDen)
 "Qa" = (
 /obj/machinery/crystal/ice,
-/turf/simulated/floor/outdoors/rocks{
+/turf/simulated/floor/outdoors/rocks/virgo3b{
 	outdoors = 0
 	},
 /area/submap/LeopardmanderDen)
 "QQ" = (
 /obj/item/stack/material/gold,
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/outdoors/grass/sif/forest{
+/turf/simulated/floor/outdoors/grass/sif/forest/virgo3b{
 	outdoors = 0
 	},
 /area/submap/LeopardmanderDen)
 "RA" = (
 /obj/fiftyspawner/gold,
-/turf/simulated/floor/outdoors/grass/sif,
+/turf/simulated/floor/outdoors/grass/sif/virgo3b{
+	outdoors = 0
+	},
 /area/submap/LeopardmanderDen)
 "Sk" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/flora/rocks1,
-/turf/simulated/floor/outdoors/grass/sif/forest{
+/turf/simulated/floor/outdoors/grass/sif/forest/virgo3b{
 	outdoors = 0
 	},
 /area/submap/LeopardmanderDen)
 "Sm" = (
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/template_noop)
 "SM" = (
 /obj/structure/flora/log2,
-/turf/simulated/floor/water/ocean{
+/turf/simulated/floor/water/virgo3b{
 	outdoors = 0
 	},
 /area/submap/LeopardmanderDen)
 "Te" = (
 /obj/item/weapon/coin/silver,
-/turf/simulated/floor/outdoors/grass/sif/forest{
+/turf/simulated/floor/outdoors/grass/sif/forest/virgo3b{
 	outdoors = 0
 	},
 /area/submap/LeopardmanderDen)
@@ -511,12 +520,12 @@
 	min_oxy = 0;
 	minbodytemp = 0
 	},
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/template_noop)
 "Tt" = (
 /obj/structure/flora/ausbushes/brflowers,
 /obj/item/weapon/coin/iron,
-/turf/simulated/floor/outdoors/grass/sif/forest{
+/turf/simulated/floor/outdoors/grass/sif/forest/virgo3b{
 	outdoors = 0
 	},
 /area/submap/LeopardmanderDen)
@@ -524,34 +533,32 @@
 /obj/structure/bed/chair/sofa/left{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/rocks{
+/turf/simulated/floor/outdoors/rocks/virgo3b{
 	outdoors = 0
 	},
 /area/submap/LeopardmanderDen)
 "Uc" = (
 /obj/item/weapon/ore/diamond,
-/turf/simulated/floor/outdoors/grass/sif,
+/turf/simulated/floor/outdoors/grass/sif/virgo3b{
+	outdoors = 0
+	},
 /area/submap/LeopardmanderDen)
 "Ul" = (
 /obj/item/weapon/ore/gold,
-/turf/simulated/floor/outdoors/grass/sif,
+/turf/simulated/floor/outdoors/grass/sif/virgo3b{
+	outdoors = 0
+	},
 /area/submap/LeopardmanderDen)
 "UA" = (
 /obj/structure/flora/ausbushes/brflowers,
 /obj/item/weapon/coin/gold,
-/turf/simulated/floor/outdoors/grass/sif/forest{
+/turf/simulated/floor/outdoors/grass/sif/forest/virgo3b{
 	outdoors = 0
 	},
 /area/submap/LeopardmanderDen)
 "Vi" = (
 /obj/structure/flora/lily2,
-/turf/simulated/floor/water/ocean{
-	outdoors = 0
-	},
-/area/submap/LeopardmanderDen)
-"Vp" = (
-/obj/effect/map_effect/interval/effect_emitter/steam,
-/turf/simulated/floor/water/ocean{
+/turf/simulated/floor/water/virgo3b{
 	outdoors = 0
 	},
 /area/submap/LeopardmanderDen)
@@ -560,13 +567,13 @@
 /area/submap/LeopardmanderDen)
 "VV" = (
 /obj/structure/flora/lily1,
-/turf/simulated/floor/water/ocean{
+/turf/simulated/floor/water/virgo3b{
 	outdoors = 0
 	},
 /area/submap/LeopardmanderDen)
 "WB" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/outdoors/rocks{
+/turf/simulated/floor/outdoors/rocks/virgo3b{
 	outdoors = 0
 	},
 /area/submap/LeopardmanderDen)
@@ -575,19 +582,21 @@
 	max_co2 = 0;
 	min_oxy = 0
 	},
-/turf/simulated/floor/outdoors/grass/sif/forest{
+/turf/simulated/floor/outdoors/grass/sif/forest/virgo3b{
 	outdoors = 0
 	},
 /area/submap/LeopardmanderDen)
 "XR" = (
 /obj/effect/map_effect/interval/effect_emitter/steam,
-/turf/simulated/floor/water/ocean,
+/turf/simulated/floor/water/virgo3b{
+	outdoors = 0
+	},
 /area/submap/LeopardmanderDen)
 "Yq" = (
 /obj/structure/cliff/automatic{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/template_noop)
 "YJ" = (
 /obj/item/weapon/ore/diamond,
@@ -599,7 +608,9 @@
 /mob/living/simple_mob/animal/sif/tymisian{
 	faction = "neutral"
 	},
-/turf/simulated/floor/outdoors/grass/sif,
+/turf/simulated/floor/outdoors/grass/sif/virgo3b{
+	outdoors = 0
+	},
 /area/submap/LeopardmanderDen)
 
 (1,1,1) = {"
@@ -719,10 +730,10 @@ IQ
 xf
 fe
 Xt
-nw
+AF
 Vi
 YJ
-yz
+AF
 Ah
 xg
 Zj
@@ -740,12 +751,12 @@ IQ
 IQ
 RA
 DI
-nw
+AF
 SM
-nw
-nw
+AF
+AF
 ro
-nw
+AF
 nR
 DI
 Pc
@@ -762,15 +773,15 @@ IQ
 cu
 xf
 mu
-nw
-nw
+AF
+AF
 AF
 UA
 XR
-nw
+AF
 DJ
 hr
-YJ
+tC
 Uc
 IQ
 Qa
@@ -784,13 +795,13 @@ IQ
 IQ
 IQ
 QQ
-nw
-nw
+AF
+AF
 rD
 KT
 Tt
-nw
-nw
+AF
+AF
 AF
 fQ
 xf
@@ -807,12 +818,12 @@ IQ
 cu
 gC
 nG
-nw
-Vp
+AF
+XR
 Ez
 VV
 AF
-nw
+AF
 ki
 Gw
 bO
@@ -831,10 +842,10 @@ xL
 DI
 DI
 AF
-nw
-nw
-nw
-nw
+AF
+AF
+AF
+AF
 aT
 Ul
 qa

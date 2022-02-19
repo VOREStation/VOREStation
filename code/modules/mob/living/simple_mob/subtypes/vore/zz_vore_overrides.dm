@@ -124,7 +124,7 @@
 	vore_icons = 0
 /mob/living/simple_mob/animal/space/carp/large/huge
 	vore_icons = 0
-/mob/living/simple_mob/animal/space/carp/holographic
+/mob/living/simple_mob/animal/space/carp/holodeck
 	vore_icons = 0
 
 /* //VOREStation AI Temporary removal

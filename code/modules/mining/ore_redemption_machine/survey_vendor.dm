@@ -65,6 +65,8 @@
 		EQUIPMENT("GPS Device",									/obj/item/device/gps/mining,										10),
 		EQUIPMENT("Jump Boots",									/obj/item/clothing/shoes/bhop,										250),
 		EQUIPMENT("Mini-Translocator",							/obj/item/device/perfect_tele/one_beacon,							120),
+		EQUIPMENT("Survey Tools - Mapping Unit",				/obj/item/device/mapping_unit,										150),
+		EQUIPMENT("Survey Tools - Mapping Beacon",				/obj/item/device/holomap_beacon,									25),
 		EQUIPMENT("Survival Equipment - Insulated Poncho",		/obj/random/thermalponcho,											75),
 		EQUIPMENT("Survival Equipment - Glowstick", 			/obj/item/device/flashlight/glowstick,								5),
 		EQUIPMENT("Survival Equipment - Flare", 				/obj/item/device/flashlight/flare,									5),

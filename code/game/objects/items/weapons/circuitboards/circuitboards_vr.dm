@@ -60,3 +60,10 @@
 	build_path = /obj/machinery/computer/id_restorer
 	board_type = new /datum/frame/frame_types/id_restorer
 	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
+
+/obj/item/weapon/circuitboard/security/xenobio
+	name = T_BOARD("xenobiology camera monitor")
+	build_path = /obj/machinery/computer/security/xenobio
+	network = list(NETWORK_XENOBIO)
+	req_access = list()
+	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)

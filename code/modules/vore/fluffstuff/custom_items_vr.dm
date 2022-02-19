@@ -1078,13 +1078,6 @@
 	add_fingerprint(user)
 	return
 
-/obj/item/weapon/melee/fluffstuff/suicide_act(mob/user)
-	var/tempgender = "[user.gender == MALE ? "he's" : user.gender == FEMALE ? "she's" : "they are"]"
-	if(active)
-		user.visible_message(pick("<span class='danger'>\The [user] is slitting \his stomach open with \the [src]! It looks like [tempgender] trying to commit seppuku.</span>",\
-			"<span class='danger'>\The [user] is falling on \the [src]! It looks like [tempgender] trying to commit suicide.</span>"))
-		return (BRUTELOSS|FIRELOSS)
-
 /obj/item/weapon/melee/fluffstuff/wolfgirlsword
 	name = "Wolfgirl Sword Replica"
 	desc = "A replica of a large, scimitar-like sword with a dull edge. Ceremonial... until it isn't."
@@ -1405,3 +1398,55 @@
 
 	new /obj/item/weapon/material/knife/machete/hatchet/unathiknife/fluff/antoinette(hold)
 	new /obj/item/weapon/reagent_containers/glass/bottle/poppy(hold)
+
+
+//Hunterbirk - Amaryll
+//This is a 'technical item' which basically is meant to represent rippiing things up with bare claws.
+/obj/item/weapon/surgical/scalpel/amaryll_claws
+	name = "Amaryll's Claws"
+	desc = "This doesn't quite look like what it really is."
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "claws"
+	drop_sound = null
+	pickup_sound = null
+	origin_tech = null
+	matter = null
+
+//Coolcrow420 - Jade Davis
+/obj/item/weapon/stamp/fluff/jade_horror
+	name = "Council of Mid Horror rubber stamp"
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "stamp-midhorror"
+	stamptext = "This paper has been certified by The Council of Mid Horror"
+
+//thedavestdave Lucky
+///I know this is pretty bodgey but if it stupid and it works it isn't stupid
+/obj/item/clothing/suit/storage/hooded/explorer/lucky
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "luck"
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "luck"
+	name = "Lucky's armor"
+	desc = "A chain mail suit with a badly drawn one eared cat on the front."
+
+
+/obj/item/device/modkit_conversion/crusader_luck
+    skip_content_check = TRUE
+    name = "Lucky's armor"
+    desc = "A chain mail suit with a badly drawn one eared cat on the front."
+    icon = 'icons/vore/custom_items_vr.dmi'
+    icon_state = "modkit"
+    from_suit = /obj/item/clothing/suit/storage/hooded/explorer
+    to_suit = /obj/item/clothing/suit/storage/hooded/explorer/lucky
+
+//RevolverEloise - Revolver Eloise
+/obj/item/weapon/sword/fluff/revolver
+	name = "Catnip"
+	desc = "A steel claymore with what appears to be a teppi engraved into the hilt and a finely forged metal cuboid for a pommel. The blade is honed and balanced to an unusually high degree and has clearly been meticulously cared for."
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "revclaymore"
+	icon_override = 'icons/vore/custom_items_vr.dmi'
+	item_state = "revclaymoremob"
+	force = 1
+	sharp = TRUE
+	edge = TRUE

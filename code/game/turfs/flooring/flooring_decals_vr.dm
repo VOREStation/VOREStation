@@ -134,6 +134,14 @@
 /obj/effect/floor_decal/emblem/itgdauntless
 	icon_state = "itgdauntless"
 
+/obj/effect/floor_decal/emblem/stellardelight
+	icon_state = "stellar_delight"
+/obj/effect/floor_decal/emblem/stellardelight/center
+	icon_state = "stellar_delight_center"
+
+/obj/effect/floor_decal/emblem/orangeline
+	icon_state = "orange_line"
+
 /obj/effect/floor_decal/emblem/aronai
 	icon_state = "aronai"
 

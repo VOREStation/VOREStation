@@ -342,11 +342,11 @@
 	if(istype(O, /obj/item/stack/medical/bruise_pack) && round(volume) >= 5)
 		var/obj/item/stack/medical/bruise_pack/C = O
 		var/packname = C.name
-		var/to_produce = min(C.amount, round(volume / 5))
+		var/to_produce = min(C.get_amount(), round(volume / 5))
 
 		var/obj/item/stack/medical/M = C.upgrade_stack(to_produce)
 
-		if(M && M.amount)
+		if(M && M.get_amount())
 			holder.my_atom.visible_message("<b>\The [packname]</b> bubbles.")
 			remove_self(to_produce * 5)
 
@@ -1251,11 +1251,11 @@
 	if(istype(O, /obj/item/stack/medical/crude_pack) && round(volume) >= 1)
 		var/obj/item/stack/medical/crude_pack/C = O
 		var/packname = C.name
-		var/to_produce = min(C.amount, round(volume))
+		var/to_produce = min(C.get_amount(), round(volume))
 
 		var/obj/item/stack/medical/M = C.upgrade_stack(to_produce)
 
-		if(M && M.amount)
+		if(M && M.get_amount())
 			holder.my_atom.visible_message("<b>\The [packname]</b> bubbles.")
 			remove_self(to_produce)
 
@@ -1501,3 +1501,22 @@
 	metabolism = REM * 0.002
 	overdose = REAGENTS_OVERDOSE * 0.25
 	scannable = 1
+
+/datum/reagent/earthsblood
+	name = "Earthsblood"
+	id = "earthsblood"
+	description = "A rare plant extract with immense, almost magical healing capabilities. Induces a potent psychoactive state, damaging neurons with prolonged use."
+	taste_description = "honey and sunlight"
+	reagent_state = LIQUID
+	color = "#ffb500"
+	overdose = REAGENTS_OVERDOSE * 0.50
+	
+
+/datum/reagent/earthsblood/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	M.heal_organ_damage (4 * removed, 4 * removed)
+	M.adjustOxyLoss(-10 * removed)
+	M.adjustToxLoss(-4 * removed)
+	M.adjustCloneLoss(-2 * removed)
+	M.druggy = max(M.druggy, 20)
+	M.hallucination = max(M.hallucination, 3)
+	M.adjustBrainLoss(1 * removed) //your life for your mind. The Earthmother's Tithe.

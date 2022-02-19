@@ -21,9 +21,9 @@
 	var/stripe_color
 	//rad_resistance_modifier = 0.5
 
-	// blend_objects defined on subtypes	
+	// blend_objects defined on subtypes
 	noblend_objects = list(/obj/machinery/door/window, /obj/machinery/door/firedoor)
-	
+
 	var/default_material = DEFAULT_WALL_MATERIAL
 	var/datum/material/material
 	var/grille_type
@@ -38,9 +38,9 @@
 
 	if(!materialtype)
 		materialtype = default_material
-	
+
 	material = get_material_by_name(materialtype)
-	
+
 	health = material.integrity
 
 	return INITIALIZE_HINT_LATELOAD
@@ -79,12 +79,12 @@
 	if(istype(W, /obj/item/stack/rods))
 		handle_rod_use(user, W)
 		return
-	
+
 	// Making windows, different per subtype
 	else if(istype(W, /obj/item/stack/material/glass))
 		handle_glass_use(user, W)
 		return
-	
+
 	// Dismantling the half wall
 	if(W.is_wrench())
 		for(var/obj/structure/S in loc)
@@ -99,6 +99,7 @@
 		if(do_after(user, 40, src))
 			to_chat(user, "<span class='notice'>You dissasembled the low wall!</span>")
 			dismantle()
+			return
 
 	// Handle placing things
 	if(isrobot(user))
@@ -110,7 +111,7 @@
 	if(can_place_items() && user.unEquip(W, 0, src.loc) && user.is_preference_enabled(/datum/client_preference/precision_placement))
 		auto_align(W, click_parameters)
 		return 1
-	
+
 	return ..()
 
 /obj/structure/low_wall/proc/can_place_items()
@@ -121,19 +122,44 @@
 			return FALSE
 	return TRUE
 
-/obj/structure/low_wall/MouseDrop_T(obj/O as obj, mob/user as mob)
+/obj/structure/low_wall/MouseDrop_T(atom/movable/AM, mob/user, src_location, over_location, src_control, over_control, params)
+	if(AM == user)
+		var/mob/living/H = user
+		if(istype(H) && can_climb(H))
+			do_climb(AM)
+	var/obj/O = AM
+	if(!istype(O))
+		return
 	if(istype(O, /obj/structure/window))
 		var/obj/structure/window/W = O
 		if(Adjacent(W) && !W.anchored)
 			to_chat("<span class='notice'>You hoist [W] up onto [src].</span>")
 			W.forceMove(loc)
 			return
-	if ((!( istype(O, /obj/item/weapon) ) || user.get_active_hand() != O))
-		return ..()
 	if(isrobot(user))
 		return
 	if(can_place_items())
-		user.unEquip(O, 0, src.loc)
+		if(ismob(O.loc)) //If placing an item
+			if(!isitem(O) || user.get_active_hand() != O)
+				return ..()
+			if(isrobot(user))
+				return
+			user.drop_item()
+			if(O.loc != src.loc)
+				step(O, get_dir(O, src))
+
+		else if(isturf(O.loc) && isitem(O)) //If pushing an item on the tabletop
+			var/obj/item/I = O
+			if(I.anchored)
+				return
+
+			if((isliving(user)) && (Adjacent(user)) && !(user.incapacitated()))
+				if(O.w_class <= user.can_pull_size)
+					O.forceMove(loc)
+					auto_align(I, params, TRUE)
+				else
+					to_chat(user, SPAN_WARNING("\The [I] is too big for you to move!"))
+				return
 
 /obj/structure/low_wall/proc/handle_rod_use(mob/user, obj/item/stack/rods/R)
 	if(!grille_type)
@@ -169,7 +195,7 @@
 	to_chat(user, "<span class='notice'>Assembling window...</span>")
 	if(!do_after(user, 4 SECONDS, G, exclusive = TASK_ALL_EXCLUSIVE))
 		return
-	if(!G.use(2))
+	if(!G.use(4))
 		return
 	new window_type(loc, null, TRUE)
 	return
@@ -397,7 +423,7 @@
 		other_connections = list("0","0","0","0")
 	else
 		update_connections()
-	
+
 	var/percent_damage = 0 // Used for icon state of damage layer
 	var/damage_alpha = 0 // Used for alpha blending of damage layer
 	if (maxhealth && health < maxhealth)
@@ -488,7 +514,7 @@
 		other_connections = list("0","0","0","0")
 	else
 		update_connections()
-	
+
 	var/img_dir
 	var/image/I
 	for(var/i = 1 to 4)
@@ -555,14 +581,14 @@
 	if(locate(/obj/effect/low_wall_spawner) in oview(0, src))
 		warning("Duplicate low wall spawners in [x],[y],[z]!")
 		return INITIALIZE_HINT_QDEL
-	
+
 	if(low_wall_type)
 		new low_wall_type(loc)
 	if(grille_type)
 		new grille_type(loc)
 	if(window_type)
 		new window_type(loc)
-	
+
 	return INITIALIZE_HINT_QDEL
 
 // Bay types

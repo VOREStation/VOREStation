@@ -1,4 +1,6 @@
-// White cards.
+/*
+ * White CAH cards
+ */
 /obj/item/weapon/deck/cah/var/list/card_text_list = list(
 	"Those motherfucking carp",
 	"Having sex in the maintenance tunnels",

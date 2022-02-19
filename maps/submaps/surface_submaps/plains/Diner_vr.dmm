@@ -6,7 +6,7 @@
 /turf/template_noop,
 /area/submap/Diner)
 "ac" = (
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/Diner)
 "ad" = (
 /turf/simulated/wall,
@@ -85,16 +85,13 @@
 /obj/structure/table/standard,
 /obj/item/weapon/reagent_containers/food/condiment/small/peppermill,
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
 /area/submap/Diner)
 "at" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/simulated/floor/tiled/white,
 /area/submap/Diner)
@@ -111,7 +108,6 @@
 "aw" = (
 /obj/machinery/appliance/mixer/cereal,
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
@@ -198,7 +194,6 @@
 "aK" = (
 /obj/effect/floor_decal/corner/red/diagonal,
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
@@ -297,14 +292,12 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/Diner)
 "ba" = (
 /obj/effect/floor_decal/corner/red/diagonal,
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1";
-	pixel_y = 0
+	dir = 8
 	},
 /turf/simulated/floor/tiled/white,
 /area/submap/Diner)
@@ -325,7 +318,6 @@
 /area/submap/Diner)
 "be" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
@@ -401,7 +393,6 @@
 "br" = (
 /obj/effect/floor_decal/corner/red/diagonal,
 /obj/structure/windoor_assembly{
-	icon_state = "l_windoor_assembly01";
 	dir = 2
 	},
 /turf/simulated/floor/tiled/white,
@@ -418,7 +409,6 @@
 /area/submap/Diner)
 "bu" = (
 /obj/structure/sink{
-	icon_state = "sink";
 	dir = 8;
 	pixel_x = -12;
 	pixel_y = 2
@@ -453,8 +443,7 @@
 "bA" = (
 /obj/structure/mirror{
 	dir = 4;
-	pixel_x = -32;
-	pixel_y = 0
+	pixel_x = -32
 	},
 /turf/simulated/floor/tiled/hydro,
 /area/submap/Diner)

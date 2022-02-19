@@ -532,5 +532,9 @@
 		"tether_nanomap_z10.png"			= 'icons/_nanomaps/tether_nanomap_z10.png',
 		"tether_nanomap_z13.png"			= 'icons/_nanomaps/tether_nanomap_z13.png',
 		"tether_nanomap_z14.png"			= 'icons/_nanomaps/tether_nanomap_z14.png',
+		"stellardelight_nanomap_z1.png"		= 'icons/_nanomaps/sd_deck1.png',
+		"stellardelight_nanomap_z2.png"		= 'icons/_nanomaps/sd_deck2.png',
+		"stellardelight_nanomap_z3.png"		= 'icons/_nanomaps/sd_deck3.png',
+
 		// VOREStation Edit End
 	)

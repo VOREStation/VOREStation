@@ -44,3 +44,13 @@
 **License:** [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)<br>
 **URL:** [Patreon Post](https://www.patreon.com/posts/diable-avionics-44573931)<br>
 **Notes:** Permission to use assets also given in writing.<br>
+<br>
+**File:** `sound/ambience/space/aurora_caelus.ogg`<br>
+**Title:** Music for Manatees<br>
+**Creator:** Kevin MacLeod (incompetech.com)<br>
+**License:** [CC BY 3.0](http://creativecommons.org/licenses/by/3.0/)<br>
+<br>
+**File:** `sound/ambience/startup.ogg` and `sound/ambience/shutdown.ogg`<br>
+**Title:** Spaceship starup and shutdown<br>
+**Creator:** viznoman (https://freesound.org/people/viznoman/sounds/267308/)<br>
+**License:** [CC BY 3.0](http://creativecommons.org/licenses/by/3.0/)<br>

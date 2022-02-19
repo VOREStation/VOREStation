@@ -34,7 +34,7 @@
 	name = OUTFIT_JOB_NAME("Roboticist")
 	uniform = /obj/item/clothing/under/rank/roboticist
 	shoes = /obj/item/clothing/shoes/black
-	belt = /obj/item/weapon/storage/belt/utility/full
+	belt = /obj/item/weapon/storage/belt/utility/full/multitool
 	id_type = /obj/item/weapon/card/id/science
 	pda_slot = slot_r_store
 	pda_type = /obj/item/device/pda/roboticist

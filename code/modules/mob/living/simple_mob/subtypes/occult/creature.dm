@@ -24,6 +24,8 @@
 	attacktext = list("chomped")
 	attack_sound = 'sound/weapons/bite.ogg'
 
+	organ_names = /decl/mob_organ_names/abberation
+
 	speak_emote = list("gibbers")
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
@@ -66,3 +68,6 @@
 	harm_intent_damage = 5
 	melee_damage_lower = 13
 	melee_damage_upper = 25
+
+/decl/mob_organ_names/abberation
+	hit_zones = list("fleshy mass", "maw", "eye(?)", "orifice(?)")

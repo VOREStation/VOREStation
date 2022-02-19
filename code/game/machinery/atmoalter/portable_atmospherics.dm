@@ -15,9 +15,11 @@
 
 /obj/machinery/portable_atmospherics/New()
 	..()
-
-	air_contents.volume = volume
-	air_contents.temperature = T20C
+	//VOREStation Edit - Fix runtime
+	if(air_contents)
+		air_contents.volume = volume
+		air_contents.temperature = T20C
+	//VOREStation Edit End
 
 	return 1
 

@@ -3,6 +3,7 @@
  *		Lasertag
  *		Costume
  *		Misc
+ *		Department Jackets
  */
 
 // -S2-note- Needs categorizing and sorting.
@@ -10,8 +11,9 @@
 /*
  * Lasertag
  */
+
 /obj/item/clothing/suit/bluetag
-	name = "blue laser tag armour"
+	name = "blue laser tag armor"
 	desc = "Blue Pride, Station Wide."
 	icon_state = "bluetag"
 	item_state_slots = list(slot_r_hand_str = "tdblue", slot_l_hand_str = "tdblue")
@@ -20,8 +22,13 @@
 	allowed = list (/obj/item/weapon/gun/energy/lasertag/blue)
 	siemens_coefficient = 3.0
 
+/obj/item/clothing/suit/bluetag/sub
+	name = "Brigader Armor"
+	desc = "Repilca rmor commonly worn by Spacer Union Brigade members from the hit series Spacer Trail. Modified for Laser Tag (Blue Team)."
+	icon_state = "bluetag2"
+
 /obj/item/clothing/suit/redtag
-	name = "red laser tag armour"
+	name = "red laser tag armor"
 	desc = "Reputed to go faster."
 	icon_state = "redtag"
 	item_state_slots = list(slot_r_hand_str = "tdred", slot_l_hand_str = "tdred")
@@ -30,9 +37,15 @@
 	allowed = list (/obj/item/weapon/gun/energy/lasertag/red)
 	siemens_coefficient = 3.0
 
+/obj/item/clothing/suit/redtag/dom
+	name = "Mu'tu'bi Armor"
+	desc = "Repilca rmor commonly worn by Dominion Of Mu'tu'bi soldiers from the hit series Spacer Trail. Modified for Laser Tag (Red Team)."
+	icon_state = "redtag2"
+
 /*
  * Costume
  */
+
 /obj/item/clothing/suit/pirate
 	name = "pirate coat"
 	desc = "Yarr."
@@ -227,6 +240,7 @@
 /*
  * Misc
  */
+
 /obj/item/clothing/suit/straight_jacket
 	name = "straight jacket"
 	desc = "A suit that completely restrains the wearer."
@@ -261,20 +275,62 @@
 	body_parts_covered = UPPER_TORSO|ARMS
 	flags_inv = HIDETIE|HIDEHOLSTER
 
+/*
+ * Kimonos
+ */
+
 /obj/item/clothing/suit/kimono
-	name = "kimono"
+	name = "traditional kimono"
 	desc = "A traditional Japanese kimono."
 	icon_state = "kimono"
 	addblends = "kimono_a"
 
 /obj/item/clothing/suit/kamishimo
-	name = "kamishimo"
+	name = "traditional kamishimo"
 	desc = "Traditional Japanese menswear."
 	icon_state = "kamishimo"
+	addblends = "kamishimo_a"
+
+/obj/item/clothing/suit/kimono/red
+	name = "red kimono"
+	icon_state = "kimono_red"
+
+/obj/item/clothing/suit/kimono/orange
+	name = "orange kimono"
+	icon_state = "kimono_orange"
+
+/obj/item/clothing/suit/kimono/yellow
+	name = "yellow kimono"
+	icon_state = "kimono_yellow"
+
+/obj/item/clothing/suit/kimono/green
+	name = "green kimono"
+	icon_state = "kimono_green"
+
+/obj/item/clothing/suit/kimono/blue
+	name = "blue kimono"
+	icon_state = "kimono_blue"
+
+/obj/item/clothing/suit/kimono/purple
+	name = "purple kimono"
+	icon_state = "kimono_purple"
+
+/obj/item/clothing/suit/kimono/violet
+	name = "violet kimono"
+	icon_state = "kimono_violet"
+
+/obj/item/clothing/suit/kimono/pink
+	name = "pink kimono"
+	icon_state = "kimono_pink"
+
+/obj/item/clothing/suit/kimono/earth
+	name = "earth kimono"
+	icon_state = "kimono_earth"
 
 /*
- * coats
+ * Coats
  */
+
 /obj/item/clothing/suit/leathercoat
 	name = "leather coat"
 	desc = "A long, thick black leather coat."
@@ -468,6 +524,11 @@
 	cold_protection = UPPER_TORSO|ARMS
 	min_cold_protection_temperature = T0C - 20
 	siemens_coefficient = 0.7
+
+/obj/item/clothing/suit/storage/toggle/bomber/retro
+	name = "retro bomber jacket"
+	desc = "A retro style, fur-lined leather bomber jacket that invokes the early days of space exploration when spacemen were spacemen, and laser guns had funny little antennae on them."
+	icon_state = "retrojacket"
 
 /obj/item/clothing/suit/storage/bomber/alt
 	name = "bomber jacket"
@@ -934,3 +995,12 @@
 		src.item_state = "caution"
 		usr.show_message("You turn the wet floor sign off.")
 	update_clothing_icon()
+
+//Ruin Marine (Doom Marine)
+/obj/item/clothing/suit/marine
+	name = "marine armor"
+	desc = "A set of marine prop armor from the popular game 'Ruin'."
+	icon_state = "marine"
+	body_parts_covered = FEET|LOWER_TORSO|UPPER_TORSO|LEGS
+	flags_inv = HIDESHOES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
+	item_state_slots = list(slot_r_hand_str = "green_labcoat", slot_l_hand_str = "green_labcoat")

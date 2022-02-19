@@ -18,9 +18,12 @@
 	plane = TURF_PLANE
 	layer = UNDERWATER_LAYER
 
+	organ_names = /decl/mob_organ_names/fish
+
 	holder_type = /obj/item/weapon/holder/fish
 
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish
+	meat_amount = 3
 
 	// By default they can be in any water turf.  Subtypes might restrict to deep/shallow etc
 	var/global/list/suitable_turf_types =  list(
@@ -319,4 +322,7 @@
 
 	catalogue_data = list(/datum/category_item/catalogue/fauna/murkin)
 
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish/sif
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat/sif/murkfish
+
+/decl/mob_organ_names/fish
+	hit_zones = list("head", "body", "dorsal fin", "left pectoral fin", "right pectoral fin", "tail fin")

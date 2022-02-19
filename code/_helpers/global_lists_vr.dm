@@ -13,6 +13,9 @@ var/global/list/active_ghost_pods = list()
 
 var/global/list/sensorpreflist = list("Off", "Binary", "Vitals", "Tracking", "No Preference")
 
+// Used by the ban panel to determine what departments are offmap departments. All these share an 'offmap roles' ban.
+var/global/list/offmap_departments = list(DEPARTMENT_TALON)
+
 // Closets have magic appearances
 GLOBAL_LIST_EMPTY(closet_appearances)
 
@@ -226,7 +229,8 @@ var/global/list/edible_trash = list(/obj/item/broken_device,
 				/obj/item/weapon/storage/fancy/egg_box,
 				/obj/item/weapon/storage/wallet,
 				/obj/item/weapon/storage/vore_egg,
-				/obj/item/weapon/bikehorn/tinytether
+				/obj/item/weapon/bikehorn/tinytether,
+				/obj/item/capture_crystal
 				)
 
 var/global/list/contamination_flavors = list(

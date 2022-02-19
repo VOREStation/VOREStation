@@ -216,7 +216,7 @@
 /turf/simulated/floor/virgo3b_indoors,
 /area/tether/outpost/solars_shed)
 "aw" = (
-/mob/living/simple_mob/animal/passive/gaslamp,
+/obj/tether_away_spawner/tether_outside,
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/mine/explored)
 "ax" = (
@@ -624,7 +624,7 @@
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/mine/explored)
 "br" = (
-/mob/living/simple_mob/animal/passive/gaslamp,
+/obj/tether_away_spawner/tether_outside,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/tether/outpost/solars_outside)
 "bs" = (
@@ -798,7 +798,7 @@
 /turf/simulated/floor/virgo3b,
 /area/mine/explored)
 "bJ" = (
-/mob/living/simple_mob/animal/passive/gaslamp,
+/obj/tether_away_spawner/tether_outside,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/mine/explored)
 "bK" = (

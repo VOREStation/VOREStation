@@ -51,6 +51,10 @@
 	icon_state = "blank"
 
 /obj/machinery/portable_atmospherics/hydroponics/soil/invisible/New(var/newloc,var/datum/seed/newseed)
+	//VOREStation Addition Start
+	if(istype(loc, /turf/simulated/open) || istype(loc, /turf/space))
+		qdel(src)
+	//VOREStation Addition End
 	..()
 	seed = newseed
 	dead = 0

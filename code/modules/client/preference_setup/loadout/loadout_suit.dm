@@ -35,8 +35,12 @@
 	path = /obj/item/clothing/suit/storage/toggle/bomber
 
 /datum/gear/suit/bomber_alt
-	display_name = "bomber jacket 2"
+	display_name = "bomber jacket, alt"
 	path = /obj/item/clothing/suit/storage/bomber/alt
+
+/datum/gear/suit/bomber_retro
+	display_name = "bomber jacket, retro"
+	path = /obj/item/clothing/suit/storage/toggle/bomber/retro
 
 /datum/gear/suit/leather_jacket
 	display_name = "leather jacket, black"
@@ -99,7 +103,7 @@
 	path = /obj/item/clothing/suit/storage/trench/grey
 
 /datum/gear/suit/duster
-	display_name = "cowboy duster"
+	display_name = "cowboy duster, colorable"
 	path = /obj/item/clothing/suit/storage/duster
 
 /datum/gear/suit/duster/New()
@@ -418,7 +422,7 @@
 /datum/gear/suit/wintercoat/engineering
 	display_name = "winter coat, engineering"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/engineering
-	allowed_roles = list("Chief Engineer","Atmospheric Technician", "Station Engineer")
+	allowed_roles = list("Chief Engineer","Atmospheric Technician", "Engineer")
 
 /datum/gear/suit/wintercoat/engineering/atmos
 	display_name = "winter coat, atmospherics"
@@ -531,14 +535,6 @@
 	display_name = "denim vest, corporate"
 	path = /obj/item/clothing/suit/storage/toggle/denim_jacket/nanotrasen/sleeveless
 
-/datum/gear/suit/miscellaneous/kimono
-	display_name = "kimono"
-	path = /obj/item/clothing/suit/kimono
-
-/datum/gear/suit/miscellaneous/kimono/New()
-	..()
-	gear_tweaks += gear_tweak_free_color_choice
-
 /datum/gear/suit/miscellaneous/dep_jacket
 	display_name = "department jacket selection"
 	path = /obj/item/clothing/suit/storage/toggle/sec_dep_jacket
@@ -567,16 +563,12 @@
 	gear_tweaks += new/datum/gear_tweak/path(jacket)
 
 /datum/gear/suit/miscellaneous/peacoat
-	display_name = "peacoat"
+	display_name = "peacoat, colorable"
 	path = /obj/item/clothing/suit/storage/toggle/peacoat
 
 /datum/gear/suit/miscellaneous/peacoat/New()
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
-
-/datum/gear/suit/miscellaneous/kamishimo
-	display_name = "kamishimo"
-	path = /obj/item/clothing/suit/kamishimo
 
 /datum/gear/suit/snowsuit
 	display_name = "snowsuit"
@@ -605,7 +597,7 @@
 /datum/gear/suit/snowsuit/engineering
 	display_name = "snowsuit, engineering"
 	path = /obj/item/clothing/suit/storage/snowsuit/engineering
-	allowed_roles = list("Chief Engineer","Atmospheric Technician", "Station Engineer")
+	allowed_roles = list("Chief Engineer","Atmospheric Technician", "Engineer")
 
 /datum/gear/suit/snowsuit/cargo
 	display_name = "snowsuit, supply"
@@ -613,7 +605,7 @@
 	allowed_roles = list("Quartermaster","Shaft Miner","Cargo Technician","Head of Personnel")
 
 /datum/gear/suit/miscellaneous/cardigan
-	display_name = "cardigan"
+	display_name = "cardigan, colorable"
 	path = /obj/item/clothing/suit/storage/toggle/cardigan
 
 /datum/gear/suit/miscellaneous/cardigan/New()
@@ -623,4 +615,39 @@
 /datum/gear/suit/cmddressjacket
 	display_name = "command dress jacket"
 	path = /obj/item/clothing/suit/storage/cmddressjacket
-	allowed_roles = list("Facility Director", "Head of Personnel", "Command Secretary")
+	allowed_roles = list("Site Manager", "Head of Personnel", "Command Secretary")
+
+/datum/gear/suit/miscellaneous/kimono
+	display_name = "traditional kimono, colorable"
+	path = /obj/item/clothing/suit/kimono
+
+/datum/gear/suit/miscellaneous/kimono/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/suit/miscellaneous/kamishimo
+	display_name = "traditional kamishimo, colorable"
+	path = /obj/item/clothing/suit/kamishimo
+
+/datum/gear/suit/miscellaneous/kamishimo/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/suit/miscellaneous/kimono
+	display_name = "kimono selection"
+	path = /obj/item/clothing/suit/kimono/red
+
+/datum/gear/suit/miscellaneous/kimono/New()
+	..()
+	var/list/kimonos = list(
+	"Red kimono" = /obj/item/clothing/suit/kimono/red,
+	"Orange kimono" = /obj/item/clothing/suit/kimono/orange,
+	"Yellow kimono" = /obj/item/clothing/suit/kimono/yellow,
+	"Green kimono" = /obj/item/clothing/suit/kimono/green,
+	"Blue kimono" = /obj/item/clothing/suit/kimono/blue,
+	"Purple kimono" = /obj/item/clothing/suit/kimono/purple,
+	"Violet kimono" = /obj/item/clothing/suit/kimono/violet,
+	"Pink kimono" = /obj/item/clothing/suit/kimono/pink,
+	"Earth kimono" = /obj/item/clothing/suit/kimono/earth
+	)
+	gear_tweaks += new/datum/gear_tweak/path(kimonos)

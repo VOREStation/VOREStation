@@ -18,8 +18,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/generator/Initialize()
 	. = ..()
-	fuel = new fuel_type(src)
-	fuel.amount = 0
+	fuel = new fuel_type(src, 0)
 
 /obj/item/mecha_parts/mecha_equipment/generator/Destroy()
 	qdel(fuel)
@@ -29,7 +28,7 @@
 	if(!chassis)
 		set_ready_state(TRUE)
 		return PROCESS_KILL
-	if(fuel.amount<=0)
+	if(fuel.get_amount() <= 0)
 		log_message("Deactivated - no fuel.")
 		set_ready_state(TRUE)
 		return PROCESS_KILL
@@ -43,7 +42,7 @@
 	if(cur_charge<chassis.cell.maxcharge)
 		use_fuel = fuel_per_cycle_active
 		chassis.give_power(power_per_cycle)
-	fuel.amount -= min(use_fuel/fuel.perunit,fuel.amount)
+	fuel.set_amount(min(use_fuel/fuel.perunit, fuel.get_amount()), TRUE) // allows fuel to get to 0
 	update_equip_info()
 
 /obj/item/mecha_parts/mecha_equipment/generator/detach()
@@ -68,7 +67,7 @@
 /obj/item/mecha_parts/mecha_equipment/generator/get_equip_info()
 	var/output = ..()
 	if(output)
-		return "[output] \[[fuel]: [round(fuel.amount*fuel.perunit,0.1)] cm<sup>3</sup>\] - <a href='?src=\ref[src];toggle=1'>[(datum_flags & DF_ISPROCESSING)?"Dea":"A"]ctivate</a>"
+		return "[output] \[[fuel]: [round(fuel.get_amount()*fuel.perunit,0.1)] cm<sup>3</sup>\] - <a href='?src=\ref[src];toggle=1'>[(datum_flags & DF_ISPROCESSING)?"Dea":"A"]ctivate</a>"
 	return
 
 /obj/item/mecha_parts/mecha_equipment/generator/action(target)
@@ -86,12 +85,12 @@
 	return
 
 /obj/item/mecha_parts/mecha_equipment/generator/proc/load_fuel(var/obj/item/stack/material/P)
-	if(P.type == fuel.type && P.amount)
-		var/to_load = max(max_fuel - fuel.amount*fuel.perunit,0)
+	if(P.type == fuel.type && P.get_amount())
+		var/to_load = max(max_fuel - fuel.get_amount()*fuel.perunit,0)
 		if(to_load)
-			var/units = min(max(round(to_load / P.perunit),1),P.amount)
+			var/units = min(max(round(to_load / P.perunit),1),P.get_amount())
 			if(units)
-				fuel.amount += units
+				fuel.add(units)
 				P.use(units)
 				return units
 		else

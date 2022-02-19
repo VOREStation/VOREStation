@@ -90,8 +90,7 @@
 		return TRUE
 
 	if(reinforcing && I.is_crowbar())
-		var/obj/item/stack/material/plasteel/reinforcing_sheet = new /obj/item/stack/material/plasteel(src.loc)
-		reinforcing_sheet.amount = reinforcing
+		var/obj/item/stack/material/plasteel/reinforcing_sheet = new /obj/item/stack/material/plasteel(src.loc, reinforcing)
 		reinforcing = 0
 		to_chat(user, "<span class='notice'>You remove \the [reinforcing_sheet].</span>")
 		playsound(src, I.usesound, 100, 1)
@@ -102,7 +101,19 @@
 /obj/machinery/door/blast/regular/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	return // blast doors are immune to fire completely.
 
-/obj/machinery/door/blast/regular/
+/obj/machinery/door/blast/regular
+	heat_proof = 1 //just so repairing them doesn't try to fireproof something that never takes fire damage
+
+/obj/machinery/door/blast/angled/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+	return // blast doors are immune to fire completely.
+
+/obj/machinery/door/blast/angled
+	heat_proof = 1 //just so repairing them doesn't try to fireproof something that never takes fire damage
+
+/obj/machinery/door/blast/puzzle/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+	return // blast doors are immune to fire completely.
+
+/obj/machinery/door/blast/puzzle
 	heat_proof = 1 //just so repairing them doesn't try to fireproof something that never takes fire damage
 
 /obj/machinery/door/proc/toggle()

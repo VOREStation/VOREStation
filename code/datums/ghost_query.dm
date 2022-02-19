@@ -47,17 +47,22 @@
 	for(var/ban in check_bans)
 		if(jobban_isbanned(candidate, ban))
 			return FALSE // They're banned from this role.
-	
+
 	return TRUE
 
 /// Send async alerts and ask for responses. Expects you to have tested D for client and type already
 /datum/ghost_query/proc/ask_question(var/mob/observer/dead/D)
+	//VOREStation Add Start		Check the ban status before we ask
+	if(jobban_isbanned(D, "GhostRoles"))
+		return
+	//VOREStation Add End
+
 	var/client/C = D.client
 	window_flash(C)
-	
+
 	if(query_sound)
 		SEND_SOUND(C, sound(query_sound))
-	
+
 	tgui_alert_async(D, question, "[role_name] request", list("Yes", "No", "Never for this round"), CALLBACK(src, .proc/get_reply), wait_time SECONDS)
 
 /// Process an async alert response
@@ -65,7 +70,7 @@
 	var/mob/observer/dead/D = usr
 	if(!D?.client)
 		return
-	
+
 	// Unhandled are "No" and "Nevermind" responses, which should just do nothing
 
 	// This response is always fine, doesn't warrant retesting
@@ -184,10 +189,12 @@
 	role_name = "Dark Creature"
 	question = "A curious explorer has touched a mysterious rune. \
 	Would you like to play as the creature it summons?"
+	be_special_flag = BE_CORGI
 	cutoff_number = 1
 
 /datum/ghost_query/cursedblade
 	role_name = "Cursed Sword"
 	question = "A cursed blade has been discovered by a curious explorer. \
 	Would you like to play as the soul imprisoned within?"
+	be_special_flag = BE_CURSEDSWORD
 	cutoff_number = 1
