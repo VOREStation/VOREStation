@@ -4,6 +4,8 @@
 	icon = 'icons/obj/toy_vr.dmi'
 	icon_state = "mistletoe"
 
+// HEY FUTURE PLUSHIE CODERS: IF YOU'RE ADDING A SNOWFLAKE PLUSH ITEM USE PATH /obj/item/toy/plushie/fluff
+// the loadout entry shouldn't be able to grab those if everything goes right
 /obj/item/toy/plushie/lizardplushie
 	name = "lizard plushie"
 	desc = "An adorable stuffed toy that resembles a lizardperson."
