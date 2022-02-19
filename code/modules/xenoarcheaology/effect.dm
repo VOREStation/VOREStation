@@ -10,6 +10,21 @@
 	var/artifact_id = ""
 	var/effect_type = 0
 
+	var/req_type = /atom/movable
+
+	var/image/active_effect
+	var/effect_icon = 'icons/effects/effects.dmi'
+	var/effect_state = "sparkles"
+	var/effect_color = "#ffffff"
+
+	// The last time the effect was toggled.
+	var/last_activation = 0
+
+/datum/artifact_effect/Destroy()
+	if(master)
+		master = null
+	..()
+
 /datum/artifact_effect/proc/get_master_holder()	// Return the effectmaster's holder, if it is set to an effectmaster. Otherwise, master is the target object.
 	if(istype(master))
 		return master.holder

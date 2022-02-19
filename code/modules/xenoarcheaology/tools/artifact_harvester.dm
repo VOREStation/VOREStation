@@ -148,10 +148,12 @@
 		cur_artifact = analysed
 
 		//if both effects are active, we can't harvest either
-		if(cur_artifact.my_effect && cur_artifact.my_effect.activated && cur_artifact.secondary_effect && cur_artifact.secondary_effect.activated)
+		var/list/active_effects = cur_artifact.artifact_master.get_active_effects()
+
+		if(active_effects.len > 1)
 			atom_say("Cannot harvest. Source is emitting conflicting energy signatures.")
 			return
-		if(!cur_artifact.my_effect.activated && !(cur_artifact.secondary_effect && cur_artifact.secondary_effect.activated))
+		else if(!active_effects.len)
 			atom_say("Cannot harvest. No energy emitting from source.")
 			return
 
@@ -163,34 +165,24 @@
 
 		//
 		var/datum/artifact_effect/source_effect
+		var/datum/artifact_effect/active_effect = active_effects[1]
 
 		//if we already have charge in the battery, we can only recharge it from the source artifact
 		if(inserted_battery.stored_charge > 0)
 			var/battery_matches_primary_id = 0
-			if(inserted_battery.battery_effect && inserted_battery.battery_effect.artifact_id == cur_artifact.my_effect.artifact_id)
+			if(inserted_battery.battery_effect && inserted_battery.battery_effect.artifact_id == cur_artifact.artifact_master.artifact_id)
 				battery_matches_primary_id = 1
-			if(battery_matches_primary_id && cur_artifact.my_effect.activated)
+			if(battery_matches_primary_id && active_effect.activated)
 				//we're good to recharge the primary effect!
-				source_effect = cur_artifact.my_effect
-
-			var/battery_matches_secondary_id = 0
-			if(inserted_battery.battery_effect && inserted_battery.battery_effect.artifact_id == cur_artifact.secondary_effect.artifact_id)
-				battery_matches_secondary_id = 1
-			if(battery_matches_secondary_id && cur_artifact.secondary_effect.activated)
-				//we're good to recharge the secondary effect!
-				source_effect = cur_artifact.secondary_effect
+				source_effect = active_effect
 
 			if(!source_effect)
 				atom_say("Cannot harvest. Battery is charged with a different energy signature.")
 		else
 			//we're good to charge either
-			if(cur_artifact.my_effect.activated)
+			if(active_effect.activated)
 				//charge the primary effect
-				source_effect = cur_artifact.my_effect
-
-			else if(cur_artifact.secondary_effect.activated)
-				//charge the secondary effect
-				source_effect = cur_artifact.secondary_effect
+				source_effect = active_effect
 
 
 		if(source_effect)
