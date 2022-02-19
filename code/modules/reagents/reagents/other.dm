@@ -646,10 +646,11 @@
 	M.adjustToxLoss(2 * removed)
 	M.adjustCloneLoss(2 * removed)
 
-/datum/reagent/fishbait
+/datum/reagent/nutriment/fishbait
 	name = "Fish Bait"
 	id = "fishbait"
 	description = "A natural slurry that particularily appeals to fish."
-	taste_description = "earthy"
+	taste_description = "slimy dirt"
 	reagent_state = LIQUID
 	color = "#62764E"
+	nutriment_factor = 15

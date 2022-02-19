@@ -271,12 +271,12 @@
 
 	harvest_tool = /obj/item/weapon/material/knife
 	max_harvests = 2
-	min_harvests = -4
+	min_harvests = 0
 	harvest_loot = list(
 		/obj/item/weapon/reagent_containers/food/snacks/siffruit = 20,
-		/obj/item/weapon/reagent_containers/food/snacks/grown/sifpod = 5,
+		/obj/item/weapon/reagent_containers/food/snacks/grown/sif/sifpod = 5,
 		/obj/item/seeds/sifbulb = 1
-		)
+	)
 
 	var/light_shift = 0
 
