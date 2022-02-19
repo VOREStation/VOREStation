@@ -395,3 +395,21 @@
 	cost = 10
 	containertype = /obj/structure/closet/crate
 	containername = "Knights Gear Crate"
+
+/datum/supply_pack/costumes/christmas
+	name = "Christmas costume pack"
+	contains = list(
+			/obj/item/clothing/head/santa,
+			/obj/item/clothing/head/santa/green,
+			/obj/item/clothing/suit/storage/hooded/wintercoat/christmasred,
+			/obj/item/clothing/suit/storage/hooded/wintercoat/christmasgreen,
+			/obj/item/clothing/under/christmas/red,
+			/obj/item/clothing/under/christmas/green,
+			/obj/item/clothing/under/christmas/croptop/red,
+			/obj/item/clothing/under/christmas/croptop/green,
+			/obj/item/clothing/shoes/boots/winter/christmasred,
+			/obj/item/clothing/shoes/boots/winter/christmasgreen
+			)
+	cost = 20
+	containertype = /obj/structure/closet/crate
+	containername = "Christmas costume pack"

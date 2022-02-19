@@ -31,7 +31,7 @@ var/list/spawntypes = list()
 
 	if(!(J.mob_type & allowed_mob_types))
 		return 0
-	
+
 	return 1
 
 /datum/spawnpoint/proc/get_spawn_position()
@@ -78,3 +78,29 @@ var/list/spawntypes = list()
 /datum/spawnpoint/cyborg/New()
 	..()
 	turfs = latejoin_cyborg
+
+/obj/effect/landmark/arrivals
+	name = "JoinLateShuttle"
+	delete_me = 1
+
+/obj/effect/landmark/arrivals/New()
+	latejoin += loc
+	..()
+
+var/global/list/latejoin_tram   = list()
+
+/obj/effect/landmark/tram
+	name = "JoinLateTram"
+	delete_me = 1
+
+/obj/effect/landmark/tram/New()
+	latejoin_tram += loc // There's no tram but you know whatever man!
+	..()
+
+/datum/spawnpoint/tram
+	display_name = "Tram Station"
+	msg = "will arrive to the station shortly by shuttle"
+
+/datum/spawnpoint/tram/New()
+	..()
+	turfs = latejoin_tram

@@ -17,7 +17,7 @@
 /obj/effect/landmark/start/atmostech
 	name = "Atmospheric Technician"
 /obj/effect/landmark/start/engineer
-	name = "Station Engineer"
+	name = "Engineer"
 /obj/effect/landmark/start/cmo
 	name = "Chief Medical Officer"
 /obj/effect/landmark/start/chemist
@@ -90,3 +90,5 @@
 	name = "Talon Guard"
 /obj/effect/landmark/start/talonpilot
 	name = "Talon Pilot"
+/obj/effect/landmark/start/talonminer
+	name = "Talon Miner"

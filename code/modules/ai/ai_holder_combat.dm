@@ -310,15 +310,20 @@
 
 		// Kill common obstacle in the way like tables.
 		var/obj/structure/obstacle = locate(/obj/structure, problem_turf)
-		if(istype(obstacle, /obj/structure/window) || istype(obstacle, /obj/structure/closet) || istype(obstacle, /obj/structure/table) || istype(obstacle, /obj/structure/grille) || istype(obstacle, /obj/effect/weaversilk/wall))	//VOREStation Edit: spdr
+		if(istype(obstacle, /obj/structure/window) || istype(obstacle, /obj/structure/closet) || istype(obstacle, /obj/structure/table) || istype(obstacle, /obj/structure/grille))
 			ai_log("destroy_surroundings() : Attacking generic structure.", AI_LOG_INFO)
 			return melee_attack(obstacle)
+
+		var/obj/effect/weaversilk/web = locate(/obj/effect/weaversilk, problem_turf)
+		if(istype(web, /obj/effect/weaversilk/wall))	//VOREStation Edit: spdr
+			ai_log("destroy_surroundings() : Attacking weaversilk effect.", AI_LOG_INFO)
+			return melee_attack(web)
 
 		for(var/obj/machinery/door/D in problem_turf) // Required since firelocks take up the same turf.
 			if(D.density)
 				ai_log("destroy_surroundings() : Attacking closed door.", AI_LOG_INFO)
 				return melee_attack(D)
-		
+
 		// Should always be last thing attempted
 		if(!problem_turf.opacity)
 			ai_log("destroy_surroundings() : Attacking a transparent (window?) turf.", AI_LOG_INFO)

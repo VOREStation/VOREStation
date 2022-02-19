@@ -67,7 +67,7 @@ SUBSYSTEM_DEF(throwing)
 	src.speed = speed
 	src.thrower = thrower
 	src.callback = callback
-	if(!QDELETED(thrower))
+	if(!QDELETED(thrower) && ismob(thrower))
 		src.target_zone = thrower.zone_sel ? thrower.zone_sel.selecting : null
 
 	dist_x = abs(target.x - thrownthing.x)

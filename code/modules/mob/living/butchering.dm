@@ -1,12 +1,13 @@
 
 
 /mob/living
-	var/meat_amount = 0				// How much meat to drop from this mob when butchered
-	var/obj/meat_type				// The meat object to drop
+	var/meat_amount = 0					// How much meat to drop from this mob when butchered
+	var/obj/meat_type					// The meat object to drop
 
 	var/gib_on_butchery = FALSE
+	var/butchery_drops_organs = TRUE	// Do we spawn and/or drop organs when butchered?
 
-	var/list/butchery_loot			// Associated list, path = number.
+	var/list/butchery_loot				// Associated list, path = number.
 
 // Harvest an animal's delicious byproducts
 /mob/living/proc/harvest(var/mob/user, var/obj/item/I)
@@ -40,7 +41,7 @@
 				butchery_loot.Cut()
 				butchery_loot = null
 
-		if(LAZYLEN(organs))
+		if(LAZYLEN(organs) && butchery_drops_organs)
 			organs_by_name.Cut()
 
 			for(var/path in organs)
@@ -62,7 +63,7 @@
 				OR.removed()
 				organs -= OR
 
-		if(LAZYLEN(internal_organs))
+		if(LAZYLEN(internal_organs) && butchery_drops_organs)
 			internal_organs_by_name.Cut()
 
 			for(var/path in internal_organs)

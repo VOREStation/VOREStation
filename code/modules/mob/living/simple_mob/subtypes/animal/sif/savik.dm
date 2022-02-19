@@ -48,7 +48,7 @@
 
 	tame_items = list(
 	/obj/item/organ = 70,
-	/obj/item/weapon/reagent_containers/food/snacks/meat/crab = 30,
+	/obj/item/weapon/reagent_containers/food/snacks/crabmeat = 30,
 	/obj/item/weapon/reagent_containers/food/snacks/meat = 20
 	)
 

@@ -53,9 +53,9 @@
 
 	var/taste_sensitivity = TASTE_NORMAL							// How sensitive the species is to minute tastes.
 	var/allergens = null									// Things that will make this species very sick
-	var/allergen_reaction = AG_TOX_DMG|AG_OXY_DMG|AG_EMOTE|AG_PAIN|AG_WEAKEN		// What type of reactions will you have? These the 'main' options and are intended to approximate anaphylactic shock at high doses.
-	var/allergen_damage_severity = 1.2							// How bad are reactions to the allergen? Touch with extreme caution.
-	var/allergen_disable_severity = 3							// Whilst this determines how long nonlethal effects last and how common emotes are.
+	var/allergen_reaction = AG_TOX_DMG|AG_OXY_DMG|AG_EMOTE|AG_PAIN|AG_BLURRY|AG_CONFUSE	// What type of reactions will you have? These the 'main' options and are intended to approximate anaphylactic shock at high doses. VOREStation Edit'd.
+	var/allergen_damage_severity = 5							// How bad are reactions to the allergen? Touch with extreme caution. VOREStation Edit'd.
+	var/allergen_disable_severity = 4							// Whilst this determines how long nonlethal effects last and how common emotes are. VOREStation Edit'd.
 
 	var/min_age = 17
 	var/max_age = 70
@@ -208,6 +208,7 @@
 	var/greater_form										// Greater form, if any, ie. human for monkeys.
 	var/holder_type
 	var/gluttonous											// Can eat some mobs. 1 for mice, 2 for monkeys, 3 for people.
+	var/soft_landing = FALSE								// Can fall down and land safely on small falls.
 
 	var/rarity_value = 1									// Relative rarity/collector value for this species.
 	var/economic_modifier = 2								// How much money this species makes
@@ -541,6 +542,20 @@
 		H.adjustToxLoss(amount)
 
 /datum/species/proc/handle_falling(mob/living/carbon/human/H, atom/hit_atom, damage_min, damage_max, silent, planetary)
+	if(soft_landing)
+		if(planetary || !istype(H))
+			return FALSE
+
+		var/turf/landing = get_turf(hit_atom)
+		if(!istype(landing))
+			return FALSE
+
+		if(!silent)
+			to_chat(H, SPAN_NOTICE("You manage to lower impact of the fall and land safely."))
+			landing.visible_message("<b>\The [H]</b> lowers down from above, landing safely.")
+			playsound(H, "rustle", 25, 1)
+		return TRUE
+
 	return FALSE
 
 /datum/species/proc/post_spawn_special(mob/living/carbon/human/H)

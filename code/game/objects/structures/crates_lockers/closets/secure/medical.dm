@@ -142,6 +142,8 @@
 		/obj/item/clothing/suit/storage/hooded/wintercoat/medical,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/medical/cmo,
 		/obj/item/clothing/shoes/boots/winter/medical,
+		/obj/item/clothing/head/beret/medical/cmo,
+		/obj/item/clothing/head/beret/medical/cmo/blue,
 		/obj/item/weapon/storage/box/freezer,
 		/obj/item/clothing/mask/gas,
 		/obj/item/taperoll/medical,

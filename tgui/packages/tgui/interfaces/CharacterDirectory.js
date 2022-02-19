@@ -10,12 +10,16 @@ const getTagColor = tag => {
       return "label";
     case "Pred":
       return "red";
+    case "Pred-Pref":
+      return "orange";
     case "Prey":
       return "blue";
-    case "Switch":
-      return "purple";
-    case "Non-Vore":
+    case "Prey-Pref":
       return "green";
+    case "Switch":
+      return "yellow";
+    case "Non-Vore":
+      return "black";
   }
 };
 

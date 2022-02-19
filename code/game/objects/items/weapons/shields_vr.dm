@@ -92,3 +92,11 @@
 		icon_state = "explorer_shield_P_lighted"
 	else
 		icon_state = "explorer_shield_P"
+
+/obj/item/weapon/shield/primitive
+	name = "primitive shield"
+	desc = "A defensive object that is little more than planks strapped your arm"
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "buckler"
+	w_class = ITEMSIZE_LARGE
+	base_block_chance = 30

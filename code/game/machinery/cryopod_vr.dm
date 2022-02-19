@@ -8,6 +8,10 @@
 /obj/machinery/cryopod/robot
 	spawnpoint_type = /datum/spawnpoint/cyborg
 
+// Used at centcomm for the elevator
+/obj/machinery/cryopod/robot/door/dorms
+	spawnpoint_type = /datum/spawnpoint/tram
+
 /obj/machinery/cryopod/robot/door/gateway
 	name = "public teleporter"
 	desc = "The short-range teleporter you might've came in from. You could leave easily using this."
@@ -35,23 +39,23 @@
 
 /obj/machinery/cryopod/proc/log_special_item(var/atom/movable/item,var/mob/to_despawn)
 	ASSERT(item && to_despawn)
-	
+
 	var/loaded_from_key
 	var/char_name = to_despawn.name
 	var/item_name = item.name
-	
+
 	// Best effort key aquisition
 	if(ishuman(to_despawn))
 		var/mob/living/carbon/human/H = to_despawn
 		if(H.original_player)
 			loaded_from_key = H.original_player
-	
+
 	if(!loaded_from_key && to_despawn.mind && to_despawn.mind.loaded_from_ckey)
 		loaded_from_key = to_despawn.mind.loaded_from_ckey
-	
+
 	else
 		loaded_from_key = "INVALID"
-	
+
 	// Log to harrass them later
 	log_game("CRYO [loaded_from_key]/([to_despawn.name]) cryo'd with [item_name] ([item.type])")
 	qdel(item)

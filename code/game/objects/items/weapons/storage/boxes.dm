@@ -568,3 +568,17 @@
 	name = "ambrosia deus seeds box"
 	desc = "Contains the seeds you need to get a proper healthy high."
 	starts_with = list(/obj/item/seeds/ambrosiadeusseed = 7)
+
+/obj/item/weapon/storage/box/capguntoy
+	name = "\improper AlliCo \"Zipper\" Cap Gun"
+	icon = 'icons/obj/gun_toy.dmi'
+	icon_state = "cap_gun_box"
+	desc = "This box is shaped on the inside so that only the \"Zipper\" Capgun and extra caps can fit."
+	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
+	storage_slots = 2
+	max_w_class = ITEMSIZE_NORMAL
+	can_hold = list(/obj/item/weapon/gun/projectile/revolver/capgun, /obj/item/ammo_magazine/ammo_box/cap)
+	starts_with = list(
+		/obj/item/weapon/gun/projectile/revolver/capgun = 1,
+		/obj/item/ammo_magazine/ammo_box/cap = 1
+	)

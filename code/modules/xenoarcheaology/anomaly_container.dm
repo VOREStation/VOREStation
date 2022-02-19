@@ -14,6 +14,15 @@
 	if(A)
 		contain(A)
 
+	else
+		for(var/obj/Ob in loc)
+			if(can_contain(Ob))
+				contain(Ob)
+				break
+
+/obj/structure/anomaly_container/proc/can_contain(var/obj/O)
+	return O.is_anomalous()
+
 /obj/structure/anomaly_container/attack_hand(var/mob/user)
 	release()
 
@@ -37,7 +46,11 @@
 	underlays.Cut()
 	desc = initial(desc)
 
-/obj/machinery/artifact/MouseDrop(var/obj/structure/anomaly_container/over_object)
-	if(istype(over_object) && Adjacent(over_object) && CanMouseDrop(over_object, usr))
-		Bumped(usr)
-		over_object.contain(src)
+/atom/MouseDrop(var/obj/structure/anomaly_container/over_object)
+	. = ..()
+
+	if(istype(over_object))
+		if(!QDELETED(src) && istype(loc, /turf) && is_anomalous() && Adjacent(over_object) && CanMouseDrop(over_object, usr))
+			Bumped(usr)
+			over_object.contain(src)
+

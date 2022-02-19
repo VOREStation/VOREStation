@@ -1897,7 +1897,7 @@
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
 /obj/effect/shuttle_landmark/shuttle_initializer/ccboat,
 /obj/effect/overmap/visitable/ship/landable/ccboat,
-/turf/simulated/floor/tiled/eris/dark/danger,
+/turf/simulated/floor/airless,
 /area/shuttle/ccboat)
 "gj" = (
 /obj/machinery/vending/cola{
@@ -2099,7 +2099,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/eris/dark/danger,
+/turf/simulated/floor/airless,
 /area/shuttle/ccboat)
 "gP" = (
 /obj/structure/table/rack,
@@ -5573,7 +5573,7 @@
 	id_tag = null
 	},
 /obj/effect/map_helper/airlock/atmos/chamber_pump,
-/turf/simulated/floor/tiled/eris/dark/danger,
+/turf/simulated/floor/airless,
 /area/shuttle/ccboat)
 "wx" = (
 /obj/structure/bed/chair/shuttle{
@@ -6550,7 +6550,7 @@
 	id_tag = "ccboat";
 	pixel_y = 29
 	},
-/turf/simulated/floor/tiled/eris/dark/danger,
+/turf/simulated/floor/airless,
 /area/shuttle/ccboat)
 "Cn" = (
 /turf/unsimulated/wall,
@@ -7255,7 +7255,7 @@
 	},
 /area/centcom/control)
 "EE" = (
-/obj/machinery/telecomms/relay/preset/tether,
+/obj/machinery/telecomms/relay/preset/station,
 /turf/unsimulated/floor/steel,
 /area/centcom/control)
 "EF" = (

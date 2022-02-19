@@ -102,7 +102,7 @@
 		if(new_size != H.size_multiplier)
 			if(!original_size)
 				original_size = H.size_multiplier
-			H.resize(new_size/100, ignore_prefs = TRUE) // Ignores prefs because you can only resize yourself
+			H.resize(new_size/100, uncapped = H.has_large_resize_bounds(), ignore_prefs = TRUE) // Ignores prefs because you can only resize yourself
 			H.visible_message("<span class='warning'>The space around [H] distorts as they change size!</span>","<span class='notice'>The space around you distorts as you change size!</span>")
 		else //They chose their current size.
 			return
@@ -114,6 +114,66 @@
 		H.resize(original_size, ignore_prefs = TRUE)
 		original_size = null
 		H.visible_message("<span class='warning'>The space around [H] distorts as they return to their original size!</span>","<span class='notice'>The space around you distorts as you return to your original size!</span>")
+
+/obj/item/clothing/gloves/bluespace
+	name = "size standardization bracelet"
+	desc = "A somewhat bulky metal bracelet featuring a crystal, glowing blue. The outer side of the bracelet has an elongated case that one might imagine contains electronic components. This bracelet is used to standardize the size of crewmembers who may need a non-permanent size assist."
+	icon = 'icons/inventory/accessory/item_vr.dmi'
+	icon_state = "bs_bracelet"
+	w_class = ITEMSIZE_TINY
+	glove_level = 1
+	var/original_size
+	var/last_activated
+	var/emagged = FALSE
+	var/target_size = 1
+
+/obj/item/clothing/gloves/bluespace/mob_can_equip(mob/M, gloves, disable_warning = 0)
+	. = ..()
+	if(. && ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(!H.resizable)
+			return
+		if(H.size_multiplier != target_size)
+			if(!(world.time - last_activated > 10 SECONDS))
+				to_chat(M, "<span class ='warning'>\The [src] flickers. It seems to be recharging.</span>")
+				return
+			last_activated = world.time
+			original_size = H.size_multiplier
+			H.resize(target_size, uncapped = emagged, ignore_prefs = FALSE)		//In case someone else tries to put it on you.
+			H.visible_message("<span class='warning'>The space around [H] distorts as they change size!</span>","<span class='notice'>The space around you distorts as you change size!</span>")
+			log_admin("Admin [key_name(M)]'s size was altered by a bluespace bracelet.")
+
+/obj/item/clothing/gloves/bluespace/mob_can_unequip(mob/M, gloves, disable_warning = 0)
+	. = ..()
+	if(. && ishuman(M) && original_size)
+		var/mob/living/carbon/human/H = M
+		if(!H.resizable)
+			return
+		last_activated = world.time
+		H.resize(original_size, uncapped = emagged, ignore_prefs = FALSE)
+		original_size = null
+		H.visible_message("<span class='warning'>The space around [H] distorts as they return to their original size!</span>","<span class='notice'>The space around you distorts as you return to your original size!</span>")
+		log_admin("Admin [key_name(M)]'s size was altered by a bluespace bracelet.")
+		to_chat(M, "<span class ='warning'>\The [src] flickers. It is now recharging and will be ready again in thirty seconds.</span>")
+
+/obj/item/clothing/gloves/bluespace/examine(var/mob/user)
+	. = ..()
+	var/cooldowntime = round((10 SECONDS - (world.time - last_activated)) * 0.1)
+	if(Adjacent(user))
+		if(cooldowntime >= 0)
+			. += "<span class='notice'>It appears to be recharging.</span>"
+		if(emagged)
+			. += "<span class='warning'>The crystal is flickering.</span>"
+
+/obj/item/clothing/gloves/bluespace/emag_act(R_charges, var/mob/user, emag_source)
+	. = ..()
+	if(!emagged)
+		emagged = TRUE
+		target_size = (rand(1,300)) /100
+		if(target_size < 0.1)
+			target_size = 0.1
+		user.visible_message("<span class='notice'>\The [user] swipes the [emag_source] over the \the [src].</span>","<span class='notice'>You swipes the [emag_source] over the \the [src].</span>")
+		return 1
 
 //Same as Nanotrasen Security Uniforms
 /obj/item/clothing/under/ert
@@ -142,7 +202,9 @@
 	name = "pizza delivery uniform"
 	desc = "A dedicated outfit for pizza delivery people, one of most dangerous occupations around these parts. Can be rolled up for extra show of skin."
 	icon = 'icons/inventory/uniform/item_vr.dmi'
+	icon_override = 'icons/inventory/uniform/mob_vr.dmi'
 	rolled_down_icon = 'icons/inventory/uniform/mob_vr_rolled_down.dmi'
+	rolled_down_icon_override = FALSE
 	icon_state = "pizzadelivery"
 	item_state = "pizzadelivery"
 	rolled_down = 0
@@ -158,6 +220,8 @@
 	icon_state = "talon_basic"
 	item_state = "talon_basic"
 	rolled_sleeves = 0
+	rolled_down_icon_override = FALSE
+	rolled_sleeves_icon_override = FALSE
 
 /obj/item/clothing/under/rank/talon/proper
 	name = "Talon proper jumpsuit"
@@ -168,6 +232,8 @@
 	icon_state = "talon_jumpsuit"
 	item_state = "talon_jumpsuit"
 	rolled_sleeves = 0
+	rolled_down_icon_override = FALSE
+	rolled_sleeves_icon_override = FALSE
 
 /obj/item/clothing/under/rank/talon/security
 	name = "Talon security jumpsuit"
@@ -178,6 +244,8 @@
 	icon_state = "talon_security"
 	item_state = "talon_security"
 	rolled_sleeves = 0
+	rolled_down_icon_override = FALSE
+	rolled_sleeves_icon_override = FALSE
 
 /obj/item/clothing/under/rank/talon/pilot
 	name = "Talon pilot jumpsuit"
@@ -188,6 +256,8 @@
 	icon_state = "talon_pilot"
 	item_state = "talon_pilot"
 	rolled_sleeves = 0
+	rolled_down_icon_override = FALSE
+	rolled_sleeves_icon_override = FALSE
 
 /obj/item/clothing/under/rank/talon/command
 	name = "Talon command jumpsuit"
@@ -198,6 +268,8 @@
 	icon_state = "talon_captain"
 	item_state = "talon_captain"
 	rolled_sleeves = 0
+	rolled_down_icon_override = FALSE
+	rolled_sleeves_icon_override = FALSE
 
 // Excelsior uniforms
 /obj/item/clothing/under/excelsior
@@ -226,3 +298,14 @@
 	icon_state = "summerdress3"
 /obj/item/clothing/under/summerdress/blue
 	icon_state = "summerdress2"
+
+/obj/item/clothing/under/dress/dress_cap/femformal // formal in the loosest sense. because it's going to be taken off. or something. funnier in my head i swear 
+	name = "site manager's feminine formalwear"
+	desc = "Essentially a skimpy...dress? Leotard? Whatever it is, it has the coloration and markings suitable for a site manager or rough equivalent."
+	icon = 'icons/inventory/uniform/item_vr.dmi'
+	default_worn_icon = 'icons/inventory/uniform/mob_vr.dmi'
+	icon_state = "lewdcap"
+	item_state = "lewdcap"
+	rolled_sleeves = -1
+	rolled_down = -1
+	body_parts_covered = UPPER_TORSO // frankly this thing's a fucking embarassment

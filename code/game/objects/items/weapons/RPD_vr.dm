@@ -16,7 +16,7 @@
 	item_icons = list(
 		slot_l_hand_str = 'icons/mob/items/lefthand_vr.dmi',
 		slot_r_hand_str = 'icons/mob/items/righthand_vr.dmi',
-	)	
+	)
 	flags = NOBLUDGEON
 	force = 10
 	throwforce = 10
@@ -184,9 +184,9 @@
 			activate()
 			animate_deletion(A)
 		return
-	
+
 	if((mode & PAINT_MODE)) //Paint pipes
-		if(istype(A, /obj/machinery/atmospherics/pipe))
+		if(!istype(A, /obj/machinery/atmospherics/pipe/simple/heat_exchanging) && istype(A, /obj/machinery/atmospherics/pipe))
 			var/obj/machinery/atmospherics/pipe/P = A
 			playsound(src, 'sound/machines/click.ogg', 50, 1)
 			P.change_color(pipe_colors[paint_color])

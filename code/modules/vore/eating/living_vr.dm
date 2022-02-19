@@ -7,10 +7,13 @@
 	var/resizable = TRUE				// Can other people resize you? (Usually ignored for self-resizes)
 	var/digest_leave_remains = FALSE	// Will this mob leave bones/skull/etc after the melty demise?
 	var/allowmobvore = TRUE				// Will simplemobs attempt to eat the mob?
+	var/allow_inbelly_spawning = FALSE	// Will we even bother with attempts of someone to spawn in in one of our bellies?
 	var/showvoreprefs = TRUE			// Determines if the mechanical vore preferences button will be displayed on the mob or not.
 	var/obj/belly/vore_selected			// Default to no vore capability.
 	var/list/vore_organs = list()		// List of vore containers inside a mob
 	var/absorbed = FALSE				// If a mob is absorbed into another
+	var/list/temp_language_sources = list()	//VOREStation Addition - Absorbs add languages to the pred
+	var/list/temp_languages = list()		//VOREStation Addition - Absorbs add languages to the pred
 	var/weight = 137					// Weight for mobs for weightgain system
 	var/weight_gain = 1 				// How fast you gain weight
 	var/weight_loss = 0.5 				// How fast you lose weight
@@ -143,9 +146,7 @@
 		if(is_vore_predator(src))
 			for(var/mob/living/M in H.contents)
 				if(attacker.eat_held_mob(attacker, M, src))
-					if(H.held_mob == M)
-						H.held_mob = null
-			return TRUE //return TRUE to exit upper procs
+					return TRUE //return TRUE to exit upper procs
 		else
 			log_debug("[attacker] attempted to feed [H.contents] to [src] ([type]) but it failed.")
 
@@ -224,6 +225,7 @@
 	P.show_vore_fx = src.show_vore_fx
 	P.can_be_drop_prey = src.can_be_drop_prey
 	P.can_be_drop_pred = src.can_be_drop_pred
+	P.allow_inbelly_spawning = src.allow_inbelly_spawning
 	P.allow_spontaneous_tf = src.allow_spontaneous_tf
 	P.step_mechanics_pref = src.step_mechanics_pref
 	P.pickup_pref = src.pickup_pref
@@ -259,6 +261,7 @@
 	show_vore_fx = P.show_vore_fx
 	can_be_drop_prey = P.can_be_drop_prey
 	can_be_drop_pred = P.can_be_drop_pred
+	allow_inbelly_spawning = P.allow_inbelly_spawning
 	allow_spontaneous_tf = P.allow_spontaneous_tf
 	step_mechanics_pref = P.step_mechanics_pref
 	pickup_pref = P.pickup_pref
@@ -402,6 +405,11 @@
 
 	//You're in a belly!
 	if(isbelly(loc))
+		//You've been taken over by a morph
+		if(istype(src, /mob/living/simple_mob/vore/hostile/morph/dominated_prey))
+			var/mob/living/simple_mob/vore/hostile/morph/dominated_prey/s = src
+			s.undo_prey_takeover(TRUE)
+			return
 		var/obj/belly/B = loc
 		var/confirm = tgui_alert(src, "You're in a mob. Don't use this as a trick to get out of hostile animals. This is for escaping from preference-breaking and if you're otherwise unable to escape from endo (pred AFK for a long time).", "Confirmation", list("Okay", "Cancel"))
 		if(confirm != "Okay" || loc != B)
@@ -435,6 +443,13 @@
 		holo.drop_prey() //Easiest way
 		log_and_message_admins("[key_name(src)] used the OOC escape button to get out of [key_name(holo.master)] (AI HOLO) ([holo ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[holo.x];Y=[holo.y];Z=[holo.z]'>JMP</a>" : "null"])")
 
+	//You're in a capture crystal! ((It's not vore but close enough!))
+	else if(iscapturecrystal(loc))
+		var/obj/item/capture_crystal/crystal = loc
+		crystal.unleash()
+		crystal.bound_mob = null
+		crystal.bound_mob = capture_crystal = 0
+		log_and_message_admins("[key_name(src)] used the OOC escape button to get out of [crystal] owned by [crystal.owner]. [ADMIN_FLW(src)]")
 	//Don't appear to be in a vore situation
 	else
 		to_chat(src,"<span class='alert'>You aren't inside anyone, though, is the thing.</span>")
@@ -518,7 +533,16 @@
 	user.visible_message(success_msg)
 
 	// Actually shove prey into the belly.
-	belly.nom_mob(prey, user)
+	if(istype(prey.loc, /obj/item/weapon/holder))
+		var/obj/item/weapon/holder/H = prey.loc
+		for(var/mob/living/M in H.contents)
+			belly.nom_mob(M, user)
+			if(M.loc == H) // In case nom_mob failed somehow.
+				M.forceMove(get_turf(src))
+		H.held_mob = null
+		qdel(H)
+	else
+		belly.nom_mob(prey, user)
 	if(!ishuman(user))
 		user.update_icons()
 
@@ -536,10 +560,22 @@
 /obj/belly/return_air()
 	return return_air_for_internal_lifeform()
 
-/obj/belly/return_air_for_internal_lifeform()
+/obj/belly/return_air_for_internal_lifeform(var/mob/living/lifeform)
 	//Free air until someone wants to code processing it for reals from predbreaths
-	var/datum/gas_mixture/belly_air/air = new(1000)
+	var/air_type = /datum/gas_mixture/belly_air
+	if(istype(lifeform))	// If this doesn't succeed, then 'lifeform' is actually a bag or capture crystal with someone inside
+		air_type = lifeform.get_perfect_belly_air_type()		// Without any overrides/changes, its gonna be /datum/gas_mixture/belly_air
+	
+	var/air = new air_type(1000)
 	return air
+
+/mob/living/proc/get_perfect_belly_air_type()
+	return /datum/gas_mixture/belly_air
+
+/mob/living/carbon/human/get_perfect_belly_air_type()
+	if(species)
+		return species.get_perfect_belly_air_type()
+	return ..()
 
 // This is about 0.896m^3 of atmosphere
 /datum/gas_mixture/belly_air
@@ -552,6 +588,27 @@
     gas = list(
         "oxygen" = 21,
         "nitrogen" = 79)
+
+/datum/gas_mixture/belly_air/vox
+    volume = 2500
+    temperature = 293.150
+    total_moles = 104
+
+/datum/gas_mixture/belly_air/vox/New()
+    . = ..()
+    gas = list(
+        "phoron" = 100)
+
+/datum/gas_mixture/belly_air/zaddat
+    volume = 2500
+    temperature = 293.150
+    total_moles = 300
+
+/datum/gas_mixture/belly_air/zaddat/New()
+    . = ..()
+    gas = list(
+        "oxygen" = 100)
+
 
 /mob/living/proc/feed_grabbed_to_self_falling_nom(var/mob/living/user, var/mob/living/prey)
 	var/belly = user.vore_selected
@@ -631,7 +688,11 @@
 			if(S.holding)
 				to_chat(src, "<span class='warning'>There's something inside!</span>")
 				return
-
+		if(iscapturecrystal(I))
+			var/obj/item/capture_crystal/C = I
+			if(!C.bound_mob.devourable)
+				to_chat(src, "<span class='warning'>That doesn't seem like a good idea. (\The [C.bound_mob]'s prefs don't allow it.)</span>")
+				return
 		drop_item()
 		I.forceMove(vore_selected)
 		updateVRPanel()
@@ -685,6 +746,13 @@
 		else if (istype(I,/obj/item/clothing/accessory/collar))
 			visible_message("<span class='warning'>[src] demonstrates their voracious capabilities by swallowing [I] whole!</span>")
 			to_chat(src, "<span class='notice'>You can taste the submissiveness in the wearer of [I]!</span>")
+		else if(iscapturecrystal(I))
+			var/obj/item/capture_crystal/C = I
+			if(C.bound_mob && (C.bound_mob in C.contents))
+				if(isbelly(C.loc))
+					var/obj/belly/B = C.loc
+					to_chat(C.bound_mob, "<span class= 'notice'>Outside of your crystal, you can see; <B>[B.desc]</B></span>")
+					to_chat(src, "<span class='notice'>You can taste the the power of command.</span>")
 		else
 			to_chat(src, "<span class='notice'>You can taste the flavor of garbage. Delicious.</span>")
 		return
@@ -853,6 +921,7 @@
 	dispvoreprefs += "<b>Healbelly permission:</b> [permit_healbelly ? "Allowed" : "Disallowed"]<br>"
 	dispvoreprefs += "<b>Spontaneous vore prey:</b> [can_be_drop_prey ? "Enabled" : "Disabled"]<br>"
 	dispvoreprefs += "<b>Spontaneous vore pred:</b> [can_be_drop_pred ? "Enabled" : "Disabled"]<br>"
+	dispvoreprefs += "<b>Inbelly Spawning:</b> [allow_inbelly_spawning ? "Allowed" : "Disallowed"]<br>"
 	dispvoreprefs += "<b>Spontaneous transformation:</b> [allow_spontaneous_tf ? "Enabled" : "Disabled"]<br>"
 	dispvoreprefs += "<b>Can be stepped on/over:</b> [step_mechanics_pref ? "Allowed" : "Disallowed"]<br>"
 	dispvoreprefs += "<b>Can be picked up:</b> [pickup_pref ? "Allowed" : "Disallowed"]<br>"
@@ -875,6 +944,7 @@
 			var/obj/belly/B = belly
 			to_chat(src, "<span class='notice'><b>Belly name:</b> [B.name]</span>")
 			to_chat(src, "<span class='notice'><b>Belly desc:</b> [B.desc]</span>")
+			to_chat(src, "<span class='notice'><b>Belly absorbed desc:</b> [B.absorbed_desc]</span>")
 			to_chat(src, "<span class='notice'><b>Vore verb:</b> [B.vore_verb]</span>")
 			to_chat(src, "<span class='notice'><b>Struggle messages (outside):</b></span>")
 			for(var/msg in B.struggle_messages_outside)
@@ -882,11 +952,29 @@
 			to_chat(src, "<span class='notice'><b>Struggle messages (inside):</b></span>")
 			for(var/msg in B.struggle_messages_inside)
 				to_chat(src, "<span class='notice'>[msg]</span>")
+			to_chat(src, "<span class='notice'><b>Absorbed struggle messages (outside):</b></span>")
+			for(var/msg in B.absorbed_struggle_messages_outside)
+				to_chat(src, "<span class='notice'>[msg]</span>")
+			to_chat(src, "<span class='notice'><b>Absorbed struggle messages (inside):</b></span>")
+			for(var/msg in B.absorbed_struggle_messages_inside)
+				to_chat(src, "<span class='notice'>[msg]</span>")
 			to_chat(src, "<span class='notice'><b>Digest messages (owner):</b></span>")
 			for(var/msg in B.digest_messages_owner)
 				to_chat(src, "<span class='notice'>[msg]</span>")
 			to_chat(src, "<span class='notice'><b>Digest messages (prey):</b></span>")
 			for(var/msg in B.digest_messages_prey)
+				to_chat(src, "<span class='notice'>[msg]</span>")
+			to_chat(src, "<span class='notice'><b>Absorb messages:</b></span>")
+			for(var/msg in B.absorb_messages_owner)
+				to_chat(src, "<span class='notice'>[msg]</span>")
+			to_chat(src, "<span class='notice'><b>Absorb messages (prey):</b></span>")
+			for(var/msg in B.absorb_messages_prey)
+				to_chat(src, "<span class='notice'>[msg]</span>")
+			to_chat(src, "<span class='notice'><b>Unabsorb messages:</b></span>")
+			for(var/msg in B.unabsorb_messages_owner)
+				to_chat(src, "<span class='notice'>[msg]</span>")
+			to_chat(src, "<span class='notice'><b>Unabsorb messages (prey):</b></span>")
+			for(var/msg in B.unabsorb_messages_prey)
 				to_chat(src, "<span class='notice'>[msg]</span>")
 			to_chat(src, "<span class='notice'><b>Examine messages:</b></span>")
 			for(var/msg in B.examine_messages)

@@ -1,6 +1,6 @@
-/* this is a playing card deck based off of the Rider-Waite Tarot Deck.
-*/
-
+/*
+ * This is a playing card deck based off of the Rider-Waite Tarot Deck.
+ */
 /obj/item/weapon/deck/tarot
 	name = "deck of tarot cards"
 	desc = "For all your occult needs!"

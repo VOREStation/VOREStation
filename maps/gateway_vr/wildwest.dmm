@@ -98,11 +98,6 @@
 	},
 /turf/space,
 /area/space)
-"ar" = (
-/obj/structure/lattice,
-/obj/structure/lattice,
-/turf/space,
-/area/space)
 "as" = (
 /obj/effect/gateway,
 /turf/simulated/floor/cult,
@@ -2420,7 +2415,7 @@ af
 af
 af
 af
-ar
+af
 af
 af
 af
@@ -7260,7 +7255,7 @@ fH
 gF
 cx
 aD
-ar
+af
 af
 ia
 ia
@@ -7543,7 +7538,7 @@ af
 af
 af
 af
-ar
+af
 ad
 fM
 nd
@@ -7671,7 +7666,7 @@ ia
 ia
 ia
 af
-ar
+af
 af
 af
 af

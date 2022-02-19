@@ -3,7 +3,7 @@
 
 /datum/gear/eyes/meson
 	display_name = "Optical Meson Scanners (Eng, Sci, Explo)"
-	allowed_roles = list("Station Engineer","Chief Engineer","Atmospheric Technician", "Scientist", "Research Director", "Explorer", "Pathfinder")
+	allowed_roles = list("Engineer","Chief Engineer","Atmospheric Technician", "Scientist", "Research Director", "Explorer", "Pathfinder")
 
 /datum/gear/eyes/arglasses
 	display_name = "AR glasses"
@@ -33,7 +33,7 @@
 /datum/gear/eyes/arglasses/eng
 	display_name = "AR-E glasses (Eng)"
 	path = /obj/item/clothing/glasses/omnihud/eng
-	allowed_roles = list("Station Engineer","Chief Engineer","Atmospheric Technician")
+	allowed_roles = list("Engineer","Chief Engineer","Atmospheric Technician")
 
 /datum/gear/eyes/arglasses/med
 	display_name = "AR-M glasses (Medical)"
@@ -65,3 +65,7 @@
 /datum/gear/eyes/medical/medpatch
 	display_name = "Health HUDpatch"
 	path = /obj/item/clothing/glasses/hud/health/eyepatch
+
+/datum/gear/eyes/bigshot
+	display_name = "Big Shot's Glasses"
+	path = /obj/item/clothing/glasses/sunglasses/bigshot
