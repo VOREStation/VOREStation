@@ -20,6 +20,26 @@
 /************************************************************************/
 
 /*
+ * Foam
+ */
+
+/obj/item/ammo_casing/afoam_dart
+	name = "foam dart"
+	desc = "It's Donk or Don't! Ages 8 and up."
+	projectile_type = /obj/item/projectile/bullet/foam_dart
+	matter = list(MAT_PLASTIC = 60)
+	caliber = "foam"
+	icon = 'icons/obj/gun_toy.dmi'
+	icon_state = "foamdart"
+	caseless = 1
+
+/obj/item/ammo_casing/afoam_dart/riot
+	name = "riot foam dart"
+	desc = "Whose smart idea was it to use toys as crowd control? Ages 18 and up."
+	matter = list(MAT_STEEL = 210, MAT_PLASTIC = 60)
+	icon_state = "foamdart_riot"
+
+/*
  * .357
  */
 
@@ -427,12 +447,13 @@
 
 /obj/item/ammo_casing/cap
 	name = "cap"
-	desc = "A cap for children toys."
+	desc = "A cap for children toys. Ages 8 and up."
 	caliber = "caps"
-	icon_state = "r-casing"
-	color = "#FF0000"
-	projectile_type = /obj/item/projectile/bullet/pistol/cap
+	icon = 'icons/obj/gun_toy.dmi'
+	icon_state = "cap"
+	projectile_type = /obj/item/projectile/bullet/cap
 	matter = list(MAT_STEEL = 85)
+	caseless = 1
 
 /obj/item/ammo_casing/spent // For simple hostile mobs only, so they don't cough up usable bullets when firing. This is for literally nothing else.
 	icon_state = "s-casing-spent"

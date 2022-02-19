@@ -964,6 +964,20 @@
 	ckeywhitelist = list("scree")
 	character_name = list("Scree")
 
+/datum/gear/fluff/avida_dress
+	path = /obj/item/clothing/under/skirt/outfit/fluff/avida
+	display_name = "Avida's Dress"
+	slot = slot_w_uniform
+	ckeywhitelist = list("scree")
+	character_name = list("Avida")
+
+/datum/gear/fluff/avida_hat
+	path = /obj/item/clothing/head/fluff/avida
+	display_name = "Avida's Hat"
+	slot = slot_head
+	ckeywhitelist = list("scree")
+	character_name = list("Avida")
+
 /datum/gear/fluff/alfonso_sunglasses
 	path = /obj/item/clothing/glasses/sunglasses/fluff/alfonso
 	display_name = "Alfonso's Sunglasses"

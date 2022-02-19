@@ -625,6 +625,40 @@
 		else
 			return 1
 
+//scree:Avida
+/obj/item/clothing/under/skirt/outfit/fluff/avida
+	name = "purple dress"
+	desc = "A clingy purple dress with red lacework, with a hole at the back for a tail."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "avidadress"
+	item_state = "avidadress"
+	item_icons = list(
+		slot_l_hand_str = 'icons/vore/custom_clothes_left_hand_vr.dmi',
+		slot_r_hand_str = 'icons/vore/custom_clothes_right_hand_vr.dmi',
+		slot_w_uniform_str = 'icons/vore/custom_onmob_vr.dmi'
+		)
+
+//scree:Avida
+/obj/item/clothing/head/fluff/avida
+	name = "purple witch hat"
+	desc = "A pointy purple hat with a wide brim, with a red hatband. It appears to have ear-holes in it."
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "avidahat"
+	item_state = "avidahat"
+	item_icons = list(
+		slot_l_hand_str = 'icons/vore/custom_clothes_left_hand_vr.dmi',
+		slot_r_hand_str = 'icons/vore/custom_clothes_right_hand_vr.dmi',
+		slot_head_str = 'icons/vore/custom_onmob_32x48_vr.dmi'
+		)
+
+/obj/item/clothing/head/fluff/avida/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
+	if(..())
+		if(H.ear_style.name == "Bnnuy Ears"||H.ear_style.name == "Bnnuy Ears 2") //check if wearer's ear sprite is compatible with trimmed icon
+			item_state = initial(src.item_state)
+		else //if not, just use a generic icon
+			item_state = "avidahatnoears"
+		return TRUE
+
 //natje:Pumila
 /obj/item/clothing/under/fluff/aluranevines
 	name = "Pumila's vines"
@@ -644,27 +678,6 @@
 			return 0
 		else
 			return 1
-
-/obj/item/clothing/under/fluff/screesuit
-	name = "Scree's feathers"
-	desc = "A mop of fluffy blue feathers, the honkmother only knows what kind of bird they originally came from."
-
-	icon = 'icons/vore/custom_clothes_vr.dmi'
-	icon_state = "screesuit"
-
-	icon_override = 'icons/vore/custom_clothes_vr.dmi'
-	item_state = "screesuit_mob"
-
-/obj/item/clothing/under/fluff/screesuit/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = 0)
-	if(..())
-		if(H.ckey != "scree")
-			to_chat(H, "<span class='warning'>Are you just going to tape them on or what? This isn't gonna work.</span>")
-			return 0
-		else
-			return 1
-
-/obj/item/clothing/under/fluff/screesuit/digest_act(var/atom/movable/item_storage = null)
-	return FALSE
 
 //HOS Hardsuit
 /obj/item/clothing/suit/space/void/security/fluff/hos // ToDo: Rig version.

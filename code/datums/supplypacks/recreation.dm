@@ -1,7 +1,7 @@
 /*
-*	Here is where any supply packs
-*	related to recreation live.
-*/
+ *	Here is where any supply packs
+ *	related to recreation live.
+ */
 
 
 /datum/supply_pack/recreation
@@ -22,6 +22,25 @@
 	cost = 50
 	containertype = /obj/structure/closet/crate/allico
 	containername = "foam weapon crate"
+
+/datum/supply_pack/recreation/donksoftweapons
+	name = "Donk-Soft Weapon Crate"
+	contains = list(
+			/obj/item/ammo_magazine/ammo_box/foam = 2,
+			/obj/item/weapon/gun/projectile/shotgun/pump/toy = 2,
+			/obj/item/weapon/gun/projectile/pistol/toy = 2,
+			/obj/item/ammo_magazine/mfoam_dart/pistol = 2
+			)
+	cost = 50
+	containertype = /obj/structure/closet/crate/allico
+	containername = "foam weapon crate"
+
+/datum/supply_pack/recreation/donksoftvend
+	name = "Donk-Soft Vendor Crate"
+	contains = list()
+	cost = 75
+	containertype = /obj/structure/largecrate/donksoftvendor
+	containername = "\improper Donk-Soft vendor crate"
 
 /datum/supply_pack/recreation/lasertag
 	name = "Lasertag equipment"
