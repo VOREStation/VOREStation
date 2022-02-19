@@ -365,6 +365,45 @@
 		var/choice = tgui_alert(usr, "Returning to the menu will prevent your character from being revived in-round. Are you sure?", "Confirmation", list("No, wait", "Yes, leave"))
 		if(choice == "No, wait")
 			return
+		else if(mind.assigned_role)
+			var/extra_check = tgui_alert(usr, "Do you want to Quit This Round before you return to lobby? This will properly remove you from manifest, as well as prevent resleeving.","Quit This Round",list("Quit Round","Cancel"))
+			if(extra_check == "Quit Round")
+				//Update any existing objectives involving this mob.
+				for(var/datum/objective/O in all_objectives)
+					if(O.target == src.mind)
+						if(O.owner && O.owner.current)
+							to_chat(O.owner.current,"<span class='warning'>You get the feeling your target is no longer within your reach...</span>")
+						qdel(O)
+
+				//Resleeving cleanup
+				if(mind)
+					SStranscore.leave_round(src)
+
+				//Job slot cleanup
+				var/job = src.mind.assigned_role
+				job_master.FreeRole(job)
+
+				//Their objectives cleanup
+				if(src.mind.objectives.len)
+					qdel(src.mind.objectives)
+					src.mind.special_role = null
+
+				//Cut the PDA manifest (ugh)
+				if(PDA_Manifest.len)
+					PDA_Manifest.Cut()
+				for(var/datum/data/record/R in data_core.medical)
+					if((R.fields["name"] == src.real_name))
+						qdel(R)
+				for(var/datum/data/record/T in data_core.security)
+					if((T.fields["name"] == src.real_name))
+						qdel(T)
+				for(var/datum/data/record/G in data_core.general)
+					if((G.fields["name"] == src.real_name))
+						qdel(G)
+
+				//This removes them from being 'active' list on join screen
+				src.mind.assigned_role = null
+				to_chat(src,"<span class='notice'>Your job has been free'd up, and you can rejoin as another character or quit. Thanks for properly quitting round, it helps the server!</span>")
 
 	// Beyond this point, you're going to respawn
 	to_chat(usr, config.respawn_message)

@@ -6,27 +6,26 @@
 #define Z_LEVEL_SPACE_LOW					5
 #define Z_LEVEL_SURFACE_MINE				6
 #define Z_LEVEL_SOLARS						7
-#define Z_LEVEL_MISC						8
-#define Z_LEVEL_UNDERDARK					9
-#define Z_LEVEL_PLAINS						10
-#define Z_LEVEL_OFFMAP1						11
+#define Z_LEVEL_CENTCOM						8
+#define Z_LEVEL_MISC						9
+#define Z_LEVEL_UNDERDARK					10
+#define Z_LEVEL_PLAINS						11
+#define Z_LEVEL_OFFMAP1						12
 //#define Z_LEVEL_OFFMAP2						12
-#define Z_LEVEL_ROGUEMINE_1					12
-#define Z_LEVEL_ROGUEMINE_2					13
-#define Z_LEVEL_BEACH						14
-#define Z_LEVEL_BEACH_CAVE					15
-#define Z_LEVEL_AEROSTAT					16
-#define Z_LEVEL_AEROSTAT_SURFACE			17
-#define Z_LEVEL_DEBRISFIELD					18
-#define Z_LEVEL_FUELDEPOT					19
-#define Z_LEVEL_GATEWAY						20
+#define Z_LEVEL_ROGUEMINE_1					13
+#define Z_LEVEL_ROGUEMINE_2					14
+#define Z_LEVEL_BEACH						15
+#define Z_LEVEL_BEACH_CAVE					16
+#define Z_LEVEL_AEROSTAT					17
+#define Z_LEVEL_AEROSTAT_SURFACE			18
+#define Z_LEVEL_DEBRISFIELD					19
+#define Z_LEVEL_FUELDEPOT					20
+#define Z_LEVEL_GATEWAY						21
+#define Z_LEVEL_OM_ADVENTURE				22
 
 //Camera networks
 #define NETWORK_TETHER "Tether"
-#define NETWORK_TCOMMS "Telecommunications" //Using different from Polaris one for better name
 #define NETWORK_OUTSIDE "Outside"
-#define NETWORK_EXPLORATION "Exploration"
-#define NETWORK_XENOBIO "Xenobiology"
 
 /datum/map/tether/New()
 	..()
@@ -46,7 +45,7 @@
 		lobby_screens = list(choice)
 
 /datum/map/tether
-	name = "Virgo"
+	name = "Tether"
 	full_name = "NSB Adephagia"
 	path = "tether"
 
@@ -70,6 +69,7 @@
 
 	station_name  = "NSB Adephagia"
 	station_short = "Tether"
+	facility_type = "station"
 	dock_name     = "Virgo-3B Colony"
 	dock_type     = "surface"
 	boss_name     = "Central Command"
@@ -154,7 +154,7 @@
 
 
 	lateload_z_levels = list(
-		list("Tether - Misc","Tether - Underdark","Tether - Plains"), //Stock Tether lateload maps
+		list("Tether - Centcom","Tether - Misc","Tether - Underdark","Tether - Plains"), //Stock Tether lateload maps
 		list("Offmap Ship - Talon V2"),
 		list("Asteroid Belt 1","Asteroid Belt 2"),
 		list("Desert Planet - Z1 Beach","Desert Planet - Z2 Cave"),
@@ -163,7 +163,7 @@
 		list("Fuel Depot - Z1 Space")
 		)
 
-	lateload_single_pick = list(
+	lateload_gateway = list(
 		list("Carp Farm"),
 		list("Snow Field"),
 		list("Listening Post"),
@@ -172,6 +172,10 @@
 		list("Arynthi Lake Underground B","Arynthi Lake B"),
 		list("Eggnog Town Underground","Eggnog Town"),
 		list("Wild West")
+		)
+
+	lateload_overmap = list(
+		list("Grass Cave")
 		)
 
 	ai_shell_restricted = TRUE
@@ -194,8 +198,6 @@
 
 	mining_station_z =		list(Z_LEVEL_SPACE_LOW)
 	mining_outpost_z =		list(Z_LEVEL_SURFACE_MINE)
-
-	lateload_single_pick = null //Nothing right now.
 
 	planet_datums_to_make = list(/datum/planet/virgo3b,
 								/datum/planet/virgo4)
@@ -229,7 +231,8 @@
 		Z_LEVEL_SURFACE_HIGH,
 		Z_LEVEL_SURFACE_MINE,
 		Z_LEVEL_SOLARS,
-		Z_LEVEL_PLAINS
+		Z_LEVEL_PLAINS,
+		Z_LEVEL_CENTCOM
 		)
 /datum/planet/virgo4
 	expected_z_levels = list(
@@ -245,7 +248,7 @@
 [i]Transponder[/i]: Transmitting (CIV), NanoTrasen IFF
 [b]Notice[/b]: NanoTrasen Base, authorized personnel only"}
 	base = 1
-	
+
 	icon = 'icons/obj/overmap_vr.dmi'
 	icon_state = "virgo3b"
 
@@ -269,6 +272,7 @@
 		"tether_medivac_dock", //Medical shuttle dock,
 		"tourbus_dock" //Surface large hangar
 		)
+	initial_restricted_waypoints = list("Central Command Shuttlepad" = list("cc_shuttlepad"))
 	//Despite not being in the multi-z complex, these levels are part of the overmap sector
 	extra_z_levels = list(
 		Z_LEVEL_SURFACE_MINE,
@@ -306,7 +310,7 @@
 /obj/effect/overmap/visitable/sector/virgo3b/generate_skybox(zlevel)
 	var/static/image/bigone = image(icon = 'icons/skybox/virgo3b.dmi', icon_state = "large")
 	var/static/image/smallone = image(icon = 'icons/skybox/virgo3b.dmi', icon_state = "small")
-	
+
 	if(zlevel == Z_LEVEL_TRANSIT)
 		return bigone
 	else
@@ -359,6 +363,7 @@
 	name = "Asteroid 1"
 	base_turf = /turf/space
 	transit_chance = 33
+	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_XENOARCH_EXEMPT|MAP_LEVEL_PERSIST|MAP_LEVEL_BELOW_BLOCKED
 	holomap_offset_x = TETHER_HOLOMAP_MARGIN_X + TETHER_HOLOMAP_CENTER_GUTTER + TETHER_MAP_SIZE
 	holomap_offset_y = TETHER_HOLOMAP_MARGIN_Y + TETHER_MAP_SIZE
 

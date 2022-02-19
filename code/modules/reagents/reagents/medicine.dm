@@ -1506,3 +1506,22 @@
 	metabolism = REM * 0.002
 	overdose = REAGENTS_OVERDOSE * 0.25
 	scannable = 1
+
+/datum/reagent/earthsblood
+	name = "Earthsblood"
+	id = "earthsblood"
+	description = "A rare plant extract with immense, almost magical healing capabilities. Induces a potent psychoactive state, damaging neurons with prolonged use."
+	taste_description = "honey and sunlight"
+	reagent_state = LIQUID
+	color = "#ffb500"
+	overdose = REAGENTS_OVERDOSE * 0.50
+	
+
+/datum/reagent/earthsblood/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	M.heal_organ_damage (4 * removed, 4 * removed)
+	M.adjustOxyLoss(-10 * removed)
+	M.adjustToxLoss(-4 * removed)
+	M.adjustCloneLoss(-2 * removed)
+	M.druggy = max(M.druggy, 20)
+	M.hallucination = max(M.hallucination, 3)
+	M.adjustBrainLoss(1 * removed) //your life for your mind. The Earthmother's Tithe.

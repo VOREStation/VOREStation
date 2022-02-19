@@ -55,7 +55,17 @@
 					   "zoomba-combat",
 					   "zoomba-combat-roll",
 					   "zoomba-combat-shield",
-					   "spiderscience"
+					   "spiderscience",
+					   "uptall-standard",
+					   "uptall-standard2",
+					   "uptall-medical",
+					   "uptall-janitor",
+					   "uptall-crisis",
+					   "uptall-service",
+					   "uptall-engineering",
+					   "uptall-miner",
+					   "uptall-security",
+					   "uptall-science"
 					   )					//List of all used sprites that are in robots_vr.dmi
 
 
@@ -198,12 +208,13 @@
 /datum/riding/dogborg/get_offsets(pass_index) // list(dir = x, y, layer)
 	var/mob/living/L = ridden
 	var/scale = L.size_multiplier
+	var/scale_difference = (L.size_multiplier - rider_size) * 10
 
 	var/list/values = list(
-		"[NORTH]" = list(0, 10*scale, ABOVE_MOB_LAYER),
-		"[SOUTH]" = list(0, 10*scale, BELOW_MOB_LAYER),
-		"[EAST]" = list(-5*scale, 10*scale, ABOVE_MOB_LAYER),
-		"[WEST]" = list(5*scale, 10*scale, ABOVE_MOB_LAYER))
+		"[NORTH]" = list(0, 10*scale + scale_difference, ABOVE_MOB_LAYER),
+		"[SOUTH]" = list(0, 10*scale + scale_difference, BELOW_MOB_LAYER),
+		"[EAST]" = list(-5*scale, 10*scale + scale_difference, ABOVE_MOB_LAYER),
+		"[WEST]" = list(5*scale, 10*scale + scale_difference, ABOVE_MOB_LAYER))
 
 	return values
 
@@ -244,6 +255,7 @@
 
 	. = ..()
 	if(.)
+		riding_datum.rider_size = M.size_multiplier
 		buckled_mobs[M] = "riding"
 
 /mob/living/silicon/robot/MouseDrop_T(mob/living/M, mob/living/user) //Prevention for forced relocation caused by can_buckle. Base proc has no other use.

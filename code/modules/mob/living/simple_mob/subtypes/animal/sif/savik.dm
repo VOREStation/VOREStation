@@ -41,12 +41,14 @@
 	melee_attack_delay = 1 SECOND
 	attacktext = list("mauled")
 
+	organ_names = /decl/mob_organ_names/savik
+
 	player_msg = "You have the ability to <b>berserk at will</b>, which will grant strong physical bonuses for \
 	a short period of time, however it will tire you and you will be much weaker for awhile after it expires."
 
 	tame_items = list(
 	/obj/item/organ = 70,
-	/obj/item/weapon/reagent_containers/food/snacks/meat/crab = 30,
+	/obj/item/weapon/reagent_containers/food/snacks/crabmeat = 30,
 	/obj/item/weapon/reagent_containers/food/snacks/meat = 20
 	)
 
@@ -79,3 +81,6 @@
 	set category = "Abilities"
 
 	add_modifier(/datum/modifier/berserk, 30 SECONDS)
+
+/decl/mob_organ_names/savik
+	hit_zones = list("head", "torso", "left foreleg", "right foreleg", "left hind leg", "right hind leg", "right bone plate", "left bone plate", "tail", "left claw", "right claw")

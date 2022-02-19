@@ -1,6 +1,7 @@
 // Reorganized and somewhat cleaned up.
 // AI code has been made into a datum, inside the AI module folder.
 
+
 /mob/living/simple_mob
 	name = "animal"
 	desc = ""
@@ -59,6 +60,7 @@
 	var/harm_intent_damage = 3		// How much an unarmed harm click does to this mob.
 	var/list/loot_list = list()		// The list of lootable objects to drop, with "/path = prob%" structure
 	var/obj/item/weapon/card/id/myid// An ID card if they have one to give them access to stuff.
+	var/organ_names = /decl/mob_organ_names //'False' bodyparts that can be shown as hit by projectiles in place of the default humanoid bodyplan.
 
 	//Mob environment settings
 	var/minbodytemp = 250			// Minimum "okay" temperature in kelvin
@@ -161,6 +163,7 @@
 	// Used for if the mob can drop limbs. Overrides the icon cache key, so it doesn't keep remaking the icon needlessly.
 	var/limb_icon_key
 	var/understands_common = TRUE 		//VOREStation Edit - Makes it so that simplemobs can understand galcomm without being able to speak it.
+	var/heal_countdown = 5				//VOREStation Edit - A cooldown ticker for passive healing
 
 /mob/living/simple_mob/Initialize()
 	verbs -= /mob/verb/observe
@@ -173,6 +176,9 @@
 
 	if(has_eye_glow)
 		add_eyes()
+
+	if(organ_names)
+		organ_names = GET_DECL(organ_names)
 
 	return ..()
 
@@ -288,3 +294,6 @@
 		return TRUE
 	return ..()
 //Vorestation Add End
+
+/decl/mob_organ_names
+	var/list/hit_zones = list("body") //When in doubt, it's probably got a body.

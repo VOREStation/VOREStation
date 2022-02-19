@@ -32,11 +32,16 @@
 
 	movement_cooldown = 0
 
+	meat_amount = 4
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/chicken
+
 	melee_damage_lower = 2
 	melee_damage_upper = 10
 	base_attack_cooldown = 1 SECOND
 	attack_edge = 1		// Razor-edged wings, and 'claws' made for digging through ice.
 	attacktext = list("nipped", "bit", "cut", "clawed")
+
+	organ_names = /decl/mob_organ_names/bird
 
 	tame_items = list(
 	/obj/item/weapon/reagent_containers/food/snacks/sliceable/bread = 90,
@@ -55,9 +60,10 @@
 	. = ..()
 
 	var/has_food = FALSE
-	for(var/obj/item/I in L.get_contents())	// Do they have food?
-		if(istype(I, /obj/item/weapon/reagent_containers/food))
-			has_food = TRUE
-			break
+	if(isliving(L))
+		for(var/obj/item/I in L.get_contents())	// Do they have food?
+			if(istype(I, /obj/item/weapon/reagent_containers/food))
+				has_food = TRUE
+				break
 	if(has_food)	// Yes? Gimme the food.
 		return FALSE

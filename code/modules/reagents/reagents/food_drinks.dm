@@ -236,6 +236,12 @@
 			to_chat(M, "<span class='danger'>Searing hot oil burns you, wash it off quick!</span>")
 			lastburnmessage = world.time
 
+/datum/reagent/nutriment/triglyceride/oil/cooking
+	name = "Cooking Oil"
+	id = "cookingoil"
+	description = "A general-purpose cooking oil."
+	reagent_state = LIQUID
+
 /datum/reagent/nutriment/triglyceride/oil/corn
 	name = "Corn Oil"
 	id = "cornoil"

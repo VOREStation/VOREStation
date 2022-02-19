@@ -1284,7 +1284,7 @@
 	},
 /area/gateway/eggnogtown/greenhouse)
 "kG" = (
-/obj/machinery/telecomms/relay/preset/tether,
+/obj/machinery/telecomms/relay,
 /turf/simulated/floor/reinforced,
 /area/gateway/eggnogtown/gateway)
 "kI" = (
@@ -1395,7 +1395,7 @@
 /turf/simulated/floor/tiled,
 /area/gateway/eggnogtown/stokeswashere/bathroom)
 "ma" = (
-/obj/effect/overmap/visitable/sector/tether_gateway/eggnogtown,
+/obj/effect/overmap/visitable/sector/common_gateway/eggnogtown,
 /turf/simulated/mineral/ignore_cavegen{
 	temperature = 258.15
 	},
@@ -1502,6 +1502,7 @@
 "nd" = (
 /obj/structure/bed/double,
 /obj/structure/lattice,
+/obj/structure/curtain/black,
 /turf/simulated/open,
 /area/gateway/eggnogtown/houserhomestead)
 "ne" = (
@@ -3111,7 +3112,7 @@
 	},
 /obj/item/weapon/card/id{
 	access = list(777);
-	name = "Houser's secret hidde keycard";
+	name = "Houser's secret hidden keycard";
 	registered_name = "Houser"
 	},
 /obj/machinery/light/small{

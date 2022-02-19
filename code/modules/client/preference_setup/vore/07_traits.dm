@@ -75,6 +75,13 @@
 		pref.starting_trait_points = STARTING_SPECIES_POINTS
 		pref.max_traits = MAX_SPECIES_TRAITS
 
+	if(pref.organ_data[O_BRAIN])	//Checking if we have a synth on our hands, boys.
+		pref.dirty_synth = 1
+		pref.gross_meatbag = 0
+	else
+		pref.gross_meatbag = 1
+		pref.dirty_synth = 0
+
 	if(pref.species != SPECIES_CUSTOM)
 		pref.pos_traits.Cut()
 		pref.neg_traits.Cut()
@@ -105,19 +112,24 @@
 		var/take_flags = initial(path.can_take)
 		if((pref.dirty_synth && !(take_flags & SYNTHETICS)) || (pref.gross_meatbag && !(take_flags & ORGANICS)))
 			pref.neg_traits -= path
-	
+
 	var/datum/species/selected_species = GLOB.all_species[pref.species]
 	if(selected_species.selects_bodytype)
 		// Allowed!
 	else if(!pref.custom_base || !(pref.custom_base in GLOB.custom_species_bases))
 		pref.custom_base = SPECIES_HUMAN
 
+	pref.custom_say = lowertext(trim(pref.custom_say))
+	pref.custom_whisper = lowertext(trim(pref.custom_whisper))
+	pref.custom_ask = lowertext(trim(pref.custom_ask))
+	pref.custom_exclaim = lowertext(trim(pref.custom_exclaim))
+
 /datum/category_item/player_setup_item/vore/traits/copy_to_mob(var/mob/living/carbon/human/character)
 	character.custom_species	= pref.custom_species
-	character.custom_say		= pref.custom_say
-	character.custom_ask		= pref.custom_ask
-	character.custom_whisper	= pref.custom_whisper
-	character.custom_exclaim	= pref.custom_exclaim
+	character.custom_say		= lowertext(trim(pref.custom_say))
+	character.custom_ask		= lowertext(trim(pref.custom_ask))
+	character.custom_whisper	= lowertext(trim(pref.custom_whisper))
+	character.custom_exclaim	= lowertext(trim(pref.custom_exclaim))
 
 	if(character.isSynthetic())	//Checking if we have a synth on our hands, boys.
 		pref.dirty_synth = 1

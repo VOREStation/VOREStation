@@ -12,7 +12,7 @@
 		/obj/item/clothing/under/rank/chief_engineer/skirt,
 		/obj/item/clothing/head/hardhat/white,
 		/obj/item/clothing/head/welding,
-		/obj/item/clothing/gloves/yellow,
+		/obj/item/clothing/gloves/heavy_engineer,	//VOREStation Edit: chief gets the good shit
 		/obj/item/clothing/shoes/brown,
 		/obj/item/weapon/cartridge/ce,
 		/obj/item/device/radio/headset/heads/ce,
@@ -28,6 +28,8 @@
 		/obj/item/clothing/suit/storage/hooded/wintercoat/engineering,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/engineering/ce,
 		/obj/item/clothing/shoes/boots/winter/engineering,
+		/obj/item/clothing/head/beret/engineering/ce,
+		/obj/item/clothing/head/beret/engineering/ce/white,
 		/obj/item/weapon/tank/emergency/oxygen/engi,
 		/obj/item/weapon/reagent_containers/spray/windowsealant) //VOREStation Add
 

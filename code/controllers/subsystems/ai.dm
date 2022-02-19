@@ -10,7 +10,7 @@ SUBSYSTEM_DEF(ai)
 	var/list/currentrun = list()
 
 	var/slept_mobs = 0
-	var/list/process_z = list()	
+	var/list/process_z = list()
 
 /datum/controller/subsystem/ai/stat_entry(msg_prefix)
 	..("P: [processing.len] | S: [slept_mobs]")
@@ -32,10 +32,14 @@ SUBSYSTEM_DEF(ai)
 	while(currentrun.len)
 		var/datum/ai_holder/A = currentrun[currentrun.len]
 		--currentrun.len
-		if(!A || QDELETED(A) || !A.holder?.loc || A.busy) // Doesn't exist or won't exist soon or not doing it this tick
+		if(!A || QDELETED(A) || A.busy) // Doesn't exist or won't exist soon or not doing it this tick
 			continue
-		
-		if(process_z[get_z(A.holder)])
+
+		var/mob/living/L = A.holder	//VOREStation Edit Start
+		if(!L?.loc)
+			continue
+
+		if(process_z[get_z(L)] || !L.low_priority) //VOREStation Edit End
 			A.handle_strategicals()
 		else
 			slept_mobs++

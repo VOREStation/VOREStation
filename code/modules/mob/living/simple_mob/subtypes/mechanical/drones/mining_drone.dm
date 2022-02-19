@@ -40,6 +40,8 @@
 	response_disarm = "gently pushes aside"
 	response_harm = "hits"
 
+	organ_names = /decl/mob_organ_names/miningdrone
+
 	ai_holder_type = /datum/ai_holder/simple_mob/ranged/kiting/threatening
 	say_list_type = /datum/say_list/malf_drone
 
@@ -124,3 +126,6 @@
 			src.Beam(OB, icon_state = "rped_upgrade", time = 1 SECONDS)
 			for(var/obj/item/I in my_storage)
 				my_storage.remove_from_storage(I, OB)
+
+/decl/mob_organ_names/miningdrone
+	hit_zones = list("chassis", "comms array", "sensor suite", "left excavator module", "right excavator module", "maneuvering thruster")

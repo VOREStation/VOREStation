@@ -3694,6 +3694,7 @@
 	dir = 10
 	},
 /obj/structure/reagent_dispensers/virusfood{
+	density = 0;
 	pixel_x = 32;
 	pixel_y = 32
 	},
@@ -15857,6 +15858,9 @@
 /obj/machinery/computer/security/telescreen/entertainment{
 	icon_state = "frame";
 	pixel_x = 32
+	},
+/obj/machinery/light{
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/quartermaster/office)

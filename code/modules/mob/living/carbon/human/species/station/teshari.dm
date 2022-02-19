@@ -55,6 +55,7 @@
 	gluttonous = 1
 	blood_volume = 400
 	hunger_factor = 0.2
+	soft_landing = TRUE
 
 	ambiguous_genders = TRUE
 
@@ -141,7 +142,7 @@
 		/datum/mob_descriptor/build = -3
 	)
 
-	var/static/list/flight_bodyparts = list(
+/*	var/static/list/flight_bodyparts = list(
 		BP_L_ARM,
 		BP_R_ARM,
 		BP_L_HAND,
@@ -150,7 +151,7 @@
 	var/static/list/flight_suit_blacklisted_types = list(
 		/obj/item/clothing/suit/space,
 		/obj/item/clothing/suit/straight_jacket
-	)
+	)*/
 
 	default_emotes = list(
 		/decl/emote/audible/teshsqueak,
@@ -161,13 +162,13 @@
 /datum/species/teshari/equip_survival_gear(var/mob/living/carbon/human/H)
 	..()
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/sandal(H),slot_shoes)
-
+/*
 /datum/species/teshari/handle_falling(mob/living/carbon/human/H, atom/hit_atom, damage_min, damage_max, silent, planetary)
 
 	// Tesh can glide to save themselves from some falls. Basejumping bird
 	// without parachute, or falling bird without free wings, goes splat.
 
-	// Are we landing from orbit, or handcuffed/unconscious/tied to something? 
+	// Are we landing from orbit, or handcuffed/unconscious/tied to something?
 	if(planetary || !istype(H) || H.incapacitated(INCAPACITATION_DEFAULT|INCAPACITATION_DISABLED))
 		return ..()
 
@@ -211,3 +212,4 @@
 		H.Stun(1)
 		playsound(H, "rustle", 25, 1)
 	return TRUE
+*/
