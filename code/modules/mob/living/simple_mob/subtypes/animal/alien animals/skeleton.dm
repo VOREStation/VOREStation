@@ -76,6 +76,11 @@
 	vore_default_contamination_color = "grey"
 	vore_default_item_mode = IM_DIGEST
 
+/mob/living/simple_mob/vore/alienanimals/skeleton/alt
+	icon_state = "altskeleton"
+	icon_living = "altskeleton"
+	icon_dead = "altskeleton_dead"
+
 /datum/say_list/skeleton
 	speak = list("Nyeh heh heeeh","NYAAAAHHHH", "Books are the real treasures of the world!", "Why are skeletons so calm? Because nothing gets under their skin.","When does a skeleton laugh? When someone tickels their funny bone!","What is a skeleton’s favorite mode of transport? A scare-plane.", "What did the skeleton say to the vampire? 'You suck.'","What is a skeleton’s favorite thing to do with their cell phone? Take skelfies.", "How did the skeleton know the other skeleton was lying? He could see right through him.","What’s a skeleton’s least favorite room in the house? The living room.", "How much does an elephant skeleton weigh? Skele-tons.", "Why do skeletons drink so much milk? It’s good for the bones!", "Where do bad jokes about skeletons belong? In the skelebin.","What does a skeleton use to cut through objects? A shoulder blade.", "What kind of jokes do skeletons tell? Humerus ones.")
 	emote_see = list("spins its head around", "shuffles","shambles","practices on the xylophone","drinks some milk","looks at you. Its hollow, bottomless sockets gaze into you greedily.")
