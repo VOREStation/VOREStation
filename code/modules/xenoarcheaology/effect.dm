@@ -3,18 +3,46 @@
 	var/effect = EFFECT_TOUCH
 	var/effectrange = 4
 	var/trigger = TRIGGER_TOUCH
-	var/atom/holder
+	var/datum/component/artifact_master/master
 	var/activated = 0
-	var/chargelevel = 0
+	var/chargelevel = 1
 	var/chargelevelmax = 10
 	var/artifact_id = ""
 	var/effect_type = 0
 
-/datum/artifact_effect/New(var/atom/location)
+	var/req_type = /atom/movable
+
+	var/image/active_effect
+	var/effect_icon = 'icons/effects/effects.dmi'
+	var/effect_state = "sparkles"
+	var/effect_color = "#ffffff"
+
+	// The last time the effect was toggled.
+	var/last_activation = 0
+
+/datum/artifact_effect/Destroy()
+	if(master)
+		master = null
 	..()
-	holder = location
+
+/datum/artifact_effect/proc/get_master_holder()	// Return the effectmaster's holder, if it is set to an effectmaster. Otherwise, master is the target object.
+	if(istype(master))
+		return master.holder
+	else
+		return master
+
+/datum/artifact_effect/New(var/datum/component/artifact_master/newmaster)
+	..()
+
+	master = newmaster
 	effect = rand(0, MAX_EFFECT)
 	trigger = rand(0, MAX_TRIGGER)
+
+	if(effect_icon && effect_state)
+		if(effect_state == "sparkles")
+			effect_state = "sparkles_[rand(1,4)]"
+		active_effect = image(effect_icon, effect_state)
+		active_effect.color = effect_color
 
 	//this will be replaced by the excavation code later, but it's here just in case
 	artifact_id = "[pick("kappa","sigma","antaeres","beta","omicron","iota","epsilon","omega","gamma","delta","tau","alpha")]-[rand(100,999)]"
@@ -36,21 +64,32 @@
 
 /datum/artifact_effect/proc/ToggleActivate(var/reveal_toggle = 1)
 	//so that other stuff happens first
-	spawn(0)
+	set waitfor = FALSE
+
+	var/atom/target = get_master_holder()
+
+	if(world.time - last_activation > 1 SECOND)
+		last_activation = world.time
 		if(activated)
 			activated = 0
 		else
 			activated = 1
-		if(reveal_toggle && holder)
-			if(istype(holder, /obj/machinery/artifact))
-				var/obj/machinery/artifact/A = holder
-				A.icon_state = "ano[A.icon_num][activated]"
+		if(reveal_toggle && target)
+			if(!isliving(target))
+				target.update_icon()
 			var/display_msg
 			if(activated)
 				display_msg = pick("momentarily glows brightly!","distorts slightly for a moment!","flickers slightly!","vibrates!","shimmers slightly for a moment!")
 			else
 				display_msg = pick("grows dull!","fades in intensity!","suddenly becomes very still!","suddenly becomes very quiet!")
-			var/atom/toplevelholder = holder
+
+			if(active_effect)
+				if(activated)
+					target.underlays.Add(active_effect)
+				else
+					target.underlays.Remove(active_effect)
+
+			var/atom/toplevelholder = target
 			while(!istype(toplevelholder.loc, /turf))
 				toplevelholder = toplevelholder.loc
 			toplevelholder.visible_message("<font color='red'>[bicon(toplevelholder)] [toplevelholder] [display_msg]</font>")

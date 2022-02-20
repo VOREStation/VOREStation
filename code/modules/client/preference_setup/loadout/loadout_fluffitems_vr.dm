@@ -851,6 +851,12 @@
 	ckeywhitelist = list("pastelprincedan", "hatterhat")
 	character_name = list("Masumi Maki", "Harold Robinson")
 
+/datum/gear/fluff/slimecat_rd_plush
+	path = /obj/item/toy/plushie/fluff/slimeowshi
+	display_name = "slimecat RD plushie"
+	ckeywhitelist = list("pastelprincedan")
+	character_name = list("Kiyoshi Maki", "Masumi Maki")
+
 //  Q CKEYS
 
 //  R CKEYS

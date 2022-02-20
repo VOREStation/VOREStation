@@ -560,7 +560,7 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 8
 	},
-/obj/structure/bed/chair/sofa/brown/left{
+/obj/structure/bed/chair/sofa/left/brown{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor,
@@ -913,7 +913,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/gateway/honlethhighlands/gate)
 "nI" = (
-/obj/structure/bed/chair/sofa/green/left{
+/obj/structure/bed/chair/sofa/left/green{
 	dir = 4
 	},
 /turf/simulated/floor/wood,
@@ -2125,7 +2125,7 @@
 	},
 /area/gateway/honlethhighlands/town/garden)
 "HY" = (
-/obj/structure/bed/chair/sofa/green/right{
+/obj/structure/bed/chair/sofa/right/green{
 	dir = 4
 	},
 /turf/simulated/floor/wood,
@@ -2249,7 +2249,7 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 8
 	},
-/obj/structure/bed/chair/sofa/brown/right{
+/obj/structure/bed/chair/sofa/right/brown{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor,

@@ -115,7 +115,7 @@
 		if(!(mat_container_flags & MATCONTAINER_SILENT))
 			to_chat(user, "<span class='warning'>[parent] won't accept [I]!</span>")
 		return
-	. = COMPONENT_NO_AFTERATTACK
+	. = COMPONENT_CANCEL_ATTACK_CHAIN
 	var/datum/callback/pc = precondition
 	if(pc && !pc.Invoke(user))
 		return
@@ -168,7 +168,7 @@
 
 	// It shouldn't be possible to add more matter than our max
 	ASSERT((total_amount + (matter_per_sheet * sheets_to_use)) <= max_amount)
-	
+
 	// Use the amount of sheets from the stack
 	if(!S.use(sheets_to_use))
 		to_chat(user, "<span class='warning'>Something went wrong with your stack. Split it manually and try again.</span>")
@@ -358,7 +358,7 @@
 	if(materials[M] < (sheet_amt * SHEET_MATERIAL_AMOUNT))
 		sheet_amt = round(materials[M] / SHEET_MATERIAL_AMOUNT)
 
-	var/obj/item/stack/S = M.stack_type	
+	var/obj/item/stack/S = M.stack_type
 	var/max_stack_size = initial(S.max_amount)
 
 	var/count = 0

@@ -43,7 +43,7 @@
 /turf/simulated/floor/tiled/eris/white/orangecorner,
 /area/om_adventure/poi/medicalcenter)
 "z" = (
-/obj/structure/bed/chair/sofa/blue/left{
+/obj/structure/bed/chair/sofa/left/blue{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/white/orangecorner,
@@ -52,7 +52,7 @@
 /turf/simulated/wall/eris/r_wall,
 /area/om_adventure/poi/medicalcenter)
 "C" = (
-/obj/structure/bed/chair/sofa/blue/right,
+/obj/structure/bed/chair/sofa/right/blue,
 /turf/simulated/floor/tiled/eris/white/orangecorner,
 /area/om_adventure/poi/medicalcenter)
 "D" = (
@@ -111,7 +111,7 @@
 /turf/simulated/floor/tiled/eris/white/orangecorner,
 /area/om_adventure/poi/medicalcenter)
 "Z" = (
-/obj/structure/bed/chair/sofa/blue/corner,
+/obj/structure/bed/chair/sofa/corner/blue,
 /obj/tether_away_spawner/spookyland,
 /turf/simulated/floor/tiled/eris/white/orangecorner,
 /area/om_adventure/poi/medicalcenter)
