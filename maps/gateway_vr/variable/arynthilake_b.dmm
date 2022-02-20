@@ -553,7 +553,7 @@
 /turf/simulated/floor/tiled/eris/white/brown_platform,
 /area/gateway/arynthilake/dome)
 "ku" = (
-/obj/structure/bed/chair/sofa/brown/right{
+/obj/structure/bed/chair/sofa/right/brown{
 	dir = 4
 	},
 /turf/simulated/floor/carpet,
@@ -1038,7 +1038,7 @@
 /turf/simulated/floor/tiled/eris/steel/techfloor,
 /area/gateway/arynthilake/dome)
 "vH" = (
-/obj/structure/bed/chair/sofa/brown/left{
+/obj/structure/bed/chair/sofa/left/brown{
 	dir = 8
 	},
 /turf/simulated/floor/carpet,
@@ -2123,7 +2123,7 @@
 	},
 /area/gateway/arynthilake/dome)
 "TD" = (
-/obj/structure/bed/chair/sofa/brown/corner{
+/obj/structure/bed/chair/sofa/corner/brown{
 	dir = 1
 	},
 /turf/simulated/floor/carpet,
@@ -2141,7 +2141,7 @@
 /area/gateway/arynthilake/engine)
 "Uj" = (
 /obj/effect/landmark/mcguffin_spawner,
-/obj/structure/bed/chair/sofa/brown/corner,
+/obj/structure/bed/chair/sofa/corner/brown,
 /turf/simulated/floor/carpet,
 /area/gateway/arynthilake/dome)
 "Uk" = (

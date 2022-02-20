@@ -187,7 +187,7 @@
 	dir = 8;
 	id = "h_living"
 	},
-/obj/structure/bed/chair/sofa/black/corner{
+/obj/structure/bed/chair/sofa/corner/black{
 	dir = 1
 	},
 /turf/simulated/floor/wood/virgo3b,
@@ -197,7 +197,7 @@
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/lonehome)
 "aE" = (
-/obj/structure/bed/chair/sofa/black/left,
+/obj/structure/bed/chair/sofa/left/black,
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/lonehome)
 "aF" = (
@@ -371,7 +371,7 @@
 	dir = 8;
 	id = "h_living"
 	},
-/obj/structure/bed/chair/sofa/black/corner{
+/obj/structure/bed/chair/sofa/corner/black{
 	dir = 4
 	},
 /turf/simulated/floor/wood/virgo3b,
@@ -383,7 +383,7 @@
 /turf/simulated/floor/wood/virgo3b,
 /area/submap/lonehome)
 "bi" = (
-/obj/structure/bed/chair/sofa/black/right{
+/obj/structure/bed/chair/sofa/right/black{
 	dir = 1
 	},
 /turf/simulated/floor/wood/virgo3b,

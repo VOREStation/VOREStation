@@ -83,7 +83,7 @@
 /turf/simulated/floor/outdoors/newdirt,
 /area/om_adventure/poi/cabin1)
 "C" = (
-/obj/structure/bed/chair/sofa/brown/corner,
+/obj/structure/bed/chair/sofa/corner/brown,
 /turf/simulated/floor/wood,
 /area/om_adventure/poi/cabin1)
 "D" = (
@@ -116,13 +116,13 @@
 /turf/simulated/wall/log,
 /area/om_adventure/poi/cabin1)
 "R" = (
-/obj/structure/bed/chair/sofa/brown/left{
+/obj/structure/bed/chair/sofa/left/brown{
 	dir = 8
 	},
 /turf/simulated/floor/wood,
 /area/om_adventure/poi/cabin1)
 "S" = (
-/obj/structure/bed/chair/sofa/brown/right,
+/obj/structure/bed/chair/sofa/right/brown,
 /turf/simulated/floor/wood,
 /area/om_adventure/poi/cabin1)
 "T" = (

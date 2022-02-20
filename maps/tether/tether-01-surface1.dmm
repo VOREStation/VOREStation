@@ -19614,7 +19614,7 @@
 /turf/simulated/floor/tiled,
 /area/rnd/hallway)
 "aGr" = (
-/obj/structure/bed/chair/sofa/brown/right,
+/obj/structure/bed/chair/sofa/right/brown,
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
 	},
@@ -19630,7 +19630,7 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/cargostore/office)
 "aGs" = (
-/obj/structure/bed/chair/sofa/brown/corner,
+/obj/structure/bed/chair/sofa/corner/brown,
 /obj/effect/landmark/start{
 	name = "Cargo Technician"
 	},
@@ -19951,7 +19951,7 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/cargostore/office)
 "aGU" = (
-/obj/structure/bed/chair/sofa/brown/left{
+/obj/structure/bed/chair/sofa/left/brown{
 	dir = 8
 	},
 /obj/effect/floor_decal/borderfloor{
