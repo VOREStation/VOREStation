@@ -8,16 +8,10 @@
 	var/max_cable = 100
 	var/on = 0
 
-<<<<<<< HEAD
-/obj/machinery/cablelayer/New()
-	cable = new(src, 100)
-	..()
-=======
 /obj/machinery/cablelayer/Initialize()
 	cable = new(src)
 	cable.amount = 100
 	. = ..()
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 
 /obj/machinery/cablelayer/Moved(atom/old_loc, direction, forced = FALSE)
 	. = ..()

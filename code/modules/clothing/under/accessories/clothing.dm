@@ -314,8 +314,6 @@
 	icon_state = "colorcloak"
 	item_state = "colorcloak"
 
-<<<<<<< HEAD
-=======
 /obj/item/clothing/accessory/hawaii
 	name = "flower-pattern shirt"
 	desc = "You probably need some welder googles to look at this."
@@ -339,7 +337,6 @@
 	color = color_rotation(rand(-11,12)*15)
 	. = ..()
 
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 /obj/item/clothing/accessory/wcoat
 	name = "waistcoat"
 	desc = "For some classy, murderous fun."

@@ -91,13 +91,7 @@
 	else
 		parent = newparent
 
-<<<<<<< HEAD
 	if(!SSplants)
-		sleep(250) // ugly hack, should mean roundstart plants are fine. TODO initialize perhaps?
-	if(!SSplants)
-=======
-	if(!plant_controller)
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 		to_world("<span class='danger'>Plant controller does not exist and [src] requires it. Aborting.</span>")
 		return INITIALIZE_HINT_QDEL
 

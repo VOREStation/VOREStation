@@ -14,8 +14,6 @@
 	icon = 'icons/mob/alien.dmi'
 
 /*
-<<<<<<< HEAD
-=======
  * Resin
  */
 /obj/effect/alien/resin
@@ -149,7 +147,6 @@
 
 
 /*
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
  * Weeds
  */
 #define NODERANGE 3
@@ -427,9 +424,6 @@
 			visible_message("<span class='alium'>[src.target] begins to crumble under the acid!</span>")
 	spawn(rand(150, 200)) tick()
 
-<<<<<<< HEAD
-//Xenomorph Effect egg removed, replaced with Structure Egg.
-=======
 /*
  * Egg
  */
@@ -556,4 +550,3 @@
 	if(exposed_temperature > 500 + T0C)
 		health -= 5
 		healthcheck()
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)

@@ -22,15 +22,9 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 	if(istype(rig))
 		rig.forced_move(direction, user)
 
-<<<<<<< HEAD
-/obj/item/device/paicard/New()
-	..()
-	add_overlay("pai-off")
-=======
 /obj/item/device/paicard/Initialize()
 	. = ..()
-	overlays += "pai-off"
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
+	add_overlay("pai-off")
 
 /obj/item/device/paicard/Destroy()
 	//Will stop people throwing friend pAIs into the singularity so they can respawn

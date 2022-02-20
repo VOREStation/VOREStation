@@ -74,11 +74,7 @@ Also includes Life and New
 
 		return 1	//Everything worked okay.
 
-<<<<<<< HEAD
-/mob/living/simple_mob/xeno/New()
-=======
-/mob/living/simple_animal/xeno/Initialize()
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
+/mob/living/simple_mob/xeno/Initialize()
 
 	traitdat = new()
 

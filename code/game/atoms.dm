@@ -27,7 +27,7 @@
 
 	// Overlays
 	///Our local copy of (non-priority) overlays without byond magic. Use procs in SSoverlays to manipulate
-	var/list/our_overlays	
+	var/list/our_overlays
 	///Overlays that should remain on top and not normally removed when using cut_overlay functions, like c4.
 	var/list/priority_overlays
 	///vis overlays managed by SSvis_overlays to automaticaly turn them like other overlays
@@ -35,7 +35,7 @@
 
 	///Our local copy of filter data so we can add/remove it
 	var/list/filter_data
-	
+
 	//Detective Work, used for the duplicate data points kept in the scanners
 	var/list/original_atom
 	// Track if we are already had initialize() called to prevent double-initialization.
@@ -52,32 +52,10 @@
 
 var/global/list/pre_init_created_atoms // atom creation ordering means some stuff is trying to init before SSatoms exists, temp workaround
 /atom/New(loc, ...)
-<<<<<<< HEAD
-	// Don't call ..() unless /datum/New() ever exists
-
-	// During dynamic mapload (reader.dm) this assigns the var overrides from the .dmm file
-	// Native BYOND maploading sets those vars before invoking New(), by doing this FIRST we come as close to that behavior as we can.
+	//atom creation method that preloads variables at creation
 	if(GLOB.use_preloader && (src.type == GLOB._preloader.target_path))//in case the instanciated atom is creating other atoms in New()
 		GLOB._preloader.load(src)
 
-	// Pass our arguments to InitAtom so they can be passed to initialize(), but replace 1st with if-we're-during-mapload.
-	var/do_initialize = SSatoms.initialized
-	if(do_initialize > INITIALIZATION_INSSATOMS)
-		args[1] = (do_initialize == INITIALIZATION_INNEW_MAPLOAD)
-		if(SSatoms.InitAtom(src, args))
-			// We were deleted. No sense continuing
-			return
-
-	// Uncomment if anything ever uses the return value of SSatoms.InitializeAtoms ~Leshana
-	// If a map is being loaded, it might want to know about newly created objects so they can be handled.
-	// var/list/created = SSatoms.created_atoms
-	// if(created)
-	// 	created += src
-=======
-	//atom creation method that preloads variables at creation
-	if(global.use_preloader && (src.type == global._preloader.target_path))//in case the instanciated atom is creating other atoms in New()
-		global._preloader.load(src)
-		
 	var/do_initialize = SSatoms?.atom_init_stage
 	if(do_initialize > INITIALIZATION_INSSATOMS_LATE)
 		args[1] = do_initialize == INITIALIZATION_INNEW_MAPLOAD
@@ -88,7 +66,6 @@ var/global/list/pre_init_created_atoms // atom creation ordering means some stuf
 			argument_list = args.Copy(2)
 		if(length(argument_list))
 			LAZYSET(global.pre_init_created_atoms, src, argument_list)
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 
 // Note: I removed "auto_init" feature (letting types disable auto-init) since it shouldn't be needed anymore.
 // 	You can replicate the same by checking the value of the first parameter to initialize() ~Leshana
@@ -696,7 +673,7 @@ var/global/list/pre_init_created_atoms // atom creation ordering means some stuf
 	if(!isnull(.))
 		datum_flags |= DF_VAR_EDITED
 		return
-		
+
 	. = ..()
 
 /atom/proc/atom_say(message)

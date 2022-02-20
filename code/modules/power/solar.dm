@@ -155,16 +155,12 @@ GLOBAL_LIST_EMPTY(solars_list)
 				broken()
 	return
 
-<<<<<<< HEAD
-=======
-
 /obj/machinery/power/solar/fake/Initialize(mapload, glass_type)
 	. = ..(mapload, glass_type, 0)
 
 /obj/machinery/power/solar/fake/process()
 	return PROCESS_KILL
 
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 //trace towards SSsun.sun to see if we're in shadow
 /obj/machinery/power/solar/proc/occlusion()
 

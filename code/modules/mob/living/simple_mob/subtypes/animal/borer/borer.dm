@@ -62,13 +62,8 @@
 
 	true_name = "[pick("Primary","Secondary","Tertiary","Quaternary")] [rand(1000,9999)]"
 
-<<<<<<< HEAD
-	if(!roundstart && antag)
-		request_player()
-=======
 	if(!roundstart)
 		addtimer(CALLBACK(src, .proc/request_player), 0)
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 
 	return ..()
 

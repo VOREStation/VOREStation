@@ -1,42 +1,5 @@
 /turf/simulated/wall/r_wall
 	icon_state = "rgeneric"
-<<<<<<< HEAD
-/turf/simulated/wall/r_wall/Initialize(mapload)
-	. = ..(mapload, "plasteel","plasteel") //3strong
-
-/turf/simulated/wall/shull
-	icon_state = "hull-steel"
-/turf/simulated/wall/shull/Initialize(mapload) //Spaaaace ship.
-	. = ..(mapload,  MAT_STEELHULL, null, MAT_STEELHULL)
-/turf/simulated/wall/rshull
-	icon_state = "hull-r_steel"
-/turf/simulated/wall/rshull/Initialize(mapload)
-	. = ..(mapload,  MAT_STEELHULL, MAT_STEELHULL, MAT_STEELHULL)
-/turf/simulated/wall/pshull
-	icon_state = "hull-plasteel"
-/turf/simulated/wall/pshull/Initialize(mapload) //Spaaaace-er ship.
-	. = ..(mapload,  MAT_PLASTEELHULL, null, MAT_PLASTEELHULL)
-/turf/simulated/wall/rpshull
-	icon_state = "hull-r_plasteel"
-/turf/simulated/wall/rpshull/Initialize(mapload)
-	. = ..(mapload,  MAT_PLASTEELHULL, MAT_PLASTEELHULL, MAT_PLASTEELHULL)
-/turf/simulated/wall/dshull
-	icon_state = "hull-durasteel"
-/turf/simulated/wall/dshull/Initialize(mapload) //Spaaaace-est ship.
-	. = ..(mapload,  MAT_DURASTEELHULL, null, MAT_DURASTEELHULL)
-/turf/simulated/wall/rdshull
-	icon_state = "hull-r_durasteel"
-/turf/simulated/wall/rdshull/Initialize(mapload)
-	. = ..(mapload,  MAT_DURASTEELHULL, MAT_DURASTEELHULL, MAT_DURASTEELHULL)
-/turf/simulated/wall/thull
-	icon_state = "hull-titanium"
-/turf/simulated/wall/thull/Initialize(mapload)
-	. = ..(mapload,  MAT_TITANIUMHULL, null, MAT_TITANIUMHULL)
-/turf/simulated/wall/rthull
-	icon_state = "hull-r_titanium"
-/turf/simulated/wall/rthull/Initialize(mapload)
-	. = ..(mapload,  MAT_TITANIUMHULL, MAT_TITANIUMHULL, MAT_TITANIUMHULL)
-=======
 	material = MAT_PLASTEEL
 	reinf_material = MAT_PLASTEEL
 
@@ -75,7 +38,6 @@
 	material = MAT_TITANIUMHULL
 	reinf_material = MAT_TITANIUMHULL
 	girder_material = MAT_TITANIUMHULL
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 
 /turf/simulated/wall/cult
 	name = "cult wall"
@@ -154,22 +116,20 @@
 /turf/simulated/wall/wood
 	material = MAT_WOOD
 
-<<<<<<< HEAD
-/turf/simulated/wall/hardwood/Initialize(mapload)
-	. = ..(mapload,  MAT_HARDWOOD)
+/turf/simulated/wall/hardwood
+	material = MAT_HARDWOOD
 
-/turf/simulated/wall/sifwood/Initialize(mapload)
-	. = ..(mapload,  MAT_SIFWOOD)
-=======
 /turf/simulated/wall/sifwood
 	material = MAT_SIFWOOD
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 
 /turf/simulated/wall/log
 	material = MAT_LOG
 
 /turf/simulated/wall/log_sif
 	material = MAT_SIFLOG
+
+/turf/simulated/wall/log_hard
+	material = MAT_HARDLOG
 
 // Shuttle Walls
 /turf/simulated/shuttle/wall
@@ -342,10 +302,10 @@
 /obj/structure/hull_corner
 	name = "hull corner"
 	plane = OBJ_PLANE - 1
-	
+
 	icon = 'icons/turf/wall_masks.dmi'
 	icon_state = "hull_corner"
-	
+
 	anchored = TRUE
 	density = TRUE
 	breakable = TRUE
@@ -363,19 +323,19 @@
 
 /obj/structure/hull_corner/proc/update_look()
 	cut_overlays()
-	
+
 	var/turf/simulated/wall/T
 	for(var/direction in get_dirs_to_test())
 		T = get_step(src, direction)
 		if(!istype(T) || T.material?.icon_base != "hull")
 			continue
-		
+
 		name = T.name
 		desc = T.desc
-		
+
 		var/datum/material/B = T.material
 		var/datum/material/R = T.reinf_material
-		
+
 		if(B?.icon_colour)
 			color = B.icon_colour
 		if(R?.icon_colour)
@@ -383,7 +343,7 @@
 			I.color = R.icon_colour
 			add_overlay(I)
 		break
-	
+
 	if(!T)
 		warning("Hull corner at [x],[y] not placed adjacent to a hull it can find.")
 
@@ -413,7 +373,7 @@
 
 /turf/simulated/wall/eris/can_join_with_low_wall(var/obj/structure/low_wall/WF)
 	return istype(WF, /obj/structure/low_wall/eris)
-	
+
 /turf/simulated/wall/eris/special_wall_connections(list/dirs, list/inrange)
 	..()
 	for(var/direction in cardinal)

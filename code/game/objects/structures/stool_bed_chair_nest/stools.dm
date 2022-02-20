@@ -149,8 +149,6 @@ var/global/list/stool_cache = list() //haha stool
 		remove_padding()
 	else
 		..()
-<<<<<<< HEAD
-=======
 
 /obj/item/weapon/stool/barstool
 	name = "bar stool"
@@ -170,4 +168,3 @@ var/global/list/stool_cache = list() //haha stool
 
 /obj/item/weapon/stool/barstool/padded/Initialize(var/ml, var/new_material)
 	. = ..(ml, MAT_STEEL, "carpet")
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)

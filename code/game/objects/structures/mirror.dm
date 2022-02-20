@@ -11,12 +11,9 @@
 	var/glass = 1
 	var/datum/tgui_module/appearance_changer/mirror/M
 
-<<<<<<< HEAD
-/obj/structure/mirror/Initialize(mapload, var/dir, var/building = 0, mob/user as mob)
-=======
+
 /obj/structure/mirror/Initialize(var/ml, var/dir, var/building = 0, mob/user as mob)
 	. = ..()
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 	M = new(src, null)
 	if(building)
 		glass = 0

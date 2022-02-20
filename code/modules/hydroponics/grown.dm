@@ -65,13 +65,11 @@
 /obj/item/weapon/reagent_containers/food/snacks/grown/proc/update_desc()
 	if(!seed)
 		return
-<<<<<<< HEAD
-=======
-	if(!plant_controller)
+
+	if(!SSplants)
 		testing("<span class='danger'>Plant controller does not exist and [src] requires it. Aborting.</span>")
 		qdel(src)
 		return
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 
 	if(SSplants.product_descs["[seed.uid]"])
 		desc = SSplants.product_descs["[seed.uid]"]

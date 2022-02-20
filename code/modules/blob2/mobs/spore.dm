@@ -30,11 +30,7 @@
 	melee_damage_lower = 1
 	melee_damage_upper = 2
 
-<<<<<<< HEAD
-/mob/living/simple_mob/hostile/blob/spore/New(var/newloc, var/obj/structure/blob/factory/my_factory)
-=======
-/mob/living/simple_animal/hostile/blob/spore/Initialize(var/ml, var/obj/structure/blob/factory/my_factory)
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
+/mob/living/simple_mob/hostile/blob/spore/Initialize(var/ml, var/obj/structure/blob/factory/my_factory)
 	if(istype(my_factory))
 		factory = my_factory
 		factory.spores += src

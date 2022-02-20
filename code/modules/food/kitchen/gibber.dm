@@ -56,16 +56,9 @@
 			M.loc = src
 			M.gib()
 
-
-<<<<<<< HEAD
-/obj/machinery/gibber/New()
-	..()
-	add_overlay("grjam")
-=======
 /obj/machinery/gibber/Initialize()
 	. = ..()
-	src.overlays += image('icons/obj/kitchen.dmi', "grjam")
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
+	add_overlay("grjam")
 
 /obj/machinery/gibber/update_icon()
 	cut_overlays()

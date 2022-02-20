@@ -155,17 +155,8 @@
 	TLV["pressure"] =		list(ONE_ATMOSPHERE * 0.80, ONE_ATMOSPHERE * 0.90, ONE_ATMOSPHERE * 1.10, ONE_ATMOSPHERE * 1.20) /* kpa */
 	TLV["temperature"] =	list(T0C - 26, T0C, T0C + 40, T0C + 66) // K
 
-<<<<<<< HEAD
 	update_icon()
 
-/obj/machinery/alarm/Initialize()
-	. = ..()
-	set_frequency(frequency)
-	if(!master_is_operating())
-		elect_master()
-
-=======
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 /obj/machinery/alarm/process()
 	if((stat & (NOPOWER|BROKEN)) || shorted)
 		return

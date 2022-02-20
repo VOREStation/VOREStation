@@ -26,8 +26,6 @@
 /obj/structure/table/rack/holorack/dismantle(obj/item/weapon/tool/wrench/W, mob/user)
 	to_chat(user, "<span class='warning'>You cannot dismantle \the [src].</span>")
 	return
-<<<<<<< HEAD
-=======
 
 /obj/structure/table/rack/steel
 	color = "#666666"
@@ -63,4 +61,3 @@
 /obj/structure/table/rack/gun_rack/steel/Initialize()
 	material = get_material_by_name(MAT_STEEL)
 	. = ..()
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)

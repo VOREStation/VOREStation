@@ -101,13 +101,8 @@ var/list/mob_hat_cache = list()
 	can_pick_shell = FALSE
 	shell_accessories = list("eyes-miningdrone")
 
-<<<<<<< HEAD
-/mob/living/silicon/robot/drone/New()
-	..()
-=======
 /mob/living/silicon/robot/drone/Initialize()
 	. = ..()
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 	verbs += /mob/living/proc/ventcrawl
 	verbs += /mob/living/proc/hide
 	remove_language("Robot Talk")

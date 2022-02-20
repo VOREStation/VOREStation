@@ -22,7 +22,6 @@ var/list/holder_mob_icon_cache = list()
 		)
 	pixel_y = 8
 	var/mob/living/held_mob
-<<<<<<< HEAD
 	var/matrix/original_transform
 	var/original_vis_flags = NONE
 
@@ -42,11 +41,6 @@ var/list/holder_mob_icon_cache = list()
 	// I really hate this, but I'm sleepy and unable to figure out a nice stateful way to do it
 	// Entered and Exited seem ideal but all the inventory procs are trash and put items on
 	// turfs before you when manhandling things in/out of backpacks and inventory slots.
-=======
-
-/obj/item/weapon/holder/Initialize()
-	. = ..()
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 	START_PROCESSING(SSobj, src)
 
 /obj/item/weapon/holder/Destroy()

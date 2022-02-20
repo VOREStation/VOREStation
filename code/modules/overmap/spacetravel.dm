@@ -6,7 +6,6 @@
 	in_space = TRUE
 
 /obj/effect/overmap/visitable/sector/temporary/Initialize()
-<<<<<<< HEAD
 	if(!istype(loc, /turf/unsimulated/map))
 		CRASH("Attempt to create deepspace which is not on overmap: [log_info_line(loc)]")
 	// Tell sector initializer where are is where we want to be.
@@ -15,9 +14,6 @@
 	// But pick an empty z level to use
 	map_z += global.using_map.get_empty_zlevel()
 	. = ..()
-	testing("Temporary sector at [x],[y],[z] was created, corresponding zlevel is [english_list(map_z)].")
-=======
-	. = ..()
 
 	if(!map_z[1])
 		log_and_message_admins("Could not create empty sector at [x], [y]. No available z levels to allocate.")
@@ -25,7 +21,6 @@
 
 	map_sectors["[map_z[1]]"] = src
 	testing("Temporary sector at [x],[y] was created, corresponding zlevel is [map_z[1]].")
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 
 /obj/effect/overmap/visitable/sector/temporary/Destroy()
 	for(var/zlevel in map_z)
@@ -55,13 +50,9 @@
 	var/obj/effect/overmap/visitable/sector/temporary/res = locate() in overmap_turf
 	if(istype(res))
 		return res
-<<<<<<< HEAD
-	return new /obj/effect/overmap/visitable/sector/temporary(overmap_turf)
-=======
 	res = new /obj/effect/overmap/visitable/sector/temporary(overmap_turf)
 	if(!QDELETED(res))
 		return res
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 
 /atom/movable/proc/lost_in_space()
 	for(var/atom/movable/AM in contents)
