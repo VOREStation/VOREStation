@@ -11831,7 +11831,7 @@
 "zw" = (
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/purple/border,
-/obj/structure/bed/chair/sofa/beige/left{
+/obj/structure/bed/chair/sofa/left/beige{
 	dir = 1
 	},
 /obj/structure/extinguisher_cabinet{
@@ -12128,7 +12128,7 @@
 	},
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/purple/border,
-/obj/structure/bed/chair/sofa/beige/right{
+/obj/structure/bed/chair/sofa/right/beige{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/neutral,

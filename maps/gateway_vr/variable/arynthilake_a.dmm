@@ -1414,7 +1414,7 @@
 	},
 /area/gateway/arynthilake/dome)
 "yl" = (
-/obj/structure/bed/chair/sofa/brown/right{
+/obj/structure/bed/chair/sofa/right/brown{
 	dir = 4
 	},
 /turf/simulated/floor/carpet,
@@ -1528,7 +1528,7 @@
 /turf/simulated/floor/carpet/purcarpet,
 /area/gateway/arynthilake/dome)
 "BX" = (
-/obj/structure/bed/chair/sofa/brown/corner,
+/obj/structure/bed/chair/sofa/corner/brown,
 /turf/simulated/floor/carpet,
 /area/gateway/arynthilake/dome)
 "Cl" = (
@@ -1719,7 +1719,7 @@
 /turf/simulated/floor/carpet/sblucarpet,
 /area/gateway/arynthilake/dome)
 "Hp" = (
-/obj/structure/bed/chair/sofa/brown/corner{
+/obj/structure/bed/chair/sofa/corner/brown{
 	dir = 1
 	},
 /obj/effect/landmark/mcguffin_spawner,
@@ -1736,7 +1736,7 @@
 /turf/simulated/floor/outdoors/newdirt,
 /area/gateway/arynthilake)
 "HR" = (
-/obj/structure/bed/chair/sofa/brown/left{
+/obj/structure/bed/chair/sofa/left/brown{
 	dir = 8
 	},
 /turf/simulated/floor/carpet,

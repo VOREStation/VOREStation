@@ -53,7 +53,7 @@
 /turf/simulated/floor/wood,
 /area/om_adventure/poi/cabin2)
 "t" = (
-/obj/structure/bed/chair/sofa/brown/corner,
+/obj/structure/bed/chair/sofa/corner/brown,
 /turf/simulated/floor/carpet/bcarpet,
 /area/om_adventure/poi/cabin2)
 "u" = (
@@ -64,7 +64,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/om_adventure/poi/cabin2)
 "v" = (
-/obj/structure/bed/chair/sofa/brown/left{
+/obj/structure/bed/chair/sofa/left/brown{
 	dir = 8
 	},
 /turf/simulated/floor/carpet/bcarpet,
@@ -124,7 +124,7 @@
 /turf/simulated/floor/wood,
 /area/om_adventure/poi/cabin2)
 "K" = (
-/obj/structure/bed/chair/sofa/brown/right{
+/obj/structure/bed/chair/sofa/right/brown{
 	dir = 4
 	},
 /turf/simulated/floor/carpet/bcarpet,
@@ -149,7 +149,7 @@
 /turf/simulated/floor/bmarble,
 /area/om_adventure/poi/cabin2)
 "P" = (
-/obj/structure/bed/chair/sofa/brown/corner{
+/obj/structure/bed/chair/sofa/corner/brown{
 	dir = 1
 	},
 /turf/simulated/floor/carpet/bcarpet,
