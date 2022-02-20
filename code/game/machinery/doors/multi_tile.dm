@@ -7,7 +7,7 @@
 	open_sound_powered = 'sound/machines/door/WideOpen.ogg'
 	close_sound_powered = 'sound/machines/door/WideClose.ogg'
 
-/obj/machinery/door/airlock/multi_tile/Initialize(mapload)
+/obj/machinery/door/airlock/multi_tile/Initialize()
 	. = ..()
 	SetBounds()
 	RegisterSignal(src, COMSIG_MOVABLE_MOVED, .proc/SetBounds)

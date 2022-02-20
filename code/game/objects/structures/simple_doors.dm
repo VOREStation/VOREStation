@@ -22,7 +22,7 @@
 	hardness -= material.combustion_effect(get_turf(src),temperature, 0.3)
 	CheckHardness()
 
-/obj/structure/simple_door/Initialize(mapload, var/material_name)
+/obj/structure/simple_door/Initialize(var/material_name)
 	. = ..()
 	if(material_name && !material)
 		material = material_name
@@ -221,13 +221,13 @@
 		return
 	SSradiation.radiate(src, round(material.radioactivity/3))
 
-/obj/structure/simple_door/wood/Initialize(mapload)
+/obj/structure/simple_door/wood/Initialize()
 	knock_sound = 'sound/machines/door/knock_wood.wav'
 
-/obj/structure/simple_door/hardwood/Initialize(mapload)
+/obj/structure/simple_door/hardwood/Initialize()
 	knock_sound = 'sound/machines/door/knock_wood.wav'
 
-/obj/structure/simple_door/sifwood/Initialize(mapload)
+/obj/structure/simple_door/sifwood/Initialize()
 	knock_sound = 'sound/machines/door/knock_wood.wav'
 
 /obj/structure/simple_door/iron
