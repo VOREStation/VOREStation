@@ -43,7 +43,6 @@
 	var/old_dangerous_objects = dangerous_objects
 	var/old_dynamic_lumcount = dynamic_lumcount
 
-<<<<<<< HEAD
 	var/turf/Ab = GetAbove(src)
 	if(Ab)
 		Ab.multiz_turf_del(src, DOWN)
@@ -62,16 +61,11 @@
 
 	cut_overlays(TRUE)
 	RemoveElement(/datum/element/turf_z_transparency)
-
-	if(ispath(N, /turf/simulated/floor))
-		var/turf/simulated/W = new N( locate(src.x, src.y, src.z) )
-=======
 	changing_turf = TRUE
 	qdel(src)
 
 	var/turf/W = new N( locate(src.x, src.y, src.z) )
-	if(istype(W, /turf/simulated/floor))
->>>>>>> a7877d86e50... Merge pull request #8341 from MistakeNot4892/qdel
+	if(ispath(N, /turf/simulated/floor))
 		if(old_fire)
 			W.fire = old_fire
 		W.RemoveLattice()

@@ -195,11 +195,7 @@
 			if(istype(AM, /mob/living) && !(AM.is_incorporeal()))
 				var/mob/living/M = AM
 				M.gib()
-<<<<<<< HEAD
 			else if(AM.simulated && !(istype(AM, /mob/observer)) && !(AM.is_incorporeal()))
-=======
-			else if(istype(AM, /mob/zshadow) || (AM.simulated && !(istype(AM, /mob/observer))))
->>>>>>> a7877d86e50... Merge pull request #8341 from MistakeNot4892/qdel
 				qdel(AM)
 
 	origin.move_contents_to(destination)
