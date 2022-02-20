@@ -129,6 +129,7 @@
 	soundproofed = TRUE
 	limit_mob_size = FALSE
 	block_suit_sensors = TRUE
+	forbid_events = TRUE
 
 /area/stellardelight/deck1/dorms/dorm1
 	name = "Dormitory One"
@@ -277,6 +278,10 @@
 /area/stellardelight/deck3/readingroom
 	name = "Reading Rooms"
 	sound_env = SMALL_SOFTFLOOR
+	flags = RAD_SHIELDED| BLUE_SHIELDED |AREA_FLAG_IS_NOT_PERSISTENT
+	soundproofed = TRUE
+	block_suit_sensors = TRUE
+	forbid_events = TRUE	
 
 /area/stellardelight/deck3/portdock
 	name = "Port Dock"
@@ -285,6 +290,9 @@
 /area/stellardelight/deck3/starboarddock
 	name = "Starboard Dock"
 	ambience = AMBIENCE_ARRIVALS
+
+/area/stellardelight/deck3/clownmimeoffice
+	name = "Clown and Mime Office"
 
 /area/stellardelight/deck1/exterior
 	name = "Deck One Exterior"

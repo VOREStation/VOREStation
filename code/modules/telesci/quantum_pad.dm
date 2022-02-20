@@ -13,6 +13,7 @@
 	var/last_teleport //to handle the cooldown
 	var/teleporting = 0 //if it's in the process of teleporting
 	var/power_efficiency = 1
+	var/boosted = 0 // do we teleport mecha?
 	var/obj/machinery/power/quantumpad/linked_pad
 
 	//mapping
@@ -31,6 +32,18 @@
 /obj/machinery/power/quantumpad/Destroy()
 	mapped_quantum_pads -= map_pad_id
 	return ..()
+
+/obj/machinery/power/quantumpad/examine(mob/user)
+	. = ..()
+	. += "<span class='notice'>It is [linked_pad ? "currently" : "not"] linked to another pad.</span>"
+	if(world.time < last_teleport + teleport_cooldown)
+		. += "<span class='warning'>[src] is recharging power. A timer on the side reads <b>[round((last_teleport + teleport_cooldown - world.time)/10)]</b> seconds.</span>"
+	if(boosted)
+		. += SPAN_NOTICE("There appears to be a booster haphazardly jammed into the side of [src]. That looks unsafe.")
+	if(!panel_open)
+		. += "<span class='notice'>The panel is <i>screwed</i> in, obstructing the linking device.</span>"
+	else
+		. += "<span class='notice'>The <i>linking</i> device is now able to be <i>scanned</i> with a multitool.</span>"
 
 /obj/machinery/power/quantumpad/RefreshParts()
 	var/E = 0
@@ -52,6 +65,11 @@
 		return
 
 	if(istype(I, /obj/item/device/multitool))
+		//VOREStation Addition Start
+		if(istype(get_area(src), /area/shuttle))
+			to_chat(user, "<span class='warning'>This is too unstable a platform for \the [src] to operate on!</span>")
+			return
+		//VOREStation Addition End
 		if(panel_open)
 			var/obj/item/device/multitool/M = I
 			M.connectable = src
@@ -64,6 +82,14 @@
 				to_chat(user, "<span class='notice'>You link [src] to the one in [I]'s buffer.</span>")
 				update_icon()
 				return 1
+	
+	if(istype(I, /obj/item/device/quantum_pad_booster))
+		var/obj/item/device/quantum_pad_booster/booster = I
+		visible_message("[user] violently jams [booster] into the side of [src]. [src] beeps, quietly.", \
+		"You hear the sound of a device being improperly installed in sensitive machinery, then subsequent beeping.", runemessage = "beep!")
+		playsound(src, 'sound/items/rped.ogg', 25, 1)
+		boosted = TRUE
+		qdel(I)
 
 	if(default_part_replacement(user, I))
 		return
@@ -107,6 +133,10 @@
 
 	if(istype(get_area(src), /area/shuttle))
 		to_chat(user, "<span class='warning'>This is too unstable a platform for \the [src] to operate on!</span>")
+		//VOREStation Addition Start
+		if(linked_pad)
+			linked_pad.linked_pad = null
+		//VOREStation Addition End
 		return
 
 	if(!powernet)
@@ -154,6 +184,11 @@
 	update_icon()
 	if(!linked_pad)
 		return
+	//VOREStation Addition Start
+	if(istype(get_area(src), /area/shuttle))
+		to_chat(user, "<span class='warning'>This is too unstable a platform for \the [src] to operate on!</span>")
+		return
+	//VOREStation Addition End
 	playsound(src, 'sound/weapons/flash.ogg', 25, 1)
 	teleporting = 1
 
@@ -213,6 +248,8 @@
 	
 	// Otherwise we'll need a powernet
 	var/power_to_use = 10000 / power_efficiency
+	if(boosted)
+		power_to_use *= 5
 	if(draw_power(power_to_use) != power_to_use)
 		return FALSE
 	return TRUE
@@ -220,7 +257,10 @@
 /obj/machinery/power/quantumpad/proc/transport_objects(turf/destination)
 	for(var/atom/movable/ROI in get_turf(src))
 		// if is anchored, don't let through
-		if(ROI.anchored)
+		if(ROI.anchored && !ismecha(ROI))
+			if(ismecha(ROI))
+				if(boosted)
+					continue
 			if(isliving(ROI))
 				var/mob/living/L = ROI
 				if(L.buckled)
@@ -229,7 +269,7 @@
 						continue
 				else
 					continue
-			else if(!isobserver(ROI))
+			else if(!isobserver(ROI) && !isEye(ROI))
 				continue
 		do_teleport(ROI, destination, local = FALSE)
 
@@ -262,3 +302,13 @@
 	to_chat(user, "<span class='warning'>You feel yourself pulled in different directions, before ending up not far from where you started.</span>")
 	flick("qpad-beam-out", src)
 	transport_objects(get_turf(dest))
+
+/obj/item/device/quantum_pad_booster
+	icon = 'icons/obj/device_vr.dmi'
+	name = "quantum pad particle booster"
+	desc = "A deceptively simple interface for increasing the mass of objects a quantum pad is capable of teleporting, at the cost of increased power draw."
+	description_info = "The three prongs at the base of the tool are not, in fact, for show."
+	force = 9
+	sharp = TRUE
+	item_state = "analyzer"
+	icon_state = "hacktool"

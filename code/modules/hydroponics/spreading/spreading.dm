@@ -3,15 +3,8 @@
 
 /proc/spacevine_infestation(var/potency_min=70, var/potency_max=100, var/maturation_min=5, var/maturation_max=15)
 	spawn() //to stop the secrets panel hanging
-		var/list/turf/simulated/floor/turfs = list() //list of all the empty floor turfs in the hallway areas
-		for(var/areapath in typesof(/area/hallway))
-			var/area/A = locate(areapath)
-			for(var/turf/simulated/floor/F in A.contents)
-				if(!F.check_density())
-					turfs += F
-
-		if(turfs.len) //Pick a turf to spawn at if we can
-			var/turf/simulated/floor/T = pick(turfs)
+		if(vinestart.len) //Pick a turf to spawn at if we can
+			var/turf/simulated/floor/T = pick(vinestart)
 			var/datum/seed/seed = SSplants.create_random_seed(1)
 			seed.set_trait(TRAIT_SPREAD,2)             // So it will function properly as vines.
 			seed.set_trait(TRAIT_POTENCY,rand(potency_min, potency_max)) // 70-100 potency will help guarantee a wide spread and powerful effects.
@@ -84,6 +77,10 @@
 	spread_chance = 0
 
 /obj/effect/plant/New(var/newloc, var/datum/seed/newseed, var/obj/effect/plant/newparent)
+	//VOREStation Edit Start
+	if(istype(loc, /turf/simulated/open))
+		qdel(src)
+	//VOREStation Edit End
 	..()
 
 	if(!newparent)
@@ -166,7 +163,12 @@
 		var/clr
 		if(seed.get_trait(TRAIT_BIOLUM_COLOUR))
 			clr = seed.get_trait(TRAIT_BIOLUM_COLOUR)
-		set_light(1+round(seed.get_trait(TRAIT_POTENCY)/20), l_color = clr)
+		//VOREStation Edit Start - Tons of super bright super long range lights everywhere is annoying and laggy, so let's limit it a bit.
+		var/blight = 1+round(seed.get_trait(TRAIT_POTENCY)/20)
+		if(blight >= 5)
+			blight = 5
+		set_light(blight, 0.5, l_color = clr)
+		//VOREStation Edit End
 		return
 	else
 		set_light(0)

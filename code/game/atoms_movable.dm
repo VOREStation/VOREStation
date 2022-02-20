@@ -85,6 +85,9 @@
 	if(!loc || !newloc)
 		return FALSE
 
+	if(SEND_SIGNAL(src, COMSIG_MOVABLE_PRE_MOVE, newloc, direct, movetime) & COMPONENT_MOVABLE_BLOCK_PRE_MOVE)
+		return FALSE
+
 	// Store this early before we might move, it's used several places
 	var/atom/oldloc = loc
 
@@ -232,6 +235,9 @@
 		riding_datum.handle_vehicle_offsets()
 	for (var/datum/light_source/light as anything in light_sources) // Cycle through the light sources on this atom and tell them to update.
 		light.source_atom.update_light()
+
+	SEND_SIGNAL(src, COMSIG_MOVABLE_MOVED, old_loc, direction)
+
 	return TRUE
 
 /atom/movable/set_dir(newdir)
@@ -265,6 +271,9 @@
 		throwing = 0
 		if(QDELETED(A))
 			return
+
+	SEND_SIGNAL(src, COMSIG_MOVABLE_BUMP, A)
+
 	A.Bumped(src)
 	A.last_bumped = world.time
 

@@ -31,6 +31,9 @@
 /datum/reagent/blood/touch_turf(var/turf/simulated/T)
 	if(!istype(T) || volume < 3)
 		return
+
+	..()
+
 	if(!data["donor"] || istype(data["donor"], /mob/living/carbon/human))
 		blood_splatter(T, src, 1)
 	else if(istype(data["donor"], /mob/living/carbon/alien))
@@ -169,6 +172,8 @@
 	if(!istype(T))
 		return
 
+	..()
+
 	var/datum/gas_mixture/environment = T.return_air()
 	var/min_temperature = T0C + 100 // 100C, the boiling point of water
 
@@ -190,14 +195,19 @@
 		T.wet_floor(1)
 
 /datum/reagent/water/touch_obj(var/obj/O, var/amount)
+	..()
 	if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/monkeycube))
 		var/obj/item/weapon/reagent_containers/food/snacks/monkeycube/cube = O
 		if(!cube.wrapped)
 			cube.Expand()
+	else if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/cube))
+		var/obj/item/weapon/reagent_containers/food/snacks/cube/cube = O
+		cube.Expand()
 	else
 		O.water_act(amount / 5)
 
 /datum/reagent/water/touch_mob(var/mob/living/L, var/amount)
+	..()
 	if(istype(L))
 		// First, kill slimes.
 		if(istype(L, /mob/living/simple_mob/slime))
@@ -252,6 +262,7 @@
 	glass_desc = "Unless you are an industrial tool, this is probably not safe for consumption."
 
 /datum/reagent/fuel/touch_turf(var/turf/T, var/amount)
+	..()
 	new /obj/effect/decal/cleanable/liquid_fuel(T, amount, FALSE)
 	remove_self(amount)
 	return
@@ -261,5 +272,6 @@
 	M.adjustToxLoss(4 * removed)
 
 /datum/reagent/fuel/touch_mob(var/mob/living/L, var/amount)
+	..()
 	if(istype(L))
 		L.adjust_fire_stacks(amount / 10) // Splashing people with welding fuel to make them easy to ignite!

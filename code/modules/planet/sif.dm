@@ -334,7 +334,7 @@ var/datum/planet/sif/planet_sif = null
 		"A bright flash heralds the approach of a storm."
 	)
 	outdoor_sounds_type = /datum/looping_sound/weather/rain/heavy
-	indoor_sounds_type = /datum/looping_sound/weather/rain/heavy/indoors
+	indoor_sounds_type = /datum/looping_sound/weather/rain/indoors/heavy
 
 
 	transition_chances = list(

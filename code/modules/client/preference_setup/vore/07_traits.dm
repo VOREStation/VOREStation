@@ -75,6 +75,13 @@
 		pref.starting_trait_points = STARTING_SPECIES_POINTS
 		pref.max_traits = MAX_SPECIES_TRAITS
 
+	if(pref.organ_data[O_BRAIN])	//Checking if we have a synth on our hands, boys.
+		pref.dirty_synth = 1
+		pref.gross_meatbag = 0
+	else
+		pref.gross_meatbag = 1
+		pref.dirty_synth = 0
+
 	if(pref.species != SPECIES_CUSTOM)
 		pref.pos_traits.Cut()
 		pref.neg_traits.Cut()
@@ -105,7 +112,7 @@
 		var/take_flags = initial(path.can_take)
 		if((pref.dirty_synth && !(take_flags & SYNTHETICS)) || (pref.gross_meatbag && !(take_flags & ORGANICS)))
 			pref.neg_traits -= path
-	
+
 	var/datum/species/selected_species = GLOB.all_species[pref.species]
 	if(selected_species.selects_bodytype)
 		// Allowed!

@@ -18,8 +18,10 @@
 	if(amount < 1)
 		return
 
+	count = min(count, amount)
+
 	while(count > 0)
-		var/obj/item/stack/S = I.get_product(get_turf(src), min(count, amount))
+		var/obj/item/stack/S = I.get_product(get_turf(src), count)
 		count -= S.get_amount()
 	SStgui.update_uis(src)
 

@@ -18,7 +18,7 @@
 /mob/living/carbon/human/singularity_act()
 	var/gain = 20
 	if(mind)
-		if((mind.assigned_role == "Station Engineer") || (mind.assigned_role == "Chief Engineer"))
+		if((mind.assigned_role == "Engineer") || (mind.assigned_role == "Chief Engineer"))
 			gain = 100
 		if(mind.assigned_role == USELESS_JOB) //VOREStation Edit - Visitor not Assistant
 			gain = rand(0, 300)

@@ -220,6 +220,33 @@
 	mappath = 'maps/gateway_vr/wildwest.dmm'
 	associated_map_datum = /datum/map_z_level/common_lateload/gateway_destination
 
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+/datum/map_template/common_lateload/om_adventure
+	name = "OM Adventure Submap"
+	desc = "Please do not use this."
+	mappath = null
+	associated_map_datum = null
+
+/datum/map_z_level/common_lateload/om_adventure_destination
+	name = "OM Adventure Destination"
+	z = Z_LEVEL_OM_ADVENTURE
+
+#include "../om_adventure/grasscave.dm"
+/datum/map_template/common_lateload/om_adventure/grasscave
+	name = "Grass Cave"
+	desc = "Looks like a cave with some grass in it."
+	mappath = 'maps/om_adventure/grasscave.dmm'
+	associated_map_datum = /datum/map_z_level/common_lateload/om_adventure_destination
+
+/datum/map_template/common_lateload/om_adventure/grasscave/on_map_loaded(z)
+	. = ..()
+	seed_submaps(list(z), 60, /area/om_adventure/grasscave/unexplored, /datum/map_template/om_adventure/outdoor)
+	seed_submaps(list(z), 60, /area/om_adventure/grasscave/rocks, /datum/map_template/om_adventure/cave)
+	new /datum/random_map/automata/cave_system/no_cracks(null, 3, 3, z, world.maxx - 4, world.maxy - 4)
+	new /datum/random_map/noise/ore/grasscave(null, 1, 1, z, 64, 64)
+
 //////////////////////////////////////////////////////////////////////////////////////
 // Admin-use z-levels for loading whenever an admin feels like
 #if AWAY_MISSION_TEST
@@ -401,6 +428,53 @@
 	mobs_to_pick_from = list(
 		/mob/living/simple_mob/shadekin
 	)
+
+//////////////////////////////////////////////////////////////////////////////
+//Antag/Event/ERT Areas
+
+#include "../submaps/admin_use_vr/ert.dm"
+#include "../submaps/admin_use_vr/mercship.dm"
+#include "../submaps/admin_use_vr/salamander_trader.dm"
+
+/datum/map_template/admin_use/ert
+	name = "Special Area - ERT"
+	desc = "It's the ERT ship! Lorge."
+	mappath = 'maps/submaps/admin_use_vr/ert.dmm'
+
+/datum/map_template/admin_use/trader
+	name = "Special Area - Trader"
+	desc = "Big trader ship."
+	mappath = 'maps/submaps/admin_use_vr/tradeship.dmm'
+
+/datum/map_template/admin_use/salamander_trader
+	name = "Special Area - Salamander Trader"
+	desc = "Modest trader ship."
+	mappath = 'maps/submaps/admin_use_vr/salamander_trader.dmm'
+
+/datum/map_template/admin_use/mercenary
+	name = "Special Area - Merc Ship"
+	desc = "Prepare tae be boarded, arr!"
+	mappath = 'maps/submaps/admin_use_vr/kk_mercship.dmm'
+
+/datum/map_template/admin_use/skipjack
+	name = "Special Area - Skipjack Base"
+	desc = "Stinky!"
+	mappath = 'maps/submaps/admin_use_vr/skipjack.dmm'
+
+/datum/map_template/admin_use/thunderdome
+	name = "Special Area - Thunderdome"
+	desc = "Thunderrrrdomeee"
+	mappath = 'maps/submaps/admin_use_vr/thunderdome.dmm'
+
+/datum/map_template/admin_use/wizardbase
+	name = "Special Area - Wizard Base"
+	desc = "Wingardium Levosia"
+	mappath = 'maps/submaps/admin_use_vr/wizard.dmm'
+
+/datum/map_template/admin_use/dojo
+	name = "Special Area - Ninja Dojo"
+	desc = "Sneaky"
+	mappath = 'maps/submaps/admin_use_vr/dojo.dmm'
 
 //////////////////////////////////////////////////////////////////////////////
 //Overmap ship spawns

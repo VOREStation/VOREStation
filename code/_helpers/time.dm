@@ -50,12 +50,16 @@ var/station_date = ""
 var/next_station_date_change = 1 DAY
 
 #define duration2stationtime(time) time2text(station_time_in_ds + time, "hh:mm")
-#define worldtime2stationtime(time) time2text(GLOB.roundstart_hour HOURS + time, "hh:mm")
+#define roundstart_delay_time (world.time - round_duration_in_ds)
+#define world_time_in_ds(time) (GLOB.roundstart_hour HOURS + time - roundstart_delay_time)
 #define round_duration_in_ds (GLOB.round_start_time ? REALTIMEOFDAY - GLOB.round_start_time : 0)
 #define station_time_in_ds (GLOB.roundstart_hour HOURS + round_duration_in_ds)
 
 /proc/stationtime2text()
 	return time2text(station_time_in_ds + GLOB.timezoneOffset, "hh:mm")
+
+/proc/worldtime2stationtime(time)
+	return time2text(world_time_in_ds(time) + GLOB.timezoneOffset, "hh:mm")
 
 /proc/stationdate2text()
 	var/update_time = FALSE
