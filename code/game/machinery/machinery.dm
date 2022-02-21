@@ -123,7 +123,7 @@ Class Procs:
 
 /obj/machinery/Initialize(var/ml, d=0)
 	. = ..()
-	if(isnum(d))
+	if(isnum(d))	//VOREStation Edit - bugfix
 		set_dir(d)
 	if(ispath(circuit))
 		circuit = new circuit(src)
