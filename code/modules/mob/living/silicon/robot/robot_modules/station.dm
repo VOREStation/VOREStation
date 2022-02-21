@@ -59,6 +59,8 @@ var/global/list/robot_modules = list(
 	handle_shell(R)
 
 	if(R.radio)
+		if(R.shell)
+			channels = R.mainframe.aiRadio.channels
 		addtimer(CALLBACK(R.radio, /obj/item/device/radio/proc/recalculateChannels), 0)
 
 	vr_add_sprites() //Vorestation Edit: For vorestation only sprites
