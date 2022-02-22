@@ -1,3 +1,5 @@
+var/list/vinestart = list()
+var/list/verminstart = list()
 var/list/awayabductors = list() // List of scatter landmarks for Abductors in Gateways
 var/list/eventdestinations = list() // List of scatter landmarks for VOREStation event portals
 var/list/eventabductors = list() // List of scatter landmarks for VOREStation abductor portals

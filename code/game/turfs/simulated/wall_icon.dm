@@ -98,7 +98,8 @@
 	if(!istype(material))
 		return
 	var/list/dirs = list()
-	for(var/turf/simulated/wall/W in orange(src, 1))
+	var/inrange = orange(src, 1)
+	for(var/turf/simulated/wall/W in inrange)
 		if(!istype(W.material))
 			continue
 		if(propagate)
@@ -106,11 +107,11 @@
 			W.update_icon()
 		if(can_join_with_wall(W))
 			dirs += get_dir(src, W)
-	for(var/obj/structure/low_wall/WF in orange(src, 1))
+	for(var/obj/structure/low_wall/WF in inrange)
 		if(can_join_with_low_wall(WF))
 			dirs += get_dir(src, WF)
 
-	special_wall_connections(dirs, orange(src, 1))
+	special_wall_connections(dirs, inrange)
 	wall_connections = dirs_to_corner_states(dirs)
 
 /turf/simulated/wall/proc/special_wall_connections(list/dirs, list/inrange)
