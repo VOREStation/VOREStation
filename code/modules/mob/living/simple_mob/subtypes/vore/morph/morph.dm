@@ -324,6 +324,7 @@
 		prey_body = prey
 		prey_body.forceMove(get_turf(parent_morph))
 		prey_body.muffled = FALSE
+		prey_body.absorbed = FALSE
 		absorbed = TRUE
 		ckey = prey_ckey
 		prey_body.ckey = parent_morph.original_ckey
