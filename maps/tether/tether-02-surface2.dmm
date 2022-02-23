@@ -12309,9 +12309,7 @@
 /obj/effect/floor_decal/corner/lime/border{
 	dir = 6
 	},
-/obj/machinery/smartfridge{
-	dir = 1
-	},
+/obj/machinery/smartfridge/produce,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
 "atJ" = (
