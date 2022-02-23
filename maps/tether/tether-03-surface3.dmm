@@ -23397,7 +23397,7 @@
 	})
 "aMF" = (
 /obj/structure/window/fancy_shuttle{
-	fancy_shuttle_tag = "tourbus"
+	fancy_shuttle_tag = "lifeboat1"
 	},
 /turf/simulated/floor,
 /area/shuttle/tether{
