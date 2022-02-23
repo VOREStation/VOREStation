@@ -50,6 +50,10 @@
 	max_vermin = 3
 	things_to_spawn = list(/obj/effect/spider/spiderling/non_growing)
 
+/datum/event2/event/infestation/cockroaches
+	vermin_string = "cockroaches"
+	max_vermin = 6
+	things_to_spawn = list(/mob/living/simple_mob/animal/passive/cockroach)
 
 /datum/event2/event/infestation/set_up()
 	turfs = find_random_turfs(max_vermin)
