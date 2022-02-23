@@ -62,7 +62,7 @@
 	name = "Tether Backup"
 	location = FERRY_LOCATION_OFFSITE //Offsite is the surface hangar
 	warmup_time = 5
-	move_time = 45
+	move_time = 5
 	landmark_offsite = "tether_backup_low"
 	landmark_station = "tether_dockarm_d1a3"
 	landmark_transition = "tether_backup_transit"
