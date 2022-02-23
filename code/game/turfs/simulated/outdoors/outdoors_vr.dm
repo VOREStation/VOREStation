@@ -72,6 +72,7 @@
 	edge_blending_priority = 1
 	movement_cost = -0.5
 	initial_flooring = /decl/flooring/outdoors/sidewalk
+	can_dirty = TRUE
 
 /decl/flooring/outdoors/sidewalk
 	name = "sidewalk"
