@@ -102,6 +102,7 @@
 	name = "grass patch"
 	icon = 'icons/turf/flooring/grass.dmi'
 	icon_state = "grass0"
+	can_dirty = FALSE //VOREStation Edit
 	initial_flooring = /decl/flooring/grass
 
 /turf/simulated/floor/tiled
