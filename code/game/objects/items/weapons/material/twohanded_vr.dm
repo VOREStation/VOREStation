@@ -8,13 +8,13 @@
 				)
 	desc = "An infernum made riding crop with Malady Blanche engraved in the shaft. It's a little worn from how many butts it has spanked."
 
-/obj/item/weapon/material/twohanded/saber
+/obj/item/weapon/material/twohanded/longsword
     w_class = ITEMSIZE_NORMAL
-    name = "saber"
+    name = "longsword"
     desc = "a more elegant weapon from a more civilised age"
     icon= 'icons/obj/weapons_vr.dmi'
-    icon_state = "saber"
-    base_icon = "saber"
+    icon_state = "longsword"
+    base_icon = "longsword"
     item_icons = list(
 			slot_l_hand_str = 'icons/mob/items/lefthand_melee_vr.dmi',
 			slot_r_hand_str = 'icons/mob/items/righthand_melee_vr.dmi',
