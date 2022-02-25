@@ -6,30 +6,39 @@
 	anchored = TRUE
 	density = TRUE
 	unacidable = TRUE
-	var/accepts = "coin"		// "coin" - "money" - "item"
-	var/accepted_itemtype		//only for use with item mode
-	var/accepted_item_worth = 1	//only for use with item mode
-	var/bank = list()
-	var/coinbalance = 0			//only for use with coin mode
-	var/list/start_products = list()
-	var/list/products = list()
-	var/list/prices = list()
-	var/list/multiple = list()
-	var/trading = FALSE
-	var/welcome_msg = "This machine accepts"
-	var/welcome_accepts_name = "curious coins"
-	var/welcome_msg_finish = "Would you like to browse the wares?"
-	var/list/interact_sound = list()
-	var/sound_cooldown = 0
-	var/sound_lastplayed = 0
+	var/accepts = "coin"				// "coin" - "money" - "item" - determines the 'kind' of thing the machine will accept
+	var/accepted_itemtype				//only for use with "item" mode - if set to a type path, it will count anything with that type path
+	var/accepted_item_worth = 1			//only for use with "item" mode - when counted, things of the appropriate type will add this much to the banked funds
+	var/bank = list()					//Anything accepted by "money" or "item" mode will be marked down here
+	var/coinbalance = 0					//only for use with coin mode - when you put a curious coin in, it adds the coins value to this number
+	var/list/start_products = list()	//Type paths entered here will spawn inside the trader and add themselves to the products list.
+	var/list/products = list()			//Anything in this list will be listed for sale
+	var/list/prices = list()			//Enter a type path with an associated number, and if the trader tries to sell something of that type, it will expect the number as the cost for that product
+	var/list/multiple = list()			//Enter a type path with an associated number, and the trader will have however many of that type to sell as the number you entered
+	var/trading = FALSE					//'Busy' - Only one person can trade at a time.	
+	var/welcome_msg = "This machine accepts"	//The first part of the welcome message
+	var/welcome_accepts_name = "curious coins"	//The name of the kind of thing the trader expects, automatically set except on "item" mode, where if you enter a value it will not change it.
+	var/welcome_msg_finish = "Would you like to browse the wares?"	//The final part of the welcome message.
+	var/list/interact_sound = list()	//The sounds that may play when you click it. It will pick one at random from this list. It only thinks about this if there's anything in the list.
+	var/sound_cooldown = 0				//The sound can only play this often in deciseconds. Use '10 SECONDS' format to make it easier to read
+	var/sound_lastplayed = 0			//Automatically set when the sound is played.
+	var/pick_inventory = FALSE			//If true, when initialized the trader will randomly pick things from its start products list to set up
+	var/pick_inventory_quantity = 0		//This is how many things will be picked if pick_inventory is TRUE
 
 /obj/trader/Initialize(mapload)
 	. = ..()
-	for(var/item in start_products)
-		var/obj/p = new item
-		contents += p
-		products += p
-		start_products -= item
+	if(pick_inventory)
+		while(pick_inventory_quantity > 0)
+			var/t = pickweight(start_products)
+			var/i = new t(src)
+			start_products -= t
+			products += i
+			pick_inventory_quantity --
+	else
+		for(var/item in start_products)
+			var/obj/p = new item(src)
+			products += p
+			start_products -= item
 
 /obj/trader/attack_hand(mob/living/user)
 	. = ..()
@@ -204,7 +213,7 @@
 					coinbalance -= 5
 				else
 					new /obj/item/weapon/aliencoin/basic(get_turf(loc))
-					coinbalance -= 1
+					coinbalance --
 		if("money")
 			for(var/obj/c in bank)
 				c.forceMove(get_turf(loc))
@@ -240,3 +249,7 @@
 	accepts = "money"
 /obj/trader/capture_crystal/item
 	accepts = "item"
+
+/obj/trader/capture_crystal/pick
+	pick_inventory = TRUE
+	pick_inventory_quantity = 1
