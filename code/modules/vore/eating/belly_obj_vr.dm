@@ -250,10 +250,21 @@
 	if(isliving(thing))
 		var/mob/living/M = thing
 		M.updateVRPanel()
+		var/raw_desc //Let's use this to avoid needing to write the reformat code twice
 		if(absorbed_desc && M.absorbed)
-			to_chat(M, "<span class='notice'><B>[absorbed_desc]</B></span>")
+			raw_desc = absorbed_desc
 		else if(desc)
-			to_chat(M, "<span class='notice'><B>[desc]</B></span>")
+			raw_desc = desc
+
+		//Was there a description text? If so, it's time to format it!
+		if(raw_desc)
+			//Replace placeholder vars
+			var/formatted_desc
+			formatted_desc = replacetext(raw_desc, "%belly", lowertext(name)) //replace with this belly's name
+			formatted_desc = replacetext(formatted_desc, "%pred", owner) //replace with this belly's owner
+			formatted_desc = replacetext(formatted_desc, "%prey", M) //replace with whatever mob entered into this belly
+			to_chat(M, "<span class='notice'><B>[formatted_desc]</B></span>")
+
 		var/taste
 		if(can_taste && (taste = M.get_taste_message(FALSE)))
 			to_chat(owner, "<span class='notice'>[M] tastes of [taste].</span>")
@@ -343,6 +354,10 @@
 	if (!(M in contents))
 		return 0 // They weren't in this belly anyway
 
+	if(istype(M, /mob/living/simple_mob/vore/hostile/morph/dominated_prey))
+		var/mob/living/simple_mob/vore/hostile/morph/dominated_prey/p = M
+		p.undo_prey_takeover(FALSE)
+		return 0
 	for(var/mob/living/L in M.contents)
 		L.muffled = 0
 	for(var/obj/item/weapon/holder/H in M.contents)
@@ -363,6 +378,7 @@
 			ML.muffled = 0
 		if(ML.absorbed)
 			ML.absorbed = FALSE
+			handle_absorb_langs(ML, owner)
 			if(ishuman(M) && ishuman(OW))
 				var/mob/living/carbon/human/Prey = M
 				var/mob/living/carbon/human/Pred = OW
@@ -665,6 +681,11 @@
 	absorb_alert_prey = replacetext(absorb_alert_prey, "%countprey", absorbed_count)
 
 	M.absorbed = TRUE
+	if(M.ckey)
+		owner.temp_language_sources += M
+		M.temp_language_sources += owner
+		handle_absorb_langs(M, owner)
+
 	to_chat(M, "<span class='notice'>[absorb_alert_prey]</span>")
 	to_chat(owner, "<span class='notice'>[absorb_alert_owner]</span>")
 	if(M.noisy) //Mute drained absorbee hunger if enabled.
@@ -696,7 +717,12 @@
 
 
 	if(absorbed_desc)
-		to_chat(M, "<span class='notice'><B>[absorbed_desc]</B></span>")
+		//Replace placeholder vars
+		var/formatted_abs_desc
+		formatted_abs_desc = replacetext(absorbed_desc, "%belly", lowertext(name)) //replace with this belly's name
+		formatted_abs_desc = replacetext(formatted_abs_desc, "%pred", owner) //replace with this belly's owner
+		formatted_abs_desc = replacetext(formatted_abs_desc, "%prey", M) //replace with whatever mob entered into this belly
+		to_chat(M, "<span class='notice'><B>[formatted_abs_desc]</B></span>")
 
 	//Update owner
 	owner.updateVRPanel()
@@ -725,6 +751,7 @@
 	unabsorb_alert_prey = replacetext(unabsorb_alert_prey, "%countprey", absorbed_count)
 
 	M.absorbed = FALSE
+	handle_absorb_langs(M, owner)
 	to_chat(M, "<span class='notice'>[unabsorb_alert_prey]</span>")
 	to_chat(owner, "<span class='notice'>[unabsorb_alert_owner]</span>")
 
@@ -735,6 +762,39 @@
 	owner.updateVRPanel()
 	if(isanimal(owner))
 		owner.update_icon()
+
+/////////////////////////////////////////////////////////////////////////
+/obj/belly/proc/handle_absorb_langs(var/mob/living/prey, var/mob/living/pred)
+	for(var/mob/living/p in pred.temp_language_sources)		//Let's look at the pred's sources
+		if (!p.absorbed)
+			for(var/L in pred.temp_languages)
+				if(L in p.languages)
+					pred.languages -= L
+					pred.temp_languages -= L
+					pred.temp_language_sources -= p
+		else
+			for(var/L in p.languages)
+				if(L in pred.languages)
+					continue
+				pred.languages += L
+				pred.temp_languages += L
+
+	for(var/mob/living/P in prey.temp_language_sources)		//Let's look at the prey's sources
+		if (!prey.absorbed)
+			for(var/L in prey.temp_languages)
+				if(L in P.languages)
+					prey.languages -= L
+					prey.temp_languages -= L
+					prey.temp_language_sources -= P
+		else
+			for(var/L in P.languages)
+				if(L in prey.languages)
+					continue
+				prey.languages += L
+				prey.temp_languages += L
+				
+////////////////////////////////////////////////////////////////////////
+
 
 //Digest a single item
 //Receives a return value from digest_act that's how much nutrition

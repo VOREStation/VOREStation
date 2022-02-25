@@ -12,6 +12,8 @@
 	var/obj/belly/vore_selected			// Default to no vore capability.
 	var/list/vore_organs = list()		// List of vore containers inside a mob
 	var/absorbed = FALSE				// If a mob is absorbed into another
+	var/list/temp_language_sources = list()	//VOREStation Addition - Absorbs add languages to the pred
+	var/list/temp_languages = list()		//VOREStation Addition - Absorbs add languages to the pred
 	var/weight = 137					// Weight for mobs for weightgain system
 	var/weight_gain = 1 				// How fast you gain weight
 	var/weight_loss = 0.5 				// How fast you lose weight
@@ -403,6 +405,11 @@
 
 	//You're in a belly!
 	if(isbelly(loc))
+		//You've been taken over by a morph
+		if(istype(src, /mob/living/simple_mob/vore/hostile/morph/dominated_prey))
+			var/mob/living/simple_mob/vore/hostile/morph/dominated_prey/s = src
+			s.undo_prey_takeover(TRUE)
+			return
 		var/obj/belly/B = loc
 		var/confirm = tgui_alert(src, "You're in a mob. Don't use this as a trick to get out of hostile animals. This is for escaping from preference-breaking and if you're otherwise unable to escape from endo (pred AFK for a long time).", "Confirmation", list("Okay", "Cancel"))
 		if(confirm != "Okay" || loc != B)
@@ -443,7 +450,6 @@
 		crystal.bound_mob = null
 		crystal.bound_mob = capture_crystal = 0
 		log_and_message_admins("[key_name(src)] used the OOC escape button to get out of [crystal] owned by [crystal.owner]. [ADMIN_FLW(src)]")
-
 	//Don't appear to be in a vore situation
 	else
 		to_chat(src,"<span class='alert'>You aren't inside anyone, though, is the thing.</span>")
@@ -556,7 +562,10 @@
 
 /obj/belly/return_air_for_internal_lifeform(var/mob/living/lifeform)
 	//Free air until someone wants to code processing it for reals from predbreaths
-	var/air_type = lifeform.get_perfect_belly_air_type()		// Without any overrides/changes, its gonna be /datum/gas_mixture/belly_air
+	var/air_type = /datum/gas_mixture/belly_air
+	if(istype(lifeform))	// If this doesn't succeed, then 'lifeform' is actually a bag or capture crystal with someone inside
+		air_type = lifeform.get_perfect_belly_air_type()		// Without any overrides/changes, its gonna be /datum/gas_mixture/belly_air
+	
 	var/air = new air_type(1000)
 	return air
 

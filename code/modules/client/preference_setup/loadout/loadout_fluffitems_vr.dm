@@ -851,6 +851,12 @@
 	ckeywhitelist = list("pastelprincedan", "hatterhat")
 	character_name = list("Masumi Maki", "Harold Robinson")
 
+/datum/gear/fluff/slimecat_rd_plush
+	path = /obj/item/toy/plushie/fluff/slimeowshi
+	display_name = "slimecat RD plushie"
+	ckeywhitelist = list("pastelprincedan")
+	character_name = list("Kiyoshi Maki", "Masumi Maki")
+
 //  Q CKEYS
 
 //  R CKEYS
@@ -885,6 +891,12 @@
 	display_name = "Pathfinder's ITG ID"
 	ckeywhitelist = list("residentcody")
 	character_name = list("Pathfinder")
+
+/datum/gear/fluff/revolver_claymore
+	path = /obj/item/weapon/sword/fluff/revolver
+	display_name = "Catnip"
+	ckeywhitelist = list("revolvereloise")
+	character_name = list("Revolver Eloise")
 
 /datum/gear/fluff/nikki_dorky_outfit
 	path = /obj/item/weapon/storage/box/fluff
@@ -957,6 +969,20 @@
 	slot = slot_head
 	ckeywhitelist = list("scree")
 	character_name = list("Scree")
+
+/datum/gear/fluff/avida_dress
+	path = /obj/item/clothing/under/skirt/outfit/fluff/avida
+	display_name = "Avida's Dress"
+	slot = slot_w_uniform
+	ckeywhitelist = list("scree")
+	character_name = list("Avida")
+
+/datum/gear/fluff/avida_hat
+	path = /obj/item/clothing/head/fluff/avida
+	display_name = "Avida's Hat"
+	slot = slot_head
+	ckeywhitelist = list("scree")
+	character_name = list("Avida")
 
 /datum/gear/fluff/alfonso_sunglasses
 	path = /obj/item/clothing/glasses/sunglasses/fluff/alfonso
@@ -1109,6 +1135,11 @@
 	character_name = list("Konor Foxe")
 
 //  U CKEYS
+/datum/gear/fluff/brad_jordans
+	path = /obj/item/clothing/shoes/fluff/airjordans
+	display_name = "Bradley's Air Jordans"
+	ckeywhitelist = list("unclefruitvevo")
+	character_name = list("Bradley Khatibi")
 
 //  V CKEYS
 /datum/gear/fluff/verie_suit
@@ -1332,3 +1363,9 @@
 	display_name = "Nehi's Radio"
 	ckeywhitelist = list("zodiacshadow")
 	character_name = list("Nehi Maximus")
+
+/datum/gear/fluff/lucky_amour
+	path = /obj/item/device/modkit_conversion/crusader_luck
+	display_name = "Lucky's amour"
+	ckeywhitelist = list ("thedavestdave")
+	character_name = list("Lucky")

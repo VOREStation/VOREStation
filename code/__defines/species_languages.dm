@@ -47,6 +47,7 @@
 #define AG_WEAKEN	0x10	// too weak to move, oof
 #define AG_BLURRY	0x20	// blurred vision!
 #define AG_SLEEPY	0x40	// fatigue/exhaustion
+#define AG_CONFUSE	0x80	// disorientation - VOREStation addition
 
 // Species spawn flags
 #define SPECIES_IS_WHITELISTED      0x1  // Must be whitelisted to play.

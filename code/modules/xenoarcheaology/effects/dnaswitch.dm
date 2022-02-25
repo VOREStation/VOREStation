@@ -4,6 +4,9 @@
 	effect_type = EFFECT_ORGANIC
 	var/severity
 
+	effect_state = "smoke"
+	effect_color = "#77ff83"
+
 /datum/artifact_effect/dnaswitch/New()
 	..()
 	if(effect == EFFECT_AURA)
@@ -28,6 +31,7 @@
 	return 1
 
 /datum/artifact_effect/dnaswitch/DoEffectAura()
+	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/T = get_turf(holder)
 		for(var/mob/living/carbon/human/H in range(src.effectrange,T))
@@ -47,6 +51,7 @@
 					scramble(0, H, weakness * severity)
 
 /datum/artifact_effect/dnaswitch/DoEffectPulse()
+	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/T = get_turf(holder)
 		for(var/mob/living/carbon/human/H in range(200, T))

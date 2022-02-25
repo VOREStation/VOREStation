@@ -28,7 +28,7 @@
 
 	if(N == /turf/space)
 		var/turf/below = GetBelow(src)
-		if(istype(below) && (air_master.has_valid_zone(below) || air_master.has_valid_zone(src)) && (!istype(below, /turf/unsimulated/wall) && !istype(below, /turf/simulated/sky)))	// VOREStation Edit: Weird open space
+		if(istype(below) && (air_master.has_valid_zone(below) || air_master.has_valid_zone(src)) && !(src.z in using_map.below_blocked_levels) && (!istype(below, /turf/unsimulated/wall) && !istype(below, /turf/simulated/sky)))	// VOREStation Edit: Weird open space
 			N = /turf/simulated/open
 
 	var/obj/fire/old_fire = fire
@@ -61,49 +61,29 @@
 
 	cut_overlays(TRUE)
 	RemoveElement(/datum/element/turf_z_transparency)
+	changing_turf = TRUE
+	qdel(src)
 
+	var/turf/W = new N( locate(src.x, src.y, src.z) )
 	if(ispath(N, /turf/simulated/floor))
-		var/turf/simulated/W = new N( locate(src.x, src.y, src.z) )
 		if(old_fire)
-			fire = old_fire
+			W.fire = old_fire
+		W.RemoveLattice()
+	else if(old_fire)
+		old_fire.RemoveFire()
 
-		if (istype(W,/turf/simulated/floor))
-			W.RemoveLattice()
+	if(tell_universe)
+		universe.OnTurfChange(W)
 
-		if(tell_universe)
-			universe.OnTurfChange(W)
+	if(air_master)
+		air_master.mark_for_update(W)
 
-		if(air_master)
-			air_master.mark_for_update(src) //handle the addition of the new turf.
-
-		for(var/turf/space/S in range(W,1))
-			S.update_starlight()
-
-		W.levelupdate()
-		W.update_icon(1)
-		W.post_change()
-		. = W
-
-	else
-
-		var/turf/W = new N( locate(src.x, src.y, src.z) )
-
-		if(old_fire)
-			old_fire.RemoveFire()
-
-		if(tell_universe)
-			universe.OnTurfChange(W)
-
-		if(air_master)
-			air_master.mark_for_update(src)
-
-		for(var/turf/space/S in range(W,1))
-			S.update_starlight()
-
-		W.levelupdate()
-		W.update_icon(1)
-		W.post_change()
-		. =  W
+	for(var/turf/space/S in range(W, 1))
+		S.update_starlight()
+	W.levelupdate()
+	W.update_icon(1)
+	W.post_change()
+	. =  W
 
 	dangerous_objects = old_dangerous_objects
 

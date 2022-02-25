@@ -2757,6 +2757,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/effect/landmark/vermin,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/security/detective)
 "aei" = (
@@ -7951,6 +7952,7 @@
 	},
 /obj/effect/floor_decal/borderfloor/corner,
 /obj/effect/floor_decal/corner/red/bordercorner,
+/obj/effect/landmark/vermin,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/middlehall)
 "amn" = (
@@ -8770,6 +8772,7 @@
 /obj/effect/floor_decal/corner/paleblue/diagonal,
 /obj/item/weapon/deck/cards,
 /obj/structure/table/glass,
+/obj/effect/landmark/vermin,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
 "anG" = (
@@ -10301,7 +10304,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/mob/living/simple_mob/animal/passive/snake/noodle,
+/mob/living/simple_mob/animal/passive/snake/python/noodle,
 /turf/simulated/floor/grass,
 /area/chapel/main)
 "aqi" = (
@@ -12306,9 +12309,7 @@
 /obj/effect/floor_decal/corner/lime/border{
 	dir = 6
 	},
-/obj/machinery/smartfridge{
-	dir = 1
-	},
+/obj/machinery/smartfridge/produce,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_two)
 "atJ" = (
@@ -14942,6 +14943,9 @@
 /obj/machinery/atmospherics/pipe/simple/visible/purple{
 	dir = 5
 	},
+/obj/effect/landmark{
+	name = "maint_pred"
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/asmaint2)
 "ayB" = (
@@ -16542,6 +16546,9 @@
 	dir = 4
 	},
 /obj/machinery/light/small,
+/obj/effect/landmark{
+	name = "maint_pred"
+	},
 /turf/simulated/floor/plating,
 /area/maintenance/asmaint2)
 "aCg" = (
@@ -19660,6 +19667,9 @@
 	dir = 1;
 	pixel_y = -22
 	},
+/obj/effect/landmark{
+	name = "maint_pred"
+	},
 /turf/simulated/floor,
 /area/maintenance/lower/rnd)
 "aIk" = (
@@ -21417,6 +21427,7 @@
 "aLM" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/effect/landmark/vines,
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/surface_two_hall)
 "aLN" = (
@@ -32820,6 +32831,10 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai)
+"dnD" = (
+/obj/effect/landmark/vermin,
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/uppersouthstairwell)
 "dzE" = (
 /obj/effect/floor_decal/chapel{
 	dir = 8
@@ -33063,6 +33078,13 @@
 /obj/machinery/light/small,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/fish_farm)
+"grX" = (
+/obj/effect/floor_decal/rust,
+/obj/effect/landmark{
+	name = "maint_pred"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/atmos)
 "gsU" = (
 /obj/structure/table/rack,
 /obj/random/maintenance/engineering,
@@ -33250,6 +33272,12 @@
 	},
 /turf/simulated/floor/bluegrid,
 /area/ai_upload)
+"iLF" = (
+/obj/effect/landmark{
+	name = "maint_pred"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/south)
 "jcd" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -33265,6 +33293,10 @@
 	},
 /turf/simulated/floor/wood,
 /area/bridge/meeting_room)
+"jlG" = (
+/obj/effect/landmark/vermin,
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/centralhall)
 "jtj" = (
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/readingrooms)
@@ -33607,6 +33639,12 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
+"lvb" = (
+/obj/effect/landmark{
+	name = "maint_pred"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/rnd)
 "lJc" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -33635,6 +33673,10 @@
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/simulated/floor/grass,
 /area/chapel/main)
+"lUN" = (
+/obj/effect/landmark/vermin,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden_two)
 "lZx" = (
 /turf/simulated/wall/r_wall,
 /area/maintenance/readingrooms)
@@ -33703,6 +33745,12 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai_upload_foyer)
+"mNT" = (
+/obj/effect/landmark{
+	name = "maint_pred"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/maintenance/asmaint2)
 "mNZ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -33713,6 +33761,12 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ai_upload_foyer)
+"mQc" = (
+/obj/effect/landmark{
+	name = "maint_pred"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/atmos)
 "mUP" = (
 /obj/structure/bed/padded,
 /obj/effect/floor_decal/techfloor,
@@ -33735,6 +33789,10 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai_upload_foyer)
+"ncG" = (
+/obj/effect/landmark/vermin,
+/turf/simulated/floor/wood,
+/area/bridge/meeting_room)
 "ndB" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -33867,6 +33925,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/bluegrid,
 /area/ai)
+"pny" = (
+/obj/effect/landmark{
+	name = "maint_pred"
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/asmaint2)
 "pqb" = (
 /obj/structure/sink/puddle,
 /turf/simulated/floor/beach/sand/desert,
@@ -34024,6 +34088,15 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/bar)
+"qGR" = (
+/obj/effect/floor_decal/corner_techfloor_grid{
+	dir = 5
+	},
+/obj/effect/landmark{
+	name = "maint_pred"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/maintenance/lower/south)
 "qKR" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
@@ -34064,6 +34137,10 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai_upload)
+"rjM" = (
+/obj/effect/landmark/vines,
+/turf/simulated/floor/beach/sand/desert,
+/area/tether/surfacebase/fish_farm)
 "rlN" = (
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai)
@@ -34110,6 +34187,10 @@
 /obj/machinery/vending/wardrobe/chapdrobe,
 /turf/simulated/floor/lino,
 /area/chapel/office)
+"rBf" = (
+/obj/effect/landmark/vines,
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/surface_two_hall)
 "rJc" = (
 /obj/effect/floor_decal/corner/paleblue/diagonal,
 /obj/effect/landmark/start{
@@ -34455,6 +34536,13 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai)
+"tZD" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/obj/effect/landmark/vines,
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/surface_two_hall)
 "tZV" = (
 /obj/machinery/light,
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -40537,7 +40625,7 @@ aHm
 aHE
 aHE
 aIJ
-aIJ
+mNT
 aHE
 aHE
 aHE
@@ -40651,7 +40739,7 @@ akX
 aoi
 apt
 aqz
-aog
+lUN
 ars
 atI
 akX
@@ -41686,7 +41774,7 @@ aOU
 aKb
 aQw
 aQw
-aQw
+pny
 aQw
 aRj
 aHE
@@ -41804,7 +41892,7 @@ azq
 azq
 azq
 ayw
-axR
+rjM
 axR
 axR
 axR
@@ -42951,7 +43039,7 @@ aGw
 aGw
 aqZ
 arf
-aEc
+lvb
 aJJ
 aKh
 aKU
@@ -43965,7 +44053,7 @@ aRm
 aPJ
 aYd
 aWH
-aQw
+pny
 aXx
 aXx
 aXx
@@ -44223,7 +44311,7 @@ aEa
 avD
 aFh
 aFl
-aEc
+lvb
 aGy
 aGy
 aGy
@@ -44264,7 +44352,7 @@ baz
 aHn
 aHI
 baz
-aIg
+grX
 baU
 baU
 baz
@@ -44985,7 +45073,7 @@ baU
 beQ
 aKK
 baz
-baU
+mQc
 baU
 biS
 bjr
@@ -46542,7 +46630,7 @@ baz
 aIM
 baU
 baU
-baU
+mQc
 baz
 bfR
 bgx
@@ -47067,7 +47155,7 @@ aGH
 aHb
 aHs
 aHM
-aGF
+ncG
 aIU
 aGE
 aAG
@@ -47669,7 +47757,7 @@ aLY
 bbm
 bbM
 aZr
-aZr
+iLF
 aLY
 adt
 adt
@@ -48895,7 +48983,7 @@ asV
 awj
 avD
 axF
-ayc
+tZD
 ayd
 azg
 ayh
@@ -48919,7 +49007,7 @@ ayd
 ayd
 aKA
 ayd
-ayd
+rBf
 aMG
 avD
 asm
@@ -49161,7 +49249,7 @@ aex
 afj
 agh
 aaU
-aam
+jlG
 aiP
 akq
 alS
@@ -49637,7 +49725,7 @@ qpA
 dSO
 tED
 aLY
-aRC
+qGR
 bcM
 atW
 aUc
@@ -50164,7 +50252,7 @@ aks
 akF
 akJ
 akJ
-akJ
+dnD
 akJ
 alY
 amJ
@@ -50657,7 +50745,7 @@ aLY
 aLY
 aZr
 aZr
-aZr
+iLF
 baO
 bax
 eps

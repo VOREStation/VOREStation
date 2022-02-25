@@ -43,8 +43,8 @@
 	pto_type = PTO_EXPLORATION
 	dept_time_required = 20
 
-	access = list(access_eva, access_maint_tunnels, access_external_airlocks, access_pilot, access_explorer, access_gateway, access_pathfinder)
-	minimal_access = list(access_eva, access_maint_tunnels, access_external_airlocks, access_pilot, access_explorer, access_gateway, access_pathfinder)
+	access = list(access_eva, access_maint_tunnels, access_external_airlocks, access_pilot, access_explorer, access_gateway, access_pathfinder, access_RC_announce)
+	minimal_access = list(access_eva, access_maint_tunnels, access_external_airlocks, access_pilot, access_explorer, access_gateway, access_pathfinder, access_RC_announce)
 	outfit_type = /decl/hierarchy/outfit/job/pathfinder
 	job_description = "The Pathfinder's job is to lead and manage expeditions, and is the primary authority on all off-station expeditions."
 	alt_titles = list("Expedition Lead" = /datum/alt_title/expedition_lead, "Exploration Manager" = /datum/alt_title/exploration_manager)
@@ -54,37 +54,6 @@
 
 /datum/alt_title/exploration_manager
 	title = "Exploration Manager"
-
-
-/datum/job/pilot
-	title = "Pilot"
-	flag = PILOT
-	departments = list(DEPARTMENT_CIVILIAN)
-	department_flag = CIVILIAN
-	faction = "Station"
-	total_positions = 5
-	spawn_positions = 5
-	supervisors = "the Head of Personnel"
-	selection_color = "#515151"
-	economic_modifier = 5
-	minimal_player_age = 3
-	pto_type = PTO_EXPLORATION
-	access = list(access_pilot)
-	minimal_access = list(access_pilot)
-	outfit_type = /decl/hierarchy/outfit/job/pilot
-	job_description = "A Pilot flies the various shuttles in the Virgo-Erigone System."
-	alt_titles = list("Co-Pilot" = /datum/alt_title/co_pilot, "Navigator" = /datum/alt_title/navigator, "Helmsman" = /datum/alt_title/helmsman)
-
-/datum/alt_title/co_pilot
-	title = "Co-Pilot"
-	title_blurb = "A Co-Pilot is there primarily to assist main pilot as well as learn from them"
-
-/datum/alt_title/navigator
-	title = "Navigator"
-
-/datum/alt_title/helmsman
-	title = "Helmsman"
-
 
 /datum/job/explorer
 	title = "Explorer"

@@ -23,7 +23,20 @@
 	applies_material_colour = 0
 	drop_sound = 'sound/items/drop/axe.ogg'
 	pickup_sound = 'sound/items/pickup/axe.ogg'
+/* VOREStation Removal - We have one already
+/obj/item/weapon/material/knife/machete/hatchet/stone
+	name = "sharp rock"
+	desc = "The secret is to bang the rocks together, guys."
+	force_divisor = 0.2
+	icon_state = "rock"
+	item_state = "rock"
+	attack_verb = list("chopped", "torn", "cut")
 
+/obj/item/weapon/material/knife/machete/hatchet/stone/set_material(var/new_material)
+	var/old_name = name
+	. = ..()
+	name = old_name
+*/
 /obj/item/weapon/material/knife/machete/hatchet/unathiknife
 	name = "duelling knife"
 	desc = "A length of leather-bound wood studded with razor-sharp teeth. How crude."

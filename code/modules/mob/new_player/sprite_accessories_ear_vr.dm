@@ -754,6 +754,16 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
+/datum/sprite_accessory/ears/bnnuy2
+	name = "Bnnuy Ears 2"
+	desc = ""
+	icon = 'icons/mob/vore/ears_32x64.dmi'
+	icon_state = "bnnuy2"
+	extra_overlay = "bnnuy-inner"
+	extra_overlay2 = "bnnuy-tips2"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/ears/sandfox
 	name = "Sandfox Ears"
 	desc = ""
@@ -796,5 +806,39 @@
 	icon = 'icons/mob/vore/ears_32x64.dmi'
 	icon_state = "jackalope"
 	extra_overlay = "jackalope-antlers"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/rabbit_swept
+	name = "Rabbit Ears (swept back)"
+	desc = ""
+	icon = 'icons/mob/vore/ears_32x64.dmi'
+	icon_state = "rabbit-swept"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/antlers_large
+	name = "Antlers (large)"
+	desc = ""
+	icon = 'icons/mob/vore/ears_32x64.dmi'
+	icon_state = "antlers_large"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/kittyr
+	name = "kitty right only, colorable"
+	icon = 'icons/mob/vore/ears_uneven.dmi'
+	desc = ""
+	icon_state = "kittyrinner"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "kittyr"
+
+/datum/sprite_accessory/ears/bunny_tall
+	name = "Bunny Tall Ears"
+	desc = ""
+	icon = 'icons/mob/vore/ears_32x64.dmi'
+	icon_state = "bunny-tall"
+	extra_overlay = "bunny-tall-inner"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY

@@ -15,7 +15,7 @@
 	feedback_add_details("admin_verb","TGEars") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/verb/toggle_ghost_vision()
-	set name = "Toggle Ghost Vision"
+	set name = "Toggle Ghost Sight"
 	set category = "Preferences"
 	set desc = "Toggles between seeing all mob emotes and only nearby mob emotes as an observer."
 

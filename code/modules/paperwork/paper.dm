@@ -106,11 +106,16 @@
 
 //lipstick wiping is in code/game/objects/items/weapons/cosmetics.dm!
 
-/obj/item/weapon/paper/Initialize(mapload)
-	. = ..()
+/obj/item/weapon/paper/Initialize(mapload, var/text, var/title)
+    . = ..()
 
-	if(mapload) // Jank, but we do this to prevent maploaded papers from somehow stacking across rounds if re-added to the board by a player.
-		was_maploaded = TRUE
+    if(istext(title))
+        name = title
+    if(istext(text))
+        info = text
+
+    if(mapload) // Jank, but we do this to prevent maploaded papers from somehow stacking across rounds if re-added to the board by a player.
+        was_maploaded = TRUE
 
 /obj/item/weapon/paper/New(var/newloc, var/text, var/title)
 	..()
@@ -324,6 +329,7 @@
 	t = replacetext(t, "\[/u\]", "</U>")
 	t = replacetext(t, "\[time\]", "[stationtime2text()]")
 	t = replacetext(t, "\[date\]", "[stationdate2text()]")
+	t = replacetext(t, "\[station\]", "[station_name()]")
 	t = replacetext(t, "\[large\]", "<font size=\"4\">")
 	t = replacetext(t, "\[/large\]", "</font>")
 	if(findtext(t, "\[sign\]"))

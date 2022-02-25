@@ -116,7 +116,6 @@
 	else
 		log_and_message_admins("attempted to emag \an [A].")
 	// Vorestation Edit: End of Edit
-	log_and_message_admins("emagged \an [A].")
 
 	if(uses<1)
 		user.visible_message("<span class='warning'>\The [src] fizzles and sparks - it seems it's been used once too often, and is now spent.</span>")

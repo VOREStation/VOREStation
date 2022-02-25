@@ -211,13 +211,6 @@
 	desc = ""
 	icon_state = "beethorax"
 
-/datum/sprite_accessory/tail/doublekitsune
-	name = "double kitsune tail, colorable"
-	desc = ""
-	icon_state = "doublekitsune"
-	do_colouration = 1
-	color_blend_mode = ICON_MULTIPLY
-
 /datum/sprite_accessory/tail/spade_color
 	name = "spade-tail (colorable)"
 	desc = ""
@@ -964,6 +957,52 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
+/datum/sprite_accessory/tail/fennec_tail
+	name = "Fennec tail"
+	desc = ""
+	icon_state = "fennec_tail_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/fox_tail
+	name = "Fox tail, colorable"
+	desc = ""
+	icon_state = "fox_tail_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/fox_tail_plain
+	name = "Fox tail, colorable, plain"
+	desc = ""
+	icon_state = "fox_tail_plain_s"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/foxtail
+	name = "Fox tail, colourable (vwag)"
+	desc = ""
+	icon_state = "foxtail"
+	extra_overlay = "foxtail-tips"
+	do_colouration = TRUE
+	color_blend_mode = ICON_MULTIPLY
+	ani_state = "foxtail_w"
+	extra_overlay_w = "foxtail-tips_w"
+
+/datum/sprite_accessory/tail/doublekitsune
+	name = "Kitsune 2 tails, colorable"
+	desc = ""
+	icon_state = "doublekitsune"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/tail/doublekitsunealt
+	name = "Kitsune 2 tails, colorable, alt"
+	desc = ""
+	icon_state = "doublekitsunealt"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "doublekitsunealt-tips"
+
 /datum/sprite_accessory/tail/triplekitsune_colorable
 	name = "Kitsune 3 tails, colorable"
 	desc = ""
@@ -972,6 +1011,14 @@
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "triplekitsune_tips"
 
+/datum/sprite_accessory/tail/sevenkitsune_colorable
+	name = "Kitsune 7 tails, colorable"
+	desc = ""
+	icon_state = "sevenkitsune"
+	extra_overlay = "sevenkitsune-tips"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/tail/ninekitsune_colorable
 	name = "Kitsune 9 tails, colorable"
 	desc = ""
@@ -979,6 +1026,16 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	extra_overlay = "ninekitsune-tips"
+
+/datum/sprite_accessory/tail/hideableninetails
+    name = "Kitsune 9-in-1 tail, colourable (vwag)"
+    desc = ""
+    icon_state = "ninekitsune"
+    extra_overlay = "ninekitsune-tips"
+    do_colouration = TRUE
+    color_blend_mode = ICON_MULTIPLY
+    ani_state = "foxtail_w"
+    extra_overlay_w = "foxtail-tips_w"
 
 /datum/sprite_accessory/tail/shadekin_short
 	name = "Shadekin Short Tail, colorable"
@@ -1057,27 +1114,6 @@
 	extra_overlay = "Segmentedlights"
 	ani_state = "Segmentedtail_w"
 	extra_overlay_w = "Segmentedlights_w"
-
-/datum/sprite_accessory/tail/fox_tail
-	name = "Fox tail"
-	desc = ""
-	icon_state = "fox_tail_s"
-	do_colouration = 1
-	color_blend_mode = ICON_MULTIPLY
-
-/datum/sprite_accessory/tail/fox_tail_plain
-	name = "Fox tail"
-	desc = ""
-	icon_state = "fox_tail_plain_s"
-	do_colouration = 1
-	color_blend_mode = ICON_MULTIPLY
-
-/datum/sprite_accessory/tail/fennec_tail
-	name = "Fennec tail"
-	desc = ""
-	icon_state = "fennec_tail_s"
-	do_colouration = 1
-	color_blend_mode = ICON_MULTIPLY
 
 /datum/sprite_accessory/tail/lizard_tail_smooth
 	name = "Lizard Tail (Smooth)"

@@ -25,6 +25,9 @@
 		"Butcher them!",
 		"Feast!")
 
+	effect_state = "summoning"
+	effect_color = "#c50303"
+
 /datum/artifact_effect/cannibalfeeling/DoEffectTouch(var/mob/user)
 	if(user)
 		if (istype(user, /mob/living/carbon/human))
@@ -41,6 +44,7 @@
 					H.nutrition = H.nutrition / 1.5
 
 /datum/artifact_effect/cannibalfeeling/DoEffectAura()
+	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/T = get_turf(holder)
 		for (var/mob/living/carbon/human/H in range(src.effectrange,T))
@@ -57,6 +61,7 @@
 		return 1
 
 /datum/artifact_effect/cannibalfeeling/DoEffectPulse()
+	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/T = get_turf(holder)
 		for (var/mob/living/carbon/human/H in range(src.effectrange,T))

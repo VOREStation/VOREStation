@@ -35,7 +35,7 @@
 /turf/simulated/floor/wood/sif,
 /area/submap/EmptyCabin)
 "i" = (
-/obj/structure/bed/chair/sofa/blue/left{
+/obj/structure/bed/chair/sofa/left/blue{
 	dir = 1
 	},
 /turf/simulated/floor/wood/sif,
@@ -135,7 +135,7 @@
 /turf/simulated/floor/wood/sif,
 /area/submap/EmptyCabin)
 "J" = (
-/obj/structure/bed/chair/sofa/blue/right{
+/obj/structure/bed/chair/sofa/right/blue{
 	dir = 1
 	},
 /turf/simulated/floor/wood/sif,
