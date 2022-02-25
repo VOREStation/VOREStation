@@ -633,6 +633,62 @@
 	new /obj/item/stack/material/plastic(get_turf(holder.my_atom), created_volume)
 	return
 
+/*Carpet Creation*/
+/decl/chemical_reaction/instant/carpetify
+	name = "Carpet"
+	id = "redcarpet"
+	result = null
+	required_reagents = list("liquidcarpet" = 2, "plasticide" = 1)
+	result_amount = 2
+	var/carpet_type = /obj/item/stack/tile/carpet
+
+/decl/chemical_reaction/instant/carpetify/on_reaction(var/datum/reagents/holder, var/created_volume)
+	new carpet_type(get_turf(holder.my_atom), created_volume)
+	return
+
+/decl/chemical_reaction/instant/carpetify/bcarpet
+	name = "Black Carpet"
+	id = "blackcarpet"
+	required_reagents "liquidcarpetb" = 2, "plasticide" = 1)
+	carpet_type = /obj/item/stack/tile/carpet/bcarpet
+
+/decl/chemical_reaction/instant/carpetify/blucarpet
+	name = "Blue Carpet"
+	id = "bluecarpet"
+	required_reagents "liquidcarpetblu" = 2, "plasticide" = 1)
+	carpet_type = /obj/item/stack/tile/carpet/blucarpet
+
+/decl/chemical_reaction/instant/carpetify/turcarpet
+	name = "Tur Carpet"
+	id = "turcarpet"
+	required_reagents "liquidcarpettur" = 2, "plasticide" = 1)
+	carpet_type = /obj/item/stack/tile/carpet/turcarpet
+
+/decl/chemical_reaction/instant/carpetify/sblucarpet
+	name = "Sblu Carpet"
+	id = "sblucarpet"
+	required_reagents "liquidcarpetsblu" = 2, "plasticide" = 1)
+	carpet_type = /obj/item/stack/tile/carpet/sblucarpet
+
+/decl/chemical_reaction/instant/carpetify/clowncarpet
+	name = "Clown Carpet"
+	id = "clowncarpet"
+	required_reagents "liquidcarpetc" = 2, "plasticide" = 1)
+	carpet_type = /obj/item/stack/tile/carpet/gaycarpet
+
+/decl/chemical_reaction/instant/carpetify/pcarpet
+	name = "Purple Carpet"
+	id = "Purplecarpet"
+	required_reagents "liquidcarpetp" = 2, "plasticide" = 1)
+	carpet_type = /obj/item/stack/tile/carpet/purcarpet
+
+/decl/chemical_reaction/instant/carpetify/ocarpet
+	name = "Orange Carpet"
+	id = "orangecarpet"
+	required_reagents "liquidcarpeto" = 2, "plasticide" = 1)
+	carpet_type = /obj/item/stack/tile/carpet/oracarpet
+
+
 /* Grenade reactions */
 
 /decl/chemical_reaction/instant/explosion_potassium
@@ -1061,6 +1117,51 @@
 
 /decl/chemical_reaction/instant/aluminum_paint/send_data()
 	return "#F0F8FF"
+
+/*Carpet Recoloring*/
+/decl/chemical_reaction/instant/carpetdye
+	name = "Black Carpet Dyeing"
+	id = "carpetdyeblack"
+	result = "liquidcarpetb"
+	required_reagents = list("liquidcarpet" = 5, "carbon" = 1)
+	result_amount = 5
+
+/decl/chemical_reaction/instant/carpetdye/blue
+	name = "Blue Carpet Dyeing"
+	id = "carpetdyeblue"
+	result = "liquidcarpetblu"
+	required_reagents = list("liquidcarpet" = 5, "frostoil" = 1)
+
+/decl/chemical_reaction/instant/carpetdye/tur
+	name = "Turqouise Carpet Dyeing"
+	id = "carpetdyetur"
+	result = "liquidcarpettur"
+	required_reagents = list("liquidcarpet" = 5, "water" = 1)
+
+/decl/chemical_reaction/instant/carpetdye/sblu
+	name = "Deep Blue Carpet Dyeing"
+	id = "carpetdyesblu"
+	result = "liquidcarpetsblu"
+	required_reagents = list("liquidcarpet" = 5, "ice" = 1)
+
+/decl/chemical_reaction/instant/carpetdye/clown
+	name = "Clown Carpet Dyeing"
+	id = "carpetdyeclown"
+	result = "liquidcarpetc"
+	required_reagents = list("liquidcarpet" = 5, "banana" = 1)
+
+/decl/chemical_reaction/instant/carpetdye/purple
+	name = "Purple Carpet Dyeing"
+	id = "carpetdyepurple"
+	result = "liquidcarpetp"
+	required_reagents = list("liquidcarpet" = 5, "berryjuice" = 1)
+
+/decl/chemical_reaction/instant/carpetdye/orange
+	name = "Orange Carpet Dyeing"
+	id = "carpetdyeorange"
+	result = "liquidcarpeto"
+	required_reagents = list("liquidcarpet" = 5, "orangejuice" = 1)
+
 
 //R-UST Port
 /decl/chemical_reaction/instant/hydrophoron
