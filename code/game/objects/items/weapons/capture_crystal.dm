@@ -1,5 +1,5 @@
 /obj/item/capture_crystal
-	name = "curious crystal"
+	name = "capture crystal"
 	desc = "A silent, unassuming crystal in what appears to be some kind of steel housing."
 	icon = 'icons/obj/capture_crystal_vr.dmi'
 	icon_state = "inactive"
@@ -503,13 +503,18 @@
 		to_chat(thrower, "<span class='notice'>\The [src] clicks unpleasantly...</span>")
 		playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
 
+/obj/item/capture_crystal/basic
+
 /obj/item/capture_crystal/great
+	name = "great capture crystal"
 	capture_chance_modifier = 1.5
 
 /obj/item/capture_crystal/ultra
+	name = "ultra capture crystal"
 	capture_chance_modifier = 2
 
 /obj/item/capture_crystal/master
+	name = "master capture crystal"
 	capture_chance_modifier = 100
 
 /obj/item/capture_crystal/cass

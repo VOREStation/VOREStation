@@ -136,6 +136,12 @@
 	},
 /turf/simulated/floor/wood,
 /area/om_adventure/poi/woodentemple)
+"W" = (
+/obj/trader/general{
+	dir = 8
+	},
+/turf/simulated/floor/wood,
+/area/om_adventure/poi/woodentemple)
 "Z" = (
 /turf/simulated/wall/hardwood,
 /area/om_adventure/poi/woodentemple)
@@ -450,7 +456,7 @@ k
 k
 d
 A
-d
+W
 U
 b
 Q

@@ -18,7 +18,7 @@
 	spawn_nothing_percentage = 50
 
 /obj/random/awayloot/item_to_spawn()
-	return pick(prob(50);/obj/item/weapon/aliencoin,
+	return pick(prob(50);/obj/item/weapon/aliencoin/basic,
 				prob(40);/obj/item/weapon/aliencoin/silver,
 				prob(30);/obj/item/weapon/aliencoin/gold,
 				prob(20);/obj/item/weapon/aliencoin/phoron,
