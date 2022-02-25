@@ -9,7 +9,7 @@
 	var/accepts = "coin"				// "coin" - "money" - "item" - determines the 'kind' of thing the machine will accept
 	var/accepted_itemtype				//only for use with "item" mode - if set to a type path, it will count anything with that type path
 	var/accepted_item_worth = 1			//only for use with "item" mode - when counted, things of the appropriate type will add this much to the banked funds
-	var/bank = list()					//Anything accepted by "money" or "item" mode will be marked down here
+	var/list/bank = list()					//Anything accepted by "money" or "item" mode will be marked down here
 	var/coinbalance = 0					//only for use with coin mode - when you put a curious coin in, it adds the coins value to this number
 	var/list/start_products = list()	//Type paths entered here will spawn inside the trader and add themselves to the products list.
 	var/list/products = list()			//Anything in this list will be listed for sale
@@ -18,7 +18,7 @@
 	var/trading = FALSE					//'Busy' - Only one person can trade at a time.	
 	var/welcome_msg = "This machine accepts"	//The first part of the welcome message
 	var/welcome_accepts_name = "curious coins"	//The name of the kind of thing the trader expects, automatically set except on "item" mode, where if you enter a value it will not change it.
-	var/welcome_msg_finish = "Would you like to browse the wares?"	//The final part of the welcome message.
+	var/welcome_msg_finish = ". Would you like to browse the wares?"	//The final part of the welcome message.
 	var/list/interact_sound = list()	//The sounds that may play when you click it. It will pick one at random from this list. It only thinks about this if there's anything in the list.
 	var/sound_cooldown = 0				//The sound can only play this often in deciseconds. Use '10 SECONDS' format to make it easier to read
 	var/sound_lastplayed = 0			//Automatically set when the sound is played.
@@ -40,6 +40,16 @@
 			products += p
 			start_products -= item
 
+/obj/trader/Destroy()
+	. = ..()
+	LAZYCLEARLIST(products)
+	LAZYCLEARLIST(bank)
+	LAZYCLEARLIST(start_products)
+	LAZYCLEARLIST(prices)
+	LAZYCLEARLIST(multiple)
+	for(var/item in contents)
+		qdel(item)
+
 /obj/trader/attack_hand(mob/living/user)
 	. = ..()
 	if(trading)
@@ -56,7 +66,7 @@
 			if("item")
 				if(welcome_accepts_name == "curious coins")
 					welcome_accepts_name = "a kind of item"
-		var/ask = tgui_alert(user, "[welcome_msg] [welcome_accepts_name]. [welcome_msg_finish]", "[src]",list("Yes","No","Return banked funds"), timeout = 10 SECONDS)
+		var/ask = tgui_alert(user, "[welcome_msg][welcome_accepts_name][welcome_msg_finish]", "[src]",list("Yes","No","Return banked funds"), timeout = 10 SECONDS)
 		if (ask == "Return banked funds")
 			if(!Adjacent(user))
 				to_chat(user, "<span class='notice'>You aren't close enough.</span>")
@@ -224,6 +234,10 @@
 				bank -= c
 
 /obj/trader/capture_crystal
+	name = "curious trader"
+	desc = "A tall metal cylander on a squarish base. It looks almost like a vending machine, but there's nowhere to swipe your card. It appears to accept some kind of triangle currency..."
+	icon = 'icons/obj/vending_vr.dmi'
+	icon_state = "cap_crys"
 	interact_sound = list('sound/music/capture_crystal_1.ogg', 'sound/music/capture_crystal_2.ogg')
 	sound_cooldown = 1 MINUTE
 	start_products = list(
@@ -234,11 +248,11 @@
 		/obj/item/capture_crystal/random
 	)
 	prices = list(
-		/obj/item/capture_crystal/basic = 1,
-		/obj/item/capture_crystal/great = 2,
-		/obj/item/capture_crystal/ultra = 5,
-		/obj/item/capture_crystal/master = 50,
-		/obj/item/capture_crystal/random = 3
+		/obj/item/capture_crystal/basic = 5,
+		/obj/item/capture_crystal/great = 10,
+		/obj/item/capture_crystal/ultra = 15,
+		/obj/item/capture_crystal/master = 100,
+		/obj/item/capture_crystal/random = 10
 	)
 	multiple = list(
 		/obj/item/capture_crystal/basic = 10,
@@ -247,9 +261,69 @@
 
 /obj/trader/capture_crystal/cash
 	accepts = "money"
-/obj/trader/capture_crystal/item
-	accepts = "item"
+	prices = list(
+		/obj/item/capture_crystal/basic = 500,
+		/obj/item/capture_crystal/great = 1000,
+		/obj/item/capture_crystal/ultra = 1500,
+		/obj/item/capture_crystal/master = 10000,
+		/obj/item/capture_crystal/random = 1000
+	)
 
-/obj/trader/capture_crystal/pick
+/obj/trader/general
+	name = "trader"
+	desc = "A large canine woman. She might have a few things to sell."
+	icon = 'icons/obj/traderx64.dmi'
+	icon_state = "trader1"
+	pixel_x = -16
+	layer = ABOVE_MOB_LAYER
+	plane = ABOVE_MOB_PLANE
+	welcome_msg = "Hey there, welcome~ If you've got any"
+	welcome_msg_finish = " then I may have something for you. Would you like to browse what I've got?"
 	pick_inventory = TRUE
-	pick_inventory_quantity = 1
+	pick_inventory_quantity = 5
+	start_products = list(
+		/obj/item/capture_crystal/basic = 100,
+		/obj/item/capture_crystal/random = 50,
+		/obj/item/device/perfect_tele = 10,
+		/obj/item/device/chameleon = 25,
+		/obj/item/weapon/gun/energy/sizegun/old = 25,
+		/obj/item/weapon/implant/sizecontrol = 25,
+		/obj/item/clothing/under/hyperfiber/bluespace = 25,
+		/obj/item/device/nif/authentic = 1,
+		/obj/item/toy/bosunwhistle = 50,
+		/obj/item/weapon/cell/infinite = 10,
+		/obj/item/weapon/cell/void = 15,
+		/obj/item/weapon/cell/device/weapon/recharge/alien = 10,
+		/obj/item/weapon/reagent_containers/food/snacks/jellyfishcore = 50,
+		/obj/item/device/denecrotizer = 10,
+		/obj/item/clothing/shoes/boots/speed = 15,
+		/obj/item/weapon/bluespace_harpoon = 20,
+		/obj/item/weapon/telecube/randomized = 5
+		)
+	prices = list(
+		/obj/item/capture_crystal/basic = 6,
+		/obj/item/capture_crystal/random = 15,
+		/obj/item/device/perfect_tele = 20,
+		/obj/item/device/chameleon = 20,
+		/obj/item/weapon/gun/energy/sizegun/old = 10,
+		/obj/item/weapon/implant/sizecontrol = 10,
+		/obj/item/clothing/under/hyperfiber/bluespace = 10,
+		/obj/item/device/nif/authentic = 100,
+		/obj/item/toy/bosunwhistle = 1,
+		/obj/item/weapon/cell/infinite = 20,
+		/obj/item/weapon/cell/void = 20,
+		/obj/item/weapon/cell/device/weapon/recharge/alien = 20,
+		/obj/item/weapon/reagent_containers/food/snacks/jellyfishcore = 3,
+		/obj/item/device/denecrotizer = 20,
+		/obj/item/clothing/shoes/boots/speed = 20,
+		/obj/item/weapon/bluespace_harpoon = 20,
+		/obj/item/weapon/telecube/randomized = 50
+		)
+	multiple = list(
+		/obj/item/capture_crystal/basic = 10,
+		/obj/item/capture_crystal/random = 2,
+		/obj/item/weapon/gun/energy/sizegun/old = 2,
+		/obj/item/weapon/implant/sizecontrol = 2,
+		/obj/item/clothing/under/hyperfiber/bluespace = 2,
+		/obj/item/weapon/reagent_containers/food/snacks/jellyfishcore = 10
+		)

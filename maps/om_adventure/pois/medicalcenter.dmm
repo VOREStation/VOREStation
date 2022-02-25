@@ -68,7 +68,7 @@
 /turf/simulated/floor/tiled/eris/white/orangecorner,
 /area/om_adventure/poi/medicalcenter)
 "G" = (
-/obj/structure/table/glass,
+/obj/trader/capture_crystal,
 /obj/machinery/light{
 	dir = 8
 	},
