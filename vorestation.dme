@@ -2142,6 +2142,7 @@
 #include "code\modules\economy\price_list.dm"
 #include "code\modules\economy\retail_scanner.dm"
 #include "code\modules\economy\TradeDestinations.dm"
+#include "code\modules\economy\trader.dm"
 #include "code\modules\economy\vending.dm"
 #include "code\modules\economy\vending_machines.dm"
 #include "code\modules\economy\vending_machines_vr.dm"
