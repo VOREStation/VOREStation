@@ -1324,6 +1324,7 @@
 		return 1
 
 /obj/machinery/computer/arcade/attackby(obj/item/O, mob/user, params)
+	..()
 	if(istype(O, /obj/item/stack/arcadeticket))
 		var/obj/item/stack/arcadeticket/T = O
 		var/amount = T.get_amount()
