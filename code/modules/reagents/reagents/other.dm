@@ -677,7 +677,7 @@
 	description = "Blue Carpet Fibers, ready for reinforcement."
 	reagent_state = LIQUID
 	color = "#3f4aee"
-	taste_description = "freezing carpet" 
+	taste_description = "commanding carpet" 
 
 /datum/reagent/carpet/turquoise
 	name = "Liquid Turquoise Carpet"
@@ -688,12 +688,12 @@
 	taste_description = "water-logged carpet" 
 
 /datum/reagent/carpet/sblue
-	name = "Liquid Deep Blue Carpet"
+	name = "Liquid Silver Blue Carpet"
 	id = "liquidcarpetsblu"
-	description = "Deep Blue Carpet Fibers, ready for reinforcement."
+	description = "Silver Blue Carpet Fibers, ready for reinforcement."
 	reagent_state = LIQUID
 	color = "#0011ff"
-	taste_description = "commanding carpet" 
+	taste_description = "sterile and medicinal carpet" 
 
 /datum/reagent/carpet/clown
 	name = "Liquid Clown Carpet"
@@ -713,7 +713,7 @@
 
 /datum/reagent/carpet/orange
 	name = "Liquid Orange Carpet"
-	id = "liquidcarpet"
+	id = "liquidcarpeto"
 	description = "Orange Carpet Fibers, ready for reinforcement."
 	reagent_state = LIQUID
 	color = "#f16e16"

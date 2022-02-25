@@ -660,13 +660,13 @@
 	carpet_type = /obj/item/stack/tile/carpet/blucarpet
 
 /decl/chemical_reaction/instant/carpetify/turcarpet
-	name = "Tur Carpet"
+	name = "Turquise Carpet"
 	id = "turcarpet"
 	required_reagents = list("liquidcarpettur" = 2, "plasticide" = 1)
 	carpet_type = /obj/item/stack/tile/carpet/turcarpet
 
 /decl/chemical_reaction/instant/carpetify/sblucarpet
-	name = "Sblu Carpet"
+	name = "Silver Blue Carpet"
 	id = "sblucarpet"
 	required_reagents = list("liquidcarpetsblu" = 2, "plasticide" = 1)
 	carpet_type = /obj/item/stack/tile/carpet/sblucarpet
@@ -1140,7 +1140,7 @@
 	required_reagents = list("liquidcarpet" = 5, "water" = 1)
 
 /decl/chemical_reaction/instant/carpetdye/sblu
-	name = "Deep Blue Carpet Dyeing"
+	name = "Silver Blue Carpet Dyeing"
 	id = "carpetdyesblu"
 	result = "liquidcarpetsblu"
 	required_reagents = list("liquidcarpet" = 5, "ice" = 1)
