@@ -335,7 +335,8 @@
 		/obj/item/device/denecrotizer = 10,
 		/obj/item/clothing/shoes/boots/speed = 15,
 		/obj/item/weapon/bluespace_harpoon = 20,
-		/obj/item/weapon/telecube/randomized = 5
+		/obj/item/weapon/telecube/randomized = 5,
+		/obj/item/device/bodysnatcher = 20
 		)
 	prices = list(
 		/obj/item/capture_crystal/basic = 6,
@@ -354,7 +355,8 @@
 		/obj/item/device/denecrotizer = 20,
 		/obj/item/clothing/shoes/boots/speed = 20,
 		/obj/item/weapon/bluespace_harpoon = 20,
-		/obj/item/weapon/telecube/randomized = 50
+		/obj/item/weapon/telecube/randomized = 50,
+		/obj/item/device/bodysnatcher = 20
 		)
 	multiple = list(
 		/obj/item/capture_crystal/basic = 10,
