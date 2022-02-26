@@ -260,8 +260,8 @@
 		log_and_message_admins("tried to move itself but its target pick list was empty, so it was not moved. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)")
 
 /obj/move_trader_landmark //You need to place the trader somewhere in the world and enable the 'move_trader' var. When the trader initializes, it will make a list of these landmarks and then move itself.
-	name = "trader spawner"
-	desc = "Spawns a trader!"
+	name = "trader mover"
+	desc = "A trader can be moved to here!"
 	icon = 'icons/obj/landmark_vr.dmi'
 	icon_state = "blue-x"
 	invisibility = 101

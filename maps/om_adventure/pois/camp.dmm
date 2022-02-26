@@ -2,6 +2,13 @@
 "a" = (
 /turf/template_noop,
 /area/template_noop)
+"i" = (
+/obj/move_trader_landmark{
+	dir = 4;
+	trader_type = /obj/trader/general
+	},
+/turf/template_noop,
+/area/template_noop)
 "n" = (
 /obj/structure/table/rack/steel,
 /obj/fiftyspawner/log,
@@ -33,6 +40,13 @@
 "U" = (
 /obj/structure/table/rack/steel,
 /obj/item/weapon/storage/box/matches,
+/turf/simulated/floor/outdoors/newdirt,
+/area/om_adventure/poi/camp)
+"Y" = (
+/obj/move_trader_landmark{
+	dir = 8;
+	trader_type = /obj/trader/general
+	},
 /turf/simulated/floor/outdoors/newdirt,
 /area/om_adventure/poi/camp)
 
@@ -86,7 +100,7 @@ a
 a
 a
 H
-a
+i
 M
 H
 x
@@ -185,7 +199,7 @@ a
 a
 a
 H
-H
+Y
 x
 a
 a

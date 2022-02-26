@@ -650,7 +650,9 @@
 	pixel_x = 28;
 	pixel_y = -26
 	},
-/turf/simulated/floor/outdoors/newdirt,
+/turf/simulated/floor/outdoors/newdirt{
+	outdoors = 0
+	},
 /area/gateway/eggnogtown/greenhouse)
 "cD" = (
 /obj/structure/bonfire,
@@ -972,9 +974,7 @@
 "fS" = (
 /obj/machinery/portable_atmospherics/hydroponics/soil,
 /obj/machinery/light,
-/turf/simulated/floor/outdoors/grass/forest{
-	outdoors = 0
-	},
+/turf/simulated/floor/outdoors/grass/forest,
 /area/gateway/eggnogtown/greenhouse)
 "fX" = (
 /obj/structure/grille,
@@ -1081,7 +1081,9 @@
 /area/gateway/eggnogtown/kitchihome/den)
 "gP" = (
 /obj/item/weapon/stool/padded,
-/turf/simulated/floor/outdoors/newdirt,
+/turf/simulated/floor/outdoors/newdirt{
+	outdoors = 0
+	},
 /area/gateway/eggnogtown/greenhouse)
 "gS" = (
 /turf/simulated/wall/wood,
@@ -1183,6 +1185,10 @@
 /obj/structure/bed/chair/sofa/black{
 	dir = 8
 	},
+/obj/move_trader_landmark{
+	dir = 8;
+	trader_type = /obj/trader/general
+	},
 /turf/simulated/floor/wood,
 /area/gateway/eggnogtown/hall/south)
 "iq" = (
@@ -1244,6 +1250,14 @@
 /obj/structure/simple_door/iron,
 /turf/simulated/floor/bmarble,
 /area/gateway/eggnogtown/arturoswolfden)
+"jy" = (
+/obj/item/weapon/stool/padded{
+	dir = 8
+	},
+/turf/simulated/floor/outdoors/newdirt{
+	outdoors = 0
+	},
+/area/gateway/eggnogtown/greenhouse)
 "jB" = (
 /obj/structure/table/woodentable,
 /obj/item/toy/plushie/black_fox,
@@ -1279,9 +1293,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/grass/forest{
-	outdoors = 0
-	},
+/turf/simulated/floor/outdoors/grass/forest,
 /area/gateway/eggnogtown/greenhouse)
 "kG" = (
 /obj/machinery/telecomms/relay,
@@ -1918,7 +1930,10 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/gateway/eggnogtown/dining/storage)
 "tc" = (
-/turf/simulated/floor/outdoors/grass/forest{
+/obj/item/weapon/stool/padded{
+	dir = 4
+	},
+/turf/simulated/floor/outdoors/newdirt{
 	outdoors = 0
 	},
 /area/gateway/eggnogtown/greenhouse)
@@ -2010,9 +2025,7 @@
 /obj/machinery/alarm/alarms_hidden{
 	pixel_y = 21
 	},
-/turf/simulated/floor/outdoors/grass/forest{
-	outdoors = 0
-	},
+/turf/simulated/floor/outdoors/grass/forest,
 /area/gateway/eggnogtown/greenhouse)
 "uk" = (
 /obj/machinery/light_switch{
@@ -2148,9 +2161,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/grass/forest{
-	outdoors = 0
-	},
+/turf/simulated/floor/outdoors/grass/forest,
 /area/gateway/eggnogtown/greenhouse)
 "wj" = (
 /turf/simulated/wall/wood,
@@ -2725,7 +2736,9 @@
 /area/gateway/eggnogtown/vibeout)
 "Fd" = (
 /obj/structure/bonfire/permanent,
-/turf/simulated/floor/outdoors/newdirt,
+/turf/simulated/floor/outdoors/newdirt{
+	outdoors = 0
+	},
 /area/gateway/eggnogtown/greenhouse)
 "Fe" = (
 /turf/simulated/wall/wood,
@@ -2744,6 +2757,22 @@
 /obj/machinery/cell_charger,
 /turf/simulated/floor/reinforced,
 /area/gateway/eggnogtown/loniabode)
+"Fo" = (
+/obj/move_trader_landmark{
+	dir = 8;
+	trader_type = /obj/trader/general
+	},
+/turf/simulated/floor/bmarble,
+/area/gateway/eggnogtown/hotsprings)
+"Fs" = (
+/obj/move_trader_landmark{
+	dir = 4;
+	trader_type = /obj/trader/general
+	},
+/turf/simulated/floor/wood{
+	temperature = 258.15
+	},
+/area/gateway/eggnogtown)
 "Ft" = (
 /turf/simulated/floor/tiled/monotile,
 /area/gateway/eggnogtown/dining/botany)
@@ -3005,7 +3034,9 @@
 /turf/simulated/floor/tiled/monotile,
 /area/gateway/eggnogtown/dining/botany)
 "Jm" = (
-/turf/simulated/floor/outdoors/newdirt,
+/turf/simulated/floor/outdoors/newdirt{
+	outdoors = 0
+	},
 /area/gateway/eggnogtown/greenhouse)
 "Jp" = (
 /obj/machinery/door/airlock{
@@ -3103,6 +3134,10 @@
 "KE" = (
 /obj/structure/bed/chair/sofa/black{
 	dir = 4
+	},
+/obj/move_trader_landmark{
+	dir = 4;
+	trader_type = /obj/trader/general
 	},
 /turf/simulated/floor/wood,
 /area/gateway/eggnogtown/hall/south)
@@ -4041,9 +4076,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/grass/forest{
-	outdoors = 0
-	},
+/turf/simulated/floor/outdoors/grass/forest,
 /area/gateway/eggnogtown/greenhouse)
 "XF" = (
 /turf/simulated/wall/wood,
@@ -6711,7 +6744,7 @@ Xp
 QT
 LJ
 Iw
-Iw
+Fo
 Iw
 Iw
 Iw
@@ -8095,8 +8128,8 @@ Xp
 Xp
 Yc
 kb
-tc
-tc
+wt
+wt
 YZ
 YZ
 YZ
@@ -8237,10 +8270,10 @@ Xp
 Xp
 iq
 wt
-tc
+wt
 hS
 YZ
-gP
+tc
 YZ
 YZ
 oN
@@ -8670,7 +8703,7 @@ Jm
 Jm
 YZ
 YZ
-tc
+wt
 Yc
 OH
 Wr
@@ -8805,13 +8838,13 @@ Xp
 Xp
 iq
 wt
-tc
+wt
 YZ
 YZ
-gP
+jy
 YZ
 YZ
-tc
+wt
 wt
 iq
 Xp
@@ -8947,13 +8980,13 @@ Xp
 Xp
 Yc
 uh
-tc
-tc
+wt
+wt
 YZ
 YZ
 YZ
-tc
-tc
+wt
+wt
 XE
 Yc
 Xp
@@ -17810,7 +17843,7 @@ aL
 aL
 aL
 aL
-nN
+Fs
 aL
 aL
 aL

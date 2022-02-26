@@ -33383,6 +33383,13 @@
 	},
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/reading_room)
+"jSc" = (
+/obj/move_trader_landmark{
+	dir = 8;
+	trader_type = /obj/trader/general
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/southhall)
 "jUQ" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 8
@@ -33929,6 +33936,13 @@
 /obj/item/weapon/grenade/anti_photon,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/funny/hideyhole)
+"opK" = (
+/obj/move_trader_landmark{
+	dir = 4;
+	trader_type = /obj/trader/general
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/rnd)
 "oXH" = (
 /obj/structure/cable/cyan{
 	d1 = 1;
@@ -44760,7 +44774,7 @@ avD
 aBJ
 aCw
 avD
-aEc
+opK
 aED
 aFi
 aFT
@@ -51215,7 +51229,7 @@ bkq
 bkG
 bgU
 blk
-blG
+jSc
 blT
 bmb
 abn
