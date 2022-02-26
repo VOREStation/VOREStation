@@ -17,6 +17,13 @@
 /obj/tether_away_spawner/spookyland,
 /turf/simulated/floor/tiled/eris/white/orangecorner,
 /area/om_adventure/poi/medicalcenter)
+"p" = (
+/obj/move_trader_landmark{
+	dir = 4;
+	trader_type = /obj/trader/general
+	},
+/turf/simulated/floor/tiled/eris/white/orangecorner,
+/area/om_adventure/poi/medicalcenter)
 "q" = (
 /turf/simulated/floor/tiled/eris/white/orangecorner,
 /area/om_adventure/poi/medicalcenter)
@@ -45,6 +52,10 @@
 "z" = (
 /obj/structure/bed/chair/sofa/left/blue{
 	dir = 8
+	},
+/obj/move_trader_landmark{
+	dir = 8;
+	trader_type = /obj/trader/general
 	},
 /turf/simulated/floor/tiled/eris/white/orangecorner,
 /area/om_adventure/poi/medicalcenter)
@@ -207,7 +218,7 @@ q
 H
 q
 A
-q
+p
 W
 q
 k

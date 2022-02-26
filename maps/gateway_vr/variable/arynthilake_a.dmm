@@ -1670,6 +1670,13 @@
 /obj/structure/table/bench/marble,
 /turf/simulated/floor/tiled/eris/white/techfloor,
 /area/gateway/arynthilake/dome)
+"FJ" = (
+/obj/move_trader_landmark{
+	dir = 4;
+	trader_type = /obj/trader/general
+	},
+/turf/simulated/floor/outdoors/grass,
+/area/gateway/arynthilake)
 "FR" = (
 /obj/structure/ladder,
 /turf/simulated/floor/tiled/eris/dark/monofloor,
@@ -1680,6 +1687,13 @@
 "FZ" = (
 /obj/machinery/light/small,
 /turf/simulated/floor/wood,
+/area/gateway/arynthilake/dome)
+"Ga" = (
+/obj/move_trader_landmark{
+	dir = 8;
+	trader_type = /obj/trader/general
+	},
+/turf/simulated/floor/lino,
 /area/gateway/arynthilake/dome)
 "Gc" = (
 /obj/structure/table/steel_reinforced,
@@ -2016,6 +2030,13 @@
 /obj/structure/flora/tree/bigtree,
 /turf/simulated/floor/outdoors/grass/forest,
 /area/gateway/arynthilake/dome)
+"NF" = (
+/obj/move_trader_landmark{
+	dir = 4;
+	trader_type = /obj/trader/general
+	},
+/turf/simulated/floor/lino,
+/area/gateway/arynthilake/dome)
 "NG" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 6
@@ -2224,6 +2245,16 @@
 	outdoors = 1
 	},
 /area/gateway/arynthilake)
+"Sj" = (
+/obj/move_trader_landmark{
+	dir = 8;
+	trader_type = /obj/trader/general
+	},
+/turf/simulated/floor/plating{
+	edge_blending_priority = 1;
+	outdoors = 1
+	},
+/area/gateway/arynthilake/gateway)
 "Ss" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 9
@@ -4179,7 +4210,7 @@ au
 al
 al
 al
-al
+FJ
 al
 al
 au
@@ -6358,7 +6389,7 @@ Nm
 fo
 hw
 hw
-Sw
+NF
 Sw
 ba
 DP
@@ -7210,7 +7241,7 @@ fo
 hw
 Nm
 hw
-Sw
+Ga
 Sw
 ba
 qK
@@ -10946,7 +10977,7 @@ bD
 bD
 Fm
 bH
-rs
+Sj
 Zr
 au
 au
@@ -17840,7 +17871,7 @@ au
 al
 al
 al
-al
+FJ
 au
 Zr
 au

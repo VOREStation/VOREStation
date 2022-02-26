@@ -137,8 +137,16 @@
 /turf/simulated/floor/wood,
 /area/om_adventure/poi/woodentemple)
 "W" = (
-/obj/trader/general{
-	dir = 8
+/obj/move_trader_landmark{
+	dir = 8;
+	trader_type = /obj/trader/general
+	},
+/turf/simulated/floor/wood,
+/area/om_adventure/poi/woodentemple)
+"X" = (
+/obj/move_trader_landmark{
+	dir = 4;
+	trader_type = /obj/trader/general
 	},
 /turf/simulated/floor/wood,
 /area/om_adventure/poi/woodentemple)
@@ -226,7 +234,7 @@ C
 j
 d
 A
-d
+X
 m
 N
 Q

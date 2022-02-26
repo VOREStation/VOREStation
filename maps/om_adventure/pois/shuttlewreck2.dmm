@@ -64,6 +64,10 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/move_trader_landmark{
+	dir = 8;
+	trader_type = /obj/trader/general
+	},
 /turf/simulated/shuttle/floor/white,
 /area/om_adventure/poi/shuttlewreck2)
 "r" = (
@@ -78,6 +82,10 @@
 /obj/structure/cable/green,
 /obj/machinery/light{
 	dir = 8
+	},
+/obj/move_trader_landmark{
+	dir = 4;
+	trader_type = /obj/trader/general
 	},
 /turf/simulated/shuttle/floor/white,
 /area/om_adventure/poi/shuttlewreck2)

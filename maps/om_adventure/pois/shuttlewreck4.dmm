@@ -30,6 +30,13 @@
 "q" = (
 /turf/simulated/floor/tiled/eris/dark/monofloor,
 /area/om_adventure/poi/shuttlewreck4)
+"r" = (
+/obj/move_trader_landmark{
+	dir = 8;
+	trader_type = /obj/trader/general
+	},
+/turf/template_noop,
+/area/template_noop)
 "t" = (
 /obj/structure/bed/chair/bay/shuttle{
 	dir = 4
@@ -46,6 +53,13 @@
 "v" = (
 /turf/simulated/wall/eris/r_wall,
 /area/om_adventure/poi/shuttlewreck4)
+"w" = (
+/obj/move_trader_landmark{
+	dir = 4;
+	trader_type = /obj/trader/general
+	},
+/turf/template_noop,
+/area/template_noop)
 "x" = (
 /turf/simulated/floor/plating/eris/airless,
 /area/om_adventure/poi/shuttlewreck4)
@@ -157,7 +171,7 @@ j
 a
 a
 j
-j
+w
 a
 j
 h
@@ -361,7 +375,7 @@ j
 j
 j
 j
-j
+r
 j
 j
 j

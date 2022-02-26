@@ -17,6 +17,13 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating/eris/under,
 /area/om_adventure/poi/shippart1)
+"i" = (
+/obj/move_trader_landmark{
+	dir = 4;
+	trader_type = /obj/trader/general
+	},
+/turf/template_noop,
+/area/template_noop)
 "j" = (
 /obj/tether_away_spawner/spookyland,
 /turf/template_noop,
@@ -65,6 +72,13 @@
 /obj/structure/salvageable/bliss,
 /turf/simulated/floor/tiled/eris/dark/monofloor,
 /area/om_adventure/poi/shippart1)
+"K" = (
+/obj/move_trader_landmark{
+	dir = 8;
+	trader_type = /obj/trader/general
+	},
+/turf/template_noop,
+/area/template_noop)
 "M" = (
 /obj/item/weapon/material/shard,
 /obj/effect/floor_decal/rust,
@@ -133,7 +147,7 @@ a
 a
 a
 a
-a
+i
 a
 a
 a
@@ -354,7 +368,7 @@ a
 a
 a
 a
-a
+K
 a
 a
 X
