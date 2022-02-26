@@ -759,6 +759,7 @@
 	R.verbs |= /mob/living/silicon/robot/proc/ex_reserve_refill
 	R.verbs |= /mob/living/silicon/robot/proc/robot_mount
 	R.verbs |= /mob/living/proc/toggle_rider_reins
+	R.verbs |= /mob/living/proc/shred_limb
 	R.verbs |= /mob/living/silicon/robot/proc/rest_style
 	..()
 
