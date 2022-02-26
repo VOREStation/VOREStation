@@ -98,11 +98,6 @@
 	},
 /turf/space,
 /area/space)
-"ar" = (
-/obj/structure/lattice,
-/obj/structure/lattice,
-/turf/space,
-/area/space)
 "as" = (
 /obj/effect/gateway,
 /turf/simulated/floor/cult,
@@ -520,7 +515,9 @@
 /turf/simulated/floor/tiled/white,
 /area/awaymission/wwmines)
 "dM" = (
-/obj/item/weapon/stool,
+/obj/item/weapon/stool{
+	dir = 1
+	},
 /mob/living/simple_mob/humanoid/merc/ranged,
 /turf/simulated/floor/wood,
 /area/awaymission/wwmines)
@@ -832,7 +829,9 @@
 /turf/simulated/wall/sandstone,
 /area/awaymission/wwmines)
 "fT" = (
-/obj/item/weapon/stool,
+/obj/item/weapon/stool{
+	dir = 1
+	},
 /turf/simulated/floor/wood,
 /area/awaymission/wwmines)
 "fW" = (
@@ -1384,7 +1383,9 @@
 /turf/simulated/floor/grass,
 /area/awaymission/wwgov)
 "we" = (
-/obj/item/weapon/stool,
+/obj/item/weapon/stool{
+	dir = 1
+	},
 /mob/living/simple_mob/humanoid/merc/melee,
 /turf/simulated/floor/wood,
 /area/awaymission/wwmines)
@@ -2420,7 +2421,7 @@ af
 af
 af
 af
-ar
+af
 af
 af
 af
@@ -7260,7 +7261,7 @@ fH
 gF
 cx
 aD
-ar
+af
 af
 ia
 ia
@@ -7543,7 +7544,7 @@ af
 af
 af
 af
-ar
+af
 ad
 fM
 nd
@@ -7671,7 +7672,7 @@ ia
 ia
 ia
 af
-ar
+af
 af
 af
 af

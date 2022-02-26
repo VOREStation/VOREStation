@@ -187,6 +187,14 @@
 	containername = "Magnetic ammunition crate"
 	access = access_security
 
+/datum/supply_pack/munitions/claymore
+	name = "Weapons - Melee - Claymores"
+	contains = list(/obj/item/weapon/material/sword = 2)
+	cost = 150
+	containertype = /obj/structure/closet/crate/secure/weapon
+	containername = "Claymore crate"
+	access = access_armory //two swords that are a one-hit 40 brute + IB chance should be armory-locked
+
 /datum/supply_pack/munitions/shotgunammo
 	name = "Ammunition - Shotgun shells"
 	contains = list(

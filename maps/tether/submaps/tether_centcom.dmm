@@ -3401,6 +3401,12 @@
 /obj/machinery/computer/skills,
 /turf/simulated/floor/tiled/dark,
 /area/centcom/security)
+"lt" = (
+/obj/trader/general{
+	move_trader = 1
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/centcom/ccbay)
 "lu" = (
 /obj/machinery/light{
 	dir = 8
@@ -7255,7 +7261,7 @@
 	},
 /area/centcom/control)
 "EE" = (
-/obj/machinery/telecomms/relay/preset/tether,
+/obj/machinery/telecomms/relay/preset/station,
 /turf/unsimulated/floor/steel,
 /area/centcom/control)
 "EF" = (
@@ -28624,7 +28630,7 @@ bS
 fR
 bY
 ac
-nJ
+lt
 nJ
 nJ
 nJ

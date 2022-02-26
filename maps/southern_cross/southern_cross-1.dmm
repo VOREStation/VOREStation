@@ -89784,7 +89784,7 @@
 /turf/simulated/floor/wood,
 /area/library)
 "dky" = (
-/obj/structure/bed/chair/sofa/brown/right{
+/obj/structure/bed/chair/sofa/right/brown{
 	dir = 8
 	},
 /turf/simulated/floor/carpet,
@@ -90703,7 +90703,7 @@
 /turf/simulated/floor/wood,
 /area/library)
 "dmi" = (
-/obj/structure/bed/chair/sofa/brown/left{
+/obj/structure/bed/chair/sofa/left/brown{
 	dir = 8
 	},
 /turf/simulated/floor/carpet,

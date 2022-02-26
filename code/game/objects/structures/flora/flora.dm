@@ -13,6 +13,7 @@
 	var/min_x_scale = 0.9
 	var/min_y_scale = 0.9
 
+	var/removal_tool = /obj/item/weapon/shovel
 	var/harvest_tool = null // The type of item used to harvest the plant.
 	var/harvest_count = 0
 	var/destroy_on_harvest = FALSE
@@ -40,23 +41,34 @@
 	. = ..()
 	if(harvest_count < max_harvests)
 		. += get_harvestable_desc()
+		if(harvest_tool)
+			var/obj/item/tool = harvest_tool
+			. += SPAN_NOTICE("\The [src] can be harvested with \a [initial(tool.name)].")
+
+	if(removal_tool)
+		var/obj/item/tool = removal_tool
+		. += SPAN_NOTICE("\The [src] can be removed with \a [initial(tool.name)].")
 
 /obj/structure/flora/proc/get_harvestable_desc()
 	return "<span class='notice'>\The [src] seems to have something hanging from it.</span>"
 
 /obj/structure/flora/attackby(var/obj/item/weapon/W, var/mob/living/user)
+
 	if(can_harvest(W))
 		var/harvest_spawn = pickweight(harvest_loot)
 		var/atom/movable/AM = spawn_harvest(harvest_spawn, user)
-
-		if(!AM)
-			to_chat(user, "<span class='notice'>You fail to harvest anything from \the [src].</span>")
-
+		if(AM)
+			to_chat(user, SPAN_NOTICE("You harvest \the [AM] from \the [src]."))
 		else
-			to_chat(user, "<span class='notice'>You harvest \the [AM] from \the [src].</span>")
-			if(harvest_count >= max_harvests && destroy_on_harvest)
-				qdel(src)
-			return
+			to_chat(user, SPAN_NOTICE("You fail to harvest anything from \the [src]."))
+		return
+
+	if(removal_tool && istype(W, removal_tool))
+		to_chat(user, SPAN_WARNING("You start uprooting \the [src]..."))
+		if(do_after(user, 30))
+			visible_message(SPAN_NOTICE("\The [user] uproots and discards \the [src]!"))
+			qdel(src)
+		return
 
 	..(W, user)
 
@@ -450,19 +462,64 @@
 	desc = "This is a tiny well lit decorative christmas tree."
 	icon_state = "plant-xmas"
 
+/obj/structure/flora/mushroom
+	name = "mushroom"
+	desc = "Hey, this one seems like a fun guy."
+	icon_state = "mush1"
+	icon = 'icons/obj/flora/mushrooms.dmi'
+	harvest_loot = list(/obj/item/weapon/reagent_containers/food/snacks/mushroomslice = 1)
+	harvest_tool = /obj/item/weapon/material/knife
+	max_harvests = 2
+	min_harvests = 0
+
+/obj/structure/flora/mushroom/Initialize()
+	. = ..()
+	icon_state = "mush[rand(1,4)]"
+	if(prob(50))
+		adjust_scale(-1, 1)
+	pixel_x = rand(-4, 4)
+
+/obj/random/pottedplant
+	name = "random potted plant"
+	desc = "This is a random potted plant."
+
+/obj/random/pottedplant/item_to_spawn()
+	return pick(
+		prob(10);/obj/structure/flora/pottedplant,
+		prob(10);/obj/structure/flora/pottedplant/large,
+		prob(10);/obj/structure/flora/pottedplant/fern,
+		prob(10);/obj/structure/flora/pottedplant/overgrown,
+		prob(10);/obj/structure/flora/pottedplant/bamboo,
+		prob(10);/obj/structure/flora/pottedplant/largebush,
+		prob(10);/obj/structure/flora/pottedplant/thinbush,
+		prob(10);/obj/structure/flora/pottedplant/mysterious,
+		prob(10);/obj/structure/flora/pottedplant/smalltree,
+		prob(10);/obj/structure/flora/pottedplant/unusual,
+		prob(10);/obj/structure/flora/pottedplant/orientaltree,
+		prob(10);/obj/structure/flora/pottedplant/smallcactus,
+		prob(10);/obj/structure/flora/pottedplant/tall,
+		prob(10);/obj/structure/flora/pottedplant/sticky,
+		prob(10);/obj/structure/flora/pottedplant/smelly,
+		prob(10);/obj/structure/flora/pottedplant/small,
+		prob(10);/obj/structure/flora/pottedplant/aquatic,
+		prob(10);/obj/structure/flora/pottedplant/shoot,
+		prob(10);/obj/structure/flora/pottedplant/flower,
+		prob(10);/obj/structure/flora/pottedplant/crystal,
+		prob(10);/obj/structure/flora/pottedplant/subterranean,
+		prob(10);/obj/structure/flora/pottedplant/minitree,
+		prob(10);/obj/structure/flora/pottedplant/stoutbush,
+		prob(10);/obj/structure/flora/pottedplant/drooping,
+		prob(10);/obj/structure/flora/pottedplant/tropical,
+		prob(10);/obj/structure/flora/pottedplant/dead,
+		prob(10);/obj/structure/flora/pottedplant/decorative,
+		prob(1);/obj/structure/flora/pottedplant/xmas
+				)
+
 /obj/structure/flora/sif
 	icon = 'icons/obj/flora/sifflora.dmi'
 
-/obj/structure/flora/sif/attack_hand(mob/user)
-	if (user.a_intent == I_HURT)
-		if(do_after(user, 5 SECONDS))
-			user.visible_message("<span class='filter_notice'>\The [user] digs up \the [src.name].", "You dig up \the [src.name].</span>")
-			qdel(src)
-	else
-		user.visible_message("<span class='filter_notice'>\The [user] pokes \the [src.name].", "You poke \the [src.name].</span>")
-
 /datum/category_item/catalogue/flora/subterranean_bulbs
-	name = "Sivian Flora - Subterranean Bulbs"
+	name = "Sivian Flora - Cavebulbs"
 	desc = "A plant which is native to Sif, it continues the trend of being a bioluminescent specimen. These plants \
 	are generally suited for conditions experienced in caverns, which are generally dark and cold. It is not \
 	known why this plant evolved to be bioluminescent, however this property has, unintentionally, allowed for \
@@ -475,7 +532,7 @@
 	value = CATALOGUER_REWARD_EASY
 
 /obj/structure/flora/sif/subterranean
-	name = "subterranean plant"
+	name = "subterranean bulbs"
 	desc = "This is a subterranean plant. It's bulbous ends glow faintly."
 	icon_state = "glowplant"
 	light_range = 2
@@ -483,11 +540,14 @@
 	light_color = "#FF6633"
 	light_on = TRUE
 	catalogue_data = list(/datum/category_item/catalogue/flora/subterranean_bulbs)
+	harvest_loot = list(/obj/item/weapon/reagent_containers/food/snacks/grown/sif/cavebulbs = 1)
+	harvest_tool = /obj/item/weapon/material/knife
+	max_harvests = 2
+	min_harvests = 0
 
 /obj/structure/flora/sif/subterranean/Initialize()
 	icon_state = "[initial(icon_state)][rand(1,2)]"
 	. = ..()
-
 
 /datum/category_item/catalogue/flora/eyebulbs
 	name = "Sivian Flora - Eyebulbs"
@@ -497,10 +557,14 @@
 	value = CATALOGUER_REWARD_EASY
 
 /obj/structure/flora/sif/eyes
-	name = "mysterious bulbs"
-	desc = "This is a mysterious looking plant. They kind of look like eyeballs. Creepy."
+	name = "eyebulbs"
+	desc = "This is a mysterious-looking plant. They kind of look like eyeballs. Creepy."
 	icon_state = "eyeplant"
 	catalogue_data = list(/datum/category_item/catalogue/flora/eyebulbs)
+	harvest_tool = /obj/item/weapon/material/knife
+	max_harvests = 2
+	min_harvests = 0
+	harvest_loot = list(/obj/item/weapon/reagent_containers/food/snacks/grown/sif/eyebulbs = 1)
 
 /obj/structure/flora/sif/eyes/Initialize()
 	icon_state = "[initial(icon_state)][rand(1,3)]"
@@ -514,20 +578,20 @@
 	value = CATALOGUER_REWARD_TRIVIAL
 
 /obj/structure/flora/sif/tendrils
-	name = "stocky tendrils"
+	name = "wabback tendrils"
 	desc = "A 'plant' made up of hardened moss. It has tiny hairs that bunch together to look like snow."
 	icon_state = "grass"
 	randomize_size = TRUE
 	catalogue_data = list(/datum/category_item/catalogue/flora/mosstendrils)
 
 	harvest_tool = /obj/item/weapon/material/knife
-	max_harvests = 1
-	min_harvests = -4
+	max_harvests = 3
+	min_harvests = 0
 	harvest_loot = list(
-		/obj/item/seeds/wabback = 15,
-		/obj/item/seeds/blackwabback = 1,
-		/obj/item/seeds/wildwabback = 30
-		)
+		/obj/item/weapon/reagent_containers/food/snacks/grown/sif/wabback = 15,
+		/obj/item/weapon/reagent_containers/food/snacks/grown/sif/blackwabback = 1,
+		/obj/item/weapon/reagent_containers/food/snacks/grown/sif/wildwabback = 30
+	)
 
 /obj/structure/flora/sif/tendrils/Initialize()
 	icon_state = "[initial(icon_state)][rand(1,3)]"
@@ -546,26 +610,24 @@
 	value = CATALOGUER_REWARD_HARD
 
 /obj/structure/flora/sif/frostbelle
-	name = "gnarly shrub"
+	name = "frostbelle shrub"
 	desc = "A stocky plant with fins bearing luminescent veins along its branches."
-	icon_state = "grass"
+	icon_state = "frostbelle"
 	randomize_size = TRUE
 	catalogue_data = list(/datum/category_item/catalogue/flora/frostbelle)
 
 	harvest_tool = /obj/item/weapon/material/knife
 	max_harvests = 2
-	min_harvests = -4
+	min_harvests = 0
 	harvest_loot = list(
 		/obj/item/weapon/reagent_containers/food/snacks/frostbelle = 1
-		)
+	)
 
 	var/variantnum = null
 
 /obj/structure/flora/sif/frostbelle/Initialize()
 	. = ..()
-
 	variantnum = rand(1,3)
-
 	update_icon()
 
 /obj/structure/flora/sif/frostbelle/update_icon()
@@ -573,7 +635,6 @@
 
 	if(max_harvests > 0 && harvest_count < max_harvests)
 		icon_state = "[initial(icon_state)][variantnum]"
-
 	else
 		icon_state = initial(icon_state)
 

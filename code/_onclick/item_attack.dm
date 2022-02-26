@@ -25,28 +25,48 @@ avoid code duplication. This includes items that may sometimes act as a standard
 		return
 	return
 
-// Called at the start of resolve_attackby(), before the actual attack.
-/obj/item/proc/pre_attack(atom/a, mob/user)
-	return
+/**
+ * Called at the start of resolve_attackby(), before the actual attack.
+ *
+ * Arguments:
+ * * atom/A - The atom about to be hit
+ * * mob/living/user - The mob doing the htting
+ * * params - click params such as alt/shift etc
+ *
+ * See: [/obj/item/proc/melee_attack_chain]
+ */
+
+/obj/item/proc/pre_attack(atom/A, mob/user, params) //do stuff before attackby!
+	if(SEND_SIGNAL(src, COMSIG_ITEM_PRE_ATTACK, A, user, params) & COMPONENT_CANCEL_ATTACK_CHAIN)
+		return TRUE
+	return FALSE //return TRUE to avoid calling attackby after this proc does stuff
 
 //I would prefer to rename this to attack(), but that would involve touching hundreds of files.
 /obj/item/proc/resolve_attackby(atom/A, mob/user, var/attack_modifier = 1, var/click_parameters)
-	pre_attack(A, user)
 	add_fingerprint(user)
+	. = pre_attack(A, user, click_parameters)
+	if(.)	// We're returning the value of pre_attack, important if it has a special return.
+		return
 	return A.attackby(src, user, attack_modifier, click_parameters)
 
 // No comment
 /atom/proc/attackby(obj/item/W, mob/user, var/attack_modifier, var/click_parameters)
-	if(SEND_SIGNAL(src, COMSIG_PARENT_ATTACKBY, W, user, click_parameters) & COMPONENT_NO_AFTERATTACK)
+	if(SEND_SIGNAL(src, COMSIG_PARENT_ATTACKBY, W, user, click_parameters) & COMPONENT_CANCEL_ATTACK_CHAIN)
 		return TRUE
 	return FALSE
 
 /mob/living/attackby(obj/item/I, mob/user, var/attack_modifier, var/click_parameters)
 	if(!ismob(user))
-		return 0
+		return FALSE
+
+	if(SEND_SIGNAL(src, COMSIG_PARENT_ATTACKBY, I, user, click_parameters) & COMPONENT_CANCEL_ATTACK_CHAIN)
+		return FALSE
+
 	if(can_operate(src, user) && I.do_surgery(src,user))
-		return 1
+		return TRUE
+
 	if(attempt_vr(src,"vore_attackby",args)) return //VOREStation Add - The vore, of course.
+
 	return I.attack(src, user, user.zone_sel.selecting, attack_modifier)
 
 // Used to get how fast a mob should attack, and influences click delay.

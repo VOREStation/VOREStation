@@ -211,7 +211,7 @@
 /turf/simulated/mineral/floor,
 /area/mine/unexplored)
 "aL" = (
-/turf/simulated/floor/greengrid,
+/turf/simulated/floor/greengrid/airless,
 /area/mine/explored)
 "aM" = (
 /turf/simulated/mineral/floor,
@@ -220,51 +220,51 @@
 /obj/machinery/gateway{
 	dir = 9
 	},
-/turf/simulated/floor/greengrid,
+/turf/simulated/floor/greengrid/airless,
 /area/mine/explored)
 "aO" = (
 /obj/machinery/gateway{
 	dir = 1
 	},
-/turf/simulated/floor/greengrid,
+/turf/simulated/floor/greengrid/airless,
 /area/mine/explored)
 "aP" = (
 /obj/machinery/gateway{
 	dir = 5
 	},
-/turf/simulated/floor/greengrid,
+/turf/simulated/floor/greengrid/airless,
 /area/mine/explored)
 "aQ" = (
 /obj/machinery/gateway{
 	dir = 8
 	},
-/turf/simulated/floor/greengrid,
+/turf/simulated/floor/greengrid/airless,
 /area/mine/explored)
 "aR" = (
 /obj/machinery/gateway/centeraway,
-/turf/simulated/floor/greengrid,
+/turf/simulated/floor/greengrid/airless,
 /area/mine/explored)
 "aS" = (
 /obj/machinery/gateway{
 	dir = 4
 	},
-/turf/simulated/floor/greengrid,
+/turf/simulated/floor/greengrid/airless,
 /area/mine/explored)
 "aT" = (
 /obj/machinery/gateway{
 	dir = 10
 	},
-/turf/simulated/floor/greengrid,
+/turf/simulated/floor/greengrid/airless,
 /area/mine/explored)
 "aU" = (
 /obj/machinery/gateway,
-/turf/simulated/floor/greengrid,
+/turf/simulated/floor/greengrid/airless,
 /area/mine/explored)
 "aV" = (
 /obj/machinery/gateway{
 	dir = 6
 	},
-/turf/simulated/floor/greengrid,
+/turf/simulated/floor/greengrid/airless,
 /area/mine/explored)
 "aW" = (
 /obj/effect/overmap/visitable/sector/common_gateway/listeningpost,

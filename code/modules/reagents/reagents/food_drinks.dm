@@ -170,6 +170,8 @@
 	if(!istype(T))
 		return
 
+	..()
+
 	var/hotspot = (locate(/obj/fire) in T)
 	if(hotspot && !istype(T, /turf/space))
 		var/datum/gas_mixture/lowertemp = T.remove_air(T:air:total_moles)
@@ -386,6 +388,7 @@
 	allergen_type = ALLERGEN_GRAINS //Flour is made from grain
 
 /datum/reagent/nutriment/flour/touch_turf(var/turf/simulated/T)
+	..()
 	if(!istype(T, /turf/space))
 		new /obj/effect/decal/cleanable/flour(T)
 
@@ -565,6 +568,7 @@
 	glass_desc = "Durian paste. It smells horrific."
 
 /datum/reagent/nutriment/durian/touch_mob(var/mob/M, var/amount)
+	..()
 	if(iscarbon(M) && !M.isSynthetic())
 		var/message = pick("Oh god, it smells disgusting here.", "What is that stench?", "That's an awful odor.")
 		to_chat(M, "<span class='alien'>[message]</span>")
@@ -574,6 +578,7 @@
 	return ..()
 
 /datum/reagent/nutriment/durian/touch_turf(var/turf/T, var/amount)
+	..()
 	if(istype(T))
 		var/obj/effect/decal/cleanable/chemcoating/C = new /obj/effect/decal/cleanable/chemcoating(T)
 		C.reagents.add_reagent(id, amount)

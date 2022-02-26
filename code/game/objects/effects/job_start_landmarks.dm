@@ -90,3 +90,5 @@
 	name = "Talon Guard"
 /obj/effect/landmark/start/talonpilot
 	name = "Talon Pilot"
+/obj/effect/landmark/start/talonminer
+	name = "Talon Miner"

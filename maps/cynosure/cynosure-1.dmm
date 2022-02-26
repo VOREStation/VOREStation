@@ -11831,7 +11831,7 @@
 "zw" = (
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/purple/border,
-/obj/structure/bed/chair/sofa/beige/left{
+/obj/structure/bed/chair/sofa/left/beige{
 	dir = 1
 	},
 /obj/structure/extinguisher_cabinet{
@@ -12128,7 +12128,7 @@
 	},
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/purple/border,
-/obj/structure/bed/chair/sofa/beige/right{
+/obj/structure/bed/chair/sofa/right/beige{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/neutral,
@@ -16534,6 +16534,9 @@
 /area/surface/station/hallway/primary/bmt/west/elevator)
 "Kc" = (
 /obj/structure/stairs/spawner/south,
+/obj/structure/railing{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/dark,
 /area/surface/station/medical/hallway/bmt)
 "Kd" = (
@@ -19063,6 +19066,9 @@
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/incineratormaint)
 "Ph" = (
+/obj/structure/railing{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/dark,
 /area/surface/station/medical/hallway/bmt)
 "Pi" = (
@@ -54513,7 +54519,7 @@ RQ
 RQ
 xW
 xW
-RQ
+xW
 RQ
 RQ
 RQ
@@ -55025,7 +55031,7 @@ RQ
 RQ
 RQ
 RQ
-xW
+RQ
 xW
 xW
 xW
@@ -56327,7 +56333,7 @@ RQ
 RQ
 RQ
 RQ
-RQ
+Kj
 Kj
 Kj
 Kj

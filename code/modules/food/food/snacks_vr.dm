@@ -161,19 +161,6 @@
 	reagents.add_reagent("protein", 4)
 	bitesize = 2
 
-/obj/item/weapon/reagent_containers/food/snacks/meat/grubmeat
-	name = "grub meat"
-	desc = "A slab of grub meat, it gives a gentle shock if you touch it"
-	icon = 'icons/obj/food.dmi'
-	icon_state = "grubmeat"
-	center_of_mass = list("x"=16, "y"=10)
-
-/obj/item/weapon/reagent_containers/food/snacks/meat/grubmeat/Initialize()
-	. = ..()
-	reagents.add_reagent("protein", 1)
-	reagents.add_reagent("shockchem", 6)
-	bitesize = 6
-
 /obj/item/weapon/reagent_containers/food/snacks/bugball
 	name = "bugball"
 	desc = "A hard piece of chitin, don't chip a tooth!"

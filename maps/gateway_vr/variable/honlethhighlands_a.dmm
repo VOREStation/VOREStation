@@ -6,12 +6,12 @@
 	},
 /area/gateway/honlethhighlands)
 "ab" = (
-/turf/simulated/mineral/ignore_cavegen{
+/turf/simulated/mineral/ignore_cavegen/cave{
 	temperature = 253.15
 	},
 /area/gateway/honlethhighlands/caves)
 "ac" = (
-/turf/simulated/mineral/floor/ignore_cavegen{
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	temperature = 253.15
 	},
 /area/gateway/honlethhighlands/caves)
@@ -125,7 +125,7 @@
 	},
 /area/gateway/honlethhighlands/caves)
 "aE" = (
-/turf/simulated/mineral/floor/ignore_cavegen{
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	name = "dirt";
 	outdoors = 1;
 	temperature = 253.15
@@ -190,7 +190,7 @@
 /area/gateway/honlethhighlands/town/command)
 "aS" = (
 /obj/effect/landmark/gateway_scatter,
-/turf/simulated/mineral/floor/ignore_cavegen{
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	temperature = 253.15
 	},
 /area/gateway/honlethhighlands/caves)
@@ -216,7 +216,7 @@
 	},
 /area/gateway/honlethhighlands)
 "aX" = (
-/turf/simulated/mineral/ignore_cavegen{
+/turf/simulated/mineral/ignore_cavegen/cave{
 	temperature = 253.15
 	},
 /area/gateway/honlethhighlands/beach)
@@ -308,7 +308,7 @@
 /area/gateway/honlethhighlands/beach)
 "bp" = (
 /obj/random/mob/semirandom_mob_spawner/animal/retaliate/c,
-/turf/simulated/mineral/floor/ignore_cavegen{
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	temperature = 253.15
 	},
 /area/gateway/honlethhighlands/caves)
@@ -364,6 +364,13 @@
 /obj/random/mob/semirandom_mob_spawner/humanoid/retaliate/b,
 /turf/simulated/floor/tiled/techfloor,
 /area/gateway/honlethhighlands/gate)
+"bP" = (
+/obj/move_trader_landmark{
+	dir = 4;
+	trader_type = /obj/trader/general
+	},
+/turf/simulated/floor/lino,
+/area/gateway/honlethhighlands/town/kitchen)
 "bY" = (
 /obj/machinery/alarm/alarms_hidden{
 	pixel_y = 21
@@ -449,7 +456,9 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/item/weapon/stool,
+/obj/item/weapon/stool{
+	dir = 4
+	},
 /turf/simulated/floor/wood,
 /area/gateway/honlethhighlands/town/bar)
 "dF" = (
@@ -513,7 +522,7 @@
 /area/gateway/honlethhighlands/gate)
 "fa" = (
 /obj/random/mob/semirandom_mob_spawner/animal/retaliate/b,
-/turf/simulated/mineral/floor/ignore_cavegen{
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	temperature = 253.15
 	},
 /area/gateway/honlethhighlands/caves)
@@ -540,7 +549,7 @@
 /obj/item/stack/material/wood,
 /obj/item/stack/material/wood,
 /obj/item/stack/material/wood,
-/turf/simulated/mineral/floor/ignore_cavegen{
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	temperature = 253.15
 	},
 /area/gateway/honlethhighlands/caves)
@@ -573,8 +582,12 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 8
 	},
-/obj/structure/bed/chair/sofa/brown/left{
+/obj/structure/bed/chair/sofa/left/brown{
 	dir = 4
+	},
+/obj/move_trader_landmark{
+	dir = 4;
+	trader_type = /obj/trader/general
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/gateway/honlethhighlands/gate)
@@ -665,7 +678,7 @@
 /area/gateway/honlethhighlands)
 "is" = (
 /obj/item/weapon/flame/lighter/random,
-/turf/simulated/mineral/floor/ignore_cavegen{
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	temperature = 253.15
 	},
 /area/gateway/honlethhighlands/caves)
@@ -735,7 +748,9 @@
 /turf/simulated/floor/tiled,
 /area/gateway/honlethhighlands/town/command)
 "kL" = (
-/obj/item/weapon/stool,
+/obj/item/weapon/stool{
+	dir = 1
+	},
 /turf/simulated/floor/plating,
 /area/gateway/honlethhighlands/town/bar)
 "kS" = (
@@ -822,7 +837,7 @@
 /area/gateway/honlethhighlands/beach)
 "mG" = (
 /obj/structure/table/bench/wooden,
-/turf/simulated/mineral/floor/ignore_cavegen{
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	temperature = 253.15
 	},
 /area/gateway/honlethhighlands/caves)
@@ -902,7 +917,9 @@
 	},
 /area/gateway/honlethhighlands/town/garden)
 "nx" = (
-/obj/item/weapon/stool/padded,
+/obj/item/weapon/stool/padded{
+	dir = 4
+	},
 /obj/random/mob/semirandom_mob_spawner/humanoid/retaliate,
 /turf/simulated/floor/lino,
 /area/gateway/honlethhighlands/town/bar)
@@ -920,7 +937,7 @@
 	},
 /area/gateway/honlethhighlands/caves)
 "nI" = (
-/obj/structure/bed/chair/sofa/green/left{
+/obj/structure/bed/chair/sofa/left/green{
 	dir = 4
 	},
 /turf/simulated/floor/wood,
@@ -945,7 +962,7 @@
 "oe" = (
 /obj/structure/bonfire,
 /obj/random/meat,
-/turf/simulated/mineral/floor/ignore_cavegen{
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	temperature = 253.15
 	},
 /area/gateway/honlethhighlands/caves)
@@ -1025,13 +1042,13 @@
 /area/gateway/honlethhighlands/town/engineering)
 "pT" = (
 /obj/effect/landmark/mcguffin_spawner,
-/turf/simulated/mineral/floor/ignore_cavegen{
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	temperature = 253.15
 	},
 /area/gateway/honlethhighlands/caves)
 "pX" = (
 /obj/random/maintenance,
-/turf/simulated/mineral/floor/ignore_cavegen{
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	temperature = 253.15
 	},
 /area/gateway/honlethhighlands/caves)
@@ -1080,7 +1097,9 @@
 /turf/simulated/floor/tiled,
 /area/gateway/honlethhighlands/town/command)
 "qB" = (
-/obj/item/weapon/stool/padded,
+/obj/item/weapon/stool/padded{
+	dir = 1
+	},
 /obj/random/junk,
 /turf/simulated/floor/wood,
 /area/gateway/honlethhighlands/town/bar)
@@ -1340,7 +1359,9 @@
 /turf/simulated/floor/tiled,
 /area/gateway/honlethhighlands/town/command)
 "uu" = (
-/obj/item/weapon/stool/padded,
+/obj/item/weapon/stool/padded{
+	dir = 8
+	},
 /obj/random/junk,
 /turf/simulated/floor/plating,
 /area/gateway/honlethhighlands/town/bar)
@@ -1390,6 +1411,12 @@
 /obj/random/awayloot,
 /turf/simulated/floor/plating,
 /area/gateway/honlethhighlands/town/xenobio)
+"vt" = (
+/obj/item/weapon/stool/padded{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/gateway/honlethhighlands/town/bar)
 "vG" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -1643,7 +1670,7 @@
 /area/gateway/honlethhighlands/town/xenobio)
 "zE" = (
 /obj/random/junk,
-/turf/simulated/mineral/floor/ignore_cavegen{
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	temperature = 253.15
 	},
 /area/gateway/honlethhighlands/caves)
@@ -1721,7 +1748,7 @@
 "AK" = (
 /obj/random/mre,
 /obj/random/mre,
-/turf/simulated/mineral/floor/ignore_cavegen{
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	temperature = 253.15
 	},
 /area/gateway/honlethhighlands/caves)
@@ -1968,7 +1995,7 @@
 /area/gateway/honlethhighlands/gate)
 "Et" = (
 /obj/random/mob/semirandom_mob_spawner/animal/retaliate,
-/turf/simulated/mineral/floor/ignore_cavegen{
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	temperature = 253.15
 	},
 /area/gateway/honlethhighlands/caves)
@@ -1981,7 +2008,9 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/obj/item/weapon/stool/padded,
+/obj/item/weapon/stool/padded{
+	dir = 8
+	},
 /turf/simulated/floor/lino,
 /area/gateway/honlethhighlands/town/bar)
 "Ey" = (
@@ -2133,7 +2162,7 @@
 	},
 /area/gateway/honlethhighlands/caves)
 "HY" = (
-/obj/structure/bed/chair/sofa/green/right{
+/obj/structure/bed/chair/sofa/right/green{
 	dir = 4
 	},
 /turf/simulated/floor/wood,
@@ -2190,7 +2219,9 @@
 	},
 /area/gateway/honlethhighlands/town/garden)
 "JI" = (
-/obj/item/weapon/stool/padded,
+/obj/item/weapon/stool/padded{
+	dir = 8
+	},
 /turf/simulated/floor/lino,
 /area/gateway/honlethhighlands/town/bar)
 "JL" = (
@@ -2204,7 +2235,7 @@
 /area/gateway/honlethhighlands/gate)
 "JM" = (
 /obj/random/cigarettes,
-/turf/simulated/mineral/floor/ignore_cavegen{
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	temperature = 253.15
 	},
 /area/gateway/honlethhighlands/caves)
@@ -2249,7 +2280,7 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 8
 	},
-/obj/structure/bed/chair/sofa/brown/right{
+/obj/structure/bed/chair/sofa/right/brown{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor,
@@ -2262,7 +2293,7 @@
 /area/gateway/honlethhighlands/beach)
 "Ld" = (
 /obj/random/awayloot,
-/turf/simulated/mineral/floor/ignore_cavegen{
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	temperature = 253.15
 	},
 /area/gateway/honlethhighlands/caves)
@@ -2278,6 +2309,10 @@
 	message = "About done waiting in this line";
 	pixel_x = 19;
 	pixel_y = -9
+	},
+/obj/move_trader_landmark{
+	dir = 8;
+	trader_type = /obj/trader/general
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/gateway/honlethhighlands/gate)
@@ -2321,7 +2356,7 @@
 "Ms" = (
 /obj/structure/table/bench/wooden,
 /obj/random/mob/semirandom_mob_spawner/humanoid/retaliate,
-/turf/simulated/mineral/floor/ignore_cavegen{
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	temperature = 253.15
 	},
 /area/gateway/honlethhighlands/caves)
@@ -2556,7 +2591,7 @@
 /area/gateway/honlethhighlands/town/command)
 "Ro" = (
 /obj/random/mob/semirandom_mob_spawner/vore/passive/b,
-/turf/simulated/mineral/floor/ignore_cavegen{
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	temperature = 253.15
 	},
 /area/gateway/honlethhighlands/caves)
@@ -2566,6 +2601,16 @@
 	},
 /turf/simulated/floor/plating,
 /area/gateway/honlethhighlands/town/xenobio)
+"Rx" = (
+/obj/item/weapon/stool/padded{
+	dir = 8
+	},
+/obj/move_trader_landmark{
+	dir = 8;
+	trader_type = /obj/trader/general
+	},
+/turf/simulated/floor/lino,
+/area/gateway/honlethhighlands/town/bar)
 "RA" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 10
@@ -2910,13 +2955,13 @@
 /area/gateway/honlethhighlands/town/bar)
 "Zw" = (
 /obj/random/mob/semirandom_mob_spawner/vore/passive,
-/turf/simulated/mineral/floor/ignore_cavegen{
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	temperature = 253.15
 	},
 /area/gateway/honlethhighlands/caves)
 "Zy" = (
 /obj/random/drinkbottle,
-/turf/simulated/mineral/floor/ignore_cavegen{
+/turf/simulated/mineral/floor/ignore_cavegen/cave{
 	temperature = 253.15
 	},
 /area/gateway/honlethhighlands/caves)
@@ -16369,7 +16414,7 @@ Aa
 dF
 yP
 JI
-JI
+Rx
 JI
 Ev
 he
@@ -16935,10 +16980,10 @@ aI
 he
 ro
 AF
-BS
+vt
 BS
 aP
-BS
+vt
 UN
 hN
 An
@@ -19229,7 +19274,7 @@ aI
 Tg
 lj
 uN
-lj
+bP
 lj
 lj
 lj

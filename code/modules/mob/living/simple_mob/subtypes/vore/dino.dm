@@ -25,6 +25,9 @@
 	cold_damage_per_tick = 10
 	unsuitable_atoms_damage = 10
 
+	meat_amount = 5
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+
 	//Phoron dragons aren't affected by atmos.
 	min_oxy = 0
 	max_oxy = 0

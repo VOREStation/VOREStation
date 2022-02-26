@@ -18,23 +18,25 @@
 /obj/item/weapon/aliencoin/New()
 	randpixel_xy()
 
+/obj/item/weapon/aliencoin/basic
+
 /obj/item/weapon/aliencoin/gold
 	name = "curious coin"
 	icon_state = "triangle-g"
 	desc = "A curious triangular coin made primarily of some kind of dark, smooth metal. This one's markings appear to reveal a golden material underneath."
-	value = 3
+	value = 10
 
 /obj/item/weapon/aliencoin/silver
 	name = "curious coin"
 	icon_state = "triangle-s"
 	desc = "A curious triangular coin made primarily of some kind of dark, smooth metal. This one's markings appear to reveal a silver material underneath."
-	value = 2
+	value = 5
 
 /obj/item/weapon/aliencoin/phoron
 	name = "curious coin"
 	icon_state = "triangle-p"
 	desc = "A curious triangular coin made primarily of some kind of dark, smooth metal. This one's markings appear to reveal a purple material underneath."
-	value = 4
+	value = 20
 
 
 /obj/item/weapon/aliencoin/attack_self(mob/user as mob)

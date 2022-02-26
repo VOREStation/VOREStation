@@ -5,12 +5,16 @@
 	name = "guest pass"
 	desc = "Allows temporary access to station areas."
 	icon_state = "guest"
+	initial_sprite_stack = list()
 	light_color = "#0099ff"
 
 	var/temp_access = list() //to prevent agent cards stealing access as permanent
 	var/expiration_time = 0
 	var/expired = 0
 	var/reason = "NOT SPECIFIED"
+
+/obj/item/weapon/card/id/guest/update_icon()
+	return
 
 /obj/item/weapon/card/id/guest/GetAccess()
 	if(world.time > expiration_time)

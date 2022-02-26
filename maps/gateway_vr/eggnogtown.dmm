@@ -586,7 +586,7 @@
 /turf/simulated/floor/wood,
 /area/gateway/eggnogtown/kitchihome/den)
 "bU" = (
-/obj/structure/bed/chair/sofa/beige/right{
+/obj/structure/bed/chair/sofa/right/beige{
 	dir = 8
 	},
 /turf/simulated/floor/wood{
@@ -610,7 +610,7 @@
 /turf/simulated/floor/bmarble,
 /area/gateway/eggnogtown/hall/north)
 "ca" = (
-/obj/structure/bed/chair/sofa/beige/corner{
+/obj/structure/bed/chair/sofa/corner/beige{
 	dir = 1
 	},
 /turf/simulated/floor/wmarble,
@@ -619,7 +619,7 @@
 /turf/simulated/wall/wood,
 /area/gateway/eggnogtown/cavehome/office)
 "cn" = (
-/obj/structure/bed/chair/sofa/black/right{
+/obj/structure/bed/chair/sofa/right/black{
 	dir = 4
 	},
 /turf/simulated/floor/wood,
@@ -650,7 +650,9 @@
 	pixel_x = 28;
 	pixel_y = -26
 	},
-/turf/simulated/floor/outdoors/newdirt,
+/turf/simulated/floor/outdoors/newdirt{
+	outdoors = 0
+	},
 /area/gateway/eggnogtown/greenhouse)
 "cD" = (
 /obj/structure/bonfire,
@@ -729,7 +731,7 @@
 /turf/simulated/open,
 /area/gateway/eggnogtown/storage)
 "do" = (
-/obj/structure/bed/chair/sofa/black/right{
+/obj/structure/bed/chair/sofa/right/black{
 	dir = 8
 	},
 /turf/simulated/floor/wood{
@@ -790,7 +792,7 @@
 /turf/simulated/floor/outdoors/grass/forest,
 /area/gateway/eggnogtown/greenhouse)
 "dM" = (
-/obj/structure/bed/chair/sofa/beige/left{
+/obj/structure/bed/chair/sofa/left/beige{
 	dir = 8
 	},
 /turf/simulated/floor/wood{
@@ -867,7 +869,7 @@
 /turf/simulated/floor/wood,
 /area/gateway/eggnogtown/kitchihome)
 "ez" = (
-/obj/structure/bed/chair/sofa/beige/left{
+/obj/structure/bed/chair/sofa/left/beige{
 	dir = 8
 	},
 /turf/simulated/floor/wood{
@@ -896,7 +898,7 @@
 	},
 /area/gateway/eggnogtown/cavehome)
 "eO" = (
-/obj/structure/bed/chair/sofa/beige/right{
+/obj/structure/bed/chair/sofa/right/beige{
 	dir = 8
 	},
 /turf/simulated/floor/wood{
@@ -972,9 +974,7 @@
 "fS" = (
 /obj/machinery/portable_atmospherics/hydroponics/soil,
 /obj/machinery/light,
-/turf/simulated/floor/outdoors/grass/forest{
-	outdoors = 0
-	},
+/turf/simulated/floor/outdoors/grass/forest,
 /area/gateway/eggnogtown/greenhouse)
 "fX" = (
 /obj/structure/grille,
@@ -1081,7 +1081,9 @@
 /area/gateway/eggnogtown/kitchihome/den)
 "gP" = (
 /obj/item/weapon/stool/padded,
-/turf/simulated/floor/outdoors/newdirt,
+/turf/simulated/floor/outdoors/newdirt{
+	outdoors = 0
+	},
 /area/gateway/eggnogtown/greenhouse)
 "gS" = (
 /turf/simulated/wall/wood,
@@ -1183,6 +1185,10 @@
 /obj/structure/bed/chair/sofa/black{
 	dir = 8
 	},
+/obj/move_trader_landmark{
+	dir = 8;
+	trader_type = /obj/trader/general
+	},
 /turf/simulated/floor/wood,
 /area/gateway/eggnogtown/hall/south)
 "iq" = (
@@ -1244,6 +1250,14 @@
 /obj/structure/simple_door/iron,
 /turf/simulated/floor/bmarble,
 /area/gateway/eggnogtown/arturoswolfden)
+"jy" = (
+/obj/item/weapon/stool/padded{
+	dir = 8
+	},
+/turf/simulated/floor/outdoors/newdirt{
+	outdoors = 0
+	},
+/area/gateway/eggnogtown/greenhouse)
 "jB" = (
 /obj/structure/table/woodentable,
 /obj/item/toy/plushie/black_fox,
@@ -1279,9 +1293,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/grass/forest{
-	outdoors = 0
-	},
+/turf/simulated/floor/outdoors/grass/forest,
 /area/gateway/eggnogtown/greenhouse)
 "kG" = (
 /obj/machinery/telecomms/relay,
@@ -1377,7 +1389,7 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/gateway/eggnogtown/dining)
 "lS" = (
-/obj/structure/bed/chair/sofa/black/right{
+/obj/structure/bed/chair/sofa/right/black{
 	dir = 1
 	},
 /turf/simulated/floor/wood,
@@ -1428,7 +1440,7 @@
 	},
 /area/gateway/eggnogtown/stokeswashere)
 "mv" = (
-/obj/structure/bed/chair/sofa/black/corner,
+/obj/structure/bed/chair/sofa/corner/black,
 /turf/simulated/floor/wood,
 /area/gateway/eggnogtown/hall/south)
 "mw" = (
@@ -1502,6 +1514,7 @@
 "nd" = (
 /obj/structure/bed/double,
 /obj/structure/lattice,
+/obj/structure/curtain/black,
 /turf/simulated/open,
 /area/gateway/eggnogtown/houserhomestead)
 "ne" = (
@@ -1852,7 +1865,7 @@
 /turf/simulated/wall/iron,
 /area/gateway/eggnogtown/alipad/bedroom)
 "sE" = (
-/obj/structure/bed/chair/sofa/black/left{
+/obj/structure/bed/chair/sofa/left/black{
 	dir = 8
 	},
 /turf/simulated/floor/wood{
@@ -1860,7 +1873,7 @@
 	},
 /area/gateway/eggnogtown/eastcaveland)
 "sF" = (
-/obj/structure/bed/chair/sofa/black/right{
+/obj/structure/bed/chair/sofa/right/black{
 	dir = 1
 	},
 /turf/simulated/floor/wood{
@@ -1917,7 +1930,10 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/gateway/eggnogtown/dining/storage)
 "tc" = (
-/turf/simulated/floor/outdoors/grass/forest{
+/obj/item/weapon/stool/padded{
+	dir = 4
+	},
+/turf/simulated/floor/outdoors/newdirt{
 	outdoors = 0
 	},
 /area/gateway/eggnogtown/greenhouse)
@@ -2009,9 +2025,7 @@
 /obj/machinery/alarm/alarms_hidden{
 	pixel_y = 21
 	},
-/turf/simulated/floor/outdoors/grass/forest{
-	outdoors = 0
-	},
+/turf/simulated/floor/outdoors/grass/forest,
 /area/gateway/eggnogtown/greenhouse)
 "uk" = (
 /obj/machinery/light_switch{
@@ -2147,9 +2161,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/grass/forest{
-	outdoors = 0
-	},
+/turf/simulated/floor/outdoors/grass/forest,
 /area/gateway/eggnogtown/greenhouse)
 "wj" = (
 /turf/simulated/wall/wood,
@@ -2203,7 +2215,7 @@
 /turf/simulated/floor/wood,
 /area/gateway/eggnogtown/hall/south)
 "wR" = (
-/obj/structure/bed/chair/sofa/black/right{
+/obj/structure/bed/chair/sofa/right/black{
 	dir = 4
 	},
 /turf/simulated/floor/wood{
@@ -2229,7 +2241,7 @@
 /turf/simulated/floor/carpet/bcarpet,
 /area/gateway/eggnogtown/loniabode)
 "xq" = (
-/obj/structure/bed/chair/sofa/beige/corner{
+/obj/structure/bed/chair/sofa/corner/beige{
 	dir = 8
 	},
 /turf/simulated/floor/wmarble,
@@ -2281,7 +2293,7 @@
 /turf/simulated/floor/wood,
 /area/gateway/eggnogtown/bar)
 "ys" = (
-/obj/structure/bed/chair/sofa/beige/corner,
+/obj/structure/bed/chair/sofa/corner/beige,
 /turf/simulated/floor/wmarble,
 /area/gateway/eggnogtown/arturoswolfden)
 "yt" = (
@@ -2339,7 +2351,7 @@
 	},
 /area/gateway/eggnogtown/sigloo)
 "zr" = (
-/obj/structure/bed/chair/sofa/black/right,
+/obj/structure/bed/chair/sofa/right/black,
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
@@ -2375,7 +2387,7 @@
 /turf/simulated/floor/wood,
 /area/gateway/eggnogtown/visitorlounge)
 "zU" = (
-/obj/structure/bed/chair/sofa/black/left{
+/obj/structure/bed/chair/sofa/left/black{
 	dir = 4
 	},
 /turf/simulated/floor/carpet/bcarpet,
@@ -2602,7 +2614,7 @@
 /turf/simulated/floor/wood,
 /area/gateway/eggnogtown/kitchihome/bedroom)
 "CP" = (
-/obj/structure/bed/chair/sofa/black/left{
+/obj/structure/bed/chair/sofa/left/black{
 	dir = 1
 	},
 /turf/simulated/floor/wood,
@@ -2654,7 +2666,7 @@
 /turf/simulated/floor/wood,
 /area/gateway/eggnogtown/visitorlounge/room2)
 "DR" = (
-/obj/structure/bed/chair/sofa/black/left{
+/obj/structure/bed/chair/sofa/left/black{
 	dir = 8
 	},
 /turf/simulated/floor/wood,
@@ -2711,7 +2723,7 @@
 /turf/simulated/floor/reinforced,
 /area/gateway/eggnogtown/hall)
 "ES" = (
-/obj/structure/bed/chair/sofa/black/left,
+/obj/structure/bed/chair/sofa/left/black,
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
@@ -2724,7 +2736,9 @@
 /area/gateway/eggnogtown/vibeout)
 "Fd" = (
 /obj/structure/bonfire/permanent,
-/turf/simulated/floor/outdoors/newdirt,
+/turf/simulated/floor/outdoors/newdirt{
+	outdoors = 0
+	},
 /area/gateway/eggnogtown/greenhouse)
 "Fe" = (
 /turf/simulated/wall/wood,
@@ -2743,6 +2757,22 @@
 /obj/machinery/cell_charger,
 /turf/simulated/floor/reinforced,
 /area/gateway/eggnogtown/loniabode)
+"Fo" = (
+/obj/move_trader_landmark{
+	dir = 8;
+	trader_type = /obj/trader/general
+	},
+/turf/simulated/floor/bmarble,
+/area/gateway/eggnogtown/hotsprings)
+"Fs" = (
+/obj/move_trader_landmark{
+	dir = 4;
+	trader_type = /obj/trader/general
+	},
+/turf/simulated/floor/wood{
+	temperature = 258.15
+	},
+/area/gateway/eggnogtown)
 "Ft" = (
 /turf/simulated/floor/tiled/monotile,
 /area/gateway/eggnogtown/dining/botany)
@@ -2765,7 +2795,7 @@
 	},
 /area/gateway/eggnogtown/stokeswashere)
 "FL" = (
-/obj/structure/bed/chair/sofa/black/left{
+/obj/structure/bed/chair/sofa/left/black{
 	dir = 4
 	},
 /turf/simulated/floor/wood{
@@ -2987,7 +3017,7 @@
 /turf/simulated/floor/wood,
 /area/gateway/eggnogtown/arturoswolfden)
 "IW" = (
-/obj/structure/bed/chair/sofa/black/left,
+/obj/structure/bed/chair/sofa/left/black,
 /turf/simulated/floor/wood,
 /area/gateway/eggnogtown/hall/south)
 "Jc" = (
@@ -3004,7 +3034,9 @@
 /turf/simulated/floor/tiled/monotile,
 /area/gateway/eggnogtown/dining/botany)
 "Jm" = (
-/turf/simulated/floor/outdoors/newdirt,
+/turf/simulated/floor/outdoors/newdirt{
+	outdoors = 0
+	},
 /area/gateway/eggnogtown/greenhouse)
 "Jp" = (
 /obj/machinery/door/airlock{
@@ -3103,15 +3135,19 @@
 /obj/structure/bed/chair/sofa/black{
 	dir = 4
 	},
+/obj/move_trader_landmark{
+	dir = 4;
+	trader_type = /obj/trader/general
+	},
 /turf/simulated/floor/wood,
 /area/gateway/eggnogtown/hall/south)
 "KI" = (
-/obj/structure/bed/chair/sofa/black/left{
+/obj/structure/bed/chair/sofa/left/black{
 	dir = 1
 	},
 /obj/item/weapon/card/id{
 	access = list(777);
-	name = "Houser's secret hidde keycard";
+	name = "Houser's secret hidden keycard";
 	registered_name = "Houser"
 	},
 /obj/machinery/light/small{
@@ -3265,7 +3301,7 @@
 /turf/simulated/floor/wood,
 /area/gateway/eggnogtown/kitchihome/diningroom)
 "MI" = (
-/obj/structure/bed/chair/sofa/black/right,
+/obj/structure/bed/chair/sofa/right/black,
 /turf/simulated/floor/wood,
 /area/gateway/eggnogtown/hall/south)
 "MN" = (
@@ -3364,7 +3400,7 @@
 /turf/simulated/floor/wood,
 /area/gateway/eggnogtown/kitchihome)
 "Oq" = (
-/obj/structure/bed/chair/sofa/black/right{
+/obj/structure/bed/chair/sofa/right/black{
 	dir = 4
 	},
 /turf/simulated/floor/carpet/bcarpet,
@@ -3762,7 +3798,7 @@
 /turf/simulated/floor/carpet/bcarpet,
 /area/gateway/eggnogtown/loniabode)
 "TH" = (
-/obj/structure/bed/chair/sofa/black/right,
+/obj/structure/bed/chair/sofa/right/black,
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
@@ -3990,7 +4026,7 @@
 /turf/simulated/wall/wood,
 /area/gateway/eggnogtown/loniabode)
 "Xm" = (
-/obj/structure/bed/chair/sofa/black/left,
+/obj/structure/bed/chair/sofa/left/black,
 /turf/simulated/floor/wood{
 	temperature = 258.15
 	},
@@ -4040,9 +4076,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/grass/forest{
-	outdoors = 0
-	},
+/turf/simulated/floor/outdoors/grass/forest,
 /area/gateway/eggnogtown/greenhouse)
 "XF" = (
 /turf/simulated/wall/wood,
@@ -4116,7 +4150,7 @@
 	},
 /area/gateway/eggnogtown/cavehome)
 "YD" = (
-/obj/structure/bed/chair/sofa/black/corner{
+/obj/structure/bed/chair/sofa/corner/black{
 	dir = 1
 	},
 /turf/simulated/floor/wood,
@@ -4128,7 +4162,7 @@
 /turf/simulated/floor/reinforced,
 /area/gateway/eggnogtown)
 "YP" = (
-/obj/structure/bed/chair/sofa/beige/corner{
+/obj/structure/bed/chair/sofa/corner/beige{
 	dir = 4
 	},
 /turf/simulated/floor/wmarble,
@@ -6710,7 +6744,7 @@ Xp
 QT
 LJ
 Iw
-Iw
+Fo
 Iw
 Iw
 Iw
@@ -8094,8 +8128,8 @@ Xp
 Xp
 Yc
 kb
-tc
-tc
+wt
+wt
 YZ
 YZ
 YZ
@@ -8236,10 +8270,10 @@ Xp
 Xp
 iq
 wt
-tc
+wt
 hS
 YZ
-gP
+tc
 YZ
 YZ
 oN
@@ -8669,7 +8703,7 @@ Jm
 Jm
 YZ
 YZ
-tc
+wt
 Yc
 OH
 Wr
@@ -8804,13 +8838,13 @@ Xp
 Xp
 iq
 wt
-tc
+wt
 YZ
 YZ
-gP
+jy
 YZ
 YZ
-tc
+wt
 wt
 iq
 Xp
@@ -8946,13 +8980,13 @@ Xp
 Xp
 Yc
 uh
-tc
-tc
+wt
+wt
 YZ
 YZ
 YZ
-tc
-tc
+wt
+wt
 XE
 Yc
 Xp
@@ -17809,7 +17843,7 @@ aL
 aL
 aL
 aL
-nN
+Fs
 aL
 aL
 aL

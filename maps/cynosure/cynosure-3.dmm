@@ -3694,6 +3694,7 @@
 	dir = 10
 	},
 /obj/structure/reagent_dispensers/virusfood{
+	density = 0;
 	pixel_x = 32;
 	pixel_y = 32
 	},
@@ -8711,7 +8712,7 @@
 /turf/simulated/floor/plating,
 /area/surface/station/rnd/lab)
 "fOa" = (
-/obj/structure/bed/chair/sofa/brown/right{
+/obj/structure/bed/chair/sofa/right/brown{
 	dir = 4
 	},
 /obj/effect/landmark/start{
@@ -8770,14 +8771,18 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/surface/station/ai_monitored/storage/eva)
 "fSH" = (
-/obj/machinery/computer/general_air_control/supermatter_core{
-	dir = 8
-	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
 	},
 /obj/effect/floor_decal/corner/yellow/border{
 	dir = 4
+	},
+/obj/machinery/computer/general_air_control/supermatter_core{
+	dir = 8;
+	input_tag = "cooling_in";
+	name = "Engine Cooling Control";
+	output_tag = "cooling_out";
+	sensors = list("engine_sensor" = "Engine Core")
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/engineering/reactor_monitoring)
@@ -15857,6 +15862,9 @@
 /obj/machinery/computer/security/telescreen/entertainment{
 	icon_state = "frame";
 	pixel_x = 32
+	},
+/obj/machinery/light{
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/quartermaster/office)
@@ -26918,7 +26926,7 @@
 /turf/simulated/floor/tiled/white,
 /area/surface/station/rnd/research)
 "rLU" = (
-/obj/structure/bed/chair/sofa/brown/left{
+/obj/structure/bed/chair/sofa/left/brown{
 	dir = 4
 	},
 /obj/effect/landmark/start{

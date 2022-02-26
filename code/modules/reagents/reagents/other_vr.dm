@@ -47,7 +47,7 @@
 			var/obj/item/device/nif/nif = H.nif //L o c a l
 			if(nif.stat == NIF_TEMPFAIL)
 				nif.stat = NIF_INSTALLING
-			nif.durability = min(nif.durability + removed, initial(nif.durability))
+			nif.repair(removed)
 
 /datum/reagent/firefighting_foam
 	name = "Firefighting Foam"
@@ -120,7 +120,7 @@
 			var/obj/item/device/nif/nif = H.nif //L o c a l
 			if(nif.stat == NIF_TEMPFAIL)
 				nif.stat = NIF_INSTALLING
-			nif.durability = min(nif.durability + removed*0.1, initial(nif.durability))
+			nif.repair(removed*0.1)
 
 //Special toxins for solargrubs
 /datum/reagent/grubshock

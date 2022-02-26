@@ -47,7 +47,7 @@
 	minbodytemp = 0
 	maxbodytemp = 900
 
-	loot_list = list(/obj/random/underdark/uncertain)
+	loot_list = list(/obj/random/underdark/uncertain = 25)
 
 	armor = list(
 			"melee" = 100,
@@ -109,10 +109,11 @@
 	destructive = TRUE
 	violent_breakthrough = TRUE
 
-/mob/living/simple_mob/vore/alienanimals/startreader/apply_melee_effects(var/atom/A)
-	if(prob(25))
-		var/mob/living/L = A
-		if(isliving(A))
+/mob/living/simple_mob/vore/alienanimals/startreader/apply_melee_effects(mob/living/L)
+	if(L.weakened) //Don't stun people while they're already stunned! That's SILLY!
+		return
+	if(prob(15))
+		if(isliving(L))
 			visible_message("<span class='danger'>\The [src] trips \the [L]!</span>!")
 			L.weakened += rand(1,10)
 

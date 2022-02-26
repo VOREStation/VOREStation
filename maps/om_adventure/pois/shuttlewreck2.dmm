@@ -1,0 +1,338 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"c" = (
+/obj/structure/table/steel_reinforced,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/random/tech_supply/component,
+/obj/random/tech_supply,
+/turf/simulated/shuttle/floor/white,
+/area/om_adventure/poi/shuttlewreck2)
+"e" = (
+/obj/machinery/atmospherics/portables_connector/fuel{
+	dir = 8
+	},
+/obj/machinery/portable_atmospherics/canister/phoron{
+	start_pressure = 0
+	},
+/turf/simulated/floor/plating,
+/area/om_adventure/poi/shuttlewreck2)
+"g" = (
+/obj/structure/cable/green{
+	icon_state = "4-10"
+	},
+/turf/simulated/floor/plating,
+/area/om_adventure/poi/shuttlewreck2)
+"h" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 10
+	},
+/turf/simulated/shuttle/wall,
+/area/om_adventure/poi/shuttlewreck2)
+"l" = (
+/obj/structure/window/reinforced,
+/obj/structure/shuttle/engine/heater{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/om_adventure/poi/shuttlewreck2)
+"m" = (
+/turf/simulated/floor/plating,
+/area/om_adventure/poi/shuttlewreck2)
+"n" = (
+/obj/structure/table/steel_reinforced,
+/obj/random/awayloot/looseloot,
+/turf/simulated/shuttle/floor/white,
+/area/om_adventure/poi/shuttlewreck2)
+"o" = (
+/obj/structure/frame/computer,
+/turf/simulated/shuttle/floor/white,
+/area/om_adventure/poi/shuttlewreck2)
+"p" = (
+/obj/structure/table/steel_reinforced,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/random/tech_supply,
+/obj/random/awayloot/looseloot,
+/turf/simulated/shuttle/floor/white,
+/area/om_adventure/poi/shuttlewreck2)
+"q" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/move_trader_landmark{
+	dir = 8;
+	trader_type = /obj/trader/general
+	},
+/turf/simulated/shuttle/floor/white,
+/area/om_adventure/poi/shuttlewreck2)
+"r" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/plating,
+/area/om_adventure/poi/shuttlewreck2)
+"s" = (
+/obj/machinery/door/airlock/external,
+/turf/simulated/floor/plating,
+/area/om_adventure/poi/shuttlewreck2)
+"v" = (
+/obj/structure/cable/green,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/move_trader_landmark{
+	dir = 4;
+	trader_type = /obj/trader/general
+	},
+/turf/simulated/shuttle/floor/white,
+/area/om_adventure/poi/shuttlewreck2)
+"w" = (
+/obj/tether_away_spawner/spookyland,
+/turf/template_noop,
+/area/template_noop)
+"x" = (
+/obj/machinery/power/port_gen/pacman,
+/obj/structure/cable/green{
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/plating,
+/area/om_adventure/poi/shuttlewreck2)
+"y" = (
+/turf/simulated/shuttle/wall/hard_corner,
+/area/om_adventure/poi/shuttlewreck2)
+"A" = (
+/turf/simulated/shuttle/wall,
+/area/om_adventure/poi/shuttlewreck2)
+"B" = (
+/obj/structure/table/steel_reinforced,
+/obj/random/tech_supply/component,
+/obj/random/awayloot/looseloot,
+/turf/simulated/shuttle/floor/white,
+/area/om_adventure/poi/shuttlewreck2)
+"D" = (
+/obj/structure/cable/green{
+	icon_state = "2-5"
+	},
+/turf/simulated/shuttle/floor/white,
+/area/om_adventure/poi/shuttlewreck2)
+"E" = (
+/obj/structure/table/rack/steel,
+/obj/random/tech_supply/component,
+/obj/random/tech_supply/component,
+/obj/random/tech_supply/component,
+/obj/random/tech_supply/component,
+/obj/random/tech_supply/component,
+/obj/random/tech_supply,
+/obj/random/tech_supply,
+/turf/simulated/floor/plating,
+/area/om_adventure/poi/shuttlewreck2)
+"J" = (
+/obj/structure/table/rack/steel,
+/obj/item/frame/apc,
+/turf/simulated/floor/plating,
+/area/om_adventure/poi/shuttlewreck2)
+"K" = (
+/obj/structure/table/rack/steel,
+/obj/item/weapon/tank/phoron,
+/obj/random/awayloot/looseloot,
+/turf/simulated/floor/plating,
+/area/om_adventure/poi/shuttlewreck2)
+"N" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 6
+	},
+/turf/simulated/shuttle/wall,
+/area/om_adventure/poi/shuttlewreck2)
+"P" = (
+/turf/simulated/shuttle/floor/white,
+/area/om_adventure/poi/shuttlewreck2)
+"R" = (
+/obj/machinery/atmospherics/portables_connector/fuel{
+	dir = 4
+	},
+/obj/machinery/portable_atmospherics/canister/phoron{
+	start_pressure = 0
+	},
+/turf/simulated/floor/plating,
+/area/om_adventure/poi/shuttlewreck2)
+"T" = (
+/obj/structure/shuttle/window,
+/obj/structure/grille,
+/turf/simulated/floor/plating,
+/area/om_adventure/poi/shuttlewreck2)
+"U" = (
+/turf/simulated/floor/weird_things/dark,
+/area/om_adventure/poi/shuttlewreck2)
+"V" = (
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/white,
+/area/om_adventure/poi/shuttlewreck2)
+"W" = (
+/obj/structure/shuttle/engine/heater{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/turf/simulated/floor/plating,
+/area/om_adventure/poi/shuttlewreck2)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+U
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+w
+U
+A
+A
+A
+N
+A
+A
+a
+"}
+(3,1,1) = {"
+a
+a
+A
+A
+K
+E
+e
+W
+r
+a
+"}
+(4,1,1) = {"
+a
+A
+A
+P
+m
+m
+m
+W
+r
+a
+"}
+(5,1,1) = {"
+U
+A
+c
+n
+P
+P
+q
+y
+A
+a
+"}
+(6,1,1) = {"
+a
+T
+o
+P
+P
+P
+A
+A
+a
+a
+"}
+(7,1,1) = {"
+a
+T
+o
+V
+P
+P
+s
+a
+a
+a
+"}
+(8,1,1) = {"
+a
+T
+o
+P
+P
+P
+A
+A
+U
+a
+"}
+(9,1,1) = {"
+a
+A
+p
+B
+P
+D
+v
+y
+A
+a
+"}
+(10,1,1) = {"
+U
+A
+A
+P
+g
+m
+m
+l
+r
+a
+"}
+(11,1,1) = {"
+a
+U
+A
+A
+x
+J
+R
+l
+r
+a
+"}
+(12,1,1) = {"
+a
+a
+a
+A
+A
+A
+h
+A
+A
+a
+"}
+(13,1,1) = {"
+a
+a
+a
+a
+U
+a
+a
+a
+w
+a
+"}

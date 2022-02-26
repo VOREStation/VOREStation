@@ -76,7 +76,7 @@
 /turf/simulated/wall/wood,
 /area/submap/Speakeasy)
 "x" = (
-/obj/structure/bed/chair/sofa/blue/left{
+/obj/structure/bed/chair/sofa/left/blue{
 	dir = 4
 	},
 /turf/simulated/floor/wood,
@@ -88,7 +88,7 @@
 /turf/simulated/mineral/floor/cave,
 /area/submap/Speakeasy)
 "D" = (
-/obj/structure/bed/chair/sofa/black/corner{
+/obj/structure/bed/chair/sofa/corner/black{
 	dir = 4
 	},
 /turf/simulated/floor/wood,
@@ -141,7 +141,7 @@
 /turf/simulated/floor/wood,
 /area/submap/Speakeasy)
 "U" = (
-/obj/structure/bed/chair/sofa/blue/right{
+/obj/structure/bed/chair/sofa/right/blue{
 	dir = 1
 	},
 /turf/simulated/floor/wood,

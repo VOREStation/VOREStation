@@ -1,7 +1,7 @@
 /obj/structure/table/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover,/obj/item/projectile))
 		return (check_cover(mover,target))
-	if (flipped)
+	if(flipped == 1)
 		if(get_dir(mover, target) == reverse_dir[dir]) // From elsewhere to here, can't move against our dir
 			return !density
 		return TRUE
@@ -10,12 +10,12 @@
 	if(locate(/obj/structure/table/bench) in get_turf(mover))
 		return FALSE
 	var/obj/structure/table/table = locate(/obj/structure/table) in get_turf(mover)
-	if(table && !table.flipped)
+	if(table && !(table.flipped == 1))
 		return TRUE
 	return FALSE
 
 /obj/structure/table/climb_to(mob/living/mover)
-	if(flipped && mover.loc == loc)
+	if(flipped == 1 && mover.loc == loc)
 		var/turf/T = get_step(src, dir)
 		if(T.Enter(mover))
 			return T
@@ -23,7 +23,7 @@
 	return ..()
 
 /obj/structure/table/Uncross(atom/movable/mover, turf/target)
-	if(flipped && (get_dir(mover, target) == dir)) // From here to elsewhere, can't move in our dir
+	if(flipped == 1 && (get_dir(mover, target) == dir)) // From here to elsewhere, can't move in our dir
 		return !density
 	return TRUE
 
