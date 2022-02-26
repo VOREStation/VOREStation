@@ -364,6 +364,13 @@
 /obj/random/mob/semirandom_mob_spawner/humanoid/retaliate/b,
 /turf/simulated/floor/tiled/techfloor,
 /area/gateway/honlethhighlands/gate)
+"bP" = (
+/obj/move_trader_landmark{
+	dir = 4;
+	trader_type = /obj/trader/general
+	},
+/turf/simulated/floor/lino,
+/area/gateway/honlethhighlands/town/kitchen)
 "bY" = (
 /obj/machinery/alarm/alarms_hidden{
 	pixel_y = 21
@@ -449,7 +456,9 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/item/weapon/stool,
+/obj/item/weapon/stool{
+	dir = 4
+	},
 /turf/simulated/floor/wood,
 /area/gateway/honlethhighlands/town/bar)
 "dF" = (
@@ -575,6 +584,10 @@
 	},
 /obj/structure/bed/chair/sofa/left/brown{
 	dir = 4
+	},
+/obj/move_trader_landmark{
+	dir = 4;
+	trader_type = /obj/trader/general
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/gateway/honlethhighlands/gate)
@@ -735,7 +748,9 @@
 /turf/simulated/floor/tiled,
 /area/gateway/honlethhighlands/town/command)
 "kL" = (
-/obj/item/weapon/stool,
+/obj/item/weapon/stool{
+	dir = 1
+	},
 /turf/simulated/floor/plating,
 /area/gateway/honlethhighlands/town/bar)
 "kS" = (
@@ -902,7 +917,9 @@
 	},
 /area/gateway/honlethhighlands/town/garden)
 "nx" = (
-/obj/item/weapon/stool/padded,
+/obj/item/weapon/stool/padded{
+	dir = 4
+	},
 /obj/random/mob/semirandom_mob_spawner/humanoid/retaliate,
 /turf/simulated/floor/lino,
 /area/gateway/honlethhighlands/town/bar)
@@ -1080,7 +1097,9 @@
 /turf/simulated/floor/tiled,
 /area/gateway/honlethhighlands/town/command)
 "qB" = (
-/obj/item/weapon/stool/padded,
+/obj/item/weapon/stool/padded{
+	dir = 1
+	},
 /obj/random/junk,
 /turf/simulated/floor/wood,
 /area/gateway/honlethhighlands/town/bar)
@@ -1340,7 +1359,9 @@
 /turf/simulated/floor/tiled,
 /area/gateway/honlethhighlands/town/command)
 "uu" = (
-/obj/item/weapon/stool/padded,
+/obj/item/weapon/stool/padded{
+	dir = 8
+	},
 /obj/random/junk,
 /turf/simulated/floor/plating,
 /area/gateway/honlethhighlands/town/bar)
@@ -1390,6 +1411,12 @@
 /obj/random/awayloot,
 /turf/simulated/floor/plating,
 /area/gateway/honlethhighlands/town/xenobio)
+"vt" = (
+/obj/item/weapon/stool/padded{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/gateway/honlethhighlands/town/bar)
 "vG" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -1981,7 +2008,9 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/obj/item/weapon/stool/padded,
+/obj/item/weapon/stool/padded{
+	dir = 8
+	},
 /turf/simulated/floor/lino,
 /area/gateway/honlethhighlands/town/bar)
 "Ey" = (
@@ -2190,7 +2219,9 @@
 	},
 /area/gateway/honlethhighlands/town/garden)
 "JI" = (
-/obj/item/weapon/stool/padded,
+/obj/item/weapon/stool/padded{
+	dir = 8
+	},
 /turf/simulated/floor/lino,
 /area/gateway/honlethhighlands/town/bar)
 "JL" = (
@@ -2278,6 +2309,10 @@
 	message = "About done waiting in this line";
 	pixel_x = 19;
 	pixel_y = -9
+	},
+/obj/move_trader_landmark{
+	dir = 8;
+	trader_type = /obj/trader/general
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/gateway/honlethhighlands/gate)
@@ -2566,6 +2601,16 @@
 	},
 /turf/simulated/floor/plating,
 /area/gateway/honlethhighlands/town/xenobio)
+"Rx" = (
+/obj/item/weapon/stool/padded{
+	dir = 8
+	},
+/obj/move_trader_landmark{
+	dir = 8;
+	trader_type = /obj/trader/general
+	},
+/turf/simulated/floor/lino,
+/area/gateway/honlethhighlands/town/bar)
 "RA" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 10
@@ -16369,7 +16414,7 @@ Aa
 dF
 yP
 JI
-JI
+Rx
 JI
 Ev
 he
@@ -16935,10 +16980,10 @@ aI
 he
 ro
 AF
-BS
+vt
 BS
 aP
-BS
+vt
 UN
 hN
 An
@@ -19229,7 +19274,7 @@ aI
 Tg
 lj
 uN
-lj
+bP
 lj
 lj
 lj

@@ -3572,6 +3572,13 @@
 /obj/machinery/portable_atmospherics/canister/empty/phoron,
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/port_store)
+"lj" = (
+/obj/move_trader_landmark{
+	dir = 8;
+	trader_type = /obj/trader/general
+	},
+/turf/simulated/floor/plating,
+/area/talon_v2/engineering/star_store)
 "lk" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -4482,6 +4489,14 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/talon_v2/crew_quarters/bar)
+"oi" = (
+/obj/structure/catwalk,
+/obj/move_trader_landmark{
+	dir = 4;
+	trader_type = /obj/trader/general
+	},
+/turf/simulated/floor/plating,
+/area/talon_v2/maintenance/fore_port)
 "ok" = (
 /obj/structure/bed/pod,
 /obj/item/weapon/bedsheet/brown,
@@ -23309,7 +23324,7 @@ aa
 lT
 Re
 Re
-XQ
+oi
 XQ
 XQ
 jQ
@@ -28033,7 +28048,7 @@ aL
 oE
 iH
 tS
-in
+lj
 in
 in
 in

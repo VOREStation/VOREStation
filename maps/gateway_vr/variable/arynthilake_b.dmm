@@ -103,6 +103,13 @@
 /obj/random/mob/semirandom_mob_spawner/animal/retaliate/c,
 /turf/simulated/floor/outdoors/grass/forest,
 /area/gateway/arynthilake)
+"cP" = (
+/obj/move_trader_landmark{
+	dir = 8;
+	trader_type = /obj/trader/general
+	},
+/turf/simulated/floor/lino,
+/area/gateway/arynthilake/dome)
 "cQ" = (
 /obj/random/mob/semirandom_mob_spawner/fish/e,
 /turf/simulated/floor/water,
@@ -556,6 +563,10 @@
 /obj/structure/bed/chair/sofa/right/brown{
 	dir = 4
 	},
+/obj/move_trader_landmark{
+	dir = 4;
+	trader_type = /obj/trader/general
+	},
 /turf/simulated/floor/carpet,
 /area/gateway/arynthilake/dome)
 "kv" = (
@@ -845,6 +856,13 @@
 /obj/item/weapon/bedsheet/bluedouble,
 /turf/simulated/floor/carpet/bcarpet,
 /area/gateway/arynthilake/dome)
+"qh" = (
+/obj/move_trader_landmark{
+	dir = 8;
+	trader_type = /obj/trader/general
+	},
+/turf/simulated/floor/outdoors/grass,
+/area/gateway/arynthilake)
 "qy" = (
 /obj/structure/table/fancyblack,
 /obj/item/weapon/flame/candle/candelabra,
@@ -890,6 +908,13 @@
 	outdoors = 1
 	},
 /area/gateway/arynthilake)
+"rv" = (
+/obj/move_trader_landmark{
+	dir = 4;
+	trader_type = /obj/trader/general
+	},
+/turf/simulated/floor/outdoors/grass,
+/area/gateway/arynthilake/dome)
 "rz" = (
 /turf/simulated/floor/beach/sand/desert,
 /area/gateway/arynthilake/caves)
@@ -1435,6 +1460,16 @@
 /obj/effect/landmark/mcguffin_spawner,
 /turf/simulated/floor/plating/external,
 /area/gateway/arynthilake/caveruins)
+"FN" = (
+/obj/move_trader_landmark{
+	dir = 8;
+	trader_type = /obj/trader/general
+	},
+/turf/simulated/floor/plating{
+	edge_blending_priority = 1;
+	outdoors = 1
+	},
+/area/gateway/arynthilake/gateway)
 "Gg" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -14182,7 +14217,7 @@ pa
 iL
 lt
 Ix
-MP
+FN
 Vo
 Vo
 Vo
@@ -17825,7 +17860,7 @@ lQ
 lQ
 lQ
 lQ
-nC
+rv
 iG
 nC
 nC
@@ -18398,7 +18433,7 @@ lQ
 iG
 nC
 nC
-cu
+cP
 cu
 hH
 cS
@@ -20763,7 +20798,7 @@ Vo
 sP
 sP
 sP
-sP
+qh
 sP
 sP
 Vo

@@ -515,7 +515,9 @@
 /turf/simulated/floor/tiled/white,
 /area/awaymission/wwmines)
 "dM" = (
-/obj/item/weapon/stool,
+/obj/item/weapon/stool{
+	dir = 1
+	},
 /mob/living/simple_mob/humanoid/merc/ranged,
 /turf/simulated/floor/wood,
 /area/awaymission/wwmines)
@@ -827,7 +829,9 @@
 /turf/simulated/wall/sandstone,
 /area/awaymission/wwmines)
 "fT" = (
-/obj/item/weapon/stool,
+/obj/item/weapon/stool{
+	dir = 1
+	},
 /turf/simulated/floor/wood,
 /area/awaymission/wwmines)
 "fW" = (
@@ -1379,7 +1383,9 @@
 /turf/simulated/floor/grass,
 /area/awaymission/wwgov)
 "we" = (
-/obj/item/weapon/stool,
+/obj/item/weapon/stool{
+	dir = 1
+	},
 /mob/living/simple_mob/humanoid/merc/melee,
 /turf/simulated/floor/wood,
 /area/awaymission/wwmines)
