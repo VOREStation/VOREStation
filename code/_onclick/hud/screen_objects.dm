@@ -19,7 +19,7 @@
 /obj/screen/Destroy()
 	master = null
 	return ..()
-	
+
 /obj/screen/proc/component_click(obj/screen/component_button/component, params)
 	return
 
@@ -606,8 +606,13 @@
 	if(hud.mymob && iscarbon(hud.mymob))
 		var/mob/living/carbon/C = hud.mymob
 		if(C.handcuffed)
+<<<<<<< HEAD
 			add_overlay(handcuff_overlay)
 			
+=======
+			overlays |= handcuff_overlay
+
+>>>>>>> 4568dc85d5f... Ports high-res lobby screen system from Eris from Bay (#8401)
 // PIP stuff
 /obj/screen/component_button
 	var/obj/screen/parent
@@ -620,6 +625,7 @@
 	if(parent)
 		parent.component_click(src, params)
 
+<<<<<<< HEAD
 // Character setup stuff
 /obj/screen/setup_preview
 	
@@ -684,6 +690,8 @@
 		holder = null
 	return ..()
 
+=======
+>>>>>>> 4568dc85d5f... Ports high-res lobby screen system from Eris from Bay (#8401)
 
 /**
  * This object holds all the on-screen elements of the mapping unit.
@@ -692,7 +700,7 @@
  * size of the screen. This is not ideal, as filter() is faster, and has
  * alpha masks, but the alpha masks it has can't be animated, so the 'ping'
  * mode of this device isn't possible using that technique.
- * 
+ *
  * The markers use that technique, though, so at least there's that.
  */
 /obj/screen/movable/mapper_holder
@@ -710,7 +718,7 @@
 	var/obj/screen/mapper/mask_full/mask_full
 	var/obj/screen/mapper/mask_ping/mask_ping
 	var/obj/screen/mapper/bg/bg
-	
+
 	var/obj/screen/mapper/frame/frame
 	var/obj/screen/mapper/powbutton/powbutton
 	var/obj/screen/mapper/mapbutton/mapbutton
@@ -720,7 +728,7 @@
 
 /obj/screen/movable/mapper_holder/Initialize(mapload, newowner)
 	owner = newowner
-	
+
 	mask_full = new(src) // Full white square mask
 	mask_ping = new(src) // Animated 'pinging' mask
 	bg = new(src) // Background color, holds map in vis_contents, uses mult against masks
@@ -728,19 +736,19 @@
 	frame = new(src) // Decorative frame
 	powbutton = new(src) // Clickable button
 	mapbutton = new(src) // Clickable button
-	
+
 	frame.icon_state = initial(frame.icon_state)+owner.hud_frame_hint
 
 	/**
 	 * The vis_contents layout is: this(frame,extras_holder,mask(bg(map)))
 	 * bg is set to BLEND_MULTIPLY against the mask to crop it.
 	 */
-	
+
 	mask_full.vis_contents.Add(bg)
 	mask_ping.vis_contents.Add(bg)
 	frame.vis_contents.Add(powbutton,mapbutton)
 	vis_contents.Add(frame)
-	
+
 
 /obj/screen/movable/mapper_holder/Destroy()
 	qdel_null(mask_full)
@@ -760,12 +768,12 @@
 		running = TRUE
 		if(ping)
 			vis_contents.Add(mask_ping)
-		else	
+		else
 			vis_contents.Add(mask_full)
 
 	bg.vis_contents.Cut()
 	bg.vis_contents.Add(map)
-	
+
 	if(extras && !extras_holder)
 		extras_holder = extras
 		vis_contents += extras_holder
@@ -778,7 +786,7 @@
 		off()
 	else
 		on()
-	
+
 /obj/screen/movable/mapper_holder/proc/mapClick()
 	if(owner)
 		if(running)

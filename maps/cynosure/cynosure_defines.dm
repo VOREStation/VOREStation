@@ -13,8 +13,7 @@
 	full_name = "Cynosure Station"
 	path = "cynosure"
 
-	lobby_icon = 'icons/misc/title.dmi'
-	lobby_screens = list("mockingjay00") // New lobby screen if possible.
+	lobby_screens = list('icons/default_lobby.png', 'icons/lobby_old.gif') // New lobby screen if possible.
 
 	holomap_smoosh = list(list(
 		Z_LEVEL_STATION_ONE,

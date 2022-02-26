@@ -122,8 +122,8 @@ var/list/all_maps = list()
 
 	var/datum/skybox_settings/default_skybox // What skybox do we use if a zlevel doesn't have a custom one? Provide a type.
 
-	var/lobby_icon = 'icons/misc/title.dmi' // The icon which contains the lobby image(s)
-	var/list/lobby_screens = list("mockingjay00")                 // The list of lobby screen to pick() from. If left unset the first icon state is always selected.
+	var/list/lobby_screens = list('icons/default_lobby.png')                 // The list of lobby screen to pick() from.
+	var/current_lobby_screen
 
 	var/default_law_type = /datum/ai_laws/nanotrasen // The default lawset use by synth units, if not overriden by their laws var.
 
@@ -156,6 +156,7 @@ var/list/all_maps = list()
 		default_skybox = new default_skybox()
 	else
 		default_skybox = new()
+	current_lobby_screen = pick(lobby_screens)
 
 // Gets the current time on a current zlevel, and returns a time datum
 /datum/map/proc/get_zlevel_time(var/z)
@@ -354,3 +355,14 @@ var/list/all_maps = list()
 
 /datum/map/proc/get_map_info()
 	return "No map information available"
+
+/datum/map/proc/show_titlescreen(client/C)
+	winset(C, "lobbybrowser", "is-disabled=false;is-visible=true")
+
+	show_browser(C, current_lobby_screen, "file=titlescreen.png;display=0")
+	show_browser(C, file('html/lobby_titlescreen.html'), "window=lobbybrowser")
+
+/datum/map/proc/hide_titlescreen(client/C)
+	if(C.mob) // Check if the client is still connected to something
+		// Hide title screen, allowing player to see the map
+		winset(C, "lobbybrowser", "is-disabled=true;is-visible=false")

@@ -16,9 +16,6 @@
 	full_name = "Southern Cross"
 	path = "southern_cross"
 
-	lobby_icon = 'icons/misc/title.dmi'
-	lobby_screens = list("mockingjay00") // New lobby screen if possible.
-
 	holomap_smoosh = list(list(
 		Z_LEVEL_STATION_ONE,
 		Z_LEVEL_STATION_TWO,
