@@ -462,11 +462,10 @@
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/medical/storage)
 "aaM" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/turf/simulated/open,
-/area/tether/surfacebase/security/upperhall)
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/medical/uppernorthstairwell{
+	name = "\improper North Medical Stairwell"
+	})
 "aaN" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
@@ -1837,7 +1836,7 @@
 	})
 "acN" = (
 /obj/structure/railing,
-/turf/simulated/open,
+/turf/simulated/floor/plating,
 /area/tether/surfacebase/medical/uppernorthstairwell{
 	name = "\improper North Medical Stairwell"
 	})
@@ -14452,6 +14451,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/research)
+"axF" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/security/upperhall)
 "axG" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/light{
@@ -17487,6 +17492,10 @@
 /obj/effect/floor_decal/corner/lime/border,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/botanystorage)
+"aCl" = (
+/obj/structure/railing,
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/security/upperhall)
 "aCm" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -17918,6 +17927,12 @@
 /obj/structure/flora/ausbushes/brflowers,
 /turf/simulated/floor/grass,
 /area/tether/surfacebase/public_garden_three)
+"aDa" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/medical/uppersouthstairwell)
 "aDb" = (
 /obj/structure/flora/ausbushes/fernybush,
 /turf/simulated/floor/grass,
@@ -17944,6 +17959,9 @@
 /area/tether/surfacebase/public_garden_three)
 "aDg" = (
 /turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden_three)
+"aDh" = (
+/turf/simulated/floor/plating,
 /area/tether/surfacebase/public_garden_three)
 "aDi" = (
 /obj/structure/window/reinforced,
@@ -18311,6 +18329,9 @@
 /obj/machinery/vending/hydronutrients,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/botanystorage)
+"aDN" = (
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/medical/uppersouthstairwell)
 "aDO" = (
 /obj/structure/bed/chair/wood,
 /turf/simulated/floor/grass,
@@ -18943,6 +18964,9 @@
 	},
 /turf/simulated/floor/carpet,
 /area/library)
+"aEW" = (
+/turf/simulated/floor/plating/external/virgo3b,
+/area/tether/surfacebase/outside/outside3)
 "aEX" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/grass,
@@ -20058,6 +20082,12 @@
 /obj/machinery/vending/cigarette,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/servicebackroom)
+"aGH" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/north_stairs_three)
 "aGI" = (
 /obj/machinery/vending/cola/soft,
 /turf/simulated/floor/tiled,
@@ -22948,11 +22978,8 @@
 /turf/simulated/open,
 /area/tether/surfacebase/medical/uppersouthstairwell)
 "aLM" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/simulated/open,
-/area/rnd/outpost/xenobiology/outpost_stairs)
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/north_stairs_three)
 "aLN" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable/green{
@@ -23357,6 +23384,9 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/rnd/robotics/surgeryroom2)
+"aMA" = (
+/turf/simulated/floor/plating,
+/area/bridge_hallway)
 "aMB" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable/orange{
@@ -23604,6 +23634,12 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/shuttle_pad)
+"aMZ" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/bridge_hallway)
 "aNa" = (
 /obj/machinery/computer/shuttle_control/tether_backup{
 	req_one_access = list()
@@ -23704,6 +23740,12 @@
 	},
 /turf/simulated/wall,
 /area/tether/surfacebase/shuttle_pad)
+"aNk" = (
+/turf/simulated/floor/plating,
+/area/rnd/staircase/thirdfloor)
+"aNl" = (
+/turf/simulated/floor/plating,
+/area/hallway/lower/third_south)
 "aNm" = (
 /obj/structure/bed/chair/shuttle{
 	dir = 8
@@ -23803,6 +23845,9 @@
 	},
 /turf/simulated/floor/bluegrid,
 /area/rnd/robotics/mechbay)
+"aNx" = (
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/southhall)
 "aNy" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 8
@@ -23935,6 +23980,12 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/uppersouthstairwell)
+"aNJ" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/rnd/outpost/xenobiology/outpost_stairs)
 "aNK" = (
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "lifeboat1";
@@ -23989,11 +24040,7 @@
 	base_turf = /turf/simulated/floor/reinforced
 	})
 "aNQ" = (
-/obj/machinery/firealarm{
-	dir = 4;
-	pixel_x = 24
-	},
-/turf/simulated/open,
+/turf/simulated/floor/plating,
 /area/rnd/outpost/xenobiology/outpost_stairs)
 "aNR" = (
 /obj/structure/catwalk,
@@ -24576,6 +24623,13 @@
 /obj/structure/window/reinforced,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/shuttle_pad)
+"aPc" = (
+/obj/machinery/firealarm{
+	dir = 4;
+	pixel_x = 24
+	},
+/turf/simulated/floor/plating,
+/area/rnd/outpost/xenobiology/outpost_stairs)
 "aPd" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -25009,12 +25063,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/rnd/outpost/xenobiology/outpost_office)
-"aQd" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/simulated/open,
-/area/tether/surfacebase/north_stairs_three)
 "aQe" = (
 /obj/machinery/light_switch{
 	dir = 4;
@@ -44292,10 +44340,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
-"xXZ" = (
-/obj/structure/railing,
-/turf/simulated/open,
-/area/tether/surfacebase/security/upperhall)
 "xZw" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 4
@@ -47819,7 +47863,7 @@ aac
 adI
 aem
 aab
-aab
+aEW
 agu
 aac
 aac
@@ -49662,7 +49706,7 @@ enD
 akm
 aDi
 aDs
-aDs
+aDh
 aUw
 aVb
 tqY
@@ -49889,7 +49933,7 @@ aJA
 aSg
 aLR
 aOh
-aLM
+aNJ
 aMl
 aNR
 aCO
@@ -50031,7 +50075,7 @@ aSe
 bha
 aSr
 aBf
-aMl
+aNQ
 aMl
 aNR
 aCO
@@ -50173,7 +50217,7 @@ aJD
 aSs
 aEs
 aLQ
-aNQ
+aPc
 aMl
 aNR
 aCO
@@ -51547,7 +51591,7 @@ apA
 atV
 ahh
 auu
-auu
+aNk
 axt
 ayr
 aBe
@@ -51689,7 +51733,7 @@ atp
 atW
 ahh
 auu
-auu
+aNk
 ayB
 ayB
 aBg
@@ -52919,8 +52963,8 @@ adq
 aai
 aai
 adq
-aaM
-xXZ
+axF
+aCl
 adR
 aac
 aac
@@ -54929,7 +54973,7 @@ akx
 ald
 alT
 amD
-aQd
+aGH
 ane
 ane
 ane
@@ -55071,7 +55115,7 @@ aWU
 ale
 alU
 amE
-ane
+aLM
 ane
 ane
 ane
@@ -56493,7 +56537,7 @@ aZi
 awn
 atI
 aYP
-aYT
+aMA
 aYT
 alj
 baj
@@ -56635,7 +56679,7 @@ aEj
 awn
 aOU
 aYQ
-aYU
+aMZ
 aYU
 alj
 aZG
@@ -57173,7 +57217,7 @@ adG
 adG
 adG
 aag
-aaQ
+aaM
 acN
 afD
 abx
@@ -58233,8 +58277,8 @@ beB
 aHW
 knU
 aJn
-aAN
-aAN
+aNl
+aNl
 aJn
 aKU
 aMF
@@ -58766,8 +58810,8 @@ aio
 rXW
 lXv
 axX
-alY
-alY
+aqO
+aqO
 agw
 aqh
 agw
@@ -59033,8 +59077,8 @@ adu
 bnc
 aej
 agi
-aIR
-aLL
+aDa
+aDN
 aPr
 aSb
 boe
@@ -59969,8 +60013,8 @@ aPs
 vYr
 faL
 aPs
-bhI
-bhI
+aNx
+aNx
 bhK
 adG
 aOF
