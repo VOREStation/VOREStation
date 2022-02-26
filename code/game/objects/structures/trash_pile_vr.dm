@@ -24,7 +24,8 @@
 		/obj/item/weapon/gun/energy/netgun,
 		/obj/item/weapon/gun/projectile/pirate,
 		/obj/item/clothing/accessory/permit/gun,
-		/obj/item/weapon/gun/projectile/dartgun
+		/obj/item/weapon/gun/projectile/dartgun,
+		/obj/item/clothing/gloves/black/bloodletter
 		)
 
 	var/global/list/allocated_gamma = list()
