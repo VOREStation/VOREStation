@@ -24,6 +24,7 @@
 	var/sound_lastplayed = 0			//Automatically set when the sound is played.
 	var/pick_inventory = FALSE			//If true, when initialized the trader will randomly pick things from its start products list to set up
 	var/pick_inventory_quantity = 0		//This is how many things will be picked if pick_inventory is TRUE
+	var/move_trader = FALSE
 
 /obj/trader/Initialize(mapload)
 	. = ..()
@@ -39,6 +40,8 @@
 			var/obj/p = new item(src)
 			products += p
 			start_products -= item
+	if(move_trader)
+		move_trader()
 
 /obj/trader/Destroy()
 	. = ..()
@@ -127,7 +130,6 @@
 				to_chat(user, "<span class='notice'>You aren't close enough.</span>")
 				trading = FALSE
 				return
-			visible_message("<span class='notice'>\The [src] drops the banked [welcome_accepts_name].</span>")
 			return_funds()
 		else
 			to_chat(user, "<span class='notice'>You decided leave your change banked.</span>")
@@ -199,6 +201,9 @@
 					var/obj/item/weapon/spacecash/a = c
 					a.worth -= amount
 					a.update_icon()
+					if(a.worth <= 0)
+						bank -= a
+						qdel(a)
 		if("item")
 			var/v = amount
 			while(v > 0)
@@ -209,8 +214,11 @@
 						v -= accepted_item_worth
 
 /obj/trader/proc/return_funds()
+	var/u_get_refund = FALSE
 	switch(accepts)
 		if("coin")
+			if(coinbalance)
+				u_get_refund = TRUE
 			while(coinbalance > 0)
 				if(coinbalance >= 20)
 					new /obj/item/weapon/aliencoin/phoron(get_turf(loc))
@@ -226,12 +234,41 @@
 					coinbalance --
 		if("money")
 			for(var/obj/c in bank)
+				u_get_refund = TRUE
 				c.forceMove(get_turf(loc))
 				bank -= c
 		if("item")
 			for(var/obj/c in bank)
+				u_get_refund = TRUE
 				c.forceMove(get_turf(loc))
 				bank -= c
+	if(u_get_refund)
+		visible_message("<span class='notice'>\The [src] drops the banked [welcome_accepts_name].</span>")
+	else
+		visible_message("<span class='notice'>\The [src] doesn't have anything banked for you.</span>")
+
+/obj/trader/proc/move_trader()
+	var/list/pt = list()
+	for(var/obj/move_trader_landmark/t in world)
+		if(t.trader_type == type)
+			pt += t
+	if(pt.len > 0)
+		var/obj/dt = pick(pt)
+		forceMove(get_turf(dt))
+		dir = dt.dir
+	else
+		log_and_message_admins("tried to move itself but its target pick list was empty, so it was not moved. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)")
+
+/obj/move_trader_landmark //You need to place the trader somewhere in the world and enable the 'move_trader' var. When the trader initializes, it will make a list of these landmarks and then move itself.
+	name = "trader spawner"
+	desc = "Spawns a trader!"
+	icon = 'icons/obj/landmark_vr.dmi'
+	icon_state = "blue-x"
+	invisibility = 101
+	mouse_opacity = 0
+	density = 0
+	anchored = 1
+	var/trader_type			//The type path for the trader you want to be able to land here.
 
 /obj/trader/capture_crystal
 	name = "curious trader"
@@ -298,7 +335,13 @@
 		/obj/item/device/denecrotizer = 10,
 		/obj/item/clothing/shoes/boots/speed = 15,
 		/obj/item/weapon/bluespace_harpoon = 20,
-		/obj/item/weapon/telecube/randomized = 5
+		/obj/item/weapon/telecube/randomized = 5,
+		/obj/item/device/bodysnatcher = 20,
+		/obj/item/device/survivalcapsule = 25,
+		/obj/item/device/survivalcapsule/luxury = 20,
+		/obj/item/device/survivalcapsule/luxurybar = 15,
+		/obj/item/device/survivalcapsule/popcabin = 20,
+		/obj/item/device/survivalcapsule/escapepod = 5
 		)
 	prices = list(
 		/obj/item/capture_crystal/basic = 6,
@@ -317,7 +360,13 @@
 		/obj/item/device/denecrotizer = 20,
 		/obj/item/clothing/shoes/boots/speed = 20,
 		/obj/item/weapon/bluespace_harpoon = 20,
-		/obj/item/weapon/telecube/randomized = 50
+		/obj/item/weapon/telecube/randomized = 50,
+		/obj/item/device/bodysnatcher = 20,
+		/obj/item/device/survivalcapsule = 10,
+		/obj/item/device/survivalcapsule/luxury = 20,
+		/obj/item/device/survivalcapsule/luxurybar = 25,
+		/obj/item/device/survivalcapsule/popcabin = 10,
+		/obj/item/device/survivalcapsule/escapepod = 30
 		)
 	multiple = list(
 		/obj/item/capture_crystal/basic = 10,
