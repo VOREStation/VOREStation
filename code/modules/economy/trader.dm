@@ -336,7 +336,12 @@
 		/obj/item/clothing/shoes/boots/speed = 15,
 		/obj/item/weapon/bluespace_harpoon = 20,
 		/obj/item/weapon/telecube/randomized = 5,
-		/obj/item/device/bodysnatcher = 20
+		/obj/item/device/bodysnatcher = 20,
+		/obj/item/device/survivalcapsule = 25,
+		/obj/item/device/survivalcapsule/luxury = 20,
+		/obj/item/device/survivalcapsule/luxurybar = 15,
+		/obj/item/device/survivalcapsule/popcabin = 20,
+		/obj/item/device/survivalcapsule/escapepod = 5
 		)
 	prices = list(
 		/obj/item/capture_crystal/basic = 6,
@@ -356,7 +361,12 @@
 		/obj/item/clothing/shoes/boots/speed = 20,
 		/obj/item/weapon/bluespace_harpoon = 20,
 		/obj/item/weapon/telecube/randomized = 50,
-		/obj/item/device/bodysnatcher = 20
+		/obj/item/device/bodysnatcher = 20,
+		/obj/item/device/survivalcapsule = 10,
+		/obj/item/device/survivalcapsule/luxury = 20,
+		/obj/item/device/survivalcapsule/luxurybar = 25,
+		/obj/item/device/survivalcapsule/popcabin = 10,
+		/obj/item/device/survivalcapsule/escapepod = 30
 		)
 	multiple = list(
 		/obj/item/capture_crystal/basic = 10,
