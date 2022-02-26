@@ -127,7 +127,6 @@
 				to_chat(user, "<span class='notice'>You aren't close enough.</span>")
 				trading = FALSE
 				return
-			visible_message("<span class='notice'>\The [src] drops the banked [welcome_accepts_name].</span>")
 			return_funds()
 		else
 			to_chat(user, "<span class='notice'>You decided leave your change banked.</span>")
@@ -199,6 +198,9 @@
 					var/obj/item/weapon/spacecash/a = c
 					a.worth -= amount
 					a.update_icon()
+					if(a.worth <= 0)
+						bank -= a
+						qdel(a)
 		if("item")
 			var/v = amount
 			while(v > 0)
@@ -209,8 +211,11 @@
 						v -= accepted_item_worth
 
 /obj/trader/proc/return_funds()
+	var/u_get_refund = FALSE
 	switch(accepts)
 		if("coin")
+			if(coinbalance)
+				u_get_refund = TRUE
 			while(coinbalance > 0)
 				if(coinbalance >= 20)
 					new /obj/item/weapon/aliencoin/phoron(get_turf(loc))
@@ -226,12 +231,18 @@
 					coinbalance --
 		if("money")
 			for(var/obj/c in bank)
+				u_get_refund = TRUE
 				c.forceMove(get_turf(loc))
 				bank -= c
 		if("item")
 			for(var/obj/c in bank)
+				u_get_refund = TRUE
 				c.forceMove(get_turf(loc))
 				bank -= c
+	if(u_get_refund)
+		visible_message("<span class='notice'>\The [src] drops the banked [welcome_accepts_name].</span>")
+	else
+		visible_message("<span class='notice'>\The [src] doesn't have anything banked for you.</span>")
 
 /obj/trader/capture_crystal
 	name = "curious trader"
