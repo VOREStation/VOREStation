@@ -4109,7 +4109,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/liquidprotein
 	name = "\improper LiquidProtein Ration"
-	desc = "A variant of the liquidfood ration, designed for obligate carnivore species. Only barely more appealing than regular liquidfood. Should this be crunchy?"
+	desc = "A variant of the liquidfood ration, designed for more carnivorous species. Only barely more appealing than regular liquidfood. Should this be crunchy?"
 	icon_state = "liquidprotein"
 	trash = /obj/item/trash/liquidprotein
 	filling_color = "#A8A8A8"
@@ -5914,44 +5914,15 @@
 	foldable = null
 	trash = /obj/item/trash/admints
 
-/obj/item/weapon/reagent_containers/food/snacks/mint
-	name = "mint"
-	desc = "it is only wafer thin."
-	icon_state = "mint"
-	filling_color = "#F2F2F2"
-	center_of_mass = list("x"=16, "y"=14)
-	bitesize = 1
-
-/obj/item/weapon/reagent_containers/food/snacks/mint/Initialize()
-	. = ..()
-	reagents.add_reagent("mint", 1)
-
-/obj/item/weapon/reagent_containers/food/snacks/mint/admints
-	desc = "Spearmint, peppermint's non-festive cousin."
-	icon = 'icons/obj/food_snacks.dmi'
-	icon_state = "admint"
-
-/obj/item/weapon/storage/box/admints
-	name = "Ad-mints"
-	icon = 'icons/obj/food_snacks.dmi'
-	icon_state = "admint_pack"
-	item_state = "candy"
-	desc = "A pack of air fresheners for your mouth."
-	description_fluff = "Ad-mints earned their name, and reputation when a Major Bill's senior executive attended a meeting at a large a marketing firm and was so astounded by the quality of their complimentary mints, that he immediately bought the company - the mints company, not the ad agency - and began providing 'Ad-mints' on every MBT flight."
-	trash = /obj/item/trash/admints
-	slot_flags = SLOT_EARS
-	w_class = 1
-	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/mint/admints = 6)
-	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/mint/admints)
-	use_sound = 'sound/items/drop/paper.ogg'
-	drop_sound = 'sound/items/drop/wrapper.ogg'
-	max_storage_space = 6
-	foldable = null
 
 /obj/item/weapon/reagent_containers/food/snacks/candy
+<<<<<<< HEAD
 	name = "\improper Grandma Ellen's Candy Bar"
+=======
+	name = "\improper Grandpa Elliot's Hard Candy"
+>>>>>>> 0fb7f87a216... Merge pull request #8406 from Cerebulon/LunchOptions
 	desc = "Now without nuts!"
-	description_fluff = "Hard candies were banned from many early human colony ships due to the tendency for brittle, sticky chunks to find their way inside vital equipment in zero-G conditions. This only made them all the more popular to new arrivees, and the Grandma Ellen's brand was Tau Ceti's answer to that demand."
+	description_fluff = "Hard candies were banned from many early human colony ships due to the tendency for brittle, sticky chunks to find their way inside vital equipment in zero-G conditions. This only made them all the more popular to new arrivees, and the Grandpa Elliot's brand was Tau Ceti's answer to that demand."
 	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "candy"
 	trash = /obj/item/trash/candy
@@ -5965,7 +5936,7 @@
 	. = ..()
 	reagents.add_reagent("sugar", 3)
 
-/obj/item/weapon/reagent_containers/food/snacks/namagashi //ADDITION 04/14/2021
+/obj/item/weapon/reagent_containers/food/snacks/namagashi
 	name = "\improper Ryo-kucha Namagashi"
 	desc = "Sweet Japanese gummy like candy that are just bursting with flavor!"
 	icon = 'icons/obj/food_snacks.dmi'
@@ -6035,7 +6006,7 @@
 	nutriment_desc = list("apricot" = 2, "sugar" = 2, "dates" = 2, "cranberry" = 2, "apple" = 2)
 	bitesize = 6
 
-/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar/Initialize()
+/obj/item/weapon/reagent_containers/food/snacks/fruitbar/Initialize()
 	. = ..()
 	reagents.add_reagent("sugar", 4)
 
@@ -6243,32 +6214,6 @@
 	nutriment_amt = 3
 	nutriment_desc = list("salt" = 1, "vinegar" = 2)
 
-/obj/item/weapon/reagent_containers/food/snacks/tastybread
-	name = "bread tube"
-	desc = "Bread in a tube. Chewy...and surprisingly tasty."
-	description_fluff = "This is the product that brought Centauri Provisions into the limelight. A product of the earliest extrasolar colony of Heaven, the Bread Tube, while bland, contains all the nutrients a spacer needs to get through the day and is decidedly edible when compared to some of its competitors. Due to the high-fructose corn syrup content of NanoTrasen's own-brand bread tubes, many jurisdictions classify them as a confectionary."
-	icon = 'icons/obj/food_snacks.dmi'
-	icon_state = "tastybread"
-	trash = /obj/item/trash/tastybread
-	filling_color = "#A66829"
-	center_of_mass = list("x"=17, "y"=16)
-	nutriment_amt = 6
-	nutriment_desc = list("bread" = 2, "sweetness" = 3)
-	bitesize = 2
-
-/obj/item/weapon/reagent_containers/food/snacks/skrellsnacks
-	name = "\improper SkrellSnax"
-	desc = "Cured fungus shipped all the way from Qerr'balak, almost like jerky! Almost."
-	description_fluff = "Despite the packaging, most SkrellSnax sold in Vir are produced using locally-grown, Qerr'Balak-native Go'moa fungi in controversial Skrell-owned biodomes on the suface of Sif. SkrellSnax were originally a product of Natuna, designed to welcome Ue-Katish refugees to their colony. The brand was recreated by Centauri Provisions after Natuna and SolGov broke off diplomatic relations."
-	icon = 'icons/obj/food_snacks.dmi'
-	icon_state = "skrellsnacks"
-	trash = /obj/item/trash/skrellsnax
-	filling_color = "#A66829"
-	center_of_mass = list("x"=15, "y"=12)
-	nutriment_amt = 10
-	nutriment_desc = list("mushroom" = 5, "salt" = 5)
-	bitesize = 3
-
 /obj/item/weapon/reagent_containers/food/snacks/sosjerky
 	name = "Scaredy's Private Reserve Beef Jerky"
 	icon = 'icons/obj/food_snacks.dmi'
@@ -6284,23 +6229,6 @@
 	. =..()
 	reagents.add_reagent("protein", 8)
 
-/obj/item/weapon/reagent_containers/food/snacks/unajerky
-	name = "Moghes Imported Sissalik Jerky"
-	icon = 'icons/obj/food_snacks.dmi'
-	icon_state = "unathitinred"
-	desc = "An incredibly well made jerky, shipped in all the way from Moghes."
-	description_fluff = "The exact meat and spices used in the curing of Sissalik Jerky are a well-kept secret, and thought to not exist at all outside of Hegemony space. Many have tried to replicate the flavour, but none have come close, so the brand remains a highly prized import. "
-	trash = /obj/item/trash/unajerky
-	filling_color = "#631212"
-	center_of_mass = list("x"=15, "y"=9)
-	drop_sound = 'sound/items/drop/soda.ogg'
-	pickup_sound = 'sound/items/pickup/soda.ogg'
-	bitesize = 2
-
-/obj/item/weapon/reagent_containers/food/snacks/unajerky/Initialize()
-	. =..()
-	reagents.add_reagent("protein", 8)
-	reagents.add_reagent("capsaicin", 2)
 
 /obj/item/weapon/reagent_containers/food/snacks/tuna
 	name = "\improper Tuna Snax"
@@ -6459,7 +6387,7 @@
 	. = ..()
 	reagents.add_reagent("doctorsdelight", 5)
 
-////////////////////sol_vend (Mars Mart) (ADDED 04/11/2021)////////////////////////////////////////////////////
+////////////////////sol_vend (Mars Mart)////////////////////////////////////////////////////
 
 /obj/item/weapon/reagent_containers/food/snacks/triton
 	name = "\improper Tidal Gobs"
@@ -6594,7 +6522,7 @@
 	nutriment_amt = 4
 	bitesize = 1
 
-////////////////////weeb_vend (Nippon-tan!) (ADDED 04/11/2021)////////////////////////////////////////////////////
+////////////////////weeb_vend (Nippon-tan!)////////////////////////////////////////////////////
 
 /obj/item/weapon/reagent_containers/food/snacks/ricecake
 	name = "rice cake"
@@ -6605,7 +6533,7 @@
 	nutriment_amt = 5
 	bitesize = 2
 
-/obj/item/weapon/reagent_containers/food/snacks/dorayaki //ADDITION 04/14/2021
+/obj/item/weapon/reagent_containers/food/snacks/dorayaki
 	name = "dorayaki"
 	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "dorayaki"
@@ -6614,7 +6542,7 @@
 	nutriment_amt = 6
 	bitesize = 2
 
-/obj/item/weapon/reagent_containers/food/snacks/daifuku //ADDITION 04/14/2021
+/obj/item/weapon/reagent_containers/food/snacks/daifuku
 	name = "daifuku"
 	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "daifuku"
@@ -6622,16 +6550,6 @@
 	nutriment_desc = list("cake" = 2, "sweetness" = 3)
 	nutriment_amt = 6
 	bitesize = 2
-
-///obj/item/weapon/reagent_containers/food/snacks/pocky (Moved to chewables)
-//	name = "pockys"
-//	icon = 'icons/obj/food_snacks.dmi'
-//	icon_state = "pockys"
-//	desc = "A bundle of chocolate-coated bisquit sticks."
-//	trash = /obj/item/trash/pocky
-//	nutriment_desc = list("chocolate" = 4, "biscuit" = 1)
-//	nutriment_amt = 5
-//	bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/weebonuts
 	name = "\improper Red Alert Nuts!"
@@ -6675,7 +6593,7 @@
 	.=..()
 	reagents.add_reagent("sprinkles", 10)
 
-/obj/item/weapon/reagent_containers/food/snacks/goma_dango //ADDITION 04/14/2021
+/obj/item/weapon/reagent_containers/food/snacks/goma_dango
 	name = "\improper Goma dango"
 	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "goma_dango"
@@ -6685,7 +6603,7 @@
 	nutriment_amt = 5
 	bitesize = 2
 
-/obj/item/weapon/reagent_containers/food/snacks/hanami_dango //ADDITION 04/14/2021
+/obj/item/weapon/reagent_containers/food/snacks/hanami_dango
 	name = "\improper Hanami dango"
 	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "hanami_dango"
@@ -6696,7 +6614,7 @@
 	nutriment_amt = 5
 	bitesize = 2
 
-////////////////////ancient_vend (Hot Food - Old) (ADDED 04/11/2021)////////////////////////////////////////////////////
+////////////////////ancient_vend (Hot Food - Old)////////////////////////////////////////////////////
 
 /obj/item/weapon/reagent_containers/food/snacks/old
 	name = "master old-food"
@@ -6781,6 +6699,7 @@
 	nutriment_desc = list("beans" = 1, "tomato sauce" = 1)
 	bitesize = 2
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/snacks/canned/beans/Initialize()
 	.=..()
 	reagents.add_reagent("bean_protein", 5)
@@ -6800,6 +6719,8 @@
 	.=..()
 	reagents.add_reagent("tomatojuice", 12)
 
+=======
+>>>>>>> 0fb7f87a216... Merge pull request #8406 from Cerebulon/LunchOptions
 /obj/item/weapon/reagent_containers/food/snacks/canned/spinach
 	name = "spinach"
 	icon_state = "spinach"
