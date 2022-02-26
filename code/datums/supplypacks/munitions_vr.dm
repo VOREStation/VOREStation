@@ -60,7 +60,7 @@
 	access = access_security
 
 /datum/supply_pack/munitions/longsword
-	name = "longsword"
+	name = "Weapons - Melee -Longsword (Steel)"
 	contains = list(
 			/obj/item/weapon/material/twohanded/longsword=2
 			)
