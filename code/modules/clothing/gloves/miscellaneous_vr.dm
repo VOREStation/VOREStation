@@ -16,7 +16,7 @@
 	heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 	armor = list(melee = 80, bullet = 50, laser = 10, energy = 0, bomb = 0, bio = 0, rad = 0)
-	
+
 /obj/item/clothing/gloves/combat/knight/brown
 	desc = "ye olde armored gauntlets"
 	name = "knight gauntlets"
@@ -36,13 +36,13 @@
 	heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
-	
+
 /obj/item/clothing/gloves/combat/knight_costume/brown
 	desc = "ye olde armored gauntlets"
 	name = "knight gauntlets"
 	icon_state = "brown"
 	item_state = "brown"
-	
+
 /obj/item/clothing/gloves/heavy_engineer
 	desc = "Elbow-length insulated gloves, with added reinforcement. They'll keep your fingers and forearms just that little bit safer from things that might try to melt, mangle, or burn them. A tag on the inside of each glove reads \'PROPERTY OF ENGINEERING, RETURN IF FOUND\'."
 	name = "heavy-duty engineering gloves"
@@ -63,3 +63,8 @@
 	min_cold_protection_temperature = GLOVES_MIN_COLD_PROTECTION_TEMPERATURE
 	heat_protection = HANDS
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
+
+/obj/item/clothing/gloves/black/bloodletter
+	desc = "A pair of ordinary looking black gloves. On closer examination, they seem somewhat well-made, with an almost metallic sheen to them."
+	description_fluff = "A prohibited concealed weapon, the Melee Grip Reinforcement system is the product of the military applications of nanotechnology. The striking face of the glove hardens in response to impact, producing monofilament blades from the knuckles to greatly enhance the wearer's close-combat lethality."
+	special_attack_type = /datum/unarmed_attack/hardclaws
