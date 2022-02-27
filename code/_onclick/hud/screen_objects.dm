@@ -608,10 +608,8 @@
 		if(C.handcuffed)
 			add_overlay(handcuff_overlay)
 			
-=======
 			overlays |= handcuff_overlay
 
->>>>>>> 4568dc85d5f... Ports high-res lobby screen system from Eris from Bay (#8401)
 // PIP stuff
 /obj/screen/component_button
 	var/obj/screen/parent
@@ -687,9 +685,6 @@
 		holder.screen -= src
 		holder = null
 	return ..()
-
-=======
->>>>>>> 4568dc85d5f... Ports high-res lobby screen system from Eris from Bay (#8401)
 
 /**
  * This object holds all the on-screen elements of the mapping unit.
