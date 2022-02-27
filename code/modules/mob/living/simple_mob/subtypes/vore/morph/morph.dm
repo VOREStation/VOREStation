@@ -149,7 +149,7 @@
 	morphed = FALSE
 
 	if(!silent)
-		visible_message("<span class='warning'>[src] suddenly collapses in on itself, dissolving into a pile of green flesh!</span>")
+		visible_message("<span class='warning'>[src] suddenly collapses in on itself, dissolving into a pile of flesh!</span>")
 
 	form = null
 	name = initial(name)
@@ -189,7 +189,7 @@
 
 /mob/living/simple_mob/vore/hostile/morph/death(gibbed)
 	if(morphed)
-		visible_message("<span class='warning'>[src] twists and dissolves into a pile of green flesh!</span>")
+		visible_message("<span class='warning'>[src] twists and dissolves into a pile of flesh!</span>")
 		restore(TRUE)
 	..()
 
