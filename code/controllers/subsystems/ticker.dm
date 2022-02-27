@@ -410,12 +410,10 @@ var/global/datum/controller/subsystem/ticker/ticker
 			// Created their playable character, delete their /mob/new_player
 			if(new_char)
 				qdel(player)
-<<<<<<< HEAD
+
 				if(new_char.client)
 					var/obj/screen/splash/S = new(new_char.client, TRUE)
 					S.Fade(TRUE)
-=======
->>>>>>> 4568dc85d5f... Ports high-res lobby screen system from Eris from Bay (#8401)
 
 			// If they're a carbon, they can get manifested
 			if(J?.mob_type & JOB_CARBON)
