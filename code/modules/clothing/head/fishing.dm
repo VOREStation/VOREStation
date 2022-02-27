@@ -1,24 +1,4 @@
-/* just using these for copypasta purposes
-
-	item_icons = list(
-		slot_l_hand_str = 'icons/vore/custom_clothes_left_hand_vr.dmi',
-		slot_r_hand_str = 'icons/vore/custom_clothes_right_hand_vr.dmi',
-		slot_head_str = 'icons/vore/custom_onmob_32x48_vr.dmi'
-		)
-
-these are the default values for a soft cap
-
-	icon_state = "cargosoft"
-	item_state_slots = list(slot_r_hand_str = "cargosoft", slot_l_hand_str = "cargosoft")
-
-
-these are the default icons for a hat
-	icon = 'icons/obj/clothing/hats.dmi'
-	item_icons = list(
-		slot_l_hand_str = 'icons/mob/items/lefthand_hats.dmi',
-		slot_r_hand_str = 'icons/mob/items/righthand_hats.dmi',
-		)
-*/
+//these just use the default inhands for soft caps because the amount of extra work to add more colours would be insane otherwise
 
 /obj/item/clothing/head/fishing
 	name = "fishing hat"
