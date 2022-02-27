@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 ///var/atom/movable/lobby_image = new /atom/movable{icon = 'icons/misc/title.dmi'; icon_state = lobby_image_state; screen_loc = "1,1"; name = "Polaris"}
 
 var/obj/effect/lobby_image = new /obj/effect/lobby_image
@@ -23,8 +23,7 @@ var/obj/effect/lobby_image = new /obj/effect/lobby_image
 	else
 		icon_state = known_icon_states[1]
 	. = ..()
-=======
->>>>>>> 4568dc85d5f... Ports high-res lobby screen system from Eris from Bay (#8401)
+
 
 /mob/new_player
 	var/client/my_client // Need to keep track of this ourselves, since by the time Logout() is called the client has already been nulled
