@@ -34,7 +34,11 @@ var/global/list/obj/item/device/pda/PDAs = list()
 								"honk" = 'sound/items/bikehorn.ogg',
 								"SKREE" = 'sound/voice/shriek1.ogg',
 								// "holy" = 'sound/items/PDA/ambicha4-short.ogg',
-								"xeno" = 'sound/voice/hiss1.ogg')
+								"xeno" = 'sound/voice/hiss1.ogg',
+								"dust" = 'sound/effects/supermatter.ogg',
+								"spark" = 'sound/effects/sparks4.ogg',
+								"rad" = 'sound/items/geiger/high1.ogg',
+								"servo" = 'sound/machines/rig/rigservo.ogg')
 	var/hidden = 0 // Is the PDA hidden from the PDA list?
 	var/touch_silent = 0 //If 1, no beeps on interacting.
 
