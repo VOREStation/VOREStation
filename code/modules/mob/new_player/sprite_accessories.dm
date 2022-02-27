@@ -1195,6 +1195,11 @@
 	icon_state = "hair_ziegler"
 	flags = HAIR_TIEABLE
 
+/datum/sprite_accessory/hair/zone
+	name = "Zone Braid"
+	icon_state = "hair_zone"
+	flags = HAIR_TIEABLE
+
 /datum/sprite_accessory/hair/una_hood
 	name = "Cobra Hood"
 	icon = 'icons/mob/human_face_alt.dmi'

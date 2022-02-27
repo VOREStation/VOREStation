@@ -836,13 +836,15 @@
 					/obj/item/weapon/storage/box/wormcan/sickly = 10,
 					/obj/item/weapon/material/fishing_net = 2,
 					/obj/item/glass_jar/fish = 4,
-					/obj/item/stack/cable_coil/random = 6)
+					/obj/item/stack/cable_coil/random = 6,
+					/obj/item/clothing/head/fishing = 5)
 	prices = list(/obj/item/weapon/material/fishing_rod/modern/cheap = 50,
 					/obj/item/weapon/storage/box/wormcan = 12,
 					/obj/item/weapon/storage/box/wormcan/sickly = 6,
 					/obj/item/weapon/material/fishing_net = 40,
 					/obj/item/glass_jar/fish = 10,
-					/obj/item/stack/cable_coil/random = 4)
+					/obj/item/stack/cable_coil/random = 4,
+					/obj/item/clothing/head/fishing = 15)
 	premium = list(/obj/item/weapon/storage/box/wormcan/deluxe = 1)
 	contraband = list(/obj/item/weapon/storage/box/wormcan/deluxe = 1)
 
