@@ -606,7 +606,6 @@
 	if(hud.mymob && iscarbon(hud.mymob))
 		var/mob/living/carbon/C = hud.mymob
 		if(C.handcuffed)
-<<<<<<< HEAD
 			add_overlay(handcuff_overlay)
 			
 =======
@@ -625,7 +624,6 @@
 	if(parent)
 		parent.component_click(src, params)
 
-<<<<<<< HEAD
 // Character setup stuff
 /obj/screen/setup_preview
 	
