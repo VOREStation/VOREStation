@@ -436,12 +436,10 @@
 	var/mob/living/character = create_character(T)	//creates the human and transfers vars and mind
 	character = job_master.EquipRank(character, rank, 1)					//equips the human
 	UpdateFactionList(character)
-<<<<<<< HEAD
+	
 	if(character && character.client)
 		var/obj/screen/splash/Spl = new(character.client, TRUE)
 		Spl.Fade(TRUE)
-=======
->>>>>>> 4568dc85d5f... Ports high-res lobby screen system from Eris from Bay (#8401)
 
 	var/datum/job/J = SSjob.get_job(rank)
 
