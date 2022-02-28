@@ -107,11 +107,13 @@
 		return
 	M.dizziness = 0
 	M.drowsyness = 0
-	M.stuttering = 0
+	M.eye_blurry = 0
 	M.SetConfused(0)
 	if(M.ingested)
 		for(var/datum/reagent/R in M.ingested.reagent_list)
 			if(istype(R, /datum/reagent/nutriment))
+				R.remove_self(removed * 30)
+			if(istype(R, /datum/reagent/drink))
 				R.remove_self(removed * 30)
 
 /datum/reagent/nutridax/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -119,9 +121,11 @@
 		return
 	M.dizziness = 0
 	M.drowsyness = 0
-	M.stuttering = 0
+	M.eye_blurry = 0
 	M.SetConfused(0)
 	if(M.bloodstr)
 		for(var/datum/reagent/R in M.bloodstr.reagent_list)
 			if(istype(R, /datum/reagent/nutriment))
 				R.remove_self(removed * 20)
+			if(istype(R, /datum/reagent/drink))
+				R.remove_self(removed * 30)
