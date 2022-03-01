@@ -542,6 +542,3 @@
 	matter = list(MAT_STEEL = 18000)
 	max_ammo = 100
 	multiple_sprites = 1
-
-/obj/item/weapon/storage/box/shotgunammo/large
-/obj/item/weapon/storage/box/shotgunshells
