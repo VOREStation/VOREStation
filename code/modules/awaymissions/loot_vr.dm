@@ -176,8 +176,8 @@
 				new new_gun(C)
 			if(prob(50))
 				var/new_ammo = pick( // Copied from Random.dm
-					prob(5);/obj/item/weapon/storage/box/shotgunammo,\
-					prob(5);/obj/item/weapon/storage/box/shotgunshells,\
+					prob(5);/obj/item/ammo_magazine/ammo_box/b12g,\
+					prob(5);/obj/item/ammo_magazine/ammo_box/b12g/pellet,\
 					prob(5);/obj/item/ammo_magazine/s357,\
 					prob(5);/obj/item/ammo_magazine/clip/c762,\
 					prob(5);/obj/item/ammo_magazine/m45,\
@@ -212,11 +212,11 @@
 				/*	prob(1);/obj/item/ammo_magazine/m95,\ */
 					prob(1);/obj/item/ammo_casing/rocket,\
 					prob(1);/obj/item/ammo_magazine/ammo_box/b145,\
-					prob(1);/obj/item/weapon/storage/box/flashshells,\
-					prob(1);/obj/item/weapon/storage/box/beanbags,\
-					prob(1);/obj/item/weapon/storage/box/practiceshells,\
-					prob(1);/obj/item/weapon/storage/box/stunshells,\
-					prob(1);/obj/item/weapon/storage/box/blanks,\
+					prob(1);/obj/item/ammo_magazine/ammo_box/b12g/flash,\
+					prob(1);/obj/item/ammo_magazine/ammo_box/b12g/beanbag,\
+					prob(1);/obj/item/ammo_magazine/ammo_box/b12g/practice,\
+					prob(1);/obj/item/ammo_magazine/ammo_box/b12g/stunshell,\
+					prob(1);/obj/item/ammo_magazine/ammo_box/b12g/blank,\
 					prob(1);/obj/item/ammo_magazine/mtg,\
 					prob(1);/obj/item/ammo_magazine/m45tommydrum,\
 					prob(1);/obj/item/ammo_magazine/m45tommy)

@@ -274,7 +274,7 @@
 /obj/item/ammo_magazine/ammo_box/b12g/stunshell
 	name = "ammo box (12 gauge stun)"
 	desc = "A box of 12 gauge stun rounds"
-	icon_state = "stun"
+	icon_state = "stunslug"
 	caliber = ".12g"
 	ammo_type = /obj/item/ammo_casing/a12g/stunshell
 	matter = list(MAT_STEEL = 2880, MAT_GLASS = 5760)
@@ -284,7 +284,7 @@
 /obj/item/ammo_magazine/ammo_box/b12g/emp
 	name = "ammo box (12 gauge EMP)"
 	desc = "A box of 12 gauge EMP rounds"
-	icon_state = "stun"
+	icon_state = "emp"
 	caliber = ".12g"
 	ammo_type = /obj/item/ammo_casing/a12g/emp
 	matter = list(MAT_STEEL = 2880, MAT_URANIUM = 1920)
@@ -542,3 +542,6 @@
 	matter = list(MAT_STEEL = 18000)
 	max_ammo = 100
 	multiple_sprites = 1
+
+/obj/item/weapon/storage/box/shotgunammo/large
+/obj/item/weapon/storage/box/shotgunshells

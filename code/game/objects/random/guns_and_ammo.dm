@@ -154,10 +154,10 @@
 	icon_state = "ammo"
 
 /obj/random/ammo/item_to_spawn()
-	return pick(prob(6);/obj/item/weapon/storage/box/beanbags,
-				prob(2);/obj/item/weapon/storage/box/shotgunammo,
-				prob(4);/obj/item/weapon/storage/box/shotgunshells,
-				prob(1);/obj/item/weapon/storage/box/stunshells,
+	return pick(prob(6);/obj/item/ammo_magazine/ammo_box/b12g/beanbag,
+				prob(2);/obj/item/ammo_magazine/ammo_box/b12g,
+				prob(4);/obj/item/ammo_magazine/ammo_box/b12g/pellet,
+				prob(1);/obj/item/ammo_magazine/ammo_box/b12g/stunshell,
 				prob(2);/obj/item/ammo_magazine/m45,
 				prob(4);/obj/item/ammo_magazine/m45/rubber,
 				prob(4);/obj/item/ammo_magazine/m45/flash,
@@ -489,11 +489,11 @@
 			),
 			prob(3);list(
 				/obj/item/weapon/gun/projectile/shotgun/pump/slug,
-				/obj/item/weapon/storage/box/shotgunammo
+				/obj/item/ammo_magazine/ammo_box/b12g
 			),
 			prob(1);list(
 				/obj/item/weapon/gun/projectile/shotgun/pump/combat,
-				/obj/item/weapon/storage/box/shotgunammo
+				/obj/item/ammo_magazine/ammo_box/b12g
 			)
 		)
 
