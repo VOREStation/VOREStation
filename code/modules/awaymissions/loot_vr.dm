@@ -145,7 +145,6 @@
 					prob(8);/obj/item/weapon/gun/projectile/automatic/c20r,\
 					prob(8);/obj/item/weapon/gun/projectile/automatic/stg,\
 					prob(8);/obj/item/weapon/melee/energy/sword,\
-				/*	prob(8);/obj/item/weapon/gun/projectile/automatic/m41a,\ */
 					prob(7);/obj/item/weapon/gun/energy/captain,\
 					prob(7);/obj/item/weapon/gun/energy/sniperrifle,\
 					prob(7);/obj/item/weapon/gun/projectile/automatic/p90,\
@@ -197,10 +196,10 @@
 					prob(4);/obj/item/ammo_magazine/m9mmt/rubber,\
 					prob(4);/obj/item/ammo_magazine/m10mm,\
 					prob(4);/obj/item/ammo_magazine/m9mmp90,\
-				/*	prob(4);/obj/item/ammo_magazine/m14,\
-					prob(4);/obj/item/ammo_magazine/m14/large,\*/
 					prob(4);/obj/item/ammo_magazine/m545/ext,
 					prob(4);/obj/item/ammo_magazine/m762,\
+					prob(4);/obj/item/ammo_magazine/ammo_box/b762/surplus/hunter,\
+					prob(4);/obj/item/ammo_magazine/ammo_box/b762/surplus,\
 					prob(4);/obj/item/ammo_magazine/m545/ext,\
 					prob(3);/obj/item/ammo_magazine/ammo_box/b10mm/emp,\
 					prob(3);/obj/item/ammo_magazine/ammo_box/b10mm,\

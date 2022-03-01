@@ -419,13 +419,23 @@
 	max_ammo = 8
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/ammo_box/b762/blank
+/obj/item/ammo_magazine/ammo_box/b762/surplus/blank
 	name = "ammo wrap (7.62mm blank)"
 	desc = "A paper wrap of 7.62mm blank rounds"
 	icon_state = "paper_wrap"
 	caliber = "7.62mm"
 	ammo_type = /obj/item/ammo_casing/a762/blank
 	matter = list(MAT_STEEL = 720)
+	max_ammo = 8
+	multiple_sprites = 1
+
+/obj/item/ammo_magazine/ammo_box/b762/surplus/hunter
+	name = "ammo wrap (7.62mm hunter)"
+	desc = "A paper wrap of 7.62mm hunter rounds"
+	icon_state = "paper_wrap"
+	caliber = "7.62mm"
+	ammo_type = /obj/item/ammo_casing/a762/hunter
+	matter = list(MAT_STEEL = 1600)
 	max_ammo = 8
 	multiple_sprites = 1
 
@@ -493,7 +503,7 @@
 	max_ammo = 30
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/ammo_box/b545
+/obj/item/ammo_magazine/ammo_box/b545/large
 	name = "ammo box (5.45mm)"
 	desc = "A steel box of 5.45mm rounds"
 	icon_state = "boxhrifle"
@@ -503,7 +513,7 @@
 	max_ammo = 100
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/ammo_box/b545/ap
+/obj/item/ammo_magazine/ammo_box/b545/large/ap
 	name = "ammo box (5.45mm AP)"
 	desc = "A steel box of 5.45mm armor-piercing rounds"
 	icon_state = "boxhrifle-ap"
@@ -513,7 +523,7 @@
 	max_ammo = 100
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/ammo_box/b545/hp
+/obj/item/ammo_magazine/ammo_box/b545/large/hp
 	name = "ammo box (5.45mm HP)"
 	desc = "A steel box of 5.45mm hollow-point rounds"
 	icon_state = "boxhrifle-hp"
@@ -523,7 +533,7 @@
 	max_ammo = 100
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/ammo_box/b545/practice
+/obj/item/ammo_magazine/ammo_box/b545/large/practice
 	name = "ammo box (5.45mm practice)"
 	desc = "A steel box of 5.45mm practice rounds"
 	icon_state = "boxhrifle-practice"
@@ -533,7 +543,7 @@
 	max_ammo = 100
 	multiple_sprites = 1
 
-/obj/item/ammo_magazine/ammo_box/b545/hunter
+/obj/item/ammo_magazine/ammo_box/b545/large/hunter
 	name = "ammo box (5.45mm hunter)"
 	desc = "A steel box of 5.45mm hunter rounds"
 	icon_state = "boxhrifle-hunter"
