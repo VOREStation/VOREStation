@@ -63,11 +63,11 @@
 
 /datum/uplink_item/item/ammo/sniperammo
 	name = "Anti-Materiel Rifle ammo box (14.5mm)"
-	path = /obj/item/weapon/storage/box/sniperammo
+	path = /obj/item/ammo_magazine/ammo_box/b145
 
 /datum/uplink_item/item/ammo/sniperammo_highvel
 	name = "Anti-Materiel Rifle ammo box (14.5mm sabot)"
-	path = /obj/item/weapon/storage/box/sniperammo/highvel
+	path = /obj/item/ammo_magazine/ammo_box/b145/highvel
 
 /datum/uplink_item/item/ammo/c545
 	name = "Rifle Magazine (5.45mm)"

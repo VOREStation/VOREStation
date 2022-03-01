@@ -250,18 +250,6 @@
 /obj/item/weapon/storage/box/flechetteshells/large
 	starts_with = list(/obj/item/ammo_casing/a12g/flechette = 16)
 
-/obj/item/weapon/storage/box/sniperammo
-	name = "box of 14.5mm shells"
-	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
-	starts_with = list(/obj/item/ammo_casing/a145 = 7)
-	drop_sound = 'sound/items/drop/ammobox.ogg'
-	pickup_sound = 'sound/items/pickup/ammobox.ogg'
-
-/obj/item/weapon/storage/box/sniperammo/highvel
-	name = "box of 14.5mm sabot shells"
-	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
-	starts_with = list(/obj/item/ammo_casing/a145/highvel = 7)
-
 /obj/item/weapon/storage/box/flashbangs
 	name = "box of flashbangs (WARNING)"
 	desc = "<B>WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use.</B>"

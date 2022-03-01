@@ -315,8 +315,8 @@
 			),
 			prob(1);list(
 				/obj/item/weapon/gun/projectile/garand,
-				/obj/item/ammo_magazine/m762garand,
-				/obj/item/ammo_magazine/m762garand
+				/obj/item/ammo_magazine/m762enbloc,
+				/obj/item/ammo_magazine/m762enbloc
 			),
 			prob(1);list(
 				/obj/item/weapon/gun/projectile/revolvingrifle,

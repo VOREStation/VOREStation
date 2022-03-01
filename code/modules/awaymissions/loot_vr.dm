@@ -202,7 +202,8 @@
 					prob(4);/obj/item/ammo_magazine/m545/ext,
 					prob(4);/obj/item/ammo_magazine/m762,\
 					prob(4);/obj/item/ammo_magazine/m545/ext,\
-					prob(3);/obj/item/ammo_magazine/clip/c10mm,\
+					prob(3);/obj/item/ammo_magazine/ammo_box/b10mm/emp,\
+					prob(3);/obj/item/ammo_magazine/ammo_box/b10mm,\
 					prob(3);/obj/item/ammo_magazine/clip/c44,\
 					prob(3);/obj/item/ammo_magazine/m545,\
 					prob(2);/obj/item/ammo_magazine/m44,\
@@ -210,7 +211,7 @@
 					prob(1);/obj/item/weapon/storage/box/frags,\
 				/*	prob(1);/obj/item/ammo_magazine/m95,\ */
 					prob(1);/obj/item/ammo_casing/rocket,\
-					prob(1);/obj/item/weapon/storage/box/sniperammo,\
+					prob(1);/obj/item/ammo_magazine/ammo_box/b145,\
 					prob(1);/obj/item/weapon/storage/box/flashshells,\
 					prob(1);/obj/item/weapon/storage/box/beanbags,\
 					prob(1);/obj/item/weapon/storage/box/practiceshells,\
@@ -286,7 +287,7 @@
 			else if(prob(50))
 				if(live_cargo) // Something else very much alive and angry.
 					var/spawn_type = pick(/mob/living/simple_mob/animal/space/alien, /mob/living/simple_mob/animal/space/alien/drone, /mob/living/simple_mob/animal/space/alien/sentinel)
-					new spawn_type(C) 
+					new spawn_type(C)
 				else // Just a costume.
 					new /obj/item/clothing/head/xenos(C)
 					new /obj/item/clothing/suit/xenos(C)
