@@ -150,7 +150,12 @@
     var/list/smolsound = list('sound/voice/teppi/whine1.ogg', 'sound/voice/teppi/whine2.ogg')
 
 /decl/emote/audible/gyoh/get_emote_sound(var/mob/living/user)
-    if(user.size_multiplier >= 1.5)
+    if(istype(user, /mob/living/simple_mob/vore/alienanimals/teppi))
+        if(istype(user, /mob/living/simple_mob/vore/alienanimals/teppi/baby))
+            emote_sound = pick(smolsound)
+        else
+            emote_sound = pick(bigsound)
+    else if(user.size_multiplier >= 1.5)
         emote_sound = pick(bigsound)
     else
         emote_sound = pick(smolsound)
@@ -164,7 +169,12 @@
     var/list/smolsound = list('sound/voice/teppi/cute_rumble.ogg')
 
 /decl/emote/audible/rumble/get_emote_sound(var/mob/living/user)
-    if(user.size_multiplier >= 1.5)
+    if(istype(user, /mob/living/simple_mob/vore/alienanimals/teppi))
+        if(istype(user, /mob/living/simple_mob/vore/alienanimals/teppi/baby))
+            emote_sound = pick(smolsound)
+        else
+            emote_sound = pick(bigsound)
+    else if(user.size_multiplier >= 1.5)
         emote_sound = pick(bigsound)
     else
         emote_sound = pick(smolsound)
