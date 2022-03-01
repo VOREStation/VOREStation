@@ -141,3 +141,31 @@
     key = "squeaky"
     emote_message_3p = "squeaks."
     emote_sound = 'sound/items/drop/plushie.ogg'
+
+/decl/emote/audible/gyoh
+    key = "gyoh"
+    emote_message_3p = "gyohs."
+    emote_sound = 'sound/voice/teppi/whine1.ogg'
+    var/list/bigsound = list('sound/voice/teppi/gyooh1.ogg', 'sound/voice/teppi/gyooh2.ogg', 'sound/voice/teppi/gyooh3.ogg',  'sound/voice/teppi/gyooh4.ogg', 'sound/voice/teppi/gyooh5.ogg','sound/voice/teppi/gyooh6.ogg')
+    var/list/smolsound = list('sound/voice/teppi/whine1.ogg', 'sound/voice/teppi/whine2.ogg')
+
+/decl/emote/audible/gyoh/get_emote_sound(var/mob/living/user)
+    if(user.size_multiplier >= 1.5)
+        emote_sound = pick(bigsound)
+    else
+        emote_sound = pick(smolsound)
+    . = ..()
+
+/decl/emote/audible/rumble
+    key = "rumble"
+    emote_message_3p = "rumbles contentedly."
+    emote_sound = 'sound/voice/teppi/whine1.ogg'
+    var/list/bigsound = list('sound/voice/teppi/rumble.ogg')
+    var/list/smolsound = list('sound/voice/teppi/cute_rumble.ogg')
+
+/decl/emote/audible/rumble/get_emote_sound(var/mob/living/user)
+    if(user.size_multiplier >= 1.5)
+        emote_sound = pick(bigsound)
+    else
+        emote_sound = pick(smolsound)
+    . = ..()
