@@ -8,7 +8,7 @@
 	containertype = /obj/structure/closet/crate/secure
 	containername = "frontier phaser crate"
 	access = access_explorer
-	
+
 /datum/supply_pack/munitions/expeditionbows
 	name = "Frontier bows (station-locked) crate"
 	contains = list(
@@ -58,3 +58,13 @@
 	containertype = /obj/structure/closet/crate/large/secure/heph
 	containername = "Mining disperser charge crate"
 	access = access_security
+
+/datum/supply_pack/munitions/longsword
+	name = "Weapons - Melee -Longsword (Steel)"
+	contains = list(
+			/obj/item/weapon/material/twohanded/longsword=2
+			)
+	cost = 50
+	containertype = /obj/structure/closet/crate/secure
+	containername = "longsword"
+	access = access_armory
