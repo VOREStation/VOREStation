@@ -220,7 +220,7 @@
 	set src in range(0)
 
 	dropnoms_active = !dropnoms_active
-	to_chat(user,"<span class = 'info'>You switch \the [src]'s spatial rearrangement [dropnoms_active ? "on" : "off"]. (Telenoms [dropnoms_active ? "enabled" : "dsiabled"])</span>")
+	to_chat(user,"<span class = 'info'>You switch \the [src]'s spatial rearrangement [dropnoms_active ? "on" : "off"]. (Telenoms [dropnoms_active ? "enabled" : "disabled"])</span>")
 
 /obj/item/weapon/bluespace_harpoon/update_icon()
 	if(transforming)

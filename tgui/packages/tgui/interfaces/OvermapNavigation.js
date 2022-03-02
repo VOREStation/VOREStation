@@ -38,7 +38,7 @@ export const OvermapNavigationContent = (props, context) => {
           <LabeledList.Item label="Current Location">
             {sector}
           </LabeledList.Item>
-          <LabeledList.Item label="Coordiantes">
+          <LabeledList.Item label="Coordinates">
             {s_x} : {s_y}
           </LabeledList.Item>
           <LabeledList.Item label="Additional Information">
