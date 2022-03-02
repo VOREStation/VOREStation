@@ -116,7 +116,7 @@
 
 /datum/uplink_item/item/ammo/g12/pellet
 	name = "12g Shotgun Ammo Box (Pellet)"
-/obj/item/ammo_magazine/ammo_box/b12g/pellet
+	path =/obj/item/ammo_magazine/ammo_box/b12g/pellet
 
 /datum/uplink_item/item/ammo/g12/stun
 	name = "12g Shotgun Ammo Box (Stun)"
