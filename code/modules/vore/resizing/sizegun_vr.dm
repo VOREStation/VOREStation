@@ -6,9 +6,9 @@
 	name = "size gun" //I have no idea why this was called shrink ray when this increased and decreased size.
 	desc = "A highly advanced ray gun with a knob on the side to adjust the size you desire. Warning: Do not insert into mouth."
 	icon = 'icons/obj/gun_vr.dmi'
-	icon_override = 'icons/obj/gun_vr.dmi'
 	icon_state = "sizegun"
 	item_state = "sizegun"
+	item_icons = list(slot_l_hand_str = 'icons/mob/items/lefthand_guns_vr.dmi', slot_r_hand_str = 'icons/mob/items/righthand_guns_vr.dmi')
 	fire_sound = 'sound/weapons/wave.ogg'
 	charge_cost = 240
 	projectile_type = /obj/item/projectile/beam/sizelaser
@@ -90,8 +90,24 @@
 	charge_cost = 0
 	projectile_type = /obj/item/projectile/beam/sizelaser/admin
 
+
+/datum/category_item/catalogue/anomalous/precursor_a/alien_sizegun
+	name = "Precursor Alpha Object - Matter "
+	desc = "This appears to be a tool, with a solid handle, and a thin hard light \
+	shaft, with a tip at the end. On the handle appears to be two mechanisms that \
+	causes the hard light section to spin at a high speed while held down, in a \
+	similar fashion as an electric drill. One makes it spin clockwise, the other \
+	counter-clockwise.\
+	<br><br>\
+	The hard light tip is able to shift its shape to a degree when pressed into \
+	a solid receptacle. This allows it to be able to function on many kinds of \
+	fastener, which includes the screws."
+	value = CATALOGUER_REWARD_EASY
+
 /obj/item/weapon/gun/energy/sizegun/abductor
 	name = "alien size gun"
+	desc = "A strange looking ray gun weapon with an adjustor mob on the side. The design is alien, but it bares a striking resemblence to the older model sizeguns NT uses for research."
+	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_sizegun)
 	icon_state = "sizegun-abductor"
 	item_state = "laser"
 	charge_cost = 0
