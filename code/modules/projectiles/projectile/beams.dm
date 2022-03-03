@@ -37,6 +37,14 @@
 	icon_state = "laser"
 	damage = 15
 
+/obj/item/projectile/beam/weaklaser/blue
+	icon_state = "bluelaser"
+	light_color = "#0066FF"
+
+	muzzle_type = /obj/effect/projectile/muzzle/laser_blue
+	tracer_type = /obj/effect/projectile/tracer/laser_blue
+	impact_type = /obj/effect/projectile/impact/laser_blue
+
 /obj/item/projectile/beam/smalllaser
 	damage = 25
 
@@ -44,7 +52,7 @@
 	damage = 30
 	armor_penetration = 10
 
-	
+
 /obj/item/projectile/beam/midlaser
 	damage = 40
 	armor_penetration = 10
@@ -226,7 +234,7 @@
 	fire_sound = 'sound/weapons/Taser.ogg'
 	nodamage = 1
 	taser_effect = 1
-	agony = 40
+	agony = 35
 	damage_type = HALLOSS
 	light_color = "#FFFFFF"
 	hitsound = 'sound/weapons/zapbang.ogg'
@@ -264,6 +272,34 @@
 			if(A.cell)
 				A.cell.give(drainamt * 2)
 
+/obj/item/projectile/beam/stun/kin21
+	name = "kinh21 stun beam"
+	icon_state = "omnilaser"
+	light_color = "#0000FF"
+	muzzle_type = /obj/effect/projectile/muzzle/laser_omni
+	tracer_type = /obj/effect/projectile/tracer/laser_omni
+	impact_type = /obj/effect/projectile/impact/laser_omni
+
+/obj/item/projectile/beam/stun/blue
+	icon_state = "bluelaser"
+	light_color = "#0066FF"
+	muzzle_type = /obj/effect/projectile/muzzle/laser_blue
+	tracer_type = /obj/effect/projectile/tracer/laser_blue
+	impact_type = /obj/effect/projectile/impact/laser_blue
+
+/obj/item/projectile/beam/disable
+    name = "disabler beam"
+    icon_state = "omnilaser"
+    nodamage = 1
+    taser_effect = 1
+    agony = 100 //One shot stuns for the time being until adjustments are fully made.
+    damage_type = HALLOSS
+    light_color = "#00CECE"
+
+    muzzle_type = /obj/effect/projectile/muzzle/laser_omni
+    tracer_type = /obj/effect/projectile/tracer/laser_omni
+    impact_type = /obj/effect/projectile/impact/laser_omni
+
 /obj/item/projectile/beam/shock
 	name = "shock beam"
 	icon_state = "lightning"
@@ -282,11 +318,26 @@
 	damage = 5
 	agony = 10
 
+/obj/item/projectile/beam/eluger
+	name = "laser beam"
+	icon_state = "xray"
+	light_color = "#00FF00"
+	muzzle_type = /obj/effect/projectile/muzzle/xray
+	tracer_type = /obj/effect/projectile/tracer/xray
+	impact_type = /obj/effect/projectile/impact/xray
+
+/obj/item/projectile/beam/imperial
+	name = "laser beam"
+	fire_sound = 'sound/weapons/mandalorian.ogg'
+	icon_state = "darkb"
+	light_color = "#8837A3"
+	muzzle_type = /obj/effect/projectile/muzzle/darkmatter
+	tracer_type = /obj/effect/projectile/tracer/darkmatter
+	impact_type = /obj/effect/projectile/impact/darkmatter
 
 //
 // Projectile Beam Definitions
 //
-
 /obj/item/projectile/beam/pointdefense
 	name = "point defense salvo"
 	icon_state = "laser"
@@ -300,3 +351,63 @@
 	muzzle_type = /obj/effect/projectile/muzzle/pointdefense
 	tracer_type = /obj/effect/projectile/tracer/pointdefense
 	impact_type = /obj/effect/projectile/impact/pointdefense
+
+//
+// Energy Net
+//
+/obj/item/projectile/beam/energy_net
+	name = "energy net projection"
+	icon_state = "xray"
+	nodamage = 1
+	agony = 5
+	damage_type = HALLOSS
+	light_color = "#00CC33"
+
+	muzzle_type = /obj/effect/projectile/muzzle/xray
+	tracer_type = /obj/effect/projectile/tracer/xray
+	impact_type = /obj/effect/projectile/impact/xray
+
+/obj/item/projectile/beam/energy_net/on_hit(var/atom/netted)
+	do_net(netted)
+	..()
+
+/obj/item/projectile/beam/energy_net/proc/do_net(var/mob/M)
+	var/obj/item/weapon/energy_net/net = new (get_turf(M))
+	net.throw_impact(M)
+
+//
+// Healing Beam
+//
+/obj/item/projectile/beam/medigun
+	name = "healing beam"
+	icon_state = "healbeam"
+	damage = 0 //stops it damaging walls
+	nodamage = TRUE
+	no_attack_log = TRUE
+	damage_type = BURN
+	check_armour = "laser"
+	light_color = "#80F5FF"
+
+	combustion = FALSE
+
+	muzzle_type = /obj/effect/projectile/muzzle/medigun
+	tracer_type = /obj/effect/projectile/tracer/medigun
+	impact_type = /obj/effect/projectile/impact/medigun
+
+/obj/item/projectile/beam/medigun/on_hit(var/atom/target, var/blocked = 0)
+	if(istype(target, /mob/living/carbon/human))
+		var/mob/living/carbon/human/M = target
+		if(M.health < M.maxHealth)
+			var/obj/effect/overlay/pulse = new /obj/effect/overlay(get_turf(M))
+			pulse.icon = 'icons/effects/effects.dmi'
+			pulse.icon_state = "heal"
+			pulse.name = "heal"
+			pulse.anchored = TRUE
+			spawn(20)
+				qdel(pulse)
+			to_chat(target, "<span class='notice'>As the beam strikes you, your injuries close up!</span>")
+			M.adjustBruteLoss(-15)
+			M.adjustFireLoss(-15)
+			M.adjustToxLoss(-5)
+			M.adjustOxyLoss(-5)
+	return 1

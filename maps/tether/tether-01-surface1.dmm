@@ -35167,14 +35167,6 @@
 /area/tether/surfacebase/surface_one_hall)
 "lSW" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/storage/box/blanks{
-	pixel_x = 2;
-	pixel_y = -2
-	},
-/obj/item/weapon/storage/box/blanks{
-	pixel_x = 2;
-	pixel_y = -2
-	},
 /obj/item/ammo_magazine/clip/c762/practice,
 /obj/item/ammo_magazine/clip/c762/practice,
 /obj/machinery/recharger/wallcharger{
@@ -35189,6 +35181,8 @@
 /obj/item/ammo_magazine/m45/practice,
 /obj/item/ammo_magazine/m9mmt/practice,
 /obj/item/ammo_magazine/m9mmt/practice,
+/obj/item/ammo_magazine/ammo_box/b12g/blank,
+/obj/item/ammo_magazine/ammo_box/b12g/blank,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/weaponsrange)
 "lTn" = (
