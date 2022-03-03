@@ -81,14 +81,16 @@
 /obj/item/weapon/gun/energy/sizegun/admin
 	name = "modified size gun"
 	desc = "An older model sizegun, modified to be without limits on minimum/maximum size, and have an unlimited charge. Time to show 'em that size does matter."
-	description_fluff = "A standard size gun that has been modified with a distabilized bluespace element that has allowed the gun \
-	to break the normal laws of physics and create a 'weapon' capable of sizing any creature well beyond any conceivable size. \
-	Only a handfull of these exist in the known universe and they are exclusively owned by NanoTrasen for research purposes."
+	description_fluff = "A standard size gun that has been modified with \
+	a distabilized bluespace element that has allowed the gun to break the \
+	normal laws of physics and create a 'weapon' capable of sizing any \
+	creature well beyond any conceivable size. Only a handfull of these \
+	exist in the known universe and they are \
+	exclusively owned by NanoTrasen for research purposes."
 	icon_state = "sizegun_admin"
 	item_state = "sizegun_admin"
 	charge_cost = 0
 	projectile_type = /obj/item/projectile/beam/sizelaser/admin
-
 
 /datum/category_item/catalogue/anomalous/precursor_a/alien_sizegun
 	name = "Precursor Alpha Object - Matter Manipulation Ray"
@@ -106,15 +108,12 @@
 
 /obj/item/weapon/gun/energy/sizegun/admin/abductor
 	name = "alien size gun"
-	desc = "A strange looking ray gun weapon with an adjustor mob on the side. The design is alien, but it bares a striking resemblence to the older model size guns NT uses for research."
+	desc = "A strange looking ray gun weapon with an adjustor knob on the side. The design is alien, but it bares a striking resemblence to the older model size guns that NT uses for research."
 	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_sizegun)
 	icon_state = "sizegun-abductor"
 	item_state = "sizegun-abductor"
 	charge_cost = 0
 	projectile_type = /obj/item/projectile/beam/sizelaser/admin/alien
-
-/obj/item/weapon/gun/energy/sizegun/abductor/update_icon(ignore_inhands)
-	item_state = initial(item_state)
 
 /obj/item/weapon/gun/energy/sizegun/admin/select_size()
 	set name = "Select Size"
