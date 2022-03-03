@@ -98,8 +98,8 @@
 	dangerous, it is not, instead it is a powerful size manipulation spectrum \
 	that is not disimilar to the size guns used by NanoTrasen.\
 	<br><br>\
-	It is unknown why the precursors would need such a device, possibly for the \
-	or possibly making it easier to transport said specimines. It is hard to tell \
+	It is unknown why the precursors would need such a device, possibly for \
+	making it easier to transport large specimines. It is hard to tell \
 	exactly what purpose such a device served the precursors but researchers \
 	have their theories as they continue to analyse the technology."
 	value = CATALOGUER_REWARD_MEDIUM
