@@ -1,7 +1,6 @@
 //
 // Size Gun
 //
-
 /obj/item/weapon/gun/energy/sizegun
 	name = "size gun" //I have no idea why this was called shrink ray when this increased and decreased size.
 	desc = "A highly advanced ray gun with a knob on the side to adjust the size you desire. Warning: Do not insert into mouth."
@@ -92,26 +91,27 @@
 
 
 /datum/category_item/catalogue/anomalous/precursor_a/alien_sizegun
-	name = "Precursor Alpha Object - Matter "
-	desc = "This appears to be a tool, with a solid handle, and a thin hard light \
-	shaft, with a tip at the end. On the handle appears to be two mechanisms that \
-	causes the hard light section to spin at a high speed while held down, in a \
-	similar fashion as an electric drill. One makes it spin clockwise, the other \
-	counter-clockwise.\
+	name = "Precursor Alpha Object - Matter Manipulation Ray"
+	desc = "This appears to be some sort of weapon and if someone were to pull \
+	the trigger lopcated at the handle of the device it would fire a strong \
+	laser at whatever it is pointed towards. While the laser certainly looks \
+	dangerous, it is not, instead it is a powerful size manipulation spectrum \
+	that is not disimilar to the size guns used by NanoTrasen.\
 	<br><br>\
-	The hard light tip is able to shift its shape to a degree when pressed into \
-	a solid receptacle. This allows it to be able to function on many kinds of \
-	fastener, which includes the screws."
-	value = CATALOGUER_REWARD_EASY
+	It is unknown why the precursors would need such a device, possibly for the \
+	or possibly making it easier to transport said specimines. It is hard to tell \
+	exactly what purpose such a device served the precursors but researchers \
+	have their theories as they continue to analyse the technology."
+	value = CATALOGUER_REWARD_MEDIUM
 
-/obj/item/weapon/gun/energy/sizegun/abductor
+/obj/item/weapon/gun/energy/sizegun/admin/abductor
 	name = "alien size gun"
-	desc = "A strange looking ray gun weapon with an adjustor mob on the side. The design is alien, but it bares a striking resemblence to the older model sizeguns NT uses for research."
+	desc = "A strange looking ray gun weapon with an adjustor mob on the side. The design is alien, but it bares a striking resemblence to the older model size guns NT uses for research."
 	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_sizegun)
 	icon_state = "sizegun-abductor"
-	item_state = "laser"
+	item_state = "sizegun-abductor"
 	charge_cost = 0
-	projectile_type = /obj/item/projectile/beam/sizelaser/admin
+	projectile_type = /obj/item/projectile/beam/sizelaser/admin/alien
 
 /obj/item/weapon/gun/energy/sizegun/abductor/update_icon(ignore_inhands)
 	item_state = initial(item_state)
@@ -127,10 +127,14 @@
 	size_set_to = clamp((size_select/100), 0, 1000) //eheh
 	to_chat(usr, "<span class='notice'>You set the size to [size_select]%</span>")
 
+
+/obj/item/weapon/gun/energy/sizegun/mounted
+	name = "mounted size gun"
+	self_recharge = 1
+	use_external_power = 1
 //
 // Beams for size gun
 //
-
 /obj/item/projectile/beam/sizelaser
 	name = "size beam"
 	icon_state = "xray"
@@ -184,7 +188,9 @@
 /obj/item/projectile/beam/sizelaser/grow
 	set_size = 2.0 //200% of current size
 
-/obj/item/weapon/gun/energy/sizegun/mounted
-	name = "mounted size gun"
-	self_recharge = 1
-	use_external_power = 1
+/obj/item/projectile/beam/sizelaser/admin/alien
+	name = "alien size beam"
+	icon_state = "darkb"
+	muzzle_type = /obj/effect/projectile/muzzle/darkmatter
+	tracer_type = /obj/effect/projectile/tracer/darkmatter
+	impact_type = /obj/effect/projectile/impact/darkmatter

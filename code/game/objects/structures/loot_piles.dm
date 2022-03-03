@@ -494,7 +494,8 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 	)
 	rare_loot = list(
 		/obj/item/clothing/suit/armor/alien/tank,
-		/obj/item/weapon/gun/energy/alien
+		/obj/item/weapon/gun/energy/alien,
+		/obj/item/weapon/gun/energy/sizegun/admin/abductor
 	)
 
 // The pile found at the very end, and as such has the best loot.
