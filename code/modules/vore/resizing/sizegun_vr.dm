@@ -191,6 +191,7 @@
 /obj/item/projectile/beam/sizelaser/admin/alien
 	name = "alien size beam"
 	icon_state = "darkb"
+
 	muzzle_type = /obj/effect/projectile/muzzle/darkmatter
 	tracer_type = /obj/effect/projectile/tracer/darkmatter
 	impact_type = /obj/effect/projectile/impact/darkmatter
