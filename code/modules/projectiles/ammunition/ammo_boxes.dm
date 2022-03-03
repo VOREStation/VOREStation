@@ -245,7 +245,7 @@
 	name = "ammo box (12 gauge slug)"
 	desc = "A box of 12 gauge slug rounds"
 	icon_state = "slug"
-	caliber = ".12g"
+	caliber = "12g"
 	ammo_type = /obj/item/ammo_casing/a12g
 	matter = list(MAT_STEEL = 2880)
 	max_ammo = 8
@@ -255,7 +255,7 @@
 	name = "ammo box (12 gauge buckshot)"
 	desc = "A box of 12 gauge buckshot rounds"
 	icon_state = "buckshot"
-	caliber = ".12g"
+	caliber = "12g"
 	ammo_type = /obj/item/ammo_casing/a12g/pellet
 	matter = list(MAT_STEEL = 2880)
 	max_ammo = 8
@@ -265,7 +265,7 @@
 	name = "ammo box (12 gauge beanbag)"
 	desc = "A box of 12 gauge beanbag rounds"
 	icon_state = "bean"
-	caliber = ".12g"
+	caliber = "12g"
 	ammo_type = /obj/item/ammo_casing/a12g/beanbag
 	matter = list(MAT_STEEL = 1440)
 	max_ammo = 8
@@ -275,7 +275,7 @@
 	name = "ammo box (12 gauge stun)"
 	desc = "A box of 12 gauge stun rounds"
 	icon_state = "stunslug"
-	caliber = ".12g"
+	caliber = "12g"
 	ammo_type = /obj/item/ammo_casing/a12g/stunshell
 	matter = list(MAT_STEEL = 2880, MAT_GLASS = 5760)
 	max_ammo = 8
@@ -285,7 +285,7 @@
 	name = "ammo box (12 gauge EMP)"
 	desc = "A box of 12 gauge EMP rounds"
 	icon_state = "emp"
-	caliber = ".12g"
+	caliber = "12g"
 	ammo_type = /obj/item/ammo_casing/a12g/emp
 	matter = list(MAT_STEEL = 2880, MAT_URANIUM = 1920)
 	max_ammo = 8
@@ -295,7 +295,7 @@
 	name = "ammo box (12 gauge flechette)"
 	desc = "A box of 12 gauge flechette rounds"
 	icon_state = "bean"
-	caliber = ".12g"
+	caliber = "12g"
 	ammo_type = /obj/item/ammo_casing/a12g/flechette
 	matter = list(MAT_STEEL = 2880, MAT_PLASTEEL = 800)
 	max_ammo = 8
@@ -305,7 +305,7 @@
 	name = "ammo box (12 gauge practice)"
 	desc = "A box of 12 gauge practice rounds"
 	icon_state = "practice"
-	caliber = ".12g"
+	caliber = "12g"
 	ammo_type = /obj/item/ammo_casing/a12g/practice
 	matter = list(MAT_STEEL = 480)
 	max_ammo = 8
@@ -315,7 +315,7 @@
 	name = "ammo box (12 gauge blank)"
 	desc = "A box of 12 gauge blank rounds"
 	icon_state = "blank"
-	caliber = ".12g"
+	caliber = "12g"
 	ammo_type = /obj/item/ammo_casing/a12g/blank
 	matter = list(MAT_STEEL = 720)
 	max_ammo = 8
@@ -325,7 +325,7 @@
 	name = "ammo box (12 gauge flash)"
 	desc = "A box of 12 gauge flash rounds"
 	icon_state = "flash"
-	caliber = ".12g"
+	caliber = "12g"
 	ammo_type = /obj/item/ammo_casing/a12g/flash
 	matter = list(MAT_STEEL = 720, MAT_GLASS = 720)
 	max_ammo = 8
