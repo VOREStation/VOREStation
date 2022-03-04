@@ -1003,3 +1003,78 @@
 	species.has_glowing_eyes = !species.has_glowing_eyes
 	update_eyes()
 	to_chat(src, "Your eyes [species.has_glowing_eyes ? "are now" : "are no longer"] glowing.")
+
+//Welcome to the adapted borer code.
+/mob/living/proc/dominate_predator()
+	set category = "Abilities"
+	set name = "Dominate Predator"
+	set desc = "Connect to and dominate the brain of your predator."
+
+	if(isbelly(loc))
+		to_chat(src, "<span class='notice'>You are not inside a predator body.</span>")
+		return
+	
+	var/mob/living/pred = loc.loc
+
+	if(src.stat)
+		to_chat(src, "<span class='warning'>You cannot do that in your current state.</span>")
+		return
+
+	if(!pred.ckey)
+		to_chat(src, "<span class='notice'>\The [src] isn't able to be dominated.</span>")
+		return
+
+	if(tgui_alert(src, "You are attempting to take over [pred], are you sure? Ensure that their preferences align with this kind of play.", "Take Over Predator",list("No","Yes")) != "Yes")
+		return
+	to_chat(src, "<span class='notice'>You attempt to exert your control over \the [pred]...</span>")
+	log_admin("[key_name_admin(src)] attempted to take over [pred].")
+	if(tgui_alert(M, "\The [src] has elected to attempt to take control of you. Is this something you will allow to happen?", "Allow Prey Domination",list("No","Yes")) != "Yes")
+		to_chat(src, "<span class='warning'>\The [pred] declined your request for control.</span>")
+		return
+	if(tgui_alert(M, "Are you sure? If you should decide to revoke this, you will have the ability to do so in your 'Abilities' tab.", "Allow Prey Domination",list("No","Yes")) != "Yes")
+		return
+	to_chat(pred, "<span class='warning'>You can feel the will of another overwriting your own, control of your body being sapped away from you...</span>")
+	to_chat(src, "<span class='warning'>You can feel the will of your host diminishing as you exert your will over them!</span>")
+	if(!do_after(src, 10 SECONDS, exclusive = TRUE) || !isbelly(loc) || loc.loc != pred)
+		to_chat(src, "<span class='notice'>You are not inside \the [pred]'s body, your attempt to link up with them has been interrupted.</span>")
+		to_chat(pred, "<span class='notice'>The dominant sensation fades away...</span>")
+		return
+
+	to_chat(src, "<span class='danger'>You plunge your conciousness into \the [pred], assuming control over their very body, leaving your own behind within \the [pred]'s [loc].</span>")
+	to_chat(pred, "<span class='danger'>You feel your body move on its own, as you are pushed to the background, and an alien consciousness displaces yours.</span>")
+	
+	var/mob/living/dominated_brain/pred_brain = new mob/living/dominated_brain(src, src, pred)
+	// pred -> brain
+	var/pred_id = pred.computer_id
+	var/pred_ip = pred.lastKnownIP
+	pred.computer_id = null
+	pred.lastKnownIP = null
+
+	pred_brain.ckey = pred.ckey
+
+	pred_brain.name = pred.name
+
+	if(!pred_brain.computer_id)
+		pred_brain.computer_id = pred_id
+
+	if(!pred_brain.lastKnownIP)
+		pred_brain.lastKnownIP = pred_ip
+
+	// prey -> pred
+		var/prey_id = src.computer_id
+		var/prey_ip= src.lastKnownIP
+		src.computer_id = null
+		src.lastKnownIP = null
+
+		pred.ckey = src.ckey
+
+		if(!pred.computer_id)
+			pred.computer_id = s2h_id
+
+		if(!pred.lastKnownIP)
+			pred.lastKnownIP = s2h_ip
+
+		controlling = 1
+
+		pred.verbs += /mob/living/proc/release_predator
+		pred.verbs += /mob/living/proc/punish_host

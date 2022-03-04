@@ -480,3 +480,15 @@
 /datum/trait/neutral/thinner/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..(S,H)
 	H.update_transform()
+
+/////WOWIE/////
+
+/datum/trait/neutral/dominate_predator
+	name = "Dominate Predator"
+	desc = "Makes you able to gain nutrition from draining prey in your grasp."
+	cost = 0
+	custom_only = FALSE
+
+/datum/trait/neutral/dominate_predator/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..(S,H)
+	H.verbs |= /mob/living/carbon/human/proc/dominate_predator
