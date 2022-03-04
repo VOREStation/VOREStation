@@ -59,13 +59,9 @@ var/global/list/robot_modules = list(
 	handle_shell(R)
 
 	if(R.radio)
-<<<<<<< HEAD
 		if(R.shell)
 			channels = R.mainframe.aiRadio.channels
-		R.radio.recalculateChannels()
-=======
 		addtimer(CALLBACK(R.radio, /obj/item/device/radio/proc/recalculateChannels), 0)
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 
 	vr_add_sprites() //Vorestation Edit: For vorestation only sprites
 

@@ -12,11 +12,7 @@
 
 /obj/machinery/suspension_gen/Initialize()
 	. = ..()
-<<<<<<< HEAD
-	cell = new /obj/item/weapon/cell/high(src)
-=======
 	src.cell = new /obj/item/weapon/cell/high(src)
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 
 /obj/machinery/suspension_gen/process()
 	if(suspension_field)

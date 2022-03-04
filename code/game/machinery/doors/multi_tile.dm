@@ -7,22 +7,7 @@
 	open_sound_powered = 'sound/machines/door/WideOpen.ogg'
 	close_sound_powered = 'sound/machines/door/WideClose.ogg'
 
-<<<<<<< HEAD
-/obj/machinery/door/airlock/multi_tile/Initialize(mapload)
-=======
 /obj/machinery/door/airlock/multi_tile/Initialize()
-	. = ..()
-	SetBounds()
-	if(opacity)
-		create_fillers()
-
-/obj/machinery/door/airlock/multi_tile/Destroy()
-	QDEL_NULL(filler1)
-	QDEL_NULL(filler2)
-	return ..()
-
-/obj/machinery/door/airlock/multi_tile/Moved(atom/old_loc, direction, forced = FALSE)
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 	. = ..()
 	SetBounds()
 	RegisterSignal(src, COMSIG_MOVABLE_MOVED, .proc/SetBounds)

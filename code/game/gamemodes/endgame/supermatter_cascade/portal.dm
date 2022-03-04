@@ -14,13 +14,9 @@
 
 	consume_range = 6
 
-<<<<<<< HEAD
-/obj/singularity/narsie/large/exit/New()
-	..()
-=======
+
 /obj/singularity/narsie/large/exit/Initialize()
 	. = ..()
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 	START_PROCESSING(SSobj, src)
 
 /obj/singularity/narsie/large/exit/update_icon()

@@ -288,9 +288,6 @@
 
 	time_till_despawn = 60 //1 second, because gateway.
 
-<<<<<<< HEAD
-/obj/machinery/cryopod/New()
-=======
 /obj/machinery/cryopod/robot/door/checkpoint
 	name = "automated checkpoint"
 	desc = "A reinforced, automated checkpoint tracking arrivals and departures from the outpost. Beyond this vault is a small airstrip, then nothing but untamed wilderness."
@@ -303,7 +300,6 @@
 
 /obj/machinery/cryopod/Initialize()
 	. = ..()
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 	announce = new /obj/item/device/radio/intercom(src)
 	find_control_computer()
 

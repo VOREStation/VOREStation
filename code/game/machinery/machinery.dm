@@ -119,17 +119,11 @@ Class Procs:
 
 	var/speed_process = FALSE			//If false, SSmachines. If true, SSfastprocess.
 
-<<<<<<< HEAD
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 
-/obj/machinery/New(l, d=0)
-	..()
-	if(isnum(d))
-=======
 /obj/machinery/Initialize(var/ml, d=0)
 	. = ..()
-	if(d)
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
+	if(isnum(d))	//VOREStation Edit - bugfix
 		set_dir(d)
 	if(ispath(circuit))
 		circuit = new circuit(src)

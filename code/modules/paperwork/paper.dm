@@ -106,34 +106,25 @@
 
 //lipstick wiping is in code/game/objects/items/weapons/cosmetics.dm!
 
-/obj/item/weapon/paper/Initialize(mapload)
+/obj/item/weapon/paper/Initialize(mapload, var/text, var/title)
 	. = ..()
+
+	if(istext(title))
+		name = title
+	if(istext(text))
+		info = text
+		addtimer(CALLBACK(src, .proc/update_info), 0)
 
 	if(mapload) // Jank, but we do this to prevent maploaded papers from somehow stacking across rounds if re-added to the board by a player.
 		was_maploaded = TRUE
 
-<<<<<<< HEAD
-/obj/item/weapon/paper/New(var/newloc, var/text, var/title)
-	..()
-=======
-/obj/item/weapon/paper/Initialize()
-	. = ..()
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 	pixel_y = rand(-8, 8)
 	pixel_x = rand(-9, 9)
 	stamps = ""
-	addtimer(CALLBACK(src, .proc/update_info), 0)
 
 /obj/item/weapon/paper/proc/update_info()
-
-	if(!isnull(title))
-		name = title
-
 	if(name != "paper")
 		desc = "This is a paper titled '" + name + "'."
-
-	if(!isnull(text))
-		info = text
 
 	if(info != initial(info))
 		info = html_encode(info)
@@ -434,7 +425,7 @@
 		var/raw = input(usr, "Enter what you want to write:", "Write") as null|message
 		if(!raw)
 			return
-		
+
 		var/t =  sanitize(raw, MAX_PAPER_MESSAGE_LEN, extra = 0)
 		if(!t)
 			return

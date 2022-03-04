@@ -179,16 +179,10 @@
 		ability_master.toggle_open(1)
 		client.screen -= ability_master
 
-<<<<<<< HEAD
-/mob/New()
-	..()
-	if(!ability_master)	//VOREStation Edit: S H A D E K I N
-		ability_master = new /obj/screen/movable/ability_master(src)
-=======
 /mob/Initialize()
 	. = ..()
-	ability_master = new /obj/screen/movable/ability_master(null, src)
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
+	if(!ability_master)	//VOREStation Edit: S H A D E K I N
+		ability_master = new /obj/screen/movable/ability_master(null, src)
 
 ///////////ACTUAL ABILITIES////////////
 //This is what you click to do things//

@@ -134,16 +134,12 @@
 		name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
 	real_name = name
 	animate(src, pixel_y = 2, time = 10, loop = -1)
-<<<<<<< HEAD
 	observer_mob_list += src
-	..()
-=======
 
 	. = ..()
 
 	exonet = new(src)
 	init_exonet()
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 
 /mob/observer/dead/Topic(href, href_list)
 	if (href_list["track"])

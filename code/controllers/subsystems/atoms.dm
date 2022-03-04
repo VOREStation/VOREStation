@@ -34,15 +34,6 @@ SUBSYSTEM_DEF(atoms)
 	LAZYINITLIST(late_loaders)
 
 	var/list/mapload_arg = list(TRUE)
-<<<<<<< HEAD
-	if(atoms)
-		created_atoms = list()
-		count = atoms.len
-		for(var/atom/A as anything in atoms)
-			if(!A.initialized)
-				if(InitAtom(A, mapload_arg))
-					atoms -= A
-=======
 	var/count = LAZYLEN(supplied_atoms)
 	if(count)
 		while(supplied_atoms.len)
@@ -50,7 +41,6 @@ SUBSYSTEM_DEF(atoms)
 			supplied_atoms.len--
 			if(!A.initialized)
 				InitAtom(A, GetArguments(A, mapload_arg))
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 				CHECK_TICK
 	else if(!subsystem_initialized)
 		// If wondering why not just store all atoms in a list and use the block above: that turns out unbearably expensive.
@@ -68,17 +58,10 @@ SUBSYSTEM_DEF(atoms)
 	atom_init_stage = INITIALIZATION_INNEW_REGULAR
 
 	if(late_loaders.len)
-<<<<<<< HEAD
 		for(var/atom/A as anything in late_loaders)
 			A.LateInitialize()
 			CHECK_TICK
 		testing("Late initialized [late_loaders.len] atoms")
-=======
-		for(var/I in late_loaders)
-			var/atom/A = I
-			A.LateInitialize(arglist(late_loaders[A]))
-		report_progress("Late initialized [late_loaders.len] atom\s")
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 		late_loaders.Cut()
 
 /datum/controller/subsystem/atoms/proc/InitAtom(atom/A, list/arguments)

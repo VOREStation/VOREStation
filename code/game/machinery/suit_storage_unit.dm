@@ -29,7 +29,6 @@
 //The units themselves/////////////////
 
 /obj/machinery/suit_storage_unit/standard_unit
-<<<<<<< HEAD
 	suit_type = /obj/item/clothing/suit/space
 	helmet_type = /obj/item/clothing/head/helmet/space
 	mask_type = /obj/item/clothing/mask/breath
@@ -42,15 +41,6 @@
 		HELMET = new helmet_type(src)
 	if(mask_type)
 		MASK = new mask_type(src)
-=======
-	SUIT_TYPE = /obj/item/clothing/suit/space
-	HELMET_TYPE = /obj/item/clothing/head/helmet/space
-	MASK_TYPE = /obj/item/clothing/mask/breath
-
-/obj/machinery/suit_storage_unit/Initialize()
-	. = ..()
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
-	update_icon()
 
 /obj/machinery/suit_storage_unit/update_icon()
 	var/hashelmet = 0
@@ -548,8 +538,8 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 
 /obj/machinery/suit_cycler/Initialize()
 	. = ..()
-<<<<<<< HEAD
 
+	wires = new(src)
 	departments = load_departments()
 	species = load_species()
 	emagged_departments = load_emagged()
@@ -557,8 +547,6 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 	
 	target_department = departments["No Change"]
 	target_species = species["No Change"]
-=======
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 
 	if(!target_department || !target_species)
 		stat |= BROKEN

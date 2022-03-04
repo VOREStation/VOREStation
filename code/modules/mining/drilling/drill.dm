@@ -363,15 +363,10 @@
 	var/brace_tier = 1
 	var/obj/machinery/mining/drill/connected
 
-<<<<<<< HEAD
 /obj/machinery/mining/brace/examine(mob/user)
 	. = ..()
 	if(brace_tier > 2)
 		. += SPAN_NOTICE("The internals of the brace look resilient enough to support a drill by itself.")
-=======
-/obj/machinery/mining/brace/Initialize()
-	. = ..()
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 
 /obj/machinery/mining/brace/Initialize()
 	. = ..()

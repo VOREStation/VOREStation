@@ -22,12 +22,15 @@
 	hardness -= material.combustion_effect(get_turf(src),temperature, 0.3)
 	CheckHardness()
 
-<<<<<<< HEAD
-/obj/structure/simple_door/Initialize(mapload, var/material_name)
+/obj/structure/simple_door/Initialize(var/material_name)
 	. = ..()
-	set_material(material_name)
+	if(material_name && !material)
+		material = material_name
+	else if(!material)
+		material = DEFAULT_WALL_MATERIAL
 	if(!material)
 		return INITIALIZE_HINT_QDEL
+	material = get_material_by_name(material)
 
 /obj/structure/simple_door/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -40,17 +43,6 @@
 	material = get_material_by_name(material_name)
 	if(!material)
 		return
-=======
-/obj/structure/simple_door/Initialize(var/ml, var/material_name)
-	. = ..()
-	if(material_name && !material)
-		material = material_name
-	else if(!material)
-		material = DEFAULT_WALL_MATERIAL
-	if(!material)
-		return INITIALIZE_HINT_QDEL
-	material = get_material_by_name(material)
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 	hardness = max(1,round(material.integrity/10))
 	icon_state = material.door_icon_base
 	name = "[material.display_name] door"
@@ -229,44 +221,15 @@
 		return
 	SSradiation.radiate(src, round(material.radioactivity/3))
 
-<<<<<<< HEAD
-/obj/structure/simple_door/iron/Initialize(mapload,var/material_name)
-	..(mapload, material_name || "iron")
-
-/obj/structure/simple_door/silver/Initialize(mapload,var/material_name)
-	..(mapload, material_name || "silver")
-
-/obj/structure/simple_door/gold/Initialize(mapload,var/material_name)
-	..(mapload, material_name || "gold")
-
-/obj/structure/simple_door/uranium/Initialize(mapload,var/material_name)
-	..(mapload, material_name || "uranium")
-
-/obj/structure/simple_door/sandstone/Initialize(mapload,var/material_name)
-	..(mapload, material_name || "sandstone")
-
-/obj/structure/simple_door/phoron/Initialize(mapload,var/material_name)
-	..(mapload, material_name || "phoron")
-
-/obj/structure/simple_door/diamond/Initialize(mapload,var/material_name)
-	..(mapload, material_name || "diamond")
-
-/obj/structure/simple_door/wood/Initialize(mapload,var/material_name)
-	..(mapload, material_name || MAT_WOOD)
+/obj/structure/simple_door/wood/Initialize()
 	knock_sound = 'sound/machines/door/knock_wood.wav'
 
-/obj/structure/simple_door/hardwood/Initialize(mapload,var/material_name)
-	..(mapload, material_name || MAT_HARDWOOD)
+/obj/structure/simple_door/hardwood/Initialize()
+	knock_sound = 'sound/machines/door/knock_wood.wav'
 
-/obj/structure/simple_door/sifwood/Initialize(mapload,var/material_name)
-	..(mapload, material_name || MAT_SIFWOOD)
+/obj/structure/simple_door/sifwood/Initialize()
+	knock_sound = 'sound/machines/door/knock_wood.wav'
 
-/obj/structure/simple_door/resin/Initialize(mapload,var/material_name)
-	..(mapload, material_name || "resin")
-
-/obj/structure/simple_door/cult/Initialize(mapload,var/material_name)
-	..(mapload, material_name || "cult")
-=======
 /obj/structure/simple_door/iron
 	material = MAT_IRON
 
@@ -291,6 +254,9 @@
 /obj/structure/simple_door/wood
 	material = MAT_WOOD
 
+/obj/structure/simple_door/hardwood
+	material = MAT_HARDWOOD
+
 /obj/structure/simple_door/sifwood
 	material = MAT_SIFWOOD
 
@@ -299,7 +265,6 @@
 
 /obj/structure/simple_door/cult
 	material = "cult"
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 
 /obj/structure/simple_door/cult/TryToSwitchState(atom/user)
 	if(isliving(user))

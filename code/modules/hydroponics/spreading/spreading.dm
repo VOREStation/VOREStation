@@ -3,15 +3,10 @@
 
 /proc/spacevine_infestation(var/potency_min=70, var/potency_max=100, var/maturation_min=5, var/maturation_max=15)
 	spawn() //to stop the secrets panel hanging
-		var/list/turf/simulated/floor/turfs = list() //list of all the empty floor turfs in the hallway areas
-		for(var/areapath in typesof(/area/hallway))
-			var/area/A = locate(areapath)
-			for(var/turf/simulated/floor/F in A.contents)
-				if(!F.check_density())
-					turfs += F
-
-		if(turfs.len) //Pick a turf to spawn at if we can
-			var/turf/simulated/floor/T = pick(turfs)
+		//VOREStation Edit Start - override random picking logic with preplaced spawns
+		if(vinestart.len) //Pick a turf to spawn at if we can
+			var/turf/simulated/floor/T = pick(vinestart)
+			//VOREStation Edit End
 			var/datum/seed/seed = SSplants.create_random_seed(1)
 			seed.set_trait(TRAIT_SPREAD,2)             // So it will function properly as vines.
 			seed.set_trait(TRAIT_POTENCY,rand(potency_min, potency_max)) // 70-100 potency will help guarantee a wide spread and powerful effects.
@@ -91,13 +86,7 @@
 	else
 		parent = newparent
 
-<<<<<<< HEAD
 	if(!SSplants)
-		sleep(250) // ugly hack, should mean roundstart plants are fine. TODO initialize perhaps?
-	if(!SSplants)
-=======
-	if(!plant_controller)
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 		to_world("<span class='danger'>Plant controller does not exist and [src] requires it. Aborting.</span>")
 		return INITIALIZE_HINT_QDEL
 

@@ -212,16 +212,10 @@
 	desc = "It's a black ink pen with a sharp point and a carefully engraved \"Waffle Co.\""
 	origin_tech = list(TECH_MATERIAL = 2, TECH_ILLEGAL = 5)
 
-<<<<<<< HEAD
-/obj/item/weapon/pen/reagent/sleepy/New()
-	..()
-	reagents.add_reagent("chloralhydrate", 1)	//VOREStation Edit
-	reagents.add_reagent("stoxin", 14)	//VOREStation Add
-=======
 /obj/item/weapon/pen/reagent/sleepy/Initialize()
 	. = ..()
-	reagents.add_reagent("chloralhydrate", 22)	//Used to be 100 sleep toxin//30 Chloral seems to be fatal, reducing it to 22./N
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
+	reagents.add_reagent("chloralhydrate", 1)	//VOREStation Edit
+	reagents.add_reagent("stoxin", 14)	//VOREStation Add
 
 
 /*

@@ -418,12 +418,6 @@
 					continue
 				src.throw_impact(A,speed)
 
-<<<<<<< HEAD
-/atom/movable/proc/throw_at(atom/target, range, speed, mob/thrower, spin = TRUE, datum/callback/callback) //If this returns FALSE then callback will not be called.
-	. = TRUE
-	if (!target || speed <= 0 || QDELETED(src) || (target.z != src.z))
-		return FALSE
-=======
 /atom/movable/proc/throw_at(atom/target, range, speed, thrower)
 	set waitfor = FALSE
 	if(!target || !src)
@@ -451,21 +445,65 @@
 		dx = EAST
 	else
 		dx = WEST
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 
-	if (pulledby)
-		pulledby.stop_pulling()
+	var/dy
+	if (target.y > src.y)
+		dy = NORTH
+	else
+		dy = SOUTH
 
-	var/datum/thrownthing/TT = new(src, target, range, speed, thrower, callback)
-	throwing = TT
+	var/error
+	var/major_dir
+	var/major_dist
+	var/minor_dir
+	var/minor_dist
+	if(dist_x > dist_y)
+		error = dist_x/2 - dist_y
+		major_dir = dx
+		major_dist = dist_x
+		minor_dir = dy
+		minor_dist = dist_y
+	else
+		error = dist_y/2 - dist_x
+		major_dir = dy
+		major_dist = dist_y
+		minor_dir = dx
+		minor_dist = dist_x
 
-	pixel_z = 0
-	if(spin && does_spin)
-		SpinAnimation(4,1)
+	range = min(dist_x + dist_y, range)
 
-	SSthrowing.processing[src] = TT
-	if (SSthrowing.state == SS_PAUSED && length(SSthrowing.currentrun))
-		SSthrowing.currentrun[src] = TT
+	while(src && target && src.throwing && istype(src.loc, /turf) \
+		  && ((abs(target.x - src.x)+abs(target.y - src.y) > 0 && dist_travelled < range) \
+		  	   || (a && a.has_gravity == 0) \
+			   || istype(src.loc, /turf/space)))
+		// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
+		var/atom/step
+		if(error >= 0)
+			step = get_step(src, major_dir)
+			error -= minor_dist
+		else
+			step = get_step(src, minor_dir)
+			error += major_dist
+		if(!step) // going off the edge of the map makes get_step return null, don't let things go off the edge
+			break
+		src.Move(step)
+		hit_check(speed)
+		dist_travelled++
+		dist_since_sleep++
+		if(dist_since_sleep >= speed)
+			dist_since_sleep = 0
+			sleep(1)
+		a = get_area(src.loc)
+		// and yet it moves
+		if(src.does_spin)
+			src.SpinAnimation(speed = 4, loops = 1)
+
+	//done throwing, either because it hit something or it finished moving
+	if(isobj(src)) src.throw_impact(get_turf(src),speed)
+	src.throwing = 0
+	src.thrower = null
+	src.throw_source = null
+	fall()
 
 //Overlays
 /atom/movable/overlay

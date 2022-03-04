@@ -91,11 +91,9 @@
 		else
 			light = new/datum/light_source(src, .)
 
-<<<<<<< HEAD
-=======
+
 /atom/Initialize()
 	. = ..()
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 
 /**
  * Updates the atom's opacity value.

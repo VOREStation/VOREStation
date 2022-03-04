@@ -7,16 +7,10 @@
 	var/max_cable = 1000
 	required_type = list(/obj/mecha/working)
 
-<<<<<<< HEAD
-/obj/item/mecha_parts/mecha_equipment/tool/cable_layer/New()
-	cable = new(src, 0)
-	..()
-=======
 /obj/item/mecha_parts/mecha_equipment/tool/cable_layer/Initialize()
 	cable = new(src)
 	cable.amount = 0
 	. = ..()
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 
 /obj/item/mecha_parts/mecha_equipment/tool/cable_layer/MoveAction()
 	layCable()

@@ -113,28 +113,16 @@
 	icon_state = "holo_preview"
 	color = "#EEEEEE"
 
-<<<<<<< HEAD
-/obj/structure/table/holotable/New()
-	material = get_material_by_name("holo[DEFAULT_TABLE_MATERIAL]")
-	..()
-=======
 /obj/structure/table/holotable/Initialize()
 	material = get_material_by_name("holo" + DEFAULT_TABLE_MATERIAL)
 	. = ..()
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 
 /obj/structure/table/woodentable/holotable
 	icon_state = "holo_preview"
 
-<<<<<<< HEAD
-/obj/structure/table/woodentable/holotable/New()
-	material = get_material_by_name("holowood")
-	..()
-=======
 /obj/structure/table/woodentable/holotable/Initialize()
 	material = get_material_by_name("holo" + MAT_WOOD)
 	. = ..()
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 
 /obj/structure/table/alien
 	name = "alien table"

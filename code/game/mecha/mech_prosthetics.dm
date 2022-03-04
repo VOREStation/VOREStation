@@ -16,7 +16,6 @@
 	var/manufacturer = null
 	var/species_types = list("Human")
 	var/species = "Human"
-<<<<<<< HEAD
 
 	loading_icon_state = "prosfab_loading"
 
@@ -70,14 +69,6 @@
 
 /obj/machinery/mecha_part_fabricator/pros/Initialize()
 	. = ..()
-=======
-	var/sync_message = ""
-
-/obj/machinery/pros_fabricator/Initialize()
-	. = ..()
-	default_apply_parts()
-	files = new /datum/research(src) //Setup the research data holder.
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 	manufacturer = basic_robolimb.company
 
 /obj/machinery/mecha_part_fabricator/pros/dispense_built_part(datum/design/D)

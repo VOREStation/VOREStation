@@ -215,15 +215,9 @@
 	desc = "A frame for the beehive that the bees have filled with honeycombs."
 	honey = 20
 
-<<<<<<< HEAD
-/obj/item/honey_frame/filled/New()
-	..()
-	add_overlay("honeycomb")
-=======
 /obj/item/honey_frame/filled/Initialize()
 	. = ..()
-	overlays += "honeycomb"
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
+	add_overlay("honeycomb")
 
 /obj/item/beehive_assembly
 	name = "beehive assembly"
@@ -273,15 +267,9 @@ var/global/list/datum/stack_recipe/wax_recipes = list( \
 	icon_state = "beepack"
 	var/full = 1
 
-<<<<<<< HEAD
-/obj/item/bee_pack/New()
-	..()
-	add_overlay("beepack-full")
-=======
 /obj/item/bee_pack/Initialize()
 	. = ..()
-	overlays += "beepack-full"
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
+	add_overlay("beepack-full")
 
 /obj/item/bee_pack/proc/empty()
 	full = 0

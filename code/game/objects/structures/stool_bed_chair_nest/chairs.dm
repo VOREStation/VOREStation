@@ -210,13 +210,8 @@
 		return
 	..()
 
-<<<<<<< HEAD
-/obj/structure/bed/chair/wood/New(var/newloc)
-	..(newloc, "wood")
-=======
 /obj/structure/bed/chair/wood/Initialize(var/ml, var/newmaterial)
 	. = ..(ml, MAT_WOOD)
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 
 /obj/structure/bed/chair/wood/wings
 	icon_state = "wooden_chair_wings"

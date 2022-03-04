@@ -22,14 +22,8 @@
 	var/base_icon = "bed"
 	var/applies_material_colour = 1
 
-<<<<<<< HEAD
-/obj/structure/bed/New(var/newloc, var/new_material, var/new_padding_material)
-	..(newloc)
-	color = null
-=======
 /obj/structure/bed/Initialize(var/ml, var/new_material, var/new_padding_material)
 	. = ..(ml)
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 	if(!new_material)
 		new_material = MAT_STEEL
 	material = get_material_by_name(new_material)

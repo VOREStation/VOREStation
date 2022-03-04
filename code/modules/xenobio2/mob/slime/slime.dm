@@ -80,15 +80,9 @@ Slime definitions, Life and New live here.
 						"woodpulp" = list("heal" = 0.1, "nutr" = 0.7),
 						"docilitytoxin" = list("nutr" = 0.3)	)
 
-<<<<<<< HEAD
-/mob/living/simple_mob/xeno/slime/New()
-	..()
-	for(var/datum/language/L in subtypesof(/datum/language))
-=======
-/mob/living/simple_animal/xeno/slime/Initialize()
+/mob/living/simple_mob/xeno/slime/Initialize()
 	. = ..()
 	for(var/datum/language/L in (typesof(/datum/language) - /datum/language))
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 		languages += L
 	speak += "[station_name()]?"
 	traitdat.source = "Slime"

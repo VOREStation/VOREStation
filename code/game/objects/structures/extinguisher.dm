@@ -9,21 +9,13 @@
 	var/obj/item/weapon/extinguisher/has_extinguisher
 	var/opened = 0
 
-<<<<<<< HEAD
-/obj/structure/extinguisher_cabinet/Initialize(var/mapload, var/dir, var/building = 0)
-	. = ..()
 
-	if(building)
-		pixel_x = (dir & 3)? 0 : (dir == 4 ? -27 : 27)
-		pixel_y = (dir & 3)? (dir ==1 ? -27 : 27) : 0
-=======
 /obj/structure/extinguisher_cabinet/Initialize(var/ml, var/dir, var/building = 0)
 	. = ..()
 	if(building)
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -27 : 27)
 		pixel_y = (dir & 3)? (dir ==1 ? -27 : 27) : 0
 		update_icon()
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 	else
 		has_extinguisher = new/obj/item/weapon/extinguisher(src)
 

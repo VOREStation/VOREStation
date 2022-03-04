@@ -21,26 +21,16 @@
 			delete_me = 1
 		if("JoinLate") // Bit difference, since we need the spawn point to move.
 			latejoin += src
-<<<<<<< HEAD
-			simulated = TRUE
-		//	delete_me = 1
-			return
-=======
 			simulated = 1
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 		if("JoinLateGateway")
 			latejoin_gateway += loc
 			delete_me = 1
 		if("JoinLateElevator")
 			latejoin_elevator += loc
 			delete_me = 1
-<<<<<<< HEAD
-			return
-=======
 		if("JoinLateCheckpoint")
 			latejoin_checkpoint += loc
 			delete_me = 1
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
 		if("JoinLateCryo")
 			latejoin_cryo += loc
 			delete_me = 1
@@ -75,6 +65,12 @@
 		if("bluespacerift")
 			endgame_exits += loc
 			delete_me = 1
+		//VOREStation Add Start
+		if("vinestart")
+			vinestart += loc
+			delete_me = 1
+			return
+		//VORE Station Add End
 
 	if(delete_me)
 		return INITIALIZE_HINT_QDEL
@@ -157,27 +153,17 @@
 	new /obj/item/clothing/head/helmet/gladiator(src.loc)
 	return INITIALIZE_HINT_QDEL
 
-<<<<<<< HEAD
-/obj/effect/landmark/costume/madscientist/New()
-	new /obj/item/clothing/under/suit_jacket/green(src.loc)
-=======
 /obj/effect/landmark/costume/madscientist/Initialize()
 	..()
-	new /obj/item/clothing/under/gimmick/rank/captain/suit(src.loc)
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
+	new /obj/item/clothing/under/suit_jacket/green(src.loc)
 	new /obj/item/clothing/head/flatcap(src.loc)
 	new /obj/item/clothing/suit/storage/toggle/labcoat/mad(src.loc)
 	new /obj/item/clothing/glasses/gglasses(src.loc)
 	return INITIALIZE_HINT_QDEL
 
-<<<<<<< HEAD
-/obj/effect/landmark/costume/elpresidente/New()
-	new /obj/item/clothing/under/suit_jacket/green(src.loc)
-=======
 /obj/effect/landmark/costume/elpresidente/Initialize()
 	..()
-	new /obj/item/clothing/under/gimmick/rank/captain/suit(src.loc)
->>>>>>> 2f0a618d451... /atom New() => Initialize() [MDB IGNORE] (#8298)
+	new /obj/item/clothing/under/suit_jacket/green(src.loc)
 	new /obj/item/clothing/head/flatcap(src.loc)
 	new /obj/item/clothing/mask/smokable/cigarette/cigar/havana(src.loc)
 	new /obj/item/clothing/shoes/boots/jackboots(src.loc)
