@@ -66,22 +66,6 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 #define MOB_DAM_LAYER			4		//Injury overlay sprites like open wounds
 #define SURGERY_LAYER			5		//Overlays for open surgical sites
 #define UNDERWEAR_LAYER  		6		//Underwear/bras/etc
-<<<<<<< HEAD
-#define SHOES_LAYER_ALT			7		//Shoe-slot item (when set to be under uniform via verb)
-#define UNIFORM_LAYER			8		//Uniform-slot item
-#define ID_LAYER				9		//ID-slot item
-#define SHOES_LAYER				10		//Shoe-slot item
-#define GLOVES_LAYER			11		//Glove-slot item
-#define BELT_LAYER				12		//Belt-slot item
-#define SUIT_LAYER				13		//Suit-slot item
-#define TAIL_LAYER				14		//Some species have tails to render
-#define GLASSES_LAYER			15		//Eye-slot item
-#define BELT_LAYER_ALT			16		//Belt-slot item (when set to be above suit via verb)
-#define SUIT_STORE_LAYER		17		//Suit storage-slot item
-#define BACK_LAYER				18		//Back-slot item
-#define HAIR_LAYER				19		//The human's hair
-#define HAIR_ACCESSORY_LAYER	20		//VOREStation edit. Simply move this up a number if things are added.
-=======
 #define TAIL_SOUTH_LAYER		7		//Tail as viewed from the south
 #define SHOES_LAYER_ALT			8		//Shoe-slot item (when set to be under uniform via verb)
 #define UNIFORM_LAYER			9		//Uniform-slot item
@@ -96,30 +80,22 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 #define SUIT_STORE_LAYER		18		//Suit storage-slot item
 #define BACK_LAYER				19		//Back-slot item
 #define HAIR_LAYER				20		//The human's hair
->>>>>>> 1d7bf7d2ca8... Merge pull request #8399 from Cerebulon/taillayering
-#define EARS_LAYER				21		//Both ear-slot items (combined image)
-#define EYES_LAYER				22		//Mob's eyes (used for glowing eyes)
-#define FACEMASK_LAYER			23		//Mask-slot item
-#define HEAD_LAYER				24		//Head-slot item
-#define HANDCUFF_LAYER			25		//Handcuffs, if the human is handcuffed, in a secret inv slot
-#define LEGCUFF_LAYER			26		//Same as handcuffs, for legcuffs
-#define L_HAND_LAYER			27		//Left-hand item
-#define R_HAND_LAYER			28		//Right-hand item
-#define WING_LAYER				29		//Wings or protrusions over the suit.
-<<<<<<< HEAD
-#define TAIL_LAYER_ALT			30		//Modified tail-sprite layer. Tend to be larger.
-#define MODIFIER_EFFECTS_LAYER	31		//Effects drawn by modifiers
-#define FIRE_LAYER				32		//'Mob on fire' overlay layer
-#define MOB_WATER_LAYER			33		//'Mob submerged' overlay layer
-#define TARGETED_LAYER			34		//'Aimed at' overlay layer
-#define TOTAL_LAYERS			34		//VOREStation edit. <---- KEEP THIS UPDATED, should always equal the highest number here, used to initialize a list.
-=======
-#define MODIFIER_EFFECTS_LAYER	30		//Effects drawn by modifiers
-#define FIRE_LAYER				31		//'Mob on fire' overlay layer
-#define MOB_WATER_LAYER			32		//'Mob submerged' overlay layer
-#define TARGETED_LAYER			33		//'Aimed at' overlay layer
-#define TOTAL_LAYERS			33//<---- KEEP THIS UPDATED, should always equal the highest number here, used to initialize a list.
->>>>>>> 1d7bf7d2ca8... Merge pull request #8399 from Cerebulon/taillayering
+#define HAIR_ACCESSORY_LAYER	21		//VOREStation edit. Simply move this up a number if things are added.
+#define EARS_LAYER				22		//Both ear-slot items (combined image)
+#define EYES_LAYER				23		//Mob's eyes (used for glowing eyes)
+#define FACEMASK_LAYER			24		//Mask-slot item
+#define HEAD_LAYER				25		//Head-slot item
+#define HANDCUFF_LAYER			26		//Handcuffs, if the human is handcuffed, in a secret inv slot
+#define LEGCUFF_LAYER			27		//Same as handcuffs, for legcuffs
+#define L_HAND_LAYER			28		//Left-hand item
+#define R_HAND_LAYER			29		//Right-hand item
+#define WING_LAYER				30		//Wings or protrusions over the suit.
+#define TAIL_LAYER_ALT			31		//Modified tail-sprite layer. Tend to be larger.
+#define MODIFIER_EFFECTS_LAYER	32		//Effects drawn by modifiers
+#define FIRE_LAYER				33		//'Mob on fire' overlay layer
+#define MOB_WATER_LAYER			34		//'Mob submerged' overlay layer
+#define TARGETED_LAYER			35		//'Aimed at' overlay layer
+#define TOTAL_LAYERS			35		//VOREStation edit. <---- KEEP THIS UPDATED, should always equal the highest number here, used to initialize a list.
 //////////////////////////////////
 
 #define GET_TAIL_LAYER (dir == NORTH ? TAIL_NORTH_LAYER : TAIL_SOUTH_LAYER)
@@ -298,7 +274,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 			for(var/M in part.markings)
 				icon_key += "[M][part.markings[M]["color"]]"
-			
+
 			// VOREStation Edit Start
 			if(part.nail_polish)
 				icon_key += "_[part.nail_polish.icon]_[part.nail_polish.icon_state]_[part.nail_polish.color]"
@@ -516,7 +492,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		face_standing.Blend(ears_s, ICON_OVERLAY)
 		if(ear_style?.em_block)
 			em_block_ears = em_block_image_generic(image(ears_s))
-	
+
 	var/image/semifinal = image(face_standing, layer = BODY_LAYER+HAIR_LAYER, "pixel_y" = head_organ.head_offset)
 	if(em_block_ears)
 		semifinal.overlays += em_block_ears // Leaving this as overlays +=
@@ -1204,7 +1180,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		var/icon/ears_s = new/icon("icon" = synthetic.icon, "icon_state" = "ears")
 		ears_s.Blend(rgb(src.r_ears, src.g_ears, src.b_ears), species.color_mult ? ICON_MULTIPLY : ICON_ADD)
 		return ears_s
-	
+
 	if(ear_style && !(head && (head.flags_inv & BLOCKHEADHAIR)))
 		var/icon/ears_s = new/icon("icon" = ear_style.icon, "icon_state" = ear_style.icon_state)
 		if(ear_style.do_colouration)
