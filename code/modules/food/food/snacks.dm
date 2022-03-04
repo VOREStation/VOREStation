@@ -2163,14 +2163,6 @@
 	. = ..()
 	reagents.add_reagent("slimejelly", 5)
 
-/obj/item/weapon/reagent_containers/food/snacks/mint
-	name = "mint"
-	desc = "it is only wafer thin."
-	icon_state = "mint"
-	filling_color = "#F2F2F2"
-	center_of_mass = list("x"=16, "y"=14)
-	bitesize = 1
-
 /obj/item/weapon/reagent_containers/food/snacks/plumphelmetbiscuit
 	name = "plump helmet biscuit"
 	desc = "This is a finely-prepared plump helmet biscuit. The ingredients are exceptionally minced plump helmet, and well-minced dwarven wheat flour."
@@ -5888,6 +5880,14 @@
 //////////////////////////////Candy Vend Items//////////////////////////////
 ////////////////////////////////////////////////////////////////////////////
 
+/obj/item/weapon/reagent_containers/food/snacks/mint
+	name = "mint"
+	desc = "it is only wafer thin."
+	icon_state = "mint"
+	filling_color = "#F2F2F2"
+	center_of_mass = list("x"=16, "y"=14)
+	bitesize = 1
+
 /obj/item/weapon/reagent_containers/food/snacks/mint/Initialize()
 	. = ..()
 	reagents.add_reagent("mint", 1)
@@ -5914,13 +5914,8 @@
 	foldable = null
 	trash = /obj/item/trash/admints
 
-
 /obj/item/weapon/reagent_containers/food/snacks/candy
-<<<<<<< HEAD
 	name = "\improper Grandma Ellen's Candy Bar"
-=======
-	name = "\improper Grandpa Elliot's Hard Candy"
->>>>>>> 0fb7f87a216... Merge pull request #8406 from Cerebulon/LunchOptions
 	desc = "Now without nuts!"
 	description_fluff = "Hard candies were banned from many early human colony ships due to the tendency for brittle, sticky chunks to find their way inside vital equipment in zero-G conditions. This only made them all the more popular to new arrivees, and the Grandpa Elliot's brand was Tau Ceti's answer to that demand."
 	icon = 'icons/obj/food_snacks.dmi'
@@ -6214,6 +6209,32 @@
 	nutriment_amt = 3
 	nutriment_desc = list("salt" = 1, "vinegar" = 2)
 
+/obj/item/weapon/reagent_containers/food/snacks/tastybread
+	name = "bread tube"
+	desc = "Bread in a tube. Chewy...and surprisingly tasty."
+	description_fluff = "This is the product that brought Centauri Provisions into the limelight. A product of the earliest extrasolar colony of Heaven, the Bread Tube, while bland, contains all the nutrients a spacer needs to get through the day and is decidedly edible when compared to some of its competitors. Due to the high-fructose corn syrup content of NanoTrasen's own-brand bread tubes, many jurisdictions classify them as a confectionary."
+	icon = 'icons/obj/food_snacks.dmi'
+	icon_state = "tastybread"
+	trash = /obj/item/trash/tastybread
+	filling_color = "#A66829"
+	center_of_mass = list("x"=17, "y"=16)
+	nutriment_amt = 6
+	nutriment_desc = list("bread" = 2, "sweetness" = 3)
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/skrellsnacks
+	name = "\improper SkrellSnax"
+	desc = "Cured fungus shipped all the way from Qerr'balak, almost like jerky! Almost."
+	description_fluff = "Despite the packaging, most SkrellSnax sold in Vir are produced using locally-grown, Qerr'Balak-native Go'moa fungi in controversial Skrell-owned biodomes on the suface of Sif. SkrellSnax were originally a product of Natuna, designed to welcome Ue-Katish refugees to their colony. The brand was recreated by Centauri Provisions after Natuna and SolGov broke off diplomatic relations."
+	icon = 'icons/obj/food_snacks.dmi'
+	icon_state = "skrellsnacks"
+	trash = /obj/item/trash/skrellsnax
+	filling_color = "#A66829"
+	center_of_mass = list("x"=15, "y"=12)
+	nutriment_amt = 10
+	nutriment_desc = list("mushroom" = 5, "salt" = 5)
+	bitesize = 3
+
 /obj/item/weapon/reagent_containers/food/snacks/sosjerky
 	name = "Scaredy's Private Reserve Beef Jerky"
 	icon = 'icons/obj/food_snacks.dmi'
@@ -6229,6 +6250,23 @@
 	. =..()
 	reagents.add_reagent("protein", 8)
 
+/obj/item/weapon/reagent_containers/food/snacks/unajerky
+	name = "Moghes Imported Sissalik Jerky"
+	icon = 'icons/obj/food_snacks.dmi'
+	icon_state = "unathitinred"
+	desc = "An incredibly well made jerky, shipped in all the way from Moghes."
+	description_fluff = "The exact meat and spices used in the curing of Sissalik Jerky are a well-kept secret, and thought to not exist at all outside of Hegemony space. Many have tried to replicate the flavour, but none have come close, so the brand remains a highly prized import. "
+	trash = /obj/item/trash/unajerky
+	filling_color = "#631212"
+	center_of_mass = list("x"=15, "y"=9)
+	drop_sound = 'sound/items/drop/soda.ogg'
+	pickup_sound = 'sound/items/pickup/soda.ogg'
+	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/unajerky/Initialize()
+	. =..()
+	reagents.add_reagent("protein", 8)
+	reagents.add_reagent("capsaicin", 2)
 
 /obj/item/weapon/reagent_containers/food/snacks/tuna
 	name = "\improper Tuna Snax"
@@ -6699,7 +6737,6 @@
 	nutriment_desc = list("beans" = 1, "tomato sauce" = 1)
 	bitesize = 2
 
-<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/snacks/canned/beans/Initialize()
 	.=..()
 	reagents.add_reagent("bean_protein", 5)
@@ -6719,8 +6756,6 @@
 	.=..()
 	reagents.add_reagent("tomatojuice", 12)
 
-=======
->>>>>>> 0fb7f87a216... Merge pull request #8406 from Cerebulon/LunchOptions
 /obj/item/weapon/reagent_containers/food/snacks/canned/spinach
 	name = "spinach"
 	icon_state = "spinach"
