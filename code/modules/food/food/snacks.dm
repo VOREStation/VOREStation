@@ -2163,14 +2163,6 @@
 	. = ..()
 	reagents.add_reagent("slimejelly", 5)
 
-/obj/item/weapon/reagent_containers/food/snacks/mint
-	name = "mint"
-	desc = "it is only wafer thin."
-	icon_state = "mint"
-	filling_color = "#F2F2F2"
-	center_of_mass = list("x"=16, "y"=14)
-	bitesize = 1
-
 /obj/item/weapon/reagent_containers/food/snacks/plumphelmetbiscuit
 	name = "plump helmet biscuit"
 	desc = "This is a finely-prepared plump helmet biscuit. The ingredients are exceptionally minced plump helmet, and well-minced dwarven wheat flour."
@@ -4109,7 +4101,7 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/liquidprotein
 	name = "\improper LiquidProtein Ration"
-	desc = "A variant of the liquidfood ration, designed for obligate carnivore species. Only barely more appealing than regular liquidfood. Should this be crunchy?"
+	desc = "A variant of the liquidfood ration, designed for more carnivorous species. Only barely more appealing than regular liquidfood. Should this be crunchy?"
 	icon_state = "liquidprotein"
 	trash = /obj/item/trash/liquidprotein
 	filling_color = "#A8A8A8"
@@ -5888,32 +5880,6 @@
 //////////////////////////////Candy Vend Items//////////////////////////////
 ////////////////////////////////////////////////////////////////////////////
 
-/obj/item/weapon/reagent_containers/food/snacks/mint/Initialize()
-	. = ..()
-	reagents.add_reagent("mint", 1)
-
-/obj/item/weapon/reagent_containers/food/snacks/mint/admints
-	desc = "Spearmint, peppermint's non-festive cousin."
-	icon = 'icons/obj/food_snacks.dmi'
-	icon_state = "admint"
-
-/obj/item/weapon/storage/box/admints
-	name = "Ad-mints"
-	desc = "A pack of air fresheners for your mouth."
-	description_fluff = "Ad-mints earned their name, and reputation when a Major Bill's senior executive attended a meeting at a large a marketing firm and was so astounded by the quality of their complimentary mints, that he immediately bought the company - the mints company, not the ad agency - and began providing 'Ad-mints' on every MBT flight."
-	icon = 'icons/obj/food_snacks.dmi'
-	icon_state = "admint_pack"
-	item_state = "candy"
-	slot_flags = SLOT_EARS
-	w_class = 1
-	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/mint/admints = 6)
-	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/mint/admints)
-	use_sound = 'sound/items/drop/paper.ogg'
-	drop_sound = 'sound/items/drop/wrapper.ogg'
-	max_storage_space = 6
-	foldable = null
-	trash = /obj/item/trash/admints
-
 /obj/item/weapon/reagent_containers/food/snacks/mint
 	name = "mint"
 	desc = "it is only wafer thin."
@@ -5933,12 +5899,11 @@
 
 /obj/item/weapon/storage/box/admints
 	name = "Ad-mints"
+	desc = "A pack of air fresheners for your mouth."
+	description_fluff = "Ad-mints earned their name, and reputation when a Major Bill's senior executive attended a meeting at a large a marketing firm and was so astounded by the quality of their complimentary mints, that he immediately bought the company - the mints company, not the ad agency - and began providing 'Ad-mints' on every MBT flight."
 	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "admint_pack"
 	item_state = "candy"
-	desc = "A pack of air fresheners for your mouth."
-	description_fluff = "Ad-mints earned their name, and reputation when a Major Bill's senior executive attended a meeting at a large a marketing firm and was so astounded by the quality of their complimentary mints, that he immediately bought the company - the mints company, not the ad agency - and began providing 'Ad-mints' on every MBT flight."
-	trash = /obj/item/trash/admints
 	slot_flags = SLOT_EARS
 	w_class = 1
 	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/mint/admints = 6)
@@ -5947,11 +5912,12 @@
 	drop_sound = 'sound/items/drop/wrapper.ogg'
 	max_storage_space = 6
 	foldable = null
+	trash = /obj/item/trash/admints
 
 /obj/item/weapon/reagent_containers/food/snacks/candy
 	name = "\improper Grandma Ellen's Candy Bar"
 	desc = "Now without nuts!"
-	description_fluff = "Hard candies were banned from many early human colony ships due to the tendency for brittle, sticky chunks to find their way inside vital equipment in zero-G conditions. This only made them all the more popular to new arrivees, and the Grandma Ellen's brand was Tau Ceti's answer to that demand."
+	description_fluff = "Hard candies were banned from many early human colony ships due to the tendency for brittle, sticky chunks to find their way inside vital equipment in zero-G conditions. This only made them all the more popular to new arrivees, and the Grandpa Elliot's brand was Tau Ceti's answer to that demand."
 	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "candy"
 	trash = /obj/item/trash/candy
@@ -5965,7 +5931,7 @@
 	. = ..()
 	reagents.add_reagent("sugar", 3)
 
-/obj/item/weapon/reagent_containers/food/snacks/namagashi //ADDITION 04/14/2021
+/obj/item/weapon/reagent_containers/food/snacks/namagashi
 	name = "\improper Ryo-kucha Namagashi"
 	desc = "Sweet Japanese gummy like candy that are just bursting with flavor!"
 	icon = 'icons/obj/food_snacks.dmi'
@@ -6035,7 +6001,7 @@
 	nutriment_desc = list("apricot" = 2, "sugar" = 2, "dates" = 2, "cranberry" = 2, "apple" = 2)
 	bitesize = 6
 
-/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar/Initialize()
+/obj/item/weapon/reagent_containers/food/snacks/fruitbar/Initialize()
 	. = ..()
 	reagents.add_reagent("sugar", 4)
 
@@ -6459,7 +6425,7 @@
 	. = ..()
 	reagents.add_reagent("doctorsdelight", 5)
 
-////////////////////sol_vend (Mars Mart) (ADDED 04/11/2021)////////////////////////////////////////////////////
+////////////////////sol_vend (Mars Mart)////////////////////////////////////////////////////
 
 /obj/item/weapon/reagent_containers/food/snacks/triton
 	name = "\improper Tidal Gobs"
@@ -6594,7 +6560,7 @@
 	nutriment_amt = 4
 	bitesize = 1
 
-////////////////////weeb_vend (Nippon-tan!) (ADDED 04/11/2021)////////////////////////////////////////////////////
+////////////////////weeb_vend (Nippon-tan!)////////////////////////////////////////////////////
 
 /obj/item/weapon/reagent_containers/food/snacks/ricecake
 	name = "rice cake"
@@ -6605,7 +6571,7 @@
 	nutriment_amt = 5
 	bitesize = 2
 
-/obj/item/weapon/reagent_containers/food/snacks/dorayaki //ADDITION 04/14/2021
+/obj/item/weapon/reagent_containers/food/snacks/dorayaki
 	name = "dorayaki"
 	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "dorayaki"
@@ -6614,7 +6580,7 @@
 	nutriment_amt = 6
 	bitesize = 2
 
-/obj/item/weapon/reagent_containers/food/snacks/daifuku //ADDITION 04/14/2021
+/obj/item/weapon/reagent_containers/food/snacks/daifuku
 	name = "daifuku"
 	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "daifuku"
@@ -6622,16 +6588,6 @@
 	nutriment_desc = list("cake" = 2, "sweetness" = 3)
 	nutriment_amt = 6
 	bitesize = 2
-
-///obj/item/weapon/reagent_containers/food/snacks/pocky (Moved to chewables)
-//	name = "pockys"
-//	icon = 'icons/obj/food_snacks.dmi'
-//	icon_state = "pockys"
-//	desc = "A bundle of chocolate-coated bisquit sticks."
-//	trash = /obj/item/trash/pocky
-//	nutriment_desc = list("chocolate" = 4, "biscuit" = 1)
-//	nutriment_amt = 5
-//	bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/weebonuts
 	name = "\improper Red Alert Nuts!"
@@ -6675,7 +6631,7 @@
 	.=..()
 	reagents.add_reagent("sprinkles", 10)
 
-/obj/item/weapon/reagent_containers/food/snacks/goma_dango //ADDITION 04/14/2021
+/obj/item/weapon/reagent_containers/food/snacks/goma_dango
 	name = "\improper Goma dango"
 	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "goma_dango"
@@ -6685,7 +6641,7 @@
 	nutriment_amt = 5
 	bitesize = 2
 
-/obj/item/weapon/reagent_containers/food/snacks/hanami_dango //ADDITION 04/14/2021
+/obj/item/weapon/reagent_containers/food/snacks/hanami_dango
 	name = "\improper Hanami dango"
 	icon = 'icons/obj/food_snacks.dmi'
 	icon_state = "hanami_dango"
@@ -6696,7 +6652,7 @@
 	nutriment_amt = 5
 	bitesize = 2
 
-////////////////////ancient_vend (Hot Food - Old) (ADDED 04/11/2021)////////////////////////////////////////////////////
+////////////////////ancient_vend (Hot Food - Old)////////////////////////////////////////////////////
 
 /obj/item/weapon/reagent_containers/food/snacks/old
 	name = "master old-food"
