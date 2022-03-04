@@ -186,7 +186,7 @@ var/list/event_last_fired = list()
 	active_with_role["AI"] = 0
 	active_with_role["Cyborg"] = 0
 	active_with_role["Janitor"] = 0
-	active_with_role["Gardener"] = 0
+	active_with_role["Botanist"] = 0
 
 	for(var/mob/M in player_list)
 		if(!M.mind || !M.client || M.client.is_afk(10 MINUTES)) // longer than 10 minutes AFK counts them as inactive
@@ -227,7 +227,7 @@ var/list/event_last_fired = list()
 		if(M.mind.assigned_role == "Janitor")
 			active_with_role["Janitor"]++
 
-		if(M.mind.assigned_role == "Gardener")
-			active_with_role["Gardener"]++
+		if(M.mind.assigned_role == "Botanist")
+			active_with_role["Botanist"]++
 
 	return active_with_role
