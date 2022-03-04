@@ -5286,7 +5286,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
 	},
-/obj/structure/closet/firecloset,
+/obj/machinery/artifact_scanpad,
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/xenoarch)
 "tj" = (
@@ -11220,7 +11220,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
 	},
-/obj/machinery/radiocarbon_spectrometer,
+/obj/machinery/artifact_harvester,
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/xenoarch)
 "RU" = (
@@ -12856,6 +12856,9 @@
 	dir = 1
 	},
 /obj/structure/reagent_dispensers/coolanttank,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/xenoarch)
 "YH" = (
