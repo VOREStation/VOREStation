@@ -109,18 +109,10 @@
 /obj/item/weapon/paper/Initialize(mapload, var/text, var/title)
     . = ..()
 
-<<<<<<< HEAD
     if(istext(title))
         name = title
     if(istext(text))
         info = text
-=======
-	if(istext(title))
-		name = title
-	if(istext(text))
-		info = text
->>>>>>> bbd31dabac1... Merge pull request #8405 from Atermonera/pen_paper
-
     if(mapload) // Jank, but we do this to prevent maploaded papers from somehow stacking across rounds if re-added to the board by a player.
         was_maploaded = TRUE
 
@@ -131,7 +123,6 @@
 	stamps = ""
 	addtimer(CALLBACK(src, .proc/update_info, FALSE), 0)
 
-<<<<<<< HEAD
 	if(!isnull(title))
 		name = title
 
@@ -142,13 +133,12 @@
 		info = text
 
 	if(info != initial(info))
-=======
+
 /obj/item/weapon/paper/proc/update_info(var/sanitize = TRUE)
 	if(name != "paper")
 		desc = "This is a paper titled '" + name + "'."
 
 	if(info != initial(info) && sanitize)
->>>>>>> bbd31dabac1... Merge pull request #8405 from Atermonera/pen_paper
 		info = html_encode(info)
 		info = replacetext(info, "\n", "<BR>")
 		info = parsepencode(info)
@@ -450,7 +440,7 @@
 		var/raw = input(usr, "Enter what you want to write:", "Write") as null|message
 		if(!raw)
 			return
-		
+
 		var/t =  sanitize(raw, MAX_PAPER_MESSAGE_LEN, extra = 0)
 		if(!t)
 			return
