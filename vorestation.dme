@@ -3254,7 +3254,6 @@
 #include "code\modules\multiz\hoist.dm"
 #include "code\modules\multiz\ladder_assembly_vr.dm"
 #include "code\modules\multiz\ladders.dm"
-#include "code\modules\multiz\ladders_vr.dm"
 #include "code\modules\multiz\misc.dm"
 #include "code\modules\multiz\movement.dm"
 #include "code\modules\multiz\movement_vr.dm"
