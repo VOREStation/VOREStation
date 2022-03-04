@@ -633,6 +633,63 @@
 	new /obj/item/stack/material/plastic(get_turf(holder.my_atom), created_volume)
 	return
 
+/*Carpet Creation*/
+
+/decl/chemical_reaction/instant/carpetify
+	name = "Carpet"
+	id = "redcarpet"
+	result = null
+	required_reagents = list("liquidcarpet" = 2, "plasticide" = 1)
+	result_amount = 2
+	var/carpet_type = /obj/item/stack/tile/carpet
+
+/decl/chemical_reaction/instant/carpetify/on_reaction(var/datum/reagents/holder, var/created_volume)
+	new carpet_type(get_turf(holder.my_atom), created_volume)
+	return
+
+/decl/chemical_reaction/instant/carpetify/bcarpet
+	name = "Black Carpet"
+	id = "blackcarpet"
+	required_reagents = list("liquidcarpetb" = 2, "plasticide" = 1)
+	carpet_type = /obj/item/stack/tile/carpet/bcarpet
+
+/decl/chemical_reaction/instant/carpetify/blucarpet
+	name = "Blue Carpet"
+	id = "bluecarpet"
+	required_reagents = list ("liquidcarpetblu" = 2, "plasticide" = 1)
+	carpet_type = /obj/item/stack/tile/carpet/blucarpet
+
+/decl/chemical_reaction/instant/carpetify/turcarpet
+	name = "Turquise Carpet"
+	id = "turcarpet"
+	required_reagents = list("liquidcarpettur" = 2, "plasticide" = 1)
+	carpet_type = /obj/item/stack/tile/carpet/turcarpet
+
+/decl/chemical_reaction/instant/carpetify/sblucarpet
+	name = "Silver Blue Carpet"
+	id = "sblucarpet"
+	required_reagents = list("liquidcarpetsblu" = 2, "plasticide" = 1)
+	carpet_type = /obj/item/stack/tile/carpet/sblucarpet
+
+/decl/chemical_reaction/instant/carpetify/clowncarpet
+	name = "Clown Carpet"
+	id = "clowncarpet"
+	required_reagents = list("liquidcarpetc" = 2, "plasticide" = 1)
+	carpet_type = /obj/item/stack/tile/carpet/gaycarpet
+
+/decl/chemical_reaction/instant/carpetify/pcarpet
+	name = "Purple Carpet"
+	id = "Purplecarpet"
+	required_reagents = list("liquidcarpetp" = 2, "plasticide" = 1)
+	carpet_type = /obj/item/stack/tile/carpet/purcarpet
+
+/decl/chemical_reaction/instant/carpetify/ocarpet
+	name = "Orange Carpet"
+	id = "orangecarpet"
+	required_reagents = list("liquidcarpeto" = 2, "plasticide" = 1)
+	carpet_type = /obj/item/stack/tile/carpet/oracarpet
+
+
 /* Grenade reactions */
 
 /decl/chemical_reaction/instant/explosion_potassium
@@ -1062,6 +1119,51 @@
 /decl/chemical_reaction/instant/aluminum_paint/send_data()
 	return "#F0F8FF"
 
+/*Carpet Recoloring*/
+/decl/chemical_reaction/instant/carpetdye
+	name = "Black Carpet Dyeing"
+	id = "carpetdyeblack"
+	result = "liquidcarpetb"
+	required_reagents = list("liquidcarpet" = 5, "carbon" = 1)
+	result_amount = 5
+
+/decl/chemical_reaction/instant/carpetdye/blue
+	name = "Blue Carpet Dyeing"
+	id = "carpetdyeblue"
+	result = "liquidcarpetblu"
+	required_reagents = list("liquidcarpet" = 5, "frostoil" = 1)
+
+/decl/chemical_reaction/instant/carpetdye/tur
+	name = "Turqouise Carpet Dyeing"
+	id = "carpetdyetur"
+	result = "liquidcarpettur"
+	required_reagents = list("liquidcarpet" = 5, "water" = 1)
+
+/decl/chemical_reaction/instant/carpetdye/sblu
+	name = "Silver Blue Carpet Dyeing"
+	id = "carpetdyesblu"
+	result = "liquidcarpetsblu"
+	required_reagents = list("liquidcarpet" = 5, "ice" = 1)
+
+/decl/chemical_reaction/instant/carpetdye/clown
+	name = "Clown Carpet Dyeing"
+	id = "carpetdyeclown"
+	result = "liquidcarpetc"
+	required_reagents = list("liquidcarpet" = 5, "banana" = 1)
+
+/decl/chemical_reaction/instant/carpetdye/purple
+	name = "Purple Carpet Dyeing"
+	id = "carpetdyepurple"
+	result = "liquidcarpetp"
+	required_reagents = list("liquidcarpet" = 5, "berryjuice" = 1)
+
+/decl/chemical_reaction/instant/carpetdye/orange
+	name = "Orange Carpet Dyeing"
+	id = "carpetdyeorange"
+	result = "liquidcarpeto"
+	required_reagents = list("liquidcarpet" = 5, "orangejuice" = 1)
+
+
 //R-UST Port
 /decl/chemical_reaction/instant/hydrophoron
 	name = "Hydrophoron"
@@ -1122,14 +1224,12 @@
 	name = "Neutralize Carpotoxin"
 	id = "carpotoxin_neutral"
 	result = "protein"
-	required_reagents = list("radium" = 1, "carpotoxin" = 1, "sifsap" = 1)
-	catalysts = list("sifsap" = 10)
-	result_amount = 2
+	required_reagents = list("enzyme" = 1, "carpotoxin" = 1, "sifsap" = 1)
+	result_amount = 1
 
 /decl/chemical_reaction/instant/neutralize_spidertoxin
 	name = "Neutralize Spidertoxin"
 	id = "spidertoxin_neutral"
 	result = "protein"
-	required_reagents = list("radium" = 1, "spidertoxin" = 1, "sifsap" = 1)
-	catalysts = list("sifsap" = 10)
-	result_amount = 2
+	required_reagents = list("enzyme" = 1, "spidertoxin" = 1, "sifsap" = 1)
+	result_amount = 1

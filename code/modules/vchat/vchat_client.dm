@@ -139,14 +139,15 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 	set waitfor = FALSE
 	// Only send them the number of buffered messages, instead of the ENTIRE log
 	var/list/results = vchat_get_messages(owner.ckey, message_buffer) //If there's bad performance on reconnects, look no further
-	for(var/i in results.len to 1 step -1)
-		var/list/message = results[i]
-		var/count = 10
-		to_chat_immediate(owner, message["time"], message["message"])
-		count++
-		if(count >= 10)
-			count = 0
-			CHECK_TICK
+	if(islist(results))
+		for(var/i in results.len to 1 step -1)
+			var/list/message = results[i]
+			var/count = 10
+			to_chat_immediate(owner, message["time"], message["message"])
+			count++
+			if(count >= 10)
+				count = 0
+				CHECK_TICK
 
 //It din work
 /datum/chatOutput/proc/become_broken()

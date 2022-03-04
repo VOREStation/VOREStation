@@ -4,15 +4,17 @@
 #define Z_LEVEL_SHIP_HIGH					3
 #define Z_LEVEL_CENTCOM						4
 #define Z_LEVEL_MISC						5
-#define Z_LEVEL_BEACH						6
-#define Z_LEVEL_BEACH_CAVE					7
-#define Z_LEVEL_AEROSTAT					8
-#define Z_LEVEL_AEROSTAT_SURFACE			9
-#define Z_LEVEL_DEBRISFIELD					10
-#define Z_LEVEL_FUELDEPOT					11
-#define Z_LEVEL_OVERMAP						12
-#define Z_LEVEL_OFFMAP1						13
-#define Z_LEVEL_GATEWAY						14
+#define Z_LEVEL_SPACE_ROCKS					6
+#define Z_LEVEL_BEACH						7
+#define Z_LEVEL_BEACH_CAVE					8
+#define Z_LEVEL_AEROSTAT					9
+#define Z_LEVEL_AEROSTAT_SURFACE			10
+#define Z_LEVEL_DEBRISFIELD					11
+#define Z_LEVEL_FUELDEPOT					12
+#define Z_LEVEL_OVERMAP						13
+#define Z_LEVEL_OFFMAP1						14
+#define Z_LEVEL_GATEWAY						15
+#define Z_LEVEL_OM_ADVENTURE				16
 
 //Camera networks
 #define NETWORK_HALLS "Halls"
@@ -46,14 +48,15 @@
 	lobby_screens = list("youcanttaketheskyfromme")
 	id_hud_icons = 'icons/mob/hud_jobs_vr.dmi'
 
-/*
+
 	holomap_smoosh = list(list(
-		Z_LEVEL_SURFACE_LOW,
-		Z_LEVEL_SURFACE_MID,
-		Z_LEVEL_SURFACE_HIGH))
-*/
+		Z_LEVEL_SHIP_LOW,
+		Z_LEVEL_SHIP_MID,
+		Z_LEVEL_SHIP_HIGH))
+
 	station_name  = "NRV Stellar Delight"
 	station_short = "Stellar Delight"
+	facility_type = "ship"
 	dock_name     = "Virgo-3B Colony"
 	dock_type     = "surface"
 	boss_name     = "Central Command"
@@ -126,6 +129,7 @@
 	lateload_z_levels = list(
 		list("Ship - Central Command"),
 		list("Ship - Misc"), //Shuttle transit zones, holodeck templates, etc
+		list("V3b Asteroid Field"),
 		list("Desert Planet - Z1 Beach","Desert Planet - Z2 Cave"),
 		list("Remmi Aerostat - Z1 Aerostat","Remmi Aerostat - Z2 Surface"),
 		list("Debris Field - Z1 Space"),
@@ -134,7 +138,7 @@
 		list("Offmap Ship - Talon V2")
 		)
 
-	lateload_single_pick = list(
+	lateload_gateway = list(
 		list("Carp Farm"),
 		list("Snow Field"),
 		list("Listening Post"),
@@ -143,6 +147,10 @@
 		list("Arynthi Lake Underground B","Arynthi Lake B"),
 		list("Eggnog Town Underground","Eggnog Town"),
 		list("Wild West")
+		)
+
+	lateload_overmap = list(
+		list("Grass Cave")
 		)
 
 	ai_shell_restricted = TRUE
@@ -164,8 +172,6 @@
 	mining_station_z =		list(Z_LEVEL_SPACE_LOW)
 	mining_outpost_z =		list(Z_LEVEL_SURFACE_MINE)
 */
-	lateload_single_pick = null //Nothing right now.
-
 	planet_datums_to_make = list(/datum/planet/virgo3b,
 								/datum/planet/virgo4)
 
@@ -177,17 +183,13 @@
 	. +=  "As an employee or contractor of NanoTrasen, operators of the Adephagia and one of the galaxy's largest corporations, you're probably just here to do a job."
 	return jointext(., "<br>")
 
-/*
+
 /datum/map/stellar_delight/perform_map_generation()
 
-	new /datum/random_map/automata/cave_system/no_cracks(null, 1, 1, Z_LEVEL_SURFACE_MINE, world.maxx, world.maxy) // Create the mining Z-level.
-	new /datum/random_map/noise/ore(null, 1, 1, Z_LEVEL_SURFACE_MINE, 64, 64)         // Create the mining ore distribution map.
-
-	new /datum/random_map/automata/cave_system/no_cracks(null, 1, 1, Z_LEVEL_SOLARS, world.maxx, world.maxy) // Create the mining Z-level.
-	new /datum/random_map/noise/ore(null, 1, 1, Z_LEVEL_SOLARS, 64, 64)         // Create the mining ore distribution map.
-
+	new /datum/random_map/automata/cave_system/no_cracks(null, 1, 1, Z_LEVEL_SPACE_ROCKS, world.maxx, world.maxy) // Create the mining Z-level.
+	new /datum/random_map/noise/ore(null, 1, 1, Z_LEVEL_SPACE_ROCKS, 64, 64)         // Create the mining ore distribution map.
 	return 1
-*/
+
 
 /datum/skybox_settings/stellar_delight
 	icon_state = "space5"
@@ -199,12 +201,6 @@
 	expected_z_levels = list(
 		Z_LEVEL_BEACH
 	)
-
-// For making the 6-in-1 holomap, we calculate some offsets
-#define SHIP_MAP_SIZE 140 // Width and height of compiled in tether z levels.
-#define SHIP_HOLOMAP_CENTER_GUTTER 40 // 40px central gutter between columns
-#define SHIP_HOLOMAP_MARGIN_X ((HOLOMAP_ICON_SIZE - (2*TETHER_MAP_SIZE) - TETHER_HOLOMAP_CENTER_GUTTER) / 2) // 80
-#define SHIP_HOLOMAP_MARGIN_Y ((HOLOMAP_ICON_SIZE - (2*TETHER_MAP_SIZE)) / 2) // 30
 
 /obj/effect/landmark/map_data/stellar_delight
 	height = 3
@@ -241,6 +237,11 @@
 		return
 	cached_skybox_image.add_overlay("glow")
 
+// For making the 6-in-1 holomap, we calculate some offsets
+#define SHIP_MAP_SIZE 140 // Width and height of compiled in tether z levels.
+#define SHIP_HOLOMAP_CENTER_GUTTER 40 // 40px central gutter between columns
+#define SHIP_HOLOMAP_MARGIN_X ((HOLOMAP_ICON_SIZE - (2*SHIP_MAP_SIZE) - SHIP_HOLOMAP_CENTER_GUTTER) / 2) // 80
+#define SHIP_HOLOMAP_MARGIN_Y ((HOLOMAP_ICON_SIZE - (2*SHIP_MAP_SIZE)) / 2) // 30
 
 // We have a bunch of stuff common to the station z levels
 /datum/map_z_level/stellar_delight
@@ -253,18 +254,24 @@
 	name = "Deck 1"
 	base_turf = /turf/space
 	transit_chance = 33
+	holomap_offset_x = SHIP_HOLOMAP_MARGIN_X
+	holomap_offset_y = SHIP_HOLOMAP_MARGIN_Y
 
 /datum/map_z_level/stellar_delight/deck_two
 	z = Z_LEVEL_SHIP_MID
 	name = "Deck 2"
 	base_turf = /turf/simulated/open
 	transit_chance = 33
+	holomap_offset_x = SHIP_HOLOMAP_MARGIN_X
+	holomap_offset_y = SHIP_HOLOMAP_MARGIN_Y + SHIP_MAP_SIZE
 
 /datum/map_z_level/stellar_delight/deck_three
 	z = Z_LEVEL_SHIP_HIGH
 	name = "Deck 3"
 	base_turf = /turf/simulated/open
 	transit_chance = 33
+	holomap_offset_x = HOLOMAP_ICON_SIZE - SHIP_HOLOMAP_MARGIN_X - SHIP_MAP_SIZE
+	holomap_offset_y = SHIP_HOLOMAP_MARGIN_Y + SHIP_MAP_SIZE
 
 /datum/map_template/ship_lateload
 	allow_duplicates = FALSE
@@ -306,6 +313,26 @@
 	z = Z_LEVEL_MISC
 	name = "Misc"
 	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_SEALED|MAP_LEVEL_CONTACT|MAP_LEVEL_XENOARCH_EXEMPT
+
+#include "../submaps/space_rocks/space_rocks.dm"
+/datum/map_template/ship_lateload/space_rocks
+	name = "V3b Asteroid Field"
+	desc = "Space debris is common in V3b's orbit due to the proximity of Virgo 3"
+	mappath = 'maps/submaps/space_rocks/space_rocks.dmm'
+
+	associated_map_datum = /datum/map_z_level/ship_lateload/space_rocks
+
+/datum/map_template/ship_lateload/space_rocks/on_map_loaded(z)
+	. = ..()
+	seed_submaps(list(Z_LEVEL_SPACE_ROCKS), 60, /area/sdmine/unexplored, /datum/map_template/space_rocks)
+	new /datum/random_map/automata/cave_system/no_cracks(null, 3, 3, Z_LEVEL_SPACE_ROCKS, world.maxx - 4, world.maxy - 4)
+	new /datum/random_map/noise/ore/spacerocks(null, 1, 1, Z_LEVEL_SPACE_ROCKS, 64, 64)
+
+/datum/map_z_level/ship_lateload/space_rocks
+	z = Z_LEVEL_SPACE_ROCKS
+	name = "V3b Asteroid Field"
+	base_turf = /turf/space
+	flags = MAP_LEVEL_PLAYER|MAP_LEVEL_CONTACT|MAP_LEVEL_CONSOLES
 
 /datum/map_template/ship_lateload/overmap
 	name = "Overmap"

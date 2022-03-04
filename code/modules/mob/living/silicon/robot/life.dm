@@ -263,15 +263,15 @@
 	if(environment)
 		switch(environment.temperature) //310.055 optimal body temp
 			if(400 to INFINITY)
-				throw_alert("temp", /obj/screen/alert/hot/robot, 2)
+				throw_alert("temp", /obj/screen/alert/hot/robot, HOT_ALERT_SEVERITY_MODERATE)
 			if(360 to 400)
-				throw_alert("temp", /obj/screen/alert/hot/robot, 1)
+				throw_alert("temp", /obj/screen/alert/hot/robot, HOT_ALERT_SEVERITY_LOW)
 			if(260 to 360)
 				clear_alert("temp")
 			if(200 to 260)
-				throw_alert("temp", /obj/screen/alert/cold/robot, 1)
+				throw_alert("temp", /obj/screen/alert/cold/robot, COLD_ALERT_SEVERITY_LOW)
 			else
-				throw_alert("temp", /obj/screen/alert/cold/robot, 2)
+				throw_alert("temp", /obj/screen/alert/cold/robot, COLD_ALERT_SEVERITY_MODERATE)
 
 //Oxygen and fire does nothing yet!!
 //	if (src.oxygen) src.oxygen.icon_state = "oxy[src.oxygen_alert ? 1 : 0]"

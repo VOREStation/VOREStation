@@ -23,6 +23,9 @@
 	softfall = TRUE
 	parachuting = TRUE
 
+	meat_amount = 1
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/chicken
+
 	attacktext = list("clawed", "pecked")
 	speak_emote = list("chirps", "caws")
 	has_langs = list("Bird")

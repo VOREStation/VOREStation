@@ -55,8 +55,7 @@
 
 /turf/simulated/wall/Destroy()
 	STOP_PROCESSING(SSturfs, src)
-	dismantle_wall(null,null,1)
-	..()
+	return ..()
 
 /turf/simulated/wall/examine_icon()
 	return icon(icon=initial(icon), icon_state=initial(icon_state))

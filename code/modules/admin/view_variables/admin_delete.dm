@@ -19,6 +19,13 @@
 			T.ScrapeAway()
 		else*/
 		vv_update_display(D, "deleted", VV_MSG_DELETED)
-		qdel(D)
+
+		// turfs are special snowflakes that'll explode if qdel'd outside ChangeTurf
+		if (isturf(D))
+			var/turf/T = D
+			T.ChangeTurf(world.turf)
+		else
+			qdel(D)
+
 		if(!QDELETED(D))
 			vv_update_display(D, "deleted", "")

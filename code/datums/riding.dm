@@ -8,6 +8,7 @@
 	var/key_name = "the keys"			// What the 'keys' for the thing being rided on would be called.
 	var/atom/movable/ridden = null 		// The thing that the datum is attached to.
 	var/only_one_driver = FALSE			// If true, only the person in 'front' (first on list of riding mobs) can drive.
+	var/rider_size = 1					// VOREStation Edit to figure out offsets for rider.
 
 /datum/riding/New(atom/movable/_ridden)
 	ridden = _ridden

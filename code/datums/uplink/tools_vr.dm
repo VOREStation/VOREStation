@@ -73,6 +73,11 @@
 	item_cost = 15
 	path = /obj/fiftyspawner/glass
 
+/datum/uplink_item/item/tools/holdingpouch
+	name = "Pouch of Holding"
+	item_cost = 20
+	path = /obj/item/weapon/storage/pouch/holding
+
 /datum/uplink_item/item/tools/elitelaptop
 	name = "Laptop (Advanced)"
 	item_cost = 20

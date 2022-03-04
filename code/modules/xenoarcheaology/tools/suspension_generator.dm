@@ -12,7 +12,16 @@
 
 /obj/machinery/suspension_gen/Initialize()
 	. = ..()
-	src.cell = new /obj/item/weapon/cell/high(src)
+	cell = new /obj/item/weapon/cell/high(src)
+	power_change()
+
+/obj/machinery/suspension_gen/power_change()
+	var/oldstat = stat
+	if(cell)
+		stat &= ~NOPOWER
+	else
+		stat |= NOPOWER
+	return (stat != oldstat)
 
 /obj/machinery/suspension_gen/process()
 	if(suspension_field)
@@ -56,7 +65,7 @@
 
 /obj/machinery/suspension_gen/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
-	
+
 	data["cell"] = cell
 	data["cellCharge"] = cell?.charge
 	data["cellMaxCharge"] = cell?.maxcharge

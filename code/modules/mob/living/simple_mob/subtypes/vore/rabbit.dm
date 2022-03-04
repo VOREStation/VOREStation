@@ -32,6 +32,9 @@
 	say_list_type = /datum/say_list/rabbit
 	ai_holder_type = /datum/ai_holder/simple_mob/passive
 
+	meat_amount = 3
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+
 	// Vore vars
 	vore_active = 1
 	vore_bump_emote	= "playfully lunges at"

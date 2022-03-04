@@ -139,6 +139,9 @@
 	if(panel_open)
 		wires.Interact(usr)
 
+/obj/machinery/power/smes/buildable/RefreshParts()
+	recalc_coils()
+
 // Proc: recalc_coils()
 // Parameters: None
 // Description: Updates properties (IO, capacity, etc.) of this SMES by checking internal components.

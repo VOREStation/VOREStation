@@ -85,6 +85,8 @@
 
 
 /obj/item/weapon/gun/magnetic/matfed/attackby(var/obj/item/thing, var/mob/user)
+	. = ..()
+	update_rating_mod()
 	if(removable_components)
 		if(thing.is_crowbar())
 			if(!manipulator)
@@ -111,7 +113,6 @@
 			update_icon()
 			update_rating_mod()
 			return
-
 
 	if(is_type_in_list(thing, load_type))
 		var/obj/item/stack/material/M = thing
@@ -147,7 +148,6 @@
 			playsound(src, 'sound/weapons/flipblade.ogg', 50, 1)
 		update_icon()
 		return
-	. = ..()
 
 #define GEN_STARTING -1
 #define GEN_OFF 0

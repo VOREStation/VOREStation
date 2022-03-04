@@ -138,13 +138,37 @@
 			var/obj/machinery/artifact/A = scanned_obj
 			var/out = "Anomalous alien device - composed of an unknown alloy.<br><br>"
 
-			if(A.my_effect)
-				out += A.my_effect.getDescription()
+			var/datum/component/artifact_master/AMast = A.artifact_master
+			var/datum/artifact_effect/AEff = AMast.get_primary()
 
-			if(A.secondary_effect && A.secondary_effect.activated)
+			out += AEff.getDescription()
+
+			if(AMast.my_effects.len > 1)
 				out += "<br><br>Internal scans indicate ongoing secondary activity operating independently from primary systems.<br><br>"
-				out += A.secondary_effect.getDescription()
+				for(var/datum/artifact_effect/my_effect in A.artifact_master.my_effects - AEff)
+
+					if(my_effect)
+						out += my_effect.getDescription()
 
 			return out
 		else
+
+			var/datum/component/artifact_master/ScannedMaster = scanned_obj.GetComponent(/datum/component/artifact_master)
+
+			if(istype(ScannedMaster))
+				var/out = "Anomalous reality warp - Object has been altered to disobey known laws of physics.<br><br>"
+
+				var/datum/artifact_effect/AEff = ScannedMaster.get_primary()
+
+				out += AEff.getDescription()
+
+				if(ScannedMaster.my_effects.len > 1)
+					out += "<br><br>Resonant scans indicate asynchronous reality modulation:<br><br>"
+					for(var/datum/artifact_effect/my_effect in ScannedMaster.my_effects - AEff)
+
+						if(my_effect)
+							out += my_effect.getDescription()
+
+				return out
+
 			return "[scanned_obj.name] - mundane application."

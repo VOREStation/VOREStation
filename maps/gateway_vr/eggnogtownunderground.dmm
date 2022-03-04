@@ -203,7 +203,7 @@
 	check_arrest = 0;
 	check_down = 0;
 	check_records = 0;
-	control_area = /area/submap/admin_upload/lo/pow;
+	control_area = /area/gateway/eggnogtown/houserhomestead/basement;
 	desc = "A firewall prevents AIs from interacting with this device.";
 	lethal_is_configurable = 0;
 	name = "DEATH RAY CONTROL";
@@ -326,7 +326,7 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/gateway/eggnogtown/hotsprings)
 "kS" = (
-/obj/structure/bed/chair/sofa/black/right,
+/obj/structure/bed/chair/sofa/right/black,
 /turf/simulated/floor/plating/eris/under{
 	temperature = 258.15
 	},
@@ -369,7 +369,7 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/gateway/eggnogtown/hotspring)
 "nh" = (
-/obj/structure/bed/chair/sofa/black/corner,
+/obj/structure/bed/chair/sofa/corner/black,
 /turf/simulated/floor/plating/eris/under{
 	temperature = 258.15
 	},
@@ -578,7 +578,7 @@
 	},
 /area/gateway/eggnogtown/vibeout)
 "Aw" = (
-/obj/structure/bed/chair/sofa/black/corner{
+/obj/structure/bed/chair/sofa/corner/black{
 	dir = 8
 	},
 /turf/simulated/floor/plating/eris/under{
@@ -687,6 +687,17 @@
 	temperature = 258.15
 	},
 /area/gateway/eggnogtown/houserhomestead/basement)
+"MG" = (
+/obj/move_trader_landmark{
+	dir = 8;
+	trader_type = /obj/trader/general
+	},
+/turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
+	temperature = 303.15
+	},
+/area/gateway/eggnogtown/underground)
 "Oa" = (
 /obj/structure/bed/chair/bay/comfy/black{
 	dir = 4
@@ -906,7 +917,7 @@
 	},
 /area/gateway/eggnogtown/hotsprings)
 "ZR" = (
-/obj/structure/bed/chair/sofa/black/left{
+/obj/structure/bed/chair/sofa/left/black{
 	dir = 1
 	},
 /turf/simulated/floor/plating/eris/under{
@@ -2536,7 +2547,7 @@ gA
 gA
 af
 af
-af
+MG
 cb
 cb
 cb
@@ -2544,7 +2555,7 @@ cb
 cb
 cb
 cb
-af
+MG
 af
 af
 gA

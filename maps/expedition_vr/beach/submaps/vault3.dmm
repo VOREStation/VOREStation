@@ -1,21 +1,141 @@
-"a" = (/turf/template_noop,/area/template_noop)
-"b" = (/turf/simulated/wall,/area/submap/cave/vault3)
-"c" = (/obj/effect/alien/weeds,/obj/random/multiple/minevault,/turf/simulated/floor/plating,/area/submap/cave/vault3)
-"d" = (/obj/structure/loot_pile/maint/technical,/obj/effect/alien/weeds,/turf/simulated/floor/plating,/area/submap/cave/vault3)
-"e" = (/obj/effect/alien/weeds,/mob/living/simple_mob/animal/space/alien/drone,/turf/simulated/floor/plating,/area/submap/cave/vault3)
-"f" = (/obj/effect/alien/weeds,/obj/effect/alien/weeds,/turf/simulated/floor/plating,/area/submap/cave/vault3)
-"g" = (/obj/effect/alien/weeds,/turf/simulated/floor/plating,/area/submap/cave/vault3)
-"h" = (/obj/effect/alien/weeds,/obj/effect/alien/weeds,/obj/effect/alien/weeds/node,/turf/simulated/floor/plating,/area/submap/cave/vault3)
-"i" = (/obj/structure/bed/nest,/turf/simulated/floor/plating,/area/submap/cave/vault3)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/turf/simulated/wall,
+/area/submap/cave/vault3)
+"c" = (
+/obj/effect/alien/weeds,
+/obj/random/multiple/minevault,
+/turf/simulated/floor/plating,
+/area/submap/cave/vault3)
+"d" = (
+/obj/structure/loot_pile/maint/technical,
+/obj/effect/alien/weeds,
+/turf/simulated/floor/plating,
+/area/submap/cave/vault3)
+"e" = (
+/obj/effect/alien/weeds,
+/mob/living/simple_mob/animal/space/alien/drone,
+/turf/simulated/floor/plating,
+/area/submap/cave/vault3)
+"f" = (
+/obj/effect/alien/weeds,
+/obj/effect/alien/weeds,
+/turf/simulated/floor/plating,
+/area/submap/cave/vault3)
+"g" = (
+/obj/effect/alien/weeds,
+/turf/simulated/floor/plating,
+/area/submap/cave/vault3)
+"h" = (
+/obj/effect/alien/weeds,
+/obj/effect/alien/weeds,
+/obj/effect/alien/weeds/node,
+/turf/simulated/floor/plating,
+/area/submap/cave/vault3)
+"i" = (
+/obj/structure/bed/nest,
+/turf/simulated/floor/plating,
+/area/submap/cave/vault3)
 
 (1,1,1) = {"
-aaaaaaaaa
-aabbbbbaa
-abbcdcbba
-abefffgba
-abgfhfgba
-abgfffeba
-abbigibba
-aabbbbbaa
-aaaaaaaaa
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+a
+b
+b
+b
+b
+b
+a
+a
+"}
+(3,1,1) = {"
+a
+b
+b
+e
+g
+g
+b
+b
+a
+"}
+(4,1,1) = {"
+a
+b
+c
+f
+f
+f
+i
+b
+a
+"}
+(5,1,1) = {"
+a
+b
+d
+f
+h
+f
+g
+b
+a
+"}
+(6,1,1) = {"
+a
+b
+c
+f
+f
+f
+i
+b
+a
+"}
+(7,1,1) = {"
+a
+b
+b
+g
+g
+e
+b
+b
+a
+"}
+(8,1,1) = {"
+a
+a
+b
+b
+b
+b
+b
+a
+a
+"}
+(9,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
 "}

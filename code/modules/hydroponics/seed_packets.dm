@@ -13,7 +13,9 @@ GLOBAL_LIST_BOILERPLATE(all_seed_packs, /obj/item/seeds)
 	var/datum/seed/seed
 	var/modified = 0
 
-/obj/item/seeds/Initialize()
+/obj/item/seeds/Initialize(var/ml, var/_seed_type)
+	if(_seed_type in SSplants.seeds)
+		seed_type = _seed_type
 	update_seed()
 	. = ..()
 
@@ -85,6 +87,9 @@ GLOBAL_LIST_BOILERPLATE(all_seed_packs, /obj/item/seeds)
 
 /obj/item/seeds/chiliseed
 	seed_type = "chili"
+
+/obj/item/seeds/ghostchiliseed
+	seed_type = "ghostchili"
 
 /obj/item/seeds/plastiseed
 	seed_type = "plastic"
@@ -227,6 +232,9 @@ GLOBAL_LIST_BOILERPLATE(all_seed_packs, /obj/item/seeds)
 /obj/item/seeds/ambrosiadeusseed
 	seed_type = "ambrosiadeus"
 
+/obj/item/seeds/ambrosiagaiaseed
+	seed_type = "ambrosiagaia"
+
 /obj/item/seeds/ambrosiainfernusseed
 	seed_type = "ambrosiainfernus"
 
@@ -262,6 +270,9 @@ GLOBAL_LIST_BOILERPLATE(all_seed_packs, /obj/item/seeds)
 
 /obj/item/seeds/grassseed
 	seed_type = "grass"
+
+/obj/item/seeds/carpetseed
+	seed_type = "carpet"
 
 /obj/item/seeds/cocoapodseed
 	seed_type = "cocoa"

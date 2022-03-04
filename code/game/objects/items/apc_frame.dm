@@ -6,6 +6,7 @@
 	icon = 'icons/obj/apc_repair.dmi'
 	icon_state = "apc_frame"
 	refund_amt = 2
+	build_wall_only = TRUE
 	matter = list(MAT_STEEL = 100, MAT_GLASS = 30)
 
 /obj/item/frame/apc/try_build(turf/on_wall, mob/user as mob)

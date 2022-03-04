@@ -146,3 +146,13 @@
 	. = ..()
 	reagents.add_reagent("sleevingcure", 1)
 	color = reagents.get_color()
+
+/obj/item/weapon/reagent_containers/pill/airlock
+	name = "\'Airlock\' Pill"
+	desc = "Neutralizes toxins and provides a mild analgesic effect."
+	icon_state = "pill2"
+
+/obj/item/weapon/reagent_containers/pill/airlock/New()
+	..()
+	reagents.add_reagent("anti_toxin", 15)
+	reagents.add_reagent("paracetamol", 5)

@@ -152,10 +152,12 @@
 	// Or if we fell down the openspace
 	if((top in oldloc) || oldloc == GetAbove(src))
 		return
-
+	//VOREStation Addition Start
+	if(istype(AM, /obj/effect/plant))
+		return
+	//VOREStation Addition End
 	if(isobserver(AM)) // Ghosts have their own methods for going up and down
 		return
-
 	if(AM.pulledby) // Animating the movement of pulled things is handled when the puller goes up the stairs
 		return
 
@@ -203,7 +205,10 @@
 /obj/structure/stairs/bottom/use_stairs_instant(var/atom/movable/AM)
 	if(isobserver(AM)) // Ghosts have their own methods for going up and down
 		return
-
+	//VOREStation Addition Start
+	if(istype(AM, /obj/effect/plant))
+		return
+	//VOREStation Addition End
 	if(isliving(AM))
 		var/mob/living/L = AM
 
@@ -396,7 +401,7 @@
 
 /obj/structure/stairs/top/Uncrossed(var/atom/movable/AM)
 	// Going down stairs from the topstair piece
-	if(AM.dir == turn(dir, 180) && check_integrity())
+	if(AM.dir == turn(dir, 180) && isturf(AM.loc) && check_integrity())
 		use_stairs_instant(AM)
 		return
 
@@ -405,10 +410,12 @@
 	// Or if we climb up the middle
 	if((bottom in oldloc) || oldloc == GetBelow(src))
 		return
-
+	//VOREStation Addition Start
+	if(istype(AM, /obj/effect/plant))
+		return
+	//VOREStation Addition End
 	if(isobserver(AM)) // Ghosts have their own methods for going up and down
 		return
-
 	if(AM.pulledby) // Animating the movement of pulled things is handled when the puller goes up the stairs
 		return
 
@@ -454,10 +461,12 @@
 /obj/structure/stairs/top/use_stairs_instant(var/atom/movable/AM)
 	if(isobserver(AM)) // Ghosts have their own methods for going up and down
 		return
-
+	//VOREStation Addition Start
+	if(istype(AM, /obj/effect/plant))
+		return
+	//VOREStation Addition End
 	if(isliving(AM))
 		var/mob/living/L = AM
-
 		if(L.grabbed_by.len) // Same as pulledby, whoever's holding you will keep you from going down stairs.
 			return
 

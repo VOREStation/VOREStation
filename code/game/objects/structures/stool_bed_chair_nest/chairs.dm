@@ -334,7 +334,7 @@
 	corner_piece = TRUE
 
 //color variations
-
+//Middle sofas first
 /obj/structure/bed/chair/sofa
 	sofa_material = "carpet"
 
@@ -379,92 +379,92 @@
 /obj/structure/bed/chair/sofa/corner
 	icon_state = "sofacorner"
 
-/obj/structure/bed/chair/sofa/brown/left
-	icon_state = "sofaend_left"
+/obj/structure/bed/chair/sofa/left/brown
+	sofa_material = "leather"
 
-/obj/structure/bed/chair/sofa/brown/right
-	icon_state = "sofaend_right"
+/obj/structure/bed/chair/sofa/right/brown
+	sofa_material = "leather"
 
-/obj/structure/bed/chair/sofa/brown/corner
-	icon_state = "sofacorner"
+/obj/structure/bed/chair/sofa/corner/brown
+	sofa_material = "leather"
 
-/obj/structure/bed/chair/sofa/teal/left
-	icon_state = "sofaend_left"
+/obj/structure/bed/chair/sofa/left/teal
+	sofa_material = "teal"
 
-/obj/structure/bed/chair/sofa/teal/right
-	icon_state = "sofaend_right"
+/obj/structure/bed/chair/sofa/right/teal
+	sofa_material = "teal"
 
-/obj/structure/bed/chair/sofa/teal/corner
-	icon_state = "sofacorner"
+/obj/structure/bed/chair/sofa/corner/teal
+	sofa_material = "teal"
 
-/obj/structure/bed/chair/sofa/black/left
-	icon_state = "sofaend_left"
+/obj/structure/bed/chair/sofa/left/black
+	sofa_material = "black"
 
-/obj/structure/bed/chair/sofa/black/right
-	icon_state = "sofaend_right"
+/obj/structure/bed/chair/sofa/right/black
+	sofa_material = "black"
 
-/obj/structure/bed/chair/sofa/black/corner
-	icon_state = "sofacorner"
+/obj/structure/bed/chair/sofa/corner/black
+	sofa_material = "black"
 
-/obj/structure/bed/chair/sofa/green/left
-	icon_state = "sofaend_left"
+/obj/structure/bed/chair/sofa/left/green
+	sofa_material = "green"
 
-/obj/structure/bed/chair/sofa/green/right
-	icon_state = "sofaend_right"
+/obj/structure/bed/chair/sofa/right/green
+	sofa_material = "green"
 
-/obj/structure/bed/chair/sofa/green/corner
-	icon_state = "sofacorner"
+/obj/structure/bed/chair/sofa/corner/green
+	sofa_material = "green"
 
-/obj/structure/bed/chair/sofa/purp/left
-	icon_state = "sofaend_left"
+/obj/structure/bed/chair/sofa/left/purp
+	sofa_material = "purple"
 
-/obj/structure/bed/chair/sofa/purp/right
-	icon_state = "sofaend_right"
+/obj/structure/bed/chair/sofa/right/purp
+	sofa_material = "purple"
 
-/obj/structure/bed/chair/sofa/purp/corner
-	icon_state = "sofacorner"
+/obj/structure/bed/chair/sofa/corner/purp
+	sofa_material = "purple"
 
-/obj/structure/bed/chair/sofa/blue/left
-	icon_state = "sofaend_left"
+/obj/structure/bed/chair/sofa/left/blue
+	sofa_material = "blue"
 
-/obj/structure/bed/chair/sofa/blue/right
-	icon_state = "sofaend_right"
+/obj/structure/bed/chair/sofa/right/blue
+	sofa_material = "blue"
 
-/obj/structure/bed/chair/sofa/blue/corner
-	icon_state = "sofacorner"
+/obj/structure/bed/chair/sofa/corner/blue
+	sofa_material = "blue"
 
-/obj/structure/bed/chair/sofa/beige/left
-	icon_state = "sofaend_left"
+/obj/structure/bed/chair/sofa/left/beige
+	sofa_material = "beige"
 
-/obj/structure/bed/chair/sofa/beige/right
-	icon_state = "sofaend_right"
+/obj/structure/bed/chair/sofa/right/beige
+	sofa_material = "beige"
 
-/obj/structure/bed/chair/sofa/beige/corner
-	icon_state = "sofacorner"
+/obj/structure/bed/chair/sofa/corner/beige
+	sofa_material = "beige"
 
-/obj/structure/bed/chair/sofa/lime/left
-	icon_state = "sofaend_left"
+/obj/structure/bed/chair/sofa/left/lime
+	sofa_material = "lime"
 
-/obj/structure/bed/chair/sofa/lime/right
-	icon_state = "sofaend_right"
+/obj/structure/bed/chair/sofa/right/lime
+	sofa_material = "lime"
 
-/obj/structure/bed/chair/sofa/lime/corner
-	icon_state = "sofacorner"
+/obj/structure/bed/chair/sofa/corner/lime
+	sofa_material = "lime"
 
-/obj/structure/bed/chair/sofa/yellow/left
-	icon_state = "sofaend_left"
+/obj/structure/bed/chair/sofa/left/yellow
+	sofa_material = "yellow"
 
-/obj/structure/bed/chair/sofa/yellow/right
-	icon_state = "sofaend_right"
+/obj/structure/bed/chair/sofa/right/yellow
+	sofa_material = "yellow"
 
-/obj/structure/bed/chair/sofa/yellow/corner
-	icon_state = "sofacorner"
+/obj/structure/bed/chair/sofa/corner/yellow
+	sofa_material = "yellow"
 
-/obj/structure/bed/chair/sofa/orange/left
-	icon_state = "sofaend_left"
+/obj/structure/bed/chair/sofa/left/orange
+	sofa_material = "orange"
 
-/obj/structure/bed/chair/sofa/orange/right
-	icon_state = "sofaend_right"
+/obj/structure/bed/chair/sofa/right/orange
+	sofa_material = "orange"
 
-/obj/structure/bed/chair/sofa/orange/corner
-	icon_state = "sofacorner"
+/obj/structure/bed/chair/sofa/corner/orange
+	sofa_material = "orange"

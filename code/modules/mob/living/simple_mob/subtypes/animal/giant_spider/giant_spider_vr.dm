@@ -51,6 +51,7 @@
 	default_pixel_x = -16
 	old_x = -16
 	old_y = 0
+	meat_amount = 15
 
 	egg_type = /obj/effect/spider/eggcluster/royal
 

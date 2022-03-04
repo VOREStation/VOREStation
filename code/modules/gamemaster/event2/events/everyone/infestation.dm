@@ -31,6 +31,7 @@
 	things_to_spawn = list(
 		/mob/living/simple_mob/animal/passive/mouse/gray,
 		/mob/living/simple_mob/animal/passive/mouse/brown,
+		/mob/living/simple_mob/animal/passive/mouse/black,
 		/mob/living/simple_mob/animal/passive/mouse/white,
 		/mob/living/simple_mob/animal/passive/mouse/rat
 	)

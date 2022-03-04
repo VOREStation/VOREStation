@@ -24,6 +24,7 @@
 			simulated = 1
 		if("JoinLateGateway")
 			latejoin_gateway += loc
+			latejoin += src				//VOREStation Addition
 			delete_me = 1
 		if("JoinLateElevator")
 			latejoin_elevator += loc
@@ -74,6 +75,13 @@
 
 	if(delete_me)
 		return INITIALIZE_HINT_QDEL
+
+		//VOREStation Add Start
+		if("vinestart")
+			vinestart += loc
+			delete_me = 1
+			return
+		//VORE Station Add End
 
 	landmarks_list += src
 

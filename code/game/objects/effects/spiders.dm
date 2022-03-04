@@ -171,7 +171,7 @@
 	pixel_y = rand(6,-6)
 	START_PROCESSING(SSobj, src)
 	//50% chance to grow up
-	if(prob(50))
+	if(amount_grown != -1 && prob(50))
 		amount_grown = 1
 	get_light_and_color(parent)
 	. = ..(ml)

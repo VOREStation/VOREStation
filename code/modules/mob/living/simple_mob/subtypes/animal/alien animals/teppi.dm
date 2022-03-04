@@ -1,8 +1,8 @@
 //formerly meat things
-//I made these up. They aren't deliberately based on, or supposed to be anything in particular. 
+//I made these up. They aren't deliberately based on, or supposed to be anything in particular.
 //They came out kind of goat-ish but that wasn't intentional. I was just going for some cute thing you could
 //take care of and/or kill for meat.
-//I made them to be a part of the 'low tech survival' part of the game. You can use them to obtain a relatively 
+//I made them to be a part of the 'low tech survival' part of the game. You can use them to obtain a relatively
 //unlimited amount of meat, wool, hide, bone, and COMPANIONSHIP without the need for machines or power... hopefully.
 //There's no real story behind them, they're semi-intelligent wild alien animals with a somewhat mild temperament.
 //They'll beat you up if you're mean to them, they have preferences for food, affection, and the ability
@@ -64,7 +64,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	maxHealth = 600
 	health = 600
 	movement_cooldown = 2
-	meat_amount = 10
+	meat_amount = 12
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
 
 	response_help = "pets"
@@ -85,7 +85,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	max_n2 = 0
 	minbodytemp = 150
 	maxbodytemp = 400
-	unsuitable_atoms_damage = 0.5 
+	unsuitable_atoms_damage = 0.5
 	catalogue_data = list(/datum/category_item/catalogue/fauna/teppi)
 	vis_height = 64
 
@@ -142,7 +142,8 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 		)
 
 	butchery_loot = list(\
-		/obj/item/stack/animalhide = 3\
+		/obj/item/stack/animalhide = 3,\
+		/obj/item/weapon/bone/horn = 1\
 		)
 
 /////////////////////////////////////// Vore stuff///////////////////////////////////////////
@@ -196,7 +197,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 		"It’s so hot, sweltering even! The burbling sounds of this organic cacophony swell and ebb all around you as thick slimes gush around you with the motion of %pred’s %belly. It’s hard to move in this tingly embrace even though the squashy walls are absolutely slippery! You can pull your limbs out from between the heavy meaty folds with some effort, and when you do there’s a messy sucking noise in the wake of the motion. Of course, such a disturbance naturally warrants that the chamber would redouble its efforts to subdue you and smother you in those thick tingling slimes.",
 		"The walls around you flex inward briefly, burbling and squelching heavily as everything rushed together, wringing you powerfully for a few moments while, somewhere far above you can hear the bassy rumble of a casual belch, much of the small amount of acrid air available rushing out with the sound. After several long moments held in the tight embrace of that pulsing flesh, things ease up a bit again and resume their insistent, tingly churnings.",
 		"It’s pitch black and completely slimy in here, %pred sways their %belly a bit here and there to toss you from one end to the other, tumbling you end over end as you’re churned in that active %belly. It’s all so slick and squishy, so it is really hard to get any footing or grip on things to stabilize your position, which means that you’re left at the mercy of those gloomy gastric affections and the tingling touch of those sticky syrupy slimes that the walls lather into your body.")
-	
+
 	B.emote_lists[DM_HOLD] = list(
 		"The burbling %belly rocks and glides over you gently as you’re held deep within %pred, the deep thumping of their heart pulses all around you as you’re caressed and pressed by heavy, doughy walls.",
 		"%pred’s %belly glorgles around you idly as you’re held gently by the slick, wrinkled flesh.",
@@ -272,7 +273,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 		"Over the course of several hours in the burbling organic cauldron, your body softens up little by little, soaking up the slime, the tingling spreading over you more and more as your strength fades. The walls fold over you and wrap you up, until the last thing you can sense is the throb of %pred’s heart pulsing through the very core of your being, washing you away as you become food for %pred.",
 		"Your final moments are spent trying to make just a little space for yourself, the doughy squish of the flesh forming to you, pressing in tighter and tighter, invading your personal space as if to show you that, you don’t have any personal space. You’re already a part of %pred, you just don’t know it yet. And so those walls come in close to press up against you and churn you away into a messy slop, to put you in your place. That being, padding the belly and hips of %pred, right where you belong.")
 
-// The friend zone. 
+// The friend zone.
 	var/obj/belly/p = new /obj/belly(src)
 	p.immutable = TRUE
 	p.mode_flags = 40
@@ -284,11 +285,11 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	p.escapable = TRUE
 	p.escapechance = 40
 	p.digest_mode = DM_HEAL
-	p.name = "propeutpericulum" 	//I'm no latin professor I just know that some organs and things are based on latin words 
-									//and google translate says that each of these individually 
-									//"close" "to" "danger" translate to "prope" "ut" "periculum". 
+	p.name = "propeutpericulum" 	//I'm no latin professor I just know that some organs and things are based on latin words
+									//and google translate says that each of these individually
+									//"close" "to" "danger" translate to "prope" "ut" "periculum".
 									//Of course it doesn't translate perfectly, and it's nonsense when squashed together, but
-									//I don't care that much, I just figured that the weird alien animals that store friends in 
+									//I don't care that much, I just figured that the weird alien animals that store friends in
 									//their tummy should have a funny name for the organ they do that with. >:I
 	p.desc = "You seem to have found your way into something of a specialized chamber within the Teppi. The walls are slick and smooth and REALLY soft to the touch. While you can hear the Teppi’s heartbeat nearby, and feel it throb throughout its flesh, the motions around you are gentle and careful. You’re pressed into a small shape within the pleasant heat, with the flesh forming to your figure. You can wriggle around a bit and get comfortable here, but as soon as you get still for a bit the smooth, almost silky flesh seems to form to you once again, like a heavy blanket wrapping you up. As you lounge here the pleasant kneading sensations ease aches and pains, and leave you feeling fresher than before. For a curious fleshy sac inside of some alien monster, this place isn’t all that bad!"
 	p.contaminates = 1
@@ -322,7 +323,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 
 /mob/living/simple_mob/vore/alienanimals/teppi/Initialize()
 	. = ..()
-	
+
 	if(name == initial(name))
 		name = "[name] ([rand(1, 1000)])"
 		real_name = name
@@ -335,7 +336,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 		verbs += /mob/living/simple_mob/vore/alienanimals/teppi/proc/toggle_producing_offspring
 
 
-//	teppi_id = rand(1,100000) 
+//	teppi_id = rand(1,100000)
 //	if(!dad_id || !mom_id)
 //		dad_id = rand(1,100000)
 //		mom_id = rand(1,100000)
@@ -351,13 +352,13 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 		ALLERGEN_GRAINS,
 		ALLERGEN_BEANS,
 		ALLERGEN_SEEDS,
-		ALLERGEN_DAIRY, 
+		ALLERGEN_DAIRY,
 		ALLERGEN_FUNGI,
 		ALLERGEN_COFFEE,
 		ALLERGEN_SUGARS,
 		ALLERGEN_EGGS
 		)
-	
+
 	var/static/list/possiblebody = list("#fff2d3" = 100, "#ffffc0" = 25, "#c69c85" = 25, "#9b7758" = 25, "#3f4a60" = 10, "#121f24" = 10, "#420824" = 1)
 	var/static/list/possiblemarking = list("#fff2d3" = 100, "#ffffc0" = 50, "#c69c85" = 25, "#9b7758" = 5, "#3f4a60" = 5, "#121f24" = 5, "#6300db" = 1)
 	var/static/list/possiblehorns = list("#454238" = 100, "#a3d5d7" = 10, "#763851" = 10, "#0d0c2f" = 5, "#ffc965" = 1)
@@ -404,7 +405,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 
 	update_icon()
 
-//This builds, caches, and recalls parts of the teppi as it needs them, and shares them across all teppi, 
+//This builds, caches, and recalls parts of the teppi as it needs them, and shares them across all teppi,
 //so ideally they only have to make it once as they need it since most of them will be using many of the same colored parts
 /mob/living/simple_mob/vore/alienanimals/teppi/proc/teppi_icon()
 	var/marking_key = "marking-[marking_color]"
@@ -647,7 +648,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 		. += "<span class='notice'>They look hungry.</span>"
 	if(health < maxHealth && health / maxHealth * 100 <= 75)
 		. += "<span class='notice'>They look beat up.</span>"
-	
+
 
 /mob/living/simple_mob/vore/alienanimals/teppi/update_icon()
 	..()
@@ -678,7 +679,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 			adjust_nutrition(-nutrition_cost)
 			new /mob/living/simple_mob/vore/alienanimals/teppi(loc, src)
 			qdel(src)
-		else 
+		else
 			visible_message("\The [src] whines pathetically...", runemessage = "whines")
 			if(prob(50))
 				playsound(src, 'sound/voice/teppi/whine1.ogg', 75, 1)
@@ -687,7 +688,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 			amount_grown -= rand(100,250)
 	if(not_hungy)
 		do_breeding()
-	if(prob(0.5))
+	if(!client && prob(0.5))
 		teppi_sound()
 
 /mob/living/simple_mob/vore/alienanimals/teppi/proc/do_breeding()
@@ -735,7 +736,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 		if(!K.sharp)
 			sheartime *= 2
 		if(K.edge)
-			sheartime *= 0.5		
+			sheartime *= 0.5
 	else if(istype(tool, /obj/item/weapon/tool/wirecutters))
 		sheartime *= 2
 	else
@@ -797,12 +798,12 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 		return
 	else if(current_affinity <= -50)
 		vore_selected.digest_mode = DM_DIGEST
-	else 
+	else
 		vore_selected.digest_mode = DM_DRAIN
 	..()
 	ai_holder.set_busy(FALSE)
 
-	
+
 /mob/living/simple_mob/vore/alienanimals/teppi/perform_the_nom(user, mob/living/prey, user, belly, delay)
 	if(client)
 		return ..()
@@ -816,7 +817,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 		return
 	if(current_affinity <= -50)
 		vore_selected.digest_mode = DM_DIGEST
-	else 
+	else
 		vore_selected.digest_mode = DM_DRAIN
 	..()
 	ai_holder.set_busy(FALSE)
@@ -844,7 +845,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 		ai_holder.target = person
 		ai_holder.track_target_position()
 		ai_holder.set_stance(STANCE_FIGHT)
-		affinity[person.real_name] = -100	//Don't hold a grudge though. 
+		affinity[person.real_name] = -100	//Don't hold a grudge though.
 
 /datum/say_list/teppi
 	speak = list("Gyooh~", "Gyuuuh!", "Gyuh?", "Gyaah...", "Iuuuuhh.", "Uoounh!", "GyoooOOOOoooh!", "Gyoh~", "Gyouh~")
@@ -876,7 +877,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	ask_verb = "tilts"
 	exclaim_verb = "roars"
 	key = "i"
-	flags = RESTRICTED
+	flags = WHITELISTED
 	machine_understands = 0
 	space_chance = 100
 	syllables = list("gyoh", "snoof", "gyoooooOOOooh", "iuuuuh", "gyuuuuh")
@@ -989,7 +990,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 		return
 	if(!breedable || nutrition < 500)
 		to_chat(src, "<span class='notice'>The conditions are not right to produce offspring.</span>")
-		return	
+		return
 	if(GLOB.teppi_count >= GLOB.max_teppi) //if we can't make more then we shouldn't look for partners
 		to_chat(src, "<span class='notice'>I cannot produce more offspring at the moment, there are too many of us!</span>")
 		return
@@ -1019,7 +1020,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	else
 		to_chat(src, "<span class='notice'>You enable breeding.</span>")
 		prevent_breeding = FALSE
-		
+
 ///////////////////AI Things////////////////////////
 //Thank you very much Aronai <3
 
@@ -1166,11 +1167,11 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	horn_color = "#141414"
 	eye_color = "#9f522c"
 	skin_color = "#e16f2d"
-	marking_type = "13"  
+	marking_type = "13"
 	horn_type = "1"
 	. = ..()
 
-/mob/living/simple_mob/vore/alienanimals/teppi/lira/New()	
+/mob/living/simple_mob/vore/alienanimals/teppi/lira/New()
 	inherit_colors = TRUE
 	color = "#fdfae9"
 	marking_color = "#ffffc0"

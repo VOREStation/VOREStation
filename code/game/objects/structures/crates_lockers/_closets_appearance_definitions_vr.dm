@@ -32,6 +32,11 @@
 		"stripes_horizontal" = COLOR_SKY_BLUE
 	)
 
+/decl/closet_appearance/secure_closet/talon/miner
+	extra_decals = list(
+		"stripes_horizontal" = COLOR_BEASTY_BROWN
+	)
+
 /decl/closet_appearance/secure_closet/talon/captain
 	extra_decals = list(
 		"stripes_horizontal" = COLOR_GOLD

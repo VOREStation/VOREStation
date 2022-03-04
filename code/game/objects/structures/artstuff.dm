@@ -112,7 +112,7 @@
 			user.visible_message("[user] smears paint on [src], covering the entire thing in paint.", "You smear paint on [src], changing the color of the entire thing.", runemessage = "smears paint")
 			update_appearance()
 			return
-			
+
 	if(user.a_intent == I_HELP)
 		tgui_interact(user)
 	else
@@ -215,7 +215,7 @@
 		return canvas_color
 
 /obj/item/canvas/proc/try_rename(mob/user)
-	var/new_name = stripped_input(user,"What do you want to name the painting?")
+	var/new_name = stripped_input(user,"What do you want to name the painting?", max_length = 250)
 	if(new_name != painting_name && new_name && CanUseTopic(user, GLOB.tgui_physical_state))
 		painting_name = new_name
 		SStgui.update_uis(src)
@@ -291,7 +291,7 @@
 	if(new_color)
 		selected_color = new_color
 		color_drop.color = new_color
-		
+
 	cut_overlays()
 	if(hud_level)
 		add_overlay(color_drop)
@@ -316,21 +316,10 @@
 	name = "painting frame"
 	desc = "The perfect showcase for your favorite deathtrap memories."
 	icon = 'icons/obj/decals.dmi'
-	//custom_materials = list(/datum/material/wood = 2000)
-	//flags_1 = NONE
+	refund_amt = 5
+	refund_type = /obj/item/stack/material/wood
 	icon_state = "frame-empty"
-
-/obj/item/frame/painting/try_build(turf/on_wall, mob/user as mob)
-	if(get_dist(on_wall, user) > 1)
-		return
-	var/ndir = get_dir(on_wall, user)
-	if (!(ndir in cardinal))
-		return
-	if(!istype(on_wall, /turf/simulated/wall))
-		to_chat(user, "<span class='warning'>Frame cannot be placed on this spot.</span>")
-		return
-	new /obj/structure/sign/painting(get_turf(user), ndir, TRUE)
-	qdel(src)
+	build_machine_type = /obj/structure/sign/painting
 
 /obj/structure/sign/painting
 	name = "Painting"
@@ -346,6 +335,8 @@
 	var/desc_with_canvas
 	var/persistence_id
 	var/loaded = FALSE
+	var/curator = "nobody! Report bug if you see this."
+	var/static/list/art_appreciators = list()
 
 //Presets for art gallery mapping, for paintings to be shared across stations
 /obj/structure/sign/painting/public
@@ -356,10 +347,11 @@
 
 /obj/structure/sign/painting/library_secure
 	name = "\improper Curated Painting Exhibit mounting"
-	desc = "For masterpieces hand-picked by the curator."
-	desc_with_canvas = "A masterpiece hand-picked by the curator, supposedly."
+	desc = "For masterpieces hand-picked by the librarian."
+	desc_with_canvas = "A masterpiece hand-picked by the librarian, supposedly."
 	persistence_id = "library"
 	req_one_access = list(access_library)
+	curator = "Librarian"
 
 /obj/structure/sign/painting/chapel_secure
 	name = "\improper Religious Painting Exhibit mounting"
@@ -367,13 +359,15 @@
 	desc_with_canvas = "A masterpiece hand-picked by the chaplain, supposedly."
 	persistence_id = "chapel"
 	req_one_access = list(access_chapel_office)
+	curator = "Chaplain"
 
 /obj/structure/sign/painting/library_private // keep your smut away from prying eyes, or non-librarians at least
 	name = "\improper Private Painting Exhibit mounting"
-	desc = "For art pieces deemed too subversive or too illegal to be shared outside of curators."
+	desc = "For art pieces deemed too subversive or too illegal to be shared outside of librarians."
 	desc_with_canvas = "A painting hung away from lesser minds."
 	persistence_id = "library_private"
 	req_one_access = list(access_library)
+	curator = "Librarian"
 
 /obj/structure/sign/painting/away_areas // for very hard-to-get-to areas
 	name = "\improper Remote Painting Exhibit mounting"
@@ -413,17 +407,18 @@
 	if(current_canvas)
 		current_canvas.tgui_interact(user)
 		. += "<span class='notice'>Use wirecutters to remove the painting.</span>"
-
+		. += "<span class='notice'>Paintings hung here are curated based on interest. The more often someone EXAMINEs the painting, the longer it will stay in rotation.</span>"
 		// Painting loaded and persistent frame, give a hint about removal safety
 		if(persistence_id)
 			if(loaded)
-				. += "<span class='notice'>Don't worry, the currently framed painting has already been entered into the archives and can be safely removed. It will still be used on future shifts.</span>"
+				. += "<span class='warning'>Don't worry, the currently framed painting has already been entered into the archives and can be safely removed. It will still be used on future shifts.</span>"
+				back_of_the_line(user)
 			else
 				. += "<span class='warning'>This painting has not been entered into the archives yet. Removing it will prevent that from happening.</span>"
 
 /obj/structure/sign/painting/proc/frame_canvas(mob/user,obj/item/canvas/new_canvas)
 	if(!allowed(user))
-		to_chat(user, "<span class='warning'>You're not comfortable framing this canvas in such a prestigious spot!</span>")
+		to_chat(user, "<span class='notice'>Access lock prevents you from putting a painting into this frame. Ask [curator] for help!</span>")
 		return
 	if(user.drop_from_inventory(new_canvas, src))
 		current_canvas = new_canvas
@@ -434,7 +429,7 @@
 
 /obj/structure/sign/painting/proc/unframe_canvas(mob/living/user)
 	if(!allowed(user))
-		to_chat(user, "<span class='warning'>You're not comfortable removing this prestigious canvas!</span>")
+		to_chat(user, "<span class='notice'>Access lock prevents you from removing paintings from this frame. Ask [curator] ((or admins)) for help!</span>")
 		return
 	if(current_canvas)
 		current_canvas.forceMove(drop_location())
@@ -483,12 +478,12 @@
 /obj/structure/sign/painting/proc/load_persistent()
 	if(!persistence_id || !LAZYLEN(SSpersistence.unpicked_paintings))
 		return
-	
+
 	var/list/painting_category = list()
 	for (var/list/P in SSpersistence.unpicked_paintings)
 		if(P["persistence_id"] == persistence_id)
 			painting_category[++painting_category.len] = P
-	
+
 	var/list/painting
 	while(!painting)
 		if(!length(painting_category))
@@ -500,7 +495,7 @@
 			continue //and try again
 		painting = chosen
 		SSpersistence.unpicked_paintings -= list(chosen)
-	
+
 	var/title = painting["title"]
 	var/author_name = painting["author"]
 	var/author_ckey = painting["ckey"]
@@ -509,7 +504,7 @@
 	var/obj/item/canvas/new_canvas
 	var/w = I.Width()
 	var/h = I.Height()
-	
+
 	for(var/T in typesof(/obj/item/canvas))
 		new_canvas = T
 		if(initial(new_canvas.width) == w && initial(new_canvas.height) == h)
@@ -519,7 +514,7 @@
 	if(!new_canvas)
 		warning("Couldn't find a canvas to match [w]x[h] of painting")
 		return
-	
+
 	new_canvas.fill_grid_from_icon(I)
 	new_canvas.generated_icon = I
 	new_canvas.icon_generated = TRUE
@@ -540,7 +535,7 @@
 		return
 	if(!current_canvas.painting_name)
 		current_canvas.painting_name = "Untitled Artwork"
-	
+
 	var/data = current_canvas.get_data_string()
 	var/md5 = md5(lowertext(data))
 	for(var/list/entry in SSpersistence.all_paintings)
@@ -549,10 +544,10 @@
 	var/png_directory = "data/persistent/paintings/[persistence_id]/"
 	var/png_path = png_directory + "[md5].png"
 	var/result = rustg_dmi_create_png(png_path,"[current_canvas.width]","[current_canvas.height]",data)
-	
+
 	if(result)
 		CRASH("Error saving persistent painting: [result]")
-	
+
 	SSpersistence.all_paintings += list(list(
 		"persistence_id" = persistence_id,
 		"title" = current_canvas.painting_name,
@@ -560,6 +555,20 @@
 		"author" = current_canvas.author_name,
 		"ckey" = current_canvas.author_ckey
 	))
+
+/obj/structure/sign/painting/proc/back_of_the_line(mob/user)
+	if(user.ckey in art_appreciators)
+		return
+	if(!persistence_id || !current_canvas || current_canvas.no_save)
+		return
+	var/data = current_canvas.get_data_string()
+	var/md5 = md5(lowertext(data))
+	for(var/list/entry in SSpersistence.all_paintings)
+		if(entry["md5"] == md5 && entry["persistence_id"] == persistence_id)
+			SSpersistence.all_paintings.Remove(list(entry))
+			SSpersistence.all_paintings.Add(list(entry))
+			art_appreciators += user.ckey
+			to_chat(user, "<span class='notice'>Showing interest in this painting renews its position in the curator database.</span>")
 
 /obj/structure/sign/painting/vv_get_dropdown()
 	. = ..()

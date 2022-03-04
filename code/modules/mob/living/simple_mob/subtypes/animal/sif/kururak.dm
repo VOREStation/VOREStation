@@ -48,6 +48,7 @@
 	attacktext = list("gouged", "bit", "cut", "clawed", "whipped")
 
 	organ_names = /decl/mob_organ_names/kururak
+	meat_amount = 5
 
 	armor = list(
 		"melee" = 30,

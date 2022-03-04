@@ -15,7 +15,7 @@
 	can_hold = null
 	pocketable = TRUE
 	
-	var/insert_delay = 0
+	var/insert_delay = 0 SECONDS
 	var/remove_delay = 2 SECONDS
 
 /obj/item/weapon/storage/pouch/stall_insertion(obj/item/W, mob/user)
@@ -23,26 +23,23 @@
 	if(user.get_active_hand() == src || user.get_inactive_hand() == src)
 		return TRUE // Skip delay
 
-	if(insert_delay && !do_after(user, 2 SECONDS, src, needhand = TRUE, exclusive = TASK_USER_EXCLUSIVE))
-		return FALSE // Moved or whatever
+	if(insert_delay && !do_after(user, insert_delay, src, needhand = TRUE, exclusive = TASK_USER_EXCLUSIVE))
+		return FALSE // Moved while there is a delay
 
-	if(W in src)
-		return TRUE // Item is still inside
-
-	return FALSE
+	return TRUE //Now we're allowed to put the item in the pouch
 
 /obj/item/weapon/storage/pouch/stall_removal(obj/item/W, mob/user)
 	// No delay if you have the pouch in your hands
 	if(user.get_active_hand() == src || user.get_inactive_hand() == src)
 		return TRUE // Skip delay
 	
-	if(remove_delay && !do_after(user, 2 SECONDS, src, needhand = TRUE, exclusive = TASK_USER_EXCLUSIVE))
-		return FALSE // Moved or whatever
+	if(remove_delay && !do_after(user, remove_delay, src, needhand = TRUE, exclusive = TASK_USER_EXCLUSIVE))
+		return FALSE // Moved while there is a delay
 
 	if(W in src)
 		return TRUE // Item is still inside
 
-	return FALSE
+	return FALSE //Item was somehow already removed
 
 /obj/item/weapon/storage/pouch/pocket_description(mob/haver, mob/examiner)
 	return "[src]"

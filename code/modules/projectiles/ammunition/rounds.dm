@@ -20,6 +20,26 @@
 /************************************************************************/
 
 /*
+ * Foam
+ */
+
+/obj/item/ammo_casing/afoam_dart
+	name = "foam dart"
+	desc = "It's Donk or Don't! Ages 8 and up."
+	projectile_type = /obj/item/projectile/bullet/foam_dart
+	matter = list(MAT_PLASTIC = 60)
+	caliber = "foam"
+	icon = 'icons/obj/gun_toy.dmi'
+	icon_state = "foamdart"
+	caseless = 1
+
+/obj/item/ammo_casing/afoam_dart/riot
+	name = "riot foam dart"
+	desc = "Whose smart idea was it to use toys as crowd control? Ages 18 and up."
+	matter = list(MAT_STEEL = 210, MAT_PLASTIC = 60)
+	icon_state = "foamdart_riot"
+
+/*
  * .357
  */
 
@@ -28,6 +48,12 @@
 	caliber = ".357"
 	projectile_type = /obj/item/projectile/bullet/pistol/strong
 	matter = list(MAT_STEEL = 210)
+
+/obj/item/ammo_casing/a357/bb
+	desc = "A .357 BB."
+	projectile_type = /obj/item/projectile/bullet/bb
+	matter = list(MAT_PLASTIC = 20)
+	caseless = TRUE
 
 /*
  * .38
@@ -51,6 +77,12 @@
 	projectile_type = /obj/item/projectile/ion/small
 	matter = list(MAT_STEEL = 130, MAT_URANIUM = 100)
 
+/obj/item/ammo_casing/a38/bb
+	desc = "A .38 BB."
+	projectile_type = /obj/item/projectile/bullet/bb
+	matter = list(MAT_PLASTIC = 20)
+	caseless = TRUE
+
 /*
  * .44
  */
@@ -71,6 +103,12 @@
 	desc = "A proprietary Hedberg-Hammarstrom .44 bullet casing designed for use in revolving rifles."
 	projectile_type = /obj/item/projectile/bullet/rifle/a44rifle
 	matter = list(MAT_STEEL = 210)
+
+/obj/item/ammo_casing/a44/bb
+	desc = "A .44 BB."
+	projectile_type = /obj/item/projectile/bullet/bb
+	matter = list(MAT_PLASTIC = 20)
+	caseless = TRUE
 
 /*
  * .75 (aka Gyrojet Rockets, aka admin abuse)
@@ -101,7 +139,6 @@
 	desc = "A 9mm hollow-point bullet casing."
 	projectile_type = /obj/item/projectile/bullet/pistol/hp
 
-
 /obj/item/ammo_casing/a9mm/flash
 	desc = "A 9mm flash shell casing."
 	icon_state = "r-casing"
@@ -116,6 +153,12 @@
 	desc = "A 9mm practice bullet casing."
 	icon_state = "r-casing"
 	projectile_type = /obj/item/projectile/bullet/practice
+
+/obj/item/ammo_casing/a9mm/bb
+	desc = "A 9mm BB."
+	projectile_type = /obj/item/projectile/bullet/bb
+	matter = list(MAT_PLASTIC = 20)
+	caseless = TRUE
 
 /*
  * .45
@@ -163,6 +206,12 @@
 	projectile_type = /obj/item/projectile/bullet/pistol/medium/hp
 	matter = list(MAT_STEEL = 60, MAT_PLASTIC = 15)
 
+/obj/item/ammo_casing/a45/bb
+	desc = "A .45 BB."
+	projectile_type = /obj/item/projectile/bullet/bb
+	matter = list(MAT_PLASTIC = 20)
+	caseless = TRUE
+
 /*
  * 10mm
  */
@@ -173,12 +222,30 @@
 	projectile_type = /obj/item/projectile/bullet/pistol/medium
 	matter = list(MAT_STEEL = 75)
 
+/obj/item/ammo_casing/a10mm/practice
+	desc = "A 10mm practice bullet casing."
+	icon_state = "r-casing"
+	projectile_type = /obj/item/projectile/bullet/practice
+	matter = list(MAT_STEEL = 60)
+
+/obj/item/ammo_casing/a10mm/rubber
+	desc = "A 10mm rubber bullet casing."
+	projectile_type = /obj/item/projectile/bullet/pistol/rubber
+	icon_state = "r-casing"
+	matter = list(MAT_STEEL = 60)
+
 /obj/item/ammo_casing/a10mm/emp
 	name = "10mm haywire round"
 	desc = "A 10mm bullet casing fitted with a single-use ion pulse generator."
 	projectile_type = /obj/item/projectile/ion/small
 	icon_state = "empcasing"
 	matter = list(MAT_STEEL = 130, MAT_URANIUM = 100)
+
+/obj/item/ammo_casing/a10mm/bb
+	desc = "A 10mm BB."
+	projectile_type = /obj/item/projectile/bullet/bb
+	matter = list(MAT_PLASTIC = 20)
+	caseless = TRUE
 
 /*
  * 12g (aka shotgun ammo)
@@ -256,6 +323,11 @@
 	projectile_type = /obj/item/projectile/scatter/flechette
 	matter = list(MAT_STEEL = 360, MAT_PLASTEEL = 100)
 
+/obj/item/ammo_casing/a12g/bb
+	desc = "A shotgun BB shell."
+	projectile_type = /obj/item/projectile/bullet/pellet/shotgun/bb // Shotgun
+	matter = list(MAT_PLASTIC = 120) // 6 pellets
+
 /*
  * 7.62mm
  */
@@ -290,6 +362,12 @@
 /obj/item/ammo_casing/a762/hunter
 	desc = "A 7.62mm hunting bullet casing."
 	projectile_type = /obj/item/projectile/bullet/rifle/a762/hunter
+
+/obj/item/ammo_casing/a762/bb
+	desc = "A 7.62mm BB."
+	projectile_type = /obj/item/projectile/bullet/bb
+	matter = list(MAT_PLASTIC = 20)
+	caseless = TRUE
 
 /*
  * 14.5mm (anti-materiel rifle round)
@@ -345,6 +423,12 @@
 	desc = "A 5.45mm hunting bullet casing."
 	projectile_type = /obj/item/projectile/bullet/rifle/a545/hunter
 
+/obj/item/ammo_casing/a545/bb
+	desc = "A 5.45mm BB."
+	projectile_type = /obj/item/projectile/bullet/bb
+	matter = list(MAT_PLASTIC = 20)
+	caseless = TRUE
+
 /*
  * 5mm Caseless
  */
@@ -375,12 +459,13 @@
 
 /obj/item/ammo_casing/cap
 	name = "cap"
-	desc = "A cap for children toys."
+	desc = "A cap for children toys. Ages 8 and up."
 	caliber = "caps"
-	icon_state = "r-casing"
-	color = "#FF0000"
-	projectile_type = /obj/item/projectile/bullet/pistol/cap
+	icon = 'icons/obj/gun_toy.dmi'
+	icon_state = "cap"
+	projectile_type = /obj/item/projectile/bullet/cap
 	matter = list(MAT_STEEL = 85)
+	caseless = 1
 
 /obj/item/ammo_casing/spent // For simple hostile mobs only, so they don't cough up usable bullets when firing. This is for literally nothing else.
 	icon_state = "s-casing-spent"

@@ -142,124 +142,6 @@
 		/obj/item/weapon/dnainjector/m2h = 3
 	)
 
-/obj/item/weapon/storage/box/blanks
-	name = "box of blank shells"
-	desc = "It has a picture of a gun and several warning symbols on the front."
-	icon_state = "blankshot_box"
-	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
-	starts_with = list(/obj/item/ammo_casing/a12g/blank = 8)
-	drop_sound = 'sound/items/drop/ammobox.ogg'
-	pickup_sound = 'sound/items/pickup/ammobox.ogg'
-
-/obj/item/weapon/storage/box/blanks/large
-	starts_with = list(/obj/item/ammo_casing/a12g/blank = 16)
-
-/obj/item/weapon/storage/box/beanbags
-	name = "box of beanbag shells"
-	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
-	icon_state = "beanshot_box"
-	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
-	starts_with = list(/obj/item/ammo_casing/a12g/beanbag = 8)
-	drop_sound = 'sound/items/drop/ammobox.ogg'
-	pickup_sound = 'sound/items/pickup/ammobox.ogg'
-	starts_with = list(/obj/item/ammo_casing/a12g/beanbag = 16)
-
-/obj/item/weapon/storage/box/shotgunammo
-	name = "box of shotgun slugs"
-	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
-	icon_state = "lethalshellshot_box"
-	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
-	starts_with = list(/obj/item/ammo_casing/a12g = 8)
-	drop_sound = 'sound/items/drop/ammobox.ogg'
-	pickup_sound = 'sound/items/pickup/ammobox.ogg'
-
-/obj/item/weapon/storage/box/shotgunammo/large
-	starts_with = list(/obj/item/ammo_casing/a12g = 16)
-
-/obj/item/weapon/storage/box/shotgunshells
-	name = "box of shotgun shells"
-	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
-	icon_state = "lethalslug_box"
-	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
-	starts_with = list(/obj/item/ammo_casing/a12g/pellet = 8)
-	drop_sound = 'sound/items/drop/ammobox.ogg'
-	pickup_sound = 'sound/items/pickup/ammobox.ogg'
-
-/obj/item/weapon/storage/box/shotgunshells/large
-	starts_with = list(/obj/item/ammo_casing/a12g/pellet = 16)
-
-/obj/item/weapon/storage/box/flashshells
-	name = "box of illumination shells"
-	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
-	icon_state = "illumshot_box"
-	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
-	starts_with = list(/obj/item/ammo_casing/a12g/flash = 8)
-	drop_sound = 'sound/items/drop/ammobox.ogg'
-	pickup_sound = 'sound/items/pickup/ammobox.ogg'
-
-/obj/item/weapon/storage/box/flashshells/large
-	starts_with = list(/obj/item/ammo_casing/a12g/flash = 16)
-
-/obj/item/weapon/storage/box/stunshells
-	name = "box of stun shells"
-	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
-	icon_state = "stunshot_box"
-	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
-	starts_with = list(/obj/item/ammo_casing/a12g/stunshell = 8)
-	drop_sound = 'sound/items/drop/ammobox.ogg'
-	pickup_sound = 'sound/items/pickup/ammobox.ogg'
-
-/obj/item/weapon/storage/box/stunshells/large
-	starts_with = list(/obj/item/ammo_casing/a12g/stunshell = 16)
-
-/obj/item/weapon/storage/box/practiceshells
-	name = "box of practice shells"
-	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
-	icon_state = "blankshot_box"
-	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
-	starts_with = list(/obj/item/ammo_casing/a12g/practice = 8)
-	drop_sound = 'sound/items/drop/ammobox.ogg'
-	pickup_sound = 'sound/items/pickup/ammobox.ogg'
-
-/obj/item/weapon/storage/box/practiceshells/large
-	starts_with = list(/obj/item/ammo_casing/a12g/practice = 16)
-
-/obj/item/weapon/storage/box/empshells
-	name = "box of emp shells"
-	desc = "It has a picture of a gun and several warning symbols on the front."
-	icon_state = "empshot_box"
-	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
-	starts_with = list(/obj/item/ammo_casing/a12g/emp = 8)
-	drop_sound = 'sound/items/drop/ammobox.ogg'
-	pickup_sound = 'sound/items/pickup/ammobox.ogg'
-
-/obj/item/weapon/storage/box/empshells/large
-	starts_with = list(/obj/item/ammo_casing/a12g/emp = 16)
-
-/obj/item/weapon/storage/box/flechetteshells
-	name = "box of shotgun flechettes"
-	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
-	icon_state = "lethalslug_box"
-	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
-	starts_with = list(/obj/item/ammo_casing/a12g/flechette = 8)
-	drop_sound = 'sound/items/drop/ammobox.ogg'
-	pickup_sound = 'sound/items/pickup/ammobox.ogg'
-
-/obj/item/weapon/storage/box/flechetteshells/large
-	starts_with = list(/obj/item/ammo_casing/a12g/flechette = 16)
-
-/obj/item/weapon/storage/box/sniperammo
-	name = "box of 14.5mm shells"
-	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
-	starts_with = list(/obj/item/ammo_casing/a145 = 7)
-	drop_sound = 'sound/items/drop/ammobox.ogg'
-	pickup_sound = 'sound/items/pickup/ammobox.ogg'
-
-/obj/item/weapon/storage/box/sniperammo/highvel
-	name = "box of 14.5mm sabot shells"
-	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
-	starts_with = list(/obj/item/ammo_casing/a145/highvel = 7)
-
 /obj/item/weapon/storage/box/flashbangs
 	name = "box of flashbangs (WARNING)"
 	desc = "<B>WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use.</B>"
@@ -566,3 +448,17 @@
 	name = "ambrosia deus seeds box"
 	desc = "Contains the seeds you need to get a proper healthy high."
 	starts_with = list(/obj/item/seeds/ambrosiadeusseed = 7)
+
+/obj/item/weapon/storage/box/capguntoy
+	name = "\improper AlliCo \"Zipper\" Cap Gun"
+	icon = 'icons/obj/gun_toy.dmi'
+	icon_state = "cap_gun_box"
+	desc = "This box is shaped on the inside so that only the \"Zipper\" Capgun and extra caps can fit."
+	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
+	storage_slots = 2
+	max_w_class = ITEMSIZE_NORMAL
+	can_hold = list(/obj/item/weapon/gun/projectile/revolver/capgun, /obj/item/ammo_magazine/ammo_box/cap)
+	starts_with = list(
+		/obj/item/weapon/gun/projectile/revolver/capgun = 1,
+		/obj/item/ammo_magazine/ammo_box/cap = 1
+	)

@@ -50,6 +50,9 @@
 /area/talon_v2/hangar
 	name = "\improper Talon - Hangar"
 	icon_state = "red"
+/area/talon_v2/pod_hangar
+	name = "\improper Talon - Pod Hangar"
+	icon_state = "red"
 
 /area/talon_v2/engineering
 	name = "\improper Talon - Engineering"
@@ -90,6 +93,9 @@
 /area/talon_v2/secure_storage
 	name = "\improper Talon - Secure Storage"
 	icon_state = "red"
+/area/talon_v2/ofd_ops
+	name = "\improper Talon - OFD Ops"
+	icon_state = "red"
 /area/talon_v2/bridge
 	name = "\improper Talon - Bridge"
 	icon_state = "blue"
@@ -106,6 +112,9 @@
 /area/talon_v2/crew_quarters/sec_room
 	name = "\improper Talon - Guard's Cabin"
 	icon_state = "red"
+/area/talon_v2/crew_quarters/mine_room
+	name = "\improper Talon - Miner's Cabin"
+	icon_state = "gray"
 /area/talon_v2/crew_quarters/cap_room
 	name = "\improper Talon - Captain's Cabin"
 	icon_state = "blue"

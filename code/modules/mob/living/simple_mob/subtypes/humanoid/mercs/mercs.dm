@@ -301,6 +301,10 @@
 
 /mob/living/simple_mob/humanoid/merc/ranged/sniper/shoot_target(atom/A)
 	set waitfor = FALSE
+
+	if(!istype(A) || QDELETED(A))
+		return
+
 	setClickCooldown(get_attack_speed())
 
 	face_atom(A)

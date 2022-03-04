@@ -101,7 +101,7 @@
 // Drone verbs.
 /mob/living/carbon/human/proc/evolve()
 	set name = "Evolve (500)"
-	set desc = "Produce an interal egg sac capable of spawning children. Only one queen can exist at a time."
+	set desc = "Produce an internal egg sac capable of spawning children. Only one queen can exist at a time."
 	set category = "Abilities"
 
 	if(alien_queen_exists())

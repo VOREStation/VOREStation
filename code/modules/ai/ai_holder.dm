@@ -131,7 +131,7 @@
 	IF_VV_OPTION("mass_edit_finish")
 		if(!check_rights(R_ADMIN))
 			return
-		
+
 		var/list/before = snapshot //This PROBABLY works, right?
 		snapshot = null
 		var/list/after = vars.Copy() //'vars' appears to be special in that vars.Copy produces a flat list of keys with no values. It seems that 'vars[key]' is handled somewhere in the byond engine differently than normal lists.
@@ -183,7 +183,7 @@
 				found += M
 			choices["[typechoice] ([found.len])"] = found // Prettified name for the user input below)
 			searching = found // Now we only search the list we just made, because of the order of our types list, each subsequent list will be a subset of the one we just finished
-		
+
 		var/choice = tgui_input_list(usr,"Based on your AI holder's mob location, we'll edit mobs on Z [levels_working.Join(",")]. What types do you want to alter?", "Types", choices)
 		if(!choice)
 			href_list["datumrefresh"] = "\ref[src]"
@@ -201,7 +201,7 @@
 					L.ai_holder.vars[newvar] = after[newvar]
 				else
 					to_chat(usr,"<span class='warning'>Skipping unavailable var '[newvar]' on: [L] [ADMIN_COORDJMP(L)]</span>")
-		
+
 		to_chat(usr,"<span class='notice'>Mass AI edit done.</span>")
 		href_list["datumrefresh"] = "\ref[src]"
 
@@ -291,6 +291,9 @@
 
 // 'Tactical' processes such as moving a step, meleeing an enemy, firing a projectile, and other fairly cheap actions that need to happen quickly.
 /datum/ai_holder/proc/handle_tactics()
+	if(!istype(holder) || QDELETED(holder))
+		qdel(src)
+		return
 	if(holder.key && !autopilot)
 		return
 	handle_special_tactic()
@@ -298,6 +301,9 @@
 
 // 'Strategical' processes that are more expensive on the CPU and so don't get run as often as the above proc, such as A* pathfinding or robust targeting.
 /datum/ai_holder/proc/handle_strategicals()
+	if(!istype(holder) || QDELETED(holder))
+		qdel(src)
+		return
 	if(holder.key && !autopilot)
 		return
 	handle_special_strategical()

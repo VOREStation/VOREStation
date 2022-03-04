@@ -69,7 +69,7 @@ jobs:
         run: |
           sudo dpkg --add-architecture i386
           sudo apt update || true
-          sudo apt install zlib1g-dev:i386 libssl-dev:i386 pkg-config:i386
+          sudo apt install zlib1g-dev:i386 libssl-dev:i386
           ldd librust_g.so
       - name: Unit Tests
         run: |

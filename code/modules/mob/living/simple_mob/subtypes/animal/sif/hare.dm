@@ -61,7 +61,7 @@
 	organ_names = /decl/mob_organ_names/hare
 
 
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	meat_amount = 1
 
 	say_list_type = /datum/say_list/hare
 

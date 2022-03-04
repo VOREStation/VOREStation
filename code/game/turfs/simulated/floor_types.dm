@@ -32,7 +32,6 @@
 	new_holder.decals = T.decals ? T.decals.Copy() : null
 
 	//Set the destination to be like us
-	T.Destroy()
 	var/turf/simulated/shuttle/new_dest = T.ChangeTurf(my_turf.type,,1)
 	new_dest.set_dir(my_turf.dir)
 	new_dest.icon_state = my_turf.icon_state
@@ -99,7 +98,7 @@
 
 /turf/simulated/shuttle/Destroy()
 	landed_holder = null
-	..()
+	return ..()
 
 // For joined corners touching static lighting turfs, add an overlay to cancel out that part of our lighting overlay.
 /turf/simulated/shuttle/proc/update_breaklights()

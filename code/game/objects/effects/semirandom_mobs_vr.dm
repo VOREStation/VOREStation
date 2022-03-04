@@ -51,11 +51,16 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 		list(/mob/living/simple_mob/animal/passive/opossum),
 		list(/mob/living/simple_mob/animal/passive/pillbug),
 		list(/mob/living/simple_mob/animal/passive/snake),
+		list(/mob/living/simple_mob/animal/passive/snake/red),
+		list(/mob/living/simple_mob/animal/passive/snake/python),
 		list(/mob/living/simple_mob/animal/passive/tindalos),
 		list(/mob/living/simple_mob/animal/passive/yithian),
 		list(
 			/mob/living/simple_mob/animal/wolf = 10,
-			/mob/living/simple_mob/animal/wolf/direwolf = 1
+			/mob/living/simple_mob/animal/wolf/direwolf = 5,
+			/mob/living/simple_mob/vore/greatwolf = 1,
+			/mob/living/simple_mob/vore/greatwolf/black = 1,
+			/mob/living/simple_mob/vore/greatwolf/grey = 1
 			),
 		list(/mob/living/simple_mob/vore/rabbit),
 		list(/mob/living/simple_mob/vore/redpanda),
@@ -109,12 +114,8 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 			/mob/living/simple_mob/animal/giant_spider/phorogenic = 10,
 			/mob/living/simple_mob/animal/giant_spider/thermic = 5,
 			/mob/living/simple_mob/animal/giant_spider/tunneler = 10,
-			/mob/living/simple_mob/animal/giant_spider/webslinger = 5
-			),
-		list(
-			/mob/living/simple_mob/animal/wolf = 10,
-			/mob/living/simple_mob/animal/wolf/direwolf = 1
-			),
+			/mob/living/simple_mob/animal/giant_spider/webslinger = 5,
+			/mob/living/simple_mob/animal/giant_spider/broodmother = 1),
 		list(/mob/living/simple_mob/creature/strong),
 		list(/mob/living/simple_mob/faithless/strong),
 		list(/mob/living/simple_mob/animal/goat),
@@ -244,7 +245,6 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 		list(/mob/living/simple_mob/mechanical/wahlem),
 		list(/mob/living/simple_mob/animal/passive/fox/syndicate),
 		list(/mob/living/simple_mob/animal/passive/fox),
-		list(/mob/living/simple_mob/animal/wolf/direwolf),
 		list(/mob/living/simple_mob/animal/space/jelly),
 		list(
 			/mob/living/simple_mob/otie/feral,
@@ -253,12 +253,12 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 			/mob/living/simple_mob/otie/red/chubby
 			),
 		list(
-			/mob/living/simple_mob/shadekin/blue/ai = 100,
-			/mob/living/simple_mob/shadekin/green/ai = 50,
-			/mob/living/simple_mob/shadekin/orange/ai = 20,
-			/mob/living/simple_mob/shadekin/purple/ai = 60,
-			/mob/living/simple_mob/shadekin/red/ai = 40,
-			/mob/living/simple_mob/shadekin/yellow/ai = 1
+			/mob/living/simple_mob/shadekin/blue = 100,
+			/mob/living/simple_mob/shadekin/green = 50,
+			/mob/living/simple_mob/shadekin/orange = 20,
+			/mob/living/simple_mob/shadekin/purple = 60,
+			/mob/living/simple_mob/shadekin/red = 40,
+			/mob/living/simple_mob/shadekin/yellow = 1
 			),
 		list(
 			/mob/living/simple_mob/vore/aggressive/corrupthound,
@@ -292,7 +292,21 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 			),
 		list(/mob/living/simple_mob/vore/solargrub),
 		list(/mob/living/simple_mob/vore/woof),
-		list(/mob/living/simple_mob/vore/alienanimals/teppi)
+		list(/mob/living/simple_mob/vore/alienanimals/teppi),
+		list(/mob/living/simple_mob/vore/alienanimals/space_ghost),
+		list(/mob/living/simple_mob/vore/alienanimals/catslug),
+		list(/mob/living/simple_mob/vore/alienanimals/space_jellyfish),
+		list(/mob/living/simple_mob/vore/alienanimals/startreader),
+		list(
+			/mob/living/simple_mob/vore/bigdragon,
+			/mob/living/simple_mob/vore/bigdragon/friendly),
+		list(
+			/mob/living/simple_mob/vore/leopardmander = 50,
+			/mob/living/simple_mob/vore/leopardmander/blue = 10,
+			/mob/living/simple_mob/vore/leopardmander/exotic = 1
+			),
+		list(/mob/living/simple_mob/vore/sheep),
+		list(/mob/living/simple_mob/vore/weretiger)
 		)
 
 /obj/random/mob/semirandom_mob_spawner/item_to_spawn()
@@ -359,11 +373,16 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 		list(/mob/living/simple_mob/animal/passive/opossum) = 10,
 		list(/mob/living/simple_mob/animal/passive/pillbug) = 10,
 		list(/mob/living/simple_mob/animal/passive/snake) = 10,
+		list(/mob/living/simple_mob/animal/passive/snake/red) = 10,
+		list(/mob/living/simple_mob/animal/passive/snake/python) = 10,
 		list(/mob/living/simple_mob/animal/passive/tindalos) = 10,
 		list(/mob/living/simple_mob/animal/passive/yithian) = 10,
 		list(
 			/mob/living/simple_mob/animal/wolf = 10,
-			/mob/living/simple_mob/animal/wolf/direwolf = 1
+			/mob/living/simple_mob/animal/wolf/direwolf = 5,
+			/mob/living/simple_mob/vore/greatwolf = 1,
+			/mob/living/simple_mob/vore/greatwolf/black = 1,
+			/mob/living/simple_mob/vore/greatwolf/grey = 1
 			) = 10,
 		list(/mob/living/simple_mob/vore/rabbit) = 10,
 		list(/mob/living/simple_mob/vore/redpanda) = 10,
@@ -407,7 +426,18 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 			) = 5,
 		list(/mob/living/simple_mob/animal/sif/siffet) = 5,
 		list(/mob/living/simple_mob/animal/sif/tymisian) = 5,
-		list(/mob/living/simple_mob/vore/alienanimals/teppi) = 10
+		list(/mob/living/simple_mob/vore/alienanimals/teppi) = 10,
+		list(/mob/living/simple_mob/vore/alienanimals/dustjumper) = 5,
+		list(/mob/living/simple_mob/vore/alienanimals/space_jellyfish) = 5,
+		list(/mob/living/simple_mob/vore/alienanimals/space_ghost) = 5,
+		list(
+			/mob/living/simple_mob/vore/leopardmander = 50,
+			/mob/living/simple_mob/vore/leopardmander/blue = 10,
+			/mob/living/simple_mob/vore/leopardmander/exotic = 1
+			) = 5,
+		list(/mob/living/simple_mob/vore/sheep) = 5,
+		list(/mob/living/simple_mob/vore/weretiger) = 5,
+		list(/mob/living/simple_mob/vore/alienanimals/skeleton) = 5
 	)
 
 /obj/random/mob/semirandom_mob_spawner/monster
@@ -433,14 +463,17 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 			/mob/living/simple_mob/animal/giant_spider/webslinger = 5
 			) = 100,
 		list(
-			/mob/living/simple_mob/shadekin/red/ai = 5,
-			/mob/living/simple_mob/shadekin/orange/ai = 1,
-			/mob/living/simple_mob/shadekin/purple/ai = 10
+			/mob/living/simple_mob/shadekin/red = 5,
+			/mob/living/simple_mob/shadekin/orange = 1,
+			/mob/living/simple_mob/shadekin/purple = 10
 			) = 1,
 		list(
 			/mob/living/simple_mob/animal/wolf = 10,
-			/mob/living/simple_mob/animal/wolf/direwolf = 1,
-			) = 80,
+			/mob/living/simple_mob/animal/wolf/direwolf = 5,
+			/mob/living/simple_mob/vore/greatwolf = 1,
+			/mob/living/simple_mob/vore/greatwolf/black = 1,
+			/mob/living/simple_mob/vore/greatwolf/grey = 1
+			) = 40,
 		list(/mob/living/simple_mob/creature/strong) = 40,
 		list(/mob/living/simple_mob/faithless/strong) = 20,
 		list(/mob/living/simple_mob/animal/goat) = 1,
@@ -501,7 +534,18 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 			/mob/living/simple_mob/vore/oregrub = 5,
 			/mob/living/simple_mob/vore/oregrub/lava = 1
 			) = 15,
-		list(/mob/living/simple_mob/vore/alienanimals/teppi) = 15
+		list(/mob/living/simple_mob/vore/alienanimals/teppi) = 15,
+		list(/mob/living/simple_mob/vore/alienanimals/space_jellyfish) = 5,
+		list(/mob/living/simple_mob/vore/alienanimals/space_ghost) = 5,
+		list(
+			/mob/living/simple_mob/vore/leopardmander = 50,
+			/mob/living/simple_mob/vore/leopardmander/blue = 10,
+			/mob/living/simple_mob/vore/leopardmander/exotic = 1
+			) = 5,
+		list(/mob/living/simple_mob/vore/sheep) = 5,
+		list(/mob/living/simple_mob/vore/weretiger) = 5,
+		list(/mob/living/simple_mob/vore/alienanimals/skeleton) = 5,
+		list(/mob/living/simple_mob/vore/alienanimals/catslug) = 5
 		)
 
 /obj/random/mob/semirandom_mob_spawner/humanoid
@@ -512,9 +556,9 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 
 	possible_mob_types = list(
 		list(
-			/mob/living/simple_mob/shadekin/blue/ai = 25,
-			/mob/living/simple_mob/shadekin/green/ai = 10,
-			/mob/living/simple_mob/shadekin/purple/ai = 1,
+			/mob/living/simple_mob/shadekin/blue = 25,
+			/mob/living/simple_mob/shadekin/green = 10,
+			/mob/living/simple_mob/shadekin/purple = 1,
 			) = 1,
 		list(/mob/living/simple_mob/vore/catgirl) = 100,
 		list(/mob/living/simple_mob/vore/wolfgirl) = 100,
@@ -537,7 +581,7 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 			/mob/living/simple_mob/vore/lamia/zebra/bra,
 			/mob/living/simple_mob/vore/lamia/zebra/shirt
 			) = 100,
-// LOOK OKAY MERCS ARE HUMANOIDS SO THEY ARE HERE, but they are also kind of bullshit so they probably shouldn't be able to spawn in the same place as catgirls. 
+// LOOK OKAY MERCS ARE HUMANOIDS SO THEY ARE HERE, but they are also kind of bullshit so they probably shouldn't be able to spawn in the same place as catgirls.
 // I want some better potentially hostile humanoids that aren't stupid to fight. If they become a big issue I'll comment them out.
 // For now they are just rare, and the ranged ones are way more rare than the melee ones, which I think will help balance them out.
 		list(
@@ -675,7 +719,12 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 	mob_faction = "vore"
 
 	possible_mob_types = list(
-		list(/mob/living/simple_mob/animal/wolf/direwolf) = 100,
+		list(
+			/mob/living/simple_mob/animal/wolf/direwolf = 5,
+			/mob/living/simple_mob/vore/greatwolf = 1,
+			/mob/living/simple_mob/vore/greatwolf/black = 1,
+			/mob/living/simple_mob/vore/greatwolf/grey = 1
+			) = 100,
 		list(/mob/living/simple_mob/animal/space/jelly) = 70,
 		list(
 			/mob/living/simple_mob/otie/feral,
@@ -684,12 +733,12 @@ var/global/list/semirandom_mob_spawner_decisions = list()
 			/mob/living/simple_mob/otie/red/chubby
 			) = 50,
 		list(
-			/mob/living/simple_mob/shadekin/blue/ai = 100,
-			/mob/living/simple_mob/shadekin/green/ai = 50,
-			/mob/living/simple_mob/shadekin/orange/ai = 20,
-			/mob/living/simple_mob/shadekin/purple/ai = 60,
-			/mob/living/simple_mob/shadekin/red/ai = 40,
-			/mob/living/simple_mob/shadekin/yellow/ai = 1
+			/mob/living/simple_mob/shadekin/blue = 100,
+			/mob/living/simple_mob/shadekin/green = 50,
+			/mob/living/simple_mob/shadekin/orange = 20,
+			/mob/living/simple_mob/shadekin/purple = 60,
+			/mob/living/simple_mob/shadekin/red = 40,
+			/mob/living/simple_mob/shadekin/yellow = 1
 			) = 1,
 		list(
 			/mob/living/simple_mob/vore/aggressive/corrupthound,

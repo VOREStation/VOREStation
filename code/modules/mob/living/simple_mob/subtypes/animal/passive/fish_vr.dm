@@ -2,6 +2,7 @@
 	desc = "A genetic marvel, combining the docility and aesthetics of the koi with some of the resiliency and cunning of the noble space carp."
 	health = 50
 	maxHealth = 50
+	meat_amount = 0
 
 /mob/living/simple_mob/animal/passive/fish/koi/poisonous/Initialize()
 	. = ..()
@@ -67,7 +68,7 @@
 	icon_state = "measelshark"
 	icon_living = "measelshark"
 	icon_dead = "measelshark-dead"
-	meat_amount = 6 //Big fish, tons of meat. Great for feasts.
+	meat_amount = 8 //Big fish, tons of meat. Great for feasts.
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/sliceable/sharkchunk
 	vore_active = 1
 	vore_bump_chance = 100

@@ -332,6 +332,12 @@
 
 	linkedholodeck.sound_env = A.sound_env
 
+	if(prog == powerdown_program)
+		linkedholodeck.requires_power = TRUE
+	else
+		linkedholodeck.requires_power = FALSE
+	linkedholodeck.power_change()
+
 	spawn(30)
 		for(var/obj/effect/landmark/L in linkedholodeck)
 			if(L.name=="Atmospheric Test Start")

@@ -227,6 +227,7 @@
 				/obj/item/clothing/suit/space/void/refurb/pilot,
 				/obj/item/clothing/head/helmet/space/void/refurb/pilot
 			),
+			
 			prob(10);list(
 				/obj/item/clothing/suit/space/void/refurb/pilot,
 				/obj/item/clothing/head/helmet/space/void/refurb/pilot/alt
@@ -238,6 +239,10 @@
 			prob(10);list(
 				/obj/item/clothing/suit/space/void/refurb/research,
 				/obj/item/clothing/head/helmet/space/void/refurb/research/alt
+			),
+			prob(10);list(
+				/obj/item/clothing/suit/space/void/refurb/mining,
+				/obj/item/clothing/head/helmet/space/void/refurb/mining
 			),
 			prob(5);list(
 				/obj/item/clothing/suit/space/void/refurb/mercenary,

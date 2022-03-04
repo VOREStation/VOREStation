@@ -25,7 +25,7 @@
 
 	var/mob/M = loc
 	var/was_in_hands = istype(M) && (src == M.get_active_hand() || src == M.get_inactive_hand())
-	
+
 	critter = new critter(critter_holder)
 	critter_holder = new(loc, critter)
 
@@ -138,6 +138,7 @@
 	can_pull_mobs = MOB_PULL_SMALLER
 	say_list_type = /datum/say_list/possum
 	catalogue_data = list(/datum/category_item/catalogue/fauna/opossum)
+	meat_amount = 2
 
 /mob/living/simple_mob/animal/passive/opossum/adjustBruteLoss(var/amount,var/include_robo)
 	. = ..()

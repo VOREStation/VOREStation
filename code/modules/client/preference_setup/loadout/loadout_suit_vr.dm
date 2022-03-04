@@ -9,6 +9,30 @@
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
+/datum/gear/suit/labcoat_old
+	display_name = "labcoat, old-school"
+	path = /obj/item/clothing/suit/storage/toggle/labcoat/old
+
+/datum/gear/suit/labcoat_cmo_old
+	display_name = "labcoat, CMO, oldschool"
+	path = /obj/item/clothing/suit/storage/toggle/labcoat/old/cmo
+	allowed_roles = list("Chief Medical Officer")
+
+/datum/gear/suit/roles/labcoat_old
+	display_name = "labcoat selection, department, oldschool"
+	path = /obj/item/clothing/suit/storage/toggle/labcoat/old/tox
+	cost = 2
+
+
+/datum/gear/suit/roles/labcoat_old/New()
+	..()
+	var/list/labcoats = list(
+	"Oldschool Scientist's Labcoat" = /obj/item/clothing/suit/storage/toggle/labcoat/old/tox,
+	"Oldschool Virologist's Labcoat" = /obj/item/clothing/suit/storage/toggle/labcoat/old/vir,
+	"Oldschool Chemist's Labcoat" = /obj/item/clothing/suit/storage/toggle/labcoat/old/chem
+	)
+	gear_tweaks += new/datum/gear_tweak/path(labcoats)
+
 /datum/gear/suit/jacket_modular
 	display_name = "jacket, modular"
 	path = /obj/item/clothing/suit/storage/fluff/jacket
@@ -84,3 +108,14 @@ Talon winter coat
 /datum/gear/suit/wintercoat/talon
 	display_name = "winter coat, Talon"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/talon
+
+
+/datum/gear/suit/armor/combat/crusader_explo
+	display_name = "knight, explo"
+	path = /obj/item/clothing/suit/armor/combat/crusader_explo
+	allowed_roles = list("Explorer","Field Medic","Pathfinder")
+
+/datum/gear/suit/armor/combat/crusader_explo/FM
+	display_name = "knight, Field Medic"
+	path = /obj/item/clothing/suit/armor/combat/crusader_explo/FM
+	allowed_roles = list ("Field Medic")

@@ -576,6 +576,12 @@
 "bF" = (
 /turf/simulated/floor/reinforced,
 /area/shuttle/centcom/ccbay)
+"bG" = (
+/obj/trader/general{
+	move_trader = 1
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/centcom/ccbay)
 "bJ" = (
 /obj/structure/table/rack,
 /obj/item/weapon/storage/box/pillbottles,
@@ -7236,7 +7242,7 @@
 	},
 /area/centcom/control)
 "EE" = (
-/obj/machinery/telecomms/relay/preset/sd,
+/obj/machinery/telecomms/relay/preset/station,
 /turf/unsimulated/floor/steel,
 /area/centcom/control)
 "EF" = (
@@ -28602,7 +28608,7 @@ bS
 fR
 bY
 lM
-Bx
+bG
 Bx
 Bx
 Bx

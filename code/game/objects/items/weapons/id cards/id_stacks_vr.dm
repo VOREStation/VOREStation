@@ -261,6 +261,10 @@
 	name = "Talon Pilot ID"
 	initial_sprite_stack = list("base-stamp-dark", "top-dark", "stamp-silhouette", "pips-purple", "stripe-purple")
 
+/obj/item/weapon/card/id/talon/miner
+	name = "Talon Mining ID"
+	initial_sprite_stack = list("base-stamp-dark", "top-dark", "stamp-silhouette", "pips-brown", "stripe-brown")
+
 /obj/item/weapon/card/id/talon/captain
 	name = "Talon Captain ID"
 	initial_sprite_stack = list("base-stamp-dark", "top-dark", "stamp-silhouette", "pips-gold", "stripe-gold")

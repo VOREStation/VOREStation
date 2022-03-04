@@ -264,3 +264,52 @@
 		else
 			M.visible_message("The petting was interrupted!!!", runemessage = "The petting was interrupted")
 	return
+
+/mob/living/simple_mob/vore/woof/hostile/aweful
+	maxHealth = 100
+	health = 100
+	var/killswitch = FALSE
+
+
+/mob/living/simple_mob/vore/woof/hostile/aweful/Initialize()
+	. = ..()
+	var/thismany = (rand(25,500)) / 100
+	resize(thismany, animate = FALSE, uncapped = TRUE, ignore_prefs = TRUE)
+
+/mob/living/simple_mob/vore/woof/hostile/aweful/death()
+	. = ..()
+	if(killswitch)
+		visible_message("<span class='notice'>\The [src] evaporates into nothing...</span>")
+		qdel(src)
+		return
+	var/thismany = rand(0,3)
+	var/list/possiblewoofs = list(/mob/living/simple_mob/vore/woof/hostile/aweful/melee, /mob/living/simple_mob/vore/woof/hostile/aweful/ranged)
+	if(thismany == 0)
+		visible_message("<span class='notice'>\The [src] evaporates into nothing...</span>")
+	if(thismany >= 1)
+		var/thiswoof = pick(possiblewoofs)
+		new thiswoof(loc, src)
+		visible_message("<span class='warning'>Another [src] appears!</span>")
+	if(thismany >= 2)
+		var/thiswoof = pick(possiblewoofs)
+		new thiswoof(loc, src)
+		visible_message("<span class='warning'>Another [src] appears!</span>")
+	if(thismany >= 3)
+		var/thiswoof = pick(possiblewoofs)
+		new thiswoof(loc, src)
+		visible_message("<span class='warning'>Another [src] appears!</span>")
+	qdel(src)
+
+/mob/living/simple_mob/vore/woof/hostile/aweful/melee
+
+	movement_cooldown = 0
+
+	ai_holder_type = /datum/ai_holder/simple_mob/woof/hostile
+
+/mob/living/simple_mob/vore/woof/hostile/aweful/ranged
+	movement_cooldown = 0
+
+	ai_holder_type = /datum/ai_holder/simple_mob/ranged/kiting/threatening/woof
+
+	projectiletype = /obj/item/projectile/awoo_missile
+	projectilesound = 'sound/voice/long_awoo.ogg'

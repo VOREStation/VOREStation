@@ -254,6 +254,7 @@
 	desc = "A chocolate-coated biscuit stick."
 	icon_state = "pockystick"
 	item_state = "pocky"
+	type_butt = null
 
 /obj/item/clothing/mask/chewable/candy/pocky/process()
 	chew()

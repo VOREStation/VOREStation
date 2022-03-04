@@ -342,6 +342,11 @@ BLIND     // can't see anything
 	desc = "A pair of designer sunglasses."
 	icon_state = "aviator"
 
+/obj/item/clothing/glasses/sunglasses/bigshot
+	name = "big shot's glasses"
+	desc = "A pair of glasses to help you feel more like a \[BIG SHOT]."
+	icon_state = "bigshot"
+
 /obj/item/clothing/glasses/welding
 	name = "welding goggles"
 	desc = "Protects the eyes from welders, approved by the mad scientist association."

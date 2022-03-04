@@ -55,7 +55,7 @@
 			C.throw_mode_on()
 
 /obj/item/weapon/grenade/chem_grenade/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/device/assembly_holder) && (!stage || stage==1) && path != 2)
+	if(istype(W,/obj/item/device/assembly_holder) && (!stage || stage==1) && !detonator && path != 2)
 		var/obj/item/device/assembly_holder/det = W
 		if(istype(det.a_left,det.a_right.type) || (!isigniter(det.a_left) && !isigniter(det.a_right)))
 			to_chat(user, "<span class='warning'>Assembly must contain one igniter.</span>")
@@ -314,4 +314,3 @@
 
 	beakers += B1
 	beakers += B2
-	

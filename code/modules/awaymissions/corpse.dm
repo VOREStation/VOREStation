@@ -50,8 +50,6 @@
 	//TODO: insert cause of death handling/wound simulation here
 	if(src.corpseuniform)
 		M.equip_to_slot_or_del(new src.corpseuniform(M), slot_w_uniform)
-	if(src.corpsesuit)
-		M.equip_voidsuit_to_slot_or_del_with_refit(new src.corpsesuit(M), slot_wear_suit, src.species)
 	if(src.corpseshoes)
 		M.equip_to_slot_or_del(new src.corpseshoes(M), slot_shoes)
 	if(src.corpsegloves)
@@ -62,8 +60,6 @@
 		M.equip_to_slot_or_del(new src.corpseglasses(M), slot_glasses)
 	if(src.corpsemask)
 		M.equip_to_slot_or_del(new src.corpsemask(M), slot_wear_mask)
-	if(src.corpsehelmet)
-		M.equip_voidhelm_to_slot_or_del_with_refit(new src.corpsehelmet(M), slot_head, src.species)
 	if(src.corpsebelt)
 		M.equip_to_slot_or_del(new src.corpsebelt(M), slot_belt)
 	if(src.corpsepocket1)
@@ -91,6 +87,11 @@
 			W.assignment = corpseidjob
 		M.set_id_info(W)
 		M.equip_to_slot_or_del(W, slot_wear_id)
+	// Do suit last to avoid equipping issues
+	if(src.corpsehelmet)
+		M.equip_voidhelm_to_slot_or_del_with_refit(new src.corpsehelmet(M), slot_head, src.species)
+	if(src.corpsesuit)
+		M.equip_voidsuit_to_slot_or_del_with_refit(new src.corpsesuit(M), slot_wear_suit, src.species)
 
 
 

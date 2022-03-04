@@ -1,112 +1,1645 @@
-"aa" = (/turf/template_noop,/area/template_noop)
-"ab" = (/turf/simulated/shuttle/floor/alienplating/external,/area/submap/cave/crashed_ufo)
-"ac" = (/turf/simulated/shuttle/wall/alien,/area/submap/cave/crashed_ufo)
-"ad" = (/obj/structure/closet/alien,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"ae" = (/obj/structure/closet/alien,/obj/item/prop/alien/junk,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"af" = (/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"ag" = (/obj/machinery/door/airlock/alien/locked,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"ah" = (/obj/effect/decal/remains/xeno,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"ai" = (/obj/machinery/porta_turret/alien,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"aj" = (/obj/structure/loot_pile/surface/alien/engineering,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"ak" = (/obj/structure/prop/alien/computer,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"al" = (/obj/item/weapon/tool/wrench/alien,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"am" = (/obj/structure/bed/alien,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"an" = (/obj/structure/table/alien,/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo)
-"ao" = (/obj/structure/table/alien,/obj/item/clothing/head/helmet/alien,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"ap" = (/obj/structure/prop/alien/power,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"aq" = (/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo)
-"ar" = (/obj/structure/table/alien,/obj/item/weapon/paper/alien{icon_state = "alienpaper_words"; info = "\[i]This tablet has a large collection of symbols that you've never seen before outside this ship. You have no hope of figuring out what any of the mean...\[/i]"},/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"as" = (/turf/simulated/shuttle/wall/alien/hard_corner,/area/submap/cave/crashed_ufo)
-"at" = (/obj/structure/prop/alien/computer,/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo)
-"au" = (/obj/structure/table/alien,/obj/item/prop/alien/junk,/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo)
-"av" = (/obj/structure/table/alien,/obj/item/weapon/paper/alien{icon_state = "alienpaper_words"; info = "\[i]This tablet has a large collection of symbols that you've never seen before outside this ship. You have no hope of figuring out what any of the mean...\[/i]"},/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo)
-"aw" = (/obj/structure/loot_pile/surface/alien/security,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"ax" = (/obj/structure/prop/alien/computer{dir = 8},/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo)
-"ay" = (/obj/structure/prop/alien/computer{ icon_state = "console-c"; dir = 4},/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"az" = (/obj/machinery/door/airlock/alien/locked{welded = 1},/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"aA" = (/obj/structure/bed/alien,/obj/effect/decal/remains/xeno,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"aB" = (/obj/item/weapon/tool/screwdriver/alien,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"aC" = (/obj/item/weapon/tool/wirecutters/alien,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"aD" = (/obj/structure/table/alien,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"aE" = (/obj/item/device/multitool/alien,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"aF" = (/obj/structure/prop/alien/computer/camera/flipped{ icon_state = "camera_flipped"; dir = 4},/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo)
-"aG" = (/obj/structure/prop/alien/computer/camera{ icon_state = "camera"; dir = 8},/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo)
-"aH" = (/obj/machinery/porta_turret/alien,/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo)
-"aI" = (/obj/machinery/door/airlock/alien/locked{p_open = 1},/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"aJ" = (/obj/effect/decal/remains/robot,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"aK" = (/obj/item/weapon/tool/crowbar/alien,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"aL" = (/obj/item/stack/cable_coil/alien,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"aM" = (/obj/structure/table/alien,/obj/item/prop/alien/junk,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"aN" = (/obj/structure/table/alien,/obj/item/weapon/paper/alien{icon_state = "alienpaper_words"; info = "\[i]This tablet has a large collection of symbols that you've never seen before outside this ship. You have no hope of figuring out what any of the mean...\[/i]"},/obj/item/device/gps/internal/poi,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"aO" = (/obj/structure/prop/alien/computer{ icon_state = "console-c"; dir = 4},/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo)
-"aP" = (/obj/structure/table/alien,/obj/item/clothing/accessory/medal/dungeon/alien_ufo,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"aQ" = (/obj/structure/table/alien,/obj/item/weapon/weldingtool/alien,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"aR" = (/obj/structure/bed/alien,/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo)
-"aS" = (/obj/structure/prop/alien/computer/camera,/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo)
-"aT" = (/obj/structure/closet/alien,/obj/item/weapon/paper/alien,/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo)
-"aU" = (/obj/structure/bed/alien,/obj/effect/decal/remains/xeno,/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo)
-"aV" = (/obj/structure/loot_pile/surface/alien/end,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"aW" = (/obj/structure/table/alien,/obj/item/weapon/surgical/circular_saw/alien,/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo)
-"aX" = (/obj/structure/table/alien,/obj/item/weapon/surgical/FixOVein/alien,/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo)
-"aY" = (/obj/structure/table/alien,/obj/item/weapon/surgical/scalpel/alien,/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo)
-"aZ" = (/obj/item/weapon/surgical/hemostat/alien,/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo)
-"ba" = (/obj/machinery/door/airlock/alien/locked,/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo)
-"bb" = (/obj/effect/decal/remains/lizard,/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo)
-"bc" = (/obj/structure/prop/alien/dispenser,/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo)
-"bd" = (/obj/structure/table/alien,/obj/item/weapon/surgical/bone_clamp/alien,/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo)
-"be" = (/obj/structure/loot_pile/surface/alien/medical,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"bf" = (/obj/structure/closet/alien,/obj/item/prop/alien/junk,/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo)
-"bg" = (/obj/structure/prop/alien/dispenser,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"bh" = (/obj/effect/decal/remains/mouse,/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo)
-"bi" = (/obj/structure/closet/alien,/obj/item/prop/alien/junk,/obj/item/prop/alien/junk,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"bj" = (/obj/machinery/porta_turret/alien/destroyed{ icon_state = "destroyed_target_prism"; dir = 6},/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"bk" = (/obj/item/weapon/cell/device/weapon/empty,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"bl" = (/obj/machinery/porta_turret/alien/destroyed{ icon_state = "destroyed_target_prism"; dir = 10},/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"bm" = (/obj/item/weapon/gun/energy/retro/empty,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"bn" = (/obj/item/device/gps{gps_tag = "COMDOM1"},/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"bo" = (/obj/item/weapon/reagent_containers/hypospray/autoinjector/used,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"bp" = (/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/burn,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"bq" = (/obj/effect/decal/remains/human{desc = "They look like human remains. Based on the equipment you saw nearby when you walked in, they were some kind of command person, and a poor one at that."},/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"br" = (/obj/item/clothing/gloves/yellow,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"bs" = (/obj/item/weapon/storage/belt/utility/full,/obj/item/device/multitool,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"bt" = (/obj/machinery/door/airlock/alien/public,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"bu" = (/obj/item/clothing/suit/storage/hooded/wintercoat/captain,/obj/item/clothing/shoes/boots/winter/command,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo)
-"bv" = (/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/template_noop)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/turf/template_noop,
+/area/template_noop)
+"ab" = (
+/turf/simulated/shuttle/floor/alienplating/external,
+/area/submap/cave/crashed_ufo)
+"ac" = (
+/turf/simulated/shuttle/wall/alien,
+/area/submap/cave/crashed_ufo)
+"ad" = (
+/obj/structure/closet/alien,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"ae" = (
+/obj/structure/closet/alien,
+/obj/item/prop/alien/junk,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"af" = (
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"ag" = (
+/obj/machinery/door/airlock/alien/locked,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"ah" = (
+/obj/effect/decal/remains/xeno,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"ai" = (
+/obj/machinery/porta_turret/alien,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"aj" = (
+/obj/structure/loot_pile/surface/alien/engineering,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"ak" = (
+/obj/structure/prop/alien/computer,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"al" = (
+/obj/item/weapon/tool/wrench/alien,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"am" = (
+/obj/structure/bed/alien,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"an" = (
+/obj/structure/table/alien,
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo)
+"ao" = (
+/obj/structure/table/alien,
+/obj/item/clothing/head/helmet/alien,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"ap" = (
+/obj/structure/prop/alien/power,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"aq" = (
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo)
+"ar" = (
+/obj/structure/table/alien,
+/obj/item/weapon/paper/alien{
+	icon_state = "alienpaper_words";
+	info = "\[i]This tablet has a large collection of symbols that you've never seen before outside this ship. You have no hope of figuring out what any of the mean...\[/i]"
+	},
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"as" = (
+/turf/simulated/shuttle/wall/alien/hard_corner,
+/area/submap/cave/crashed_ufo)
+"at" = (
+/obj/structure/prop/alien/computer,
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo)
+"au" = (
+/obj/structure/table/alien,
+/obj/item/prop/alien/junk,
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo)
+"av" = (
+/obj/structure/table/alien,
+/obj/item/weapon/paper/alien{
+	icon_state = "alienpaper_words";
+	info = "\[i]This tablet has a large collection of symbols that you've never seen before outside this ship. You have no hope of figuring out what any of the mean...\[/i]"
+	},
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo)
+"aw" = (
+/obj/structure/loot_pile/surface/alien/security,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"ax" = (
+/obj/structure/prop/alien/computer{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo)
+"ay" = (
+/obj/structure/prop/alien/computer{
+	icon_state = "console-c";
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"az" = (
+/obj/machinery/door/airlock/alien/locked{
+	welded = 1
+	},
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"aA" = (
+/obj/structure/bed/alien,
+/obj/effect/decal/remains/xeno,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"aB" = (
+/obj/item/weapon/tool/screwdriver/alien,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"aC" = (
+/obj/item/weapon/tool/wirecutters/alien,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"aD" = (
+/obj/structure/table/alien,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"aE" = (
+/obj/item/device/multitool/alien,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"aF" = (
+/obj/structure/prop/alien/computer/camera/flipped{
+	icon_state = "camera_flipped";
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo)
+"aG" = (
+/obj/structure/prop/alien/computer/camera{
+	icon_state = "camera";
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo)
+"aH" = (
+/obj/machinery/porta_turret/alien,
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo)
+"aI" = (
+/obj/machinery/door/airlock/alien/locked{
+	p_open = 1
+	},
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"aJ" = (
+/obj/effect/decal/remains/robot,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"aK" = (
+/obj/item/weapon/tool/crowbar/alien,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"aL" = (
+/obj/item/stack/cable_coil/alien,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"aM" = (
+/obj/structure/table/alien,
+/obj/item/prop/alien/junk,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"aN" = (
+/obj/structure/table/alien,
+/obj/item/weapon/paper/alien{
+	icon_state = "alienpaper_words";
+	info = "\[i]This tablet has a large collection of symbols that you've never seen before outside this ship. You have no hope of figuring out what any of the mean...\[/i]"
+	},
+/obj/item/device/gps/internal/poi,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"aO" = (
+/obj/structure/prop/alien/computer{
+	icon_state = "console-c";
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo)
+"aP" = (
+/obj/structure/table/alien,
+/obj/item/clothing/accessory/medal/dungeon/alien_ufo,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"aQ" = (
+/obj/structure/table/alien,
+/obj/item/weapon/weldingtool/alien,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"aR" = (
+/obj/structure/bed/alien,
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo)
+"aS" = (
+/obj/structure/prop/alien/computer/camera,
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo)
+"aT" = (
+/obj/structure/closet/alien,
+/obj/item/weapon/paper/alien,
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo)
+"aU" = (
+/obj/structure/bed/alien,
+/obj/effect/decal/remains/xeno,
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo)
+"aV" = (
+/obj/structure/loot_pile/surface/alien/end,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"aW" = (
+/obj/structure/table/alien,
+/obj/item/weapon/surgical/circular_saw/alien,
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo)
+"aX" = (
+/obj/structure/table/alien,
+/obj/item/weapon/surgical/FixOVein/alien,
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo)
+"aY" = (
+/obj/structure/table/alien,
+/obj/item/weapon/surgical/scalpel/alien,
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo)
+"aZ" = (
+/obj/item/weapon/surgical/hemostat/alien,
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo)
+"ba" = (
+/obj/machinery/door/airlock/alien/locked,
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo)
+"bb" = (
+/obj/effect/decal/remains/lizard,
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo)
+"bc" = (
+/obj/structure/prop/alien/dispenser,
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo)
+"bd" = (
+/obj/structure/table/alien,
+/obj/item/weapon/surgical/bone_clamp/alien,
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo)
+"be" = (
+/obj/structure/loot_pile/surface/alien/medical,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"bf" = (
+/obj/structure/closet/alien,
+/obj/item/prop/alien/junk,
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo)
+"bg" = (
+/obj/structure/prop/alien/dispenser,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"bh" = (
+/obj/effect/decal/remains/mouse,
+/turf/simulated/shuttle/floor/alien,
+/area/submap/cave/crashed_ufo)
+"bi" = (
+/obj/structure/closet/alien,
+/obj/item/prop/alien/junk,
+/obj/item/prop/alien/junk,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"bj" = (
+/obj/machinery/porta_turret/alien/destroyed{
+	icon_state = "destroyed_target_prism";
+	dir = 6
+	},
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"bk" = (
+/obj/item/weapon/cell/device/weapon/empty,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"bl" = (
+/obj/machinery/porta_turret/alien/destroyed{
+	icon_state = "destroyed_target_prism";
+	dir = 10
+	},
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"bm" = (
+/obj/item/weapon/gun/energy/retro/empty,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"bn" = (
+/obj/item/device/gps{
+	gps_tag = "COMDOM1"
+	},
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"bo" = (
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/used,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"bp" = (
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/burn,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"bq" = (
+/obj/effect/decal/remains/human{
+	desc = "They look like human remains. Based on the equipment you saw nearby when you walked in, they were some kind of command person, and a poor one at that."
+	},
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"br" = (
+/obj/item/clothing/gloves/yellow,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"bs" = (
+/obj/item/weapon/storage/belt/utility/full,
+/obj/item/device/multitool,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"bt" = (
+/obj/machinery/door/airlock/alien/public,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"bu" = (
+/obj/item/clothing/suit/storage/hooded/wintercoat/captain,
+/obj/item/clothing/shoes/boots/winter/command,
+/turf/simulated/shuttle/floor/alienplating,
+/area/submap/cave/crashed_ufo)
+"bv" = (
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/template_noop)
 
 (1,1,1) = {"
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaabababababababababaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaababababacacacacacacacababababaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaabababacacacacadadaeadadacacacacabababaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaababacacacafagafafafahafafafagafacacacababaaaaaaaaaaaaaa
-aaaaaaaaaaaaababacacafafafacafafafafafafafacafafafacacababaaaaaaaaaaaa
-aaaaaaaaaaababacacafafacacacacaiafafafaiacacacacafafacacababaaaaaaaaaa
-aaaaaaaaababacacafafacacajakacacafafalacacamahacacafafacacababaaaaaaaa
-aaaaaaababacacafafacacaiafafanacacafacacaoafahaeacacafafacacababaaaaaa
-aaaaaaabacacafafacacapafafaqanarasagasacacagacacacacacafafacacabaaaaaa
-aaaaababacafafacacapafafaqaqaqafasafasaiaqaqatauauacacacafafacababaaaa
-aaaaabacacafacacaiafafaqaqaqafafagafagafafaqaqaqavacaeacacafacacabaaaa
-aaaaabacafafacajafafaqaqaqafafajasafasawafafaqaqaxacafahacafafacabaaaa
-aaababacagacacayafaqaqaqafafadacasazasacawafafaqaqagafaAacacagacababaa
-aaabacacafafacacananaqaBaCadacacatafatacacawafafaqacaDacacafafacacabaa
-aaabacadafafaiacacaDaEahajacacaFaqafaqaGacacawafaHacacacaiafafaeacabaa
-aaabacadafafafafacasasaIasacaqaqaqaJaqaqaqacasagasasacafafafaKadacabaa
-aaabacaeafaLafafafagafafafacaiaqaMaNaraqaiacafafafagafafafafafadacabaa
-aaabacaeafafafafacasasagasacaOaqaPahaQaqaxacasagasasacahafafafaeacabaa
-aaabacadafafaiacacatacaqaRacacaqaqaqaqaqacacaSaqaqaTacacaiafafadacabaa
-aaabacacafafacacaqaqacaqaqaUacacaiaVaiacacaWaqaqaqacacacacafafacacabaa
-aaababacagacacaXaqaUasacaqaqaRacacacacacaYaHaqaqasacaZacacacagacababaa
-aaaaabacafafacavaqaqbaaqaqaqaqaUasafasaFaqaqaqaqbaaqbbaqacafafacabaaaa
-aaaaabacacafacacbcbdasaiaqacaqaqagafagaqaqaqaqaqasacaqacacafacacabaaaa
-aaaaababacafafacacacacasagasacacasafasaqaqasbaasacacacacafafacababaaaa
-aaaaaaabacacafafacacacbeafafafbeasagasbfacacaqacacacacafafacacabaaaaaa
-aaaaaaababacacafafacacbgafafbeacacafacacacaqbhaqacacafafacacababaaaaaa
-aaaaaaaaababacacafafacacbibeacacafafafacacacaqacacafafacacababaaaaaaaa
-aaaaaaaaaaababacacafafacacacacbjbkafafblacacacacafafacacababaaaaaaaaaa
-aaaaaaaaaaaaababacacafafafasafafafbmbnbobpasafafafacacababaaaaaaaaaaaa
-aaaaaaaaaaaaaaababacacacafagafbkafafbqbrbsagafacacacababaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaabababacacasacafasbtasbuacasacacabababaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaababababacasasafasacacababababaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaabvbvbvabababasbtasabababbvbvbvaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaabvbvbvbvbvbvbvbvbvbvbvbvbvbvbvaaaaaaaaaaaaaaaaaaaa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(2,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(3,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ab
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(4,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ac
+ac
+ac
+ac
+ad
+ad
+ae
+ae
+ad
+ac
+ac
+ac
+ac
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(5,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ac
+ac
+ac
+af
+ag
+af
+af
+af
+af
+af
+af
+af
+ag
+af
+ac
+ac
+ac
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(6,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ac
+ac
+af
+af
+af
+ac
+af
+af
+af
+aL
+af
+af
+af
+ac
+af
+af
+af
+ac
+ac
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(7,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ac
+ac
+af
+af
+ac
+ac
+ac
+ac
+ai
+af
+af
+af
+ai
+ac
+ac
+ac
+ac
+af
+af
+ac
+ac
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+"}
+(8,1,1) = {"
+aa
+aa
+aa
+aa
+ab
+ab
+ac
+ac
+af
+af
+ac
+ac
+aj
+ay
+ac
+ac
+af
+af
+af
+ac
+ac
+aX
+av
+ac
+ac
+af
+af
+ac
+ac
+ab
+ab
+aa
+aa
+aa
+aa
+"}
+(9,1,1) = {"
+aa
+aa
+aa
+ab
+ab
+ac
+ac
+af
+af
+ac
+ac
+ai
+af
+af
+an
+ac
+ac
+af
+ac
+ac
+aq
+aq
+aq
+bc
+ac
+ac
+af
+af
+ac
+ac
+ab
+ab
+aa
+aa
+aa
+"}
+(10,1,1) = {"
+aa
+aa
+aa
+ab
+ac
+ac
+af
+af
+ac
+ac
+ap
+af
+af
+aq
+an
+aD
+as
+ag
+as
+at
+aq
+aU
+aq
+bd
+ac
+ac
+ac
+af
+af
+ac
+ac
+ab
+aa
+aa
+aa
+"}
+(11,1,1) = {"
+aa
+aa
+ab
+ab
+ac
+af
+af
+ac
+ac
+ap
+af
+af
+aq
+aq
+aq
+aE
+as
+af
+as
+ac
+ac
+as
+ba
+as
+ac
+ac
+ac
+ac
+af
+af
+ac
+ab
+ab
+bv
+bv
+"}
+(12,1,1) = {"
+aa
+aa
+ab
+ac
+ac
+af
+ac
+ac
+ai
+af
+af
+aq
+aq
+aq
+aB
+ah
+aI
+af
+ag
+aq
+aq
+ac
+aq
+ai
+as
+be
+bg
+ac
+ac
+af
+ac
+ac
+ab
+bv
+bv
+"}
+(13,1,1) = {"
+aa
+aa
+ab
+ac
+af
+af
+ac
+aj
+af
+af
+aq
+aq
+aq
+af
+aC
+aj
+as
+af
+as
+aR
+aq
+aq
+aq
+aq
+ag
+af
+af
+bi
+ac
+af
+af
+ac
+ab
+bv
+bv
+"}
+(14,1,1) = {"
+aa
+ab
+ab
+ac
+ag
+ac
+ac
+ak
+af
+aq
+aq
+aq
+af
+af
+ad
+ac
+ac
+ac
+ac
+ac
+aU
+aq
+aq
+ac
+as
+af
+af
+be
+ac
+as
+ag
+as
+ab
+ab
+bv
+"}
+(15,1,1) = {"
+aa
+ab
+ac
+ac
+af
+af
+ac
+ac
+an
+an
+aq
+af
+af
+ad
+ac
+ac
+aq
+ai
+aO
+ac
+ac
+aR
+aq
+aq
+ac
+af
+be
+ac
+ac
+af
+af
+ac
+ac
+ab
+bv
+"}
+(16,1,1) = {"
+aa
+ab
+ac
+ad
+af
+af
+ai
+ac
+ac
+ar
+af
+af
+aj
+ac
+ac
+aF
+aq
+aq
+aq
+aq
+ac
+ac
+aU
+aq
+ac
+be
+ac
+ac
+bj
+af
+bk
+af
+as
+ab
+bv
+"}
+(17,1,1) = {"
+aa
+ab
+ac
+ad
+af
+af
+af
+af
+ac
+as
+as
+ag
+as
+as
+at
+aq
+aq
+aM
+aP
+aq
+ai
+ac
+as
+ag
+as
+as
+ac
+af
+bk
+af
+af
+as
+as
+as
+bv
+"}
+(18,1,1) = {"
+aa
+ab
+ac
+ae
+ah
+af
+af
+af
+af
+ag
+af
+af
+af
+az
+af
+af
+aJ
+aN
+ah
+aq
+aV
+ac
+af
+af
+af
+ag
+af
+af
+af
+bm
+af
+bt
+af
+bt
+bv
+"}
+(19,1,1) = {"
+aa
+ab
+ac
+ad
+af
+af
+af
+al
+ac
+as
+as
+ag
+as
+as
+at
+aq
+aq
+ar
+aQ
+aq
+ai
+ac
+as
+ag
+as
+as
+ac
+af
+af
+bn
+bq
+as
+as
+as
+bv
+"}
+(20,1,1) = {"
+aa
+ab
+ac
+ad
+af
+af
+ai
+ac
+ac
+ac
+ai
+af
+aw
+ac
+ac
+aG
+aq
+aq
+aq
+aq
+ac
+ac
+aF
+aq
+aq
+bf
+ac
+ac
+bl
+bo
+br
+bu
+ac
+ab
+bv
+"}
+(21,1,1) = {"
+aa
+ab
+ac
+ac
+af
+af
+ac
+ac
+ao
+ac
+aq
+af
+af
+aw
+ac
+ac
+aq
+ai
+ax
+ac
+ac
+aY
+aq
+aq
+aq
+ac
+ac
+ac
+ac
+bp
+bs
+ac
+ac
+ab
+bv
+"}
+(22,1,1) = {"
+aa
+ab
+ab
+ac
+ag
+ac
+ac
+am
+af
+ag
+aq
+aq
+af
+af
+aw
+ac
+ac
+ac
+ac
+ac
+aW
+aH
+aq
+aq
+as
+ac
+aq
+ac
+ac
+as
+ag
+as
+ab
+ab
+bv
+"}
+(23,1,1) = {"
+aa
+aa
+ab
+ac
+af
+af
+ac
+ah
+ah
+ac
+at
+aq
+aq
+af
+af
+aw
+as
+af
+as
+aS
+aq
+aq
+aq
+aq
+ba
+aq
+bh
+aq
+ac
+af
+af
+ac
+ab
+bv
+bv
+"}
+(24,1,1) = {"
+aa
+aa
+ab
+ac
+ac
+af
+ac
+ac
+ae
+ac
+au
+aq
+aq
+aq
+af
+af
+ag
+af
+ag
+aq
+aq
+aq
+aq
+aq
+as
+ac
+aq
+ac
+ac
+af
+ac
+ac
+ab
+bv
+bv
+"}
+(25,1,1) = {"
+aa
+aa
+ab
+ab
+ac
+af
+af
+ac
+ac
+ac
+au
+av
+ax
+aq
+aq
+aH
+as
+af
+as
+aq
+aq
+as
+ba
+as
+ac
+ac
+ac
+ac
+af
+af
+ac
+ab
+ab
+bv
+bv
+"}
+(26,1,1) = {"
+aa
+aa
+aa
+ab
+ac
+ac
+af
+af
+ac
+ac
+ac
+ac
+ac
+ag
+ac
+ac
+as
+ag
+as
+aT
+ac
+ac
+aq
+ac
+ac
+ac
+ac
+af
+af
+ac
+ac
+ab
+aa
+aa
+aa
+"}
+(27,1,1) = {"
+aa
+aa
+aa
+ab
+ab
+ac
+ac
+af
+af
+ac
+ac
+ae
+af
+af
+aD
+ac
+ac
+af
+ac
+ac
+ac
+aZ
+bb
+aq
+ac
+ac
+af
+af
+ac
+ac
+ab
+ab
+aa
+aa
+aa
+"}
+(28,1,1) = {"
+aa
+aa
+aa
+aa
+ab
+ab
+ac
+ac
+af
+af
+ac
+ac
+ah
+aA
+ac
+ac
+af
+af
+ah
+ac
+ac
+ac
+aq
+ac
+ac
+af
+af
+ac
+ac
+ab
+ab
+aa
+aa
+aa
+aa
+"}
+(29,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ac
+ac
+af
+af
+ac
+ac
+ac
+ac
+ai
+af
+af
+af
+ai
+ac
+ac
+ac
+ac
+af
+af
+ac
+ac
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+"}
+(30,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ac
+ac
+af
+af
+af
+ac
+af
+af
+af
+af
+af
+af
+af
+ac
+af
+af
+af
+ac
+ac
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(31,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ac
+ac
+ac
+af
+ag
+af
+af
+aK
+af
+af
+af
+af
+ag
+af
+ac
+ac
+ac
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(32,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ac
+ac
+ac
+ac
+ae
+ad
+ad
+ae
+ad
+ac
+ac
+ac
+ac
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(33,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ac
+ac
+ac
+ac
+ac
+ac
+ac
+ab
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(34,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(35,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 "}

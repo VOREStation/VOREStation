@@ -734,7 +734,7 @@
 				/obj/item/toy/snappop,
 				/obj/item/toy/sword,
 				/obj/item/toy/balloon,
-				/obj/item/toy/crossbow,
+				/obj/item/weapon/gun/projectile/revolver/toy/crossbow,
 				/obj/item/toy/blink,
 				/obj/item/weapon/reagent_containers/spray/waterflower,
 				/obj/item/toy/eight_ball,

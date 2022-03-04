@@ -23,7 +23,7 @@
 	/// For showing to the pilot of the ship, so they see the 'real' appearance, despite others seeing the unknown ones
 	var/image/real_appearance
 
-	light_system = MOVABLE_LIGHT
+	//light_system = MOVABLE_LIGHT
 	light_on = FALSE
 
 /obj/effect/overmap/Initialize()

@@ -28,6 +28,7 @@
 	organ_names = /decl/mob_organ_names/tree
 
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/xenomeat
+	meat_amount = 2
 
 	pixel_x = -16
 

@@ -101,7 +101,7 @@
 	var/list/equipment = new		//This lists holds what stuff you bolted onto your baby ride
 	var/obj/item/mecha_parts/mecha_equipment/selected
 	var/max_equip = 2
-	
+
 	// What direction to float in, if inertial movement is active.
 	var/float_direction = 0
 	// Process() iterator count.
@@ -831,7 +831,7 @@
 	if(hasInternalDamage(MECHA_INT_CONTROL_LOST))
 		move_result = mechsteprand()
 	//Up/down zmove
-	else if(direction & UP || direction & DOWN)
+	else if(direction == UP || direction == DOWN)
 		if(!can_ztravel())
 			occupant_message("<span class='warning'>Your vehicle lacks the capacity to move in that direction!</span>")
 			return FALSE
@@ -844,7 +844,7 @@
 				occupant_message("<span class='warning'>You can't move that direction from here!</span>")
 				result = FALSE
 				break
-			var/turf/dest = direction & UP ? GetAbove(T) : GetBelow(T)
+			var/turf/dest = (direction == UP) ? GetAbove(src) : GetBelow(src)
 			if(!dest)
 				occupant_message("<span class='notice'>There is nothing of interest in this direction.</span>")
 				result = FALSE
@@ -2481,8 +2481,8 @@
 		var/obj/item/mecha_parts/mecha_equipment/equip = top_filter.getObj("select_equip")
 		if(equip)
 			src.selected = equip
-			src.occupant_message("You switch to [equip]")
-			src.visible_message("[src] raises [equip]")
+			src.occupant_message("You switch to [equip].")
+			src.visible_message("[src] raises [equip].")
 			send_byjax(src.occupant,"exosuit.browser","eq_list",src.get_equipment_list())
 		return
 	if(href_list["eject"])

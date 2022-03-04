@@ -240,6 +240,7 @@
 
 /obj/random/mob/mouse/item_to_spawn()
 	return pick(prob(15);/mob/living/simple_mob/animal/passive/mouse/white,
+				prob(15);/mob/living/simple_mob/animal/passive/mouse/black,
 				prob(30);/mob/living/simple_mob/animal/passive/mouse/brown,
 				prob(30);/mob/living/simple_mob/animal/passive/mouse/gray,
 				prob(30);/mob/living/simple_mob/animal/passive/mouse/rat)

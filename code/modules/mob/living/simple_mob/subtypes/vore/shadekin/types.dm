@@ -28,21 +28,14 @@
 	a brawl, but you barely generate any of your own energy. You can stand in a dark spot to gather scraps \
 	of energy in a pinch, but otherwise need to take it, by force if necessary."
 
+/mob/living/simple_mob/shadekin/red
+	ai_holder_type = /datum/ai_holder/simple_mob/melee
+
 /mob/living/simple_mob/shadekin/red/white
 	icon_state = "white"
 /mob/living/simple_mob/shadekin/red/dark
 	icon_state = "dark"
 /mob/living/simple_mob/shadekin/red/brown
-	icon_state = "brown"
-
-/mob/living/simple_mob/shadekin/red/ai
-	ai_holder_type = /datum/ai_holder/simple_mob/melee
-
-/mob/living/simple_mob/shadekin/red/ai/white
-	icon_state = "white"
-/mob/living/simple_mob/shadekin/red/ai/dark
-	icon_state = "dark"
-/mob/living/simple_mob/shadekin/red/ai/brown
 	icon_state = "brown"
 
 /////////////////////////////////////////////////////////////////
@@ -85,21 +78,14 @@
 	without doing so, albeit slowly. Dark and light are irrelevant to you, they are just different places to explore and \
 	discover new things and new people."
 
+/mob/living/simple_mob/shadekin/blue/
+	ai_holder_type = /datum/ai_holder/simple_mob/passive
+
 /mob/living/simple_mob/shadekin/blue/white
 	icon_state = "white"
 /mob/living/simple_mob/shadekin/blue/dark
 	icon_state = "dark"
 /mob/living/simple_mob/shadekin/blue/brown
-	icon_state = "brown"
-
-/mob/living/simple_mob/shadekin/blue/ai
-	ai_holder_type = /datum/ai_holder/simple_mob/passive
-
-/mob/living/simple_mob/shadekin/blue/ai/white
-	icon_state = "white"
-/mob/living/simple_mob/shadekin/blue/ai/dark
-	icon_state = "dark"
-/mob/living/simple_mob/shadekin/blue/ai/brown
 	icon_state = "brown"
 
 /////////////////////////////////////////////////////////////////
@@ -137,21 +123,14 @@
 	areas is taxing on your energy. You can harvest energy from others in a fight, but since you don't need to, you may \
 	just choose to simply not fight."
 
+/mob/living/simple_mob/shadekin/purple
+	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
+
 /mob/living/simple_mob/shadekin/purple/white
 	icon_state = "white"
 /mob/living/simple_mob/shadekin/purple/dark
 	icon_state = "dark"
 /mob/living/simple_mob/shadekin/purple/brown
-	icon_state = "brown"
-
-/mob/living/simple_mob/shadekin/purple/ai
-	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
-
-/mob/living/simple_mob/shadekin/purple/ai/white
-	icon_state = "white"
-/mob/living/simple_mob/shadekin/purple/ai/dark
-	icon_state = "dark"
-/mob/living/simple_mob/shadekin/purple/ai/brown
 	icon_state = "brown"
 
 /////////////////////////////////////////////////////////////////
@@ -177,6 +156,7 @@
 
 	eye_desc = "yellow eyes"
 	stalker = FALSE
+	check_for_observer = TRUE
 	vore_stomach_flavor = "You slip past pointy triangle teeth and down the slick, slippery gullet \
 	of the creature. It's warm, and the air is thick. You can hear its body squelch and shift around you \
 	as you settle into its stomach! The doughy walls within cling to you heavily, churning down on you, wearing \
@@ -187,6 +167,9 @@
 	area is very taxing on you, but you gain energy extremely fast in any very dark area. You're weaker than other \
 	shadekin, but your fast energy generation in the dark allows you to phase shift more often."
 
+/mob/living/simple_mob/shadekin/yellow
+	ai_holder_type = /datum/ai_holder/simple_mob/melee/hit_and_run
+
 /mob/living/simple_mob/shadekin/yellow/white
 	icon_state = "white"
 /mob/living/simple_mob/shadekin/yellow/dark
@@ -194,24 +177,14 @@
 /mob/living/simple_mob/shadekin/yellow/brown
 	icon_state = "brown"
 
-/mob/living/simple_mob/shadekin/yellow/ai
-	ai_holder_type = /datum/ai_holder/simple_mob/melee/hit_and_run
-
-/mob/living/simple_mob/shadekin/yellow/ai/white
-	icon_state = "white"
-/mob/living/simple_mob/shadekin/yellow/ai/dark
-	icon_state = "dark"
-/mob/living/simple_mob/shadekin/yellow/ai/brown
-	icon_state = "brown"
-
-/mob/living/simple_mob/shadekin/yellow/ai/retaliate
+/mob/living/simple_mob/shadekin/yellow/retaliate
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
 
-/mob/living/simple_mob/shadekin/yellow/ai/retaliate/white
+/mob/living/simple_mob/shadekin/yellow/retaliate/white
 	icon_state = "white"
-/mob/living/simple_mob/shadekin/yellow/ai/retaliate/dark
+/mob/living/simple_mob/shadekin/yellow/retaliate/dark
 	icon_state = "dark"
-/mob/living/simple_mob/shadekin/yellow/ai/retaliate/brown
+/mob/living/simple_mob/shadekin/yellow/retaliate/brown
 	icon_state = "brown"
 
 /////////////////////////////////////////////////////////////////
@@ -237,6 +210,7 @@
 
 	eye_desc = "green eyes"
 	stalker = TRUE
+	check_for_observer = TRUE
 	vore_stomach_flavor = "You slip past pointy triangle teeth and down the slick, slippery gullet \
 	of the creature. It's warm, and the air is thick. You can hear its body squelch and shift around you \
 	as you settle into its stomach! The doughy walls within cling to you heavily, churning down on you, wearing \
@@ -247,21 +221,14 @@
 	have more experience than your yellow-eyed cousins. You gain energy decently fast in any very dark area. You're weaker than other \
 	shadekin, but your slight energy generation constnatly, and especially in the dark allows for a good mix of uses."
 
+/mob/living/simple_mob/shadekin/green
+	ai_holder_type = /datum/ai_holder/simple_mob/passive
+
 /mob/living/simple_mob/shadekin/green/white
 	icon_state = "white"
 /mob/living/simple_mob/shadekin/green/dark
 	icon_state = "dark"
 /mob/living/simple_mob/shadekin/green/brown
-	icon_state = "brown"
-
-/mob/living/simple_mob/shadekin/green/ai
-	ai_holder_type = /datum/ai_holder/simple_mob/passive
-
-/mob/living/simple_mob/shadekin/green/ai/white
-	icon_state = "white"
-/mob/living/simple_mob/shadekin/green/ai/dark
-	icon_state = "dark"
-/mob/living/simple_mob/shadekin/green/ai/brown
 	icon_state = "brown"
 
 /////////////////////////////////////////////////////////////////
@@ -294,21 +261,14 @@
 	You're stronger than most shadekin, faster, and more capable in a brawl, but you don't generate much of your own energy. \
 	You can stand in a dark spot to gather some energy, but otherwise need to take it, by force if necessary."
 
+/mob/living/simple_mob/shadekin/orange
+	ai_holder_type = /datum/ai_holder/simple_mob/melee
+
 /mob/living/simple_mob/shadekin/orange/white
 	icon_state = "white"
 /mob/living/simple_mob/shadekin/orange/dark
 	icon_state = "dark"
 /mob/living/simple_mob/shadekin/orange/brown
-	icon_state = "brown"
-
-/mob/living/simple_mob/shadekin/orange/ai
-	ai_holder_type = /datum/ai_holder/simple_mob/melee
-
-/mob/living/simple_mob/shadekin/orange/ai/white
-	icon_state = "white"
-/mob/living/simple_mob/shadekin/orange/ai/dark
-	icon_state = "dark"
-/mob/living/simple_mob/shadekin/orange/ai/brown
 	icon_state = "brown"
 
 /////////////////////////////////////////////////////////////////
@@ -317,6 +277,7 @@
 	name = "Rivyr"
 	desc = "She appears to be a fluffer of some sort. Deep blue eyes and curious attitude."
 	icon_state = "rivyr"
+	ai_holder_type = /datum/ai_holder/simple_mob/passive
 	eye_desc = ""
 	vore_stomach_flavor = "Blue flesh gleams in the fading light as you slip down the little mar's gullet! \
 	Gooey flesh and heat surrounds your form as you're tucked away into the darkness of her stomach! Thick slimes cling \

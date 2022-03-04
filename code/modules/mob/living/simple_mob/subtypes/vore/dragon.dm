@@ -16,6 +16,9 @@
 	melee_damage_lower = 5
 	melee_damage_upper = 30
 
+	meat_amount = 15
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+
 	//Space dragons aren't affected by atmos.
 	min_oxy = 0
 	max_oxy = 0

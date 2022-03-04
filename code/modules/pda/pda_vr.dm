@@ -15,12 +15,12 @@
 
 /obj/item/device/pda/pathfinder
 	default_cartridge = /obj/item/weapon/cartridge/explorer
-	icon_state = "pda-lawyer-old"
+	icon_state = "pda-transp"			//Might as well let this sprite actually get seen, otherwise it's going to be hidden forever.
 
 /obj/item/device/pda/explorer
 	default_cartridge = /obj/item/weapon/cartridge/explorer
-	icon_state = "pda-det"
+	icon_state = "pda-lawyer-old"			//Explorer's can get the PF's old style instead, rather than re-using the detective PDA
 
 /obj/item/device/pda/sar
 	default_cartridge = /obj/item/weapon/cartridge/sar
-	icon_state = "pda-h"
+	icon_state = "pda-gene"			//Gives FM's a distinct PDA of their own, rather than sharing with the bridge-secretary & CCO's.

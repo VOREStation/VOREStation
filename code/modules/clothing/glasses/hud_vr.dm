@@ -90,10 +90,12 @@
 		if(icon_state == "glasses")
 			to_chat(usr, "You darken the electrochromic lenses of \the [src] to one-way transparency.")
 			name = "[initial(name)] (shaded, pr)"
+			flags_inv |= HIDEEYES
 			icon_state = "sun"
 		else if(icon_state == "sun")
 			to_chat(usr, "You restore the electrochromic lenses of \the [src] to standard two-way transparency.")
 			name = "[initial(name)] (pr)"
+			flags_inv &= ~HIDEEYES
 			icon_state = "glasses"
 		else
 			to_chat(usr, "The [src] don't seem to support this functionality.")
@@ -101,10 +103,12 @@
 		if(icon_state == "glasses")
 			to_chat(usr, "You darken the electrochromic lenses of \the [src] to one-way transparency.")
 			name = "[initial(name)] (shaded)"
+			flags_inv |= HIDEEYES
 			icon_state = "sun"
 		else if(icon_state == "sun")
 			to_chat(usr, "You restore the electrochromic lenses of \the [src] to standard two-way transparency.")
 			name = "[initial(name)]"
+			flags_inv &= ~HIDEEYES
 			icon_state = "glasses"
 		else
 			to_chat(usr, "The [src] don't seem to support this functionality.")
@@ -222,7 +226,7 @@
 	<br>Offers full protection against bright flashes/welders and full access to system alarm monitoring."
 	mode = "best"
 	flash_protection = FLASH_PROTECTION_MAJOR
-	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_STATUS_R,VIS_CH_BACKUP,VIS_CH_WANTED)
+	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_CH_STATUS_R,VIS_CH_BACKUP,VIS_CH_WANTED,VIS_AUGMENTED)
 	action_button_name = "AR Console (All Alerts)"
 	tgarscreen_path = /datum/tgui_module/alarm_monitor/all/glasses
 

@@ -5,6 +5,8 @@
 
 	var/list/my_glitterflies = list()
 
+	effect_color = "#8cd448"
+
 /datum/artifact_effect/gaia/proc/age_plantlife(var/obj/machinery/portable_atmospherics/hydroponics/Tray = null)
 	if(istype(Tray) && Tray.seed)
 		Tray.health += rand(1,3) * HYDRO_SPEED_MULTIPLIER
@@ -30,6 +32,7 @@
 			P.update_icon()
 
 /datum/artifact_effect/gaia/DoEffectTouch(var/mob/user)
+	var/atom/holder = get_master_holder()
 	to_chat(user, "<span class='alien'>You feel the presence of something long forgotten.</span>")
 	for(var/obj/machinery/portable_atmospherics/hydroponics/Tray in view(world.view,get_turf(holder)))
 		age_plantlife(Tray)
@@ -44,6 +47,7 @@
 		age_plantlife(P)
 
 /datum/artifact_effect/gaia/DoEffectAura()
+	var/atom/holder = get_master_holder()
 	for(var/obj/machinery/portable_atmospherics/hydroponics/Tray in view(effectrange,holder))
 		age_plantlife(Tray)
 		if(prob(2))
@@ -57,6 +61,7 @@
 		age_plantlife(P)
 
 /datum/artifact_effect/gaia/DoEffectPulse()
+	var/atom/holder = get_master_holder()
 	for(var/obj/machinery/portable_atmospherics/hydroponics/Tray in view(effectrange,holder))
 		age_plantlife(Tray)
 		if(prob(10))
@@ -70,6 +75,7 @@
 		age_plantlife(P)
 
 /datum/artifact_effect/gaia/process()
+	var/atom/holder = get_master_holder()
 	..()
 
 	listclearnulls(my_glitterflies)

@@ -103,7 +103,7 @@
 	if(always_on)
 		create_shields()
 	GLOB.moved_event.register(src, src, .proc/moved_event)
-	..()
+	return ..()
 
 /obj/item/shield_projector/Destroy()
 	destroy_shields()

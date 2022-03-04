@@ -261,7 +261,7 @@
 	landmark_station = "escape_station"
 	landmark_transition = "escape_transit";
 	docking_controller_tag = "escape_shuttle"
-	ceiling_type = /turf/simulated/floor/reinforced/
+	ceiling_type = /turf/simulated/floor/reinforced
 	move_time = SHUTTLE_TRANSIT_DURATION_RETURN
 
 /obj/effect/shuttle_landmark/cynosure/escape/offsite

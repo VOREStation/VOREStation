@@ -15,8 +15,12 @@
 
 /obj/machinery/portable_atmospherics/Initialize()
 	..()
-	air_contents.volume = volume
-	air_contents.temperature = T20C
+	//VOREStation Edit - Fix runtime
+	if(air_contents)
+		air_contents.volume = volume
+		air_contents.temperature = T20C
+	//VOREStation Edit End
+  
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/portable_atmospherics/LateInitialize()

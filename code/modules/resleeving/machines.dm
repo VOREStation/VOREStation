@@ -589,8 +589,9 @@
 	//Re-supply a NIF if one was backed up with them.
 	if(MR.nif_path)
 		var/obj/item/device/nif/nif = new MR.nif_path(occupant,null,MR.nif_savedata)
-		for(var/path in MR.nif_software)
-			new path(nif)
+		spawn(0)			//Delay to not install software before NIF is fully installed
+			for(var/path in MR.nif_software)
+				new path(nif)
 		nif.durability = MR.nif_durability //Restore backed up durability after restoring the softs.
 
 	// If it was a custom sleeve (not owned by anyone), update namification sequences
@@ -612,7 +613,7 @@
 
 	occupant.confused = max(occupant.confused, confuse_amount)									// Apply immedeate effects
 	occupant.eye_blurry = max(occupant.eye_blurry, blur_amount)
-	
+
 	// Vore deaths get a fake modifier labeled as such
 	if(!occupant.mind)
 		log_debug("[occupant] didn't have a mind to check for vore_death, which may be problematic.")

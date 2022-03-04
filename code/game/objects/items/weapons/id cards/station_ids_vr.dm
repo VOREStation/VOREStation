@@ -208,6 +208,7 @@
 		"Shaft Miner" = "itg",
 		"Intern" = "itg",
 		"Talon Pilot" = "itg",
+		"Talon Miner" = "itg",
 		"Bartender" = "itg_green",
 		"Botanist" = "itg_green",
 		"Chef" = "itg_green",

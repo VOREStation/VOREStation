@@ -6134,6 +6134,9 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/tether/surfacebase/public_garden_one)
 "aks" = (
+/obj/effect/landmark{
+	name = "maint_pred"
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/public_garden_maintenence)
 "akt" = (
@@ -8439,6 +8442,7 @@
 	icon_state = "4-8"
 	},
 /obj/structure/disposalpipe/segment,
+/obj/effect/landmark/vines,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_one_hall)
 "anZ" = (
@@ -14084,6 +14088,10 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 6
 	},
+/obj/machinery/item_bank{
+	dir = 4;
+	pixel_x = -28
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_one_hall)
 "axj" = (
@@ -19606,7 +19614,7 @@
 /turf/simulated/floor/tiled,
 /area/rnd/hallway)
 "aGr" = (
-/obj/structure/bed/chair/sofa/brown/right,
+/obj/structure/bed/chair/sofa/right/brown,
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
 	},
@@ -19622,7 +19630,7 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/cargostore/office)
 "aGs" = (
-/obj/structure/bed/chair/sofa/brown/corner,
+/obj/structure/bed/chair/sofa/corner/brown,
 /obj/effect/landmark/start{
 	name = "Cargo Technician"
 	},
@@ -19943,7 +19951,7 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/cargostore/office)
 "aGU" = (
-/obj/structure/bed/chair/sofa/brown/left{
+/obj/structure/bed/chair/sofa/left/brown{
 	dir = 8
 	},
 /obj/effect/floor_decal/borderfloor{
@@ -20065,6 +20073,7 @@
 	d2 = 4;
 	icon_state = "2-4"
 	},
+/obj/effect/landmark/vermin,
 /turf/simulated/floor/wood,
 /area/vacant/vacant_bar)
 "aHe" = (
@@ -27715,6 +27724,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 9
 	},
+/obj/effect/landmark/vines,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_lodging)
 "aVd" = (
@@ -31463,7 +31473,14 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_one)
 "biK" = (
-/obj/structure/barricade/cutout/mime,
+/obj/structure/table/alien/blue{
+	desc = "Is this imported?";
+	name = "obscure table"
+	},
+/obj/item/toy/figure/mime,
+/obj/item/weapon/pen/crayon/marker/mime,
+/obj/item/weapon/pen/crayon/mime,
+/obj/item/weapon/cartridge/mime,
 /turf/simulated/floor/carpet/bcarpet,
 /area/tether/surfacebase/funny/mimeoffice)
 "bmK" = (
@@ -31855,6 +31872,10 @@
 "cAR" = (
 /turf/simulated/floor/looking_glass/center,
 /area/looking_glass/lg_1)
+"cCx" = (
+/obj/effect/landmark/vermin,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/public_garden_one)
 "cGJ" = (
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining_eva)
@@ -31917,6 +31938,16 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/hallway)
+"cKo" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/grey/border{
+	dir = 1
+	},
+/obj/effect/landmark/vermin,
+/turf/simulated/floor/tiled,
+/area/crew_quarters/visitor_laundry)
 "cKr" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
 /obj/machinery/atmospherics/pipe/simple/hidden/aux,
@@ -32738,29 +32769,8 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/trash_pit)
 "fFb" = (
-/obj/machinery/fitness/punching_bag/clown,
+/obj/machinery/vending/wardrobe/clowndrobe,
 /turf/simulated/floor/plating,
-/area/tether/surfacebase/funny/clownoffice)
-"fFT" = (
-/obj/item/clothing/mask/gas/sexyclown,
-/obj/item/toy/figure/clown,
-/obj/item/clothing/under/sexyclown,
-/obj/item/clothing/shoes/clown_shoes,
-/obj/item/weapon/bedsheet/clown,
-/obj/item/weapon/cartridge/clown,
-/obj/item/weapon/stamp/clown,
-/obj/item/weapon/storage/backpack/clown,
-/obj/item/weapon/bananapeel,
-/obj/item/weapon/reagent_containers/food/snacks/pie,
-/obj/item/weapon/pen/crayon/marker/rainbow,
-/obj/item/weapon/pen/crayon/rainbow,
-/obj/item/clothing/mask/emotions,
-/obj/structure/closet/secure_closet{
-	desc = "Where the Clown keeps their hooliganisms.";
-	name = "funny locker";
-	req_one_access = list(136)
-	},
-/turf/simulated/floor/carpet/gaycarpet,
 /area/tether/surfacebase/funny/clownoffice)
 "fKm" = (
 /obj/random/junk,
@@ -32773,6 +32783,16 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/lowerhall)
+"fOk" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/effect/landmark/vermin,
+/turf/simulated/floor/lino,
+/area/crew_quarters/visitor_dining)
 "fOy" = (
 /obj/machinery/shower{
 	pixel_y = 16
@@ -33270,7 +33290,7 @@
 "gWO" = (
 /obj/structure/table/rack,
 /obj/effect/floor_decal/rust,
-/obj/item/toy/crossbow,
+/obj/item/weapon/gun/projectile/revolver/toy/crossbow,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/funny/hideyhole)
 "gYx" = (
@@ -33998,7 +34018,7 @@
 /turf/simulated/floor/tiled/freezer,
 /area/tether/surfacebase/security/brig/bathroom)
 "iWa" = (
-/obj/structure/bed/chair/bar_stool,
+/obj/machinery/vending/wardrobe/mimedrobe,
 /turf/simulated/floor/carpet/bcarpet,
 /area/tether/surfacebase/funny/mimeoffice)
 "iWx" = (
@@ -34111,10 +34131,10 @@
 /obj/structure/table/standard{
 	name = "plastic table frame"
 	},
-/obj/item/device/flashlight/lamp/green,
 /obj/structure/sign/painting/public{
 	pixel_y = 30
 	},
+/obj/item/device/flashlight/lamp/clown,
 /turf/simulated/floor/carpet/gaycarpet,
 /area/tether/surfacebase/funny/clownoffice)
 "jrh" = (
@@ -35005,6 +35025,7 @@
 /obj/machinery/alarm{
 	pixel_y = 25
 	},
+/obj/item/toy/figure/clown,
 /turf/simulated/floor/carpet/gaycarpet,
 /area/tether/surfacebase/funny/clownoffice)
 "lDW" = (
@@ -35146,14 +35167,6 @@
 /area/tether/surfacebase/surface_one_hall)
 "lSW" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/storage/box/blanks{
-	pixel_x = 2;
-	pixel_y = -2
-	},
-/obj/item/weapon/storage/box/blanks{
-	pixel_x = 2;
-	pixel_y = -2
-	},
 /obj/item/ammo_magazine/clip/c762/practice,
 /obj/item/ammo_magazine/clip/c762/practice,
 /obj/machinery/recharger/wallcharger{
@@ -35168,6 +35181,8 @@
 /obj/item/ammo_magazine/m45/practice,
 /obj/item/ammo_magazine/m9mmt/practice,
 /obj/item/ammo_magazine/m9mmt/practice,
+/obj/item/ammo_magazine/ammo_box/b12g/blank,
+/obj/item/ammo_magazine/ammo_box/b12g/blank,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/weaponsrange)
 "lTn" = (
@@ -35886,6 +35901,10 @@
 /obj/effect/floor_decal/steeldecal/steel_decals4,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/lowerhall)
+"nBZ" = (
+/obj/effect/landmark/vines,
+/turf/simulated/floor/tiled,
+/area/hallway/lower/first_west)
 "nDD" = (
 /obj/structure/catwalk,
 /obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
@@ -36097,6 +36116,8 @@
 /obj/structure/sign/painting/public{
 	pixel_y = 30
 	},
+/obj/item/weapon/reagent_containers/food/snacks/pie,
+/obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/funny/clownoffice)
 "okO" = (
@@ -36344,6 +36365,13 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
+/obj/item/weapon/pen/crayon/marker/rainbow,
+/obj/item/weapon/pen/crayon/rainbow,
+/obj/item/weapon/stamp/clown,
+/obj/item/weapon/cartridge/clown,
+/obj/structure/table/standard{
+	name = "plastic table frame"
+	},
 /turf/simulated/floor/carpet/gaycarpet,
 /area/tether/surfacebase/funny/clownoffice)
 "oPH" = (
@@ -36458,6 +36486,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/brig)
+"ppS" = (
+/obj/effect/landmark/vermin,
+/turf/simulated/floor/tiled,
+/area/storage/primary)
 "prr" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/cyan,
 /turf/simulated/floor/plating,
@@ -36550,6 +36582,10 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/trash_pit)
+"pMd" = (
+/obj/effect/landmark/vermin,
+/turf/simulated/floor/grass,
+/area/tether/surfacebase/surface_one_hall)
 "pPF" = (
 /obj/machinery/atmospherics/pipe/simple/visible/universal,
 /obj/machinery/light/small{
@@ -36677,8 +36713,8 @@
 /area/maintenance/lower/trash_pit)
 "qhs" = (
 /obj/structure/table/rack,
-/obj/item/toy/crossbow,
 /obj/item/weapon/coin/silver,
+/obj/item/weapon/gun/projectile/revolver/toy/crossbow,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/funny/hideyhole)
 "qjE" = (
@@ -36898,6 +36934,10 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/locker)
+"qOV" = (
+/obj/effect/landmark/vermin,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/tram)
 "qPs" = (
 /obj/structure/railing{
 	dir = 1
@@ -37191,6 +37231,12 @@
 /obj/item/weapon/material/minihoe,
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/brig/storage)
+"rCj" = (
+/obj/effect/landmark{
+	name = "maint_pred"
+	},
+/turf/simulated/floor/plating,
+/area/vacant/vacant_site/east)
 "rDJ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -38256,6 +38302,10 @@
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/brig/storage)
+"uHq" = (
+/obj/effect/landmark/vines,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/tram)
 "uHS" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 1
@@ -38444,20 +38494,7 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining_eva)
 "vCn" = (
-/obj/item/weapon/pen/crayon/mime,
-/obj/item/weapon/pen/crayon/marker/mime,
-/obj/item/weapon/cartridge/mime,
-/obj/item/weapon/bedsheet/mime,
-/obj/item/toy/figure/mime,
-/obj/item/clothing/under/sexymime,
-/obj/item/clothing/shoes/mime,
-/obj/item/clothing/mask/gas/sexymime,
-/obj/item/clothing/head/soft/mime,
-/obj/structure/closet/secure_closet{
-	desc = "...";
-	name = "silent storage";
-	req_one_access = list(138)
-	},
+/obj/structure/barricade/cutout/mime,
 /turf/simulated/floor/carpet/bcarpet,
 /area/tether/surfacebase/funny/mimeoffice)
 "vDb" = (
@@ -39125,6 +39162,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/effect/landmark/vines,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_one_hall)
 "xFG" = (
@@ -44629,7 +44667,7 @@ akw
 akE
 bdG
 akW
-akN
+cCx
 aly
 alN
 amf
@@ -45776,7 +45814,7 @@ atG
 atH
 atH
 ahM
-anx
+nBZ
 aju
 aoE
 apl
@@ -48042,7 +48080,7 @@ anp
 aeW
 aml
 afT
-afT
+ppS
 afT
 agJ
 anj
@@ -51899,7 +51937,7 @@ aqf
 aqf
 arg
 aoS
-aoj
+pMd
 awI
 axo
 ayh
@@ -52904,7 +52942,7 @@ agM
 aCJ
 aCJ
 aCJ
-aCJ
+rCj
 aCJ
 aCJ
 agM
@@ -54572,7 +54610,7 @@ uVK
 ojM
 cUB
 wOK
-fFT
+ylH
 rxD
 bbj
 agT
@@ -54640,7 +54678,7 @@ bcT
 aVf
 aVB
 aVf
-cwS
+cKo
 aUP
 aWY
 aUm
@@ -54756,7 +54794,7 @@ aFS
 aEM
 aHm
 aDu
-aIu
+fOk
 aJo
 aDu
 aKJ
@@ -56020,11 +56058,11 @@ aFW
 auB
 auB
 auB
-auB
+qOV
 auB
 auU
 auB
-auB
+uHq
 auB
 auB
 auB

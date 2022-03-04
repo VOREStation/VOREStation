@@ -40,6 +40,15 @@
 	build_path = /obj/item/weapon/pipe_dispenser
 	sort_string = "NAAAD"
 
+/datum/design/item/tool/qpad_booster
+	name = "Quantum Pad Particle Booster"
+	desc = "A deceptively simple interface for increasing the mass of objects a quantum pad is capable of teleporting, at the cost of increased power draw."
+	id = "qpad_booster"
+	req_tech = list(TECH_ENGINEERING = 7, TECH_MATERIAL = 7, TECH_BLUESPACE = 6)
+	materials = list(MAT_STEEL = 4000, MAT_GLASS = 2000, MAT_SILVER = 2000, MAT_GOLD = 2000, MAT_VERDANTIUM = 1000)
+	build_path = /obj/item/device/quantum_pad_booster
+	sort_string = "NAAAF"
+
 // Other devices
 
 /datum/design/item/engineering/AssembleDesignName()

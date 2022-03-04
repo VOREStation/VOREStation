@@ -147,6 +147,13 @@
     inhibitors = list("fluorine" = 0.01)
     result_amount = 1
 
+/decl/chemical_reaction/instant/nutridax
+	name = "Nutridax"
+	id = "nutridax"
+	result = "nutridax"
+	required_reagents = list("oxygen" = 1, "lipozine" = 1, "carbon" = 1)
+	result_amount = 3
+
 ///////////////////////////////////////////////////////////////////////////////////
 /// Vore Drugs
 
@@ -400,7 +407,7 @@
 		/mob/living/simple_mob/animal/passive/bird/parrot/poly,
 		/mob/living/simple_mob/animal/sif/fluffy,
 		/mob/living/simple_mob/animal/sif/fluffy/silky,
-		/mob/living/simple_mob/animal/passive/snake/noodle,
+		/mob/living/simple_mob/animal/passive/snake/python/noodle,
 		/mob/living/simple_mob/slime/xenobio/rainbow/kendrick,
 		/mob/living/simple_mob/animal/space/space_worm,						//Space Worm parts that aren't proper heads
 		/mob/living/simple_mob/animal/space/space_worm/head/severed,

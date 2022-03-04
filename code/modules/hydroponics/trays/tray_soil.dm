@@ -32,6 +32,16 @@
 /obj/machinery/portable_atmospherics/hydroponics/soil/CanPass()
 	return 1
 
+/obj/machinery/portable_atmospherics/hydroponics/soil/attackby(obj/item/O, mob/user)
+	if(istype(O, /obj/item/weapon/shovel) && user.a_intent == I_HURT)
+		user.visible_message(SPAN_NOTICE("\The [user] begins filling in \the [src]."))
+		if(do_after(user, 3 SECONDS) && !QDELETED(src))
+			user.visible_message(SPAN_NOTICE("\The [user] fills in \the [src]."))
+			qdel(src)
+		return
+	. = ..()
+	
+
 // Holder for vine plants.
 // Icons for plants are generated as overlays, so setting it to invisible wouldn't work.
 // Hence using a blank icon.
@@ -42,6 +52,11 @@
 
 /obj/machinery/portable_atmospherics/hydroponics/soil/invisible/Initialize(var/ml, var/datum/seed/newseed)
 	. = ..(ml)
+	//VOREStation Addition Start
+	if(istype(loc, /turf/simulated/open) || istype(loc, /turf/space))
+		qdel(src)
+	//VOREStation Addition End
+
 	seed = newseed
 	dead = 0
 	age = 1

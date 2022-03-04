@@ -15,7 +15,7 @@ var/const/access_pilot = 67
 /datum/access/pilot
 	id = access_pilot
 	desc = "Pilot"
-	region = ACCESS_REGION_SUPPLY
+	region = ACCESS_REGION_GENERAL
 
 /var/const/access_talon = 301
 /datum/access/talon

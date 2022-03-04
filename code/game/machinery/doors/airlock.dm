@@ -979,6 +979,7 @@ About the new airlock wires panel:
 	return
 
 /obj/machinery/door/airlock/AltClick(mob/user as mob)
+	. = ..()
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(!Adjacent(user))
 		return
@@ -988,13 +989,13 @@ About the new airlock wires panel:
 		if(icon_state == "door_closed" && arePowerSystemsOn())
 			flick("door_deny", src)
 		playsound(src, knock_hammer_sound, 50, 0, 3)
-	else if(arePowerSystemsOn())
+	else if(arePowerSystemsOn() && user.a_intent == I_HELP)
 		src.visible_message("[user] presses the door bell on \the [src].", "\The [src]'s bell rings.")
 		src.add_fingerprint(user)
 		if(icon_state == "door_closed")
 			flick("door_deny", src)
 		playsound(src, knock_sound, 50, 0, 3)
-	else
+	else if(user.a_intent == I_HELP)
 		src.visible_message("[user] knocks on \the [src].", "Someone knocks on \the [src].")
 		src.add_fingerprint(user)
 		playsound(src, knock_unpowered_sound, 50, 0, 3)

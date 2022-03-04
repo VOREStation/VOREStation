@@ -10,7 +10,7 @@
 	name = ""
 	department = ""
 	departmentType = ""
-	announcementConsole = 0
+	announcementConsole = TRUE
 
 // Departments
 /obj/machinery/requests_console/preset/cargo

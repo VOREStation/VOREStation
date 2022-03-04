@@ -31,6 +31,27 @@ var/list/sounds_cache = list()
 	playsound(src.mob, S, 50, 0, 0)
 	feedback_add_details("admin_verb","PLS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+/client/proc/play_z_sound(S as sound)
+	set category = "Fun"
+	set name = "Play Z Sound"
+	if(!check_rights(R_SOUNDS))	return
+	var/target_z = mob.z
+	var/sound/uploaded_sound = sound(S, repeat = 0, wait = 1, channel = 777)
+	uploaded_sound.priority = 250
+
+	sounds_cache += S
+
+	if(tgui_alert(usr, "Do you ready?\nSong: [S]\nNow you can also play this sound using \"Play Server Sound\".", "Confirmation request", list("Play","Cancel")) == "Cancel")
+		return
+
+	log_admin("[key_name(src)] played sound [S] on Z[target_z]")
+	message_admins("[key_name_admin(src)] played sound [S] on Z[target_z]", 1)
+	for(var/mob/M in player_list)
+		if(M.is_preference_enabled(/datum/client_preference/play_admin_midis) && M.z == target_z)
+			M << uploaded_sound
+
+	feedback_add_details("admin_verb","PZS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
 
 /client/proc/play_server_sound()
 	set category = "Fun"

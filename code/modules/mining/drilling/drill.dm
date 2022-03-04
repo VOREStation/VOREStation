@@ -295,7 +295,7 @@
 		if(supports.len >= braces_needed)
 			supported = 1
 		else for(var/obj/machinery/mining/brace/check in supports)
-			if(check.brace_tier > 3)
+			if(check.brace_tier >= 3)
 				supported = 1
 		for(var/obj/machinery/mining/brace/check in supports)
 			total_brace_tier += check.brace_tier

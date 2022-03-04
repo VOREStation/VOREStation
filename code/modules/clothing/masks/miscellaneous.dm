@@ -303,43 +303,49 @@
 	w_class = ITEMSIZE_SMALL
 	body_parts_covered = FACE
 	icon_state = "papermask"
+	action_button_name = "Redraw Design"
+	action_button_is_hands_free = TRUE
+	var/list/papermask_designs = list()
 
-/obj/item/clothing/mask/paper/attackby(obj/item/I as obj, mob/living/user as mob, proximity)
-	if(!proximity) return
-	if(istype(I, /obj/item/weapon/pen))
-		var/drawtype = tgui_alert(user, "Choose what you'd like to draw.", "Faces", list("blank","neutral","eyes","sleeping", "heart", "core", "plus", "square", "bullseye", "vertical", "horizontal", "X", "bug eyes", "double", "mark" ))
-		switch(drawtype)
-			if("blank")
-				src.icon_state = "papermask"
-			if("neutral")
-				src.icon_state = "neutralmask"
-			if("eyes")
-				src.icon_state = "eyemask"
-			if("sleeping")
-				src.icon_state = "sleepingmask"
-			if("heart")
-				src.icon_state = "heartmask"
-			if("core")
-				src.icon_state = "coremask"
-			if("plus")
-				src.icon_state = "plusmask"
-			if("square")
-				src.icon_state = "squaremask"
-			if("bullseye")
-				src.icon_state = "bullseyemask"
-			if("vertical")
-				src.icon_state = "verticalmask"
-			if("horizontal")
-				src.icon_state = "horizontalmask"
-			if("X")
-				src.icon_state = "xmask"
-			if("bug eyes")
-				src.icon_state = "bugmask"
-			if("double")
-				src.icon_state = "doublemask"
-			if("mark")
-				src.icon_state = "markmask"
-	return
+/obj/item/clothing/mask/paper/Initialize(mapload)
+	. = ..()
+	papermask_designs = list(
+		"Blank" = image(icon = src.icon, icon_state = "papermask"),
+		"Neutral" = image(icon = src.icon, icon_state = "neutralmask"),
+		"Eyes" = image(icon = src.icon, icon_state = "eyemask"),
+		"Sleeping" = image(icon = src.icon, icon_state = "sleepingmask"),
+		"Heart" = image(icon = src.icon, icon_state = "heartmask"),
+		"Core" = image(icon = src.icon, icon_state = "coremask"),
+		"Plus" = image(icon = src.icon, icon_state = "plusmask"),
+		"Square" = image(icon = src.icon, icon_state = "squaremask"),
+		"Bullseye" = image(icon = src.icon, icon_state = "bullseyemask"),
+		"Vertical" = image(icon = src.icon, icon_state = "verticalmask"),
+		"Horizontal" = image(icon = src.icon, icon_state = "horizontalmask"),
+		"X" = image(icon = src.icon, icon_state = "xmask"),
+		"Bugeyes" = image(icon = src.icon, icon_state = "bugmask"),
+		"Double" = image(icon = src.icon, icon_state = "doublemask"),
+		"Mark" = image(icon = src.icon, icon_state = "markmask")
+		)
+
+/obj/item/clothing/mask/paper/attack_self(mob/user)
+	. = ..()
+	if(!istype(user) || user.incapacitated())
+		return
+
+	var/static/list/options = list("Blank" = "papermask", "Neutral" = "neutralmask", "Eyes" = "eyemask",
+							"Sleeping" ="sleepingmask", "Heart" = "heartmask", "Core" = "coremask",
+							"Plus" = "plusmask", "Square" ="squaremask", "Bullseye" = "bullseyemask",
+							"Vertical" = "verticalmask", "Horizontal" = "horizontalmask", "X" ="xmask",
+							"Bugeyes" = "bugmask", "Double" = "doublemask", "Mark" = "markmask")
+
+	var/choice = show_radial_menu(user, src, papermask_designs, custom_check = FALSE, radius = 36, require_near = TRUE)
+
+	if(src && choice && !user.incapacitated() && in_range(user,src))
+		icon_state = options[choice]
+		user.update_inv_wear_mask()
+		user.update_action_buttons()
+		to_chat(user, "<span class='notice'>Your paper mask now is now [choice].</span>")
+		return 1
 
 /obj/item/clothing/mask/emotions
 	name = "emotional mask"
@@ -347,21 +353,35 @@
 	w_class = ITEMSIZE_SMALL
 	body_parts_covered = FACE
 	icon_state = "joy"
+	action_button_name = "Redraw Design"
+	action_button_is_hands_free = TRUE
+	var/static/list/joymask_designs = list()
 
-/obj/item/clothing/mask/emotions/attackby(obj/item/I as obj, mob/living/user as mob, proximity)
-	if(!proximity) return
-	if(istype(I, /obj/item/weapon/pen))
-		var/drawtype = tgui_alert(user, "Choose what emotions you'd like to display.", "Emotions", list("joy","pensive","angry","flushed" ))
-		switch(drawtype)
-			if("joy")
-				src.icon_state = "joy"
-			if("pensive")
-				src.icon_state = "pensive"
-			if("angry")
-				src.icon_state = "angry"
-			if("flushed")
-				src.icon_state = "flushed"
-	return
+
+/obj/item/clothing/mask/emotions/Initialize(mapload)
+	. = ..()
+	joymask_designs = list(
+		"Joy" = image(icon = src.icon, icon_state = "joy"),
+		"Flushed" = image(icon = src.icon, icon_state = "flushed"),
+		"Pensive" = image(icon = src.icon, icon_state = "pensive"),
+		"Angry" = image(icon = src.icon, icon_state = "angry"),
+		)
+
+/obj/item/clothing/mask/emotions/attack_self(mob/user)
+	. = ..()
+	if(!istype(user) || user.incapacitated())
+		return
+
+	var/static/list/options = list("Joy" = "joy", "Flushed" = "flushed", "Pensive" = "pensive","Angry" ="angry")
+
+	var/choice = show_radial_menu(user, src, joymask_designs, custom_check = FALSE, radius = 36, require_near = TRUE)
+
+	if(src && choice && !user.incapacitated() && in_range(user,src))
+		icon_state = options[choice]
+		user.update_inv_wear_mask()
+		user.update_action_buttons()
+		to_chat(user, "<span class='notice'>Your [src] now displays a [choice] emotion.</span>")
+		return 1
 
 /obj/item/clothing/mask/mouthwheat
 	name = "mouth wheat"

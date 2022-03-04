@@ -53,7 +53,7 @@
 
 			var/current_cell = map[get_map_cell(x,y)]
 			if(current_cell < rare_val)      // Surface metals.
-				T.resources["hematite"] = rand(RESOURCE_HIGH_MIN, RESOURCE_HIGH_MAX)
+				T.resources["hematite"] = rand(RESOURCE_MID_MIN, RESOURCE_HIGH_MAX)
 				T.resources["gold"] =     rand(RESOURCE_LOW_MIN,  RESOURCE_LOW_MAX)
 				T.resources["silver"] =   rand(RESOURCE_LOW_MIN,  RESOURCE_LOW_MAX)
 				T.resources["uranium"] =  rand(RESOURCE_LOW_MIN,  RESOURCE_LOW_MAX)
@@ -81,7 +81,7 @@
 				T.resources["lead"] =     rand(RESOURCE_LOW_MIN, RESOURCE_MID_MAX)
 				T.resources["hydrogen"] = 0
 				T.resources["diamond"] =  0
-				T.resources["hematite"] = 0
+				T.resources["hematite"] = rand(RESOURCE_HIGH_MIN, RESOURCE_HIGH_MAX)
 				T.resources["marble"] =   0
 				//T.resources["copper"] =   0
 				//T.resources["tin"] =      rand(RESOURCE_MID_MIN, RESOURCE_MID_MAX)
@@ -91,7 +91,7 @@
 				//T.resources["quartz"] = 0
 				//T.resources["painite"] = 0
 			else                             // Deep metals.
-				T.resources["uranium"] =  rand(RESOURCE_LOW_MIN,  RESOURCE_LOW_MAX)
+				T.resources["uranium"] =  rand(RESOURCE_MID_MIN,  RESOURCE_HIGH_MAX)
 				T.resources["diamond"] =  rand(RESOURCE_LOW_MIN,  RESOURCE_LOW_MAX)
 				T.resources["verdantium"] = rand(RESOURCE_LOW_MIN, RESOURCE_MID_MAX)
 				T.resources["phoron"] =   rand(RESOURCE_HIGH_MIN, RESOURCE_HIGH_MAX)
@@ -99,9 +99,9 @@
 				T.resources["hydrogen"] = rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
 				T.resources["marble"] =   rand(RESOURCE_MID_MIN, RESOURCE_HIGH_MAX)
 				T.resources["lead"] =     rand(RESOURCE_LOW_MIN, RESOURCE_HIGH_MAX)
-				T.resources["hematite"] = 0
-				T.resources["gold"] =     0
-				T.resources["silver"] =   0
+				T.resources["hematite"] = rand(RESOURCE_HIGH_MIN, RESOURCE_HIGH_MAX)
+				T.resources["gold"] =     rand(RESOURCE_MID_MIN,  RESOURCE_HIGH_MAX)
+				T.resources["silver"] =   rand(RESOURCE_MID_MIN,  RESOURCE_HIGH_MAX)
 				//T.resources["copper"] =   0
 				//T.resources["tin"] =      0
 				//T.resources["bauxite"] =  0

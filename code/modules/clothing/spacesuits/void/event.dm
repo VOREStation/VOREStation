@@ -260,6 +260,32 @@
 			/obj/item/weapon/cell
 			)
 
+//Miner's Crewsuit (BROWN)
+//Basically just the basic suit, but with brown markings. If anyone wants to tweak this, go wild.
+/obj/item/clothing/head/helmet/space/void/refurb/mining
+	name = "vintage miner's's voidsuit helmet"
+	desc = "A refurbished early contact era voidsuit helmet of human design. These things aren't especially good against modern weapons but they're sturdy, incredibly easy to come by, and there are lots of spare parts for repairs. The visor has a bad habit of fogging up and collecting condensation, but it beats sucking hard vacuum. This one has brown markings, denoting it as a miner's helmet."
+	icon_state = "rig0-vintageminer"
+	item_state_slots = list(slot_r_hand_str = "syndicate-helm-black", slot_l_hand_str = "syndicate-helm-black")
+	armor = list(melee = 30, bullet = 15, laser = 15,energy = 5, bomb = 20, bio = 100, rad = 50)
+	light_overlay = "helmet_light"
+
+/obj/item/clothing/suit/space/void/refurb/mining
+	name = "vintage miner's voidsuit"
+	desc = "A refurbished early contact era voidsuit of human design. These things aren't especially good against modern weapons but they're sturdy, incredibly easy to come by, and there are lots of spare parts for repairs. Many old-timer spacers swear by these old things, even if new powered hardsuits have more features and better armor. This one has brown markings, denoting it as a miner's suit."
+	icon_state = "rig-vintageminer"
+	item_state_slots = list(slot_r_hand_str = "sec_voidsuitTG", slot_l_hand_str = "sec_voidsuitTG")
+	armor = list(melee = 30, bullet = 15, laser = 15,energy = 5, bomb = 20, bio = 100, rad = 50)
+	allowed = list(/obj/item/device/flashlight,
+			/obj/item/weapon/tank,
+			/obj/item/device/suit_cooling_unit,
+			/obj/item/weapon/storage/briefcase/inflatable,
+			/obj/item/device/gps,
+			/obj/item/device/radio/beacon,
+			/obj/item/weapon/pickaxe,
+			/obj/item/weapon/shovel
+			)
+
 //Mercenary Crewsuit (RED, CROSS)
 //The best of the best, this should be ultra-rare
 /obj/item/clothing/head/helmet/space/void/refurb/mercenary

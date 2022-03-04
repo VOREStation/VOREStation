@@ -66,7 +66,7 @@
 		else
 			data["status"] = "OK"
 		var/list/contacts = list()
-		for(var/obj/effect/overmap/O in view(7,linked))
+		for(var/obj/effect/overmap/O in range(7,linked))
 			if(linked == O)
 				continue
 			if(!O.scannable)
@@ -125,10 +125,9 @@
 		return
 	if(sensors && sensors.use_power && sensors.powered())
 		var/sensor_range = round(sensors.range*1.5) + 1
-		linked.set_light_range(sensor_range + 0.5)
-		linked.set_light_on(TRUE)
+		linked.set_light(sensor_range + 0.5)
 	else
-		linked.set_light_on(FALSE)
+		linked.set_light(0)
 
 /obj/machinery/shipsensors
 	name = "sensors suite"

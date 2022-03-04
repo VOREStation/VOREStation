@@ -212,7 +212,11 @@
 
 		O.set_dir(user.dir)
 		O.add_fingerprint(user)
-
+		//VOREStation Addition Start - Let's not store things that get crafted with materials like this, they won't spawn correctly when retrieved.
+		if (isobj(O))
+			var/obj/P = O
+			P.persist_storable = FALSE
+		//VOREStation Addition End
 		if (istype(O, /obj/item/stack))
 			var/obj/item/stack/S = O
 			S.amount = produced

@@ -1,23 +1,151 @@
-"a" = (/turf/template_noop,/area/template_noop)
-"b" = (/obj/structure/alien/wall,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/cave/vault5)
-"c" = (/obj/structure/simple_door/resin,/obj/effect/alien/weeds,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/cave/vault5)
-"d" = (/obj/effect/alien/weeds,/obj/structure/bed/nest,/obj/item/weapon/gun/projectile/p92x/large,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/cave/vault5)
-"e" = (/obj/effect/alien/weeds,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/cave/vault5)
-"f" = (/obj/effect/alien/weeds,/obj/item/clothing/suit/storage/vest/tactical,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/cave/vault5)
-"g" = (/obj/effect/alien/weeds,/obj/structure/bed/nest,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/cave/vault5)
-"h" = (/obj/effect/alien/weeds,/obj/random/multiple/minevault,/mob/living/simple_mob/animal/space/alien/sentinel/praetorian,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/cave/vault5)
-"i" = (/obj/effect/alien/weeds,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/cave/vault5)
-"j" = (/obj/effect/alien/weeds,/obj/effect/alien/weeds/node,/mob/living/simple_mob/animal/space/alien/queen/empress,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/cave/vault5)
-"k" = (/obj/effect/alien/weeds,/obj/item/clothing/head/helmet/tac,/obj/item/weapon/gun/projectile/SVD,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/submap/cave/vault5)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/obj/structure/alien/wall,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/vault5)
+"c" = (
+/obj/structure/simple_door/resin,
+/obj/effect/alien/weeds,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/vault5)
+"d" = (
+/obj/effect/alien/weeds,
+/obj/structure/bed/nest,
+/obj/item/weapon/gun/projectile/p92x/large,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/vault5)
+"e" = (
+/obj/effect/alien/weeds,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/vault5)
+"f" = (
+/obj/effect/alien/weeds,
+/obj/item/clothing/suit/storage/vest/tactical,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/vault5)
+"g" = (
+/obj/effect/alien/weeds,
+/obj/structure/bed/nest,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/vault5)
+"h" = (
+/obj/effect/alien/weeds,
+/obj/random/multiple/minevault,
+/mob/living/simple_mob/animal/space/alien/sentinel/praetorian,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/vault5)
+"j" = (
+/obj/effect/alien/weeds,
+/obj/effect/alien/weeds/node,
+/mob/living/simple_mob/animal/space/alien/queen/empress,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/vault5)
+"k" = (
+/obj/effect/alien/weeds,
+/obj/item/clothing/head/helmet/tac,
+/obj/item/weapon/gun/projectile/SVD,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/vault5)
 
 (1,1,1) = {"
-aaaaaaaaa
-aabbcbbaa
-abbdefbba
-abgeeehba
-abiejeiba
-abheeegba
-abbkegbba
-aabbcbbaa
-aaaaaaaaa
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+a
+b
+b
+b
+b
+b
+a
+a
+"}
+(3,1,1) = {"
+a
+b
+b
+g
+e
+h
+b
+b
+a
+"}
+(4,1,1) = {"
+a
+b
+d
+e
+e
+e
+k
+b
+a
+"}
+(5,1,1) = {"
+a
+c
+e
+e
+j
+e
+e
+c
+a
+"}
+(6,1,1) = {"
+a
+b
+f
+e
+e
+e
+g
+b
+a
+"}
+(7,1,1) = {"
+a
+b
+b
+h
+e
+g
+b
+b
+a
+"}
+(8,1,1) = {"
+a
+a
+b
+b
+b
+b
+b
+a
+a
+"}
+(9,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
 "}

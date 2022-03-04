@@ -1473,7 +1473,11 @@
 /obj/effect/floor_decal/techfloor/corner{
 	dir = 5
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 100;
+	oxygen = 0;
+	temperature = 73
+	},
 /area/tcommsat/cynosure/chamber)
 "pq" = (
 /obj/structure/cable/yellow,
@@ -1572,7 +1576,11 @@
 /obj/effect/floor_decal/techfloor/corner{
 	dir = 6
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 100;
+	oxygen = 0;
+	temperature = 73
+	},
 /area/tcommsat/cynosure/chamber)
 "qc" = (
 /obj/effect/floor_decal/borderfloor{
@@ -1899,7 +1907,11 @@
 /obj/effect/floor_decal/techfloor/corner{
 	dir = 10
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 100;
+	oxygen = 0;
+	temperature = 73
+	},
 /area/tcommsat/cynosure/chamber)
 "ta" = (
 /obj/structure/cable{
@@ -2461,13 +2473,21 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 6
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 100;
+	oxygen = 0;
+	temperature = 73
+	},
 /area/tcommsat/cynosure/chamber)
 "zJ" = (
 /obj/effect/floor_decal/techfloor/corner{
 	dir = 6
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 100;
+	oxygen = 0;
+	temperature = 73
+	},
 /area/tcommsat/cynosure/chamber)
 "zO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/black,
@@ -2586,7 +2606,11 @@
 /obj/effect/floor_decal/techfloor/corner{
 	dir = 9
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 100;
+	oxygen = 0;
+	temperature = 73
+	},
 /area/tcommsat/cynosure/chamber)
 "BD" = (
 /obj/effect/floor_decal/borderfloor{
@@ -2855,7 +2879,11 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 5
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 100;
+	oxygen = 0;
+	temperature = 73
+	},
 /area/tcommsat/cynosure/chamber)
 "Eq" = (
 /obj/structure/cable{
@@ -3024,7 +3052,11 @@
 /obj/effect/floor_decal/techfloor/corner{
 	dir = 9
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 100;
+	oxygen = 0;
+	temperature = 73
+	},
 /area/tcommsat/cynosure/chamber)
 "Gq" = (
 /obj/structure/bed/chair/shuttle,
@@ -3148,7 +3180,11 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 9
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 100;
+	oxygen = 0;
+	temperature = 73
+	},
 /area/tcommsat/cynosure/chamber)
 "Hk" = (
 /obj/effect/floor_decal/techfloor,
@@ -4212,7 +4248,11 @@
 /obj/effect/floor_decal/techfloor/corner{
 	dir = 10
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 100;
+	oxygen = 0;
+	temperature = 73
+	},
 /area/tcommsat/cynosure/chamber)
 "QG" = (
 /obj/structure/window/reinforced{
@@ -4733,7 +4773,11 @@
 /obj/effect/floor_decal/techfloor/corner{
 	dir = 5
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 100;
+	oxygen = 0;
+	temperature = 73
+	},
 /area/tcommsat/cynosure/chamber)
 "UY" = (
 /obj/structure/window/reinforced,
@@ -5050,7 +5094,11 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 10
 	},
-/turf/simulated/floor/tiled/techfloor,
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 100;
+	oxygen = 0;
+	temperature = 73
+	},
 /area/tcommsat/cynosure/chamber)
 "Yb" = (
 /obj/effect/floor_decal/industrial/warning{

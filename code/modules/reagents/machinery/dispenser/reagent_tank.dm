@@ -155,6 +155,20 @@
 	icon_state = "barrel"
 	modded = TRUE
 
+/obj/structure/reagent_dispensers/fueltank/barrel/two
+	name = "explosive barrel"
+	desc = "A barrel with warning labels painted all over it."
+	icon = 'icons/obj/objects_vr.dmi'
+	icon_state = "barrel2"
+	modded = FALSE
+
+/obj/structure/reagent_dispensers/fueltank/barrel/three
+	name = "fuel barrel"
+	desc = "An open-topped barrel full of nasty-looking liquid."
+	icon = 'icons/obj/objects_vr.dmi'
+	icon_state = "barrel3"
+	modded = FALSE
+
 /obj/structure/reagent_dispensers/fueltank/barrel/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (W.is_wrench()) //can't wrench it shut, it's always open
 		return
@@ -461,7 +475,7 @@
 
 /obj/structure/reagent_dispensers/cookingoil/Initialize()
 	. = ..()
-	reagents.add_reagent("cornoil",5000)
+	reagents.add_reagent("cookingoil",5000)
 
 /obj/structure/reagent_dispensers/cookingoil/bullet_act(var/obj/item/projectile/Proj)
 	if(Proj.get_structure_damage())

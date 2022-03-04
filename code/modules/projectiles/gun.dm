@@ -465,7 +465,7 @@
 			P.dispersion = disp
 
 			P.shot_from = src.name
-			P.silenced = silenced
+			P.silenced |= silenced // A silent bullet (e.g., BBs) can be fired quietly from any gun.
 
 			P.old_style_target(target)
 			P.fire()

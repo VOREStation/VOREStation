@@ -1,3 +1,6 @@
+/*
+ * Spaceball collectable cards
+ */
 /obj/item/weapon/pack/spaceball
 	name = "spaceball booster pack"
 	desc = "Officially licensed to take your money."

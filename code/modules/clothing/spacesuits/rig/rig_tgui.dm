@@ -51,6 +51,7 @@
 	else
 		data["ai"] = FALSE
 
+	data["cooling"] = cooling_on
 	data["sealed"] = !canremove
 	data["sealing"] = sealing
 	data["helmet"] = (helmet ? "[helmet.name]" : "None.")
@@ -129,6 +130,9 @@
 	switch(action)
 		if("toggle_seals")
 			toggle_seals(usr)
+			. = TRUE
+		if("toggle_cooling")
+			toggle_cooling(usr) // cooling toggles have its own to_chats, tbf
 			. = TRUE
 		if("toggle_ai_control")
 			ai_override_enabled = !ai_override_enabled

@@ -40,6 +40,8 @@
 	health = 200
 	see_in_dark = 8
 
+	meat_amount = 8
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat
 
 	melee_damage_lower = 8
 	melee_damage_upper = 16

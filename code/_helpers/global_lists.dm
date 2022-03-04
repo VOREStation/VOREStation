@@ -42,6 +42,7 @@ var/global/list/facial_hair_styles_male_list = list()
 var/global/list/facial_hair_styles_female_list = list()
 var/global/list/skin_styles_female_list = list()		//unused
 var/global/list/body_marking_styles_list = list()		//stores /datum/sprite_accessory/marking indexed by name
+var/global/list/body_marking_nopersist_list = list()	// Body marking styles, minus non-genetic markings and augments
 var/global/list/ear_styles_list = list()	// Stores /datum/sprite_accessory/ears indexed by type
 var/global/list/tail_styles_list = list()	// Stores /datum/sprite_accessory/tail indexed by type
 var/global/list/wing_styles_list = list()	// Stores /datum/sprite_accessory/wing indexed by type
@@ -52,7 +53,7 @@ var/datum/category_collection/underwear/global_underwear = new()
 
 	//Backpacks
 var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel", "Satchel Alt", "Messenger Bag", "Sports Bag")
-var/global/list/pdachoicelist = list("Default", "Slim", "Old", "Rugged", "Holographic", "Wrist-Bound")
+var/global/list/pdachoicelist = list("Default", "Slim", "Old", "Rugged", "Holographic", "Wrist-Bound", "Slider")
 var/global/list/exclude_jobs = list(/datum/job/ai,/datum/job/cyborg)
 
 // Visual nets
@@ -149,6 +150,8 @@ GLOBAL_LIST_EMPTY(mannequins)
 	for(var/path in paths)
 		var/datum/sprite_accessory/marking/M = new path()
 		body_marking_styles_list[M.name] = M
+		if(!M.genetic)
+			body_marking_nopersist_list[M.name] = M
 
 	//Surgery Steps - Initialize all /datum/surgery_step into a list
 	paths = subtypesof(/datum/surgery_step)

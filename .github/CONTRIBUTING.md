@@ -23,7 +23,7 @@ These are just guidelines, not rules, use your best judgment and feel free to pr
 
 ### Code of Conduct
 
-This project adheres to the Contributor Covenant [code of conduct](CODE_OF_CONDUCT.md).
+This project adheres to the Contributor Covenant [code of conduct](code_of_conduct.md).
 By participating, you are expected to uphold this code.
 
 ## How Can I Contribute?
@@ -38,7 +38,7 @@ Any code submissions that do not meet our coding standards are likely to be reje
 
 * If it is something like a bugfix that Polaris would want (the codebase we use), you may want to consider coding it there as well. They may want any general gameplay bugfixes, and things that are obviously intended to work one way, but do not. They do not have any of our fluff species (vulp, akula, fenn, etc) so do not make PRs related to that, or any vore content to them.
 * Change whitespace as little as possible. Do not randomly add/remove whitespace.
-* Map changes must be in tgm format. See the [Mapmerge2 Readme] for details.
+* Map changes must be in tgm format. See the [Mapmerge2 Readme] for details, or use [StrongDMM] which can automatically save maps as tgm.
 
 ### Pull Requests
 
@@ -60,4 +60,5 @@ Commits with a git authorship date prior to `1420675200 +0000` (2015/01/08 00:00
 
 All commits whose authorship dates are not prior to `1420675200 +0000` are assumed to be licensed under AGPL v3, if you wish to license under GPL v3 please make this clear in the commit message and any added files.
 
-[Mapmerge2 Readme]: ../tools/mapmerge2/readme.md
+[Mapmerge2 Readme]: ../tools/mapmerge2/mapmerge tool readme.md
+[StrongDMM]: ../tools/StrongDMM/README.md

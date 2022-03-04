@@ -44,7 +44,7 @@
 /turf/simulated/floor/tiled/eris/steel/techfloor,
 /area/gateway/arynthilake/engine)
 "gh" = (
-/turf/simulated/mineral/ignore_cavegen,
+/turf/simulated/mineral/ignore_cavegen/cave,
 /area/gateway/arynthilake/underground)
 "hB" = (
 /obj/structure/table/steel_reinforced,
@@ -85,7 +85,7 @@
 "lM" = (
 /obj/effect/map_effect/perma_light/gateway{
 	light_color = "#0c6ba6";
-	light_power = .3;
+	light_power = 0.3;
 	light_range = 5
 	},
 /turf/simulated/floor/beach/sand/desert,
@@ -123,10 +123,10 @@
 /area/gateway/arynthilake/engine)
 "nD" = (
 /obj/effect/landmark/hidden_level,
-/turf/simulated/mineral/ignore_cavegen,
+/turf/simulated/mineral/ignore_cavegen/cave,
 /area/gateway/arynthilake/underground)
 "nO" = (
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen/cave,
 /area/gateway/arynthilake/underground)
 "oM" = (
 /turf/simulated/floor/plating/eris/under,
@@ -157,7 +157,7 @@
 /area/gateway/arynthilake/engine)
 "qU" = (
 /obj/random/awayloot,
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen/cave,
 /area/gateway/arynthilake/underground)
 "qX" = (
 /obj/machinery/porta_turret{
@@ -209,7 +209,7 @@
 /area/gateway/arynthilake/engine)
 "xh" = (
 /obj/machinery/crystal,
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen/cave,
 /area/gateway/arynthilake/underground)
 "zh" = (
 /obj/structure/ladder/up,
@@ -229,7 +229,7 @@
 /area/gateway/arynthilake/engine)
 "Bj" = (
 /obj/random/mob/semirandom_mob_spawner/monster/e,
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen/cave,
 /area/gateway/arynthilake/underground)
 "BJ" = (
 /obj/effect/landmark/gateway_scatter,
@@ -253,7 +253,7 @@
 /area/gateway/arynthilake/engine)
 "Eb" = (
 /obj/random/mob/semirandom_mob_spawner/monster/f,
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen/cave,
 /area/gateway/arynthilake/underground)
 "Ek" = (
 /obj/machinery/light/small{
@@ -306,9 +306,7 @@
 /turf/simulated/floor/tiled/eris/steel/techfloor,
 /area/gateway/arynthilake/engine)
 "LF" = (
-/turf/simulated/floor/plating/eris/under{
-	temperature = 258.15
-	},
+/turf/simulated/floor/plating/eris/under,
 /area/gateway/arynthilake/underground/maintenance)
 "LY" = (
 /turf/simulated/floor/beach/sand/desert,
@@ -381,7 +379,7 @@
 /area/gateway/arynthilake/underground/maintenance)
 "YC" = (
 /obj/random/mob/semirandom_mob_spawner/monster/d,
-/turf/simulated/mineral/floor/ignore_cavegen,
+/turf/simulated/mineral/floor/ignore_cavegen/cave,
 /area/gateway/arynthilake/underground)
 "ZY" = (
 /obj/structure/table/rack/shelf/steel,

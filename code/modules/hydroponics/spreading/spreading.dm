@@ -3,10 +3,8 @@
 
 /proc/spacevine_infestation(var/potency_min=70, var/potency_max=100, var/maturation_min=5, var/maturation_max=15)
 	spawn() //to stop the secrets panel hanging
-		//VOREStation Edit Start - override random picking logic with preplaced spawns
 		if(vinestart.len) //Pick a turf to spawn at if we can
 			var/turf/simulated/floor/T = pick(vinestart)
-			//VOREStation Edit End
 			var/datum/seed/seed = SSplants.create_random_seed(1)
 			seed.set_trait(TRAIT_SPREAD,2)             // So it will function properly as vines.
 			seed.set_trait(TRAIT_POTENCY,rand(potency_min, potency_max)) // 70-100 potency will help guarantee a wide spread and powerful effects.
@@ -80,6 +78,11 @@
 
 /obj/effect/plant/Initialize(var/ml, var/datum/seed/newseed, var/obj/effect/plant/newparent)
 	. = ..(ml)
+
+	//VOREStation Edit Start
+	if(istype(loc, /turf/simulated/open))
+		qdel(src)
+	//VOREStation Edit End
 
 	if(!newparent)
 		parent = src
@@ -158,7 +161,12 @@
 		var/clr
 		if(seed.get_trait(TRAIT_BIOLUM_COLOUR))
 			clr = seed.get_trait(TRAIT_BIOLUM_COLOUR)
-		set_light(1+round(seed.get_trait(TRAIT_POTENCY)/20), l_color = clr)
+		//VOREStation Edit Start - Tons of super bright super long range lights everywhere is annoying and laggy, so let's limit it a bit.
+		var/blight = 1+round(seed.get_trait(TRAIT_POTENCY)/20)
+		if(blight >= 5)
+			blight = 5
+		set_light(blight, 0.5, l_color = clr)
+		//VOREStation Edit End
 		return
 	else
 		set_light(0)

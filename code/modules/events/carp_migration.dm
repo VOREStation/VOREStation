@@ -26,7 +26,7 @@
 	if(activeFor % 5 != 0)
 		return // Only process every 10 seconds.
 	if(count_spawned_carps() < carp_cap)
-		spawn_fish(rand(1, severity * 2) - 1, severity, severity * 2)
+		spawn_fish(rand(3, 3 + severity * 2) - 1, 1, severity + 2)
 
 /datum/event/carp_migration/proc/spawn_fish(var/num_groups, var/group_size_min, var/group_size_max, var/dir)
 	if(isnull(dir))

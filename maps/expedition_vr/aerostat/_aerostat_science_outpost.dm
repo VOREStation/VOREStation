@@ -280,6 +280,14 @@ VIRGO2_TURF_CREATE(/turf/simulated/floor/hull)
 	name = "Firing Range"
 	icon_state = "orawhisqu"
 
+/area/offmap/aerostat/inside/miscstorage
+	name = "Miscellaneous Storage"
+	icon_state = "orawhisqu"
+
+/area/offmap/aerostat/inside/virology
+	name = "Virology Lab"
+	icon_state = "yelwhicir"
+
 /area/offmap/aerostat/inside/south
 	name = "Miscellaneous Labs A"
 	icon_state = "blublasqu"

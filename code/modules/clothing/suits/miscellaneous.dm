@@ -13,7 +13,7 @@
  */
 
 /obj/item/clothing/suit/bluetag
-	name = "blue laser tag armour"
+	name = "blue laser tag armor"
 	desc = "Blue Pride, Station Wide."
 	icon_state = "bluetag"
 	item_state_slots = list(slot_r_hand_str = "tdblue", slot_l_hand_str = "tdblue")
@@ -22,8 +22,13 @@
 	allowed = list (/obj/item/weapon/gun/energy/lasertag/blue)
 	siemens_coefficient = 3.0
 
+/obj/item/clothing/suit/bluetag/sub
+	name = "Brigader Armor"
+	desc = "Repilca rmor commonly worn by Spacer Union Brigade members from the hit series Spacer Trail. Modified for Laser Tag (Blue Team)."
+	icon_state = "bluetag2"
+
 /obj/item/clothing/suit/redtag
-	name = "red laser tag armour"
+	name = "red laser tag armor"
 	desc = "Reputed to go faster."
 	icon_state = "redtag"
 	item_state_slots = list(slot_r_hand_str = "tdred", slot_l_hand_str = "tdred")
@@ -31,6 +36,11 @@
 	body_parts_covered = UPPER_TORSO
 	allowed = list (/obj/item/weapon/gun/energy/lasertag/red)
 	siemens_coefficient = 3.0
+
+/obj/item/clothing/suit/redtag/dom
+	name = "Mu'tu'bi Armor"
+	desc = "Repilca rmor commonly worn by Dominion Of Mu'tu'bi soldiers from the hit series Spacer Trail. Modified for Laser Tag (Red Team)."
+	icon_state = "redtag2"
 
 /*
  * Costume
@@ -985,3 +995,12 @@
 		src.item_state = "caution"
 		usr.show_message("You turn the wet floor sign off.")
 	update_clothing_icon()
+
+//Ruin Marine (Doom Marine)
+/obj/item/clothing/suit/marine
+	name = "marine armor"
+	desc = "A set of marine prop armor from the popular game 'Ruin'."
+	icon_state = "marine"
+	body_parts_covered = FEET|LOWER_TORSO|UPPER_TORSO|LEGS
+	flags_inv = HIDESHOES|HIDEJUMPSUIT|HIDETIE|HIDEHOLSTER
+	item_state_slots = list(slot_r_hand_str = "green_labcoat", slot_l_hand_str = "green_labcoat")

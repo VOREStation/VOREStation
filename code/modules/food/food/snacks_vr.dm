@@ -161,19 +161,6 @@
 	reagents.add_reagent("protein", 4)
 	bitesize = 2
 
-/obj/item/weapon/reagent_containers/food/snacks/meat/grubmeat
-	name = "grub meat"
-	desc = "A slab of grub meat, it gives a gentle shock if you touch it"
-	icon = 'icons/obj/food.dmi'
-	icon_state = "grubmeat"
-	center_of_mass = list("x"=16, "y"=10)
-
-/obj/item/weapon/reagent_containers/food/snacks/meat/grubmeat/Initialize()
-	. = ..()
-	reagents.add_reagent("protein", 1)
-	reagents.add_reagent("shockchem", 6)
-	bitesize = 6
-
 /obj/item/weapon/reagent_containers/food/snacks/bugball
 	name = "bugball"
 	desc = "A hard piece of chitin, don't chip a tooth!"
@@ -773,3 +760,17 @@
 	. = ..()
 	reagents.add_reagent("protein", 3)
 	bitesize = 2
+
+/obj/item/weapon/reagent_containers/food/snacks/donkpocket/ascended
+	name = "Donk-pocket EX"
+	desc = "This donk-pocket has seen things beyond comprehension of mortals. It survived because the fire inside it burned brighter than fire around it."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "donkpocket_ascended"
+	nutriment_amt = 5
+	nutriment_desc = list("burning fires of radioactive hell" = 20)
+	heated_reagents = list("supermatter" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/donkpocket/ascended/Initialize()
+	. = ..()
+	reagents.add_reagent("uranium", 3)
+	reagents.add_reagent("pyrotoxin", 3)

@@ -21,6 +21,8 @@
 	old_x = -16
 	old_y = 0
 
+	meat_amount = 20
+
 	projectiletype = /obj/item/projectile/energy/spidertoxin
 	projectilesound = 'sound/weapons/pierce.ogg'
 
@@ -59,6 +61,7 @@
 	poison_per_bite = 2
 	poison_type = "cyanide"
 
+	loot_list = list(/obj/item/royal_spider_egg = 100)
 
 /obj/item/projectile/energy/spidertoxin
 	name = "concentrated spidertoxin"
@@ -71,11 +74,7 @@
 
 	combustion = FALSE
 
-/mob/living/simple_mob/animal/giant_spider/broodmother/death()
-	..()
-
-	new /obj/item/royal_spider_egg(src.loc)
-
+/mob/living/simple_mob/animal/giant_spider/broodmother/death(gibbed, deathmessage="falls over and makes its last twitches as its birthing sack bursts!")
 	var/count = 0
 	while(count < death_brood)
 		var/broodling_type = pick(possible_death_brood_types)
@@ -84,7 +83,7 @@
 		step_away(broodling, src)
 		count++
 
-	visible_message(span("critical", "\The [src]'s birthing sack bursts!"))
+	return ..()
 
 /mob/living/simple_mob/animal/giant_spider/broodmother/proc/spawn_brood(atom/A)
 	set waitfor = FALSE

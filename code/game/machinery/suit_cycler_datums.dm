@@ -286,6 +286,10 @@ GLOBAL_LIST_EMPTY(suit_cycler_emagged)
 	name = "Talon Pilot (Closed Helm)"
 	helmet_becomes = /obj/item/clothing/head/helmet/space/void/refurb/pilot/alt/talon
 	suit_becomes = /obj/item/clothing/suit/space/void/refurb/pilot/talon
+/datum/suit_cycler_choice/department/talon/miner
+	name = "Talon Miner"
+	helmet_becomes = /obj/item/clothing/head/helmet/space/void/refurb/mining/talon
+	suit_becomes = /obj/item/clothing/suit/space/void/refurb/mining/talon
 /datum/suit_cycler_choice/department/talon/res
 	name = "Talon Research (Bubble Helm)"
 	helmet_becomes = /obj/item/clothing/head/helmet/space/void/refurb/research/alt/talon

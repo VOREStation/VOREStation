@@ -55,6 +55,15 @@
 /obj/item/clothing/suit/space/void/refurb/pilot/talon
 	name = "talon pilot voidsuit"
 
+/obj/item/clothing/head/helmet/space/void/refurb/mining/talon
+	name = "talon miner voidsuit helmet"
+	desc = "A refurbished early contact era voidsuit helmet of human design. These things aren't especially good against modern weapons but they're sturdy, incredibly easy to come by, and there are lots of spare parts for repairs. The visor has a bad habit of fogging up and collecting condensation, but it beats sucking hard vacuum. \"ITV TALON\" has been stamped onto the sides of the helmet."
+	camera_networks = list(NETWORK_TALON_HELMETS)
+
+/obj/item/clothing/suit/space/void/refurb/mining/talon
+	name = "talon miner voidsuit"
+	desc = "A refurbished early contact era voidsuit of human design. These things aren't especially good against modern weapons but they're sturdy, incredibly easy to come by, and there are lots of spare parts for repairs. Many old-timer spacers swear by these old things, even if new powered hardsuits have more features and better armor. \"ITV TALON\" is stamped across the left side of the breastplate in faded faux-gold."
+
 /obj/item/clothing/head/helmet/space/void/refurb/research/talon
 	name = "talon scientific voidsuit helmet"
 	camera_networks = list(NETWORK_TALON_HELMETS)

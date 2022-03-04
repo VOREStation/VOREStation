@@ -101,7 +101,19 @@
 /obj/machinery/door/blast/regular/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	return // blast doors are immune to fire completely.
 
-/obj/machinery/door/blast/regular/
+/obj/machinery/door/blast/regular
+	heat_proof = 1 //just so repairing them doesn't try to fireproof something that never takes fire damage
+
+/obj/machinery/door/blast/angled/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+	return // blast doors are immune to fire completely.
+
+/obj/machinery/door/blast/angled
+	heat_proof = 1 //just so repairing them doesn't try to fireproof something that never takes fire damage
+
+/obj/machinery/door/blast/puzzle/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+	return // blast doors are immune to fire completely.
+
+/obj/machinery/door/blast/puzzle
 	heat_proof = 1 //just so repairing them doesn't try to fireproof something that never takes fire damage
 
 /obj/machinery/door/proc/toggle()

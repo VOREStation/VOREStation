@@ -246,3 +246,39 @@
 	magazine_icondata_keys[M.type] = icon_keys
 	magazine_icondata_states[M.type] = ammo_states
 
+/*
+ * Ammo Boxes
+ */
+
+/obj/item/ammo_magazine/ammo_box
+	name = "ammo box"
+	desc = "A box that holds some kind of ammo."
+	icon = 'icons/obj/ammo_boxes.dmi'
+	icon_state = "pistol"
+	slot_flags = null //You can't fit a box on your belt
+	item_state = "paper"
+	matter = null
+	throwforce = 3
+	throw_speed = 5
+	throw_range = 12
+	preserve_item = 1
+	caliber = ".357"
+	drop_sound = 'sound/items/drop/matchbox.ogg'
+	pickup_sound = 'sound/items/pickup/matchbox.ogg'
+
+/obj/item/ammo_magazine/ammo_box/AltClick(mob/user)
+	if(can_remove_ammo)
+		if(isliving(user) && Adjacent(user))
+			if(stored_ammo.len)
+				var/obj/item/ammo_casing/C = stored_ammo[stored_ammo.len]
+				stored_ammo-=C
+				user.put_in_hands(C)
+				user.visible_message("\The [user] removes \a [C] from [src].", "<span class='notice'>You remove \a [C] from [src].</span>")
+				update_icon()
+				return
+	..()
+
+/obj/item/ammo_magazine/ammo_box/examine(mob/user)
+	. = ..()
+
+	. += to_chat(usr, "<span class='notice'>Alt-click to extract contents</span>")

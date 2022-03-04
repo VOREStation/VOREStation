@@ -41,6 +41,9 @@
 	response_disarm = "gently pushes aside"
 	response_harm = "hits"
 
+	meat_amount = 2
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/fox
+
 	harm_intent_damage = 5
 	melee_damage_lower = 1
 	melee_damage_upper = 3
@@ -73,7 +76,7 @@
 /mob/living/simple_mob/vore/fennec/huge
 	icon = 'icons/mob/vore100x100.dmi'
 	icon_rest = null
-	
+
 	// LORG
 	maxHealth = 500
 	health = 500
@@ -89,7 +92,7 @@
 	old_x = -32
 	pixel_x = -32
 	default_pixel_x = -32
-	
+
 	// If you're immune to digestion, they can't digest you anyway!
 	vore_ignores_undigestable = TRUE
 	vore_default_mode = DM_DIGEST
@@ -107,7 +110,7 @@
 
 	response_help = "pats the paw of"
 	response_disarm = "somehow shoves aside"
-	
+
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate/cooperative
 	var/image/bigshadow
 	var/autodoom = TRUE
@@ -159,4 +162,3 @@
 		else
 			return ..()
 	return ..()
-	

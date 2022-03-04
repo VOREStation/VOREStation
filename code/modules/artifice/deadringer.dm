@@ -172,7 +172,4 @@
 	corpse.adjustBruteLoss(H.getBruteLoss())
 	corpse.UpdateAppearance()
 	corpse.regenerate_icons()
-	for(var/obj/item/organ/internal/I in corpse.internal_organs)
-		var/obj/item/organ/internal/G = I
-		G.Destroy()
-	return
+	QDEL_NULL_LIST(corpse.internal_organs)

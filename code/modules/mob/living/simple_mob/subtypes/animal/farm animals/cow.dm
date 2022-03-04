@@ -19,7 +19,7 @@
 
 	say_list_type = /datum/say_list/cow
 
-	meat_amount = 6
+	meat_amount = 10
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
 
 	var/datum/reagents/udder = null

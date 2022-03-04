@@ -996,4 +996,10 @@
 	if(new_silk_color)
 		species.silk_color = new_silk_color
 
+/mob/living/carbon/human/proc/toggle_eye_glow()
+	set name = "Toggle Eye Glowing"
+	set category = "Abilities"
 
+	species.has_glowing_eyes = !species.has_glowing_eyes
+	update_eyes()
+	to_chat(src, "Your eyes [species.has_glowing_eyes ? "are now" : "are no longer"] glowing.")

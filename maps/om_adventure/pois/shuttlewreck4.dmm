@@ -1,0 +1,406 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/simulated/floor/weird_things/dark,
+/area/om_adventure/poi/shuttlewreck4)
+"e" = (
+/obj/random/tech_supply/component,
+/turf/simulated/floor/tiled/eris/dark/monofloor,
+/area/om_adventure/poi/shuttlewreck4)
+"g" = (
+/obj/item/frame/apc,
+/turf/template_noop,
+/area/template_noop)
+"h" = (
+/obj/random/tech_supply/component,
+/turf/template_noop,
+/area/template_noop)
+"j" = (
+/turf/template_noop,
+/area/template_noop)
+"o" = (
+/obj/tether_away_spawner/spookyland,
+/turf/simulated/floor/weird_things/dark,
+/area/om_adventure/poi/shuttlewreck4)
+"p" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/eris/dark/monofloor,
+/area/om_adventure/poi/shuttlewreck4)
+"q" = (
+/turf/simulated/floor/tiled/eris/dark/monofloor,
+/area/om_adventure/poi/shuttlewreck4)
+"r" = (
+/obj/move_trader_landmark{
+	dir = 8;
+	trader_type = /obj/trader/general
+	},
+/turf/template_noop,
+/area/template_noop)
+"t" = (
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/om_adventure/poi/shuttlewreck4)
+"u" = (
+/obj/structure/shuttle/engine/propulsion,
+/turf/simulated/floor/plating/eris/airless,
+/area/om_adventure/poi/shuttlewreck4)
+"v" = (
+/turf/simulated/wall/eris/r_wall,
+/area/om_adventure/poi/shuttlewreck4)
+"w" = (
+/obj/move_trader_landmark{
+	dir = 4;
+	trader_type = /obj/trader/general
+	},
+/turf/template_noop,
+/area/template_noop)
+"x" = (
+/turf/simulated/floor/plating/eris/airless,
+/area/om_adventure/poi/shuttlewreck4)
+"y" = (
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 4
+	},
+/obj/random/tech_supply/component,
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/om_adventure/poi/shuttlewreck4)
+"C" = (
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/om_adventure/poi/shuttlewreck4)
+"D" = (
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 1
+	},
+/obj/random/tech_supply,
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/om_adventure/poi/shuttlewreck4)
+"H" = (
+/obj/random/tech_supply/component,
+/turf/simulated/floor/weird_things/dark,
+/area/om_adventure/poi/shuttlewreck4)
+"I" = (
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/om_adventure/poi/shuttlewreck4)
+"J" = (
+/obj/machinery/door/blast/multi_tile/three_tile_ver{
+	density = 0;
+	icon_state = "open";
+	opacity = 0
+	},
+/turf/simulated/floor/plating/eris/airless,
+/area/om_adventure/poi/shuttlewreck4)
+"K" = (
+/obj/tether_away_spawner/spookyland,
+/turf/template_noop,
+/area/template_noop)
+"M" = (
+/obj/structure/low_wall/eris/reinforced,
+/obj/structure/window/eris,
+/turf/simulated/floor/plating,
+/area/om_adventure/poi/shuttlewreck4)
+"O" = (
+/obj/random/tech_supply,
+/turf/simulated/floor/tiled/eris/dark/monofloor,
+/area/om_adventure/poi/shuttlewreck4)
+"P" = (
+/obj/structure/frame/computer,
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/om_adventure/poi/shuttlewreck4)
+"S" = (
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/om_adventure/poi/shuttlewreck4)
+"T" = (
+/obj/random/awayloot/looseloot,
+/turf/simulated/floor/tiled/eris/dark/monofloor,
+/area/om_adventure/poi/shuttlewreck4)
+"V" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/random/awayloot/looseloot,
+/turf/simulated/floor/tiled/eris/dark/monofloor,
+/area/om_adventure/poi/shuttlewreck4)
+"X" = (
+/obj/structure/bed/chair/bay/shuttle,
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/om_adventure/poi/shuttlewreck4)
+"Y" = (
+/obj/structure/bed/chair/bay/shuttle{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/eris/dark/techfloor_grid,
+/area/om_adventure/poi/shuttlewreck4)
+
+(1,1,1) = {"
+j
+j
+j
+j
+j
+j
+j
+j
+a
+j
+j
+j
+H
+j
+a
+"}
+(2,1,1) = {"
+j
+a
+a
+j
+w
+a
+j
+h
+j
+j
+j
+j
+j
+a
+j
+"}
+(3,1,1) = {"
+j
+j
+j
+o
+a
+g
+a
+a
+a
+j
+o
+a
+a
+v
+j
+"}
+(4,1,1) = {"
+j
+j
+j
+h
+a
+a
+a
+a
+a
+a
+H
+H
+v
+v
+j
+"}
+(5,1,1) = {"
+j
+j
+j
+v
+v
+x
+x
+J
+v
+v
+a
+v
+v
+u
+j
+"}
+(6,1,1) = {"
+j
+a
+a
+v
+V
+q
+e
+q
+O
+v
+M
+v
+v
+v
+j
+"}
+(7,1,1) = {"
+o
+v
+M
+M
+q
+I
+I
+I
+q
+t
+Y
+y
+v
+j
+j
+"}
+(8,1,1) = {"
+j
+M
+P
+C
+q
+D
+v
+X
+q
+q
+T
+q
+M
+j
+j
+"}
+(9,1,1) = {"
+a
+v
+M
+M
+e
+Y
+Y
+Y
+q
+S
+I
+I
+v
+j
+j
+"}
+(10,1,1) = {"
+j
+j
+j
+v
+p
+q
+q
+q
+e
+v
+M
+v
+v
+v
+j
+"}
+(11,1,1) = {"
+j
+j
+j
+v
+v
+x
+x
+J
+v
+v
+j
+v
+v
+u
+j
+"}
+(12,1,1) = {"
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+v
+v
+j
+"}
+(13,1,1) = {"
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+v
+j
+"}
+(14,1,1) = {"
+j
+j
+j
+j
+r
+j
+j
+j
+j
+j
+j
+K
+j
+j
+j
+"}
+(15,1,1) = {"
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+"}

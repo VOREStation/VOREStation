@@ -21,7 +21,7 @@
 	var/extra_overlay_w // Flapping state for extra overlay
 	var/extra_overlay2_w
 
-	species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)
+	//species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)			//Removing Polaris whitelits, ones we need are defined in our files
 
 /datum/sprite_accessory/wing/featheredlarge //Made by Natje!
 	name = "large feathered wings (colorable)"

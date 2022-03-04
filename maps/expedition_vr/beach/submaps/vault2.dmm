@@ -1,16 +1,114 @@
-"a" = (/turf/template_noop,/area/template_noop)
-"b" = (/turf/simulated/wall,/area/submap/cave/vault2)
-"c" = (/turf/simulated/floor/plating,/area/submap/cave/vault2)
-"d" = (/obj/random/multiple/minevault,/turf/simulated/floor/plating,/area/submap/cave/vault2)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/turf/simulated/wall,
+/area/submap/cave/vault2)
+"c" = (
+/turf/simulated/floor/plating,
+/area/submap/cave/vault2)
+"d" = (
+/obj/random/multiple/minevault,
+/turf/simulated/floor/plating,
+/area/submap/cave/vault2)
 
 (1,1,1) = {"
-aaaaaaaaa
-abbaaabba
-abbbbbbba
-aabcccbaa
-aabcdcbaa
-aabcccbaa
-abbbbbbba
-abbaaabba
-aaaaaaaaa
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+b
+b
+a
+a
+a
+b
+b
+a
+"}
+(3,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(4,1,1) = {"
+a
+a
+b
+c
+c
+c
+b
+a
+a
+"}
+(5,1,1) = {"
+a
+a
+b
+c
+d
+c
+b
+a
+a
+"}
+(6,1,1) = {"
+a
+a
+b
+c
+c
+c
+b
+a
+a
+"}
+(7,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(8,1,1) = {"
+a
+b
+b
+a
+a
+a
+b
+b
+a
+"}
+(9,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
 "}

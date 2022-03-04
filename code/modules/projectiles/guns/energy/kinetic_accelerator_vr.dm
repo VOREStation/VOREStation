@@ -191,7 +191,7 @@
 /obj/item/weapon/gun/energy/kinetic_accelerator/proc/empty()
 	if(power_supply)
 		power_supply.use(power_supply.charge)
-	update_icon()
+		update_icon()
 
 /obj/item/weapon/gun/energy/kinetic_accelerator/proc/attempt_reload(recharge_time)
 	if(!power_supply)
@@ -223,7 +223,7 @@
 
 /obj/item/weapon/gun/energy/kinetic_accelerator/update_icon()
 	cut_overlays()
-	if(overheat || (power_supply.charge == 0))
+	if(overheat || !power_supply || (power_supply.charge == 0))
 		add_overlay(emptystate)
 
 #define KA_ENVIRO_TYPE_COLD 0
@@ -273,6 +273,7 @@
 		else if(environment == KA_ENVIRO_TYPE_OFFSITE)
 			if(!offsite_environment_check(get_turf(src)))
 				name = "nullified [name]"
+				nodamage = TRUE
 				damage = 0
 				pressure_decrease_active = TRUE
 	return ..()
@@ -292,6 +293,7 @@
 		else if(environment == KA_ENVIRO_TYPE_OFFSITE)
 			if(!offsite_environment_check(get_turf(src)))
 				name = "nullified [name]"
+				nodamage = TRUE
 				damage = 0
 				pressure_decrease_active = TRUE
 	return ..()
@@ -323,6 +325,7 @@
 		else if(environment == KA_ENVIRO_TYPE_OFFSITE)
 			if(!offsite_environment_check(get_turf(src)))
 				name = "nullified [name]"
+				nodamage = TRUE
 				damage = 0
 				pressure_decrease_active = TRUE
 	var/turf/target_turf = get_turf(target)
@@ -546,7 +549,7 @@
 //Tendril-unique modules
 /obj/item/borg/upgrade/modkit/cooldown/repeater
 	name = "rapid repeater"
-	desc = "Quarters the kinetic accelerator's cooldown on striking a living target, but greatly increases the base cooldown."
+	desc = "Quarters the kinetic accelerator's cooldown on striking a living or mineral target, but greatly increases the base cooldown."
 	denied_type = /obj/item/borg/upgrade/modkit/cooldown/repeater
 	modifier = -14 //Makes the cooldown 3 seconds(with no cooldown mods) if you miss. Don't miss.
 	cost = 50
@@ -654,9 +657,11 @@
 	name = "offsite pressure modulator"
 	desc = "A non-standard modification kit that increases the damage a kinetic accelerator does in pressurized environments, \
 	in exchange for nullifying any projected forces while on or in an associated facility."
+	denied_type = /obj/item/borg/upgrade/modkit/heater
+	maximum_of_type = 1
 	cost = 35
 
-/obj/item/borg/upgrade/modkit/indoors/offsite/modify_projectile(obj/item/projectile/kinetic/K)
+/obj/item/borg/upgrade/modkit/offsite/modify_projectile(obj/item/projectile/kinetic/K)
 	K.environment = KA_ENVIRO_TYPE_OFFSITE
 
 // Atmospheric
@@ -664,7 +669,7 @@
 	name = "temperature modulator"
 	desc = "A remarkably unusual modification kit that makes kinetic accelerators more usable in hot, overpressurized environments, \
 	in exchange for making them weak elsewhere, like the cold or in space."
-	denied_type = /obj/item/borg/upgrade/modkit/indoors
+	denied_type = /obj/item/borg/upgrade/modkit/offsite
 	maximum_of_type = 1
 	cost = 10
 

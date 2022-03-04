@@ -48,7 +48,10 @@
 	var/radio_filter_out
 	var/radio_filter_in
 
-	var/datum/looping_sound/air_pump/soundloop
+	//var/datum/looping_sound/air_pump/soundloop
+	var/static/start_sound = 'sound/machines/air_pump/airpumpstart.ogg'
+	var/static/stop_sound = 'sound/machines/air_pump/airpumpshutdown.ogg'
+
 
 /obj/machinery/atmospherics/unary/vent_pump/on
 	use_power = USE_POWER_IDLE
@@ -78,7 +81,8 @@
 
 /obj/machinery/atmospherics/unary/vent_pump/Initialize()
 	. = ..()
-	soundloop = new(list(src), FALSE)
+	//soundloop = new(list(src), FALSE)
+
 	air_contents.volume = ATMOS_DEFAULT_VOLUME_PUMP
 
 	icon = null
@@ -93,7 +97,7 @@
 	if(initial_loc)
 		initial_loc.air_vent_info -= id_tag
 		initial_loc.air_vent_names -= id_tag
-	QDEL_NULL(soundloop)
+	//QDEL_NULL(soundloop)
 	return ..()
 
 /obj/machinery/atmospherics/unary/vent_pump/high_volume
@@ -152,10 +156,15 @@
 
 	if(welded)
 		vent_icon += "weld"
+		playsound(src, stop_sound, 25, ignore_walls = FALSE, preference = /datum/client_preference/air_pump_noise)
+
 	else if(!use_power || !node || (stat & (NOPOWER|BROKEN)))
 		vent_icon += "off"
+		playsound(src, stop_sound, 25, ignore_walls = FALSE, preference = /datum/client_preference/air_pump_noise)
 	else
 		vent_icon += "[pump_direction ? "out" : "in"]"
+		playsound(src, start_sound, 25, ignore_walls = FALSE, preference = /datum/client_preference/air_pump_noise)
+
 
 	add_overlay(icon_manager.get_atmos_icon("device", , , vent_icon))
 
@@ -179,15 +188,11 @@
 
 /obj/machinery/atmospherics/unary/vent_pump/proc/can_pump()
 	if(stat & (NOPOWER|BROKEN))
-		soundloop.stop()
 		return 0
 	if(!use_power)
-		soundloop.stop() 
 		return 0
 	if(welded)
-		soundloop.stop()
 		return 0
-	soundloop.start()
 	return 1
 
 /obj/machinery/atmospherics/unary/vent_pump/process()

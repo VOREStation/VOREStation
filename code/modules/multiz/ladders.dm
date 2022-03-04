@@ -37,6 +37,13 @@
 		target_up = null
 	return ..()
 
+/obj/structure/ladder/attack_generic(mob/user)
+	//Simple Animal
+	if(isanimal(user))
+		attack_hand(user)
+	else
+		return ..()
+
 /obj/structure/ladder/attackby(obj/item/C as obj, mob/user as mob)
 	attack_hand(user)
 	return

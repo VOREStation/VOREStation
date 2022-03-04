@@ -453,6 +453,7 @@
 		/obj/item/clothing/head/caphat/cap,
 		/obj/item/clothing/head/caphat/beret,
 		/obj/item/clothing/under/rank/captain,
+		/obj/item/clothing/under/dress/dress_cap/femformal,
 		/obj/item/clothing/shoes/brown,
 		/obj/item/clothing/gloves/captain,
 		/obj/item/clothing/under/dress/dress_cap,

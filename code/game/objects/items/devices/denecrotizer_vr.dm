@@ -76,6 +76,10 @@
 	// Clean up the simplemob
 	ghostjoin = FALSE
 	ghostjoin_icon()
+	if(capture_caught)
+		to_chat(src, "<span class='notice'>You are bound to [revivedby], follow their commands within reason and to the best of your abilities, and avoid betraying or abandoning them.</span><span class= warning> You are allied with [revivedby]. Do not attack anyone for no reason. Of course, you may do scenes as you like, but you must still respect preferences.</span>")
+		visible_message("[src]'s eyes flicker with a curious intelligence.", runemessage = "looks around")
+		return
 	if(revivedby != "no one")
 		to_chat(src, "<span class='notice'>Where once your life had been rough and scary, you have been assisted by [revivedby]. They seem to be the reason you are on your feet again... so perhaps you should help them out.</span> <span class= warning> Being as you were revived, you are allied with the station. Do not attack anyone unless they are threatening the one who revived you. And try to listen to the one who revived you within reason. Of course, you may do scenes as you like, but you must still respect preferences.</span>")
 		visible_message("[src]'s eyes flicker with a curious intelligence.", runemessage = "looks around")
@@ -95,6 +99,10 @@
 		to_chat(D, "<span class='notice'>Sorry, someone else has already inhabited [src].</span>")
 		return FALSE
 	
+	if(capture_caught && !D.client.prefs.capture_crystal)
+		to_chat(D, "<span class='notice'>Sorry, [src] is participating in capture mechanics, and your preferences do not allow for that.</span>")
+		return FALSE
+
 	// Insert whatever ban checks you want here if we ever add simplemob bans
 
 	return TRUE

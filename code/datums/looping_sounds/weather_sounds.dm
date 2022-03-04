@@ -75,17 +75,24 @@
 	mid_sounds = list(
 		'sound/effects/weather/acidrain_mid.ogg' = 1
 		)
-	mid_length = 15 SECONDS // The lengths for the files vary, but the longest is ten seconds, so this will make it sound like intermittent wind.
+	mid_length = 15 SECONDS
 	start_sound = 'sound/effects/weather/acidrain_start.ogg'
 	start_length = 13 SECONDS
 	end_sound = 'sound/effects/weather/acidrain_end.ogg'
 	volume = 20
 
-/datum/looping_sound/weather/rain/indoors
-	volume = 10
-
 /datum/looping_sound/weather/rain/heavy
 	volume = 40
 
-/datum/looping_sound/weather/rain/heavy/indoors
-	volume = 20
+/datum/looping_sound/weather/rain/indoors
+	mid_sounds = list(
+		'sound/effects/weather/indoorrain_mid.ogg' = 1
+		)
+	mid_length = 15 SECONDS
+	start_sound = 'sound/effects/weather/indoorrain_start.ogg'
+	start_length = 13 SECONDS
+	end_sound = 'sound/effects/weather/indoorrain_end.ogg'
+	volume = 20 //Sound is already quieter in file
+
+/datum/looping_sound/weather/rain/indoors/heavy
+	volume = 40

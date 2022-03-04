@@ -75,6 +75,7 @@
 	return TryToSwitchState(user)
 
 /obj/structure/simple_door/AltClick(mob/user as mob)
+	. = ..()
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(!Adjacent(user))
 		return
@@ -82,7 +83,7 @@
 		src.visible_message("<span class='warning'>[user] hammers on \the [src]!</span>", "<span class='warning'>Someone hammers loudly on \the [src]!</span>")
 		src.add_fingerprint(user)
 		playsound(src, knock_hammer_sound, 50, 0, 3)
-	else
+	else if(user.a_intent == I_HELP)
 		src.visible_message("[user] knocks on \the [src].", "Someone knocks on \the [src].")
 		src.add_fingerprint(user)
 		playsound(src, knock_sound, 50, 0, 3)

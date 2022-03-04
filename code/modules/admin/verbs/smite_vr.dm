@@ -34,7 +34,7 @@
 			if(!Ts)
 				return //Didn't find shadekin spawn turf
 
-			var/mob/living/simple_mob/shadekin/red/ai/shadekin = new(Ts)
+			var/mob/living/simple_mob/shadekin/red/shadekin = new(Ts)
 			//Abuse of shadekin
 			shadekin.real_name = shadekin.name
 			shadekin.init_vore()

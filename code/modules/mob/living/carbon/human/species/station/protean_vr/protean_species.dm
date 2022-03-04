@@ -172,13 +172,9 @@
 
 	to_chat(H, "<span class='warning'>You died as a Protean. Please sit out of the round for at least 60 minutes before respawning, to represent the time it would take to ship a new-you to the station.</span>")
 
-	for(var/obj/item/organ/I in H.internal_organs)
-		I.removed()
-
-	for(var/obj/item/I in H.contents)
-		H.drop_from_inventory(I)
-
-	qdel(H)
+	spawn(1)
+		if(H)
+			H.gib()
 
 /datum/species/protean/handle_environment_special(var/mob/living/carbon/human/H)
 	if((H.getActualBruteLoss() + H.getActualFireLoss()) > H.maxHealth*0.5 && isturf(H.loc)) //So, only if we're not a blob (we're in nullspace) or in someone (or a locker, really, but whatever)

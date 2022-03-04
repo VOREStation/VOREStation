@@ -183,7 +183,7 @@
 		. += "The access panel is [locked? "locked" : "unlocked"]."
 		. += "The maintenance panel is [open ? "open" : "closed"]."
 		. += "Hardsuit systems are [offline ? "<span class='warning'>offline</span>" : "<span class='notice'>online</span>"]."
-		. += "The cooling stystem is [cooling_on ? "active" : "inactive"]."
+		. += "The cooling system is [cooling_on ? "active" : "inactive"]."
 
 		if(open)
 			. += "It's equipped with [english_list(installed_modules)]."
@@ -414,10 +414,10 @@
 	if(!cell)
 		return
 	if(cell.charge <= 0)
-		to_chat(user, "<span class='notice'>\The [src] has no power!.</span>")
+		to_chat(user, "<span class='notice'>\The [src] has no power!</span>")
 		return
 	if(!suit_is_deployed())
-		to_chat(user, "<span class='notice'>The hardsuit needs to be deployed first!.</span>")
+		to_chat(user, "<span class='notice'>The hardsuit needs to be deployed first!</span>")
 		return
 
 	cooling_on = 1
@@ -482,6 +482,12 @@
 	var/efficiency = 1 - H.get_pressure_weakness(environment.return_pressure())	// You need to have a good seal for effective cooling
 	var/env_temp = get_environment_temperature()						//wont save you from a fire
 	var/temp_adj = min(H.bodytemperature - max(thermostat, env_temp), max_cooling)
+	var/thermal_protection = H.get_heat_protection(env_temp)	// ... unless you've got a good suit.
+
+	if(thermal_protection < 0.99)		//For some reason, < 1 returns false if the value is 1.
+		temp_adj = min(H.bodytemperature - max(thermostat, env_temp), max_cooling)
+	else
+		temp_adj = min(H.bodytemperature - thermostat, max_cooling)
 
 	if (temp_adj < 0.5)	//only cools, doesn't heat, also we don't need extreme precision
 		return

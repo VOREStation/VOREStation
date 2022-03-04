@@ -15,6 +15,12 @@
 
 /turf/simulated/Destroy()
 	updateVisibility(src)
+	if(zone)
+		if(can_safely_remove_from_zone())
+			c_copy_air()
+			zone.remove(src)
+		else
+			zone.rebuild()
 	return ..()
 
 /turf/simulated/Initialize()

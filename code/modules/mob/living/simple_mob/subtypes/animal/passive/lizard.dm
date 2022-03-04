@@ -23,6 +23,8 @@
 
 	say_list_type = /datum/say_list/lizard
 
+	meat_amount = 1
+
 /mob/living/simple_mob/animal/passive/lizard/large
 	desc = "A cute, big lizard."
 	maxHealth = 20

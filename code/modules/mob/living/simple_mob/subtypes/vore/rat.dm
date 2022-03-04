@@ -45,6 +45,9 @@
 	attacktext = list("ravaged")
 	friendly = list("nuzzles", "licks", "noses softly at", "noseboops", "headbumps against", "leans on", "nibbles affectionately on")
 
+	meat_amount = 6
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+
 	old_x = -16
 	old_y = 0
 	default_pixel_x = -16

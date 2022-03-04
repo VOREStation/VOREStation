@@ -128,6 +128,26 @@
 	edge = TRUE
 	var/digspeed = 40
 
+/obj/item/weapon/shovel/wood
+	icon_state = "whiteshovel"
+	item_state = "whiteshovel"
+	var/datum/material/material
+
+/obj/item/weapon/shovel/wood/Initialize(var/ml, var/_mat)
+	. = ..()
+	material = get_material_by_name(_mat)
+	if(!istype(material))
+		material = null
+	else
+		name = "[material.display_name] shovel"
+		matter = list("[material.name]" = 50)
+		update_icon()
+
+/obj/item/weapon/shovel/wood/update_icon()
+	. = ..()
+	color = material ? material.icon_colour : initial(color)
+	alpha = min(max(255 * material.opacity, 80), 255)
+
 /obj/item/weapon/shovel/spade
 	name = "spade"
 	desc = "A small tool for digging and moving dirt."

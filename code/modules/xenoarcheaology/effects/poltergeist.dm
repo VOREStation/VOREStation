@@ -3,6 +3,9 @@
 	name = "poltergeist"
 	effect_type = EFFECT_ENERGY
 
+	effect_state = "shield2"
+	effect_color = "#a824c9"
+
 /datum/artifact_effect/poltergeist/proc/throw_at_mob(var/mob/living/target, var/damage = 20)
 	var/list/valid_targets = list()
 
@@ -19,6 +22,7 @@
 	throw_at_mob(user, rand(10, 30))
 
 /datum/artifact_effect/poltergeist/DoEffectAura()
+	var/atom/holder = get_master_holder()
 	var/mob/living/target = null
 	for(var/mob/living/L in oview(get_turf(holder), effectrange))
 		if(L.stat || !L.mind)
@@ -33,6 +37,7 @@
 		throw_at_mob(target, rand(15, 30))
 
 /datum/artifact_effect/poltergeist/DoEffectPulse()
+	var/atom/holder = get_master_holder()
 	var/mob/living/target = null
 	for(var/mob/living/L in oview(get_turf(holder), effectrange))
 		if(L.stat || !L.mind)
