@@ -161,7 +161,11 @@ GLOBAL_LIST_BOILERPLATE(papers_dockingcode, /obj/item/weapon/paper/dockingcodes)
 
 /obj/item/weapon/paper/dockingcodes/proc/populate_info()
 	var/dockingcodes = null
-	var/z_to_check = codes_from_z ? codes_from_z : z
+	var/turf/T = get_turf(src)
+	var/our_z
+	if(T)
+		our_z = T.z
+	var/z_to_check = codes_from_z ? codes_from_z : our_z
 	if(using_map.use_overmap)
 		var/obj/effect/overmap/visitable/location = get_overmap_sector(z_to_check)
 		if(location && location.docking_codes)
