@@ -149,11 +149,11 @@
 	to_chat(src, "<span class='danger'>You begin to resist \the [prey_name]'s control!!!</span>")
 	to_chat(pred_body, "<span class='danger'>You feel the captive mind of [src] begin to resist your control.</span>")
 
-	if(!do_after(src, 10 SECONDS, exclusive = TRUE) || !isbelly(loc) || loc.loc != pred_body)
+	if(do_after(src, 10 SECONDS, exclusive = TRUE))
+		restore_control()
+	else
 		to_chat(src, "<span class='notice'>Your attempt to regain control has been interrupted...</span>")
 		to_chat(pred_body, "<span class='notice'>The dominant sensation fades away...</span>")
-		return
-	restore_control()
 	..()
 
 /mob/living/dominated_brain/proc/restore_control(ask = TRUE)
@@ -170,6 +170,9 @@
 	if(prey_body && prey_body.loc.loc == pred_body)	//The prey body exists and is here, let's handle the prey!
 
 		prey_goes_here = prey_body
+		pred_body.verbs -= /mob/living/proc/psay
+		pred_body.verbs -= /mob/living/proc/pme
+
 		src.computer_id = null
 		src.lastKnownIP = null
 
@@ -199,8 +202,6 @@
 
 	// Handle Pred
 	pred_body.verbs -= /mob/living/proc/release_predator
-	pred_body.verbs -= /mob/living/proc/psay
-	pred_body.verbs -= /mob/living/proc/pme
 
 	pred_body.computer_id = null
 	pred_body.lastKnownIP = null
@@ -283,9 +284,9 @@
 		return
 	to_chat(pred, "<span class='warning'>You can feel the will of another overwriting your own, control of your body being sapped away from you...</span>")
 	to_chat(src, "<span class='warning'>You can feel the will of your host diminishing as you exert your will over them!</span>")
-	if(!do_after(src, 10 SECONDS, exclusive = TRUE) || !isbelly(loc) || loc.loc != pred)
+	if(!do_after(src, 10 SECONDS, exclusive = TRUE))
 		to_chat(src, "<span class='notice'>Your attempt to regain control has been interrupted...</span>")
-		to_chat(pred, "<span class='notice'>The dominant sensation fades away...</span>")
+		to_chat(pred_body, "<span class='notice'>The dominant sensation fades away...</span>")
 		return
 
 	to_chat(src, "<span class='danger'>You plunge your conciousness into \the [pred], assuming control over their very body, leaving your own behind within \the [pred]'s [loc].</span>")
