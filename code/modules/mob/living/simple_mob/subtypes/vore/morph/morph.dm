@@ -265,7 +265,6 @@
 	var/list/possible_mobs = list()
 	for(var/obj/belly/B in src.vore_organs)
 		for(var/mob/living/H in B)
-			//if(ishuman(H) && H.ckey)
 			if( (ishuman(H) || isrobot(H)) && H.ckey )
 				possible_mobs += H
 			else
@@ -277,6 +276,7 @@
 		M = input
 		if(!M)
 			return
+		// Adding a ishuman check here, since silicon mobs don't have a resleeve_lock from what I can tell.
 		if(ishuman(M))
 			if(M.resleeve_lock && ckey != M.resleeve_lock)
 				to_chat(src, "<span class='warning'>\The [M] cannot be impersonated!</span>")
