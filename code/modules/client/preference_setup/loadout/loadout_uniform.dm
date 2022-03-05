@@ -700,6 +700,26 @@
 	path = /obj/item/clothing/under/gsa_work
 
 /*
+ * 80s
+ */
+
+/datum/gear/uniform/tropical_outfit/black
+	display_name = "tropical outfit, animal style"
+	path = /obj/item/clothing/under/tropical
+
+/datum/gear/uniform/tropical_outfit/green
+	display_name = "tropical outfit, tropico-puke"
+	path = /obj/item/clothing/under/tropical/green
+
+/datum/gear/uniform/tropical_outfit/pink
+	display_name = "tropical outfit, 3005 vintage"
+	path = /obj/item/clothing/under/tropical/pink
+
+/datum/gear/uniform/tropical_outfit/blue
+	display_name = "tropical outfit, miami vice"
+	path = /obj/item/clothing/under/tropical/blue
+
+/*
  * Branded Uniforms
  */
 

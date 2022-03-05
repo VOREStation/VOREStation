@@ -13,6 +13,18 @@
 	display_name = "tourist, green"
 	path = /obj/item/clothing/shoes/tourist_2
 
+/datum/gear/shoes/sneakerspurple
+	display_name = "sneakers, purple"
+	path = /obj/item/clothing/shoes/sneakerspurple
+
+/datum/gear/shoes/sneakersblue
+	display_name = "sneakers, blue"
+	path = /obj/item/clothing/shoes/sneakersblue
+
+/datum/gear/shoes/sneakersred
+	display_name = "sneakers, red"
+	path = /obj/item/clothing/shoes/sneakersred
+
 /datum/gear/shoes/jackboots
 	display_name = "jackboots"
 	path = /obj/item/clothing/shoes/boots/jackboots
