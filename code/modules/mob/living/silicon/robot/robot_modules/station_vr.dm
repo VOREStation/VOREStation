@@ -189,6 +189,7 @@
 	networks = list(NETWORK_SECURITY)
 	pto_type = PTO_SECURITY
 	can_be_pushed = 0
+	supported_upgrades = list(/obj/item/borg/upgrade/tasercooler)
 
 /obj/item/weapon/robot_module/robot/knine/New(var/mob/living/silicon/robot/R)
 	src.modules += new /obj/item/weapon/handcuffs/cyborg(src) //You need cuffs to be a proper sec borg!
