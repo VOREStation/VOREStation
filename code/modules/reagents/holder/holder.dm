@@ -361,7 +361,19 @@
 		return
 
 	for(var/datum/reagent/current in reagent_list)
+<<<<<<< HEAD
 		current.touch_turf(target, amount)
+=======
+		if(!has_liquids() || current.no_puddle)
+			current.touch_turf(target, amount)
+
+
+	if(has_liquids())
+		var/obj/effect/decal/cleanable/chempuddle/CP = locate() in target
+		if(!CP)
+			CP = new(target)
+		trans_to_holder(CP.reagents, amount)
+>>>>>>> 38e1d0f0367... Merge pull request #8417 from Mechoid/TankAndPuddleReprise
 
 	update_total()
 
