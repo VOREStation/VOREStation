@@ -151,7 +151,7 @@ var/list/shell_module_types = list(
 )
 // List of whitelisted modules
 var/list/whitelisted_module_types = list(
-	"Lost", "Stray"
+	"Lost", "Stray", "Honk-Hound"
 )
 
 // Some scary sounds.

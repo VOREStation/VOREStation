@@ -724,4 +724,10 @@
 	icon_state = "sleeperert"
 	injection_chems = list("inaprovaline", "paracetamol") // short list
 
+/obj/item/device/dogborg/sleeper/compactor/honkborg
+	name = "Jiggles Von Hungertron"
+	desc = "You've heard of Giggles Von Honkerton for the back, now get ready for Jiggles Von Hungertron for the front."
+	icon_state = "clowngut"
+	recycles = FALSE
+
 #undef SLEEPER_INJECT_COST
