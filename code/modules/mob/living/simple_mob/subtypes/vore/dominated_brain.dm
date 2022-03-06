@@ -272,8 +272,9 @@
 		to_chat(prey, "<span class='warning'>\The [pred] is already dominated, and cannot be controlled at this time.</span>")
 		return
 	if(ishuman(pred))
-		if(pred.resleeve_lock && ckey != pred.resleeve_lock)
-			to_chat(src, "<span class='warning'>\The [pred] cannot be impersonated!</span>")
+		var/mob/living/carbon/human/h
+		if(h.resleeve_lock && ckey != h.resleeve_lock)
+			to_chat(src, "<span class='warning'>\The [h] cannot be impersonated!</span>")
 			return
 	if(tgui_alert(prey, "You are attempting to take over [pred], are you sure? Ensure that their preferences align with this kind of play.", "Take Over Predator",list("No","Yes")) != "Yes")
 		return
