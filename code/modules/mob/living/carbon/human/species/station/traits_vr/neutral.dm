@@ -489,4 +489,4 @@
 
 /datum/trait/neutral/dominate_predator/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..(S,H)
-	H.verbs |= /mob/living/proc/dominate_predator
+	H.verbs |= /mob/proc/dominate_predator
