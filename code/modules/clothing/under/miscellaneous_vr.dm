@@ -367,7 +367,7 @@
 	item_state = "bodysuit_emt"
 
 /obj/item/clothing/under/undersuit/explo
-	name = "mining undersuit"
+	name = "exploration undersuit"
 	desc = "An undersuit, intended for wearing under a voidsuit or other EVA equipment. This one is specifically made for Exploration crew, for hazardous environments."
 	icon_state = "bodysuit_exp"
 	item_state = "bodysuit_exp"
