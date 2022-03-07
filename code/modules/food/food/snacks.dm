@@ -1594,16 +1594,6 @@
 	nutriment_desc = list("noodles" = 2)
 	bitesize = 1
 
-/obj/item/weapon/reagent_containers/food/snacks/fortunecookie
-	name = "Fortune cookie"
-	desc = "A true prophecy in each cookie!"
-	icon_state = "fortune_cookie"
-	filling_color = "#E8E79E"
-	center_of_mass = list("x"=15, "y"=14)
-	nutriment_amt = 3
-	nutriment_desc = list("fortune cookie" = 2)
-	bitesize = 2
-
 /obj/item/weapon/reagent_containers/food/snacks/badrecipe
 	name = "Burned mess"
 	desc = "Someone should be demoted from chef for this."
@@ -4224,6 +4214,15 @@
 	. = ..()
 	reagents.add_reagent("bean_protein", 6)
 
+/obj/item/weapon/reagent_containers/food/snacks/cookie
+	name = "chocolate chip cookie"
+	desc = "Just like your mother used to make."
+	filling_color = "#DBC94F"
+	icon_state = "cookie"
+	nutriment_amt = 5
+	nutriment_desc = list("sweetness" = 2, "cookie" = 1, "chocolate" = 2)
+	bitesize = 1
+
 /obj/item/weapon/reagent_containers/food/snacks/sugarcookie
 	name = "sugar cookie"
 	desc = "Just like your little sister used to make."
@@ -4232,6 +4231,16 @@
 	nutriment_amt = 5
 	nutriment_desc = list("sweetness" = 4, "cookie" = 1)
 	bitesize = 1
+
+/obj/item/weapon/reagent_containers/food/snacks/fortunecookie
+	name = "Fortune cookie"
+	desc = "A true prophecy in each cookie!"
+	icon_state = "fortune_cookie"
+	filling_color = "#E8E79E"
+	center_of_mass = list("x"=15, "y"=14)
+	nutriment_amt = 3
+	nutriment_desc = list("fortune cookie" = 2)
+	bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/berrymuffin
 	name = "berry muffin"
