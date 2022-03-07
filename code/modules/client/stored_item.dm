@@ -232,6 +232,8 @@
 	persist_storable = FALSE
 /obj/item/weapon/melee/cursedblade
 	persist_storable = FALSE
+/obj/item/weapon/circuitboard/mecha/imperion
+	persist_storable = FALSE
 /obj/item/device/paicard
 	persist_storable = FALSE
 /obj/item/organ

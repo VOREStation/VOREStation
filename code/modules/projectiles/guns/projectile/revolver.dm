@@ -78,7 +78,7 @@
 	caliber = ".45"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	ammo_type = /obj/item/ammo_casing/a45/rubber
-	max_shells = 7
+	max_shells = 6
 
 
 /obj/item/weapon/gun/projectile/revolver/detective45/verb/rename_gun()

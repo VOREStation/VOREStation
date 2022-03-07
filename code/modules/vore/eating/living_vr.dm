@@ -14,6 +14,7 @@
 	var/absorbed = FALSE				// If a mob is absorbed into another
 	var/list/temp_language_sources = list()	//VOREStation Addition - Absorbs add languages to the pred
 	var/list/temp_languages = list()		//VOREStation Addition - Absorbs add languages to the pred
+	var/prey_controlled = FALSE			//VOREStation Addition
 	var/weight = 137					// Weight for mobs for weightgain system
 	var/weight_gain = 1 				// How fast you gain weight
 	var/weight_loss = 0.5 				// How fast you lose weight
@@ -895,12 +896,15 @@
 
 /mob/living/examine(mob/user, infix, suffix)
 	. = ..()
-	if(showvoreprefs)
-		. += "<span class='deptradio'><a href='?src=\ref[src];vore_prefs=1'>\[Mechanical Vore Preferences\]</a></span>"
+	if(ooc_notes)
+		. += "<span class = 'deptradio'>OOC Notes:</span> <a href='?src=\ref[src];ooc_notes=1'>\[View\]</a>"
+	. += "<span class='deptradio'><a href='?src=\ref[src];vore_prefs=1'>\[Mechanical Vore Preferences\]</a></span>"
 
 /mob/living/Topic(href, href_list)	//Can't find any instances of Topic() being overridden by /mob/living in polaris' base code, even though /mob/living/carbon/human's Topic() has a ..() call
 	if(href_list["vore_prefs"])
 		display_voreprefs(usr)
+	if(href_list["ooc_notes"])
+		src.Examine_OOC()
 	return ..()
 
 /mob/living/proc/display_voreprefs(mob/user)	//Called by Topic() calls on instances of /mob/living (and subtypes) containing vore_prefs as an argument

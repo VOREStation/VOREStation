@@ -1,6 +1,7 @@
 /mob/living/carbon/human/gib()
 
 	//Drop the NIF, they're expensive, why not recover them?
+	release_vore_contents(silent = TRUE)
 	if(nif)
 		var/obj/item/device/nif/deadnif = nif //Unimplant removes the reference on the mob
 		if(!deadnif.gib_nodrop)

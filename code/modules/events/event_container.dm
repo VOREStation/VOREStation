@@ -78,6 +78,9 @@ var/global/list/severity_to_string = list(EVENT_LEVEL_MUNDANE = "Mundane", EVENT
 	if(!EM.enabled)
 		return 0
 
+	if(!(EM.minimum_active(active_with_role)))
+		return 0
+
 	var/weight = EM.get_weight(active_with_role)
 	var/last_time = last_event_time[EM]
 	if(last_time)

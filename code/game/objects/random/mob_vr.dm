@@ -96,8 +96,8 @@
 	icon = 'icons/obj/ammo.dmi'
 	icon_state = "666"
 /obj/random/ammo_all/item_to_spawn()
-	return pick(prob(5);/obj/item/weapon/storage/box/shotgunammo,\
-				prob(5);/obj/item/weapon/storage/box/shotgunshells,\
+	return pick(prob(5);/obj/item/ammo_magazine/ammo_box/b12g,\
+				prob(5);/obj/item/ammo_magazine/ammo_box/b12g/pellet,\
 				prob(5);/obj/item/ammo_magazine/clip/c762,\
 				prob(5);/obj/item/ammo_magazine/m380,\
 				prob(5);/obj/item/ammo_magazine/m45,\
@@ -111,24 +111,25 @@
 				prob(4);/obj/item/ammo_magazine/m9mmp90,\
 				prob(4);/obj/item/ammo_magazine/m10mm,\
 				prob(4);/obj/item/ammo_magazine/m545/small,\
-				prob(3);/obj/item/ammo_magazine/clip/c10mm,\
 				prob(3);/obj/item/ammo_magazine/clip/c44,\
+				prob(3);/obj/item/ammo_magazine/ammo_box/b10mm/emp,\
+				prob(3);/obj/item/ammo_magazine/ammo_box/b10mm,\
 				prob(3);/obj/item/ammo_magazine/s44,\
 				prob(3);/obj/item/ammo_magazine/m762,\
 				prob(3);/obj/item/ammo_magazine/m545,\
 				prob(3);/obj/item/weapon/cell/device/weapon,\
 				prob(2);/obj/item/ammo_magazine/m44,\
 				prob(2);/obj/item/ammo_magazine/s357,\
-				prob(2);/obj/item/ammo_magazine/m762m,\
+				prob(2);/obj/item/ammo_magazine/m762/ext,\
 				prob(2);/obj/item/ammo_magazine/clip/c12g,
 				prob(2);/obj/item/ammo_magazine/clip/c12g/pellet,\
 				prob(1);/obj/item/ammo_magazine/m45tommy,\
 			/*	prob(1);/obj/item/ammo_magazine/m95,\ */
 				prob(1);/obj/item/ammo_casing/rocket,\
-				prob(1);/obj/item/weapon/storage/box/sniperammo,\
-				prob(1);/obj/item/weapon/storage/box/flashshells,\
-				prob(1);/obj/item/weapon/storage/box/beanbags,\
-				prob(1);/obj/item/weapon/storage/box/stunshells,\
+				prob(1);/obj/item/ammo_magazine/ammo_box/b145,\
+				prob(1);/obj/item/ammo_magazine/ammo_box/b12g/flash,\
+				prob(1);/obj/item/ammo_magazine/ammo_box/b12g/beanbag,\
+				prob(1);/obj/item/ammo_magazine/ammo_box/b12g/stunshell,\
 				prob(1);/obj/item/ammo_magazine/mtg,\
 				prob(1);/obj/item/ammo_magazine/m12gdrum,\
 				prob(1);/obj/item/ammo_magazine/m12gdrum/pellet,\

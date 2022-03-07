@@ -112,7 +112,7 @@
 	id = "stunshell"
 	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3)
 	materials = list(MAT_STEEL = 4000)
-	build_path = /obj/item/weapon/storage/box/stunshells
+	build_path = /obj/item/ammo_magazine/ammo_box/b12g/stunshell
 	sort_string = "MABBB"
 
 /datum/design/item/weapon/ballistic/ammo/empshell
@@ -121,7 +121,7 @@
 	id = "empshell"
 	req_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 3)
 	materials = list(MAT_STEEL = 4000, MAT_URANIUM = 1000)
-	build_path = /obj/item/weapon/storage/box/empshells
+	build_path = /obj/item/ammo_magazine/ammo_box/b12g/emp
 	sort_string = "MABBC"
 
 // Phase weapons
