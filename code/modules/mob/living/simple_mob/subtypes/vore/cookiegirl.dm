@@ -16,7 +16,7 @@
 	melee_damage_upper = 5
 
 	meat_amount = 10
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/cookiesnack
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/cookie
 
 	say_list_type = /datum/say_list/cookiegirl
 	ai_holder_type = /datum/ai_holder/simple_mob/passive/cookiegirl
