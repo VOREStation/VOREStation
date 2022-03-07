@@ -65,7 +65,7 @@ var/list/lunchables_snacks_ = list(/obj/item/weapon/reagent_containers/food/snac
                                    /obj/item/weapon/reagent_containers/food/snacks/honeybun,
                                    /obj/item/weapon/reagent_containers/food/snacks/custardbun,
                                    /obj/item/weapon/reagent_containers/food/snacks/honeytoast,
-                                   /obj/item/weapon/reagent_containers/food/snacks/cookiesnack,
+                                   /obj/item/weapon/reagent_containers/food/snacks/cookie,
                                    /obj/item/weapon/reagent_containers/food/snacks/fruitbar,
                                    /obj/item/weapon/reagent_containers/food/snacks/semki,
                                    /obj/item/weapon/reagent_containers/food/snacks/salo,
