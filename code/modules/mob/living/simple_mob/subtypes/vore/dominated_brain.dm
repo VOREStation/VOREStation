@@ -27,7 +27,7 @@
 		return
 	. = ..()
 	lets_register_our_signals()
-	verbs += /mob/living/dominated_brain/proc/resist_control
+	verbs |= /mob/living/dominated_brain/proc/resist_control
 
 /mob/living/dominated_brain/Life()
 	. = ..()
@@ -61,6 +61,17 @@
 		pred_body = null
 
 /mob/living/dominated_brain/Destroy()
+	if(pred_body)
+		var/P = FALSE
+		for(var/I in pred_body)
+			if(I == src)
+				continue
+			if(istype(I, /mob/living/dominated_brain))
+				P = TRUE
+		if(!P)
+			pred_body.verbs -= /mob/proc/psay
+			pred_body.verbs -= /mob/proc/pme
+
 	lets_unregister_our_signals()
 	. = ..()
 
@@ -182,34 +193,36 @@
 	if(prey_body && prey_body.loc.loc == pred_body)	//The prey body exists and is here, let's handle the prey!
 
 		prey_goes_here = prey_body
-		pred_body.verbs -= /mob/proc/psay
-		pred_body.verbs -= /mob/proc/pme
 
 	else if(prey_body)	//It exists, but it's not here, let's spawn them a temporary home.
 		var/mob/living/dominated_brain/ndb = new /mob/living/dominated_brain(pred_body, pred_body, prey_name, prey_body)
 		ndb.name = prey_name
 		ndb.prey_ckey = src.prey_ckey
 		ndb.pred_ckey = src.pred_ckey
-		
+		ndb.pred_body.verbs |= /mob/proc/pme
+		ndb.pred_body.verbs |= /mob/proc/psay
 
 		prey_goes_here = ndb
 		prey_goes_here.real_name = src.prey_name
 		src.languages -= src.temp_languages
 		prey_goes_here.languages |= src.prey_langs
 		prey_goes_here.ooc_notes = prey_ooc_notes
+		prey_goes_here.verbs |= /mob/living/dominated_brain/proc/cease_this_foolishness
+
 
 	else		//The prey body does not exist, let's put them in the back seat instead!
 		var/mob/living/dominated_brain/ndb = new /mob/living/dominated_brain(pred_body, pred_body, prey_name)
 		ndb.name = prey_name
 		ndb.prey_ckey = src.prey_ckey
 		ndb.pred_ckey = src.pred_ckey
-	
+		ndb.pred_body.verbs |= /mob/proc/pme
+		ndb.pred_body.verbs |= /mob/proc/psay
+
 		prey_goes_here = ndb
 		src.languages -= src.temp_languages
 		prey_goes_here.languages |= src.prey_langs
 		prey_goes_here.real_name = src.prey_name
 		prey_goes_here.ooc_notes = prey_ooc_notes
-
 
 	///////////////////
 
@@ -220,7 +233,7 @@
 	prey_goes_here.ckey = src.prey_ckey
 	pred_body.ckey = src.pred_ckey
 	pred_body.ooc_notes = pred_ooc_notes
-	log_and_message_admins("[prey_goes_here] is now controlled by [prey_goes_here.ckey] and [pred_body] is now controlled by [pred_body.ckey]")
+	log_and_message_admins("[pred_body] is now controlled by [pred_body.ckey]. They were restored to control through prey domination, and had been controlled by [prey_ckey].")
 	handle_langs(src)
 	pred_body.prey_controlled = FALSE
 	qdel(src)
@@ -306,6 +319,8 @@
 	else
 		pred_brain = new /mob/living/dominated_brain(pred, pred, name, prey)
 
+	pred.verbs |= /mob/proc/pme
+	pred.verbs |= /mob/proc/psay
 	pred_brain.prey_ooc_notes = prey.ooc_notes
 	pred_brain.pred_ooc_notes = pred.ooc_notes
 	pred_brain.name = pred.name
@@ -318,16 +333,14 @@
 	pred_brain.handle_langs()
 	pred.ooc_notes = pred_brain.prey_ooc_notes
 
-	pred.verbs += /mob/proc/release_predator
-	pred.verbs += /mob/proc/psay
-	pred.verbs += /mob/proc/pme
+	pred.verbs |= /mob/proc/release_predator
 
 	//Now actually put the people in the mobs
 	pred_brain.ckey = pred_brain.pred_ckey
 	pred_brain.real_name = pred.real_name
 	pred.ckey = pred_brain.prey_ckey
 	pred.prey_controlled = TRUE
-	log_and_message_admins("[pred_brain.pred_ckey]'s body has been taken over, [pred] is now controlled by [pred.ckey]")
+	log_and_message_admins("[pred] is now controlled by [pred.ckey], they were taken over via prey domination, and were originally controlled by [pred_brain.pred_ckey].")
 	if(delete_source)
 		qdel(prey)
 
@@ -340,6 +353,8 @@
 		if(istype(I, /mob/living/dominated_brain))
 			var/mob/living/dominated_brain/db = I
 			if(db.ckey == db.pred_ckey)
+				to_chat(src, "<span class='notice'>You ease off of your control, releasing \the [db].</span>")
+				to_chat(db, "<span class='notice'>You feel the alien presence fade, and restore control of your body to you of their own will...</span>")
 				db.restore_control()
 				return
 			else
@@ -431,3 +446,93 @@
 	else
 		to_chat(src, "<span class='warning'>There is no one inside you to talk to...</span>")
 	return
+
+/mob/living/proc/dominate_prey()
+	set category = "Abilities"
+	set name = "Dominate Prey"
+	set desc = "Connect to and dominate the brain of your prey."
+
+	var/list/possible_mobs = list()
+	for(var/obj/belly/B in src.vore_organs)
+		for(var/mob/living/L in B)
+			if(isliving(L) && L.ckey)
+				possible_mobs += L
+			else
+				continue
+		var/mob/living/M
+		var/input = tgui_input_list(src, "Select a mob to dominate:", "Dominate Prey", possible_mobs)
+		if(!input)
+			to_chat(src, "<span class='warning'>There are no valid targets inside of you.</span>")
+			return
+		M = input
+		if(!M)
+			return
+		if(tgui_alert(src, "You selected [M] to attempt to dominate. Are you sure?", "Dominate Prey",list("No","Yes")) != "Yes")
+			return
+		log_admin("[key_name_admin(src)] offered to use dominate prey on [M] ([M.ckey]).")
+		to_chat(src, "<span class='warning'>Attempting to dominate and gather \the [M]'s mind...</span>")
+		if(tgui_alert(M, "\The [src] has elected collect your mind into their own. Is this something you will allow to happen?", "Allow Dominate Prey",list("No","Yes")) != "Yes")
+			return		
+		if(tgui_alert(M, "Are you sure? You can only undo this while your body is inside of [src]. (You can resist, or use the resist verb in the abilities tab)", "Allow Dominate Prey",list("No","Yes")) != "Yes")
+			return
+		to_chat(M, "<span class='warning'>You can feel the will of another pulling you away from your body...</span>")
+		to_chat(src, "<span class='warning'>You can feel the will of your prey diminishing as you gather them!</span>")
+
+		if(!do_after(src, 10 SECONDS, exclusive = TRUE))
+			to_chat(M, "<span class='notice'>The alien presence fades, and you are left along in your body...</span>")
+			to_chat(src, "<span class='notice'>Your attempt to gather [M]'s mind has been interrupted.</span>")
+			return
+		if(!isbelly(M.loc))
+			to_chat(M, "<span class='notice'>The alien presence fades, and you are left along in your body...</span>")
+			to_chat(src, "<span class='notice'>Your attempt to gather [M]'s mind has been interrupted.</span>")
+			return
+
+		var/mob/living/dominated_brain/db = new /mob/living/dominated_brain(src, src, M.name, M)
+
+
+		verbs |= /mob/proc/pme
+		verbs |= /mob/proc/psay
+		db.name = M.name
+		db.prey_ckey = M.ckey
+		db.pred_ckey = src.ckey
+		
+
+		db.real_name = M.real_name
+
+		M.languages -= M.temp_languages
+		db.languages |= M.languages
+		db.handle_langs()
+		db.ooc_notes = M.ooc_notes
+		db.verbs |= /mob/living/dominated_brain/proc/cease_this_foolishness
+
+		db.ckey = db.prey_ckey
+		log_admin("[db] ([db.ckey]) has agreed to [src]'s dominate prey attempt, and so no longer occupies their body.")
+		to_chat(src, "<span class='notice'>You feel your mind expanded as [M] is incorporated into you.</span>")
+		to_chat(M, "<span class='warning'>Your mind is gathered into \the [src], becoming part of them...</span>")
+
+/mob/living/dominated_brain/proc/cease_this_foolishness()
+	set category = "Abilities"
+	set name = "Return to Body"
+	set desc = "If your body is inside of your predator still, attempts to re-insert yourself into it."
+
+	if(prey_body && prey_body.loc.loc == pred_body)
+		to_chat(src, "<span class='notice'>You exert your will and attempt to return to yout body!!!</span>")
+		to_chat(pred_body, "<span class='warning'>\The [src] resists your hold and attempts to return to their body!</span>")
+		if(do_after(src, 10 SECONDS, exclusive = TRUE))
+			if(prey_body && prey_body.loc.loc == pred_body)
+
+				prey_body.ckey = prey_ckey
+				handle_langs(src)
+				to_chat(src, "<span class='warning'>Your connection to [pred_body] fades, and you awaken back in your own body!</span>")
+				to_chat(pred_body, "<span class='warning'>You feel as though a piece of yourself is missing, as \the [src] returns to their body.</span>")
+				log_admin("[src] ([src.ckey]) has returned to their body, [prey_body].")
+				qdel(src)
+			else
+				to_chat(src, "<span class='warning'>Your attempt to regain your body has been interrupted...</span>")
+		else
+			to_chat(src, "<span class='warning'>Your attempt to regain your body has been interrupted...</span>")
+	else if(prey_body)
+		to_chat(src, "<span class='warning'>You can sense your body... but it is not contained within [pred_body]... You cannot return to it at this time.</span>")
+	else
+		to_chat(src, "<span class='warning'>Your body seems to no longer exist, so, you cannot return to it.</span>")
+		verbs -= /mob/living/dominated_brain/proc/cease_this_foolishness

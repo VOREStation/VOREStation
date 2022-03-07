@@ -490,3 +490,13 @@
 /datum/trait/neutral/dominate_predator/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..(S,H)
 	H.verbs |= /mob/proc/dominate_predator
+
+/datum/trait/neutral/dominate_prey
+	name = "Dominate Prey"
+	desc = "Connect to and dominate the brain of your prey."
+	cost = 0
+	custom_only = FALSE
+
+/datum/trait/neutral/dominate_predator/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..(S,H)
+	H.verbs |= /mob/living/proc/dominate_prey
