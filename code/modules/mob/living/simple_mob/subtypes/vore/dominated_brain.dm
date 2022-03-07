@@ -285,7 +285,7 @@
 		to_chat(prey, "<span class='warning'>\The [pred] is already dominated, and cannot be controlled at this time.</span>")
 		return
 	if(ishuman(pred))
-		var/mob/living/carbon/human/h
+		var/mob/living/carbon/human/h = pred
 		if(h.resleeve_lock && ckey != h.resleeve_lock)
 			to_chat(src, "<span class='warning'>\The [h] cannot be impersonated!</span>")
 			return
