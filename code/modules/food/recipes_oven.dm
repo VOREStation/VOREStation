@@ -299,7 +299,7 @@
 		/obj/item/weapon/reagent_containers/food/snacks/dough,
 		/obj/item/weapon/reagent_containers/food/snacks/chocolatebar
 	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/cookiesnack
+	result = /obj/item/weapon/reagent_containers/food/snacks/cookie
 	result_quantity = 4
 	reagent_mix = RECIPE_REAGENT_REPLACE
 
@@ -318,7 +318,6 @@
 	items = list(/obj/item/weapon/reagent_containers/food/snacks/dough)
 	result = /obj/item/weapon/reagent_containers/food/snacks/poppypretzel
 	result_quantity = 2
-
 
 /datum/recipe/cracker
 	appliance = OVEN
