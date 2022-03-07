@@ -67,6 +67,7 @@
 	id = "cookingoilpeanut"
 	result = "cookingoil"
 	required_reagents = list("peanutoil" = 10)
+	inhibitors = list("sugar" = 1, "sodiumchloride" = 1)
 	catalysts = list("enzyme" = 5)
 	result_amount = 10
 
