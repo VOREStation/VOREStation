@@ -25,8 +25,6 @@
 	pickup_sound = 'sound/items/pickup/axe.ogg'
 	tool_qualities = list(TOOL_WOODCUT = TOOL_QUALITY_STANDARD, TOOL_KNIFE = TOOL_QUALITY_STANDARD)
 
-<<<<<<< HEAD
-=======
 /obj/item/weapon/material/knife/machete/hatchet/stone
 	name = "sharp rock"
 	desc = "The secret is to bang the rocks together, guys."
@@ -40,7 +38,7 @@
 	var/old_name = name
 	. = ..()
 	name = old_name
->>>>>>> e9ddcc8bf56... Merge pull request #8372 from Atermonera/aknife
+
 /obj/item/weapon/material/knife/machete/hatchet/unathiknife
 	name = "duelling knife"
 	desc = "A length of leather-bound wood studded with razor-sharp teeth. How crude."
