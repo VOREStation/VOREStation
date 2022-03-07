@@ -335,11 +335,6 @@
 		log_runtime(EXCEPTION("Warning: human/Topic was called with item [href_list["item"]], but the item Topic is deprecated!"))
 		// handle_strip(href_list["item"],usr)
 
-	// VOREStation Start
-	if(href_list["ooc_notes"])
-		src.Examine_OOC()
-	// VOREStation End
-
 	if (href_list["criminal"])
 		if(hasHUD(usr,"security"))
 
