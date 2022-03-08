@@ -223,12 +223,15 @@
 	SSradiation.radiate(src, round(material.radioactivity/3))
 
 /obj/structure/simple_door/wood/Initialize()
+	. = ..()
 	knock_sound = 'sound/machines/door/knock_wood.wav'
 
 /obj/structure/simple_door/hardwood/Initialize()
+	. = ..()
 	knock_sound = 'sound/machines/door/knock_wood.wav'
 
 /obj/structure/simple_door/sifwood/Initialize()
+	. = ..()
 	knock_sound = 'sound/machines/door/knock_wood.wav'
 
 /obj/structure/simple_door/iron
