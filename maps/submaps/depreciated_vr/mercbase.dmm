@@ -164,7 +164,7 @@
 /obj/effect/floor_decal/corner/red{
 	dir = 6
 	},
-/obj/item/weapon/storage/box/sniperammo,
+/obj/item/ammo_magazine/ammo_box/b145,
 /obj/item/weapon/gun/projectile/heavysniper,
 /turf/unsimulated/floor{
 	dir = 2;
@@ -285,8 +285,8 @@
 /obj/effect/floor_decal/corner/red{
 	dir = 10
 	},
-/obj/item/weapon/storage/box/shotgunshells/large,
-/obj/item/weapon/storage/box/shotgunammo/large,
+/obj/item/ammo_magazine/ammo_box/b12g/pellet,
+/obj/item/ammo_magazine/ammo_box/b12g,
 /obj/item/weapon/gun/projectile/shotgun/pump/combat,
 /obj/item/weapon/gun/projectile/shotgun/pump/combat,
 /turf/unsimulated/floor{

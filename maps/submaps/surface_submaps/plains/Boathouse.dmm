@@ -9,7 +9,7 @@
 "ai" = (/turf/simulated/wall/wood,/area/submap/Boathouse)
 "aj" = (/obj/structure/closet/cabinet,/obj/item/clothing/accessory/jacket,/obj/item/clothing/accessory/jacket,/obj/item/clothing/head/beanie,/turf/simulated/floor/wood,/area/submap/Boathouse)
 "ak" = (/turf/simulated/floor/wood,/area/submap/Boathouse)
-"al" = (/obj/structure/closet/cabinet,/obj/item/weapon/gun/projectile/shotgun/doublebarrel,/obj/item/weapon/storage/box/beanbags,/turf/simulated/floor/wood,/area/submap/Boathouse)
+"al" = (/obj/structure/closet/cabinet,/obj/item/weapon/gun/projectile/shotgun/doublebarrel,/obj/item/ammo_magazine/ammo_box/b12g/beanbag,/turf/simulated/floor/wood,/area/submap/Boathouse)
 "am" = (/turf/simulated/floor/carpet/turcarpet,/area/submap/Boathouse)
 "an" = (/obj/structure/table/woodentable,/obj/item/weapon/storage/toolbox/mechanical,/turf/simulated/floor/wood,/area/submap/Boathouse)
 "ao" = (/obj/structure/railing{dir = 8},/obj/structure/railing,/turf/simulated/floor/water,/area/submap/Boathouse)
