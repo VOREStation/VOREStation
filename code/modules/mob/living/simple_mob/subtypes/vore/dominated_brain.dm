@@ -456,59 +456,60 @@
 	for(var/obj/belly/B in src.vore_organs)
 		for(var/mob/living/L in B)
 			if(isliving(L) && L.ckey)
-				possible_mobs += L
+				possible_mobs |= L
 			else
 				continue
-		var/mob/living/M
-		var/input = tgui_input_list(src, "Select a mob to dominate:", "Dominate Prey", possible_mobs)
-		if(!input)
-			to_chat(src, "<span class='warning'>There are no valid targets inside of you.</span>")
-			return
-		M = input
-		if(!M)
-			return
-		if(tgui_alert(src, "You selected [M] to attempt to dominate. Are you sure?", "Dominate Prey",list("No","Yes")) != "Yes")
-			return
-		log_admin("[key_name_admin(src)] offered to use dominate prey on [M] ([M.ckey]).")
-		to_chat(src, "<span class='warning'>Attempting to dominate and gather \the [M]'s mind...</span>")
-		if(tgui_alert(M, "\The [src] has elected collect your mind into their own. Is this something you will allow to happen?", "Allow Dominate Prey",list("No","Yes")) != "Yes")
-			return		
-		if(tgui_alert(M, "Are you sure? You can only undo this while your body is inside of [src]. (You can resist, or use the resist verb in the abilities tab)", "Allow Dominate Prey",list("No","Yes")) != "Yes")
-			return
-		to_chat(M, "<span class='warning'>You can feel the will of another pulling you away from your body...</span>")
-		to_chat(src, "<span class='warning'>You can feel the will of your prey diminishing as you gather them!</span>")
+	if(!possible_mobs)
+		to_chat(src, "<span class='warning'>There are no valid targets inside of you.</span>")
+		return
+	var/input = tgui_input_list(src, "Select a mob to dominate:", "Dominate Prey", possible_mobs)
+	if(!input)
+		return
+	var/mob/living/M = input
+	if(tgui_alert(src, "You selected [M] to attempt to dominate. Are you sure?", "Dominate Prey",list("No","Yes")) != "Yes")
+		return
+	log_admin("[key_name_admin(src)] offered to use dominate prey on [M] ([M.ckey]).")
+	to_chat(src, "<span class='warning'>Attempting to dominate and gather \the [M]'s mind...</span>")
+	if(tgui_alert(M, "\The [src] has elected collect your mind into their own. Is this something you will allow to happen?", "Allow Dominate Prey",list("No","Yes")) != "Yes")
+		to_chat(src, "<span class='warning'>\The [M] has declined your Dominate Prey attempt.</span>")
+		return		
+	if(tgui_alert(M, "Are you sure? You can only undo this while your body is inside of [src]. (You can resist, or use the resist verb in the abilities tab)", "Allow Dominate Prey",list("No","Yes")) != "Yes")
+		to_chat(src, "<span class='warning'>\The [M] has declined your Dominate Prey attempt.</span>")
+		return
+	to_chat(M, "<span class='warning'>You can feel the will of another pulling you away from your body...</span>")
+	to_chat(src, "<span class='warning'>You can feel the will of your prey diminishing as you gather them!</span>")
 
-		if(!do_after(src, 10 SECONDS, exclusive = TRUE))
-			to_chat(M, "<span class='notice'>The alien presence fades, and you are left along in your body...</span>")
-			to_chat(src, "<span class='notice'>Your attempt to gather [M]'s mind has been interrupted.</span>")
-			return
-		if(!isbelly(M.loc))
-			to_chat(M, "<span class='notice'>The alien presence fades, and you are left along in your body...</span>")
-			to_chat(src, "<span class='notice'>Your attempt to gather [M]'s mind has been interrupted.</span>")
-			return
+	if(!do_after(src, 10 SECONDS, exclusive = TRUE))
+		to_chat(M, "<span class='notice'>The alien presence fades, and you are left along in your body...</span>")
+		to_chat(src, "<span class='notice'>Your attempt to gather [M]'s mind has been interrupted.</span>")
+		return
+	if(!isbelly(M.loc))
+		to_chat(M, "<span class='notice'>The alien presence fades, and you are left along in your body...</span>")
+		to_chat(src, "<span class='notice'>Your attempt to gather [M]'s mind has been interrupted.</span>")
+		return
 
-		var/mob/living/dominated_brain/db = new /mob/living/dominated_brain(src, src, M.name, M)
+	var/mob/living/dominated_brain/db = new /mob/living/dominated_brain(src, src, M.name, M)
 
 
-		verbs |= /mob/proc/pme
-		verbs |= /mob/proc/psay
-		db.name = M.name
-		db.prey_ckey = M.ckey
-		db.pred_ckey = src.ckey
-		
+	verbs |= /mob/proc/pme
+	verbs |= /mob/proc/psay
+	db.name = M.name
+	db.prey_ckey = M.ckey
+	db.pred_ckey = src.ckey
+	
 
-		db.real_name = M.real_name
+	db.real_name = M.real_name
 
-		M.languages -= M.temp_languages
-		db.languages |= M.languages
-		db.handle_langs()
-		db.ooc_notes = M.ooc_notes
-		db.verbs |= /mob/living/dominated_brain/proc/cease_this_foolishness
+	M.languages -= M.temp_languages
+	db.languages |= M.languages
+	db.handle_langs()
+	db.ooc_notes = M.ooc_notes
+	db.verbs |= /mob/living/dominated_brain/proc/cease_this_foolishness
 
-		db.ckey = db.prey_ckey
-		log_admin("[db] ([db.ckey]) has agreed to [src]'s dominate prey attempt, and so no longer occupies their body.")
-		to_chat(src, "<span class='notice'>You feel your mind expanded as [M] is incorporated into you.</span>")
-		to_chat(M, "<span class='warning'>Your mind is gathered into \the [src], becoming part of them...</span>")
+	db.ckey = db.prey_ckey
+	log_admin("[db] ([db.ckey]) has agreed to [src]'s dominate prey attempt, and so no longer occupies their original body.")
+	to_chat(src, "<span class='notice'>You feel your mind expanded as [M] is incorporated into you.</span>")
+	to_chat(M, "<span class='warning'>Your mind is gathered into \the [src], becoming part of them...</span>")
 
 /mob/living/dominated_brain/proc/cease_this_foolishness()
 	set category = "Abilities"
