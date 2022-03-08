@@ -31,6 +31,17 @@
 	if(!material)
 		return INITIALIZE_HINT_QDEL
 	material = get_material_by_name(material)
+	hardness = max(1,round(material.integrity/10))
+	icon_state = material.door_icon_base
+	name = "[material.display_name] door"
+	color = material.icon_colour
+	if(material.opacity < 0.5)
+		set_opacity(0)
+	else
+		set_opacity(1)
+	if(material.products_need_process())
+		START_PROCESSING(SSobj, src)
+	update_nearby_tiles(need_rebuild=1)
 
 /obj/structure/simple_door/Destroy()
 	STOP_PROCESSING(SSobj, src)
