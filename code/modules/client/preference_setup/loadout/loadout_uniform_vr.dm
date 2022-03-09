@@ -257,6 +257,11 @@ Talon jumpsuit
 		suits[initial(undersuit_type.name)] = undersuit_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(suits))
 
+/datum/gear/uniform/undersuit_haz
+	display_name = "undersuit, hazard (Engineering)"
+	allowed_roles = list("Chief Engineer", "Atmospheric Technician", "Engineer")
+	path = /obj/item/clothing/under/undersuit/hazard
+
 /datum/gear/uniform/undersuit_sec
 	display_name = "undersuit, security (Security)"
 	allowed_roles = list("Head of Security", "Warden", "Detective", "Security Officer")
