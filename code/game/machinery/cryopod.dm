@@ -526,7 +526,7 @@
 	//VOREStation Edit Start
 	var/depart_announce = TRUE
 
-	if(!istype(to_despawn, /mob/living/dominated_brain))
+	if(istype(to_despawn, /mob/living/dominated_brain))
 		depart_announce = FALSE
 	
 	if(depart_announce)
