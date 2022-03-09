@@ -57,11 +57,11 @@ GLOBAL_VAR_INIT(items_digested_roundstat, 0)	//VOREStation Edit - Obviously
 	//VOREStation Add Start - Vore stats lets gooooo
 	if(GLOB.prey_eaten_roundstat > 0)
 		valid_stats_list.Add("A total of [GLOB.prey_eaten_roundstat] individuals were eaten today!")
-	if(GLOB.prey_absorbed_roundstat > 0)
+	if(GLOB.prey_digested_roundstat > 0)
 		valid_stats_list.Add("A total of [GLOB.prey_digested_roundstat] individuals were digested today!")
 	if(GLOB.prey_absorbed_roundstat > 0)
 		valid_stats_list.Add("A total of [GLOB.prey_absorbed_roundstat] individuals were absorbed today!")
-	if(GLOB.prey_absorbed_roundstat > 0)
+	if(GLOB.items_digested_roundstat > 0)
 		valid_stats_list.Add("A total of [GLOB.items_digested_roundstat] items were digested today!")
 	//VOREStation Add End
 
