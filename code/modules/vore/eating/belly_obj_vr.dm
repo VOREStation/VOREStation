@@ -422,6 +422,9 @@
 	for(var/mob/living/M in contents)
 		M.updateVRPanel()
 
+	if(prey.ckey)
+		GLOB.prey_eaten_roundstat++
+
 // Get the line that should show up in Examine message if the owner of this belly
 // is examined.   By making this a proc, we not only take advantage of polymorphism,
 // but can easily make the message vary based on how many people are inside, etc.
@@ -686,6 +689,8 @@
 		M.temp_language_sources += owner
 		handle_absorb_langs(M, owner)
 
+		GLOB.prey_absorbed_roundstat++
+
 	to_chat(M, "<span class='notice'>[absorb_alert_prey]</span>")
 	to_chat(owner, "<span class='notice'>[absorb_alert_owner]</span>")
 	if(M.noisy) //Mute drained absorbee hunger if enabled.
@@ -805,6 +810,7 @@
 		items_preserved |= item
 	else
 		owner.adjust_nutrition((nutrition_percent / 100) * 5 * digested)
+		GLOB.items_digested_roundstat++
 		if(isrobot(owner))
 			var/mob/living/silicon/robot/R = owner
 			R.cell.charge += ((nutrition_percent / 100) * 50 * digested)
