@@ -1219,7 +1219,10 @@
 		/obj/item/clothing/mask/bandana/red = 5,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/security = 5,
 		/obj/item/clothing/accessory/armband = 5,
-		/obj/item/clothing/accessory/holster/waist = 5
+		/obj/item/clothing/accessory/holster/armpit = 2,	//VOREStation edit - gives some variety of available holsters for those who forgot to bring their own
+		/obj/item/clothing/accessory/holster/waist = 2,	//VOREStation edit - But also reduces the number per type, so there's 8 overall rather than like, 20
+		/obj/item/clothing/accessory/holster/hip = 2,	//VOREStation edit
+		/obj/item/clothing/accessory/holster/leg = 2	//VOREStation edit
 	)
 	req_log_access = access_hop
 	has_logs = 1
