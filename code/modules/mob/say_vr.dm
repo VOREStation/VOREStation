@@ -122,11 +122,12 @@
 		if(client.prefs.muted & MUTE_IC)
 			to_chat(src, "<span class='warning'>You cannot speak in IC (muted).</span>")
 			return
-	message = sanitize_or_reflect(message,src)
 	if (!message)
 		message = input(usr, "Type a message to say.","Psay") as text|null
+	message = sanitize_or_reflect(message,src)
 	if (!message)
 		return	
+	message = capitalize(message)
 	if (stat == DEAD)
 		return say_dead(message)
 	if(!isliving(src))
@@ -145,7 +146,7 @@
 			pb = db.pred_body
 			to_chat(pb, "<span class='changeling'>The captive mind of \the [M] thinks, \"[message]\"</span>")	//To our pred if dominated brain
 			f = TRUE
-	else if(M.forced_psay && M.absorbed && isbelly(M.loc))
+	else if(M.absorbed && isbelly(M.loc))
 		pb = M.loc.loc
 		to_chat(pb, "<span class='changeling'>\The [M] thinks, \"[message]\"</span>")	//To our pred if absorbed
 		f = TRUE
@@ -159,7 +160,7 @@
 				f = TRUE
 		for(var/B in pb.vore_organs)
 			for(var/mob/living/L in B)
-				if(L.absorbed && L != M)
+				if(L.absorbed && L != M && L.ckey)
 					to_chat(L, "<span class='changeling'>\The [M] thinks, \"[message]\"</span>")	//To any absorbed people in the pred
 					f = TRUE
 
@@ -201,9 +202,9 @@
 		if(client.prefs.muted & MUTE_IC)
 			to_chat(src, "<span class='warning'>You cannot speak in IC (muted).</span>")
 			return
-	message = sanitize_or_reflect(message,src)
 	if (!message)
 		message = input(usr, "Type a message to emote.","Pme") as text|null
+	message = sanitize_or_reflect(message,src)
 	if (!message)
 		return	
 	if (stat == DEAD)
@@ -222,10 +223,10 @@
 			return
 		else
 			pb = db.pred_body
-			to_chat(pb, "<span class='changeling'>The captive mind of \the [M] thinks, \"[message]\"</span>")	//To our pred if dominated brain
+			to_chat(pb, "<span class='changeling'>\The [M] [message]</span>")	//To our pred if dominated brain
 			f = TRUE
 
-	else if(M.forced_psay && M.absorbed && isbelly(M.loc))
+	else if(M.absorbed && isbelly(M.loc))
 		pb = M.loc.loc
 		to_chat(pb, "<span class='changeling'>\The [M] [message]</span>")	//To our pred if absorbed
 		f = TRUE
@@ -239,7 +240,7 @@
 				f = TRUE
 		for(var/B in pb.vore_organs)
 			for(var/mob/living/L in B)
-				if(L.absorbed && L != M)
+				if(L.absorbed && L != M && L.ckey)
 					to_chat(L, "<span class='changeling'>\The [M] [message]</span>")	//To any absorbed people in the pred
 					f = TRUE
 
