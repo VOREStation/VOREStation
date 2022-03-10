@@ -192,13 +192,13 @@
 	. = ..()
 	reagents.add_reagent("condensedcapsaicin", 1000)
 
-/obj/item/weapon/watertank/janitor/make_noz()
+/obj/item/weapon/watertank/pepperspray/make_noz()
 	return new /obj/item/weapon/reagent_containers/spray/mister/pepperspray(src)
 
 /*
  * Security mister
  */
-/obj/item/weapon/reagent_containers/spray/mister/janitor
+/obj/item/weapon/reagent_containers/spray/mister/pepperspray
 	name = "security spray nozzle"
 	desc = "A pacifying spray nozzle attached to a pepperspray tank, designed to silence perps."
 	icon_state = "mistersec"
