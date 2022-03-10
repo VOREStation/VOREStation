@@ -179,6 +179,35 @@
 	spray_size = 4
 
 /*
+ * Security tank
+ */
+/obj/item/weapon/watertank/pepperspray
+	name = "ANTI-TIDER-2500 suppression backpack"
+	desc = "The ultimate crowd-control device; this tool allows the user to quickly and efficiently pacify groups of hostile targets."
+	icon_state = "pepperbackpacksec"
+	item_state = "pepperbackpacksec"
+	volume = 1000
+
+/obj/item/weapon/watertank/pepperspray/Initialize()
+	. = ..()
+	reagents.add_reagent("condensedcapsaicin", 1000)
+
+/obj/item/weapon/watertank/janitor/make_noz()
+	return new /obj/item/weapon/reagent_containers/spray/mister/pepperspray(src)
+
+/*
+ * Security mister
+ */
+/obj/item/weapon/reagent_containers/spray/mister/janitor
+	name = "security spray nozzle"
+	desc = "A pacifying spray nozzle attached to a pepperspray tank, designed to silence perps."
+	icon_state = "mistersec"
+	item_state = "mistersec"
+	amount_per_transfer_from_this = 5
+	possible_transfer_amounts = list(5,10)
+	spray_size = 6
+
+/*
  * Operative tank
  */
 /obj/item/weapon/watertank/op
