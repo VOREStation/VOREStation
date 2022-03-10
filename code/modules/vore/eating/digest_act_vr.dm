@@ -19,6 +19,7 @@
 					qdel(O)
 			else if(item_storage)
 				O.forceMove(item_storage)
+		GLOB.items_digested_roundstat++
 		qdel(src)
 		return w_class
 
@@ -57,6 +58,7 @@
 				S.use(1)
 				digest_stage = w_class
 		else
+			GLOB.items_digested_roundstat++
 			qdel(src)
 	if(g_damage > w_class)
 		return w_class
