@@ -186,6 +186,10 @@
 				if((mode_flags & DM_FLAG_THICKBELLY) && !H.muffled)
 					H.muffled = TRUE
 
+				//Force psay
+				if((mode_flags & DM_FLAG_FORCEPSAY) && !H.forced_psay && H.absorbed)
+					H.forced_psay = TRUE
+
 				//Worn items flag
 				if(mode_flags & DM_FLAG_AFFECTWORN)
 					for(var/slot in slots)

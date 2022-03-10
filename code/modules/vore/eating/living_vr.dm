@@ -416,8 +416,8 @@
 		if(confirm != "Okay" || loc != B)
 			return
 		//Actual escaping
-		absorbed = 0	//Make sure we're not absorbed
-		muffled = 0		//Removes Muffling
+		absorbed = FALSE	//Make sure we're not absorbed
+		muffled = FALSE		//Removes Muffling
 		forceMove(get_turf(src)) //Just move me up to the turf, let's not cascade through bellies, there's been a problem, let's just leave.
 		for(var/mob/living/simple_mob/SA in range(10))
 			SA.prey_excludes[src] = world.time
