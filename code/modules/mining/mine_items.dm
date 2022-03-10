@@ -132,10 +132,10 @@
 	desc = "A large tool for digging and moving dirt."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "shovel"
+	item_state = "shovel"
 	slot_flags = SLOT_BELT
 	force = 8.0
 	throwforce = 4.0
-	item_state = "shovel"
 	w_class = ITEMSIZE_NORMAL
 	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
 	matter = list(MAT_STEEL = 50)
