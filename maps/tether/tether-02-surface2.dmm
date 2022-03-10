@@ -4826,19 +4826,19 @@
 /area/tether/surfacebase/security/armory)
 "ahA" = (
 /obj/structure/table/steel,
-/obj/item/weapon/storage/box/shotgunshells{
-	pixel_x = -2;
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/item/ammo_magazine/ammo_box/b12g/pellet{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/obj/item/ammo_magazine/ammo_box/b12g/pellet{
+	pixel_x = -1;
+	pixel_y = 2
+	},
+/obj/item/ammo_magazine/ammo_box/b12g/pellet{
+	pixel_x = -5;
 	pixel_y = 7
 	},
-/obj/item/weapon/storage/box/shotgunshells{
-	pixel_x = 2;
-	pixel_y = 3
-	},
-/obj/item/weapon/storage/box/shotgunshells{
-	pixel_x = 6;
-	pixel_y = -1
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/armory)
 "ahB" = (
@@ -6064,19 +6064,20 @@
 /area/tether/surfacebase/security/outfitting/storage)
 "ajs" = (
 /obj/structure/table/steel,
-/obj/item/weapon/storage/box/stunshells{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/weapon/storage/box/flashshells{
-	pixel_x = 1
-	},
-/obj/item/weapon/storage/box/beanbags{
-	pixel_x = 4;
-	pixel_y = -5
-	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
+	},
+/obj/item/ammo_magazine/ammo_box/b12g/beanbag{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/obj/item/ammo_magazine/ammo_box/b12g/flash{
+	pixel_x = -1;
+	pixel_y = 2
+	},
+/obj/item/ammo_magazine/ammo_box/b12g/stunshell{
+	pixel_x = -5;
+	pixel_y = 7
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/armory)

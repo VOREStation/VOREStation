@@ -256,7 +256,7 @@
 			/obj/item/weapon/shield/riot = 3,
 			/obj/item/weapon/handcuffs = 3,
 			/obj/item/weapon/storage/box/flashbangs,
-			/obj/item/weapon/storage/box/beanbags,
+			/obj/item/ammo_magazine/ammo_box/b12g/beanbag,
 			/obj/item/weapon/storage/box/handcuffs
 			)
 	cost = 40

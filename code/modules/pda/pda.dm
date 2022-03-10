@@ -146,10 +146,11 @@ var/global/list/obj/item/device/pda/PDAs = list()
 				SPECIES_TESHARI = 'icons/mob/species/teshari/pda_wrist.dmi',
 				SPECIES_VR_TESHARI = 'icons/mob/species/teshari/pda_wrist.dmi',
 			)
-		if(7) icon = 'icons/obj/pda_clam.dmi'			//VOREStation edit
+		if(7) icon = 'icons/obj/pda_slider.dmi'			//VOREStation edit
 		else
 			icon = 'icons/obj/pda_old.dmi'
 			log_debug("Invalid switch for PDA, defaulting to old PDA icons. [pdachoice] chosen.")
+	add_overlay("pda-pen")
 	start_program(find_program(/datum/data/pda/app/main_menu))
 
 /obj/item/device/pda/proc/can_use(mob/user)

@@ -87,6 +87,13 @@
 	damage = 5
 	agony = 80
 
+/obj/item/projectile/energy/electrode/stunshot/strong
+	name = "stunshot"
+	icon_state = "bullet"
+	damage = 10
+	taser_effect = 1
+	agony = 100
+
 /obj/item/projectile/energy/declone
 	name = "declone"
 	icon_state = "declone"
@@ -135,6 +142,19 @@
 /obj/item/projectile/energy/bolt/large
 	name = "largebolt"
 	damage = 20
+
+/obj/item/projectile/energy/bow
+	name = "engergy bolt"
+	icon_state = "cbbolt"
+	damage = 20
+
+/obj/item/projectile/energy/bow/heavy
+	damage = 30
+	icon_state = "cbbolt"
+
+/obj/item/projectile/energy/bow/stun
+	name = "stun bolt"
+	agony = 30
 
 /obj/item/projectile/energy/acid //Slightly up-gunned (Read: The thing does agony and checks bio resist) variant of the simple alien mob's projectile, for queens and sentinels.
 	name = "acidic spit"
@@ -260,3 +280,23 @@
 	range = 10
 	damage = 15
 	SA_bonus_damage = 60	// 75 total on animals
+
+/obj/item/projectile/energy/electrode/strong
+	agony = 70
+
+/obj/item/projectile/energy
+	flash_strength = 10
+
+/obj/item/projectile/energy/flash
+	flash_range = 1
+
+/obj/item/projectile/energy/flash/strong
+	name = "chemical shell"
+	icon_state = "bullet"
+	damage = 10
+	range = 15 //if the shell hasn't hit anything after travelling this far it just explodes.
+	flash_strength = 15
+	brightness = 15
+
+/obj/item/projectile/energy/flash/flare
+	flash_range = 2

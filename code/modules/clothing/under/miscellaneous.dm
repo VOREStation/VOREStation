@@ -1271,6 +1271,38 @@
 	worn_state = "curator"
 
 /*
+ * 80s
+ */
+
+/obj/item/clothing/under/tropical
+	name = "black tropical oufit"
+	desc = "A classic themed outfit. This one makes you feel like an animal."
+	icon_state = "animalstyle"
+	worn_state = "animalstyle"
+	starting_accessories = list(/obj/item/clothing/accessory/tropical)
+
+/obj/item/clothing/under/tropical/green
+	name = "puke-green tropical oufit"
+	desc = "A classic themed outfit. This one makes you look like puke."
+	icon_state = "tropicopuke"
+	worn_state = "tropicopuke"
+	starting_accessories = list(/obj/item/clothing/accessory/tropical/green)
+
+/obj/item/clothing/under/tropical/pink
+	name = "pink tropical oufit"
+	desc = "A classic themed outfit. This one makes you feel nostalgic."
+	icon_state = "3005vintage"
+	worn_state = "3005vintage"
+	starting_accessories = list(/obj/item/clothing/accessory/tropical/pink)
+
+/obj/item/clothing/under/tropical/blue
+	name = "pink tropical oufit"
+	desc = "A classic themed outfit. This one makes you feel out of touch."
+	icon_state = "miamivice"
+	worn_state = "miamivice"
+	starting_accessories = list(/obj/item/clothing/accessory/tropical/blue)
+
+/*
  * Modern
  */
 
