@@ -114,9 +114,9 @@
 ///// PSAY /////
 
 /mob/verb/psay(message as text|null)
-	set category = "Abilities"
+	set category = "IC"
 	set name = "Psay"
-	set desc = "Talk to an absorbed or dominated predator/prey."
+	set desc = "Talk to people affected by complete absorbed or dominate predator/prey."
 
 	if (src.client)
 		if(client.prefs.muted & MUTE_IC)
@@ -145,14 +145,10 @@
 			pb = db.pred_body
 			to_chat(pb, "<span class='changeling'>The captive mind of \the [M] thinks, \"[message]\"</span>")	//To our pred if dominated brain
 			f = TRUE
-	else if(M.forced_psay && M.absorbed)
-		if(isbelly(M.loc))
-			pb = M.loc.loc
-			to_chat(pb, "<span class='changeling'>\The [M] thinks, \"[message]\"</span>")	//To our pred if absorbed
-			f = TRUE
-		else
-			M.forced_psay = FALSE
-			M.say(message)
+	else if(M.forced_psay && M.absorbed && isbelly(M.loc))
+		pb = M.loc.loc
+		to_chat(pb, "<span class='changeling'>\The [M] thinks, \"[message]\"</span>")	//To our pred if absorbed
+		f = TRUE
 	
 	if(pb)	//We are prey, let's do the prey thing.
 
@@ -179,23 +175,27 @@
 				to_chat(L, "<span class='changeling'><b>\The [M] thinks, \"[message]\"</b></span>")	//To any absorbed people inside us
 				f = TRUE
 
-	if(f)	//We found someone to send the message to, let's not print the failed message.
-		to_chat(M, "<span class='changeling'><b>You think \"[message]\"</b></span>")	//To us, if we found anyone to send the message to
+	if(f)	//We found someone to send the message to
+		if(pb)
+			to_chat(M, "<span class='changeling'>You think \"[message]\"</span>")	//To us if we are the prey
+		else
+			to_chat(M, "<span class='changeling'><b>You think \"[message]\"</b></span>")	//To us if we are the pred
 		for (var/mob/G in player_list)
 			if (istype(G, /mob/new_player))
 				continue
 			else if(G.stat == DEAD && G.is_preference_enabled(/datum/client_preference/ghost_ears))
-				to_chat(G, "<span class='changeling'><b>\The [M] thinks, \"[message]\"</b></span>")
+				to_chat(G, "<span class='changeling'>\The [M] thinks, \"[message]\"</span>")
 		log_say(message,M)
-	else
-		to_chat(M, "<span class='warning'>There is no one inside you to talk to... ([message])</span>")	//So sad
+	else		//There wasn't anyone to send the message to, pred or prey, so let's just say it instead and correct our psay just in case.
+		M.forced_psay = FALSE
+		M.say(message)
 
 ///// PME /////
 
 /mob/verb/pme(message as text|null)
-	set category = "Abilities"
+	set category = "IC"
 	set name = "Pme"
-	set desc = "Emote to an absorbed or dominated predator/prey."
+	set desc = "Emote to people affected by complete absorbed or dominate predator/prey."
 
 	if (src.client)
 		if(client.prefs.muted & MUTE_IC)
@@ -222,17 +222,16 @@
 			return
 		else
 			pb = db.pred_body
-	if(M.forced_psay)
-		if(isbelly(M.loc) && M.absorbed)
-			pb = M.loc.loc
-		else
-			M.forced_psay = FALSE
-			M.me_verb(message)
+			to_chat(pb, "<span class='changeling'>The captive mind of \the [M] thinks, \"[message]\"</span>")	//To our pred if dominated brain
+			f = TRUE
+
+	else if(M.forced_psay && M.absorbed && isbelly(M.loc))
+		pb = M.loc.loc
+		to_chat(pb, "<span class='changeling'>\The [M] [message]</span>")	//To our pred if absorbed
+		f = TRUE
 	
 	if(pb)	//We are prey, let's do the prey thing.
 
-		to_chat(pb, "<span class='changeling'>\The [M] [message]</span>")	//To our pred
-		f = TRUE
 		for(var/I in pb.contents)
 			if(istype(I, /mob/living/dominated_brain) && I != M)
 				var/mob/living/dominated_brain/db = I
@@ -256,13 +255,17 @@
 				to_chat(L, "<span class='changeling'><b>\The [M] [message]</b></span>")	//To any absorbed people inside us
 				f = TRUE
 
-	if(f)	//We found someone to send the message to, let's not print the failed message.
-		to_chat(M, "<span class='changeling'><b>\The [M] [message]</b></span>")	//To us, if we found anyone to send the message to
+	if(f)	//We found someone to send the message to
+		if(pb)
+			to_chat(M, "<span class='changeling'>\The [M] [message]</span>")	//To us if we are the prey
+		else
+			to_chat(M, "<span class='changeling'><b>\The [M] [message]</b></span>")	//To us if we are the pred
 		for (var/mob/G in player_list)
 			if (istype(G, /mob/new_player))
 				continue
 			else if(G.stat == DEAD && G.is_preference_enabled(/datum/client_preference/ghost_ears))
-				to_chat(G, "<span class='changeling'><b>\The [M] [message]</b></span>")
+				to_chat(G, "<span class='changeling'>\The [M] [message]</span>")
 		log_say(message,M)
-	else
-		to_chat(M, "<span class='warning'>There is no one inside you to talk to... ([message])</span>")	//So sad
+	else	//There wasn't anyone to send the message to, pred or prey, so let's just emote it instead and correct our psay just in case.
+		M.forced_psay = FALSE
+		M.me_verb(message)
