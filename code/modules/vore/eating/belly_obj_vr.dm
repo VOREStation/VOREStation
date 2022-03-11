@@ -59,7 +59,7 @@
 	//Actual full digest modes
 	var/tmp/static/list/digest_modes = list(DM_HOLD,DM_DIGEST,DM_ABSORB,DM_DRAIN,DM_UNABSORB,DM_HEAL,DM_SHRINK,DM_GROW,DM_SIZE_STEAL,DM_EGG)
 	//Digest mode addon flags
-	var/tmp/static/list/mode_flag_list = list("Numbing" = DM_FLAG_NUMBING, "Stripping" = DM_FLAG_STRIPPING, "Leave Remains" = DM_FLAG_LEAVEREMAINS, "Muffles" = DM_FLAG_THICKBELLY, "Affect Worn Items" = DM_FLAG_AFFECTWORN, "Jams Sensors" = DM_FLAG_JAMSENSORS)
+	var/tmp/static/list/mode_flag_list = list("Numbing" = DM_FLAG_NUMBING, "Stripping" = DM_FLAG_STRIPPING, "Leave Remains" = DM_FLAG_LEAVEREMAINS, "Muffles" = DM_FLAG_THICKBELLY, "Affect Worn Items" = DM_FLAG_AFFECTWORN, "Jams Sensors" = DM_FLAG_JAMSENSORS, "Complete Absorb" = DM_FLAG_FORCEPSAY)
 	//Item related modes
 	var/tmp/static/list/item_digest_modes = list(IM_HOLD,IM_DIGEST_FOOD,IM_DIGEST)
 
@@ -130,7 +130,7 @@
 		"You feel %prey becoming part of you.")
 
 	var/list/absorb_messages_prey = list(
-		"Your feel yourself becoming part of %pred's %belly!")
+		"You feel yourself becoming part of %pred's %belly!")
 
 	var/list/unabsorb_messages_owner = list(
 		"You feel %prey reform into a recognizable state again.")
@@ -359,9 +359,12 @@
 		p.undo_prey_takeover(FALSE)
 		return 0
 	for(var/mob/living/L in M.contents)
-		L.muffled = 0
+		L.muffled = FALSE
+		L.forced_psay = FALSE
+
 	for(var/obj/item/weapon/holder/H in M.contents)
-		H.held_mob.muffled = 0
+		H.held_mob.muffled = FALSE
+		H.held_mob.forced_psay = FALSE
 
 	//Place them into our drop_location
 	M.forceMove(drop_location())
@@ -375,7 +378,9 @@
 		if(ML.client)
 			ML.stop_sound_channel(CHANNEL_PREYLOOP) //Stop the internal loop, it'll restart if the isbelly check on next tick anyway
 		if(ML.muffled)
-			ML.muffled = 0
+			ML.muffled = FALSE
+		if(ML.forced_psay)
+			ML.forced_psay = FALSE
 		if(ML.absorbed)
 			ML.absorbed = FALSE
 			handle_absorb_langs(ML, owner)
@@ -685,8 +690,6 @@
 
 	M.absorbed = TRUE
 	if(M.ckey)
-		owner.temp_language_sources += M
-		M.temp_language_sources += owner
 		handle_absorb_langs(M, owner)
 
 		GLOB.prey_absorbed_roundstat++
@@ -769,35 +772,9 @@
 		owner.update_icon()
 
 /////////////////////////////////////////////////////////////////////////
-/obj/belly/proc/handle_absorb_langs(var/mob/living/prey, var/mob/living/pred)
-	for(var/mob/living/p in pred.temp_language_sources)		//Let's look at the pred's sources
-		if (!p.absorbed)
-			for(var/L in pred.temp_languages)
-				if(L in p.languages)
-					pred.languages -= L
-					pred.temp_languages -= L
-					pred.temp_language_sources -= p
-		else
-			for(var/L in p.languages)
-				if(L in pred.languages)
-					continue
-				pred.languages += L
-				pred.temp_languages += L
-
-	for(var/mob/living/P in prey.temp_language_sources)		//Let's look at the prey's sources
-		if (!prey.absorbed)
-			for(var/L in prey.temp_languages)
-				if(L in P.languages)
-					prey.languages -= L
-					prey.temp_languages -= L
-					prey.temp_language_sources -= P
-		else
-			for(var/L in P.languages)
-				if(L in prey.languages)
-					continue
-				prey.languages += L
-				prey.temp_languages += L
-
+/obj/belly/proc/handle_absorb_langs()
+	owner.absorb_langs()
+				
 ////////////////////////////////////////////////////////////////////////
 
 
