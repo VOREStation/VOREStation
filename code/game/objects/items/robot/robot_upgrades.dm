@@ -218,7 +218,7 @@
 
 //Test Stuff
 /obj/item/borg/upgrade/advrped
-	name = "Advamced Rapid Part Exchange Device"
+	name = "Advanced Rapid Part Exchange Device"
 	desc = "An ARPED, now in borg size!."
 	icon_state = "cyborg_upgrade3"
 	item_state = "cyborg_upgrade"
