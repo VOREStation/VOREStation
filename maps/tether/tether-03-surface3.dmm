@@ -20249,6 +20249,8 @@
 	},
 /obj/item/weapon/storage/pill_bottle/dice,
 /obj/item/weapon/storage/pill_bottle/dice_nerd,
+/obj/item/weapon/deck/wizoff,
+/obj/item/weapon/book/manual/wizzoffguide,
 /turf/simulated/floor/wood,
 /area/library)
 "aGZ" = (
