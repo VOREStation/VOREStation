@@ -155,7 +155,11 @@ var/list/channel_to_radio_key = new
 		if(stat == DEAD && !forbid_seeing_deadchat)
 			return say_dead(message)
 		return
-
+	//VOREStation Addition Start
+	if(forced_psay)
+		psay(message)
+		return
+	//VOREStation Addition End
 	//Parse the mode
 	var/message_mode = parse_message_mode(message, "headset")
 
