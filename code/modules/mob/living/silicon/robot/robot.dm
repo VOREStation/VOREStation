@@ -784,9 +784,23 @@
 				visible_message("<span class='warning'>[H] taps [src].</span>")
 				return
 			if(I_GRAB)
-				if(is_vore_predator(H))
-					if(src.devourable)
+				if(is_vore_predator(H) && H.devourable && src.feeding && src.devourable)
+					var/switchy = tgui_alert(H, "Do you wish to eat [src] or feed yourself to them?", "Feed or Eat",list("Eat","Feed", "Nevermind!")
+					switch(switchy)
+					if("Nevermind!")
+						return
+					if("Eat")
 						feed_grabbed_to_self(H, src)
+						return
+					if("Feed")
+						H.feed_self_to_grabbed(H, src)
+						return
+				if(is_vore_predator(H) && src.devourable)
+					if(tgui_alert(H, "Do you wish to eat [src]?", "Eat?",list("Yes!", "Nevermind!")) == "Yes!")
+						feed_grabbed_to_self(H, src)
+						return
+				if(H.devourable && src.feeding)
+					if(tgui_alert(H, "Do you wish to feed yourself to [src]?", "Feed?",list("Yes!", "Nevermind!")) == "Yes!")
 
 //Robots take half damage from basic attacks.
 /mob/living/silicon/robot/attack_generic(var/mob/user, var/damage, var/attack_message)
