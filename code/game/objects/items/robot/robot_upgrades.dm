@@ -155,7 +155,7 @@
 
 /obj/item/borg/upgrade/advhealth
 	name = "advanced health analyzer module"
-	desc = "A carbon dioxide jetpack suitable for low-gravity operations."
+	desc = "An Advanced Health Analyzer, optimized for borg mounting."
 	icon_state = "cyborg_upgrade3"
 	item_state = "cyborg_upgrade"
 	require_module = 1
@@ -216,7 +216,7 @@
 
 	return 1
 
-//Test Stuff
+//Advanced RPED
 /obj/item/borg/upgrade/advrped
 	name = "Advanced Rapid Part Exchange Device"
 	desc = "An ARPED, now in borg size!."
@@ -228,6 +228,69 @@
 	if(..()) return 0
 
 	var/obj/item/weapon/storage/part_replacer/adv/T = locate() in R.module
+
+	if(!R.module || !(type in R.module.supported_upgrades))
+		to_chat(R, "Upgrade mounting error!  No suitable hardpoint detected!")
+		to_chat(usr, "There's no mounting point for the module!")
+		return 0
+	if(!T)
+		T = locate() in R.module.contents
+	if(!T)
+		T = locate() in R.module.modules
+	if(!T)
+		R.module.modules += new/obj/item/weapon/storage/part_replacer/adv(R.module)
+		return 1
+	if(T)
+		to_chat(R, "Upgrade mounting error!  No suitable hardpoint detected!")
+		to_chat(usr, "There's no mounting point for the module!")
+		return 0
+
+//Diamond Drill
+/obj/item/borg/upgrade/diamonddrill
+	name = "Mounted Diamond Drill"
+	desc = "An advanced drill, optimized for borg use."
+	icon_state = "cyborg_upgrade3"
+	item_state = "cyborg_upgrade"
+	require_module = 1
+
+/obj/item/borg/upgrade/advrped/action(var/mob/living/silicon/robot/R)
+	if(..()) return 0
+
+	var/obj/item/weapon/storage/part_replacer/adv/T = locate() in R.module
+
+	if(!R.module || !(type in R.module.supported_upgrades))
+		to_chat(R, "Upgrade mounting error!  No suitable hardpoint detected!")
+		to_chat(usr, "There's no mounting point for the module!")
+		return 0
+	if(!T)
+		T = locate() in R.module.contents
+	if(!T)
+		T = locate() in R.module.modules
+	if(!T)
+		R.module.modules += new/obj/item/weapon/storage/part_replacer/adv(R.module)
+		return 1
+	if(T)
+		to_chat(R, "Upgrade mounting error!  No suitable hardpoint detected!")
+		to_chat(usr, "There's no mounting point for the module!")
+		return 0
+
+//PKA
+/obj/item/borg/upgrade/advrped
+	name = "Advanced Rapid Part Exchange Device"
+	desc = "An ARPED, now in borg size!."
+	icon_state = "cyborg_upgrade3"
+	item_state = "cyborg_upgrade"
+	require_module = 1
+
+/obj/item/borg/upgrade/advrped/action(var/mob/living/silicon/robot/R)
+	if(..()) return 0
+
+	var/obj/item/weapon/storage/part_replacer/adv/T = locate() in R.module
+
+	if(!R.module || !(type in R.module.supported_upgrades))
+		to_chat(R, "Upgrade mounting error!  No suitable hardpoint detected!")
+		to_chat(usr, "There's no mounting point for the module!")
+		return 0
 	if(!T)
 		T = locate() in R.module.contents
 	if(!T)
