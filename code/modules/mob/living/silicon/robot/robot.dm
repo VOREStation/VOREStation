@@ -778,6 +778,22 @@
 					playsound(src.loc, 'sound/effects/bang.ogg', 10, 1)
 					visible_message("<span class='warning'>[H] punches [src], but doesn't leave a dent.</span>")
 					return
+			if(I_GRAB)
+				if (user == src)
+					return
+				if (!(status_flags)) //& CANPUSH))
+					return
+
+				var/obj/item/weapon/grab/G = new /obj/item/weapon/grab(user, src)
+
+				user.put_in_active_hand(G)
+
+				G.synch()
+				G.affecting = src
+				LAssailant = user
+
+				user.visible_message("<span class='warning'>\The [user] has grabbed [src] passively!</span>")
+				user.do_attack_animation(src)
 			if(I_DISARM)
 				H.do_attack_animation(src)
 				playsound(src.loc, 'sound/effects/clang2.ogg', 10, 1)
