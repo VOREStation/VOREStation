@@ -783,6 +783,10 @@
 				playsound(src.loc, 'sound/effects/clang2.ogg', 10, 1)
 				visible_message("<span class='warning'>[H] taps [src].</span>")
 				return
+			if(I_GRAB)
+				if(is_vore_predator(H))
+					if(src.devourable)
+						feed_grabbed_to_self(H, src)
 
 //Robots take half damage from basic attacks.
 /mob/living/silicon/robot/attack_generic(var/mob/user, var/damage, var/attack_message)
