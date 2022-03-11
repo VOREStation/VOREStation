@@ -781,7 +781,7 @@
 			if(I_GRAB)
 				if (user == src)
 					return
-				if (!(status_flags)) //& CANPUSH))
+				if (!(status_flags && CANPUSH))
 					return
 
 				var/obj/item/weapon/grab/G = new /obj/item/weapon/grab(user, src)
