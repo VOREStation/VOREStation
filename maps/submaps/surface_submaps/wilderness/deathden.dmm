@@ -67,7 +67,7 @@
 "wK" = (/obj/structure/window/reinforced/tinted/frosted{dir = 1},/obj/structure/table/wooden_reinforced,/obj/random/soap,/obj/item/weapon/flame/candle/everburn,/turf/simulated/floor/tiled/freezer,/area/submap/DeathDen)
 "xN" = (/obj/structure/loot_pile/maint/technical,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/DeathDen)
 "xS" = (/mob/living/simple_mob/animal/sif/savik{health = 200; melee_damage_lower = 20; melee_damage_upper = 40; name = "alpha savik"},/turf/simulated/floor/carpet/turcarpet,/area/submap/DeathDen)
-"xZ" = (/obj/item/weapon/storage/box/shotgunammo/large,/turf/simulated/floor/wood/sif,/area/submap/DeathDen)
+"xZ" = (/obj/item/ammo_magazine/ammo_box/b12g/pellet,/obj/item/ammo_magazine/ammo_box/b12g/pellet,/turf/simulated/floor/wood/sif,/area/submap/DeathDen)
 "yn" = (/turf/simulated/floor/outdoors/dirt,/area/template_noop)
 "yL" = (/obj/structure/table/wooden_reinforced,/obj/item/weapon/flame/candle/everburn,/obj/item/weapon/material/shard{pixel_x = -3; pixel_y = -6},/obj/item/weapon/material/shard{pixel_x = 6; pixel_y = -6},/turf/simulated/floor/wood/sif,/area/submap/DeathDen)
 "yS" = (/obj/item/weapon/reagent_containers/food/snacks/candy_corn{pixel_x = 6; pixel_y = 4},/obj/effect/floor_decal/carpet{dir = 8},/obj/random/maintenance/engineering,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/carpet/turcarpet,/area/submap/DeathDen)

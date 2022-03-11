@@ -140,3 +140,12 @@
 	display_name = "Cards Against The Galaxy (black deck)"
 	path = /obj/item/weapon/deck/cah/black
 	description = "The ever-popular Cards Against The Galaxy word game. Warning: may include traces of broken fourth wall. This is the black deck."
+
+/datum/gear/wizoff
+	display_name = "WizOff"
+	path = /obj/item/weapon/deck/wizoff
+
+/datum/gear/wizoffguide
+	display_name = "WizOff Guide"
+	path = /obj/item/weapon/book/manual/wizzoffguide
+	description = "The guide to playing the ever popular card game: Wiz-Off!"

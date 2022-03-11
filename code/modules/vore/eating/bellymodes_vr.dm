@@ -167,7 +167,7 @@
 			var/mob/living/L = A
 			touchable_mobs += L
 
-			if(L.absorbed)
+			if(L.absorbed && !issilicon(L))
 				L.Weaken(5)
 
 			// Fullscreen overlays
@@ -185,6 +185,10 @@
 				//Thickbelly flag
 				if((mode_flags & DM_FLAG_THICKBELLY) && !H.muffled)
 					H.muffled = TRUE
+
+				//Force psay
+				if((mode_flags & DM_FLAG_FORCEPSAY) && !H.forced_psay && H.absorbed)
+					H.forced_psay = TRUE
 
 				//Worn items flag
 				if(mode_flags & DM_FLAG_AFFECTWORN)
@@ -273,6 +277,9 @@
 	//Send messages
 	to_chat(owner, "<span class='notice'>[digest_alert_owner]</span>")
 	to_chat(M, "<span class='notice'>[digest_alert_prey]</span>")
+
+	if(M.ckey)
+		GLOB.prey_digested_roundstat++
 
 	if((mode_flags & DM_FLAG_LEAVEREMAINS) && M.digest_leave_remains)
 		handle_remains_leaving(M)

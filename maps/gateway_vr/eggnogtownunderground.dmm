@@ -1,58 +1,78 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
 /turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
 	temperature = 258.15
 	},
 /area/gateway/eggnogtown/underground)
 "ab" = (
 /turf/simulated/mineral/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
 	temperature = 258.15
 	},
 /area/gateway/eggnogtown/underground)
 "ac" = (
 /obj/random/mob/semirandom_mob_spawner/vore/retaliate,
 /turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
 	temperature = 258.15
 	},
 /area/gateway/eggnogtown/underground)
 "ad" = (
 /obj/machinery/light/small,
 /turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
 	temperature = 258.15
 	},
 /area/gateway/eggnogtown/hotspring)
 "ae" = (
 /obj/random/mob/semirandom_mob_spawner/vore/retaliate/b,
 /turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
 	temperature = 258.15
 	},
 /area/gateway/eggnogtown/underground)
 "af" = (
 /turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
 	temperature = 303.15
 	},
 /area/gateway/eggnogtown/underground)
 "ag" = (
 /obj/random/mob/semirandom_mob_spawner/vore/retaliate/c,
 /turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
 	temperature = 258.15
 	},
 /area/gateway/eggnogtown/underground)
 "ah" = (
 /obj/random/mob/semirandom_mob_spawner/vore/retaliate,
 /turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
 	temperature = 303.15
 	},
 /area/gateway/eggnogtown/underground)
 "ai" = (
 /obj/random/mob/semirandom_mob_spawner/vore/retaliate/c,
 /turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
 	temperature = 303.15
 	},
 /area/gateway/eggnogtown/underground)
 "aj" = (
 /obj/random/mob/semirandom_mob_spawner/vore/retaliate/b,
 /turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
 	temperature = 303.15
 	},
 /area/gateway/eggnogtown/underground)
@@ -61,6 +81,8 @@
 	dir = 8
 	},
 /turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
 	temperature = 303.15
 	},
 /area/gateway/eggnogtown/hotsprings)
@@ -69,6 +91,8 @@
 	dir = 4
 	},
 /turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
 	temperature = 303.15
 	},
 /area/gateway/eggnogtown/hotsprings)
@@ -77,6 +101,8 @@
 	dir = 8
 	},
 /turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
 	temperature = 258.15
 	},
 /area/gateway/eggnogtown/underground)
@@ -85,18 +111,24 @@
 	dir = 8
 	},
 /turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
 	temperature = 258.15
 	},
 /area/gateway/eggnogtown/underground)
 "ao" = (
 /obj/random/mob/semirandom_mob_spawner/vore/hostile,
 /turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
 	temperature = 303.15
 	},
 /area/gateway/eggnogtown/underground)
 "ap" = (
 /obj/random/awayloot,
 /turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
 	temperature = 303.15
 	},
 /area/gateway/eggnogtown/underground)
@@ -105,6 +137,8 @@
 	dir = 5
 	},
 /turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
 	temperature = 258.15
 	},
 /area/gateway/eggnogtown/underground)
@@ -113,11 +147,15 @@
 	dir = 4
 	},
 /turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
 	temperature = 258.15
 	},
 /area/gateway/eggnogtown/underground)
 "as" = (
 /turf/simulated/mineral/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
 	temperature = 258.15
 	},
 /area/gateway/eggnogtown/vibeout)
@@ -655,6 +693,8 @@
 	trader_type = /obj/trader/general
 	},
 /turf/simulated/mineral/floor/ignore_cavegen{
+	nitrogen = 82.1472;
+	oxygen = 21.8366;
 	temperature = 303.15
 	},
 /area/gateway/eggnogtown/underground)

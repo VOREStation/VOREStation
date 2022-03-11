@@ -27,6 +27,11 @@
 		if(world.time < next_emote)
 			to_chat(src, SPAN_WARNING("You cannot use another emote yet."))
 			return
+		//VOREStation Addition Start
+		if(forced_psay)
+			pme(message)
+			return
+		//VOREStation Addition End
 
 		if(act == "help")
 			if(world.time >= next_emote_refresh)

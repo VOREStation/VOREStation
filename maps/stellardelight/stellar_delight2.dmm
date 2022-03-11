@@ -13513,12 +13513,12 @@
 /area/storage/primary)
 "Ez" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/storage/box/beanbags,
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel,
 /obj/item/weapon/paper{
 	info = "This permit signifies that the Bartender is permitted to posess this firearm in the bar, and ONLY the bar. Failure to adhere to this permit will result in confiscation of the weapon and possibly arrest.";
 	name = "Shotgun permit"
 	},
+/obj/item/ammo_magazine/ammo_box/b12g/beanbag,
 /turf/simulated/floor/wood,
 /area/stellardelight/deck2/barbackroom)
 "EA" = (
@@ -13917,7 +13917,7 @@
 	pixel_x = 32;
 	pixel_y = 0
 	},
-/obj/item/weapon/paper/dockingcodes,
+/obj/item/weapon/paper/dockingcodes/sd,
 /obj/item/device/radio,
 /obj/item/device/radio,
 /turf/simulated/floor/tiled/eris/dark/monofloor,

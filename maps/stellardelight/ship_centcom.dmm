@@ -42,8 +42,8 @@
 "ag" = (
 /obj/structure/table/rack,
 /obj/item/weapon/gun/projectile/heavysniper,
-/obj/item/weapon/storage/box/sniperammo,
-/obj/item/weapon/storage/box/sniperammo,
+/obj/item/ammo_magazine/ammo_box/b145,
+/obj/item/ammo_magazine/ammo_box/b145,
 /turf/simulated/floor/tiled/dark,
 /area/centcom/specops)
 "ah" = (
@@ -669,11 +669,11 @@
 "bZ" = (
 /obj/structure/table/rack,
 /obj/structure/window/reinforced,
-/obj/item/weapon/storage/box/shotgunammo,
-/obj/item/weapon/storage/box/shotgunammo,
-/obj/item/weapon/storage/box/shotgunshells,
-/obj/item/weapon/storage/box/shotgunshells,
-/obj/item/weapon/storage/box/shotgunshells,
+/obj/item/ammo_magazine/ammo_box/b12g,
+/obj/item/ammo_magazine/ammo_box/b12g,
+/obj/item/ammo_magazine/ammo_box/b12g/pellet,
+/obj/item/ammo_magazine/ammo_box/b12g/pellet,
+/obj/item/ammo_magazine/ammo_box/b12g/pellet,
 /turf/simulated/floor/tiled{
 	icon_state = "dark"
 	},
@@ -1584,12 +1584,12 @@
 /area/centcom/evac)
 "fl" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/storage/box/flashshells,
-/obj/item/weapon/storage/box/flashshells,
-/obj/item/weapon/storage/box/stunshells,
-/obj/item/weapon/storage/box/stunshells,
-/obj/item/weapon/storage/box/beanbags,
-/obj/item/weapon/storage/box/beanbags,
+/obj/item/ammo_magazine/ammo_box/b12g/flash,
+/obj/item/ammo_magazine/ammo_box/b12g/flash,
+/obj/item/ammo_magazine/ammo_box/b12g/stunshell,
+/obj/item/ammo_magazine/ammo_box/b12g/stunshell,
+/obj/item/ammo_magazine/ammo_box/b12g/beanbag,
+/obj/item/ammo_magazine/ammo_box/b12g/beanbag,
 /turf/simulated/floor/tiled{
 	icon_state = "dark"
 	},
@@ -5235,15 +5235,15 @@
 "vk" = (
 /obj/structure/table/rack,
 /obj/effect/floor_decal/industrial/outline/yellow,
-/obj/item/weapon/storage/box/shotgunammo/large,
-/obj/item/weapon/storage/box/shotgunammo/large,
-/obj/item/weapon/storage/box/shotgunammo/large,
-/obj/item/weapon/storage/box/shotgunammo/large,
-/obj/item/weapon/storage/box/shotgunammo/large,
-/obj/item/weapon/storage/box/shotgunammo/large,
-/obj/item/weapon/storage/box/shotgunammo/large,
-/obj/item/weapon/storage/box/shotgunammo/large,
-/obj/item/weapon/storage/box/shotgunammo/large,
+/obj/item/ammo_magazine/ammo_box/b12g,
+/obj/item/ammo_magazine/ammo_box/b12g,
+/obj/item/ammo_magazine/ammo_box/b12g,
+/obj/item/ammo_magazine/ammo_box/b12g,
+/obj/item/ammo_magazine/ammo_box/b12g,
+/obj/item/ammo_magazine/ammo_box/b12g,
+/obj/item/ammo_magazine/ammo_box/b12g,
+/obj/item/ammo_magazine/ammo_box/b12g,
+/obj/item/ammo_magazine/ammo_box/b12g,
 /turf/simulated/floor/tiled/dark,
 /area/centcom/security)
 "vl" = (
@@ -5626,10 +5626,10 @@
 "wY" = (
 /obj/structure/table/rack,
 /obj/effect/floor_decal/industrial/outline/yellow,
-/obj/item/weapon/storage/box/sniperammo,
-/obj/item/weapon/storage/box/sniperammo,
-/obj/item/weapon/storage/box/sniperammo,
-/obj/item/weapon/storage/box/sniperammo,
+/obj/item/ammo_magazine/ammo_box/b145,
+/obj/item/ammo_magazine/ammo_box/b145,
+/obj/item/ammo_magazine/ammo_box/b145,
+/obj/item/ammo_magazine/ammo_box/b145,
 /turf/simulated/floor/tiled/dark,
 /area/centcom/security)
 "xc" = (
@@ -7159,14 +7159,14 @@
 /area/centcom/control)
 "Eq" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/box/stunshells/large,
-/obj/item/weapon/storage/box/stunshells/large,
-/obj/item/weapon/storage/box/stunshells/large,
-/obj/item/weapon/storage/box/stunshells/large,
-/obj/item/weapon/storage/box/stunshells/large,
-/obj/item/weapon/storage/box/stunshells/large,
-/obj/item/weapon/storage/box/stunshells/large,
-/obj/item/weapon/storage/box/stunshells/large,
+/obj/item/ammo_magazine/ammo_box/b12g/stunshell,
+/obj/item/ammo_magazine/ammo_box/b12g/stunshell,
+/obj/item/ammo_magazine/ammo_box/b12g/stunshell,
+/obj/item/ammo_magazine/ammo_box/b12g/stunshell,
+/obj/item/ammo_magazine/ammo_box/b12g/stunshell,
+/obj/item/ammo_magazine/ammo_box/b12g/stunshell,
+/obj/item/ammo_magazine/ammo_box/b12g/stunshell,
+/obj/item/ammo_magazine/ammo_box/b12g/stunshell,
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/dark,
 /area/centcom/security)
@@ -8505,15 +8505,15 @@
 "Ih" = (
 /obj/structure/table/rack,
 /obj/effect/floor_decal/industrial/outline/yellow,
-/obj/item/weapon/storage/box/shotgunshells/large,
-/obj/item/weapon/storage/box/shotgunshells/large,
-/obj/item/weapon/storage/box/shotgunshells/large,
-/obj/item/weapon/storage/box/shotgunshells/large,
-/obj/item/weapon/storage/box/shotgunshells/large,
-/obj/item/weapon/storage/box/shotgunshells/large,
-/obj/item/weapon/storage/box/shotgunshells/large,
-/obj/item/weapon/storage/box/shotgunshells/large,
-/obj/item/weapon/storage/box/shotgunshells/large,
+/obj/item/ammo_magazine/ammo_box/b12g/pellet,
+/obj/item/ammo_magazine/ammo_box/b12g/pellet,
+/obj/item/ammo_magazine/ammo_box/b12g/pellet,
+/obj/item/ammo_magazine/ammo_box/b12g/pellet,
+/obj/item/ammo_magazine/ammo_box/b12g/pellet,
+/obj/item/ammo_magazine/ammo_box/b12g/pellet,
+/obj/item/ammo_magazine/ammo_box/b12g/pellet,
+/obj/item/ammo_magazine/ammo_box/b12g/pellet,
+/obj/item/ammo_magazine/ammo_box/b12g/pellet,
 /turf/simulated/floor/tiled/dark,
 /area/centcom/security)
 "Ij" = (
@@ -12083,14 +12083,14 @@
 /area/centcom/security)
 "Ri" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/box/beanbags/large,
-/obj/item/weapon/storage/box/beanbags/large,
-/obj/item/weapon/storage/box/beanbags/large,
-/obj/item/weapon/storage/box/beanbags/large,
-/obj/item/weapon/storage/box/beanbags/large,
-/obj/item/weapon/storage/box/beanbags/large,
-/obj/item/weapon/storage/box/beanbags/large,
-/obj/item/weapon/storage/box/beanbags/large,
+/obj/item/ammo_magazine/ammo_box/b12g/beanbag,
+/obj/item/ammo_magazine/ammo_box/b12g/beanbag,
+/obj/item/ammo_magazine/ammo_box/b12g/beanbag,
+/obj/item/ammo_magazine/ammo_box/b12g/beanbag,
+/obj/item/ammo_magazine/ammo_box/b12g/beanbag,
+/obj/item/ammo_magazine/ammo_box/b12g/beanbag,
+/obj/item/ammo_magazine/ammo_box/b12g/beanbag,
+/obj/item/ammo_magazine/ammo_box/b12g/beanbag,
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/dark,
 /area/centcom/security)
@@ -14307,14 +14307,14 @@
 	})
 "Wq" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/box/flashshells/large,
-/obj/item/weapon/storage/box/flashshells/large,
-/obj/item/weapon/storage/box/flashshells/large,
-/obj/item/weapon/storage/box/flashshells/large,
-/obj/item/weapon/storage/box/flashshells/large,
-/obj/item/weapon/storage/box/flashshells/large,
-/obj/item/weapon/storage/box/flashshells/large,
-/obj/item/weapon/storage/box/flashshells/large,
+/obj/item/ammo_magazine/ammo_box/b12g/flash,
+/obj/item/ammo_magazine/ammo_box/b12g/flash,
+/obj/item/ammo_magazine/ammo_box/b12g/flash,
+/obj/item/ammo_magazine/ammo_box/b12g/flash,
+/obj/item/ammo_magazine/ammo_box/b12g/flash,
+/obj/item/ammo_magazine/ammo_box/b12g/flash,
+/obj/item/ammo_magazine/ammo_box/b12g/flash,
+/obj/item/ammo_magazine/ammo_box/b12g/flash,
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/dark,
 /area/centcom/security)

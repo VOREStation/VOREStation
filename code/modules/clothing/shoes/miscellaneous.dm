@@ -234,3 +234,25 @@
 	force = 0
 	drop_sound = 'sound/items/drop/clothing.ogg'
 	pickup_sound = 'sound/items/pickup/clothing.ogg'
+
+/*
+ * 80s
+ */
+
+/obj/item/clothing/shoes/sneakerspurple
+	name = "purple sneakers"
+	desc = "A stylish, expensive pair of purple sneakers."
+	icon_state = "sneakerspurple"
+	item_state = "sneakerspurple"
+
+/obj/item/clothing/shoes/sneakersblue
+	name = "blue sneakers"
+	desc = "A stylish, expensive pair of blue sneakers."
+	icon_state = "sneakersblue"
+	item_state = "sneakersblue"
+
+/obj/item/clothing/shoes/sneakersred
+	name = "red sneakers"
+	desc = "A stylish, expensive pair of red sneakers."
+	icon_state = "sneakersred"
+	item_state = "sneakersred"

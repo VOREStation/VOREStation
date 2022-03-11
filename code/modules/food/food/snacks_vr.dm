@@ -631,11 +631,11 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/grub_pink
 	name = "pink candy grub"
-	desc = "A thoroughly candied grub, it smells of raspberry."
+	desc = "A thoroughly candied grub, it smells of cherry."
 	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "grub_pink"
 	nutriment_amt = 5
-	nutriment_desc = list("raspberry" = 4, "goo" = 1)
+	nutriment_desc = list("cherry" = 4, "goo" = 1)
 
 /obj/item/weapon/reagent_containers/food/snacks/grub_pink/Initialize()
 	. = ..()

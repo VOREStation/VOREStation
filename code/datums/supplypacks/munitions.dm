@@ -38,7 +38,7 @@
 			/obj/item/weapon/gun/projectile/sec/flash,
 			/obj/item/ammo_magazine/m45/flash,
 			/obj/item/weapon/gun/projectile/shotgun/doublebarrel/flare,
-			/obj/item/weapon/storage/box/flashshells
+			/obj/item/ammo_magazine/ammo_box/b12g/flash
 			)
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure/gear
@@ -66,8 +66,8 @@
 /datum/supply_pack/munitions/shotgun
 	name = "Weapons - Shotgun crate"
 	contains = list(
-			/obj/item/weapon/storage/box/shotgunammo,
-			/obj/item/weapon/storage/box/shotgunshells,
+			/obj/item/ammo_magazine/ammo_box/b12g,
+			/obj/item/ammo_magazine/ammo_box/b12g/pellet,
 			/obj/item/weapon/gun/projectile/shotgun/pump/combat = 2
 			)
 	cost = 50
@@ -198,8 +198,8 @@
 /datum/supply_pack/munitions/shotgunammo
 	name = "Ammunition - Shotgun shells"
 	contains = list(
-			/obj/item/weapon/storage/box/shotgunammo = 2,
-			/obj/item/weapon/storage/box/shotgunshells = 2
+			/obj/item/ammo_magazine/ammo_box/b12g = 2,
+			/obj/item/ammo_magazine/ammo_box/b12g/pellet = 2
 			)
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure/weapon
@@ -208,7 +208,7 @@
 
 /datum/supply_pack/munitions/beanbagammo
 	name = "Ammunition - Beanbag shells"
-	contains = list(/obj/item/weapon/storage/box/beanbags = 3)
+	contains = list(/obj/item/ammo_magazine/ammo_box/b12g/beanbag = 3)
 	cost = 25
 	containertype = /obj/structure/closet/crate
 	containername = "Ballistic ammunition crate"

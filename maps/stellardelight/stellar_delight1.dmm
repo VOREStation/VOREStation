@@ -1660,20 +1660,20 @@
 /area/security/security_cell_hallway)
 "dD" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/storage/box/shotgunshells{
-	pixel_x = -2;
-	pixel_y = 7
-	},
-/obj/item/weapon/storage/box/shotgunshells{
-	pixel_x = 2;
-	pixel_y = 3
-	},
-/obj/item/weapon/storage/box/shotgunshells{
-	pixel_x = 6;
-	pixel_y = -1
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/purple,
 /obj/effect/floor_decal/milspec/color/black,
+/obj/item/ammo_magazine/ammo_box/b12g/pellet{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/obj/item/ammo_magazine/ammo_box/b12g/pellet{
+	pixel_x = -1;
+	pixel_y = 2
+	},
+/obj/item/ammo_magazine/ammo_box/b12g/pellet{
+	pixel_x = -5;
+	pixel_y = 7
+	},
 /turf/simulated/floor/tiled/dark,
 /area/security/armoury)
 "dF" = (
@@ -12022,21 +12022,22 @@
 /area/security/warden)
 "zE" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/storage/box/stunshells{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/weapon/storage/box/flashshells{
-	pixel_x = 1
-	},
-/obj/item/weapon/storage/box/beanbags{
-	pixel_x = 4;
-	pixel_y = -5
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/purple{
 	dir = 6
 	},
 /obj/effect/floor_decal/milspec/color/black,
+/obj/item/ammo_magazine/ammo_box/b12g/stunshell{
+	pixel_x = 3;
+	pixel_y = -3
+	},
+/obj/item/ammo_magazine/ammo_box/b12g/flash{
+	pixel_x = -1;
+	pixel_y = 2
+	},
+/obj/item/ammo_magazine/ammo_box/b12g/beanbag{
+	pixel_x = -5;
+	pixel_y = 7
+	},
 /turf/simulated/floor/tiled/dark,
 /area/security/armoury)
 "zG" = (
@@ -18289,6 +18290,11 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/stellardelight/deck1/shower)
+"Na" = (
+/obj/item/weapon/storage/box/nifsofts_mining,
+/obj/structure/table/reinforced,
+/turf/simulated/floor/tiled/eris/steel/cargo,
+/area/stellardelight/deck1/miningequipment)
 "Nb" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/angled{
@@ -33582,7 +33588,7 @@ dl
 QK
 pV
 xf
-qV
+Na
 MG
 vC
 vi

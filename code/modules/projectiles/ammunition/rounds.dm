@@ -222,6 +222,18 @@
 	projectile_type = /obj/item/projectile/bullet/pistol/medium
 	matter = list(MAT_STEEL = 75)
 
+/obj/item/ammo_casing/a10mm/practice
+	desc = "A 10mm practice bullet casing."
+	icon_state = "r-casing"
+	projectile_type = /obj/item/projectile/bullet/practice
+	matter = list(MAT_STEEL = 60)
+
+/obj/item/ammo_casing/a10mm/rubber
+	desc = "A 10mm rubber bullet casing."
+	projectile_type = /obj/item/projectile/bullet/pistol/rubber
+	icon_state = "r-casing"
+	matter = list(MAT_STEEL = 60)
+
 /obj/item/ammo_casing/a10mm/emp
 	name = "10mm haywire round"
 	desc = "A 10mm bullet casing fitted with a single-use ion pulse generator."

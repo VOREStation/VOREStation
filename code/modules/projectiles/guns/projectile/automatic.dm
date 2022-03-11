@@ -415,7 +415,7 @@
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/m762
-	allowed_magazines = list(/obj/item/ammo_magazine/m762, /obj/item/ammo_magazine/m762m)
+	allowed_magazines = list(/obj/item/ammo_magazine/m762, /obj/item/ammo_magazine/m762/ext)
 	projectile_type = /obj/item/projectile/bullet/rifle/a762
 
 	one_handed_penalty = 45
@@ -429,7 +429,7 @@
 	..()
 	if(istype(ammo_magazine,/obj/item/ammo_magazine/m762))
 		icon_state = "bullpup-small"
-	else if(istype(ammo_magazine,/obj/item/ammo_magazine/m762m))
+	else if(istype(ammo_magazine,/obj/item/ammo_magazine/m762/ext))
 		icon_state = "bullpup"
 	else
 		item_state = "bullpup-empty"

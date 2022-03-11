@@ -7132,7 +7132,7 @@
 /area/ship/manta/armoury_as)
 "Dq" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/box/sniperammo,
+/obj/item/ammo_magazine/ammo_box/b145,
 /obj/item/weapon/gun/projectile/heavysniper,
 /obj/effect/floor_decal/techfloor{
 	dir = 5
@@ -9278,8 +9278,8 @@
 /area/ship/manta/armoury_st)
 "Nc" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/box/shotgunshells/large,
-/obj/item/weapon/storage/box/shotgunammo/large,
+/obj/item/ammo_magazine/ammo_box/b12g/pellet,
+/obj/item/ammo_magazine/ammo_box/b12g,
 /obj/item/weapon/gun/projectile/shotgun/pump/combat{
 	pixel_y = 4
 	},

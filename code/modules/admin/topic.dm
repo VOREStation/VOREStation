@@ -554,7 +554,7 @@
 				jobs += "</tr><tr align='center'>"
 				counter = 0
 
-		jobs += "</tr></table>"	
+		jobs += "</tr></table>"
 
 	//VOREstation Edit End
 	//Civilian (Grey)
@@ -635,7 +635,7 @@
 				jobs += "<td width='20%'><a href='?src=\ref[src];jobban3=[entry];jobban4=\ref[M]'><font color=red>[entry]</font></a></td>"
 			else
 				jobs += "<td width='20%'><a href='?src=\ref[src];jobban3=[entry];jobban4=\ref[M]'>[entry]</a></td>"
-			
+
 			if(++counter >= 5) //So things dont get squiiiiished!
 				jobs += "</tr><tr align='center'>"
 				counter = 0
@@ -1417,10 +1417,10 @@
 			to_chat(usr, "<span class='filter_adminlog'>This can only be used on instances of type /mob/living/carbon/human</span>")
 			return
 
-		H.equip_to_slot_or_del( new /obj/item/weapon/reagent_containers/food/snacks/cookiesnack(H), slot_l_hand )
-		if(!(istype(H.l_hand,/obj/item/weapon/reagent_containers/food/snacks/cookiesnack)))
-			H.equip_to_slot_or_del( new /obj/item/weapon/reagent_containers/food/snacks/cookiesnack(H), slot_r_hand )
-			if(!(istype(H.r_hand,/obj/item/weapon/reagent_containers/food/snacks/cookiesnack)))
+		H.equip_to_slot_or_del( new /obj/item/weapon/reagent_containers/food/snacks/cookie(H), slot_l_hand )
+		if(!(istype(H.l_hand,/obj/item/weapon/reagent_containers/food/snacks/cookie)))
+			H.equip_to_slot_or_del( new /obj/item/weapon/reagent_containers/food/snacks/cookie(H), slot_r_hand )
+			if(!(istype(H.r_hand,/obj/item/weapon/reagent_containers/food/snacks/cookie)))
 				log_admin("[key_name(H)] has their hands full, so they did not receive their cookie, spawned by [key_name(src.owner)].")
 				message_admins("[key_name(H)] has their hands full, so they did not receive their cookie, spawned by [key_name(src.owner)].")
 				return
@@ -1558,7 +1558,7 @@
 		var/mob/M = locate(href_list["jumpto"])
 		if(!M)
 			return
-		
+
 		var/turf/T = get_turf(M)
 		if(isturf(T))
 			usr.on_mob_jump()
@@ -1597,16 +1597,16 @@
 		var/mob/M = locate(href_list["sendmob"])
 		if(!M)
 			return
-		
+
 		var/list/areachoices = return_sorted_areas()
 		var/choice = tgui_input_list(usr, "Pick an area:", "Send Mob", areachoices)
 		if(!choice)
 			return
-		
+
 		var/area/A = areachoices[choice]
 		if(!A)
 			return
-			
+
 		M.on_mob_jump()
 		M.forceMove(pick(get_area_turfs(A)))
 		var/msg = "[key_name_admin(usr)] teleported [ADMIN_LOOKUPFLW(M)]"
