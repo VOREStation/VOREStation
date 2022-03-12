@@ -6,13 +6,11 @@
  * Space Crane
  */
 
-/obj/machinery/autoclaw
+/obj/machinery/clawmachine
 	name = "Space Crane"
 	desc = "Try your luck at winning a cute plush toy! No refunds, and whining won't win you anything."
-	description_fluff = "Donk Co. AutoClaw Machines are a revolutionary take on a classic. No more will the player \
-	blame themselves for their mistakes when trying to win an awsome toy. Now it's all up to sheer blind luck!"
 	icon = 'icons/obj/computer.dmi'
-	icon_state = "autoclaw"
+	icon_state = "clawmachine"
 	anchored = 1
 	density = 1
 	power_channel = EQUIP
@@ -65,81 +63,22 @@
 						/obj/item/toy/plushie/otter
 						)
 
-/*
- * Super Claw
- */
-
-/obj/machinery/autoclaw/superclaw
-	name = "Super Claw"
-	desc = "Try your luck at winning a sweet new action figure! No refunds, and whining won't win you anything."
-	icon_state = "autoclaw"
-	list/prizes	= list(/obj/item/toy/figure/cmo,
-						/obj/item/toy/figure/assistant,
-						/obj/item/toy/figure/atmos,
-						/obj/item/toy/figure/bartender,
-						/obj/item/toy/figure/borg,
-						/obj/item/toy/figure/gardener,
-						/obj/item/toy/figure/captain,
-						/obj/item/toy/figure/cargotech,
-						/obj/item/toy/figure/ce,
-						/obj/item/toy/figure/chaplain,
-						/obj/item/toy/figure/chef,
-						/obj/item/toy/figure/chemist,
-						/obj/item/toy/figure/clown,
-						/obj/item/toy/figure/corgi,
-						/obj/item/toy/figure/detective,
-						/obj/item/toy/figure/dsquad,
-						/obj/item/toy/figure/engineer,
-						/obj/item/toy/figure/geneticist,
-						/obj/item/toy/figure/hop,
-						/obj/item/toy/figure/hos,
-						/obj/item/toy/figure/qm,
-						/obj/item/toy/figure/janitor,
-						/obj/item/toy/figure/agent,
-						/obj/item/toy/figure/librarian,
-						/obj/item/toy/figure/md,
-						/obj/item/toy/figure/mime,
-						/obj/item/toy/figure/miner,
-						/obj/item/toy/figure/ninja,
-						/obj/item/toy/figure/wizard,
-						/obj/item/toy/figure/rd,
-						/obj/item/toy/figure/roboticist,
-						/obj/item/toy/figure/scientist,
-						/obj/item/toy/figure/syndie,
-						/obj/item/toy/figure/secofficer,
-						/obj/item/toy/figure/virologist,
-						/obj/item/toy/figure/warden,
-						/obj/item/toy/figure/psychologist,
-						/obj/item/toy/figure/paramedic,
-						/obj/item/toy/figure/ert,
-						/obj/item/toy/figure/ranger,
-						/obj/item/toy/figure/leadbandit,
-						/obj/item/toy/figure/bandit,
-						/obj/item/toy/figure/abe,
-						/obj/item/toy/figure/profwho,
-						/obj/item/toy/figure/prisoner
-						)
-
-/*
- * Code that makes it work
- */
-
-/obj/machinery/autoclaw/update_icon()
+/obj/machinery/clawmachine/update_icon()
 	cut_overlays()
 	if(!ispowered || isbroken)
-		icon_state = "autoclaw_off"
+		icon_state = "clawmachine_off"
 		if(isbroken) //If the thing is smashed, add crack overlay on top of the unpowered sprite.
-			add_overlay("autoclaw_broken")
+			add_overlay("clawmachine_broken")
 		set_light(0)
 		set_light_on(FALSE)
 		return
 
-	icon_state = "autoclaw"
+	icon_state = "clawmachine"
 	set_light(2)
 	set_light_on(TRUE)
 	return
 
-/obj/machinery/autoclaw/power_change()
+/obj/machinery/clawmachine/power_change()
 	if(isbroken) //Broken shit can't be powered.
 		return
 	..()
@@ -151,7 +90,7 @@
 			ispowered = 0
 			update_icon()
 
-/obj/machinery/autoclaw/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/clawmachine/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(busy)
 		to_chat(user,"<span class='notice'>The claw machine is currently running.</span> ")
 		return
@@ -191,12 +130,12 @@
 	else if(isbroken)
 		return
 
-/obj/machinery/autoclaw/proc/prizevend()
+/obj/machinery/clawmachine/proc/prizevend()
 	if(LAZYLEN(prizes))
 		var/prizeselect = pickweight(prizes)
 		new prizeselect(src.loc)
 
-/obj/machinery/autoclaw/proc/insert_cash(var/obj/item/weapon/spacecash/cashmoney, mob/user)
+/obj/machinery/clawmachine/proc/insert_cash(var/obj/item/weapon/spacecash/cashmoney, mob/user)
 	if (ispowered == 0)
 		return
 	if (isbroken)
@@ -218,7 +157,7 @@
 		cashmoney.update_icon()
 
 	busy = 1
-	icon_state = "autoclaw_play"
+	icon_state = "clawmachine_play"
 	playsound(src.loc, 'sound/machines/clawmachine_play.ogg', 50, 0)
 
 	var/slot1 = rand(0,4)
@@ -261,10 +200,10 @@
 		to_chat(user,output) //Output message
 
 		if(winnings) //Did the person win?
-			icon_state = "autoclaw_win"
+			icon_state = "clawmachine_win"
 			prizevend()
 			playsound(src.loc, 'sound/machines/clawmachine_win.ogg', 50, 0)
 			spawn(delaytime)
-				icon_state = "autoclaw"
+				icon_state = "clawmachine"
 
 		busy = FALSE
