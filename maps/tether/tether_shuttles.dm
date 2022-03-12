@@ -5,7 +5,8 @@
 /obj/machinery/computer/shuttle_control/tether_backup
 	name = "tether backup shuttle control console"
 	shuttle_tag = "Tether Backup"
-	req_one_access = list(access_heads,access_pilot)
+	req_one_access = list()
+	ai_control = TRUE
 
 /obj/machinery/computer/shuttle_control/multi/mercenary
 	name = "vessel control console"

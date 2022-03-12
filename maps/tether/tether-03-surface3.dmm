@@ -23643,13 +23643,11 @@
 /turf/simulated/floor/plating,
 /area/bridge_hallway)
 "aNa" = (
-/obj/machinery/computer/shuttle_control/tether_backup{
-	req_one_access = list()
-	},
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "lifeboat1";
 	name = "lifeboat1"
 	},
+/obj/machinery/computer/shuttle_control/tether_backup,
 /turf/simulated/floor/tiled,
 /area/shuttle/tether{
 	base_turf = /turf/simulated/floor/reinforced
@@ -39252,9 +39250,11 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/machinery/power/smes/buildable/point_of_interest,
 /obj/structure/cable/green{
 	icon_state = "0-8"
+	},
+/obj/machinery/power/smes/buildable{
+	charge = 500000
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/tourbus/general)

@@ -36,6 +36,7 @@
 /obj/item/ammo_casing/afoam_dart/riot
 	name = "riot foam dart"
 	desc = "Whose smart idea was it to use toys as crowd control? Ages 18 and up."
+	projectile_type = /obj/item/projectile/bullet/foam_dart_riot
 	matter = list(MAT_STEEL = 210, MAT_PLASTIC = 60)
 	icon_state = "foamdart_riot"
 
