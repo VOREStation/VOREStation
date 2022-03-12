@@ -788,7 +788,11 @@
 	src.modules += new /obj/item/weapon/gripper/miner(src)
 	src.modules += new /obj/item/weapon/mining_scanner(src)
 	src.modules += new /obj/item/weapon/dogborg/jaws/small(src)
-	src.emag = new /obj/item/weapon/gun/energy/phasegun/mounted(src) // A phase gun for emags, gives a reason to emag without making it an obligation
+	// New Emag gear for the minebots!
+	src.emag = new /obj/item/borg/combat/shield(src)
+	src.emag = new /obj/item/weapon/kinetic_crusher/machete/dagger(src)
+
+	// No reason for these, upgrade modules replace them.
 	//src.emag = new /obj/item/weapon/pickaxe/plasmacutter(src)
 	//src.emag = new /obj/item/weapon/pickaxe/diamonddrill(src)
 
