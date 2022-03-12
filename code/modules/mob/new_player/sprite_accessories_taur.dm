@@ -191,6 +191,11 @@
 	suit_sprites = 'icons/mob/taursuits_horse.dmi'
 	icon_sprite_tag = "horse"
 
+/datum/sprite_accessory/tail/taur/horse/horse_2c
+	name = "Horse & colorable tail (Taur)"
+	extra_overlay = "horse_markings"
+	//icon_sprite_tag = "wolf2c"
+
 /datum/sprite_accessory/tail/taur/horse/synthhorse
 	name = "SynthHorse dual-color (Taur)"
 	icon_state = "synthhorse_s"
