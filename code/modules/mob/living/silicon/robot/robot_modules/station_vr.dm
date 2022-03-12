@@ -467,7 +467,7 @@
 	channels = list("Science" = 1)
 	pto_type = PTO_SCIENCE
 	can_be_pushed = 0
-	supported_upgrades = list(/obj/item/borg/upgrade/tasercooler, /obj/item/borg/upgrade/advrped)
+	supported_upgrades = list(/obj/item/borg/upgrade/advrped)
 
 /obj/item/weapon/robot_module/robot/science/New(var/mob/living/silicon/robot/R)
 	src.modules += new /obj/item/weapon/dogborg/jaws/small(src)
@@ -776,6 +776,7 @@
 	channels = list("Supply" = 1)
 	pto_type = PTO_CARGO
 	can_be_pushed = 0
+	supported_upgrades = list(/obj/item/borg/upgrade/pka, /obj/item/borg/upgrade/diamonddrill)
 
 /obj/item/weapon/robot_module/robot/kmine/New(var/mob/living/silicon/robot/R)
 	src.modules += new /obj/item/borg/sight/material(src)
@@ -787,8 +788,9 @@
 	src.modules += new /obj/item/weapon/gripper/miner(src)
 	src.modules += new /obj/item/weapon/mining_scanner(src)
 	src.modules += new /obj/item/weapon/dogborg/jaws/small(src)
-	src.emag = new /obj/item/weapon/pickaxe/plasmacutter(src)
-	src.emag = new /obj/item/weapon/pickaxe/diamonddrill(src)
+	src.emag = new /obj/item/weapon/gun/energy/phasegun/mounted(src) // A phase gun for emags, gives a reason to emag without making it an obligation
+	//src.emag = new /obj/item/weapon/pickaxe/plasmacutter(src)
+	//src.emag = new /obj/item/weapon/pickaxe/diamonddrill(src)
 
 	var/datum/matter_synth/water = new /datum/matter_synth(500)
 	water.name = "Water reserves"

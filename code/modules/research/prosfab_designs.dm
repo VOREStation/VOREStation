@@ -448,8 +448,6 @@
 	materials = list(MAT_STEEL = 25000, MAT_GLASS = 3000, MAT_GOLD = 350)
 	build_path = /obj/item/borg/upgrade/language
 
-// TO DO - ADD Borg Upgrades here
-
 // Synthmorph Bags.
 
 /datum/design/item/prosfab/synthmorphbag
