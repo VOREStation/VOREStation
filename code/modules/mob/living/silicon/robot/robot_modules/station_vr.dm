@@ -789,7 +789,6 @@
 	src.modules += new /obj/item/weapon/mining_scanner(src)
 	src.modules += new /obj/item/weapon/dogborg/jaws/small(src)
 	// New Emag gear for the minebots!
-	src.emag = new /obj/item/borg/combat/shield(src)
 	src.emag = new /obj/item/weapon/kinetic_crusher/machete/dagger(src)
 
 	// No reason for these, upgrade modules replace them.
