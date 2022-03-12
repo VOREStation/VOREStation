@@ -40,6 +40,7 @@
 	name = "\improper Donk-Soft riot ammo box"
 	desc = "Contains Donk-Soft riot darts. It's Donk or Don't! Ages 18 and up."
 	icon_state = "foambox_riot"
+	ammo_type = /obj/item/ammo_casing/afoam_dart/riot
 	matter = list(MAT_STEEL = 5040, MAT_PLASTIC = 1800)
 
 /*

@@ -7,4 +7,5 @@
 	max_storage_space = ITEMSIZE_COST_SMALL * 6
 
 /obj/item/weapon/storage/toolbox/lunchbox/survival/zaddat
+	name = "zaddat survival lunchbox"
 	starts_with = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/glucose = 6)

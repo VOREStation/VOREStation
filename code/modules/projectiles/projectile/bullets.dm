@@ -385,8 +385,30 @@
 	if(istype(T))
 		new /obj/item/ammo_casing/afoam_dart(get_turf(loc))
 
-/obj/item/projectile/bullet/foam_dart/riot
+/obj/item/projectile/bullet/foam_dart_riot
 	name = "riot foam dart"
 	desc = "Whose smart idea was it to use toys as crowd control? Ages 18 and up."
-	agony = 50
+	damage = 0 // It's a damn toy.
+	embed_chance = 0
+	agony = 50 // The riot part of the riot dart
+	nodamage = TRUE
+	sharp = FALSE
+	damage_type = HALLOSS
+	impact_effect_type = null
+	fire_sound = 'sound/items/syringeproj.ogg'
+	combustion = FALSE
+	icon = 'icons/obj/gun_toy.dmi'
 	icon_state = "foamdart_riot_proj"
+	range = 15
+
+/obj/item/projectile/bullet/foam_dart_riot/on_impact(var/atom/A)
+	. = ..()
+	var/turf/T = get_turf(loc)
+	if(istype(T))
+		new /obj/item/ammo_casing/afoam_dart/riot(get_turf(loc))
+
+/obj/item/projectile/bullet/foam_dart_riot/on_range(var/atom/A)
+	. = ..()
+	var/turf/T = get_turf(loc)
+	if(istype(T))
+		new /obj/item/ammo_casing/afoam_dart/riot(get_turf(loc))
