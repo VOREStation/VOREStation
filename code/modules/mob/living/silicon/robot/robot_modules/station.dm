@@ -742,8 +742,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/gripper/miner(src)
 	src.modules += new /obj/item/weapon/mining_scanner(src)
 	// New Emag gear for the minebots!
-	src.emag += new /obj/item/borg/combat/shield(src)
-	src.emag += new /obj/item/weapon/kinetic_crusher/machete/dagger(src)
+	src.emag = new /obj/item/weapon/kinetic_crusher/machete/dagger(src)
 
 	// No reason for these, upgrade modules replace them.
 	//src.emag = new /obj/item/weapon/pickaxe/plasmacutter(src)
