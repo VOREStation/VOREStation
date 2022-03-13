@@ -30,6 +30,7 @@ digi5 - Protean
 digitalsquirrel95 - Black-Eyed Shadekin
 digitalsquirrel95 - Protean
 draycu - Vox
+essbie - Black-Eyed Shadekin
 falloutdog3 - Black-Eyed Shadekin
 flaktual - Vox
 flurriee - Protean
@@ -50,6 +51,7 @@ jademanique - Xenochimera
 joltze - Black-Eyed Shadekin
 khanivore - Protean
 killjaden - Protean
+konner1055 - Black-Eyed Shadekin
 ktccd - Diona
 lillianfyre - Xenochimera
 lizehrd - Xenochimera
@@ -97,6 +99,7 @@ silvertalismen - Diona
 silvertalismen - Vox
 silvertalismen - Xenochimera
 skylarks - Black-Eyed Shadekin
+Smdytb1 - Black-Eyed Shadekin
 spirit1299 - Black-Eyed Shadekin
 stackerrobot - Protean
 storesund97 - Protean
@@ -129,6 +132,7 @@ xioen - Xenochimera
 xonkon - Protean
 yecrowbarman - Protean
 yeehawguvnah - Protean
+yeehawguvnah - Xenochimera
 zalvine - Shadekin Empathy
 zammyman215 - Vox
 zeracyfr - Xenochimera
