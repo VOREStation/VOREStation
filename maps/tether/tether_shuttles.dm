@@ -37,6 +37,7 @@
 	name = "surface mining outpost shuttle control console"
 	shuttle_tag = "Mining Outpost"
 	req_one_access = list(access_mining)
+	ai_control = TRUE
 //
 // "Tram" Emergency Shuttler
 // Becuase the tram only has its own doors and no corresponding station doors, a docking controller is overkill.
