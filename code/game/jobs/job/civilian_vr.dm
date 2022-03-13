@@ -213,8 +213,8 @@
 	economic_modifier = 5
 	minimal_player_age = 3
 	pto_type = PTO_CIVILIAN
-	access = list(access_pilot)
-	minimal_access = list(access_pilot)
+	access = list(access_eva, access_maint_tunnels, access_external_airlocks, access_pilot)
+	minimal_access = list(access_eva, access_maint_tunnels, access_external_airlocks, access_pilot)
 	outfit_type = /decl/hierarchy/outfit/job/pilot
 	job_description = "A Pilot flies the various shuttles in the Virgo-Erigone System."
 	alt_titles = list("Co-Pilot" = /datum/alt_title/co_pilot, "Navigator" = /datum/alt_title/navigator, "Helmsman" = /datum/alt_title/helmsman)
