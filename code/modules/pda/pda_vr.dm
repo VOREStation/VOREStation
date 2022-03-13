@@ -24,3 +24,6 @@
 /obj/item/device/pda/sar
 	default_cartridge = /obj/item/weapon/cartridge/sar
 	icon_state = "pda-gene"			//Gives FM's a distinct PDA of their own, rather than sharing with the bridge-secretary & CCO's.
+	
+/obj/item/device/pda/pilot
+	icon_state = "pda-pilot"		//New sprites, but still no ROM cartridge or anything
