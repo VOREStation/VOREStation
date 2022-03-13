@@ -380,6 +380,12 @@
 	ckeywhitelist = list("erikthedog")
 	character_name = list("Erik Ramadwood")
 
+/datum/gear/fluff/salvage_id
+	path = /obj/item/weapon/card/id/event/polymorphic/itg
+	display_name = "Salvage's ITG-ID card"
+	ckeywhitelist = list("essbie")
+	character_name = list("Savage")
+
 //  F CKEYS
 /datum/gear/fluff/yikatihaki_armor
 	path = /obj/item/clothing/suit/armor/vox_scrap
