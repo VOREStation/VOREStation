@@ -1114,6 +1114,7 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 /obj/machinery/suit_cycler/proc/apply_paintjob()
 	if(!target_species || !target_department)
 		return
+<<<<<<< HEAD
 	
 	// Helmet to new paint
 	if(target_department.can_refit_helmet(helmet))
@@ -1132,3 +1133,181 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 		visible_message("[bicon(src)]<span class='warning'>Unable to apply specified cosmetics with specified species. Please try again with a different species or cosmetic option selected.</span>")
 		return
 	
+=======
+	//Now "Complete" with most departmental and variant suits, and sorted by department. These aren't available in the standard or emagged cycler lists because they're incomplete for most species.
+	switch(target_department)
+		if("No Change")
+			parent_helmet = helmet
+			parent_suit = suit
+		//Engineering and Engineering Variants
+		if("Engineering")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/engineering
+			parent_suit = /obj/item/clothing/suit/space/void/engineering
+		if("HAZMAT")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/engineering/hazmat
+			parent_suit = /obj/item/clothing/suit/space/void/engineering/hazmat
+		if("Construction")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/engineering/construction
+			parent_suit = /obj/item/clothing/suit/space/void/engineering/construction
+		if("Reinforced")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/engineering/alt
+			parent_suit = /obj/item/clothing/suit/space/void/engineering/alt
+		if("Salvager")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/engineering/salvage
+			parent_suit = /obj/item/clothing/suit/space/void/engineering/salvage
+		if("Atmospherics")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/atmos
+			parent_suit = /obj/item/clothing/suit/space/void/atmos
+		if("Heavy Duty Atmospherics")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/atmos/alt
+			parent_suit = /obj/item/clothing/suit/space/void/atmos/alt
+		//Mining and Mining Variants
+		if("Mining")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/mining
+			parent_suit = /obj/item/clothing/suit/space/void/mining
+		if("Frontier Miner")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/mining/alt
+			parent_suit = /obj/item/clothing/suit/space/void/mining/alt
+		//Medical and Medical Variants
+		if("Medical")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/medical
+			parent_suit = /obj/item/clothing/suit/space/void/medical
+		if("Biohazard")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/medical/bio
+			parent_suit = /obj/item/clothing/suit/space/void/medical/bio
+		if("Emergency Medical Response")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/medical/emt
+			parent_suit = /obj/item/clothing/suit/space/void/medical/emt
+		if("Vey-Medical Streamlined")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/medical/alt
+			parent_suit = /obj/item/clothing/suit/space/void/medical/alt
+		//Security and Security Variants
+		if("Security")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/security
+			parent_suit = /obj/item/clothing/suit/space/void/security
+		if("Crowd Control")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/security/riot
+			parent_suit = /obj/item/clothing/suit/space/void/security/riot
+		if("Security EVA")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/security/alt
+			parent_suit = /obj/item/clothing/suit/space/void/security/alt
+		//Exploration Department
+		if("Exploration")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/exploration
+			parent_suit = /obj/item/clothing/suit/space/void/exploration
+		if("Field Medic")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/expedition_medical
+			parent_suit = /obj/item/clothing/suit/space/void/expedition_medical
+		if("Old Exploration")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/exploration/alt
+			parent_suit = /obj/item/clothing/suit/space/void/exploration/alt
+		if("Pilot")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/pilot
+			parent_suit = /obj/item/clothing/suit/space/void/pilot
+		if("Pilot Blue")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/pilot/alt
+			parent_suit = /obj/item/clothing/suit/space/void/pilot/alt
+		//Antag Suits
+		if("^%###^%$", "Mercenary")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/merc
+			parent_suit = /obj/item/clothing/suit/space/void/merc
+		if("Charring")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/merc/fire
+			parent_suit = /obj/item/clothing/suit/space/void/merc/fire
+		if("Gem-Encrusted", "Wizard")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/wizard
+			parent_suit = /obj/item/clothing/suit/space/void/wizard
+		//Special or Event suits
+		if("Vintage Crew")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb
+			parent_suit = /obj/item/clothing/suit/space/void/refurb
+		if("Vintage Engineering")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/engineering
+			parent_suit = /obj/item/clothing/suit/space/void/refurb/engineering
+		if("Vintage Medical (Bubble Helm)")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/medical/alt
+			parent_suit = /obj/item/clothing/suit/space/void/refurb/medical
+		if("Vintage Medical (Closed Helm)")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/medical
+			parent_suit = /obj/item/clothing/suit/space/void/refurb/medical
+		if("Vintage Marine")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/marine
+			parent_suit = /obj/item/clothing/suit/space/void/refurb/marine
+		if("Vintage Officer")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/officer
+			parent_suit = /obj/item/clothing/suit/space/void/refurb/officer
+		if("Vintage Pilot (Bubble Helm)")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/pilot
+			parent_suit = /obj/item/clothing/suit/space/void/refurb/pilot
+		if("Vintage Pilot (Closed Helm)")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/pilot/alt
+			parent_suit = /obj/item/clothing/suit/space/void/refurb/pilot
+		if("Vintage Research (Bubble Helm)")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/research/alt
+			parent_suit = /obj/item/clothing/suit/space/void/refurb/research
+		if("Vintage Research (Closed Helm)")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/research
+			parent_suit = /obj/item/clothing/suit/space/void/refurb/research
+		if("Vintage Mercenary")
+			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/mercenary
+			parent_suit = /obj/item/clothing/suit/space/void/refurb/mercenary
+		//BEGIN: Space for additional downstream variants
+
+		//END: downstream variant space
+	if(target_species)
+		//Only run these checks if they have a sprite sheet defined, otherwise they use human's anyways, and there is almost definitely a sprite.
+		if((helmet!=null&&(target_species in helmet.sprite_sheets_obj))||(suit!=null&&(target_species in suit.sprite_sheets_obj)))
+			//Making sure all of our items have the sprites to be refitted.
+			var/helmet_check = ((helmet!=null && (initial(parent_helmet.icon_state) in icon_states(helmet.sprite_sheets_obj[target_species],1))) || helmet==null)
+			//If the helmet exists, only return true if there's also sprites for it. If the helmet doesn't exist, return true.
+			var/suit_check = ((suit!=null && (initial(parent_suit.icon_state) in icon_states(suit.sprite_sheets_obj[target_species],1))) || suit==null)
+			var/suit_helmet_check = ((suit!=null && suit.helmet!=null && (initial(parent_helmet.icon_state) in icon_states(suit.helmet.sprite_sheets_obj[target_species],1))) || suit==null || suit.helmet==null)
+			if(helmet_check && suit_check && suit_helmet_check)
+				if(helmet) 
+					helmet.refit_for_species(target_species)
+				if(suit) 
+					suit.refit_for_species(target_species)
+					if(suit.helmet)
+						suit.helmet.refit_for_species(target_species)
+			else
+				//If they don't, alert the user and stop here.
+				T.visible_message("[bicon(src)]<span class='warning'>Unable to apply specified cosmetics with specified species. Please try again with a different species or cosmetic option selected.</span>")
+				return
+		else
+			if(helmet) 
+				helmet.refit_for_species(target_species)
+			if(suit) 
+				suit.refit_for_species(target_species)
+				if(suit.helmet)
+					suit.helmet.refit_for_species(target_species)
+	//look at this! isn't it beautiful? -KK (well ok not beautiful but it's a lot cleaner)
+	if(helmet && target_department != "No Change")
+		var/obj/item/clothing/H = new parent_helmet
+		helmet.name = "refitted [initial(parent_helmet.name)]"
+		helmet.desc = initial(parent_helmet.desc)
+		helmet.icon_state = initial(parent_helmet.icon_state)
+		helmet.item_state = initial(parent_helmet.item_state)
+		helmet.light_overlay = initial(parent_helmet.light_overlay)
+		helmet.item_state_slots = H.item_state_slots
+		qdel(H)
+
+	if(suit && target_department != "No Change")
+		var/obj/item/clothing/S = new parent_suit
+		suit.name = "refitted [initial(parent_suit.name)]"
+		suit.desc = initial(parent_suit.desc)
+		suit.icon_state = initial(parent_suit.icon_state)
+		suit.item_state = initial(parent_suit.item_state)
+		suit.item_state_slots = S.item_state_slots
+		qdel(S)
+
+		//can't believe I forgot to fix this- now helmets will properly cycle if they're attached to a suit -KK
+		if(suit.helmet && target_department != "No Change")
+			var/obj/item/clothing/AH = new parent_helmet
+			suit.helmet.name = "refitted [initial(parent_helmet.name)]"
+			suit.helmet.desc = initial(parent_helmet.desc)
+			suit.helmet.icon_state = initial(parent_helmet.icon_state)
+			suit.helmet.item_state = initial(parent_helmet.item_state)
+			suit.helmet.light_overlay = initial(parent_helmet.light_overlay)
+			suit.helmet.item_state_slots = AH.item_state_slots
+			qdel(AH)
+>>>>>>> ff93a129ea7... Merge pull request #8418 from Spookerton/spkrtn/fix/resolve-dmmsuite-switch-warnings
