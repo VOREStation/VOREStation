@@ -671,3 +671,13 @@
 
 /mob/new_player/MayRespawn()
 	return 1
+
+/mob/new_player/verb/next_lobby_track()
+	set name = "Play Different Lobby Track"
+	set category = "OOC"
+
+	if(!is_preference_enabled(/datum/client_preference/play_lobby_music))
+		return
+	var/decl/music_track/new_track = using_map.get_lobby_track(using_map.lobby_track.type)
+	if(new_track)
+		new_track.play_to(src)

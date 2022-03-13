@@ -7,35 +7,7 @@
 	icon_state = "earmuffs"
 	item_state_slots = list(slot_r_hand_str = "earmuffs", slot_l_hand_str = "earmuffs")
 	slot_flags = SLOT_EARS | SLOT_TWOEARS
-	ear_protection = 2
-
-/obj/item/clothing/ears/earmuffs/headphones
-	name = "headphones"
-	desc = "Unce unce unce unce."
-	var/headphones_on = 0
-	icon_state = "headphones_off"
-	item_state_slots = list(slot_r_hand_str = "headphones", slot_l_hand_str = "headphones")
-	slot_flags = SLOT_EARS | SLOT_TWOEARS
-
-/obj/item/clothing/ears/earmuffs/headphones/verb/togglemusic()
-	set name = "Toggle Headphone Music"
-	set category = "Object"
-	set src in usr
-	if(!istype(usr, /mob/living)) return
-	if(usr.stat) return
-
-	var/base_icon = copytext(icon_state,1,(length(icon_state) - 3 + headphones_on))
-
-	if(headphones_on)
-		icon_state = "[base_icon]_off"
-		headphones_on = 0
-		to_chat(usr, "<span class='notice'>You turn the music off.</span>")
-	else
-		icon_state = "[base_icon]_on"
-		headphones_on = 1
-		to_chat(usr, "<span class='notice'>You turn the music on.</span>")
-
-	update_clothing_icon()
+	volume_multiplier = 0.1
 
 /*
 	Skrell tentacle wear

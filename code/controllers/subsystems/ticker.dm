@@ -28,8 +28,11 @@ SUBSYSTEM_DEF(ticker)
 	var/last_restart_notify				// world.time of last restart warning.
 	var/delay_end = FALSE               // If set, the round will not restart on its own.
 
+<<<<<<< HEAD
 	// var/login_music					// music played in pregame lobby // VOREStation Edit - We do music differently
 
+=======
+>>>>>>> 474a8c43cf4... Decl Music and Ported Music + Licenses (#8221)
 	var/list/datum/mind/minds = list()	// The people in the game. Used for objective tracking.
 
 	var/random_players = FALSE	// If set to nonzero, ALL players who latejoin or declare-ready join will have random appearances/genders

@@ -125,6 +125,9 @@ var/list/all_maps = list()
 	var/lobby_icon = 'icons/misc/title.dmi' // The icon which contains the lobby image(s)
 	var/list/lobby_screens = list("mockingjay00")                 // The list of lobby screen to pick() from. If left unset the first icon state is always selected.
 
+	var/decl/music_track/lobby_track                     // The track that will play in the lobby screen.
+	var/list/lobby_tracks = list()                  // The list of lobby tracks to pick() from. If left unset will randomly select among all available /music_track subtypes.
+
 	var/default_law_type = /datum/ai_laws/nanotrasen // The default lawset use by synth units, if not overriden by their laws var.
 
 	var/id_hud_icons = 'icons/mob/hud.dmi' // Used by the ID HUD (primarily sechud) overlay.
@@ -353,4 +356,29 @@ var/list/all_maps = list()
 	return ..()
 
 /datum/map/proc/get_map_info()
+<<<<<<< HEAD
 	return "No map information available"
+=======
+	return "No map information available"
+
+/datum/map/proc/show_titlescreen(client/C)
+	winset(C, "lobbybrowser", "is-disabled=false;is-visible=true")
+
+	show_browser(C, current_lobby_screen, "file=titlescreen.png;display=0")
+	show_browser(C, file('html/lobby_titlescreen.html'), "window=lobbybrowser")
+
+/datum/map/proc/hide_titlescreen(client/C)
+	if(C.mob) // Check if the client is still connected to something
+		// Hide title screen, allowing player to see the map
+		winset(C, "lobbybrowser", "is-disabled=true;is-visible=false")
+
+/datum/map/proc/get_lobby_track(var/exclude)
+	var/lobby_track_type
+	if(LAZYLEN(lobby_tracks) == 1)
+		lobby_track_type = lobby_tracks[1]
+	else if(LAZYLEN(lobby_tracks))
+		lobby_track_type = pickweight(lobby_tracks - exclude)
+	else
+		lobby_track_type = pick(subtypesof(/decl/music_track) - exclude)
+	return GET_DECL(lobby_track_type)
+>>>>>>> 474a8c43cf4... Decl Music and Ported Music + Licenses (#8221)

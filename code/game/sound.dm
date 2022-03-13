@@ -80,6 +80,7 @@
 				pressure_factor = max(pressure_factor, 0.15) //touching the source of the sound
 
 			S.volume *= pressure_factor
+			S.volume *= get_sound_volume_multiplier()
 			//End Atmosphere affecting sound
 
 		//Don't bother with doing anything below.
@@ -119,11 +120,18 @@
 	return rand(32000, 55000) //Frequency stuff only works with 45kbps oggs.
 
 /client/proc/playtitlemusic()
+<<<<<<< HEAD
 	if(!ticker || !SSmedia_tracks.lobby_tracks.len || !media)	return
 	if(is_preference_enabled(/datum/client_preference/play_lobby_music))
 		var/datum/track/T = pick(SSmedia_tracks.lobby_tracks)
 		media.push_music(T.url, world.time, 0.85)
 		to_chat(src,"<span class='notice'>Lobby music: <b>[T.title]</b> by <b>[T.artist]</b>.</span>")
+=======
+	if(is_preference_enabled(/datum/client_preference/play_lobby_music))
+		if(!using_map.lobby_track)
+			using_map.lobby_track = using_map.get_lobby_track()
+		using_map.lobby_track.play_to(src)
+>>>>>>> 474a8c43cf4... Decl Music and Ported Music + Licenses (#8221)
 
 /proc/get_sfx(soundin)
 	if(istext(soundin))

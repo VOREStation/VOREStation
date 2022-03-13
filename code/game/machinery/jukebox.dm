@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //
 // Media Player Jukebox
 // Rewritten by Leshana from existing Polaris code, merging in D2K5 and N3X15 work
@@ -9,6 +10,9 @@
 #define JUKEMODE_PLAY_ONCE   4 // Play, then stop.
 
 /obj/machinery/media/jukebox
+=======
+/obj/machinery/media/jukebox/
+>>>>>>> 474a8c43cf4... Decl Music and Ported Music + Licenses (#8221)
 	name = "space jukebox"
 	desc = "Filled with songs both past and present!"
 	icon = 'icons/obj/jukebox.dmi'
@@ -32,17 +36,28 @@
 	var/list/obj/item/device/juke_remote/remotes
 	//VOREStation Add End
 	var/datum/track/current_track
+<<<<<<< HEAD
+=======
+	var/list/datum/track/tracks
+
+	// Only visible if hacked
+	var/list/datum/track/secret_tracks
+>>>>>>> 474a8c43cf4... Decl Music and Ported Music + Licenses (#8221)
 
 /obj/machinery/media/jukebox/Initialize()
 	. = ..()
 	default_apply_parts()
 	wires = new/datum/wires/jukebox(src)
+	tracks = setup_music_tracks(tracks)
+	secret_tracks = setup_secret_music_tracks(secret_tracks)
 	update_icon()
 	if(!LAZYLEN(getTracksList()))
 		stat |= BROKEN
 
 /obj/machinery/media/jukebox/Destroy()
 	qdel(wires)
+	QDEL_NULL_LIST(tracks)
+	current_track = null
 	wires = null
 	return ..()
 
@@ -208,6 +223,7 @@
 			if(istype(T))
 				current_track = T
 				StartPlaying()
+<<<<<<< HEAD
 			return TRUE
 		if("loopmode")
 			var/newval = text2num(params["loopmode"])
@@ -243,6 +259,66 @@
 			else
 				StartPlaying()
 			return TRUE
+=======
+				break
+	else if(href_list["stop"])
+		StopPlaying()
+	else if(href_list["play"])
+		if(emagged)
+			playsound(src, 'sound/items/AirHorn.ogg', 100, 1)
+			for(var/mob/living/carbon/M in ohearers(6, src))
+				if(M.get_sound_volume_multiplier() < 0.2)
+					continue
+				M.SetSleeping(0)
+				M.stuttering += 20
+				M.ear_deaf += 30
+				M.Weaken(3)
+				if(prob(30))
+					M.Stun(10)
+					M.Paralyse(4)
+				else
+					M.make_jittery(500)
+			spawn(15)
+				explode()
+		else if(current_track == null)
+			to_chat(usr, "No track selected.")
+		else
+			StartPlaying()
+
+	return 1
+
+/obj/machinery/media/jukebox/interact(mob/user)
+	if(stat & (NOPOWER|BROKEN))
+		to_chat(usr, "\The [src] doesn't appear to function.")
+		return
+
+	ui_interact(user)
+
+/obj/machinery/media/jukebox/ui_interact(mob/user, ui_key = "jukebox", var/datum/nanoui/ui = null, var/force_open = 1)
+	var/title = "RetroBox - Space Style"
+	var/data[0]
+
+	if(!(stat & (NOPOWER|BROKEN)))
+		data["current_track"] = current_track != null ? current_track.title : ""
+		data["playing"] = playing
+
+		var/list/nano_tracks = new
+		for(var/datum/track/T in tracks)
+			nano_tracks[++nano_tracks.len] = list("track" = T.title)
+
+		data["tracks"] = nano_tracks
+
+	// update the ui if it exists, returns null if no ui is passed/found
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if (!ui)
+		// the ui does not exist, so we'll create a new() one
+        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
+		ui = new(user, src, ui_key, "jukebox.tmpl", title, 450, 600)
+		// when the ui is first opened this is the data it will use
+		ui.set_initial_data(data)
+		// open the new ui window
+		ui.open()
+>>>>>>> 474a8c43cf4... Decl Music and Ported Music + Licenses (#8221)
 
 /obj/machinery/media/jukebox/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
@@ -298,6 +374,22 @@
 /obj/machinery/media/jukebox/proc/StartPlaying()
 	if(!current_track)
 		return
+<<<<<<< HEAD
+=======
+
+	var/area/main_area = get_area(src)
+	if(freq)
+		var/sound/new_song = sound(current_track.GetTrack(), channel = 1, repeat = 1, volume = 25)
+		new_song.frequency = freq
+		main_area.forced_ambience = list(new_song)
+	else
+		main_area.forced_ambience = list(current_track.GetTrack())
+
+	for(var/mob/living/M in mobs_in_area(main_area))
+		if(M.mind)
+			main_area.play_ambience(M)
+
+>>>>>>> 474a8c43cf4... Decl Music and Ported Music + Licenses (#8221)
 	playing = 1
 	update_use_power(USE_POWER_ACTIVE)
 	update_icon()

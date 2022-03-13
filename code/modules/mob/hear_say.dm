@@ -4,7 +4,7 @@
 	var/msg = "" // This is to make sure that the pieces have actually added something
 	var/raw_msg = ""
 	. = list("formatted" = "[verb], \"", "raw" = "")
-	
+
 	for(var/datum/multilingual_say_piece/SP in message_pieces)
 		iteration_count++
 		var/piece = SP.message
@@ -15,11 +15,11 @@
 			if(radio)
 				.["formatted"] = SP.speaking.format_message_radio(piece)
 				.["raw"] = piece
-				return 
+				return
 			else
 				.["formatted"] = SP.speaking.format_message(piece)
 				.["raw"] = piece
-				return 
+				return
 
 		if(iteration_count == 1)
 			piece = capitalize(piece)
@@ -34,7 +34,7 @@
 					piece = pick(S.say_list.speak)
 
 		raw_msg += (piece + " ")
-		
+
 		//HTML formatting
 		if(!SP.speaking) // Catch the most generic case first
 			piece = "<span class='message body'>[piece]</span>"
@@ -44,7 +44,7 @@
 			piece = SP.speaking.format_message(piece)
 
 		msg += (piece + " ")
-	
+
 	if(msg == "")
 		// There is literally no content left in this message, we need to shut this shit down
 		.["formatted"] = "" // hear_say will suppress it
@@ -90,7 +90,7 @@
 	var/message = combined["formatted"]
 	if(message == "")
 		return
-	
+
 	if(sleeping || stat == UNCONSCIOUS)
 		hear_sleep(multilingual_to_message(message_pieces))
 		return FALSE
@@ -108,7 +108,7 @@
 		if(is_preference_enabled(/datum/client_preference/ghost_ears) && (speaker in view(src)))
 			message = "<b>[message]</b>"
 
-	if(is_deaf())
+	if(is_deaf() || get_sound_volume_multiplier() < 0.2)
 		if(speaker == src)
 			to_chat(src, "<span class='filter_say'><span class='warning'>You cannot hear yourself speak!</span></span>")
 		else
@@ -169,7 +169,7 @@
         var/regex/R = new("\\[delimiter](.+?)\\[delimiter]","g")
         var/tag = GLOB.speech_toppings[delimiter]
         tagged_message = R.Replace(tagged_message,"<[tag]>$1</[tag]>")
-        
+
     return tagged_message
 
 /mob/proc/hear_radio(var/list/message_pieces, var/verb = "says", var/part_a, var/part_b, var/part_c, var/mob/speaker = null, var/hard_to_hear = 0, var/vname = "")
@@ -293,4 +293,4 @@
 		name = speaker.voice_name
 
 	var/rendered = "<span class='game say'><span class='name'>[name]</span> [message]</span>"
-	to_chat(src, rendered) 
+	to_chat(src, rendered)

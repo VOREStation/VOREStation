@@ -139,7 +139,7 @@
 				b_loss = b_loss/1.5
 				f_loss = f_loss/1.5
 
-			if (!get_ear_protection() >= 2)
+			if (get_sound_volume_multiplier() >= 0.2)
 				ear_damage += 30
 				ear_deaf += 120
 			if (prob(70) && !shielded)
@@ -149,7 +149,7 @@
 			b_loss += 30
 			if (prob(getarmor(null, "bomb")))
 				b_loss = b_loss/2
-			if (!get_ear_protection() >= 2)
+			if (get_sound_volume_multiplier() >= 0.2)
 				ear_damage += 15
 				ear_deaf += 60
 			if (prob(50) && !shielded)
@@ -1649,3 +1649,8 @@
 
 /mob/living/carbon/human/get_mob_riding_slots()
 	return list(back, head, wear_suit)
+
+/mob/living/carbon/human/get_sound_volume_multiplier()
+	. = ..()
+	for(var/obj/item/clothing/C in list(l_ear, r_ear, head))
+		. = min(., C.volume_multiplier)

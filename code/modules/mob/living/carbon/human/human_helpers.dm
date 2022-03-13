@@ -80,17 +80,12 @@
 	return ..()
 
 /mob/living/carbon/human/get_ear_protection()
-	var/sum = 0
-	if(istype(l_ear, /obj/item/clothing/ears))
-		var/obj/item/clothing/ears/L = l_ear
-		sum += L.ear_protection
-	if(istype(r_ear, /obj/item/clothing/ears))
-		var/obj/item/clothing/ears/R = r_ear
-		sum += R.ear_protection
-	if(istype(head, /obj/item/clothing/head))
-		var/obj/item/clothing/head/H = head
-		sum += H.ear_protection
-	return sum
+	if (get_sound_volume_multiplier() <= 0.2)
+		return 2
+	else if (get_sound_volume_multiplier() <= 0.5)
+		return 1
+	else
+		return 0
 
 /mob/living/carbon/human/get_gender()
 	return identifying_gender ? identifying_gender : gender

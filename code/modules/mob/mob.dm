@@ -1270,3 +1270,6 @@ GLOBAL_LIST_EMPTY_TYPED(living_players_by_zlevel, /list)
 /mob/proc/grab_ghost(force)
 	if(mind)
 		return mind.grab_ghost(force = force)
+
+/mob/proc/get_sound_volume_multiplier()
+	return !ear_deaf

@@ -61,7 +61,11 @@ var/list/_client_preferences_by_type
 		return
 
 	if(enabled)
+<<<<<<< HEAD
 		preference_mob.client.playtitlemusic()
+=======
+		using_map.lobby_track.play_to(preference_mob)
+>>>>>>> 474a8c43cf4... Decl Music and Ported Music + Licenses (#8221)
 	else
 		preference_mob.client.media.stop_music()
 
