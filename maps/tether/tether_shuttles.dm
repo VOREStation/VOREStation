@@ -5,7 +5,8 @@
 /obj/machinery/computer/shuttle_control/tether_backup
 	name = "tether backup shuttle control console"
 	shuttle_tag = "Tether Backup"
-	req_one_access = list(access_heads,access_pilot)
+	req_one_access = list()
+	ai_control = TRUE
 
 /obj/machinery/computer/shuttle_control/multi/mercenary
 	name = "vessel control console"
@@ -36,6 +37,7 @@
 	name = "surface mining outpost shuttle control console"
 	shuttle_tag = "Mining Outpost"
 	req_one_access = list(access_mining)
+	ai_control = TRUE
 //
 // "Tram" Emergency Shuttler
 // Becuase the tram only has its own doors and no corresponding station doors, a docking controller is overkill.

@@ -58,6 +58,7 @@
 	name = "boat control console"
 	shuttle_tag = "Exploration Shuttle"
 	req_one_access = null
+	ai_control = TRUE
 
 // A shuttle lateloader landmark
 /obj/effect/shuttle_landmark/shuttle_initializer/exploration
@@ -84,6 +85,7 @@
 	name = "boat control console"
 	shuttle_tag = "Mining Shuttle"
 	req_one_access = null
+	ai_control = TRUE
 
 // A shuttle lateloader landmark
 /obj/effect/shuttle_landmark/shuttle_initializer/mining

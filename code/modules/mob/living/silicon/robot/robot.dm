@@ -785,7 +785,7 @@
 				return
 			if(I_GRAB)
 				if(is_vore_predator(H) && H.devourable && src.feeding && src.devourable)
-					var/switchy = tgui_alert(H, "Do you wish to eat [src] or feed yourself to them?", "Feed or Eat",list("Eat","Feed", "Nevermind!"))
+					var/switchy = tgui_alert(H, "Do you wish to eat [src] or feed yourself to them?", "Feed or Eat",list("Nevermind!", "Eat","Feed"))
 					switch(switchy)
 						if("Nevermind!")
 							return
@@ -796,11 +796,11 @@
 							H.feed_self_to_grabbed(H, src)
 							return
 				if(is_vore_predator(H) && src.devourable)
-					if(tgui_alert(H, "Do you wish to eat [src]?", "Eat?",list("Yes!", "Nevermind!")) == "Yes!")
+					if(tgui_alert(H, "Do you wish to eat [src]?", "Eat?",list("Nevermind!", "Yes!")) == "Yes!")
 						feed_grabbed_to_self(H, src)
 						return
 				if(H.devourable && src.feeding)
-					if(tgui_alert(H, "Do you wish to feed yourself to [src]?", "Feed?",list("Yes!", "Nevermind!")) == "Yes!")
+					if(tgui_alert(H, "Do you wish to feed yourself to [src]?", "Feed?",list("Nevermind!", "Yes!")) == "Yes!")
 						H.feed_self_to_grabbed(H, src)
 						return
 

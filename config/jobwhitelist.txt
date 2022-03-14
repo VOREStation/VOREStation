@@ -4,6 +4,7 @@ akram - clown
 amshaegaar - mime
 auraribbon - clown
 awkwarddryad - mime
+CGR - mime
 chargae - mime
 h0lysquirr3l - clown
 joey4298 - mime
