@@ -50,6 +50,7 @@
 	sort_string = "FBAAA"
 
 /datum/design/item/weapon/mining/upgradeAOE
+	name = "Mining Explosion Upgrade"
 	desc = "An area of effect upgrade for the Proto-Kinetic Accelerator."
 	id = "pka_mineaoe"
 	req_tech = list(TECH_COMBAT = 7, TECH_MATERIAL = 8, TECH_ENGINEERING = 7) // Lets make this endgame level tech, due to it's power.
