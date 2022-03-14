@@ -99,7 +99,7 @@ silvertalismen - Diona
 silvertalismen - Vox
 silvertalismen - Xenochimera
 skylarks - Black-Eyed Shadekin
-Smdytb1 - Black-Eyed Shadekin
+smdytb1 - Black-Eyed Shadekin
 spirit1299 - Black-Eyed Shadekin
 stackerrobot - Protean
 storesund97 - Protean
