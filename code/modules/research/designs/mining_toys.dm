@@ -48,3 +48,12 @@
 	materials = list(MAT_STEEL = 1000,MAT_GLASS = 1000)
 	build_path = /obj/item/device/depth_scanner
 	sort_string = "FBAAA"
+
+/datum/design/item/weapon/mining/upgradeAOE
+	name = "Mining Explosion Upgrade"
+	desc = "An area of effect upgrade for the Proto-Kinetic Accelerator."
+	id = "pka_mineaoe"
+	req_tech = list(TECH_COMBAT = 7, TECH_MATERIAL = 8, TECH_ENGINEERING = 7) // Lets make this endgame level tech, due to it's power.
+	materials = list(MAT_STEEL = 5000, MAT_GLASS = 5000, MAT_SILVER = 500, MAT_GOLD = 500, MAT_URANIUM = 2000, MAT_PHORON = 2000)
+	build_path = /obj/item/borg/upgrade/modkit/aoe/turfs
+	sort_string = "FAAF"
