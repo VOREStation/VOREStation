@@ -58,7 +58,7 @@
 	name = "tool-belt" //Carn: utility belt is nicer, but it bamboozles the text parsing.
 	desc = "Can hold various tools."
 	icon_state = "utility"
-	var/content_overlays = TRUE //VOREStation edit
+	content_overlays = TRUE //VOREStation edit
 	can_hold = list(
 		///obj/item/weapon/combitool,
 		/obj/item/weapon/tool/crowbar,
@@ -146,7 +146,7 @@
 	icon_state = "utility_holding"
 	storage_slots = 14 //twice the amount as a normal belt
 	max_storage_space = ITEMSIZE_COST_NORMAL * 14
-	var/content_overlays = FALSE //VOREStation edit - something something bluespace pockets, why would they be visible from the outside?
+	content_overlays = FALSE //VOREStation edit - something something bluespace pockets, why would they be visible from the outside?
 	can_hold = list(
 	/obj/item/weapon/tool/crowbar,
 		/obj/item/weapon/tool/screwdriver,
@@ -237,7 +237,7 @@
 	desc = "Can hold security gear like handcuffs and flashes."
 	icon_state = "security"
 	max_w_class = ITEMSIZE_NORMAL
-	var/content_overlays = TRUE //there's some sprites for this, mostly of batons, flashbangs & cuffs.
+	content_overlays = TRUE //there's some sprites for this, mostly of batons, flashbangs & cuffs.
 	can_hold = list(
 		/obj/item/weapon/grenade,
 		/obj/item/weapon/reagent_containers/spray/pepper,
