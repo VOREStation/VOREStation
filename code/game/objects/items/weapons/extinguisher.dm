@@ -47,7 +47,7 @@
 	force = 3.0
 	max_water = 600
 	spray_particles = 3
-	sprite_name = "atmo_extinguisher"
+	sprite_name = "atmos_extinguisher"
 	rand_overlays = 0
 
 /obj/item/weapon/extinguisher/Initialize()
