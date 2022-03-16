@@ -12,6 +12,7 @@
 	drop_sound = 'sound/items/drop/toolbelt.ogg'
 	pickup_sound = 'sound/items/pickup/toolbelt.ogg'
 	sprite_sheets = list(SPECIES_TESHARI = 'icons/inventory/belt/mob_teshari.dmi')
+	var/content_overlays = FALSE //VOREStation edit - If this is true, the belt will gain overlays based on what it's holding
 
 	var/show_above_suit = 0
 
@@ -26,15 +27,28 @@
 	update_icon()
 
 //Some belts have sprites to show icons
+//VOREStation edit begins
 /obj/item/weapon/storage/belt/make_worn_icon(var/body_type,var/slot_name,var/inhands,var/default_icon,var/default_layer = 0,var/icon/clip_mask = null)
 	var/image/standing = ..()
 	if(!inhands && contents.len)
 		for(var/obj/item/i in contents)
 			var/i_state = i.item_state
 			if(!i_state) i_state = i.icon_state
-			standing.add_overlay(image(icon = INV_BELT_DEF_ICON, icon_state = i_state))
+			standing.add_overlay(image(icon = 'icons/vore/belt_onmob.dmi', icon_state = i_state))
 	return standing
 
+/obj/item/weapon/storage/belt/update_icon()	
+	if(content_overlays == TRUE)
+		cut_overlays()
+		for(var/obj/item/i in contents)
+			var/i_state = i.item_state
+			if(!i_state) i_state = i.icon_state
+			add_overlay(image(icon = 'icons/vore/belt_overlay.dmi', icon_state = i_state))
+	if (ismob(src.loc))
+		var/mob/M = src.loc
+		M.update_inv_belt()
+
+//VOREStation edit ends
 /obj/item/weapon/storage/update_icon()
 	if (ismob(src.loc))
 		var/mob/M = src.loc
@@ -44,6 +58,7 @@
 	name = "tool-belt" //Carn: utility belt is nicer, but it bamboozles the text parsing.
 	desc = "Can hold various tools."
 	icon_state = "utility"
+	var/content_overlays = TRUE //VOREStation edit
 	can_hold = list(
 		///obj/item/weapon/combitool,
 		/obj/item/weapon/tool/crowbar,
@@ -131,6 +146,7 @@
 	icon_state = "utility_holding"
 	storage_slots = 14 //twice the amount as a normal belt
 	max_storage_space = ITEMSIZE_COST_NORMAL * 14
+	var/content_overlays = FALSE //VOREStation edit - something something bluespace pockets, why would they be visible from the outside?
 	can_hold = list(
 	/obj/item/weapon/tool/crowbar,
 		/obj/item/weapon/tool/screwdriver,
@@ -221,6 +237,7 @@
 	desc = "Can hold security gear like handcuffs and flashes."
 	icon_state = "security"
 	max_w_class = ITEMSIZE_NORMAL
+	var/content_overlays = TRUE //there's some sprites for this, mostly of batons, flashbangs & cuffs.
 	can_hold = list(
 		/obj/item/weapon/grenade,
 		/obj/item/weapon/reagent_containers/spray/pepper,
