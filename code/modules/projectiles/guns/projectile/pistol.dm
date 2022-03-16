@@ -1,3 +1,6 @@
+/*
+ * M1911
+ */
 /obj/item/weapon/gun/projectile/colt
 	var/unique_reskin
 	name = ".45 pistol"
@@ -22,6 +25,9 @@
 		else
 			icon_state = "[initial(icon_state)]-e"
 
+/*
+ * Detective M1911
+ */
 /obj/item/weapon/gun/projectile/colt/detective
 	desc = "A standard law enforcement issue pistol. Uses .45 rounds."
 	magazine_type = /obj/item/ammo_magazine/m45/rubber
@@ -52,15 +58,13 @@
 
 	var/mob/M = usr
 	var/list/options = list()
-	options["NT Mk. 58"] = "secguncomp"
-	options["NT Mk. 58 Custom"] = "secgundark"
-	options["MarsTech P11 Spur"] = "colt"
-	options["MarsTech P59 Massif"] = "fnseven"
-	options["ProTek YC9"] = "usp"
-	options["ProTek Minx"] = "VP78"
-	options["Jindal T15 Chooha"] = "p08"
-	options["Jindal KP-45W"] = "p08b"
-	options["PCA-11 Tenzu"] = "enforcer_black"
+	options["MarsTech P11 Spur (Bubba'd)"] = "mod_colt"
+	options["MarsTech P11 Spur (Blued)"] = "blued_colt"
+	options["MarsTech P11 Spur (Gold)"] = "gold_colt"
+	options["MarsTech P11 Spur (Stainless)"] = "stainless_colt"
+	options["MarsTech P11 Spur (Dark)"] = "dark_colt"
+	options["MarsTech P11 Spur (Green)"] = "green_colt"
+	options["MarsTech P11 Spur (Blue)"] = "blue_colt"
 	var/choice = tgui_input_list(M,"Choose your sprite!","Resprite Gun", options)
 	if(src && choice && !M.stat && in_range(M,src))
 		icon_state = options[choice]

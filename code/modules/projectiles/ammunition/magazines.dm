@@ -583,6 +583,10 @@
 /obj/item/ammo_magazine/m44/empty
 	initial_ammo = 0
 
+/obj/item/ammo_magazine/m44/rubber
+	desc = "magazine (.44 rubber)"
+	ammo_type = /obj/item/ammo_casing/a44/rubber
+
 // Stripper Clip
 /obj/item/ammo_magazine/clip/c44
 	name = "ammo clip (.44)"

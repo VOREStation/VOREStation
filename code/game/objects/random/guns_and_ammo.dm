@@ -460,9 +460,9 @@
 				/obj/item/ammo_magazine/s44
 			),
 			prob(1);list(
-				/obj/item/weapon/gun/projectile/revolver/webley/auto,
-				/obj/item/ammo_magazine/s44,
-				/obj/item/ammo_magazine/s44
+				/obj/item/weapon/gun/projectile/revolver/consul,
+				/obj/item/ammo_magazine/s44/rubber,
+				/obj/item/ammo_magazine/s44/rubber
 			)
 		)
 

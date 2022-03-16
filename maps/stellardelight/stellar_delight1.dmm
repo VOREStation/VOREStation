@@ -14597,7 +14597,6 @@
 	},
 /obj/structure/closet/secure_closet/detective,
 /obj/item/weapon/reagent_containers/spray/pepper,
-/obj/item/weapon/gun/energy/taser,
 /obj/item/device/camera{
 	desc = "A one use - polaroid camera. 30 photos left.";
 	name = "detectives camera";
