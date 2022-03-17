@@ -41,7 +41,7 @@
 	set name = "Toggle Blobform"
 	set desc = "Switch between amorphous and humanoid forms."
 	set category = "Abilities"
-	set hidden = TRUE
+	set hidden = FALSE
 
 	var/atom/movable/to_locate = temporary_form || src
 	if(!isturf(to_locate.loc))

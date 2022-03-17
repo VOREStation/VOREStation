@@ -5,6 +5,8 @@
 	slime_color = "rainbow"
 	unity = TRUE
 	water_resist = 100 // Lets not kill the prommies
+	can_buckle = TRUE
+	cores = 0
 
 	description_info = "It's a little squisher! Lil' Blurble! Small wurble! It's a flowing blob of goop, with a spark of intelligence!"
 
@@ -13,6 +15,28 @@
 
 	var/obj/prev_left_hand
 	var/obj/prev_right_hand
+
+/mob/living/simple_mob/slime/promethean/Initialize()
+	verbs |= /mob/living/proc/ventcrawl
+	verbs += /mob/living/carbon/human/proc/prommie_blobform
+	verbs += /mob/living/proc/set_size
+	verbs += /mob/living/proc/hide
+	update_mood()
+	glow_color = color
+	handle_light()
+	update_icon()
+	return
+
+//Constructor allows passing the human to sync damages
+/mob/living/simple_mob/slime/promethean/New(var/newloc, var/mob/living/carbon/human/H)
+	..()
+	if(H)
+		humanform = H
+		updatehealth()
+
+		verbs |= /mob/living/proc/hide
+	else
+		update_icon()
 
 // Helpers - Unsafe, WILL perform change.
 /mob/living/carbon/human/proc/prommie_intoblob(force)
@@ -64,6 +88,9 @@
 
 	//Put our owner in it (don't transfer var/mind)
 	blob.ckey = ckey
+	blob.name = name
+	blob.color = color
+	blob.mood = ":3"
 	temporary_form = blob
 
 	//Mail them to nullspace
@@ -120,6 +147,7 @@ mob/living/carbon/human/proc/prommie_outofblob(var/mob/living/simple_mob/slime/p
 
 	//Put our owner in it (don't transfer var/mind)
 	ckey = blob.ckey
+	color = blob.color
 	temporary_form = null
 
 	//Transfer vore organs
