@@ -7,6 +7,7 @@
 	water_resist = 100 // Lets not kill the prommies
 	can_buckle = TRUE
 	cores = 0
+	movement_cooldown = 3
 
 	description_info = "It's a little squisher! Lil' Blurble! Small wurble! It's a flowing blob of goop, with a spark of intelligence!"
 
