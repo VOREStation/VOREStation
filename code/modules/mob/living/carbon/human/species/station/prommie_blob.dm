@@ -13,6 +13,7 @@
 	shock_resist = 0 // Lets not be immune to zaps.
 	is_adult = TRUE
 	harmless = TRUE
+	friendly = list("nuzzles", "glomps", "snuggles", "hugs") // lets be cute :3
 
 	var/mob/living/carbon/human/humanform
 	var/datum/modifier/healing
@@ -27,6 +28,8 @@
 	verbs += /mob/living/simple_mob/slime/xenobio/promethean/proc/prommie_blobform
 	verbs += /mob/living/proc/set_size
 	verbs += /mob/living/proc/hide
+	verbs += /mob/living/simple_mob/proc/animal_nom
+	verbs += /mob/living/proc/shred_limb
 	update_mood()
 	glow_color = color
 	handle_light()
@@ -74,14 +77,16 @@
 
 	//Drop all our things
 	var/list/things_to_drop = contents.Copy()
-	var/list/things_to_not_drop = list(w_uniform,nif,l_store,r_store,wear_id,l_ear,r_ear) //And whatever else we decide for balancing.
-
+	var/list/things_to_not_drop = list(w_uniform,nif,l_store,r_store,wear_id,l_ear,r_ear,head) //And whatever else we decide for balancing.
+	var/obj/item/clothing/head/new_hat
 	things_to_drop -= things_to_not_drop //Crunch the lists
 	things_to_drop -= organs //Mah armbs
 	things_to_drop -= internal_organs //Mah sqeedily spooch
 
 	for(var/obj/item/I in things_to_drop) //rip hoarders
 		drop_from_inventory(I)
+	for(var/obj/item/clothing/head/H in things_to_not_drop)
+		new_hat = H
 
 	if(w_uniform && istype(w_uniform,/obj/item/clothing)) //No webbings tho. We do this after in case a suit was in the way
 		var/obj/item/clothing/uniform = w_uniform
@@ -100,16 +105,23 @@
 	//Put our owner in it (don't transfer var/mind)
 	qdel(blob.ai_holder)
 	blob.ai_holder = null
+	if(new_hat)
+		blob.hat = new_hat
+		unEquip(new_hat)
+		new_hat.forceMove(src)
 	blob.ckey = ckey
 	blob.name = name
 	blob.color = rgb(r_skin, g_skin, b_skin)
 	//blob.pacify()
 	//blob.make_adult()
 	blob.mood = ":3"
+
+
 	blob.update_icon()
-	blob.verbs -= /mob/living/proc/ventcrawl
-	blob.verbs -= /mob/living/simple_mob/slime/xenobio/verb/evolve
+	blob.verbs -= /mob/living/proc/ventcrawl // Absolutely not.
+	blob.verbs -= /mob/living/simple_mob/slime/xenobio/verb/evolve // We aren't really xenobio, so none of this.
 	blob.verbs -= /mob/living/simple_mob/slime/xenobio/verb/reproduce
+	blob.verbs -= /mob/living/simple_mob/proc/set_name // We already have a name.
 	temporary_form = blob
 
 	//Mail them to nullspace
@@ -166,6 +178,7 @@ mob/living/carbon/human/proc/prommie_outofblob(var/mob/living/simple_mob/slime/x
 
 	//Put our owner in it (don't transfer var/mind)
 	ckey = blob.ckey
+	equip_to_slot_if_possible(blob.hat, slot_head)
 	temporary_form = null
 
 	//Transfer vore organs
@@ -239,14 +252,14 @@ mob/living/carbon/human/proc/prommie_outofblob(var/mob/living/simple_mob/slime/x
 		return ..()
 
 /mob/living/simple_mob/slime/xenobio/promethean/adjustBruteLoss(var/amount,var/include_robo)
-	amount *= 1.5
+	amount *= 0.75
 	if(humanform)
 		return humanform.adjustBruteLoss(amount)
 	else
 		return ..()
 
 /mob/living/simple_mob/slime/xenobio/promethean/adjustFireLoss(var/amount,var/include_robo)
-	amount *= 1.5
+	amount *= 2
 	if(humanform)
 		return humanform.adjustFireLoss(amount)
 	else
