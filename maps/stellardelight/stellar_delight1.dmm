@@ -8704,10 +8704,7 @@
 "sr" = (
 /obj/structure/closet/secure_closet/warden,
 /obj/item/weapon/book/manual/security_space_law,
-/obj/item/weapon/gun/projectile/shotgun/pump/combat{
-	ammo_type = /obj/item/ammo_casing/a12g/beanbag;
-	desc = "Built for close quarters combat, the Hesphaistos Industries KS-40 is widely regarded as a weapon of choice for repelling boarders. This one has 'Property of the Warden' inscribed on the stock.";
-	name = "warden's shotgun"
+/obj/item/gunbox/warden
 	},
 /obj/machinery/power/apc/angled{
 	dir = 8
