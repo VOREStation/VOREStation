@@ -327,7 +327,7 @@ const DNAModifierMainRadiationEmitter = (props, context) => {
         icon="radiation"
         content="Pulse Radiation"
         tooltip="Mutates a random block of either the occupant's UI or SE."
-        tooltipPosition="top-right"
+        tooltipPosition="top"
         mt="0.5rem"
         onClick={() => act('pulseRadiation')}
       />
