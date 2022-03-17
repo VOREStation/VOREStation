@@ -32,6 +32,34 @@
 		/mob/living/carbon/human/proc/shapeshifter_select_wings,
 		/mob/living/carbon/human/proc/shapeshifter_select_tail,
 		/mob/living/carbon/human/proc/shapeshifter_select_ears,
+		/mob/living/carbon/human/proc/prommie_blobform,
 		/mob/living/proc/set_size,
 		/mob/living/carbon/human/proc/promethean_select_opaqueness,
 		)
+
+/mob/living/carbon/human/proc/prommie_blobform()
+	set name = "Toggle Blobform"
+	set desc = "Switch between amorphous and humanoid forms."
+	set category = "Abilities"
+	set hidden = TRUE
+
+	var/atom/movable/to_locate = temporary_form || src
+	if(!isturf(to_locate.loc))
+		to_chat(to_locate,"<span class='warning'>You need more space to perform this action!</span>")
+		return
+
+	//Blob form
+	if(temporary_form)
+		if(health < maxHealth*0.5)
+			to_chat(temporary_form,"<span class='warning'>You need to regenerate more nanites first!</span>")
+		else if(temporary_form.stat)
+			to_chat(temporary_form,"<span class='warning'>You can only do this while not stunned.</span>")
+		else
+			prommie_outofblob(temporary_form)
+
+	//Human form
+	else if(stat)
+		to_chat(src,"<span class='warning'>You can only do this while not stunned.</span>")
+		return
+	else
+		prommie_intoblob()
