@@ -170,7 +170,7 @@
  * Deckard (Blade Runner)
  */
 /obj/item/weapon/gun/projectile/revolver/deckard
-	name = "\improper Deckard .38"
+	name = "\improper \"Deckard\" .38"
 	desc = "A custom-built revolver, based off the semi-popular Detective Special model. Uses .38-Special rounds."
 	icon_state = "deckard-empty"
 	caliber = ".38"
