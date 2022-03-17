@@ -8705,7 +8705,6 @@
 /obj/structure/closet/secure_closet/warden,
 /obj/item/weapon/book/manual/security_space_law,
 /obj/item/gunbox/warden,
-	},
 /obj/machinery/power/apc/angled{
 	dir = 8
 	},
