@@ -11664,7 +11664,7 @@
 /area/tether/surfacebase/security/middlehall)
 "asE" = (
 /obj/item/weapon/book/manual/security_space_law,
-/obj/item/gunbox/warden
+/obj/item/gunbox/warden,
 	},
 /obj/structure/closet/secure_closet/warden,
 /obj/machinery/light,
