@@ -8,6 +8,7 @@
 	can_buckle = TRUE
 	cores = 0
 	movement_cooldown = 3
+	appearance_flags = RADIATION_GLOWS
 
 	description_info = "It's a little squisher! Lil' Blurble! Small wurble! It's a flowing blob of goop, with a spark of intelligence!"
 
@@ -16,10 +17,12 @@
 
 	var/obj/prev_left_hand
 	var/obj/prev_right_hand
+	var/human_brute = 0
+	var/human_burn = 0
 
 /mob/living/simple_mob/slime/promethean/Initialize()
-	verbs |= /mob/living/proc/ventcrawl
-	verbs += /mob/living/carbon/human/proc/prommie_blobform
+	verbs -= /mob/living/proc/ventcrawl
+	verbs += /mob/living/simple_mob/slime/promethean/proc/prommie_blobform
 	verbs += /mob/living/proc/set_size
 	verbs += /mob/living/proc/hide
 	update_mood()
@@ -97,6 +100,7 @@
 	blob.name = name
 	blob.color = rgb(r_skin, g_skin, b_skin)
 	blob.mood = ":3"
+	blob.update_icon()
 	temporary_form = blob
 
 	//Mail them to nullspace
@@ -172,3 +176,156 @@ mob/living/carbon/human/proc/prommie_outofblob(var/mob/living/simple_mob/slime/p
 
 	//Return ourselves in case someone wants it
 	return src
+
+/mob/living/simple_mob/slime/promethean/updatehealth()
+	if(!humanform)
+		return ..()
+
+	//Set the max
+	maxHealth = humanform.getMaxHealth()*2 //HUMANS, and their 'double health', bleh.
+	//Set us to their health, but, human health ignores robolimbs so we do it 'the hard way'
+	human_brute = humanform.getActualBruteLoss()
+	human_burn = humanform.getActualFireLoss()
+	health = maxHealth - humanform.getOxyLoss() - humanform.getToxLoss() - humanform.getCloneLoss() - human_brute - human_burn
+
+	//Alive, becoming dead
+	if((stat < DEAD) && (health <= 0))
+		death()
+
+	//Overhealth
+	if(health > getMaxHealth())
+		health = getMaxHealth()
+
+	//Grab any other interesting values
+	confused = humanform.confused
+	radiation = humanform.radiation
+	paralysis = humanform.paralysis
+
+	//Update our hud if we have one
+	if(healths)
+		if(stat != DEAD)
+			var/heal_per = (health / getMaxHealth()) * 100
+			switch(heal_per)
+				if(100 to INFINITY)
+					healths.icon_state = "health0"
+				if(80 to 100)
+					healths.icon_state = "health1"
+				if(60 to 80)
+					healths.icon_state = "health2"
+				if(40 to 60)
+					healths.icon_state = "health3"
+				if(20 to 40)
+					healths.icon_state = "health4"
+				if(0 to 20)
+					healths.icon_state = "health5"
+				else
+					healths.icon_state = "health6"
+		else
+			healths.icon_state = "health7"
+
+// All the damage and such to the blob translates to the human
+/mob/living/simple_mob/slime/promethean/apply_effect(var/effect = 0, var/effecttype = STUN, var/blocked = 0, var/check_protection = 1)
+	if(humanform)
+		return humanform.apply_effect(effect, effecttype, blocked, check_protection)
+	else
+		return ..()
+
+/mob/living/simple_mob/slime/promethean/adjustBruteLoss(var/amount,var/include_robo)
+	amount *= 1.5
+	if(humanform)
+		return humanform.adjustBruteLoss(amount)
+	else
+		return ..()
+
+/mob/living/simple_mob/slime/promethean/adjustFireLoss(var/amount,var/include_robo)
+	amount *= 1.5
+	if(humanform)
+		return humanform.adjustFireLoss(amount)
+	else
+		return ..()
+
+/mob/living/simple_mob/slime/promethean/adjustToxLoss(amount)
+	if(humanform)
+		return humanform.adjustToxLoss(amount)
+	else
+		return ..()
+
+/mob/living/simple_mob/slime/promethean/adjustOxyLoss(amount)
+	if(humanform)
+		return humanform.adjustOxyLoss(amount)
+	else
+		return ..()
+
+/mob/living/simple_mob/slime/promethean/adjustHalLoss(amount)
+	if(humanform)
+		return humanform.adjustHalLoss(amount)
+	else
+		return ..()
+
+/mob/living/simple_mob/slime/promethean/adjustCloneLoss(amount)
+	if(humanform)
+		return humanform.adjustCloneLoss(amount)
+	else
+		return ..()
+
+/mob/living/simple_mob/slime/promethean/ex_act(severity)
+	if(humanform)
+		return humanform.ex_act(severity)
+	else
+		return ..()
+
+/mob/living/simple_mob/slime/promethean/rad_act(severity)
+	if(humanform)
+		return humanform.ex_act(severity)
+	else
+		return ..()
+
+/mob/living/simple_mob/slime/promethean/bullet_act(obj/item/projectile/P)
+	if(humanform)
+		return humanform.bullet_act(P)
+	else
+		return ..()
+
+/mob/living/simple_mob/slime/promethean/death(gibbed, deathmessage = "dissolves away, leaving only a few spare parts!")
+	if(humanform)
+		humanform.death(gibbed, deathmessage)
+	else
+		animate(src, alpha = 0, time = 2 SECONDS)
+		sleep(2 SECONDS)
+
+	if(!QDELETED(src)) // Human's handle death should have taken us, but maybe we were adminspawned or something without a human counterpart
+		qdel(src)
+
+/mob/living/simple_mob/slime/promethean/proc/prommie_blobform()
+	set name = "Toggle Blobform"
+	set desc = "Switch between amorphous and humanoid forms."
+	set category = "Abilities"
+	set hidden = FALSE
+
+	to_chat(src,"<span class='warning'>Blob form attepted to revert!</span>")
+	var/atom/movable/to_locate = src
+	if(!isturf(to_locate.loc))
+		to_chat(src,"<span class='warning'>You need more space to perform this action!</span>")
+		return
+
+	//Blob form
+	if(!ishuman(src))
+		to_chat(src,"<span class='warning'>They are a blob!</span>")
+		if(humanform.temporary_form.stat)
+			to_chat(src,"<span class='warning'>You can only do this while not stunned.</span>")
+		else
+			to_chat(src,"<span class='warning'>Attempting to revert!</span>")
+			humanform.prommie_outofblob(src)
+
+/datum/species/shapeshifter/promethean/handle_death(var/mob/living/carbon/human/H)
+	if(!H)
+		return // Iono!
+
+	if(H.temporary_form)
+		H.forceMove(H.temporary_form.drop_location())
+		H.ckey = H.temporary_form.ckey
+		QDEL_NULL(H.temporary_form)
+
+	spawn(1)
+		if(H)
+			H.gib()

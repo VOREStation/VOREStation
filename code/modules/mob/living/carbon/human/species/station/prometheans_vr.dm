@@ -47,19 +47,30 @@
 	if(!isturf(to_locate.loc))
 		to_chat(to_locate,"<span class='warning'>You need more space to perform this action!</span>")
 		return
-
+	/*
 	//Blob form
 	if(temporary_form)
-		if(health < maxHealth*0.5)
-			to_chat(temporary_form,"<span class='warning'>You need to regenerate more nanites first!</span>")
-		else if(temporary_form.stat)
+		if(temporary_form.stat)
 			to_chat(temporary_form,"<span class='warning'>You can only do this while not stunned.</span>")
 		else
 			prommie_outofblob(temporary_form)
-
+	*/
 	//Human form
 	else if(stat)
 		to_chat(src,"<span class='warning'>You can only do this while not stunned.</span>")
 		return
 	else
 		prommie_intoblob()
+
+/datum/species/shapeshifter/promethean/handle_death(var/mob/living/carbon/human/H)
+	if(!H)
+		return // Iono!
+
+	if(H.temporary_form)
+		H.forceMove(H.temporary_form.drop_location())
+		H.ckey = H.temporary_form.ckey
+		QDEL_NULL(H.temporary_form)
+
+	spawn(1)
+		if(H)
+			H.gib()
