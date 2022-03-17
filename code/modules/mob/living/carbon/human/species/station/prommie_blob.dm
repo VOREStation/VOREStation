@@ -25,7 +25,12 @@
 	glow_color = color
 	handle_light()
 	update_icon()
-	return
+	return ..()
+
+/mob/living/simple_mob/slime/promethean/Stat()
+	..()
+	if(humanform)
+		humanform.species.Stat(humanform)
 
 //Constructor allows passing the human to sync damages
 /mob/living/simple_mob/slime/promethean/New(var/newloc, var/mob/living/carbon/human/H)
@@ -89,7 +94,7 @@
 	//Put our owner in it (don't transfer var/mind)
 	blob.ckey = ckey
 	blob.name = name
-	blob.color = color
+	blob.color = rgb(r_skin, g_skin, b_skin)
 	blob.mood = ":3"
 	temporary_form = blob
 
