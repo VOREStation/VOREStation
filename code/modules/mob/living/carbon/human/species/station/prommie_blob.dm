@@ -60,6 +60,10 @@
 		to_chat(src,"<span class='warning'>You can't change forms while inside something.</span>")
 		return
 
+	var/panel_was_up = FALSE
+	if(client?.statpanel == "Abilities")
+		panel_was_up = TRUE
+
 	handle_grasp() //It's possible to blob out before some key parts of the life loop. This results in things getting dropped at null. TODO: Fix the code so this can be done better.
 	remove_micros(src, src) //Living things don't fare well in roblobs.
 	if(buckled)
@@ -86,11 +90,15 @@
 	things_to_drop -= organs //Mah armbs
 	things_to_drop -= internal_organs //Mah sqeedily spooch
 
+	for(var/obj/item/clothing/head/H in things_to_drop)
+		if(H)
+			new_hat = H
+			has_hat = TRUE
+			drop_from_inventory(H)
+			things_to_drop -= H
+
 	for(var/obj/item/I in things_to_drop) //rip hoarders
 		drop_from_inventory(I)
-		if(I == new_hat)
-			new_hat = I
-			has_hat = TRUE
 	//for(var/obj/item/clothing/head/H in things_to_not_drop)
 	//	drop_from_inventory(H)
 		//if(H)
@@ -119,10 +127,8 @@
 		//unEquip(new_hat)
 		new_hat.forceMove(src)
 	blob.ckey = ckey
-	blob.name = name
+	//blob.name = name
 	blob.color = rgb(r_skin, g_skin, b_skin)
-	//blob.pacify()
-	//blob.make_adult()
 	blob.mood = ":3"
 
 
@@ -149,12 +155,19 @@
 	//We can still speak our languages!
 	blob.languages = languages.Copy()
 
+	if(panel_was_up)
+		client?.statpanel = "Abilities"
+
 	//Return our blob in case someone wants it
 	return blob
 
 mob/living/carbon/human/proc/prommie_outofblob(var/mob/living/simple_mob/slime/promethean/blob, force)
 	if(!istype(blob))
 		return
+
+	var/panel_was_up = FALSE
+	if(client?.statpanel == "Abilities")
+		panel_was_up = TRUE
 
 	if(!force && !isturf(blob.loc))
 		to_chat(blob,"<span class='warning'>You can't change forms while inside something.</span>")
@@ -168,10 +181,6 @@ mob/living/carbon/human/proc/prommie_outofblob(var/mob/living/simple_mob/slime/p
 	if(pulledby)
 		pulledby.stop_pulling()
 	stop_pulling()
-
-	//Stop healing if we are
-	if(blob.healing)
-		blob.healing.expire()
 
 	//Message
 	blob.visible_message("<b>[src.name]</b> reshapes into a humanoid appearance!")
@@ -187,16 +196,21 @@ mob/living/carbon/human/proc/prommie_outofblob(var/mob/living/simple_mob/slime/p
 
 	//Put our owner in it (don't transfer var/mind)
 	ckey = blob.ckey
-	equip_to_slot_if_possible(blob.hat, slot_head)
+	var/obj/item/hat = blob.hat
+	blob.drop_hat()
+	drop_from_inventory(hat)
+	equip_to_slot_if_possible(hat, slot_head)
 	temporary_form = null
 	update_icon()
 
 	//Transfer vore organs
-	vore_organs = blob.vore_organs
+	//vore_organs = blob.vore_organs
+	to_chat(src,"<span class='warning'>Attempting to get vore bellies back.</span>")
 	vore_selected = blob.vore_selected
 	for(var/obj/belly/B as anything in blob.vore_organs)
 		B.forceMove(src)
 		B.owner = src
+		to_chat(src,"<span class='warning'>[B]'s owner is [src].</span>")
 
 	if(blob.prev_left_hand) put_in_l_hand(blob.prev_left_hand) //The restore for when reforming.
 	if(blob.prev_right_hand) put_in_r_hand(blob.prev_right_hand)
@@ -205,6 +219,9 @@ mob/living/carbon/human/proc/prommie_outofblob(var/mob/living/simple_mob/slime/p
 
 	//Get rid of friend blob
 	qdel(blob)
+
+	if(panel_was_up)
+		client?.statpanel = "Abilities"
 
 	//Return ourselves in case someone wants it
 	return src
