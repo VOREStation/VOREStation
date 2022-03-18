@@ -79,6 +79,7 @@
 	var/list/things_to_drop = contents.Copy()
 	var/list/things_to_not_drop = list(w_uniform,nif,l_store,r_store,wear_id,l_ear,r_ear,head) //And whatever else we decide for balancing.
 	var/obj/item/clothing/head/new_hat
+	var/has_hat = FALSE
 	things_to_drop -= things_to_not_drop //Crunch the lists
 	things_to_drop -= organs //Mah armbs
 	things_to_drop -= internal_organs //Mah sqeedily spooch
@@ -86,8 +87,9 @@
 	for(var/obj/item/I in things_to_drop) //rip hoarders
 		drop_from_inventory(I)
 	for(var/obj/item/clothing/head/H in things_to_not_drop)
-		new_hat = H
-
+		if(H)
+			new_hat = H
+			has_hat = TRUE
 	if(w_uniform && istype(w_uniform,/obj/item/clothing)) //No webbings tho. We do this after in case a suit was in the way
 		var/obj/item/clothing/uniform = w_uniform
 		if(LAZYLEN(uniform.accessories))
