@@ -87,6 +87,11 @@ const ViewCharacter = (props, context) => {
         content="Back"
         onClick={() => setOverlay(null)} />
     }>
+      <Section level={2} title="Species">
+        <Box>
+          {overlay.species}
+        </Box>
+      </Section>
       <Section level={2} title="Vore Tag">
         <Box p={1} backgroundColor={getTagColor(overlay.tag)}>
           {overlay.tag}
@@ -137,6 +142,7 @@ const CharacterDirectoryList = (props, context) => {
       <Table>
         <Table.Row bold>
           <SortButton id="name">Name</SortButton>
+          <SortButton id="species">Species</SortButton>
           <SortButton id="tag">Vore Tag</SortButton>
           <SortButton id="erptag">ERP Tag</SortButton>
           <Table.Cell collapsing textAlign="right">View</Table.Cell>
@@ -149,6 +155,7 @@ const CharacterDirectoryList = (props, context) => {
           .map((character, i) => (
             <Table.Row key={i} backgroundColor={getTagColor(character.tag)}>
               <Table.Cell p={1}>{character.name}</Table.Cell>
+              <Table.Cell>{character.species}</Table.Cell>
               <Table.Cell>{character.tag}</Table.Cell>
               <Table.Cell>{character.erptag}</Table.Cell>
               <Table.Cell collapsing textAlign="right">
