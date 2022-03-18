@@ -14,6 +14,8 @@
 	is_adult = TRUE
 	harmless = TRUE
 	friendly = list("nuzzles", "glomps", "snuggles", "hugs") // lets be cute :3
+	melee_damage_upper = 0
+	melee_damage_lower = 0
 
 	var/mob/living/carbon/human/humanform
 	var/datum/modifier/healing
@@ -107,9 +109,10 @@
 	//Put our owner in it (don't transfer var/mind)
 	qdel(blob.ai_holder)
 	blob.ai_holder = null
-	if(new_hat)
+	if(has_hat)
 		blob.hat = new_hat
-		unEquip(new_hat)
+		src.u_equip(new_hat)
+		//unEquip(new_hat)
 		new_hat.forceMove(src)
 	blob.ckey = ckey
 	blob.name = name
@@ -182,6 +185,7 @@ mob/living/carbon/human/proc/prommie_outofblob(var/mob/living/simple_mob/slime/x
 	ckey = blob.ckey
 	equip_to_slot_if_possible(blob.hat, slot_head)
 	temporary_form = null
+	update_icon()
 
 	//Transfer vore organs
 	vore_selected = blob.vore_selected
@@ -368,8 +372,11 @@ mob/living/carbon/human/proc/prommie_outofblob(var/mob/living/simple_mob/slime/x
 	. = ..()
 	. -= "It appears to have been pacified."
 
-/mob/living/simple_mob/slime/attackby(obj/item/I, mob/user)
+/mob/living/simple_mob/slime/xenobio/promethean/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/slimepotion))
 		to_chat(user, "<span class='notice'>You can't feed this to a promethean!.</span>")
 		return
 	..()
+
+/mob/living/simple_mob/slime/xenobio/promethean/init_vore()
+	return
