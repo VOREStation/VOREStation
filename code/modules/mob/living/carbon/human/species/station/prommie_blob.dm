@@ -1,12 +1,12 @@
 // Prommies are slimes, lets make them a subtype of slimes.
 /mob/living/simple_mob/slime/xenobio/promethean
+	name = "Promethean Blob"
 	desc = "A promethean expressing their true form."
 	//ai_holder_type = null
 	color = null // Uses a special icon_state.
 	slime_color = "rainbow"
 	unity = TRUE
 	water_resist = 100 // Lets not kill the prommies
-	can_buckle = TRUE
 	cores = 0
 	movement_cooldown = 3
 	appearance_flags = RADIATION_GLOWS
@@ -16,6 +16,7 @@
 	friendly = list("nuzzles", "glomps", "snuggles", "hugs") // lets be cute :3
 	melee_damage_upper = 0
 	melee_damage_lower = 0
+	player_msg = "You're a little squisher! Your cuteness level has increased tenfold."
 
 	var/mob/living/carbon/human/humanform
 	var/datum/modifier/healing
@@ -25,7 +26,7 @@
 	var/human_brute = 0
 	var/human_burn = 0
 
-/mob/living/simple_mob/slime/xenobio/promethean/Initialize()
+/mob/living/simple_mob/slime/xenobio/promethean/Initialize(mapload, null)
 	//verbs -= /mob/living/proc/ventcrawl
 	verbs += /mob/living/simple_mob/slime/xenobio/promethean/proc/prommie_blobform
 	verbs += /mob/living/proc/set_size
@@ -50,7 +51,6 @@
 		humanform = H
 		updatehealth()
 
-		verbs += /mob/living/proc/hide
 	else
 		update_icon()
 
@@ -89,9 +89,11 @@
 	for(var/obj/item/I in things_to_drop) //rip hoarders
 		drop_from_inventory(I)
 	for(var/obj/item/clothing/head/H in things_to_not_drop)
-		if(H)
-			new_hat = H
-			has_hat = TRUE
+		drop_from_inventory(H)
+		//if(H)
+		new_hat = H
+		has_hat = TRUE
+
 	if(w_uniform && istype(w_uniform,/obj/item/clothing)) //No webbings tho. We do this after in case a suit was in the way
 		var/obj/item/clothing/uniform = w_uniform
 		if(LAZYLEN(uniform.accessories))
@@ -111,7 +113,6 @@
 	blob.ai_holder = null
 	if(has_hat)
 		blob.hat = new_hat
-		src.u_equip(new_hat)
 		//unEquip(new_hat)
 		new_hat.forceMove(src)
 	blob.ckey = ckey
@@ -188,6 +189,7 @@ mob/living/carbon/human/proc/prommie_outofblob(var/mob/living/simple_mob/slime/x
 	update_icon()
 
 	//Transfer vore organs
+	vore_organs = blob.vore_organs
 	vore_selected = blob.vore_selected
 	for(var/obj/belly/B as anything in blob.vore_organs)
 		B.forceMove(src)
