@@ -52,11 +52,9 @@
 	verbs += /mob/living/simple_mob/slime/promethean/proc/prommie_select_colour
 	verbs += /mob/living/simple_mob/slime/promethean/proc/toggle_shine
 	update_mood()
-	glow_color = color
 	if(rad_glow)
 		rad_glow = CLAMP(rad_glow,0,250)
 		set_light(max(1,min(5,rad_glow/15)), max(1,min(10,rad_glow/25)), color)
-	update_icon()
 	return ..()
 
 /mob/living/simple_mob/slime/promethean/update_icon()
@@ -197,8 +195,9 @@
 /mob/living/simple_mob/slime/promethean/rad_act(severity)
 	rad_glow += severity
 	rad_glow = CLAMP(rad_glow,0,250)
-	if(rad_glow)
+	if(rad_glow > 1)
 		set_light(max(1,min(5,rad_glow/15)), max(1,min(10,rad_glow/25)), color)
+		update_icon()
 
 /mob/living/simple_mob/slime/promethean/bullet_act(obj/item/projectile/P)
 	if(humanform)

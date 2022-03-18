@@ -140,15 +140,12 @@
 	qdel(blob.ai_holder)
 
 	blob.ai_holder = null
-	if(has_hat)
-		blob.hat = new_hat
-		new_hat.forceMove(src)
 	blob.ckey = ckey
 	blob.name = name
 	blob.nutrition = nutrition
 	blob.color = rgb(r_skin, g_skin, b_skin)
 	blob.mood = ":3"
-	if(radiation)
+	if(radiation > 0)
 		blob.rad_glow = CLAMP(radiation,0,250)
 		blob.glow_intensity = max(1,min(5,blob.rad_glow/15))
 		blob.glow_range = max(1,min(10,blob.rad_glow/25))
@@ -156,6 +153,9 @@
 		set_light(0)
 		blob.set_light(max(1,min(5,radiation/15)), max(1,min(10,radiation/25)), blob.color)
 		blob.handle_light()
+	if(has_hat)
+		blob.hat = new_hat
+		new_hat.forceMove(src)
 	blob.update_icon()
 	blob.verbs -= /mob/living/proc/ventcrawl // Absolutely not.
 	blob.verbs -= /mob/living/simple_mob/proc/set_name // We already have a name.
@@ -221,7 +221,7 @@ mob/living/carbon/human/proc/prommie_outofblob(var/mob/living/simple_mob/slime/p
 	temporary_form = null
 
 	shapeshifter_set_colour(blob.color)
-	if(blob.rad_glow)
+	if(blob.rad_glow > 0)
 		radiation = CLAMP(blob.rad_glow,0,250)
 		set_light(max(1,min(5,radiation/15)), max(1,min(10,radiation/25)), species.get_flesh_colour(src))
 	update_icon()
