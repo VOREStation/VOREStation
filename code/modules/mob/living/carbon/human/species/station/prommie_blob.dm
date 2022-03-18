@@ -1,5 +1,5 @@
 // Prommies are slimes, lets make them a subtype of slimes.
-/mob/living/simple_mob/slime/xenobio/promethean
+/mob/living/simple_mob/slime/promethean
 	name = "Promethean Blob"
 	desc = "A promethean expressing their true form."
 	//ai_holder_type = null
@@ -11,8 +11,8 @@
 	movement_cooldown = 3
 	appearance_flags = RADIATION_GLOWS
 	shock_resist = 0 // Lets not be immune to zaps.
-	is_adult = TRUE
-	harmless = TRUE
+	//is_adult = TRUE
+	//harmless = TRUE
 	friendly = list("nuzzles", "glomps", "snuggles", "hugs") // lets be cute :3
 	melee_damage_upper = 0
 	melee_damage_lower = 0
@@ -26,9 +26,9 @@
 	var/human_brute = 0
 	var/human_burn = 0
 
-/mob/living/simple_mob/slime/xenobio/promethean/Initialize(mapload, null)
+/mob/living/simple_mob/slime/promethean/Initialize(mapload, null)
 	//verbs -= /mob/living/proc/ventcrawl
-	verbs += /mob/living/simple_mob/slime/xenobio/promethean/proc/prommie_blobform
+	verbs += /mob/living/simple_mob/slime/promethean/proc/prommie_blobform
 	verbs += /mob/living/proc/set_size
 	verbs += /mob/living/proc/hide
 	verbs += /mob/living/simple_mob/proc/animal_nom
@@ -39,13 +39,13 @@
 	update_icon()
 	return ..()
 
-/mob/living/simple_mob/slime/xenobio/promethean/Stat()
+/mob/living/simple_mob/slime/promethean/Stat()
 	..()
 	if(humanform)
 		humanform.species.Stat(humanform)
 
 //Constructor allows passing the human to sync damages
-/mob/living/simple_mob/slime/xenobio/promethean/New(var/newloc, var/mob/living/carbon/human/H)
+/mob/living/simple_mob/slime/promethean/New(var/newloc, var/mob/living/carbon/human/H)
 	..()
 	if(H)
 		humanform = H
@@ -75,11 +75,11 @@
 	var/atom/creation_spot = drop_location()
 
 	//Create our new blob
-	var/mob/living/simple_mob/slime/xenobio/promethean/blob = new(creation_spot,src)
+	var/mob/living/simple_mob/slime/promethean/blob = new(creation_spot,src)
 
 	//Drop all our things
 	var/list/things_to_drop = contents.Copy()
-	var/list/things_to_not_drop = list(w_uniform,nif,l_store,r_store,wear_id,l_ear,r_ear,head) //And whatever else we decide for balancing.
+	var/list/things_to_not_drop = list(w_uniform,nif,l_store,r_store,wear_id,l_ear,r_ear) //And whatever else we decide for balancing.
 	var/obj/item/clothing/head/new_hat
 	var/has_hat = FALSE
 	things_to_drop -= things_to_not_drop //Crunch the lists
@@ -88,11 +88,14 @@
 
 	for(var/obj/item/I in things_to_drop) //rip hoarders
 		drop_from_inventory(I)
-	for(var/obj/item/clothing/head/H in things_to_not_drop)
-		drop_from_inventory(H)
+		if(I == new_hat)
+			new_hat = I
+			has_hat = TRUE
+	//for(var/obj/item/clothing/head/H in things_to_not_drop)
+	//	drop_from_inventory(H)
 		//if(H)
-		new_hat = H
-		has_hat = TRUE
+	//	new_hat = H
+	//	has_hat = TRUE
 
 	if(w_uniform && istype(w_uniform,/obj/item/clothing)) //No webbings tho. We do this after in case a suit was in the way
 		var/obj/item/clothing/uniform = w_uniform
@@ -125,8 +128,8 @@
 
 	blob.update_icon()
 	blob.verbs -= /mob/living/proc/ventcrawl // Absolutely not.
-	blob.verbs -= /mob/living/simple_mob/slime/xenobio/verb/evolve // We aren't really xenobio, so none of this.
-	blob.verbs -= /mob/living/simple_mob/slime/xenobio/verb/reproduce
+	//blob.verbs -= /mob/living/simple_mob/slime/xenobio/verb/evolve // We aren't really xenobio, so none of this.
+	//blob.verbs -= /mob/living/simple_mob/slime/xenobio/verb/reproduce
 	blob.verbs -= /mob/living/simple_mob/proc/set_name // We already have a name.
 	temporary_form = blob
 
@@ -149,7 +152,7 @@
 	//Return our blob in case someone wants it
 	return blob
 
-mob/living/carbon/human/proc/prommie_outofblob(var/mob/living/simple_mob/slime/xenobio/promethean/blob, force)
+mob/living/carbon/human/proc/prommie_outofblob(var/mob/living/simple_mob/slime/promethean/blob, force)
 	if(!istype(blob))
 		return
 
@@ -206,7 +209,7 @@ mob/living/carbon/human/proc/prommie_outofblob(var/mob/living/simple_mob/slime/x
 	//Return ourselves in case someone wants it
 	return src
 
-/mob/living/simple_mob/slime/xenobio/promethean/updatehealth()
+/mob/living/simple_mob/slime/promethean/updatehealth()
 	if(!humanform)
 		return ..()
 
@@ -253,69 +256,69 @@ mob/living/carbon/human/proc/prommie_outofblob(var/mob/living/simple_mob/slime/x
 			healths.icon_state = "health7"
 
 // All the damage and such to the blob translates to the human
-/mob/living/simple_mob/slime/xenobio/promethean/apply_effect(var/effect = 0, var/effecttype = STUN, var/blocked = 0, var/check_protection = 1)
+/mob/living/simple_mob/slime/promethean/apply_effect(var/effect = 0, var/effecttype = STUN, var/blocked = 0, var/check_protection = 1)
 	if(humanform)
 		return humanform.apply_effect(effect, effecttype, blocked, check_protection)
 	else
 		return ..()
 
-/mob/living/simple_mob/slime/xenobio/promethean/adjustBruteLoss(var/amount,var/include_robo)
+/mob/living/simple_mob/slime/promethean/adjustBruteLoss(var/amount,var/include_robo)
 	amount *= 0.75
 	if(humanform)
 		return humanform.adjustBruteLoss(amount)
 	else
 		return ..()
 
-/mob/living/simple_mob/slime/xenobio/promethean/adjustFireLoss(var/amount,var/include_robo)
+/mob/living/simple_mob/slime/promethean/adjustFireLoss(var/amount,var/include_robo)
 	amount *= 2
 	if(humanform)
 		return humanform.adjustFireLoss(amount)
 	else
 		return ..()
 
-/mob/living/simple_mob/slime/xenobio/promethean/adjustToxLoss(amount)
+/mob/living/simple_mob/slime/promethean/adjustToxLoss(amount)
 	if(humanform)
 		return humanform.adjustToxLoss(amount)
 	else
 		return ..()
 
-/mob/living/simple_mob/slime/xenobio/promethean/adjustOxyLoss(amount)
+/mob/living/simple_mob/slime/promethean/adjustOxyLoss(amount)
 	if(humanform)
 		return humanform.adjustOxyLoss(amount)
 	else
 		return ..()
 
-/mob/living/simple_mob/slime/xenobio/promethean/adjustHalLoss(amount)
+/mob/living/simple_mob/slime/promethean/adjustHalLoss(amount)
 	if(humanform)
 		return humanform.adjustHalLoss(amount)
 	else
 		return ..()
 
-/mob/living/simple_mob/slime/xenobio/promethean/adjustCloneLoss(amount)
+/mob/living/simple_mob/slime/promethean/adjustCloneLoss(amount)
 	if(humanform)
 		return humanform.adjustCloneLoss(amount)
 	else
 		return ..()
 
-/mob/living/simple_mob/slime/xenobio/promethean/ex_act(severity)
+/mob/living/simple_mob/slime/promethean/ex_act(severity)
 	if(humanform)
 		return humanform.ex_act(severity)
 	else
 		return ..()
 
-/mob/living/simple_mob/slime/xenobio/promethean/rad_act(severity)
+/mob/living/simple_mob/slime/promethean/rad_act(severity)
 	if(humanform)
 		return humanform.ex_act(severity)
 	else
 		return ..()
 
-/mob/living/simple_mob/slime/xenobio/promethean/bullet_act(obj/item/projectile/P)
+/mob/living/simple_mob/slime/promethean/bullet_act(obj/item/projectile/P)
 	if(humanform)
 		return humanform.bullet_act(P)
 	else
 		return ..()
 
-/mob/living/simple_mob/slime/xenobio/promethean/death(gibbed, deathmessage = "dissolves away, leaving only a few spare parts!")
+/mob/living/simple_mob/slime/promethean/death(gibbed, deathmessage = "dissolves away, leaving only a few spare parts!")
 	if(humanform)
 		humanform.death(gibbed, deathmessage)
 	else
@@ -325,17 +328,16 @@ mob/living/carbon/human/proc/prommie_outofblob(var/mob/living/simple_mob/slime/x
 	if(!QDELETED(src)) // Human's handle death should have taken us, but maybe we were adminspawned or something without a human counterpart
 		qdel(src)
 
-/mob/living/simple_mob/slime/xenobio/promethean/Login()
+/mob/living/simple_mob/slime/promethean/Login()
 	. = ..()
 	copy_from_prefs_vr(bellies = FALSE)
 
-/mob/living/simple_mob/slime/xenobio/promethean/proc/prommie_blobform()
+/mob/living/simple_mob/slime/promethean/proc/prommie_blobform()
 	set name = "Toggle Blobform"
 	set desc = "Switch between amorphous and humanoid forms."
 	set category = "Abilities"
 	set hidden = FALSE
 
-	to_chat(src,"<span class='warning'>Blob form attepted to revert!</span>")
 	var/atom/movable/to_locate = src
 	if(!isturf(to_locate.loc))
 		to_chat(src,"<span class='warning'>You need more space to perform this action!</span>")
@@ -343,7 +345,6 @@ mob/living/carbon/human/proc/prommie_outofblob(var/mob/living/simple_mob/slime/x
 
 	//Blob form
 	if(!ishuman(src))
-		to_chat(src,"<span class='warning'>They are a blob!</span>")
 		if(humanform.temporary_form.stat)
 			to_chat(src,"<span class='warning'>You can only do this while not stunned.</span>")
 		else
@@ -363,22 +364,22 @@ mob/living/carbon/human/proc/prommie_outofblob(var/mob/living/simple_mob/slime/x
 		if(H)
 			H.gib()
 
-/mob/living/simple_mob/slime/xenobio/promethean/get_description_interaction()
+/mob/living/simple_mob/slime/promethean/get_description_interaction()
 	return
 
 
-/mob/living/simple_mob/slime/xenobio/promethean/get_description_info()
+/mob/living/simple_mob/slime/promethean/get_description_info()
 	return
-
-/mob/living/simple_mob/slime/xenobio/promethean/examine(mob/user)
+/*
+/mob/living/simple_mob/slime/promethean/examine(mob/user)
 	. = ..()
 	. -= "It appears to have been pacified."
 
-/mob/living/simple_mob/slime/xenobio/promethean/attackby(obj/item/I, mob/user)
+/mob/living/simple_mob/slime/promethean/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/slimepotion))
 		to_chat(user, "<span class='notice'>You can't feed this to a promethean!.</span>")
 		return
 	..()
-
-/mob/living/simple_mob/slime/xenobio/promethean/init_vore()
+*/
+/mob/living/simple_mob/slime/promethean/init_vore()
 	return
