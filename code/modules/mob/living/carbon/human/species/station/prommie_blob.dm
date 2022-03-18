@@ -204,14 +204,12 @@ mob/living/carbon/human/proc/prommie_outofblob(var/mob/living/simple_mob/slime/p
 	update_icon()
 
 	//Transfer vore organs
-	//vore_organs = blob.vore_organs
 	to_chat(src,"<span class='warning'>Attempting to get vore bellies back.</span>")
 	vore_selected = blob.vore_selected
 	for(var/obj/belly/B as anything in blob.vore_organs)
 		B.forceMove(src)
 		B.owner = src
 		to_chat(src,"<span class='warning'>[B]'s owner is [src].</span>")
-
 	if(blob.prev_left_hand) put_in_l_hand(blob.prev_left_hand) //The restore for when reforming.
 	if(blob.prev_right_hand) put_in_r_hand(blob.prev_right_hand)
 
@@ -367,19 +365,6 @@ mob/living/carbon/human/proc/prommie_outofblob(var/mob/living/simple_mob/slime/p
 		else
 			to_chat(src,"<span class='warning'>Attempting to revert!</span>")
 			humanform.prommie_outofblob(src)
-
-/datum/species/shapeshifter/promethean/handle_death(var/mob/living/carbon/human/H)
-	if(!H)
-		return // Iono!
-
-	if(H.temporary_form)
-		H.forceMove(H.temporary_form.drop_location())
-		H.ckey = H.temporary_form.ckey
-		QDEL_NULL(H.temporary_form)
-
-	spawn(1)
-		if(H)
-			H.gib()
 
 /mob/living/simple_mob/slime/promethean/get_description_interaction()
 	return
