@@ -11,12 +11,12 @@
 	movement_cooldown = 3
 	appearance_flags = RADIATION_GLOWS
 	shock_resist = 0 // Lets not be immune to zaps.
-	//is_adult = TRUE
-	//harmless = TRUE
-	friendly = list("nuzzles", "glomps", "snuggles", "hugs") // lets be cute :3
+	friendly = list("nuzzles", "glomps", "snuggles", "cuddles", "squishes") // lets be cute :3
 	melee_damage_upper = 0
 	melee_damage_lower = 0
 	player_msg = "You're a little squisher! Your cuteness level has increased tenfold."
+	heat_damage_per_tick = 20 // Hot and cold are bad, but cold is AS bad for prommies as it is for slimes.
+	cold_damage_per_tick = 20
 
 	var/mob/living/carbon/human/humanform
 	var/datum/modifier/healing
@@ -25,7 +25,19 @@
 	var/obj/prev_right_hand
 	var/human_brute = 0
 	var/human_burn = 0
+	var/is_wide = FALSE
 
+	var/list/default_emotes = list(
+		/decl/emote/audible/squish,
+		/decl/emote/audible/chirp,
+		/decl/emote/visible/bounce,
+		/decl/emote/visible/jiggle,
+		/decl/emote/visible/lightup,
+		/decl/emote/visible/vibrate,
+		/decl/emote/visible/flip,
+		/decl/emote/visible/spin,
+		/decl/emote/visible/floorspin
+	)
 /mob/living/simple_mob/slime/promethean/Initialize(mapload, null)
 	//verbs -= /mob/living/proc/ventcrawl
 	verbs += /mob/living/simple_mob/slime/promethean/proc/prommie_blobform
@@ -33,16 +45,32 @@
 	verbs += /mob/living/proc/hide
 	verbs += /mob/living/simple_mob/proc/animal_nom
 	verbs += /mob/living/proc/shred_limb
+	verbs += /mob/living/simple_mob/slime/promethean/proc/toggle_expand
+	verbs += /mob/living/simple_mob/slime/promethean/proc/prommie_select_colour
+	verbs += /mob/living/simple_mob/slime/promethean/proc/toggle_shine
 	update_mood()
 	glow_color = color
 	handle_light()
 	update_icon()
 	return ..()
 
+/mob/living/simple_mob/slime/promethean/update_icon()
+	icon_living = "[icon_state_override ? "[icon_state_override] slime" : "slime"] [is_wide ? "adult" : "baby"][""]"
+	..()
+
+/mob/living/simple_mob/slime/promethean/Destroy()
+	humanform = null
+	vore_organs = null
+	vore_selected = null
+	return ..()
+
 /mob/living/simple_mob/slime/promethean/Stat()
 	..()
 	if(humanform)
 		humanform.species.Stat(humanform)
+
+/mob/living/simple_mob/slime/promethean/handle_special() // Should disable default slime healing, we'll use nutrition based heals instead.
+	return
 
 //Constructor allows passing the human to sync damages
 /mob/living/simple_mob/slime/promethean/New(var/newloc, var/mob/living/carbon/human/H)
@@ -59,10 +87,6 @@
 	if(!force && !isturf(loc))
 		to_chat(src,"<span class='warning'>You can't change forms while inside something.</span>")
 		return
-
-	var/panel_was_up = FALSE
-	if(client?.statpanel == "Abilities")
-		panel_was_up = TRUE
 
 	handle_grasp() //It's possible to blob out before some key parts of the life loop. This results in things getting dropped at null. TODO: Fix the code so this can be done better.
 	remove_micros(src, src) //Living things don't fare well in roblobs.
@@ -127,7 +151,8 @@
 		//unEquip(new_hat)
 		new_hat.forceMove(src)
 	blob.ckey = ckey
-	//blob.name = name
+	blob.name = name
+	blob.nutrition = nutrition
 	blob.color = rgb(r_skin, g_skin, b_skin)
 	blob.mood = ":3"
 
@@ -143,7 +168,7 @@
 	moveToNullspace()
 
 	//Message
-	blob.visible_message("<b>[src.name]</b> collapses into a gooey blob!")
+	blob.visible_message("<b>[src.name]</b> squishes into their true form!")
 
 	//Transfer vore organs
 	blob.vore_organs = vore_organs
@@ -155,19 +180,12 @@
 	//We can still speak our languages!
 	blob.languages = languages.Copy()
 
-	if(panel_was_up)
-		client?.statpanel = "Abilities"
-
 	//Return our blob in case someone wants it
 	return blob
 
 mob/living/carbon/human/proc/prommie_outofblob(var/mob/living/simple_mob/slime/promethean/blob, force)
 	if(!istype(blob))
 		return
-
-	var/panel_was_up = FALSE
-	if(client?.statpanel == "Abilities")
-		panel_was_up = TRUE
 
 	if(!force && !isturf(blob.loc))
 		to_chat(blob,"<span class='warning'>You can't change forms while inside something.</span>")
@@ -183,7 +201,7 @@ mob/living/carbon/human/proc/prommie_outofblob(var/mob/living/simple_mob/slime/p
 	stop_pulling()
 
 	//Message
-	blob.visible_message("<b>[src.name]</b> reshapes into a humanoid appearance!")
+	blob.visible_message("<b>[src.name]</b> pulls together, forming a humanoid shape!")
 
 	//Record where they should go
 	var/atom/reform_spot = blob.drop_location()
@@ -198,18 +216,20 @@ mob/living/carbon/human/proc/prommie_outofblob(var/mob/living/simple_mob/slime/p
 	ckey = blob.ckey
 	var/obj/item/hat = blob.hat
 	blob.drop_hat()
-	drop_from_inventory(hat)
+	drop_from_inventory(hat) // Hat me baby
 	equip_to_slot_if_possible(hat, slot_head)
+	nutrition = blob.nutrition // food good
 	temporary_form = null
+
+	shapeshifter_set_colour(blob.color)
+
 	update_icon()
 
 	//Transfer vore organs
-	to_chat(src,"<span class='warning'>Attempting to get vore bellies back.</span>")
 	vore_selected = blob.vore_selected
 	for(var/obj/belly/B as anything in blob.vore_organs)
 		B.forceMove(src)
 		B.owner = src
-		to_chat(src,"<span class='warning'>[B]'s owner is [src].</span>")
 
 	//vore_organs.Cut()
 	if(blob.prev_left_hand) put_in_l_hand(blob.prev_left_hand) //The restore for when reforming.
@@ -219,9 +239,6 @@ mob/living/carbon/human/proc/prommie_outofblob(var/mob/living/simple_mob/slime/p
 
 	//Get rid of friend blob
 	qdel(blob)
-
-	if(panel_was_up)
-		client?.statpanel = "Abilities"
 
 	//Return ourselves in case someone wants it
 	return src
@@ -365,8 +382,63 @@ mob/living/carbon/human/proc/prommie_outofblob(var/mob/living/simple_mob/slime/p
 		if(humanform.temporary_form.stat)
 			to_chat(src,"<span class='warning'>You can only do this while not stunned.</span>")
 		else
-			to_chat(src,"<span class='warning'>Attempting to revert!</span>")
 			humanform.prommie_outofblob(src)
+
+/mob/living/simple_mob/slime/promethean/proc/toggle_expand()
+	set name = "Toggle Width"
+	set desc = "Switch between smole and lorge."
+	set category = "Abilities"
+	set hidden = FALSE
+
+	if(stat || world.time < last_special)
+		return
+
+	last_special = world.time + 50
+
+	if(is_wide)
+		is_wide = FALSE
+		src.visible_message("<b>[src.name]</b> pulls together, compacting themselves into a small ball!")
+		update_icon()
+	else
+		is_wide = TRUE
+		src.visible_message("<b>[src.name]</b> flows outwards, their goop expanding!")
+		update_icon()
+
+/mob/living/simple_mob/slime/promethean/proc/toggle_shine()
+	set name = "Toggle Shine"
+	set desc = "Shine on you crazy diamond."
+	set category = "Abilities"
+	set hidden = FALSE
+
+	if(stat || world.time < last_special)
+		return
+
+	last_special = world.time + 50
+
+	if(shiny)
+		shiny = FALSE
+		src.visible_message("<b>[src.name]</b> dulls their shine, becoming more translucent.")
+		update_icon()
+	else
+		shiny = TRUE
+		src.visible_message("<b>[src.name]</b> glistens and sparkles, shining brilliantly.")
+		update_icon()
+
+/mob/living/simple_mob/slime/promethean/proc/prommie_select_colour()
+
+	set name = "Select Body Colour"
+	set category = "Abilities"
+
+	if(stat || world.time < last_special)
+		return
+
+	last_special = world.time + 50
+
+	var/new_skin = input(usr, "Please select a new body color.", "Shapeshifter Colour", color) as null|color
+	if(!new_skin)
+		return
+	color = new_skin
+	update_icon()
 
 /mob/living/simple_mob/slime/promethean/get_description_interaction()
 	return
@@ -387,3 +459,8 @@ mob/living/carbon/human/proc/prommie_outofblob(var/mob/living/simple_mob/slime/p
 */
 /mob/living/simple_mob/slime/promethean/init_vore()
 	return
+
+/mob/living/simple_mob/slime/promethean/get_available_emotes()
+	var/list/fulllist = _slime_default_emotes
+	fulllist += default_emotes
+	return fulllist
