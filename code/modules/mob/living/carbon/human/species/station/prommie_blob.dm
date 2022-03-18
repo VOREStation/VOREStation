@@ -211,7 +211,7 @@ mob/living/carbon/human/proc/prommie_outofblob(var/mob/living/simple_mob/slime/p
 		B.owner = src
 		to_chat(src,"<span class='warning'>[B]'s owner is [src].</span>")
 
-	blob.vore_organs.Cut()
+	//vore_organs.Cut()
 	if(blob.prev_left_hand) put_in_l_hand(blob.prev_left_hand) //The restore for when reforming.
 	if(blob.prev_right_hand) put_in_r_hand(blob.prev_right_hand)
 
