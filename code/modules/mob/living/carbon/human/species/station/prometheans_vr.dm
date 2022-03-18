@@ -180,7 +180,7 @@
 	//Return our blob in case someone wants it
 	return blob
 
-mob/living/carbon/human/proc/prommie_outofblob(var/mob/living/simple_mob/slime/promethean/blob, force)
+/mob/living/carbon/human/proc/prommie_outofblob(var/mob/living/simple_mob/slime/promethean/blob, force)
 	if(!istype(blob))
 		return
 
