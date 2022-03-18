@@ -102,7 +102,7 @@ This allows for events that have their announcement happen after the end itself.
 
 /datum/event2/event/proc/find_random_areas(list/specific_areas = list(), ignore_occupancy = FALSE)
 	if(!LAZYLEN(specific_areas))
-		specific_areas = global.the_station_areas.Copy()
+		specific_areas = using_map.the_station_areas.Copy()
 
 	var/list/area/grand_list_of_areas = get_all_existing_areas_of_types(specific_areas)
 	. = list()

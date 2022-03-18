@@ -137,6 +137,65 @@ var/list/all_maps = list()
 
 	var/list/planet_datums_to_make = list() // Types of `/datum/planet`s that will be instantiated by SSPlanets.
 
+	// CENTCOM Areas
+	var/list/centcom_areas = list (
+	/area/centcom,
+	/area/shuttle/escape/centcom,
+	/area/shuttle/escape_pod1/centcom,
+	/area/shuttle/escape_pod2/centcom,
+	/area/shuttle/escape_pod3/centcom,
+	/area/shuttle/escape_pod5/centcom,
+	/area/shuttle/transport1/centcom,
+	/area/shuttle/administration/centcom,
+	/area/shuttle/specops/centcom,
+	)
+
+	//Station Areas
+	var/list/the_station_areas = list (
+	/area/shuttle/arrival,
+	/area/shuttle/escape/station,
+	/area/shuttle/escape_pod1/station,
+	/area/shuttle/escape_pod2/station,
+	/area/shuttle/escape_pod3/station,
+	/area/shuttle/escape_pod5/station,
+	/area/shuttle/mining/station,
+	/area/shuttle/transport1/station,
+	/area/shuttle/prison/station,
+	/area/shuttle/administration/station,
+	/area/shuttle/specops/station,
+	/area/maintenance,
+	/area/hallway,
+	/area/bridge,
+	/area/crew_quarters,
+	/area/holodeck,
+	/area/mint,
+	/area/library,
+	/area/chapel,
+	/area/lawoffice,
+	/area/engineering,
+	/area/solar,
+	/area/assembly,
+	/area/teleporter,
+	/area/medical,
+	/area/security,
+	/area/quartermaster,
+	/area/janitor,
+	/area/hydroponics,
+	/area/rnd,
+	/area/storage,
+	/area/construction,
+	/area/ai_monitored/storage/eva,
+	/area/ai_monitored/storage/secure,
+	/area/ai_monitored/storage/emergency,
+	/area/ai_upload,
+	/area/ai_upload_foyer,
+	/area/ai
+	)
+
+	//Hallway Areas
+	var/hallway_areas = /area/hallway
+
+
 /datum/map/New()
 	..()
 	if(zlevel_datum_type)

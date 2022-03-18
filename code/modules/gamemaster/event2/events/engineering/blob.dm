@@ -103,6 +103,8 @@
 		abort()
 
 /datum/event2/event/blob/start()
+	if(!open_turfs.len)
+		set_up()
 	for(var/i = 1 to number_of_blobs)
 		var/turf/T = pick(open_turfs)
 		var/obj/structure/blob/core/new_blob = new spawn_blob_type(T)

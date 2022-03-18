@@ -835,7 +835,7 @@ var/global/list/all_objectives = list()
 	for(var/datum/mind/cult_mind in cult.current_antagonists)
 		if (cult_mind.current && cult_mind.current.stat!=2)
 			var/area/A = get_area(cult_mind.current )
-			if ( is_type_in_list(A, centcom_areas))
+			if ( is_type_in_list(A, using_map.centcom_areas))
 				acolytes_survived++
 	if(acolytes_survived >= target_amount)
 		return 0

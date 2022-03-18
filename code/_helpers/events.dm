@@ -2,7 +2,7 @@
 	var/list/area/grand_list_of_areas = list()
 	// Assemble areas that all exists (See DM reference if you are confused about loop labels)
 	looping_station_areas:
-		for(var/parentpath in global.the_station_areas)
+		for(var/parentpath in using_map.the_station_areas)
 			// Check its not excluded
 			for(var/excluded_path in excluded_areas)
 				if(ispath(parentpath, excluded_path))

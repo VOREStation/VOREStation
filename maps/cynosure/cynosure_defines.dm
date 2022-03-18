@@ -104,6 +104,25 @@
 			Z_LEVEL_SURFACE_WILD
 		)
 
+	the_station_areas = list(
+	/area/surface/station,
+	/area/shuttle/arrival,
+	/area/shuttle/escape/station,
+	/area/shuttle/escape_pod1/station,
+	/area/shuttle/escape_pod2/station,
+	/area/shuttle/escape_pod3/station,
+	/area/shuttle/escape_pod5/station,
+	/area/shuttle/large_escape_pod1/station,
+	/area/shuttle/large_escape_pod2/station,
+	/area/shuttle/mining/station,
+	/area/shuttle/transport1/station,
+	/area/shuttle/prison/station,
+	/area/shuttle/administration/station,
+	/area/shuttle/specops/station
+	)
+
+	hallway_areas = /area/surface/station/hallway
+
 /datum/map/cynosure/perform_map_generation()
 	// First, place a bunch of submaps. This comes before tunnel/forest generation as to not interfere with the submap.
 
