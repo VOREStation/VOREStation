@@ -267,7 +267,7 @@
 	set name = "Resist Control"
 	set desc = "Attempt to resist control."
 	if(pred_body.ckey == pred_ckey)
-		dominate_predator()		
+		dominate_predator()
 		return
 	if(pred_ckey == ckey && pred_body.prey_controlled)
 		to_chat(src, "<span class='danger'>You begin to resist \the [prey_name]'s control!!!</span>")
@@ -306,7 +306,7 @@
 	to_chat(src, "<span class='warning'>Attempting to dominate and gather \the [M]'s mind...</span>")
 	if(tgui_alert(M, "\The [src] has elected collect your mind into their own. Is this something you will allow to happen?", "Allow Dominate Prey",list("No","Yes")) != "Yes")
 		to_chat(src, "<span class='warning'>\The [M] has declined your Dominate Prey attempt.</span>")
-		return		
+		return
 	if(tgui_alert(M, "Are you sure? You can only undo this while your body is inside of [src]. (You can resist, or use the resist verb in the abilities tab)", "Allow Dominate Prey",list("No","Yes")) != "Yes")
 		to_chat(src, "<span class='warning'>\The [M] has declined your Dominate Prey attempt.</span>")
 		return
@@ -328,7 +328,7 @@
 	db.name = M.name
 	db.prey_ckey = M.ckey
 	db.pred_ckey = src.ckey
-	
+
 
 	db.real_name = M.real_name
 
@@ -370,3 +370,90 @@
 	else
 		to_chat(src, "<span class='warning'>Your body seems to no longer exist, so, you cannot return to it.</span>")
 		verbs -= /mob/living/dominated_brain/proc/cease_this_foolishness
+
+/mob/living/proc/lend_prey_control()
+	set category = "Abilities"
+	set name = "Give Prey Control"
+	set desc = "Allow prey control of your body."
+
+	var/list/possible_mobs = list()
+	for(var/obj/belly/B in src.vore_organs)
+		for(var/mob/living/L in B)
+			if(isliving(L) && L.ckey)
+				possible_mobs |= L
+			else
+				continue
+	if(!possible_mobs)
+		to_chat(src, "<span class='warning'>There are no valid targets inside of you.</span>")
+		return
+	var/input = tgui_input_list(src, "Select a mob to give control:", "Give Prey Control", possible_mobs)
+	if(!input)
+		return
+	var/mob/living/prey = input
+	var/mob/living/pred = src
+
+	if(prey.stat == DEAD)
+		to_chat(prey, "<span class='warning'>You cannot do that to this prey.</span>")
+		return
+
+	if(!prey.ckey)
+		to_chat(prey, "<span class='notice'>\The [prey] cannot take control.</span>")
+		return
+	if(prey.prey_controlled)
+		to_chat(prey, "<span class='warning'>\The [prey] is already under someone's control and cannot be given control of your body.</span>")
+		return
+	if(pred.prey_controlled)
+		to_chat(prey, "<span class='warning'>You are already controlling someone's body.</span>")
+		return
+	if(tgui_alert(pred, "You are attempting to give [prey] control over you, are you sure? Ensure that their preferences align with this kind of play.", "Give Prey Control",list("No","Yes")) != "Yes")
+		return
+	to_chat(pred, "<span class='notice'>You attempt to give your control over to \the [prey]...</span>")
+	log_admin("[key_name_admin(pred)] attempted to give control to [prey].")
+	if(tgui_alert(prey, "\The [pred] has elected to attempt to give you control of them. Is this something you will allow to happen?", "Allow Prey Domination",list("No","Yes")) != "Yes")
+		to_chat(pred, "<span class='warning'>\The [prey] declined your request for control.</span>")
+		return
+	if(tgui_alert(prey, "Are you sure? If you should decide to revoke this, you will have the ability to do so in your 'Abilities' tab.", "Allow Prey Domination",list("No","Yes")) != "Yes")
+		return
+	to_chat(pred, "<span class='warning'>You diminish your will, reducing it and allowing will of your prey to take over...</span>")
+	to_chat(prey, "<span class='warning'>You can feel the will of your host diminishing as you are given control over them!</span>")
+	if(!do_after(pred, 10 SECONDS, exclusive = TRUE))
+		to_chat(pred, "<span class='notice'>Your attempt to share control has been interrupted...</span>")
+		to_chat(prey, "<span class='notice'>The dominant sensation fades away...</span>")
+		return
+
+	to_chat(prey, "<span class='danger'>You plunge your conciousness into \the [pred], assuming control over their very body, leaving your own behind within \the [pred]'s [loc].</span>")
+	to_chat(pred, "<span class='danger'>You feel your body move on its own, as you move to the background, and an alien consciousness displaces yours.</span>")
+	var/mob/living/dominated_brain/pred_brain
+	var/delete_source = FALSE
+	if(istype(prey, /mob/living/dominated_brain))
+		var/mob/living/dominated_brain/punished_prey = prey
+		if(punished_prey.prey_body)
+			pred_brain = new /mob/living/dominated_brain(pred, pred, name, punished_prey.prey_body)
+		else
+			pred_brain = new /mob/living/dominated_brain(pred, pred, name)	//We have to play musical chairs with 3 bodies, or everyone gets d/ced
+		delete_source = TRUE
+	else
+		pred_brain = new /mob/living/dominated_brain(pred, pred, name, prey)
+
+	pred_brain.prey_ooc_notes = prey.ooc_notes
+	pred_brain.pred_ooc_notes = pred.ooc_notes
+	pred_brain.name = pred.name
+	var/list/preylangs = list()
+	preylangs |= prey.languages
+	preylangs -= prey.temp_languages
+	pred_brain.prey_langs |= preylangs
+	pred_brain.prey_ckey = prey.ckey
+	pred_brain.pred_ckey = pred.ckey
+	pred_brain.pred_body.absorb_langs()
+	pred.ooc_notes = pred_brain.prey_ooc_notes
+
+	pred.verbs |= /mob/proc/release_predator
+
+	//Now actually put the people in the mobs
+	pred_brain.ckey = pred_brain.pred_ckey
+	pred_brain.real_name = pred.real_name
+	pred.ckey = pred_brain.prey_ckey
+	pred.prey_controlled = TRUE
+	log_and_message_admins("[pred] is now controlled by [pred.ckey], they were taken over via pred submission, and were originally controlled by [pred_brain.pred_ckey].")
+	if(delete_source)
+		qdel(prey)
