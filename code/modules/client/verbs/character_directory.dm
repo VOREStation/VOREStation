@@ -48,6 +48,7 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 		// These are the three vars we're trying to find
 		// The approach differs based on the mob the client is controlling
 		var/name = null
+		var/species = null
 		var/ooc_notes = null
 		var/flavor_text = null
 		var/tag = C.prefs.directory_tag || "Unset"
@@ -61,12 +62,14 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 					if(!find_record("name", H.real_name, data_core.hidden_general))
 						continue
 			name = H.real_name
+			species = "[H.custom_species ? H.custom_species : H.species.name]"
 			ooc_notes = H.ooc_notes
 			flavor_text = H.flavor_texts["general"]
 
 		if(isAI(C.mob))
 			var/mob/living/silicon/ai/A = C.mob
-			name = "[A.name] (Artificial Intelligence)"
+			name = A.name
+			species = "Artificial Intelligence"
 			ooc_notes = A.ooc_notes
 			flavor_text = null // No flavor text for AIs :c
 
@@ -74,7 +77,8 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 			var/mob/living/silicon/robot/R = C.mob
 			if(R.scrambledcodes || (R.module && R.module.hide_on_manifest))
 				continue
-			name = "[R.name] ([R.modtype] [R.braintype])"
+			name = R.name
+			species = "[R.modtype] [R.braintype]"
 			ooc_notes = R.ooc_notes
 			flavor_text = R.flavor_text
 
@@ -85,6 +89,7 @@ GLOBAL_DATUM(character_directory, /datum/character_directory)
 		
 		directory_mobs.Add(list(list(
 			"name" = name,
+			"species" = species,
 			"ooc_notes" = ooc_notes,
 			"tag" = tag,
 			"erptag" = erptag,
