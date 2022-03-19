@@ -42,10 +42,6 @@
 		M.adjustToxLoss(0.1 * removed)
 		return
 	affect_ingest(M, alien, removed)
-	//VOREStation Edits Start
-	if(M.isSynthetic() && M.nutrition < 500)
-		M.adjust_nutrition((nutriment_factor * removed) * M.species.synthetic_food_coeff)
-	//VOREStation Edits End
 	..()
 
 /datum/reagent/nutriment/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
@@ -60,6 +56,9 @@
 			M.heal_organ_damage(0.5 * removed, 0)
 			M.adjust_nutrition((nutriment_factor * removed) * M.species.organic_food_coeff)
 			M.add_chemical_effect(CE_BLOODRESTORE, 4 * removed)
+	else
+		M.adjust_nutrition((nutriment_factor * removed) * M.species.synthetic_food_coeff)
+
 	//VOREStation Edits Stop
 
 // Aurora Cooking Port Insertion Begin
