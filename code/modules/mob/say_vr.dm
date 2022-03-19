@@ -184,10 +184,9 @@
 		for (var/mob/G in player_list)
 			if (istype(G, /mob/new_player))
 				continue
-			else if(G.stat == DEAD && G.is_preference_enabled(/datum/client_preference/ghost_ears))
-				if(!(src.is_preference_enabled(/datum/client_preference/whisubtle_vis)) && isobserver(G))
-					continue
-				to_chat(G, "<span class='changeling'>\The [M] thinks, \"[message]\"</span>")
+			else if(isobserver(G) && G.is_preference_enabled(/datum/client_preference/ghost_ears))
+				if(is_preference_enabled(/datum/client_preference/whisubtle_vis) || G.client.holder)
+					to_chat(G, "<span class='changeling'>\The [M] thinks, \"[message]\"</span>")
 		log_say(message,M)
 	else		//There wasn't anyone to send the message to, pred or prey, so let's just say it instead and correct our psay just in case.
 		M.forced_psay = FALSE
@@ -266,10 +265,9 @@
 		for (var/mob/G in player_list)
 			if (istype(G, /mob/new_player))
 				continue
-			else if(G.stat == DEAD && G.is_preference_enabled(/datum/client_preference/ghost_sight))
-				if(!(src.is_preference_enabled(/datum/client_preference/whisubtle_vis)) && isobserver(G))
-					continue
-				to_chat(G, "<span class='changeling'>\The [M] [message]</span>")
+			else if(isobserver(G) && G.is_preference_enabled(/datum/client_preference/ghost_ears))
+				if(is_preference_enabled(/datum/client_preference/whisubtle_vis) || G.client.holder)
+					to_chat(G, "<span class='changeling'>\The [M] [message]</span>")
 		log_say(message,M)
 	else	//There wasn't anyone to send the message to, pred or prey, so let's just emote it instead and correct our psay just in case.
 		M.forced_psay = FALSE
