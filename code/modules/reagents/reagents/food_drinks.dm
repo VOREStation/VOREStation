@@ -42,6 +42,10 @@
 		M.adjustToxLoss(0.1 * removed)
 		return
 	affect_ingest(M, alien, removed)
+	//VOREStation Edits Start
+	if(M.isSynthetic())
+		M.adjust_nutrition((nutriment_factor * removed) * M.species.synthetic_food_coeff)
+	//VOREStation Edits End
 	..()
 
 /datum/reagent/nutriment/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
