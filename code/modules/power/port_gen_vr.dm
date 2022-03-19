@@ -283,7 +283,7 @@
 		asplod()
 
 /obj/machinery/power/rtg/d_type_reg
-	name = "D-Type Rotary Electric Generator"
+	name = "d-type rotary electric generator"
 	desc = "It looks kind of like a large hamster wheel."
 	icon = 'icons/obj/power_vrx96.dmi'
 	icon_state = "reg"
@@ -301,9 +301,11 @@
 
 /obj/machinery/power/rtg/d_type_reg/Initialize()
 	. = ..()
-	dir = EAST	//Otherwise the mobs will look funny
 	pixel_x = -32
 	
+/obj/machinery/power/rtg/d_type_reg/Destroy()
+	. = ..()
+
 /obj/machinery/power/rtg/d_type_reg/user_buckle_mob(mob/living/M, mob/user, var/forced = FALSE, var/silent = TRUE)
 	. = ..()
 	M.pixel_y = 8
@@ -329,14 +331,14 @@
 /obj/machinery/power/rtg/d_type_reg/update_icon()
 	if(panel_open)
 		icon_state = "reg-o"
-	else if(buckled_mobs.len >= 1)
+	else if(buckled_mobs && buckled_mobs.len > 0)
 		icon_state = "reg-a"
 	else
 		icon_state = "reg"
 
 /obj/machinery/power/rtg/d_type_reg/process()
 	..()
-	if(buckled_mobs.len >= 1)
+	if(buckled_mobs && buckled_mobs.len > 0)
 		for(var/mob/living/L in buckled_mobs)
 			runner_process(L)
 	else
@@ -344,19 +346,27 @@
 	update_icon()
 
 /obj/machinery/power/rtg/d_type_reg/proc/runner_process(var/mob/living/runner)
+	if(runner.stat != CONSCIOUS)
+		unbuckle_mob(runner)
+		runner.visible_message("<span class='warning'>\The [runner], topples off of \the [src]!</span>")
+		return
 	var/cool_rotations
 	if(ishuman(runner))
 		var/mob/living/carbon/human/R = runner
-		cool_rotations = 2 - R.species.slowdown
+		cool_rotations = R.movement_delay()
 	else if (isanimal(runner))
 		var/mob/living/simple_mob/R = runner
-		cool_rotations = R.movement_cooldown
+		cool_rotations = R.movement_delay()
+	log_and_message_admins("I got [cool_rotations] from [runner]")
 	if(cool_rotations <= 0)
-		cool_rotations = 1
+		cool_rotations = 0.5
+		log_and_message_admins("That's less than 1 so let's make it [cool_rotations]")
 	cool_rotations = default_power_gen / cool_rotations
+	log_and_message_admins("I am dividing [default_power_gen] by that much.")
 	switch(runner.nutrition)
 		if(1000 to INFINITY)	//VERY WELL FED, ZOOM!!!!
 			cool_rotations *= (runner.nutrition * 0.001)
+			log_and_message_admins("[runner] is over fed so we are producing over 100%")
 		if(500 to 1000)	//Well fed!
 			cool_rotations = cool_rotations
 		if(400 to 500)
@@ -372,9 +382,10 @@
 			runner.visible_message("<span class='notice'>\The [runner], panting and exhausted hops off of \the [src]!</span>")
 	if(part_mult > 1)
 		cool_rotations += (cool_rotations * (part_mult - 1)) / 4
+		log_and_message_admins("The part multiplier is [part_mult].")
 	power_gen = cool_rotations
+	log_and_message_admins("We are outputting [cool_rotations].")
 	runner.nutrition --
-	runner.dir = dir
 
 /obj/machinery/power/rtg/d_type_reg/emp_act(severity)
 	return
