@@ -129,6 +129,17 @@
 	containername = "Ballistic weapon crate"
 	access = access_armory
 
+/datum/supply_pack/munitions/bolt_rifles_lethal
+ 	name = "Weapons - Bolt-Action Rifles"
+ 	contains = list(
+ 			/obj/item/weapon/gun/projectile/shotgun/pump/rifle = 2,
+ 			/obj/item/ammo_magazine/ammo_box/b762 = 4,
+ 			)
+ 	cost = 60
+ 	containertype = /obj/structure/closet/crate/secure/weapon
+ 	containername = "Ballistic Weapons crate"
+ 	access = access_armory
+
 /datum/supply_pack/munitions/bolt_rifles_competitive
  	name = "Weapons - Competitive shooting rifles"
  	contains = list(
