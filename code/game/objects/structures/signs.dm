@@ -419,7 +419,7 @@
 /obj/structure/sign/levels/security
 	name = "\improper Security Department"
 	desc = "A level sign, stating the level to find the Security Department on."
-	icon_state = "direction_sec"
+	icon_state = "level_sec"
 
 /obj/structure/sign/directions/security/armory
 	name = "\improper Armory"
@@ -429,7 +429,7 @@
 /obj/structure/sign/levels/security/armory
 	name = "\improper Armory"
 	desc = "A level sign, stating the level to find the Armory on."
-	icon_state = "direction_armory"
+	icon_state = "level_armory"
 
 /obj/structure/sign/directions/security/brig
 	name = "\improper Brig"
@@ -511,12 +511,12 @@
 /obj/structure/sign/directions/science/toxins
 	name = "\improper Toxins Lab"
 	desc = "A direction sign, pointing out the way to the Toxins Lab."
-	icon_state = "direction_sci"
+	icon_state = "direction_toxins"
 
 /obj/structure/sign/levels/science/toxins
 	name = "\improper Toxins Lab"
 	desc = "A level sign, stating the level to find the Toxins Lab on."
-	icon_state = "level_sci"
+	icon_state = "level_toxins"
 
 /obj/structure/sign/directions/science/robotics
 	name = "\improper Robotics Workshop"
@@ -582,12 +582,12 @@
 /obj/structure/sign/directions/medical/chemlab
 	name = "\improper Chemistry Lab"
 	desc = "A direction sign, pointing out the way to the Chemistry Lab."
-	icon_state = "direction_med"
+	icon_state = "direction_chemlab"
 
 /obj/structure/sign/levels/medical/chemlab
 	name = "\improper Chemistry Lab"
 	desc = "A level sign, stating the level to find the Chemistry Lab on."
-	icon_state = "level_med"
+	icon_state = "level_chemlab"
 
 /obj/structure/sign/directions/medical/surgery
 	name = "\improper Surgery"
@@ -1359,7 +1359,7 @@
 	icon_state = "level-b-large"
 
 /obj/structure/sign/level/ground
-	name = "\improper Basement Level"
+	name = "\improper Ground Level"
 	icon_state = "level-g"
 
 /obj/structure/sign/level/ground/large

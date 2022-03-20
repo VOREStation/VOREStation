@@ -119,7 +119,10 @@
 		/obj/item/weapon/extinguisher/mini,
 		/obj/item/weapon/storage/box/freezer,
 		/obj/item/clothing/accessory/storage/white_vest,
-		/obj/item/taperoll/medical)
+		/obj/item/taperoll/medical,
+		/obj/item/device/gps/medical,
+		/obj/item/device/geiger
+		)
 
 /obj/structure/closet/secure_closet/CMO
 	name = "chief medical officer's locker"
@@ -150,8 +153,12 @@
 		/obj/item/clothing/suit/bio_suit/cmo,
 		/obj/item/clothing/head/bio_hood/cmo,
 		/obj/item/clothing/shoes/white,
+<<<<<<< HEAD
 		/obj/item/weapon/reagent_containers/glass/beaker/vial, //VOREStation Add
 		/obj/item/weapon/storage/belt/medical) //VOREStation Add
+=======
+		/obj/item/device/gps/medical/cmo)
+>>>>>>> cafac92adae... Map Tweaks March 2022 + Locker Equipment (#8439)
 
 /obj/structure/closet/secure_closet/CMO/Initialize()
 	if(prob(50))

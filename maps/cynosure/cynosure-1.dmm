@@ -194,6 +194,10 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
+/obj/structure/sign/directions/stairs_up{
+	dir = 4;
+	pixel_y = 32
+	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/bmt/north)
 "az" = (
@@ -281,16 +285,16 @@
 /obj/effect/floor_decal/corner/green/bordercorner{
 	dir = 1
 	},
-/obj/structure/sign/directions/security{
-	dir = 4;
+/obj/structure/sign/levels/medical{
+	dir = 5;
 	pixel_y = 38
 	},
-/obj/structure/sign/directions/engineering{
-	dir = 4;
+/obj/structure/sign/levels/engineering{
+	dir = 5;
 	pixel_y = 32
 	},
-/obj/structure/sign/directions/medical{
-	dir = 4;
+/obj/structure/sign/levels/security{
+	dir = 5;
 	pixel_y = 26
 	},
 /turf/simulated/floor/tiled,
@@ -1399,6 +1403,9 @@
 "cX" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/structure/ladder/up,
+/obj/structure/sign/level/basement{
+	pixel_y = 32
+	},
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/storage/emergency/bmtseast)
 "cY" = (
@@ -2312,6 +2319,9 @@
 "fd" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/structure/ladder/up,
+/obj/structure/sign/level/basement{
+	pixel_x = -32
+	},
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/security)
 "fe" = (
@@ -3260,6 +3270,9 @@
 "hp" = (
 /obj/structure/ladder/up,
 /obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/structure/sign/level/basement{
+	pixel_x = 31
+	},
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/substation/medbay/bmt)
 "hq" = (
@@ -3528,6 +3541,9 @@
 	},
 /obj/item/clothing/glasses/meson,
 /obj/effect/floor_decal/industrial/warning/corner,
+/obj/structure/sign/level/basement{
+	pixel_y = 27
+	},
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/substation/cargo/bmt)
 "hR" = (
@@ -3592,6 +3608,9 @@
 "hY" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/structure/ladder/up,
+/obj/structure/sign/level/basement{
+	pixel_y = 32
+	},
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/weststairwell/bmt)
 "hZ" = (
@@ -5893,6 +5912,12 @@
 /obj/structure/railing,
 /turf/simulated/floor/tiled/steel_grid,
 /area/surface/station/rnd/hallway/bmt)
+"mH" = (
+/obj/structure/marker_beacon{
+	mapped_in_color = "Olive"
+	},
+/turf/simulated/mineral/floor/ignore_mapgen/sif,
+/area/surface/cave/explored/normal)
 "mI" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/structure/disposalpipe/segment{
@@ -6227,6 +6252,9 @@
 	},
 /obj/machinery/light/small{
 	dir = 1
+	},
+/obj/structure/sign/level/basement{
+	pixel_y = 33
 	},
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/substation/engineering/bmt)
@@ -7476,6 +7504,9 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 10
 	},
+/obj/structure/sign/level/basement{
+	pixel_x = 32
+	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/bmt/west/elevator)
 "qn" = (
@@ -7560,6 +7591,9 @@
 /area/surface/station/hallway/primary/bmt/west)
 "qu" = (
 /obj/structure/railing,
+/obj/structure/sign/level/basement{
+	pixel_y = 29
+	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/surface/station/rnd/hallway/bmt)
 "qv" = (
@@ -9035,6 +9069,9 @@
 "tt" = (
 /obj/structure/ladder/up,
 /obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/structure/sign/level/basement{
+	pixel_x = 32
+	},
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/medical/south)
 "tv" = (
@@ -9459,6 +9496,9 @@
 /obj/effect/floor_decal/corner/green/bordercorner{
 	dir = 4
 	},
+/obj/structure/sign/level/basement/large{
+	pixel_x = 32
+	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/secondary/bmt/eaststairwell)
 "uu" = (
@@ -9548,17 +9588,17 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
 	},
-/obj/structure/sign/directions/command{
-	dir = 4;
-	pixel_y = 38
+/obj/structure/sign/levels/cryo{
+	dir = 5;
+	pixel_y = 26
 	},
-/obj/structure/sign/directions/evac{
-	dir = 4;
+/obj/structure/sign/levels/evac{
+	dir = 5;
 	pixel_y = 32
 	},
-/obj/structure/sign/directions/cryo{
-	dir = 4;
-	pixel_y = 26
+/obj/structure/sign/levels/command{
+	dir = 1;
+	pixel_y = 38
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/bmt/north)
@@ -9856,6 +9896,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/white,
 /area/surface/station/rnd/hallway/bmt)
+"vp" = (
+/obj/structure/sign/level/basement/large,
+/turf/simulated/wall/r_wall,
+/area/surface/station/engineering/hallway/bmt)
 "vq" = (
 /obj/structure/bed,
 /turf/simulated/floor/reinforced,
@@ -10473,6 +10517,9 @@
 "wC" = (
 /obj/structure/ladder/up,
 /obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/structure/sign/level/basement{
+	pixel_x = -32
+	},
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/research/east)
 "wD" = (
@@ -11840,22 +11887,25 @@
 /turf/simulated/floor/tiled/neutral,
 /area/surface/outpost/research/xenoarcheology/entrance)
 "zx" = (
-/obj/structure/sign/directions/science/xenobiology{
-	dir = 1;
-	pixel_y = 6
+/obj/structure/sign/levels/science/xenoflora{
+	dir = 5
 	},
-/obj/structure/sign/directions/science/xenoflora{
-	dir = 1
-	},
-/obj/structure/sign/directions/science/exploration{
-	dir = 1;
+/obj/structure/sign/levels/science/xenobiology{
+	dir = 5;
 	pixel_y = -6
+	},
+/obj/structure/sign/levels/science/exploration{
+	dir = 5;
+	pixel_y = 6
 	},
 /turf/simulated/wall/r_wall,
 /area/surface/station/rnd/hallway/bmt)
 "zz" = (
 /obj/structure/ladder/up,
 /obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/structure/sign/level/basement{
+	pixel_x = 32
+	},
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/medical/west)
 "zA" = (
@@ -13357,6 +13407,9 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals_central4{
 	dir = 4
+	},
+/obj/structure/sign/level/basement/large{
+	pixel_y = 32
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/secondary/bmt/weststairwell)
@@ -18151,6 +18204,10 @@
 	dir = 8;
 	pixel_y = -26
 	},
+/obj/structure/sign/directions/stairs_up{
+	dir = 8;
+	pixel_y = -38
+	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/bmt/west)
 "NA" = (
@@ -19103,6 +19160,9 @@
 "Pk" = (
 /obj/structure/ladder/up,
 /obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/structure/sign/level/basement{
+	pixel_y = 34
+	},
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/storage/emergency/bmtswest)
 "Pl" = (
@@ -20480,6 +20540,20 @@
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/bmt/north)
+"RW" = (
+/obj/structure/sign/levels/command{
+	dir = 1;
+	pixel_y = 6
+	},
+/obj/structure/sign/levels/dorms{
+	dir = 1
+	},
+/obj/structure/sign/levels/cargo{
+	dir = 5;
+	pixel_y = -6
+	},
+/turf/simulated/wall/r_wall,
+/area/surface/station/hallway/primary/bmt/west/elevator)
 "RY" = (
 /obj/structure/cable/green{
 	d2 = 2;
@@ -20503,6 +20577,11 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals_central7{
 	dir = 4
+	},
+/obj/structure/sign/level/basement{
+	dir = 8;
+	pixel_x = 36;
+	pixel_y = 32
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/medical/hallway/bmt)
@@ -22598,17 +22677,17 @@
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 6
 	},
-/obj/structure/sign/directions/science/robotics{
+/obj/structure/sign/levels/science/robotics{
 	dir = 1;
 	pixel_y = -32
-	},
-/obj/structure/sign/directions/science/rnd{
-	dir = 1;
-	pixel_y = -26
 	},
 /obj/structure/sign/directions/stairs_up{
 	dir = 1;
 	pixel_y = -38
+	},
+/obj/structure/sign/levels/science/rnd{
+	dir = 1;
+	pixel_y = -26
 	},
 /turf/simulated/floor/tiled/white,
 /area/surface/station/rnd/hallway/bmt)
@@ -23560,6 +23639,9 @@
 	},
 /obj/machinery/light{
 	dir = 1
+	},
+/obj/structure/sign/level/basement{
+	pixel_y = 33
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/medical/hallway/bmt)
@@ -47683,7 +47765,7 @@ su
 KR
 rN
 oJ
-KT
+RW
 KT
 iD
 qg
@@ -50465,14 +50547,14 @@ HE
 HE
 Kj
 Kj
+mH
 Kj
 Kj
 Kj
 Kj
 Kj
 Kj
-Kj
-Kj
+mH
 Kj
 Kj
 Kj
@@ -51232,7 +51314,7 @@ HE
 Kj
 zZ
 Kj
-Kj
+mH
 Kj
 HE
 HE
@@ -51742,7 +51824,7 @@ HE
 HE
 HE
 Kj
-Kj
+mH
 sg
 jp
 Kj
@@ -52242,14 +52324,14 @@ QW
 Kj
 Kj
 Kj
+mH
 Kj
 Kj
 Kj
 Kj
 Kj
 Kj
-Kj
-Kj
+mH
 Kj
 Kj
 Kj
@@ -68248,7 +68330,7 @@ JL
 JL
 JL
 JL
-Na
+vp
 Na
 Na
 uJ
