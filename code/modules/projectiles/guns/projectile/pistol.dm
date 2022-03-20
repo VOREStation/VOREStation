@@ -1,3 +1,6 @@
+/*
+ * M1911
+ */
 /obj/item/weapon/gun/projectile/colt
 	var/unique_reskin
 	name = ".45 pistol"
@@ -22,6 +25,9 @@
 		else
 			icon_state = "[initial(icon_state)]-e"
 
+/*
+ * Detective M1911
+ */
 /obj/item/weapon/gun/projectile/colt/detective
 	desc = "A standard law enforcement issue pistol. Uses .45 rounds."
 	magazine_type = /obj/item/ammo_magazine/m45/rubber
@@ -52,15 +58,13 @@
 
 	var/mob/M = usr
 	var/list/options = list()
-	options["NT Mk. 58"] = "secguncomp"
-	options["NT Mk. 58 Custom"] = "secgundark"
-	options["MarsTech P11 Spur"] = "colt"
-	options["MarsTech P59 Massif"] = "fnseven"
-	options["ProTek YC9"] = "usp"
-	options["ProTek Minx"] = "VP78"
-	options["Jindal T15 Chooha"] = "p08"
-	options["Jindal KP-45W"] = "p08b"
-	options["PCA-11 Tenzu"] = "enforcer_black"
+	options["MarsTech P11 Spur (Bubba'd)"] = "mod_colt"
+	options["MarsTech P11 Spur (Blued)"] = "blued_colt"
+	options["MarsTech P11 Spur (Gold)"] = "gold_colt"
+	options["MarsTech P11 Spur (Stainless)"] = "stainless_colt"
+	options["MarsTech P11 Spur (Dark)"] = "dark_colt"
+	options["MarsTech P11 Spur (Green)"] = "green_colt"
+	options["MarsTech P11 Spur (Blue)"] = "blue_colt"
 	var/choice = tgui_input_list(M,"Choose your sprite!","Resprite Gun", options)
 	if(src && choice && !M.stat && in_range(M,src))
 		icon_state = options[choice]
@@ -76,11 +80,15 @@
 	..()
 */
 
+/*
+ * Security Sidearm
+ */
 /obj/item/weapon/gun/projectile/sec
 	name = ".45 pistol"
 	desc = "The MT Mk58 is a cheap, ubiquitous sidearm, produced by MarsTech. Found pretty much everywhere humans are. Uses .45 rounds."
-	description_fluff = "The leading civilian-sector high-quality small arms brand of Hephaestus Industries, MarsTech has been the provider of choice for law enforcement and security forces for over 300 years."
-	icon_state = "secguncomp"
+	description_fluff = "The leading civilian-sector high-quality small arms brand of Hephaestus Industries, \
+	MarsTech has been the provider of choice for law enforcement and security forces for over 300 years."
+	icon_state = "secgun"
 	magazine_type = /obj/item/ammo_magazine/m45/rubber
 	allowed_magazines = list(/obj/item/ammo_magazine/m45)
 	projectile_type = /obj/item/projectile/bullet/pistol/medium
@@ -91,9 +99,9 @@
 /obj/item/weapon/gun/projectile/sec/update_icon()
 	..()
 	if(ammo_magazine)
-		icon_state = "secguncomp"
+		icon_state = "secgun"
 	else
-		icon_state = "secguncomp-e"
+		icon_state = "secgun-e"
 
 /obj/item/weapon/gun/projectile/sec/flash
 	name = ".45 signal pistol"
@@ -102,18 +110,21 @@
 /obj/item/weapon/gun/projectile/sec/wood
 	desc = "The MT Mk58 is a cheap, ubiquitous sidearm, produced by MarsTech. This one has a sweet wooden grip. Uses .45 rounds."
 	name = "custom .45 Pistol"
-	icon_state = "secgundark"
+	icon_state = "secgunb"
 
 /obj/item/weapon/gun/projectile/sec/wood/update_icon()
 	..()
 	if(ammo_magazine)
-		icon_state = "secgundark"
+		icon_state = "secgunb"
 	else
-		icon_state = "secgundark-e"
+		icon_state = "secgunb-e"
 
+/*
+ * Silenced Pistol
+ */
 /obj/item/weapon/gun/projectile/silenced
 	name = "silenced pistol"
-	desc = "A small, quiet,  easily concealable gun. Uses .45 rounds."
+	desc = "A small, quiet, easily concealable gun with a built-in silencer. Uses .45 rounds."
 	icon_state = "silenced_pistol"
 	w_class = ITEMSIZE_NORMAL
 	caliber = ".45"
@@ -129,6 +140,9 @@
 /obj/item/weapon/gun/projectile/silenced/empty
 	magazine_type = null
 
+/*
+ * Deagle
+ */
 /obj/item/weapon/gun/projectile/deagle
 	name = "hand cannon"
 	desc = "The PCA-55 Rarkajar perfect handgun for shooters with a need to hit targets through a wall and behind a fridge in your neighbor's house. Uses .44 rounds."
@@ -161,6 +175,9 @@
 	icon_state = "deaglecamo"
 	item_state = "deagleg"
 
+/*
+ * Gyro Pistol (Admin Abuse in gun form)
+ */
 /obj/item/weapon/gun/projectile/gyropistol // Does this even appear anywhere outside of admin abuse?
 	name = "gyrojet pistol"
 	desc = "Speak softly, and carry a big gun. Fires rare .75 caliber self-propelled exploding bolts--because fuck you and everything around you."
@@ -183,6 +200,9 @@
 	else
 		icon_state = "gyropistol"
 
+/*
+ * Compact Pistol
+ */
 /obj/item/weapon/gun/projectile/pistol
 	name = "compact pistol"
 	desc = "The Lumoco Arms P3 Whisper. A compact, easily concealable gun, though it's only compatible with compact magazines. Uses 9mm rounds."
@@ -236,6 +256,9 @@
 	else
 		icon_state = "pistol"
 
+/*
+ * Silencer
+ */
 /obj/item/weapon/silencer
 	name = "silencer"
 	desc = "a silencer"
@@ -243,6 +266,9 @@
 	icon_state = "silencer"
 	w_class = ITEMSIZE_SMALL
 
+/*
+ * Zip Gun (yar har)
+ */
 /obj/item/weapon/gun/projectile/pirate
 	name = "zip gun"
 	desc = "Little more than a barrel, handle, and firing mechanism, cheap makeshift firearms like this one are not uncommon in frontier systems."
@@ -277,6 +303,9 @@
 	caliber = initial(ammo.caliber)
 	..()
 
+/*
+ * Derringer
+ */
 /obj/item/weapon/gun/projectile/derringer
 	name = "derringer"
 	desc = "It's not size of your gun that matters, just the size of your load. Uses .357 rounds." //OHHH MYYY~
@@ -290,6 +319,9 @@
 	ammo_type = /obj/item/ammo_casing/a357
 	projectile_type = /obj/item/projectile/bullet/pistol/strong
 
+/*
+ * Luger
+ */
 /obj/item/weapon/gun/projectile/luger
 	name = "\improper Jindal T15 Chooha"
 	desc = "Almost seventy percent guaranteed not to be a cheap rimworld knockoff! Accuracy, easy handling, and its distinctive appearance make it popular among gun collectors. Uses 9mm rounds."
@@ -318,6 +350,9 @@
 	(Perhaps owing to its less than prestigious image), instead being sold almost exclusively through retailers and advertising platforms targeting the 'independent roughneck' demographic."
 	icon_state = "p08b"
 
+/*
+ * P92X (9mm Pistol)
+ */
 /obj/item/weapon/gun/projectile/p92x
 	name = "9mm pistol"
 	desc = "A widespread MarsTech sidearm called the P92X which is used by military, police, and security forces across the galaxy. Uses 9mm rounds."
@@ -335,8 +370,11 @@
 	else
 		icon_state = "[initial(icon_state)]-e"
 
+/obj/item/weapon/gun/projectile/p92x/rubber
+	magazine_type = /obj/item/ammo_magazine/m9mm/rubber
+
 /obj/item/weapon/gun/projectile/p92x/brown
-	icon_state = "p92x-brown"
+	icon_state = "p92xb"
 
 /obj/item/weapon/gun/projectile/p92x/large
 	magazine_type = /obj/item/ammo_magazine/m9mm/large // Spawns with illegal magazines.

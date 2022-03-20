@@ -1350,6 +1350,12 @@
 
 //  Y CKEYS
 
+/datum/gear/fluff/lemon_plush
+	path = /obj/item/toy/plushie/fluff/lemonplush
+	display_name = "yellow slime plushie"
+	ckeywhitelist = list("yecrowbarman")
+	character_name = list("Lemon Yellow", "Lemon Gettler Yellow", "Lemon Lee Yellow", "Lemon Jade Yellow") //different sleeves, same char
+
 //  Z CKEYS
 /datum/gear/fluff/tachika_medal
 	path = /obj/item/clothing/accessory/medal/conduct

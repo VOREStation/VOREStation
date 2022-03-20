@@ -1460,3 +1460,11 @@
 	attack_verb = list("blorbled", "slimed", "absorbed", "glomped")
 	gender = PLURAL // this seems like a good idea but probably prone to changing. todo: ask dan
 	// the only reason this thought is relevant because the base slimeplush has its gender set to female
+
+//YeCrowbarMan - Lemon Yellow
+/obj/item/toy/plushie/fluff/lemonplush
+	name = "yellow slime plushie"
+	desc = "A well-worn slime custom-made yellow plushie, extensively hugged and loved. It reeks of lemon."
+	icon = 'icons/vore/custom_items_vr.dmi'
+	icon_state = "lemonplush"
+	attack_verb = list("blorbled", "slimed", "absorbed", "glomped")

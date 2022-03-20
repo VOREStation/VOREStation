@@ -56,6 +56,25 @@
 	matter = list(MAT_PLASTIC = 20)
 	caseless = TRUE
 
+/obj/item/ammo_casing/a357/rubber
+	desc = "A .357 rubber bullet casing."
+	caliber = ".357"
+	icon_state = "r-casing"
+	projectile_type = /obj/item/projectile/bullet/pistol/rubber/strong
+	matter = list(MAT_STEEL = 60)
+
+/obj/item/ammo_casing/a357/flash
+	desc = "A .357 flash bullet casing."
+	caliber = ".357"
+	icon_state = "r-casing"
+	projectile_type = /obj/item/projectile/energy/flash/strong
+
+/obj/item/ammo_casing/a357/stun
+	desc = "A .357 stun bullet casing."
+	caliber = ".357"
+	icon_state = "w-casing"
+	projectile_type = /obj/item/projectile/energy/electrode/stunshot/strong
+
 /*
  * .38
  */
