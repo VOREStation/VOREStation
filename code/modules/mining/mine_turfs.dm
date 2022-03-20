@@ -278,16 +278,23 @@ var/list/mining_overlay_cache = list()
 			mined_ore = 2 //some of the stuff gets blown up
 			GetDrilled()
 
-	if(severity <= 2) // Now to expose the ore lying under the sand.
+	if(severity <= 2 && length(resources)) // Now to expose the ore lying under the sand.
 		spawn(1) // Otherwise most of the ore is lost to the explosion, which makes this rather moot.
 			for(var/ore in resources)
+<<<<<<< HEAD
 				var/amount_to_give = rand(CEILING(resources[ore]/2, 1), resources[ore])  // Should result in at least one piece of ore.
 				var/oretype = ore_types[ore]
 				if(!oretype)
 					return // this turf can't give that type
 				for(var/i=1, i <= amount_to_give, i++)
+=======
+				var/amount_to_give = rand(CEILING(resources[ore] / 2, 1), resources[ore])  // Should result in at least one piece of ore.
+				for(var/i = 1 to amount_to_give)
+					var/oretype = ore_types[ore]
+>>>>>>> 1227ec1870f... Merge pull request #8453 from Spookerton/spkrtn/fix/drill-the-mud
 					new oretype(src)
-				resources[ore] = 0
+			resources = null
+
 
 /turf/simulated/mineral/bullet_act(var/obj/item/projectile/Proj) // only emitters for now
 	if(Proj.excavation_amount)
