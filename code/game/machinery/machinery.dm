@@ -293,12 +293,19 @@ Class Procs:
 	state(text, "blue")
 	playsound(src, 'sound/machines/ping.ogg', 50, 0)
 
-/obj/machinery/proc/shock(mob/user, prb)
+/obj/machinery/proc/shock(mob/living/user, prb)
 	if(inoperable())
 		return 0
 	if(!prob(prb))
+<<<<<<< HEAD
 		return 0
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+=======
+		return FALSE
+	if (!istype(user))
+		return
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+>>>>>>> 93d391a75f8... Merge pull request #8452 from Spookerton/spkrtn/fix/zap
 	s.set_up(5, 1, src)
 	s.start()
 	if(electrocute_mob(user, get_area(src), src, 0.7))
