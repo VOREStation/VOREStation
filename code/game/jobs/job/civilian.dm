@@ -97,9 +97,17 @@
 	supervisors = "the Head of Personnel"
 	selection_color = "#9b633e"
 	economic_modifier = 5
+<<<<<<< HEAD
 	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mining, access_mining_station, access_RC_announce)
 	minimal_access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mining, access_mining_station, access_RC_announce)
 	banned_job_species = list("digital", SPECIES_PROMETHEAN)
+=======
+	access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mining, access_mining_station)
+	minimal_access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_qm, access_mining, access_mining_station)
+	banned_job_species = list("digital")
+
+	min_age_by_species = list(SPECIES_PROMETHEAN = 5)
+>>>>>>> 82b38926518... Merge pull request #8424 from Mechoid/PrometheanTimeskipUpdate
 
 	ideal_character_age = 40
 

@@ -62,7 +62,9 @@
 	access = list(access_security, access_eva, access_sec_doors, access_brig, access_armory, access_maint_tunnels, access_morgue, access_external_airlocks)
 	minimal_access = list(access_security, access_eva, access_sec_doors, access_brig, access_armory, access_maint_tunnels, access_external_airlocks)
 	minimal_player_age = 5
-	banned_job_species = list(SPECIES_ZADDAT, SPECIES_PROMETHEAN, SPECIES_TESHARI, SPECIES_DIONA)
+	banned_job_species = list(SPECIES_ZADDAT, SPECIES_TESHARI, SPECIES_DIONA)
+
+	min_age_by_species = list(SPECIES_PROMETHEAN = 8)
 
 	outfit_type = /decl/hierarchy/outfit/job/security/warden
 	job_description = "The Warden watches over the physical Security Department, making sure the Brig and Armoury are secure and in order at all times. They oversee \
@@ -87,7 +89,9 @@
 	minimal_access = list(access_security, access_sec_doors, access_forensics_lockers, access_morgue, access_maint_tunnels, access_eva, access_external_airlocks)
 	economic_modifier = 5
 	minimal_player_age = 3
-	banned_job_species = list(SPECIES_ZADDAT, SPECIES_PROMETHEAN, SPECIES_DIONA)
+	banned_job_species = list(SPECIES_ZADDAT, SPECIES_DIONA)
+
+	min_age_by_species = list(SPECIES_PROMETHEAN = 5)
 
 	outfit_type = /decl/hierarchy/outfit/job/security/detective
 	job_description = "A Detective works to help Security find criminals who have not properly been identified, through interviews and forensic work. \
