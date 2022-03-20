@@ -38,7 +38,11 @@
 		to_chat(M, "This Shroud has already been customized!")
 		return 0
 
+<<<<<<< HEAD
 	suit_style = tgui_input_list(M, "Which suit style would you like?", "Suit Style", list("Engineer", "Spacer", "Knight", "Fashion", "Bishop", "Hegemony", "Rugged", "Soft"))
+=======
+	suit_style = input(M, "Which suit style would you like?") in list("Engineer", "Spacer", "Knight", "Fashion", "Bishop", "Hegemony", "Rugged", "Soft", "Ancient", "Healer", "Clockwork", "Retro")
+>>>>>>> b13c31da3fa... Ports 4 Zaddat suits from Citadel (#8436)
 	switch(suit_style)
 		if("Engineer")
 			name = "\improper Engineer's Guild Shroud"
@@ -107,16 +111,60 @@
 				helmet.icon_state = "zaddat_rugged"
 				helmet.item_state = "zaddat_rugged"
 		if("Soft")
-			name = "\improper soft Shroud"
-			base_name = "\improper soft Shroud"
+			name = "soft Shroud"
+			base_name = "soft Shroud"
 			desc = "Material and design is chosen for practical reasons, making it take as little space as possible when stowed whilst also providing reasonable comfort when worn for long periods."
 			icon_state = "zaddat_soft"
 			item_state = "zaddat_soft"
 			if(helmet)
-				helmet.name = "\improper soft Shroud hood"
+				helmet.name = "soft Shroud hood"
 				helmet.desc = "Not as solid as a proper helmet, but works nonetheless."
 				helmet.icon_state = "zaddat_soft"
 				helmet.item_state = "zaddat_soft"
+		if("Ancient")
+			name = "ancient Shroud"
+			base_name = "ancient Shroud"
+			desc = "Often seen among the guildless or dishonored, this is an extremely old design of Shroud and has clearly seen its years."
+			icon_state = "zaddat_ancient"
+			item_state = "zaddat_ancient"
+			if(helmet)
+				helmet.name = "ancient Shroud helmet"
+				helmet.desc = "A crack in the visor allows some light through, though it maintains its seal."
+				helmet.icon_state = "zaddat_ancient"
+				helmet.item_state = "zaddat_ancient"
+		if("Healer")
+			name = "healer Shroud"
+			base_name = "healer Shroud"
+			desc = "A shroud designed for those working within medicine, a common pursuit for Zaddat. it is clearly marked with the standard cross and colors."
+			icon_state = "zaddat_healer"
+			item_state = "zaddat_healer"
+			if(helmet)
+				helmet.name = "healer Shroud helmet"
+				helmet.desc = "A helmet designed to signal the wearer as a healer."
+				helmet.icon_state = "zaddat_healer"
+				helmet.item_state = "zaddat_healer"
+		if("Clockwork")
+			name = "clockword Shroud"
+			base_name = "clockword Shroud"
+			desc = "Inspired by clockwork designs seen in some ancient human technologies and subcultures, this suit was popularized through osmosis with those subcultures."
+			icon_state = "zaddat_clockwork"
+			item_state = "zaddat_clockwork"
+			if(helmet)
+				helmet.name = "clockword Shroud helmet"
+				helmet.desc = "Plated in brass."
+				helmet.icon_state = "zaddat_clockwork"
+				helmet.item_state = "zaddat_clockwork"
+		if("Retro")
+			name = "retro Shroud"
+			base_name = "retro Shroud"
+			desc = "This suit is derivative of some seen in ancient human media, long before voidsuits were commonplace. Such media has found a resurgence in popularity among some Zaddat."
+			icon_state = "zaddat_retro"
+			item_state = "zaddat_retro"
+			if(helmet)
+				helmet.name = "retro Shroud helmet"
+				helmet.desc = "A classic design for the modern age."
+				helmet.icon_state = "zaddat_retro"
+				helmet.item_state = "zaddat_retro"
 
 	to_chat(M, "You finish customizing your Shroud. Looking good!")
 	has_been_customized = TRUE
