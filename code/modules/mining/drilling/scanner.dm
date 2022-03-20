@@ -47,7 +47,11 @@
 				if("diamond", /*"painite"*/)	ore_type = "precious gems"
 				if("uranium")									ore_type = "nuclear fuel"
 				if("phoron", "osmium", "hydrogen")				ore_type = "exotic matter"
+<<<<<<< HEAD
 				if("verdantium", /*"void opal"*/)				ore_type = "anomalous matter"
+=======
+				if("verdantium", "magmellite")				ore_type = "anomalous matter"
+>>>>>>> 8f5bd6cc5a1... Merge pull request #8438 from Cerebulon/magmellitename
 
 			if(ore_type) metals[ore_type] += T.resources[metal]
 

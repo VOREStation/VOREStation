@@ -54,7 +54,11 @@
 
 	// Found with an ultra laser. exotic_drilling >= 2
 	var/list/ore_types_rare = list(
+<<<<<<< HEAD
 		//"void opal" = /obj/item/weapon/ore/void_opal,
+=======
+		"magmellite" = /obj/item/weapon/ore/magmellite,
+>>>>>>> 8f5bd6cc5a1... Merge pull request #8438 from Cerebulon/magmellitename
 		MAT_VERDANTIUM = /obj/item/weapon/ore/verdantium
 		)
 

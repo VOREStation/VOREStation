@@ -235,12 +235,12 @@
 	ore = /obj/item/weapon/ore/painite
 	scan_icon = "mineral_rare"
 
-/ore/void_opal
-	name = "void opal"
-	display_name = "rough void opal"
-	compresses_to = "void opal"
+/ore/magmellite
+	name = "magmellite"
+	display_name = "impure magmellite"
+	compresses_to = "magmellite"
 	result_amount = 5
 	spread_chance = 1
-	ore = /obj/item/weapon/ore/void_opal
+	ore = /obj/item/weapon/ore/magmellite
 	scan_icon = "mineral_rare"
 */

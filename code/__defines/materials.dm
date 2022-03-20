@@ -44,7 +44,7 @@
 #define MAT_COPPER			"copper"
 #define MAT_QUARTZ			"quartz"
 #define MAT_TIN				"tin"
-#define MAT_VOPAL			"void opal"
+#define MAT_MAGMELLITE		"magmellite"
 #define MAT_ALUMINIUM		"aluminium"
 #define MAT_BRONZE			"bronze"
 #define MAT_PAINITE			"painite"

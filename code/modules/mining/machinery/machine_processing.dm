@@ -171,7 +171,7 @@
 		"carbon" = 1,
 		"raw copper" = 1,
 		"raw tin" = 1,
-		"void opal" = 3,
+		"magmellite" = 3,
 		"painite" = 3,
 		"quartz" = 3,
 		"raw bauxite" = 5,

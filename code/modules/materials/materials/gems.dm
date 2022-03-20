@@ -69,12 +69,12 @@
 	sheet_plural_name = "gems"
 	supply_conversion_value = 4
 
-/datum/material/void_opal
-	name = "void opal"
-	display_name = "void opal"
-	use_name = "void opal"
+/datum/material/magmellite
+	name = "magmellite"
+	display_name = "magmellite"
+	use_name = "magmellite"
 	icon_colour = "#0f0f0f"
-	stack_type = /obj/item/stack/material/void_opal
+	stack_type = /obj/item/stack/material/magmellite
 	flags = MATERIAL_UNMELTABLE
 	cut_delay = 60
 	reflectivity = 0
@@ -82,7 +82,7 @@
 	shard_type = SHARD_SHARD
 	tableslam_noise = 'sound/effects/Glasshit.ogg'
 	hardness = 100
-	stack_origin_tech = list(TECH_ARCANE = 1, TECH_MATERIAL = 6)
+	stack_origin_tech = list(TECH_BLUESPACE = 5, TECH_MATERIAL = 7)
 	sheet_singular_name = "gem"
 	sheet_plural_name = "gems"
 	supply_conversion_value = 30	// These are hilariously rare.

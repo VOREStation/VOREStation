@@ -650,9 +650,15 @@
 				/obj/item/weapon/ore/verdantium
 			),/*
 			prob(2);list(
+<<<<<<< HEAD
 				/obj/item/weapon/ore/void_opal,
 				/obj/item/weapon/ore/void_opal
 			),*/
+=======
+				/obj/item/weapon/ore/magmellite,
+				/obj/item/weapon/ore/magmellite
+			),
+>>>>>>> 8f5bd6cc5a1... Merge pull request #8438 from Cerebulon/magmellitename
 		)
 
 /obj/random/multiple/corp_crate

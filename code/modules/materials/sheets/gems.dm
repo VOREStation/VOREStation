@@ -21,11 +21,11 @@
 	apply_colour = 1
 	no_variants = FALSE
 
-/obj/item/stack/material/void_opal
-	name = "void opal"
+/obj/item/stack/material/magmellite
+	name = "magmellite"
 	icon_state = "sheet-void_opal"
-	singular_name = "void opal"
-	default_type = "void opal"
+	singular_name = "magmellite"
+	default_type = "magmellite"
 	apply_colour = 1
 	no_variants = FALSE
 

@@ -126,11 +126,17 @@
 	name = "raw rutile"
 	icon_state = "ore_rutile"
 	material = "rutile"
+<<<<<<< HEAD
 /*
 /obj/item/weapon/ore/void_opal
 	name = "raw void opal"
+=======
+
+/obj/item/weapon/ore/magmellite
+	name = "impure magmellite"
+>>>>>>> 8f5bd6cc5a1... Merge pull request #8438 from Cerebulon/magmellitename
 	icon_state = "ore_void_opal"
-	material = "void opal"
+	material = "magmellite"
 
 /obj/item/weapon/ore/painite
 	name = "raw painite"

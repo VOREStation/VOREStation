@@ -68,9 +68,15 @@
 				//T.resources["tin"] =      rand(RESOURCE_LOW_MIN, RESOURCE_MID_MAX)
 				//T.resources["bauxite"] =  rand(RESOURCE_LOW_MIN, RESOURCE_LOW_MAX)
 				T.resources["rutile"] =   0
+<<<<<<< HEAD
 				//T.resources["void opal"] = 0
 				//T.resources["quartz"] = 0
 				//T.resources["painite"] = 0
+=======
+				T.resources["magmellite"] = 0
+				T.resources["quartz"] = 0
+				T.resources["painite"] = 0
+>>>>>>> 8f5bd6cc5a1... Merge pull request #8438 from Cerebulon/magmellitename
 			else if(current_cell < deep_val) // Rare metals.
 				T.resources["gold"] =     rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
 				T.resources["silver"] =   rand(RESOURCE_MID_MIN,  RESOURCE_MID_MAX)
@@ -87,9 +93,15 @@
 				//T.resources["tin"] =      rand(RESOURCE_MID_MIN, RESOURCE_MID_MAX)
 				//T.resources["bauxite"] =  0
 				T.resources["rutile"] =   rand(RESOURCE_LOW_MIN, RESOURCE_MID_MAX)
+<<<<<<< HEAD
 				//T.resources["void opal"] = 0
 				//T.resources["quartz"] = 0
 				//T.resources["painite"] = 0
+=======
+				T.resources["magmellite"] = 0
+				T.resources["quartz"] = 0
+				T.resources["painite"] = 0
+>>>>>>> 8f5bd6cc5a1... Merge pull request #8438 from Cerebulon/magmellitename
 			else                             // Deep metals.
 				T.resources["uranium"] =  rand(RESOURCE_MID_MIN,  RESOURCE_HIGH_MAX)
 				T.resources["diamond"] =  rand(RESOURCE_LOW_MIN,  RESOURCE_LOW_MAX)
@@ -106,9 +118,15 @@
 				//T.resources["tin"] =      0
 				//T.resources["bauxite"] =  0
 				T.resources["rutile"] =   rand(RESOURCE_MID_MIN, RESOURCE_HIGH_MAX)
+<<<<<<< HEAD
 				//T.resources["void opal"] = 0
 				//T.resources["quartz"] = 0
 				//T.resources["painite"] = 0
+=======
+				T.resources["magmellite"] = 0
+				T.resources["quartz"] = 0
+				T.resources["painite"] = 0
+>>>>>>> 8f5bd6cc5a1... Merge pull request #8438 from Cerebulon/magmellitename
 	return
 
 /datum/random_map/noise/ore/get_map_char(var/value)
