@@ -164,10 +164,15 @@
 	slot = ACCESSORY_SLOT_TIE
 
 /obj/item/clothing/accessory/stethoscope/do_surgery(mob/living/carbon/human/M, mob/living/user)
+<<<<<<< HEAD
 	if(user.a_intent != I_HELP) //in case it is ever used as a surgery tool
 		return ..()
 	attack(M, user) //default surgery behaviour is just to scan as usual
 	return 1
+=======
+	return attack(M, user) //default surgery behaviour is just to scan as usual
+
+>>>>>>> b7e67dcd141... Merge pull request #8444 from listerla/pridepins
 
 /obj/item/clothing/accessory/stethoscope/attack(mob/living/carbon/human/M, mob/living/user)
 	if(ishuman(M) && isliving(user))
@@ -437,6 +442,7 @@
 	icon_state = "sash"
 	slot = ACCESSORY_SLOT_OVER
 
+<<<<<<< HEAD
 //Gaiter scarves
 /obj/item/clothing/accessory/gaiter
 	name = "red neck gaiter"
@@ -505,3 +511,38 @@
 /obj/item/clothing/accessory/gaiter/green
 	name = "green neck gaiter"
 	icon_state = "gaiter_green"
+=======
+/obj/item/clothing/accessory/pride
+	name = "pride pin"
+	desc = "A pin displaying pride in one's identity."
+	icon_state = "pride"
+	slot = ACCESSORY_SLOT_MEDAL
+
+/obj/item/clothing/accessory/pride/bi
+	name = "bisexual pride pin"
+	icon_state = "pride_bi"
+
+/obj/item/clothing/accessory/pride/trans
+	name = "transgender pride pin"
+	icon_state = "pride_trans"
+
+/obj/item/clothing/accessory/pride/ace
+	name = "asexual pride pin"
+	icon_state = "pride_ace"
+
+/obj/item/clothing/accessory/pride/enby
+	name = "nonbinary pride pin"
+	icon_state = "pride_enby"
+
+/obj/item/clothing/accessory/pride/pan
+	name = "pansexual pride pin"
+	icon_state = "pride_pan"
+
+/obj/item/clothing/accessory/pride/lesbian
+	name = "lesbian pride pin"
+	icon_state = "pride_lesbian"
+
+/obj/item/clothing/accessory/pride/intersex
+	name = "intersex pride pin"
+	icon_state = "pride_intersex"
+>>>>>>> b7e67dcd141... Merge pull request #8444 from listerla/pridepins

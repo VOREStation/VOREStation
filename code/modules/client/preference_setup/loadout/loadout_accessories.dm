@@ -286,6 +286,7 @@
 
 /datum/gear/accessory/hawaiian_shirt/New()
 	..()
+<<<<<<< HEAD
 	var/list/hawaiian_shirts = list(
 	"Cyan Hawaiian shirt" = /obj/item/clothing/accessory/hawaiian,
 	"Blue Hawaiian shirt" = /obj/item/clothing/accessory/hawaiian/blue,
@@ -307,3 +308,18 @@
 	"Grey Vest" = /obj/item/clothing/accessory/cowboy_vest/grey
 	)
 	gear_tweaks += new/datum/gear_tweak/path(cowboy_vests)
+=======
+	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/accessory/pride
+	display_name = "pride pin selection"
+	path = /obj/item/clothing/accessory/pride
+
+/datum/gear/accessory/pride/New()
+	..()
+	var/list/pridepins = list()
+	for(var/pridepin in typesof(/obj/item/clothing/accessory/pride))
+		var/obj/item/clothing/accessory/pridepin_type = pridepin
+		pridepins[initial(pridepin_type.name)] = pridepin_type
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(pridepins))
+>>>>>>> b7e67dcd141... Merge pull request #8444 from listerla/pridepins
