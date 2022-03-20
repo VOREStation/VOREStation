@@ -437,6 +437,11 @@
 		/datum/mob_descriptor/height = 0,
 		/datum/mob_descriptor/build = -1
 		)
+
+	default_emotes = list(
+		/decl/emote/audible/chirp
+	)
+
 /datum/species/zaddat/equip_survival_gear(var/mob/living/carbon/human/H)
 	..()
 	if(H.wear_suit) //get rid of job labcoats so they don't stop us from equipping the Shroud
