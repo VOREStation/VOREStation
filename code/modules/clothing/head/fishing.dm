@@ -47,11 +47,38 @@
 						"worry about me",
 						"gossip about me",
 						"defame me",
+						"disbelieve my existence",
 						"conspire against me",
 						"draw me as the soyjack",
 						"put me in their tummies",
+						"crunchatize me",
 						"crunchatize me, cap'n!",
+						"wreck me",
+						"feed me",
+						"beg to get in my stomach",
+						"walk all over me",
+						"drink me like a milkshake",
+						"beg me to step on them",
+						"call me Mommy",
+						"call me Daddy",
+						"step on me",
+						"lay eggs down my throat",
+						"dream about me",
+						"choke me with their thighs",
+						"steal my lunch money",
+						"contact me about my spaceship's extended warranty",
+						"envy me",
+						"combo me",
+						"want to kidnap me",
+						"fold me in half",
+						"think my spacetruck is hot",
+						"hate my spacetruck",
+						"are more into my spacetruck than me",
+						"ask me for docking codes",
 						"think of me while kneading dough",
+						"gun me down in the streets of miami",
+						"drop me off of inconveniently high places",
+						"drop me into inconveniently tight places",
 						"leave threatening messages on my voicemail",
 						"write fanfiction about me",
 						"attempt to approach me"
@@ -71,6 +98,10 @@
 							"pursue me to the ends of the earth, constantly thwarted by inconsequential setbacks, and when they catch up and I ask in an exasperated voice why they respond 'you owe me a dollar'",
 							"call me just to 'chat' but actually mention they are moving and, obviously, since I'm the ONLY guy they know with a truck it would be great if I could help out, they said they'd buy me pizza but that doesn't really cover it",
 							"shuffle uncomfortably as we continue to sit in near-total silence having exhausted all topics of conversation hours ago but neither of us having worked up the spirit to suggest that we part ways and go home",
+							"shove me into their large gaping maw, covering me in drool as I descend into their warm depths, becoming covered by hot bubbling acids that dissolve my body while I play Animal Crossing New Leaf on my Nintendo 3DS",
+							"promise me McDonalds but conveniently forget to pull into the drivethrough on the way home, leaving me burgerless",
+							"leave me in the car all alone with my favorite music and a bottle of water in the summer",
+							"create designs of particularly verbose hats describing extreme complexities and deep philosophical implications of their unusually specific feelings and often not particularly kind thoughts about me",
 							"methodically place brick after agonising brick in the wall they are constructing to forever entomb me in the basement which they claimed contained a case of Amontillado wine"
 						)
 
@@ -113,6 +144,9 @@
 	desc = "A peaked cap with text reading '[slogan]'."
 	name = "\improper '[slogan]' hat"
 
+	//pick a hue
+	var/colourtype = pick("green", "red", "blue", "yellow", "purple", "orange", "grey")
+
 	//finally, take our hat size and pick the icon accordingly
-	icon_state = "greensoft[hatsize]"
-	item_state_slots = list(slot_r_hand_str = "greensoft", slot_l_hand_str = "greensoft", slot_head_str = "greensoft[hatsize]")
+	icon_state = "[colourtype]soft[hatsize]"
+	item_state_slots = list(slot_r_hand_str = "[colourtype]soft", slot_l_hand_str = "[colourtype]soft", slot_head_str = "[colourtype]soft[hatsize]")
