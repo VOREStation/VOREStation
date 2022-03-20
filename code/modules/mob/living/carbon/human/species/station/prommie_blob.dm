@@ -68,6 +68,12 @@
 	set_light(0)
 	return ..()
 
+/mob/living/carbon/human/Destroy()
+	if(stored_blob)
+		stored_blob = null
+		qdel(stored_blob)
+	return ..()
+
 /mob/living/simple_mob/slime/promethean/Stat()
 	..()
 	if(humanform)
@@ -79,6 +85,11 @@
 		set_light(max(1,min(5,rad_glow/15)), max(1,min(10,rad_glow/25)), color)
 	else
 		set_light(0)
+	update_icon()
+
+	if(!humanform) // If we somehow have a blob with no human, lets just clean up.
+		log_debug("Cleaning up blob with no prommie!")
+		qdel(src)
 	return
 
 //Constructor allows passing the human to sync damages
@@ -89,7 +100,7 @@
 		updatehealth()
 
 	else
-		update_icon()
+		qdel(src)
 
 /mob/living/simple_mob/slime/promethean/updatehealth()
 	if(!humanform)
@@ -228,7 +239,7 @@
 
 	//Blob form
 	if(!ishuman(src))
-		if(humanform.temporary_form.stat)
+		if(humanform.temporary_form.stat || paralysis || stunned || weakened || restrained())
 			to_chat(src,"<span class='warning'>You can only do this while not stunned.</span>")
 		else
 			humanform.prommie_outofblob(src)
@@ -242,7 +253,7 @@
 	if(stat || world.time < last_special)
 		return
 
-	last_special = world.time + 50
+	last_special = world.time + 25
 
 	if(is_wide)
 		is_wide = FALSE
@@ -262,7 +273,7 @@
 	if(stat || world.time < last_special)
 		return
 
-	last_special = world.time + 50
+	last_special = world.time + 25
 
 	if(shiny)
 		shiny = FALSE
@@ -281,7 +292,7 @@
 	if(stat || world.time < last_special)
 		return
 
-	last_special = world.time + 50
+	last_special = world.time + 25
 
 	var/new_skin = input(usr, "Please select a new body color.", "Shapeshifter Colour", color) as null|color
 	if(!new_skin)
@@ -303,7 +314,8 @@
 	var/list/fulllist = _slime_default_emotes
 	fulllist += default_emotes
 	return fulllist
-
+/mob/living/carbon/human
+	var/mob/living/simple_mob/slime/promethean/stored_blob = null
 // Helpers - Unsafe, WILL perform change.
 /mob/living/carbon/human/proc/prommie_intoblob(force)
 	if(!force && !isturf(loc))
@@ -323,9 +335,16 @@
 
 	//Record where they should go
 	var/atom/creation_spot = drop_location()
-
+	var/mob/living/simple_mob/slime/promethean/blob = null
 	//Create our new blob
-	var/mob/living/simple_mob/slime/promethean/blob = new(creation_spot,src)
+	if(!stored_blob)
+		blob = new(creation_spot,src)
+		blob.mood = ":3"
+		qdel(blob.ai_holder)
+		blob.ai_holder = null
+	else
+		blob = stored_blob
+		blob.forceMove(creation_spot)
 
 	//Drop all our things
 	var/list/things_to_drop = contents.Copy()
@@ -361,14 +380,14 @@
 	if(r_hand) blob.prev_right_hand = r_hand
 
 	//Put our owner in it (don't transfer var/mind)
-	qdel(blob.ai_holder)
-
-	blob.ai_holder = null
+	blob.Weaken(2)
+	blob.transforming = TRUE
 	blob.ckey = ckey
+	blob.transforming = FALSE
 	blob.name = name
 	blob.nutrition = nutrition
 	blob.color = rgb(r_skin, g_skin, b_skin)
-	blob.mood = ":3"
+	playsound(src.loc, "sound/effects/slime_squish.ogg", 15)
 	if(radiation > 0)
 		blob.rad_glow = CLAMP(radiation,0,250)
 		set_light(0)
@@ -377,11 +396,11 @@
 	if(has_hat)
 		blob.hat = new_hat
 		new_hat.forceMove(src)
+
 	blob.update_icon()
 	blob.verbs -= /mob/living/proc/ventcrawl // Absolutely not.
 	blob.verbs -= /mob/living/simple_mob/proc/set_name // We already have a name.
 	temporary_form = blob
-
 	//Mail them to nullspace
 	moveToNullspace()
 
@@ -431,7 +450,12 @@
 	forceMove(reform_spot)
 
 	//Put our owner in it (don't transfer var/mind)
+	Weaken(2)
+	playsound(src.loc, "sound/effects/slime_squish.ogg", 15)
+	transforming = TRUE
 	ckey = blob.ckey
+	transforming = FALSE
+	blob.name = "Promethean Blob"
 	var/obj/item/hat = blob.hat
 	blob.drop_hat()
 	drop_from_inventory(hat) // Hat me baby
@@ -460,7 +484,15 @@
 	Life(1) //Fix my blindness right meow //Has to be moved up here, there exists a circumstance where blob could be deleted without vore organs moving right.
 
 	//Get rid of friend blob
-	qdel(blob)
+	stored_blob = blob
+	blob.set_light(0)
+	blob.moveToNullspace()
+	//qdel(blob)
 
 	//Return ourselves in case someone wants it
 	return src
+
+/mob/living/simple_mob/slime/promethean/examine(mob/user)
+	. = ..()
+	if(hat)
+		. += "They are wearing \a [hat]."

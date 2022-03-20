@@ -16,10 +16,9 @@
 	spawn_flags = SPECIES_CAN_JOIN
 	wikilink="https://wiki.vore-station.net/Promethean"
 	genders = list(MALE, FEMALE, PLURAL, NEUTER)
-
 	color_mult = 1
 	mob_size = MOB_MEDIUM //As of writing, original was MOB_SMALL - Allows normal swapping
-
+	//var/mob/living/simple_mob/slime/promethean/stored_blob = null
 	appearance_flags = HAS_SKIN_COLOR | HAS_EYE_COLOR | HAS_HAIR_COLOR | RADIATION_GLOWS | HAS_UNDERWEAR
 
 	inherent_verbs = list(
@@ -56,7 +55,7 @@
 			prommie_outofblob(temporary_form)
 	*/
 	//Human form
-	else if(stat)
+	else if(stat || paralysis || stunned || weakened || restrained())
 		to_chat(src,"<span class='warning'>You can only do this while not stunned.</span>")
 		return
 	else
@@ -70,6 +69,9 @@
 		H.forceMove(H.temporary_form.drop_location())
 		H.ckey = H.temporary_form.ckey
 		QDEL_NULL(H.temporary_form)
+	//else if(H.stored_blob) // Should prevent phantom blobs in the aether. I don't anticipate this being an issue, but if it is just uncomment.
+	//	qdel(stored_blob)
+	//	stored_blob = null
 
 	spawn(1)
 		if(H)
