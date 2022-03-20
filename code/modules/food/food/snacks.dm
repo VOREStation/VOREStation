@@ -3510,8 +3510,20 @@
 	center_of_mass = list("x"=16, "y"=13)
 	whole_path = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/mushroompizza
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/snacks/slice/mushroompizza/filled
 	filled = TRUE
+=======
+/obj/item/weapon/reagent_containers/food/snacks/bun
+	name = "bun"
+	desc = "A base for any self-respecting burger."
+	icon = 'icons/obj/food_ingredients.dmi'
+	icon_state = "bun"
+	bitesize = 2
+	center_of_mass = list("x"=16, "y"=12)
+	nutriment_amt = 4
+	nutriment_desc = list("bun" = 4)
+>>>>>>> e20d161af09... Merge pull request #8423 from Verkister/patch-84
 
 /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/vegetablepizza
 	name = "Vegetable pizza"
