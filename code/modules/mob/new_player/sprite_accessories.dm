@@ -2605,6 +2605,18 @@ shaved
 	species_allowed = list(SPECIES_DIONA)
 	do_colouration = 0
 
+//Skrell stuff.
+
+/datum/sprite_accessory/marking/skrell
+	name = "Countershading (Skrell)"
+	icon_state = "skr_shade"
+	body_parts = list(BP_TORSO, BP_GROIN, BP_HEAD)
+	species_allowed = list(SPECIES_SKRELL)
+
+/datum/sprite_accessory/marking/skrell/stripes
+	name = "Poison Dart Stripes (Skrell)"
+	icon_state = "skr_stripes"
+	body_parts = list(BP_L_LEG, BP_R_LEG, BP_L_ARM, BP_R_ARM, BP_TORSO)
 
 //Cybernetic Augments, some species-limited due to sprite misalignment. /aug/ types are excluded from dna.
 
