@@ -496,3 +496,14 @@
 	. = ..()
 	if(hat)
 		. += "They are wearing \a [hat]."
+
+/mob/living/simple_mob/slime/promethean/say_understands(var/mob/other, var/datum/language/speaking = null)
+	if(speaking?.name == LANGUAGE_PROMETHEAN)	//Promethean and sign are both nonverbal, so won't work with the same trick as below, so let's check for them
+		return TRUE
+	else if(speaking?.name == LANGUAGE_SIGN)
+		for(var/datum/language/L in humanform.languages)
+			if(L.name == LANGUAGE_SIGN)
+				return TRUE
+	else if(humanform.say_understands(other, speaking))		//So they're speaking something other than promethean or sign, let's just ask our original mob if it understands
+		return TRUE
+	else return FALSE
