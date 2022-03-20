@@ -418,6 +418,7 @@
 	desc = "Keeping your drinks at the perfect temperature since 1892."
 	icon_state = "vacuumflask"
 	volume = 60
+<<<<<<< HEAD
 	center_of_mass = list("x"=15, "y"=4)
 
 /obj/item/weapon/reagent_containers/food/drinks/britcup
@@ -427,3 +428,6 @@
 	volume = 30
 	center_of_mass = list("x"=15, "y"=13)
 
+=======
+	center_of_mass = list("x"=15, "y"=4)
+>>>>>>> 4280270e70c... Merge pull request #8448 from Cerebulon/mugging
