@@ -464,8 +464,10 @@
 
 
 	temporary_form = null
-
-	shapeshifter_set_colour(blob.color)
+	var/blob_color = blob.color
+	if(!blob_color)
+		blob_color = rgb(255, 255, 255)
+	shapeshifter_set_colour(blob_color)
 	if(blob.rad_glow > 0)
 		radiation = CLAMP(blob.rad_glow,0,250)
 		set_light(max(1,min(5,radiation/15)), max(1,min(10,radiation/25)), species.get_flesh_colour(src))
