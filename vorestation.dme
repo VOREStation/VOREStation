@@ -2841,6 +2841,7 @@
 #include "code\modules\mob\living\carbon\human\species\station\monkey_vr.dm"
 #include "code\modules\mob\living\carbon\human\species\station\prometheans.dm"
 #include "code\modules\mob\living\carbon\human\species\station\prometheans_vr.dm"
+#include "code\modules\mob\living\carbon\human\species\station\prommie_blob.dm"
 #include "code\modules\mob\living\carbon\human\species\station\station.dm"
 #include "code\modules\mob\living\carbon\human\species\station\station_special_abilities_vr.dm"
 #include "code\modules\mob\living\carbon\human\species\station\station_special_vr.dm"
