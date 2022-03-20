@@ -135,7 +135,7 @@
 		O_LUNGS =    /obj/item/organ/internal/lungs/unathi,
 		O_LIVER =    /obj/item/organ/internal/liver/unathi,
 		O_BRAIN =    /obj/item/organ/internal/brain/unathi,
-		O_EYES =     /obj/item/organ/internal/eyes,
+		O_EYES =     /obj/item/organ/internal/eyes/unathi,
 		O_STOMACH =		/obj/item/organ/internal/stomach/unathi,
 		O_INTESTINE =	/obj/item/organ/internal/intestine/unathi
 		)
@@ -250,13 +250,13 @@
 
 	has_organ = list(    //No appendix.
 		O_HEART =    /obj/item/organ/internal/heart/tajaran,
-		O_LUNGS =    /obj/item/organ/internal/lungs,
+		O_LUNGS =    /obj/item/organ/internal/lungs/tajaran,
 		O_VOICE = 		/obj/item/organ/internal/voicebox,
-		O_LIVER =    /obj/item/organ/internal/liver,
+		O_LIVER =    /obj/item/organ/internal/liver/tajaran,
 		O_KIDNEYS =  /obj/item/organ/internal/kidneys,
 		O_BRAIN =    /obj/item/organ/internal/brain,
 		O_EYES =     /obj/item/organ/internal/eyes/tajaran,
-		O_STOMACH =		/obj/item/organ/internal/stomach,
+		O_STOMACH =		/obj/item/organ/internal/stomach/tajaran,
 		O_INTESTINE =	/obj/item/organ/internal/intestine
 		)
 
@@ -356,6 +356,26 @@
 		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right)
 		)
 
+<<<<<<< HEAD
+=======
+	has_organ = list(
+		O_HEART =		/obj/item/organ/internal/heart/skrell,
+		O_LUNGS =		/obj/item/organ/internal/lungs/skrell,
+		O_VOICE = 		/obj/item/organ/internal/voicebox/skrell,
+		O_LIVER =		/obj/item/organ/internal/liver/skrell,
+		O_KIDNEYS =		/obj/item/organ/internal/kidneys/skrell,
+		O_BRAIN =		/obj/item/organ/internal/brain/skrell,
+		O_APPENDIX = 	/obj/item/organ/internal/appendix/skrell,
+		O_SPLEEN = 		/obj/item/organ/internal/spleen/skrell,
+		O_EYES =		/obj/item/organ/internal/eyes/skrell,
+		O_STOMACH =		/obj/item/organ/internal/stomach/skrell,
+		O_INTESTINE =	/obj/item/organ/internal/intestine/skrell
+		)
+
+/datum/species/skrell/can_breathe_water()
+	return TRUE
+
+>>>>>>> 122b75d7895... Adds more alien organ sprites (#8442)
 /datum/species/zaddat
 	name = SPECIES_ZADDAT
 	name_plural = "Zaddat"
