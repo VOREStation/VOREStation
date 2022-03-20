@@ -1,5 +1,5 @@
 /*
- * Detective Lethal
+ * Sidearm Lethal
  */
 /obj/item/gunbox
 	name = "sidearm box"
@@ -23,7 +23,7 @@
 		qdel(src)
 
 /*
- * Detective Stun
+ * Sidearm Stun
  */
 /obj/item/gunbox/stun
 	name = "non-lethal sidearm box"
