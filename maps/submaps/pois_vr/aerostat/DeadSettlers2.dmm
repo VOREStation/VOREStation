@@ -1,0 +1,28 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"m" = (/obj/structure/bonfire,/turf/simulated/mineral/floor/ignore_mapgen/virgo2,/area/submap/virgo2/DeadSettlers2)
+"n" = (/obj/effect/decal/remains,/turf/simulated/mineral/floor/ignore_mapgen/virgo2,/area/submap/virgo2/DeadSettlers2)
+"o" = (/obj/random/multiple/voidsuit,/obj/effect/decal/remains,/turf/simulated/mineral/floor/ignore_mapgen/virgo2,/area/submap/virgo2/DeadSettlers2)
+"u" = (/obj/item/device/flashlight/color/red,/turf/simulated/mineral/floor/ignore_mapgen/virgo2,/area/submap/virgo2/DeadSettlers2)
+"v" = (/obj/item/ammo_casing,/turf/simulated/mineral/floor/ignore_mapgen/virgo2,/area/submap/virgo2/DeadSettlers2)
+"x" = (/obj/tether_away_spawner/aerostat_surface,/turf/simulated/mineral/floor/ignore_mapgen/virgo2,/area/submap/virgo2/DeadSettlers2)
+"z" = (/turf/template_noop,/area/submap/virgo2/DeadSettlers2)
+"D" = (/turf/simulated/mineral/floor/ignore_mapgen/virgo2,/area/submap/virgo2/DeadSettlers2)
+"F" = (/obj/item/device/radio/off,/turf/simulated/mineral/floor/ignore_mapgen/virgo2,/area/submap/virgo2/DeadSettlers2)
+"I" = (/obj/random/firstaid,/obj/effect/decal/cleanable/blood,/turf/simulated/mineral/floor/ignore_mapgen/virgo2,/area/submap/virgo2/DeadSettlers2)
+"S" = (/obj/effect/decal/cleanable/blood,/turf/simulated/mineral/floor/ignore_mapgen/virgo2,/area/submap/virgo2/DeadSettlers2)
+"W" = (/obj/item/weapon/gun/projectile/shotgun/pump/rifle/lever/brushgun,/turf/simulated/mineral/floor/ignore_mapgen/virgo2,/area/submap/virgo2/DeadSettlers2)
+
+(1,1,1) = {"
+aaaaaaaaaaaa
+azzzzzzzzzza
+azzDDDDDDzza
+azDDDDDoDzza
+avDDvDmDDDza
+aDDnuDDFDDza
+aDWvDDDDDSDa
+aDDDDxDInDDa
+azzDDDDDSDDa
+azzzzDDDDDza
+azzzzzzzzzza
+aaaaaaaaaaaa
+"}

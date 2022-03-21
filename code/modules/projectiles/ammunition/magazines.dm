@@ -742,27 +742,25 @@
 // Clip
 /obj/item/ammo_magazine/clip/c12g
 	name = "ammo clip (12g slug)"
-	icon_state = "12gclipslug" // Still a placeholder sprite. Feel free to make a better one.
-	desc = "A color-coded metal clip for holding and quickly loading shotgun shells. This one is loaded with slugs."
+	icon_state = "12gclipslug"
+	desc = "A metal clip for holding and quickly loading two shotgun shells."
 	caliber = "12g"
 	ammo_type = /obj/item/ammo_casing/a12g
-	matter = list(MAT_STEEL = 1070) // slugs shells x2 + 350 metal for the clip itself.
+	matter = list(MAT_STEEL = 1070)
 	max_ammo = 2
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/clip/c12g/pellet
 	name = "ammo clip (12g buckshot)"
 	icon_state = "12gclipshell"
-	desc = "A color-coded metal clip for holding and quickly loading shotgun shells. This one is loaded with buckshot."
 	ammo_type = /obj/item/ammo_casing/a12g/pellet
-	matter = list(MAT_STEEL = 1070) // buckshot and slugs cost the same
+	matter = list(MAT_STEEL = 1070)
 
 /obj/item/ammo_magazine/clip/c12g/beanbag
 	name = "ammo clip (12g beanbag)"
 	icon_state = "12gclipbean"
-	desc = "A color-coded metal clip for holding and quickly loading shotgun shells. This one is loaded with beanbags."
 	ammo_type = /obj/item/ammo_casing/a12g/beanbag
-	matter = list(MAT_STEEL = 710) //beanbags x2 + 350 metal
+	matter = list(MAT_STEEL = 710)
 
 ///////// .75 Gyrojet /////////
 
