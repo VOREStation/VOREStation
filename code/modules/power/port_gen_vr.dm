@@ -357,16 +357,12 @@
 	else if (isanimal(runner))
 		var/mob/living/simple_mob/R = runner
 		cool_rotations = R.movement_delay()
-	log_and_message_admins("I got [cool_rotations] from [runner]")
 	if(cool_rotations <= 0)
 		cool_rotations = 0.5
-		log_and_message_admins("That's less than 1 so let's make it [cool_rotations]")
 	cool_rotations = default_power_gen / cool_rotations
-	log_and_message_admins("I am dividing [default_power_gen] by that much.")
 	switch(runner.nutrition)
 		if(1000 to INFINITY)	//VERY WELL FED, ZOOM!!!!
 			cool_rotations *= (runner.nutrition * 0.001)
-			log_and_message_admins("[runner] is over fed so we are producing over 100%")
 		if(500 to 1000)	//Well fed!
 			cool_rotations = cool_rotations
 		if(400 to 500)
@@ -382,9 +378,7 @@
 			runner.visible_message("<span class='notice'>\The [runner], panting and exhausted hops off of \the [src]!</span>")
 	if(part_mult > 1)
 		cool_rotations += (cool_rotations * (part_mult - 1)) / 4
-		log_and_message_admins("The part multiplier is [part_mult].")
 	power_gen = cool_rotations
-	log_and_message_admins("We are outputting [cool_rotations].")
 	runner.nutrition --
 
 /obj/machinery/power/rtg/d_type_reg/emp_act(severity)
