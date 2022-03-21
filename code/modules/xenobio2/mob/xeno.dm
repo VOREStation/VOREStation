@@ -101,12 +101,6 @@ Also includes Life and New
 		stasis += hit.stasisforce
 	..()
 
-<<<<<<< HEAD
 /mob/living/simple_mob/xeno/Destroy()
-	traitdat.Destroy()	//Let's clean up after ourselves.
-	traitdat = null
-=======
-/mob/living/simple_animal/xeno/Destroy()
 	QDEL_NULL(traitdat)
->>>>>>> a7877d86e50... Merge pull request #8341 from MistakeNot4892/qdel
 	..()
