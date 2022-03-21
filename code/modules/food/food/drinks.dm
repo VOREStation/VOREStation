@@ -420,10 +420,3 @@
 	volume = 60
 	center_of_mass = list("x"=15, "y"=4)
 
-/obj/item/weapon/reagent_containers/food/drinks/britcup
-	name = "cup"
-	desc = "A cup with the British flag emblazoned on it."
-	icon_state = "britcup"
-	volume = 30
-	center_of_mass = list("x"=15, "y"=13)
-
