@@ -31,7 +31,7 @@
 	var/time_coeff = 1
 	/// Coefficient for the efficiency of material usage in item building. Based on the installed parts.
 	var/component_coeff = 1
-	
+
 	var/loading_icon_state = "mechfab-idle"
 
 	var/list/materials = list(
@@ -148,6 +148,9 @@
 					sub_category += "Medical"
 				if(module_types & BORG_MODULE_ENGINEERING)
 					sub_category += "Engineering"
+				if(module_types & BORG_MODULE_SCIENCE)
+					sub_category += "Science"
+
 			else
 				sub_category += "All Cyborgs"
 		// Else check if this design builds a piece of exosuit equipment.
@@ -309,7 +312,7 @@
 		atom_say("Obstruction cleared. \The [stored_part] is complete.")
 		stored_part.forceMove(exit)
 		stored_part = null
-	
+
 	// If there's nothing being built, try to build something
 	if(!being_built)
 		// If we're not processing the queue anymore or there's nothing to build, end processing.
@@ -703,7 +706,7 @@
 
 	// Reduce our amount stored
 	materials[matstring] -= ejected * S.perunit
-	
+
 	// Recurse if we have enough left for more sheets
 	if(recursive && materials[matstring] >= S.perunit)
 		eject_materials(matstring, -1)

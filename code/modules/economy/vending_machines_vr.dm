@@ -218,7 +218,7 @@
 					/obj/item/weapon/reagent_containers/food/snacks/sliceable/orangecake = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/sliceable/peanutcake = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/icecreamsandwich = 15,
-					/obj/item/weapon/reagent_containers/food/snacks/cookiesnack = 15,
+					/obj/item/weapon/reagent_containers/food/snacks/cookie = 15,
 					/obj/item/weapon/reagent_containers/food/snacks/sliceable/brownies = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/chocolatebar = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/chocolatepiece = 20
@@ -415,7 +415,10 @@
 					/obj/item/clothing/shoes/boots/workboots/toeless = 5,
 					/obj/item/clothing/shoes/boots/winter = 5,
 					/obj/item/clothing/shoes/boots/workboots = 5,
-					/obj/item/clothing/shoes/footwraps = 5)
+					/obj/item/clothing/shoes/footwraps = 5,
+					/obj/item/clothing/shoes/sneakerspurple = 5,
+					/obj/item/clothing/shoes/sneakersblue = 5,
+					/obj/item/clothing/shoes/sneakersred = 5)
 	prices = list(/obj/item/clothing/gloves/evening = 50,
 					/obj/item/clothing/gloves/fingerless = 50,
 					/obj/item/clothing/gloves/black = 50,
@@ -473,7 +476,10 @@
 					/obj/item/clothing/shoes/boots/workboots/toeless = 50,
 					/obj/item/clothing/shoes/boots/winter = 50,
 					/obj/item/clothing/shoes/boots/workboots = 50,
-					/obj/item/clothing/shoes/footwraps = 50)
+					/obj/item/clothing/shoes/footwraps = 50,
+					/obj/item/clothing/shoes/sneakerspurple = 50,
+					/obj/item/clothing/shoes/sneakersblue = 50,
+					/obj/item/clothing/shoes/sneakersred = 50)
 	premium = list(/obj/item/clothing/gloves/rainbow = 1,
 					/obj/item/clothing/shoes/rainbow = 1,)
 	contraband = list(/obj/item/clothing/shoes/syndigaloshes = 1,
@@ -539,6 +545,10 @@
 					/obj/item/clothing/accessory/hawaiian/pink = 5,
 					/obj/item/clothing/accessory/hawaiian/red = 5,
 					/obj/item/clothing/accessory/hawaiian/yellow = 5,
+					/obj/item/clothing/accessory/tropical = 5,
+					/obj/item/clothing/accessory/tropical/green = 5,
+					/obj/item/clothing/accessory/tropical/pink = 5,
+					/obj/item/clothing/accessory/tropical/blue = 5,
 					/obj/item/clothing/accessory/locket = 5,
 					/obj/item/weapon/storage/backpack/purse = 1,
 					/obj/item/clothing/accessory/sash = 5,
@@ -652,6 +662,10 @@
 					/obj/item/clothing/accessory/hawaiian/pink = 50,
 					/obj/item/clothing/accessory/hawaiian/red = 50,
 					/obj/item/clothing/accessory/hawaiian/yellow = 50,
+					/obj/item/clothing/accessory/tropical = 50,
+					/obj/item/clothing/accessory/tropical/green = 50,
+					/obj/item/clothing/accessory/tropical/pink = 50,
+					/obj/item/clothing/accessory/tropical/blue = 50,
 					/obj/item/clothing/accessory/locket = 50,
 					/obj/item/weapon/storage/backpack/purse = 50,
 					/obj/item/clothing/accessory/sash = 50,
@@ -918,7 +932,11 @@
 					/obj/item/clothing/under/wedding/bride_white = 5,
 					/obj/item/weapon/storage/backpack/ = 5,
 					/obj/item/weapon/storage/backpack/messenger = 5,
-					/obj/item/weapon/storage/backpack/satchel = 5)
+					/obj/item/weapon/storage/backpack/satchel = 5,
+					/obj/item/clothing/under/tropical = 5,
+					/obj/item/clothing/under/tropical/green = 5,
+					/obj/item/clothing/under/tropical/pink = 5,
+					/obj/item/clothing/under/tropical/blue = 5)
 	prices = list(/obj/item/clothing/under/bathrobe = 50,
 					/obj/item/clothing/under/dress/black_corset = 50,
 					/obj/item/clothing/under/blazer = 50,
@@ -1089,7 +1107,11 @@
 					/obj/item/clothing/under/wedding/bride_white = 50,
 					/obj/item/weapon/storage/backpack/ = 50,
 					/obj/item/weapon/storage/backpack/messenger = 50,
-					/obj/item/weapon/storage/backpack/satchel = 50)
+					/obj/item/weapon/storage/backpack/satchel = 50,
+					/obj/item/clothing/under/tropical = 50,
+					/obj/item/clothing/under/tropical/green = 50,
+					/obj/item/clothing/under/tropical/pink = 50,
+					/obj/item/clothing/under/tropical/blue = 50)
 	premium = list(/obj/item/clothing/under/color/rainbow = 1)
 	contraband = list(/obj/item/clothing/under/rank/clown = 1)
 
@@ -1217,7 +1239,10 @@
 					/obj/item/clothing/suit/varsity/brown = 5,
 					/obj/item/clothing/suit/storage/hooded/wintercoat = 5,
 					/obj/item/clothing/suit/storage/hooded/wintercoat/aformal = 5,
-					/obj/item/clothing/suit/storage/teshari/cloak/standard/white_grey = 5)
+					/obj/item/clothing/suit/storage/teshari/cloak/standard/white_grey = 5,
+					/obj/item/clothing/suit/storage/puffyred = 5,
+					/obj/item/clothing/suit/storage/puffypurple = 5,
+					/obj/item/clothing/suit/storage/puffyblue = 5)
 	prices = list(/obj/item/clothing/suit/storage/apron = 100,
 					/obj/item/clothing/suit/storage/flannel/aqua = 100,
 					/obj/item/clothing/suit/storage/toggle/bomber = 100,
@@ -1306,7 +1331,10 @@
 					/obj/item/clothing/suit/varsity/brown = 100,
 					/obj/item/clothing/suit/storage/hooded/wintercoat = 100,
 					/obj/item/clothing/suit/storage/hooded/wintercoat/aformal = 100,
-					/obj/item/clothing/suit/storage/teshari/cloak/standard/white_grey = 100)
+					/obj/item/clothing/suit/storage/teshari/cloak/standard/white_grey = 100,
+					/obj/item/clothing/suit/storage/puffyred = 100,
+					/obj/item/clothing/suit/storage/puffypurple = 100,
+					/obj/item/clothing/suit/storage/puffyblue = 100)
 	premium = list(/obj/item/clothing/suit/imperium_monk = 3,
 					/obj/item/clothing/suit/storage/hooded/wintercoat/cosmic = 1)
 	contraband = list(/obj/item/toy/katana = 1)
@@ -2516,6 +2544,7 @@
 					/obj/item/weapon/reagent_containers/food/snacks/clownstears = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/coldchili = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/cookiesnack = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/cookie = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/corn_dog = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/cosmicbrowniesslice = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/cosmicbrowniesslice/filled = 10,
@@ -3000,6 +3029,7 @@
 					/obj/item/weapon/reagent_containers/food/snacks/clownstears = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/coldchili = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/cookiesnack = 10,
+					/obj/item/weapon/reagent_containers/food/snacks/cookie = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/corn_dog = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/cosmicbrowniesslice = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/cosmicbrowniesslice/filled = 10,

@@ -13917,7 +13917,7 @@
 	pixel_x = 32;
 	pixel_y = 0
 	},
-/obj/item/weapon/paper/dockingcodes,
+/obj/item/weapon/paper/dockingcodes/sd,
 /obj/item/device/radio,
 /obj/item/device/radio,
 /turf/simulated/floor/tiled/eris/dark/monofloor,

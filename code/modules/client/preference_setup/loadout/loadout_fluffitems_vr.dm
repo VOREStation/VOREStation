@@ -380,6 +380,12 @@
 	ckeywhitelist = list("erikthedog")
 	character_name = list("Erik Ramadwood")
 
+/datum/gear/fluff/salvage_id
+	path = /obj/item/weapon/card/id/event/polymorphic/itg
+	display_name = "Salvage's ITG-ID card"
+	ckeywhitelist = list("essbie")
+	character_name = list("Savage")
+
 //  F CKEYS
 /datum/gear/fluff/yikatihaki_armor
 	path = /obj/item/clothing/suit/armor/vox_scrap
@@ -1343,6 +1349,12 @@
 
 
 //  Y CKEYS
+
+/datum/gear/fluff/lemon_plush
+	path = /obj/item/toy/plushie/fluff/lemonplush
+	display_name = "yellow slime plushie"
+	ckeywhitelist = list("yecrowbarman")
+	character_name = list("Lemon Yellow", "Lemon Gettler Yellow", "Lemon Lee Yellow", "Lemon Jade Yellow") //different sleeves, same char
 
 //  Z CKEYS
 /datum/gear/fluff/tachika_medal

@@ -264,8 +264,8 @@
 		return
 	var/list/possible_mobs = list()
 	for(var/obj/belly/B in src.vore_organs)
-		for(var/mob/living/carbon/human/H in B)
-			if(ishuman(H) && H.ckey)
+		for(var/mob/living/H in B)
+			if( (ishuman(H) || isrobot(H)) && H.ckey )
 				possible_mobs += H
 			else
 				continue
@@ -276,9 +276,11 @@
 		M = input
 		if(!M)
 			return
-		if(M.resleeve_lock && ckey != M.resleeve_lock)
-			to_chat(src, "<span class='warning'>\The [M] cannot be impersonated!</span>")
-			return
+		// Adding a ishuman check here, since silicon mobs don't have a resleeve_lock from what I can tell.
+		if(ishuman(M))
+			if(M.resleeve_lock && ckey != M.resleeve_lock)
+				to_chat(src, "<span class='warning'>\The [M] cannot be impersonated!</span>")
+				return
 		if(tgui_alert(src, "You selected [M] to attempt to take over. Are you sure?", "Take Over Prey",list("No","Yes")) == "Yes")
 			log_admin("[key_name_admin(src)] offered [M] to swap bodies as a morph.")
 			if(tgui_alert(M, "\The [src] has elected to attempt to take over your body and control you. Is this something you will allow to happen?", "Allow Morph To Take Over",list("No","Yes")) == "Yes")

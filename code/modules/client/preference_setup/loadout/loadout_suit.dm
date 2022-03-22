@@ -197,6 +197,18 @@
 	path = /obj/item/clothing/suit/cyberpunk
 	cost = 2
 
+/datum/gear/suit/puffycoat/blue
+	display_name = "puffy coat, blue"
+	path = /obj/item/clothing/suit/storage/puffyblue
+
+/datum/gear/suit/puffycoat/red
+	display_name = "puffy coat, red"
+	path = /obj/item/clothing/suit/storage/puffyred
+
+/datum/gear/suit/puffycoat/purple
+	display_name = "puffy coat, purple"
+	path = /obj/item/clothing/suit/storage/puffypurple
+
 /datum/gear/suit/poncho
 	display_name = "poncho selection"
 	path = /obj/item/clothing/accessory/poncho
@@ -225,7 +237,6 @@
 		"Science poncho" = /obj/item/clothing/accessory/poncho/roles/science
 	)
 	gear_tweaks += new/datum/gear_tweak/path(ponchos)
-
 
 /datum/gear/suit/roles/cloak
 	display_name = "cloak selection, departments"

@@ -768,6 +768,7 @@ var/global/list/robot_modules = list(
 					"Pneuma" = "pneuma-Miner",
 					"Tower" = "drider-Miner"
 				)
+	supported_upgrades = list(/obj/item/borg/upgrade/pka, /obj/item/borg/upgrade/diamonddrill)
 
 /obj/item/weapon/robot_module/robot/miner/Initialize()
 
@@ -783,8 +784,12 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/storage/bag/sheetsnatcher/borg(src)
 	src.modules += new /obj/item/weapon/gripper/miner(src)
 	src.modules += new /obj/item/weapon/mining_scanner(src)
-	src.emag = new /obj/item/weapon/pickaxe/plasmacutter(src)
-	src.emag = new /obj/item/weapon/pickaxe/diamonddrill(src)
+	// New Emag gear for the minebots!
+	src.emag = new /obj/item/weapon/kinetic_crusher/machete/dagger(src)
+
+	// No reason for these, upgrade modules replace them.
+	//src.emag = new /obj/item/weapon/pickaxe/plasmacutter(src)
+	//src.emag = new /obj/item/weapon/pickaxe/diamonddrill(src)
 
 /obj/item/weapon/robot_module/robot/research
 	name = "research module"
@@ -805,6 +810,7 @@ var/global/list/robot_modules = list(
 					"Pneuma" = "pneuma-Research",
 					"Tower" = "drider-Research"
 					)
+	supported_upgrades = list(/obj/item/borg/upgrade/advrped)
 
 /obj/item/weapon/robot_module/robot/research/Initialize()
 

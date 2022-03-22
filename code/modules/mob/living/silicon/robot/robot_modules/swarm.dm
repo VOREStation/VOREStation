@@ -30,3 +30,12 @@
 	. = ..()
 	if(. == INITIALIZE_HINT_NORMAL)
 		modules += new /obj/item/weapon/melee/energy/sword/ionic_rapier/lance(src)
+
+//Swarm Disabler Module
+/obj/item/weapon/gun/energy/taser/mounted/cyborg/swarm
+	name = "disabler"
+	desc = "An archaic device which attacks the target's nervous-system or control circuits."
+	icon_state = "disabler"
+	projectile_type = /obj/item/projectile/beam/stun/disabler
+	charge_cost = 800
+	recharge_time = 0.5 SECONDS

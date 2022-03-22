@@ -41,7 +41,7 @@
 "al" = (
 /obj/structure/closet/cabinet,
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel,
-/obj/item/weapon/storage/box/beanbags,
+/obj/item/ammo_magazine/ammo_box/b12g/beanbag,
 /turf/simulated/floor/wood,
 /area/awaymission/wwmines)
 "am" = (

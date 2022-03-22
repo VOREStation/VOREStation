@@ -14,6 +14,7 @@
 	var/absorbed = FALSE				// If a mob is absorbed into another
 	var/list/temp_language_sources = list()	//VOREStation Addition - Absorbs add languages to the pred
 	var/list/temp_languages = list()		//VOREStation Addition - Absorbs add languages to the pred
+	var/prey_controlled = FALSE			//VOREStation Addition
 	var/weight = 137					// Weight for mobs for weightgain system
 	var/weight_gain = 1 				// How fast you gain weight
 	var/weight_loss = 0.5 				// How fast you lose weight
@@ -415,8 +416,8 @@
 		if(confirm != "Okay" || loc != B)
 			return
 		//Actual escaping
-		absorbed = 0	//Make sure we're not absorbed
-		muffled = 0		//Removes Muffling
+		absorbed = FALSE	//Make sure we're not absorbed
+		muffled = FALSE		//Removes Muffling
 		forceMove(get_turf(src)) //Just move me up to the turf, let's not cascade through bellies, there's been a problem, let's just leave.
 		for(var/mob/living/simple_mob/SA in range(10))
 			SA.prey_excludes[src] = world.time
@@ -895,12 +896,15 @@
 
 /mob/living/examine(mob/user, infix, suffix)
 	. = ..()
-	if(showvoreprefs)
-		. += "<span class='deptradio'><a href='?src=\ref[src];vore_prefs=1'>\[Mechanical Vore Preferences\]</a></span>"
+	if(ooc_notes)
+		. += "<span class = 'deptradio'>OOC Notes:</span> <a href='?src=\ref[src];ooc_notes=1'>\[View\]</a>"
+	. += "<span class='deptradio'><a href='?src=\ref[src];vore_prefs=1'>\[Mechanical Vore Preferences\]</a></span>"
 
 /mob/living/Topic(href, href_list)	//Can't find any instances of Topic() being overridden by /mob/living in polaris' base code, even though /mob/living/carbon/human's Topic() has a ..() call
 	if(href_list["vore_prefs"])
 		display_voreprefs(usr)
+	if(href_list["ooc_notes"])
+		src.Examine_OOC()
 	return ..()
 
 /mob/living/proc/display_voreprefs(mob/user)	//Called by Topic() calls on instances of /mob/living (and subtypes) containing vore_prefs as an argument

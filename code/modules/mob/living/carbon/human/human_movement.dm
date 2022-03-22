@@ -126,6 +126,11 @@
 	if(!buckled && shoes) // Shoes can make you go faster.
 		. += shoes.slowdown
 
+	//VOREStation Addition Start
+	if(buckled && istype(buckled, /obj/machinery/power/rtg/d_type_reg))
+		. += shoes.slowdown
+	//VOREStation Addition End
+
 	// Loop through some slots, and add up their slowdowns.
 	// Includes slots which can provide armor, the back slot, and suit storage.
 	for(var/obj/item/I in list(wear_suit, w_uniform, back, gloves, head, s_store))

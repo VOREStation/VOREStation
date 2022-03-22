@@ -1,7 +1,11 @@
+/*
+ * Taser
+ */
 /obj/item/weapon/gun/energy/taser
 	name = "taser gun"
 	desc = "The NT Mk30 NL is a small gun used for non-lethal takedowns. Produced by NT, it's actually a licensed version of a W-T RayZar design."
-	description_fluff = "RayZar is Ward-Takahashi’s main consumer weapons brand, known for producing and licensing a wide variety of specialist energy weapons of various types and quality primarily for the civilian market."
+	description_fluff = "RayZar is Ward-Takahashi’s main consumer weapons brand, known for producing and licensing a wide variety of specialist \
+	energy weapons of various types and quality primarily for the civilian market."
 	icon_state = "taser"
 	item_state = null	//so the human update icon uses the icon_state instead.
 	projectile_type = /obj/item/projectile/beam/stun
@@ -23,13 +27,20 @@
 	charge_cost = 400
 	recharge_time = 7 //Time it takes for shots to recharge (in ticks)
 
-/obj/item/weapon/gun/energy/taser/mounted/cyborg/swarm
+/*
+ * Disabler
+ */
+/obj/item/weapon/gun/energy/taser/disabler
 	name = "disabler"
-	desc = "An archaic device which attacks the target's nervous-system or control circuits."
+	desc = "The NT Mk4 T-DL is a small gun used for non-lethal takedowns. Produced by NT, it's an archaic device which attacks the target's \
+	nervous-system and is actually a heavily modified version of the NT Mk30 NL. It's use is heavily regulated due to its effects on the body."
+	icon_state = "disabler"
 	projectile_type = /obj/item/projectile/beam/stun/disabler
-	charge_cost = 800
-	recharge_time = 0.5 SECONDS
+	charge_cost = 480
 
+/*
+ * Crossbow
+ */
 /obj/item/weapon/gun/energy/crossbow
 	name = "mini energy-crossbow"
 	desc = "A weapon favored by many mercenary stealth specialists."
@@ -53,12 +64,16 @@
 /obj/item/weapon/gun/energy/crossbow/largecrossbow
 	name = "energy crossbow"
 	desc = "A weapon favored by mercenary infiltration teams."
+	icon_state = "crossbowlarge"
 	w_class = ITEMSIZE_LARGE
 	force = 10
 	matter = list(MAT_STEEL = 200000)
 	slot_flags = SLOT_BELT
 	projectile_type = /obj/item/projectile/energy/bolt/large
 
+/*
+ * Plasma Stun
+ */
 /obj/item/weapon/gun/energy/plasmastun
 	name = "plasma pulse projector"
 	desc = "The RayZar MA21 Selkie is a weapon that uses a laser pulse to ionise the local atmosphere, creating a disorienting pulse of plasma and deafening shockwave as the wave expands."
@@ -71,11 +86,12 @@
 	charge_cost = 600
 	projectile_type = /obj/item/projectile/energy/plasmastun
 
-//Stun Revolvers
-
+/*
+ * Stun Revolver
+ */
 /obj/item/weapon/gun/energy/stunrevolver
 	name = "stun revolver"
-	desc = "A LAEP20 Aktzin. Designed and produced by Lawson Arms under the wing of Hephaestus, \
+	desc = "A LAEP20 \"Aktzin\". Designed and produced by Lawson Arms under the wing of Hephaestus, \
 	several TSCs have been trying to get a hold of the blueprints for half a decade."
 	description_fluff = "Lawson Arms is Hephaestus Industries’ main personal-energy-weapon branding, \
 	often sold alongside MarsTech projectile weapons to security and law enforcement agencies. \
@@ -85,12 +101,92 @@
 	item_state = "stunrevolver"
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
 	projectile_type = /obj/item/projectile/energy/electrode/strong
-	charge_cost = 300
+	charge_cost = 400
 
+/*
+ * Detective Stun Revolver
+ */
+/obj/item/weapon/gun/energy/stunrevolver/detective
+	desc = "A LAEP20 \"Aktzin\". Designed and produced by Lawson Arms under the wing of Hephaestus, \
+	several TSCs have been trying to get a hold of the blueprints for half a decade."
+	var/unique_reskin
+
+/obj/item/weapon/gun/energy/stunrevolver/detective/update_icon(var/ignore_inhands)
+	if(power_supply == null)
+		if(unique_reskin)
+			icon_state = "[unique_reskin]_open"
+		else
+			icon_state = "[initial(icon_state)]_open"
+		return
+	else if(charge_meter)
+		var/ratio = power_supply.charge / power_supply.maxcharge
+
+		//make sure that rounding down will not give us the empty state even if we have charge for a shot left.
+		if(power_supply.charge < charge_cost)
+			ratio = 0
+		else
+			ratio = max(round(ratio, 0.25) * 100, 25)
+
+		if(unique_reskin)
+			icon_state = "[unique_reskin][ratio]"
+		else
+			icon_state = "[initial(icon_state)][ratio]"
+
+	else if(power_supply)
+		if(unique_reskin)
+			icon_state = "[unique_reskin]"
+		else
+			icon_state = "[initial(icon_state)]"
+
+	if(!ignore_inhands) update_held_icon()
+
+/obj/item/weapon/gun/energy/stunrevolver/detective/verb/rename_gun()
+	set name = "Name Gun"
+	set category = "Object"
+	set desc = "Rename your gun. If you're Security."
+
+	var/mob/M = usr
+	if(!M.mind)	return 0
+	var/job = M.mind.assigned_role
+	if(job != "Detective" && job != "Security Officer" && job != "Warden" && job != "Head of Security")
+		to_chat(M, "<span class='notice'>You don't feel cool enough to name this gun, chump.</span>")
+		return 0
+
+	var/input = sanitizeSafe(input("What do you want to name the gun?", ,""), MAX_NAME_LEN)
+
+	if(src && input && !M.stat && in_range(M,src))
+		name = input
+		to_chat(M, "You name the gun [input]. Say hello to your new friend.")
+		return 1
+
+/obj/item/weapon/gun/energy/stunrevolver/detective/verb/reskin_gun()
+	set name = "Resprite gun"
+	set category = "Object"
+	set desc = "Click to choose a sprite for your gun."
+
+	var/mob/M = usr
+	var/list/options = list()
+	options["Lawson Arms LAEP20"] = "stunrevolver"
+	options["Lawson Arms LTX1020"] = "vinstunrevolver"
+	options["Lawson Arms LTX1010"] = "snubstun2revolver"
+	options["Lawson Arms LTX1020 (Blued)"] = "bluedstunrevolver"
+	options["Lawson Arms LTX1020 (Stainless)"] = "stainstunrevolver"
+	options["Lawson Arms LTX1020 (Ace)"] = "snubstunrevolver"
+	options["Lawson Arms LTX1020 (Gold)"] = "goldstunrevolver"
+	var/choice = input(M,"Choose your sprite!","Resprite Gun") in options
+	if(src && choice && !M.stat && in_range(M,src))
+		icon_state = options[choice]
+		unique_reskin = options[choice]
+		to_chat(M, "Your gun is now sprited as [choice]. Say hello to your new friend.")
+		return 1
+
+/*
+ * Vintage Stun Revolver
+ */
 /obj/item/weapon/gun/energy/stunrevolver/vintage
 	name = "vintage stun revolver"
 	desc = "An older model stun revolver that is still in service across the frontier."
-	description_fluff = "The LTX1020 Bolter, a Firefly Co. staple from when the company was in its hayday. \
+	description_fluff = "The LTX1020 \"Bolter\", a Firefly Co. staple from when the company was in its hayday. \
 	While Firefly Co. has sadly been dissmantled due to bankruptcy, their iconic weapons can still be found \
 	across the frontier as anything from collectors items to surplus equipment. The LTX1020 falls under \
 	the latter category. Several companies have been known to use the base tech within the Bolter to create \
@@ -99,10 +195,13 @@
 	item_state = "stunrevolver"
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
 
+/*
+ * Snubnose Stun Revolver
+ */
 /obj/item/weapon/gun/energy/stunrevolver/snubnose
 	name = "snub stun revolver"
 	desc = "A snub nose stun revolver sporting a rather elegant look."
-	description_fluff = "The LTX1010 Stubby, a Firefly Co. staple from when the company was in its hayday. \
+	description_fluff = "The LTX1010 \"Stubby\", a Firefly Co. staple from when the company was in its hayday. \
 	While Firefly Co. has sadly been dissmantled due to bankruptcy, their iconic weapons can still be found \
 	across the frontier as anything from collectors items to surplus equipment. The LTX1010 falls under \
 	the latter category. Gangsters and other gentlemanly criminals alike use the Stubby as a means of policing \

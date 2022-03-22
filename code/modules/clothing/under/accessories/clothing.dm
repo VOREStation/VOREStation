@@ -104,6 +104,44 @@
 			)
 
 /*
+ * 80s
+ */
+
+/obj/item/clothing/accessory/tropical
+	name = "black tropical shirt"
+	desc = "A classic themed neosilk tropical shirt. This one makes you feel like an animal."
+	icon_state = "animalstyle"
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	slot_flags = SLOT_OCLOTHING | SLOT_TIE
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	siemens_coefficient = 0.9
+	w_class = ITEMSIZE_NORMAL
+	slot = ACCESSORY_SLOT_OVER
+
+/obj/item/clothing/accessory/tropical/green
+	name = "puke-green tropical shirt"
+	desc = "A classic themed neosilk tropical shirt. This one makes you look like puke."
+	icon_state = "tropicopuke"
+
+/obj/item/clothing/accessory/tropical/pink
+	name = "pink tropical shirt"
+	desc = "A classic themed neosilk tropical shirt. This one makes you feel nostalgic."
+	icon_state = "3005vintage"
+
+/obj/item/clothing/accessory/tropical/blue
+	name = "blue tropical shirt"
+	desc = "A classic themed neosilk tropical shirt. This one makes you feel out of touch."
+	icon_state = "miamivice"
+
+/obj/item/clothing/accessory/tropical_random/New()
+	return pick(
+			prob(2);/obj/item/clothing/accessory/tropical,
+			prob(2);/obj/item/clothing/accessory/tropical/green,
+			prob(2);/obj/item/clothing/accessory/tropical/pink,
+			prob(2);/obj/item/clothing/accessory/tropical/blue
+			)
+
+/*
  * Chaps
  */
 

@@ -480,3 +480,33 @@
 /datum/trait/neutral/thinner/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..(S,H)
 	H.update_transform()
+
+/datum/trait/neutral/dominate_predator
+	name = "Dominate Predator"
+	desc = "Allows you to attempt to take control of a predator while inside of their belly."
+	cost = 0
+	custom_only = FALSE
+
+/datum/trait/neutral/dominate_predator/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..(S,H)
+	H.verbs |= /mob/proc/dominate_predator
+
+/datum/trait/neutral/dominate_prey
+	name = "Dominate Prey"
+	desc = "Connect to and dominate the brain of your prey."
+	cost = 0
+	custom_only = FALSE
+
+/datum/trait/neutral/dominate_prey/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..(S,H)
+	H.verbs |= /mob/living/proc/dominate_prey
+
+/datum/trait/neutral/submit_to_prey
+	name = "Submit To Prey"
+	desc = "Allow prey's mind to control your own body."
+	cost = 0
+	custom_only = FALSE
+
+/datum/trait/neutral/submit_to_prey/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..(S,H)
+	H.verbs |= /mob/living/proc/lend_prey_control

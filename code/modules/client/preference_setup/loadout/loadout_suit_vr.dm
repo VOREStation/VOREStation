@@ -119,3 +119,8 @@ Talon winter coat
 	display_name = "knight, Field Medic"
 	path = /obj/item/clothing/suit/armor/combat/crusader_explo/FM
 	allowed_roles = list ("Field Medic")
+
+//Atmos-coloured hazard vest
+	display_name = "hazard vest, atmospherics"
+	path = /obj/item/clothing/suit/storage/hazardvest/atmos
+	allowed_roles = list("Chief Engineer","Atmospheric Technician", "Engineer")

@@ -8704,11 +8704,7 @@
 "sr" = (
 /obj/structure/closet/secure_closet/warden,
 /obj/item/weapon/book/manual/security_space_law,
-/obj/item/weapon/gun/projectile/shotgun/pump/combat{
-	ammo_type = /obj/item/ammo_casing/a12g/beanbag;
-	desc = "Built for close quarters combat, the Hesphaistos Industries KS-40 is widely regarded as a weapon of choice for repelling boarders. This one has 'Property of the Warden' inscribed on the stock.";
-	name = "warden's shotgun"
-	},
+/obj/item/gunbox/warden,
 /obj/machinery/power/apc/angled{
 	dir = 8
 	},
@@ -14601,7 +14597,6 @@
 	},
 /obj/structure/closet/secure_closet/detective,
 /obj/item/weapon/reagent_containers/spray/pepper,
-/obj/item/weapon/gun/energy/taser,
 /obj/item/device/camera{
 	desc = "A one use - polaroid camera. 30 photos left.";
 	name = "detectives camera";
@@ -18290,6 +18285,11 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/stellardelight/deck1/shower)
+"Na" = (
+/obj/item/weapon/storage/box/nifsofts_mining,
+/obj/structure/table/reinforced,
+/turf/simulated/floor/tiled/eris/steel/cargo,
+/area/stellardelight/deck1/miningequipment)
 "Nb" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/angled{
@@ -33583,7 +33583,7 @@ dl
 QK
 pV
 xf
-qV
+Na
 MG
 vC
 vi

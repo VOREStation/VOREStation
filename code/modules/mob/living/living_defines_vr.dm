@@ -1,5 +1,6 @@
 /mob
-	var/muffled = 0 					// Used by muffling belly
+	var/muffled = FALSE					// Used by muffling belly
+	var/forced_psay = FALSE				// If true will prevent the user from speaking with normal say/emotes, and instead redirect these to a private speech mode with their predator.
 
 /mob/living
 	var/ooc_notes = null

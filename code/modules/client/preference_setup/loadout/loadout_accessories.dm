@@ -307,3 +307,15 @@
 	"Grey Vest" = /obj/item/clothing/accessory/cowboy_vest/grey
 	)
 	gear_tweaks += new/datum/gear_tweak/path(cowboy_vests)
+
+/datum/gear/accessory/pride
+	display_name = "pride pin selection"
+	path = /obj/item/clothing/accessory/pride
+
+/datum/gear/accessory/pride/New()
+	..()
+	var/list/pridepins = list()
+	for(var/pridepin in typesof(/obj/item/clothing/accessory/pride))
+		var/obj/item/clothing/accessory/pridepin_type = pridepin
+		pridepins[initial(pridepin_type.name)] = pridepin_type
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(pridepins))
