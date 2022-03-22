@@ -37,9 +37,12 @@
 	projectile_type = /obj/item/projectile/bullet/shotgun
 	one_handed_penalty = 30 //You madman, one-handing a 12g shotgun.
 	recoil = 5 //Unfold the damn stock you fool!
+	action_button_name = "Toggle stock"
 	var/stock = FALSE
 
-/obj/item/weapon/gun/projectile/shotgun/compact/attack_self(mob/user as mob)
+
+/obj/item/weapon/gun/projectile/shotgun/compact/proc/toggle_stock()
+	var/mob/living/user = loc
 	stock = !stock
 	if(stock)
 		user.visible_message("<span class='warning'>With a fluid movement, [user] unfolds their shotgun's stock and foregrip.</span>",\
@@ -60,13 +63,43 @@
 		one_handed_penalty = 30
 		recoil = 5
 
-
 	if(istype(user,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user
 		H.update_inv_l_hand()
 		H.update_inv_r_hand()
 
-	playsound(src, 'sound/weapons/empty.ogg', 50, 1)
+	playsound(src, 'sound/weapons/targeton.ogg', 50, 1)
+	user.update_action_buttons()
+
+/obj/item/weapon/gun/projectile/shotgun/compact/verb/verb_toggle_stock(mob/user as mob)
+	set category = "Object"
+	set name = "Toggle stock"
+	set src in usr
+
+	if(issilicon(usr))
+		return
+
+	if (isliving(usr))
+		toggle_stock()
+	else
+		to_chat(usr, "<span class='notice'>You cannot do this in your current state.</span>")
+
+
+/obj/item/weapon/gun/projectile/shotgun/compact/attack_self(mob/user as mob)
+	if(issilicon(usr))
+		return
+
+	if (isliving(usr))
+		toggle_stock()
+	else
+		to_chat(usr, "<span class='notice'>You cannot do this in your current state.</span>")
+
+/obj/item/weapon/gun/projectile/shotgun/compact/ui_action_click()
+	var/mob/living/user = loc
+	if(!isliving(user))
+		return
+	else
+		toggle_stock()
 
 /obj/item/weapon/gun/projectile/shotgun/compact/warden
 	name = "warden's compact shotgun"
