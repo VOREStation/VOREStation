@@ -72,3 +72,12 @@
 	materials = list(MAT_STEEL = 4000, MAT_GLASS = 2000, MAT_SILVER = 2000)
 	build_path = /obj/item/device/spaceflare
 	sort_string = "TBAAC"
+
+/datum/design/item/general/riflescope
+	name = "rifle scope"
+	desc = "A scope that can be mounted to certain rifles."
+	id = "riflescope"
+	req_tech = list(TECH_ILLEGAL = 2, TECH_MATERIAL = 2)
+	materials = list(MAT_STEEL = 4000, MAT_GLASS = 4000)
+	build_path = /obj/item/device/binoculars/scope
+	sort_string = "TBAAD"

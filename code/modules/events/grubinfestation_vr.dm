@@ -41,4 +41,4 @@
 		area_names |= grub_area.name
 	if(area_names.len)
 		var/english_list = english_list(area_names)
-		command_announcement.Announce("Sensors have narrowed down remaining active solargrubs to the followng areas: [english_list]", "Lifesign Alert")
+		command_announcement.Announce("Sensors have narrowed down remaining active solargrubs to the following areas: [english_list]", "Lifesign Alert")

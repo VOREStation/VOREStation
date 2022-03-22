@@ -82,3 +82,9 @@
 
 /area/submap/virgo2/Rocky4
 	name = "POI - Rocky4"
+
+/area/submap/virgo2/DeadSettlers1
+	name = "POI - DeadSettlers1"
+
+/area/submap/virgo2/DeadSettlers2
+	name = "POI - DeadSettlers2"
