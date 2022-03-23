@@ -124,15 +124,17 @@
 	else
 		tgui_alert_async(usr, "Admin jumping disabled")
 
-/client/proc/Getmob()
+/client/proc/Getmob(mob/living/M as mob)	//VOREStation Edit
 	set category = "Admin"
 	set name = "Get Mob"
 	set desc = "Mob to teleport"
+	set popup_menu = TRUE	//VOREStation Edit
 
 	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
 		return
 	if(config.allow_admin_jump)
-		var/mob/M = tgui_input_list(usr, "Pick a mob:", "Get Mob", mob_list)
+		if(!M)	//VOREStation Edit
+			M = tgui_input_list(usr, "Pick a mob:", "Get Mob", mob_list)	//VOREStation Edit
 		if(!M)
 			return
 		log_admin("[key_name(usr)] jumped [key_name(M)] to them")
