@@ -1648,6 +1648,7 @@
 #include "code\modules\admin\admin_tools.dm"
 #include "code\modules\admin\admin_verb_lists_vr.dm"
 #include "code\modules\admin\admin_verbs.dm"
+#include "code\modules\admin\admin_verbs_vr.dm"
 #include "code\modules\admin\admin_vr.dm"
 #include "code\modules\admin\banjob.dm"
 #include "code\modules\admin\ckey_vr.dm"
