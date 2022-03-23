@@ -236,7 +236,7 @@
 	result_amount = 1
 
 /decl/chemical_reaction/instant/materials/on_reaction(var/datum/reagents/holder)
-	var/fail_chance = 1 //rand(1,1000)
+	var/fail_chance = rand(1,1000)
 	if(fail_chance == 1) // 0.1% chance of exploding, so scientists don't exclusively abuse this to obtain materials.
 		for(var/mob/O in viewers(get_turf(holder.my_atom), null))
 			O.show_message(text("<span class='warning'>The solution begins to vibrate violently!</span>"), 1) // It was at this moment, the Xenobiologist knew... he fucked up.
