@@ -236,18 +236,19 @@
 	result_amount = 1
 
 /decl/chemical_reaction/instant/materials/on_reaction(var/datum/reagents/holder)
-	var/fail_chance = rand(1,1000)
+	var/fail_chance = 1 //rand(1,1000)
 	if(fail_chance == 1) // 0.1% chance of exploding, so scientists don't exclusively abuse this to obtain materials.
 		for(var/mob/O in viewers(get_turf(holder.my_atom), null))
 			O.show_message(text("<span class='warning'>The solution begins to vibrate violently!</span>"), 1) // It was at this moment, the Xenobiologist knew... he fucked up.
-		sleep(30)
-		playsound(holder.my_atom, 'sound/items/Welder2.ogg', 100, 1)
-		for(var/mob/O in viewers(get_turf(holder.my_atom), null))
-			O.show_message(text("<span class='warning'>The reaction begins to rapidly sizzle and swell outwards!</span>"), 1)
-		sleep(20)
-		explosion(get_turf(holder.my_atom), 0 ,4, 8) //Enough to cause severe damage in the area, but not so much that it'll instantly gib the person.
-		empulse(get_turf(holder.my_atom), 3, 7) //Uh oh, it produced some uranium, too! EMP blast!
-		return
+		spawn(30)
+			playsound(holder.my_atom, 'sound/items/Welder2.ogg', 100, 1)
+			for(var/mob/O in viewers(get_turf(holder.my_atom), null))
+				O.show_message(text("<span class='warning'>The reaction begins to rapidly sizzle and swell outwards!</span>"), 1)
+			
+			spawn(20)
+				explosion(get_turf(holder.my_atom), 0 ,4, 8) //Enough to cause severe damage in the area, but not so much that it'll instantly gib the person.
+				empulse(get_turf(holder.my_atom), 3, 7) //Uh oh, it produced some uranium, too! EMP blast!
+				return
 
 	if(fail_chance < 101) // 10% chance of it not working at all.
 		playsound(holder.my_atom, 'sound/items/Welder.ogg', 100, 1)
@@ -313,11 +314,11 @@
 /decl/chemical_reaction/instant/slimefreeze/on_reaction(var/datum/reagents/holder)
 	for(var/mob/O in viewers(get_turf(holder.my_atom), null))
 		O.show_message(text("<span class='warning'>The slime extract begins to vibrate violently!</span>"), 1)
-	sleep(50)
-	playsound(holder.my_atom, 'sound/effects/phasein.ogg', 100, 1)
-	for(var/mob/living/M in range (get_turf(holder.my_atom), 7))
-		M.bodytemperature -= 140
-		to_chat(M, "<span class='notice'> You suddenly feel a chill!</span>")
+	spawn(50)
+		playsound(holder.my_atom, 'sound/effects/phasein.ogg', 100, 1)
+		for(var/mob/living/M in range (get_turf(holder.my_atom), 7))
+			M.bodytemperature -= 140
+			to_chat(M, "<span class='notice'> You suddenly feel a chill!</span>")
 
 /decl/chemical_reaction/instant/slimefrost
 	name = "Slime Frost Oil"
@@ -336,11 +337,11 @@
 /decl/chemical_reaction/instant/slimefire/on_reaction(var/datum/reagents/holder)
 	for(var/mob/O in viewers(get_turf(holder.my_atom), null))
 		O.show_message(text("<span class='warning'>The slime extract begins to vibrate violently!</span>"), 1)
-	sleep(50)
-	var/turf/location = get_turf(holder.my_atom.loc)
-	for(var/turf/simulated/floor/target_tile in range(0,location))
-		target_tile.assume_gas("phoron", 25, 1400)
-		spawn (0) target_tile.hotspot_expose(700, 400)
+	spawn(50)
+		var/turf/location = get_turf(holder.my_atom.loc)
+		for(var/turf/simulated/floor/target_tile in range(0,location))
+			target_tile.assume_gas("phoron", 25, 1400)
+			spawn (0) target_tile.hotspot_expose(700, 400)
 
 /decl/chemical_reaction/instant/slimeify
 	name = "Advanced Mutation Toxin"
