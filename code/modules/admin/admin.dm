@@ -714,10 +714,16 @@ var/datum/announcement/minor/admin_min_announcer = new
 		if(sender) //They put a sender
 			sender = sanitize(sender, 75, extra = 0)
 			var/message = input(usr, "Message content (max 500):", "Contents", "This is a test of the announcement system.") as null|message
-
+			var/msgverb = input(usr, "Name of verb (Such as 'states', 'says', 'asks', etc):", "Verb", "says") as null|text	//VOREStation Addition
 			if(message) //They put a message
 				message = sanitize(message, 500, extra = 0)
-				global_announcer.autosay("[message]", "[sender]", "[channel == "Common" ? null : channel]") //Common is a weird case, as it's not a "channel", it's just talking into a radio without a channel set.
+				//VOREStation Edit Start
+				if(msgverb)
+					msgverb = sanitize(msgverb, 50, extra = 0)
+				else
+					msgverb = "states"
+				global_announcer.autosay("[message]", "[sender]", "[channel == "Common" ? null : channel]", states = msgverb) //Common is a weird case, as it's not a "channel", it's just talking into a radio without a channel set.
+				//VOREStation Edit End
 				log_admin("Intercom: [key_name(usr)] : [sender]:[message]")
 
 	feedback_add_details("admin_verb","IN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -802,7 +808,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 			var/this_sender = decomposed[i]
 			var/this_message = decomposed[++i]
 			var/this_wait = decomposed[++i]
-			global_announcer.autosay("[this_message]", "[this_sender]", "[channel == "Common" ? null : channel]") //Common is a weird case, as it's not a "channel", it's just talking into a radio without a channel set.
+			global_announcer.autosay("[this_message]", "[this_sender]", "[channel == "Common" ? null : channel]", "says") //Common is a weird case, as it's not a "channel", it's just talking into a radio without a channel set.	//VOREStation Edit
 			sleep(this_wait SECONDS)
 
 /datum/admins/proc/toggleooc()
