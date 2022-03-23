@@ -4,8 +4,9 @@
 	set desc = "Makes something orbit around something else."
 	set popup_menu = FALSE
 
-	if(!holder) return
-	
+	if(!check_rights(R_FUN))
+		return
+
 	var/center
 	var/atom/movable/orbiter
 	var/input
