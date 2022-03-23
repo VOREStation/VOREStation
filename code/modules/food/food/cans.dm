@@ -81,8 +81,8 @@
 	center_of_mass = list("x"=16, "y"=8)
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/dr_gibb_diet/Initialize()
-		..()
-		reagents.add_reagent("diet_dr_gibb", 30)
+	. = ..()
+	reagents.add_reagent("diet_dr_gibb", 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/starkist
 	name = "\improper Star-kist"
