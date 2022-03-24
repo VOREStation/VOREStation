@@ -80,21 +80,7 @@
 //////////////////// Energy Weapons ////////////////////
 
 // ------------ Energy Luger ------------
-/obj/item/weapon/gun/energy/gun/eluger
-	name = "energy Luger"
-	desc = "The finest sidearm produced by RauMauser. Although its battery cannot be removed, its ergonomic design makes it easy to shoot, allowing for rapid follow-up shots. It also has the ability to toggle between stun and kill."
-	icon = 'icons/obj/gun_vr.dmi'
-	icon_state = "elugerstun100"
-	item_state = "gun"
-	fire_delay = null // Lugers are quite comfortable to shoot, thus allowing for more controlled follow-up shots. Rate of fire similar to a laser carbine.
-	battery_lock = 1 // In exchange for balance, you cannot remove the battery. Also there's no sprite for that and I fucking suck at sprites. -Ace
-	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2, TECH_ILLEGAL = 2) // Illegal tech cuz Space Nazis
-	modifystate = "elugerstun"
-	fire_sound = 'sound/weapons/Taser.ogg'
-	firemodes = list(
-	list(mode_name="stun", charge_cost=120,projectile_type=/obj/item/projectile/beam/stun, modifystate="elugerstun", fire_sound='sound/weapons/Taser.ogg'),
-	list(mode_name="lethal", charge_cost=240,projectile_type=/obj/item/projectile/beam/eluger, modifystate="elugerkill", fire_sound='sound/weapons/eluger.ogg'),
-	)
+//MOVED TO nuclear.dm
 
 //////////////////// Eris Ported Guns ////////////////////
 //HoP gun
