@@ -120,9 +120,9 @@
 /datum/random_map/noise/sif/underground/get_appropriate_path(var/value)
 	switch(value)
 		if(0 to 2)
-			return /turf/simulated/floor/outdoors/mud/sif/planetuse
+			return /turf/simulated/mineral/floor/sif/mud
 		if(3 to 4)
-			return /turf/simulated/floor/outdoors/dirt/sif/planetuse
+			return /turf/simulated/mineral/floor/sif/dirt
 
 /datum/random_map/noise/sif/underground/get_additional_spawns(var/value, var/turf/T)
 	if(value <= 1 && prob(30)) // Mud is very fun-gy.
