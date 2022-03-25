@@ -2264,6 +2264,11 @@
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 5
 	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lowerhall)
 "adS" = (
@@ -2287,6 +2292,11 @@
 /obj/machinery/door/airlock/glass_medical{
 	name = "Mental Health";
 	req_one_access = list()
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lowerhall)
@@ -2358,6 +2368,11 @@
 	pixel_x = -26;
 	pixel_y = -26
 	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lowerhall)
 "adY" = (
@@ -2379,6 +2394,11 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lowerhall)
 "adZ" = (
@@ -2552,11 +2572,11 @@
 /turf/simulated/floor/carpet/blue,
 /area/tether/surfacebase/medical/mentalhealth)
 "aem" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/lowernorthhall)
@@ -2823,6 +2843,13 @@
 	},
 /obj/effect/floor_decal/corner/paleblue/bordercorner2{
 	dir = 5
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 4
+	},
+/obj/machinery/disposal/wall{
+	dir = 8;
+	name = "auto-resleeving equipment deposit"
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/lowernorthhall)
@@ -3295,6 +3322,17 @@
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 4
 	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/lowernorthhall)
 "afp" = (
@@ -3345,6 +3383,17 @@
 /obj/effect/floor_decal/corner/paleblue/bordercorner2{
 	dir = 4
 	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/lowernorthhall)
 "aft" = (
@@ -3381,6 +3430,7 @@
 	dir = 4;
 	pixel_x = 24
 	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/plating,
 /area/maintenance/lowmedbaymaint)
 "afz" = (
@@ -8206,12 +8256,6 @@
 	dir = 4
 	},
 /obj/random/junk,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
 /turf/simulated/floor/plating,
 /area/maintenance/lowmedbaymaint)
 "anG" = (
@@ -11278,10 +11322,12 @@
 	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/structure/disposalpipe/segment{
 	dir = 8;
 	icon_state = "pipe-c"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lowmedbaymaint)
@@ -13876,6 +13922,11 @@
 /obj/machinery/door/firedoor/glass/hidden/steel{
 	dir = 1
 	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lowerhall)
 "awZ" = (
@@ -15870,11 +15921,11 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 4
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lowmedbaymaint)
@@ -30423,13 +30474,19 @@
 /turf/simulated/floor/tiled,
 /area/hallway/lower/first_west)
 "bbI" = (
-/obj/item/weapon/tool/wrench{
-	desc = "The lower jaw seems to keep jiggling...";
-	name = "loose wrench";
-	toolspeed = 3
+/obj/machinery/vending/loadout/uniform,
+/obj/machinery/light{
+	dir = 8
 	},
-/turf/simulated/floor/plating,
-/area/maintenance/lowmedbaymaint)
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 9
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/autoresleeving)
 "bbJ" = (
 /obj/structure/cable/green,
 /obj/structure/cable/green{
@@ -30470,9 +30527,15 @@
 /turf/simulated/floor,
 /area/maintenance/substation/SurfMedsubstation)
 "bbM" = (
-/obj/random/cigarettes,
-/turf/simulated/floor/plating,
-/area/maintenance/lowmedbaymaint)
+/obj/machinery/transhuman/autoresleever,
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/autoresleeving)
 "bbN" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -30628,9 +30691,19 @@
 /turf/simulated/floor,
 /area/maintenance/substation/SurfMedsubstation)
 "bbZ" = (
-/obj/random/junk,
-/turf/simulated/floor/plating,
-/area/maintenance/lowmedbaymaint)
+/obj/structure/disposalpipe/trunk{
+	dir = 2
+	},
+/obj/machinery/disposal/deliveryChute,
+/obj/structure/plasticflaps,
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/autoresleeving)
 "bca" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/brown/border,
@@ -31706,12 +31779,6 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/trash_pit)
-"bTE" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/turf/simulated/floor/plating,
-/area/maintenance/lowmedbaymaint)
 "bWg" = (
 /obj/machinery/vending/loadout/costume{
 	dir = 4
@@ -31803,12 +31870,11 @@
 /turf/simulated/floor/tiled/monotile,
 /area/crew_quarters/locker/laundry_arrival)
 "cqg" = (
-/obj/structure/railing{
-	dir = 1
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
-/obj/machinery/atmospherics/unary/vent_pump/on,
-/turf/simulated/floor/plating,
-/area/maintenance/lowmedbaymaint)
+/turf/simulated/wall,
+/area/tether/surfacebase/medical/autoresleeving)
 "cqZ" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -32326,6 +32392,10 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lowmedbaymaint)
+"dUK" = (
+/obj/structure/disposalpipe/segment,
+/turf/simulated/wall,
+/area/tether/surfacebase/medical/autoresleeving)
 "dYd" = (
 /obj/machinery/firealarm{
 	layer = 3.3;
@@ -32773,10 +32843,24 @@
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/funny/clownoffice)
 "fKm" = (
-/obj/random/junk,
-/obj/random/maintenance/cargo,
-/turf/simulated/floor/plating,
-/area/maintenance/lowmedbaymaint)
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24
+	},
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/autoresleeving)
 "fLB" = (
 /obj/effect/floor_decal/steeldecal/steel_decals6{
 	dir = 5
@@ -33806,13 +33890,21 @@
 /turf/simulated/floor/tiled,
 /area/rnd/hallway)
 "idk" = (
-/obj/item/weapon/tool/wirecutters{
-	desc = "It gets jammed a lot.";
-	name = "janky wirecutters";
-	toolspeed = 2
+/obj/machinery/alarm{
+	dir = 8;
+	pixel_x = 22
 	},
-/turf/simulated/floor/plating,
-/area/maintenance/lowmedbaymaint)
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 6
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/autoresleeving)
 "iee" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -33895,6 +33987,25 @@
 /obj/item/device/radio/beacon,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_one_hall)
+"itj" = (
+/obj/structure/cable/green{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	nightshift_setting = 2;
+	pixel_x = 24
+	},
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 6
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/autoresleeving)
 "iue" = (
 /turf/simulated/floor/looking_glass{
 	dir = 1
@@ -34048,9 +34159,6 @@
 "jcT" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 5
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lowmedbaymaint)
@@ -34822,9 +34930,13 @@
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_laundry)
 "lbd" = (
-/obj/random/maintenance/cargo,
-/turf/simulated/floor/plating,
-/area/maintenance/lowmedbaymaint)
+/obj/effect/floor_decal/borderfloorwhite/corner,
+/obj/effect/floor_decal/corner/paleblue/bordercorner,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/autoresleeving)
 "lbu" = (
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/paleblue/border,
@@ -35003,6 +35115,25 @@
 /obj/machinery/holoposter,
 /turf/simulated/wall,
 /area/hallway/lower/first_west)
+"lBv" = (
+/obj/machinery/door/airlock/maintenance/medical{
+	id_tag = "autor";
+	name = "Auto-Resleeving";
+	req_access = list(5)
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/autoresleeving)
 "lBO" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -35148,9 +35279,32 @@
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_one_hall)
 "lPQ" = (
-/obj/item/stack/cable_coil/random_belt,
-/turf/simulated/floor/plating,
-/area/maintenance/lowmedbaymaint)
+/obj/machinery/button/remote/airlock{
+	desc = "A remote control door switch.";
+	id = "autor";
+	name = "Exit Button";
+	pixel_x = -26;
+	pixel_y = -26
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/autoresleeving)
 "lQu" = (
 /obj/item/weapon/reagent_containers/glass/bucket,
 /obj/structure/table/steel,
@@ -36375,9 +36529,22 @@
 /turf/simulated/floor/carpet/gaycarpet,
 /area/tether/surfacebase/funny/clownoffice)
 "oPH" = (
-/obj/random/pizzabox,
-/turf/simulated/floor/plating,
-/area/maintenance/lowmedbaymaint)
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/item/device/radio/intercom{
+	dir = 1;
+	pixel_y = 24
+	},
+/obj/effect/floor_decal/borderfloorwhite{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner/paleblue/border{
+	dir = 5
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/autoresleeving)
 "oQm" = (
 /obj/effect/floor_decal/borderfloor/corner,
 /obj/structure/cable{
@@ -36818,6 +36985,15 @@
 "qwV" = (
 /turf/simulated/wall,
 /area/tether/surfacebase/security/brig)
+"qBa" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lowmedbaymaint)
 "qBb" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
@@ -37024,12 +37200,12 @@
 /turf/simulated/floor/plating,
 /area/maintenance/lowmedbaymaint)
 "qVi" = (
-/obj/structure/railing{
-	dir = 1
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
 	},
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
-/turf/simulated/floor/plating,
-/area/maintenance/lowmedbaymaint)
+/turf/simulated/wall,
+/area/tether/surfacebase/medical/autoresleeving)
 "qWk" = (
 /obj/machinery/light,
 /obj/structure/disposalpipe/segment{
@@ -37649,6 +37825,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/atmos)
+"sOx" = (
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/turf/simulated/floor/plating,
+/area/maintenance/lowmedbaymaint)
 "sQc" = (
 /obj/structure/sign/securearea{
 	desc = "A warning sign which reads 'HIGH VOLTAGE'";
@@ -38176,10 +38356,17 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/xenoflora)
 "utQ" = (
-/obj/fiftyspawner/steel,
-/obj/random/junk,
-/turf/simulated/floor/plating,
-/area/maintenance/lowmedbaymaint)
+/obj/structure/disposalpipe/segment,
+/obj/effect/floor_decal/borderfloorwhite,
+/obj/effect/floor_decal/corner/paleblue/border,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/shower{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/autoresleeving)
 "uuu" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -38318,6 +38505,9 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/lowerhall)
+"uIU" = (
+/turf/simulated/wall,
+/area/tether/surfacebase/medical/autoresleeving)
 "uKS" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -38465,11 +38655,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
+	dir = 5
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lowmedbaymaint)
@@ -53037,11 +53224,11 @@ aan
 atP
 awE
 aeU
-aeU
-aeU
-aeU
-aef
-aef
+uIU
+uIU
+uIU
+lBv
+cqg
 afE
 aef
 aef
@@ -53179,11 +53366,11 @@ aan
 uHS
 awC
 aeU
-aeU
+uIU
 bbI
 fKm
 lPQ
-bTE
+cqg
 akA
 aAG
 tdg
@@ -53321,10 +53508,10 @@ afb
 atO
 awC
 aeU
-aeU
+uIU
 bbM
 lbd
-aAI
+itj
 cqg
 jcT
 ksK
@@ -53463,10 +53650,10 @@ afb
 atO
 awp
 axO
-aeU
+uIU
 bbZ
 utQ
-lbd
+dUK
 qVi
 anF
 ksK
@@ -53605,11 +53792,11 @@ afb
 atO
 awG
 aed
-aeU
+uIU
 oPH
 idk
-bbZ
-bTE
+uIU
+sOx
 vuO
 ksK
 tdg
@@ -53747,12 +53934,12 @@ afb
 atO
 awz
 aeU
-aeU
+uIU
+uIU
+uIU
+uIU
 axP
-axP
-axP
-axP
-vuO
+qBa
 ksK
 oKn
 oKn
