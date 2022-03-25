@@ -130,3 +130,31 @@
 			stop_following()
 		else
 			to_chat(src, "This ghost pod is not located in the game world.")
+
+/mob/observer/dead/verb/findautoresleever()
+	set category = "Ghost"
+	set name = "Find Auto Resleever"
+	set desc = "Find a Auto Resleever"
+	set popup_menu = FALSE
+
+	if(!istype(usr, /mob/observer/dead)) //Make sure they're an observer!
+		return
+
+	var/list/ar = list()
+	for(var/obj/machinery/transhuman/autoresleever/A in world)
+		if(A.spawntype)
+			continue
+		else
+			ar |= A
+
+	var/obj/machinery/transhuman/autoresleever/thisone = pick(ar)
+
+	if(!thisone)
+		to_chat(src, "<span class='warning'>There appears to be no auto-resleevers available.</span>")
+		return
+	var/L = get_turf(thisone)
+	if(!L)
+		to_chat(src, "<span class='warning'>There appears to be something wrong with this auto-resleever, try again.</span>")
+		return
+	
+	forceMove(L)
