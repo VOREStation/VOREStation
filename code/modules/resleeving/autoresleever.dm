@@ -12,7 +12,6 @@
 	var/respawn = 30 MINUTES			//The time to wait if you didn't die from vore
 	var/spawn_slots = -1				//How many people can be spawned from this? If -1 it's unlimited
 	var/spawntype						//The kind of mob that will be spawned, if set.
-	var/update_i = FALSE
 
 /obj/machinery/transhuman/autoresleever/update_icon()
 	. = ..()
@@ -163,6 +162,12 @@
 
 	log_admin("[new_character.ckey]'s character [new_character.real_name] has been auto-resleeved.")
 	message_admins("[new_character.ckey]'s character [new_character.real_name] has been auto-resleeved.")
+
+	var/datum/transcore_db/db = SStranscore.db_by_mind_name(new_character.mind.name)
+	if(db)
+		var/datum/transhuman/mind_record/record = db.backed_up[new_character.mind.name]
+		if((world.time - record.last_notification) < 30 MINUTES)
+			global_announcer.autosay("[new_character.name] has been resleeved by the automatic resleeving system.", "TransCore Oversight", new_character.isSynthetic() ? "Science" : "Medical")
 
 	if(spawn_slots == -1)
 		return
