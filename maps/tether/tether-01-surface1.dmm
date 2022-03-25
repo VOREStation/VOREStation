@@ -30694,8 +30694,7 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 2
 	},
-/obj/machinery/disposal/deliveryChute,
-/obj/structure/plasticflaps,
+/obj/structure/disposaloutlet,
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 1
 	},
@@ -33890,10 +33889,6 @@
 /turf/simulated/floor/tiled,
 /area/rnd/hallway)
 "idk" = (
-/obj/machinery/alarm{
-	dir = 8;
-	pixel_x = 22
-	},
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 6
 	},
@@ -33902,6 +33897,12 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
+	},
+/obj/machinery/alarm{
+	alarm_id = "pen_nine";
+	breach_detection = 0;
+	dir = 1;
+	pixel_y = -22
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/autoresleeving)
@@ -36027,6 +36028,14 @@
 /obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/weaponsrange)
+"nzU" = (
+/obj/machinery/door/airlock/medical{
+	id_tag = null;
+	name = "Auto Resleeving";
+	req_access = list(5)
+	},
+/turf/simulated/floor/tiled/white,
+/area/tether/surfacebase/medical/autoresleeving)
 "nAK" = (
 /turf/simulated/wall/r_wall,
 /area/maintenance/engineering/atmos/airlock/gas)
@@ -53936,7 +53945,7 @@ awz
 aeU
 uIU
 uIU
-uIU
+nzU
 uIU
 axP
 qBa
