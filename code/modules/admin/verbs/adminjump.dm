@@ -10,18 +10,18 @@
 	set category = "Admin"
 	if(!check_rights(R_ADMIN|R_MOD|R_DEBUG|R_EVENT))
 		return
-	
+
 	if(!config.allow_admin_jump)
 		tgui_alert_async(usr, "Admin jumping disabled")
 		return
 
 	var/area/A
-	
+
 	if(areaname)
 		A = return_sorted_areas()[areaname]
 	else
 		A = tgui_input_list(usr, "Pick an area:", "Jump to Area", return_sorted_areas())
-	
+
 	if(!A)
 		return
 
@@ -62,7 +62,7 @@
 	if(!config.allow_admin_jump)
 		tgui_alert_async(usr, "Admin jumping disabled")
 		return
-	
+
 	if(!M)
 		M = tgui_input_list(usr, "Pick a mob:", "Jump to Mob", mob_list)
 	if(!M)
@@ -78,7 +78,7 @@
 		feedback_add_details("admin_verb","JM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	else
 		to_chat(A, "<span class='filter_adminlog'>This mob is not located in the game world.</span>")
-		
+
 /client/proc/jumptocoord(tx as num, ty as num, tz as num)
 	set category = "Admin"
 	set name = "Jump to Coordinate"
@@ -94,7 +94,7 @@
 			if(!T)
 				to_chat(usr, "<span class='warning'>Those coordinates are outside the boundaries of the map.</span>")
 				return
-			A.forceMove(T)			
+			A.forceMove(T)
 			feedback_add_details("admin_verb","JC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 		message_admins("[key_name_admin(usr)] jumped to coordinates [tx], [ty], [tz]")
 
@@ -124,7 +124,7 @@
 	else
 		tgui_alert_async(usr, "Admin jumping disabled")
 
-/client/proc/Getmob(mob/living/M as mob)	//VOREStation Edit
+/client/proc/Getmob(mob/living/M as null|anything in mob_list)	//VOREStation Edit
 	set category = "Admin"
 	set name = "Get Mob"
 	set desc = "Mob to teleport"

@@ -39409,7 +39409,9 @@
 	alarms_hidden = 1;
 	dir = 1;
 	name = "north bump";
-	pixel_y = 28
+	pixel_y = 28;
+	req_access = null;
+	req_one_access = list(11,67)
 	},
 /obj/structure/cable/green{
 	icon_state = "0-4"

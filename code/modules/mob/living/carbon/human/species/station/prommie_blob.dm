@@ -383,6 +383,7 @@
 	blob.Weaken(2)
 	blob.transforming = TRUE
 	blob.ckey = ckey
+	blob.ooc_notes = ooc_notes
 	blob.transforming = FALSE
 	blob.name = name
 	blob.nutrition = nutrition
@@ -454,6 +455,7 @@
 	playsound(src.loc, "sound/effects/slime_squish.ogg", 15)
 	transforming = TRUE
 	ckey = blob.ckey
+	ooc_notes = blob.ooc_notes // Updating notes incase they change them in blob form.
 	transforming = FALSE
 	blob.name = "Promethean Blob"
 	var/obj/item/hat = blob.hat

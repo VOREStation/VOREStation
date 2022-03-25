@@ -105,6 +105,16 @@
 /datum/ai_holder/simple_mob/xenobio_slime/handle_special_strategical()
 	discipline_decay()
 
+/datum/ai_holder/simple_mob/xenobio_slime/request_help()
+	if(target)
+		if(istype(target, /mob/living/simple_mob/slime/xenobio))	//Don't call reinforcements for internal disputes
+			return
+		if(istype(target, /mob/living/carbon/human))
+			var/mob/living/carbon/human/H = target
+			if(istype(H.species, /datum/species/monkey))			//Or for food
+				return
+	..()
+
 // Handles decay of discipline.
 /datum/ai_holder/simple_mob/xenobio_slime/proc/discipline_decay()
 	if(discipline > 0 && last_discipline_decay + discipline_decay_time < world.time)
