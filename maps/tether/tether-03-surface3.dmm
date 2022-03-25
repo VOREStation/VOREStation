@@ -25023,6 +25023,34 @@
 /obj/structure/sign/department/xenolab,
 /turf/simulated/wall,
 /area/rnd/outpost/xenobiology/outpost_breakroom)
+"aPU" = (
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "tourbus";
+	name = "tourbus"
+	},
+/obj/structure/table/standard,
+/obj/structure/cable/green{
+	icon_state = "0-4"
+	},
+/obj/machinery/button/remote/blast_door{
+	dir = 4;
+	id = "tourbus_windows";
+	name = "window blast shields";
+	pixel_y = 1
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/power/apc{
+	alarms_hidden = 1;
+	dir = 1;
+	name = "north bump";
+	pixel_y = 28;
+	req_access = list();
+	req_one_access = list(11,67)
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/tourbus/cockpit)
 "aPV" = (
 /obj/machinery/light{
 	dir = 4
@@ -39399,32 +39427,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/xenobiology/outpost_hallway)
-"hjt" = (
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tourbus";
-	name = "tourbus"
-	},
-/obj/structure/table/standard,
-/obj/machinery/power/apc{
-	alarms_hidden = 1;
-	dir = 1;
-	name = "north bump";
-	pixel_y = 28
-	},
-/obj/structure/cable/green{
-	icon_state = "0-4"
-	},
-/obj/machinery/button/remote/blast_door{
-	dir = 4;
-	id = "tourbus_windows";
-	name = "window blast shields";
-	pixel_y = 1
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/simulated/floor/tiled,
-/area/shuttle/tourbus/cockpit)
 "hoQ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
@@ -55585,7 +55587,7 @@ aKa
 aKU
 wyi
 wyi
-hjt
+aPU
 wyi
 ngV
 uhm
