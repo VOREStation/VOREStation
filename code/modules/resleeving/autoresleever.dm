@@ -65,8 +65,14 @@
 		return
 	
 	if(ghost.mind && ghost.mind.current && ghost.mind.current.stat != DEAD)
-		to_chat(ghost, "<span class='warning'>Your body is still alive, you cannot be resleeved.</span>")
-		return
+		if(istype(ghost.mind.current.loc, /obj/item/device/mmi))
+			if(tgui_alert(ghost, "Your brain is still alive, using the auto-resleever will delete that brain. Are you sure?", "Delete Brain", list("No","Yes")) != "Yes")
+				return
+			if(istype(ghost.mind.current.loc, /obj/item/device/mmi))
+				qdel(ghost.mind.current.loc)
+		else
+			to_chat(ghost, "<span class='warning'>Your body is still alive, you cannot be resleeved.</span>")
+			return
 
 	var/client/ghost_client = ghost.client
 	
