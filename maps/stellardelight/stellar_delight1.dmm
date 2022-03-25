@@ -2075,6 +2075,10 @@
 /obj/machinery/computer/transhuman/resleeving{
 	dir = 8
 	},
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
+	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/resleeving)
 "ew" = (
@@ -6726,7 +6730,7 @@
 	dir = 5
 	},
 /obj/machinery/button/remote/airlock{
-	desc = "A remote control switch for the medbay foyer.";
+	desc = "A remote control switch for the cleaning room exit.";
 	dir = 4;
 	id = "resleeveexit";
 	name = "Door Control";
@@ -7381,6 +7385,14 @@
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 1
 	},
+/obj/machinery/button/remote/airlock{
+	desc = "A remote control switch for the cleaning room.";
+	dir = 4;
+	id = "resleeveclean";
+	name = "Door Control";
+	pixel_x = -27;
+	pixel_y = -27
+	},
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/stellardelight/deck1/resleeving)
 "pC" = (
@@ -7970,7 +7982,7 @@
 /turf/simulated/floor/carpet,
 /area/chapel/main)
 "qR" = (
-/obj/structure/table/glass,
+/obj/machinery/transhuman/autoresleever,
 /turf/simulated/floor/tiled/dark,
 /area/stellardelight/deck1/resleeving)
 "qS" = (
@@ -16013,16 +16025,6 @@
 /obj/effect/floor_decal/milspec/color/black,
 /turf/simulated/floor/tiled/dark,
 /area/security/armoury)
-"Ij" = (
-/obj/structure/bed/chair{
-	dir = 1
-	},
-/obj/item/device/radio/intercom{
-	dir = 8;
-	pixel_x = -24
-	},
-/turf/simulated/floor/tiled/eris/white/bluecorner,
-/area/stellardelight/deck1/resleeving)
 "Ik" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -20510,8 +20512,9 @@
 /obj/machinery/door/airlock/angled_bay/standard/color{
 	dir = 8;
 	door_color = "#ffffff";
+	id_tag = "resleeveclean";
 	name = "Cleaning Room";
-	req_access = null;
+	req_access = list(5);
 	stripe_color = "#5a96bb"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
@@ -33859,7 +33862,7 @@ dH
 oW
 vb
 pA
-Ij
+hv
 CG
 ZB
 hg
