@@ -1241,7 +1241,7 @@
 	cup_name = "cup of milk"
 	cup_desc = "White and nutritious goodness!"
 	allergen_type = ALLERGEN_BEANS //Would be made from soy beans
-	overdose = REAGENTS_OVERDOSE * 1.5 //Vorestation add - chemical realism
+	overdose = REAGENTS_OVERDOSE * 2 //Vorestation add - chemical realism
 
 //Vorestation add start -- copied from /code/modules/reagents/reagents/vore_vr.dm
 /datum/reagent/drink/milk/soymilk/overdose(var/mob/living/carbon/M, var/alien, var/removed)
@@ -1273,7 +1273,7 @@
 	cup_name = "cup of milk"
 	cup_desc = "White and nutritious goodness!"
 	allergen_type = ALLERGEN_BEANS //Would be made from boi beans
-	overdose = REAGENTS_OVERDOSE * 1.5
+	overdose = REAGENTS_OVERDOSE * 2
 
 
 /datum/reagent/drink/milk/boimilk/overdose(var/mob/living/carbon/M, var/alien, var/removed)
