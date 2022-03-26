@@ -40,3 +40,24 @@
 			if(istype(AM, /obj/item/weapon/gun))
 				to_chat(user, "You have chosen \the [AM]. Say hello to your new friend.")
 		qdel(src)
+
+/*
+ * CentCom Pistol
+ */
+/obj/item/gunbox/centcom
+	name = "centcom sidearm box"
+	desc = "A secure box containing a lethal sidearm used by Central Command."
+	w_class = ITEMSIZE_HUGE
+/obj/item/gunbox/centcom/attack_self(mob/living/user)
+	var/list/options = list()
+	options["Écureuil (10mm)"] = list(/obj/item/weapon/gun/projectile/ecureuil, /obj/item/ammo_magazine/m10mm/pistol, /obj/item/ammo_magazine/m10mm/pistol)
+	options["Écureuil Olive (10mm)"] = list(/obj/item/weapon/gun/projectile/ecureuil/tac, /obj/item/ammo_magazine/m10mm/pistol, /obj/item/ammo_magazine/m10mm/pistol)
+	options["Écureuil Tan (10mm)"] = list(/obj/item/weapon/gun/projectile/ecureuil/tac2, /obj/item/ammo_magazine/m10mm/pistol, /obj/item/ammo_magazine/m10mm/pistol)
+	var/choice = tgui_input_list(user,"Please, select an option.", "Gun!", options)
+	if(src && choice)
+		var/list/things_to_spawn = options[choice]
+		for(var/new_type in things_to_spawn) // Spawn all the things, the gun and the ammo.
+			var/atom/movable/AM = new new_type(get_turf(src))
+			if(istype(AM, /obj/item/weapon/gun))
+				to_chat(user, "You have chosen \the [AM]. Say hello to your new friend.")
+		qdel(src)
