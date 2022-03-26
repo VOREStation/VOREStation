@@ -131,9 +131,12 @@
 
 	user.setClickCooldown(user.get_attack_speed(W))
 
+/*
+//As with the floors, only this time it works AND tries pushing the wall after it's done. 
 	if(!construction_stage && user.a_intent == I_HELP)
 		if(try_graffiti(user,W))
 			return
+*/
 
 	if (!user.IsAdvancedToolUser())
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
