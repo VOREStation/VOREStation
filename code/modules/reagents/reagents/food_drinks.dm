@@ -1180,6 +1180,7 @@
 	cup_name = "cup of milk"
 	cup_desc = "White and nutritious goodness!"
 	allergen_type = ALLERGEN_DAIRY //Milk is dairy
+	overdose = 100//VOREStation Add
 
 /datum/reagent/drink/milk/chocolate
 	name =  "Chocolate Milk"
@@ -1211,6 +1212,18 @@
 				H.AdjustWeakened(1)
 				break // Only mend one bone, whichever comes first in the list
 	//VOREStation Edit End
+
+//VOREStation Edit Start
+/datum/reagent/drink/milk/overdose(var/mob/living/carbon/M, var/alien, var/removed)
+	..()
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(SKELETON in H.mutations)	return
+		to_chat(M, "<span class='warning'>Oh god, your skeleton became too strong, its coming out!</span>")
+		remove_self(overdose-10)
+		gibs(H.loc, H.dna, null, H.species.get_flesh_colour(src), H.species.get_blood_colour(src))
+		H.ChangeToSkeleton()
+//VOREStation Edit End
 
 /datum/reagent/drink/milk/cream
 	name = "Cream"
