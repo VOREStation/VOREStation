@@ -12,7 +12,6 @@
 	var/respawn = 30 MINUTES			//The time to wait if you didn't die from vore
 	var/spawn_slots = -1				//How many people can be spawned from this? If -1 it's unlimited
 	var/spawntype						//The kind of mob that will be spawned, if set.
-	var/backup_implanter
 
 /obj/machinery/transhuman/autoresleever/update_icon()
 	. = ..()
