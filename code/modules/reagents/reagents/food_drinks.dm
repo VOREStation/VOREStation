@@ -1219,7 +1219,7 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(SKELETON in H.mutations)	return
-		to_chat(M, "<span class='warning'>Oh god, your skeleton became too strong, its coming out!</span>")
+		to_chat(M, "<span class='warning'>Oh god, your skeleton became too strong, it\'s coming out!</span>")
 		remove_self(overdose-10)
 		gibs(H.loc, H.dna, null, H.species.get_flesh_colour(src), H.species.get_blood_colour(src))
 		H.ChangeToSkeleton()
