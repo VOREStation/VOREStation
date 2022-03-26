@@ -12,6 +12,7 @@
 	var/respawn = 30 MINUTES			//The time to wait if you didn't die from vore
 	var/spawn_slots = -1				//How many people can be spawned from this? If -1 it's unlimited
 	var/spawntype						//The kind of mob that will be spawned, if set.
+	var/backup_implanter
 
 /obj/machinery/transhuman/autoresleever/update_icon()
 	. = ..()
@@ -169,11 +170,28 @@
 	log_admin("[new_character.ckey]'s character [new_character.real_name] has been auto-resleeved.")
 	message_admins("[new_character.ckey]'s character [new_character.real_name] has been auto-resleeved.")
 
+	var/obj/item/weapon/implant/backup/imp = new(src)
+
+	if(imp.handle_implant(new_character,new_character.zone_sel.selecting))
+		imp.post_implant(new_character)
+
 	var/datum/transcore_db/db = SStranscore.db_by_mind_name(new_character.mind.name)
 	if(db)
 		var/datum/transhuman/mind_record/record = db.backed_up[new_character.mind.name]
 		if((world.time - record.last_notification) < 30 MINUTES)
 			global_announcer.autosay("[new_character.name] has been resleeved by the automatic resleeving system.", "TransCore Oversight", new_character.isSynthetic() ? "Science" : "Medical")
+		spawn(0)	//Wait a second for nif to do its thing if there is one
+		if(record.nif_path)
+			var/obj/item/device/nif/nif
+			if(new_character.nif)
+				nif = new_character.nif
+			else
+				nif = new record.nif_path(new_character,null,record.nif_savedata)
+			spawn(0)	//Wait another second in case we just gave them a new nif
+			if(nif)	//Now restore the software
+				for(var/path in record.nif_software)
+					new path(nif)
+				nif.durability = record.nif_durability
 
 	if(spawn_slots == -1)
 		return
