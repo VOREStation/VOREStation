@@ -1241,6 +1241,86 @@
 	cup_name = "cup of milk"
 	cup_desc = "White and nutritious goodness!"
 	allergen_type = ALLERGEN_BEANS //Would be made from soy beans
+	overdose = REAGENTS_OVERDOSE * 1.5 //Vorestation add - chemical realism
+
+//Vorestation add start -- copied from /code/modules/reagents/reagents/vore_vr.dm
+/datum/reagent/drink/milk/soymilk/overdose(var/mob/living/carbon/M, var/alien, var/removed)
+	if(!(M.allow_spontaneous_tf))
+		return
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(M.reagents.has_reagent("boimilk"))
+			H.Confuse(1)
+		else
+			if(!(H.gender == FEMALE))
+				H.set_gender(FEMALE)
+				H.change_gender_identity(FEMALE)
+				H.visible_message("<span class='notice'>[H] suddenly twitches as some of their features seem to contort and reshape, adjusting... In the end, it seems they are now female.</span>",
+								"<span class='warning'>Your body suddenly contorts, feeling very different in various ways... By the time the rushing feeling is over it seems you just became female.</span>")
+
+
+/datum/reagent/drink/milk/boimilk
+	name = "Boi Milk"
+	id = "boimilk"
+	description = "An opaque white liquid made from boibeans."
+	taste_description = "creamy butter"
+	color = "#DFDFC7"
+
+	glass_name = "boi milk"
+	glass_desc = "Rich and creamy drink derived from boi beans."
+
+	cup_icon_state = "cup_cream"
+	cup_name = "cup of milk"
+	cup_desc = "White and nutritious goodness!"
+	allergen_type = ALLERGEN_BEANS //Would be made from boi beans
+	overdose = REAGENTS_OVERDOSE * 1.5
+
+
+/datum/reagent/drink/milk/boimilk/overdose(var/mob/living/carbon/M, var/alien, var/removed)
+	if(!(M.allow_spontaneous_tf))
+		return
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(M.reagents.has_reagent("soymilk"))
+			H.Confuse(1)
+		else
+			if(!(H.gender == MALE))
+				H.set_gender(MALE)
+				H.change_gender_identity(MALE)
+				H.visible_message("<span class='notice'>[H] suddenly twitches as some of their features seem to contort and reshape, adjusting... In the end, it seems they are now male.</span>",
+								"<span class='warning'>Your body suddenly contorts, feeling very different in various ways... By the time the rushing feeling is over it seems you just became male.</span>")
+
+
+
+/datum/reagent/drink/milk/thoymilk
+	name = "Thoy Milk"
+	id = "thoymilk"
+	description = "An a fluffy and thick white liquid made from mixing milks made from soy and boi beans."
+	taste_description = "non-dairy milkshake"
+	color = "#DFDFC7"
+
+	glass_name = "thoy milkshake"
+	glass_desc = "Rich and creamy drink made by mixing soy and boi milk."
+
+	cup_icon_state = "cup_cream"
+	cup_name = "cup of milkshake"
+	cup_desc = "White and nutritious goodness!"
+	allergen_type = ALLERGEN_BEANS //Would be made from soy and boi beans
+	overdose = REAGENTS_OVERDOSE
+
+
+/datum/reagent/drink/milk/thoymilk/overdose(var/mob/living/carbon/M, var/alien, var/removed)
+	if(!(M.allow_spontaneous_tf))
+		return
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(!(H.gender == PLURAL))
+			H.set_gender(PLURAL)
+			H.change_gender_identity(PLURAL)
+			H.visible_message("<span class='notice'>[H] suddenly twitches as some of their features seem to contort and reshape, adjusting... In the end, it seems they are now of mixed gender.</span>",
+							"<span class='warning'>Your body suddenly contorts, feeling very different in various ways... By the time the rushing feeling is over it seems you just became of mixed gender.</span>")
+
+//Vorestation add end
 
 /datum/reagent/drink/tea
 	name = "Tea"

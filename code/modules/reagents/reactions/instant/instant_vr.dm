@@ -99,6 +99,13 @@
 	required_reagents = list("amorphorovir" = 1, "cola" = 10, "berryjuice" = 10)
 	result_amount = 1
 
+/decl/chemical_reaction/instant/thoymilk
+	name = "Thoymilk"
+	id = "Beanmilk thickening recipe"
+	result = "thoymilk"
+	required_reagents = list("soymilk" = 1, "boimilk" = 1, "sugar" = 1)
+	result_amount = 1
+
 ///////////////////////////////////////////////////////////////////////////////////
 /// Miscellaneous Reactions
 
