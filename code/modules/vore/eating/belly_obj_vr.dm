@@ -366,9 +366,11 @@
 		H.held_mob.muffled = FALSE
 		H.held_mob.forced_psay = FALSE
 
+	if(isliving(M))
+		var/mob/living/slip = M
+		slip.slip_protect = world.time + 25 // This is to prevent slipping back into your pred if they stand on soap or something.
 	//Place them into our drop_location
 	M.forceMove(drop_location())
-
 	items_preserved -= M
 
 	//Special treatment for absorbed prey
@@ -774,7 +776,7 @@
 /////////////////////////////////////////////////////////////////////////
 /obj/belly/proc/handle_absorb_langs()
 	owner.absorb_langs()
-				
+
 ////////////////////////////////////////////////////////////////////////
 
 

@@ -108,6 +108,38 @@
 	name = "speedloader (.38 haywire)"
 	ammo_type = /obj/item/ammo_casing/a38/emp
 
+// Makarov
+/obj/item/ammo_magazine/m38/makarov
+	name = "makarov magazine (.38)"
+	icon_state = "45"
+	origin_tech = list(TECH_COMBAT = 2)
+	mag_type = MAGAZINE
+	matter = list(MAT_STEEL = 480)
+	caliber = ".38"
+	ammo_type = /obj/item/ammo_casing/a38
+	max_ammo = 8
+	multiple_sprites = 1
+
+/obj/item/ammo_magazine/m38/makarov/rubber
+	name = "makarov magazine (.38 rubber)"
+	ammo_type = /obj/item/ammo_casing/a38/rubber
+
+// Giskard
+/obj/item/ammo_magazine/m38/giskard
+	name = "magazine (.38)"
+	icon_state = "m91"
+	origin_tech = list(TECH_COMBAT = 2)
+	mag_type = MAGAZINE
+	matter = list(MAT_STEEL = 540)
+	caliber = ".38"
+	ammo_type = /obj/item/ammo_casing/a38
+	max_ammo = 10
+	multiple_sprites = 1
+
+/obj/item/ammo_magazine/m38/giskard/rubber
+	name = "makarov magazine (.38 rubber)"
+	ammo_type = /obj/item/ammo_casing/a38/rubber
+
 ///////// .45 /////////
 
 /obj/item/ammo_magazine/m45
@@ -345,6 +377,25 @@
 	name = "compact magazine (9mm practice)"
 	ammo_type = /obj/item/ammo_casing/a9mm/practice
 
+// Luger
+/obj/item/ammo_magazine/m9mm/luger
+	name = "\improper \"Mäuse\" magazine (9mm)"
+	icon_state = "9x19p"
+	origin_tech = list(TECH_COMBAT = 2)
+	mag_type = MAGAZINE
+	matter = list(MAT_STEEL = 480)
+	caliber = "9mm"
+	ammo_type = /obj/item/ammo_casing/a9mm
+	max_ammo = 8
+	multiple_sprites = 1
+
+/obj/item/ammo_magazine/m9mm/luger/empty
+	initial_ammo = 0
+
+/obj/item/ammo_magazine/m9mm/luger/rubber
+	name = "\improper \"Mäuse\" magazine (9mm rubber)"
+	ammo_type = /obj/item/ammo_casing/a9mm/rubber
+
 // SMG
 /obj/item/ammo_magazine/m9mmt
 	name = "top mounted magazine (9mm)"
@@ -431,7 +482,7 @@
 	ammo_type = /obj/item/ammo_casing/a9mm/ap
 	matter = list(MAT_STEEL = 2000)
 
-/obj/item/ammo_magazine/m9mmR/saber/empty
+/obj/item/ammo_magazine/m9mmAdvanced/empty
 	initial_ammo = 0
 
 ///////// 10mm /////////
@@ -448,6 +499,45 @@
 	multiple_sprites = 1
 
 /obj/item/ammo_magazine/m10mm/empty
+	initial_ammo = 0
+
+/obj/item/ammo_magazine/m10mm/practice
+	name = "magazine (10mm practice)"
+	matter = list(MAT_STEEL = 1000)
+	ammo_type = /obj/item/ammo_casing/a10mm/practice
+
+/obj/item/ammo_magazine/m10mm/rubber
+	name = "magazine (10mm rubber)"
+	matter = list(MAT_STEEL = 1000)
+	ammo_type = /obj/item/ammo_casing/a10mm/rubber
+
+/obj/item/ammo_magazine/m10mm/emp
+	name = "magazine (10mm haywire)"
+	matter = list(MAT_STEEL = 1500, MAT_URANIUM = 2000)
+	ammo_type = /obj/item/ammo_casing/a10mm/emp
+
+// Pistol
+/obj/item/ammo_magazine/m10mm/pistol
+	icon_state = "m91"
+	matter = list(MAT_STEEL = 1000)
+	max_ammo = 12
+
+/obj/item/ammo_magazine/m10mm/pistol/practice
+	name = "magazine (10mm practice)"
+	matter = list(MAT_STEEL = 800)
+	ammo_type = /obj/item/ammo_casing/a10mm/practice
+
+/obj/item/ammo_magazine/m10mm/pistol/rubber
+	name = "magazine (10mm rubber)"
+	matter = list(MAT_STEEL = 800)
+	ammo_type = /obj/item/ammo_casing/a10mm/rubber
+
+/obj/item/ammo_magazine/m10mm/pistol/emp
+	name = "magazine (10mm haywire)"
+	matter = list(MAT_STEEL = 1000, MAT_URANIUM = 1500)
+	ammo_type = /obj/item/ammo_casing/a10mm/emp
+
+/obj/item/ammo_magazine/m10mm/pistol/empty
 	initial_ammo = 0
 
 ///////// 5.45mm /////////

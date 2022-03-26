@@ -379,8 +379,8 @@
 			),
 			prob(5);list(
 				/obj/item/weapon/gun/projectile/luger,
-				/obj/item/ammo_magazine/m9mm/compact,
-				/obj/item/ammo_magazine/m9mm/compact
+				/obj/item/ammo_magazine/m9mm/luger,
+				/obj/item/ammo_magazine/m9mm/luger
 			),
 			prob(4);list(
 				/obj/item/weapon/gun/projectile/luger/brown,

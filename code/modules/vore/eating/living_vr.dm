@@ -504,9 +504,15 @@
 		to_chat(user, "<span class='notice'>They aren't able to be devoured.</span>")
 		log_and_message_admins("[key_name_admin(src)] attempted to devour [key_name_admin(prey)] against their prefs ([prey ? ADMIN_JMP(prey) : "null"])")
 		return FALSE
-
+	// Slipnoms from chompstation downstream, credit to cadyn for the original PR.
 	// Prepare messages
-	if(user == pred) //Feeding someone to yourself
+	if(prey.is_slipping)
+		attempt_msg = "<span class='warning'>It seems like [prey] is about to slide into [pred]'s [lowertext(belly.name)]!</span>"
+		success_msg = "<span class='warning'>[prey] suddenly slides into [pred]'s [lowertext(belly.name)]!</span>"
+	else if(pred.is_slipping)
+		attempt_msg = "<span class='warning'>It seems like [prey] is gonna end up inside [pred]'s [lowertext(belly.name)] as [pred] comes sliding over!</span>"
+		success_msg = "<span class='warning'>[prey] suddenly slips inside of [pred]'s [lowertext(belly.name)] as [pred] slides into them!</span>"
+	else if(user == pred) //Feeding someone to yourself
 		attempt_msg = "<span class='warning'>[pred] is attempting to [lowertext(belly.vore_verb)] [prey] into their [lowertext(belly.name)]!</span>"
 		success_msg = "<span class='warning'>[pred] manages to [lowertext(belly.vore_verb)] [prey] into their [lowertext(belly.name)]!</span>"
 	else //Feeding someone to another person
@@ -566,7 +572,7 @@
 	var/air_type = /datum/gas_mixture/belly_air
 	if(istype(lifeform))	// If this doesn't succeed, then 'lifeform' is actually a bag or capture crystal with someone inside
 		air_type = lifeform.get_perfect_belly_air_type()		// Without any overrides/changes, its gonna be /datum/gas_mixture/belly_air
-	
+
 	var/air = new air_type(1000)
 	return air
 
