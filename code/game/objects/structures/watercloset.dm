@@ -264,9 +264,23 @@
 	reagents.splash(O, 10)
 
 /obj/machinery/shower/process()
+// A drain for every shower! ..If, there's a liquid on its turf.
+	var/obj/effect/decal/cleanable/chempuddle/to_drain = locate() in get_turf(src)
+	if(to_drain)
+		if(!QDELETED(to_drain))
+			qdel(to_drain)
+
 	if(!on) return
+<<<<<<< HEAD
 	for(var/atom/movable/AM in loc)
 		if(AM.simulated)
+=======
+
+	for(var/thing in loc)
+		var/atom/movable/AM = thing
+		var/mob/living/L = thing
+		if(istype(AM) && AM.simulated)
+>>>>>>> 614dbac8821... Merge pull request #8479 from Mechoid/FixPuddleDefcon
 			wash(AM)
 			if(isliving(AM))
 				var/mob/living/L = AM
