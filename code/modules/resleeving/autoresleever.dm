@@ -76,6 +76,20 @@
 
 	var/client/ghost_client = ghost.client
 	
+	if(!is_alien_whitelisted(ghost, GLOB.all_species[ghost_client?.prefs?.species]) && !check_rights(R_ADMIN, 0)) // Prevents a ghost ghosting in on a slot and spawning via a resleever with race they're not whitelisted for, getting around normal join restrictions.
+		to_chat(ghost, "<span class='warning'>You are not whitelisted to spawn as this species!</span>")
+		return
+	
+	/* // Comments out NO_SCAN restriction, as per headmin/maintainer request.
+	var/datum/species/chosen_species
+	if(ghost.client.prefs.species) // In case we somehow don't have a species set here.
+		chosen_species = GLOB.all_species[ghost_client.prefs.species]
+		
+	if(chosen_species.flags && NO_SCAN) // Sanity. Prevents species like Xenochimera, Proteans, etc from rejoining the round via resleeve, as they should have their own methods of doing so already, as agreed to when you whitelist as them.
+		to_chat(ghost, "<span class='warning'>This species cannot be resleeved!</span>")
+		return
+	*/
+	
 	//Name matching is ugly but mind doesn't persist to look at.
 	var/charjob
 	var/datum/data/record/record_found
