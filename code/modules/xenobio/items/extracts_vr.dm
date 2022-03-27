@@ -510,7 +510,7 @@
 /obj/item/slime_extract/gold
 	name = "gold slime extract"
 	icon_state = "gold slime extract"
-	description_info = "When injected with phoron, this extract creates a random hostile creature. When injected with blood, this extract creates three random createres. \
+	description_info = "When injected with phoron, this extract creates a few random creatures. When injected with blood, this extract a random hostile creature. \
 	When injected with water, this extract creates a random passive creature. When injected with slime jelly, this extract creates some gold."
 	slime_type = /mob/living/simple_mob/slime/xenobio/gold
 
@@ -1296,7 +1296,7 @@
 	name = "sapphire slime extract"
 	icon_state = "sapphire slime extract"
 	description_info = "When injected with phoron, this extract creates a promethean cube, which can be used to create a new promethean. When injected with blood, this extract creates some mutation \
-	toxin. When injected with water, this extract creates some plushies. When injected with slime jelly, this extract creates a sentience agent, which can be used to develop sentience in \
+	toxin. When injected with water, this extract creates some plushies. When injected with slime jelly, this extract creates a sapience agent, which can be used to develop sentience in \
 	various creatures."
 	slime_type = /mob/living/simple_mob/slime/xenobio/sapphire
 
@@ -1340,15 +1340,15 @@
 	..()
 
 
-/decl/chemical_reaction/instant/slime/sapphire_sentience
-	name = "Slime Sentience"
-	id = "m_sapphire_sentience"
+/decl/chemical_reaction/instant/slime/sapphire_sapience
+	name = "Slime Sapience"
+	id = "m_sapphire_sapience"
 	required_reagents = list("slimejelly" = 5)
 	result_amount = 1
 	required = /obj/item/slime_extract/sapphire
 
-/decl/chemical_reaction/instant/slime/sapphire_sentience/on_reaction(var/datum/reagents/holder)
-	new /obj/item/slimepotion/sentience(get_turf(holder.my_atom))
+/decl/chemical_reaction/instant/slime/sapphire_sapience/on_reaction(var/datum/reagents/holder)
+	new /obj/item/slimepotion/sapience(get_turf(holder.my_atom))
 	..()
 
 // ***************

@@ -141,14 +141,13 @@
 		return
 	..()
 
-/obj/item/slimepotion/sentience
-	name = "slime loyalty agent"
-	desc = "A potent chemical mix that makes an animal deeply loyal to the species of whoever applies this, and will attack threats to them."
-	description_info = "The slime or other animal needs to be alive for this to work.  The slime this is applied to will have their 'faction' change to \
-	the user's faction, which means the slime will attack things that are hostile to the user's faction, such as carp, spiders, and other slimes."
+/obj/item/slimepotion/sapience
+	name = "slime sapience agent"
+	desc = "A potent chemical mix that makes an animal capable of developing more advanced, sapient thought."
+	description_info = "The slime or other animal needs to be alive for this to work. The development is not always immedeate and may take indeterminate time before effects show."
 	icon_state = "potblue"
 
-/obj/item/slimepotion/sentience/attack(mob/living/simple_mob/M, mob/user)
+/obj/item/slimepotion/sapience/attack(mob/living/simple_mob/M, mob/user)
 	if(!istype(M))
 		to_chat(user, "<span class='warning'>The agent only works on creatures!</span>")
 		return ..()
@@ -156,17 +155,17 @@
 		to_chat(user, "<span class='warning'>The creature is dead!</span>")
 		return ..()
 	if(M.ghostjoin)
-		to_chat(user, "<span class='warning'>The creature is already developing sentience.</span>")
+		to_chat(user, "<span class='warning'>The creature is already developing sapience.</span>")
 		return ..()
 	if(M.ckey)
-		to_chat(user, "<span class='warning'>The creature is already sentient!</span>")
+		to_chat(user, "<span class='warning'>The creature is already sapient!</span>")
 		return ..()
 
-	to_chat(user, "<span class='notice'>You feed \the [M] the agent. It may now eventually develop proper sentience.</span>")
+	to_chat(user, "<span class='notice'>You feed \the [M] the agent. It may now eventually develop proper sapience.</span>")
 	M.ghostjoin = 1
 	active_ghost_pods |= M
 	M.ghostjoin_icon()
-	log_and_message_admins("[key_name_admin(user)] used a sentience potion on a simple mob: [M]. [ADMIN_FLW(src)]")
+	log_and_message_admins("[key_name_admin(user)] used a sapience potion on a simple mob: [M]. [ADMIN_FLW(src)]")
 	playsound(src, 'sound/effects/bubbles.ogg', 50, 1)
 	qdel(src)
 
