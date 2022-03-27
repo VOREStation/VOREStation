@@ -278,3 +278,112 @@
 /obj/item/weapon/holder/catslug/Initialize(mapload, mob/held)
 	. = ..()
 	color = held.color
+
+/datum/category_item/catalogue/fauna/catslug/spaceslug
+	name = "Alien Wildlife - Catslug - Miros"
+	desc = "This catslug serves as the Fuel Depots resident attendant,\
+	despite the facility being fully automated and self-serve. - \
+	The Catslug is an omnivorous terrestrial creature.\
+	Exhibiting properties of both a cat and a slug (hence its name)\
+	it moves somewhat awkwardly. However, the unique qualities of\
+	its body make it exceedingly flexible and smooth, allowing it to\
+	wiggle into and move effectively in even extremely tight spaces.\
+	Additionally, it has surprisingly capable hands, and moves quite\
+	well on two legs or four. Caution is advised when interacting\
+	with these creatures, they are quite intelligent, and proficient\
+	tool users."
+	value = CATALOGUER_REWARD_MEDIUM	//Should offer a measure of incentive for people to visit the depot more often.
+
+/mob/living/simple_mob/vore/alienanimals/catslug/spaceslug
+	name = "Miros"
+	desc = "Looks like catslugs can into space after all! This little chap seems to have gotten their mitts on a tiny spacesuit, there's a nametag on it that reads \"Miros\" alongside the Aether Atmospherics logo."
+	tt_desc = "Mollusca Felis Stellaris"
+	icon_state = "spaceslug"
+	icon_living = "spaceslug"
+	icon_rest = "spaceslug_rest"
+	icon_dead = "spaceslug_dead"
+	digestable = 0
+	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug/spaceslug)
+	holder_type = /obj/item/weapon/holder/catslug/spaceslug
+	makes_dirt = 0
+	say_list_type = /datum/say_list/catslug/spaceslug
+	
+	minbodytemp = 0				// Shamelessly stolen temp & atmos tolerances from the space cat.
+	maxbodytemp = 900			
+	heat_damage_per_tick = 3	
+	cold_damage_per_tick = 2
+	
+	min_oxy = 0
+	max_oxy = 0
+	min_tox = 0
+	max_tox = 0
+	min_co2 = 0
+	max_co2 = 0
+	min_n2 = 0
+	max_n2 = 0
+	
+	player_msg = "You are an intelligent creature capable of more than most think, clad in a spacesuit that protects you from the ravages of vacuum and hostile atmospheres alike. You can pick up and use many things, and even carry some of them with you into the vents, which you can use to move around quickly. You're quiet and capable, you speak with your hands and your deeds! <br>- - - - -<br> <span class='notice'>Keep in mind, your goal should generally be to survive. You're expected to follow the same rules as everyone else, so don't go self antagging without permission from the staff team, but you are able and capable of defending yourself from those who would attack you for no reason.</span>"
+	
+	has_langs = list("Sign Language")
+
+/datum/say_list/catslug/spaceslug
+	speak = list("Have any porl?", "What is that?", "What kind of ship is that?", "What are you doing?", "How did you get here?", "Don't take off your helmet.", "SPAAAAAACE!", "WAOW!", "Nice weather we're having, isn't it?")
+
+/mob/living/simple_mob/vore/alienanimals/catslug/spaceslug/Initialize()
+	. = ..()
+	verbs += /mob/living/proc/ventcrawl
+	verbs += /mob/living/proc/hide		//I don't even want to imagine what the colour change proc would do to their sprite, not to mention ghosts would need to be forced into the catslug so this is more just a safety net than anything
+
+/mob/living/simple_mob/vore/alienanimals/catslug/spaceslug/attack_hand(mob/living/carbon/human/M as mob)
+	
+	if(stat == DEAD)
+		return ..()
+	if(M.a_intent != I_HELP)
+		return ..()
+	playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+	if(resting)
+		M.visible_message("<span class='notice'>\The [M.name] shakes \the [src] awake from their nap.</span>","<span class='notice'>You shake \the [src] awake!</span>")
+		lay_down()
+		ai_holder.go_wake()
+		return
+	if(M.zone_sel.selecting == BP_HEAD)
+		M.visible_message( \
+			"<span class='notice'>[M] pats \the [src] on their helmet.</span>", \
+			"<span class='notice'>You pat \the [src] on their helmet.</span>", )
+		if(client)
+			return
+		if(prob(10))
+			visible_message("<span class='notice'>\The [src] purrs and leans into [M]'s hand.</span>")
+	else if(M.zone_sel.selecting == BP_R_HAND || M.zone_sel.selecting == BP_L_HAND)
+		M.visible_message( \
+			"<span class='notice'>[M] shakes \the [src]'s hand.</span>", \
+			"<span class='notice'>You shake \the [src]'s hand.</span>", )
+		if(client)
+			return
+		if(prob(10))
+			visible_message("<span class='notice'>\The [src]'s looks a little confused and bonks their helmet's faceplate against [M]'s hand experimentally, attempting to nibble at it.</span>")
+	else if(M.zone_sel.selecting == "mouth")
+		M.visible_message( \
+			"<span class='notice'>[M] attempts to boop \the [src]'s nose, defeated only by the helmet they wear.</span>", \
+			"<span class='notice'>You attempt to boop \the [src] on the nose, stopped only by that helmet they wear.</span>", )
+		if(client)
+			return
+		if(prob(10))
+			visible_message("<span class='notice'>\The [src]'s eyes widen as they stare at [M]. After a moment they rub at the faint mark [M]'s digit left upon the surface of their helmet's faceplate.</span>")
+	else if(M.zone_sel.selecting == BP_GROIN)
+		M.visible_message( \
+			"<span class='notice'>[M] rubs \the [src]'s tummy...</span>", \
+			"<span class='notice'>You rub \the [src]'s tummy, accidently pressing a few of the buttons on their chestpiece in the process... You feel the danger.</span>", )
+		if(client)
+			return
+		visible_message("<span class='notice'>\The [src] pushes [M]'s hand away from their tummy and furrows their brow, frantically pressing at the buttons [M] so carelessly pushed!</span>")
+		if(prob(5))
+			ai_holder.target = M
+			ai_holder.track_target_position()
+			ai_holder.set_stance(STANCE_FIGHT)
+	else
+		return ..()
+
+/obj/item/weapon/holder/catslug/spaceslug
+	item_state = "spaceslug"
+	
