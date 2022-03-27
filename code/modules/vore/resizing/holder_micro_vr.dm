@@ -5,7 +5,7 @@
 	desc = "Another crewmember, small enough to fit in your hand."
 	icon_state = "micro"
 	icon_override = 'icons/inventory/head/mob_vr.dmi'
-	slot_flags = SLOT_FEET | SLOT_HEAD | SLOT_ID
+	slot_flags = SLOT_FEET | SLOT_HEAD | SLOT_ID | SLOT_HOLSTER
 	w_class = ITEMSIZE_SMALL
 	item_icons = null // No in-hand sprites (for now, anyway, we could totally add some)
 	pixel_y = 0		  // Override value from parent.
