@@ -489,6 +489,7 @@
 	slime_color = "red"
 	coretype = /obj/item/slime_extract/red
 	movement_cooldown = 0 // See above.
+	untamable = TRUE // Will enrage if disciplined.
 
 	description_info = "This slime is faster than the others.  Attempting to discipline this slime will always cause it to go rabid and berserk."
 
@@ -499,7 +500,7 @@
 			/mob/living/simple_mob/slime/xenobio/orange
 		)
 
-	ai_holder_type = /datum/ai_holder/simple_mob/xenobio_slime/red // Will enrage if disciplined.
+	ai_holder_type = /datum/ai_holder/simple_mob/xenobio_slime
 
 
 /mob/living/simple_mob/slime/xenobio/green

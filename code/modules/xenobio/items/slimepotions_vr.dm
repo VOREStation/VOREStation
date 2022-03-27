@@ -1,0 +1,190 @@
+/obj/item/slimepotion/attackby(obj/item/O, mob/user)
+	if(istype(O, /obj/item/slimepotion/mimic))
+		to_chat(user, "<span class='notice'>You apply the mimic to the slime potion as it copies it's effects.</span>")
+		playsound(src, 'sound/effects/bubbles.ogg', 50, 1)
+		var/newtype = src.type
+		new newtype(get_turf(src))
+		qdel(O)
+	..()
+
+
+/obj/item/slimepotion/infertility
+	name = "slime infertility agent"
+	desc = "A potent chemical mix that will reduce the amount of offspring this slime will have."
+	icon_state = "potpurple"
+	description_info = "The slime needs to be alive for this to work. It will reduce the amount of slime babies by 2 (to minimum of 2)."
+
+/obj/item/slimepotion/infertility/attack(mob/living/simple_mob/slime/xenobio/M, mob/user)
+	if(!istype(M))
+		to_chat(user, "<span class='warning'>The agent only works on slimes!</span>")
+		return ..()
+	if(M.stat == DEAD)
+		to_chat(user, "<span class='warning'>The slime is dead!</span>")
+		return ..()
+	if(M.split_amount <= 2)
+		to_chat(user, "<span class='warning'>The slime cannot get any less fertile!</span>")
+		return ..()
+
+	to_chat(user, "<span class='notice'>You feed the slime the infertility agent. It will now have less offspring.</span>")
+	M.split_amount = between(2, M.split_amount - 2, 6)
+	playsound(src, 'sound/effects/bubbles.ogg', 50, 1)
+	qdel(src)
+
+/obj/item/slimepotion/fertility
+	name = "slime fertility agent"
+	desc = "A potent chemical mix that will increase the amount of offspring this slime will have."
+	icon_state = "potpurple"
+	description_info = "The slime needs to be alive for this to work. It will increase the amount of slime babies by 2 (to maximum of 6)."
+
+/obj/item/slimepotion/fertility/attack(mob/living/simple_mob/slime/xenobio/M, mob/user)
+	if(!istype(M))
+		to_chat(user, "<span class='warning'>The agent only works on slimes!</span>")
+		return ..()
+	if(M.stat == DEAD)
+		to_chat(user, "<span class='warning'>The slime is dead!</span>")
+		return ..()
+	if(M.split_amount >= 6)
+		to_chat(user, "<span class='warning'>The slime cannot get any more fertile!</span>")
+		return ..()
+
+	to_chat(user, "<span class='notice'>You feed the slime the infertility agent. It will now have less offspring.</span>")
+	M.split_amount = between(2, M.split_amount + 2, 6)
+	playsound(src, 'sound/effects/bubbles.ogg', 50, 1)
+	qdel(src)
+
+/obj/item/slimepotion/shrink
+	name = "slime shrinking agent"
+	desc = "A potent chemical mix that will turn adult slime into a baby one."
+	icon_state = "potpurple"
+	description_info = "The slime needs to be alive for this to work."
+
+/obj/item/slimepotion/shrink/attack(mob/living/simple_mob/slime/xenobio/M, mob/user)
+	if(!istype(M))
+		to_chat(user, "<span class='warning'>The agent only works on slimes!</span>")
+		return ..()
+	if(M.stat == DEAD)
+		to_chat(user, "<span class='warning'>The slime is dead!</span>")
+		return ..()
+	if(!(M.is_adult))
+		to_chat(user, "<span class='warning'>The slime is already a baby!</span>")
+		return ..()
+
+	to_chat(user, "<span class='notice'>You feed the slime the shrinking agent. It is now back to being a baby.</span>")
+	M.make_baby()
+	playsound(src, 'sound/effects/bubbles.ogg', 50, 1)
+	qdel(src)
+
+/obj/item/slimepotion/death
+	name = "slime death agent"
+	desc = "A potent chemical mix that will instantly kill a slime."
+	icon_state = "potblue"
+	description_info = "The slime needs to be alive for this to work."
+
+/obj/item/slimepotion/death/attack(mob/living/simple_mob/slime/xenobio/M, mob/user)
+	if(!istype(M))
+		to_chat(user, "<span class='warning'>The agent only works on slimes!</span>")
+		return ..()
+	if(M.stat == DEAD)
+		to_chat(user, "<span class='warning'>The slime is already dead!</span>")
+		return ..()
+
+	to_chat(user, "<span class='notice'>You feed the slime the death agent. Its face flashes pain of betrayal before it goes still.</span>")
+	M.adjustToxLoss(500)
+	playsound(src, 'sound/effects/bubbles.ogg', 50, 1)
+	qdel(src)
+
+/obj/item/slimepotion/ferality
+	name = "slime ferality agent"
+	desc = "A potent chemical mix that will make a slime untamable."
+	icon_state = "potred"
+	description_info = "The slime needs to be alive for this to work."
+
+/obj/item/slimepotion/ferality/attack(mob/living/simple_mob/slime/xenobio/M, mob/user)
+	if(!istype(M))
+		to_chat(user, "<span class='warning'>The agent only works on slimes!</span>")
+		return ..()
+	if(M.stat == DEAD)
+		to_chat(user, "<span class='warning'>The slime is already dead!</span>")
+		return ..()
+	if(M.untamable && M.untamable_inheirit)
+		to_chat(user, "<span class='warning'>The slime is already untamable!</span>")
+		return ..()
+
+	to_chat(user, "<span class='notice'>You feed the slime the death agent. It will now only get angrier at taming attempts.</span>")
+	M.untamable = TRUE
+	M.untamable_inheirit = TRUE
+	playsound(src, 'sound/effects/bubbles.ogg', 50, 1)
+	qdel(src)
+
+/obj/item/slimepotion/reinvigoration
+	name = "extract reinvigoration agent"
+	desc = "A potent chemical mix that will create a slime of appropriate type out of an extract."
+	icon_state = "potcyan"
+	description_info = "This will even work on inert extracts. Extract is destroyed in process."
+
+/obj/item/slimepotion/mimic
+	name = "mimic agent"
+	desc = "A potent chemical mix that will mimic effects of other slime-produced agents."
+	icon_state = "potsilver"
+	description_info = "Warning: avoid combining multiple doses of mimic agent."
+
+/obj/item/slimepotion/mimic/attackby(obj/item/O, mob/user)
+	if(istype(O, /obj/item/slimepotion/mimic))
+		to_chat(user, "<span class='warning'>You apply the mimic to the mimic, resulting a mimic that copies a mimic that copies a mimic that copies a mimic that-</span>")
+		var/location = get_turf(src)
+		playsound(location, 'sound/weapons/gauss_shoot.ogg', 50, 1)
+		var/datum/effect/effect/system/grav_pull/s = new /datum/effect/effect/system/grav_pull
+		s.set_up(3, 3, location)
+		s.start()
+		qdel(O)
+		qdel(src)
+		return
+	..()
+
+/obj/item/slimepotion/sentience
+	name = "slime loyalty agent"
+	desc = "A potent chemical mix that makes an animal deeply loyal to the species of whoever applies this, and will attack threats to them."
+	description_info = "The slime or other animal needs to be alive for this to work.  The slime this is applied to will have their 'faction' change to \
+	the user's faction, which means the slime will attack things that are hostile to the user's faction, such as carp, spiders, and other slimes."
+	icon_state = "potblue"
+
+/obj/item/slimepotion/sentience/attack(mob/living/simple_mob/M, mob/user)
+	if(!istype(M))
+		to_chat(user, "<span class='warning'>The agent only works on creatures!</span>")
+		return ..()
+	if(M.stat == DEAD)
+		to_chat(user, "<span class='warning'>The creature is dead!</span>")
+		return ..()
+	if(M.ghostjoin)
+		to_chat(user, "<span class='warning'>The creature is already developing sentience.</span>")
+		return ..()
+	if(M.ckey)
+		to_chat(user, "<span class='warning'>The creature is already sentient!</span>")
+		return ..()
+
+	to_chat(user, "<span class='notice'>You feed \the [M] the agent. It may now eventually develop proper sentience.</span>")
+	M.ghostjoin = 1
+	active_ghost_pods |= M
+	M.ghostjoin_icon()
+	log_and_message_admins("[key_name_admin(user)] used a sentience potion on a simple mob: [M]. [ADMIN_FLW(src)]")
+	playsound(src, 'sound/effects/bubbles.ogg', 50, 1)
+	qdel(src)
+
+/obj/item/slimepotion/obedience
+	name = "slime obedience agent"
+	desc = "A potent chemical mix that makes slime extremely obedient."
+	icon_state = "potlightpink"
+	description_info = "The target needs to be alive and currently misbehaving. Effect is equivalent to very strong discipline."
+
+/obj/item/slimepotion/obedience/attack(mob/living/simple_mob/slime/xenobio/M, mob/user)
+	if(!istype(M))
+		to_chat(user, "<span class='warning'>The agent only works on slimes!</span>")
+		return ..()
+	if(M.stat == DEAD)
+		to_chat(user, "<span class='warning'>The slime is dead!</span>")
+		return ..()
+
+	to_chat(user, "<span class='notice'>You feed the slime the agent. It has been disciplined, for better or worse...</span>")
+	M.adjust_discipline(10)
+	playsound(src, 'sound/effects/bubbles.ogg', 50, 1)
+	qdel(src)

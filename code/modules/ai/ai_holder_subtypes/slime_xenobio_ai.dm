@@ -76,6 +76,10 @@
 	if(amount > 0)
 		if(rabid)
 			return
+		if(my_slime.untamable)
+			holder.say("Grrr...")
+			holder.add_modifier(/datum/modifier/berserk, 30 SECONDS)
+			enrage()
 		var/justified = my_slime.is_justified_to_discipline() // This will also consider the AI-side of that proc.
 		remove_target() // Stop attacking.
 
@@ -94,13 +98,6 @@
 
 	discipline = between(0, discipline + amount, 10)
 	my_slime.update_mood()
-
-// This slime always enrages if disciplined.
-/datum/ai_holder/simple_mob/xenobio_slime/red/adjust_discipline(amount, silent)
-	if(amount > 0 && !rabid)
-		holder.say("Grrr...")
-		holder.add_modifier(/datum/modifier/berserk, 30 SECONDS)
-		enrage()
 
 /datum/ai_holder/simple_mob/xenobio_slime/handle_special_strategical()
 	discipline_decay()
@@ -144,6 +141,16 @@
 	rabid = TRUE
 	my_slime.update_mood()
 	my_slime.visible_message(span("danger", "\The [my_slime] enrages!"))
+
+// Called to relax from being rabid (when blue slime core was used).
+/datum/ai_holder/simple_mob/xenobio_slime/proc/relax()
+	var/mob/living/simple_mob/slime/xenobio/my_slime = holder
+	if(my_slime.harmless)
+		return
+	if(rabid)
+		rabid = FALSE
+		my_slime.update_mood()
+		my_slime.visible_message(span("danger", "\The [my_slime] calms down."))
 
 // Called when using a pacification agent (or it's Kendrick being initalized).
 /datum/ai_holder/simple_mob/xenobio_slime/proc/pacify()

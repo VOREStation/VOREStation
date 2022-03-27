@@ -486,30 +486,3 @@
 	light_range = 8
 	light_power = 0.1
 	light_color = "#49F37C"
-
-/*
- * Slime Extract
- */
-
-/obj/item/device/flashlight/slime
-	gender = PLURAL
-	name = "glowing slime extract"
-	desc = "A slimy ball that appears to be glowing from bioluminesence."
-	icon = 'icons/obj/lighting.dmi'
-	icon_state = "floor1" //not a slime extract sprite but... something close enough!
-	item_state = "slime"
-	light_color = "#FFF423"
-	w_class = ITEMSIZE_TINY
-	light_range = 6
-	on = 1 //Bio-luminesence has one setting, on.
-	power_use = 0
-
-/obj/item/device/flashlight/slime/New()
-	..()
-	set_light(light_range, light_power, light_color)
-
-/obj/item/device/flashlight/slime/update_brightness()
-	return
-
-/obj/item/device/flashlight/slime/attack_self(mob/user)
-	return //Bio-luminescence does not toggle.

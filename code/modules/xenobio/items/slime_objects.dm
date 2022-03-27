@@ -67,7 +67,6 @@
 	qdel(src)
 
 
-
 // More or less functionally identical to the telecrystal tele.
 /obj/item/slime_crystal
 	name = "lesser slime cystal"
@@ -101,6 +100,7 @@
 	safe_blink(AM, 14)
 	qdel(src)
 
+
 /obj/item/weapon/disposable_teleporter/slime
 	name = "greater slime crystal"
 	desc = "A larger, gooier crystal."
@@ -110,7 +110,6 @@
 	uses = 1
 	w_class = ITEMSIZE_SMALL
 	origin_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 4)
-
 
 
 // Very filling food.
@@ -126,3 +125,94 @@
 /obj/item/weapon/reagent_containers/food/snacks/slime/Initialize()
 	. = ..()
 	bitesize = 5
+
+
+//Flashlight
+
+/obj/item/device/flashlight/slime
+	gender = PLURAL
+	name = "glowing slime extract"
+	desc = "A slimy ball that appears to be glowing from bioluminesence."
+	icon = 'icons/obj/lighting.dmi'
+	icon_state = "floor1" //not a slime extract sprite but... something close enough!
+	item_state = "slime"
+	light_color = "#FFF423"
+	w_class = ITEMSIZE_TINY
+	light_range = 6
+	on = 1 //Bio-luminesence has one setting, on.
+	power_use = 0
+
+/obj/item/device/flashlight/slime/New()
+	..()
+	set_light(light_range, light_power, light_color)
+
+/obj/item/device/flashlight/slime/update_brightness()
+	return
+
+/obj/item/device/flashlight/slime/attack_self(mob/user)
+	return //Bio-luminescence does not toggle.
+
+
+//Radiation Emitter
+
+/obj/item/slime_irradiator
+	name = "glowing slime extract"
+	desc = "A slimy ball that appears to be glowing from bioluminesence."
+	icon = 'icons/mob/slimes_vr.dmi'
+	icon_state = "irradiator"
+	light_color = "#00FF00"
+	light_power = 0.4
+	light_range = 2
+	w_class = ITEMSIZE_TINY
+
+/obj/item/slime_irradiator/New()
+	START_PROCESSING(SSobj, src)
+	set_light(light_range, light_power, light_color)
+	return ..()
+
+/obj/item/slime_irradiator/process()
+	SSradiation.radiate(src, 5)
+
+/obj/item/slime_irradiator/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	return ..()
+
+
+//BS Pouch
+/obj/item/weapon/storage/backpack/holding/slime
+	name = "bluespace slime pouch"
+	desc = "A slimy pouch that opens into a localized pocket of bluespace."
+	icon_state = "slimepouch"
+
+
+
+//Slime Chems
+
+/datum/reagent/myelamine/slime
+	name = "Agent A"
+	id = "slime_bleed_fixer"
+	description = "A slimy liquid which appears to rapidly clot internal hemorrhages by increasing the effectiveness of platelets at low quantities.  Toxic in high quantities."
+	taste_description = "slime"
+	overdose = 5
+
+/datum/reagent/osteodaxon/slime
+	name = "Agent B"
+	id = "slime_bone_fixer"
+	description = "A slimy liquid which can be used to heal bone fractures at low quantities.  Toxic in high quantities."
+	taste_description = "slime"
+	overdose = 5
+
+/datum/reagent/peridaxon/slime
+	name = "Agent C"
+	id = "slime_organ_fixer"
+	description = "A slimy liquid which is used to encourage recovery of internal organs and nervous systems in low quantities.  Toxic in high quantities."
+	taste_description = "slime"
+	overdose = 5
+
+/datum/reagent/nutriment/glucose/slime
+	name = "Slime Goop"
+	id = "slime_goop"
+	description = "A slimy liquid, with very compelling smell. Extremely nutritious."
+	color = "#FABA3A"
+	nutriment_factor = 30
+	taste_description = "slimy nectar"
