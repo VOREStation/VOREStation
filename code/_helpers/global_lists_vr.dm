@@ -789,7 +789,7 @@ var/global/list/xenobio_cerulean_potions = list(
 										/obj/item/slimepotion/ferality,
 										/obj/item/slimepotion/reinvigoration,
 										/obj/item/slimepotion/mimic,
-										/obj/item/slimepotion/sentience,
+										/obj/item/slimepotion/sapience,
 										/obj/item/slimepotion/obedience)
 
 var/global/list/xenobio_rainbow_extracts = list(
