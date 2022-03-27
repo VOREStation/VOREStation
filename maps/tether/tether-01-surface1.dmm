@@ -30484,7 +30484,12 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 9
 	},
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/machinery/atmospherics/unary/vent_pump/siphon/on/atmos{
+	external_pressure_bound = 101.3;
+	external_pressure_bound_default = 101.3;
+	pressure_checks = 1;
+	pressure_checks_default = 1
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/autoresleeving)
 "bbJ" = (
@@ -32852,12 +32857,7 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 6
-	},
+/obj/machinery/atmospherics/pipe/simple/hidden/universal,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/autoresleeving)
 "fLB" = (
@@ -34005,6 +34005,12 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 6
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/autoresleeving)
 "iue" = (
@@ -34934,8 +34940,9 @@
 /obj/effect/floor_decal/borderfloorwhite/corner,
 /obj/effect/floor_decal/corner/paleblue/bordercorner,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 8
+	dir = 6
 	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/autoresleeving)
 "lbu" = (
@@ -35299,11 +35306,9 @@
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9
+	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
-	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/autoresleeving)
 "lQu" = (
@@ -36235,6 +36240,15 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/brig)
+"ogh" = (
+/obj/machinery/atmospherics/unary/vent_pump/siphon/on/atmos{
+	external_pressure_bound = 101.3;
+	external_pressure_bound_default = 101.3;
+	pressure_checks = 1;
+	pressure_checks_default = 1
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lowmedbaymaint)
 "ohi" = (
 /obj/structure/catwalk,
 /turf/simulated/floor/plating,
@@ -54517,7 +54531,7 @@ acA
 axP
 aeF
 axK
-aAI
+ogh
 uVK
 joK
 xts
