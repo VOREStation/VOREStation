@@ -4,6 +4,7 @@
 /obj/item/weapon/tool/wirecutters
 	name = "wirecutters"
 	desc = "This cuts wires."
+	description_fluff = "This could be used to engrave messages on suitable surfaces if you really put your mind to it! Alt-click a floor or wall to engrave with it." //This way it's not a completely hidden, arcane art to engrave.
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "cutters"
 	item_state = "cutters"
