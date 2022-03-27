@@ -332,7 +332,8 @@
 /mob/living/simple_mob/vore/alienanimals/catslug/spaceslug/Initialize()
 	. = ..()
 	verbs += /mob/living/proc/ventcrawl
-	verbs += /mob/living/proc/hide		//I don't even want to imagine what the colour change proc would do to their sprite, not to mention ghosts would need to be forced into the catslug so this is more just a safety net than anything
+	verbs += /mob/living/proc/hide		
+	verbs -= /mob/living/simple_mob/vore/alienanimals/catslug/proc/catslug_color	//I don't even want to imagine what the colour change proc would do to their sprite, not to mention ghosts would need to be forced into the catslug so this is more just a safety net than anything
 
 /mob/living/simple_mob/vore/alienanimals/catslug/spaceslug/attack_hand(mob/living/carbon/human/M as mob)
 	
