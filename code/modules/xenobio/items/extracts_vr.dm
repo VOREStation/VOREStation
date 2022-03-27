@@ -71,7 +71,8 @@
 /obj/item/slime_extract/grey
 	name = "grey slime extract"
 	icon_state = "grey slime extract"
-	description_info = "This extract will create a new grey baby slime if injected with phoron, or some new monkey cubes if injected with blood."
+	description_info = "When injected with phoron, this extract creates a grey slime. When injected with blood, this extract creates some monkey cubes. \
+	When injected with water, this extract creates some slime jelly."
 	slime_type = /mob/living/simple_mob/slime/xenobio
 
 
@@ -118,8 +119,8 @@
 /obj/item/slime_extract/metal
 	name = "metal slime extract"
 	icon_state = "metal slime extract"
-	description_info = "This extract will create a metamorphic liquid which will transform into metallic liquid it comes into contact with, when injected with phoron.  \
-	It can also create a metallic binding liquid which will force metallic liquids to mix to form alloys when solified, when injected with water."
+	description_info = "When injected with phoron, this extract creates some basic construction materials. When injected with blood, this extract creates some advanced construction materials. \
+	When injected with water, this extract creates some unorthodox materials. When injected with slime jelly, this extract creates some steel."
 	slime_type = /mob/living/simple_mob/slime/xenobio/metal
 
 
@@ -184,9 +185,8 @@
 /obj/item/slime_extract/blue
 	name = "blue slime extract"
 	icon_state = "blue slime extract"
-	description_info = "This extract will create frost oil when injected with phoron, which can be used to solidify liquid metals.  \
-	The extract can also create a slime stability agent when injected with blood, which reduces the odds of newly created slimes mutating into \
-	a different color when a slime reproduces."
+	description_info = "When injected with phoron, this extract creates some frost oil. When injected with blood, this extract creates stability agent that can reduce slime's mutation chance. \
+	When injected with water, this extract creates a clamness wave that calms enraged slimes. When injected with slime jelly, this extract creates some cryotoxin."
 	slime_type = /mob/living/simple_mob/slime/xenobio/blue
 
 
@@ -259,8 +259,9 @@
 /obj/item/slime_extract/purple
 	name = "purple slime extract"
 	icon_state = "purple slime extract"
-	description_info = "This extract can create a slime steroid agent when injected with phoron, which increases the amount of slime extracts the processor \
-	can extract from a slime specimen."
+	description_info = "When injected with phoron, this extract creates steroid agent, which can be used to increase amount of extracts in a slime. When injected with blood, this extract creates \
+	infertility agent, which can be used to decrease amount of slime's offspring. When injected with water, this extract creates shrink agent, which can be used to turn an adult slime into a baby. \
+	When injected with slime jelly, this extract creates a fertility agent, which can be used to increase amount of slime's offspring."
 	slime_type = /mob/living/simple_mob/slime/xenobio/purple
 
 
@@ -318,7 +319,8 @@
 /obj/item/slime_extract/orange
 	name = "orange slime extract"
 	icon_state = "orange slime extract"
-	description_info = "This extract creates a fire when injected with phoron, after a five second delay."
+	description_info = "When injected with phoron, this extract creates a phoron fire. When injected with blood, this extract creates a heat wave. When injected with water, this extract creates \
+	some smoke. When injected with slime jelly, this extract creates some pyrotoxin."
 	slime_type = /mob/living/simple_mob/slime/xenobio/orange
 
 
@@ -438,8 +440,8 @@
 /obj/item/slime_extract/yellow
 	name = "yellow slime extract"
 	icon_state = "yellow slime extract"
-	description_info = "This extract will create a special 10k capacity power cell that self recharges slowly over time, when injected with phoron.  \
-	When injected with blood, it will create a glob of slime which glows brightly.  If injected with water, it will emit a strong EMP, after a five second delay."
+	description_info = "When injected with phoron, this extract creates a lightning strike. When injected with blood, this extract creates a slime flashlight. When injected with water \
+	this extract creates an EMP puls. When injected with slime jelly, this extract creates a self-charging slime battery."
 	slime_type = /mob/living/simple_mob/slime/xenobio/yellow
 
 
@@ -508,7 +510,8 @@
 /obj/item/slime_extract/gold
 	name = "gold slime extract"
 	icon_state = "gold slime extract"
-	description_info = "This extract will create 5u liquid gold when injected with phoron."
+	description_info = "When injected with phoron, this extract creates a random hostile creature. When injected with blood, this extract creates three random createres. \
+	When injected with water, this extract creates a random passive creature. When injected with slime jelly, this extract creates some gold."
 	slime_type = /mob/living/simple_mob/slime/xenobio/gold
 
 
@@ -520,6 +523,7 @@
 	required = /obj/item/slime_extract/gold
 
 /decl/chemical_reaction/instant/slime/gold_hostile_mob/on_reaction(var/datum/reagents/holder)
+	log_and_message_admins("Gold extract reaction (dangerous mob) has been activated in [get_area(holder.my_atom)].  Last fingerprints: [holder.my_atom.fingerprintslast]")
 	var/type_to_spawn = pickweight(xenobio_gold_mobs_hostile)
 	var/mob/living/C = new type_to_spawn(get_turf(holder.my_atom))
 	for(var/l = 1, l <= rand(1, 3), l++)
@@ -535,6 +539,7 @@
 	required = /obj/item/slime_extract/gold
 
 /decl/chemical_reaction/instant/slime/gold_random_mobs/on_reaction(var/datum/reagents/holder)
+	log_and_message_admins("Gold extract reaction (random mobs) has been activated in [get_area(holder.my_atom)].  Last fingerprints: [holder.my_atom.fingerprintslast]")
 	var/type_to_spawn
 	var/list/all_spawnable_types = list()
 	all_spawnable_types += xenobio_gold_mobs_safe
@@ -589,7 +594,8 @@
 /obj/item/slime_extract/silver
 	name = "silver slime extract"
 	icon_state = "silver slime extract"
-	description_info = "This extract will create 5u liquid silver when injected with phoron."
+	description_info = "When injected with phoron, this extract creates some basic science materials. When injected with blood, this extract creates some advanced science materials. When injected \
+	with water, this extract creates some completely random materials. When injected with slime jelly, this extract creates some silver."
 	slime_type = /mob/living/simple_mob/slime/xenobio/silver
 
 
@@ -663,7 +669,7 @@
 /obj/item/slime_extract/dark_purple
 	name = "dark purple slime extract"
 	icon_state = "dark purple slime extract"
-	description_info = "This extract will create 40u liquid phoron when injected with water."
+	description_info = "When injected with water, this extract creates some phoron. When injected with slime jelly, this extract creates some blood."
 	slime_type = /mob/living/simple_mob/slime/xenobio/dark_purple
 
 
@@ -691,9 +697,8 @@
 /obj/item/slime_extract/dark_blue
 	name = "dark blue slime extract"
 	icon_state = "dark blue slime extract"
-	description_info = "This extract will massively lower the temperature of the surrounding atmosphere when injected with phoron.  \
-	Slimes will suffer massive harm from the cold snap and most colors will die instantly.  Other entities are also chilled, however \
-	cold-resistant armor like winter coats can protect from this.  Note that the user is not immune to the extract's effects."
+	description_info = "When injected with phoron, this extract creates a cold wave. When injected with blood, this extract grants ability to resist temperature for a while. \
+	When injected with water, the water freezes. When injected with slime jelly, this extract creates a death agent, which can be used to instantly kill a slime."
 	slime_type = /mob/living/simple_mob/slime/xenobio/dark_blue
 
 
@@ -820,9 +825,9 @@
 /obj/item/slime_extract/red
 	name = "red slime extract"
 	icon_state = "red slime extract"
-	description_info = "This extract will create a slime mutator agent when injected with phoron, which increases a slime's odds of mutating \
-	into a different color when reproducing by 12%.  Injecting with blood causes all slimes that can see the user to enrage, becoming very violent and \
-	out of control."
+	description_info = "When injected with phoron, this extract creates a mutation agent, that can be used to increase a slime's mutation chance. When injected with blood, this extract causes \
+	nearby slimes to fall into rage. When injected with water, this extract creates some hot sauce. When injected with slime jelly, this extract creates a ferality agent, which makes slimes \
+	unreceptive to discipline."
 	slime_type = /mob/living/simple_mob/slime/xenobio/red
 
 
@@ -900,7 +905,8 @@
 /obj/item/slime_extract/green
 	name = "green slime extract"
 	icon_state = "green slime extract"
-	description_info = "This extract will create 5u of liquid uranium when injected with phoron."
+	description_info = "When injected with phoron, this extract creates a single radioactive pulse. When injected with blood, this extract creates a radioactive glob. When injected with water \
+	this extract creates some radium. When injected with slime jelly, this extract creates some uranium."
 	slime_type = /mob/living/simple_mob/slime/xenobio/green
 
 
@@ -912,6 +918,7 @@
 	required = /obj/item/slime_extract/green
 
 /decl/chemical_reaction/instant/slime/green_radpulse/on_reaction(var/datum/reagents/holder)
+	log_and_message_admins("Green extract reaction (radiation pulse) has been activated in [get_area(holder.my_atom)].  Last fingerprints: [holder.my_atom.fingerprintslast]")
 	playsound(holder.my_atom, 'sound/effects/phasein.ogg', 75, 1)
 	holder.my_atom.visible_message("<span class='danger'>\The [holder.my_atom] begins to vibrate violently!</span>")
 	spawn(5 SECONDS)
@@ -927,6 +934,7 @@
 	required = /obj/item/slime_extract/green
 
 /decl/chemical_reaction/instant/slime/green_emitter/on_reaction(var/datum/reagents/holder)
+	log_and_message_admins("Green extract reaction (radiation emitter) has been activated in [get_area(holder.my_atom)].  Last fingerprints: [holder.my_atom.fingerprintslast]")
 	new /obj/item/slime_irradiator(get_turf(holder.my_atom))
 	..()
 
@@ -958,8 +966,8 @@
 /obj/item/slime_extract/pink
 	name = "pink slime extract"
 	icon_state = "pink slime extract"
-	description_info = "This extract will create 30u of blood clotting agent if injected with blood.  It can also create 30u of bone binding agent if injected \
-	with phoron.  When injected with water, it will create an organ-mending agent.  The slime medications have a very low threshold for overdosage, however."
+	description_info = "When injected with phoron, this extract creates some bone fixing agent. When injected with blood, this extract creates some clotting agent. When injected with water, this \
+	extract creates some organ healing agent. When injected with slime jelly, this extract creates a powerful regenerative wave."
 	slime_type = /mob/living/simple_mob/slime/xenobio/pink
 
 
@@ -1016,8 +1024,8 @@
 /obj/item/slime_extract/oil
 	name = "oil slime extract"
 	icon_state = "oil slime extract"
-	description_info = "This extract cause a moderately sized delayed explosion if injected with phoron.  The delay is five seconds.  Extract enhancers will \
-	increase the power of the explosion instead of allowing for multiple explosions."
+	description_info = "When injected with phoron, this extract creates some fuel. When injected with blood, this extract creates some cooking oil. When injected with water, this extract \
+	creates a fake explosion sound. When injected with slime jelly, this extract explodes."
 	slime_type = /mob/living/simple_mob/slime/xenobio/oil
 
 
@@ -1085,9 +1093,8 @@
 /obj/item/slime_extract/bluespace
 	name = "bluespace slime extract"
 	icon_state = "bluespace slime extract"
-	description_info = "This extract creates slime crystals.  When injected with water, it creates five 'lesser' slime crystals, which allow for limited \
-	short ranged, random teleporting.  When injected with phoron, it creates one 'greater' slime crystal, which allows for a one time precise teleport to \
-	a specific area."
+	description_info = "When injected with phoron, this extract creates some bluespace crystals. When injected with blood, this extract creates a bluespace bag. When injected with water, this \
+	extract causes random teleportation. When injected with slime jelly, this extract creates a disposable precise teleportation tool."
 	slime_type = /mob/living/simple_mob/slime/xenobio/bluespace
 
 
@@ -1124,6 +1131,7 @@
 	required = /obj/item/slime_extract/bluespace
 
 /decl/chemical_reaction/instant/slime/bluespace_chaotic_tele/on_reaction(var/datum/reagents/holder)
+	log_and_message_admins("Bluespace extract reaction (chaos teleport) has been activated in [get_area(holder.my_atom)].  Last fingerprints: [holder.my_atom.fingerprintslast]")
 	for(var/mob/living/M in range(2,get_turf(holder.my_atom)))
 		if(M.buckled)
 			M.buckled.unbuckle_mob()
@@ -1158,8 +1166,9 @@
 /obj/item/slime_extract/cerulean
 	name = "cerulean slime extract"
 	icon_state = "cerulean slime extract"
-	description_info = "This extract creates a slime extract enhancer agent, when injected with phoron.  The agent allows an extract to have more \
-	'charges' before it goes inert."
+	description_info = "When injected with phoron, this extract creates an enhancer agent, which can be used to increase amount of uses any extract has once. When injected with blood, this extact \
+	creates an invigoration agent, which can be used to create a slime out of an extract. When injected with water, this extract creates a mimic agent, which can copy properties of other agents. \
+	When injected with slime jelly, this extract creates a random agent."
 	slime_type = /mob/living/simple_mob/slime/xenobio/cerulean
 
 
@@ -1218,8 +1227,8 @@
 /obj/item/slime_extract/amber
 	name = "amber slime extract"
 	icon_state = "amber slime extract"
-	description_info = "This extract creates a slime feeding agent when injected with phoron, which will instantly feed the slime and make it reproduce.  When \
-	injected with water, it will create a very delicious and filling product."
+	description_info = "When injected with phoron, this extract creates a feeding agent, which can be used to instantly split a slime. When injected with blood, this extract creates some food. \
+	When injected with water, this extract creates some edible slime globs. When injected with slime jelly, this extract creates some super-nutritious slime goop."
 	slime_type = /mob/living/simple_mob/slime/xenobio/amber
 
 
@@ -1286,7 +1295,9 @@
 /obj/item/slime_extract/sapphire
 	name = "sapphire slime extract"
 	icon_state = "sapphire slime extract"
-	description_info = "This extract will create one 'slime cube' when injected with phoron.  The slime cube is needed to create a Promethean."
+	description_info = "When injected with phoron, this extract creates a promethean cube, which can be used to create a new promethean. When injected with blood, this extract creates some mutation \
+	toxin. When injected with water, this extract creates some plushies. When injected with slime jelly, this extract creates a sentience agent, which can be used to develop sentience in \
+	various creatures."
 	slime_type = /mob/living/simple_mob/slime/xenobio/sapphire
 
 
@@ -1347,8 +1358,8 @@
 /obj/item/slime_extract/ruby
 	name = "ruby slime extract"
 	icon_state = "ruby slime extract"
-	description_info = "This extract will cause all entities close to the extract to become stronger for ten minutes, when injected with phoron.  \
-	When injected with blood, makes a slime loyalty agent which will make the slime fight other dangerous entities but not station crew."
+	description_info = "When injected with phoron, this extract grants extra strength for a time. When injected with blood, this extract causes a wave of pulling force. When injected with water, \
+	this extract creates some brute juice. When injected with slime jelly, this extract creates a pushing force."
 	slime_type = /mob/living/simple_mob/slime/xenobio/ruby
 
 /decl/chemical_reaction/instant/slime/ruby_swole
@@ -1435,7 +1446,8 @@
 /obj/item/slime_extract/emerald
 	name = "emerald slime extract"
 	icon_state = "emerald slime extract"
-	description_info = "This extract will cause all entities close to the extract to become more agile for ten minutes, when injected with phoron."
+	description_info = "When injected with phoron, this extract grants extra agility, making you more evasive and fast-acting for a while. When injected with blood, this extract grants extra speed \
+	for a short time. When injected with water, this extract creates some hyperzine. When injected with slime jelly, this extract causes area around to become slippery for a time."
 	slime_type = /mob/living/simple_mob/slime/xenobio/emerald
 
 
@@ -1506,6 +1518,7 @@
 	required = /obj/item/slime_extract/emerald
 
 /decl/chemical_reaction/instant/slime/emerald_hell/on_reaction(var/datum/reagents/holder)
+	log_and_message_admins("Emerald extract reaction (slip hell) has been activated in [get_area(holder.my_atom)].  Last fingerprints: [holder.my_atom.fingerprintslast]")
 	for(var/turf/simulated/T in trange(5, get_turf(holder.my_atom)))
 		if(!istype(T))
 			continue
@@ -1520,9 +1533,9 @@
 /obj/item/slime_extract/light_pink
 	name = "light pink slime extract"
 	icon_state = "light pink slime extract"
-	description_info = "This extract creates a slime docility agent when injected with water, which will make the slime be harmless forever.  \
-	When injected with phoron, it instead creates a slime friendship agent, which makes the slime consider the user their ally.  The agent \
-	might be useful on other specimens as well."
+	description_info = "When injected with phoron, this extract creates a friendship agent, which can be used to make a slime or a creature consider you a friend. When injected with blood, \
+	this extract creates a loyalty agent, which can be used to make a slime or a creature think of those like you as their own. When injected with water, this extract creates a docility agent, \
+	which can be used to pacify a slime or a creature permanently. When injected with slime jelly, this extract creates an obedience agent, which can be used to instantly fully discipline a slime."
 	slime_type = /mob/living/simple_mob/slime/xenobio/light_pink
 
 
@@ -1581,8 +1594,8 @@
 /obj/item/slime_extract/rainbow
 	name = "rainbow slime extract"
 	icon_state = "rainbow slime extract"
-	description_info = "This extract will create a baby slime of a random color when injected with phoron, or a slime unification agent if injected with water, \
-	which makes slimes stop attacking other slime colors."
+	description_info = "When injected with phoron, this extract will create a random slime. When injected with blood, this extract will create a random slime extract. When injected with water, \
+	this extract with create pretty colors. When injected with slime jelly, this extract will create unity agent, which can be used to make slime non-hostile to slimes of other colors."
 	slime_type = /mob/living/simple_mob/slime/xenobio/rainbow
 
 
