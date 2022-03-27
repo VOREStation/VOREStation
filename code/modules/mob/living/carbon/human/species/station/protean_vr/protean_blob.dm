@@ -13,7 +13,7 @@
 	maxHealth = 200
 	health = 200
 	say_list_type = /datum/say_list/protean_blob
-
+	pass_flags = PASSTABLE
 	show_stat_health = FALSE //We will do it ourselves
 
 	response_help = "pets"
