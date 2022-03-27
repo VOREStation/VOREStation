@@ -8,6 +8,7 @@
 /obj/item/weapon/reagent_containers/syringe
 	name = "syringe"
 	desc = "A syringe."
+	description_fluff = "This could be used to engrave messages on suitable surfaces if you really put your mind to it! Alt-click a floor or wall to engrave with it." //This way it's not a completely hidden, arcane art to engrave.
 	icon = 'icons/obj/syringe.dmi'
 	item_state = "syringe_0"
 	icon_state = "0"
