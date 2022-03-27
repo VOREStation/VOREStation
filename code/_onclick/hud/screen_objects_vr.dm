@@ -45,6 +45,8 @@
 						var/turf/T = get_turf(H)
 						if(T.get_lumcount() <= 0.1)
 							to_chat(usr, "<span class='notice'>You are slowly calming down in darkness' safety...</span>")
+						else if(isbelly(H.loc)) // Safety message for if inside a belly.
+							to_chat(usr, "<span class='notice'>You are slowly calming down within the darkness of something's belly, listening to their body as it moves around you. ...safe...</span>")
 						else
 							to_chat(usr, "<span class='notice'>You are slowly calming down... But safety of darkness is much preferred.</span>")
 				else
