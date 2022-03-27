@@ -515,26 +515,10 @@
 	slime_type = /mob/living/simple_mob/slime/xenobio/gold
 
 
-/decl/chemical_reaction/instant/slime/gold_hostile_mob
-	name = "Slime Hostile Mob"
-	id = "m_gold_hostile_mob"
-	required_reagents = list("phoron" = 5)
-	result_amount = 1
-	required = /obj/item/slime_extract/gold
-
-/decl/chemical_reaction/instant/slime/gold_hostile_mob/on_reaction(var/datum/reagents/holder)
-	log_and_message_admins("Gold extract reaction (dangerous mob) has been activated in [get_area(holder.my_atom)].  Last fingerprints: [holder.my_atom.fingerprintslast]")
-	var/type_to_spawn = pickweight(xenobio_gold_mobs_hostile)
-	var/mob/living/C = new type_to_spawn(get_turf(holder.my_atom))
-	for(var/l = 1, l <= rand(1, 3), l++)
-		step(C, pick(NORTH,SOUTH,EAST,WEST))
-	..()
-
-
 /decl/chemical_reaction/instant/slime/gold_random_mobs
 	name = "Slime Random Mobs"
 	id = "m_gold_random_mobs"
-	required_reagents = list("blood" = 5)
+	required_reagents = list("phoron" = 5)
 	result_amount = 1
 	required = /obj/item/slime_extract/gold
 
@@ -554,6 +538,22 @@
 		var/mob/living/C = new type_to_spawn(get_turf(holder.my_atom))
 		for(var/l = 1, l <= rand(1, 3), l++)
 			step(C, pick(NORTH,SOUTH,EAST,WEST))
+	..()
+
+
+/decl/chemical_reaction/instant/slime/gold_hostile_mob
+	name = "Slime Hostile Mob"
+	id = "m_gold_hostile_mob"
+	required_reagents = list("blood" = 5)
+	result_amount = 1
+	required = /obj/item/slime_extract/gold
+
+/decl/chemical_reaction/instant/slime/gold_hostile_mob/on_reaction(var/datum/reagents/holder)
+	log_and_message_admins("Gold extract reaction (dangerous mob) has been activated in [get_area(holder.my_atom)].  Last fingerprints: [holder.my_atom.fingerprintslast]")
+	var/type_to_spawn = pickweight(xenobio_gold_mobs_hostile)
+	var/mob/living/C = new type_to_spawn(get_turf(holder.my_atom))
+	for(var/l = 1, l <= rand(1, 3), l++)
+		step(C, pick(NORTH,SOUTH,EAST,WEST))
 	..()
 
 
