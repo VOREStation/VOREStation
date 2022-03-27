@@ -497,6 +497,12 @@
 	M.Weaken(rand(10,25))
 	M.updatehealth()
 	apply_brain_damage(M)
+	// VOREStation Edits Start: Defib pain
+	M.adjustHalLoss(40) // Moderate amount of halloss for EVERYONE being defibbed. Defibs feel like being kicked in the chest by a mule. Shit hurts if you're awake.
+	if(istype(M.species, /datum/species/xenochimera)) // Only do the following to Xenochimera. Handwave this however you want, this is to balance defibs on an alien race.
+		M.adjustHalLoss(220) // This hurts a LOT, stacks on top of the previous halloss.
+		M.feral += 100 // If they somehow weren't already feral, force them feral by increasing ferality var directly, to avoid any messy checks. handle_feralness() will immediately set our feral properly according to halloss anyhow.
+	// VOREStation Edits End
 	// SSgame_master.adjust_danger(-20) // VOREStation Edit - We don't use SSgame_master yet.
 
 /obj/item/weapon/shockpaddles/proc/apply_brain_damage(mob/living/carbon/human/H)
