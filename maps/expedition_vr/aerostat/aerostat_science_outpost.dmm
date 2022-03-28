@@ -1628,7 +1628,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled,
-/area/offmap/aerostat/inside/misclab)
+/area/offmap/aerostat/inside/xenobiolab)
 "ei" = (
 /obj/effect/floor_decal/rust,
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
@@ -1651,6 +1651,16 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/offmap/aerostat/inside/atmos)
+"eo" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/extinguisher_cabinet{
+	dir = 4;
+	pixel_x = -27
+	},
+/turf/simulated/floor/tiled,
+/area/offmap/aerostat/inside/xenobiolab)
 "er" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -1665,11 +1675,14 @@
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/virology)
 "ey" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/obj/machinery/light{
 	dir = 4
 	},
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
 /turf/simulated/floor/tiled,
-/area/offmap/aerostat/inside/misclab)
+/area/offmap/aerostat/inside/xenobiolab)
 "ez" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/green{
 	dir = 4
@@ -1925,11 +1938,15 @@
 /turf/simulated/wall,
 /area/offmap/aerostat/inside/xenoarch)
 "fo" = (
-/obj/structure/cable{
-	icon_state = "1-2"
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/regular/open{
+	name = "Xenobiology Emergency Blast Door";
+	id = "xenobio_blast"
 	},
 /turf/simulated/floor/tiled,
-/area/offmap/aerostat/inside/misclab)
+/area/offmap/aerostat/inside/xenobiolab)
 "fp" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -2713,6 +2730,23 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/offmap/aerostat/inside/airlock/east)
+"iz" = (
+/obj/machinery/door/airlock/glass_research{
+	name = "Xenobiology";
+	id_tag = "xenobio"
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/regular/open{
+	name = "Xenobiology Emergency Blast Door";
+	id = "xenobio_blast"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/floor/tiled,
+/area/offmap/aerostat/inside/xenobiolab)
 "iC" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -2843,11 +2877,15 @@
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/toxins)
 "jj" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10
+/obj/machinery/button/remote/airlock{
+	dir = 1;
+	id = "xenobio";
+	name = "Xenobio Cell Lock";
+	pixel_y = -25;
+	specialfunctions = 4
 	},
 /turf/simulated/floor/tiled,
-/area/offmap/aerostat/inside/misclab)
+/area/offmap/aerostat/inside/xenobiolab)
 "jl" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	frequency = 1452
@@ -2894,9 +2932,14 @@
 /turf/simulated/wall,
 /area/offmap/aerostat/inside/xenoarch)
 "jw" = (
-/obj/machinery/hologram/holopad,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
 /turf/simulated/floor/tiled,
-/area/offmap/aerostat/inside/misclab)
+/area/offmap/aerostat/inside/xenobiolab)
 "jy" = (
 /obj/structure/cable/heavyduty{
 	icon_state = "1-2"
@@ -3143,15 +3186,10 @@
 /turf/simulated/floor/plating/virgo2,
 /area/offmap/aerostat/solars)
 "kq" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	pixel_x = 28
-	},
-/obj/structure/cable{
-	icon_state = "0-8"
-	},
+/obj/structure/table/reinforced,
+/obj/item/weapon/tool/wrench,
 /turf/simulated/floor/tiled,
-/area/offmap/aerostat/inside/misclab)
+/area/offmap/aerostat/inside/xenobiolab)
 "ks" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	dir = 4
@@ -3277,14 +3315,14 @@
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/toxins)
 "kR" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
+/obj/machinery/disposal/wall{
+	dir = 1;
+	pixel_y = -30;
+	plane = -34
 	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
+/obj/structure/disposalpipe/trunk,
 /turf/simulated/floor/tiled,
-/area/offmap/aerostat/inside/misclab)
+/area/offmap/aerostat/inside/xenobiolab)
 "kS" = (
 /obj/machinery/atmospherics/pipe/manifold/visible,
 /turf/simulated/floor/tiled/white,
@@ -3376,6 +3414,17 @@
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/offmap/aerostat/inside/toxins)
+"ln" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/regular/open{
+	name = "Xenobiology Emergency Blast Door";
+	id = "xenobio_blast"
+	},
+/obj/structure/disposalpipe/segment,
+/turf/simulated/floor/tiled,
+/area/offmap/aerostat/inside/xenobiolab)
 "lo" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -3789,6 +3838,12 @@
 "mN" = (
 /turf/simulated/shuttle/wall/voidcraft/green,
 /area/offmap/aerostat/inside/arm/nw)
+"mP" = (
+/obj/structure/grille,
+/obj/machinery/door/firedoor/glass,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor/plating/virgo2,
+/area/offmap/aerostat/inside/xenobiolab)
 "mQ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
@@ -4167,13 +4222,16 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/offmap/aerostat/inside/powercontrol)
 "oo" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled,
-/area/offmap/aerostat/inside/misclab)
+/area/offmap/aerostat/inside/xenobiolab)
 "op" = (
 /turf/simulated/wall/r_wall,
 /area/offmap/aerostat/inside/xenoarch)
@@ -4329,12 +4387,11 @@
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/xenoarch)
 "oZ" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/structure/cable{
-	icon_state = "4-8"
+/obj/machinery/door/blast/regular{
+	id = "xenobio_out"
 	},
-/turf/simulated/floor/tiled,
-/area/offmap/aerostat/inside/misclab)
+/turf/simulated/floor/plating/virgo2,
+/area/offmap/aerostat/inside/xenobiolab)
 "pa" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -4846,11 +4903,9 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/offmap/aerostat/inside/southchamb)
 "qS" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 1
-	},
+/obj/structure/closet/firecloset/full,
 /turf/simulated/floor/tiled,
-/area/offmap/aerostat/inside/misclab)
+/area/offmap/aerostat/inside/xenobiolab)
 "qT" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
@@ -4864,6 +4919,15 @@
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/toxins)
+"qX" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/offmap/aerostat/inside/xenobiolab)
 "qZ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/light{
@@ -4912,6 +4976,12 @@
 "rq" = (
 /turf/simulated/shuttle/wall/voidcraft/green,
 /area/offmap/aerostat/inside/firingrange)
+"rr" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/turf/simulated/floor/reinforced,
+/area/offmap/aerostat/inside/xenobiolab)
 "rs" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled/dark,
@@ -5465,6 +5535,16 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/plating/virgo2,
 /area/offmap/aerostat/inside/arm/ne)
+"tP" = (
+/obj/structure/disposaloutlet{
+	dir = 4
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/obj/structure/window/reinforced,
+/turf/simulated/floor/reinforced,
+/area/offmap/aerostat/inside/xenobiolab)
 "tR" = (
 /obj/structure/flora/pottedplant/subterranean,
 /turf/simulated/floor/tiled/techfloor,
@@ -5477,11 +5557,17 @@
 /turf/simulated/shuttle/floor/yellow/airless,
 /area/shuttle/aerostat)
 "tU" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
 /obj/machinery/light_switch{
 	pixel_y = 24
 	},
+/obj/structure/closet/crate/bin{
+	anchored = 1
+	},
 /turf/simulated/floor/tiled,
-/area/offmap/aerostat/inside/misclab)
+/area/offmap/aerostat/inside/xenobiolab)
 "tV" = (
 /obj/machinery/suspension_gen,
 /turf/simulated/floor/tiled/white,
@@ -5898,6 +5984,15 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/wall,
 /area/offmap/aerostat/inside/xenoarch)
+"vS" = (
+/obj/machinery/camera/network/research_outpost{
+	dir = 8
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled,
+/area/offmap/aerostat/inside/xenobiolab)
 "vT" = (
 /obj/structure/cable/heavyduty{
 	icon_state = "1-2"
@@ -6039,8 +6134,11 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
 /turf/simulated/floor/tiled,
-/area/offmap/aerostat/inside/misclab)
+/area/offmap/aerostat/inside/xenobiolab)
 "wC" = (
 /turf/simulated/shuttle/wall/voidcraft/hard_corner{
 	stripe_color = "#00FF00"
@@ -6100,6 +6198,10 @@
 	},
 /turf/simulated/floor,
 /area/offmap/aerostat/inside/arm/sw)
+"wJ" = (
+/obj/structure/reagent_dispensers/watertank,
+/turf/simulated/floor/tiled,
+/area/offmap/aerostat/inside/xenobiolab)
 "wK" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/yellow,
 /turf/simulated/floor/tiled,
@@ -6548,8 +6650,12 @@
 /obj/machinery/alarm{
 	pixel_y = 26
 	},
+/obj/structure/closet/l3closet/scientist,
+/obj/item/clothing/suit/bio_suit/scientist,
+/obj/item/clothing/head/bio_hood/scientist,
+/obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled,
-/area/offmap/aerostat/inside/misclab)
+/area/offmap/aerostat/inside/xenobiolab)
 "yH" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -6626,11 +6732,24 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/offmap/aerostat/inside/atmos)
 "yX" = (
-/obj/machinery/camera/network/research_outpost{
+/obj/machinery/shieldwallgen{
+	req_access = null
+	},
+/obj/structure/window/reinforced{
 	dir = 8
 	},
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/regular/open{
+	name = "Xenobiology Emergency Blast Door";
+	id = "xenobio_blast"
+	},
+/obj/structure/cable,
 /turf/simulated/floor/tiled,
-/area/offmap/aerostat/inside/misclab)
+/area/offmap/aerostat/inside/xenobiolab)
 "yZ" = (
 /obj/structure/cable/heavyduty{
 	icon_state = "0-8"
@@ -6830,7 +6949,7 @@
 /area/offmap/aerostat/inside/southchamb)
 "zH" = (
 /turf/simulated/shuttle/wall/voidcraft/green,
-/area/offmap/aerostat/inside/misclab)
+/area/offmap/aerostat/inside/xenobiolab)
 "zI" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/cable{
@@ -7986,21 +8105,26 @@
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/firingrange)
 "Ey" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/cable{
-	icon_state = "1-2"
+	icon_state = "1-8"
 	},
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 8
 	},
 /turf/simulated/floor/tiled,
-/area/offmap/aerostat/inside/misclab)
+/area/offmap/aerostat/inside/xenobiolab)
 "EA" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/plating/virgo2,
-/area/offmap/aerostat/inside/misclab)
+/area/offmap/aerostat/inside/xenobiolab)
 "EC" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/reagent_containers/glass/beaker,
@@ -8314,7 +8438,7 @@
 /turf/simulated/shuttle/wall/voidcraft/hard_corner{
 	stripe_color = "#00FF00"
 	},
-/area/offmap/aerostat/inside/misclab)
+/area/offmap/aerostat/inside/xenobiolab)
 "FZ" = (
 /obj/machinery/alarm{
 	pixel_y = 26
@@ -8443,6 +8567,16 @@
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/toxins)
+"Gx" = (
+/obj/machinery/camera/network/research_outpost{
+	dir = 8
+	},
+/obj/machinery/mass_driver{
+	dir = 8;
+	id = "xenobiolauncher"
+	},
+/turf/simulated/floor/reinforced,
+/area/offmap/aerostat/inside/xenobiolab)
 "Gy" = (
 /obj/structure/bed/chair/shuttle{
 	dir = 8
@@ -8542,6 +8676,30 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/toxins)
+"GM" = (
+/obj/machinery/button/remote/blast_door{
+	dir = 8;
+	id = "xenobio_blast";
+	name = "Xenobio Inner Blast Doors";
+	pixel_x = 25;
+	pixel_y = -5
+	},
+/obj/structure/table/reinforced,
+/obj/item/weapon/storage/box/syringes,
+/obj/machinery/button/remote/driver{
+	id = "xenobiolauncher";
+	pixel_y = 27
+	},
+/obj/machinery/button/remote/blast_door{
+	dir = 8;
+	id = "xenobio_out";
+	name = "Xenobio Mass Driver Blast Doors";
+	pixel_x = 25;
+	pixel_y = 5
+	},
+/obj/item/weapon/reagent_containers/spray/cleaner,
+/turf/simulated/floor/tiled,
+/area/offmap/aerostat/inside/xenobiolab)
 "GN" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 1
@@ -8949,6 +9107,15 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/xenoarch)
+"Il" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/turf/simulated/floor/tiled,
+/area/offmap/aerostat/inside/xenobiolab)
 "Im" = (
 /obj/structure/cable/heavyduty{
 	icon_state = "4-8"
@@ -9392,6 +9559,8 @@
 "Ka" = (
 /turf/simulated/shuttle/wall/voidcraft/hard_corner,
 /area/offmap/aerostat/inside/genetics)
+"Kb" = (
+/turf/simulated/wall)
 "Kc" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1380;
@@ -9484,8 +9653,8 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
-/area/offmap/aerostat/inside/misclab)
+/turf/simulated/floor/reinforced,
+/area/offmap/aerostat/inside/xenobiolab)
 "KA" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -9603,6 +9772,15 @@
 	},
 /turf/simulated/wall,
 /area/offmap/aerostat/inside/xenoarch)
+"La" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/turf/simulated/floor/tiled,
+/area/offmap/aerostat/inside/xenobiolab)
 "Ld" = (
 /turf/simulated/floor,
 /area/offmap/aerostat/inside/firingrange)
@@ -9868,11 +10046,20 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/offmap/aerostat/inside/zorrenoffice)
 "Ml" = (
-/obj/structure/cable{
-	icon_state = "1-4"
+/obj/structure/table/reinforced,
+/obj/item/weapon/melee/baton/slime/loaded,
+/obj/machinery/power/apc{
+	dir = 1;
+	pixel_y = 24
 	},
+/obj/item/weapon/gun/energy/taser/xeno,
+/obj/item/weapon/storage/box/monkeycubes,
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled,
-/area/offmap/aerostat/inside/misclab)
+/area/offmap/aerostat/inside/xenobiolab)
 "Mn" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -10204,7 +10391,7 @@
 /area/offmap/aerostat/inside/southchamb)
 "NP" = (
 /turf/simulated/wall,
-/area/offmap/aerostat/inside/misclab)
+/area/offmap/aerostat/inside/xenobiolab)
 "NQ" = (
 /obj/effect/floor_decal/rust,
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
@@ -10424,10 +10611,10 @@
 	},
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/glass_research{
-	name = "Miscellaneous Lab"
+	name = "Xenobiology"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
-/area/offmap/aerostat/inside/misclab)
+/area/offmap/aerostat/inside/xenobiolab)
 "OJ" = (
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/white,
@@ -11336,6 +11523,15 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/offmap/aerostat/inside/toxins)
+"SB" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/turf/simulated/floor/tiled,
+/area/offmap/aerostat/inside/xenobiolab)
 "SC" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -11568,6 +11764,16 @@
 "TB" = (
 /turf/simulated/shuttle/wall/voidcraft/hard_corner,
 /area/offmap/aerostat/inside/powercontrol)
+"TC" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/hologram/holopad,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/offmap/aerostat/inside/xenobiolab)
 "TF" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -11804,13 +12010,6 @@
 /area/offmap/aerostat/inside/arm/nw)
 "Uv" = (
 /obj/structure/bed/chair/office/light,
-/obj/machinery/button/remote/blast_door{
-	dir = 1;
-	id = "zorrenpartyroom";
-	name = "Shutter Control";
-	pixel_x = -32;
-	pixel_y = 2
-	},
 /turf/simulated/floor/tiled/techfloor,
 /area/offmap/aerostat/inside/zorrenoffice)
 "Uw" = (
@@ -11935,6 +12134,15 @@
 	},
 /turf/simulated/wall,
 /area/offmap/aerostat/inside/telesci)
+"UX" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/turf/simulated/floor/reinforced,
+/area/offmap/aerostat/inside/xenobiolab)
 "UZ" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -12291,6 +12499,12 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/offmap/aerostat/inside/zorrenoffice)
+"Wy" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
+	},
+/turf/simulated/floor/reinforced,
+/area/offmap/aerostat/inside/xenobiolab)
 "Wz" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
@@ -12369,6 +12583,26 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/miscstorage)
+"WO" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 8;
+	pixel_x = -4
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/blast/regular/open{
+	name = "Xenobiology Emergency Blast Door";
+	id = "xenobio_blast"
+	},
+/obj/structure/cable,
+/obj/machinery/shieldwallgen{
+	req_access = null
+	},
+/turf/simulated/floor/tiled,
+/area/offmap/aerostat/inside/xenobiolab)
 "WP" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/blue,
 /obj/machinery/medical_kiosk,
@@ -12824,7 +13058,7 @@
 /area/offmap/aerostat/inside/miscstorage)
 "Yw" = (
 /turf/simulated/floor/tiled,
-/area/offmap/aerostat/inside/misclab)
+/area/offmap/aerostat/inside/xenobiolab)
 "Yx" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden,
 /turf/simulated/shuttle/wall/voidcraft/green,
@@ -13052,9 +13286,8 @@
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/toxins)
 "Zw" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled,
-/area/offmap/aerostat/inside/misclab)
+/turf/simulated/floor/reinforced,
+/area/offmap/aerostat/inside/xenobiolab)
 "Zx" = (
 /obj/effect/floor_decal/industrial/warning/dust,
 /obj/machinery/door/airlock/external{
@@ -19540,13 +19773,13 @@ NV
 Hq
 Jo
 NP
-Yw
+qS
 wA
-Yw
-Yw
+eo
+WO
 EA
-EA
-aw
+oZ
+zH
 aw
 aw
 aw
@@ -19683,11 +19916,11 @@ HH
 FU
 NP
 yG
-Yw
-Yw
-Yw
-Yw
-zH
+Il
+kR
+ln
+tP
+Zw
 zH
 aw
 aw
@@ -19824,13 +20057,13 @@ Tr
 Sl
 Lt
 NP
-tU
+wJ
+qX
 Yw
-Yw
-Yw
-Yw
-Yw
-EA
+fo
+Zw
+Zw
+mP
 EA
 aw
 aw
@@ -19968,11 +20201,11 @@ Xt
 OI
 oo
 Ey
-kR
+jw
 fo
-Ml
-Yw
-Yw
+Wy
+Zw
+Zw
 EA
 EA
 aw
@@ -20108,14 +20341,14 @@ ZK
 nR
 Lt
 NP
-Yw
-Yw
-ey
-jw
-ef
-Yw
-Yw
-Yw
+tU
+TC
+SB
+iz
+UX
+Zw
+Zw
+Zw
 EA
 EA
 aw
@@ -20250,15 +20483,15 @@ ZK
 pP
 yN
 NP
-Yw
-Yw
+Ml
+La
 jj
+fo
+rr
 Zw
-oZ
 Zw
-qS
-Yw
-Yw
+Zw
+Zw
 zH
 zH
 aw
@@ -20392,16 +20625,16 @@ ZK
 wF
 Lt
 NP
-Yw
-Yw
-Yw
-Yw
+kq
 ef
 Yw
-Yw
-Yw
-Yw
-Yw
+fo
+Zw
+Zw
+Zw
+Zw
+Zw
+Zw
 FY
 zH
 aw
@@ -20534,17 +20767,17 @@ Qd
 lz
 Lt
 NP
-Yw
-Kz
-Yw
+GM
+ey
+vS
 yX
-kq
-Yw
-Yw
-Yw
+Zw
+Gx
+Zw
+Zw
 Kz
-Yw
-Yw
+Zw
+Zw
 zH
 zH
 aw
@@ -25926,7 +26159,7 @@ XL
 is
 qr
 xV
-NP
+Kb
 Yo
 Va
 RD

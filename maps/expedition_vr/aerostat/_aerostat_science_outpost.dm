@@ -326,8 +326,8 @@ VIRGO2_TURF_CREATE(/turf/simulated/floor/hull)
 /area/offmap/aerostat/inside/lobby
 	name = "Lobby"
 	icon_state = "orablacir"
-/area/offmap/aerostat/inside/misclab
-	name = "Miscellaneous Lab"
+/area/offmap/aerostat/inside/xenobiolab
+	name = "Xenobiology Lab"
 	icon_state = "orablacir"
 
 /area/offmap/aerostat/inside/airlock
