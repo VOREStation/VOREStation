@@ -4056,6 +4056,7 @@
 #include "code\modules\xenobio\items\slimepotions.dm"
 #include "code\modules\xenobio\items\slimepotions_vr.dm"
 #include "code\modules\xenobio\items\weapons.dm"
+#include "code\modules\xenobio\items\weapons_vr.dm"
 #include "code\modules\xenobio\machinery\processor.dm"
 #include "code\modules\xgm\xgm_gas_data.dm"
 #include "code\modules\xgm\xgm_gas_mixture.dm"
@@ -4103,7 +4104,6 @@
 #include "maps\southern_cross\loadout\loadout_suit.dm"
 #include "maps\southern_cross\loadout\loadout_uniform.dm"
 #include "maps\southern_cross\loadout\loadout_vr.dm"
-#include "maps\stellardelight\stellar_delight.dm"
 #include "maps\submaps\_helpers.dm"
 #include "maps\submaps\_readme.dm"
 #include "maps\submaps\engine_submaps\engine.dm"
@@ -4113,5 +4113,6 @@
 #include "maps\submaps\space_submaps\debrisfield\debrisfield.dm"
 #include "maps\submaps\surface_submaps\wilderness\wilderness.dm"
 #include "maps\submaps\surface_submaps\wilderness\wilderness_areas.dm"
+#include "maps\virgo_minitest\virgo_minitest.dm"
 #include "maps\~map_system\maps.dm"
 // END_INCLUDE
