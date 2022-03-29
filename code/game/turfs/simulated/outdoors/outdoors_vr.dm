@@ -79,11 +79,30 @@
 	desc = "Concrete shaped into a path!"
 	icon = 'icons/turf/outdoors_vr.dmi'
 	icon_base = "sidewalk"
+	has_damage_range = 2
+	damage_temperature = T0C+1400
+	flags = TURF_REMOVE_CROWBAR | TURF_CAN_BREAK | TURF_CAN_BURN
+	build_type = /obj/item/stack/tile/floor/sidewalk
+	can_paint = 1
+	can_engrave = FALSE
+
 	footstep_sounds = list("human" = list(
 		'sound/effects/footstep/LightStone1.ogg',
 		'sound/effects/footstep/LightStone2.ogg',
 		'sound/effects/footstep/LightStone3.ogg',
 		'sound/effects/footstep/LightStone4.ogg',))
+
+/obj/item/stack/tile/floor/sidewalk
+	name = "sidewalk tile"
+	singular_name = "floor tile"
+	desc = "A stone tile fit for covering a section of floor."
+	icon_state = "tile"
+	force = 6.0
+	matter = list(DEFAULT_WALL_MATERIAL = SHEET_MATERIAL_AMOUNT / 4)
+	throwforce = 15.0
+	throw_speed = 5
+	throw_range = 20
+	no_variants = FALSE
 
 /turf/simulated/floor/outdoors/sidewalk/Initialize(mapload)
 	var/possibledirts = list(
@@ -104,6 +123,21 @@
 
 /turf/simulated/floor/outdoors/sidewalk/side
 	icon_state = "side-walk"
+	initial_flooring = /decl/flooring/outdoors/sidewalk/side
+
+
+/decl/flooring/outdoors/sidewalk/side
+	icon_base = "sidewalk"
+	build_type = /obj/item/stack/tile/floor/sidewalk/side
+
+/obj/item/stack/tile/floor/sidewalk/side
 
 /turf/simulated/floor/outdoors/sidewalk/slab
 	icon_state = "slab"
+	initial_flooring = /decl/flooring/outdoors/sidewalk/slab
+
+/decl/flooring/outdoors/sidewalk/slab
+	icon_base = "slab"
+	build_type = /obj/item/stack/tile/floor/sidewalk/slab
+
+/obj/item/stack/tile/floor/sidewalk/slab
