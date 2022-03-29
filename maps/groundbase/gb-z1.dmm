@@ -1,26 +1,9 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"ac" = (
-/obj/machinery/power/smes/buildable,
-/obj/structure/cable,
-/turf/simulated/floor,
-/area/groundbase/level1)
 "aJ" = (
 /obj/machinery/gateway{
 	dir = 6
 	},
 /turf/simulated/floor/tiled,
-/area/groundbase/level1)
-"aS" = (
-/obj/structure/cable{
-	icon_state = "1-4"
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level1)
 "be" = (
 /turf/simulated/floor,
@@ -28,45 +11,6 @@
 "bD" = (
 /obj/machinery/gateway{
 	dir = 5
-	},
-/turf/simulated/floor/tiled,
-/area/groundbase/level1)
-"bE" = (
-/obj/structure/cable{
-	icon_state = "1-8"
-	},
-/turf/simulated/floor/tiled,
-/area/groundbase/level1)
-"bX" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/machinery/door/airlock/maintenance_hatch{
-	name = "Engine Airlock"
-	},
-/turf/simulated/floor,
-/area/groundbase/level1)
-"cc" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/reinforced,
-/area/groundbase/level1)
-"co" = (
-/obj/effect/floor_decal/industrial/danger/corner{
-	dir = 8
-	},
-/obj/effect/floor_decal/industrial/danger/corner{
-	dir = 4
-	},
-/turf/simulated/floor/tiled,
-/area/groundbase/level1)
-"cN" = (
-/obj/structure/cable/yellow{
-	icon_state = "2-8"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/level1)
@@ -81,15 +25,22 @@
 /obj/machinery/chemical_dispenser/bar_soft/full,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/level1)
-"dv" = (
-/obj/machinery/power/smes/buildable,
-/turf/simulated/floor,
-/area/groundbase/level1)
 "dw" = (
 /obj/machinery/gateway{
 	dir = 1
 	},
 /turf/simulated/floor/tiled,
+/area/groundbase/level1)
+"dN" = (
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/area/groundbase/level1)
+"ec" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/outdoors/sidewalk/virgo3c,
 /area/groundbase/level1)
 "ek" = (
 /obj/structure/cable{
@@ -97,29 +48,39 @@
 	},
 /turf/simulated/floor/outdoors/sidewalk/virgo3c,
 /area/groundbase/level1)
+"eG" = (
+/obj/effect/floor_decal/industrial/danger/corner{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/danger/corner,
+/turf/simulated/floor/tiled,
+/area/groundbase/level1)
+"eU" = (
+/obj/machinery/power/smes/buildable,
+/turf/simulated/floor,
+/area/groundbase/level1)
 "fm" = (
 /turf/simulated/floor/tiled/dark/virgo3c,
 /area/groundbase/level1)
-"fv" = (
-/obj/machinery/power/terminal,
-/obj/structure/cable/yellow{
-	icon_state = "0-4"
+"fz" = (
+/obj/effect/floor_decal/industrial/danger/corner{
+	dir = 8
 	},
-/turf/simulated/floor,
+/turf/simulated/floor/tiled,
 /area/groundbase/level1)
 "fD" = (
 /turf/simulated/floor,
 /area/holodeck_control)
+"fF" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled,
+/area/groundbase/level1)
 "fV" = (
 /turf/unsimulated/wall/planetary/virgo3c{
 	alpha = 0
 	},
-/area/groundbase/level1)
-"gi" = (
-/obj/structure/cable{
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/tiled,
 /area/groundbase/level1)
 "hb" = (
 /obj/machinery/gateway{
@@ -127,16 +88,17 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/level1)
-"iQ" = (
+"ig" = (
 /obj/structure/cable{
-	icon_state = "1-2"
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/level1)
-"jx" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/turf/simulated/floor,
+"iN" = (
+/obj/effect/floor_decal/industrial/danger/corner{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
 /area/groundbase/level1)
 "jV" = (
 /obj/item/weapon/stool/baystool/padded{
@@ -155,9 +117,9 @@
 	outdoors = 0
 	},
 /area/groundbase/level1)
-"lz" = (
-/obj/structure/stairs/spawner/west,
-/turf/simulated/floor/tiled/dark,
+"kF" = (
+/obj/machinery/light/bigfloorlamp,
+/turf/simulated/floor/outdoors/grass/virgo3c,
 /area/groundbase/level1)
 "lE" = (
 /turf/simulated/wall/r_wall,
@@ -172,21 +134,8 @@
 	},
 /turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
 /area/groundbase/level1)
-"mp" = (
-/obj/effect/floor_decal/industrial/danger,
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/tiled,
-/area/groundbase/level1)
 "my" = (
 /turf/simulated/floor/outdoors/newdirt/virgo3c,
-/area/groundbase/level1)
-"nE" = (
-/obj/machinery/door/airlock/maintenance_hatch{
-	name = "Engine Airlock"
-	},
-/turf/simulated/floor,
 /area/groundbase/level1)
 "nI" = (
 /obj/machinery/computer/HolodeckControl,
@@ -196,23 +145,36 @@
 /obj/item/weapon/stool/padded,
 /turf/simulated/floor/lino,
 /area/groundbase/level1)
+"oB" = (
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/tiled,
+/area/groundbase/level1)
 "pb" = (
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/virgo3c,
 /area/groundbase/level1)
+"pu" = (
+/obj/machinery/power/smes/buildable,
+/obj/structure/cable,
+/turf/simulated/floor,
+/area/groundbase/level1)
 "pF" = (
 /turf/simulated/wall,
 /area/groundbase/level1)
-"pK" = (
-/obj/effect/floor_decal/industrial/danger{
-	dir = 4
+"pS" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor/reinforced,
 /area/groundbase/level1)
 "pU" = (
-/turf/simulated/floor/outdoors/newdirt_nograss/virgo3c,
+/turf/simulated/floor/outdoors/newdirt_nograss/virgo3c{
+	outdoors = 0
+	},
 /area/groundbase/level1)
 "qd" = (
 /turf/simulated/floor/lino,
@@ -220,30 +182,43 @@
 "qp" = (
 /turf/simulated/floor/tiled/white,
 /area/groundbase/level1)
+"qY" = (
+/obj/machinery/power/terminal,
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/turf/simulated/floor,
+/area/groundbase/level1)
+"sm" = (
+/turf/simulated/floor/outdoors/newdirt/virgo3c{
+	outdoors = 0
+	},
+/area/groundbase/level1)
+"so" = (
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled,
+/area/groundbase/level1)
 "sF" = (
 /turf/simulated/floor/water/virgo3c{
 	outdoors = 0
 	},
-/area/groundbase/level1)
-"sG" = (
-/obj/effect/floor_decal/industrial/danger{
-	dir = 1
-	},
-/turf/simulated/floor/tiled,
-/area/groundbase/level1)
-"sP" = (
-/obj/machinery/power/grid_checker,
-/obj/structure/cable,
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/turf/simulated/floor,
 /area/groundbase/level1)
 "ty" = (
 /obj/structure/cable{
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/virgo3c,
+/area/groundbase/level1)
+"tF" = (
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
 /area/groundbase/level1)
 "tG" = (
 /turf/simulated/floor/outdoors/grass/virgo3c,
@@ -252,20 +227,23 @@
 /obj/structure/stairs/spawner/north,
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level1)
-"tS" = (
-/obj/structure/cable{
-	icon_state = "2-8"
-	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+"tW" = (
+/turf/simulated/floor/outdoors/mud,
 /area/groundbase/level1)
-"tV" = (
-/obj/structure/cable/yellow{
-	icon_state = "2-8"
+"tX" = (
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/level1)
-"tW" = (
-/turf/simulated/floor/outdoors/mud,
+"ul" = (
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/simulated/floor,
 /area/groundbase/level1)
 "ut" = (
 /obj/structure/table/bench/padded,
@@ -283,8 +261,19 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/level1)
+"uT" = (
+/obj/machinery/door/airlock/maintenance_hatch{
+	name = "Engine Airlock"
+	},
+/obj/machinery/door/firedoor,
+/turf/simulated/floor,
+/area/groundbase/level1)
 "vj" = (
 /turf/simulated/floor/water/virgo3c,
+/area/groundbase/level1)
+"vk" = (
+/obj/structure/stairs/spawner/east,
+/turf/simulated/floor/tiled/dark,
 /area/groundbase/level1)
 "vm" = (
 /obj/machinery/smartfridge/drinks,
@@ -295,6 +284,15 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled,
+/area/groundbase/level1)
+"wc" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
+	},
+/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level1)
 "wB" = (
 /turf/simulated/floor/tiled/dark,
@@ -312,23 +310,25 @@
 	outdoors = 0
 	},
 /area/groundbase/level1)
+"xD" = (
+/obj/effect/floor_decal/industrial/danger/corner,
+/turf/simulated/floor/tiled,
+/area/groundbase/level1)
 "xH" = (
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c{
 	outdoors = 0
 	},
 /area/groundbase/level1)
-"yc" = (
-/obj/machinery/power/terminal{
-	dir = 1
-	},
-/obj/structure/cable/yellow{
-	icon_state = "0-4"
-	},
+"xN" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor,
 /turf/simulated/floor,
 /area/groundbase/level1)
-"yB" = (
-/obj/effect/floor_decal/industrial/danger/corner{
-	dir = 8
+"ya" = (
+/obj/effect/floor_decal/industrial/danger,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/level1)
@@ -341,13 +341,15 @@
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level1)
-"zc" = (
-/obj/effect/floor_decal/industrial/outline/yellow,
-/turf/simulated/floor/reinforced,
-/area/groundbase/level1)
 "zn" = (
 /obj/structure/stairs/spawner/north,
 /turf/simulated/floor/outdoors/sidewalk/virgo3c,
+/area/groundbase/level1)
+"zB" = (
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/tiled,
 /area/groundbase/level1)
 "Ab" = (
 /obj/structure/cable{
@@ -355,17 +357,35 @@
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level1)
-"Db" = (
-/obj/effect/floor_decal/industrial/danger/corner{
-	dir = 1
+"Am" = (
+/obj/structure/cable{
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/level1)
-"Dz" = (
-/obj/structure/cable{
-	icon_state = "2-4"
+"Br" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/tiled,
+/area/groundbase/level1)
+"Cx" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/tiled,
+/area/groundbase/level1)
+"CB" = (
+/obj/machinery/door/firedoor,
+/turf/simulated/floor,
+/area/groundbase/level1)
+"Dw" = (
+/obj/machinery/power/grid_checker,
+/obj/structure/cable,
+/obj/structure/cable{
+	icon_state = "0-2"
+	},
+/turf/simulated/floor,
 /area/groundbase/level1)
 "DA" = (
 /turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
@@ -373,12 +393,6 @@
 "Es" = (
 /obj/structure/table/marble,
 /turf/simulated/floor/lino,
-/area/groundbase/level1)
-"EC" = (
-/obj/effect/floor_decal/industrial/danger{
-	dir = 8
-	},
-/turf/simulated/floor/tiled,
 /area/groundbase/level1)
 "ED" = (
 /turf/simulated/floor/outdoors/sidewalk/virgo3c,
@@ -389,8 +403,18 @@
 	},
 /turf/simulated/floor/virgo3c,
 /area/groundbase/level1)
+"FK" = (
+/obj/effect/floor_decal/industrial/danger,
+/turf/simulated/floor/tiled,
+/area/groundbase/level1)
 "FL" = (
 /turf/unsimulated/wall/planetary/virgo3c,
+/area/groundbase/level1)
+"Gh" = (
+/obj/effect/floor_decal/industrial/danger{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
 /area/groundbase/level1)
 "GA" = (
 /obj/machinery/vending/boozeomat,
@@ -403,6 +427,15 @@
 "GG" = (
 /obj/machinery/recycling/stamper,
 /turf/simulated/floor,
+/area/groundbase/level1)
+"GI" = (
+/obj/effect/floor_decal/industrial/danger/corner{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger/corner{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
 /area/groundbase/level1)
 "GR" = (
 /obj/structure/table/marble,
@@ -422,20 +455,29 @@
 	outdoors = 0
 	},
 /area/groundbase/level1)
-"Ii" = (
-/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+"HG" = (
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level1)
-"Iv" = (
+"IA" = (
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/area/groundbase/level1)
+"Js" = (
 /obj/machinery/power/rtg/d_type_reg,
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/structure/cable/yellow,
 /turf/simulated/floor/reinforced,
-/area/groundbase/level1)
-"IQ" = (
-/obj/effect/floor_decal/industrial/danger/corner{
-	dir = 4
-	},
-/turf/simulated/floor/tiled,
 /area/groundbase/level1)
 "JE" = (
 /obj/item/weapon/stool/baystool/padded{
@@ -443,14 +485,12 @@
 	},
 /turf/simulated/floor/lino,
 /area/groundbase/level1)
-"Kl" = (
-/obj/effect/floor_decal/industrial/danger{
-	dir = 8
+"JP" = (
+/obj/structure/cable{
+	icon_state = "1-2"
 	},
-/obj/effect/floor_decal/industrial/danger{
-	dir = 4
-	},
-/turf/simulated/floor/tiled,
+/obj/machinery/door/firedoor,
+/turf/simulated/floor,
 /area/groundbase/level1)
 "Km" = (
 /obj/structure/cable{
@@ -458,35 +498,21 @@
 	},
 /turf/simulated/floor/virgo3c,
 /area/groundbase/level1)
-"KO" = (
-/obj/effect/floor_decal/industrial/danger/corner,
-/turf/simulated/floor/tiled,
-/area/groundbase/level1)
 "KV" = (
 /obj/effect/landmark/arrivals,
 /turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
-/area/groundbase/level1)
-"LF" = (
-/obj/effect/floor_decal/industrial/danger/corner{
-	dir = 1
-	},
-/obj/effect/floor_decal/industrial/danger/corner,
-/turf/simulated/floor/tiled,
-/area/groundbase/level1)
-"LK" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-4"
-	},
-/turf/simulated/floor/tiled,
 /area/groundbase/level1)
 "Ma" = (
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level1)
 "My" = (
 /turf/simulated/floor/virgo3c,
+/area/groundbase/level1)
+"ME" = (
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
 /area/groundbase/level1)
 "MO" = (
 /turf/simulated/mineral/cave/virgo3c,
@@ -503,44 +529,41 @@
 /obj/machinery/recycling/sorter,
 /turf/simulated/floor,
 /area/groundbase/level1)
-"Oc" = (
-/obj/effect/floor_decal/industrial/danger,
-/turf/simulated/floor/tiled,
+"NP" = (
+/obj/structure/stairs/spawner/south,
+/turf/simulated/floor,
 /area/groundbase/level1)
 "Op" = (
 /obj/structure/stairs/spawner/south,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/level1)
-"Or" = (
+"OS" = (
 /obj/structure/cable{
-	icon_state = "2-4"
+	icon_state = "1-8"
 	},
-/turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level1)
-"OJ" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/tiled,
-/area/groundbase/level1)
-"Ph" = (
-/obj/structure/stairs/spawner/east,
-/turf/simulated/floor/tiled/dark,
-/area/groundbase/level1)
-"PJ" = (
+"OY" = (
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/level1)
-"QN" = (
-/obj/structure/cable{
-	icon_state = "0-2"
+"PX" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
 	},
-/obj/structure/cable{
-	icon_state = "2-4"
+/obj/machinery/door/airlock/maintenance_hatch{
+	name = "Engine Airlock"
 	},
+/obj/machinery/door/firedoor,
 /turf/simulated/floor,
+/area/groundbase/level1)
+"Ra" = (
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/tiled,
 /area/groundbase/level1)
 "Ro" = (
 /obj/structure/cable{
@@ -552,23 +575,35 @@
 /obj/machinery/recycling/crusher,
 /turf/simulated/floor,
 /area/groundbase/level1)
-"SN" = (
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
+"SV" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
+/area/groundbase/level1)
+"Us" = (
+/obj/effect/floor_decal/industrial/danger{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/danger{
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/level1)
-"Vy" = (
-/obj/structure/cable/yellow{
-	icon_state = "2-4"
+"UD" = (
+/obj/effect/floor_decal/industrial/danger/corner{
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/level1)
-"Wq" = (
-/obj/structure/cable{
-	icon_state = "1-8"
+"UG" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
+/area/groundbase/level1)
+"UX" = (
+/turf/simulated/floor/outdoors/grass/forest/virgo3c,
 /area/groundbase/level1)
 "Xg" = (
 /obj/item/weapon/stool/baystool/padded{
@@ -579,14 +614,16 @@
 "XS" = (
 /turf/simulated/floor/tiled,
 /area/groundbase/level1)
-"Yd" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/turf/simulated/floor,
+"YH" = (
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/structure/cable/yellow,
+/turf/simulated/floor/reinforced,
 /area/groundbase/level1)
-"YF" = (
-/obj/structure/cable{
+"Zx" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/cable/yellow{
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled,
@@ -608,6 +645,9 @@
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
+/obj/machinery/power/apc{
+	dir = 1
+	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level1)
 "ZP" = (
@@ -615,6 +655,15 @@
 	name = "Holodeck Projector Floor"
 	},
 /area/holodeck/alphadeck)
+"ZU" = (
+/obj/machinery/power/terminal{
+	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/turf/simulated/floor,
+/area/groundbase/level1)
 "ZZ" = (
 /turf/simulated/wall,
 /area/holodeck_control)
@@ -956,27 +1005,27 @@ MO
 tG
 tG
 tG
+UX
+tG
+UX
 tG
 tG
 tG
 tG
+UX
+UX
 tG
 tG
 tG
+UX
+tG
+UX
+UX
 tG
 tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
 tG
 tG
 tG
@@ -1098,30 +1147,30 @@ MO
 MO
 tG
 tG
+UX
+UX
+UX
 tG
 tG
 tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -1244,27 +1293,27 @@ tG
 tG
 tG
 tG
+UX
+UX
 tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 MO
@@ -1389,24 +1438,24 @@ tG
 tG
 tG
 tG
+UX
+UX
+UX
+UX
+UX
+UX
+UX
 tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 MO
@@ -1536,19 +1585,19 @@ tG
 tG
 tG
 tG
+UX
+UX
 tG
 tG
 tG
 tG
 tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -1666,9 +1715,9 @@ pU
 pU
 MO
 MO
-pU
-pU
-pU
+my
+my
+my
 MO
 MO
 MO
@@ -1688,10 +1737,10 @@ tG
 tG
 tG
 tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -1808,9 +1857,9 @@ pU
 pU
 MO
 MO
-pU
-pU
-pU
+my
+my
+my
 MO
 MO
 MO
@@ -1831,9 +1880,9 @@ tG
 tG
 tG
 tG
-tG
-tG
-tG
+UX
+UX
+UX
 tG
 tG
 tG
@@ -1951,8 +2000,8 @@ pU
 pU
 pU
 pU
+my
 pU
-pU
 MO
 MO
 MO
@@ -1973,9 +2022,9 @@ tG
 tG
 tG
 tG
-tG
-tG
-tG
+UX
+UX
+UX
 tG
 tG
 tG
@@ -2261,7 +2310,7 @@ tG
 tG
 tG
 tG
-Dz
+dN
 ek
 ek
 ek
@@ -2829,7 +2878,7 @@ ek
 ek
 ek
 ek
-Wq
+OS
 tG
 tG
 tG
@@ -2964,7 +3013,7 @@ MO
 pU
 Ro
 pU
-pU
+my
 my
 my
 tG
@@ -3966,11 +4015,11 @@ tG
 tG
 tG
 tG
+UX
+UX
 tG
-tG
-tG
-tG
-tG
+UX
+UX
 tG
 tG
 tG
@@ -4107,12 +4156,12 @@ tG
 tG
 tG
 tG
-tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -4252,11 +4301,11 @@ tG
 tG
 tG
 tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -4394,11 +4443,11 @@ tG
 tG
 tG
 tG
+UX
 tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
 tG
 tG
 tG
@@ -4503,8 +4552,8 @@ GF
 GF
 GF
 wB
-lz
-lz
+wB
+wB
 wB
 ut
 ut
@@ -4535,15 +4584,15 @@ MO
 tG
 tG
 tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -4557,9 +4606,9 @@ MO
 MO
 lE
 lE
-be
+CB
 lE
-be
+CB
 lE
 lE
 lE
@@ -4681,13 +4730,13 @@ tG
 tG
 tG
 tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -4822,15 +4871,15 @@ tG
 tG
 tG
 tG
+UX
+UX
+UX
+UX
+UX
+UX
+UX
 tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
+UX
 tG
 tG
 tG
@@ -4967,12 +5016,12 @@ tG
 tG
 tG
 tG
-tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -5110,12 +5159,12 @@ tG
 tG
 tG
 tG
-tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -5255,8 +5304,8 @@ tG
 tG
 tG
 tG
-tG
-tG
+UX
+UX
 tG
 tG
 tG
@@ -5398,7 +5447,7 @@ tG
 tG
 tG
 tG
-tG
+UX
 tG
 tG
 tG
@@ -5836,7 +5885,7 @@ lE
 lE
 lE
 lE
-be
+CB
 lE
 lE
 lE
@@ -5848,7 +5897,7 @@ lE
 lE
 lE
 lE
-be
+CB
 lE
 lE
 lE
@@ -6117,7 +6166,7 @@ ED
 ED
 fm
 fm
-be
+CB
 wB
 wB
 wB
@@ -6259,13 +6308,13 @@ tG
 tG
 fm
 fm
-be
+CB
 wB
 wB
 wB
 wB
 wB
-be
+CB
 wB
 wB
 wB
@@ -6354,8 +6403,8 @@ wB
 wB
 wB
 wB
-Ph
-Ph
+vk
+vk
 pF
 MO
 MO
@@ -6694,7 +6743,7 @@ wB
 lE
 lE
 lE
-be
+CB
 lE
 lE
 lE
@@ -6705,7 +6754,7 @@ lE
 lE
 lE
 lE
-be
+CB
 lE
 lE
 lE
@@ -6827,13 +6876,13 @@ tG
 tG
 fm
 fm
-be
+CB
 wB
 wB
 wB
 wB
 wB
-be
+CB
 wB
 wB
 wB
@@ -6969,7 +7018,7 @@ tG
 tG
 fm
 fm
-be
+CB
 wB
 wB
 wB
@@ -6987,11 +7036,11 @@ wB
 wB
 wB
 wB
+CB
 be
 be
 be
-be
-be
+CB
 Hn
 Hn
 Hn
@@ -7111,13 +7160,13 @@ tG
 tG
 fm
 fm
-be
+CB
 wB
 wB
 wB
 wB
 wB
-be
+CB
 wB
 wB
 wB
@@ -7261,25 +7310,25 @@ wB
 wB
 lE
 lE
-be
+CB
 lE
 lE
 lE
-be
+CB
 lE
 lE
 lE
-be
+CB
 lE
 lE
 lE
-be
+CB
 lE
 lE
 lE
 lE
 my
-Or
+tF
 uO
 uO
 uO
@@ -7395,7 +7444,7 @@ tG
 tG
 fm
 fm
-be
+CB
 wB
 wB
 wB
@@ -7537,7 +7586,7 @@ tG
 tG
 fm
 fm
-be
+CB
 wB
 wB
 wB
@@ -7679,7 +7728,7 @@ tG
 tG
 fm
 fm
-be
+CB
 wB
 wB
 wB
@@ -7798,8 +7847,8 @@ MO
 MO
 MO
 tG
-tG
-tG
+UX
+UX
 tG
 tG
 tG
@@ -7828,17 +7877,17 @@ lE
 lE
 lE
 lE
+xN
+xN
+xN
 lE
+xN
+xN
+xN
 lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
-lE
+xN
+xN
+xN
 lE
 be
 be
@@ -7935,23 +7984,23 @@ MO
 MO
 pU
 pU
+pU
 my
 my
 my
-my
 tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 DA
@@ -8076,24 +8125,24 @@ MO
 MO
 MO
 pU
+pU
+pU
+MO
+MO
 my
-my
-my
-my
-my
 tG
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
 tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
 tG
 tG
 DA
@@ -8218,17 +8267,17 @@ MO
 MO
 MO
 MO
-my
-my
-my
-my
+MO
+MO
+MO
+MO
 tG
 tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -8280,8 +8329,8 @@ tG
 tG
 tG
 tG
-tG
-tG
+UX
+UX
 tG
 tG
 tG
@@ -8360,17 +8409,17 @@ MO
 MO
 MO
 MO
-my
-my
-my
-my
+MO
+MO
+MO
+MO
 tG
 tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
 tG
 Ma
 ED
@@ -8421,8 +8470,8 @@ tG
 tG
 tG
 tG
-tG
-tG
+UX
+UX
 tG
 tG
 tG
@@ -8504,14 +8553,14 @@ lE
 lE
 lE
 lE
-my
-my
+MO
+MO
 tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 DA
@@ -8551,7 +8600,7 @@ tG
 tG
 tG
 tG
-tG
+UX
 tG
 tG
 tG
@@ -8561,12 +8610,12 @@ lU
 tG
 tG
 tG
-tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 FL
@@ -8646,14 +8695,14 @@ XS
 XS
 XS
 lE
-my
-my
+MO
+MO
 tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 DA
@@ -8661,7 +8710,7 @@ tG
 tG
 tG
 tG
-tG
+UX
 tG
 tG
 tG
@@ -8688,25 +8737,25 @@ tG
 tG
 tG
 tG
+UX
 tG
 tG
 tG
-tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 lU
 tG
 tG
+UX
 tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
 tG
 tG
 tG
@@ -8789,21 +8838,21 @@ XS
 XS
 lE
 MO
-my
+MO
 tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 DA
 tG
 tG
 tG
-tG
-tG
+UX
+UX
 tG
 tG
 tG
@@ -8827,28 +8876,28 @@ MO
 tG
 tG
 tG
+UX
+UX
+UX
+UX
 tG
 tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
+UX
+UX
 tG
 lU
 tG
 tG
 tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -8935,7 +8984,7 @@ MO
 tG
 tG
 tG
-tG
+UX
 tG
 tG
 tG
@@ -8944,8 +8993,8 @@ DA
 tG
 tG
 tG
-tG
-tG
+UX
+UX
 tG
 tG
 tG
@@ -8975,8 +9024,8 @@ tG
 tG
 tG
 tG
-tG
-tG
+UX
+UX
 tG
 tG
 tG
@@ -8989,8 +9038,8 @@ tG
 tG
 tG
 tG
-tG
-tG
+UX
+UX
 tG
 tG
 tG
@@ -9020,7 +9069,7 @@ my
 my
 my
 Ro
-pU
+my
 pU
 MO
 MO
@@ -9085,9 +9134,9 @@ tG
 DA
 tG
 tG
-tG
-tG
-tG
+UX
+UX
+UX
 tG
 tG
 tG
@@ -9128,8 +9177,8 @@ tG
 lU
 tG
 tG
-tG
-tG
+UX
+UX
 tG
 tG
 tG
@@ -9220,17 +9269,17 @@ MO
 tG
 tG
 tG
-tG
-tG
+UX
+UX
 tG
 tG
 DA
 tG
 tG
 tG
-tG
-tG
-tG
+UX
+UX
+UX
 tG
 tG
 MO
@@ -9271,10 +9320,10 @@ Ab
 tG
 tG
 tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -9361,17 +9410,17 @@ tG
 tG
 tG
 tG
-tG
-tG
-tG
+UX
+UX
+UX
 tG
 tG
 DA
 tG
 tG
-tG
-tG
-tG
+UX
+UX
+UX
 tG
 tG
 tG
@@ -9413,8 +9462,8 @@ lU
 tG
 tG
 tG
-tG
-tG
+UX
+UX
 tG
 tG
 tG
@@ -9435,10 +9484,10 @@ tG
 tG
 tG
 tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -9462,14 +9511,14 @@ MO
 tG
 tG
 tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
 wP
-wP
-wP
 tG
-tG
+UX
 tG
 tG
 tG
@@ -9503,7 +9552,33 @@ tG
 tG
 tG
 tG
+UX
 tG
+tG
+tG
+tG
+DA
+tG
+tG
+tG
+UX
+UX
+tG
+tG
+MO
+MO
+MO
+MO
+MO
+MO
+MO
+MO
+MO
+MO
+MO
+MO
+MO
+MO
 tG
 tG
 tG
@@ -9513,40 +9588,14 @@ tG
 tG
 tG
 tG
+UX
+tG
+UX
 tG
 tG
-tG
-MO
-MO
-MO
-MO
-MO
-MO
-MO
-MO
-MO
-MO
-MO
-MO
-MO
-MO
-tG
-tG
-tG
-tG
-DA
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
 tG
 tG
 tG
@@ -9572,18 +9621,18 @@ tG
 tG
 tG
 tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -9603,17 +9652,17 @@ MO
 tG
 tG
 tG
+UX
+UX
 tG
 tG
-tG
-tG
-wP
-wP
-wP
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -9630,14 +9679,14 @@ MO
 MO
 lE
 lE
-be
-be
-be
-be
+CB
+CB
+CB
+CB
 lE
-be
+CB
 lE
-be
+CB
 lE
 lE
 tG
@@ -9679,16 +9728,16 @@ tG
 DA
 tG
 tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -9713,13 +9762,13 @@ tG
 tG
 tG
 tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -9748,13 +9797,13 @@ tG
 tG
 tG
 tG
-tG
+UX
+UX
 wP
-wP
-wP
-tG
-tG
-tG
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -9786,7 +9835,7 @@ tG
 tG
 tG
 tG
-tG
+kF
 my
 my
 my
@@ -9798,7 +9847,7 @@ tG
 tG
 tG
 tG
-tG
+kF
 tG
 tG
 tG
@@ -9820,15 +9869,15 @@ tG
 tG
 DA
 tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -9855,11 +9904,11 @@ tG
 tG
 tG
 tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -9895,6 +9944,7 @@ wP
 wP
 wP
 tG
+UX
 tG
 tG
 tG
@@ -9904,8 +9954,7 @@ tG
 tG
 tG
 tG
-tG
-tG
+UX
 tG
 tG
 MO
@@ -9998,14 +10047,14 @@ tG
 tG
 tG
 tG
+UX
+UX
+UX
+UX
+UX
 tG
 tG
-tG
-tG
-tG
-tG
-tG
-Dz
+dN
 ek
 ek
 ek
@@ -10047,7 +10096,7 @@ Ma
 tG
 tG
 tG
-tG
+UX
 tG
 tG
 tG
@@ -10137,13 +10186,13 @@ FL
 FL
 tG
 tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -10181,18 +10230,18 @@ wP
 tG
 tG
 tG
-tG
+UX
 tG
 tG
 tG
 DA
 tG
 tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -10218,9 +10267,9 @@ tG
 tG
 tG
 tG
-Ii
-Ii
-Ii
+UX
+UX
+UX
 tG
 tG
 DA
@@ -10282,10 +10331,10 @@ tG
 tG
 tG
 tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -10313,13 +10362,32 @@ tG
 tG
 tG
 tG
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+tG
+tG
+tG
+DA
+tG
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 tG
 tG
-wP
-wP
-wP
+tG
 tG
 tG
 tG
@@ -10336,15 +10404,15 @@ tG
 tG
 tG
 tG
+DA
 tG
 tG
 tG
-tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
 tG
 DA
 tG
@@ -10352,26 +10420,7 @@ tG
 tG
 tG
 tG
-tG
-tG
-tG
-DA
-tG
-tG
-tG
-Ii
-Ii
-Ii
-Ii
-Ii
-tG
-DA
-tG
-tG
-tG
-tG
-tG
-tG
+UX
 tG
 tG
 tG
@@ -10424,10 +10473,10 @@ tG
 tG
 tG
 tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -10454,14 +10503,42 @@ tG
 tG
 tG
 tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
+UX
 wP
-wP
-wP
+UX
+UX
+tG
+tG
+UX
+tG
+tG
+tG
+DA
+tG
+tG
+tG
+UX
+UX
+tG
+tG
+tG
+tG
+tG
+tG
+tG
+tG
+tG
+tG
+tG
+tG
+tG
+SV
+tG
 tG
 tG
 tG
@@ -10472,20 +10549,11 @@ tG
 DA
 tG
 tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 DA
@@ -10493,26 +10561,7 @@ tG
 tG
 tG
 tG
-tG
-tG
-tG
-tG
-DA
-tG
-tG
-Ii
-Ii
-Ii
-Ii
-Ii
-tG
-tG
-DA
-tG
-tG
-tG
-tG
-tG
+UX
 tG
 tG
 tG
@@ -10600,7 +10649,7 @@ tG
 tG
 tG
 tG
-tG
+UX
 wP
 wP
 wP
@@ -10628,25 +10677,25 @@ ED
 ED
 ED
 ED
+ec
+ec
+wc
+ec
+ec
+ec
+ec
+ec
+ec
 ED
 ED
 Ma
-ED
-ED
-ED
-ED
-ED
-ED
-ED
-ED
-Ma
 tG
 tG
-Ii
-Ii
-Ii
-Ii
-Ii
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 Ma
@@ -10654,8 +10703,8 @@ tG
 tG
 tG
 tG
-tG
-tG
+UX
+UX
 tG
 tG
 MO
@@ -10772,7 +10821,7 @@ tG
 tG
 tG
 tG
-DA
+UG
 tG
 tG
 tG
@@ -10784,20 +10833,20 @@ tG
 DA
 tG
 tG
-Ii
-Ii
-Ii
-Ii
-Ii
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 DA
 tG
 tG
 tG
-tG
-tG
-tG
+UX
+UX
+UX
 tG
 tG
 MO
@@ -10909,27 +10958,8 @@ MO
 MO
 tG
 tG
-tG
-tG
-tG
-tG
-tG
-DA
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-DA
-tG
-tG
-Ii
-Ii
-Ii
-Ii
+UX
+UX
 tG
 tG
 tG
@@ -10939,6 +10969,25 @@ tG
 tG
 tG
 tG
+tG
+tG
+tG
+DA
+tG
+tG
+UX
+UX
+UX
+UX
+tG
+tG
+tG
+DA
+tG
+tG
+UX
+UX
+UX
 tG
 tG
 tG
@@ -11052,9 +11101,9 @@ MO
 tG
 tG
 tG
-tG
-tG
-tG
+UX
+UX
+UX
 tG
 DA
 tG
@@ -11067,7 +11116,7 @@ tG
 my
 DA
 tG
-Ii
+UX
 tG
 tG
 tG
@@ -11080,8 +11129,8 @@ my
 tG
 tG
 tG
-tG
-tG
+UX
+UX
 tG
 tG
 tG
@@ -11177,11 +11226,11 @@ MO
 MO
 MO
 MO
-my
-my
+sm
+sm
 kx
+sm
 my
-my
 MO
 MO
 MO
@@ -11195,25 +11244,15 @@ tG
 tG
 tG
 tG
-tG
-tG
+UX
+UX
 tG
 DA
 tG
 tG
 tG
 tG
-tG
-tG
-tG
-my
-DA
-my
-tG
-tG
-tG
-tG
-tG
+UX
 tG
 tG
 my
@@ -11224,6 +11263,16 @@ tG
 tG
 tG
 tG
+tG
+tG
+my
+DA
+my
+tG
+tG
+UX
+UX
+UX
 tG
 tG
 tG
@@ -11320,9 +11369,9 @@ MO
 MO
 MO
 MO
-my
+sm
 kx
-my
+sm
 MO
 MO
 MO
@@ -11336,16 +11385,16 @@ MO
 MO
 tG
 tG
-tG
-tG
-tG
+UX
+UX
+UX
 tG
 DA
 tG
 tG
 tG
-tG
-tG
+UX
+UX
 tG
 tG
 my
@@ -11364,7 +11413,7 @@ my
 tG
 tG
 tG
-tG
+UX
 tG
 tG
 tG
@@ -11463,7 +11512,7 @@ pF
 pF
 pF
 pF
-be
+CB
 pF
 pF
 pF
@@ -11478,19 +11527,19 @@ MO
 MO
 MO
 tG
-tG
-tG
-tG
+UX
+UX
+UX
 tG
 DA
 tG
 tG
+UX
+UX
+UX
 tG
 tG
-tG
-tG
-tG
-tG
+kF
 my
 my
 my
@@ -11502,11 +11551,11 @@ tG
 my
 my
 my
+kF
 tG
 tG
 tG
-tG
-tG
+UX
 tG
 tG
 tG
@@ -11621,12 +11670,16 @@ MO
 tG
 tG
 tG
-tG
+UX
 tG
 tG
 DA
 tG
 tG
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -11657,12 +11710,8 @@ tG
 tG
 tG
 tG
-tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
 tG
 tG
 tG
@@ -11762,13 +11811,27 @@ tG
 tG
 tG
 tG
-tG
-tG
+UX
+UX
 tG
 tG
 DA
 tG
 tG
+UX
+UX
+UX
+tG
+tG
+tG
+tG
+tG
+tG
+tG
+tG
+tG
+tG
+UX
 tG
 tG
 tG
@@ -11787,25 +11850,11 @@ tG
 tG
 tG
 tG
+UX
 tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
 tG
 tG
 tG
@@ -11887,11 +11936,11 @@ qp
 qp
 qp
 qp
-be
+CB
 qp
 qp
 qp
-be
+CB
 qp
 qp
 qp
@@ -11904,13 +11953,29 @@ tG
 tG
 tG
 tG
-tG
-tG
+UX
+UX
 tG
 tG
 DA
 tG
 tG
+UX
+UX
+UX
+UX
+tG
+tG
+tG
+tG
+tG
+tG
+tG
+tG
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -11925,31 +11990,15 @@ tG
 tG
 tG
 tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -12043,16 +12092,31 @@ pF
 MO
 MO
 tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 DA
 tG
 tG
+UX
+UX
+UX
+UX
+tG
+tG
+tG
+tG
+tG
+UX
+tG
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -12067,31 +12131,16 @@ tG
 tG
 tG
 tG
+UX
+UX
 tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -12186,29 +12235,29 @@ MO
 MO
 tG
 tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
 tG
 tG
 DA
 tG
 tG
+UX
+UX
+UX
+UX
 tG
 tG
 tG
 tG
 tG
 tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -12228,14 +12277,14 @@ tG
 tG
 tG
 tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -12315,7 +12364,7 @@ pF
 pF
 pF
 pF
-be
+CB
 pF
 pF
 pF
@@ -12330,14 +12379,16 @@ MO
 tG
 tG
 tG
-tG
-tG
+UX
+UX
 tG
 tG
 DA
 tG
 tG
 tG
+UX
+UX
 tG
 tG
 tG
@@ -12345,10 +12396,8 @@ tG
 tG
 tG
 tG
-tG
-tG
-tG
-tG
+UX
+UX
 tG
 tG
 tG
@@ -12370,15 +12419,15 @@ tG
 tG
 tG
 tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -12437,7 +12486,7 @@ be
 be
 be
 pF
-MO
+pF
 pU
 pU
 pU
@@ -12480,10 +12529,10 @@ DA
 tG
 tG
 tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -12515,13 +12564,13 @@ tG
 tG
 tG
 tG
+UX
 tG
 tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -12578,8 +12627,8 @@ be
 be
 be
 be
+NP
 pF
-MO
 pU
 pU
 pU
@@ -12661,9 +12710,9 @@ tG
 tG
 tG
 tG
-tG
-tG
-tG
+UX
+UX
+UX
 tG
 tG
 tG
@@ -12720,9 +12769,9 @@ be
 be
 be
 be
+NP
 pF
 MO
-MO
 pU
 pU
 MO
@@ -12739,7 +12788,7 @@ qp
 qp
 qp
 qp
-be
+CB
 qp
 qp
 qp
@@ -12863,7 +12912,7 @@ pF
 pF
 pF
 pF
-MO
+pF
 MO
 MO
 MO
@@ -12952,7 +13001,7 @@ tG
 tG
 tG
 tG
-tG
+UX
 tG
 tG
 tG
@@ -13039,7 +13088,7 @@ be
 be
 be
 be
-be
+CB
 Ma
 tG
 tG
@@ -13093,9 +13142,9 @@ tG
 tG
 tG
 tG
-tG
-tG
-tG
+UX
+UX
+UX
 tG
 tG
 lU
@@ -13181,7 +13230,7 @@ be
 be
 be
 be
-be
+CB
 Ma
 ED
 ED
@@ -13234,10 +13283,10 @@ tG
 tG
 tG
 tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
 tG
 tG
 lU
@@ -13363,9 +13412,9 @@ lE
 lE
 lE
 lE
-jx
-jx
-jx
+xN
+xN
+xN
 lE
 lE
 MO
@@ -13378,8 +13427,8 @@ tG
 tG
 tG
 tG
-tG
-tG
+UX
+UX
 tG
 tG
 lU
@@ -13494,21 +13543,21 @@ XS
 XS
 XS
 lE
-QN
-sP
-ac
-yc
-fv
-dv
+ul
+Dw
+pu
+ZU
+qY
+eU
 be
 lE
 XS
 XS
-KO
-pK
-pK
-pK
-IQ
+xD
+ME
+ME
+ME
+iN
 lE
 MO
 MO
@@ -13591,7 +13640,7 @@ qp
 qp
 qp
 qp
-be
+CB
 qp
 qp
 qp
@@ -13617,14 +13666,14 @@ ED
 ED
 ED
 ED
-be
+CB
 XS
 XS
 XS
 XS
 XS
 XS
-be
+CB
 XS
 XS
 XS
@@ -13636,21 +13685,21 @@ XS
 XS
 XS
 lE
-gi
+ig
 XS
 XS
-tV
-LK
+Ra
+Zx
 XS
 XS
 lE
 XS
 XS
-Oc
+FK
 ZB
 ZB
 ZB
-sG
+Gh
 lE
 MO
 MO
@@ -13749,7 +13798,7 @@ be
 be
 be
 be
-be
+CB
 Ma
 ED
 ED
@@ -13759,40 +13808,40 @@ ek
 ek
 ek
 ek
-Yd
-iQ
-iQ
-iQ
-iQ
-iQ
-iQ
-Yd
-iQ
-iQ
-iQ
-iQ
-iQ
-iQ
-iQ
-iQ
-iQ
-YF
+JP
+Am
+Am
+Am
+Am
+Am
+Am
+JP
+Am
+Am
+Am
+Am
+Am
+Am
+Am
+Am
+Am
+zB
 lE
-gi
+ig
 XS
 XS
 XS
-SN
+fF
 XS
 XS
 lE
 XS
-Vy
-mp
-cc
-Iv
+oB
+ya
+pS
+Js
 ZB
-sG
+Gh
 lE
 MO
 MO
@@ -13891,7 +13940,7 @@ be
 be
 be
 be
-be
+CB
 Ma
 tG
 tG
@@ -13918,23 +13967,23 @@ XS
 XS
 XS
 XS
-gi
+ig
 lE
-gi
+ig
 XS
 XS
 XS
-SN
+fF
 XS
 XS
 lE
 XS
-SN
-Oc
+fF
+FK
 ZB
 ZB
 ZB
-sG
+Gh
 lE
 MO
 MO
@@ -14060,23 +14109,23 @@ XS
 XS
 XS
 XS
-PJ
-Yd
-bE
+OY
+JP
+Cx
 XS
 XS
 XS
-SN
+fF
 XS
 XS
 lE
 XS
-SN
-LF
-Kl
-Kl
-Kl
-co
+fF
+eG
+Us
+Us
+Us
+GI
 lE
 MO
 MO
@@ -14177,8 +14226,8 @@ pF
 pF
 pF
 tG
-tG
-tG
+UX
+UX
 tG
 lU
 tG
@@ -14208,17 +14257,17 @@ XS
 XS
 XS
 XS
-tV
-OJ
-OJ
-bX
-OJ
-LK
-Oc
+Ra
+Br
+Br
+PX
+Br
+Zx
+FK
 ZB
 ZB
 ZB
-sG
+Gh
 lE
 MO
 MO
@@ -14319,8 +14368,8 @@ MO
 MO
 MO
 tG
-tG
-tG
+UX
+UX
 tG
 lU
 tG
@@ -14355,12 +14404,12 @@ XS
 XS
 lE
 XS
-cN
-mp
-cc
-zc
+so
+ya
+pS
+YH
 ZB
-sG
+Gh
 lE
 MO
 MO
@@ -14461,8 +14510,8 @@ MO
 MO
 MO
 tG
-tG
-tG
+UX
+UX
 tG
 lU
 tG
@@ -14495,14 +14544,14 @@ XS
 XS
 XS
 XS
-nE
+uT
 XS
-SN
-Oc
+fF
+FK
 ZB
 ZB
 ZB
-sG
+Gh
 lE
 MO
 MO
@@ -14575,8 +14624,8 @@ MO
 MO
 MO
 Ro
+my
 pU
-pU
 MO
 MO
 pF
@@ -14603,8 +14652,8 @@ MO
 MO
 MO
 tG
-tG
-tG
+UX
+UX
 tG
 lU
 tG
@@ -14623,8 +14672,8 @@ lE
 lE
 lE
 lE
-be
-be
+CB
+CB
 lE
 lE
 lE
@@ -14633,18 +14682,18 @@ lE
 lE
 lE
 lE
-be
+CB
 lE
 lE
 lE
 lE
 XS
-SN
-LF
-Kl
-Kl
-Kl
-co
+fF
+eG
+Us
+Us
+Us
+GI
 lE
 MO
 MO
@@ -14745,8 +14794,8 @@ MO
 MO
 MO
 tG
-tG
-tG
+UX
+UX
 tG
 lU
 tG
@@ -14781,12 +14830,12 @@ XS
 XS
 lE
 XS
-SN
-Oc
+fF
+FK
 ZB
 ZB
 ZB
-sG
+Gh
 lE
 MO
 MO
@@ -14888,7 +14937,7 @@ MO
 tG
 tG
 tG
-tG
+UX
 tG
 lU
 tG
@@ -14923,12 +14972,12 @@ XS
 XS
 lE
 XS
-tV
-mp
-cc
-zc
+Ra
+ya
+pS
+YH
 ZB
-sG
+Gh
 lE
 MO
 MO
@@ -15012,8 +15061,8 @@ MO
 MO
 MO
 tG
-tG
-tG
+UX
+UX
 tG
 tG
 MO
@@ -15066,11 +15115,11 @@ XS
 lE
 XS
 XS
-Oc
+FK
 ZB
 ZB
 ZB
-sG
+Gh
 lE
 MO
 MO
@@ -15154,8 +15203,8 @@ tG
 MO
 tG
 tG
-tG
-tG
+UX
+UX
 tG
 tG
 tG
@@ -15170,8 +15219,8 @@ MO
 tG
 tG
 tG
-tG
-tG
+UX
+UX
 tG
 tG
 lU
@@ -15208,11 +15257,11 @@ XS
 lE
 XS
 XS
-Db
-EC
-EC
-EC
-yB
+UD
+tX
+tX
+tX
+fz
 lE
 MO
 MO
@@ -15289,17 +15338,17 @@ tG
 tG
 tG
 tG
+UX
+UX
 tG
 tG
 tG
 tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -15310,16 +15359,16 @@ MO
 tG
 tG
 tG
-tG
-tG
-tG
+UX
+UX
+UX
 tG
 tG
 tG
 lU
 tG
 tG
-tG
+UX
 tG
 lE
 XS
@@ -15429,6 +15478,20 @@ tG
 lU
 tG
 tG
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -15438,30 +15501,16 @@ tG
 tG
 tG
 tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
 tG
 lU
 tG
-tG
-tG
+UX
+UX
 tG
 lE
 XS
@@ -15570,6 +15619,18 @@ tG
 tG
 lU
 tG
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+tG
+tG
+tG
+UX
+UX
 tG
 tG
 tG
@@ -15584,26 +15645,14 @@ tG
 tG
 tG
 tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
 tG
 tG
 lU
 tG
-tG
-tG
+UX
+UX
 tG
 lE
 XS
@@ -15744,9 +15793,9 @@ tG
 tG
 lU
 tG
+UX
+UX
 tG
-tG
-tG
 lE
 lE
 lE
@@ -15759,8 +15808,8 @@ lE
 lE
 lE
 lE
-be
-be
+CB
+CB
 lE
 lE
 lE
@@ -15847,46 +15896,46 @@ MO
 MO
 tG
 tG
+UX
+UX
 tG
 tG
 tG
+HG
+ek
+ek
+ek
+ek
+ek
+ek
+ek
+ek
+ek
+ek
+ek
+ek
+ek
+ek
+ek
+ek
+ek
+ek
+ek
+ek
+ek
+ek
+ek
+ek
+ek
+ek
+ek
+ek
+ek
+ek
+IA
+OS
 tG
-tG
-tS
-ek
-ek
-ek
-ek
-ek
-ek
-ek
-ek
-ek
-ek
-ek
-ek
-ek
-ek
-ek
-ek
-ek
-ek
-ek
-ek
-ek
-ek
-ek
-ek
-ek
-ek
-ek
-ek
-ek
-ek
-aS
-Wq
-tG
-tG
+UX
 tG
 tG
 MO
@@ -15933,9 +15982,9 @@ MO
 MO
 MO
 MO
-pU
-pU
-pU
+my
+my
+my
 tG
 tG
 lU
@@ -15989,9 +16038,9 @@ MO
 MO
 tG
 tG
-tG
-tG
-tG
+UX
+UX
+UX
 tG
 tG
 tG
@@ -16080,7 +16129,7 @@ uO
 uO
 ek
 ek
-Wq
+OS
 tG
 tG
 tG
@@ -16132,8 +16181,8 @@ MO
 MO
 tG
 tG
-tG
-tG
+UX
+UX
 tG
 tG
 tG
@@ -16218,8 +16267,8 @@ MO
 MO
 MO
 Ro
-pU
-pU
+my
+my
 tG
 tG
 tG
@@ -16273,6 +16322,10 @@ MO
 MO
 MO
 tG
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -16283,25 +16336,21 @@ tG
 tG
 tG
 tG
+UX
+UX
+UX
+UX
+UX
 tG
+UX
 tG
+UX
 tG
+UX
+UX
+UX
 tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
+UX
 tG
 tG
 tG
@@ -16360,7 +16409,7 @@ pU
 pU
 Fm
 pb
-pU
+my
 MO
 tG
 tG
@@ -16415,6 +16464,11 @@ MO
 MO
 MO
 tG
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -16426,23 +16480,18 @@ tG
 tG
 tG
 tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -16558,6 +16607,9 @@ MO
 MO
 tG
 tG
+UX
+UX
+UX
 tG
 tG
 tG
@@ -16570,23 +16622,20 @@ tG
 tG
 tG
 tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -16594,7 +16643,7 @@ tG
 tG
 tG
 Ro
-pU
+my
 MO
 MO
 MO
@@ -16717,24 +16766,24 @@ tG
 tG
 tG
 tG
+UX
+UX
 tG
 tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 tG
 MO
 MO
-pU
-pU
-pU
+my
+my
+my
 Ro
 MO
 MO
@@ -16862,11 +16911,11 @@ tG
 tG
 tG
 tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -16875,8 +16924,8 @@ MO
 MO
 MO
 MO
-pU
-pU
+my
+my
 Ro
 pU
 MO
@@ -17007,8 +17056,8 @@ tG
 tG
 tG
 tG
-tG
-tG
+UX
+UX
 tG
 tG
 tG
@@ -17076,8 +17125,8 @@ tG
 tG
 tG
 tG
-tG
-tG
+UX
+UX
 tG
 tG
 tG
@@ -17217,12 +17266,12 @@ tG
 tG
 tG
 tG
-tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -17358,14 +17407,14 @@ MO
 tG
 tG
 tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -17500,15 +17549,15 @@ MO
 tG
 tG
 tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -17642,15 +17691,15 @@ MO
 MO
 tG
 tG
+UX
 tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
-tG
+UX
+UX
+UX
+UX
+UX
+UX
+UX
 tG
 tG
 tG
@@ -17791,8 +17840,8 @@ tG
 tG
 tG
 tG
-tG
-tG
+UX
+UX
 tG
 tG
 tG
@@ -17934,10 +17983,10 @@ tG
 tG
 tG
 tG
+UX
 tG
 tG
-tG
-tG
+UX
 tG
 tG
 MO
@@ -18079,7 +18128,7 @@ tG
 tG
 tG
 tG
-tG
+UX
 tG
 tG
 MO
@@ -18221,8 +18270,8 @@ tG
 tG
 tG
 tG
-tG
-tG
+UX
+UX
 tG
 MO
 FL
@@ -18363,8 +18412,8 @@ MO
 MO
 tG
 tG
-tG
-tG
+UX
+UX
 tG
 tG
 FL

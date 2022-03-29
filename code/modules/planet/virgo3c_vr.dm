@@ -23,7 +23,7 @@
 var/datum/planet/virgo3c/planet_virgo3c = null
 
 /datum/time/virgo3c
-	seconds_in_day = 4 HOURS
+	seconds_in_day = 6 HOURS
 
 /datum/planet/virgo3c
 	name = "Virgo-3c"
@@ -549,7 +549,7 @@ VIRGO3C_TURF_CREATE(/turf/simulated/floor)
 /turf/simulated/floor/outdoors/grass/virgo3c
 	VIRGO3C_SET_ATMOS
 
-	var/list/grass_types = list(
+	grass_types = list(
 		/obj/structure/flora/ausbushes/sparsegrass = 50,
 		/obj/structure/flora/ausbushes/fullgrass = 50,
 		/obj/structure/flora/ausbushes/brflowers = 1,
