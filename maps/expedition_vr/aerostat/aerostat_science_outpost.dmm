@@ -9560,7 +9560,8 @@
 /turf/simulated/shuttle/wall/voidcraft/hard_corner,
 /area/offmap/aerostat/inside/genetics)
 "Kb" = (
-/turf/simulated/wall)
+/turf/simulated/wall,
+/area/offmap/aerostat/inside/easthall)
 "Kc" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1380;
