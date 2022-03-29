@@ -6,3 +6,7 @@
 	turf_layers = list(/turf/simulated/floor/outdoors/rocks)
 	initial_flooring = /decl/flooring/dirt
 	can_dig = TRUE
+
+/turf/simulated/floor/outdoors/dirt/jungle
+	icon_state = "jungle-dirt"
+	initial_flooring = /decl/flooring/dirt/jungle

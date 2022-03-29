@@ -12,6 +12,10 @@
 	name = "stack of sifgrass"
 	type_to_spawn = /obj/item/stack/tile/grass/sif/forest
 
+/obj/fiftyspawner/grass
+	name = "stack of jungle grass"
+	type_to_spawn = /obj/item/stack/tile/grass/jungle
+
 /obj/fiftyspawner/wood
 	name = "stack of wood"
 	type_to_spawn = /obj/item/stack/tile/wood
