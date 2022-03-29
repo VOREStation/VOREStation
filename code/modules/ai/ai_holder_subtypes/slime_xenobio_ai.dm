@@ -101,6 +101,7 @@
 
 /datum/ai_holder/simple_mob/xenobio_slime/handle_special_strategical()
 	discipline_decay()
+	evolve_and_reproduce()
 
 /datum/ai_holder/simple_mob/xenobio_slime/request_help()
 	if(target)

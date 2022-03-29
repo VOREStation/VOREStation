@@ -1,10 +1,14 @@
-/mob/living/carbon/human/proc/lick_wounds(var/mob/living/carbon/M in living_mobs(1))
+/mob/living/carbon/human/proc/lick_wounds(var/mob/living/carbon/M) // Allows the user to lick themselves. Given how rarely this trait is used, I don't see an issue with a slight buff.
 	set name = "Lick Wounds"
 	set category = "Abilities"
 	set desc = "Disinfect and heal small wounds with your saliva."
 
 	if(nutrition < 50)
 		to_chat(src, "<span class='warning'>You need more energy to produce antiseptic enzymes. Eat something and try again.</span>")
+		return
+
+	if (get_dist(src,M) >= 2)
+		to_chat(src, "<span class='warning'>You need to be closer to do that.</span>")
 		return
 
 	if ( ! (istype(src, /mob/living/carbon/human) || \
@@ -49,7 +53,7 @@
 		if(affecting.brute_dam > 20 || affecting.burn_dam > 20)
 			to_chat(src, "<span class='warning'>The wounds on [M]'s [affecting.name] are too severe to treat with just licking.</span>")
 			return
-           
+			
 		else
 			visible_message("<b>\The [src]</b> starts licking the wounds on [M]'s [affecting.name] clean.", \
 					             "<span class='notice'>You start licking the wounds on [M]'s [affecting.name] clean.</span>" )

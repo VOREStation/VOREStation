@@ -471,6 +471,7 @@ so as to remain in compliance with the most up-to-date laws."
 		return
 	if(master)
 		return usr.client.Click(master, location, control, params)
+	..() // VOREStation Edit: Pass through to click_vr
 
 /obj/screen/alert/Destroy()
 	..()

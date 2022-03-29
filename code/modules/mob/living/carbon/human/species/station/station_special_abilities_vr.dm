@@ -33,17 +33,24 @@
 
 			//Scary spawnerization.
 			revive_ready = REVIVING_NOW
+			revive_finished = (world.time + time SECONDS) // When do we finish reviving? Allows us to find out when we're done, called by the alert currently.
+			throw_alert("regen", /obj/screen/alert/xenochimera/reconstitution)
 			spawn(time SECONDS)
 				// Was dead, now not dead.
 				if(stat != DEAD)
 					to_chat(src, "<span class='notice'>Your body has recovered from its ordeal, ready to regenerate itself again.</span>")
 					revive_ready = REVIVING_READY //reset their cooldown
+					clear_alert("regen")
+					throw_alert("hatch", /obj/screen/alert/xenochimera/readytohatch)
 
 				// Was dead, still dead.
 				else
 					to_chat(src, "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch.</span>")
 					verbs |= /mob/living/carbon/human/proc/hatch
 					revive_ready = REVIVING_DONE
+					src << sound('sound/effects/mob_effects/xenochimera/hatch_notification.ogg',0,0,0,30)
+					clear_alert("regen")
+					throw_alert("hatch", /obj/screen/alert/xenochimera/readytohatch)
 
 		//Dead until nutrition injected.
 		else
@@ -55,6 +62,8 @@
 
 		//Waiting for regen after being alive
 		revive_ready = REVIVING_NOW
+		revive_finished = (world.time + time SECONDS) // When do we finish reviving? Allows us to find out when we're done, called by the alert currently.
+		throw_alert("regen", /obj/screen/alert/xenochimera/reconstitution)
 		spawn(time SECONDS)
 
 			//If they're still alive after regenning.
@@ -62,17 +71,24 @@
 				to_chat(src, "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch..</span>")
 				verbs |= /mob/living/carbon/human/proc/hatch
 				revive_ready = REVIVING_DONE
+				src << sound('sound/effects/mob_effects/xenochimera/hatch_notification.ogg',0,0,0,30)
+				clear_alert("regen")
+				throw_alert("hatch", /obj/screen/alert/xenochimera/readytohatch)
 
 			//Was alive, now dead
 			else if(hasnutriment())
 				to_chat(src, "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch..</span>")
 				verbs |= /mob/living/carbon/human/proc/hatch
 				revive_ready = REVIVING_DONE
+				src << sound('sound/effects/mob_effects/xenochimera/hatch_notification.ogg',0,0,0,30)
+				clear_alert("regen")
+				throw_alert("hatch", /obj/screen/alert/xenochimera/readytohatch)
 
 			//Dead until nutrition injected.
 			else
 				to_chat(src, "<span class='warning'>Your body was unable to regenerate, what few living cells remain require additional nutrients to complete the process.</span>")
 				revive_ready = REVIVING_READY //reset their cooldown
+				clear_alert("regen")
 
 /mob/living/carbon/human/proc/hasnutriment()
 	if (bloodstr.has_reagent("nutriment", 30) || src.bloodstr.has_reagent("protein", 15)) //protein needs half as much. For reference, a steak contains 9u protein.
@@ -101,6 +117,7 @@
 				chimera_hatch()
 				adjustBrainLoss(10) // if they're reviving from dead, they come back with 10 brainloss on top of whatever's unhealed.
 				visible_message("<span class='danger'><p><font size=4>The lifeless husk of [src] bursts open, revealing a new, intact copy in the pool of viscera.</font></p></span>") //Bloody hell...
+				clear_alert("hatch")
 				return
 
 			//Don't have nutriment to hatch! Or you somehow died in between completing your revive and hitting hatch.
@@ -108,11 +125,13 @@
 				to_chat(src, "Your body was unable to regenerate, what few living cells remain require additional nutrients to complete the process.")
 				verbs -= /mob/living/carbon/human/proc/hatch
 				revive_ready = REVIVING_READY //reset their cooldown they can try again when they're given a kickstart
+				clear_alert("hatch")
 
 		//Alive when hatching
 		else
 			chimera_hatch()
 			visible_message("<span class='danger'><p><font size=4>The dormant husk of [src] bursts open, revealing a new, intact copy in the pool of viscera.</font></p></span>") //Bloody hell...
+			clear_alert("hatch")
 
 /mob/living/carbon/human/proc/chimera_hatch()
 	verbs -= /mob/living/carbon/human/proc/hatch
@@ -139,9 +158,13 @@
 
 	//Visual effects
 	var/T = get_turf(src)
-	new /obj/effect/gibspawner/human/xenochimera(T)
+	var/blood_color = species.blood_color
+	var/flesh_color = species.flesh_color
+	new /obj/effect/gibspawner/human/xenochimera(T, null, flesh_color, blood_color)
+	
+	playsound(T, 'sound/effects/mob_effects/xenochimera/hatch.ogg', 50)
 
-	revive_ready = world.time + 1 HOUR //set the cooldown
+	revive_ready = world.time + 10 MINUTES //set the cooldown CHOMPEdit: Reduced this to 10 minutes, you're playing with fire if you're reviving that often.
 
 /mob/living/carbon/human/proc/revivingreset() // keep this as a debug proc or potential future use
 		revive_ready = REVIVING_READY
