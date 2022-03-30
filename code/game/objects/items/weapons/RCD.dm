@@ -16,7 +16,11 @@
 	origin_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 2)
 	matter = list(DEFAULT_WALL_MATERIAL = 50000)
 	preserve_item = TRUE // RCDs are pretty important.
+<<<<<<< HEAD
 	var/datum/effect/effect/system/spark_spread/spark_system
+=======
+	var/datum/effect_system/spark_spread/spark_system
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 	var/stored_matter = 0
 	var/max_stored_matter = RCD_MAX_CAPACITY
 	var/ranged = FALSE

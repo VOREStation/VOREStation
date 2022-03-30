@@ -44,7 +44,11 @@
 
 /obj/item/sign/attackby(obj/item/tool as obj, mob/user as mob)	//construction
 	if(tool.is_screwdriver() && isturf(user.loc))
+<<<<<<< HEAD
 		var/direction = tgui_input_list(usr, "In which direction?", "Select direction.", list("North", "East", "South", "West", "Cancel"))
+=======
+		var/direction = input("In which direction?", "Select direction.") in list("North", "East", "South", "West", "Cancel")
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 		if(direction == "Cancel") return
 		var/obj/structure/sign/S = new(user.loc)
 		switch(direction)

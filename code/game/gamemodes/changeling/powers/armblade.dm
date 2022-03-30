@@ -133,8 +133,13 @@
 	icon_state = "arm_blade"
 	force = 40
 	armor_penetration = 15
+<<<<<<< HEAD
 	sharp = TRUE
 	edge = TRUE
+=======
+	sharp = 1
+	edge = 1
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 	pry = 1
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	defend_chance = 60

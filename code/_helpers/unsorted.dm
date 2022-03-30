@@ -1070,6 +1070,16 @@ var/global/list/common_tools = list(
 		istype(W, /obj/item/weapon/shovel) \
 	)
 
+/proc/is_surgery_tool(obj/item/W as obj)
+	return (	\
+	istype(W, /obj/item/weapon/surgical/scalpel)			||	\
+	istype(W, /obj/item/weapon/surgical/hemostat)		||	\
+	istype(W, /obj/item/weapon/surgical/retractor)		||	\
+	istype(W, /obj/item/weapon/surgical/cautery)			||	\
+	istype(W, /obj/item/weapon/surgical/bonegel)			||	\
+	istype(W, /obj/item/weapon/surgical/bonesetter)
+	)
+
 // check if mob is lying down on something we can operate him on.
 // The RNG with table/rollerbeds comes into play in do_surgery() so that fail_step() can be used instead.
 /proc/can_operate(mob/living/carbon/M, mob/living/user)

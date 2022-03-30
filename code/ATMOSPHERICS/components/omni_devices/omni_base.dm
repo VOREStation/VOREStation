@@ -91,7 +91,11 @@
 	playsound(src, W.usesound, 50, 1)
 	if(do_after(user, 40 * W.toolspeed))
 		user.visible_message( \
+<<<<<<< HEAD
 			"<b>\The [user]</b> unfastens \the [src].", \
+=======
+			"<span class='notice'>\The [user] unfastens \the [src].</span>", \
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 			"<span class='notice'>You have unfastened \the [src].</span>", \
 			"You hear a ratchet.")
 		deconstruct()

@@ -30,7 +30,11 @@ LINEN BINS
 
 /obj/item/weapon/bedsheet/attackby(obj/item/I, mob/user)
 	if(is_sharp(I))
+<<<<<<< HEAD
 		user.visible_message("<b>\The [user]</b> begins cutting up [src] with [I].", "<span class='notice'>You begin cutting up [src] with [I].</span>")
+=======
+		user.visible_message("<span class='notice'>\The [user] begins cutting up [src] with [I].</span>", "<span class='notice'>You begin cutting up [src] with [I].</span>")
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 		if(do_after(user, 50))
 			to_chat(user, "<span class='notice'>You cut [src] into pieces!</span>")
 			for(var/i in 1 to rand(2,5))

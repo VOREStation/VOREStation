@@ -120,8 +120,13 @@
 	playsound(src, "shatter", 70, 1)
 	dulled = 1
 	if(is_sharp() || has_edge())
+<<<<<<< HEAD
 		sharp = FALSE
 		edge = FALSE
+=======
+		sharp = 0
+		edge = 0
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 
 /obj/item/weapon/material/proc/repair(var/repair_amount, var/repair_time, mob/living/user)
 	if(!fragile)

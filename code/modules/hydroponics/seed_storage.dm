@@ -412,7 +412,11 @@
 		playsound(src, O.usesound, 50, 1)
 		cut_overlays()
 		if(panel_open)
+<<<<<<< HEAD
 			add_overlay("[initial(icon_state)]-panel")
+=======
+			overlays += image(icon, "[initial(icon_state)]-panel")
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 	else if((O.is_wirecutter() || istype(O, /obj/item/device/multitool)) && panel_open)
 		wires.Interact(user)
 

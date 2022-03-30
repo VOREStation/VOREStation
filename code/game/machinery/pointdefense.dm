@@ -209,7 +209,11 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 		if(PDC.id_tag == id_tag && (get_z(PDC) in connected_z_levels))
 			return PDC
 
+<<<<<<< HEAD
 /obj/machinery/power/pointdefense/attackby(var/obj/item/W, var/mob/user)
+=======
+/obj/machinery/pointdefense/attackby(var/obj/item/W, var/mob/user)
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 	if(W?.is_multitool())
 		var/new_ident = input(user, "Enter a new ident tag.", "[src]", id_tag) as null|text
 		if(new_ident && new_ident != id_tag && user.Adjacent(src) && CanInteract(user, GLOB.tgui_physical_state))

@@ -207,13 +207,21 @@ GLOBAL_LIST_EMPTY(solars_list)
 		return 0
 	if(!anchored)
 		if(W.is_wrench())
+<<<<<<< HEAD
 			anchored = TRUE
+=======
+			anchored = 1
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 			user.visible_message("<span class='notice'>[user] wrenches the solar assembly into place.</span>")
 			playsound(src, W.usesound, 75, 1)
 			return 1
 	else
 		if(W.is_wrench())
+<<<<<<< HEAD
 			anchored = FALSE
+=======
+			anchored = 0
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 			user.visible_message("<span class='notice'>[user] unwrenches the solar assembly from it's place.</span>")
 			playsound(src, W.usesound, 75, 1)
 			return 1

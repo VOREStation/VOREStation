@@ -54,10 +54,17 @@
 /obj/structure/noticeboard/update_icon()
 	icon_state = "[base_icon_state][LAZYLEN(notices)]"
 
+<<<<<<< HEAD
 /obj/structure/noticeboard/attackby(obj/item/I, mob/user)
 	if(I.is_screwdriver())
 		var/choice = tgui_input_list(usr, "Which direction do you wish to place the noticeboard?", "Noticeboard Offset", list("North", "South", "East", "West", "No Offset"))
 		if(choice && Adjacent(user) && I.loc == user && !user.incapacitated())
+=======
+/obj/structure/noticeboard/attackby(var/obj/item/weapon/thing, var/mob/user)
+	if(thing.is_screwdriver())
+		var/choice = input("Which direction do you wish to place the noticeboard?", "Noticeboard Offset") as null|anything in list("North", "South", "East", "West")
+		if(choice && Adjacent(user) && thing.loc == user && !user.incapacitated())
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 			playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
 			switch(choice)
 				if("North")
@@ -75,8 +82,13 @@
 				if("No Offset")
 					return
 		return
+<<<<<<< HEAD
 	else if(I.is_wrench())
 		visible_message("<span class='warning'>[user] begins dismantling [src].</span>")
+=======
+	else if(thing.is_wrench())
+		visible_message(SPAN_WARNING("\The [user] begins dismantling \the [src]."))
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 		playsound(loc, 'sound/items/Ratchet.ogg', 50, 1)
 		if(do_after(user, 50, src))
 			visible_message("<span class='danger'>[user] has dismantled [src]!</span>")

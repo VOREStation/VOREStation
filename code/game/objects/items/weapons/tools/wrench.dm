@@ -25,14 +25,6 @@
 	usesound = 'sound/items/drill_use.ogg'
 	toolspeed = 0.5
 
-/obj/item/weapon/tool/wrench/pipe
-	name = "pipe wrench"
-	desc = "A wrench used for plumbing. Can make a good makeshift weapon."
-	icon_state = "pipe_wrench"
-	slot_flags = SLOT_BELT
-	force = 8
-	throwforce = 10
-
 /obj/item/weapon/tool/wrench/hybrid	// Slower and bulkier than normal power tools, but it has the power of reach. If reach even worked half the time.
 	name = "strange wrench"
 	desc = "A wrench with many common uses. Can be usually found in your hand."
@@ -47,6 +39,7 @@
 	usesound = 'sound/effects/stealthoff.ogg'
 	toolspeed = 0.5
 	reach = 2
+
 
 /datum/category_item/catalogue/anomalous/precursor_a/alien_wrench
 	name = "Precursor Alpha Object - Fastener Torque Tool"
@@ -88,8 +81,8 @@
 	toolspeed = 0.25
 	var/obj/item/weapon/tool/screwdriver/power/counterpart = null
 
-/obj/item/weapon/tool/wrench/power/New(newloc, no_counterpart = TRUE)
-	..(newloc)
+/obj/item/weapon/tool/wrench/power/Initialize(var/ml, no_counterpart = TRUE)
+	. = ..()
 	if(!counterpart && no_counterpart)
 		counterpart = new(src, FALSE)
 		counterpart.counterpart = src

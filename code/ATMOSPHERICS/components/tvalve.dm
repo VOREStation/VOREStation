@@ -329,6 +329,12 @@
 /obj/machinery/atmospherics/tvalve/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
 	if (!W.is_wrench())
 		return ..()
+<<<<<<< HEAD
+=======
+	if (istype(src, /obj/machinery/atmospherics/tvalve/digital))
+		to_chat(user, "<span class='warning'>You cannot unwrench \the [src], it's too complicated.</span>")
+		return 1
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 	if(!can_unwrench())
 		to_chat(user, "<span class='warnng'>You cannot unwrench \the [src], it too exerted due to internal pressure.</span>")
 		add_fingerprint(user)
@@ -337,7 +343,11 @@
 	to_chat(user, "<span class='notice'>You begin to unfasten \the [src]...</span>")
 	if (do_after(user, 40 * W.toolspeed))
 		user.visible_message( \
+<<<<<<< HEAD
 			"<b>\The [user]</b> unfastens \the [src].", \
+=======
+			"<span class='notice'>\The [user] unfastens \the [src].</span>", \
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 			"<span class='notice'>You have unfastened \the [src].</span>", \
 			"You hear a ratchet.")
 		deconstruct()

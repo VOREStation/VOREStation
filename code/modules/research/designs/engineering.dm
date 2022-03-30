@@ -18,7 +18,11 @@
 	desc = "A simple powered hand drill."
 	id = "handdrill"
 	req_tech = list(TECH_ENGINEERING = 3, TECH_MATERIAL = 2)
+<<<<<<< HEAD
 	materials = list(MAT_STEEL = 300, MAT_SILVER = 100)
+=======
+	materials = list(MAT_STEEL = 300, "silver" = 100)
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 	build_path = /obj/item/weapon/tool/screwdriver/power
 	sort_string = "NAAAB"
 
@@ -27,7 +31,11 @@
 	desc = "A set of jaws of life, compressed through the magic of science."
 	id = "jawslife"
 	req_tech = list(TECH_ENGINEERING = 3, TECH_MATERIAL = 2)
+<<<<<<< HEAD
 	materials = list(MAT_STEEL = 300, MAT_SILVER = 100)
+=======
+	materials = list(MAT_STEEL = 300, "silver" = 100)
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 	build_path = /obj/item/weapon/tool/crowbar/power
 	sort_string = "NAAAC"
 

@@ -154,6 +154,7 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 		return 1
 
 	else if(istype(I, /obj/item/weapon/reagent_containers/spray) && !myspray)
+<<<<<<< HEAD
 		equip_janicart_item(user, I)
 		return 1
 
@@ -167,6 +168,40 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 
 	else if(istype(I, /obj/item/clothing/suit/caution))
 		equip_janicart_item(user, I)
+=======
+		user.unEquip(I, 0, src)
+		myspray = I
+		update_icon()
+		updateUsrDialog()
+		to_chat(user, "<span class='notice'>You put [I] into [src].</span>")
+		return 1
+
+	else if(istype(I, /obj/item/device/lightreplacer) && !myreplacer)
+		user.unEquip(I, 0, src)
+		myreplacer = I
+		update_icon()
+		updateUsrDialog()
+		to_chat(user, "<span class='notice'>You put [I] into [src].</span>")
+		return 1
+
+	else if(istype(I, /obj/item/weapon/storage/bag/trash) && !mybag)
+		user.unEquip(I, 0, src)
+		mybag = I
+		update_icon()
+		updateUsrDialog()
+		to_chat(user, "<span class='notice'>You put [I] into [src].</span>")
+		return 1
+
+	else if(istype(I, /obj/item/clothing/suit/caution))
+		if(signs < 4)
+			user.unEquip(I, 0, src)
+			signs++
+			update_icon()
+			updateUsrDialog()
+			to_chat(user, "<span class='notice'>You put [I] into [src].</span>")
+		else
+			to_chat(user, "<span class='notice'>[src] can't hold any more signs.</span>")
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 		return 1
 
 	else if(mybag)

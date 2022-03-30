@@ -113,7 +113,11 @@
 				if(do_after(user, 40 * W.toolspeed))
 					if(!src) return
 					to_chat(user,"<span class='notice'>You've secured the windoor assembly!</span>")
+<<<<<<< HEAD
 					src.anchored = TRUE
+=======
+					src.anchored = 1
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 					step = 0
 
 			//Unwrenching an unsecure assembly un-anchors it. Step 4 undone
@@ -124,7 +128,11 @@
 				if(do_after(user, 40 * W.toolspeed))
 					if(!src) return
 					to_chat(user,"<span class='notice'>You've unsecured the windoor assembly!</span>")
+<<<<<<< HEAD
 					src.anchored = FALSE
+=======
+					src.anchored = 0
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 					step = null
 
 			//Adding cable to the assembly. Step 5 complete.

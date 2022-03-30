@@ -108,7 +108,11 @@ var/list/table_icon_cache = list()
 		return 1
 
 	if(carpeted && W.is_crowbar())
+<<<<<<< HEAD
 		user.visible_message("<b>\The [user]</b> removes the carpet from \the [src].",
+=======
+		user.visible_message("<span class='notice'>\The [user] removes the carpet from \the [src].</span>",
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 		                              "<span class='notice'>You remove the carpet from \the [src].</span>")
 		new carpeted_type(loc)
 		carpeted = 0
@@ -280,13 +284,21 @@ var/list/table_icon_cache = list()
 /obj/structure/table/proc/dismantle(obj/item/W, mob/user)
 	if(manipulating) return
 	manipulating = 1
+<<<<<<< HEAD
 	user.visible_message("<b>\The [user]</b> begins dismantling \the [src].",
+=======
+	user.visible_message("<span class='notice'>\The [user] begins dismantling \the [src].</span>",
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 	                              "<span class='notice'>You begin dismantling \the [src].</span>")
 	playsound(src, W.usesound, 50, 1)
 	if(!do_after(user, 20 * W.toolspeed))
 		manipulating = 0
 		return
+<<<<<<< HEAD
 	user.visible_message("<b>\The [user]</b> dismantles \the [src].",
+=======
+	user.visible_message("<span class='notice'>\The [user] dismantles \the [src].</span>",
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 	                              "<span class='notice'>You dismantle \the [src].</span>")
 	new /obj/item/stack/material/steel(src.loc)
 	qdel(src)

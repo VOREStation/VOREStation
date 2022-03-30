@@ -237,7 +237,11 @@ GLOBAL_LIST_BOILERPLATE(all_deactivated_AI_cores, /obj/structure/AIcore/deactiva
 			user.visible_message("<b>\The [user]</b> starts to unbolt \the [src] from the plating...")
 			playsound(src, W.usesound, 50, 1)
 			if(!do_after(user,40 * W.toolspeed))
+<<<<<<< HEAD
 				user.visible_message("<b>\The [user]</b> decides not to unbolt \the [src].")
+=======
+				user.visible_message("<span class='notice'>\The [user] decides not to unbolt \the [src].</span>")
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 				return
 			user.visible_message("<b>\The [user]</b> finishes unfastening \the [src]!")
 			anchored = FALSE
@@ -246,7 +250,11 @@ GLOBAL_LIST_BOILERPLATE(all_deactivated_AI_cores, /obj/structure/AIcore/deactiva
 			user.visible_message("<b>\The [user]</b> starts to bolt \the [src] to the plating...")
 			playsound(src, W.usesound, 50, 1)
 			if(!do_after(user,40 * W.toolspeed))
+<<<<<<< HEAD
 				user.visible_message("<b>\The [user]</b> decides not to bolt \the [src].")
+=======
+				user.visible_message("<span class='notice'>\The [user] decides not to bolt \the [src].</span>")
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 				return
 			user.visible_message("<b>\The [user]</b> finishes fastening down \the [src]!")
 			anchored = TRUE

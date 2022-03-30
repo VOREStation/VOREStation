@@ -170,7 +170,11 @@
 				// Not staying still fails you too.
 				if(success)
 					var/calc_duration = rand(S.min_duration, S.max_duration)
+<<<<<<< HEAD
 					if(!do_mob(user, M, calc_duration * toolspeed, zone, exclusive = TRUE))
+=======
+					if(!do_mob(user, M, calc_duration * toolspeed, zone))
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 						success = FALSE
 						to_chat(user, "<span class='warning'>You must remain close to and keep focused on your patient to conduct surgery.</span>")
 

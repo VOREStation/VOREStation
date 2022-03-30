@@ -154,7 +154,11 @@ GLOBAL_LIST_EMPTY(mannequins)
 			body_marking_nopersist_list[M.name] = M
 
 	//Surgery Steps - Initialize all /datum/surgery_step into a list
+<<<<<<< HEAD
 	paths = subtypesof(/datum/surgery_step)
+=======
+	paths = typesof(/datum/surgery_step)-/datum/surgery_step
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 	for(var/T in paths)
 		var/datum/surgery_step/S = new T
 		surgery_steps += S

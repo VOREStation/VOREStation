@@ -17,11 +17,11 @@
 	w_class = ITEMSIZE_SMALL
 
 	//Cost to make in the autolathe
-	matter = list(MAT_STEEL = 70, MAT_GLASS = 30)
+	matter = list(MAT_STEEL = 70, "glass" = 30)
 
 	//R&D tech level
 	origin_tech = list(TECH_ENGINEERING = 1)
-
+	
 	tool_qualities = list(TOOL_WELDER)
 
 	//Welding tool specific stuff
@@ -70,11 +70,6 @@
 
 		if(!S || S.robotic < ORGAN_ROBOT || S.open == 3)
 			return ..()
-
-		//VOREStation Add - No welding nanoform limbs
-		if(S.robotic > ORGAN_LIFELIKE)
-			return ..()
-		//VOREStation Add End
 
 		if(S.organ_tag == BP_HEAD)
 			if(H.head && istype(H.head,/obj/item/clothing/head/helmet/space))
@@ -150,9 +145,11 @@
 
 /obj/item/weapon/weldingtool/afterattack(obj/O as obj, mob/user as mob, proximity)
 	if(!proximity) return
-	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src,O) <= 1)
+	if (istype(O, /obj/structure/reagent_dispensers) && get_dist(src,O) <= 1)
+		var/obj/structure/reagent_dispensers/tank = O
 		if(!welding && max_fuel)
 			O.reagents.trans_to_obj(src, max_fuel)
+			reagents.isolate_reagent("fuel")
 			to_chat(user, "<span class='notice'>Welder refueled</span>")
 			playsound(src, 'sound/effects/refill.ogg', 50, 1, -6)
 			return
@@ -160,11 +157,11 @@
 			to_chat(user, "<span class='notice'>[src] doesn't use fuel.</span>")
 			return
 		else
-			message_admins("[key_name_admin(user)] triggered a fueltank explosion with a welding tool.")
-			log_game("[key_name(user)] triggered a fueltank explosion with a welding tool.")
-			to_chat(user, "<span class='danger'>You begin welding on the fueltank and with a moment of lucidity you realize, this might not have been the smartest thing you've ever done.</span>")
-			var/obj/structure/reagent_dispensers/fueltank/tank = O
-			tank.explode()
+			if(O.reagents.has_any_reagent(list("phoron","fuel","hydrophoron")))
+				message_admins("[key_name_admin(user)] ruptured a reagent tank with a welding tool, triggering an explosion.")
+				log_game("[key_name(user)] ruptured a reagent tank with a welding tool, triggering an explosion.")
+			to_chat(user, "<span class='danger'>You begin welding on the reagent tank and with a moment of lucidity you realize, this might not have been the smartest thing you've ever done.</span>")
+			tank.rupture()
 			return
 	if (src.welding)
 		remove_fuel(1)
@@ -208,10 +205,11 @@
 
 /obj/item/weapon/weldingtool/update_icon()
 	..()
-	cut_overlays()
+	overlays.Cut()
 	// Welding overlay.
 	if(welding)
-		add_overlay("[icon_state]-on")
+		var/image/I = image(icon, src, "[icon_state]-on")
+		overlays.Add(I)
 		item_state = "[initial(item_state)]1"
 	else
 		item_state = initial(item_state)
@@ -220,7 +218,8 @@
 	if(change_icons && get_max_fuel())
 		var/ratio = get_fuel() / get_max_fuel()
 		ratio = CEILING(ratio * 4, 1) * 25
-		add_overlay("[icon_state][ratio]")
+		var/image/I = image(icon, src, "[icon_state][ratio]")
+		overlays.Add(I)
 
 	// Lights
 	if(welding && flame_intensity)
@@ -321,7 +320,6 @@
 		var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[O_EYES]
 		if(!E)
 			return
-		if(H.nif && H.nif.flag_check(NIF_V_UVFILTER,NIF_FLAGS_VISION)) return //VOREStation Add - NIF
 		switch(safety)
 			if(1)
 				to_chat(usr, "<span class='warning'>Your eyes sting a little.</span>")
@@ -365,7 +363,7 @@
 	icon_state = "indwelder"
 	max_fuel = 40
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_PHORON = 2)
-	matter = list(MAT_STEEL = 70, MAT_GLASS = 60)
+	matter = list(MAT_STEEL = 70, "glass" = 60)
 
 /obj/item/weapon/weldingtool/largetank/cyborg
 	name = "integrated welding tool"
@@ -375,11 +373,11 @@
 /obj/item/weapon/weldingtool/hugetank
 	name = "upgraded welding tool"
 	desc = "A much larger welder with a huge tank."
-	icon_state = "upindwelder"
+	icon_state = "indwelder"
 	max_fuel = 80
 	w_class = ITEMSIZE_NORMAL
 	origin_tech = list(TECH_ENGINEERING = 3)
-	matter = list(MAT_STEEL = 70, MAT_GLASS = 120)
+	matter = list(MAT_STEEL = 70, "glass" = 120)
 
 /obj/item/weapon/weldingtool/mini
 	name = "emergency welding tool"
@@ -391,9 +389,6 @@
 	change_icons = 0
 	toolspeed = 2
 	eye_safety_modifier = 1 // Safer on eyes.
-
-/obj/item/weapon/weldingtool/mini/two
-	icon_state = "miniwelder2"
 
 /datum/category_item/catalogue/anomalous/precursor_a/alien_welder
 	name = "Precursor Alpha Object - Self Refueling Exothermic Tool"
@@ -444,7 +439,7 @@
 	max_fuel = 40
 	w_class = ITEMSIZE_NORMAL
 	origin_tech = list(TECH_ENGINEERING = 4, TECH_PHORON = 3)
-	matter = list(MAT_STEEL = 70, MAT_GLASS = 120)
+	matter = list(MAT_STEEL = 70, "glass" = 120)
 	toolspeed = 0.5
 	change_icons = 0
 	flame_intensity = 3
@@ -487,13 +482,12 @@
 	always_process = TRUE
 	var/obj/item/weapon/weldpack/mounted_pack = null
 
-/obj/item/weapon/weldingtool/tubefed/New(location)
-	..()
-	if(istype(location, /obj/item/weapon/weldpack))
-		var/obj/item/weapon/weldpack/holder = location
-		mounted_pack = holder
+/obj/item/weapon/weldingtool/tubefed/Initialize(var/ml)
+	. = ..()
+	if(istype(loc, /obj/item/weapon/weldpack))
+		mounted_pack = loc
 	else
-		qdel(src)
+		return INITIALIZE_HINT_QDEL
 
 /obj/item/weapon/weldingtool/tubefed/Destroy()
 	mounted_pack.nozzle = null
@@ -511,7 +505,7 @@
 
 	if(mounted_pack.loc != src.loc && src.loc != mounted_pack)
 		mounted_pack.return_nozzle()
-		visible_message("<b>\The [src]</b> retracts to its fueltank.")
+		visible_message("<span class='notice'>\The [src] retracts to its fueltank.</span>")
 
 	if(get_fuel() <= get_max_fuel())
 		mounted_pack.reagents.trans_to_obj(src, 1)
@@ -550,11 +544,11 @@
 	acti_sound = 'sound/effects/sparks4.ogg'
 	deac_sound = 'sound/effects/sparks4.ogg'
 
-/obj/item/weapon/weldingtool/electric/unloaded/New()
+/obj/item/weapon/weldingtool/electric/unloaded
 	cell_type = null
 
-/obj/item/weapon/weldingtool/electric/New()
-	..()
+/obj/item/weapon/weldingtool/electric/Initialize()
+	. = ..()
 	if(cell_type == null)
 		update_icon()
 	else if(cell_type)

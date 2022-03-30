@@ -4,10 +4,8 @@
 /obj/item/weapon/tool/wirecutters
 	name = "wirecutters"
 	desc = "This cuts wires."
-	description_fluff = "This could be used to engrave messages on suitable surfaces if you really put your mind to it! Alt-click a floor or wall to engrave with it." //This way it's not a completely hidden, arcane art to engrave.
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "cutters"
-	item_state = "cutters"
 	center_of_mass = list("x" = 18,"y" = 10)
 	slot_flags = SLOT_BELT
 	force = 6
@@ -21,28 +19,17 @@
 	usesound = 'sound/items/wirecutter.ogg'
 	drop_sound = 'sound/items/drop/wirecutter.ogg'
 	pickup_sound = 'sound/items/pickup/wirecutter.ogg'
-	sharp = TRUE
-	edge = TRUE
+	sharp = 1
+	edge = 1
 	toolspeed = 1
 	tool_qualities = list(TOOL_WIRECUTTER)
 	var/random_color = TRUE
 
-/obj/item/weapon/tool/wirecutters/New()
-	if(random_color)
-		switch(pick("red","blue","yellow"))
-			if ("red")
-				icon_state = "cutters"
-				item_state = "cutters"
-			if ("blue")
-				icon_state = "cutters-b"
-				item_state = "cutters_blue"
-			if ("yellow")
-				icon_state = "cutters-y"
-				item_state = "cutters_yellow"
-
-	if (prob(75))
-		src.pixel_y = rand(0, 16)
-	..()
+/obj/item/weapon/tool/wirecutters/Initialize()
+	if(random_color && prob(50))
+		icon_state = "cutters-y"
+		item_state = "cutters_yellow"
+	. = ..()
 
 /obj/item/weapon/tool/wirecutters/attack(mob/living/carbon/C as mob, mob/user as mob)
 	if(istype(C) && user.a_intent == I_HELP && (C.handcuffed) && (istype(C.handcuffed, /obj/item/weapon/handcuffs/cable)))
@@ -110,8 +97,8 @@
 	random_color = FALSE
 	var/obj/item/weapon/tool/crowbar/power/counterpart = null
 
-/obj/item/weapon/tool/wirecutters/power/New(newloc, no_counterpart = TRUE)
-	..(newloc)
+/obj/item/weapon/tool/wirecutters/power/Initialize(var/ml, no_counterpart = TRUE)
+	. = ..(ml)
 	if(!counterpart && no_counterpart)
 		counterpart = new(src, FALSE)
 		counterpart.counterpart = src

@@ -7,6 +7,7 @@
 	desc = "An industrial U-Stor-It Storage unit designed to accomodate all kinds of space suits. Its on-board equipment also allows the user to decontaminate the contents through a UV-ray purging cycle. There's a warning label dangling from the control pad, reading \"STRICTLY NO BIOLOGICALS IN THE CONFINES OF THE UNIT\"."
 	icon = 'icons/obj/suitstorage.dmi'
 	icon_state = "suitstorage000000100" //order is: [has helmet][has suit][has human][is open][is locked][is UV cycling][is powered][is dirty/broken] [is superUVcycling]
+<<<<<<< HEAD
 	anchored = TRUE
 	density = TRUE
 	var/mob/living/carbon/human/OCCUPANT = null
@@ -16,6 +17,17 @@
 	var/helmet_type = null
 	var/obj/item/clothing/mask/MASK = null  //All the stuff that's gonna be stored insiiiiiiiiiiiiiiiiiiide, nyoro~n
 	var/mask_type = null //Erro's idea on standarising SSUs whle keeping creation of other SSU types easy: Make a child SSU, name it something then set the TYPE vars to your desired suit output. New() should take it from there by itself.
+=======
+	anchored = 1
+	density = 1
+	var/mob/living/carbon/human/OCCUPANT = null
+	var/obj/item/clothing/suit/space/SUIT = null
+	var/SUIT_TYPE = null
+	var/obj/item/clothing/head/helmet/space/HELMET = null
+	var/HELMET_TYPE = null
+	var/obj/item/clothing/mask/MASK = null  //All the stuff that's gonna be stored insiiiiiiiiiiiiiiiiiiide, nyoro~n
+	var/MASK_TYPE = null //Erro's idea on standarising SSUs whle keeping creation of other SSU types easy: Make a child SSU, name it something then set the TYPE vars to your desired suit output. New() should take it from there by itself.
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 	var/isopen = 0
 	var/islocked = 0
 	var/isUV = 0
@@ -29,12 +41,13 @@
 //The units themselves/////////////////
 
 /obj/machinery/suit_storage_unit/standard_unit
-	suit_type = /obj/item/clothing/suit/space
-	helmet_type = /obj/item/clothing/head/helmet/space
-	mask_type = /obj/item/clothing/mask/breath
+	SUIT_TYPE = /obj/item/clothing/suit/space
+	HELMET_TYPE = /obj/item/clothing/head/helmet/space
+	MASK_TYPE = /obj/item/clothing/mask/breath
 
 /obj/machinery/suit_storage_unit/Initialize()
 	. = ..()
+<<<<<<< HEAD
 	if(suit_type)
 		SUIT = new suit_type(src)
 	if(helmet_type)
@@ -42,6 +55,15 @@
 	if(mask_type)
 		MASK = new mask_type(src)
 	update_icon()
+=======
+	update_icon()
+	if(SUIT_TYPE)
+		SUIT = new SUIT_TYPE(src)
+	if(HELMET_TYPE)
+		HELMET = new HELMET_TYPE(src)
+	if(MASK_TYPE)
+		MASK = new MASK_TYPE(src)
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 
 /obj/machinery/suit_storage_unit/update_icon()
 	var/hashelmet = 0
@@ -169,9 +191,27 @@
 
 
 /obj/machinery/suit_storage_unit/proc/toggleUV(mob/user as mob)
+<<<<<<< HEAD
 	if(!panelopen)
 		return
 
+=======
+//	var/protected = 0
+//	var/mob/living/carbon/human/H = user
+	if(!panelopen)
+		return
+
+	/*if(istype(H)) //Let's check if the guy's wearing electrically insulated gloves
+		if(H.gloves)
+			var/obj/item/clothing/gloves/G = H.gloves
+			if(istype(G,/obj/item/clothing/gloves/yellow))
+				protected = 1
+
+	if(!protected)
+		playsound(src, "sparks", 75, 1, -1)
+		to_chat(user, "<font color='red'>You try to touch the controls but you get zapped. There must be a short circuit somewhere.</font>")
+		return*/
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 	else  //welp, the guy is protected, we can continue
 		if(issuperUV)
 			to_chat(user, "You slide the dial back towards \"185nm\".")
@@ -183,9 +223,27 @@
 
 
 /obj/machinery/suit_storage_unit/proc/togglesafeties(mob/user as mob)
+<<<<<<< HEAD
 	if(!panelopen) //Needed check due to bugs
 		return
 
+=======
+//	var/protected = 0
+//	var/mob/living/carbon/human/H = user
+	if(!panelopen) //Needed check due to bugs
+		return
+
+	/*if(istype(H)) //Let's check if the guy's wearing electrically insulated gloves
+		if(H.gloves)
+			var/obj/item/clothing/gloves/G = H.gloves
+			if(istype(G,/obj/item/clothing/gloves/yellow))
+				protected = 1
+
+	if(!protected)
+		playsound(src, "sparks", 75, 1, -1)
+		to_chat(user, "<font color='red'>You try to touch the controls but you get zapped. There must be a short circuit somewhere.</font>")
+		return*/
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 	else
 		to_chat(user, "You push the button. The coloured LED next to it changes.")
 		safetieson = !safetieson
@@ -312,6 +370,33 @@
 	updateUsrDialog()
 	return
 
+<<<<<<< HEAD
+=======
+/*	spawn(200) //Let's clean dat shit after 20 secs  //Eh, this doesn't work
+		if(HELMET)
+			HELMET.clean_blood()
+		if(SUIT)
+			SUIT.clean_blood()
+		if(MASK)
+			MASK.clean_blood()
+		isUV = 0 //Cycle ends
+		update_icon()
+		updateUsrDialog()
+
+	var/i
+	for(i=0,i<4,i++) //Gradually give the guy inside some damaged based on the intensity
+		spawn(50)
+			if(OCCUPANT)
+				if(issuperUV)
+					OCCUPANT.take_organ_damage(0,40)
+					to_chat(user, "Test. You gave him 40 damage")
+				else
+					OCCUPANT.take_organ_damage(0,8)
+					to_chat(user, "Test. You gave him 8 damage")
+	return*/
+
+
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 /obj/machinery/suit_storage_unit/proc/cycletimeleft()
 	if(cycletime_left >= 1)
 		cycletime_left--
@@ -377,6 +462,10 @@
 		usr.client.perspective = EYE_PERSPECTIVE
 		usr.client.eye = src
 		usr.loc = src
+<<<<<<< HEAD
+=======
+//		usr.metabslow = 1
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 		OCCUPANT = usr
 		isopen = 0 //Close the thing after the guy gets inside
 		update_icon()

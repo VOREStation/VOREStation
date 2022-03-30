@@ -4,7 +4,6 @@
 /obj/item/weapon/tool/screwdriver
 	name = "screwdriver"
 	desc = "You can be totally screwwy with this."
-	description_fluff = "This could be used to engrave messages on suitable surfaces if you really put your mind to it! Alt-click a floor or wall to engrave with it." //This way it's not a completely hidden, arcane art to engrave.
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "screwdriver"
 	center_of_mass = list("x" = 13,"y" = 7)
@@ -20,12 +19,12 @@
 	pickup_sound = 'sound/items/pickup/screwdriver.ogg'
 	matter = list(MAT_STEEL = 75)
 	attack_verb = list("stabbed")
-	sharp  = TRUE
+	sharp  = 1
 	toolspeed = 1
 	tool_qualities = list(TOOL_SCREWDRIVER)
 	var/random_color = TRUE
 
-/obj/item/weapon/tool/screwdriver/New()
+/obj/item/weapon/tool/screwdriver/Initialize()
 	if(random_color)
 		switch(pick("red","blue","purple","brown","green","cyan","yellow"))
 			if ("red")
@@ -52,7 +51,7 @@
 
 	if (prob(75))
 		src.pixel_y = rand(0, 16)
-	..()
+	. = ..()
 
 /obj/item/weapon/tool/screwdriver/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(!istype(M) || user.a_intent == "help")
@@ -125,8 +124,8 @@
 	random_color = FALSE
 	var/obj/item/weapon/tool/wrench/power/counterpart = null
 
-/obj/item/weapon/tool/screwdriver/power/New(newloc, no_counterpart = TRUE)
-	..(newloc)
+/obj/item/weapon/tool/screwdriver/power/Initialize(var/ml, no_counterpart = TRUE)
+	. = ..()
 	if(!counterpart && no_counterpart)
 		counterpart = new(src, FALSE)
 		counterpart.counterpart = src

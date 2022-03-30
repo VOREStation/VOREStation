@@ -31,7 +31,11 @@
 	w_class = ITEMSIZE_HUGE
 	force = 30
 	armor_penetration = 15
+<<<<<<< HEAD
 	edge = TRUE
+=======
+	edge = 1
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 	pry = 1
 	defend_chance = 40
 	projectile_parry_chance = 20

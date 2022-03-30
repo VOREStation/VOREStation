@@ -78,8 +78,13 @@
 	desc = "A rock cutter that uses bursts of hot plasma. You could use it to cut limbs off of xenos! Or, you know, mine stuff."
 	drill_verb = "cutting"
 	drill_sound = 'sound/items/Welder.ogg'
+<<<<<<< HEAD
 	sharp = TRUE
 	edge = TRUE
+=======
+	sharp = 1
+	edge = 1
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 
 /obj/item/weapon/pickaxe/diamond
 	name = "diamond pickaxe"
@@ -124,8 +129,13 @@
 	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
 	matter = list(MAT_STEEL = 50)
 	attack_verb = list("bashed", "bludgeoned", "thrashed", "whacked")
+<<<<<<< HEAD
 	sharp = FALSE
 	edge = TRUE
+=======
+	sharp = 0
+	edge = 1
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 	var/digspeed = 40
 
 /obj/item/weapon/shovel/wood

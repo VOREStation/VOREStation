@@ -143,7 +143,10 @@
 	attack_verb = list("slashed", "chopped", "gouged", "ripped", "cut")
 	can_cleave = TRUE //Now hatchets inherit from the machete, and thus knives. Tables turned.
 	slot_flags = SLOT_BELT
+<<<<<<< HEAD
 	default_material = "plasteel" //VOREStation Edit
+=======
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 
 /obj/item/weapon/material/knife/machete/cyborg
 	name = "integrated machete"
@@ -157,6 +160,7 @@
 	icon_state = "survivalknife"
 	item_state = "knife"
 	applies_material_colour = FALSE
+<<<<<<< HEAD
 	default_material = "plasteel" //VOREStation Edit
 	toolspeed = 2 // Use a real axe if you want to chop logs.
 
@@ -185,3 +189,6 @@
 	icon_state = "stone_bone_knife"
 	dulled = FALSE
 	fragile = FALSE
+=======
+	toolspeed = 2 // Use a real axe if you want to chop logs.
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities

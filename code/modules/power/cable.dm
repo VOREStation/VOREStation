@@ -512,7 +512,10 @@ var/list/possible_cable_coil_colours = list(
 	drop_sound = 'sound/items/drop/accessory.ogg'
 	pickup_sound = 'sound/items/pickup/accessory.ogg'
 	tool_qualities = list(TOOL_CABLE_COIL)
+<<<<<<< HEAD
 	singular_name = "cable"
+=======
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 
 /obj/item/stack/cable_coil/cyborg
 	name = "cable coil synthesizer"

@@ -23,7 +23,11 @@
 	applies_material_colour = 0
 	drop_sound = 'sound/items/drop/axe.ogg'
 	pickup_sound = 'sound/items/pickup/axe.ogg'
+<<<<<<< HEAD
 /* VOREStation Removal - We have one already
+=======
+
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 /obj/item/weapon/material/knife/machete/hatchet/stone
 	name = "sharp rock"
 	desc = "The secret is to bang the rocks together, guys."

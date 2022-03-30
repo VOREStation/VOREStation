@@ -193,6 +193,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	if(I || istype(W, /obj/item/weapon/spacecash))
 		attack_hand(user)
 		return
+<<<<<<< HEAD
 	else if(istype(W, /obj/item/weapon/refill_cartridge))
 		if(stat & (BROKEN|NOPOWER))
 			to_chat(user, "<span class='notice'>You cannot refill [src] while it is not functioning.</span>")
@@ -216,6 +217,8 @@ GLOBAL_LIST_EMPTY(vending_products)
 		else
 			to_chat(user, "<span class='notice'>You cannot refill [src] with [RC].</span>")
 			return
+=======
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 	else if(W.is_screwdriver())
 		panel_open = !panel_open
 		to_chat(user, "You [panel_open ? "open" : "close"] the maintenance panel.")

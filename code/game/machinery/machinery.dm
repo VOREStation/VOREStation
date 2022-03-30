@@ -176,7 +176,7 @@ Class Procs:
 		pulse2.icon = 'icons/effects/effects.dmi'
 		pulse2.icon_state = "empdisable"
 		pulse2.name = "emp sparks"
-		pulse2.anchored = TRUE
+		pulse2.anchored = 1
 		pulse2.set_dir(pick(cardinal))
 
 		spawn(10)
@@ -186,6 +186,7 @@ Class Procs:
 /obj/machinery/ex_act(severity)
 	switch(severity)
 		if(1.0)
+<<<<<<< HEAD
 			fall_apart(severity)
 			return
 		if(2.0)
@@ -195,6 +196,17 @@ Class Procs:
 		if(3.0)
 			if(prob(25))
 				fall_apart(severity)
+=======
+			qdel(src)
+			return
+		if(2.0)
+			if(prob(50))
+				qdel(src)
+				return
+		if(3.0)
+			if(prob(25))
+				qdel(src)
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 				return
 		else
 	return
@@ -256,7 +268,11 @@ Class Procs:
 		return 1
 	if(user.lying || user.stat)
 		return 1
+<<<<<<< HEAD
 	if(!user.IsAdvancedToolUser())  //Vorestation edit
+=======
+	if(!(istype(user, /mob/living/carbon/human) || istype(user, /mob/living/silicon)))
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return 1
 	if(ishuman(user))
@@ -359,8 +375,11 @@ Class Procs:
 						break
 			update_icon()
 			RefreshParts()
+<<<<<<< HEAD
 			if(parts_replaced)
 				R.play_rped_sound()
+=======
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 	return 1
 
 // Default behavior for wrenching down machines.  Supports both delay and instant modes.
@@ -445,15 +464,15 @@ Class Procs:
 	var/obj/structure/frame/A = new /obj/structure/frame(src.loc)
 	var/obj/item/weapon/circuitboard/M = circuit
 	A.circuit = M
-	A.anchored = TRUE
+	A.anchored = 1
 	A.frame_type = M.board_type
 	if(A.frame_type.circuit)
 		A.need_circuit = 0
 
 	if(A.frame_type.frame_class == FRAME_CLASS_ALARM || A.frame_type.frame_class == FRAME_CLASS_DISPLAY)
-		A.density = FALSE
+		A.density = 0
 	else
-		A.density = TRUE
+		A.density = 1
 
 	if(A.frame_type.frame_class == FRAME_CLASS_MACHINE)
 		for(var/obj/D in component_parts)
@@ -484,6 +503,7 @@ Class Procs:
 	M.deconstruct(src)
 	qdel(src)
 	return 1
+<<<<<<< HEAD
 
 /obj/machinery/bullet_act(obj/item/projectile/P, def_zone)
 	. = ..()
@@ -562,6 +582,8 @@ Class Procs:
 	spark_system.start()
 	qdel(spark_system)
 	qdel(src)
+=======
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 
 /datum/proc/apply_visual(mob/M)
 	M.sight = 0 //Just reset their mesons and stuff so they can't use them, by default.

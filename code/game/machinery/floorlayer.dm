@@ -35,7 +35,11 @@
 
 /obj/machinery/floorlayer/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if(W.is_wrench())
+<<<<<<< HEAD
 		var/m = tgui_input_list(usr, "Choose work mode", "Mode", mode)
+=======
+		var/m = input("Choose work mode", "Mode") as null|anything in mode
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 		mode[m] = !mode[m]
 		var/O = mode[m]
 		user.visible_message("<span class='notice'>[usr] has set \the [src] [m] mode [!O?"off":"on"].</span>", "<span class='notice'>You set \the [src] [m] mode [!O?"off":"on"].</span>")
@@ -59,7 +63,11 @@
 		return
 
 	if(W.is_screwdriver())
+<<<<<<< HEAD
 		T = tgui_input_list(usr, "Choose tile type.", "Tiles", contents)
+=======
+		T = input("Choose tile type.", "Tiles") as null|anything in contents
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 		return
 	..()
 

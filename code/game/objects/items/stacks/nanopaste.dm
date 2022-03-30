@@ -16,7 +16,11 @@
 	if (istype(M,/mob/living/silicon/robot))	//Repairing cyborgs
 		var/mob/living/silicon/robot/R = M
 		if (R.getBruteLoss() || R.getFireLoss())
+<<<<<<< HEAD
 			if(do_after(user, 7 * toolspeed, R, exclusive = TASK_ALL_EXCLUSIVE))
+=======
+			if(do_after(user,7 * toolspeed))
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 				R.adjustBruteLoss(-15)
 				R.adjustFireLoss(-15)
 				R.updatehealth()
@@ -45,6 +49,7 @@
 		//VOREStation Edit Start
 		if (S && (S.robotic >= ORGAN_ROBOT))
 			if(!S.get_damage())
+<<<<<<< HEAD
 				to_chat(user, "<span class='notice'>Nothing to fix here.</span>")
 			else if((S.open < 2) && (S.brute_dam + S.burn_dam >= S.min_broken_damage) && !repair_external)
 				to_chat(user, "<span class='notice'>The damage is too extensive for this nanite swarm to handle.</span>")
@@ -55,6 +60,16 @@
 						S.heal_damage(restoration_internal, restoration_internal, robo_repair = 1)
 				else if(do_after(user, 5 * toolspeed, S, exclusive = TASK_ALL_EXCLUSIVE))
 					S.heal_damage(restoration_external,restoration_external, robo_repair =1)
+=======
+				user << "<span class='notice'>Nothing to fix here.</span>"
+			else if(can_use(1))
+				user.setClickCooldown(user.get_attack_speed(src))
+				if(S.open >= 2)
+					if(do_after(user,5 * toolspeed))
+						S.heal_damage(20, 20, robo_repair = 1)
+				else if(do_after(user,5 * toolspeed))
+					S.heal_damage(10,10, robo_repair =1)
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 				H.updatehealth()
 				use(1)
 				user.visible_message("<span class='notice'>\The [user] applies some nanite paste on [user != M ? "[M]'s [S.name]" : "[S]"] with [src].</span>",\

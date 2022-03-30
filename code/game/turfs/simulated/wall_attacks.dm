@@ -243,7 +243,10 @@
 		return
 
 	// Basic dismantling.
+<<<<<<< HEAD
 	//var/dismantle_toolspeed = 0
+=======
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 	if(isnull(construction_stage) || !reinf_material)
 
 		var/cut_delay = 60 - material.cut_delay
@@ -263,7 +266,10 @@
 		else if(istype(W,/obj/item/weapon/melee/energy/blade))
 			dismantle_sound = "sparks"
 			dismantle_verb = "slicing"
+<<<<<<< HEAD
 			//dismantle_toolspeed = 1
+=======
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 			cut_delay *= 0.5
 		else if(istype(W,/obj/item/weapon/pickaxe))
 			var/obj/item/weapon/pickaxe/P = W

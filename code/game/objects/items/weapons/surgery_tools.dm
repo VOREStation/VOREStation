@@ -159,8 +159,13 @@
 	origin_tech = list(TECH_MATERIAL = 1, TECH_BIO = 1)
 	matter = list(MAT_STEEL = 20000,MAT_GLASS = 10000)
 	attack_verb = list("attacked", "slashed", "sawed", "cut")
+<<<<<<< HEAD
 	sharp = TRUE
 	edge = TRUE
+=======
+	sharp = 1
+	edge = 1
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 
 /obj/item/weapon/surgical/circular_saw/manager
 	name = "energetic bone diverter"

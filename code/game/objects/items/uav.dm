@@ -117,7 +117,11 @@
 		playsound(src, 'sound/machines/buttonbeep.ogg', 50, 1)
 		visible_message("<span class='notice'>[user] pairs [I] to [nickname]</span>")
 		toggle_pairing()
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 	else if(I.is_screwdriver() && cell)
 		if(do_after(user, 3 SECONDS, src))
 			to_chat(user, "<span class='notice'>You remove [cell] into [nickname].</span>")

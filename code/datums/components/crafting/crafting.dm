@@ -87,7 +87,11 @@
 			LAZYADDASSOCLIST(.["instances"], item.type, item)
 			if(istype(item, /obj/item/stack))
 				var/obj/item/stack/stack = item
+<<<<<<< HEAD
 				.["other"][item.type] += stack.get_amount()
+=======
+				.["other"][item.type] += stack.amount
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 			else if(item.tool_qualities)
 				.["tool_qualities"] |= item.tool_qualities
 				.["other"][item.type] += 1

@@ -9,10 +9,15 @@
 	req_open = 1
 
 /datum/surgery_step/repairflesh/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+<<<<<<< HEAD
 /*    VOREStation Removal for Mlem Reasons(TM)
     if (target.stat == DEAD) // Sorry defibs, your subjects need to have pumping fluids for these to work.
         return 0
 */
+=======
+	if (target.stat == DEAD) // Sorry defibs, your subjects need to have pumping fluids for these to work.
+		return 0
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 	if (isslime(target))
 		return 0
 	if (target_zone == O_EYES || target_zone == O_MOUTH)

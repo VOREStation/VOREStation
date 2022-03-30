@@ -142,6 +142,7 @@ Proc for attack log creation, because really why not
 	else
 		return pick("chest", "groin")
 
+<<<<<<< HEAD
 /proc/do_mob(mob/user , mob/target, time = 30, target_zone = 0, uninterruptible = FALSE, progress = TRUE, ignore_movement = FALSE, exclusive = FALSE)
 	if(!user || !target)
 		return FALSE
@@ -153,6 +154,11 @@ Proc for attack log creation, because really why not
 	if(target?.flags & IS_BUSY)
 		to_chat(user, "<span class='warning'>Someone is already doing something with \the [target].</span>")
 		return FALSE
+=======
+/proc/do_mob(mob/user , mob/target, time = 30, target_zone = 0, uninterruptible = FALSE, progress = TRUE, ignore_movement = FALSE)
+	if(!user || !target)
+		return 0
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 	var/user_loc = user.loc
 	var/target_loc = target.loc
 
@@ -163,12 +169,15 @@ Proc for attack log creation, because really why not
 
 	var/endtime = world.time+time
 	var/starttime = world.time
+<<<<<<< HEAD
 
 	if(exclusive & TASK_USER_EXCLUSIVE)
 		user.status_flags |= DOING_TASK
 	if(target && exclusive & TASK_TARGET_EXCLUSIVE)
 		target.flags |= IS_BUSY
 
+=======
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 	. = TRUE
 	while (world.time < endtime)
 		stoplag(1)
@@ -208,10 +217,15 @@ Proc for attack log creation, because really why not
 	if (progbar)
 		qdel(progbar)
 
+<<<<<<< HEAD
 /proc/do_after(mob/user, delay, atom/target = null, needhand = TRUE, progress = TRUE, incapacitation_flags = INCAPACITATION_DEFAULT, ignore_movement = FALSE, max_distance = null, exclusive = FALSE)
+=======
+/proc/do_after(mob/user, delay, atom/target = null, needhand = TRUE, progress = TRUE, incapacitation_flags = INCAPACITATION_DEFAULT, ignore_movement = FALSE, max_distance = null)
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 	if(!user)
-		return FALSE
+		return 0
 	if(!delay)
+<<<<<<< HEAD
 		return TRUE //Okay. Done.
 	if(user.status_flags & DOING_TASK)
 		to_chat(user, "<span class='warning'>You're in the middle of doing something else already.</span>")
@@ -220,6 +234,9 @@ Proc for attack log creation, because really why not
 		to_chat(user, "<span class='warning'>Someone is already doing something with \the [target].</span>")
 		return FALSE
 		
+=======
+		return 1 //Okay. Done.
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 	var/atom/target_loc = null
 	if(target)
 		target_loc = target.loc
@@ -240,6 +257,7 @@ Proc for attack log creation, because really why not
 
 	var/endtime = world.time + delay
 	var/starttime = world.time
+<<<<<<< HEAD
 
 	if(exclusive & TASK_USER_EXCLUSIVE)
 		user.status_flags |= DOING_TASK
@@ -248,6 +266,9 @@ Proc for attack log creation, because really why not
 		target.flags |= IS_BUSY
 
 	. = TRUE
+=======
+	. = 1
+>>>>>>> 50c97504321... Merge pull request #8491 from Atermonera/revert_tool_qualities
 	while (world.time < endtime)
 		stoplag(1)
 		if(progress)

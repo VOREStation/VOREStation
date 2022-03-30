@@ -1,6 +1,7 @@
 /*
  * Crowbar
  */
+
 /obj/item/weapon/tool/crowbar
 	name = "crowbar"
 	desc = "Used to remove floors and to pry open doors."
@@ -26,10 +27,6 @@
 	icon_state = "red_crowbar"
 	item_state = "crowbar_red"
 
-/obj/item/weapon/tool/crowbar/old
-	icon = 'icons/obj/tools.dmi'
-	icon_state = "old_crowbar"
-	item_state = "crowbar"
 
 /datum/category_item/catalogue/anomalous/precursor_a/alien_crowbar
 	name = "Precursor Alpha Object - Hard Light Pry Tool"
@@ -83,8 +80,8 @@
 	toolspeed = 0.25
 	var/obj/item/weapon/tool/wirecutters/power/counterpart = null
 
-/obj/item/weapon/tool/crowbar/power/New(newloc, no_counterpart = TRUE)
-	..(newloc)
+/obj/item/weapon/tool/crowbar/power/Initialize(var/ml, no_counterpart = TRUE)
+	. = ..()
 	if(!counterpart && no_counterpart)
 		counterpart = new(src, FALSE)
 		counterpart.counterpart = src
