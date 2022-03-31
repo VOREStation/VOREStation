@@ -69,7 +69,7 @@
 	desc = "Concrete shaped into a path!"
 	icon = 'icons/turf/outdoors_vr.dmi'
 	icon_state = "sidewalk"
-	edge_blending_priority = 1
+	edge_blending_priority = -1
 	movement_cost = -0.5
 	initial_flooring = /decl/flooring/outdoors/sidewalk
 	can_dirty = TRUE

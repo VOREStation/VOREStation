@@ -23,7 +23,7 @@
 var/datum/planet/virgo3c/planet_virgo3c = null
 
 /datum/time/virgo3c
-	seconds_in_day = 6 HOURS
+	seconds_in_day = 12 HOURS
 
 /datum/planet/virgo3c
 	name = "Virgo-3c"
@@ -53,15 +53,15 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 	var/min = 0
 
 	switch(sun_position)
-		if(0 to 0.20) // Night
-			low_brightness = 0.3
+		if(0 to 0.45) // Night
+			low_brightness = 0.1
 			low_color = "#000066"
 
-			high_brightness = 0.5
+			high_brightness = 0.2
 			high_color = "#66004D"
 			min = 0
 
-		if(0.20 to 0.30) // Twilight
+		if(0.45 to 0.50) // Twilight
 			low_brightness = 0.5
 			low_color = "#66004D"
 
@@ -69,7 +69,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 			high_color = "#CC3300"
 			min = 0.40
 
-		if(0.30 to 0.40) // Sunrise/set
+		if(0.50 to 0.55) // Sunrise/set
 			low_brightness = 0.9
 			low_color = "#CC3300"
 
@@ -77,7 +77,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 			high_color = "#FF9933"
 			min = 0.50
 
-		if(0.40 to 1.00) // Noon
+		if(0.55 to 1.00) // Noon
 			low_brightness = 3.0
 			low_color = "#DDDDDD"
 

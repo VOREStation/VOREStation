@@ -119,12 +119,12 @@
 	default_skybox = /datum/skybox_settings/groundbase
 
 	unit_test_exempt_areas = list(
-//		/area/stellardelight/deck1/exterior,
-//		/area/stellardelight/deck1/exploshuttle,
-//		/area/stellardelight/deck1/miningshuttle
+		/area/groundbase/level1,
+		/area/groundbase/level2,
+		/area/groundbase/level3
 		)
 
-	unit_test_exempt_from_atmos = list() //it maint
+	unit_test_exempt_from_atmos = list()
 
 
 	lateload_z_levels = list(
@@ -179,7 +179,6 @@
 	new /datum/random_map/automata/cave_system/no_cracks(null, 1, 1, Z_LEVEL_MINING, world.maxx, world.maxy) // Create the mining Z-level.
 	new /datum/random_map/noise/ore(null, 1, 1, Z_LEVEL_MINING, 64, 64)         // Create the mining ore distribution map.
 	return 1
-
 
 /datum/skybox_settings/groundbase
 	icon_state = "space5"
@@ -342,7 +341,7 @@
 /datum/map_z_level/gb_lateload/mining
 	z = Z_LEVEL_MINING
 	name = "V3c Underground"
-	base_turf = /turf/space
+	base_turf = /turf/simulated/floor/outdoors/newdirt_nograss/virgo3c
 	flags = MAP_LEVEL_PLAYER|MAP_LEVEL_CONTACT|MAP_LEVEL_CONSOLES
 
 #include "../expedition_vr/aerostat/_aerostat.dm"
