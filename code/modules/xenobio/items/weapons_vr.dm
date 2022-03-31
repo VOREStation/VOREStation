@@ -10,6 +10,7 @@
 	var/loadable_item = null
 	var/loaded_item = null
 	var/loadable_name = null
+	var/firable = TRUE
 /obj/item/weapon/xenobio/examine(var/mob/user)
 	. = ..()
 	if(loaded_item)
@@ -75,6 +76,10 @@
 
 /obj/item/weapon/xenobio/monkey_gun/afterattack(atom/A, mob/user as mob)
 	..()
+
+	if(!firable)
+		return
+
 	var/turf/T = get_turf(A)
 	if(!T || (T.check_density(ignore_mobs = TRUE)))
 		to_chat(user,"<span class = 'warning'>Your rehydrator flashes an error as it attempts to process your target.</span>")
@@ -89,7 +94,8 @@
 		cube.loc = A
 		cube.Expand()
 		loaded_item = null
-
+		firable = FALSE
+		VARSET_IN(src, firable, TRUE, 5 SECONDS)
 /obj/item/weapon/xenobio/potion_gun
 	name = "Ranged Potion Delivery Device"
 	desc = "This device is designed to deliver a potion to your target at range, it has a slot to attach a xenobio potion."
