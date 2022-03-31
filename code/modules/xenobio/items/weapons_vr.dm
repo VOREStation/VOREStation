@@ -1,23 +1,32 @@
-/obj/item/weapon/gun/energy/xenobio
+/obj/item/weapon/xenobio
 	name = "xenobio gun"
 	desc = "You shouldn't see this!"
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "harpoon-2"
-	fire_sound = 'sound/weapons/taser2.ogg'
-	charge_cost = 120 // Twice as many shots.
-	projectile_type = /obj/item/projectile/beam/stun/xeno // Place holder for now
-	accuracy = 30 // Just use the same hit rate as xenotasers
+	//fire_sound = 'sound/weapons/taser2.ogg'
+	//charge_cost = 120 // Twice as many shots.
+	//projectile_type = /obj/item/projectile/beam/xenobio // Place holder for now
+	//accuracy = 30 // Just use the same hit rate as xenotasers
 	var/loadable_item = null
 	var/loaded_item = null
 	var/loadable_name = null
-/obj/item/weapon/gun/energy/xenobio/examine(var/mob/user)
+/obj/item/weapon/xenobio/examine(var/mob/user)
 	. = ..()
 	if(loaded_item)
 		.+= "A [loaded_item] is slotted into the side."
 	else
 		.+= "There appears to be an empty slot for attaching a [loadable_name]."
 
-/obj/item/weapon/gun/energy/xenobio/attackby(obj/item/I as obj, mob/user as mob)
+/obj/item/weapon/xenobio/attack_hand(mob/user as mob)
+	if(user.get_inactive_hand() == src && loaded_item)
+		user.put_in_hands(loaded_item)
+		user.visible_message("[user] removes [loaded_item] from [src].", "<span class='notice'>You remove [loaded_item] from [src].</span>")
+		loaded_item = null
+		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
+	else
+		return ..()
+
+/obj/item/weapon/xenobio/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, loadable_item))
 		if(loaded_item)
 			to_chat(user, "<font color='blue'>[I] doesn't seem to fit into [src].</font>")
@@ -26,21 +35,23 @@
 		user.drop_item()
 		I.loc = src
 		loaded_item = I
-		to_chat(user, "<font color='blue'>You slot [I] into [src].</font>")
+		//to_chat(user, "<font color='blue'>You slot [I] into [src].</font>")
+		user.visible_message("[user] inserts [I] into [src].", "<font color='blue'>You slot [I] into [src].</span>")
 		return 1
 	..()
 
-/obj/item/weapon/gun/energy/xenobio/attack_self(mob/living/user as mob)
+/obj/item/weapon/xenobio/attack_self(mob/living/user as mob)
 	if(loaded_item)
 		user.put_in_hands(loaded_item)
 		user.visible_message("[user] removes [loaded_item] from [src].", "<span class='notice'>You remove [loaded_item] from [src].</span>")
 		loaded_item = null
 		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 
-/obj/item/weapon/gun/energy/xenobio/afterattack(atom/A, mob/user as mob)
+/obj/item/weapon/xenobio/afterattack(atom/A, mob/user as mob)
 	if(!loaded_item)
 		to_chat(user,"<span class = 'warning'>\The [src] shot fizzles, it appears you need to load something!</span>")
-		playsound(src, 'sound/weapons/wave.ogg', 60, 1)
+		//playsound(src, 'sound/weapons/wave.ogg', 60, 1)
+		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 		return
 
 	playsound(src, 'sound/weapons/wave.ogg', 60, 1)
@@ -54,31 +65,38 @@
 	s.set_up(4, 1, user)
 	s.start()
 
-/obj/item/weapon/gun/energy/xenobio/monkey_gun
-	name = "Bluespace Cube Rehydrater"
-	desc = "This advanced weapon will rehydrate and deploy a loaded cube at your target position."
+/obj/item/weapon/xenobio/monkey_gun
+	name = "Bluespace Cube Rehydrator"
+	desc = "Based on the technology of the 'Bluespace Harpoon' this device can teleport a loaded cube to a given target and rehydrate it."
 	loadable_item = /obj/item/weapon/reagent_containers/food/snacks/monkeycube
 	loadable_name = "Monkey Cube"
-/obj/item/weapon/gun/energy/xenobio/potion_gun
+	origin_tech = list(TECH_BLUESPACE = 5, TECH_BIO = 6)
+	//projectile_type = /obj/item/projectile/beam/xenobio/monkey
+
+/obj/item/weapon/xenobio/monkey_gun/afterattack(atom/A, mob/user as mob)
+	..()
+	var/turf/T = get_turf(A)
+	if(!T || (T.check_density(ignore_mobs = TRUE)))
+		to_chat(user,"<span class = 'warning'>Your rehydrator flashes an error as it attempts to process your target.</span>")
+		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
+		return
+	if(istype(A, /mob/living))
+		to_chat(user,"<span class = 'warning'>The rehydrator's saftey systems prevent firing into living creatures!</span>")
+		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
+		return
+	if(loaded_item)
+		var/obj/item/weapon/reagent_containers/food/snacks/monkeycube/cube = loaded_item
+		cube.loc = A
+		cube.Expand()
+		loaded_item = null
+
+/obj/item/weapon/xenobio/potion_gun
 	name = "Ranged Potion Delivery Device"
 	desc = "This device is designed to deliver a potion to your target at range, it has a slot to attach a xenobio potion."
 	loadable_item = /obj/item/slimepotion
 	loadable_name = "Slime Potion"
 
-///obj/item/weapon/gun/energy/xenobio/potion_gun/afterattack(atom/A, mob/user as mob)
-//	if(isslime(A))
-		//loaded_item.attack(A, user)
-
-
-/*/obj/item/weapon/xenobio
-	name = "bluespace harpoon"
-	desc = "For climbing on bluespace mountains!"
-
-	icon = 'icons/obj/gun_vr.dmi'
-	icon_state = "harpoon-2"
-
-	w_class = ITEMSIZE_NORMAL
-*/
+/* Doesn't work and am too lazy to make it work, lets make something better instead.
 /obj/item/weapon/xenobio/slime_grinder
 	name = "portable slime processor"
 	desc = "An industrial grinder used to automate the process of slime core extraction.  It can also recycle biomatter. This one appears miniturized"
@@ -188,7 +206,7 @@
 		return
 	insert(M, user)
 	return ..()
-
+*/
 /* Cut for balance :)
 /obj/item/weapon/gun/energy/xenobio/extract_gun
 	name = "Ranged Extract Interaction Device"
