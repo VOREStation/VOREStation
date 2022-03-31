@@ -158,16 +158,6 @@ var/list/flooring_types
 	build_type = /obj/item/stack/tile/grass/sif/forest
 	has_base_range = 1
 
-/decl/flooring/grass/jungle
-	name = "grass"
-	desc = "A thick, moist grass that is common in dense jungle terrain."
-	icon = 'icons/turf/flooring/grass.dmi'
-	icon_base = "junglegrass"
-	has_base_range = 1
-	damage_temperature = T0C+80
-	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_REMOVE_SHOVEL
-	build_type = /obj/item/stack/tile/grass/jungle
-
 /decl/flooring/water
 	name = "water"
 	desc = "Water is wet, gosh, who knew!"
@@ -238,9 +228,6 @@ var/list/flooring_types
 		'sound/effects/footstep/MedDirt2.ogg',
 		'sound/effects/footstep/MedDirt3.ogg',
 		'sound/effects/footstep/MedDirt4.ogg',))
-
-/decl/flooring/dirt/jungle
-	icon_base = "jungle-dirt"
 
 /decl/flooring/snow
 	name = "snow"

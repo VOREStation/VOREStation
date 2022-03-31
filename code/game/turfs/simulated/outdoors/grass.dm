@@ -96,20 +96,3 @@ var/list/grass_types = list(
 		/obj/structure/flora/sif/eyes = 5,
 		/obj/structure/flora/sif/tendrils = 30
 		)
-
-/turf/simulated/floor/outdoors/grass/accerion
-	name = "thick grass"
-	icon_state = "junglegrass"
-	initial_flooring = /decl/flooring/grass/jungle
-	edge_blending_priority = 4
-	grass_chance = 5
-
-	grass_types = list(
-		/obj/structure/flora/accerion/Rafflesia = 1,
-		/obj/structure/flora/accerion/goldbulb = 2,
-		/obj/structure/flora/accerion/williamsrose = 5,
-		/obj/structure/flora/accerion/glassstalks = 10,
-		/obj/structure/flora/accerion/tallgrass = 30,
-		/obj/structure/flora/accerion/bush = 10,
-		/obj/structure/flora/accerion/stones = 5
-		)
