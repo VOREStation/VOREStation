@@ -20,7 +20,7 @@
 
 //For custom species
 #define STARTING_SPECIES_POINTS 2
-#define MAX_SPECIES_TRAITS 5
+#define MAX_SPECIES_TRAITS 4	// Cap positive traits at 4, given negatives are unlimited. Prior number was 5.
 
 // Xenochimera thing mostly
 #define REVIVING_NOW		-1

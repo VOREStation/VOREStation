@@ -48,7 +48,7 @@
 		for(var/datum/trait/T as anything in megalist)
 			var/cost = traits_costs[T]
 
-			if(cost)
+			if(cost > 0)
 				traits_left--
 
 			//A trait was removed from the game
