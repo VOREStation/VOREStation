@@ -149,7 +149,7 @@
 	set desc = "BOOOOM!"
 	deadman = TRUE
 	START_PROCESSING(SSobj, src)
-	log_and_message_admins("is threatening to trigger a signaler deadman's switch")
+	log_and_message_admins("is threatening to trigger a signaler deadman's switch", usr)
 	usr.visible_message("<font color='red'>[usr] moves their finger over [src]'s signal button...</font>")
 
 /obj/item/device/assembly/signaler/Destroy()

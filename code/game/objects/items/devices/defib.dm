@@ -441,7 +441,7 @@
 
 	make_alive(H)
 
-	log_and_message_admins("used \a [src] to revive [key_name(H)].")
+	log_and_message_admins("used \a [src] to revive [key_name(H)].", user)
 
 
 /obj/item/weapon/shockpaddles/proc/do_electrocute(mob/living/carbon/human/H, mob/user, var/target_zone)

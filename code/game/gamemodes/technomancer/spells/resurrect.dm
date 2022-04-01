@@ -59,7 +59,7 @@
 					visible_message("<span class='danger'>\The [H]'s eyes open!</span>")
 					to_chat(user, "<span class='notice'>It's alive!</span>")
 					adjust_instability(50)
-					log_and_message_admins("has resurrected [H].")
+					log_and_message_admins("has resurrected [H].", user)
 				else
 					to_chat(user, "<span class='warning'>The body of \the [H] doesn't seem to respond, perhaps you could try again?</span>")
 					adjust_instability(10)

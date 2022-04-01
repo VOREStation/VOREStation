@@ -100,7 +100,7 @@
 				if(AL)
 					var/new_law = sanitize(input(usr, "Enter new law. Leaving the field blank will cancel the edit.", "Edit Law", AL.law))
 					if(new_law && new_law != AL.law && is_malf(usr) && can_still_topic(usr, state))
-						log_and_message_admins("has changed a law of [owner] from '[AL.law]' to '[new_law]'")
+						log_and_message_admins("has changed a law of [owner] from '[AL.law]' to '[new_law]'", usr)
 						AL.law = new_law
 				return TRUE
 
@@ -125,7 +125,7 @@
 			if(is_malf(usr))
 				var/datum/ai_laws/ALs = locate(params["transfer_laws"]) in (is_admin(usr) ? admin_laws : player_laws)
 				if(ALs)
-					log_and_message_admins("has transfered the [ALs.name] laws to [owner].")
+					log_and_message_admins("has transfered the [ALs.name] laws to [owner].", usr)
 					ALs.sync(owner, 0)
 			return TRUE
 

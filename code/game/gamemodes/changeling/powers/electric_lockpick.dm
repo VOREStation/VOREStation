@@ -80,7 +80,7 @@
 		else //Probably broken or no power.
 			to_chat(user, "<span class='warning'>The door does not respond to the pulse.</span>")
 		door.add_fingerprint(user)
-		log_and_message_admins("finger-lockpicked \an [door].")
+		log_and_message_admins("finger-lockpicked \an [door].", user)
 		ling_datum.chem_charges -= 10
 		return 1
 
@@ -89,7 +89,7 @@
 		to_chat(user, "<span class='notice'>We send an electrical pulse up our finger, and into \the [O].</span>")
 		O.add_fingerprint(user)
 		O.emag_act(1,user,src)
-		log_and_message_admins("finger-lockpicked \an [O].")
+		log_and_message_admins("finger-lockpicked \an [O].", user)
 		ling_datum.chem_charges -= 10
 
 		return 1

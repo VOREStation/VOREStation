@@ -824,7 +824,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 		to_world("<B>The OOC channel has been globally enabled!</B>")
 	else
 		to_world("<B>The OOC channel has been globally disabled!</B>")
-	log_and_message_admins("toggled OOC.")
+	log_and_message_admins("toggled OOC.", usr)
 	feedback_add_details("admin_verb","TOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/togglelooc()
@@ -840,7 +840,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 		to_world("<B>The LOOC channel has been globally enabled!</B>")
 	else
 		to_world("<B>The LOOC channel has been globally disabled!</B>")
-	log_and_message_admins("toggled LOOC.")
+	log_and_message_admins("toggled LOOC.", usr)
 	feedback_add_details("admin_verb","TLOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
@@ -917,7 +917,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	else
 		SSticker.start_immediately = FALSE
 		to_world("<span class='notice'>Immediate game start canceled.  Normal startup resumed.</span>")
-		log_and_message_admins("cancelled immediate game start.")
+		log_and_message_admins("cancelled immediate game start.", usr)
 
 /datum/admins/proc/toggleenter()
 	set category = "Server"
@@ -1207,7 +1207,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	else
 		new chosen(usr.loc)
 
-	log_and_message_admins("spawned [chosen] at ([usr.x],[usr.y],[usr.z])")
+	log_and_message_admins("spawned [chosen] at ([usr.x],[usr.y],[usr.z])", usr)
 	feedback_add_details("admin_verb","SA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
@@ -1502,7 +1502,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 		to_chat(usr, "Mode has not started.")
 		return
 
-	log_and_message_admins("attempting to force mode autospawn.")
+	log_and_message_admins("attempting to force mode autospawn.", usr)
 	ticker.mode.try_latespawn()
 
 /datum/admins/proc/paralyze_mob(mob/living/H as mob)
@@ -1516,12 +1516,12 @@ var/datum/announcement/minor/admin_min_announcer = new
 		if (H.paralysis == 0)
 			H.SetParalysis(8000)
 			msg = "has paralyzed [key_name(H)]."
-			log_and_message_admins(msg)
+			log_and_message_admins(msg, usr)
 		else
 			if(tgui_alert(src, "[key_name(H)] is paralyzed, would you like to unparalyze them?","Paralyze Mob",list("Yes","No")) == "Yes")
 				H.SetParalysis(0)
 				msg = "has unparalyzed [key_name(H)]."
-				log_and_message_admins(msg)
+				log_and_message_admins(msg, usr)
 
 /datum/admins/proc/set_tcrystals(mob/living/carbon/human/H as mob)
 	set category = "Debug"

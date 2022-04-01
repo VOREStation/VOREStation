@@ -3,7 +3,7 @@
 /mob/var/attack_log = list( )
 /mob/var/dialogue_log = list( )
 
-/proc/log_and_message_admins(var/message as text, var/mob/user = usr)
+/proc/log_and_message_admins(var/message as text, var/mob/user)
 	log_admin(user ? "[key_name(user)] [message]" : "EVENT [message]")
 	message_admins(user ? "[key_name_admin(user)] [message]" : "EVENT [message]")
 

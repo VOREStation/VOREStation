@@ -50,7 +50,7 @@
 		to_chat(M, "<span class='warning'>Your intent may not be completely beneficial.</span>")
 	H.ckey = M.ckey
 	visible_message("<span class='warning'>As \the [src] opens, the pipes on \the [src] surge, before it grows dark.</span>")
-	log_and_message_admins("successfully opened \a [src] and became a [occupant_type].")
+	log_and_message_admins("successfully opened \a [src] and became a [occupant_type].", H)
 
 	var/list/uniform_options
 	var/list/shoe_options
@@ -178,7 +178,7 @@
 		to_chat(M, "<span class='warning'>Your intent may not be completely beneficial.</span>")
 	H.ckey = M.ckey
 	visible_message("<span class='warning'>As \the [src] opens, the pipes on \the [src] surge, before it grows dark.</span>")
-	log_and_message_admins("successfully opened \a [src] and got a [occupant_type].")
+	log_and_message_admins("successfully opened \a [src] and got a [occupant_type].", H)
 
 	var/list/uniform_options
 	var/list/shoe_options

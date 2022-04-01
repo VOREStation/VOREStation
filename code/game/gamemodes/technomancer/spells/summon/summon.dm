@@ -29,7 +29,7 @@
 			on_summon(L)
 			to_chat(user, "<span class='notice'>You've successfully teleported \a [L] to you!</span>")
 			visible_message("<span class='warning'>\A [L] appears from no-where!</span>")
-			log_and_message_admins("has summoned \a [L] at [T.x],[T.y],[T.z].")
+			log_and_message_admins("has summoned \a [L] at [T.x],[T.y],[T.z].", user)
 			user.adjust_instability(instability_cost)
 
 /obj/item/weapon/spell/summon/on_use_cast(mob/living/user)

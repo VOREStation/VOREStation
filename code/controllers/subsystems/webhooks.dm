@@ -68,7 +68,7 @@ SUBSYSTEM_DEF(webhooks)
 		return
 
 	to_world_log("[usr.key] has reloaded webhooks.")
-	log_and_message_admins("has reloaded webhooks.")
+	log_and_message_admins("has reloaded webhooks.", usr)
 	SSwebhooks.load_webhooks()
 
 /client/proc/ping_webhook()

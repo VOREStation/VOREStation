@@ -512,7 +512,7 @@
 		var/obj/item/projectile/new_projectile = make_projectile(spell_projectile, user)
 		new_projectile.old_style_target(hit_atom)
 		new_projectile.fire()
-		log_and_message_admins("has casted [src] at \the [hit_atom].")
+		log_and_message_admins("has casted [src] at \the [hit_atom].", user)
 		if(fire_sound)
 			playsound(src, fire_sound, 75, 1)
 		return 1
@@ -549,7 +549,7 @@
 	if(T)
 		new spawner_type(T)
 		to_chat(user, "<span class='cult'>You shift \the [src] onto \the [T].</span>")
-		log_and_message_admins("has casted [src] at [T.x],[T.y],[T.z].")
+		log_and_message_admins("has casted [src] at [T.x],[T.y],[T.z].", user)
 		qdel(src)
 
 //Harvester Laser.

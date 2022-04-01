@@ -72,9 +72,9 @@
 			emergency_shuttle.autopilot = 0
 			to_world("<span class='notice'><b>Alert: The shuttle autopilot has been overridden. Launch sequence initiated!</b></span>")
 
-	if(usr)
-		log_admin("[key_name(usr)] has overridden the departure shuttle's autopilot and activated the launch sequence.")
-		message_admins("[key_name_admin(usr)] has overridden the departure shuttle's autopilot and activated the launch sequence.")
+	if(user)
+		log_admin("[key_name(user)] has overridden the departure shuttle's autopilot and activated the launch sequence.")
+		message_admins("[key_name_admin(user)] has overridden the departure shuttle's autopilot and activated the launch sequence.")
 
 	..(user)
 
@@ -86,9 +86,9 @@
 			emergency_shuttle.autopilot = 0
 			to_world("<span class='notice'><b>Alert: The shuttle autopilot has been overridden. Bluespace drive engaged!</b></span>")
 
-	if(usr)
-		log_admin("[key_name(usr)] has overridden the departure shuttle's autopilot and forced immediate launch.")
-		message_admins("[key_name_admin(usr)] has overridden the departure shuttle's autopilot and forced immediate launch.")
+	if(user)
+		log_admin("[key_name(user)] has overridden the departure shuttle's autopilot and forced immediate launch.")
+		message_admins("[key_name_admin(user)] has overridden the departure shuttle's autopilot and forced immediate launch.")
 
 	..(user)
 
@@ -100,9 +100,9 @@
 			emergency_shuttle.autopilot = 0
 			to_chat(world, "<span class='notice'><b>Alert: The shuttle autopilot has been overridden. Launch sequence aborted!</b></span>")
 
-	if(usr)
-		log_admin("[key_name(usr)] has overridden the departure shuttle's autopilot and cancelled the launch sequence.")
-		message_admins("[key_name_admin(usr)] has overridden the departure shuttle's autopilot and cancelled the launch sequence.")
+	if(user)
+		log_admin("[key_name(user)] has overridden the departure shuttle's autopilot and cancelled the launch sequence.")
+		message_admins("[key_name_admin(user)] has overridden the departure shuttle's autopilot and cancelled the launch sequence.")
 
 	..(user)
 

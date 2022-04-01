@@ -1769,7 +1769,7 @@
 									var/mob/M = O
 									M.real_name = obj_name
 
-		log_and_message_admins("created [number] [english_list(paths)]")
+		log_and_message_admins("created [number] [english_list(paths)]", usr)
 		return
 
 	else if(href_list["admin_secrets_panel"])

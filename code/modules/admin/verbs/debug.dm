@@ -445,7 +445,7 @@
 	if(outfit.undress)
 		H.delete_inventory()
 	outfit.equip(H)
-	log_and_message_admins("changed the equipment of [key_name(H)] to [outfit.name].")
+	log_and_message_admins("changed the equipment of [key_name(H)] to [outfit.name].", usr)
 
 /client/proc/startSinglo()
 

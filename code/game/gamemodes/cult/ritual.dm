@@ -407,7 +407,7 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 		user.take_overall_damage((rand(9)+1)/10) // 0.1 to 1.0 damage
 		if(do_after(user, 50))
 			var/area/A = get_area(user)
-			log_and_message_admins("created \an [chosen_rune] rune at \the [A.name] - [user.loc.x]-[user.loc.y]-[user.loc.z].")
+			log_and_message_admins("created \an [chosen_rune] rune at \the [A.name] - [user.loc.x]-[user.loc.y]-[user.loc.z].", user)
 			if(usr.get_active_hand() != src)
 				return
 			var/mob/living/carbon/human/H = user
@@ -455,7 +455,7 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 			R.blood_DNA = list()
 			R.blood_DNA[H.dna.unique_enzymes] = H.dna.b_type
 		var/area/A = get_area(user)
-		log_and_message_admins("created \an [r] rune at \the [A.name] - [user.loc.x]-[user.loc.y]-[user.loc.z].")
+		log_and_message_admins("created \an [r] rune at \the [A.name] - [user.loc.x]-[user.loc.y]-[user.loc.z].", user)
 		switch(r)
 			if("teleport")
 				var/list/words = list("ire", "ego", "nahlizet", "certum", "veri", "jatkaa", "balaq", "mgar", "karazet", "geeri")

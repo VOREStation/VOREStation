@@ -216,7 +216,7 @@ var/list/sacrificed = list()
 /////////////////////////////////////////FIFTH RUNE
 
 /obj/effect/rune/proc/emp(var/U,var/range_red) //range_red - var which determines by which number to reduce the default emp range, U is the source loc, needed because of talisman emps which are held in hand at the moment of using and that apparently messes things up -- Urist
-	log_and_message_admins("activated an EMP rune.")
+	log_and_message_admins("activated an EMP rune.", usr)
 	if(istype(src,/obj/effect/rune))
 		usr.say("Ta'gh fara[pick("'","`")]qha fel d'amar det!")
 	else
@@ -489,7 +489,7 @@ var/list/sacrificed = list()
 		D.real_name += " "
 		D.real_name += pick("Apparition", "Aptrgangr", "Dis", "Draugr", "Dybbuk", "Eidolon", "Fetch", "Fylgja", "Ghast", "Ghost", "Gjenganger", "Haint", "Phantom", "Phantasm", "Poltergeist", "Revenant", "Shade", "Shadow", "Soul", "Spectre", "Spirit", "Spook", "Visitant", "Wraith")
 
-	log_and_message_admins("used a manifest rune.")
+	log_and_message_admins("used a manifest rune.", usr)
 	var/mob/living/user = usr
 	while(this_rune && user && user.stat==CONSCIOUS && user.client && user.loc==this_rune.loc)
 		user.take_organ_damage(1, 0)
@@ -625,7 +625,7 @@ var/list/sacrificed = list()
 		usr.whisper("O bidai nabora se[pick("'","`")]sma!")
 
 	input = sanitize(input)
-	log_and_message_admins("used a communicate rune to say '[input]'")
+	log_and_message_admins("used a communicate rune to say '[input]'", usr)
 	for(var/datum/mind/H in cult.current_antagonists)
 		if (H.current)
 			to_chat(H.current, "<span class='cult'>[input]</span>")

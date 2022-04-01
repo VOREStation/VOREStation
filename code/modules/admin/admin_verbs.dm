@@ -188,7 +188,7 @@
 			createStealthKey()
 			if(istype(mob, /mob/new_player))
 				mob.name = new_key
-		log_and_message_admins("[key_name(usr)] has turned stealth mode [holder.fakekey ? "ON" : "OFF"]")
+		log_and_message_admins("[key_name(usr)] has turned stealth mode [holder.fakekey ? "ON" : "OFF"]", usr)
 	feedback_add_details("admin_verb","SM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 #define MAX_WARNS 3
@@ -314,7 +314,7 @@
 		duration = duration SECONDS
 
 	L.add_modifier(new_modifier_type, duration)
-	log_and_message_admins("has given [key_name(L)] the modifer [new_modifier_type], with a duration of [duration ? "[duration / 600] minutes" : "forever"].")
+	log_and_message_admins("has given [key_name(L)] the modifer [new_modifier_type], with a duration of [duration ? "[duration / 600] minutes" : "forever"].", usr)
 
 /client/proc/make_sound(var/obj/O in world) // -- TLE
 	set category = "Special Verbs"
@@ -407,7 +407,7 @@
 
 	var/new_name = sanitizeSafe(input(src, "Enter new name. Leave blank or as is to cancel.", "[S.real_name] - Enter new silicon name", S.real_name))
 	if(new_name && new_name != S.real_name)
-		log_and_message_admins("has renamed the silicon '[S.real_name]' to '[new_name]'")
+		log_and_message_admins("has renamed the silicon '[S.real_name]' to '[new_name]'", usr)
 		S.SetName(new_name)
 	feedback_add_details("admin_verb","RAI") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -422,7 +422,7 @@
 
 	var/datum/tgui_module/law_manager/admin/L = new(S)
 	L.tgui_interact(usr)
-	log_and_message_admins("has opened [S]'s law manager.")
+	log_and_message_admins("has opened [S]'s law manager.", usr)
 	feedback_add_details("admin_verb","MSL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/change_security_level()

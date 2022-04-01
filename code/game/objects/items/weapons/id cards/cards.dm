@@ -110,12 +110,16 @@
 
 	uses -= used_uses
 	A.add_fingerprint(user)
+<<<<<<< HEAD
 	//Vorestation Edit: Because some things (read lift doors) don't get emagged
 	if(used_uses)
 		log_and_message_admins("emagged \an [A].")
 	else
 		log_and_message_admins("attempted to emag \an [A].")
 	// Vorestation Edit: End of Edit
+=======
+	log_and_message_admins("emagged \an [A].", user)
+>>>>>>> f06dcc071e5... Merge pull request #8470 from Verkister/patch-89
 
 	if(uses<1)
 		user.visible_message("<span class='warning'>\The [src] fizzles and sparks - it seems it's been used once too often, and is now spent.</span>")
