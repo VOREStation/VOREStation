@@ -62,6 +62,7 @@
 #define HOLOMAP_AREACOLOR_ARRIVALS		"#0000FFCC"
 #define HOLOMAP_AREACOLOR_ESCAPE		"#FF0000CC"
 #define HOLOMAP_AREACOLOR_DORMS			"#CCCC0099"
+#define HOLOMAP_AREACOLOR_CIV			"#3ea800"   //VOREStation Addition
 
 #define LIST_NUMERIC_SET(L, I, V) if(!L) { L = list(); } if (L.len < I) { L.len = I; } L[I] = V
 
