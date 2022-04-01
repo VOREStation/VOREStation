@@ -1,23 +1,21 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /turf/unsimulated/wall/planetary/virgo3c,
-/area/gb_mine/unexplored)
+/area/groundbase/mining/unexplored)
 "o" = (
 /obj/effect/step_trigger/teleporter/from_mining{
 	pixel_y = -16
 	},
 /turf/simulated/mineral/floor/ignore_mapgen,
-/area/gb_mine/unexplored)
-"v" = (
-/obj/effect/step_trigger/teleporter/from_mining,
-/turf/simulated/mineral/cave/virgo3c,
-/area/gb_mine/unexplored)
+/area/groundbase/mining/unexplored)
 "I" = (
-/turf/simulated/mineral/cave/virgo3c,
-/area/gb_mine/unexplored)
+/turf/simulated/mineral/cave/virgo3c{
+	outdoors = 0
+	},
+/area/groundbase/mining/unexplored)
 "Z" = (
 /turf/simulated/mineral/floor/ignore_mapgen,
-/area/gb_mine/unexplored)
+/area/groundbase/mining/unexplored)
 
 (1,1,1) = {"
 a
@@ -1985,8 +1983,8 @@ I
 I
 I
 Z
-I
-I
+Z
+Z
 I
 I
 I
@@ -2127,7 +2125,7 @@ I
 I
 Z
 Z
-Z
+I
 I
 I
 I
@@ -2270,7 +2268,7 @@ Z
 Z
 Z
 o
-I
+Z
 I
 I
 I
@@ -2412,7 +2410,7 @@ Z
 Z
 Z
 o
-I
+Z
 I
 I
 I
@@ -2553,7 +2551,7 @@ I
 I
 Z
 Z
-Z
+I
 I
 I
 I
@@ -2695,8 +2693,8 @@ I
 I
 I
 Z
-I
-I
+Z
+Z
 I
 I
 I
@@ -5338,8 +5336,8 @@ I
 I
 I
 Z
-I
-I
+Z
+Z
 I
 I
 I
@@ -5480,7 +5478,7 @@ I
 I
 Z
 Z
-Z
+I
 I
 I
 I
@@ -5623,7 +5621,7 @@ Z
 Z
 Z
 o
-I
+Z
 I
 I
 I
@@ -5765,7 +5763,7 @@ Z
 Z
 Z
 o
-I
+Z
 I
 I
 I
@@ -5906,7 +5904,7 @@ I
 I
 Z
 Z
-Z
+I
 I
 I
 I
@@ -6048,8 +6046,8 @@ I
 I
 I
 Z
-I
-I
+Z
+Z
 I
 I
 I
@@ -10255,8 +10253,8 @@ I
 I
 I
 Z
-I
-I
+Z
+Z
 I
 I
 I
@@ -10397,7 +10395,7 @@ I
 I
 Z
 Z
-Z
+I
 I
 I
 I
@@ -10540,7 +10538,7 @@ Z
 Z
 Z
 o
-I
+Z
 I
 I
 I
@@ -10682,7 +10680,7 @@ Z
 Z
 Z
 o
-I
+Z
 I
 I
 I
@@ -10823,7 +10821,7 @@ I
 I
 Z
 Z
-Z
+I
 I
 I
 I
@@ -10965,8 +10963,8 @@ I
 I
 I
 Z
-I
-I
+Z
+Z
 I
 I
 I
@@ -17288,8 +17286,8 @@ I
 I
 I
 Z
-I
-I
+Z
+Z
 I
 I
 I
@@ -17430,7 +17428,7 @@ I
 I
 Z
 Z
-Z
+I
 I
 I
 I
@@ -17572,8 +17570,8 @@ I
 Z
 Z
 Z
+o
 Z
-v
 I
 I
 I
@@ -17714,8 +17712,8 @@ I
 Z
 Z
 Z
+o
 Z
-v
 I
 I
 I
@@ -17856,7 +17854,7 @@ I
 I
 Z
 Z
-Z
+I
 I
 I
 I
@@ -17998,8 +17996,8 @@ I
 I
 I
 Z
-I
-I
+Z
+Z
 I
 I
 I
