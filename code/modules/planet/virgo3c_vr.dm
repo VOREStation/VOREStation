@@ -546,6 +546,10 @@ VIRGO3C_TURF_CREATE(/turf/simulated/floor/tiled/dark)
 VIRGO3C_TURF_CREATE(/turf/simulated/mineral)
 VIRGO3C_TURF_CREATE(/turf/simulated/floor)
 
+/turf/simulated/mineral/floor/virgo3c
+	VIRGO3C_SET_ATMOS
+	outdoors = 0
+
 /turf/simulated/floor/outdoors/grass/virgo3c
 	VIRGO3C_SET_ATMOS
 
