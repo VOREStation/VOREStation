@@ -16,7 +16,7 @@
 
 //spawn
 /area/awaymission/accerion_ruins
-	icon_state = "blank"
+	icon_state = "unknown"
 
 //engineering
 /area/awaymission/accerion_ruins/engineering
@@ -68,19 +68,6 @@
 	name = "\improper Away Mission - NRB Ambrosia Gateway"
 	icon_state = "darkred"
 
-//cave
-/area/awaymission/accerion_ruins/cave
-	flags = RAD_SHIELDED
-	dynamic_lighting = 0
-	ambience = list('sound/ambience/ambimine.ogg', 'sound/ambience/song_game.ogg')
-
-/area/awaymission/accerion_ruins/cave/explored/normal
-	name = "\improper Away Mission - NRB Ambrosia Cave (E)"
-	icon_state = "explored"
-/area/awaymission/accerion_ruins/cave/unexplored/normal
-	name = "\improper Away Mission - NRB Ambrosia Cave (UE)"
-	icon_state = "unexplored"
-
 //alien
 /area/awaymission/accerion_ruins/cave/crashed_ufo_scout
 	name = "POI - Crashed Alien Scout"
@@ -106,25 +93,8 @@
 
 //outside
 /area/awaymission/accerion_ruins/outside
+	name = "\improper Away Mission - NRB Ambrosia Exterior"
 	icon_state = "green"
-	requires_power = 1
-	always_unpowered = 1
-	dynamic_lighting = 1
-	power_light = 0
-	power_equip = 0
-	power_environ = 0
-	mobcountmax = 40
-	floracountmax = 2500
-
-	valid_mobs = list()
-	valid_flora = list(/obj/structure/flora/accerion/tallgrass,
-					/obj/structure/flora/accerion/stones,
-					/obj/structure/flora/accerion/bush,
-					/obj/structure/flora/accerion/glassstalks,
-					/obj/structure/flora/accerion/williamsrose,
-					/obj/structure/flora/accerion/goldbulb,
-					/obj/structure/flora/accerion/rafflesia
-					)
 
 // -- Turf -- //
 
