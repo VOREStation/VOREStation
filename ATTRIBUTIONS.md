@@ -45,6 +45,7 @@
 **URL:** [Patreon Post](https://www.patreon.com/posts/diable-avionics-44573931)<br>
 **Notes:** Permission to use assets also given in writing.<br>
 <br>
+<<<<<<< HEAD
 **File:** `sound/ambience/space/aurora_caelus.ogg`<br>
 **Title:** Music for Manatees<br>
 **Creator:** Kevin MacLeod (incompetech.com)<br>
@@ -54,3 +55,10 @@
 **Title:** Spaceship starup and shutdown<br>
 **Creator:** viznoman (https://freesound.org/people/viznoman/sounds/267308/)<br>
 **License:** [CC BY 3.0](http://creativecommons.org/licenses/by/3.0/)<br>
+=======
+**File:** `maps/cynosure/title_cynosure.png`<br>
+**Creator:** Adrien "Gasgano" Perrier<br>
+**License:** [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)<br>
+**URL:** [Artstation Portfolio] (http://www.artstation.com/gasgano)<br>
+**Notes:** Artwork commissioned under contract for Polaris.<br>
+>>>>>>> faa29cdfe1b... Merge pull request #8490 from Cerebulon/title_screen_compressed

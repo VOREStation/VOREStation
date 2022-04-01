@@ -13,8 +13,22 @@
 	full_name = "Cynosure Station"
 	path = "cynosure"
 
+<<<<<<< HEAD
 	lobby_icon = 'icons/misc/title.dmi'
 	lobby_screens = list("mockingjay00") // New lobby screen if possible.
+=======
+	lobby_screens = list('maps/cynosure/title_cynosure.png')
+
+	lobby_tracks = list(
+		/decl/music_track/chasing_time,
+		/decl/music_track/epicintro2015,
+		/decl/music_track/human,
+		/decl/music_track/marhaba,
+		/decl/music_track/treacherous_voyage,
+		/decl/music_track/asfarasitgets,
+		/decl/music_track/space_oddity,
+		/decl/music_track/martiancowboy)
+>>>>>>> faa29cdfe1b... Merge pull request #8490 from Cerebulon/title_screen_compressed
 
 	holomap_smoosh = list(list(
 		Z_LEVEL_STATION_ONE,
