@@ -129,7 +129,12 @@
 	var/breath_type = "oxygen"								// Non-oxygen gas breathed, if any.
 	var/poison_type = "phoron"								// Poisonous air.
 	var/exhale_type = "carbon_dioxide"						// Exhaled gas type.
+<<<<<<< HEAD
 	var/water_breather = FALSE
+=======
+	var/suit_inhale_sound = 'sound/effects/mob_effects/suit_breathe_in.ogg'
+	var/suit_exhale_sound = 'sound/effects/mob_effects/suit_breathe_out.ogg'
+>>>>>>> 1a317b45cd8... Merge pull request #8429 from Rykka-Stormheart/shep-dev-breath-sounds
 
 	var/body_temperature = 310.15							// Species will try to stabilize at this temperature. (also affects temperature processing)
 

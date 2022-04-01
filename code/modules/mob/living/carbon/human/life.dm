@@ -571,6 +571,16 @@
 	else
 		failed_last_breath = 0
 		adjustOxyLoss(-5)
+		
+	if(!does_not_breathe && client) // If we breathe, and have an active client, check if we have synthetic lungs.
+		var/obj/item/organ/internal/lungs/L = internal_organs_by_name[O_LUNGS]
+		var/turf = get_turf(src)
+		var/mob/living/carbon/human/M = src
+		if(L.robotic < ORGAN_ROBOT && is_below_sound_pressure(turf) && M.internal) // Only non-synthetic lungs, please, and only play these while the pressure is below that which we can hear sounds normally AND we're on internals.
+			if(!failed_inhale && (world.time >= (last_breath_sound + 7 SECONDS))) // Were we able to inhale successfully? Play inhale.
+				var/exhale = failed_exhale // Pass through if we passed exhale or not
+				play_inhale(M, exhale)
+				last_breath_sound = world.time
 
 
 	// Hot air hurts :(
@@ -637,6 +647,26 @@
 
 	breath.update_values()
 	return 1
+	
+/mob/living/carbon/human/proc/play_inhale(var/mob/living/M, var/exhale)
+	var/suit_inhale_sound
+	if(species.suit_inhale_sound)
+		suit_inhale_sound = species.suit_inhale_sound
+	else // Failsafe
+		suit_inhale_sound = 'sound/effects/mob_effects/suit_breathe_in.ogg'
+	
+	playsound_local(get_turf(src), suit_inhale_sound, 100, pressure_affected = FALSE, volume_channel = VOLUME_CHANNEL_AMBIENCE)
+	if(!exhale) // Did we fail exhale? If no, play it after inhale finishes.
+		addtimer(CALLBACK(src, .proc/play_exhale, M), 5 SECONDS)
+	
+/mob/living/carbon/human/proc/play_exhale(var/mob/living/M)
+	var/suit_exhale_sound
+	if(species.suit_exhale_sound)
+		suit_exhale_sound = species.suit_exhale_sound
+	else // Failsafe
+		suit_exhale_sound = 'sound/effects/mob_effects/suit_breathe_out.ogg'
+	
+	playsound_local(get_turf(src), suit_exhale_sound, 100, pressure_affected = FALSE, volume_channel = VOLUME_CHANNEL_AMBIENCE)
 
 /mob/living/carbon/human/handle_environment(datum/gas_mixture/environment)
 	if(!environment)
