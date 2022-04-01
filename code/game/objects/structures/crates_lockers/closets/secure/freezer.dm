@@ -8,6 +8,9 @@
 		/obj/item/weapon/reagent_containers/food/condiment/spacespice = 2
 		)
 
+	open_sound = 'sound/machines/click.ogg'
+	close_sound = 'sound/machines/click.ogg'
+
 /obj/structure/closet/secure_closet/freezer/kitchen/mining
 	req_access = list()
 

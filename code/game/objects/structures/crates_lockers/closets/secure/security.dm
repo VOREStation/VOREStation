@@ -230,6 +230,9 @@
 	req_access = list(access_forensics_lockers)
 	closet_appearance = /decl/closet_appearance/cabinet/secure
 
+	open_sound = 'sound/effects/wooden_closet_open.ogg'
+	close_sound = 'sound/effects/wooden_closet_close.ogg'
+
 	starts_with = list(
 		/obj/item/clothing/accessory/badge/holo/detective,
 		/obj/item/clothing/gloves/black,
