@@ -21,9 +21,7 @@
 /datum/map/groundbase/New()
 	..()
 	var/choice = pickweight(list(
-		"logo1" = 50,
-		"logo2" = 50,
-		"gateway" = 5
+		"endo"
 	))
 	if(choice)
 		lobby_screens = list(choice)
@@ -42,7 +40,7 @@
 	zlevel_datum_type = /datum/map_z_level/groundbase
 
 	lobby_icon = 'icons/misc/title_vr.dmi'
-	lobby_screens = list("logo1")
+	lobby_screens = list("endo")
 	id_hud_icons = 'icons/mob/hud_jobs_vr.dmi'
 
 
@@ -140,6 +138,11 @@
 		/area/groundbase/level3/nw,
 		/area/groundbase/level3/se,
 		/area/groundbase/level3/sw,
+		/area/maintenance/groundbase/level1/netunnel,
+		/area/maintenance/groundbase/level1/nwtunnel,
+		/area/maintenance/groundbase/level1/setunnel,
+		/area/maintenance/groundbase/level1/stunnel,
+		/area/maintenance/groundbase/level1/swtunnel,
 		/area/groundbase/science/picnic,
 		/area/groundbase/medical/patio,
 		/area/groundbase/civilian/hydroponics/out
@@ -441,11 +444,8 @@
 /obj/effect/step_trigger/teleporter/to_mining/Initialize()
 	. = ..()
 	teleport_x = x
-	teleport_y = y
-	for(var/z_num in using_map.zlevels)
-		var/datum/map_z_level/Z = using_map.zlevels[z_num]
-		if(Z.name == "V3c Underground")
-			teleport_z = Z.z
+	teleport_y = y + 1
+	teleport_z = Z_LEVEL_MINING
 
 /obj/effect/step_trigger/teleporter/from_mining
 	icon = 'icons/obj/structures/stairs_64x64.dmi'
@@ -454,8 +454,5 @@
 /obj/effect/step_trigger/teleporter/from_mining/Initialize()
 	. = ..()
 	teleport_x = x
-	teleport_y = y
-	for(var/z_num in using_map.zlevels)
-		var/datum/map_z_level/Z = using_map.zlevels[z_num]
-		if(Z.name == "Level 1")
-			teleport_z = Z.z
+	teleport_y = y - 1
+	teleport_z = Z_LEVEL_GB_BOTTOM
