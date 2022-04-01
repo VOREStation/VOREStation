@@ -2085,6 +2085,7 @@
 #include "code\modules\clothing\under\solgov.dm"
 #include "code\modules\clothing\under\solgov_vr.dm"
 #include "code\modules\clothing\under\syndicate.dm"
+#include "code\modules\clothing\under\tribal.dm"
 #include "code\modules\clothing\under\accessories\accessory.dm"
 #include "code\modules\clothing\under\accessories\accessory_vr.dm"
 #include "code\modules\clothing\under\accessories\armband.dm"
