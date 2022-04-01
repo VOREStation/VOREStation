@@ -121,7 +121,10 @@
 	unit_test_exempt_areas = list(
 		/area/groundbase/level1,
 		/area/groundbase/level2,
-		/area/groundbase/level3
+		/area/groundbase/level3,
+		/area/groundbase/science/picnic,
+		/area/groundbase/medical/patio,
+		/area/groundbase/civilian/hydroponics/out
 		)
 
 	unit_test_exempt_from_atmos = list()
@@ -184,13 +187,12 @@
 	icon_state = "space5"
 	use_stars = FALSE
 
-/datum/planet/virgo3b
-	expected_z_levels = list(Z_LEVEL_CENTCOM)
 /datum/planet/virgo3c
 	expected_z_levels = list(
 		Z_LEVEL_GB_BOTTOM,
 		Z_LEVEL_GB_MIDDLE,
-		Z_LEVEL_GB_TOP
+		Z_LEVEL_GB_TOP,
+		Z_LEVEL_CENTCOM
 		)
 /datum/planet/virgo4
 	expected_z_levels = list(
@@ -241,8 +243,8 @@
 	skybox_pixel_x = 0
 	skybox_pixel_y = 0
 
-	initial_generic_waypoints = list()
-	initial_restricted_waypoints = list()
+	initial_generic_waypoints = list("groundbase")
+	initial_restricted_waypoints = list("Exploration Shuttle" = list("gbexplo"))
 
 	extra_z_levels = list()
 
@@ -350,3 +352,66 @@
 	desc = "The Virgo 2 Aerostat away mission."
 	mappath = 'maps/expedition_vr/aerostat/aerostat.dmm'
 	associated_map_datum = /datum/map_z_level/common_lateload/away_aerostat
+
+/////EXPLOSHUTTL/////
+// The shuttle's 'shuttle' computer
+/obj/machinery/computer/shuttle_control/explore/gbexplo
+	name = "Shuttle control console"
+	shuttle_tag = "gbexplo"
+	req_one_access = list(access_pilot)
+
+/obj/effect/overmap/visitable/ship/landable/gbexplo
+	name = "Exploration Shuttle"
+	desc = "A small shuttle from Rascal's Pass."
+	vessel_mass = 2500
+	vessel_size = SHIP_SIZE_TINY
+	shuttle = "gbexplo"
+	known = TRUE
+
+// A shuttle lateloader landmark
+
+/datum/shuttle/autodock/overmap/gbexplo
+	name = "Exploration Shuttlepad"
+	current_location = "ex_shuttlepad"
+	docking_controller_tag = "ex_docker"
+	shuttle_area = list(/area/shuttle/groundbase/exploration)
+	fuel_consumption = 1
+	defer_initialisation = TRUE
+
+/area/shuttle/groundbase/exploration
+	icon = 'icons/turf/areas_vr.dmi'
+	icon_state = "yelwhitri"
+	name = "Exploration Shuttle"
+	requires_power = 1
+
+//////////////////////////////////////////////
+
+// Supply shuttle
+/datum/shuttle/autodock/ferry/supply/cargo
+	name = "Supply"
+	location = FERRY_LOCATION_OFFSITE
+	shuttle_area = /area/shuttle/supply
+	warmup_time = 10
+	landmark_offsite = "supply_cc"
+	landmark_station = "supply_station"
+	docking_controller_tag = "supply_shuttle"
+	flags = SHUTTLE_FLAGS_PROCESS|SHUTTLE_FLAGS_SUPPLY
+	move_direction = WEST
+
+////////////////////////////////////////////////
+
+/datum/shuttle/autodock/ferry/emergency/escape
+	name = "Escape"
+	location = FERRY_LOCATION_OFFSITE
+	shuttle_area = /area/shuttle/escape
+	warmup_time = 10
+	landmark_offsite = "escape_cc"
+	landmark_station = "escape_station"
+	landmark_transition = "escape_transit"
+	move_time = SHUTTLE_TRANSIT_DURATION_RETURN
+	move_direction = SOUTH
+	docking_controller_tag = "escape_shuttle"
+
+/obj/effect/shuttle_landmark/premade/groundbase
+	name = "Rascal's Pass"
+	landmark_tag = "groundbase"

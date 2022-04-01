@@ -1,5 +1,5 @@
 #define VIRGO3C_ONE_ATMOSPHERE	92.5 //kPa
-#define VIRGO3C_AVG_TEMP	278.15 //kelvin
+#define VIRGO3C_AVG_TEMP	288.15 //kelvin
 
 #define VIRGO3C_PER_N2			0.78 //percent
 #define VIRGO3C_PER_O2			0.21
@@ -23,7 +23,7 @@
 var/datum/planet/virgo3c/planet_virgo3c = null
 
 /datum/time/virgo3c
-	seconds_in_day = 12 HOURS
+	seconds_in_day = 6 HOURS
 
 /datum/planet/virgo3c
 	name = "Virgo-3c"

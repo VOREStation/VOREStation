@@ -10,7 +10,6 @@
 //	#include "..\stellardelight\stellar_delight_areas.dm"
 //	#include "..\tether\tether_areas.dm"
 
-
 	#if !AWAY_MISSION_TEST //Don't include these for just testing away missions
 		#include "gb-z1.dmm"
 		#include "gb-z2.dmm"
