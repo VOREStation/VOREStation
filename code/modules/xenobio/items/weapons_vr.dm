@@ -54,6 +54,8 @@
 		//playsound(src, 'sound/weapons/wave.ogg', 60, 1)
 		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 		return
+	if(!firable)
+		return
 
 	playsound(src, 'sound/weapons/wave.ogg', 60, 1)
 
