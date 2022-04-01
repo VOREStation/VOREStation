@@ -231,6 +231,17 @@
 	fire_sound = 'sound/weapons/gunshot4.ogg'
 	damage = 50
 
+/* Mech rounds */
+
+/obj/item/projectile/bullet/mech/autocannon // Splitting it off from the original pistol/medium to give it its own sprite and potentially separate damage values later on.
+	icon_state = "mech_autocannon"
+	fire_sound = 'sound/weapons/mech_autocannon.ogg' // Doesn't actually work for the mech autocannon normally in my testing, putting it here in case anything else wants to use the sound.
+	light_range = 2
+	light_power = 0.5
+	light_color = "#FF7F01"
+	plane = PLANE_LIGHTING_ABOVE // I don't know if this actually does anything here but nothing breaks and the end result works soooo
+	damage = 25
+
 /* Miscellaneous */
 
 /obj/item/projectile/bullet/suffocationbullet//How does this even work?
