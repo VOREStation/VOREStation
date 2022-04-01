@@ -10,7 +10,7 @@
 	if(!cursor || reinit)
 		cursor = image('icons/holomap_markers.dmi', "you")
 	if(!legend || reinit)
-		legend = image('icons/effects/64x64.dmi', "legend_sc")
+		legend = image('icons/effects/64x64.dmi', "legend_cyno")
 
 	if(isAI)
 		T = get_turf(user.client.eye)

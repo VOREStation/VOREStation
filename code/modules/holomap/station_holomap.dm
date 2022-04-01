@@ -163,8 +163,13 @@
 /obj/machinery/station_map/update_icon()
 	if(!holomap_datum)
 		return //Not yet.
+<<<<<<< HEAD
 		
 	cut_overlays()
+=======
+
+	overlays.Cut()
+>>>>>>> 921bf58cef9... Merge pull request #8477 from Cerebulon/holomaps
 	if(stat & BROKEN)
 		icon_state = "station_mapb"
 	else if((stat & NOPOWER) || !anchored)
