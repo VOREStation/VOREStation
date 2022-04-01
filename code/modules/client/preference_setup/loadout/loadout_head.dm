@@ -394,6 +394,14 @@
 	cap_type["Navy cap"] = /obj/item/clothing/head/surgery/navyblue
 	gear_tweaks += new/datum/gear_tweak/path(cap_type)
 
+/datum/gear/head/hairnet
+	display_name = "hairnet (colorable)"
+	path = /obj/item/clothing/head/surgery/hairnet
+
+/datum/gear/head/hairnet/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
 /datum/gear/head/circuitry
 	display_name = "headwear, circuitry (empty)"
 	path = /obj/item/clothing/head/circuitry

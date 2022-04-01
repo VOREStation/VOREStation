@@ -5,6 +5,15 @@
 	desc = "It's a hat used by chefs to keep hair out of your food. Judging by the food in the mess, they don't work."
 	icon_state = "chefhat"
 
+/obj/item/clothing/head/surgery/hairnet
+	name = "hairnet"
+	desc = "A hairnet used to keep the hair out of the way and out of the food."
+	icon_state = "hairnet"
+	item_state = "hairnet"
+	sprite_sheets = list(
+		SPECIES_TAJARAN = 'icons/mob/species/tajaran/helmet.dmi'
+		)
+
 //Captain
 /obj/item/clothing/head/caphat
 	name = "site manager's hat"
@@ -221,6 +230,7 @@
 /obj/item/clothing/head/surgery/navyblue
 	desc = "A cap surgeons wear during operations. Keeps their hair from tickling your internal organs. This one is navy blue."
 	icon_state = "surgcap_navyblue"
+<<<<<<< HEAD
 	item_state_slots = list(slot_r_hand_str = "beret_navy", slot_l_hand_str = "beret_navy")
 
 /obj/item/clothing/head/beret/medical
@@ -281,3 +291,6 @@
 	name = "quartermaster's beret"
 	desc = "This headwear shows off your Cargonian leadership."
 	icon_state = "beretqm"
+=======
+	item_state_slots = list(slot_r_hand_str = "beret_navy", slot_l_hand_str = "beret_navy")
+>>>>>>> 201c3cb220e... Merge pull request #8441 from Cerebulon/hairnets

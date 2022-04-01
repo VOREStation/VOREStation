@@ -54,8 +54,13 @@
 		/obj/item/weapon/storage/box/mousetraps = 2,
 		/obj/item/clothing/under/rank/chef,
 		/obj/item/clothing/head/chefhat,
+<<<<<<< HEAD
 		/obj/item/weapon/storage/bag/food = 2
 		)
+=======
+		/obj/item/clothing/head/surgery/hairnet = 2,
+		/obj/item/weapon/storage/bag/food = 2)
+>>>>>>> 201c3cb220e... Merge pull request #8441 from Cerebulon/hairnets
 
 /*
  * Janitor
