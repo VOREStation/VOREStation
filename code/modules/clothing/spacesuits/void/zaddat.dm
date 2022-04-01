@@ -117,6 +117,53 @@
 				helmet.desc = "Not as solid as a proper helmet, but works nonetheless."
 				helmet.icon_state = "zaddat_soft"
 				helmet.item_state = "zaddat_soft"
+<<<<<<< HEAD
+=======
+		if("Ancient")
+			name = "ancient Shroud"
+			base_name = "ancient Shroud"
+			desc = "Often seen among the guildless or dishonored, this is an extremely old design of Shroud and has clearly seen its years."
+			icon_state = "zaddat_ancient"
+			item_state = "zaddat_ancient"
+			if(helmet)
+				helmet.name = "ancient Shroud helmet"
+				helmet.desc = "A crack in the visor allows some light through, though it maintains its seal."
+				helmet.icon_state = "zaddat_ancient"
+				helmet.item_state = "zaddat_ancient"
+		if("Healer")
+			name = "healer Shroud"
+			base_name = "healer Shroud"
+			desc = "A shroud designed for those working within medicine, a common pursuit for Zaddat. it is clearly marked with the standard cross and colors."
+			icon_state = "zaddat_healer"
+			item_state = "zaddat_healer"
+			if(helmet)
+				helmet.name = "healer Shroud helmet"
+				helmet.desc = "A helmet designed to signal the wearer as a healer."
+				helmet.icon_state = "zaddat_healer"
+				helmet.item_state = "zaddat_healer"
+		if("Clockwork")
+			name = "clockwork Shroud"
+			base_name = "clockwork Shroud"
+			desc = "Inspired by clockwork designs seen in some ancient human technologies and subcultures, this suit was popularized through osmosis with those subcultures."
+			icon_state = "zaddat_clockwork"
+			item_state = "zaddat_clockwork"
+			if(helmet)
+				helmet.name = "clockwork Shroud helmet"
+				helmet.desc = "Plated in brass."
+				helmet.icon_state = "zaddat_clockwork"
+				helmet.item_state = "zaddat_clockwork"
+		if("Retro")
+			name = "retro Shroud"
+			base_name = "retro Shroud"
+			desc = "This suit is derivative of some seen in ancient human media, long before voidsuits were commonplace. Such media has found a resurgence in popularity among some Zaddat."
+			icon_state = "zaddat_retro"
+			item_state = "zaddat_retro"
+			if(helmet)
+				helmet.name = "retro Shroud helmet"
+				helmet.desc = "A classic design for the modern age."
+				helmet.icon_state = "zaddat_retro"
+				helmet.item_state = "zaddat_retro"
+>>>>>>> 8c7324bd605... Merge pull request #8465 from listerla/whatificouldspell
 
 	to_chat(M, "You finish customizing your Shroud. Looking good!")
 	has_been_customized = TRUE
