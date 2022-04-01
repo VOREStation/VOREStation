@@ -288,16 +288,6 @@
 	containername = "Riot armor crate"
 	access = access_armory
 
-/datum/supply_pack/security/riot_sprayer
-	name = "Gear - Riot sprayer"
-	contains = list(
-			/obj/item/weapon/watertank/pepperspray
-			)
-	cost = 40
-	containertype = /obj/structure/closet/crate/secure/lawson
-	containername = "Riot sprayer crate"
-	access = access_armory
-
 /datum/supply_pack/security/ablative_armor
 	name = "Armor - Ablative"
 	contains = list(

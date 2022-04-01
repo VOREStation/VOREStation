@@ -760,7 +760,7 @@
 /obj/random/mouseremains/item_to_spawn()
 	return pick(/obj/item/device/assembly/mousetrap,
 				/obj/item/device/assembly/mousetrap/armed,
-				/obj/effect/decal/cleanable/bug_remains,
+				/obj/effect/decal/cleanable/spiderling_remains,
 				/obj/effect/decal/cleanable/ash,
 				/obj/item/trash/cigbutt,
 				/obj/item/trash/cigbutt/cigarbutt,

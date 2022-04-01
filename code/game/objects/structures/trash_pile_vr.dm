@@ -283,12 +283,10 @@
 
 /obj/structure/mob_spawner/mouse_nest
 	name = "trash"
-	desc = "A small heap of trash, perfect for mice and other pests to nest in."
+	desc = "A small heap of trash, perfect for mice to nest in."
 	icon = 'icons/obj/trash_piles.dmi'
 	icon_state = "randompile"
-	spawn_types = list(
-    /mob/living/simple_mob/animal/passive/mouse= 100,
-    /mob/living/simple_mob/animal/passive/cockroach = 25)
+	spawn_types = list(/mob/living/simple_mob/animal/passive/mouse)
 	simultaneous_spawns = 1
 	destructible = 1
 	spawn_delay = 1 HOUR

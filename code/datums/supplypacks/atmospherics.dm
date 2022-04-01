@@ -106,16 +106,3 @@
 	cost = 35
 	containertype = /obj/structure/closet/crate/aether
 	containername = "Emergency crate"
-
-/datum/supply_pack/atmos/firefighting
-	name = "Firefighting equipment"
-	contains = list(
-		/obj/item/clothing/suit/fire/heavy = 2,
-		/obj/item/weapon/tank/oxygen/red = 2,
-		/obj/item/weapon/watertank/atmos = 2,
-		/obj/item/device/flashlight = 2,
-		/obj/item/clothing/head/hardhat/firefighter/atmos = 2
-			)
-	cost = 35
-	containertype = /obj/structure/closet/crate/aether
-	containername = "Firefighting crate"
