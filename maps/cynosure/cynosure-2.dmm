@@ -4581,7 +4581,7 @@
 /area/surface/station/medical/ward)
 "cgM" = (
 /obj/structure/table/glass,
-/obj/item/weapon/reagent_containers/food/drinks/britcup,
+/obj/random/mug,
 /turf/simulated/floor/tiled/techmaint,
 /area/surface/station/medical/hallway/gnd)
 "cgV" = (
@@ -5521,12 +5521,12 @@
 /turf/simulated/floor/tiled,
 /area/surface/station/engineering/workshop)
 "cJc" = (
-/obj/structure/closet,
 /obj/effect/floor_decal/industrial/outline/grey,
 /obj/machinery/firealarm{
 	dir = 8;
 	pixel_x = -24
 	},
+/obj/structure/filingcabinet,
 /turf/simulated/floor/tiled/dark,
 /area/surface/station/security/evidence_storage)
 "cJk" = (
@@ -18802,6 +18802,9 @@
 /obj/effect/floor_decal/corner/brown/border{
 	dir = 4
 	},
+/obj/structure/sign/level/ground{
+	pixel_y = -32
+	},
 /turf/simulated/floor/tiled,
 /area/surface/station/quartermaster/storage)
 "iPF" = (
@@ -26028,7 +26031,9 @@
 /turf/simulated/floor/tiled,
 /area/surface/station/security/range)
 "maD" = (
-/obj/structure/closet,
+/obj/structure/closet{
+	name = "evidence locker"
+	},
 /obj/effect/floor_decal/industrial/outline/grey,
 /obj/machinery/light/small{
 	dir = 1
@@ -28909,6 +28914,7 @@
 /obj/structure/table/marble,
 /obj/item/weapon/material/knife/butch,
 /obj/item/weapon/material/kitchen/rollingpin,
+/obj/random/mug,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/surface/station/crew_quarters/kitchen)
 "nnd" = (
@@ -29900,6 +29906,7 @@
 	dir = 8
 	},
 /obj/structure/table/woodentable,
+/obj/random/mug,
 /turf/simulated/floor/tiled/hydro,
 /area/surface/station/park)
 "nLW" = (
@@ -30935,6 +30942,9 @@
 	pixel_y = 22
 	},
 /obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/structure/sign/level/ground{
+	pixel_x = -32
+	},
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/substation/civilian)
 "oiZ" = (
@@ -32503,7 +32513,9 @@
 /turf/simulated/floor/plating,
 /area/surface/station/engineering/reactor_room)
 "oRs" = (
-/obj/structure/closet,
+/obj/structure/closet{
+	name = "contraband locker"
+	},
 /obj/effect/floor_decal/industrial/outline/grey,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -34367,7 +34379,7 @@
 	name = "Medical Reception";
 	req_access = list(5)
 	},
-/obj/item/weapon/reagent_containers/food/drinks/britcup,
+/obj/random/mug,
 /turf/simulated/floor/tiled/neutral,
 /area/surface/station/medical/reception)
 "pzA" = (
@@ -51944,7 +51956,9 @@
 /turf/simulated/floor/tiled,
 /area/surface/station/security/lobby)
 "xKl" = (
-/obj/structure/closet,
+/obj/structure/closet{
+	name = "evidence locker"
+	},
 /obj/effect/floor_decal/industrial/outline/grey,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/item/device/radio/intercom{
@@ -52690,7 +52704,9 @@
 /turf/simulated/floor/outdoors/mask,
 /area/surface/outside/plains/station)
 "xXF" = (
-/obj/structure/closet,
+/obj/structure/closet{
+	name = "evidence locker"
+	},
 /obj/effect/floor_decal/industrial/outline/grey,
 /obj/machinery/alarm{
 	pixel_y = 22

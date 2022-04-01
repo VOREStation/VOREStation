@@ -4009,7 +4009,7 @@
 	id = "disvent";
 	name = "Incinerator Vent Control";
 	pixel_y = 24;
-	req_one_access = list(7)
+	req_one_access = list(12)
 	},
 /turf/simulated/floor/tiled/old_tile/gray,
 /area/surface/station/maintenance/incinerator)
@@ -15639,6 +15639,9 @@
 /obj/machinery/firealarm{
 	pixel_y = 24
 	},
+/obj/machinery/camera/network/civilian{
+	c_tag = "CIV - Waste Disposal"
+	},
 /turf/simulated/floor/tiled/old_tile/gray,
 /area/surface/station/maintenance/incinerator)
 "HW" = (
@@ -21575,10 +21578,6 @@
 	},
 /obj/machinery/conveyor_switch/oneway{
 	id = "garbage"
-	},
-/obj/machinery/camera/network/civilian{
-	c_tag = "CIV - Waste Disposal";
-	dir = 1
 	},
 /obj/item/device/radio/intercom{
 	pixel_y = -21

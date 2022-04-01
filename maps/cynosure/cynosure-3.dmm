@@ -22883,6 +22883,7 @@
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/brigdoor/eastleft,
 /obj/item/sticky_pad/random,
+/obj/random/mug,
 /turf/simulated/floor/tiled/dark,
 /area/surface/station/security/warden)
 "oWN" = (
@@ -23334,6 +23335,7 @@
 "pmw" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/storage/box/donut,
+/obj/random/mug,
 /turf/simulated/floor/carpet,
 /area/surface/station/crew_quarters/captain)
 "pmL" = (
@@ -31462,22 +31464,6 @@
 	},
 /turf/simulated/shuttle/wall/dark/no_join,
 /area/shuttle/large_escape_pod2/station)
-"uDG" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/structure/cable/green{
-	d2 = 8;
-	icon_state = "0-8"
-	},
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/machinery/door/blast/regular/open{
-	dir = 4;
-	id = "captainlockdown";
-	layer = 3.3;
-	name = "Site Manager Lockdown"
-	},
-/turf/simulated/floor/plating,
-/area/surface/station/crew_quarters/captain)
 "uDX" = (
 /obj/machinery/light{
 	dir = 1
@@ -34260,7 +34246,12 @@
 /obj/item/weapon/clipboard,
 /obj/item/weapon/pen,
 /obj/item/sticky_pad/random,
+<<<<<<< HEAD
 /obj/item/weapon/storage/firstaid,
+=======
+/obj/item/weapon/storage/firstaid/regular,
+/obj/random/mug,
+>>>>>>> 281e7883b48... Merge pull request #8457 from Cerebulon/maptweaksmarch2022part2
 /turf/simulated/floor/wood/sif,
 /area/surface/station/rnd/research)
 "wzs" = (
@@ -35787,22 +35778,6 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/surface/station/storage/art)
-"xpe" = (
-/obj/machinery/door/firedoor/border_only,
-/obj/structure/cable/green{
-	d2 = 4;
-	icon_state = "0-4"
-	},
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/machinery/door/blast/regular/open{
-	dir = 4;
-	id = "captainlockdown";
-	layer = 3.3;
-	name = "Site Manager Lockdown"
-	},
-/turf/simulated/floor/plating,
-/area/surface/station/crew_quarters/captain)
 "xpk" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
@@ -68511,7 +68486,7 @@ uwO
 uwO
 uwO
 uwO
-xpe
+xVv
 pmw
 mMW
 nlh
@@ -69025,7 +69000,7 @@ uwO
 uwO
 uwO
 uwO
-uDG
+aPW
 iaD
 iaD
 jIo
