@@ -1156,6 +1156,13 @@
 /obj/effect/floor_decal/industrial/outline,
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/cargo/office)
+"yZ" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/obj/random/vendorall,
+/turf/simulated/floor/tiled/virgo3c,
+/area/groundbase/medical/patio)
 "zb" = (
 /obj/structure/cable/yellow{
 	icon_state = "32-8"
@@ -1650,16 +1657,10 @@
 	pixel_x = 6;
 	pixel_y = -4
 	},
-/obj/effect/floor_decal/borderfloor{
-	dir = 1
-	},
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 4
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals7,
-/obj/effect/floor_decal/corner/green/border{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
@@ -15471,7 +15472,7 @@ IS
 IS
 IS
 Hx
-qT
+yZ
 xp
 xX
 xX
@@ -15613,7 +15614,7 @@ IS
 IS
 IS
 Hx
-qT
+yZ
 OD
 HI
 xX

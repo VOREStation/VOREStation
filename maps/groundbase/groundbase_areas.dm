@@ -5,6 +5,7 @@
 	requires_power = TRUE
 	dynamic_lighting = TRUE
 	ambience = AMBIENCE_MAINTENANCE
+	base_turf = /turf/simulated/mineral/floor/virgo3c
 
 /area/maintenance/groundbase
 	name = "Maintenance"
@@ -13,7 +14,7 @@
 	flags = RAD_SHIELDED
 	ambience = AMBIENCE_MAINTENANCE
 	flags = AREA_FLAG_IS_NOT_PERSISTENT
-
+	base_turf = /turf/simulated/mineral/floor/virgo3c
 
 /area/groundbase/level1
 	name = "Rascal's Pass Level 1"
@@ -200,6 +201,8 @@
 	name = "Medical Patient Room 3"
 /area/groundbase/medical/patient4
 	name = "Medical Patient Room 4"
+/area/groundbase/medical/morgue
+	name = "Morgue"
 
 /area/groundbase/engineering
 	name = "Engineering"
@@ -271,6 +274,11 @@
 	name = "Gateway"
 /area/groundbase/civilian/janitor
 	name = "Janitor's Closet"
+/area/groundbase/civilian/foodplace
+	name = "Uncle Grumslex's Snack Emporium"
+/area/groundbase/civilian/apparel
+	name = "Crew Apparel Care"
+
 
 /area/groundbase/exploration
 	name = "Exploration"
@@ -328,3 +336,8 @@
 	name = "\improper Level 1 South Tunnel"
 /area/maintenance/groundbase/level1/swtunnel
 	name = "\improper Level 1 Southwest Tunnel"
+
+/area/groundbase/mining/unexplored
+	name = "Mining"
+/area/groundbase/mining/explored
+	name = "Mining"
