@@ -1,3 +1,5 @@
+/// Not in use.
+
 //This only exists to be abused, so it's highly recommended to ensure this file is unchecked.
 /datum/power/changeling/LSDSting
 	name = "Hallucination Sting"

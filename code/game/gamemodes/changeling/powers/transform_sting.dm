@@ -1,3 +1,5 @@
+/// Not in use. 
+
 //Suggested to leave unchecked because this is why we can't have nice things.
 /datum/power/changeling/transformation_sting
 	name = "Transformation Sting"

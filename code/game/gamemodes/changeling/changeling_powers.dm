@@ -65,7 +65,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	if(!mind)				return
 	if(!mind.changeling)	mind.changeling = new /datum/changeling(gender)
 
-	verbs.Add(/datum/changeling/proc/EvolutionMenu)
+	verbs.Add(/datum/changeling/proc/EvolutionTree)
 	verbs.Add(/mob/proc/changeling_respec)
 	add_language("Changeling")
 
@@ -79,7 +79,8 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	for(var/datum/power/changeling/P in powerinstances)
 		if(!P.genomecost) // Is it free?
 			if(!(P in mind.changeling.purchased_powers)) // Do we not have it already?
-				mind.changeling.purchasePower(mind, P.name, 0)// Purchase it. Don't remake our verbs, we're doing it after this.
+				mind.changeling.purchased_powers += P /// Add it.
+				mind.changeling.purchasePower(mind, P, 0)// Purchase it. Don't remake our verbs, we're doing it after this.
 
 	for(var/datum/power/changeling/P in mind.changeling.purchased_powers)
 		if(P.isVerb)

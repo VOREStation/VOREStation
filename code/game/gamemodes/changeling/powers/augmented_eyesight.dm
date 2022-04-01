@@ -6,6 +6,7 @@
 	helptext = "Grants us thermal vision. It may be toggled on or off. We will become more vulnerable to flash-based devices while active."
 	ability_icon_state = "ling_augmented_eyesight"
 	genomecost = 2
+	power_category = CHANGELING_POWER_ENHANCEMENTS
 	verbpath = /mob/proc/changeling_augmented_eyesight
 
 /mob/proc/changeling_augmented_eyesight()

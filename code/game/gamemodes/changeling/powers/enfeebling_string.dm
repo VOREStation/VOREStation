@@ -1,10 +1,11 @@
 /datum/power/changeling/enfeebling_string
-	name = "Enfeebling String"
+	name = "Enfeebling String" /// String????
 	desc = "We sting a biological with a potent toxin that will greatly weaken them for a short period of time."
 	helptext = "Lowers the maximum health of the victim for a few minutes, as well as making them more frail and weak.  This sting will also warn them of this."
 	enhancedtext = "Maximum health and outgoing melee damage is lowered further.  Incoming damage is increased."
 	ability_icon_state = "ling_sting_enfeeble"
 	genomecost = 1
+	power_category = CHANGELING_POWER_STINGS
 	verbpath = /mob/proc/changeling_enfeebling_string
 
 /datum/modifier/enfeeble

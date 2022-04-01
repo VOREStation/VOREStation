@@ -1,3 +1,5 @@
+/// Not in use. 
+
 /datum/power/changeling/unfat_sting
 	name = "Unfat Sting"
 	desc = "We silently sting a human, forcing them to rapidly metabolize their fat."

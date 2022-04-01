@@ -5,6 +5,7 @@
 	enhancedtext = "The blade will have armor peneratration."
 	ability_icon_state = "ling_armblade"
 	genomecost = 2
+	power_category = CHANGELING_POWER_WEAPONS
 	verbpath = /mob/proc/changeling_arm_blade
 
 //Grows a scary, and powerful arm blade.
@@ -30,6 +31,7 @@
 	enhancedtext = "The claw will have armor peneratration."
 	ability_icon_state = "ling_claw"
 	genomecost = 1
+	power_category = CHANGELING_POWER_WEAPONS
 	verbpath = /mob/proc/changeling_claw
 
 //Grows a scary, and powerful claw.

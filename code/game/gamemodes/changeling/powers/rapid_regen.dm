@@ -6,6 +6,7 @@
 	enhancedtext = "Healing increased to heal up to maximum health."
 	ability_icon_state = "ling_rapid_regeneration"
 	genomecost = 2
+	power_category = CHANGELING_POWER_HEALTH
 	verbpath = /mob/proc/changeling_rapid_regen
 
 //Gives a big heal, removing various injuries that might shut down normal people, like IB or fractures.

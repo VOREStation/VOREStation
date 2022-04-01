@@ -5,6 +5,7 @@
 	enhancedtext = "Silence duration is extended."
 	ability_icon_state = "ling_sting_mute"
 	genomecost = 2
+	power_category = CHANGELING_POWER_STINGS
 	allowduringlesserform = 1
 	verbpath = /mob/proc/changeling_silence_sting
 

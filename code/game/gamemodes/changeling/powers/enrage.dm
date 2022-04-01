@@ -8,6 +8,7 @@
 	enhancedtext = "The length of exhaustion after berserking is reduced to one minute, from two, and requires half as much nutrition."
 	ability_icon_state = "ling_berserk"
 	genomecost = 2
+	power_category = CHANGELING_POWER_ENHANCEMENTS
 	allowduringlesserform = 1
 	verbpath = /mob/living/proc/changeling_berserk
 

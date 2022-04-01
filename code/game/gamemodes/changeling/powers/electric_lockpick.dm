@@ -5,6 +5,7 @@
 	helptext = "Use the ability, then touch something that utilizes an electrical locking system, to open it.  Each use costs 10 chemicals."
 	ability_icon_state = "ling_electric_lockpick"
 	genomecost = 3
+	power_category = CHANGELING_POWER_ENHANCEMENTS
 	verbpath = /mob/proc/changeling_electric_lockpick
 
 //Emag-lite

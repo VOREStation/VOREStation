@@ -6,6 +6,7 @@
 	enhancedtext = "The toxic damage is doubled."
 	ability_icon_state = "ling_sting_del_toxin"
 	genomecost = 1
+	power_category = CHANGELING_POWER_STINGS
 	verbpath = /mob/proc/changeling_delayed_toxic_sting
 
 /datum/modifier/delayed_toxin_sting

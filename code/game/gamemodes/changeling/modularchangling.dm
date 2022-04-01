@@ -1,7 +1,9 @@
+/* New menu found in changeling_evolutiontree.dm 
 // READ: Don't use the apostrophe in name or desc. Causes script errors.
 
 //Ling power's evolution menu entry datum should be contained alongside the mob proc for the actual power, in their own file.
 
+<<<<<<< HEAD
 var/list/powers = subtypesof(/datum/power/changeling) //needed for the badmin verb for now
 var/list/datum/power/changeling/powerinstances = list()
 
@@ -20,6 +22,8 @@ var/list/datum/power/changeling/powerinstances = list()
 	var/genomecost = 500000 // Cost for the changling to evolve this power.
 
 
+=======
+>>>>>>> a8f38989012... Merge pull request #8419 from Sypsoti/changelingredux-1
 // Modularchangling, totally stolen from the new player panel.  YAYY
 /datum/changeling/proc/EvolutionMenu()//The new one
 	set name = "-Evolution Menu-"
@@ -307,7 +311,6 @@ var/list/datum/power/changeling/powerinstances = list()
 		call(/datum/changeling/proc/EvolutionMenu)()
 
 
-
 /datum/changeling/proc/purchasePower(var/datum/mind/M, var/Pname, var/remake_verbs = 1)
 	if(!M || !M.changeling)
 		return
@@ -357,4 +360,4 @@ var/list/datum/power/changeling/powerinstances = list()
 		call(M.current, Thepower.verbpath)()
 	else if(remake_verbs)
 		M.current.make_changeling()
-
+*/

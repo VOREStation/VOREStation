@@ -4,6 +4,7 @@
 	helptext = "Can be used before or after death. Duration varies greatly."
 	ability_icon_state = "ling_regenerative_stasis"
 	genomecost = 0
+	power_category = CHANGELING_POWER_INHERENT
 	allowduringlesserform = 1
 	verbpath = /mob/proc/changeling_fakedeath
 

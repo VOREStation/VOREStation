@@ -5,6 +5,7 @@
 	desc = "We can channel a DNA into the airwaves, allowing our fellow changelings to absorb it and transform into it as if they acquired the DNA themselves."
 	helptext = "Allows other changelings to absorb the DNA you channel from the airwaves. Will not help them towards their absorb objectives."
 	genomecost = 0
+	power_category = CHANGELING_POWER_INHERENT
 	make_hud_button = 0
 	verbpath = /mob/proc/changeling_hiveupload
 
@@ -13,6 +14,7 @@
 	desc = "We can absorb a single DNA from the airwaves, allowing us to use more disguises with help from our fellow changelings."
 	helptext = "Allows you to absorb a single DNA and use it. Does not count towards your absorb objective."
 	genomecost = 0
+	power_category = CHANGELING_POWER_INHERENT
 	make_hud_button = 0
 	verbpath = /mob/proc/changeling_hivedownload
 

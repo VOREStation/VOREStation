@@ -3,6 +3,7 @@
 	desc = "We take on the appearance and voice of one we have absorbed."
 	ability_icon_state = "ling_transform"
 	genomecost = 0
+	power_category = CHANGELING_POWER_INHERENT
 	verbpath = /mob/proc/changeling_transform
 
 //Change our DNA to that of somebody we've absorbed.

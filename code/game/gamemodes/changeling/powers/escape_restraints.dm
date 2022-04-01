@@ -5,6 +5,7 @@
 	enhancedtext = "More frequent escapes."
 	ability_icon_state = "ling_escape_restraints"
 	genomecost = 2
+	power_category = CHANGELING_POWER_ENHANCEMENTS
 	verbpath = /mob/proc/changeling_escape_restraints
 
 //Escape Cuffs. By design this does not escape from straight jackets

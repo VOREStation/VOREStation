@@ -3,6 +3,7 @@
 	desc = "Permits us to syphon the DNA from a human. They become one with us, and we become stronger if they were of our kind."
 	ability_icon_state = "ling_absorb_dna"
 	genomecost = 0
+	power_category = CHANGELING_POWER_INHERENT
 	verbpath = /mob/living/proc/changeling_absorb_dna
 
 //Absorbs the victim's DNA. Requires a strong grip on the victim.

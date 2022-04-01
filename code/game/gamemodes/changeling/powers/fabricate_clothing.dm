@@ -19,6 +19,7 @@ var/global/list/changeling_fabricated_clothing = list(
 	To remove our new fabricated clothing, use this ability again."
 	ability_icon_state = "ling_fabricate_clothing"
 	genomecost = 1
+	power_category = CHANGELING_POWER_ENHANCEMENTS
 	verbpath = /mob/proc/changeling_fabricate_clothing
 
 //Grows biological versions of chameleon clothes.

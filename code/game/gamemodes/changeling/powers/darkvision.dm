@@ -4,6 +4,7 @@
 	helptext = "We will be able to see in the dark."
 	ability_icon_state = "ling_augmented_eyesight"
 	genomecost = 0
+	power_category = CHANGELING_POWER_INHERENT
 	verbpath = /mob/proc/changeling_darksight
 
 /mob/proc/changeling_darksight()

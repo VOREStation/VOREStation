@@ -63,5 +63,9 @@
 			player.current.verbs -= /mob/living/proc/write_ambition
 			player.current.client.verbs -= /client/proc/aooc
 			player.ambitions = ""
+		if(id == MODE_CHANGELING)
+			player.current.remove_changeling_powers()
+			player.current.verbs -= /datum/changeling/proc/EvolutionTree
+			player.current.verbs -= /mob/proc/changeling_respec
 		return 1
 	return 0

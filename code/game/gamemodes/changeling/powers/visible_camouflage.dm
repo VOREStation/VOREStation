@@ -6,6 +6,7 @@
 	enhancedtext = "Can run while hidden."
 	ability_icon_state = "ling_camoflage"
 	genomecost = 3
+	power_category = CHANGELING_POWER_ENHANCEMENTS
 	verbpath = /mob/proc/changeling_visible_camouflage
 
 //Hide us from anyone who would do us harm.

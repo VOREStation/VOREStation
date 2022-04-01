@@ -4,6 +4,7 @@
 	helptext = "Will give you the DNA of your target, allowing you to transform into them. Does not count towards absorb objectives."
 	ability_icon_state = "ling_sting_extract"
 	genomecost = 0
+	power_category = CHANGELING_POWER_INHERENT
 	allowduringlesserform = 1
 	verbpath = /mob/proc/changeling_extract_dna_sting
 

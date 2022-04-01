@@ -4,6 +4,7 @@
 	helptext = "To remove the suit, use the ability again."
 	ability_icon_state = "ling_space_suit"
 	genomecost = 1
+	power_category = CHANGELING_POWER_ARMOR
 	verbpath = /mob/proc/changeling_spacesuit
 
 /mob/proc/changeling_spacesuit()
@@ -19,6 +20,7 @@
 	helptext = "To remove the armor, use the ability again."
 	ability_icon_state = "ling_armor"
 	genomecost = 3
+	power_category = CHANGELING_POWER_ARMOR
 	verbpath = /mob/proc/changeling_spacearmor
 
 /mob/proc/changeling_spacearmor()

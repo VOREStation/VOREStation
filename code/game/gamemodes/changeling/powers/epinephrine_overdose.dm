@@ -5,6 +5,7 @@
 	enhancedtext = "Immunity from most disabling effects for 30 seconds."
 	ability_icon_state = "ling_epinepherine_overdose"
 	genomecost = 2
+	power_category = CHANGELING_POWER_ENHANCEMENTS
 	verbpath = /mob/proc/changeling_epinephrine_overdose
 
 /datum/modifier/unstoppable

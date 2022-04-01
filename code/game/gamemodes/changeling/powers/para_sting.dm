@@ -1,3 +1,5 @@
+/// Not in use. 
+
 /datum/power/changeling/paralysis_sting
 	name = "Paralysis Sting"
 	desc = "We silently sting a human, paralyzing them for a short time."

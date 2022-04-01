@@ -6,6 +6,7 @@
 	enhancedtext = "Increases the amount of chemicals injected."
 	ability_icon_state = "ling_sting_cryo"
 	genomecost = 1
+	power_category = CHANGELING_POWER_STINGS
 	verbpath = /mob/proc/changeling_cryo_sting
 
 /mob/proc/changeling_cryo_sting()

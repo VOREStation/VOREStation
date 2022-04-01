@@ -3,6 +3,7 @@
 	desc = "Our chemical glands swell, permitting us to store more chemicals inside of them."
 	helptext = "Allows us to store an extra 30 units of chemicals, and doubles production rate."
 	genomecost = 1
+	power_category = CHANGELING_POWER_ENHANCEMENTS
 	isVerb = 0
 	verbpath = /mob/proc/changeling_engorgedglands
 

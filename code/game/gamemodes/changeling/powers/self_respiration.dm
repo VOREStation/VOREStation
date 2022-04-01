@@ -4,6 +4,7 @@
 	helptext = "We will no longer require internals, and we cannot inhale any gas, including harmful ones."
 	ability_icon_state = "ling_toggle_breath"
 	genomecost = 0
+	power_category = CHANGELING_POWER_INHERENT
 	verbpath = /mob/proc/changeling_self_respiration
 
 //No breathing required

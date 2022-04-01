@@ -177,3 +177,14 @@ var/list/be_special_flags = list(
 #define ASPECT_UNSTABLE		"unstable"	//Heavily RNG-based, causes instability to the victim.
 #define ASPECT_CHROMATIC	"chromatic"	//Used to combine with other spells.
 #define ASPECT_UNHOLY		"unholy"	//Involves the dead, blood, and most things against divine beings.
+
+/*
+Changeling Defines
+*/ 
+#define CHANGELING_POWER_INHERENT "Inherent"
+#define CHANGELING_POWER_ARMOR "Armor"
+#define CHANGELING_POWER_STINGS "Stings"
+#define CHANGELING_POWER_SHRIEKS "Shrieks"
+#define CHANGELING_POWER_HEALTH "Health"
+#define CHANGELING_POWER_ENHANCEMENTS "Enhancements"
+#define CHANGELING_POWER_WEAPONS "Weapons"

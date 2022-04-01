@@ -1,3 +1,5 @@
+/// Not in use. 
+
 /datum/power/changeling/lesser_form
 	name = "Lesser Form"
 	desc = "We debase ourselves and become lesser.  We become a monkey."
