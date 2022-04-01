@@ -1368,6 +1368,34 @@
 	w_class = ITEMSIZE_TINY
 	starts_with = list(/obj/item/clothing/mask/smokable/cigarette = 7)
 
+/obj/item/weapon/storage/fancy/fluff/charlotte/New()
+	if(!open_state)
+		open_state = "[initial(icon_state)]0"
+	if(!closed_state)
+		closed_state = "[initial(icon_state)]"
+	..()
+
+/obj/item/weapon/storage/fancy/fluff/charlotte/update_icon()
+	cut_overlays()
+	if(open)
+		icon_state = open_state
+		if(contents.len >= 1)
+			add_overlay("charlottebox[contents.len]")
+	else
+		icon_state = closed_state
+
+/obj/item/weapon/storage/fancy/fluff/charlotte/open(mob/user as mob)
+	if(open)
+		return
+	open = TRUE
+	update_icon()
+	..()
+
+/obj/item/weapon/storage/fancy/fluff/charlotte/close(mob/user as mob)
+	open = FALSE
+	update_icon()
+	..()
+
 //Ashling - Antoinette deKaultieste
 /obj/item/weapon/material/knife/machete/hatchet/unathiknife/fluff/antoinette
 	name = "sawtooth ritual knife"
