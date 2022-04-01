@@ -118,10 +118,28 @@
 
 	default_skybox = /datum/skybox_settings/groundbase
 
-	unit_test_exempt_areas = list(
+	unit_test_exempt_areas = list(		//These are all outside
 		/area/groundbase/level1,
+		/area/groundbase/level1/ne,
+		/area/groundbase/level1/nw,
+		/area/groundbase/level1/se,
+		/area/groundbase/level1/sw,
+		/area/groundbase/level1/centsquare,
+		/area/groundbase/level1/northspur,
+		/area/groundbase/level1/eastspur,
+		/area/groundbase/level1/westspur,
+		/area/groundbase/level1/southeastspur,
+		/area/groundbase/level1/southwestspur,
 		/area/groundbase/level2,
+		/area/groundbase/level2/ne,
+		/area/groundbase/level2/nw,
+		/area/groundbase/level2/se,
+		/area/groundbase/level2/sw,
 		/area/groundbase/level3,
+		/area/groundbase/level3/ne,
+		/area/groundbase/level3/nw,
+		/area/groundbase/level3/se,
+		/area/groundbase/level3/sw,
 		/area/groundbase/science/picnic,
 		/area/groundbase/medical/patio,
 		/area/groundbase/civilian/hydroponics/out
@@ -415,3 +433,29 @@
 /obj/effect/shuttle_landmark/premade/groundbase
 	name = "Rascal's Pass"
 	landmark_tag = "groundbase"
+
+/obj/effect/step_trigger/teleporter/to_mining
+	icon = 'icons/obj/structures/stairs_64x64.dmi'
+	icon_state = ""
+	invisibility = 0
+/obj/effect/step_trigger/teleporter/to_mining/Initialize()
+	. = ..()
+	teleport_x = x
+	teleport_y = y
+	for(var/z_num in using_map.zlevels)
+		var/datum/map_z_level/Z = using_map.zlevels[z_num]
+		if(Z.name == "V3c Underground")
+			teleport_z = Z.z
+
+/obj/effect/step_trigger/teleporter/from_mining
+	icon = 'icons/obj/structures/stairs_64x64.dmi'
+	icon_state = ""
+	invisibility = 0
+/obj/effect/step_trigger/teleporter/from_mining/Initialize()
+	. = ..()
+	teleport_x = x
+	teleport_y = y
+	for(var/z_num in using_map.zlevels)
+		var/datum/map_z_level/Z = using_map.zlevels[z_num]
+		if(Z.name == "Level 1")
+			teleport_z = Z.z

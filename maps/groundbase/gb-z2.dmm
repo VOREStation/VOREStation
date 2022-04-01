@@ -731,12 +731,8 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/office)
 "cq" = (
-/mob/living/simple_mob/vore/alienanimals/catslug{
-	color = "#541f80";
-	desc = "Studies mysteries mysteriously.";
-	faction = "neutral";
-	ghostjoin = 1;
-	name = "Professor Nubbins"
+/mob/living/simple_mob/vore/alienanimals/catslug/scienceslug{
+	ghostjoin = 1
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/rnd)
@@ -2022,12 +2018,8 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/science/robotics)
 "gL" = (
-/mob/living/simple_mob/vore/alienanimals/catslug{
-	color = "#5e442f";
-	desc = "Often loafing around.";
-	faction = "neutral";
-	ghostjoin = 1;
-	name = "Technician Nermley"
+/mob/living/simple_mob/vore/alienanimals/catslug/cargoslug{
+	ghostjoin = 1
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/office)
@@ -4449,6 +4441,7 @@
 /area/groundbase/command/captain)
 "oQ" = (
 /obj/machinery/embedded_controller/radio/docking_port_multi{
+	id_tag = "escape_dock";
 	pixel_y = 22
 	},
 /turf/simulated/floor/tiled/virgo3c{
@@ -5533,19 +5526,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/command/tcomms)
-"sE" = (
-/obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
-	id_tag = "centcom_dock";
-	name = "docking port controller";
-	pixel_y = 25;
-	req_one_access = list(13);
-	tag_door = "centcom_dock_airlock"
-	},
-/turf/simulated/floor/tiled/virgo3c{
-	edge_blending_priority = -1
-	},
-/area/groundbase/level2/se)
 "sF" = (
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/outdoors/sidewalk/virgo3c,
@@ -11833,12 +11813,8 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/groundbase/medical/triage)
 "Np" = (
-/mob/living/simple_mob/vore/alienanimals/catslug{
-	color = "#a7d3db";
-	desc = "Doesn't wear gloves.";
-	faction = "neutral";
-	ghostjoin = 1;
-	name = "Doctor Mlemulon"
+/mob/living/simple_mob/vore/alienanimals/catslug/medislug{
+	ghostjoin = 1
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -28880,7 +28856,7 @@ jo
 jo
 qC
 UT
-sE
+kU
 Nq
 Nq
 Nq
@@ -29453,7 +29429,7 @@ Nq
 Nq
 Nq
 Nq
-Nq
+nG
 Nq
 Nq
 Nq
@@ -29595,7 +29571,7 @@ Nq
 Nq
 Nq
 Nq
-nG
+Nq
 Nq
 Nq
 Nq

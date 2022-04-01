@@ -182,7 +182,6 @@
 /turf/simulated/floor/tiled,
 /area/shuttle/groundbase/exploration)
 "dX" = (
-/obj/machinery/computer/ship/engines,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -332,6 +331,9 @@
 "hC" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
+	},
+/obj/item/weapon/paper{
+	info = "out of order"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/groundbase/exploration)
@@ -539,20 +541,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/exploration/equipment)
-"mc" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 4
-	},
-/obj/machinery/embedded_controller/radio/airlock/docking_port{
-	dir = 4;
-	frequency = 1380;
-	id_tag = "ex_landing";
-	pixel_x = -19
-	},
-/turf/simulated/floor/reinforced/virgo3c{
-	edge_blending_priority = -1
-	},
-/area/groundbase/exploration/shuttlepad)
 "me" = (
 /obj/structure/table/bench/marble,
 /obj/effect/landmark/start/medical,
@@ -694,18 +682,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/uhallway)
-"ou" = (
-/obj/structure/panic_button/small{
-	pixel_x = 32
-	},
-/obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
-	id_tag = "ex_docker";
-	pixel_x = 25;
-	pixel_y = 22
-	},
-/turf/simulated/floor/tiled,
-/area/shuttle/groundbase/exploration)
 "oF" = (
 /obj/effect/overmap/visitable/sector/virgo3c,
 /turf/unsimulated/wall/planetary/virgo3c,
@@ -1759,17 +1735,6 @@
 "Kr" = (
 /turf/simulated/open/virgo3c,
 /area/groundbase/level3/sw)
-"Ky" = (
-/obj/effect/overmap/visitable/ship/landable/gbexplo,
-/obj/effect/shuttle_landmark{
-	base_area = /area/groundbase/exploration/shuttlepad;
-	base_turf = /turf/simulated/floor/reinforced/virgo3c;
-	docking_controller = "ex_landing";
-	landmark_tag = "ex_shuttlepad";
-	name = "Exploration Pad"
-	},
-/turf/simulated/floor/tiled,
-/area/shuttle/groundbase/exploration)
 "KG" = (
 /turf/simulated/floor/tiled,
 /area/groundbase/exploration/equipment)
@@ -1911,10 +1876,6 @@
 /obj/machinery/alarm,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/paramedic)
-"Ot" = (
-/obj/machinery/computer/ship/sensors,
-/turf/simulated/floor/tiled,
-/area/shuttle/groundbase/exploration)
 "OD" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -2056,10 +2017,6 @@
 	edge_blending_priority = -1
 	},
 /area/groundbase/level3/sw)
-"Rf" = (
-/obj/machinery/computer/shuttle_control/explore/gbexplo,
-/turf/simulated/floor/tiled,
-/area/shuttle/groundbase/exploration)
 "Rg" = (
 /obj/machinery/firealarm{
 	dir = 4
@@ -2363,10 +2320,6 @@
 /obj/structure/flora/pottedplant/minitree,
 /turf/simulated/floor/wood,
 /area/groundbase/medical/cmo)
-"Xc" = (
-/obj/machinery/computer/ship/helm,
-/turf/simulated/floor/tiled,
-/area/shuttle/groundbase/exploration)
 "Xl" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -7374,7 +7327,7 @@ qO
 qO
 pv
 jY
-mc
+jY
 jY
 pL
 Oh
@@ -7800,7 +7753,7 @@ qO
 qO
 uG
 jX
-Xc
+dW
 Dm
 Jh
 wn
@@ -7942,7 +7895,7 @@ qO
 qO
 uG
 jX
-Rf
+dW
 Dm
 hC
 oQ
@@ -8084,7 +8037,7 @@ qO
 qO
 uG
 jX
-Ot
+dW
 Dm
 dW
 cE
@@ -8227,8 +8180,8 @@ qO
 uG
 PH
 dX
-ou
-Ky
+dW
+dW
 Nb
 vV
 PH
