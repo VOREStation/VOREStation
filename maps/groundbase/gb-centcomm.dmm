@@ -22,7 +22,6 @@
 	door_color = "#822a1e";
 	frequency = 1380;
 	id_tag = "escape_shuttle_hatch";
-	locked = 1;
 	name = "Docking Port Airlock"
 	},
 /obj/effect/shuttle_landmark{

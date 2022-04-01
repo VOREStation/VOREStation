@@ -269,6 +269,8 @@
 	name = "Pilot Equipment Room"
 /area/groundbase/civilian/gateway
 	name = "Gateway"
+/area/groundbase/civilian/janitor
+	name = "Janitor's Closet"
 
 /area/groundbase/exploration
 	name = "Exploration"

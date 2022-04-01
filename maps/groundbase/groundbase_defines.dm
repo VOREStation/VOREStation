@@ -444,7 +444,7 @@
 /obj/effect/step_trigger/teleporter/to_mining/Initialize()
 	. = ..()
 	teleport_x = x
-	teleport_y = y + 1
+	teleport_y = y ++
 	teleport_z = Z_LEVEL_MINING
 
 /obj/effect/step_trigger/teleporter/from_mining
@@ -454,5 +454,5 @@
 /obj/effect/step_trigger/teleporter/from_mining/Initialize()
 	. = ..()
 	teleport_x = x
-	teleport_y = y - 1
+	teleport_y = y --
 	teleport_z = Z_LEVEL_GB_BOTTOM

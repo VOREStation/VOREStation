@@ -531,7 +531,7 @@
 	makes_dirt = 0
 	say_list_type = /datum/say_list/catslug/gatslug
 	melee_damage_upper = 10		//"Trained" security member, so they can hit that little bit harder
-	list/armor = list(
+	armor = list(
 		"melee" = 15,
 		"bullet" = 0,
 		"laser" = 0,
