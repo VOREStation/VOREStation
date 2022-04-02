@@ -14,25 +14,7 @@
 		/area/shuttle,
 		/area/crew_quarters,
 		/area/holodeck,
-		/area/engineering/engine_room,
-		/area/groundbase/level1/centsquare,
-		/area/groundbase/level1/eastspur,
-		/area/groundbase/level1/northspur,
-		/area/groundbase/level1/southeastspur,
-		/area/groundbase/level1/southwestspur,
-		/area/groundbase/level1/westspur,
-		/area/maintenance/groundbase/level1/netunnel,
-		/area/maintenance/groundbase/level1/nwtunnel,
-		/area/maintenance/groundbase/level1/setunnel,
-		/area/maintenance/groundbase/level1/swtunnel,
-		/area/groundbase/level3/ne,
-		/area/groundbase/level3/nw,
-		/area/groundbase/level3/se,
-		/area/groundbase/level3/sw,
-		/area/groundbase/level3/ne,
-		/area/groundbase/level3/nw,
-		/area/groundbase/level3/se,
-		/area/groundbase/level3/sw
+		/area/engineering/engine_room
 	)
 
 // Decide which area will be targeted!
