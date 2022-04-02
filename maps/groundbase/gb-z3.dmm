@@ -346,7 +346,7 @@
 /obj/structure/railing/grey{
 	dir = 4
 	},
-/turf/simulated/open,
+/turf/simulated/open/virgo3c,
 /area/groundbase/cargo/office)
 "hN" = (
 /obj/structure/table/bench/marble,
@@ -608,7 +608,7 @@
 /obj/structure/railing/grey{
 	dir = 8
 	},
-/turf/simulated/open/virgo3c,
+/turf/simulated/open,
 /area/groundbase/medical/uhallway)
 "nr" = (
 /obj/machinery/button/remote/airlock{
@@ -666,7 +666,7 @@
 /turf/simulated/floor/wood,
 /area/groundbase/medical/cmo)
 "nZ" = (
-/turf/simulated/open,
+/turf/simulated/open/virgo3c,
 /area/groundbase/cargo/office)
 "og" = (
 /obj/machinery/suit_cycler/medical,
@@ -1357,7 +1357,7 @@
 /obj/structure/railing/grey{
 	dir = 4
 	},
-/turf/simulated/open/virgo3c,
+/turf/simulated/open,
 /area/groundbase/medical/uhallway)
 "Ef" = (
 /obj/effect/landmark/start{
@@ -1537,7 +1537,7 @@
 /obj/structure/railing/grey{
 	dir = 8
 	},
-/turf/simulated/open/virgo3c,
+/turf/simulated/open,
 /area/groundbase/medical/uhallway)
 "Gn" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -1972,7 +1972,7 @@
 /obj/structure/railing/grey{
 	dir = 4
 	},
-/turf/simulated/open,
+/turf/simulated/open/virgo3c,
 /area/groundbase/cargo/office)
 "PH" = (
 /turf/simulated/wall/rshull,
@@ -2081,7 +2081,7 @@
 /area/groundbase/exploration/equipment)
 "RY" = (
 /obj/structure/railing/grey,
-/turf/simulated/open,
+/turf/simulated/open/virgo3c,
 /area/groundbase/cargo/office)
 "Sa" = (
 /obj/structure/closet/secure_closet/personal/patient,
@@ -2302,7 +2302,7 @@
 /obj/structure/railing/grey{
 	dir = 4
 	},
-/turf/simulated/open/virgo3c,
+/turf/simulated/open,
 /area/groundbase/medical/uhallway)
 "VU" = (
 /obj/structure/bed/chair/office/light{

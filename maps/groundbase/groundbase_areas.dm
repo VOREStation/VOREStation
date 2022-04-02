@@ -4,7 +4,7 @@
 	icon_state = "blublacir"
 	requires_power = TRUE
 	dynamic_lighting = TRUE
-	ambience = AMBIENCE_MAINTENANCE
+	ambience = AMBIENCE_RUINS
 	base_turf = /turf/simulated/mineral/floor/virgo3c
 
 /area/maintenance/groundbase
@@ -12,7 +12,7 @@
 	icon = 'icons/turf/areas_vr.dmi'
 	icon_state = "purblasqu"
 	flags = RAD_SHIELDED
-	ambience = AMBIENCE_MAINTENANCE
+	ambience = AMBIENCE_RUINS
 	flags = AREA_FLAG_IS_NOT_PERSISTENT
 	base_turf = /turf/simulated/mineral/floor/virgo3c
 
@@ -75,6 +75,7 @@
 	name = "Science"
 	holomap_color = HOLOMAP_AREACOLOR_SCIENCE
 	icon_state = "purwhisqu"
+	ambience = AMBIENCE_GENERIC
 /area/groundbase/science/hall
 	name = "Science Hallway"
 /area/groundbase/science/rnd
@@ -100,6 +101,7 @@
 	name = "Command"
 	holomap_color = HOLOMAP_AREACOLOR_COMMAND
 	icon_state = "bluwhisqu"
+	ambience = AMBIENCE_GENERIC
 /area/groundbase/command/bridge
 	name = "Bridge"
 /area/groundbase/command/captain
@@ -114,6 +116,7 @@
 	name = "Command Meeting Room"
 /area/groundbase/command/ai
 	name = "AI Core"
+	ambience = AMBIENCE_AI
 /area/groundbase/command/ai/chamber
 	name = "AI Chamber"
 /area/groundbase/command/ai/upload
@@ -131,6 +134,7 @@
 	name = "Security"
 	holomap_color = HOLOMAP_AREACOLOR_SECURITY
 	icon_state = "redwhisqu"
+	ambience = AMBIENCE_GENERIC
 /area/groundbase/security/lobby
 	name = "Security Lobby"
 /area/groundbase/security/processing
@@ -143,10 +147,12 @@
 	name = "Warden's Office"
 /area/groundbase/security/armory
 	name = "Security Armory"
+	ambience = AMBIENCE_HIGHSEC
 /area/groundbase/security/briefing
 	name = "Security Briefing Room"
 /area/groundbase/security/equipment
 	name = "Security Equipment Room"
+	ambience = AMBIENCE_HIGHSEC
 /area/groundbase/security/iaa1
 	name = "Internal Affairs West Office"
 /area/groundbase/security/iaa2
@@ -208,6 +214,7 @@
 	name = "Engineering"
 	holomap_color = HOLOMAP_AREACOLOR_ENGINEERING
 	icon_state = "yelwhisqu"
+	ambience = AMBIENCE_ENGINEERING
 /area/groundbase/engineering/lobby
 	name = "Engineering Lobby"
 /area/groundbase/engineering/ce
@@ -224,6 +231,7 @@
 	name = "Engine"
 /area/groundbase/engineering/atmos
 	name = "Atmospherics"
+	ambience = AMBIENCE_ATMOS
 /area/groundbase/engineering/atmos/monitoring
 	name = "Atmospherics Monitoring"
 
@@ -231,6 +239,7 @@
 	name = "Cargo"
 	holomap_color = HOLOMAP_AREACOLOR_CARGO
 	icon_state = "orawhisqu"
+	ambience = AMBIENCE_HANGAR
 /area/groundbase/cargo/office
 	name = "Cargo Office"
 /area/groundbase/cargo/bay
@@ -246,6 +255,7 @@
 	name = "Civilian"
 	holomap_color = HOLOMAP_AREACOLOR_CIV
 	icon_state = "grewhisqu"
+	ambience = AMBIENCE_FOREBODING
 /area/groundbase/civilian/arrivals
 	name = "Arrivals"
 /area/groundbase/civilian/toolstorage
@@ -264,6 +274,7 @@
 	name = "Kitchen Back Room"
 /area/groundbase/civilian/chapel
 	name = "Chapel"
+	ambience = AMBIENCE_CHAPEL
 /area/groundbase/civilian/chapel/office
 	name = "Chaplain's Office"
 /area/groundbase/civilian/library
@@ -284,6 +295,7 @@
 	name = "Exploration"
 	holomap_color = HOLOMAP_AREACOLOR_SCIENCE
 	icon_state = "purwhisqu"
+	ambience = AMBIENCE_GENERIC
 /area/groundbase/exploration/equipment
 	name = "Exploration Equipment Room"
 /area/groundbase/exploration/shuttlepad
@@ -294,6 +306,7 @@
 	holomap_color = HOLOMAP_AREACOLOR_DORMS
 	icon_state = "grawhisqu"
 	flags = RAD_SHIELDED | BLUE_SHIELDED
+	ambience = AMBIENCE_GENERIC
 /area/groundbase/dorms/bathroom
 	name = "Dormitory Bathroom"
 /area/groundbase/dorms/room1
@@ -317,6 +330,7 @@
 	name = "Substation"
 	holomap_color = HOLOMAP_AREACOLOR_ENGINEERING
 	icon_state = "yelwhitri"
+	ambience = AMBIENCE_SUBSTATION
 /area/maintenance/groundbase/substation/medcargo
 	name = "Medical/Cargo Substation"
 /area/maintenance/groundbase/substation/secsci
@@ -337,7 +351,10 @@
 /area/maintenance/groundbase/level1/swtunnel
 	name = "\improper Level 1 Southwest Tunnel"
 
+/area/groundbase/mining
+	name = "Mining"
+	ambience = list('sound/ambience/ambimine.ogg', 'sound/ambience/song_game.ogg', 'sound/ambience/old_foreboding/foreboding2.ogg', 'sound/ambience/old_foreboding/foreboding2.ogg')
 /area/groundbase/mining/unexplored
-	name = "Mining"
+	icon_state = "orablacir"
 /area/groundbase/mining/explored
-	name = "Mining"
+	icon_state = "blublacir"

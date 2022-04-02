@@ -1117,9 +1117,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/engine)
-"dh" = (
-/turf/simulated/mineral/floor/cave,
-/area/maintenance/groundbase/level1/netunnel)
 "dj" = (
 /obj/structure/table/marble,
 /obj/machinery/chemical_dispenser/bar_soft/full,
@@ -2529,14 +2526,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/techmaint,
 /area/groundbase/command/tcomms/storage)
-"gX" = (
-/obj/machinery/power/apc{
-	name = "south bump";
-	pixel_y = -28;
-	req_access = list(67)
-	},
-/turf/simulated/floor/tiled/dark,
-/area/groundbase/security/warden)
 "gY" = (
 /obj/machinery/telecomms/hub/preset/groundbase,
 /turf/simulated/floor/tiled/dark{
@@ -3208,12 +3197,7 @@
 /turf/simulated/floor/outdoors/newdirt_nograss/virgo3c,
 /area/groundbase/level1/northspur)
 "iY" = (
-/obj/effect/step_trigger/teleporter/to_mining{
-	pixel_y = -16
-	},
-/turf/simulated/floor/outdoors/newdirt_nograss/virgo3c{
-	outdoors = 0
-	},
+/turf/simulated/mineral/floor/virgo3c,
 /area/maintenance/groundbase/level1/netunnel)
 "iZ" = (
 /obj/structure/table/rack/shelf/steel,
@@ -3242,14 +3226,6 @@
 "jd" = (
 /turf/simulated/wall,
 /area/maintenance/groundbase/substation/medcargo)
-"je" = (
-/obj/effect/step_trigger/teleporter/to_mining{
-	pixel_y = -16
-	},
-/turf/simulated/floor/outdoors/newdirt_nograss/virgo3c{
-	outdoors = 0
-	},
-/area/maintenance/groundbase/level1/nwtunnel)
 "jf" = (
 /obj/structure/table/reinforced,
 /obj/fiftyspawner/steel,
@@ -4819,13 +4795,13 @@
 /turf/simulated/floor/carpet/oracarpet,
 /area/groundbase/engineering/ce)
 "nk" = (
-/obj/structure/railing{
-	dir = 8
+/obj/effect/step_trigger/teleporter/to_mining{
+	pixel_y = -32
 	},
 /turf/simulated/floor/outdoors/newdirt_nograss/virgo3c{
 	outdoors = 0
 	},
-/area/maintenance/groundbase/level1/swtunnel)
+/area/maintenance/groundbase/level1/netunnel)
 "nl" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -6299,13 +6275,13 @@
 /turf/simulated/floor/bmarble,
 /area/groundbase/civilian/gateway)
 "rn" = (
-/obj/structure/railing{
-	dir = 8
+/obj/effect/step_trigger/teleporter/to_mining{
+	pixel_y = -32
 	},
 /turf/simulated/floor/outdoors/newdirt_nograss/virgo3c{
 	outdoors = 0
 	},
-/area/maintenance/groundbase/level1/netunnel)
+/area/maintenance/groundbase/level1/nwtunnel)
 "rp" = (
 /obj/machinery/atmospherics/binary/pump{
 	dir = 8
@@ -6822,7 +6798,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/briefing)
 "sM" = (
-/turf/simulated/mineral/floor/cave,
+/turf/simulated/mineral/floor/virgo3c,
 /area/maintenance/groundbase/level1/nwtunnel)
 "sN" = (
 /obj/machinery/door/firedoor,
@@ -10010,11 +9986,13 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/detective)
 "Bq" = (
-/obj/structure/railing,
+/obj/effect/step_trigger/teleporter/to_mining{
+	pixel_y = -32
+	},
 /turf/simulated/floor/outdoors/newdirt_nograss/virgo3c{
 	outdoors = 0
 	},
-/area/maintenance/groundbase/level1/netunnel)
+/area/maintenance/groundbase/level1/swtunnel)
 "Br" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -10208,12 +10186,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/apparel)
-"BM" = (
-/obj/structure/railing,
-/turf/simulated/floor/outdoors/newdirt_nograss/virgo3c{
-	outdoors = 0
-	},
-/area/maintenance/groundbase/level1/nwtunnel)
 "BN" = (
 /obj/machinery/alarm,
 /turf/simulated/floor/tiled,
@@ -10856,14 +10828,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/groundbase/engineering/atmos)
-"DH" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/turf/simulated/floor/outdoors/newdirt_nograss/virgo3c{
-	outdoors = 0
-	},
-/area/maintenance/groundbase/level1/nwtunnel)
 "DI" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -11173,14 +11137,6 @@
 	},
 /turf/simulated/floor/lino,
 /area/groundbase/civilian/bar)
-"Ew" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/turf/simulated/floor/outdoors/newdirt_nograss/virgo3c{
-	outdoors = 0
-	},
-/area/maintenance/groundbase/level1/nwtunnel)
 "Ex" = (
 /obj/structure/table/standard,
 /obj/item/weapon/aiModule/reset,
@@ -12662,14 +12618,6 @@
 /obj/effect/floor_decal/industrial/danger,
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/engine)
-"IO" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/turf/simulated/floor/outdoors/newdirt_nograss/virgo3c{
-	outdoors = 0
-	},
-/area/maintenance/groundbase/level1/swtunnel)
 "IQ" = (
 /obj/structure/bed/chair/comfy/orange{
 	dir = 8
@@ -12885,9 +12833,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/atmos)
-"Jy" = (
-/turf/simulated/mineral/floor/cave,
-/area/maintenance/groundbase/level1/swtunnel)
 "Jz" = (
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/civilian/arrivals)
@@ -13057,14 +13002,6 @@
 /obj/item/weapon/shield/riot,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/armory)
-"JV" = (
-/obj/structure/railing{
-	dir = 4
-	},
-/turf/simulated/floor/outdoors/newdirt_nograss/virgo3c{
-	outdoors = 0
-	},
-/area/maintenance/groundbase/level1/netunnel)
 "JX" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -16891,12 +16828,7 @@
 /turf/simulated/floor,
 /area/maintenance/groundbase/substation/aiciv)
 "UK" = (
-/obj/effect/step_trigger/teleporter/to_mining{
-	pixel_y = -16
-	},
-/turf/simulated/floor/outdoors/newdirt_nograss/virgo3c{
-	outdoors = 0
-	},
+/turf/simulated/mineral/floor/virgo3c,
 /area/maintenance/groundbase/level1/swtunnel)
 "UL" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -18126,12 +18058,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/groundbase/engineering/atmos)
-"Yl" = (
-/obj/structure/railing,
-/turf/simulated/floor/outdoors/newdirt_nograss/virgo3c{
-	outdoors = 0
-	},
-/area/maintenance/groundbase/level1/swtunnel)
 "Yn" = (
 /obj/effect/landmark/start{
 	name = "Psychiatrist"
@@ -20835,8 +20761,8 @@ AZ
 AZ
 AZ
 AZ
-dM
-IO
+Qq
+Qq
 Qq
 Qq
 dM
@@ -20977,10 +20903,10 @@ AZ
 AZ
 AZ
 AZ
-Yl
-Jy
+Qq
 UK
-dM
+UK
+Bq
 dM
 PC
 dM
@@ -21119,10 +21045,10 @@ AZ
 AZ
 AZ
 AZ
-Yl
-Jy
+Qq
 UK
-dM
+UK
+Bq
 dM
 PC
 dM
@@ -21261,8 +21187,8 @@ AZ
 AZ
 AZ
 AZ
-dM
-nk
+Qq
+Qq
 Qq
 Qq
 dM
@@ -24188,10 +24114,10 @@ MO
 MO
 MO
 MO
-FF
-DH
 xh
-FF
+xh
+xh
+xh
 Jh
 FF
 co
@@ -24244,7 +24170,7 @@ Jp
 zg
 mi
 VV
-gX
+Pl
 qa
 zK
 uc
@@ -24330,10 +24256,10 @@ MO
 MO
 MO
 MO
-BM
+xh
 sM
-je
-FF
+sM
+rn
 Jh
 FF
 EK
@@ -24472,10 +24398,10 @@ MO
 MO
 MO
 MO
-BM
+xh
 sM
-je
-FF
+sM
+rn
 Ht
 jU
 oJ
@@ -24614,10 +24540,10 @@ MO
 MO
 MO
 MO
-FF
-Ew
 xh
-FF
+xh
+xh
+xh
 FF
 FF
 Jh
@@ -27027,7 +26953,7 @@ lE
 kr
 hb
 uQ
-XS
+gO
 wV
 XS
 pT
@@ -27311,7 +27237,7 @@ lE
 bD
 vw
 aJ
-XS
+nR
 wV
 XS
 Nc
@@ -29105,10 +29031,10 @@ qE
 qE
 qE
 qE
-pU
-JV
 iH
-pU
+iH
+iH
+iH
 Ro
 sF
 sF
@@ -29247,10 +29173,10 @@ qE
 qE
 qE
 qE
-Bq
-dh
+iH
 iY
-pU
+iY
+nk
 Ro
 sF
 sF
@@ -29389,10 +29315,10 @@ qE
 qE
 qE
 qE
-Bq
-dh
+iH
 iY
-pU
+iY
+nk
 Ro
 sF
 pU
@@ -29531,10 +29457,10 @@ qE
 qE
 qE
 qE
-pU
-rn
 iH
-pU
+iH
+iH
+iH
 Ro
 pU
 pU
@@ -36139,10 +36065,10 @@ Lt
 Lt
 Lt
 Lt
-FF
-DH
 xh
-FF
+xh
+xh
+xh
 VL
 jF
 jF
@@ -36281,10 +36207,10 @@ Lt
 Lt
 Lt
 Lt
-BM
+xh
 sM
-je
-FF
+sM
+rn
 zf
 vj
 vj
@@ -36423,10 +36349,10 @@ Lt
 Lt
 Lt
 Lt
-BM
+xh
 sM
-je
-FF
+sM
+rn
 zf
 vj
 Lt
@@ -36565,10 +36491,10 @@ Lt
 Lt
 Lt
 Lt
-FF
-Ew
 xh
-FF
+xh
+xh
+xh
 zf
 Lt
 Lt
@@ -37391,7 +37317,7 @@ uH
 uH
 qE
 Lb
-uH
+Lb
 qE
 qE
 qE
@@ -37675,7 +37601,7 @@ uH
 Lb
 Lb
 qE
-uH
+Lb
 sV
 qE
 sV
