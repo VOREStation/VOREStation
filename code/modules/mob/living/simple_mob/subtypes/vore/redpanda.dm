@@ -50,7 +50,7 @@
 /mob/living/simple_mob/vore/redpanda/blue
 	name = "blue wah"
 	desc = "Blue, but still cute!"
-	tt_desc = "Ailurus bluegyn"
+	tt_desc = "Ailurus tribotum"
 
 	icon_state = "wah_bloo"
 	icon_living = "wah_bloo"
