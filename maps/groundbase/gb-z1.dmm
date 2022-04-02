@@ -2526,14 +2526,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/techmaint,
 /area/groundbase/command/tcomms/storage)
-"gX" = (
-/obj/machinery/power/apc{
-	name = "south bump";
-	pixel_y = -28;
-	req_access = list(67)
-	},
-/turf/simulated/floor/tiled/dark,
-/area/groundbase/security/warden)
 "gY" = (
 /obj/machinery/telecomms/hub/preset/groundbase,
 /turf/simulated/floor/tiled/dark{
@@ -24178,7 +24170,7 @@ Jp
 zg
 mi
 VV
-gX
+Pl
 qa
 zK
 uc

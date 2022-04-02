@@ -353,7 +353,7 @@
 
 /area/groundbase/mining
 	name = "Mining"
-	ambience = list('sound/ambience/ambimine.ogg', 'sound/ambience/song_game.ogg', 'sound/ambience/old_forboding/forboding1.ogg', 'sound/ambience/old_forboding/forboding2.ogg')
+	ambience = list('sound/ambience/ambimine.ogg', 'sound/ambience/song_game.ogg', 'sound/ambience/old_foreboding/foreboding2.ogg', 'sound/ambience/old_foreboding/foreboding2.ogg')
 /area/groundbase/mining/unexplored
 	icon_state = "orablacir"
 /area/groundbase/mining/explored
