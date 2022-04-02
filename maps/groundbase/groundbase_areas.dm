@@ -371,10 +371,10 @@
 	excluded |= /area/maintenance/groundbase/level1/nwtunnel
 	excluded |= /area/maintenance/groundbase/level1/setunnel
 	excluded |= /area/maintenance/groundbase/level1/swtunnel
-	excluded |= /area/groundbase/level3/ne
-	excluded |= /area/groundbase/level3/nw
-	excluded |= /area/groundbase/level3/se
-	excluded |= /area/groundbase/level3/sw
+	excluded |= /area/groundbase/level2/ne
+	excluded |= /area/groundbase/level2/nw
+	excluded |= /area/groundbase/level2/se
+	excluded |= /area/groundbase/level2/sw
 	excluded |= /area/groundbase/level3/ne
 	excluded |= /area/groundbase/level3/nw
 	excluded |= /area/groundbase/level3/se
