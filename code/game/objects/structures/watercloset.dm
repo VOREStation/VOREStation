@@ -265,8 +265,15 @@
 
 /obj/machinery/shower/process()
 	if(!on) return
+<<<<<<< HEAD
 	for(var/atom/movable/AM in loc)
 		if(AM.simulated)
+=======
+	for(var/thing in loc)
+		var/atom/movable/AM = thing
+		var/mob/living/L = thing
+		if(istype(AM) && AM.simulated)
+>>>>>>> fdd57bd46db... Merge pull request #8501 from Atermonera/reversion_to_puddle
 			wash(AM)
 			if(isliving(AM))
 				var/mob/living/L = AM

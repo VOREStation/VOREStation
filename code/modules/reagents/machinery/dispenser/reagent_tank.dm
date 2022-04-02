@@ -15,7 +15,11 @@
 	var/possible_transfer_amounts = list(10,25,50,100)
 
 /obj/structure/reagent_dispensers/attackby(obj/item/weapon/W as obj, mob/user as mob)
+<<<<<<< HEAD
 		return
+=======
+	src.add_fingerprint(user)
+>>>>>>> fdd57bd46db... Merge pull request #8501 from Atermonera/reversion_to_puddle
 
 /obj/structure/reagent_dispensers/Destroy()
 	QDEL_NULL(InputSocket)
@@ -76,9 +80,13 @@
 /obj/structure/reagent_dispensers/blob_act()
 	qdel(src)
 
+<<<<<<< HEAD
 /*
  * Tanks
  */
+=======
+
+>>>>>>> fdd57bd46db... Merge pull request #8501 from Atermonera/reversion_to_puddle
 
 //Water
 /obj/structure/reagent_dispensers/watertank
@@ -260,6 +268,42 @@
 		explode()
 	return ..()
 
+<<<<<<< HEAD
+=======
+
+/obj/structure/reagent_dispensers/fueltank/bullet_act(var/obj/item/projectile/Proj)
+	if(Proj.get_structure_damage())
+		if(istype(Proj.firer))
+			message_admins("[key_name_admin(Proj.firer)] shot fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[loc.x];Y=[loc.y];Z=[loc.z]'>JMP</a>).")
+			log_game("[key_name(Proj.firer)] shot fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]).")
+
+		if(!istype(Proj ,/obj/item/projectile/beam/lasertag) && !istype(Proj ,/obj/item/projectile/beam/practice) )
+			explode()
+
+/obj/structure/reagent_dispensers/fueltank/ex_act()
+	explode()
+
+/obj/structure/reagent_dispensers/fueltank/blob_act()
+	explode()
+
+/obj/structure/reagent_dispensers/fueltank/proc/explode()
+	if (reagents.total_volume > 500)
+		explosion(src.loc,1,2,4)
+	else if (reagents.total_volume > 100)
+		explosion(src.loc,0,1,3)
+	else if (reagents.total_volume > 50)
+		explosion(src.loc,-1,1,2)
+	if(src)
+		qdel(src)
+
+/obj/structure/reagent_dispensers/fueltank/fire_act(datum/gas_mixture/air, temperature, volume)
+	if (modded)
+		explode()
+	else if (temperature > T0C+500)
+		explode()
+	return ..()
+
+>>>>>>> fdd57bd46db... Merge pull request #8501 from Atermonera/reversion_to_puddle
 /obj/structure/reagent_dispensers/fueltank/Move()
 	if (..() && modded)
 		leak_fuel(amount_per_transfer_from_this/10.0)
@@ -465,6 +509,33 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "nuclearbomb0"
 
+<<<<<<< HEAD
+=======
+/obj/structure/reagent_dispensers/virusfood
+	name = "Virus Food Dispenser"
+	desc = "A dispenser of virus food. Yum."
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "virusfoodtank"
+	amount_per_transfer_from_this = 10
+	anchored = 1
+
+/obj/structure/reagent_dispensers/virusfood/Initialize()
+	. = ..()
+	reagents.add_reagent("virusfood", 1000)
+
+/obj/structure/reagent_dispensers/acid
+	name = "Sulphuric Acid Dispenser"
+	desc = "A dispenser of acid for industrial processes."
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "acidtank"
+	amount_per_transfer_from_this = 10
+	anchored = 1
+
+/obj/structure/reagent_dispensers/acid/Initialize()
+	. = ..()
+	reagents.add_reagent("sacid", 1000)
+	
+>>>>>>> fdd57bd46db... Merge pull request #8501 from Atermonera/reversion_to_puddle
 //Cooking oil refill tank
 /obj/structure/reagent_dispensers/cookingoil
 	name = "cooking oil tank"
