@@ -54,10 +54,10 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 
 	switch(sun_position)
 		if(0 to 0.45) // Night
-			low_brightness = 0.1
+			low_brightness = 0.3
 			low_color = "#000066"
 
-			high_brightness = 0.2
+			high_brightness = 0.4
 			high_color = "#66004D"
 			min = 0
 
@@ -531,7 +531,6 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 	alpha = 0xFF
 	VIRGO3C_SET_ATMOS
 
-VIRGO3C_TURF_CREATE(/turf/simulated/mineral/cave)
 VIRGO3C_TURF_CREATE(/turf/simulated/floor/outdoors/newdirt)
 VIRGO3C_TURF_CREATE(/turf/simulated/floor/outdoors/newdirt_nograss)
 VIRGO3C_TURF_CREATE(/turf/simulated/floor/outdoors/sidewalk)
@@ -546,7 +545,15 @@ VIRGO3C_TURF_CREATE(/turf/simulated/floor/tiled/dark)
 VIRGO3C_TURF_CREATE(/turf/simulated/mineral)
 VIRGO3C_TURF_CREATE(/turf/simulated/floor)
 
+/turf/simulated/mineral/cave/virgo3c
+	VIRGO3C_SET_ATMOS
+	outdoors = 0
+
 /turf/simulated/mineral/floor/virgo3c
+	VIRGO3C_SET_ATMOS
+	outdoors = 0
+
+/turf/simulated/mineral/floor/ignore_mapgen/virgo3c
 	VIRGO3C_SET_ATMOS
 	outdoors = 0
 

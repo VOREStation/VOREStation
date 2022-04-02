@@ -702,7 +702,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/dorms)
 "ce" = (
-/turf/simulated/open,
+/turf/simulated/open/virgo3c,
 /area/groundbase/level2/nw)
 "cf" = (
 /obj/structure/table/woodentable,
@@ -1206,7 +1206,7 @@
 /obj/structure/railing/grey{
 	dir = 8
 	},
-/turf/simulated/open,
+/turf/simulated/open/virgo3c,
 /area/groundbase/level2/sw)
 "dL" = (
 /obj/structure/table/woodentable,
@@ -1557,7 +1557,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/dorms)
 "eN" = (
-/turf/simulated/open,
+/turf/simulated/open/virgo3c,
 /area/groundbase/level2/sw)
 "eO" = (
 /obj/structure/table/woodentable,
@@ -2107,6 +2107,12 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/office)
+"gC" = (
+/obj/structure/bed/chair/sofa/bench{
+	dir = 1
+	},
+/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/area/groundbase/level2/se)
 "gE" = (
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/command/tcomms)
@@ -4561,11 +4567,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/cargo/qm)
-"ou" = (
-/obj/structure/table/woodentable,
-/obj/structure/table/woodentable,
-/turf/simulated/floor/carpet,
-/area/groundbase/civilian/library)
 "ov" = (
 /obj/structure/table/standard,
 /obj/machinery/cell_charger,
@@ -4698,7 +4699,7 @@
 /obj/structure/railing/grey{
 	dir = 4
 	},
-/turf/simulated/open,
+/turf/simulated/open/virgo3c,
 /area/groundbase/level2/nw)
 "oS" = (
 /obj/structure/cable/yellow{
@@ -5738,6 +5739,12 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/civilian/chapel)
+"sr" = (
+/obj/structure/bed/chair/sofa/bench/right{
+	dir = 1
+	},
+/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/area/groundbase/level2/se)
 "ss" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -6062,6 +6069,12 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/lobby)
+"tA" = (
+/obj/structure/bed/chair/sofa/bench/left{
+	dir = 1
+	},
+/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/area/groundbase/level2/se)
 "tB" = (
 /obj/machinery/door/blast/regular{
 	density = 0;
@@ -8275,7 +8288,7 @@
 /obj/structure/railing/grey{
 	dir = 1
 	},
-/turf/simulated/open,
+/turf/simulated/open/virgo3c,
 /area/groundbase/level2/se)
 "AK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -8690,7 +8703,7 @@
 /obj/structure/railing/grey{
 	dir = 4
 	},
-/turf/simulated/open,
+/turf/simulated/open/virgo3c,
 /area/groundbase/level2/ne)
 "BX" = (
 /obj/structure/disposalpipe/segment{
@@ -8713,7 +8726,7 @@
 /obj/structure/railing/grey{
 	dir = 1
 	},
-/turf/simulated/open,
+/turf/simulated/open/virgo3c,
 /area/groundbase/level2/nw)
 "Ca" = (
 /obj/structure/cable/yellow{
@@ -9982,7 +9995,7 @@
 /obj/structure/railing/grey{
 	dir = 4
 	},
-/turf/simulated/open,
+/turf/simulated/open/virgo3c,
 /area/groundbase/level2/sw)
 "FT" = (
 /obj/effect/landmark{
@@ -10822,7 +10835,7 @@
 /area/groundbase/science/xenobot)
 "Is" = (
 /obj/structure/railing/grey,
-/turf/simulated/open,
+/turf/simulated/open/virgo3c,
 /area/groundbase/level2/se)
 "It" = (
 /obj/structure/disposalpipe/segment{
@@ -12925,7 +12938,7 @@
 /area/groundbase/civilian/hydroponics)
 "Oy" = (
 /obj/structure/railing/grey,
-/turf/simulated/open,
+/turf/simulated/open/virgo3c,
 /area/groundbase/level2/ne)
 "Oz" = (
 /obj/structure/sink/kitchen{
@@ -13245,7 +13258,8 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/virgo3c{
-	edge_blending_priority = -1
+	edge_blending_priority = -1;
+	outdoors = 0
 	},
 /area/groundbase/level2/nw)
 "PA" = (
@@ -15085,7 +15099,7 @@
 /obj/machinery/light/bigfloorlamp,
 /obj/machinery/light/small,
 /turf/simulated/floor/outdoors/grass/virgo3c,
-/area/groundbase/level2/ne)
+/area/groundbase/medical/Chemistry)
 "Vb" = (
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/janitor)
@@ -15185,7 +15199,7 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/science/hall)
 "Vs" = (
-/turf/simulated/open,
+/turf/simulated/open/virgo3c,
 /area/groundbase/level2/se)
 "Vt" = (
 /obj/structure/cable/yellow{
@@ -15318,7 +15332,7 @@
 /obj/structure/railing/grey{
 	dir = 1
 	},
-/turf/simulated/open,
+/turf/simulated/open/virgo3c,
 /area/groundbase/level2/ne)
 "VQ" = (
 /obj/structure/cable/yellow{
@@ -15330,7 +15344,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/command/hall)
 "VR" = (
-/turf/simulated/open,
+/turf/simulated/open/virgo3c,
 /area/groundbase/level2/ne)
 "VS" = (
 /obj/structure/table/woodentable,
@@ -15448,7 +15462,7 @@
 /obj/structure/railing/grey{
 	dir = 8
 	},
-/turf/simulated/open,
+/turf/simulated/open/virgo3c,
 /area/groundbase/level2/ne)
 "We" = (
 /obj/machinery/light{
@@ -15706,7 +15720,7 @@
 /obj/structure/railing/grey{
 	dir = 8
 	},
-/turf/simulated/open,
+/turf/simulated/open/virgo3c,
 /area/groundbase/level2/nw)
 "WY" = (
 /obj/effect/landmark/start/botanist,
@@ -21290,7 +21304,7 @@ rb
 CC
 rP
 Ak
-ou
+Ak
 cX
 iE
 WA
@@ -34524,9 +34538,9 @@ Vs
 Vs
 Bo
 Bo
-Bo
-Bo
-Bo
+At
+At
+At
 Bo
 Bo
 Bo
@@ -34667,7 +34681,7 @@ Vs
 Vs
 Bo
 Bo
-Bo
+At
 Bo
 Bo
 Bo
@@ -34809,8 +34823,8 @@ Vs
 Vs
 Bo
 Bo
-Bo
-Bo
+At
+tA
 Bo
 UE
 UE
@@ -34951,8 +34965,8 @@ Vs
 Vs
 Vs
 Bo
-Bo
-Bo
+At
+gC
 UE
 UE
 UE
@@ -35094,7 +35108,7 @@ Vs
 Vs
 Bo
 Bo
-UE
+sr
 UE
 UE
 UE
