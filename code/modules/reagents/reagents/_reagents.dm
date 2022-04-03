@@ -27,7 +27,7 @@
 	var/affects_robots = 0	// Does this chem process inside a Synth?
 
 	var/allergen_type		// What potential allergens does this contain?
-	var/allergen_factor = 1	// If the potential allergens are mixed and low-volume, they're a bit less dangerous. Needed for drinks because they're a single reagent compared to food which contains multiple seperate reagents.
+	var/allergen_factor = 2	// If the potential allergens are mixed and low-volume, they're a bit less dangerous. Needed for drinks because they're a single reagent compared to food which contains multiple seperate reagents.
 
 	var/cup_icon_state = null
 	var/cup_name = null
@@ -171,6 +171,7 @@
 	if(overdose && (volume > overdose * M?.species.chemOD_threshold) && (active_metab.metabolism_class != CHEM_TOUCH && !can_overdose_touch))
 		overdose(M, alien, removed)
 	if(M.species.allergens & allergen_type)	//uhoh, we can't handle this!
+<<<<<<< HEAD
 		var/damage_severity = M.species.allergen_damage_severity*allergen_factor
 		var/disable_severity = M.species.allergen_disable_severity*allergen_factor
 		if(M.species.allergen_reaction & AG_TOX_DMG)
@@ -192,6 +193,9 @@
 			M.drowsyness = max(M.drowsyness, disable_severity)
 		if(M.species.allergen_reaction & AG_CONFUSE) //VOREStation Addition
 			M.Confuse(disable_severity/4) //VOREStation Addition
+=======
+		M.add_chemical_effect(CE_ALLERGEN,allergen_factor)
+>>>>>>> e39f24b49e3... Allergen CE Conversion (#8431)
 	remove_self(removed)
 	return
 

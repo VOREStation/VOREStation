@@ -3,7 +3,7 @@
 /datum/reagent/inaprovaline
 	name = "Inaprovaline"
 	id = "inaprovaline"
-	description = "Inaprovaline is a synaptic stimulant and cardiostimulant. Commonly used to stabilize patients."
+	description = "Inaprovaline is a synaptic stimulant and cardiostimulant. Commonly used to stabilize patients. Also counteracts allergic reactions."
 	taste_description = "bitterness"
 	reagent_state = LIQUID
 	color = "#00BFFF"
@@ -15,6 +15,7 @@
 	if(alien != IS_DIONA)
 		M.add_chemical_effect(CE_STABLE, 15)
 		M.add_chemical_effect(CE_PAINKILLER, 10 * M.species.chem_strength_pain)
+		M.remove_chemical_effect(CE_ALLERGEN)
 
 /datum/reagent/inaprovaline/topical
 	name = "Inaprovalaze"

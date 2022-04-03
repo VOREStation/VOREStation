@@ -36,6 +36,7 @@
 #define CE_SPEEDBOOST "gofast" // Hyperzine
 #define CE_SLOWDOWN "goslow" // Slowdown
 #define CE_ANTACID "nopuke" // Don't puke.
+#define CE_ALLERGEN "allergyreaction" // Self explanatory
 
 #define REAGENTS_PER_SHEET 20
 
