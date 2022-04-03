@@ -353,3 +353,35 @@
 
 /obj/structure/bed/alien/attackby(obj/item/weapon/W, mob/user)
 	return // No deconning.
+
+/*
+ * Dirty Mattress
+ */
+/obj/structure/dirtybed
+	name = "dirty mattress"
+	desc = "A stained matress. Guess it's better than sleeping on the floor."
+	icon = 'icons/obj/furniture.dmi'
+	icon_state = "dirtybed"
+	pressure_resistance = 15
+	anchored = TRUE
+	can_buckle = TRUE
+	buckle_dir = SOUTH
+	buckle_lying = 1
+
+/obj/structure/dirtybed/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(W.is_wrench())
+		playsound(src, W.usesound, 100, 1)
+		if(anchored)
+			user.visible_message("[user] begins unsecuring \the [src] from the floor.", "You start unsecuring \the [src] from the floor.")
+		else
+			user.visible_message("[user] begins securing \the [src] to the floor.", "You start securing \the [src] to the floor.")
+
+		if(do_after(user, 20 * W.toolspeed))
+			if(!src) return
+			to_chat(user, "<span class='notice'>You [anchored? "un" : ""]secured \the [src]!</span>")
+			anchored = !anchored
+		return
+
+	if(!anchored)
+		to_chat(user,"<span class='notice'> The bed isn't secured.</span>")
+		return
