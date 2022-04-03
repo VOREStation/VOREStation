@@ -2,7 +2,7 @@
 	name = "coffin"
 	desc = "It's a burial receptacle for the dearly departed."
 	icon = 'icons/obj/closets/coffin.dmi'
-	
+
 	icon_state = "closed_unlocked"
 	seal_tool = /obj/item/weapon/tool/screwdriver
 	breakout_sound = 'sound/weapons/tablehit1.ogg'
@@ -20,6 +20,8 @@
 	max_closets = 1
 	opened = 1
 	closet_appearance = null // Special icon for us
+	open_sound = 'sound/effects/wooden_closet_open.ogg'
+	close_sound = 'sound/effects/wooden_closet_close.ogg'
 
 /obj/structure/closet/grave/attack_hand(mob/user as mob)
 	if(opened)
