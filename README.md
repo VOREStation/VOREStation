@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 # VOREStation
 
 [![forthebadge](http://forthebadge.com/images/badges/60-percent-of-the-time-works-every-time.svg)](http://forthebadge.com) [![forthebadge](http://forthebadge.com/images/badges/compatibility-club-penguin.svg)](http://forthebadge.com) [![forthebadge](http://forthebadge.com/images/badges/no-ragrets.svg)](http://forthebadge.com)
+=======
+# Polaris [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3.0-orange.svg)](https://opensource.org/licenses/AGPL-3.0) <!--[![CI Status](https://github.com/polarisss13/polaris/workflows/MAIN-BRANCH-CI-HERE/badge.svg)](https://github.com/polarisss13/polaris/actions)-->
+
+[Wiki](http://ss13polaris.com) - [Discord](https://discord.gg/dvUcacC) - [Forum](https://forum.ss13polaris.com)
+>>>>>>> a7119233d83... Merge pull request #8474 from Spookerton/spkrtn/sys/no-read-me-instead
 
 [Website](https://vore-station.net) - [Forums](https://forum.vore-station.net/) - [Wiki](https://wiki.vore-station.net/)
 
