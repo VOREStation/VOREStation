@@ -640,6 +640,7 @@
 /area/groundbase/command/captainq)
 "bQ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/bookcase,
 /turf/simulated/floor/wood,
 /area/groundbase/civilian/library)
 "bS" = (
@@ -1756,6 +1757,13 @@
 /obj/structure/bed/chair,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/rd)
+"fs" = (
+/obj/machinery/newscaster{
+	layer = 3.3;
+	pixel_x = -27
+	},
+/turf/simulated/floor/tiled,
+/area/groundbase/civilian/hydroponics)
 "ft" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -2616,6 +2624,13 @@
 	},
 /turf/simulated/floor/reinforced,
 /area/rnd/xenobiology)
+"hY" = (
+/obj/machinery/newscaster{
+	layer = 3.3;
+	pixel_y = -32
+	},
+/turf/simulated/floor/tiled/dark,
+/area/groundbase/civilian/bar)
 "hZ" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -2824,6 +2839,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
+	},
+/obj/machinery/newscaster{
+	pixel_y = 28
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/command/hall)
@@ -3154,6 +3172,9 @@
 /area/groundbase/dorms/room5)
 "jK" = (
 /obj/machinery/medical_kiosk,
+/obj/machinery/newscaster{
+	pixel_y = 28
+	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/lobby)
 "jL" = (
@@ -3395,6 +3416,10 @@
 /obj/structure/window/reinforced,
 /turf/simulated/floor/reinforced,
 /area/rnd/xenobiology)
+"kA" = (
+/obj/structure/bookcase,
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/library)
 "kC" = (
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room3)
@@ -4649,6 +4674,13 @@
 	outdoors = 0
 	},
 /area/groundbase/level2/nw)
+"oC" = (
+/obj/machinery/newscaster{
+	layer = 3.3;
+	pixel_x = 27
+	},
+/turf/simulated/floor/tiled,
+/area/groundbase/science/hall)
 "oD" = (
 /obj/machinery/door/firedoor,
 /obj/structure/table/glass,
@@ -5512,6 +5544,12 @@
 /obj/machinery/light,
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room7)
+"rn" = (
+/obj/machinery/newscaster{
+	pixel_y = 28
+	},
+/turf/simulated/floor/carpet,
+/area/groundbase/civilian/library)
 "ro" = (
 /obj/structure/easel,
 /obj/item/paint_palette,
@@ -6310,6 +6348,16 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
+"tZ" = (
+/obj/machinery/newscaster{
+	layer = 3.3;
+	pixel_x = -27
+	},
+/turf/simulated/floor/tiled/virgo3c{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/groundbase/level2/nw)
 "ua" = (
 /obj/structure/table/reinforced,
 /obj/machinery/chemical_dispenser/full,
@@ -6467,6 +6515,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
 	},
+/obj/structure/bookcase,
 /turf/simulated/floor/wood,
 /area/groundbase/civilian/library)
 "uC" = (
@@ -8330,6 +8379,13 @@
 "AF" = (
 /turf/simulated/floor/tiled/freezer/cold,
 /area/groundbase/civilian/kitchen/freezer)
+"AG" = (
+/obj/machinery/newscaster{
+	layer = 3.3;
+	pixel_x = -27
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/library)
 "AH" = (
 /obj/machinery/vending/wardrobe/genedrobe,
 /turf/simulated/floor/tiled,
@@ -8937,6 +8993,14 @@
 	},
 /turf/simulated/open,
 /area/groundbase/civilian/bar)
+"Cy" = (
+/obj/structure/janitorialcart,
+/obj/machinery/newscaster{
+	layer = 3.3;
+	pixel_x = -27
+	},
+/turf/simulated/floor/tiled,
+/area/groundbase/civilian/janitor)
 "Cz" = (
 /turf/simulated/wall,
 /area/groundbase/cargo/qm)
@@ -8987,6 +9051,13 @@
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level2/se)
+"CH" = (
+/obj/machinery/newscaster{
+	layer = 3.3;
+	pixel_x = -27
+	},
+/turf/simulated/floor/tiled/dark,
+/area/groundbase/dorms)
 "CJ" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -11636,6 +11707,12 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/groundbase/command/bridge)
+"Kx" = (
+/obj/machinery/newscaster{
+	pixel_y = 28
+	},
+/turf/simulated/floor/tiled/dark,
+/area/groundbase/civilian/chapel)
 "Ky" = (
 /obj/structure/sink{
 	dir = 8;
@@ -14793,6 +14870,7 @@
 /area/groundbase/medical/triage)
 "TD" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/bookcase,
 /turf/simulated/floor/wood,
 /area/groundbase/civilian/library)
 "TF" = (
@@ -15866,6 +15944,10 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/newscaster{
+	layer = 3.3;
+	pixel_x = -27
+	},
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/office)
 "Xh" = (
@@ -18613,7 +18695,7 @@ bY
 bY
 Hn
 Ja
-xA
+tZ
 Pz
 KC
 ro
@@ -19029,7 +19111,7 @@ xE
 Do
 fZ
 yX
-yX
+Cy
 vS
 KO
 KO
@@ -20851,7 +20933,7 @@ uQ
 CW
 RP
 IR
-MY
+AG
 kt
 IR
 rP
@@ -22124,7 +22206,7 @@ rP
 rP
 rP
 rP
-cX
+rn
 cX
 cX
 MY
@@ -22272,7 +22354,7 @@ yp
 yp
 yp
 vA
-MY
+kA
 UR
 rP
 Nd
@@ -22577,7 +22659,7 @@ yI
 Ny
 Ny
 jt
-Ny
+hY
 FF
 bY
 sZ
@@ -22920,7 +23002,7 @@ qq
 qq
 qa
 eS
-Vr
+oC
 Xl
 QL
 Vr
@@ -22962,7 +23044,7 @@ Mm
 cd
 uO
 Bs
-Yp
+CH
 ug
 jW
 SF
@@ -23723,7 +23805,7 @@ iI
 iI
 Wl
 hQ
-Yt
+fs
 Wv
 pM
 UC
@@ -25104,7 +25186,7 @@ cA
 cA
 sU
 ME
-eD
+Kx
 zS
 eD
 eD
