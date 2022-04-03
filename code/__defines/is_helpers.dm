@@ -5,7 +5,7 @@
 //#define islist(D)		istype(D, /list)	//Built in
 
 //---------------
-#define isatom(D)		istype(D, /atom)
+#define isatom(D) (isloc(D) && !isarea(D))
 #define isclient(D)		istype(D, /client)
 
 //---------------
