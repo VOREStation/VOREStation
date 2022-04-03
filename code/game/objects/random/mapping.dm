@@ -24,7 +24,7 @@
 				/obj/effect/decal/cleanable/blood/gibs/robot,
 				/obj/effect/decal/cleanable/blood/oil,
 				/obj/effect/decal/cleanable/blood/oil/streak,
-				/obj/effect/decal/cleanable/spiderling_remains,
+				/obj/effect/decal/cleanable/bug_remains,
 				/obj/effect/decal/remains/mouse,
 				/obj/effect/decal/cleanable/vomit,
 				/obj/effect/decal/cleanable/blood/splatter,
@@ -208,13 +208,19 @@
 				/obj/structure/closet/crate/hydroponics
 			),
 			prob(5);list(
+				/obj/item/weapon/pickaxe,
+				/obj/item/clothing/under/rank/miner,
+				/obj/item/clothing/head/hardhat,
+				/obj/structure/closet/crate/engineering
+			),
+			prob(5);list(
 				/obj/item/weapon/pickaxe/drill,
 				/obj/item/clothing/suit/space/void/mining,
 				/obj/item/clothing/head/helmet/space/void/mining,
 				/obj/structure/closet/crate/engineering
 			),
 			prob(5);list(
-				/obj/item/weapon/pickaxe/drill,
+				/obj/item/weapon/pickaxe/advdrill,
 				/obj/item/clothing/suit/space/void/mining/alt,
 				/obj/item/clothing/head/helmet/space/void/mining/alt,
 				/obj/structure/closet/crate/engineering
@@ -249,7 +255,7 @@
 				/obj/structure/closet/crate/engineering
 			),
 			prob(5);list(
-				/obj/item/weapon/pickaxe/drill,
+				/obj/item/weapon/pickaxe,
 				/obj/item/clothing/glasses/material,
 				/obj/structure/ore_box,
 				/obj/structure/closet/crate
@@ -368,7 +374,7 @@
 				/obj/structure/closet/crate/engineering
 			),
 			prob(2);list(
-				/obj/item/weapon/pickaxe/drill,
+				/obj/item/weapon/pickaxe/advdrill,
 				/obj/item/weapon/storage/bag/ore,
 				/obj/item/clothing/glasses/material,
 				/obj/structure/closet/crate/engineering
@@ -1485,6 +1491,7 @@
 	return pick(
 				prob(10);list(/obj/item/weapon/pickaxe/silver),
 				prob(8);list(/obj/item/weapon/pickaxe/drill),
+				prob(6);list(/obj/item/weapon/pickaxe/advdrill),
 				prob(6);list(/obj/item/weapon/pickaxe/jackhammer),
 				prob(5);list(/obj/item/weapon/pickaxe/gold),
 				prob(4);list(/obj/item/weapon/pickaxe/plasmacutter),

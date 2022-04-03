@@ -122,6 +122,12 @@
 /obj/structure/table/reinforced,
 /turf/simulated/floor,
 /area/groundbase/engineering/lobby)
+"ar" = (
+/obj/effect/landmark{
+	name = "droppod_landing"
+	},
+/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/area/groundbase/level1/southeastspur)
 "as" = (
 /obj/structure/reagent_dispensers/fueltank,
 /obj/machinery/light{
@@ -3132,8 +3138,11 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/iaa1)
 "iL" = (
-/turf/simulated/floor/outdoors/newdirt_nograss/virgo3c,
-/area/maintenance/groundbase/level1/nwtunnel)
+/obj/effect/landmark{
+	name = "droppod_landing"
+	},
+/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/area/groundbase/level1/northspur)
 "iM" = (
 /obj/structure/cable{
 	icon_state = "0-8"
@@ -6758,8 +6767,10 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/lobby)
 "sF" = (
-/turf/simulated/floor/outdoors/newdirt_nograss/virgo3c,
-/area/maintenance/groundbase/level1/netunnel)
+/turf/simulated/floor/outdoors/grass/virgo3c{
+	outdoors = 0
+	},
+/area/groundbase/level1/eastspur)
 "sI" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -6816,6 +6827,11 @@
 	},
 /turf/simulated/floor/bmarble,
 /area/groundbase/cargo/mining)
+"sO" = (
+/turf/simulated/floor/outdoors/grass/virgo3c{
+	outdoors = 0
+	},
+/area/groundbase/level1/westspur)
 "sP" = (
 /obj/structure/table/standard,
 /obj/random/tech_supply,
@@ -7125,6 +7141,12 @@
 /obj/machinery/oxygen_pump/anesthetic,
 /turf/simulated/wall,
 /area/groundbase/medical/or2)
+"tE" = (
+/obj/effect/landmark{
+	name = "droppod_landing"
+	},
+/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/area/groundbase/level1/westspur)
 "tF" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -7151,6 +7173,14 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/gateway)
+"tI" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/simulated/floor/outdoors/sidewalk/side/virgo3c{
+	outdoors = 0
+	},
+/area/groundbase/level1/westspur)
 "tJ" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -7263,14 +7293,10 @@
 /turf/simulated/wall,
 /area/groundbase/level1/se)
 "ub" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/maintenance_hatch{
-	name = "Power Substation";
-	req_access = list(11)
-	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/structure/grille,
 /turf/simulated/floor,
 /area/maintenance/groundbase/substation/medcargo)
 "uc" = (
@@ -7360,6 +7386,12 @@
 	},
 /obj/machinery/light{
 	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
+	dir = 4
 	},
 /turf/simulated/floor,
 /area/groundbase/engineering/storage)
@@ -7913,6 +7945,11 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/apparel)
+"vQ" = (
+/turf/simulated/floor/outdoors/grass/virgo3c{
+	outdoors = 0
+	},
+/area/groundbase/security/lobby)
 "vR" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/weapon/folder/red,
@@ -8728,8 +8765,13 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/ce)
 "xU" = (
-/turf/simulated/floor/outdoors/newdirt_nograss/virgo3c,
-/area/maintenance/groundbase/level1/stunnel)
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/outdoors/sidewalk/virgo3c{
+	outdoors = 0
+	},
+/area/groundbase/level1/eastspur)
 "xV" = (
 /obj/structure/table/bench/steel,
 /obj/structure/cable/yellow{
@@ -10457,8 +10499,12 @@
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/storage)
 "Cy" = (
@@ -11550,6 +11596,12 @@
 	dir = 8;
 	icon_state = "pipe-c"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/storage)
 "FP" = (
@@ -12537,11 +12589,17 @@
 /turf/simulated/floor/bluegrid,
 /area/groundbase/command/ai/storage)
 "ID" = (
-/obj/machinery/atmospherics/binary/pump/on{
-	name = "Scrubber to Waste"
+/obj/structure/cable{
+	icon_state = "4-8"
 	},
-/turf/simulated/floor/tiled/techmaint,
-/area/groundbase/engineering/atmos)
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/groundbase/engineering/storage)
 "IE" = (
 /turf/simulated/floor/outdoors/grass/virgo3c,
 /area/groundbase/civilian/arrivals)
@@ -13713,8 +13771,10 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/atmos/monitoring)
 "LK" = (
-/turf/simulated/floor/outdoors/newdirt_nograss/virgo3c,
-/area/maintenance/groundbase/level1/swtunnel)
+/turf/simulated/floor/outdoors/grass/forest/virgo3c{
+	outdoors = 0
+	},
+/area/groundbase/level1/eastspur)
 "LL" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/maintenance_hatch{
@@ -14809,7 +14869,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/outdoors/newdirt/virgo3c,
-/area/groundbase/level1/ne)
+/area/groundbase/cargo/mining)
 "OG" = (
 /obj/machinery/alarm,
 /turf/simulated/floor/bluegrid,
@@ -14852,6 +14912,12 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/civilian/bar)
+"OP" = (
+/obj/machinery/atmospherics/binary/pump/on{
+	name = "Scrubber to Waste"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/groundbase/engineering/atmos)
 "OQ" = (
 /obj/machinery/atmospherics/pipe/tank/carbon_dioxide,
 /turf/simulated/floor/tiled/techmaint,
@@ -15610,6 +15676,12 @@
 /obj/machinery/status_display{
 	pixel_y = 32
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/storage)
 "Rn" = (
@@ -16149,7 +16221,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/simulated/floor/outdoors/newdirt/virgo3c{
+/turf/simulated/floor/outdoors/newdirt_nograss/virgo3c{
 	outdoors = 0
 	},
 /area/groundbase/security/halls)
@@ -18050,7 +18122,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/lobby)
 "Yj" = (
-/turf/simulated/floor/outdoors/newdirt_nograss/virgo3c,
+/turf/simulated/floor/outdoors/newdirt/virgo3c,
 /area/groundbase/level1/sw)
 "Yk" = (
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
@@ -19299,7 +19371,7 @@ cB
 QD
 QD
 QD
-QD
+tE
 QD
 QD
 QD
@@ -19731,9 +19803,9 @@ QD
 cB
 cB
 cB
+Eg
 ca
-Eg
-Eg
+ca
 AZ
 AZ
 AZ
@@ -19845,7 +19917,7 @@ FF
 MO
 MO
 WB
-Rn
+WB
 WB
 MO
 MO
@@ -19873,11 +19945,11 @@ QD
 cB
 cB
 cB
+Eg
 ca
 ca
-Eg
-Eg
-Eg
+ca
+ca
 AZ
 AZ
 AZ
@@ -20016,11 +20088,11 @@ cB
 cB
 cB
 cB
+Eg
 ca
 ca
-Eg
-Eg
-LK
+ca
+ca
 AZ
 dM
 dM
@@ -20127,8 +20199,8 @@ MO
 FF
 FF
 FF
-WB
-WB
+FF
+FF
 MO
 MO
 MO
@@ -20159,10 +20231,10 @@ cB
 cB
 cB
 cB
+Eg
 ca
-Eg
-Eg
-LK
+ca
+ca
 dM
 dM
 dM
@@ -20444,10 +20516,10 @@ YM
 cB
 cB
 cB
-ca
 Eg
-LK
-LK
+ca
+ca
+dM
 dM
 dM
 dM
@@ -20575,7 +20647,7 @@ MO
 AZ
 AZ
 WB
-Rn
+WB
 Rn
 cB
 cB
@@ -20586,9 +20658,9 @@ cB
 cB
 cB
 cB
-ca
 Eg
-LK
+ca
+ca
 AZ
 AZ
 AZ
@@ -20717,7 +20789,7 @@ MO
 AZ
 AZ
 WB
-Rn
+WB
 Rn
 cB
 cB
@@ -20728,8 +20800,8 @@ cB
 cB
 cB
 cB
-ca
 Eg
+ca
 AZ
 AZ
 AZ
@@ -20997,11 +21069,11 @@ MO
 MO
 MO
 MO
-FF
-Bu
-FF
 WB
-Rn
+Bu
+WB
+WB
+WB
 Rn
 cB
 cB
@@ -21138,10 +21210,10 @@ MO
 MO
 FF
 MO
-FF
-FF
+WB
+WB
 Bu
-FF
+WB
 WB
 WB
 Rn
@@ -21283,9 +21355,9 @@ JQ
 JQ
 JQ
 pa
-iL
 WB
-Rn
+WB
+WB
 Rn
 cB
 cB
@@ -21425,8 +21497,8 @@ MO
 MO
 MO
 AZ
-iL
-Rn
+WB
+WB
 Rn
 cB
 cB
@@ -21584,7 +21656,7 @@ cB
 cB
 cB
 Eg
-Eg
+ca
 ca
 AZ
 AZ
@@ -21727,9 +21799,9 @@ cB
 cB
 cB
 Eg
-Eg
 ca
-LK
+ca
+ca
 AZ
 dM
 dM
@@ -21871,9 +21943,9 @@ cB
 cB
 Eg
 ca
-LK
-LK
-LK
+ca
+dM
+dM
 dM
 dM
 AZ
@@ -24571,12 +24643,12 @@ AZ
 AZ
 AZ
 AZ
-cB
-cB
-cB
-Yf
-cB
-ij
+sO
+sO
+sO
+tI
+sO
+vQ
 fm
 Ch
 wl
@@ -24887,7 +24959,7 @@ SP
 Al
 aR
 SK
-ca
+dM
 ca
 AZ
 AZ
@@ -25172,7 +25244,7 @@ na
 aR
 SK
 ca
-Eg
+ca
 lb
 ca
 ca
@@ -25314,7 +25386,7 @@ Tf
 Tf
 Tf
 Tf
-Eg
+ca
 tF
 zQ
 zQ
@@ -25460,8 +25532,8 @@ vM
 Wm
 vM
 vM
-Eg
-Eg
+ca
+ca
 ca
 ca
 AZ
@@ -25747,8 +25819,8 @@ vM
 vM
 AZ
 AZ
-Eg
-Eg
+ca
+ca
 AZ
 AZ
 AZ
@@ -25973,7 +26045,7 @@ FF
 FF
 co
 WB
-Rn
+WB
 Rn
 Eb
 Nv
@@ -26010,12 +26082,12 @@ rT
 rT
 rT
 AZ
-Yj
 rT
-rT
+LH
+LH
 AZ
-rT
-rT
+LH
+LH
 rT
 Tf
 Tf
@@ -26149,15 +26221,15 @@ Tv
 ma
 rT
 rT
-rT
-rT
+LH
+LH
 AZ
-rT
-rT
-rT
-rT
-rT
-Yj
+LH
+LH
+LH
+LH
+LH
+LH
 Yj
 AZ
 AZ
@@ -26290,15 +26362,15 @@ Ds
 vd
 ma
 rT
-rT
-rT
+LH
+LH
+LH
+LH
 Yj
 Yj
-Yj
-Yj
-rT
-rT
-Yj
+LH
+LH
+LH
 Yj
 vM
 vM
@@ -26432,9 +26504,9 @@ To
 vd
 ma
 AZ
-Yj
-Yj
-Yj
+LH
+LH
+LH
 Yj
 vM
 vM
@@ -26574,8 +26646,8 @@ eh
 kc
 ma
 AZ
-Yj
-Yj
+LH
+LH
 Yj
 vM
 vM
@@ -26628,7 +26700,7 @@ MO
 MO
 MO
 MO
-FF
+WB
 Jh
 FF
 MO
@@ -26717,7 +26789,7 @@ Pf
 ma
 AZ
 AZ
-Yj
+LH
 Yj
 vM
 vM
@@ -26910,12 +26982,12 @@ MO
 MO
 MO
 MO
-iL
-iL
+WB
+WB
 WB
 Jh
 WB
-FF
+WB
 FF
 MO
 MO
@@ -27196,9 +27268,9 @@ tG
 tG
 tG
 Rn
-Rn
+WB
 Jh
-Rn
+WB
 Rn
 MO
 MO
@@ -27217,7 +27289,7 @@ MO
 MO
 tG
 tG
-WL
+tG
 WL
 WL
 MO
@@ -27359,7 +27431,7 @@ tG
 tG
 tG
 tG
-WL
+tG
 WL
 WL
 tG
@@ -27501,7 +27573,7 @@ tG
 UX
 UX
 UX
-dL
+UX
 dL
 WL
 tG
@@ -27643,7 +27715,7 @@ UX
 UX
 tG
 tG
-dL
+UX
 dL
 dL
 UX
@@ -27785,7 +27857,7 @@ tG
 tG
 tG
 UX
-dL
+UX
 WL
 dL
 UX
@@ -27927,7 +27999,7 @@ tG
 tG
 tG
 tG
-WL
+tG
 WL
 WL
 tG
@@ -28069,7 +28141,7 @@ Ul
 Ul
 Ul
 Ul
-Hn
+Ul
 Hn
 Hn
 Ul
@@ -28154,9 +28226,9 @@ AZ
 AZ
 AZ
 AZ
-xU
+vp
 SH
-Cb
+vp
 vp
 AZ
 AZ
@@ -28175,7 +28247,7 @@ UX
 UX
 UX
 UX
-UX
+iL
 UX
 UX
 UX
@@ -28211,7 +28283,7 @@ tG
 tG
 tG
 tG
-WL
+tG
 WL
 WL
 tG
@@ -28353,7 +28425,7 @@ UX
 UX
 UX
 UX
-dL
+UX
 dL
 dL
 UX
@@ -28438,7 +28510,7 @@ AZ
 AZ
 AZ
 AZ
-vp
+nS
 NK
 ww
 ww
@@ -28495,7 +28567,7 @@ UX
 UX
 UX
 UX
-dL
+UX
 WL
 dL
 UX
@@ -28583,7 +28655,7 @@ AZ
 AZ
 AZ
 nS
-vp
+nS
 SH
 AZ
 AZ
@@ -28637,7 +28709,7 @@ tG
 tG
 tG
 UX
-WL
+tG
 WL
 WL
 tG
@@ -28779,7 +28851,7 @@ tG
 tG
 tG
 tG
-WL
+tG
 WL
 WL
 qE
@@ -28894,7 +28966,7 @@ qE
 qE
 iG
 Ro
-iG
+UE
 UE
 UE
 qE
@@ -28921,7 +28993,7 @@ qE
 qE
 qE
 qE
-WL
+tG
 WL
 qE
 qE
@@ -29036,8 +29108,8 @@ iH
 iH
 iH
 Ro
-sF
-sF
+UE
+UE
 UE
 qE
 qE
@@ -29178,8 +29250,8 @@ iY
 iY
 nk
 Ro
-sF
-sF
+UE
+UE
 qE
 qE
 qE
@@ -29320,8 +29392,8 @@ iY
 iY
 nk
 Ro
-sF
-pU
+UE
+UE
 qE
 qE
 qE
@@ -29462,8 +29534,8 @@ iH
 iH
 iH
 Ro
-pU
-pU
+UE
+UE
 qE
 qE
 qE
@@ -29604,7 +29676,7 @@ qE
 qE
 qE
 Ro
-pU
+UE
 qE
 qE
 qE
@@ -29746,7 +29818,7 @@ qE
 qE
 qE
 Ro
-pU
+UE
 qE
 qE
 qE
@@ -30568,8 +30640,8 @@ Lt
 ck
 Lt
 Lt
-nS
-nS
+vp
+vp
 SH
 nS
 nS
@@ -30710,8 +30782,8 @@ ck
 ck
 Lt
 vp
-nS
-nS
+vp
+vp
 SH
 nS
 Lt
@@ -30851,9 +30923,9 @@ ck
 ck
 ck
 Cb
-Cb
 vp
-nS
+vp
+vp
 SH
 nS
 Lt
@@ -31956,7 +32028,7 @@ IX
 IX
 ig
 JM
-Zx
+ID
 dX
 KD
 Ra
@@ -32469,7 +32541,7 @@ pU
 pU
 pU
 Ro
-pU
+UE
 qE
 qE
 qE
@@ -32611,8 +32683,8 @@ qE
 qE
 qE
 Ro
-sF
-pU
+UE
+UE
 qE
 qE
 NI
@@ -33035,7 +33107,7 @@ qE
 qE
 qE
 UE
-iG
+UE
 Ro
 MK
 MK
@@ -33176,7 +33248,7 @@ qE
 MK
 MK
 qE
-UE
+iG
 iG
 KT
 MK
@@ -33338,7 +33410,7 @@ Ah
 Ah
 MK
 MK
-MK
+sF
 MK
 MK
 qE
@@ -33480,7 +33552,7 @@ Ah
 Ah
 Ah
 MK
-MK
+sF
 MK
 MK
 MK
@@ -33622,7 +33694,7 @@ MK
 MK
 MK
 MK
-MK
+sF
 MK
 MK
 MK
@@ -33764,7 +33836,7 @@ MK
 MK
 MK
 MK
-MK
+sF
 MK
 MK
 MK
@@ -33906,7 +33978,7 @@ ho
 ho
 ho
 ho
-ho
+xU
 ho
 ho
 ho
@@ -34048,7 +34120,7 @@ MK
 MK
 MK
 MK
-MK
+sF
 MK
 MK
 MK
@@ -34084,13 +34156,13 @@ Ae
 Hr
 Wu
 uL
-ID
+rt
 jM
 jt
 jt
 jt
 jt
-rt
+OP
 vg
 lZ
 vg
@@ -34190,7 +34262,7 @@ MK
 MK
 MK
 MK
-MK
+sF
 MK
 MK
 MK
@@ -34332,7 +34404,7 @@ MK
 Ah
 MK
 Ah
-MK
+sF
 Ah
 Ah
 Ah
@@ -34474,7 +34546,7 @@ Ah
 Ah
 Ah
 Ah
-Ah
+LK
 Ah
 Ah
 Ah
@@ -34616,7 +34688,7 @@ Ah
 Ah
 Ah
 Ah
-Ah
+LK
 Ah
 Ah
 Ah
@@ -34758,7 +34830,7 @@ Ah
 MK
 MK
 Ah
-Ah
+LK
 Ah
 Ah
 Ah
@@ -34900,7 +34972,7 @@ MK
 MK
 Ah
 Ah
-Ah
+LK
 Ah
 Ah
 MK
@@ -35042,7 +35114,7 @@ MK
 MK
 MK
 MK
-MK
+sF
 Ah
 Ah
 MK
@@ -35056,7 +35128,7 @@ qE
 qE
 qE
 zf
-vj
+sV
 vj
 Lt
 Lt
@@ -35184,7 +35256,7 @@ MK
 MK
 MK
 MK
-MK
+sF
 MK
 MK
 MK
@@ -35972,7 +36044,7 @@ Pp
 Pp
 Pp
 Pp
-Pp
+ar
 Pp
 Pp
 Pp
@@ -37456,8 +37528,8 @@ uH
 uH
 uH
 uH
-Lb
-Lb
+uH
+uH
 Lb
 Lb
 Lb
@@ -37598,13 +37670,13 @@ uH
 uH
 uH
 uH
-Lb
-Lb
+uH
+uH
 qE
 Lb
 sV
 qE
-sV
+vj
 vj
 vj
 vj

@@ -264,8 +264,8 @@
 	skybox_pixel_x = 0
 	skybox_pixel_y = 0
 
-	initial_generic_waypoints = list("groundbase")
-	initial_restricted_waypoints = list("Exploration Shuttle" = list("gbexplo"))
+	initial_generic_waypoints = list("groundbase", "gb_excursion_pad")
+	initial_restricted_waypoints = list()
 
 	extra_z_levels = list()
 
@@ -377,8 +377,8 @@
 /////EXPLOSHUTTL/////
 // The shuttle's 'shuttle' computer
 /obj/machinery/computer/shuttle_control/explore/gbexplo
-	name = "Shuttle control console"
-	shuttle_tag = "gbexplo"
+	name = "short jump console"
+	shuttle_tag = "Exploration Shuttle"
 	req_one_access = list(access_pilot)
 
 /obj/effect/overmap/visitable/ship/landable/gbexplo
@@ -386,18 +386,18 @@
 	desc = "A small shuttle from Rascal's Pass."
 	vessel_mass = 2500
 	vessel_size = SHIP_SIZE_TINY
-	shuttle = "gbexplo"
+	shuttle = "Exploration Shuttle"
 	known = TRUE
 
 // A shuttle lateloader landmark
 
 /datum/shuttle/autodock/overmap/gbexplo
-	name = "Exploration Shuttlepad"
-	current_location = "ex_shuttlepad"
-	docking_controller_tag = "ex_docker"
+	name = "Exploration Shuttle"
+	current_location = "gb_excursion_pad"
+	docking_controller_tag = "expshuttle_docker"
 	shuttle_area = list(/area/shuttle/groundbase/exploration)
 	fuel_consumption = 1
-	defer_initialisation = TRUE
+	move_direction = NORTH
 
 /area/shuttle/groundbase/exploration
 	icon = 'icons/turf/areas_vr.dmi'
@@ -418,6 +418,7 @@
 	docking_controller_tag = "supply_shuttle"
 	flags = SHUTTLE_FLAGS_PROCESS|SHUTTLE_FLAGS_SUPPLY
 	move_direction = WEST
+	ceiling_type = /turf/simulated/floor/reinforced/virgo3c
 
 ////////////////////////////////////////////////
 
@@ -432,6 +433,7 @@
 	move_time = SHUTTLE_TRANSIT_DURATION_RETURN
 	move_direction = SOUTH
 	docking_controller_tag = "escape_shuttle"
+	ceiling_type = /turf/simulated/floor/reinforced/virgo3c
 
 /obj/effect/shuttle_landmark/premade/groundbase
 	name = "Rascal's Pass"
@@ -509,49 +511,49 @@
 
  				Setup: <br> <br>
 
-           			 CAUTION: Do not remove too much air from the work space or personnel may be exposed to hypoxia or similar effects. <br> <br>
+					 CAUTION: Do not remove too much air from the work space or personnel may be exposed to hypoxia or similar effects. <br> <br>
 
-    				1. Prepare setup area. Remove machinery, debris, foreign objects, people, and extra air. <br> <br>
-    
-    				2. Lay out preliminary electrical wiring. <br>
-    				 2a. Connect electrical wiring to existing facility power grid. <br>
-    				 2b. Work wiring into shape as defined in TO 1-33-34-4-1 Figure 32 Index 6. <br>
-    
-    				3. Prepare gathered steel supplies as defined in TO 1-33-34-4-1 Figure 2 Index 3. <br>
-    
-    				4. Assemble prepared steel supplies into equipment framework by inserting rod A into slot B. Refer to TO 1-33-34-4-1 Figure 1 Index 1 for technical drawings. <br>
-    				 4a. Secure assembled equipment framework to flooring by tightening lower frame bolts. <br> <br>
-    
-    				5. Install and secure circuitry board, REG-D into marked receptacle. <br> <br>
-    
-    				6. Install electrical wiring. Refer to TO 1-33-34-4-1 Figure 666 Index 6 thru Index 90 for routing. <br> <br>
-    
-    				7. Install capacitors into marked circuitry board slots. Do not force components into place, use even pressure. Do not use a hammer. <br> <br>
-    
-    				        <b>WARNING</b>: Assembly will rapidly inflate when finalization is triggered. Ensure personnel and equipment are clear before initiating. <br> <br>
-    
-    				8. Finalize construction by turning the Initialize Finalization screw on the outer housing. <br> <br>
-    
-    				9. Wait for assembly to finish inflating, and the unit is ready for service. <br> <br>
-    
+					1. Prepare setup area. Remove machinery, debris, foreign objects, people, and extra air. <br> <br>
+	
+					2. Lay out preliminary electrical wiring. <br>
+					 2a. Connect electrical wiring to existing facility power grid. <br>
+					 2b. Work wiring into shape as defined in TO 1-33-34-4-1 Figure 32 Index 6. <br>
+	
+					3. Prepare gathered steel supplies as defined in TO 1-33-34-4-1 Figure 2 Index 3. <br>
+	
+					4. Assemble prepared steel supplies into equipment framework by inserting rod A into slot B. Refer to TO 1-33-34-4-1 Figure 1 Index 1 for technical drawings. <br>
+					 4a. Secure assembled equipment framework to flooring by tightening lower frame bolts. <br> <br>
+	
+					5. Install and secure circuitry board, REG-D into marked receptacle. <br> <br>
+	
+					6. Install electrical wiring. Refer to TO 1-33-34-4-1 Figure 666 Index 6 thru Index 90 for routing. <br> <br>
+	
+					7. Install capacitors into marked circuitry board slots. Do not force components into place, use even pressure. Do not use a hammer. <br> <br>
+	
+							<b>WARNING</b>: Assembly will rapidly inflate when finalization is triggered. Ensure personnel and equipment are clear before initiating. <br> <br>
+	
+					8. Finalize construction by turning the Initialize Finalization screw on the outer housing. <br> <br>
+	
+					9. Wait for assembly to finish inflating, and the unit is ready for service. <br> <br>
+	
 
  				Operating Procedures: <br> <br>
 
-    				    NOTE: Operation of REG-D type generators requires significant physical effort. Ensure users are provided adequare nutrition and hydration throughout the working period. <br> <br>
-        
-    					1. Designate the individual who will be operating the REG-D. <br> <br>
-    
-    					2. Provide a safety briefing regarding nutritional preparedness and physical ability.  <br> <br>
-    
-    					    NOTE: Stretching is highly recommended before and after any operation session. <br> <br>
-        
-    					3. Operator shall board the REG-D track body and ensure there are no unsecured objects on the path. <br> <br>
-    
-    					4. Once ready, Operator may begin running at own pace. Do not sprint. Maintain an even pace and proper running form for optimal energy generation. <br> <br>
-    
-    					5. Continue to run on the REG-D track body until sufficient energy is stored in systems or Operator is no longer able or willing to continue. <br> <br>
-    
-					    6. To end a session, carefully lower forward running speed until the track body comes to a complete stop, then disembark the REG-D. <br> <br>
+						NOTE: Operation of REG-D type generators requires significant physical effort. Ensure users are provided adequare nutrition and hydration throughout the working period. <br> <br>
+		
+						1. Designate the individual who will be operating the REG-D. <br> <br>
+	
+						2. Provide a safety briefing regarding nutritional preparedness and physical ability.  <br> <br>
+	
+							NOTE: Stretching is highly recommended before and after any operation session. <br> <br>
+
+						3. Operator shall board the REG-D track body and ensure there are no unsecured objects on the path. <br> <br>
+	
+						4. Once ready, Operator may begin running at own pace. Do not sprint. Maintain an even pace and proper running form for optimal energy generation. <br> <br>
+	
+						5. Continue to run on the REG-D track body until sufficient energy is stored in systems or Operator is no longer able or willing to continue. <br> <br>
+	
+						6. To end a session, carefully lower forward running speed until the track body comes to a complete stop, then disembark the REG-D. <br> <br>
 
 
 					 REFER TO TO 1-33-34-6 FOR MAINTENANCE AND INSPECTION PROCEDURES

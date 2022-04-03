@@ -56,10 +56,10 @@
 /turf/simulated/floor/outdoors/newdirt_nograss/Initialize(mapload)
 	var/possibledirts = list(
 		"dirt0" = 200,
-		"dirt3" = 20,
-		"dirt4" = 3,
-		"dirt5" = 3,
-		"dirt6" = 1
+		"dirt6" = 20,
+		"dirt7" = 3,
+		"dirt8" = 3,
+		"dirt9" = 1
 	)
 	flooring_override = pickweight(possibledirts)
 	return ..()	

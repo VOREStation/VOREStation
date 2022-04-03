@@ -71,7 +71,7 @@
 		"rad" = 100
 		)
 
-	loot_list = list(/obj/item/weapon/ore/diamond = 100)
+	loot_list = list(/obj/item/weapon/ore/diamond = 100, /obj/item/weapon/ectoplasm = 3)
 
 	speak_emote = list("rumbles")
 
@@ -101,14 +101,14 @@
 
 /mob/living/simple_mob/vore/alienanimals/space_ghost/shoot(atom/A) //We're shooting ghosts at people and need them to have the same faction as their parent, okay?
 	if(!projectiletype)
-		return	
+		return
 	if(A == get_turf(src))
 		return
 	face_atom(A)
 	if(reload_count >= reload_max)
 		return
 	var/mob/living/simple_mob/P = new projectiletype(loc, src)
-	
+
 	if(!P)
 		return
 	if(needs_reload)

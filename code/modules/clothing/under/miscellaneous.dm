@@ -1257,13 +1257,6 @@
 	icon_state = "cowboy_grey"
 	worn_state = "cowboy_grey"
 
-/obj/item/clothing/under/primitive
-	name = "primitive clothes"
-	desc = "Some patched together rags. Better than being naked."
-	force = 0
-	icon_state = "rag"
-	worn_state = "rag"
-
 /obj/item/clothing/under/curator
 	name = "curator uniform"
 	desc = "A rugged uniform suitable for treasure hunting."
