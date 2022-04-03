@@ -1,5 +1,3 @@
-//cleansed 9/15/2012 17:48
-
 /*
 CONTAINS:
 MATCHES
