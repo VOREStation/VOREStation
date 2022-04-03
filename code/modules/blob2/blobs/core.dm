@@ -92,6 +92,9 @@ var/list/blob_cores = list()
 /obj/structure/blob/core/ectoplasmic_horror
 	desired_blob_type = /datum/blob_type/ectoplasmic_horror
 
+/obj/structure/blob/core/barnacle
+	desired_blob_type = /datum/blob_type/barnacle
+
 /obj/structure/blob/core/classic
 	desired_blob_type = /datum/blob_type/classic
 

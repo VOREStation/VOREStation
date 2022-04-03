@@ -104,3 +104,20 @@
 	armor_penetration = 10
 	range_step = 5 //controls damage falloff with distance. projectiles lose a "pellet" each time they travel this distance. Can be a non-integer.
 	pellets = 1
+
+/obj/item/projectile/bullet/pellet/fragment/meteor
+	name = "meteor fragment"
+	damage = 10
+	armor_penetration = 30
+	range_step = 6
+	pellets = 2
+
+	no_attack_log = 1
+	muzzle_type = null
+
+/obj/item/projectile/bullet/pellet/fragment/meteor/small
+	damage = 5
+
+/obj/item/projectile/bullet/pellet/fragment/meteor/incendiary
+	name = "molten meteor fragment"
+	damage_type = SEARING

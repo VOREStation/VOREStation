@@ -592,6 +592,21 @@
 			new_item.name = pick("great-club","club","billyclub","mace","tenderizer","maul","bat")
 			item_type = new_item.name
 
+		if(ARCHAEO_METEOR)
+			// A rock! From space! But, a long time ago.
+			apply_prefix = FALSE
+			apply_image_decorations = FALSE
+			apply_material_decorations = FALSE
+			if(prob(30))
+				if(prob(30))
+					apply_prefix = TRUE
+				if(prob(20))
+					apply_image_decorations = TRUE
+
+			new_item = new /obj/item/meteor_chunk(src.loc)
+			new_item.name = pick("meteorite", "chunk", "lump", "stone")
+			item_type = new_item.name
+
 	if(istype(new_item, /obj/item/weapon/material))
 		var/new_item_mat = pickweight(list(
 			MAT_STEEL = 80,

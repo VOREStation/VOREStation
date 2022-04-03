@@ -70,6 +70,24 @@ var/list/mining_overlay_cache = list()
 	clear_ore_effects()
 	. = ..()
 
+/turf/simulated/mineral/xenoarch
+	name = "random digsite"
+
+/turf/simulated/mineral/xenoarch/Initialize()
+	. = ..()
+	name = "rock"
+
+	make_digsite(rand(0,2))
+
+/turf/simulated/mineral/ore
+	name = "random ore"
+
+/turf/simulated/mineral/ore/Initialize()
+	. = ..()
+	name = "rock"
+
+	make_ore(prob(30))
+
 // Alternative rock wall sprites.
 /turf/simulated/mineral/light
 	icon_state = "rock-light"
@@ -101,6 +119,30 @@ var/list/mining_overlay_cache = list()
 	rock_side_icon_state = "rock_side-crystal"
 	sand_icon_state = "sand-icey" // to be replaced
 	rock_icon_state = "rock-crystal-shiny"
+
+/turf/simulated/mineral/moon
+	icon_state = "rock-moon"
+	rock_side_icon_state = "rock_side-moon"
+	sand_icon_state = "moonsand_fine"
+	rock_icon_state = "rock-moon"
+
+/turf/simulated/mineral/moon/xenoarch
+	name = "random thor digsite"
+
+/turf/simulated/mineral/moon/xenoarch/Initialize()
+	. = ..()
+	name = "rock"
+
+	make_digsite(rand(0,2))
+
+/turf/simulated/mineral/moon/ore
+	name = "random thor ore"
+
+/turf/simulated/mineral/moon/ore/Initialize()
+	. = ..()
+	name = "rock"
+
+	make_ore(prob(30))
 
 /turf/simulated/mineral/ignore_mapgen
 	ignore_mapgen = 1
@@ -142,6 +184,10 @@ var/list/mining_overlay_cache = list()
 /turf/simulated/mineral/floor/light_corner
 	icon_state = "sand-light-corner"
 	sand_icon_state = "sand-light-corner"
+
+/turf/simulated/mineral/floor/moon
+	icon_state = "moonsand_fine"
+	sand_icon_state = "moonsand_fine"
 
 /turf/simulated/mineral/floor/ignore_mapgen
 	ignore_mapgen = 1
@@ -195,7 +241,7 @@ var/list/mining_overlay_cache = list()
 /turf/simulated/mineral/Initialize()
 	. = ..()
 	if(prob(20))
-		overlay_detail = "asteroid[rand(0,9)]"
+		overlay_detail = "[sand_icon_state][rand(0,9)]"
 	update_icon(1)
 	if(density && mineral)
 		. = INITIALIZE_HINT_LATELOAD
@@ -256,7 +302,8 @@ var/list/mining_overlay_cache = list()
 					add_overlay(get_cached_border(rock_side_icon_state,direction,'icons/turf/walls.dmi',rock_side_icon_state))
 
 		if(overlay_detail)
-			add_overlay('icons/turf/flooring/decals.dmi',overlay_detail)
+			if(overlay_detail in icon_states(icon))
+				add_overlay('icons/turf/flooring/decals.dmi',overlay_detail)
 
 		if(update_neighbors)
 			for(var/direction in alldirs)
@@ -281,6 +328,7 @@ var/list/mining_overlay_cache = list()
 	if(severity <= 2) // Now to expose the ore lying under the sand.
 		spawn(1) // Otherwise most of the ore is lost to the explosion, which makes this rather moot.
 			for(var/ore in resources)
+<<<<<<< HEAD
 				var/amount_to_give = rand(CEILING(resources[ore]/2, 1), resources[ore])  // Should result in at least one piece of ore.
 				var/oretype = ore_types[ore]
 				if(!oretype)
@@ -288,6 +336,15 @@ var/list/mining_overlay_cache = list()
 				for(var/i=1, i <= amount_to_give, i++)
 					new oretype(src)
 				resources[ore] = 0
+=======
+				var/amount_to_give = rand(CEILING(resources[ore] / 2, 1), resources[ore])  // Should result in at least one piece of ore.
+				for(var/i = 1 to amount_to_give)
+					var/oretype = ore_types[ore]
+					if(oretype)
+						new oretype(src)
+			resources = null
+
+>>>>>>> 4780b1efe52... Planetary Meteors (#8422)
 
 /turf/simulated/mineral/bullet_act(var/obj/item/projectile/Proj) // only emitters for now
 	if(Proj.excavation_amount)
@@ -703,3 +760,42 @@ var/list/mining_overlay_cache = list()
 		mineral = GLOB.ore_data[mineral_name]
 		UpdateMineral()
 	update_icon()
+
+// The value of range is turf-radius.
+// digsite_type allows you to specify what type of digsite is spawned. code/modules/xenoarchaeology/finds/finds_defines.dm
+// allow_anomalies is the probability, if any, of spawning an artifact in a turf, in the range. Garden and Animal digsites overwrite this probability.
+/turf/simulated/mineral/proc/make_digsite(var/range = 0, var/digsite_type , var/allow_anomalies = 5)
+	var/digsite = digsite_type ? digsite_type : get_random_digsite_type()
+
+	for(var/turf/simulated/mineral/T in range(range,src))
+		if(LAZYLEN(T.finds))
+			continue
+
+		if(isnull(T.geologic_data))
+			T.geologic_data = new /datum/geosample(T)
+		
+		if(isnull(T.finds) || isemptylist(T.finds))
+			T.finds = list()
+			if(prob(50))
+				T.finds.Add(new /datum/find(digsite, rand(10, 190)))
+			else if(prob(75))
+				T.finds.Add(new /datum/find(digsite, rand(10, 90)))
+				T.finds.Add(new /datum/find(digsite, rand(110, 190)))
+			else
+				T.finds.Add(new /datum/find(digsite, rand(10, 50)))
+				T.finds.Add(new /datum/find(digsite, rand(60, 140)))
+				T.finds.Add(new /datum/find(digsite, rand(150, 190)))
+
+			//sometimes a find will be close enough to the surface to show
+			var/datum/find/F = T.finds[1]
+			if(F.excavation_required <= F.view_range)
+				T.archaeo_overlay = "overlay_archaeo[rand(1,3)]"
+				T.update_icon()
+
+		if(!isnull(allow_anomalies) && prob(allow_anomalies))
+			//have a chance for an artifact to spawn here, but not in animal or plant digsites
+			if(isnull(T.artifact_find) && digsite != DIGSITE_GARDEN && digsite != DIGSITE_ANIMAL)
+				T.artifact_find = new()
+
+		T.update_icon()
+

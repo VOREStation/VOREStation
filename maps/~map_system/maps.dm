@@ -32,6 +32,7 @@ var/list/all_maps = list()
 	var/static/list/contact_levels = list() // Z-levels that can be contacted from the station, for eg announcements
 	var/static/list/player_levels = list()  // Z-levels a character can typically reach
 	var/static/list/sealed_levels = list()  // Z-levels that don't allow random transit at edge
+	var/static/list/underground_levels = list()	// Z-levels that are underground.
 	var/static/list/xenoarch_exempt_levels = list()	//Z-levels exempt from xenoarch finds and digsites spawning.
 	var/static/list/persist_levels = list() // Z-levels where SSpersistence should persist between rounds. Defaults to station_levels if unset.
 	var/static/list/secret_levels = list() // Z-levels that (non-admin) ghosts can't get to
@@ -315,6 +316,7 @@ var/list/all_maps = list()
 	if(flags & MAP_LEVEL_SEALED) map.sealed_levels += z
 	if(flags & MAP_LEVEL_XENOARCH_EXEMPT) map.xenoarch_exempt_levels += z
 	if(flags & MAP_LEVEL_PERSIST) map.persist_levels += z
+	if(flags & MAP_LEVEL_UNDERGROUND) map.underground_levels += z
 	if(flags & MAP_LEVEL_EMPTY)
 		if(!map.empty_levels) map.empty_levels = list()
 		map.empty_levels += z
