@@ -81,3 +81,12 @@
 	materials = list(MAT_STEEL = 4000, MAT_GLASS = 4000)
 	build_path = /obj/item/device/binoculars/scope
 	sort_string = "TBAAD"
+
+/datum/design/item/general/advmop
+	name = "advanced mop"
+	desc = "An advanced mop with pressured water jets that break away the toughest stains."
+	id = "advmop"
+	req_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 5, TECH_BIO = 1)
+	materials = list(MAT_STEEL = 5000, MAT_GLASS = 2000, MAT_GOLD = 1000)
+	build_path = /obj/item/weapon/mop/advanced
+	sort_string = "TBAAE"
