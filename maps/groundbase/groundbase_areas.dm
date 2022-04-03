@@ -290,7 +290,6 @@
 /area/groundbase/civilian/apparel
 	name = "Crew Apparel Care"
 
-
 /area/groundbase/exploration
 	name = "Exploration"
 	holomap_color = HOLOMAP_AREACOLOR_SCIENCE
