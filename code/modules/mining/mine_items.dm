@@ -10,22 +10,22 @@
 /*****************************Pickaxe********************************/
 
 /obj/item/weapon/pickaxe
-	name = "mining drill"
-	desc = "The most basic of mining drills, for short excavations and small mineral extractions."
+	name = "pickaxe"
+	desc = "A miner's best friend."
 	icon = 'icons/obj/items.dmi'
 	slot_flags = SLOT_BELT
 	force = 15.0
 	throwforce = 4.0
 	icon_state = "pickaxe"
-	item_state = "jackhammer"
+	item_state = "pickaxe"
 	w_class = ITEMSIZE_LARGE
-	matter = list(MAT_STEEL = 3750)
+	matter = list(MAT_STEEL = 2500)
 	var/digspeed = 40 //moving the delay to an item var so R&D can make improved picks. --NEO
 	var/sand_dig = FALSE // does this thing dig sand?
-	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
+	origin_tech = list(TECH_MATERIAL = 1)
 	attack_verb = list("hit", "pierced", "sliced", "attacked")
 	var/drill_sound = "pickaxe"
-	var/drill_verb = "drilling"
+	var/drill_verb = "picking"
 	sharp = TRUE
 
 	var/excavation_amount = 200
@@ -39,14 +39,57 @@
 	origin_tech = list(TECH_MATERIAL = 3)
 	desc = "This makes no metallurgic sense."
 
+/obj/item/weapon/pickaxe/gold
+	name = "golden pickaxe"
+	icon_state = "gpickaxe"
+	item_state = "gpickaxe"
+	digspeed = 20
+	origin_tech = list(TECH_MATERIAL = 4)
+	desc = "This makes no metallurgic sense."
+	drill_verb = "picking"
+
+/obj/item/weapon/pickaxe/diamond
+	name = "diamond pickaxe"
+	icon_state = "dpickaxe"
+	item_state = "dpickaxe"
+	digspeed = 10
+	origin_tech = list(TECH_MATERIAL = 6, TECH_ENGINEERING = 4)
+	desc = "A pickaxe with a diamond pick head."
+	drill_verb = "picking"
+
+/*****************************Drill********************************/
+
 /obj/item/weapon/pickaxe/drill
+	name = "mining drill" // Can dig sand as well!
+	icon_state = "drill"
+	item_state = "jackhammer"
+	digspeed = 35 //Only slighty better than a pickaxe
+	sand_dig = TRUE
+	origin_tech = list(TECH_MATERIAL = 1, TECH_POWER = 2, TECH_ENGINEERING = 1)
+	matter = list(MAT_STEEL = 3750)
+	desc = "The most basic of mining drills, for short excavations and small mineral extractions."
+	drill_verb = "drilling"
+
+/obj/item/weapon/pickaxe/advdrill
 	name = "advanced mining drill" // Can dig sand as well!
-	icon_state = "handdrill"
+	icon_state = "advdrill"
 	item_state = "jackhammer"
 	digspeed = 30
 	sand_dig = TRUE
 	origin_tech = list(TECH_MATERIAL = 2, TECH_POWER = 3, TECH_ENGINEERING = 2)
+	matter = list(MAT_STEEL = 4000, MAT_PLASTEEL = 2500)
 	desc = "Yours is the drill that will pierce through the rock walls."
+	drill_verb = "drilling"
+
+/obj/item/weapon/pickaxe/diamonddrill //When people ask about the badass leader of the mining tools, they are talking about ME!
+	name = "diamond mining drill"
+	icon_state = "diamonddrill"
+	item_state = "jackhammer"
+	digspeed = 5 //Digs through walls, girders, and can dig up sand
+	sand_dig = TRUE
+	origin_tech = list(TECH_MATERIAL = 6, TECH_POWER = 4, TECH_ENGINEERING = 5)
+	matter = list(MAT_STEEL = 4500, MAT_PLASTEEL = 3000, MAT_DIAMONDS = 1000)
+	desc = "Yours is the drill that will pierce the heavens!"
 	drill_verb = "drilling"
 
 /obj/item/weapon/pickaxe/jackhammer
@@ -58,56 +101,33 @@
 	desc = "Cracks rocks with sonic blasts, perfect for killing cave lizards."
 	drill_verb = "hammering"
 
-/obj/item/weapon/pickaxe/gold
-	name = "golden pickaxe"
-	icon_state = "gpickaxe"
-	item_state = "gpickaxe"
-	digspeed = 20
-	origin_tech = list(TECH_MATERIAL = 4)
-	desc = "This makes no metallurgic sense."
-	drill_verb = "picking"
+/obj/item/weapon/pickaxe/borgdrill
+	name = "jackhammer"
+	icon_state = "borg_pick"
+	item_state = "jackhammer"
+	digspeed = 15
+	sand_dig = TRUE
+	desc = "Cracks rocks with a hardened pneumatic bit."
+	drill_verb = "hammering"
 
 /obj/item/weapon/pickaxe/plasmacutter
 	name = "plasma cutter"
+	desc = "A rock cutter that uses bursts of hot plasma. You could use it to cut limbs off of xenos! Or, you know, mine stuff."
 	icon_state = "plasmacutter"
-	item_state = "gun"
+	item_state = "plasmacutter"
 	w_class = ITEMSIZE_NORMAL //it is smaller than the pickaxe
 	damtype = "fire"
-	digspeed = 20 //Can slice though normal walls, all girders, or be used in reinforced wall deconstruction/ light thermite on fire
+	digspeed = 20 //Can slice though normal walls, all girders, or be used in reinforced wall deconstruction/light thermite on fire
 	origin_tech = list(TECH_MATERIAL = 4, TECH_PHORON = 3, TECH_ENGINEERING = 3)
-	desc = "A rock cutter that uses bursts of hot plasma. You could use it to cut limbs off of xenos! Or, you know, mine stuff."
+	matter = list(MAT_STEEL = 3000, MAT_PLASTEEL = 1500, MAT_DIAMONDS = 500, MAT_PHORON = 500)
 	drill_verb = "cutting"
 	drill_sound = 'sound/items/Welder.ogg'
 	sharp = TRUE
 	edge = TRUE
 
-/obj/item/weapon/pickaxe/diamond
-	name = "diamond pickaxe"
-	icon_state = "dpickaxe"
-	item_state = "dpickaxe"
-	digspeed = 10
-	origin_tech = list(TECH_MATERIAL = 6, TECH_ENGINEERING = 4)
-	desc = "A pickaxe with a diamond pick head."
-	drill_verb = "picking"
-
-/obj/item/weapon/pickaxe/diamonddrill //When people ask about the badass leader of the mining tools, they are talking about ME!
-	name = "diamond mining drill"
-	icon_state = "diamonddrill"
-	item_state = "jackhammer"
-	digspeed = 5 //Digs through walls, girders, and can dig up sand
-	sand_dig = TRUE
-	origin_tech = list(TECH_MATERIAL = 6, TECH_POWER = 4, TECH_ENGINEERING = 5)
-	desc = "Yours is the drill that will pierce the heavens!"
-	drill_verb = "drilling"
-
-/obj/item/weapon/pickaxe/borgdrill
-	name = "enhanced sonic jackhammer"
-	icon_state = "jackhammer"
-	item_state = "jackhammer"
-	digspeed = 15
-	sand_dig = TRUE
-	desc = "Cracks rocks with sonic blasts. This one seems like an improved design."
-	drill_verb = "hammering"
+/obj/item/weapon/pickaxe/plasmacutter/borg
+	name = "mounted plasma cutter"
+	icon_state = "pcutter_borg"
 
 /*****************************Shovel********************************/
 
@@ -116,10 +136,10 @@
 	desc = "A large tool for digging and moving dirt."
 	icon = 'icons/obj/items.dmi'
 	icon_state = "shovel"
+	item_state = "shovel"
 	slot_flags = SLOT_BELT
 	force = 8.0
 	throwforce = 4.0
-	item_state = "shovel"
 	w_class = ITEMSIZE_NORMAL
 	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
 	matter = list(MAT_STEEL = 50)

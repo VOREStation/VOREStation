@@ -12,6 +12,9 @@
 	desc = "It looks alien!"
 	closet_appearance = /decl/closet_appearance/alien
 
+	open_sound = 'sound/machines/click.ogg'
+	close_sound = 'sound/machines/click.ogg'
+
 /obj/structure/closet/gimmick
 	name = "administrative supply closet"
 	desc = "It's a storage unit for things that have no right being here."
