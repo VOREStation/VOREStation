@@ -26,7 +26,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 	seconds_in_day = 6 HOURS
 
 /datum/planet/virgo3c
-	name = "Virgo-3c"
+	name = "Virgo-3C"
 	desc = "A habitable moon of the gas giant Virgo 3. The volcanic activity of this moon keeps its atmosphere warm enough for life to flourish."
 	current_time = new /datum/time/virgo3c()
 	planetary_wall_type = /turf/unsimulated/wall/planetary/virgo3c
@@ -53,7 +53,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 	var/min = 0
 
 	switch(sun_position)
-		if(0 to 0.45) // Night
+		if(0 to 0.475) // Night
 			low_brightness = 0.3
 			low_color = "#000066"
 
@@ -61,7 +61,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 			high_color = "#66004D"
 			min = 0
 
-		if(0.45 to 0.50) // Twilight
+		if(0.475 to 0.50) // Twilight
 			low_brightness = 0.5
 			low_color = "#66004D"
 
@@ -69,7 +69,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 			high_color = "#CC3300"
 			min = 0.40
 
-		if(0.50 to 0.55) // Sunrise/set
+		if(0.50 to 0.525) // Sunrise/set
 			low_brightness = 0.9
 			low_color = "#CC3300"
 
@@ -77,7 +77,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 			high_color = "#FF9933"
 			min = 0.50
 
-		if(0.55 to 1.00) // Noon
+		if(0.525 to 1.00) // Noon
 			low_brightness = 3.0
 			low_color = "#DDDDDD"
 

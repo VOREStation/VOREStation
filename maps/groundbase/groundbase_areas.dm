@@ -57,19 +57,41 @@
 /area/groundbase/level2/sw
 	name = "Southwest Rascal's Pass Level 2"
 
+/area/groundbase/level2/northspur
+	name = "\improper North Spur"
+	base_turf = /turf/simulated/open/virgo3c
+/area/groundbase/level2/eastspur
+	name = "\improper East Spur"
+	base_turf = /turf/simulated/open/virgo3c
+/area/groundbase/level2/westspur
+	name = "\improper West Spur"
+	base_turf = /turf/simulated/open/virgo3c
+/area/groundbase/level2/southeastspur
+	name = "\improper Southeast Spur"
+	base_turf = /turf/simulated/open/virgo3c
+/area/groundbase/level2/southwestspur
+	name = "\improper Southwest Spur"
+	base_turf = /turf/simulated/open/virgo3c
+
 /area/groundbase/level3
 	name = "Rascal's Pass Level 3"
 	flags = AREA_FLAG_IS_NOT_PERSISTENT
-
 /area/groundbase/level3/ne
 	name = "Northeast Rascal's Pass Level 3"
+/area/groundbase/level3/ne/open
+	base_turf = /turf/simulated/open/virgo3c
 /area/groundbase/level3/nw
 	name = "Northwest Rascal's Pass Level 3"
+/area/groundbase/level3/nw/open
+	base_turf = /turf/simulated/open/virgo3c
 /area/groundbase/level3/se
 	name = "Southeast Rascal's Pass Level 3"
+/area/groundbase/level3/se/open
+	base_turf = /turf/simulated/open/virgo3c
 /area/groundbase/level3/sw
 	name = "Southwest Rascal's Pass Level 3"
-
+/area/groundbase/level3/sw/open
+	base_turf = /turf/simulated/open/virgo3c
 
 /area/groundbase/science
 	name = "Science"
@@ -381,4 +403,13 @@
 	excluded |= /area/groundbase/level3/nw
 	excluded |= /area/groundbase/level3/se
 	excluded |= /area/groundbase/level3/sw
+	excluded |= /area/groundbase/level2/northspur
+	excluded |= /area/groundbase/level2/eastspur
+	excluded |= /area/groundbase/level2/westspur
+	excluded |= /area/groundbase/level2/southeastspur
+	excluded |= /area/groundbase/level2/southwestspur
+	excluded |= /area/groundbase/level3/ne/open
+	excluded |= /area/groundbase/level3/nw/open
+	excluded |= /area/groundbase/level3/se/open
+	excluded |= /area/groundbase/level3/sw/open
 	..()

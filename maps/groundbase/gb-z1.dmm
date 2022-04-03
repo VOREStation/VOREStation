@@ -4139,7 +4139,9 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/equipment)
 "ll" = (
-/obj/structure/closet/secure_closet/personal,
+/obj/structure/closet/secure_closet/personal{
+	anchored = 1
+	},
 /obj/effect/floor_decal/industrial/outline,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -7938,7 +7940,9 @@
 /turf/simulated/floor/outdoors/grass/virgo3c,
 /area/groundbase/level1/southwestspur)
 "vP" = (
-/obj/structure/closet/secure_closet/personal,
+/obj/structure/closet/secure_closet/personal{
+	anchored = 1
+	},
 /obj/effect/floor_decal/industrial/outline,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -8828,7 +8832,9 @@
 /turf/simulated/floor/outdoors/grass/virgo3c,
 /area/groundbase/level1/centsquare)
 "ye" = (
-/obj/structure/closet/secure_closet/personal,
+/obj/structure/closet/secure_closet/personal{
+	anchored = 1
+	},
 /obj/effect/floor_decal/industrial/outline,
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/apparel)
@@ -16133,7 +16139,9 @@
 /turf/simulated/floor/bluegrid,
 /area/groundbase/command/ai/robot)
 "Sz" = (
-/obj/structure/closet/secure_closet/miner,
+/obj/structure/closet/secure_closet/miner{
+	anchored = 1
+	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
@@ -16686,7 +16694,9 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/groundbase/engineering/atmos)
 "TY" = (
-/obj/structure/closet/secure_closet/miner,
+/obj/structure/closet/secure_closet/miner{
+	anchored = 1
+	},
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/mining)
 "TZ" = (
