@@ -11,7 +11,7 @@ SUBSYSTEM_DEF(radiation)
 	var/tmp/list/current_res_cache = list()
 	var/tmp/list/listeners         = list()
 
-/datum/controller/subsystem/radiation/fire(resumed = FALSE)
+/datum/controller/subsystem/radiation/fire(resumed, no_mc_tick)
 	if (!resumed)
 		current_sources = sources.Copy()
 		current_res_cache = resistance_cache.Copy()

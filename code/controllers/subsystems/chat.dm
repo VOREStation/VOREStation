@@ -1,7 +1,7 @@
 SUBSYSTEM_DEF(chat)
 	name = "Chat"
 	flags = SS_TICKER
-	wait = 1 // SS_TICKER means this runs every tick
+	wait = 1 // SS_TICKER - Ticks
 	priority = FIRE_PRIORITY_CHAT
 	init_order = INIT_ORDER_CHAT
 
@@ -11,7 +11,7 @@ SUBSYSTEM_DEF(chat)
 	init_vchat()
 	..()
 
-/datum/controller/subsystem/chat/fire()
+/datum/controller/subsystem/chat/fire(resumed, no_mc_tick)
 	var/list/msg_queue = src.msg_queue // Local variable for sanic speed.
 	for(var/client/C as anything in msg_queue)
 		var/list/messages = msg_queue[C]

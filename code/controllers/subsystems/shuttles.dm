@@ -45,7 +45,7 @@ SUBSYSTEM_DEF(shuttles)
 	process_init_queues()
 	return ..()
 
-/datum/controller/subsystem/shuttles/fire(resumed = 0)
+/datum/controller/subsystem/shuttles/fire(resumed, no_mc_tick)
 	if (!resumed)
 		src.current_run = process_shuttles.Copy()
 

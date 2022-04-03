@@ -59,7 +59,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 	GLOB.autospeaker = new (null, null, null, 1) //Set up Global Announcer
 	return ..()
 
-/datum/controller/subsystem/ticker/fire(resumed = FALSE)
+/datum/controller/subsystem/ticker/fire(resumed, no_mc_tick)
 	switch(current_state)
 		if(GAME_STATE_INIT)
 			pregame_welcome()

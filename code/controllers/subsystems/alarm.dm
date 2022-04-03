@@ -20,7 +20,7 @@ SUBSYSTEM_DEF(alarm)
 	all_handlers = list(atmosphere_alarm, camera_alarm, fire_alarm, motion_alarm, power_alarm)
 	. = ..()
 
-/datum/controller/subsystem/alarm/fire(resumed = FALSE)
+/datum/controller/subsystem/alarm/fire(resumed, no_mc_tick)
 	if(!resumed)
 		src.currentrun = all_handlers.Copy()
 		active_alarm_cache.Cut()

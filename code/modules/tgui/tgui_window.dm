@@ -70,10 +70,17 @@
 	else
 		options += "titlebar=1;can_resize=1;"
 	// Generate page html
+<<<<<<< HEAD
 	var/html = SStgui.basehtml
 	html = replacetextEx(html, "\[tgui:windowId]", id)
 	// Inject inline assets
 	var/inline_assets_str = ""
+=======
+	var/html = replacetextEx(SStgui.base_html, "\[tgui:windowId]", id)
+	// Process inline assets
+	var/inline_styles = ""
+	var/inline_scripts = ""
+>>>>>>> a42e6b34466... Merge pull request #8497 from Spookerton/spkrtn/sys/30-inch-racks-01
 	for(var/datum/asset/asset in inline_assets)
 		var/mappings = asset.get_url_mappings()
 		for(var/name in mappings)

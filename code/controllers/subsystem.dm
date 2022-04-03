@@ -32,17 +32,48 @@
 
 	var/static/list/failure_strikes //How many times we suspect a subsystem type has crashed the MC, 3 strikes and you're out!
 
-//Do not override
-///datum/controller/subsystem/New()
 
-// Used to initialize the subsystem BEFORE the map has loaded
-// Called AFTER Recover if that is called
-// Prefer to use Initialize if possible
+/datum/controller/subsystem/Destroy()
+	dequeue()
+	can_fire = 0
+	flags |= SS_NO_FIRE
+	Master.subsystems -= src
+	return ..()
+
+
+/// Initializes the subsystem AFTER map load. The preferred initialization proc.
+/datum/controller/subsystem/Initialize(start_timeofday)
+	subsystem_initialized = TRUE
+	var/time = (REALTIMEOFDAY - start_timeofday) / 10
+	var/msg = "Initialized [name] subsystem within [time] second[time == 1 ? "" : "s"]!"
+	to_chat(world, "<span class='boldannounce'>[msg]</span>")
+	log_world(msg)
+	return time
+
+
+/// Initializes the subsystem BEFORE map load. Called after recover, if recover is called.
 /datum/controller/subsystem/proc/PreInit()
 	return
 
+
+//hook for printing stats to the "MC" statuspanel for admins to see performance and related stats etc.
+/datum/controller/subsystem/stat_entry(msg)
+	if(!statclick)
+		statclick = new/obj/effect/statclick/debug(null, "Initializing...", src)
+	if(SS_NO_FIRE & flags)
+		msg = "NO FIRE\t[msg]"
+	else if(can_fire <= 0)
+		msg = "OFFLINE\t[msg]"
+	else
+		msg = "[round(cost,1)]ms|[round(tick_usage,1)]%([round(tick_overrun,1)]%)|[round(ticks,0.1)]\t[msg]"
+	var/title = name
+	if (can_fire)
+		title = "\[[state_letter()]][title]"
+	stat(title, statclick.update(msg))
+
+
 //This is used so the mc knows when the subsystem sleeps. do not override.
-/datum/controller/subsystem/proc/ignite(resumed = 0)
+/datum/controller/subsystem/proc/ignite(resumed)
 	set waitfor = 0
 	. = SS_SLEEPING
 	fire(resumed)
@@ -55,19 +86,17 @@
 		state = SS_PAUSED
 		queued_time = QT
 
-//previously, this would have been named 'process()' but that name is used everywhere for different things!
-//fire() seems more suitable. This is the procedure that gets called every 'wait' deciseconds.
-//Sleeping in here prevents future fires until returned.
-/datum/controller/subsystem/proc/fire(resumed = 0)
+
+/**
+* The periodic behavior of this subsystem, if it has any, every 'wait' deciseconds.
+* Sleeping prevents future fires until returned.
+* "resumed" is truthy when the previous fire did not complete and there is work left to do.
+* "no_mc_tick" is truthy when fire should run to the end, and damn the torpedoes.
+*/
+/datum/controller/subsystem/proc/fire(resumed, no_mc_tick)
 	flags |= SS_NO_FIRE
 	throw EXCEPTION("Subsystem [src]([type]) does not fire() but did not set the SS_NO_FIRE flag. Please add the SS_NO_FIRE flag to any subsystem that doesn't fire so it doesn't get added to the processing list and waste cpu.")
 
-/datum/controller/subsystem/Destroy()
-	dequeue()
-	can_fire = 0
-	flags |= SS_NO_FIRE
-	Master.subsystems -= src
-	return ..()
 
 //Queue it to run.
 //	(we loop thru a linked list until we get to the end or find the right point)
@@ -78,23 +107,19 @@
 	var/datum/controller/subsystem/queue_node
 	var/queue_node_priority
 	var/queue_node_flags
-
 	for (queue_node = Master.queue_head; queue_node; queue_node = queue_node.queue_next)
 		queue_node_priority = queue_node.queued_priority
 		queue_node_flags = queue_node.flags
-
 		if (queue_node_flags & SS_TICKER)
 			if (!(SS_flags & SS_TICKER))
 				continue
 			if (queue_node_priority < SS_priority)
 				break
-
 		else if (queue_node_flags & SS_BACKGROUND)
 			if (!(SS_flags & SS_BACKGROUND))
 				break
 			if (queue_node_priority < SS_priority)
 				break
-
 		else
 			if (SS_flags & SS_BACKGROUND)
 				continue
@@ -102,7 +127,6 @@
 				break
 			if (queue_node_priority < SS_priority)
 				break
-
 	queued_time = world.time
 	queued_priority = SS_priority
 	state = SS_QUEUED
@@ -110,7 +134,6 @@
 		Master.queue_priority_count_bg += SS_priority
 	else
 		Master.queue_priority_count += SS_priority
-
 	queue_next = queue_node
 	if (!queue_node)//we stopped at the end, add to tail
 		queue_prev = Master.queue_tail
@@ -119,7 +142,6 @@
 		else //empty queue, we also need to set the head
 			Master.queue_head = src
 		Master.queue_tail = src
-
 	else if (queue_node == Master.queue_head)//insert at start of list
 		Master.queue_head.queue_prev = src
 		Master.queue_head = src
@@ -153,56 +175,12 @@
 			state = SS_PAUSING
 
 
-//used to initialize the subsystem AFTER the map has loaded
-/datum/controller/subsystem/Initialize(start_timeofday)
-	subsystem_initialized = TRUE
-	var/time = (REALTIMEOFDAY - start_timeofday) / 10
-	var/msg = "Initialized [name] subsystem within [time] second[time == 1 ? "" : "s"]!"
-	to_chat(world, "<span class='boldannounce'>[msg]</span>")
-	log_world(msg)
-	return time
-
-//hook for printing stats to the "MC" statuspanel for admins to see performance and related stats etc.
-/datum/controller/subsystem/stat_entry(msg)
-	if(!statclick)
-		statclick = new/obj/effect/statclick/debug(null, "Initializing...", src)
-
-
-	if(SS_NO_FIRE & flags)
-		msg = "NO FIRE\t[msg]"
-	else if(can_fire <= 0)
-		msg = "OFFLINE\t[msg]"
-	else
-		msg = "[round(cost,1)]ms|[round(tick_usage,1)]%([round(tick_overrun,1)]%)|[round(ticks,0.1)]\t[msg]"
-
-	var/title = name
-	if (can_fire)
-		title = "\[[state_letter()]][title]"
-
-	stat(title, statclick.update(msg))
-
-/datum/controller/subsystem/proc/state_letter()
-	switch (state)
-		if (SS_RUNNING)
-			. = "R"
-		if (SS_QUEUED)
-			. = "Q"
-		if (SS_PAUSED, SS_PAUSING)
-			. = "P"
-		if (SS_SLEEPING)
-			. = "S"
-		if (SS_IDLE)
-			. = "  "
-
 //could be used to postpone a costly subsystem for (default one) var/cycles, cycles
 //for instance, during cpu intensive operations like explosions
 /datum/controller/subsystem/proc/postpone(cycles = 1)
 	if(next_fire - world.time < wait)
 		next_fire += (wait*cycles)
 
-//usually called via datum/controller/subsystem/New() when replacing a subsystem (i.e. due to a recurring crash)
-//should attempt to salvage what it can from the old instance of subsystem
-/datum/controller/subsystem/Recover()
 
 // Suspends this subsystem from being queued for running.  If already in the queue, sleeps until idle. Returns FALSE if the subsystem was already suspended.
 /datum/controller/subsystem/proc/suspend()
@@ -212,10 +190,12 @@
 	while(can_fire <= 0 && state != SS_IDLE)
 		stoplag() // Safely sleep in a loop until 
 
+
 // Wakes a suspended subsystem.
 /datum/controller/subsystem/proc/wake()
 	can_fire = TRUE
 
+<<<<<<< HEAD
 // This subsystem has destabilized the game and is being put on warning. At this point there may be
 // an opportunity to clean up the subsystem or check it for errors in ways that would otherwise be too slow.
 // You should log the errors/cleanup results, so you can fix the problem rather than using this as a crutch.
@@ -230,3 +210,18 @@
 	var/msg = "[name] subsystem received final blame for MC failure"
 	log_world(msg)
 	log_game(msg)
+=======
+
+/datum/controller/subsystem/proc/state_letter()
+	switch (state)
+		if (SS_RUNNING)
+			. = "R"
+		if (SS_QUEUED)
+			. = "Q"
+		if (SS_PAUSED, SS_PAUSING)
+			. = "P"
+		if (SS_SLEEPING)
+			. = "S"
+		if (SS_IDLE)
+			. = "  "
+>>>>>>> a42e6b34466... Merge pull request #8497 from Spookerton/spkrtn/sys/30-inch-racks-01

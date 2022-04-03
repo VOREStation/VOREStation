@@ -1,7 +1,7 @@
 SUBSYSTEM_DEF(overlays)
 	name = "Overlay"
 	flags = SS_TICKER
-	wait = 1
+	wait = 1 // SS_TICKER - Ticks
 	priority = FIRE_PRIORITY_OVERLAYS
 	init_order = INIT_ORDER_OVERLAY
 
@@ -25,7 +25,7 @@ SUBSYSTEM_DEF(overlays)
 	appearance_bro = new()
 
 /datum/controller/subsystem/overlays/Initialize()
-	fire(mc_check = FALSE)
+	fire(FALSE, TRUE)
 	..()
 
 /datum/controller/subsystem/overlays/stat_entry()
@@ -41,7 +41,7 @@ SUBSYSTEM_DEF(overlays)
 	queue = SSoverlays.queue
 
 
-/datum/controller/subsystem/overlays/fire(resumed = FALSE, mc_check = TRUE)
+/datum/controller/subsystem/overlays/fire(resumed, no_mc_tick)
 	var/list/queue = src.queue
 	var/static/count = 0
 	if (count)
@@ -57,11 +57,10 @@ SUBSYSTEM_DEF(overlays)
 			COMPILE_OVERLAYS(A)
 			STAT_STOP_STOPWATCH
 			STAT_LOG_ENTRY(stats, A.type)
-		if(mc_check)
-			if(MC_TICK_CHECK)
-				break
-		else
+		if (no_mc_tick)
 			CHECK_TICK
+		else if (MC_TICK_CHECK)
+			break
 
 	if (count)
 		queue.Cut(1,count+1)

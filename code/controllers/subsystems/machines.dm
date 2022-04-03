@@ -30,7 +30,7 @@ SUBSYSTEM_DEF(machines)
 	fire()
 	..()
 
-/datum/controller/subsystem/machines/fire(resumed = 0)
+/datum/controller/subsystem/machines/fire(resumed, no_mc_tick)
 	var/timer = TICK_USAGE
 
 	INTERNAL_PROCESS_STEP(SSMACHINES_POWER_OBJECTS,FALSE,process_power_objects,cost_power_objects,SSMACHINES_PIPENETS) // Higher priority, damnit

@@ -1,6 +1,6 @@
 SUBSYSTEM_DEF(chemistry)
 	name = "Chemistry"
-	wait = 20
+	wait = 2 SECONDS
 	flags = SS_NO_FIRE
 	init_order = INIT_ORDER_CHEMISTRY
 

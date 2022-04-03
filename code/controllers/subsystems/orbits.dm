@@ -1,7 +1,7 @@
 SUBSYSTEM_DEF(orbit)
 	name = "Orbits"
 	priority = FIRE_PRIORITY_ORBIT
-	wait = 2
+	wait = 2 // SS_TICKER - Ticks
 	flags = SS_NO_INIT|SS_TICKER
 
 	var/list/currentrun = list()
@@ -11,7 +11,7 @@ SUBSYSTEM_DEF(orbit)
 	..("P:[processing.len]")
 
 
-/datum/controller/subsystem/orbit/fire(resumed = 0)
+/datum/controller/subsystem/orbit/fire(resumed, no_mc_tick)
 	if (!resumed)
 		src.currentrun = processing.Copy()
 

@@ -1,50 +1,60 @@
- /**
-  * tgui subsystem
-  *
-  * Contains all tgui state and subsystem code.
- **/
-
-
 SUBSYSTEM_DEF(tgui)
 	name = "TGUI"
-	wait = 9
+	wait = 1 SECOND
 	flags = SS_NO_INIT
 	priority = FIRE_PRIORITY_TGUI
 	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT
 
-	/// A list of UIs scheduled to process
-	var/list/current_run = list()
-	/// A list of open UIs
-	var/list/open_uis = list()
-	/// A list of open UIs, grouped by src_object and ui_key.
-	var/list/open_uis_by_src = list()
-	/// The HTML base used for all UIs.
-	var/basehtml
+	/// The current queue of UIs to be processed
+	var/static/tmp/list/current = list()
+
+	/// The whole set of open UIs
+	var/static/tmp/list/open_uis = list()
+
+	/// The whole set of open UIs as ("\ref[owner]" = /datum/tgui?)
+	var/static/tmp/list/open_uis_by_src = list()
+
+	/// The template document used by all tgui instances
+	var/static/tmp/base_html
+
+
+/datum/controller/subsystem/tgui/Recover()
+	current.Cut()
+
 
 /datum/controller/subsystem/tgui/PreInit()
+<<<<<<< HEAD
 	basehtml = file2text('tgui/public/tgui.html')
+=======
+	base_html = file2text('tgui/packages/tgui/public/tgui.html')
+
+>>>>>>> a42e6b34466... Merge pull request #8497 from Spookerton/spkrtn/sys/30-inch-racks-01
 
 /datum/controller/subsystem/tgui/Shutdown()
 	close_all_uis()
 
+
 /datum/controller/subsystem/tgui/stat_entry()
 	..("P:[open_uis.len]")
 
-/datum/controller/subsystem/tgui/fire(resumed = 0)
-	if(!resumed)
-		src.current_run = open_uis.Copy()
-	// Cache for sanic speed (lists are references anyways)
-	var/list/current_run = src.current_run
-	while(current_run.len)
-		var/datum/tgui/ui = current_run[current_run.len]
-		current_run.len--
-		// TODO: Move user/src_object check to process()
-		if(ui && ui.user && ui.src_object)
+
+/datum/controller/subsystem/tgui/fire(resumed, no_mc_tick)
+	if (!resumed)
+		current = open_uis.Copy()
+	var/datum/tgui/ui
+	for (var/i = current.len to 1 step -1)
+		ui = current[i]
+		if (ui?.user && ui.src_object)
 			ui.process()
 		else
-			open_uis.Remove(ui)
-		if(MC_TICK_CHECK)
+			open_uis -= ui
+		if (no_mc_tick)
+			CHECK_TICK
+		else if (MC_TICK_CHECK)
+			current.Cut(i)
 			return
+	current.Cut()
+
 
 /**
  * public

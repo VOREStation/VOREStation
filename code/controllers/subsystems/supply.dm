@@ -38,7 +38,7 @@ SUBSYSTEM_DEF(supply)
 	. = ..()
 
 // Supply shuttle ticker - handles supply point regeneration. Just add points over time.
-/datum/controller/subsystem/supply/fire()
+/datum/controller/subsystem/supply/fire(resumed, no_mc_tick)
 	points += points_per_process
 
 /datum/controller/subsystem/supply/stat_entry()

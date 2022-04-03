@@ -11,7 +11,7 @@
 // No point in making this a processing substem, it overrides fire() and handles its own processing list!
 SUBSYSTEM_DEF(airflow)
 	name = "Airflow"
-	wait = 2
+	wait = 0.2 SECONDS
 	flags = SS_NO_INIT
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 	priority = FIRE_PRIORITY_AIRFLOW
@@ -19,7 +19,7 @@ SUBSYSTEM_DEF(airflow)
 	var/list/processing = list()
 	var/list/currentrun = list()
 
-/datum/controller/subsystem/airflow/fire(resumed = FALSE)
+/datum/controller/subsystem/airflow/fire(resumed, no_mc_tick)
 	if (!resumed)
 		currentrun = processing.Copy()
 

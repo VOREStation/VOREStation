@@ -23,7 +23,7 @@ SUBSYSTEM_DEF(character_setup)
 		new_player.deferred_login()
 	. = ..()
 */	//Might be useful if we ever switch to Bay prefs.
-/datum/controller/subsystem/character_setup/fire(resumed = FALSE)
+/datum/controller/subsystem/character_setup/fire(resumed, no_mc_tick)
 	while(save_queue.len)
 		var/datum/preferences/prefs = save_queue[save_queue.len]
 		save_queue.len--

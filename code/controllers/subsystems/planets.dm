@@ -60,7 +60,7 @@ SUBSYSTEM_DEF(planets)
 			P.sun_holder.remove_from_turf(T)
 
 
-/datum/controller/subsystem/planets/fire(resumed = 0)
+/datum/controller/subsystem/planets/fire(resumed, no_mc_tick)
 	if(!resumed)
 		src.currentrun = planets.Copy()
 

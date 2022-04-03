@@ -2,7 +2,7 @@
 
 PROCESSING_SUBSYSTEM_DEF(fastprocess)
 	name = "Fast Processing"
-	wait = 2
+	wait = 0.2 SECONDS
 	stat_tag = "FP"
 
 /datum/controller/subsystem/processing/fastprocess/Recover()

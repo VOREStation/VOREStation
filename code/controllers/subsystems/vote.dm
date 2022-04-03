@@ -1,6 +1,6 @@
 SUBSYSTEM_DEF(vote)
 	name = "Vote"
-	wait = 10
+	wait = 1 SECOND
 	priority = FIRE_PRIORITY_VOTE
 	runlevels = RUNLEVEL_LOBBY | RUNLEVELS_DEFAULT
 	flags = SS_KEEP_TIMING | SS_NO_INIT
@@ -20,7 +20,7 @@ SUBSYSTEM_DEF(vote)
 	var/list/current_votes = list()
 	var/list/additional_text = list()
 
-/datum/controller/subsystem/vote/fire(resumed)
+/datum/controller/subsystem/vote/fire(resumed, no_mc_tick)
 	if(mode)
 		time_remaining = round((started_time + duration - world.time)/10)
 		if(mode == VOTE_GAMEMODE && ticker.current_state >= GAME_STATE_SETTING_UP)

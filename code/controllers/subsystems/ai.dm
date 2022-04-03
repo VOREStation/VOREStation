@@ -15,7 +15,7 @@ SUBSYSTEM_DEF(ai)
 /datum/controller/subsystem/ai/stat_entry(msg_prefix)
 	..("P: [processing.len] | S: [slept_mobs]")
 
-/datum/controller/subsystem/ai/fire(resumed = 0)
+/datum/controller/subsystem/ai/fire(resumed, no_mc_tick)
 	if (!resumed)
 		src.currentrun = processing.Copy()
 		process_z.Cut()

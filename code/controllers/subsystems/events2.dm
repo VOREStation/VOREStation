@@ -13,8 +13,14 @@ SUBSYSTEM_DEF(event_ticker)
 	var/list/finished_events = list()
 
 // Process active events.
+<<<<<<< HEAD
 /datum/controller/subsystem/event_ticker/fire(resumed)
 	for(var/datum/event2/event/event as anything in active_events)
+=======
+/datum/controller/subsystem/event_ticker/fire(resumed, no_mc_tick)
+	for(var/E in active_events)
+		var/datum/event2/event/event = E
+>>>>>>> a42e6b34466... Merge pull request #8497 from Spookerton/spkrtn/sys/30-inch-racks-01
 		event.process()
 		if(event.finished)
 			event_finished(event)

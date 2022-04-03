@@ -2,7 +2,7 @@ SUBSYSTEM_DEF(aifast)
 	name = "AI (Fast)"
 	init_order = INIT_ORDER_AI_FAST
 	priority = FIRE_PRIORITY_AI
-	wait = 0.25 SECONDS // Every quarter second
+	wait = 0.25 SECONDS
 	flags = SS_NO_INIT
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 
@@ -14,7 +14,7 @@ SUBSYSTEM_DEF(aifast)
 	msg += "P:[processing.len]"
 	..(msg.Join())
 
-/datum/controller/subsystem/aifast/fire(resumed = 0)
+/datum/controller/subsystem/aifast/fire(resumed, no_mc_tick)
 	if (!resumed)
 		src.currentrun = processing.Copy()
 

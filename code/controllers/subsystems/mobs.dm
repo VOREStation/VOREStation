@@ -22,7 +22,13 @@ SUBSYSTEM_DEF(mobs)
 /datum/controller/subsystem/mobs/stat_entry()
 	..("P: [global.mob_list.len] | S: [slept_mobs]")
 
+<<<<<<< HEAD
 /datum/controller/subsystem/mobs/fire(resumed = 0)
+=======
+/datum/controller/subsystem/mobs/fire(resumed, no_mc_tick)
+	var/list/busy_z_levels = src.busy_z_levels
+
+>>>>>>> a42e6b34466... Merge pull request #8497 from Spookerton/spkrtn/sys/30-inch-racks-01
 	if (!resumed)
 		src.currentrun = mob_list.Copy()
 		process_z.len = GLOB.living_players_by_zlevel.len

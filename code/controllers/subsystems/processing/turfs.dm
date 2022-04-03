@@ -1,6 +1,6 @@
 PROCESSING_SUBSYSTEM_DEF(turfs)
 	name = "Turf Processing"
-	wait = 20
+	wait = 2 SECONDS
 
 /datum/controller/subsystem/processing/turfs/Recover()
 	log_debug("[name] subsystem Recover().")

@@ -1,6 +1,6 @@
 PROCESSING_SUBSYSTEM_DEF(projectiles)
 	name = "Projectiles"
-	wait = 1
+	wait = 1 // SS_TICKER - Ticks
 	stat_tag = "PP"
 	priority = FIRE_PRIORITY_PROJECTILES
 	flags = SS_NO_INIT|SS_TICKER

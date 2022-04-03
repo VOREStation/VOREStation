@@ -87,7 +87,7 @@ SUBSYSTEM_DEF(garbage)
 			dellog += "\tNo hint: [I.no_hint] times"
 	text2file(dellog.Join(), "[log_path]-qdel.log")
 
-/datum/controller/subsystem/garbage/fire()
+/datum/controller/subsystem/garbage/fire(resumed, no_mc_tick)
 	//the fact that this resets its processing each fire (rather then resume where it left off) is intentional.
 	var/queue = GC_QUEUE_CHECK
 

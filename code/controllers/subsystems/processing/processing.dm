@@ -4,7 +4,7 @@ SUBSYSTEM_DEF(processing)
 	name = "Processing"
 	priority = FIRE_PRIORITY_PROCESS
 	flags = SS_BACKGROUND|SS_POST_FIRE_TIMING|SS_NO_INIT
-	wait = 10
+	wait = 1 SECOND
 
 	var/stat_tag = "P" //Used for logging
 	var/list/processing = list()
@@ -27,7 +27,7 @@ SUBSYSTEM_DEF(processing)
 /datum/controller/subsystem/processing/stat_entry()
 	..("[stat_tag]:[processing.len]")
 
-/datum/controller/subsystem/processing/fire(resumed = 0)
+/datum/controller/subsystem/processing/fire(resumed, no_mc_tick)
 	if (!resumed)
 		currentrun = processing.Copy()
 	//cache for sanic speed (lists are references anyways)

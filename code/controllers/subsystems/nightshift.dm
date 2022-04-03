@@ -19,7 +19,7 @@ SUBSYSTEM_DEF(nightshift)
 	*/
 	return ..()
 
-/datum/controller/subsystem/nightshift/fire(resumed = FALSE)
+/datum/controller/subsystem/nightshift/fire(resumed, no_mc_tick)
 	if(round_duration_in_ds < nightshift_first_check)
 		return
 	check_nightshift()
