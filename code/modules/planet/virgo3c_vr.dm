@@ -540,10 +540,17 @@ VIRGO3C_TURF_CREATE(/turf/simulated/floor/water)
 VIRGO3C_TURF_CREATE(/turf/simulated/floor/tiled)
 VIRGO3C_TURF_CREATE(/turf/simulated/floor/reinforced)
 VIRGO3C_TURF_CREATE(/turf/simulated/floor/glass/reinforced)
-VIRGO3C_TURF_CREATE(/turf/simulated/open)
 VIRGO3C_TURF_CREATE(/turf/simulated/floor/tiled/dark)
 VIRGO3C_TURF_CREATE(/turf/simulated/mineral)
 VIRGO3C_TURF_CREATE(/turf/simulated/floor)
+
+/turf/simulated/open/virgo3c
+	VIRGO3C_SET_ATMOS
+
+/turf/simulated/open/virgo3c/Initialize(mapload)
+	. = ..()
+	if(is_outdoors())
+		SSplanets.addTurf(src)
 
 /turf/simulated/mineral/cave/virgo3c
 	VIRGO3C_SET_ATMOS
