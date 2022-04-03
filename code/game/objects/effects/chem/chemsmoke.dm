@@ -12,9 +12,12 @@
 	create_reagents(500)
 	return
 
+<<<<<<< HEAD
 /obj/effect/effect/smoke/chem/Destroy()
 	walk(src, 0) // Because we might have called walk_to, we must stop the walk loop or BYOND keeps an internal reference to us forever.
 	return ..()
+=======
+>>>>>>> 3adb6b548a1... Merge pull request #8486 from Spookerton/spkrtn/fix/movable-destruction
 
 /obj/effect/effect/smoke/chem/transparent
 	opacity = FALSE

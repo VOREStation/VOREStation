@@ -93,10 +93,6 @@
 	else if(M.ear_damage >= 5)
 		to_chat(M, "<span class='danger'>Your ears start to ring!</span>")
 
-/obj/item/weapon/grenade/flashbang/Destroy()
-	walk(src, 0) // Because we might have called walk_away, we must stop the walk loop or BYOND keeps an internal reference to us forever.
-	return ..()
-
 
 /obj/item/weapon/grenade/flashbang/clusterbang//Created by Polymorph, fixed by Sieve
 	desc = "Use of this weapon may constiute a war crime in your area, consult your local Site Manager."
