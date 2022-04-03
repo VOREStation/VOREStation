@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "eslint.nodePath": "./tgui/.yarn/sdks",
     "eslint.workingDirectories": [
         "./tgui"
@@ -34,3 +35,15 @@
     },
     "tgstationTestExplorer.project.DMEName": "tgmc.dme"
 }
+=======
+	"editor.detectIndentation": false,
+	"editor.insertSpaces": false,
+	"editor.tabSize": 4,
+	"files.eol": "\r\n",
+	"gitblame.commitUrl": "https://github.com/polarisss13/polaris/commit/${hash}",
+	"gitlens.advanced.blame.customArguments": [
+		"--ignore-revs-file",
+		".git-blame-ignore-revs"
+	]
+}
+>>>>>>> 02ede114600... Merge pull request #8473 from Spookerton/spkrtn/sys/vscode-defaults-and-git-blame-ignore-revs
