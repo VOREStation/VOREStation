@@ -2485,7 +2485,7 @@
 /area/holodeck/source_gym)
 "jZ" = (
 /turf/unsimulated/map/edge,
-/area/space)
+/area/overmap)
 "kw" = (
 /obj/effect/floor_decal/sign/small_5,
 /turf/simulated/floor/holofloor/wood,
@@ -2527,7 +2527,7 @@
 "mV" = (
 /obj/effect/shuttle_landmark{
 	base_area = /area/space;
-	base_turf = /turf/unsimulated/floor;
+	base_turf = /turf/simulated/floor/reinforced/virgo3c;
 	landmark_tag = "supply_cc";
 	name = "Centcom Supply Depot"
 	},
@@ -2871,7 +2871,7 @@
 /area/holodeck/source_patient_ward)
 "EA" = (
 /turf/unsimulated/map,
-/area/space)
+/area/overmap)
 "ED" = (
 /obj/structure/fitness/weightlifter,
 /obj/effect/floor_decal/industrial/outline/yellow,

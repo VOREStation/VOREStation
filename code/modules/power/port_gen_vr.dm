@@ -289,8 +289,8 @@
 	icon_state = "reg"
 	circuit = /obj/item/weapon/circuitboard/machine/reg
 	irradiate = FALSE
-	power_gen = 0	//It's big but it gets adjusted based on what you put into it!!!
-	var/default_power_gen = 1000000
+	power_gen = 0	
+	var/default_power_gen = 1000000	//It's big but it gets adjusted based on what you put into it!!!
 	var/part_mult = 0
 	pixel_x = -32
 	plane = ABOVE_MOB_PLANE
@@ -300,8 +300,8 @@
 	density = FALSE
 
 /obj/machinery/power/rtg/d_type_reg/Initialize()
-	. = ..()
 	pixel_x = -32
+	. = ..()
 	
 /obj/machinery/power/rtg/d_type_reg/Destroy()
 	. = ..()
@@ -322,6 +322,7 @@
 	part_mult = n	
 
 /obj/machinery/power/rtg/d_type_reg/attackby(obj/item/I, mob/user, params)
+	pixel_x = -32
 	if(default_deconstruction_screwdriver(user, I))
 		return
 	else if(default_deconstruction_crowbar(user, I))
@@ -329,6 +330,7 @@
 	return ..()
 
 /obj/machinery/power/rtg/d_type_reg/update_icon()
+	pixel_x = -32
 	if(panel_open)
 		icon_state = "reg-o"
 	else if(buckled_mobs && buckled_mobs.len > 0)
