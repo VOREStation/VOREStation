@@ -30,7 +30,7 @@
 	var/datum/gender/T = gender_datums[user.get_visible_gender()]
 	var/datum/gender/TT = gender_datums[target.get_visible_gender()]
 	if(!skill)	skill = 1
-	attack_damage = CLAMP(attack_damage, 1, 5)
+	attack_damage = clamp(attack_damage, 1, 5)
 
 	if(target == user)
 		user.visible_message("<span class='danger'>[user] [pick(attack_verb)] [T.himself] in the [affecting.name]!</span>")

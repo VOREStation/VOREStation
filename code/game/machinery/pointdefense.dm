@@ -245,7 +245,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 	addtimer(CALLBACK(src, .proc/finish_shot, target), rotation_speed)
 	animate(src, transform = rot_matrix, rotation_speed, easing = SINE_EASING)
 
-	set_dir(ATAN2(transform.b, transform.a) > 0 ? NORTH : SOUTH)
+	set_dir(arctan(transform.b, transform.a) > 0 ? NORTH : SOUTH)
 
 /obj/machinery/power/pointdefense/proc/finish_shot(var/weakref/target)
 
@@ -275,8 +275,12 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 		return
 	if(!active)
 		return
+<<<<<<< HEAD
 	/*
 	var/desiredir = ATAN2(transform.b, transform.a) > 0 ? NORTH : SOUTH
+=======
+	var/desiredir = arctan(transform.b, transform.a) > 0 ? NORTH : SOUTH
+>>>>>>> 83ac4859254... Merge pull request #8496 from Spookerton/spkrtn/sys/out-with-the-old-2
 	if(dir != desiredir)
 		set_dir(desiredir)
 	*/

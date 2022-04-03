@@ -305,7 +305,7 @@
 		// Volume will be 1 at no power, ~12.5 at ENERGY_NITROGEN, and 20+ at ENERGY_PHORON.
 		// Capped to 20 volume since higher volumes get annoying and it sounds worse.
 		// Formula previously was min(round(power/10)+1, 20)
-		soundloop.volume = CLAMP((50 + (power / 50)), 50, 100)
+		soundloop.volume = clamp((50 + (power / 50)), 50, 100)
 
 	// Swap loops between calm and delamming.
 	if(damage >= 300)

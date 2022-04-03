@@ -61,7 +61,7 @@
 		to_chat(target, "<span class='danger'>You feel extreme pain!</span>")
 
 		var/max_halloss = round(target.species.total_health * 0.8) //up to 80% of passing out
-		affecting.adjustHalLoss(CLAMP(max_halloss - affecting.halloss, 0, 30))
+		affecting.adjustHalLoss(clamp(max_halloss - affecting.halloss, 0, 30))
 
 /obj/item/weapon/grab/proc/attack_eye(mob/living/carbon/human/target, mob/living/carbon/human/attacker)
 	if(!istype(attacker))

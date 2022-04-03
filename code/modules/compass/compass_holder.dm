@@ -43,7 +43,7 @@
 			if(numeric_directions)
 				str = "[angle]"
 			else
-				str = angle_step_to_dir[CLAMP(round(angle/45)+1, 1, length(angle_step_to_dir))]
+				str = angle_step_to_dir[clamp(round(angle/45)+1, 1, length(angle_step_to_dir))]
 			str_col = "#ffffffaa"
 		else 
 			str = "〡"

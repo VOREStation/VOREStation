@@ -23,5 +23,5 @@
 /datum/compass_waypoint/proc/recalculate_heading(var/cx, var/cy)
 	var/matrix/M = matrix()
 	M.Translate(0, (name ? COMPASS_LABEL_OFFSET-4 : COMPASS_LABEL_OFFSET))
-	M.Turn(ATAN2(cy-y, cx-x)+180)
+	M.Turn(arctan(cy-y, cx-x)+180)
 	compass_overlay.transform = M

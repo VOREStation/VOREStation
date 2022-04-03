@@ -399,10 +399,17 @@ GLOBAL_LIST_EMPTY(cached_examine_icons)
 	if (!color) return "#FFFFFF"
 	if (!value) return color
 
+<<<<<<< HEAD
 	var/list/RGB = rgb2num(color)
 	RGB[1] = CLAMP(RGB[1]+value,0,255)
 	RGB[2] = CLAMP(RGB[2]+value,0,255)
 	RGB[3] = CLAMP(RGB[3]+value,0,255)
+=======
+	var/list/RGB = ReadRGB(color)
+	RGB[1] = clamp(RGB[1]+value,0,255)
+	RGB[2] = clamp(RGB[2]+value,0,255)
+	RGB[3] = clamp(RGB[3]+value,0,255)
+>>>>>>> 83ac4859254... Merge pull request #8496 from Spookerton/spkrtn/sys/out-with-the-old-2
 	return rgb(RGB[1],RGB[2],RGB[3])
 
 /proc/sort_atoms_by_layer(var/list/atoms)

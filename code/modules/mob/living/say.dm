@@ -343,7 +343,7 @@ var/list/channel_to_radio_key = new
 		if(sb_alpha < 0)
 			break
 	speech_bubble.loc = loc_before_turf
-	speech_bubble.alpha = CLAMP(sb_alpha, 0, 255)
+	speech_bubble.alpha = clamp(sb_alpha, 0, 255)
 	images_to_clients[speech_bubble] = list()
 
 	//Main 'say' and 'whisper' message delivery

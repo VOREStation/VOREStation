@@ -245,10 +245,10 @@
 	if(!homing_target)
 		return FALSE
 	var/datum/point/PT = RETURN_PRECISE_POINT(homing_target)
-	PT.x += CLAMP(homing_offset_x, 1, world.maxx)
-	PT.y += CLAMP(homing_offset_y, 1, world.maxy)
+	PT.x += clamp(homing_offset_x, 1, world.maxx)
+	PT.y += clamp(homing_offset_y, 1, world.maxy)
 	var/angle = closer_angle_difference(Angle, angle_between_points(RETURN_PRECISE_POINT(src), PT))
-	setAngle(Angle + CLAMP(angle, -homing_turn_speed, homing_turn_speed))
+	setAngle(Angle + clamp(angle, -homing_turn_speed, homing_turn_speed))
 
 /obj/item/projectile/proc/set_homing_target(atom/A)
 	if(!A || (!isturf(A) && !isturf(A.loc)))
@@ -326,7 +326,7 @@
 			stack_trace("WARNING: Projectile [type] deleted due to being unable to resolve a target after angle was null!")
 			qdel(src)
 			return
-		var/turf/target = locate(CLAMP(starting + xo, 1, world.maxx), CLAMP(starting + yo, 1, world.maxy), starting.z)
+		var/turf/target = locate(clamp(starting + xo, 1, world.maxx), clamp(starting + yo, 1, world.maxy), starting.z)
 		setAngle(Get_Angle(src, target))
 	if(dispersion)
 		setAngle(Angle + rand(-dispersion, dispersion))
@@ -431,7 +431,7 @@
 
 		var/ox = round(screenviewX/2) - user.client.pixel_x //"origin" x
 		var/oy = round(screenviewY/2) - user.client.pixel_y //"origin" y
-		angle = ATAN2(y - oy, x - ox)
+		angle = arctan(y - oy, x - ox)
 	return list(angle, p_x, p_y)
 
 /obj/item/projectile/proc/redirect(x, y, starting, source)
@@ -468,7 +468,7 @@
 		// Multiply projectile damage by 1.2, then CLAMP the value between 30 and 100.
 		// This was 0.67 but in practice it made all projectiles that did 45 or less damage play at 30,
 		// which is hard to hear over the gunshots, and is rather rare for a projectile to do that much.
-		return CLAMP((value_to_use) * 1.2, 30, 100)
+		return clamp((value_to_use) * 1.2, 30, 100)
 	else
 		return 50 //if the projectile doesn't do damage or agony, play its hitsound at 50% volume.
 
@@ -816,7 +816,7 @@
 
 /obj/item/projectile/proc/impact_sounds(atom/A)
 	if(hitsound_wall && !ismob(A)) // Mob sounds are handled in attack_mob().
-		var/volume = CLAMP(vol_by_damage() + 20, 0, 100)
+		var/volume = clamp(vol_by_damage() + 20, 0, 100)
 		if(silenced)
 			volume = 5
 		playsound(A, hitsound_wall, volume, 1, -1)

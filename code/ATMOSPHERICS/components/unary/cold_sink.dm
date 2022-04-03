@@ -100,7 +100,11 @@
 			else
 				set_temperature = max(amount, 0)
 		if("setPower") //setting power to 0 is redundant anyways
+<<<<<<< HEAD
 			var/new_setting = between(0, text2num(params["value"]), 100)
+=======
+			var/new_setting = clamp(text2num(params["value"]), 0, 100)
+>>>>>>> 83ac4859254... Merge pull request #8496 from Spookerton/spkrtn/sys/out-with-the-old-2
 			set_power_level(new_setting)
 
 	add_fingerprint(usr)

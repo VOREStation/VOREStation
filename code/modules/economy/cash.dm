@@ -83,7 +83,7 @@
 	var/amount = input(usr, "How many [initial_name]s do you want to take? (0 to [src.worth])", "Take Money", 20) as num
 	if(!src || QDELETED(src))
 		return
-	amount = round(CLAMP(amount, 0, src.worth))
+	amount = round(clamp(amount, 0, src.worth))
 
 	if(!amount)
 		return

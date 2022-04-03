@@ -602,7 +602,7 @@ emp_act
 	var/converted_protection = 1 - protection
 	var/perm = reagent_permeability()
 	converted_protection *= perm
-	return CLAMP(1-converted_protection, 0, 1)
+	return clamp(1-converted_protection, 0, 1)
 
 /mob/living/carbon/human/water_act(amount)
 	adjust_fire_stacks(-amount * 5)

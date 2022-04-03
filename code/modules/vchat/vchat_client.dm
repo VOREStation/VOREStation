@@ -242,7 +242,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 			data = debugmsg(arglist(params))
 
 	if(href_list["showingnum"])
-		message_buffer = CLAMP(text2num(href_list["showingnum"]), 50, 2000)
+		message_buffer = clamp(text2num(href_list["showingnum"]), 50, 2000)
 
 	if(data)
 		send_event(event = data)

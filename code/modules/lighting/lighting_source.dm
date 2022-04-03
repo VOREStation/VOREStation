@@ -145,7 +145,12 @@
 		REMOVE_CORNER(corner)
 		LAZYREMOVE(corner.affecting, src)
 
+<<<<<<< HEAD
 	effect_str = null
+=======
+// This is the define used to calculate falloff.
+#define LUM_FALLOFF(C, T)(1 - clamp(((C.x - T.x) ** 2 +(C.y - T.y) ** 2 + LIGHTING_HEIGHT) ** 0.6 / max(1, light_range), 0, 1))
+>>>>>>> 83ac4859254... Merge pull request #8496 from Spookerton/spkrtn/sys/out-with-the-old-2
 
 /datum/light_source/proc/recalc_corner(datum/lighting_corner/corner)
 	LAZYINITLIST(effect_str)

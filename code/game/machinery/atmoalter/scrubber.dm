@@ -140,7 +140,7 @@
 				holding = null
 			. = TRUE
 		if("volume_adj")
-			volume_rate = CLAMP(text2num(params["vol"]), minrate, maxrate)
+			volume_rate = clamp(text2num(params["vol"]), minrate, maxrate)
 			. = TRUE
 
 	update_icon()

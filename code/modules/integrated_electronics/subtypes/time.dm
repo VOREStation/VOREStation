@@ -22,7 +22,7 @@
 /obj/item/integrated_circuit/time/delay/do_work()
 	var/delay_input = get_pin_data(IC_INPUT, 1)
 	if(delay_input && isnum(delay_input) )
-		var/new_delay = CLAMP(delay_input, 1, 1 HOUR)
+		var/new_delay = clamp(delay_input, 1, 1 HOUR)
 		delay = new_delay
 
 	addtimer(CALLBACK(src, .proc/activate_pin, 2), delay)
@@ -51,7 +51,7 @@
 /obj/item/integrated_circuit/time/ticker/on_data_written()
 	var/delay_input = get_pin_data(IC_INPUT, 2)
 	if(delay_input && isnum(delay_input) )
-		var/new_delay = CLAMP(delay_input, 1, 1 HOUR)
+		var/new_delay = clamp(delay_input, 1, 1 HOUR)
 		delay = new_delay
 		power_draw_per_use = CEILING((max_power_draw / delay) / delay, 1)
 

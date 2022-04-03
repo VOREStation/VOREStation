@@ -155,7 +155,7 @@
 
 	if(energy)
 		SSradiation.radiate(src, round(((src.energy-150)/50)*5,1))
-		energy = CLAMP(energy - 5, 0, max_energy)
+		energy = clamp(energy - 5, 0, max_energy)
 
 	return
 

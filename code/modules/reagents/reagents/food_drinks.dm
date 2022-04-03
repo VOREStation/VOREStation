@@ -577,7 +577,7 @@
 	if(iscarbon(M) && !M.isSynthetic())
 		var/message = pick("Oh god, it smells disgusting here.", "What is that stench?", "That's an awful odor.")
 		to_chat(M, "<span class='alien'>[message]</span>")
-		if(prob(CLAMP(amount, 5, 90)))
+		if(prob(clamp(amount, 5, 90)))
 			var/mob/living/L = M
 			L.vomit()
 	return ..()

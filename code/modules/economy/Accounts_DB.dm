@@ -141,9 +141,14 @@
 				detailed_account_view.suspended = !detailed_account_view.suspended
 				callHook("change_account_status", list(detailed_account_view))
 
+<<<<<<< HEAD
 		if("finalise_create_account")
 			var/account_name = params["holder_name"]
 			var/starting_funds = max(text2num(params["starting_funds"]), 0)
+=======
+				starting_funds = clamp(starting_funds, 0, station_account.money)	// Not authorized to put the station in debt.
+				starting_funds = min(starting_funds, fund_cap)						// Not authorized to give more than the fund cap.
+>>>>>>> 83ac4859254... Merge pull request #8496 from Spookerton/spkrtn/sys/out-with-the-old-2
 
 			starting_funds = CLAMP(starting_funds, 0, station_account.money)	// Not authorized to put the station in debt.
 			starting_funds = min(starting_funds, fund_cap)						// Not authorized to give more than the fund cap.

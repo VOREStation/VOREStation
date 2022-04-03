@@ -145,7 +145,7 @@ var/global/list/sparring_attack_cache = list()
 	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
 	var/datum/gender/TT = gender_datums[target.get_visible_gender()]
 
-	attack_damage = CLAMP(attack_damage, 1, 5) // We expect damage input of 1 to 5 for this proc. But we leave this check juuust in case.
+	attack_damage = clamp(attack_damage, 1, 5) // We expect damage input of 1 to 5 for this proc. But we leave this check juuust in case.
 
 	if(target == user)
 		user.visible_message("<span class='danger'>[user] [pick(attack_verb)] [TU.himself] in the [organ]!</span>")
@@ -220,7 +220,7 @@ var/global/list/sparring_attack_cache = list()
 	var/datum/gender/TT = gender_datums[target.get_visible_gender()]
 	var/organ = affecting.name
 
-	attack_damage = CLAMP(attack_damage, 1, 5)
+	attack_damage = clamp(attack_damage, 1, 5)
 
 	switch(attack_damage)
 		if(1 to 2)	user.visible_message("<span class='danger'>[user] threw [target] a glancing [pick(attack_noun)] to the [organ]!</span>") //it's not that they're kicking lightly, it's that the kick didn't quite connect
@@ -267,7 +267,7 @@ var/global/list/sparring_attack_cache = list()
 	var/obj/item/clothing/shoes = user.shoes
 	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
 
-	attack_damage = CLAMP(attack_damage, 1, 5)
+	attack_damage = clamp(attack_damage, 1, 5)
 
 	switch(attack_damage)
 		if(1 to 4)	user.visible_message("<span class='danger'>[pick("[user] stomped on", "[user] slammed [TU.his] [shoes ? copytext(shoes.name, 1, -1) : "foot"] down onto")] [target]'s [organ]!</span>")

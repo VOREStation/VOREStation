@@ -61,6 +61,7 @@
 					E.toggle()
 			. = TRUE
 
+<<<<<<< HEAD
 		if("set_global_limit")
 			var/newlim = input(usr, "Input new thrust limit (0..100%)", "Thrust limit", linked.thrust_limit*100) as num
 			if(tgui_status(usr, state) != STATUS_INTERACTIVE)
@@ -89,6 +90,43 @@
 		if("limit")
 			var/datum/ship_engine/E = locate(params["engine"])
 			var/limit = clamp(E.get_thrust_limit() + text2num(params["limit"]), 0, 1)
+=======
+	if(href_list["global_toggle"])
+		linked.engines_state = !linked.engines_state
+		for(var/datum/ship_engine/E in linked.engines)
+			if(linked.engines_state == !E.is_on())
+				E.toggle()
+		return TOPIC_REFRESH
+
+	if(href_list["set_global_limit"])
+		var/newlim = input("Input new thrust limit (0..100%)", "Thrust limit", linked.thrust_limit*100) as num
+		if(!CanInteract(user, state))
+			return TOPIC_NOACTION
+		linked.thrust_limit = clamp(newlim/100, 0, 1)
+		for(var/datum/ship_engine/E in linked.engines)
+			E.set_thrust_limit(linked.thrust_limit)
+		return TOPIC_REFRESH
+
+	if(href_list["global_limit"])
+		linked.thrust_limit = clamp(linked.thrust_limit + text2num(href_list["global_limit"]), 0, 1)
+		for(var/datum/ship_engine/E in linked.engines)
+			E.set_thrust_limit(linked.thrust_limit)
+		return TOPIC_REFRESH
+
+	if(href_list["engine"])
+		if(href_list["set_limit"])
+			var/datum/ship_engine/E = locate(href_list["engine"])
+			var/newlim = input("Input new thrust limit (0..100)", "Thrust limit", E.get_thrust_limit()) as num
+			if(!CanInteract(user, state))
+				return
+			var/limit = clamp(newlim/100, 0, 1)
+			if(istype(E))
+				E.set_thrust_limit(limit)
+			return TOPIC_REFRESH
+		if(href_list["limit"])
+			var/datum/ship_engine/E = locate(href_list["engine"])
+			var/limit = clamp(E.get_thrust_limit() + text2num(href_list["limit"]), 0, 1)
+>>>>>>> 83ac4859254... Merge pull request #8496 from Spookerton/spkrtn/sys/out-with-the-old-2
 			if(istype(E))
 				E.set_thrust_limit(limit)
 			. = TRUE

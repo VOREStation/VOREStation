@@ -120,7 +120,7 @@ GLOBAL_LIST_EMPTY(fusion_cores)
 		. = owned_field.bullet_act(Proj)
 
 /obj/machinery/power/fusion_core/proc/set_strength(var/value)
-	value = CLAMP(value, MIN_FIELD_STR, MAX_FIELD_STR)
+	value = clamp(value, MIN_FIELD_STR, MAX_FIELD_STR)
 
 	if(field_strength != value)
 		field_strength = value

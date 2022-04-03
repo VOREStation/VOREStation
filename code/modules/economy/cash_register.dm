@@ -129,8 +129,13 @@
 				src.visible_message("[bicon(src)][transaction_purpose]: [t_amount] Thaler\s.")
 			if("set_amount")
 				var/item_name = locate(href_list["item"])
+<<<<<<< HEAD
 				var/n_amount = round(input(usr, "Enter amount", "New amount") as num)
 				n_amount = CLAMP(n_amount, 0, 20)
+=======
+				var/n_amount = round(input("Enter amount", "New amount") as num)
+				n_amount = clamp(n_amount, 0, 20)
+>>>>>>> 83ac4859254... Merge pull request #8496 from Spookerton/spkrtn/sys/out-with-the-old-2
 				if (!item_list[item_name] || !Adjacent(usr)) return
 				transaction_amount += (n_amount - item_list[item_name]) * price_list[item_name]
 				if(!n_amount)

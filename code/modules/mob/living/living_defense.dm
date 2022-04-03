@@ -171,7 +171,7 @@
 	if(LAZYLEN(modifiers))
 		for(var/datum/modifier/M in modifiers)
 			if(!isnull(M.emp_modifier))
-				severity = CLAMP(severity + M.emp_modifier, 1, 5)
+				severity = clamp(severity + M.emp_modifier, 1, 5)
 
 	if(severity == 5)	// Effectively nullified.
 		return
@@ -386,7 +386,7 @@
 	return
 
 /mob/living/proc/adjust_fire_stacks(add_fire_stacks) //Adjusting the amount of fire_stacks we have on person
-    fire_stacks = CLAMP(fire_stacks + add_fire_stacks, FIRE_MIN_STACKS, FIRE_MAX_STACKS)
+    fire_stacks = clamp(fire_stacks + add_fire_stacks, FIRE_MIN_STACKS, FIRE_MAX_STACKS)
 
 /mob/living/proc/handle_fire()
 	if(fire_stacks < 0)

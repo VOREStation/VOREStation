@@ -65,7 +65,7 @@
 
 	totallums += dynamic_lumcount
 
-	return CLAMP01(totallums)
+	return clamp(totallums, 0, 1)
 
 // Returns a boolean whether the turf is on soft lighting.
 // Soft lighting being the threshold at which point the overlay considers

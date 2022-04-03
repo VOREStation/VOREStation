@@ -797,7 +797,7 @@
 			if(H.losebreath >= 15 && prob(H.losebreath))
 				H.Stun(2)
 			else
-				H.losebreath = CLAMP(H.losebreath + 3, 0, 20)
+				H.losebreath = clamp(H.losebreath + 3, 0, 20)
 		else
 			H.losebreath = max(H.losebreath - 4, 0)
 
@@ -892,7 +892,7 @@
 				I.damage = max(I.damage - 4 * removed * repair_strength, 0)
 				H.Confuse(2)
 		if(M.reagents.has_reagent("respirodaxon") || M.reagents.has_reagent("peridaxon"))
-			H.losebreath = CLAMP(H.losebreath + 1, 0, 10)
+			H.losebreath = clamp(H.losebreath + 1, 0, 10)
 		else
 			H.adjustOxyLoss(-30 * removed) // Deals with blood oxygenation.
 

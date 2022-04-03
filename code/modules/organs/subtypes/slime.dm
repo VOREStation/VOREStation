@@ -114,7 +114,7 @@
 	else if(amount > 0)
 		last_strain_increase = world.time
 
-	strain = CLAMP(strain + amount, 0, min_broken_damage)
+	strain = clamp(strain + amount, 0, min_broken_damage)
 
 /obj/item/organ/internal/regennetwork/process()
 	..()

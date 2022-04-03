@@ -90,6 +90,158 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 /obj/machinery/computer/ship/helm/tgui_interact(mob/user, datum/tgui/ui)
 	if(!linked)
 		display_reconnect_dialog(user, "helm")
+<<<<<<< HEAD
+=======
+	else
+		var/turf/T = get_turf(linked)
+		var/obj/effect/overmap/visitable/sector/current_sector = locate() in T
+
+		data["sector"] = current_sector ? current_sector.name : "Deep Space"
+		data["sector_info"] = current_sector ? current_sector.desc : "Not Available"
+		data["landed"] = linked.get_landed_info()
+		data["s_x"] = linked.x
+		data["s_y"] = linked.y
+		data["dest"] = dy && dx
+		data["d_x"] = dx
+		data["d_y"] = dy
+		data["speedlimit"] = speedlimit ? speedlimit*1000 : "Halted"
+		data["accel"] = min(round(linked.get_acceleration()*1000, 0.01),accellimit*1000)
+		data["heading"] = linked.get_heading_degrees()
+		data["autopilot"] = autopilot
+		data["manual_control"] = viewing_overmap(user)
+		data["canburn"] = linked.can_burn()
+		data["accellimit"] = accellimit*1000
+
+		var/speed = round(linked.get_speed()*1000, 0.01)
+		if(linked.get_speed() < SHIP_SPEED_SLOW)
+			speed = "<span class='good'>[speed]</span>"
+		if(linked.get_speed() > SHIP_SPEED_FAST)
+			speed = "<span class='average'>[speed]</span>"
+		data["speed"] = speed
+
+		if(linked.get_speed())
+			data["ETAnext"] = "[round(linked.ETA()/10)] seconds"
+		else
+			data["ETAnext"] = "N/A"
+
+		var/list/locations[0]
+		for (var/key in known_sectors)
+			var/datum/computer_file/data/waypoint/R = known_sectors[key]
+			var/list/rdata[0]
+			rdata["name"] = R.fields["name"]
+			rdata["x"] = R.fields["x"]
+			rdata["y"] = R.fields["y"]
+			rdata["reference"] = "\ref[R]"
+			locations.Add(list(rdata))
+
+		data["locations"] = locations
+
+		ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
+		if (!ui)
+			ui = new(user, src, ui_key, "helm.tmpl", "[linked.name] Helm Control", 565, 545)
+			ui.set_initial_data(data)
+			ui.open()
+			ui.set_auto_update(1)
+
+/obj/machinery/computer/ship/helm/OnTopic(var/mob/user, var/list/href_list, state)
+	if(..())
+		return TOPIC_HANDLED
+
+	if(!linked)
+		return TOPIC_HANDLED
+
+	if (href_list["add"])
+		var/datum/computer_file/data/waypoint/R = new()
+		var/sec_name = input("Input naviation entry name", "New navigation entry", "Sector #[known_sectors.len]") as text
+		if(!CanInteract(user,state))
+			return TOPIC_NOACTION
+		if(!sec_name)
+			sec_name = "Sector #[known_sectors.len]"
+		R.fields["name"] = sec_name
+		if(sec_name in known_sectors)
+			to_chat(user, "<span class='warning'>Sector with that name already exists, please input a different name.</span>")
+			return TOPIC_REFRESH
+		switch(href_list["add"])
+			if("current")
+				R.fields["x"] = linked.x
+				R.fields["y"] = linked.y
+			if("new")
+				var/newx = input("Input new entry x coordinate", "Coordinate input", linked.x) as num
+				if(!CanInteract(user,state))
+					return TOPIC_REFRESH
+				var/newy = input("Input new entry y coordinate", "Coordinate input", linked.y) as num
+				if(!CanInteract(user,state))
+					return TOPIC_NOACTION
+				R.fields["x"] = clamp(newx, 1, world.maxx)
+				R.fields["y"] = clamp(newy, 1, world.maxy)
+		known_sectors[sec_name] = R
+
+	if (href_list["remove"])
+		var/datum/computer_file/data/waypoint/R = locate(href_list["remove"])
+		if(R)
+			known_sectors.Remove(R.fields["name"])
+			qdel(R)
+
+	if (href_list["setx"])
+		var/newx = input("Input new destiniation x coordinate", "Coordinate input", dx) as num|null
+		if(!CanInteract(user,state))
+			return
+		if (newx)
+			dx = clamp(newx, 1, world.maxx)
+
+	if (href_list["sety"])
+		var/newy = input("Input new destiniation y coordinate", "Coordinate input", dy) as num|null
+		if(!CanInteract(user,state))
+			return
+		if (newy)
+			dy = clamp(newy, 1, world.maxy)
+
+	if (href_list["x"] && href_list["y"])
+		dx = text2num(href_list["x"])
+		dy = text2num(href_list["y"])
+
+	if (href_list["reset"])
+		dx = 0
+		dy = 0
+
+	if (href_list["speedlimit"])
+		var/newlimit = input("Input new speed limit for autopilot (0 to brake)", "Autopilot speed limit", speedlimit*1000) as num|null
+		if(newlimit)
+			speedlimit = clamp(newlimit/1000, 0, 100)
+	if (href_list["accellimit"])
+		var/newlimit = input("Input new acceleration limit", "Acceleration limit", accellimit*1000) as num|null
+		if(newlimit)
+			accellimit = max(newlimit/1000, 0)
+
+	if (href_list["move"])
+		var/ndir = text2num(href_list["move"])
+		if(prob(user.skill_fail_chance(/datum/skill/pilot, 50, linked.skill_needed, factor = 1)))
+			ndir = turn(ndir,pick(90,-90))
+		linked.relaymove(user, ndir, accellimit)
+
+	if (href_list["brake"])
+		linked.decelerate()
+
+	if (href_list["apilot"])
+		autopilot = !autopilot
+
+	if (href_list["manual"])
+		viewing_overmap(user) ? unlook(user) : look(user)
+
+	add_fingerprint(user)
+	updateUsrDialog()
+
+
+/obj/machinery/computer/ship/navigation
+	name = "navigation console"
+	icon_keyboard = "generic_key"
+	icon_screen = "helm"
+	circuit = /obj/item/weapon/circuitboard/nav
+
+/obj/machinery/computer/ship/navigation/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+	if(!linked)
+		display_reconnect_dialog(user, "Navigation")
+>>>>>>> 83ac4859254... Merge pull request #8496 from Spookerton/spkrtn/sys/out-with-the-old-2
 		return
 
 	ui = SStgui.try_update_ui(user, src, ui)

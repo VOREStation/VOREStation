@@ -53,4 +53,4 @@
 /datum/blob_type/pressurized_slime/on_chunk_use(obj/item/weapon/blobcore_chunk/B, mob/living/user)	// Drenches you in water.
 	if(user)
 		user.ExtinguishMob()
-		user.fire_stacks = CLAMP(user.fire_stacks - 1, -25, 25)
+		user.fire_stacks = clamp(user.fire_stacks - 1, -25, 25)

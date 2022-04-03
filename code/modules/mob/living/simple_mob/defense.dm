@@ -113,7 +113,7 @@
 
 	for(var/datum/modifier/M in modifiers)
 		if(!isnull(M.explosion_modifier))
-			severity = CLAMP(severity + M.explosion_modifier, 1, 4)
+			severity = clamp(severity + M.explosion_modifier, 1, 4)
 
 	severity = round(severity)
 

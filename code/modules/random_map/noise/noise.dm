@@ -113,7 +113,7 @@
 		subdivide(iteration, x,       y+hsize, hsize)
 		subdivide(iteration, x+hsize, y+hsize, hsize)
 
-#define NOISE2VALUE(X) CLAMP(round(((X)/cell_range)*10), 0, 9)
+#define NOISE2VALUE(X) clamp(round(((X)/cell_range)*10), 0, 9)
 /datum/random_map/noise/cleanup()
 	var/is_not_border_left
 	var/is_not_border_right

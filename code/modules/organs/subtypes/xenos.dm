@@ -48,7 +48,7 @@
 	adjust_plasma(1)
 
 /obj/item/organ/internal/xenos/plasmavessel/proc/adjust_plasma(var/amount = 0)
-	stored_plasma = CLAMP(stored_plasma + amount, 0, max_plasma)
+	stored_plasma = clamp(stored_plasma + amount, 0, max_plasma)
 
 /obj/item/organ/internal/xenos/plasmavessel/grey
 	icon_state = "plasma_grey"

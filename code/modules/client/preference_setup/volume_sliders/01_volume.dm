@@ -42,7 +42,7 @@
 				pref.volume_channels["[channel]"] = 1
 			var/value = input(usr, "Choose your volume for [channel] (0-200%)", "[channel] volume", (pref.volume_channels[channel] * 100))
 			if(isnum(value))
-				value = CLAMP(value, 0, 200)
+				value = clamp(value, 0, 200)
 				pref.volume_channels["[channel]"] = (value / 100)
 			return TOPIC_REFRESH
 	return ..()

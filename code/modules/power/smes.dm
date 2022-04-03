@@ -167,7 +167,7 @@ GLOBAL_LIST_EMPTY(smeses)
 
 	//inputting
 	if(input_attempt && (!input_pulsed && !input_cut) && !grid_check)
-		target_load = CLAMP((capacity-charge)/SMESRATE, 0, input_level)	// Amount we will request from the powernet.
+		target_load = clamp((capacity-charge)/SMESRATE, 0, input_level)	// Amount we will request from the powernet.
 		var/input_available = FALSE
 		for(var/obj/machinery/power/terminal/term in terminals)
 			if(!term.powernet)
