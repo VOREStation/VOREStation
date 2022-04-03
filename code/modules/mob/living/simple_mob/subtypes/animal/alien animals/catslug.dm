@@ -227,6 +227,7 @@
 	if(newcolor)
 		color = newcolor
 	picked_color = TRUE
+	update_icon()
 
 /datum/ai_holder/simple_mob/melee/evasive/catslug/proc/consider_awakening()
 	if(holder.resting)
@@ -692,3 +693,139 @@
 
 /obj/item/weapon/holder/catslug/cargoslug
 	item_state = "cargoslug"
+
+/mob/living/simple_mob/vore/alienanimals/catslug/suslug
+	name = "suslug"
+	desc = "A noodley bodied creature wearing a colorful space suit. Suspicious..."
+	tt_desc = "Mollusca Felis Amogus"
+	icon_state = "suslug"
+	icon_living = "suslug"
+	icon_rest = "suslug_rest"
+	icon_dead = "suslug_dead"
+	var/image/eye_image
+	var/is_impostor = FALSE
+	var/kill_cooldown
+
+/mob/living/simple_mob/vore/alienanimals/catslug/suslug/impostor
+	is_impostor = TRUE
+
+/mob/living/simple_mob/vore/alienanimals/catslug/suslug/Initialize()
+	. = ..()
+	verbs += /mob/living/simple_mob/vore/alienanimals/catslug/suslug/proc/assussinate
+	update_icon()
+
+/mob/living/simple_mob/vore/alienanimals/catslug/suslug/update_icon()
+	..()
+	update_suslug_eyes()
+
+/mob/living/simple_mob/vore/alienanimals/catslug/suslug/proc/update_suslug_eyes()
+	cut_overlay(eye_image)
+	eye_image = image(icon,null,"[icon_state]-eyes")
+	eye_image.appearance_flags = RESET_COLOR|KEEP_APART|PIXEL_SCALE
+	add_overlay(eye_image)
+
+/mob/living/simple_mob/vore/alienanimals/catslug/suslug/can_ventcrawl()
+	if(!is_impostor)
+		to_chat(src, "<span class='notice'>You are not an impostor! You can't vent!</span>")
+		return FALSE
+	.=..()
+
+/mob/living/simple_mob/vore/alienanimals/catslug/suslug/examine(mob/user)
+	. = ..()
+
+	if(istype(user, /mob/living/simple_mob/vore/alienanimals/catslug/suslug))
+		var/mob/living/simple_mob/vore/alienanimals/catslug/suslug/us = user
+		if(us.is_impostor)
+			if(src.is_impostor)
+				. += "<span class='notice'>They appear to be a fellow impostor!</span>"
+			else
+				. += "<span class='notice'>They appear to be a filthy innocent!</span>"
+
+/mob/living/simple_mob/vore/alienanimals/catslug/suslug/proc/assussinate()
+	set name = "Kill Innocent"
+	set category = "Abilities"
+	set desc = "Kill an innocent suslug!"
+	if(!is_impostor)
+		to_chat(src, "<span class='notice'>You are not an impostor! You can't kill like that!</span>")
+		return
+	if((world.time - kill_cooldown) < 1 MINUTE)
+		to_chat(src, "<span class='notice'>You cannot kill so soon after previous kill!</span>")
+		return
+
+	var/mob/living/simple_mob/vore/alienanimals/catslug/suslug/target
+	var/list/victims = list()
+	for(var/mob/living/simple_mob/vore/alienanimals/catslug/suslug/S in range(1))
+		if(!S.is_impostor)
+			victims += S
+	if(!victims || !victims.len)
+		to_chat(src, "<span class='warning'>There are no innocent suslugs nearby!</span>")
+		return
+	if(victims.len == 1)
+		target = victims[1]
+	else
+		target = tgui_input_list(usr, "Kill", "Pick a victim", victims)
+
+	if(target && istype(target))
+		target.adjustBruteLoss(3000)
+		visible_message("<span class='warning'>\The [src] kills \the [target]!</span>")
+		kill_cooldown = world.time
+
+/mob/living/simple_mob/vore/alienanimals/catslug/suslug/color
+	picked_color = TRUE
+
+/mob/living/simple_mob/vore/alienanimals/catslug/suslug/color/white
+	color = COLOR_WHITE
+
+/mob/living/simple_mob/vore/alienanimals/catslug/suslug/color/red
+	color = COLOR_RED
+
+/mob/living/simple_mob/vore/alienanimals/catslug/suslug/color/blue
+	color = COLOR_BLUE
+
+/mob/living/simple_mob/vore/alienanimals/catslug/suslug/color/lime
+	color = COLOR_LIME
+
+/mob/living/simple_mob/vore/alienanimals/catslug/suslug/color/cyan
+	color = COLOR_CYAN
+
+/mob/living/simple_mob/vore/alienanimals/catslug/suslug/color/pink
+	color = COLOR_PINK
+
+/mob/living/simple_mob/vore/alienanimals/catslug/suslug/color/yellow
+	color = COLOR_YELLOW
+
+/mob/living/simple_mob/vore/alienanimals/catslug/suslug/color/orange
+	color = COLOR_ORANGE
+
+/mob/living/simple_mob/vore/alienanimals/catslug/suslug/color/green
+	color = COLOR_GREEN
+
+/mob/living/simple_mob/vore/alienanimals/catslug/suslug/color/violet
+	color = COLOR_VIOLET
+
+/mob/living/simple_mob/vore/alienanimals/catslug/suslug/color/orange
+	color = COLOR_ORANGE
+
+/mob/living/simple_mob/vore/alienanimals/catslug/suslug/color/brown
+	color = COLOR_DARK_BROWN
+
+/mob/living/simple_mob/vore/alienanimals/catslug/suslug/color/grey
+	color = COLOR_GRAY
+
+/mob/living/simple_mob/vore/alienanimals/catslug/suslug/color/black
+	color = COLOR_DARK_GRAY
+
+/mob/living/simple_mob/vore/alienanimals/catslug/suslug/color/beige
+	color = COLOR_BEIGE
+
+/mob/living/simple_mob/vore/alienanimals/catslug/suslug/color/maroon
+	color = COLOR_MAROON
+
+/mob/living/simple_mob/vore/alienanimals/catslug/suslug/color/navy
+	color = COLOR_NAVY
+
+/mob/living/simple_mob/vore/alienanimals/catslug/suslug/color/light_pink
+	color = COLOR_LIGHT_PINK
+
+/mob/living/simple_mob/vore/alienanimals/catslug/suslug/color/light_yellow
+	color = COLOR_WHEAT
