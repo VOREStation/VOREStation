@@ -1,7 +1,10 @@
 //#define TESTING
+<<<<<<< HEAD
 #if DM_VERSION < 512
 #error This compiler is out of date Please update to at least BYOND 512.
 #endif
+=======
+>>>>>>> f8cd43fa695... Merge pull request #8495 from Spookerton/spkrtn/sys/out-with-the-old
 
 // Items that ask to be called every cycle.
 var/global/datum/datacore/data_core = null
