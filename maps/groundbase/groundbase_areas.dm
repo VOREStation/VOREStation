@@ -358,3 +358,26 @@
 	icon_state = "orablacir"
 /area/groundbase/mining/explored
 	icon_state = "blublacir"
+
+// Exclude some more areas from the atmos leak event since its outside.
+/datum/event/atmos_leak/setup()
+	excluded |= /area/groundbase/level1/centsquare
+	excluded |= /area/groundbase/level1/eastspur
+	excluded |= /area/groundbase/level1/northspur
+	excluded |= /area/groundbase/level1/southeastspur
+	excluded |= /area/groundbase/level1/southwestspur
+	excluded |= /area/groundbase/level1/westspur
+	excluded |= /area/maintenance/groundbase/level1/netunnel
+	excluded |= /area/maintenance/groundbase/level1/nwtunnel
+	excluded |= /area/maintenance/groundbase/level1/stunnel
+	excluded |= /area/maintenance/groundbase/level1/setunnel
+	excluded |= /area/maintenance/groundbase/level1/swtunnel
+	excluded |= /area/groundbase/level2/ne
+	excluded |= /area/groundbase/level2/nw
+	excluded |= /area/groundbase/level2/se
+	excluded |= /area/groundbase/level2/sw
+	excluded |= /area/groundbase/level3/ne
+	excluded |= /area/groundbase/level3/nw
+	excluded |= /area/groundbase/level3/se
+	excluded |= /area/groundbase/level3/sw
+	..()
