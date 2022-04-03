@@ -369,6 +369,7 @@
 	excluded |= /area/groundbase/level1/westspur
 	excluded |= /area/maintenance/groundbase/level1/netunnel
 	excluded |= /area/maintenance/groundbase/level1/nwtunnel
+	excluded |= /area/maintenance/groundbase/level1/stunnel
 	excluded |= /area/maintenance/groundbase/level1/setunnel
 	excluded |= /area/maintenance/groundbase/level1/swtunnel
 	excluded |= /area/groundbase/level2/ne
