@@ -230,16 +230,47 @@ Protectiveness | Armor %
 	material_slowdown_modifier = 0
 	material_slowdown_multiplier = 0.5
 
-/obj/item/clothing/accessory/material/custom //Not yet craftable, advanced version made with science!
+
+/obj/item/clothing/accessory/material/advanced
 	name = "custom armor plate"
 	desc = "A composite plate of custom machined material, designed to fit into a plate carrier. Attaches to a plate carrier."
 	icon = 'icons/obj/clothing/modular_armor.dmi'
+	description_info = "This armoured plate has been custom machined out of a piece of material. It is backed by a shear-hardening gel layer, allowing the whole piece to flex and conform to the wearer's body shape. If it was made using strong materials it could be very protective."
 	icon_state = "armor_tactical"
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	body_parts_covered = UPPER_TORSO | LOWER_TORSO
 	slot = ACCESSORY_SLOT_ARMOR_C
 	material_armor_modifier = 1.2
 	material_slowdown_modifier = 0.5
 	material_slowdown_multiplier = 0.4
+
+
+/obj/item/clothing/accessory/material/advanced/armguards
+	name = "arm guards"
+	desc = "A pair of arm pads reinforced with material. Attaches to a plate carrier."
+	icon = 'icons/obj/clothing/modular_armor.dmi'
+	icon_override = 'icons/mob/modular_armor.dmi'
+	icon_state = "armguards_material"
+	gender = PLURAL
+	body_parts_covered = ARMS
+	slot = ACCESSORY_SLOT_ARMOR_A
+	material_armor_modifier = 1.1
+	material_slowdown_modifier = 1
+	material_slowdown_multiplier = 0.4
+
+
+/obj/item/clothing/accessory/material/advanced/legguards
+	name = "leg guards"
+	desc = "A pair of leg guards reinforced with material. Attaches to a plate carrier."
+	icon = 'icons/obj/clothing/modular_armor.dmi'
+	icon_override = 'icons/mob/modular_armor.dmi'
+	icon_state = "legguards_material"
+	gender = PLURAL
+	body_parts_covered = LEGS
+	slot = ACCESSORY_SLOT_ARMOR_L
+	material_armor_modifier = 1.1
+	material_slowdown_modifier = 1
+	material_slowdown_multiplier = 0.4
+
 
 /obj/item/clothing/accessory/material/makeshift/armguards
 	name = "arm guards"
@@ -290,7 +321,7 @@ Protectiveness | Armor %
 	unbreakable = FALSE
 	name = "plate insert"
 	desc = "used to craft armor plates for a plate carrier. Trim with a welder for light armor or add a second for heavy armor"
-	
+
 /obj/item/weapon/material/armor_plating/attackby(var/obj/O, mob/user)
 	if(istype(O, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/S = O

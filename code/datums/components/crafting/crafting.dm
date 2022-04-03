@@ -304,6 +304,8 @@
 				// If we need to consume some amount of it
 				if(amt > 0)
 					var/datum/reagent/RG = RC.reagents.get_reagent(id)
+					if (!istype (RG))
+						continue
 					var/A = min(RG.volume, amt)
 					RC.reagents.remove_reagent(id, A)
 					amt -= A
