@@ -13590,6 +13590,10 @@
 /obj/item/weapon/storage/box/donkpockets,
 /obj/item/weapon/reagent_containers/glass/beaker,
 /obj/item/weapon/reagent_containers/food/condiment/enzyme,
+/obj/item/weapon/reagent_containers/food/condiment/soysauce{
+	pixel_x = 10;
+	pixel_y = 4
+	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/surface/station/crew_quarters/kitchen)
 "gnA" = (
@@ -30616,6 +30620,14 @@
 /obj/item/weapon/reagent_containers/food/condiment/small/saltshaker{
 	pixel_x = 2
 	},
+/obj/item/weapon/reagent_containers/food/condiment/ketchup{
+	pixel_x = 10;
+	pixel_y = 7
+	},
+/obj/item/weapon/reagent_containers/food/condiment/mustard{
+	pixel_x = -11;
+	pixel_y = 7
+	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/surface/station/crew_quarters/kitchen)
 "obx" = (
@@ -36793,6 +36805,9 @@
 	icon_state = "1-2"
 	},
 /obj/effect/catwalk_plated,
+/obj/machinery/computer/secure_data{
+	dir = 1
+	},
 /turf/simulated/floor/plating,
 /area/surface/station/security/lobby)
 "qDs" = (

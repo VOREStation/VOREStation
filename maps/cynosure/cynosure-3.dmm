@@ -22302,10 +22302,13 @@
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/secondary/secondfloor/command)
 "oAJ" = (
-/obj/structure/closet,
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/brown/border,
 /obj/machinery/light,
+/obj/structure/table/standard,
+/obj/machinery/photocopier/faxmachine{
+	department = "Quartermaster's Office"
+	},
 /turf/simulated/floor/tiled,
 /area/surface/station/quartermaster/qm)
 "oBl" = (
@@ -25064,7 +25067,9 @@
 	icon_state = "0-2"
 	},
 /obj/structure/grille,
-/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced/polarized/full{
+	id = "captain_tint"
+	},
 /obj/machinery/status_display,
 /obj/machinery/door/blast/regular/open{
 	dir = 4;
@@ -30441,7 +30446,7 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 5
 	},
-/obj/item/weapon/reagent_containers/food/drinks/britcup,
+/obj/random/mug,
 /turf/simulated/floor/tiled/white,
 /area/surface/station/medical/office)
 "tUU" = (

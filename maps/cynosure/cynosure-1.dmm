@@ -9117,6 +9117,9 @@
 "tC" = (
 /obj/structure/ladder/up,
 /obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/structure/sign/level/basement{
+	pixel_x = 32
+	},
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/engineering/north)
 "tE" = (
