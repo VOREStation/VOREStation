@@ -895,6 +895,14 @@
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room4)
+"cJ" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/turf/simulated/floor/reinforced/virgo3c{
+	edge_blending_priority = -1
+	},
+/area/groundbase/level2/se)
 "cK" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -1186,6 +1194,14 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/science/hall)
+"dG" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 5
+	},
+/turf/simulated/floor/reinforced/virgo3c{
+	edge_blending_priority = -1
+	},
+/area/groundbase/level2/se)
 "dH" = (
 /obj/machinery/status_display/supply_display,
 /turf/simulated/wall,
@@ -1683,6 +1699,14 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled,
 /area/groundbase/command/hop)
+"fi" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 10
+	},
+/turf/simulated/floor/reinforced/virgo3c{
+	edge_blending_priority = -1
+	},
+/area/groundbase/level2/se)
 "fj" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -4178,6 +4202,14 @@
 "ni" = (
 /turf/unsimulated/wall/planetary/virgo3c,
 /area/groundbase/level2/ne)
+"nj" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 9
+	},
+/turf/simulated/floor/reinforced/virgo3c{
+	edge_blending_priority = -1
+	},
+/area/groundbase/level2/se)
 "nk" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -4244,6 +4276,12 @@
 	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/groundbase/civilian/kitchen)
+"nq" = (
+/obj/effect/landmark{
+	name = "droppod_landing"
+	},
+/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/area/groundbase/level2/se)
 "nt" = (
 /obj/item/weapon/stamp/rd,
 /turf/simulated/floor/tiled,
@@ -6272,6 +6310,12 @@
 /obj/machinery/chemical_dispenser/full,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/Chemistry)
+"ub" = (
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/reinforced/virgo3c{
+	edge_blending_priority = -1
+	},
+/area/groundbase/level2/se)
 "ue" = (
 /obj/machinery/button/remote/airlock{
 	dir = 8;
@@ -6593,6 +6637,14 @@
 /obj/structure/fence,
 /turf/simulated/floor/outdoors/grass/virgo3c,
 /area/groundbase/cargo/bay)
+"vl" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/turf/simulated/floor/reinforced/virgo3c{
+	edge_blending_priority = -1
+	},
+/area/groundbase/level2/se)
 "vm" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
@@ -7871,6 +7923,10 @@
 "zs" = (
 /turf/simulated/wall,
 /area/groundbase/civilian/chapel)
+"zt" = (
+/obj/structure/fence/corner,
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/groundbase/cargo/bay)
 "zw" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -9861,6 +9917,11 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/groundbase/command/hop)
+"Fs" = (
+/turf/simulated/floor/outdoors/newdirt/virgo3c{
+	outdoors = 0
+	},
+/area/groundbase/level2/nw)
 "Ft" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/glass_medical{
@@ -10749,6 +10810,12 @@
 	},
 /turf/simulated/floor/carpet,
 /area/groundbase/civilian/chapel)
+"Ic" = (
+/obj/effect/landmark{
+	name = "droppod_landing"
+	},
+/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/area/groundbase/level2/sw)
 "Ie" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -11301,10 +11368,9 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/science/xenobot/storage)
 "JN" = (
-/obj/structure/fence{
+/obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
-/obj/effect/floor_decal/industrial/outline,
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/cargo/bay)
 "JO" = (
@@ -11504,6 +11570,16 @@
 "Kl" = (
 /turf/simulated/floor/outdoors/grass/virgo3c,
 /area/groundbase/cargo/office)
+"Km" = (
+/obj/effect/shuttle_landmark{
+	base_area = /area/groundbase/cargo/bay;
+	base_turf = /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c;
+	docking_controller = "cargo_bay";
+	landmark_tag = "supply_station";
+	name = "Cargo Landing Pad"
+	},
+/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/area/groundbase/cargo/bay)
 "Kn" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -11857,6 +11933,14 @@
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level2/ne)
+"Lx" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/turf/simulated/floor/reinforced/virgo3c{
+	edge_blending_priority = -1
+	},
+/area/groundbase/level2/se)
 "Ly" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -13550,9 +13634,11 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/command/bridge)
 "Qu" = (
-/obj/structure/fence/corner,
-/turf/simulated/floor/outdoors/grass/virgo3c,
-/area/groundbase/cargo/bay)
+/obj/effect/landmark{
+	name = "droppod_landing"
+	},
+/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/area/groundbase/level2/ne)
 "Qv" = (
 /obj/machinery/vending/wardrobe/cargodrobe,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
@@ -14724,6 +14810,12 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/triage)
+"TI" = (
+/obj/structure/fence/corner{
+	dir = 10
+	},
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/groundbase/cargo/bay)
 "TJ" = (
 /obj/structure/closet/secure_closet/personal,
 /obj/item/weapon/towel/random,
@@ -16169,6 +16261,14 @@
 	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/groundbase/civilian/kitchen)
+"YC" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 6
+	},
+/turf/simulated/floor/reinforced/virgo3c{
+	edge_blending_priority = -1
+	},
+/area/groundbase/level2/se)
 "YF" = (
 /obj/machinery/firealarm{
 	dir = 4
@@ -16472,8 +16572,12 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/command/bridge)
 "ZI" = (
-/obj/structure/fence{
-	dir = 4
+/obj/effect/floor_decal/industrial/outline,
+/obj/machinery/embedded_controller/radio/simple_docking_controller{
+	dir = 4;
+	frequency = 1380;
+	id_tag = "cargo_bay";
+	pixel_x = -23
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/cargo/bay)
@@ -17200,9 +17304,9 @@ xE
 KW
 KW
 KW
-KW
-KW
-KW
+Fs
+Fs
+pw
 bY
 bY
 bY
@@ -17342,9 +17446,9 @@ KW
 KW
 KW
 KW
-KW
-KW
-KW
+Fs
+Fs
+pw
 bY
 bY
 Jc
@@ -17484,9 +17588,9 @@ xE
 KW
 xE
 xE
-KW
-KW
-KW
+Fs
+Fs
+pw
 bY
 Jc
 Jc
@@ -17626,8 +17730,8 @@ KW
 KW
 xE
 xE
-KW
-KW
+Fs
+Fs
 xE
 bY
 bY
@@ -19381,7 +19485,7 @@ Fl
 Fl
 Fl
 Fl
-Fl
+Ic
 Fl
 Fl
 jG
@@ -26932,7 +27036,7 @@ UE
 UE
 UE
 UE
-UE
+nq
 UE
 UE
 UE
@@ -28839,8 +28943,8 @@ Wj
 oa
 Wj
 Wj
-to
-to
+vk
+TI
 to
 to
 NC
@@ -28979,10 +29083,10 @@ pB
 KU
 fq
 PI
+ZI
 PI
-JN
-to
-to
+KU
+MH
 to
 to
 NC
@@ -29043,15 +29147,15 @@ Bo
 Bo
 Bo
 Bo
-Nq
-Nq
-Nq
-Nq
-Nq
-Nq
-Nq
-Nq
-Nq
+nj
+cJ
+cJ
+cJ
+cJ
+cJ
+cJ
+cJ
+fi
 Vs
 Vs
 Bo
@@ -29122,9 +29226,9 @@ KU
 KU
 KU
 KU
-ZI
-to
-to
+KU
+KU
+MH
 to
 to
 NC
@@ -29185,6 +29289,7 @@ At
 Bo
 Bo
 Bo
+Lx
 Nq
 Nq
 Nq
@@ -29192,8 +29297,7 @@ Nq
 Nq
 Nq
 Nq
-Nq
-Nq
+ub
 Bo
 Bo
 Bo
@@ -29262,11 +29366,11 @@ KU
 KU
 KU
 KU
-PI
-PI
-JN
-to
-to
+KU
+KU
+KU
+KU
+MH
 to
 to
 NC
@@ -29327,6 +29431,7 @@ kU
 kU
 kU
 Sd
+Lx
 Nq
 Nq
 Nq
@@ -29334,8 +29439,7 @@ Nq
 Nq
 Nq
 Nq
-Nq
-Nq
+ub
 Bo
 Bo
 Bo
@@ -29406,9 +29510,9 @@ KU
 KU
 KU
 KU
-ZI
-to
-to
+KU
+KU
+MH
 to
 to
 NC
@@ -29469,6 +29573,7 @@ GM
 GM
 GM
 kU
+Lx
 Nq
 Nq
 Nq
@@ -29476,8 +29581,7 @@ Nq
 Nq
 Nq
 Nq
-Nq
-Nq
+ub
 Bo
 Bo
 Bo
@@ -29539,18 +29643,18 @@ ks
 ks
 to
 MH
-PI
-PI
-PI
-KU
-KU
-KU
-KU
-PI
-PI
 JN
-to
-to
+JN
+JN
+JN
+JN
+JN
+JN
+JN
+JN
+JN
+JN
+MH
 Pt
 to
 NC
@@ -29611,6 +29715,7 @@ NR
 la
 GM
 oQ
+Lx
 Nq
 Nq
 Nq
@@ -29618,8 +29723,7 @@ Nq
 Nq
 Nq
 Nq
-Nq
-Nq
+ub
 UE
 UE
 UE
@@ -29690,9 +29794,9 @@ KU
 KU
 KU
 KU
-ZI
-to
-to
+KU
+KU
+MH
 XC
 XJ
 NC
@@ -29753,6 +29857,7 @@ xF
 gN
 mQ
 kU
+Lx
 Nq
 Nq
 Nq
@@ -29760,8 +29865,7 @@ Nq
 Nq
 Nq
 Nq
-Nq
-Nq
+ub
 UE
 UE
 UE
@@ -29823,18 +29927,18 @@ ks
 to
 to
 MH
-PI
-PI
-PI
 KU
 KU
 KU
 KU
-PI
-PI
-JN
-to
-to
+KU
+KU
+KU
+KU
+KU
+KU
+KU
+MH
 gM
 to
 NC
@@ -29895,6 +29999,7 @@ jo
 qC
 UT
 kU
+Lx
 Nq
 Nq
 Nq
@@ -29902,8 +30007,7 @@ Nq
 Nq
 Nq
 Nq
-Nq
-Nq
+ub
 UE
 UE
 UE
@@ -29974,9 +30078,9 @@ KU
 KU
 KU
 KU
-ZI
-to
-to
+KU
+KU
+MH
 to
 to
 NC
@@ -30037,6 +30141,7 @@ GC
 iC
 Bf
 kU
+Lx
 Nq
 Nq
 Nq
@@ -30044,8 +30149,7 @@ Nq
 Nq
 Nq
 Nq
-Nq
-Nq
+ub
 UE
 UE
 UE
@@ -30107,18 +30211,18 @@ to
 to
 to
 MH
-PI
-PI
-PI
+KU
+Km
 KU
 KU
 KU
 KU
-PI
-PI
-JN
-to
-to
+KU
+KU
+KU
+KU
+KU
+MH
 to
 to
 NC
@@ -30179,6 +30283,7 @@ GC
 Jl
 Bf
 kU
+Lx
 Nq
 Nq
 Nq
@@ -30186,8 +30291,7 @@ Nq
 Nq
 Nq
 Nq
-Nq
-Nq
+ub
 UE
 UE
 UE
@@ -30258,9 +30362,9 @@ KU
 KU
 KU
 KU
-ZI
-to
-to
+KU
+KU
+MH
 to
 to
 NC
@@ -30321,6 +30425,7 @@ GC
 Jl
 Bf
 kU
+Lx
 Nq
 Nq
 Nq
@@ -30328,8 +30433,7 @@ Nq
 Nq
 Nq
 Nq
-Nq
-Nq
+ub
 UE
 UE
 UE
@@ -30391,18 +30495,18 @@ to
 iw
 iw
 MH
-PI
-PI
-PI
 KU
 KU
 KU
 KU
-PI
-PI
-JN
-to
-to
+KU
+KU
+KU
+KU
+KU
+KU
+KU
+MH
 to
 to
 NC
@@ -30463,7 +30567,7 @@ GC
 Jl
 Bf
 kU
-Nq
+Lx
 Nq
 Nq
 Nq
@@ -30471,7 +30575,7 @@ nG
 Nq
 Nq
 Nq
-Nq
+ub
 UE
 UE
 UE
@@ -30542,9 +30646,9 @@ KU
 KU
 KU
 KU
-ZI
-to
-to
+KU
+KU
+MH
 to
 to
 NC
@@ -30605,6 +30709,7 @@ GC
 Jl
 Bf
 kU
+Lx
 Nq
 Nq
 Nq
@@ -30612,8 +30717,7 @@ Nq
 Nq
 Nq
 Nq
-Nq
-Nq
+ub
 UE
 UE
 UE
@@ -30675,18 +30779,18 @@ iw
 iw
 to
 MH
-PI
-PI
-PI
 KU
 KU
 KU
 KU
-PI
-PI
-JN
-to
-to
+KU
+KU
+KU
+KU
+KU
+KU
+KU
+MH
 to
 to
 Hu
@@ -30747,15 +30851,15 @@ GC
 Jl
 Bf
 kU
-Nq
-Nq
-Nq
-Nq
-Nq
-Nq
-Nq
-Nq
-Nq
+dG
+vl
+vl
+vl
+vl
+vl
+vl
+vl
+YC
 Bo
 Bo
 UE
@@ -30826,9 +30930,9 @@ vk
 vk
 vk
 vk
-Qu
-to
-to
+vk
+vk
+zt
 to
 vb
 to
@@ -31189,7 +31293,7 @@ Bo
 UE
 UE
 UE
-UE
+nq
 UE
 UE
 Bo
@@ -32092,7 +32196,7 @@ iw
 iw
 iw
 iw
-iw
+Qu
 iw
 iw
 to

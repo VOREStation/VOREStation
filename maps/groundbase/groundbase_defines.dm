@@ -377,7 +377,7 @@
 /////EXPLOSHUTTL/////
 // The shuttle's 'shuttle' computer
 /obj/machinery/computer/shuttle_control/explore/gbexplo
-	name = "Shuttle control console"
+	name = "short jump console"
 	shuttle_tag = "Exploration Shuttle"
 	req_one_access = list(access_pilot)
 
@@ -397,7 +397,7 @@
 	docking_controller_tag = "expshuttle_docker"
 	shuttle_area = list(/area/shuttle/groundbase/exploration)
 	fuel_consumption = 1
-	defer_initialisation = TRUE
+	move_direction = NORTH
 
 /area/shuttle/groundbase/exploration
 	icon = 'icons/turf/areas_vr.dmi'
@@ -418,6 +418,7 @@
 	docking_controller_tag = "supply_shuttle"
 	flags = SHUTTLE_FLAGS_PROCESS|SHUTTLE_FLAGS_SUPPLY
 	move_direction = WEST
+	ceiling_type = /turf/simulated/floor/reinforced/virgo3c
 
 ////////////////////////////////////////////////
 
@@ -432,6 +433,7 @@
 	move_time = SHUTTLE_TRANSIT_DURATION_RETURN
 	move_direction = SOUTH
 	docking_controller_tag = "escape_shuttle"
+	ceiling_type = /turf/simulated/floor/reinforced/virgo3c
 
 /obj/effect/shuttle_landmark/premade/groundbase
 	name = "Rascal's Pass"

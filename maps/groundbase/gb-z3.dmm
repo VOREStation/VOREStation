@@ -2,11 +2,12 @@
 "aa" = (
 /turf/simulated/wall,
 /area/groundbase/exploration/equipment)
-"ah" = (
-/turf/simulated/floor/reinforced/virgo3c{
-	edge_blending_priority = -1
+"ai" = (
+/obj/effect/landmark{
+	name = "droppod_landing"
 	},
-/area/groundbase/exploration/shuttlepad)
+/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/area/groundbase/level3/sw)
 "ak" = (
 /obj/structure/table/glass,
 /obj/item/weapon/paper_bin,
@@ -52,6 +53,12 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/shuttle/groundbase/exploration)
+"bi" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/groundbase/exploration/equipment)
 "bk" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/simulated/floor/tiled,
@@ -175,6 +182,14 @@
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/simulated/floor/tiled,
 /area/groundbase/exploration/equipment)
+"dR" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/floor/outdoors/sidewalk/virgo3c,
+/area/groundbase/civilian/pilot)
 "dU" = (
 /obj/structure/table/bench/marble,
 /obj/structure/cable/yellow{
@@ -188,7 +203,6 @@
 /turf/simulated/floor/tiled/virgo3c,
 /area/groundbase/medical/patio)
 "dW" = (
-/obj/machinery/computer/shuttle_control/explore/gbexplo,
 /turf/simulated/floor/tiled,
 /area/shuttle/groundbase/exploration)
 "dX" = (
@@ -196,6 +210,20 @@
 	dir = 1
 	},
 /obj/machinery/computer/ship/engines,
+/turf/simulated/floor/tiled,
+/area/shuttle/groundbase/exploration)
+"ei" = (
+/obj/structure/panic_button{
+	pixel_x = 32;
+	pixel_y = 32
+	},
+/obj/machinery/embedded_controller/radio/simple_docking_controller{
+	dir = 8;
+	frequency = 1380;
+	id_tag = "ex_docker";
+	pixel_x = 27;
+	pixel_y = 4
+	},
 /turf/simulated/floor/tiled,
 /area/shuttle/groundbase/exploration)
 "ey" = (
@@ -280,6 +308,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/virgo3c,
 /area/groundbase/medical/patio)
+"gt" = (
+/turf/simulated/wall,
+/area/groundbase/level3/nw)
 "gu" = (
 /obj/structure/bed/chair/shuttle{
 	dir = 4
@@ -389,9 +420,6 @@
 	},
 /turf/simulated/floor,
 /area/groundbase/medical/patient4)
-"iF" = (
-/turf/simulated/wall,
-/area/groundbase/level3/nw)
 "iN" = (
 /obj/effect/landmark/start{
 	name = "Pilot"
@@ -413,21 +441,6 @@
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/cargo/office)
-"iX" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 4
-	},
-/obj/machinery/embedded_controller/radio/simple_docking_controller{
-	dir = 4;
-	frequency = 1380;
-	id_tag = "expshuttle_dock";
-	pixel_x = -19;
-	req_one_access = list(19,43,67)
-	},
-/turf/simulated/floor/reinforced/virgo3c{
-	edge_blending_priority = -1
-	},
-/area/groundbase/exploration/shuttlepad)
 "iY" = (
 /obj/structure/filingcabinet,
 /obj/machinery/requests_console{
@@ -454,6 +467,22 @@
 /obj/random/mob/bird,
 /turf/simulated/floor/outdoors/grass/virgo3c,
 /area/groundbase/level3/sw)
+"jo" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/cable/yellow{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/reinforced/virgo3c{
+	edge_blending_priority = -1
+	},
+/area/groundbase/exploration/shuttlepad)
 "jp" = (
 /obj/structure/disposalpipe/trunk{
 	dir = 4
@@ -585,17 +614,6 @@
 	},
 /turf/simulated/floor/tiled/virgo3c,
 /area/groundbase/medical/patio)
-"ml" = (
-/obj/machinery/power/apc{
-	dir = 8
-	},
-/obj/structure/cable/yellow{
-	icon_state = "0-4"
-	},
-/turf/simulated/floor/reinforced/virgo3c{
-	edge_blending_priority = -1
-	},
-/area/groundbase/exploration/shuttlepad)
 "mr" = (
 /turf/unsimulated/wall/planetary/virgo3c,
 /area/groundbase/level3/nw)
@@ -778,6 +796,14 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/patient4)
+"pd" = (
+/obj/machinery/light/small,
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/groundbase/civilian/pilot)
+"pm" = (
+/obj/machinery/computer/shuttle_control/explore/gbexplo,
+/turf/simulated/floor/tiled,
+/area/shuttle/groundbase/exploration)
 "pq" = (
 /obj/machinery/button/remote/airlock{
 	dir = 4;
@@ -962,8 +988,25 @@
 /obj/item/clothing/head/helmet/space/void/exploration,
 /turf/simulated/floor/tiled,
 /area/groundbase/exploration/equipment)
+"tY" = (
+/obj/machinery/power/apc{
+	dir = 8
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/turf/simulated/floor/reinforced/virgo3c{
+	edge_blending_priority = -1
+	},
+/area/groundbase/exploration/shuttlepad)
 "tZ" = (
 /turf/simulated/mineral/cave/virgo3c,
+/area/groundbase/level3/se)
+"ub" = (
+/obj/effect/landmark{
+	name = "droppod_landing"
+	},
+/turf/simulated/floor/outdoors/grass/forest/virgo3c,
 /area/groundbase/level3/se)
 "ui" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -1014,10 +1057,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/exploration/equipment)
-"uV" = (
-/obj/machinery/computer/ship/helm,
-/turf/simulated/floor/tiled,
-/area/shuttle/groundbase/exploration)
 "vp" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -1123,16 +1162,6 @@
 	},
 /turf/simulated/floor/tiled/virgo3c,
 /area/groundbase/medical/patio)
-"xB" = (
-/obj/effect/shuttle_landmark{
-	base_area = /area/groundbase/exploration/shuttlepad;
-	base_turf = /turf/simulated/floor/reinforced/virgo3c;
-	docking_controller = "expshuttle_dock";
-	landmark_tag = "gb_excursion_pad";
-	name = "Excursion Shuttlepad"
-	},
-/turf/simulated/floor/tiled,
-/area/shuttle/groundbase/exploration)
 "xD" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -1181,10 +1210,6 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/paramedic)
-"yw" = (
-/obj/machinery/computer/ship/sensors,
-/turf/simulated/floor/tiled,
-/area/shuttle/groundbase/exploration)
 "yy" = (
 /obj/structure/dispenser{
 	phorontanks = 0
@@ -1226,12 +1251,6 @@
 	},
 /turf/simulated/wall,
 /area/groundbase/medical/paramedic)
-"zc" = (
-/obj/machinery/light,
-/turf/simulated/floor/reinforced/virgo3c{
-	edge_blending_priority = -1
-	},
-/area/groundbase/exploration/shuttlepad)
 "zh" = (
 /obj/effect/overmap/visitable/sector/virgo3b,
 /turf/unsimulated/wall/planetary/virgo3c,
@@ -1317,6 +1336,10 @@
 "Bg" = (
 /turf/unsimulated/wall/planetary/virgo3c,
 /area/groundbase/level3/sw)
+"Bo" = (
+/obj/machinery/computer/ship/sensors,
+/turf/simulated/floor/tiled,
+/area/shuttle/groundbase/exploration)
 "Bw" = (
 /obj/machinery/hologram/holopad,
 /obj/structure/cable/yellow{
@@ -1375,6 +1398,21 @@
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/groundbase/exploration)
+"Dy" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/machinery/embedded_controller/radio/simple_docking_controller{
+	dir = 4;
+	frequency = 1380;
+	id_tag = "expshuttle_dock";
+	pixel_x = -19;
+	req_one_access = list(19,43,67)
+	},
+/turf/simulated/floor/reinforced/virgo3c{
+	edge_blending_priority = -1
+	},
+/area/groundbase/exploration/shuttlepad)
 "DE" = (
 /obj/machinery/shipsensors{
 	dir = 1
@@ -1420,6 +1458,17 @@
 	},
 /turf/simulated/open,
 /area/groundbase/medical/uhallway)
+"Ea" = (
+/obj/effect/shuttle_landmark{
+	base_area = /area/groundbase/exploration/shuttlepad;
+	base_turf = /turf/simulated/floor/reinforced/virgo3c;
+	docking_controller = "expshuttle_dock";
+	landmark_tag = "gb_excursion_pad";
+	name = "Excursion Shuttlepad"
+	},
+/obj/effect/overmap/visitable/ship/landable/gbexplo,
+/turf/simulated/floor/tiled,
+/area/shuttle/groundbase/exploration)
 "Ef" = (
 /obj/effect/landmark/start{
 	name = "Field Medic"
@@ -1508,15 +1557,6 @@
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level3/nw)
-"EU" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/structure/disposalpipe/segment,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/outdoors/sidewalk/virgo3c,
-/area/groundbase/exploration/equipment)
 "Fb" = (
 /obj/structure/table/glass,
 /obj/item/weapon/clipboard,
@@ -1635,6 +1675,11 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/outdoors/sidewalk/virgo3c,
 /area/groundbase/level3/nw)
+"Hm" = (
+/turf/simulated/floor/reinforced/virgo3c{
+	edge_blending_priority = -1
+	},
+/area/groundbase/exploration/shuttlepad)
 "Hn" = (
 /obj/machinery/light{
 	dir = 8
@@ -1946,6 +1991,12 @@
 /obj/item/clothing/head/helmet/space/void/expedition_medical,
 /turf/simulated/floor/tiled,
 /area/groundbase/exploration/equipment)
+"Oc" = (
+/obj/machinery/light,
+/turf/simulated/floor/reinforced/virgo3c{
+	edge_blending_priority = -1
+	},
+/area/groundbase/exploration/shuttlepad)
 "Og" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -2018,12 +2069,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/uhallway)
-"Pl" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/simulated/floor/outdoors/grass/virgo3c,
-/area/groundbase/exploration/equipment)
 "Pr" = (
 /obj/machinery/button/remote/airlock{
 	dir = 8;
@@ -2148,20 +2193,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/medical/cmo)
-"Rq" = (
-/obj/structure/panic_button{
-	pixel_x = 32;
-	pixel_y = 32
-	},
-/obj/machinery/embedded_controller/radio/simple_docking_controller{
-	dir = 8;
-	frequency = 1380;
-	id_tag = "ex_docker";
-	pixel_x = 27;
-	pixel_y = 4
-	},
-/turf/simulated/floor/tiled,
-/area/shuttle/groundbase/exploration)
 "RM" = (
 /obj/machinery/photocopier/faxmachine{
 	department = "Exploration"
@@ -2270,6 +2301,15 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/pilot)
+"Ts" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/outdoors/sidewalk/virgo3c,
+/area/groundbase/exploration/equipment)
 "Tv" = (
 /obj/structure/table/glass,
 /obj/item/weapon/paper_bin,
@@ -2293,15 +2333,11 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/shuttle/groundbase/exploration)
 "Ue" = (
-/obj/effect/shuttle_landmark{
-	base_area = /area/groundbase/cargo/office;
-	base_turf = /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c;
-	docking_controller = "cargo_bay";
-	landmark_tag = "supply_station";
-	name = "Cargo Landing Pad"
+/obj/effect/landmark{
+	name = "droppod_landing"
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
-/area/groundbase/cargo/office)
+/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/area/groundbase/level3/nw)
 "Uf" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
@@ -2396,14 +2432,6 @@
 	},
 /turf/simulated/open,
 /area/groundbase/medical/uhallway)
-"VR" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/outdoors/sidewalk/virgo3c,
-/area/groundbase/civilian/pilot)
 "VU" = (
 /obj/structure/bed/chair/office/light{
 	dir = 4
@@ -2453,22 +2481,6 @@
 /obj/structure/flora/pottedplant/minitree,
 /turf/simulated/floor/wood,
 /area/groundbase/medical/cmo)
-"WH" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 4
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/structure/cable/yellow{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/turf/simulated/floor/reinforced/virgo3c{
-	edge_blending_priority = -1
-	},
-/area/groundbase/exploration/shuttlepad)
 "Xl" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -2500,8 +2512,8 @@
 	edge_blending_priority = -1
 	},
 /area/groundbase/exploration/shuttlepad)
-"XH" = (
-/obj/effect/overmap/visitable/ship/landable/gbexplo,
+"XT" = (
+/obj/machinery/computer/ship/helm,
 /turf/simulated/floor/tiled,
 /area/shuttle/groundbase/exploration)
 "Yy" = (
@@ -2560,14 +2572,6 @@
 	},
 /turf/simulated/floor/tiled/virgo3c,
 /area/groundbase/medical/patio)
-"Zd" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/simulated/floor/reinforced/virgo3c{
-	edge_blending_priority = -1
-	},
-/area/groundbase/exploration/shuttlepad)
 "Zn" = (
 /obj/machinery/firealarm{
 	dir = 8
@@ -2600,10 +2604,14 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/paramedic)
-"Zy" = (
-/obj/machinery/light/small,
-/turf/simulated/floor/outdoors/grass/virgo3c,
-/area/groundbase/civilian/pilot)
+"Zx" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/reinforced/virgo3c{
+	edge_blending_priority = -1
+	},
+/area/groundbase/exploration/shuttlepad)
 "ZH" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -4748,7 +4756,7 @@ rl
 rl
 rl
 rl
-rl
+ai
 rl
 rl
 rl
@@ -5233,7 +5241,7 @@ Qa
 Qa
 Qa
 Qa
-Qa
+Ue
 Qa
 Qa
 Qa
@@ -6505,7 +6513,7 @@ zG
 ma
 Ka
 aa
-Pl
+bi
 Qa
 Qa
 Qa
@@ -6647,7 +6655,7 @@ Og
 YJ
 HE
 dE
-EU
+Ts
 uF
 mU
 Qa
@@ -6789,7 +6797,7 @@ IC
 Pf
 FV
 aa
-Pl
+bi
 Qa
 Fx
 Qa
@@ -7351,17 +7359,17 @@ qO
 qO
 qO
 aa
-Zd
-ah
-ml
-ah
-zc
-iF
+Zx
+Hm
+tY
+Hm
+Oc
+gt
 qO
 qO
 Fx
 qO
-Zy
+pd
 GU
 Wm
 uP
@@ -7492,10 +7500,10 @@ qO
 qO
 pv
 jY
-iX
+Dy
 jY
 pL
-WH
+jo
 Oh
 Oh
 Oh
@@ -7503,7 +7511,7 @@ XC
 SG
 ZH
 GW
-VR
+dR
 xO
 Nf
 Zp
@@ -7645,7 +7653,7 @@ Bd
 qO
 cf
 qO
-Zy
+pd
 GU
 Wm
 Tk
@@ -7918,7 +7926,7 @@ qO
 qO
 uG
 jX
-dW
+pm
 Dm
 Jh
 wn
@@ -8060,7 +8068,7 @@ qO
 qO
 uG
 jX
-uV
+XT
 Dm
 hC
 oQ
@@ -8202,9 +8210,9 @@ qO
 qO
 uG
 jX
-yw
+Bo
 Dm
-XH
+dW
 cE
 cE
 PH
@@ -8345,8 +8353,8 @@ qO
 uG
 PH
 dX
-Rq
-xB
+ei
+Ea
 Nb
 vV
 PH
@@ -9751,7 +9759,7 @@ Qa
 Qa
 Qa
 Qa
-Qa
+Ue
 Qa
 Qa
 Qa
@@ -13321,7 +13329,7 @@ Lf
 Lf
 Lf
 Lf
-Ue
+Lf
 Lf
 Lf
 Lf
@@ -15232,13 +15240,13 @@ cj
 cj
 cj
 cj
-yA
-yA
-yA
-yA
-yA
-yA
-yA
+cj
+cj
+cj
+cj
+cj
+cj
+cj
 cj
 cj
 cj
@@ -15374,13 +15382,13 @@ cj
 cj
 cj
 cj
-yA
-yA
-yA
-yA
-yA
-yA
-yA
+cj
+cj
+cj
+cj
+cj
+cj
+cj
 cj
 cj
 cj
@@ -15516,13 +15524,13 @@ yA
 yA
 cj
 cj
-yA
-yA
-yA
-yA
-yA
-yA
-yA
+cj
+cj
+cj
+cj
+cj
+cj
+cj
 cj
 cj
 cj
@@ -15658,13 +15666,13 @@ yA
 yA
 cj
 cj
-yA
-yA
-yA
-yA
-yA
-yA
-yA
+cj
+cj
+cj
+cj
+cj
+cj
+cj
 cj
 cj
 cj
@@ -15800,13 +15808,13 @@ yA
 yA
 cj
 cj
-yA
-yA
-yA
-yA
-yA
-yA
-yA
+cj
+cj
+cj
+cj
+cj
+cj
+cj
 cj
 cj
 cj
@@ -15942,13 +15950,13 @@ yA
 yA
 cj
 cj
-yA
-yA
-yA
-yA
-yA
-yA
-yA
+cj
+cj
+cj
+cj
+cj
+cj
+cj
 cj
 cj
 cj
@@ -16084,13 +16092,13 @@ yA
 cj
 cj
 cj
-yA
-yA
-yA
-yA
-yA
-yA
-yA
+cj
+cj
+cj
+cj
+cj
+cj
+cj
 cj
 cj
 cj
@@ -16226,13 +16234,13 @@ yA
 cj
 cj
 cj
-yA
-yA
-yA
-yA
-yA
-yA
-yA
+cj
+cj
+cj
+cj
+cj
+cj
+cj
 cj
 cj
 cj
@@ -16368,13 +16376,13 @@ yA
 cj
 cj
 cj
-yA
-yA
-yA
-yA
-yA
-yA
-yA
+cj
+cj
+cj
+cj
+cj
+cj
+cj
 cj
 cj
 cj
@@ -16510,13 +16518,13 @@ yA
 cj
 cj
 cj
-yA
-yA
-yA
-yA
-yA
-yA
-yA
+cj
+cj
+cj
+cj
+cj
+cj
+cj
 cj
 cj
 cj
@@ -16652,13 +16660,13 @@ yA
 cj
 cj
 cj
-yA
-yA
-yA
-yA
-yA
-yA
-yA
+cj
+cj
+cj
+cj
+cj
+cj
+cj
 cj
 cj
 cj
@@ -19212,7 +19220,7 @@ Xv
 Xv
 Xv
 Xv
-Xv
+ub
 Xv
 Xv
 Xv
