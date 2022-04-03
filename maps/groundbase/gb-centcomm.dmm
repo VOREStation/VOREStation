@@ -24,8 +24,7 @@
 	landmark_tag = "escape_cc";
 	name = "Escape Shuttle"
 	},
-/obj/effect/map_helper/airlock/door/simple,
-/turf/simulated/shuttle/plating/airless,
+/turf/simulated/shuttle/plating,
 /area/shuttle/escape{
 	base_turf = /turf/simulated/floor/tiled/techfloor/grid
 	})
@@ -63,7 +62,7 @@
 /obj/structure/shuttle/engine/propulsion{
 	dir = 4
 	},
-/turf/simulated/shuttle/plating/airless,
+/turf/simulated/shuttle/plating,
 /area/shuttle/escape{
 	base_turf = /turf/simulated/floor/tiled/techfloor/grid
 	})
@@ -79,7 +78,7 @@
 	id_tag = "escape_shuttle";
 	pixel_y = 25;
 	req_one_access = list(13);
-	tag_door = "escape_shuttle_hatch"
+	tag_door = null
 	},
 /turf/simulated/shuttle/floor,
 /area/shuttle/escape{

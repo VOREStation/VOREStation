@@ -244,6 +244,8 @@
 	name = "Cargo Office"
 /area/groundbase/cargo/bay
 	name = "Cargo Bay"
+/area/groundbase/cargo/bay/above
+	base_turf = /turf/simulated/open/virgo3c
 /area/groundbase/cargo/qm
 	name = "Quartermaster's Office"
 /area/groundbase/cargo/mining

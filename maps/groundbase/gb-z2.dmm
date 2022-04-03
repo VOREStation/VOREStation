@@ -16073,6 +16073,9 @@
 /obj/structure/sign/department/mail{
 	pixel_y = 32
 	},
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/groundbase/cargo/office)
 "XU" = (
