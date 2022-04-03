@@ -164,13 +164,28 @@
 	else
 		. += "<span class='notice'>You have to go closer if you want to read it.</span>"
 
-/obj/item/weapon/paper/proc/show_content(var/mob/user, var/forceshow=0)
-	if(!(istype(user, /mob/living/carbon/human) || istype(user, /mob/observer/dead) || istype(user, /mob/living/silicon) || user.universal_understand) && !forceshow)
-		user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[stars(info)][stamps]</BODY></HTML>", "window=[name]")
-		onclose(user, "[name]")
-	else
-		user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info][stamps]</BODY></HTML>", "window=[name]")
-		onclose(user, "[name]")
+
+/obj/item/weapon/paper/proc/show_content(mob/user, force_show)
+	if (!user)
+		return
+	var/user_is_client = isclient(user)
+	if (!user_is_client && !ismob(user))
+		return
+	var/understands = force_show
+	if (!understands)
+		if (user_is_client)
+			understands = TRUE
+		else if (user.universal_understand)
+			understands = TRUE
+		else if (isobserver(user))
+			understands = TRUE
+		else if (ishuman(user))
+			understands = TRUE
+		else if (issilicon(user))
+			understands = TRUE
+	user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[understands ? info : stars(info)][stamps]</BODY></HTML>", "window=[name]")
+	onclose(user, "[name]")
+
 
 /obj/item/weapon/paper/verb/rename()
 	set name = "Rename paper"

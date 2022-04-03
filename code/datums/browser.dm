@@ -154,12 +154,13 @@
 // to pass a "close=1" parameter to the atom's Topic() proc for special handling.
 // Otherwise, the user mob's machine var will be reset directly.
 //
-/proc/onclose(mob/user, windowid, var/atom/ref=null)
-	if(!user || !user.client) return
+/proc/onclose(client/user, windowid, atom/ref)
+	user = resolve_client(user)
+	if (!user)
+		return
 	var/param = "null"
 	if(ref)
 		param = "\ref[ref]"
-
 	winset(user, windowid, "on-close=\".windowclose [param]\"")
 
 	//to_world("OnClose [user]: [windowid] : ["on-close=\".windowclose [param]\""]")
