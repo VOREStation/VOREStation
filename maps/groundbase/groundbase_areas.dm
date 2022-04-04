@@ -335,8 +335,13 @@
 	name = "Dormitories"
 	holomap_color = HOLOMAP_AREACOLOR_DORMS
 	icon_state = "grawhisqu"
-	flags = RAD_SHIELDED | BLUE_SHIELDED
 	ambience = AMBIENCE_GENERIC
+	flags = RAD_SHIELDED| BLUE_SHIELDED |AREA_FLAG_IS_NOT_PERSISTENT
+	soundproofed = TRUE
+	limit_mob_size = FALSE
+	block_suit_sensors = TRUE
+	forbid_events = TRUE
+
 /area/groundbase/dorms/bathroom
 	name = "Dormitory Bathroom"
 /area/groundbase/dorms/room1
