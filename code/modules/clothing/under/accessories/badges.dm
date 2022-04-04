@@ -163,7 +163,6 @@
 	name = "sheriff badge"
 	desc = "A star-shaped brass badge denoting who the law is around these parts."
 	icon_state = "sheriff"
-	badge_string = "County Sheriff"
 	slot_flags = SLOT_TIE | SLOT_BELT
 
 /obj/item/weapon/storage/box/holobadge/hos
