@@ -358,6 +358,15 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/or1)
+"aU" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
+/area/groundbase/level1/centsquare)
 "aV" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/light_switch{
@@ -4090,6 +4099,12 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/equipment)
+"kN" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/cafe)
 "kP" = (
 /obj/effect/floor_decal/techfloor/orange{
 	dir = 4
@@ -8899,6 +8914,7 @@
 /area/maintenance/groundbase/level1/nwtunnel)
 "xt" = (
 /obj/structure/table/marble,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/wood,
 /area/groundbase/civilian/cafe)
 "xu" = (
@@ -9668,6 +9684,15 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/groundbase/command/ai/robot)
+"zu" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/cafe)
 "zv" = (
 /obj/machinery/requests_console/preset/engineering{
 	pixel_x = 30
@@ -11131,6 +11156,15 @@
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/netunnel)
+"Dg" = (
+/obj/item/weapon/stool/baystool/padded{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/cafe)
 "Dh" = (
 /obj/machinery/atmospherics/pipe/simple/visible/black{
 	dir = 5
@@ -12733,6 +12767,13 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/groundbase/engineering/techstorage)
+"HF" = (
+/obj/structure/table/marble,
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/cafe)
 "HG" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -12761,6 +12802,12 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/glass{
 	name = "Cafe"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
 	},
 /turf/simulated/floor/bmarble,
 /area/groundbase/civilian/cafe)
@@ -15351,8 +15398,12 @@
 /turf/simulated/floor,
 /area/maintenance/groundbase/substation/secsci)
 "Om" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
+	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level1/centsquare)
 "On" = (
@@ -19036,6 +19087,18 @@
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/stunnel)
+"Yx" = (
+/obj/structure/table/hardwoodtable,
+/obj/machinery/door/blast/gate/thin{
+	dir = 8;
+	id = "Cafe";
+	layer = 3.3
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/turf/simulated/floor/lino,
+/area/groundbase/civilian/cafe)
 "Yy" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -29712,7 +29775,7 @@ tG
 tG
 Wp
 Eb
-Zh
+aU
 Eb
 Eb
 Yt
@@ -29996,9 +30059,9 @@ qE
 qE
 hr
 qX
-vi
+zu
 xt
-xt
+HF
 hr
 dk
 yO
@@ -30138,7 +30201,7 @@ qE
 qE
 hr
 Wb
-vi
+kN
 RI
 np
 hr
@@ -30280,7 +30343,7 @@ qE
 qE
 hr
 mb
-vi
+kN
 vi
 vi
 hr
@@ -30422,7 +30485,7 @@ YQ
 yu
 hr
 vi
-vi
+kN
 pZ
 vi
 hr
@@ -30564,7 +30627,7 @@ Ko
 Mu
 hr
 qV
-qV
+Dg
 vi
 vi
 hr
@@ -30706,7 +30769,7 @@ pK
 hM
 hr
 gb
-gb
+Yx
 Rs
 gb
 hr
