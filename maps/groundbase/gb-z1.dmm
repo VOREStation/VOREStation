@@ -85,9 +85,6 @@
 /turf/simulated/floor/lino,
 /area/groundbase/civilian/bar)
 "al" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-8"
-	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
@@ -522,9 +519,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/effect/landmark/start{
-	name = "Roboticist"
-	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level1/centsquare)
 "bB" = (
@@ -606,6 +600,7 @@
 "bO" = (
 /obj/structure/table/bench/steel,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/landmark/start/security,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/briefing)
 "bP" = (
@@ -678,11 +673,8 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/apparel)
 "bZ" = (
-/obj/effect/landmark/start{
-	name = "Chief Medical Officer"
-	},
-/turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
-/area/groundbase/level1/centsquare)
+/turf/simulated/floor,
+/area/groundbase/level1/ne)
 "ca" = (
 /turf/simulated/floor/outdoors/newdirt/virgo3c{
 	outdoors = 0
@@ -882,6 +874,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/effect/landmark/start/medical,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/lhallway)
 "cE" = (
@@ -1001,20 +994,9 @@
 /obj/structure/bed/chair/office/light{
 	dir = 8
 	},
+/obj/effect/landmark/start/medical,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/office)
-"cT" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/effect/landmark/start{
-	name = "Botanist"
-	},
-/turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
-/area/groundbase/level1/centsquare)
 "cU" = (
 /obj/item/weapon/stock_parts/manipulator,
 /obj/item/weapon/stock_parts/matter_bin,
@@ -1026,11 +1008,9 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/techstorage)
 "cV" = (
-/obj/effect/landmark/start{
-	name = "Explorer"
-	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
-/area/groundbase/level1/centsquare)
+/obj/effect/landmark/start/clown,
+/turf/simulated/floor,
+/area/groundbase/level1/ne)
 "cW" = (
 /obj/structure/table/rack/steel,
 /obj/item/weapon/circuitboard/mech_recharger{
@@ -1082,12 +1062,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/or1)
-"cZ" = (
-/obj/effect/landmark/start{
-	name = "Internal Affairs Agent"
-	},
-/turf/simulated/floor/outdoors/sidewalk/virgo3c,
-/area/groundbase/level1/centsquare)
 "db" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock{
@@ -1144,6 +1118,7 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+/obj/effect/landmark/start/engineer,
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/workshop)
 "dn" = (
@@ -1175,12 +1150,6 @@
 	dir = 1
 	},
 /turf/simulated/floor/outdoors/newdirt_nograss/virgo3c,
-/area/groundbase/level1/centsquare)
-"dt" = (
-/obj/effect/landmark/start{
-	name = "Field Medic"
-	},
-/turf/simulated/floor/outdoors/sidewalk/virgo3c,
 /area/groundbase/level1/centsquare)
 "du" = (
 /obj/structure/table/standard,
@@ -1418,6 +1387,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/effect/landmark/start/engineer,
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/workshop)
 "dX" = (
@@ -1440,18 +1410,6 @@
 /obj/item/weapon/stool/padded,
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/techstorage)
-"eb" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/effect/landmark/start{
-	name = "Cargo Technician"
-	},
-/turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
-/area/groundbase/level1/centsquare)
 "ec" = (
 /obj/machinery/door/airlock/hatch{
 	icon_state = "door_locked";
@@ -1591,6 +1549,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/landmark/start/engineer,
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/lobby)
 "er" = (
@@ -1676,9 +1635,7 @@
 /area/groundbase/security/processing)
 "eF" = (
 /obj/structure/table/bench/steel,
-/obj/effect/landmark/start{
-	name = "Security Officer"
-	},
+/obj/effect/landmark/start/security,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/equipment)
 "eG" = (
@@ -2692,12 +2649,10 @@
 /area/maintenance/groundbase/substation/secsci)
 "hx" = (
 /obj/structure/table/bench/steel,
-/obj/effect/landmark/start{
-	name = "Security Officer"
-	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/effect/landmark/start/security,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/equipment)
 "hz" = (
@@ -3521,6 +3476,7 @@
 	pixel_x = -15;
 	pixel_y = -30
 	},
+/obj/effect/landmark/start/detective,
 /turf/simulated/floor/carpet,
 /area/groundbase/security/detective)
 "jP" = (
@@ -3633,11 +3589,14 @@
 /turf/simulated/floor/outdoors/sidewalk/virgo3c,
 /area/groundbase/engineering/lobby)
 "ke" = (
-/obj/effect/landmark/start{
-	name = "Chemist"
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
 	},
-/turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
-/area/groundbase/level1/centsquare)
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/landmark/start/cyborg,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/groundbase/command/ai/robot)
 "kf" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
 	dir = 4
@@ -4721,15 +4680,14 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/landmark/start/engineer,
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/workshop)
 "mS" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
-/obj/effect/landmark/start{
-	name = "Internal Affairs Agent"
-	},
+/obj/effect/landmark/start/iaa,
 /turf/simulated/floor/carpet/sblucarpet,
 /area/groundbase/security/iaa2)
 "mT" = (
@@ -4777,7 +4735,7 @@
 	dir = 4;
 	icon_state = "pipe-c"
 	},
-/turf/simulated/floor/carpet/deco,
+/turf/simulated/floor/lino,
 /area/groundbase/civilian/bar)
 "mZ" = (
 /obj/structure/bed/chair{
@@ -5172,6 +5130,7 @@
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/segment,
+/obj/effect/landmark/start/bartender,
 /turf/simulated/floor/lino,
 /area/groundbase/civilian/bar)
 "og" = (
@@ -6127,18 +6086,6 @@
 "qN" = (
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/eva)
-"qP" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/effect/landmark/start{
-	name = "Atmospheric Technician"
-	},
-/turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
-/area/groundbase/level1/centsquare)
 "qQ" = (
 /obj/structure/closet/secure_closet/security,
 /obj/item/device/holowarrant,
@@ -6563,6 +6510,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/effect/landmark/start/atmostech,
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/workshop)
 "rW" = (
@@ -6854,6 +6802,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
+/obj/effect/landmark/start/security,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/briefing)
 "sM" = (
@@ -7361,12 +7310,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/detective)
-"ue" = (
-/obj/effect/landmark/start{
-	name = "Head of Personnel"
-	},
-/turf/simulated/floor/outdoors/sidewalk/virgo3c,
-/area/groundbase/level1/centsquare)
 "uf" = (
 /obj/structure/table/standard,
 /obj/item/weapon/stock_parts/subspace/sub_filter,
@@ -7540,9 +7483,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/effect/landmark/start{
-	name = "Bartender"
-	},
 /turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
 /area/groundbase/level1/centsquare)
 "uC" = (
@@ -7581,6 +7521,7 @@
 /area/groundbase/level1/eastspur)
 "uI" = (
 /obj/machinery/hologram/holopad,
+/obj/effect/landmark/start/cyborg,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/groundbase/command/ai/robot)
 "uK" = (
@@ -7681,13 +7622,12 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/medical/resleeving)
 "uV" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/effect/landmark/start{
-	name = "Xenobiologist"
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
 	},
-/turf/simulated/floor/outdoors/sidewalk/virgo3c,
-/area/groundbase/level1/centsquare)
+/obj/effect/landmark/start/cyborg,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/groundbase/command/ai/foyer)
 "uY" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 8
@@ -7786,9 +7726,7 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
-/obj/effect/landmark/start{
-	name = "Internal Affairs Agent"
-	},
+/obj/effect/landmark/start/iaa,
 /turf/simulated/floor/carpet/sblucarpet,
 /area/groundbase/security/iaa1)
 "vp" = (
@@ -7984,6 +7922,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
+/obj/effect/landmark/start/intern,
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/foodplace)
 "vM" = (
@@ -8034,16 +7973,10 @@
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/office)
 "vV" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/effect/landmark/start{
-	name = "Security Officer"
-	},
-/turf/simulated/floor/outdoors/sidewalk/virgo3c,
-/area/groundbase/level1/centsquare)
+/obj/structure/table/bench/padded,
+/obj/effect/landmark/start/visitor,
+/turf/simulated/floor/tiled/dark,
+/area/groundbase/civilian/bar)
 "vW" = (
 /obj/effect/landmark/vermin,
 /obj/structure/cable/yellow{
@@ -8146,9 +8079,7 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
-/obj/effect/landmark/start{
-	name = "Security Officer"
-	},
+/obj/effect/landmark/start/security,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/lobby)
 "wj" = (
@@ -8168,6 +8099,7 @@
 /area/groundbase/security/lobby)
 "wn" = (
 /obj/structure/bed/chair/sofa/bench,
+/obj/effect/landmark/start/visitor,
 /turf/simulated/floor/outdoors/newdirt/virgo3c,
 /area/groundbase/level1/southeastspur)
 "ws" = (
@@ -8248,12 +8180,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/or1)
-"wD" = (
-/obj/effect/landmark/start{
-	name = "Head of Security"
-	},
-/turf/simulated/floor/outdoors/sidewalk/virgo3c,
-/area/groundbase/level1/centsquare)
 "wE" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -8267,13 +8193,9 @@
 /turf/simulated/wall,
 /area/groundbase/medical/morgue)
 "wF" = (
-/obj/item/stack/material/phoron{
-	amount = 25
-	},
-/obj/structure/closet/crate,
-/obj/machinery/camera/network/engine,
-/turf/simulated/floor/tiled,
-/area/groundbase/engineering/engine)
+/obj/effect/landmark/start/bartender,
+/turf/simulated/floor/lino,
+/area/groundbase/civilian/bar)
 "wG" = (
 /obj/structure/table/rack/shelf/steel,
 /obj/item/clothing/glasses/hud/security,
@@ -8484,12 +8406,6 @@
 /obj/machinery/light,
 /turf/simulated/floor/bluegrid,
 /area/groundbase/command/ai/storage)
-"xe" = (
-/obj/effect/landmark/start{
-	name = "Detective"
-	},
-/turf/simulated/floor/outdoors/sidewalk/virgo3c,
-/area/groundbase/level1/centsquare)
 "xf" = (
 /obj/machinery/power/breakerbox/activated{
 	RCon_tag = "Engineering Substation Bypass"
@@ -8683,12 +8599,10 @@
 	pixel_x = -26;
 	pixel_y = 10
 	},
-/obj/effect/landmark/start{
-	name = "Chief Engineer"
-	},
 /obj/structure/cable/orange{
 	icon_state = "1-2"
 	},
+/obj/effect/landmark/start/ce,
 /turf/simulated/floor/carpet/oracarpet,
 /area/groundbase/engineering/ce)
 "xA" = (
@@ -8782,6 +8696,11 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor,
+/obj/machinery/door/blast/shutters{
+	dir = 8;
+	id = "engineaccess";
+	name = "Engine Access Shutters"
+	},
 /turf/simulated/floor,
 /area/groundbase/engineering/engine)
 "xO" = (
@@ -8840,6 +8759,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
+/obj/effect/landmark/start/security,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/briefing)
 "xW" = (
@@ -9046,11 +8966,10 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/groundbase/medical/or2)
 "yA" = (
-/obj/effect/landmark/start{
-	name = "Pilot"
-	},
-/turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
-/area/groundbase/level1/centsquare)
+/obj/structure/table/bench/padded,
+/obj/effect/landmark/start/entertainer,
+/turf/simulated/floor/tiled/dark,
+/area/groundbase/civilian/bar)
 "yB" = (
 /obj/structure/sign/department/ass,
 /turf/simulated/wall,
@@ -9494,6 +9413,7 @@
 /obj/structure/bed/chair/office/light{
 	dir = 4
 	},
+/obj/effect/landmark/start/medical,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/medical/resleeving)
 "zG" = (
@@ -9512,6 +9432,13 @@
 "zI" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
+	},
+/obj/machinery/button/remote/blast_door{
+	dir = 4;
+	id = "engineaccess";
+	name = "Engine Access";
+	pixel_x = -25;
+	req_access = list(3)
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/engine)
@@ -9793,12 +9720,6 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/equipment)
 "Au" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-8"
-	},
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
@@ -9837,16 +9758,10 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/hos)
 "AA" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/effect/landmark/start{
-	name = "Shaft Miner"
-	},
-/turf/simulated/floor/outdoors/sidewalk/virgo3c,
-/area/groundbase/level1/centsquare)
+/obj/structure/table/bench/padded,
+/obj/effect/landmark/start/intern,
+/turf/simulated/floor/tiled/dark,
+/area/groundbase/civilian/bar)
 "AB" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -10513,6 +10428,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
 	},
+/obj/effect/landmark/start/visitor,
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/apparel)
 "Cs" = (
@@ -10688,15 +10604,12 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/atmos)
 "CP" = (
-/obj/item/stack/material/phoron{
-	amount = 25
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
 	},
-/obj/structure/closet/crate,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/simulated/floor/tiled,
-/area/groundbase/engineering/engine)
+/obj/effect/landmark/start/bartender,
+/turf/simulated/floor/lino,
+/area/groundbase/civilian/bar)
 "CQ" = (
 /obj/machinery/telecomms/bus/preset_three,
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
@@ -10748,6 +10661,7 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 4
 	},
+/obj/effect/landmark/start/warden,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/warden)
 "CW" = (
@@ -11005,12 +10919,6 @@
 "DQ" = (
 /turf/simulated/wall,
 /area/groundbase/medical/equipment)
-"DR" = (
-/obj/effect/landmark/start{
-	name = "Engineer"
-	},
-/turf/simulated/floor/outdoors/sidewalk/virgo3c,
-/area/groundbase/level1/centsquare)
 "DS" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
@@ -11186,11 +11094,9 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/equipment)
 "Ep" = (
-/obj/effect/landmark/start{
-	name = "Clown"
-	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
-/area/groundbase/level1/centsquare)
+/obj/effect/landmark/start,
+/turf/simulated/floor/tiled/techfloor,
+/area/groundbase/civilian/arrivals)
 "Eq" = (
 /obj/structure/table/rack{
 	dir = 8;
@@ -11539,6 +11445,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
 	},
+/obj/effect/landmark/start/engineer,
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/lobby)
 "Fs" = (
@@ -11550,6 +11457,7 @@
 /area/groundbase/command/tcomms/computer)
 "Ft" = (
 /obj/structure/bed/chair/comfy/black,
+/obj/effect/landmark/start/hos,
 /turf/simulated/floor/carpet/sblucarpet,
 /area/groundbase/security/hos)
 "Fu" = (
@@ -11757,16 +11665,11 @@
 /turf/simulated/floor/carpet/bcarpet,
 /area/groundbase/security/briefing)
 "Gd" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/effect/landmark/start{
-	name = "Scientist"
-	},
-/turf/simulated/floor/outdoors/sidewalk/virgo3c,
-/area/groundbase/level1/centsquare)
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/landmark/start,
+/turf/simulated/floor/tiled/techfloor,
+/area/groundbase/civilian/arrivals)
 "Ge" = (
 /obj/structure/bed/chair/sofa/bench/left{
 	dir = 8
@@ -11895,6 +11798,7 @@
 /obj/structure/bed/chair/sofa/bench{
 	dir = 8
 	},
+/obj/effect/landmark/start/intern,
 /turf/simulated/floor/outdoors/newdirt_nograss/virgo3c,
 /area/groundbase/level1/centsquare)
 "Gw" = (
@@ -12116,6 +12020,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
 	},
+/obj/effect/landmark/start/atmostech,
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/atmos/monitoring)
 "Hf" = (
@@ -12185,6 +12090,7 @@
 "Hm" = (
 /obj/structure/table/bench/steel,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/landmark/start/security,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/briefing)
 "Hn" = (
@@ -12404,6 +12310,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals10{
 	dir = 8
 	},
+/obj/effect/landmark/start/medical,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/lhallway)
 "HT" = (
@@ -12445,6 +12352,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/effect/landmark/start/atmostech,
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/workshop)
 "HY" = (
@@ -12523,6 +12431,13 @@
 "If" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
+	},
+/obj/structure/closet/crate,
+/obj/item/stack/material/phoron{
+	amount = 25
+	},
+/obj/item/stack/material/phoron{
+	amount = 25
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/storage)
@@ -12736,9 +12651,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
 	},
-/obj/effect/landmark/start{
-	name = "Assistant"
-	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level1/centsquare)
 "IL" = (
@@ -12760,6 +12672,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/landmark/start/atmostech,
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/workshop)
 "IR" = (
@@ -12808,16 +12721,13 @@
 /turf/simulated/floor/tiled/white,
 /area/groundbase/civilian/bar)
 "Jc" = (
-/obj/structure/cable{
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/effect/landmark/start{
-	name = "Site Manager"
-	},
-/turf/simulated/floor/outdoors/sidewalk/virgo3c,
-/area/groundbase/level1/centsquare)
+/obj/effect/landmark/start/visitor,
+/turf/simulated/floor/tiled,
+/area/groundbase/civilian/apparel)
 "Jd" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
@@ -12922,11 +12832,10 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/warden)
 "Jq" = (
-/obj/effect/landmark/start{
-	name = "Paramedic"
-	},
-/turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
-/area/groundbase/level1/centsquare)
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/landmark/start/visitor,
+/turf/simulated/floor/tiled,
+/area/groundbase/civilian/apparel)
 "Jr" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -12936,7 +12845,7 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/atmos)
 "Js" = (
-/obj/machinery/power/rtg/d_type_reg,
+/obj/machinery/power/rtg/reg/c,
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/structure/cable/yellow,
 /turf/simulated/floor/reinforced,
@@ -13003,11 +12912,9 @@
 /turf/simulated/floor/lino,
 /area/groundbase/civilian/bar)
 "JF" = (
-/obj/effect/landmark/start{
-	name = "Research Director"
-	},
-/turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
-/area/groundbase/level1/centsquare)
+/obj/effect/landmark/start/ce,
+/turf/simulated/floor/tiled,
+/area/groundbase/engineering/workshop)
 "JG" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -13580,9 +13487,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
 	},
-/obj/effect/landmark/start{
-	name = "Chaplain"
-	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level1/centsquare)
 "La" = (
@@ -13699,6 +13603,7 @@
 /area/maintenance/groundbase/trashpit)
 "Lo" = (
 /obj/structure/table/bench/padded,
+/obj/effect/landmark/start/intern,
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/foodplace)
 "Lq" = (
@@ -13902,6 +13807,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
+/obj/effect/landmark/start/visitor,
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/foodplace)
 "LP" = (
@@ -14204,12 +14110,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/ce)
-"MB" = (
-/obj/effect/landmark/start{
-	name = "Entertainer"
-	},
-/turf/simulated/floor/outdoors/sidewalk/virgo3c,
-/area/groundbase/level1/centsquare)
 "MC" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
@@ -14248,6 +14148,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/effect/landmark/start/visitor,
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/apparel)
 "MJ" = (
@@ -14292,11 +14193,14 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/mining)
 "MM" = (
-/obj/effect/landmark/start{
-	name = "Pathfinder"
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
-/area/groundbase/level1/centsquare)
+/obj/machinery/power/port_gen/pacman{
+	anchored = 1
+	},
+/turf/simulated/floor/tiled,
+/area/groundbase/engineering/storage)
 "MN" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -14434,6 +14338,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
+/obj/machinery/power/port_gen/pacman{
+	anchored = 1
+	},
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/storage)
 "Ni" = (
@@ -14454,11 +14361,9 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/groundbase/engineering/atmos)
 "Nl" = (
-/obj/effect/landmark/start{
-	name = "Mime"
-	},
-/turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
-/area/groundbase/level1/centsquare)
+/obj/effect/landmark/start/detective,
+/turf/simulated/floor/tiled/dark,
+/area/groundbase/security/lobby)
 "Nm" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -14687,6 +14592,7 @@
 	pixel_y = 31;
 	req_access = list(1)
 	},
+/obj/effect/landmark/start/security,
 /turf/simulated/floor/tiled,
 /area/groundbase/security/processing)
 "NR" = (
@@ -14780,17 +14686,13 @@
 /obj/structure/bed/chair/sofa/bench{
 	dir = 4
 	},
+/obj/effect/landmark/start/intern,
 /turf/simulated/floor/outdoors/newdirt_nograss/virgo3c,
 /area/groundbase/level1/centsquare)
 "Oe" = (
-/obj/machinery/power/port_gen/pacman{
-	anchored = 1
-	},
-/obj/structure/cable/yellow{
-	icon_state = "0-2"
-	},
-/turf/simulated/floor/reinforced,
-/area/groundbase/engineering/engine)
+/obj/effect/landmark/start/hos,
+/turf/simulated/floor/tiled/dark,
+/area/groundbase/security/lobby)
 "Of" = (
 /obj/structure/closet/walllocker_double/north{
 	dir = 8;
@@ -15059,11 +14961,14 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/groundbase/engineering/atmos)
 "OW" = (
-/obj/effect/landmark/start{
-	name = "Janitor"
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
 	},
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
-/area/groundbase/level1/centsquare)
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/groundbase/engineering/engine)
 "OX" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/glass_security/polarized{
@@ -15172,6 +15077,7 @@
 /obj/structure/bed/chair/sofa/bench{
 	dir = 1
 	},
+/obj/effect/landmark/start/visitor,
 /turf/simulated/floor/outdoors/newdirt_nograss/virgo3c,
 /area/groundbase/level1/centsquare)
 "Ps" = (
@@ -15565,11 +15471,17 @@
 /turf/simulated/floor/outdoors/grass/forest/virgo3c,
 /area/groundbase/level1/westspur)
 "QE" = (
-/obj/effect/landmark/start{
-	name = "Chef"
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/glass{
+	name = "Crew Apparel Care"
 	},
-/turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
-/area/groundbase/level1/centsquare)
+/obj/machinery/door/blast/shutters{
+	dir = 8;
+	id = "engineaccess";
+	name = "Engine Access Shutters"
+	},
+/turf/simulated/floor/bmarble,
+/area/groundbase/engineering/engine)
 "QG" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
 	dir = 4
@@ -15692,6 +15604,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/landmark/start,
 /turf/simulated/floor/tiled/techfloor,
 /area/groundbase/civilian/arrivals)
 "QY" = (
@@ -15997,9 +15910,6 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 4
-	},
-/obj/effect/landmark/start{
-	name = "Warden"
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level1/centsquare)
@@ -16631,11 +16541,10 @@
 /turf/simulated/floor/carpet,
 /area/groundbase/security/detective)
 "TB" = (
-/obj/effect/landmark/start{
-	name = "Librarian"
-	},
-/turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
-/area/groundbase/level1/centsquare)
+/obj/structure/table/bench/padded,
+/obj/effect/landmark/start/entertainer,
+/turf/simulated/floor/tiled,
+/area/groundbase/civilian/foodplace)
 "TC" = (
 /turf/simulated/wall/r_wall,
 /area/groundbase/security/processing)
@@ -16669,11 +16578,10 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/techstorage)
 "TE" = (
-/obj/effect/landmark/start{
-	name = "Cyborg"
-	},
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/groundbase/command/ai/robot)
+/obj/structure/table/bench/padded,
+/obj/effect/landmark/start/visitor,
+/turf/simulated/floor/tiled,
+/area/groundbase/civilian/foodplace)
 "TF" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -16901,8 +16809,8 @@
 /obj/item/device/analyzer/plant_analyzer,
 /obj/item/device/analyzer,
 /obj/item/device/t_scanner,
-/obj/item/weapon/circuitboard/machine/reg,
-/obj/item/weapon/circuitboard/machine/reg,
+/obj/item/weapon/circuitboard/machine/reg_c,
+/obj/item/weapon/circuitboard/machine/reg_c,
 /obj/machinery/camera/network/engineering{
 	dir = 4
 	},
@@ -16977,12 +16885,6 @@
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/lhallway)
-"UB" = (
-/obj/effect/landmark/start{
-	name = "Medical Doctor"
-	},
-/turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
-/area/groundbase/level1/centsquare)
 "UC" = (
 /turf/simulated/floor/outdoors/grass/virgo3c,
 /area/groundbase/civilian/gateway)
@@ -17063,6 +16965,7 @@
 /area/groundbase/medical/morgue)
 "US" = (
 /obj/structure/bed/chair/sofa/bench,
+/obj/effect/landmark/start/visitor,
 /turf/simulated/floor/outdoors/newdirt_nograss/virgo3c,
 /area/groundbase/level1/centsquare)
 "UU" = (
@@ -17123,9 +17026,6 @@
 "Vg" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
-	},
-/obj/effect/landmark/start{
-	name = "Security Officer"
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 4
@@ -17195,9 +17095,6 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/storage)
 "Vs" = (
-/obj/effect/landmark/start{
-	name = "Command Secretary"
-	},
 /turf/simulated/floor/outdoors/sidewalk/virgo3c,
 /area/groundbase/level1/centsquare)
 "Vt" = (
@@ -17227,12 +17124,6 @@
 /obj/structure/cable/yellow,
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/toolstorage)
-"Vw" = (
-/obj/effect/landmark/start{
-	name = "Quartermaster"
-	},
-/turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
-/area/groundbase/level1/centsquare)
 "Vx" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -17294,6 +17185,7 @@
 /obj/effect/landmark{
 	name = "JoinLateGateway"
 	},
+/obj/effect/landmark/start,
 /turf/simulated/floor/tiled/techfloor,
 /area/groundbase/civilian/arrivals)
 "VE" = (
@@ -17719,12 +17611,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/gateway)
-"WO" = (
-/obj/effect/landmark/start{
-	name = "Chief Engineer"
-	},
-/turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
-/area/groundbase/level1/centsquare)
 "WP" = (
 /turf/simulated/floor/bluegrid,
 /area/groundbase/command/ai/foyer)
@@ -17828,6 +17714,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
+/obj/effect/landmark/start/entertainer,
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/foodplace)
 "Xe" = (
@@ -17925,6 +17812,7 @@
 	dir = 8;
 	pixel_x = 32
 	},
+/obj/effect/landmark/start/ce,
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/lobby)
 "Xo" = (
@@ -18107,9 +17995,7 @@
 /obj/structure/bed/chair/office/dark{
 	dir = 1
 	},
-/obj/effect/landmark/start{
-	name = "Security Officer"
-	},
+/obj/effect/landmark/start/security,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/lobby)
 "XP" = (
@@ -18259,12 +18145,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/groundbase/engineering/atmos)
-"Yn" = (
-/obj/effect/landmark/start{
-	name = "Psychiatrist"
-	},
-/turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
-/area/groundbase/level1/centsquare)
 "Yo" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -21581,7 +21461,7 @@ ms
 PL
 Ne
 zt
-TE
+hN
 dx
 PL
 ms
@@ -21865,7 +21745,7 @@ ms
 Rr
 Ui
 ZJ
-cs
+ke
 PN
 cs
 rc
@@ -22007,7 +21887,7 @@ ms
 Sy
 Uu
 SI
-TE
+hN
 RV
 Zu
 ms
@@ -22578,11 +22458,11 @@ LS
 xd
 Ef
 Bf
-Tw
+uV
 Tw
 DY
 Tw
-Tw
+uV
 zU
 Qi
 wM
@@ -22597,8 +22477,8 @@ MO
 pj
 ht
 ut
-ut
-ut
+yA
+vV
 bo
 bE
 pj
@@ -22745,10 +22625,10 @@ lP
 AE
 Hq
 tu
+vV
 ut
 ut
-ut
-ut
+yA
 pj
 MO
 MO
@@ -22880,8 +22760,8 @@ FF
 MO
 pj
 ht
-ut
-ut
+vV
+AA
 ut
 bo
 ht
@@ -23030,7 +22910,7 @@ mj
 ht
 KR
 ut
-ut
+AA
 GF
 ut
 pj
@@ -23174,7 +23054,7 @@ QQ
 ht
 ut
 GF
-ut
+vV
 pj
 MO
 MO
@@ -23451,7 +23331,7 @@ Ng
 qd
 qd
 qd
-ih
+CP
 Es
 PO
 Xg
@@ -23590,7 +23470,7 @@ MO
 MO
 pj
 vm
-ht
+qd
 qd
 ui
 ih
@@ -23732,7 +23612,7 @@ MO
 MO
 pj
 GA
-qd
+wF
 qd
 mY
 jG
@@ -23874,7 +23754,7 @@ MO
 MO
 pj
 dj
-ht
+qd
 qd
 Wj
 qd
@@ -24019,7 +23899,7 @@ GR
 qd
 SF
 Lz
-qd
+wF
 us
 PO
 Xg
@@ -24215,7 +24095,7 @@ os
 oH
 PW
 wl
-nx
+Nl
 Kr
 sp
 tY
@@ -24584,8 +24464,8 @@ MO
 MO
 pj
 ht
-ut
-ut
+vV
+AA
 ut
 ht
 ht
@@ -24869,8 +24749,8 @@ MO
 pj
 ht
 ut
-ut
-ut
+yA
+vV
 ht
 pj
 pj
@@ -25494,7 +25374,7 @@ fm
 fm
 wl
 xr
-nx
+Oe
 ah
 Yh
 Ca
@@ -28172,12 +28052,12 @@ IK
 Oz
 Oz
 Oz
-uV
+Oz
 RQ
-Jc
-AA
-vV
-Gd
+LA
+LA
+LA
+LA
 bA
 LA
 LA
@@ -28310,7 +28190,7 @@ Eb
 Eb
 Eb
 US
-qP
+uB
 Lk
 Eb
 Eb
@@ -28320,7 +28200,7 @@ Eb
 Eb
 Eb
 Lk
-JF
+Zh
 bf
 Eb
 Eb
@@ -28462,7 +28342,7 @@ Nv
 Nv
 Eb
 Eb
-Vw
+Zh
 Pr
 Eb
 Eb
@@ -28594,7 +28474,7 @@ Eb
 Eb
 Eb
 Eb
-cT
+uB
 Eb
 Eb
 Eb
@@ -28604,7 +28484,7 @@ Nv
 Nv
 Nv
 Eb
-Yn
+Zh
 ds
 Eb
 Eb
@@ -28736,7 +28616,7 @@ Eb
 Eb
 Eb
 Eb
-eb
+uB
 Eb
 Eb
 Nv
@@ -28746,7 +28626,7 @@ Nv
 Nv
 Eb
 Eb
-yA
+Zh
 Eb
 Eb
 Eb
@@ -28888,7 +28768,7 @@ Nv
 Nv
 Eb
 Eb
-MM
+OA
 Eb
 Eb
 Eb
@@ -29020,7 +28900,7 @@ Eb
 Eb
 Eb
 Eb
-QE
+Zh
 Eb
 Eb
 Nv
@@ -29030,7 +28910,7 @@ Nv
 Nv
 Eb
 Eb
-Jq
+Zh
 Eb
 Eb
 Eb
@@ -29162,7 +29042,7 @@ Eb
 Eb
 Eb
 Eb
-ke
+Zh
 Eb
 Eb
 Nv
@@ -29172,7 +29052,7 @@ Nv
 Eb
 Eb
 Eb
-Nl
+Zh
 Eb
 Eb
 Nv
@@ -29304,7 +29184,7 @@ Eb
 Eb
 Eb
 Io
-WO
+Zh
 Eb
 Nv
 Eb
@@ -29314,7 +29194,7 @@ Eb
 Eb
 Eb
 Eb
-UB
+Zh
 tB
 Eb
 Eb
@@ -29446,7 +29326,7 @@ Nv
 Eb
 Eb
 US
-bZ
+Zh
 Lk
 Eb
 Eb
@@ -29456,7 +29336,7 @@ Eb
 Eb
 Eb
 Lk
-TB
+Zh
 Pr
 Eb
 Eb
@@ -29588,17 +29468,17 @@ Nv
 Eb
 Eb
 Hx
-Ep
+OA
 Vs
-xe
-DR
-MB
-cV
-dt
-ue
-wD
-cZ
-OW
+Vs
+Vs
+Vs
+OA
+Vs
+Vs
+Vs
+Vs
+OA
 ds
 Eb
 Eb
@@ -29717,7 +29597,7 @@ dk
 jS
 BL
 MI
-dl
+Jc
 dl
 ux
 hl
@@ -30143,7 +30023,7 @@ dk
 mV
 Pb
 Cr
-UG
+Jq
 UG
 BQ
 Bg
@@ -31276,7 +31156,7 @@ DQ
 oi
 mf
 RY
-is
+Ep
 is
 bU
 Jz
@@ -31418,7 +31298,7 @@ DQ
 oi
 mf
 uN
-HT
+Gd
 HT
 Nr
 Zz
@@ -31603,7 +31483,7 @@ aw
 aw
 aw
 xN
-xN
+QE
 xN
 aw
 aw
@@ -32292,7 +32172,7 @@ Wl
 Wl
 Wc
 IX
-IX
+JF
 iv
 sC
 kb
@@ -32587,7 +32467,7 @@ WW
 JM
 Hi
 lw
-il
+MM
 tz
 nD
 PU
@@ -32651,11 +32531,11 @@ qE
 qE
 qE
 qE
-qE
-qE
-qE
-pU
-qE
+bb
+bb
+bZ
+bb
+bb
 qE
 pU
 qE
@@ -32793,11 +32673,11 @@ qE
 qE
 qE
 qE
-qE
-qE
-qE
-qE
-qE
+bb
+bZ
+bZ
+bZ
+bb
 qE
 qE
 qE
@@ -32935,11 +32815,11 @@ qE
 qE
 qE
 qE
-qE
-qE
-qE
-qE
-qE
+bb
+bZ
+cV
+bZ
+bb
 qE
 qE
 qE
@@ -33019,7 +32899,7 @@ Uq
 Of
 hz
 aw
-wF
+jc
 vb
 IN
 ZB
@@ -33077,11 +32957,11 @@ qE
 qE
 qE
 qE
-qE
-qE
-qE
-qE
-qE
+bb
+bZ
+bZ
+bZ
+bb
 qE
 qE
 qE
@@ -33161,8 +33041,8 @@ pw
 ea
 Xo
 aw
-CP
-so
+Sg
+OW
 ya
 pS
 YH
@@ -33177,7 +33057,7 @@ Lt
 Lt
 Uf
 zW
-Lo
+TB
 nU
 Xd
 Hh
@@ -33219,11 +33099,11 @@ qE
 qE
 qE
 qE
-qE
-qE
-qE
-qE
-qE
+bb
+bb
+bb
+bb
+bb
 qE
 qE
 qE
@@ -33303,7 +33183,7 @@ xw
 xw
 Wk
 aw
-Oe
+ZF
 Au
 IN
 ZB
@@ -33319,7 +33199,7 @@ Lt
 Lt
 Uf
 IM
-Lo
+TE
 XL
 vK
 Hh
@@ -33445,7 +33325,7 @@ cU
 TL
 ej
 aw
-Oe
+ZF
 al
 UD
 wa

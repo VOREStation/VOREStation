@@ -212,6 +212,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/landmark/start/chemist,
 /turf/simulated/floor/tiled/virgo3c,
 /area/groundbase/medical/patio)
 "dW" = (
@@ -259,6 +260,7 @@
 /area/groundbase/medical/uhallway)
 "fu" = (
 /obj/structure/table/bench/marble,
+/obj/effect/landmark/start/chemist,
 /turf/simulated/floor/tiled/virgo3c,
 /area/groundbase/medical/patio)
 "fz" = (
@@ -709,10 +711,8 @@
 /turf/simulated/floor/wood,
 /area/groundbase/medical/cmo)
 "nN" = (
-/obj/effect/landmark/start{
-	name = "Explorer"
-	},
 /obj/machinery/light,
+/obj/effect/landmark/start/explorer,
 /turf/simulated/floor/tiled,
 /area/groundbase/exploration/equipment)
 "nU" = (
@@ -728,6 +728,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
 	},
+/obj/effect/landmark/start/cmo,
 /turf/simulated/floor/wood,
 /area/groundbase/medical/cmo)
 "og" = (
@@ -902,11 +903,9 @@
 /turf/simulated/floor/wood,
 /area/groundbase/medical/cmo)
 "qA" = (
-/obj/effect/landmark/start{
-	name = "Field Medic"
-	},
-/turf/simulated/floor/tiled,
-/area/groundbase/exploration/equipment)
+/obj/effect/landmark/start/cargo,
+/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/area/groundbase/cargo/office)
 "qC" = (
 /obj/machinery/station_map{
 	dir = 8;
@@ -1124,15 +1123,14 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/pilot)
 "uU" = (
-/obj/effect/landmark/start{
-	name = "Pathfinder"
-	},
+/obj/effect/landmark/start/pf,
 /turf/simulated/floor/tiled,
 /area/groundbase/exploration/equipment)
 "vp" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
+/obj/effect/landmark/start/explorer,
 /turf/simulated/floor/tiled,
 /area/groundbase/exploration/equipment)
 "vu" = (
@@ -1182,6 +1180,7 @@
 /obj/structure/bed/chair/comfy/brown{
 	dir = 1
 	},
+/obj/effect/landmark/start/cmo,
 /turf/simulated/floor/wood,
 /area/groundbase/medical/cmo)
 "wm" = (
@@ -1468,6 +1467,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
 	},
+/obj/effect/landmark/start/cmo,
 /turf/simulated/floor/tiled/virgo3c,
 /area/groundbase/medical/patio)
 "BE" = (
@@ -1572,9 +1572,6 @@
 /turf/simulated/floor/tiled,
 /area/shuttle/groundbase/exploration)
 "Ef" = (
-/obj/effect/landmark/start{
-	name = "Field Medic"
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 2;
 	icon_state = "pipe-c"
@@ -1819,6 +1816,7 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/landmark/start/fieldmedic,
 /turf/simulated/floor/tiled,
 /area/groundbase/exploration/equipment)
 "HI" = (
@@ -1926,9 +1924,6 @@
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/patient1)
 "IG" = (
-/obj/effect/landmark/start{
-	name = "Explorer"
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -2444,19 +2439,15 @@
 /obj/structure/bed/chair/office/light{
 	dir = 4
 	},
-/obj/effect/landmark/start{
-	name = "Chief Medical Officer"
-	},
 /obj/machinery/button/windowtint{
 	id = "cmo_office";
 	pixel_y = -28
 	},
+/obj/effect/landmark/start/cmo,
 /turf/simulated/floor/carpet,
 /area/groundbase/medical/cmo)
 "Tk" = (
-/obj/effect/landmark/start{
-	name = "Pilot"
-	},
+/obj/effect/landmark/start/pilot,
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/pilot)
 "Ts" = (
@@ -2647,6 +2638,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/effect/landmark/start/explorer,
 /turf/simulated/floor/tiled,
 /area/groundbase/exploration/equipment)
 "WF" = (
@@ -2709,6 +2701,7 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/landmark/start/fieldmedic,
 /turf/simulated/floor/tiled,
 /area/groundbase/exploration/equipment)
 "YK" = (
@@ -2748,6 +2741,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
+/obj/effect/landmark/start/paramedic,
 /turf/simulated/floor/tiled/virgo3c,
 /area/groundbase/medical/patio)
 "Zn" = (
@@ -6964,7 +6958,7 @@ qO
 qO
 aa
 NX
-qA
+KG
 IC
 Pf
 FV
@@ -14209,7 +14203,7 @@ yU
 Lf
 Lf
 Lf
-Lf
+qA
 Lf
 Lf
 Lf
