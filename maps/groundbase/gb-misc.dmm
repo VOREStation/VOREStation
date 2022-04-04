@@ -2486,7 +2486,7 @@
 /turf/unsimulated/ai_visible,
 /area/ai_multicam_room)
 "lp" = (
-/turf/simulated/floor/flesh,
+/turf/simulated/floor/holofloor/flesh,
 /area/holodeck/the_uwu_zone)
 "lP" = (
 /obj/effect/step_trigger/thrower{
@@ -2969,8 +2969,8 @@
 	},
 /area/holodeck/source_gym)
 "PL" = (
-/turf/simulated/floor/flesh,
-/turf/simulated/floor/holofloor/reinforced,
+/turf/simulated/floor/holofloor/flesh,
+/turf/space,
 /area/holodeck/the_uwu_zone)
 "PM" = (
 /turf/simulated/floor/smole/megablocks,

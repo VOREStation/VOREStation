@@ -345,7 +345,7 @@
 
 /obj/item/weapon/book/manual/rotary_electric_generator
 	name = "Rotary Electric Generator Manual"
-	icon_state ="bookParticleAccelerator"
+	icon_state ="rulebook"
 	item_state = "book15"
 	author = "Engineering Encyclopedia"
 	title = "Rotary Electric Generator Manual"
