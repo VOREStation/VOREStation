@@ -329,6 +329,10 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/eva)
+"aQ" = (
+/obj/machinery/vending/wardrobe/clowndrobe,
+/turf/simulated/floor/carpet/gaycarpet,
+/area/groundbase/civilian/clown)
 "aR" = (
 /turf/simulated/wall/r_wall,
 /area/groundbase/security/halls)
@@ -673,8 +677,18 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/apparel)
 "bZ" = (
-/turf/simulated/floor,
-/area/groundbase/level1/ne)
+/obj/structure/table/woodentable,
+/obj/item/device/flashlight/lamp/clown{
+	pixel_x = -4;
+	pixel_y = 6
+	},
+/obj/item/weapon/bikehorn{
+	pixel_x = -2;
+	pixel_y = 11
+	},
+/obj/machinery/alarm,
+/turf/simulated/floor/carpet/gaycarpet,
+/area/groundbase/civilian/clown)
 "ca" = (
 /turf/simulated/floor/outdoors/newdirt/virgo3c{
 	outdoors = 0
@@ -1009,8 +1023,17 @@
 /area/groundbase/engineering/techstorage)
 "cV" = (
 /obj/effect/landmark/start/clown,
-/turf/simulated/floor,
-/area/groundbase/level1/ne)
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/turf/simulated/floor/carpet/gaycarpet,
+/area/groundbase/civilian/clown)
 "cW" = (
 /obj/structure/table/rack/steel,
 /obj/item/weapon/circuitboard/mech_recharger{
@@ -1347,6 +1370,12 @@
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level1/northspur)
 "dO" = (
@@ -1516,6 +1545,8 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/outdoors/sidewalk/virgo3c,
 /area/groundbase/level1/northspur)
 "el" = (
@@ -4068,6 +4099,15 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/atmos)
+"lh" = (
+/obj/structure/curtain/black{
+	color = "#361447"
+	},
+/obj/item/weapon/bedsheet/clowndouble,
+/obj/structure/bed/double/padded,
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/turf/simulated/floor/carpet/gaycarpet,
+/area/groundbase/civilian/clown)
 "li" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -4377,6 +4417,12 @@
 "lU" = (
 /obj/structure/cable{
 	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
 /turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
 /area/groundbase/level1/northspur)
@@ -5140,6 +5186,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/mining)
+"oh" = (
+/obj/structure/barricade/cutout/clown,
+/turf/simulated/floor/carpet/gaycarpet,
+/area/groundbase/civilian/clown)
 "oi" = (
 /obj/structure/cryofeed{
 	dir = 2
@@ -5402,6 +5452,23 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/or2)
+"oU" = (
+/obj/machinery/door/airlock{
+	name = "Giggledome";
+	req_access = list(136)
+	},
+/obj/machinery/door/firedoor,
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/turf/simulated/floor/bmarble,
+/area/groundbase/civilian/clown)
 "oV" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/firealarm{
@@ -6123,13 +6190,22 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/mining)
 "qY" = (
-/obj/structure/cable{
-	icon_state = "2-4"
-	},
+/obj/structure/closet/crate,
+/obj/item/weapon/circuitboard/smes,
+/obj/item/weapon/circuitboard/smes,
+/obj/item/weapon/smes_coil,
+/obj/item/weapon/smes_coil,
+/obj/item/weapon/smes_coil/super_capacity,
+/obj/item/weapon/smes_coil/super_capacity,
+/obj/item/weapon/smes_coil/super_io,
+/obj/item/weapon/smes_coil/super_io,
 /obj/machinery/alarm{
 	dir = 4
 	},
-/turf/simulated/floor/tiled,
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/plating,
 /area/groundbase/engineering/storage)
 "qZ" = (
 /obj/structure/table/reinforced,
@@ -6296,6 +6372,21 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/groundbase/substation/aiciv)
+"rr" = (
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/maintenance/groundbase/level1/netunnel)
 "rs" = (
 /turf/simulated/wall/r_wall,
 /area/groundbase/level1/westspur)
@@ -7402,6 +7493,12 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/halle)
+"up" = (
+/obj/structure/bed/chair/comfy/yellow{
+	dir = 8
+	},
+/turf/simulated/floor/carpet/gaycarpet,
+/area/groundbase/civilian/clown)
 "uq" = (
 /obj/effect/landmark{
 	name = "JoinLateCryo"
@@ -9057,6 +9154,15 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/civilian/arrivals)
+"yN" = (
+/obj/machinery/power/apc{
+	dir = 4
+	},
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/carpet/gaycarpet,
+/area/groundbase/civilian/clown)
 "yP" = (
 /obj/machinery/light{
 	dir = 4
@@ -9438,7 +9544,7 @@
 	id = "engineaccess";
 	name = "Engine Access";
 	pixel_x = -25;
-	req_access = list(3)
+	req_access = list(10)
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/engine)
@@ -9895,6 +10001,21 @@
 "AW" = (
 /turf/simulated/wall/r_wall,
 /area/groundbase/level1/sw)
+"AX" = (
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/maintenance/groundbase/level1/netunnel)
 "AY" = (
 /obj/structure/filingcabinet/chestdrawer,
 /turf/simulated/floor/tiled,
@@ -10272,6 +10393,21 @@
 "BW" = (
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/lobby)
+"BX" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/groundbase/civilian/clown)
 "BY" = (
 /obj/machinery/alarm{
 	dir = 4
@@ -10703,6 +10839,21 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/engine)
+"De" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/maintenance/groundbase/level1/netunnel)
 "Dh" = (
 /obj/machinery/atmospherics/pipe/simple/visible/black{
 	dir = 5
@@ -10791,6 +10942,17 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/workshop)
+"Dv" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/maintenance/groundbase/level1/netunnel)
 "Dw" = (
 /obj/machinery/power/grid_checker,
 /obj/structure/cable,
@@ -12173,6 +12335,18 @@
 /obj/structure/bed/chair/sofa/bench/left,
 /turf/simulated/floor/outdoors/newdirt_nograss/virgo3c,
 /area/groundbase/level1/centsquare)
+"Hy" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/turf/simulated/floor/carpet/gaycarpet,
+/area/groundbase/civilian/clown)
 "Hz" = (
 /turf/unsimulated/wall/planetary/virgo3c,
 /area/groundbase/level1/southeastspur)
@@ -12880,6 +13054,14 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/atmos)
+"Jy" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/floor/outdoors/newdirt_nograss/virgo3c{
+	outdoors = 0
+	},
+/area/groundbase/civilian/clown)
 "Jz" = (
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/civilian/arrivals)
@@ -15667,6 +15849,24 @@
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/storage)
+"Rh" = (
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/maintenance/groundbase/level1/netunnel)
 "Rj" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/black,
 /turf/simulated/floor/tiled/techmaint,
@@ -16169,6 +16369,21 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/mining)
+"SA" = (
+/obj/structure/cable{
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/maintenance/groundbase/level1/netunnel)
 "SB" = (
 /obj/effect/floor_decal/industrial/danger{
 	dir = 1
@@ -16186,6 +16401,17 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/security/processing)
+"SD" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/maintenance/groundbase/level1/netunnel)
 "SE" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/disposalpipe/segment{
@@ -16335,6 +16561,21 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/mining)
+"Ta" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/maintenance/groundbase/level1/netunnel)
 "Tb" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -16945,6 +17186,18 @@
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/bluegrid,
 /area/groundbase/command/ai/hall)
+"UN" = (
+/obj/structure/table/woodentable,
+/obj/item/toy/figure/clown,
+/obj/item/weapon/pen/crayon/marker/rainbow,
+/obj/machinery/firealarm{
+	dir = 1
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/turf/simulated/floor/carpet/gaycarpet,
+/area/groundbase/civilian/clown)
 "UP" = (
 /obj/structure/table/rack/steel,
 /obj/item/clothing/gloves/arm_guard/laserproof,
@@ -17011,6 +17264,9 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/apparel)
+"Vc" = (
+/turf/simulated/wall,
+/area/groundbase/civilian/clown)
 "Vd" = (
 /obj/machinery/atmospherics/pipe/tank/air{
 	dir = 1
@@ -18616,15 +18872,15 @@
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 2;
 	icon_state = "pipe-c"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level1/northspur)
@@ -18654,6 +18910,11 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/groundbase/command/ai/robot)
+"ZK" = (
+/turf/simulated/floor/outdoors/newdirt_nograss/virgo3c{
+	outdoors = 0
+	},
+/area/groundbase/civilian/clown)
 "ZL" = (
 /obj/machinery/newscaster{
 	layer = 3.3;
@@ -28834,7 +29095,7 @@ qE
 qE
 tG
 tG
-Ro
+De
 iG
 iG
 qE
@@ -28976,7 +29237,7 @@ qE
 qE
 qE
 iG
-Ro
+De
 UE
 UE
 UE
@@ -29118,7 +29379,7 @@ iH
 iH
 iH
 iH
-Ro
+De
 UE
 UE
 UE
@@ -29260,7 +29521,7 @@ iH
 iY
 iY
 nk
-Ro
+De
 UE
 UE
 qE
@@ -29402,7 +29663,7 @@ iH
 iY
 iY
 nk
-Ro
+De
 UE
 UE
 qE
@@ -29544,7 +29805,7 @@ iH
 iH
 iH
 iH
-Ro
+De
 UE
 UE
 qE
@@ -29686,7 +29947,7 @@ qE
 qE
 qE
 qE
-Ro
+De
 UE
 qE
 qE
@@ -29828,7 +30089,7 @@ qE
 qE
 qE
 qE
-Ro
+De
 UE
 qE
 qE
@@ -29969,8 +30230,8 @@ qE
 qE
 qE
 qE
-Fm
-pb
+AX
+Ta
 qE
 qE
 qE
@@ -30111,7 +30372,7 @@ qE
 qE
 qE
 qE
-Ro
+De
 qE
 qE
 qE
@@ -30253,7 +30514,7 @@ qE
 qE
 qE
 pU
-Ro
+De
 qE
 pU
 qE
@@ -30395,7 +30656,7 @@ qE
 qE
 pU
 pU
-Ro
+De
 pU
 pU
 qE
@@ -30537,7 +30798,7 @@ qE
 qE
 qE
 pU
-Ro
+De
 pU
 pU
 qE
@@ -30679,8 +30940,8 @@ qE
 qE
 pU
 pU
-Km
-ty
+SA
+rr
 pU
 qE
 qE
@@ -30822,7 +31083,7 @@ qE
 qE
 pU
 pU
-Ro
+De
 pU
 qE
 qE
@@ -30964,7 +31225,7 @@ qE
 qE
 pU
 pU
-Ro
+De
 pU
 qE
 qE
@@ -31106,7 +31367,7 @@ qE
 qE
 pU
 pU
-Ro
+De
 pU
 qE
 qE
@@ -31248,7 +31509,7 @@ qE
 qE
 qE
 pU
-Ro
+De
 pU
 qE
 pU
@@ -31390,7 +31651,7 @@ qE
 qE
 qE
 pU
-Ro
+De
 qE
 qE
 pU
@@ -31532,7 +31793,7 @@ qE
 qE
 qE
 qE
-Ro
+De
 qE
 pU
 pU
@@ -31674,11 +31935,11 @@ qE
 qE
 qE
 qE
-Km
-uO
-uO
-uO
-ty
+SA
+Dv
+Dv
+Dv
+rr
 pU
 qE
 qE
@@ -31820,7 +32081,7 @@ pU
 pU
 pU
 pU
-Ro
+De
 pU
 pU
 qE
@@ -31962,7 +32223,7 @@ qE
 qE
 pU
 pU
-Ro
+De
 qE
 pU
 qE
@@ -32104,10 +32365,10 @@ qE
 qE
 qE
 qE
-Km
-uO
-uO
-ty
+SA
+SD
+SD
+rr
 pU
 pU
 pU
@@ -32249,7 +32510,7 @@ qE
 pU
 pU
 qE
-Km
+Rh
 uO
 uO
 uO
@@ -32390,10 +32651,10 @@ qE
 qE
 qE
 pU
-pU
-pU
-pU
-pU
+ZK
+BX
+Jy
+sm
 qE
 pU
 pU
@@ -32531,11 +32792,11 @@ qE
 qE
 qE
 qE
-bb
-bb
-bZ
-bb
-bb
+Vc
+Vc
+oU
+Vc
+Vc
 qE
 pU
 qE
@@ -32673,11 +32934,11 @@ qE
 qE
 qE
 qE
-bb
+Vc
 bZ
-bZ
-bZ
-bb
+Hy
+oh
+Vc
 qE
 qE
 qE
@@ -32815,11 +33076,11 @@ qE
 qE
 qE
 qE
-bb
-bZ
+Vc
+lh
 cV
-bZ
-bb
+UN
+Vc
 qE
 qE
 qE
@@ -32957,11 +33218,11 @@ qE
 qE
 qE
 qE
-bb
-bZ
-bZ
-bZ
-bb
+Vc
+aQ
+yN
+up
+Vc
 qE
 qE
 qE
@@ -33099,11 +33360,11 @@ qE
 qE
 qE
 qE
-bb
-bb
-bb
-bb
-bb
+Vc
+Vc
+Vc
+Vc
+Vc
 qE
 qE
 qE

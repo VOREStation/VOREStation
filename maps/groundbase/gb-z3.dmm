@@ -1200,9 +1200,15 @@
 /turf/simulated/floor/tiled,
 /area/shuttle/groundbase/exploration)
 "ws" = (
-/obj/machinery/light/bigfloorlamp,
-/turf/simulated/floor/outdoors/grass/virgo3c,
-/area/groundbase/level3/nw)
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/machinery/light/floortube{
+	dir = 8;
+	pixel_x = 1
+	},
+/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/area/groundbase/level3/escapepad)
 "wu" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -6398,10 +6404,10 @@ aa
 qO
 qO
 MF
-ws
-qO
-qO
-qO
+Gf
+tM
+tM
+tM
 Qn
 Ii
 Ii
@@ -6540,10 +6546,11 @@ aa
 qO
 qO
 MF
-qO
+tM
 rJ
 vw
 vw
+ws
 vw
 vw
 vw
@@ -6551,8 +6558,7 @@ vw
 vw
 vw
 vw
-vw
-vw
+ws
 vw
 vw
 vw
@@ -6682,7 +6688,7 @@ aa
 bi
 qO
 MF
-qO
+tM
 pC
 DB
 DB
@@ -6824,7 +6830,7 @@ dE
 Ts
 uF
 mU
-qO
+tM
 Sp
 DB
 DB
@@ -6966,7 +6972,7 @@ aa
 bi
 qO
 Fx
-qO
+tM
 Sp
 DB
 DB
@@ -7108,7 +7114,7 @@ aa
 qO
 qO
 Fx
-qO
+tM
 Sp
 DB
 DB
@@ -7250,7 +7256,7 @@ aa
 qO
 qO
 Fx
-qO
+tM
 Sp
 DB
 DB
@@ -7392,7 +7398,7 @@ aa
 qO
 qO
 Fx
-qO
+tM
 Sp
 DB
 DB

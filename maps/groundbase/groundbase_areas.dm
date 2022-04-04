@@ -316,6 +316,10 @@
 	name = "Uncle Grumslex's Snack Emporium"
 /area/groundbase/civilian/apparel
 	name = "Crew Apparel Care"
+/area/groundbase/civilian/clown
+	name = "Giggledome"
+/area/groundbase/civilian/mime
+	name = "Temple of Silence"
 
 /area/groundbase/exploration
 	name = "Exploration"
